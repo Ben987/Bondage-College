@@ -1,0 +1,51 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,"Oui, c'est mon premier jour ici.",Bienvenue alors!  Je suis Amanda.,10,0,0,
+0,0,0,,"Oui, un premier jour dans une nouvelle|école est toujours effrayant.","Ça va aller.  Je suis Amanda, bienvenue.",10,0,-1,
+0,0,0,,T'as l'air d'être|l'animal de compagnie de la prof.,"Huuuum... Enfin...  Je...|Je suis Amanda, bienvenue.",10,-1,1,
+0,0,0,,De quoi tu t'occupes?,"Oh!  C'est sans arrières pensées.  Je suis Amanda, bienvenue.",10,-1,0,
+0,0,0,SidneyInBondage,Je pense que tu devrais toi aussi|avoir l'air adorable ligotée.,"(Elle rougie.)|Tu penses?  Je suis Amanda, Enchantée.",10,0,1,
+0,0,0,SidneyInBondage,Tu ferais mieux de bien te comporter|ou tu finiras comme elle.,"Oui, oui, bien évidemment.  Je suis Amanda.|(Elle baisse la tête et regarde le sol.)",10,-1,2,
+10,0,0,,Informe moi sur ce lycée.,Il a été construit il y a un un siècle par des nones.|Aujourd'hui il est reconnu comme lycée pour filles.,20,0,0,
+10,0,0,,Quel cours avons nous|ce matin?,Math!  Mon préféré!  Attends de rencontrer notre professeur.,20,0,0,
+10,0,0,,J'ai entendu de très bonne choses|sur cette établissement.,"Tu as bien entendu, cet endroit est merveilleux.",20,1,0,
+10,0,0,,J'espère que ça va être un cours|rapide qu'on puisse se casser.,Je doute que ce soit une attitude adaptée.,20,-1,0,
+20,0,0,,J'aime bien tes cheveux.,"(Elle rit et rougit.)|T'es sympa, maintenant prépare toi, le cours va bientôt commencer.",30,1,0,
+20,0,0,,Tu as l'air fasciné par|cette école débile.,Mmh (Elle se retourne et arrête de parler),50,-1,0,
+20,0,0,,"Ne prépare rien pour le|déjeuner, je te l'offre.",Vraiment?  (rires)|Concentrons nous sur le cours maintenant.,30,0,1,
+20,0,0,,Pourrais tu me présenter les environs|après le cours?,Je le ferai peut-être.|Mais avant, prépare toi pour le cours.,30,0,-1,
+30,0,0,,"Oui, concentrons|nous sur les cours du jour.",Well said.,50,1,0,
+30,0,0,,"Les cours, les cours, les cours.|Tu gaves.",Oh!  Désolé.  (Elle se retourne et arrête de parler),50,-1,0,
+30,1,0,,"Attention, la fille aux cheveux noirs|te fixe.","Oh seigneur!  Merci de m'avertir.|C'est la première fois que je vois son sac, Je me demande ce qu'il y a dedans.",40,1,0,
+40,1,0,,"Ne t'en fait pas, si elle pose|problème, Je te protègerai.",Tu le ferais?  C'est super!|Mais concentrons sur les cours pour l'instant.,50,0,1,
+40,1,0,,"Peut-être qu'on devrait le rapporter|au professeur, elle est effrayante.",Alerter la professeure... Je ne sais pas.|Concentrons nous sur les cours pour l'instant.,50,0,-1,
+40,1,0,SidneyInBondage,"Il y avait des cordes dans son|sac.  Elle les porte, Hahaha!  Je vois ça.|Mais tu ne devrais pas la relâcher avant le début du cours?,50,1,0,
+200,0,0,BondageNotConfronted,Ça te dirait|d'être ligotée maintenant?,Quoi?  Non!  Le cours commence dans quelques minutes!|S'il te plaît range ces cordes.,200,-1,0,ConfrontBondage()
+200,0,0,BondageNotConfronted,"Avoue petite, tu adorerais|te faire ligoter.",Oh mon dieu!  (Elle rougie.)|Non... O... Non... le cours commence dans très peu de temps.,200,-1,1,ConfrontBondage()
+200,0,0,StopRopeSubAllowed,"J'adore le bondage,|tu peux me ligoter?","Oh!  T'es une soumise, peut-être après les cours.|(elle fait un clin d'oeil.) De quoi parlait-on la nouvelle?",200,0,-2,StopRopeSub()
+200,0,0,,On peut les utiliser plus tard.|(Cache les cordes.),Plus tard? (Elle te regarde curieusement.)|Donc, de quoi parlait-on la nouvelle?,200,0,0,StopRope()
+200,0,2,,(L'attraper et retirer|son uniforme.) (1 minute),Oh seigneur non!  Pas encore!|(Elle essaie de se défendre mais cela échoue.),220,0,0,Strip()
+200,0,4,,"Soumise, enlève ton|uniforme tout de suite. (1 minute)",N... Mmmh... Oui Miss...|(Elle enlève son haut et sa jupe en toute soumission.),220,0,0,
+220,0,0,,(L'attacher.)|(1 minute),(Tu enroules les cordes autour de son torse et attache|ses bras dans son dos.  Elle gémit doucement.),230,0,0,Tie()
+220,0,0,,Remets tes vêtements.|(1 minute),Oh seigneur oui!  C'est embarassant!.,200,0,0,
+230,0,0,,(La retourner.),Quoi?  Oh seigneur!  Qu'est-ce que tu fais?|(Tu la forces à se retourner.),240,0,0,
+230,0,0,,(La détacher.)|(1 minute),(Tu la détaches doucement) Merci beaucoup!|Est-ce que c'est ok si je me rhabille?,220,0,0,Untie()
+230,0,0,,(La chatouiller.)|(1 minute),(Elle rougit et ne peut plus s'empêcher de rigoler.)|Hey!  Haaahahahaha!  T'es amusante.,230,0,0,Tickle()
+230,1,0,,(L'embrasser.)|(1 minute),Un autre baiser?|(Elle rougit et te sourit.),230,0,0,Kiss()
+230,0,0,SidneyInBondage,(La coller à Sidney.)|(1 minute),(Les deux filles sont forcées à se faire un câlin et se frotter contre l'autre.)|Oh mais!  Ce n'est pas approprié.,250,0,0,
+230,0,0,,Tu as l'air d'un|ange attachée.,(Elle rit et te sourit.),230,0,0,
+230,0,0,,"Si je te détache, est-ce que je pourrai|te rattacher plus tard? (1 minute)",Ooooh!  Oui!  Evidemment!|(Tu a détaches et lui serre la main.),300,1,1,Untie()
+230,0,0,,"Si je te détache, est-ce que|tu m'attacheras plus tard? (1 minute)","Hehehe, très bien.|(Tu la détaches et lui serre la main.)",300,1,-2,Untie()
+240,0,0,,(Le retourner.),(Tu la forces à se retourner.)|Oooohh!  En fait je préfère te voir.,230,0,0,
+240,0,0,,(la détacher.)|(1 minute),(Tu la détaches doucement) Merci beaucoup!|Est-ce que c'est ok si je me rhabille?,220,0,0,Untie()
+240,0,0,,(La chatouiller.)|(1 minute),(Elle rougit et ne peut plus s'empêcher de rigoler.)|Hey!  Haaahahahaha!  T'es amusante.,240,0,0,Tickle()
+240,0,0,,(La fesser.)|(1 minute),(Tu lui colles encore une fessée mais elle semble mieux le prendre.)|Arrête ça!,240,0,0,Spank()
+240,0,0,,Tu as de jolies|fesses tu sais?,Vraiment?  (Elle rougit.),240,0,0,
+240,0,0,,"Si je te détache, est-ce que je pourrai|te rattacher plus tard? (1 minute)",Ooooh!  Oui!  Evidemment!|(Tu a détaches et lui serre la main.)",300,1,1,Untie()
+240,0,0,,"Si je te détache, est-ce que|tu m'attacheras plus tard? (1 minute)","Hehehe, très bien.|(Tu la détaches et lui serre la main.)",300,1,-2,Untie()
+250,0,0,,(Les séparer.),Merci.  C'était embarassant.,230,0,0,
+250,0,0,,(Les forcer à s'embrasser.)|(1 minute),Un autre baiser?  C'est vulgaire!|(Tu les pousses de nouveau pour qu'elles s'embrassent.),260,0,0,ForceKiss()
+250,0,0,,Vous deux formez un magnifique|couple de bondage.,(Elles te jettent toute deux un regard.),250,0,0,
+260,0,0,,(Les séparer.),Merci.  C'était embarassant.,230,0,0,
+260,0,0,,(Arrêter les baisers.),"Soit pas offensé Sidney,|mais t'es pas mon genre.",250,0,0,
+260,0,0,,Il y a de l'amour dans l'air!,Hey!  C'est pas drôle.|(Elle te tire la langue.),260,0,0,
+260,2,0,,Est-ce que je peux aussi avoir un baiser?,"Hehehe, ok.|(Elle se retourne et t'embrasse.)",260,0,0,

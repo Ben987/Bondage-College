@@ -1,0 +1,8 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,(Ouvrir les sangles.),"Tu ouvres les sangles, elles pendent lâchement.|Tu peux voir des cordes dans le sac.",10,0,0,
+0,0,0,,(Tirer sur le sac.),Arrête de tirer idiot!  Qu'est-ce que tu fiche?|(Elle tire le sac hors de portée.),30,0,0,SidneyAnnoy()
+10,0,0,,(Attacher les sangles.),Tu glisses les sangles dans leurs crochets avec précaution.,0,0,0,
+10,0,0,,(Voler les cordes.),Tu voles les cordes du sac avec précaution.,20,0,0,GetRope()
+10,0,0,,(T'informer sur les cordes.),,30,0,0,SidneyRope()
+10,0,0,,(Tirer sur le sac.),Arrête de tirer idiot!  Qu'est-ce que tu fiche?|(Elle tire le sac hors de portée.),30,0,0,SidneyAnnoy()
+20,0,0,,(Tirer sur le sac.),Arrête de tirer idiot!  Qu'est-ce que tu fiche?|(Elle tire le sac hors de portée.),30,0,0,SidneyAnnoy()

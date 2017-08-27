@@ -1,0 +1,5 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,Le sac de cours pend sans surveillance à l'arrière de la fille.|Les sangles sont accrochées.,BagClosed.jpg
+10,0,0,,Les sangles du sac de cours pendent déserrées.|Tu peux voir des cordes à l'intérieur.,BagOpen.jpg
+20,0,0,,Les sangles du sac de cours pendent déserrées.|Il ne reste rien d'intéressant dans ce sac.,BagOpen.jpg
+30,0,0,,Le sac est fermé et est bien gardé.|Tu vas avoir besoin de parler avec sa propriétaire.,BagClosed.jpg

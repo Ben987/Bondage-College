@@ -1,0 +1,19 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,Bonjour! Es-tu nouvelle dans nôtre lycée?|Les cours commencent à 8h.,Amanda.jpg
+0,0,0,SidneyInBondage,Bonjour!  J'arrive pas à croire que tu aies ligoté Sidney.|Elle a l'air mignonne comme ça en fait.,Amanda.jpg
+10,0,0,,Bonjour et bienvenue à nouveau.,Amanda.jpg
+20,0,0,,As-tu besoin de quelque chose?,Amanda.jpg
+30,0,0,,Souhaites-tu savoir autre chose|ou nous nous concentrons sur les cours du jour?,Amanda.jpg
+40,0,0,,(Elle regarde la fille aux cheveux noirs|et semble craintive.),Amanda.jpg
+50,0,0,,"Discutons après les cours, ok?",Amanda.jpg
+50,2,0,,J'adorerai discuter mais je dois avant tout|prendre des notes de cours.  Revoyons nous après les cours!.,Amanda.jpg
+50,-2,0,,J'ai vraiment pas le temps de discuter.,Amanda.jpg
+50,0,0,SidneyInBondage,(Elle rit.)  Sidney très mignonne ainsi.|Mais peut-être que tu devrais la détacher avant les cours.,Amanda.jpg
+200,0,0,,Pourquoi as-tu une corde sur toi?,Amanda.jpg
+220,0,0,,S'il te plaît fait attention avec mes vêtements.|(Elle semble honteuse.),AmandaStrip.jpg
+230,0,0,,Oh mon dieu!  Les cours vont bientôt commencer.|(Elle tire sur les cordes en vain pour s'en sortir.),AmandaBondageFront.jpg
+240,0,0,,,AmandaBondageBack.jpg
+250,0,0,,,AmandaBondageHug.jpg
+260,0,0,,,AmandaBondageKiss.jpg
+300,0,0,,Merci de m'avoir laissé partir. (Elle sourit.),Amanda.jpg
+300,0,0,SidneyInBondage,Merci de m'avoir laissé partir. et Sidney est mignonne comme ça.|Mais peut-être que tu devrais la détacher avant les cours.,Amanda.jpg

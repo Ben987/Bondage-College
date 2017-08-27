@@ -1,0 +1,15 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,Nouvelle Partie,,0,0,0,"LoadChapter(""C001_BeforeClass"")"
+0,0,0,,Charger une Partie,,0,0,0,LoadScreen()
+0,0,0,,Sélection de Chapitre,"Sélectionne le chapitre que tu veux jouer.|Si tu n'as jamais essayé le jeu, commence au chapitre 1.",10,0,0,
+0,0,0,,Changer de langue,,20,0,0,
+10,0,0,,Chapitre 1|Avant les cours,,10,0,0,"LoadChapter(""C001_BeforeClass"")"
+10,0,0,,Chapitre 2|Premier cours,,10,0,0,"LoadChapter(""C002_FirstClass"")"
+10,0,0,,Chapitre 3|Détention matinale,,10,0,0,"LoadChapter(""C003_MorningDetention"")"
+10,0,0,,Chapitre 4|Cours d'art,,10,0,0,"LoadChapter(""C004_ArtClass"")"
+10,0,0,,Chapitre 5|Cours de sport,,10,0,0,"LoadChapter(""C005_GymClass"")"
+10,0,0,,Chapitre 6|Confinement,,10,0,0,"LoadChapter(""C006_Isolation"")"
+10,0,0,,Chapitre 7|Pause déjeuner,,10,0,0,"LoadChapter(""C007_LunchBreak"")"
+10,0,0,,Menu Principal,"Bienvenue au lycée Bondage.|Amusez-vous, soyez curieux et coquin.",0,0,0,
+20,0,0,,Anglais,,0,0,0,"SetLanguage(""EN"")"
+20,0,0,,Français,,0,0,0,"SetLanguage(""FR"")"
