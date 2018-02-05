@@ -1,8 +1,14 @@
 Stage,LoveReq,SubReq,VarReq,IntroText,Image
 0,0,0,,"Hey club, looks like the new girl|wants to play Blind Man's Buff.",BlindMansBuff.jpg
-10,0,0,,Ready to play again?,BlindMansBuff.jpg
-15,0,0,,(The bright light hurts your eyes. The club|stops playing and goes back to normal.),TooBright.JPG
-20,0,0,,,BlindMansBuff.jpg
+5,0,0,,"(Unable to see, you are left with|the noise of the busy club room.)",BlindMansBuff.jpg
+7,0,0,,,BlindMansBuff.jpg
+10,0,0,,Are you ready to carry on playing?,BlindMansBuff.jpg
+15,0,0,,(The bright light hurts your|eyes as they adjust to the room.),TooBright.JPG
+20,0,0,,(You have fallen over and landed on the floor.),BlindMansBuff.jpg
+25,0,0,,Are you giving up already?,BlindMansBuff.jpg
 30,0,0,,,BlindMansBuff.jpg
 40,0,0,,,BlindMansBuff.jpg
-50,0,0,,,BlindMansBuff.jpg
+100,0,0,,,BlindMansBuff.jpg
+110,0,0,,,BlindMansBuff.jpg
+120,0,0,,,BlindMansBuff.jpg
+200,0,0,,,BlindMansBuff.jpg

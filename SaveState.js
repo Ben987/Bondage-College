@@ -61,6 +61,7 @@ function SaveState(SlotNumber) {
 	localStorage.setItem("PlayerLockedInventory" + SN, JSON.stringify(PlayerLockedInventory));
 	localStorage.setItem("Actor" + SN, JSON.stringify(Actor));
 	localStorage.setItem("Common_PlayerCrime" + SN, Common_PlayerCrime);
+	localStorage.setItem("Common_ClubStatus" + SN, Common_ClubStatus);
 
 	// Reload the summaries
 	CurrentStage[1][StageInteractionText] = "Slot 1";
@@ -84,6 +85,7 @@ function LoadState(SlotNumber) {
 			PlayerLockedInventory = JSON.parse(localStorage.getItem("PlayerLockedInventory" + SN));
 			Actor = JSON.parse(localStorage.getItem("Actor" + SN));
 			Common_PlayerCrime = localStorage.getItem("Common_PlayerCrime" + SN);
+			Common_ClubStatus = localStorage.getItem("Common_ClubStatus" + SN);
 			LoadRestrainStatus();
 			SetScene(CurrentChapter, CurrentScreen);
 			

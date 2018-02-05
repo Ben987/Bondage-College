@@ -1,18 +1,20 @@
 Stage,LoveReq,SubReq,VarReq,IntroText,Image
 0,0,0,,I knew you would come back.|I need to explain some things to you.,JennaWaiting.jpg
-10,0,0,,,JennaWaiting.jpg
-20,0,0,,,JennaWaiting.jpg
-30,0,0,,,JennaWaiting.jpg
-40,0,0,,,JennaWaiting.jpg
-50,0,0,,,JennaWaiting.jpg
-55,0,0,,,JennaWaiting.jpg
-56,0,0,,,JennaWaiting.jpg
-60,0,0,,,JennaWaiting.jpg
-70,0,0,,,JennaWaiting.jpg
-75,0,0,,,JennaWaiting.jpg
-80,0,0,,,JennaGone.jpg
+5,0,0,,"Hey there, you must be the new girl.",JennaWaiting.jpg
+10,0,0,,It's about this club and also about Natalie.,JennaWaiting.jpg
+15,0,0,,This is the college's Kinbaku Club.|Your welcome to stay for the evening.,JennaWaiting.jpg
+20,0,0,,It's about this club and also a bet Natalie made.,JennaWaiting.jpg
+25,0,0,,I'm Jenna.,JennaWaiting.jpg
+30,0,0,,I'll explain a bit about this club.,JennaWaiting.jpg
+40,0,0,,"For a start, the college thinks this club is about|""Cultural art forms, practical skills and exercise"".",JennaWaiting.jpg
+50,0,0,,"Yeah officially, a few of the teachers know better.|Also it's not just Kinbaku with ropes.",JennaWaiting.jpg
+55,0,0,,The club is very inclusive and we use|a wide range of equipment and techniques.,JennaWaiting.jpg
+56,0,0,,"No, there are standards and consent.  The club|will internally discipline anyone who goes too far.",JennaWaiting.jpg
+60,0,0,,"Even so we tend to use safe words such as 'Banana',|just to make sure everyone is OK and enjoying it.",JennaWaiting.jpg
+70,0,0,,Natalie could have saved herself a lot of|trouble quite easily.  Oh and have a complimentary rope.,JennaWaiting.jpg
+75,0,0,,She would be tied up the whole time given the choice.|I've told her to have an evening without for once.,JennaWaiting.jpg
+80,0,0,,(Jenna has left the room.),JennaGone.jpg
 100,0,0,,"You have some nerve,|turning up here after what you've done.",JennaAngry.jpg
-110,0,0,,,JennaAngry.jpg
-120,0,0,,,JennaAngry.jpg
-130,0,0,,,ClubMenacing.jpg
-140,0,0,,,ClubMenacing.jpg
+110,0,0,,My FRIEND is recovering after what YOU did to her.,JennaAngry.jpg
+120,0,0,,Her next class was Math and she was|discovered afterwards by a furious Mildred.,JennaAngry.jpg
+130,0,0,,I'm sure you will have no trouble|getting over this practical joke then.,ClubMenacing.jpg

@@ -6,6 +6,9 @@ function C999_Common_CuffsKey_Load() {
 	LeaveIcon = "Leave";
 	C999_Common_CuffsKey_IsCuffed = (PlayerHasLockedInventory("Cuffs"))
 	LoadInteractions();
+
+	// if the key would be out of the players reach
+	if (C999_Common_Cuffs_KeyOutOfReach) C999_Common_CuffsKey_IsCuffed = false;
 }
 
 // Chapter Common - CuffsKey Run

@@ -5,3 +5,4 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 10,0,0,,(Try to slip out.)|(1 minute),You try to slip your hands out of|the cuffs but you fail miserably.,10,0,0,
 10,0,0,,(Try to break them.)|(1 minute),You try to break the cuffs|but you can't make a scratch.,10,0,0,
 10,0,0,HasKey,(Unlock them.)|(1 minute),You fumble with the key for a little|while but finally unlock yourself.,0,0,0,Unlock()
+10,0,0,CanEscape,(Escape the cuffs.)|(1 minute),"You fumble with a hair clip for a while, but eventually|force the mechanisum to open with a hair clip.",0,0,0,Escape()

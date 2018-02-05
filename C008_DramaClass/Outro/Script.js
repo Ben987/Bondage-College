@@ -60,7 +60,8 @@ function C008_DramaClass_Outro_Click() {
 	if ((Common_PlayerCrime == "AmandaStranded") || (Common_PlayerCrime == "SarahStranded") || (Common_PlayerCrime == "SidneyStranded") || (Common_PlayerCrime == "JenniferStranded")) {
 		if (TextPhase >= 4) SaveMenu("C010_Revenge", "Intro");
 	} else {
-		//if (TextPhase >= 3) SaveMenu("C009_Library", "Intro");		
+		//if (TextPhase >= 3) SaveMenu("C009_Library", "Intro");
+		if (TextPhase >= 3) SaveMenu("C101_KinbakuClub", "Intro");
 	}
 
 }

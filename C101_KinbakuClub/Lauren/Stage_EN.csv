@@ -1,0 +1,215 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,"That's me,|nice to meet you.",Nice to meet you too.|Its always good to see new club members.,30,1,0,
+0,0,0,PlayerGagged,@hn nngm th mmmt nhh.,"Sorry, I don't understand gag talk yet.|You will have to remove that gag first.",25,0,0,
+0,0,0,,(Nod your head.),"Don't be shy, were all friends here.",30,0,-1,
+10,0,0,,Could you help|untie me?,"Sorry, you must have got yourself into that mess,|so you can get out of it yourself.",15,0,0,
+10,0,0,PlayerGagged,@Plmhfm hntnm mm.,"Sorry, I don't understand gag talk yet.|You will have to remove that gag first.",15,0,0,
+10,0,0,,(Nod your head.),"That's nice, have fun like that.",15,0,-1,
+20,0,0,,Could you|remove these cuffs?,"I don't actually have a handcuff key,|but I can teach you how to escape them.",50,0,0,
+20,0,0,,You would look even|better trapped in them.,Handcuffs have a habit of just slipping off me.|Would you like to learn how?,50,0,0,
+20,0,0,PlayerGagged,@Plmhfm hntnm mm.,"Sorry, I don't understand gag talk yet.|You will have to remove that gag first.",25,0,0,
+20,0,0,,(Nod your head.),And so submissive too.|Would you like to stay like that or learn to escape.,50,0,-1,
+25,0,0,PlayerGagged,@Plmhfm hntnm mm.,"Sorry, I don't understand gag talk yet.|You will have to remove that gag first.",25,0,0,
+30,0,0,,What are you doing?,I'm teaching Nicole how to escape handcuffs without|the key.  Do you know how to do it?,40,0,0,
+30,0,0,,Can I tie you up?,"Wow, not now, I'm teaching Nicole how to escape|handcuffs.  Would you like to learn how as well?",40,0,1,
+30,0,0,,Will you tie me up?,"Maybe later, I'm teaching Nicole how to escape|handcuffs right now. You ought to learn this too.",40,0,-1,
+30,0,0,BlindfoldAvailable,Are you using|that blindfold?,"I was going to try escaping cuffs blindfolded, but you|can borrow it.  It's a good one, you should try it out.",30,0,0,GetBlindfold()
+40,0,0,,I didn't know|that was possible.,Nothing is impossible.|The handcuff mechanism is really very crude.,100,0,0,
+40,0,0,,What you mean by|dislocating your thumbs?,"Don't be silly, there are far less painful methods.|The handcuff mechanism is really very crude.",100,-1,0,
+40,0,0,,Intriguing tell me more.,Sure.|The handcuff mechanism is really very crude.,100,1,0,
+40,0,0,,Handcuffs don't|really interest me.,"That's fine, you should try the girls next to me.|They are discussing rope techniques.",45,0,0,
+45,0,0,BlindfoldAvailable,Are you using|that blindfold?,"I was going to try escaping cuffs blindfolded, but you|can borrow it.  It's a good one, you should try it out.",45,0,0,GetBlindfold()
+50,0,0,PlayerHasKey,"I have a key, but|I would like to learn.","That's all very well, but keys can go missing.|The handcuff mechanism is really very crude.",100,1,0,
+50,0,0,,"Please teach me,|these cuffs hurt.",Of course sweetie.|The handcuff mechanism is really very crude.,100,1,-1,
+50,0,0,,"Yes, tell me now.",OK steady on.|The handcuff mechanism is really very crude.,100,0,1,
+50,0,0,,"Forget it, I'll|just find a key.",Good luck with that.,55,-1,0,
+50,0,0,PlayerGagged,@Plmhfm hntnm mm.,"Sorry, I don't understand gag talk yet.|You will have to remove that gag first.",50,0,0,
+50,0,0,PlayerGagged,(Nod your head.),"Someone must have gagged you for a reason,|get them to ungag you first so we can talk properly.",50,0,0,
+100,0,0,,It seems|effective enough.,"Crude, but effective.  It's just a sprung pawl on|a ratchet, the key just lifts the pawl.",110,0,0,
+100,0,0,,This whole room|is pretty crude.,"They're not all that bad.  It's just a sprung pawl|on a ratchet, the key just lifts the pawl.",110,0,0,
+110,0,0,,So what do you do|without the key?,I force the pawl and ratchet apart by|sliding a thin strip of metal in between them.,120,0,0,
+110,0,0,,You just pick|the lock then?,"That's one method, but I just slide a strip|of metal between the pawl and ratchet.",120,0,1,
+110,0,0,,What did you just|say about paws?,Don't sweat the technical language.  You just have|to slide a strip of metal into the right place.,120,0,-1,
+120,0,0,,What you just magic|up strips of metal.,The magic is to hide them in plain sight.|The basic snap hair clips are ideal and discreet.,130,0,0,
+120,0,0,,I don't have|anything like that.,A lot of us are already wearing just the thing.|A snap hair clip is all you need.,130,0,-1,
+120,0,0,,Hmmm so what might|I have like that?,That's the attitude.|All we need here is a basic snap hair clip.,130,1,0,
+130,0,0,,Can you show me|how to do it?,"Handcuff yourself first and I will talk you through it,|like I'm doing with Nicole.",140,0,0,AlreadyCuffed()
+130,0,0,,Get on with it.|Show us how it's done.,"Well I could but it's better if you cuff yourself|and try it, like Nicole is trying to do.",140,0,1,AlreadyCuffed()
+140,0,0,,Ok then.|(Handcuff yourself.),(You take the handcuffs and cuff your hands behind|your back.)  You're a rather obedient student.,150,1,-1,PlayerCuffed()
+140,0,0,,You cannot be serious?,"I am. If you don't show, I won't tell.",145,0,0,
+145,0,0,,"Fine, this had|better be good.",(You take the handcuffs and cuff yourself.)|It will be if you don't mess it up.,150,0,0,PlayerCuffed()
+145,0,0,,No this is stupid.,Suit yourself. I don't have to tell you.,145,0,0,
+150,0,0,,"Wait, how am I supposed|to reach a hair clip.",You should have though of that first. It's best|to keep a few hidden on you just in case.,160,0,0,
+150,0,0,,(Hold your hand|out expectantly),What is it? Oh yes a hair clip.  It's best|to keep a few hidden on you just in case.,160,-1,1,
+150,0,0,,Umm I can't reach|my head like this.,"Of course, that is why it pays to keep|a few hidden about your clothes.",160,0,-1,
+160,0,0,,Please may I have a clip.,"Yes, (She reaches over attaches a hair clip to|the waist of your skirt.)  You're ready now.",170,0,-1,KinkyClip()
+160,0,0,,Come on give me|a hair clip.,"Sure, (She reaches over attaches a hair clip to|the waist of your skirt.)  You're ready now.",170,0,0,KinkyClip()
+165,0,0,,"Kinky hiding place,|I like it.","It's not meant to be kinky, but it is a good idea|to keep a few hidden in different places.",170,1,0,
+165,0,0,,"Err, did you have|to hide it there.","Yes, a kidnapper might remove your uniform.|A few hidden in different places is a good idea.",170,0,-1,
+170,0,0,,So what do I do now?,"You take the clip and remove the wide end of by|bending it back and forth, till it breaks.",180,0,0,
+180,0,0,,Do as she says.,"(Eventually the clip breaks in your sore fingers.)|That's it, now just keep the slim part with the rivet.",190,0,0,
+190,0,0,,What now?,That's the thin strip of metal you need.|Slide it in along the ratchet teeth into the cuffs lock.,200,0,0,
+190,0,0,,So this bit slides|into the cuffs?,That's right.|Slide it in along the ratchet teeth into the cuffs lock.,200,1,0,
+200,0,0,,(Slide the strip|into the cuffs.),"(With a bit of wriggling you manage to release the cuffs.)|Brilliant, Nicole still hasn't got it.",205,0,0,ReleaseTest()
+205,0,0,,(Try again.),(With a bit of wriggling you manage to release the cuffs.)|Finally. You're still faster than Nicole.,205,0,0,ReleaseTest()
+210,0,0,,Thanks. Do you|have any more clips?,"You're welcome.|I bought a load of those clips, here take a few.",220,1,0,LearntEscape()
+210,0,0,,Well it worked|I suppose.,It's better than still being handcuffed.|Have a few spare hair clips just in case.,220,-1,0,LearntEscape()
+220,0,0,BlindfoldAvailable,Are you using|that blindfold?,"I was going to try escaping cuffs blindfolded, but you|can borrow it.  It's a good one, you should try it out.",220,0,0,GetBlindfold()
+300,0,0,,Well look who|I caught.,"Yes you got me, but not for long.|If Nicole lets go I can escape in no time.",310,0,0,
+300,0,0,,Looks like I caught|a pretty one.,"Thanks, but no handcuffs can hold me for long.|Nicole you can let go now.",310,1,0,
+300,0,0,,Which one|did I get?,That was me and I would have slipped these cuffs|before you removed that blindfold if wasn't for Nicole.,310,0,0,
+310,0,0,,I should tie you up then.,"No way, I hate the feel of ropes.",315,0,0,
+310,0,0,,Really you can|escape any handcuffs?,"I sure can. Any handcuffs, no keys, no problem.|Do you want to see?",320,0,0,
+310,0,0,,You just have a key then?,"No, I can escape any handcuffs without needing a key.",320,0,0,
+315,0,0,,What if I say|please?,The answer is still no.,320,0,0,
+315,0,0,,Like you're in a|position to argue.,"Be careful, this club doesn't take kindly to bullies.",320,-1,0,
+320,0,0,,Go on then just try it.,(Nicole lets her go and Lauren soon slips|out of the cuffs.) See I told you so.,330,0,0,
+320,0,0,,Let's see how good you are.,I'm the best. (Nicole lets her go|and Lauren is soon free from the handcuffs.),330,1,0,
+330,0,0,,Hmmm that wasn't|that difficult.,I'm quicker than anyone else here.,340,-1,0,
+330,0,0,,You just used|a hair clip.,"So what, it's still escaping.",340,0,0,
+330,0,0,,Wow you made|that look easy.,"Yeah, just being handcuffed behind|my back is hardly a challenge for me.",340,1,-1,
+340,0,0,,Would you like a|handcuff challenge?,"Bring it on,|I'll find a way out of any handcuff?",350,0,0,
+340,0,0,,I can trap you|with handcuffs.,"I'm not so sure, but you can try.",350,0,1,
+350,0,0,,Remove your|uniform first.,What? Ok.  (She reluctantly undresses.)|I can still escape without tricks up me sleeves.,360,0,1,
+350,0,0,,So what tricks have|you got up your sleeves?,Lots but I don't need them.  (She confidently|removes here uniform to prove the point.),360,0,-1,
+360,0,0,,Nice shiny satin underwear.,"(She blushes.)|I just like texture of soft satin, that's all.",370,0,0,
+360,0,1,,"Kinky underwear,|remove that too.","(She blushes.) Not here, that's just wrong|and it's not meant to be kinky.",370,-1,0,
+360,0,1,,"Satin undies, who's|a kinky girl then?","(She blushes.) Please it's not like that,|I just prefer the feel of soft satin underwear.",370,0,1,
+360,0,0,,OMG I wish I had|kinky underwear.,"(She blushes.)|It's not kinky, soft satin just feels nicer.",370,0,-1,
+370,0,0,,"Ok, how many|handcuffs do we have?","(Nicole speaks.) Lauren has got a load in her bag,|including some larger legcuffs.",380,0,0,
+370,0,0,,I'm not sure I have|enough handcuffs.,"(Nicole speaks.) Don't worry,|Lauren has got a bag full of hand and leg cuffs.",380,0,-1,
+370,0,0,,I think you will|need more handcuffs.,There are more handcuffs and legcuffs in my bag.|I like a challenge.,380,1,0,
+380,0,0,,Good we can use them.|Take a seat.,"You said nothing about using chairs, no matter.|(Lauren sits in her chair.)",390,0,0,
+380,0,0,,Excellent. You should|sit down for this.,Nice to see you're excited about escapology.|(Lauren sits in her chair.),390,1,0,
+390,0,0,,Can I cuff|your legs now?,"I suppose you may.  (You take some legcuffs,|pull her ankles right back and lock them up.)",400,0,-1,
+390,0,0,,Time to spread you legs.,What did you just say?  (She is taken aback as|you cuff her legs to the back of the chair.),400,-1,0,
+390,0,0,,Let's start with your legs.,Fine.  (You lock her ankles to the|back of the chair with some legcuffs.),400,0,0,
+400,0,0,,"Good, now let's put a|handcuff on each wrist.","It doesn't matter how many you use,|I will still escape this.",410,0,0,
+400,0,0,,Hold out your|wrists now.,Like this?|(You lock a handcuff onto each wrist.),410,0,1,
+400,0,0,,Let me cuff|your wrists please.,Seeing as you ask so nicely.  (You lock a handcuff|onto each wrist as she holds out her arms.),410,1,-1,
+410,0,0,,Cross your arms|behind the chair.,(She does and you lock the loose cuffs|to opposite sides of the chair.) ,420,0,0,LaurenCuffed()
+410,0,0,,(Pull her arms|back behind her.),"Hey, steady on please.|(You cuff each arm to opposite sides of the chair.)",420,-1,1,LaurenCuffed()
+410,0,0,,Get your arms behind|you right now.,There's no need to be rude.|(You cuff each arm to opposite sides of the chair.),420,-1,0,LaurenCuffed()
+420,0,0,,Ok you can|try escaping now.,"(She pulls a clip out of her pony tail and fumbles|with it.)  Wait, what have you just done?",430,0,0,
+420,0,0,,Good luck getting|out of that now.,"Oh my, this does look hard.  (She pulls a hair clip|out of her pony tail and fumbles with it.)",430,0,1,
+420,0,0,,Try that. I wouldn't|fancy my chances.,"I'm not so sure either, but I can try.  (She starts|fumbling with a hair clip pulled from her pony tail.)",430,0,-1,
+430,0,0,,I though you said you|could escape anything?,But I need both hands together to make a shim from|a hair clip.  (She struggles desperately one handed.),440,0,1,
+430,0,0,HasClip,Cool I hadn't though|of putting clips there.,Look and learn. Actually this is far|more challenging than I though would be.,440,1,0,
+430,0,0,,What are you playing at?,"Sorry, this is far harder than I expected.",440,-1,1,
+440,0,0,,A gag would help|you concentrate.,"I don't think it would, but if you insist.",450,0,1,Leave()
+440,0,0,,Would you like a gag?,"Not really, but it shouldn't|make this any more difficult.",450,0,0,Leave()
+450,0,0,,Do you give up?,"No, give me a little longer.",450,0,0,GiveUpGagged()
+450,0,0,,So you like the|feel of satin?,"(You gently draw a finger over a bra cup,|startling and causing her to drop the hair clip.)",460,-1,0,
+450,0,0,,"Too slow, times up.|(Release her.)",(You release Lauren and she hastily redresses.),510,-1,1,ReleaseLauren()
+450,0,0,,I think I could escape|that before you.,(Nicole interrupts.) There are plenty more|hand and leg cuffs if you want to try.,455,0,0,NoLeave()
+450,0,0,LaurenGagged,(Ungag her.),"(You remove her gag.)|Thank you, this was tricky enough already.",450,0,0,UngagLauren()
+455,0,0,,I was kidding.,(You turn back to Lauren.),450,0,0,Leave()
+455,0,0,,"Yeah okay,|I'll give it a go.","(You remove you uniform and after unlocking her|cuffs, Nicole helps cuff you to another chair.)",490,0,-3,PlayerCuffed()
+460,0,0,,What should I|do with you?,"I don't know, I've never been stuck like this before.",460,0,0,Ask()
+460,0,0,,(Gently stroke|her breasts.),(She moans very softly to your gently tough.),460,0,0,StrokeBreasts()
+460,0,0,,(Grope her breasts.),"Wait, that's far too rough. Stop it.",460,0,0,GropeBreasts()
+460,0,0,,(Pinch her nipples.),(Lauren squeals.)|Let go of me you pervert.,460,0,0,PinchNipples()
+460,0,0,,(Kiss her.),"(As you go to kiss her, Lauren pulls back.)|What gave you that idea?",460,0,0,Kiss()
+460,0,0,,(Caress her panty|covered bum.),"Mmmmm mm mmmmmm.  (Lauren flinches,|but seems to savor your touch through the satin.)",460,0,0,CaressBum()
+460,0,0,,(Slap her bottom.),"Oww, what was that for?",460,0,0,SlapBum()
+460,0,0,,(Rub around her crotch.),Hey stop that. Don't even think about going there.,460,0,0,RubCrotch()
+460,0,0,,(Masturbate her.),"Agh, what the hell do you think you are doing? NO.",460,0,0,Masturbate()
+460,0,0,,Have you had enough?,(She nods her head.),470,0,0,Enough()
+470,0,0,LaurenGagged,(Ungag her.),(You remove her gag.) Thank you.,470,0,0,UngagLauren()
+470,0,0,,(Let her go.),(You release Lauren and she hastily redresses.),510,1,0,ReleaseLauren()
+470,0,0,,(Continue|teasing her.),"(Having dropped the hair clip earlier,|she is now helplessly cuffed to the chair.)",460,0,0,
+470,0,0,,I wish I could try|escaping from that too.,"(Nicole interrupts.) There are plenty more|hand and leg cuffs, would you like a hand?",480,0,0,NoLeave()
+480,0,0,,I was kidding.,(You turn back to Lauren.),470,0,0,Leave()
+480,0,0,,Would you? Yes please.,"(You remove you uniform and after unlocking her|cuffs, Nicole helps cuff you to another chair.)",490,0,-3,PlayerCuffed()
+490,0,0,,(Try to break free.),"(You try to twist and pull,|but the handcuffs are far too strong.)",490,0,0,
+490,0,0,,(Inspect the cuffs.),"(They are genuine steel handcuffs,|not toy cuffs with release leavers on them.)",490,0,0,
+490,0,0,HasClip,(Try escaping with|a hair clip.),(You had left a clip snapped onto the waistband of|your panties. You just manage to reach it.),490,0,0,ReachedClip()
+490,0,0,GotClip,(Try using the|hair clip.),(You can only use one hand and find it is a|lot harder to manipulate the hair clip.),490,0,0,UseClip()
+490,0,0,ItsHard,(Keep trying|with the clip.),"(You persevere, trying to break the clip,|but it drops as you try bending it one handed.)",490,0,0,DropClip()
+490,0,0,,I give up can you|let me go now.,(Nicole scoffs.)|Come on you can't just give up now.,490,0,0,
+490,0,0,,"Its no use,|can you help.",(Nicole sighs and gags you with some cloths.)|Stop complaining and get on with it.,490,0,-1,PlayerClothGagged()
+490,0,0,PlayerGagged,"@Nnghlm, plmhfm hmlp mm.",(Nicole ignores you and goes back to her|own attempts at escaping handcuffs.),500,0,0,
+490,0,0,,(Stop trying|to escape.),(Nicole gets board and goes back to her|own attempts at escaping handcuffs.),500,0,-1,
+500,0,0,,Somebody please help me.,"(Nicole gags you with some cloths.)|Be quiet, I'm trying to concentrate.",500,0,-1,PlayerClothGagged()
+500,0,0,PlayerGagged,@HMLP,(You muffled cries for help are drowned|out by the ambient noise of the club.),500,0,0,
+500,0,0,,(Try struggling again.),(There is nothing you can do. Your limbs are really|starting to ache from this cruel bondage.,500,0,0,
+500,0,0,,(Wait for help.),(You just sit there uncomfortably.),500,0,0,Wait()
+510,0,0,,Did you enjoy that?,"Hardly, that was pretty cruel.|(She goes back to teaching Nicole.)",520,0,0,Enjoyment()
+510,0,0,,We should do this again.,I don't think so.|(She goes back to teaching Nicole.),520,0,0,Again()
+600,0,0,,(Try moving.),Hold still.  (Lauren removes the blindfold.)|I didn't expect that to go so well.,610,0,0,RemoveBlindfold()
+600,0,0,,(Try talking.),Be quiet.  (Lauren removes the blindfold.)|I didn't expect that to go so well.,610,0,-1,RemoveBlindfold()
+610,0,0,,@Lmt mm gh,Try escaping that handcuff strappado while I work|out what to do with you.  (She walks away.),620,0,0,
+610,0,0,,@Mxpmgt whht?,You can try escaping that while I work out what|to do with you now.  (She walks away.),620,0,0,
+620,0,0,,(Explorer your|predicament.),"(You are handcuffed to a chain from the ceiling,|holding you arms up behind you.)",630,0,0,
+620,0,0,,(Wait patiently.),"(You wait quietly, unable to move away,|stand up or sit down.)",620,0,-1,LaurenReturn()
+620,0,0,,(Call for help.),(You muffled cries for help are drowned|out by the ambient noise of the club.),620,0,0,LaurenReturn()
+630,0,0,,(Break free.),(You are trapped by very secure steel. Your restricted|struggling has no chance of break it.),630,0,0,LaurenReturn()
+630,0,0,HasKey,(Use your handcuff key.),(The key and all your other items are your bag.|There is no way you can reach them like this.),630,0,0,
+630,0,0,HasClip,(Try using a hair clip.),(Your hands are held high and you can't reach down|to the clips concealed in your clothes or hair.),630,0,0,HandsTooHigh()
+630,0,0,LocateClip,(How could I get a hair|clip up to my hands?),"(You have clips hidden in you pony tail,|on your shirt, skirt waistband and panties.)",630,0,0,ClipOptions()
+630,0,0,SafeClips,(Try swishing your|pony tail up.),"(You vigorously shake and nod your head, pony tail|flailing, but it doesn't get close to your hands.) ",630,0,0,LaurenReturn()
+630,0,0,SafeClips,(Try bending your arms|to reach the shirt.),"(It's no use, the handcuffs are held up above your|shoulders and your arms can't bend that way.)",630,0,0,LaurenReturn()
+630,0,0,SafeClips,(Try jumping up to|reach the skirt.),"(Not even a good standing jump could get that high,|the strappado limits you to just feeble hops.)",630,0,0,LaurenReturn()
+630,0,0,RiskyClip,(Try reaching|your panties.),"(You try doing a forwards flip,|kicking your legs up behind you.)",630,0,0,ReachingPanties()
+630,0,0,UsefulClip,(Use the hair|clip to escape.),(Very carefully you make the hair clip into a shim|and release the handcuffs as Lauren returns.),800,2,1,Escape()
+630,0,0,,(Wait patiently.),"(You wait quietly, unable to move away,|stand up or sit down.)",630,0,-1,LaurenReturn()
+630,0,0,,(Call for help.),(You muffled cries for help are drowned|out by the ambient noise of the club.),630,0,0,LaurenReturn()
+640,0,0,,(Try to grab|the clip.),(Gravity takes over before you can even get a|hand near the clip and you drop back down.),630,0,0,
+640,0,0,,(Try grabbing the chain|with your legs.),"(You just get hold of the chain.)  Look, it's the|Pink Panty.  (The whole club giggles and laughs.)",650,0,0,
+650,0,0,,(Take the clip.),"(As you go for the clip, your feet slip and you|flop down, painfully wrenching your arms.)",630,0,0,
+650,0,0,,(Hide your panties.),"(You quickly let go with you legs, land and shake|your skirt back down to hide you modesty.)",630,0,-3,Embarrassed()
+650,0,0,,(Improve your|leg hold.),"(Ignoring the club, you take a moment to get a|better grip on the chain and steady yourself.)",660,0,1,Confident()
+660,0,0,,(Take the clip.),(You retrieve the clip from your panties and gently|lower your feet back down to the ground.),630,0,0,RetrieveClip()
+660,0,0,,(Feel the blood|rushing to your head.),(Lauren calls over.) I have some legcuffs and|another padlock if you want to stay like that?,670,0,0,
+670,0,0,,(Nod your head.),Sorry it wouldn't be safe. (She helps you down.)|Maybe I ought to stop you from doing that again?,680,1,0,
+670,0,0,,(Shake your head.),(You quickly retive the clip from your panties and|lower your feet back down to the ground.),630,0,0,RetrieveClip()
+680,0,0,,(Nod your head.),"(She attaches legcuffs and a collar to you with a length|of chain between them, then walks away again.)",690,0,0,LegCuffs()
+680,0,0,,(Shake your head.),"Suit yourself, just be careful.  (She walks away again.)",630,0,0,
+690,0,0,,(Break free.),"(You are trapped by very secure steel, no way is|you restricted struggling going to break it.)",690,0,0,LaurenReturn()
+690,0,0,,(Try swishing your|pony tail up.),"(You vigorously shake and nod your head, pony tail|flailing, but it doesn't get close to your hands.) ",690,0,0,LaurenReturn()
+690,0,0,,(Try bending your arms|to reach a clip.),"(It's no use, the handcuffs are held way above your|shoulders and you can't raise them at all now.)",690,0,0,LaurenReturn()
+690,0,0,,(Try jumping up to|reach the skirt.),"(Not even a good standing jump could get that high,|your shackled hops now are just pathetic.)",690,0,-1,LaurenReturn()
+690,0,0,,(Try reaching|you panties.),"(You tuck into a ball again, but as you kick up behind,|the chain yanks on your collar, stopping you.",690,0,0,LaurenReturn()
+690,0,0,,(Wait patiently.),"(You wait quietly, unable to move away,|stand up or sit down.)",690,0,-1,LaurenReturn()
+690,0,0,,(Call for help.),(You muffled cries for help are drowned|out by the ambient noise of the club.),690,0,0,LaurenReturn()
+700,0,0,,(Nod your head.),"Wow, those crazy stories are true!|Ok bear with me, Cassidy insisted I should try this.",730,-1,-1,NodRevenge()
+700,0,0,,(Shake your head.),Are you sure? I heard some wild stories|about what you've been up to today.,710,0,0,ShakeRevenge()
+700,0,0,,@Gnngn?,Sorry I don't understand gag talk.,700,0,0,
+710,0,0,,(Nod your head.),"Oh, that's a relief,  Cassidy said I should play with|my kinky captive, intimately.  (She releases you.)",720,1,0,StrappadoRelease()
+710,0,0,,(Shake your head.),"I thought not. Please bear with me, I'm new to|this kind of thing, but Cassidy insisted I learn.",730,0,1,
+710,0,0,,@Whht fthrnmf?,I can't make out what you're trying to say.,710,0,0,
+720,0,0,,Thankyou.,"You're welcome. I knew those slutty stories couldn't|be true, you're far too polite.  (She leaves again.)",525,1,0,CanLeave()
+720,0,0,,We could still|get intimate.,"Oh my god, you actually are a slut.|(She storms off.)",525,-1,0,CanLeave()
+730,0,0,,@Whht hrm nhh|ghnng th dh?,"(She ignores your mumbling, walks around you,|kneels down and takes a peek.)",740,0,0,ExtraRestraint()
+730,0,0,,(Look nervous.),"I'm not keen on this either, but I must.|(She walks behind you, kneels and takes a peek.)",740,0,-1,ExtraRestraint()
+730,0,0,,(Nod reassuringly.),"Ok then, I hope you enjoy this.|(She walks behind you, kneels and takes a peek.)",740,1,0,ExtraRestraint()
+735,0,0,,(Kick out at Lauren.),"Oww, please don't make this harder than it already is.|(She legcuffs you, with a chain and collar attached.)",740,-1,1,LegCuffs()
+735,0,0,,(Watch to see what|she does next.),"I had better do this for your own good and my safety.|(She legcuffs you, with a chain and collar attached.)",740,0,0,LegCuffs()
+740,0,0,,(Moan softly.),(Lauren starts by rubbing an|unsteady hand up your thigh.),740,0,0,LaurenIntimate()
+740,0,0,,(Whimper pitifully.),(Lauren starts by rubbing an|unsteady hand up your thigh.),740,0,-1,LaurenIntimate()
+740,0,0,,(Grunt happily.),(Lauren starts by rubbing an|unsteady hand up your thigh.),740,1,0,LaurenIntimate()
+740,0,0,,(Snort angrily.),(Lauren starts by rubbing an|unsteady hand up your thigh.),740,-1,1,LaurenIntimate()
+740,0,0,,(Shake your hips.),(Lauren starts by rubbing an|unsteady hand up your thigh.),740,0,0,LaurenIntimate()
+740,0,0,,(Try to pull away from her.),(Lauren starts by rubbing an|unsteady hand up your thigh.),740,0,-1,LaurenIntimate()
+740,0,0,,(Moan loudly.),(Lauren starts by rubbing an|unsteady hand up your thigh.),740,-1,0,LaurenIntimate()
+740,0,0,,(Struggle frantically.),(Lauren starts by rubbing an|unsteady hand up your thigh.),740,0,-1,LaurenIntimate()
+740,0,0,,(Struggle playfully.),(Lauren starts by rubbing an|unsteady hand up your thigh.),740,1,-1,LaurenIntimate()
+740,0,0,,(Be passive.),(Lauren starts by rubbing an|unsteady hand up your thigh.),740,0,0,LaurenIntimate()
+745,0,0,,(Nod your head.),If you insist. (She pulls down your panties.),740,0,0,Nod()
+745,0,0,,(Shake your head.),"You're right, this was a bad idea. CASSI!|(She storms of leaving you.)",750,0,0,Shake()
+746,0,0,,(Nod your head.),You really are kinky!|(She slips the finger into your ass.),740,0,0,Nod2()
+746,0,0,,(Shake your head.),"I'm so sorry, what was I thinking. (She hastily pulls your|panties back up and runs off, leaving you there.)",750,0,0,
+750,0,0,,(Try to break free.),"(You try to twist and pull,|but your steel bondage is far too strong.)",750,0,0,PostOBreak()
+750,0,0,EscapeArtist,(Try using a hair clip.),(Your body aches from being held in this strappado.|You haven't got the strength left to reach a clip now.),750,0,0,PostOClip()
+750,0,0,,(Wait quietly.),"(Aching, unable to move, stand up or sit down,|you just hang there.)",750,0,0,Wait()
+750,0,0,,(Call for help.),(You muffled cries for help are drowned|out by the ambient noise of the club.),750,0,0,PostOCall()
+800,0,0,,(Remove your gag.),That was an impressive escape.,810,0,0,PlayerFree()
+800,0,0,,@Whht dh nhh whnt nhw?,Could you repeat that again without the gag?,800,0,0,
+810,0,0,,Thanks,If you don't mind I need to get back to teaching Nicole.|She still hasn't got the hang of it yet.,525,1,0,CanLeave()
+810,0,0,,Maybe we should see|how impressive you are?,"Another time, I need to get back to teaching Nicole.|She still hasn't got the hang of it yet.",525,0,0,CanLeave()
+900,0,0,,Can't you see I'm|busy right now?,(Jenna spins you around.)|WHAT THE HELL DO YOU THINK YOU'RE DOING?,910,-1,0,JennaFurious()
+900,0,0,,"Wait, I'm sorry. I|didn't mean to do that.","(You turn around to Jenna.)|She clearly wasn't enjoying that, but you still carried on.",910,1,0,Jenna()
+900,0,0,,What is the|matter with Lauren?,(You turn around to Jenna.)|The matter is you abusing her.,910,0,0,Jenna()
+910,0,0,,"I'm so sorry,|I really am.",,910,0,0,Discipline()
+910,0,0,,Push off Jenna|or you'll be next.,,910,0,0,Discipline()
+910,0,0,,What does it|matter to you?,,910,0,0,Discipline()

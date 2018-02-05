@@ -9,8 +9,10 @@ Stage,LoveReq,SubReq,VarReq,IntroText,Image
 60,0,0,,,Erica.jpg
 90,0,0,,Come back when you ready to wear this.,EricaSlaver.jpg
 100,0,0,First,"What's this, has another helpless damsel|strayed into the slavers domain?",EricaSlaver.jpg
-100,0,0,Again,"Looks whose back, are you|ready to become my slave now?",EricaSlaver.jpg
-110,0,0,,,EricaPlayerCollared.jpg
+100,0,0,Again,Looks whose back. Are you|ready to become my slave now?,EricaSlaver.jpg
+110,0,0,,Just kidnapping a helpless damsel.|(Erica removes your blindfold.),EricaPlayerCollared.jpg
+111,0,0,,"Sorry cutie, your a just my slave now.|(Erica removes your blindfold.)",EricaPlayerCollared.jpg
+112,0,0,,You'll make a cute slave.|(Erica removes your blindfold.),EricaPlayerCollared.jpg
 150,0,0,,"Nice try, but you picked the wrong fight too loose.|You're my slave now.",EricaKidnapper.jpg
 160,0,0,,,EricaPlayerFloored.jpg
 165,0,0,,,EricaPlayerFloored.jpg

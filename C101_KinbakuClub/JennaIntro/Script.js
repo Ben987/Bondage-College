@@ -1,30 +1,41 @@
-var C101_KinbakuClub_JennaIntro_CurrentStage = 0;
+var C101_KinbakuClub_JennaIntro_CurrentStage = 5;
 var C101_KinbakuClub_JennaIntro_LeaveTime = 18.25;
 var C101_KinbakuClub_JennaIntro_TransitionTime = 18;
+var C101_KinbakuClub_JennaIntro_TimerOutcome = "Outro"
 var C101_KinbakuClub_JennaIntro_IntroText = "";
 var C101_KinbakuClub_JennaIntro_LeaveIcon = "";
-var C101_KinbakuClub_JennaIntro_NotAsked = true;
-var C101_KinbakuClub_JennaIntro_Concerned = true;
-var C101_KinbakuClub_JennaIntro_Chloe = true;
+var C101_KinbakuClub_JennaIntro_NotAsked = false;
+var C101_KinbakuClub_JennaIntro_Concerned = false;
+var C101_KinbakuClub_JennaIntro_Chloe = false;
+var C101_KinbakuClub_JennaIntro_Natalie = false;
+var C101_KinbakuClub_JennaIntro_FirstLoad = true;
 
 
 // Chapter 101 - Jenna Load
 function C101_KinbakuClub_JennaIntro_Load() {
 
-	// Set the timer limits at 18:15
-	StartTimer(C101_KinbakuClub_JennaIntro_LeaveTime * 60 * 60 * 1000, "C101_KinbakuClub", "Outro");
+	Common_SelfBondageAllowed = false;
 
 	// Load the scene parameters
 	ActorLoad("Jenna", "ClubRoom1");
 	LoadInteractions();
 
-	// If Natalie was left stranded
-	if (Common_PlayerCrime == "NatalieStranded") {
-		C101_KinbakuClub_JennaIntro_CurrentStage = 100;
+	// Previous club experiance
+	if (C101_KinbakuClub_JennaIntro_FirstLoad) {
+		if (Common_ClubStatus == "ClubMentioned") C101_KinbakuClub_JennaIntro_Natalie = true;
+		if (Common_ClubStatus == "ClubLunchVisited") {
+		C101_KinbakuClub_JennaIntro_CurrentStage = 0;
+		C101_KinbakuClub_JennaIntro_NotAsked = true;
+		C101_KinbakuClub_JennaIntro_Concerned = true;
+		C101_KinbakuClub_JennaIntro_Chloe = true;
+		}
+		if (Common_PlayerCrime == "NatalieStranded") C101_KinbakuClub_JennaIntro_CurrentStage = 100;
+		C101_KinbakuClub_JennaIntro_FirstLoad = false;
 	}
 
 	// Player can't leave until Jenna is finished
-    LeaveIcon = "";
+	if (C101_KinbakuClub_JennaIntro_CurrentStage == 80) LeaveIcon = "Leave";
+	else LeaveIcon = "";
 
 }
 
@@ -47,35 +58,25 @@ function C101_KinbakuClub_JennaIntro_Click() {
     }
 }
 
-// Chapter 101 - Player skips the explanation
+
+// Chapter 101 - Player skips club explanation
 function C101_KinbakuClub_JennaIntro_SkipExplanation() {
 	C101_KinbakuClub_JennaIntro_NotAsked = false;
 	C101_KinbakuClub_JennaIntro_Concerned = false;
-	C101_KinbakuClub_JennaIntro_Chloe = false;
-}
-
-// Chapter 101 - Player skips to clubroom with tyos
-function C101_KinbakuClub_JennaIntro_ShortCut() {
-	PlayerRemoveAllInventory();
-	PlayerAddInventory("Cuffs", 4);
-	PlayerAddInventory("CuffsKey", 1);
-	PlayerAddInventory("Rope", 4);
-	PlayerAddInventory("BallGag", 4);
-	PlayerAddInventory("TapeGag", 8);
-	PlayerAddInventory("ClothGag", 4);
-	PlayerAddInventory("Collar", 4);
-	PlayerAddInventory("Crop", 1);
-	PlayerAddInventory("VibratingEgg", 4);
-	PlayerAddInventory("ChastityBelt", 4);
-	PlayerAddInventory("Blindfold", 4);
-	SetScene(CurrentChapter, "ClubRoom1")
 }
 
 
 // Chapter 101 - Player asks about Natalie
 function C101_KinbakuClub_JennaIntro_Asked() {
 	C101_KinbakuClub_JennaIntro_NotAsked = false;
-	StartTimer(C101_KinbakuClub_JennaIntro_TransitionTime * 60 * 60 * 1000, "C101_KinbakuClub", "Transition");
+	C101_KinbakuClub_JennaIntro_LeaveTime = C101_KinbakuClub_JennaIntro_TransitionTime;
+	C101_KinbakuClub_JennaIntro_TimerOutcome = "Transition"
+	LeaveIcon = "";
+}
+
+// Chapter 101 - Complimentry rope
+function C101_KinbakuClub_JennaIntro_GetRope() {
+	PlayerAddInventory("Rope", 1);
 }
 
 // Chapter 101 - Player shows Concern about Natalie
@@ -90,7 +91,9 @@ function C101_KinbakuClub_JennaIntro_AskChloe() {
 
 // Chapter 101 - Jenna is Done with player.
 function C101_KinbakuClub_JennaIntro_Done() {
+	StartTimer(C101_KinbakuClub_JennaIntro_LeaveTime * 60 * 60 * 1000, "C101_KinbakuClub", C101_KinbakuClub_JennaIntro_TimerOutcome);
 	LeaveIcon = "Leave";
+	Common_SelfBondageAllowed = true;
 }
 
 // Chapter 101 - Player askes to be tied up.
@@ -98,7 +101,7 @@ function C101_KinbakuClub_JennaIntro_CuffPlayer() {
 	PlayerLockInventory("Cuffs");
 	PlayerLockInventory("BallGag");
 	PlayerRemoveInventory("CuffsKey", 99);
-	LeaveIcon = "Leave";
+	C101_KinbakuClub_JennaIntro_Done()
 }
 
 

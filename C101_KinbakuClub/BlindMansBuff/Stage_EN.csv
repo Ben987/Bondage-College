@@ -2,6 +2,12 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 0,0,0,,"No, I just wanted to|try on this blindfold.",What better way is there to test it than in a game?|See if you can capture one of us.,10,0,0,
 0,0,0,,That's a great idea.,"It sure is, just remember where you are.|Try capture one of us without falling over.",10,0,0,
 0,0,0,PlayerIsGagged,@Mmmp hmmf,Come and get us then.|Just watch you step teeheehe!,10,0,0,
+5,0,0,EricaHelping,(Stand there listening|to the club.),(Someone taps you on the shoulder.)|Do you need some help there?,7,0,0,
+5,0,0,PlayerIsFree,(Remove the blindfold.),(The bright light hurts your eyes. The club stops|playing and goes back to what they were doing.),15,0,0,UnBlindfold()
+7,0,0,,Yes could you help me.,Certainly.|(You feel a collar fasten tightly around your neck.),120,0,0,Collared()
+7,0,0,PlayerIsFree,No I'm fine.|(Remove the blindfold.),,15,0,0,UnBlindfold()
+7,0,0,PlayerIsCuffed,"Yes, uncuff me|right now.",(Someone removes the handcuffs.),5,0,0,UnCuffed()
+7,0,0,PlayerIsGagged,@Ummh hmm,(You feel a collar fasten tightly around your neck.)|Your mine now.,120,0,0,Collared()
 10,0,0,,(Stand still and listen),Stand,10,0,0,StandStill()
 10,0,0,,(Go forwards.),Forwards,10,0,0,ForeAft()
 10,0,0,,(Go Left.),Left,10,0,0,Turn()
@@ -17,4 +23,18 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 20,0,0,,(Sit there stunned.),Are you giving up already?,25,0,0,
 25,0,0,,(Get up and carry on.),,10,0,0,LifeLost()
 25,0,0,,(Give up.),"COMMON_PLAYERNAME has for forfeited the game, get her.",30,0,0,
-30,0,0,,,,,,,
+30,0,0,,"No, wait I don't want|to play this anymore.","(The girls grab you, make sure you are securely cuffed,|then gag you.) It's just the rules.",40,0,0,Lost()
+30,0,0,PlayerIsGagged,@whnt plmhfm,(The girls make sure you are|securely cuffed and ball gagged.),40,0,0,Lost()
+40,0,0,,(Try to escape.),,40,0,0,GameOver()
+40,0,0,,(Try pleading|with them.),,40,0,0,GameOver()
+100,0,0,EricaHelping,(Stand there listening|to the commotion.),(Someone taps you on the shoulder.)|Do you need some help there?,110,0,0,
+100,0,0,PlayerIsCuffed,"Hey, someone uncuff|me right now.",(Someone unlocks the handcuffs.),100,0,0,UnCuffed()
+100,0,0,PlayerIsGagged,@Mmmmmmp,"(No one responds,|but you hear someone walking towards you.)",100,0,0,SlaveCall()
+100,0,0,PlayerIsFree,(Remove the blindfold.),,200,0,0,UnBlindfold()
+110,0,0,,Yes could you help me.,Certainly.|(You feel a collar fasten tightly around your neck.),120,0,0,Collared()
+110,0,0,PlayerIsFree,No I'm fine.|(Remove the blindfold.),,200,0,0,UnBlindfold()
+110,0,0,PlayerIsCuffed,"Yes, uncuff me|right now.",(Someone removes the handcuffs.),100,0,0,UnCuffed()
+110,0,0,PlayerIsGagged,@Ummh hmm,(You feel a collar fasten tightly around your neck.)|Your mine now.,120,0,0,Collared()
+120,0,0,,Hey what are you doing.,,120,0,0,EricaKidnap1()
+120,0,0,,"No, please let me go.",,120,0,0,EricaKidnap2()
+120,0,0,PlayerIsGagged,@Mmmmf!!!,,120,0,0,EricaKidnap3()

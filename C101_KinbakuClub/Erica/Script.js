@@ -44,6 +44,7 @@ var C101_KinbakuClub_Erica_Egg = false;
 var C101_KinbakuClub_Erica_NoKeys = false;
 var C101_KinbakuClub_Erica_Keys = false;
 var C101_KinbakuClub_Erica_PlayerIsSlave = false;
+var C101_KinbakuClub_Erica_Kidnapped = 0; // for intro text when erica removes a kidnapped players blindfold
 
 
 
@@ -89,6 +90,9 @@ function C101_KinbakuClub_Erica_Load() {
 		C101_KinbakuClub_Erica_CurrentStage = 50;
 	}
 	
+	// After loose fight and kidnapped during blind mans buff
+	if (C101_KinbakuClub_Erica_CurrentStage >= 110 && C101_KinbakuClub_Erica_CurrentStage <= 270) LeaveIcon = "";
+
 	// No leave straight after fight without restraining erica enough first
 	if (C101_KinbakuClub_Erica_CurrentStage == 300) LeaveIcon = "";
 
@@ -144,7 +148,8 @@ function C101_KinbakuClub_Erica_Click() {
 		if (ClickInv == "Rope") {
 			if (ActorHasInventory("Cuffs")) {
 				C101_KinbakuClub_Erica_EricaLeftCuffed = false;
-				ActorApplyRestrain("CuffsKey")
+				ActorRemoveInventory("Cuffs");
+				PlayerAddInventory("Cuffs", 1);
 			}
 			ActorApplyRestrain("Rope");
 			LeaveIcon = "Leave";
@@ -561,9 +566,9 @@ function C101_KinbakuClub_Erica_EricaInterogate() {
 
 // Chapter 101 - Erica - Ericas response after player has broken her
 function C101_KinbakuClub_Erica_EricaIsBroken() {
-	if (C101_KinbakuClub_Erica_EricaBroken) {
-		OverridenIntroText = GetText("HumiliatedBroken");
-	}
+	if (C101_KinbakuClub_Erica_EricaBroken) OverridenIntroText = GetText("HumiliatedBroken");
+	if (C101_KinbakuClub_Erica_EricaBroken && C101_KinbakuClub_Erica_EricaGagged) OverridenIntroText = GetText("HumiliatedBrokenGagged");
+	if (!C101_KinbakuClub_Erica_EricaBroken && C101_KinbakuClub_Erica_EricaGagged) OverridenIntroText = GetText("NotBrokenGagged");
 }
 
 // Chapter 101 - Erica - player lets erica go

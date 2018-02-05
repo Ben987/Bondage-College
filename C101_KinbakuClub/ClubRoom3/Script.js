@@ -12,13 +12,13 @@ function C101_KinbakuClub_ClubRoom3_Run() {
 	DrawImage(ctx, CurrentChapter + "/" + CurrentScreen + "/ClubRoom3Arrows.jpg", 0, 0);
 	
 	// Draw Chloe
-	if (C101_KinbakuClub_Chloe_CurrentStage == 0) {
+	//if (C101_KinbakuClub_Chloe_CurrentStage == 0) {
 		DrawImage(ctx, CurrentChapter + "/" + CurrentScreen + "/ChloeBoard.png", 0, 0);
-	}	else DrawActor("Chloe", 220, 170, 0.3333);
+	//}	else DrawActor("Chloe", 220, 170, 0.3333);
 	
 	
 	// Draw CardGamers
-	DrawImage(ctx, CurrentChapter + "/" + CurrentScreen + "/CardGamers.jpg", 450, 0);
+	DrawImage(ctx, CurrentChapter + "/" + CurrentScreen + "/CardGamers1.jpg", 570, 130);
 	
 }
 

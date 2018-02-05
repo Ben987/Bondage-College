@@ -54,6 +54,7 @@ function C010_Revenge_Outro_Click() {
 	if (TextPhase >= 3) {
 		//Common_PlayerCrime = "";
 		//SaveMenu("C011", "Intro");
+		SaveMenu("C101_KinbakuClub", "Intro");
 	}
 
 }

@@ -16,7 +16,8 @@ function C101_KinbakuClub_EricaBadEnd_Run() {
 
 	// Dialog depending on the outro situation
 	if (TextPhase >= 0) {
-		DrawText(ctx, GetText("BadEnd1"), 350, 50, "White");
+		if (C101_KinbakuClub_Erica_EricaTied) DrawText(ctx, GetText("BadEnd1Dressed"), 350, 50, "White");
+		if (!C101_KinbakuClub_Erica_EricaTied) DrawText(ctx, GetText("BadEnd1Free"), 350, 50, "White");
 		DrawImage(ctx, CurrentChapter + "/" + CurrentScreen + "/EricaPinsPlayer.jpg", 700, 0);
 	}
     if (TextPhase >= 1) {

@@ -2,18 +2,23 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 0,0,0,,What is it?,It's about this club and also about Natalie.,10,0,0,
 0,0,0,,I already know about the|birds and the bees.,"We'll see about that, I meant the club and also Natalie.",10,-1,0,
 0,0,0,,"Don't bother explaining,|it's all pretty obvious.",I'll let you work it out for yourself then.,70,-1,0,SkipExplanation()
-0,0,0,,(short cut to discipline.),"You have some nerve,|turning up here after what you've done.",100,0,0,
-0,0,0,,(short cut to club room|with items.),,80,0,0,ShortCut()
+5,0,0,,"Hello, what's|happening here?",This is the college's Kinbaku Club.|Your welcome to stay for the evening.,15,0,0,
 10,0,0,,Is there an issue|with the club?,"No issue, but I don't think Natalie|explained much about the club to you.",30,0,0,
 10,0,0,,"Is Natalie here, I would|like to see here again?","Not at the moment. She lost a bet with|another member, but should be here later.",20,1,0,Asked()
+15,0,0,,"Sounds interesting,|yeah I'll stay.",That's great. I'm Jenna.,25,1,0,
+15,0,0,,Sorry I need|to be going.,"Come on stay a while, you might like it.|I'm Jenna by the way.",25,0,0,
+15,0,0,Natalie,I think Natalie mentioned|this place at lunch break.,"Ah yes Natalie, she will be here later.|I'm the other club rep, Jenna",25,0,0,Asked()
 20,0,0,,So what was that|about the club?,It's just Natalie didn't explain much|about the club at lunch time.,30,0,0,
 20,0,0,,A bet? Is she OK?,"She's fine. The bet was to find a new member, but she|forgot the important bit about a proper explanation.",30,0,0,
-30,0,0,,What is there to explain?,"For a start, the college thinks this club is about|""Learning new skills and improving dexterity"".",40,0,0,
+25,0,0,,I'm COMMON_PLAYERNAME.,Cool. I should explain a bit about this club.,30,0,0,
+25,0,0,,My name is COMMON_PLAYERNAME.|Pleased to meet you.,You're so formal it's cute.|I do have to explain a few things though first.,30,0,-1,
+30,0,0,,What is there to explain?,"For a start, the college thinks this club is about|""Cultural art forms, practical skills and exercise"".",40,0,0,
 40,0,0,,Seriously?,"Yeah officially, a few of the teachers know better.|Also it's not just Kinbaku with ropes.",50,0,0,
 50,0,0,,What do you mean?,The club is very inclusive and we use|a wide range of equipment and techniques.,55,0,0,
 55,0,0,,So anything goes?,"No, there are standards and consent.  The club|will internally discipline anyone who goes too far.",56,0,0,
 56,0,0,,"Consent, you all freely|joined this club?","Even so we tend to use safe words such as 'Banana',|just to make sure everyone is OK and enjoying it.",60,0,0,
-60,0,0,,Is that all?,"Pretty much, Natalie could have saved|herself a lot of trouble quite easily.",70,0,0,
+60,0,0,,Is that all?,"Pretty much, Natalie could have saved herself a lot of|trouble quite easily.  Oh and have a complimentary rope.",70,0,0,GetRope()
+70,0,0,,What is the|complimentary rope for?,Seriously? Take a wild guess.,70,0,0,
 70,0,0,,What do I do now?,There will be a friendly competition later.  You can|get to know the club before then. (She leaves.),80,0,0,Done()
 70,0,0,,Can I be tied up now?,"Sure, but I prefer to use steel restraints.  (She cuffs and|gags you, makes sure you have no keys, then leaves.)",80,0,-1,CuffPlayer()
 70,0,0,,Can I tie you up now?,No. I have someone else to see now.|(Jenna leaves the room.),80,0,0,Done()

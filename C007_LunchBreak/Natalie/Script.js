@@ -25,7 +25,6 @@ var C007_LunchBreak_Natalie_BadStage = 0; // for choice images when tied as a ba
 var C007_LunchBreak_Natalie_TwoRopes = false;
 
 
-
 // Calculates the screen parameters
 function C007_LunchBreak_Natalie_CalcParams() {
 
@@ -243,9 +242,15 @@ function C007_LunchBreak_Natalie_Click() {
 
 // Chapter 7 - Initial Kinbaku, questions and eating
 
+// Chapter 7 - Natalie mentions the KC
+function C007_LunchBreak_Natalie_ClubMention() {
+    Common_ClubStatus = "ClubMentioned";
+}
+
 // Chapter 7 - Natalie Start Lunch
 function C007_LunchBreak_Natalie_StartLunch() {
     CurrentTime = CurrentTime + 120000;
+    Common_ClubStatus = "ClubLunchVisited";
     LeaveIcon = "";
 }
 
@@ -660,6 +665,7 @@ function C007_LunchBreak_Natalie_PlayerClothed() {
 function C007_LunchBreak_Natalie_PlayerCuffed() {
     CurrentTime = CurrentTime + 60000;
     PlayerLockInventory("Cuffs");
+    C999_Common_Cuffs_KeyOutOfReach = true;
 }
 
 // Chapter 7 - Natalie - Player is gagged with double open mouth gag - Seems to cuse lockup between stages 630-640

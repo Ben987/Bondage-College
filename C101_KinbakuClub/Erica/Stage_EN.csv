@@ -1,6 +1,6 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 0,0,0,,Slaves?,"That's right, servants bound to their masters will.|Can I interest you in one of these fine slaves?",10,1,0,
-0,0,0,,Today's?,They would take too much looking after if I kept|them permanently.  Would you like one?,10,0,0,
+0,0,0,,Todays?,They would take too much looking after if I kept|them permanently.  Would you like one?,10,0,0,
 0,0,0,,"Ummm,|I'm COMMON_PLAYERNAME.","Nice name, of course if you became a slave you would|loose it.  Would you like to buy one of these slaves?",10,0,-1,
 10,0,0,Loop1,Did these girls|ask for this?,"Well it's kind of hard for them to ask when they|have already been kidnapped, bound and gagged.",20,0,0,StopLoop1()
 10,0,0,,"Yeah, I'll|take a slave.","Hold on, I only deal in hard currency|and it looks like you can't afford one.",30,1,0,NotRichEnough()
@@ -33,6 +33,12 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 110,0,0,,(Escape.),"(The collar is chained firmly to the wall.  She makes|sure you are suitably stripped, bound and gagged.)",170,0,0,PlayerSlaved()
 110,0,0,,(Rubbing up|against her.),"Well aren't you the affectionate slave, let me help you.|(She makes sure you are stripped bound and gagged.)",170,1,0,PlayerSlaved()
 110,0,0,PlayerNotBound,(Remove the collar.),"We can't have slaves freeing themselves.  (She makes|sure you are suitably stripped, bound and gagged.)",170,0,0,PlayerSlaved()
+111,0,0,,(Escape.),"(The collar is chained firmly to the wall.  She makes|sure you are suitably stripped, bound and gagged.)",170,0,0,PlayerSlaved()
+111,0,0,,(Rubbing up|against her.),"Well aren't you the affectionate slave, let me help you.|(She makes sure you are stripped bound and gagged.)",170,1,0,PlayerSlaved()
+111,0,0,PlayerNotBound,(Remove the collar.),"We can't have slaves freeing themselves.  (She makes|sure you are suitably stripped, bound and gagged.)",170,0,0,PlayerSlaved()
+112,0,0,,(Escape.),"(The collar is chained firmly to the wall.  She makes|sure you are suitably stripped, bound and gagged.)",170,0,0,PlayerSlaved()
+112,0,0,,(Rubbing up|against her.),"Well aren't you the affectionate slave, let me help you.|(She makes sure you are stripped bound and gagged.)",170,1,0,PlayerSlaved()
+112,0,0,PlayerNotBound,(Remove the collar.),"We can't have slaves freeing themselves.  (She makes|sure you are suitably stripped, bound and gagged.)",170,0,0,PlayerSlaved()
 150,0,0,,(Admit defeat.),"That's a good damsel. (You let her remove your|clothes, before making you helpless in bondage.)",170,0,-1,PlayerSlaved()
 150,0,0,,(Resist her.),"(She trips you over, landing on top of and winding you,|as you recover she makes short for of subduing you.)",160,0,0,ResistKidnap()
 150,0,0,,@Bhnhnh,"Don't try that crap with me, you are just a slave now.",150,0,0,
@@ -89,19 +95,19 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 310,0,0,,(Let her go.),(Are you really sure you want to do that?),315,0,0,
 310,0,0,EricaGagged,(Ungag her.),Let me go right now or you will|only making it worse for yourself. ,310,0,0,EricaUngag()
 310,0,0,EricaBlindfolded,(Remove the|Blindfold.),Removing the blindfold reveals|Erica still staring at you.),310,0,0,EricaUnBlindfold()
-310,0,0,EricaTied,(Masturbate her.),"(Erica stares daggers at you,|trying to hold her composure.)",310,0,0,EricaMasturbate()
+310,0,0,EricaTied,(Masturbate her.),"(Erica scowls,|trying to hold her composure.)",310,0,0,EricaMasturbate()
 310,0,0,EricaTied,(Spank her.),(You take each breast in tern and spank them.|Erica grunts pain.),310,0,0,EricaSpanked()
 310,0,0,EricaTied,(Tickle her.),"(You try tickling Erica repeatedly,|but she doesn't seem to be ticklish.)",310,0,0,
 310,0,0,EricaTied,(Play with her nipples.),(Erica grumbles and finches as you caress her|breasts and pinch her nipples.),310,0,0,EricaNipples()
-310,0,0,EricaTied,(Inspect Erica's|other slaves.),(Which slave do you want next?),320,0,0,
+310,0,0,EricaTied,(Inspect Erica's|other slaves.),(Which slave will you go to now?),320,0,0,
 310,0,0,Keys,Where are the|padlock keys?,"I'm not telling you.|They are still my slaves, you'll never break me.",310,0,0,EricaInterogate()
-310,0,0,EricaUnGagged,"How do you like it,|being my slave?","You're a lousy slave master, you might have|kidnapped me,  but you haven't broken my will yet.",310,0,0,EricaIsBroken()
+310,0,0,,"How do you like it,|being my slave?","You're a lousy slave master, you might have|kidnapped me,  but you haven't broken my will yet.",310,0,0,EricaIsBroken()
 315,0,0,,(Yes.|Let her go.),(You release Erica and she gets dressed).|Just leave me alone and I won't bother you again.,350,0,0,EricaFreed()
 315,0,0,,(No.|Don't let her go.),,310,0,0,
 320,0,0,,(The dancing slave.),(She has been dancing the whole time.|She is very flushed and looks very frustrated.),330,0,0,OtherSlaves()
 320,0,0,,(The hooded slave.),(She must have been like this a while and seems to|accept her fate with only the occasional whimper.),340,0,0,OtherSlaves()
-320,0,0,,(Back to Erica.),(Erica looks expectantly at you.),310,0,0,GotoErica()
-330,0,0,,(Inspect her bondage.),"(She is bound with a leather collar, cuffs and chains.|All of which are padlocked to a chastity belt.)",330,0,0,
+320,0,0,,(Back to Erica.),(What will you do to her now?),310,0,0,GotoErica()
+330,0,0,,(Inspect her bondage.),"(She is bound with a leather collar and cuffs, chains|and a chastity belt. All of which are padlocked.)",330,0,0,
 330,0,0,SlaveGagged,(Ungag her.),"(You remove her gag.)  Thank you, Erica kidnapped|me before you got here and my jaw aches. ",330,0,0,SlaveUngag()
 330,0,0,SlaveUnGagged,Where are the|padlock keys?,"I don't know. Erica always keeps them hidden,|well beyond a slaves reach.",330,0,0,SlaveKeys()
 330,0,0,,(Try pleasuring her.),"(Her belt prevents you touching her, but she moans|frustratedly when it moves against her.) ",330,0,0,SlavePleasure()
