@@ -1,0 +1,2 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,Common_PlayerNotRestrained,(Tu fouilles.)|(1 minute),Tu fouilles parmi les objets mais|tu ne trouves rien d'intéressant.,0,0,0,Search()
