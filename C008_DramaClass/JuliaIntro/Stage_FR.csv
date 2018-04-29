@@ -1,0 +1,22 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,Approchez Julia ! |(Tu enlaces Julia) (1 min),"""Si"" ! (Elle t'entoure avec ses bras|et te serre contre sa poitrine.)",10,1,0,Hug()
+0,0,0,,Un calin ? Vous êtes sûre ?|(Tu enlaces Julia) (1 min),Si timide ! (Elle t'entoure avec ses bras|et te serre contre sa poitrine.),10,1,-1,Hug()
+0,0,0,,"S'il vous plaît, pas de câlin.",Une nouvelle élève si timide.|Bienvenue au cours d'art dramatique !,20,0,-1,
+0,0,0,,Laissez tomber Julia.,(Elle fronce les sourcils mais elle se remet à sourire.)| Bienvenue au cours d'art dramatique COMMON_PLAYERNAME !,20,-1,1,
+10,0,0,,C'est un bon câlin.,"""Si"" ! J'aime donner de grands et chauds câlins !|Bienvenue au cours d'art dramatique COMMON_PLAYERNAME.",20,0,0,
+10,0,0,,Vous faites les|meilleurs câlins.,"""Si"" ! J'aime donner de grands et chauds câlins !|Bienvenue au cours d'art dramatique COMMON_PLAYERNAME.",20,0,0,
+10,0,0,,Je ne peux plus|respirer !,"Vraiment désolée, ma petite nouvelle.|Bienvenue au cours d'art dramatique !",20,0,-1,
+10,0,0,,(Tu embrasses|sa poitrine.),"Non, COMMON_PLAYERNAME. (Elle te repousse.)|Quoi qu'il en soit, bienvenue au cours d'art dramatique.",20,-1,0,
+20,0,0,,Un cours d'art|dramatique ?,"""Si"" ! Aujourd'hui, tu vas interpréter un rôle|pour une pièce de théatre que nous préparons.",30,0,0,
+20,0,0,,Vous réalisez une pièce|de théâtre ?,"""Si"" ! Aujourd'hui, tu vas interpréter un rôle|pour une pièce de théatre que nous préparons.",30,0,0,
+30,0,0,,De quoi parle|la pièce ?,"Il s'agit d'un drame médiéval, le conte des deux|chevaliers. Deux rivaux qui aiment la même demoiselle.",40,0,0,
+30,0,0,,Est-ce qu'on joue|du Shakespeare ?,"Non, il s'agit d'un drame médiéval, le conte des deux|chevaliers. Deux rivaux qui aiment la même demoiselle.",40,0,0,
+40,0,0,,Et quel rôle vais-je jouer ?,"Tu peux être le chevalier blanc héroïque, le chevalier|noir maléfique ou la demoiselle en détresse.",50,0,0,CheckRole()
+40,0,0,,Super ! Quel est mon rôle ?,"Tu peux être le chevalier blanc héroïque, le chevalier|noir maléfique ou la demoiselle en détresse.",50,1,0,CheckRole()
+40,0,0,,L'art dramatique n'est|pas mon point fort.,"Sottises ! Tu peux être le chevalier blanc héroïque, le|chevalier noir maléfique ou la demoiselle en détresse.",50,-1,0,CheckRole()
+40,0,0,,Je veux jouer un perso qui|a une forte personnalité.,"Tu peux être le chevalier blanc héroïque, le chevalier|noir maléfique ou la demoiselle en détresse.",50,0,1,CheckRole()
+40,0,0,,Je suis trop timide pour me|produire devant un public.,"Ça ira ! Tu peux être le chevalier blanc héroïque, le|chevalier noir maléfique ou la demoiselle en détresse.",50,0,-1,CheckRole()
+50,0,0,,Je vais jouer|l'héroïne.,Très bien. Va dans la loge et va mettre|l'armure héroïque du chevalier blanc.,60,0,0,"SetRole(""Heroine"")"
+50,0,0,,Je vais jouer|la méchante.,Très bien. Va dans la loge et va mettre|l'armure infâme du chevalier noir.,60,0,0,"SetRole(""Villain"")"
+50,0,0,,Je vais jouer|la demoiselle.,Très bien. Va dans la loge et va mettre|la robe de mariée de la demoiselle.,60,0,0,"SetRole(""Damsel"")"
+60,0,0,,Je vais me changer.|(Tu vas dans la loge.),,60,0,0,DressingRoom()
