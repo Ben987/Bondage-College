@@ -1,0 +1,9 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,Common_PlayerNotRestrained,(Tu fouilles la pièce.)|(1 minute),Tu fouilles la pièce mais tu ne trouves rien d'utile.,10,0,0,Search()
+10,0,0,Common_PlayerNotRestrained,(Tu fouilles la pièce.)|(1 minute),Tu fouilles la pièce mais tu ne trouves rien d'utile.,10,0,0,Search()
+10,0,0,Common_PlayerNotRestrained,(Tu te déshabilles.)|(1 minute),Tu enlèves ton uniforme et|tu restes en sous-vêtements.,20,0,0,Strip()
+20,0,0,Common_PlayerNotRestrained,(Tu fouilles la pièce.)|(1 minute),Tu fouilles la pièce mais tu ne trouves rien d'utile.,20,0,0,Search()
+20,0,0,Common_PlayerNotRestrained,(Tu te rhabilles.)|(1 minute),Tu te remets en uniforme.,10,0,0,DressBack()
+20,0,0,Common_PlayerNotRestrained,(Tu mets ton costume.)|(1 minute),Tu t'habilles avec le meilleur costume|que tu as trouvé pour ton rôle.,30,0,0,Costume()
+30,0,0,Common_PlayerNotRestrained,(Tu fouilles la pièce.)|(1 minute),Tu fouilles la pièce mais tu ne trouves rien d'utile.,30,0,0,Search()
+30,0,0,Common_PlayerNotRestrained,(Tu te déshabilles.)|(1 minute),Tu enlèves ton uniforme et|tu restes en sous-vêtements.,20,0,0,Strip()
