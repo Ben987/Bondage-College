@@ -1,6 +1,6 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Inspect the gag.)|(1 minute),This gag has cloth lots of wadding to fill the mouth.|More cloths tie around the head to hold the wadding in.,0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Gag yourself.)|(1 minute),"You stuff the wadding in your mouth, then tie|more cloths over your mouth and around your head.",10,0,0,SelfGag()
-10,0,0,,(Chew on the wad.)|(1 minute),You chew on the wadding.  It helps your jaw|a little but doesn't damage the wadding at all.,10,0,0,
-10,0,0,,(Try to spit the wad out.)|(1 minute),You try to spit out the wad but it is held in by the cleave|and 'over the mouth' gags.  You'll need your hands.,10,0,0,
-10,0,0,Common_PlayerNotRestrained,(Ungag yourself.)|(1 minute),"You undo all the cloths, pull out|the wadding and can now talk again.",0,0,0,SelfUngag()
+0,0,0,,(Tu examines le bâillon.)|(1 minute),Ce bâillon a beaucoup d'ouate pour remplir la bouche.|D'autres tissus s'attachent autour de la tête.,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Tu te bâillonnes.)|(1 minute),"Tu fourres la ouate dans ta bouche, puis attaches|les tissus sur ta bouche et autour de ta tête.",10,0,0,SelfGag()
+10,0,0,,(Tu mâches la ouate.)|(1 minute),"Tu mâches la ouate. Ça aide un peu ta mâchoire,|mais n'endommage pas du tout la ouate.",10,0,0,
+10,0,0,,(Tu essayes de recracher|la ouate.) (1 minute),"Tu essayes de recracher la ouate, elle est retenue|par les autres tissus. Tu auras besoin de tes mains.",10,0,0,
+10,0,0,Common_PlayerNotRestrained,(Tu te débâillonnes.)|(1 minute),"Tu défais tous les tissus, retires la|ouate et tu peux à nouveau parler.",0,0,0,SelfUngag()
