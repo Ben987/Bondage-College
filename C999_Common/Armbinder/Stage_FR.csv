@@ -2,6 +2,6 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 0,0,0,,(Tu l'examines.)|(1 minute),Ce fourreau à bras semble très solide.|Il ne se brisera pas si quelqu'un se débat avec.,0,0,0,
 0,0,0,,(Tu joues avec.)|(1 minute),Tu joues avec les lanières et les lacets en cuir.|La sensation sur ta peau te fait frissonner.,0,0,0,
 0,0,0,Common_PlayerNotRestrained,(Tu t'attaches.)|(1 minute),Tu glisses tes bras à l'intérieur mais ça ne tiendra pas|sans quelqu'un d'autre pour le lacer et le sangler.,0,0,0,QuerySelfBondage()
-10,0,0,HasLooseArmbinder,(Tu joues avec un autre|fourreau.) (1 minute),Tu joues avec un autre fourreau pendant que tu es|attachée mais tu ne peut pas faire grand-chose.,10,0,0,ShowImage()
+10,0,0,HasLooseArmbinder,(Tu joues avec un autre|fourreau.) (1 minute),Tu joues avec un autre fourreau pendant que tu es|attachée mais tu ne peux pas faire grand-chose.,10,0,0,ShowImage()
 10,0,0,,(Tu essayes de le déchirer.)|(1 minute),"En utilisant toutes tes forces, tu essayes de déchirer|le fourreau mais tu échoues lamentablement.",10,0,0,
 10,0,0,,(Tu luttes pour te libérer.)|(1 minute),Tu luttes comme une folle sur ce fourreau|mais tu n'arrives pas à te libérer.,10,0,0,
