@@ -11,11 +11,12 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 10,0,0,,Chapitre 5|Le cours de Gym,,10,0,0,"LoadChapter(""C005_GymClass"")"
 10,0,0,,Chapitre 6|L'isolement,,10,0,0,"LoadChapter(""C006_Isolation"")"
 10,0,0,,Chapitre 7|La pause déjeuner,,10,0,0,"LoadChapter(""C007_LunchBreak"")"
-10,0,0,,Chapitre 8|Le cours de Théâtre,,10,0,0,"LoadChapter(""C008_DramaClass"")"
+10,0,0,,Chapitre 8|Le cours d'Art Dramatique,,10,0,0,"LoadChapter(""C008_DramaClass"")"
 10,0,0,,Autres chapitres,"Sélectionnez le chapitre que vous voulez.|Si c'est votre 1ère partie, commencez au chapitre 1.",20,0,0,
 10,0,0,,Menu principal,"Bienvenue à l'Université du Bondage.|Amusez-vous bien, soyez curieux(se) et coquin(e).",0,0,0,
 20,0,0,,Chapitre 9|La bibliothèque,,20,0,0,"LoadChapter(""C009_Library"")"
 20,0,0,,Chapitre 10|La vengeance,,20,0,0,"LoadChapter(""C010_Revenge"")"
+20,0,0,,Chapitre 11|Le cours de Littérature,,20,0,0,"LoadChapter(""C011_LiteratureClass"")"
 20,0,0,,Chapitre 101|Le Club Kinbaku par wildsj,,20,0,0,"LoadChapter(""C101_KinbakuClub"")"
 20,0,0,,Autres chapitres,"Sélectionnez le chapitre que vous voulez.|Si c'est votre 1ère partie, commencez au chapitre 1.",10,0,0,
 20,0,0,,Menu principal,"Bienvenue à l'Université du Bondage.|Amusez-vous bien, soyez curieux(se) et coquin(e).",0,0,0,
