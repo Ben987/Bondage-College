@@ -15,7 +15,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 10,0,0,,Más capítulos,""Selecciona el capítulo que quieres jugar.|Si es la primera vez que juegas empieza en el capítulo 1."",20,0,0,"
 10,0,0,,Menú principal,""Bienvenida al instituto de bondage, pásalo bien, sé curiosa y pervertida."",0,0,0,"
 20,0,0,,Capítulo 9|Biblioteca,,20,0,0,"LoadChapter(""C009_Library"")"
-20,0,0,,Capítulo 10|Venganza,,20,0,0,"LoadChapter("C010_Revenge")"
+20,0,0,,Capítulo 10|Venganza,,20,0,0,"LoadChapter(""C010_Revenge"")"
 20,0,0,,Capítulo 101|Club de Kinbaku por wildsj,,20,0,0,"LoadChapter("C101_Kinbakuclub")"
 20,0,0,,Capítulos anteriores, Selecciona el capítulo que quieres jugar.|Si es la primera vez que juegas empieza en el capítulo 1."",10,0,0,
 20,0,0,,Menú principal,""Bienvenida al instituto de bondage, pásalo bien, sé curiosa y pervertida."",0,0,0,"
