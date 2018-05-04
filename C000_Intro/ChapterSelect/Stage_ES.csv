@@ -5,7 +5,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 0,0,0,,Cambia el idioma,,30,0,0,
 0,0,0,,Créditos del juego,MUCHÍSIMAS GRACIAS a todos|los que han ayudado a hacer este juego.,0,0,0,RollCredits()
 10,0,0,,Capítulo 1|Antes de clase,,10,0,0,"LoadChapter(""C001_BeforeClass"")"
-10,0,0,,Capítulo 2|Primera clase,,10,0,0,"LoadChapter("C002_FirstClass")"
+10,0,0,,Capítulo 2|Primera clase,,10,0,0,"LoadChapter(""C002_FirstClass"")"
 10,0,0,,Capítulo 3|Detenida por la mañana,,10,0,0,"LoadChapter("C003_MorningDetention")"
 10,0,0,,Capítulo 4|Clase de arte,,10,0,0,"LoadChapter("C004_ArtClass")"
 10,0,0,,Capítulo 5|Clase de educación física,,10,0,0,"LoadChapter("C005_GymClass")"
