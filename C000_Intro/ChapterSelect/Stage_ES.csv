@@ -1,5 +1,5 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,Nueva partida,,0,0,0,""LoadChapter(""""C001_BeforeClass"""")"""
+0,0,0,,Nueva partida,,0,0,0,"LoadChapter(""C001_BeforeClass"")"
 0,0,0,,Cargar partida,,0,0,0,LoadScreen()
 0,0,0,,Selecciona capítulo,""Selecciona el capítulo que quieres jugar.|Si es la primera vez que juegas empieza en el capítulo 1."",10,0,0,"
 0,0,0,,Cambia el idioma,,30,0,0,
