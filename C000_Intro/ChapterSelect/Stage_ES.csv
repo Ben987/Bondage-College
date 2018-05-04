@@ -20,6 +20,6 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 20,0,0,,Capítulos anteriores,""Selecciona el capítulo que quieres jugar.|Si es la primera vez que juegas empieza en el capítulo 1."",10,0,0,"
 20,0,0,,Menú principal,""Bienvenida al instituto de bondage, pásalo bien, sé curiosa y pervertida."",0,0,0,"
 30,0,0,,Inglés,,0,0,0,""SetLanguage(""""EN"""")"""
-30,0,0,,Francés (Capítulos 1 to 7)|Autor gottspende,,0,0,0,""SetLanguage(""""FR"""")"""
+30,0,0,,Francés (Capítulos 1 to 7)|Autor gottspende,,0,0,0,"SetLanguage(""FR"")"
 30,0,0,,Chino (Capítulo 5)|Autor asdcvbgf,,0,0,0,""SetLanguage(""""CN"""")"""
 30,0,0,,Español (Capítulos)|Autor Rafael R.,,0,0,0,""SetLanguage(""""ES"""")"""
