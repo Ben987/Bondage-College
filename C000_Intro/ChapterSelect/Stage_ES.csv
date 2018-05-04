@@ -10,7 +10,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 10,0,0,,Capítulo 4|Clase de arte,,10,0,0,""LoadChapter(""""C004_ArtClass"""")"""
 10,0,0,,Capítulo 5|Clase de educación física,,10,0,0,""LoadChapter(""""C005_GymClass"""")"""
 10,0,0,,Capítulo 6|Aislamiento,,10,0,0,"LoadChapter(""C006_Isolation"")"
-10,0,0,,Capítulo 7|Hora de comer,,10,0,0,""LoadChapter(""""C007_LunchBreak"""")"""
+10,0,0,,Capítulo 7|Hora de comer,,10,0,0,"LoadChapter(""C007_LunchBreak"")"
 10,0,0,,Capítulo 8|Clase de teatro,,10,0,0,""LoadChapter(""""C008_DramaClass"""")"""
 10,0,0,,Más capítulos,""Selecciona el capítulo que quieres jugar.|Si es la primera vez que juegas empieza en el capítulo 1."",20,0,0,"
 10,0,0,,Menú principal,""Bienvenida al instituto de bondage, pásalo bien, sé curiosa y pervertida."",0,0,0,"
