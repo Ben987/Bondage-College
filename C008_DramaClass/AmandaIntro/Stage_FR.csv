@@ -1,0 +1,65 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,C'est bien ici qu'on peut se|procurer notre costume ?,"Oui, je suis sûre que tu y trouveras ton costume. Tu|peux te couvrir les yeux le temps que je me change.",10,0,0,
+0,0,0,SarahMissing,Où est la 3ème actrice ?,"Sarah est en retard comme d'habitude.|Espérons qu'elle nous rejoigne avant qu'on commence.",0,0,0,
+0,0,0,IsHeroine,L'héroïne est un rôle|parfait pour toi.,"Tu es si adorable COMMON_PLAYERNAME. Tu peux te|couvrir les yeux le temps que je me change.",10,1,0,
+0,0,0,!IsHeroine,"Bizarre, je t'imagine mal|jouer un méchant.","Oui, je pense que Julia veut me mettre au défi.|Tu peux te couvrir les yeux le temps que je me change.",10,1,0,
+0,0,0,IsHeroine,Toi ? L'héroïne ?,"Hé ! Je suis une bonne personne, je peux le faire !|Tu peux te couvrir les yeux le temps que je me change.",10,-1,1,
+0,0,0,!IsHeroine,Je devrais être le|méchant et te kidnapper.,"(Elle acquiesce.) Ça pourrait aussi être amusant.|Tu peux te couvrir les yeux le temps que je me change.",10,-1,1,
+0,0,0,,"L'art dramatique,|c'est stupide.",Ne dis pas ça ! Ça fait partie de la culture.|Tu peux te couvrir les yeux le temps que je me change.,10,-1,0,
+10,5,0,,Tu es mon amie.|Je pourrais t'aider.,Tu dois avoir raison. Je vais me déshabiller.|(Elle se déshabille.),40,0,0,Strip()
+10,0,5,,"Allez, fait pas ta fillette !|Baisse-moi cette jupe.",Oui. Je ne devrais pas être timide. (Elle se déshabille.)|Peux-tu m'aider à enfiler mon armure s'il te plaît ?,40,0,0,Strip()
+10,0,0,,Je ne peux pas te|regarder te changer ?,"Non COMMON_PLAYERNAME, tu ne peux pas. Maintenant,|couvre toi les yeux pendant quelques minutes.",10,0,0,
+10,0,0,!Common_PlayerRestrained,(Tu te couvres les yeux.),(Tu te couvres les yeux avec les deux mains|pendant qu'elle commence à se changer.),20,0,0,StripNoLeave()
+20,0,0,,(Tu maintiens tes mains|sur tes yeux.) (1 minute),"(Tu peux entendre le cliquetis d'un costume en métal.)|Donne-moi une minute de plus, s'il te plaît.",20,0,0,Changing()
+20,0,0,,(Tu jettes un coup d'oeil.)|(1 minute),(Tu jettes un coup d'oeil entre tes doigts. Tu vois|Amanda se démener pour mettre son armure.),20,0,0,Changing()
+20,0,0,,(Tu retires tes mains|de tes yeux.),Hé ! Pourquoi tu n'as pas garder tes yeux fermés ?,30,-1,0,
+30,0,0,,C'était beaucoup|trop long.,"Ce n'est pas facile de mettre cette armure.|Au lieu de te plaindre, peux-tu m'aider ?",40,-1,0,CheatedCover()
+30,0,0,,Tu ne peux pas le|faire sans aide.,"Ouais, peut-être que j'en ai besoin.|Peux-tu m'aider à mettre cette armure ?",40,0,1,CheatedCover()
+30,0,0,,J'ai pensé que tu|aurais besoin d'aide.,"C'est très gentil de ta part. C'est d'accord,|peux-tu m'aider à mettre cette armure ?",40,1,-1,CheatedCover()
+30,0,0,,Tu es si belle.|Je voulais te voir.,"Je vois, mais puisque tu as triché,|peux-tu m'aider à mettre cette armure ?",40,1,0,CheatedCover()
+30,0,0,,Je suis désolée.|J'ai triché.,"Au moins, tu es honnête. Puisque tu as triché,|peux-tu m'aider à mettre cette armure ?",40,0,-1,CheatedCover()
+40,0,0,PlayerInArmbinder,(Tu te tournes et|secoue ton fourreau.),"Tu es si mignonne, mais je ne te détacherai pas.|Essaye de lutter un peu plus pour te libérer.",40,0,0,TestUnstrapPlayer()
+40,0,0,PlayerIsRoped,(Tu te tournes et|montres tes cordes.),"Tu es si mignonne, mais je ne te détacherai pas.|Essaye de lutter un peu plus et tu atteindras un noeud.",40,0,0,TestUntiePlayer()
+40,0,0,PlayerIsCuffed,(Tu te tournes et|montres tes menottes.),"Désolée, je n'ai pas les clés de ces menottes.",40,0,0,TestUncuffPlayer()
+40,0,0,IsBothFree,Tu sais que tu es jolie ?,(Elle rit et rougit.)|Tu es aussi très jolie COMMON_PLAYERNAME.,40,0,0,PrettyComment()
+40,0,0,IsBothFree,Tu serais superbe|toute attachée.,(Elle rougit.) Ce n'est peut-être pas|le meilleur moment pour ça.,40,0,0,
+40,0,0,ReadyHug,Quelques câlins|avant la pièce ?,Je suis intriguée COMMON_PLAYERNAME.|Qu'est-ce que tu as en tête ?,300,0,0,StartHugs()
+40,0,0,IsBothFree,(Tu l'aides à s'habiller.)|(1 minute),(Tu l'aides à mettre son armure.)|Merci ! On est prêts pour la pièce ?,50,0,0,Costume()
+40,0,0,IsBothFree,"Amanda, aimerais-tu|m'attacher ?","Oh mon Dieu, Madame, ce ne serait pas convenable.|(Elle incline la tête et détourne le regard.)",40,0,0,RandomBondage()
+40,0,0,!Common_PlayerRestrained,(Tu la chatouilles.)|(1 minute),"(Tu la chatouilles sur les côtes et elle|rit à haute voix, elle s'amuse bien.)",40,0,0,Tickle()
+40,0,0,!Common_PlayerRestrained,(Tu lui mets une fessée.)|(1 minute),"(Tu lui donnes une petite fessée et|elle recule, elle n'a pas l'air d'aimer ça.)",40,0,0,Spank()
+40,0,5,!Common_PlayerRestrained,(Tu la gifles.)|(1 minute),(Tu lui donnes une bonne gifle sur le visage et la|poitrine. Elle se recroqueville et tremble de peur.),40,0,0,Slap()
+40,0,0,!Common_PlayerRestrained,(Tu la masturbes.)|(1 minute),"(Tu te penches pour la masturber,|mais elle repousse ta main.)",40,0,0,Masturbate()
+40,0,0,CanUntie,(Tu la détaches.)|(1 minute),(Tu défais les noeuds pour la libérer et|elle étire les bras en signe d'appréciation.),40,0,0,Untie()
+40,0,0,CanUnstrap,(Tu la détaches.)|(1 minute),"(Tu détaches les lanières en cuir,|délies le fourreau et libères ses bras.)",40,0,0,Untie()
+40,0,0,CanUngag,(Tu la débâillonnes)|(1 minute),(Tu enlèves le bâillon et elle respire|profondément.) Aaaah ! Merci.,40,0,0,Ungag()
+50,0,0,IsPlayReady,Faisons du théâtre !|(Vous rejoignez la scène.),,50,0,0,StartDrama()
+50,0,0,!IsPlayReady,Tout le monde|n'est pas prêt.,"Habillons-nous vite, alors !",50,0,0,
+100,0,0,,Bienvenue au paradis.,"(Elle acquiesce en silence, récupérant|lentement de son orgasme.)",40,1,0,
+100,0,0,,(Tu caresses doucement|sa tête.),"(Elle s'empourpre, récupérant|lentement de son orgasme.)",40,1,1,
+100,0,0,,"Maintenant, je contrôle|tes orgasmes.","(Elle fronce les sourcils dans ta direction,|récupérant lentement de son orgasme.)",40,-1,1,
+100,0,0,,(Tu la gifles au visage.),"(Elle se recroqueville et tremble de peur,|elle récupère lentement de son orgasme.)",40,-2,1,
+100,0,0,,T'es vraiment une salope.,"(Elle fait non de la tête, récupérant|lentement de son orgasme.)",40,-1,0,
+100,0,0,,"La prochaine fois,|tu supplieras pour jouir.","(Elle incline la tête, récupérant|lentement de son orgasme.)",40,0,1,
+200,0,0,,(Tu acquiesces et|inclines la tête.),"Une si bonne soumise. (Elle rit.)|A présent, peux-tu m'aider à me changer ?",40,0,-1,AllowLeave()
+200,0,0,,(Tu fronces|les sourcils.),"Je suis contente que tu ne sois pas en désaccord.|A présent, peux-tu m'aider à me changer ?",40,0,0,AllowLeave()
+200,0,0,,"Oui Madame, vous|pouvez l'avoir.","Bonne petite. (Elle rit.)|A présent, peux-tu m'aider à me changer ?",40,0,-1,AllowLeave()
+200,0,0,,C'est injuste !,"(Elle tire la langue.)|A présent, peux-tu m'aider à me changer ?",40,0,0,AllowLeave()
+200,0,0,!Common_PlayerRestrained,Espèce de garce !,"Quelle grossièreté, Je vais te donner une bonne leçon.|(Elle te saisie et te menotte les mains dans le dos.)",40,1,0,CuffPlayer()
+200,0,0,!Common_PlayerRestrained,Rends-moi ma clé|tout de suite !,Une bonne soumise ne devrait pas parler comme ça.|(Elle te saisie et te menotte les mains dans le dos.),40,0,1,CuffPlayer()
+200,0,0,Common_PlayerRestrained,Espèce de garce !,Quelle grossièreté. Il faudra que je te donne|une bonne leçon un de ces jours.,40,1,0,AllowLeave()
+200,0,0,Common_PlayerRestrained,Rends-moi ma clé|tout de suite !,Une bonne soumise ne devrait pas parler comme ça.|(Elle rit et tire la langue.),40,0,1,AllowLeave()
+300,0,0,,Fais-moi un câlin !|(1 minute),(Vous vous tenez l'une l'autre dans|les bras pour un long et chaleureux câlin.),310,0,0,"Hug(""PlayerAmandaHug"")"
+300,5,0,HugDone,(Tu l'embrasses.)|(1 minute),(Tu l'embrasses tendrement sur le cou et|les lèvres pendant qu'elle gémit timidement.),310,0,0,"Hug(""PlayerAmandaKiss"")"
+300,0,0,SarahReadyHug,Va faire un câlin à Sarah.|(1 minute),(Amanda offre timidement un câlin et|Sarah saute rapidement dans ses bras.),310,0,0,"Hug(""AmandaSarahHug"")"
+300,0,5,SarahReadyHug,Va embrasser Sarah.|(1 minute),(Elle reste silencieuse devant Sarah pendant|quelques secondes et la surprend par un baiser.),310,0,0,"Hug(""AmandaSarahKiss"")"
+300,0,0,SarahReadyHug,Faisons un câlin|collectif. (1 minute),(Tu les invites toutes les deux dans tes bras et|vous partagez un câlin chaleureux avant la pièce.),310,0,0,"Hug(""GroupHug"")"
+300,10,10,SarahReadyHug,Faisons un baiser|collectif. (1 minute),(Tu leur ordonnes de s'embrasser et tu te|joins à elles pour un trio de baisers d'amour.),310,0,0,"Hug(""GroupKiss"")"
+300,0,0,,C'est suffisant.,"D'accord, tu peux m'aider à m'habiller ?",40,0,0,AllowLeave()
+310,0,0,,Fais-moi un câlin !|(1 minute),(Vous vous tenez l'une l'autre dans|les bras pour un long et chaleureux câlin.),310,0,0,"Hug(""PlayerAmandaHug"")"
+310,5,0,HugDone,(Tu l'embrasses.)|(1 minute),(Tu l'embrasses tendrement sur le cou et|les lèvres pendant qu'elle gémit timidement.),310,0,0,"Hug(""PlayerAmandaKiss"")"
+310,0,0,SarahReadyHug,Va faire un câlin à Sarah.|(1 minute),(Amanda offre timidement un câlin et|Sarah saute rapidement dans ses bras.),310,0,0,"Hug(""AmandaSarahHug"")"
+310,0,5,SarahReadyHug,Va embrasser Sarah.|(1 minute),(Elle reste silencieuse devant Sarah pendant|quelques secondes et la surprend par un baiser.),310,0,0,"Hug(""AmandaSarahKiss"")"
+310,0,0,SarahReadyHug,Faisons un câlin|collectif. (1 minute),(Tu les invites toutes les deux dans tes bras et|vous partagez un câlin chaleureux avant la pièce.),310,0,0,"Hug(""GroupHug"")"
+310,10,10,SarahReadyHug,Faisons un baiser|collectif. (1 minute),(Tu leur ordonnes de s'embrasser et tu te|joins à elles pour un trio de baisers d'amour.),310,0,0,"Hug(""GroupKiss"")"
+310,0,0,,C'est suffisant.,"D'accord, tu peux m'aider à m'habiller ?",40,0,0,AllowLeave()
