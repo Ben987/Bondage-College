@@ -1,0 +1,32 @@
+Tag,Content
+UngagPlayer,(Elle rit et enlève ton bâillon.)|Peux-tu m'aider à trouver mon costume ?
+CropToSearch,(Tu la fouettes et elle se met de suite à chercher.)|Je l'ai !  Ça ne te dérange pas si je me déshabille ici ?
+CropToStrip,"(Tu la fouettes et elle se déshabille de suite.) Bon,|par quelle partie du costume dois-je commencer ?"
+CostumeBeforeFun,"Oh, c'est mignon !  Tu as des jouets.  Mais, je dois|d'abord trouver mon costume. Peux-tu m'aider ?"
+CostumeBlocksFun,"J'adorerais essayer tes jouets, mais il est|trop tard maintenant, je suis déjà costumée."
+PlayerRandomBondage,Bien sûr ! (Sarah choisit des objets|au hasard dans ton sac et t'attache.)
+NoBondageItem,(Elle fouille dans ton sac.) Désolée COMMON_PLAYERNAME.|Tu n'as rien que je puisse utiliser sur toi.
+Collar,"(""+20"" en soumission ou plus et une cérémonie spéciale|sont nécéssaire pour faire porter un collier à Sarah.)"
+Crop,(Tu la fouettes assez fort pendant qu'elle|gémit. Elle semble vraiment aimer ça.)
+Rope,(Tu enroules la corde autour de son corps pendant qu'-|elle teste tes aptitudes de cordage de façon ludique.)
+TwoRopes,(Tu prends une seconde corde et lui attaches|les jambes en position agenouillée.)
+Armbinder,(Elle glisse volontiers ses bras dans le fourreau en|cuir pour que tu puisses la sangler en toute sécurité.)
+Cuffs,(Elle acquiesce joyeusement pendant que tu|mets ses mains derrière elle et les menottes.)
+BallGag,(Elle rapproche sa tête pour que tu|puisses la bâillonner plus facilement.)
+TapeGag,(Elle rapproche sa tête pour que tu|puisses la bâillonner plus facilement.)
+ClothGag,(Elle rapproche sa tête pour que tu|puisses la bâillonner plus facilement.)
+CuffsKey,(Elle se déplace de façon ludique pour te rendre la|tâche plus difficile mais tu parviens à la libérer.)
+VibratingEgg,(Elle hoche la tête en voyant l'oeuf et écarte|ses jambes pour que tu puisses le glisser.)
+ChastityBelt,"(Elle panique lorsqu'elle voit la ceinture, mais tu es|capable de la verrouiller hermétiquement sur elle.)"
+MasturbateBelt,"(Tu essaies de la masturber, mais tu échoues.|Tu peux à peine mettre un doigt sous sa ceinture.)"
+Masturbate,(Tu la masturbes à un bon rythme et|elle gémit silencieusement et rit.)
+MasturbateGood,(Tu la masturbes à un bon rythme pendant|qu'elle gémit et tremble de plaisir.)
+MasturbateOrgasm,(Elle perd le contrôle de son corps et jouit dans la loge.)
+DressWithBelt,"(Tu l'aides à s'habiller, mais elle semble stressée.)|Bon, on joue et on déverrouille la ceinture après."
+RefuseBelt,"(Tu essayes de verrouiller la ceinture sur elle,|mais elle refuse et la repousse.)"
+UndressBeforeBondage,(Elle rit et acquiesce.)|Seulement si tu te déshabilles.
+UntiePlayer,D'accord. Laisse-moi t'aider avec ces cordes.|(Elle te libère de ton bondage.)
+UnstrapPlayer,"Oui, laisse-moi t'aider avec ce fourreau.|(Elle détache le fourreau et te libère.)"
+CannotFree,(Elle te montre ses propres entraves et sourit.)
+CannotFreeGagged,(Elle secoue la tête de gauche à droite.)
+HelpWhileGagged,(Elle défait les noeuds tout en fredonnant|une chanson dans son bâillon.)
