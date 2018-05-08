@@ -1,1 +1,51 @@
-
+Stage	LoveReq	SubReq	VarReq	Interaction	Result	NextStage	LoveMod	SubMod	Function
+0	0	0		Yes, it's my first day here.	Welcome then! I'm Amanda.	10	0	0	
+0	0	0		Yes, a first day in a new|school is always scary.	It will be fine. I'm Amanda, welcome.	10	0	-1	
+0	0	0		You look like|the teacher's pet.	Errrr... Well... I...|I'm Amanda, welcome.	10	-1	1	
+0	0	0		Why do you care?	Oh! No reason. I'm Amanda, welcome.	10	-1	0	
+0	0	0	SidneyInBondage	I bet you would also|look adorable all tied up.	(She blushes red.)|You think? I'm Amanda, nice to meet you.	10	0	1	
+0	0	0	SidneyInBondage	You better behave or you|will end up like her.	Yes, yes, of course. I'm Amanda.|(She bows her head and checks the floor.)	10	-1	2	
+10	0	0		Tell me about this college.	It was founded a century ago by nuns.|Now it's a renown all girl college.	20	0	0	
+10	0	0		What class are we|taking this morning?	Math! My favorite! Wait until you meet our teacher.	20	0	0	
+10	0	0		I heard really good things|about this academy.	You heard right, this place is wonderful.	20	1	0	
+10	0	0		I hope it will be a quick|class so we can run out.	I'm not sure this is the right attitude to learn.	20	-1	0	
+20	0	0		I like your hair.	(She giggles and blushes.)|You're nice, now get ready, the class will start soon.	30	1	0	
+20	0	0		You sound fascinated by|this stupid school.	Mmh (She turns around and stops talking)	50	-1	0	
+20	0	0		Don't plan anything for|lunch, I'll buy you diner.	Really? (giggles)|Let's focus on the class for now.	30	0	1	
+20	0	0		Could you please show|me around after class?	Maybe I will.|But get ready for class first.	30	0	-1	
+30	0	0		Yes, let's focus|on today's class.	Well said.	50	1	0	
+30	0	0		Class, class, class.|You're so boring.	Oh! Sorry. (She turns around and stops talking)	50	-1	0	
+30	1	0		Careful, the black haired|girl is starring at you.	Oh lord! Thanks for the warning.|It's the first time I see her bag, I wonder what's in it.	40	1	0	
+40	1	0		Don't worry, if she cause|trouble, I will protect you.	You would? This is great!|But let's focus on the class for now.	50	0	1	
+40	1	0		Maybe you should tell|the teacher, she's scary.	Alert the teacher... I don't know.|Let's focus on today's class for now.	50	0	-1	
+40	1	0	SidneyInBondage	There were ropes in the|bag. She's "wearing" them.	Hahaha! I can see that.|But should you release her before the class begins?	50	1	0	
+200	0	0	BondageNotConfronted	Would you like to|be tied up now?	What? No! The class is starting in a few minutes!|Please put back these ropes.	200	-1	0	ConfrontBondage()
+200	0	0	BondageNotConfronted	Admit it girl, you would|love to be tied up.	Oh my god! (She blushes red.)|No... Y... No... the class is starting really soon.	200	-1	1	ConfrontBondage()
+200	0	0	StopRopeSubAllowed	I love bondage,|could you tie me up?	Oh! You're a submissive, maybe after school.|(She winks.) What were we talking about newcomer?	200	0	-2	StopRopeSub()
+200	0	0		We can use them later.|(Hide the ropes.)	Later? (She looks at you curiously.)|So what were we talking about newcomer?	200	0	0	StopRope()
+200	0	2		(Grab her and remove|her uniform.) (1 minute)	Oh lord no! Not again!|(She tries to defend herself but fails.)	220	0	0	Strip()
+200	0	4		Subbie girl, remove your|uniform now. (1 minute)	N... Errr... Yes Miss...|(She submissively removes her top and skirt.)	220	0	0	
+220	0	0		(Tie her.)|(1 minute)	(You wrap the ropes around her body and tie her|arms behind her back. She moans quietly.)	230	0	0	Tie()
+220	0	0		Put back your clothes.|(1 minute)	Oh lord yes! This is embarrassing.	200	0	0	
+230	0	0		(Turn her.)	What? Oh lord! What are you doing?|(You force her to turn around.)	240	0	0	
+230	0	0		(Untie her.)|(1 minute)	(You slowly untie her) Thank you so much!|Is it alright if I put my clothes back on?	220	0	0	Untie()
+230	0	0		(Tickle her.)|(1 minute)	(She blushes and can't stop laughing.)|Hey! Haaahahahaha! You're funny.	230	0	0	Tickle()
+230	1	0		(Kiss her.)|(1 minute)	Another kiss?|(She blushes red and smiles at you.)	230	0	0	Kiss()
+230	0	0	SidneyInBondage	(Make her hug Sidney.)|(1 minute)	(Both girls are forced to hug and rub each other.)|Oh my! This is not appropriated.	250	0	0	
+230	0	0		You look like an|angel in bondage.	(She giggles and smiles at you.)	230	0	0	
+230	0	0		If I untie you, can I tie|you up later? (1 minute)	Ooooh! Yes! Of course!|(You untie her and shake her hand.)	300	1	1	Untie()
+230	0	0		If I untie you, will you|tie me later? (1 minute)	Hehehe, alright.|(You untie her and shake her hand.)	300	1	-2	Untie()
+240	0	0		(Turn her.)	(You force her to turn around.)|Oooohh! I actually prefer seeing you.	230	0	0	
+240	0	0		(Untie her.)|(1 minute)	(You slowly untie her) Thank you so much!|Is it alright if I put my clothes back on?	220	0	0	Untie()
+240	0	0		(Tickle her.)|(1 minute)	(She blushes and can't stop laughing.)|Hey! Haaahahahaha! You're funny.	240	0	0	Tickle()
+240	0	0		(Spank her.)|(1 minute)	(You spank her again but she seems to take it better.)|Stop that!	240	0	0	Spank()
+240	0	0		You have a nice|butt you know?	Really? (She blushes red.)	240	0	0	
+240	0	0		If I untie you, can I tie|you up later? (1 minute)	Ooooh! Yes! Of course!|(You untie her and shake her hand.)	300	1	1	Untie()
+240	0	0		If I untie you, will you|tie me later? (1 minute)	Hehehe, alright.|(You untie her and shake her hand.)	300	1	-2	Untie()
+250	0	0		(Separate them.)	Thank you. That was embarrassing.	230	0	0	
+250	0	0		(Force them to kiss.)|(1 minute)	Another kiss? This is gross!|(You push them together for another kiss.)	260	0	0	ForceKiss()
+250	0	0		You two make a nice|bondage couple.	(They both stare at you.)	250	0	0	
+260	0	0		(Separate them.)	Thank you. That was embarrassing.	230	0	0	
+260	0	0		(Stop the kisses.)	No offense Sidney,|but you're not my type.	250	0	0	
+260	0	0		Love is in the air!	Hey! That's not funny.|(She pulls her tongue at you.)	260	0	0	
+260	2	0		Can I also get a kiss?	Hehehe, ok.|(She turns around to kiss you.)
