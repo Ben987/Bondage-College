@@ -149,6 +149,7 @@ function ReadCSV(Array, FileName) {
 function GetWorkingLanguage() {
 	if ((CurrentLanguageTag == "FR") && ((CurrentChapter == "C000_Intro") || (CurrentChapter == "C001_BeforeClass") || (CurrentChapter == "C002_FirstClass") || (CurrentChapter == "C003_MorningDetention") || (CurrentChapter == "C004_ArtClass") || (CurrentChapter == "C005_GymClass") || (CurrentChapter == "C006_Isolation") || (CurrentChapter == "C007_LunchBreak") || (CurrentChapter == "C999_Common"))) return "FR";
 	if ((CurrentLanguageTag == "PL") && ((CurrentChapter == "C000_Intro"))) return "PL";
+	if ((CurrentLanguageTag == "ES") && ((CurrentChapter == "C000_Intro"))) return "ES";
 	if ((CurrentLanguageTag == "CN") && ((CurrentChapter == "C000_Intro") || (CurrentChapter == "C005_GymClass") || (CurrentChapter == "C999_Common"))) return "CN";
 	return "EN";
 }

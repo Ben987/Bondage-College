@@ -7,6 +7,9 @@ var C011_LiteratureClass_SelectDesk_SidneyWasPig = false;
 var C011_LiteratureClass_SelectDesk_NatalieLunch = false;
 var C011_LiteratureClass_SelectDesk_PigRemarkDone = false;
 var C011_LiteratureClass_SelectDesk_NataliePeaceOfferDone = false;
+var C011_LiteratureClass_SelectDesk_NatalieIgnorePlayer = false;
+var C011_LiteratureClass_SelectDesk_SidneyIgnorePlayer = false;
+var C011_LiteratureClass_SelectDesk_HasSeduction = false;
 
 // Chapter 11 - Literature Class Select Desk Load
 function C011_LiteratureClass_SelectDesk_Load() {
@@ -21,6 +24,7 @@ function C011_LiteratureClass_SelectDesk_Load() {
 	Common_SelfBondageAllowed = false;
 	C011_LiteratureClass_SelectDesk_SidneyWasPig = GameLogQuery("C010_Revenge", "Sidney", "Pig");
 	C011_LiteratureClass_SelectDesk_NatalieLunch = GameLogQuery("C007_LunchBreak", "Natalie", "Lunch");
+	C011_LiteratureClass_SelectDesk_HasSeduction = (PlayerGetSkillLevel("Seduction") > 0);
 
 	// If we must put the previous text back
 	if (C011_LiteratureClass_SelectDesk_IntroText != "") OverridenIntroText = C011_LiteratureClass_SelectDesk_IntroText;
@@ -77,6 +81,13 @@ function C011_LiteratureClass_SelectDesk_CheckFront() {
 		return;
 	}
 
+	// If Natalie ignores the player
+	if (C011_LiteratureClass_SelectDesk_NatalieIgnorePlayer) {
+		C011_LiteratureClass_SelectDesk_CurrentStage = 180;
+		OverridenIntroText = GetText("NatalieIgnore");
+		return;
+	}
+
 	// If the player already had lunch with Natalie and knows about the Kinbaku club
 	if (C011_LiteratureClass_SelectDesk_NatalieLunch) {
 		C011_LiteratureClass_SelectDesk_CurrentStage = 120;
@@ -93,17 +104,24 @@ function C011_LiteratureClass_SelectDesk_CheckBack() {
 	ActorLoad("Sidney", "");
 	LeaveIcon = "";
 	
-	// With 8 submission or more, Sidney switches to sub mode
-	if (ActorGetValue(ActorSubmission) >= 8) {
-		C011_LiteratureClass_SelectDesk_CurrentStage = 240;
-		OverridenIntroText = GetText("SidneySub");
+	// Sidney can ignore the player
+	if (C011_LiteratureClass_SelectDesk_SidneyIgnorePlayer) {
+		C011_LiteratureClass_SelectDesk_CurrentStage = 280;
+		OverridenIntroText = GetText("SidneyIgnore");
 		return;
 	}
-	
+
 	// If she was made a pig in the revenge scenario, she gets angry
 	if (C011_LiteratureClass_SelectDesk_SidneyWasPig) {
 		C011_LiteratureClass_SelectDesk_CurrentStage = 290;
 		OverridenIntroText = GetText("SidneyPig");
+		return;
+	}
+	
+	// With 8 submission or more, Sidney switches to sub mode
+	if (ActorGetValue(ActorSubmission) >= 8) {
+		C011_LiteratureClass_SelectDesk_CurrentStage = 240;
+		OverridenIntroText = GetText("SidneySub");
 		return;
 	}
 
@@ -154,4 +172,27 @@ function C011_LiteratureClass_SelectDesk_NataliePeaceOffer() {
 // Chapter 11 - Literature Class - Add two minutes to the timer
 function C011_LiteratureClass_SelectDesk_WaitTwoMinutes() {
 	CurrentTime = CurrentTime + 110000;
+}
+
+// Chapter 11 - Literature Class - Natalie can turn around and ignore the player
+function C011_LiteratureClass_SelectDesk_NatalieOut() {
+	C011_LiteratureClass_SelectDesk_NatalieIgnorePlayer = true;
+}
+
+// Chapter 11 - Literature Class - Logs the fact that the players knows about the club meeting from Natalie
+function C011_LiteratureClass_SelectDesk_KinbakuClubInfo() {
+	GameLogAdd("KinbakuClubInfo");
+}
+
+// Chapter 11 - Literature Class - Sidney can turn around and ignore the player
+function C011_LiteratureClass_SelectDesk_SidneyOut() {
+	C011_LiteratureClass_SelectDesk_SidneyIgnorePlayer = true;
+}
+
+// Chapter 11 - Literature Class - Sidney can force the player to move to the front row
+function C011_LiteratureClass_SelectDesk_MoveToFront() {
+	CurrentActor = "";
+	GameLogAdd("KickedFromBackDesk");
+	GameLogAdd("FrontDesk");
+	CurrentTime = CurrentTime + 50000;
 }

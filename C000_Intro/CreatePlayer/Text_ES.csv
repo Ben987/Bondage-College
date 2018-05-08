@@ -1,6 +1,6 @@
 Tag,Content
 EnterName,Escribe tu nombre y selecciona una habilidad de la lista
-ValidChars,Solo se pueden usar letras y espacio
+ValidChars,Sólo se pueden usar letras y espacio
 Validate,Empieza el juego
 Skill0,Ninguna habilidad
 Skill1,Arte
