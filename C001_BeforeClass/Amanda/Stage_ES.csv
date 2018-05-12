@@ -29,7 +29,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 220,0,0,,Vístete.|(1 minuto),¡Si Señora!  Esto es embarazoso.,200,0,0,
 230,0,0,,(Dale la vuelta.),¿Qué?  ¡Oh Señor!  ¿Qué haces?|(Le fuerza a que se de la vuelta.),240,0,0,
 230,0,0,,(Desátale.)|(1 minuto),(le desata lentamente) ¡Muchas gracias!|Is it alright if I put my clothes back on?,220,0,0,Untie()
-230,0,0,,(Hazle cosquillas.)|(1 minuto),(Se ruboriza y no puede parar de reir.)|¡Hey!¡Ja,ja,ja!¡Qué divertido!.,230,0,0,Tickle()
+230,0,0,,(Hazle cosquillas.)|(1 minuto),(Se ruboriza y no puede parar de reir.)|"¡Hey!¡Ja,ja,ja!¡Qué divertido!.",230,0,0,Tickle()
 230,1,0,,(Bésale.)|(1 minuto),¿otro beso?|(Se ruboriza y te sonrie.),230,0,0,Kiss()
 230,0,0,SidneyInBondage,(Haz que abrace a Sidney.)|(1 minuto),(Fuerza a las dos chicas a que se abracen)|¡Oh!  Esto no está bien.,250,0,0,
 230,0,0,,Pareces un|angel en bondage.,(Te dedica una sonrsa traviesa),230,0,0,
