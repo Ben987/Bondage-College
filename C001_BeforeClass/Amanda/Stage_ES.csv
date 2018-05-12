@@ -24,7 +24,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 200,0,0,StopRopeSubAllowed,"Me encanta el bondage,|¿Me podrías atar?","¡Oh!  Eres sumisa, quizá después de las clases.|(te guiña un ojo) ¿De qué hablábamos, novata?",200,0,-2,StopRopeSub()
 200,0,0,,Las podemos usar después.|(Escondes las cuerdas.),"¿Después? (Te mira con curiosidad.)|¿De qué hablábamos, novata?",200,0,0,StopRope()
 200,0,2,,(Le agarras y le|quitas el uniforme.) (1 minuto),"¡Oh Señor!  ¡Otra vez no!|(Trata de resistirse, pero falla.)",220,0,0,Strip()
-200,0,4,,"Sumisa, Quítate|uniforme, ahora". (1 minuto)",N... Errr... Si, Señora...|(Se quita sumisamente la blusa y la falda.),220,0,0,
+200,0,4,,"Sumisa, Quítate|el uniforme, ahora". (1 minuto)","N... Errr... Si, Señora...|(Se quita sumisamente la blusa y la falda.)",220,0,0,
 220,0,0,,(Atale.)|(1 minuto),(le enrollas en las cuerdas y le atas|los brazos a la espalda. (Se queja discretamente.),230,0,0,Tie()
 220,0,0,,Vístete.|(1 minuto),¡Si Señora!  Esto es embarazoso.,200,0,0,
 230,0,0,,(Dale la vuelta.),¿Qué?  ¡Oh Señor!  ¿Qué haces?|(Le fuerza a que se de la vuelta.),240,0,0,
