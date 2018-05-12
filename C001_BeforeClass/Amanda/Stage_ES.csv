@@ -18,7 +18,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 30,1,0,,"¡Cuidado!La chica del|te está vigilando.","¡Oh Dios!  Gracias por el aviso.|Es la primera vez trae la mochila. Me pregunto que guarda ahí.",40,1,0,
 40,1,0,,"No te preocupes si te |causa problemas, yo te protejo.",¿Lo harías?  ¡Genial!|Pero centrémonos en la clase de momento.,50,0,1,
 40,1,0,,"Igual te tienes que chivar|a la profe, ella da miedo.",Avisar a la profesora…no sé.|Centrémonos en la clase de momento.,50,0,-1,
-40,1,0,SidneyInBondage,"Había cuerdas en la mochila|Ahora las "lleva"ella.",¡Ja,ja! Ya lo veo.|Pero. ¿Deberías soltarle antes de la clase?,50,1,0,
+40,1,0,SidneyInBondage,"Había cuerdas en la mochila|Ahora las lleva ella.",¡Ja,ja! Ya lo veo.|Pero. ¿Deberías soltarle antes de la clase?,50,1,0,
 200,0,0,BondageNotConfronted,¿Querrías que te|te ate ahora?,¿Qué?  ¡No!  ¡La clase está a punto de empezar!|Por favor. Esconde las cuerdas.,200,-1,0,ConfrontBondage()
 200,0,0,BondageNotConfronted,"Admítelo chica,te|encataría que te atara.",¡Oh. Dios mío!  (Se ruboriza.)|"No…yo…de verdad, la clase empieza ya.",200,-1,1,ConfrontBondage()
 200,0,0,StopRopeSubAllowed,"Me encanta el bondage,|¿Me podrías atar?","¡Oh!  Eres sumisa, quizá después de las clases.|(te guiña un ojo) ¿De qué hablábamos, novata?",200,0,-2,StopRopeSub()
