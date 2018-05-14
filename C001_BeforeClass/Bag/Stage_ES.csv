@@ -1,0 +1,8 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,(Suelta las correas.),"Sueltas las correas, la mochila queda abierta.|Ves algunas cuerdas dentro.",10,0,0,
+0,0,0,,(Tira de laa mochila.),¡Deja de tirar idiota!  ¿Qué estás haciendo?|(Aleja la mochila de ti.),30,0,0,SidneyAnnoy()
+10,0,0,,(Cierra las correas.),Cierras con cuidado la mochila.,0,0,0,
+10,0,0,,(Roba las cuerdas.),Robas las cuerdas con mucho cuidado.,20,0,0,GetRope()
+10,0,0,,(Pregunta por las cuerdas.),,30,0,0,SidneyRope()
+10,0,0,,(Tira de laa mochila.),¡Deja de tirar idiota!  ¿Qué estás haciendo?|(Aleja la mochila de ti.),30,0,0,SidneyAnnoy()
+20,0,0,,(Tira de laa mochila.),¡Deja de tirar idiota!  ¿Qué estás haciendo?|(Aleja la mochila de ti.),30,0,0,SidneyAnnoy()
