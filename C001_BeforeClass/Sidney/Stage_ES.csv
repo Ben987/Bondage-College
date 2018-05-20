@@ -10,7 +10,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 10,0,0,,¿Por qué miras así|a esa chica?,Eso a ti no te importa.,20,0,0,
 10,0,0,,¡Deja de mirarle!,¡Eh! ¡No me des órdenes!,20,-1,1,
 20,0,0,,Pareces muy enfadada.,¿Y a ti por qué te importa?,30,0,0,
-20,0,0,,Pareces odiar mucho|a esa friqui.,¡Oh, demonios, si!  Es una puta pesada.|Algún día me vengaré.,30,1,0,
+20,0,0,,Pareces odiar mucho|a esa friqui.,"¡Oh, demonios, si!  Es una puta pesada.|Algún día me vengaré.",30,1,0,
 20,0,0,,Eres realmente apasionada|. Me gusta.,¡Sip!  Ahora deja que me prepare para la clase.,40,1,0,
 20,0,0,,Tienes un verdadero|problema de actitud.,¡Cállate!|(Se da la vuelta y te ignora),40,-1,0,
 20,1,0,,¿Necesitas que te ayude a|crearle problemas a esa chica?,¡Oh demonios si! Tengo cuerdas en mi mochila. |Le cogeremos después de clase.,40,1,0,
