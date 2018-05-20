@@ -1,1 +1,23 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,¿Qué quieres? (Te mira fijamente.),SidneyFace.jpg
+0,0,0,AmandaInBondage,¡Genial! Yo quería atarle desde hace meses.|¿Ahora qué quieres? (Te mira fijamente.),SidneyFace.jpg
+10,0,0,,(Mira fijamente a la chica del pelo marrón.),SidneyStare.jpg
+20,0,0,,(Cruza los brazos y te mira a los ojos.),SidneyFace.jpg
+30,0,0,,(Mira fijamente a la chica de pelo marrón otra vez.),SidneyStare.jpg
+40,0,0,,(Vuelve la cabeza y te ignora.),SidneyBack.jpg
+40,2,0,,"La clase va a empezar, ya hablaremos después".,SidneyFace.jpg
+40,-2,0,,¡No me hables puta!|(Vuelve la cabeza y te ignora.),SidneyBack.jpg
+40,0,0,AmandaInBondage,Te felicito por humilarle.  Habamos después de clase.|(Mira a Amanda y da el visto bueno.),SidneyFace.jpg
+100,0,0,,¡Joder!  ¿Estabas mirando en mi mochila?|(Parece preocupada por que hayas encontrado las cuerdas.),SidneyFace.jpg
+110,0,0,,(Te mira con curiosidad.),SidneyFace.jpg
+200,0,0,,¿Robaste esas cuerdas de mi mochila?|(Parece furiosa.),SidneyFace.jpg
+210,0,0,,¡Devuelveme mis cuerdas!,SidneyFace.jpg
+220,0,0,,"¡Espera a que me libere!|(Intenta liberarse, pero no puede.)",SidneyBondageFront.jpg
+220,0,0,AmandaInBondage,Por lo menos ella parece más humillada que yo.|(Mira a Amanda y sonrie.),SidneyBondageFront.jpg
+230,0,0,,,SidneyBondageBack.jpg
+240,0,0,,,SidneyBondageHug.jpg
+250,0,0,,,SidneyBondageKiss.jpg
+300,0,0,,¡Ladrona!  No hay nada de qué hablar.,SidneyBack.jpg
+310,0,0,,No puedo creer que me ataras aquí.|Hablaremos después.,SidneyFace.jpg
+310,0,0,AmandaInBondage,"No puedo creer que me ataras aquí.|Lo bueno es que ella aún tiene problemas.",SidneyFace.jpg
 
