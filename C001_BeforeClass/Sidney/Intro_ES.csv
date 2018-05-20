@@ -5,7 +5,7 @@ Stage,LoveReq,SubReq,VarReq,IntroText,Image
 20,0,0,,(Cruza los brazos y te mira a los ojos.),SidneyFace.jpg
 30,0,0,,(Mira fijamente a la chica de pelo marrón otra vez.),SidneyStare.jpg
 40,0,0,,(Vuelve la cabeza y te ignora.),SidneyBack.jpg
-40,2,0,,"La clase va a empezar, ya hablaremos después".,SidneyFace.jpg
+40,2,0,,"La clase va a empezar, ya hablaremos después.",SidneyFace.jpg
 40,-2,0,,¡No me hables puta!|(Vuelve la cabeza y te ignora.),SidneyBack.jpg
 40,0,0,AmandaInBondage,Te felicito por humilarle.  Habamos después de clase.|(Mira a Amanda y da el visto bueno.),SidneyFace.jpg
 100,0,0,,¡Joder!  ¿Estabas mirando en mi mochila?|(Parece preocupada por que hayas encontrado las cuerdas.),SidneyFace.jpg
