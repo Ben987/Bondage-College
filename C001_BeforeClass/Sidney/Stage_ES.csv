@@ -40,7 +40,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 220,0,0,AmandaInBondage,(Haz que abrace a Amanda.)|(1 minuto),(Fuerza a las dos chicas a abrazarse y frotarse.)|¡Joder!  ¿Qué clase de pervertida eres?,240,-1,0,
 220,0,0,,Estas cuerdas se ajustan genial|a tu cuerpazo.,¡Oh!  Mmmmh...  Gracias... creo.,220,0,0,
 220,0,0,,"Si te libero, ¿puedo|atarte después? (1 minuto)",Parece justo.  Trato hecho.|(Le desatas y le estrechas la mano.),310,1,1,Untie()
-220,0,0,,"Si te libero, ¿Puedes|atarme más tarde? (1 minuto)",¡Oh, sip!  Mi venganza será dulce.|(Le desatas y le estrechas la mano.),310,1,-2,Untie()
+220,0,0,,"Si te libero, ¿Puedes|atarme más tarde? (1 minuto)","¡Oh, sip!  Mi venganza será dulce.|(Le desatas y le estrechas la mano.)",310,1,-2,Untie()
 230,0,0,,(Dale la vuelta),(Le das la vuelta mientras|te mira enfurecida.),220,0,0,
 230,0,0,,(Desátale)|(1 minuto),"(Le desatas mientras te insulta.|una vez libre, te empuja con rabia.)",200,0,0,Untie()
 230,0,0,,(Hazle cosquillas.)|(1 minuto),¡Dije que no tengo cosquillas!|(Te mira enfadada.),230,0,0,Tickle()
