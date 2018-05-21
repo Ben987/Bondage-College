@@ -56,4 +56,3 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 250,0,0,,¡El amor está en el aire!,¡Tu sí que vas a volar cuando me suelte.!,250,0,0,
 250,2,0,,¿Puedes besarme a mi también?,"Mmmh, claro ¿Por qué no?|(Se da la vuelta y te besa.)",250,0,0,
 300,-2,0,,¡Puta!  ¿Quieres pelea?,,40,-1,0,Fight()
-

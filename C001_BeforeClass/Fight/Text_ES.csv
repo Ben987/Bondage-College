@@ -1,10 +1,10 @@
 Tag,Content
-Easy,Fácil
+Easy,Easy
 Normal,Normal
-Hard,Difícil
-StartsIn,Empieza en
-Difficulty,Dificultad:
-Perfect,¡Una pelea perfecta!
-Victory,¡Ganaste!
-Defeat,¡Perdiste!
-ClickContinue,Pulsa en la imagen para seguir.
+Hard,Hard
+StartsIn,Starts in
+Difficulty,Difficulty:
+Perfect,Perfect fight!
+Victory,You won!
+Defeat,You lost!
+ClickContinue,Click on the image to continue.
