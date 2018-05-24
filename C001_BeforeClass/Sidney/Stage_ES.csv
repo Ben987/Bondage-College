@@ -14,7 +14,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 20,0,0,,Eres realmente apasionada|. Me gusta.,¡Sip!  Ahora deja que me prepare para la clase.,40,1,0,
 20,0,0,,Tienes un verdadero|problema de actitud.,¡Cállate!|(Se da la vuelta y te ignora),40,-1,0,
 20,1,0,,¿Necesitas que te ayude a|crearle problemas a esa chica?,¡Oh demonios si! Tengo cuerdas en mi mochila. |Le cogeremos después de clase.,40,1,0,
-30,0,0,,Eres realmente apasionada|. Me gusta.,¡Sip!  Ahora deja que me prepare para la clase.,40,1,0,
+30,0,0,,Eres realmente apasionada.| Me gusta.,¡Sip!  Ahora deja que me prepare para la clase.,40,1,0,
 30,0,0,,Tienes un verdadero|problema de actitud.,¡Cállate!|(Se da la vuelta y te ignora.),40,-1,0,
 30,1,0,,¿Necesitas que te ayude a|crearle problemas a esa chica?,¡Oh demonios si! Tengo cuerdas en mi mochila.| Le cogeremos después de clase..,40,1,0,
 40,-2,0,,¡Puta!¿Quieres pelea?,,40,-1,0,Fight()
