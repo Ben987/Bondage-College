@@ -6,7 +6,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 0,0,0,SidneyInBondage,Apuesto a que tu|estarías preciosa atada.,"(Se pone colorada)|¿Tu crees? Soy Amanda, encantada.",10,0,1,
 0,0,0,SidneyInBondage,Comportate o|acabarás como ella.,"Si,si, por supuesto. Soy Amanda|(Baja la cabeza y mira al suelo)",10,-1,2,
 10,0,0,,¿Qué sabes del instituto?,Lo fundaron monjas hace un siglo.|Ahora es un colegio de chicas famoso.,20,0,0,
-10,0,0,,¿Qué clase toca esta mañana?,¡Mates!mi favorita| Espera a conocer a la profesora.,20,0,0,
+10,0,0,,¿Qué clase toca|esta mañana?,¡Mates!mi favorita| Espera a conocer a la profesora.,20,0,0,
 10,0,0,,He oido cosas muy buenas|de esta academia.,"Es cierto,|este sitio es fantástico.",20,1,0,
 10,0,0,,Espero que sea rápido|y podamos largarnos.,No creo que esa sea| la mejor actitud para aprender.,20,-1,0,
 20,0,0,,Me gusta tu pelo.,"(se rie y se ruboriza.)|Eras genial. La case va a empezar",30,1,0,
