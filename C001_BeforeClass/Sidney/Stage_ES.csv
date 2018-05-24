@@ -1,6 +1,6 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 0,0,0,,Yo sólo quería|presentarme.,"Mmmh, hola, soy Sidney.|(Se vuelve y mira fijamente a la otra chica)",10,0,0,
-0,0,0,,"Chica, siempre eres tan|maleducada con los extraños?","Creo que no, lo siento, soy Sidney.|(Se vuelve y mira fijamente a la otra chica)",10,0,1,
+0,0,0,,"Chica, ¿siempre eres tan|grosera con los extraños?","Creo que no, lo siento, soy Sidney.|(Se vuelve y mira fijamente a la otra chica)",10,0,1,
 0,0,0,,"Por favor, no te enfades|conmigo, soy nueva.","Nueva y patética, no aguantarás ni un día.|(Se vuelve y mira fijamente a la otra chica)",10,-1,-1,
 0,0,0,,"Pareces muy fuerte,|Encantada de conocerte.","¡Sí! Soy la más dura del colegio,|Me llamo Sidney.|(Se vuelve y mira fijamente a la otra chica)",10,1,0,
 0,0,0,,¡Vaya actitud de mierda!,Mejor te callas si no quieres que te rompa la nariz.|(Se vuelve y mira fijamente a la otra chica),10,-2,0,
