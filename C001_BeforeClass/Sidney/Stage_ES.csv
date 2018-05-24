@@ -38,16 +38,16 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 220,0,0,,(Hazle cosquillas)|(1 minuto),¡Te dije que no tengo cosquillas!|(Te echa una mirada furiosa.),220,0,0,Tickle()
 220,1,0,,(Bésale)|(1 minuto),(Te mira perpleja después|del beso y se queda callada.),220,0,0,
 220,0,0,AmandaInBondage,(Haz que abrace a Amanda.)|(1 minuto),(Fuerza a las dos chicas a abrazarse y frotarse.)|¡Joder!  ¿Qué clase de pervertida eres?,240,-1,0,
-220,0,0,,Estas cuerdas se ajustan genial|a tu cuerpazo.,¡Oh!  Mmmmh...  Gracias... creo.,220,0,0,
+220,0,0,,Estas cuerdas se ajustan|genial a tu cuerpazo.,¡Oh!  Mmmmh...  Gracias... creo.,220,0,0,
 220,0,0,,"Si te libero, ¿puedo|atarte después? (1 minuto)",Parece justo.  Trato hecho.|(Le desatas y le estrechas la mano.),310,1,1,Untie()
-220,0,0,,"Si te libero, ¿Puedes|atarme más tarde? (1 minuto)","¡Oh, sip!  Mi venganza será dulce.|(Le desatas y le estrechas la mano.)",310,1,-2,Untie()
+220,0,0,,"Si te libero, ¿Puedes|atarme luego? (1 minuto)","¡Oh, sip!  Mi venganza será dulce.|(Le desatas y le estrechas la mano.)",310,1,-2,Untie()
 230,0,0,,(Dale la vuelta),(Le das la vuelta mientras|te mira enfurecida.),220,0,0,
 230,0,0,,(Desátale)|(1 minuto),"(Le desatas mientras te insulta.|una vez libre, te empuja con rabia.)",200,0,0,Untie()
 230,0,0,,(Hazle cosquillas.)|(1 minuto),¡Dije que no tengo cosquillas!|(Te mira enfadada.),230,0,0,Tickle()
 230,0,0,,(Azótale.)|(1 minuto),(Le azotas delante del resto de las alumnas.)|¡Ja!  ¿eso es lo mejor que sabes hacer?,230,0,0,
 230,0,0,,"Mirando tus bragas,|estás disfrutando.",¡Deja de mirar ahí pervertida!,230,0,0,PantiesRemark()
 230,0,0,,"Si te libero, ¿puedo|atarte después? (1 minuto)", "Parece justo. Trato hecho.|(Le desatas y le estrechas la mano.)",310,1,1,Untie()
-230,0,0,,"Si te libero, ¿Puedes|atarme más tarde? (1 minuto)","¡Oh, sip!  Mi venganza será dulce.|(Le desatas y le estrechas la mano.)",310,1,-2,Untie()
+230,0,0,,"Si te libero, ¿Puedes|atarme luego? (1 minuto)","¡Oh, sip!  Mi venganza será dulce.|(Le desatas y le estrechas la mano.)",310,1,-2,Untie()
 240,0,0,,(Sepárales),¡Por fin!  ¡Esto ha sido una idea estúpida!,220,0,0,
 240,0,0,,(Fuérzales a besarse.)|(1 minuto),"(Les fuerzas a besarse, Sidney parece furiosa.)|Amanda, si usas la lengua te la corto.",250,0,0,KissAmanda()
 240,0,0,,Haceis una pareja|de bondage preciosa.,(Te miran fijamente.),240,0,0,
