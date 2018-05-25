@@ -16,7 +16,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 30,0,0,,"Ok, centrémonos|en la clase de hoy.",Bien dicho.,50,1,0,
 30,0,0,,"Clase, clase, clase.|Eres tan aburrida.",¡Oh! Lo siento.  (Se da la vuelta y deja de hablarte),50,-1,0,
 30,1,0,,"¡Cuidado!Esa chica|te está vigilando.","¡Oh Dios!  Gracias por el aviso.|Es la primera vez trae la mochila. Me pregunto que guarda ahí.",40,1,0,
-40,1,0,,"No te preocupes si te |causa problemas, yo te protejo.",¿Lo harías?  ¡Genial!|Pero centrémonos en la clase de momento.,50,0,1,
+40,1,0,,"No te preocupes si te da|problemas, yo te protejo.",¿Lo harías?  ¡Genial!|Pero centrémonos en la clase de momento.,50,0,1,
 40,1,0,,"Igual te tienes que chivar|a la profe, ella da miedo.",Avisar a la profesora…no sé.|Centrémonos en la clase de momento.,50,0,-1,
 40,1,0,SidneyInBondage,"Había cuerdas en la mochila|Ahora las lleva ella.","¡Ja,ja! Ya lo veo.|Pero. ¿Deberías soltarle antes de la clase?",50,1,0,
 200,0,0,BondageNotConfronted,¿Querrías que te|te ate ahora?,¿Qué?  ¡No!  ¡La clase está a punto de empezar!|Por favor. Esconde las cuerdas.,200,-1,0,ConfrontBondage()
