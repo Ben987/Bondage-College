@@ -21,7 +21,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 100,0,0,,¿Por qué llevas|cuerdas en la mochila?,Eso no te importa.|(cierra la mochila.),20,-1,0,
 100,0,0,,¿Vas de escalada|después del cole?,¡Si!  ¡Ahora dame eso!|(Cierra la mochila.),20,-1,0,
 100,0,0,,¿Estás planeando |secuestrar a alguien?,"¿mhhh, por qué lo preguntas?",110,0,-1,
-100,0,0,,¿Así que eres una chica traviesa|y te gusta que te aten?,¿Sabes algo de bondage?,110,0,1,
+100,0,0,,¿Eres una chica traviesa|y te gusta que te aten?,¿Sabes algo de bondage?,110,0,1,
 110,0,0,,¿Qué estás planeando?|Me interesa.,Hablaremos después de clase.|(Cierra la mochila.),20,1,0,
 110,0,0,,No me interesa.,¡Bueno! No me importa.|(Cierra la mochila.),20,0,0,
 110,0,0,,¡Estó esta mal!|Se lo diré a la profesora.,,40,-2,0,Fight()
