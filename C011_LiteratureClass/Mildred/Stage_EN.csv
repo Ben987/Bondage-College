@@ -37,15 +37,15 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 40,0,-5,KnowCheat,Miss Mildred!  I know|that Sidney will cheat.,(She walks toward Sidney and stares at her.)|Is that true Sidney?  Are you going to cheat?,45,1,-1,
 45,0,0,,(Watch the scene.),(She cuffs Sidney's hands behind her back.)|Let's see how you can cheat now.,46,0,0,
 45,0,0,,(Laugh silently.),(She cuffs Sidney's hands behind her back.)|Let's see how you can cheat now.,46,0,0,
-46,0,0,,(Watch the scene.),(Mildred walks back to the front and speaks again.)|You will be punished for each incorrect answers.,50,0,0,SwitchSidney()
-46,0,0,,(Do an evil grin.),(Mildred walks back to the front and speaks again.)|You will be punished for each incorrect answers.,50,0,0,SwitchSidney()
+46,0,0,,(Watch the scene.),(Mildred walks back to the front and speaks again.)|You will be punished for each incorrect answer.,50,0,0,SwitchSidney()
+46,0,0,,(Do an evil grin.),(Mildred walks back to the front and speaks again.)|You will be punished for each incorrect answer.,50,0,0,SwitchSidney()
 47,0,0,,That's what cheaters get.,Fuck you COMMON_PLAYERNAME!|I'll show you what traitors get.,48,-2,0,
 47,0,0,,Gotcha bitch.,You're the bitch!|You betrayed me!,48,-2,1,
 47,0,0,Common_PlayerRestrained,It's only fair.,Fair?  Fuck that.,48,-1,1,
 47,0,0,,I'm sorry.  I shouldn't|have done that.,It's too late to be sorry you traitor.,48,-1,-1,
-48,0,0,,This will make the|test more interesting.,(Mildred whips the podium and everyone jumps.)|You will be punished for each incorrect answers.,50,0,0,SwitchMildred()
-48,0,0,,You look cute|in these cuffs.,(Mildred whips the podium and everyone jumps.)|You will be punished for each incorrect answers.,50,0,0,SwitchMildred()
-48,0,0,,(Watch her struggle.),(Mildred whips the podium and everyone jumps.)|You will be punished for each incorrect answers.,50,0,0,SwitchMildred()
+48,0,0,,This will make the|test more interesting.,(Mildred whips the podium and everyone jumps.)|You will be punished for each incorrect answer.,50,0,0,SwitchMildred()
+48,0,0,,You look cute|in these cuffs.,(Mildred whips the podium and everyone jumps.)|You will be punished for each incorrect answer.,50,0,0,SwitchMildred()
+48,0,0,,(Watch her struggle.),(Mildred whips the podium and everyone jumps.)|You will be punished for each incorrect answer.,50,0,0,SwitchMildred()
 48,0,0,,(Turn to Mildred.),"If you fail to give the correct answer, you|will be punished.  (She whips the podium.)",50,0,0,SwitchMildred()
 50,0,0,,(Listen carefully.),COMMON_PLAYERNAME and Sidney!|Step forward and face back to each other.,60,0,0,GoodStudent()
 50,0,0,,(Look at your shoes.),COMMON_PLAYERNAME and Sidney!|Step forward and face back to each other.,60,0,0,
@@ -60,23 +60,61 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 75,0,0,,The test is over?,"Yes, congratulations on your victory.",100,0,0,CheckForWinner()
 75,0,0,,That was a fun test.,"Indeed, congratulations on your victory.",100,1,0,CheckForWinner()
 75,0,0,,Are we finally done?,"We are, well done on your victory.",100,-1,0,CheckForWinner()
-100,0,0,,Thanks Miss!|That was easy.,,110,1,0,
-100,0,0,,Sidney was horrible.,,110,0,0,
-100,0,0,,Don't praise me Miss.|The book was fascinating.,,110,1,-1,
-100,0,0,,It was pure luck.,"Don't say that, you might a good student after all.",110,-1,0,
+100,0,0,,Thanks Miss!|That was easy.,"Yes, keep working hard you|will become a great student.",110,1,0,
+100,0,0,,Sidney was horrible.,(She nods.)  Don't follow her example|and you will become a good student.,110,0,0,
+100,0,0,,Don't praise me Miss.|The book was fascinating.,Well said little miss.  Keep it up and|you will become a wonderful student.,110,1,-1,
+100,0,0,,It was pure luck.,"Don't say that, you might|be a good student after all.",110,-1,0,
 100,0,0,,I can crush Sidney|at any contest.,"Maybe, but don't be too proud.|There are better students than you.",110,0,1,
+110,0,0,,I'm better than|any student here.,You're not the best around little miss.|We have great students in this school.,120,-1,1,
+110,0,0,,I'm simply the best.,"You're not the best little miss, forget it.|You're too young to fully understand literature.",120,0,1,
+110,0,0,!Common_PlayerRestrained,I'll strive to|be the best.,Very well little miss.  (She turns around|and picks new students for the test.),300,1,0,
+110,0,0,!Common_PlayerRestrained,I might be a good|student someday.,Very well little miss.  (She turns around|and picks new students for the test.),300,0,-1,
+110,0,0,Common_PlayerRestrained,I'll strive to|be the best.,Very well little miss.  And you|will be liberated after class.,220,1,0,
+110,0,0,Common_PlayerRestrained,I might be a good|student someday.,Very well little miss.  And you|will be liberated after class.,220,0,-1,
+120,0,0,,I bet I'm much|better than you!,Oh yes?  Is that a challenge?|I can do the test against you.,130,0,1,
+120,0,0,,"Yes, sorry Miss.",Very well little miss.  (She turns around|and picks new students for the test.),300,0,-1,
+130,0,0,,With the same rules?,Same rules with the cuffs and crop.|And Sidney will ask the questions.,140,0,0,
+130,0,0,,"That's fine, but|Sidney will judge.","Alright, Sidney will ask the questions.|And the cuffs and crop rules are the same.",140,0,0,
+130,0,0,,On second thoughts.|I cannot face you.,Wise choice little miss.  (She turns around|and picks new students for the test.),140,0,-1,
+140,0,0,,(Start the test|against Mildred.),,141,0,0,StartTestMildred()
+140,0,0,,On second thoughts.|I cannot face you.,Wise choice little miss.  (She turns around|and picks new students for the test.),300,0,-1,
+141,0,0,,(Start the test|for chapter 2.),,142,0,0,StartTestMildred()
+142,0,0,,(Start the test|for chapter 3.),,143,0,0,StartTestMildred()
+143,0,0,,(Start the test|for chapter 4.),,144,0,0,StartTestMildred()
+144,0,0,,(Start the test|for chapter 5.),,145,0,0,StartTestMildred()
+145,0,0,,The test is over?,"Yes, so did you learn a lesson?|Defeat will make you stronger.",146,0,0,CheckForWinnerMildred()
+145,0,0,,Are we finally done?,"Yes, so did you learn a lesson?|Defeat will make you stronger.",146,0,0,CheckForWinnerMildred()
+146,0,0,,I guess.,Very well little miss.  (She turns around|and picks new students for the test.),300,0,-1,
+146,0,0,,Yes Miss.|I'm sorry.,Very well little miss.  (She turns around|and picks new students for the test.),300,1,-2,
+146,0,0,,You got lucky.,(She shakes her head from left to right|and picks new students for the test.),300,0,0,
+146,0,0,,You've cheated!,(She gets angry and produces a ball gag|which she straps around your head.),230,-1,0,GagPlayer()
+150,0,0,,I've told you|I'm the best.,And you were correct.|This is very humiliating.,160,0,1,
+150,0,0,,I was lucky.,"No, you have real talent.|This is very humiliating.",160,0,-1,
+150,0,0,,That was quite|a challenge.,"Yes, and you've won it.|This is very humiliating.",160,1,0,
+150,0,0,,You're horrible|at literature.,I guess you're correct.|This is very humiliating.,160,-1,0,
+160,0,0,,"Get out, I will|finish the class.","(Sidney unlocks and Mildred walks out|in shame, leaving her stuff behind.)",400,-1,1,FreeBoth()
+160,0,0,,You can take a break.|I'll do the tests.,"(Sidney unlocks and Mildred walks out|in shame, leaving her stuff behind.)",400,0,1,FreeBoth()
+160,0,0,,"It's alright, you can|resume the tests.",(She nods while Sidney unlocks.  She starts|the tests again and regains her confidence.),300,1,0,FreeBoth()
+160,0,0,,"Yes, enough|humiliation.",(She nods while Sidney unlocks.  She starts|the tests again and regains her confidence.),300,0,0,FreeBoth()
 200,0,0,,Sidney was lucky.,Maybe she was lucky or maybe|you didn't studied hard enough.,210,0,0,
 200,0,0,,Who cares?,YOU should care!  (She whips your arm.)|You need to study harder if you want to succeed.,210,-1,1,
 200,0,0,,Sidney cheated!,That's a lame excuse.  If you've studied|harder you would have won easily.,210,-1,0,
-200,0,0,,Sorry Miss.|I was nervous.,I know it's tough to speak in front of a new class.|But if you've studied harded it would be easier.,210,1,-1,
+200,0,0,,Sorry Miss.|I was nervous.,I know it's tough to speak in front of a new class.|But if you've studied harder it would be easier.,210,1,-1,
 210,0,0,,Yes Miss Mildred.|I'll study harder.,Very good little miss.  And don't worry.|I will free you when all the tests are done.,220,1,-1,
 210,0,0,,"Ok, I got it.",(She looks at your and nods.)  Alight.|I will free you when all the tests are done.,220,0,0,
 210,0,0,,Fair enough.|I'll work harder.,Very good little miss.  And don't worry.|I will free you when all the tests are done.,220,1,0,
 210,0,0,,"Oh yeah, literature is|soooooooo important.",This attitude will get you expelled little miss.|I will free you when all the tests are done.,220,-1,1,
-220,0,0,,You can't leave|me like that!,(She shakes her head from left to right|and picks new students for the test.),300,0,1,MildredLeave()
+220,0,0,,You can't leave|me like that!,(She gets angry and produces a ball gag|which she straps around your head.),230,0,1,GagPlayer()
+220,0,0,,Fuck you Mildred!,(She gets angry and produces a ball gag|which she straps around your head.),230,-1,0,GagPlayer()
 220,0,0,,Please!  Can you|free me now?,(She shakes her head from left to right|and picks new students for the test.),300,0,-1,MildredLeave()
 220,0,0,,Very well.,(She nods and picks new students for the test.),300,1,0,MildredLeave()
 220,0,0,,(Stay silent.),(She nods and picks new students for the test.),300,0,0,MildredLeave()
+230,0,0,,@Uuugn nuhm!,(She shakes her head from left to right|and picks new students for the test.),300,0,0,MildredLeave()
+230,0,0,,(Stay silent.),(She nods and picks new students for the test.),300,0,0,MildredLeave()
+240,0,0,,@Uuugn nuhm!,(She shakes her head from left to right|and picks new students for the test.),300,0,0,MildredLeave()
+240,0,0,,(Stay silent.),(She nods and picks new students for the test.),300,0,0,MildredLeave()
+250,0,0,,@Uuugn nuhm!,(She shakes her head from left to right|and picks new students for the test.),300,0,0,MildredLeave()
+250,0,0,,(Stay silent.),(She nods and picks new students for the test.),300,0,0,MildredLeave()
 300,0,0,,(Watch the tests.),"(Two by two, many girls are|called to the front of the class.)",310,0,0,WaitTest()
 310,0,0,,(Watch the tests.),(Some of them do really|well on the literature test.),320,0,0,WaitTest()
 320,0,0,,(Watch the tests.),(And some of them get in trouble.),330,0,0,WaitTest()
@@ -85,3 +123,12 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 350,0,0,Common_PlayerRestrained,(Watch the tests.),(Your last class will end in cuffs.),360,0,0,WaitTest()
 350,0,0,!Common_PlayerRestrained,(Watch the tests.),(Your last class will end|with lots of whipping.),360,0,0,WaitTest()
 360,0,0,,(Wait until 16:30.),,360,0,0,EndChapter()
+400,0,0,,(Take her items.),(You search in Mildred stuff and|find some very interesting items.),410,0,0,TakeItems()
+410,0,0,,(Lead the tests.),"(Using the crop, you start leading|the literature tests yourself.)",420,0,0,WaitTest()
+420,0,0,,(Lead the tests.),(Some students do well.),430,0,0,WaitTest()
+430,0,0,,(Lead the tests.),(Some students fail.),440,0,0,WaitTest()
+440,0,0,,(Lead the tests.),"(Overall, are you strict, fair|or easy with the students?)",450,0,0,WaitTest()
+450,0,0,,(Be strict.),"(Using the crop and the cuffs, you|lead with strictness and discipline.)",460,0,0,StrictLeader()
+450,0,0,,(Be fair.),"(As the test goes by, you try to be fair|with the students and don't be a tyrant.)",460,0,0,FairLeader()
+450,0,0,,(Be easy.),"(As leader, you go easy with the group|and try to make friends instead of enemies.)",460,0,0,EasyLeader()
+460,0,0,,(Lead until 16:30.),,460,0,0,EndChapter()
