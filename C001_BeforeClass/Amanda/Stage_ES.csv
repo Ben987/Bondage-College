@@ -34,14 +34,14 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 230,0,0,SidneyInBondage,(Haz que abrace a Sidney.)|(1 minuto),(Fuerza a las dos chicas a que se abracen)|¡Oh!  Esto no está bien.,250,0,0,
 230,0,0,,Pareces un|angel en bondage.,(Te dedica una sonrsa traviesa),230,0,0,
 230,0,0,,"Si te desato|¿Puedo atarte más tarde? (1 minuto)",¡Oooh!  ¡Si!  ¡Por supesto!|(Le desatas y le estrechas la mano.),300,1,1,Untie()
-230,0,0,,"Si te desato|¿Me atarías tu luego? (1 minuto)","Jeje.De acuerdo|(Le desatas y le estrechas la mano.)",300,1,-2,Untie()
+230,0,0,,"Si te desato ¿Me|atarías tu luego? (1 minuto)","Jeje.De acuerdo|(Le desatas y le estrechas la mano.)",300,1,-2,Untie()
 240,0,0,,(dale la vuelta.),(le fuerzas a darse la vuelta.)|¡ooohh! Prefiero verte la cara.,230,0,0,
 240,0,0,,(desátale.)|(1 minuto),(le desatas lentamente) ¡Muchas gracias!|¿Podría vestirme de nuevo?,220,0,0,Untie()
 240,0,0,,(Hazle cosquillas.)|(1 minuto),(Se pone colorada y no puede parar de reir.)|¡Hey! ¡Jajaja!  ¡Qué divertido!.,240,0,0,Tickle()
 240,0,0,,(Azótale.)|(1 minuto),(Le azotas de nuevo y parece tomárselo mejor.)|¡Para ya!,240,0,0,Spank()
 240,0,0,,Tienes un culo|precioso ¿lo sabías?,¿De verdad?  (Se ruboriza.),240,0,0,
-240,0,0,,"Si te desato|¿Te puedo atar más tarde? (1 minuto)",¡Ooooh!  ¡Si!  ¡Por supuesto!|(le desatas y estrechas su mano.),300,1,1,Untie()
-240,0,0,,"Si te desato|¿Me atarías tu luego? (1 minute)","Jejeje, de acuerdo.|(Le desatas y le estrechas la mano.)",300,1,-2,Untie()
+240,0,0,,"Si te desato¿Tepuedo atar más tarde?(1 minuto)",¡Ooooh!  ¡Si!  ¡Por supuesto!|(le desatas y estrechas su mano.),300,1,1,Untie()
+240,0,0,,"Si te desato ¿Me|atarías tu luego?(1 minuto)","Jejeje, de acuerdo.|(Le desatas y le estrechas la mano.)",300,1,-2,Untie()
 250,0,0,,(Sepárales.),Gracias. Era embarazoso.,230,0,0,
 250,0,0,,(Oblígales a besarse.)|(1 minuto),¿Otro beso?  ¡Es asqueroso!|(Les juntas para que se besen.),260,0,0,ForceKiss()
 250,0,0,,Hacies una pareja|de bondage genial.,(Las dos te miran fijamente.),250,0,0,
