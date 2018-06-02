@@ -15,7 +15,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 20,0,0,,¿Podrías enseñarme el|colegio después de clase?,Quizá lo haga. Pero|Prepárate primero para la clase.,30,0,-1,
 30,0,0,,"Ok, centrémonos|en la clase de hoy.",Bien dicho.,50,1,0,
 30,0,0,,"Clase, clase, clase.|Eres tan aburrida.",¡Oh! Lo siento.  (Se da la vuelta y deja de hablarte),50,-1,0,
-30,1,0,,"¡Cuidado!Esa chica|te está vigilando.","¡Oh Dios!  Gracias por el aviso.|Es la primera vez trae la mochila. Me pregunto que guarda ahí.",40,1,0,
+30,1,0,,"¡Cuidado!Esa chica|te está vigilando.","¡Oh Dios!Gracias por el aviso.|Es la primera vez trae mochila. Me pregunto que guarda ahí.",40,1,0,
 40,1,0,,"No te preocupes si te da|problemas, yo te protejo.",¿Lo harías?  ¡Genial!|Pero centrémonos en la clase de momento.,50,0,1,
 40,1,0,,"Igual te tienes que chivar|a la profe, ella da miedo.",Avisar a la profesora…no sé.|Centrémonos en la clase de momento.,50,0,-1,
 40,1,0,SidneyInBondage,"Había cuerdas en la mochila|Ahora las lleva ella.","¡Ja,ja! Ya lo veo.|Pero. ¿Deberías soltarle antes de la clase?",50,1,0,
@@ -23,7 +23,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 200,0,0,BondageNotConfronted,"Admítelo chica, te|encataría que te atara.","¡Oh Dios mío!(Se ruboriza)|No…yo…de verdad. La clase empieza ya.",200,-1,1,ConfrontBondage()
 200,0,0,StopRopeSubAllowed,"Me encanta el bondage,|¿Me podrías atar?","¡Oh!  Eres sumisa, quizá después de las clases.|(te guiña un ojo) ¿De qué hablábamos, novata?",200,0,-2,StopRopeSub()
 200,0,0,,Las podemos usar después.|(Escondes las cuerdas.),"¿Después? (Te mira con curiosidad.)|¿De qué hablábamos, novata?",200,0,0,StopRope()
-200,0,2,,(Le agarras y le|quitas el uniforme.) (1 minuto),"¡Oh Señor!  ¡Otra vez no!|(Trata de resistirse, pero falla.)",220,0,0,Strip()
+200,0,2,,(Le agarras y le quitas| el uniforme) (1 minuto),"¡Oh Señor!  ¡Otra vez no!|(Trata de resistirse, pero falla.)",220,0,0,Strip()
 200,0,4,,"Sumisa. Quítate|el uniforme, ahora. (1 minuto)", N... Errr... Si. Señora...|(Se quita sumisamente la blusa y la falda),220,0,0,
 220,0,0,,(Atale.)|(1 minuto),(le enrollas en las cuerdas y le atas|los brazos a la espalda. (Se queja discretamente.),230,0,0,Tie()
 220,0,0,,Vístete.|(1 minuto),¡Si Señora!  Esto es embarazoso.,200,0,0,
