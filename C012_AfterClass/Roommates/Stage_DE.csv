@@ -1,0 +1,3 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,Klopf an die Tür,Du klopftst an die Tür|aber es antwortet niemand.,0,0,0,Knock()
+0,0,0,,Geh zu deiner Studentenwohnung zurück.,,0,0,0,Leave()

@@ -1,0 +1,4 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,EmptyPub,Die Bar ist ziemlich lehr um diese Zeit.|Niemand vom College ist hier.,Pub.jpg
+0,0,0,!EmptyPub,Studenten versammeln sich nach der Schule in der Bar.|Wen möchtest du treffen?,Pub.jpg
+100,0,0,,,PubActor.jpg

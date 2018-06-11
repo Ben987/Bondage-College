@@ -1,0 +1,16 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,@Masturbieren,Es ist unmöglich dich selbst|zu befriedigen, wenn du gefesselt bist.,0,0,0,StartMasturbate()
+0,0,0,,@Gehe schlafen.|(Beende den Tag.),Bist du dir sicher, dass du schlafen willst?|Das wird den Tag und das Spiel beenden.,10,0,0,
+10,0,0,,"@Ja, gehe schlafen.|(Beende den Tag.)",,10,0,0,EndChapter()
+10,0,0,,"@Nein, bleibe wach.|(Fortsetzen.)",Du scheinst ein bischen Energie übrig zu haben.,0,0,0,
+100,0,0,,@Massiere deine Brust.,Du massiert langsam mit einer Hand|deine Brust hand und stöhnst leise.,100,0,0,MasturbateUp()
+100,0,0,,@Kneife deine Nippel.,Du kneifst deine eigenen Nippel und|winselst ein bischen von den Schmerzen.,100,0,0,MasturbateUp()
+100,0,0,,@Massiere deine Kitzler.,Du massierst deinen Kitzler|und stöhnst lauter und lauter.,100,0,0,MasturbateDown()
+100,0,0,,@Spiele mit deiner Scheide.,"Mit zwei Fingern, spielst dumit deinen|Schamlippen und and zitterst voller Vergnügen.",100,0,0,MasturbateDown()
+100,0,0,,@Gleite einen Finger|rein und raus.,Du gleitest deinen Zeigefinger rein und raus|und atmest schneller und schneller.,100,0,0,MasturbateDown()
+100,0,0,,@Erforsche das Innere.,Du erforschst das Innere von deiner Vagina.|Du erreichst dabei sehr liebliche Stellen.,100,0,0,MasturbateDown()
+100,0,0,,@Hör auf und steh auf.,Du stehst auf.,0,0,0,StopMasturbate()
+110,0,0,,@Lasse dich|gehen und erreiche den Höhepunkt.,Du lässt dich gehen in wundervolle Verzücken|während deine Finger dir einen lieblichen Orgasmus geben.,120,0,0,Climax()
+110,0,0,,@Hör auf zu masturbieren.,"Du kommst runter, atest tief durch|und hörst mit allem auf bevor du den Höhepunkt ereichst.",100,0,0,StopMasturbate()
+120,0,0,,@Masturbiere|weiter.,"Gehe nur sicher, dass du befriedigt bist,|du beginnst wieder dich selbst zu berüren.",100,0,0,
+120,0,0,,@Hör auf und steh auf.,Du stehst auf|und fühlst dich entspannt und befriedigt.,0,0,0,StopMasturbate()
