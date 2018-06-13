@@ -1,0 +1,43 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+100,0,0,PlayerIsHeroine,"(Chevalier blanc, tu es censée commencer.)",Background.jpg
+100,0,0,!PlayerIsHeroine,(Le chevalier blanc est sur le point de commencer.),Background.jpg
+110,0,0,PlayerIsHeroine,(Le chevalier noir est le prochain à parler.),Background.jpg
+110,0,0,!PlayerIsHeroine,(Elle observe le chevalier noir.),Background.jpg
+120,0,0,PlayerIsHeroine,"(Chevalier blanc, ta réplique est la suivante.)",Background.jpg
+120,0,0,!PlayerIsHeroine,(Le chevalier blanc est sur le point de parler.),Background.jpg
+130,0,0,PlayerIsHeroine,(Le chevalier noir est le prochain à parler.),Background.jpg
+130,0,0,!PlayerIsHeroine,(Elle observe le chevalier noir.),Background.jpg
+140,0,0,PlayerIsHeroine,(La demoiselle est la suivante à parler.),Background.jpg
+140,0,0,!PlayerIsHeroine,(Elle observe la demoiselle.),Background.jpg
+150,0,0,PlayerIsHeroine,(La demoiselle est la suivante à parler.),Background.jpg
+150,0,0,!PlayerIsHeroine,(Elle observe la demoiselle.),Background.jpg
+160,0,0,PlayerIsHeroine,(La demoiselle est la suivante à parler.),Background.jpg
+160,0,0,!PlayerIsHeroine,(Elle observe la demoiselle.),Background.jpg
+200,0,0,PlayerIsHeroine,(Le chevalier noir est le prochain à parler.),Background.jpg
+200,0,0,!PlayerIsHeroine,(Elle observe le chevalier noir.),Background.jpg
+210,0,0,PlayerIsHeroine,(Le chevalier noir est le prochain à parler.),Background.jpg
+210,0,0,!PlayerIsHeroine,(Elle observe le chevalier noir.),Background.jpg
+220,0,0,PlayerIsHeroine,"(Chevalier blanc, ta réplique est la suivante.)",Background.jpg
+220,0,0,!PlayerIsHeroine,(Le chevalier blanc est sur le point de parler.),Background.jpg
+225,0,0,,,Background.jpg
+226,0,0,,,Background.jpg
+230,0,0,PlayerIsHeroine,(Le chevalier noir est le prochain à parler.),Background.jpg
+230,0,0,!PlayerIsHeroine,(Elle observe le chevalier noir.),Background.jpg
+240,0,0,PlayerIsHeroine,"(Chevalier blanc, ta réplique est la suivante.)",Background.jpg
+240,0,0,!PlayerIsHeroine,(Le chevalier blanc est sur le point de parler.),Background.jpg
+250,0,0,PlayerIsHeroine,(La demoiselle est la suivante à parler.),Background.jpg
+250,0,0,!PlayerIsHeroine,(Elle observe la demoiselle.),Background.jpg
+251,0,0,,,Background.jpg
+260,0,0,,,Background.jpg
+270,0,0,PlayerIsHeroine,(Le chevalier noir est le prochain à parler.),Background.jpg
+270,0,0,!PlayerIsHeroine,(Elle observe le chevalier noir.),Background.jpg
+280,0,0,PlayerIsHeroine,(La demoiselle est la suivante à parler.),Background.jpg
+280,0,0,!PlayerIsHeroine,(Elle observe la demoiselle.),Background.jpg
+300,0,0,!PlayerIsHeroine,C'était vraiment sympa. J'espère que j'ai|bien joué mon rôle de chevalier blanc.,Background.jpg
+300,0,0,IsGagged,Mnuh gnunmn n muh !,Background.jpg
+300,0,0,PlayerIsHeroine,(La pièce est terminée.),Background.jpg
+400,0,0,PlayerIsVillain,Chevalier noir ! Félon !|Qu'est-ce que vous me voulez à présent ?,Background.jpg
+400,0,0,PlayerIsDamsel,Ma charmante fiancée.|Que puis-je faire pour vous ?,Background.jpg
+400,0,0,Common_PlayerGagged,(Elle regarde tes entraves et rit.),Background.jpg
+400,0,0,IsGagged,Aaem mne nyyo !,Background.jpg
+500,0,0,,(On dirait que la pièce n'est pas totalement terminée.|Tu peux toujours interagir avec les autres.),Background.jpg
