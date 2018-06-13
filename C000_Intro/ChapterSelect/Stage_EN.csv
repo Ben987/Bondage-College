@@ -25,3 +25,4 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 30,0,0,,French (Chapter 1 to 7)|Made by gottspende,,0,0,0,"SetLanguage(""FR"")"
 30,0,0,,Chinese (Chapter 5)|Made by asdcvbgf,,0,0,0,"SetLanguage(""CN"")"
 30,0,0,,Spanish (Chapter 1)|Made by Rafael R,,0,0,0,"SetLanguage(""ES"")"
+30,0,0,,German (Chapter 1 and 12)|Made by carl234444 and fleisch11,,0,0,0,SetLanguage(“DE”)
