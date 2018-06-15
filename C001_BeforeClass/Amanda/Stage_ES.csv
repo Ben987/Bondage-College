@@ -33,7 +33,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 230,1,0,,(Bésale.)|(1 minuto),¿otro beso?|(Se ruboriza y te sonrie.),230,0,0,Kiss()
 230,0,0,SidneyInBondage,(Haz que abrace a Sidney.)|(1 minuto),(Fuerza a las dos chicas a que se abracen)|¡Oh!  Esto no está bien.,250,0,0,
 230,0,0,,Pareces un|angel en bondage.,(Te dedica una sonrsa traviesa),230,0,0,
-230,0,0,,"Si te desato|¿Puedo atarte más tarde? (1 minuto)",¡Oooh!  ¡Si!  ¡Por supesto!|(Le desatas y le estrechas la mano.),300,1,1,Untie()
+230,0,0,,"Si te desato¿Puedo| atarte más tarde? (1 minuto)",¡Oooh!  ¡Si!  ¡Por supesto!|(Le desatas y le estrechas la mano.),300,1,1,Untie()
 230,0,0,,"Si te desato ¿Me|atarías tu luego? (1 minuto)","Jeje.De acuerdo|(Le desatas y le estrechas la mano.)",300,1,-2,Untie()
 240,0,0,,(dale la vuelta.),(le fuerzas a darse la vuelta.)|¡ooohh! Prefiero verte la cara.,230,0,0,
 240,0,0,,(desátale.)|(1 minuto),(le desatas lentamente) ¡Muchas gracias!|¿Podría vestirme de nuevo?,220,0,0,Untie()
