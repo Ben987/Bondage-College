@@ -1,0 +1,42 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+100,0,0,PlayerIsVillain,(Le chevalier blanc commence.),Background.jpg
+100,0,0,!PlayerIsVillain,(Elle observe le chevalier blanc.),Background.jpg
+110,0,0,PlayerIsVillain,"(Chevalier noir, c'est ta réplique.)",Background.jpg
+110,0,0,!PlayerIsVillain,(Elle est sur le point de dire sa réplique.),Background.jpg
+120,0,0,PlayerIsVillain,(Le chevalier blanc est le prochain à parler.),Background.jpg
+120,0,0,!PlayerIsVillain,(Elle observe le chevalier blanc.),Background.jpg
+130,0,0,PlayerIsVillain,"(Chevalier noir, ta réplique est la suivante.)",Background.jpg
+130,0,0,!PlayerIsVillain,(Elle est sur le point de dire sa réplique.),Background.jpg
+140,0,0,PlayerIsVillain,(La demoiselle est la suivante à parler.),Background.jpg
+140,0,0,!PlayerIsVillain,(Elle observe la demoiselle.),Background.jpg
+150,0,0,PlayerIsVillain,(La demoiselle est la suivante à parler.),Background.jpg
+150,0,0,!PlayerIsVillain,(Elle observe la demoiselle.),Background.jpg
+160,0,0,PlayerIsVillain,(La demoiselle est la suivante à parler.),Background.jpg
+160,0,0,!PlayerIsVillain,(Elle observe la demoiselle.),Background.jpg
+200,0,0,PlayerIsVillain,"(Chevalier noir, ta réplique est la suivante.)",Background.jpg
+200,0,0,!PlayerIsVillain,(Elle est sur le point de dire sa réplique.),Background.jpg
+210,0,0,PlayerIsVillain,"(Chevalier noir, ta réplique est la suivante.)",Background.jpg
+210,0,0,!PlayerIsVillain,(Elle est sur le point de dire sa réplique.),Background.jpg
+220,0,0,PlayerIsVillain,(Le chevalier blanc est le prochain à parler.),Background.jpg
+220,0,0,!PlayerIsVillain,(Elle observe le chevalier blanc.),Background.jpg
+230,0,0,PlayerIsVillain,"(Chevalier noir, ta réplique est la suivante.)",Background.jpg
+230,0,0,!PlayerIsVillain,(Elle est sur le point de dire sa réplique.),Background.jpg
+235,0,0,,,Background.jpg
+240,0,0,PlayerIsVillain,(Le chevalier blanc est le prochain à parler.),Background.jpg
+240,0,0,!PlayerIsVillain,(Elle observe le chevalier blanc.),Background.jpg
+250,0,0,PlayerIsVillain,(La demoiselle est la suivante à parler.),Background.jpg
+250,0,0,!PlayerIsVillain,(Elle observe la demoiselle.),Background.jpg
+251,0,0,,,Background.jpg
+270,0,0,PlayerIsVillain,"(Chevalier noir, ta réplique est la suivante.)",Background.jpg
+270,0,0,!PlayerIsVillain,(Elle est sur le point de dire sa réplique.),Background.jpg
+280,0,0,PlayerIsVillain,(La demoiselle est la suivante à parler.),Background.jpg
+280,0,0,!PlayerIsVillain,(Elle observe la demoiselle.),Background.jpg
+290,0,0,,,Background.jpg
+300,0,0,!PlayerIsVillain,C'était une super pièce. Je n'ai jamais pensé|que je pourrais jouer le méchant.,Background.jpg
+300,0,0,IsGagged,(Elle lutte pour enlever le bâillon|mais elle abandonne rapidement.),Background.jpg
+300,0,0,PlayerIsVillain,(La pièce est terminée.),Background.jpg
+400,0,0,PlayerIsHeroine,Que voulez-vous chevalier blanc ?,Background.jpg
+400,0,0,PlayerIsDamsel,Douce et belle demoiselle.|Comment puis-je vous être utile ?,Background.jpg
+400,0,0,Common_PlayerGagged,(Elle regarde ton bâillon et rit.),Background.jpg
+400,0,0,IsGagged,(Elle reste silencieuse et te fixe.),Background.jpg
+500,0,0,,(On dirait que la pièce n'est pas totalement terminée.|Tu peux toujours interagir avec les autres.),Background.jpg
