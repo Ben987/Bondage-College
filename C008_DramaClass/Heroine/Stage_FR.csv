@@ -1,5 +1,5 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-100,0,0,PlayerIsHeroine,Félon ! Vous violâtes|ma fiancée.,"Amanda intervient rapidement et répond :|""Son coeur s'est résolu face a l'amour véritable.""",120,0,0,"GlobalStage(120, 1, 0)"
+100,0,0,PlayerIsHeroine,Félon ! Vous violâtes|ma fiancée.,"Amanda intervient rapidement et répond :|""Son coeur bat la chamade face a l'amour véritable.""",120,0,0,"GlobalStage(120, 1, 0)"
 100,0,0,PlayerIsHeroine,Voleur ! Vous m'avez volé|ma femme.,"Amanda semble confuse et répond :|""Son coeur s'est plié face au grand amour.""",120,0,0,"GlobalStage(120, -1, 0)"
 100,0,0,PlayerIsHeroine,Désolée Julia.|J'ai oublié ma réplique.,"Julia te chuchote :|""Félon ! Vous violâtes ma fiancée.""",100,0,0,ForgetLine()
 100,0,0,!PlayerIsHeroine,(Tu écoutes calmement.),"Le chevalier blanc s'avance lentement et dit :|""Félon ! Vous violâtes ma fiancée.""",110,0,0,"GlobalStage(110, 0, 0)"
@@ -32,7 +32,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 240,0,0,PlayerIsDamsel,Vive le chevalier blanc !|(1 minute),"L'héroïne déshabille et attache la méchante|tout en disant : ""La loi vous châtiera.""",250,1,0,"GlobalStage(250, 1, 0)"
 250,0,0,Common_PlayerGagged,@Mng nuuum !,"Sarah émet un petit rire suite à vos marmonnements|bâillonnés, mais elle reste concentrée sur son rôle.",250,0,0,
 250,10,0,DamselCanInteract,(Tu te précipites pour|l'embrasser.) (1 minute),Tu te précipites dans ses bras et|vous vous embrassez tendrement pour l'acte final.,260,0,0,FinalKiss()
-250,0,-5,DamselCanInteract,(Tu t'agenouilles face|à elle.) (1 minute),Tu t'inclines et tu t'agenouilles devant le chevalier blanc.|Enlaçant ses jambes avec amour pour l'acte final.,260,0,0,FinalDomme()
+250,0,-5,DamselCanInteract,(Tu t'agenouilles à|coté d'elle.) (1 minute),Tu t'inclines et tu t'agenouilles devant le chevalier blanc.|Enlaçant ses jambes avec amour pour l'acte final.,260,0,0,FinalDomme()
 250,0,0,DamselCanInteract,(Tu vas l'étreindre.)|(1 minute),Tu la prends dans tes bras et|tu l'enlaces pour l'acte final.,260,0,0,FinalHug()
 250,2,0,DamselCanBeg,(Tu lui fais les yeux doux.)|(1 minute),Tu lui fais les yeux doux et|elle te libère de ton bondage.,250,0,0,ReleasePlayer()
 250,0,0,DamselCanBeg,(Tu te rends.)|(1 minute),Tu te rends et elle décide de vous garder|toutes les deux prisonnières pour l'acte final.,300,0,0,FinalTwoPrisoners()
@@ -42,7 +42,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 400,0,0,CanUntie,(Tu la détaches.)|(1 minute),(Tu défais les noeuds et mets de coté|la corde pendant qu'elle s'habille.),400,0,0,Untie()
 400,0,0,CanUnstrap,(Tu la détaches.)|(1 minute),(Tu défais les sangles et les lacets|du fourreau pour libérer ses bras.),400,0,0,Untie()
 400,0,0,CanUngag,(Tu la débâillonnes.)|(1 minute),(Tu enlèves le bâillon et elle rit.)|Quelle pièce coquine que voici.,400,0,0,Ungag()
-400,0,0,CanKiss,(Tu l'embrasses.)|(1 minute),(Tu t'avances et lui fais un long baiser sur les lèvres.)|(Elle reste silencieuse et apprécie ce moment.),400,0,0,Kiss()
+400,0,0,CanKiss,(Tu l'embrasses.)|(1 minute),(Tu t'avances et lui fais un long baiser|sur les lèvres.) (Elle reste silencieuse et apprécie ce moment.),400,0,0,Kiss()
 400,0,0,CanAbuse,(Tu la chatouilles.)|(1 minute),(Elle lutte pour éviter tes chatouilles|mais elle ne peut s'empêcher de rire.),400,0,0,Tickle()
 400,0,0,CanAbuse,(Tu lui mets une fessée.)|(1 minute),"(Elle gémit à chaque coup, tu n'arrives pas|à déterminer si elle aime ça ou pas.)",400,0,0,Spank()
 400,0,0,CanAbuse,(Tu la masturbes.)|(1 minute),"(Tu la saisie et la masturbes avec amour.|Elle gémit, tremble et respire fortement.)",400,0,0,Masturbate()
