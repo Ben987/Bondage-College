@@ -12,19 +12,20 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 10,0,0,!Common_PlayerRestrained,(Tu te couvres les yeux.),(Tu te couvres les yeux avec les deux mains|pendant qu'elle commence à se changer.),20,0,0,StripNoLeave()
 20,0,0,,(Tu maintiens tes mains|sur tes yeux.) (1 minute),"(Tu peux entendre le cliquetis d'un costume en métal.)|Donne-moi une minute de plus, s'il te plaît.",20,0,0,Changing()
 20,0,0,,(Tu jettes un coup d'oeil.)|(1 minute),(Tu jettes un coup d'oeil entre tes doigts. Tu vois|Amanda se démener pour mettre son armure.),20,0,0,Changing()
-20,0,0,,(Tu retires tes mains|de tes yeux.),Hé ! Pourquoi tu n'as pas garder tes yeux fermés ?,30,-1,0,
+20,0,0,,(Tu retires tes mains|de tes yeux.),Hé ! Pourquoi tu n'as pas gardé tes yeux fermés ?,30,-1,0,
 30,0,0,,C'était beaucoup|trop long.,"Ce n'est pas facile de mettre cette armure.|Au lieu de te plaindre, peux-tu m'aider ?",40,-1,0,CheatedCover()
 30,0,0,,Tu ne peux pas le|faire sans aide.,"Ouais, peut-être que j'en ai besoin.|Peux-tu m'aider à mettre cette armure ?",40,0,1,CheatedCover()
 30,0,0,,J'ai pensé que tu|aurais besoin d'aide.,"C'est très gentil de ta part. C'est d'accord,|peux-tu m'aider à mettre cette armure ?",40,1,-1,CheatedCover()
 30,0,0,,Tu es si belle.|Je voulais te voir.,"Je vois, mais puisque tu as triché,|peux-tu m'aider à mettre cette armure ?",40,1,0,CheatedCover()
 30,0,0,,Je suis désolée.|J'ai triché.,"Au moins, tu es honnête. Puisque tu as triché,|peux-tu m'aider à mettre cette armure ?",40,0,-1,CheatedCover()
+30,0,0,,(Tu t'inclines et|fixes le sol.),"Ne sois pas si timide. Puisque tu as triché,|peux-tu m'aider à mettre cette armure ?",40,0,-1,CheatedCover()
 40,0,0,PlayerInArmbinder,(Tu te tournes et|secoue ton fourreau.),"Tu es si mignonne, mais je ne te détacherai pas.|Essaye de lutter un peu plus pour te libérer.",40,0,0,TestUnstrapPlayer()
 40,0,0,PlayerIsRoped,(Tu te tournes et|montres tes cordes.),"Tu es si mignonne, mais je ne te détacherai pas.|Essaye de lutter un peu plus et tu atteindras un noeud.",40,0,0,TestUntiePlayer()
 40,0,0,PlayerIsCuffed,(Tu te tournes et|montres tes menottes.),"Désolée, je n'ai pas les clés de ces menottes.",40,0,0,TestUncuffPlayer()
 40,0,0,IsBothFree,Tu sais que tu es jolie ?,(Elle rit et rougit.)|Tu es aussi très jolie COMMON_PLAYERNAME.,40,0,0,PrettyComment()
 40,0,0,IsBothFree,Tu serais superbe|toute attachée.,(Elle rougit.) Ce n'est peut-être pas|le meilleur moment pour ça.,40,0,0,
 40,0,0,ReadyHug,Quelques câlins|avant la pièce ?,Je suis intriguée COMMON_PLAYERNAME.|Qu'est-ce que tu as en tête ?,300,0,0,StartHugs()
-40,0,0,IsBothFree,(Tu l'aides à s'habiller.)|(1 minute),(Tu l'aides à mettre son armure.)|Merci ! On est prêts pour la pièce ?,50,0,0,Costume()
+40,0,0,IsBothFree,(Tu l'aides à s'habiller.)|(1 minute),(Tu l'aides à mettre son costume.)|Merci ! On est prêts pour la pièce ?,50,0,0,Costume()
 40,0,0,IsBothFree,"Amanda, aimerais-tu|m'attacher ?","Oh mon Dieu, Madame, ce ne serait pas convenable.|(Elle incline la tête et détourne le regard.)",40,0,0,RandomBondage()
 40,0,0,!Common_PlayerRestrained,(Tu la chatouilles.)|(1 minute),"(Tu la chatouilles sur les côtes et elle|rit à haute voix, elle s'amuse bien.)",40,0,0,Tickle()
 40,0,0,!Common_PlayerRestrained,(Tu lui mets une fessée.)|(1 minute),"(Tu lui donnes une petite fessée et|elle recule, elle n'a pas l'air d'aimer ça.)",40,0,0,Spank()
@@ -32,7 +33,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 40,0,0,!Common_PlayerRestrained,(Tu la masturbes.)|(1 minute),"(Tu te penches pour la masturber,|mais elle repousse ta main.)",40,0,0,Masturbate()
 40,0,0,CanUntie,(Tu la détaches.)|(1 minute),(Tu défais les noeuds pour la libérer et|elle étire les bras en signe d'appréciation.),40,0,0,Untie()
 40,0,0,CanUnstrap,(Tu la détaches.)|(1 minute),"(Tu détaches les lanières en cuir,|délies le fourreau et libères ses bras.)",40,0,0,Untie()
-40,0,0,CanUngag,(Tu la débâillonnes)|(1 minute),(Tu enlèves le bâillon et elle respire|profondément.) Aaaah ! Merci.,40,0,0,Ungag()
+40,0,0,CanUngag,(Tu la débâillonnes.)|(1 minute),(Tu enlèves le bâillon et elle respire|profondément.) Aaaah ! Merci.,40,0,0,Ungag()
 50,0,0,IsPlayReady,Faisons du théâtre !|(Vous rejoignez la scène.),,50,0,0,StartDrama()
 50,0,0,!IsPlayReady,Tout le monde|n'est pas prêt.,"Habillons-nous vite, alors !",50,0,0,
 100,0,0,,Bienvenue au paradis.,"(Elle acquiesce en silence, récupérant|lentement de son orgasme.)",40,1,0,
