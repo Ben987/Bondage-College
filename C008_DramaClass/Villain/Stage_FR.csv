@@ -65,7 +65,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 400,0,0,CanUntie,(Tu la détaches.)|(1 minute),(Tu défais les noeuds et elle te jette|la corde tout en s'habillant à nouveau.),400,0,0,Untie()
 400,0,0,CanUnstrap,(Tu la détaches.)|(1 minute),(Tu défais les sangles et les lacets|du fourreau pour libérer ses bras.),400,0,0,Untie()
 400,0,0,CanUngag,(Tu la débâillonnes.)|(1 minute),(Tu enlèves le bâillon et elle te fixe.)|Es-tu sûre que tout ceci était dans le script ?,400,0,0,Ungag()
-400,0,0,CanKiss,(Tu l'embrasses.)|(1 minute),(Tu t'approches et tu lui donnes un long baiser sur les|lèvres.) Oh COMMON_PLAYERNAME ! Tu donnes de merveilleux baisers.,400,0,0,Kiss()
+400,0,0,CanKiss,(Tu l'embrasses.)|(1 minute),(Tu lui donnes un long baiser sur les lèvres.)|Oh COMMON_PLAYERNAME ! Tu donnes de merveilleux baisers.,400,0,0,Kiss()
 400,0,0,CanAbuse,(Tu la chatouilles.)|(1 minute),(Tu la chatouilles sur les côtes et le ventre.|Elle est très chatouilleuse et rit à haute voix.),400,0,0,Tickle()
 400,0,0,CanAbuse,(Tu lui mets une fessée.)|(1 minute),(Elle geint à chaque coup.|Il est clair qu'elle n'aime pas ça.),400,0,0,Spank()
 400,0,0,CanAbuse,(Tu la masturbes.)|(1 minute),(Tu la saisis et la masturbes lentement.|Elle rougit et essaye de contrôler ses gémissements.),400,0,0,Masturbate()
