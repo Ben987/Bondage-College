@@ -17,6 +17,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 20,0,0,,Chapitre 9|La bibliothèque,,20,0,0,"LoadChapter(""C009_Library"")"
 20,0,0,,Chapitre 10|La vengeance,,20,0,0,"LoadChapter(""C010_Revenge"")"
 20,0,0,,Chapitre 11|Le cours de Littérature,,20,0,0,"LoadChapter(""C011_LiteratureClass"")"
+20,0,0,,Chapitre 12|Après les cours,,20,0,0,"LoadChapter(""C012_AfterClass"")"
 20,0,0,,Chapitre 101|Le Club Kinbaku par wildsj,,20,0,0,"LoadChapter(""C101_KinbakuClub"")"
 20,0,0,,Autres chapitres,"Sélectionnez le chapitre que vous voulez.|Si c'est votre 1ère partie, commencez au chapitre 1.",10,0,0,
 20,0,0,,Menu principal,"Bienvenue à l'Université du Bondage.|Amusez-vous bien, soyez curieux(se) et coquin(e).",0,0,0,
@@ -24,3 +25,4 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 30,0,0,,"Français (Chapitre 1 à 7)|Traduit par gottspende",,0,0,0,"SetLanguage(""FR"")"
 30,0,0,,Chinois (Chapitre 5)|Traduit par asdcvbgf,,0,0,0,"SetLanguage(""CN"")"
 30,0,0,,Espagnol (Chapitre 1)|Traduit par Rafael R,,0,0,0,"SetLanguage(""ES"")"
+30,0,0,,Allemand (Chapitre 1 & 11)|Par Knife et fleisch11,,0,0,0,"SetLanguage(""DE"")"
