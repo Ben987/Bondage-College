@@ -198,6 +198,9 @@ function C009_Library_Yuki_AnnoyYuki() {
 	if (C009_Library_Yuki_AnnoyCount >= 3) {
 		if (!C009_Library_Search_CanStealArmbinder && PlayerHasInventory("Armbinder")) PlayerRemoveInventory("Armbinder", 1);
 		PlayerLockInventory("Armbinder");
+		PlayerUnlockInventory("ClothGag");
+		PlayerUnlockInventory("BallGag");
+		PlayerUnlockInventory("TapeGag");
 		GameLogAdd("ArmbinderOnPlayer");
 		ActorSetPose("Angry");
 		C009_Library_Library_LockedArmbinder = true;

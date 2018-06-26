@@ -1,0 +1,51 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,"Si, es mi primer día",Bienvenida. Soy Amanda.,10,0,0,
+0,0,0,,"Si, el primer día de|clase siempre asusta.","Estarás bien.|Soy Amanda, bienvenida.",10,0,-1,
+0,0,0,,Pareces la mascota|de la profesora.,"Errr…bueno…yo...|Soy Amanda, bienvenida.",10,-1,1,
+0,0,0,,¿Por qué te importa?,"Oh! Por nada|Soy Amanda, bienvenida.",10,-1,0,
+0,0,0,SidneyInBondage,Apuesto a que tu|estarías preciosa atada.,"(Se pone colorada)|¿Tu crees? Soy Amanda, encantada.",10,0,1,
+0,0,0,SidneyInBondage,Comportate o|acabarás como ella.,"Si,si, por supuesto. Soy Amanda|(Baja la cabeza y mira al suelo)",10,-1,2,
+10,0,0,,¿Qué sabes del instituto?,Lo fundaron monjas hace un siglo.|Ahora es un colegio de chicas famoso.,20,0,0,
+10,0,0,,¿Qué clase toca|esta mañana?,¡Mates!mi favorita| Espera a conocer a la profesora.,20,0,0,
+10,0,0,,He oido cosas muy buenas|de esta academia.,"Es cierto,|este sitio es fantástico.",20,1,0,
+10,0,0,,Espero que sea rápido|y podamos largarnos.,No creo que esa sea| la mejor actitud para aprender.,20,-1,0,
+20,0,0,,Me gusta tu pelo.,"(se rie y se ruboriza.)|Eras genial. La case va a empezar",30,1,0,
+20,0,0,,Pareces embobada con|esta estúpida escuela.,Mmh (Se da la vuelta y deja de hablarte),50,-1,0,
+20,0,0,,"No hagas planes para|comer.Te compraré cena.","¿De verdad? (se rie)|Ahora centrémonos en la clase",30,0,1,
+20,0,0,,¿Podrías enseñarme el|colegio después de clase?,Quizá lo haga. Pero|Prepárate primero para la clase.,30,0,-1,
+30,0,0,,"Ok, centrémonos|en la clase de hoy.",Bien dicho.,50,1,0,
+30,0,0,,"Clase, clase, clase.|Eres tan aburrida.",¡Oh! Lo siento.  (Se da la vuelta y deja de hablarte),50,-1,0,
+30,1,0,,"¡Cuidado!Esa chica|te está vigilando.","¡Oh Dios!  Gracias por el aviso.|Es la primera vez trae la mochila. Me pregunto que guarda ahí.",40,1,0,
+40,1,0,,"No te preocupes si te da|problemas, yo te protejo.",¿Lo harías?  ¡Genial!|Pero centrémonos en la clase de momento.,50,0,1,
+40,1,0,,"Igual te tienes que chivar|a la profe, ella da miedo.",Avisar a la profesora…no sé.|Centrémonos en la clase de momento.,50,0,-1,
+40,1,0,SidneyInBondage,"Había cuerdas en la mochila|Ahora las lleva ella.","¡Ja,ja! Ya lo veo.|Pero. ¿Deberías soltarle antes de la clase?",50,1,0,
+200,0,0,BondageNotConfronted,¿Querrías que te|te ate ahora?,¿Qué?  ¡No!  ¡La clase está a punto de empezar!|Por favor. Esconde las cuerdas.,200,-1,0,ConfrontBondage()
+200,0,0,BondageNotConfronted,"Admítelo chica, te|encataría que te atara.","¡Oh Dios mío!(Se ruboriza)|No…yo…de verdad. La clase empieza ya.",200,-1,1,ConfrontBondage()
+200,0,0,StopRopeSubAllowed,"Me encanta el bondage,|¿Me podrías atar?","¡Oh!  Eres sumisa, quizá después de las clases.|(te guiña un ojo) ¿De qué hablábamos, novata?",200,0,-2,StopRopeSub()
+200,0,0,,Las podemos usar después.|(Escondes las cuerdas.),"¿Después? (Te mira con curiosidad.)|¿De qué hablábamos, novata?",200,0,0,StopRope()
+200,0,2,,(Le agarras y le|quitas el uniforme.) (1 minuto),"¡Oh Señor!  ¡Otra vez no!|(Trata de resistirse, pero falla.)",220,0,0,Strip()
+200,0,4,,"Sumisa. Quítate|el uniforme, ahora. (1 minuto)", N... Errr... Si. Señora...|(Se quita sumisamente la blusa y la falda),220,0,0,
+220,0,0,,(Atale.)|(1 minuto),(le enrollas en las cuerdas y le atas|los brazos a la espalda. (Se queja discretamente.),230,0,0,Tie()
+220,0,0,,Vístete.|(1 minuto),¡Si Señora!  Esto es embarazoso.,200,0,0,
+230,0,0,,(Dale la vuelta.),¿Qué?  ¡Oh Señor!  ¿Qué haces?|(Le fuerza a que se de la vuelta.),240,0,0,
+230,0,0,,(Desátale.)|(1 minuto),(le desatas lentamente) ¡Muchas gracias!|¿Puedo vestirme de nuevo?,220,0,0,Untie()
+230,0,0,,(Hazle cosquillas.)|(1 minuto),"(Se ruboriza y no puede parar de reir.)|¡Hey!¡Ja,ja,ja!¡Qué divertido!.",230,0,0,Tickle()
+230,1,0,,(Bésale.)|(1 minuto),¿otro beso?|(Se ruboriza y te sonrie.),230,0,0,Kiss()
+230,0,0,SidneyInBondage,(Haz que abrace a Sidney.)|(1 minuto),(Fuerza a las dos chicas a que se abracen)|¡Oh!  Esto no está bien.,250,0,0,
+230,0,0,,Pareces un|angel en bondage.,(Te dedica una sonrsa traviesa),230,0,0,
+230,0,0,,"Si te desato|¿Puedo atarte más tarde? (1 minuto)",¡Oooh!  ¡Si!  ¡Por supesto!|(Le desatas y le estrechas la mano.),300,1,1,Untie()
+230,0,0,,"Si te desato|¿Me atarías tu luego? (1 minuto)","Jeje.De acuerdo|(Le desatas y le estrechas la mano.)",300,1,-2,Untie()
+240,0,0,,(dale la vuelta.),(le fuerzas a darse la vuelta.)|¡ooohh! Prefiero verte la cara.,230,0,0,
+240,0,0,,(desátale.)|(1 minuto),(le desatas lentamente) ¡Muchas gracias!|¿Podría vestirme de nuevo?,220,0,0,Untie()
+240,0,0,,(Hazle cosquillas.)|(1 minuto),(Se pone colorada y no puede parar de reir.)|¡Hey! ¡Jajaja!  ¡Qué divertido!.,240,0,0,Tickle()
+240,0,0,,(Azótale.)|(1 minuto),(Le azotas de nuevo y parece tomárselo mejor.)|¡Para ya!,240,0,0,Spank()
+240,0,0,,Tienes un culo|precioso ¿lo sabías?,¿De verdad?  (Se ruboriza.),240,0,0,
+240,0,0,,"Si te desato|¿Te puedo atar más tarde? (1 minuto)",¡Ooooh!  ¡Si!  ¡Por supuesto!|(le desatas y estrechas su mano.),300,1,1,Untie()
+240,0,0,,"Si te desato|¿Me atarías tu luego? (1 minute)","Jejeje, de acuerdo.|(Le desatas y le estrechas la mano.)",300,1,-2,Untie()
+250,0,0,,(Sepárales.),Gracias. Era embarazoso.,230,0,0,
+250,0,0,,(Oblígales a besarse.)|(1 minuto),¿Otro beso?  ¡Es asqueroso!|(Les juntas para que se besen.),260,0,0,ForceKiss()
+250,0,0,,Hacies una pareja|de bondage genial.,(Las dos te miran fijamente.),250,0,0,
+260,0,0,,(Sepárales.),Gracias. Era embarazoso.,230,0,0,
+260,0,0,,(Acaba con los besos),"No te ofensas Sidney,|pero no eres mi tipo.",250,0,0,
+260,0,0,,¡EL amor está en el aire!,¡Hey!  Esto no mola.|(Te saca la lengua.),260,0,0,
+260,2,0,,¿Puedes besarme a mi también?,"Jejeje, ok.|(Se da la vuelta y te besa.)",260,0,0,

@@ -25,6 +25,7 @@ function C005_GymClass_Jennifer_Load() {
 
 	// Load the scene parameters
 	ActorLoad("Jennifer", "GymClass");
+	GameLogAdd("Judo");
 	LoadInteractions();
 	StartTimer(11.5 * 60 * 60 * 1000, CurrentChapter, "Outro");
 	LeaveIcon = "";

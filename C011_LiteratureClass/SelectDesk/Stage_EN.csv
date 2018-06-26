@@ -1,0 +1,142 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,(Check the front row.),There's an empty desk in the front row.|Right next to where the teacher should stand.,10,0,0,
+0,0,0,,(Check the back row.),There's an empty desk in the back row.|It smells like someone just smoked.,50,0,0,
+10,0,0,NatalieLunch,(Check the neighbors.),Natalie from the Kinbaku Club sits next to the desk.|She looks at the clock and seems to be impatient.,20,0,0,
+10,0,0,!NatalieLunch,(Check the neighbors.),A brown haired girl is sitting next to the empty desk.|She looks at the clock and seems to be impatient.,20,0,0,
+10,0,0,,(Check the back row.),There's an empty desk in the back row.|It smells like someone just smoked.,50,0,0,
+10,0,0,,(Check in front|of the classroom.),The teacher is missing.|The podium is empty.,0,0,0,
+10,0,0,,(Pick this desk.),You pick the desk in the|front row and sit on it.,100,0,0,SelectFront()
+20,0,0,,(Check the desk.),There's an empty desk in the front row.|Right next to where the teacher should stand.,10,0,0,
+20,0,0,,(Check the back row.),There's an empty desk in the back row.|It smells like someone just smoked.,50,0,0,
+20,0,0,,(Check in front|of the classroom.),The teacher is missing.|The podium is empty.,0,0,0,
+50,0,0,SidneyWasPig,(Check the neighbors.),Sidney is sitting next to the empty desk.|She flips you the finger when you walk by.,60,0,0,
+50,0,0,!SidneyWasPig,(Check the neighbors.),"Sidney is sitting next to the empty desk.|She seems pretty relax, she might be stoned.",60,0,0,
+50,0,0,,(Check the front row.),There's an empty desk in the front row.|Right next to where the teacher should stand.,10,0,0,
+50,0,0,,(Check in front|of the classroom.),The teacher is missing.|The podium is empty.,0,0,0,
+50,0,0,,(Pick this desk.),You pick the desk in the|back row and sit on it.,200,0,0,SelectBack()
+60,0,0,,(Check the desk.),There's an empty desk in the back row.|It smells like someone just smoked.,50,0,0,
+60,0,0,,(Check the front row.),There's an empty desk in the front row.|Right next to where the teacher should stand.,10,0,0,
+60,0,0,,(Check in front|of the classroom.),The teacher is missing.|The podium is empty.,0,0,0,
+100,0,0,,(Wait patiently.),You quietly wait for the teacher|but she's not coming in yet.,100,0,0,WaitTwoMinutes()
+100,0,0,,(Check in front|of the classroom.),The teacher is still missing.,101,0,0,
+100,0,0,,(Check your neighbors.),(Most of your neighbors are busy in their|books but one of them is only looking at the clock.),110,0,0,CheckFront()
+101,0,0,,(Wait patiently.),You quietly wait for the teacher|but she's not coming in yet.,101,0,0,WaitTwoMinutes()
+101,0,0,,(Check your desk.),You turn around to your desk.,100,0,0,
+101,0,0,,(Check your neighbors.),(Most of your neighbors are busy in their|books but one of them is only looking at the clock.),110,0,0,CheckFront()
+110,0,0,,Hello there.,"(She turns around.)|Hello, I'm Natalie.",111,0,0,
+110,0,0,,What's up?,"(She turns around.)  Not much, I'm waiting|for the teacher.  I'm Natalie by the way.",111,0,0,
+110,0,0,,(Back to your desk.),You turn around to your desk.,100,0,0,UnloadActor()
+111,0,0,,I'm COMMON_PLAYERNAME.,I'm pleased to meet you.|You're new in the college?,112,0,0,
+111,0,0,,Nice to meet you.|(Shake her hand.),It's nice to meet you also.|You're new in the college?,112,1,0,
+112,0,0,,"Yes, I don't have|any friends yet.",I know a great club if|you want to make friends.,113,0,-1,
+112,0,0,,"Yes, but I already|have many friends.",Great!  I know a great club if you|and your friends want to have fun.,113,0,1,
+112,0,0,,"Yes, it's my|first day here.","Since you're new, you need to meet people.|And I know the perfect club for that.",113,0,0,
+112,0,0,HasSeduction,Yes.  And this place has|the cutest girls. (Wink.),(She blushes.)  You sound pretty open.|I know a great club for open minded girls.,113,1,0,
+113,0,0,,That's pretty interesting.|Tell me about the club.,It's called the Kinbaku club.|We enjoy bondage and restrains.,114,1,0,
+113,0,0,,What kind of club?,It's called the Kinbaku club.|We enjoy bondage and restrains.,114,0,0,
+113,0,0,,Clubs are for nerds.,"Not this one, the Kinbaku club.|We enjoy bondage and restrains.",114,-1,0,
+114,0,0,,So I could tie you up?,Only if you're quick and strong enough.|We are meeting this evening if you want to join.,121,0,1,
+114,0,0,,So you will tie me up?,It could happen.  (She looks at you with a grin.)|We are meeting this evening if you want to join.,121,0,-1,
+114,0,0,,This is interesting.,Great!  We are having a meeting|this evening if you want to join.,121,1,0,
+114,0,0,,When is the|next meeting?,"This evening, you're welcome to join.",121,0,0,
+114,0,0,,That sounds horrible.,"Forget it then, you're too soft for the club.|(She turns around and looks at the clock.)",180,-1,-1,NatalieOut()
+114,0,0,,You're a pervert.,"Forget it then, you're too soft for the club.|(She turns around and looks at the clock.)",180,-1,0,NatalieOut()
+114,0,0,,I'm not interested.,"Its fine, the club isn't for everyone.|(She turns around and looks at the clock.)",180,0,0,NatalieOut()
+120,0,0,,Yes!  The Kinbaku|club is awesome.,Great!  (She does a thumb up at you.)|We are meeting this evening if you want to join.,121,1,0,
+120,0,0,,(Nod politely.),Then you're welcome to come again girl.|We are meeting this evening if you want to join.,121,0,-1,
+120,0,0,,I don't know.,Maybe you need to try again to make your mind.|We are meeting this evening if you want to join.,121,0,0,
+120,0,0,,"No, this club|is horrible.",Then why are you talking to me?|(She turns around and looks at the clock.),180,-1,0,NatalieOut()
+120,0,0,,(Back to your desk.),You turn around to your desk.,100,0,0,UnloadActor()
+121,0,0,,I'm not sure.|I'll think about it.,"Sure, I might also miss the meeting myself.|If you come, try to bring some restrains.",122,0,0,KinbakuClubInfo()
+121,0,0,,I'll be there if|I can tie you up.,"I'm not sure I'll be there myself but I'll try.|If you come, try to bring some restrains.",122,0,1,KinbakuClubInfo()
+121,0,0,,Of course I|will be there.,Great!  I'm not sure I'll be there myself|but I'll try.  Bring some restrains.,122,1,0,KinbakuClubInfo()
+121,0,0,,I have better plans|for this evening.,(She frowns and nods.)  Alright then.|(She turns around and looks at the clock.),180,-1,0,NatalieOut()
+122,0,0,,What should I bring?,"Cuffs, ropes and gags.  All that good stuff.|It will be a fun and kinky evening.",123,0,0,
+122,0,0,,I'll bring my collar.,Be careful it doesn't get locked around your neck.|(She giggles.)  It will be a fun and kinky evening.,123,0,-1,
+122,0,5,,I have a collar|for you girl.,Really?  (She blushes red.)|It will be a fun and kinky evening.,123,0,1,
+122,0,0,,I don't have|any restrains.,"That sucks, but Jenna might be able to help you.|(She winks.)  It will be a fun and kinky evening.",123,-1,0,
+123,0,0,,It should be fun.,It will.  When this class is over.,124,0,0,
+123,0,0,,If only this class|could end now.,I agree!  And we haven't begun.,124,1,0,
+123,0,0,,"Yes, but let's focus|on class for now.",This class is so boring.|But I guess we have to do it.,124,-1,0,
+124,0,0,,Am I too early?,"You're on time, the teacher is late|again.  We might get a substitute.",125,0,-1,
+124,0,0,,Is the teacher late?,She's late.  We might get|a substitute teacher again.,125,0,0,
+125,0,0,,A substitute?|That sucks.,"It depends on who's the substitute.|I'm gone at 16:30 anyway, whoever that is.",126,-1,0,
+125,0,0,,A substitute?  It's|time to cause trouble!,"It depends on who's the substitute.|I'm gone at 16:30 anyway, whoever that is.",126,1,0,
+125,0,0,,I'll teach this|stupid class.,"(She giggles.)  I'm sure you could.|I'm gone at 16:30 anyway, teacher or not.",126,0,1,
+126,0,0,,You look like|you're in a hurry.,Yeah!  I have a pretty big evening planned.|(She turns around and stares at the clock.),180,0,0,NatalieOut()
+126,0,0,,There's not much|to do but wait.,Correct.  If only this clock would spin faster.|(She turns around and stares at the clock.),180,0,0,NatalieOut()
+180,0,0,,"Hey, Natalie!","Not now, we'll talk another time.|(She stares at the classroom clock.)",180,0,0,
+180,0,0,,(Back to your desk.),You turn around to your desk.,100,0,0,UnloadActor()
+190,0,0,,It was only for fun!,"(She gives you an angry look and whispers.)|She who laughs last, laughs best.",190,0,0,
+190,0,0,,What are you|planning now?,You'll see pretty soon.,190,0,0,
+190,0,0,,I'm so sorry.  Can|we make peace?,Maybe.  Come to the club later and|we'll see about that.  (She grins.),190,0,0,NataliePeaceOffer()
+190,0,0,,(Back to your desk.),You turn around to your desk.,100,0,0,UnloadActor()
+200,0,0,,(Wait patiently.),You quietly wait for the teacher|but she's not coming in yet.,200,0,0,WaitTwoMinutes()
+200,0,0,,(Check in front|of the classroom.),The teacher is still missing.,201,0,0,
+200,0,0,,(Check your neighbors.),Most of your neighbors are busy in their|books and Sidney seems to be relaxing.,210,0,0,CheckBack()
+201,0,0,,(Wait patiently.),You quietly wait for the teacher|but she's not coming in yet.,201,0,0,WaitTwoMinutes()
+201,0,0,,(Check your desk.),You turn around to your desk.,200,0,0,
+201,0,0,,(Check your neighbors.),Most of your neighbors are busy in their|books but Sidney seems to be relaxing.,210,0,0,CheckBack()
+210,0,0,,Hi Sidney.,"(She slowly turns around to talk to you.)|Hey there, are you bored as I am?",211,0,0,
+210,0,0,,What's up?,"(She slowly turns around to talk to you.)|Nothing, are you bored as I am?",211,0,0,
+210,0,0,,(Back to your desk.),You turn around to your desk.,200,0,0,UnloadActor()
+211,0,0,,Bored?  This class|will be great!,You're either a nerd or you're insane.|(She sinks in her chair and seems stone.),260,-1,0,
+211,0,0,,"Yeah, literature will|be a boring class.","Fuck yeah, I cannot stand this class.|(She sinks in her chair and seems stone.)",260,1,0,
+211,0,0,,I don't know.  It's my|first literature class here.,Well be prepared for fucking long class.|(She sinks in her chair and seems stone.),260,0,0,
+230,0,0,,You've reserved|the back row?,Yep!  No dorks and no Sarah's are allowed here.|So you'll be taking this boring class with me?,231,0,0,
+230,0,0,,I'm glad I've found|a seat next to you.,"This seat is reserved for my friends, you're ok.|So you'll be taking this boring class with me?",231,1,0,
+230,0,0,,Aren't we too far|to hear the teacher?,That's the whole point of being far!|So you'll be taking this boring class with me?,231,0,-1,
+230,0,0,,This spot is perfect|to cause trouble.,Exactly!  That's why I reserve it for friends.|So you'll be taking this boring class with me?,231,0,1,
+231,0,0,,Literature class|might be fun.,That's where you're fucking wrong.|(She looks at the ceiling and spaces out.),260,0,-1,
+231,0,0,,Why are taking this class|if you don't like it?,Because this whole college is retarded.|(She looks at the ceiling and spaces out.),260,-1,0,
+231,0,0,,"Yeah, we are|stuck together.","Yep, stuck for one shitty hour.|(She looks at the ceiling and spaces out.)",260,0,0,
+231,0,0,HasSeduction,I'm simply glad to be|with a cutie like you.,You're sweet COMMON_PLAYERNAME.|(She looks at the ceiling and spaces out.),260,1,0,
+240,0,0,,I cannot complain.|What about you girl?,I've seen worse days before Miss.|Do you like the seat I've reserved?,241,0,0,
+240,0,0,,I'm fine.  What about you?|Did you cause trouble?,"Well...  Yes and no, nothing unusual.|Do you like the seat I've reserved?",241,0,1,
+240,0,0,,Why are you|so shy with me?,"I don't know, no reasons I guess.|Do you like the seat I've reserved?",241,0,-1,
+240,0,0,,This day will be|good when it's over.,"I totally agree, we think alike Miss.|Do you like the seat I've reserved?",241,1,0,
+240,0,0,,It was a good day.|This college is fine.,Fine?  Are you sure of that?  Anyway.|Do you like the seat I've reserved?,241,-1,0,
+241,0,0,,We are too far|from the teacher.,Oh!  I thought you would like that.|(She looks at the ceiling and spaces out.),260,0,-1,
+241,0,0,,This seat is fine.,"Yes, we have the best row back there.|(She looks at the ceiling and spaces out.)",260,0,0,
+241,0,0,HasSeduction,I'm simply glad to be|with a cutie like you.,You're sweet COMMON_PLAYERNAME.|(She looks at the ceiling and spaces out.),260,1,0,
+250,0,0,,There's no name|on the desk.,So you think you're smart?  If you|want to sit here you need to pay the tax.,251,0,1,
+250,0,0,,Please Miss.|Can I sit here?,Maybe we can arrange something.|You can sit here if you pay the tax.,251,0,-1,
+250,0,0,,There's not that|many desks left.,Does it look like I fucking care?|You can sit here if you pay the tax.,251,0,0,
+250,0,0,,Fine!  You stink anyway.|(Move to the front.),(You get your items and move to|the front row while Sidney laughs.),100,-1,0,MoveToFront()
+250,0,0,,Yes Miss Sidney.|(Move to the front.),(You get your items and move to|the front row while Sidney laughs.),100,0,-1,MoveToFront()
+251,0,0,,I don't have|any money.,"Then get lost, this row isn't for you.",270,-1,0,
+251,0,0,,I won't pay you.,"Then get lost, this row isn't for you.",270,0,1,
+251,0,0,,Here you go Miss.|(Give her money.),You're pathetic but you can sit here.|(She looks at the ceiling and spaces out.),260,1,-1,
+251,0,0,,Take this money.|(Give her money.),"Very well, you can sit here then.|(She looks at the ceiling and spaces out.)",260,1,0,
+251,0,0,,"Forget it, I'm moving.|(Move to the front.)",(You get your items and move to|the front row while Sidney laughs.),100,0,1,MoveToFront()
+260,0,0,,Are you ok?,"I'm better than ok, I'm wasted!|Why do you fucking care?",261,0,0,
+260,0,0,,Did you take|any drugs?,Who the fuck are you?|My mom?  Why do you care?,261,-1,0,
+260,0,-1,,Drugs are not|good for you.,You're pathetic!  You don't deserve to sit here.|Pack your shit now and move to the front row.,270,0,-1,
+261,0,0,,I want some of it.,"Good, meet me after|class and we'll smoke one.",262,1,0,
+261,0,0,,I don't care.,Then don't talk about it.,262,0,0,
+261,0,-1,,Drugs are illegal.,You're pathetic!  You don't deserve to sit here.|Pack your shit now and move to the front row.,270,0,-1,
+262,0,0,,The book was great.|Did you read it?,I've read the title and that's enough.,263,-1,0,
+262,0,0,,The book was awful.|Did you read it?,I've read the title and that's enough.,263,1,0,
+262,0,0,,So did you|read the book?,I've read the title and that's enough.,263,0,0,
+262,0,0,,Did you at least|read the book?,I've read the title and that's enough.,263,0,1,
+263,0,0,,You'll be fine.,"Sure I will, I'll cheat.",264,0,0,AdmitCheat()
+263,0,0,,You'll get in trouble.,I don't care.  I'll cheat.,264,0,-1,AdmitCheat()
+263,0,0,,What if there's|an exam on it?,I don't care.  I'll cheat.,264,0,0,AdmitCheat()
+264,0,0,,Don't cheat on me.|I'm horrible at school.,Ha!  Well thanks for telling me.|It's not like there's a class anyway.,265,1,1,
+264,0,0,,Cheating is for losers.,"You're the loser, get out of my face.|(She spaces out and seems to ignore you.)",280,-1,0,SidneyOut()
+264,0,-5,,You can cheat on|me if you want.,Thanks dork.  This class will|be easy.  If it ever begins.,265,1,-1,
+264,0,0,,I guess cheating|is a solution.,Fuck yeah!  It will be an|easy class.  If it ever begins.,265,0,0,
+264,0,-1,,Cheating is wrong.,You're pathetic!  You don't deserve to sit here.|Pack your shit now and move to the front row.,270,0,-1,
+265,0,0,,Am I too early?,"You're fine girl, the teacher is late.|Class is better that way anyway.",266,0,-1,
+265,0,0,,Is the teacher late?,"She's late, but I don't care.|Class is better that way.",266,0,0,
+265,0,0,,There's no teacher.|Should we leave?,No!  I don't want to go to detention again.|The class is better that way anyway.,266,0,1,
+266,0,0,,"Fine, we can wait.",(She turns around and seems to|space out looking at the ceiling.),280,0,0,SidneyOut()
+266,0,0,,Let's relax then.,(She turns around and seems to|space out looking at the ceiling.),280,0,0,SidneyOut()
+270,0,0,,Oh no!  Please!|Can I stay here?,"You're a worm, pack your stuff and move|to the front with the other worms.",270,0,0,
+270,0,0,,Fine!  I don't care.|(Move to the front.),(You get your items and move to|the front row while Sidney laughs.),100,0,0,MoveToFront()
+270,0,0,,Yes Miss Sidney.|(Move to the front.),(You get your items and move to|the front row while Sidney laughs.),100,0,-1,MoveToFront()
+280,0,0,,"Hey, Sidney!",(She doesn't answer.  Maybe she's too|stone to care or she's ignoring you.),280,0,0,
+280,0,0,,(Back to your desk.),You turn around to your desk.,200,0,0,UnloadActor()
+290,0,0,SidneyWasPig,SOOOOOWEEE!|(Make pig noises.),Fuck you COMMON_PLAYERNAME.|That was very humiliating.,290,0,0,PigRemark()
+290,0,0,,Can we stop|that silly war?,Hell no!  The war will stop when|you run in tears and don't come back.,290,0,0,
+290,0,0,,(Back to your desk.),You turn around to your desk.,200,0,0,UnloadActor()

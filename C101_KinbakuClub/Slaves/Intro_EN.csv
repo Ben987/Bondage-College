@@ -5,7 +5,9 @@ Stage,LoveReq,SubReq,VarReq,IntroText,Image
 40,0,0,,,Bag.jpg
 100,0,0,,,UnlockedCollar.jpg
 110,0,0,,,Halfway.jpg
-120,0,0,,,PlayerManacles.jpg
+115,0,0,,(You don't struggle and let Erica remove|your uniform and lock you in manacles.),PlayerManacles.jpg
+116,0,0,,"(Amelia forces you into the manacles and locks|them to the wall, then walks away.)",PlayerManacles.jpg
+120,0,0,,(You've got yourself into a fine predicament.|What will you do now?),PlayerManacles.jpg
 130,0,0,,,PlayerManacles.jpg
 140,0,0,,,PlayerManacles.jpg
 150,0,0,,,PlayerManacles.jpg

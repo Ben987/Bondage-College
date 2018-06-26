@@ -1,0 +1,22 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,What do you want? (She stares at you.),SidneyFace.jpg
+0,0,0,AmandaInBondage,Amazing!  I've wanted to tie her for weeks.|Now what do you want? (She stares at you.),SidneyFace.jpg
+10,0,0,,(She stares at the girl with the brown hair.),SidneyStare.jpg
+20,0,0,,(She crosses her arms and looks at you in the eyes.),SidneyFace.jpg
+30,0,0,,(She stares again at the girl with the brown hair.),SidneyStare.jpg
+40,0,0,,(She turns her head and ignores you.),SidneyBack.jpg
+40,2,0,,Class will begin soon but let's talk later.,SidneyFace.jpg
+40,-2,0,,Don't talk to me bitch!|(She turns her head and ignores you.),SidneyBack.jpg
+40,0,0,AmandaInBondage,Congrats on humiliating her.  Let's talk after class.|(She looks at Amanda and gives a thumbs up.),SidneyFace.jpg
+100,0,0,,Fuck!  You were looking in my bag?|(She seems nervous that you found the ropes.),SidneyFace.jpg
+110,0,0,,(She makes a curious face at you.),SidneyFace.jpg
+200,0,0,,Did you steal these ropes from my bag?|(She looks furious.),SidneyFace.jpg
+210,0,0,,Give me back my ropes!,SidneyFace.jpg
+220,0,0,,Wait until I get out!|(She struggles in vain to get free.),SidneyBondageFront.jpg
+220,0,0,AmandaInBondage,At least she looks more humiliated than me.|(She looks at Amanda and grins.),SidneyBondageFront.jpg
+230,0,0,,,SidneyBondageBack.jpg
+240,0,0,,,SidneyBondageHug.jpg
+250,0,0,,,SidneyBondageKiss.jpg
+300,0,0,,You thief!  We have nothing to talk about.,SidneyBack.jpg
+310,0,0,,I can't believe you tied me up in here.|We'll talk about it later.,SidneyFace.jpg
+310,0,0,AmandaInBondage,"I can't believe you tied me up in here.|On the bright side, she's still in trouble.",SidneyFace.jpg

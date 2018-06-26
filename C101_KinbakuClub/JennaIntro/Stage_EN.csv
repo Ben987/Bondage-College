@@ -1,14 +1,15 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 0,0,0,,What is it?,It's about this club and also about Natalie.,10,0,0,
+0,0,0,,(Short cut to clubroom|for development only.),,80,0,0,ShortCut()
 0,0,0,,I already know about the|birds and the bees.,"We'll see about that, I meant the club and also Natalie.",10,-1,0,
 0,0,0,,"Don't bother explaining,|it's all pretty obvious.",I'll let you work it out for yourself then.,70,-1,0,SkipExplanation()
 5,0,0,,"Hello, what's|happening here?",This is the college's Kinbaku Club.|Your welcome to stay for the evening.,15,0,0,
-5,0,0,,(Short cut to clubroom.),,80,0,0,ShortCut()
+5,0,0,,(Short cut to clubroom|for development only.),,80,0,0,ShortCut()
 10,0,0,,Is there an issue|with the club?,"No issue, but I don't think Natalie|explained much about the club to you.",30,0,0,
 10,0,0,,"Is Natalie here, I would|like to see here again?","Not at the moment. She lost a bet with|another member, but should be here later.",20,1,0,Asked()
 15,0,0,,"Sounds interesting,|yeah I'll stay.",That's great. I'm Jenna.,25,1,0,
 15,0,0,,Sorry I need|to be going.,"Come on stay a while, you might like it.|I'm Jenna by the way.",25,0,0,
-15,0,0,Natalie,I think Natalie mentioned|this place at lunch break.,"Ah yes Natalie, she will be here later.|I'm the other club rep, Jenna",25,0,0,Asked()
+15,0,0,Natalie,Natalie mentioned|this place.,"Ah yes Natalie, she will be here later.|I'm the other club rep, Jenna",25,0,0,Asked()
 20,0,0,,So what was that|about the club?,It's just Natalie didn't explain much|about the club at lunch time.,30,0,0,
 20,0,0,,A bet? Is she OK?,"She's fine. The bet was to find a new member, but she|forgot the important bit about a proper explanation.",30,0,0,
 25,0,0,,I'm COMMON_PLAYERNAME.,Cool. I should explain a bit about this club.,30,0,0,

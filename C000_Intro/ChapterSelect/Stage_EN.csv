@@ -16,9 +16,13 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 10,0,0,,Main Menu,"Welcome to the Bondage College.|Have fun, be curious and be kinky.",0,0,0,
 20,0,0,,Chapter 9|Library,,20,0,0,"LoadChapter(""C009_Library"")"
 20,0,0,,Chapter 10|Revenge,,20,0,0,"LoadChapter(""C010_Revenge"")"
+20,0,0,,Chapter 11|Literature Class,,20,0,0,"LoadChapter(""C011_LiteratureClass"")"
+20,0,0,,Chapter 12|After Class,,20,0,0,"LoadChapter(""C012_AfterClass"")"
 20,0,0,,Chapter 101|Kinbaku Club by wildsj,,20,0,0,"LoadChapter(""C101_KinbakuClub"")"
 20,0,0,,Previous Chapters,"Select the chapter you want to play.|If you never tried the game, start on chapter 1.",10,0,0,
 20,0,0,,Main Menu,"Welcome to the Bondage College.|Have fun, be curious and be kinky.",0,0,0,
 30,0,0,,English,,0,0,0,"SetLanguage(""EN"")"
 30,0,0,,French (Chapter 1 to 7)|Made by gottspende,,0,0,0,"SetLanguage(""FR"")"
 30,0,0,,Chinese (Chapter 5)|Made by asdcvbgf,,0,0,0,"SetLanguage(""CN"")"
+30,0,0,,Spanish (Chapter 1)|Made by Rafael R,,0,0,0,"SetLanguage(""ES"")"
+30,0,0,,German (Chapter 1 & 11)|By Knife and fleisch11,,0,0,0,"SetLanguage(""DE"")"

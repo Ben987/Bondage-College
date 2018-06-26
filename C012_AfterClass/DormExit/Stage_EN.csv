@@ -1,0 +1,7 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,@The roommates dorm.,,0,0,0,LaunchRoommatesDorm()
+0,0,0,,@The campus pub.,,0,0,0,LaunchPub()
+0,0,0,,@The college pool.,,0,0,0,LaunchPool()
+0,0,0,!KnowKinbakuClub,@Take a walk|around college.,,0,0,0,LaunchKinbaku()
+0,0,0,KnowKinbakuClub,@The Kinbaku Club.,,0,0,0,LaunchKinbaku()
+0,0,0,KnowBondageClub,@The Bondage Club.,"Sorry, the Bondage Club isn't available yet.|It will be available in a future version.",0,0,0,

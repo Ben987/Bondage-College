@@ -1,0 +1,4 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,SidneyAvail,Sidney,,100,0,0,SidneyStart()
+0,0,0,,Warte ein bischen,Du wartest ein bischen und|siehst dir die Menschenmenge in der Bar an.,0,0,0,Wait()
+0,0,0,,Verlasse die Bar,,0,0,0,Leave()

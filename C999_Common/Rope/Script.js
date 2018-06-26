@@ -47,7 +47,6 @@ function C999_Common_Rope_QuerySelfBondage() {
 
 // Chapter Common - When does self bondage with ropes (strips from any costume before that)
 function C999_Common_Rope_DoSelfBondage() {
-	if (Common_PlayerCostume != "") PlayerClothes("Underwear");
 	PlayerLockInventory("Rope");
 	PlayerRemoveInventory("Rope", 1);
 	C999_Common_Rope_HasLooseRope = PlayerHasInventory("Rope");

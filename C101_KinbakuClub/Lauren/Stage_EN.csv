@@ -4,7 +4,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 0,0,0,,(Nod your head.),"Don't be shy, were all friends here.",30,0,-1,
 10,0,0,,Could you help|untie me?,"Sorry, you must have got yourself into that mess,|so you can get out of it yourself.",15,0,0,
 10,0,0,PlayerGagged,@Plmhfm hntnm mm.,"Sorry, I don't understand gag talk yet.|You will have to remove that gag first.",15,0,0,
-10,0,0,,(Nod your head.),"That's nice, have fun like that.",15,0,-1,
+10,0,0,,(Nod your head.),"That's nice, have fun like that.",15,0,0,TiedNod()
 20,0,0,,Could you|remove these cuffs?,"I don't actually have a handcuff key,|but I can teach you how to escape them.",50,0,0,
 20,0,0,,You would look even|better trapped in them.,Handcuffs have a habit of just slipping off me.|Would you like to learn how?,50,0,0,
 20,0,0,PlayerGagged,@Plmhfm hntnm mm.,"Sorry, I don't understand gag talk yet.|You will have to remove that gag first.",25,0,0,

@@ -1,0 +1,16 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,@Masturbate,It's not possible to pleasure|yourself while you're restrained.,0,0,0,StartMasturbate()
+0,0,0,,@Get to sleep.|(End the day.),Are you sure you want to sleep?|This will end the day and the game.,10,0,0,
+10,0,0,,"@Yes, get to sleep.|(End the day.)",,10,0,0,EndChapter()
+10,0,0,,"@No, stay awake.|(Continue.)",You seem to have some energy left.,0,0,0,
+100,0,0,,@Massage your breast.,You slowly massage your breast|with one hand and moan silently.,100,0,0,MasturbateUp()
+100,0,0,,@Pinch your nipple.,You pinch your own nipple and|whimper softly from the pain.,100,0,0,MasturbateUp()
+100,0,0,,@Massage your clitoris.,You massage your clitoris lovingly|while moaning louder and louder.,100,0,0,MasturbateDown()
+100,0,0,,@Play with your pussy.,"Using two fingers, you play with your|pussy lips and tremble from pleasure.",100,0,0,MasturbateDown()
+100,0,0,,@Slide a finger|inside and out.,You slide your index in and out|while breathing faster and faster.,100,0,0,MasturbateDown()
+100,0,0,,@Explore inside.,You explore the inside of your vagina.|Reaching very sweet spots in the process.,100,0,0,MasturbateDown()
+100,0,0,,@Stop and get up.,You get up from your bed.,0,0,0,StopMasturbate()
+110,0,0,,@Let yourself|go and climax.,You let yourself go in wonderful extasy|while your fingers give you a sweet orgasm.,120,0,0,Climax()
+110,0,0,,@Stop masturbating.,"You calm down, take deep breathes|and stop everything before your climax.",100,0,0,StopMasturbate()
+120,0,0,,@Continue to|masturbate.,"Just to make sure you're satisfied,|you start touching yourself again.",100,0,0,
+120,0,0,,@Stop and get up.,You get up from your bed|feeling relaxed and satisfied.,0,0,0,StopMasturbate()

@@ -17,7 +17,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 10,0,0,PlayerIsCuffed,"Hey, someone uncuff|me right now.","Make us, if you can pin a member down or|against something the rest of us will help you.",10,0,0,SomeoneUncuff()
 10,0,0,PlayerRobbed,Give me my stuff back.,Only if you win. We will make sure you receive|necessary items for any capture.,10,0,0,Complain()
 10,0,0,PlayerIsGagged,@Mmmmmmp,Come on you can do this. Pin a member down or|against something and the rest of us will help you.,10,0,0,
-10,0,0,TouchSomebody,(Try to capture them.),"(You nearly had them, but they wriggled out of your grasp and run out of reach.)",10,0,0,Capture()
+10,0,0,TouchSomebody,(Try to capture them.),"(You nearly had them, but they wriggled out|of your grasp and run out of reach.)",10,0,0,Capture()
 10,0,0,FeelSomebody,(Try to pin them.),"(You thrust into them, but with nothing to be pinned|against they just move back away from you.)",10,0,0,Capture()
 20,0,0,,(Stand up.),,10,0,0,LifeLost()
 20,0,0,,(Sit there stunned.),Are you giving up already?,25,0,0,

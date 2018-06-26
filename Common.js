@@ -18,6 +18,7 @@ var TextPhase = 0;
 var CSVCache = {};
 var MaxFightSequence = 500;
 var MaxRaceSequence = 1000;
+var AllowCheats = false;
 
 // Array variables
 var IntroStage = 0;
@@ -59,10 +60,18 @@ var Common_PlayerNotBlinded = true;
 var Common_PlayerClothed = true;
 var Common_PlayerUnderwear = false;
 var Common_PlayerNaked = false;
+var Common_PlayerCloth = "";
 var Common_PlayerCostume = "";
 var Common_PlayerPose = "";
-var Common_ClubStatus = "";
+var Common_ActorIsLover = false;
+var Common_ActorIsOwner = false;
+var Common_ActorIsOwned = false;
 var Common_Number = "";
+
+// Returns TRUE if the variable is a number
+function IsNumeric(n) {
+	return !isNaN(parseFloat(n)) && isFinite(n);
+}
 
 // Returns the current date and time in a yyyy-mm-dd hh:mm:ss format
 function GetFormatDate() {
@@ -144,10 +153,24 @@ function ReadCSV(Array, FileName) {
     Reader.send(null);
 }
 
+// Shuffles all array elements at random
+function ArrayShuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}
+
 // Returns a working language if translation isn't fully ready
 function GetWorkingLanguage() {
 	if ((CurrentLanguageTag == "FR") && ((CurrentChapter == "C000_Intro") || (CurrentChapter == "C001_BeforeClass") || (CurrentChapter == "C002_FirstClass") || (CurrentChapter == "C003_MorningDetention") || (CurrentChapter == "C004_ArtClass") || (CurrentChapter == "C005_GymClass") || (CurrentChapter == "C006_Isolation") || (CurrentChapter == "C007_LunchBreak") || (CurrentChapter == "C999_Common"))) return "FR";
+	if ((CurrentLanguageTag == "DE") && ((CurrentChapter == "C000_Intro") || (CurrentChapter == "C001_BeforeClass") || (CurrentChapter == "C011_LiteratureClass"))) return "DE";
 	if ((CurrentLanguageTag == "PL") && ((CurrentChapter == "C000_Intro"))) return "PL";
+	if ((CurrentLanguageTag == "ES") && ((CurrentChapter == "C000_Intro") || (CurrentChapter == "C001_BeforeClass"))) return "ES";
 	if ((CurrentLanguageTag == "CN") && ((CurrentChapter == "C000_Intro") || (CurrentChapter == "C005_GymClass") || (CurrentChapter == "C999_Common"))) return "CN";
 	return "EN";
 }
@@ -187,7 +210,10 @@ function SetScene(Chapter, Screen) {
 	LeaveIcon = "";
 	LeaveScreen = "";
 	LeaveChapter = Chapter;
-	
+	Common_ActorIsLover = false;
+	Common_ActorIsOwner = false;
+	Common_ActorIsOwned = false;
+
 	// Load the screen code
 	DynamicFunction(CurrentChapter + "_" + CurrentScreen + "_Load()");
 	

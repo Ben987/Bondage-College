@@ -13,12 +13,14 @@ function PlayerAddSkill(SkillToAdd, LevelToAdd) {
 	for (var I = 0; I < PlayerSkill.length; I++)
 		if (SkillToAdd == PlayerSkill[I][PlayerSkillName]) {
 			PlayerSkill[I][PlayerSkillLevel] = PlayerSkill[I][PlayerSkillLevel] + LevelToAdd;
+			if (PlayerSkill[I][PlayerSkillLevel] > 10) PlayerSkill[I][PlayerSkillLevel] = 10;
 			return;
 		}
 		
 	// If the skill isn't known, we add it to the player skill list
+	if (LevelToAdd > 10) LevelToAdd = 10;
 	PlayerSkill[PlayerSkill.length] = [SkillToAdd, LevelToAdd];
-	
+
 }
 
 // Returns the current level of a specific skill (0 if the skill isn't known)

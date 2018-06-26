@@ -18,6 +18,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 30,0,0,,I thought you could|use some help.,"That's very sweet of you.  Alright,|can you help me to wear this armor?",40,1,-1,CheatedCover()
 30,0,0,,You're so beautiful.|I wanted to see you.,Alright then.  But since you cheated|can you help me to wear this armor?,40,1,0,CheatedCover()
 30,0,0,,I'm sorry.|I cheated.,At least you're honest.  Since you cheated|can you help me to wear this armor?,40,0,-1,CheatedCover()
+30,0,0,,(Bow and look|at the floor.),Don't be that shy.  Since you cheated|can you help me to wear this armor?,40,0,-1,CheatedCover()
 40,0,0,PlayerInArmbinder,(Turn and shake|your armbinder.),"You're so cute, I can't unstrap you.|Try to struggle some more to get out.",40,0,0,TestUnstrapPlayer()
 40,0,0,PlayerIsRoped,(Turn and point|to your ropes.),"You're so cute like that, I can't untie you.|Try to struggle some more to reach a knot.",40,0,0,TestUntiePlayer()
 40,0,0,PlayerIsCuffed,(Turn and point|to your cuffs.),"Sorry, I don't have the keys for these cuffs.",40,0,0,TestUncuffPlayer()

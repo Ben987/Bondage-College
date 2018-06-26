@@ -3,6 +3,7 @@ function C008_DramaClass_DressingRoom_Load() {
 	LeaveIcon = "Wait";
 	Common_SelfBondageAllowed = true;
 	Common_BondageAllowed = true;
+	GameLogSpecificAdd(CurrentChapter, "", "Role" + C008_DramaClass_JuliaIntro_PlayerRole);
 }
 
 // Chapter 8 - Dressing Room Run

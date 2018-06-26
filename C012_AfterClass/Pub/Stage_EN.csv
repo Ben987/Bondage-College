@@ -1,0 +1,205 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,SidneyAvail,Meet Sidney.,,0,0,0,SidneyStart()
+0,0,0,,Wait for a while.,You wait for a little while and|check the crowd at the pub.,0,0,0,Wait()
+0,0,0,,Leave the pub.,,0,0,0,Leave()
+100,0,0,Common_PlayerChaste,I have the same problem.|I'll find a way out.,Fine!  But find a solution quick.|This belt is driving me insane.,101,1,0,
+100,0,8,,"Calm down girl, this belt|will come off when I decide.",(She bows her head.)  Very well Miss.|But know that this is drving me insane.,101,0,1,"SetPose(""Shy"")"
+100,8,0,,This is only to tease|you a little sweetie.,(She blushes.)  Tease me for what?|You know that this is driving me insane?,101,1,0,"SetPose("""")"
+100,0,0,,I have no idea|how to unlock it.,Don't mess with shit you don't understand!|You know that this is driving me insane?,101,0,-1,
+100,0,0,,You'd better learn|to live with it.,Fuck you then!  I'll find a way out.|You know that this is driving me insane?,101,-1,0,
+100,0,0,,I have some tools|for it at the dorm.,Great!  Maybe it could work.|This belt is driving me insane.,101,1,0,
+100,0,0,,You'll find a way|to remove it.,I guess.  But it better be soon.|This belt is driving me insane.,101,0,0,
+101,0,0,,It will help you|with self-control.,I don't need self-control!|(She punches the table.),102,0,1,
+101,0,8,,This is part of|your training.,Training?  What the fuck?|(She punches the table.),102,0,1,
+101,0,0,,It's a very short drive.|You're already insane.,You're not funny COMMON_PLAYERNAME!|(She punches the table.),102,-1,0,
+101,0,0,,"Yeah, it must|be frustrating.",Fuck yeah it's frustrating!|(She punches the table.),102,0,0,
+102,0,0,,Don't get mad.,You don't want to...  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,0,0,"SetPose(""Duck"")"
+102,0,0,,Don't hurt me!,You're pathetic girl.  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,0,-1,"SetPose(""Duck"")"
+102,0,0,,You want to fight?,Let's fight then!  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,0,1,"SetPose(""Duck"")"
+102,0,0,,Nice!  That was|quite a punch.,Damn right girl!  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,1,-1,"SetPose(""Duck"")"
+110,0,8,,"Calm down girl, the egg|will be out when I decide.",(She bows her head.)  Very well Miss.|But know that this is drving me insane.,111,0,1,"SetPose(""Shy"")"
+110,8,0,,This is only to tease|you a little sweetie.,(She blushes.)  Tease me for what?|You know that this is driving me insane?,111,1,0,"SetPose("""")"
+110,0,0,,I have no idea|how to remove it.,Don't mess with shit you don't understand!|You know that this is driving me insane?,111,0,-1,
+110,0,0,,You'd better learn|to live with it.,Fuck you then!  I'll remove it somehow.|You know that this is driving me insane?,111,-1,0,
+110,0,0,,You'll find a way|to remove it.,I guess.  But it better be soon.|This egg is driving me insane.,111,0,0,
+111,0,0,,I bet you're|very horny now.,Shit yeah!  I want it out!|(She punches the table.),112,0,0,
+111,0,8,,This is part of|your training.,Training?  What the fuck?|(She punches the table.),112,0,1,
+111,0,0,,It's a very short drive.|You're already insane.,You're not funny COMMON_PLAYERNAME!|(She punches the table.),112,-1,0,
+112,0,0,,Don't get mad.,You don't want to...  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,0,0,"SetPose(""Duck"")"
+112,0,0,,Don't hurt me!,You're pathetic girl.  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,0,-1,"SetPose(""Duck"")"
+112,0,0,,You want to fight?,Let's fight then!  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,0,1,"SetPose(""Duck"")"
+112,0,0,,Nice!  That was|quite a punch.,Damn right girl!  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,1,-1,"SetPose(""Duck"")"
+120,0,0,,A beer?  Fine.|(Get her a beer.),(You buy her a beer and she smiles.)|Perfect!  You can hang with me now.,121,0,0,
+120,0,0,,Of course Miss.|(Get her a beer.),(You buy her a beer and she smiles.)|Perfect!  You can hang with me now.,121,0,-1,
+120,0,0,,Go get your|own beer.,You finaly grown some balls?|I guess you can hang with me.,121,0,1,
+120,0,0,,Forget it!|(Leave Sidney.),You leave Sidney behind|and get back to the bar.,0,0,1,SidneyEnd()
+121,0,0,,How are you Miss?,I'm not drunk.  I'm not great.,122,0,-1,
+121,0,0,,Are you getting|drunk here?,"Yep, slowly but surely.",122,0,0,
+121,0,0,,How's the beer?,"Pretty shitty, but it's cheap.|Perfect to get drunk.",122,1,0,
+121,0,0,,So you drink alone?,Why do you care?  I can|get drunk any way I want.,122,-1,1,
+122,0,0,,You should not get|wasted all the time.,Are you my mom?  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,0,1,"SetPose(""Duck"")"
+122,0,0,,Binge drinking is|dangerous for you.,You're a loser.  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,-1,0,"SetPose(""Duck"")"
+122,0,0,,I'll drink to that!,Cheers!  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,1,0,"SetPose(""Duck"")"
+122,0,0,,That's a way to|spend an evening.,The best way.  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,0,0,"SetPose(""Duck"")"
+130,0,0,,I came here|to relax.,Good idea.  School is so boring.|We need some time to enjoy life.,131,0,0,
+130,0,0,,I came here to drink.|Go get me a beer.,Great idea!  (She comes back with two beers.)|This is so much better than our boring college.,131,1,1,
+130,0,0,,I got lost and|ended up here.,You got lost?  That's pretty silly.|At least you're out of our boring classes.,131,0,-1,"SetPose("""")"
+130,0,0,,I came here to drink.|Get me some red wine.,Ok.  (She comes back with wine and a beer.)|This is so much better than our boring college.,131,0,1,
+131,0,0,,You're boring!,(She gives you an angry look.)|You look tense.  Wanna smoke?,132,-1,0,
+131,0,0,,"Yeah, it was|a long day.",Fuck yeah.  We have to forget it.|Do you want to smoke with me?,132,0,0,
+131,0,0,,It's never boring|when you're around.,You're sweet Miss COMMON_PLAYERNAME.|Do you want to smoke with me?,132,1,0,
+132,0,0,,You should quit|smoking girl.,I've heard that so...  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,-1,1,"SetPose(""Duck"")"
+132,0,0,,Smoking makes|me nauseous.,That's pretty lame.  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,0,-1,"SetPose(""Duck"")"
+132,0,0,,Maybe later.,That's fine for...  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,0,0,"SetPose(""Duck"")"
+132,0,0,,Yes!  Let's go|for a smoke.,Perfect!  Let me...  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,1,0,"SetPose(""Duck"")"
+140,0,0,,I'm here to kick|your fucking ass.,Oh yeah?  Let's go outside|and I will break your bones.,141,-1,1,"SetPose(""Angry"")"
+140,0,0,,What's your problem?,You're my fucking problem!|Let's go out and I will crush you.,141,0,0,
+140,0,0,,Are you still|angry at me?,Fuck yeah I'm still angry!|Let's go out and I will crush you.,141,0,-1,
+140,0,0,,Can we talk?,(She stares at you.)|What do you want?,142,0,0,
+140,0,0,,Calm down girl.,(She stares at you.)|What do you want?,142,0,1,
+140,0,0,,I came to make peace|and offer you a beer.,(She takes the beer and calms down.)|Alright.  Tell me what you want.,142,1,0,"SetPose("""")"
+141,0,0,,Wait!  This is|going too far.,Too late sucker...  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,0,-1,"SetPose(""Duck"")"
+141,0,0,,How about some|arm wrestling?,That could work...  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,0,0,"SetPose(""Duck"")"
+141,0,0,,Let's fight|right here!,You got it girl!  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,0,1,"SetPose(""Duck"")"
+142,0,0,,Maybe we could help|each other in school.,Maybe we could...  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,1,0,"SetPose(""Duck"")"
+142,0,0,,I need protection.,It will cost ya...  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,0,-1,"SetPose(""Duck"")"
+142,0,0,,I want your advice|on something.,Ask away sucker...  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,0,0,"SetPose(""Duck"")"
+150,0,0,,Thanks my friend!|So how are you?,I'm not drunk.  I'm not great.,152,1,0,
+150,0,0,,Are you getting|drunk here?,"Yep, slowly but surely.",152,0,0,
+150,0,0,,How's the beer?,"Pretty shitty, but it's cheap.|Perfect to get drunk.",152,0,0,
+150,0,0,,So you drink alone?,Why do you care?  I can|get drunk any way I want.,152,-1,1,
+150,0,0,,You look cute|in these shorts.,"Thanks, you're also very pretty.",151,1,0,
+150,0,0,,Hey sexy!|Nice legs.,Well thank you.|You look great also.,151,0,1,
+150,0,0,,I will buy|the beer.,Good girl!  (She laughs.)|It's time to get drunk.,152,0,-1,
+151,0,0,,(Blush.)  You really|think I'm pretty?,Sure you do.  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,0,-1,"SetPose(""Duck"")"
+151,0,0,,"Yep, I'm the|cutest around.",What?  You're not...  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,-1,0,"SetPose(""Duck"")"
+151,0,0,,We will have a|good evening.,"Yeah, it should be...  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.)",200,0,0,"SetPose(""Duck"")"
+152,0,0,,You should not get|wasted all the time.,Are you my mom?  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,0,1,"SetPose(""Duck"")"
+152,0,0,,Binge drinking is|dangerous for you.,You're a loser.  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,-1,0,"SetPose(""Duck"")"
+152,0,0,,I'll drink to that!,Cheers!  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,1,0,"SetPose(""Duck"")"
+152,0,0,,That's a way to|spend an evening.,The best way.  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,0,0,"SetPose(""Duck"")"
+160,0,0,,Indeed!  I can't|believe it either.,(She nods quickly.)  Mildred must|be pissed at your right now.,161,0,-1,
+160,0,0,,Get used to it.,(She nods politely.)  Mildred must|be pissed at your right now.,161,0,1,
+160,0,0,,Did you had fun?,(She nods happily.)  Mildred must|be pissed at your right now.,161,0,0,
+161,0,8,,Mildred is my|bitch now.,That is fucking awesome!|We need more girls like you.,162,1,1,
+161,0,0,,Don't worry|about her.,"I fucking don't worry for her.|Shit, we need more girls like you.",162,0,0,
+161,0,0,,I don't care|about Mildred.,"Yeah, you cares about the teachers?|Hell we need more girls like you.",162,1,0,
+161,0,0,,Don't get me in|trouble with her.,"You misunderstood what I meant.|Actually, we need more girls like you.",162,-1,0,
+162,0,0,,And we need|pretty girls like you.,That's so nice of...  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,1,0,"SetPose(""Duck"")"
+162,0,0,,And less girls|like you.,What does that...  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,-1,0,"SetPose(""Duck"")"
+162,0,0,,Maybe this went|a little too far.,Don't talk like that.  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,0,-1,"SetPose(""Duck"")"
+162,0,0,,"Yep, I'll bring some|leadership in school.",That's great news!  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,0,1,"SetPose(""Duck"")"
+162,0,0,,Thanks!,Another thing...  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,0,0,"SetPose(""Duck"")"
+170,0,0,,Touch me and|you'll die.,Oh yeah?  Let's go outside|and I will break your bones.,141,-1,1,
+170,0,0,,What's your problem?,You're my fucking problem!|Let's go out and I will crush you.,141,0,0,
+170,0,0,,Are you still|angry at me?,Fuck yeah I'm still angry!|Let's go out and I will crush you.,141,0,-1,
+170,0,0,,Can we talk?,(She points at you.)|What do you want?,142,0,0,"SetPose(""Point"")"
+170,0,0,,Calm down girl.,(She stares at you.)|What do you want?,142,0,1,"SetPose("""")"
+170,0,0,,I came to make peace|and offer you a beer.,(She takes the beer and calms down.)|Alright.  Tell me what you want.,142,1,0,"SetPose("""")"
+180,0,0,,Me?  Never!|(Wink at her.),Ha!  That's a good one.|So what do you want?,190,1,0,
+180,0,0,,I try not to|get caught.,Good luck with that.|So what do you want?,190,0,0,
+180,0,0,,"Yep, I'm known|to cause trouble.",There's nothing wrong with that.|So what do you want now?,190,0,1,
+180,0,0,,"No, I've changed|my attitude.",That's fucking lame.|Well what do you want?,190,0,-1,
+180,0,0,,"You're the trouble|in school, not me.","(She gives you an angry look.)|Fuck that, what do you want?",190,-1,0,
+190,0,0,,I want to share|a drink with you.,That's perfectly fine with me.|So how was your first day?,191,1,0,
+190,0,0,HasSeduction,I want to see|your pretty eyes.,(She blushes and bows her head.)|So did you enjoy your first day?,191,1,1,"SetPose(""Shy"")"
+190,0,0,,I want to chat.,Alright.  So how was your first day?,191,0,0,
+190,0,0,,I want to pay|you a drink.,Pay up girl!  (She laughs.)|So how was your first day?,191,1,-1,
+190,0,0,,I want some|of your weed.,Calm down.  We'll go smoke later.|So how was your first day?,191,0,1,
+190,0,0,,I want to|kick your ass.,Oh yeah?  Let's go outside|and I will break your bones.,141,-1,1,"SetPose(""Angry"")"
+191,0,0,,It was awesome!|I love the teachers.,(She points at you.)  You're a loser.|At least do you know how to party?,192,-1,-1,"SetPose(""Point"")"
+191,0,0,,It could have|been worse.,Yep!  So you want to party here?,192,0,0,
+191,0,0,,I was punished so|it's a good day.,You like being punished?  You're stange.|At least do you know how to party?,192,1,-1,
+191,0,0,,Pretty good I guess.|I caused some trouble.,That's the fucking spirit!|So you want to party here?,192,0,1,
+191,0,0,,This school is shit.,Hell yeah!  So you want to party here?,192,1,0,
+191,0,0,,The education level|seems adequate.,What kind of language is that?|At least do you know how to party?,192,-1,0,
+192,0,0,,I setup parties.,That's pretty good.  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,0,1,"SetPose(""Duck"")"
+192,0,0,,I'm ok with parties.,If the beer is cheap...  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,0,0,"SetPose(""Duck"")"
+192,0,0,,I'm a party animal!,Rock on!  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,1,0,"SetPose(""Duck"")"
+192,0,0,,I usually try to|avoid parties.,That's pretty lame.  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,0,-1,"SetPose(""Duck"")"
+192,0,0,,I only do parties|with close friends.,I can understand...  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,1,-1,"SetPose(""Duck"")"
+200,0,0,,What's going on?,"Shhhh.  Keep quiet, she will see me.",201,0,0,
+200,0,0,,Why are you|scared girl?,Shut up!  She will see me.,201,0,1,
+200,0,0,,Someone|has a gun?,Are you insane?  Now keep|quiet or she will see me.,201,0,-1,
+200,0,0,,(Look around.),(You look around but there's nothing unusual.|Sidney is quiet and keeps on ducking.),200,0,0,
+201,0,0,,You get scared|pretty easily.,I'm not scared!  I simply|don't want to see my pusher.,202,-1,1,
+201,0,0,,Whom are you|talking about?,My pusher is here.|I don't want to see her.,202,0,0,
+201,0,0,,See whom?  I hope|there's no teacher here.,There's no teacher but my pusher|is here.  I don't want to meet her.,202,0,-1,
+201,0,0,,You're safe with|me my friend.,Thanks.  My pusher is here.|I don't want to meet her.,202,1,0,
+201,0,0,,If you're in trouble|I'm not helping you.,Shut up!  My pusher is here.|I don't want to meet her.,202,-1,0,
+202,0,0,,Maybe I can help.|You owe her money?,"Yeah, it's not that much.  But she|won't sell to me anymore if I don't pay.",203,1,0,
+202,0,0,,So it's about money?,"Yeah, it's not that much.  But she|won't sell to me anymore if I don't pay.",203,0,0,
+202,0,0,,You have drug debts?|You're such a loser.,Fuck you!  It's not that much.  But she|won't sell to me anymore if I don't pay.,203,-1,0,
+203,0,0,,She's dangerous?,Not really.  But she has the best|weed around and I still want some.,203,0,0,
+203,0,0,,So what will|you do now?,I'll duck until she leaves.,203,0,0,
+203,0,0,,I could go|talk with her.,You would do that?|That would be great.,204,0,0,
+203,0,0,,I will fix this|situation for you.,Thanks COMMON_PLAYERNAME.|That would be awesome.,204,0,0,
+203,0,0,,You're hopeless.|(Leave Sidney.),You leave Sidney with her problems.,0,-1,0,SidneyEnd()
+203,0,0,,We can hide|at my place.,It's too risky to get out.|She might see me run.,203,0,0,
+203,10,0,,Sweetie.  Together|we can run for it..,Very well!  I'm ready when you are.,205,1,0,
+203,0,10,,"When I say ""go"".|You run with me.",Yes Miss!  I'm ready when you are.,205,0,1,
+203,1,-10,,Miss Sidney.  I will|cover your escape.,Ok girl!  I'm ready when you are.,205,0,-1,
+204,0,0,,Stay here Sidney.|(Meet the pusher.),"(You walk and meet Sidney's pusher.)|Hey there, do you need something?",210,1,0,"SetActor("""")"
+204,0,0,,It might not|be a good idea.,"Yeah, keep quiet and she'll go away.",203,0,0,
+205,0,0,,(Run with Sidney.),(You both run away and head back to your|dorm while Sidney tries to catch her breath.),300,0,0,"LeaveWithSidney(""Exhausted"")"
+210,0,0,,"Yes, I'm here to|talk about Sidney.",What's going on with her?,211,0,0,
+210,0,0,,You know Sidney?,Yes.  What's going on with her?,211,0,0,
+210,0,0,,I'm here for Sidney.,Ok.  What's going on with her?,211,0,0,
+211,0,0,,She owe you money?,Yes she does.  And she was|supposed to pay me last week.,212,0,0,
+211,0,0,,I've heard she has a|special dept with you.,Yes she does.  And she was|supposed to pay me last week.,212,0,0,
+212,0,0,,I came here to|settle her dept.,(She gives you a curious look.)|So you will pay me now?,213,0,0,
+212,0,0,!SidneyBelted,I know a trick|to make her pay.,Great!  And what's your trick?,216,0,0,
+212,0,0,,Forget the dept or|I'll break your legs.,(She gasps.)  Fine!  The dept is erased.  But tell|her she'll never get anything from me again.,219,0,0,"GameLog(""DebtIntimidate"")"
+213,0,0,,I'll give you half now.|(Give her half the dept.),Alright.  But tell her she needs|to pay the balance next week.,219,0,0,"GameLog(""DebtPayHalf"")"
+213,0,0,,I'll pay everything now.|(Give her the full dept.),(She takes the money and sighs.)|Why are you so kind with her?,214,0,0,"GameLog(""DebtPayFull"")"
+213,0,0,,I'll pay you double.|(Give her double the dept.),(She takes the money and smiles.)|Why are you so kind with her?,214,0,0,"GameLog(""DebtPayDouble"")"
+213,0,0,,No.  You forget the debt|and I won't beat you up.,(She gasps.)  Fine!  The dept is erased.  But tell|her she'll never get anything from me again.,219,0,0,"GameLog(""DebtIntimidate"")"
+214,0,0,,She's my submissive.,Keep her out of trouble then.|(She gives you a chasity belt.),215,0,0,GetChastityBelt()
+214,0,0,,She's my bitch.,Keep her out of trouble then.|(She gives you a chasity belt.),215,0,0,GetChastityBelt()
+214,0,0,,She's my Mistress.,Tell her she's very lucky.,219,0,0,
+214,0,0,,She's my good friend.,Tell her she has a wonderful friend.,219,0,0,
+214,0,0,,She's my girlfriend.,Tell her she's very lucky.,219,0,0,
+214,0,0,,That's how I am.|(Leave her.),(You walk back to Sidney with a grin.)|What happened?  What did she say?,220,0,0,"SetActor(""Sidney"")"
+214,0,0,,Never mind.|(Leave her.),(You walk back to Sidney with a grin.)|What happened?  What did she say?,220,0,0,"SetActor(""Sidney"")"
+215,0,0,,Thanks!|(Leave her.),(You walk back to Sidney with a grin.)|What happened?  What did she say?,220,0,0,"SetActor(""Sidney"")"
+216,0,0,,We can beat her up.,That wouldn't be good for business.,216,0,0,
+216,0,0,,We can steal|from her room.,That's not my style.,216,0,0,
+216,0,0,,I can lock her in a|belt until she pays.,In a chastity belt?  That's a great idea!|I'm sure she would pay very quickly.,217,0,0,
+216,0,0,,I'll lock her ass|in a chastity belt.,That's a great idea Miss!|I'm sure she would pay up.,217,0,0,
+217,0,0,,Exactly!  You'll|be paid soon.,Great!  Tell her to pay|up before going insane.,219,0,0,"GameLog(""DebtChastityBelt"")"
+217,0,0,,Do you have|such a belt?,(She blushes.)  I do.  Take it.|(She gives you a chastity belt.),215,0,0,GetChastityBelt()
+219,0,0,,I will.|(Leave her.),(You walk back to Sidney with a grin.)|What happened?  What did she say?,220,0,0,"SetActor(""Sidney"")"
+219,0,0,,Yes Miss.|(Leave her.),(You walk back to Sidney with a grin.)|What happened?  What did she say?,220,0,0,"SetActor(""Sidney"")"
+219,0,0,,Get lost.|(Leave her.),(You walk back to Sidney with a grin.)|What happened?  What did she say?,220,0,0,"SetActor(""Sidney"")"
+220,0,0,,Your dept is erased.,Fuck yeah!|I owe you big.,222,2,0,"SetPose("""")"
+220,0,0,,You can pay|her next week.,That's a relief!|I owe you big.,222,1,0,"SetPose("""")"
+220,0,0,,She won't sell|you weed anymore.,No way!  You idiot!  You blew it!,221,-2,0,"SetPose(""Angry"")"
+221,0,0,,I've tried my best.,And you failed like a fucking loser!|(She walks away from the pub in anger.),0,0,0,SidneyEnd()
+221,0,0,,I'm sorry Sidney.,You're fucking pathetic!  Hopeless.|(She walks away from the pub in anger.),0,0,-1,SidneyEnd()
+221,0,0,,Stoping weed will|be good for you.,Fuck you COMMON_PLAYERNAME!|(She walks away from the pub in anger.),0,-1,1,SidneyEnd()
+222,0,0,ChastityBeltDeal,There's something|special in the deal.,Something special?|What the hell?,223,0,1,"SetPose(""Shy"")"
+222,0,0,ChastityBeltDeal,You'll need to wear|something though.,Wear something?|What the hell?,223,0,1,"SetPose(""Shy"")"
+222,0,0,,Don't mention it.,You're so fucking generous.|So what will you do tonight?,224,1,0,
+222,0,0,,You can repay|me somehow.,Fair enough.  So what will you do tonight?,224,0,0,
+222,0,0,,You'll pay me double.,Damn it!  I knew there was a catch.|Fine!  (She walks away in anger.),0,-2,1,SidneyEnd()
+223,0,0,,Come to my room.|I'll explain everything.,Ok.  Do we go right now?,225,0,0,
+223,0,0,,Don't worry|about it now.,Alright.  So what will you do tonight?,224,0,0,
+224,0,0,,I'll relax here with you.|(Spend time with Sidney.),(You spend some time chatting|and drinking with Sidney.),224,0,0,WaitWithSidney()
+224,0,0,,Would you like to|see my dorm room?,"And leave the pub?|No, maybe later.",224,0,0,
+224,10,0,,"Cutie, do you want|to see my place?",(She blushes.)  Well sure.|Do we go right now?,225,1,0,"SetPose(""Shy"")"
+224,0,10,,Get up!  We're|going to my room.,(She steps up.)  Alright.|We are leaving now?,225,0,1,"SetPose(""Shy"")"
+224,1,-10,,Miss Sidney.  I have|food for you at my dorm.,Food?  Let's move then!|Are you ready to go?,225,0,-1,"SetPose(""Point"")"
+224,0,0,,I must go.  See ya!|(Back to your dorm.),,224,0,0,Leave()
+225,0,0,,Let's go Sidney!|(Back to your dorm.),(You both walk back to your dorm.)|Nice spot.  You don't mind having me here?,320,0,0,"LeaveWithSidney("""")"
+300,0,0,,We made it!,"Yeah, I hope she didn't|see me run away.",310,0,0,
+300,0,0,,That was thrilling.,Fuck yeah!  I hope she|didn't see me run away.,310,1,0,
+300,0,0,,You don't run|fast enough.,(She breathes heavily and coughs.)|As long as she didn't see me.,310,-1,0,
+300,0,0,,You're a pretty|good runner.,"Don't do sarcasms, I hate that.|Well as long as she didn't see me.",310,-1,0,
+310,0,0,,You worry too much girl.|Welcome to my place.,You have a nice spot.  You don't|mind if I hide here for a few hours?,320,0,1,
+310,0,0,,"Yeah, I'm also nervous.|Well this is my place.",You have a nice spot.  You don't|mind if I hide here for a few hours?,320,0,-1,
+310,0,0,,I'm sure we'll be fine.|Welcome to my place.,You have a nice spot.  You don't|mind if I hide here for a few hours?,320,0,0,
+320,0,0,,Don't make a mess.,(She frowns.)  I won't be there for|long anyway.  I'll leave around twenty.,330,-1,0,
+320,0,0,,You can spend|the night here.,"That won't be needed.  I won't be|here for long, I'll leave around twenty.",330,0,0,
+320,0,0,,Make yourself at|home my friend.,Thanks a lot!  I won't be there for|too long.  I'll leave around twenty.,330,1,0,
+320,0,0,,Mi casa es su casa.,"I don't speak Japanese.  I won't be|here for long, I'll leave around twenty.",330,0,0,
+330,0,0,,Very well Sidney.|(Back to your room.),,330,0,0,BackToDorm()

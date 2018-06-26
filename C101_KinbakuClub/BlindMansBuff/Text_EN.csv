@@ -22,7 +22,7 @@ Forwards2,"(You glance a chair as you walk forwards. To you|left someone exclaim
 Forwards3,(There is nothing there as you walk forwards.)
 Backwards0,"(Creeping steadily backwards, you find nothing there.)"
 Backwards1,"(Hearing a sound, you spin round quickly,|but find only empty space.)"
-Backwards2,"(A table gets in your way, creaking loudly as you feel your way around it.)"
+Backwards2,"(A table gets in your way, creaking|loudly as you feel your way around it.)"
 Backwards3,"Shh, she'll hear us.  (Was that a couple of|girls to you left or more in front of you?)"
 Lost0,(You tumble over a chair and fall down.)|Another one bites the dust. Give her a penalty.
 Lost1,"(You are shoved backwards and over another person|crouching behind you.)  She's down, that's a penalty."

@@ -1,0 +1,5 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,La chica de la mochila está distraida.|Está cerrada con correas.,BagClosed.jpg
+10,0,0,,La mochila está abierta|dentro hay unas cuerdas.,BagOpen.jpg
+20,0,0,,La mochila está abierta.|No queda nada interesante dentro.,BagOpen.jpg
+30,0,0,,La mochila está cerrada y segura.|Tienes que hablar con su dueña.,BagClosed.jpg

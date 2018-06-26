@@ -3,11 +3,13 @@ var PlayerInventoryName = 0;
 var PlayerInventoryQuantity = 1;
 var PlayerLockedInventory = [];
 var PlayerSavedInventory = [];
+var PlayerInventoryTab = 0;
 
 // Set up the player clothes or costume
 function PlayerClothes(NewCloth) {
 	if ((NewCloth != "Clothed") && (NewCloth != "Underwear") && (NewCloth != "Naked")) Common_PlayerCostume = NewCloth;
 	else Common_PlayerCostume = "";	
+	Common_PlayerCloth = NewCloth;
 	Common_PlayerUnderwear = (NewCloth == "Underwear");
 	Common_PlayerNaked = (NewCloth == "Naked");
 	Common_PlayerClothed = (!Common_PlayerUnderwear && !Common_PlayerNaked);
@@ -45,7 +47,7 @@ function PlayerLockInventory(NewInventory) {
 	LoadRestrainStatus();
 	
 	// If there's rope/armbinder and a costume, we strip the player
-	if (((NewInventory == "Rope") || (NewInventory == "Armbinder")) && (Common_PlayerCostume != "")) PlayerClothes("Underwear");
+	if (((NewInventory == "Rope") || (NewInventory == "Armbinder")) && (Common_PlayerCostume != "") && (Common_PlayerCostume != "BlackDress") && (Common_PlayerCostume != "WhiteLingerie") && (Common_PlayerCostume != "RedBikini")) PlayerClothes("Underwear");
 
 }
 
@@ -91,10 +93,12 @@ function PlayerAddInventory(NewInventory, NewQuantity) {
 	for (var I = 0; I < PlayerInventory.length; I++)
 		if (NewInventory == PlayerInventory[I][PlayerInventoryName]) {
 			PlayerInventory[I][PlayerInventoryQuantity] = PlayerInventory[I][PlayerInventoryQuantity] + NewQuantity;
+			if (PlayerInventory[I][PlayerInventoryQuantity] > 99) PlayerInventory[I][PlayerInventoryQuantity] = 99;
 			return;
 		}
 		
 	// If not, we create the new inventory data
+	if (NewQuantity > 99) NewQuantity = 99;
 	PlayerInventory[PlayerInventory.length] = [NewInventory, NewQuantity];
 	
 }
@@ -139,9 +143,9 @@ function PlayerHasInventory(QueryInventory) {
 	
 }
 
-// Restrains the player randomly from her inventory
-function PlayerRandomBondage() {
-	
+// Pick a random restrain and applies it on the player
+function PlayerRandomRestrain() {
+
 	// Selects the restrain type
 	var R = "";
 	if (!Common_PlayerRestrained) {
@@ -153,6 +157,14 @@ function PlayerRandomBondage() {
 		if (RT.length > 0) R = RT[Math.floor(Math.random() * RT.length)];
 	}
 
+	// Applies it on the player
+	if (R != "") { PlayerRemoveInventory(R, 1); PlayerLockInventory(R); }
+
+}
+
+// Pick a random gag and applies it on the player
+function PlayerRandomGag() {
+
 	// Selects the gag type
 	var G = "";
 	if (!Common_PlayerGagged) {
@@ -163,10 +175,15 @@ function PlayerRandomBondage() {
 		if (GT.length > 0) G = GT[Math.floor(Math.random() * GT.length)];
 	}
 
-	// Applies them on the player
-	if (R != "") { PlayerRemoveInventory(R, 1); PlayerLockInventory(R); }
+	// Applies it on the player
 	if (G != "") { PlayerRemoveInventory(G, 1); PlayerLockInventory(G); }
+	
+}
 
+// Restrains the player randomly from her own inventory
+function PlayerRandomBondage() {
+	PlayerRandomRestrain();
+	PlayerRandomGag();
 }
 
 // Release the player from bondage and restore it's inventory
@@ -216,18 +233,27 @@ function GetClickedInventory() {
 		// Check in the regular inventory
 		var I;
 		if (Inv == "")
-			for (I = 0; I < PlayerInventory.length; I++)	
-				if ((MouseX >= 1 + (I + 1) * 75) && (MouseX <= 74 + (I + 1) * 75))
-					Inv = PlayerInventory[I][PlayerInventoryName];
+			for (I = 0; I < PlayerInventory.length; I++)
+				if ((MouseX >= 1 + (I + 1 - (PlayerInventoryTab * 11)) * 75) && (MouseX <= 74 + (I + 1 - (PlayerInventoryTab * 11)) * 75)) {
+					if (MouseX < 900) Inv = PlayerInventory[I][PlayerInventoryName];
+					else PlayerInventoryTab = 1;
+				}
 			
 		// Check in the locked inventory
 		if (Inv == "")
 			for (var L = 0; L < PlayerLockedInventory.length; L++)	
 				if (!PlayerHasInventory(PlayerLockedInventory[L])) {
-					if ((MouseX >= 1 + (I + 1) * 75) && (MouseX <= 74 + (I + 1) * 75))
-						Inv = "Locked_" + PlayerLockedInventory[L];
+					if ((MouseX >= 1 + (I + 1 - (PlayerInventoryTab * 11)) * 75) && (MouseX <= 74 + (I + 1 - (PlayerInventoryTab * 11)) * 75)) {
+						if (MouseX < 900) Inv = "Locked_" + PlayerLockedInventory[L];
+						else PlayerInventoryTab = 1;
+					}
 					I++;
 				}
+
+		// If we must go back to the first tab (on the second, after the first item)
+		if ((Inv == "") && (PlayerInventoryTab > 0))
+			if ((MouseX >= 1 + (I + 1 - (PlayerInventoryTab * 11)) * 75) && (MouseX <= 74 + (I + 1 - (PlayerInventoryTab * 11)) * 75))
+				PlayerInventoryTab = 0;
 
 	}
 

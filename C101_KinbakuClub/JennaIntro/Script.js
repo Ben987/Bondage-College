@@ -1,6 +1,6 @@
 var C101_KinbakuClub_JennaIntro_CurrentStage = 5;
-var C101_KinbakuClub_JennaIntro_LeaveTime = 18.25;
-var C101_KinbakuClub_JennaIntro_TransitionTime = 18;
+var C101_KinbakuClub_JennaIntro_LeaveTime = 18.00;
+var C101_KinbakuClub_JennaIntro_TransitionTime = 17.45;
 var C101_KinbakuClub_JennaIntro_TimerOutcome = "Outro"
 var C101_KinbakuClub_JennaIntro_IntroText = "";
 var C101_KinbakuClub_JennaIntro_LeaveIcon = "";
@@ -22,12 +22,12 @@ function C101_KinbakuClub_JennaIntro_Load() {
 
 	// Previous club experiance
 	if (C101_KinbakuClub_JennaIntro_FirstLoad) {
-		if (Common_ClubStatus == "ClubMentioned") C101_KinbakuClub_JennaIntro_Natalie = true;
-		if (Common_ClubStatus == "ClubLunchVisited") {
-		C101_KinbakuClub_JennaIntro_CurrentStage = 0;
-		C101_KinbakuClub_JennaIntro_NotAsked = true;
-		C101_KinbakuClub_JennaIntro_Concerned = true;
-		C101_KinbakuClub_JennaIntro_Chloe = true;
+		if (GameLogQuery("", "", "KinbakuClubInfo")) C101_KinbakuClub_JennaIntro_Natalie = true;
+		if (GameLogQuery("C007_LunchBreak", "Natalie", "Lunch")) {
+			C101_KinbakuClub_JennaIntro_CurrentStage = 0;
+			C101_KinbakuClub_JennaIntro_NotAsked = true;
+			C101_KinbakuClub_JennaIntro_Concerned = true;
+			C101_KinbakuClub_JennaIntro_Chloe = true;
 		}
 		if (GameLogQuery("C007_LunchBreak", "Natalie", "Stranded")) C101_KinbakuClub_JennaIntro_CurrentStage = 100;
 		C101_KinbakuClub_JennaIntro_FirstLoad = false;
@@ -80,6 +80,7 @@ function C101_KinbakuClub_JennaIntro_ShortCut() {
 	PlayerAddSkill("Sports", 1);
 	PlayerAddSkill("Seduction", 1);
 	C101_KinbakuClub_Erica_Kidnapper = true;
+	C101_KinbakuClub_Slaves_ReadyForSlaves = true;
 }
 
 // Chapter 101 - Player skips club explanation

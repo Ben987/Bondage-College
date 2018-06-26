@@ -32,7 +32,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 100,0,0,!TennisVictory,Tu as une visière.|J'avais le soleil en face.,Ne cherche pas d'excuse.|J'ai gagné loyalement la partie.,105,-1,0,
 100,0,0,!TennisVictory,Tu es bien trop douée|par rapport à moi.,"Allez, souris et commence à t'entraîner davantage !|La prochaine fois, tu gagneras.",105,0,-1,
 100,0,0,!TennisVictory,C'était sympa|comme match.,Oui ! Il faut qu'on en fasse un autre bientôt.|Tu pourrais gagner la prochaine fois.,105,0,0,
-105,0,0,,"Oui, Madame. Et je vous|obéirai durant le déjeuner.",M'obéir ? Tu as l'air si docile.|Je vais profiter de mon repas gratuit, ça c'est sûr.,110,0,-1,
+105,0,0,,"Oui, Madame. Et je vous|obéirai durant le déjeuner.","M'obéir ? Tu as l'air si docile.|Je vais profiter de mon repas gratuit, ça c'est sûr.",110,0,-1,
 105,0,0,,Tu te souviens des|conditions de notre partie ?,"(Elle rit.) Oui, tu m'obéiras le temps du déjeuner.|Et je vais bien évidemment profiter de ce repas gratuit.",110,0,0,
 105,0,0,,Je serai ton esclave|jusqu'à la fin du déjeuner.,"Mon esclave ? Ça sonne si mal.|Mais, je vais profiter de mon repas gratuit.",110,-1,-1,
 110,0,0,,Qu'est-ce que|tu vas prendre ?,"Je ne sais pas encore, quelque chose de sain.|Suis-tu, toi aussi un régime alimentaire ?",113,0,0,

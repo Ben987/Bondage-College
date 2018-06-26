@@ -22,11 +22,13 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 40,0,0,,Kidnapping isn't my thing.,You haven't even tried it yet. ,50,-1,0,
 40,0,0,,Well I do have|my eye on one girl.,"Hee-hee, I bet she won't know what's hit her.",50,1,0,
 50,0,0,,OK I'll give|kidnapping a try.,"I can't hold many more slaves here, but Jenna left a|bag of manacle sets by the other door you could use.",55,1,0,
-50,0,0,,You're mine.|(Try kidnapping Erica.),"Nice try, but you're not getting me without a fight.",60,1,0,Fight()
+50,0,0,,You're mine.|(Try kidnapping Erica.),"Nice try, but you're not getting me without a fight.",60,-1,0,Fight()
 50,0,0,,(Turn and leave.),"(She snatches you from behind.)  You should never|turn your back on a slaver, foolish damsel.",150,0,0,NoLeave()
 55,0,0,,What does she|have manacles for?,"Jenna is fair, but very firm on club discipline.|Be careful, I think Jenna has the keys for them with her.",60,0,0,TryKidnapping()
 55,0,0,,How many manacles|are there?,"I don't know, quite a few I think. I think Jenna still has|the keys, so anyone put in them will be stuck there.",60,0,0,TryKidnapping()
-60,0,0,,You are my slave.|(Try kidnapping Erica.),"Nice try, but you're not getting me without a fight.",60,1,0,Fight()
+60,0,0,,Who should I|try kidnapping?,I'll let you work that out for yourself.|I need to get back to choreographing a slave.,60,0,0,
+60,0,0,,(Turn and leave.),"(She snatches you from behind.)  You should never|turn your back on a slaver, foolish damsel.",150,0,0,NoLeave()
+60,0,0,,You are my slave.|(Try kidnapping Erica.),"Nice try, but you're not getting me without a fight.",60,-1,0,Fight()
 100,0,0,,(Try to get out of there.),(She grabs you and fastens the collar around your neck|before you can get away.)  You're mine now.,110,0,0,CollarLocked()
 100,0,0,PlayerNotBound,(Fight here off.),Wow you're a feisty one. Come back when you're|ready for a collar and chain.,90,0,0,ResistedSlavery()
 100,0,0,PlayerNotGagged,"No, mess about|with someone else.","Oh, be like that. There is no need to be|so snobbish about a bit of role play.",90,0,0,ResistedSlavery()
@@ -97,7 +99,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 300,0,0,,You can use a safe|word at any time.,Screw that shit. Let me go right now.|(You had better tie her before she can escape.),310,0,0,GetCollar()
 310,0,0,,(Let her go.),(Are you really sure you want to do that?),315,0,0,
 310,0,0,EricaGagged,(Ungag her.),Let me go right now or you will|only making it worse for yourself. ,310,0,0,EricaUngag()
-310,0,0,EricaBlindfolded,(Remove the|Blindfold.),Removing the blindfold reveals|Erica still staring at you.),310,0,0,EricaUnBlindfold()
+310,0,0,EricaBlindfolded,(Remove the|Blindfold.),(Removing the blindfold reveals|Erica still staring at you.),310,0,0,EricaUnBlindfold()
 310,0,0,EricaTied,(Masturbate her.),"(Erica scowls,|trying to hold her composure.)",310,0,0,EricaMasturbate()
 310,0,0,EricaTied,(Spank her.),(You take each breast in tern and spank them.|Erica grunts pain.),310,0,0,EricaSpanked()
 310,0,0,EricaTied,(Tickle her.),"(You try tickling Erica repeatedly,|but she doesn't seem to be ticklish.)",310,0,0,
@@ -120,3 +122,8 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 340,0,0,,(Inspect her hood.),"(A leather hood covers her head. It is laced on,|but the knot is concealed by the collar.)",340,0,0,
 340,0,0,,(Try pleasuring her.),"(Her belt prevents you touching her, but she groans|irritably when it moves against her.) ",340,0,0,SlavePleasure()
 340,0,0,,(Leave this slave.),(You leave her to her isolation.|Which slave do you play with now?),320,0,0,
+400,0,0,,(Turn and leave.),(Erica suddenly grabs and twists your arm up|behind you.)  I've had enough of you.,410,0,0,
+410,0,0,,(Submit to her.),(Erica gives your arm another twists to remind you|who's boss and marches you across the room.),420,0,-2,
+410,0,0,,(Resist her.),"(Erica twists your arm hard until you cry for mercy,|then forces you across the club room.)",420,-1,-1,
+420,0,0,,(Submit to her.),(You don't struggle and let Erica remove|your uniform and lock you in manacles.),420,1,-1,ManacledSlave()
+420,0,0,,(Resist her.),Cut to Bad End.,420,0,0,BadEnd()

@@ -1,4 +1,11 @@
 Tag,Content
+WarnKidnapper,"(As you grab her Amelia stops you.)|Kidnapping one of them is enough, the other stays here."
+StopKidnapper,That's enough.|You can have a taste of your own medicine.
+StoppingYou,"Fine, I will.|(She tightens her grip and forces you across the room.)"
+ForceTied,Stop trying to argue. It doesn't suit you.|(Amelia forces you to strip and ties you up.)
+YouTry,"I'm not trying that again,|but I think she might yield to you now."
+WouldYourSisterShake,(She shakes her head.)
+WouldYourSisterNod,(She nods her head.)
 Collar,
 Crop,
 Rope,

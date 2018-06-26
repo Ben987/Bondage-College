@@ -62,7 +62,7 @@ function C008_DramaClass_SarahIntro_Load() {
 function C008_DramaClass_SarahIntro_Run() {
 	BuildInteraction(C008_DramaClass_SarahIntro_CurrentStage);
 	if (C008_DramaClass_SarahIntro_CurrentStage != 310) DrawInteractionActor();
-	else DrawImage(document.getElementById("MainCanvas").getContext("2d"), C008_DramaClass_SarahIntro_HugImage, 600, 0);
+	else DrawImage(C008_DramaClass_SarahIntro_HugImage, 600, 0);
 }
 
 // Chapter 8 - Sarah Intro Click

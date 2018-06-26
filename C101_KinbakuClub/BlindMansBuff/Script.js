@@ -219,8 +219,13 @@ function C101_KinbakuClub_BlindMansBuff_Capture() {
 
 // Chapter 101 - BlindMansBuff - When the player looses the game
 function C101_KinbakuClub_BlindMansBuff_Lost() {
-	if (Common_PlayerNotRestrained) PlayerLockInventory("Cuffs");
-	if (Common_PlayerNotGagged) PlayerLockInventory("BallGag");
+	if (Common_PlayerNotRestrained || Common_PlayerNotGagged || (Common_PlayerRestrained && !PlayerHasLockedInventory("Cuffs")) || (Common_PlayerGagged && !PlayerHasLockedInventory("BallGag"))) {
+		PlayerReleaseBondage()
+		if (PlayerHasInventory("Cuffs")) PlayerRemoveInventory("Cuffs", 1);
+		PlayerLockInventory("Cuffs");
+		if (PlayerHasInventory("BallGag")) PlayerRemoveInventory("BallGag", 1);
+		PlayerLockInventory("BallGag");
+	}
 }
 
 // Chapter 101 - BlindMansBuff - When the player looses the game

@@ -1,0 +1,58 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,Yo sólo quería|presentarme.,"Mmmh, hola, soy Sidney.|(Se vuelve y mira fijamente a la otra chica)",10,0,0,
+0,0,0,,"Chica, ¿siempre eres tan|grosera con los extraños?","Creo que no, lo siento, soy Sidney.|(Se vuelve y mira fijamente a la otra chica)",10,0,1,
+0,0,0,,"Por favor, no te enfades|conmigo, soy nueva.","Nueva y patética, no aguantarás ni un día.|(Se vuelve y mira fijamente a la otra chica)",10,-1,-1,
+0,0,0,,"Pareces muy fuerte,|Encantada de conocerte.","¡Sí! Soy la más dura del colegio, Me llamo Sidney.|(Se vuelve y mira fijamente a la otra chica)",10,1,0,
+0,0,0,,¡Vaya actitud de mierda!,Mejor te callas si no quieres que te rompa la nariz.|(Se vuelve y mira fijamente a la otra chica),10,-2,0,
+0,0,0,AmandaInBondage,"Sip, las friquis sabrán|que aquí mandamos nosotras.","¡Joder si!  soy Sidney, encantada de conocerte.",20,2,0,
+0,0,0,AmandaInBondage,"Si no quieres acabar como|ella, obedéceme.","(Baja la mirada y permanece callada unos segundos.)|Si, Mientras castigues a esa friqui por mi está bien.",20,0,2,
+10,0,0,,¿Algo va mal?,"Si, es esa jodida morena y|su estúpida amiga  lo que está mal.",20,0,0,
+10,0,0,,¿Por qué miras así|a esa chica?,Eso a ti no te importa.,20,0,0,
+10,0,0,,¡Deja de mirarle!,¡Eh! ¡No me des órdenes!,20,-1,1,
+20,0,0,,Pareces muy enfadada.,¿Y a ti por qué te importa?,30,0,0,
+20,0,0,,Pareces odiar mucho|a esa friqui.,"¡Oh, demonios, si!  Es una puta pesada.|Algún día me vengaré.",30,1,0,
+20,0,0,,Eres realmente apasionada|. Me gusta.,¡Sip!  Ahora deja que me prepare para la clase.,40,1,0,
+20,0,0,,Tienes un verdadero|problema de actitud.,¡Cállate!|(Se da la vuelta y te ignora),40,-1,0,
+20,1,0,,¿Necesitas que te ayude a|fastidiar a esa chica?,¡Oh demonios si! Tengo cuerdas en mi mochila. |Le cogeremos después de clase.,40,1,0,
+30,0,0,,Eres realmente apasionada.| Me gusta.,¡Sip!  Ahora deja que me prepare para la clase.,40,1,0,
+30,0,0,,Tienes un verdadero|problema de actitud.,¡Cállate!|(Se da la vuelta y te ignora.),40,-1,0,
+30,1,0,,¿Necesitas que te ayude a|crearle problemas a esa chica?,¡Oh demonios si! Tengo cuerdas en mi mochila.| Le cogeremos después de clase..,40,1,0,
+40,-2,0,,¡Puta!¿Quieres pelea?,,40,-1,0,Fight()
+100,0,0,,¿Por qué llevas|cuerdas en la mochila?,Eso no te importa.|(cierra la mochila.),20,-1,0,
+100,0,0,,¿Vas de escalada|después del cole?,¡Si!  ¡Ahora dame eso!|(Cierra la mochila.),20,-1,0,
+100,0,0,,¿Estás planeando |secuestrar a alguien?,"¿mhhh, por qué lo preguntas?",110,0,-1,
+100,0,0,,¿Eres una chica traviesa|y te gusta que te aten?,¿Sabes algo de bondage?,110,0,1,
+110,0,0,,¿Qué estás planeando?|Me interesa.,Hablaremos después de clase.|(Cierra la mochila.),20,1,0,
+110,0,0,,No me interesa.,¡Bueno! No me importa.|(Cierra la mochila.),20,0,0,
+110,0,0,,¡Estó esta mal!|Se lo diré a la profesora.,,40,-2,0,Fight()
+200,0,0,BondageNotConfronted,Las cuerdas estaban|fuera de la mochila.,¡Mentirosa! Devuélveme mis cuerdas.,200,0,0,ConfrontBondage()
+200,0,0,BondageNotConfronted,"Si llevas cuerdas, significa|que quieres que te aten.",(Se ruboriza.)  ¡No!  ¡En absoluto!|¡Devuélmelas ya!.,200,0,1,ConfrontBondage()
+200,0,0,BondageNotConfronted,"Lo siento.Me encantan las|cuerdas,¿Me podrías atar?","Eres patética, pronto me lamerás las botas.|Ahora dámelas. (Coge las cuerdas.)",300,0,-2,GiveRope()
+200,0,0,,Aquí están tus cuerdas. |Escóndelas mejor.,¡Bien!  Ahora déjame sóla.|(Coge las cuerdas y se da la vuelta.),300,1,0,GiveRope()
+200,0,0,,Hablemos un poco más.,Mmmh.  Bien.|¿De qué estábamos hablando?,200,0,0,StopRope()
+200,0,2,,(Desnúdale y átale.)|(1 minuto),"(Le agarras de nuevo y le atas las muecas a la espalda.|Se resiste con uñas y dientes, pero al final se rinde.)",220,0,0,Tie()
+200,0,4,,Al final te rendirás.|(desnúdale y átale)(1 minuto),(Se quita el uniforme con dudas|y te ofrece sus muñecas para que se las ates.),220,0,0,TieSub()
+200,0,0,,"Si las quieres,|ven y pelea.",,40,-2,0,Fight()
+220,0,0,,(Dale la vuelta.),¡Joder! ¿Qué haces ahora?|(Le fuerzas a que se de la vuelta.),230,0,0,
+220,0,0,,(desátale.)|(1 minute),"(Le desatas los brazos mientras ella te insulta.|Una vez libre, te empuja con furia.)",200,0,0,Untie()
+220,0,0,,(Hazle cosquillas)|(1 minuto),¡Te dije que no tengo cosquillas!|(Te echa una mirada furiosa.),220,0,0,Tickle()
+220,1,0,,(Bésale)|(1 minuto),(Te mira perpleja después|del beso y se queda callada.),220,0,0,
+220,0,0,AmandaInBondage,(Haz que abrace a Amanda.)|(1 minuto),(Fuerza a las dos chicas a abrazarse y frotarse.)|¡Joder!  ¿Qué clase de pervertida eres?,240,-1,0,
+220,0,0,,Estas cuerdas se ajustan|genial a tu cuerpazo.,¡Oh!  Mmmmh...  Gracias... creo.,220,0,0,
+220,0,0,,"Si te libero, ¿puedo|atarte después? (1 minuto)",Parece justo.  Trato hecho.|(Le desatas y le estrechas la mano.),310,1,1,Untie()
+220,0,0,,"Si te libero, ¿Puedes|atarme luego? (1 minuto)","¡Oh, sip!  Mi venganza será dulce.|(Le desatas y le estrechas la mano.)",310,1,-2,Untie()
+230,0,0,,(Dale la vuelta),(Le das la vuelta mientras|te mira enfurecida.),220,0,0,
+230,0,0,,(Desátale)|(1 minuto),"(Le desatas mientras te insulta.|una vez libre, te empuja con rabia.)",200,0,0,Untie()
+230,0,0,,(Hazle cosquillas.)|(1 minuto),¡Dije que no tengo cosquillas!|(Te mira enfadada.),230,0,0,Tickle()
+230,0,0,,(Azótale.)|(1 minuto),(Le azotas delante del resto de las alumnas.)|¡Ja!  ¿eso es lo mejor que sabes hacer?,230,0,0,
+230,0,0,,"Mirando tus bragas,|estás disfrutando.",¡Deja de mirar ahí pervertida!,230,0,0,PantiesRemark()
+230,0,0,,"Si te libero, ¿puedo|atarte después? (1 minuto)", "Parece justo. Trato hecho.|(Le desatas y le estrechas la mano.)",310,1,1,Untie()
+230,0,0,,"Si te libero, ¿Puedes|atarme luego? (1 minuto)","¡Oh, sip!  Mi venganza será dulce.|(Le desatas y le estrechas la mano.)",310,1,-2,Untie()
+240,0,0,,(Sepárales),¡Por fin!  ¡Esto ha sido una idea estúpida!,220,0,0,
+240,0,0,,(Fuérzales a besarse.)|(1 minuto),"(Les fuerzas a besarse, Sidney parece furiosa.)|Amanda, si usas la lengua te la corto.",250,0,0,KissAmanda()
+240,0,0,,Haceis una pareja|de bondage preciosa.,(Te miran fijamente.),240,0,0,
+250,0,0,,(Separales.),¡Por fin!  ¡Esto ha sido una idea estúpida!,220,0,0,
+250,0,0,,(Para los besos.),¡Admítelo! Soy mejor que esa estúpida.|(Trata de intimidar a Amanda que mira a otro lado.),240,0,0,
+250,0,0,,¡El amor está en el aire!,¡Tu sí que vas a volar cuando me suelte.!,250,0,0,
+250,2,0,,¿Puedes besarme a mi también?,"Mmmh, claro ¿Por qué no?|(Se da la vuelta y te besa.)",250,0,0,
+300,-2,0,,¡Puta!  ¿Quieres pelea?,,40,-1,0,Fight()

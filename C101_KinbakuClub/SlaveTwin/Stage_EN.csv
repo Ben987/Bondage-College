@@ -1,0 +1,182 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,You're my slave now.,(She tries to escape in vain as you take her across|the room and lock her in a collar chained to the wall.),10,0,1,CanLeave()
+0,0,0,,We are going to|have some fun.,(She snorts and tries to resist you hopelessly.|You lock the collar on her ensuring your fun.),10,-1,0,CanLeave()
+0,0,0,,I'm her to save|you from them.,"(She calms down as you take here away, but then|struggles again as you lock the collar on her.)",10,0,0,CanLeave()
+5,0,0,,Could you|help me?,(She giggles and shakes her head.),5,0,0,HelpMe()
+5,0,0,Common_PlayerGagged,(Show her your bondage.),(She giggles and shakes her head.),5,0,0,HelpMe()
+9,0,0,,Talk to her.,,20,0,0,
+9,0,0,,Actually would|you restrain me?,"Fine, you might as well be restrained, for all the|use you are. (She uses some of your items on you.)",5,0,-1,RandomBondage()
+9,0,0,Common_PlayerGagged,(Remove your gag.),,9,0,0,RemoveYourGag()
+10,0,0,TwinGagged,(Remove her gag.),"(You remove the gag and she immediately blurts out.)|Get me out of this collar before Jenna returns, please!",10,0,0,RemoveGag()
+10,0,0,!TwinGagged,Talk to her.,"Come on, you've had some fun, can you find a way to|unlock these manacles now, before Jenna gets back.",20,0,0,LucyCheck()
+10,0,0,Blinded,(Remove her blindfold.),(You remove the blindfold.|She blinks as gets used to the light.),10,0,0,RemoveBlindfold()
+10,0,0,,(Play with her.),"(You eye her up, wondering what to do with her.)",200,0,0,
+10,0,0,TwinRestrained,(Free her arms.),(Once her arms are free she quickly|removes all the bondage she can.),10,0,0,AlmostFreed()
+10,0,0,TiedLegs,(Untie her legs.),"(You remove the rope from her legs,|allowing her to stay up more easily.)",10,0,0,UntieLegs()
+10,0,0,!SkirtRemoved,(Remove her skirt.),"(You pull down her skirt,|revealing skimpy lacy underwear.)",10,0,0,RemoveSkirt()
+10,0,0,!UniformRemoved,(Remove her uniform.),(You can not remove her uniform|with her arms in bondage.),10,0,0,RemoveUniform()
+10,0,0,!TwinRestrained,(Lock her arms|in the Manacles.),(You force her arms behind her|and lock them into the manacles.),10,0,1,ManacleArms()
+10,0,0,!Kneeling,(Lock her legs|in the Manacles.),(You make her kneel down and|lock her legs into the manacles.),10,0,0,ManacleLegs()
+10,0,0,Kneeling,(Free her Legs.),(Her legs are securely locked in the manacles.|You can't unlock them without their key.),10,0,0,
+15,0,0,,(Tie her|asymmetrically.),"(You manage to tie her up.)|Oww, why do you have to tie me up like this?",10,0,0,TieUp(1)
+15,0,0,,(Tie her elbows|together.),"(You manage to tie her up.)|Oww, why do you have to tie me up like this?",10,0,0,TieUp(2)
+15,0,0,,(Tie her arms|behind her.),(You manage to tie her up.)|I suppose this is better than how I was tied up earlier.,10,0,0,TieUp(3)
+20,0,0,,(Adjust her|bondage.),"(You eye her up, wondering what to do with her.)",10,0,0,
+20,0,0,,(Play with her.),"(You eye her up, wondering what to do with her.)",200,0,0,
+20,0,0,,Could you help|restrain me?,There isn't much I can do like this.,20,0,0,RestrainMe()
+20,0,0,Jenna,What's up between|you and Jenna?,"It's not me, it's with Heather.  She tricked Jenna last|week and rumor is Jenna still has the scars.",30,0,0,JennaDone()
+20,0,0,Compliment,You look adorable|like that.,"That doesn't mean much in a room full of girls.|Wait, why are you looking at me like that?",40,0,0,ComplimentDone()
+20,0,0,YouEnjoyIt,Are you|enjoying this?,"No, I didn't join this club to be bound and gagged.",50,0,0,YouEnjoyItDone()
+20,0,0,Underwear,"Nice underwear, the|girls must love you.",What! No. I have a boyfriend.,60,0,0,UnderwearDone()
+20,0,0,Boyfriend,So your boyfriend|is into bondage?,"Not the current one, it was a previous one who|taught me a lot of Kinbaku the hard way.",70,0,0,BoyfriendDone()
+20,0,0,TiedLegs,That bondage suits you.,Could you at least untie my legs please?|I can barely stay up like this.,20,0,0,BondageComplimentDone()
+20,0,0,!TiedLegs,That bondage suits you.,"No it doesn't, it’s embarrassing.|Could you please find a way to let me go now?",20,0,0,BondageComplimentDone()
+21,0,0,PlayerHasArmbinder,I need help with|this armbinder.,"Okay.  (She takes the armbinder, helps slide your arms|into it and securely tightens it.)  How is it?",22,0,-1,PlayerArmbinder()
+21,0,0,PlayerHasRope,Could you tie me up?,"Okay.  (You remove your uniform and she starts tying|you up.)  There you go, nice and tight.",22,0,-1,PlayerRope()
+21,0,0,,You can use any|of my items.,Okay.  (She picks some of your items|and uses them on you.)  How is that?,22,0,-1,RandomBondage()
+21,0,0,,I was just kidding.,Could you stop fooling around and help|find a way to unlock these damn manacles.,20,-1,0,NoKidding()
+22,0,0,,"Oww, that's|too tight.","Sorry, but you did ask.",5,0,-1,FurtherBondage()
+22,0,0,,This is great.,I'm glad you like it.,5,1,-1,FurtherBondage()
+22,0,0,,"Excellent, you will|make a good maid.",What! You won't keep me like this will you?,5,-1,1,FurtherBondage()
+22,0,0,,(Spin around.),(She giggles as you show off your new bondage.),5,0,0,FurtherBondage()
+22,0,0,,(Curtsey.),Maybe you should be the one chained to the|wall and be my play thing instead.,5,1,-1,FurtherBondage()
+22,0,0,,Can you release me now?,Already?  You've barely been bound 5 seconds.|You might as well try it for a bit longer.,5,0,-1,FurtherBondage()
+22,0,0,Common_PlayerGagged,@Thhng nhh,"You're welcome, I think.",5,1,0,FurtherBondage()
+22,0,0,Common_PlayerGagged,@Ghn nhh rmlmhfm|mm nhw?,Already?  You've barely been bound 5 seconds.|You might as well try it for a bit longer.,5,0,-1,FurtherBondage()
+23,0,0,,(Wait quietly.),"(She takes a vibrating egg and inserts it in your|vagina, then locks a chastity belt on you.)",24,0,0,EggAndBelt()
+23,0,0,,"Wait, do you thing|you're doing?","(She takes a vibrating egg and inserts it in your|vagina, then locks a chastity belt on you.)",24,-1,0,EggAndBelt()
+23,0,0,Common_PlayerGagged,"@Whnt, dh nhh thnng|nhh'rm dhnng?","(She takes a vibrating egg and inserts it in your|vagina, then locks a chastity belt on you.)",24,-1,0,EggAndBelt()
+24,0,0,,What did you|do that for?,Because it's about the only thing I can do now.,5,0,0,CanLeave()
+24,0,0,Common_PlayerGagged,@Whht dnd nhh|dh thht fhr?,Because it's about the only thing I can do now.,5,0,0,CanLeave()
+24,0,0,,Remove that right now.,"Sorry, that isn't so easily done.",5,0,1,CanLeave()
+24,0,0,Common_PlayerGagged,@Rmmhvm thht rnght nhw.,"Sorry, that isn't so easily done.",5,0,1,CanLeave()
+24,0,0,,(Curtsey.),Maybe you should be the one chained to the|wall and be my play thing instead.,5,1,-1,CanLeave()
+24,0,0,,Thank you mistress.,I'm not your mistress.  I'm sure there are|others though that would love you as their pet.,5,0,-1,CanLeave()
+24,0,0,Common_PlayerGagged,@Thhng nhh mnftrmff.,I'm not your mistress.  I'm sure there are|others though that would love you as their pet.,5,0,-1,CanLeave()
+24,0,0,,(Get away from her.),,5,0,0,Leave()
+30,0,0,,What did Heather do?,"We don't know, but I think Heather had Jenna|tied up with no one else about.",31,0,0,
+30,0,0,,I bet Jenna|deserved it.,"Maybe. Jenna can be very tough, but even so, to be|tied up with Heather and no one else about.",31,0,1,
+31,0,0,,So Jenna will take|it out on you?,"Most of the club can't tell us apart,|Jenna might think I'm Heather.",32,0,0,
+31,0,0,,Maybe Jenna should|punish you.,But I'm Lucy and it was Heather that did it to her.,32,-1,1,
+31,0,0,,I could tell her|it wasn't you.,"That might help, but I don't|think she will take any chances.",32,1,0,
+32,0,0,,Maybe you are heather|and you deserve it.,"No please you have got to believe me, I am Lucy.",33,-1,1,
+32,0,0,,Can you prove|you are Lucy.,"Not easily, Heather is very good at impersonating me.|She even wears the same underwear.",33,0,0,
+32,0,0,,We should|expose Heather.,"That isn't easy, she would only reveal herself when|it's too late for you to do anything about it.",33,1,0,
+33,0,0,,I'll get that key.,"Oh thank you, please hurry.",20,1,0,
+33,0,0,,I'll let Jenna|decide your fate.,"No please, you've got help me escape.",20,0,1,
+33,0,0,,Jenna won't touch|my slave.,"You don't understand.  Locked in these manacles|makes me Jenna's slave, unless you have a key.",20,-1,1,
+33,0,0,,I'll make Heather confess.,"That would be great.  Wait, you do know it's my|sister that needs to confess, not me?",20,1,1,
+40,0,0,,"Come on, you're a catch.","Well I suppose my boyfriend adores me,|but not really in bondage.",41,1,0,MentionedBoyfriend()
+40,0,0,,Can't you take|a compliment?,"If that’s a compliment, it's not very flattering|unless it came from my boyfriend.",41,0,0,MentionedBoyfriend()
+40,0,1,,Don't deny your|feelings to me.,"What, no all my feelings are for my boyfriend.",41,0,1,MentionedBoyfriend()
+40,0,0,,"It's nothing,|I... er... just....","Forget it, have a boyfriend.",20,0,-1,MentionedBoyfriend()
+41,0,0,,Don't you have any|feelings for girls?,Not those sorts of feelings.,20,0,0,
+41,0,0,,You are helpless for|me right now.,"Helpless maybe, but I don't share whatever|feelings you seem to have.",20,-1,1,
+41,0,0,,I suppose he|prefers you gagged.,No we just have a normal relationship.,20,-1,0,
+41,0,0,,He would adore|you right now.,I don't really know about that.,20,1,1,
+50,0,0,,So why did you join?,"I happen to know a bit about rope techniques,|so Jenna twisted my arm into joining.",51,0,0,
+50,0,0,,You like tying|girls up then?,"Not really, no. Jenna persuaded me to join,|to pass on some techniques I knew.",51,0,0,
+50,0,0,,You wouldn't stay|if you didn't.,"No, it's not like that.|I just come to help others with techniques.",51,0,1,
+51,0,0,,"You help do, letting|us practice on you.","I was only supposed to be telling others,|not being the model as well.",20,0,1,
+51,0,0,,You could|demonstrate on me.,"Not now. Even with my hands free,|it’s kind of awkward chained on this short leash.",52,0,-1,
+51,0,0,,Would you teach me|some new techniques?,"Yes, if you can get me out of these damn manacles.",52,1,0,
+52,0,0,,You can demonstrate|like that.,"No please, it’s really is awkward tying with some|methods if you can't move around freely.",20,0,-1,
+52,0,0,,"If I free you,|you will teach me.","Yes, anything, if you can unlock these chains now.",20,0,1,
+52,0,0,,I had better|free you then.,"Yes, then I will help you.",20,1,0,
+60,0,0,,You come to an all|girls college in them.,My boyfriend is at a co-ed college.|I like to keep his mind focused on me all day.,20,0,0,
+60,0,0,,Well I think you look|stunning in them.,"Umm, thanks. It's rather embarrassing|being exposed like this though.",20,1,1,
+60,0,0,,He must be into sluts.,"NO I'm no slut. They are sexy,|but they were meant for his eyes only.",20,-1,1,
+70,0,0,,Does your current|boyfriend tie you up?,"No, but he lets me practice Kinbaku on him from time|to time, if I wear something cute and tease him.",71,0,0,
+70,0,0,,A lot? You must|have enjoyed it.,"Not really. I did it for him,|but it got out of hand.",73,0,0,
+71,0,0,,So you do enjoy it.,"Well maybe a little, it's good to wear the trousers,|even if I'm actually wearing a skirt at the time.",20,1,0,
+71,0,0,,You could tease me|wearing something cute.,"You're not my boyfriend,|but I would bind and gag you to shut you up.",20,0,-1,
+73,0,0,,What happened?,I don't want to talk about it.,74,0,0,
+73,0,0,,Did you start enjoying|it too much?,"No, although that might have been better.|I don't want to talk about it.",74,-1,0,
+74,0,0,,"Okay, I won't|make you tell.","Thanks, so would you please find|a way to free me instead?",20,1,0,
+74,0,0,,Aww please. I'll|let you tie me up.,"No, but I might bind and gag|you just to stop you pestering me.",20,0,-1,CanTellMore()
+74,0,0,,Don't make me tease|it out of you.,"Stop that please, I really don't|want to talk about it with you.",20,-1,-1,CanTellMore()
+74,3,0,,"It's okay, you|can talk to a friend.","Sorry, we aren’t that closer friends and|really I don't what this becoming gossip.",20,1,0,CanTellMore()
+75,0,0,,"I promise,|I won't tell a sole.",Okay then. (She takes a deep breath)|Heather pretended to me and flirted with him.,76,0,0,
+75,0,0,,I won't promise anything.,Then you don't need to know anything either.,20,0,0,
+75,0,0,!TwinRestrained,I will pinky promise.,"(She laughs at you, before shaking little fingers.)|Heather pretended to me and flirted with him.",76,1,-1,
+75,0,0,,Hurry up and dish|the dirt already.,Forget it. All everyone seems to care about is gossip.,20,-1,0,
+76,0,0,,"No, that’s not on.|What did he think?","He just though she was me and I was really up for it.|He stripped her, tied her up and started undressing.",77,1,0,
+76,0,0,,I thought twins would|be used to that.,"Yes, but he though she was me and really up for it.|He stripped her, tied her up and started undressing.",77,0,0,
+76,0,0,,You should have been|with him instead.,"You can't be around someone the entire time.|He stripped Heather, tied her up and started undressing.",77,-1,0,
+77,0,0,,She wanted kinky sex|with your boyfriend?,"No, she was just fooling around, but he gagged her|with her own panties and ignored her screams.",78,0,0,
+77,0,0,,That should|server her right.,"She might be a pain, but she didn't deserve gagging|with her own panties and him ignoring real screams.",78,-1,1,
+77,0,0,,How did he|tie her up?,"He had ball tied her to expose her, if that matters?|He then pantie gagged when she started screaming.",78,-1,0,
+78,0,0,,"Oh my, he raped|your sister.",Thankfully not.|I heard the commotion and walk in just in time.,79,0,0,
+78,0,0,,Did he do that|with you as well?,"We might have tried a few things from a kinky Kama|Sutra, but never anything like that.  I walk in just in time.",79,0,1,
+78,0,0,,That sound like fun.,Maybe if that's your thing. It certainly wasn't|Heather's.  I heard the commotion and walk in just in time.,79,-1,-1,
+79,0,0,,So you dumped him.,I should have reported him as well. Heather was|clearly terrified and he though it was okay to carry on.,80,0,0,
+79,0,0,,Did he know|you have a twin?,Yes. I suspect he even knew it was Heather he was|about too...    I should have reported him.,80,0,0,
+79,0,0,,It's a good thing|you were there.,I suppose so. He just laugh it off until I threatened|to report him. I probably should have done.,80,1,0,
+79,0,0,,You could|have joined her.,"That's not funny. Come to think of it, he picked up|more rope as I walked in. I should have reported him.",80,-2,0,
+80,0,0,,Is Heather|okay now?,"Heather is still Heather, but at least|she doesn't interfere with my boyfriends now.",20,1,0,
+80,0,0,,Are you okay?,"Yes, I am now.|I suppose Heather inadvertently saved me from him.",20,1,0,
+80,0,0,,OMG that is dynamite.,Arrgh you thoughtless cow. Tell anyone about|this and I will rip your throat out.,20,-10,-1,
+80,0,0,,I'm here now.|We can report him.,"Thank you. I'm not sure though,|I need time to think.",20,1,0,
+100,0,0,,(Adjust her|bondage.),"(You eye her up, wondering what to do with her.)",10,0,0,
+100,0,0,,(Play with her.),"(You eye her up, wondering what to do with her.)",200,0,0,
+100,0,0,,Could you help|restrain me?,There isn't much I can do like this.,20,0,0,RestrainMe()
+100,0,0,Jenna,What's up between|you and Jenna?,It was nothing really. She though I was Lucy and I just|asked to try a new Kinbaku technique on her last week.,110,0,0,
+100,0,0,Compliment,You look adorable|like that.,We should see how adorable|you look locked up in chains.,120,0,0,ComplimentDone()
+100,0,0,YouEnjoyIt,Are you|enjoying this?,"No way, I'm not some pet to be kept on a leash.",130,0,0,YouEnjoyItDone()
+100,0,0,Underwear,"Nice underwear, the|girls must love you.","What, no this is just a consequence of doppelganging a|sister who seems to have a thing for kinky boyfriends.",140,0,0,UnderwearDone()
+100,0,0,TiedLegs,That bondage suits you.,Could you at least untie my legs?|I can barely stay up like this.,100,0,0,BondageComplimentDone()
+110,5,0,,So what did you do?,"Just as I had asked, to start with.|I tried out a Chinese style arm tie on her.",111,0,0,JennaDone()
+110,5,0,,Awesome. She probably|deserved it.,"Deserve it or not, she got it.  I started|trying out a Chinese style arm tie on her.",111,1,0,JennaDone()
+110,0,0,,"It was something,|you're scared now.","Hey it was just a prank, but Jenna has been too|quite about it, she must be planning something.",110,-1,1,HeatherScared()
+110,0,0,,Would you tell me more?,"Not likely, this whole club can|keep guessing about the details.",110,0,0,
+111,0,0,,That doesn't sound|like much.,It was enough to stop her escaping until there|was just the two of us left in the club.,112,0,0,
+111,0,0,,What method is that?,I think Lucy called it the Five Flowers. It kept Jenna|helpless until it was just the two of us left in the club.,112,0,0,
+111,0,3,,"Come on, get to|the juicy details.","Okay, I'll get them. So bound and gagged, I had her|stood up on tiptoes with a suspended anal hook.",114,1,1,
+111,0,0,,"Hmmm, Chinese style...","Hey, keep spacing out and I'll do it all to you.|So there was just the two of us left in the club.",112,0,-1,
+112,0,0,,"Ohh, what then?","I added a few more ropes, gagged her|and then showed her the anal hook.",113,1,0,
+112,0,0,,Would you show|me that technique?,"Maybe later, I'll have you bound and gagged,|then use the same anal hook on you too.",113,0,-1,
+112,0,0,,"If that was all, you|wouldn't be sweating.","No, she didn't mind all the rope and the gag.|It was the anal hook that she wasn't so keen on.",113,0,1,
+113,0,0,,"Ouch, that sounds painful.",Another time and I could have you on tiptoes with|it to remove any doubt from your mind.,114,0,-1,
+113,0,0,,"Cool, you did|use the hook?","Yep, she didn't get the choice.  I had it|suspended to hoist her up onto her tips of her toes.",114,1,0,
+113,0,0,,Was she okay|with using that?,"Who are you, her mother? Probably not, but that|didn't stop me hoisting her up on tiptoes with it.",114,-1,0,
+114,0,0,,I could do the same|with you right now.,"Umm, it's probably a good job I didn't|bring it or any other tools today.",115,0,1,
+114,0,0,,How long did you|keep her like that?,Maybe an hour. Time files when you’re|having fun with nipple clamps and a crop.,115,0,0,
+114,0,0,,Did she enjoy it?,I couldn't make out her squeals. She squealed a lot|when the nipple clamps and a crop made her struggle.,115,0,0,
+114,0,0,,I should have been|there to see it.,"It was fun to watch her, but|nipple clamps and crop all added to the fun.",115,1,0,
+114,0,0,,I hope she could escape.,Not likely that rope tie and the hook keep her just|where I wanted for some fun with nipple clamps and a crop.,115,-1,0,
+115,0,0,,Did you leave her like that?,"Tempting, but I loosened the ropes and left her get|out of them, while I got away with my tools.",116,0,0,
+115,0,0,,How did she get|out of that?,"She couldn't. I retrieved my tools, including the|hook, loosed the ropes just enough and legged it.",116,0,0,
+115,0,0,,I hope you didn't|leave her like that.,What do you care?|Maybe I should leave you like that some time.,116,-1,-1,
+115,0,0,,I could use some|nipple clamps.,"Yeah, they were worth buying just for the look on|Jenna's face.  I had to let her escape though.",116,1,0,
+116,0,0,,I would have loved|to have been there.,You could trick Jenna too.  Force her to give you|the key and get me out of these damn things.,100,1,0,
+116,0,0,,Why did you|do that to her?,"Besides, wiping that sense of look of|self importance off her face, why not?",100,0,0,
+116,0,0,,And now your|her slave.,"Damn these locks, please can you get the|key from her before she comes back to me?",100,0,1,
+116,0,0,,That was a stupid|thing to do to Jenna.,So what. You might as well make the most of|the few opportunities for fun you can get.,100,-1,0,
+120,0,0,,"Nah, you're much cuter.",I wouldn't deny you the opportunity just|because you're not as cute as me. ,100,1,-1,
+120,0,0,,The boys will|love you like that.,NO! What the hell do you know?|Just shut up.,100,-2,1,
+120,0,0,,"Helplessly cute with|attitude, that's adorable.",Bite me. You wouldn't be so smug|if I wasn't bound to a wall.,100,-1,0,
+130,0,0,,"Chill, I could|help you out.",Sure get the key off Jenna and I will chill out.,100,1,0,
+130,0,0,,But you are|my pet now.,"In your dreams. Locked in this manacle, Jenna|has more of a claim than you do anyway.",100,-1,1,
+130,0,0,,"Come on, you're such|a convincing damsel.",Hanging around to be rescued|isn't really my thing either.,100,0,1,
+140,0,0,,She's wearing the|same underwear?,"Yes, but I doubt she would let you see for yourself.",100,0,0,
+140,0,0,,Is that the|only reason?,Who knows? She might wear these things|to just to find out how far I will go.,100,0,1,
+140,0,0,,There is nothing wrong|with a kinky boyfriend.,You think? Some of them are messed up.,100,-1,0,
+140,0,0,,You are good at|looking alike.,"Yeah, even our mother is clueless.",100,1,0,
+200,0,0,,(Adjust her|bondage.),"(You eye her up, wondering what to do with her.)",10,0,0,
+200,0,0,!TwinGagged,Talk to her.,"Come on, you've had some fun, can you find a way to|unlock these manacles now, before Jenna gets back.",20,0,0,LucyCheck()
+200,0,0,NeitherGagged,(Kiss her.),"(She pushes you away.)|Hey, you’re not my type.",200,0,0,Kiss()
+200,0,0,,(Tickle her.),"(She pushes your hands away.)|No, not that. Leave me alone.",200,0,0,Tickle()
+200,0,0,,(Spank her.),(She pushes your hands away.)|Leave me alone.,200,0,0,Spank()
+200,0,0,UniformRemoved,(Play with her breasts.),"(She pushes you away.)|I'm not a lesbian, leave them alone.",200,0,0,PlayBreasts()
+200,0,0,SkirtOutOfWay,(Masturbate her.),(She pushes you away.)|I'm not a lesbian and that's not on.,200,0,0,Masturbate()
+210,0,0,,"Come on, you|will love this.",Nh gmt hff mm.,200,0,0,
+210,0,0,BoyfriendAlreadyMentioned,Pretend I'm your|loving boyfriend.,"(She sighs, but whimpers doubtfully.)",200,0,0,PretendBoyfriend()
+210,0,0,,(Continue|masturbating her.),(The gag barely muffles her screams as|she frantically shakes her head.),200,-1,0,Bully()
+210,0,0,,(Spank her while|masturbating her.),(The gag barely muffles her as|she howls with pain and anger.),200,-1,1,Bully()
+300,0,0,,"Yes, help me out of this.",(She removes your bondage.),20,0,0,HelpPlayer()
+300,0,0,,No it’s not that.,"Oh, what do you want my help for then?",310,0,0,
+300,0,0,Common_PlayerGagged,(Nod your head.),(She removes your bondage.),20,0,0,HelpPlayer()
+300,0,0,Common_PlayerGagged,(Shake your head.),"Oh, what do you want my help for then?",310,0,0,
+310,0,0,,Would you gag|me please?,We need something to gag you with first.,5,0,-1,RandomGag()
+310,0,0,,I've got an itch|that needs rubbing.,Where is it? Oh no I'm not into that stuff with girls.|I have a boyfriend you know.,5,-1,0,
+310,0,0,Common_PlayerGagged,(Glace down at|your crotch.),What is it? Oh no I'm not into that stuff with girls.|I have a boyfriend you know.,5,-1,0,

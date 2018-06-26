@@ -10,6 +10,8 @@ var ActorBondageCount = 5;
 var ActorLastBondageChapter = 6;
 var ActorCloth = 7;
 var ActorPose = 8;
+var ActorHideName = 9;
+var ActorOwner = 10;
 
 // Make sure the current actor is loaded (create it if not)
 function ActorLoad(ActorToLoad, ActorLeaveScreen) {
@@ -18,13 +20,18 @@ function ActorLoad(ActorToLoad, ActorLeaveScreen) {
 	LeaveIcon = "Leave";
 	LeaveScreen = ActorLeaveScreen;
 
-	// Load the actor if it's not already loaded
+	// Sets if the actor is the player lover, submissive or Mistress
 	CurrentActor = ActorToLoad;
+	Common_ActorIsLover = (CurrentActor == Common_PlayerLover);
+	Common_ActorIsOwner = (CurrentActor == Common_PlayerOwner);
+	Common_ActorIsOwned = (ActorGetValue(ActorOwner) == "Player");
+
+	// Load the actor if it's not already loaded
 	for (var L = 0; L < Actor.length; L++)
 		if (Actor[L][ActorName] == ActorToLoad)
 			return;
-	Actor[Actor.length] = [ActorToLoad, 0, 0, [], 0, 0, "", "Clothed", ""];
-	
+	Actor[Actor.length] = [ActorToLoad, 0, 0, [], 0, 0, "", "Clothed", "", false, ""];
+
 }
 
 // Return a value from the current actor data
@@ -50,6 +57,10 @@ function ActorChangeAttitude(LoveAttitude, SubAttitude) {
 			if (CurrentActor == Actor[L][ActorName]) {
 				Actor[L][ActorLove] = Actor[L][ActorLove] + parseInt(LoveAttitude);
 				Actor[L][ActorSubmission] = Actor[L][ActorSubmission] + parseInt(SubAttitude);
+				if (Actor[L][ActorLove] > 99) Actor[L][ActorLove] = 99;
+				if (Actor[L][ActorLove] < -99) Actor[L][ActorLove] = -99;
+				if (Actor[L][ActorSubmission] > 99) Actor[L][ActorSubmission] = 99;
+				if (Actor[L][ActorSubmission] < -99) Actor[L][ActorSubmission] = -99;
 			}	
 
 }
@@ -126,6 +137,14 @@ function ActorSpecificAddBondage(SpecificActor) {
 		}
 }
 
+// Returns the number of times that all actors were tied up during any chapter
+function ActorGetTotalBondageCount() {
+	var total = 0;
+	for (var A = 0; A < Actor.length; A++)
+		total = total + Actor[A][ActorBondageCount];
+	return total;
+}
+
 // Remove inventory from the current actor
 function ActorRemoveInventory(RemInventory) {
 
@@ -188,7 +207,18 @@ function ActorSpecificInBondage(SpecificActor) {
 	} else {
 		for (var A = 0; A < Actor.length; A++)
 			if (Actor[A][ActorName] == SpecificActor)
-				return (ActorSpecificHasInventory(SpecificActor, "Rope") || ActorSpecificHasInventory(SpecificActor, "TwoRopes") || ActorSpecificHasInventory(SpecificActor, "Armbinder") || ActorSpecificHasInventory(SpecificActor, "Cuffs") || ActorSpecificHasInventory(SpecificActor, "BallGag") || ActorSpecificHasInventory(SpecificActor, "TapeGag") || ActorSpecificHasInventory(SpecificActor, "ClothGag"));
+				return (ActorSpecificHasInventory(SpecificActor, "Rope") || ActorSpecificHasInventory(SpecificActor, "TwoRopes") || ActorSpecificHasInventory(SpecificActor, "Armbinder") || ActorSpecificHasInventory(SpecificActor, "Cuffs") || ActorSpecificHasInventory(SpecificActor, "Manacles") || ActorSpecificHasInventory(SpecificActor, "BallGag") || ActorSpecificHasInventory(SpecificActor, "TapeGag") || ActorSpecificHasInventory(SpecificActor, "ClothGag"));
+	}
+}
+
+// Returns TRUE if a specific actor (or player) is restrained
+function ActorSpecificIsRestrained(SpecificActor) {
+	if (SpecificActor == "Player") {
+		return (Common_PlayerRestrained);
+	} else {
+		for (var A = 0; A < Actor.length; A++)
+			if (Actor[A][ActorName] == SpecificActor)
+				return (ActorSpecificHasInventory(SpecificActor, "Rope") || ActorSpecificHasInventory(SpecificActor, "TwoRopes") || ActorSpecificHasInventory(SpecificActor, "Armbinder") || ActorSpecificHasInventory(SpecificActor, "Cuffs") || ActorSpecificHasInventory(SpecificActor, "Manacles"));
 	}
 }
 
@@ -197,7 +227,7 @@ function ActorIsRestrained() {
 	if (CurrentActor == "")
 		return Common_PlayerRestrained;
 	else
-		return (ActorHasInventory("Rope") || ActorHasInventory("TwoRopes") || ActorHasInventory("Armbinder") || ActorHasInventory("Cuffs"));
+		return (ActorHasInventory("Rope") || ActorHasInventory("TwoRopes") || ActorHasInventory("Armbinder") || ActorHasInventory("Cuffs") || ActorHasInventory("Manacles"));
 }
 
 // Returns true if the actor is gagged (if there's no actor, we return the player status)
@@ -228,6 +258,11 @@ function ActorUngag() {
 	if (ActorHasInventory("BallGag")) { ActorRemoveInventory("BallGag"); PlayerAddInventory("BallGag", 1); }
 	if (ActorHasInventory("ClothGag")) { ActorRemoveInventory("ClothGag"); PlayerAddInventory("ClothGag", 1); }
 	if (ActorHasInventory("TapeGag")) ActorRemoveInventory("TapeGag");
+}
+
+// Remove the blindfold from the actor and return it to the player
+function ActorUnblindfold() {
+	if (ActorHasInventory("Blindfold")) { ActorRemoveInventory("Blindfold"); PlayerAddInventory("Blindfold", 1); }
 }
 
 // Tries to apply a restrain on the current actor
@@ -347,4 +382,11 @@ function ActorSpecificGetImage(QueryActor) {
 	if (ActorSpecificHasInventory(QueryActor, "TapeGag")) ActorImage = ActorImage + "_TapeGag";
 	return ActorImage;
 
+}
+
+// Change specific actor  actors name on screen
+function ActorSpecificConcealment(SpecificActor, Hidden) {
+	for (var A = 0; A < Actor.length; A++)
+		if (Actor[A][ActorName] == SpecificActor)
+			Actor[A][ActorHideName] = Hidden;
 }

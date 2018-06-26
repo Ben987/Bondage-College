@@ -2,7 +2,10 @@ Stage,LoveReq,SubReq,VarReq,IntroText,Image
 0,0,0,,Hello. Are you another new girl?,Amelia.jpg
 10,0,0,,So what is your name?,Amelia.jpg
 50,0,0,,"Hello, what have we here?",Amelia.jpg
-100,0,0,,(Amelia and Charlotte are discussing Kinbaku.),RopeGroup.jpg
+100,0,0,,(Amelia was just telling Charlotte about Kinbaku.),RopeGroupBG.jpg
+110,0,0,,,Amelia.jpg
+120,0,0,,,Amelia.jpg
+125,0,0,,,Amelia.jpg
 200,0,0,,,Amelia.jpg
 210,0,0,,,Amelia.jpg
 215,0,0,,,Amelia.jpg
@@ -26,6 +29,7 @@ Stage,LoveReq,SubReq,VarReq,IntroText,Image
 300,0,0,,,Charlotte.jpg
 310,0,0,,,Charlotte.jpg
 311,0,0,,,Charlotte.jpg
+312,0,0,,,Charlotte.jpg
 320,0,0,,,Charlotte.jpg
 321,0,0,,,Charlotte.jpg
 322,0,0,,,Charlotte.jpg
@@ -34,12 +38,15 @@ Stage,LoveReq,SubReq,VarReq,IntroText,Image
 340,0,0,,,Charlotte.jpg
 350,0,0,,,Charlotte.jpg
 360,0,0,,,Charlotte.jpg
-400,0,0,,,TwinsBlank.jpg
+400,0,0,,,LeftTwin.jpg
 410,0,0,,,LeftTwin.jpg
-415,0,0,,,RightTwin.jpg
-416,0,0,,,Tickling.jpg
-417,0,0,,,TicklingTears.jpg
-420,0,0,,,LeftTwin.jpg
+450,0,0,,,RightTwin.jpg
+460,0,0,,,Tickling.jpg
+465,0,0,,,TicklingTears.jpg
+470,0,0,,,RightTwin.jpg
 500,0,0,,,Amelia.jpg
-600,0,0,,,RopeGroup.jpg
-700,0,0,,,RopeGroup.jpg
+600,0,0,,,RopeGroupBG.jpg
+700,0,0,,,RopeGroupBG.jpg
+710,0,0,,,RopeGroupBG.jpg
+720,0,0,,,RopeGroupBG.jpg
+730,0,0,,,RopeGroupBG.jpg

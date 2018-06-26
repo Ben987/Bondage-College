@@ -76,7 +76,7 @@ function C999_Common_Player_Run() {
 		DrawText(GetText("Title") + " " + C999_Common_Player_GetTitle(), 300, 130, "black");
 
 		// Shows the current lover and owner
-		if (Common_PlayerOwner != "") DrawText(GetText("Lover") + " " + Common_PlayerLover, 300, 170, "black");
+		if (Common_PlayerLover != "") DrawText(GetText("Lover") + " " + Common_PlayerLover, 300, 170, "black");
 		else DrawText(GetText("Lover") + " " + GetText("NoLover"), 300, 170, "black");
 		if (Common_PlayerOwner != "") DrawText(GetText("Owner") + " " + Common_PlayerOwner, 300, 210, "black");
 		else DrawText(GetText("Owner") + " " + GetText("NoOwner"), 300, 210, "black");

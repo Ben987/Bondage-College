@@ -46,8 +46,6 @@ var C101_KinbakuClub_Erica_Keys = false;
 var C101_KinbakuClub_Erica_PlayerIsSlave = false;
 var C101_KinbakuClub_Erica_Kidnapped = 0; // for intro text when erica removes a kidnapped players blindfold
 
-
-
 // Calculates the scene parameters
 function C101_KinbakuClub_Erica_CalcParams() {
 	C101_KinbakuClub_Erica_PlayerIsGagged = (Common_PlayerGagged);
@@ -59,7 +57,6 @@ function C101_KinbakuClub_Erica_CalcParams() {
 	C101_KinbakuClub_Erica_Keys = (C101_KinbakuClub_Erica_EricaUnGagged && C101_KinbakuClub_Erica_NoKeys);
 }
 
-
 // Chapter 101 - Erica Load
 function C101_KinbakuClub_Erica_Load() {
 
@@ -67,7 +64,6 @@ function C101_KinbakuClub_Erica_Load() {
 	ActorLoad("Erica", "ClubRoom2");
 	LoadInteractions();
 	C101_KinbakuClub_Erica_CalcParams();
-
 
 	// Different stage if player approaches Erica while bound or gagged
 	if ((C101_KinbakuClub_Erica_CurrentStage <= 100) && (Common_PlayerRestrained || Common_PlayerGagged || PlayerHasLockedInventory("Collar"))) {
@@ -84,11 +80,6 @@ function C101_KinbakuClub_Erica_Load() {
 			C101_KinbakuClub_Erica_CurrentStage = 100;
 		}
 	} else C101_KinbakuClub_Erica_PlayerIsFree = false;
-
-	// If Player leaves at stage 60 and comes back it reverts to stage 50
-	//if (C101_KinbakuClub_Erica_CurrentStage == 60) {
-	//	C101_KinbakuClub_Erica_CurrentStage = 50;
-	//}
 	
 	// After loose fight and kidnapped during blind mans buff
 	if (C101_KinbakuClub_Erica_CurrentStage >= 110 && C101_KinbakuClub_Erica_CurrentStage <= 270) LeaveIcon = "";
@@ -100,6 +91,9 @@ function C101_KinbakuClub_Erica_Load() {
 	if (C101_KinbakuClub_Erica_CurrentStage == 320) C101_KinbakuClub_Erica_CurrentStage = 310
 	if ((Common_PlayerRestrained) && (C101_KinbakuClub_Erica_CurrentStage == 310)) C101_KinbakuClub_Erica_CurrentStage = 325
 	if ((!Common_PlayerRestrained) && (C101_KinbakuClub_Erica_CurrentStage == 325)) C101_KinbakuClub_Erica_CurrentStage = 310
+
+	// Stage >= 400
+	if (C101_KinbakuClub_Erica_CurrentStage >= 400) C101_KinbakuClub_Erica_CurrentStage = 290;
 }
 
 // Chapter 101 - Erica Run
@@ -107,12 +101,18 @@ function C101_KinbakuClub_Erica_Run() {
 	BuildInteraction(C101_KinbakuClub_Erica_CurrentStage);
 	if ((C101_KinbakuClub_Erica_CurrentStage == 310) || (C101_KinbakuClub_Erica_CurrentStage == 315) || (C101_KinbakuClub_Erica_CurrentStage == 325)) {
 		if (ActorHasInventory("Rope")) {
-			OverridenIntroImage = "";
 			DrawInteractionActor();
 		}
 		if (ActorHasInventory("Cuffs")) OverridenIntroImage = "EricaCuffs.jpg";
 		if (ActorHasInventory("Cuffs") && ActorHasInventory("Collar")) OverridenIntroImage = "EricaCollarCuffs.jpg";
 		if (!ActorHasInventory("Rope") && !ActorHasInventory("Cuffs")) OverridenIntroImage = "EricaCaptured.jpg";
+	}
+
+	// Player gag images when erica is angry
+	if (C101_KinbakuClub_Erica_CurrentStage == 410) {
+		if (PlayerHasLockedInventory("BallGag")) DrawImage(CurrentChapter + "/" + CurrentScreen + "/EricaGrabAngryBallGag.jpg", 777, 70);
+		if (PlayerHasLockedInventory("ClothGag")) DrawImage(CurrentChapter + "/" + CurrentScreen + "/EricaGrabAngryClothGag.jpg", 770, 186);
+		if (PlayerHasLockedInventory("TapeGag")) DrawImage(CurrentChapter + "/" + CurrentScreen + "/EricaGrabAngryTapeGag.jpg", 795, 194);
 	}
 }
 
@@ -152,6 +152,7 @@ function C101_KinbakuClub_Erica_Click() {
 				PlayerAddInventory("Cuffs", 1);
 			}
 			ActorApplyRestrain("Rope");
+			OverridenIntroImage = "";
 			LeaveIcon = "Leave";
 		}
 
@@ -187,10 +188,6 @@ function C101_KinbakuClub_Erica_Click() {
 		C101_KinbakuClub_Erica_CalcParams()
 	}
 }
-
-
-
-
 
 // Chapter 101 - Erica - Did these girls|ask for this? Loop
 function C101_KinbakuClub_Erica_StopLoop1() {
@@ -571,13 +568,16 @@ function C101_KinbakuClub_Erica_EricaIsBroken() {
 
 // Chapter 101 - Erica - player lets erica go
 function C101_KinbakuClub_Erica_EricaFreed() {
+	OverridenIntroImage = "";
 	ActorUntie();
 	ActorUngag();
 	C101_KinbakuClub_Erica_CalcParams()
 	CurrentTime = CurrentTime + 60000;
 	if (!C101_KinbakuClub_Erica_EricaBroken) {
-		PlayerRemoveAllInventory();
-		SetScene(CurrentChapter, "EricaBadEnd");
+		C101_KinbakuClub_Erica_CurrentStage = 400;
+		OverridenIntroText = GetText("UnbrokenLetGo");
+		if (ActorGetValue(ActorLove) >= 1) LeaveIcon = "Leave";
+		else LeaveIcon = "";
 	}
 }
 
@@ -619,4 +619,16 @@ function C101_KinbakuClub_Erica_LeaveSlave() {
 		C101_KinbakuClub_Erica_SlaveUnGagged = false;
 		OverridenIntroImage = "";
 	}
+}
+
+// Chapter 101 - Erica - Player gets manacled
+function C101_KinbakuClub_Erica_ManacledSlave() {
+	C101_KinbakuClub_Slaves_CurrentStage = 115;
+	SetScene(CurrentChapter, "Slaves");
+}
+
+// Chapter 101 - Erica - Player resists and gets the bad end alternative
+function C101_KinbakuClub_Erica_BadEnd() {
+	PlayerRemoveAllInventory();
+	SetScene(CurrentChapter, "EricaBadEnd");
 }

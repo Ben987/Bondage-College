@@ -1,40 +1,47 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 0,0,0,!Common_PlayerRestrained,(Inspect the contents.),"The bag appears to be full of metal manacles,|connected together in sets by chains.",10,0,0,
-0,0,0,,(Look around the bag.),"You don't find anythig else of interest near bag,|until you notice some metal rings under the blackboard.",20,0,0,
+0,0,0,,(Look around the bag.),"You don't find anything else of interest near bag,|until you notice some metal rings under the blackboard.",20,0,0,
 0,0,0,SelfSlaveAvailable,(Try the loose manacles|on yourself.),"You take a set of manacles and try them on,|but without padlocking them, they just fall open.",100,0,0,
 0,0,0,,(Go back to the club room.),You can now kidnap club members and use these|manacles to keep them as your own slaves.,40,0,0,Leave()
 10,0,0,,(Inspect the manacles.),"Each set has manacles for neck, wrists and ankles.|There is also a length of chain with nothing at one end.",10,0,0,ManaclesCheck()
 10,0,0,,(Inspect the rest of|the contents.),Also in the bag are a lot of padlocks for fastening|the manacles. You don't find any keys here.,10,0,0,PadlocksCheck()
 10,0,0,,(Take the manacles.),"They are rather heavy,|best to leave them here and bring slaves to them.",10,0,0,
-10,0,0,,(Look around the bag.),"You don't find anythig else of interest near bag,|until you notice some metal rings under the blackboard.",20,0,0,
+10,0,0,,(Look around the bag.),"You don't find anything else of interest near bag,|until you notice some metal rings under the blackboard.",20,0,0,
 10,0,0,SelfSlaveAvailable,(Try the loose manacles|on yourself.),"You take a set of manacles and try them on,|but without padlocking them, they just fall open.",100,0,0,
 10,0,0,,(Go back to|the club room.),You can now kidnap club members and use these|manacles to keep them as your own slaves.,40,0,0,Leave()
 20,0,0,,(Check out the rings.),"They seem to be firmly attached to the walls,|they must be for use with the manacles.",20,0,0,RingsCheck()
 20,0,0,,(Go back to the bag.),The bag has a lot of metal items in it.,0,0,0,
 20,0,0,SelfSlaveAvailable,(Try the loose manacles|on yourself.),"You take a set of manacles and try them on,|but without padlocking them, they just fall open.",100,0,0,
 20,0,0,,(Go back to|the club room.),You can now kidnap club members and use these|manacles to keep them as your own slaves.,40,0,0,Leave()
-40,0,0,,(Check the bag again.),The prospect of what you could do|with those manacles is tantalising.,0,0,0,
+40,0,0,,(Check the bag again.),The prospect of what you could do|with those manacles is tantalizing.,0,0,0,
 40,0,0,,(Go get some slaves.),Gone slaving.,40,0,0,Leave()
 100,0,0,,(Padlock the|manacles shut.),"In for a dime, in for a dollar. You remove your uniform,|then lock the manacle set to the wall and to your neck.",110,0,0,NeckManacle()
 100,0,0,,(Put the manacles|back in the bag.),"Maybe another time, you put the manacles away.",0,0,0,
-110,0,0,,(Pull on the|wall chain.),"You tug on the chain as hard as you can,|but the ring on the wall is unyeilding.",110,0,0,
+110,0,0,,(Pull on the|wall chain.),"You tug on the chain as hard as you can,|but the ring on the wall is unyielding.",110,0,0,
 110,0,0,,(Try to remove|the padlocks.),The large padlocks are firmly locked.|There is no way they will open without a key.,110,0,0,
-110,0,0,,(Check inside|the bag again.),"You double check the bag, but there is definantly no|keys in there and you can't reach anything else now.",110,0,0,
+110,0,0,,(Check inside|the bag again.),"You double check the bag, but there is definitely no|keys in there and you can't reach anything else now.",110,0,0,
 110,0,0,Common_PlayerGagged,(Remove your gag.),You ungag yourself while you still can.,110,0,0,PlayerRemoveGag()
 110,0,0,,Call for help.,"You shout across the room. A few girls look up, giggle|and then go straight back to what they were doing.",110,0,0,
-110,0,0,,(Lock the rest of|the manacles on.),"You cannot go anwhere now, but are you ready to|loose all your freedom?  Click again to do so.",110,0,0,FullManacle()
+110,0,0,,(Lock the rest of|the manacles on.),"You cannot go anywhere now, but are you ready to|loose all your freedom?  Click again to do so.",110,0,0,FullManacle()
+115,0,0,,You do have keys|for these?,"No, you're someone elses problem now.|(She abandons you there.)",120,0,0,ActorLeaves()
+115,0,0,,I'm sorry Erica.,Too late for that now. You will know better next time.|(She abandons you there.),120,1,-1,ActorLeaves()
+115,0,0,,Isn't this|a bit much?,This is what you can expect for trying to humiliate me.|(She abandons you there.),120,0,0,ActorLeaves()
+115,0,0,Common_PlayerGagged,@Mrngh Hm'm fhrrn,Too late for that now. You will know better next time.|(She abandons you there.),120,1,-1,ActorLeaves()
+115,0,0,Common_PlayerGagged,(Rattle the padlocks.),I don't have keys for them and you are someone|elses problem now. (She abandons you there.),120,0,0,ActorLeaves()
+116,0,0,,(Call after here.),(Amelia ignores you as she goes back to her group.),120,0,0,ActorLeaves()
+116,0,0,,(Ignore Amelia.),"(Without Amelia watching over you,|you can focus on getting out of these manacles.)",120,0,0,ActorLeaves()
 120,0,0,,Call for help.,"You shout across the room. A few girls look up, giggle|and then go straight back to what they were doing.",120,0,0,ExploreManacles()
 120,0,0,Common_PlayerGagged,(Scream into|the gag.),Nobody seems to hear or notice you muffled cries. ,120,0,0,ExploreManacles()
 120,0,0,,(Struggle against|the manacles.),"You thrash in panic, but the unforgiving hard steel|is far stronger than you are.",120,0,0,ExploreManacles()
-120,0,0,,(Struggle playfully.),You test the limits of your confinment.  It is kind of|fun and someone is bound to take an interest in you.,120,0,0,ExploreManacles()
-120,0,0,!ShortLeash,(lie down.),The chain to the wall isn't quite long enough.|You have to stay upright to stop the collar choking you.,120,0,0,ExploreManacles()
+120,0,0,,(Struggle playfully.),You test the limits of your confinement.  It is kind of|fun and someone is bound to take an interest in you.,120,0,0,ExploreManacles()
+120,0,0,!ShortLeash,(Lie down.),The chain to the wall isn't quite long enough.|You have to stay upright to stop the collar choking you.,120,0,0,ExploreManacles()
 120,0,0,!ShortLeash,(Stand up.),"The chain between the collar and ankles is too short.|You cannot crouch comfortably, so kneel down again.",120,0,0,ExploreManacles()
 120,0,0,!ShortLeash,(Move away.),"You can hobble about, but only a short distance|before the chain to the wall stops you.",120,0,0,ExploreManacles()
-120,0,0,,(Check the padlocks.),"You despirately check the padlocks on your wrists,|but they are both aldready firmly locked shut.",120,0,0,ExploreManacles()
-120,0,0,ShortLeash,(Try to move.),(Jenna shortend the leash chain before she left.|You can hadly at all move now.),120,0,0,
+120,0,0,,(Check the padlocks.),"You desperately check the padlocks on your wrists,|but they are both already firmly locked shut.",120,0,0,ExploreManacles()
+120,0,0,ShortLeash,(Try to move.),(Jenna shortened the leash chain before she left.|You can hardly at all move now.),120,0,0,
 120,0,0,,(Wait patiently.),You wait quietly like a good slave and it feels like|you are also as invisible as a good slave too.,120,0,0,WaitJenna()
 120,0,0,JennaWillGag,"JENNA, you can't|leave me like this.","You're right, I forgot to gag you.|(Jenna gags you before leaving again.)",120,0,0,PlayerGagged()
-130,0,0,,Hey Jenna get me|out of these.,"Easy there, I'm not the one who loked you in there.|So who locked you in those?",140,0,1,
+130,0,0,,Hey Jenna get me|out of these.,"Easy there, I'm not the one who locked you in there.|So who locked you in those?",140,0,1,
 130,0,0,,Hello Jenna.,"Hello, those manacles really suit you.|So who locked you in those?",140,1,0,
 130,0,0,,"Jenna, please|help me.","(Jenna smiles sympathetically.) Awww, you poor girl.|So who locked you in those?",140,0,-1,
 130,0,0,Common_PlayerGagged,(Stare at Jenna.),"(You try hard, but buckle under Jenna's intense gaze.)|Would you like to have that gag removed?",135,0,1,StareJenna()
@@ -44,16 +51,18 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 135,0,0,,(Shake your head.),Good. It's not like I would just remove it anyway.|So who locked you in those?,140,0,-1,
 140,0,0,,I did this.,"I know, Cassidy sent me a message.|It doesn't matter, you're my slave now.",150,0,-1,ClaimSelf()
 140,0,0,,Erica did.,"I know, Cassidy sent me a message.|It doesn't matter, you're my slave now.",150,0,0,ClaimErica()
+140,0,0,,Amelia did.,"I know, Cassidy sent me a message.|It doesn't matter, you're my slave now.",150,0,0,ClaimAmelia()
 140,0,0,,All of them.,"I know, Cassidy sent me a message.|It doesn't matter, you're my slave now.",150,0,0,ClaimAll()
 140,0,0,Common_PlayerGagged,(Glance down.),"I know, Cassidy sent me a message.|It doesn't matter, you're my slave now.",150,0,-1,ClaimSelf()
 140,0,0,Common_PlayerGagged,(Look at Erica.),"I know, Cassidy sent me a message.|It doesn't matter, you're my slave now.",150,0,0,ClaimErica()
+140,0,0,Common_PlayerGagged,(Look at Amelia.),"I know, Cassidy sent me a message.|It doesn't matter, you're my slave now.",150,0,0,ClaimAmelia()
 140,0,0,Common_PlayerGagged,(Look at|all of them.),"I know, Cassidy sent me a message.|It doesn't matter, you're my slave now.",150,0,0,ClaimAll()
-150,0,0,,What?,"Those manacles belong to me, so anything locked in|them also belongs to me. The whole club knows that.",160,0,0,EricaTrick()
+150,0,0,,What?,"Those manacles belong to me, so anything locked in|them also belong to me. The whole club knows that.",160,0,0,EricaTrick()
 150,0,0,,Yes Miss.,That's a good slave.,160,1,-1,
 150,0,0,,I'm not your slave.,"Your entitled to your opinion,|but in your current predicament it don't mean much.",160,0,0,
 150,0,0,Common_PlayerGagged,(Nod your head.),That's a good slave.,160,1,-1,
 150,0,0,Common_PlayerGagged,(Shake your head.),"Your entitled to your opinion,|but in your current predicament it don't mean much.",160,0,0,
-150,0,0,Common_PlayerGagged,@Whht?,"Those manacles belong to me, so anything locked in|them also belongs to me. The whole club knows that.",160,0,0,
+150,0,0,Common_PlayerGagged,@Whht?,"Those manacles belong to me, so anything locked in|them also belong to me. The whole club knows that.",160,0,0,
 155,0,0,ChloeIsSlave,,Jenna releases Chloe and gives her a hug.,160,,,
 160,0,0,,What are you going|to do with me?,Well for the moment we are going to play|a little game of self control.,170,0,0,
 160,0,0,,Please don't leave|me like this.,"Don't worry, we are going to play|a little game now, of self control.",170,0,-1,
@@ -78,25 +87,25 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 190,0,0,,Okay then.,"Good, now I'll get ready.  (Jenna pulls|on some rubber gloves and takes out a brush.)",200,0,0,
 190,0,0,,Bring it on.|You won't have me.,We will see about that.  (Jenna pulls|on some rubber gloves and takes out a brush.),200,0,1,
 190,0,0,,"No way, I'm not|playing this.",If your that defiant then this game shouldn't be a|problem for you.  Are you sure you don't want to play?,195,0,1,
-190,0,0,,Please no.|I'll be good.,A good slave would obay and play the game.|Are you sure you don't want to play?,195,0,-1,
-190,0,0,Common_PlayerGagged,(Panic and|struggle.),A good slave would obay and play the game.|Are you sure you don't want to play?,195,0,-1,
+190,0,0,,Please no.|I'll be good.,A good slave would obey and play the game.|Are you sure you don't want to play?,195,0,-1,
+190,0,0,Common_PlayerGagged,(Panic and|struggle.),A good slave would obey and play the game.|Are you sure you don't want to play?,195,0,-1,
 190,0,0,Common_PlayerGagged,(Nod.),"Good, now I'll get ready.  (Jenna pulls|on some rubber gloves and takes out a brush.)",200,0,0,
 195,0,0,,I said no.,"Fine, enjoy yourself.|(Jenna goes off and talks to Cassidy.)",120,0,0,JennaLeaves()
 195,0,0,,Okay I'll play.,"That is more like it, let's start.  (Jenna pulls|on some rubber gloves and takes out a brush.)",200,0,-1,
 195,0,0,Common_PlayerGagged,(Nod your head.),"Fine, enjoy yourself.|(Jenna goes off and talks to Cassidy.)",120,0,0,JennaLeaves()
 195,0,0,Common_PlayerGagged,(Shake your head.),"That is more like it, let's start.  (Jenna pulls|on some rubber gloves and takes out a brush.)",200,0,-1,
-200,0,0,,(Brace yourself.),"Good, it was time for you to be quiet.|(Jenna starts gentley tickling you with the brush.)",210,0,0,StartGame()
-200,0,0,,Wait what are|those for?,You're not the only one playing this game. Now shut up.|(Jenna starts gentley tickling you with the brush.),210,-1,0,StartGame()
-200,0,0,Common_PlayerGagged,@Whnt whht hrm|thhfm fhr?,You're not the only one playing this game. Now shut up.|(Jenna starts gentley tickling you with the brush.),210,-1,0,StartGame()
-210,0,0,Option1,(Pinch your arm.),(You dig a finger nail into your arm. The pain|helps distract a you little from Jeanna's teasing.),210,0,0,Select1()
+200,0,0,,(Brace yourself.),"Good, it was time for you to be quiet.|(Jenna starts gently tickling you with the brush.)",210,0,0,StartGame()
+200,0,0,,Wait what are|those for?,You're not the only one playing this game. Now shut up.|(Jenna starts gently tickling you with the brush.),210,-1,0,StartGame()
+200,0,0,Common_PlayerGagged,@Whnt whht hrm|thhfm fhr?,You're not the only one playing this game. Now shut up.|(Jenna starts gently tickling you with the brush.),210,-1,0,StartGame()
+210,0,0,Option1,(Pinch your arm.),(You dig a finger nail into your arm. The pain|helps distract you a little from Jenna's teasing.),210,0,0,Select1()
 210,0,0,Option2,(Struggle playfully.),"(Jenna smiles and shares your excitement,|but it certainly doesn't help calm you down.)",210,1,-1,Select2()
 210,0,0,Option4,(Close your eyes.),"(You shut your eyes and meditate quietly for|a moment, ignoring Jenna's teasing.)",210,0,0,Select4()
 210,0,0,Option5,(Giggle.),Jenna gives a light slap to stop you from laughing|while she carries on teasing you with the brush.,210,0,0,Select5()
 210,0,0,Option6,(Laugh.),"(Jenna stops to give you a very firm spank.) I told you,|no laughing. (She then goes back to teasing you.)",210,0,-1,Select6()
 210,0,0,Option7,(Sit down.),I told you to kneel.  (Jenna gives you a quick|spank to kneel up again.)  Don't try that again.,210,0,0,Select7()
-210,0,0,Option8,(Think of your|favourite things.),(You distract yourself thinking unsexy thoughts.),210,0,0,Select8()
-210,0,0,Option9,"Eeek, no that's|spot is sensitive.","I told you, no talking. (She gives that spot an extra tickle|with the brush before a quick spack and moving on.)",210,0,0,Select9()
-210,0,0,Option9Gagged,@nh thht|rmhlln tngglmf.,"Unless it's begging, your supposed to keep quiet.|(Jenna finds a sensitive spot and tickles it mercilessly.)",210,0,0,Select9()
+210,0,0,Option8,(Think of your|favorite things.),(You distract yourself thinking unsexy thoughts.),210,0,0,Select8()
+210,0,0,Option9,"Eeek, no that|spot is sensitive.","I told you, no talking. (She gives that spot an extra tickle|with the brush before a quick spank and moving on.)",210,0,0,Select9()
+210,0,0,Option9Gagged,@nh thht|rmhlln tngglmf.,"Unless it's begging, you’re supposed to keep quiet.|(Jenna finds a sensitive spot and tickles it mercilessly.)",210,0,0,Select9()
 210,0,0,Option10,Aaarrgh|you bitch.,Watch your mouth. Be rude to your mistress again|and I might have to wash it out with soap.,210,-1,1,Select10()
 210,0,0,Option10Gagged,@Hhhrrgh|nhh bntgh.,Watch your mouth. Be rude to your mistress again|and I might have to wash it out with soap.,210,-1,0,Select10()
 210,0,0,Option3,(Regulate your breathing.),(You focus on breathing slowly to distract|yourself from Jenna's constant teasing.),210,0,0,Select3()
@@ -106,29 +115,29 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 210,0,0,PlayerNotVeryArousedGagged,"@Plmhfm Jmnnh,|N whnt th ghm.",Don't try kidding me. I can tell you are not that aroused|yet. (She continues teasing you with the brush.),210,0,0,NoEnd()
 210,0,0,PlayerVeryAroused,"Please Jenna, I|really need to cum.",This stage should not display,250,1,-1,EndGame()
 210,0,0,PlayerVeryArousedGagged,"@Plmhfm Jmnnh, Hm|rmhlln nmmd th ghm.",This stage should not display,250,1,-1,EndGame()
-210,0,0,NotGaggingForIt,Banana.,(Jenna stops terasing you.)  Is this a bit much?,220,0,0,CryWolf()
-210,0,0,NotGaggedForIt,@Bhnhnh.,(Jenna stops terasing you.)  Is this a bit much?,220,0,0,CryWolf()
+210,0,0,NotGaggingForIt,Banana.,(Jenna stops teasing you.)  Is this a bit much?,220,0,0,CryWolf()
+210,0,0,NotGaggedForIt,@Bhnhnh.,(Jenna stops teasing you.)  Is this a bit much?,220,0,0,CryWolf()
 220,0,0,,Yes.,(Jenna gives you a big hug.)|It's okay. Would you like to stop playing that game?,230,0,0,
 220,0,0,,"No, I just|wanted a breather.","Naughty slave. (Jenna gags and spanks you,|before resuming the teasing.)",210,-1,-1,FalseBanana()
 220,0,0,Common_PlayerGagged,(Nod your head.),(Jenna gives you a big hug.)|It's okay. Would you like to stop playing that game?,230,0,0,
 220,0,0,Common_PlayerGagged,(Shake your head.),"Don't try to waste time.|(Jenna spanks you hard, before teasing you again.)",210,0,-1,FalseBanana()
 230,0,0,,"Yes, it's|humiliating.","I am sorry, I didn't mean to push you too far.",240,0,0,UnderwearBack()
-230,0,0,,"No, it's just|that last bit.","Thats fine, we can carry on a little slower.|(Jenna helps you recover a bit before continuing.)",210,0,0,TeaseStageBack()
+230,0,0,,"No, it's just|that last bit.","That’s fine, we can carry on a little slower.|(Jenna helps you recover a bit before continuing.)",210,0,0,TeaseStageBack()
 230,0,0,Common_PlayerGagged,(Nod your head.),I didn't mean to push you too far. (Jenna removes your gag.),240,0,0,UnderwearBack()
-230,0,0,Common_PlayerGagged,(Shake your head.),"Thats fine, we can carry on a little slower.|(Jenna helps you recover a bit before continuing.)",210,0,0,TeaseStageBack()
+230,0,0,Common_PlayerGagged,(Shake your head.),"That’s fine, we can carry on a little slower.|(Jenna helps you recover a bit before continuing.)",210,0,0,TeaseStageBack()
 240,0,0,,Can you unlock|me now.,You still need to learn a lesson to be more careful during|club meetings. (She gets up and leaves you there.),120,1,-1,
 240,0,0,,Can we play|another game.,Not now I have other duties to attend to.|(She gets up and leaves you there.),120,1,0,
-240,0,0,,I should try|teasing you now.,Maybe later if your good enough.|(She gets up and leaves you there.),120,0,1,
-240,0,0,,Can I have|a slavemate?,"No, you need some quite time to settle down.|(She gets up and leaves you there.)",120,0,0,
-250,0,0,,Yes please.,"You beg nicely, but you haven't deserved it this time.|(She smartens you, then leaves you there.)",120,0,0,Relief()
+240,0,0,,I should try|teasing you now.,Maybe later if you’re good enough.|(She gets up and leaves you there.),120,0,1,
+240,0,0,,Can I have|a slave mate?,"No, you need some quite time to settle down.|(She gets up and leaves you there.)",120,0,0,
+250,0,0,,Yes please.,"You beg nicely, but you haven't deserved it this time.|(She smartens you up and then leaves you there.)",120,0,0,Relief()
 250,0,0,,Leave me alone.,Fine I will.|(She smartens you up and leaves you there.),120,-1,0,LeftSmart()
-250,0,0,,Only if you|think so?,"Maybe another time if you are really good.|(She smartens you up, then leaves you there.)",120,1,0,Relief()
+250,0,0,,Only if you|think so?,Maybe another time if you are really good.|(She smartens you up and then leaves you there.),120,1,0,Relief()
 250,0,0,,I ought to be punished|for this instead.,Now that's an idea.|You have been a very naughty girl haven't you?,260,0,0,
-250,0,0,Common_PlayerGagged,(Nod your head.),"Well your mistress does not.|(She smartens you up, then leaves you there.)",120,0,0,Relief()
-250,0,0,Common_PlayerGagged,(Shake your head.),"Good, because your mistress don't.|(She smartens you up, then leaves you there.)",120,1,0,LeftSmart()
+250,0,0,Common_PlayerGagged,(Nod your head.),Well your mistress does not.|(She smartens you up and then leaves you there.),120,0,0,Relief()
+250,0,0,Common_PlayerGagged,(Shake your head.),"Good, because your mistress don't.|(She smartens you up and then leaves you there.)",120,1,0,LeftSmart()
 250,0,0,Common_PlayerGagged,@Ghn nhh rmmhvm|thnf ghg plmhfm,What was that you said?|(Jenna removes your gag.),250,0,0,PlayerRemoveGag()
 260,0,0,,Yes miss.,(Player gets the bag over head outro.),260,0,0,Discipline()
-260,0,0,,"No, I was joking.","You should be careful with that attitude.|(She smartens you up, then leaves you there.)",120,0,0,LeftSmart()
+260,0,0,,"No, I was joking.",You should be careful with that attitude.|(She smartens you up and then leaves you there.),120,0,0,LeftSmart()
 270,0,0,!Common_PlayerChaste,Just make me cum already.,"Easy there, here let me sooth you.|(She starts masturbating you the wand vibrator.)",280,0,0,
 270,0,0,!Common_PlayerChaste,"Wow, you have a|wand in college.",You never know when you will need to work magic.|(She starts masturbating you the wand vibrator.),280,0,0,
 270,0,0,Common_PlayerChaste,Just make me cum already.,"Easy there, here let me sooth you. (The chastity belt|starts to resonate with the powerful vibration.)",280,0,0,
@@ -138,18 +147,18 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 270,0,0,GaggedNotChaste,(Shake your head.),This is the only choice you have now.|(She starts masturbating you the wand vibrator.),280,0,0,
 270,0,0,ChasteGagged,(Nod your head.),"Yes, that's a good slave.  (The chastity belt|starts to resonate with the powerful vibration.)",280,1,0,
 270,0,0,ChasteGagged,(Shake your head.),This is the only choice you have now.  (The chastity|belt starts to resonate with the powerful vibration.),280,0,0,
-280,0,0,,(Grind against|the vibrator.),(Jenna pulls the vibrator away.)  Remeber your place|slave and wait for your mistresses gifts graciously.,285,-1,0,
-280,0,0,,(Enjoy the vibrations.),(Jenna presses the vibrator in harder as you start to|maon with pleasure.)  Say my name.,290,1,0,Vibed()
+280,0,0,,(Grind against|the vibrator.),(Jenna pulls the vibrator away.)  Remember your place|slave and wait for your mistresses gifts graciously.,285,-1,0,
+280,0,0,,(Enjoy the vibrations.),(Jenna presses the vibrator in harder as you start to|moan with pleasure.)  Say my name.,290,1,0,Vibed()
 280,0,0,,(Struggle playfully.),"(Jenna works the vibrator with your struggles, getting|you back on edge again.)  Say my name.",290,0,-1,Vibed()
 280,0,0,,(Struggle in panic.),Sorry is this too intense for you?,286,0,0,
-285,0,0,,Yes mistress.,That's better. Lets try again.,280,0,-1,Grind()
-285,0,0,,Stop teasing me.,"Okay then. You shouldn't get anything for loosing anyway.|(She smartens you up, then leaves you there.)",120,0,0,LeftSmart()
-285,0,0,Common_PlayerGagged,@Nmf mnftrmff.|(Yes mistress.),That's better. Lets try again.,280,0,-1,Grind()
-285,0,0,Common_PlayerGagged,@Fthp tmhfnng mm.|(Stop teasing me.),"Fine. You shouldn't get anything for loosing anyway.|(She smartens you up, then leaves you there.)",120,0,0,LeftSmart()
+285,0,0,,Yes mistress.,That's better. Let’s try again.,280,0,-1,Grind()
+285,0,0,,Stop teasing me.,Okay then. You shouldn't get anything for loosing anyway.|(She smartens you up and then leaves you there.),120,0,0,LeftSmart()
+285,0,0,Common_PlayerGagged,@Nmf mnftrmff.|(Yes mistress.),That's better. Let’s try again.,280,0,-1,Grind()
+285,0,0,Common_PlayerGagged,@Fthp tmhfnng mm.|(Stop teasing me.),Fine. You shouldn't get anything for loosing anyway.|(She smartens you up and then leaves you there.),120,0,0,LeftSmart()
 286,0,0,,"No, it just|startled me.",I'll try and ease it in a little steadier|(She slowly masturbating you the wand vibrator.),280,0,0,
-286,0,0,,Yes.,"Hey it's okay, I won't force you.|(She smartens you up, then leaves you there.)",120,0,0,LeftSmart()
+286,0,0,,Yes.,"Hey it's okay, I won't force you.|(She smartens you up and then leaves you there.)",120,0,0,LeftSmart()
 286,0,0,Common_PlayerGagged,(Shake your head.),I'll try and ease it in a little steadier|(She slowly masturbating you the wand vibrator.),280,0,0,
-286,0,0,Common_PlayerGagged,(Nod your head.),"Hey it's okay, I won't force you.|(She smartens you up, then leaves you there.)",120,0,0,LeftSmart()
+286,0,0,Common_PlayerGagged,(Nod your head.),"Hey it's okay, I won't force you.|(She smartens you up and then leaves you there.)",120,0,0,LeftSmart()
 290,0,0,,Jenna.,(She pushes you over the edge into an orgasm.)|Welcome to heaven.,300,1,0,
 290,0,-2,,Mistress Jenna.,(She pushes you over the edge into an orgasm.)|Now I control your orgasms.,300,0,-1,MistressJenna()
 290,0,0,,What?,Say my name.,290,0,0,
@@ -158,22 +167,22 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 290,0,-2,Common_PlayerGagged,@Mnftrmff Jmnnh.,(She pushes you over the edge into an orgasm.)|Now I control your orgasms.,300,0,-1,MistressJenna()
 290,0,0,Common_PlayerGagged,@Whht?,Say my name.,290,0,0,
 290,0,0,Common_PlayerGagged,@Bntgh.,(She slaps you hard.) You ungrateful wretch.,295,-1,0,
-295,0,0,,I'm sorry.,"I should think so to.|(She smartens you up, then leaves you there.)",120,0,-1,LeftSmart()
-295,0,0,,You are still|the bitch.,"That's enough, you can just rot there.|(She gags you and leaves you there exposed.)",120,-1,0,Bitch()
-295,0,0,Common_PlayerGagged,@N'm fhrrn.,"(She smartens you up, then leaves you there.)",120,0,-1,LeftSmart()
+295,0,0,,I'm sorry.,I should think so to.|(She smartens you up and then leaves you there.),120,0,-1,LeftSmart()
+295,0,0,,You're still|a bitch.,"That's enough, you can just rot there.|(She gags you and leaves you there exposed.)",120,-1,0,Bitch()
+295,0,0,Common_PlayerGagged,@N'm fhrrn.,(She smartens you up and then leaves you there.),120,0,-1,LeftSmart()
 295,0,0,Common_PlayerGagged,@NNhh hrm ftnll|thm bntgh.,"That's enough, you can just rot there.|(She leaves you there exposed.)",120,-1,0,Bitch()
 300,0,0,,Thank you.,You're welcome|(Jenna stops and releases you from the manacles.),310,1,0,Relieved()
 300,0,0,,Just a little|more please.,If you insist. (Jenna keeps masturbating you),300,0,-1,Longer()
 300,0,0,Common_PlayerGagged,@Thhng nhh.,You're welcome|(Jenna stops and releases you from the manacles.),310,1,0,Relieved()
 300,0,0,Common_PlayerGagged,@Jhft h lnttlm|mhrm plmhfm.,If you insist. (Jenna keeps masturbating you),300,0,-1,Longer()
 300,0,0,,(Catch your breath.),(Jenna Stops and releases you as you steadily recover.),310,0,0,Relieved()
-310,0,0,,That was awsome.,"I'm glad you liked it.  This club doesn't run|it's self though, I'll catch you later.",320,1,0,JennaLeaves()
-310,0,0,,Can I tie you up now?,"Maybe in a bit if you are good enough.  This club|doesn't run it's self though, I'll catch you later.",320,0,0,JennaLeaves()
+310,0,0,,That was awesome.,"I'm glad you liked it.  This club doesn't run|it's self though, I'll catch you later.",320,1,0,JennaLeaves()
+310,0,0,,Can I tie you up now?,"Maybe in a bit, if you are good enough.  This club|doesn't run it's self though, I'll catch you later.",320,0,0,JennaLeaves()
 310,0,0,,Can we do that all again?,"Not now, I might be able give you a private lesson|after the competition.  I'll catch you later.",320,0,-1,JennaLeaves()
-310,0,0,,Was that the best|you could do?,"It didn't sound like you were complaining at the time.|""Oh Jenna ohh.."" (She mocks you as she leaves.)",320,-1,0,JennaLeaves()
+310,0,0,,Was that the best|you could do?,"It didn't sound like you were complaining at the time.|""Oh Jenna ohh...” (She mocks you as she leaves.)",320,-1,0,JennaLeaves()
 330,0,0,,(Accept the collar.),(You let Jenna collar you.|She then secures it with a small padlock.),340,0,-1,MistressesCollar()
 330,0,0,,A present for me?,Yes a gift for my precious new slave.|(She collars you and secures it with a small padlock.),340,1,0,MistressesCollar()
 330,0,0,,(Resist Jenna.),You did call me mistress.  (You are too exhausted to|stop her and she soon has the collar padlocked on you.),340,0,0,MistressesCollar()
 340,0,0,,Can I have the|key for this?,"No, but you might earn your freedom.  This club|doesn't run it's self though, I'll catch you later.",320,0,0,JennaLeaves()
-340,0,0,,Thank you|mistress Jenna.,"Good girl, now run along.  This club doesn't|run it's self though, I'll catch you later.",320,1,0,JennaLeaves()
+340,0,0,,Thank you|Mistress Jenna.,"Good girl, now run along.  This club doesn't|run it's self though, I'll catch you later.",320,1,0,JennaLeaves()
 340,0,0,,(Stare at Jenna.),"Don't worry you will soon get used to it.  This club|doesn't run it's self though, I'll catch you later.",320,0,1,JennaLeaves()

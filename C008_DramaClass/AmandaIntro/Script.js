@@ -63,7 +63,7 @@ function C008_DramaClass_AmandaIntro_Load() {
 function C008_DramaClass_AmandaIntro_Run() {
 	BuildInteraction(C008_DramaClass_AmandaIntro_CurrentStage);
 	if ((C008_DramaClass_AmandaIntro_CurrentStage != 20) && (C008_DramaClass_AmandaIntro_CurrentStage != 310)) DrawInteractionActor();
-	if (C008_DramaClass_AmandaIntro_CurrentStage == 310) DrawImage(document.getElementById("MainCanvas").getContext("2d"), C008_DramaClass_AmandaIntro_HugImage, 600, 0);
+	if (C008_DramaClass_AmandaIntro_CurrentStage == 310) DrawImage(C008_DramaClass_AmandaIntro_HugImage, 600, 0);
 }
 
 // Chapter 8 - Amanda Intro Click

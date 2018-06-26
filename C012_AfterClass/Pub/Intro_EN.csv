@@ -1,0 +1,60 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,EmptyPub,The pub is pretty empty at this hour.|Nobody from the college is around.,Pub.jpg
+0,0,0,!EmptyPub,Students gather at the pub after school.|Who would you like to meet?,Pub.jpg
+100,0,0,,There you are!  I'm still stuck in|this fucking belt because of you.,PubActor.jpg
+100,-8,0,,Fuck you COMMON_PLAYERNAME!|Unlock that belt now!,PubActor.jpg
+100,0,8,,Oh!  Miss COMMON_PLAYERNAME!|Can you please unlock the belt now?,PubActor.jpg
+101,0,0,,,PubActor.jpg
+102,0,0,,,PubActor.jpg
+110,0,0,,There you are!  I'm still stuck in|this fucking egg because of you.,PubActor.jpg
+110,-8,0,,Fuck you COMMON_PLAYERNAME!|Remove the egg now!,PubActor.jpg
+110,0,8,,Oh!  Miss COMMON_PLAYERNAME!|Can you please remove the egg now?,PubActor.jpg
+111,0,0,,,PubActor.jpg
+112,0,0,,,PubActor.jpg
+120,0,0,,Hey girl!  If you want to sit here|you need to bring me a beer.,PubActor.jpg
+120,8,0,,Hey cutie!  If you want to sit here|you need to bring me a beer.,PubActor.jpg
+120,-8,0,,Hey fuck face!  If you want to sit|here you need to bring me a beer.,PubActor.jpg
+121,0,0,,,PubActor.jpg
+122,0,0,,,PubActor.jpg
+130,0,0,,Hello Miss COMMON_PLAYERNAME.|What brings you to the pub?,PubActor.jpg
+131,0,0,,,PubActor.jpg
+132,0,0,,,PubActor.jpg
+140,0,0,,Fuck!  Why are you talking to me?,PubActor.jpg
+141,0,0,,,PubActor.jpg
+142,0,0,,,PubActor.jpg
+150,0,0,,It's great to see you!|Have a beer with me.,PubActor.jpg
+151,0,0,,,PubActor.jpg
+152,0,0,,,PubActor.jpg
+160,0,0,,I can't believe you took|over the literature class.,PubActor.jpg
+161,0,0,,,PubActor.jpg
+162,0,0,,,PubActor.jpg
+170,0,0,,I still can't believe you stripped me and|tied me up outside.  I should kick your ass.,PubActor.jpg
+180,0,0,,Hey there detention-mate.|Are you still causing trouble?,PubActor.jpg
+190,0,0,,Oh!  It's you.  What do you want?,PubActor.jpg
+191,0,0,,,PubActor.jpg
+192,0,0,,,PubActor.jpg
+200,0,0,,,PubActor.jpg
+201,0,0,,,PubActor.jpg
+202,0,0,,,PubActor.jpg
+203,0,0,,,PubActor.jpg
+204,0,0,,,PubActor.jpg
+205,0,0,,,PubActor.jpg
+210,0,0,,,PubPusher.jpg
+211,0,0,,,PubPusher.jpg
+212,0,0,,,PubPusher.jpg
+213,0,0,,,PubPusher.jpg
+214,0,0,,,PubPusher.jpg
+215,0,0,,,PubPusher.jpg
+216,0,0,,,PubPusher.jpg
+217,0,0,,,PubPusher.jpg
+219,0,0,,,PubPusher.jpg
+220,0,0,,,PubActor.jpg
+221,0,0,,,PubActor.jpg
+222,0,0,,,PubActor.jpg
+223,0,0,,,PubActor.jpg
+224,0,0,,,PubActor.jpg
+225,0,0,,,PubActor.jpg
+300,0,0,,,Dorm.jpg
+310,0,0,,,Dorm.jpg
+320,0,0,,,Dorm.jpg
+330,0,0,,,Dorm.jpg

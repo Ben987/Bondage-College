@@ -1,0 +1,51 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,"Ja,das ist mein erster Tag hier.",Na dann, Willkommen!  Ich bin Amanda.,10,0,0,
+0,0,0,,"Ja der erste Tag an der neuen|Schule ist immer beängstigend.","It will be fine?.  Ich bin Amanda, Willkommen.",10,0,-1,
+0,0,0Du siehst aus|wie ein Streber.,"Errrr... Mmmm...  I...|Ich bin Amanda, Willkommen.",10,-1,1,
+0,0,0,,Was interessierts dich?,"Oh!  Kein Grund.  Ih bin Amanda, willkommen.",10,-1,0,
+0,0,0,SidneyInBondage,Ich ette du siehst auch|bezaubernt gefesselt aus.,"(Sie ird rot.)|Denkst du?  Ich bin Amanda, schön dich kennzulernen.",10,0,1,
+0,0,0,SidneyInBondage,Du bist besser brav oder|du endest ie sie.,"Ja, Ja, natürlich.  Ich bin Amanda.|(Sie verbeugt sich vor dir und sieht den Boden an.)",10,-1,2,
+10,0,0,,Erzähl mir as zu der Schule.,Es wurde vor einem Jahrhundert von Nonnen gegründet.|Jetzt ist es eine Mädchenschule.,20,0,0,
+10,0,0,,Was haben ir jetzt?,Mathe!  Mein Lieblingsfach!  arte bis du die Lehrerin kennlernst.,20,0,0,
+10,0,0,,Ich hörte gute Dinge|über die Schule.,"Hast richtig gehört, dieser Ort ist wundervoll.",20,1,0,
+10,0,0,,Ich hoffe die Stunde ist schnell|vorrüber damit ir abhauen könn.,Ich eiß nicht ob das die richtige Einstellung zum lernen ist.,20,-1,0,
+20,0,0,,Ich mag deine Haare.,"(Sie lacht und wird rot.)|Du bist nett aber bereite dich auf den Unterricht vor.",30,1,0,
+20,0,0,,Du klingst faziniert von|der blöden Schule.,Mmh (Sie dreht sich eg und hört auf zu reden),50,-1,0,
+20,0,0,,"Mach keine Pläne für´s|Mittag, Ich lad dich ein.",Echt?  (Lacht)|Lass uns auf die Stunde fokusieren.,30,0,1,
+20,0,0,,Kannst du mich bitte|nach der Stunde herrumführen?,Velleicht.|aber bereite dich auf die Stunde vor.,30,0,-1,
+30,0,0,,"Ja, lass uns auf|die Stunde fokusieren.",Gut gesagt.,50,1,0,
+30,0,0,,"Unterricht,Unterricht,Unterrich.|Du bist langeilig.",Oh!  Entschuldige.  (Sie dreht sich weg und hört auf zu reden),50,-1,0,
+30,1,0,,"Vrsicht, die schwarzhaarige|starrt dich an.","Oh Gott!  Danke für die Warnung.|Das ist das erste mal das ich ihre Tasche sehe, as ohl drin ist.",40,1,0,
+40,1,0,,"Keine Sorge, wenn sie Ärger| macht beschütze ich dich.",Würdest du?  Das ist Super!|aber fokusieren wir uns auf die Stunde.,50,0,1,
+40,1,0,,"Velleicht sollte ich die |Lehrerin informieren, sie sieht gruslig aus.",Die Lehrerin informieren... Ich eiß nicht.|Lass uns lieber erstmal auf die Stunde fokusieren.,50,0,-1,
+40,1,0,SidneyInBondage,"Es waren Seilein ihrer|Tasche.  Sie trägt sie grade.",Hahaha!  Sieht man.|aber sollest du sie nicht lieber vor der Stunde befreien?,50,1,0,
+200,0,0,BondageNotConfronted,Würdest du jetzt gerne|gefesselt sein?,Was?  Nein!  Die Stunde beginnt gleich!|Bitte leg die Seile weg.,200,-1,0,ConfrontBondage()
+200,0,0,BondageNotConfronted,"Gibs zu du würdest|es lieben jetzt gefesselt zu sein.",Oh mein Gott!  (Sie wird rot.)|Nein... J... Nein... Die Stunde beginnt gleich.,200,-1,1,ConfrontBondage()
+200,0,0,StopRopeSubAllowed,"Ich liebe Bondage,|kannst du mich fesselen?","Oh!  Du bist unterwürfig, velleicht nach der Schule.|(Sie zwinkert.) Wovon reden wir, Neue?",200,0,-2,StopRopeSub()
+200,0,0,,Wir könn die später benutzen.|(Versteck die Seile.),Später? (Sie sieht dich neugierig an.)|Wovon redest du, Neue?,200,0,0,StopRope()
+200,0,2,,(Halt sie fest|und zeih sie aus.) (1 minute),Oh Gott nein!  Nicht schon wieder!|(Sie versucht sich zu verteitigen aber versagt.),220,0,0,Strip()
+200,0,4,,"Unterwürfiges Mädchen, Zieh deine|Uniform aus. (1 minute)",N... Errr... Ok miss...|(Unterwürfig entfernt sie Oberteil und Rock.),220,0,0,
+220,0,0,,(Fessel sie.)|(1 minute),(Du wickeln die Seile um ihren Körper und|bindest ihre Arme hinter ihrem Rücken.  Sie stöhnt leise.),230,0,0,Tie()
+220,0,0,,Gib ihre Sachen zurück.|(1 minute),Oh Gott Ja!  Das ist erniedrigend.,200,0,0,
+230,0,0,,(Dreh sie.),Was?  Oh Gott!  Was machst du?|(Du zwingst sie sich zu drehen.),240,0,0,
+230,0,0,,(Befreie sie.)|(1 minute),(Du befreist sie langsam) Vielen Dank!|Kann ich meine Sachen ieder anziehen?,220,0,0,Untie()
+230,0,0,,(Kitzle sie.)|(1 minute),(Sie ird rot und kann nicht aufhören zu lachen.)|Hey!  Haaahahahaha!  Du bist witzig.,230,0,0,Tickle()
+230,1,0,,(Küsse sie.)|(1 minute),Nochein Kuss?|(Sie ird rot und lächelt dich an.),230,0,0,Kiss()
+230,0,0,SidneyInBondage,(Zinge sie Sydney zu umarmen.)|(1 minute),(Beide Mädchen sind gezwungen, sich zu umarmen und zu reiben.)|Oh man!  Das ist nicht in Ordnug.,250,0,0,
+230,0,0,,Du siehst gefsselt|aus ie ein Engel.,(Sie lacht und lächelt dich an.),230,0,0,
+230,0,0,,"enn ich dich befreie|kann ich dich später fesseln? (1 minute)",Ooooh!  Ja!  Natürlich!|(Du befreist sie und schüttelst ihre Hand.),300,1,1,Untie()
+230,0,0,,"enn ich dich befreie|Fesselst du mich später? (1 minute)","Hehehe, Na gut.|(Du befreist sie und schüttelst ihre Hand.)",300,1,-2,Untie()
+240,0,0,,(Dreh sie.),(Du zingst sie sich zu drehen.)|Oooohh!  Ich bevorzuge es dich anzusehen.,230,0,0,
+240,0,0,,(Befreie sie.)|(1 minute),(Du befreist sie langsam) Vielen Dank!|Kann ich meine Sachen ieder anziehen?,220,0,0,Untie()
+240,0,0,,(Kitzle sie.)|(1 minute),(Sie ird rot und kann nicht aufhören zu lachen.)|Hey!  Haaahahahaha!  Du bist witzig.,240,0,0,Tickle()
+240,0,0,,(Schlag ihren Arsch.)|(1 minute),(Du schlägst sie nochmal aber sie scheint es hinzunehmen.)|Hör auf!,240,0,0,Spank()
+240,0,0,,Du hast ein schönen|Hintern weißt du?,Echt?  (Sie wird rot.),240,0,0,
+240,0,0,,"Wenn ich dich befreie kann|ich dich später fesseln? (1 minute)",Ooooh!  Ja!  Natürlich!|(Du befreist sie und schüttelst ihre Hand.),300,1,1,Untie()
+240,0,0,,"<enn ich dich befreie kannst du|mich später fesseln? (1 minute)","Hehehe, Na gut.|(Du befreist sie und schüttelst ihre Hand.)",300,1,-2,Untie()
+250,0,0,,(Trenne sie.),Danke.  Das ar erniedrigend.,230,0,0,
+250,0,0,,(Zwine beide sich zu küssen.)|(1 minute),Noch ein Kuss?  Wiederlich!|(Du drückst beide zusammen zum küssen.),260,0,0,ForceKiss()
+250,0,0,,Ihr zei macht ein|ein super Bondage Duo.,(Beide starren dich an.),250,0,0,
+260,0,0,,(Trenne sie.),Danke.  Das war erniedrigend.,230,0,0,
+260,0,0,,(Stoppe den Kuss.),"Nichts für ungut Sidney,|aber du bist nicht mein Typ.",250,0,0,
+260,0,0,,Love is in the air!,Hey!  Das ist nicht witzig.|(Sie zeigt dir die Zunge.),260,0,0,
+260,2,0,,Kann ich auch ein Kuss bekommen?,"Hehehe, ok.|(Sie dreht sich zu dir um dich zu küssen.)",260,0,0,

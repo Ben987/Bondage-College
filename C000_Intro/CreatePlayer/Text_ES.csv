@@ -1,0 +1,10 @@
+Tag,Content
+EnterName,Escribe tu nombre y selecciona una habilidad de la lista
+ValidChars,Sólo se pueden usar letras y espacio
+Validate,Empieza el juego
+Skill0,Ninguna habilidad
+Skill1,Arte
+Skill2,Lucha
+Skill3,Maestra de las cuerdas
+Skill4,Deportes
+Skill5,Seducción

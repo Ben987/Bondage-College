@@ -48,6 +48,6 @@ function C010_Revenge_Outro_Click() {
 
 	// Jump to the next animation
 	TextPhase++;
-	if (TextPhase >= 3) SaveMenu("C101_KinbakuClub", "Intro");
+	if (TextPhase >= 3) SaveMenu("C011_LiteratureClass", "Intro");
 
 }

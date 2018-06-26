@@ -1,0 +1,280 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,Common_ActorIsOwner,What's on your|mind Mistress?,Not much my little bitch.|(She checks her cell phone.),0,0,0,RandomSidneyDommeEvent()
+0,0,0,Common_ActorIsOwner,"Mistress, it's ok if|I change clothes?",Sure bitch.  Wear what you want.,0,0,0,IsChangingBlocked()
+0,5,0,,Would you like to|make love with me?,"No, I don't feel like it.|Let's do something else.",0,0,0,TestLove()
+0,0,5,!Common_ActorIsOwned,"Girl, you need|my protection.",I don't need protection from anyone.|(You need +20 submission to collar Sidney.),0,0,0,TestDomme()
+0,0,-5,!Common_ActorIsOwner,Miss Sidney.|I admire you.,"Don't talk like that, you sound like a loser.|(You need -20 submission to submit to Sidney.)",0,0,0,TestSub()
+0,0,0,Common_PlayerGagged,@Om nnnuoogn mh!,Oh yeah.  I fucking understood|what you said.  (She laughs.),0,0,0,TestUnbind()
+0,0,0,Common_PlayerGagged,(Hum a sexy song|and dance for fun.),Not now my little bitch.|(She checks her cell phone.),0,0,0,RandomSidneyDommeEvent()
+0,0,0,Common_PlayerRestrained,(Struggle in|your restrains.),"Nope, you're not getting out.|It's great to see you struggle.",0,0,0,TestUnbind()
+0,0,0,Common_PlayerChaste,Can you please help|me with this belt?,"Nope, that chastity belt|is a perfect fit for you.",0,0,0,
+0,0,0,ChatAvail,I'd like to know|more about you.,"Ok, what would like to know?",500,0,0,StartChat()
+100,0,0,,TO DO,TO DO,100,0,0,
+200,0,0,,TO DO,TO DO,200,0,0,
+300,0,0,,I know!  I'm sorry.,(She sighs.)  They only way you won't get|killed is if I take you under my wing.,310,0,0,
+300,0,0,,School can be harsh.,(She sighs.)  They only way you won't get|killed is if I take you under my wing.,310,0,0,
+300,0,0,,Can you help me?,(She sighs.)  They only way you won't get|killed is if I take you under my wing.,310,0,0,
+310,0,0,,Under your wing?,"Yeah, if you're willing to submit to me.|I will protect you from now on.",320,0,0,
+310,0,0,,You will protect me?,"Yeah, if you're willing to submit to me.|I will protect you from now on.",320,0,0,
+310,0,0,,"Miss, are you sure?","Yeah, if you're willing to submit to me.|I will protect you from now on.",320,0,0,
+320,0,0,,I need to think first.|(Don't submit now.),"Sure, take your fucking time.",0,0,0,
+320,0,0,!Common_ActorIsLover,I will submit Miss.|(Submit to Sidney.),"Good, you'll be my bitch then.|So bitch, get naked right now.",0,0,0,TestSubmit()
+320,0,0,Common_ActorIsLover,I will submit Miss.|(Submit to Sidney.),"You'll be my lover and my bitch then.|So my sexy bitch, get naked right now.",0,0,0,TestSubmit()
+330,0,0,,Yes Miss.|(Strip naked.),(You strip down for Sidney and she smiles.)|Very good little bitch.  Now get on your knees.,340,0,0,PlayerStrip()
+330,0,0,,Why should I strip?,Cause you're my bitch|and you're going to strip.,330,0,0,
+330,0,0,,Stop!  This is|going too far.,Fine.  But I won't protect you.,0,0,0,
+340,0,0,,Yes Miss Sidney.|(Get on your knees.),"Just like a bitch, you will|wear a collar for me.",350,0,0,"SetPlayerPose(""BackKneel"")"
+340,0,0,,My pleasure.|(Get on your knees.),"Just like a bitch, you will|wear a collar for me.",350,0,0,"SetPlayerPose(""BackKneel"")"
+340,0,0,,Stop!  This is|going too far.,Fine.  But I won't protect you.,0,0,0,
+350,0,0,,I understand.,"This fucking collar will tell everyone|to backup, that you're my property.",360,0,0,
+350,0,0,,Very well.,"This fucking collar will tell everyone|to backup, that you're my property.",360,0,0,
+350,0,0,,Stop!  This is|going too far.,Fine.  But I won't protect you.,0,0,0,
+360,0,0,,Your property Miss?,"Yep, my own personal bitch.  And this|collar will be fucking locked on you.",370,0,0,
+360,0,0,,This will protect me?,I will protect you bitch.  And this|collar will be fucking locked on you.,370,0,0,
+360,0,0,,Stop!  This is|going too far.,Fine.  But I won't protect you.,0,0,0,
+370,0,0,,(Bow your head.),"Now say ""I'm your bitch"" and you'll be mine.|(She shows you a black collar and a padlock.)",380,0,0,
+370,0,0,,That's alright.,"Now say ""I'm your bitch"" and you'll be mine.|(She shows you a black collar and a padlock.)",380,0,0,
+370,0,0,,Stop!  This is|going too far.,Fine.  But I won't protect you.,0,0,0,
+380,0,0,!Common_ActorIsLover,I'm your bitch.,"Damn right!  (She fastens the collar and locks it.)|From now on, you will call me ""Mistress"".",390,0,-3,PlayerCollared()
+380,0,0,Common_ActorIsLover,I'm your bitch.,"Damn right!  (She fastens the collar and locks it.)|From now on my love, you will call me ""Mistress"".",390,0,-3,PlayerCollared()
+380,0,0,,Stop!  This is|going too far.,Fine.  But I won't protect you.,0,0,0,
+390,0,0,,I'm so happy!,That's pretty fucking awesome.|I'll protect you but never betray me.,395,1,0,
+390,0,0,,I know I'm|in good hands.,"You are, and that's fucking awesome.|I'll protect you but never betray me.",395,1,0,
+390,0,0,,I don't feel|very good.,You'll get used to it.  Now remember.|I'll protect you but never betray me.,395,-1,0,
+390,0,0,,(Stay silent and|look at her feet.),That's pretty fucking awesome.|I'll protect you but never betray me.,395,0,-1,
+390,0,0,,Is the collar supposed|to be that tight?,Don't complain or I'll punish you.|I'll protect you but never betray me.,395,0,1,
+395,0,0,,I will never|betray you Mistress.,Very good my sexy little bitch.|Now stand up and let's do something fun.,0,0,-1,PlayerStandUp()
+395,0,0,,Ok Sidney.,That's MISTRESS for you!  (She slaps you.)|Now stand up and let's do something fun.,0,-1,0,PlayerStandUp()
+395,0,0,,Very good.,Now stand up and let's do something fun.,0,0,0,PlayerStandUp()
+400,0,0,Common_PlayerGagged,@UNGN MH NUUOGH!,(She laughs and leaves your dorm.),410,0,0,TestReleaseBeforeExit()
+400,0,0,Common_PlayerRestrained,Can you help me|before you go?,"Nope, I like you like that.|(She leaves your dorm.)",410,0,0,TestReleaseBeforeExit()
+400,0,0,,Have fun!,I will.  (She leaves your dorm.),410,0,0,
+400,0,0,,That sucks!|Don't go.,Fuck that.  (She leaves your dorm.),410,-1,0,
+400,0,0,!Common_ActorIsOwner,Have a great|time Sidney.,Hell yeah!  (She leaves your dorm.),410,1,0,
+400,0,0,Common_ActorIsOwner,Have a great|time Mistress.,Hell yeah!  (She leaves your dorm.),410,1,0,
+400,0,0,,Wait!,I can't.  (She leaves your dorm.),410,0,0,
+400,0,0,!Common_ActorIsOwner,Next time I'll tie|you up so you'll stay.,Oh shit.  (She leaves your dorm.),410,0,1,
+400,0,0,,(Bow your head.),Good girl.  (She leaves your dorm.),410,0,-1,
+500,0,0,,Do you have|many friends?,I have some friends and some enemies.,510,0,0,
+500,0,0,,You seem to have|lots of enemies.,"Yeah, I have some enemies.",510,0,1,
+500,0,0,,You seem to|be very popular.,I'm more popular than you but that's easy.|I have some friends and some enemies.,510,0,-1,
+510,0,0,,It's hard to believe|that you have enemies.,"Yeah, and my worst enemy is|my fucking roommate, that sucks.",520,1,0,
+510,0,0,,"Yeah, it's tough to|be loved by everyone.",The worst thing is that|my top enemy is my roommate.,520,0,0,
+510,0,0,,If you were kinder you|wouldn't have enemies.,Kinder?  Fuck that.  The worst thing|is that my top enemy is my roommate.,520,-1,0,
+520,0,0,,It's Amanda?,Yes and no.  It's her stupid|friend Sarah.  I hate her so much.,530,0,0,
+520,0,0,,It's Jennifer?,"Jennifer?  Fuck no it's not.|It's Sarah, I hate her so much,",530,-1,0,
+520,0,0,,It's Sarah?,Fuck yeah!  I hate her so much.,530,1,0,
+520,0,0,,Who is it?,"It's Sarah, I hate her so much.",530,0,0,
+530,0,0,,You should make|peace with her.,Peace?  No way!|I will crush her.,540,0,-1,
+530,0,0,,What will you do?,I will crush her.,540,0,0,
+530,0,0,,You need to|make her pay.,Oh fuck yeah!|I will crush her.,540,0,1,
+540,0,0,,How will you|do that?,"I don't know, I need a|good plan to humiliate her.",550,0,0,
+540,0,0,,You need a|plan first.,"Exactly, I need a fucking|good plan to humiliate her.",550,0,1,
+540,0,0,,This will not|end well.,You're not helping!  I need a|fucking good plan to humiliate her.,550,0,-1,
+540,0,0,,Crush her how?,"I don't know, I need a|good plan to humiliate her.",550,0,0,
+550,0,0,,I won't help you.,Fine!  I don't care.,0,-1,0,EndChat()
+550,0,0,,Good luck.,"Yeah, I'll need some fucking luck.",0,0,0,EndChat()
+550,0,0,,I will help you.,That's great!  If you find|a plan you need to tell me.,560,1,0,
+550,0,0,,Can I help|you Miss?,Absolutely!  If you find|a plan you need to tell me.,560,1,-1,
+560,0,0,,I will!  But you'll|need to follow it.,Deal!  This is fucking awesome.,0,0,1,EndChat()
+560,0,0,,Very well.,Revenge will be sweet.,0,0,0,EndChat()
+560,0,0,,"Yes, try not fuck up|in the meantime.",(She frowns and nods.)|Revenge will be sweet.,0,-1,1,EndChat()
+3000,0,0,,Yes Mistress.|(Strip naked.),Good girl.  (You change for Sidney.),3090,0,0,"ForceChangePlayer(""Naked"")"
+3000,0,0,,(Nod slowly.)|(Strip naked.),Good girl.  (You change for Sidney.),3090,0,0,"ForceChangePlayer(""Naked"")"
+3000,0,0,,I don't want|to do that.,"Fine, shut up then.|(She checks her phone.)",3092,0,0,TestPunish()
+3000,0,0,,(Shake your head no.),"Fine, get lost then.|(She checks her phone.)",3092,0,0,TestPunish()
+3010,0,0,,Yes Mistress.|(Get in your undies.),Good girl.  (You change for Sidney.),3090,0,0,"ForceChangePlayer(""Underwear"")"
+3010,0,0,,(Nod slowly.)|(Get in your undies.),Good girl.  (You change for Sidney.),3090,0,0,"ForceChangePlayer(""Underwear"")"
+3010,0,0,,I don't want|to do that.,"Fine, shut up then.|(She checks her phone.)",3092,0,0,TestPunish()
+3010,0,0,,(Shake your head no.),"Fine, get lost then.|(She checks her phone.)",3092,0,0,TestPunish()
+3020,0,0,,Yes Mistress.|(Wear your uniform.),Good girl.  (You change for Sidney.),3090,0,0,"ForceChangePlayer(""Clothed"")"
+3020,0,0,,(Nod slowly.)|(Wear your uniform.),Good girl.  (You change for Sidney.),3090,0,0,"ForceChangePlayer(""Clothed"")"
+3020,0,0,,I don't want|to do that.,"Fine, shut up then.|(She checks her phone.)",3092,0,0,TestPunish()
+3020,0,0,,(Shake your head no.),"Fine, get lost then.|(She checks her phone.)",3092,0,0,TestPunish()
+3030,0,0,,Yes Mistress.|(Wear your bikini.),Good girl.  (You change for Sidney.),3090,0,0,"ForceChangePlayer(""RedBikini"")"
+3030,0,0,,(Nod slowly.)|(Wear your bikini.),Good girl.  (You change for Sidney.),3090,0,0,"ForceChangePlayer(""RedBikini"")"
+3030,0,0,,I don't want|to do that.,"Fine, shut up then.|(She checks her phone.)",3092,0,0,TestPunish()
+3030,0,0,,(Shake your head no.),"Fine, get lost then.|(She checks her phone.)",3092,0,0,TestPunish()
+3040,0,0,,Yes Mistress.|(Wear your lingerie.),Good girl.  (You change for Sidney.),3090,0,0,"ForceChangePlayer(""WhiteLingerie"")"
+3040,0,0,,(Nod slowly.)|(Wear your lingerie.),Good girl.  (You change for Sidney.),3090,0,0,"ForceChangePlayer(""WhiteLingerie"")"
+3040,0,0,,I don't want|to do that.,"Fine, shut up then.|(She checks her phone.)",3092,0,0,TestPunish()
+3040,0,0,,(Shake your head no.),"Fine, get lost then.|(She checks her phone.)",3092,0,0,TestPunish()
+3090,0,0,,Do I look fine?,You're ok.  Now shut up for a second.|(She gets back on her phone to text.),3092,0,0,TestBlockChanging()
+3090,0,0,,Are you happy?,I can't complain.  Now shut up for a second.|(She gets back on her phone to text.),3092,0,0,TestBlockChanging()
+3090,0,0,,(Bow your head.),It's kind of great to have a bitch.|(She gets back on her phone to text.),3092,0,0,TestBlockChanging()
+3091,0,0,,I cannot change?|For how long?,Until I say otherwise.  Now shut up.|(She checks her phone and laughs.),3092,0,0,AllowLeave()
+3091,0,0,,(Nod slowly.),Stay like that until I say otherwise.|(She checks her phone and laughs.),3092,0,0,AllowLeave()
+3091,0,0,Common_PlayerGagged,@Eehp oheem!,Stay like that until I say otherwise.|(She checks her phone and laughs.),3092,0,0,AllowLeave()
+3091,0,0,,(Sulk.),"My bitch, my rules.  You stay like that until|I say otherwise.  (She checks her phone again.)",3092,0,0,AllowLeave()
+3091,0,0,,That's unfair!,"My bitch, my rules.  You stay like that until|I say otherwise.  (She checks her phone again.)",3092,0,0,AllowLeave()
+3100,0,0,,Yes Mistress.|(Show her your items.),(She checks your items|and use them on you.),3190,0,0,"ForceRandomBondage(""Full"")"
+3100,0,0,,I don't want|to do that.,"Fine, shut up then.|(She checks her phone.)",3191,0,0,TestPunish()
+3110,0,0,,Yes Mistress.|(Show her your items.),(She checks your items|and use a restrain on you.),3190,0,0,"ForceRandomBondage(""Restrain"")"
+3110,0,0,,I don't want|to do that.,"Fine, shut up then.|(She checks her phone.)",3191,0,0,TestPunish()
+3120,0,0,,Yes Mistress.|(Show her your items.),(She checks your items|and use a gag on you.),3190,0,0,"ForceRandomBondage(""Gag"")"
+3120,0,0,,I don't want|to do that.,"Fine, shut up then.|(She checks her phone.)",3191,0,0,TestPunish()
+3130,0,0,,Thanks Mistress!,My pleasure bitch.|(She checks her phone.),3191,0,0,AllowLeave()
+3130,0,0,,(Nod politely.),Having a bitch rocks.|(She checks her phone.),3191,0,0,AllowLeave()
+3140,0,0,,Yes Mistress.|(Give your keys.),Good girl.  (She confiscates your|keys and checks on her phone.),3191,0,-1,ConfiscateKeys()
+3140,0,0,,(Bow your head and|give your keys.),Good girl.  (She confiscates your|keys and checks on her phone.),3191,0,-1,ConfiscateKeys()
+3140,0,0,,No!  These|are my keys.,"Fine, shut up then.|(She checks her phone.)",3191,0,1,TestPunish()
+3140,0,0,,(Shake your head|no and refuse.),"Fine, get lost then.|(She checks her phone.)",3191,0,1,TestPunish()
+3150,0,0,,Yes Mistress.|(Give your crop.),Good bitch.  I'll use it on you someday.|(She takes your crop and checks on her phone.),3191,1,0,ConfiscateCrop()
+3150,0,0,,(Bow your head and|give your crop.),Good bitch.  I'll use it on you someday.|(She takes your crop and checks on her phone.),3191,1,0,ConfiscateCrop()
+3150,0,0,,No!  It's not yours.,"Fine, shut up then.|(She checks her phone.)",3191,-1,0,TestPunish()
+3150,0,0,,(Shake your head|no and refuse.),"Fine, get lost then.|(She checks her phone.)",3191,-1,0,TestPunish()
+3160,0,0,,Yes Mistress.|It's a kinky egg.,Great!  And it's going to|go right in your vagina.,3161,0,0,
+3160,0,0,,(Nod slowly.),Great!  And it's going to|go right in your vagina.,3161,0,0,
+3160,0,0,,(Shrug.),You know it is!  And it's going|to go right into your vagina.,3161,0,0,
+3160,0,0,,I'm not sure what|it's doing there.,Don't lie bitch!  It's going|to go right in your vagina.,3161,0,0,
+3161,0,0,,With my great|pleasure Mistress.,(She slides the egg inside of you.)|You're such a good little bitch.,3162,0,-1,InsertEgg()
+3161,0,0,,If it pleases|you Mistress.,(She slides the egg inside of you.)|You're such a good little bitch.,3162,1,0,InsertEgg()
+3161,0,0,,(Nod happily.),(She slides the egg inside of you.)|You're such a good little bitch.,3162,0,-1,InsertEgg()
+3161,0,0,,Fuck no!,"Fine, shut up then.|(She checks her phone.)",3191,0,1,TestPunish()
+3161,0,0,,"No, please Mistress.|You cannot do that.","Fine, shut up then.|(She checks her phone.)",3191,-1,0,TestPunish()
+3161,0,0,,(Shake your head no.),"Fine, get lost then.|(She checks her phone.)",3191,0,0,TestPunish()
+3162,0,0,HasEgg,We are now|egg sisters.,That's not fucking funny.|(She checks on her phone.),3191,-1,0,AllowLeave()
+3162,0,0,,It tickles!,Enjoy the tickling bitch.|(She checks on her phone.),3191,0,0,AllowLeave()
+3162,0,0,,(Blush red.),Enjoy the egg bitch.|(She checks on her phone.),3191,0,0,AllowLeave()
+3190,0,0,!Common_PlayerRestrained,I'm sorry you didn't|found anything you like.,Find some better stuff next time.|(She gets back on her phone to text.),3191,0,0,AllowLeave()
+3190,0,0,Common_PlayerRestrained,Do you like to|see me restrained?,Fuck yeah.  Now shut up for a second.|(She gets back on her phone to text.),3191,0,0,AllowLeave()
+3190,0,0,Common_PlayerGagged,@Niighn mhim!,It's kind of great to have a bitch.|(She gets back on her phone to text.),3191,0,0,AllowLeave()
+3190,0,0,,(Bow your head.),It's kind of great to have a bitch.|(She gets back on her phone to text.),3191,0,0,AllowLeave()
+3200,0,0,,"Oh yes, I love|being tickled.",That's fucking great my little bitch.|(She pounces and starts to tickle you.),3201,0,0,"DoActivity(""Tickle"", 1, 0)"
+3200,0,0,,Not really.,We'll see about that my little bitch.|(She pounces and starts to tickle you.),3201,0,0,"DoActivity(""Tickle"", -1, 0)"
+3200,0,0,,Yes Mistress.|I'm ticklish.,That's fucking alright my little bitch.|(She pounces and starts to tickle you.),3201,0,0,"DoActivity(""Tickle"", 0, 0)"
+3200,0,0,,I don't want|to be tickled.,"Fine, shut up then.|(She checks her phone.)",3291,0,0,TestPunish()
+3200,0,0,,(Nod happily.),That's fucking great my little bitch.|(She pounces and starts to tickle you.),3201,0,0,"DoActivity(""Tickle"", 1, 0)"
+3200,0,0,,(Nod slowly.),That's fucking alright my little bitch.|(She pounces and starts to tickle you.),3201,0,0,"DoActivity(""Tickle"", 0, 0)"
+3200,0,0,,(Shake your head no.),We'll see about that my little bitch.|(She pounces and starts to tickle you.),3201,0,0,"DoActivity(""Tickle"", -1, 0)"
+3201,0,0,,Hheeeaaahhaha!,You're a great victim my bitch.|(She tickles you some more and laughs.),3201,0,0,"DoActivity(""Tickle"", 1, 0)"
+3201,0,0,,You're pretty|bad at this.,(She frowns and tickles you harder.),3201,0,0,"DoActivity(""Tickle"", -1, 0)"
+3201,0,0,,(Laugh out loud.),You're a great victim my bitch.|(She tickles you some more and laughs.),3201,0,0,"DoActivity(""Tickle"", 1, 0)"
+3201,0,0,,(Giggle lightly.),(She laughs and tickles you some.),3201,0,0,"DoActivity(""Tickle"", 0, 0)"
+3201,0,0,,(Pretend you|don't care.),(She frowns and tickles you harder.),3201,0,0,"DoActivity(""Tickle"", -1, 0)"
+3201,0,0,,Stop it now!,Fuck you then little bitch!|(She lets you go and checks her phone.),3291,0,0,TestPunish()
+3201,0,0,,(Grumble and|try to resist.),Fuck you then little bitch!|(She lets you go and checks her phone.),3291,0,0,TestPunish()
+3210,0,0,,Yes Mistress.|I'm ok with it.,That's good my little bitch.|(She slaps you on the breast.),3211,0,0,"DoActivity(""Spank"", 0, 0)"
+3210,0,0,,Not really.,You'll have to learn to love it my little bitch.|(She slaps you pretty hard on the breast.),3211,0,0,"DoActivity(""Spank"", -1, 0)"
+3210,0,0,,"Oh yes, I'm|a pain slut.",That's fucking great my little bitch.|(She slaps you hard on the breast.),3211,0,0,"DoActivity(""Spank"", 1, 0)"
+3210,0,0,,I don't want|to be slapped.,"Fine, shut up then.|(She checks her phone.)",3291,0,0,TestPunish()
+3210,0,0,,(Nod happily.),That's fucking great my little bitch.|(She slaps you hard on the breast.),3211,0,0,"DoActivity(""Spank"", 1, 0)"
+3210,0,0,,(Nod slowly.),That's good my little bitch.|(She slaps you on the breast.),3211,0,0,"DoActivity(""Spank"", 0, 0)"
+3210,0,0,,(Shake your head no.),You'll have to learn to love it my little bitch.|(She slaps you pretty hard on the breast.),3211,0,0,"DoActivity(""Spank"", -1, 0)"
+3211,0,0,,That's all|you've got?,So you think you're tough?|(She slaps your face harder.),3211,0,0,"DoActivity(""Spank"", -1, 0)"
+3211,0,0,,(Pretend you|don't care.),So you think you're tough?|(She slaps your face harder.),3211,0,0,"DoActivity(""Spank"", -1, 0)"
+3211,0,0,,More Mistress!|I've been bad.,You're a great victim my bitch.|(She slaps your face and laughs.),3211,0,0,"DoActivity(""Spank"", 1, 0)"
+3211,0,0,,(Endure the pain.),This will teach you who's boss.|(She slaps your face and laughs.),3211,0,0,"DoActivity(""Spank"", 0, 0)"
+3211,0,0,,(Take deep breaths.),This will teach you who's boss.|(She slaps your face and laughs.),3211,0,0,"DoActivity(""Spank"", 0, 0)"
+3211,0,0,,(Moan of pleasure.),You're a great victim my bitch.|(She slaps your face and laughs.),3211,0,0,"DoActivity(""Spank"", 1, 0)"
+3211,0,0,,Stop it now!,Fuck you then little bitch!|(She lets you go and checks her phone.),3291,0,0,TestPunish()
+3211,0,0,,(Grumble and|try to resist.),Fuck you then little bitch!|(She lets you go and checks her phone.),3291,0,0,TestPunish()
+3220,0,0,,What does that|fucking mean?,It means I'll do what I want with it.|(She grabs your crotch forcefully.),3221,0,0,"DoActivity(""Masturbate"", -1, 3222)"
+3220,0,0,,Yes Mistress.|It's yours.,That's my good little slut.|(She grabs your crotch and smiles.),3221,0,0,"DoActivity(""Masturbate"", 1, 3222)"
+3220,0,0,,(Giggle shyly.),Don't be shy my little bitch.|(She grabs your crotch and smiles.),3221,0,0,"DoActivity(""Masturbate"", 0, 3222)"
+3220,0,0,,No Mistress.|Don't say that.,"Fine, shut up then.|(She checks her phone.)",3291,0,0,TestPunish()
+3220,0,0,,(Nod slowly.),That's good my little bitch.|(She grabs your crotch and smiles.),3221,0,0,"DoActivity(""Masturbate"", 0, 3222)"
+3220,0,0,,(Nod happily.),That's very good my little bitch.|(She grabs your crotch and smiles.),3221,0,0,"DoActivity(""Masturbate"", 1, 3222)"
+3220,0,0,,(Shake your head no.),Fuck yes girl.  It's my pussy.|(She grabs your crotch forcefully.),3221,0,0,"DoActivity(""Masturbate"", -1, 3222)"
+3221,0,0,,Miss Sidney.|Is that proper?,"Fuck yeah, cause this pussy is mine.|(She stares at you and masturbates you.)",3221,0,0,"DoActivity(""Masturbate"", 0, 3222)"
+3221,0,0,,Woah!  Calm down!,So you think you're in control?|(She masturbates you a little harder.),3221,0,0,"DoActivity(""Masturbate"", -1, 3222)"
+3221,0,0,,(Pretend you|don't care.),You really think you can resist me?|(She masturbates you a little harder.),3221,0,0,"DoActivity(""Masturbate"", -1, 3222)"
+3221,0,0,,Oh god Mistress!|I need that!,You're such a fucking slut.|(She masturbates you gently.),3221,0,0,"DoActivity(""Masturbate"", 1, 3222)"
+3221,0,0,,(Moan of pleasure.),You're such a fucking slut.|(She masturbates you gently.),3221,0,0,"DoActivity(""Masturbate"", 1, 3222)"
+3221,0,0,,(Take deep breaths.),"Always remember, this is mine.|(She stares at you and masturbates you.)",3221,0,0,"DoActivity(""Masturbate"", 0, 3222)"
+3221,0,0,,Stop it now!,Fuck you then little bitch!|(She lets you go and checks her phone.),3291,0,0,TestPunish()
+3221,0,0,,(Grumble and|try to resist.),Fuck you then little bitch!|(She lets you go and checks her phone.),3291,0,0,TestPunish()
+3222,0,0,,Oh yes Mistress.|I need to cum.,Well you're not going to cum now.|You understand that I'm in control?,3290,0,0,BegForOrgasm(true)
+3222,0,0,,(Nod and beg|for an orgasm.),Well you're not going to cum now.|You understand that I'm in control?,3290,0,0,BegForOrgasm(true)
+3222,0,0,,No!  Please!|I'm ok Mistress.,Alright little bitch.  But you do|understand that this pussy is mine?,3290,0,0,BegForOrgasm(false)
+3222,0,0,,(Shake your head no.),Alright little bitch.  But you do|understand that this pussy is mine?,3290,0,0,BegForOrgasm(false)
+3223,0,0,,Oh wow!  That|was awesome.,"You're a great slut, but that's enough.|(She quickly picks her phone to text.)",3291,1,0,AllowLeave()
+3223,0,0,,(Tremble and try|to recuperate.),"That's enough bitch, rest for a while.|(She quickly picks her phone to text.)",3291,0,0,AllowLeave()
+3223,0,0,,Fuck Sidney.|I needed that.,That's MISTRESS!  (She slaps you on|the face and gets back to her phone.),3291,-1,1,AllowLeave()
+3223,0,0,Common_PlayerGagged,@UUUUUMPH!,"That's enough bitch, keep quiet.|(She picks her phone to text.)",3291,0,0,AllowLeave()
+3223,0,0,,(Cuddle against|your Mistress.),You're a good bitch but give me some air.|(She quickly picks her phone to text.),3291,1,-1,AllowLeave()
+3223,0,0,,(Blush red.),Don't be shy of what you are little slut.|(She quickly picks her phone to text.),3291,0,-1,AllowLeave()
+3223,0,0,,That was rape!,Shut the fuck up!  (She slaps you on|the face and gets back to her phone.),3291,-1,0,AllowLeave()
+3230,0,0,,Is it necessary?,Fuck yeah it's necessary!|(She whips you on the breast.),3231,0,0,"DoActivity(""Crop"", -1, 0)"
+3230,0,0,,Will this hurt?,Only one way to know!|(She whips you on the breast.),3231,0,0,"DoActivity(""Crop"", 0, 0)"
+3230,0,0,,Great!  I'm|a pain slut.,That's fucking great my little bitch.|(She whips you hard on the breast.),3231,0,0,"DoActivity(""Crop"", 1, 0)"
+3230,0,0,,I don't want|to try that.,"Fine, shut up then.|(She checks her phone.)",3291,0,0,TestPunish()
+3230,0,0,,(Shake your head no.),You're not in control bitch!|(She whips you on the breast.),3231,0,0,"DoActivity(""Crop"", -1, 0)"
+3230,0,0,,(Nod happily.),That's fucking great my little bitch.|(She whips you hard on the breast.),3231,0,0,"DoActivity(""Crop"", 1, 0)"
+3230,0,0,,(Nod slowly.),Very good my little bitch.|(She whips you on the breast.),3231,0,0,"DoActivity(""Crop"", 0, 0)"
+3231,0,0,,(Moan of pleasure.),You're a great victim my bitch.|(She whips your butt and laughs.),3231,0,0,"DoActivity(""Crop"", 1, 0)"
+3231,0,0,,That's all|you've got?,So you think you're tough?|(She whips your leg really hard.),3231,0,0,"DoActivity(""Crop"", -1, 0)"
+3231,0,0,,(Endure the pain.),This will teach you who's boss.|(She whips your back pretty hard.),3231,0,0,"DoActivity(""Crop"", 0, 0)"
+3231,0,0,,(Pretend you|don't care.),So you think you're tough?|(She whips your leg really hard.),3231,0,0,"DoActivity(""Crop"", -1, 0)"
+3231,0,0,,More Mistress!|I've been bad.,You're a great victim my bitch.|(She whips your butt and laughs.),3231,0,0,"DoActivity(""Crop"", 1, 0)"
+3231,0,0,,(Take deep breaths.),This will teach you who's boss.|(She whips your back pretty hard.),3231,0,0,"DoActivity(""Crop"", 0, 0)"
+3231,0,0,,Stop it now!,Fuck you then little bitch!|(She lets you go and checks her phone.),3291,0,0,TestPunish()
+3231,0,0,,(Grumble and|try to resist.),Fuck you then little bitch!|(She lets you go and checks her phone.),3291,0,0,TestPunish()
+3290,0,0,,Yes Mistress.,I love having my own little bitch.|(She gets back on her phone to text.),3291,0,0,AllowLeave()
+3290,0,0,,(Nod and take|your breath.),It's kind of great to have a bitch.|(She gets back on her phone to text.),3291,0,0,AllowLeave()
+3290,0,0,,I understand.,I love having my own little bitch.|(She gets back on her phone to text.),3291,0,0,AllowLeave()
+3800,0,0,,(Look surprised.),Don't act like you don't know.|You're not allowed to change!,3801,0,0,
+3800,0,0,,I was changing.,You're not allowed to change!,3801,0,0,
+3800,0,0,,(Bow your head.),You're not allowed to change!,3801,0,0,
+3800,0,0,,What do you|mean Mistress?,Don't act like you don't know.|You're not allowed to change!,3801,0,0,
+3801,0,0,,I wanted to be|pretty for you.,Fucking bitch!  I'll teach you to|follow the rules!. I'll punish you.,3900,0,0,
+3801,0,0,,I thought you|were kidding.,Fucking bitch!  I'll teach you to|follow the rules!. I'll punish you.,3900,0,0,
+3801,0,0,,I'm sorry Mistress.,Fucking bitch!  I'll teach you to|follow the rules!. I'll punish you.,3900,0,0,
+3801,0,0,,(Stay silent.),Fucking bitch!  I'll teach you to|follow the rules!. I'll punish you.,3900,0,0,
+3801,0,0,,(Look remorseful.),Fucking bitch!  I'll teach you to|follow the rules!. I'll punish you.,3900,0,0,
+3900,0,0,,Punished?|For real?,That's fucking real.  Get naked!,3901,-1,0,ReleaseBeforePunish()
+3900,0,0,,Yes Mistress.,I'll teach you.  Get naked!,3901,-1,-1,ReleaseBeforePunish()
+3900,0,0,,Punished?|Alright!,Stupid bitch.  Get naked!,3901,-1,-1,ReleaseBeforePunish()
+3900,0,0,,(Nod slowly.),I'll teach you.  Get naked!,3901,-1,0,ReleaseBeforePunish()
+3900,0,0,,You can't do that!,Shut the fuck up and get naked.,3901,-1,1,ReleaseBeforePunish()
+3900,0,0,,(Shake your head no.),Stop resisting and get naked.,3901,-1,1,ReleaseBeforePunish()
+3901,0,0,,"Alright, fine.|(Strip naked.)","(You slowly strip while she grins.)|Very good, your punishment can begin.",3903,0,0,"ForceChangePlayer(""Naked"")"
+3901,0,0,,(Nod politely.)|(Strip naked.),"(You slowly strip while she grins.)|Very good, your punishment can begin.",3903,0,0,"ForceChangePlayer(""Naked"")"
+3901,0,0,,My pleasure.|(Strip naked.),"(You slowly strip while she grins.)|Very good, your punishment can begin.",3903,0,-1,"ForceChangePlayer(""Naked"")"
+3901,0,0,,(Shake your head no.),(She slaps your face pretty hard.)|Bitch!  I said GET NAKED!,3902,-1,1,
+3901,0,0,,I won't strip!,(She slaps your face pretty hard.)|Bitch!  I said GET NAKED!,3902,-1,1,
+3902,0,0,,"Alright, fine.|(Strip naked.)","(You slowly strip while she grins.)|Very good, your punishment can begin.",3903,0,0,"ForceChangePlayer(""Naked"")"
+3902,0,0,,(Nod politely.)|(Strip naked.),"(You slowly strip while she grins.)|Very good, your punishment can begin.",3903,0,0,"ForceChangePlayer(""Naked"")"
+3903,0,0,,Uh oh.,,3903,0,0,StartPunishment()
+3903,0,0,,(Take a deep breath.),,3903,0,0,StartPunishment()
+3903,0,0,,(Make puppy eyes.),,3903,0,0,StartPunishment()
+3903,0,0,,Yes Mistress.,,3903,0,0,StartPunishment()
+3910,0,0,,Grounded?  What|does that mean?,I'll show you right now.|Put your arms behind your back.,3911,0,0,
+3910,0,0,,(Give a curious look.),Put your arms behind your back.,3911,0,0,
+3910,0,0,,"No, please.|I'll be good.",I'll force you to be good.|Put your arms behind your back.,3911,0,0,
+3911,0,0,,Yes Mistress.|(Put your arms back.),(She grabs your arms and ties them securely.)|Good bitch.  Now open your filthy mouth wide.,3912,0,-1,RopePlayer()
+3911,0,0,,(Sigh and put|your arms back.),"(She grabs your arms and ties them securely.)|Alright bitch, open your filthy mouth wide.",3912,0,0,RopePlayer()
+3911,0,0,,Can we negotiate?,(She grabs your arms and ties them securely.)|Fuck no!  Now open your filthy mouth wide.,3912,0,1,RopePlayer()
+3912,0,0,,This is too tight.,Get used to it little bitch.|(She silences you with a gag.),3913,0,0,GagPlayer()
+3912,0,0,,You're very|good at this.,And I'm not finished.|(She silences you with a gag.),3913,0,0,GagPlayer()
+3912,0,0,,Fuck that!|Don't gag me.,This should shut you up.|(She silences you with a gag.),3913,-1,0,GagPlayer()
+3912,0,0,,(Struggle in|the rope.),You won't get out bitch.|(She silences you with a gag.),3913,0,0,GagPlayer()
+3912,0,0,,Please Mistress!|Don't gag me.,Begging won't work bitch.|(She silences you with a gag.),3913,0,0,GagPlayer()
+3912,0,0,,(Open wide.),That's a good little bitch.|(She silences you with a gag.),3913,1,0,GagPlayer()
+3913,0,0,,(Stay silent.),(She forces you to kneel and wrap|more rope around your legs.),3914,0,0,"SetPlayerPose(""TwoRopesPunishment"")"
+3913,0,0,,(Bow your head.),(She forces you to kneel and wrap|more rope around your legs.),3914,0,0,"SetPlayerPose(""TwoRopesPunishment"")"
+3913,0,0,,@Mmhm ngggnm!,(She forces you to kneel and wrap|more rope around your legs.),3914,0,0,"SetPlayerPose(""TwoRopesPunishment"")"
+3914,0,0,,(Make pleading eyes.),You will stay grounded until I say otherwise.|(She gets her cell phone and starts to text.),3999,0,0,"EndPunishment(""Grounded"")"
+3914,0,0,,(Sulk and grumble.),You will stay grounded until I say otherwise.|(She gets her cell phone and starts to text.),3999,0,0,"EndPunishment(""Grounded"")"
+3914,0,0,,(Stare at the floor.),You will stay grounded until I say otherwise.|(She gets her cell phone and starts to text.),3999,0,0,"EndPunishment(""Grounded"")"
+3914,0,0,,@Oouu lmu mpm!,You will stay grounded until I say otherwise.|(She gets her cell phone and starts to text.),3999,0,0,"EndPunishment(""Grounded"")"
+3915,0,0,,(Nod yes.),Good bitch.  (She releases you.),0,0,0,ReleasePlayer()
+3915,0,0,,(Shake your head no.),Then you will stay grounded.|(She checks on her cell phone.),3999,0,0,"EndPunishment(""Grounded"")"
+3915,0,0,,@Aaehm!,That's a yes or a no?|I want a clear answer.,3915,0,0,
+3920,0,0,,A chastity belt?|This is torture!,You deserve it bitch!|You will be chaste.,3921,0,0,
+3920,0,0,,Mistress!  Can you|spank me instead?,Don't try to negociate.|You will be chaste.,3921,0,1,
+3920,0,0,,"No, please.|I'll be good.",You'll be good cause you'll be chaste.,3921,0,0,
+3920,0,0,,Fuck no!,(She slaps your face pretty hard.)|Bitch!  You will be chaste.,3921,-1,1,
+3920,0,0,,(Nod slowly.),"Good bitch, you will be chaste.",3921,0,-1,
+3921,0,0,,I guess it's fair.,"Yep, you're the bitch and I can|do what I want.  Open your legs.",3922,1,0,
+3921,0,0,,I don't have the|key for that belt!,You better find a locksmith then.|Now open your fucking legs.,3922,0,0,
+3921,0,0,,That's inhumane!,Cry me a river bitch!|Open your fucking legs.,3922,-1,0,
+3921,0,0,,For how long?,Until you find a way out.|Now open your fucking legs.,3922,0,0,
+3921,0,0,Common_ActorIsLover,"Sweetie, we won't be|able to make love.",I'll still be able to cum.|Now open your legs cutie.,3922,1,0,
+3922,0,0,,Yes Mistress.|(Open your legs.),Good girl.  (She circles the belt around your|waist and locks the crotch shield in place.),3923,0,-1,LockChastityBelt()
+3922,0,0,,Fine!  Fuck that.|(Open your legs.),Fuck you.  (She circles the belt around your|waist and locks the crotch shield in place.),3923,0,1,LockChastityBelt()
+3922,0,0,,(Take a deep breath|and open your legs.),Very well.  (She circles the belt around your|waist and locks the crotch shield in place.),3923,0,0,LockChastityBelt()
+3922,0,0,,No way!,(She slaps your face.)|Open your legs!,3922,0,0,
+3923,0,0,,It needs to|be so tight?,"Hell yeah, it fucking does.|(She gets her phone to text.)",3999,0,0,"EndPunishment(""Belted"")"
+3923,0,0,,This is so kinky!,Enjoy your chaste life.|(She gets her phone to text.),3999,0,0,"EndPunishment(""Belted"")"
+3923,0,0,,(Bow your head.),Enjoy your chaste life.|(She gets her phone to text.),3999,0,0,"EndPunishment(""Belted"")"

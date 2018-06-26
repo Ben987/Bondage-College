@@ -40,3 +40,6 @@ Stage,LoveReq,SubReq,VarReq,IntroText,Image
 330,0,0,,,SlaveDancerGagged.jpg
 340,0,0,,,SlaveHood.jpg
 350,0,0,,"(Erica watches at you nervously.  She won't|trouble you any more, but is best left alone for now.)",EricaNervious.jpg
+400,0,0,,,EricaLetGoAngry.jpg
+410,0,0,,,EricaGrabAngry.jpg
+420,0,0,,,EricaForceAngry.jpg

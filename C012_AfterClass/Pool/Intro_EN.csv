@@ -1,0 +1,4 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,EmptyPool,You arrive at the college pool but|nobody is swimming right now.,PoolEmpty.jpg
+10,0,0,,,PoolSwimAlone.jpg
+20,0,0,,,PoolSwimMoves.jpg

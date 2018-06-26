@@ -1,0 +1,13 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,@School uniform,,0,0,0,"Change(""Clothed"")"
+0,0,0,,@Black dress,,0,0,0,"Change(""BlackDress"")"
+0,0,0,!Common_PlayerChaste,@Red bikini,,0,0,0,"Change(""RedBikini"")"
+0,0,0,!Common_PlayerChaste,@White lingerie,,0,0,0,"Change(""WhiteLingerie"")"
+0,0,0,!Common_PlayerChaste,@Underwear,,0,0,0,"Change(""Underwear"")"
+0,0,0,,@Get naked,,0,0,0,"Change(""Naked"")"
+0,0,0,CostumeJudo,@Judo outfit,,0,0,0,"Change(""Judo"")"
+0,0,0,CostumeTennis,@Tennis outfit,,0,0,0,"Change(""Tennis"")"
+0,0,0,CostumeHeroine,@Heroine armor,,0,0,0,"Change(""Heroine"")"
+0,0,0,CostumeVillain,@Villain armor,,0,0,0,"Change(""Villain"")"
+0,0,0,CostumeDamsel,@Damsel gown,,0,0,0,"Change(""Damsel"")"
+0,0,0,CostumeTeacher,@Teacher blazer,,0,0,0,"Change(""Teacher"")"

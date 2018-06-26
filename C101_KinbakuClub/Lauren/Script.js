@@ -1,6 +1,7 @@
 var C101_KinbakuClub_Lauren_CurrentStage = 0;
 var C101_KinbakuClub_Lauren_PreviousStage = 0;
 var C101_KinbakuClub_Lauren_PlayerGagged = false;
+var C101_KinbakuClub_Lauren_NodDone = false;
 var C101_KinbakuClub_Lauren_BlindfoldAvailable = true;
 var C101_KinbakuClub_Lauren_Random = 0; // for test to see if player escapes learing first time
 var C101_KinbakuClub_Lauren_attempt = 0;
@@ -145,7 +146,11 @@ function C101_KinbakuClub_Lauren_Click() {
 	C101_KinbakuClub_Lauren_CalcParams()
 }
 
-
+// Chapter 101 - Lauren - Submissive nod when tied.
+function C101_KinbakuClub_Lauren_TiedNod() {
+	if (!C101_KinbakuClub_Lauren_NodDone) ActorChangeAttitude(0, -1);
+	C101_KinbakuClub_Lauren_NodDone = true;
+}
 
 // Chapter 101 - Lauren - Recive a blindfold
 function C101_KinbakuClub_Lauren_GetBlindfold() {
@@ -511,9 +516,9 @@ function C101_KinbakuClub_Lauren_ShakeRevenge() {
 
 // Chapter 101 - Lauren - player is released from the strappado
 function C101_KinbakuClub_Lauren_StrappadoRelease() {
-	PlayerUnlockInventory("Cuffs")
-	PlayerUnlockInventory("Collar")
-	PlayerUnlockInventory("BallGag")
+	PlayerReleaseBondage()
+	if (!C999_Common_Collar_LockedOn) PlayerUnlockInventory("Collar");
+	C101_KinbakuClub_Lauren_PlayerStrappado = false;
 }
 
 // Chapter 101 - Lauren - player is released from the strappado

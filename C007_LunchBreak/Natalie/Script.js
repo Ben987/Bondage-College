@@ -244,14 +244,13 @@ function C007_LunchBreak_Natalie_Click() {
 
 // Chapter 7 - Natalie mentions the KC
 function C007_LunchBreak_Natalie_ClubMention() {
-    Common_ClubStatus = "ClubMentioned";
+    GameLogAdd("KinbakuClubInfo");
 }
 
 // Chapter 7 - Natalie Start Lunch
 function C007_LunchBreak_Natalie_StartLunch() {
 	GameLogAdd("Lunch");
     CurrentTime = CurrentTime + 120000;
-    Common_ClubStatus = "ClubLunchVisited";
     LeaveIcon = "";
 }
 

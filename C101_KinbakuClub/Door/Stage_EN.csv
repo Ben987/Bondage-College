@@ -1,11 +1,4 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Open the door.),(The door has been locked shut and won't budge.),10,0,0,
-10,0,0,NotForce,(Try forcing the door open.),(Carolyn calls over.) The club has a locked door policy|to keep members safe.  Jenna let you in earlier.,10,0,0,Force()
-10,0,0,NotKick,(Kick the door.),"(Carolyn calls over.) Stop that, you're not|getting out before a club rep gets back.",10,0,0,Kick()
-10,0,0,NotWho,Who has the door key?,"(Carolyn calls over.) Jenna let you in earlier,|but she and the other club reps are out at the moment.",10,0,0,Who()
-10,0,0,NotRestroom,But I really need|the Restroom.,(Carolyn calls over.) Amateur mistake. You will just|have to hold it in till a club rep gets back.,10,0,-1,NeedsRestroom()
-20,0,0,,(Open the door.),(The door has been locked shut and won't budge.),30,0,0,
-30,0,0,NotPlead,@plmhfm lmt mm hht.,(Carolyn calls over.) The door is kept locked|to protect helpless girls like you.,30,0,-1,Plead()
-30,0,0,NotRestroom,@Bht Hm rmhlln nmmd|thm Rmftrhhm.,(Carolyn calls over.) Amateur mistake. You will just|have to hold it in till a club rep gets back.,30,0,-1,NeedsRestroom()
-30,0,0,NotForce,(Try forcing the door open.),(Carolyn calls over.) The club has a locked door policy|to protect the helpless girls like you.,30,0,0,Force()
-30,0,0,NotKick,(Kick the door.),"(Carolyn calls over.) Stop that, you're not|getting out before a club rep gets back.",30,0,0,Kick()
+0,0,0,!Common_PlayerRestrained,Leave the club and|return to your dorm.,,0,0,0,LeaveClub()
+0,0,0,Common_PlayerRestrained,Leave the club.,"(You try to open the door, but cannot|open it with your arms in bondage.)",0,0,0,
+0,0,0,Common_PlayerGagged,(Leave the club.),(A girl calls over)  Hey where do you think your going?|It's not sensible to walk around college like that.,0,0,0,

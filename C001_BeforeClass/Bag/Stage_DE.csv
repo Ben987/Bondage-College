@@ -1,0 +1,8 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,(Open the straps.),"You open the straps, they are hanging loose.|You can see some ropes in the bag.",10,0,0,
+0,0,0,,(Pull on the bag.),Stop pulling you idiot!  What are you doing?|(She pulls the bag away from you.),30,0,0,SidneyAnnoy()
+10,0,0,,(Close the straps.),You carefully slide the straps back in the sleeves.,0,0,0,
+10,0,0,,(Steal the ropes.),You carefully steal the ropes from the bag.,20,0,0,GetRope()
+10,0,0,,(Ask about the ropes.),,30,0,0,SidneyRope()
+10,0,0,,(Pull on the bag.),Stop pulling you idiot!  What are you doing?|(She pulls the bag away from you.),30,0,0,SidneyAnnoy()
+20,0,0,,(Pull on the bag.),Stop pulling you idiot!  What are you doing?|(She pulls the bag away from you.),30,0,0,SidneyAnnoy()

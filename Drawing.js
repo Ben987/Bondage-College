@@ -50,9 +50,25 @@ function DrawImageZoom(Source, SX, SY, SWidth, SHeight, X, Y, Width, Height) {
 	MainCanvas.drawImage(DrawGetImage(Source), SX, SY, Math.round(SWidth), Math.round(SHeight), X, Y, Width, Height);
 }
 
+// Draw a zoomed image from a source to the canvas and mirrors it from left to right
+function DrawImageZoomMirror(Source, SX, SY, SWidth, SHeight, X, Y, Width, Height) {
+	MainCanvas.save();
+    MainCanvas.scale(-1, 1);
+	MainCanvas.drawImage(DrawGetImage(Source), X * -1, Y, Width * -1, Height);
+    MainCanvas.restore();
+}
+
 // Draw an image from a source to the canvas
 function DrawImage(Source, X, Y) {
 	MainCanvas.drawImage(DrawGetImage(Source), X, Y);
+}
+
+// Draw an image from a source to the canvas
+function DrawImageMirror(Source, X, Y) {
+	MainCanvas.save();
+    MainCanvas.scale(-1, 1);
+	MainCanvas.drawImage(DrawGetImage(Source), X * -1, Y);
+    MainCanvas.restore();
 }
 
 // Draw a text in the canvas
@@ -129,7 +145,8 @@ function DrawPosNegValue(Value, X, Y) {
 function DrawActorStats(Left, Top) {
 	
 	// Draw the actor name and icon
-	DrawText(CurrentActor, Left - 200, Top + 17, "black");
+	if (ActorGetValue(ActorHideName)) DrawText("Unknown", Left - 200, Top + 17, "black");
+	else DrawText(CurrentActor, Left - 200, Top + 17, "black");
 	DrawImage("Icons/Heart.png", Left - 110, Top);
 	DrawImage("Icons/Submission.png", Left - 10, Top);
 	DrawImage("Icons/Orgasm.png", Left + 90, Top);
@@ -261,28 +278,95 @@ function DrawInventory() {
 	// Scroll in the full inventory to draw the icons and quantity, draw a padlock over the item if it's locked
 	var Pos = 1;
 	for (var I = 0; I < PlayerInventory.length; I++) {
-		var ImgState = "Inactive";
-		if (((MouseX >= 1 + Pos * 75) && (MouseX <= 74 + Pos * 75) && (MouseY >= 601) && (MouseY <= 674)) || (IsMobile)) ImgState = "Active";		
-		DrawImage("Icons/" + PlayerInventory[I][PlayerInventoryName] + "_" + ImgState + ".png", 1 + Pos * 75, 601);
-		DrawText(PlayerInventory[I][PlayerInventoryQuantity].toString(), Pos * 75 + 64, 661, "#000000");
-		if (PlayerHasLockedInventory(PlayerInventory[I][PlayerInventoryName]))
-			DrawImage("Icons/Lock_" + ImgState + ".png", Pos * 75, 600)
+
+		// First inventory tab
+		if (PlayerInventoryTab == 0) {
+
+			// 11 positions for the items
+			if (Pos <= 11) {
+				var ImgState = "Inactive";
+				if (((MouseX >= 1 + Pos * 75) && (MouseX <= 74 + Pos * 75) && (MouseY >= 601) && (MouseY <= 674)) || (IsMobile)) ImgState = "Active";		
+				DrawImage("Icons/" + PlayerInventory[I][PlayerInventoryName] + "_" + ImgState + ".png", 1 + Pos * 75, 601);
+				DrawText(PlayerInventory[I][PlayerInventoryQuantity].toString(), Pos * 75 + 64, 661, "#000000");
+				if (PlayerHasLockedInventory(PlayerInventory[I][PlayerInventoryName]))
+					DrawImage("Icons/Lock_" + ImgState + ".png", Pos * 75, 600)
+			}
+
+			// the last position is for the next tab
+			if (Pos == 12) {
+				var ImgState = "Inactive";
+				if (((MouseX >= 1 + Pos * 75) && (MouseX <= 74 + Pos * 75) && (MouseY >= 601) && (MouseY <= 674)) || (IsMobile)) ImgState = "Active";
+				DrawImage("Icons/SecondInventoryTab_" + ImgState + ".png", 1 + Pos * 75, 601);
+			}
+			
+		};
+		
+		// Second inventory tab
+		if ((Pos >= 12) && (PlayerInventoryTab == 1)) {		
+			var ImgState = "Inactive";
+			if (((MouseX >= 1 + (Pos - 11) * 75) && (MouseX <= 74 + (Pos - 11) * 75) && (MouseY >= 601) && (MouseY <= 674)) || (IsMobile)) ImgState = "Active";		
+			DrawImage("Icons/" + PlayerInventory[I][PlayerInventoryName] + "_" + ImgState + ".png", 1 + (Pos - 11) * 75, 601);
+			DrawText(PlayerInventory[I][PlayerInventoryQuantity].toString(), (Pos - 11) * 75 + 64, 661, "#000000");
+			if (PlayerHasLockedInventory(PlayerInventory[I][PlayerInventoryName]))
+				DrawImage("Icons/Lock_" + ImgState + ".png", (Pos - 11) * 75, 600)
+		};
+
+		// Jumps to the next position
 		Pos = Pos + 1;
-	};
+		
+	}
 
 	// Scroll in the locked inventory also to find items that were not loaded
 	for (var I = 0; I < PlayerLockedInventory.length; I++) 
 		if (!PlayerHasInventory(PlayerLockedInventory[I])) {
-			if (((MouseX >= 1 + Pos * 75) && (MouseX <= 74 + Pos * 75) && (MouseY >= 601) && (MouseY <= 674)) || (IsMobile)) {
-				DrawImage("Icons/" + PlayerLockedInventory[I] + "_Active.png", 1 + Pos * 75, 601);
-				DrawImage("Icons/Lock_Active.png", Pos * 75, 600);
+
+			// First inventory tab
+			if (PlayerInventoryTab == 0) {
+
+				// 11 positions for the items
+				if (Pos <= 11) {
+					if (((MouseX >= 1 + Pos * 75) && (MouseX <= 74 + Pos * 75) && (MouseY >= 601) && (MouseY <= 674)) || (IsMobile)) {
+						DrawImage("Icons/" + PlayerLockedInventory[I] + "_Active.png", 1 + Pos * 75, 601);
+						DrawImage("Icons/Lock_Active.png", Pos * 75, 600);
+					}
+					else {
+						DrawImage("Icons/" + PlayerLockedInventory[I] + "_Inactive.png", 1 + Pos * 75, 601);				
+						DrawImage("Icons/Lock_Inactive.png", Pos * 75, 600);
+					}
+				}
+
+				// the last position is for the next tab
+				if (Pos == 12) {
+					var ImgState = "Inactive";
+					if (((MouseX >= 1 + Pos * 75) && (MouseX <= 74 + Pos * 75) && (MouseY >= 601) && (MouseY <= 674)) || (IsMobile)) ImgState = "Active";
+					DrawImage("Icons/SecondInventoryTab_" + ImgState + ".png", 1 + Pos * 75, 601);
+				}
+
 			}
-			else {
-				DrawImage("Icons/" + PlayerLockedInventory[I] + "_Inactive.png", 1 + Pos * 75, 601);				
-				DrawImage("Icons/Lock_Inactive.png", Pos * 75, 600);
-			}
+			
+			// Second inventory tab
+			if ((Pos >= 12) && (PlayerInventoryTab == 1)) {		
+				if (((MouseX >= 1 + (Pos - 11) * 75) && (MouseX <= 74 + (Pos - 11) * 75) && (MouseY >= 601) && (MouseY <= 674)) || (IsMobile)) {
+					DrawImage("Icons/" + PlayerLockedInventory[I] + "_Active.png", 1 + (Pos - 11) * 75, 601);
+					DrawImage("Icons/Lock_Active.png", (Pos - 11) * 75, 600);
+				}
+				else {
+					DrawImage("Icons/" + PlayerLockedInventory[I] + "_Inactive.png", 1 + (Pos - 11) * 75, 601);				
+					DrawImage("Icons/Lock_Inactive.png", (Pos - 11) * 75, 600);
+				}
+			};
+
+			// Jumps to the next position
 			Pos = Pos + 1;
+
 		};
+		
+	// On the second tab, we put an arrow to go back to the first tab
+	if ((Pos >= 12) && (PlayerInventoryTab == 1)) {
+		var ImgState = "Inactive";
+		if (((MouseX >= 1 + (Pos - 11) * 75) && (MouseX <= 74 + (Pos - 11) * 75) && (MouseY >= 601) && (MouseY <= 674)) || (IsMobile)) ImgState = "Active";
+		DrawImage("Icons/FirstInventoryTab_" + ImgState + ".png", 1 + (Pos - 11) * 75, 601);
+	}
 
 }
 
@@ -326,7 +410,7 @@ function DrawGetPlayerImageName(IncludePose) {
 
 	// Third part is the collar, which only shows for certain clothes
 	var ImageCollar = "";
-	if ((ImageCloth == "Underwear") || (ImageCloth == "Naked") || (ImageCloth == "ChastityBelt") || (ImageCloth == "Damsel")) {
+	if ((ImageCloth == "Underwear") || (ImageCloth == "Naked") || (ImageCloth == "ChastityBelt") || (ImageCloth == "Damsel") || (ImageCloth == "Tennis") || (ImageCloth == "Judo") || (ImageCloth == "RedBikini")) {
 		if (PlayerHasLockedInventory("Collar")) ImageCollar = "_Collar";
 		else ImageCollar = "_NoCollar";
 	}
@@ -353,8 +437,13 @@ function DrawGetPlayerImageName(IncludePose) {
 
 // Draw the regular player image (600x600) (can zoom if an X and Y are provided)
 function DrawPlayerImage(X, Y) {
-	if ((X == 0) && (Y == 0)) DrawImage("C999_Common/Player/" + DrawGetPlayerImageName(false) + ".jpg", 600, 0);
-	else DrawImageZoom("C999_Common/Player/" + DrawGetPlayerImageName(false) + ".jpg", X, Y, 600, 600, 600, 0, 1200, 1200);
+	if ((Common_PlayerCostume == "Tennis") || (Common_PlayerCostume == "Judo") || (Common_PlayerCostume == "Teacher") || (Common_PlayerCostume == "BlackDress") || (Common_PlayerCostume == "WhiteLingerie") || (Common_PlayerCostume == "RedBikini")) {
+		DrawRect(600, 0, 1200, 600, "White");
+		DrawTransparentPlayerImage(600, 0, 1);
+	} else {
+		if ((X == 0) && (Y == 0)) DrawImage("C999_Common/Player/" + DrawGetPlayerImageName(false) + ".jpg", 600, 0);
+		else DrawImageZoom("C999_Common/Player/" + DrawGetPlayerImageName(false) + ".jpg", X, Y, 600, 600, 600, 0, 1200, 1200);
+	}	
 }
 
 // Draw the transparent player image (600x900) with a zoom if required

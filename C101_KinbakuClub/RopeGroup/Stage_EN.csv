@@ -8,20 +8,31 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 50,0,0,,Can you help me please.,"Certainly, I can check those ropes are secure.|(Amelia makes sure your bondage is very tight.)",50,,,
 50,0,0,,(Point at your bondage.),Yes it suits you well.,50,,,
 50,0,0,PlayerOnlyGagged,(Remove your gag.),"(Amelia garbs you and starts tying you up.)|If your gagged, you shouldn't be able to remove it.",50,,,
-100,0,0,,(Talk to Amelia.),(What do you want to talk to Amelia about?),200,0,0,Amelia()
-100,0,0,,(Talk to Charlotte.),(What do you want to talk to Charlotte about?),300,0,0,Charlotte()
-100,0,0,2Twins,(Go to Heather and Lucy.),(What do you want to do with Heather and Lucy?),400,0,0,NoActor()
-100,0,0,!2Twins,(Go to the remaining twin.),(What will you do with this one?),400,0,0,
-100,0,0,LucyFree,(Talk to Lucy.),(What do you want to talk to Amelia about?),500,0,0,Lucy()
-100,0,0,Kidnapper,(Kidnap one of the twins.),(You grab the nearest one and drag here away|before Amelia and Charlotte can react.),100,0,0,Kidnap()
-200,0,0,KnowKinbakuNotDone,Do you know a|lot about Kinbaku?,I know enough to keep anyone helplessly tied up.,210,0,0,KnowKinbakuDone()
-200,0,0,,Have you tied|Charlotte up yet?,She was a nervious wreck when I tried earlier and only|calmed down after I made her help tie up the twins.,220,,,
-200,0,0,,"So which do you prefer,|boxtie or elbows touching?",Both have thier advantages.|I prefer how elbows toching really shows off a sub.,230,0,0,
+100,0,0,,(Talk to Amelia.),(What do you want to talk to Amelia about?),200,0,0,LoadAmelia()
+100,0,0,,(Talk to Charlotte.),(What do you want to talk to Charlotte about?),300,0,0,LoadCharlotte()
+100,0,0,TwoTiedTwins,(Go to the furthest twin.),"She looks up at you, gesturing for you to release her.",400,0,0,LoadLeftTwin()
+100,0,0,TwoTiedTwins,(Go to the nearest twin.),"She looks up at you, gesturing for you to release her.",450,0,0,LoadRightTwin()
+100,0,0,!TwoTiedTwins,(Go to the remainng twin.),"She looks up at you, gesturing for you to release her.",400,0,0,LoadRemainingTwin()
+101,0,0,,(For testing only.|reveal twins.),,100,0,0,RevealTwins()
+101,0,0,LucyFree,(Talk to Lucy.),(What do you want to talk to Amelia about?),500,0,0,LoadLucy()
+101,0,0,HeatherFree,(Talk to Heather.),"To Do, maybe not?",550,0,0,LoadHeather()
+110,0,0,,"Alright, let me go now.","Fine, just don't get too greedy.|(She lets go of your arm.)",100,0,0,CanLeave()
+110,0,0,,"Yes miss, I won't|try that again.","Good, it doesn't pay to get too greedy.|(She lets go of your arm.)",100,0,-1,CanLeave()
+110,0,0,,Try stopping me.,(You shake off Amelia's grasp.)|I will if you carry on like that.,100,-1,0,TryStopMe()
+120,0,0,,Let go of me.,"No, you need a time out.|(She forces you across the room.)",125,-1,0,
+120,0,0,,I'm really sorry.|I won't try it again.,I will make sure of that this time.|(She forces you across the room.),125,0,-1,
+120,1,2,,(Break free from|her grasp.),Fine just don't try that again here.,100,-1,0,
+125,0,0,,Please let me go.,,125,0,-1,PlayerLockedAway()
+125,0,0,,"Okay, just don't|hurt me.",,125,1,0,PlayerLockedAway()
+125,0,0,,Get your hand off me.,,125,-1,0,PlayerLockedAway()
+200,0,0,Amelia210NotDone,Do you know a|lot about Kinbaku?,I know enough to keep anyone helplessly tied up.,210,0,0,Amelia210Done()
+200,0,0,Amelia220NotDone,Have you tied|Charlotte up yet?,She was a nervious wreck when I tried earlier and only|calmed down after I made her help tie up the twins.,220,0,0,Amelia220Done()
+200,0,0,Amelia230NotDone,"So which do you prefer,|boxtie or elbows touching?",Both have thier advantages.|I prefer how elbows toching really shows off a sub.,230,0,0,Amelia230Done()
 200,0,0,,We should try|some Kinbaku now.,Yes we should and now I will tie you up.,260,0,0,
-200,0,0,WhichTwin,"Heather and Lucy,|which twin is which?","We're not sure, which is why we tried out different|Kinbaku patterns on both of them and gagged them.",250,0,0,WhichTwinDone()
-200,0,0,AnyoneKnow,Can anyone here|tell the twins apart?,"Jenna seems to know, but she isn't here to ask.",200,0,0,AnyoneKnowDone()
+200,0,0,Amelia250NotDone,"Heather and Lucy,|which twin is which?","We're not sure, which is why we tried out different|Kinbaku patterns on both of them and gagged them.",250,0,0,Amelia250Done()
+200,0,0,AnyoneKnow,Can anyone here|tell the twins apart?,"Jenna seems to know, but she isn't here to ask.",200,0,0,
 200,0,0,UngagTwins,Do the twins need|to be gagged?,Yes. We don't need to listen to Heathers forked tongue.,200,,,
-200,0,0,InspectedTwins,Whay are they tied|so uncomfortably?,To get Heather to admit which one she in exchange|for a much more comfortable bondage.,255,,,
+200,0,0,InspectedTwins,Why are they tied|so uncomfortably?,To get Heather to admit which one she in exchange|for a much more comfortable bondage.,255,,,
 200,0,0,,(Go back to the|rest of the grounp.),(Amelia is telling Charlotte about Kinbaku.),100,0,0,
 210,0,0,,Even me?,Even you.,200,0,0,
 210,0,0,,So you tie yourself up|helplessly as well?,That's not what I meant.,200,0,1,
@@ -37,7 +48,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 217,0,0,,I couldn't get that|gag out fast enough.,I'm not surprised.,200,0,0,
 217,0,0,,I though about keeping|the gag in after escaping.,You must be a very obediant teachers pet to|love your mistresses taste that much.,200,0,-2,
 218,0,0,,Actually I'm not|quite ready yet.,"Most chickens have beaks, not big mouths.",200,-1,-1,
-218,0,0,,"Go on then, try your best.|(Turn around for her.)","(Amelia helps remove your uniform, pulls your wrists|behind you and starts tying you up.)",,1,1,AmeliaTies()
+218,0,0,,"Go on then, try your best.|(Turn around for her.)","(Amelia helps remove your uniform, pulls your wrists|behind you and starts tying you up.)",500,1,1,AmeliaTies()
 220,0,0,,Who cares if|she is a wreck.,That's a nasty attitude and|it should be fun for both all involved.,200,-1,0,
 220,0,0,,What is she doing|here then?,She said she came with a friend and|won't give me a striaght answer.,225,0,0,
 220,0,0,,Does she only want|to dom others then?,"I'm not sure, she took a lot of persuading to help me|tie up the twins, but then seemed to enjoy it.",225,0,0,
@@ -54,8 +65,8 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 233,0,0,,Some girl's need the|help with their cleevage.,"Maybe, some of us are naturally|more gifted than others.",234,,,
 234,0,0,,I'm not sure mine|need the assistance.,"Every little helps,|but you look fine as you are.",200,0,0,
 234,0,0,,Your breasts would look|massive if I tied you up.,That isn't going to happen.,200,-1,1,
-234,0,0,HasArmbinder,I have an armbinder that|pins the elbows together.,"Cool, have you tried it on yourself?",235,,,
-235,0,0,,"I tried, but it's no|good for self bondage.",I would strap you into it.,236,,,
+234,0,0,HasArmbinder,I have an armbinder that|pins the elbows together.,"Cool, have you tried it on yourself?",235,0,0,
+235,0,0,,"I tried, but it's no|good for self bondage.",I will help strap you into it.,236,1,-1,
 235,0,0,,No it's only for|my favorite subies.,Some of the girls in this club would love|to be your favorite pet for that.,200,0,0,
 235,0,0,,"No, but you should try it.","Forget it, try that on me and they can|use it on you as an arm splint.",200,-1,0,
 236,0,0,,I'm not sure I want|to just yet,"Nonsense, come on you will look|beautifully submissive with it on.",236,0,-1,
@@ -72,10 +83,9 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 255,0,0,,"Wow, I doubt I could hold|out long tied like that.","A delicate girl like yourself would talk fast, but|you would still hold the pose for as long as I want.",200,,,
 255,0,0,,Is Heather likely|to agree to that?,"It's got to be better than this, but I think she is|hoping Lucy will break first and claim to be Heather.",200,,,
 260,0,0,,Yes Miss Amelia.,"(Amelia helps remove your uniform, pulls your wrists|behind you and starts tying you up.)",500,1,-1,AmeliaTies()
-260,0,1,,Okay lets see how|skilled you are.,(Amelia quickly secures your|arms with a tight box tie.),500,0,0,AmeliaTiesDom()
-260,0,0,,You're not tying me up.,"Fine not now,|but when you ready just call me Miss Amelia.",200,0,,NotTieMe()
+260,0,3,,Okay lets see how|skilled you are.,(Amelia quickly secures your|arms with a tight box tie.),500,0,0,AmeliaTiesDom()
+260,0,0,,You're not tying me up.,"Fine not now,|but when you ready just call me Miss Amelia.",200,0,0,NotTieMe()
 260,0,0,,We could tie up|Charlotte instead.,I don't think she is ready for that yet.|You look far more keen.,200,0,0,TieCharlotte()
-301,,,,,,,,,
 300,0,0,Charlotte310NotDone,So you tied these|girls up super tight?,"No, it's not like that. Amelia tied them|up and told me to help her.",310,0,0,Charlotte310Done()
 300,0,0,Charlotte320NotDone,Are you a regular here?,"No no. I'm not a member of this club,|it's just a friend asked me to meet her here.",320,0,0,Charlotte320Done()
 300,0,0,Charlotte330NotDone,I bet you prefer|to be tied up.,"I'm really not into bondage, honest.|I'm just waiting here for a friend.",330,0,0,Charlotte330Done()
@@ -93,13 +103,12 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 320,0,0,,"Oh really, you look|quite settled here.","Well, um it's only a college club.|There's nothing wrong with that.",300,0,0,
 320,0,0,,So who is this|friend of yours?,Oh she's not here yet.,321,0,0,
 321,0,0,,Maybe I'm the friend|you're waiting for.,"Well we hardly know each other,|but we could be friends I suppose.",322,1,0,
-321,0,0,,,,,,,
+3210,0,0,,,,,,,
 322,0,0,,Of course were|all friends here.,I suppose. I'm still not sure some of the|girls here are really that friendly.,300,1,0,
 322,0,0,,Friends with benefits?,I'm not sure what you mean?,323,0,0,
 323,0,0,,It's just we always help|each other when in need.,"Sure, a friend in need is a friend indeed.",300,1,0,
 323,0,0,,"Come on, there is more to|enjoy than just the ropes.",I'm really not sure what you mean.|Anyway was there anything else?,300,-1,1,
-330,0,0,,,,300,,,
-330,0,0,,,,,,,
+330,0,0,,To do.,,300,,,
 340,0,0,,You don't sound certain.,"No really, I'm not into this kind of thing.",300,0,0,
 340,0,0,,"Oh, the lady doth|protest too much.","No no, wait.. what.. I...|Please don't tie me up.",300,0,1,
 350,0,0,,A good spanking should|sort them apart.,"That's just cruel, they seem to be|in a lot of discomfort as it is.",300,-1,0,
@@ -107,35 +116,44 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 360,0,0,,Oh okay. It's not like a|dog will eat it here.,A dog might find it rather chewy.,300,0,0,
 360,0,0,,Come on you can tell me.,I told you its just boring homework.,300,-1,0,
 360,0,0,,I could help|you with that.,"No no, I will manage just fine on my own.",300,0,1,
-400,0,0,2Twins,Inspect the|twin on the left.,Her elbows are tied touching together behind her.|She looks to be in a lot of discomfort. ,410,,,
-400,0,0,2Twins,Inspect the|twin on the right.,She is tied with her hands touching behind her and|her fingers cable tied to stop her unbuckling the gag.,415,,,
-400,0,0,!2Twins,Inspect the|remaining twin.,Her elbows are tied touching together behind her.|She looks to be in a lot of discomfort. ,410,,,
-400,0,0,2Twins,Release the|twin on the left.,(You release her). Thank you.|I'm sick of Heather masquerading as me. I'm lucy.,700,,,LeftTwinFree()
-400,0,0,2Twins,Release the|twin on the right.,(You release her). Thank you.|I'm sick of Heather masquerading as me. I'm lucy.,700,,,RightTwinFree()
-400,0,0,!2Twins,Release the|remaining twin.,(You release her). Thank you.|I'm sick of Heather masquerading as me. I'm lucy.,700,,,LeftTwinFree()
-400,0,0,2Twins,Talk to the|twin on the left.,(She looks nerviously at you.),420,,,
-400,0,0,2Twins,Talk to the|twin on the right.,(She looks nerviously at you.),420,,,RightTwin()
-400,0,0,!2Twins,Talk to the|remaining twin.,(She looks nerviously at you.),420,,,
-400,0,0,,(Go back to the|rest of the grounp.),(Amelia is telling Charlotte about Kinbaku.),100,0,0,
-410,0,0,,I wish I could be tied|tightly like that.,(Amelia says.) We could make that wish come true.,400,,,
-410,0,0,,I think we should keep|you like that all night.,(The girl shakes her head and graons painfully.),400,,,
-410,0,0,,That's an innovative|rope tie.,"(Amelia says.) Yes Lucy demonstrated it on Natalie|last week.  Not classic Kinbaku, put pretty painful.",400,,,
-415,0,0,,You're lucky to be|tied so tightly.,(Amelia says.) You could be just as lucky.,400,,,
-415,0,0,,(Tickle her.),(You pin her by sitting on her lap and start tickling|the exposed armpit. She giggles helplessly.),416,,,
-415,0,0,,Thats an intriguing rope tie.,(Amelia says.) Yes Lucy showed us that a while ago.|Asymmetric tying is supposedly common with Kinbaku.,400,,,
-416,0,0,,(Stop tickling her.),"(You stand up, letting her recover.)",400,,,
-416,0,0,,(Keep tickling her.),"(As you you tickle her more intensly she breaks down|in tears of laughter, pleading for you to stop.)",417,,,
-417,0,0,,Are you Heather?,"(She reluctantly nods her head.) nmf mnff.|(You stand up, letting her recover.)",400,,,
-417,0,0,,(Stop tickling her.),"(You stand up, letting her recover.)",400,,,
-417,0,0,,(Keep tickling her.),"(Charlotte tries to interrupt you.)|That's enough, you're upsetting her now.",417,,,CharlotteDislike()
-420,0,0,,Are you Lucy?,(She nods her head.),420,,,
-420,0,0,,Are you Heather?,(She shakes her head.),420,,,
-420,0,0,,Is your sister Lucy?,(She shakes her head.),420,,,
-420,0,0,,Would your sister|claim to be Lucy?,,420,,,WouldYourSister()
-420,0,0,,You've been a naughty girl|and should be punished.,"(She shakes and pleads. Charlotte speaks up.)|Leave her allown, you're upsetting her.",420,,,Naughty()
-420,0,0,,I think you should be|tied up even tighter.,(She whimpers and shakes her head.|She is already aching from her arms tied like that.),420,,,Tighter()
-420,0,0,,(Take a step back.),(What do you do now?),400,,,CancelOverride()
-500,0,0,,,,,,,
+400,0,0,,I wish I could be tied|tightly like that.,(Amelia says.) We could make that wish come true.,400,,,
+400,0,0,,I think we should keep|you like that all night.,(The girl shakes her head and graons painfully.),400,,,
+400,0,0,,That's an innovative|rope tie.,"(Amelia says.) Yes Lucy demonstrated it on Natalie|last week.  Not classic Kinbaku, put pretty painful.",400,,,
+400,0,0,,(Interrogate her.),,410,,,
+400,0,0,Kidnapper,(Kidnap her.),,400,,,Kidnap()
+401,0,0,,(Release her.),(You release her). Thank you.|I'm sick of Heather masquerading as me. I'm lucy.,700,,,ReleaseTwin()
+400,0,0,,(Release her.),To do.,400,,,
+400,0,0,,(Go back to the|rest of the grounp.),(Amelia was telling Charlotte about Kinbaku.),100,0,0,
+410,0,0,,Are you Lucy?,(She nods her head.),410,,,
+410,0,0,,Are you Heather?,(She shakes her head.),410,,,
+410,0,0,,Is your sister Lucy?,(She shakes her head.),410,,,
+410,0,0,,Would your sister|claim to be Lucy?,,410,,,WouldYourSister()
+410,0,0,,You've been a naughty girl|and should be punished.,"(She shakes and pleads. Charlotte speaks up.)|Leave her allown, you're upsetting her.",410,,,Naughty()
+410,0,0,,I think you should be|tied up even tighter.,(She whimpers and shakes her head.|She is already aching from her arms tied like that.),410,,,Tighter()
+410,0,0,,(Reconsider your|options.),(What do you do now?),400,,,
+410,0,0,,(Go back to the|rest of the grounp.),(Amelia was telling Charlotte about Kinbaku.),100,0,0,
+450,0,0,,You're lucky to be|tied so tightly.,(Amelia says.) You could be just as lucky.,450,,,
+450,0,0,,(Tickle her.),(You pin her by sitting on her lap and start tickling|the exposed armpit. She giggles helplessly.),460,,,
+450,0,0,,Thats an intriguing rope tie.,(Amelia says.) Yes Lucy showed us that a while ago.|Asymmetric tying is supposedly common with Kinbaku.,450,,,
+450,0,0,,(Interrogate her.),,470,,,
+450,0,0,Kidnapper,(Kidnap her.),,450,,,Kidnap()
+451,0,0,,(Release her.),(You release her). Thank you.|I'm sick of Heather masquerading as me. I'm lucy.,700,,,ReleaseTwin()
+450,0,0,,(Release her.),To do.,450,,,
+450,0,0,,(Go back to the|rest of the grounp.),(Amelia was telling Charlotte about Kinbaku.),100,0,0,
+460,0,0,,(Stop tickling her.),"(You stand up, letting her recover.)",450,,,
+460,0,0,,(Keep tickling her.),"(As you you tickle her more intensly she breaks down|in tears of laughter, pleading for you to stop.)",465,,,
+465,0,0,,Are you Heather?,"(She reluctantly nods her head.) nmf mnff.|(You stand up, letting her recover.)",450,,,
+465,0,0,,(Stop tickling her.),"(You stand up, letting her recover.)",450,,,
+465,0,0,,(Keep tickling her.),"(Charlotte tries to interrupt you.)|That's enough, you're upsetting her now.",465,0,0,CharlotteDislike()
+470,0,0,,Are you Lucy?,(She nods her head.),470,,,
+470,0,0,,Are you Heather?,(She shakes her head.),470,,,
+470,0,0,,Is your sister Lucy?,(She shakes her head.),470,,,
+470,0,0,,Would your sister|claim to be Lucy?,,470,,,WouldYourSister()
+470,0,0,,You've been a naughty girl|and should be punished.,"(She shakes and pleads. Charlotte speaks up.)|Leave her allown, you're upsetting her.",470,,,Naughty()
+470,0,0,,I think you should be|tied up even tighter.,(She whimpers and shakes her head.|She is already aching from her arms tied like that.),470,,,Tighter()
+470,0,0,,(Reconsider your|options.),(What do you do now?),450,,,
+470,0,0,,(Go back to the|rest of the grounp.),(Amelia was telling Charlotte about Kinbaku.),100,,,
+500,0,0,,To Do.,To do.,500,,,
 600,0,0,,Can I tie you up now.,,,,,
 600,0,0,,Can you tie me up again plaese.,,,1,-1,
 600,0,0,,(Go back to the|rest of the grounp.),(Amelia is telling Charlotte about Kinbaku.),100,0,0,
