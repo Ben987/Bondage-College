@@ -68,7 +68,7 @@ function RaceLoad(Racer, RacerImageSet, AllowedMinutes, Difficulty, EndGoal, End
 	RaceLastMoveType = -1;
 	RaceLastMoveTypeTimer = -1;
 	RaceSkillBonus = SkillBonus;
-	if (RaceText == null) ReadCSV("RaceText", "C999_Common/Races/Text_" + CurrentLanguageTag + ".csv");
+	if (RaceText == null) ReadCSV("RaceText", "C999_Common", "Races", "Text", CurrentLanguageTag);
 
 	// Loads the parameters
 	RaceActor = Racer;

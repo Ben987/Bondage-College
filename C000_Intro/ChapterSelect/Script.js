@@ -14,7 +14,7 @@ function C000_Intro_ChapterSelect_Load() {
 	LeaveIcon = "";
 	LeaveScreen = "";
 	LoadInteractions();
-	ReadCSV("C000_Intro_ChapterSelect_Credits", CurrentChapter + "/" + CurrentScreen + "/GameCredits.csv");
+	ReadCSV("C000_Intro_ChapterSelect_Credits", CurrentChapter, CurrentScreen, "GameCredits");
 	StopTimer(7.6666667 * 60 * 60 * 1000);
 }
 
