@@ -1,0 +1,44 @@
+# No Tab, use spaces only.
+# Please align it correctly if you modify this file.
+# Time zone: UTC+8, Beijing
+
+Ver Date        Path                            Author              Status              Remark
+
+12B 20180702    C000_Intro_ChapterSelect        Dwscdv3 & adscvbgf  √                   Revision from an old translated version
+12B 20180701    C000_Intro_CreatePlayer         Dwscdv3             √
+12B 20180701    C000_Intro_Intro                Dwscdv3             √
+
+12B 20180702    C001_BeforeClass_Amanda         Dwscdv3             √
+12B 20180702    C001_BeforeClass_Bag            Dwscdv3             √
+12B 20180702    C001_BeforeClass_Fight          Dwscdv3             √
+12B 20180702    C001_BeforeClass_FightIntro     Dwscdv3             √
+12B 20180702    C001_BeforeClass_FightOutro     Dwscdv3             √
+12B 20180702    C001_BeforeClass_Intro          Dwscdv3             √
+12B 20180702    C001_BeforeClass_Outro          Dwscdv3             √
+12B 20180702    C001_BeforeClass_Sidney         Dwscdv3             √
+
+...
+
+?   ?           C999_Common_Armbinder
+?   ?           C999_Common_BallGag             adscvbgf            Outdated
+?   ?           C999_Common_Blindfold
+?   ?           C999_Common_ChastityBelt
+?   ?           C999_Common_ClothGag
+?   ?           C999_Common_Collar              adscvbgf            Outdated
+?   ?           C999_Common_Crop                adscvbgf            √
+?   ?           C999_Common_Cuffs               adscvbgf            Outdated
+?   ?           C999_Common_CuffsKey            adscvbgf            √
+?   ?           C999_Common_DoubleOpenGag
+?   ?           C999_Common_Fights
+?   ?           C999_Common_GameLoad            adscvbgf            Trad. Chinese
+?   ?           C999_Common_GameSave            adscvbgf            Trad. Chinese
+?   ?           C999_Common_Manacles
+?   ?           C999_Common_MetalSheet          adscvbgf            √
+?   ?           C999_Common_Player              adscvbgf            Outdated
+?   ?           C999_Common_Quiz
+?   ?           C999_Common_Race
+?   ?           C999_Common_Rope                adscvbgf            Outdated
+?   ?           C999_Common_RustyHook           adscvbgf            √
+?   ?           C999_Common_SleepingPill        adscvbgf            √
+?   ?           C999_Common_TapeGag             adscvbgf            Outdated, Error
+?   ?           C999_Common_VibratingEgg        adscvbgf            Incomplete
