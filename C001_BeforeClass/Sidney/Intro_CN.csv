@@ -1,0 +1,22 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,你想干什么？（她盯着你。）,SidneyFace.jpg
+0,0,0,AmandaInBondage,漂亮！我很早就想把她绑起来了。|那么你想干什么？（她盯着你。）,SidneyFace.jpg
+10,0,0,,（她盯着那个棕色头发的女孩。）,SidneyStare.jpg
+20,0,0,,（她把手臂跨过来，看着你的眼睛。）,SidneyFace.jpg
+30,0,0,,（她再次盯着那个棕色头发的女孩。）,SidneyStare.jpg
+40,0,0,,（她转过头去无视你。）,SidneyBack.jpg
+40,2,0,,马上就上课了，我们之后再说。,SidneyFace.jpg
+40,-2,0,,别跟我说话，婊子！|（她转过头去无视你。）,SidneyBack.jpg
+40,0,0,AmandaInBondage,恭喜你羞辱了她。我们下课后再聊。|（她看向 Amanda 并对你竖起了大拇指。）,SidneyFace.jpg
+100,0,0,,靠！你在偷看我的包？|（她对于你发现了那些绳子感到很紧张。）,SidneyFace.jpg
+110,0,0,,（她对你摆出好奇的表情。）,SidneyFace.jpg
+200,0,0,,你从我的包里偷了这些绳子吗？|（她看起来很愤怒。）,SidneyFace.jpg
+210,0,0,,把我的绳子还给我！,SidneyFace.jpg
+220,0,0,,你给我等着！|（她徒劳地挣扎想要挣脱。）,SidneyBondageFront.jpg
+220,0,0,AmandaInBondage,至少他比我看起来更羞耻。|（她看向 Amanda 并且露出笑容。）,SidneyBondageFront.jpg
+230,0,0,,,SidneyBondageBack.jpg
+240,0,0,,,SidneyBondageHug.jpg
+250,0,0,,,SidneyBondageKiss.jpg
+300,0,0,,你这个小偷！我们之间没有什么可谈的。,SidneyBack.jpg
+310,0,0,,我不敢相信你居然把我绑在这里。|我们之后再谈这件事。,SidneyFace.jpg
+310,0,0,AmandaInBondage,"我不敢相信你居然把我绑在这里。|从好的一面来看，她还依然处在困境中。",SidneyFace.jpg
