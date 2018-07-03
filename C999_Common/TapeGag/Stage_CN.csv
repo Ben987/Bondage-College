@@ -1,7 +1,7 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(调查胶带)|(1 分钟),这是卷粘性强的一次性牛皮胶带。|被它封上了嘴巴就无法说话了。,0,0,0,
-0,0,0,Common_PlayerNotRestrained,(塞自己的嘴)|(1 分钟),你撕下了一段胶带，|然后用力黏在自己嘴巴上。,10,0,0,SelfGag()
-10,0,0,HasLooseTape,(Inspect the loose tape.)|(1 minute),"It's a strong, one time use duct tape.  It will|be hard to understand someone gagged with it.",10,0,0,ShowImage()
-10,0,0,,(张开嘴)  (1 分钟),你用全力张开嘴巴，|但是胶带黏得太紧了。,10,0,0,
-10,0,0,,(用舌头顶)|(1 分钟),你用全力顶开胶带，|但是胶带纹风不动。,10,0,0,
-10,0,0,Common_PlayerNotRestrained,(撕下胶带)|(1 分钟),你把胶带撕了下来，感觉特别疼。|现在你可以说话了。,0,0,0,SelfUngag()
+0,0,0,,(调查胶带)|(1 分钟),这是一卷粘性很强的一次性布胶带。|别人很难听懂被封住嘴的人在说些什么。,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(粘上自己的嘴)|(1 分钟),你撕下了一段胶带，|然后牢牢贴在自己嘴上。,10,0,0,SelfGag()
+10,0,0,HasLooseTape,(调查松脱的胶带)|(1 分钟),"这是一卷粘性很强的一次性布胶带。|别人很难听懂被封住嘴的人在说些什么。",10,0,0,ShowImage()
+10,0,0,,(张开嘴)  (1 分钟),你试着用力张开嘴巴，|但是胶带粘得太结实了。,10,0,0,
+10,0,0,,(用舌头顶)|(1 分钟),你试着顶开胶带，|但胶带纹丝不动。,10,0,0,
+10,0,0,Common_PlayerNotRestrained,(撕下胶带)|(1 分钟),你把胶带撕了下来，感觉特别疼。|不过现在你又能说话了。,0,0,0,SelfUngag()

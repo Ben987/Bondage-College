@@ -1,9 +1,9 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(玩绳子)|(1 分钟),你拿绳子玩了会儿。|你感觉到绳子非常柔滑。,0,0,0,
-0,0,0,Common_PlayerNotRestrained,(自缚)|(1 分钟),你尝试自缚，但你没法好好打结。|你需要别人把你绑起来。,0,0,0,QuerySelfBondage()
-10,0,0,HasLooseRope,(Play with the loose|rope.)  (1 minute),You play with the loose rope while restrained.|It feels very soft and smooth on your skin.,10,0,0,ShowImage()
+0,0,0,,(玩一玩)|(1 分钟),你拿绳子玩了会儿。|你的肌肤感觉到绳子非常柔软和丝滑。,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(把自己绑起来)|(1 分钟),你试着把自己绑起来，但你不擅于打结。|你需要别人来把你绑起来。,0,0,0,QuerySelfBondage()
+10,0,0,HasLooseRope,(Play with the loose|rope.)  (1 分钟),你在被束缚的情况下玩了玩松掉的绳子。|你的肌肤感觉到绳子非常柔软和丝滑。,10,0,0,ShowImage()
 10,0,0,,(设法解开绳结)|(1 分钟),你拼尽全力试图解开绳结，|但你一个结也解不开。,10,0,0,
-10,0,0,,(挣扎)|(1 分钟),你疯狂挣扎，|但没法逃脱。,10,0,0,
-10,0,0,,(拉股绳)|(1 分钟),你成功拉了拉股绳。|感觉很爽。,10,0,0,
-20,0,0,,(Tie yourself.),You carefully wrap the rope around your torso|and manage to pull a tight and secure knot.,10,0,0,DoSelfBondage()
-20,0,0,,(Don't do it.),You resist the urge of tying yourself up.,0,0,0,
+10,0,0,,(挣脱出去)|(1 分钟),你疯狂挣扎，|但没法逃脱。,10,0,0,
+10,0,0,,(拉一拉股绳)|(1 分钟),你成功拉了拉股绳。|感觉很爽。,10,0,0,
+20,0,0,,(把自己绑起来),你仔细地将绳子绕在身体上|然后打了一个又紧又牢固的结。,10,0,0,DoSelfBondage()
+20,0,0,,(还是算了),你忍住了把自己绑起来的冲动。,0,0,0,
