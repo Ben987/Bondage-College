@@ -4,11 +4,11 @@
 
 Ver Date        Path                            Author              Status              Remark
 
-12B 20180702    C000_Intro_ChapterSelect        Dwscdv3 & adscvbgf  √                   Revision from an old translated version
-12B 20180701    C000_Intro_CreatePlayer         Dwscdv3             √
+12B 20180702    C000_Intro_ChapterSelect        Dwscdv3 & adscvbgf  √                   Revised
+12B 20180704    C000_Intro_CreatePlayer         Dwscdv3             √
 12B 20180701    C000_Intro_Intro                Dwscdv3             √
 
-12B 20180702    C001_BeforeClass_Amanda         Dwscdv3             √
+12B 20180704    C001_BeforeClass_Amanda         Dwscdv3             √
 12B 20180702    C001_BeforeClass_Bag            Dwscdv3             √
 12B 20180702    C001_BeforeClass_Fight          Dwscdv3             √
 12B 20180702    C001_BeforeClass_FightIntro     Dwscdv3             √
@@ -19,26 +19,26 @@ Ver Date        Path                            Author              Status      
 
 ...
 
-?   ?           C999_Common_Armbinder
-?   ?           C999_Common_BallGag             adscvbgf            Outdated
-?   ?           C999_Common_Blindfold
-?   ?           C999_Common_ChastityBelt
-?   ?           C999_Common_ClothGag
-?   ?           C999_Common_Collar              adscvbgf            Outdated
-?   ?           C999_Common_Crop                adscvbgf            √
-?   ?           C999_Common_Cuffs               adscvbgf            Outdated
-?   ?           C999_Common_CuffsKey            adscvbgf            √
-?   ?           C999_Common_DoubleOpenGag
-?   ?           C999_Common_Fights
+12B 20180703    C999_Common_Armbinder           Dwscdv3             √
+12B 20180703    C999_Common_BallGag             adscvbgf & Dwscdv3  √                   Revised
+12B 20180703    C999_Common_Blindfold           Dwscdv3             √
+12B 20180703    C999_Common_ChastityBelt        Dwscdv3             √
+12B 20180703    C999_Common_ClothGag            Dwscdv3             √
+12B 20180703    C999_Common_Collar              adscvbgf & Dwscdv3  √                   Revised
+12B 20180703    C999_Common_Crop                adscvbgf & Dwscdv3  √                   Polished
+12B 20180703    C999_Common_Cuffs               adscvbgf & Dwscdv3  √                   Revised
+12B ?           C999_Common_CuffsKey            adscvbgf            √
+12B 20180703    C999_Common_DoubleOpenGag       Dwscdv3             √
+                C999_Common_Fights
 ?   ?           C999_Common_GameLoad            adscvbgf            Trad. Chinese
 ?   ?           C999_Common_GameSave            adscvbgf            Trad. Chinese
-?   ?           C999_Common_Manacles
-?   ?           C999_Common_MetalSheet          adscvbgf            √
-?   ?           C999_Common_Player              adscvbgf            Outdated
-?   ?           C999_Common_Quiz
-?   ?           C999_Common_Race
-?   ?           C999_Common_Rope                adscvbgf            Outdated
-?   ?           C999_Common_RustyHook           adscvbgf            √
-?   ?           C999_Common_SleepingPill        adscvbgf            √
-?   ?           C999_Common_TapeGag             adscvbgf            Outdated, Error
-?   ?           C999_Common_VibratingEgg        adscvbgf            Incomplete
+12B 20180704    C999_Common_Manacles            Dwscdv3             √
+12B ?           C999_Common_MetalSheet          adscvbgf            √
+12B 20180704    C999_Common_Player              adscvbgf & Dwscdv3  √                   Revised
+                C999_Common_Quiz
+                C999_Common_Races
+12B 20180704    C999_Common_Rope                Dwscdv3 & adscvbgf  √                   Revised
+12B ?           C999_Common_RustyHook           adscvbgf            √
+12B ?           C999_Common_SleepingPill        adscvbgf            √
+12B 20180704    C999_Common_TapeGag             adscvbgf & Dwscdv3  √                   Revised
+12B 20180704    C999_Common_VibratingEgg        Dwscdv3 & adscvbgf  √                   Revised
