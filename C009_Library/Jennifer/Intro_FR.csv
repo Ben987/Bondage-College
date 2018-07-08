@@ -37,8 +37,8 @@ Stage,LoveReq,SubReq,VarReq,IntroText,Image
 180,0,0,ThreeOrgasmDone,(Elle chuchote.) Je n'avais jamais eu trois orgasmes.|J'espère vraiment qu'on se reverra après l'école.,CouchLeft.jpg
 181,0,0,,"Alors, comment je peux enlever cette ceinture ?",CouchLeft.jpg
 190,0,0,,(Jennifer est partie.),Couch.jpg
-200,0,0,,"(Tu t'assieds à côté de Jennifer.)|Alors, quoi de neuf COMMON_PLAYERNAME ?",Couch.jpg
-210,0,0,,(Tu t'assieds à côté de Jennifer.)|C'est un bel endroit pour lire.,Couch.jpg
+200,0,0,,"(Tu t'assieds à côté de Jennifer.)|Alors COMMON_PLAYERNAME, quoi de neuf ?",Couch.jpg
+210,0,0,,(Tu t'assieds à côté de Jennifer.)|C'est une bonne place pour lire.,Couch.jpg
 211,0,0,,(Tu t'assieds à côté de Jennifer.)|Y a-t-il quelque chose dont tu aimerais parler ?,Couch.jpg
 212,0,0,,(Tu t'assieds à côté de Jennifer.)|De quoi parlait-on ? (Elle rougit.),Couch.jpg
 213,0,0,,(Tu t'assieds à côté de Jennifer.)|De quoi parlait-on ? (Elle rougit.),Couch.jpg
