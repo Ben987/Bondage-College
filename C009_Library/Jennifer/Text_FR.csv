@@ -7,7 +7,7 @@ NoTimeToDraw,(Tu n'as plus assez de temps.)
 JumpOffWorry,"(En voyant ton objet, elle saute du canapé.)|Attends ! Qu'est-ce que tu fais ? Qu'est-ce que c'est ?"
 RefuseBondage,"(Elle voit ton objet et te repousse.)|(""+5"" en soumission pour t'en servir sur elle.)"
 TurnTablesFromItem,(Elle voit ton objet et elle te maîtrise rapidement|puis elle t'attache avec tes propres objets.)
-TurnTablesFromTalk,"J'ai une meilleure idée, une aventure en ""bondage"".| (Elle t'attache avec tes propres objets.)"
+TurnTablesFromTalk,"J'ai une meilleure idée, une aventure de bondage.|(Elle t'attache avec tes propres objets.)"
 AcceptRelease,"Très bien, je vais essayer de t'aider.|(Elle te libère du mieux qu'elle peut.)"
 Crop,"(Tu lui donnes quelques coups avec|la cravache, elle pleure et gémit.)"
 Collar,"(""+20"" en soumission ou plus et une cérémonie spéciale|sont nécéssaire pour faire porter un collier à une élève.)"

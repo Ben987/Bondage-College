@@ -1,0 +1,187 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,Common_PlayerGagged,@Mnaaaeg mmh !,(Elle regarde ton bâillon et rit.),0,0,0,
+0,0,0,HasEgg,Comment l'as-tu enlevé ?,"C'était humiliant, j'ai dû me contracter|péniblement pour l'extraire.",0,0,0,
+0,0,0,HasEgg,Je peux récupérer l'oeuf ?,"C'est trop tard, je l'ai jeté.",0,0,0,QueryEgg()
+0,0,0,HasEgg,"Jen, je veux|récupérer l'oeuf.","C'est trop tard, je l'ai jeté.",0,-1,1,QueryEgg()
+0,0,0,,Qu'est-ce que tu fais ici ?,Je lis l'histoire des Jeux Olympiques.,10,0,0,
+0,0,0,,Comment vas-tu ?,"Je vais bien merci,|je lis l'histoire des Jeux Olympiques.",10,1,0,
+0,0,0,,Cette bibliothèque est|plutôt ennuyeuse.,Je ne suis pas d'accord. J'ai trouvé un livre|intéressant sur l'histoire des Jeux Olympiques.,10,-1,0,
+0,0,0,TennisVictory,On pourra rejouer au|tennis plus tard.,Super ! Et je gagnerai cette fois-ci !,0,0,0,
+0,0,0,TennisDefeat,On pourra rejouer au|tennis plus tard.,Génial ! Peut-être que tu gagneras cette fois.,0,0,0,
+10,0,0,,Les Jeux Olympiques ?|C'est intéressant.,"Effectivement, les Jeux sont aussi très politiques.|Et de ton coté ? Qu'est-ce que tu cherches ?",20,1,0,
+10,0,0,!BookAlreadyFound,Je dois trouver un livre.,Oh ? Quel livre cherches-tu ?,20,0,0,
+10,0,0,,Qui se soucie des|Jeux Olympiques ?,(Elle fait la moue.) Des millions de gens.|Quoi qu'il en soit. Qu'est-ce que tu cherches ?,20,-1,0,
+10,0,0,,Ne te dopes pas|comme les athlètes.,(Elle secoue la tête.) Bien sûr que non.|Et de ton coté ? Qu'est-ce que tu cherches ?,20,0,1,
+10,0,0,,Tu seras une|grande olympienne.,C'est très gentil de ta part.|Et de ton coté ? Qu'est-ce que tu cherches ?,20,1,-1,
+20,0,0,BookAlreadyFound,J'ai déjà trouvé|mon livre.,D'accord ! Amuse-toi bien.,100,0,0,
+20,0,0,,Le comte de Monte Cristo.,"Tu le trouveras sûrement dans la section littérature.|Repart en arrière, va tout droit et tournes à droite.",40,0,0,
+20,0,0,,Cinquante nuances|de Grey.,(Elle rit.) J'ai de sérieux doutes que|tu puisses trouver ce livre ici.,30,0,-1,
+20,0,0,,Justine du marquis|de Sade.,"Oh là là ! Il devrait être dans la section réservée.|Demande au professeur Yuki, je l'ai vue dans le coin.",30,0,1,
+30,0,0,,"J'ai aussi besoin du|""Comte de Monte Cristo.""","Tu le trouveras sûrement dans la section littérature.|Repart en arrière, va tout droit et tournes à droite.",40,0,0,
+30,0,0,,Merci Jen !|(Tu t'en vas.),,100,0,0,PlayerLeave()
+30,0,0,,(Tu t'en vas.),,100,-1,0,PlayerLeave()
+40,0,0,,Merci Jen !|(Tu t'en vas.),,100,0,0,PlayerLeave()
+40,0,0,,(Tu t'en vas.),,100,-1,0,PlayerLeave()
+100,0,0,,Pourquoi t'es assise|comme ça ?,Qu'est-ce qui ne va pas avec|la façon dont je m'assois ?,110,0,0,
+100,0,0,,Tu n'as pas l'air à l'aise.,"Je vais bien, je suis assise confortablement.",110,0,0,
+100,0,0,,Je peux m'asseoir|à coté toi ?,"Je suis désolée, je préfère lire seule.",100,0,0,TestSitTogether()
+100,0,5,,"Bouge, je veux|m'asseoir ici.","Très bien, tu peux prendre ma place.|(Elle se lève et s'en va.)",190,-1,1,JenniferLeave()
+110,0,0,,"Tu devrais te détendre,|utilise tout le canapé.",Je ne peux pas m'allonger sur tout le canapé.|Et si quelqu'un veut s'asseoir ?,120,0,0,
+110,0,0,,Tu n'utilises qu'un|tiers du canapé.,Je ne peux pas m'allonger sur tout le canapé.|Et si quelqu'un veut s'asseoir ?,120,0,0,
+110,0,0,,Tu as l'air timide et solitaire.|Utilise tout le canapé.,Je ne peux pas m'allonger sur tout le canapé.|Et si quelqu'un veut s'asseoir ?,120,0,0,
+110,0,0,,Je peux m'asseoir|à coté toi ?,"Je suis désolée, je préfère lire seule.",110,0,0,TestSitTogether()
+110,0,5,,"Bouge, je veux|m'asseoir ici.","Très bien, tu peux prendre ma place.|(Elle se lève et s'en va.)",190,-1,1,JenniferLeave()
+120,0,0,,"Essaye de t'allonger,|tu auras l'air moins seule.",Seule ? J'ai l'air si seule ?|(Elle s'allonge sur le canapé.),130,-1,0,NewPose()
+120,0,0,,"Allonges-toi,|ce sera moins gênant.",Je ne veux pas avoir l'air gênante.|(Elle s'allonge sur le canapé.),130,0,0,NewPose()
+120,0,5,,Allonges-toi jeune fille !,"Oui, Madame COMMON_PLAYERNAME.|(Elle s'allonge sur le canapé.)",130,0,1,NewPose()
+120,0,0,,Je peux m'asseoir|à coté toi ?,"Je suis désolée, je préfère lire seule.",120,0,0,TestSitTogether()
+120,0,5,,"Bouge, je veux|m'asseoir ici.","Très bien, tu peux prendre ma place.|(Elle se lève et s'en va.)",190,-1,1,JenniferLeave()
+130,0,0,,C'est bien mieux|maintenant.,"Vraiment ? Et bien, merci.|Je le prends comme un conseil d'amie.",140,0,0,
+130,0,0,,Es-tu à l'aise|à présent ?,"Je suppose que oui, merci.|Je le prends comme un conseil d'amie.",140,1,0,
+130,0,0,,Je peux m'asseoir|à coté toi ?,"Je suis désolée, je préfère lire seule.",140,0,0,TestSitTogether()
+130,0,5,,"Bouge, je veux|m'asseoir ici.","Très bien, tu peux prendre ma place.|(Elle se lève et s'en va.)",190,-1,1,JenniferLeave()
+140,0,0,,Pourquoi t'es|toujours seule ?,Je ne le suis pas ! Je fais partie de plusieurs équipes|sportives. Mais on peut dire je n'ai pas de vrais amies.,150,-1,0,
+140,0,0,,Tu n'as pas l'air d'avoir|beaucoup d'amies.,"Et bien, il y a Sidney.... Quand elle a besoin d'argent.|(Elle soupire) On peut dire je n'ai pas de vrais amies.",150,0,0,
+140,0,0,,"Tu as l'air seule,|comme moi.","Tu te sens seule aussi ? C'est vrai|que je n'ai pas beaucoup d'amies.",150,1,-1,
+140,0,0,,Je peux m'asseoir|à coté toi ?,"Je suis désolée, je préfère lire seule.",150,0,0,TestSitTogether()
+140,0,5,,"Bouge, je veux|m'asseoir ici.","Très bien, tu peux prendre ma place.|(Elle se lève et s'en va.)",190,-1,1,JenniferLeave()
+150,0,0,,On pourrait être amies|si tu veux.,J'adorerais ça. On pourrait être|des amies qui s'entraident.,155,1,-1,NewPose()
+150,0,0,,"Soyons amies,|dans ce cas.",J'adorerais ça. On pourrait être|des amies qui s'entraident.,155,1,0,NewPose()
+150,0,0,,Tu dois d'abord|surmonter ta timidité.,"Je sais que je suis timide, mais ce n'est pas facile|de changer. Peux-tu m'aider à être plus confiante ?",160,0,0,NewPose()
+150,0,0,,Je peux m'asseoir|à coté toi ?,"Je suis désolée, je préfère lire seule.",150,0,0,TestSitTogether()
+150,0,5,,"Bouge, je veux|m'asseoir ici.","Très bien, tu peux prendre ma place.|(Elle se lève et s'en va.)",190,-1,1,JenniferLeave()
+155,0,0,,"Oui, je t'aiderai à|surmonter ta timidité.","Je sais que je suis timide, mais ce n'est pas facile|de changer. Peux-tu m'aider à être plus confiante ?",160,0,0,
+155,0,0,,"Oui, bientôt tu seras|aussi confiante que moi.",Acquérir de la confiance n'est pas facile.|Peux-tu vraiment m'aider ?,160,0,1,
+160,0,0,,"Premièrement, tu dois|être fière de ton corps.",Fière de mon corps ?|Tu penses vraiment que je suis jolie ?,170,0,0,
+160,0,0,,Tu es jolie. Tu ne|devrais pas le cacher.,Tu es si gentille COMMON_PLAYERNAME.|Tu penses vraiment que je suis jolie ?,170,1,0,
+160,0,0,,Je peux m'asseoir|à coté toi ?,"Je suis désolée, je préfère lire seule.",160,0,0,TestSitTogether()
+160,0,5,,"Bouge, je veux|m'asseoir ici.","Très bien, tu peux prendre ma place.|(Elle se lève et s'en va.)",190,-1,1,JenniferLeave()
+170,10,0,,Tu es adorable. Tu devrais|te déshabiller et le montrer.,"Tu es sûre ?  D'accord, je vais le faire.|(Elle rougit et se met lentement en sous-vêtements.)",171,0,0,"Strip(""Underwear"")"
+170,0,10,,Arrête d'être timide.|Montre-moi ton corps.,"Oui, Madame, je suis sûre que c'est dans mon intérêt.|(Elle rougit et se met lentement en sous-vêtements.)",171,0,0,"Strip(""Underwear"")"
+170,0,0,,"Oui, tu devrais|te dénuder.","Me dénuder ici ? Le professeur Yuki serait en colère.|(""+10"" en amour ou en soumission pour la convaincre.)",170,0,0,TestStrip()
+170,5,0,CanAskDate,Tu es très jolie Jen.|On devrait sortir ce soir.,"Moi ? Sortir ce soir ?  Avec toi ?|Intéressant, je vais y réfléchir.",170,1,0,AskDate()
+170,0,0,,"Tu es jolie, on en|reparlera plus tard.","On devrait en reparler à un autre moment, oui.|J'aimerais lire encore un peu.",180,0,0,NewPose()
+170,0,0,,Je peux m'asseoir|à coté toi ?,"Je suis désolée, je préfère lire seule.",170,0,0,TestSitTogether()
+171,0,0,,Si classique.|Ne te caches pas.,"Je...  Oui, il n'y a pas de honte à avoir.|(Elle s'allonge et commence à se détendre un peu.)",172,0,1,NewPose()
+171,0,0,,"Détends-toi, mon amie.|Y'a personne.","Je... Oui, tu as raison, je devrais me détendre.|(Elle s'allonge et commence à se détendre un peu.)",172,1,0,NewPose()
+171,0,0,,Essaye de te|relaxer Jen.,"Je...  Oui, tu as raison, je devrais me relaxer.|(Elle s'allonge et commence à se détendre un peu.)",172,0,0,NewPose()
+172,0,10,,"Jeune fille, débarrasse-toi|de ces sous-vêtements.","Oui Madame, je ne peux plus reculer à présent.|(Elle se déshabille complètement et devient nerveuse.)",174,-1,1,"Strip(""Naked"")"
+172,0,0,,Whouaah ! J'aimerais avoir|un corps comme le tien.,"Tu es aussi très jolie COMMON_PLAYERNAME.|J'arrive pas a y croire, c'est si audacieux.",173,1,-1,
+172,0,0,,Tu es superbe Jen.,"Merci beaucoup COMMON_PLAYERNAME.|J'arrive pas a y croire, c'est si audacieux.",173,0,0,
+173,0,0,,Plus qu'un pas et|ce sera parfait.,"Mmm, je ne peux plus reculer à présent.|(Elle se déshabille complètement et devient nerveuse.)",174,0,0,"Strip(""Naked"")"
+173,0,0,,Pour surmonter ta timidité.|Tu devrais te mettre nue.,"Oui, je ne peux plus reculer à présent.|(Elle se déshabille complètement et devient nerveuse.)",174,0,0,"Strip(""Naked"")"
+174,0,0,,"Tu as froid, maigrichonne ?|Pourquoi tu te couvres ?",Froid ?  Oh non. Je devrais me calmer.|(Elle se découvre lentement et se détend à nouveau.),175,-1,0,NewPose()
+174,0,0,,Calme-toi Jen.|Tu es superbe.,Assurément. Je devrais me calmer.|(Elle se découvre lentement et se détend à nouveau.),175,0,0,NewPose()
+174,0,0,,Tu es sûr que tout|ceci te convient ?,"Oui, oui, je vais bien. Je devrais me calmer.|(Elle se découvre lentement et se détend à nouveau.)",175,0,-1,NewPose()
+174,0,0,,"Ouvre les bras, mon amie.|Montre-moi ta beauté.","(Elle sourit.) Oui, je devrais me calmer.|(Elle se découvre lentement et se détend à nouveau.)",175,1,0,NewPose()
+175,0,0,,"Je suis fière de toi,|jeune fille.",Tu le penses vraiment ? C'est très important pour moi.,176,0,1,
+175,0,0,,(Tu lèves ton pouce.),(Elle rit et se détend un peu plus.)|Je n'aurais jamais cru pouvoir être aussi audacieuse.,176,0,0,
+175,0,0,,(Tu saisis ton téléphone|et prends des photos.),(Tu saisis rapidement ton téléphone et prends des|photos d'elle. Elle se rhabille et part en pleurant.),190,-3,1,JenniferLeave()
+176,0,0,IsArtist,Si tu prends la pose.|Je te dessinerai.,C'est excitant ! Comme dans les films.|(Elle enlève ses lunettes et prend la pose.),177,0,0,NewPose()
+176,0,0,,Tu te sens plus confiante ?,"Oui, je suis toujours nerveuse, mais je me sens mieux.|Dois-je me rhabiller ? Je ne veux pas me faire prendre.",178,0,0,
+176,0,0,,Tu as du cran pour|une asociale.,"S'il te plaît, ne m'appelle pas ainsi, Je n'aime pas ça.|Dois-je me rhabiller ? Je ne veux pas me faire prendre.",178,-1,0,
+176,0,0,,Félicitations Jen.|Tu l'as fait.,"Merci COMMON_PLAYERNAME, J'apprécie.|Dois-je me rhabiller ? Je ne veux pas me faire prendre.",178,0,0,
+177,0,0,Painted,Tu es mon modèle|préféré Jennifer.,C'est très flatteur. Tu m'as peint ce matin|et maintenant tu vas me dessiner.,177,0,0,FavoriteModel()
+177,0,0,,(Tu dessines un croquis|rapide.) (5 minutes),(Tu la dessines rapidement et lui montres le résultat.)|C'est chouette. Tu pourrais le montrer à Julia.,178,0,0,DrawJennifer(5)
+177,0,0,,(Tu la dessines en|entier.) (15 minutes),"(Tu la dessines avec soin et lui montres le résultat.)|Très joli et flatteur, j'adorerais en avoir une copie.",178,0,0,DrawJennifer(15)
+177,0,0,,(Tu dessines une oeuvre|d'art.) (30 minutes),(Tu la dessines avec brio et lui montres le résultat.)|Whouaah ! Je ne savais pas que tu étais si talentueuse.,178,0,0,DrawJennifer(30)
+177,0,0,,Ça risque d'être trop long.|On devrait remettre ça.,"Oui, et on pourrait se faire prendre.|Dois-je me rhabiller maintenant ?",178,0,0,NewPose()
+178,0,0,,"Habille-toi,|j'ai vu assez d'os.",(Elle fait la moue et se rhabille.)|Je vais retourner à mon livre.,180,-1,0,"Strip(""Clothed"")"
+178,0,0,,"Habille-toi, toutes les|bonnes choses ont une fin.","(Elle te sourit et se rhabille.)|C'était passionnant, mais j'aimerais lire encore un peu.",180,1,0,"Strip(""Clothed"")"
+178,0,0,,"Malheureusement, il est|temps de se rhabiller.",(Elle acquiesce et se rhabille.)|"C'était amusant mais j'aimerais lire encore un peu.",180,0,0,"Strip(""Clothed"")"
+178,0,0,,"Tu peux t'habiller, ce sera|mon tour la prochaine fois",(Elle acquiesce et se rhabille.)|Je vais retourner à mon livre.,180,0,-1,"Strip(""Clothed"")"
+180,0,0,Common_PlayerGagged,@Mnaaaeg mmh !,(Elle regarde ton bâillon et rit.),180,0,0,
+180,0,0,Common_PlayerRestrained,"Jen, tu peux m'aider ?","Désolée, mais c'est non.",180,0,0,TestRelease()
+180,0,0,Common_PlayerRestrained,(Tu te mets à genoux|et la supplie.),"Désolée, mais c'est non.",180,0,0,TestRelease()
+180,0,0,OrgasmDone,"Alors, tu as apprécié|notre moment coquin ?","(Elle rougit légèrement.) Oui, c'était un|merveilleux moment partagée avec toi.",180,0,0,
+180,0,0,PlayerOrgasmDone,Tu m'as donné beaucoup|de plaisir aujourd'hui.,Je suis très contente d'avoir été à|la hauteur. J'ai si peu d'expérience.,180,0,0,
+180,0,0,,A tout à l'heure !|(Tu t'en vas.),,180,0,0,PlayerLeave()
+180,0,5,,"Bouge, je veux|m'asseoir ici.","Très bien, tu peux prendre ma place.|(Elle se lève et s'en va.)",190,-1,1,JenniferLeave()
+181,0,0,,Je la déverrouillerai|ce soir.,"D'accord, je serai patiente,|dans ce cas.",180,0,0,NewPose()
+181,0,0,,Je ne sais pas comment|la déverrouiller.,Quoi ? Ce n'est pas drôle !|J'appellerai un serrurier plus tard.,180,-2,0,NewPose()
+181,0,0,,Fermée à clé jusqu'à|nouvel ordre.,Oh pitié ! Tu n'es pas sérieuse !|J'espère que tu la déverrouilleras bientôt.,180,-1,1,NewPose()
+181,0,0,,Je trouverai un moyen.|(Tu t'en vas.),,181,0,0,PlayerLeave()
+200,0,0,,Tu as trouvé|un bon canapé.,"Oui, c'est une bonne place pour lire.",210,0,0,
+200,0,0,,C'est confortable.,"Oui, c'est une bonne place pour lire.",210,0,0,
+200,0,0,,Ce n'est pas|très confortable.,Ah bon ? J'adore ce canapé.|C'est mon petit coin préféré pour lire.,210,-1,0,
+200,0,0,,(Tu te laisses couler|dans le canapé.),(Vous coulez toutes les deux et vous vous détendez|sur le canapé.) C'est une bonne place pour lire.,210,1,0,
+210,0,0,,J'aimerai te connaitre|davantage.,Oh ! Qu'aimerais-tu savoir ?,211,0,0,
+210,0,0,,(Tu la regardes|dans les yeux.),"(Elle n'est pas très à l'aise, elle baisse la tête.)|Y a-t-il quelque chose dont tu aimerais parler ?",211,0,1,
+210,0,0,,"Je t'aime bien, Jen.",Je t'aime bien aussi COMMON_PLAYERNAME.,220,1,0,
+210,0,0,,Je devrais y aller.|(Tu t'en vas.),,180,-1,0,PlayerLeave()
+211,0,0,,Tu aimes les filles ?,Oh mon Dieu ! Eh bien...  Bien sûr...  Je suppose.|J'admets que je n'ai jamais eu de rendez-vous.,212,0,0,
+211,0,0,,Tu penses que|je suis jolie ?,"Bien sûr que tu es jolie.|J'aime ton allure et ton attitude.",213,0,0,
+211,0,0,,(Tu ris et baisses la tête.)|Tu m'aimes bien ?,"Oui, vraiment. On ne se connaît que depuis un|jour, mais tu me sembles être quelqu'un de bien.",213,0,-1,
+212,0,0,,Tu penses que|je suis jolie ?,"Bien sûr que tu es jolie.|J'aime ton allure et ton attitude.",213,0,0,
+212,0,0,,(Tu ris et baisses la tête.)|Tu m'aimes bien ?,"Oui, vraiment. On ne se connaît que depuis un|jour, mais tu me sembles être quelqu'un de bien.",213,0,-1,
+213,15,0,,Je t'aime Jen.,Je t'aime aussi COMMON_PLAYERNAME.,220,1,0,
+213,0,0,,"Je t'aime bien, Jen.",Je t'aime bien aussi COMMON_PLAYERNAME.,220,0,0,
+213,0,0,,Je devrais y aller.|(Tu t'en vas.),,180,-1,0,PlayerLeave()
+220,0,0,,Tu veux faire|l'amour avec moi ?,"Pour de vrai ?  Dans la bibliothèque ?|(Elle regarde autour d'elle.) Oui, COMMON_PLAYERNAME. Je le ferai.",230,0,0,TestMakeLove()
+220,0,0,,Tu veux jouir ?,Pour de vrai ?  Dans la bibliothèque ? (Elle regarde|autour d'elle.) D'accord COMMON_PLAYERNAME. Je le ferai.,230,-1,0,TestMakeLove()
+220,0,0,,"Jeune fille, je vais te|prendre maintenant.",Me prendre ? (Elle regarde autour d'elle|nerveusement.) Je crois qu'on pourrait le faire.,230,-1,1,TestMakeLove()
+230,0,0,,"Allez, ce sera amusant.|(Tu te déshabilles.)",(Elle hoche la tête et vous|vous mettez en sous-vêtements.),240,0,0,"StripBoth(""Underwear"")"
+230,0,0,,On doit d'abord enlever|quelques vêtements.,(Elle hoche la tête et vous|vous mettez en sous-vêtements.),240,0,0,"StripBoth(""Underwear"")"
+230,0,0,,"(Tu ris.) Alors, on se|déshabille ensemble ?",(Elle hoche la tête et vous|vous mettez en sous-vêtements.),240,0,-1,"StripBoth(""Underwear"")"
+230,0,0,,Montre-moi ton|corps sexy.,(Elle hoche la tête et vous|vous mettez en sous-vêtements.),240,-1,0,"StripBoth(""Underwear"")"
+235,0,0,,"La ceinture ? Ah oui, ça|pourrait être un problème.","C'est sévère, mais on devrait pouvoir|partager un bon moment quand même.",240,0,-1,
+235,0,0,,Oublie la ceinture. On|s'amusera quand même.,Oui ! Ce n'est pas une ceinture métallique ridicule|qui nous empêchera de partager un bon moment.,240,0,0,
+235,0,0,,(Tu tires sur la ceinture|et soupires.),Ma pauvre petite chérie. Ne t'inquiètes pas.|On peut quand même partager un bon moment.,240,1,-2,
+240,0,0,!Common_PlayerChaste,"Ma fille, tu as l'air canon.","Oh là là ! Merci beaucoup.|Tu es jolie aussi, tu sais.",245,0,1,
+240,0,0,!Common_PlayerChaste,Tu es magnifique Jen.,"Ça signifie tellement pour moi, j'apprécie.|Tu es aussi très jolie, tu sais.",245,1,0,
+240,0,0,!Common_PlayerChaste,Pas de temps à perdre.|(Tu te mets nue.),(Elle acquiesce et vous vous mettez nue.)|C'est de la folie ! Et si on se fait prendre ?,250,0,0,"StripBoth(""Naked"")"
+240,0,0,Common_PlayerChaste,C'est ton tour à présent.,(Elle acquiesce et se déshabille nerveusement.)|C'est de la folie ! Et si on se fait prendre ?,250,0,0,"Strip(""Naked"")"
+240,0,0,Common_PlayerChaste,Pas de temps à perdre.|Mets-toi nue Jen.,(Elle acquiesce et se déshabille nerveusement.)|C'est de la folie ! Et si on se fait prendre ?,250,0,1,"Strip(""Naked"")"
+245,0,0,,"Je suis un peu nerveuse,|on ne peut plus reculer.",(Elle acquiesce et vous vous mettez nue.)|C'est de la folie ! Et si on se fait prendre ?,250,0,-1,"StripBoth(""Naked"")"
+245,0,0,,Pas de temps à perdre.|(vous vous mettez nue.),(Elle acquiesce et vous vous mettez nue.)|C'est de la folie ! Et si on se fait prendre ?,250,0,0,"StripBoth(""Naked"")"
+250,0,0,,"Si quelqu'un vient,|on s'enfuit.","Oui ! Bon plan. Par contre, je t'avoue que|je ne suis pas trop sûre de savoir quoi faire.",260,0,-1,
+250,0,0,,Personne ne viendra ici.,"Tu as raison. Par contre, je t'avoue que|je ne suis pas trop sûre de savoir quoi faire.",260,0,0,
+250,0,0,,Je te protégerai.,"C'est génial !  Par contre, je t'avoue que|je ne suis pas trop sûre de savoir quoi faire.",260,0,1,
+260,0,-5,,Madame ? Puis-je|vous satisfaire ?,(Elle acquiesce et écarte ses jambes|pendant que tu te mets à genoux.),270,0,-1,NewPose()
+260,0,0,Common_PlayerChaste,Puisque je suis ceinturée.|Je vais te satisfaire.,(Elle acquiesce et écarte ses jambes|pendant que tu te mets à genoux.),270,0,0,NewPose()
+260,0,0,!Common_PlayerChaste,Je vais te satisfaire.,(Elle acquiesce et écarte ses jambes|pendant que tu te mets à genoux.),270,0,0,NewPose()
+260,0,0,!Common_PlayerChaste,Tu vas me satisfaire ?,(Elle acquiesce et se met à genoux|pendant que tu écarte les jambes.),280,0,0,TestPleasurePlayer()
+260,0,5,!Common_PlayerChaste,Mets-toi à genoux et|utilise ta langue.,(Elle acquiesce et se met à genoux|pendant que tu écarte les jambes.) ,280,0,1,TestPleasurePlayer()
+270,0,0,,(Tu frottes son clitoris.),"(Tu frottes ton nez et ta bouche contre|son clitoris, elle gémit doucement.)",270,0,0,PleasureJennifer()
+270,0,0,,(Tu lèches ses lèvres.),"(Tu lèches amoureusement ses lèvres,|sa respiration se fait de plus en plus vite.)",270,0,0,PleasureJennifer()
+270,0,0,,(Tu introduis ta langue.),(Tu glisses ta langue à l'intérieur et à l'extérieur.|Elle te pousse plus profondément à l'intérieur.),270,0,0,PleasureJennifer()
+270,0,0,,(Tu utilises ta bouche|et ton doigt.),"(Tu utilises ta bouche et tes doigts pour|la stimuler, elle en tremble de joie.)",270,0,0,PleasureJennifer()
+270,0,0,!Common_PlayerChaste,Changeons de place.,"Oui, c'est ton tour à présent.|(Vous échangez vos places.)",280,0,0,TestSwitchPlayer()
+270,0,0,,"C'est bon, maintenant.|(Tu arrêtes tout.)","Oui, on pourrait se faire prendre.|(Vous vous rhabillez toutes les deux.)",180,0,0,ReleaseJennifer()
+280,0,0,,(Tu gémis de plaisir.),(Tu gémis lentement lorsqu'elle|te lèche maladroitement les lèvres.),280,0,0,PleasurePlayer()
+280,0,0,,(Tu respires|profondément.),(Ta respiration devient de plus en plus forte|lorsqu'elle te lèche et suce ton clitoris.),280,0,0,PleasurePlayer()
+280,0,0,,(Tu presses sa tête.),"(Tu presses sa tête entre tes jambes,|elle te lèche et lutte pour avoir de l'air.)",280,0,0,PleasurePlayer()
+280,0,0,,(Tu lui saisis|par les cheveux.),"(Tu la saisis par les cheveux et la presse contre toi.|Elle se met à jouer lentement avec sa langue.)",280,0,0,PleasurePlayer()
+280,0,0,,Changeons de place.,"Oui, ça doit être à mon tour.|(Vous échangez vos places.)",270,0,0,TestSwitchJennifer()
+280,0,0,,"C'est bon, maintenant.|(Tu arrêtes tout.)","Oui, on pourrait se faire prendre.|(Vous vous rhabillez toutes les deux.)",180,0,0,ReleaseJennifer()
+300,0,0,,Aimerais-tu jouer|à un jeu ?,Un jeu ? De quel genre ?,310,1,0,TestTurnTables()
+300,0,0,,J'ai trouvé de|nouveaux objets.,Oh ! Et qu'est-ce que tu as trouvé ?,310,0,0,TestTurnTables()
+300,0,0,,"Jeune fille, tu vas te|soumettre maintenant.",(Elle acquiesce et baisse le regard.)|Qu'attends-tu de moi ?,310,-1,1,TestTurnTables()
+300,0,0,,Voudrais-tu m'attacher ?,Tu pourrais avoir une aventure de bondage.|(Elle utilise tes propres objets pour t'attacher.),300,0,-1,RestrainPlayer()
+310,0,0,,Tu seras ma salope.,,320,-1,1,
+310,0,0,,Je vais utiliser quelques|objets coquin sur vous.,,320,-1,0,
+310,0,0,,Tu seras attachée|pendant un petit moment.,,320,0,1,
+310,0,0,,Aimerais-tu m'attacher ?,Tu pourrais avoir une aventure de bondage.|(Elle utilise tes propres objets pour t'attacher.),300,0,-1,RestrainPlayer()
+320,0,0,CanUntie,(Tu la détaches.)|(1 minute),(Tu la détaches pendant qu'elle se démène avec gêne.),320,0,0,Untie()
+320,0,0,CanUnstrap,(Tu la détaches.)|(1 minute),(Tu détaches le fourreau et libère ses bras|puis elle s'étire pour se détendre.),320,0,0,Untie()
+320,0,0,CanUngag,(Tu la débâillonnes.)|(1 minute),"(Tu enlèves le bâillon et elle te fixe.)|Pitié, ce bâillon était-il vraiment nécessaire ?",320,0,0,Ungag()
+320,0,0,CanKiss,(Tu l'embrasses.)|(1 minute),"(Tu l'embrasses lentement, elle te regarde sans voix.)",320,0,0,Kiss()
+320,0,0,CanAbuse,(Tu la chatouilles.)|(1 minute),(Elle rit et se débat légèrement.|Elle n'a pas l'air très chatouilleuse.),320,0,0,Tickle()
+320,0,0,CanAbuse,(Tu lui mets une fessée.)|(1 minute),(Tu lui donnes une bonne fessée.|Elle fait la moue et semble souffrir.),320,0,0,Spank()
+320,0,0,CanAbuse,(Tu la masturbes.)|(1 minute),,320,0,0,Masturbate()
+320,0,0,CanAddUnderwear,"Jen, remets tes|sous-vêtements.",(Elle acquiesce lentement et|remet ses sous-vêtements.),320,0,0,"Strip(""Underwear"")"
+320,0,0,CanRemoveUnderwear,Met-toi nue|jeune fille.,(Elle acquiesce lentement et se déshabille.),320,0,0,"Strip(""Naked"")"
+320,0,0,!IsChaste,Ça ira.|Rhabilles-toi.,"(Elle acquiesce et tu l'aides à se rhabiller.)|C'était une sacré expérience, très audacieuse.",180,0,0,ReleaseJennifer()
+320,0,0,IsChaste,Ça ira.|Rhabilles-toi.,(Elle acquiesce et tu l'aides à se rhabiller.)|Tu veux récupérer la ceinture ? Comment je l'enlèves ?,181,0,0,ReleaseJennifer()
+400,0,0,Common_PlayerGagged,@Uuumph !,(Elle rit.) Tu vas vivre une sacrée aventure|en te promenant dans la bibliothèque.,400,0,0,
+400,0,0,Common_PlayerGagged,@Nnoong gnoou !,Puisque tu es nouvelle à l'école.|C'est un bon moment pour visiter.,400,0,0,
+400,0,0,Common_PlayerRestrained,(Tu luttes contre|tes entraves.),"Tu es venu avec des objets, tu devrais les essayer.|Va et amuses-toi ma petite aventurière du bondage.",400,0,0,
+400,0,0,Common_PlayerRestrained,(Tu tires pour s'échapper.),"Si ça ne te dérange pas, j'aimerais finir ce livre.",400,0,0,
+400,0,0,,(Tu t'en vas.),,400,0,0,PlayerLeave()
+410,0,0,Common_PlayerGagged,@Uuumph !,(Elle rit.) Tu vas vivre une sacrée aventure|en te promenant dans la bibliothèque.,410,0,0,
+410,0,0,Common_PlayerGagged,@Nnoong gnoou !,Puisque tu es nouvelle à l'école.|C'est un bon moment pour visiter.,410,0,0,
+410,0,0,Common_PlayerRestrained,(Tu luttes contre|tes entraves.),"Tu es venu avec des objets, tu devrais les essayer.|Va et amuses-toi ma petite aventurière du bondage.",410,0,0,
+410,0,0,Common_PlayerRestrained,(Tu tires pour s'échapper.),"Si ça ne te dérange pas, j'aimerais finir ce livre.",410,0,0,
+410,0,0,Common_PlayerRestrained,"Jen, peux-tu m'aider ?","Désolée, mais je ne t'aiderai pas.",410,0,0,TestRelease()
+410,0,0,Common_PlayerRestrained,(Tu te mets à genoux|et la supplie.),"Désolée, mais je ne t'aiderai pas.",410,0,0,TestRelease()
+410,0,0,,On discuteras plus tard.|(Tu t'en vas.),,410,0,0,PlayerLeave()
