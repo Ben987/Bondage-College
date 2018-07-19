@@ -34,7 +34,7 @@ Stage,LoveReq,SubReq,VarReq,IntroText,Image
 180,0,0,IsChaste,"J'aimerais terminer ce livre à présent.|Mais, tu devras déverrouiller cette ceinture plus tard.",CouchLeft.jpg
 180,0,0,ArtDone,"J'aimerais terminer ce livre à présent.|Mais, j'ai vraiment aimé le dessin que tu as fait.",CouchLeft.jpg
 180,0,0,OrgasmDone,J'ai passé un merveilleux moment aujourd'hui.|J'espère qu'on se reverra après l'école.,CouchLeft.jpg
-180,0,0,ThreeOrgasmDone,(Elle chuchote.) Je n'avais jamais eu trois orgasmes.|J'espère vraiment qu'on se reverra après l'école.,CouchLeft.jpg
+180,0,0,ThreeOrgasmDone,(Elle chuchote.) Trois orgasmes de cet ampleur.|J'espère vraiment qu'on se reverra après l'école.,CouchLeft.jpg
 181,0,0,,"Alors, comment je peux enlever cette ceinture ?",CouchLeft.jpg
 190,0,0,,(Jennifer est partie.),Couch.jpg
 200,0,0,,"(Tu t'assieds à côté de Jennifer.)|Alors COMMON_PLAYERNAME, quoi de neuf ?",Couch.jpg
@@ -53,6 +53,6 @@ Stage,LoveReq,SubReq,VarReq,IntroText,Image
 280,0,0,,,CouchCenter.jpg
 300,0,0,,,Couch.jpg
 310,0,0,,,Couch.jpg
-320,0,0,,(Elle vous fixe et semble s'inquiéter.),Couch.jpg
+320,0,0,,(Elle te fixe et semble s'inquiéter.),Couch.jpg
 400,0,0,,,Couch.jpg
 410,0,0,,"(Elle rit.) L'aventurière du bondage !|Allons, j'aimerais finir ce livre.",CouchLeft.jpg
