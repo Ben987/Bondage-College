@@ -1,19 +1,6 @@
-Stage,LoveReq,SubReq,VarReq,IntroText,Image
-0,0,0,,Hi!  Bist du neu an der Schule?|Die Stunde beginnt um Acht.,Amanda.jpg
-0,0,0,SidneyInBondage,Hi!  Ich kanns nicht fassen das du Sidney gefesselt hast.|Sie schaut aber süß aus.,Amanda.jpg
-10,0,0,,Nochmals Hallo und Willkommen.,Amanda.jpg
-20,0,0,,Brauchst du irgendwas?,Amanda.jpg
-30,0,0,,Willst du sonst noch was wissen|oder können wir uns auf die Stunde konzentrieren?,Amanda.jpg
-40,0,0,,(Sie sieht das schwarzhaarige|Mädchen an und bekommt Angst.),Amanda.jpg
-50,0,0,,"Wir reden nach der Stunde, ok?",Amanda.jpg
-50,2,0,,Ich würd ja gern weiterreden aber ich|muss meine Notizen zusammsammelen. Lass uns nach der Stunde treffen.,Amanda.jpg
-50,-2,0,,Ich habe wirklich keine Zeit zu reden.,Amanda.jpg
-50,0,0,SidneyInBondage,(She giggles.)  Sidney ist so echt süß.|aber velleicht solltest du sie freilassen bevor die Stunde anfängt.,Amanda.jpg
-200,0,0,,Warum hast du Seile hier?,Amanda.jpg
-220,0,0,,Sei bitte vorsichtig mit meinen Sachen.|(Sie sieht sehr gedemütigt aus.),AmandaStrip.jpg
-230,0,0,,Oh Goot! Die Stunde beginnt jeden Augenblick.|(Sie zieht vergeblich an den Seilen um sich zu befreien.),AmandaBondageFront.jpg
-240,0,0,,,AmandaBondageBack.jpg
-250,0,0,,,AmandaBondageHug.jpg
-260,0,0,,,AmandaBondageKiss.jpg
-300,0,0,,Danke das du mich Frei lässt. (Sie lächelt.),Amanda.jpg
-300,0,0,SidneyInBondage,Danke das du mich befreist und Sydney| sieht so süß gefesselt aus.|Aber velleicht solltest du sie befreien bevor die Stunde beginnt.,Amanda.jpg
+Tag,Content
+RopeInquiry,"Warum hast du Seile im Klassenzimmer?|(Du brauchst +2 Dominanz, um Amanda zu dominieren.)"
+Kiss,(Du küsst sie auf die Lippen und sie wehrt sich nicht.)|Uuuuh!  Du küsst ziemlich gut. (Sie wird rot.)
+KissSidney,"(Du erzwingst einen Kuss, Amanda wirkt angeekelt.)|Ihh, Mundgeruch!  Ups, nichts für ungut"
+Spank,(Du gibst ihr vor der kichernden Schülerschaft einen Klaps auf den Hintern.)|Autsch!  Oh Gott!  Das ist so erniedrigend.
+Strip,"Hey!  Lass das!  Lass mich frei!|(Sie versucht erfolglos, sich zu verteidigen.)"
