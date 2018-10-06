@@ -3,11 +3,11 @@ Stage,LoveReq,SubReq,VarReq,IntroText,Image
 0,0,0,AmandaInBondage,"Wow!  Ich versuche schon seit Wochen, sie zu fesseln!|Und was willst du jetzt? (Sie starrt dich an.)",SidneyFace.jpg
 10,0,0,,(Sie starrt das Mädchen mit den braunen Haaren an.),SidneyStare.jpg
 20,0,0,,(Sie verschränkt die Arme und schaut dir in die Augen.),SidneyFace.jpg
-30,0,0,,(Sie starrt wieder das Mädchen mit den braunen Haaren an.),SidneyStare.jpg
+30,0,0,,(Sie starrt wieder das Mädchen|mit den braunen Haaren an.),SidneyStare.jpg
 40,0,0,,(Sie dreht sich weg und ignoriert dich.),SidneyBack.jpg
 40,2,0,,"Der Unterricht fängt gleich an, aber reden wir später.",SidneyFace.jpg
 40,-2,0,,"Halt die Fresse, du Schlampe!|(Sie dreht sich weg und ignoriert dich.)",SidneyBack.jpg
-40,0,0,AmandaInBondage,"Gute Arbeit, du hast es ihr gezeigt. Wir reden nachher.|(Sie sieht Amanda an und streckt einen Daumen nach oben.)",SidneyFace.jpg
+40,0,0,AmandaInBondage,"Gute Arbeit, du hast es ihr gezeigt. Wir reden nachher.|(Sie schenkt dir einen anerkennenden Blick.)",SidneyFace.jpg
 100,0,0,,"Scheiße! Hast du meine Tasche durchwühlt?|(Sie sieht nervös aus, weil du die Seile gefunden hast.)",SidneyFace.jpg
 110,0,0,,(Sie schaut dich neugierig an.),SidneyFace.jpg
 200,0,0,,Hast du diese Seile aus meiner Tasche geklaut?|(Sie sieht wütend aus.),SidneyFace.jpg
@@ -18,5 +18,5 @@ Stage,LoveReq,SubReq,VarReq,IntroText,Image
 240,0,0,,,SidneyBondageHug.jpg
 250,0,0,,,SidneyBondageKiss.jpg
 300,0,0,,Du Diebin! Wir haben nichts zu besprechen.,SidneyBack.jpg
-310,0,0,,"Ich kann nicht glauben, dass du mich hier gefesselt hast.|Darüber reden wir später.",SidneyFace.jpg
-310,0,0,AmandaInBondage,"Ich kann nicht glauben, dass du mich hier gefesselt hast.|Wenigstens steckt sie trotzdem in der Klemme.",SidneyFace.jpg
+310,0,0,,"Ich kann nicht glauben, dass du mich hier|gefesselt hast. Darüber reden wir später.",SidneyFace.jpg
+310,0,0,AmandaInBondage,"Ich kann nicht glauben, dass du mich hier gefesselt|hast. Wenigstens steckt sie trotzdem in der Klemme.",SidneyFace.jpg
