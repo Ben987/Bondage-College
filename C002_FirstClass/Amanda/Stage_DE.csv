@@ -1,0 +1,48 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,Psssst.,(Sie flüstert) Was?,10,0,0,
+0,0,0,,Entschuldige.,(Sie flüstert) Sollten wir nicht später reden?,10,0,-1,
+0,0,0,,Hey! Du mit den|schönen Augen.,(Sie wird rot und flüstert) Wer? Ich?,10,1,0,
+10,0,0,,Ist dir auch|so langweilig?,(Sie sieht verwirrt aus.) Langweilig?|Was soll denn an Ableitungen langweilig sein?,20,-1,0,
+10,0,0,,Geht diese|Stunde je vorbei?,(Sie flüstert.) Sie endet um neun.|Mathe ist offenbar nicht deine Stärke.,20,0,0,
+10,0,0,,Hilfst du mir mit|diesen Aufgaben?,(Sie schüttelt den Kopf.) Nicht jetzt.|Aber vielleicht kann ich dir heute Abend helfen.,20,0,-1,
+10,0,0,,Du scheinst dieses|Fach zu lieben.,"(Sie nickt.) Und wie! Miss Mildred kann etwas|streng sein, aber sie ist eine gute Lehrerin.",20,0,0,
+20,0,0,,Willst du nicht|weg von hier?,(Sie wirkt überrascht.) Weg? Vom|Unterricht? Wie stellst du dir das vor?,30,0,0,
+20,0,0,,"Gib's zu, es gibt besseres,|was wir tun könnten.",Besseres? Was schwebt dir vor?,30,0,0,
+20,0,0,,Sowas süßes wie du|könnte mehr Spaß haben.,Mehr Spaß? Was schwebt dir vor?,30,0,1,
+20,0,0,,"Du langweilst mich,|machen wir was anderes.",Etwas anderes? Was schwebt dir vor?,30,-1,0,
+30,0,0,,Würdest du die Lehrerin|gern verschnürt sehen?,(Sie macht große Augen und wird rot.)|Miss Mildred fesseln? Wir?,40,1,0,
+30,0,0,,Wir sollten die|Lehrerin kidnappen.,(Sie macht große Augen und flüstert.)|Im Ernst? Wir sollen sie im Unterricht fesseln?,40,0,0,
+30,0,0,,Wir müssen die Lehrerin|verhauen und fesseln.,"(Sie schüttelt den Kopf.) Oh großer Gutt,|nein, wir können Miss Mildred nicht wehtun.",40,-1,0,
+30,0,0,,"Mädel, du hilfst mir,|Mildred zu kidnappen.",(Sie macht große Augen und flüstert.)|Was? Wir sollen sie im Unterricht fesseln?,40,0,1,
+40,4,0,,Tu's doch für die|Freundschaft. (Zwinkern.),"(Sie nickt.) Also gut, für die Freundschaft.|Ich helfe dir, aber du fängst an.",50,0,0,AgreeHelp()
+40,0,4,,"Du wirst es tun,|meine Kleine.","(Sie neigt ihren Kopf.) Jawohl, Miss.|Wenn Sie den ersten Schritt machen, helfe ich.",50,0,0,AgreeHelp()
+40,0,0,,"Ja, hilfst du mir?","(Sie schüttelt den Kopf.)|Ich kann nicht, ich mag Miss Mildred.",40,0,0,
+40,0,0,,"Ja, aber lass mich|noch kurz nachdenken.","(Sie zuckt mit den Schultern.) Na gut,|aber du wirst sehr überzeugend sein müssen.",40,0,0,
+100,0,0,SubdueRemarkReady,Wärst du gern so|gefesselt wie sie?,Ich? (Sie kichert.)  J-... Nein.|Das wäre nicht richtig.,100,0,1,SubdueRemark()
+100,0,4,SubdueRemarkReady,"Gib's zu, Kleine.|Du beneidest sie jetzt.","Ich... na ja... ähh... ja, Miss.|(Sie verneigt ihren Kopf vor dir.)",100,0,1,SubdueRemark()
+100,0,0,SubdueRemarkReady,Diese Fesselung|war nur für dich.,(Sie wird rot.) Für mich?|(Sie kichert.) Das ist so unanständig.,100,1,0,SubdueRemark()
+100,0,0,SubdueRemarkReady,Heute findet hier ein|anderes Fach statt.,Kommt das im Test dran? (Sie kichert.),100,0,0,SubdueRemark()
+100,0,0,Common_PlayerGagged,"@Mmmmmmph, mmph!",(Sie hält sich die Hand vor|den Mund um nicht zu kichern.),100,0,0,
+100,0,0,Common_PlayerGagged,(Auf dem Knebel|herumkauen.),(Sie schaut zu dir und scheint|Gefallen daran zu finden.),100,0,0,
+100,1,0,Common_PlayerGagged,(Auf den Knebel deuten.),(Sie flüstert) Ich helfe dir nach der Stunde.,100,0,0,
+100,-1,0,Common_PlayerGagged,(Auf den Knebel deuten.),(Sie zeigt mit dem Daumen nach oben und kichert.),100,0,0,
+100,0,0,Common_PlayerRestrained,(An deinen|Fesseln zerren.),(Sie schüttelt den Kopf.),100,0,0,
+100,0,-2,BowRemarkReady,(Den Kopf neigen.),(Sie flüstert.) Du bist gefesselt|und geknebelt so niedlich.,100,1,-1,BowRemark()
+110,0,0,Common_PlayerGagged,"@Mmmmmmph, mmph!",(Sie kichert und murmelt zurück.),110,0,0,
+110,0,0,Common_PlayerNotRestrained,(Knebel entfernen.)|(1 Minute),(Du löst den großen Ball und entfernst ihn.)|Danke. Das war ziemlich unbequem.,100,0,0,Ungag()
+130,0,0,Common_PlayerGagged,"@Mmmmmmph, mmph!",(Sie kichert und murmelt zurück.),130,0,0,
+130,0,0,Common_PlayerNotRestrained,(Knebel entfernen.)|(1 Minute),(Du löst den großen Ball und entfernst ihn.)|Danke. Das war ziemlich unbequem.,120,0,0,Ungag()
+140,0,0,Common_PlayerNotRestrained,(Kitzeln.)|(1 Minute),"(Du kitzelst sie und sie lacht wie verrückt.)|HahaHAHAha! Bitte, bitte hör auf.",140,0,0,Tickle()
+140,0,0,Common_PlayerNotRestrained,(Befreien.)|(1 Minute),(Du bindest die Knoten los und sie zieht sich an.)|Du kennst dich mit Knoten aus. (Sie kichert.),100,0,0,Untie()
+140,0,0,BondageHugReady,Würdest du gern Sarah|umarmen? (1 Minute),(Sie gibt Sarah eine warme Fesselumarmung|und flüstert ihr sanft etwas ins Ohr.),160,0,0,BondageHug()
+150,0,0,Common_PlayerGagged,"@Mmmmmmph, mmph!",(Sie kichert und murmelt zurück.),150,0,0,
+150,0,0,Common_PlayerNotRestrained,(Kitzeln.)|(1 Minute),"(Du kitzelst sie und sie lacht wie verrückt|in ihrem Knebel, danach wird sie sofort rot.)",150,0,0,Tickle()
+150,0,0,Common_PlayerNotRestrained,(Knebel entfernen.)|(1 Minute),(Du löst den großen Ball und entfernst ihn.)|Danke. Das war ziemlich unbequem.,140,0,0,Ungag()
+150,0,0,Common_PlayerNotRestrained,(Befreien.)|(1 Minute),(Du bindest die Knoten los und sie zieht sich an.)|(Dann deutet sie auf ihren Knebel.),110,0,0,Untie()
+150,0,0,BondageHugReady,Würdest du gern Sarah|umarmen? (1 Minute),"(Sie zögert, nähert sich aber langsam ihrer|Freundin und gibt ihr eine warme Fesselumarmung.)",170,0,0,BondageHug()
+160,0,0,,Möchtest du sie|küssen? (1 Minute),"Sarah, möchtest du mich küssen?|(Sie kommt näher und küsst Sarah.)",160,0,0,KissSarah()
+160,0,0,,Liebt ihr euch?,Ich...  Ähh...  Nun...  (Sie wird rot.),160,0,0,
+160,0,0,Common_PlayerNotRestrained,(Die beiden trennen.)|(1 Minute),(Sie flüstert Sarah etwas zu und sie trennen sich.),140,0,0,Separate()
+170,0,0,,Ihr beide seid ein|nettes Bondage-Duo.,(Sie wird rot und wendet ihren Blick von dir ab.),170,0,0,
+170,0,0,Common_PlayerNotRestrained,(Die beiden trennen.)|(1 Minute),(Sie sieht ein letztes Mal Sarah an|und kehrt zu ihrem Platz zurück.),150,0,0,Separate()
+170,0,0,Common_PlayerNotRestrained,(Knebel entfernen.)|(1 Minute),(Du löst den Ballknebel und entfernst ihn.)|Danke. Das war ziemlich unbequem.,160,0,0,Ungag()
