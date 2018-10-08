@@ -1,0 +1,3 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+10,0,0,,(Tablette einbröckeln.),Du bröckelst die Tablette ins Glas|und sie löst sich schnell auf.,0,0,0,BreakPill()
+10,0,0,,(Tablette behalten.),Du behältst die Schlaftablette für dich.,0,0,0,

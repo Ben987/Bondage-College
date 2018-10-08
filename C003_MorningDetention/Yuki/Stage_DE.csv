@@ -1,0 +1,68 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,"Jawohl, Ma'am.|Es tut mir leid.",Gut. Wirst du jetzt artig sein?,10,1,-1,
+0,0,0,,"Ja, ja, ich weiß. Kein|Grund zur Wiederholung.","Du musst an deiner Haltung arbeiten, Fräulein.|Bennimst du dich jetzt bitte wie eine gute Schülerin?",10,-1,0,
+0,0,0,,Alles Sidneys Schuld.,"Es ist auch deine Schuld, Fräulein.|Bennimst du dich jetzt bitte wie eine gute Schülerin?",10,0,0,
+0,0,0,Fighting,Ich habe mich nur|gegen Sidney verteidigt.,Es gibt keine guten Gründe zum Prügeln.|Bennimst du dich jetzt wie eine gute Schülerin?,10,0,0,
+0,0,0,Bondage,Geben Sie's zu! Es|war ziemlich sexy.,"Junge Dame, das ist unangemessen.|Bennimst du dich jetzt wie eine gute Schülerin?",10,0,1,
+10,0,0,,"Ja, ich mache|keinen Ärger mehr.","Sehr gut. Kannst du stillsitzen, bis die Zeit um ist?",20,0,0,
+10,0,0,,"Ja, wenn Sidney|sich auch beherrscht.","Mmmh, also gut. Kannst du|stillsitzen, bis die Zeit um ist?",20,0,0,
+10,0,0,,Zeigen Sie mir zuerst|eine gute Lehrerin.,"Du brauchst mehr Disziplin, Fräulein. Kannst|du wenigstens stillsitzen, bis die Zeit um ist?",20,-1,0,
+10,0,0,,Sicher doch. Nur|weil Sie so nett sind.,"Sehr schön. Kannst du stillsitzen, bis die Zeit um ist?",20,1,0,
+20,0,0,,Eine Stunde lang|still sein? Unmöglich.,"Versuch es, die Zeit vergeht schnell. Sei|wenigstens leise, während ich telefoniere.",40,0,1,
+20,0,0,,"Ja, ich schätze,|ich kann leise sein.","Gut. Ich habe ein paar Telefonate|zu tätigen, also sei still.",40,0,0,
+20,0,0,,"Ich rede, wie|es mir passt.","Wir haben Mittel, dich zum Schweigen zu bringen.|Sei wenigstens leise, während ich telefoniere.",40,-1,1,
+20,0,0,,"Jawohl, Ma'am.|Ich bin ganz still.","Sehr schön. Ich habe ein paar Telefonate|zu tätigen, also sei bitte leise.",40,1,-1,
+30,0,0,,Das geht Sie|gar nichts an.,"Junge Dame, du gibst mir das jetzt.|(Sie nimmt deine Sachen und beschlagnahmt sie.)",40,-1,0,Confiscate()
+30,0,0,,Das hab ich auf|dem Boden gefunden.,"Danke, junge Dame, das ist nett von dir.|(Sie lächelt und beschlagnahmt deine Gegenstände.)",40,1,0,Confiscate()
+30,0,0,,Gar nichts.|(Das Ding verstecken.),"Mmh, na gut. Ich dachte, ich hätte was gesehen.|Jetzt sei still, ich muss telefonieren.",40,0,0,
+50,0,0,Common_PlayerNotRestrained,(Ihr auf die Nerven|gehen.) (1 Minute),"Junge Dame. Wenn du nicht sofort|aufhörst, muss ich Maßnahmen ergreifen.",50,-1,0,Annoyed()
+60,0,0,Common_PlayerRestrained,Was zur Hölle! Das|können Sie nicht tun!.,Ich kann noch viel mehr. (Sie geht und kommt|mit einem Stück Klebeband für deinen Mund wieder.),60,0,0,GagPlayer()
+70,0,0,Common_PlayerGagged,@Uhmma huhme!,(Sie ignoriert dich.),70,0,0,
+70,0,0,Common_PlayerGagged,(Flehende Augen machen.),(Sie ignoriert dich.),70,0,0,
+100,0,0,Common_PlayerRestrained,(Nach Schlüsseln suchen.)|(1 Minute),Yuki scheint keinen Schlüssel übrig zu haben.,100,0,0,SearchCuffKeys()
+100,0,0,Common_PlayerNotRestrained,(Sie ausziehen.)|(1 Minute),"Du ziehst sie vorsichtig aus, damit sie nicht aufwacht.",110,0,0,
+100,0,0,Common_PlayerNotRestrained,(Aus dem Raum fliehen.),,100,0,0,Escape()
+100,0,0,,(Sie wecken.)|(1 Minute),(Du rüttelst an ihr und sie wacht auf.)|Äääh? Was? Was ist passiert?,200,0,0,NoLeave()
+110,0,0,Common_PlayerNotRestrained,(Sie anziehen.)|(1 Minute),"Du ziehst sie vorsichtig an, damit sie nicht aufwacht.",100,0,0,
+110,0,0,CanSearch,(Ihre Sachen durch-|suchen.) (1 Minute),Du findest Handschellen und Schlüssel in ihren Sachen.,110,0,0,Search()
+110,0,0,EggReady,(Das Ei einsetzen.)|(1 Minute),Du schiebst ihr das Ei in die Vagina und sie stöhnt sanft.|Es rutscht tiefer und wird schwer zu entfernen sein.,110,0,0,Insert()
+110,0,0,EggInside,(Das Ei entfernen.)|(1 Minute),"Du steckst einen Finger hinein, kommst aber nicht an|das Ei ran. Sie wird vorerst damit klarkommen müssen.",110,0,0,
+110,0,0,Common_PlayerNotRestrained,(Aus dem Raum fliehen.),,110,0,0,Escape()
+110,0,0,,(Sie wecken.)|(1 Minute),(Du rüttelst an ihr und sie wacht auf.)|Was? Was ist passiert? Wo ist meine Kleidung?,210,0,0,NoLeave()
+120,0,0,Common_PlayerNotRestrained,(Sie auf den Tisch legen.)|(1 Minute),Du legst sie auf den Tisch.,130,0,0,
+120,0,0,EggReady,(Das Ei einsetzen.)|(1 Minute),Du schiebst ihr das Ei in die Vagina und sie stöhnt sanft.|Es rutscht tiefer und wird schwer zu entfernen sein.,120,0,0,Insert()
+120,0,0,EggInside,(Das Ei entfernen.)|(1 Minute),"Du steckst einen Finger hinein, kommst aber nicht an|das Ei ran. Sie wird vorerst damit klarkommen müssen.",120,0,0,
+120,0,0,Common_PlayerNotRestrained,(Aus dem Raum fliehen.),,120,0,0,Escape()
+120,0,0,,(Sie wecken.)|(1 Minute),(Du rüttelst an ihr und sie wacht auf.) Was? Wo ist|meine Kleidung? Wo kommen die Handschellen her?,220,0,0,NoLeave()
+130,0,0,Common_PlayerNotRestrained,(Sie hinsetzen.)|(1 Minute),Du setzt sie zurück auf ihren Platz.,120,0,0,
+130,0,0,EggReady,(Das Ei einsetzen.)|(1 Minute),Du schiebst ihr das Ei in die Vagina und sie stöhnt sanft.|Es rutscht tiefer und wird schwer zu entfernen sein.,130,0,0,Insert()
+130,0,0,EggInside,(Das Ei entfernen.)|(1 Minute),"Du steckst einen Finger hinein, kommst aber nicht an|das Ei ran. Sie wird vorerst damit klarkommen müssen.",130,0,0,
+130,0,0,Common_PlayerNotRestrained,(Aus dem Raum fliehen.),,130,0,0,Escape()
+130,0,0,,(Sie wecken.)|(1 Minute),(Du rüttelst an ihr und sie wacht auf.) Was? Wo ist|meine Kleidung? Wo kommen die Handschellen her?,220,0,0,NoLeave()
+200,0,0,Common_PlayerGagged,@Heaheruhi!,"Lass mich dieses Klebeband entfernen.|Also, bin ich eingeschlafen?",200,0,0,Ungag()
+200,0,0,,"Ja, Sie sind|eingeschlafen.",Wie peinlich. Ich hole mir noch ein|Glas Wasser. Das Nachsitzen geht weiter.,250,0,0,NoCrime()
+200,0,0,,"Sie sind eingeschlafen,|also hab ich Sie geweckt.","Danke, das ist nett. Ich hole mir noch|ein Glas Wasser. Das Nachsitzen geht weiter.",250,1,0,NoCrime()
+200,0,0,,Ich habe Sie betäubt.,"WAS??? (Sie springt auf dich, legt dir|Handschellen an und knebelt dich mit Klebeband.)",260,-2,1,FullRestrain()
+200,0,0,!SidneyGone,Sidney hat Sie betäubt.,"Lüge! Sie trägt Handschellen, also warst du es! (Sie legt|dir Handschellen an und knebelt dich mit Klebeband.)",260,-2,0,FullRestrain()
+200,0,0,SidneyGone,Sidney hat Sie betäubt.,"SIDNEY!!! (Sie springt auf, verlässt|den Raum und läuft durch die Gänge.)",270,1,0,NoCrime()
+210,0,0,Common_PlayerGagged,@Heaheruhi!,"Lass mich dieses Klebeband entfernen.|Also, bin ich eingeschlafen? Wo ist meine Kleidung?",210,0,0,Ungag()
+210,0,0,,Sie schliefen und ich|wollte Ihr Kleid anprobieren.,"Keine sehr gute Idee. (Sie zieht sich wieder an.)|Ich hole mir Wasser, dann geht das Nachsitzen weiter.",250,-1,0,NoCrime()
+210,0,0,,Ich dachte Sie hätten Fieber|und hab Sie ausgezogen.,"Das ist lieb von dir. (Sie zieht sich wieder an.)|Ich hole mir Wasser, dann geht das Nachsitzen weiter.",250,1,0,NoCrime()
+210,0,0,,Ich hab Sie betäubt|und ausgezogen.,"WAS??? (Sie springt auf dich, legt dir|Handschellen an und knebelt dich mit Klebeband.)",260,-2,1,FullRestrain()
+210,0,0,!SidneyGone,Sidney hat Sie betäubt|und ausgezogen.,"Lüge! Sie trägt Handschellen! (Sie legt dir|Handschellen an, knebelt dich und zieht sich wieder an.)",260,-2,0,FullRestrain()
+210,0,0,SidneyGone,Sidney hat Sie betäubt|und ausgezogen.,"SIDNEY!!! (Sie springt auf, zieht sich|schnell wieder an und rennt aus dem Raum.)",270,1,0,NoCrime()
+220,0,0,Common_PlayerGagged,@Heaheruhi!,"Bück dich, damit ich an das Klebeband komme.|Wo ist meine Kleidung? Was sollen die Handschellen?",220,0,0,Ungag()
+220,0,0,,Sie sind jetzt|meine Bitch.,Nimm mir sofort diese Handschellen ab!,230,-1,2,AllowLeave()
+220,0,0,,"Ich hab Sie betäubt,|ausgezogen und gefesselt.",Nimm mir sofort diese Handschellen ab!,230,-1,1,AllowLeave()
+220,0,0,!SidneyGone,"Sidney hat Sie betäubt,|ausgezogen und gefesselt.",Du lügst! Sie trägt Handschellen! Du warst es!|Nimm mir sofort diese Handschellen ab!,230,-1,0,AllowLeave()
+220,0,0,SidneyGone,"Sidney hat Sie betäubt,|ausgezogen und gefesselt.",Danke! SIDNEY! (Sie springt auf und rennt in|Handschellen und ohne Kleidung aus dem Raum.),270,1,0,NoCrime()
+230,0,0,,Sie sehen so|echt süß aus.,"Du machst es nicht besser, Fräulein.|Nimm mir sofort diese Handschellen ab.",230,0,0,
+230,0,0,,(Kitzeln.)|(1 Minute),Hey!!! HeheHEHEhehe! Aufhören! Aufhören!|(Sie lacht ziemlich laut und wird rot.),230,0,0,Tickle()
+230,0,0,,(Auf den Hintern hauen.)|(1 Minute),Au! Fass mich ja nicht an!,230,0,0,
+230,0,0,,(Aus dem Raum fliehen.),,230,0,0,Escape()
+250,0,0,SidneyGone,"Wenn Sie Sidney suchen,|sie ist den Gang runter.",Danke! Du bleibst hier und ich hole sie.|(Sie springt auf und verlässt den Raum.),270,1,0,
+250,0,0,Common_PlayerRestrained,(Ihr deine|Handschellen zeigen.),Behalte die erstmal an.|Ich lasse dich nachher frei.,250,0,0,
+250,0,0,Common_PlayerRestrained,Hey! Sie können mich|nicht so hierlassen.,Ich kann noch viel mehr. (Sie geht und kommt|mit einem Stück Klebeband für deinen Mund wieder.),250,0,0,GagPlayer()
+260,0,0,Common_PlayerGagged,@Uhmma huhme!,(Sie ignoriert dich.),260,0,0,
+260,0,0,Common_PlayerGagged,(Flehende Augen machen.),(Sie ignoriert dich.),260,0,0,
+270,0,0,,(Aus dem Raum fliehen.),,270,0,0,Escape()

@@ -1,0 +1,5 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,Common_PlayerNotRestrained,(Tasche öffnen.),Du öffnest vorsichtig die Lehrertasche|und findest interessante Sachen darin. ,10,0,0,
+10,0,0,Common_PlayerNotRestrained,(Tasche schließen.),Du machst die Tasche der Lehrerin zu.,0,0,0,
+10,0,0,PillInBagAvail,(Schlaftablette|stehlen.),Du nimmst die Tablette aus der Tasche.,10,0,0,StealPill()
+10,0,0,EggInBagAvail,(Vibrierendes|Ei stehlen.),"Du nimmst das ferngesteuerte Vibrationsei|aus der Tasche, findest aber keine Fernbedienung.",10,0,0,StealEgg()

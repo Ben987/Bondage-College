@@ -1,0 +1,31 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,"Ich nehme an, du|bist öfter hier?",Oft? Die benennen bald dieses Zimmer nach mir.,10,0,0,
+0,0,0,,"Wenn du mir nochmal Ärger|machst, bereust du es.",Fuck! Dass wir hier sind ist doch deine Schuld.,10,-1,1,
+0,0,0,,Wir sollten aufhören|bevor man uns rauswirft.,Was für 'ne schwache Einstellung.|Man lebt nur einmal.,10,0,-1,
+0,0,0,,"Nachsitzen in meiner ersten|Stunde. Nicht schlecht, hm?","Das ist ziemlich beeindruckend,|muss man schon sagen.",10,1,0,
+10,0,0,,Warum hast du|Handschellen?,Weil ich das letzte Mal weggelaufen bin.|Die Arschlöcher wollen auf Nummer sicher gehen.,20,0,0,
+10,0,0,,Warum wurden mir keine|Handschellen angelegt?,"Ha! Du willst meine Handschellen? Versuch|wegzulaufen wie ich, dann kriegst du auch welche.",20,0,-1,
+10,0,0,,Du siehst damit so|gefügig aus.,"(Sie wird rot) Niemals! Versuch nicht|wegzulaufen, sonst geht's dir genauso.",20,0,1,
+10,0,0,,Jemand wie du sollte immer|Handschellen tragen.,"Ich mach dich fertig, wenn ich sie los bin.|Und bestimmt kriegst du eh auch bald welche.",20,-1,0,
+20,0,0,,Wenigstens bin ich mit|dir zusammen hier.,"Ja, könnte wohl schlimmer sein.",30,1,0,
+20,0,0,,Wie vertreiben wir|uns die Zeit?,"Kein Plan, schau der Uhr beim Ticken zu.",30,0,0,
+20,0,0,,Wie kommen|wir hier raus?,Du willst raus? Finde den Schlüssel für|die Handschellen und ich helfe dir.,30,0,0,
+30,0,0,,Wir können wohl|nicht viel tun.,"Genau, jetzt nerv nicht.|(Sie rüttelt testweise an ihren Handschellen.)",40,0,0,
+30,0,0,,Ich überlege mir was.|Sei erstmal still.,(Sie nickt und untersucht|schweigend ihre Handschellen.),40,0,1,
+30,0,0,,Es gibt keinen Ausweg.|Wir müssen warten.,Was du nicht sagst.|(Sie ignoriert dich und zerrt an ihren Handschellen.),40,0,-1,
+100,0,0,,Jep! Jetzt heißt es|abwarten.,"Oh yeah! Das ist super!|Ich wette, es zeigt gleich Wirkung.",110,1,0,
+100,0,0,,Kleiner Tipp: Leg dich|nie mit mir an.,"Ja verdammt! Ich frage mich,|wann es anfängt zu wirken.",110,0,1,
+100,0,0,,Kein Wort darüber.,"Keine Sorge, ich sag nix.|Ich kann's gar nicht abwarten, bis es wirkt.",110,0,0,
+150,0,0,,Das ging langsam|viel zu weit.,Du bist das größte Schwachhirn dieser Schule!|Du hattest einen Plan und du hast ihn verkackt.,160,-1,-1,
+150,0,0,,Keine Panik. Wir|kriegen sie nochmal.,Nochmal? Du hattest sie gerade eben schon!|Du hattest einen tollen Plan und du hast ihn verkackt.,160,-1,0,
+150,0,0,,"Schnauze! Ich weiß,|ich hab Mist gebaut.",Ja verdammt! Du hast alles vermasselt!|Du hattest einen tollen Plan und du hast ihn verkackt.,160,-1,1,
+200,0,0,,Ja! Jetzt können wir|etwas Spaß haben.,(Sie schaut dich nervös an.)|Wie meinst du das?,210,0,0,
+200,0,0,,Möchtest du|da raus?,Ja verdammt! Hast du die Schlüssel|für diese Handschellen?,210,1,-1,
+200,0,0,,"Jetzt gehörst du|mir, Bitch.",Was zur Hölle laberst du da?|(Sie schaut dich nervös an.),210,-1,1,
+210,0,0,Common_PlayerNotRestrained,(Sie ausziehen.)|(1 Minute),"Whoa, Moment! Was machst du da?|(Du zwingst sie, sich auszuziehen.)",220,0,0,Strip()
+210,1,0,,(Küssen.)|(1 Minute),(Du küsst sie und sie bleibt sprachlos.),210,0,0,Kiss()
+220,0,0,Common_PlayerNotRestrained,(Sie wieder anziehen.)|(1 Minute),Folgt dein Handeln irgendeiner Logik?,210,0,0,Dress()
+220,1,0,,(Küssen.)|(1 Minute),(Du küsst sie und sie bleibt sprachlos.),220,0,0,Kiss()
+220,0,0,Common_PlayerNotRestrained,(Kitzeln.)|(1 Minute),Fick dich und dein Kitzelfetisch!|(Sie lacht nicht und scheint keinen Spaß zu haben.),220,0,0,Tickle()
+220,0,0,EggReady,(Das Ei einsetzen.)|(1 Minute),(Du schiebst das Ei in ihre Vagina. Es summt|und gleitet tiefer hinein.) Fuck! Warum tust du das?,220,-1,1,Insert()
+220,0,0,EggInside,(Das Ei entfernen.)|(1 Minute),"(Du steckst einen Finger rein, kommst aber nicht|an das Ei.) Du kommst nicht ran! Du bist so nutzlos!",220,0,0,
