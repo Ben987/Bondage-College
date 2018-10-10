@@ -151,7 +151,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 280,0,0,,(Tu gémis de plaisir.),(Tu gémis lentement lorsqu'elle|te lèche maladroitement les lèvres.),280,0,0,PleasurePlayer()
 280,0,0,,(Tu respires|profondément.),(Ta respiration devient de plus en plus forte|lorsqu'elle te lèche et suce ton clitoris.),280,0,0,PleasurePlayer()
 280,0,0,,(Tu presses sa tête.),"(Tu presses sa tête entre tes jambes,|elle te lèche et lutte pour avoir de l'air.)",280,0,0,PleasurePlayer()
-280,0,0,,(Tu lui saisis|par les cheveux.),"(Tu la saisis par les cheveux et la presse contre toi.|Sa langue s'exécute lentement.)",280,0,0,PleasurePlayer()
+280,0,0,,(Tu la saisis|par les cheveux.),"(Tu la saisis par les cheveux et la presse contre toi.|Sa langue s'exécute lentement.)",280,0,0,PleasurePlayer()
 280,0,0,,Changeons de place.,"D'accord, ça doit être à mon tour.|(Vous échangez vos places.)",270,0,0,TestSwitchJennifer()
 280,0,0,,"Ça ira comme ça.|(Tu arrêtes tout.)","Bien, on pourrait se faire prendre.|(Vous vous rhabillez toutes les deux.)",180,0,0,ReleaseJennifer()
 300,0,0,,Aimerais-tu jouer|à un jeu ?,Un jeu ? De quel genre ?,310,1,0,TestTurnTables()
