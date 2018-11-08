@@ -162,13 +162,13 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 310,0,0,,Je vais utiliser quelques|objets coquin sur toi.,,320,-1,0,
 310,0,0,,Tu seras attachée|pendant un petit moment.,,320,0,1,
 310,0,0,,Aimerais-tu m'attacher ?,Tu pourrais avoir une aventure de bondage.|(Elle utilise tes propres objets pour t'attacher.),300,0,-1,RestrainPlayer()
-320,0,0,CanUntie,(Tu la détaches.)|(1 minute),(Tu la détaches pendant qu'elle se démène avec gêne.),320,0,0,Untie()
-320,0,0,CanUnstrap,(Tu la détaches.)|(1 minute),(Tu détaches le fourreau et libère ses bras|puis elle s'étire pour se détendre.),320,0,0,Untie()
-320,0,0,CanUngag,(Tu la débâillonnes.)|(1 minute),"(Tu enlèves le bâillon et elle te fixe.)|Pitié, ce bâillon était-il vraiment nécessaire ?",320,0,0,Ungag()
-320,0,0,CanKiss,(Tu l'embrasses.)|(1 minute),"(Tu l'embrasses lentement, elle reste sans voix.)",320,0,0,Kiss()
-320,0,0,CanAbuse,(Tu la chatouilles.)|(1 minute),(Elle rit et se débat légèrement.|Elle n'a pas l'air très chatouilleuse.),320,0,0,Tickle()
-320,0,0,CanAbuse,(Tu lui mets une fessée.)|(1 minute),(Tu lui donnes une bonne fessée.|Elle fait la moue et semble souffrir.),320,0,0,Spank()
-320,0,0,CanAbuse,(Tu la masturbes.)|(1 minute),,320,0,0,Masturbate()
+320,0,0,CanUntie,(Tu la détaches.)ADD_MINUTES:1,(Tu la détaches pendant qu'elle se démène avec gêne.),320,0,0,Untie()
+320,0,0,CanUnstrap,(Tu la détaches.)ADD_MINUTES:1,(Tu détaches le fourreau et libère ses bras|puis elle s'étire pour se détendre.),320,0,0,Untie()
+320,0,0,CanUngag,(Tu la débâillonnes.)ADD_MINUTES:1,"(Tu enlèves le bâillon et elle te fixe.)|Pitié, ce bâillon était-il vraiment nécessaire ?",320,0,0,Ungag()
+320,0,0,CanKiss,(Tu l'embrasses.)ADD_MINUTES:1,"(Tu l'embrasses lentement, elle reste sans voix.)",320,0,0,Kiss()
+320,0,0,CanAbuse,(Tu la chatouilles.)ADD_MINUTES:1,(Elle rit et se débat légèrement.|Elle n'a pas l'air très chatouilleuse.),320,0,0,Tickle()
+320,0,0,CanAbuse,(Tu lui mets une fessée.)ADD_MINUTES:1,(Tu lui donnes une bonne fessée.|Elle fait la moue et semble souffrir.),320,0,0,Spank()
+320,0,0,CanAbuse,(Tu la masturbes.)ADD_MINUTES:1,,320,0,0,Masturbate()
 320,0,0,CanAddUnderwear,"Jen, remets tes|sous-vêtements.",(Elle acquiesce lentement et|remet ses sous-vêtements.),320,0,0,"Strip(""Underwear"")"
 320,0,0,CanRemoveUnderwear,"Jennifer,|Mets-toi toute nue.",(Elle acquiesce lentement et se déshabille.),320,0,0,"Strip(""Naked"")"
 320,0,0,!IsChaste,Ça ira.|Rhabilles-toi.,"(Elle acquiesce et tu l'aides à se rhabiller.)|C'était une sacré expérience, très audacieuse.",180,0,0,ReleaseJennifer()
