@@ -24,7 +24,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		Character[CharacterID] = NewCharacter;
 
 	// Creates the inventory and default appearance
-	InventoryCreate(NewCharacter);
+	InventoryLoad(NewCharacter, null, true);
 	CharacterAppearanceSetDefault(NewCharacter);
 		
 	// Load the character image

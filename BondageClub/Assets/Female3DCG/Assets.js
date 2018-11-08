@@ -124,7 +124,7 @@ var AssetFemale3DCG = [
 		Group: "Cloth",
 		ParentGroup: "Body",
 		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
-		Asset: [ { Name: "CollegeOutfit1", Value: -1 }, "StudentOutfit1", "StudentOutfit2", "SummerDress1", "SummerDress2", "TeacherOutfit1", "TennisOutfit1"]
+		Asset: [ { Name: "CollegeOutfit1", Value: -1 }, "StudentOutfit1", "StudentOutfit2", "SummerDress1", "SummerDress2", "TeacherOutfit1", "TennisOutfit1", "ChineseDress1"]
 	},
 
 	{
@@ -148,12 +148,12 @@ var AssetFemale3DCG = [
 
 	{
 		Group: "Gag",
+		Category: "Gag",
 		Default: false,
 		Color: ["Default"],
 		Left: 200,
 		Top: 80,
-		Category: "Gag",
-		Asset: [ { Name: "BallGag", Value: -1 }, { Name: "ClothGag", Value: -1 }, { Name: "TapeGag", Value: -1 }]
+		Asset: [ { Name: "HarnessBallGag", Value: -1 }, { Name: "ClothOTMGag", Value: -1 }, { Name: "DuctTapeGag", Value: -1 }]
 	}
 	
 ];

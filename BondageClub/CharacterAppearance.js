@@ -1,36 +1,53 @@
 var CharacterAppearanceOffset = 0;
 var CharacterAppearanceHeaderText = "Select your appearance";
 var CharacterAppearanceBackup = null;
+var CharacterAppearanceAssets = [];
+
+// Builds all the assets that can be used to dress up the character
+function CharacterAppearanceBuildAssets(C) {
+
+	// Adds all items with 0 value and from the appearance category
+	CharacterAppearanceAssets = [];
+	var A;
+	for (A = 0; A < Asset.length; A++)
+		if ((Asset[A].Value == 0) && (Asset[A].Group.Family == C.AssetFamily) && (Asset[A].Group.Category == "Appearance"))
+			CharacterAppearanceAssets.push(Asset[A]);
+	for (A = 0; A < C.Inventory.length; A++)
+		if ((C.Inventory[A].Asset != null) && (C.Inventory[A].Asset.Group.Family == C.AssetFamily) && (C.Inventory[A].Asset.Group.Category == "Appearance"))
+			CharacterAppearanceAssets.push(C.Inventory[A].Asset);
+
+}
 
 // Resets the character to it's default appearance
 function CharacterAppearanceSetDefault(C) {
 
-	// Resets the current appearance
+	// Resets the current appearance and prepares the assets
 	C.Appearance = [];
+	if (CharacterAppearanceAssets.length == 0) CharacterAppearanceBuildAssets(C);
 
-	// For each items in the character inventory
+	// For each items in the character appearance assets
 	var I;
-	for (I = 0; I < C.Inventory.length; I++)
-		if ((C.Inventory[I].Asset.Group.Family == C.AssetFamily) && C.Inventory[I].Asset.Group.IsDefault) {
+	for (I = 0; I < CharacterAppearanceAssets.length; I++)
+		if (CharacterAppearanceAssets[I].Group.IsDefault) {
 
 			// If there's no item in a slot, the first one becomes the default
 			var MustWear = true;
 			var A;
 			for (A = 0; A < C.Appearance.length; A++)
-				if (C.Appearance[A].Asset.Group.Name == C.Inventory[I].Asset.Group.Name)
+				if (C.Appearance[A].Asset.Group.Name == CharacterAppearanceAssets[I].Group.Name)
 					MustWear = false;
 
 			// No item, we wear it with the default color
 			if (MustWear) {
 				var NA = {
-					Asset: C.Inventory[I].Asset,
-					Color: C.Inventory[I].Asset.Group.ColorSchema[0]
+					Asset: CharacterAppearanceAssets[I],
+					Color: CharacterAppearanceAssets[I].Group.ColorSchema[0]
 				}
 				C.Appearance.push(NA);				
 			}
-			
+
 		}
-		
+
 	// Loads the new character canvas
 	CharacterLoadCanvas(C);
 	
@@ -45,14 +62,14 @@ function CharacterAppearanceFullRandom(C) {
 	// For each item group (non default items only show at a 20% rate)
 	var A;
 	for (A = 0; A < AssetGroup.length; A++)
-		if (AssetGroup[A].IsDefault || (Math.random() < 0.2)) {
+		if ((AssetGroup[A].Category == "Appearance") && (AssetGroup[A].IsDefault || (Math.random() < 0.2))) {
 		
 			// Prepares an array of all possible items
 			var R = [];
 			var I;
-			for (I = 0; I < C.Inventory.length; I++)
-				if (C.Inventory[I].Asset.Group.Name == AssetGroup[A].Name)
-					R.push(C.Inventory[I].Asset);
+			for (I = 0; I < CharacterAppearanceAssets.length; I++)
+				if (CharacterAppearanceAssets[I].Group.Name == AssetGroup[A].Name)
+					R.push(CharacterAppearanceAssets[I]);
 			
 			// Picks a random item and color and add it
 			if (R.length > 0) {
@@ -154,8 +171,9 @@ function CharacterAppearanceGetCurrentValue(C, Group, Type) {
 
 }
 
-// Loads the character appearance screen
+// Loads the character appearance screen and keeps a backup of the previous appearance
 function CharacterAppearance_Load() {
+	CharacterAppearanceBuildAssets(Character[0]);
 	CharacterAppearanceBackup = JSON.parse(JSON.stringify(Character[0].Appearance));
 }
 
@@ -213,21 +231,21 @@ function CharacterAppearanceSetItem(C, Group, ItemAsset) {
 	
 }
 
-// Cycle in the player inventory to find the next item in a group and wear it
+// Cycle in the appearance assets to find the next item in a group and wear it
 function CharacterAppearanceNextItem(C, Group) {
 	
 	// For each item, we first find the item and pick the next one
 	var I;
 	var Current = CharacterAppearanceGetCurrentValue(C, Group, "Name");
 	var Found = (Current == "None");
-	for (I = 0; I < C.Inventory.length; I++)
-		if ((C.Inventory[I].Asset.Group.Name == Group) && (C.Inventory[I].Asset.Group.Family == C.AssetFamily)) {
+	for (I = 0; I < CharacterAppearanceAssets.length; I++)
+		if (CharacterAppearanceAssets[I].Group.Name == Group) {
 			if (Found) {
-				CharacterAppearanceSetItem(C, Group, C.Inventory[I].Asset);
+				CharacterAppearanceSetItem(C, Group, CharacterAppearanceAssets[I]);
 				return;				
 			}
 			else {
-				if (C.Inventory[I].Asset.Name == Current)
+				if (CharacterAppearanceAssets[I].Name == Current)
 					Found = true;
 			}
 		}
@@ -241,9 +259,9 @@ function CharacterAppearanceNextItem(C, Group) {
 				return;				
 			}
 			else
-				for (I = 0; I < C.Inventory.length; I++)
-					if ((C.Inventory[I].Asset.Group.Name == Group) && (C.Inventory[I].Asset.Group.Family == C.AssetFamily)) {
-						CharacterAppearanceSetItem(C, Group, C.Inventory[I].Asset);
+				for (I = 0; I < CharacterAppearanceAssets.length; I++)
+					if (CharacterAppearanceAssets[I].Group.Name == Group) {
+						CharacterAppearanceSetItem(C, Group, CharacterAppearanceAssets[I]);
 						return;						
 					}			
 		}
@@ -287,14 +305,14 @@ function CharacterAppearanceMoveOffset(Move) {
 // When the user clicks on the character appearance selection screen
 function CharacterAppearance_Click() {
 
-	// If we must switch to the next item in the player inventory
+	// If we must switch to the next item in the assets
 	if ((MouseX >= 1450) && (MouseX < 1775) && (MouseY >= 120) && (MouseY < 950))
 		for (A = CharacterAppearanceOffset; A < AssetGroup.length && A < CharacterAppearanceOffset + 10; A++)
 			if ((AssetGroup[A].Family == Character[0].AssetFamily) && (AssetGroup[A].Category == "Appearance"))
 				if ((MouseY >= 120 + (A - CharacterAppearanceOffset) * 85) && (MouseY <= 180 + (A - CharacterAppearanceOffset) * 85))
 					CharacterAppearanceNextItem(Character[0], AssetGroup[A].Name);
 
-	// If we must switch to the next item in the player inventory
+	// If we must switch to the next item in the assets
 	if ((MouseX >= 1800) && (MouseX < 1975) && (MouseY >= 120) && (MouseY < 950))
 		for (A = CharacterAppearanceOffset; A < AssetGroup.length && A < CharacterAppearanceOffset + 10; A++)
 			if ((AssetGroup[A].Family == Character[0].AssetFamily) && (AssetGroup[A].Category == "Appearance"))

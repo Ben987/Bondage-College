@@ -89,7 +89,7 @@ function CharacterCreation_Response(CharacterData) {
 		Character[0].Name = document.getElementById("InputCharacter").value.trim();
 		Character[0].AccountName = document.getElementById("InputName").value.trim();
 		Character[0].AccountPassword = document.getElementById("InputPassword1").value.trim();
-		InventoryCreate(Character[0]);
+		InventoryLoad(Character[0], null, true);
 		CharacterAppearanceSave(Character[0]);
 		document.getElementById("InputCharacter").parentNode.removeChild(document.getElementById("InputCharacter"));
 		document.getElementById("InputName").parentNode.removeChild(document.getElementById("InputName"));

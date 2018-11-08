@@ -110,6 +110,11 @@ function C000_Intro_ChapterSelect_LoadScreen() {
 	SetScene("C999_Common", "GameLoad");
 }
 
+// Go to achievement screen
+function C000_Intro_ChapterSelect_Achievements() {
+	SetScene("C999_Common", "Achievements");
+}
+
 // When the game credit should roll or stop
 function C000_Intro_ChapterSelect_RollCredits() {
 	C000_Intro_ChapterSelect_CreditMode = !C000_Intro_ChapterSelect_CreditMode;

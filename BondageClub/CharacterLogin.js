@@ -56,7 +56,7 @@ function CharacterLogin_Response(CharacterData) {
 		Character[0].AccountName = C.AccountName;
 		Character[0].AccountPassword = document.getElementById("InputPassword").value.trim();
 		CharacterAppearanceLoad(Character[0], C.Appearance);
-		InventoryLoad(Character[0], C.Inventory);
+		InventoryLoad(Character[0], C.Inventory, false);
 		document.getElementById("InputName").parentNode.removeChild(document.getElementById("InputName"));
 		document.getElementById("InputPassword").parentNode.removeChild(document.getElementById("InputPassword"));
 		SetScreen("MainHall");

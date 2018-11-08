@@ -184,6 +184,7 @@ function RaceEnd(Victory) {
 	RaceActorImageFrameTime = -1;
 	RaceEnded = true;
 	RaceVictory = Victory;
+	if (RaceTimer <= 65000) AchievementUnlock("SpeedrunningBitch"); // If more races get added to the game, this needs to be done differently
 	if (RaceTimer >= RaceEndTimer) RaceTimer = RaceEndTimer;
 }
 

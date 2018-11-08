@@ -27,8 +27,8 @@ function AssetGroupAdd(NewAssetFamily, NewAssetGroupName, NewAssetParentGroupNam
 // Adds a new asset to the main list
 function AssetAdd(NewAssetName, NewAssetValue, NewAssetHeightModifier) {
 	var A = {
-		Group: AssetCurrentGroup,
 		Name: NewAssetName,
+		Group: AssetCurrentGroup,
 		Value: (NewAssetValue == null) ? 0 : NewAssetValue,
 		HeightModifier: (NewAssetHeightModifier == null) ? 0 : NewAssetHeightModifier
 	}

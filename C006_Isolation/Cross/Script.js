@@ -21,4 +21,5 @@ function C006_Isolation_Cross_Click() {
 function C006_Isolation_Cross_Trap() {
 	LeaveIcon = "Wait";
 	C006_Isolation_Outro_StuckCross = true;
+	AchievementUnlock("BeggarsChoosers");
 }

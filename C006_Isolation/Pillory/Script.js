@@ -21,4 +21,5 @@ function C006_Isolation_Pillory_Click() {
 function C006_Isolation_Pillory_Trap() {
 	LeaveIcon = "Wait";
 	C006_Isolation_Outro_StuckPillory = true;
+	AchievementUnlock("BeggarsChoosers");
 }

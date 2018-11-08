@@ -22,7 +22,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 20,0,0,,上一页,你想从哪一章开始？|如果你没有玩过这个游戏，请从第一章开始。,10,0,0,
 20,0,0,,主菜单,欢迎来到束缚学院。|希望各位绅士玩得开心，不断找到新惊喜。,0,0,0,
 30,0,0,,English,,0,0,0,"SetLanguage(""EN"")"
-30,0,0,,French (Chapter 1 to 8)|Made by gottspende,,0,0,0,"SetLanguage(""FR"")"
+30,0,0,,French (Chapter 1 to 9)|Made by gottspende,,0,0,0,"SetLanguage(""FR"")"
 30,0,0,,Chinese (Chapter 1 & 5)|By Dwscdv3 & asdcvbgf,,0,0,0,"SetLanguage(""CN"")"
 30,0,0,,Spanish (Chapter 1)|Made by Rafael R,,0,0,0,"SetLanguage(""ES"")"
 30,0,0,,"German (Chapter 1 to 9)|adokilume, Knife, fleisch11",,0,0,0,"SetLanguage(""DE"")"

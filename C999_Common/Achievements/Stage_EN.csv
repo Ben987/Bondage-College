@@ -1,0 +1,17 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,[Main Menu],,0,0,0,MainMenu()
+0,0,0,,[Next Page],,10,0,0,
+0,0,0,!LearningTheRopes,???,Get some rope before class.,0,0,0,
+0,0,0,LearningTheRopes,Learning the ropes,Stole some rope from Sidney's bag.,0,0,0,ShowImage('C001_BeforeClass/Bag/BagOpen.jpg')
+0,0,0,!MatchMadeInHell,???,Force two people who don't like|each other to kiss before class.,0,0,0,
+0,0,0,MatchMadeInHell,Match made in hell,Forced Amanda and Sidney to kiss before class.,0,0,0,ShowImage('C001_BeforeClass/Amanda/AmandaBondageKiss.jpg')
+0,0,0,!HappyEaster,???,Find a hidden egg.,0,0,0,
+0,0,0,HappyEaster,Happy Easter!,Found a hidden egg in art class.,0,0,0,ShowImage('C004_ArtClass/HiddenEgg/HiddenEgg.jpg')
+0,0,0,!BeggarsChoosers,???,Break out of your cell only to|lock yourself in a different device.,0,0,0,
+0,0,0,BeggarsChoosers,Beggars can be choosers,Broken out of your cell only to|lock yourself in a different device.,0,0,0,ShowImage('C006_Isolation/Horse/HorseRide.jpg')
+0,0,0,!SpeedrunningBitch,???,Finish Sidney's and Jennifer's race|in 1 minute or less.,0,0,0,
+0,0,0,SpeedrunningBitch,Speedrunning Bitch,Finished Sidney's and Jennifer's race|in 1 minute or less.,0,0,0,ShowImage('C999_Common/Races/Actors/Player/ChastityBelt_Rope_Collar_TapeGag_Dog_Move_2.png')
+10,0,0,,[Previous Page],,0,0,0,
+10,0,0,,[Next Page],,20,0,0,
+20,0,0,,[Previous Page],,10,0,0,
+20,0,0,,[Main Menu],,0,0,0,MainMenu()

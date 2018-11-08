@@ -103,4 +103,5 @@ function C001_BeforeClass_Sidney_PantiesRemark() {
 // Chapter 1 - Force Sidney to kiss Amanda
 function C001_BeforeClass_Sidney_KissAmanda() {
 	GameLogAdd("KissAmanda");
+	AchievementUnlock("MatchMadeInHell");
 }

@@ -89,6 +89,7 @@ function C001_BeforeClass_Amanda_ForceKiss() {
 		ActorChangeAttitude(-1, 0);
 		OverridenIntroText = GetText("KissSidney");
 		GameLogAdd("KissSidney");
+		AchievementUnlock("MatchMadeInHell");
 	}
 }
 

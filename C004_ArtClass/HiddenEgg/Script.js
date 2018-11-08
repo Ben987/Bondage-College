@@ -20,4 +20,5 @@ function C004_ArtClass_HiddenEgg_Click() {
 // Chapter 4 - Bag Take Egg
 function C004_ArtClass_HiddenEgg_TakeEgg() {	
 	PlayerAddInventory("VibratingEgg", 1);
+	AchievementUnlock("HappyEaster");
 }

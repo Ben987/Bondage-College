@@ -23,13 +23,37 @@ function InventoryAdd(C, NewItemName, NewItemGroup) {
 	}
 	C.Inventory.push(NewItem);
 
-	// Sends the new item to the server
-	if ((C.AccountName != "") && (NewItemAsset.Value != 0))
-		CharacterAccountRequest("inventory_add", "&name=" + NewItemAsset.Name + "&group=" + NewItemAsset.Group.Name);
+	// Sends the new item to the server if the character is logged in
+	if (C.AccountName != "")
+		CharacterAccountRequest("inventory_add", "&name=" + NewItemName + "&group=" + NewItemGroup);
+
 }
 
 // Loads the inventory from the account
-function InventoryLoad(C, Inventory) {
+function InventoryLoad(C, Inventory, Import) {
+	
+	// Flush the current inventory
+	C.Inventory = [];
+
+	// If we come from the Bondage College, we add the Bondage College items
+	if (Import && (localStorage.getItem("BondageClubImportSource") != null) && (localStorage.getItem("BondageClubImportSource") == "BondageCollege")) {
+		InventoryAdd(C, "CollegeOutfit1", "Cloth");
+		if ((localStorage.getItem("BondageCollegeExportBallGag") != null) && (localStorage.getItem("BondageCollegeExportBallGag") == "true")) InventoryAdd(C, "HarnessBallGag", "Gag");
+		if ((localStorage.getItem("BondageCollegeExportClothGag") != null) && (localStorage.getItem("BondageCollegeExportClothGag") == "true")) InventoryAdd(C, "ClothOTMGag", "Gag");
+		if ((localStorage.getItem("BondageCollegeExportTapeGag") != null) && (localStorage.getItem("BondageCollegeExportTapeGag") == "true")) InventoryAdd(C, "DuctTapeGag", "Gag");
+		if ((localStorage.getItem("BondageCollegeExportTapeGag") != null) && (localStorage.getItem("BondageCollegeExportTapeGag") == "true")) InventoryAdd(C, "DuctTapeArm", "ArmRestraints");
+		if ((localStorage.getItem("BondageCollegeExportTapeGag") != null) && (localStorage.getItem("BondageCollegeExportTapeGag") == "true")) InventoryAdd(C, "DuctTapeLeg", "LegRestraints");
+		if ((localStorage.getItem("BondageCollegeExportRope") != null) && (localStorage.getItem("BondageCollegeExportRope") == "true")) InventoryAdd(C, "RopeArm", "ArmRestraints");
+		if ((localStorage.getItem("BondageCollegeExportRope") != null) && (localStorage.getItem("BondageCollegeExportRope") == "true")) InventoryAdd(C, "RopeLeg", "LegRestraints");
+		if ((localStorage.getItem("BondageCollegeExportCuffs") != null) && (localStorage.getItem("BondageCollegeExportCuffs") == "true")) InventoryAdd(C, "Cuffs", "ArmRestraints");
+		if ((localStorage.getItem("BondageCollegeExportArmbinder") != null) && (localStorage.getItem("BondageCollegeExportArmbinder") == "true")) InventoryAdd(C, "Armbinder", "ArmRestraints");
+		if ((localStorage.getItem("BondageCollegeExportChastityBelt") != null) && (localStorage.getItem("BondageCollegeExportChastityBelt") == "true")) InventoryAdd(C, "MetalChastityBelt", "Chastity");
+		if ((localStorage.getItem("BondageCollegeExportCollar") != null) && (localStorage.getItem("BondageCollegeExportCollar") == "true")) InventoryAdd(C, "LeatherCollar", "Collar");
+		if ((localStorage.getItem("BondageCollegeExportCrop") != null) && (localStorage.getItem("BondageCollegeExportCrop") == "true")) InventoryAdd(C, "Crop", "Weapon");
+		if ((localStorage.getItem("BondageCollegeExportCuffsKey") != null) && (localStorage.getItem("BondageCollegeExportCuffsKey") == "true")) InventoryAdd(C, "CuffsKey", "Key");
+		if ((localStorage.getItem("BondageCollegeExportSleepingPill") != null) && (localStorage.getItem("BondageCollegeExportSleepingPill") == "true")) InventoryAdd(C, "SleepingPill", "Drug");
+		if ((localStorage.getItem("BondageCollegeExportVibratingEgg") != null) && (localStorage.getItem("BondageCollegeExportVibratingEgg") == "true")) InventoryAdd(C, "PinkEgg", "Egg");
+	}
 	
 	// Make sure we have something to load
 	if (Inventory != null) {
@@ -40,27 +64,5 @@ function InventoryLoad(C, Inventory) {
 			InventoryAdd(C, Inventory[I].Name, Inventory[I].Group);
 
 	}
-
-}
-
-// Creates the player starting inventory (CharacterID zero is always the player)
-function InventoryCreate(C) {
-	
-	// Flush the current inventory
-	C.Inventory = [];
-	
-	// If we come from the Bondage College, we add the Bondage College items
-	if ((localStorage.getItem("BondageClubImportSource") != null) && (localStorage.getItem("BondageClubImportSource") == "BondageCollege")) {
-		InventoryAdd(C, "Cloth", "CollegeOutfit1");
-		if ((localStorage.getItem("BondageCollegeExportBallGag") != null) && (localStorage.getItem("BondageCollegeExportBallGag") == "true")) InventoryAddByName(C, "Gag", "BallGag");
-		if ((localStorage.getItem("BondageCollegeExportClothGag") != null) && (localStorage.getItem("BondageCollegeExportClothGag") == "true")) InventoryAddByName(C, "Gag", "ClothGag");
-		if ((localStorage.getItem("BondageCollegeExportTapeGag") != null) && (localStorage.getItem("BondageCollegeExportTapeGag") == "true")) InventoryAddByName(C, "Gag", "TapeGag");
-	}
-
-	// Adds all items with 0 value, these come by default for any character
-	var A;
-	for (A = 0; A < Asset.length; A++)
-		if (Asset[A].Value == 0)
-			InventoryAdd(C, Asset[A].Name, Asset[A].Group.Name);
 
 }
