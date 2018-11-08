@@ -1,6 +1,6 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Inspect the collar.)|(1 minute),"This leather collar could be locked with a padlock.|It's made for humans and has an ""S"" stitched on it.",0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Collar yourself.)|(1 minute),You pull the collar around|your neck and buckle it.,10,0,0,SelfCollar()
-10,0,0,HasLooseCollar,(Inspect the loose|collar.)  (1 minute),"This leather collar could be locked with a padlock.|It's made for humans and has an ""S"" stitched on it.",10,0,0,ShowImage()
-10,0,0,,(Stretch your neck.)|(1 minute),You stretch your neck to make yourself more|comfortable but can always feel the collar.,10,0,0,
-10,0,0,Common_PlayerNotRestrained,(Uncollar yourself.)|(1 minute),You undo the strap and remove to collar.,0,0,0,SelfUncollar()
+0,0,0,,(Inspect the collar.)ADD_MINUTES:1,"This leather collar could be locked with a padlock.|It's made for humans and has an ""S"" stitched on it.",0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Collar yourself.)ADD_MINUTES:1,You pull the collar around|your neck and buckle it.,10,0,0,SelfCollar()
+10,0,0,HasLooseCollar,(Inspect the|loose collar.)ADD_MINUTES:1,"This leather collar could be locked with a padlock.|It's made for humans and has an ""S"" stitched on it.",10,0,0,ShowImage()
+10,0,0,,(Stretch your neck.)ADD_MINUTES:1,You stretch your neck to make yourself more|comfortable but can always feel the collar.,10,0,0,
+10,0,0,Common_PlayerNotRestrained,(Uncollar yourself.)ADD_MINUTES:1,You undo the strap and remove to collar.,0,0,0,SelfUncollar()

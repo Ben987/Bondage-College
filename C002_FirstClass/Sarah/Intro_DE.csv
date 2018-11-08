@@ -1,0 +1,35 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,Common_PlayerGagged,Du siehst süß aus mit dem Knebel.|Kann ich auch einen haben?,Sarah.jpg
+10,0,0,Common_PlayerGagged,Du siehst süß aus mit dem Knebel.|Kann ich auch einen haben?,Sarah.jpg
+20,0,0,Common_PlayerGagged,Du siehst süß aus mit dem Knebel.|Kann ich auch einen haben?,Sarah.jpg
+30,0,0,Common_PlayerGagged,Du siehst süß aus mit dem Knebel.|Kann ich auch einen haben?,Sarah.jpg
+40,0,0,Common_PlayerGagged,Du siehst süß aus mit dem Knebel.|Kann ich auch einen haben?,Sarah.jpg
+50,0,0,Common_PlayerGagged,Du siehst süß aus mit dem Knebel.|Kann ich auch einen haben?,Sarah.jpg
+60,0,0,Common_PlayerGagged,Du siehst süß aus mit dem Knebel.|Kann ich auch einen haben?,Sarah.jpg
+0,0,0,SubdueNotDone,"(Sie dreht sich zu dir und flüstert.)|Hallo, ich bin Sarah.",Sarah.jpg
+10,0,0,SubdueNotDone,Ist das deine erste Mathestunde|mit Miss Mildred?,Sarah.jpg
+20,0,0,SubdueNotDone,(Sie gähnt und wendet sich dir zu.),Sarah.jpg
+30,0,0,SubdueNotDone,"Miss Mildred ist eine ziemlich strenge Lehrerin, was?",Sarah.jpg
+40,0,0,SubdueNotDone,"Ich bin so neugierig,|was hast du vor?",Sarah.jpg
+50,0,0,SubdueNotDone,Du willst Miss Mildred überwältigen und fesseln?|(Du brauchst 2 Liebe oder Dominanz zum Überzeugen.),Sarah.jpg
+60,0,0,SubdueNotDone,Ich helfe dir. Aber du fängst an.,Sarah.jpg
+0,0,0,SubdueSuccess,"Wow! Zum ersten Mal wünsche ich mir,|ich wäre pünktlich gewesen.",Sarah.jpg
+10,0,0,SubdueSuccess,"Ich bin Sarah, schön dich kennenzulernen.",Sarah.jpg
+20,0,0,SubdueSuccess,Das ist die beste Mathestunde aller Zeiten!,Sarah.jpg
+30,0,0,SubdueSuccess,"Jetzt erniedrige das Ferkel.|Ähhh, ich meine Sidney.",Sarah.jpg
+40,0,0,SubdueSuccess,Hast du irgendwelche Fesseln für mich übrig?,Sarah.jpg
+50,0,0,SubdueSuccess,Hast du irgendwelche Fesseln für mich übrig?,Sarah.jpg
+60,0,0,SubdueSuccess,Hast du irgendwelche Fesseln für mich übrig?,Sarah.jpg
+110,0,0,,(Sie kaut verspielt auf dem Knebel herum|und zeigt dir einen Daumen nach oben.),Sarah_BallGag.jpg
+120,0,0,,(Sie spielt mit den Handschellen.)|Genau sowas brauche ich auch zu Hause.,Sarah_Cuffs.jpg
+130,0,0,,(Sie spielt mit den Handschellen und|scheint sich in ihrer Lage wohlzufühlen.),Sarah_Cuffs_BallGag.jpg
+140,0,0,,"(Sie spielt in den Seilen und hat ihren Spaß.)|Ich liebe die Art, wie du mich gefesselt hast.",Sarah_Rope.jpg
+150,0,0,,(Sie spielt in den Seilen und reibt ihren Körper.|Sie scheint jede Menge Spaß zu haben.),Sarah_Rope_BallGag.jpg
+200,0,0,,Da hat wohl jemand noch größeren|Ärger bekommen als ich.,Sarah.jpg
+210,0,0,,"Ich bin Sarah, schön dich kennenzulernen.",Sarah.jpg
+220,0,0,,"Also, was ist mit dir passiert?",Sarah.jpg
+230,0,0,,Du sießt so verschnürt einfach zauberhaft aus.,Sarah.jpg
+240,0,0,,"Ich wünschte, ich könnte|genau so wie du gefesselt sein.",Sarah.jpg
+250,0,0,,"Meinst du, ich könnte wie du Ärger bekommen,|wenn ich der Lehrerin auf die Nerven gehe?",Sarah.jpg
+260,0,0,,(Sie kaut auf dem Knebel herum und|rüttelt verspielt mit den Handschellen.),Sarah_Cuffs_BallGag.jpg
+300,0,0,,Diese Stunde ist so langweilig.|Hoffentlich ist sie bald vorbei.,Sarah.jpg

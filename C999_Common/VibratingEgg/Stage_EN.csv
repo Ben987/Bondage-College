@@ -1,9 +1,9 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Inspect it.)|(1 minute),This vibrating egg is so random and small.|It might be hard to get it back if you insert it.,0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Insert it.)|(1 minute),"You slip the egg in your vagina.  It vibrates and goes|deeper, you're not sure you'll be able to remove it.",0,0,0,Insert()
-10,0,0,HasLooseEgg,(Inspect the loose egg.)|(1 minute),This vibrating egg is so random and small.|It might be hard to get it back if inserted.,10,0,0,ShowImage()
-10,0,0,!Common_PlayerChaste,(Remove it with a finger.)|(1 minute),You slide a finger in but cannot grab|the egg to remove it.  You're stuck with it.,10,0,0,
-10,0,0,Common_PlayerChaste,(Remove it with a finger.)|(1 minute),You tug on the belt and try to slide a finger|inside but there's no way you could reach the egg.,10,0,0,
-10,0,0,,(Remove it by contracting.)|(1 minute),You squirm and try to contract your vagina|but the egg doesn't move.  You're stuck with it.,10,0,0,Contract()
-20,0,0,HasLooseEgg,(Inspect the loose egg.)|(1 minute),This vibrating egg is so random and small.|It might be hard to get it back if inserted.,20,0,0,ShowImage()
-20,0,0,,(Remove it by contracting.)|(1 minute),You squirm and try to contract your vagina but|without a free hand there's no way to remove the egg.,20,0,0,
+0,0,0,,(Inspect it.)ADD_MINUTES:1,This vibrating egg is so random and small.|It might be hard to get it back if you insert it.,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Insert it.)ADD_MINUTES:1,"You slip the egg in your vagina.  It vibrates and goes|deeper, you're not sure you'll be able to remove it.",0,0,0,Insert()
+10,0,0,HasLooseEgg,(Inspect the loose egg.)ADD_MINUTES:1,This vibrating egg is so random and small.|It might be hard to get it back if inserted.,10,0,0,ShowImage()
+10,0,0,!Common_PlayerChaste,(Remove it with a finger.)ADD_MINUTES:1,You slide a finger in but cannot grab|the egg to remove it.  You're stuck with it.,10,0,0,
+10,0,0,Common_PlayerChaste,(Remove it with a finger.)ADD_MINUTES:1,You tug on the belt and try to slide a finger|inside but there's no way you could reach the egg.,10,0,0,
+10,0,0,,(Remove it by contracting.)ADD_MINUTES:1,You squirm and try to contract your vagina|but the egg doesn't move.  You're stuck with it.,10,0,0,Contract()
+20,0,0,HasLooseEgg,(Inspect the loose egg.)ADD_MINUTES:1,This vibrating egg is so random and small.|It might be hard to get it back if inserted.,20,0,0,ShowImage()
+20,0,0,,(Remove it by contracting.)ADD_MINUTES:1,You squirm and try to contract your vagina but|without a free hand there's no way to remove the egg.,20,0,0,

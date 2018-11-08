@@ -162,13 +162,13 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 310,0,0,,It will use some|kinky items on you.,,320,-1,0,
 310,0,0,,You will be restrained|for a little while.,,320,0,1,
 310,0,0,,Would you like|to restrain me?,I guess you can have a bondage adventure.|(She uses your own items to restrain you.),300,0,-1,RestrainPlayer()
-320,0,0,CanUntie,(Untie her.)|(1 minute),(You untie her while she|struggles of discomfort.),320,0,0,Untie()
-320,0,0,CanUnstrap,(Unstrap her.)|(1 minute),(You unstrap the armbinder and let her|arms free while she stretches to relax.),320,0,0,Untie()
-320,0,0,CanUngag,(Ungag her.)|(1 minute),"(You remove the gag and she stares at you.)|Please, was this gag really necessary?",320,0,0,Ungag()
-320,0,0,CanKiss,(Kiss her.)|(1 minute),(You kiss her slowly while|she stares at you speechless.),320,0,0,Kiss()
-320,0,0,CanAbuse,(Tickle her.)|(1 minute),(She giggles and struggles lightly.|She doesn't seem very ticklish.),320,0,0,Tickle()
-320,0,0,CanAbuse,(Spank her.)|(1 minute),(You spank her pretty hard on the butt.|She frowns at you but seems in pain.),320,0,0,Spank()
-320,0,0,CanAbuse,(Masturbate her.)|(1 minute),,320,0,0,Masturbate()
+320,0,0,CanUntie,(Untie her.)ADD_MINUTES:1,(You untie her while she|struggles of discomfort.),320,0,0,Untie()
+320,0,0,CanUnstrap,(Unstrap her.)ADD_MINUTES:1,(You unstrap the armbinder and let her|arms free while she stretches to relax.),320,0,0,Untie()
+320,0,0,CanUngag,(Ungag her.)ADD_MINUTES:1,"(You remove the gag and she stares at you.)|Please, was this gag really necessary?",320,0,0,Ungag()
+320,0,0,CanKiss,(Kiss her.)ADD_MINUTES:1,(You kiss her slowly while|she stares at you speechless.),320,0,0,Kiss()
+320,0,0,CanAbuse,(Tickle her.)ADD_MINUTES:1,(She giggles and struggles lightly.|She doesn't seem very ticklish.),320,0,0,Tickle()
+320,0,0,CanAbuse,(Spank her.)ADD_MINUTES:1,(You spank her pretty hard on the butt.|She frowns at you but seems in pain.),320,0,0,Spank()
+320,0,0,CanAbuse,(Masturbate her.)ADD_MINUTES:1,,320,0,0,Masturbate()
 320,0,0,CanAddUnderwear,"Jen, put your|underwear back.",(She nods slowly and puts|her underwar back on.),320,0,0,"Strip(""Underwear"")"
 320,0,0,CanRemoveUnderwear,Get naked girl.,(She nods slowly and gets naked.),320,0,0,"Strip(""Naked"")"
 320,0,0,!IsChaste,That's enough.|Dress back up.,"(She nods and you help her to dress back.)|That was quite an experience, very daring.",180,0,0,ReleaseJennifer()

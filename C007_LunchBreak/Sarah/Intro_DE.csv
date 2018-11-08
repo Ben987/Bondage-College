@@ -1,0 +1,39 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,"Es ist Mittagszeit, COMMON_PLAYERNAME.|Bist du hungrig?",SarahIntro.jpg
+0,5,0,,"COMMON_PLAYERNAME! Schön, dich in der|Pause zu sehen. Bist du hungrig?",SarahIntroHappy.jpg
+0,0,5,,"Hi, Miss COMMON_PLAYERNAME. (Sie schaut zu Boden.)|Es ist Mittagszeit. Sind Sie hungrig?",SarahIntroSubbie.jpg
+0,0,0,SubdueMildred,Das mit Mildred vorhin war abgefahren.|Jetzt ist Mittagszeit. Bist du hungrig?,SarahIntroSubbie.jpg
+0,0,0,HasEgg,COMMON_PLAYERNAME! Das Ei steckt noch drin und|ich liebe die Vibrationen! (Sie kichert.) Bist du hungrig?,SarahIntroHappy.jpg
+5,0,0,,"(Sarah sieht dich, läuft aber davon.|Sie scheint es eilig zu haben.)",SarahIntroGone.jpg
+10,0,0,,"Du kannst in die College-Cafeteria gehen, wenn|du willst, aber das Essen ist nicht so gut.",SarahIntro.jpg
+10,0,5,,"Bei großem Hunger gäbe es die Cafeteria,|aber ich kann sie nicht empfehlen, Miss.",SarahIntroSubbie.jpg
+20,0,0,,"In der Nähe gibt es ein kleines Café,|das einen Besuch wert ist.",SarahIntro.jpg
+20,0,5,,"Miss, in der Nähe gibt es ein kleines|Café, das einen Besuch wert ist.",SarahIntroSubbie.jpg
+30,0,0,,Möchtest du mit mir ins Café gehen?,SarahIntro.jpg
+30,0,5,,"Miss, möchten Sie jetzt mit mir|zum Café aufbrechen?",SarahIntroSubbie.jpg
+40,0,0,,"Sorry, ich kann nicht mit dir essen.|Ich hab schon andere Pläne.",SarahIntro.jpg
+50,0,0,,,SarahIntroGone.jpg
+100,0,0,,,SarahPlayerLunch0.jpg
+110,0,0,,,SarahPlayerLunch0.jpg
+120,0,0,,,SarahPlayerLunch0.jpg
+130,0,0,,,SarahPlayerLunch0.jpg
+140,0,0,,,SarahPlayerLunch0.jpg
+150,0,0,,,SarahPlayerLunch0.jpg
+160,0,0,,,SarahPlayerLunch0.jpg
+170,0,0,,,SarahPlayerLunchGone.jpg
+180,0,0,,,RestroomDoor.jpg
+190,0,0,,,SarahPlayerLunch0.jpg
+200,0,0,,,SarahRestroom.jpg
+210,0,0,,,SarahRestroom.jpg
+220,0,0,,,SarahPlayerRestroomKiss.jpg
+230,0,0,,,SarahRestroom.jpg
+240,0,0,,,SarahPlayerRestroomNaked.jpg
+250,0,0,,,SarahPlayerRestroomLove.jpg
+260,0,0,,,SarahPlayerRestroomLove.jpg
+270,0,0,,,SarahPlayerRestroomNaked.jpg
+300,0,0,,,SarahPlayerLunch0.jpg
+310,0,0,,,SarahPlayerLunch0.jpg
+320,0,0,,,SarahPlayerLunch0.jpg
+330,0,0,,,SarahLocker.jpg
+340,0,0,,,SarahLocker.jpg
+350,0,0,,,SarahLocker.jpg

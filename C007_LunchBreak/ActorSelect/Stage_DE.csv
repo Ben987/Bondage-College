@@ -1,0 +1,7 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,AmandaAvail,Amanda,,0,0,0,"LoadActor(""Amanda"")"
+0,0,0,SarahAvail,Sarah,,0,0,0,"LoadActor(""Sarah"")"
+0,0,0,SidneyAvail,Sidney,,0,0,0,"LoadActor(""Sidney"")"
+0,0,0,JenniferAvail,Jennifer,,0,0,0,"LoadActor(""Jennifer"")"
+0,0,0,NatalieAvail,Natalie|Autor: wildsj,,0,0,0,"LoadActor(""Natalie"")"
+0,0,0,,Allein essen,,0,0,0,SkipLunch()

@@ -1,0 +1,2 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,Common_PlayerNotRestrained,(Es nehnen.),Du wartest bis niemand hinschaut und|nimmst den pinken Gegenstand.,10,0,0,TakeEgg()

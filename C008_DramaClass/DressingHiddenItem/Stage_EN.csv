@@ -1,2 +1,2 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,Common_PlayerNotRestrained,(Search.)|(1 minute),You search in the objects|but don't find anyting interesting.,0,0,0,Search()
+0,0,0,Common_PlayerNotRestrained,(Search.)ADD_MINUTES:1,You search in the objects|but don't find anyting interesting.,0,0,0,Search()

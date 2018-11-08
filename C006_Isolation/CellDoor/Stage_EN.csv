@@ -1,6 +1,6 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Force the door.)|(1 minute),You try to force the door but you|fail miserably in your current position.,0,0,0,
-0,0,0,,(Check the lock.)|(1 minute),The lock is pretty old and somewhat basic.|You would need a big round key for it.,0,0,0,
+0,0,0,,(Force the door.)ADD_MINUTES:1,You try to force the door but you|fail miserably in your current position.,0,0,0,
+0,0,0,,(Check the lock.)ADD_MINUTES:1,The lock is pretty old and somewhat basic.|You would need a big round key for it.,0,0,0,
 0,0,0,,@UUUUMMP!,Nobody's there to hear you.,0,0,0,
 10,0,0,,(Try to pick the lock.),,0,0,0,PickLock()
-10,0,0,,(Force the door.)|(1 minute),You try to force the door but you|fail miserably in your current position.,10,0,0,
+10,0,0,,(Force the door.)ADD_MINUTES:1,You try to force the door but you|fail miserably in your current position.,10,0,0,

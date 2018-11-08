@@ -1,3 +1,3 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Tu l'examines.)|(1 minute),On dirait que quelqu'un pourrait être retenu dessus. Il y|a un espace entre les plateaux pour mettre des sangles.,0,0,0,
-10,0,0,,(Tu coupes la corde.)|(1 minute),,0,0,0,CutRope()
+0,0,0,,(Tu l'examines.)ADD_MINUTES:1,On dirait que quelqu'un pourrait être retenu dessus. Il y|a un espace entre les plateaux pour mettre des sangles.,0,0,0,
+10,0,0,,(Tu coupes la corde.)ADD_MINUTES:1,,0,0,0,CutRope()

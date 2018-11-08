@@ -1,0 +1,21 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,"Hallo, COMMON_PLAYERNAME.|Hilfst du mir, mein Kostüm zu finden?",Background.jpg
+0,5,0,,"Oh toll! COMMON_PLAYERNAME!|Hilfst du mir, mein Kostüm zu finden?",Background.jpg
+0,0,5,,"Guten Tag, Miss COMMON_PLAYERNAME.|Würden Sie mir helfen, mein Kostüm zu finden?",Background.jpg
+0,0,0,AmandaMissing,Was ist nur los? Amanda ist spät dran und|ich finde mein Kostüm nicht. Hilfst du mir?,Background.jpg
+10,0,0,,"Ich hab endlich mein Kostüm.|Ist es okay, wenn ich mich hier ausziehe?",Background.jpg
+20,0,0,IsDamsel,Ich hab mein Hochzeitskleid.|Hilfst du mir beim Umziehen?,Background.jpg
+20,0,0,!IsDamsel,Ich hab meine weiße Rüstung.|Hilfst du mir beim Umziehen?,Background.jpg
+20,0,0,AmandaMissing,Seltsam... Amanda verspätet sich nie.|Na egal! Hilfst du mir beim Umziehen?,Background.jpg
+20,0,0,Common_PlayerGagged,"Ich liebe deinen Knebel, kann ich auch einen haben?|Oder hilfst du mir beim Umziehen?",Background.jpg
+20,0,0,Common_PlayerRestrained,(Sie kichert und wirkt neidisch.)|Warum bist du gefesselt und ich nicht?,Background.jpg
+20,0,0,IsRestrained,"Danke! Aber konzentrieren wir uns aufs Stück.|Hilfst du mir raus, damit ich mich umziehen kann?",Background.jpg
+20,0,0,IsGagged,Uugnmph mhn nungn!|(Sie scheint sich mit ihrem Knebel zu vergnügen.),Background.jpg
+30,0,0,,Gefällt dir mein Kostüm?|Sind wir bereit zum Proben?,Background.jpg
+30,0,0,AmandaMissing,Sollten wir ohne Amanda gehen?|Sind wir bereit zum Proben?,Background.jpg
+30,0,0,IsChaste,"Ich fasse nicht, dass du mir den Gürtel umgelegt hast.|Den müssen wir nach dem Stück aufbekommen.",Background.jpg
+100,0,0,,(Sie sieht dich an und kichert.)|Brauchst du Hilfe mit dem Knebel?,Background.jpg
+100,0,0,AmandaMissing,Das ist Wahnsinn! Amanda ist spät dran|und du bist geknebelt. Brauchst du Hilfe?,Background.jpg
+200,0,0,,(Sarah erholt sich noch langsam von einem Orgasmus.),BackgroundOrgasm.jpg
+300,0,0,,,Background.jpg
+310,0,0,,,Background.jpg

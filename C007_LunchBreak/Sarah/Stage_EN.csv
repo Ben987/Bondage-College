@@ -67,11 +67,11 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 160,0,0,,So you're a cute mouse|that loves cheese?,Yes I am!  (She does a silly mouse imitation.)|I'll go wash my hands.  (She goes to the restroom.),170,1,0,RestroomTimerStart(true)
 160,0,0,,"Don't worry about|the bill, I'll take it.",You will?  That's very generous of you.|I'll go wash my hands.  (She goes to the restroom.),170,0,1,RestroomTimerStart(true)
 160,0,0,,Can you take the bill?|I'll take the next one.,Mmmh.  I guess.  (She looks unhappy.)|I'll go wash my hands.  (She goes to the restroom.),170,-1,0,RestroomTimerStart(false)
-170,0,0,,(Wait patiently.)|(1 minute),You wait patiently but she's|not back from the restroom yet.,170,0,0,RestroomTimerRun()
-170,0,0,,(Look outside.)|(1 minute),You check the people outside and wait.|She's not back from the restroom yet.,170,0,0,RestroomTimerRun()
+170,0,0,,(Wait patiently.)ADD_MINUTES:1,You wait patiently but she's|not back from the restroom yet.,170,0,0,RestroomTimerRun()
+170,0,0,,(Look outside.)ADD_MINUTES:1,You check the people outside and wait.|She's not back from the restroom yet.,170,0,0,RestroomTimerRun()
 170,0,0,,(Go to the restroom.),You go to the small restroom|but the only door is closed.,180,0,0,
 170,0,0,,(Leave the cafe.)|(Back to college.),,0,-3,0,LeaveStranded()
-180,0,0,,(Wait by the door.)|(1 minute),(You wait patiently by the|door but she doesn't come out.),180,0,0,RestroomTimerRun()
+180,0,0,,(Wait by the door.)ADD_MINUTES:1,(You wait patiently by the|door but she doesn't come out.),180,0,0,RestroomTimerRun()
 180,0,0,,(Knock at the door.),(You can hear Sarah's voice)|Gimme one minute please!,180,0,0,
 180,0,0,,(Open the door.),(You try to open the|door but it's locked.),180,0,0,
 180,0,0,,(Force the door.),(You try to force the door|open but it doesn't move.),180,0,0,
@@ -94,7 +94,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 210,0,0,,I love you Sarah.|Can I kiss you?,"(Without a word, you both hug each|other in a loving embrace and kiss slowly.)",220,1,0,Kiss()
 210,0,5,,"Girl, I will|have you now.","What?  But Miss, we are in a public place.",230,-1,1,
 210,0,0,,The food must be ready.|(Back to your table.),(She nods and you both go back to your table.),300,0,0,
-220,0,0,,(Kiss her again)|(1 minute),(You slowly kiss each other|in the restaurant restroom.),220,0,0,
+220,0,0,,(Kiss her again)ADD_MINUTES:1,(You slowly kiss each other|in the restaurant restroom.),220,0,0,
 220,0,0,,Let's be naughty!,(She giggles.)  Naughty?|What do you have in mind?,230,0,0,
 220,0,5,,"Girl, I will|have you now.","What?  But Miss, we are in a public place.",230,-1,1,
 220,0,0,,The food must be ready.|(Back to your table.),(She sighs and you both go back to your table.),300,-1,0,
@@ -107,10 +107,10 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 240,0,0,,We should stop this.|(Back to your table.),(She sighs and you both dress|back up and go back to your table.),300,-1,-1,Dress()
 250,0,0,,(Rub against her.)|(1 minute.),(You rub against each other and|moan in a slow and sweet ecstasy.),250,0,0,MakeLove()
 250,0,0,,(Finger both.)|(1 minute.),(You finger yourself and her at same time.|You both tremble and sweat from the moves.),250,0,0,MakeLove()
-250,0,0,,(Pinch her nipples.)|(1 minute),(She screams gently when you pinch|her nipples and seems to enjoy it a lot.),250,0,0,Violence()
-250,0,5,,(Slap her face.)|(1 minute),(You slap her pretty hard on the face.|She bows her head and gains momentum.),250,0,0,Violence()
-250,0,0,IsRoped,(Untie her.)|(1 minute),(She struggles to stay tied up|but you're able to undo the knots.),250,0,0,Untie()
-250,0,0,IsGagged,(Ungag her.)|(1 minute),(She struggles to keep her gag|but you're able to remove it.),250,0,0,Ungag()
+250,0,0,,(Pinch her nipples.)ADD_MINUTES:1,(She screams gently when you pinch|her nipples and seems to enjoy it a lot.),250,0,0,Violence()
+250,0,5,,(Slap her face.)ADD_MINUTES:1,(You slap her pretty hard on the face.|She bows her head and gains momentum.),250,0,0,Violence()
+250,0,0,IsRoped,(Untie her.)ADD_MINUTES:1,(She struggles to stay tied up|but you're able to undo the knots.),250,0,0,Untie()
+250,0,0,IsGagged,(Ungag her.)ADD_MINUTES:1,(She struggles to keep her gag|but you're able to remove it.),250,0,0,Ungag()
 250,0,0,IsBoundAndGagged,I tricked you bitch.|(Leave her stranded.),,250,0,0,EvilEnd()
 250,0,0,,We should stop this.|(Back to your table.),(She sighs and you both dress|back up and go back to your table.),300,-2,-1,Dress()
 260,0,0,,That was wonderful.|(Help her stand up.),(You help her up and she nods.)|Yes!  That was pure magic.,270,1,0,Release()

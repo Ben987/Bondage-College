@@ -1,0 +1,58 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,"(Jennifer liest in einer Ecke der Bibliothek.|Sie legt ihr Buch weg.) Hallo, COMMON_PLAYERNAME.",CouchLeft.jpg
+0,5,0,,(Jennifer liest in einer Ecke der Bibliothek.|Sie legt ihr Buch weg.) COMMON_PLAYERNAME! Wie schön.,CouchLeft.jpg
+0,0,5,,"(Jennifer liest in einer Ecke der Bibliothek.|Sie legt ihr Buch weg.) Guten Tag, Miss COMMON_PLAYERNAME.",CouchLeft.jpg
+0,0,0,TennisVictory,"(Jennifer liest, legt aber ihr Buch weg.) Hallo!|Bekomme ich heute noch meine Tennis-Revanche?",CouchLeft.jpg
+0,0,0,TennisDefeat,"(Jennifer liest, legt aber ihr Buch weg.)|Hallo! Willst du deine Tennis-Revanche?",CouchLeft.jpg
+0,0,0,Common_PlayerRestrained,"(Jennifer betrachtet dich interessiert.)|Was ist passiert, warum bist du gefesselt?",CouchLeft.jpg
+0,0,0,HasEgg,(Jennifer liest in einer Ecke der Bibliothek. Sie|legt ihr Buch weg.) Ich bin endlich dein Ei losgeworden.,CouchLeft.jpg
+10,0,0,,Ich hab ein interessantes Buch über die|Geschichte der Olympischen Spiele gefunden.,CouchLeft.jpg
+20,0,0,,Welches Buch suchst du denn?,CouchLeft.jpg
+30,0,0,,Welches Buch suchst du denn?,CouchLeft.jpg
+40,0,0,,"Du findest es bestimmt im Literatur-Bereich.|Geh von hier zurück, geradeaus und dann rechts.",CouchLeft.jpg
+100,0,0,,Wolltest du noch etwas?,CouchLeft.jpg
+100,5,0,,"Hey, COMMON_PLAYERNAME!|Wolltest du noch etwas?",CouchLeft.jpg
+100,0,5,,"Hallo nochmal, Miss COMMON_PLAYERNAME.|Wollten Sie noch etwas?",CouchLeft.jpg
+110,0,0,,"Was stimmt denn nicht mit meiner Sitzart?|Keine Sorge, so unbequem ist es nicht.",CouchLeft.jpg
+120,0,0,,"Ich kann mich nicht über die ganze Couch legen.|Was, wenn sich jemand setzen will?",CouchLeft.jpg
+130,0,0,,(Sie legt sich auf die Couch und schaut dich an.)|Sehe ich jetzt entspannt genug aus?,Couch.jpg
+140,0,0,,(Sie legt sich auf die Couch und schaut dich an.)|Wolltest du noch etwas?,Couch.jpg
+150,0,0,,"Ich weiß, ich hab nicht viele Freunde.",Couch.jpg
+150,5,0,,"Ich weiß, ich hab nicht viele Freunde.|Aber ich unterhalte mich sehr gern mit dir.",Couch.jpg
+155,0,0,,"Wenn du willst, könnten wir Freunde|sein und uns gegenseitig helfen?",Couch.jpg
+160,0,0,,"Ich bin schüchtern und es ist nicht einfach, sich|zu ändern. Hilfst du mir, selbstbewusster zu werden?",Couch.jpg
+170,0,0,,Meintest du das ernst?|Du findest mich hübsch?,Couch.jpg
+171,0,0,,,Couch.jpg
+172,0,0,,,Couch.jpg
+173,0,0,,,Couch.jpg
+174,0,0,,,Couch.jpg
+175,0,0,,,Couch.jpg
+176,0,0,,,Couch.jpg
+177,0,0,,,Couch.jpg
+178,0,0,,,Couch.jpg
+180,0,0,,Vielleicht sollten wir später reden.|Ich würde gern zu Ende lesen.,CouchLeft.jpg
+180,0,0,IsChaste,Ich würde jetzt gern zu Ende lesen.|Aber nimm mir später diesen Gürtel ab.,CouchLeft.jpg
+180,0,0,ArtDone,Ich würde jetzt gern zu Ende lesen.|Aber dein Bild hat mir wirklich gefallen.,CouchLeft.jpg
+180,0,0,OrgasmDone,Heute war wirklich wundervoll. Hoffentlich|können wir uns nach der Schule treffen.,CouchLeft.jpg
+180,0,0,ThreeOrgasmDone,"(Sie flüstert.) Ich hatte noch nie drei Orgasmen.|Ich hoffe wirklich, wir treffen uns nachher nochmal.",CouchLeft.jpg
+181,0,0,,Wie werde ich denn diesen Gürtel los?,CouchLeft.jpg
+190,0,0,,(Jennifer ist fort.),Couch.jpg
+200,0,0,,"(Du setzt dich neben Jennifer.)|Was läuft denn so, COMMON_PLAYERNAME?",Couch.jpg
+210,0,0,,(Du setzt dich neben Jennifer.)|Das ist ein netter Ort zum Lesen.,Couch.jpg
+211,0,0,,(Du setzt dich neben Jennifer.)|Möchtest du über irgendetwas reden?,Couch.jpg
+212,0,0,,(Du setzt dich neben Jennifer.)|Wovon haben wir gesprochen? (Sie wird rot.),Couch.jpg
+213,0,0,,(Du setzt dich neben Jennifer.)|Wovon haben wir gesprochen? (Sie wird rot.),Couch.jpg
+220,0,0,,(Du setzt dich neben Jennifer.)|Wovon haben wir gesprochen? (Sie wird rot.),Couch.jpg
+230,0,0,,(Du setzt dich neben Jennifer.)|Du möchtest wirklich mit mir Liebe machen?,Couch.jpg
+235,0,0,,,Couch.jpg
+240,0,0,,,Couch.jpg
+245,0,0,,,Couch.jpg
+250,0,0,,,Couch.jpg
+260,0,0,,,Couch.jpg
+270,0,0,,,CouchCenter.jpg
+280,0,0,,,CouchCenter.jpg
+300,0,0,,,Couch.jpg
+310,0,0,,,Couch.jpg
+320,0,0,,(Sie starrt dich an und wirkt beunruhigt.),Couch.jpg
+400,0,0,,,Couch.jpg
+410,0,0,,(Sie kichert.) Die Bondage-Abenteurerin!|Ich würde bitte gern zu Ende lesen.,CouchLeft.jpg

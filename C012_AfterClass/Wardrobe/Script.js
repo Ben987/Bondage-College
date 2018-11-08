@@ -18,7 +18,7 @@ function C012_AfterClass_Wardrobe_Load() {
 	C012_AfterClass_Wardrobe_CostumeHeroine = GameLogQuery("C008_DramaClass", "Player", "RoleHeroine");
 	C012_AfterClass_Wardrobe_CostumeVillain = GameLogQuery("C008_DramaClass", "Player", "RoleVillain");
 	C012_AfterClass_Wardrobe_CostumeDamsel = GameLogQuery("C008_DramaClass", "Player", "RoleDamsel");
-	C012_AfterClass_Wardrobe_CostumeTennis = GameLogQuery("C007_LunchBreak", "Jennifer", "Lunch");
+	C012_AfterClass_Wardrobe_CostumeTennis = (GameLogQuery("C007_LunchBreak", "Jennifer", "Lunch") || GameLogQuery("C012_AfterClass", "Jennifer", "Running"));
 	C012_AfterClass_Wardrobe_CostumeJudo = GameLogQuery("C005_GymClass", "Jennifer", "Judo");
 	C012_AfterClass_Wardrobe_CostumeTeacher = GameLogQuery("C011_LiteratureClass", "Player", "ClassLeader");
 
@@ -49,7 +49,9 @@ function C012_AfterClass_Wardrobe_Change(NewCloth) {
 			// Changing might be blocked by the player Mistress, if so we jump to a very angry Owner
 			if (GameLogQuery(CurrentChapter, "", "EventBlockChanging") && (C012_AfterClass_Dorm_Guest.indexOf(Common_PlayerOwner) >= 0)) {
 				CurrentTime = CurrentTime + 50000;
-				C012_AfterClass_Sidney_CurrentStage = 3800;
+				if (Common_PlayerOwner == "Sidney") C012_AfterClass_Sidney_CurrentStage = 3800;
+				if (Common_PlayerOwner == "Amanda") C012_AfterClass_Amanda_CurrentStage = 3800;
+				if (Common_PlayerOwner == "Jennifer") C012_AfterClass_Jennifer_CurrentStage = 3800;
 				SetScene(CurrentChapter, Common_PlayerOwner);
 				ActorSetPose("Angry");
 				LeaveIcon = "";

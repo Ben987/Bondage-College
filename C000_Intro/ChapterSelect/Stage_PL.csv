@@ -1,19 +1,20 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 0,0,0,,Nowa gra,,0,0,0,"LoadChapter(""C001_BeforeClass"")"
-0,0,0,,Wczytaj grê,,0,0,0,LoadScreen()
-0,0,0,,"Wybierz rozdzia³","Wybierz rozdzia³, który chcesz rozegraæ.|Jeœli nie gra³eœ nigdy wczeœniej, zacznij od rozdzia³u pierwszego.",10,0,0,
-0,0,0,,Wybierz jêzyk,,20,0,0,
-10,0,0,,"Rozdzia³ 1|Przed zajêciami",,10,0,0,"LoadChapter(""C001_BeforeClass"")"
-10,0,0,,"Rozdzia³ 2|Pierwsze zajêcia",,10,0,0,"LoadChapter(""C002_FirstClass"")"
-10,0,0,,"Rozdzia³ 3|Poranna kara",,10,0,0,"LoadChapter(""C003_MorningDetention"")"
-10,0,0,,"Rozdzia³ 4|Zajêcia plastyczne",,10,0,0,"LoadChapter(""C004_ArtClass"")"
-10,0,0,,"Rozdzia³ 5|Wychowanie fizyczne",,10,0,0,"LoadChapter(""C005_GymClass"")"
-10,0,0,,"Rozdzia³ 6|Odosobnienie",,10,0,0,"LoadChapter(""C006_Isolation"")"
-10,0,0,,"Rozdzia³ 7|Przerwa obiadowa",,10,0,0,"LoadChapter(""C007_LunchBreak"")"
-10,0,0,,"Rozdzia³ 8|Zajêcia teatralne",,10,0,0,"LoadChapter(""C008_DramaClass"")"
-10,0,0,,"Rozdzia³ 10|Zemsta",,10,0,0,"LoadChapter(""C010_Revenge"")"
-10,0,0,,"Menu g³ówne","Witaj w Akademii Bondage|Baw siê dobrze, zagl¹daj we wszystkie zakamarki i daj siê ponieœæ!",0,0,0,
+0,0,0,,Wczytaj grï¿½,,0,0,0,LoadScreen()
+0,0,0,,"Wybierz rozdziaï¿½","Wybierz rozdziaï¿½, ktï¿½ry chcesz rozegraï¿½.|Jeï¿½li nie graï¿½eï¿½ nigdy wczeï¿½niej, zacznij od rozdziaï¿½u pierwszego.",10,0,0,
+0,0,0,,Wybierz jï¿½zyk,,20,0,0,
+10,0,0,,"Rozdziaï¿½ 1|Przed zajï¿½ciami",,10,0,0,"LoadChapter(""C001_BeforeClass"")"
+10,0,0,,"Rozdziaï¿½ 2|Pierwsze zajï¿½cia",,10,0,0,"LoadChapter(""C002_FirstClass"")"
+10,0,0,,"Rozdziaï¿½ 3|Poranna kara",,10,0,0,"LoadChapter(""C003_MorningDetention"")"
+10,0,0,,"Rozdziaï¿½ 4|Zajï¿½cia plastyczne",,10,0,0,"LoadChapter(""C004_ArtClass"")"
+10,0,0,,"Rozdziaï¿½ 5|Wychowanie fizyczne",,10,0,0,"LoadChapter(""C005_GymClass"")"
+10,0,0,,"Rozdziaï¿½ 6|Odosobnienie",,10,0,0,"LoadChapter(""C006_Isolation"")"
+10,0,0,,"Rozdziaï¿½ 7|Przerwa obiadowa",,10,0,0,"LoadChapter(""C007_LunchBreak"")"
+10,0,0,,"Rozdziaï¿½ 8|Zajï¿½cia teatralne",,10,0,0,"LoadChapter(""C008_DramaClass"")"
+10,0,0,,"Rozdziaï¿½ 10|Zemsta",,10,0,0,"LoadChapter(""C010_Revenge"")"
+10,0,0,,"Menu gï¿½ï¿½wne","Witaj w Akademii Bondage|Baw siï¿½ dobrze, zaglï¿½daj we wszystkie zakamarki i daj siï¿½ ponieï¿½ï¿½!",0,0,0,
 20,0,0,,Angielski,,0,0,0,"SetLanguage(""EN"")"
 20,0,0,,Francuski|Made by gottspende,,0,0,0,"SetLanguage(""FR"")"
-20,0,0,,Chiñski|Made by asdcvbgf,,0,0,0,"SetLanguage(""CN"")"
+20,0,0,,Chiï¿½ski|Dwscdv3 & asdcvbgf,,0,0,0,"SetLanguage(""CN"")"
 20,0,0,,Spanish (Chapter 1)|Made by Rafael R,,0,0,0,"SetLanguage(""ES"")"
+20,0,0,,"German (Chapter 1 to 9)|adokilume, Knife, fleisch11",,0,0,0,"SetLanguage(""DE"")"

@@ -1,0 +1,9 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,(Untersuchen.)|(1 Minute),Dieser Keuschheitsgürtel ist in gutem Zustand. Nach|dem Einrasten brauchst du einen Schlüssel zum Öffnen.,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Dich darin einschließen.)|(1 Minute),"Du holst tief Luft und schließt den Gürtel|um dich. Er rastet mit einem lauten ""Klick"" ein.",0,0,0,LockSelf()
+10,0,0,,(Deinen Gürtel|untersuchen.) (1 Minute),Dieser Keuschheitsgürtel ist in gutem Zustand.|Du brauchst den richtigen Schlüssel zum Öffnen.,10,0,0,
+10,0,0,HasLooseBelt,(Freien Gürtel|untersuchen.) (1 Minute),Dieser Keuschheitsgürtel ist in gutem Zustand.|Nach dem Einrasten brauchst du einen Schlüssel zum Öffnen.,10,0,0,ShowImage()
+10,0,0,Common_PlayerNotRestrained,(Gürtel entfernen.)|(1 Minute),"Du versuchst den Gürtel von deiner Hüfte zu ziehen,|aber er sitzt zu fest und rührt sich nicht.",10,0,0,
+10,0,0,Common_PlayerNotRestrained,(Aufbrechen.)|(1 Minute),"Du versuchst den Gürtel mit Gewalt|aufzustemmen, aber er bleibt fest verankert.",10,0,0,
+10,0,0,Common_PlayerNotRestrained,(Selbstbefriedigung|versuchen.) (1 Minute),Du bekommst kaum einen Finger unter den Gürtel.|So wird da nichts draus.,10,0,0,
+10,0,0,,(Deine Klitoris reiben.)|(1 Minute),"Du reibst deine Klitoris unbeholfen gegen den Gürtel.|Es ist halbwegs angenehm, reicht aber nicht für den Höhepunkt.",10,0,0,

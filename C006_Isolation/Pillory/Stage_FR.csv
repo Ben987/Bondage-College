@@ -1,10 +1,10 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Tu l'examines.)|(1 minute),"Ce pilori en bois a quelques décennies. Il est à|peine ouvert, tu pourrais peut-être y faire entrer ta tête.",0,0,0,
-0,0,0,,(Tu ouvres la planche.)|(1 minute),Tu essayes de saisir la planche mais tu ne peux pas|l'atteindre avec les bras liés dans cette position.,0,0,0,
+0,0,0,,(Tu l'examines.)ADD_MINUTES:1,"Ce pilori en bois a quelques décennies. Il est à|peine ouvert, tu pourrais peut-être y faire entrer ta tête.",0,0,0,
+0,0,0,,(Tu ouvres la planche.)ADD_MINUTES:1,Tu essayes de saisir la planche mais tu ne peux pas|l'atteindre avec les bras liés dans cette position.,0,0,0,
 0,0,0,,(Tu enfonces ta tête.),Tu pourrais peut-être enfoncer ta tête à l'intérieur.|Mais tu es sûre de vouloir le faire ?,10,0,0,
-10,0,0,,(Tu enfonces ta tête.)|(1 minute),"Tu luttes, mais tu as finalement réussi|à enfoncer ta tête dans le pilori.",20,0,0,Trap()
+10,0,0,,(Tu enfonces ta tête.)ADD_MINUTES:1,"Tu luttes, mais tu as finalement réussi|à enfoncer ta tête dans le pilori.",20,0,0,Trap()
 10,0,0,,(Tu ne le fais pas.),Tu t'éloignes du pilori.,0,0,0,
-20,0,0,,(Tu saisis la planche.)|(1 minute),Tu essayes de saisir la planche pour l'ouvrir|mais tu ne peux pas l'atteindre avec les bras liés.,20,0,0,
-20,0,0,,(Tu essayes de te retirer.)|(1 minute),Tu luttes pour te retirer mais|ta tête ne passe plus dans l'autre sens.,20,0,0,
-20,0,0,,(Tu frappes le châssis.)|(1 minute),Tu frappes le châssis avec colère mais tu|réussis seulement à te faire mal au pied.,20,0,0,
+20,0,0,,(Tu saisis la planche.)ADD_MINUTES:1,Tu essayes de saisir la planche pour l'ouvrir|mais tu ne peux pas l'atteindre avec les bras liés.,20,0,0,
+20,0,0,,(Tu essayes de te retirer.)ADD_MINUTES:1,Tu luttes pour te retirer mais|ta tête ne passe plus dans l'autre sens.,20,0,0,
+20,0,0,,(Tu frappes le châssis.)ADD_MINUTES:1,Tu frappes le châssis avec colère mais tu|réussis seulement à te faire mal au pied.,20,0,0,
 20,0,0,,@UUUMNGH !,Il n'y a personne qui puisse t'entendre.,20,0,0,

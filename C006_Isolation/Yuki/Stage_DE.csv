@@ -1,0 +1,82 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,Ich war's nicht!,Hör endlich auf zu lügen und|akzeptiere deine Strafe wie eine Lady.,10,0,0,
+0,0,0,,Es war Sidney!,"Wenn sie irgendwie mitgemacht hat,|wird sie genau dieselbe Strafe erhalten.",10,0,0,
+0,0,0,,Ich weiß. Das hätte ich|wohl nicht tun sollen.,In der Tat. Und deswegen wirst du bestraft.,10,1,0,
+0,0,0,,"Es tut mir|leid, Miss Yuki.",Eine Entschuldigung reicht nicht.|Und deswegen wirst du bestraft.,10,0,-1,
+0,0,0,,Es war doch eh|Ihre Tablette.,Darum geht's nicht. Du hast mich|betäubt und du wirst bestraft.,10,0,0,
+0,0,0,,Ich hätte dir so viel|Schlimmeres antun können.,Du musst wirklich deine Rolle hier lernen.|Und deswegen wirst du bestraft.,10,-1,1,
+10,0,0,,Bestraft? Wie?,Du wirst die nächste Stunde über gefesselt|und geknebelt in dieser Zelle bleiben.,20,0,0,
+10,0,0,,Was wollen Sie von mir?,Du wirst die nächste Stunde über gefesselt|und geknebelt in dieser Zelle bleiben.,20,0,0,
+10,0,0,,"Wenn ich Ihnen Geld|gebe, vergessen Sie das?",Ich bin unbestechlich. Du wirst die nächste Stunde|über gefesselt und geknebelt in dieser Zelle bleiben.,20,-1,0,
+20,0,0,,Gefesselt und geknebelt?|Ist das Ihr Ernst?,Mein voller Ernst. Erstmal gibst du|mir das. (Sie beschlagnahmt deine Tasche.),30,0,0,StealItems()
+20,0,0,,"Es wäre wohl einfacher,|sich nicht zu wehren.",Sehr weise von dir. Erstmal gibst du|mir das. (Sie beschlagnahmt deine Tasche.),30,1,0,StealItems()
+20,0,0,,Spitze! Ich|liebe Bondage.,Diese Stunde wird dir nicht gefallen. Jetzt gib mir|die Tasche. (Sie beschlagnahmt deine Tasche.),30,-1,-1,StealItems()
+20,0,0,,Vergessen Sie's!|Das mache ich nicht.,Du hast keine Wahl. Erstmal gibst du|mir das. (Sie beschlagnahmt deine Tasche.),30,0,1,StealItems()
+30,0,0,,Bitte klauen|Sie mir nichts.,"Keine Sorge, das werde ich nicht.|Jetzt ziehst du deine Uniform aus.",40,0,-1,
+30,0,0,,Sie Diebin!,"Lass das Gemecker, okay? Jetzt|ziehst du deine Uniform aus.",40,-1,0,
+30,0,0,,Das können Sie nicht tun.,Natürlich kann ich. Jetzt|ziehst du deine Uniform aus.,40,0,0,
+40,0,0,,Ausziehen? Dafür sind|Sie mir zu hässlich.,"(Sie drängt dich in einen Pranger und schließt ihn.)|Wenn du dich widersetzt, muss ich die Geräte benutzen.",70,-1,0,
+40,0,0,,Vergessen Sie's Fräulein.|Ich ziehe mich nicht aus.,"(Sie drängt dich in einen Pranger und schließt ihn.)|Wenn du dich widersetzt, muss ich die Geräte benutzen.",70,0,0,
+40,0,0,,"Verdammt! Okay, okay.|(Ausziehen.)ADD_MINUTES:1",Sehr gut. Außerdem sollst du das tragen.|(Sie zeigt dir ein Lederhalsband.),50,0,0,
+40,0,0,,Nur für Ihre Augen.|(Ausziehen.)ADD_MINUTES:1,Natürlich. Außerdem sollst du das tragen.|(Sie zeigt dir ein Lederhalsband.),50,1,0,
+50,0,0,,"Ja, Miss.|(Den Kopf senken.)",(Sie schnallt dir das Halsband um den Hals.)|Wie fühlst du dich jetzt? Wehrlos?,100,0,-1,AddCollar()
+50,0,0,,Ein Halsband? Sehe ich|aus wie ein Hund?,"(Sie drängt dich in einen Pranger und schließt ihn.)|Wenn du dich widersetzt, muss ich die Geräte benutzen.",80,0,0,
+50,0,0,,Mmmh. Okay.|(Den Kopf senken.),(Sie schnallt dir das Halsband um den Hals.)|Wie fühlst du dich jetzt? Wehrlos?,100,0,0,AddCollar()
+50,0,0,,"Die Hölle friert zu,|bevor ich das trage.","(Sie drängt dich in einen Pranger und schließt ihn.)|Wenn du dich widersetzt, muss ich die Geräte benutzen.",80,0,1,
+70,0,0,,(Schweigen.),Schweigen ist Gold. (Sie entfernt deine Uniform.)|Du musst außerdem ein Lederhalsband tragen.,80,0,0,
+70,0,0,,Ausziehen? Sie sind also|'ne verrückte Lesbe?,Diese Ausdrucksweise. (Sie entfernt deine Uniform.)|Du musst außerdem ein Lederhalsband tragen.,80,-1,0,
+70,0,0,,Das geschieht|mir wohl recht.,Durchaus. (Sie entfernt deine Uniform.)|Du musst außerdem ein Lederhalsband tragen.,80,1,0,
+70,0,0,,Eines Tages|räche ich mich.,(Sie seufzt und entfernt deine Uniform.)|Du musst außerdem ein Lederhalsband tragen.,80,0,1,
+80,0,0,,(Schweigen.),(Sie legt dir das Halsband um und lässt dich frei.)|Wie fühlst du dich jetzt? Wehrlos?,100,0,0,AddCollar()
+80,0,0,,Weg mit dem Halsband!,Pssst. (Sie legt dir das Halsband um und lässt dich frei.)|Wie fühlst du dich jetzt? Wehrlos?,100,0,0,AddCollar()
+80,0,0,,"Widerstand ist zwecklos,|schätze ich.",Korrekt. (Sie legt dir das Halsband um und befreit dich.)|Wie fühlst du dich jetzt? Wehrlos?,100,0,0,AddCollar()
+100,0,0,,Es ging mir|schon besser.,Besser wird es in dieser Stunde nicht.|Dreh dich um und gib mir deine Hände.,110,0,0,
+100,0,0,,Sehr wehrlos.|(Den Kopf senken.),"Es ist hart, aber es ist zu deinem Besten.|Jetzt dreh dich um und gib mir deine Hände.",110,0,-1,
+100,0,0,,"(Gähn.) Ziemlich|gelangweilt, ehrlich gesagt.",Immer noch so vorlaut?|Dreh dich um und gib mir deine Hände.,110,-1,0,
+100,0,0,,Wozu das Halsband?|Ich begreif's nicht.,Das begreifst du schon sehr bald.|Dreh dich um und gib mir deine Hände.,110,0,0,
+110,0,0,,Pfoten weg!,Du hast keine Anweisungen zu erteilen.|(Sie nimmt etwas Seil und wickelt es um dich.),120,0,0,AddRope()
+110,0,0,,Fick dich! Du wirst|mich nicht fesseln.,Mmh. Einen Knebel brauchen wir dann auch.|(Sie nimmt etwas Seil und wickelt es um dich.),120,-1,0,AddRope()
+110,0,0,,"Okay, aber bitte|nicht zu eng.","Eng genug, dass du nicht entkommst.|(Sie nimmt etwas Seil und wickelt es um dich.)",120,1,0,AddRope()
+110,0,0,,(Nicken und|schweigend umdrehen.),"Du kannst brav sein, wenn du es willst.|(Sie nimmt etwas Seil und wickelt es um dich.)",120,0,-1,AddRope()
+120,0,0,,Das ist zu eng!,Und das ist erst der Anfang.|(Sie schubst dich in eine Stahlzelle.),130,0,0,
+120,0,0,,(Verspielt ringen|und kichern.),Du sollst keine Freude daran haben.|(Sie schubst dich in eine Stahlzelle.),130,0,0,
+120,0,0,,Wo haben Sie|das gelernt?,"Sagen wir, ich hatte sehr gute Lehrer.|(Sie schubst dich in eine Stahlzelle.)",130,0,0,
+130,0,0,,"Es hat Spaß gemacht,|aber jetzt hab ich Angst.",Oh! Aber der Spaß fängt doch gerade erst an.|(Sie drückt dich auf die Knie.),140,0,0,
+130,0,0,,"Bitte, Miss, lassen|Sie mich nicht zurück.","Es ist nur für eine Stunde, weißt du.|(Sie drückt dich auf die Knie.)",140,0,-1,
+130,0,0,,"Sie sind echt 'ne|Schlampe, wissen Sie?","Du machst dir nur mehr Ärger, Fräulein.|(Sie drückt dich auf die Knie.)",140,-1,0,
+130,0,0,,Eines Tages werden|Sie hier verrotten.,Vielleicht verbringst du den ganzen Tag hier.|(Sie drückt dich auf die Knie.),140,0,1,
+140,0,0,,Oh Mann! Der|Boden ist so kalt.,"Kleine Warnung, wärmer wird's nicht.|(Sie holt Seile und fesselt deine Beine.)",150,0,-1,CheckToEat()
+140,0,0,,Was wollen Sie?,"Ich will, dass du eine Lektion fürs Leben lernst.|(Sie holt Seile und fesselt deine Beine.)",150,0,0,CheckToEat()
+140,3,0,,"Yuki, willst du|einen Orgasmus?","(Sie schaut zu dir runter.) Oh Teufel, ja!|(Sie lässt ihre Unterwäsche fallen und zieht dich ran.)",200,1,0,
+140,0,-3,,"Miss, möchten Sie|einen Orgasmus?","(Sie schaut zu dir runter.) Oh Gott, ja!|(Sie lässt ihre Unterwäsche fallen und zieht dich ran.)",200,0,-1,
+150,0,0,,Manno! Das geht zu weit.,Zu weit? Wie das Betäuben deiner Lehrerin?|(Sie verbindet das Halsband mit einem Metallring.),160,0,0,
+150,0,0,,Ein Hogtie? Mehr|können Sie nicht?,"Oh, ich kann noch viel mehr.|(Sie verbindet das Halsband mit einem Metallring.)",160,0,1,
+150,0,0,,"Bitte, Yuki! Ich hab|meine Lektion gelernt.","Ich hoffe wirklich, dass du etwas lernst.|(Sie verbindet das Halsband mit einem Metallring.)",160,0,0,
+150,0,0,,Diese Fesselung ist toll!,Nach einer Stunde könntest du anderer Meinung sein.|(Sie verbindet das Halsband mit einem Metallring.),160,0,-1,
+160,0,0,,Du kleine Schlampe!|Wie wagst du es?,"So eine Dreckschleuder, das sollte helfen.|(Sie schnallt dir einen Ballknebel um den Kopf.)",170,-1,0,AddGag()
+160,0,0,,Lassen Sie mich gehen|oder ich rufe die Polizei.,"Ruf wen du willst, Fräulein.|(Sie schnallt dir einen Ballknebel um den Kopf.)",170,0,0,AddGag()
+160,0,0,,Ich bewundere|Ihre Fesselkünste.,Danke. Jetzt bewundere meine Knebelkünste.|(Sie schnallt dir einen Ballknebel um den Kopf.),170,1,0,AddGag()
+160,0,0,,Geben Sie's zu. Sie|lassen mich nicht allein.,"Du glaubst wirklich, ich würde bluffen?|(Sie schnallt dir einen Ballknebel um den Kopf.)",170,0,0,AddGag()
+160,0,0,,(Freikämpfen.),"Du gehst nirgendwo hin, Fräulein.|(Sie schnallt dir einen Ballknebel um den Kopf.)",170,0,0,AddGag()
+170,0,0,,(Sie böse ansehen.),Du bist so süß. Ich bin um 11:30 Uhr zurück.|(Sie steht auf und verlässt den Raum.),180,0,0,AllowLeave()
+170,0,0,,(Flehend gucken und|sanft winseln.),"Weine so viel du willst. Ich bin um 11:30 Uhr zurück.|(Sie steht auf und verlässt den Raum.)",180,0,-1,AllowLeave()
+170,0,0,,(Auf dem Knebel|herumkauen.),Viel Spaß damit. Ich bin um 11:30 Uhr zurück.|(Sie steht auf und verlässt den Raum.),180,0,0,AllowLeave()
+170,0,0,,(Den Kopf senken.),"Gutes Mädchen, ich bin um 11:30 Uhr zurück.|(Sie steht auf und verlässt den Raum.)",180,0,-1,AllowLeave()
+170,0,0,,@UUHEE!,Du bist so süß. Ich bin um 11:30 Uhr zurück.|(Sie steht auf und verlässt den Raum.),180,0,0,AllowLeave()
+170,0,0,,@Heesee ehhem.,Du bist so süß. Ich bin um 11:30 Uhr zurück.|(Sie steht auf und verlässt den Raum.),180,0,0,AllowLeave()
+200,0,0,,(An ihre Muschi|reiben.)ADD_MINUTES:1,(Sie spreizt die Beine und stöhnt leise.),200,0,0,Pleasure(1)
+200,0,0,,(Ihre Klitoris lecken.)ADD_MINUTES:1,(Sie zieht dich an den Haaren näher und bebt.),200,0,0,Pleasure(2)
+200,0,0,,(Zunge reinstecken.)ADD_MINUTES:1,(Sie bewegt deinen Kopf mit beiden|Händen vor und zurück.),200,0,0,Pleasure(3)
+200,0,0,AllowPullBack,(Aufhören und|zurücklehnen.),(Du hörst auf und sie sieht enttäuscht aus.)|Du gibst also schon auf?,210,0,0,CheckToStop()
+210,0,0,,Ich wollte nur Luft|holen. (Weitermachen.),Sehr gut. (Sie packt deine|Haare und zieht dich wieder ran.),200,0,0,
+210,0,0,,"Tut mir leid, ich|kann das nicht.","Schön, ist mir sowieso egal.|(Sie holt Seile und fesselt deine Beine.)",150,-1,0,
+210,0,0,,Wann haben Sie|zuletzt gebadet?,Das wirst du bereuen!|(Sie holt Seile und fesselt deine Beine.),150,-2,0,
+220,0,0,,(Ihr Sekret lecken.),"Das reicht, das war eine Glanzleistung. Wenn ich|dich gehen lasse, machst du das später nochmal?",230,1,0,
+220,0,0,,(Nach Luft schnappen.),"Junge Dame, das war eine Glanzleistung. Wenn ich|dich gehen lasse, machst du das später nochmal?",230,0,0,
+220,0,0,,(Angewidert husten.),"Tu nicht so, als hätte es dir nicht gefallen. Wenn ich|dich gehen lasse, machst du das später nochmal?",230,-1,0,
+230,0,0,,Ja. Abgemacht.,Perfekt! (Sie bindet dich los und führt dich hinaus.)|Dann zieh dich an und genieße deine Mittagspause.,240,0,-1,Release()
+230,0,0,,Nein. Das mach|ich nie wieder.,"Schön, wo waren wir stehengeblieben.|(Sie holt Seile und fesselt deine Beine.)",150,-1,0,
+240,0,0,,In Ordnung!|(Den Raum verlassen.),,240,0,0,LeaveIsolation()
+250,0,0,,"Tut mir leid, Miss Yuki.|Kann ich nochmal?",Nein. Es wird Zeit für deine Isolation.|(Sie holt Seile und fesselt deine Beine.),150,-1,-1,
+250,0,0,,(Schweigen.),Es wird jetzt Zeit für deine Isolation.|(Sie holt Seile und fesselt deine Beine.),150,-1,0,
+250,0,0,,Sind Sie frigide?,"(Sie gibt dir eine Ohrfeige, holt|mehr Seile und fesselt deine Beine.)",150,-2,1,

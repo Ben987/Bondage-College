@@ -59,23 +59,23 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 40,0,0,SubdueSuccess,Would you like to be|tied up with Amanda?,Tied up with sweet Amy?|That would be a dream come true.,50,1,1,
 40,0,0,SubdueSuccess,Should we end|all this bondage?,No!  This is best class I've ever had.,50,-1,-1,
 110,0,0,Common_PlayerGagged,@Uugnm mugn!,Loongm monng gnu!,110,0,0,
-110,0,0,Common_PlayerNotRestrained,(Ungag her.)|(1 minute),(You unbuckle and pull out the big ball.)|Booooooh!  Will you gag me again later?,100,0,0,Ungag()
+110,0,0,Common_PlayerNotRestrained,(Ungag her.)ADD_MINUTES:1,(You unbuckle and pull out the big ball.)|Booooooh!  Will you gag me again later?,100,0,0,Ungag()
 130,0,0,Common_PlayerGagged,@Uugnm mugn!,Loongm monng gnu!,130,0,0,
-130,0,0,Common_PlayerNotRestrained,(Ungag her.)|(1 minute),(You unbuckle and pull out the big ball.)|Oh!  Will you gag me again later?,120,0,0,Ungag()
-140,0,0,Common_PlayerNotRestrained,(Tickle her.)|(1 minute),"(You tickle her and she giggles lightly.)|Hehehe, now what will you do next?",140,0,0,
-140,0,0,Common_PlayerNotRestrained,(Untie her.)|(1 minute),(You untie the knots and she dresses back.)|That was great!  We have to do it again.,100,0,0,Untie()
-140,0,0,BondageHugReady,Would you like to hug|Amanda? (1 minute),Hug Amy?  Oh yes!  (She moves to|her friend to give her a sexy bondage hug.),160,0,0,BondageHug()
+130,0,0,Common_PlayerNotRestrained,(Ungag her.)ADD_MINUTES:1,(You unbuckle and pull out the big ball.)|Oh!  Will you gag me again later?,120,0,0,Ungag()
+140,0,0,Common_PlayerNotRestrained,(Tickle her.)ADD_MINUTES:1,"(You tickle her and she giggles lightly.)|Hehehe, now what will you do next?",140,0,0,
+140,0,0,Common_PlayerNotRestrained,(Untie her.)ADD_MINUTES:1,(You untie the knots and she dresses back.)|That was great!  We have to do it again.,100,0,0,Untie()
+140,0,0,BondageHugReady,Would you like to hug|Amanda?ADD_MINUTES:1,Hug Amy?  Oh yes!  (She moves to|her friend to give her a sexy bondage hug.),160,0,0,BondageHug()
 150,0,0,Common_PlayerGagged,@Uugnm mugn!,Loongm monng gnu!,150,0,0,
-150,0,0,Common_PlayerNotRestrained,(Tickle her.)|(1 minute),(You tickle her and she giggles lightly.),150,0,0,
-150,0,0,Common_PlayerNotRestrained,(Ungag her.)|(1 minute),(You unbuckle and pull out the big ball.)|Do you have another gag for me?,140,0,0,Ungag()
-150,0,0,Common_PlayerNotRestrained,(Untie her.)|(1 minute),(You untie the knots and she dresses back.)|(She then chews on the gag happily.),110,0,0,Untie()
-150,0,0,BondageHugReady,Would you like to hug|Amanda? (1 minute),(She nods happily and moves to her|friend to give her a sexy bondage hug.),170,0,0,BondageHug()
-160,0,0,,Would you like to kiss|her?  (1 minute),(She blushes and nods.)  A kiss Amy?|(She gets closer and kisses Amanda.),160,0,0,KissAmanda()
+150,0,0,Common_PlayerNotRestrained,(Tickle her.)ADD_MINUTES:1,(You tickle her and she giggles lightly.),150,0,0,
+150,0,0,Common_PlayerNotRestrained,(Ungag her.)ADD_MINUTES:1,(You unbuckle and pull out the big ball.)|Do you have another gag for me?,140,0,0,Ungag()
+150,0,0,Common_PlayerNotRestrained,(Untie her.)ADD_MINUTES:1,(You untie the knots and she dresses back.)|(She then chews on the gag happily.),110,0,0,Untie()
+150,0,0,BondageHugReady,Would you like to hug|Amanda?ADD_MINUTES:1,(She nods happily and moves to her|friend to give her a sexy bondage hug.),170,0,0,BondageHug()
+160,0,0,,Would you like to kiss|her? ADD_MINUTES:1,(She blushes and nods.)  A kiss Amy?|(She gets closer and kisses Amanda.),160,0,0,KissAmanda()
 160,0,0,,Are you two in love?,I'm not answering that.|(She puils her tongue at you.),160,0,0,
-160,0,0,Common_PlayerNotRestrained,(Separate them.)|(1 minute),See you later Amy.  (She winks.),140,0,0,Separate()
+160,0,0,Common_PlayerNotRestrained,(Separate them.)ADD_MINUTES:1,See you later Amy.  (She winks.),140,0,0,Separate()
 170,0,0,,You two make a|nice bondage duo.,(She nods happily.),170,0,0,BondageDuo()
-170,0,0,Common_PlayerNotRestrained,(Separate them.)|(1 minute),(She reluctantly returns to her chair.),150,0,0,Separate()
-170,0,0,Common_PlayerNotRestrained,(Ungag her.)|(1 minute),(You unbuckle and pull out the BallGag.)|Isn't this thrilling Amanda?,160,0,0,Ungag()
+170,0,0,Common_PlayerNotRestrained,(Separate them.)ADD_MINUTES:1,(She reluctantly returns to her chair.),150,0,0,Separate()
+170,0,0,Common_PlayerNotRestrained,(Ungag her.)ADD_MINUTES:1,(You unbuckle and pull out the BallGag.)|Isn't this thrilling Amanda?,160,0,0,Ungag()
 200,0,0,,"@Uuumph, mmph!","(She laughs.)  I can't understand.|I'm Sarah, pleased to meet you.",210,0,0,
 200,0,0,,(Nod slowly.),"(She giggles.)  You look great like that.|I'm Sarah, pleased to meet you.",210,0,-1,
 200,0,0,,(Try to point|to Mildred.),"She tied you up?  Very nice.|I'm Sarah, nice to meet you.",210,0,0,

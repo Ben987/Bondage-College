@@ -1,4 +1,5 @@
-C999_Common_Player_ActiveTab = "";
+var C999_Common_Player_ActiveTab = "";
+var C999_Common_Player_MainActors = ["Amanda", "Sarah", "Sidney", "Jennifer", "Mildred", "Yuki", "Julia", "Sophie"];
 
 // Chapter Common - Player Load
 function C999_Common_Player_Load() {
@@ -68,10 +69,13 @@ function C999_Common_Player_Run() {
 	if (C999_Common_Player_ActiveTab == "Profile") {
 
 		// Shows the basic info
-		DrawRect(300, 0, 300, 50, "black");
-		DrawRect(301, 0, 298, 49, "silver");
-		DrawText(GetText("Profile"), 150, 25, "black");
-		DrawText(GetText("Relationships"), 450, 25, "white");
+		DrawText(GetText("Profile"), 100, 25, "black");
+		DrawRect(200, 0, 200, 50, "black");
+		DrawRect(201, 0, 198, 49, "silver");
+		DrawText(GetText("Relationships"), 300, 25, "white");
+		DrawRect(400, 0, 200, 50, "black");
+		DrawRect(401, 0, 198, 49, "silver");
+		DrawText(GetText("KinbakuClub"), 500, 25, "white");
 		DrawText(GetText("Name") + " " + Common_PlayerName, 300, 90, "black");
 		DrawText(GetText("Title") + " " + C999_Common_Player_GetTitle(), 300, 130, "black");
 
@@ -92,19 +96,46 @@ function C999_Common_Player_Run() {
 
 	}
 
-	// Draw the relationships tab (show all known actors and their relationship with the player)
+	// Draw the relationships tab (show all known main actors and their relationship with the player)
 	if (C999_Common_Player_ActiveTab == "Relationships") {
-		DrawRect(0, 0, 300, 50, "black");
-		DrawRect(0, 0, 299, 49, "silver");
-		DrawText(GetText("Profile"), 150, 25, "white");
-		DrawText(GetText("Relationships"), 450, 25, "black");
+		DrawRect(0, 0, 200, 50, "black");
+		DrawRect(0, 0, 199, 49, "silver");
+		DrawText(GetText("Profile"), 100, 25, "white");
+		DrawText(GetText("Relationships"), 300, 25, "black");
+		DrawRect(400, 0, 200, 50, "black");
+		DrawRect(401, 0, 198, 49, "silver");
+		DrawText(GetText("KinbakuClub"), 500, 25, "white");
+		var Pos = 0;
 		for (var A = 0; A < Actor.length; A++) {
 			CurrentActor = Actor[A][ActorName];
-			DrawActorStats(300, A * 50 + 80);
+			if (C999_Common_Player_MainActors.indexOf(CurrentActor) >= 0) {
+				DrawActorStats(300, Pos * 60 + 90);
+				Pos++;
+			}
 		}
 		CurrentActor = "";
 	}
 
+	// Draw the kinbaku club relationships tab (show all known kinbaku club actors and their relationship with the player)
+	if (C999_Common_Player_ActiveTab == "KinbakuClub") {
+		DrawRect(0, 0, 200, 50, "black");
+		DrawRect(0, 0, 199, 49, "silver");
+		DrawText(GetText("Profile"), 100, 25, "white");
+		DrawRect(200, 0, 200, 50, "black");
+		DrawRect(201, 0, 198, 49, "silver");
+		DrawText(GetText("Relationships"), 300, 25, "white");
+		DrawText(GetText("KinbakuClub"), 500, 25, "black");
+		var Pos = 0;
+		for (var A = 0; A < Actor.length; A++) {
+			CurrentActor = Actor[A][ActorName];
+			if (C999_Common_Player_MainActors.indexOf(CurrentActor) < 0) {
+				DrawActorStats(300, Pos * 60 + 90);
+				Pos++;
+			}
+		}
+		CurrentActor = "";
+	}
+	
 }
 
 // Chapter Common - Player Click
@@ -114,7 +145,8 @@ function C999_Common_Player_Click() {
 	InventoryClick(GetClickedInventory(), LeaveChapter, LeaveScreen);
 	
 	// Tab navigation
-	if ((MouseX >= 1) && (MouseX <= 299) && (MouseY >= 1) && (MouseY <= 49)) C999_Common_Player_ActiveTab = "Profile";
-	if ((MouseX >= 301) && (MouseX <= 599) && (MouseY >= 1) && (MouseY <= 49)) C999_Common_Player_ActiveTab = "Relationships";
+	if ((MouseX >= 1) && (MouseX <= 199) && (MouseY >= 1) && (MouseY <= 49)) C999_Common_Player_ActiveTab = "Profile";
+	if ((MouseX >= 201) && (MouseX <= 399) && (MouseY >= 1) && (MouseY <= 49)) C999_Common_Player_ActiveTab = "Relationships";
+	if ((MouseX >= 401) && (MouseX <= 599) && (MouseY >= 1) && (MouseY <= 49)) C999_Common_Player_ActiveTab = "KinbakuClub";
 
 }

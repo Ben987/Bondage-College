@@ -1,2 +1,2 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Inspect it.)|(1 minute),It looks like a potent sleeping pill.|It could be mixed in food or in a drink.,0,0,0,
+0,0,0,,(Inspect it.)ADD_MINUTES:1,It looks like a potent sleeping pill.|It could be mixed in food or in a drink.,0,0,0,

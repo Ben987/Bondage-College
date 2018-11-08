@@ -1,3 +1,3 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Inspect it.)|(1 minute),It's made of good leather and must sting pretty|bad on impact.  It will not leave permanent scars.,0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Whip yourself.)|(1 minute),You whip yourself in your palm and can feel|the string.  The red mark should disappear soon.,0,0,0,
+0,0,0,,(Inspect it.)ADD_MINUTES:1,It's made of good leather and must sting pretty|bad on impact.  It will not leave permanent scars.,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Whip yourself.)ADD_MINUTES:1,You whip yourself in your palm and can feel|the string.  The red mark should disappear soon.,0,0,0,

@@ -1,0 +1,10 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,(Untersuchen.)ADD_MINUTES:1,"Dieser Holzpranger ist ein paar Jahrzehnte alt.|Er steht leicht offen, dein Kopf könnte hindurchpassen.",0,0,0,
+0,0,0,,(Bretter öffnen.)ADD_MINUTES:1,"Du versuchst das Brett zu greifen, aber in|deiner jetzigen Lage kommst du nicht ran.",0,0,0,
+0,0,0,,(Kopf hineinzwängen.),Vielleicht würde dein Kopf hindurchpassen.|Aber willst du das wirklich tun?,10,0,0,
+10,0,0,,(Kopf hineinzwängen.)ADD_MINUTES:1,"Mit etwas Mühe gelingt es dir,|deinen Kopf durch den Pranger zu stecken.",20,0,0,Trap()
+10,0,0,,(Es nicht tun.),Du trittst von der Vorrichtung zurück.,0,0,0,
+20,0,0,,(Brett greifen.)ADD_MINUTES:1,"Du versuchst das Brett zu greifen, aber mit|deinen gefesselten Armen kommst du nicht ran.",20,0,0,
+20,0,0,,(Herauszwängen.)ADD_MINUTES:1,"Du versuchst wieder herauszukommen,|aber die Form deines Kopfs verhindert es.",20,0,0,
+20,0,0,,(Das Gestell treten.)ADD_MINUTES:1,"Du trittst verärgert gegen das Gestell,|verletzt dir dabei aber nur den Fuß.",20,0,0,
+20,0,0,,@MMMMNGH!,"Es ist niemand da, um dich zu hören.",20,0,0,

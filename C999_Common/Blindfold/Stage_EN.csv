@@ -1,6 +1,6 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Inspect the blindfold.)|(1 minute),This blindfold is completely opaque.|It will be impossible to see while wearing it.,0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Blindfold yourself.)|(1 minute),You pull the blindfold over your eyes|and buckle the straps behind your head.,10,0,0,SelfBlind()
-10,0,0,Common_PlayerNotRestrained,(Wave your hand in front|of you.) (1 minute),"Your sure its there, but you can't see your hand to know it.",10,0,0,
-10,0,0,,(Try rub the blindfold off.)|(1 minute),You try rubbing against an object but the straps|holds it firmly inplace.  You'll need your hands.,10,0,0,
-10,0,0,Common_PlayerNotRestrained,(Remove the blindfold|yourself.) (1 minute),"You undo the straps, pull the blindfold|off and can now see again.",0,0,0,SelfUnBlind()
+0,0,0,,(Inspect the blindfold.)ADD_MINUTES:1,This blindfold is completely opaque.|It will be impossible to see while wearing it.,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Blindfold yourself.)ADD_MINUTES:1,You pull the blindfold over your eyes|and buckle the straps behind your head.,10,0,0,SelfBlind()
+10,0,0,Common_PlayerNotRestrained,(Wave your hand|in front of you.)ADD_MINUTES:1,"Your sure its there, but you can't see your hand to know it.",10,0,0,
+10,0,0,,(Try rub the blindfold off.)ADD_MINUTES:1,You try rubbing against an object but the straps|holds it firmly inplace.  You'll need your hands.,10,0,0,
+10,0,0,Common_PlayerNotRestrained,(Remove the|blindfold yourself.)ADD_MINUTES:1,"You undo the straps, pull the blindfold|off and can now see again.",0,0,0,SelfUnBlind()

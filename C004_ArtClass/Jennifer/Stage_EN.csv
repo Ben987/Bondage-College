@@ -26,28 +26,28 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 80,0,0,Common_PlayerGagged,@Eehmmo ehm ehher!,"I'm sorry, I cannot understand.",80,0,0,
 80,0,0,Common_PlayerGagged,(Whimper and tremble.),"Trust me, I feel for you.  You must be|humiliated now.  I'll cheer you up later.",80,0,0,PityComment()
 100,0,0,StunningBeautyReady,"Don't be shy, you're|a stunning beauty.","Me?  A beauty?  On my,|you're so kind and sweet.",100,0,0,StunningBeauty()
-100,0,1,,Shouldn't you undress|like Julia? (1 minute),I... I guess I can.|(She slowly undresses.),110,0,0,"SetCloth(1, 0, 0)"
-100,0,1,,Take your clothes|off. (1 minute),I... Yes... Sorry.|(She slowly undresses.),110,0,0,"SetCloth(1, 0, 1)"
-100,0,1,,You should show your|pretty body.  (1 minute),You really think I'm pretty?|(She slowly undresses.),110,0,0,"SetCloth(1, 1, 0)"
-110,0,2,,Do I have to take these|off myself?  (1 minute),"NO!  Oops, I didn't meant to yell, I'll do it.|(She blushes red and removes her underwear.)",120,0,0,"SetCloth(2, -1, 1)"
-110,0,2,,Only a few items left|to join Julia.  (1 minute),"Yes, if Julia could do it, I can.|(She blushes red and removes her underwear.)",120,0,0,"SetCloth(2, 0, 0)"
-110,0,2,,"If Julia can strip, you|can do it.  (1 minute)","Yes, if Julia could do it, I can.|(She blushes red and removes her underwear.)",120,0,0,"SetCloth(2, 0, 0)"
-110,0,2,,Show us more skin|and bones.  (1 minute),Bones?  I'm not that skinny.|(She blushes red and removes her underwear.),120,0,0,"SetCloth(2, -1, 0)"
-110,0,0,,Maybe you should dress|back up.  (1 minute),"You think?  Yeah, this is school after all.|(She picks her clothes and dresses back.)",100,0,0,"SetCloth(0, 0, 0)"
-120,0,0,,Maybe you should dress|back up.  (1 minute),"You think?  Yeah, this is school after all.|(She picks her clothes and dresses back.)",100,0,0,"SetCloth(0, 0, 0)"
-120,0,0,,Try your underwear|again.  (1 minute),(She sighs.)  I'll never understand art.|(She puts her underwear back on.),110,0,0,"SetCloth(1, 0, 0)"
+100,0,1,,Shouldn't you undress|like Julia?ADD_MINUTES:1,I... I guess I can.|(She slowly undresses.),110,0,0,"SetCloth(1, 0, 0)"
+100,0,1,,Take your clothes|off.ADD_MINUTES:1,I... Yes... Sorry.|(She slowly undresses.),110,0,0,"SetCloth(1, 0, 1)"
+100,0,1,,You should show your|pretty body. ADD_MINUTES:1,You really think I'm pretty?|(She slowly undresses.),110,0,0,"SetCloth(1, 1, 0)"
+110,0,2,,Do I have to take these|off myself? ADD_MINUTES:1,"NO!  Oops, I didn't meant to yell, I'll do it.|(She blushes red and removes her underwear.)",120,0,0,"SetCloth(2, -1, 1)"
+110,0,2,,Only a few items left|to join Julia. ADD_MINUTES:1,"Yes, if Julia could do it, I can.|(She blushes red and removes her underwear.)",120,0,0,"SetCloth(2, 0, 0)"
+110,0,2,,"If Julia can strip, you|can do it. ADD_MINUTES:1","Yes, if Julia could do it, I can.|(She blushes red and removes her underwear.)",120,0,0,"SetCloth(2, 0, 0)"
+110,0,2,,Show us more skin|and bones. ADD_MINUTES:1,Bones?  I'm not that skinny.|(She blushes red and removes her underwear.),120,0,0,"SetCloth(2, -1, 0)"
+110,0,0,,Maybe you should dress|back up. ADD_MINUTES:1,"You think?  Yeah, this is school after all.|(She picks her clothes and dresses back.)",100,0,0,"SetCloth(0, 0, 0)"
+120,0,0,,Maybe you should dress|back up. ADD_MINUTES:1,"You think?  Yeah, this is school after all.|(She picks her clothes and dresses back.)",100,0,0,"SetCloth(0, 0, 0)"
+120,0,0,,Try your underwear|again. ADD_MINUTES:1,(She sighs.)  I'll never understand art.|(She puts her underwear back on.),110,0,0,"SetCloth(1, 0, 0)"
 130,0,0,,Don't worry Jennifer.|Everything will be fine.,(She nods slowly.),130,0,0,TrustComment()
 130,0,0,EggInside,This egg will remind|you that I'm the boss.,(She bows her head.),130,0,0,EggComment()
-130,2,0,KissReady,(Kiss her.)|(1 minute),Please don't.  I'm not into it.|(She didn't seem to enjoy the kiss.),130,-1,0,Kiss()
-130,0,0,,(Tighten the ropes.)|(1 minute),(This bondage is already|as tight as it can be.),130,0,0,Tighten()
-130,0,0,,(Tickle her.)|(1 minute),(She cowers in shame|to avoid your tickling.),130,0,0,Tickle()
-130,0,0,Common_PlayerNotRestrained,(Untie her.)|(1 minute),(You untie her and she throws the|ropes at you.)  Can I go sit now?,120,0,0,Untie()
+130,2,0,KissReady,(Kiss her.)ADD_MINUTES:1,Please don't.  I'm not into it.|(She didn't seem to enjoy the kiss.),130,-1,0,Kiss()
+130,0,0,,(Tighten the ropes.)ADD_MINUTES:1,(This bondage is already|as tight as it can be.),130,0,0,Tighten()
+130,0,0,,(Tickle her.)ADD_MINUTES:1,(She cowers in shame|to avoid your tickling.),130,0,0,Tickle()
+130,0,0,Common_PlayerNotRestrained,(Untie her.)ADD_MINUTES:1,(You untie her and she throws the|ropes at you.)  Can I go sit now?,120,0,0,Untie()
 130,0,0,PaintAvail,(Paint Jennifer.)|(30 minutes),(You carefully paint her and show the result.)|Please destroy this painting once class is over.,130,0,0,Paint()
-140,0,0,,(Tighten the ropes.)|(1 minute),(This bondage is already|as tight as it can be.),140,0,0,Tighten()
-140,0,0,,(Tickle her.)|(1 minute),(She cowers in shame|to avoid your tickling.),140,0,0,Tickle()
-140,0,0,Common_PlayerNotRestrained,(Ungag her.)|(1 minute),(You unbuckle the gag and release it|from her mouth)  Can you untie me now?,130,0,0,Ungag()
+140,0,0,,(Tighten the ropes.)ADD_MINUTES:1,(This bondage is already|as tight as it can be.),140,0,0,Tighten()
+140,0,0,,(Tickle her.)ADD_MINUTES:1,(She cowers in shame|to avoid your tickling.),140,0,0,Tickle()
+140,0,0,Common_PlayerNotRestrained,(Ungag her.)ADD_MINUTES:1,(You unbuckle the gag and release it|from her mouth)  Can you untie me now?,130,0,0,Ungag()
 140,0,0,PaintAvail,(Paint Jennifer.)|(30 minutes),(You carefully paint her and show the result.)|(She looks at your work of art and whimpers.),140,0,0,Paint()
-150,0,0,,(Tighten the ropes.)|(1 minute),(This bondage is already|as tight as it can be.),150,0,0,Tighten()
-150,0,0,,(Tickle her.)|(1 minute),(She cowers in shame|to avoid your tickling.),150,0,0,Tickle()
-150,0,0,Common_PlayerNotRestrained,(Ungag her.)|(1 minute),"(You remove the tape from her mouth.)|Alright, can you untie me now?",130,0,0,Ungag()
+150,0,0,,(Tighten the ropes.)ADD_MINUTES:1,(This bondage is already|as tight as it can be.),150,0,0,Tighten()
+150,0,0,,(Tickle her.)ADD_MINUTES:1,(She cowers in shame|to avoid your tickling.),150,0,0,Tickle()
+150,0,0,Common_PlayerNotRestrained,(Ungag her.)ADD_MINUTES:1,"(You remove the tape from her mouth.)|Alright, can you untie me now?",130,0,0,Ungag()
 150,0,0,PaintAvail,(Paint Jennifer.)|(30 minutes),(You carefully paint her and show the result.)|(She looks at your work of art and whimpers.),150,0,0,Paint()

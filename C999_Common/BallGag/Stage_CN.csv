@@ -1,7 +1,7 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(调查口球)|(1 分钟),这个大口球有多条皮带，|你戴着它的时候无法清楚说话。,0,0,0,
-0,0,0,Common_PlayerNotRestrained,(塞自己的嘴)|(1 分钟),"你把皮带拉到头后面,|把口球塞进嘴巴，然后扣上扣子。",10,0,0,SelfGag()
-10,0,0,HasLooseBallGag,(Inspect the loose gag.)|(1 minute),This big ball gag has a full head harness.|It will be hard to be understood while wearing it.,10,0,0,ShowImage()
-10,0,0,,(咬口球)|(1 分钟),你咬了咬口球。  尽管你的下巴轻松了一点，|但完全无法咬碎口球。,10,0,0,
-10,0,0,,(尝试吐出口球)|(1 分钟),你尝试用舌头把口球顶出去，|但是毫无效果。 你要用手才能摘下。,10,0,0,
-10,0,0,Common_PlayerNotRestrained,(摘下口球)|(1 分钟),你解开了所有皮带，|吐出了口球。 现在你可以说话了。,0,0,0,SelfUngag()
+0,0,0,,(调查它)|(1 分钟),这个大口球有多条皮带，|戴上它之后别人很难听懂你在说什么。,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(塞上自己的嘴)|(1 分钟),"你把皮带拉到头后面，|把口球推进嘴巴，然后扣上带子。",10,0,0,SelfGag()
+10,0,0,HasLooseBallGag,(调查松掉的口球)|(1 分钟),这个大口球有多条皮带，|戴上它之后别人很难听懂你在说什么。,10,0,0,ShowImage()
+10,0,0,,(咬住口球)|(1 分钟),你咬了咬口球。尽管你的下巴轻松了一点，|但完全无法咬碎口球。,10,0,0,
+10,0,0,,(尝试吐出口球)|(1 分钟),你尝试用舌头把口球顶出去，|但是纹丝不动。你要用手才能摘下。,10,0,0,
+10,0,0,Common_PlayerNotRestrained,(摘下它)|(1 分钟),你解开了所有皮带，|吐出了口球。现在你可以说话了。,0,0,0,SelfUngag()

@@ -1,0 +1,22 @@
+Tag,Content
+CropStartHate,"Wenn Isolation dir nichts beibringt, wird meine Gerte|es tun. (Sie drängt dich auf ein dreieckiges Holzgestell.)"
+CropStartSub,"Jemand Unterwürfiges wie du sollte zuerst etwas leiden.|(Sie drängt dich auf ein dreieckiges Holzgestell.)"
+CropEvent0,(Sie gibt dir einen schnellen|Hieb von links nach rechts auf den Rücken.)
+CropEvent1,(Sie trifft dich sehr|stark genau auf den Po.)
+CropEvent2,(Sie zielt leicht auf|deine Brust und streift einen Nippel.)
+CropEvent3,(Sie schlägt deine gefesselten|Arme und du windest dich.)
+CropEvent4,(Sie schwingt genau auf|deinen Bauch und du schnappst nach Luft.)
+CropEvent5,(Sie klatscht brutal auf deinen|Oberschenkel und erzeugt ein lautes Geräusch.)
+Count1,Eins
+Count2,Zwei
+Count3,Drei
+Count4,Vier
+Count5,Fünf
+Count6,Sechs
+Count7,Sieben
+Count8,Acht
+Count9,Neun
+Count10,Zehn
+Count11,Elf
+Count12,Zwölf
+CropStop,Das reicht. (Sie hört auf.)|Hast du etwas daraus gelernt?

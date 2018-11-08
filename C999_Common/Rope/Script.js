@@ -38,7 +38,7 @@ function C999_Common_Rope_ShowImage() {
 // Chapter Common - When the player wants to tie herself, she can do it with rope mastery level 1
 function C999_Common_Rope_QuerySelfBondage() {
 	if ((Common_BondageAllowed) && (Common_SelfBondageAllowed)) {
-		if (PlayerGetSkillLevel("RopeMastery") >= 1) {
+		if (PlayerGetSkillLevel("RopeMastery") >= 2) {
 			C999_Common_Rope_CurrentStage = 20;
 			OverridenIntroText = GetText("ConfirmSelfBondage");
 		}

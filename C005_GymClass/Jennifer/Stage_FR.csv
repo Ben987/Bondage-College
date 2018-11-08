@@ -32,73 +32,74 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 400,0,0,,Tu n'ai pas fait pour ça.|Tu as besoin de protection.,La tienne ? Tu crois ? Oh mon dieu.|J'ai certainement besoin de m'entrainer plus souvent.,410,-1,1,
 410,0,0,,Tu sais que tu as l'air |adorable dans cet état ?,(Elle rougit et détourne le regard.),410,0,0,AdorableComment()
 410,0,0,EggInside,"Es-tu exitée|grâce à l'oeuf ?",Oh non ! Peux-tu l'enlever ?,410,0,0,EggComment()
-410,0,0,EggInside,(Tu joues avec sa corde|d'entrejambe.) (1 minute),"(Tu joues légèrement avec sa corde d'entrejambe.|Elle gémit tout doucement, pour ne pas être entendue.)",410,0,0,CrotchRope()
-410,0,0,,(Tu la chatouilles.)|(1 minute),(Elle se balance dans ses cordes pour t'éviter.)|(Elle n'a pas l'air d'aimer se faire chatouiller en public.),410,0,0,Tickle()
-410,0,0,,(Tu lui mets une fessée.)|(1 minute),Ouïe ! Mais enfin pourquoi ? (Elle se débat|pendant que tu lui mets une bonne fessée.),410,0,0,Spank()
-410,0,0,,(Tu la libères.)|(1 minute),(Tu défais ses liens et elle se rhabille.)|Merci beaucoup ! Une autre manche ?,600,1,0,Release()
+410,0,0,EggInside,(Tu joues avec sa corde|d'entrejambe.)ADD_MINUTES:1,"(Tu joues légèrement avec sa corde d'entrejambe.|Elle gémit tout doucement, pour ne pas être entendue.)",410,0,0,CrotchRope()
+410,0,0,,(Tu la chatouilles.)ADD_MINUTES:1,(Elle se balance dans ses cordes pour t'éviter.)|(Elle n'a pas l'air d'aimer se faire chatouiller en public.),410,0,0,Tickle()
+410,0,0,,(Tu lui mets une fessée.)ADD_MINUTES:1,Ouïe ! Mais enfin pourquoi ? (Elle se débat|pendant que tu lui mets une bonne fessée.),410,0,0,Spank()
+410,0,0,,(Tu la libères.)ADD_MINUTES:1,(Tu défais ses liens et elle se rhabille.)|Merci beaucoup ! Une autre manche ?,600,1,0,Release()
 410,0,0,,"Ça suffit, allons manger.|(Tu quittes le gymnase.)",,410,0,0,EndChapter()
-420,0,0,EggInside,(Tu joues avec sa corde|d'entrejambe.) (1 minute),"(Tu joues légèrement avec sa corde d'entrejambe.|Elle gémit tout doucement, pour ne pas être entendue.)",420,0,0,CrotchRope()
-420,0,0,,(Tu la chatouilles.)|(1 minute),(Elle se balance dans ses cordes pour t'éviter.)|(Elle n'a pas l'air d'aimer se faire chatouiller en public.),420,0,0,Tickle()
-420,0,0,,(Tu lui mets une fessée.)|(1 minute),(Elle se débat dans ses cordes|pendant que tu lui mets une bonne fessée.),420,0,0,Spank()
-420,0,0,,(Tu la débâillones.)|(1 minute),"(Tu enlèves le bâillon de son visage et elle soupire.)|Tu sembles vraiment apprécier l'autodéfense.",410,0,0,Ungag()
-420,0,0,,(Tu la libères.)|(1 minute),(Tu défais ses liens et elle se rhabille.)|Merci beaucoup ! Une autre manche ?,600,1,0,Release()
+420,0,0,EggInside,(Tu joues avec sa corde|d'entrejambe.)ADD_MINUTES:1,"(Tu joues légèrement avec sa corde d'entrejambe.|Elle gémit tout doucement, pour ne pas être entendue.)",420,0,0,CrotchRope()
+420,0,0,,(Tu la chatouilles.)ADD_MINUTES:1,(Elle se balance dans ses cordes pour t'éviter.)|(Elle n'a pas l'air d'aimer se faire chatouiller en public.),420,0,0,Tickle()
+420,0,0,,(Tu lui mets une fessée.)ADD_MINUTES:1,(Elle se débat dans ses cordes|pendant que tu lui mets une bonne fessée.),420,0,0,Spank()
+420,0,0,,(Tu la débâillones.)ADD_MINUTES:1,"(Tu enlèves le bâillon de son visage et elle soupire.)|Tu sembles vraiment apprécier l'autodéfense.",410,0,0,Ungag()
+420,0,0,,(Tu la libères.)ADD_MINUTES:1,(Tu défais ses liens et elle se rhabille.)|Merci beaucoup ! Une autre manche ?,600,1,0,Release()
 420,0,0,,"Ça suffit, allons manger.|(Tu quittes le gymnase.)",,420,0,0,EndChapter()
-430,0,0,EggInside,(Tu joues avec sa corde|d'entrejambe.) (1 minute),"(Tu joues légèrement avec sa corde d'entrejambe.|Elle gémit tout doucement, pour ne pas être entendue.)",430,0,0,CrotchRope()
-430,0,0,,(Tu la chatouilles.)|(1 minute),(Elle se balance dans ses cordes pour t'éviter.)|(Elle n'a pas l'air d'aimer se faire chatouiller en public.),430,0,0,Tickle()
-430,0,0,,(Tu lui mets une fessée.)|(1 minute),(Elle se débat dans ses cordes|pendant que tu lui mets une bonne fessée.),430,0,0,Spank()
-430,0,0,,(Tu la débâillones.)|(1 minute),(Tu enlèves le ruban adhésif de son visage et elle|soupire.) Tu sembles vraiment apprécier l'autodéfense.,410,0,0,Ungag()
-430,0,0,,(Tu la libères.)|(1 minute),(Tu défais ses liens et elle se rhabille.)|Merci beaucoup ! Une autre manche ?,600,1,0,Release()
+430,0,0,EggInside,(Tu joues avec sa corde|d'entrejambe.)ADD_MINUTES:1,"(Tu joues légèrement avec sa corde d'entrejambe.|Elle gémit tout doucement, pour ne pas être entendue.)",430,0,0,CrotchRope()
+430,0,0,,(Tu la chatouilles.)ADD_MINUTES:1,(Elle se balance dans ses cordes pour t'éviter.)|(Elle n'a pas l'air d'aimer se faire chatouiller en public.),430,0,0,Tickle()
+430,0,0,,(Tu lui mets une fessée.)ADD_MINUTES:1,(Elle se débat dans ses cordes|pendant que tu lui mets une bonne fessée.),430,0,0,Spank()
+430,0,0,,(Tu la débâillones.)ADD_MINUTES:1,(Tu enlèves le ruban adhésif de son visage et elle|soupire.) Tu sembles vraiment apprécier l'autodéfense.,410,0,0,Ungag()
+430,0,0,,(Tu la libères.)ADD_MINUTES:1,(Tu défais ses liens et elle se rhabille.)|Merci beaucoup ! Une autre manche ?,600,1,0,Release()
 430,0,0,,"Ça suffit, allons manger.|(Tu quittes le gymnase.)",,430,0,0,EndChapter()
-450,5,0,,"Allez, ce sera merveilleux.|(Tu la satisfais.) (1 minute)",(Elle te fait confiance et s'abandonne à ton toucher|affectueux. Elle a un orgasme doux et silencieux.),410,1,0,Orgasm()
-450,0,0,,Tu as atteint ta limite ?|(Tu la satisfais.) (1 minute),(Tu essayes de lui donner un orgasme en combinant|oeuf et corde. Elle s'en approche mais ne l'atteint pas.),410,0,0,
-450,0,0,,Tu es une gentille fille.|(Tu la satisfais.) (1 minute),(Tu essayes de lui donner un orgasme en combinant|oeuf et corde. Elle s'en approche mais ne l'atteint pas.),410,0,1,
+450,5,0,,"Allez, ce sera merveilleux.|(Tu la satisfais.)ADD_MINUTES:1",(Elle te fait confiance et s'abandonne à ton toucher|affectueux. Elle a un orgasme doux et silencieux.),410,1,0,Orgasm()
+450,0,0,,Tu as atteint ta limite ?|(Tu la satisfais.)ADD_MINUTES:1,(Tu essayes de lui donner un orgasme en combinant|oeuf et corde. Elle s'en approche mais ne l'atteint pas.),410,0,0,
+450,0,0,,Tu es une gentille fille.|(Tu la satisfais.)ADD_MINUTES:1,(Tu essayes de lui donner un orgasme en combinant|oeuf et corde. Elle s'en approche mais ne l'atteint pas.),410,0,1,
 450,0,0,,"Hmm, peut-être plus tard.|(Tu relâches la corde.)","Oh mon dieu, merci.|Ça aurait pu être embarrassant.",410,1,0,
 450,0,0,,Les salopes le méritent pas|(Tu relâches la corde.),"Moi ? Une salope ?  Mais, Mais.. Mais..|(Elle ne peut se cacher et verse quelques larmes.)",410,-1,1,
-450,2,0,,(Tu lui fais un câlin.)|(1 minute),"(Tu lui fais un gros câlin,|elle a l'air de se détendre dans tes bras.)",450,0,0,Cuddle()
-460,5,0,,"Allez, ce sera merveilleux.|(Tu la satisfais.) (1 minute)",(Elle te fait confiance et s'abandonne à ton toucher|affectueux. Elle a un orgasme doux et silencieux.),420,1,0,Orgasm()
-460,0,0,,Tu as atteint ta limite ?|(Tu la satisfais.) (1 minute),(Tu essayes de lui donner un orgasme en combinant|oeuf et corde. Elle s'en approche mais ne l'atteint pas.),420,0,0,
-460,0,0,,Tu es une gentille fille.|(Tu la satisfais.) (1 minute),(Tu essayes de lui donner un orgasme en combinant|oeuf et corde. Elle s'en approche mais ne l'atteint pas.),420,0,1,
+450,2,0,,(Tu lui fais un câlin.)ADD_MINUTES:1,"(Tu lui fais un gros câlin,|elle a l'air de se détendre dans tes bras.)",450,0,0,Cuddle()
+460,5,0,,"Allez, ce sera merveilleux.|(Tu la satisfais.)ADD_MINUTES:1",(Elle te fait confiance et s'abandonne à ton toucher|affectueux. Elle a un orgasme doux et silencieux.),420,1,0,Orgasm()
+460,0,0,,Tu as atteint ta limite ?|(Tu la satisfais.)ADD_MINUTES:1,(Tu essayes de lui donner un orgasme en combinant|oeuf et corde. Elle s'en approche mais ne l'atteint pas.),420,0,0,
+460,0,0,,Tu es une gentille fille.|(Tu la satisfais.)ADD_MINUTES:1,(Tu essayes de lui donner un orgasme en combinant|oeuf et corde. Elle s'en approche mais ne l'atteint pas.),420,0,1,
 460,0,0,,"Hmm, peut-être plus tard.|(Tu relâches la corde.)",(Elle acquiesce lentement et reprend ses esprits.),420,1,0,
 460,0,0,,Les salopes le méritent pas.|(Tu relâches la corde.),"(Honteuse, elle détourne le regard|et reprend lentement ses esprits.)",420,-1,1,
-460,2,0,,(Tu lui fais un câlin.)|(1 minute),"(Tu lui fais un gros câlin,|elle a l'air de se détendre dans tes bras.)",460,0,0,Cuddle()
-470,5,0,,"Allez, ce sera merveilleux.|(Tu la satisfais.) (1 minute)",(Elle te fait confiance et s'abandonne à ton toucher|affectueux. Elle a un orgasme doux et silencieux.),430,1,0,Orgasm()
-470,0,0,,Tu as atteint ta limite ?|(Tu la satisfais.) (1 minute),(Tu essayes de lui donner un orgasme en combinant|oeuf et corde. Elle s'en approche mais ne l'atteint pas.),430,0,0,
-470,0,0,,Tu es une gentille fille.|(Tu la satisfais.) (1 minute),(Tu essayes de lui donner un orgasme en combinant|oeuf et corde. Elle s'en approche mais ne l'atteint pas.),430,0,1,
+460,2,0,,(Tu lui fais un câlin.)ADD_MINUTES:1,"(Tu lui fais un gros câlin,|elle a l'air de se détendre dans tes bras.)",460,0,0,Cuddle()
+470,5,0,,"Allez, ce sera merveilleux.|(Tu la satisfais.)ADD_MINUTES:1",(Elle te fait confiance et s'abandonne à ton toucher|affectueux. Elle a un orgasme doux et silencieux.),430,1,0,Orgasm()
+470,0,0,,Tu as atteint ta limite ?|(Tu la satisfais.)ADD_MINUTES:1,(Tu essayes de lui donner un orgasme en combinant|oeuf et corde. Elle s'en approche mais ne l'atteint pas.),430,0,0,
+470,0,0,,Tu es une gentille fille.|(Tu la satisfais.)ADD_MINUTES:1,(Tu essayes de lui donner un orgasme en combinant|oeuf et corde. Elle s'en approche mais ne l'atteint pas.),430,0,1,
 470,0,0,,"Hmm, peut-être plus tard.|(Tu relâches la corde.)",(Elle acquiesce lentement et reprend ses esprits.),430,1,0,
 470,0,0,,Les salopes le méritent pas.|(Tu relâches la corde.),"(Honteuse, elle détourne le regard|et reprend lentement ses esprits.)",430,-1,1,
-470,2,0,,(Tu lui fais un câlin.)|(1 minute),"(Tu lui fais un gros câlin,|elle a l'air de se détendre dans tes bras.)",470,0,0,Cuddle()
+470,2,0,,(Tu lui fais un câlin.)ADD_MINUTES:1,"(Tu lui fais un gros câlin,|elle a l'air de se détendre dans tes bras.)",470,0,0,Cuddle()
 500,0,0,,"C'était amusant, les cordes|sont la cerise sur le gâteau.","Tu es enthousiasme dans la défaite,|c'est gentil de ta part.",510,0,-1,
 500,0,0,,"J'y crois pas, tu as gagné.|Tu as beaucoup de talent.","Merci, j'apprécie. Peut-être qu'un jour|tu apprendras mes techniques.",510,1,0,
 500,0,0,,Hé merde ! Tu as triché|lors de cette manche.,Tu dois apprendre à accepter la défaite.|(Elle vérifie un nœud et le resserre.),510,-1,0,
 500,0,0,,Je n'aime pas le judo.,L'art martial n'est pas fait pour tout le monde.|Mais l'autodéfense est une leçon utile.,510,0,-1,
-510,0,0,,Tu peux vérifier la corde de|l'entrejambe ? (1 minute),"Qu'est-ce qui ne va pas ? Ça fait mal ? (Elle tire sur|la corde, ce qui te donne une bonne stimulation.)",510,0,0,CrotchRopePlayer()
+510,0,0,,Tu peux vérifier la corde de|l'entrejambe ?ADD_MINUTES:1,"Qu'est-ce qui ne va pas ? Ça fait mal ? (Elle tire sur|la corde, ce qui te donne une bonne stimulation.)",510,0,0,CrotchRopePlayer()
 510,0,0,PlayerHasBallGag,Tu ne devrais pas me|bâillonner ? J'ai un bâillon.,Je suppose qu'en autodéfense on peut|bâilloner son adversaire. (Elle te met le bâillon.),520,0,0,BallGagPlayer()
 510,0,0,PlayerHasTapeGag,Tu ne devrais pas me|bâillonner ? J'ai du ruban.,Je suppose qu'en autodéfense on peut|bâilloner son adversaire. (Elle te met le ruban.),530,0,0,TapeGagPlayer()
 510,0,0,,Peux-tu me libérer ?,"Mmm, non. Je ne pense pas.|Je préfère que tu restes dans cet état.",510,0,0,CheckReleasePlayer()
-510,0,0,,(Tu te débats joyeusement.)|(1 minute),C'est pas vrai ! Tu aimes vraiment ça ?,510,0,0,
+510,0,0,,(Tu te débats joyeusement.)ADD_MINUTES:1,C'est pas vrai ! Tu aimes vraiment ça ?,510,0,0,
 510,0,0,,(Tu attends jusqu'à|la fin du cours.),,510,0,0,EndChapter()
 520,0,0,,@Uugnmph nump !,J'ai vue Sarah bâillonnée plusieurs fois mais|je dois admettre que je n'ai jamais compris l'intérêt.,520,0,0,
-520,0,0,,(Tu indiques la corde de|l'entrejambe.) (1 minute),"Il y a un problème avec la corde ? (Elle tire sur|la corde, ce qui te donne une bonne stimulation.)",520,0,0,CrotchRopePlayer()
-520,0,0,,(Tu gémis piteusement.)|(1 minute),Non. Je préfère que tu restes dans cet état.,520,0,0,UngagPlayer()
-520,0,0,,(Tu te débats joyeusement.)|(1 minute),C'est pas vrai ! Tu aimes vraiment ça ?,520,0,0,
+520,0,0,,(Tu indiques la corde de|l'entrejambe.)ADD_MINUTES:1,"Il y a un problème avec la corde ? (Elle tire sur|la corde, ce qui te donne une bonne stimulation.)",520,0,0,CrotchRopePlayer()
+520,0,0,,(Tu gémis piteusement.)ADD_MINUTES:1,Non. Je préfère que tu restes dans cet état.,520,0,0,UngagPlayer()
+520,0,0,,(Tu te débats joyeusement.)ADD_MINUTES:1,C'est pas vrai ! Tu aimes vraiment ça ?,520,0,0,
 520,0,0,,(Tu attends jusqu'à|la fin du cours.),,520,0,0,EndChapter()
 530,0,0,,@Uugnmph nump !,J'ai vue Sarah bâillonnée plusieurs fois mais|je dois admettre que je n'ai jamais compris l'intérêt.,530,0,0,
-530,0,0,,(Tu indiques la corde de|l'entrejambe.) (1 minute),"Il y a un problème avec la corde ? (Elle tire sur|la corde, ce qui te donne une bonne stimulation.)",530,0,0,CrotchRopePlayer()
-530,0,0,,(Tu gémis piteusement.)|(1 minute),Non. Je préfère que tu restes dans cet état.,530,0,0,UngagPlayer()
-530,0,0,,(Tu te débats joyeusement.)|(1 minute),C'est pas vrai ! Tu aimes vraiment ça ?,530,0,0,
+530,0,0,,(Tu indiques la corde de|l'entrejambe.)ADD_MINUTES:1,"Il y a un problème avec la corde ? (Elle tire sur|la corde, ce qui te donne une bonne stimulation.)",530,0,0,CrotchRopePlayer()
+530,0,0,,(Tu gémis piteusement.)ADD_MINUTES:1,Non. Je préfère que tu restes dans cet état.,530,0,0,UngagPlayer()
+530,0,0,,(Tu te débats joyeusement.)ADD_MINUTES:1,C'est pas vrai ! Tu aimes vraiment ça ?,530,0,0,
 530,0,0,,(Tu attends jusqu'à|la fin du cours.),,530,0,0,EndChapter()
 550,0,0,,"Oui, oui, je vais bien.|Merci de demander.","Bien, tu tremblais comme une feuille.|Tu m'as inquiété pendant quelques secondes.",510,0,-1,
 550,0,0,,Je vais mieux que bien !|Tout ça grâce à toi.,"(Elle sourit.) Très bien, alors !|Tu m'as inquiété en tremblant de cette façon.",510,1,0,
-550,2,0,,Je peux me blottir dans|tes bras ? (1 minute),"Bien sûr, reste aussi longtemps que nécessaire.",550,0,0,Cuddle()
+550,2,0,,Je peux me blottir dans|tes bras ?ADD_MINUTES:1,"Bien sûr, reste aussi longtemps que nécessaire.",550,0,0,Cuddle()
 550,0,0,,"Je ne suis pas sûre.|Tu peux me relâcher ?","Ma pauvre petite. Viens ici, laisse-moi t'aider.|(Elle te détache délicatement et te laisse te rhabiller.)",600,0,-1,ReleasePlayer()
-560,0,0,,(Tu acquiesces doucement|et tu rougis.) (1 minute),"Bien, tu tremblais comme une feuille.|Tu m'as inquiété pendant quelques secondes.",520,0,-1,
-560,0,0,,(Tu acquiesces|joyeusement.) (1 minute),"(Elle sourit.) Très bien, alors ! |Tu m'as inquiété en tremblant de cette façon.",520,1,0,
-560,2,0,,(Tu te blottis dans|ses bras.) (1 minute),Tu peux rester aussi longtemps que nécessaire.|Préviens-moi dès que tu te sens mieux.,560,0,0,Cuddle()
-560,0,0,,(Tu secoues la tête|en panique.) (1 minute),"Ma pauvre petite. Viens ici, laisse-moi t'aider.|(Elle te détache délicatement et te laisse te rhabiller.)",600,0,-1,ReleasePlayer()
-570,0,0,,(Tu acquiesces doucement|et tu rougis.) (1 minute),"Bien, tu tremblais comme une feuille.|Tu m'as inquiété pendant quelques secondes.",530,0,-1,
-570,0,0,,(Tu acquiesces|joyeusement.) (1 minute),"(Elle sourit.) Très bien, alors ! |Tu m'as inquiété en tremblant de cette façon.",530,1,0,
-570,2,0,,(Tu te blottis dans|ses bras.) (1 minute),Tu peux rester aussi longtemps que nécessaire.|Préviens-moi dès que tu te sens mieux.,570,0,0,Cuddle()
-570,0,0,,(Tu secoues la tête|en panique.) (1 minute),"Ma pauvre petite. Viens ici, laisse-moi t'aider.|(Elle te détache délicatement et te laisse te rhabiller.)",600,0,-1,ReleasePlayer()
+560,0,0,,(Tu acquiesces doucement|et tu rougis.)ADD_MINUTES:1,"Bien, tu tremblais comme une feuille.|Tu m'as inquiété pendant quelques secondes.",520,0,-1,
+560,0,0,,(Tu acquiesces|joyeusement.)ADD_MINUTES:1,"(Elle sourit.) Très bien, alors ! |Tu m'as inquiété en tremblant de cette façon.",520,1,0,
+560,2,0,,(Tu te blottis dans|ses bras.)ADD_MINUTES:1,Tu peux rester aussi longtemps que nécessaire.|Préviens-moi dès que tu te sens mieux.,560,0,0,Cuddle()
+560,0,0,,(Tu secoues la tête|en panique.)ADD_MINUTES:1,"Ma pauvre petite. Viens ici, laisse-moi t'aider.|(Elle te détache délicatement et te laisse te rhabiller.)",600,0,-1,ReleasePlayer()
+570,0,0,,(Tu acquiesces doucement|et tu rougis.)ADD_MINUTES:1,"Bien, tu tremblais comme une feuille.|Tu m'as inquiété pendant quelques secondes.",530,0,-1,
+570,0,0,,(Tu acquiesces|joyeusement.)ADD_MINUTES:1,"(Elle sourit.) Très bien, alors ! |Tu m'as inquiété en tremblant de cette façon.",530,1,0,
+570,2,0,,(Tu te blottis dans|ses bras.)ADD_MINUTES:1,Tu peux rester aussi longtemps que nécessaire.|Préviens-moi dès que tu te sens mieux.,570,0,0,Cuddle()
+570,0,0,,(Tu secoues la tête|en panique.)ADD_MINUTES:1,"Ma pauvre petite. Viens ici, laisse-moi t'aider.|(Elle te détache délicatement et te laisse te rhabiller.)",600,0,-1,ReleasePlayer()
 600,0,0,,"Ok, une autre manche.|(Vous commencez.)",,600,0,0,StartPractice()
 600,0,0,TrainingReady,"(Tu t'entraines au combat.)|(30 minutes)",,600,0,0,TrainFighting()
+600,0,0,,"(Recherche dans le gym.)|(30 minutes)","(Tu recherches dans le gym mais|ne trouve rien d'intéressant.)",600,0,0,Search()
 600,0,0,,"Ça suffit, allons manger.|(Tu quittes le gymnase.)",,600,0,0,EndChapter()

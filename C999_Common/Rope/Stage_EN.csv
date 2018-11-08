@@ -1,9 +1,9 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Play with it.)|(1 minute),You play with the rope.  It feels|very soft and smooth on your skin.,0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Tie yourself.)|(1 minute),You try to tie yourself but cannot manage to do|good knots.  You'll need someone else to tie you up.,0,0,0,QuerySelfBondage()
-10,0,0,HasLooseRope,(Play with the loose|rope.)  (1 minute),You play with the loose rope while restrained.|It feels very soft and smooth on your skin.,10,0,0,ShowImage()
-10,0,0,,(Try to reach a knot.)|(1 minute),You struggle to reach a knot to|undo but none can be reached.,10,0,0,
-10,0,0,,(Struggle to get out.)|(1 minute),You struggle madly in the rope|but can't manage to get out.,10,0,0,
-10,0,0,,(Pull on the crotch rope.)|(1 minute),You manage to pull on the|crotch rope and it's quite pleasurable.,10,0,0,
-20,0,0,,(Tie yourself.),You carefully wrap the rope around your torso|and manage to pull a tight and secure knot.,10,0,0,DoSelfBondage()
+0,0,0,,(Play with it.)ADD_MINUTES:1,You play with the rope.  It feels|very soft and smooth on your skin.,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Tie yourself.)ADD_MINUTES:1,You try to tie yourself but cannot manage to do|good knots.  You'll need someone else to tie you up.,0,0,0,QuerySelfBondage()
+10,0,0,HasLooseRope,(Play with the|loose rope.)ADD_MINUTES:1,You play with the loose rope while restrained.|It feels very soft and smooth on your skin.,10,0,0,ShowImage()
+10,0,0,,(Try to reach a knot.)ADD_MINUTES:1,You struggle to reach a knot to|undo but none can be reached.,10,0,0,
+10,0,0,,(Struggle to get out.)ADD_MINUTES:1,You struggle madly in the rope|but can't manage to get out.,10,0,0,
+10,0,0,,(Pull on the crotch rope.)ADD_MINUTES:1,You manage to pull on the|crotch rope and it's quite pleasurable.,10,0,0,
+20,0,0,,(Tie yourself.)ADD_MINUTES:1,You carefully wrap the rope around your torso|and manage to pull a tight and secure knot.,10,0,0,DoSelfBondage()
 20,0,0,,(Don't do it.),You resist the urge of tying yourself up.,0,0,0,

@@ -1,8 +1,8 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Inspect them.)|(1 minute),"They are pretty strong, there's no|way anyone could escape without a key.",0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Cuff yourself.)|(1 minute),You snap the cuffs behind your back.  Shivers|run down your spine when you hear the last click.,10,0,0,SelfCuff()
-10,0,0,HasLooseCuffs,(Inspect the loose cuffs.)|(1 minute),"You clumsily inspect the cuffs in your restrains.|They seem strong, nobody could escape without the key.",10,0,0,ShowImage()
-10,0,0,,(Try to slip out.)|(1 minute),You try to slip your hands out of|the cuffs but you fail miserably.,10,0,0,
-10,0,0,,(Try to break them.)|(1 minute),You try to break the cuffs|but you can't make a scratch.,10,0,0,
-10,0,0,HasKey,(Unlock them.)|(1 minute),You fumble with the key for a little|while but finally unlock yourself.,0,0,0,Unlock()
-10,0,0,CanEscape,(Escape the cuffs.)|(1 minute),"You fumble with a hair clip for a while, but eventually|force the mechanisum to open with a hair clip.",0,0,0,Escape()
+0,0,0,,(Inspect them.)ADD_MINUTES:1,"They are pretty strong, there's no|way anyone could escape without a key.",0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Cuff yourself.)ADD_MINUTES:1,You snap the cuffs behind your back.  Shivers|run down your spine when you hear the last click.,10,0,0,SelfCuff()
+10,0,0,HasLooseCuffs,(Inspect the loose cuffs.)ADD_MINUTES:1,"You clumsily inspect the cuffs in your restrains.|They seem strong, nobody could escape without the key.",10,0,0,ShowImage()
+10,0,0,,(Try to slip out.)ADD_MINUTES:1,You try to slip your hands out of|the cuffs but you fail miserably.,10,0,0,
+10,0,0,,(Try to break them.)ADD_MINUTES:1,You try to break the cuffs|but you can't make a scratch.,10,0,0,
+10,0,0,HasKey,(Unlock them.)ADD_MINUTES:1,You fumble with the key for a little|while but finally unlock yourself.,0,0,0,Unlock()
+10,0,0,CanEscape,(Escape the cuffs.)ADD_MINUTES:1,"You fumble with a hair clip for a while, but eventually|force the mechanisum to open with a hair clip.",0,0,0,Escape()

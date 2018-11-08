@@ -1,0 +1,2 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,Common_PlayerNotRestrained,(Suchen.)ADD_MINUTES:1,"Du durchstöberst die Sachen,|findest aber nichts Interessantes.",0,0,0,Search()

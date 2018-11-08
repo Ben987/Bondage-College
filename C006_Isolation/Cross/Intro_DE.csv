@@ -1,0 +1,5 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,"Ein ""X""-förmiges Kreuz ist an der Wand festgenagelt.",Cross.jpg
+10,0,0,,Möchtest du deinen Fuß daran festmachen?,Cross.jpg
+20,0,0,,,Cross1Ankle.jpg
+30,0,0,,,Cross2Ankles.jpg

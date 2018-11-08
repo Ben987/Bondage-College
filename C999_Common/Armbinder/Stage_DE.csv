@@ -1,0 +1,7 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,(Untersuchen.)|(1 Minute),Dieser Monohandschuh wirkt sehr robust.|Er wird bei einem Befreiungsversuch nicht reißen.,0,0,0,
+0,0,0,,(Damit spielen.)|(1 Minute),Du spielst mit den Lederrieman und Schnüren.|Das Gefühl auf deiner Haut lässt dich schaudern.,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Dich einschnallen.)|(1 Minute),"Du zwängst deine Arme hinein, aber ohne|Hilfe kannst du ihn nicht verschließen.",0,0,0,
+10,0,0,HasLooseArmbinder,(Mit freiem Handschuh|spielen.)  (1 Minute),"Du spielst gefesselt mit dem Monohandschuh,|kannst aber nicht viel tun.",10,0,0,ShowImage()
+10,0,0,,(Ausbruch versuchen.)|(1 Minute),"Mit aller Kraft versuchst du den Monohandschuh|zu zerreißen, ohne den geringsten Erfolg.",10,0,0,
+10,0,0,,(Freikämpfen.)|(1 Minute),"Du ringst wie verrückt mit dem Ding,|kommst aber nicht heraus.",10,0,0,

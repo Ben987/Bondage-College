@@ -22,10 +22,10 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 200,0,0,,Yes!  Now we|can have some fun.,(She looks at you nervously.)|What do you have in mind?,210,0,0,
 200,0,0,,So do you want|to get out?,Fuck yes!  Do you have|the keys to these cuffs?,210,1,-1,
 200,0,0,,Now you're all|mine bitch.,What the fuck are you talking about?|(She looks at you nervously.),210,-1,1,
-210,0,0,Common_PlayerNotRestrained,(Strip her.)|(1 minute),Wo wait!  What are you doing?|(You force her to strip.),220,0,0,Strip()
-210,1,0,,(Kiss her.)|(1 minute),(You kiss her and she remains speechless.),210,0,0,Kiss()
-220,0,0,Common_PlayerNotRestrained,(Dress her back.)|(1 minute),Is there any logic in what you're doing?,210,0,0,Dress()
-220,1,0,,(Kiss her.)|(1 minute),(You kiss her and she remains speechless.),220,0,0,Kiss()
-220,0,0,Common_PlayerNotRestrained,(Tickle her.)|(1 minute),Fuck you and your tickling fetish!|(She doesn't seem to laugh or have fun.),220,0,0,Tickle()
-220,0,0,EggReady,(Insert the egg.)|(1 minute),(You push the egg in her vagina.  It buzzes and|goes deeper.)  Fuck!  Why did you do that?,220,-1,1,Insert()
-220,0,0,EggInside,(Remove the egg.)|(1 minute),(You slide a finger in but cannot reach the egg.)|You can't reach it!  You're such an idiot!,220,0,0,
+210,0,0,Common_PlayerNotRestrained,(Strip her.)ADD_MINUTES:1,Wo wait!  What are you doing?|(You force her to strip.),220,0,0,Strip()
+210,1,0,,(Kiss her.)ADD_MINUTES:1,(You kiss her and she remains speechless.),210,0,0,Kiss()
+220,0,0,Common_PlayerNotRestrained,(Dress her back.)ADD_MINUTES:1,Is there any logic in what you're doing?,210,0,0,Dress()
+220,1,0,,(Kiss her.)ADD_MINUTES:1,(You kiss her and she remains speechless.),220,0,0,Kiss()
+220,0,0,Common_PlayerNotRestrained,(Tickle her.)ADD_MINUTES:1,Fuck you and your tickling fetish!|(She doesn't seem to laugh or have fun.),220,0,0,Tickle()
+220,0,0,EggReady,(Insert the egg.)ADD_MINUTES:1,(You push the egg in her vagina.  It buzzes and|goes deeper.)  Fuck!  Why did you do that?,220,-1,1,Insert()
+220,0,0,EggInside,(Remove the egg.)ADD_MINUTES:1,(You slide a finger in but cannot reach the egg.)|You can't reach it!  You're such an idiot!,220,0,0,

@@ -1,0 +1,101 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,AmandaAvail,Meet Amanda.,,0,0,0,AmandaStart()
+0,0,0,,Study for a while.,You study for a while|and do some homework.,0,0,0,Wait()
+0,0,0,,Search the place.,You search around the library but|don't find anything interesting.,0,0,0,Search()
+0,0,0,,Leave the library.,,0,0,0,Leave()
+10,0,0,,Leave the library.,,0,0,0,Leave()
+100,0,0,,I don't need your help.,(She frowns.)  Very well.|You can study with me then.,200,-1,0,
+100,0,0,,"Yeah, this is too hard.",Maybe I can help you.|You can study with me.,200,0,-1,
+100,0,0,,What are you doing?,I'm preparing for an exam next week.|You can study with me if you want.,200,0,0,
+100,0,0,,"Don't worry, I'm fine.","You seem pretty confident, that's good.|You can study here with me if you want.",200,0,1,
+100,0,0,,"No, I came to see you.",That's very nice of you.|You can study with me.,200,1,0,
+110,0,0,,Don't call me Miss.|It sounds strange.,(She bows her head.)  Sorry COMMON_PLAYERNAME.|You can study here with me if you want.,200,0,-1,
+110,0,0,,I came to see you.,That's very nice of you.|You can study with me.,200,1,0,
+110,0,0,,I was bored|so I came here.,Bored in our great college?  That's strange.|You can study here with me if you want.,200,-1,0,
+110,0,0,,I'm checking|the library.,It's a wonderful place to learn.|You can study with me if you want.,200,0,0,
+110,0,0,,I'm roaming in school|to get girls in trouble.,(She's stunned by your answer.)  Well...|My...  You can study here with me if you want.,200,0,1,
+120,0,0,,Girl.  This is how you|treat new students?,"Sorry, I guess I was kind of rude.|You can study with me if you want.",200,0,1,
+120,0,0,,Is studying all|you ever do? ,"No, but I want to get good grades.|You can study with me if you want.",200,-1,0,
+120,0,0,,Can we make peace?,Alright.  (She shakes your hand.)|You can study with me if you want.,200,1,0,
+120,0,0,,I'm sorry about today.|Please don't be angry.,I guess we started on the wrong foot.|You can study here with me if you want.,200,0,-1,
+120,0,0,,I'm only checking|the school library.,It's a very good place to learn.|You can study with me if you want.,200,0,0,
+130,0,0,,Yes!  I have a great|homework to do.,Very good my friend.|You can study with me.,200,1,0,
+130,0,0,,"No, I came to|see the library.",It's a wonderful place to learn.|You can study with me if you want.,200,0,0,
+130,0,0,,Doing homework|is only for losers.,(She frowns.)  You can't be serious.|You can study with me if you want.,200,-1,0,
+130,0,0,,"Yes, I need to work|so I won't fail.","Very good, don't give up.|You can study with me.",200,0,-1,
+130,0,0,,Yep!  So I'll get|perfect grades.,Perfect grades?  That's impressive.|You can study with me if you want.,200,0,1,
+140,0,0,Common_PlayerChaste,"I'm sorry, I can't.|I'm also locked.",I guess we can understand each other.|You can study here with me if you want.,200,1,-1,
+140,0,0,,I can't unlock it.,"Fine, I'll find a good locksmith.|You can study here if you want.",200,0,0,
+140,0,0,,Being chaste will help|you to concentrate.,What?   I...  But...  But...  Fine...|You can study with me if you want.,200,0,1,
+140,0,0,,"If you're a good|girl, I'll unlock you.",(She blushes.)  I'll be good then.|You can study with me if you want.,200,1,-1,
+140,0,0,,A slut needs|to be locked.,Why are you so mean?  Anyway.|You can study here if you want.,200,-1,1,
+140,0,0,,Talking about such|belts turns me on.,You're so kinky COMMON_PLAYERNAME.|You can study with me if you want.,200,0,-1,
+150,0,0,HasEgg,"I have one also, it's|fun, don't remove it.",(She giggles.)  You're very kinky.|You can study with me if you want.,200,1,-1,
+150,0,0,,Don't you like to|study with an egg?,No!  It doesn't help at all.  Anyway.|You can study here with me if you want.,200,-1,0,
+150,0,0,,Eggs are good|for sluts like me.,Don't call yourself a slut.  Anyway.|You can study here with me if you want.,200,0,-1,
+150,0,0,,I can't help you.,Alright.  You can study with me if you want.,200,0,0,
+150,0,0,,"No, you will keep|it some more.",(She bows and sighs.)  Alright Miss.|You can study with me if you want.,200,0,1,
+150,0,0,,I will help you later|and put it in me.,(She giggles.)  You're very kinky.|You can study with me if you want.,200,1,0,
+160,0,0,,Next time I'll|get you locked up.,(She stunned by your answer.)  I...  Anyway.|You can study here with me if you want.,200,0,1,
+160,0,0,,I had great fun|in that locker.,I'll have to lock you up again then.|You can study with me if you want.,200,0,-1,
+160,0,0,,I've seen worse.,Alright.  You can study here if you want.,200,0,0,
+160,0,0,,I don't want to|talk about that.,Oh my!  Very well then.|You can study here if you want.,200,-1,0,
+160,0,0,,I was dreaming of|you while in there.,(She blushes red and giggles.)|You can study with me if you want.,200,1,0,
+170,0,0,,It was a crazy|day isn't it?,"Yeah, that's an understatement.|You can study here if you want.",200,0,0,
+170,0,0,,Next time it's my|turn in the locker.,(She giggles and nods.)  Absolutely!|You can study with me if you want.,200,0,-1,
+170,0,0,,You were looking|adorable in there.,"(She smiles a little.)  Thanks, I guess.|You can study with me if you want.",200,1,0,
+170,0,0,,Next time I'll lock|you in my room.,(She seems nervous.)  I...  But...  Oh my...|Anyway.  You can study here if you want.,200,0,1,
+170,0,0,,A nerd in a locker.|It's a perfect fit.,(She didn't seem to appreciate what you've said.)|Anyway.  You can study here if you want.,200,-1,0,
+180,0,0,,That bitch got|what she deserved.,I'm not sure you should call her a bitch.|Anyway.  You can study here if you want.,200,-1,0,
+180,0,0,,Next time we'll make|her beg on her knees.,Wow!  Careful not to get expelled.|You can study with me if you want.,200,0,1,
+180,0,0,,So you like seeing|a teacher restrained?,"(She blushes and nods.)  Yes, it was fun.|You can study here with me if you want.",200,1,0,
+180,0,0,,Now I kind|of regret it.,Don't!  It was quite memorable.|You can study with me if you want.,200,0,-1,
+180,0,0,,It was memorable.,"Yes, it should be in the yearbook.|You can study with me if you want.",200,0,0,
+190,0,0,,It was ok.,Alright.  And who's your favorite teacher?,191,0,0,
+190,0,0,,I learned a lot.,We do have great teachers.|Who's your favorite?,191,1,0,
+190,0,0,,I was bored|out of my mind.,I'm very sorry to hear that.|Did you like one of the teachers?,191,-1,0,
+190,0,0,,"Yep, I caused|plenty of trouble.",(She nods politely.)  Very well.|And who's your favorite teacher?,191,0,1,
+190,0,0,,I didn't make|any friends.,"Poor girl, I'm sure you will soon.|Did you like one of the teachers?",191,0,-1,
+191,0,0,,Mildred.,"Yes, Miss Mildred is strict but fair.|You can study here if you want.",200,0,1,
+191,0,0,,Yuki.,"Nice, I've met her here a few times.|You can study with me if you want.",200,0,0,
+191,0,0,,Julia.,Great!  Miss Julia is funny and lively.|You can study with me if you want.,200,1,0,
+191,0,0,,I don't know.,Don't be so shy girl.|You can study with me.,200,0,-1,
+200,0,0,,Let's study together.,(You and Amanda start|to study together.),300,0,0,StartStudy()
+200,0,0,,(Open your books.),(You and Amanda start|to study together.),300,0,0,StartStudy()
+200,0,0,,What are you|studying now?,My homework is done so|I'm reviewing future classes.,205,0,0,
+200,0,0,,(Spy in her book.),(She seems to be studying|for future math classes.),205,0,0,
+200,0,0,,Studying is boring.,Why are you here then?|What would you like to do?,210,0,0,
+200,0,0,,We should do|something else.,Oh!  What would you like to do?,210,0,0,
+200,0,0,,I need to go.|(Leave the library.),,200,0,0,Leave()
+205,0,0,,Let's study together.,(You and Amanda start|to study together.),300,0,0,StartStudy()
+205,0,0,,You're already|so far ahead?,I guess I could put down on the books.|What would you like to do instead?,210,0,0,
+205,0,0,,Future classes?|Get a life girl.,I do have a life!  I'll prove it.|What would you like to do?,210,0,0,
+210,0,0,,Never mind Amanda.|Let's study together.,(You and Amanda start|to study together.),300,0,0,StartStudy()
+210,0,0,PlayerDormAvail,Come to my dorm.|We'll have fun.,"No, it wouldn't be proper.",210,0,0,TestPlayerDorm()
+210,0,0,AmandaDormAvail,We can go|to your place.,"My place...  But what if Sar...|No, let's not go to my place.",210,0,0,TestAmandaDorm()
+210,0,0,DinnerAvail,Let's go get dinner.,"Thanks, but I've already eaten.|You can't study on an empty stomach.",210,0,0,TestDinner()
+210,0,0,,Forget it.,Very well.,200,0,0,
+220,0,0,,Time to go then!|(Bring her to your dorm.),,220,0,0,LeaveWithAmanda()
+230,0,0,PlayerDormAvail,Come to my dorm.|We'll have fun.,"No, it wouldn't be proper.",230,0,0,TestPlayerDorm()
+230,0,0,AmandaDormAvail,We can go|to your place.,"My place...  But what if Sar...|No, let's not go to my place.",230,0,0,TestAmandaDorm()
+230,0,0,DinnerAvail,Let's go get dinner.,"Thanks, but I've already eaten.|You can't study on an empty stomach.",230,0,0,TestDinner()
+230,0,0,,See you soon.|(Back to your dorm.),,230,0,0,Leave()
+300,0,0,,(Study with Amanda.),(You study with her and you both help|each other.  She seems to appreciate.),300,0,0,StudyWithAmanda()
+300,0,0,,Do you need help?,"Yes, I would appreciate some help.|(You help her to study and give her tips.)",300,0,0,HelpAmanda()
+300,0,0,,Can you help me?,"Of course, I will gladly help you.|(She helps you to study and learn.)",300,0,0,HelpPlayer()
+300,0,0,,Should we do|something else?,What would you like to do?,210,0,0,StopStudy()
+300,0,0,PoemAvail,I found a poem.  Would|you like to hear it?,"A poem?  (She nods.)|Yes, I would love that.",310,0,0,StartPoem()
+300,0,0,,I need to go.|(Leave the library.),,300,0,0,Leave()
+310,0,0,,"She walks in beauty,|like the night","(She repeats every word silently.)|She walks in beauty, like the night",311,0,0,
+310,0,0,,Forget it.|It's stupid.,"Oh!  (She seems very disappointed.)|You're right, nobody likes poetry anymore.",300,-1,0,
+311,0,0,,Of cloudless climes|and starry skies;,(She repeats every word silently.)|Of cloudless climes and starry skies;,312,0,0,
+311,0,0,,Forget it.|It's stupid.,"Oh!  (She seems very disappointed.)|You're right, nobody likes poetry anymore.",300,-1,0,
+312,0,0,,And all that's best of|dark and bright,(She repeats every word silently.)|And all that's best of dark and bright,313,0,0,
+312,0,0,,Forget it.|It's stupid.,"Oh!  (She seems very disappointed.)|You're right, nobody likes poetry anymore.",300,-1,0,
+313,0,0,,Meet in her aspect|and her eyes;,(She repeats every word silently.)|Meet in her aspect and her eyes;,314,0,0,
+313,0,0,,Forget it.|It's stupid.,"Oh!  (She seems very disappointed.)|You're right, nobody likes poetry anymore.",300,-1,0,
+314,0,0,,Thus mellowed to|that tender light,(She repeats every word silently.)|Thus mellowed to that tender light,315,0,0,
+314,0,0,,Forget it.|It's stupid.,"Oh!  (She seems very disappointed.)|You're right, nobody likes poetry anymore.",300,-1,0,
+315,0,0,,Which heaven to|gaudy day denies.,(She repeats every word silently.)|Which heaven to gaudy day denies.,316,0,0,
+315,0,0,,Forget it.|It's stupid.,"Oh!  (She seems very disappointed.)|You're right, nobody likes poetry anymore.",300,-1,0,
+316,0,0,,Did you like it?,"I loved it!  (She checks around.)|Oops, it was loud, let's study.",300,2,0,FinishPoem()

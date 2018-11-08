@@ -1,0 +1,51 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,"Hi, COMMON_PLAYERNAME. Brauchst du|Hilfe, die Cafeteria zu finden?",AmandaIntro.jpg
+0,5,0,,"Schön dich zu sehen, COMMON_PLAYERNAME.|Hast du die Cafeteria schon gefunden?",AmandaIntroHappy.jpg
+0,0,5,,"Hallo, Miss COMMON_PLAYERNAME. (Sie senkt ihren Kopf.)|Haben Sie schon die Cafeteria ausfindig gemacht?",AmandaIntroSubbie.jpg
+0,1,-3,,"Hey, Mädel. Es ist Mittagszeit. Brauchst|du Hilfe, die Cafeteria zu finden?",AmandaIntroDomme.jpg
+0,0,0,TeamAgainstMildred,"Kaum zu glauben, dass wir Mildred gefesselt haben.|Hast du schon die Cafeteria gefunden?",AmandaIntroHappy.jpg
+0,0,0,TeamFailAgainstMildred,"Kaum zu glauben, dass wir das mit Mildred versucht|haben. Hast du schon die Cafeteria gefunden?",AmandaIntro.jpg
+5,0,0,,"(Amanda sieht dich, läuft aber davon.|Sie scheint es eilig zu haben.)",AmandaGone.jpg
+10,0,0,,"Du kannst es mit der Cafeteria der Schule versuchen,|aber das Essen ist nicht das beste.",AmandaIntro.jpg
+10,0,5,,"Bei großem Hunger gibt es die Cafeteria,|aber ich kann sie nicht empfehlen, Miss.",AmandaIntroSubbie.jpg
+10,1,-3,,"Du kannst die Cafeteria versuchen, aber es|ist nicht das beste Essen in der Gegend.",AmandaIntroDomme.jpg
+20,0,0,,"Es gibt in der Nähe ein kleines|Café, wenn du willst.",AmandaIntro.jpg
+20,0,5,,"Miss, es gibt in der Nähe ein Café, wenn Sie wollen.",AmandaIntroSubbie.jpg
+20,1,-3,,Ein Schatz wie du sollte das Café ausprobieren.|Es ist viel schöner als unsere Cafeteria.,AmandaIntroDomme.jpg
+30,0,0,,Möchtest du jetzt mit mir ins Café gehen?,AmandaIntro.jpg
+30,0,5,,"Miss, würden Sie jetzt gerne|mit mir zum Café aufbrechen?",AmandaIntroSubbie.jpg
+30,1,-3,,Hol deinen Geldbeutel.|Du kommst mit mir ins Café.,AmandaIntroDomme.jpg
+40,0,0,,"Tut mir leid, ich kann nicht mit dir essen.|Ich habe schon andere Pläne.",AmandaIntro.jpg
+50,0,0,,,AmandaGone.jpg
+100,0,0,,,AmandaPlayerLunch0.jpg
+110,0,0,,,AmandaPlayerLunch0.jpg
+120,0,0,,,AmandaPlayerLunch0.jpg
+130,0,0,,,AmandaPlayerLunch0.jpg
+140,0,0,,,AmandaPlayerLunch0.jpg
+150,0,0,,,AmandaPlayerLunch0.jpg
+160,0,0,,,AmandaPlayerLunch0.jpg
+170,0,0,,,AmandaPlayerLunch0.jpg
+180,0,0,,,AmandaPlayerLunch0.jpg
+200,0,0,,(Auf dem Rückweg haltet ihr euch an den|Händen und lauft in eine abgelegene Ecke.),AmandaPlayerLovers.jpg
+210,0,0,,,AmandaPlayerLovers.jpg
+220,0,0,,,AmandaPlayerLoversKiss.jpg
+230,0,0,,,AmandaPlayerLoversKiss2.jpg
+240,0,0,,,AmandaPlayerLoversTouch.jpg
+250,0,0,,,AmandaPlayerLoversOrgasm.jpg
+260,0,0,,,AmandaPlayerLovers.jpg
+270,0,0,,,AmandaPlayerLovers.jpg
+280,0,0,,,AmandaPlayerLoversKiss.jpg
+300,0,0,,(Auf dem Rückweg packst du sie an der Hand|und zerrst sie in eine abgelegene Ecke.),AmandaPlayerIsDomme.jpg
+310,0,0,,,AmandaPlayerIsDommeKiss.jpg
+320,0,0,,,AmandaPlayerIsDomme.jpg
+330,0,0,,,AmandaPlayerIsDommeTouch.jpg
+400,0,0,,(Auf dem Rückweg packt sie dich an der Hand|und zerrt dich in eine abgelegene Ecke.),AmandaPlayerIsSubbie.jpg
+410,0,0,,,AmandaPlayerIsSubbie.jpg
+420,0,0,,,AmandaPlayerIsSubbieStrip.jpg
+430,0,0,,,AmandaPlayerIsSubbieBack.jpg
+440,0,0,,,AmandaPlayerIsSubbieRope.jpg
+450,0,0,,,AmandaPlayerIsSubbieRopeBallGag.jpg
+460,0,0,,,AmandaPlayerIsSubbieTouch.jpg
+470,0,0,,,AmandaPlayerIsSubbieOrgasm.jpg
+480,0,0,,,AmandaPlayerIsSubbieRope.jpg
+490,0,0,,,AmandaPlayerIsSubbie.jpg

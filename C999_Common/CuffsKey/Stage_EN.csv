@@ -1,3 +1,3 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Inspect it.)|(1 minute),It's made of stainless steel and|should work on most handcuffs.,0,0,0,
-0,0,0,IsCuffed,(Unlock your cuffs.)|(1 minute),You fumble with the key for a little|while but finally unlock yourself.,0,0,0,Unlock()
+0,0,0,,(Inspect it.)ADD_MINUTES:1,It's made of stainless steel and|should work on most handcuffs.,0,0,0,
+0,0,0,IsCuffed,(Unlock your cuffs.)ADD_MINUTES:1,You fumble with the key for a little|while but finally unlock yourself.,0,0,0,Unlock()

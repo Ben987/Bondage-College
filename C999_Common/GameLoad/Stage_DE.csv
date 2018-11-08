@@ -1,0 +1,11 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,@Slot 1,Spielstand 1 kann nicht geladen werden.,0,0,0,LoadGame(1)
+0,0,0,,@Slot 2,Spielstand 2 kann nicht geladen werden.,0,0,0,LoadGame(2)
+0,0,0,,@Slot 3,Spielstand 3 kann nicht geladen werden.,0,0,0,LoadGame(3)
+0,0,0,,@Slot 4,Spielstand 4 kann nicht geladen werden.,0,0,0,LoadGame(4)
+0,0,0,,@Slot 5,Spielstand 5 kann nicht geladen werden.,0,0,0,LoadGame(5)
+0,0,0,,@Slot 6,Spielstand 6 kann nicht geladen werden.,0,0,0,LoadGame(6)
+0,0,0,,@Slot 7,Spielstand 7 kann nicht geladen werden.,0,0,0,LoadGame(7)
+0,0,0,,@Slot 8,Spielstand 8 kann nicht geladen werden.,0,0,0,LoadGame(8)
+0,0,0,,@Slot 9,Spielstand 9 kann nicht geladen werden.,0,0,0,LoadGame(9)
+0,0,0,,Hauptmenü,,0,0,0,MainMenu()

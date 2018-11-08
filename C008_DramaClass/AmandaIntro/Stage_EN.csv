@@ -10,8 +10,8 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 10,0,5,,Common girl.|Drop this skirt.,Yes.  I shouldn't be shy.  (She strips.)|Can you please help me to wear my armor?,40,0,0,Strip()
 10,0,0,,I cannot see|you change?,"No COMMON_PLAYERNAME, you cannot.|Now cover your eyes for a few minutes.",10,0,0,
 10,0,0,!Common_PlayerRestrained,(Cover your eyes.),(You cover your eyes with both|hands while she starts to change.),20,0,0,StripNoLeave()
-20,0,0,,(Keep the cover.)|(1 minute),(You can hear a metal costume clicking.)|Give me another minute please.,20,0,0,Changing()
-20,0,0,,(Take a peek.)|(1 minute),(You keep cover but peek between your fingers.|You partially see Amanda struggling to put her armor.),20,0,0,Changing()
+20,0,0,,(Keep the cover.)ADD_MINUTES:1,(You can hear a metal costume clicking.)|Give me another minute please.,20,0,0,Changing()
+20,0,0,,(Take a peek.)ADD_MINUTES:1,(You keep cover but peek between your fingers.|You partially see Amanda struggling to put her armor.),20,0,0,Changing()
 20,0,0,,(Stop covering|your eyes.),Hey!  Why didn't you|keep your eyes covered?,30,-1,0,
 30,0,0,,It was taking|way too long.,"It's not easy to dress in this armor.|Instead of complaining, can you help me?",40,-1,0,CheatedCover()
 30,0,0,,You can't do it|without help.,"Yeah, maybe I do need some help.|Can you help me to wear this armor?",40,0,1,CheatedCover()
@@ -25,15 +25,15 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 40,0,0,IsBothFree,You know that|you're pretty?,(She giggles and blushes.)|You're also pretty COMMON_PLAYERNAME.,40,0,0,PrettyComment()
 40,0,0,IsBothFree,You would look|great tied up.,(She blushes.)  It might not|be the best time for that.,40,0,0,
 40,0,0,ReadyHug,A few hugs|before the play?,I'm intrigued COMMON_PLAYERNAME.|What do you have in mind?,300,0,0,StartHugs()
-40,0,0,IsBothFree,(Help her dress.)|(1 minute),(You help her dress in her armor.)|Thanks!  Are we ready for the play?,50,0,0,Costume()
+40,0,0,IsBothFree,(Help her dress.)ADD_MINUTES:1,(You help her dress in her armor.)|Thanks!  Are we ready for the play?,50,0,0,Costume()
 40,0,0,IsBothFree,"Amanda, would you|like to restrain me?","Oh my god, Miss, that wouldn't be proper.|(She bows her head and looks away.)",40,0,0,RandomBondage()
-40,0,0,!Common_PlayerRestrained,(Tickle her.)|(1 minute),"(You tickle her on the ribs and she|laughs out loud, she's enjoying it.)",40,0,0,Tickle()
-40,0,0,!Common_PlayerRestrained,(Spank her.)|(1 minute),"(You give her a quick spank and she|steps back, she didn't seem to like it.)",40,0,0,Spank()
-40,0,5,!Common_PlayerRestrained,(Slap her.)|(1 minute),(You slap her hard on the face and the|breast while she cowers in fear of you.),40,0,0,Slap()
-40,0,0,!Common_PlayerRestrained,(Masturbate her.)|(1 minute),(You bend down to masturbate her|but she pushes your hand away.),40,0,0,Masturbate()
-40,0,0,CanUntie,(Untie her.)|(1 minute),(You undo the knots to free her and|she stretches her arms in appreciation.),40,0,0,Untie()
-40,0,0,CanUnstrap,(Unstrap her.)|(1 minute),"(You unbuckle the leather straps,|unlace the binder and free her arms.)",40,0,0,Untie()
-40,0,0,CanUngag,(Ungag her.)|(1 minute),(You remove the gag and she takes|a deep breath.)  Aaaah!  Thank you.,40,0,0,Ungag()
+40,0,0,!Common_PlayerRestrained,(Tickle her.)ADD_MINUTES:1,"(You tickle her on the ribs and she|laughs out loud, she's enjoying it.)",40,0,0,Tickle()
+40,0,0,!Common_PlayerRestrained,(Spank her.)ADD_MINUTES:1,"(You give her a quick spank and she|steps back, she didn't seem to like it.)",40,0,0,Spank()
+40,0,5,!Common_PlayerRestrained,(Slap her.)ADD_MINUTES:1,(You slap her hard on the face and the|breast while she cowers in fear of you.),40,0,0,Slap()
+40,0,0,!Common_PlayerRestrained,(Masturbate her.)ADD_MINUTES:1,(You bend down to masturbate her|but she pushes your hand away.),40,0,0,Masturbate()
+40,0,0,CanUntie,(Untie her.)ADD_MINUTES:1,(You undo the knots to free her and|she stretches her arms in appreciation.),40,0,0,Untie()
+40,0,0,CanUnstrap,(Unstrap her.)ADD_MINUTES:1,"(You unbuckle the leather straps,|unlace the binder and free her arms.)",40,0,0,Untie()
+40,0,0,CanUngag,(Ungag her.)ADD_MINUTES:1,(You remove the gag and she takes|a deep breath.)  Aaaah!  Thank you.,40,0,0,Ungag()
 50,0,0,IsPlayReady,Let's do some drama!|(Join the drama class.),,50,0,0,StartDrama()
 50,0,0,!IsPlayReady,Everyone isn't ready.,Let's get dressed quickly then!,50,0,0,
 100,0,0,,Welcome to heaven.,"(She nods silently, slowly|recovering from her orgasm.)",40,1,0,
@@ -50,17 +50,17 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 200,0,0,!Common_PlayerRestrained,Give me my|key right now!,A good submissive shouldn't talk like that.|(She pins you and cuffs your hands in your back.),40,0,1,CuffPlayer()
 200,0,0,Common_PlayerRestrained,You bitch!,Such a filthy mouth.  I'll have|to teach you a lesson someday.,40,1,0,AllowLeave()
 200,0,0,Common_PlayerRestrained,Give me my|key right now!,A good subbie shouldn't talk like that.|(She giggles and pulls her tongue at you.),40,0,1,AllowLeave()
-300,0,0,,Give me a hug!|(1 minute),(You hold each other in the|arms for a long and warm hug.),310,0,0,"Hug(""PlayerAmandaHug"")"
-300,5,0,HugDone,(Kiss her.)|(1 minute),(You kiss her tenderly on the neck|and lips while she moans shyly.),310,0,0,"Hug(""PlayerAmandaKiss"")"
-300,0,0,SarahReadyHug,Go hug Sarah.|(1 minute),(Amanda shyly offers a hug and|Sarah quickly jumps in her arms.),310,0,0,"Hug(""AmandaSarahHug"")"
-300,0,5,SarahReadyHug,Go kiss Sarah.|(1 minute),(She stays silent in front of Sarah for a|few seconds and surprises her with a kiss.),310,0,0,"Hug(""AmandaSarahKiss"")"
-300,0,0,SarahReadyHug,Let's do a group|hug.  (1 minute),(You invite both of them in your arms|and share a warm hug before the play.),310,0,0,"Hug(""GroupHug"")"
-300,10,10,SarahReadyHug,Let's do a group|kiss.  (1 minute),(You order them to kiss and join|the fun for a love trio of kisses.),310,0,0,"Hug(""GroupKiss"")"
+300,0,0,,Give me a hug!ADD_MINUTES:1,(You hold each other in the|arms for a long and warm hug.),310,0,0,"Hug(""PlayerAmandaHug"")"
+300,5,0,HugDone,(Kiss her.)ADD_MINUTES:1,(You kiss her tenderly on the neck|and lips while she moans shyly.),310,0,0,"Hug(""PlayerAmandaKiss"")"
+300,0,0,SarahReadyHug,Go hug Sarah.ADD_MINUTES:1,(Amanda shyly offers a hug and|Sarah quickly jumps in her arms.),310,0,0,"Hug(""AmandaSarahHug"")"
+300,0,5,SarahReadyHug,Go kiss Sarah.ADD_MINUTES:1,(She stays silent in front of Sarah for a|few seconds and surprises her with a kiss.),310,0,0,"Hug(""AmandaSarahKiss"")"
+300,0,0,SarahReadyHug,Let's do a group|hug. ADD_MINUTES:1,(You invite both of them in your arms|and share a warm hug before the play.),310,0,0,"Hug(""GroupHug"")"
+300,10,10,SarahReadyHug,Let's do a group|kiss. ADD_MINUTES:1,(You order them to kiss and join|the fun for a love trio of kisses.),310,0,0,"Hug(""GroupKiss"")"
 300,0,0,,That's enough.,"Alright, so can you help me to dress?",40,0,0,AllowLeave()
-310,0,0,,Give me a hug!|(1 minute),(You hold each other in the|arms for a long and warm hug.),310,0,0,"Hug(""PlayerAmandaHug"")"
-310,5,0,HugDone,(Kiss her.)|(1 minute),(You kiss her tenderly on the neck|and lips while she moans shyly.),310,0,0,"Hug(""PlayerAmandaKiss"")"
-310,0,0,SarahReadyHug,Go hug Sarah.|(1 minute),(Amanda shyly offers a hug and|Sarah quickly jumps in her arms.),310,0,0,"Hug(""AmandaSarahHug"")"
-310,0,5,SarahReadyHug,Go kiss Sarah.|(1 minute),(She stays silent in front of Sarah for a|few seconds and surprises her with a kiss.),310,0,0,"Hug(""AmandaSarahKiss"")"
-310,0,0,SarahReadyHug,Let's do a group|hug.  (1 minute),(You invite both of them in your arms|and share a warm hug before the play.),310,0,0,"Hug(""GroupHug"")"
-310,10,10,SarahReadyHug,Let's do a group|kiss.  (1 minute),(You order them to kiss and join|the fun for a love trio of kisses.),310,0,0,"Hug(""GroupKiss"")"
+310,0,0,,Give me a hug!ADD_MINUTES:1,(You hold each other in the|arms for a long and warm hug.),310,0,0,"Hug(""PlayerAmandaHug"")"
+310,5,0,HugDone,(Kiss her.)ADD_MINUTES:1,(You kiss her tenderly on the neck|and lips while she moans shyly.),310,0,0,"Hug(""PlayerAmandaKiss"")"
+310,0,0,SarahReadyHug,Go hug Sarah.ADD_MINUTES:1,(Amanda shyly offers a hug and|Sarah quickly jumps in her arms.),310,0,0,"Hug(""AmandaSarahHug"")"
+310,0,5,SarahReadyHug,Go kiss Sarah.ADD_MINUTES:1,(She stays silent in front of Sarah for a|few seconds and surprises her with a kiss.),310,0,0,"Hug(""AmandaSarahKiss"")"
+310,0,0,SarahReadyHug,Let's do a group|hug. ADD_MINUTES:1,(You invite both of them in your arms|and share a warm hug before the play.),310,0,0,"Hug(""GroupHug"")"
+310,10,10,SarahReadyHug,Let's do a group|kiss. ADD_MINUTES:1,(You order them to kiss and join|the fun for a love trio of kisses.),310,0,0,"Hug(""GroupKiss"")"
 310,0,0,,That's enough.,"Alright, so can you help me to dress?",40,0,0,AllowLeave()

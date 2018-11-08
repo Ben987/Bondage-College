@@ -1,0 +1,42 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,Teatro? Ich weiß nicht.,"Entfache deine Flamme, COMMON_PLAYERNAME!|Hier ist dein Text. (Sie reicht dir einen Zettel.)",10,0,-1,
+0,0,0,,Ich geb mein Bestes!,"Richtig so, COMMON_PLAYERNAME!|Hier ist dein Text. (Sie reicht dir einen Zettel.)",10,0,1,
+0,0,0,,"Ich bin bereit, Julia.","Magnifico, COMMON_PLAYERNAME!|Hier ist dein Text. (Sie reicht dir einen Zettel.)",10,0,0,
+0,0,0,,Dieses Stück wird|ein Reinfall.,"Nicht so pessimistisch, COMMON_PLAYERNAME.|Hier ist dein Text. (Sie reicht dir einen Zettel.)",10,-1,-1,
+10,0,0,,(Den Text durchlesen.)ADD_MINUTES:1,"Eine gute Rolle, oder? Ab auf die Bühne|mit euch. Der weiße Ritter fängt an.",20,0,0,
+10,0,0,,(Den Text gründlich|durchlesen.) ADD_MINUTES:1,Oh! Eine sorgfältige Schülerin! Ab auf die|Bühne mit euch. Der weiße Ritter fängt an.,20,1,0,
+10,0,0,,(Den Text überfliegen.) ADD_MINUTES:1,Du wirkst sehr selbstsicher. Ab auf die|Bühne mit euch. Der weiße Ritter fängt an.,20,0,1,
+10,0,0,!ScriptRefused,Ich will das|nicht lesen.,"Wie willst du deine Rolle spielen, ohne den Text|zu kennen? Kleine COMMON_PLAYERNAME! Lies ihn.",10,0,0,RefuseScript()
+20,0,0,,(Auf die Bühne gehen.),,100,0,0,StartDrama()
+20,0,0,,Dürfen wir|improvisieren?,"Si! Ihr könnt improvisieren, solange ihr|nicht zu sehr vom Text abweicht.",20,0,0,
+100,0,0,,(Auf das Stück|konzentrieren.),,100,0,0,StartDrama()
+100,0,0,,Dürfen wir|improvisieren?,"Si! Ihr könnt improvisieren, solange ihr|nicht zu sehr vom Text abweicht.",100,0,0,
+300,0,0,Common_PlayerGagged,(Flehende Augen machen.)ADD_MINUTES:1,Du schaust Julia mit süß flehenden Augen an.|Sie lächelt und befreit dich von deinen Fesseln.,300,0,0,ReleasePlayer()
+300,0,0,,Das Stück hat|Spaß gemacht.,Si! Und ihr konntet sogar improvisieren.,310,0,0,
+300,0,0,,"Das Stück|war toll, Julia.","Dankeschön, COMMON_PLAYERNAME!|Und ihr konntet sogar improvisieren.",310,1,0,
+300,0,0,,Das Stück war|zu chaotisch.,"Chaos ist Kunst, Kunst ist Chaos.|Ich wollte, dass ihr improvisiert.",310,-1,0,
+300,0,0,,Nächstes Mal will|ich eine bessere Rolle.,Wir finden bestimmt die perfekte Rolle für dich.|Und zur Not kann man immer improvisieren.,310,0,1,
+300,0,0,,"Ich glaube, Theater|ist nichts für mich.",Du warst gut. Hab keine Angst vor der Bühne.|Und du kannst jederzeit improvisieren.,310,0,-1,
+310,0,0,,"Wenn wir improvisieren|können, spiel doch mit.","Mitspielen, nachdem das Stück vorbei ist?|Aber welche Rolle spiele ich?",320,0,0,
+310,0,0,,In diesem Falle solltet|Ihr Euch uns anschließen.,Der vollendeten Darbietung beitreten?|Doch welch Rolle sei mir gegeben?,320,1,0,
+320,0,0,IsDamsel,"Sei wie ich eine Jungfrau,|die dem Ritter gehört.",Gewiss! Ich bin die holde Maid im|Schutz des Ritters.,330,0,0,JuliaEntersPlay()
+320,0,0,!IsDamsel,"Sei eine zweite Jungfrau,|die dem Ritter gehört.",Gewiss! Ich bin die holde Maid im|Schutz des Ritters.,330,0,1,JuliaEntersPlay()
+320,0,0,,Herrsche als Königin|über die Ritter.,Gewiss! Ich bin die holde Königin|und herrsche über das Land.,340,0,-1,JuliaEntersPlay()
+400,0,5,IsDamsel,Eine gute Jungfrau|sollte mehr enthüllen.,"Gewiss, Milady.|(Sie zieht sich teilweise aus.)",410,0,0,Strip()
+400,5,0,IsDamsel,Zeige sie uns ihren|jungfräulichen Charme.,"Gewiss, Milady.|(Sie zieht sich teilweise aus.)",410,0,0,Strip()
+400,0,0,IsDamsel,"Meine Kameradin, welchen|Ritter bevorzugt Ihr?","Eine gewagte Frage. Beiderlei sind wundersam,|doch der weiße Ritter ist ehrenvoller.",400,0,0,
+400,0,0,!IsDamsel,Zeige sie uns ihren|jungfräulichen Charme.,"Gewiss, mein Ritter.|(Sie zieht sich teilweise aus.)",410,0,0,Strip()
+400,0,0,!IsDamsel,Die Maid gehorche und|zeige mir mehr Haut.,"Gewiss, mein Ritter.|(Sie zieht sich teilweise aus.)",410,0,1,Strip()
+410,0,0,!IsGagged,"Heute Abend seid Ihr|wunderschön, Milady.","Vielen Dank, das weiß ich zu schätzen.",410,0,0,
+410,0,0,!IsGagged,"Ihr seid heute Abend|durchaus reizend, Milady.",(Sie wird rot.) Eure Verehrung schmeichelt mir.,410,0,0,QuaintComment()
+410,0,0,CanUntie,(Sie losbinden.)ADD_MINUTES:1,(Du löst die Knoten und nimmt ihr die Seile ab|und sie streckt sich zufrieden.),410,0,0,Untie()
+410,0,0,CanUngag,(Sie entknebeln.)ADD_MINUTES:1,(Du entfernst den Knebel und sie lächelt.)|Dieses Fräulein ist Euch zu Dank verpflichtet.,410,0,0,Ungag()
+410,0,0,CanKiss,(Sie küssen.)ADD_MINUTES:1,(Du näherst dich und gibst ihr einen langen Kuss auf|die Lippen.) COMMON_PLAYERNAME! Das ist unangemessen.,410,0,0,Kiss()
+410,0,0,CanAbuse,(Sie kitzeln.)ADD_MINUTES:1,"(Sie lacht und windet sich in ihren Fesseln,|während du sie kitzelst. Sie hat Spaß.)",410,0,0,Tickle()
+410,0,0,CanAbuse,(Ihr auf den|Hintern hauen.)ADD_MINUTES:1,(Du haust ihr ziemlich doll auf den Hintern.|Sie scheint es für unangemessen zu halten.),410,0,0,Spank()
+410,0,0,CanAbuse,(Sie befriedigen.)ADD_MINUTES:1,(Sie versucht deiner Berührung vergeblich zu entgehen.|Sie scheint es für unangemessen zu halten.),410,0,0,Masturbate()
+500,0,0,,"Ihr seid heute Abend|wunderschön, oh Königin.","Vielen Dank, das weiß ich zu schätzen.",500,0,0,
+500,0,0,,"Ihr seid heute Abend|durchaus reizend, Hoheit.",(Sie wird rot.) Eure Verehrung schmeichelt mir.,500,0,0,QuaintComment()
+500,0,0,,Meine Königin! Habt Ihr|an Gewicht zugenommen?,Wie könnt Ihr solchen Frevel wagen?|(Sie hält dich fest und fesselt dich.),500,0,0,WeightComment()
+500,0,0,RebellionAvail,Eure Hoheit! Das Volk|plant eine Rebellion.,Das lasse ich nicht über mich ergeben! Wachen!|(Sie sammelt und fesselt alle.),500,0,0,Rebellion()
+500,0,0,Common_PlayerRestrained,(Flehende Augen machen.)ADD_MINUTES:1,Ihr bedurft also Hilfe? Die Königin sieht|Euch lieber in Gefangenschaft.,500,0,0,BegRelease()

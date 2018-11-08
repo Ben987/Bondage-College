@@ -1,0 +1,30 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,EmptyLibrary,The college library is pretty empty at this hour.|It might be a quiet place to do your homework.,Library.jpg
+0,0,0,!EmptyLibrary,There are a few students in the library.|Who would you like to meet?,Library.jpg
+100,0,0,,Hi girl.  (She looks at you and smirks.)|I guess you need help with homework.,Chair.jpg
+100,10,0,,It's great to see you COMMON_PLAYERNAME.|I guess you need help with homework.,Chair.jpg
+100,-10,0,,"Oh, it's you.  (She seems disappointed.)|I guess you need help with homework.",Chair.jpg
+110,0,0,,Hi Miss COMMON_PLAYERNAME.|What brings you to the library?,Chair.jpg
+120,0,0,,I'm studying.  It's not|a good time to talk.,Chair.jpg
+130,0,0,,It's great to see you again!|You're here for homework?,Chair.jpg
+140,0,0,,Oh my god!  COMMON_PLAYERNAME!|Can you unlock the belt now?,Chair.jpg
+150,0,0,,This is very embarrassing.  I couldn't|remove your egg.  Can you help me?,Chair.jpg
+160,0,0,,(She giggles.)  Did you enjoy your|time in the locker this afternoon?,Chair.jpg
+170,0,0,,I can't believe you locked me|up in that locker this afternoon.,Chair.jpg
+180,0,0,,I still laugh when I think about what|happened to Miss Mildred this morning,Chair.jpg
+190,0,0,,Hello there.  Did you enjoy|your first day at our school?,Chair.jpg
+191,0,0,,,Chair.jpg
+200,0,0,,Hello again.  Would you|like to study with me?,Chair.jpg
+200,0,10,,Hello again Miss.  Would you|like to study here with me?,Chair.jpg
+205,0,0,,,Chair.jpg
+210,0,0,,,Chair.jpg
+220,0,0,,,Chair.jpg
+230,0,0,,,Chair.jpg
+300,0,0,,,Desk.jpg
+310,0,0,,,Desk.jpg
+311,0,0,,,Desk.jpg
+312,0,0,,,Desk.jpg
+313,0,0,,,Desk.jpg
+314,0,0,,,Desk.jpg
+315,0,0,,,Desk.jpg
+316,0,0,,,Desk.jpg

@@ -1,3 +1,93 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,Knock at the door,You knock at the door|but nobody answers.,0,0,0,Knock()
-0,0,0,,Return to your dorm,,0,0,0,Leave()
+0,0,0,,Knock at the door.,"You knock at the door,|but nobody answers.",0,0,0,Knock()
+0,0,0,,Return to your dorm.,,0,0,0,Leave()
+100,0,0,,How are you?,I'm doing well.  I'm relaxing at home.|What about you?  What's going on?,110,0,0,
+100,0,0,,What's going on?,"Not much, I'm relaxing at home.|And you?  What's going on tonight?",110,0,0,
+100,0,0,,Cute pajamas.,(She checks her pajamas and nods.)|So what's going on tonight?,110,0,0,
+100,0,0,,Sarah is here?,"No, I think she went to a club downtown.",100,0,0,
+100,0,0,,Sidney is here?,"No, I think she's at a concert.",100,0,0,
+100,0,0,,Jennifer is here?,"No, she might be running outside|or swimming at the college pool.",100,0,0,
+100,0,0,,"Sorry, wrong door.|(Leave the place.)",,100,0,0,Leave()
+110,0,0,,(Chit-chat with Amanda.),(You chit-chat about school and|get to know each other better.),110,0,0,ChitChat()
+110,0,0,,We could do a slumber|party at my place.,It's too late to setup a party.|We should do it another day.,110,0,0,TestInviteAmanda()
+110,0,0,,Do you want to go|relax at my place?,"No thanks, I would rather stay here.",110,0,0,TestInviteAmanda()
+110,0,0,,It's quiet in my dorm.|Can I chill with you?,"Sure, we can talk about school if you want.",110,0,0,
+110,0,0,,Do you want|to go out?,It's too late to go out.|Let's stay in the dorm.,110,0,0,
+110,0,0,,"Sorry, I need to go.|(Leave the place.)",,110,0,0,Leave()
+120,0,0,,Come in your pajamas!|(Walk back with Amanda.),,120,0,0,LeaveWithAmanda()
+200,0,0,,How are you?,I'm doing pretty good.  And you?|Did you get in trouble in school?,220,0,0,TestIsolationSarah()
+200,0,0,,What's going on?,"Not much, It's pretty quiet right now.|So?  Did you get in trouble in school?",220,0,0,TestIsolationSarah()
+200,0,0,,Amanda is here?,"No, she might be at the library.",200,0,0,
+200,0,0,,Sidney is here?,"Nope, maybe the zoo came to get her.",200,0,0,
+200,0,0,,Jennifer is here?,"JENNNNNNNNNIFER!  (She waits.)|Nope, she's not here or she's deaf.",200,0,0,CheckJenniferAvail()
+200,0,0,,"Sorry, wrong door.|(Leave the place.)",,200,0,0,Leave()
+201,0,0,,Very well Sarah.|(Back to your dorm.),,201,0,0,Leave()
+201,0,0,,Have fun tonight!|(Back to your dorm.),,201,1,0,Leave()
+201,0,0,,Fine!  You suck.|(Back to your dorm.),,201,-1,0,Leave()
+202,0,0,,Thanks Sarah!|(Wait for Jennifer.),,300,0,0,LoadJennifer()
+210,0,0,,(Chit-chat with Sarah.),(You chit-chat about music and parties|and get to know each other better.),210,0,0,ChitChat()
+210,0,0,,We could setup a|party at my place.,That's a pretty cool idea but I|already have plans for tonight.,210,0,0,TestInviteSarah()
+210,0,0,,Do you want to|go visit my place?,"No thanks, I have a big evening to plan.",210,0,0,TestInviteSarah()
+210,0,0,,What are you|doing tonight?,I'm going to a club downtown.|Maybe I'll bring you someday.,210,0,0,
+210,0,0,IsolationAvail,Do you still want to|visit the basement?,That could be pretty thrilling.|Do you want to go right now?,212,0,0,
+210,0,0,,It's boring in my dorm.|Can I chill with you?,"Sure, but I need to go around twenty.",210,0,0,
+210,0,0,,Do you want|to go out?,Maybe tomorrow COMMON_PLAYERNAME.|I'm already going out this evening.,210,0,0,
+210,0,0,,"Sorry, I need to go.|(Leave the place.)",,210,0,0,Leave()
+211,0,0,,Come for a while!|(Walk back with Sarah.),,211,0,0,LeaveWithSarah()
+212,0,0,,Yes!  Let's go now.|(Visit the basement.),,212,1,0,EnterIsolation()
+212,0,0,,No.  It's a bad idea.,Ok.  We can stay here and chat.,210,0,0,TestRefuseIsolation()
+220,0,0,,I don't get in trouble.|I put others in trouble.,Awesome!  Did you drag|someone to the basement?,221,0,1,
+220,0,0,,"Yes, I got in trouble|quite often today.",Great!  Did you go to the basement?,221,1,0,
+220,0,0,,"Nope, no trouble today.",(She nods.)  So you didn't|went to the basement?,221,-1,0,
+220,0,0,,I'm a good student.|I don't cause trouble.,(She giggles.)  So you didn't|went to the basement?,221,0,-1,
+221,0,0,,What basement?,There's an isolation room in the college basement.|Full of restrains and torture devices for bad students.,222,0,0,
+221,0,0,,"Yes, I went there.",Have you seen the isolation room?|The place with the torture devices?,222,0,0,
+221,0,0,,"No, I didn't go|to the basement.",Then you missed the best place in school!|There's a room full of torture devices.,222,0,0,
+222,0,0,,That's interesting.,It is!  I was punished|many times down there.,223,0,0,
+222,0,0,,(Grin.)  Torture devices?|Now I'm interested.,(She gulps and nods.)  It's a thrilling place.|I was punished many times down there.,223,0,1,
+222,0,0,,In a school?|Is that legal?,(She shrugs.)  I have no idea but it's thrilling.|I was punished many times down there.,223,0,-1,
+223,0,0,,I would love to|get punished also.,(She giggles.)  It might happen soon.|Would you like to see the place now?,224,1,-1,
+223,0,0,,I need to visit that|basement someday.,Would you like to see the place now?,224,0,0,
+223,0,0,,A bad student like you|should be punished.,Maybe you could punish me then.|Would you like to see the place now?,224,-1,1,
+223,0,0,,How can I go there?,I can get you inside if you want.|Would you like to see the place now?,224,0,0,
+224,0,0,,Yes!  Let's go now.|(Visit the basement.),,224,1,0,EnterIsolation()
+224,0,0,,No.  It's a bad idea.,(She looks disappointed.)  Very well.|We can stay here and chat if you prefer.,210,-1,0,TestRefuseIsolation()
+225,0,0,,Alright Miss.|(Visit the basement.),,225,1,-1,EnterIsolation()
+300,0,0,,How are you?,"I'm fine, thanks.|Why are you here?",310,0,0,
+300,0,0,,What's going on?,Not much right now.|Why are you here?,310,0,0,
+300,0,0,,Can I speak|with Amanda?,"Sorry, she's not here right now.|Maybe she's still in school studying.",300,0,0,
+300,0,0,,Can I speak|with Sidney?,"Sorry, she's not here right now.|Maybe she went to the campus pub.",300,0,0,
+300,0,0,,Can I speak|with Sarah?,"Sorry, she's not here right now.|She could be at a rave or a party.",300,0,0,
+300,0,0,,"Sorry, wrong door.|(Leave the place.)",,300,0,0,Leave()
+310,0,0,,(Chit-chat with Jennifer.),(You chit-chat about sports and art|and get to know each other better.),310,0,0,ChitChat()
+310,0,0,,Do you want to|go visit my place?,"Sorry, I don't have enough time for that.",310,0,0,TestInviteJennifer()
+310,0,0,,Do you want to go|running with me?,Yes!  Let's go right now.|It will be a great exercise.,320,1,0,
+310,0,0,,What are you|doing tonight?,I'm going running first and I'll probably|stop at the college swimming pool.,310,0,0,
+310,0,0,JenniferBelt,I'll help you with|your belt later.,"Thanks, this is getting really annoying.",310,0,0,
+310,0,0,,It's boring in my dorm.|Can I chill with you?,Absolutely.  But I'll go running around eighteen.,310,0,0,
+310,0,0,,I need to go Jennifer.|(Leave the place.),,310,0,0,Leave()
+311,0,0,,Very well Jennifer.|(Back to your dorm.),,311,0,0,Leave()
+311,0,0,,Have fun running!|(Back to your dorm.),,311,1,0,Leave()
+311,0,0,,Running is for losers.|(Back to your dorm.),,311,-1,0,Leave()
+311,0,0,,I'll go with you!|(Run with Jennifer.),Nice!  It will be a great exercise.,320,0,0,
+312,0,0,,Yes!  Let's go right now.|(Walk back with Jennifer.),,312,0,0,LeaveWithJennifer()
+312,0,0,,We can go a later.|(Stay here with her.),Very well.  We can chat and|get to know each other better.,310,0,0,
+320,0,0,!WearingTennisOutfit,What should we|wear to run?,We can wear matching tennis outfits.|(You both change into tennis clothes.),321,0,0,WearTennisOutfit()
+320,0,0,!WearingTennisOutfit,We could wear some|tennis outfits to run.,Yes!  We will have matching looks.|(You both change into tennis clothes.),321,0,0,WearTennisOutfit()
+320,0,0,WearingTennisOutfit,We can run in|our tennis outfits.,Yes!  We will have a matching look.|(She changes into her tennis clothes.),321,0,0,WearTennisOutfit()
+320,0,0,WearingTennisOutfit,Dress like me|and we can go.,Sure!  We will have a matching look.|(She changes into her tennis clothes.),321,0,0,WearTennisOutfit()
+321,0,0,,Are you ready?,(You both go out to the school|race track and start to jog.),322,0,0,EnterTrack()
+321,0,0,,Perfect!  Let's go.,(You both go out to the school|race track and start to jog.),322,0,0,EnterTrack()
+321,0,0,,You're looking good.|It's time to run!,(You both go out to the school|race track and start to jog.),322,0,0,EnterTrack()
+322,0,0,,You will bite my dust!|(Run with Jennifer.),,323,0,1,RunWithJennifer()
+322,0,0,,Let's take it slow.|(Run with Jennifer.),,323,0,-1,RunWithJennifer()
+322,0,0,,Let's do this!|(Run with Jennifer.),,323,0,0,RunWithJennifer()
+323,0,0,,That was fun!,"Yes, it's much better to run with a friend.|I'll stop by the pool, do you want to join?",324,0,0,
+323,0,0,,Nice race.,"Yes, it's much better to run with a friend.|I'll stop by the pool, do you want to join?",324,0,0,
+323,0,0,,That's enough.,"We've done enough running for the day.|I'll stop by the pool, do you want to join?",324,0,0,
+324,0,0,!Common_PlayerChaste,I'll go get my swimsuit.|(Change and go swim.),,324,0,0,PoolWithJennifer()
+324,0,0,Common_PlayerChaste,I can't go to the pool.|(Walk back in your belt.),,324,0,0,Leave()
+324,0,0,,Forget the pool.|Come to my place.,"Sorry, I want to go swim.|We'll see each other later.",326,0,0,TestSkipPool()
+324,0,0,,I don't like swimming.|(Back to your dorm.),,324,0,0,Leave()
+325,0,0,,Let's go right now.|(Go back with Jennifer.),,325,0,0,LeaveWithJennifer()
+326,0,0,,Have fun swimming.|(Back to your dorm.),,326,0,0,Leave()

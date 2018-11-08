@@ -1,1 +1,17 @@
 Tag,Content
+GoDormLoveAmanda,"Yes, it might be fun my friend.|Can I go wearing my pajamas?"
+GoDormDommeAmanda,"Of course Miss, I will follow.|Can I go wearing my pajamas?"
+GoDormLoveSarah,"Cool!  I can't stay for long, but|I would love to see your place."
+GoDormDommeSarah,"Absolutely Miss.  I won't be able to stay for|long, but I would love to see your place."
+GoDormIsolationSarah,"After our basement trip, I would love to see|your place.  I won't stay for long though."
+GoDormLoveJennifer,I guess I can skip my training tonight and go|with you my friend.  Are we leaving now?
+GoDormDommeJennifer,I can skip my training tonight and go|with you Miss.  Are we leaving now?
+NoIsolationIntroSarah,It's pretty quiet for now.|We can chat if you want.
+CannotRefuseIsolation,(Sarah grabs your arm forcefully and frowns.)|You only live once girl.  Come with me.
+SarahKickOutAfter20,I'm sorry but I can't chat anymore.|I need to go to a club downtown.
+JenniferKickOutAfter18,"I can't chat anymore, I need to go running.|You can come with me or we can talk later."
+SarahIntroduceJennifer,JENNNNNNNNN!  (You hear noises.)|Yep!  She's coming right up.
+RaceJenniferDefeat,(You both run around the track for a while.|Jennifer is much faster and does more laps.)
+RaceJenniferTie,"(You both run around the track for a while.|It's a pretty even race, nobody beats the other.)"
+RaceJenniferVictory,(You both run around the track for a while.|You're faster than Jennifer and do more laps.)
+JenniferSkipPool,I guess I can skip swimming and go|with you.  Are we going now?

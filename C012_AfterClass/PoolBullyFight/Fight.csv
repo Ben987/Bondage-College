@@ -1,0 +1,9 @@
+From,To,Image
+-1,-1,FightIntro.jpg
+0,0,FightLose.jpg
+1,19,Fight1.jpg
+20,39,Fight2.jpg
+40,59,FightEven.jpg
+60,79,Fight3.jpg
+80,99,Fight4.jpg
+100,100,FightWin.jpg

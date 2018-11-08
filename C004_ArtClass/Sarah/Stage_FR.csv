@@ -22,56 +22,56 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 130,0,0,Common_PlayerRestrained,"Sarah, tu peux m'aider ?",,130,0,0,BegForRelease()
 130,0,0,Common_PlayerGagged,"@Nanghn, uuumng !",(Elle rit) Tu es si mignonne avec ce bâillon.,130,0,0,
 130,0,0,Common_PlayerGagged,(Tu inclines ta tête.),"Tu es une parfaite petite soumise, tu sais ça ?",130,0,0,BowHead()
-130,0,0,GetTapeAvail,Rien d'autre pour pimenter|les choses ? (1 minute),Si ! J'ai quelque chose que tu peux utiliser juste ici.|(Elle se promène et revient avec du ruban adhésif.),130,0,0,GetTape()
-130,0,0,IsModel,Peux-tu te dévêtir|comme Julia ? (1 minute),(Elle rit.) Bien sûr.|(Elle se met en sous-vêtements.),140,0,0,"SetCloth(1, 0, 0)"
-130,0,0,IsModel,Montre plus de peau|blondinette. (1 minute),Blondinette ?  Mmmh.  D'accord.|(Elle se met en sous-vêtements.),140,0,0,"SetCloth(1, -1, 1)"
-130,0,0,IsModel,Tu serais mignonne sans|cet uniforme. (1 minute),Tu le penses vraiment ?|(Elle se met en sous-vêtements.),140,0,0,"SetCloth(1, 1, 0)"
-140,0,0,GetTapeAvail,Rien d'autre pour pimenter|les choses ? (1 minute),Si ! J'ai quelque chose que tu peux utiliser juste ici.|(Elle se promène et revient avec du ruban adhésif.),140,0,0,GetTape()
-140,0,0,IsModel,Trop classique ! Tu peux|faire mieux. (1 minute),"Je sais, je sais, je te taquinais.|(Elle enlève malicieusement ses sous-vêtements.)",150,0,0,"SetCloth(2, 0, 1)"
-140,0,0,IsModel,Tu sais ce que tu as|à faire. (1 minute),Bien sûr que oui. Pour l'art !|(Elle enlève malicieusement ses sous-vêtements.),150,0,0,"SetCloth(2, 0, 0)"
-140,0,0,IsModel,Oseras-tu te déshabiller ?|(Rire timide.) (1 minute),Ah ! Un défi facile !|(Elle enlève malicieusement ses sous-vêtements.),150,0,0,"SetCloth(2, 0, -1)"
-140,0,0,IsModel,Essaye cette pose avec|ton uniforme. (1 minute),Essaye de te décider.|(Elle se rhabille et boude.),130,0,0,"SetCloth(0, 0, 0)"
-150,0,0,GetTapeAvail,Rien d'autre pour pimenter|les choses ? (1 minute),Si ! J'ai quelque chose que tu peux utiliser juste ici.|(Elle se promène et revient avec du ruban adhésif.),150,0,0,GetTape()
-150,0,0,IsModel,Essaye cette pose en|sous-vêtements. (1 minute),Ça ne sera pas aussi sexy.|(Elle remet ses sous-vêtements et boude.),140,0,0,"SetCloth(1, 0, 0)"
-150,0,0,IsModel,Essayons à nouveau avec|ton uniforme. (1 minute),Vraiment ? Je ne suis pas assez jolie ?|(Elle remet son uniforme et boude.),130,0,0,"SetCloth(0, 0, 0)"
+130,0,0,GetTapeAvail,Rien d'autre pour pimenter|les choses ?ADD_MINUTES:1,Si ! J'ai quelque chose que tu peux utiliser juste ici.|(Elle se promène et revient avec du ruban adhésif.),130,0,0,GetTape()
+130,0,0,IsModel,Peux-tu te dévêtir|comme Julia ?ADD_MINUTES:1,(Elle rit.) Bien sûr.|(Elle se met en sous-vêtements.),140,0,0,"SetCloth(1, 0, 0)"
+130,0,0,IsModel,Montre plus de peau|blondinette.ADD_MINUTES:1,Blondinette ?  Mmmh.  D'accord.|(Elle se met en sous-vêtements.),140,0,0,"SetCloth(1, -1, 1)"
+130,0,0,IsModel,Tu serais mignonne sans|cet uniforme.ADD_MINUTES:1,Tu le penses vraiment ?|(Elle se met en sous-vêtements.),140,0,0,"SetCloth(1, 1, 0)"
+140,0,0,GetTapeAvail,Rien d'autre pour pimenter|les choses ?ADD_MINUTES:1,Si ! J'ai quelque chose que tu peux utiliser juste ici.|(Elle se promène et revient avec du ruban adhésif.),140,0,0,GetTape()
+140,0,0,IsModel,Trop classique ! Tu peux|faire mieux.ADD_MINUTES:1,"Je sais, je sais, je te taquinais.|(Elle enlève malicieusement ses sous-vêtements.)",150,0,0,"SetCloth(2, 0, 1)"
+140,0,0,IsModel,Tu sais ce que tu as|à faire.ADD_MINUTES:1,Bien sûr que oui. Pour l'art !|(Elle enlève malicieusement ses sous-vêtements.),150,0,0,"SetCloth(2, 0, 0)"
+140,0,0,IsModel,Oseras-tu te déshabiller ?|(Rire timide.)ADD_MINUTES:1,Ah ! Un défi facile !|(Elle enlève malicieusement ses sous-vêtements.),150,0,0,"SetCloth(2, 0, -1)"
+140,0,0,IsModel,Essaye cette pose avec|ton uniforme.ADD_MINUTES:1,Essaye de te décider.|(Elle se rhabille et boude.),130,0,0,"SetCloth(0, 0, 0)"
+150,0,0,GetTapeAvail,Rien d'autre pour pimenter|les choses ?ADD_MINUTES:1,Si ! J'ai quelque chose que tu peux utiliser juste ici.|(Elle se promène et revient avec du ruban adhésif.),150,0,0,GetTape()
+150,0,0,IsModel,Essaye cette pose en|sous-vêtements.ADD_MINUTES:1,Ça ne sera pas aussi sexy.|(Elle remet ses sous-vêtements et boude.),140,0,0,"SetCloth(1, 0, 0)"
+150,0,0,IsModel,Essayons à nouveau avec|ton uniforme.ADD_MINUTES:1,Vraiment ? Je ne suis pas assez jolie ?|(Elle remet son uniforme et boude.),130,0,0,"SetCloth(0, 0, 0)"
 160,0,5,CollarRemarkReady,Tu es suffisament prête|pour porter un collier.,Vous croyez ? Merci Madame.|(Elle rougit et sourit.),160,1,1,CollarRemark()
 160,0,0,EggInside,Sarah.|Tu apprécies l'oeuf ?,Carrément ! Merci beaucoup.|Ça bourdonne et ça me fait penser à toi.,160,0,0,
-160,2,0,Common_PlayerNotGagged,(Tu l'embrasses.)|(1 minute),"(Elle rougit.) Tu es si bonne,|tu me rappelles Amanda.",160,0,0,Kiss()
-160,0,0,,(Tu resserres les cordes.)|(1 minute),Les cordes sont déjà|aussi serrées qu'elles peuvent l'être.,160,0,0,Tighten()
-160,0,0,Common_PlayerNotRestrained,(Tu la détaches.)|(1 minute),"Ooooooh, pourquoi tu m'as détaché ?|(Elle tire la langue et prend la pose.)",150,0,0,Untie()
-160,0,0,Common_PlayerNotRestrained,(Tu la chatouilles.)|(1 minute),Tu es drôle. Mais est-ce le mieux que tu puisses faire ?|(Elle rit mais n'est pas impressionnée par tes chatouilles.),160,0,0,
+160,2,0,Common_PlayerNotGagged,(Tu l'embrasses.)ADD_MINUTES:1,"(Elle rougit.) Tu es si bonne,|tu me rappelles Amanda.",160,0,0,Kiss()
+160,0,0,,(Tu resserres les cordes.)ADD_MINUTES:1,Les cordes sont déjà|aussi serrées qu'elles peuvent l'être.,160,0,0,Tighten()
+160,0,0,Common_PlayerNotRestrained,(Tu la détaches.)ADD_MINUTES:1,"Ooooooh, pourquoi tu m'as détaché ?|(Elle tire la langue et prend la pose.)",150,0,0,Untie()
+160,0,0,Common_PlayerNotRestrained,(Tu la chatouilles.)ADD_MINUTES:1,Tu es drôle. Mais est-ce le mieux que tu puisses faire ?|(Elle rit mais n'est pas impressionnée par tes chatouilles.),160,0,0,
 160,0,0,PaintAvail,(Tu peins Sarah.)|(30 minutes),(Tu la peins soigneusement et lui montre le tableau.)|Waouh ! C'est un tableau tellement coquin. J'adore !,160,0,0,Paint()
-170,0,0,CrotchRopeReady,(Tu joues avec la corde|d'entrejambe.) (1 minute),(Tu joues avec jusqu'à qu'elle tremble et tombe|à genoux. Prête à avoir un énorme orgasme.),200,0,0,OrgasmStart()
-170,0,0,,(Tu resserres les cordes.)|(1 minute),Les cordes sont déjà|aussi serrées qu'elles peuvent l'être.,170,0,0,Tighten()
-170,0,0,Common_PlayerNotRestrained,(Tu la débâillonnes.)|(1 minute),(Elle étire sa mâchoire et sourit)|As-tu un plus gros bâillon pour la suite ?,160,0,0,Ungag()
-170,0,0,Common_PlayerNotRestrained,(Tu la chatouilles.)|(1 minute),(Elle rit mais n'est pas|impressionnée par tes chatouilles.),170,0,0,
+170,0,0,CrotchRopeReady,(Tu joues avec la corde|d'entrejambe.)ADD_MINUTES:1,(Tu joues avec jusqu'à qu'elle tremble et tombe|à genoux. Prête à avoir un énorme orgasme.),200,0,0,OrgasmStart()
+170,0,0,,(Tu resserres les cordes.)ADD_MINUTES:1,Les cordes sont déjà|aussi serrées qu'elles peuvent l'être.,170,0,0,Tighten()
+170,0,0,Common_PlayerNotRestrained,(Tu la débâillonnes.)ADD_MINUTES:1,(Elle étire sa mâchoire et sourit)|As-tu un plus gros bâillon pour la suite ?,160,0,0,Ungag()
+170,0,0,Common_PlayerNotRestrained,(Tu la chatouilles.)ADD_MINUTES:1,(Elle rit mais n'est pas|impressionnée par tes chatouilles.),170,0,0,
 170,0,0,PaintAvail,(Tu peins Sarah.)|(30 minutes),(Tu la peins soigneusement et lui montre le tableau.) (|Elle regarde ton oeuvre d'art et acquiesce joyeusement),170,0,0,Paint()
-180,0,0,CrotchRopeReady,(Tu joues avec la corde|d'entrejambe.) (1 minute),(Tu joues avec jusqu'à qu'elle tremble et tombe|à genoux. Prête à avoir un énorme orgasme.),250,0,0,OrgasmStart()
-180,0,0,,(Tu resserres les cordes.)|(1 minute),Les cordes sont déjà|aussi serrées qu'elles peuvent l'être.,180,0,0,Tighten()
-180,0,0,Common_PlayerNotRestrained,(Tu la débâillonnes.)|(1 minute),(Elle te sourit.) Ce ruban|était la meilleure idée que j'aie jamais eue.,160,0,0,Ungag()
-180,0,0,Common_PlayerNotRestrained,(Tu la chatouilles.)|(1 minute),(Elle rit mais n'est pas|impressionnée par tes chatouilles.),180,0,0,
+180,0,0,CrotchRopeReady,(Tu joues avec la corde|d'entrejambe.)ADD_MINUTES:1,(Tu joues avec jusqu'à qu'elle tremble et tombe|à genoux. Prête à avoir un énorme orgasme.),250,0,0,OrgasmStart()
+180,0,0,,(Tu resserres les cordes.)ADD_MINUTES:1,Les cordes sont déjà|aussi serrées qu'elles peuvent l'être.,180,0,0,Tighten()
+180,0,0,Common_PlayerNotRestrained,(Tu la débâillonnes.)ADD_MINUTES:1,(Elle te sourit.) Ce ruban|était la meilleure idée que j'aie jamais eue.,160,0,0,Ungag()
+180,0,0,Common_PlayerNotRestrained,(Tu la chatouilles.)ADD_MINUTES:1,(Elle rit mais n'est pas|impressionnée par tes chatouilles.),180,0,0,
 180,0,0,PaintAvail,(Tu peins Sarah.)|(30 minutes),(Tu la peins soigneusement et lui montre le tableau.) (|Elle regarde ton oeuvre d'art et acquiesce joyeusement),180,0,0,Paint()
 200,0,0,,"""Soumise""|Tu veux jouir ?","(Elle acquiesce lentement, essayant de se contrôler.)",210,0,1,
 200,0,0,,Alors cette salope|veut jouir ?,"(Elle fait un non puis un oui de la tête,|essayant de se contrôler.)",210,-1,0,
 200,0,0,,Tu sembles prête|à atteindre le ciel.,"(Elle acquiesce joyeusement, essayant de se contrôler.)",210,1,0,
-200,0,0,,Pauvre petite.|(Tu la relèves.) (1 minute),(Tu l'aides à se relever et elle|reprend lentement le contrôle d'elle-même.),170,0,0,
-210,0,0,,Tu le mérites.|(Tu continues.) (1 minute),"(Tu joues avec sa corde d'entrejambe et lui donne un|orgasme silencieux. Certaines étudiantes l'ont vue.)",220,1,0,Orgasm()
-210,0,0,,Tu es maintenant à moi.|(Tu continues.) (1 minute),"(Tu joues avec sa corde d'entrejambe et lui donne un|orgasme silencieux. Certaines étudiantes l'ont vue.)",220,0,1,Orgasm()
-210,0,0,,Tu ne le mérites pas.|(Tu la relèves.) (1 minute),(Tu la prives de son orgasme et tu l'aides|à se lever. Elle te fait un regard de chien battu.),170,-1,1,
-210,0,0,,Pas en plein cours.|(Tu la relèves.) (1 minute),(Tu la prives de son orgasme et tu l'aides|à se lever. Elle te fait un regard de chien battu.),170,-1,-1,
-220,0,0,,Bonne petite.|(Tu la relèves.) (1 minute),(Elle acquiesce et tremble pendant que|tu l'aides à se remettre sur ses pieds.),170,1,0,
-220,0,0,,T'es une pute.|(Tu la relèves.) (1 minute),(Elle fronce les sourcils et tremble pendant que|tu l'aides à se remettre sur ses pieds.),170,-1,1,
-220,0,0,,"Je serais la prochaine.|(Tu la relèves.) (1 minute)",(Elle rit et tremble pendant que|tu l'aides à se remettre sur ses pieds.),170,0,-1,
-220,0,0,,(Tu restes silencieuse|et la relèves.) (1 minute),(Elle tremble encore pendant que|tu l'aides à se remettre sur ses pieds.),170,0,0,
+200,0,0,,Pauvre petite.|(Tu la relèves.)ADD_MINUTES:1,(Tu l'aides à se relever et elle|reprend lentement le contrôle d'elle-même.),170,0,0,
+210,0,0,,Tu le mérites.|(Tu continues.)ADD_MINUTES:1,"(Tu joues avec sa corde d'entrejambe et lui donne un|orgasme silencieux. Certaines étudiantes l'ont vue.)",220,1,0,Orgasm()
+210,0,0,,Tu es maintenant à moi.|(Tu continues.)ADD_MINUTES:1,"(Tu joues avec sa corde d'entrejambe et lui donne un|orgasme silencieux. Certaines étudiantes l'ont vue.)",220,0,1,Orgasm()
+210,0,0,,Tu ne le mérites pas.|(Tu la relèves.)ADD_MINUTES:1,(Tu la prives de son orgasme et tu l'aides|à se lever. Elle te fait un regard de chien battu.),170,-1,1,
+210,0,0,,Pas en plein cours.|(Tu la relèves.)ADD_MINUTES:1,(Tu la prives de son orgasme et tu l'aides|à se lever. Elle te fait un regard de chien battu.),170,-1,-1,
+220,0,0,,Bonne petite.|(Tu la relèves.)ADD_MINUTES:1,(Elle acquiesce et tremble pendant que|tu l'aides à se remettre sur ses pieds.),170,1,0,
+220,0,0,,T'es une pute.|(Tu la relèves.)ADD_MINUTES:1,(Elle fronce les sourcils et tremble pendant que|tu l'aides à se remettre sur ses pieds.),170,-1,1,
+220,0,0,,"Je serais la prochaine.|(Tu la relèves.)ADD_MINUTES:1",(Elle rit et tremble pendant que|tu l'aides à se remettre sur ses pieds.),170,0,-1,
+220,0,0,,(Tu restes silencieuse|et la relèves.)ADD_MINUTES:1,(Elle tremble encore pendant que|tu l'aides à se remettre sur ses pieds.),170,0,0,
 250,0,0,,"""Soumise""|Tu veux jouir ?","(Elle acquiesce lentement, essayant de se contrôler.)",260,0,1,
 250,0,0,,Alors cette salope|veut jouir ?,"(Elle fait un non puis un oui de la tête,|essayant de se contrôler.)",260,-1,0,
 250,0,0,,Tu sembles prête|à atteindre le ciel.,"(Elle acquiesce joyeusement, essayant de se contrôler.)",260,1,0,
-250,0,0,,Pauvre petite.|(Tu la relèves.) (1 minute),(Tu l'aides à se relever et elle|reprend lentement le contrôle d'elle-même.),180,0,0,
-260,0,0,,Tu le mérites.|(Tu continues.) (1 minute),"(Tu joues avec sa corde d'entrejambe et lui donne un|orgasme silencieux. Certaines étudiantes l'ont vue.)",270,1,0,Orgasm()
-260,0,0,,Tu es maintenant à moi.|(Tu continues.) (1 minute),"(Tu joues avec sa corde d'entrejambe et lui donne un|orgasme silencieux. Certaines étudiantes l'ont vue.)",270,0,1,Orgasm()
-260,0,0,,Tu ne le mérites pas.|(Tu la relèves.) (1 minute),(Tu la prives de son orgasme et tu l'aides|à se lever. Elle te fait un regard de chien battu.),180,-1,1,
-260,0,0,,Pas en plein cours.|(Tu la relèves.) (1 minute),(Tu la prives de son orgasme et tu l'aides|à se lever. Elle te fait un regard de chien battu.),180,-1,-1,
-270,0,0,,Bonne petite.|(Tu la relèves.) (1 minute),(Elle acquiesce et tremble pendant que|tu l'aides à se remettre sur ses pieds.),180,1,0,
-270,0,0,,T'es une pute.|(Tu la relèves.) (1 minute),(Elle fronce les sourcils et tremble pendant que|tu l'aides à se remettre sur ses pieds.),180,-1,1,
-270,0,0,,"Je serais la prochaine.|(Tu la relèves.) (1 minute)",(Elle rit et tremble pendant que|tu l'aides à se remettre sur ses pieds.),180,0,-1,
-270,0,0,,(Tu restes silencieuse|et la relèves.) (1 minute),(Elle tremble encore pendant que|tu l'aides à se remettre sur ses pieds.),180,0,0,
+250,0,0,,Pauvre petite.|(Tu la relèves.)ADD_MINUTES:1,(Tu l'aides à se relever et elle|reprend lentement le contrôle d'elle-même.),180,0,0,
+260,0,0,,Tu le mérites.|(Tu continues.)ADD_MINUTES:1,"(Tu joues avec sa corde d'entrejambe et lui donne un|orgasme silencieux. Certaines étudiantes l'ont vue.)",270,1,0,Orgasm()
+260,0,0,,Tu es maintenant à moi.|(Tu continues.)ADD_MINUTES:1,"(Tu joues avec sa corde d'entrejambe et lui donne un|orgasme silencieux. Certaines étudiantes l'ont vue.)",270,0,1,Orgasm()
+260,0,0,,Tu ne le mérites pas.|(Tu la relèves.)ADD_MINUTES:1,(Tu la prives de son orgasme et tu l'aides|à se lever. Elle te fait un regard de chien battu.),180,-1,1,
+260,0,0,,Pas en plein cours.|(Tu la relèves.)ADD_MINUTES:1,(Tu la prives de son orgasme et tu l'aides|à se lever. Elle te fait un regard de chien battu.),180,-1,-1,
+270,0,0,,Bonne petite.|(Tu la relèves.)ADD_MINUTES:1,(Elle acquiesce et tremble pendant que|tu l'aides à se remettre sur ses pieds.),180,1,0,
+270,0,0,,T'es une pute.|(Tu la relèves.)ADD_MINUTES:1,(Elle fronce les sourcils et tremble pendant que|tu l'aides à se remettre sur ses pieds.),180,-1,1,
+270,0,0,,"Je serais la prochaine.|(Tu la relèves.)ADD_MINUTES:1",(Elle rit et tremble pendant que|tu l'aides à se remettre sur ses pieds.),180,0,-1,
+270,0,0,,(Tu restes silencieuse|et la relèves.)ADD_MINUTES:1,(Elle tremble encore pendant que|tu l'aides à se remettre sur ses pieds.),180,0,0,

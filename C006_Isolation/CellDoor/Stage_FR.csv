@@ -1,6 +1,6 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Tu tentes d'enfoncer|la porte.) (1 minute),"Tu essayes d'enfoncer la porte, mais tu|échoues lamentablement dans ta position actuelle.",0,0,0,
-0,0,0,,(Tu examines la serrure.)|(1 minute),La serrure est assez ancienne et assez basique.|Tu auras besoin d'une grosse clé ronde pour l'ouvrir.,0,0,0,
+0,0,0,,(Tu tentes d'enfoncer|la porte.)ADD_MINUTES:1,"Tu essayes d'enfoncer la porte, mais tu|échoues lamentablement dans ta position actuelle.",0,0,0,
+0,0,0,,(Tu examines la serrure.)ADD_MINUTES:1,La serrure est assez ancienne et assez basique.|Tu auras besoin d'une grosse clé ronde pour l'ouvrir.,0,0,0,
 0,0,0,,@UUUUMMP !,Il n'y a personne qui puisse t'entendre.,0,0,0,
 10,0,0,,(Tu essayes de crocheter|la serrure.),,0,0,0,PickLock()
-10,0,0,,(Tu tentes d'enfoncer|la porte.) (1 minute),"Tu essayes d'enfoncer la porte, mais tu|échoues lamentablement dans ta position actuelle.",10,0,0,
+10,0,0,,(Tu tentes d'enfoncer|la porte.)ADD_MINUTES:1,"Tu essayes d'enfoncer la porte, mais tu|échoues lamentablement dans ta position actuelle.",10,0,0,

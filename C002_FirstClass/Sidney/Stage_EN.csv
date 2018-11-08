@@ -24,8 +24,8 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 100,0,4,SubdueRemarkReady,Admit it.  You would|love to be like her.,(She stays silent and blushes red.),100,0,1,SubdueRemark()
 100,0,0,SubdueRemarkReady,High five!  Now we|have a good class.,High five!  Best math class ever.,100,1,0,SubdueRemark()
 100,0,0,SubdueRemarkReady,We have a brand|new class today.,Fuck yeah!  This is much better.,100,0,0,SubdueRemark()
-100,0,0,AmandaWhipReady,You want to whip|Amanda? (1 minute),Yeah!  (She takes your crop|and whips Amanda a few times.),100,1,0,AmandaWhip()
-100,0,0,SarahWhipReady,You want to whip|Sarah? (1 minute),Oh fuck yes!  (She takes your|crop and whips Sarah several times.),100,1,0,SarahWhip()
+100,0,0,AmandaWhipReady,You want to whip|Amanda?ADD_MINUTES:1,Yeah!  (She takes your crop|and whips Amanda a few times.),100,1,0,AmandaWhip()
+100,0,0,SarahWhipReady,You want to whip|Sarah?ADD_MINUTES:1,Oh fuck yes!  (She takes your|crop and whips Sarah several times.),100,1,0,SarahWhip()
 100,0,0,Common_PlayerGagged,"@Uuuummph, mmph!",(She whispers.) Stop making noise.,100,0,0,
 100,0,0,Common_PlayerGagged,(Chew on the gag.),(She whispers.) You look like an idiot.,100,0,0,
 100,1,0,Common_PlayerGagged,(Try to point|to the BallGag.),(She whispers) Shut up.|I'll help you after class.,100,0,0,
@@ -33,10 +33,10 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 100,0,0,Common_PlayerRestrained,(Struggle in|your restrains.),(She whispers.) You'll never get out.,100,0,0,
 100,0,-2,BowRemarkReady,(Bow your head.),(She whispers.) You're pathetic.,100,0,-1,BowRemark()
 110,0,0,Common_PlayerGagged,"@Uuuummph, mmph!",(She rolls her eyes up.),110,0,0,
-110,0,0,Common_PlayerNotRestrained,(Ungag her.)|(1 minute),(You unbuckle and pull out the big ball.)|Fuck this gag!,100,0,0,Ungag()
+110,0,0,Common_PlayerNotRestrained,(Ungag her.)ADD_MINUTES:1,(You unbuckle and pull out the big ball.)|Fuck this gag!,100,0,0,Ungag()
 130,0,0,Common_PlayerGagged,"@Uuuummph, mmph!",(She rolls her eyes up.),130,0,0,
-130,0,0,Common_PlayerNotRestrained,(Ungag her.)|(1 minute),(You unbuckle and pull out the big ball.)|Fuck this gag!,120,0,0,Ungag()
+130,0,0,Common_PlayerNotRestrained,(Ungag her.)ADD_MINUTES:1,(You unbuckle and pull out the big ball.)|Fuck this gag!,120,0,0,Ungag()
 140,0,0,Common_PlayerNotRestrained,(Untie her.),(You untie the knots and she dresses back.)|Shit!  You're such a pervert.,100,0,0,Untie()
 150,0,0,Common_PlayerGagged,"@Uuuummph, mmph!",(She rolls her eyes up.),150,0,0,
-150,0,0,Common_PlayerNotRestrained,(Ungag her.)|(1 minute),(You unbuckle and pull out the big ball.)|Fuck this gag!,140,0,0,Ungag()
+150,0,0,Common_PlayerNotRestrained,(Ungag her.)ADD_MINUTES:1,(You unbuckle and pull out the big ball.)|Fuck this gag!,140,0,0,Ungag()
 150,0,0,Common_PlayerNotRestrained,(Untie her.),(You untie the knots and she dresses back.)|(She points then points to her gag.),110,0,0,Untie()

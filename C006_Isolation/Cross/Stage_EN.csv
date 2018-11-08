@@ -1,12 +1,12 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Inspect it.)|(1 minute),This wooden cross has four cuffs attached to it.|Making anyone locked in very vulnerable.,0,0,0,
+0,0,0,,(Inspect it.)ADD_MINUTES:1,This wooden cross has four cuffs attached to it.|Making anyone locked in very vulnerable.,0,0,0,
 0,0,0,,(Cuff a wrist.),You try to reach the top cuffs to lock your|wrist but cannot reach them in your position.,0,0,0,
 0,0,0,,(Cuff an ankle.),You could probably lock your ankle.|Are you sure you want to do it?,10,0,0,
-10,0,0,,(Cuff an ankle.)|(1 minute),You lay back on the cross and play with the|cuff with your ankle until it snaps on you.,20,0,0,Trap()
+10,0,0,,(Cuff an ankle.)ADD_MINUTES:1,You lay back on the cross and play with the|cuff with your ankle until it snaps on you.,20,0,0,Trap()
 10,0,0,,(Don't do it.),You pull back from the device.,0,0,0,
-20,0,0,,(Tug on the cuff.)|(1 minute),You tug on the cuff but it's|firmly attached to the cross.,20,0,0,
-20,0,0,,(Try to slip out.)|(1 minute),You struggle to slip your ankle|out but your foot is trapped.,20,0,0,
-20,0,0,,(Cuff another ankle.)|(1 minute),You play against the second cuff with your leg|until it locks on you.  Forcing you to spread.,30,0,0,
-30,0,0,,(Tug on the cuffs.)|(1 minute),You tug on the cuffs but they|are firmly attached to the cross.,30,0,0,
-30,0,0,,(Try to slip out.)|(1 minute),You struggle to slip your ankles|out but your feet are trapped.,30,0,0,
+20,0,0,,(Tug on the cuff.)ADD_MINUTES:1,You tug on the cuff but it's|firmly attached to the cross.,20,0,0,
+20,0,0,,(Try to slip out.)ADD_MINUTES:1,You struggle to slip your ankle|out but your foot is trapped.,20,0,0,
+20,0,0,,(Cuff another ankle.)ADD_MINUTES:1,You play against the second cuff with your leg|until it locks on you.  Forcing you to spread.,30,0,0,
+30,0,0,,(Tug on the cuffs.)ADD_MINUTES:1,You tug on the cuffs but they|are firmly attached to the cross.,30,0,0,
+30,0,0,,(Try to slip out.)ADD_MINUTES:1,You struggle to slip your ankles|out but your feet are trapped.,30,0,0,
 30,0,0,,@UUUMNGH!,Nobody's there to hear you.,30,0,0,

@@ -1,37 +1,37 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-10,0,0,!Common_PlayerRestrained,(Search.)|(1 minute),You search in the bookshelves but all|you can find are books about chemistry.,10,0,0,
-10,0,0,CanSit,(Sit down.)|(1 minute),You sit down and relax on|the chair for a little while.,15,0,0,
-15,0,0,,(Stand up.)|(1 minute),You stand up from the chair.,10,0,0,
-30,0,0,!Common_PlayerRestrained,(Search.)|(1 minute),You search in the shelves but all you|can find are boring books on mathematics.,30,0,0,
-31,0,0,!Common_PlayerRestrained,(Search.)|(1 minute),You search the dead end part of the|corridor but don't find anything interesting.,31,0,0,SearchCounter()
-32,0,0,!Common_PlayerRestrained,(Search.)|(1 minute),You search in the shelves and find a|comic book hidden in between the books.,33,0,0,SearchGwendoline()
-33,0,0,,(Fetch the comic.)|(1 minute),"It's an old comic called ""Sweet Gwendoline"".|It was written and drawn by John Willie.",34,0,0,
+10,0,0,!Common_PlayerRestrained,(Search.)ADD_MINUTES:1,You search in the bookshelves but all|you can find are books about chemistry.,10,0,0,
+10,0,0,CanSit,(Sit down.)ADD_MINUTES:1,You sit down and relax on|the chair for a little while.,15,0,0,
+15,0,0,,(Stand up.)ADD_MINUTES:1,You stand up from the chair.,10,0,0,
+30,0,0,!Common_PlayerRestrained,(Search.)ADD_MINUTES:1,You search in the shelves but all you|can find are boring books on mathematics.,30,0,0,
+31,0,0,!Common_PlayerRestrained,(Search.)ADD_MINUTES:1,You search the dead end part of the|corridor but don't find anything interesting.,31,0,0,SearchCounter()
+32,0,0,!Common_PlayerRestrained,(Search.)ADD_MINUTES:1,You search in the shelves and find a|comic book hidden in between the books.,33,0,0,SearchGwendoline()
+33,0,0,,(Fetch the comic.)ADD_MINUTES:1,"It's an old comic called ""Sweet Gwendoline"".|It was written and drawn by John Willie.",34,0,0,
 33,0,0,,(Leave it there.),You leave the comic between the books.,32,0,0,
-34,0,0,,(Open the comic.)|(1 minute),"You flip a few pages.  It tells the story of|Gwendoline, a blond who gets tied up often.",35,0,0,
+34,0,0,,(Open the comic.)ADD_MINUTES:1,"You flip a few pages.  It tells the story of|Gwendoline, a blond who gets tied up often.",35,0,0,
 34,0,0,,(Put it back.),You leave the comic between the books.,32,0,0,
-35,0,0,,(Read some more.)|(1 minute),"You read a little more, the damsel|gets roped in many inescapable positions.",36,0,0,
-35,0,0,,(Masturbate.)|(1 minute),You silently masturbate while looking at|the magazine and get a nice warm feeling.,35,0,0,Masturbate()
+35,0,0,,(Read some more.)ADD_MINUTES:1,"You read a little more, the damsel|gets roped in many inescapable positions.",36,0,0,
+35,0,0,,(Masturbate.)ADD_MINUTES:1,You silently masturbate while looking at|the magazine and get a nice warm feeling.,35,0,0,Masturbate()
 35,0,0,,(Put it back.),You leave the comic between the books.,32,0,0,
-36,0,0,,(Read some more.)|(1 minute),"In the comic, there's a guide on|how to do advanced rope bondage.",37,0,0,
-36,0,0,,(Masturbate.)|(1 minute),You silently masturbate while looking at|the magazine and get a nice warm feeling.,36,0,0,Masturbate()
+36,0,0,,(Read some more.)ADD_MINUTES:1,"In the comic, there's a guide on|how to do advanced rope bondage.",37,0,0,
+36,0,0,,(Masturbate.)ADD_MINUTES:1,You silently masturbate while looking at|the magazine and get a nice warm feeling.,36,0,0,Masturbate()
 36,0,0,,(Put it back.),You leave the comic between the books.,32,0,0,
 37,0,0,CanLearnRopeMastery,(Study the comic.)|(15 minutes),You study the rope bondage techniques from|the comic and might have learned a few tricks.,37,0,0,LearnRopeMastery()
-37,0,0,,(Masturbate.)|(1 minute),You silently masturbate while looking at|the magazine and get a nice warm feeling.,37,0,0,Masturbate()
+37,0,0,,(Masturbate.)ADD_MINUTES:1,You silently masturbate while looking at|the magazine and get a nice warm feeling.,37,0,0,Masturbate()
 37,0,0,,(Put it back.),You leave the comic between the books.,32,0,0,
-40,0,0,!Common_PlayerRestrained,(Search.)|(1 minute),You search in the shelves and find|the book you're supposed to read.,41,0,0,SetReadProgress()
+40,0,0,!Common_PlayerRestrained,(Search.)ADD_MINUTES:1,You search in the shelves and find|the book you're supposed to read.,41,0,0,SetReadProgress()
 41,0,0,,(Read chapter 1.),"You read the first chapter.|""Marseilles - The Arrival""",42,0,0,ReadTime()
 42,0,0,,(Read chapter 2.),"You read the second chapter.|""Father and Son""",43,0,0,ReadTime()
 43,0,0,,(Read chapter 3.),"You read the third chapter.|""The Catalans""",44,0,0,ReadTime()
 44,0,0,,(Read chapter 4.),"You read the fourth chapter.|""Conspiracy""",45,0,0,ReadTime()
 45,0,0,,(Read chapter 5.),"You read the fifth chapter: ""The Marriage Feast"".|You're now ready for your next class.",46,0,0,ReadTime()
 46,0,0,,(Read all|over again.),"As a good student, your read|the whole thing all over again.",46,0,0,ReadFull()
-50,0,0,!Common_PlayerRestrained,(Search.)|(1 minute),You search in the bookshelves but|all you can find are philosophy books.,50,0,0,
-60,0,0,!Common_PlayerRestrained,(Search.)|(1 minute),You search in the bookshelves but|all you can find are history books.,60,0,0,
-60,0,0,CanSit,(Sit down.)|(1 minute),You sit down and relax on the big couch.|It's pretty comfy and there's room for two.,65,0,0,
-61,0,0,!Common_PlayerRestrained,(Search.)|(1 minute),You search in the bookshelves but|all you can find are history books.,61,0,0,
-65,0,0,,(Stand up.)|(1 minute),You stand up from the couch.,60,0,0,
-70,0,0,!Common_PlayerRestrained,(Search the desk.)|(1 minute),You search the desk but you|don't find anything interesting.,70,0,0,SearchDesk()
-70,0,0,!Common_PlayerRestrained,(Search the bag.)|(1 minute),You open Teacher Yuki's bag.,71,0,0,
+50,0,0,!Common_PlayerRestrained,(Search.)ADD_MINUTES:1,You search in the bookshelves but|all you can find are philosophy books.,50,0,0,
+60,0,0,!Common_PlayerRestrained,(Search.)ADD_MINUTES:1,You search in the bookshelves but|all you can find are history books.,60,0,0,
+60,0,0,CanSit,(Sit down.)ADD_MINUTES:1,You sit down and relax on the big couch.|It's pretty comfy and there's room for two.,65,0,0,
+61,0,0,!Common_PlayerRestrained,(Search.)ADD_MINUTES:1,You search in the bookshelves but|all you can find are history books.,61,0,0,
+65,0,0,,(Stand up.)ADD_MINUTES:1,You stand up from the couch.,60,0,0,
+70,0,0,!Common_PlayerRestrained,(Search the desk.)ADD_MINUTES:1,You search the desk but you|don't find anything interesting.,70,0,0,SearchDesk()
+70,0,0,!Common_PlayerRestrained,(Search the bag.)ADD_MINUTES:1,You open Teacher Yuki's bag.,71,0,0,
 70,0,0,CanCheckYuki,(Check on Yuki.),,70,0,0,CheckYuki()
 71,0,0,CanStealEgg,(Steal the vibrating egg.),You take the vibrating egg from Yuki's bag.,71,0,0,StealEgg()
 71,0,0,CanStealPill,(Steal the sleeping pill.),You take the sleeping pill from Yuki's bag.,71,0,0,StealPill()
@@ -39,15 +39,15 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 71,0,0,CanStealTape,(Steal the duct tape.),You take the duct tape from Yuki's bag.,71,0,0,StealTape()
 71,0,0,,(Put the bag away.),You leave the bag in the room.,70,0,0,
 80,0,0,!Common_PlayerRestrained,(Knock.),You knock on the door but nobody answers.,80,0,0,
-80,0,0,,(Listen.)|(1 minute),You put your ear against the|door but cannot hear anything.,80,0,0,
+80,0,0,,(Listen.)ADD_MINUTES:1,You put your ear against the|door but cannot hear anything.,80,0,0,
 80,0,0,!Common_PlayerRestrained,(Open it.),You try to open the door but it's locked.|There's a keyhole but you'll need the proper key.,80,0,0,UnlockDoor()
-80,0,0,!Common_PlayerRestrained,(Force it.)|(1 minute),You kick and you ram your shoulder|into the door but it doesn't open.,80,0,0,ForceDoor()
+80,0,0,!Common_PlayerRestrained,(Force it.)ADD_MINUTES:1,You kick and you ram your shoulder|into the door but it doesn't open.,80,0,0,ForceDoor()
 81,0,0,,(Open it.),,81,0,0,OpenDoor()
-85,0,0,!Common_PlayerRestrained,(Search the books.)|(1 minute),All you find are books on psychology.,85,0,0,
-85,0,0,!Common_PlayerRestrained,(Inspect the hole.)|(1 minute),"You inspect the small dark hole in the shelf.|It goes deep, your hand cannot reach the end.",86,0,0,
-86,0,0,,(Enter the hole.)|(1 minute),You can barely squeeze yourself in the hole.|Are you sure you want to try to fit it?,87,0,0,NoLeave()
-87,0,0,,(Go inside.)|(1 minute),You go deeper inside but get stuck halfway.|It's really dark and dusty on the other side.,88,0,0,StuckInHole()
-87,0,0,,(Get out.)|(1 minute),You carefully get out of the hole.,85,0,0,AllowLeave()
+85,0,0,!Common_PlayerRestrained,(Search the books.)ADD_MINUTES:1,All you find are books on psychology.,85,0,0,
+85,0,0,!Common_PlayerRestrained,(Inspect the hole.)ADD_MINUTES:1,"You inspect the small dark hole in the shelf.|It goes deep, your hand cannot reach the end.",86,0,0,
+86,0,0,,(Enter the hole.)ADD_MINUTES:1,You can barely squeeze yourself in the hole.|Are you sure you want to try to fit it?,87,0,0,NoLeave()
+87,0,0,,(Go inside.)ADD_MINUTES:1,You go deeper inside but get stuck halfway.|It's really dark and dusty on the other side.,88,0,0,StuckInHole()
+87,0,0,,(Get out.)ADD_MINUTES:1,You carefully get out of the hole.,85,0,0,AllowLeave()
 87,0,0,!PenInHole,(Leave a pen.),You leave a pen in the dark hole.,87,0,0,LeavePenInHole()
 87,0,0,PenInHole,(Take the pen.),You fetch your pen from the dark hole.,87,0,0,TakePenInHole()
 88,0,0,,(Struggle to go deeper.),You struggle to go deeper in the hole|but cannot manage to squeeze yourself in.,88,0,0,TwoMinutes()
@@ -59,13 +59,13 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 88,0,0,PenInHole,(Take the pen.),You fetch your pen from the dark hole.,88,0,0,TakePenInHole()
 90,0,0,CanClimb,(Climb.)|(1 minute.),You climb on the structure like a|monkey but you don't find anything.,90,0,0,Climb()
 90,0,0,!CanClimb,(Climb.)|(1 minute.),You try to climb the structure|but cannot make it and give up.,90,0,0,
-100,0,0,!Common_PlayerRestrained,(Search.)|(1 minute),There are lots of controversial books|but nothing really interesting is left.,100,0,0,SearchO()
-101,0,0,,(Read the summary.)|(1 minute),It seems to be the story of a woman|that discovers her submissive side.,101,0,0,
+100,0,0,!Common_PlayerRestrained,(Search.)ADD_MINUTES:1,There are lots of controversial books|but nothing really interesting is left.,100,0,0,SearchO()
+101,0,0,,(Read the summary.)ADD_MINUTES:1,It seems to be the story of a woman|that discovers her submissive side.,101,0,0,
 101,0,0,,(Open it.),"While flipping through the pages,|you find an invitation card.",102,0,0,
-102,0,0,,(Read the invitation.)|(1 minute),"It's an invitation card for a local place|in town called: ""The Bondage Club"".",103,0,0,
+102,0,0,,(Read the invitation.)ADD_MINUTES:1,"It's an invitation card for a local place|in town called: ""The Bondage Club"".",103,0,0,
 103,0,0,,(Take it.),You take both the book and the|invitation.  Maybe it will be useful.,100,0,0,TakeInvitation()
-105,0,0,!Common_PlayerRestrained,(Search.)|(1 minute),You search in the wooden cabinet but|you don't find anything interesting.,105,0,0,SearchCabinet()
-106,0,0,!Common_PlayerRestrained,(Search.)|(1 minute),You search in the room but|you don't find anything interesting.,106,0,0,
+105,0,0,!Common_PlayerRestrained,(Search.)ADD_MINUTES:1,You search in the wooden cabinet but|you don't find anything interesting.,105,0,0,SearchCabinet()
+106,0,0,!Common_PlayerRestrained,(Search.)ADD_MINUTES:1,You search in the room but|you don't find anything interesting.,106,0,0,
 106,0,0,,(Check the table.),The wooden table is huge.  There are metallic|rings bolted on it but nothing is attached to them.,106,0,0,
 106,0,0,,(Check the chairs.),"The chairs look comfy.  The one in the|back is massive, there's an ""S"" carved on it.",106,0,0,
 106,0,0,,(Check the painting.),It's the painting of a stern old man|which seems to be the school founder.,106,0,0,

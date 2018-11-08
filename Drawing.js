@@ -80,6 +80,10 @@ function DrawText(Text, X, Y, Color) {
 	// Replace the COMMON_NUMBER keyword with a number generated while playing the game
 	Text = Text.replace("COMMON_NUMBER", Common_Number);
 
+	// Remove the timing tag if present
+	if (Text.indexOf("ADD_MINUTES:") >= 0)
+		Text = Text.substring(0, Text.indexOf("ADD_MINUTES:"));
+
 	// Font is fixed for now, color can be set
 	MainCanvas.font = "24px Arial";
 	MainCanvas.fillStyle = Color;
@@ -147,8 +151,11 @@ function DrawActorStats(Left, Top) {
 	// Draw the actor name and icon
 	if (ActorGetValue(ActorHideName)) DrawText("Unknown", Left - 200, Top + 17, "black");
 	else DrawText(CurrentActor, Left - 200, Top + 17, "black");
-	DrawImage("Icons/Heart.png", Left - 110, Top);
-	DrawImage("Icons/Submission.png", Left - 10, Top);
+	if (CurrentActor == Common_PlayerLover) DrawImage("Icons/Lover.png", Left - 110, Top);
+	else DrawImage("Icons/Heart.png", Left - 110, Top);
+	if (ActorGetValue(ActorOwner) == "Player") DrawImage("Icons/Collared.png", Left - 10, Top);
+	else if (CurrentActor == Common_PlayerOwner) DrawImage("Icons/Owner.png", Left - 10, Top);
+	else DrawImage("Icons/Submission.png", Left - 10, Top);
 	DrawImage("Icons/Orgasm.png", Left + 90, Top);
 	DrawImage("Icons/Bondage.png", Left + 190, Top);
 	DrawPosNegValue(ActorGetValue(ActorLove), Left - 50, Top + 17);
@@ -469,11 +476,12 @@ function DrawActor(ActorToDraw, X, Y, Zoom) {
 		if (ActorSpecificHasInventory(ActorToDraw, "Cuffs")) ImageBondage = "_Cuffs";
 		if (ActorSpecificHasInventory(ActorToDraw, "Rope")) ImageBondage = "_Rope";
 		if (ActorSpecificHasInventory(ActorToDraw, "TwoRopes")) ImageBondage = "_TwoRopes";
+		if (ActorSpecificHasInventory(ActorToDraw, "ThreeRopes")) ImageBondage = "_ThreeRopes";
 		if (ActorSpecificHasInventory(ActorToDraw, "Armbinder")) ImageBondage = "_Armbinder";
 
 		// Third part is the collar, which only shows for certain clothes
 		var ImageCollar = "";
-		if ((ImageCloth == "Underwear") || (ImageCloth == "Naked") || (ImageCloth == "ChastityBelt") || (ImageCloth == "Damsel")) {
+		if ((ImageCloth == "Underwear") || (ImageCloth == "Naked") || (ImageCloth == "ChastityBelt") || (ImageCloth == "Damsel") || (ImageCloth == "Shorts") || (ImageCloth == "Swimsuit") || (ImageCloth == "Tennis") || (ImageCloth == "BrownDress")) {
 			if (ActorSpecificHasInventory(ActorToDraw, "Collar")) ImageCollar = "_Collar";
 		}
 
@@ -503,14 +511,14 @@ function DrawInteractionActor() {
 	if (CurrentActor == "") {
 		DrawTransparentPlayerImage(600, 0, 1);
 	} else {
-		if (ActorHasInventory("TwoRopes")) DrawActor(CurrentActor, 600, -250, 1);
+		if (ActorHasInventory("TwoRopes") || ActorHasInventory("ThreeRopes")) DrawActor(CurrentActor, 600, -250, 1);
 		else DrawActor(CurrentActor, 600, 0, 1);
 	}
 }
 
 // Draw a ramdom image of the player as transition from chapter to chapter
 function DrawPlayerTransition() {
-	var ImgRnd = (Math.round(new Date().getTime() / 5000) % 5) + 1;
+	var ImgRnd = (Math.round(new Date().getTime() / 5000) % 8) + 1;
 	DrawImage("Actors/PlayerTransition/Player0" + ImgRnd.toString() + ".png", 900, 0);
 }
 

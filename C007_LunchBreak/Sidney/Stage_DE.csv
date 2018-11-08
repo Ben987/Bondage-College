@@ -1,0 +1,168 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,Was ist los?,Ich finde meinen verfickten Geldbeutel|nicht und ich hab einen Scheißhunger!,10,0,0,
+0,0,0,,Ganz ruhig!,Ruhig? Ich hab 'nen Scheißhunger und ich|finde meinen Geldbeutel nicht!,10,-1,0,
+0,0,0,,"Was ist dein|Problem, Mädchen?",Ich werd wahnsinnig! Ich finde meinen|Geldbeutel nicht und ich hab 'nen Mordshunger!,10,0,1,
+0,0,0,,"Ich könnte versuchen,|dir zu helfen.",Hilf mir suchen! Ich hab meinen Geldbeutel|verloren und ich bin scheißhungrig!,10,0,-1,
+10,0,0,,Wo hast du ihn|zuletzt gesehen?,"Keine Ahnung! Ich kann nicht denken, wenn ich|hungrig bin. Kannst du mir etwas Geld geben?",20,0,0,
+10,0,0,,Gibt es Diebe in|diesem College?,"Sie wären gestört, wenn sie von mir stehlen.|Also, kannst du mir etwas Geld geben?",20,0,0,
+10,0,5,,"Bleib locker, Mädchen.|Ich kauf dir was zu essen.","Miss? Im Ernst? Das ist wirklich toll.|Ich wäre soweit, können wir gehen?",30,0,1,
+10,5,0,,"Komm mit, meine Liebe.|Ich kauf dir was zu essen.","Wirklich? Das ist verdammt geil.|Ich wäre soweit, können wir gehen?",30,1,0,
+10,0,0,,Eine Mahlzeit weniger|überlebst du schon.,"Fick dich, Schlampe!|(Sie geht weg.)",90,-1,0,EndLunch()
+10,0,0,,Ich hab 'n blondes Mädchen|mit einer Börse gesehen.,(Sie rast wie ein Stier durch den Gang.)|SAAAAAAARRRRRRRAAAAAHHH!!!,90,1,0,EndLunch()
+20,0,0,,Geh woanders betteln.,"Fick dich, Schlampe!|(Sie geht weg.)",90,-1,1,EndLunch()
+20,0,0,,"Sorry, ich|bin pleite.","Scheiße, scheiße, scheiße!|(Sie geht weg.)",90,0,0,EndLunch()
+20,0,0,,Hier ist etwas Geld.|(Sidney Geld geben.),"Danke, Trottel!|(Sie nimmt dein Geld und rennt davon.)",90,1,-1,EndLunch()
+20,0,5,,"Bleib locker, Mädchen.|Ich kauf dir was zu essen.","Miss? Im Ernst? Das ist wirklich toll.|Ich wäre soweit, können wir gehen?",30,0,1,
+20,5,0,,"Komm mit, meine Liebe.|Ich kauf dir was zu essen.","Wirklich? Das ist verdammt geil.|Ich wäre soweit, können wir gehen?",30,1,0,
+30,0,0,,Gehen wir!|(Mit Sidney essen.),Ihr lauft eilig in ein nahegelegenes Restaurant.|Sidney wählt schnell einen Tisch und wirkt sehr hungrig.,200,0,0,StartLunch()
+100,0,0,,Was ist los?,Ich finde meinen verfickten Geldbeutel|nicht und ich hab einen Scheißhunger!,110,0,0,
+100,0,0,,"Was ist dein|Problem, Mädchen?",Ich werd wahnsinnig! Ich finde meinen|Geldbeutel nicht und ich hab 'nen Mordshunger!,110,0,1,
+100,0,0,,Kann ich dir helfen?,"Nein, kannst du nicht! Ich hab meinen verfickten|Geldbeutel verloren und ich hab 'nen Scheißhunger!",110,0,-1,
+110,0,0,,Vielleicht kann ich|dir beim Suchen helfen.,"Nein, verdammt! Ich will nicht suchen.|Ich will essen! Gib mir etwas Geld.",120,0,-1,NoLeave()
+110,0,0,,"Es ist genug Zeit,|ihn zu finden.",Schnauze! Ich will jetzt essen!|Gib mir etwas Geld.,120,0,0,NoLeave()
+110,0,0,,Dann musst du wohl aufs|Mittagessen verzichten.,"Fick dich, ich will zur Mittagspause!|Gib mir etwas Geld!",120,-1,0,NoLeave()
+110,0,0,,"Das überlebst du,|du hast Reserven.",Sag das nochmal und ich brech dir alle Knochen.|Jetzt gib mir dein Geld bevor ich dich umbringe.,120,-2,1,NoLeave()
+110,0,0,,Ich hab 'n blondes Mädchen|mit einer Börse gesehen.,(Sie rast wie ein Stier durch den Gang.)|SAAAAAAARRRRRRRAAAAAHHH!!!,90,1,0,EndLunch()
+110,0,0,,Dann nimm etwas Geld.|(Sidney Geld geben.),"Danke, Trottel!|(Sie nimmt dein Geld und rennt davon.)",90,1,-1,EndLunch()
+120,0,0,,"Hier, ist ein Geschenk.|(Sidney Geld geben.)","Danke, Trottel!|(Sie nimmt dein Geld und rennt davon.)",90,1,-1,EndLunch()
+120,0,0,,Gib's mir morgen zurück.|(Sidney Geld geben.),Na schön. (Sie nimmt dein Geld und rennt davon.),90,1,0,EndLunch()
+120,0,0,,Ich hab gar|kein Geld.,Du kleine Scheißlügnerin! Komm mit.|(Sie packt deinen Arm und zerrt dich in den Keller.),130,-1,0,
+120,0,0,,Ich gebe dir|gar nichts.,Du Scheißschlampe! Komm mit.|(Sie packt deinen Arm und zerrt dich in den Keller.),130,-1,1,
+130,0,0,,Au! Das tut weh!,Und bald wird es noch viel mehr wehtun.|Letzte Chance. Zahle oder leide.,140,0,-1,
+130,0,0,,Wo sind wir?,Das würdest du lieber nicht wissen.|Jetzt ist deine letzte Chance. Zahle oder leide.,140,0,0,
+130,0,0,,Du verdammtes|Schwein!,(Sie starrt dich mit rasenden Augen an.)|Das ist deine letzte Chance. Zahle oder leide.,140,-1,0,
+130,0,0,,"Okay, okay, hier hast du.|(Sidney Geld geben.)",Endlich! (Sie nimmt dein Geld und rennt davon.),90,0,0,EndLunch()
+140,0,0,,Hier ist dein Geld.|(Sidney Geld geben.),Trottel! (Sie nimmt dein Geld und rennt davon.),90,0,0,EndLunch()
+140,0,0,,Ich gebe dir|gar nichts.,Dann leide! (Sie packt dich und|zerrt dich in einen Holzpranger.),150,-1,-1,Pillory()
+150,0,0,,Was zur Hölle!|Das kannst du nicht tun.,"Viel Spaß in der Pause, Schlampe, ich komme später|wieder. (Sie nimmt deinen Geldbeutel und rennt davon.)",160,0,0,
+150,0,0,,Dafür wirst|du bezahlen!,"Jetzt zahlst erstmal du, ich komme später wieder.|(Sie nimmt deinen Geldbeutel und rennt davon.)",160,0,1,
+150,0,0,,"Es tut mir leid, Sidney.|Lässt du mich frei?","Zu spät, Schlampe! Ich komme später wieder.|(Sie nimmt deinen Geldbeutel und rennt davon.)",160,0,-1,
+160,0,0,,(Geduldig warten.),"(Du wartest geduldig mit knurrendem Magen,|aber von Sidney fehlt jede Spur.)",160,0,0,PilloryWait()
+160,0,0,,HILFE! KANN MICH|JEMAND HÖREN?,"(Du schreist um Hilfe, aber es kommt niemand.)",160,0,0,PilloryWait()
+160,0,0,,"(Versuchen, die Vor-|richtung aufzubrechen.)","(Du versuchst den Pranger mit Gewalt|aufzubekommen, aber er rührt sich nicht.)",160,0,0,PilloryWait()
+160,0,0,,"(Versuchen, die|Hände herauszuzwängen.)","(Du versuchst deine Hände herauszuzwängen,|aber die Löcher sind zu eng.)",160,0,0,PilloryWait()
+170,0,0,,Ich werde gehorchen.|(Deinen Kopf senken.),Perfekt! Jetzt hau ab und nerv nicht.|(Du hebst deinen Gelbeutel und deine Tasche auf.),180,0,-1,PilloryFree()
+170,0,0,,Das ist Erpressung!,"Gut erkannt, kleine Schlampe. Jetzt verschwinde.|(Du hebst deinen Gelbeutel und deine Tasche auf.)",180,0,0,PilloryFree()
+170,0,0,,Eines Tages|bezahlst du dafür.,Wir werden sehen. Jetzt verzieh dich.|(Du hebst deinen Gelbeutel und deine Tasche auf.),180,0,1,PilloryFree()
+180,0,0,,(Mittagspause beenden.),,180,0,0,EndChapter()
+200,0,0,,Einen netten Ort|hast du ausgesucht.,"Meine dummen Mitbewohnerinnen kommen ständig|hierher, also halte ich mich meistens fern.",210,0,0,
+200,0,0,,Das Restaurant sieht|in Ordnung aus.,"Meine dummen Mitbewohnerinnen kommen ständig|hierher, also halte ich mich meistens fern.",210,0,0,
+200,0,0,,Was sollte ich essen?,Mir doch egal! (Sie schaut sich um.)|Sind meine blöden Mitbewohnerinnen hier?,210,0,0,
+200,0,0,,Was willst du essen?,Fleisch natürlich! (Sie schaut sich um.)|Sind meine blöden Mitbewohnerinnen hier?,210,0,0,
+210,0,0,,Du hast Mitbewohner?|Hast du ein Glück.,"Scheiße, nein! Es ist die Hölle.|Irgendwann zahl ich's ihnen heim.",220,0,0,BadMatch()
+210,0,0,,Du hast Mitbewohner?|Das kann anstrengend sein.,"Ja, sie gehen mir so auf den Keks.|Irgendwann zahl ich's ihnen heim.",220,0,0,GoodMatch()
+210,0,0,,Ich hätte auch|gern Mitbewohner.,Willst du meine? Sie gehen mir auf den Keks.|Irgendwann zahl ich's ihnen heim.,220,0,0,
+220,0,0,,"Brauchst du Hilfe,|dich zu rächen?","Das ist ne geniale Idee! Reden wir nach der Schule.|Erzähl mir von dir, was willst du später werden?",230,1,0,GoodMatch()
+220,0,0,,Du solltest mit|ihnen Frieden schließen.,"Frieden? Scheiße, nein! Tehmenwechsel.|Erzähl mir von dir, was willst du später werden?",230,-1,0,BadMatch()
+220,0,0,,Irgendwann bekommst|du deine Rache.,"Jep! Und zwar schon ziemlich bald.|Erzähl mir von dir, was willst du später werden?",230,0,0,GoodMatch()
+230,0,0,,Musikerin.,Dann stehst du ohne Geld da wie 'ne arme Sau.|Und was ist dein Lieblingsfach?,240,0,0,BadMatch()
+230,0,0,,Ärztin.,Cool! Da verdient man ordentlich.|Und was ist dein Lieblingsfach?,240,0,0,GoodMatch()
+230,0,0,,Sportlerin.,Dann stehst du ohne Geld da wie 'ne arme Sau.|Und was ist dein Lieblingsfach?,240,0,0,BadMatch()
+230,0,0,,Lehrerin.,"Nicht schlecht, dafür ist immer Bedarf.|Und was ist dein Lieblingsfach?",240,0,0,
+230,0,0,,Schauspielerin.,Dann stehst du ohne Geld da wie 'ne arme Sau.|Und was ist dein Lieblingsfach?,240,0,0,BadMatch()
+230,0,0,,Domina.,Ha! Mit der dummen Antwort hab ich nicht|gerechnet. Was ist dein Lieblingsfach?,240,0,0,
+230,0,0,,Architektin.,"Nette Wahl, hab ich auch drüber nachgedacht.|Was ist dein Lieblingsfach?",240,0,0,GoodMatch()
+230,0,0,,Landwirtin.,Toll! Mein Vater ist Landwirt.|Was ist dein Lieblingsfach?,240,0,0,GoodMatch()
+230,0,0,,Programmiererin.,"Nicht schlecht, dafür ist immer Bedarf.|Und was ist dein Lieblingsfach?",240,0,0,
+230,0,0,,Weiß ich noch nicht.,"Geht mir auch so, ich kann mich nicht festlegen.|Was ist dein Lieblingsfach?",240,0,0,GoodMatch()
+240,0,0,,Mathe.,Das ist langweilig aber vielleicht nützlich.|Und was machst du so nach der Schule?,250,0,0,
+240,0,0,,Musik.,So ein sinnloses Fach.|Was machst du so nach der Schule?,250,0,0,BadMatch()
+240,0,0,,Englisch.,Ich geb keinen Fuck auf fucking Englisch!|Und was machst du so nach der Schule?,250,0,0,BadMatch()
+240,0,0,,Sport.,Immerhin nicht so langweilig wie die anderen Fächer.|Und was machst du so nach der Schule?,250,0,0,
+240,0,0,,Chemie.,Toll! Kannst du mir 'ne Bombe basteln?|Und was machst du so nach der Schule?,250,0,0,GoodMatch()
+240,0,0,,Französisch.,Das ist langweilig aber vielleicht nützlich.|Und was machst du so nach der Schule?,250,0,0,
+240,0,0,,Kunst.,So ein sinnloses Fach.|Was machst du so nach der Schule?,250,0,0,BadMatch()
+240,0,0,,Geschichte.,"Ja, Kriegsgeschichte kann spannend sein.|Und was machst du so nach der Schule?",250,0,0,GoodMatch()
+240,0,0,,Theater.,So ein sinnloses Fach.|Was machst du so nach der Schule?,250,0,0,
+240,0,0,,Keine Ahnung.,Ja... Scheiß auf die ganzen Fächer.|Was machst du so nach der Schule?,250,0,0,GoodMatch()
+250,0,0,,Basketball.,"Es gibt bestimmt schlechtere Hobbys. (Eine|Kellnerin kommt, um eure Bestellung aufzunehmen.)",260,0,0,
+250,0,0,,Rockmusik.,"Metal ist mir lieber, aber Rock ist okay. (Eine|Kellnerin kommt, um eure Bestellung aufzunehmen.)",260,0,0,GoodMatch()
+250,0,0,,Videospiele.,"Es gibt bestimmt schlechtere Hobbys. (Eine|Kellnerin kommt, um eure Bestellung aufzunehmen.)",260,0,0,
+250,0,0,,Cheerleading.,"Was für ein scheißlangweiliges Hobby. (Eine|Kellnerin kommt, um eure Bestellung aufzunehmen.)",260,0,0,
+250,0,0,,Auf Partys gehen.,"Die Partys hier im College sind ziemlich lahm. (Eine|Kellnerin kommt, um eure Bestellung aufzunehmen.)",260,0,0,
+250,0,0,,Rollenspiele.,"Was für ein scheißlangweiliges Hobby. (Eine|Kellnerin kommt, um eure Bestellung aufzunehmen.)",260,0,0,BadMatch()
+250,0,0,,Mich besaufen.,"Ich muss mir auch bald wieder die kante geben. (Eine|Kellnerin kommt, um eure Bestellung aufzunehmen.)",260,0,0,GoodMatch()
+250,0,0,,Klassische Musik.,"Was für ein scheißlangweiliges Hobby. (Eine|Kellnerin kommt, um eure Bestellung aufzunehmen.)",260,0,0,BadMatch()
+250,0,0,,Liebe machen.,"Das freut bestimmt deinen verdammten Freund. (Eine|Kellnerin kommt, um eure Bestellung aufzunehmen.)",260,0,0,
+250,0,0,,Ich hab|keine Hobbys.,"Schon okay. Meins ist, die ganze Nacht zu kiffen. (Eine|Kellnerin kommt, um eure Bestellung aufzunehmen.)",260,0,0,GoodMatch()
+260,0,0,,Einen Salat bitte.,Bist du 'n bekackter Hase?|(Sie bestellt ein großes Steak.),270,-1,0,BadMatch()
+260,0,0,,Ein Steak bitte.,Beste Idee des Tages!|(Sie bestellt auch ein Steak.),270,1,0,GoodMatch()
+260,0,0,,Eine Suppe bitte.,Davon wird man doch nicht satt.|(Sie bestellt ein großes Steak.),270,0,0,
+260,0,0,,Einen Hamburger bitte.,Keine schlechte Wahl.|(Sie bestellt ein großes Steak.),270,0,0,GoodMatch()
+260,0,0,,Einen Nachoteller bitte.,Davon wird man doch nicht satt.|(Sie bestellt ein großes Steak.),270,0,0,
+260,0,0,,Nur Käsekuchen bitte.,Davon wird man doch nicht satt.|(Sie bestellt ein großes Steak.),270,0,0,
+260,0,0,,Suppe und Salat bitte.,Bist du 'n bekackter Hase?|(Sie bestellt ein großes Steak.),270,0,0,BadMatch()
+260,0,0,,Einen Chili Dog bitte.,Keine schlechte Wahl.|(Sie bestellt ein großes Steak.),270,0,0,GoodMatch()
+260,0,0,,Fettuccine Alfredo bitte.,Keine schlechte Wahl.|(Sie bestellt ein großes Steak.),270,0,0,GoodMatch()
+260,0,0,,Nur Wasser bitte.,Scheiße! Du willst gar nichts essen?|(Sie bestellt ein großes Steak.),270,-1,0,BadMatch()
+270,0,0,,Guten Hunger!|(Aufs Essen warten.),"Ja, verdammt! (Ihr esst beide auf.|Sie rülpst ein paar Mal und sieht zufrieden aus.)",280,0,0,EatMeal()
+270,0,0,,Guten Appetit!|(Aufs Essen warten.),"Ja, verdammt! (Ihr esst beide auf.|Sie rülpst ein paar Mal und sieht zufrieden aus.)",280,0,0,EatMeal()
+270,0,0,,"Beeilung, Fräulein!|(Aufs Essen warten.)","Recht hast du! (Ihr esst beide auf.|Sie rülpst ein paar Mal und sieht zufrieden aus.)",280,0,1,EatMeal()
+270,0,0,,(Schweigen und|aufs Essen warten.),Beeilung! (Ihr esst beide auf.|Sie rülpst ein paar Mal und sieht zufrieden aus.),280,0,-1,EatMeal()
+280,0,0,,Hat's geschmeckt?,Jep! Mit Fleisch kann man nix falsch machen.|Müssen wir schon zum College zurück?,290,0,0,CheckForSmoke()
+280,0,0,,Bist du satt?,Jep! Mit Fleisch kann man nix falsch machen.|Müssen wir schon zum College zurück?,290,0,0,CheckForSmoke()
+290,0,0,AllowSmoke,"Klar, rauchen wir.|(Mit ihr rauchen.)","(Ihr geht in eine abgelegene Ecke und sie|zündet etwas an, das wie ein Joint aussieht.)",300,0,0,
+290,0,0,AllowSmoke,"Sorry, ich rauche nicht.|(Zurück zum College.)",,0,0,0,EndChapter()
+290,0,0,!AllowSmoke,Gehen wir.|(Zurück zum College.),,0,0,0,EndChapter()
+300,0,0,,Kann ich auch mal?|(Mit ihr rauchen.),Klar! (Sie pafft eine große Wolke|und teilt den Joint mit dir.),310,1,0,Smoke()
+300,0,0,,"Rauch doch, mir egal.|(Nicht mitrauchen.)",Du rauchst also nur Zigaretten?|(Sie pafft drei große Wolken mit dem Joint.),320,-1,0,Smoke()
+300,0,0,,Gib her das Ding!|(Mit ihr rauchen.),Da hast du. (Sie reicht|den Joint an dich weiter.),310,1,1,Smoke()
+300,0,0,,Rauchen ist ungesund.|(Nicht mitrauchen.),Wer bist du? Die Scheißpolizei?|(Sie pafft drei große Wolken mit dem Joint.),320,-1,-1,Smoke()
+300,0,0,,Ist Rauchen hier sicher?|(Mit ihr rauchen.),Könnte nicht sicherer sein. (Sie pafft eine|große Wolke und teilt den Joint mit dir.),310,1,-1,Smoke()
+300,0,0,,Nein! Das ist illegal!|(Nicht mitrauchen.),Du bist so 'ne armselige Versagerin.|(Sie pafft drei große Wolken mit dem Joint.),320,-2,-2,Smoke()
+310,0,0,,Das ist toll!|(Den Joint rauchen.),Jep! Lass mir was übrig.|(Du paffst ein paar Wolken.),310,0,0,Smoke()
+310,0,0,,Danke. (Den|Joint zurückgeben.),(Du gibst ihr den Joint und sie|pafft drei kurze Wolken.),320,0,0,Smoke()
+320,0,0,,Wie oft rauchst|du Gras?,Jeden Tag! Die beste Medizin gegen Langeweile.|(Sie pafft zwei mal und setzt sich bekifft hin.),330,0,0,Smoke()
+320,0,0,,"Pass auf, sonst bleibst|du im Unterricht so.","Denkst du, das weiß ich nicht?|(Sie pafft zwei mal und setzt sich bekifft hin.)",330,0,-1,Smoke()
+320,0,0,,Das ist toll! Wir sollten|öfter zusammen essen.,"Ja, verdammt! Jeden Tag kiffen.|(Sie pafft zwei mal und setzt sich bekifft hin.)",330,1,0,Smoke()
+330,0,0,,Alles klar bei dir?,Oh Scheiße ja!|(Sie blickt umher.),330,0,0,
+330,0,0,,Wir sollten die|Schule schwänzen.,Oh ja! Beste Idee überhaupt!|(Sie kichert und starrt ziellos in die Gegend.),330,0,0,
+330,0,0,HateAmanda,Willst du dich an|Amanda rächen?,"Ja, verdammt! Am Besten jetzt gleich.|Hilfst du mir, sie zu verprügeln?",400,0,0,
+330,0,0,HateSarah,Willst du dich an|Sarah rächen?,"Ja, verdammt! Am Besten jetzt gleich.|Hilfst du mir, sie zu verprügeln?",500,0,0,
+330,0,0,,(Mit ihr rauchen.)ADD_MINUTES:1,(Ihr teilt euch den Joint und sitzt rum.),330,0,0,
+330,0,0,,(Sie anstarren.)ADD_MINUTES:1,"(Du starrst sie untätig an,|während sie dir ins Gesicht pafft.)",330,0,0,
+330,0,0,,(Sie ausziehen.)ADD_MINUTES:1,(Sie starrt dich an und drückt deine Hand weg.)|(Du brauchst +8 Liebe oder Dominanz dafür.),330,0,0,RemoveClothes()
+330,0,0,,Gehen wir.|(Zurück zum College.),,0,0,0,EndChapter()
+340,0,0,!IsGagged,Alles klar bei dir?,Oh Scheiße ja!|(Sie blickt umher.),340,0,0,
+340,0,0,!CuteRemarkDone,Du siehst so|ganz süß aus.,"(Sie schaut an sich herab,|wird etwas rot und nickt dir zu.)",340,0,0,CuteRemark()
+340,0,0,,(Sie kitzeln.)ADD_MINUTES:1,"(Sie ist entweder nicht kitzlig oder zu|weggetreten, aber sie reagiert kaum.)",340,0,0,
+340,0,0,,(Sie befriedigen.)ADD_MINUTES:1,,340,0,0,Masturbate()
+340,0,0,IsRoped,(Sie befreien.)ADD_MINUTES:1,"(Sie scheint sich über ihre Freiheit zu|freuen, aber sie reagiert kaum.)",340,0,0,Untie()
+340,0,0,IsGagged,(Sie entknebeln.)ADD_MINUTES:1,(Du nimmst ihr den Knebel ab und sie starrt dich an.)|Oh Scheiße! Das ist ziemlich krass.,340,0,0,Ungag()
+340,0,0,,(Sie wieder anziehen.)ADD_MINUTES:1,(Du lässt sie frei und sie|zieht ihre Sachen wieder an.),330,0,0,Release()
+340,0,0,IsBoundAndGagged,"Verarscht, du Schlampe.|(Sie im Stich lassen.)",,340,0,0,EvilEnd()
+340,0,0,,Gehen wir.|(Zurück zum College.),,0,0,0,EndChapter()
+350,0,0,,"Komm für mich, Süße.|(Orgasmus herbeiführen.)","(Du befriedigst sie sachte, während sie stöhnt|und sich einem zärtlichen Orgasmus hingibt.)",340,1,0,Orgasm()
+350,0,0,,"Komm, kleine Schlampe.|(Orgasmus herbeiführen.)",(Du befriedigst sie energisch und|sie erreicht einen starken Orgasmus.),340,0,1,Orgasm()
+350,0,0,,"Nicht jetzt, später vielleicht.|(Orgasmus verweigern.)",(Du brichst die Befriedigung ab|und sie hört langsam zu stöhnen auf.),340,-1,0,NoOrgasm()
+350,0,0,,Das verdienst du nicht.|(Orgasmus verweigern.),(Du brichst die Befriedigung ab|und sie hört langsam zu stöhnen auf.),340,0,-1,NoOrgasm()
+400,0,0,,"Amanda verprügeln?|Nein, das ist zu drastisch.",Es ist nicht drastisch genug!|Eines Tages wird sie bezahlen.,330,0,0,
+400,0,0,,Ja! Krallen|wir sie uns.,"Na dann los! (Ihr betretet einen leeren|Klassenraum, wo Amanda etwas liest.)",410,0,0,StartBeatUp()
+410,0,0,,"(Sidney helfen, Amanda|zu überwältigen.)ADD_MINUTES:1",(Ihr stürzt euch beide auf Amanda und|Sidney ergreift sie.) Zieh sie aus!,420,1,0,
+410,0,0,,Das kann ich nicht.|(Amanda in Ruhe lassen.),"Du verdammte Verräterin! Glück gehabt, Amanda.|(Amanda packt schnell ihre Sachen und rennt davon.)",490,-3,-2,
+420,0,0,,"(Sidney helfen,|Amanda auszuziehen.)ADD_MINUTES:1","(Du ziehst sie aus, während|Sidney sie festhält.) Auf sie!",430,1,0,
+420,0,0,,Das kann ich nicht.|(Amanda gehen lassen.),"Du verdammte Verräterin! Glück gehabt, Amanda.|(Amanda packt schnell ihre Sachen und rennt davon.)",490,-3,-2,
+430,0,0,,(Amanda verprügeln.)ADD_MINUTES:1,"(Ihr tretet und schlagt auf Amanda ein, bis|sie am Boden kauert.) Überlass mir den Rest!",440,0,1,"BeatUp(""Amanda"")"
+430,0,0,,"Ich bin zu|schwach, Miss.ADD_MINUTES:1","(Sidney prügelt allein auf Amanda ein, bis|sie am Boden kauert.) Platz da, Mädel!",440,0,-1,
+430,0,0,,Das kann ich nicht.|(Amanda gehen lassen.),"Du verdammte Verräterin! Glück gehabt, Amanda.|(Amanda packt schnell ihre Sachen und rennt davon.)",490,-3,-2,
+440,0,0,,Nur zu!ADD_MINUTES:1,"(Sidney knebelt und fesselt Amanda.)|Schnell, sonst werden wir noch erwischt!",450,1,0,"TieUp(""Amanda"")"
+440,0,0,,Das geht zu weit.|(Amanda hochhelfen.),"Du verdammte Verräterin! Glück gehabt, Amanda.|(Amanda packt schnell ihre Sachen und rennt davon.)",490,-3,-2,
+450,0,0,,"Ja, Miss Sidney.|(Sie im Stich lassen.)",,0,0,-1,"CrimeStranded(""Amanda"")"
+450,0,0,,Renn um dein Leben!|(Sie im Stich lassen.),,0,0,1,"CrimeStranded(""Amanda"")"
+450,0,0,,Das geht zu weit.|(Sie befreien.)ADD_MINUTES:1,"Du verdammte Verräterin! Glück gehabt, Amanda.|(Amanda packt schnell ihre Sachen und rennt davon.)",490,-3,-2,
+490,0,0,,Gehen wir.|(Zum Unterricht.),,0,0,0,EndChapter()
+500,0,0,,"Sarah verprügeln?|Nein, das ist zu drastisch.",Es ist nicht drastisch genug!|Eines Tages wird sie bezahlen.,330,0,0,
+500,0,0,,Ja! Krallen|wir sie uns.,"Na dann los! (Ihr geht auf den|Schulhof, wo Sarah sich aufhält.)",510,0,0,StartBeatUp()
+510,0,0,,"(Sidney helfen, Sarah|zu überwältigen.)ADD_MINUTES:1",(Ihr stürzt euch beide auf Sarah und|Sidney ergreift sie.) Zieh sie aus!,520,1,0,
+510,0,0,,Das kann ich nicht.|(Sarah in Ruhe lassen.),"Du verdammte Verräterin! Glück gehabt, Sarah.|(Sarah packt schnell ihre Sachen und rennt davon.)",590,-3,-2,
+520,0,0,,"(Sidney helfen, Sarah|auszuziehen.)ADD_MINUTES:1","(Du ziehst sie aus, während|Sidney sie festhält.) Auf sie!",530,1,0,
+520,0,0,,Das kann ich nicht.|(Sarah gehen lassen.),"Du verdammte Verräterin! Glück gehabt, Sarah.|(Sarah packt schnell ihre Sachen und rennt davon.)",590,-3,-2,
+530,0,0,,(Sarah verprügeln.)ADD_MINUTES:1,"(Ihr tretet und schlagt auf Sarah ein, bis|sie am Boden kauert.) Überlass mir den Rest!",540,0,1,"BeatUp(""Sarah"")"
+530,0,0,,"Ich bin zu|schwach, Miss.ADD_MINUTES:1","(Sidney prügelt allein auf Sarah ein, bis|sie am Boden kauert.) Platz da, Mädel!",540,0,-1,
+530,0,0,,Das kann ich nicht.|(Sarah gehen lassen.),"Du verdammte Verräterin! Glück gehabt, Sarah.|(Sarah packt schnell ihre Sachen und rennt davon.)",590,-3,-2,
+540,0,0,,Nur zu!ADD_MINUTES:1,"(Sidney knebelt und fesselt Sarah an den Zaun.)|Schnell, sonst werden wir noch erwischt!",550,1,0,"TieUp(""Sarah"")"
+540,0,0,,Das geht zu weit.|(Sarah hochhelfen.),"Du verdammte Verräterin! Glück gehabt, Sarah.|(Sarah packt schnell ihre Sachen und rennt davon.)",590,-3,-2,
+550,0,0,,"Ja, Miss Sidney.|(Sie im Stich lassen.)",,0,0,-1,"CrimeStranded(""Sarah"")"
+550,0,0,,Renn um dein Leben!|(Sie im Stich lassen.),,0,0,1,"CrimeStranded(""Sarah"")"
+550,0,0,,Das geht zu weit.|(Sie befreien.)ADD_MINUTES:1,"Du verdammte Verräterin! Glück gehabt, Sarah.|(Sarah packt schnell ihre Sachen und rennt davon.)",590,-3,-2,
+590,0,0,,Gehen wir.|(Zum Unterricht.),,0,0,0,EndChapter()

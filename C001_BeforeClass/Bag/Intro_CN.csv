@@ -1,0 +1,5 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,书包不被注意地挂在女孩的后背上。|带子是扣上的。,BagClosed.jpg
+10,0,0,,书包的带子松垮地悬在外面。|你能看到包里有些绳子。,BagOpen.jpg
+20,0,0,,书包的带子松垮地悬在外面。|包里没有什么有趣的东西了。,BagOpen.jpg
+30,0,0,,书包被合上并且严加看管了。|你需要和包的主人谈谈。,BagClosed.jpg

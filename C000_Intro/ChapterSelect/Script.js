@@ -4,8 +4,7 @@ var C000_Intro_ChapterSelect_CreditPosition = 0;
 var C000_Intro_ChapterSelect_Credits = [];
 var C000_Intro_ChapterSelect_CreditActors = ["Player", "Amanda", "Sarah", "Sidney", "Jennifer", "Julia", "Yuki"];
 var C000_Intro_ChapterSelect_ThankYouCount = 999999;
-var C000_Intro_ChapterSelect_ThankYouList = ["Christian", "Overlord", "Bryce", "Xepherio", "Designated", "Ilsyra", "Jyeoh", "Winterisbest", "Michal", "David",
-											 "Nick", "Laioken", "Terry", "Robert", "Zack", "Tom", "Alvin", "Shadow", "Skylord", "Simeon", "Squerby55"];
+var C000_Intro_ChapterSelect_ThankYouList = ["Alvin", "Bryce", "Christian", "Designated", "Dick", "EugeneTooms", "Ilsyra", "Jyeoh", "Laioken", "Michal", "Mindtie", "Nick", "Overlord", "Rashiash", "Shadow", "Simeon", "Simon", "Sky", "Terry", "Winterisbest", "Xepherio", "Zack"];
 var C000_Intro_ChapterSelect_ThankYouCurrent = -1;
 var C000_Intro_ChapterSelect_CreditTextColor = "black";
 
@@ -14,7 +13,7 @@ function C000_Intro_ChapterSelect_Load() {
 	LeaveIcon = "";
 	LeaveScreen = "";
 	LoadInteractions();
-	ReadCSV("C000_Intro_ChapterSelect_Credits", CurrentChapter + "/" + CurrentScreen + "/GameCredits.csv");
+	ReadCSV("C000_Intro_ChapterSelect_Credits", CurrentChapter, CurrentScreen, "GameCredits");
 	StopTimer(7.6666667 * 60 * 60 * 1000);
 }
 

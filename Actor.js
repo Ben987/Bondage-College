@@ -175,6 +175,17 @@ function ActorSetCloth(NewCloth) {
 			Actor[A][ActorCloth] = NewCloth;
 }
 
+// Sets the owner for the current actor (collar the actor)
+function ActorSetOwner(NewOwner) {
+	for (var A = 0; A < Actor.length; A++)
+		if (Actor[A][ActorName] == CurrentActor) {
+			Actor[A][ActorOwner] = NewOwner;
+			ActorAddInventory("Collar");
+			GameLogAdd("CollaredBy" + NewOwner);
+			if (NewOwner == "Player") Common_ActorIsOwned = true;
+		}
+}
+
 // Sets the clothes for a specific actor
 function ActorSpecificSetCloth(SpecificActor, NewCloth) {
 	for (var A = 0; A < Actor.length; A++)
@@ -207,18 +218,29 @@ function ActorSpecificInBondage(SpecificActor) {
 	} else {
 		for (var A = 0; A < Actor.length; A++)
 			if (Actor[A][ActorName] == SpecificActor)
-				return (ActorSpecificHasInventory(SpecificActor, "Rope") || ActorSpecificHasInventory(SpecificActor, "TwoRopes") || ActorSpecificHasInventory(SpecificActor, "Armbinder") || ActorSpecificHasInventory(SpecificActor, "Cuffs") || ActorSpecificHasInventory(SpecificActor, "Manacles") || ActorSpecificHasInventory(SpecificActor, "BallGag") || ActorSpecificHasInventory(SpecificActor, "TapeGag") || ActorSpecificHasInventory(SpecificActor, "ClothGag"));
+				return (ActorSpecificHasInventory(SpecificActor, "Rope") || ActorSpecificHasInventory(SpecificActor, "TwoRopes") || ActorSpecificHasInventory(SpecificActor, "ThreeRopes") || ActorSpecificHasInventory(SpecificActor, "Armbinder") || ActorSpecificHasInventory(SpecificActor, "Cuffs") || ActorSpecificHasInventory(SpecificActor, "Manacles") || ActorSpecificHasInventory(SpecificActor, "BallGag") || ActorSpecificHasInventory(SpecificActor, "TapeGag") || ActorSpecificHasInventory(SpecificActor, "ClothGag"));
 	}
 }
 
 // Returns TRUE if a specific actor (or player) is restrained
 function ActorSpecificIsRestrained(SpecificActor) {
 	if (SpecificActor == "Player") {
-		return (Common_PlayerRestrained);
+		return Common_PlayerRestrained;
 	} else {
 		for (var A = 0; A < Actor.length; A++)
 			if (Actor[A][ActorName] == SpecificActor)
-				return (ActorSpecificHasInventory(SpecificActor, "Rope") || ActorSpecificHasInventory(SpecificActor, "TwoRopes") || ActorSpecificHasInventory(SpecificActor, "Armbinder") || ActorSpecificHasInventory(SpecificActor, "Cuffs") || ActorSpecificHasInventory(SpecificActor, "Manacles"));
+				return (ActorSpecificHasInventory(SpecificActor, "Rope") || ActorSpecificHasInventory(SpecificActor, "TwoRopes") || ActorSpecificHasInventory(SpecificActor, "ThreeRopes") || ActorSpecificHasInventory(SpecificActor, "Armbinder") || ActorSpecificHasInventory(SpecificActor, "Cuffs") || ActorSpecificHasInventory(SpecificActor, "Manacles"));
+	}
+}
+
+// Returns TRUE if a specific actor (or player) is restrained
+function ActorSpecificIsGagged(SpecificActor) {
+	if (SpecificActor == "Player") {
+		return Common_PlayerGagged;
+	} else {
+		for (var A = 0; A < Actor.length; A++)
+			if (Actor[A][ActorName] == SpecificActor)
+				return (ActorSpecificHasInventory(SpecificActor, "BallGag") || ActorSpecificHasInventory(SpecificActor, "TapeGag") || ActorSpecificHasInventory(SpecificActor, "ClothGag"));
 	}
 }
 
@@ -227,7 +249,7 @@ function ActorIsRestrained() {
 	if (CurrentActor == "")
 		return Common_PlayerRestrained;
 	else
-		return (ActorHasInventory("Rope") || ActorHasInventory("TwoRopes") || ActorHasInventory("Armbinder") || ActorHasInventory("Cuffs") || ActorHasInventory("Manacles"));
+		return (ActorHasInventory("Rope") || ActorHasInventory("TwoRopes") || ActorHasInventory("ThreeRopes") || ActorHasInventory("Armbinder") || ActorHasInventory("Cuffs") || ActorHasInventory("Manacles"));
 }
 
 // Returns true if the actor is gagged (if there's no actor, we return the player status)
@@ -248,6 +270,7 @@ function ActorIsChaste() {
 
 // Unties the actor and returns the rope to the player
 function ActorUntie() {
+	if (ActorHasInventory("ThreeRopes")) { PlayerAddInventory("Rope", 1); ActorRemoveInventory("ThreeRopes"); }
 	if (ActorHasInventory("TwoRopes")) { PlayerAddInventory("Rope", 1); ActorRemoveInventory("TwoRopes"); }
 	if (ActorHasInventory("Rope")) { PlayerAddInventory("Rope", 1); ActorRemoveInventory("Rope"); }
 	if (ActorHasInventory("Armbinder")) { PlayerAddInventory("Armbinder", 1); ActorRemoveInventory("Armbinder"); }
@@ -270,11 +293,19 @@ function ActorApplyRestrain(RestrainName) {
 	
 	// The rope can be applied twice, the item becomes "TwoRopes"
 	if ((RestrainName == "Rope") && ActorHasInventory("Rope") && !ActorHasInventory("TwoRopes") && PlayerHasInventory("Rope")) RestrainName = "TwoRopes";
+	if ((RestrainName == "Rope") && ActorHasInventory("Rope") && ActorHasInventory("TwoRopes") && !ActorHasInventory("ThreeRopes") && PlayerHasInventory("Rope") && (PlayerGetSkillLevel("RopeMastery") >= 1)) RestrainName = "ThreeRopes";
 
 	// If there's no text or the player is restrained, we assume we cannot apply the restrain
 	var RestrainText = GetText(RestrainName);
-	if ((RestrainText.substr(0, 20) != "MISSING TEXT FOR TAG") && (RestrainText != "") && !Common_PlayerRestrained && (PlayerHasInventory(RestrainName) || RestrainName == "TwoRopes") && !ActorHasInventory(RestrainName)) {
+	if ((RestrainText.substr(0, 20) != "MISSING TEXT FOR TAG") && (RestrainText != "") && !Common_PlayerRestrained && (PlayerHasInventory(RestrainName) || RestrainName == "TwoRopes" || RestrainName == "ThreeRopes") && !ActorHasInventory(RestrainName)) {
 
+		// Third rope 
+		if (RestrainName == "ThreeRopes") {
+			PlayerRemoveInventory("Rope", 1);
+			ActorAddInventory("ThreeRopes");
+			CurrentTime = CurrentTime + 60000;			
+		}
+	
 		// Second rope 
 		if (RestrainName == "TwoRopes") {
 			PlayerRemoveInventory("Rope", 1);
@@ -358,8 +389,10 @@ function ActorSpecificClearInventory(QueryActor, Recover) {
 			var HadCollar = ActorSpecificHasInventory(QueryActor, "Collar");
 			var HadBelt = ActorSpecificHasInventory(QueryActor, "ChastityBelt");
 			while (Actor[A][ActorInventory].length > 0) {
-				if ((Actor[A][ActorInventory][0] != "VibratingEgg") && (Actor[A][ActorInventory][0] != "TwoRopes") && (Actor[A][ActorInventory][0] != "Collar") && (Actor[A][ActorInventory][0] != "ChastityBelt") && (Actor[A][ActorInventory][0] != "TapeGag") && Recover)
+				if ((Actor[A][ActorInventory][0] != "VibratingEgg") && (Actor[A][ActorInventory][0] != "TwoRopes") && (Actor[A][ActorInventory][0] != "ThreeRopes") && (Actor[A][ActorInventory][0] != "Collar") && (Actor[A][ActorInventory][0] != "ChastityBelt") && (Actor[A][ActorInventory][0] != "TapeGag") && Recover)
 					PlayerAddInventory(Actor[A][ActorInventory][0], 1);
+				if ((Actor[A][ActorInventory][0] == "ThreeRopes") && Recover)
+					PlayerAddInventory("Rope", 1);
 				if ((Actor[A][ActorInventory][0] == "TwoRopes") && Recover)
 					PlayerAddInventory("Rope", 1);
 				Actor[A][ActorInventory].splice(0, 1);

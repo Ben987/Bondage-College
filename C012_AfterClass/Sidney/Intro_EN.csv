@@ -7,13 +7,54 @@ Stage,LoveReq,SubReq,VarReq,IntroText,Image
 0,10,0,Common_PlayerNaked,You're pretty without clothes.,Dorm.jpg
 0,0,-10,Common_PlayerNaked,"Girl, you're fucking kinky.",Dorm.jpg
 0,0,10,Common_PlayerNaked,"Miss, you have a fabulous body.",Dorm.jpg
+0,0,0,Common_ActorIsLover,What would you like to do sweetie?,Dorm.jpg
 0,0,0,Common_ActorIsOwner,Hey there my little bitch.|What would you like to do?,Dorm.jpg
-100,0,0,,"Sure, we can fuck.|We do it right here?",Dorm.jpg
-100,0,-10,,"Sure, we can fuck.|Get in bed girl.",Dorm.jpg
-100,0,0,Common_ActorIsLover,Of course sweetie.,Dorm.jpg
-100,0,0,Common_ActorIsOwned,Of course Mistress.,Dorm.jpg
+0,0,0,Common_ActorIsOwned,"Mistress, what would you like to do?",Dorm.jpg
+0,0,0,IsRoped,(She struggles.)  This is way too tight.|Can you help me with these ropes?,Dorm.jpg
+0,0,0,IsStrapped,(She struggles.)  This is way too tight.|Can you help me out of that thing?,Dorm.jpg
+0,0,0,IsGagged,Haamh nh g gna!,Dorm.jpg
+10,0,0,,,Dorm.jpg
+20,0,0,,,Dorm.jpg
+100,0,0,,(She blushes)  Thanks.|You also look wonderful.,Dorm.jpg
+100,0,0,Common_ActorIsOwned,(She blushes.)  Thanks Mistress.|You also look fabulous tonight.,Dorm.jpg
+100,0,0,Common_ActorIsOwner,Thanks my little bitch.|You also look wonderful.,Dorm.jpg
+105,0,0,,,Dorm.jpg
+106,0,0,,,Dorm.jpg
+110,0,0,,,Dorm.jpg
+115,0,0,,,Dorm.jpg
+120,0,0,,,Dorm.jpg
+130,0,0,,,Dorm.jpg
+140,0,0,,,Dorm.jpg
+150,0,0,,,Dorm.jpg
+160,0,0,,,StartDating.jpg
+170,0,0,,,Dorm.jpg
+190,0,0,,,Dorm.jpg
+191,0,0,,,Dorm.jpg
+192,0,0,,,StopDating.jpg
+193,0,0,,,StopDating.jpg
+194,0,0,,,Dorm.jpg
 200,0,0,,Protection?  What do you mean Miss?,Dorm.jpg
-200,0,0,Common_ActorIsLover,I already have your lips and arms.|Do you really think I need protection?,Dorm.jpg
+200,0,0,Common_ActorIsLover,I already have your loving arms.|Do you think I need protection?,Dorm.jpg
+210,0,0,,,Dorm.jpg
+220,0,0,,,Dorm.jpg
+221,0,0,,,Dorm.jpg
+230,0,0,,,Dorm.jpg
+240,0,0,,,Dorm.jpg
+241,0,0,,,Dorm.jpg
+250,0,0,,,Dorm.jpg
+260,0,0,,,Dorm.jpg
+270,0,0,,,Dorm.jpg
+271,0,0,,,Dorm.jpg
+280,0,0,,,Dorm.jpg
+285,0,0,,,Dorm.jpg
+290,0,0,,,Dorm.jpg
+291,0,0,,,Dorm.jpg
+292,0,0,,,Dorm.jpg
+293,0,0,,,Dorm.jpg
+294,0,0,,,Dorm.jpg
+295,0,0,,,Dorm.jpg
+296,0,0,,,Dorm.jpg
+297,0,0,,,Dorm.jpg
 300,0,0,,"I know you do, but you're going to get|crushed if you keep acting that way.",Dorm.jpg
 300,0,0,Common_ActorIsLover,"I know sweetheart, but you're going to get|eaten alive if you keep acting that way.",Dorm.jpg
 310,0,0,,,Dorm.jpg
@@ -25,10 +66,17 @@ Stage,LoveReq,SubReq,VarReq,IntroText,Image
 370,0,0,,,Dorm.jpg
 380,0,0,,,Dorm.jpg
 390,0,0,,,Dorm.jpg
-395,0,0,,,Dorm.jpg
+391,0,0,,,Dorm.jpg
+392,0,0,,,Dorm.jpg
 400,0,0,,I need to go.|I'll see ya later.,Door.jpg
 400,0,0,Common_ActorIsOwner,Bitch!  I need to go.|I'll spank ya later.,Door.jpg
+400,0,0,Common_ActorIsOwned,I need to go Mistress.|I hope to see you later.,Door.jpg
+400,0,0,Common_ActorIsLover,There's a rock show I really want to see.|Do you want to come with me sweetie?,Door.jpg
+401,0,0,,,Door.jpg
+402,0,0,,,Door.jpg
 410,0,0,,,Door.jpg
+450,0,0,,(Sidney grabs you by the collar.)|Hey bitch!  Time for some fun.,Dorm.jpg
+450,0,0,Common_ActorIsLover,(Sidney grabs you by the collar.)|Hey sweetie!  Time for some fun.,Dorm.jpg
 500,0,0,,,Dorm.jpg
 510,0,0,,,Dorm.jpg
 520,0,0,,,Dorm.jpg
@@ -36,6 +84,49 @@ Stage,LoveReq,SubReq,VarReq,IntroText,Image
 540,0,0,,,Dorm.jpg
 550,0,0,,,Dorm.jpg
 560,0,0,,,Dorm.jpg
+600,0,0,,,Dorm.jpg
+610,0,0,,,Dorm.jpg
+620,0,0,,,Dorm.jpg
+621,0,0,,,Dorm.jpg
+622,0,0,,,Dorm.jpg
+623,0,0,,,Dorm.jpg
+630,0,0,,,Dorm.jpg
+631,0,0,,,Dorm.jpg
+632,0,0,,,Dorm.jpg
+633,0,0,,,Dorm.jpg
+634,0,0,,,Dorm.jpg
+635,0,0,,,Dorm.jpg
+640,0,0,,,Dorm.jpg
+641,0,0,,,Dorm.jpg
+642,0,0,,,DormOrgasm.jpg
+650,0,0,,"Sure, we can fuck.|We do it right here?",Dorm.jpg
+650,0,0,Common_ActorIsLover,Of course sweetie.,Dorm.jpg
+650,0,0,Common_ActorIsOwned,Of course Mistress.,Dorm.jpg
+650,0,0,Common_ActorIsOwner,"Sure bitch, we can fuck.",Dorm.jpg
+660,0,0,,"My love, I have a surprise for you.",Dorm.jpg
+660,0,0,Common_ActorIsOwned,"Mistress, I have a surprise for you.",Dorm.jpg
+661,0,0,,,Dorm.jpg
+662,0,0,,,CoverEyes.jpg
+663,0,0,,,CoverEyes.jpg
+664,0,0,,,Dorm.jpg
+665,0,0,,,Dorm.jpg
+670,0,0,,"My lovely bitch, I feel like wearing my|lingerie for you.  Would you like that?",Dorm.jpg
+671,0,0,,,Dorm.jpg
+700,0,0,,What is she doing here?|(She points at Amanda.),Dorm.jpg
+700,0,0,Common_ActorIsLover,"Sweetie, what is she doing here?|(She points at Amanda.)",Dorm.jpg
+700,0,0,Common_ActorIsOwned,"Mistress, what is she doing here?|(She points at Amanda.)",Dorm.jpg
+700,0,0,Common_ActorIsOwner,"Bitch, what is she doing here?|(She points at Amanda.)",Dorm.jpg
+701,0,0,,,Dorm.jpg
+702,0,0,,,Dorm.jpg
+710,0,0,,What the fuck is she doing here?|(She stares at you and points at Sarah.),Dorm.jpg
+710,0,0,Common_ActorIsLover,"Sweetie, what is she doing here?|(She points at Sarah.)",Dorm.jpg
+710,0,0,Common_ActorIsOwned,"Mistress, what is she doing here?|(She points at Sarah.)",Dorm.jpg
+710,0,0,Common_ActorIsOwner,"Bitch, what the fuck is she doing here?|(She stares at you and points at Sarah.)",Dorm.jpg
+711,0,0,,,Dorm.jpg
+712,0,0,,,Dorm.jpg
+790,0,0,,You're kicking me out|of your fucking dorm?,Door.jpg
+790,0,0,Common_ActorIsLover,You're fucking kicking me out?|That's the end of our shitty love?,StopDating.jpg
+791,0,0,,,Door.jpg
 3000,0,0,,"My bitch, I want you to get naked.",Dorm.jpg
 3000,0,0,Common_ActorIsLover,My sweet little bitch.|I want you to get naked.,Dorm.jpg
 3010,0,0,,"My bitch, I want to see|you in your underwear.",Dorm.jpg
@@ -50,9 +141,9 @@ Stage,LoveReq,SubReq,VarReq,IntroText,Image
 3091,0,0,,"(She nods and smiles.)  I like you like that.|Actually, you're not allowed to change anymore.",Dorm.jpg
 3091,0,0,Common_ActorIsLover,"(She nods and smiles.)  You look great sweetie.|Actually, you're not allowed to change anymore.",Dorm.jpg
 3092,0,0,,,Dorm.jpg
-3100,0,0,,"My bitch, I want to check your items|so I can bind and gag your ass.",Dorm.jpg
-3110,0,0,,"My bitch, I want to check your items|so I can put your ass in bondage.",Dorm.jpg
-3120,0,0,,"My bitch, I want to check your items|so I can gag your fucking face.",Dorm.jpg
+3100,0,0,,"My bitch, I want to check your items,|so I can bind and gag your ass.",Dorm.jpg
+3110,0,0,,"My bitch, I want to check your items,|so I can put your ass in bondage.",Dorm.jpg
+3120,0,0,,"My bitch, I want to check your items,|so I can gag your fucking face.",Dorm.jpg
 3130,0,0,,"My bitch, I guess I can help you.|(She releases you and laughs.)",Dorm.jpg
 3140,0,0,,A fucking bitch should not|have keys.  I'll take them.,Dorm.jpg
 3150,0,0,,"Why the hell do you carry a crop?|This is not for you, I'll take it.",Dorm.jpg
@@ -62,13 +153,11 @@ Stage,LoveReq,SubReq,VarReq,IntroText,Image
 3162,0,0,,,Dorm.jpg
 3190,0,0,,,Dorm.jpg
 3191,0,0,,,Dorm.jpg
-3200,0,0,,I have a question for you.|Are you fucking ticklish?,Dorm.jpg
-3201,0,0,,,Dorm.jpg
 3210,0,0,,"Admit it my bitch, you want|to be slapped fucking hard!",Dorm.jpg
 3211,0,0,,,Dorm.jpg
 3220,0,0,,"Bitch, you know that this pussy is mine?|(She smiles and points at your crotch.)",Dorm.jpg
 3221,0,0,,,Dorm.jpg
-3222,0,0,,(She masturbates and you feel like you're about|to climax.)   Does my little slut wants to cum now?,Dorm.jpg
+3222,0,0,,"(She masturbates, and you feel like you're about|to climax.)   Does my little slut want to cum now?",Dorm.jpg
 3223,0,0,,,DormOrgasm.jpg
 3230,0,0,,I've been itching to use|this crop on your ass.,Dorm.jpg
 3231,0,0,,,Dorm.jpg
@@ -76,6 +165,8 @@ Stage,LoveReq,SubReq,VarReq,IntroText,Image
 3291,0,0,,,Dorm.jpg
 3800,0,0,,(Sidney drags you by the collar.)|Bitch!  What the fuck are you doing?,Dorm.jpg
 3801,0,0,,,Dorm.jpg
+3810,0,0,,(Sidney drags you by the collar.)|Bitch!  What the fuck is going on?,Dorm.jpg
+3811,0,0,,,Dorm.jpg
 3900,0,0,,That's it!  You need to be punished.,Dorm.jpg
 3901,0,0,,,Dorm.jpg
 3902,0,0,,,Dorm.jpg
@@ -90,4 +181,11 @@ Stage,LoveReq,SubReq,VarReq,IntroText,Image
 3921,0,0,,,Dorm.jpg
 3922,0,0,,,Dorm.jpg
 3923,0,0,,,Dorm.jpg
+3930,0,0,,Bitch!  You will be spanked|so fucking hard you will cry.,Dorm.jpg
+3931,0,0,,,DormBedSidney.jpg
+3932,0,0,,,DormBedSidney.jpg
+3933,0,0,,That's enough!  (She helps you to stand up.)|I hope you've learned your fucking lesson.,DormBedSidney.jpg
+3940,0,0,,Little Bitch!  I will fucking|humiliate you until you cry.,Dorm.jpg
+3941,0,0,,,Dorm.jpg
+3942,0,0,,,Dorm.jpg
 3999,0,0,,,Dorm.jpg

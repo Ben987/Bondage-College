@@ -86,9 +86,9 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 150,0,0,,A soup please.,A very healthy choice.|(She orders the same.),160,0,0,GoodMatch()
 150,0,0,,A hamburger please.,I guess you can have some proteins|after a match.  (She orders a small salad.),160,0,0,
 150,0,0,,A nacho platter please.,I guess you can have some proteins|after a match.  (She orders a small salad.),160,0,0,
-150,0,0,,Only cheesecake please.,That's pretty unhealthy.|(She orders the same.),160,0,0,BadMatch()
+150,0,0,,Only cheesecake please.,That's pretty unhealthy.|(She orders a small salad.),160,0,0,BadMatch()
 150,0,0,,Soup and salad please.,A very healthy choice.|(She orders the same.),160,0,0,GoodMatch()
-150,0,0,,A chili dog please.,That's pretty unhealthy.|(She orders the same.),160,0,0,BadMatch()
+150,0,0,,A chili dog please.,That's pretty unhealthy.|(She orders a small salad.),160,0,0,BadMatch()
 150,0,0,,Fettuccine alfredo please.,I guess you can have some proteins|after a match.  (She orders a small salad.),160,0,0,
 150,0,0,,Only water please.,You have lots of self-control.|(She orders a small salad.),160,0,0,GoodMatch()
 160,0,0,TennisVictory,Have a good meal.,(You both eat your lunch|and Jennifer pays the bill.),170,0,0,EatLunch()
@@ -113,31 +113,31 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 185,0,0,!AllowObey,Let's go back.|(Back to college.),,0,0,0,EndChapter()
 200,0,0,,"Remember, you're|my slave for now.","Don't say slave, it sounds so bad.|It's fine though, you can be my boss.",220,-1,0,
 200,0,0,,You have to obey|on everything I say.,"(She nods.)  Alright, but there are limits.",220,0,0,
-200,8,0,,Can I have a kiss?|(1 minute),(She blushes and smiles.)  Sure.|(You grab each other kiss lovingly.),210,1,0,Kiss()
-200,0,8,,(Grab and strip her.)|(1 minute),(She remains speechless as you|grab her and force her to strip.),240,-1,1,
-210,0,0,,(Kiss her again.)|(1 minute),(You kiss each other again on the|tennis court while moaning lightly.),210,0,0,
+200,8,0,,Can I have a kiss?ADD_MINUTES:1,(She blushes and smiles.)  Sure.|(You grab each other kiss lovingly.),210,1,0,Kiss()
+200,0,8,,(Grab and strip her.)ADD_MINUTES:1,(She remains speechless as you|grab her and force her to strip.),240,-1,1,
+210,0,0,,(Kiss her again.)ADD_MINUTES:1,(You kiss each other again on the|tennis court while moaning lightly.),210,0,0,
 210,0,0,,I love you.  But|let's not rush this.,You?  I?  You love me?  Let's take it slow.|(She looks away confused and nervous.),215,1,0,BonusDone()
 210,0,0,,"Remember, you're|my slave for now.","Don't say slave, it sounds so bad.|It's fine though, you can be my boss.",220,-1,0,
 210,0,0,,You have to obey|on everything I say.,"(She nods.)  Alright, but there are limits.",220,0,0,
-210,0,8,,(Grab and strip her.)|(1 minute),(She remains speechless as you|grab her and force her to strip.),240,-1,1,
+210,0,8,,(Grab and strip her.)ADD_MINUTES:1,(She remains speechless as you|grab her and force her to strip.),240,-1,1,
 215,0,0,,Let's go back sweetie.|(Back to college.),,0,1,0,EndChapter()
-220,0,0,,Do a running lap.|(1 minute),Yes coach!  (She runs around the court.),220,0,0,Exercise()
-220,0,0,,Do five push-ups.|(1 minute),Yes coach!  (She does five push-ups.),220,0,0,Exercise()
+220,0,0,,Do a running lap.ADD_MINUTES:1,Yes coach!  (She runs around the court.),220,0,0,Exercise()
+220,0,0,,Do five push-ups.ADD_MINUTES:1,Yes coach!  (She does five push-ups.),220,0,0,Exercise()
 220,0,0,,"Alright, strip to|your underwear.",Strip?  But there will be people soon.,230,-1,0,
 220,0,0,,"Girl, remove|that silly skirt.",Remove my skirt?  Here?|But there will be people soon.,230,-1,1,
-220,0,8,,(Grab and strip her.)|(1 minute),(She remains speechless as you|grab her and force her to strip.),240,-1,1,
+220,0,8,,(Grab and strip her.)ADD_MINUTES:1,(She remains speechless as you|grab her and force her to strip.),240,-1,1,
 230,0,0,,Nobody is around.|You can do it!,Alright then.  But if someone comes|I will put it back.  (She strips.),240,0,0,
 230,0,0,,You heard me|the first time.,Alright then.  But if someone comes|I will put it back.  (She strips.),240,0,1,
-230,0,8,,(Grab and strip her.)|(1 minute),(She remains speechless as you|grab her and force her to strip.),240,-1,1,
+230,0,8,,(Grab and strip her.)ADD_MINUTES:1,(She remains speechless as you|grab her and force her to strip.),240,-1,1,
 230,0,0,,I was kidding.  Let's go.|(Back to college.),,0,1,0,EndChapter()
 240,0,0,OrgasmCommentAvail,I hope you enjoyed|your trip to heaven.,(She looks at you and nods slowly.),240,1,0,OrgasmComment()
 240,0,0,OrgasmCommentAvail,Next time you|will beg to cum.,(She frowns at you but slowly|bows her head to the ground.),240,-1,1,OrgasmComment()
 240,0,0,NeverHurtAvail,Trust me Jennifer.|I will never hurt you.,(She takes a deep breath and nods slowly.),240,0,0,NeverHurtComment()
-240,0,0,,(Tickle her.)|(1 minute),(You tickle her but she doesn't laugh|that much and doesn't seem to appreciate.),240,0,0,Tickle()
-240,0,0,,(Spank her.)|(1 minute),(You try to spank her but|she quickly pushes you away.),240,0,0,Spank()
-240,0,0,,(Masturbate her.)|(1 minute),(You try to masturbate her|but she pushes your hand away.),240,0,0,Masturbate()
-240,0,0,IsRoped,(Untie her.)|(1 minute),(You undo the rope knots and|release her from the tennis net.),240,0,0,Untie()
-240,0,0,IsGagged,(Ungag her.)|(1 minute),"(You slowly remove the gag from her.)|Thank you, that was kind of awkward.",240,0,0,Ungag()
+240,0,0,,(Tickle her.)ADD_MINUTES:1,(You tickle her but she doesn't laugh|that much and doesn't seem to appreciate.),240,0,0,Tickle()
+240,0,0,,(Spank her.)ADD_MINUTES:1,(You try to spank her but|she quickly pushes you away.),240,0,0,Spank()
+240,0,0,,(Masturbate her.)ADD_MINUTES:1,(You try to masturbate her|but she pushes your hand away.),240,0,0,Masturbate()
+240,0,0,IsRoped,(Untie her.)ADD_MINUTES:1,(You undo the rope knots and|release her from the tennis net.),240,0,0,Untie()
+240,0,0,IsGagged,(Ungag her.)ADD_MINUTES:1,"(You slowly remove the gag from her.)|Thank you, that was kind of awkward.",240,0,0,Ungag()
 240,0,0,IsBoundAndGagged,I tricked you bitch.|(Leave her stranded.),,240,0,0,EvilEnd()
 240,0,0,,That's enough.|(Dress her back.),(You let her go and she dresses back.)|Wow!  I'm so happy nobody came by.,250,0,0,DressHerBack()
 250,0,0,,Did you had|fun today?,I have mixed feelings I must admit.|Should we head back to school?,260,0,0,
@@ -146,9 +146,9 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 250,0,0,,Let's do this|again someday.,I'm not really sure about that.|Should we go back to school?,260,0,0,
 250,0,0,,Next time will|you tie me up?,"(She giggles.)  Sure, why not?|Should we go back to school?",260,0,-1,
 250,0,0,,Get used to be tied up.|It will happen again.,"Oh, not in public like that I hope.|Should we head back to school?",260,0,1,
-260,8,0,,One last kiss?|(1 minute),(You grab each other in a loving|embrace and kiss passionately.),270,1,0,BonusDone()
+260,8,0,,One last kiss?ADD_MINUTES:1,(You grab each other in a loving|embrace and kiss passionately.),270,1,0,BonusDone()
 260,0,0,,Let's go back.|(Back to college.),,0,0,0,EndChapter()
-270,0,0,,(Kiss her again.)|(1 minute),(You both close your|eyes and keep on kissing.),270,0,0,
+270,0,0,,(Kiss her again.)ADD_MINUTES:1,(You both close your|eyes and keep on kissing.),270,0,0,
 270,0,0,,Let's go back.|(Back to college.),,0,0,0,EndChapter()
 300,0,0,,What are we|doing here?,I'm your boss and coach.|I'll get you into shape.,310,0,0,
 300,0,0,,You want to play|some tennis again?,"No.  But as your boss and|coach, I'll get you into shape.",310,0,0,
@@ -181,8 +181,8 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 420,0,0,,Order me to|strip damn it!,Yes Miss.  I...  I mean.|You should strip now!,430,0,1,
 420,0,0,,A first step is|to strip me.,Strip you?  Of course.|You should strip now!,430,0,0,
 420,0,1,,"Forget it, let's head|back.  (Back to college.)",,0,0,0,EndChapter()
-430,0,0,,(Sigh and strip.)|(1 minute),(You sigh and strip reluctantly.)|Fine!  Now I will...  You will...,440,-1,0,Strip()
-430,0,0,,(Strip playfully.)|(1 minute),(You dance a little and strip down.)|Good!  Now I will...  You will...,440,0,0,Strip()
+430,0,0,,(Sigh and strip.)ADD_MINUTES:1,(You sigh and strip reluctantly.)|Fine!  Now I will...  You will...,440,-1,0,Strip()
+430,0,0,,(Strip playfully.)ADD_MINUTES:1,(You dance a little and strip down.)|Good!  Now I will...  You will...,440,0,0,Strip()
 430,0,1,,"Forget it, let's head|back.  (Back to college.)",,0,0,0,EndChapter()
 440,0,0,,Pain is a good|way to punish.,Of course!  Now you will bend down.|(She spins her racket and looks at your butt.),450,0,0,
 440,0,0,,Be dominant damn|it!  Punish me!,That's enough!  You need to bend down.|(She spins her racket and looks at your butt.),450,-1,1,
@@ -191,10 +191,10 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 450,0,0,,(Bow your head|and bend down.),"Take a deep breath, it might be painful.|(She raises her racket, ready to hit you.)",460,0,-1,
 450,0,0,,You're doing better.|(Bend down.),"Take a deep breath, it might be painful.|(She raises her racket, ready to hit you.)",460,0,0,
 450,0,1,,"Forget it, let's head|back.  (Back to college.)",,0,0,0,EndChapter()
-460,0,0,,(Close your eyes.)|(1 minute),(You close your eyes while she hits|you pretty good with her racket.),460,0,0,RacketHit(2)
-460,0,0,,(Raise your butt.)|(1 minute),(You position yourself to be hit and she|lands a really good smash on your butt.),460,0,0,RacketHit(3)
-460,0,0,,(Try to dodge her.)|(1 minute),(You move at the last second but|she's still able to hit you clumsily.),460,0,0,RacketHit(1)
-460,0,0,HasRestrainsAvail,Wait!  Check in my|bag.  (1 minute),(She checks in your bag and|find some restrains for you.),460,0,0,CheckBag()
+460,0,0,,(Close your eyes.)ADD_MINUTES:1,(You close your eyes while she hits|you pretty good with her racket.),460,0,0,RacketHit(2)
+460,0,0,,(Raise your butt.)ADD_MINUTES:1,(You position yourself to be hit and she|lands a really good smash on your butt.),460,0,0,RacketHit(3)
+460,0,0,,(Try to dodge her.)ADD_MINUTES:1,(You move at the last second but|she's still able to hit you clumsily.),460,0,0,RacketHit(1)
+460,0,0,HasRestrainsAvail,Wait!  Check in my|bag. ADD_MINUTES:1,(She checks in your bag and|find some restrains for you.),460,0,0,CheckBag()
 460,0,1,,"Forget it, let's head|back.  (Back to college.)",,0,0,0,EndChapter()
 470,0,0,,"Yes, it was fair.",Alright!  Dress back up and let's go.|(You pick up your clothes and dress back.),480,0,0,DressBack()
 470,0,0,,You'll never be|a good Domme.,That sucks.  Dress back up and let's go.|(You pick up your clothes and dress back.),480,-1,0,DressBack()

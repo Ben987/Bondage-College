@@ -1,0 +1,4 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,Common_PlayerNotRestrained,Hinter der roten Farbe scheint|etwas Pinkes versteckt zu sein.,HiddenEgg.jpg
+0,0,0,Common_PlayerRestrained,"Hinter der roten Farbe ist etwas Pinkes versteckt,|aber mit deinen Fesseln kommst du nicht ran.",HiddenEgg.jpg
+10,0,0,,Hier ist nichts Interessantes mehr.,NoEgg.jpg

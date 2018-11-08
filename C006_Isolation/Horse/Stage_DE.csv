@@ -1,0 +1,8 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,!BoltUndone,(Untersuchen.)ADD_MINUTES:1,"Auf diesem Bock ließe sich jemand von allen Seiten|auspeitschen. Auf der Rückseite ist ein rostiger Bolzen.",0,0,0,AllowBolt()
+0,0,0,BoltUndone,(Untersuchen.)ADD_MINUTES:1,"Auf diesem Bock ließe sich jemand von allen Seiten|auspeitschen. Ein Stück Blech ist abgefallen.",0,0,0,
+0,0,0,BoltSeen,(Bolzen entfernen.)ADD_MINUTES:1,"Der alte Bolzen ließe sich entfernen, aber nicht|mit bloßen Händen. Du brauchst besseren Halt.",0,0,0,
+0,0,0,MetalAvail,(Das Stück Blech|aufheben.),Du hebst das Stück Blech auf.,0,0,0,TakeMetal()
+0,0,0,,(Den Bock reiten.)ADD_MINUTES:1,"Du versuchst deine Handgelenke an den Manschetten|zu befestigen, aber du kommst in deiner Lage nicht ran.",10,0,0,
+10,0,0,,(Stimulieren.)ADD_MINUTES:1,Du versuchst dich auf der Vorrichtung zu stimulieren|und es ist einigermaßen angenehm.,10,0,0,
+10,0,0,,(Absteigen.)ADD_MINUTES:1,Du entfernst dich von der Vorrichtung.,0,0,0,

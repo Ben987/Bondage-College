@@ -1,0 +1,256 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,"Ja, es ist mein|erster Tag hier.","Dann willkommen an unserem|College, ich bin Miss Yuki.",1,0,0,
+0,0,0,,"Seltsam, dass Sie nicht|von mir gehört haben.",Habe ich aber nicht. Ich bin Miss Yuki.,1,0,1,
+0,0,0,,"Ja, Miss, neue Schulen|sind immer beängstigend.","Keine Angst, alles wird gut.|Ich bin Miss Yuki.",1,0,-1,
+1,0,0,,"Schön, Sie kennen-|zulernen, Miss Yuki.","Die Freude ist ganz meinerseits, junge Dame.|Aber sei in der Bibliothek bitte leise.",2,1,0,
+1,0,0,,"Yo, Yuki.",(Sie runzelt die Stirn.) Miss Yuki für dich.|Sei jedenfalls in der Bibliothek bitte leise.,2,-1,0,
+1,0,0,!Common_PlayerRestrained,(Ihre Hand schütteln.),(Sie antwortet mit einem festen Händedruck.)|Sei in der Bibliothek bitte leise.,2,0,0,
+2,0,0,,(Still nicken.),Ausgezeichnet. Suchst du nach|einem bestimmten Buch?,100,1,-1,
+2,0,0,,"Ja, ja, ich weiß.",(Sie schaut dich böse an.)|Suchst du nach einem bestimmten Buch?,100,-1,1,
+2,0,0,,Ich werde still sein.,Sehr gut. Suchst du also nach|einem bestimmten Buch?,100,0,0,
+5,0,0,Common_PlayerRestrained,(An deinen Fesseln zerren.),"Hier, ich helfe dir, junge Dame.|(Sie lässt dich frei.) Du darfst gehen.",6,0,0,TestRelease()
+5,0,0,Common_PlayerGagged,@Numn ngnnnuh!,"Hier, ich helfe dir, junge Dame.|(Sie lässt dich frei.) Du darfst gehen.",6,0,0,TestRelease()
+5,0,0,,"Können Sie mir|helfen, Miss?","Also gut, ich helfe dir, junge Dame.|(Sie lässt dich frei.) Du darfst jetzt gehen.",6,0,0,TestRelease()
+5,0,0,,Jennifer hat mir|das angetan.,"Ich bin erstaunt, dass sie so etwas tun würde.|(Sie lässt dich frei.) Du darfst jetzt gehen.",6,0,0,TestRelease()
+6,0,0,,(Nicken und gehen.),,6,0,0,PlayerLeaveForBook()
+6,0,0,,"Sehr wohl, Miss.|(Weggehen.)",,6,0,0,PlayerLeaveForBook()
+10,0,0,,Ich erinnere|mich nicht.,"Und ob du dich erinnerst, mein Schoßhündchen.|(Sie packt dich am Haar und setzt sich auf den Tisch.)",700,0,0,StartPleasure()
+10,0,0,,"Ja, Miss Yuki.|Ich erinnere mich.","Sehr gut, mein Schoßhündchen, komm näher.|(Sie packt dich am Haar und setzt sich auf den Tisch.)",700,1,-1,StartPleasure()
+10,0,0,,Eine Abmachung? Sie|machen wohl Witze.,(Sie runzelt die Stirn.) Wenn du das witzig findest.|(Sie packt dich am Haar und setzt sich auf den Tisch.),700,-1,1,StartPleasure()
+20,0,0,,Eine Schülerin|hat mir geholfen.,"Du hattest nochmal Glück, junge Dame.|Versprichst du mir jetzt, artig zu sein?",22,0,0,
+20,0,0,,Eine Lehrerin|hat mir geholfen.,"Du hattest nochmal Glück, junge Dame.|Versprichst du mir jetzt, artig zu sein?",22,0,0,
+20,0,0,,Ich habe mich|mühsam freigekämpft.,"Beeindruckend. Meinst du, du könntest|dich aus jeder Fesselung befreien?",21,1,0,
+20,0,0,,Kinderkram! Ich bin|Entfesselungskünstlerin.,"Glaube ich nicht. Meinst du, du könntest|dich aus jeder Fesselung befreien?",21,0,1,
+20,0,0,,Das geht Sie 'nen|Scheißdreck an.,"Mal sehen, ob du hieraus entkommst, junge Dame.|(Sie packt dich und legt dir einen Monohandschuh an.)",300,-1,1,RestrainPlayer()
+21,0,0,,Ich komme aus|allem heraus!,"Na gut, junge Dame, versuch's mal hiermit.|(Sie packt dich und legt dir einen Monohandschuh an.)",300,0,1,RestrainPlayer()
+21,0,0,,Nein. Ich hatte heute|Morgen sehr viel Glück.,"Du bist auf jeden Fall eine besondere Schülerin.|Versprichst du mir jetzt, artig zu sein?",22,0,0,
+22,0,0,,"Okay, versprochen.",Sehr schön. Suchst du nach einem Buch?,100,0,0,NoSecondChance()
+22,0,0,,"Natürlich. Ich verspreche,|brav zu sein.",Ausgezeichnet. Suchst du nach einem Buch?,100,1,0,NoSecondChance()
+22,0,0,,"Ja, ja, ja.|Versprochen.",Wie dem auch sei. Suchst du nach einem Buch?,100,-1,0,NoSecondChance()
+22,0,0,,Das verspreche|ich niemals!,"Wenn du dich nicht benimmst, hast du Arrest.|(Sie packt dich und legt dir einen Monohandschuh an.)",300,-1,1,RestrainPlayer()
+30,0,0,,"Ja, Miss, ich habe|meine Lektion gelernt.","Gut. Jetzt verprich mir, leise zu sein und|in der Bibliothek keinen Ärger zu machen.",31,0,-1,
+30,0,0,,Diese Stunde im Keller|ging schnell vorbei.,"(Sie runzelt die Stirn.) Nächstes Mal wird's ein ganzer|Tag. Versprichst du mir jetzt, artig zu sein?",31,0,1,
+30,0,0,,"Tut mir leid, dass ich Sie|nicht befriedigen konnte.","Du bekommst eine zweite Chance, Schoßhündchen.|(Sie packt dich am Haar und setzt sich auf den Tisch.)",700,0,-1,StartPleasure()
+30,0,0,,Ich kann Ihnen bestimmt|einen Orgasmus geben.,"Ach wirklich? Ich bin gespannt, Schoßhündchen.|(Sie packt dich am Haar und setzt sich auf den Tisch.)",700,0,1,StartPleasure()
+31,0,0,,"Okay, versprochen.",Sehr schön. Suchst du nach einem Buch?,100,0,0,NoSecondChance()
+31,0,0,,"Natürlich. Ich verspreche,|brav zu sein.",Ausgezeichnet. Suchst du nach einem Buch?,100,1,0,NoSecondChance()
+31,0,0,,"Ja, ja, ja.|Versprochen.",Wie dem auch sei. Suchst du nach einem Buch?,100,-1,0,NoSecondChance()
+31,0,0,,Das verspreche|ich niemals!,"Wenn du dich nicht benimmst, hast du Arrest.|(Sie packt dich und legt dir einen Monohandschuh an.)",300,-1,1,RestrainPlayer()
+40,0,0,,Ärger ist mein|zweiter Vorname.,"(Sie seufzt.) Versprich mir, leise zu sein und|in der Bibliothek keinen Ärger zu machen.",41,0,1,
+40,0,0,,Ich mache doch|gar keinen Ärger.,"Nun gut. Versprich mir, leise zu sein und|in der Bibliothek keinen Ärger zu machen.",41,0,0,
+40,0,0,,"Ja, Miss, ich bin jetzt|ein braves Mädchen.","Sehr gut. Versprich mir, leise zu sein und|in der Bibliothek keinen Ärger zu machen.",41,0,-1,
+41,0,0,,"Okay, versprochen.",Sehr schön. Suchst du nach einem Buch?,100,0,0,NoSecondChance()
+41,0,0,,"Natürlich. Ich verspreche,|brav zu sein.",Ausgezeichnet. Suchst du nach einem Buch?,100,1,0,NoSecondChance()
+41,0,0,,"Ja, ja, ja.|Versprochen.",Wie dem auch sei. Suchst du nach einem Buch?,100,-1,0,NoSecondChance()
+41,0,0,,Das verspreche|ich niemals!,"Wenn du dich nicht benimmst, hast du Arrest.|(Sie packt dich und legt dir einen Monohandschuh an.)",300,-1,1,RestrainPlayer()
+50,0,0,,Gut. Grüßen Sie|sie von mir.,"Das ist nicht lustig, junge Dame.|Suchst du nach einem Buch?",100,-1,1,
+50,0,0,,"Ja, wir haben uns|schon kennengelernt.",Davon habe ich gehört.|Suchst du nach einem Buch?,100,0,0,
+50,0,0,,Mein Ruf eilt|mir also voraus.,"Kein sehr guter Ruf, würde ich meinen.|Suchst du nach einem Buch?",100,0,1,
+50,0,0,,Mildred ist 'ne|verdammte Hexe.,"Ich sollte dir den Mund einseifen.|Egal, suchst du nach einem Buch?",100,-2,0,
+50,0,0,,Was ich getan|habe tut mir leid.,"Es ist nicht zu spät, ein braves Mädchen zu sein.|Suchst du nach einem bestimmten Buch?",100,1,-1,
+60,0,0,,"Ja, das Nachsitzen|war gerechtfertigt.",Du hast eine gute Einstellung.|Suchst du nach einem Buch?,100,1,0,
+60,0,0,,"Ja, Miss, ich werde|mich nicht mehr prügeln.","Sehr gut, junge Dame.|Suchst du nach einem Buch?",100,1,-1,
+60,0,0,,Sie hat angefangen!,Das höre ich mir nicht noch einmal an.|Suchst du nach einem Buch?,100,-1,1,
+60,0,0,,(Schweigend nicken.),"Gut. Also, suchst du nach einem Buch?",100,0,-1,
+70,0,0,,"Ja, das Nachsitzen|war gerechtfertigt.",Du hast eine gute Einstellung.|Suchst du nach einem Buch?,100,1,0,
+70,0,0,,"Ja, Miss, ich werde|keinen Ärger mehr machen.","Sehr gut, junge Dame.|Suchst du nach einem Buch?",100,1,-1,
+70,0,0,,Ich bereue nichts!,So ein vorlautes kleines Balg.|Suchst du nach einem Buch?,100,-1,1,
+70,0,0,,(Schweigend nicken.),"Gut. Also, suchst du nach einem Buch?",100,0,-1,
+80,0,0,,Da drin hat|was gefunkelt.,Neugierige Katzen verbrennen sich die Tatzen.|Versuch das bitte nicht nochmal.,81,-1,0,
+80,0,0,,Ich hab nach|Käse gesucht.,Und dann hat die Mausefalle zugeschnappt?|Versuch das bitte nicht nochmal.,81,-2,0,
+80,0,0,PenInHole,Ich hab meinen|Stift da drin verloren.,"Du armes, tollpatschiges kleines Mädchen.|Du brauchst also Hilfe, da ran zu kommen?",83,0,-1,
+80,0,0,,Eine schwarzhaarige|hat mich hineingedrückt.,"Sidney! (Sie ballt ihre Hände zu Fäusten.)|Junge Dame, du musst lernen, dich zu wehren.",82,0,-1,
+81,0,0,,"Ja, Miss.|Versprochen.","Sehr gut, junge Dame. (Ihr geht zu ihrem Schreibtisch.)|Suchst du nach einem bestimmten Buch?",100,1,-1,
+81,0,0,,Es wird nicht|wieder vorkommen.,"Nun gut, junge Dame. (Ihr geht zu ihrem Schreibtisch.)|Suchst du nach einem bestimmten Buch?",100,0,0,
+81,0,0,,"Ja, ja, ja. Ich tu's|nicht nochmal.",Deine Haltung ist dürftig. (Ihr geht zu ihrem|Schreibtisch.) Suchst du nach einem bestimmten Buch?,100,-1,1,
+81,0,0,,"Ja, das war dämlich.|Ich tu's nicht nochmal.","Wohl wahr, junge Dame. (Ihr geht zu ihrem Schreib-|tisch.) Also, suchst du nach einem bestimmten Buch?",100,1,0,
+82,0,0,,Das ist ein|sehr guter Rat.,"Durchaus. (Ihr geht beide zu ihrem Schreibtisch.)|Also, suchst du nach einem bestimmten Buch?",100,1,0,
+82,0,0,,Keine Sorge. Das nächste|Mal mach ich sie platt.,"Standhaftigkeit sollte genügen, Fräulein.|(Ihr geht zu ihrem Schreibtisch.) Suchst du ein Buch?",100,-1,1,
+82,0,0,,"Könnten Sie mir helfen,|mich zu verteidigen?","Ja, ich helfe dir später. (Ihr geht zu ihrem Schreibtisch.)|Also, suchst du nach einem bestimmten Buch?",100,1,-2,
+82,0,0,,"Ja, ich weiß.","Nun gut. (Ihr geht beide zu ihrem Schreibtisch.)|Also, suchst du nach einem bestimmten Buch?",100,0,0,
+83,0,0,,"Ja, können Sie meinen|Stift rausholen?","Ich glaube, ich kann ihn erkennen.|Es wird nicht einfach, da ranzukommen.",240,0,0,
+83,0,0,,"Oh ja, Miss. Ich|schaffe das nicht.","Ich glaube, ich kann ihn erkennen.|Es wird nicht einfach, da ranzukommen.",240,0,-1,
+83,0,0,,"Nein, ich hab|noch einen Stift.",Also gut. Aber du hättest dich verletzen können.|Versuch das bitte nie wieder.,81,0,0,
+90,0,0,,Ich hab nichts|gemacht.,Du kleine Lügnerin hattest deine Hand|unterm Rock. Was ist das für ein Heft?,91,-1,0,
+90,0,0,,Ich hab gelesen.,Ich habe deine Hand unter deinem Rock gesehen.|Was für ein Heft liest du da?,91,0,0,
+90,0,0,,Das geht Sie|nichts an.,Sei höflich! Es geht mich sehr wohl etwas an.|Was für ein Heft liest du da?,91,-1,1,
+90,0,0,,(Rot werden und|den Kopf senken.),Du solltest dich schämen.|Was ist das für ein Heft?,91,1,-1,
+90,0,0,,Es hat gejuckt.,"Du kleine Lügnerin, das war kein Kratzen.|Was ist das für ein Heft?",91,-1,0,
+90,0,0,,"Verzeihung, Miss.|Ich habe masturbiert.","Junge Dame, du solltest dich schämen.|Was ist das für ein Heft?",91,1,-2,
+91,0,0,,Es ist eine|versaute Zeitschrift.,"(Sie nickt und beschlagnahmt das Heft.)|Versprich mir, das nie wieder zu tun.",92,0,0,NoMoreSweetGwendoline()
+91,0,0,,Es ist ein Comicheft.,"(Sie nickt und beschlagnahmt das Heft.)|Versprich mir, das nie wieder zu tun.",92,-1,0,NoMoreSweetGwendoline()
+91,0,0,,Sie kennen es sicher.|Es ist Sweet Gwendoline.,"(Sie beschlagnahmt verärgert das Heft.)|Versprich mir, das nie wieder zu tun.",92,0,1,NoMoreSweetGwendoline()
+91,0,0,,Bitte nehmen Sie es. Es|gehört hier nicht hin.,"(Sie lächelt und beschlagnahmt das Heft.)|Versprich mir, das nie wieder zu tun.",92,1,-1,NoMoreSweetGwendoline()
+92,0,0,,"Ja, Miss.|Versprochen.","Sehr gut, junge Dame. (Ihr geht zu ihrem Schreibtisch.)|Suchst du nach einem bestimmten Buch?",100,1,-1,
+92,0,0,,Es wird nicht|wieder vorkommen.,"Nun gut, junge Dame. (Ihr geht zu ihrem Schreibtisch.)|Suchst du nach einem bestimmten Buch?",100,0,0,
+92,0,0,,"Ja, ja, ja. Ich tu's|nicht nochmal.",Deine Haltung ist dürftig. (Ihr geht zu ihrem|Schreibtisch.) Suchst du nach einem bestimmten Buch?,100,-1,1,
+92,0,0,,"Ja, das war dämlich.|Ich tu's nicht nochmal.","Wohl wahr, junge Dame. (Ihr geht zu ihrem Schreib-|tisch.) Also, suchst du nach einem bestimmten Buch?",100,1,0,
+100,0,0,BookAlreadyFound,Ich habe mein Buch|schon gefunden.,"Sehr schön. Du kannst dir einen|Sitzplatz suchen, um es in Ruhe zu lesen.",200,0,0,AllowLeave()
+100,0,0,,Der Graf von|Monte Christo.,Sieh im Literatur-Bereich nach. Vom Hauptgang|aus das zweite Regal zu deiner Linken.,120,0,0,AllowLeave()
+100,0,0,,Fifty Shades of Grey.,"Junge Dame, in unserer erhabenen Einrichtung|gibt es keinen solchen Ramsch.",110,-1,0,
+100,0,0,,Justine von|Marquis de Sade.,Für diese Art von Literatur bist du nicht reif genug.|Das Buch ist im ersten Schuljahr verboten.,110,1,1,
+110,0,0,,"Eigentlich brauche ich ""Der|Graf von Monte Christo.""",Sieh im Literatur-Bereich nach. Vom Hauptgang|aus das zweite Regal zu deiner Linken.,120,0,0,AllowLeave()
+120,0,0,,"Danke, Miss.|(Weggehen.)",,200,0,1,PlayerLeaveForBook()
+120,0,0,,"Danke, Yuki!|(Weggehen.)",,200,0,0,PlayerLeaveForBook()
+120,0,0,,(Weggehen.),,200,-1,0,PlayerLeaveForBook()
+180,0,0,,Da drin hat|was gefunkelt.,Neugierige Katzen verbrennen sich die Tatzen.|Versuch das bitte nicht nochmal.,181,-1,0,
+180,0,0,,Ich hab nach|Käse gesucht.,Und dann hat die Mausefalle zugeschnappt?|Versuch das bitte nicht nochmal.,181,-2,0,
+180,0,0,PenInHole,Ich hab meinen|Stift da drin verloren.,"Du armes, tollpatschiges kleines Mädchen.|Du brauchst also Hilfe, da ran zu kommen?",183,0,-1,
+180,0,0,,Eine schwarzhaarige|hat mich hineingedrückt.,"Sidney! (Sie ballt ihre Hände zu Fäusten.)|Junge Dame, du musst lernen, dich zu wehren.",182,0,-1,
+181,0,0,,"Ja, Miss.|Versprochen.","Sehr gut, junge Dame. (Ihr geht zu ihrem Schreibtisch.)|Ich hoffe, du machst keinen Ärger mehr.",200,1,-1,
+181,0,0,,Es wird nicht|wieder vorkommen.,"Nun gut, junge Dame. (Ihr geht zu ihrem Schreibtisch.)|Ich hoffe, du machst keinen Ärger mehr.",200,0,0,
+181,0,0,,"Ja, ja, ja. Ich tu's|nicht nochmal.","Deine Haltung ist dürftig. (Ihr geht zu ihrem Schreib-|tisch.) Ich hoffe, du machst keinen Ärger mehr.",200,-1,1,
+181,0,0,,"Ja, das war dämlich.|Ich tu's nicht nochmal.","Wohl wahr, junge Dame. (Ihr geht zu ihrem Schreib-|tisch.) Ich hoffe, du machst keinen Ärger mehr.",200,1,0,
+182,0,0,,Das ist ein|sehr guter Rat.,"Durchaus. (Ihr geht beide zu ihrem Schreibtisch.)|Ich hoffe, du machst keinen Ärger mehr.",200,1,0,
+182,0,0,,Keine Sorge. Das nächste|Mal mach ich sie platt.,"Standhaftigkeit sollte genügen, Fräulein. (Ihr|geht zu ihrem Schreibtisch.) Halte dich von Ärger fern.",200,-1,1,
+182,0,0,,"Könnten Sie mir helfen,|mich zu verteidigen?","Ja, ich helfe dir später. (Ihr geht zu ihrem Schreibtisch.)|Ich hoffe, du machst keinen Ärger mehr.",200,1,-2,
+182,0,0,,"Ja, ich weiß.","Nun gut. (Ihr geht beide zu ihrem Schreibtisch.)|Ich hoffe, du machst keinen Ärger mehr.",200,0,0,
+183,0,0,,"Ja, können Sie meinen|Stift rausholen?","Ich glaube, ich kann ihn erkennen.|Es wird nicht einfach, da ranzukommen.",240,0,0,
+183,0,0,,"Oh ja, Miss. Ich|schaffe das nicht.","Ich glaube, ich kann ihn erkennen.|Es wird nicht einfach, da ranzukommen.",240,0,-1,
+183,0,0,,"Nein, ich hab|noch einen Stift.",Also gut. Aber du hättest dich verletzen können.|Versuch das bitte nie wieder.,181,0,0,
+190,0,0,,Ich hab nichts|gemacht.,Du kleine Lügnerin hattest deine Hand|unterm Rock. Was ist das für ein Heft?,191,-1,0,
+190,0,0,,Ich hab gelesen.,Ich habe deine Hand unter deinem Rock gesehen.|Was für ein Heft liest du da?,191,0,0,
+190,0,0,,Das geht Sie|nichts an.,Sei höflich! Es geht mich sehr wohl etwas an.|Was für ein Heft liest du da?,191,-1,1,
+190,0,0,,(Rot werden und|den Kopf senken.),Du solltest dich schämen.|Was ist das für ein Heft?,191,1,-1,
+190,0,0,,Es hat gejuckt.,"Du kleine Lügnerin, das war kein Kratzen.|Was ist das für ein Heft?",191,-1,0,
+190,0,0,,"Verzeihung, Miss.|Ich habe masturbiert.","Junge Dame, du solltest dich schämen.|Was ist das für ein Heft?",191,1,-2,
+191,0,0,,Es ist eine|versaute Zeitschrift.,"(Sie nickt und beschlagnahmt das Heft.)|Versprich mir, das nie wieder zu tun.",192,0,0,NoMoreSweetGwendoline()
+191,0,0,,Es ist ein Comicheft.,"(Sie nickt und beschlagnahmt das Heft.)|Versprich mir, das nie wieder zu tun.",192,-1,0,NoMoreSweetGwendoline()
+191,0,0,,Sie kennen es sicher.|Es ist Sweet Gwendoline.,"(Sie beschlagnahmt verärgert das Heft.)|Versprich mir, das nie wieder zu tun.",192,0,1,NoMoreSweetGwendoline()
+191,0,0,,Bitte nehmen Sie es. Es|gehört hier nicht hin.,"(Sie lächelt und beschlagnahmt das Heft.)|Versprich mir, das nie wieder zu tun.",192,1,-1,NoMoreSweetGwendoline()
+192,0,0,,"Ja, Miss.|Versprochen.","Sehr gut, junge Dame. (Ihr geht zu ihrem Schreibtisch.)|Ich hoffe, du machst keinen Ärger mehr.",200,1,-1,
+192,0,0,,Es wird nicht|wieder vorkommen.,"Nun gut, junge Dame. (Ihr geht zu ihrem Schreibtisch.)|Ich hoffe, du machst keinen Ärger mehr.",200,0,0,
+192,0,0,,"Ja, ja, ja. Ich tu's|nicht nochmal.","Deine Haltung ist dürftig. (Ihr geht zu ihrem Schreib-|tisch.) Ich hoffe, du machst keinen Ärger mehr.",200,-1,1,
+192,0,0,,"Ja, das war dämlich.|Ich tu's nicht nochmal.","Wohl wahr, junge Dame. (Ihr geht zu ihrem Schreib-|tisch.) Ich hoffe, du machst keinen Ärger mehr.",200,1,0,
+200,0,0,Common_PlayerRestrained,(An deinen|Fesseln zerren.),"Hier, ich helfe dir, junge Dame.|(Sie befreit dich.) Alles in Ordnung?",200,0,0,TestRelease()
+200,0,0,Common_PlayerGagged,@Mmhm mneeeas.,"Hier, ich helfe dir, junge Dame.|(Sie befreit dich.) Alles in Ordnung?",200,0,0,TestRelease()
+200,0,0,CanAskForDoor,Ich hab 'ne verschlos-|sene Tür gefunden.,"Ja, und du hast keinen Zutritt zu|diesem Teil der Bibliothek.",200,0,0,
+200,0,0,PenInHole,"Miss, mir ist ein Stift|in ein Loch gefallen.","Oh! Und du brauchst meine Hilfe,|ihn wiederzubekommen?",210,0,0,
+200,0,0,CanPleasure,"Miss, darf ich Sie etwas|Persönliches fragen?","Natürlich, junge Dame.|Worum geht es denn?",205,0,0,
+200,0,0,LittlePet,Möchten Sie|mehr Befriedigung?,"Nicht jetzt, mein Kleines, aber ich werde|deine Dienste später in Anspruch nehmen.",200,0,0,
+200,0,0,,"Alles in Ordnung, Miss.|(Weggehen.)",,200,0,0,PlayerLeaveForBook()
+200,0,0,,(Ihren Schreibtisch|durchsuchen.)ADD_MINUTES:1,"Junge Dame, lass die Finger von den|Sachen auf meinem Schreibtisch.",200,-1,0,AnnoyYuki()
+200,0,0,,(Ihre Tasche|durchsuchen.)ADD_MINUTES:1,Was machst du da?|Finger weg von meiner Tasche.,200,-1,0,AnnoyYuki()
+200,0,0,,(Lärm machen.)ADD_MINUTES:1,"Schweigen ist Gold, junge Dame.|Gerade in einer Bibliothek.",200,-1,0,AnnoyYuki()
+205,0,0,,Ich mag Sie irgendwie.|Kann ich Sie küssen?,"Nein, aber du könntest etwas anderes tun.|(Sie packt dich am Haar und setzt sich auf den Tisch.)",700,0,0,StartPleasure()
+205,0,0,,Ich möchte von Ihnen|befriedigt werden.,"Nein, aber gerne umgekehrt.|(Sie packt dich am Haar und setzt sich auf den Tisch.)",700,0,1,StartPleasure()
+205,0,0,,Ich würde Sie|gerne befriedigen.,"Komm her, mein süßes Schoßhündchen.|(Sie packt dich am Haar und setzt sich auf den Tisch.)",700,1,-1,StartPleasure()
+205,0,0,,Wie lange arbeiten|Sie schon hier?,Das soll deine persönliche Frage sein?|Es ist mein drittes Jahr an diesem College.,200,0,0,NoPleasure()
+210,0,0,,"Ja, ich brauche Ihre Hilfe.","Tut mir leid, dafür habe ich keine Zeit.",200,0,0,TestForHelp()
+210,0,0,,"Ich versuche, ihn|selbst rauszuholen.","Sehr gut, du schaffst das schon.",200,0,0,
+220,0,0,,Er ist in einem dunklen|Loch im Bücherregal.,"Nun gut, lass mal sehen.|(Ihr begebt euch zum Bücherregal.)",230,0,0,
+220,0,0,,Da ist so ein blödes|Loch im Regal.,"Na schön, lass mal sehen.|(Ihr begebt euch zum Bücherregal.)",230,-1,0,
+230,0,0,,Das ist das Loch.|Sehen Sie den Stift?,"Ich glaube, ich kann deinen Stift erkennen.|Da ranzukommen wird nicht einfach sein.",240,0,0,
+230,0,0,,Sie sind die Beste.|Sehen Sie den Stift?,"Ich glaube, ich kann deinen Stift erkennen.|Da ranzukommen wird nicht einfach sein.",240,1,0,
+240,0,0,,Sie müssen wohl|hinein kriechen.,"Durchaus. Aus dem Weg, junge Dame.|(Sie kriecht langsam in das Loch.)",250,0,0,CrawlInHole()
+240,0,0,,Eine klasse Lehrerin wie|Sie kommt da bestimmt ran.,"Ich versuch's. Aus dem Weg, junge Dame.|(Sie kriecht langsam in das Loch.)",250,0,-1,CrawlInHole()
+250,0,0,,Kommen Sie ran?,Moment... Ja! Ich hab ihn!|Kannst du mich herausziehen?,255,0,0,
+250,0,0,,(Sie hineindrücken.),"(Du drückst sie hinein, aber sie bleibt in der|Mitte stecken.) Ziehen! Nicht drücken!",260,-1,1,
+255,0,0,,"Natürlich, Miss.|(Sie herausziehen.)","(Du hilfst ihr heraus und sie gibt dir deinen Stift.)|Sei das nächste Mal vorsichtiger, junge Dame.",270,1,0,
+255,0,0,,(Sie hineindrücken.),"(Du drückst sie hinein, aber sie bleibt in der|Mitte stecken.) Ziehen! Nicht drücken!",260,-1,1,
+260,0,0,,Ups! 'Tschuldigung.|(Sie herausziehen.),"(Du hilfst ihr heraus und sie gibt dir deinen Stift.)|Sei das nächste Mal vorsichtiger, junge Dame.",270,1,0,
+260,0,0,,Jetzt können wir|Spaß haben.,"Was sagst du da? Hilf mir hier raus!|(Sie strampelt, kommt aber nicht heraus.)",500,-2,1,StuckInHole()
+270,0,0,,Ja. Danke.|(Zurück zur Bibliothek.),,200,0,0,LeaveForHole()
+270,0,0,,"Natürlich, Miss Yuki.|(Zurück zur Bibliothek.)",,200,0,-1,LeaveForHole()
+280,0,0,,Da drin hat|was gefunkelt.,Mir egal. (Sie zerrt dich zu ihrem|Schreibtisch in einem anderen Teil der Bibliothek.),291,-1,0,
+280,0,0,,Ich hab nach|Käse gesucht.,Nicht witzig. (Sie zerrt dich zu ihrem|Schreibtisch in einem anderen Teil der Bibliothek.),291,-2,0,
+280,0,0,PenInHole,Ich hab meinen|Stift da drin verloren.,Mir egal. (Sie zerrt dich zu ihrem|Schreibtisch in einem anderen Teil der Bibliothek.),291,0,-1,
+280,0,0,,Eine schwarzhaarige|hat mich hineingedrückt.,Mir egal. (Sie zerrt dich zu ihrem|Schreibtisch in einem anderen Teil der Bibliothek.),291,0,-1,
+290,0,0,,Ich hab nichts|gemacht.,Lüg mich nicht an. (Sie zerrt dich zu ihrem|Schreibtisch in einem anderen Teil der Bibliothek.),291,-1,0,
+290,0,0,,Ich hab gelesen.,Lüg mich nicht an. (Sie zerrt dich zu ihrem|Schreibtisch in einem anderen Teil der Bibliothek.),291,0,0,
+290,0,0,,Das geht Sie|nichts an.,Klappe. (Sie zerrt dich zu ihrem|Schreibtisch in einem anderen Teil der Bibliothek.),291,-1,1,
+290,0,0,,(Rot werden und|den Kopf senken.),Komm mit. (Sie zerrt dich zu ihrem|Schreibtisch in einem anderen Teil der Bibliothek.),291,1,-1,
+290,0,0,,Es hat gejuckt.,Lüg mich nicht an. (Sie zerrt dich zu ihrem|Schreibtisch in einem anderen Teil der Bibliothek.),291,-1,0,
+290,0,0,,"Verzeihung, Miss.|Ich habe masturbiert.",Komm mit. (Sie zerrt dich zu ihrem|Schreibtisch in einem anderen Teil der Bibliothek.),291,1,-2,
+291,0,0,,"Miss, bitte.|Es tut mir leid.","Dafür ist es etwas zu spät, junge Dame.|(Sie packt dich und legt dir einen Monohandschuh an.)",300,0,-1,RestrainPlayer()
+291,0,0,,Wo ist das Problem?,"Ich sorge dafür, dass du keinen Ärger mehr machst.|(Sie packt dich und legt dir einen Monohandschuh an.)",300,-1,0,RestrainPlayer()
+291,0,0,,(Schweigen.),"Gut, ich will nichts mehr von dir hören.|(Sie packt dich und legt dir einen Monohandschuh an.)",300,0,0,RestrainPlayer()
+300,0,0,,Au! Das tut weh!,Das sollte dich bis zu deiner|nächsten Stunde im Zaum halten.,310,0,-1,
+300,0,0,,(Erbittert ankämpfen.),"Aus diesem Handschuh kommst du nicht raus, junge|Dame. Du bleibst bis zu deiner nächsten Stunde hier.",310,0,1,
+300,0,0,,Was ist das?,"Das ist ein Monohandschuh, junge Dame. Er wird dich|bis zu deiner nächsten Stunde im Zaum halten.",310,0,0,
+300,0,0,,"Fick dich, Schlampe!",(Sie bindet dich am Schreibtisch fest|und klebt dir den Mund zu.) Du hast Sendepause.,340,-1,0,GagPlayer()
+310,0,0,,Das können Sie|nicht tun!,"Das kann ich sehr wohl. (Sie bringt den Handschuh|am Tisch an, sodass du auf dem Boden sitzt.)",320,0,0,
+310,0,0,,Das geschieht|mir wohl recht.,"Durchaus. (Sie bringt den Handschuh am|Tisch an, sodass du auf dem Boden sitzt.)",320,1,0,
+310,0,0,,"Fick dich, Schlampe!",(Sie bindet dich am Schreibtisch fest|und klebt dir den Mund zu.) Du hast Sendepause.,340,-1,0,GagPlayer()
+320,0,0,,"Bitte, Sie können mich|nicht hier fesseln.","Sitz deine Strafe ab und sei ruhig.|(Sie entfernt sich, um zu Lesen.)",330,0,0,
+320,0,0,,Das ist Menschen-|unwürdig!,"Sitz deine Strafe ab und sei ruhig.|(Sie entfernt sich, um zu Lesen.)",330,0,0,
+320,0,0,,"Fick dich, Schlampe!",Du hast jetzt Sendepause. (Sie klebt deinen Mund zu.)|Jetzt sitz deine Strafe ab und mach keinen Lärm.,340,-1,0,GagPlayer()
+330,0,0,,(Gegen deine|Fesseln ankämpfen.),"(Du versuchst dich aus dem Monohandschuh|zu befreien, kannst aber nicht viel ausrichten.)",330,0,0,TwoMinutes()
+330,0,0,,(Geduldig warten.),(Du wartest geduldig unter dem Schreibtisch.|Die Zeit vergeht sehr langsam.),330,0,0,TwoMinutes()
+330,0,0,,Kommen Sie zurück!,"(Sie kommt zurück, nur um deinen|Mund mit Klebeband zu knebeln.)",340,0,0,GagPlayer()
+340,0,0,,@Oomnp nhai!,"(Sie scheint dich zu hören,|zeigt aber keinerlei Reaktion.)",340,0,0,TwoMinutes()
+340,0,0,,@Mmammih!,"(Sie scheint dich zu hören,|zeigt aber keinerlei Reaktion.)",340,0,0,TwoMinutes()
+340,0,0,,(Gegen deine|Fesseln ankämpfen.),"(Du versuchst dich aus dem Monohandschuh|zu befreien, kannst aber nicht viel ausrichten.)",340,0,0,TwoMinutes()
+340,0,0,,(Geduldig warten.),(Du wartest geduldig unter dem Schreibtisch.|Die Zeit vergeht sehr langsam.),340,0,0,TwoMinutes()
+400,0,0,,"Alles okay, Miss?|Sie sehen müde aus.","(Sie nickt, fällt langsam zu|Boden und schläft sofort ein.)",410,0,-1,Sleep()
+400,0,0,,(Sie festhalten|und hinlegen.),"(Du hältst sie fest und legst sie auf|den Boden, wo sie sofort einschläft.)",410,0,1,Sleep()
+400,0,0,,Sind Sie müde?,"(Sie nickt, fällt langsam zu|Boden und schläft sofort ein.)",410,0,0,Sleep()
+410,0,0,,(Den Raum|durchsuchen.),,410,0,0,StartSearch()
+410,0,0,!Common_PlayerRestrained,(Sie aufwecken.),(Du weckst sie auf und hilfst ihr hoch.)|Was ist passiert? Bin ich eingeschlafen?,420,0,0,Wake()
+420,0,0,,"Ja, Sie sind|eingeschlafen.","Wie peinlich. (Sie sieht verwirrt aus.) Versprich,|keinen Ärger zu machen, und du darfst gehen.",430,0,0,"SetPose("""")"
+420,0,0,,Sie haben auf dem|Boden geschlafen.,"Wie peinlich. (Sie sieht verwirrt aus.) Versprich,|keinen Ärger zu machen, und du darfst gehen.",430,0,0,"SetPose("""")"
+420,0,0,,Ich habe Sie betäubt.,WAS! (Sie packt schnell deine Arme und zwängt|sie in einen Monohandschuh aus Leder.),300,0,0,RestrainPlayer()
+430,0,0,,"Versprochen, machen|Sie's gut. (Weggehen.)",,200,1,0,PlayerLeaveForBook()
+430,0,0,,Ich mache keinen Ärger.|(Weggehen.),,200,0,0,PlayerLeaveForBook()
+500,0,0,,Zappeln Sie für mich!,"(Sie strampelt wie wild, um aus dem Loch zu|entkommen, doch es gelingt ihr nicht.)",500,0,0,
+500,0,0,!Common_PlayerRestrained,(Sie streicheln.)ADD_MINUTES:1,(Du streichelst zärtlich ihre Beine|und hörst ein leises Stöhnen im Loch.),500,0,0,Caress()
+500,0,0,!Common_PlayerRestrained,(Sie kitzeln.)ADD_MINUTES:1,"(Dein Kitzeln verärgert sie sehr, aber sie kann|sich ihr kindliches Lachen nicht verkneifen.)",500,0,0,Tickle()
+500,0,0,!Common_PlayerRestrained,(Ihr Höschen entfernen.)ADD_MINUTES:1,"(Du ziehst langsam ihr Höschen an ihren|Beinen herunter, während sie vor Wut schreit.)",510,0,0,
+500,0,0,!Common_PlayerRestrained,(Sie befreien.),"(Möchtest du sie wirklich befreien?|Wenn ja, klicke dieselbe Option erneut an.)",500,0,0,ReleaseFromHole()
+510,0,0,!Common_PlayerRestrained,(Sie befriedigen.)ADD_MINUTES:1,(Du befriedigst sie langsam und liebevoll.|Du hörst sie ruckeln und stöhnen.),510,0,0,Masturbate()
+510,0,0,!Common_PlayerGagged,(Ihre Muschi lecken.)ADD_MINUTES:1,(Du bückst dich und leckst langsam ihre Muschi.|Du hörst sie ruckeln und stöhnen.),510,0,0,Masturbate()
+510,0,0,!Common_PlayerRestrained,(Sie streicheln.)ADD_MINUTES:1,(Du streichelst zärtlich ihre Beine|und hörst ein leises Stöhnen im Loch.),510,0,0,Caress()
+510,0,0,!Common_PlayerRestrained,(Sie kitzeln.)ADD_MINUTES:1,"(Dein Kitzeln verärgert sie sehr, aber sie kann|sich ihr kindliches Lachen nicht verkneifen.)",510,0,0,Tickle()
+510,0,0,!Common_PlayerRestrained,(Ihr Höschen hochziehen.)ADD_MINUTES:1,"(Du ziehst langsam ihr Höschen wieder|hoch, während sie strampelt.)",500,0,0,
+510,0,0,!Common_PlayerRestrained,(Sie befreien.),"(Möchtest du sie wirklich befreien?|Wenn ja, klicke dieselbe Option erneut an.)",510,0,0,ReleaseFromHole()
+511,0,0,!Common_PlayerRestrained,"Yuki, Sie haben es verdient.|(Orgasmus herbeiführen.)",(Du berührst sie erneut und sie erlangt einen|riesigen Orgasmus. Ihre Beine werden nass.),512,1,0,HoleOrgasm()
+511,0,0,!Common_PlayerRestrained,Ich habe die Kontrolle.|(Orgasmus herbeiführen.),(Du berührst sie erneut und sie erlangt einen|riesigen Orgasmus. Ihre Beine werden nass.),512,0,1,HoleOrgasm()
+511,0,0,,Das verdienen Sie nicht.|(Sie nicht mehr anfassen.),"Was! Das kannst du nicht tun!|(Sie versucht dich zu treten, aber verfehlt.)",510,-1,1,
+511,0,0,,Sie kommen später.|(Sie nicht mehr anfassen.),"Was! Das kannst du nicht tun!|(Sie versucht dich zu treten, aber verfehlt.)",510,0,1,
+512,0,0,!Common_PlayerGagged,"Ich mache Sie sauber,|Miss. (Ihre Beine ablecken.)",(Du leckst das Sekret von ihren Beinen|und sie stöhnt leise.) Gutes Mädchen.,510,1,-1,
+512,0,0,,Sie sind jetzt|meine Bitch.,"Das werde ich niemals sein, junge Dame.|Hol mich aus diesem verdammten Loch raus!",510,-1,1,
+512,0,0,!Common_PlayerRestrained,Gute Lehrerin.|(Sie streicheln.),(Sie seufzt und beruhigt sich für ein paar Sekunden.),510,1,0,
+520,0,0,,Hoffentlich gefällt|Ihnen der Gürtel.,Du schließt ihn besser sofort wieder auf!,520,0,0,
+520,0,0,!Common_PlayerRestrained,(Sie streicheln.)ADD_MINUTES:1,(Du streichelst zärtlich ihre Beine|und hörst ein leises Stöhnen im Loch.),520,0,0,Caress()
+520,0,0,!Common_PlayerRestrained,(Sie kitzeln.)ADD_MINUTES:1,"(Dein Kitzeln verärgert sie sehr, aber sie kann|sich ihr kindliches Lachen nicht verkneifen.)",520,0,0,Tickle()
+520,0,0,!Common_PlayerRestrained,(Sie befreien.),"(Möchtest du sie wirklich befreien?|Wenn ja, klicke dieselbe Option erneut an.)",520,0,0,ReleaseFromHole()
+530,0,0,,"Ja, Miss, Entschuldigung.|(Mit ihr mitgehen.)ADD_MINUTES:1",(Sie zerrt dich zu ihrem Schreibtisch|in einem anderen Teil der Bibliothek.),600,0,-1,
+530,0,0,,"Na gut, gehen wir.|(Mit ihr mitgehen.)ADD_MINUTES:1",(Sie zerrt dich zu ihrem Schreibtisch|in einem anderen Teil der Bibliothek.),600,0,0,
+530,0,0,,Okay! Kein Grund zu|Brüllen. (Mit ihr mitgehen.)ADD_MINUTES:1,(Sie zerrt dich zu ihrem Schreibtisch|in einem anderen Teil der Bibliothek.),600,0,1,
+600,0,0,,Was wollen Sie?,Rache! Was du getan hast war unangemessen.|Dreh dich um und gib mir deine Hände.,610,0,0,TestSleep()
+600,0,0,,(Schweigen.),(Sie starrt dich an und holt tief Luft.)|Dreh dich um und gib mir deine Hände.,610,0,-1,TestSleep()
+600,0,0,,"Is' was, Doc?","Du bist nicht ansatzweise witzig, junge Dame.|Dreh dich um und gib mir deine Hände.",610,-1,0,TestSleep()
+610,0,5,,Nein. Ich hab|'ne bessere Idee.,Dein Ton gefällt mir nicht.|Wovon redest du?,620,0,0,
+610,0,0,,Nein! Niemals!|(Dich wehren.),"(Du versuchst dich zu wehren, aber sie packt|deine Arme und zwängt sie in einen Monohandschuh.)",300,0,1,RestrainPlayer()
+610,0,0,,"Na gut, machen Sie schnell.|(Dich umdrehen.)","(Du drehst dich um und gibst ihr deine|Hände, die sie in einen Monohandschuh zwängt.)",300,0,0,RestrainPlayer()
+610,0,0,,"Ja, Miss Yuki.|(Dich umdrehen.)","(Du drehst dich um und gibst ihr deine|Hände, die sie in einen Monohandschuh zwängt.)",300,0,-1,RestrainPlayer()
+620,0,0,,"Sie wären erniedrigt, wenn|Leute Bescheid wüssten.","Du willst doch nicht etwa Gerüchte|darüber verbreiten, was passiert ist?",630,0,0,"SetPose("""")"
+620,0,0,,"Alle werden davon|erfahren, es sei denn...",Es sei denn? Du willst doch|nicht etwa Gerüchte verbreiten?,630,0,0,"SetPose("""")"
+630,0,0,,"Wenn Sie gut zu mir|sind, rede ich nicht.","Na schön, wir haben einen Deal, Fräulein.|Ich werde dir nicht in die Quere kommen.",640,0,1,
+630,0,0,,"Wenn Sie cool bleiben,|bleibe ich auch cool.","Sehr wohl, wir haben einen Deal.|Ich werde dir nicht in die Quere kommen.",640,0,0,
+640,0,0,,"Also gut, ich gehe jetzt.|(Weggehen.)",,650,0,0,PlayerLeaveForBook()
+640,0,0,,Ich möchte Sie|nicht wieder sehen.,Schön! Dann geh doch.,650,-1,0,
+640,0,0,,"Sehr gut, Yuki.|(Ihre Hand schütteln.)","(Ihr gebt euch einen festen Händedruck.)|Du darfst dich frei bewegen, junge Dame.",650,1,0,
+650,0,0,,(Weggehen.),,650,0,0,PlayerLeaveForBook()
+700,0,0,,Ist Ihnen heiß?|(Sie lecken.),"Ich brenne, mein Schoßhündchen, lösch mich.|(Sie entfernt ihr Höschen und zieht dich näher ran.)",710,0,0,
+700,0,0,,Das sieht lecker aus!|(Sie lecken.),"Guten Appetit, Kleines, das ist dein Nachtisch.|(Sie entfernt ihr Höschen und zieht dich näher ran.)",710,1,0,
+700,0,0,,(Langsam nicken|und sie lecken.),"Dir könnte man glatt ein Halsband anlegen, Kleines.|(Sie entfernt ihr Höschen und zieht dich näher ran.)",710,1,-1,
+700,0,0,,Das gehört sich nicht.|(Zurückziehen.),Schön! Mir doch egal!|Was willst du also?,200,-1,0,TestPullAway()
+700,0,0,,"Vergiss es, Yuki.|(Zurückziehen.)",Schön! Mir doch egal!|Was willst du also?,200,-2,1,TestPullAway()
+710,0,0,,(An ihre Muschi|schmiegen.)ADD_MINUTES:1,(Sie spreizt die Beine und stöhnt leise.),710,0,0,Pleasure(1)
+710,0,0,,(Ihre Klitoris lecken.)ADD_MINUTES:1,(Sie zieht dich an den Haaren näher und zittert.),710,0,0,Pleasure(2)
+710,0,0,,(Deine Zunge|hineinstecken.)ADD_MINUTES:1,(Sie bewegt mit beiden Händen|deinen Kopf vor und zurück.),710,0,0,Pleasure(3)
+710,0,0,,(Ihre Klitoris|befriedigen.)ADD_MINUTES:1,"Oh, COMMON_PLAYERNAME!|Oh ja!",710,0,0,Pleasure(4)
+710,0,0,,(Einen Finger rein|und raus bewegen.)ADD_MINUTES:1,Schneller! Fester! Schneller!,710,0,0,Pleasure(5)
+710,0,0,,(Aufhören und|zurückziehen.),(Sie legt schnell ihre Beine um deinen|Kopf und zieht dich wieder ran.),710,0,0,
+720,0,0,,(Ihr Sekret lecken.)ADD_MINUTES:1,"(Du leckst die Flüssigkeit von ihren Schamlippen,|bevor sie dich loslässt.) Gutes Mädchen.",730,1,-1,
+720,0,0,,(Nach Luft ringen.),(Sie lässt dich los.)|Armes kleines Schoßhündchen.,730,0,-1,
+720,0,0,,(Schnell zurückziehen.),"(Du ziehst deinen Kopf schnell von ihr zurück.)|Schäm dich nicht dafür, was du getan hast.",730,-1,0,
+730,0,0,,Hat es Ihnen gefallen?,"Ja. Und ich hoffe, wir können das wiederholen.|Wolltest du noch etwas von mir?",200,0,0,StopPleasure()
+730,0,0,,"Yuki, Sie schmecken|fabelhaft.","Danke. Ich hoffe, das machen wir nochmal.|Wolltest du noch etwas von mir?",200,0,1,StopPleasure()
+730,0,0,,"Miss, hat es|Ihnen gefallen?","Und wie, mein Kleines. Das werden wir wiederholen.|Wolltest du noch etwas von mir?",200,0,-1,StopPleasure()
+730,0,0,,Das war sexy!,Das war toll! Wir müssen es wiederholen.|Wolltest du noch etwas von mir?,200,0,0,StopPleasure()
+750,0,0,,Sind Sie frigide?,"Nein! Du bist einfach nicht gut darin.|Jetzt verschwinde, wenn du nichts mehr brauchst.",200,-1,0,StopPleasure()
+750,0,0,,"Ich kann Sie fesseln, dann|kommen Sie schneller.","Junge Dame! Ich sagte, das reicht.|Jetzt verschwinde, wenn du nichts mehr brauchst.",200,0,1,StopPleasure()
+750,0,0,,"Es tut mir leid, Miss.|Ich brauche mehr Übung.","Dann lasse ich dich vielleicht später nochmal üben.|Aber jetzt verschwinde, wenn du nichts mehr brauchst.",200,1,0,StopPleasure()
+750,0,0,,(Beschämt den|Kopf hängen lassen.),"(Sie seufzt.) Du musst noch viel lernen, junge Dame.|Jetzt verschwinde, wenn du nichts mehr brauchst.",200,0,-1,StopPleasure()

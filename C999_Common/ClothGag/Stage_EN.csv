@@ -1,6 +1,6 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Inspect the gag.)|(1 minute),This gag has cloth lots of wadding to fill the mouth.|More cloths tie around the head to hold the wadding in.,0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Gag yourself.)|(1 minute),"You stuff the wadding in your mouth, then tie|more cloths over your mouth and around your head.",10,0,0,SelfGag()
-10,0,0,,(Chew on the wad.)|(1 minute),You chew on the wadding.  It helps your jaw|a little but doesn't damage the wadding at all.,10,0,0,
-10,0,0,,(Try to spit the wad out.)|(1 minute),You try to spit out the wad but it is held in by the cleave|and 'over the mouth' gags.  You'll need your hands.,10,0,0,
-10,0,0,Common_PlayerNotRestrained,(Ungag yourself.)|(1 minute),"You undo all the cloths, pull out|the wadding and can now talk again.",0,0,0,SelfUngag()
+0,0,0,,(Inspect the gag.)ADD_MINUTES:1,This gag has cloth lots of wadding to fill the mouth.|More cloths tie around the head to hold the wadding in.,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Gag yourself.)ADD_MINUTES:1,"You stuff the wadding in your mouth, then tie|more cloths over your mouth and around your head.",10,0,0,SelfGag()
+10,0,0,,(Chew on the wad.)ADD_MINUTES:1,You chew on the wadding.  It helps your jaw|a little but doesn't damage the wadding at all.,10,0,0,
+10,0,0,,(Try to spit the wad out.)ADD_MINUTES:1,You try to spit out the wad but it is held in by the cleave|and 'over the mouth' gags.  You'll need your hands.,10,0,0,
+10,0,0,Common_PlayerNotRestrained,(Ungag yourself.)ADD_MINUTES:1,"You undo all the cloths, pull out|the wadding and can now talk again.",0,0,0,SelfUngag()

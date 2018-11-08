@@ -37,9 +37,9 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 140,0,0,WorkOfArtReady,You truly are|a work of art.,So kind of you COMMON_PLAYERNAME.|You are a charming new pupil.,140,0,0,WorkOfArt()
 140,0,0,,Maybe we should|add another model.,You think?  I'm intrigued.|Who should model with me?,150,0,0,QueryNewModel()
 140,0,0,,It would be prettier|if we added a model.,"So I'm not pretty enough by myself?  Nonsense!|But I'm intrigued, who should model with me?",150,-1,0,QueryNewModel()
-150,0,0,,I will model with you.|(1 minute),Oh!  Very daring!  Come here.|Pupils!  We have an extra model.,160,0,0,"NewModel(""Player"")"
-150,0,0,,Sarah should model.|(1 minute),"Good idea, Sarah, step up please.|Time to paint, get your brushes!",160,0,0,"NewModel(""Sarah"")"
-150,0,0,,Jennifer should model.|(1 minute),"Interesting, Jennifer, step up please.|Time to paint, get your brushes!",160,0,0,"NewModel(""Jennifer"")"
+150,0,0,,I will model with you.ADD_MINUTES:1,Oh!  Very daring!  Come here.|Pupils!  We have an extra model.,160,0,0,"NewModel(""Player"")"
+150,0,0,,Sarah should model.ADD_MINUTES:1,"Good idea, Sarah, step up please.|Time to paint, get your brushes!",160,0,0,"NewModel(""Sarah"")"
+150,0,0,,Jennifer should model.ADD_MINUTES:1,"Interesting, Jennifer, step up please.|Time to paint, get your brushes!",160,0,0,"NewModel(""Jennifer"")"
 150,0,0,CanBegForRelease,@HUUIA!  HMMH EE!,Keep the pose new pupil.|I cannot understand a word.,150,0,0,GaggedSpeach()
 150,0,0,CanBegForRelease,(Whimper and make|sad puppy eyes.),,150,0,0,BegForRelease()
 170,0,1,Common_PlayerNotRestrained,Let's change|model again.,Again?  Who should model with me?,150,0,0,ChangeModel()
@@ -47,12 +47,12 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 170,0,0,CanDoSelfBondage,I'll show you self|shibari!  (Tie yourself.),"(Naked in front of the class, you struggle and|manage to wrap and tie the rope on yourself.)",170,0,0,SelfBondage()
 170,0,0,CanBegForRelease,@HUUIA!  HMMH EE!,Keep the pose new pupil.|It's no time to chat.,170,0,0,GaggedSpeach()
 170,0,0,CanBegForRelease,(Whimper and make|sad puppy eyes.),,170,0,0,BegForRelease()
-170,0,0,AllowUnderwear,Our clothing is|different.  (1 minute),Si!  It's weird that you're clothed.|(You slowly remove your outfit.) Now paint!,180,0,0,PlayerRemoveOutfit()
-170,0,0,AllowNaked,We're still clothed|differently. (1 minute),Very daring!  You should also be naked.|(You slowly remove your undies.) Now paint!,180,0,0,PlayerStrip()
+170,0,0,AllowUnderwear,Our clothing is|different. ADD_MINUTES:1,Si!  It's weird that you're clothed.|(You slowly remove your outfit.) Now paint!,180,0,0,PlayerRemoveOutfit()
+170,0,0,AllowNaked,We're still clothed|differently.ADD_MINUTES:1,Very daring!  You should also be naked.|(You slowly remove your undies.) Now paint!,180,0,0,PlayerStrip()
 170,0,0,AllowShibari,"Have you heard|of ""Shibari""?","Si!  Shibari is the art of Japanese rope bondage.|Here's some rope, we can try that today.",170,0,0,ShibariStart()
 170,0,1,AllowShibari,"Hey Julia, have you|tried ""Shibari"" before?","I've never tried Japanese rope bondage art.|Here's some rope, we can try that today.",170,0,1,ShibariStart()
-170,0,0,IsRestrained,(Tickle her.)|(1 minute),(She giggles lightly and seems to enjoy it.),170,0,0,Tickle()
-170,0,0,IsRestrained,(Tighten the ropes.)|(1 minute),The ropes are already|as tight as they can be.,170,0,0,Tighten()
-170,0,0,IsRestrained,(Release her.)|(1 minute),(You undo the knots and release her.)|So you didn't like Shibari after all?,170,0,0,Release()
-170,0,0,IsGagged,(Ungag her.)|(1 minute),(You remove the gag and she smiles.)|Art can be crazy sometimes.  Now paint!,170,0,0,TryUngag()
+170,0,0,IsRestrained,(Tickle her.)ADD_MINUTES:1,(She giggles lightly and seems to enjoy it.),170,0,0,Tickle()
+170,0,0,IsRestrained,(Tighten the ropes.)ADD_MINUTES:1,The ropes are already|as tight as they can be.,170,0,0,Tighten()
+170,0,0,IsRestrained,(Release her.)ADD_MINUTES:1,(You undo the knots and release her.)|So you didn't like Shibari after all?,170,0,0,Release()
+170,0,0,IsGagged,(Ungag her.)ADD_MINUTES:1,(You remove the gag and she smiles.)|Art can be crazy sometimes.  Now paint!,170,0,0,TryUngag()
 170,0,0,PaintAvail,(Paint Julia.)|(30 minutes),(You carefully paint her and show the result.)|(She looks at your painting and jumps of joy.),170,0,0,Paint()

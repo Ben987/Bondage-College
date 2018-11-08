@@ -11,15 +11,21 @@ EventRelease,3130
 EventConfiscateKeys,3140
 EventConfiscateCrop,3150
 EventVibratingEgg,3160
-EventTickle,3200
-EventSpank,3210
+EventSlap,3210
 EventMasturbate,3220
 EventCrop,3230
+PunishmentGrounded,3910
+PunishmentBelted,3920
+PunishmentSpanked,3930
+PunishmentHumiliated,3940
 GaggedAnswer1,Ummgh ngh!
 GaggedAnswer2,(She mumbles something in the gag.)
 GaggedAnswer3,Ooooomp ohm mohmm!
 GaggedAnswer4,(She stares at you.)
 GaggedAnswer5,Ngmh ggn ng!
+GaggedAnswer6,Aeeegn neemg!
+GaggedAnswer7,Emhm mmohno mn eeeigh mn neeghnmem.
+GaggedAnswer8,(She remains silent.)
 AlreadyOwned,You're already owned girl.|I will not fuck with that.
 UnrestrainFirst,Get me out of that shit first.
 UnchasteFirst,Get me out of that fucking belt first.
@@ -27,15 +33,84 @@ PlayerUncollarFirst,Remove that fucking collar first.
 PlayerUnrestrainFirst,Get out of these restrains first.
 GetOnYourKnees,"Good, you'll be my bitch then.|So bitch, get on your knees."
 ReleasePlayer,"Here, I'll help you out.|(She releases you.)"
+ReleasePlayerGagged,Uuhm mnuum gm uh.|(She releases you.)
+CannotReleasePlayer,(She struggles in her|restrains and shrugs.)
 ActivityEndGood,That's enough!  That was great.|You know that I can do it any time.
 ActivityEndFair,That's enough!  That was kind of fun.|You know that I can do it any time.
 ActivityEndBad,That's enough!  That was kind of lame.|But you know that I can do it any time.
 ReleaseBeforeExit,Let me help you before I run.|(She releases you and leaves.)
-MasturbatePlayerOrgasm,"Your wish is granted fucking bitch!  Cum slut.|(She masturbate you fiercly, making you climax.)"
-MasturbatePlayerOrgasmForced,"You will cum anyway bitch!  Cum for me slut.|(She masturbate you fiercly, making you climax.)"
+MasturbatePlayerOrgasm,"Your wish is granted fucking bitch!  Cum slut.|(She masturbates you fiercely, making you climax.)"
+MasturbatePlayerOrgasmForced,"You will cum anyway bitch!  Cum for me slut.|(She masturbates you fiercely, making you climax.)"
 ChangingIsBlocked,"No bitch, you're not|allowed to change."
 ReleaseBeforePunishNotNaked,(She releases you and stares at you.)|Alright little bitch!  Get naked.
 ReleaseBeforePunishAlreadyNaked,(She releases you and stares at you.)|Alright bitch!  Your punishment can begin.
 PunishSinceNaked,"Since you're already naked,|your punishment can begin."
 StillGrounded,"(Sidney ignores you and checks her phone.|You need to wait, you're still grounded.)"
+StillGroundedByOther,"Forget it.  I'm not helping you out of that.|(You need to wait, you're still grounded.)"
 GroundingEndForLeaving,I need to go bitch.  I'll spank ya later.|You're not grounded anymore.
+CantFindRestrain,(She checks your items but doesn't seem|to find what she wants.)  Fuck that shit!
+SpankPlayer1,(You lie on her knees and she swiftly|spank your butt by surprise.)  One!
+SpankPlayer2,(She raises her hand quickly and spanks|another one on the same spot.)  Two!
+SpankPlayer3,(She raises her arm pretty high and drops|a strong one that hurts really badly.)  Three!
+SpankPlayer4,"(She spanks you from the flip side,|hitting a fresh part of your butt.)  Four!"
+SpankPlayer5,"(She takes a huge swing, spanking you|hard and turning your butt red.)  Five!"
+SpankPlayer6,"(She goes for the flip side again, hitting|hard on the previous area.)  Six!"
+SpankPlayer7,"(She swings a really quick one, hitting you by|surprise and making you scream.)  Seven!"
+SpankPlayer8,(She caresses your butt and takes her time|before spanking a strong one.)  Eight!
+SpankPlayer9,"(She goes for the flip side again, hitting|really hard on the previous area.)  Nine!"
+SpankPlayer10,"(She checks your red butt and smiles,|hitting on the worst spot.)  Ten!"
+SpankPlayer11,(She gropes your butt slowly and quickly|releases it to spank you.)  Eleven!
+SpankPlayer12,"(She takes a deep breath and spanks a really|hard one, making you cry.)  Twelve!"
+Crop,(You whip her on the butt with your crop.)|Ow!  What the fuck?  Stop that!
+CropFromMistress,(You whip her on the butt with your crop.)|Mistress!  Please!  It fucking hurts.
+CropWhileGagged,(You whip her on the butt with your crop|while she frowns at you and whimpers.)
+RefuseBondage,(Sidney sees your item and pushes it back.)|What the hell do you think you're doing?
+TurnTables,(Sidney overpowers you and uses your|restrains on you.)  That will teach you.
+TurnTablesFromMistress,You want to be restrained bitch?  Fine!|(Sidney uses your own restrains against you.)
+AcceptChange,Alright.  What should I wear?
+AcceptChangeFromLover,Yes sweetie. What would you like to see?
+AcceptChangeFromMistress,Of course Mistress.  What|would you like me to wear?
+NoNeedToChange,(She rolls her eyes up.)|No need to change then.
+Rope,(She grumbles silently while you wrap|the rope around her body and do tight knots.)
+TwoRopes,(You pick a second rope and tie|her legs in a sitting position.)
+ThreeRopes,"(You add a third rope, putting|her in a very strict hogtie.)"
+Armbinder,"(You force her hefty arms in the|armbinder, lace it and strap it tight.)"
+Cuffs,(She frowns while you grab her hands|firmly and cuff them behind her back.)
+BallGag,(She struggles a little but you're|able to strap the gag on her head.)
+TapeGag,(She struggles a little but you're|able to tape her mouth shut.)
+ClothGag,(She struggles a little but you're able to|push the wad inside her mouth and tie the gag.)
+CuffsKey,"(She sees the key and turns|around, so you can unlock her.)"
+VibratingEgg,(She shakes her head no when she|sees the egg but you're able to push it in.)
+ChastityBelt,(She panics when she sees the belt|but you're able to lock it tightly on her.)
+Collar,(You need +20 submission and a full|acceptance speech to collar her.)
+CollarToEnslave,(You need a collar to enslave someone.)
+EnslaveAlreadyTried,We already spoke about that.|I will not wear your collar.
+AcceptCollar,Yes Miss.  I will wear your collar.|I would love to be your slave.
+CannotActWhileRestrained,(She rolls her eyes up and|wiggles in her restrains.)
+CannotBeDoneWhileRestrained,(You cannot do it when you're restrained.)
+NakedForBelt,(Sidney must be naked to|lock a chastity belt on her.)
+AcceptPusherDeal,What kind of messed up deal is that?|Fine!  I'll do it!  I'll pay pretty soon anyway.
+OrgasmFromSidneyPleasure,(Sidney skillfully slides her tongue inside of you.|Making you tremble and moan from a great orgasm.)
+PleasureFromSidneyNoProgress,(Sidney tries to pleasure you with her mouth but|doesn't have the proper rhythm to be enjoyable.)
+KissSidneyOwner,(You bend a knee and|kiss your Mistress hand.)
+KissSidneyGagged,(You kiss her on the gag while|she gives you a curious look.)
+KissSidneySeduction,(You kiss her passionately and she responds|with a long French kiss while moaning slowly.)
+StartMasturbateSidney,(You get close to Sidney and|start to caress her gently.)
+ReadyForOrgasm,"(She shakes without control and moans|loudly, she's about to have a big orgasm.)"
+MasturbateNotInTheMood,(You start to touch her but it's clear|that she's not in the mood for it.)
+ChangeAfterCollaring,You can't do anything sexual without asking me.|(She changes.) Stand up and let's do something fun.
+SpankWithStrength,"(Using your strength, you spank her|hard on the butt while she whimpers.)"
+ReleaseBeforeTalk,Can you release me first?
+UnlockBeltBeforeSex,Can you unlock the belt first?
+CantDateWhileRestrained,"You get turned on by|the restrains, don't you?"
+CantDateWhileNaked,"You get turned on by|the flesh, don't you?"
+StripForSecondRope,(You could use that second|rope if she had fewer clothes.)
+NoTickling,"(You try to tickle her, but she|quickly pushes you back.)"
+AlreadyLoved,I don't.  Sometimes I wish I had|someone in my life like you do.
+AlreadyBrokeUp,I don't want to talk about that with you.
+AlreadyWentOut,Again?  Maybe tomorrow.|I'm exhausted sweetheart.
+RockShowAlreadyStarted,There's a rock show that's already started.|Should we go right now sweetheart?
+SpankInShorts,(She changes.)  No more lingerie!  Bend here.|(She sits on the bed and points to her legs.)
+ForcePigCostume,(You put the pig costume on her while|she struggles in vain to remove it.)
+ForcePigCostumePicture,(You put the pig costume on her and take a|picture while she struggles in vain to remove it.)
+StillGroundedGagged,OMM!  OORNMN!  MAOONGN!|(She grumbles and stares at you.)

@@ -1,0 +1,6 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,(Mit Gewalt öffnen.)ADD_MINUTES:1,"Du versuchst die Tür aufzustemmen, aber|in deiner jetzigen Lage wird das nichts.",0,0,0,
+0,0,0,,(Schloss überprüfen.)ADD_MINUTES:1,"Das Schloss ist recht alt und fundamental.|Du brauchst einen großen, runden Schlüssel dafür.",0,0,0,
+0,0,0,,@MMMMMMP!,"Es ist niemand da, um dich zu hören.",0,0,0,
+10,0,0,,(Das Schloss knacken.),,0,0,0,PickLock()
+10,0,0,,(Mit Gewalt öffnen.)ADD_MINUTES:1,"Du versuchst die Tür aufzustemmen, aber|in deiner jetzigen Lage wird das nichts.",10,0,0,

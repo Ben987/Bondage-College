@@ -1,0 +1,31 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,Kunst ist mein Lieblingsfach.|Wie kommst du mit deinem Bild voran?,Sarah.jpg
+0,2,0,,Hey there friend! Isn't art fun?|Wie kommst du mit deinem Bild voran?,Sarah.jpg
+0,0,2,,(Sie verneigt schnell ihren Kopf.)|Wie kommst du denn mit deinem Bild voran?,Sarah.jpg
+0,0,0,BondageDone,(Sie kichert.) Fesselst du mich mal wieder?|Und wie kommst du mit deinem Bild voran?,Sarah.jpg
+10,0,0,,Gefällt dir Julias Kunstunterricht?,Sarah.jpg
+20,0,0,,"Julia ist nicht gerade das einfachste Bildmodell, was?",Sarah.jpg
+30,0,0,,"Keine Ahnung, wie du sie dazu|bringen willst, sich auszuziehen.",Sarah.jpg
+50,0,0,,Sehr schön! Sie hat ihr Oberteil abgelegt.|Kannst du sie noch weiter treiben?,Sarah.jpg
+100,0,0,,Das ist klasse!|Du hast sie nackig gemacht.,Sarah.jpg
+100,0,0,IsModel,Gefällt dir die Pose? (Sie kichert.)|Das ist alles so aufregend!,Sarah.jpg
+110,0,0,,Du hast diesen hinterlistegn Blick|im Auge. Was planst du?,Sarah.jpg
+120,0,0,,"Wie willst du sie überreden,|sich fesseln zu lassen?",Sarah.jpg
+130,0,0,,"Dieser ""Shibari""-Plan ist die|beste Idee, die ich je hatte.",Sarah.jpg
+130,0,0,Common_PlayerRestrained,"Du siehst süß aus, ich liebe Bondage.",Sarah.jpg
+130,0,0,Common_PlayerGagged,So ein süßer Knebel!|Kann ich auch einen haben?,Sarah.jpg
+130,0,0,IsModel,"Dieser ""Shibari""-Plan ist die beste Idee, die ich|je hatte. Vielleicht kannst du uns beide fesseln.",SarahPose.jpg
+140,0,0,,Gefällt dir die Pose? (Sie kichert.)|Das ist alles so aufregend!,SarahUnderwear.jpg
+150,0,0,,(Sie summt einen aufreizenden Song und|probiert begehrenswerte Posen aus.),SarahNaked.jpg
+160,0,0,,"Aus diesen Seilen könnte ich mich nie befreien.|Nicht, dass ich das wollen würde.",SarahRope.jpg
+160,0,0,EggInside,Diese Seile! Das Ei! Das ist fast perfekt.|Kannst du mich bitte noch knebeln? (Sie kichert.),SarahRope.jpg
+170,0,0,,(Sie spielt in ihren Fesseln und scheint|sich auch über den Knebel zu freuen.),SarahRopeBallGag.jpg
+170,0,0,EggInside,(Sie schwitzt und stöhnt gelegentlich.|Sie scheint gegen das Ei anzukämpfen.),SarahRopeBallGag.jpg
+180,0,0,,(Sie spielt in ihren Fesseln und scheint|sich auch über den Knebel zu freuen.),SarahRopeTapeGag.jpg
+180,0,0,EggInside,(Sie schwitzt und stöhnt gelegentlich.|Sie scheint gegen das Ei anzukämpfen.),SarahRopeTapeGag.jpg
+200,0,0,,,SarahReadyOrgasmBallGag.jpg
+210,0,0,,,SarahReadyOrgasmBallGag.jpg
+220,0,0,,,SarahOrgasmBallGag.jpg
+250,0,0,,,SarahReadyOrgasmTapeGag.jpg
+260,0,0,,,SarahReadyOrgasmTapeGag.jpg
+270,0,0,,,SarahOrgasmTapeGag.jpg

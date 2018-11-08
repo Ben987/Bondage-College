@@ -15,30 +15,30 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 30,0,0,,It's none of|your business.,"Young lady, you will give me that right now.|(She grabs your items and confiscates them.)",40,-1,0,Confiscate()
 30,0,0,,I found this|on the floor.,"Thanks young lady, that's nice of you.|(She smiles and confiscates your items.)",40,1,0,Confiscate()
 30,0,0,,It's nothing.|(Hide the item),"Mmh, alright.  I thought I saw something.|Now stay quiet, I have some calls to make.",40,0,0,
-50,0,0,Common_PlayerNotRestrained,(Try to annoy her.)|(1 minute),Young lady.  You better stop right|now or I'll have to restrain you.,50,-1,0,Annoyed()
+50,0,0,Common_PlayerNotRestrained,(Try to annoy her.)ADD_MINUTES:1,Young lady.  You better stop right|now or I'll have to restrain you.,50,-1,0,Annoyed()
 60,0,0,Common_PlayerRestrained,What the fuck!|You cannot cuff me.,I can do even better.  (She walks away|and returns with a strip of tape for your mouth.),60,0,0,GagPlayer()
 70,0,0,Common_PlayerGagged,@Uhmma huhme!,(She ignores you.),70,0,0,
 70,0,0,Common_PlayerGagged,(Makes pleading eyes.),(She ignores you.),70,0,0,
-100,0,0,Common_PlayerRestrained,(Search for cuff keys.)|(1 minute),Yuki doesn't seem to have any key left.,100,0,0,SearchCuffKeys()
-100,0,0,Common_PlayerNotRestrained,(Strip her.)|(1 minute),You strip her carefully so she doesn't wake up.,110,0,0,
+100,0,0,Common_PlayerRestrained,(Search for cuff keys.)ADD_MINUTES:1,Yuki doesn't seem to have any key left.,100,0,0,SearchCuffKeys()
+100,0,0,Common_PlayerNotRestrained,(Strip her.)ADD_MINUTES:1,You strip her carefully so she doesn't wake up.,110,0,0,
 100,0,0,Common_PlayerNotRestrained,(Escape from detention.),,100,0,0,Escape()
-100,0,0,,(Wake her up.)|(1 minute),(You shake her pretty hard and she wakes up.)|Uuuh?  What?  What happened?,200,0,0,NoLeave()
-110,0,0,Common_PlayerNotRestrained,(Dress her.)|(1 minute),You dress her carefully so she doesn't wake up.,100,0,0,
-110,0,0,CanSearch,(Search in her stuff.)|(1 minute),You find handcuffs and keys in her stuff.,110,0,0,Search()
-110,0,0,EggReady,(Insert the egg.)|(1 minute),You slide the egg in her vagina while she moans softly.|It buzzes and goes deeper.  It will be hard to get it back.,110,0,0,Insert()
-110,0,0,EggInside,(Remove the egg.)|(1 minute),You slide a finger in to remove the egg but|cannot reach it.  She's stuck with it for now.,110,0,0,
+100,0,0,,(Wake her up.)ADD_MINUTES:1,(You shake her pretty hard and she wakes up.)|Uuuh?  What?  What happened?,200,0,0,NoLeave()
+110,0,0,Common_PlayerNotRestrained,(Dress her.)ADD_MINUTES:1,You dress her carefully so she doesn't wake up.,100,0,0,
+110,0,0,CanSearch,(Search in her stuff.)ADD_MINUTES:1,You find handcuffs and keys in her stuff.,110,0,0,Search()
+110,0,0,EggReady,(Insert the egg.)ADD_MINUTES:1,You slide the egg in her vagina while she moans softly.|It buzzes and goes deeper.  It will be hard to get it back.,110,0,0,Insert()
+110,0,0,EggInside,(Remove the egg.)ADD_MINUTES:1,You slide a finger in to remove the egg but|cannot reach it.  She's stuck with it for now.,110,0,0,
 110,0,0,Common_PlayerNotRestrained,(Escape from detention.),,110,0,0,Escape()
-110,0,0,,(Wake her up.)|(1 minute),(You shake her pretty hard and she wakes up.)|What?  What happened?  Where are my clothes?,210,0,0,NoLeave()
-120,0,0,Common_PlayerNotRestrained,(Lay her on the table.)|(1 minute),You make her lay on the table.,130,0,0,
-120,0,0,EggReady,(Insert the egg.)|(1 minute),You slide the egg in her vagina while she moans softly.|It buzzes and goes deeper.  It will be hard to get it back.,120,0,0,Insert()
-120,0,0,EggInside,(Remove the egg.)|(1 minute),You slide a finger in to remove the egg but|cannot reach it.  She's stuck with it for now.,120,0,0,
+110,0,0,,(Wake her up.)ADD_MINUTES:1,(You shake her pretty hard and she wakes up.)|What?  What happened?  Where are my clothes?,210,0,0,NoLeave()
+120,0,0,Common_PlayerNotRestrained,(Lay her on the table.)ADD_MINUTES:1,You make her lay on the table.,130,0,0,
+120,0,0,EggReady,(Insert the egg.)ADD_MINUTES:1,You slide the egg in her vagina while she moans softly.|It buzzes and goes deeper.  It will be hard to get it back.,120,0,0,Insert()
+120,0,0,EggInside,(Remove the egg.)ADD_MINUTES:1,You slide a finger in to remove the egg but|cannot reach it.  She's stuck with it for now.,120,0,0,
 120,0,0,Common_PlayerNotRestrained,(Escape from detention.),,120,0,0,Escape()
-120,0,0,,(Wake her up.)|(1 minute),(You shake her pretty hard and she wakes up.)|What?  Where are my clothes?  Who cuffed me?,220,0,0,NoLeave()
-130,0,0,Common_PlayerNotRestrained,(Make her sit.)|(1 minute),You put her back in her seat.,120,0,0,
-130,0,0,EggReady,(Insert the egg.)|(1 minute),You slide the egg in her vagina while she moans softly.|It buzzes and goes deeper.  It will be hard to get it back.,130,0,0,Insert()
-130,0,0,EggInside,(Remove the egg.)|(1 minute),You slide a finger in to remove the egg but|cannot reach it.  She's stuck with it for now.,130,0,0,
+120,0,0,,(Wake her up.)ADD_MINUTES:1,(You shake her pretty hard and she wakes up.)|What?  Where are my clothes?  Who cuffed me?,220,0,0,NoLeave()
+130,0,0,Common_PlayerNotRestrained,(Make her sit.)ADD_MINUTES:1,You put her back in her seat.,120,0,0,
+130,0,0,EggReady,(Insert the egg.)ADD_MINUTES:1,You slide the egg in her vagina while she moans softly.|It buzzes and goes deeper.  It will be hard to get it back.,130,0,0,Insert()
+130,0,0,EggInside,(Remove the egg.)ADD_MINUTES:1,You slide a finger in to remove the egg but|cannot reach it.  She's stuck with it for now.,130,0,0,
 130,0,0,Common_PlayerNotRestrained,(Escape from detention.),,130,0,0,Escape()
-130,0,0,,(Wake her up.)|(1 minute),(You shake her pretty hard and she wakes up.)|What?  Where are my clothes?  Who cuffed me?,220,0,0,NoLeave()
+130,0,0,,(Wake her up.)ADD_MINUTES:1,(You shake her pretty hard and she wakes up.)|What?  Where are my clothes?  Who cuffed me?,220,0,0,NoLeave()
 200,0,0,Common_PlayerGagged,@Heaheruhi!,Let me remove that tape.|So did I fell asleep?,200,0,0,Ungag()
 200,0,0,,"Yes, you fell asleep.",That's embarrassing.  I will get another|glass of water then.  Detention can continue.,250,0,0,NoCrime()
 200,0,0,,You fell asleep|so I woke you up.,"Thanks, I appreciate.  I will get another|glass of water then.  Detention can continue.",250,1,0,NoCrime()
@@ -57,8 +57,8 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 220,0,0,!SidneyGone,"Sidney drugged, cuffed|and stripped you.",Liar!  She's cuffed!  You did it!|Get me out of these cuffs right now!,230,-1,0,AllowLeave()
 220,0,0,SidneyGone,"Sidney drugged, cuffed|and stripped you.",Thanks!  SIDNEY!  (She jumps out of her chair|and runs cuffed out of the room without clothes.),270,1,0,NoCrime()
 230,0,0,,You look cute|like that.,You're not helping your case little miss.|Get me out of these cuffs right now.,230,0,0,
-230,0,0,,(Tickle her.)|(1 minute),Hey!!! HeheHEHEhehe!  Stop!  Stop it!|(She laughs pretty hard and blushes.),230,0,0,Tickle()
-230,0,0,,(Spank her.)|(1 minute),Ow!  Don't you dare to touch me!,230,0,0,
+230,0,0,,(Tickle her.)ADD_MINUTES:1,Hey!!! HeheHEHEhehe!  Stop!  Stop it!|(She laughs pretty hard and blushes.),230,0,0,Tickle()
+230,0,0,,(Spank her.)ADD_MINUTES:1,Ow!  Don't you dare to touch me!,230,0,0,
 230,0,0,,(Escape from detention.),,230,0,0,Escape()
 250,0,0,SidneyGone,If you want Sidney.|She went down the hall.,Thanks!  You stay here and I'll go get her.|(She jumps out and exits the room.),270,1,0,
 250,0,0,Common_PlayerRestrained,(Show her your cuffs.),Keep these cuffs for now.|I'll unlock you after detention.,250,0,0,

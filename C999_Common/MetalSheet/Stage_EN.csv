@@ -1,2 +1,2 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Inspect it.)|(1 minute),This metal sheet is kind of old|but the sides are still pretty sharp.,0,0,0,
+0,0,0,,(Inspect it.)ADD_MINUTES:1,This metal sheet is kind of old|but the sides are still pretty sharp.,0,0,0,

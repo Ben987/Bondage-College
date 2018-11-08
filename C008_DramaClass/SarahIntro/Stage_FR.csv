@@ -2,9 +2,9 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 0,0,0,IsDamsel,Quel genre de costume ?,Je suis censée jouer la demoiselle en détresse.|Je dois trouver une robe de mariée blanche.,0,0,0,
 0,0,0,!IsDamsel,Quel genre de costume ?,Je suis censée jouer le chevalier héroïque.|J'ai besoin d'une armure médiévale blanche.,0,0,0,
 0,0,0,,Le cours d'art|dramatique est stupide.,Très bien ! Je vais le chercher toute seule. (Elle trouve|un costume.) Ça te dérange si je me déshabille ici ?,10,-1,0,
-0,0,0,!Common_PlayerRestrained,(Tu cherches son|costume.) (1 minute),(Tu trouves son costume et elle saute de joie.)|Parfait !  Ça ne te dérange pas si je me déshabille ici ?,10,0,-1,
-0,0,0,IsDamsel,(Tu pointes du doigt|l'étagère.) (1 minute),Je l'ai trouvée ! (Elle prend une robe de mariée.)|Ça ne te dérange pas si je me déshabille ici ?,10,0,0,
-0,0,0,!IsDamsel,(Tu pointes du doigt|l'étagère.) (1 minute),Je l'ai trouvée ! (Elle prend une armure blanche.)|Ça ne te dérange pas si je me déshabille ici ?,10,0,0,
+0,0,0,!Common_PlayerRestrained,(Tu cherches son|costume.)ADD_MINUTES:1,(Tu trouves son costume et elle saute de joie.)|Parfait !  Ça ne te dérange pas si je me déshabille ici ?,10,0,-1,
+0,0,0,IsDamsel,(Tu pointes du doigt|l'étagère.)ADD_MINUTES:1,Je l'ai trouvée ! (Elle prend une robe de mariée.)|Ça ne te dérange pas si je me déshabille ici ?,10,0,0,
+0,0,0,!IsDamsel,(Tu pointes du doigt|l'étagère.)ADD_MINUTES:1,Je l'ai trouvée ! (Elle prend une armure blanche.)|Ça ne te dérange pas si je me déshabille ici ?,10,0,0,
 10,0,0,IsDamsel,Tu peux te déshabiller ici.|Je t'aiderai avec la robe.,C'est très gentil. (Elle se déshabille.)|Qu'est-ce que je dois mettre en premier ? La robe ?,20,1,0,Strip()
 10,0,0,!IsDamsel,Tu peux te déshabiller ici.|Je t'aiderai avec l'armure.,C'est très gentil. (Elle se déshabille.) Qu'est-ce que|je dois mettre en premier ?  La cotte de mailles ?,20,1,0,Strip()
 10,0,0,IsDamsel,(Tu hoches la tête.),(Elle se déshabille joyeusement.)|Qu'est-ce que je dois mettre en premier ? La robe ?,20,0,0,Strip()
@@ -15,15 +15,15 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 20,0,0,IsBothFree,Tu sais que tu es jolie ?,"Oh, Tu es si gentille.|Merci COMMON_PLAYERNAME.",20,0,0,
 20,0,0,IsBothFree,Tu serais superbe|toute attachée.,(Elle rit et acquiesce.)|Voudrais-tu m'attacher ?,20,0,0,TiedUpComment()
 20,0,0,ReadyHug,Quelques câlins|avant la pièce ?,Bien sûr ! J'adore les câlins.|Quel genre de câlins ?,300,0,0,StartHugs()
-20,0,0,IsBothFree,(Tu l'aides à s'habiller.)|(1 minute),(Tu l'aides à mettre son costume.)|Parfait ! Sommes-nous prêtes pour la pièce ?,30,0,0,Costume()
+20,0,0,IsBothFree,(Tu l'aides à s'habiller.)ADD_MINUTES:1,(Tu l'aides à mettre son costume.)|Parfait ! Sommes-nous prêtes pour la pièce ?,30,0,0,Costume()
 20,0,0,IsBothFree,"Sarah, aimerais-tu|m'attacher ?","Oh non, je ne peux pas faire ça Madame.|(Elle rougit et incline la tête.)",20,0,0,RandomBondage()
-20,0,0,!Common_PlayerRestrained,(Tu la chatouilles.)|(1 minute),"(Tu la chatouilles sur les côtes et elle glousse|légèrement, elle n'est pas très chatouilleuse.)",20,0,0,
-20,0,0,!Common_PlayerRestrained,(Tu lui mets une fessée.)|(1 minute),(Elle se penche pour que tu puisses lui donner|une fessée. Elle gémit et semble en profiter.),20,0,0,Spank()
-20,0,5,!Common_PlayerRestrained,(Tu la gifles.)|(1 minute),(Tu lui donnes une bonne gifle sur le visage|et la poitrine pendant qu'elle crie de plaisir.),20,0,0,Slap()
-20,0,0,!Common_PlayerRestrained,(Tu la masturbes.)|(1 minute),"(Tu te penches pour la masturber,|mais elle repousse ta main.)",20,0,0,Masturbate()
-20,0,0,CanUntie,(Tu la détaches.)|(1 minute),"(Elle se débat de façon ludique,|mais tu peux la détacher.)",20,0,0,Untie()
-20,0,0,CanUnstrap,(Tu la détaches.)|(1 minute),"(Elle se débat joyeusement pour garder son fourreau,|mais tu es capable de le détacher et de la libérer.)",20,0,0,Untie()
-20,0,0,CanUngag,(Tu la débâillonnes.)|(1 minute),"(Elle bouge la tête en cercle, mais|tu es capable d'enlever le bâillon.)",20,0,0,Ungag()
+20,0,0,!Common_PlayerRestrained,(Tu la chatouilles.)ADD_MINUTES:1,"(Tu la chatouilles sur les côtes et elle glousse|légèrement, elle n'est pas très chatouilleuse.)",20,0,0,
+20,0,0,!Common_PlayerRestrained,(Tu lui mets une fessée.)ADD_MINUTES:1,(Elle se penche pour que tu puisses lui donner|une fessée. Elle gémit et semble en profiter.),20,0,0,Spank()
+20,0,5,!Common_PlayerRestrained,(Tu la gifles.)ADD_MINUTES:1,(Tu lui donnes une bonne gifle sur le visage|et la poitrine pendant qu'elle crie de plaisir.),20,0,0,Slap()
+20,0,0,!Common_PlayerRestrained,(Tu la masturbes.)ADD_MINUTES:1,"(Tu te penches pour la masturber,|mais elle repousse ta main.)",20,0,0,Masturbate()
+20,0,0,CanUntie,(Tu la détaches.)ADD_MINUTES:1,"(Elle se débat de façon ludique,|mais tu peux la détacher.)",20,0,0,Untie()
+20,0,0,CanUnstrap,(Tu la détaches.)ADD_MINUTES:1,"(Elle se débat joyeusement pour garder son fourreau,|mais tu es capable de le détacher et de la libérer.)",20,0,0,Untie()
+20,0,0,CanUngag,(Tu la débâillonnes.)ADD_MINUTES:1,"(Elle bouge la tête en cercle, mais|tu es capable d'enlever le bâillon.)",20,0,0,Ungag()
 30,0,0,IsPlayReady,Faisons du théâtre !|(Vous rejoignez la scène.),,30,0,0,StartDrama()
 30,0,0,!IsPlayReady,Tout le monde|n'est pas prêt.,On doit peut-être se dépêcher.,30,0,0,
 100,0,0,Common_PlayerGagged,@Ungn !,Hoche la tête pour un oui ou secoue-la pour un non.|Tu as besoin d'aide avec ce bâillon ?,100,0,0,
@@ -35,17 +35,17 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 200,0,0,,(Tu la gifles au visage.),"(Elle incline la tête, récupérant|lentement de son orgasme.)",20,0,1,
 200,0,0,,T'es vraiment une salope.,"(Elle fait non de la tête, récupérant|lentement de son orgasme.)",20,-1,1,
 200,0,0,,"La prochaine fois,|tu supplieras pour jouir.","(Elle incline la tête, récupérant|lentement de son orgasme.)",20,0,1,
-300,0,0,,Fais-moi un câlin !|(1 minute),(Vous vous tenez l'une l'autre dans|les bras pour un long et chaleureux câlin.),310,0,0,"Hug(""PlayerSarahHug"")"
-300,5,0,HugDone,(Tu l'embrasses.)|(1 minute),(Tu l'embrasses tendrement sur le cou et|les lèvres pendant qu'elle rit et rougit.),310,0,0,"Hug(""PlayerSarahKiss"")"
-300,0,0,AmandaReadyHug,Va faire un câlin à|Amanda. (1 minute),(Sarah se précipite vers Amanda et|saute dans ses bras en riant.),310,0,0,"Hug(""AmandaSarahHug"")"
-300,0,5,AmandaReadyHug,Va embrasser Amanda.|(1 minute),"(Sarah rougit et offre un bisou à Amanda. Elles|s'enlacent rapidement, sensuit un charmant baiser.)",310,0,0,"Hug(""AmandaSarahKiss"")"
-300,0,0,AmandaReadyHug,Faisons un câlin|collectif. (1 minute),(Tu les invites toutes les deux dans tes bras et|vous partagez un câlin chaleureux avant la pièce.),310,0,0,"Hug(""GroupHug"")"
-300,10,10,AmandaReadyHug,Faisons un baiser|collectif. (1 minute),(Tu leur ordonnes de s'embrasser et tu te|joins à elles pour un trio de baisers d'amour.),310,0,0,"Hug(""GroupKiss"")"
+300,0,0,,Fais-moi un câlin !ADD_MINUTES:1,(Vous vous tenez l'une l'autre dans|les bras pour un long et chaleureux câlin.),310,0,0,"Hug(""PlayerSarahHug"")"
+300,5,0,HugDone,(Tu l'embrasses.)ADD_MINUTES:1,(Tu l'embrasses tendrement sur le cou et|les lèvres pendant qu'elle rit et rougit.),310,0,0,"Hug(""PlayerSarahKiss"")"
+300,0,0,AmandaReadyHug,Va faire un câlin à|Amanda.ADD_MINUTES:1,(Sarah se précipite vers Amanda et|saute dans ses bras en riant.),310,0,0,"Hug(""AmandaSarahHug"")"
+300,0,5,AmandaReadyHug,Va embrasser Amanda.ADD_MINUTES:1,"(Sarah rougit et offre un bisou à Amanda. Elles|s'enlacent rapidement, sensuit un charmant baiser.)",310,0,0,"Hug(""AmandaSarahKiss"")"
+300,0,0,AmandaReadyHug,Faisons un câlin|collectif.ADD_MINUTES:1,(Tu les invites toutes les deux dans tes bras et|vous partagez un câlin chaleureux avant la pièce.),310,0,0,"Hug(""GroupHug"")"
+300,10,10,AmandaReadyHug,Faisons un baiser|collectif.ADD_MINUTES:1,(Tu leur ordonnes de s'embrasser et tu te|joins à elles pour un trio de baisers d'amour.),310,0,0,"Hug(""GroupKiss"")"
 300,0,0,,C'est suffisant.,"D'accord, tu m'aideras à m'habiller ?",20,0,0,AllowLeave()
-310,0,0,,Fais-moi un câlin !|(1 minute),(Vous vous tenez l'une l'autre dans|les bras pour un long et chaleureux câlin.),310,0,0,"Hug(""PlayerSarahHug"")"
-310,5,0,HugDone,(Tu l'embrasses.)|(1 minute),(Tu l'embrasses tendrement sur le cou et|les lèvres pendant qu'elle rit et rougit.),310,0,0,"Hug(""PlayerSarahKiss"")"
-310,0,0,AmandaReadyHug,Va faire un câlin à|Amanda. (1 minute),(Sarah se précipite vers Amanda et|saute dans ses bras en riant.),310,0,0,"Hug(""AmandaSarahHug"")"
-310,0,5,AmandaReadyHug,Va embrasser Amanda.|(1 minute),"(Sarah rougit et offre un bisou à Amanda. Elles|s'enlacent rapidement, sensuit un charmant baiser.)",310,0,0,"Hug(""AmandaSarahKiss"")"
-310,0,0,AmandaReadyHug,Faisons un câlin|collectif. (1 minute),(Tu les invites toutes les deux dans tes bras et|vous partagez un câlin chaleureux avant la pièce.),310,0,0,"Hug(""GroupHug"")"
-310,10,10,AmandaReadyHug,Faisons un baiser|collectif. (1 minute),(Tu leur ordonnes de s'embrasser et tu te|joins à elles pour un trio de baisers d'amour.),310,0,0,"Hug(""GroupKiss"")"
+310,0,0,,Fais-moi un câlin !ADD_MINUTES:1,(Vous vous tenez l'une l'autre dans|les bras pour un long et chaleureux câlin.),310,0,0,"Hug(""PlayerSarahHug"")"
+310,5,0,HugDone,(Tu l'embrasses.)ADD_MINUTES:1,(Tu l'embrasses tendrement sur le cou et|les lèvres pendant qu'elle rit et rougit.),310,0,0,"Hug(""PlayerSarahKiss"")"
+310,0,0,AmandaReadyHug,Va faire un câlin à|Amanda.ADD_MINUTES:1,(Sarah se précipite vers Amanda et|saute dans ses bras en riant.),310,0,0,"Hug(""AmandaSarahHug"")"
+310,0,5,AmandaReadyHug,Va embrasser Amanda.ADD_MINUTES:1,"(Sarah rougit et offre un bisou à Amanda. Elles|s'enlacent rapidement, sensuit un charmant baiser.)",310,0,0,"Hug(""AmandaSarahKiss"")"
+310,0,0,AmandaReadyHug,Faisons un câlin|collectif.ADD_MINUTES:1,(Tu les invites toutes les deux dans tes bras et|vous partagez un câlin chaleureux avant la pièce.),310,0,0,"Hug(""GroupHug"")"
+310,10,10,AmandaReadyHug,Faisons un baiser|collectif.ADD_MINUTES:1,(Tu leur ordonnes de s'embrasser et tu te|joins à elles pour un trio de baisers d'amour.),310,0,0,"Hug(""GroupKiss"")"
 310,0,0,,C'est suffisant.,"D'accord, tu m'aideras à m'habiller ?",20,0,0,AllowLeave()

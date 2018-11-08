@@ -1,7 +1,7 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Inspect it.)|(1 minute),This armbinder seems very strong.|It won't break if someone struggles in it.,0,0,0,
-0,0,0,,(Play with it.)|(1 minute),You play with the leather straps and laces.|The feel on your skin makes you shiver.,0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Strap yourself.)|(1 minute),You slide your arms inside but it won't|hold without someone else to lace and strap.,0,0,0,
-10,0,0,HasLooseArmbinder,(Play with the loose|armbinder.)  (1 minute),You play with the loose armbinder|while being restrained but can't do much.,10,0,0,ShowImage()
-10,0,0,,(Try to break it.)|(1 minute),"Using all your strength, you try to|break the armbinder but fail miserably.",10,0,0,
-10,0,0,,(Struggle to get out.)|(1 minute),You struggle madly in the device|but cannot manage to get out.,10,0,0,
+0,0,0,,(Inspect it.)ADD_MINUTES:1,This armbinder seems very strong.|It won't break if someone struggles in it.,0,0,0,
+0,0,0,,(Play with it.)ADD_MINUTES:1,You play with the leather straps and laces.|The feel on your skin makes you shiver.,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Strap yourself.)ADD_MINUTES:1,You slide your arms inside but it won't|hold without someone else to lace and strap.,0,0,0,
+10,0,0,HasLooseArmbinder,(Play with the|loose armbinder.)ADD_MINUTES:1,You play with the loose armbinder|while being restrained but can't do much.,10,0,0,ShowImage()
+10,0,0,,(Try to break it.)ADD_MINUTES:1,"Using all your strength, you try to|break the armbinder but fail miserably.",10,0,0,
+10,0,0,,(Struggle to get out.)ADD_MINUTES:1,You struggle madly in the device|but cannot manage to get out.,10,0,0,

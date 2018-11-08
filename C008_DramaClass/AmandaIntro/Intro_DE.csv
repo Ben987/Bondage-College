@@ -1,0 +1,25 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,IsHeroine,Du machst also auch beim Stück mit.|Ich spiele den heldenhaften weißen Ritter.,Background.jpg
+0,0,0,!IsHeroine,Du machst also auch beim Stück mit.|Ich spiele den bösen schwarzen Ritter.,Background.jpg
+0,5,0,IsHeroine,"Wie schön, dass du auch im Stück mitspielst.|Ich spiele den heldenhaften weißen Ritter.",Background.jpg
+0,5,0,!IsHeroine,"Wie schön, dass du auch im Stück mitspielst.|Ich spiele den bösen schwarzen Ritter.",Background.jpg
+0,0,5,IsHeroine,"Willkommen im Schauspielunterricht, Miss.|Ich spiele den heldenhaften weißen Ritter.",Background.jpg
+0,0,5,!IsHeroine,"Willkommen im Schauspielunterricht, Miss.|Ich spiele den bösen schwarzen Ritter.",Background.jpg
+0,0,0,Common_PlayerGagged,Mit dem Knebel siehst du süß aus.|Aber für das Stück brauchst du ihn nicht.,Background.jpg
+10,0,0,,"Halt dir die Augen zu, damit ich mich umziehen kann.",Background.jpg
+10,0,5,,"Miss COMMON_PLAYERNAME, können Sie sich bitte|die Augen zuhalten, damit ich mich umziehen kann?",Background.jpg
+10,0,0,Common_PlayerGagged,Mit dem Knebel siehst du süß aus.|Aber für das Stück brauchst du ihn nicht.,Background.jpg
+20,0,0,,,CoverEyes.jpg
+30,0,0,,Warum hast du dir die Augen nicht zugehalten?,Background.jpg
+40,0,0,,"Ich schätze, du kannst mir wohl zusehen.|Hilfst du mir mit dieser Rüstung?",Background.jpg
+40,0,0,Common_PlayerGagged,Du siehst mit dem Knebel süß aus.|Aber kannst du mir mit dieser Rüstung helfen?,Background.jpg
+40,0,0,Common_PlayerRestrained,Deine Fesseln stehen dir hervorragend.|Aber so kannst du mir nicht helfen.,Background.jpg
+40,0,0,IsChaste,"(Sie rüttelt am Gürtel.)  COMMON_PLAYERNAME?|Du hast aber schon den Schlüssel dafür, oder?",Background.jpg
+40,0,0,IsRestrained,Das ist vielleicht nicht der beste Zeitpunkt für Bondage.|(Sie windet sich.) Lässt du mich bitte frei?,Background.jpg
+40,0,0,IsGagged,Aaaeemg ngee nnaaagn!|(Sie kämpft mit dem Knebel.),Background.jpg
+50,0,0,SarahMissing,Sarah ist mal wieder spät dran.|Sollten wir ohne sie los?,Background.jpg
+50,0,0,!SarahMissing,Sind alle bereit für den Auftritt?,Background.jpg
+100,0,0,,(Amanda erholt sich noch von|einem fabelhaften Orgasmus.),BackgroundOrgasm.jpg
+200,0,0,,"Folgsame Mädchen brauchen keine Schlüssel, her|damit. (Sie nimmt deinen Handschellenschlüssel weg.)",Background.jpg
+300,0,0,,,Background.jpg
+310,0,0,,,Background.jpg

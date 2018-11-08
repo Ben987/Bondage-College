@@ -1,0 +1,11 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,@Slot 1,Spielstand 1 wurde gespeichert.,0,0,0,SaveGame(1)
+0,0,0,,@Slot 2,Spielstand 2 wurde gespeichert.,0,0,0,SaveGame(2)
+0,0,0,,@Slot 3,Spielstand 3 wurde gespeichert.,0,0,0,SaveGame(3)
+0,0,0,,@Slot 4,Spielstand 4 wurde gespeichert.,0,0,0,SaveGame(4)
+0,0,0,,@Slot 5,Spielstand 5 wurde gespeichert.,0,0,0,SaveGame(5)
+0,0,0,,@Slot 6,Spielstand 6 wurde gespeichert.,0,0,0,SaveGame(6)
+0,0,0,,@Slot 7,Spielstand 7 wurde gespeichert.,0,0,0,SaveGame(7)
+0,0,0,,@Slot 8,Spielstand 8 wurde gespeichert.,0,0,0,SaveGame(8)
+0,0,0,,@Slot 9,Spielstand 9 wurde gespeichert.,0,0,0,SaveGame(9)
+0,0,0,,@Fortfahren,,0,0,0,Continue()

@@ -30,26 +30,26 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 200,0,0,BondageNotConfronted,"Lo siento.Me encantan las|cuerdas,¿Me podrías atar?","Eres patética, pronto me lamerás las botas.|Ahora dámelas. (Coge las cuerdas.)",300,0,-2,GiveRope()
 200,0,0,,Aquí están tus cuerdas. |Escóndelas mejor.,¡Bien!  Ahora déjame sóla.|(Coge las cuerdas y se da la vuelta.),300,1,0,GiveRope()
 200,0,0,,Hablemos un poco más.,Mmmh.  Bien.|¿De qué estábamos hablando?,200,0,0,StopRope()
-200,0,2,,(Desnúdale y átale.)|(1 minuto),"(Le agarras de nuevo y le atas las muecas a la espalda.|Se resiste con uñas y dientes, pero al final se rinde.)",220,0,0,Tie()
-200,0,4,,Al final te rendirás.|(desnúdale y átale)(1 minuto),(Se quita el uniforme con dudas|y te ofrece sus muñecas para que se las ates.),220,0,0,TieSub()
+200,0,2,,(Desnúdale y átale.)ADD_MINUTES:1,"(Le agarras de nuevo y le atas las muecas a la espalda.|Se resiste con uñas y dientes, pero al final se rinde.)",220,0,0,Tie()
+200,0,4,,Al final te rendirás.|(desnúdale y átale)ADD_MINUTES:1,(Se quita el uniforme con dudas|y te ofrece sus muñecas para que se las ates.),220,0,0,TieSub()
 200,0,0,,"Si las quieres,|ven y pelea.",,40,-2,0,Fight()
 220,0,0,,(Dale la vuelta.),¡Joder! ¿Qué haces ahora?|(Le fuerzas a que se de la vuelta.),230,0,0,
 220,0,0,,(desátale.)|(1 minute),"(Le desatas los brazos mientras ella te insulta.|Una vez libre, te empuja con furia.)",200,0,0,Untie()
-220,0,0,,(Hazle cosquillas)|(1 minuto),¡Te dije que no tengo cosquillas!|(Te echa una mirada furiosa.),220,0,0,Tickle()
-220,1,0,,(Bésale)|(1 minuto),(Te mira perpleja después|del beso y se queda callada.),220,0,0,
-220,0,0,AmandaInBondage,(Haz que abrace a Amanda.)|(1 minuto),(Fuerza a las dos chicas a abrazarse y frotarse.)|¡Joder!  ¿Qué clase de pervertida eres?,240,-1,0,
+220,0,0,,(Hazle cosquillas)ADD_MINUTES:1,¡Te dije que no tengo cosquillas!|(Te echa una mirada furiosa.),220,0,0,Tickle()
+220,1,0,,(Bésale)ADD_MINUTES:1,(Te mira perpleja después|del beso y se queda callada.),220,0,0,
+220,0,0,AmandaInBondage,(Haz que abrace a Amanda.)ADD_MINUTES:1,(Fuerza a las dos chicas a abrazarse y frotarse.)|¡Joder!  ¿Qué clase de pervertida eres?,240,-1,0,
 220,0,0,,Estas cuerdas se ajustan|genial a tu cuerpazo.,¡Oh!  Mmmmh...  Gracias... creo.,220,0,0,
-220,0,0,,"Si te libero, ¿puedo|atarte después? (1 minuto)",Parece justo.  Trato hecho.|(Le desatas y le estrechas la mano.),310,1,1,Untie()
-220,0,0,,"Si te libero, ¿Puedes|atarme luego? (1 minuto)","¡Oh, sip!  Mi venganza será dulce.|(Le desatas y le estrechas la mano.)",310,1,-2,Untie()
+220,0,0,,"Si te libero, ¿puedo|atarte después?ADD_MINUTES:1",Parece justo.  Trato hecho.|(Le desatas y le estrechas la mano.),310,1,1,Untie()
+220,0,0,,"Si te libero, ¿Puedes|atarme luego?ADD_MINUTES:1","¡Oh, sip!  Mi venganza será dulce.|(Le desatas y le estrechas la mano.)",310,1,-2,Untie()
 230,0,0,,(Dale la vuelta),(Le das la vuelta mientras|te mira enfurecida.),220,0,0,
-230,0,0,,(Desátale)|(1 minuto),"(Le desatas mientras te insulta.|una vez libre, te empuja con rabia.)",200,0,0,Untie()
-230,0,0,,(Hazle cosquillas.)|(1 minuto),¡Dije que no tengo cosquillas!|(Te mira enfadada.),230,0,0,Tickle()
-230,0,0,,(Azótale.)|(1 minuto),(Le azotas delante del resto de las alumnas.)|¡Ja!  ¿eso es lo mejor que sabes hacer?,230,0,0,
+230,0,0,,(Desátale)ADD_MINUTES:1,"(Le desatas mientras te insulta.|una vez libre, te empuja con rabia.)",200,0,0,Untie()
+230,0,0,,(Hazle cosquillas.)ADD_MINUTES:1,¡Dije que no tengo cosquillas!|(Te mira enfadada.),230,0,0,Tickle()
+230,0,0,,(Azótale.)ADD_MINUTES:1,(Le azotas delante del resto de las alumnas.)|¡Ja!  ¿eso es lo mejor que sabes hacer?,230,0,0,
 230,0,0,,"Mirando tus bragas,|estás disfrutando.",¡Deja de mirar ahí pervertida!,230,0,0,PantiesRemark()
-230,0,0,,"Si te libero, ¿puedo|atarte después? (1 minuto)", "Parece justo. Trato hecho.|(Le desatas y le estrechas la mano.)",310,1,1,Untie()
-230,0,0,,"Si te libero, ¿Puedes|atarme luego? (1 minuto)","¡Oh, sip!  Mi venganza será dulce.|(Le desatas y le estrechas la mano.)",310,1,-2,Untie()
+230,0,0,,"Si te libero, ¿puedo|atarte después?ADD_MINUTES:1", "Parece justo. Trato hecho.|(Le desatas y le estrechas la mano.)",310,1,1,Untie()
+230,0,0,,"Si te libero, ¿Puedes|atarme luego?ADD_MINUTES:1","¡Oh, sip!  Mi venganza será dulce.|(Le desatas y le estrechas la mano.)",310,1,-2,Untie()
 240,0,0,,(Sepárales),¡Por fin!  ¡Esto ha sido una idea estúpida!,220,0,0,
-240,0,0,,(Fuérzales a besarse.)|(1 minuto),"(Les fuerzas a besarse, Sidney parece furiosa.)|Amanda, si usas la lengua te la corto.",250,0,0,KissAmanda()
+240,0,0,,(Fuérzales a besarse.)ADD_MINUTES:1,"(Les fuerzas a besarse, Sidney parece furiosa.)|Amanda, si usas la lengua te la corto.",250,0,0,KissAmanda()
 240,0,0,,Haceis una pareja|de bondage preciosa.,(Te miran fijamente.),240,0,0,
 250,0,0,,(Separales.),¡Por fin!  ¡Esto ha sido una idea estúpida!,220,0,0,
 250,0,0,,(Para los besos.),¡Admítelo! Soy mejor que esa estúpida.|(Trata de intimidar a Amanda que mira a otro lado.),240,0,0,

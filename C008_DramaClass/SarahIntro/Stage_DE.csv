@@ -1,0 +1,51 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,IsDamsel,Was für ein Kostüm?,Ich soll die Jungfrau in Nöten spielen.|Ich brauche ein weißes Hochzeitskleid.,0,0,0,
+0,0,0,!IsDamsel,Was für ein Kostüm?,Ich soll den heldenhaften Ritter spielen.|Ich brauche eine weiße Mittelalterrüstung.,0,0,0,
+0,0,0,,Schauspielunterricht|ist doof.,"Schön! Dann suche ich eben allein. (Sie findet ein|Kostüm.) Ist es okay, wenn ich mich hier ausziehe?",10,-1,0,
+0,0,0,!Common_PlayerRestrained,(Nach ihrem|Kostüm suchen.)ADD_MINUTES:1,"(Du findest ihr Kostüm und sie hüpft vor Freude.)|Perfekt! Ist es okay, wenn ich mich hier ausziehe?",10,0,-1,
+0,0,0,IsDamsel,(Auf den Kostüm-|ständer zeigen.)ADD_MINUTES:1,"Gefunden! (Sie greift nach einem Hochzeitskleid.)|Ist es okay, wenn ich mich hier ausziehe?",10,0,0,
+0,0,0,!IsDamsel,(Auf den Kostüm-|ständer zeigen.) ADD_MINUTES:1,"Gefunden! (Sie greift nach einer weißen Rüstung.)|Ist es okay, wenn ich mich hier ausziehe?",10,0,0,
+10,0,0,IsDamsel,Zieh dich ruhig aus.|Ich helfe dir mit dem Kleid.,Das ist sehr nett von dir. (Sie zieht sich aus.)|Was sollte ich zuerst anziehen? Das Kleid?,20,1,0,Strip()
+10,0,0,!IsDamsel,Zieh dich ruhig aus. Ich|helfe dir mit der Rüstung.,Das ist sehr nett von dir. (Sie zieht sich aus.)|Was sollte ich zuerst anziehen? Das Kettenhemd?,20,1,0,Strip()
+10,0,0,IsDamsel,(Nicken.),(Sie zieht sich glücklich bis auf die unterwäsche aus.)|Was sollte ich zuerst anziehen? Das Kleid?,20,0,0,Strip()
+10,0,0,!IsDamsel,(Nicken.),(Sie zieht sich glücklich bis auf die unterwäsche aus.)|Was sollte ich zuerst anziehen? Das Kettenhemd?,20,0,0,Strip()
+20,0,0,PlayerIsRoped,(Umdrehen und auf|die Seile deuten.),Nö! Gefesselt bist du mir lieber.|Vielleicht kommst du ja von alleine da raus.,20,0,0,TestUntiePlayer()
+20,0,0,PlayerInArmbinder,(Umdrehen und mit|dem Handschuh wackeln.),Nö! Wehrlos bist du mir lieber.|Vielleicht kommst du ja eines Tages von alleine da raus.,20,0,0,TestUnstrapPlayer()
+20,0,0,PlayerIsCuffed,(Umdrehen und deine|Handschellen zeigen.),"Nö, ich hab keine Schlüssel für Handschellen.",20,0,0,TestUncuffPlayer()
+20,0,0,IsBothFree,"Weißt du, wie|hübsch du bist?","Oooch, du bist so nett.|Danke, COMMON_PLAYERNAME.",20,0,0,
+20,0,0,IsBothFree,Du würdest gefesselt|toll aussehen.,(Sie kichert und nickt.)|Willst du mich fesseln?,20,0,0,TiedUpComment()
+20,0,0,ReadyHug,Ein paar Umarmungen|vor der Probe?,Klar! Ich liebe Umarmungen.|Was für Umarmungen?,300,0,0,StartHugs()
+20,0,0,IsBothFree,(Ihr beim|Umziehen helfen.)ADD_MINUTES:1,(Du hilfst ihr beim Anziehen ihres Kostüms.)|Perfekt! Sind wir bereit zum Proben?,30,0,0,Costume()
+20,0,0,IsBothFree,"Sarah, würdest du|mich gern fesseln?","Oh nein, das könnte ich nicht, Miss.|(Sie wird rot und senkt den Kopf.)",20,0,0,RandomBondage()
+20,0,0,!Common_PlayerRestrained,(Sie kitzeln.)ADD_MINUTES:1,"(Du kitzelst ihre Rippen und sie kichert ein|wenig, sie ist nicht besonders kitzlig.)",20,0,0,
+20,0,0,!Common_PlayerRestrained,(Ihr auf den|Hintern hauen.)ADD_MINUTES:1,"(Sie bückt sich, damit du einfacher an ihren Po|kommst. Sie stöhnt und scheint Spaß zu haben.)",20,0,0,Spank()
+20,0,5,!Common_PlayerRestrained,(Sie schlagen.)ADD_MINUTES:1,(Du haust ihr doll ins Gesicht und auf|die Brust und sie schreit vor Freude.),20,0,0,Slap()
+20,0,0,!Common_PlayerRestrained,(Sie befriedigen.)ADD_MINUTES:1,"(Du bückst dich, um sie zu befriedigen,|aber sie drängt deine Hand weg.)",20,0,0,Masturbate()
+20,0,0,CanUntie,(Sie losbinden.)ADD_MINUTES:1,"(Sie wehrt sich verspielt, aber|du bekommst sie losgebunden.)",20,0,0,Untie()
+20,0,0,CanUnstrap,(Sie befreien.)ADD_MINUTES:1,"(Sie versucht spielerisch, den Monohandschuh|anzubehalten, aber du schaffst es, sie zu befreien.)",20,0,0,Untie()
+20,0,0,CanUngag,(Sie entknebeln.)ADD_MINUTES:1,"(Sie dreht ihren Kopf im Kreis, aber du|schaffst es, den Knebel zu entfernen.)",20,0,0,Ungag()
+30,0,0,IsPlayReady,Hals- und Beinbruch!|(Zur Theaterprobe.),,30,0,0,StartDrama()
+30,0,0,!IsPlayReady,Es sind noch|nicht alle bereit.,Dann sollten wir vielleicht schneller machen.,30,0,0,
+100,0,0,Common_PlayerGagged,@Ungn!,Nicke oder schüttel den Kopf.|Brauchst du Hilfe mit dem Knebel?,100,0,0,
+100,0,0,,(Langsam nicken.),"Nö! Ich hab dich so lieber.|Hilfst du mir, mein Kostüm zu finden?",0,0,0,CheckUngag()
+100,0,0,,(Den Kopf schütteln.),"Gut, du siehst damit süß aus.|Hilfst du mir, mein Kostüm zu finden?",0,0,0,
+200,0,0,,Willkommen im Himmel.,"(Sie nickt und stöhnt, während sie sich|langsam von ihrem Orgasmus erholt.)",20,1,0,
+200,0,0,,(Ihr den Kopf tätscheln.),"(Sie schnurrt und stöhnt, während sie sich|langsam von ihrem Orgasmus erholt.)",20,1,0,
+200,0,0,,Ich kontrolliere jetzt|deine Orgasmen.,"(Sie senkt den Kopf, während sie sich|langsam von ihrem Orgasmus erholt.)",20,0,1,
+200,0,0,,(Ihr eine|Ohrfeige geben.),"(Sie senkt den Kopf, während sie sich|langsam von ihrem Orgasmus erholt.)",20,0,1,
+200,0,0,,Du bist so eine Nutte.,"(Sie schüttelt den Kopf, während sie sich|langsam von ihrem Orgasmus erholt.)",20,-1,1,
+200,0,0,,Nächstes Mal wirst du um|einen Orgasmus betteln.,"(Sie senkt den Kopf, während sie sich|langsam von ihrem Orgasmus erholt.)",20,0,1,
+300,0,0,,Umarmen wir uns!ADD_MINUTES:1,(Ihr haltet euch lange und|freundschaftlich in den Armen.),310,0,0,"Hug(""PlayerSarahHug"")"
+300,5,0,HugDone,(Sie küssen.)ADD_MINUTES:1,"(Du küsst ihr sanft auf den Hals und auf die|Lippen, während sie kichert und rot wird.)",310,0,0,"Hug(""PlayerSarahKiss"")"
+300,0,0,AmandaReadyHug,Geh Amanda umarmen.ADD_MINUTES:1,(Sarah sprintet zu Amanda und|wirft sich kichernd in ihre Arme.),310,0,0,"Hug(""AmandaSarahHug"")"
+300,0,5,AmandaReadyHug,Geh Amanda küssen.ADD_MINUTES:1,(Sarah wird rot und schlägt Amanda einen Kuss vor.|Sie umarmen sich rasch und küssen sich lieblich.),310,0,0,"Hug(""AmandaSarahKiss"")"
+300,0,0,AmandaReadyHug,Machen wir eine|Gruppenumarmung.ADD_MINUTES:1,(Du nimmst sie beide in die Arme und ihr|teilt euch vor der Probe eine warme Umarmung.),310,0,0,"Hug(""GroupHug"")"
+300,10,10,AmandaReadyHug,Machen wir einen|Gruppenkuss.ADD_MINUTES:1,(Du lässt die beiden sich küssen und formst|mit ihnen ein küssendes Liebesdreieck.),310,0,0,"Hug(""GroupKiss"")"
+300,0,0,,Das reicht.,"Klar, hilfst du mir jetzt also beim Umziehen?",20,0,0,AllowLeave()
+310,0,0,,Umarmen wir uns!ADD_MINUTES:1,(Ihr haltet euch lange und|freundschaftlich in den Armen.),310,0,0,"Hug(""PlayerSarahHug"")"
+310,5,0,HugDone,(Sie küssen.)ADD_MINUTES:1,"(Du küsst ihr sanft auf den Hals und auf die|Lippen, während sie kichert und rot wird.)",310,0,0,"Hug(""PlayerSarahKiss"")"
+310,0,0,AmandaReadyHug,Geh Amanda umarmen.ADD_MINUTES:1,(Sarah sprintet zu Amanda und|wirft sich kichernd in ihre Arme.),310,0,0,"Hug(""AmandaSarahHug"")"
+310,0,5,AmandaReadyHug,Geh Amanda küssen.ADD_MINUTES:1,(Sarah wird rot und schlägt Amanda einen Kuss vor.|Sie umarmen sich rasch und küssen sich lieblich.),310,0,0,"Hug(""AmandaSarahKiss"")"
+310,0,0,AmandaReadyHug,Machen wir eine|Gruppenumarmung.ADD_MINUTES:1,(Du nimmst sie beide in die Arme und ihr|teilt euch vor der Probe eine warme Umarmung.),310,0,0,"Hug(""GroupHug"")"
+310,10,10,AmandaReadyHug,Machen wir einen|Gruppenkuss.ADD_MINUTES:1,(Du lässt die beiden sich küssen und formst|mit ihnen ein küssendes Liebesdreieck.),310,0,0,"Hug(""GroupKiss"")"
+310,0,0,,Das reicht.,"Klar, hilfst du mir jetzt also beim Umziehen?",20,0,0,AllowLeave()

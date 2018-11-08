@@ -3,15 +3,15 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 0,0,0,,I will break a leg!,That's the spirit COMMON_PLAYERNAME!|This is your script.  (She hands you a sheet.),10,0,1,
 0,0,0,,I'm ready Julia.,Magnifico COMMON_PLAYERNAME!|This is your script.  (She hands you a sheet.),10,0,0,
 0,0,0,,This play will suck.,What a bad attitude COMMON_PLAYERNAME.|This is your script.  (She hands you a sheet.),10,-1,-1,
-10,0,0,,(Read the script.)|(1 minute),A great role isn't it?  Now get on the|stage.  The white knight starts the play.,20,0,0,
-10,0,0,,(Read the script|minutely.)  (1 minute),Oh!  A meticulous pupil!  Now get on the|stage.  The white knight starts the play.,20,1,0,
-10,0,0,,(Scan the script|rapidly.)  (1 minute),You seem really confident.  Now get on the|stage.  The white knight starts the play.,20,0,1,
+10,0,0,,(Read the script.)ADD_MINUTES:1,A great role isn't it?  Now get on the|stage.  The white knight starts the play.,20,0,0,
+10,0,0,,(Read the script|minutely.) ADD_MINUTES:1,Oh!  A meticulous pupil!  Now get on the|stage.  The white knight starts the play.,20,1,0,
+10,0,0,,(Scan the script|rapidly.) ADD_MINUTES:1,You seem really confident.  Now get on the|stage.  The white knight starts the play.,20,0,1,
 10,0,0,!ScriptRefused,I don't want|to read that.,How will you act without knowing the script?|Little COMMON_PLAYERNAME!  Read it.,10,0,0,RefuseScript()
 20,0,0,,(Go on the stage.),,100,0,0,StartDrama()
 20,0,0,,Can we improvise?,Si!  Don't go too far away from|the script but you can improvise.,20,0,0,
 100,0,0,,(Focus on the play.),,100,0,0,StartDrama()
 100,0,0,,Can we improvise?,Si!  Don't go too far away from|the script but you can improvise.,100,0,0,
-300,0,0,Common_PlayerGagged,(Make pleading eyes.)|(1 minute),You make sweet pleading eyes to Julia.|She smiles and releases you from your bondage.,300,0,0,ReleasePlayer()
+300,0,0,Common_PlayerGagged,(Make pleading eyes.)ADD_MINUTES:1,You make sweet pleading eyes to Julia.|She smiles and releases you from your bondage.,300,0,0,ReleasePlayer()
 300,0,0,,It was a fun play.,Si!  And there was room to improvise.,310,0,0,
 300,0,0,,That play was|great Julia.,Thanks a lot COMMON_PLAYERNAME!|And there was room to improvise.,310,1,0,
 300,0,0,,That play was|too chaotic.,"Chaos is art, art is chaos.|I wanted you to improvise.",310,-1,0,
@@ -29,14 +29,14 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 400,0,0,!IsDamsel,"Damsel, obey and|show me more skin.",Aye!  Of course my knight.|(She undresses a little.),410,0,1,Strip()
 410,0,0,!IsGagged,You're beautiful|tonight milady.,"Well thank you, I appreciate.",410,0,0,
 410,0,0,!IsGagged,Thou art quite|quaint tonight milady.,(She blushes.)  Thy admiration is flatt'ring,410,0,0,QuaintComment()
-410,0,0,CanUntie,(Untie her.)|(1 minute),(You undo the knots and release her from|the ropes while she stretches happily.),410,0,0,Untie()
-410,0,0,CanUngag,(Ungag her.)|(1 minute),(You remove the gag and she smiles.)|This damsel grant you mercy thee!,410,0,0,Ungag()
-410,0,0,CanKiss,(Kiss her.)|(1 minute),(You get close and give her a long kiss on the lips.)|COMMON_PLAYERNAME!  This is inappropriate.,410,0,0,Kiss()
-410,0,0,CanAbuse,(Tickle her.)|(1 minute),"(She laughs and trashes in her bondage|while you tickle her, she's enjoying it.)",410,0,0,Tickle()
-410,0,0,CanAbuse,(Spank her.)|(1 minute),(You spank her pretty hard on the butt.|She seems to find it inappropriate.),410,0,0,Spank()
-410,0,0,CanAbuse,(Masturbate her.)|(1 minute),(She struggles but can't avoid your touch.|She seems to find it very inappropriate.),410,0,0,Masturbate()
+410,0,0,CanUntie,(Untie her.)ADD_MINUTES:1,(You undo the knots and release her from|the ropes while she stretches happily.),410,0,0,Untie()
+410,0,0,CanUngag,(Ungag her.)ADD_MINUTES:1,(You remove the gag and she smiles.)|This damsel grant you mercy thee!,410,0,0,Ungag()
+410,0,0,CanKiss,(Kiss her.)ADD_MINUTES:1,(You get close and give her a long kiss on the lips.)|COMMON_PLAYERNAME!  This is inappropriate.,410,0,0,Kiss()
+410,0,0,CanAbuse,(Tickle her.)ADD_MINUTES:1,"(She laughs and trashes in her bondage|while you tickle her, she's enjoying it.)",410,0,0,Tickle()
+410,0,0,CanAbuse,(Spank her.)ADD_MINUTES:1,(You spank her pretty hard on the butt.|She seems to find it inappropriate.),410,0,0,Spank()
+410,0,0,CanAbuse,(Masturbate her.)ADD_MINUTES:1,(She struggles but can't avoid your touch.|She seems to find it very inappropriate.),410,0,0,Masturbate()
 500,0,0,,You're beautiful|tonight my queen.,"Well thank you, I appreciate.",500,0,0,
 500,0,0,,Thou art quite|quaint tonight highness.,(She blushes.)  Thy admiration is flatt'ring,500,0,0,QuaintComment()
 500,0,0,,My queen!  Have you|taken some weight?,That's lèse-majesté!  How dare you?|(She pins you down and restrains you.),500,0,0,WeightComment()
 500,0,0,RebellionAvail,Your highness!  A|rebellion is brewing.,I shalt have none of that!  Guards!|(She summons and restrains everyone.),500,0,0,Rebellion()
-500,0,0,Common_PlayerRestrained,(Make pleading eyes.)|(1 minute),So thy need help?  The queen|prefers to see you restrained.,500,0,0,BegRelease()
+500,0,0,Common_PlayerRestrained,(Make pleading eyes.)ADD_MINUTES:1,So thy need help?  The queen|prefers to see you restrained.,500,0,0,BegRelease()

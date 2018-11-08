@@ -1,0 +1,3 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,(Untersuchen.)ADD_MINUTES:1,"Sieht aus, als könne man jemanden daran festbinden.|Zwischen den Platten können Riemen befestigt werden.",0,0,0,
+10,0,0,,(Seil durchtrennen.)ADD_MINUTES:1,,0,0,0,CutRope()

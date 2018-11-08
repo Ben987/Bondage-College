@@ -49,7 +49,7 @@ function DoubleFightLoad(Opp1ActorName, Opp1Difficulty, Opp1Icon, Opp2ActorName,
 	DoubleFightEndFunction = EndFunction;
 	DoubleFightBackgroundImage = BackgroundImage;
 	DoubleFightSkillBonus = SkillBonus;
-	if (DoubleFightText == null) ReadCSV("DoubleFightText", "C999_Common/Fights/Text_" + CurrentLanguageTag + ".csv");
+	if (DoubleFightText == null) ReadCSV("DoubleFightText", "C999_Common", "Fights", "Text", CurrentLanguageTag);
 
 	// Setup the 2 opponents
 	DoubleFightOpponent1 = { ActorName:Opp1ActorName, DifficultyText:Opp1Difficulty, FightIcon:Opp1Icon, LastMoveType:-1, LastMoveTypeTimer:-1, FightProgress:-1, FightMoves:DoubleFightGenerateMoves(DoubleFightStartTime, Opp1Difficulty), FightMoveTypeKeyUpper:[65, 83, 68, 70], FightMoveTypeKeyLower:[97, 115, 100, 102], FightXOffset:0, ImageXOffset:220, ImageName:"", NextImageTime:-1 };

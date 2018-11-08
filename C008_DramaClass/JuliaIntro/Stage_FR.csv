@@ -1,6 +1,6 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,Approchez Julia ! |(Tu enlaces Julia) (1 min),"""Si"" ! (Elle t'entoure avec ses bras|et te serre contre sa poitrine.)",10,1,0,Hug()
-0,0,0,,Un calin ? Vous êtes sûre ?|(Tu enlaces Julia) (1 min),Si timide ! (Elle t'entoure avec ses bras|et te serre contre sa poitrine.),10,1,-1,Hug()
+0,0,0,,Approchez Julia ! |(Tu enlaces Julia)ADD_MINUTES:1,"""Si"" ! (Elle t'entoure avec ses bras|et te serre contre sa poitrine.)",10,1,0,Hug()
+0,0,0,,Un calin ? Vous êtes sûre ?|(Tu enlaces Julia)ADD_MINUTES:1,Si timide ! (Elle t'entoure avec ses bras|et te serre contre sa poitrine.),10,1,-1,Hug()
 0,0,0,,"S'il vous plaît, pas de câlin.",Une nouvelle élève si timide.|Bienvenue au cours d'art dramatique !,20,0,-1,
 0,0,0,,Laissez tomber Julia.,(Elle fronce les sourcils mais elle se remet à sourire.)| Bienvenue au cours d'art dramatique COMMON_PLAYERNAME !,20,-1,1,
 10,0,0,,C'est un bon câlin.,"""Si"" ! J'aime donner de grands et chauds câlins !|Bienvenue au cours d'art dramatique COMMON_PLAYERNAME.",20,0,0,

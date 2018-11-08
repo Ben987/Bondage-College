@@ -1,26 +1,28 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,重新开始,,0,0,0,"LoadChapter(""C001_BeforeClass"")"
+0,0,0,,新的开始,,0,0,0,"LoadChapter(""C001_BeforeClass"")"
 0,0,0,,继续学业,,0,0,0,LoadScreen()
 0,0,0,,选择章节,你想从哪一章开始？|如果你没有玩过这个游戏，请从第一章开始。,10,0,0,
 0,0,0,,选择语言,,30,0,0,
-0,0,0,,Game Credits,A huge THANK YOU to everyone|that contributed to the game.,0,0,0,RollCredits()
-10,0,0,,第一章|课前时间,,10,0,0,"LoadChapter(""C001_BeforeClass"")"
-10,0,0,,第二章|第一课,,10,0,0,"LoadChapter(""C002_FirstClass"")"
-10,0,0,,第三章|早上,,10,0,0,"LoadChapter(""C003_MorningDetention"")"
-10,0,0,,第四章|艺术课,,10,0,0,"LoadChapter(""C004_ArtClass"")"
-10,0,0,,第五章|体育课,,10,0,0,"LoadChapter(""C005_GymClass"")"
-10,0,0,,第六章|独立监禁,,10,0,0,"LoadChapter(""C006_Isolation"")"
-10,0,0,,第七章|午餐时间,,10,0,0,"LoadChapter(""C007_LunchBreak"")"
-10,0,0,,Chapter 8|Drama Class,,10,0,0,"LoadChapter(""C008_DramaClass"")"
-10,0,0,,More Chapters,"Select the chapter you want to play.|If you never tried the game, start on chapter 1.",20,0,0,
+0,0,0,,制作组,非常感谢每一位对本游戏有所贡献的人。,0,0,0,RollCredits()
+10,0,0,,第 1 章|课前时间,,10,0,0,"LoadChapter(""C001_BeforeClass"")"
+10,0,0,,第 2 章|第一课,,10,0,0,"LoadChapter(""C002_FirstClass"")"
+10,0,0,,第 3 章|早上,,10,0,0,"LoadChapter(""C003_MorningDetention"")"
+10,0,0,,第 4 章|艺术课,,10,0,0,"LoadChapter(""C004_ArtClass"")"
+10,0,0,,第 5 章|体育课,,10,0,0,"LoadChapter(""C005_GymClass"")"
+10,0,0,,第 6 章|禁闭,,10,0,0,"LoadChapter(""C006_Isolation"")"
+10,0,0,,第 7 章|午餐时间,,10,0,0,"LoadChapter(""C007_LunchBreak"")"
+10,0,0,,第 8 章|戏剧课,,10,0,0,"LoadChapter(""C008_DramaClass"")"
+10,0,0,,下一页,你想从哪一章开始？|如果你没有玩过这个游戏，请从第一章开始。,20,0,0,
 10,0,0,,主菜单,欢迎来到束缚学院。|希望各位绅士玩得开心，不断找到新惊喜。,0,0,0,
-20,0,0,,Chapter 9|Library,,20,0,0,"LoadChapter(""C009_Library"")"
-20,0,0,,Chapter 10|Revenge,,20,0,0,"LoadChapter(""C010_Revenge"")"
-20,0,0,,Chapter 11|Literature Class,,20,0,0,"LoadChapter(""C011_LiteratureClass"")"
-20,0,0,,Chapter 12|After Class,,20,0,0,"LoadChapter(""C012_AfterClass"")"
-20,0,0,,Chapter 101|Kinbaku Club by wildsj,,20,0,0,"LoadChapter(""C101_KinbakuClub"")"
-20,0,0,,Previous Chapters,"Select the chapter you want to play.|If you never tried the game, start on chapter 1.",10,0,0,
+20,0,0,,第 9 章|图书馆,,20,0,0,"LoadChapter(""C009_Library"")"
+20,0,0,,第 10 章|报复,,20,0,0,"LoadChapter(""C010_Revenge"")"
+20,0,0,,第 11 章|文学课,,20,0,0,"LoadChapter(""C011_LiteratureClass"")"
+20,0,0,,第 12 章|放学后,,20,0,0,"LoadChapter(""C012_AfterClass"")"
+20,0,0,,第 101 章|紧缚俱乐部 by wildsj,,20,0,0,"LoadChapter(""C101_KinbakuClub"")"
+20,0,0,,上一页,你想从哪一章开始？|如果你没有玩过这个游戏，请从第一章开始。,10,0,0,
 20,0,0,,主菜单,欢迎来到束缚学院。|希望各位绅士玩得开心，不断找到新惊喜。,0,0,0,
-30,0,0,,英文,,0,0,0,"SetLanguage(""EN"")"
-30,0,0,,法文 (暂时只有第一章)|感谢gottspende!,,0,0,0,"SetLanguage(""FR"")"
+30,0,0,,English,,0,0,0,"SetLanguage(""EN"")"
+30,0,0,,French (Chapter 1 to 8)|Made by gottspende,,0,0,0,"SetLanguage(""FR"")"
+30,0,0,,Chinese (Chapter 1 & 5)|By Dwscdv3 & asdcvbgf,,0,0,0,"SetLanguage(""CN"")"
 30,0,0,,Spanish (Chapter 1)|Made by Rafael R,,0,0,0,"SetLanguage(""ES"")"
+30,0,0,,"German (Chapter 1 to 9)|adokilume, Knife, fleisch11",,0,0,0,"SetLanguage(""DE"")"

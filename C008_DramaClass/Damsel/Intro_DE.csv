@@ -1,0 +1,50 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+100,0,0,PlayerIsDamsel,(Der weiße Ritter eröffnet das Stück.),Background.jpg
+100,0,0,!PlayerIsDamsel,(Sie sieht den weißen Ritter an.),Background.jpg
+110,0,0,PlayerIsDamsel,(Der schwarze Ritter ist an der Reihe.),Background.jpg
+110,0,0,!PlayerIsDamsel,(Sie sieht den schwarzen Ritter an.),Background.jpg
+120,0,0,PlayerIsDamsel,(Der weiße Ritter ist an der Reihe.),Background.jpg
+120,0,0,!PlayerIsDamsel,(Sie sieht den weißen Ritter an.),Background.jpg
+130,0,0,PlayerIsDamsel,(Der schwarze Ritter ist an der Reihe.),Background.jpg
+130,0,0,!PlayerIsDamsel,(Sie sieht den schwarzen Ritter an.),Background.jpg
+140,0,0,PlayerIsDamsel,"(Als die Jungfrau hast du jetzt das Wort.)",Background.jpg
+140,0,0,!PlayerIsDamsel,(Sie sagt gleich ihren Text.),Background.jpg
+150,0,0,PlayerIsDamsel,"(Als die Jungfrau hast du jetzt das Wort.)",Background.jpg
+150,0,0,!PlayerIsDamsel,(Sie sagt gleich ihren Text.),Background.jpg
+160,0,0,PlayerIsDamsel,"(Als die Jungfrau hast du jetzt das Wort.)",Background.jpg
+160,0,0,!PlayerIsDamsel,(Sie sagt gleich ihren Text.),Background.jpg
+200,0,0,PlayerIsDamsel,(Der schwarze Ritter ist an der Reihe.),Background.jpg
+200,0,0,!PlayerIsDamsel,(Sie sieht den schwarzen Ritter an.),Background.jpg
+210,0,0,PlayerIsDamsel,(Der schwarze Ritter ist an der Reihe.),Background.jpg
+210,0,0,!PlayerIsDamsel,(Sie sieht den schwarzen Ritter an.),Background.jpg
+220,0,0,PlayerIsDamsel,(Der weiße Ritter ist an der Reihe.),Background.jpg
+220,0,0,!PlayerIsDamsel,(Sie sieht den weißen Ritter an.),Background.jpg
+230,0,0,PlayerIsDamsel,(Der schwarze Ritter ist an der Reihe.),Background.jpg
+230,0,0,!PlayerIsDamsel,(Sie sieht den schwarzen Ritter an.),Background.jpg
+240,0,0,PlayerIsDamsel,(Der weiße Ritter ist an der Reihe.),Background.jpg
+240,0,0,!PlayerIsDamsel,(Sie sieht den weißen Ritter an.),Background.jpg
+250,0,0,PlayerIsDamsel,"(Als Jungfrau hättest jetzt eigentlich du das Wort,|aber im Moment kannst du nicht viel sagen.)",Background.jpg
+250,0,0,CanHugHeroine,"(Als die Jungfrau hast du jetzt das Wort.)",Background.jpg
+250,0,0,!PlayerIsDamsel,(Sie ist bereit für die letzte Szene.),Background.jpg
+251,0,0,,,Background.jpg
+255,0,0,,(Sie ist bereit für die letzte Szene.),Background.jpg
+260,0,0,,,Background.jpg
+270,0,0,PlayerIsDamsel,(Der schwarze Ritter ist an der Reihe.),Background.jpg
+270,0,0,!PlayerIsDamsel,(Sie sieht den schwarzen Ritter an.),Background.jpg
+280,0,0,PlayerIsDamsel,"(Als Jungfrau hättest jetzt eigentlich du das Wort,|aber im Moment kannst du nicht viel sagen.)",Background.jpg
+280,0,0,CanHugVillain,"(Als die Jungfrau hast du jetzt das Wort.)",Background.jpg
+280,0,0,!PlayerIsDamsel,(Sie ist bereit für die letzte Szene.),Background.jpg
+285,0,0,,(Sie ist bereit für die letzte Szene.),Background.jpg
+290,0,0,,,Background.jpg
+300,0,0,!PlayerIsDamsel,Das war ein schönes Stück. Die Jungfrau|zu spielen hat mir Spaß gemacht.,Background.jpg
+300,0,0,IsGagged,(Sie summt vergnügt ein Lied in ihren Knebel.),Background.jpg
+300,0,0,PlayerIsDamsel,(Das Stück ist zu Ende.),Background.jpg
+400,0,0,PlayerIsHeroine,Mein Held! Was wünscht Ihr von mir?,Background.jpg
+400,0,0,PlayerIsVillain,"Mein Lord, der schwarze Ritter.|Was wünscht Ihr von mir?",Background.jpg
+400,0,0,Common_PlayerGagged,"Dieser Knebel steht Euch, edler Ritter.",Background.jpg
+400,0,0,IsGagged,Uuurgmn!,Background.jpg
+410,0,0,PlayerIsHeroine,Mein Held! Was wünscht Ihr von mir?,Background.jpg
+410,0,0,PlayerIsVillain,"Mein Lord, der schwarze Ritter.|Was wünscht Ihr von mir?",Background.jpg
+410,0,0,Common_PlayerGagged,"Dieser Knebel steht Euch, edler Ritter.",Background.jpg
+410,0,0,IsGagged,Uuurgmn!,Background.jpg
+500,0,0,,(Das Stück geht wohl doch noch weiter.|Du kannst noch mit den anderen interagieren.),Background.jpg

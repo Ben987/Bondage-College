@@ -134,23 +134,35 @@ function ParseCSV(str) {
 }
 
 // Read a CSV file from the web site
-function ReadCSV(Array, FileName) {
-	if (CSVCache[FileName]) {
-        window[Array] = CSVCache[FileName];
+function ReadCSV(Array, ChapterOrPath, Screen, Type, Language) {
+    // Changed from a single path to various arguments and internally concatenate them
+    // This ternary operator is used to keep backward compatibility
+    var Path = (Screen && Type)
+                 ? ChapterOrPath + "/" + Screen + "/" + Type + (Language ? "_" : "") + (Language || "") + ".csv"
+                 : ChapterOrPath;
+    
+    if (CSVCache[Path]) {
+        window[Array] = CSVCache[Path];
         return;
     }
-
-	// Opens the file, parse it and returns the result in an array
-	var Reader = new XMLHttpRequest() || new ActiveXObject('MSXML2.XMLHTTP');
-    Reader.open('get', FileName, true);
-    Reader.onreadystatechange = function() {
-		if (Reader.readyState == 4) {
-            CSVCache[FileName] = ParseCSV(Reader.responseText);
-            window[Array] = CSVCache[FileName];
-		}
-	};
     
-    Reader.send(null);
+    // Opens the file, parse it and returns the result in an array
+    Get(Path, function() {
+        if (this.status == 200) {
+            CSVCache[Path] = ParseCSV(this.responseText);
+            window[Array] = CSVCache[Path];
+        } else if (this.status == 404 && Language && Language != "EN") { // If language isn't EN and the file doesn't exist, then fallback to EN
+            ReadCSV(Array, ChapterOrPath, Screen, Type, "EN");
+        }
+    });
+}
+
+// AJAX utility
+function Get(Path, Callback) {
+	var xhr = new XMLHttpRequest();
+    xhr.open("GET", Path);
+    xhr.onreadystatechange = function() { if (this.readyState == 4) Callback.bind(this)(); };
+    xhr.send(null);
 }
 
 // Shuffles all array elements at random
@@ -167,24 +179,25 @@ function ArrayShuffle(a) {
 
 // Returns a working language if translation isn't fully ready
 function GetWorkingLanguage() {
-	if ((CurrentLanguageTag == "FR") && ((CurrentChapter == "C000_Intro") || (CurrentChapter == "C001_BeforeClass") || (CurrentChapter == "C002_FirstClass") || (CurrentChapter == "C003_MorningDetention") || (CurrentChapter == "C004_ArtClass") || (CurrentChapter == "C005_GymClass") || (CurrentChapter == "C006_Isolation") || (CurrentChapter == "C007_LunchBreak") || (CurrentChapter == "C999_Common"))) return "FR";
-	if ((CurrentLanguageTag == "DE") && ((CurrentChapter == "C000_Intro") || (CurrentChapter == "C001_BeforeClass") || (CurrentChapter == "C011_LiteratureClass"))) return "DE";
+	if ((CurrentLanguageTag == "FR") && ((CurrentChapter == "C000_Intro") || (CurrentChapter == "C001_BeforeClass") || (CurrentChapter == "C002_FirstClass") || (CurrentChapter == "C003_MorningDetention") || (CurrentChapter == "C004_ArtClass") || (CurrentChapter == "C005_GymClass") || (CurrentChapter == "C006_Isolation") || (CurrentChapter == "C007_LunchBreak") || (CurrentChapter == "C008_DramaClass") || (CurrentChapter == "C999_Common"))) return "FR";
+	if ((CurrentLanguageTag == "DE") && ((CurrentChapter == "C000_Intro") || (CurrentChapter == "C001_BeforeClass") || (CurrentChapter == "C002_FirstClass") || (CurrentChapter == "C003_MorningDetention") || (CurrentChapter == "C004_ArtClass") || (CurrentChapter == "C005_GymClass") || (CurrentChapter == "C006_Isolation") || (CurrentChapter == "C007_LunchBreak") || (CurrentChapter == "C008_DramaClass") || (CurrentChapter == "C009_Library") || (CurrentChapter == "C011_LiteratureClass") || (CurrentChapter == "C999_Common"))) return "DE";
 	if ((CurrentLanguageTag == "PL") && ((CurrentChapter == "C000_Intro"))) return "PL";
 	if ((CurrentLanguageTag == "ES") && ((CurrentChapter == "C000_Intro") || (CurrentChapter == "C001_BeforeClass"))) return "ES";
-	if ((CurrentLanguageTag == "CN") && ((CurrentChapter == "C000_Intro") || (CurrentChapter == "C005_GymClass") || (CurrentChapter == "C999_Common"))) return "CN";
+	if ((CurrentLanguageTag == "CN") && ((CurrentChapter == "C000_Intro") || (CurrentChapter == "C001_BeforeClass") || (CurrentChapter == "C005_GymClass") || (CurrentChapter == "C999_Common"))) return "CN";
 	return "EN";
+    //return CurrentLanguageTag;
 }
 
 // Load the interactions from a scene and keep it in common variable
 function LoadInteractions() {	
-	ReadCSV("CurrentIntro", CurrentChapter + "/" + CurrentScreen + "/Intro_" + GetWorkingLanguage() + ".csv");
-	ReadCSV("CurrentStage", CurrentChapter + "/" + CurrentScreen + "/Stage_" + GetWorkingLanguage() + ".csv");
+	ReadCSV("CurrentIntro", CurrentChapter, CurrentScreen, "Intro", GetWorkingLanguage());
+	ReadCSV("CurrentStage", CurrentChapter, CurrentScreen, "Stage", GetWorkingLanguage());
 	LoadText();
 }
 
 // Load the custom texts from a scene and keep it in common variable
 function LoadText() {
-	ReadCSV("CurrentText", CurrentChapter + "/" + CurrentScreen + "/Text_" + GetWorkingLanguage() + ".csv");
+	ReadCSV("CurrentText", CurrentChapter, CurrentScreen, "Text", GetWorkingLanguage());
 }
 
 // Calls a dynamic function (if it exists)
@@ -233,8 +246,19 @@ function ClickInteraction(CurrentStagePosition) {
 					if ((MouseX >= (Pos % 2) * 300) && (MouseX <= ((Pos % 2) * 300) + 299) && (MouseY >= 151 + (Math.round((Pos - 1) / 2) * 90)) && (MouseY <= 240 + (Math.round((Pos - 1) / 2) * 90))) {
 						window[CurrentChapter + "_" + CurrentScreen + "_CurrentStage"] = CurrentStage[L][StageNextStage];
 						OverridenIntroText = CurrentStage[L][StageInteractionResult];
-						ActorChangeAttitude(CurrentStage[L][StageLoveMod], CurrentStage[L][StageSubMod]);					
-						if (CurrentStage[L][StageInteractionText].indexOf("(1 minute)") >= 0) CurrentTime = CurrentTime + 60000;
+						ActorChangeAttitude(CurrentStage[L][StageLoveMod], CurrentStage[L][StageSubMod]);
+						// Check if the interaction has a time tag
+						var MinuteString = "ADD_MINUTES:";
+						var MinuteStringIndex = CurrentStage[L][StageInteractionText].indexOf(MinuteString);
+						if (MinuteStringIndex >= 0) {
+							var MinuteCount = parseInt(CurrentStage[L][StageInteractionText].substring(MinuteStringIndex + MinuteString.length));
+							// If the text after the tag isn't a valid number, output a log message and assume the default time
+							if (isNaN(MinuteCount)) {
+								console.log("Invalid minute expression in interaction: " + CurrentStage[L][StageInteractionText]);
+								CurrentTime = CurrentTime + 10000;
+							}
+							else CurrentTime = CurrentTime + MinuteCount * 60000;
+						}
 						else CurrentTime = CurrentTime + 10000;
 						if (CurrentStage[L][StageFunction].trim() != "") DynamicFunction(CurrentChapter + "_" + CurrentScreen + "_" + CurrentStage[L][StageFunction].trim());
 						return;

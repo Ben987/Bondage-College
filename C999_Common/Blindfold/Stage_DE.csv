@@ -1,0 +1,6 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,(Augenbinde untersuchen.)|(1 Minute),"Diese Augenbinde ist vollkommen undurchsichtig.|Es wird unmöglich sein, hindurchzusehen.",0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Dir die Augen verbinden.)|(1 Minute),Du ziehst dir die Augenbinde über die Augen|und schnallst sie hinter deinem Kopf fest.,10,0,0,SelfBlind()
+10,0,0,Common_PlayerNotRestrained,(Mit der hand vor den|Augen winken.) (1 Minute),"Sie ist bestimmt da, aber du|kannst deine Hand nicht sehen.",10,0,0,
+10,0,0,,(Die Augenbinde abstreifen.)|(1 Minute),Du versuchst sie an einem Gegenstand abzustreifen|aber sie sitzt fest. Du brauchst deine Hände.,10,0,0,
+10,0,0,Common_PlayerNotRestrained,(Augenbinde entfernen.)|(1 Minute),"Du löst das Band, nimmst die Augenbinde|ab und kannst wieder sehen.",0,0,0,SelfUnBlind()

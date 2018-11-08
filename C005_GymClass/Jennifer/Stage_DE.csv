@@ -1,0 +1,105 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,Keine Ahnung. In mir|steckt auch eins.,"Du Arme. Naja, ist wohl irgendwo auch fair.|Wir müssen dann wohl zusammen trainieren.",5,0,-1,
+0,0,0,,Gar nicht.|Genieße es einfach.,Das ist nicht lustig und ich mag es nicht.|(Sie seufzt.) Wir müssen wohl zusammen trainieren.,5,-1,0,
+0,0,0,,"Weiß nicht genau,|ich erkundige mich.",Oh je! Sag mir so schnell wie möglich bescheid.|Wir müssen dann wohl zusammen trainieren.,5,0,0,
+0,0,0,,Du bekommst es nicht|raus. Es bleibt für immer.,Hoffentlich muss ich nicht ins Krankenhaus.|(Sie seufzt.) Wir müssen wohl zusammen trainieren.,5,-1,0,
+0,0,0,,"Keine Sorge, ich|helfe dir später.","Okay, ich vertraue dir.|Willst du mit mir zusammen Judo trainieren?",5,1,0,
+0,0,0,,"Wenn du brav bist,|helfe ich dir.","Brav? Mmmh, na gut.|Willst du mit mir zusammen Judo trainieren?",5,0,1,
+5,0,0,,Wir beide müssen|wohl ein Team bilden.,Also gut. Hast du denn schon mal Judo gemacht?,10,0,0,
+5,0,0,,Warum bist du die|Einzige ohne Partner?,Ich... Reiner Zufall.|Hast du denn schon mal Judo gemacht?,10,-1,0,
+5,0,0,,Toll! Das wird|ein Spaß.,Richtige Einstellung!|Hast du denn schon mal Judo gemacht?,10,1,0,
+10,0,0,,Das wird mein erster|Judokampf sein.,"Gut, du wirst Spaß am Lernen haben.|Sollen wir erst üben oder gleich richtig kämpfen?",20,0,0,
+10,0,0,,"Ich bin Anfängerin,|bitte nicht übertreiben.","Keine Sorge, ich tu dir nicht weh.|Sollen wir erst üben oder gleich richtig kämpfen?",20,0,-1,
+10,0,0,,"Ich hab etwas Erfahrung,|es macht mir Spaß.",Cool! Das wird bestimmt eine gute Stunde.|Sollen wir erst üben oder gleich richtig kämpfen?,20,0,0,
+10,0,0,,"Ich kann Judo und|ich mach dich fertig.",Oh! Das werden wir noch sehen.|Sollen wir erst üben oder gleich richtig kämpfen?,20,0,1,
+20,0,0,,"Erkläre mir,|wie man kämpft.","Im Kampf geht es um das richtige Timing beim Angriff.|(Drücke A, S, K, L, wenn ein Symbol am Balken ist.)",20,0,0,ExplainMobile()
+20,0,0,,Üben wir.|(Übung starten.),,20,0,0,StartPractice()
+20,0,0,,Lass uns kämpfen.|(Kampf starten.),,20,0,0,StartFight()
+100,0,0,,Bewegungsunfähig?|Wie das?,"Du musst mein Outfit entfernen und mich fesseln.|Ich hingegen werde versuchen, den Spieß umzudrehen.",110,0,0,GetRope()
+100,0,0,,Du wirst gefesselt|so süß aussehen.,"K-k-kann sein. Du musst mein Outfit entfernen und|mich fesseln. Ich versuche dich abzuwehren.",110,1,0,GetRope()
+100,0,0,,"Zu einfach, du bist|'ne schlechte Kämpferin.",Dann strenge ich mich jetzt eben mehr an.|Du musst mein Outfit entfernen und mich fesseln.,110,-1,1,GetRope()
+100,0,0,,Das ist toll!|Du gehörst jetzt mir.,Noch nicht! Ich versuche dich abzuwehren.|Du musst mein Outfit entfernen und mich fesseln.,110,0,1,GetRope()
+110,0,0,,Auf einen guten Kampf.|(Kampf beginnen.),,110,0,0,StartWinFight(true)
+110,0,0,,Ich mach dich platt!|(Kampf beginnen.),,110,0,0,StartWinFight(false)
+200,0,0,,Bewegungsunfähig?|Wie das?,Ich muss deinen Judoanzug|entfernen und ein Seil benutzen.,210,0,0,
+200,0,0,,Du bist gut. Aber musst|du mich wirklich fesseln?,"Danke! Ja, der nächste Selbstverteidigungsschritt|ist, dein Outfit zu entfernen und dich zu fesseln.",210,1,0,
+200,0,0,,Du tust mir|aber nicht weh?,"Natürlich nicht. Der nächste Selbstverteidigungsschritt|ist, dein Outfit zu entfernen und dich zu fesseln.",210,0,-1,
+200,0,0,,Du fesselst|mich? Spitze!,"Konzentrier dich. Der nächste Selbstverteidigungsschritt|ist, dein Outfit zu entfernen und dich zu fesseln.",210,0,-1,
+210,0,0,,Bitte gib mir 'ne Chance.|(Kampf beginnen.),,210,0,0,StartLoseFight(true)
+210,0,0,,Diesmal gewinne ich!|(Kampf beginnen.),,210,0,0,StartLoseFight(false)
+400,0,0,,Das war toll. Magst|du deine Fesseln?,"(Sie wird rot.) Das soll nicht erotisch|sein, es geht um Selbstverteidigung.",410,0,1,
+400,0,0,,Es war ein guter Kampf.|Du hast Potenzial.,"Danke! Aber ich muss mehr|trainieren, um dich zu schlagen.",410,1,0,
+400,0,0,,Allein bist du hilflos. Du|brauchst meinen Schutz.,Deinen Schutz? Meinst du? Oh je.|Ich sollte wirklich öfter trainieren.,410,-1,1,
+410,0,0,,"Weißt du, wie entzückend|du jetzt aussiehst?",(Sie wird rot und schaut weg.),410,0,0,AdorableComment()
+410,0,0,EggInside,"Mädel, erregt das|Ei dich etwa?",Oh nein! Kannst du es bitte rausnehmen?,410,0,0,EggComment()
+410,0,0,EggInside,(Mit ihrem Schrittseil|spielen.)ADD_MINUTES:1,"(Du spielst sachte mit ihrem Schrittseil.|Sie stöhnt sehr leise, um nicht gehört zu werden.)",410,0,0,CrotchRope()
+410,0,0,,(Kitzeln.)ADD_MINUTES:1,(Sie versucht dir in ihren Seilen auszuweichen.)|(Sie wird wohl nicht gern öffentlich gekitzelt.),410,0,0,Tickle()
+410,0,0,,(Auf den Hintern hauen.)ADD_MINUTES:1,"Au! Warum? (Sie versucht sich zu wehren,|während du ihr recht kräftig den Hintern versohlst.)",410,0,0,Spank()
+410,0,0,,(Befreien.)ADD_MINUTES:1,(Du bindest sie los und sie zieht sich an.) Vielen Dank!|Lust auf noch eine Übung vor der Pause?,600,1,0,Release()
+410,0,0,,"Das reicht, gehen wir|essen. (Halle verlassen.)",,410,0,0,EndChapter()
+420,0,0,EggInside,(Mit ihrem Schrittseil|spielen.)ADD_MINUTES:1,"(Du spielst sachte mit ihrem Schrittseil.|Sie stöhnt sehr leise, um nicht gehört zu werden.)",420,0,0,CrotchRope()
+420,0,0,,(Kitzeln.)ADD_MINUTES:1,(Sie versucht dir in ihren Seilen auszuweichen.)|(Sie wird wohl nicht gern öffentlich gekitzelt.),420,0,0,Tickle()
+420,0,0,,(Auf den Hintern hauen.)ADD_MINUTES:1,"(Sie ringt mit ihren Seilen, während du|ihr recht kräftig den Hintern versohlst.)",420,0,0,Spank()
+420,0,0,,(Knebel entfernen.)ADD_MINUTES:1,"(Du ziehst ihr das Band vom Gesicht und sie seufzt.)|Selbstverteidigung gefällt dir wohl sehr, was?",410,0,0,Ungag()
+420,0,0,,(Befreien.)ADD_MINUTES:1,(Du bindest sie los und sie zieht sich an.) Vielen Dank!|Lust auf noch eine Übung vor der Pause?,600,1,0,Release()
+420,0,0,,"Das reicht, gehen wir|essen. (Halle verlassen.)",,420,0,0,EndChapter()
+430,0,0,EggInside,(Mit ihrem Schrittseil|spielen.)ADD_MINUTES:1,"(Du spielst sachte mit ihrem Schrittseil.|Sie stöhnt sehr leise, um nicht gehört zu werden.)",430,0,0,CrotchRope()
+430,0,0,,(Kitzeln.)ADD_MINUTES:1,(Sie versucht dir in ihren Seilen auszuweichen.)|(Sie wird wohl nicht gern öffentlich gekitzelt.),430,0,0,Tickle()
+430,0,0,,(Auf den Hintern hauen.)ADD_MINUTES:1,"(Sie ringt mit ihren Seilen, während du|ihr recht kräftig den Hintern versohlst.)",430,0,0,Spank()
+430,0,0,,(Knebel entfernen.)ADD_MINUTES:1,"(Du ziehst ihr das Band vom Gesicht und sie seufzt.)|Selbstverteidigung gefällt dir wohl sehr, was?",410,0,0,Ungag()
+430,0,0,,(Befreien.)ADD_MINUTES:1,(Du bindest sie los und sie zieht sich an.) Vielen Dank!|Lust auf noch eine Übung vor der Pause?,600,1,0,Release()
+430,0,0,,"Das reicht, gehen wir|essen. (Halle verlassen.)",,430,0,0,EndChapter()
+450,5,0,,"Ganz ruhig, genieße es.|(Befriedigen.)ADD_MINUTES:1",(Sie vertraut dir und gibt sich deiner zarten|Berührung hin. Sie hat einen stillen Orgasmus.),410,1,0,Orgasm()
+450,0,0,,Bist du nah dran?|(Befriedigen.)ADD_MINUTES:1,(Du versuchst ihr mit dem Seil und dem Ei einen|Orgasmus zu geben. Leider erreicht sie ihn nicht.),410,0,0,
+450,0,0,,Du bist ein gutes Mädchen.|(Befriedigen.)ADD_MINUTES:1,(Du versuchst ihr mit dem Seil und dem Ei einen|Orgasmus zu geben. Leider erreicht sie ihn nicht.),410,0,1,
+450,0,0,,"Nicht jetzt, später vielleicht.|(Schrittseil loslassen.)","Oh Gott, danke. Das wäre so peinlich gewesen.",410,1,0,
+450,0,0,,Nutten verdienen das nicht.|(Schrittseil loslassen.),"Ich? Eine Nutte? A-a-aber...|(Sie kann ihre Tränen nicht ganz verbergen.)",410,-1,1,
+450,2,0,,(Knuddeln.)ADD_MINUTES:1,(Du umarmst sie und sie|scheint sich zu beruhigen.),450,0,0,Cuddle()
+460,5,0,,"Ganz ruhig, genieße es.|(Befriedigen.)ADD_MINUTES:1",(Sie vertraut dir und gibt sich deiner zarten|Berührung hin. Sie hat einen stillen Orgasmus.),420,1,0,Orgasm()
+460,0,0,,Bist du nah dran?|(Befriedigen.)ADD_MINUTES:1,(Du versuchst ihr mit dem Seil und dem Ei einen|Orgasmus zu geben. Leider erreicht sie ihn nicht.),420,0,0,
+460,0,0,,Du bist ein gutes Mädchen.|(Befriedigen.)ADD_MINUTES:1,(Du versuchst ihr mit dem Seil und dem Ei einen|Orgasmus zu geben. Leider erreicht sie ihn nicht.),420,0,1,
+460,0,0,,"Nicht jetzt, später vielleicht.|(Schrittseil loslassen.)",(Sie nickt langsam und kommt wieder zu sich.),420,1,0,
+460,0,0,,Nutten verdienen das nicht.|(Schrittseil loslassen.),(Sie schaut beschämt zur Seite|und kommt wieder zu sich.),420,-1,1,
+460,2,0,,(Knuddeln.)ADD_MINUTES:1,(Du umarmst sie und sie|scheint sich zu beruhigen.),460,0,0,Cuddle()
+470,5,0,,"Ganz ruhig, genieße es.|(Befriedigen.)ADD_MINUTES:1",(Sie vertraut dir und gibt sich deiner zarten|Berührung hin. Sie hat einen stillen Orgasmus.),430,1,0,Orgasm()
+470,0,0,,Bist du nah dran?|(Befriedigen.)ADD_MINUTES:1,(Du versuchst ihr mit dem Seil und dem Ei einen|Orgasmus zu geben. Leider erreicht sie ihn nicht.),430,0,0,
+470,0,0,,Du bist ein gutes Mädchen.|(Befriedigen.)ADD_MINUTES:1,(Du versuchst ihr mit dem Seil und dem Ei einen|Orgasmus zu geben. Leider erreicht sie ihn nicht.),430,0,1,
+470,0,0,,"Nicht jetzt, später vielleicht.|(Schrittseil loslassen.)",(Sie nickt langsam und kommt wieder zu sich.),430,1,0,
+470,0,0,,Nutten verdienen das nicht.|(Schrittseil loslassen.),(Sie schaut beschämt zur Seite|und kommt wieder zu sich.),430,-1,1,
+470,2,0,,(Knuddeln.)ADD_MINUTES:1,(Du umarmst sie und sie|scheint sich zu beruhigen.),470,0,0,Cuddle()
+500,0,0,,"Das war toll, und Seile|sind das Sahnehäubchen.","Du genießt deine Niederlage ja|richtig, wie lieb von dir.",510,0,-1,
+500,0,0,,Du hast wirklich gewonnen.|Du hast echt Talent.,"Danke, das ist nett. Vielleicht|lernst du irgendwann meine Technik.",510,1,0,
+500,0,0,,Fuck! Du hast im letzten|Kampf geschummelt.,"Du musst lernen, Niederlagen einzustecken.|(Sie überprüft einen Knoten und macht ihn enger.)",510,-1,0,
+500,0,0,,"Ich glaube, ich|mag Judo nicht.",Kampfsport ist nicht für jeden was.|Aber Selbstverteidigung ist nützliches Wissen.,510,0,-1,
+510,0,0,,Kannst du nach dem|Schrittseil sehen? (1 Min.),"Was ist denn damit? Tut es weh? |(Sie zieht am Seil und löst angenehme Reize aus.)",510,0,0,CrotchRopePlayer()
+510,0,0,PlayerHasBallGag,Ich hätte da noch einen|Knebel in meiner Tasche.,"Einen Angreifer zu knebeln hätte schon Sinn,|denke ich. (Sie schnallt dir den Knebel um.)",520,0,0,BallGagPlayer()
+510,0,0,PlayerHasTapeGag,Ich hab noch Klebeband|zum Knebeln in der Tasche.,"Einen Angreifer zu knebeln hätte schon Sinn,|denke ich. (Sie klebt deinen Mund zu.)",530,0,0,TapeGagPlayer()
+510,0,0,,Kannst du|mich freilassen?,"Mmh, nein. Ich glaube nicht.|Du gefällst mir so besser.",510,0,0,CheckReleasePlayer()
+510,0,0,,(Verspielt strampeln.)ADD_MINUTES:1,Meine Güte! Macht dir das Spaß?,510,0,0,
+510,0,0,,(Ende der Stunde|abwarten.),,510,0,0,EndChapter()
+520,0,0,,@Uugnmph nump!,"Ich habe Sarah ein paar mal geknebelt gehört,|aber ich konnte sie ehrlich gesagt nie verstehen.",520,0,0,
+520,0,0,,(Auf dein Schrittseil|deuten.)ADD_MINUTES:1,"Stimmt was nicht mit diesem Seil?|(Sie zieht am Seil und löst angenehme Reize aus.)",520,0,0,CrotchRopePlayer()
+520,0,0,,(Um Gnade winseln.)ADD_MINUTES:1,"Nein. Ich glaube, du gefällst mir so besser.",520,0,0,UngagPlayer()
+520,0,0,,(Verspielt strampeln.)ADD_MINUTES:1,Meine Güte! Macht dir das Spaß?,520,0,0,
+520,0,0,,(Ende der Stunde|abwarten.),,520,0,0,EndChapter()
+530,0,0,,@Uugnmph nump!,"Ich habe Sarah ein paar mal geknebelt gehört,|aber ich konnte sie ehrlich gesagt nie verstehen.",530,0,0,
+530,0,0,,(Auf dein Schrittseil|deuten.)ADD_MINUTES:1,"Stimmt was nicht mit diesem Seil?|(Sie zieht am Seil und löst angenehme Reize aus.)",530,0,0,CrotchRopePlayer()
+530,0,0,,(Um Gnade winseln.)ADD_MINUTES:1,"Nein. Ich glaube, du gefällst mir so besser.",530,0,0,UngagPlayer()
+530,0,0,,(Verspielt strampeln.)ADD_MINUTES:1,Meine Güte! Macht dir das Spaß?,530,0,0,
+530,0,0,,(Ende der Stunde|abwarten.),,530,0,0,EndChapter()
+550,0,0,,"Ja, ja, alles okay.|Danke der Nachfrage.","Gut, du hast gezittert wie Espenlaub.|Ich war echt kurz besorgt.",510,0,-1,
+550,0,0,,Mir geht's bestens!|Und zwar nur dank dir.,(Sie lächelt.) Also gut! Bei deinem verückten|Rumgezitter hab ich mir Sorgen gemacht.,510,1,0,
+550,2,0,,Kannst du mich|festhalten?ADD_MINUTES:1,"Natürlich, nimm dir so viel Zeit wie du brauchst.",550,0,0,Cuddle()
+550,0,0,,Ich weiß nicht. Kannst|du mich bitte losbinden?,"Armes kleines Ding. Hier, ich helfe dir.|(Sie bindet dich vorsichtig los und du ziehst dich an.)",600,0,-1,ReleasePlayer()
+560,0,0,,(Langsam nicken und rot|werden.)ADD_MINUTES:1,"Gut, du hast gezittert wie Espenlaub.|Ich war echt kurz besorgt.",520,0,-1,
+560,0,0,,(Fröhlich nicken.)ADD_MINUTES:1,(Sie lächelt.) Also gut! Bei deinem verückten|Rumgezitter hab ich mir Sorgen gemacht.,520,1,0,
+560,2,0,,(Dich an sie kuscheln.)ADD_MINUTES:1,"Nimm dir so viel Zeit wie du brauchst.|Gib mir nur bescheid, ob es dir gut geht.",560,0,0,Cuddle()
+560,0,0,,(Panisch den Kopf|schütteln.)ADD_MINUTES:1,"Armes kleines Ding. Hier, ich helfe dir.|(Sie bindet dich vorsichtig los und du ziehst dich an.)",600,0,-1,ReleasePlayer()
+570,0,0,,(Langsam nicken und rot|werden.)ADD_MINUTES:1,"Gut, du hast gezittert wie Espenlaub.|Ich war echt kurz besorgt.",530,0,-1,
+570,0,0,,(Fröhlich nicken.)ADD_MINUTES:1,(Sie lächelt.) Also gut! Bei deinem verückten|Rumgezitter hab ich mir Sorgen gemacht.,530,1,0,
+570,2,0,,(Dich an sie kuscheln.)ADD_MINUTES:1,"Nimm dir so viel Zeit wie du brauchst.|Gib mir bescheid, wenn es dir gut geht.",570,0,0,Cuddle()
+570,0,0,,(Panisch den Kopf|schütteln.)ADD_MINUTES:1,"Armes kleines Ding. Hier, ich helfe dir.|(Sie bindet dich vorsichtig los und du ziehst dich an.)",600,0,-1,ReleasePlayer()
+600,0,0,,"Okay, noch eine Übung.|(Übung starten.)",,600,0,0,StartPractice()
+600,0,0,TrainingReady,(Kampfkunst trainieren.)|(30 Minuten),,600,0,0,TrainFighting()
+600,0,0,,(Sporthalle durchsuchen.)ADD_MINUTES:1,"(Du durchsuchst die Sporthalle,|findest aber nichts Interessantes.)",600,0,0,Search()
+600,0,0,,"Das reicht, gehen wir|essen. (Halle verlassen.)",,600,0,0,EndChapter()

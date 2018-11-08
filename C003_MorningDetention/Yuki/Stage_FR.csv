@@ -15,30 +15,30 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 30,0,0,,Ce n'est pas|vos affaires.,"Jeune fille, donne moi ça tout de suite.|(Elle saisit tes objets et les confisque.)",40,-1,0,Confiscate()
 30,0,0,,J'ai trouvé ceci|dans le couloir.,"Merci jeune fille, c'est bien aimable de ta part.|(Elle sourit et confisque tes objets.)",40,1,0,Confiscate()
 30,0,0,,Ce n'est rien.|(Tu caches l'objet),"Mmm, bien. Je pensais avoir vu quelque chose.|Reste tranquille, j'ai quelques coups de fil à passer.",40,0,0,
-50,0,0,Common_PlayerNotRestrained,(Tu essayes de la|déranger.) (1 minute),Jeune fille. Tu ferais mieux d'arrêter tout de suite|ou je devrais te menotter.,50,-1,0,Annoyed()
+50,0,0,Common_PlayerNotRestrained,(Tu essayes de la|déranger.)ADD_MINUTES:1,Jeune fille. Tu ferais mieux d'arrêter tout de suite|ou je devrais te menotter.,50,-1,0,Annoyed()
 60,0,0,Common_PlayerRestrained,C'est quoi ce bordel ! Vous|pouvez pas me menotter.,Je peux même faire mieux. (Elle s'en va et revient|avec un morceau de ruban adhésif pour ta bouche.),60,0,0,GagPlayer()
 70,0,0,Common_PlayerGagged,@Uhmma huhme !,(Elle t'ignore.),70,0,0,
 70,0,0,Common_PlayerGagged,(Tu lui fais les yeux doux.),(Elle t'ignore.),70,0,0,
-100,0,0,Common_PlayerRestrained,(Tu recherches la clé.)|(1 minute),Yuki ne semble pas avoir la clé.,100,0,0,SearchCuffKeys()
-100,0,0,Common_PlayerNotRestrained,(Tu la déshabilles.)|(1 minute),Tu la déshabilles prudemment pour ne pas la réveiller.,110,0,0,
+100,0,0,Common_PlayerRestrained,(Tu recherches la clé.)ADD_MINUTES:1,Yuki ne semble pas avoir la clé.,100,0,0,SearchCuffKeys()
+100,0,0,Common_PlayerNotRestrained,(Tu la déshabilles.)ADD_MINUTES:1,Tu la déshabilles prudemment pour ne pas la réveiller.,110,0,0,
 100,0,0,Common_PlayerNotRestrained,(Tu t'échappes de|la salle de retenue.),,100,0,0,Escape()
-100,0,0,,(Tu la réveilles.)|(1 minute),(Tu la secoue jusqu'à ce qu'elle se réveille.)|Hein ? Quoi ? Qu'est-ce qui s'est passé ?,200,0,0,NoLeave()
-110,0,0,Common_PlayerNotRestrained,(Tu la rhabilles.)|(1 minute),Tu la rhabilles prudemment pour ne pas la réveiller.,100,0,0,
-110,0,0,CanSearch,(Tu fouilles dans ses|affaires.) (1 minute),Tu trouves des menottes et une clé dans ses affaires.,110,0,0,Search()
-110,0,0,EggReady,(Tu insères l'oeuf.)|(1 minute),"Tu glisses l'oeuf dans son vagin, elle gémit doucement.|Il vibre et s'enfonce profondément. Difficile à récupérer.",110,0,0,Insert()
-110,0,0,EggInside,(Tu enlèves l'oeuf.)|(1 minute),Tu glisses un doigt à l'intérieur mais tu n'arrives pas à|l'attraper. Elle est coincée avec.,110,0,0,
+100,0,0,,(Tu la réveilles.)ADD_MINUTES:1,(Tu la secoue jusqu'à ce qu'elle se réveille.)|Hein ? Quoi ? Qu'est-ce qui s'est passé ?,200,0,0,NoLeave()
+110,0,0,Common_PlayerNotRestrained,(Tu la rhabilles.)ADD_MINUTES:1,Tu la rhabilles prudemment pour ne pas la réveiller.,100,0,0,
+110,0,0,CanSearch,(Tu fouilles dans ses|affaires.)ADD_MINUTES:1,Tu trouves des menottes et une clé dans ses affaires.,110,0,0,Search()
+110,0,0,EggReady,(Tu insères l'oeuf.)ADD_MINUTES:1,"Tu glisses l'oeuf dans son vagin, elle gémit doucement.|Il vibre et s'enfonce profondément. Difficile à récupérer.",110,0,0,Insert()
+110,0,0,EggInside,(Tu enlèves l'oeuf.)ADD_MINUTES:1,Tu glisses un doigt à l'intérieur mais tu n'arrives pas à|l'attraper. Elle est coincée avec.,110,0,0,
 110,0,0,Common_PlayerNotRestrained,(Tu t'échappes de|la salle de retenue.),,110,0,0,Escape()
-110,0,0,,(Tu la réveilles.)|(1 minute),(Tu la secoue jusqu'à ce qu'elle se réveille.)|Qu'est-ce qui s'est passé ? Où sont mes vêtements ?,210,0,0,NoLeave()
-120,0,0,Common_PlayerNotRestrained,(Tu l'allonges sur la table.)|(1 minute),Tu la mets en position allongée sur the table.,130,0,0,
-120,0,0,EggReady,(Tu insères l'oeuf.)|(1 minute),"Tu glisses l'oeuf dans son vagin, elle gémit doucement.|Il vibre et s'enfonce profondément. Difficile à récupérer.",120,0,0,Insert()
-120,0,0,EggInside,(Tu enlèves l'oeuf.)|(1 minute),Tu glisses un doigt à l'intérieur mais tu n'arrives pas à|l'attraper. Elle est coincée avec.,120,0,0,
+110,0,0,,(Tu la réveilles.)ADD_MINUTES:1,(Tu la secoue jusqu'à ce qu'elle se réveille.)|Qu'est-ce qui s'est passé ? Où sont mes vêtements ?,210,0,0,NoLeave()
+120,0,0,Common_PlayerNotRestrained,(Tu l'allonges sur la table.)ADD_MINUTES:1,Tu la mets en position allongée sur the table.,130,0,0,
+120,0,0,EggReady,(Tu insères l'oeuf.)ADD_MINUTES:1,"Tu glisses l'oeuf dans son vagin, elle gémit doucement.|Il vibre et s'enfonce profondément. Difficile à récupérer.",120,0,0,Insert()
+120,0,0,EggInside,(Tu enlèves l'oeuf.)ADD_MINUTES:1,Tu glisses un doigt à l'intérieur mais tu n'arrives pas à|l'attraper. Elle est coincée avec.,120,0,0,
 120,0,0,Common_PlayerNotRestrained,(Tu t'échappes de|la salle de retenue.),,120,0,0,Escape()
-120,0,0,,(Tu la réveilles.)|(1 minute),(Tu la secoue jusqu'à ce qu'elle se réveille.)|Quoi ? Où sont mes vêtements ? Qui m'a menottée ?,220,0,0,NoLeave()
-130,0,0,Common_PlayerNotRestrained,(Tu la fait s'asseoir.)|(1 minute),Tu la remets sur son fauteuil.,120,0,0,
-130,0,0,EggReady,(Tu insères l'oeuf.)|(1 minute),"Tu glisses l'oeuf dans son vagin, elle gémit doucement.|Il vibre et s'enfonce profondément. Difficile à récupérer.",130,0,0,Insert()
-130,0,0,EggInside,(Tu enlèves l'oeuf.)|(1 minute),Tu glisses un doigt à l'intérieur mais tu n'arrives pas à|l'attraper. Elle est coincée avec.,130,0,0,
+120,0,0,,(Tu la réveilles.)ADD_MINUTES:1,(Tu la secoue jusqu'à ce qu'elle se réveille.)|Quoi ? Où sont mes vêtements ? Qui m'a menottée ?,220,0,0,NoLeave()
+130,0,0,Common_PlayerNotRestrained,(Tu la fait s'asseoir.)ADD_MINUTES:1,Tu la remets sur son fauteuil.,120,0,0,
+130,0,0,EggReady,(Tu insères l'oeuf.)ADD_MINUTES:1,"Tu glisses l'oeuf dans son vagin, elle gémit doucement.|Il vibre et s'enfonce profondément. Difficile à récupérer.",130,0,0,Insert()
+130,0,0,EggInside,(Tu enlèves l'oeuf.)ADD_MINUTES:1,Tu glisses un doigt à l'intérieur mais tu n'arrives pas à|l'attraper. Elle est coincée avec.,130,0,0,
 130,0,0,Common_PlayerNotRestrained,(Tu t'échappes de|la salle de retenue.),,130,0,0,Escape()
-130,0,0,,(Tu la réveilles.)|(1 minute),(Tu la secoue jusqu'à ce qu'elle se réveille.)|Quoi ? Où sont mes vêtements ? Qui m'a menottée ?,220,0,0,NoLeave()
+130,0,0,,(Tu la réveilles.)ADD_MINUTES:1,(Tu la secoue jusqu'à ce qu'elle se réveille.)|Quoi ? Où sont mes vêtements ? Qui m'a menottée ?,220,0,0,NoLeave()
 200,0,0,Common_PlayerGagged,@Heaheruhi !,"Laisse-moi enlever ce ruban.|Alors, je me suis endormi ?",200,0,0,Ungag()
 200,0,0,,"Oui, vous, vous|êtes endormis.",C'est embarrassant. Je vais prendre|un autre verre d'eau. La retenue peut continuer.,250,0,0,NoCrime()
 200,0,0,,"Vous, vous êtes endormis.|alors je vous ai réveillé.","Merci, j'apprécie. Je vais prendre|un autre verre d'eau. La retenue peut continuer.",250,1,0,NoCrime()
@@ -57,8 +57,8 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 220,0,0,!SidneyGone,"Sidney vous a drogué,|déshabillé et menotté.",Menteuse ! Elle est menottée ! Tu l'a fais !|Retire-moi ces menottes maintenant !,230,-1,0,AllowLeave()
 220,0,0,SidneyGone,"Sidney vous a drogué,|déshabillé et menotté.",Merci ! SIDNEY ! (Elle saute de sa chaise|et court menottée en sous-vêtements vers la sortie.),270,1,0,NoCrime()
 230,0,0,,Vous avez l'air|mignonne comme ça.,Vous n'arrangez pas votre cas mademoiselle.|Retire-moi ces menottes maintenant !,230,0,0,
-230,0,0,,(Tu la chatouilles.)|(1 minute),Hé !!! HahaHAHAhahA ! Arrête ! Arrête ça !|(Elle rit à gorge déployée et rougit.),230,0,0,Tickle()
-230,0,0,,(Tu lui mets une fessée.)|(1 minute),Ouille ! Tu n'as pas intérêt à me retoucher !,230,0,0,
+230,0,0,,(Tu la chatouilles.)ADD_MINUTES:1,Hé !!! HahaHAHAhahA ! Arrête ! Arrête ça !|(Elle rit à gorge déployée et rougit.),230,0,0,Tickle()
+230,0,0,,(Tu lui mets une fessée.)ADD_MINUTES:1,Ouille ! Tu n'as pas intérêt à me retoucher !,230,0,0,
 230,0,0,,(Tu t'échappes de|la salle de retenue.),,230,0,0,Escape()
 250,0,0,SidneyGone,Si vous cherchez Sidney.|Elle est dans le couloir.,Merci ! Tu restes ici et je vais aller la chercher.|(Elle se presse et sort de la pièce.),270,1,0,
 250,0,0,Common_PlayerRestrained,(Tu lui montres|tes menottes.),Tu les garderas pour l'instant.|Je te libèrerai après la retenue.,250,0,0,

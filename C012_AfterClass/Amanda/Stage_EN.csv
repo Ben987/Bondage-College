@@ -1,0 +1,599 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,Common_ActorIsOwner,What's on your|mind Mistress?,"Nothing my subbie, I'm reviewing my notes.|(She reviews and studies her school notes.)",0,0,0,RandomAmandaDommeEvent()
+0,0,0,Common_ActorIsOwner,"Mistress, it's ok if|I change clothes?","Absolutely, you can wear|anything you want my subbie.",0,0,0,IsChangingBlocked()
+0,5,0,!Common_ActorIsLover,You look so|pretty Amanda.,"Thanks, I also love your looks.|(You need +20 love to date Amanda.)",0,0,0,TestLove()
+0,0,0,,We need to talk.,What would you like to talk about?,0,0,0,TestTalk()
+0,0,5,IsRestrained,You really enjoy being|restrained don't you girl?,(She winks.)  I'll never admit that Miss.|(You need +20 submission to collar Amanda.),0,0,0,TestDomme()
+0,0,-5,!Common_ActorIsOwner,Miss Amanda.|I admire you.,That's very flattering of you to say that.|(You need -20 submission to submit to Amanda.),0,0,0,TestSub()
+0,0,0,Common_PlayerGagged,@Om nnnuoogn mh!,Let me get my English-Mumble|dictionary.  (She laughs out loud.),0,0,0,TestUnbind()
+0,0,0,Common_ActorIsOwner,(Hum a sexy song|and dance for fun.),"Not now my subbie, I'm reviewing my notes.|(She reviews and studies her school notes.)",0,0,0,RandomAmandaDommeEvent()
+0,0,0,Common_PlayerRestrained,(Struggle in|your restrains.),You're not getting out soon.|I love to see you struggle.,0,0,0,TestUnbind()
+0,0,0,!Common_ActorIsOwner,You should wear|something else.,I prefer to stay like that.,0,0,0,TestChange()
+0,0,0,SexAvail,Would you like to|make love with me?,"You're very direct.  No, I'll pass.|Let's do something else alright?",0,0,0,TestSex()
+0,0,0,PleasurePlayerAvail,"My submissive, you|will pleasure me now.",Pleasure you how Mistress?|(She gives you a curious look.),630,0,0,TestPleasurePlayer()
+0,0,0,!Common_PlayerRestrained,(Play with her.),(You take a step toward her.),10,0,0,
+10,5,0,!Common_PlayerGagged,(Kiss her.),(You get close to her and kiss her|on the lips while she moans silently.),10,0,0,Kiss()
+10,1,0,!Common_PlayerRestrained,(Tickle her.),"(You get closer and tickle her on the chest|while she laughs out loud, she seems to enjoy it.)",10,0,0,Tickle()
+10,0,5,!Common_PlayerRestrained,(Spank her.),(You spank her pretty hard on the|butt while she whimpers from the pain.),10,0,0,Spank()
+10,0,0,CanMasturbate,(Masturbate her.),"(You get closer to masturbate|her, but she pushes you away.)",10,0,0,StartMasturbate()
+10,0,0,IsGagged,(Ungag her.),(You slowly remove her gag.)|This gag was really effective.,10,0,0,Ungag()
+10,0,0,IsRoped,(Untie her.),(You undo the knots and remove the|ropes while she stretches happily.),10,0,0,Untie()
+10,0,0,IsStrapped,(Unstrap her.),(You remove the straps and|unlace the binder from her arms.),10,0,0,Untie()
+10,0,0,,(Stop playing.),(You take a step back.),0,0,0,
+20,0,0,Common_ActorIsOwned,Let's review|your rules.,Oh my god.  Yes Mistress.,610,0,0,
+20,0,0,ChatAvail,I'd like to know|more about you.,"Fair enough, what would|like to know about me?",500,0,0,StartChat()
+20,0,0,DateSarahAvail,Is there something|between you and Sarah?,"Yes...  No...  I guess everyone knows but her.|I love her so much, but I cannot admit it to her.",120,0,0,
+20,0,0,DatingSarah,Would you like to use|my bed with Sarah?,(She blushes a little.)  No thanks.|We'll have some fun later at home.,20,0,0,TestBedSarah()
+20,0,0,CuffsGameAvail,Would you like to try a|cuffs challenge with me?,You both giggle and struggle with the cuffs but|you're able to lock them around her wrists.,0,0,0,CuffsGame()
+20,0,0,Common_PlayerChaste,Can you please help|me with this belt?,I cannot help you.|I don't have the key.,0,0,0,
+20,0,0,Common_ActorIsLover,About our relationship...,Y...  Yes my love?|(She seems nervous.),190,0,0,
+20,0,0,,It's time for you|to leave my place.,You're expelling me from your dorm?,790,-1,1,
+20,0,0,,Never mind.,Very well.  What would you like to do?,0,0,0,
+100,0,0,,Do you have|a loved one?,I do...  I mean I don't...|I don't have a loved one.,110,0,0,TestRelationship()
+100,0,0,,Do you have|a boyfriend?,"A girl...  A boy...  Boyfriend?|No, I don't have a boyfriend.",110,0,0,TestRelationship()
+100,0,0,,Do you have|a girlfriend?,I do...  I mean I don't...|I don't have a girlfriend.,110,0,0,TestRelationship()
+105,0,0,,"Yes, I'm lucky.","Yes, you're very lucky.  If only she|could understand what she means to me.",107,0,0,
+105,0,0,,You'll find someone.,Maybe I will.  If only she could|understand what she means to me.,107,0,0,
+105,0,0,Common_ActorIsOwned,I would rather|date you.,"Mistress, you could break up with her.|We can't date if you're seeing someone.",106,0,0,
+105,0,0,!Common_ActorIsOwned,I would rather|date you.,Then be honest and break up first.|We can't date if you're seeing someone.,106,0,0,
+106,0,0,,"Yes, I'll do that.",Great!  Let me know when it's done.,0,0,0,
+106,0,0,,I'll think about it.,Very well.  Let me know when it's done.,0,0,0,
+106,0,0,,I can't do that.,"It's fine, I think I understand.|Let's talk about something else.",0,0,0,
+107,0,0,,Who are you|talking about?,"(She blushes and looks down.)  Sarah.|I love her so much, but I can't tell her.",120,0,0,
+107,0,0,,Who?  Sarah?,"(She blushes and looks down.)  Yes.|I love her so much, but I can't tell her.",120,0,0,
+107,0,0,,Are you in love?,"(She nods and looks down.)  Yes, with Sarah.|I love her so much, but I cannot tell her.",120,0,0,
+110,0,0,,You seem confused.,"I am confused.  I've had eyes on Sarah|for a long time, but today I've met you.",111,0,0,
+110,0,0,,Are you thorn?,"Yes, I'm thorn.  I've had eyes on Sarah|for a long time, but today I've met you.",111,0,0,
+110,0,0,,Explain yourself.,"(She looks at you.)  I've had eyes on Sarah|for a long time, but today I've met you.",111,0,0,
+110,0,0,,(Nod and listen.),"(She looks at you.)  I've had eyes on Sarah|for a long time, but today I've met you.",111,0,0,
+110,0,0,Common_ActorIsOwner,I'm surprised to|hear that Mistress.,"Yes my subbie.  I've had eyes on Sarah|for a long time, but today I've met you.",111,0,0,
+111,0,0,,So you love|both of us?,"Yes, I do love both of you.|And I don't know what to do.",112,0,0,
+111,0,0,,You need to|make your mind.,I know.  I can't love both of you.|I really don't know what to do.,112,0,0,
+111,0,0,,Listen to|your heart.,I know.  I can't love both of you.|I really don't know what to do.,112,0,0,
+112,0,0,,Kiss me Amanda.|(Try to kiss her.),(You surprise her with a kiss on the lips.)|You're so sweet COMMON_PLAYERNAME.,130,0,0,
+112,0,0,,I love you also.,You're so wonderful COMMON_PLAYERNAME.,130,0,0,
+112,0,0,,Date Sarah.  Tell|her you love her.,I've tried before.  Trust me.|But there's never a good moment.,121,0,0,
+112,0,0,,Shut up and|go see Sarah.,"I've tried to date her, but I can't tell her.|There's never a good moment for that.",121,0,0,
+112,0,0,,Stay single.,"Maybe that's the best plan out there.|I'm young, there's no need to rush it.",0,0,0,
+120,0,0,,Why can't|you tell her?,I've tried before.  Trust me.|But there's never a good moment.,121,0,0,
+120,0,0,,Tell her!,I've tried before.  Trust me.|But there's never a good moment.,121,0,0,
+120,0,0,,Forget her.,I know...  I can't...  I'm sorry.|Let's talk about something else.,0,0,0,
+121,0,0,!SarahAvail,What if I create|that perfect moment?,You would do that for me?|For us?  What is your plan?,122,0,0,
+121,0,0,!SarahAvail,Create that moment!,How can I do that?|What would you do?,122,0,0,
+121,0,0,SarahAvail,What if I create|that perfect moment?,You would do that for me?|For us?  What is your plan?,124,0,0,
+121,0,0,SarahAvail,Create that moment!,How can I do that?|What would you do?,124,0,0,
+121,0,0,,You're hopeless.,I know...  I'm hopeless...  I'm sorry.|Let's talk about something else.,0,0,0,
+122,0,0,,I will invite|her here first.,(She trembles and breathes faster.)|You will do that?  Wow!  I can't wait.,123,0,0,
+122,0,0,,I'll bring her|ass in here.,(She trembles and breathes faster.)|You will do that?  Wow!  I can't wait.,123,0,0,
+122,0,0,Common_ActorIsOwned,I'll handcuff|you two together.,(She trembles and breathes faster.)|You will do that?  Wow!  I can't wait.,123,0,0,
+122,0,0,,I'll think of a plan.,Great!  Please let me know|if you find a good plan.,123,0,0,
+122,0,0,,This is hopeless.,(She sighs.)  Maybe you're right.|Let's talk about something else.,0,0,0,
+123,0,0,,I'll make it happen.,Thanks!  Take your time to do it right.|What would you like to do now?,0,0,0,
+123,0,0,,It might take|a little while.,Of course.  Take your time to do it right.|What would you like to do now?,0,0,0,
+124,0,0,,It's easy.  Hey Sarah!|Amanda wants to talk.,"(Sarah comes closer and Amanda blushes.)|Sarah, there's something I've wanted to tell you.",800,1,0,StartDatingSarah()
+124,0,0,!Common_ActorIsOwner,This is my plan girl!|(Push Amanda to Sarah.),"(You push Amanda to Sarah and she blushes.)|Sarah, there's something I've wanted to tell you.",800,0,1,StartDatingSarah()
+124,0,0,,I'll think of a plan.,Great!  Please let me know|if you find a good plan.,123,0,0,
+130,0,0,,I want to see|you happy.,I'm happy when you're around.|You make me laugh and smile.,140,0,0,
+130,0,0,,I want to make|you happy.,I'm happy when you're around.|You make me laugh and smile.,140,0,0,
+130,0,0,Common_ActorIsOwned,My little subbie girl.|You need to be happy.,I'm very happy with you Mistress.|You make me laugh and smile.,140,0,0,
+140,0,0,,Will you be|my girlfriend?,Yes!  I will!  I love you!,150,0,0,
+140,0,0,,Will you date me?,Yes!  I will!  I love you!,150,0,0,
+140,0,0,,Be my girlfriend.,Yes!  I will!  I love you!,150,0,0,
+150,0,0,,I love you Amanda.|(Kiss and date her.),(You join in a loving embrace for a long|and passionate kiss to celebrate your love.),160,3,0,StartDating()
+150,0,0,,Wait!  I need some|more time to think.,(She looks pretty disappointed.)  Very well.|Let's talk about something else then.,0,0,0,
+160,0,0,AllowSexAfterDate,Show me your sexy|body my love.,Oh yes my love.  (You both strip|naked and look at each other body.),170,0,1,BothNaked()
+160,0,0,AllowSexAfterDate,(Blush red and|start to strip.),Don't be shy my love.  (You both strip|naked and look at each other body.),170,0,-1,BothNaked()
+160,0,0,AllowSexAfterDate,I want to make|love with you.,Oh yes my love.  (You both strip|naked and look at each other body.),170,1,0,BothNaked()
+160,0,0,,I'm so happy!,I'm also very happy my love.|What should we do now?,0,1,0,
+160,0,0,,I can't wait to|tell my friends.,Please let me talk to Sarah first.|What should we do now?,0,-1,0,
+160,0,0,,We should|go out later.,We also could stay here for a nice|romantic evening.  That's up to you.,0,0,0,
+170,0,0,,(Get in bed.),,0,0,0,MakeLove()
+170,0,0,!Common_ActorIsOwner,(Push her on the bed.),,0,0,1,MakeLove()
+170,0,0,!Common_ActorIsOwned,(Let her carry|you in bed.),,0,0,-1,MakeLove()
+190,0,0,,I... I... I lost my|train of thought.,(She still seems to worry.)|It's perfectly fine my love.,0,0,0,
+190,0,0,,I don't think it's|working between us.,(She gives you a sad look.)|Do you want to break up?,191,0,0,
+190,0,0,,I want to break up.,(She gives you a sad look.)|Really my love?  It's the end?,191,0,0,
+191,0,0,,"No, let's stay together.",(She trembles and slowly recovers.)|Please don't toy with me COMMON_PLAYERNAME.,0,0,0,
+191,0,0,Common_ActorIsOwned,"We'll break up, but I'll|keep you as my slave.","(She cries and looks devastated.)|Yes Mistress, it's...  it's...  it's fine.",192,-5,0,BreakUp()
+191,0,0,!Common_ActorIsOwned,"Yes, I want to break up.",Why are you doing that?|Don't play with my heart!,193,-5,0,BreakUp()
+192,0,0,,I'm sorry.|Don't cry.,I will be alright Mistress.|Let's talk about something else.,0,0,-1,EndChat()
+192,0,0,,You're not|in my league.,"Please Mistress, it hurts so much.|Let's talk about something else.",0,-1,1,EndChat()
+192,0,0,,It was a mistake|from the start,"Maybe you're right, I don't know.|Let's talk about something else.",0,0,0,EndChat()
+192,0,0,,You'll find someone|perfect for you.,"Yes, and there is someone else that's perfect.|Thanks, but let's talk about something else.",0,1,0,EndChat()
+193,0,0,,I'm sorry.|Don't cry.,Oh god!  It hurts so much!|(She runs away from the room.),194,0,-1,AmandaLeave()
+193,0,0,,You're not|in my league.,No need to dig in the wound.|(She runs away from the room.),194,-1,1,AmandaLeave()
+193,0,0,,It was a mistake|from the start,Yes!  A huge and horrible mistake.|(She runs away from the room.),194,0,0,AmandaLeave()
+193,0,0,,You'll find someone|perfect for you.,I know!  And I will have her someday.|(She runs away from the room.),194,1,0,AmandaLeave()
+200,0,0,,You like losing control.|It turns you on girl.,"I...  Errr...  Yes Miss.  I admit it.|I cannot explain why, but I love bondage.",210,0,1,
+200,0,0,,You're all wet|when tied up.,"I would not say it like that, but yes.|I cannot explain why, but I love bondage.",210,-1,0,
+200,0,0,,Bondage is a strong|sexual fantasy of yours?,"(She blushes and looks down.)  I admit it.|I cannot explain why, but I love bondage.",210,1,0,
+200,0,0,,Being restrained is a|fantasy that we share.,"Really?  You also like to be restrained?|I cannot explain why, but I love bondage.",210,0,-1,
+210,0,0,,I can explain why.|You're a submissive.,A submissive?  Me?  Really?|Like these girls that have owners?,220,0,0,
+210,0,0,,It's pretty simple.|You have slave blood.,I have Slave blood?  Me?  Really?|Like these girls that have owners?,220,0,0,
+210,0,0,,It's a very common|fantasy among subs.,Among subs?  I am a submissive?|Like these girls that have owners?,220,0,0,
+220,0,0,,"Yes, you need someone|to fulfill your fantasies.",A special someone to restrain me...|Would you be that person Miss?,230,1,-1,
+220,0,0,,"Yes, an owner would help|you with these urges.",An owner to help me with urges...|Would you be that person Miss?,230,0,0,
+220,0,0,,"Yes, only a Mistress|can train you slut.",(She gulps.)  A Mistress to train me...|Would you be that person Miss?,230,-1,1,
+230,0,0,,"I could, but there|are requirements.",Requirements?  Please explain.,240,0,0,
+230,0,0,,"I might, but I need a|commitment from you.",What kind of commitment?  Please explain.,240,0,0,
+240,0,0,,"First, you'll have to|wear a locked collar.",I've seen these collars before.|I know they are special for submissives.,250,0,1,
+240,0,0,,You will wear a|submissive collar.,I've seen these collars before.|I know they are special for submissives.,250,0,0,
+240,0,0,,"As my bitch, you will|wear a locked collar.",I've seen these collars before.|I know they are special for submissives.,250,-1,1,
+240,0,0,,From time to time.|You might wear a collar.,I've seen these collars before.|I know they are special for submissives.,250,0,-1,
+250,0,0,,"You will also call|me: ""Mistress"".",Very well.  I understand.,260,0,0,
+250,0,0,,"You shall address|me as: ""Mistress"".",Very well.  I understand.,260,0,0,
+260,0,0,,You will follow my orders.|Like a good little slut.,(She frowns.)  Alright Miss.,270,-1,0,
+260,0,0,,You will follow my orders.|Like a good submissive.,(She smiles.)  Alright Miss.,270,1,0,
+260,0,0,,You will follow my orders.|Like a good slave girl.,(She nods.)  Alright Miss.,270,0,0,
+270,0,0,,You will be punished|if you fail to obey.,That sounds fair.,280,0,0,
+270,0,0,,If you disobey.|I will punish you.,That sounds fair.,280,0,0,
+280,0,0,,If you're a good girl.|I will reward you.,That's nice of you Miss.,290,0,0,
+280,0,0,,When you're good.|I will satisfy your urges.,(She nods and smiles.),290,1,0,
+280,0,0,,You will get bondage|orgasms if you're good.,(She blushes red.)  Y...  Yes Miss.,290,0,1,
+290,0,0,,So will you be|my submissive?,Yes Miss COMMON_PLAYERNAME.|I will be your submissive.,291,1,-1,
+290,0,0,,Will you wear|my collar girl?,Yes Miss COMMON_PLAYERNAME.|I will be your submissive.,291,0,0,
+290,0,0,,"Slave, do you|want this collar?",Yes Miss COMMON_PLAYERNAME.|I will be your submissive.,291,-1,1,
+290,0,0,,You're a slave for sure.|But not worthy of me.,I'm really sorry to hear that Miss.|Let's not talk about collars then.,0,-2,1,EndEnslaveAmanda()
+290,0,0,,On second thought.|I will not collar you.,I'm really sorry to hear that Miss.|Let's not talk about collars then.,0,-1,0,EndEnslaveAmanda()
+291,0,0,,Very good Amanda.|I will release you first.,"(You release her, she seems pretty febrile.)|First Miss?  Is there some kind of ceremony?",292,0,0,EnslaveRelease()
+291,0,0,,Let me release|you first girl.,"(You release her, she seems pretty febrile.)|First Miss?  Is there some kind of ceremony?",292,0,0,EnslaveRelease()
+292,0,0,,"Yes, get naked|my lovely subbie.",Oh my.  Very well Miss.|(She strips naked for you.),293,1,-1,EnslaveStrip()
+292,0,0,,"Correct, strip|now my slut.",Oh my.  Very well Miss.|(She strips naked for you.),293,-1,1,EnslaveStrip()
+292,0,0,,Absolutely.  And you|need to strip now.,Oh my.  Very well Miss.|(She strips naked for you.),293,0,0,EnslaveStrip()
+293,0,0,,Get on your|knees girl.,"Yes Miss.  So sorry, I'm kind of nervous.|(She slowly kneels down in front of you.)",294,0,1,"ActorSetPose(""Kneel"")"
+293,0,0,,Get down on|your knees.,"Yes Miss.  So sorry, I'm kind of nervous.|(She slowly kneels down in front of you.)",294,0,0,"ActorSetPose(""Kneel"")"
+293,0,0,,Kneel for|me please.,"Yes Miss.  So sorry, I'm kind of nervous.|(She slowly kneels down in front of you.)",294,0,-1,"ActorSetPose(""Kneel"")"
+294,0,0,,"Once locked, there's|no turning back.",Yes Miss.  I understand and fully consent.|I wish to be locked and be your submissive.,295,0,0,
+294,0,0,,This is your last|chance to escape.,"I don't want to escape, and I fully consent.|I wish to be locked and be your submissive.",295,0,0,
+295,0,0,,Good girl.|(Collar her.),(You carefully circle the collar around|her neck and lock it snug with a padlock.),296,0,3,LockCollarAmanda()
+295,0,0,,Stay still.|(Collar her.),(You carefully circle the collar around|her neck and lock it snug with a padlock.),296,0,3,LockCollarAmanda()
+295,0,0,,I own you now.|(Collar her.),(You carefully circle the collar around|her neck and lock it snug with a padlock.),296,0,3,LockCollarAmanda()
+295,0,0,,You're not worthy of me.|(Don't collar her.),You don't want me?  This is devastating.|Let's not talk about collars anymore then.,0,-3,1,EndEnslaveAmanda()
+295,0,0,,I've changed my mind.|(Don't collar her.),You don't want me?  This is devastating.|Let's not talk about collars anymore then.,0,-2,0,EndEnslaveAmanda()
+295,0,0,,I cannot do that.|(Don't collar her.),You don't want me?  This is devastating.|Let's not talk about collars anymore then.,0,-1,-1,EndEnslaveAmanda()
+296,0,0,,I vow to protect you.,"And I vow to be obedient,|disciplined and trustworthy.",297,0,0,
+296,0,0,,I vow to help you.,"And I vow to be obedient,|disciplined and trustworthy.",297,1,0,
+296,0,0,,I vow to discipline you.,"And I vow to be obedient,|disciplined and trustworthy.",297,-1,0,
+297,0,0,,Stand up my|lovely subbie.,Thanks Mistress.  I'm so happy.|Will you tie me up now?,0,1,-1,EndEnslaveAmanda()
+297,0,0,,Stand up slut.,(She stands up.)  Thanks Mistress.|Will you tie me up now?,0,-1,1,EndEnslaveAmanda()
+297,0,0,,Stand up.,Thanks Mistress.  This is great.|Will you tie me up now?,0,0,0,EndEnslaveAmanda()
+300,0,0,,These are the|college values?,"Yes, and a lot, lot, lot more.|I could teach you if you want.",310,0,0,
+300,0,0,,I don't have|that discipline.,Disciple can be learned.|I could teach you if you want.,310,0,0,
+300,0,0,,I don't have|any willpower.,I'm sure you can learn that.|I could teach you if you want.,310,0,0,
+310,0,0,,You would help me?,"Yes, I think I could make a|perfect student out of you.",320,0,0,
+310,0,0,,You would teach me?,"Yes, I think I could make a|perfect student out of you.",320,0,0,
+310,0,0,,After school teachings?,"With my help, you could|become a perfect student.",320,0,0,
+320,0,0,,Me?  Perfect?|Is that possible?,It's possible with training and discipline.|You could be my submissive and pupil.,0,0,0,TestSubmit()
+320,0,0,,It's like a dream.,It's possible with training and discipline.|You could be my submissive and pupil.,0,0,0,TestSubmit()
+330,0,0,,Your submissive Miss?,"Yes, you will have to obey my every|order and I will train you to perfection.",340,0,0,
+330,0,0,,What's the deal?,You will have to obey my every|order and I will train you to perfection.,340,0,0,
+330,0,0,,Can you explain?,You will have to obey my every|order and I will train you to perfection.,340,0,0,
+340,0,0,,That sounds kind|of complicated.,"It's really simple, you follow my|rules and you don't get punished.",350,0,0,
+340,0,0,,Simple enough.,It is simple.  If you follow my|rules you won't get punished.,350,0,0,
+350,0,0,,Punishments?,"Yes, I will have the power to punish you.|Also, you will need to call me: ""Mistress"".",360,0,0,
+350,0,0,,This is hardcore.,"Punishments will reinforce your learning.|Also, you will need to call me: ""Mistress"".",360,0,0,
+350,0,0,,Is that legal?,"You're free to be my submissive or not.|Also, you will need to call me: ""Mistress"".",360,0,0,
+360,0,0,,Yes Mistress.,"Not yet subbie girl.  I will control|everything, including your sexuality.",370,0,0,
+360,0,0,,Very well.,"Very good subbie girl.  I will control|everything, including your sexuality.",370,0,0,
+360,0,0,,Including in school?,"Yes, even in school.  I will control|everything, including your sexuality.",370,0,0,
+370,0,0,,My sexuality Miss?,You will need permission to make love or|touch yourself.  And wear a locked collar.,380,0,0,
+370,0,0,,Control my sex life?,You will need permission to make love or|touch yourself.  And wear a locked collar.,380,0,0,
+380,0,0,,A collar?|Like a dog?,"Kind of, I will be your owner.  So will you|accept my collar?  Will you become my submissive?",390,0,0,
+380,0,0,,That is a lot|of control.,It is.  So will you accept my collar?|Will you become my loyal submissive?,390,0,0,
+380,0,0,,This is very kinky.,It is.  So will you accept my collar?|Will you become my loyal submissive?,390,0,0,
+380,0,0,,Only at home?,All the time.  So will you accept my collar?|Will you become my faithful submissive?,390,0,0,
+390,0,0,,Yes Mistress.|(Get collared.),Very good subbie girl.|Now strip naked for me.,391,0,0,TestNaked()
+390,0,0,,I cannot do that.|(Don't get collared.),"Very well, I won't force you girl.|Let me know if you change your mind.",0,0,0,EndChat()
+391,0,0,,(Nod and strip naked.),"(You strip down while she smiles.)|Very good, now you will kneel for me.",392,0,0,PlayerStrip()
+391,0,0,,Yes Mistress.|(Strip naked.),"(You strip down while she smiles.)|Very good, now you will kneel for me.",392,0,0,PlayerStrip()
+391,0,0,,My pleasure!|(Strip naked.),"(You strip down while she smiles.)|Very good, now you will kneel for me.",392,0,0,PlayerStrip()
+392,0,0,,If I must.|(Kneel slowly.),Last chance to turn back.  Do you agree to be|my submissive and have this collar locked on you?,393,0,0,"SetPlayerPose(""BackKneel"")"
+392,0,0,,Very well.|(Kneel for her.),Last chance to turn back.  Do you agree to be|my submissive and have this collar locked on you?,393,0,0,"SetPlayerPose(""BackKneel"")"
+392,0,0,,It's an honor.|(Kneel promptly.),Last chance to turn back.  Do you agree to be|my submissive and have this collar locked on you?,393,0,0,"SetPlayerPose(""BackKneel"")"
+393,0,0,,Yes Mistress.|(Get collared.),(She carefully adjusts the collar around your|neck and locks it.)  You are now my subbie.,394,0,-3,PlayerCollared()
+393,0,0,,I cannot do that.|(Don't get collared.),"Very well, I won't force you girl.|Let me know if you change your mind.",0,0,0,EndChat()
+394,0,0,,I'm so happy!,I'm also very happy.  Be loyal and I|will train you to become a perfect student.,395,1,0,
+394,0,0,,I know I'm|in good hands.,You are in good hands.  Be loyal and I|will train you to become a perfect student.,395,0,-1,
+394,0,0,,I don't feel|very good.,You will get used to it.  Be loyal and I|will train you to become a perfect student.,395,-1,0,
+394,0,0,,(Stay silent and|look at her feet.),Be loyal and I will train you|to become a perfect student.,395,0,0,
+394,0,0,,Is the collar supposed|to be that tight?,You will get used to it.  Be loyal and I|will train you to become a perfect student.,395,0,1,
+395,0,0,,It will be fun.,It certainly will be fun.|Now stand up my subbie.,0,0,0,PlayerStandUp()
+395,0,0,,I can't wait to|start training.,I will prepare your training schedule|pretty soon.  Now stand up my subbie.,0,1,-1,PlayerStandUp()
+395,0,0,,Training can wait.,It will begin when your schedule is|ready.  Now stand up my subbie.,0,-1,1,PlayerStandUp()
+400,0,0,,"Yes, we started|dating today.",(She sighs.)  Tell me COMMON_PLAYERNAME.|Do you really love her?,410,-1,0,
+400,0,0,,Yes.  Is there|something wrong?,(She sighs.)  Tell me COMMON_PLAYERNAME.|Do you really love her?,410,-1,-1,
+400,0,0,,Are you jealous?,"(She looks shocked.)  I'm not jealous!|Tell me, do you really love her?",410,-2,1,
+410,0,0,,"Yes, I love her.",Very well.  Please promise me something then.|Promise me you'll take care of her and cherish her.,420,0,0,
+410,0,0,,I do really love her.,Very well.  Please promise me something then.|Promise me you'll take care of her and cherish her.,420,0,0,
+410,0,0,,I don't know.,"If you don't know it means you don't love her.|And if that's the case, you should break up.",430,-1,-1,
+410,0,0,,Not really.  We both|want more pussy.,This is not a healthy relationship!|You two should break up now.,430,-2,1,
+420,0,0,,I promise I will take|care and protect her.,"Alright, maybe she's in good hands.|What would you like to do now?",0,0,1,EndChat()
+420,0,0,,I promise I will|cherish and love her.,"Good, you seem to really love her.|What would you like to do now?",0,1,0,EndChat()
+420,0,0,Common_ActorIsOwned,I promise nothing!,"Alright Mistress, I will not argue.|What would you like to do now?",0,-2,1,EndChat()
+420,0,0,!Common_ActorIsOwned,I promise nothing!,"Fine!  Do what you want, I don't care.|(She leaves your room and slams the door.)",791,-2,1,KickedOut()
+430,0,0,,"Ok, we will break up.","Very good, I'm glad you understand.|What would you like to do now?",0,1,0,EndChat()
+430,0,0,,I'll think about it.,Think about it and you'll understand.|What would you like to do now?,0,0,0,EndChat()
+430,0,0,Common_ActorIsOwned,Don't tell me|what to do slave.,"Alright Mistress, I will not argue.|What would you like to do now?",0,-1,1,EndChat()
+430,0,0,!Common_ActorIsOwned,I won't break up.,"Fine!  Do what you want, I don't care.|(She leaves your room and slams the door.)",791,-1,1,KickedOut()
+450,0,0,,Fun Mistress?,,0,0,0,RandomAmandaDommeEvent()
+450,0,0,,What's going on?,,0,0,0,RandomAmandaDommeEvent()
+450,0,0,,(Nod happily.),,0,0,0,RandomAmandaDommeEvent()
+450,0,0,,(Look surprised.),,0,0,0,RandomAmandaDommeEvent()
+500,0,0,,"You're a nerd,|aren't you?",(She frowns.)  Don't call me a nerd!|I simply study a little more than most.,510,-1,0,
+500,0,0,,You study a lot?,"Yes, I study a little more than most.",510,0,0,
+500,0,0,,You seem very|serious in class.,"Absolutely, I want to have good grades.|I also study a little more than most.",510,1,0,
+510,0,0,,Don't you want|to have fun?,I do have fun!  I have a wonderful friend|and I also play chess and video games.,520,0,0,
+510,0,0,,That sounds|pretty boring.,Succeeding in school isn't boring!|I also play chess and video games.,520,-1,0,
+510,0,0,,Do you play games?,Yes!  I play chess and video games.,520,1,0,
+520,0,0,HaveCuffs,I have another|game for you.,Oh?  What game?,530,0,0,
+520,0,0,,Did you ever try a|self-bondage game?,Self-bondage?  (She blushes red.)|Well...  Maybe I did a few times.,540,0,0,
+530,0,0,,"The game is called:|""Try to escape"".",That sounds like a fun game.|And how do you play it?,531,0,0,
+530,0,0,,"The game is called:|""Stuck in cuffs"".",That sounds like a fun game.|And how do you play it?,531,0,1,
+530,0,0,,"The game is called:|""Cuff me up"".",That sounds like a fun game.|And how do you play it?,531,0,-1,
+531,0,0,,It's pretty easy.|(Try to cuff her.),You both giggle and struggle with the cuffs but|you're able to lock them around her wrists.,532,0,0,CuffsGame()
+532,0,0,Common_PlayerRestrained,Fun game isn't it?|(Struggle in the cuffs.),"Yes, we have to play it more often.|(She looks at you struggling and laughs.)",0,0,-1,EndChat()
+532,0,0,!Common_PlayerRestrained,Fun game isn't it?|(Watch her struggle.),"Yes, we have to play it more often.|(She struggles in the cuffs for fun.)",0,0,1,EndChat()
+540,0,0,,It's quite a thrill?,"Absolutely, but it's not easy|to tie yourself up properly.",541,0,0,
+540,0,0,,When you tie yourself.|Warn me for safety.,Oh yes Miss.  Good idea.|Or maybe you can help me.,541,0,1,
+540,0,0,,I also do some|self-bondage.,Remember to be careful.|Maybe we could help each other.,541,0,-1,
+541,0,0,!Common_ActorIsOwned,"Awesome, I can't|wait to be tied up.",You're such a kinky girl.|Do you have some rope now?,0,0,-1,EndChat()
+541,0,0,,Our next self-bondage|game might be together.,I would love that COMMON_PLAYERNAME.|Do you have some rope now?,0,1,0,EndChat()
+541,0,0,,It all sounds fun.,It does.  Bondage is quite a thrill.,0,0,0,EndChat()
+541,0,0,!Common_ActorIsOwner,Perfect!  It will be|fun to tie you up.,Absolutely.  Do you have some rope now?,0,0,1,EndChat()
+600,0,0,,Wear your|school outfit.,I'm always proud to represent the college.|(She changes in her school uniform.),0,0,0,"ForceChangeActor(""Clothed"")"
+600,0,0,AllowPajamas,Wear your pajamas.,(She smiles.)  Great idea!|It's time for a slumber party.,0,0,0,"ForceChangeActor(""Pajamas"")"
+600,0,0,AllowHeroine,Wear your heroine|armor from the play.,That's a funny idea!  (She changes.)|I do need to bring it back tomorrow.,0,0,0,"ForceChangeActor(""Heroine"")"
+600,0,0,AllowVillain,Wear your villain|armor from the play.,That's a funny idea!  (She changes.)|I do need to bring it back tomorrow.,0,0,0,"ForceChangeActor(""Villain"")"
+600,0,0,!HasBelt,Get in your|underwear.,I'm curious to see where this will lead.|(She giggles and changes in her underwear.),0,0,0,"ForceChangeActor(""Underwear"")"
+600,0,0,,Get naked.,Oh my!  Should I be nervous?|(She slowly strips naked for you.),0,0,0,"ForceChangeActor(""Naked"")"
+600,0,0,,Forget it.,(She nods.),0,0,0,
+610,0,0,,You're free to|have fun tonight.,Thanks a lot!  But I would|rather stay with you Mistress.,0,0,0,"SetCurfew(""None"")"
+610,0,0,,"You can have fun tonight,|but you will sleep here.","Here?  But there's only one bed.|Very well Mistress, I'm curious.",0,0,0,"SetCurfew(""24"")"
+610,0,0,,You cannot leave my|dorm room tonight.,Not even to get my toothbrush?|(She bows her head.)  I will stay here.,0,0,0,"SetCurfew(""Stay"")"
+630,0,0,,Get naked first.,(She nods and slowly|strips down for you.),631,0,0,"ForceChangeActor(""Naked"")"
+630,0,0,,Strip girl.,(She nods and slowly|strips down for you.),631,0,0,"ForceChangeActor(""Naked"")"
+630,0,0,,Remove your clothes|my sexy subbie.,(She nods and slowly|strips down for you.),631,0,0,"ForceChangeActor(""Naked"")"
+630,0,0,,I've changed my mind.,Ok.  What would you like to do Mistress?,0,0,0,EndEnslaveAmanda()
+631,0,0,,You will pleasure me|here on your knees.,(She blushes.)  Yes Mistress.|But can I please ask for a favor?,632,0,0,
+631,0,0,,Kneel bitch and|get to work.,(She frowns.)  Yes Mistress.|But can I please ask for a favor?,632,0,0,
+632,0,0,,What favor?,Could you restrain me before we do it?|It's a pretty big fantasy that I have.,633,0,0,
+632,0,0,,Make it quick.,Could you restrain me before we do it?|It's a pretty big fantasy that I have.,633,0,0,
+632,0,0,,Sure my submissive.|What do you want?,Could you restrain me before we do it?|It's a pretty big fantasy that I have.,633,0,0,
+632,0,0,,No!  Get to work.,"Yes, sorry Mistress.  (Both naked, you get|her on her knees, licking your pussy.)",635,0,0,StartPleasurePlayer()
+633,0,0,,Of course I|can restrain you.,"Thanks Mistress, it means a lot to me.|(Use one of your items to restrain her.)",633,0,0,
+633,0,0,,"Sure, I can|strap your ass.","Thanks Mistress, it means a lot to me.|(Use one of your items to restrain her.)",633,0,0,
+633,0,0,,I don't want to do that.|Get on your knees girl.,"Yes, sorry Mistress.  (Both naked, you get|her on her knees, licking your pussy.)",635,0,0,StartPleasurePlayer()
+633,0,0,,"No, let's forget|the whole thing.",Oh my!  Very well Mistress.|What would you like to do?,0,0,0,EndEnslaveAmanda()
+634,0,0,,You know what|to do now.,"Oh!  Yes Mistress.  (Both naked, you get|her on her knees, licking your pussy.)",635,0,0,StartPleasurePlayer()
+634,0,0,,Get busy slave.,"Oh!  Yes Mistress.  (Both naked, you get|her on her knees, licking your pussy.)",635,0,0,StartPleasurePlayer()
+634,0,0,,Get on your knees|my lovely subbie.,"Oh!  Yes Mistress.  (Both naked, you get|her on her knees, licking your pussy.)",635,0,0,StartPleasurePlayer()
+635,0,0,,(Let her pleasure you.),(You let Amanda pleasure you with her|mouth and slowly drift away in ecstasy.),635,0,0,PleasurePlayer()
+635,0,0,,That's enough!|(Stop everything.),(You push her back and stop everything.)|Did you enjoy Mistress?  Did you have pleasure?,637,0,0,StopPleasureFromAmanda()
+635,0,0,,(Force her to|go faster.),(You grab her hair and force|her to speed up the rhythm.),635,0,0,PleasurePlayerSetSpeed(1)
+635,0,0,,(Force her to|go slower.),(You push her head and force|her to slow down the rhythm.),635,0,0,PleasurePlayerSetSpeed(-1)
+636,0,0,,Aaaaah!  Stop slave!|(Stop everything.),(You push her back and stop everything.)|Did you enjoy Mistress?  Did you have pleasure?,637,0,0,StopPleasureFromAmanda()
+636,0,0,,That's enough!|(Stop everything.),(You push her back and stop everything.)|Did you enjoy Mistress?  Did you have pleasure?,637,0,0,StopPleasureFromAmanda()
+637,0,0,,It was wonderful.|I'm still shaking.,I'm very happy to hear you say that.|What would you like to do now?,0,0,0,"EndPleasureFromAmanda(2, -1)"
+637,0,0,,It was good.,I'm happy to hear you say that.|What would you like to do now?,0,0,0,"EndPleasureFromAmanda(1, 0)"
+637,0,0,,It was ok.,I'll do better next time Mistress.|What would you like to do now?,0,0,0,"EndPleasureFromAmanda(0, 0)"
+637,0,0,,With practice every day|it will become better.,Everyday Mistress?  Oh my!|What would you like to do now?,0,0,0,"EndPleasureFromAmanda(0, 1)"
+637,0,0,,I've had better.,I'm sorry to hear that Mistress.|What would you like to do now?,0,0,0,"EndPleasureFromAmanda(-1, 0)"
+637,0,0,,You need some|oral training.,I will train for you Mistress.|What would you like to do now?,0,0,0,"EndPleasureFromAmanda(-2, 1)"
+640,0,0,!Common_PlayerGagged,(Kiss her.),(You kiss her lovingly while she|closes her eyes and moans slowly.),640,0,0,"Masturbate(1, false)"
+640,0,0,,(Massage her breast.),(She closes her eyes and shivers while|you cup and slowly massage her breast.),640,0,0,"Masturbate(1, false)"
+640,0,0,,(Pinch her nipple.),(She jumps from the pain and whimpers.|She shakes her head from left to right.),640,0,0,"Masturbate(-1, false)"
+640,0,0,,(Slap her butt.),(You slap her butt a few times while|she whimpers and tries to avoid you.),640,0,0,"Masturbate(-1, false)"
+640,0,0,,(Caress her clitoris.),(She trembles without much control|while you play with her soft clitoris.),640,0,0,"Masturbate(2, true)"
+640,0,0,,(Play with her pussy.),(She moans and breathes faster.|Slowly losing control of herself.),640,0,0,"Masturbate(2, true)"
+640,0,0,,(Slide a finger|in and out.),(She moans and trembles from your touch.),640,0,0,"Masturbate(1, true)"
+640,0,0,!Common_PlayerGagged,(Eat her.),(You eat her lovingly while she|moans slowly and seems to enjoy.),640,0,0,"Masturbate(1, true)"
+640,0,0,,(Fist her.),(You try to fit a full hand but cannot|make it and only end up hurting her.),640,0,0,"Masturbate(-1, true)"
+640,0,0,,(Stop everything.),(You stop everything and let her go.),0,0,0,EndEnslaveAmanda()
+641,0,0,,(Make her climax.),"(You continue to masturbate her, and she|quickly collapses on a wonderful orgasm.)",642,0,0,AmandaOrgasm()
+641,0,0,Common_ActorIsOwned,You deserve it slave.|(Make her climax.),"(You continue to masturbate her, and she|quickly collapses on a wonderful orgasm.)",642,0,0,AmandaOrgasm()
+641,0,0,,(Stop everything.),(You stop everything and let her go.|She sighs and seems embarrassed.),0,0,0,AmandaDeniedOrgasm()
+641,0,0,Common_ActorIsOwned,You don't deserve it slave.|(Stop everything.),(You stop everything and let her go.|She sighs and seems embarrassed.),0,0,0,AmandaDeniedOrgasm()
+642,0,0,Common_ActorIsLover,I love you Amanda.,(She blushes and takes her|breath while slowly standing up.),0,1,0,EndEnslaveAmanda()
+642,0,0,,You're such a slut.,(She frowns and takes her|breath while slowly standing up.),0,-1,1,EndEnslaveAmanda()
+642,0,0,,I hope you liked it.,(She nods and takes her|breath while slowly standing up.),0,0,0,EndEnslaveAmanda()
+642,0,0,,I control when|you cum girl.,(She nods and takes her|breath while slowly standing up.),0,0,1,EndEnslaveAmanda()
+642,0,0,,(Give her a hug.),(You give her a warm hug|and help her to recover.),0,1,-1,EndEnslaveAmanda()
+642,0,0,,(Help her to recover.),(You help her to recover.),0,0,-1,EndEnslaveAmanda()
+650,0,0,,(Get in bed.),,0,0,0,MakeLove()
+650,0,0,!Common_ActorIsOwner,(Push her on the bed.),,0,0,0,MakeLove()
+650,0,0,!Common_ActorIsOwned,(Let her carry|you in bed.),,0,0,0,MakeLove()
+660,0,0,,"Fine, but be quick.|(Wait for her.)",(You wait for a few minutes and she|come back in her pajamas.)  Taadaa!,661,0,1,FetchPajamas()
+660,0,0,,Great idea!|(Wait for her.),(You wait for a few minutes and she|come back in her pajamas.)  Taadaa!,661,1,0,FetchPajamas()
+660,0,0,,Alright.|(Wait for her.),(You wait for a few minutes and she|come back in her pajamas.)  Taadaa!,661,0,0,FetchPajamas()
+660,0,0,!Common_ActorIsOwner,Not now Amanda.,Alright.  What would you like to do?,0,0,0,EndChat()
+661,0,0,,You look silly.,Silly but comfy.  (She giggles.)|What would you like to do?,0,-1,0,EndChat()
+661,0,0,,You look great.,You're only saying that to please me.|Anyway.  What would you like to do?,0,0,-1,EndChat()
+661,0,0,,It looks comfy.,Absolutely!  I love my pajamas.|So what would you like to do?,0,0,0,EndChat()
+661,0,0,,We can have a|slumber party!,Oh yes!  That's a really good idea.|What should we do to begin with?,0,1,0,EndChat()
+670,0,0,,Of course Mistress.,(She gets in her pajamas and smiles.)|Soon I will get you a matching PJ.,671,0,0,"ForceChangeActor(""Pajamas"")"
+670,0,0,Common_PlayerGagged,(Nod slowly.),(She gets in her pajamas and smiles.)|Soon I will get you a matching PJ.,671,0,0,"ForceChangeActor(""Pajamas"")"
+670,0,0,,Maybe later Mistress?,(She changes anyway.)  It's not up to you|to decide.  Soon I will get you a matching PJ.,671,0,0,"ForceChangeActor(""Pajamas"")"
+670,0,0,Common_PlayerGagged,(Shake your head no.),(She changes anyway.)  It's not up to you|to decide.  Soon I will get you a matching PJ.,671,0,0,"ForceChangeActor(""Pajamas"")"
+671,0,0,,Thanks Mistress.,It's my pleasure my subbie.|So what could we do now?,0,0,0,EndChat()
+671,0,0,Common_PlayerGagged,(Nod happily.),It's my pleasure my subbie.|So what could we do now?,0,0,0,EndChat()
+700,0,0,Common_ActorIsOwned,"Slave, I can bring|whoever I want.",(She jumps.)  Of course Mistress.|What would you like to do?,0,-1,1,EndChat()
+700,0,0,!Common_ActorIsOwner,Sidney is a good friend.|Don't fight with her.,(She frowns.)  Well she's not a friend|of mine.  Can you ask her to leave?,701,-2,0,
+700,0,0,Common_ActorIsOwner,Sidney is a good friend.|Please don't fight Mistress.,(She frowns.)  You should find better friends|my submissive.  Can you ask her to leave?,701,-2,0,
+700,0,0,,You two are in a feud?,Yes.  Can you ask her to leave?,701,-1,0,
+700,0,0,,Why are you|two fighting?,I'm caught in the crossfire.  My best friend|Sarah and Sidney can't stand each other.,701,-1,0,
+700,0,0,!SidneyIsOwner,I can tell her to go.,Yes.  Ask her politely to leave.,701,0,0,
+701,0,0,SidneyIsOwner,I can't do that.|She's my Mistress.,"Fine, she can stay.  But I|don't want to fight with her.",702,-1,-1,
+701,0,0,SidneyIsOwner,"Oh, please Amanda!|She's my Mistress.",Please don't cry.  She can stay.|But I don't want to fight with her.,702,0,-2,
+701,0,0,,Can you two|make peace?,I guess she can stay.  But I|don't want to fight with her.,702,-1,0,
+701,0,0,,I'll make sure|everything is ok.,"Fine, I guess she can stay then.|But I don't want to fight with her.",702,-1,1,
+701,0,0,!SidneyIsOwner,I will tell her to go.|(Kick Sidney out.),,701,1,0,"KickActor(""Sidney"")"
+701,0,0,!SidneyIsOwner,I'll kick her out.|(Kick Sidney out.),,701,1,1,"KickActor(""Sidney"")"
+701,0,0,!Common_ActorIsOwner,Then go Amanda.|(Kick Amanda out.),You're expelling me from your dorm?,790,-1,0,"KickForActor(""Sidney"")"
+701,0,0,!Common_ActorIsOwner,Get the fuck out then.|(Kick Amanda out.),You're expelling me from your dorm?,790,-1,1,"KickForActor(""Sidney"")"
+702,0,0,,No fights then!,Very well.  What would you like to do?,0,0,0,EndChat()
+702,0,0,,If it happens.|I'll fight for you.,Awesome.  What would you like to do?,0,0,1,EndChat()
+702,0,0,,If it happens.|I'll fight with you.,Wonderful.  What would you like to do?,0,1,0,EndChat()
+702,0,0,,If it happens.|We call for help.,Alright.  What would you like to do?,0,0,-1,EndChat()
+790,0,0,,Come back another day.|I need to study tonight.,I guess I should do the same.|(She takes her stuff and walks out.),791,0,0,KickedOut()
+790,0,0,,You need to go.|We'll talk later.,"Fine, I'll go then.|(She walks out.)",791,-1,0,KickedOut()
+790,0,0,,Don't be mad.|I'm sorry.,"It's fine, I'll go study.|(She sighs and walks out.)",791,-1,-1,KickedOut()
+790,0,0,,Pack your shit|and go girl.,I...  I...  Of course.|(She runs out quickly.),791,-2,1,KickedOut()
+791,0,0,,(Back to your dorm.),,791,0,0,BackToDorm()
+800,0,0,,(Listen to them.),"Sarah, you're my best friend, but|you're far more than that for me.",801,0,0,
+800,0,0,,(Enjoy the show.),"Sarah, you're my best friend, but|you're far more than that for me.",801,0,0,
+801,0,0,,(Listen to them.),"I think about you all the time, I dream|about you, I'm in love with you.",802,0,0,
+801,0,0,,(Make a heart|with your fingers.),"I think about you all the time, I dream|about you, I'm in love with you.",802,1,0,
+802,0,0,,(Listen to them.),I want to share my life with you.|Sleep with you.  Make love with you.,803,0,0,
+802,0,0,,(Snap your fingers.),I want to share my life with you.|Sleep with you.  Make love with you.,803,0,1,
+803,0,0,,(Listen to them.),"Sarah, I really love you.|Will you be my girlfriend?",804,0,0,
+803,0,0,,(Smile at them.),"Sarah, I really love you.|Will you be my girlfriend?",804,0,0,
+804,0,0,,(Listen to them.),"Amanda, I never truly realized|you had these feelings for me.",810,0,0,"LoadActor(""Sarah"")"
+804,0,0,,(Do a wolf whistle.),"Amanda, I never truly realized|you had these feelings for me.",810,-1,0,"LoadActor(""Sarah"")"
+810,0,0,,(Listen to them.),You're my best friend in the world.|You're sexy and you make me happy.,811,0,0,
+810,0,0,,(Wait patiently.),You're my best friend in the world.|You're sexy and you make me happy.,811,0,0,
+811,0,0,,(Listen to them.),Thanks to COMMON_PLAYERNAME.|We can make that step together.,812,0,0,
+811,0,0,,(Do a thumbs up.),Thanks to COMMON_PLAYERNAME.|We can make that step together.,812,0,0,
+812,0,0,,(Listen to them.),Yes Amanda!  I love you!|I will be your girlfriend.,813,0,0,DateSarah()
+812,0,0,,(Blush a little.),Yes Amanda!  I love you!|I will be your girlfriend.,813,0,-1,DateSarah()
+813,0,0,,(Listen to them.),I love you Sarah!  I'm so happy!|(They fall into each other arms and kiss.),820,0,0,"LoadActor(""Amanda"")"
+813,0,0,,(Clap your hands.),I love you so much Sarah!  This is wonderful!|(They fall into each other arms and kiss.),820,0,0,"LoadActor(""Amanda"")"
+820,0,0,,Congratulations!,(They look at each and smile.)|Thanks for your help COMMON_PLAYERNAME.,821,2,0,
+820,0,0,,When is the wedding?,(They look at each and giggle.)|Thanks for your help COMMON_PLAYERNAME.,821,1,1,
+820,0,0,,You two are so cute.,(They look at each and smile.)|Thanks for your help COMMON_PLAYERNAME.,821,2,0,
+821,0,0,,My pleasure.,You've made me very happy.|(They hold each other hands.),822,0,0,
+821,0,0,,I didn't do much.,"Don't say that, you've did a lot.|(They hold each other hands.)",822,0,-1,
+821,0,0,,You needed|a little push.,"Yes, you've done the perfect push.|(They hold each other hands.)",822,0,1,
+822,0,0,,You can use my|bed if you want.,Really?  Right in your dorm room?|(They look at each other and giggle.),823,0,0,
+822,0,0,,I'm sure it will get|hot later tonight.,(She blushes red while Sarah laughs.)|Maybe.  What would you like to do now?,0,0,1,EndChat()
+823,0,0,Common_ActorIsOwner,Have fun Mistress!|(Let them use your bed.),,0,0,0,BedWithSarah()
+823,0,0,!Common_ActorIsOwner,No better time than now!|(Let them use your bed.),,0,0,0,BedWithSarah()
+823,0,0,!Common_ActorIsOwner,"Not now, later.",Very well.  What would you like to do now?,0,0,0,EndChat()
+3000,0,0,,Yes Mistress.|(Strip naked.),Good subbie.  (You change for Amanda.),3090,0,0,"ForceChangePlayer(""Naked"")"
+3000,0,0,,(Nod slowly.)|(Strip naked.),Good subbie.  (You change for Amanda.),3090,0,0,"ForceChangePlayer(""Naked"")"
+3000,0,0,,I don't want|to do that.,"Ok my subbie, be quiet then.|(She reviews her school notes.)",3092,0,0,TestPunish()
+3000,0,0,,(Shake your head no.),"Ok my subbie, be quiet then.|(She reviews her school notes.)",3092,0,0,TestPunish()
+3010,0,0,,Yes Mistress.|(Get in your undies.),Good subbie.  (You change for Amanda.),3090,0,0,"ForceChangePlayer(""Underwear"")"
+3010,0,0,,(Nod slowly.)|(Get in your undies.),Good subbie.  (You change for Amanda.),3090,0,0,"ForceChangePlayer(""Underwear"")"
+3010,0,0,,I don't want|to do that.,"Ok my subbie, be quiet then.|(She reviews her school notes.)",3092,0,0,TestPunish()
+3010,0,0,,(Shake your head no.),"Ok my subbie, be quiet then.|(She reviews her school notes.)",3092,0,0,TestPunish()
+3020,0,0,,Yes Mistress.|(Wear your uniform.),Good subbie.  (You change for Amanda.),3090,0,0,"ForceChangePlayer(""Clothed"")"
+3020,0,0,,(Nod slowly.)|(Wear your uniform.),Good subbie.  (You change for Amanda.),3090,0,0,"ForceChangePlayer(""Clothed"")"
+3020,0,0,,I don't want|to do that.,"Ok my subbie, be quiet then.|(She reviews her school notes.)",3092,0,0,TestPunish()
+3020,0,0,,(Shake your head no.),"Ok my subbie, be quiet then.|(She reviews her school notes.)",3092,0,0,TestPunish()
+3030,0,0,,Yes Mistress.|(Wear your dress.),Good subbie.  (You change for Amanda.),3090,0,0,"ForceChangePlayer(""BlackDress"")"
+3030,0,0,,(Nod slowly.)|(Wear your dress.),Good subbie.  (You change for Amanda.),3090,0,0,"ForceChangePlayer(""BlackDress"")"
+3030,0,0,,I don't want|to do that.,"Ok my subbie, be quiet then.|(She reviews her school notes.)",3092,0,0,TestPunish()
+3030,0,0,,(Shake your head no.),"Ok my subbie, be quiet then.|(She reviews her school notes.)",3092,0,0,TestPunish()
+3040,0,0,,Yes Mistress.|(Wear your lingerie.),Good subbie.  (You change for Amanda.),3090,0,0,"ForceChangePlayer(""WhiteLingerie"")"
+3040,0,0,,(Nod slowly.)|(Wear your lingerie.),Good subbie.  (You change for Amanda.),3090,0,0,"ForceChangePlayer(""WhiteLingerie"")"
+3040,0,0,,I don't want|to do that.,"Ok my subbie, be quiet then.|(She reviews her school notes.)",3092,0,0,TestPunish()
+3040,0,0,,(Shake your head no.),"Ok my subbie, be quiet then.|(She reviews her school notes.)",3092,0,0,TestPunish()
+3090,0,0,,Do I look fine?,"You look wonderful, now be quiet.|(She gets back to reviewing her school notes.)",3092,0,0,TestBlockChanging()
+3090,0,0,,Are you happy?,"Very happy my subbie, now be quiet.|(She gets back to reviewing her school notes.)",3092,0,0,TestBlockChanging()
+3090,0,0,,(Bow your head.),"You're such a good subbie, so quiet.|(She gets back to reviewing her school notes.)",3092,0,0,TestBlockChanging()
+3091,0,0,,I cannot change?|For how long?,You will stay like that for a little while.|(She giggles and reviews her notes again.),3092,0,0,AllowLeave()
+3091,0,0,,(Nod slowly.),You will stay like that for a little while.|(She giggles and reviews her notes again.),3092,0,0,AllowLeave()
+3091,0,0,Common_PlayerGagged,@Eehp oheem!,You will stay like that for a little while.|(She giggles and reviews her notes again.),3092,0,0,AllowLeave()
+3091,0,0,,(Sulk.),"You accepted the collar, you will stay like that.|(She giggles and reviews her school notes again.)",3092,0,0,AllowLeave()
+3091,0,0,,That's unfair!,"You accepted the collar, you will stay like that.|(She giggles and reviews her school notes again.)",3092,0,0,AllowLeave()
+3100,0,0,,Yes Mistress.|(Show your items.),(She checks your items|and uses them on you.),3190,0,0,"ForceRandomBondage(""Full"")"
+3100,0,0,,(Nod slowly and|show your items.),(She checks your items|and uses them on you.),3190,0,0,"ForceRandomBondage(""Full"")"
+3100,0,0,,I don't want|to do that.,"Ok my subbie, be quiet then.|(She reviews her school notes.)",3191,0,0,TestPunish()
+3110,0,0,,Yes Mistress.|(Show your items.),(She checks your items|and uses a restrain on you.),3190,0,0,"ForceRandomBondage(""Restrain"")"
+3110,0,0,,(Nod slowly and|show your items.),(She checks your items|and uses a restrain on you.),3190,0,0,"ForceRandomBondage(""Restrain"")"
+3110,0,0,,I don't want|to do that.,"Ok my subbie, be quiet then.|(She reviews her school notes.)",3191,0,0,TestPunish()
+3120,0,0,,Yes Mistress.|(Show your items.),(She checks your items|and uses a gag on you.),3190,0,0,"ForceRandomBondage(""Gag"")"
+3120,0,0,,(Nod slowly and|show your items.),(She checks your items|and uses a gag on you.),3190,0,0,"ForceRandomBondage(""Gag"")"
+3120,0,0,,I don't want|to do that.,"Ok my subbie, be quiet then.|(She reviews her school notes.)",3191,0,0,TestPunish()
+3130,0,0,,Thanks Mistress!,You're a good submissive.|(She gets back to her notes.),3191,0,0,AllowLeave()
+3130,0,0,,(Nod politely.),You're a good submissive.|(She gets back to her notes.),3191,0,0,AllowLeave()
+3140,0,0,,Yes Mistress.|(Give your keys.),Good subbie.  (She confiscates your|keys and reviews her notes again.),3191,0,-1,ConfiscateKeys()
+3140,0,0,,(Bow your head and|give your keys.),Good subbie.  (She confiscates your|keys and reviews her notes again.),3191,0,-1,ConfiscateKeys()
+3140,0,0,,No!  These|are my keys.,"Ok my subbie, be quiet then.|(She reviews her school notes.)",3191,0,1,TestPunish()
+3140,0,0,,(Shake your head|no and refuse.),"Ok my subbie, be quiet then.|(She reviews her school notes.)",3191,0,1,TestPunish()
+3150,0,0,,Yes Mistress.|(Give your crop.),Good subbie.  I will not use it on you.|(She takes your crop and starts reading again.),3191,1,0,ConfiscateCrop()
+3150,0,0,,(Bow your head and|give your crop.),Good subbie.  I will not use it on you.|(She takes your crop and starts reading again.),3191,1,0,ConfiscateCrop()
+3150,0,0,,No!  It's not yours.,"Ok my subbie, be quiet then.|(She reviews her school notes.)",3191,-1,0,TestPunish()
+3150,0,0,,(Shake your head|no and refuse.),"Ok my subbie, be quiet then.|(She reviews her school notes.)",3191,-1,0,TestPunish()
+3160,0,0,,Yes Mistress.|It's a kinky egg.,You're such a kinky subbie.|So will you try it for me?,3161,0,0,
+3160,0,0,,(Nod slowly.),You're such a kinky subbie.|So will you try it for me?,3161,0,0,
+3160,0,0,,(Shrug.),You know what it is.|Will you try it for me?,3161,0,0,
+3160,0,0,,I'm not sure what|it's doing there.,Don't be shy my subbie.|Will you try it for me?,3161,0,0,
+3161,0,0,,With my great|pleasure Mistress.,(She slides the egg inside of you.)|You're such a kinky submissive.,3162,0,-1,InsertEgg()
+3161,0,0,,If it pleases|you Mistress.,(She slides the egg inside of you.)|You're such a kinky submissive.,3162,1,0,InsertEgg()
+3161,0,0,,(Nod happily.),(She slides the egg inside of you.)|You're such a kinky submissive.,3162,0,-1,InsertEgg()
+3161,0,0,,Fuck no!,"Ok my subbie, be quiet then.|(She reviews her school notes.)",3191,0,1,TestPunish()
+3161,0,0,,"No, please Mistress.|You cannot do that.","Ok my subbie, be quiet then.|(She reviews her school notes.)",3191,-1,0,TestPunish()
+3161,0,0,,(Shake your head no.),"Ok my subbie, be quiet then.|(She reviews her school notes.)",3191,0,0,TestPunish()
+3162,0,0,HasEgg,We are now|egg sisters.,That's kind of funny actually.|(She gets back to her school notes.),3191,-1,0,AllowLeave()
+3162,0,0,,It tickles!,Enjoy the good vibrations my subbie.|(She checks on her school notes again.),3191,0,0,AllowLeave()
+3162,0,0,,(Blush red.),Enjoy the good vibrations my subbie.|(She checks on her school notes again.),3191,0,0,AllowLeave()
+3170,0,0,,It sounds fun Mistress.,(She checks and uses your items on you.)|Wonderful!  Now I want a bondage hug!,3171,0,0,"ForceRandomBondage(""Hug"")"
+3170,0,0,Common_PlayerGagged,(Nod happily.),(She checks and uses your items on you.)|Wonderful!  Now I want a bondage hug!,3171,0,0,"ForceRandomBondage(""Hug"")"
+3170,0,0,,I don't want to do that.,"Ok my subbie, be quiet then.|(She reviews her school notes.)",3191,0,0,TestPunish()
+3170,0,0,Common_PlayerGagged,(Shake your head no.),"Ok my subbie, be quiet then.|(She reviews her school notes.)",3191,0,0,TestPunish()
+3170,0,0,,A bondage hug?,I'll show you.  (She searches and uses|your items on you.)  Now I want a hug!,3171,0,0,"ForceRandomBondage(""Hug"")"
+3171,0,0,!Common_PlayerRestrained,(Open your arms.),(You open your arms and hug your|Mistress closely.)  You're a good subbie.,3172,0,0,"ActorSetPose(""Hug"")"
+3171,0,0,Common_PlayerRestrained,(Get closer for a hug.),(You get closer to your Mistress while she|hugs you tightly.)  You're a wonderful subbie.,3172,1,-1,"ActorSetPose(""Hug"")"
+3171,0,0,Common_PlayerRestrained,(Wait for her.),(Amanda gets close to you and hugs|you tightly.)  You're a sweet subbie.,3172,0,0,"ActorSetPose(""Hug"")"
+3171,0,0,!Common_PlayerRestrained,Of course Mistress.,(You open your arms and hug your|Mistress closely.)  You're a good subbie.,3172,0,0,"ActorSetPose(""Hug"")"
+3171,0,0,Common_PlayerRestrained,Of course Mistress.,(You get closer to your Mistress while she|hugs you tightly.)  You're a wonderful subbie.,3172,1,-1,"ActorSetPose(""Hug"")"
+3172,0,0,,It's wonderful Mistress.,(She smiles and releases you.)|That was a nice hug my subbie.,3173,0,0,"ActorSetPose(""Happy"")"
+3172,0,0,,You're so kinky Amanda.,(She frowns and releases you.)|Call me Mistress my subbie.,3173,-1,1,"ActorSetPose("""")"
+3172,0,0,,(Hug her close.),(She smiles and releases you.)|That was a nice hug my subbie.,3173,0,0,"ActorSetPose(""Happy"")"
+3172,0,0,,(Try to escape|from the hug.),(She frowns and releases you.)|Don't struggle like that girl.,3173,-1,1,"ActorSetPose("""")"
+3173,0,0,Common_PlayerRestrained,Will you help me?,"No, I kind of like you like that.|(She checks on her notes again.)",3191,0,0,ReleaseAfterBondageHug()
+3173,0,0,Common_PlayerRestrained,(Struggle in|your restrains.),"Struggle some more, I like it.|(She checks on her notes again.)",3191,0,0,ReleaseAfterBondageHug()
+3173,0,0,Common_PlayerGagged,@Uuuugnm uph!,I love it when you try to talk.|(She checks on her notes again.),3191,0,0,ReleaseAfterBondageHug()
+3173,0,0,Common_PlayerRestrained,Will you leave me|restrained like that?,"Of course, since you seem to enjoy it.|(She checks on her school notes again.)",3191,0,0,AllowLeave()
+3173,0,0,Common_PlayerRestrained,(Struggle playfully.),"Struggle some more, I like it.|(She checks on her notes again.)",3191,0,0,AllowLeave()
+3173,0,0,!Common_PlayerRestrained,What else|could we do?,We'll play again later my subbie.|(She checks on her notes again.),3191,0,0,AllowLeave()
+3173,0,0,!Common_PlayerRestrained,Let's do this|more often.,"Absolutely, next time with better restrains.|(She checks on her school notes again.)",3191,0,0,AllowLeave()
+3190,0,0,!Common_PlayerRestrained,I'm sorry you didn't|find anything you like.,"No worries, tomorrow we'll do some shopping.|(She gets back to reviewing her school notes.)",3191,0,0,AllowLeave()
+3190,0,0,Common_PlayerRestrained,Do you like to|see me restrained?,"Absolutely, you look adorable my subbie.|(She gets back to her school notes and reads them.)",3191,0,0,AllowLeave()
+3190,0,0,Common_PlayerGagged,@Niighn mhim!,It's wonderful to have a submissive like you.|(She gets back to her school notes and reads them.),3191,0,0,AllowLeave()
+3190,0,0,,(Bow your head.),It's wonderful to have a submissive like you.|(She gets back to her school notes and reads them.),3191,0,0,AllowLeave()
+3200,0,0,,"Oh yes, I love|being tickled.",This is great.  I also love a good tickling.|(She pounces and starts to tickle you.),3201,0,0,"DoActivity(""Tickle"", 1, 0)"
+3200,0,0,,Not really.,We'll see if you're right about that.|(She pounces and starts to tickle you.),3201,0,0,"DoActivity(""Tickle"", -1, 0)"
+3200,0,0,,Yes Mistress.|I'm ticklish.,"Very nice, be prepared to laugh then.|(She pounces and starts to tickle you.)",3201,0,0,"DoActivity(""Tickle"", 0, 0)"
+3200,0,0,,I don't want|to be tickled.,"Ok my subbie, be quiet then.|(She reviews her school notes.)",3291,0,0,TestPunish()
+3200,0,0,,(Nod happily.),"Very nice, be prepared to laugh then.|(She pounces and starts to tickle you.)",3201,0,0,"DoActivity(""Tickle"", 1, 0)"
+3200,0,0,,(Nod slowly.),"Alright, be prepared to laugh then.|(She pounces and starts to tickle you.)",3201,0,0,"DoActivity(""Tickle"", 0, 0)"
+3200,0,0,,(Shake your head no.),We'll see if you're right about that.|(She pounces and starts to tickle you.),3201,0,0,"DoActivity(""Tickle"", -1, 0)"
+3201,0,0,,Hheeeaaahhaha!,It seems you're very ticklish my subbie.|(She tickles you some more and laughs.),3201,0,0,"DoActivity(""Tickle"", 1, 0)"
+3201,0,0,,You're pretty|bad at this.,(She frowns and tickles you harder.)|I'm not giving up!  Tickle time!,3201,0,0,"DoActivity(""Tickle"", -1, 0)"
+3201,0,0,,(Laugh out loud.),It seems you're very ticklish my subbie.|(She tickles you some more and laughs.),3201,0,0,"DoActivity(""Tickle"", 1, 0)"
+3201,0,0,,(Giggle lightly.),I need to find a better tickle spot.|(She changes spot and tickle you again.),3201,0,0,"DoActivity(""Tickle"", 0, 0)"
+3201,0,0,,(Pretend you|don't care.),(She frowns and tickles you harder.)|I'm not giving up!  Tickle time!,3201,0,0,"DoActivity(""Tickle"", -1, 0)"
+3201,0,0,,Stop it now!,Alright my subbie.  I will not force you.|(She lets you go and reviews her notes again.),3291,0,0,TestPunish()
+3201,0,0,,(Grumble and|try to resist.),Alright my subbie.  I will not force you.|(She lets you go and reviews her notes again.),3291,0,0,TestPunish()
+3220,0,0,,What does that|fucking mean?,Such foul language.  Be quiet then.|(She reviews her school notes again.),3291,-1,0,TestPunish()
+3220,0,0,,Yes Mistress.|It's yours.,"You're so submissive, this is great.|(She grabs your crotch and smiles.)",3221,0,0,"DoActivity(""Masturbate"", 1, 3222)"
+3220,0,0,,(Giggle shyly.),Don't be shy my submissive.|(She grabs your crotch and smiles.),3221,0,0,"DoActivity(""Masturbate"", 0, 3222)"
+3220,0,0,,No Mistress.|Don't say that.,"Very well my subbie, I won't force you.|(She reviews her school notes again.)",3291,0,0,TestPunish()
+3220,0,0,,(Nod slowly.),Don't be shy my submissive.|(She grabs your crotch and smiles.),3221,0,0,"DoActivity(""Masturbate"", 0, 3222)"
+3220,0,0,,(Nod happily.),"You're so submissive, this is great.|(She grabs your crotch and smiles.)",3221,0,0,"DoActivity(""Masturbate"", 1, 3222)"
+3220,0,0,,(Shake your head no.),"Very well my subbie, I won't force you.|(She reviews her school notes again.)",3221,0,0,TestPunish()
+3221,0,0,,Miss Amanda.|Is that proper?,"It is, don't forget you belong to me.|(She stares at you and masturbates you.)",3221,0,0,"DoActivity(""Masturbate"", 0, 3222)"
+3221,0,0,,Woah!  Calm down!,You're not in command my subbie.|(She masturbates you a little harder.),3221,0,0,"DoActivity(""Masturbate"", -1, 3222)"
+3221,0,0,,(Pretend you|don't care.),You really think you can resist me?|(She masturbates you a little harder.),3221,0,0,"DoActivity(""Masturbate"", -1, 3222)"
+3221,0,0,,Oh god Mistress!|I need that!,You're such a kinky subbie.|(She masturbates you gently.),3221,0,0,"DoActivity(""Masturbate"", 1, 3222)"
+3221,0,0,,(Moan of pleasure.),You're such a kinky subbie.|(She masturbates you gently.),3221,0,0,"DoActivity(""Masturbate"", 1, 3222)"
+3221,0,0,,(Take deep breaths.),Never forget who you belong too.|(She stares at you and masturbates you.),3221,0,0,"DoActivity(""Masturbate"", 0, 3222)"
+3221,0,0,,Stop it now!,Alright my subbie.  I will not force you.|(She lets you go and reviews her notes again.),3291,0,0,TestPunish()
+3221,0,0,,(Grumble and|try to resist.),Alright my subbie.  I will not force you.|(She lets you go and reviews her notes again.),3291,0,0,TestPunish()
+3222,0,0,,Oh yes Mistress.|I need to cum.,"Well it won't happen right now.|Remember, I'm in charge here.",3290,0,0,BegForOrgasm()
+3222,0,0,,(Nod and beg|for an orgasm.),"Well it won't happen right now.|Remember, I'm in charge here.",3290,0,0,BegForOrgasm()
+3222,0,0,,No!  Please!|I'm ok Mistress.,Of course my subbie.|I would never force you.,3291,0,0,AllowLeave()
+3222,0,0,,(Shake your head no.),Of course my subbie.|I would never force you.,3291,0,0,AllowLeave()
+3223,0,0,,Oh wow!  That|was awesome.,"You're a great subbie, but that's enough.|(She picks up her notes and starts to read.)",3291,1,0,AllowLeave()
+3223,0,0,,(Tremble and try|to recuperate.),That's enough.  You can rest for a while.|(She picks up her notes and starts to read.),3291,0,0,AllowLeave()
+3223,0,0,,Fuck Amanda.|I needed that.,(She frowns.)  What language is that?|(She picks up her notes and starts to read.),3291,-1,1,AllowLeave()
+3223,0,0,Common_PlayerGagged,@UUUUUMPH!,"Be quiet my submissive, that's enough.|(She picks up her notes and starts to read.)",3291,0,0,AllowLeave()
+3223,0,0,,(Cuddle against|your Mistress.),(She cuddles back.)  That's enough my subbie.|(She picks up her notes and starts to read again.),3291,1,-1,AllowLeave()
+3223,0,0,,(Blush red.),"Don't be embarrassed, everything is fine.|(She picks up her notes and starts to read.)",3291,0,-1,AllowLeave()
+3223,0,0,,That was rape!,"I'm sorry to hear that, I'll be more careful.|(She picks up her notes and starts to read.)",3291,-2,0,AllowLeave()
+3290,0,0,,Yes Mistress.,It's wonderful to have a subbie like you.|(She picks up her notes and starts to read.),3291,0,0,AllowLeave()
+3290,0,0,,(Nod and take|your breath.),It's wonderful to have a subbie like you.|(She picks up her notes and starts to read.),3291,0,0,AllowLeave()
+3290,0,0,,I understand.,It's wonderful to have a subbie like you.|(She picks up her notes and starts to read.),3291,0,0,AllowLeave()
+3800,0,0,,(Look surprised.),Do not pretend that you don't know.|Changing clothes is forbidden for you.,3801,0,0,
+3800,0,0,,I was changing.,Changing clothes is forbidden for you.,3801,0,0,
+3800,0,0,,(Bow your head.),Changing clothes is forbidden for you.,3801,0,0,
+3800,0,0,,What do you|mean Mistress?,Do not pretend that you don't know.|Changing clothes is forbidden for you.,3801,0,0,
+3801,0,0,,I wanted to be|pretty for you.,It's nice of you but rules are rules.|You need to be punished my subbie.,3900,0,0,
+3801,0,0,,I thought you|were kidding.,"I was not, rules are rules.|You need to be punished.",3900,0,0,
+3801,0,0,,I'm sorry Mistress.,I bet you are but it's too late.|You need to be punished my subbie.,3900,0,0,
+3801,0,0,,(Stay silent.),You need to be punished my subbie.,3900,0,0,
+3801,0,0,,(Look remorseful.),You need to be punished my subbie.,3900,0,0,
+3810,0,0,,(Look surprised.),Be honest my subbie.  You were about|to touch yourself without my permission.,3811,0,0,
+3810,0,0,,I was about to|have some fun.,You know that you cannot touch|yourself without my permission.,3811,0,0,
+3810,0,0,,(Bow your head.),Be honest my subbie.  You were about|to touch yourself without my permission.,3811,0,0,
+3810,0,0,,I was about to|get to sleep.,Be honest my subbie.  You were about|to touch yourself without my permission.,3811,0,0,
+3811,0,0,,I thought it was ok.,"Rules are rules, you need to be punished.",3900,0,0,
+3811,0,0,,I'm sorry Mistress.,"Rules are rules, you need to be punished.",3900,0,0,
+3811,0,0,,(Stay silent.),"Rules are rules, you need to be punished.",3900,0,0,
+3811,0,0,,(Look remorseful.),"Rules are rules, you need to be punished.",3900,0,0,
+3900,0,0,,Punished?|For real?,Yes.  Strip down my subbie.,3901,-1,0,ReleaseBeforePunish()
+3900,0,0,,Yes Mistress.,Very well.  Strip down my subbie.,3901,-1,-1,ReleaseBeforePunish()
+3900,0,0,,Punished?|Alright!,(She giggles.)  Strip down my subbie.,3901,-1,-1,ReleaseBeforePunish()
+3900,0,0,,(Nod slowly.),Strip down my subbie.,3901,-1,0,ReleaseBeforePunish()
+3900,0,0,,You can't do that!,I certainly can.|Strip down my subbie.,3901,-1,1,ReleaseBeforePunish()
+3900,0,0,,(Shake your head no.),Do not try to resist.|Strip down my subbie.,3901,-1,1,ReleaseBeforePunish()
+3901,0,0,,"Alright, fine.|(Strip naked.)",(You slowly strip while she smiles.)|Awesome.  You're ready to be punished.,3903,0,0,"ForceChangePlayer(""Naked"")"
+3901,0,0,,(Nod politely.)|(Strip naked.),(You slowly strip while she smiles.)|Awesome.  You're ready to be punished.,3903,0,0,"ForceChangePlayer(""Naked"")"
+3901,0,0,,My pleasure.|(Strip naked.),(You slowly strip while she smiles.)|Awesome.  You're ready to be punished.,3903,0,-1,"ForceChangePlayer(""Naked"")"
+3901,0,0,,(Shake your head no.),Don't make me hurt you.|Strip now my submissive.,3902,-1,1,
+3901,0,0,,I won't strip!,Don't make me hurt you.|Strip now my submissive.,3902,-1,1,
+3902,0,0,,"Alright, fine.|(Strip naked.)",(You slowly strip while she smiles.)|Awesome.  You're ready to be punished.,3903,0,0,"ForceChangePlayer(""Naked"")"
+3902,0,0,,(Nod politely.)|(Strip naked.),(You slowly strip while she smiles.)|Awesome.  You're ready to be punished.,3903,0,0,"ForceChangePlayer(""Naked"")"
+3903,0,0,,Uh oh.,,3903,0,0,StartPunishment()
+3903,0,0,,(Take a deep breath.),,3903,0,0,StartPunishment()
+3903,0,0,,(Make puppy eyes.),,3903,0,0,StartPunishment()
+3903,0,0,,Yes Mistress.,,3903,0,0,StartPunishment()
+3910,0,0,,Grounded?  What|does that mean?,I'll show you right now.|Get your arms behind your back.,3911,0,0,
+3910,0,0,,(Give a curious look.),Get your arms behind your back.,3911,0,0,
+3910,0,0,,"No, please.|I'll be good.","Of course you will, but for now,|get your arms behind your back.",3911,0,0,
+3911,0,0,,Yes Mistress.|(Put your arms back.),(She slowly wraps the rope around your arms.)|Very good my subbie.  Now open up for the gag.,3912,0,-1,RopePlayer()
+3911,0,0,,(Sigh and put|your arms back.),(She slowly wraps the rope around your arms.)|Very good my subbie.  Now open up for the gag.,3912,0,0,RopePlayer()
+3911,0,0,,Can we negotiate?,(She slowly wraps the rope around your arms.)|It's too late for that.  Now open up for the gag.,3912,0,1,RopePlayer()
+3912,0,0,,This is too tight.,It could be tighter you know.|(She silences you with a gag.),3913,0,0,GagPlayer()
+3912,0,0,,You're very|good at this.,Thanks my submissive.|(She silences you with a gag.),3913,0,0,GagPlayer()
+3912,0,0,,Fuck that!|Don't gag me.,This language deserves a gag.|(She silences you with a gag.),3913,-1,0,GagPlayer()
+3912,0,0,,(Struggle in|the rope.),I hope you enjoy the ropes.|(She silences you with a gag.),3913,0,0,GagPlayer()
+3912,0,0,,Please Mistress!|Don't gag me.,It's too late to beg my subbie.|(She silences you with a gag.),3913,0,0,GagPlayer()
+3912,0,0,,(Open wide.),You see you can be a good subbie?|(She silences you with a gag.),3913,1,0,GagPlayer()
+3913,0,0,,(Stay silent.),(She pushes you down on the floor|and restrain you in a strict hogtie.),3914,0,0,"SetPlayerPose(""HogtiePunishment"")"
+3913,0,0,,(Bow your head.),(She pushes you down on the floor|and restrain you in a strict hogtie.),3914,0,0,"SetPlayerPose(""HogtiePunishment"")"
+3913,0,0,,@Mmhm ngggnm!,(She pushes you down on the floor|and restrain you in a strict hogtie.),3914,0,0,"SetPlayerPose(""HogtiePunishment"")"
+3914,0,0,,(Make pleading eyes.),You will stay grounded until I say otherwise.|(She gets her school notes and starts to read.),3999,0,0,"EndPunishment(""Grounded"")"
+3914,0,0,,(Sulk and grumble.),You will stay grounded until I say otherwise.|(She gets her school notes and starts to read.),3999,0,0,"EndPunishment(""Grounded"")"
+3914,0,0,,(Stare at the floor.),You will stay grounded until I say otherwise.|(She gets her school notes and starts to read.),3999,0,0,"EndPunishment(""Grounded"")"
+3914,0,0,,@Oouu lmu mpm!,You will stay grounded until I say otherwise.|(She gets her school notes and starts to read.),3999,0,0,"EndPunishment(""Grounded"")"
+3915,0,0,,(Nod yes.),You're a good subbie.  (She releases|you and gets back on her school notes.),3999,0,0,ReleasePlayer()
+3915,0,0,,(Shake your head no.),I'm sorry but you will stay grounded then.|(She starts to read her school notes again.),3999,0,0,"EndPunishment(""Grounded"")"
+3915,0,0,,@Aaehm!,Is that a positive|or a negative answer?,3915,0,0,
+3920,0,0,,A chastity belt?|This is torture!,Being chaste will help you to focus|in school and on your homework.,3921,0,0,
+3920,0,0,,Mistress!  Can you|spank me instead?,My mind is made up.|You will be chaste.,3921,0,1,
+3920,0,0,,"No, please.|I'll be good.","Of course you will be good.|Good, pure and chaste.  (She giggles.)",3921,0,0,
+3920,0,0,,Fuck no!,Do not defy me my subbie.|You will wear this chastity belt.,3921,-1,1,
+3920,0,0,,(Nod slowly.),Being chaste will help you to focus|in school and on your homework.,3921,0,-1,
+3921,0,0,,I guess it's fair.,I'm glad you understand.|Now open your legs.,3922,1,0,
+3921,0,0,,I don't have the|key for that belt!,Don't worry about that.|Now open your legs.,3922,0,0,
+3921,0,0,,That's inhumane!,You'll be excellent in drama class.|Now open your legs my subbie.,3922,-1,0,
+3921,0,0,,For how long?,That's my decision.|Now open your legs.,3922,0,0,
+3921,0,0,Common_ActorIsLover,"Sweetie, we won't be|able to make love.","It will only be more intense when you get out.|Now open your legs my love, it will be fun.",3922,1,0,
+3922,0,0,,Yes Mistress.|(Open your legs.),Good subbie.  (She circles the belt around your|waist and locks the crotch shield in place.),3923,0,-1,LockChastityBelt()
+3922,0,0,,Fine!  Fuck that.|(Open your legs.),(She frowns and circles the belt around your|waist.  Locking the crotch shield in place.),3923,0,1,LockChastityBelt()
+3922,0,0,,(Take a deep breath|and open your legs.),Very well.  (She circles the belt around your|waist and locks the crotch shield in place.),3923,0,0,LockChastityBelt()
+3922,0,0,,No way!,I own you my subbie|Open your legs now.,3922,0,0,
+3923,0,0,,It needs to|be so tight?,Absolutely.  And it could be even tighter.|(She smiles and gets back to her notes.),3999,0,0,"EndPunishment(""Belted"")"
+3923,0,0,,This is so kinky!,It's your belt after all.|(She gets back to her notes.),3999,0,0,"EndPunishment(""Belted"")"
+3923,0,0,,(Bow your head.),It's your belt after all.|(She gets back to her notes.),3999,0,0,"EndPunishment(""Belted"")"
+3930,0,0,,Please don't spank me.|I'll be a good girl.,"Of course you will, but for now|you will bend down facing your desk.",3931,0,0,
+3930,0,0,,Please don't hurt|me too much.,"You will be fine, don't worry.|Bend down facing your desk.",3931,0,-1,
+3930,0,0,,Forget it Amanda.,Do not defy me my subbie.|Bend down facing your desk.,3931,0,1,
+3930,0,0,,(Nod slowly.),"You will be fine, don't worry.|Bend down facing your desk.",3931,0,0,
+3930,0,0,Common_ActorIsLover,Yes my love.,You will be fine my love.|Bend down facing your desk.,3931,1,0,
+3931,0,0,,(Stay silent and bend|in front of the desk.),,3932,0,0,AmandaSpankPlayer()
+3931,0,0,,Fuck that shit!|(Bend facing the desk.),,3932,-1,0,AmandaSpankPlayer()
+3931,0,0,,Yes Mistress.|(Bend facing the desk.),,3932,0,0,AmandaSpankPlayer()
+3932,0,0,,Ow!,,3932,0,0,AmandaSpankPlayer()
+3932,0,0,,(Stay silent.),,3932,0,0,AmandaSpankPlayer()
+3932,0,0,,It hurts!,,3932,0,0,AmandaSpankPlayer()
+3932,0,0,,(Moan of pleasure.),,3932,0,0,AmandaSpankPlayer()
+3932,0,0,,"Mistress, please.",,3932,0,0,AmandaSpankPlayer()
+3932,0,0,,(Bite your lips|not to yell.),,3932,0,0,AmandaSpankPlayer()
+3932,0,0,,Oh my god!,,3932,0,0,AmandaSpankPlayer()
+3932,0,0,,(Pretend you|don't care.),,3932,0,0,AmandaSpankPlayer()
+3932,0,0,,Hell yes!  I've|been a bad girl!,,3932,0,0,AmandaSpankPlayer()
+3933,0,0,,I've learned|my lesson.,"Alright my submissive, you're a good girl.|(She picks up her school notes and starts to read.)",3999,0,0,"EndPunishment(""Spanked"")"
+3933,0,0,,I won't disobey|anymore Mistress.,"Alright my submissive, you're a good girl.|(She picks up her school notes and starts to read.)",3999,0,0,"EndPunishment(""Spanked"")"
+3933,0,0,,(Dry your tears.),Don't cry.  It was for your own good little subbie.|(She picks up her school notes and starts to read.),3999,0,-1,"EndPunishment(""Spanked"")"
+3933,0,0,,(Stay silent and|look strong.),"Alright my submissive, be a good girl now.|(She picks up her school notes and starts to read.)",3999,0,1,"EndPunishment(""Spanked"")"
+3940,0,0,,Sleep naked?  That's|an easy punishment.,"Not quite, you will sleep|naked, bound and gagged.",3941,0,1,
+3940,0,0,,I'm not sure I like|where this is going.,"My subbie, you will sleep|naked, bound and gagged.",3941,0,-1,
+3940,0,0,,Alright Mistress.,"There's more, you will sleep|naked, bound and gagged.",3941,0,0,
+3941,0,0,,"Oh, please Mistress!|I can't sleep like that.",You will learn how to.  Now be a good subbie.|(She picks up her school notes and starts to read.),3999,0,-1,"EndPunishment(""SleepBoundAndGagged"")"
+3941,0,0,,You're so|kinky Mistress.,You're even worse than me my subbie.|(She picks up her notes and starts to read.),3999,1,0,"EndPunishment(""SleepBoundAndGagged"")"
+3941,0,0,,Very well Mistress.,"It will be fun, now be a good subbie.|(She picks up her notes and starts to read.)",3999,0,0,"EndPunishment(""SleepBoundAndGagged"")"
+3941,0,0,,This is torture!,Stop complaining or I'll have to gag you.|(She picks up her notes and starts to read.),3999,-1,1,"EndPunishment(""SleepBoundAndGagged"")"

@@ -1,0 +1,29 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,Du verstehst also was vom Umgang mit Seilen.|Was willst du jetzt? (Sie starrt dich an.),SidneyFace.jpg
+0,-1,0,,"Du Dummkopf! Sieh nur, was du angerichtet hast.|Was zur Hölle willst du? (Sie starrt dich an.)",SidneyFace.jpg
+0,1,0,,"Ha! Das Fesseln in der Klasse war ziemlich|gewagt. Also, was willst du jetzt?",SidneyFace.jpg
+0,0,0,FightDefeat,"Dich fertig zu machen war so einfach.|Also, was willst du jetzt?",SidneyFace.jpg
+0,0,0,FightVictory,Dass du mich besiegt hast war nur|verdammtes Glück. Was willst du jetzt?,SidneyFace.jpg
+0,0,0,Common_PlayerGagged,Ha! Du wurdest festgenommen und|geknebelt. Du ziehst Ärger magisch an.,SidneyFace.jpg
+10,0,0,,Glotz nicht so auf die dummen Handschellen.,SidneyCuffs.jpg
+10,0,0,Common_PlayerGagged,Ha! Du wurdest festgenommen und|geknebelt. Du ziehst Ärger magisch an.,SidneyFace.jpg
+20,0,0,,"Schon wieder Nachsitzen, so langweilig!",SidneyFace.jpg
+20,0,0,Common_PlayerGagged,Ha! Du wurdest festgenommen und|geknebelt. Du ziehst Ärger magisch an.,SidneyFace.jpg
+30,0,0,,Was willst du jetzt?,SidneyFace.jpg
+30,0,0,Common_PlayerGagged,Ha! Du wurdest festgenommen und|geknebelt. Du ziehst Ärger magisch an.,SidneyFace.jpg
+40,0,0,,(Sie ignoriert dich und versucht|die Handschellen loszuwerden.),SidneyCuffs.jpg
+40,1,0,,"Viel gibt's nicht zu tun. Warten wir|bis neun Uhr, würd ich sagen.",SidneyFace.jpg
+40,0,0,Common_PlayerRestrained,"Ich kann nicht glauben, dass du dir auch Hand-|schellen eingehandelt hast. Du ziehst Ärger magisch an.",SidneyFace.jpg
+40,0,0,Common_PlayerGagged,Ha! Du wurdest festgenommen und|geknebelt. Du ziehst Ärger magisch an.,SidneyFace.jpg
+100,0,0,,Das ist fucking unglaublich.|Ich hab das genau gesehen!,SidneyFace.jpg
+110,0,0,,"(Sie schaut zur Lehrerin, dann|zu dir und zwinkert dir zu.)",SidneyFace.jpg
+150,0,0,,"Warum hast du sie geweckt, verdammt?",SidneyFace.jpg
+160,0,0,,Du hattest einen guten Plan und|dann hast du ihn verkackt.,SidneyFace.jpg
+200,0,0,,Das ist der Hammer! Du hast die|verdammte Lehrerin betäubt!,SidneyFace.jpg
+200,2,0,,Das ist der Hammer! Du hast die verdammte Lehrerin|betäubt! Können wir Freunde sein? Ich liebe das.,SidneyFace.jpg
+200,0,2,,Das ist der Hammer! Du hast die verdammte Lehrerin|betäubt! Bitte bring mir alles bei was du weißt.,SidneyFace.jpg
+210,0,0,,Was willst du?|Kannst du mir raushelfen?,SidneyFace.jpg
+210,0,0,EggInside,Dieses verfickte Ei macht mich wahnsinnig!|Mach das weg oder ich trete dir in den Arsch.,SidneyFace.jpg
+220,0,0,,Du bist so fucking pervers.,SidneyStrip.jpg
+220,0,0,EggInside,Dieses verfickte Ei macht mich wahnsinnig!|Mach das weg oder ich trete dir in den Arsch.,SidneyStrip.jpg
+300,0,0,,(Sidney ist fort.),SidneyGone.jpg

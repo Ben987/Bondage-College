@@ -1,10 +1,10 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Inspect it.)|(1 minute),"This wooden pillory dates from a few decades ago.|It's open barely, maybe you could fit your head in.",0,0,0,
-0,0,0,,(Open the panel.)|(1 minute),You try to grab the panel but cannot reach|it with your arms bound in this position.,0,0,0,
+0,0,0,,(Inspect it.)ADD_MINUTES:1,"This wooden pillory dates from a few decades ago.|It's open barely, maybe you could fit your head in.",0,0,0,
+0,0,0,,(Open the panel.)ADD_MINUTES:1,You try to grab the panel but cannot reach|it with your arms bound in this position.,0,0,0,
 0,0,0,,(Squeeze your head in.),Maybe you could squeeze your head in.|But are you sure you want to do it?,10,0,0,
-10,0,0,,(Squeeze your head in.)|(1 minute),You struggle but finally manage|to squeeze your head in the pillory.,20,0,0,Trap()
+10,0,0,,(Squeeze your head in.)ADD_MINUTES:1,You struggle but finally manage|to squeeze your head in the pillory.,20,0,0,Trap()
 10,0,0,,(Don't do it.),You pull back from the device.,0,0,0,
-20,0,0,,(Grab the panel.)|(1 minute),You try to grab the panel to open it|but cannot reach it with your bound arms.,20,0,0,
-20,0,0,,(Try to slip out.)|(1 minute),You struggle to slip out but|the shape of your head prevents it.,20,0,0,
-20,0,0,,(Kick the frame.)|(1 minute),You kick the frame in anger but|only manage to hurt your foot.,20,0,0,
+20,0,0,,(Grab the panel.)ADD_MINUTES:1,You try to grab the panel to open it|but cannot reach it with your bound arms.,20,0,0,
+20,0,0,,(Try to slip out.)ADD_MINUTES:1,You struggle to slip out but|the shape of your head prevents it.,20,0,0,
+20,0,0,,(Kick the frame.)ADD_MINUTES:1,You kick the frame in anger but|only manage to hurt your foot.,20,0,0,
 20,0,0,,@UUUMNGH!,Nobody's there to hear you.,20,0,0,

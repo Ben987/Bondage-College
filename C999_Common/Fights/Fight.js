@@ -51,7 +51,7 @@ function LoadFight(EndScreen, DifficultyText, IconImage, SkillBonus) {
     FightIcon = IconImage;
 	FightSkillBonus = SkillBonus;
 	FightPerfect = true;
-	ReadCSV("FightAnim", CurrentChapter + "/" + CurrentScreen + "/Fight.csv");
+	ReadCSV("FightAnim", CurrentChapter, CurrentScreen, "Fight");
 	LoadText();
 	GenerateFightSequence(5000);
 

@@ -95,6 +95,10 @@ function LoadState(SlotNumber) {
 			GameLog = JSON.parse(localStorage.getItem("GameLog" + SN));
 			PlayerSkill = JSON.parse(localStorage.getItem("PlayerSkill" + SN));
 			CurrentTime = parseFloat(localStorage.getItem("CurrentTime" + SN));
+			
+			// Makes sure the owner and lover aren't null from previous saves
+			if (Common_PlayerOwner == null) Common_PlayerOwner = "";
+			if (Common_PlayerLover == null) Common_PlayerLover = "";
 
 			// You can start with different clothes on chapter 12
 			if (CurrentChapter == "C012_AfterClass") {

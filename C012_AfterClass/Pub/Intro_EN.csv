@@ -11,9 +11,9 @@ Stage,LoveReq,SubReq,VarReq,IntroText,Image
 110,0,8,,Oh!  Miss COMMON_PLAYERNAME!|Can you please remove the egg now?,PubActor.jpg
 111,0,0,,,PubActor.jpg
 112,0,0,,,PubActor.jpg
-120,0,0,,Hey girl!  If you want to sit here|you need to bring me a beer.,PubActor.jpg
-120,8,0,,Hey cutie!  If you want to sit here|you need to bring me a beer.,PubActor.jpg
-120,-8,0,,Hey fuck face!  If you want to sit|here you need to bring me a beer.,PubActor.jpg
+120,0,0,,"Hey girl!  If you want to sit here,|you need to bring me a beer.",PubActor.jpg
+120,8,0,,"Hey cutie!  If you want to sit here,|you need to bring me a beer.",PubActor.jpg
+120,-8,0,,"Hey fuck face!  If you want to sit|here, you need to bring me a beer.",PubActor.jpg
 121,0,0,,,PubActor.jpg
 122,0,0,,,PubActor.jpg
 130,0,0,,Hello Miss COMMON_PLAYERNAME.|What brings you to the pub?,PubActor.jpg

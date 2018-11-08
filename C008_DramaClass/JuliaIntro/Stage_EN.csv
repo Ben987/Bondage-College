@@ -1,6 +1,6 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,Come here Julia!|(Hug Julia) (1 minute),Si!  (She wraps her arms around|you and squeezes you on her chest.),10,1,0,Hug()
-0,0,0,,A hug?  Are you sure?|(Hug Julia)  (1 minute),So timid!  (She wraps her arms around|you and squeezes you on her chest.),10,1,-1,Hug()
+0,0,0,,Come here Julia!|(Hug Julia)ADD_MINUTES:1,Si!  (She wraps her arms around|you and squeezes you on her chest.),10,1,0,Hug()
+0,0,0,,A hug?  Are you sure?|(Hug Julia) ADD_MINUTES:1,So timid!  (She wraps her arms around|you and squeezes you on her chest.),10,1,-1,Hug()
 0,0,0,,"Please, no hug.",Such a shy new pupil.|Welcome to drama class!,20,0,-1,
 0,0,0,,Forget it Julia.,(She frowns at you but quickly smiles again.)|Welcome to drama class COMMON_PLAYERNAME!,20,-1,1,
 10,0,0,,That's a nice hug.,Si!  I love to give big and warm hugs!|Welcome to drama class COMMON_PLAYERNAME.,20,0,0,

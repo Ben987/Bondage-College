@@ -1,0 +1,136 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,Hungrig wie der Wolf!,(Sie singt.) Hungry like the wolf!|Gehst du raus oder isst du hier?,10,1,0,
+0,0,0,,Ich weiß nicht. Ich|esse vielleicht später.,"Oh nein! Du musst doch was essen. Es gibt|eine Cafeteria, oder du kannst nach draußen.",10,0,-1,
+0,0,0,,Hungrig nach dir.,(Sie kichert.) Was? Nach mir?|Gehst du raus oder isst du hier?,10,0,1,
+0,0,0,,Hungrig? Nur wenn's hier|Essen ohne GVOs gibt.,Was auch immer das bedeutet.|Gehst du raus oder isst du hier?,10,-1,0,
+10,0,0,,Ich weiß nicht.|Was sollte ich tun?,Versuch das Café in der Nähe. Ich geh oft|mit meiner besten Freundin da hin.,20,0,-1,
+10,0,0,,Was ist besser?,Versuch das Café in der Nähe. Ich geh oft|mit meiner besten Freundin da hin.,20,0,0,
+10,0,0,,"Alles, um hier|raus zu kommen.",Versuch das Café in der Nähe. Ich geh oft|mit meiner besten Freundin da hin.,20,-1,0,
+20,5,0,,"Okay! Kommst|du mit, Süße?","Süße? (Sie kichert und lächelt.)|Na gut, wollen wir jetzt gleich los?",30,1,0,
+20,0,5,,"Perfekt! Komm|mit, Mädchen.","Ich wollte eigentlich... Egal.|Ich zeige Ihnen gern das Café, Miss.",30,0,1,
+20,0,0,NoOption,Möchtest du|mit mir da hin?,"Ich kann nicht, ich hab|schon andere Pläne.",40,0,0,
+20,0,0,NoOption,Kannst du es|mir zeigen?,"Ich kann nicht, ich hab|schon andere Pläne.",40,0,0,
+20,0,0,,Ich geh ins Café.|Bis später dann.,Na klar!|(Sie dreht sich um und geht zum Mittagessen.),50,0,0,EndLunch()
+30,0,0,,Gehen wir!|(Mit Sarah essen.),(Ihr geht beide in ein nahegelegenes|Restaurant und findet einen leeren Tisch.),100,0,0,StartLunch()
+40,0,0,,"Okay, bis später.",Na klar!|(Sie winkt und geht zum Mittagessen.),50,0,0,EndLunch()
+40,0,0,,Dann guten Hunger!,Auf jeden Fall!|(Sie winkt und geht zum Mittagessen.),50,1,0,EndLunch()
+40,0,0,,Du bist scheiße.,Selber!|(Sie dreht sich um und geht zum Mittagessen.),50,-2,0,EndLunch()
+100,0,0,,Was kannst du|denn empfehlen?,Der Nachoteller ist hier der Hammer!|Gefällt dir denn die Schule bis jetzt?,110,0,0,
+100,0,0,,Ich verhungere!|Was ist hier genießbar?,(Sie kichert.) Ich liebe den Nachoteller.|Gefällt dir denn die Schule bis jetzt?,110,0,1,
+100,0,0,,Kannst du etwas|für mich aussuchen?,"Keine Ahnung, schau in die Karte.|Gefällt dir denn die Schule bis jetzt?",110,0,-1,
+110,0,0,,Oh ja! Es wirkt wie|eine gute Akademie.,"Ja und nein, manche Fächer sind langweilig.|Und was willst du später mal werden?",120,0,0,
+110,0,0,,Dieses College ist|ein Irrenhaus.,(Sie lacht lauthals.) Gut erkannt!|Und was willst du später mal werden?,120,0,0,GoodMatch()
+110,0,0,,Ich hab noch nie ein so|perverses College gesehen.,(Sie lacht lauthals.) Gut möglich!|Und was willst du später mal werden?,120,0,0,GoodMatch()
+110,0,0,,Schwer zu sagen nach|den paar Stunden.,"Wir plaudern doch nur, sei ruhig ehrlich.|Und was willst du später mal werden?",120,0,0,BadMatch()
+110,0,0,,Es ist 'ne ziemlich|öde Schule.,"Ja, manche Fächer können schon ganz langweilig sein.|Und was willst du später mal werden?",120,0,0,
+120,0,0,,Musikerin.,Nett! Und was ist dein Lieblingsfach?,130,0,0,GoodMatch()
+120,0,0,,Ärztin.,Okay. Und was ist dein Lieblingsfach?,130,0,0,
+120,0,0,,Sportlerin.,Okay. Und was ist dein Lieblingsfach?,130,0,0,
+120,0,0,,Lehrerin.,Okay. Und was ist dein Lieblingsfach?,130,0,0,
+120,0,0,,Schauspielerin.,Nett! Und was ist dein Lieblingsfach?,130,0,0,GoodMatch()
+120,0,0,,Domina.,(Sie wird rot.) Und was ist dein Lieblingsfach?,130,0,1,GoodMatch()
+120,0,0,,Architektin.,Langweilig! Und was ist dein Lieblingsfach?,130,0,0,BadMatch()
+120,0,0,,Landwirtin.,Iiihh! Mit Schweinen und Körnern?|Und was ist dein Lieblingsfach?,130,-1,0,BadMatch()
+120,0,0,,Programmiererin.,Langweilig! Und was ist dein Lieblingsfach?,130,0,0,BadMatch()
+120,0,0,,Weiß ich noch nicht.,"Geht mir genauso, keine Ahnung was ich will.|Was ist dein Lieblingsfach?",130,0,0,GoodMatch()
+130,0,0,,Mathe.,Echt jetzt? Und was machst du so nach der Schule?,140,0,0,BadMatch()
+130,0,0,,Musik.,Nett! Und was machst du so nach der Schule?,140,0,0,GoodMatch()
+130,0,0,,Englisch.,Okay. Und was machst du so nach der Schule?,140,0,0,
+130,0,0,,Sport.,Okay. Und was machst du so nach der Schule?,140,0,0,
+130,0,0,,Chemie.,Echt jetzt? Und was machst du so nach der Schule?,140,0,0,BadMatch()
+130,0,0,,Französisch.,Nett! Und was machst du so nach der Schule?,140,0,0,GoodMatch()
+130,0,0,,Kunst.,Nett! Und was machst du so nach der Schule?,140,0,0,GoodMatch()
+130,0,0,,Geschichte.,Okay. Und was machst du so nach der Schule?,140,0,0,
+130,0,0,,Theater.,Nett! Und was machst du so nach der Schule?,140,0,0,GoodMatch()
+130,0,0,,Keine Ahnung.,"Komm schon, es ist doch nur Smalltalk.|Und was machst du so nach der Schule?",140,0,0,BadMatch()
+140,0,0,,Basketball.,"Mmmmhmmm. (Eine Kellnerin kommt,|um eure Bestellung aufzunehmen.)",150,0,0,
+140,0,0,,Rockmusik.,"Das ist toll! (Eine Kellnerin kommt,|um eure Bestellung aufzunehmen.)",150,0,0,GoodMatch()
+140,0,0,,Videospiele.,"Mmmmhmmm. (Eine Kellnerin kommt,|um eure Bestellung aufzunehmen.)",150,0,0,
+140,0,0,,Cheerleading.,"Mmmmhmmm. (Eine Kellnerin kommt,|um eure Bestellung aufzunehmen.)",150,0,0,
+140,0,0,,Auf Partys gehen.,"Das ist toll! (Eine Kellnerin kommt,|um eure Bestellung aufzunehmen.)",150,0,0,GoodMatch()
+140,0,0,,Rollenspiele.,"Mmmmhmmm. (Eine Kellnerin kommt,|um eure Bestellung aufzunehmen.)",150,0,0,
+140,0,0,,Mich besaufen.,"Gute Einstellung! (Eine Kellnerin kommt,|um eure Bestellung aufzunehmen.)",150,0,0,GoodMatch()
+140,0,0,,Klassische Musik.,"Klingt langweilig. (Eine Kellnerin kommt,|um eure Bestellung aufzunehmen.)",150,0,0,BadMatch()
+140,0,0,,Liebe machen.,(Sie nickt und wird rot.) Du bist so pervers!|(Eine Kellnerin möchte eure Bestellung aufnehmen.),150,1,0,GoodMatch()
+140,0,0,,Ich hab|keine Hobbys.,"Wirklich? Gar nichts? (Eine Kellnerin kommt,|um eure Bestellung aufzunehmen.)",150,0,0,BadMatch()
+150,0,0,,Einen Salat bitte.,(Sie lächelt und bestellt einen Nachoteller.)|Meine Mitbewohnerin liebt Suppe und Salat.,160,0,0,GoodMatch()
+150,0,0,,Ein Steak bitte.,"(Sie lächelt und bestellt einen Nachoteller.) Nimm|nächstes Mal die Nachos, es gibt drei Sorten Käse.",160,0,0,
+150,0,0,,Eine Suppe bitte.,(Sie lächelt und bestellt einen Nachoteller.)|Meine Mitbewohnerin liebt Suppe und Salat.,160,0,0,GoodMatch()
+150,0,0,,Einen Hamburger bitte.,(Sie bestellt einen Nachoteller.)|Ich kann kein Fast Food mehr essen.,160,0,0,BadMatch()
+150,0,0,,Einen Nachoteller bitte.,(Sie lächelt und bestellt das Gleiche.)|Beste Entscheidung deines Lebens!,160,0,0,GoodMatch()
+150,0,0,,Nur Käsekuchen bitte.,Nur Käsekuchen? Super Idee!|(Sie bestellt auch Käsekuchen und lächelt.),160,0,0,GoodMatch()
+150,0,0,,Suppe und Salat bitte.,(Sie lächelt und bestellt einen Nachoteller.)|Meine Mitbewohnerin liebt Suppe und Salat.,160,0,0,GoodMatch()
+150,0,0,,Einen Chili Dog bitte.,(Sie bestellt einen Nachoteller.)|Ich kann kein Fast Food mehr essen.,160,0,0,BadMatch()
+150,0,0,,Fettuccine Alfredo bitte.,"(Sie lächelt und bestellt einen Nachoteller.) Nimm|nächstes Mal die Nachos, es gibt drei Sorten Käse.",160,0,0,
+150,0,0,,Nur Wasser bitte.,(Sie bestellt einen Nachoteller.)|Nur Wasser? Geht's dir nicht gut?,160,0,0,
+160,0,0,,Hoffentlich sind sie schnell.|Ich will nicht zu spät sein.,"Mach dir nichts draus, ich bin immer zu spät.|Ich wasch mir die Hände. (Sie geht zur Toilette.)",170,0,-1,RestroomTimerStart(false)
+160,0,0,,"Du bist also 'ne kleine|Maus, die Käse liebt?",Ganz genau! (Sie ahmt eine Maus nach.)|Ich wasch mir die Hände. (Sie geht zur Toilette.),170,1,0,RestroomTimerStart(true)
+160,0,0,,"Keine Sorge wegen der|Rechnung, ich zahle.",Echt? Das ist sehr großzügig von dir.|Ich wasch mir die Hände. (Sie geht zur Toilette.),170,0,1,RestroomTimerStart(true)
+160,0,0,,Zahlst du heute? Ich|zahle beim nächsten Mal.,Mmmh. Na gut. (Sie wirkt unzufrieden.)|Ich wasch mir die Hände. (Sie geht zur Toilette.),170,-1,0,RestroomTimerStart(false)
+170,0,0,,(Geduldig warten.)ADD_MINUTES:1,"Du wartest geduldig, aber sie ist|noch nicht von der Toilette zurück.",170,0,0,RestroomTimerRun()
+170,0,0,,(Nach draußen schauen.)ADD_MINUTES:1,Du betrachtest die Leute draußen und wartest.|Sie ist noch nicht von der Toilette zurück.,170,0,0,RestroomTimerRun()
+170,0,0,,(Zur Toilette gehen.),"Du gehst richtung Toilette, aber|die einzige Tür ist verschlossen.",180,0,0,
+170,0,0,,(Das Café verlassen.)|(Zurück zum College.),,0,-3,0,LeaveStranded()
+180,0,0,,(An der Tür warten.)ADD_MINUTES:1,"(Du wartest geduldig neben der Tür,|aber sie kommt nicht raus.)",180,0,0,RestroomTimerRun()
+180,0,0,,(An die Tür klopfen.),(Du hörst Sarahs Stimme.)|Noch eine Minute bitte!,180,0,0,
+180,0,0,,(Die Tür öffnen.),"(Du versuchst die Tür zu öffnen,|aber sie ist verschlossen.)",180,0,0,
+180,0,0,,(Die Tür mit|Gewalt öffnen.),"(Du versuchst die Tür aufzustemmen,|aber sie rührt sich nicht.)",180,0,0,
+180,0,0,,Sarah! Lass mich rein!,(Sarah schreit zurück.)|Gib mir noch 'ne Minute!,180,0,0,RestroomTestDoor()
+180,0,0,,Beeilung!,(Sarah schreit zurück.)|Eine Minute bitte!,180,0,0,RestroomTestDoor()
+180,0,0,,(Zurück zu deinem Platz.),,170,0,0,
+180,0,0,,(Das Café verlassen.)|(Zurück zum College.),,0,-3,0,LeaveStranded()
+190,0,0,,Das hat gedauert!,(Sie kichert.) Das höre ich oft.|(Die Kellnerin bringt das Essen.),300,0,0,
+190,0,0,,Mädel. Lass mich niemals|so lange warten.,Entschuldigung. Hat es so lange gedauert?|(Die Kellnerin bringt das Essen.),300,-1,1,
+190,0,0,,"Kein Wunder, dass deine|Hände so schön sind.",(Sie lächelt.) Danke! War das zu lange?|(Die Kellnerin bringt das Essen.),300,1,0,
+190,0,0,,Wer braucht denn zehn Mi-|nuten zum Händewaschen?,Zehn Minuten? Hat es so lange gedauert?|(Die Kellnerin bringt das Essen.),300,-1,0,
+200,5,0,,Ich muss mir auch|die Hände waschen.,Ooohh! Gib's doch einfach zu.|Es gibt 'nen anderen Grund. (Sie zwinkert.),210,0,-1,
+200,5,0,,Ich wollte|ungestört sein.,Ungestört? (Sie kichert.)|Wieso das denn?,210,0,0,
+200,5,0,,"Sarah, kann ich|dich küssen?",(Ohne ein Wort gebt ohr euch eine liebende|Umarmung und küsst euch langsam.),220,1,0,Kiss()
+200,0,5,,(Schweigen und die|Tür abschließen.),"(Sie wirkt etwas nervös.)|Was ist denn los, Miss?",230,0,1,
+200,0,5,,"Mädel, dich schnapp|ich mir jetzt.","Was? Aber Miss, wir sind|an einem öffentlichen Ort.",230,-1,1,
+200,0,0,,Das Essen sollte fertig sein.|(Zurück zum Tisch.),(Sie nickt und ihr kehrt beide|zu eurem Tisch zurück.),300,0,0,
+210,0,0,,(Sie packen|und küssen.),"(Sie wehrt sich nicht, als du sie|umarmst und liebevoll küsst.)",220,0,1,Kiss()
+210,0,0,,"Es wäre himmlisch, wenn|ich dich küssen könnte.",(Sie kichert.) Du bist so romantisch!|(Sie umarmt und küsst dich sanft.),220,0,-1,Kiss()
+210,0,0,,"Ich liebe dich, Sarah.|Kann ich dich küssen?",(Ohne ein Wort gebt ohr euch eine liebende|Umarmung und küsst euch langsam.),220,1,0,Kiss()
+210,0,5,,"Mädel, dich schnapp|ich mir jetzt.","Was? Aber Miss, wir sind|an einem öffentlichen Ort.",230,-1,1,
+210,0,0,,Das Essen sollte fertig sein.|(Zurück zum Tisch.),(Sie nickt und ihr kehrt beide|zu eurem Tisch zurück.),300,0,0,
+220,0,0,,(Sie erneut küssen.)ADD_MINUTES:1,(Ihr küsst euch sanft in der|Toilette des Restaurants.),220,0,0,
+220,0,0,,Lass uns|ungezogen sein!,(Sie kichert.) Ungezogen?|Was stellst du dir da vor?,230,0,0,
+220,0,5,,"Mädel, dich schnapp|ich mir jetzt.","Was? Aber Miss, wir sind|an einem öffentlichen Ort.",230,-1,1,
+220,0,0,,Das Essen sollte fertig sein.|(Zurück zum Tisch.),(Sie seufzt und ihr kehrt beide|zu eurem Tisch zurück.),300,-1,0,
+230,0,0,,Ich will Liebe machen.|Mit dir nackig sein.,"(Ihr zieht euch beide aus und seht euch an.) Das ist|so sexy! (Sie prüft, ob die Tür abgeschlossen ist.)",240,1,0,Strip()
+230,0,0,,Ich will dich nackt und|ordentlich gefesselt sehen.,"Oh ja, Miss! (Sie prüft, ob die Tür abge-|schlossen ist, und ihr zieht euch beide aus.)",240,0,1,Strip()
+230,0,0,,"Bereit, mit|mir zu strippen?","Ha! Klar doch! (Sie prüft, ob die Tür abge-|schlossen ist, und ihr zieht euch beide aus.)",240,0,0,Strip()
+230,0,0,,Das Essen sollte fertig sein.|(Zurück zum Tisch.),(Sie seufzt und ihr kehrt beide|zu eurem Tisch zurück.),300,-1,0,
+240,5,0,,"Du bist so hübsch, Sarah.|(Mit Sarah Liebe machen.)",Oh ja! Hast du auch etwas|schmutziges Spielzeug dabei?,250,0,0,BonusDone()
+240,0,5,,"Komm her, Mädchen.|(Mit Sarah Liebe machen.)","Natürlich! Haben Sie auch etwas|schmutziges Spielzeug dabei, Miss?",250,0,0,BonusDone()
+240,0,0,,Wir sollten aufhören.|(Zurück zum Tisch.),"(Sie seufzt, ihr zieht euch beide wieder|an und kehrt zu eurem Tisch zurück.)",300,-1,-1,Dress()
+250,0,0,,(Dich an sie reiben.)ADD_MINUTES:1,(Ihr reibt euch aneinander und stöhnt in|langsamer und lieblicher Wollust.),250,0,0,MakeLove()
+250,0,0,,(Euch beide fingern.)ADD_MINUTES:1,(Du fingerst dich und sie gleichzeitig.|Ihr beide bebt und schwitzt bei der Berührung.),250,0,0,MakeLove()
+250,0,0,,(Ihre Nippel kneifen.)ADD_MINUTES:1,"(Sie schreit ein wenig, als du ihre Nippel kneifst.|Es scheint ihr sehr zu gefallen.)",250,0,0,Violence()
+250,0,5,,(Ihr eine Ohrfeige geben.)ADD_MINUTES:1,(Du klatschst ihr ziemlich doll ins Gesicht.|Sie senkt ihren Kopf und wird schneller.),250,0,0,Violence()
+250,0,0,IsRoped,(Sie losbinden.)ADD_MINUTES:1,"(Sie versucht gefesselt zu bleiben,|aber du bekommst die Knoten auf.)",250,0,0,Untie()
+250,0,0,IsGagged,(Sie entknebeln.)ADD_MINUTES:1,"(Sie versucht ihren Knebel zu behalten,|aber du schaffst es, ihn zu entfernen.)",250,0,0,Ungag()
+250,0,0,IsBoundAndGagged,"Verarscht, du Schlampe.|(Sie im Stich lassen.)",,250,0,0,EvilEnd()
+250,0,0,,Wir sollten aufhören.|(Zurück zum Tisch.),"(Sie seufzt, ihr zieht euch beide wieder|an und kehrt zu eurem Tisch zurück.)",300,-2,-1,Dress()
+260,0,0,,Das war wundervoll.|(Ihr hochhelfen.),(Du hilfst ihr beim Aufstehen und sie nickt.)|Ja! Das war reine Magie.,270,1,0,Release()
+260,0,0,,Du bist so eine Nutte.|(Ihr hochhelfen.),(Du hilfst ihr beim Aufstehen.) Eine Nutte? Wie|kommst du nur darauf? (Sie streckt die Zunge raus.),270,0,1,
+260,0,0,IsBoundAndGagged,"Verarscht, du Schlampe.|(Sie im Stich lassen.)",,260,0,0,EvilEnd()
+270,0,0,,Essenszeit!|(Anziehen und zurück.),Oh ja! Ich hab jetzt solchen Hunger!|(Ihr setzt euch und das Essen ist bereits serviert.),300,0,0,Dress()
+300,0,0,,Ich hab keinen Hunger.,Du solltest mehr essen. (Sie isst schnell auf.)|(Die Kellnerin erscheint mit der Rechnung.),310,0,-1,
+300,0,0,,Guten Appetit!,(Sie nickt und isst schnell auf.)|(Die Kellnerin erscheint mit der Rechnung.),310,0,0,EatLunch()
+300,0,0,,Guten Hunger!,(Sie nickt und isst schnell auf.)|(Die Kellnerin erscheint mit der Rechnung.),310,0,0,EatLunch()
+300,0,0,,"Iss anständig, hab|gute Manieren.",(Sie nickt und isst langsam.)|(Die Kellnerin erscheint mit der Rechnung.),310,0,1,EatLunch()
+310,0,0,,Ich bin pleite. Kannst|du bezahlen?,Was? Aber... (Sie verzieht das Gesicht und zahlt.)|Dann gehen wir mal. (Sie wirkt unzufrieden.),320,-2,-1,
+310,0,0,,Zahl du. Ich zahle|beim nächsten Mal.,(Sie runzelt die Stirn.) Na gut.|Gehen wir zur Schule zurück.,320,-1,0,
+310,0,0,,Ich zahle.,"Ooohh, das ist viel zu lieb von dir.|Dann gehen wir mal zur Schule zurück.",320,0,1,
+310,0,0,,Wir sollten uns|die Rechnung teilen.,Absolut kein Problem!|Dann lass uns gehen.,320,0,0,
+310,0,0,,Kommen wir ohne|zu zahlen hier raus?,Verlockende Idee! Aber die|kennen mich hier zu gut.,320,0,0,
+320,0,0,,Gehen wir.|(Zurück zum College.),(Auf dem Rückweg hält Sarah dich bei den Schließ-|fächern an.) Warte kurz. Ich hab ein Geschenk für dich.,330,0,0,TestArmbinder()
+330,0,0,,Ein Geschenk? Das|verdiene ich nicht.,"Aber sicher doch, ich hatte 'ne Menge Spaß.|(Sie gibt dir einen Monohandschuh aus Leder.)",340,0,-1,AddArmbinder()
+330,0,0,,Das ist sehr|nett von dir.,"Keine Ursache, ich hatte 'ne Menge Spaß.|(Sie gibt dir einen Monohandschuh aus Leder.)",340,1,0,AddArmbinder()
+330,0,0,,Was für ein Geschenk?,"Ich hatte 'ne Menge Spaß, das ist für dich.|(Sie gibt dir einen Monohandschuh aus Leder.)",340,0,0,AddArmbinder()
+340,0,0,,"Danke, Sarah!",Kein Problem! Du kannst bestimmt|besser damit umgehen als ich.,350,0,0,
+340,0,0,,Spitze! Den|teste ich an dir. ,(Sie kichert.) Das will ich doch hoffen.,350,0,1,
+340,0,0,,Der sieht irgendwie|billig aus.,"Oh nein, das Ding ist toll.|Probier's aus, du wirst sehen.",350,-1,0,
+350,0,0,,Bis später!|(Zur nächsten Stunde.),,350,0,0,EndChapter()

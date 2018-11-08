@@ -1,0 +1,87 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,Jep! Und es ist mir|ziemlich gut gelungen.,Hoffentlich korrigiert etwas Isolation deine Haltung.|Schämst du dich für deine Tat?,10,-1,1,
+0,0,0,,Sidney hat mich|dazu gedrängt!,Sie wird eine entsprechende Strafe erhalten.|Schämst du dich für deine Tat?,10,0,0,
+0,0,0,,(Schweigen.),"Du solltest reden, solange du noch kannst.|Schämst du dich für deine Tat?",10,0,0,
+0,0,0,,"Es tut mir leid,|Miss Mildred.",Schon besser. Aber du verdienst dennoch eine|Bestrafung. Schämst du dich für deine Tat?,10,1,-1,
+10,0,0,,(Deinen Kopf senken.),Viel besser. Jetzt gib mir deine Tasche.|(Sie beschlagnahmt deine Schultasche.),20,0,-1,StealItems()
+10,0,0,,(Schweigen.),Gut. Sei still und gib mir die Tasche.|(Sie beschlagnahmt deine Schultasche.),20,0,0,StealItems()
+10,0,0,,"Ja, ich weiß, das|war unüberlegt.",Wohl war. Jetzt gib mir die Tasche.|(Sie beschlagnahmt deine Schultasche.),20,1,0,StealItems()
+10,0,0,,Schämen? Das war die|beste Stunde überhaupt.,(Sie ist rasend.) Gib mir die Tasche!|(Sie beschlagnahmt deine Schultasche.),20,-1,0,StealItems()
+10,0,0,,"Du hast dich kaum|dagegen gewehrt, Mildred.",Unfug! Jetzt gib mir die Tasche.|(Sie beschlagnahmt deine Schultasche.),20,0,1,StealItems()
+20,0,0,,Hey! Das können|Sie nicht tun.,"Ich kann noch sehr viel Schlimmeres.|Entferne deine Uniform, junge Dame.",30,0,0,
+20,0,0,,Bekomme ich meine|Tasche wieder?,"Erst nach deiner Bestrafung.|Jetzt entferne deine Uniform, junge Dame.",30,0,0,
+30,0,0,,Sie Perverse! Ich ziehe|mich doch nicht aus.,"Wenn du es nicht tust, tue ich es.|Ziehe sie aus, oder es wird schmerzhaft.",40,0,1,
+30,0,0,,Aber hier ist|es eisig kalt.,"Von deinem Gejammer wird es nicht wärmer.|Ziehe sie aus, oder es wird schmerzhaft.",40,0,0,
+30,0,0,,"Ja, Miss Mildred.|(Ausziehen.)ADD_MINUTES:1",Sehr gut. Als Teil deiner Strafe wirst du|dies tragen. (Sie zeigt dir ein Lederhalsband.),60,1,-1,
+30,0,0,,(Schweigend ausziehen.)ADD_MINUTES:1,Gutes Mädchen. Als Teil deiner Strafe wirst du|dies tragen. (Sie zeigt dir ein Lederhalsband.),60,1,0,
+40,0,0,,Fick dich!,"(Sie zerrt und schnallt dich an eine Vorrichtung.)|Wir haben Wege, dich gefügig zu machen, junge Dame.",50,-1,0,
+40,0,0,,Vergessen sie's. Ich|ziehe mich nicht aus.,"(Sie zerrt und schnallt dich an eine Vorrichtung.)|Wir haben Wege, dich gefügig zu machen, junge Dame.",50,0,0,
+40,0,0,,"Ja, Miss Mildred.|(Ausziehen.)ADD_MINUTES:1",Sehr gut. Als Teil deiner Strafe wirst du|dies tragen. (Sie zeigt dir ein Lederhalsband.),60,1,-1,
+40,0,0,,(Schweigend ausziehen.)ADD_MINUTES:1,Gutes Mädchen. Als Teil deiner Strafe wirst du|dies tragen. (Sie zeigt dir ein Lederhalsband.),60,1,0,
+50,0,0,,Lassen Sie mich gehen!,(Sie zieht dich aus und holt ein Lederhalsband hervor.)|Als Teil deiner Strafe wirst du dies tragen.,70,0,0,
+50,0,0,,HILFE! POLIZEI!,(Sie zieht dich aus und holt ein Lederhalsband hervor.)|Als Teil deiner Strafe wirst du dies tragen.,70,0,-1,
+50,0,0,,(Sie böse ansehen.),(Sie zieht dich aus und holt ein Lederhalsband hervor.)|Als Teil deiner Strafe wirst du dies tragen.,70,0,1,
+60,0,0,,Was ist das?,Es ist ein Halsband für deine Bestrafung.|(Sie schnallt dir das Halsband um.),100,0,0,AddCollar()
+60,0,0,,Ein Halsband? Sehe ich|aus wie ein Hund?,"Hör auf zu meckern, junge Dame.|(Sie schnallt dir das Halsband um.)",100,0,1,AddCollar()
+60,0,0,,Sie Verrückte! Das|werde ich nicht tragen.,"Hör auf zu meckern, junge Dame.|(Sie schnallt dir das Halsband um.)",100,-1,0,AddCollar()
+60,0,-3,,"Sie wollen mir ein|Halsband anlegen, Miss?",Nur für die Dauer deiner Bestrafung.|(Sie schnallt dir das Halsband um.),100,0,-1,AddCollar()
+70,0,0,,Was ist das?,"Es ist ein Halsband für deine Bestrafung, junge Dame.|(Sie schnallt dir das Halsband um und lässt dich frei.)",100,0,0,AddCollar()
+70,0,0,,Ein Halsband? Sehe ich|aus wie ein Hund?,"Das ist nicht zu verhandeln, junge Dame.|(Sie schnallt dir das Halsband um und lässt dich frei.)",100,0,1,AddCollar()
+70,0,0,,Sie Verrückte! Das|werde ich nicht tragen.,"Das ist nicht zu verhandeln, junge Dame.|(Sie schnallt dir das Halsband um und lässt dich frei.)",100,-1,0,AddCollar()
+70,0,-3,,"Sie wollen mir ein|Halsband anlegen, Miss?","Nur für die Dauer deiner Bestrafung, junge Dame.|(Sie schnallt dir das Halsband um und lässt dich frei.)",100,0,-1,AddCollar()
+100,0,0,,Was passiert hier drin?,"Ganz einfach. Du wirst mit Seilen gefesselt und|bleibst für die nächste Stunde isoliert, Fräulein.",110,0,0,
+100,0,0,,"Es tut mir leid, Miss.|Bitte lassen Sie mich frei.","Dafür ist es zu spät. Du wirst mit Seilen gefesselt und|bleibst für die nächste Stunde isoliert, Fräulein.",110,1,-1,
+100,0,0,,Dieses Halsband ist sexy!,"Konzentration, junge Dame. Du wirst mit Seilen|gefesselt und bleibst für die nächste Stunde isoliert.",110,0,0,
+100,0,0,,Ihnen würde das Halsband|besser stehen.,(Sie starrt dich an.) Du wirst mit Seilen|gefesselt und bleibst für die nächste Stunde isoliert.,110,0,1,
+110,0,0,,Gefesselt? Das|geschieht mir wohl recht.,Absolut. (Sie holt etwas Seil|und wickelt es um deinen Körper.),120,1,0,AddRope()
+110,0,0,,(Umdrehen und ihr|deine Hände geben.),"(Sie lächelt, holt etwas Seil|und wickelt es um deinen Körper.)",120,0,-1,AddRope()
+110,0,0,,Oh nein! Sie werden|mich nicht fesseln.,"Oh doch, und ob. (Sie ergreift deine Arme, holt|etwas Seil und wickelt es um deinen Körper.)",120,0,0,AddRope()
+120,0,0,,"Scheiße, ist das eng!",Und es wird noch enger.|(Sie schubst dich in eine Stahlzelle.),125,-1,0,CheckForCrop()
+120,0,0,,So können Sie mich|doch nicht hierlassen!,Es kommt noch schlimmer.|(Sie schubst dich in eine Stahlzelle.),125,0,0,CheckForCrop()
+120,0,0,,"Oh, Miss, ist das geil!","Führ dich nicht auf wie eine Hure, junge Dame.|(Sie schubst dich in eine Stahlzelle.)",125,0,0,CheckForCrop()
+125,0,0,,Ich bin doch schon|gefesselt! Wozu die Zelle?,Diskutiere nicht und geh auf die Knie. (Sie drückt|dich zu Boden und bindet deine Hände an deine Füße.),130,0,0,
+125,0,0,,Schubsen Sie mich nicht!,Diskutiere nicht und geh auf die Knie. (Sie drückt|dich zu Boden und bindet deine Hände an deine Füße.),130,0,0,
+125,0,0,,Sind wir in|einem Gefängnis?,So ähnlich. Auf den Boden. (Sie drückt|dich zu Boden und bindet deine Hände an deine Füße.),130,0,0,
+130,0,0,,"Oh Gott! Bitte, Miss.|Es tut mir so leid.","Meinst du nicht, dafür ist es etwas spät?|(Sie schließt das Halsband an einen Ring am Boden.)",140,1,-1,
+130,0,0,,Das geht zu weit!,Akzeptiere doch deine Strafe wie ein großes Mädchen.|(Sie schließt das Halsband an einen Ring am Boden.),140,0,0,
+130,0,0,,Ich jage Ihnen die|Bullen auf den Hals!,Akzeptiere doch deine Strafe wie ein großes Mädchen.|(Sie schließt das Halsband an einen Ring am Boden.),140,0,0,
+130,0,0,,"Das ist eine sehr|gute Fesselung, Miss.","Sagen wir einfach, ich hatte gute Lehrer.|(Sie schließt das Halsband an einen Ring am Boden.)",140,0,-1,
+140,0,0,,Au! Ich kann|mich nicht bewegen!,"Natürlich nicht. Irgendwelche letzten Worte,|bevor du geknebelt und isoliert wirst?",150,0,0,
+140,0,0,,Eines Tages|zahlen Sie dafür!,"Träum weiter, Mädchen. Irgendwelche letzten|Worte, bevor du geknebelt und isoliert wirst?",150,0,1,
+140,0,0,,Ich bewundere|Ihre Fesselkünste.,"Ich musste vor dir schon andere erziehen. Irgendwelche|letzten Worte, bevor du geknebelt und isoliert wirst?",150,1,0,
+150,0,0,,(Schweigen.),(Sie schnallt dir einen Ballknebel um.)|Versuche etwas aus deiner Zeit hier zu lernen.,200,0,0,AddGag()
+150,0,0,,Eines Tages zahlen Sie.,(Sie seufzt und schnallt dir einen Ballknebel um.)|Versuche etwas aus deiner Zeit hier zu lernen.,200,0,0,AddGag()
+150,0,0,,Miss Mildred!,(Sie schüttelt den Kopf schnallt dir einen Knebel um.)|Versuche etwas aus deiner Zeit hier zu lernen.,200,0,0,AddGag()
+150,5,0,,"Miss Mildred, ich habe ver-|standen. Ich benehme mich.","(Sie lächelt dich an.) Du versprichst|also, keinen Ärger mehr zu machen?",160,0,0,
+150,1,-5,,"Oh bitte, Miss Mildred.|(Wimmern und heulen.)","Armes Mädchen. Vielleicht war ich zu streng.|Versprichst du, ab jetzt artig zu sein?",160,0,0,
+150,0,6,,"Wenn Sie mich hierlassen,|verklagt Sie mein Dad.","Mmh. Ein Rechtsstreit wäre lästig. Na gut, junge Dame,|ich befreie dich, wenn du versprichst, artig zu sein.",160,0,0,
+160,0,0,,"Ja, ich verspreche|es, Miss.",Sehr schön. (Sie lässt dich frei.) Zieh dich|an und genieße deine verfrühte Mittagspause.,170,0,0,Release()
+160,0,0,,Ich mache keinen|Ärger mehr.,Also gut. (Sie lässt dich frei.) Zieh dich|an und genieße deine verfrühte Mittagspause.,170,0,0,Release()
+160,0,0,,"Ich will kein Mitleid.|Tun Sie, was Sie wollen!",(Sie schüttelt den Kopf schnallt dir einen Knebel um.)|Versuche etwas aus deiner Zeit hier zu lernen.,200,0,1,AddGag()
+160,0,0,,"FICK DICH, DU SCHWEIN!",(Sie schüttelt den Kopf schnallt dir einen Knebel um.)|Versuche etwas aus deiner Zeit hier zu lernen.,200,-1,0,AddGag()
+170,0,0,,"Ja, Miss.|(Den Raum verlassen.)",,170,0,0,LeaveIsolation()
+170,0,0,,(Nicken und lächeln.)|(Den Raum verlassen.),,170,0,0,LeaveIsolation()
+200,0,0,,MMMF! AGN!,(Sie geht langsam zur Tür.)|Ich bin um 11:30 Uhr zurück.,210,0,0,AllowLeave()
+200,0,0,,(Sie böse ansehen.),(Sie geht langsam zur Tür.)|Ich bin um 11:30 Uhr zurück.,210,0,0,AllowLeave()
+200,0,0,,(Ihren Blick meiden.),(Sie geht langsam zur Tür.)|Ich bin um 11:30 Uhr zurück.,210,0,0,AllowLeave()
+300,0,0,,Was zur Hölle ist|das für ein Teil?,"Auf diesem Gerät wirst du stillhalten,|während ich erzieherische Maßnahmen vollstrecke.",310,-1,0,
+300,0,0,,(Es dir bequem machen.),Auf diesem Peitschbock wirst du wohl|kaum eine angenehme Position finden.,310,0,0,
+300,0,0,,Ha! Dieses Spielzeug|macht mir keine Angst.,"Auf diesem ""Spielzeug"" wirst du stillhalten,|während ich erzieherische Maßnahmen vollstrecke.",310,0,1,
+310,0,0,,Das dürfen Sie nicht!|Ich bin Ihre Schülerin.,,320,0,0,DoCrop()
+310,0,0,,Ist das auch|wirklich legal?,,320,0,0,DoCrop()
+310,0,0,,"Ja, Miss Mildred.|Ich verstehe.",,320,0,0,DoCrop()
+310,0,0,,"Nur zu. Schmerz|ist mein zweiter Vorname.",,320,0,0,DoCrop()
+320,0,0,,"Fuck, tut das weh!",,320,0,0,DoCrop()
+320,0,0,,"Au! Bitte, Miss!",,320,0,0,DoCrop()
+320,0,0,,Fester! Schneller!,,320,0,0,DoCrop()
+320,0,0,,"Ich hatte Mückenstiche,|die schlimmer waren.",,320,0,0,DoCrop()
+320,0,0,,(Schweigen|und ausharren.),,320,0,0,DoCrop()
+320,0,0,,"(Vortäuschen, dass|es nicht wehtut.)",,320,0,0,DoCrop()
+320,0,0,,"(Auszuweichen.)",,320,0,0,DoCrop()
+320,0,0,,(Heulen und um|Hilfe betteln.),,320,0,0,DoCrop()
+330,0,0,,Mmmh. Vielleicht.,Vielleicht lernst du dann etwas aus der Isolation.|(Sie schubst dich in eine Stahlzelle.),125,0,0,
+330,0,0,,Ja. Vor Ihnen|wegzulaufen.,"Du bist ein hoffnungsloser Fall, junge Dame.|(Sie schubst dich in eine Stahlzelle.)",125,0,0,
+330,0,0,,Ich glaube schon.|Danke und so.,"Das ist sehr gut, junge Dame.|(Sie schubst dich in eine Stahlzelle.)",125,1,0,
+330,0,0,,"Ja, Miss Mildred.|(Den Kopf senken.)",Diese Gerte ist ein großartiges Erziehungswerkzeug.|(Sie schubst dich in eine Stahlzelle.),125,0,-1,
+330,0,0,,"Autsch! Dass ich einen|Tag nicht mehr sitzen kann?","Du bist ein hoffnungsloser Fall, junge Dame.|(Sie schubst dich in eine Stahlzelle.)",125,0,0,
+330,0,0,,Das nächste Mal|peitsche ich Sie aus.,(Sie trifft dich ein letztes Mal im Gesicht|und schubst dich in eine Stahlzelle.),125,-1,1,

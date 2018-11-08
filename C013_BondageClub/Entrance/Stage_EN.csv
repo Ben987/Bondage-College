@@ -1,0 +1,30 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,HasInvitation,Yes.  Here it is.|(Show the invite.),(She verifies the card.)  Very well.|Do you know the establishment rules?,100,0,0,
+0,0,0,HasInvitation,Of course girl!|(Show the invite.),(She reads the card.)  Very well Miss.|Do you know the establishment rules?,100,0,0,
+0,0,0,HasInvitation,"Yes Miss, sorry.|(Show the invite.)",(She verifies the card.)  Good girl.|Do you know the establishment rules?,100,0,0,
+0,0,0,WithSarah,"No, my friend|Sarah invited me.","(Sarah seems nervous.)|Yes, I've invited her.",10,0,0,
+0,0,0,WithSarah,I came with her.|(Turn to Sarah.),"(Sarah seems nervous.)|Yes, I've invited her.",10,0,0,
+10,0,0,,(Check the maid.),"Sarah, you know you're not|supposed to invite strangers.",20,0,0,
+20,0,0,,(Check Sarah.),I know Miss!  But she's the perfect|candidate for the club.  Trust me.,30,0,0,
+30,0,0,,(Check the maid.),"Young lady, you will be punished tonight.|Go inside.  I will talk with your friend.",40,0,0,
+40,0,0,,(Check Sarah.),Punished!  This is so unfair.|See you later COMMON_PLAYERNAME.,50,0,0,SarahPunished()
+50,0,0,,Take care Sarah!,(Sarah leaves and the maid turns to you.)|I trust you want to come inside young lady?,60,0,0,
+50,0,0,,See you later.,(Sarah leaves and the maid turns to you.)|I trust you want to come inside young lady?,60,0,0,
+50,0,0,,Sarah!  Wait!,(Sarah leaves and the maid turns to you.)|I trust you want to come inside young lady?,60,0,0,
+60,0,0,,Yes Miss.,Good girl.  Since you've talked with Sarah.|Do you know the establishment rules?,100,0,0,
+60,0,0,,Sure I do.,Alright.  Since you've talked with Sarah.|Do you know the establishment rules?,100,0,0,
+100,0,0,,I do.  Can I|go inside now?,You need to answer these questions first.|Are you open minded and a mature adult?,110,0,0,
+100,0,0,,I don't remember.,"First things first, this is a BDSM club for adults.|Are you open minded and mature enough?",110,0,0,
+100,0,0,,No.  I don't|know the rules.,"First things first, this is a BDSM club for adults.|Are you open minded and mature enough?",110,0,0,
+110,0,0,,I'm an adult and|I'm open minded.,"Good.  In the club, you will meet people from|all over the world, will you be courteous with them?",120,0,0,
+110,0,0,,I'm not an adult.,THIS GAME IS FOR ADULTS ONLY.|PLEASE PLAY SOMETHING ELSE.,199,0,0,
+120,0,0,,I will be courteous|and respectful.,"Very well.  In the Bondage Club, you can be|anyone you want and look however you like.",130,0,0,
+120,0,0,,I will be an asshole.,THIS GAME IS NOT FOR YOU.|PLEASE PLAY SOMETHING ELSE.,199,0,0,
+130,0,0,,I can change my|name and how I look?,"Absolutely, it's a requirment to enter the club.|Your previous life doesn't matter in here.",140,0,0,
+140,0,0,IsCollared,What about|my Mistress?,(She uses a special a key and unlocks your collar.)|I will collar you again when you leave the club.,150,0,0,"UnlockItem(""Collar"")"
+140,0,0,!IsCollared,What about|my friends?,You cannot invite your friends without|a permission from the Head Mistress.,150,0,0,
+140,0,0,!IsCollared,What about|my slaves?,You cannot invite your slaves without|a permission from the Head Mistress.,150,0,0,
+150,0,0,,I understand.,Are you ready to enter the club?|I will lead you to the dressing room.,160,0,0,
+160,0,0,BeltProblem,(Blush)  I have a|metal undies problem.,(She uses a special a key and unlocks your belt.)|You will be locked in it again when you leave.,160,0,0,"UnlockItem(""ChastityBelt"")"
+160,0,0,EggProblem,(Blush)  I'm stuck|with a vibrating egg.,"(She grabs your crotch, slides two finger inside and|removes the egg easily.)  Are you ready naughty girl?",160,0,0,"UnlockItem(""VibratingEgg"")"
+160,0,0,NoProblem,I'm ready!|(Enter the club.),,160,0,0,EnterClub()

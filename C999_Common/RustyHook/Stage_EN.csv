@@ -1,2 +1,2 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Inspect it.)|(1 minute),This rusty metal hook looks pretty fragile.|Maybe it could be used for torture or fishing.,0,0,0,
+0,0,0,,(Inspect it.)ADD_MINUTES:1,This rusty metal hook looks pretty fragile.|Maybe it could be used for torture or fishing.,0,0,0,

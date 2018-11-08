@@ -1,0 +1,5 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,(Endure your|humiliation.),She makes sure that lots|of people sees you in disgrace.,10,0,0,Process()
+10,0,0,,(Endure your|humiliation.),She brings you to many different|public places and takes pictures.,20,0,0,Process()
+20,0,0,,(Endure your|humiliation.),She visits one last place with|you and tells you it's over now.,30,0,0,Process()
+30,0,0,,(Return to your dorm.),,40,0,0,BackToDorm()
