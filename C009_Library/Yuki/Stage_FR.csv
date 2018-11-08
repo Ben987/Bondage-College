@@ -129,9 +129,9 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 200,0,0,CanPleasure,"J'ai quelque chose d'ordre|privée à vous demander.","Vas-y jeune fille, qu'as-tu en tête ?",205,0,0,
 200,0,0,LittlePet,"Voudriez-vous que je vous|fasse à nouveau ""plaisir"" ?","Pas maintenant ma petite chienne,|je ferais appel à tes services plus tard.",200,0,0,
 200,0,0,,Ça ira Madame.|(Tu t'en vas.),,200,0,0,PlayerLeaveForBook()
-200,0,0,,(Tu fouilles son bureau.)|(1 minute),"Ne touchez à rien, jeune fille.",200,-1,0,AnnoyYuki()
-200,0,0,,(Tu fouilles son sac.)|(1 minute),Qu'est-ce que tu fais ?|Ne touches pas à mon sac.,200,-1,0,AnnoyYuki()
-200,0,0,,(Tu fais du bruit.)|(1 minute),"Le silence est d'or jeune fille.|Surtout dans la bibliothèque.",200,-1,0,AnnoyYuki()
+200,0,0,,(Tu fouilles son bureau.)ADD_MINUTES:1,"Ne touchez à rien, jeune fille.",200,-1,0,AnnoyYuki()
+200,0,0,,(Tu fouilles son sac.)ADD_MINUTES:1,Qu'est-ce que tu fais ?|Ne touches pas à mon sac.,200,-1,0,AnnoyYuki()
+200,0,0,,(Tu fais du bruit.)ADD_MINUTES:1,"Le silence est d'or jeune fille.|Surtout dans la bibliothèque.",200,-1,0,AnnoyYuki()
 205,0,0,,Je vous aime bien.|Puis-je vous embrasser ?,"Non, mais il y a bien une chose que tu peux faire.|(Elle saisit ta chevelure et s'assoit sur son bureau.)",700,0,0,StartPleasure()
 205,0,0,,Je veux que vous me|donniez du plaisir.,"C'est non, mais toi tu peux certainement me satisfaire.|(Elle saisit ta chevelure et s'assoit sur son bureau.)",700,0,1,StartPleasure()
 205,0,0,,J'adorerais vous satisfaire.,Approche ma merveilleuse petite chienne.|(Elle saisit ta chevelure et s'assoit sur son bureau.),700,1,-1,StartPleasure()
@@ -193,15 +193,15 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 430,0,0,,"Je vous le promets,|à bientôt. (Tu t'en vas.)",,200,1,0,PlayerLeaveForBook()
 430,0,0,,Je ne causerai plus|d'ennuis. (Tu t'en vas.),,200,0,0,PlayerLeaveForBook()
 500,0,0,,Battez-vous pour moi !,"(Elle lutte éperdument pour sortir, mais sans succès.)",500,0,0,
-500,0,0,!Common_PlayerRestrained,(Tu la caresses.)|(1 minute),(Tu caresses soigneusement ses jambes et|tu entends de faibles gémissements.),500,0,0,Caress()
-500,0,0,!Common_PlayerRestrained,(Tu la chatouilles.)|(1 minute),(Elle se fâche mais elle ne peut réprimer son fou rire.),500,0,0,Tickle()
-500,0,0,!Common_PlayerRestrained,(Tu enlèves sa culotte.)|(1 minute),(Tu lui saisis les jambes et lui enlèves lentement|sa culotte pendant qu'elle hurle de colère.),510,0,0,
+500,0,0,!Common_PlayerRestrained,(Tu la caresses.)ADD_MINUTES:1,(Tu caresses soigneusement ses jambes et|tu entends de faibles gémissements.),500,0,0,Caress()
+500,0,0,!Common_PlayerRestrained,(Tu la chatouilles.)ADD_MINUTES:1,(Elle se fâche mais elle ne peut réprimer son fou rire.),500,0,0,Tickle()
+500,0,0,!Common_PlayerRestrained,(Tu enlèves sa culotte.)ADD_MINUTES:1,(Tu lui saisis les jambes et lui enlèves lentement|sa culotte pendant qu'elle hurle de colère.),510,0,0,
 500,0,0,!Common_PlayerRestrained,(Tu la libères.),(Tu es sûre de vouloir la libérer ?|Clique une nouvelle fois pour confirmer.),500,0,0,ReleaseFromHole()
-510,0,0,!Common_PlayerRestrained,(Tu la masturbes.)|(1 minute),(Tu la masturbes lentement et affectueusement.|Tu peux l'entendre se débattre et gémir.),510,0,0,Masturbate()
-510,0,0,!Common_PlayerGagged,(Tu lui lèches la chatte.)|(1 minute),(Tu te penches pour lui lécher lentement la chatte.|Tu peux l'entendre se débattre et gémir.),510,0,0,Masturbate()
-510,0,0,!Common_PlayerRestrained,(Tu la caresses.)|(1 minute),(Tu caresses soigneusement ses jambes et|tu entends de faibles gémissements.),510,0,0,Caress()
-510,0,0,!Common_PlayerRestrained,(Tu la chatouilles.)|(1 minute),(Elle se fâche mais elle ne peut réprimer son fou rire.),510,0,0,Tickle()
-510,0,0,!Common_PlayerRestrained,(Tu lui remets sa culotte.)|(1 minute),(Tu lui saisis les jambes et lui remet|sa culotte pendant qu'elle se débat.),500,0,0,
+510,0,0,!Common_PlayerRestrained,(Tu la masturbes.)ADD_MINUTES:1,(Tu la masturbes lentement et affectueusement.|Tu peux l'entendre se débattre et gémir.),510,0,0,Masturbate()
+510,0,0,!Common_PlayerGagged,(Tu lui lèches la chatte.)ADD_MINUTES:1,(Tu te penches pour lui lécher lentement la chatte.|Tu peux l'entendre se débattre et gémir.),510,0,0,Masturbate()
+510,0,0,!Common_PlayerRestrained,(Tu la caresses.)ADD_MINUTES:1,(Tu caresses soigneusement ses jambes et|tu entends de faibles gémissements.),510,0,0,Caress()
+510,0,0,!Common_PlayerRestrained,(Tu la chatouilles.)ADD_MINUTES:1,(Elle se fâche mais elle ne peut réprimer son fou rire.),510,0,0,Tickle()
+510,0,0,!Common_PlayerRestrained,(Tu lui remets sa culotte.)ADD_MINUTES:1,(Tu lui saisis les jambes et lui remet|sa culotte pendant qu'elle se débat.),500,0,0,
 510,0,0,!Common_PlayerRestrained,(Tu la libères.),(Tu es sûre de vouloir la libérer ?|Clique une nouvelle fois pour confirmer.),510,0,0,ReleaseFromHole()
 511,0,0,!Common_PlayerRestrained,"Yuki, tu le mérites.|(Tu la fais jouir.)","(Tu continues et lui donnes un énorme orgasme,|mouillant ses jambes par la même occasion.)",512,1,0,HoleOrgasm()
 511,0,0,!Common_PlayerRestrained,Je contrôle tes orgasmes.|(Tu la fais jouir.),"(Tu continues et lui donnes un énorme orgasme,|mouillant ses jambes par la même occasion.)",512,0,1,HoleOrgasm()
@@ -211,12 +211,12 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 512,0,0,,Vous êtes ma salope|à présent.,"Je ne serai jamais ta salope, jeune fille.|Sors-moi de ce maudit trou !",510,-1,1,
 512,0,0,!Common_PlayerRestrained,Bon prof.|(Tu la caresses.),(Elle soupire et se calme quelques secondes.),510,1,0,
 520,0,0,,J'espère que vous|appréciez la ceinture.,Tu ferais mieux de me l'enlever tout de suite !,520,0,0,
-520,0,0,!Common_PlayerRestrained,(Tu la caresses.)|(1 minute),(Tu caresses soigneusement ses jambes et|tu entends de faibles gémissements.),520,0,0,Caress()
-520,0,0,!Common_PlayerRestrained,(Tu la chatouilles.)|(1 minute),(Elle se fâche mais elle ne peut réprimer son fou rire.),520,0,0,Tickle()
+520,0,0,!Common_PlayerRestrained,(Tu la caresses.)ADD_MINUTES:1,(Tu caresses soigneusement ses jambes et|tu entends de faibles gémissements.),520,0,0,Caress()
+520,0,0,!Common_PlayerRestrained,(Tu la chatouilles.)ADD_MINUTES:1,(Elle se fâche mais elle ne peut réprimer son fou rire.),520,0,0,Tickle()
 520,0,0,!Common_PlayerRestrained,(Tu la libères.),(Tu es sûre de vouloir la libérer ?|Clique une nouvelle fois pour confirmer.),520,0,0,ReleaseFromHole()
-530,0,0,,"Madame, je suis désolée.|(Tu l'accompagnes.) (1m)",(Elle t'emmène dans son bureau situé|dans une autre section de la bibliothèque.),600,0,-1,
-530,0,0,,"Entendu, allons-y.|(Tu l'accompagnes.) (1m)",(Elle t'emmène dans son bureau situé|dans une autre section de la bibliothèque.),600,0,0,
-530,0,0,,C'est pas la peine de crier.|(Tu l'accompagnes.) (1m),(Elle t'emmène dans son bureau situé|dans une autre section de la bibliothèque.),600,0,1,
+530,0,0,,"Madame, je suis désolée.|(Tu l'accompagnes.)ADD_MINUTES:1",(Elle t'emmène dans son bureau situé|dans une autre section de la bibliothèque.),600,0,-1,
+530,0,0,,"Entendu, allons-y.|(Tu l'accompagnes.)ADD_MINUTES:1",(Elle t'emmène dans son bureau situé|dans une autre section de la bibliothèque.),600,0,0,
+530,0,0,,C'est pas la peine de crier.|(Tu l'accompagnes.)ADD_MINUTES:1,(Elle t'emmène dans son bureau situé|dans une autre section de la bibliothèque.),600,0,1,
 600,0,0,,Qu'est-ce que|vous voulez ?,"La vengeance ! Ce que tu as fait était inapproprié.|Tournes-toi, les mains derrière le dos.",610,0,0,TestSleep()
 600,0,0,,(Tu gardes le silence.),"(Elle te fixe puis prend une profonde inspiration.)|Tournes-toi, les mains derrière le dos.",610,0,-1,TestSleep()
 600,0,0,,Quoi de neuf docteur ?,"Tu n'es pas drôle du tout, jeune fille.|Tournes-toi, les mains derrière le dos.",610,-1,0,TestSleep()
@@ -237,13 +237,13 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 700,0,0,,(Tu acquiesces en silence|et commences à la lécher.),Tu es prête pour porter un collier ma petite chienne.|(Elle enlève sa culotte et te ramène vers elle.),710,1,-1,
 700,0,0,,Ceci n'est pas approprié.|(Tu te dégages.),Bien ! Peu m'importe !|Qu'est-ce qui t'amènes alors ?,200,-1,0,TestPullAway()
 700,0,0,,Laissez tomber Yuki.|(Tu te dégages.),Bien ! Peu m'importe !|Qu'est-ce qui t'amènes alors ?,200,-2,1,TestPullAway()
-710,0,0,,(Tu fourres ton nez dans|sa chatte.) (1 minute),(Elle écarte ses jambes et gémit doucement.),710,0,0,Pleasure(1)
-710,0,0,,(Tu lèches son clitoris.)|(1 minute),(Elle te tire par les cheveux et tremble.),710,0,0,Pleasure(2)
-710,0,0,,(Tu mets ta langue à|l'intérieur.) (1 minute),(Elle fait des va-et-vient avec ta tête|à l'aide de ses mains.),710,0,0,Pleasure(3)
-710,0,0,,(Tu masturbes son clitoris.)|(1 minute),Oh COMMON_PLAYERNAME !|Oh oui !,710,0,0,Pleasure(4)
-710,0,0,,(Tu fais des va-et-vient|avec ton doigt) (1 minute),Plus vite ! Plus fort !  Encore un peu !,710,0,0,Pleasure(5)
+710,0,0,,(Tu fourres ton nez|dans sa chatte.)ADD_MINUTES:1,(Elle écarte ses jambes et gémit doucement.),710,0,0,Pleasure(1)
+710,0,0,,(Tu lèches son clitoris.)ADD_MINUTES:1,(Elle te tire par les cheveux et tremble.),710,0,0,Pleasure(2)
+710,0,0,,(Tu mets ta langue|à l'intérieur.)ADD_MINUTES:1,(Elle fait des va-et-vient avec ta tête|à l'aide de ses mains.),710,0,0,Pleasure(3)
+710,0,0,,(Tu masturbes son clitoris.)ADD_MINUTES:1,Oh COMMON_PLAYERNAME !|Oh oui !,710,0,0,Pleasure(4)
+710,0,0,,(Tu fais des va-et-vient|avec ton doigt)ADD_MINUTES:1,Plus vite ! Plus fort !  Encore un peu !,710,0,0,Pleasure(5)
 710,0,0,,(Tu t'arrêtes et recules.),(Elle enroule rapidement ses jambes|autour de ta tête et te ramène à l'intérieur.),710,0,0,
-720,0,0,,(Tu lèches son jus.)|(1 minute),(Tu lèches ses lèvres pour nettoyer son jus|puis elle te libère.) Brave fille.,730,1,-1,
+720,0,0,,(Tu lèches son jus.)ADD_MINUTES:1,(Tu lèches ses lèvres pour nettoyer son jus|puis elle te libère.) Brave fille.,730,1,-1,
 720,0,0,,(Tu essayes de reprendre|ton souffle.),(Elle te libère.) Ma pauvre petite chienne.,730,0,-1,
 720,0,0,,(Tu t'éloignes|rapidement.),(Tu t'éloignes très vite d'elle.)|N'aie pas honte de ce que tu as fait.,730,-1,0,
 730,0,0,,Vous avez aimé ?,Oui. Et j'espère qu'on remettra ça.|As-tu besoin d'autre chose ?,200,0,0,StopPleasure()
