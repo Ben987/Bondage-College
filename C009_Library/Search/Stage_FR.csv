@@ -1,37 +1,37 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-10,0,0,!Common_PlayerRestrained,(Tu fouilles.)|(1 minute),"Tu fouilles les étagères,|mais il n'y a que des livres de chimie.",10,0,0,
-10,0,0,CanSit,(Tu t'assieds.)|(1 minute),Tu t'assieds sur le fauteuil|et te détends un petit moment.,15,0,0,
-15,0,0,,(Tu te lèves.)|(1 minute),Tu te lèves du fauteuil.,10,0,0,
-30,0,0,!Common_PlayerRestrained,(Tu fouilles.)|(1 minute),"Tu fouilles dans les rayons,|mais il n'y a que des livres ennuyeux sur les maths.",30,0,0,
-31,0,0,!Common_PlayerRestrained,(Tu fouilles.)|(1 minute),"Tu te diriges vers l'impasse du couloir et tu fouilles,|mais tu ne trouves rien d'intéressant.",31,0,0,SearchCounter()
-32,0,0,!Common_PlayerRestrained,(Tu fouilles.)|(1 minute),"Tu fouilles dans les rayons |et trouves une bande dessinée cachée entre les livres.",33,0,0,SearchGwendoline()
-33,0,0,,(Tu récupères la BD.)|(1 minute),"C'est une vieille BD appelée ""Sweet Gwendoline"".|Elle a été écrite et dessinée par John Willie.",34,0,0,
+10,0,0,!Common_PlayerRestrained,(Tu fouilles.)ADD_MINUTES:1,"Tu fouilles les étagères,|mais il n'y a que des livres de chimie.",10,0,0,
+10,0,0,CanSit,(Tu t'assieds.)ADD_MINUTES:1,Tu t'assieds sur le fauteuil|et te détends un petit moment.,15,0,0,
+15,0,0,,(Tu te lèves.)ADD_MINUTES:1,Tu te lèves du fauteuil.,10,0,0,
+30,0,0,!Common_PlayerRestrained,(Tu fouilles.)ADD_MINUTES:1,"Tu fouilles dans les rayons,|mais il n'y a que des livres ennuyeux sur les maths.",30,0,0,
+31,0,0,!Common_PlayerRestrained,(Tu fouilles.)ADD_MINUTES:1,"Tu te diriges vers l'impasse du couloir et tu fouilles,|mais tu ne trouves rien d'intéressant.",31,0,0,SearchCounter()
+32,0,0,!Common_PlayerRestrained,(Tu fouilles.)ADD_MINUTES:1,"Tu fouilles dans les rayons |et trouves une bande dessinée cachée entre les livres.",33,0,0,SearchGwendoline()
+33,0,0,,(Tu récupères la BD.)ADD_MINUTES:1,"C'est une vieille BD appelée ""Sweet Gwendoline"".|Elle a été écrite et dessinée par John Willie.",34,0,0,
 33,0,0,,(Tu la remets.),Tu remets la bande dessinée entre les livres.,32,0,0,
-34,0,0,,(Tu ouvres la BD.)|(1 minute),"Tu tournes quelques pages. Ça raconte l'histoire de|Gwendoline, une blonde qui se fait souvent attaché.",35,0,0,
+34,0,0,,(Tu ouvres la BD.)ADD_MINUTES:1,"Tu tournes quelques pages. Ça raconte l'histoire de|Gwendoline, une blonde qui se fait souvent attaché.",35,0,0,
 34,0,0,,(Tu la remets en place.),Tu remets la bande dessinée entre les livres.,32,0,0,
-35,0,0,,(Tu en lis davantage.)|(1 minute),"Tu continue la lecture, la demoiselle est|attachée dans d'inéluctables positions.",36,0,0,
-35,0,0,,(Tu te masturbes.)|(1 minute),Tu te masturbes silencieusement les yeux rivés|sur la revue et tu ressens un sentiment de chaleur.,35,0,0,Masturbate()
+35,0,0,,(Tu en lis davantage.)ADD_MINUTES:1,"Tu continue la lecture, la demoiselle est|attachée dans d'inéluctables positions.",36,0,0,
+35,0,0,,(Tu te masturbes.)ADD_MINUTES:1,Tu te masturbes silencieusement les yeux rivés|sur la revue et tu ressens un sentiment de chaleur.,35,0,0,Masturbate()
 35,0,0,,(Tu la remets en place.),Tu remets la bande dessinée entre les livres.,32,0,0,
-36,0,0,,(Tu en lis davantage.)|(1 minute),"Dans la bande dessinée, il y a un guide|sur la façon de faire du bondage avancé.",37,0,0,
-36,0,0,,(Tu te masturbes.)|(1 minute),Tu te masturbes silencieusement les yeux rivés|sur la revue et tu ressens un sentiment de chaleur.,36,0,0,Masturbate()
+36,0,0,,(Tu en lis davantage.)ADD_MINUTES:1,"Dans la bande dessinée, il y a un guide|sur la façon de faire du bondage avancé.",37,0,0,
+36,0,0,,(Tu te masturbes.)ADD_MINUTES:1,Tu te masturbes silencieusement les yeux rivés|sur la revue et tu ressens un sentiment de chaleur.,36,0,0,Masturbate()
 36,0,0,,(Tu la remets en place.),Tu remets la bande dessinée entre les livres.,32,0,0,
 37,0,0,CanLearnRopeMastery,(Tu étudie la BD.)|(15 minutes),"Tu étudies les techniques de bondage à la corde,|tu as pu apprendre quelques trucs.",37,0,0,LearnRopeMastery()
-37,0,0,,(Tu te masturbes.)|(1 minute),Tu te masturbes silencieusement les yeux rivés|sur la revue et tu ressens un sentiment de chaleur.,37,0,0,Masturbate()
+37,0,0,,(Tu te masturbes.)ADD_MINUTES:1,Tu te masturbes silencieusement les yeux rivés|sur la revue et tu ressens un sentiment de chaleur.,37,0,0,Masturbate()
 37,0,0,,(Tu la remets en place.),Tu remets la bande dessinée entre les livres.,32,0,0,
-40,0,0,!Common_PlayerRestrained,(Tu fouilles.)|(1 minute),"Tu fouilles dans les rayons|et y trouves le livre que tu es censée lire.",41,0,0,SetReadProgress()
+40,0,0,!Common_PlayerRestrained,(Tu fouilles.)ADD_MINUTES:1,"Tu fouilles dans les rayons|et y trouves le livre que tu es censée lire.",41,0,0,SetReadProgress()
 41,0,0,,(Tu lis le chapitre 1.),"Tu lis le premier chapitre.|""Marseille - L'arrivée""",42,0,0,ReadTime()
 42,0,0,,(Tu lis le chapitre 2.),"Tu lis le deuxième chapitre.|""Père et Fils""",43,0,0,ReadTime()
 43,0,0,,(Tu lis le chapitre 3.),"Tu lis le troisième chapitre.|""Les Catalans""",44,0,0,ReadTime()
 44,0,0,,(Tu lis le chapitre 4.),"Tu lis le quatrième chapitre.|""Le complot""",45,0,0,ReadTime()
 45,0,0,,(Tu lis le chapitre 5.),"Tu lis le cinquième chapitre : ""Le festin des noces"".|Tu es maintenant prête pour ton prochain cours.",46,0,0,ReadTime()
 46,0,0,,(Tu le Relis|encore une fois.),"Telle la parfaite petite étudiante, tu relis le tout.",46,0,0,ReadFull()
-50,0,0,!Common_PlayerRestrained,(Tu fouilles.)|(1 minute),"Tu fouilles les étagères,|mais il n'y a que des livres de philosophie.",50,0,0,
-60,0,0,!Common_PlayerRestrained,(Tu fouilles.)|(1 minute),"Tu fouilles les étagères,|mais il n'y a que des livres d'histoire.",60,0,0,
-60,0,0,CanSit,(Tu t'assieds.)|(1 minute),Tu t'assieds sur le grand canapé et te détends.|C'est plutôt confortable et il y a de la place pour deux.,65,0,0,
-61,0,0,!Common_PlayerRestrained,(Tu fouilles.)|(1 minute),"Tu fouilles les étagères,|mais il n'y a que des livres d'histoire.",61,0,0,
-65,0,0,,(Tu te lèves.)|(1 minute),Tu te lèves du canapé.,60,0,0,
-70,0,0,!Common_PlayerRestrained,(Tu fouilles le bureau.)|(1 minute),"Tu fouilles le bureau,|mais tu ne trouves rien d'intéressant.",70,0,0,SearchDesk()
-70,0,0,!Common_PlayerRestrained,(Tu fouilles la sacoche.)|(1 minute),Tu ouvres la sacoche du professeur Yuki.,71,0,0,
+50,0,0,!Common_PlayerRestrained,(Tu fouilles.)ADD_MINUTES:1,"Tu fouilles les étagères,|mais il n'y a que des livres de philosophie.",50,0,0,
+60,0,0,!Common_PlayerRestrained,(Tu fouilles.)ADD_MINUTES:1,"Tu fouilles les étagères,|mais il n'y a que des livres d'histoire.",60,0,0,
+60,0,0,CanSit,(Tu t'assieds.)ADD_MINUTES:1,Tu t'assieds sur le grand canapé et te détends.|C'est plutôt confortable et il y a de la place pour deux.,65,0,0,
+61,0,0,!Common_PlayerRestrained,(Tu fouilles.)ADD_MINUTES:1,"Tu fouilles les étagères,|mais il n'y a que des livres d'histoire.",61,0,0,
+65,0,0,,(Tu te lèves.)ADD_MINUTES:1,Tu te lèves du canapé.,60,0,0,
+70,0,0,!Common_PlayerRestrained,(Tu fouilles le bureau.)ADD_MINUTES:1,"Tu fouilles le bureau,|mais tu ne trouves rien d'intéressant.",70,0,0,SearchDesk()
+70,0,0,!Common_PlayerRestrained,(Tu fouilles la sacoche.)ADD_MINUTES:1,Tu ouvres la sacoche du professeur Yuki.,71,0,0,
 70,0,0,CanCheckYuki,(Tu fouilles Yuki.),,70,0,0,CheckYuki()
 71,0,0,CanStealEgg,(Tu voles l'oeuf vibrant.),Tu prends l'oeuf vibrant dans la sacoche.,71,0,0,StealEgg()
 71,0,0,CanStealPill,(Tu voles le somnifère.),Tu prends le somnifère dans la sacoche.,71,0,0,StealPill()
@@ -39,15 +39,15 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 71,0,0,CanStealTape,(Tu voles le ruban adhésif.),Tu prends le ruban adhésif dans la sacoche.,71,0,0,StealTape()
 71,0,0,,(Tu laisses la sacoche.),Tu laisses la sacoche dans la pièce.,70,0,0,
 80,0,0,!Common_PlayerRestrained,(Tu frappes à la porte.),Tu frappes à la porte mais personne ne répond.,80,0,0,
-80,0,0,,(Tu tends l'oreille.)|(1 minute),"Tu tends l'oreille mais tu n'entends rien.",80,0,0,
+80,0,0,,(Tu tends l'oreille.)ADD_MINUTES:1,"Tu tends l'oreille mais tu n'entends rien.",80,0,0,
 80,0,0,!Common_PlayerRestrained,(Tu l'ouvres.),"Tu essayes d'ouvrir la porte, mais elle est verrouillée.|Tu remarques une serrure, il te faudra une clé.",80,0,0,UnlockDoor()
-80,0,0,!Common_PlayerRestrained,(Tu la forces.)|(1 minute),Tu donnes un coup de pied et un bon coup d'épaule|contre la porte mais elle ne s'ouvre pas.,80,0,0,ForceDoor()
+80,0,0,!Common_PlayerRestrained,(Tu la forces.)ADD_MINUTES:1,Tu donnes un coup de pied et un bon coup d'épaule|contre la porte mais elle ne s'ouvre pas.,80,0,0,ForceDoor()
 81,0,0,,(Tu l'ouvres.),,81,0,0,OpenDoor()
-85,0,0,!Common_PlayerRestrained,(Tu fouilles les livres.)|(1 minute),Il n'y a que des livres sur la psychologie.,85,0,0,
-85,0,0,!Common_PlayerRestrained,(Tu examines le trou.)|(1 minute),"Tu examines le petit trou sombre dans l'étagère.|C'est profond, ta main ne peut pas atteindre le bout.",86,0,0,
-86,0,0,,(Tu entres.)|(1 minute),Tu parviens difficilement à te faufiler à l'intérieur.|Tu es sûre de vouloir continuer ?,87,0,0,NoLeave()
-87,0,0,,(Tu vas plus loin.)|(1 minute),"Tu t'avances, mais tu restes coincée à mi-chemin.|C'est vraiment sombre et poussiéreux de l'autre côté.",88,0,0,StuckInHole()
-87,0,0,,(Tu sors.)|(1 minute),Tu sors prudemment du trou.,85,0,0,AllowLeave()
+85,0,0,!Common_PlayerRestrained,(Tu fouilles les livres.)ADD_MINUTES:1,Il n'y a que des livres sur la psychologie.,85,0,0,
+85,0,0,!Common_PlayerRestrained,(Tu examines le trou.)ADD_MINUTES:1,"Tu examines le petit trou sombre dans l'étagère.|C'est profond, ta main ne peut pas atteindre le bout.",86,0,0,
+86,0,0,,(Tu entres.)ADD_MINUTES:1,Tu parviens difficilement à te faufiler à l'intérieur.|Tu es sûre de vouloir continuer ?,87,0,0,NoLeave()
+87,0,0,,(Tu vas plus loin.)ADD_MINUTES:1,"Tu t'avances, mais tu restes coincée à mi-chemin.|C'est vraiment sombre et poussiéreux de l'autre côté.",88,0,0,StuckInHole()
+87,0,0,,(Tu sors.)ADD_MINUTES:1,Tu sors prudemment du trou.,85,0,0,AllowLeave()
 87,0,0,!PenInHole,(Tu laisses un stylo.),Tu laisses un stylo à l'intérieur.,87,0,0,LeavePenInHole()
 87,0,0,PenInHole,(Tu prends le stylo.),Tu récupères ton stylo.,87,0,0,TakePenInHole()
 88,0,0,,(Tu te démènes pour|aller plus loin.),"Tu te démènes pour aller plus loin,|mais tu ne parviens pas à te faufiler d'avantage.",88,0,0,TwoMinutes()
@@ -57,15 +57,15 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 88,0,0,,AIDEZ-MOI !!!,"Tu cries à l'aide, mais personne ne vient te sauver.",88,0,0,TwoMinutes()
 88,0,0,!PenInHole,(Tu laisses un stylo.),Tu laisses un stylo à l'intérieur.,88,0,0,LeavePenInHole()
 88,0,0,PenInHole,(Tu prends le stylo.),Tu récupères ton stylo.,88,0,0,TakePenInHole()
-90,0,0,CanClimb,(Tu grimpes.)|(1 minute.),"Tu escalades cette structure comme un singe,|mais tu ne trouves rien.",90,0,0,Climb()
-90,0,0,!CanClimb,(Tu grimpes.)|(1 minute.),"Tu tentes d'escalader la structure,|mais tu n'y arrives pas et abandonnes.",90,0,0,
-100,0,0,!Common_PlayerRestrained,(Tu fouilles.)|(1 minute),"Il y a beaucoup de livres controversés,|mais rien de vraiment intéressant.",100,0,0,SearchO()
-101,0,0,,(Tu lis le résumé.)|(1 minute),Il s'agit de l'histoire d'une femme|qui découvre son côté soumis.,101,0,0,
+90,0,0,CanClimb,(Tu grimpes.)ADD_MINUTES:1,"Tu escalades cette structure comme un singe,|mais tu ne trouves rien.",90,0,0,Climb()
+90,0,0,!CanClimb,(Tu grimpes.)ADD_MINUTES:1,"Tu tentes d'escalader la structure,|mais tu n'y arrives pas et abandonnes.",90,0,0,
+100,0,0,!Common_PlayerRestrained,(Tu fouilles.)ADD_MINUTES:1,"Il y a beaucoup de livres controversés,|mais rien de vraiment intéressant.",100,0,0,SearchO()
+101,0,0,,(Tu lis le résumé.)ADD_MINUTES:1,Il s'agit de l'histoire d'une femme|qui découvre son côté soumis.,101,0,0,
 101,0,0,,(Tu l'ouvres.),"En feuilletant les pages,|tu trouves une carte d'invitation.",102,0,0,
-102,0,0,,(Tu lis l'invitation.)|(1 minute),"C'est une carte d'invitation pour un lieu|en ville qui s'appelle : ""Le Bondage Club"".",103,0,0,
+102,0,0,,(Tu lis l'invitation.)ADD_MINUTES:1,"C'est une carte d'invitation pour un lieu|en ville qui s'appelle : ""Le Bondage Club"".",103,0,0,
 103,0,0,,(Tu la prends.),"Tu prends le livre et l'invitation.|Peut-être que ce sera utile.",100,0,0,TakeInvitation()
-105,0,0,!Common_PlayerRestrained,(Tu fouilles.)|(1 minute),Tu fouilles dans les armoires en bois|mais tu ne trouves rien d'intéressant.,105,0,0,SearchCabinet()
-106,0,0,!Common_PlayerRestrained,(Tu fouilles.)|(1 minute),"Tu fouilles la pièce|mais tu ne trouves rien d'intéressant.",106,0,0,
+105,0,0,!Common_PlayerRestrained,(Tu fouilles.)ADD_MINUTES:1,Tu fouilles dans les armoires en bois|mais tu ne trouves rien d'intéressant.,105,0,0,SearchCabinet()
+106,0,0,!Common_PlayerRestrained,(Tu fouilles.)ADD_MINUTES:1,"Tu fouilles la pièce|mais tu ne trouves rien d'intéressant.",106,0,0,
 106,0,0,,(Tu examines la table.),"La table en bois est imposante. Il y a des anneaux|métalliques boulonnés dessus, mais rien d'attaché.",106,0,0,
 106,0,0,,(Tu examines les sièges.),"Les sièges ont l'air confortable. Celui à|l'arrière est massif, il y a un ""S"" gravé dessus.",106,0,0,
 106,0,0,,(Tu examines la peinture.),C'est la peinture d'un vieil homme sévère|qui semble être le fondateur de l'école.,106,0,0,
