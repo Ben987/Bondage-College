@@ -1,6 +1,6 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Tu examines le bâillon.)|(1 minute),Ce bâillon a beaucoup d'ouate pour remplir la bouche.|D'autres tissus s'attachent autour de la tête.,0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Tu te bâillonnes.)|(1 minute),"Tu fourres la ouate dans ta bouche, puis attaches|les tissus sur ta bouche et autour de ta tête.",10,0,0,SelfGag()
-10,0,0,,(Tu mâches la ouate.)|(1 minute),"Tu mâches la ouate. Ça aide un peu ta mâchoire,|mais n'endommage pas du tout la ouate.",10,0,0,
-10,0,0,,(Tu essayes de recracher|la ouate.) (1 minute),"Tu essayes de recracher la ouate, elle est retenue|par les autres tissus. Tu auras besoin de tes mains.",10,0,0,
-10,0,0,Common_PlayerNotRestrained,(Tu te débâillonnes.)|(1 minute),"Tu défais tous les tissus, retires la|ouate et tu peux à nouveau parler.",0,0,0,SelfUngag()
+0,0,0,,(Tu examines le bâillon.)ADD_MINUTES:1,Il y a assez d'ouate pour remplir une bouche.|Le tissu restant s'attache autour de la tête.,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Tu te bâillonnes.)ADD_MINUTES:1,"Tu fourres la ouate dans ta bouche, puis la maintient|en t'attachant avec le tissu restant autour de la tête.",10,0,0,SelfGag()
+10,0,0,,(Tu mâches la ouate.)ADD_MINUTES:1,"Tu mâches la ouate. Ça soulage un peu ta mâchoire,|mais tu ne parviens pas à l'endommager plus que ça.",10,0,0,
+10,0,0,,(Tu essayes de|recracher la ouate.)ADD_MINUTES:1,"Tu essayes de recracher la ouate|mais elle est retenue par du tissu.",10,0,0,
+10,0,0,Common_PlayerNotRestrained,(Tu te débâillonnes.)ADD_MINUTES:1,"Tu défais le tissu et retires la ouate.|Tu peux t'exprimer de nouveau normalement.",0,0,0,SelfUngag()
