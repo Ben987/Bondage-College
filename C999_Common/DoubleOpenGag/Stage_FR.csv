@@ -1,7 +1,6 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Tu examines le bâillon.)ADD_MINUTES:1,Ce gros bâillon a un harnais qui recouvre toute la tête.|Il sera difficile d'être comprise tout en le portant.,0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Tu te bâillonnes.)ADD_MINUTES:1,"Tu enfiles le harnais sur ta tête,|enfonce la boule dans ta bouche et serre les sangles.",10,0,0,SelfGag()
-10,0,0,HasLooseBallGag,(Tu examines un|autre bâillon.)ADD_MINUTES:1,Ce gros bâillon a un harnais qui recouvre toute la tête.|Il sera difficile d'être comprise tout en le portant.,10,0,0,ShowImage()
-10,0,0,,(Tu mâches la boule.)ADD_MINUTES:1,Tu mâches la boule. Ça soulage un petit peu|ta mâchoire mais n'endommage pas le bâillon.,10,0,0,
-10,0,0,,(Tu essayes de sécréter|de la salive.)ADD_MINUTES:1,Tu sécrètes de la salive et repousses la boule|avec ta langue en vain. Tu auras besoin de tes mains.,10,0,0,
-10,0,0,Common_PlayerNotRestrained,(Tu te débâillonnes.)ADD_MINUTES:1,"Tu détaches les sangles et retires la boule.|Tu peux t'exprimer de nouveau normalement.",0,0,0,SelfUngag()
+0,0,0,,(Tu examines le bâillon.)ADD_MINUTES:1,Ce bâillon peut maintenir deux bouches ensemble.|La communication sera non verbale.,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Tu te bâillonnes.)ADD_MINUTES:1,Tu mets l'embout buccal dans la bouche et le boucle.|Tu as besoin de quelqu'un d'autre pour t'accompagner.,10,0,0,SelfGag()
+10,0,0,,(Tu mâches|l'embout buccal.)ADD_MINUTES:1,"Tu mâchouilles le bâillon,|mais le contact avec le métal te fait mal aux dents.",10,0,0,
+10,0,0,,(Tu essayes de sécréter|de la salive.)ADD_MINUTES:1,"Tu sécrètes de la salive pour enlever l'embout buccal,|mais les sangles tiennent fermement en place.",10,0,0,
+10,0,0,Common_PlayerNotRestrained,(Tu te débâillonnes.)ADD_MINUTES:1,"Tu détaches les sangles et retires l'embout buccal.|Tu peux t'exprimer de nouveau normalement.",0,0,0,SelfUngag()
