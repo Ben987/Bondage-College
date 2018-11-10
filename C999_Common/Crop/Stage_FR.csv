@@ -1,3 +1,3 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Tu l'examines.)|(1 minute),Le cuir est de bonne qualité et doit faire très mal lors|de l'impact. Ça ne laissera pas de marque permanente.,0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Tu te fouettes.)|(1 minute),Tu te donnes un coup sur la main et tu ressens la|claquette. La marque rouge devrait disparaître bientôt.,0,0,0,
+0,0,0,,(Tu l'examines.)ADD_MINUTES:1,Le cuir est de bonne qualité et doit faire très mal lors|de l'impact. Ça ne laissera pas de marque permanente.,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Tu te fouettes.)ADD_MINUTES:1,Tu te donnes un coup sur la main et tu sens bien la|claquette. La marque rouge devrait disparaître bientôt.,0,0,0,
