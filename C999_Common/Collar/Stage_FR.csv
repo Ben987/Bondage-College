@@ -1,6 +1,6 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Tu examines le collier.)|(1 minute),"Le collier pourrait être verrouillé avec un cadenas.|Il est fait pour les humains et a un "" S "" cousu dessus.",0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Tu mets le collier.)|(1 minute),Tu accroches le collier autour |de ton cou et fermes la sangle.,10,0,0,SelfCollar()
-10,0,0,HasLooseCollar,(Tu examines un autre|collier.) (1 minute),"Le collier pourrait être verrouillé avec un cadenas.|Il est fait pour les humains et a un "" S "" cousu dessus.",10,0,0,ShowImage()
-10,0,0,,(Tu étires ton cou.)|(1 minute),Tu étires ton cou pour être plus à l'aise mais|la sensation qu'il te procure reste bien présente.,10,0,0,
-10,0,0,Common_PlayerNotRestrained,(Tu enlèves le collier.)|(1 minute),Tu retires la sangle et enlèves le collier.,0,0,0,SelfUncollar()
+0,0,0,,(Tu examines le collier.)ADD_MINUTES:1,"Ce collier en cuir pourrait être cadenassé.|Il est conçu pour les humains et la lettre ""S"" y figure.",0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Tu mets le collier.)ADD_MINUTES:1,Tu mets le collier autour de ton cou et le boucle.,10,0,0,SelfCollar()
+10,0,0,HasLooseCollar,(Tu examines un|autre collier.)ADD_MINUTES:1,"Ce collier en cuir pourrait être cadenassé.|Il est conçu pour les humains et la lettre ""S"" y figure.",10,0,0,ShowImage()
+10,0,0,,(Tu t'étires le cou.)ADD_MINUTES:1,Tu t'étires le cou pour que le collier te serre moins|mais tu ne parviens pas à te défaire de cette sensation.,10,0,0,
+10,0,0,Common_PlayerNotRestrained,(Tu enlèves le collier.)ADD_MINUTES:1,Tu déboucles la sangle et retires le collier.,0,0,0,SelfUncollar()
