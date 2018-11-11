@@ -1,8 +1,8 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Inspect it.)|(1 minute),The manacles and chain are made from strong steel|and use padlocks to keep them closed.,0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Play with it.)|(1 minute),You try on the manacles without locking them.|They are a snug fit and you wouldn't slip out of them.,0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Shackle yourself.)|(1 minute),"You close and lock the manacles|around your neck, ankles and wrists.",10,0,0,SelfShackle()
-10,0,0,HasLooseManacles,(Play with the loose|manacles.)  (1 minute),You play with the loose manacles|while being restrained but can't do much.,10,0,0,ShowImage()
-10,0,0,HasKey,(Unlock them.)|(1 minute),You fumble with the key for a little|while but finally unlock yourself.,0,0,0,Unlock()
-10,0,0,,(Try to slip out.)|(1 minute),You try to slip your hands out of|the manacles but they are too closer fit.,10,0,0,
-10,0,0,,(Struggle to get out.)|(1 minute),You struggle madly in the manacles|but there is no change of breaking out.,10,0,0,
+0,0,0,,(Tu les examines.)ADD_MINUTES:1,Les menottes et la chaîne sont en acier inoxydable.|Il faut des cadenas pour les maintenir fermés,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Tu t'amuses avec.)ADD_MINUTES:1,"Tu essayes les menottes sans les cadenasser.|Elles sont bien ajustées, tu ne pourras pas t'échapper.",0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Tu t'enchaînes.)ADD_MINUTES:1,"Tu fermes et cadenasses les menottes|autour de ton cou, tes poignets et tes chevilles.",10,0,0,SelfShackle()
+10,0,0,HasLooseManacles,(Tu t'amuses avec un|autre jeu de menottes.)ADD_MINUTES:1,"Tu t'amuses avec un autre jeu de menottes,|étant enchainée tu ne peux rien faire de plus.",10,0,0,ShowImage()
+10,0,0,HasKey,(Tu te libères.)ADD_MINUTES:1,"Tu farfouilles un moment pour trouver la clé,|puis tu parviens finalement à te libérer.",0,0,0,Unlock()
+10,0,0,,(Tu essayes de|les enlever.)ADD_MINUTES:1,Tu essayes de faire glisser tes mains pour|retirer les menottes mais elles sont trop serrées.,10,0,0,
+10,0,0,,(Tu t'acharnes pour|te libérer.)ADD_MINUTES:1,Tu t'acharnes furieusement sur les menottes|mais tu n'as aucune chance de t'échapper.,10,0,0,
