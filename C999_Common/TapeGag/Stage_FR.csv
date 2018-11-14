@@ -1,7 +1,7 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Tu examines le ruban.)|(1 minute),"Il est solide, une fois utilisé. Il sera difficile|de comprendre quelqu'un bâillonné avec.",0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Tu te bâillonnes.)|(1 minute),Tu prends un morceau de ruban et|le colles fermement sur ta bouche.,10,0,0,SelfGag()
-10,0,0,HasLooseTape,(Tu examines le reste|du ruban.) (1 minute),"Il est solide, une fois utilisé. Il sera difficile|de comprendre quelqu'un bâillonné avec.",10,0,0,ShowImage()
-10,0,0,,(Tu forces ta bouche|à s'ouvrir.) (1 minute),Tu forces pour ouvrir la bouche|mais le ruban ne cède pas.,10,0,0,
-10,0,0,,(Tu le pousses avec|tes lèvres.) (1 minute),Tu essayes d'enlever le|ruban mais il ne cède pas.,10,0,0,
-10,0,0,Common_PlayerNotRestrained,(Tu te débâillonnes.)|(1 minute),Tu arraches le ruban de ton visage.|Ça fait très mal mais tu peux parler à nouveau.,0,0,0,SelfUngag()
+0,0,0,,(Tu examines le ruban.)ADD_MINUTES:1,"Il est solide, une fois utilisé.|Il sera difficile d'être comprise.",0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Tu te bâillonnes.)ADD_MINUTES:1,Tu prends un morceau de ruban et|le colles fermement sur ta bouche.,10,0,0,SelfGag()
+10,0,0,HasLooseTape,(Tu examines un|autre ruban.)ADD_MINUTES:1,"Il est solide, une fois utilisé.|Il sera difficile d'être comprise.",10,0,0,ShowImage()
+10,0,0,,(Tu forces ta bouche|à s'ouvrir.)ADD_MINUTES:1,Tu forces pour ouvrir la bouche|mais le ruban ne cède pas.,10,0,0,
+10,0,0,,(Tu le pousses avec|tes lèvres.)ADD_MINUTES:1,Tu essayes de repousser le ruban|mais il ne cède pas.,10,0,0,
+10,0,0,Common_PlayerNotRestrained,(Tu te débâillonnes.)ADD_MINUTES:1,Tu arraches le ruban de ton visage.|Ça fait très mal mais tu peux parler à nouveau.,0,0,0,SelfUngag()
