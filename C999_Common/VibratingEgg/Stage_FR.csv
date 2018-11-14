@@ -6,4 +6,4 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 10,0,0,Common_PlayerChaste,(Tu l'enlèves|avec un doigt.)ADD_MINUTES:1,Tu essayes de faire glisser un doigt à l'intérieur|pour attraper l'oeuf mais la ceinture t'en empêche.,10,0,0,
 10,0,0,,(Tu l'enlèves|en poussant.)ADD_MINUTES:1,Tu te détends et essayes de l'expulser de ton vagin|mais l'oeuf ne bouge pas. Tu es coincée avec.,10,0,0,Contract()
 20,0,0,HasLooseEgg,(Tu examines un|autre oeuf.)ADD_MINUTES:1,Cet oeuf vibrant est si petit et si arbitraire.|Il risque d'être dur à récupérer s'il est inséré.,20,0,0,ShowImage()
-20,0,0,,(Tu l'enlèves en poussant.)ADD_MINUTES:1,Tu te détends et essayes de l'expulser de ton vagin|mais sans une main de libre ce sera impossible de l'enlever.,20,0,0,
+20,0,0,,(Tu l'enlèves|en poussant.)ADD_MINUTES:1,Tu te tortilles et essayes de l'expulser de ton vagin|mais sans une main de libre tu ne peux pas l'enlever.,20,0,0,
