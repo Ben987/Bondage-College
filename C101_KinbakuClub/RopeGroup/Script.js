@@ -18,6 +18,7 @@ var C101_KinbakuClub_RopeGroup_Amelia210NotDone = true;				// Prevent repeating 
 var C101_KinbakuClub_RopeGroup_Amelia220NotDone = true;
 var C101_KinbakuClub_RopeGroup_Amelia230NotDone = true;
 var C101_KinbakuClub_RopeGroup_Amelia250NotDone = true;
+var C101_KinbakuClub_RopeGroup_HasLooseArmbinder = false;
 var C101_KinbakuClub_RopeGroup_Charlotte310NotDone = true;			// Prevent repeating conversation loops
 var C101_KinbakuClub_RopeGroup_Charlotte320NotDone = true;
 var C101_KinbakuClub_RopeGroup_Charlotte330NotDone = true;
@@ -77,6 +78,7 @@ function C101_KinbakuClub_RopeGroup_CalcParams() {
 	C101_KinbakuClub_RopeGroup_LucyTied = !C101_KinbakuClub_RopeGroup_TwoTiedTwins && !C101_KinbakuClub_RopeGroup_LucyFree && C101_KinbakuClub_RopeGroup_TwinsRevealed;
 	C101_KinbakuClub_RopeGroup_ATwinStillTied = C101_KinbakuClub_RopeGroup_LeftTwinStatus == "StartTied" || C101_KinbakuClub_RopeGroup_RightTwinStatus == "StartTied";
 	if (PlayerGetSkillLevel("Masochist") >= 1) C101_KinbakuClub_RopeGroup_Masochist = true;
+	C101_KinbakuClub_RopeGroup_HasLooseArmbinder = PlayerHasInventory("Armbinder");
 }
 
 

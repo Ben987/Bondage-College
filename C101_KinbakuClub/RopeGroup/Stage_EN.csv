@@ -59,13 +59,14 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 231,0,0,,"Hey Charlotte,|which do you prefer.",Well I don't have an opinion on that.,232,0,0,Charlotte()
 231,0,0,,Not apart enough to stop|me pulling a crotch rope.,You must really love being tied up.,200,1,-1,
 231,0,0,,And it's nicer on the|sub if its long term.,"Sure, but sometimes, like with the twns here,|the discomfort is essential.",200,0,0,
+231,0,0,HasLooseArmbinder,I have an armbinder that|will inhibit the hands.,"Cool, have you tried it on yourself?",235,0,0,
 232,0,0,,You should try both|and then decide.,No really I don't need an opinion on that.|(You turn back to Amelia.),200,-1,1,Amelia()
 232,0,0,,Which method would|you use on me.,If Amelia ties you up then she can decide.|(You turn back to Amelia.),200,0,-1,Amelia()
 233,0,0,,You did a good elbow tie|on one of the twins.,"Yeah with elbows touching and hands tied forwards,|her breasts are about the only things she can touch.",234,1,0,
 233,0,0,,Some girl's need the|help with their cleevage.,"Maybe, some of us are naturally|more gifted than others.",234,,,
 234,0,0,,I'm not sure mine|need the assistance.,"Every little helps,|but you look fine as you are.",200,0,0,
 234,0,0,,Your breasts would look|massive if I tied you up.,That isn't going to happen.,200,-1,1,
-234,0,0,HasArmbinder,I have an armbinder that|pins the elbows together.,"Cool, have you tried it on yourself?",235,0,0,
+234,0,0,HasLooseArmbinder,I have an armbinder that|pins the elbows together.,"Cool, have you tried it on yourself?",235,0,0,
 235,0,0,,"I tried, but it's no|good for self bondage.",I will help strap you into it.,236,1,-1,
 235,0,0,,No it's only for|my favorite subies.,Some of the girls in this club would love|to be your favorite pet for that.,200,0,0,
 235,0,0,,"No, but you should try it.","Forget it, try that on me and they can|use it on you as an arm splint.",200,-1,0,
@@ -92,6 +93,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 300,0,0,Charlotte340NotDone,You should be tied up now.,What do you mean? I really wouldn't like that.,340,-1,1,Charlotte340Done()
 300,0,0,Charlotte350NotDone,What do you think|the twins need now.,"I dunno, untie them maybe.",350,0,0,Charlotte350Done()
 300,0,0,Charlotte360NotDone,"You're clutching that bag|tight, what's in there?","Nothing much, just my homework.",360,0,0,Charlotte360Done()
+300,0,0,,Any idea which|twin is which?,"No, but Lucy is pretty honest unlike her sister.|Hmmm, have you heard of the two guards riddle?",300,0,0,
 300,0,0,,(Go back to the|rest of the grounp.),(Amelia is telling Charlotte about Kinbaku.),100,0,0,
 310,0,0,,Don't you like tying?,"It's not my thing, Amelia just asked for|some help something, that's all.",311,0,1,
 310,0,0,,"Come on, it looks|like you helped a lot.",Maybe little. It's not really my thing.,311,1,0,
@@ -185,17 +187,25 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 622,0,0,,So do you get|tied up often?,I think thats is enough chit chat.|(She takes some cloths and gags you.),622,0,0,PlayerClothGag()
 623,0,0,,(Nod your head.),Oh goodie. Come here.|(She excitedly escorts you to a corner of the room.),632,1,0,
 623,0,0,,(Shake your head.),"Aw, well I suggest you go and try someone else then.",622,0,0,
-630,0,0,,"No, what is that?",It's Kinbaku with you suspended. First you need|a harness.  (She ties up your arms and chest.),631,0,0,
-630,0,0,,"Yes, I think.",That's a start. Let's get you ready to be suspended.|(She ties up your arms and chest.),631,0,0,
+630,0,0,,"No, what is that?",It's Kinbaku with you suspended. First you need|a harness.  (She ties up your arms and chest.),631,0,0,PlayerTied()
+630,0,0,,"Yes, I think.",That's a start. Let's get you ready to be suspended.|(She ties up your arms and chest.),631,0,0,PlayerTied()
 630,0,0,,Actually maybe|not this time.,"Nonsense, you really should try being suspended.|(She starts tying up your arms and chest.)",631,0,0,WillLucyTie()
 631,0,0,,Are you sure|about this?,Of course I am. You won't be the first girl I've hung.|(She pushes you towards a corner of the room.),632,0,-1,
 631,0,0,,Hurry up.  I can't|wait to try this.,"Yes, I'm going as quick as I can.|(She takes you towards a corner of the room.)",632,1,1,
 631,0,0,,How many times|have you done this?,"I'm not sure, too many to bother counting.|(She takes you towards a corner of the room.)",632,0,0,
-632,,,,@To Do.,- To do -,633,,,
-633,,,,@To Do.,- To do -,634,,,
-634,,,,@To Do.,- To do -,635,,,
+632,0,0,,Why are you pushing|me over here?,Because there is a suspension ring already setup|in this corner.  (She starts tying you to it.),633,0,0,
+632,0,0,,(Follow her direction.),Thats it. Keep stand under this ring now.|(She starts tying you to it.),633,0,0,
+633,,,,Is that ring secure?,Of course it is.  The anchors in the ceiling are|rated to hold at least two girls each.,634,,,
+633,,,,What are you doing?,'Tachi tsuri' is tied to stand up.  Now tying|one leg up turns that into 'Kataashi age tsuri',634,,,
+633,,,,(,,634,,,
+634,,,,You make that look too easy.,"Yep, I use the ropes and ring like a pulley|hoist to manipulate you however I want to.",635,,,
+634,,,,(,,635,,,
 635,,,,@To Do.,- To do -,636,,,
+635,,,,You're going to do|the same to that leg?,"Yes.  I could leave you partially suspended, but I|fancy suspending you fully.  'M ji kaikyaku tsuri' style.",636,,,
+635,,,,You're not hanging|about with that rope.,"Nope, that is for you to do.  (She hoists your other|leg up, leaving you dangling in mid air.)",636,,,
 636,,,,@To Do.,- To do -,636,,,
+636,,,,"Errr, could you rearrange my skirt please?","Sorry, this method does leave bound person very exposed.",636,0,-1,
+636,,,,(Try to free|you arms.),"Careful there.  If you did manage to untie yourself,|you would probably flop back and crack your head.",636,,,
 695,,,,,So were you paying attention and learnt something?,696,,,
 696,,,,Nod,Good,,1,,RopeSkill
 696,,,,Shake,Well you had better refelect on your predicament.,,-1,,
