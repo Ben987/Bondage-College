@@ -1,9 +1,9 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Tu l'examines.)|(1 minute),Cet oeuf vibrant est si fortuit et petit.|Ça risque d'être dur de le récupérer si tu l'insères.,0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Tu l'insères.)|(1 minute),"Tu glisses l'oeuf dans ton vagin. Il vibre et s'enfonce|profondément, tu n'es pas sûre de pouvoir l'enlever.",0,0,0,Insert()
-10,0,0,HasLooseEgg,(Tu examines un autre|oeuf.) (1 minute),Cet oeuf vibrant est si fortuit et petit.|Ça risque d'être dur de le récupérer s'il est inséré.,10,0,0,ShowImage()
-10,0,0,!Common_PlayerChaste,(Tu l'enlèves avec un|doigt.) (1 minute),Tu glisses un doigt à l'intérieur mais|tu n'arrives pas à l'attraper. Tu es coincée avec.,10,0,0,
-10,0,0,Common_PlayerChaste,(Tu l'enlèves avec un|doigt.) (1 minute),Tu essayes de glisser un doigt à l'intérieur|pour attraper l'oeuf mais la ceinture t'en empêche.,10,0,0,
-10,0,0,,(Tu l'enlèves en poussant.)|(1 minute),Tu te détends et essayes de l'expulser de ton vagin|mais l'oeuf ne bouge pas. Tu es coincée avec.,10,0,0,Contract()
-20,0,0,HasLooseEgg,(Tu examines un autre|oeuf.) (1 minute),Cet oeuf vibrant est si fortuit et petit.|Ça risque d'être dur de le récupérer s'il est inséré.,20,0,0,ShowImage()
-20,0,0,,(Tu l'enlèves en poussant.)|(1 minute),Tu te détends et essayes de l'expulser de ton vagin|mais sans une main de libre ce sera impossible de l'enlever.,20,0,0,
+0,0,0,,(Tu l'examines.)ADD_MINUTES:1,Cet oeuf vibrant est si petit et si arbitraire.|Il risque d'être dur à récupérer si tu te l'insères.,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Tu l'insères.)ADD_MINUTES:1,"Tu glisses l'oeuf dans ton vagin. Il vibre et s'enfonce|profondément, tu n'es pas sûre de pouvoir l'enlever.",0,0,0,Insert()
+10,0,0,HasLooseEgg,(Tu examines un|autre oeuf.)ADD_MINUTES:1,Cet oeuf vibrant est si petit et si arbitraire.|Il risque d'être dur à récupérer s'il est inséré.,10,0,0,ShowImage()
+10,0,0,!Common_PlayerChaste,(Tu l'enlèves|avec un doigt.)ADD_MINUTES:1,Tu glisses un doigt à l'intérieur mais|tu n'arrives pas à l'attraper. Tu es coincée avec.,10,0,0,
+10,0,0,Common_PlayerChaste,(Tu l'enlèves|avec un doigt.)ADD_MINUTES:1,Tu essayes de faire glisser un doigt à l'intérieur|pour attraper l'oeuf mais la ceinture t'en empêche.,10,0,0,
+10,0,0,,(Tu l'enlèves|en poussant.)ADD_MINUTES:1,Tu te détends et essayes de l'expulser de ton vagin|mais l'oeuf ne bouge pas. Tu es coincée avec.,10,0,0,Contract()
+20,0,0,HasLooseEgg,(Tu examines un|autre oeuf.)ADD_MINUTES:1,Cet oeuf vibrant est si petit et si arbitraire.|Il risque d'être dur à récupérer s'il est inséré.,20,0,0,ShowImage()
+20,0,0,,(Tu l'enlèves en poussant.)ADD_MINUTES:1,Tu te détends et essayes de l'expulser de ton vagin|mais sans une main de libre ce sera impossible de l'enlever.,20,0,0,

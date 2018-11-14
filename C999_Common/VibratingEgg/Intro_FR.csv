@@ -1,4 +1,4 @@
 Stage,LoveReq,SubReq,VarReq,IntroText,Image
-0,0,0,,Cet oeuf vibrant semble s'allumer et s'éteindre| au hasard. Tu n'as pas la télécommande associée.,Egg.jpg
+0,0,0,,Cet oeuf vibrant s'enclenche aléatoirement.|Tu n'as pas la télécommande associée.,Egg.jpg
 10,0,0,,L'oeuf est enfoncé profondément.|Tu n'es pas sûre de pouvoir l'enlever.,Egg.jpg
-20,0,0,,L'oeuf est enfoncé profondément. Il|sera encore plus dur à enlever en étant attachée.,Egg.jpg
+20,0,0,,"L'oeuf est enfoncé profondément.|Entravée, il sera encore plus dur à enlever.",Egg.jpg
