@@ -1,2 +1,2 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Tu l'examines.)|(1 minute),Ce crochet en métal rouillé est assez fragile. Peut-être|pourrait-il être utilisé pour la torture ou la pêche.,0,0,0,
+0,0,0,,(Tu l'examines.)ADD_MINUTES:1,Ce crochet en métal rouillé est assez fragile.|Il pourrait être utilisé pour la torture ou la pêche.,0,0,0,
