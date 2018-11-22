@@ -1,0 +1,48 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,Psssst.,(Susurra) ¿Qué?,10,0,0,
+0,0,0,,Perdona.,(Susurra) ¿Podríamos hablar luego?,10,0,-1,
+0,0,0,,Hola! Ojos bonitos.,(se sonroja y susurra)  ¿Quién? ¿Yo?,10,1,0,
+10,0,0,,¿Estás tan aburrida|como yo?,(Parece confundida.) Aburrida?|¿Como puede alguien aburrirse con las derivadas?,20,-1,0,
+10,0,0,,¿Se va a acabar algun día|esta clase?,(Susurra.)  Se acaba a las 9.|Creo que las mates no son tu fuerte.,20,0,0,
+10,0,0,,¿Me puedes ayudar |con estos problemas?,(Sacude la cabeza diciendo que no.)  Ahora no.|Pero puede que esta noche si que pueda echarte una mano.,20,0,-1,
+10,0,0,Parece que|amas esta clase.,(Asiente con la cabeza.) !Sí!  La señora Mildred|Parece ser dura, pero es muy buena profesora.,20,0,0,
+20,0,0,,¿No quieres|irte de aquí?,(Parece sorprendida.)  ¿Irme?|¿De clase?  ¿Qué tienes en mente?,30,0,0,
+20,0,0,,"Amdmítelo, hay mejores|cosas que podríamos hacer ahora.",¿Mejores cosas? ¿Qué tienes en mente?,30,0,0,
+20,0,0,,Una preciosidad como tú|podría pasarselo mejor.,¿Pasármelo mejor?  ¿Qué tienes en mente?,30,0,1,
+20,0,0,,"Me estás aburriendo,|podríamos hacer algo.",¿Como qué?  ¿Qué tienes en mente?,30,-1,0,
+30,0,0,,¿Te gustaríaver|a la profesora sometida?,(Sus ojos se iluminan y se sonroja.)|¿Poner a la señora Mildred en bondage?  ¿Nosotras?,40,1,0,
+30,0,0,,¿Deberíamos dominar |a la profesora.,(Sus ojos se iluminan y se sonroja.)|¿De verdad?  ¿Atarla en clase?,40,0,0,
+30,0,0,,Tenemos que golpear y|atar a la maestra.,"(Agita la cabeza de izquierda a derecha.)|Oh no, no podemos herir a la señora Mildred.",40,-1,0,
+30,0,0,,"Chica, me vas a ayudar|a dominar a Mildred.",(Sus ojos se iluminan y se sonroja.)|¿Qué?  ¿Atarla enfrente de la clase?,40,0,1,
+40,4,0,,Puedes hacerlo por |amistad. (Guiño.),"(Asiente.)  Vale, por nuestra amistad.|Te ayudaré pero tu haces el primer movimiento.",50,0,0,AgreeHelp()
+40,0,4,,"Sumisa,|Lo harás.",(Asiente.)  Si señora.|Por favor, haz el primer movimiento y te ayudaré.,50,0,0,AgreeHelp()
+40,0,0,,"¿Sí, me|ayudarás?","(Agita la cabeza en señal de no.)|No puedo hacer eso, me gusta la señora Mildred.",40,0,0,
+40,0,0,,"Si, dejalo|pero piensa en ello.","(Se encoge de hombros) Vale, pero|necesitas estar muy convencida.",40,0,0,
+100,0,0,SubdueRemarkReady,¿Te gustaría|estar atada como ella?,¿Yo?  (Se ríe.)  S... No.|No sería apropiado.,100,0,1,SubdueRemark()
+100,0,4,SubdueRemarkReady,Admítelo,sumisa.|La envidias.,Yo... bueno... err... Si señora.|(Inclina su cabeza hacia ti.),100,0,1,SubdueRemark()
+100,0,0,SubdueRemarkReady,He hecho este bonito|bondage para ti.,(Se sonroja.)  ¿Para mí?|(Se ríe.)  Es muy restrictivo.,100,1,0,SubdueRemark()
+100,0,0,SubdueRemarkReady,Tenemos una|clase diferente esta mañana.,¿Esto va a entrar en el exámen? (Se ríe.),100,0,0,SubdueRemark()
+100,0,0,Common_PlayerGagged,"@Uuuummph, mmph!",(Se pone su mano sobre la boca para no reírse.),100,0,0,
+100,0,0,Common_PlayerGagged,(Muerde la mordaza.),(Te mira y parece que|le gusta lo que ve.),100,0,0,
+100,1,0,Common_PlayerGagged,(Intenta señalar|a la BallGag.),(Susurra) Te ayudaré despues de clase.,100,0,0,
+100,-1,0,Common_PlayerGagged,(Intenta señalar|a la BallGagg.),(Te enseña su pulgar hacia arriba y se ríe.),100,0,0,
+100,0,0,Common_PlayerRestrained,(Te retuerces en las ataduras.),(Agita la cabeza de izquierda a derecha.),100,0,0,
+100,0,-2,BowRemarkReady,(Inclinas tu cabeza.),(Susurra.) Estás muy|bonita atada y amordazada.,100,1,-1,BowRemark()
+110,0,0,Common_PlayerGagged,"@Uuuummph, mmph!",(Se ríe y murmura detrás de ti.),110,0,0,
+110,0,0,Common_PlayerNotRestrained,(Quitar su mordaza.)ADD_MINUTES:1,(Desabrochas y quitas la gran pelota.)|Gracias.  Era un poco incómodo.,100,0,0,Ungag()
+130,0,0,Common_PlayerGagged,"@Uuuummph, mmph!",(Se ríe y murmura detrás de ti.),130,0,0,
+130,0,0,Common_PlayerNotRestrained,(Quitar su mordaza.)ADD_MINUTES:1,(Desabrochas y quitas la gran pelota.)|Gracias.  Era un poco incómodo.,120,0,0,Ungag()
+140,0,0,Common_PlayerNotRestrained,(Hacerla cosquillas.)ADD_MINUTES:1,"(Le haces cosquillas y se ríe locamente.)|JajaJAJAja! Por favor, por favor para.",140,0,0,Tickle()
+140,0,0,Common_PlayerNotRestrained,(Desatarla.)ADD_MINUTES:1,(Desatas sus nudos y se libera.)|Sabes mucho de ataduras. (Se ríe.),100,0,0,Untie()
+140,0,0,BondageHugReady,¿Te gustaría abrazar a|Sarah?ADD_MINUTES:1,(Le da un cálido abrazo a Sarah|Y susurra algo en su oreja.),160,0,0,BondageHug()
+150,0,0,Common_PlayerGagged,"@Uuuummph, mmph!",(Se ríe y murmura detrás de ti.),150,0,0,
+150,0,0,Common_PlayerNotRestrained,(Hacerla cosquillas.)ADD_MINUTES:1,"(Le haces cosquillas y se ríe|a través de su mordaza, se sonroja un poco después.)",150,0,0,Tickle()
+150,0,0,Common_PlayerNotRestrained,(Quitar su mordaza.)ADD_MINUTES:1,(Desabrochas y quitas la gran pelota.)|Gracias.  Era un poco incómodo.,140,0,0,Ungag()
+150,0,0,Common_PlayerNotRestrained,(Desatarla.)ADD_MINUTES:1,(Desatas sus nudos y se libera.)|(Mira y apunta hacia su mordaza.),110,0,0,Untie()
+150,0,0,BondageHugReady,¿Te gustaría abrazar a|Sarah?ADD_MINUTES:1,(Vacila un poco pero se mueve lentamente|hacia su amiga para darla un abrazo de bondage.),170,0,0,BondageHug()
+160,0,0,,¿Quieres besarla? ADD_MINUTES:1,"Sarah, quieres besarme?|(Se acerca y besa a Sarah.)",160,0,0,KissSarah()
+160,0,0,,¿Estáis enamoradas?,Yo...  Err...  bueno...  (Se sonroja.),160,0,0,
+160,0,0,Common_PlayerNotRestrained,(Separarlas.)ADD_MINUTES:1,(Gime algo a Sarah y se separan.),140,0,0,Separate()
+170,0,0,,Haceis una |bonita pareja de bondage.,(Se sonroja y mira a otro lado.),170,0,0,
+170,0,0,Common_PlayerNotRestrained,(Separarlas.)ADD_MINUTES:1,(Mira a Sarah una |vez más y vuelve a su silla.),150,0,0,Separate()
+170,0,0,Common_PlayerNotRestrained,Quitar su mordaza.)ADD_MINUTES:1,(Desabrochas y quitas la gran pelota.)|Gracias.  Era un poco incómodo.,160,0,0,Ungag()
