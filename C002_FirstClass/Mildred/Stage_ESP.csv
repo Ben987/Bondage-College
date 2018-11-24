@@ -1,0 +1,71 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,Vale.,Esta bien.  Bienvenida a nuestra clase especial.  Te|aseguro que aprenderás un montón entre estas paredes.,10,0,0,
+0,0,0,,Si señora Mildred.,Muy bien.  Bienvenida a nuestra clase especial.  Te|aseguro que aprenderás un montón entre estas paredes.,10,1,-1,
+0,0,0,,(Mantenerse en silencio.),"Una calladita, bien.  Bienvenida a nuestra clase especial.  Te|aseguro que aprenderás un montón entre estas paredes.",10,0,0,
+0,0,0,,Esto es incómodo.,Me temo que voy a tener que enseñarte disciplina antes que matemáticas. Te|aseguro que aprenderás un montón entre estas paredes.,10,-1,1,
+10,0,0,,Espero aprender|un montón señora Mildred.,"Si sigues las reglas de la academia,|te convertirás en toda una señorita.",20,0,-1,
+10,0,0,,Entonces enséñame, por favor.,"Lo haré. Si sigues las reglas de la academia,|te convertirás en toda una señorita.",20,0,0,
+10,0,0,,Creo que me va a |gustar estar aquí.,"Te aseguro que lo harás.   ,Si sigues las reglas de la academia,|te convertirás en toda una señorita.",20,1,0,
+10,0,0,,Creo que tu clase|será muy informativa.,"Lo será.  Si sigues las reglas de la academia,|te convertirás en toda una señorita.",20,0,1,
+10,0,0,,(Bosteza.),"Estudiante, Si deseas ser toda una señorita,|debes concentrarte y seguir las reglas.",20,-1,0,
+10,0,0,,(Cabezea lentamente.),"Si sigues las reglas de la academia,|te convertirás en toda una señorita.",20,0,-1,
+20,0,0,,¿Una señorita?|¿Es una broma?,No estoy bromeando señorita.  Hoy estudiaremos|ecuaciones derivadas.  Espero que tengáis los libros.,30,-1,1,
+20,0,0,,¿Una señorita?|Está bien.,(Te sonríe.)   Hoy estudiaremos|ecuaciones derivadas.  Espero que tengáis los libros.,30,1,0,
+20,0,0,,(Inclina tu cabeza|y asiente lentamente.),(Te sonríe.)  Hoy estudiaremos|ecuaciones derivadas.  Espero que tengáis los libros.,30,0,-1,
+30,0,0,,Si señora Mildred.|He venido para aprender.,Muy bien.  Ahora abrid vuestros libros en la|página 147 y revisad las fórmulas.,40,1,-1,
+30,0,0,,¿Derivadas?|¿Qué coño?,(Golpea tu escritorio con la vara.) Vigila tu lenguaje|y abre tu libro en la página 147.,40,-1,0,
+30,0,0,,¿Derivadas?|Odio las mates.,(Golpea tu escritorio con la vara.) Vigila tu lenguaje|y abre tu libro en la página 147.,40,1,0,
+30,0,0,,¿Derivadas?|Parece complicado.,Empezemos entonces.  Ahora abrid vuestros libros en la|página 147 y revisad las fórmulas.,40,0,0,
+40,0,0,,(Mantenerse callada y|abrir el libro.),Bien. Ahora estate callada mientras enseño.|(Vuelve a su pupitre y empieza a enseñar.),50,0,0,
+40,0,0,,(Mira al reloj|de la pared.),(Te mira fijamente y|vuelve a su escritorio para empezar la explicación.),50,-1,0,
+40,0,0,,si señora Mildred.|(Abre el libro.),Muy bien.   Ahora estate callada mientras enseño.|(vuelve a su escritorio y empieza la explicación.),50,0,-1,
+40,0,0,,"Si, suficiente cháchara.|(Abre el libro.)",Good! Ahora estate callada mientras enseño.|(vuelve a su escritorio y empieza la explicación.),50,0,1,
+100,0,0,,Señora Mildred! ¿Qué estas|haciendo?,Enseñarte una lección jovencita.|(Te acomete con su vara.),110,0,0,
+100,0,0,,¿Qué coño?,Yo no tolero esa clase de lenguaje.|(Te golpea fuerte con su vara.),110,-1,0,
+100,0,0,,!Hey!  No puedes|hacer eso.,"Por supuesto que puedo, no tienes ni idea de donde estás.|(Te acomete con su vara.)",110,0,0,
+100,0,0,,(Intentar darle una patada.),"Así que eres una jovencita agresiva, esto te enseñará.|(Te golpea fuerte con su vara.)",110,-1,1,
+110,0,0,,!Mierda!  !Eso duele!,!Idiota!|(She hits you really hard.),120,-1,0,
+110,0,0,,!Ah!  señora Mildred.|Por favor para.,Pararé cuando hayas aprendido la lección.|(Te acomete otra vez y sonríe.),120,1,0,
+110,0,0,,"(Te Mantienes callada, fingiendo que|no te importa.)","Eres fuerte, pero eso no te servirá de nada.|(Te golpea fuerte otra vez.)",
+120,0,1,,0,0,,!Ja!  ¿Eso es lo|mejor que puedes hacer?,"Que mala educación, Pero eso va a cambiar.|(Te golpea fuerte otra vez.)",120,-1,1,
+110,0,0,,(Te mantienes callada |y tratando de no gritar.),Ya vas aprendiendo señorita .|(Te golpea otra vez, pero no tan fuerte.),120,0,0,
+120,0,0,,!Por favor señora!|Me portaré bien.,(Te golpea ligeramente una vez más.)|¿Así que vas a ser buena y a seguir las reglas?,130,1,-1,
+120,0,0,,Señora Mildred.|He aprendido la lección.,(Te golpea ligeramente una vez más.)|¿Así que vas a ser buena y a seguir las reglas?,130,1,0,
+120,0,0,,¿Crees que puedes|hacerme daño?,"(Te golpea fuertemente una vez más.)|Última advertencia, ¿vas a ser buena y a seguir las reglas?",130,0,0,
+120,0,0,,!Que te jodan,Puta!,"(Te golpea muy fuertemente una vez más.)|Última advertencia, ¿vas a ser buena y a seguir las reglas?",130,-1,1,
+130,0,0,,Sí señora Mildren.|Por favor perdóneme.,Te perdono.  Ahora podemos seguir con la clase.,50,2,-1,
+130,0,0,,"Si seré buena,.",Bien.   Ahora podemos seguir con la clase.,50,1,0,
+130,0,0,,!Jamás!  Sigo mis |propias reglas.,"(Encadena tu muñeca y te amordaza con una ballgag.)|Si no sabes comportarte, te pasarás la clase así.",50,0,0,RestrainPlayer()
+130,0,0,,(Negarse a responder.),"(Encadena tu muñeca y te amordaza con una ballgag.)|Ya que no quieres hablar, me aseguraré de que no lo hagas.",50,0,-1,RestrainPlayer()
+200,0,0,Common_PlayerNotRestrained,(Hablar para llamar |Su atención.),,200,-1,0,Disturb()
+200,0,0,Common_PlayerNotRestrained,(Intentar dominar a|la señora Mildred.),¿Quieres tratar de dominar a la señora Mildred?|(Cada estudiante que ayude mejora las posibilidades.),210,0,0,
+200,0,0,Common_PlayerRestrained,Uummph!,(Ignora tus gemidos|algunos estudiantes se ríen.),200,0,0,
+200,0,0,Common_PlayerRestrained,(Forcejear en tus esposas.)ADD_MINUTES:1,(Forcejeas sin resultados.  Confía|en que no vas a escapar y te ignora.),200,0,0,
+210,0,0,Common_PlayerNotRestrained,"(Sí, intentar|dominarla.)",,210,-2,0,Subdue()
+210,0,0,,"(No, Quizás mas tarde.)",Te rindes en tu plan de dominarla.|(La señora Mildred continua dando su clase.),200,0,0,
+220,0,0,,¿Una lección,|tu?  ¡jamás!,"(Te golpea fuertemente 6 veces, para despues esposarte y amordazarte.)|Si no sabes comportarte, te quedaras un rato así.",220,0,1,RestrainPlayer()
+220,0,0,,!Que te jodan,Puta!,"(Te golpea fuertemente 10 veces, para despues esposarte y amordazarte.)|Si no sabes comportarte, te quedaras un rato así.",220,-1,0,RestrainPlayer()
+220,0,0,,¡No!  ¡Por favor!|Lo siento mucho.,"(Te golpea fuertemente 2 veces, para despues esposarte y amordazarte.)|Demasiado tarde para excusas, te quedaras un rato así.",220,0,-1,RestrainPlayer()
+220,0,0,,(Mantenerse callada.),"(Te golpea fuertemente 4 veces, para despues esposarte y amordazarte.)|Si no sabes comportarte, te quedaras un rato así",220,0,0,RestrainPlayer()
+300,0,0,,"Mildred, Yo|estoy al cargo ahota.",¿Al cargo?  Pero yo enseño la clase.|Estás en un buen lío Señorita.,310,0,1,
+300,0,0,,"Señora, Esta clase al fin|va a ser interesante.",¡No tiene sentido!  Estoy al cargo de esta clase.|Estás en un buen lío Señorita.,310,0,0,
+300,0,0,,"Si cooperas, se|acabará mas rápido.",(Asiente y se mantiene callada.),310,0,1,
+300,0,0,,No esperaba que fueras|tan guapa.,"(Se sonroja.) Jovencita,|¿Qué estás tramando?",310,1,0,
+310,0,0,Common_PlayerNotRestrained,(Intenta esquivar tus cosquillas y se ríe fuertementer.)ADD_MINUTES:1,(Intenta esquivar tus cosquillas y se ríe fuertemente.)|¡Solo te estas metiendo cada vez mas en problemas!,310,0,0,
+310,0,0,SearchAvail,(Buscar en sus cosas.)ADD_MINUTES:1,(Buscas en sus cosas y |encuentras objetos interesantes.) ¡Pequeña ladrona!,310,-1,0,Search()
+320,0,0,Common_PlayerNotRestrained,(Intenta esquivar tus cosquillas y se ríe fuertemente.)ADD_MINUTES:1,(Intenta esquivar tus cosquillas y se ríe fuertemente.),320,0,0,
+320,0,0,Common_PlayerNotRestrained,(Quitar su mordaza.)ADD_MINUTES:1,(Quitas su mordaza lentamente.)|¡Jovencita!  Esto es muy inapropiado.,310,0,0,Ungag()
+330,0,0,Common_PlayerNotRestrained,(Hacerla cosquillas.)ADD_MINUTES:1,(Intenta esquivar tus cosquillas y se ríe suavemente.)|¡Solo te estas metiendo cada vez mas en problemas!,330,0,0,
+330,0,0,SearchAvail,(Buscar en sus cosas.)ADD_MINUTES:1,(Buscas en sus cosas y |encuentras objetos interesantes.)  ¡Pequeña ladrona!,330,-1,0,Search()
+340,0,0,Common_PlayerNotRestrained,(Hacerla cosquillas.)ADD_MINUTES:1,(Intenta esquivar tus cosquillas y se ríe suavemente.),340,0,0,
+340,0,0,Common_PlayerNotRestrained,(Quitar su mordaza.)ADD_MINUTES:1,(Quitas su mordaza lentamente.)|¡Jovencita!  Esto es muy inapropiado.,330,0,0,Ungag()
+410,0,0,Common_PlayerNotRestrained,(Azotarla.)ADD_MINUTES:1,(La azotas con fuerza con la vara.)|¡señorita! ¡Te arrepentirás de lo que estas haciendo!,410,0,0,Whip()
+410,0,0,Common_PlayerNotRestrained,(Alejar la vara.)ADD_MINUTES:1,(Alejas la vara y|la colocas a sus pies.),310,0,0,
+420,0,0,Common_PlayerNotRestrained,(Azotarla.)ADD_MINUTES:1,(La azotas con fuerza con la vara.)|(Grita enfadada a través de su mordaza.),420,0,0,Whip()
+420,0,0,Common_PlayerNotRestrained,(Alejar la vara.)ADD_MINUTES:1,(Alejas la vara y|la colocas a sus pies.),320,0,0,
+420,0,0,Common_PlayerNotRestrained,(Quitar su mordaza.)ADD_MINUTES:1,(Quitas su mordaza lentamente.)|¡Jovencita!  Esto es muy inapropiado.,410,0,0,Ungag()
+430,0,0,Common_PlayerNotRestrained,(Azotarla.)ADD_MINUTES:1,(La azotas con fuerza con la vara.)|¡Señorita!  ¡Te arrepentirás de lo que estas haciendo!,430,0,0,Whip()
+430,0,0,Common_PlayerNotRestrained,(Alejar la vara.)ADD_MINUTES:1,(Alejas la vara y|la colocas a sus pies.),330,0,0,
+440,0,0,Common_PlayerNotRestrained,(Azotarla.)ADD_MINUTES:1,(La azotas con fuerza con la vara.)|(Grita enfadada a través de su mordaza),440,0,0,Whip()
+440,0,0,Common_PlayerNotRestrained,(Alejar la vara.)ADD_MINUTES:1,(Alejas la vara y|la colocas a sus pies.),340,0,0,
+440,0,0,Common_PlayerNotRestrained,(Quitar su mordaza.)ADD_MINUTES:1,(Quitas su mordaza lentamente.)|¡Jovencita!  Esto es muy inapropiado.,430,0,0,Ungag()

@@ -1,0 +1,24 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,Bienvenida a mi clase, jovencita.|Deberás dirijirte a mi como señora Mildred.,MildredIntro.jpg
+10,0,0,,,MildredIntro.jpg
+20,0,0,,,MildredIntro.jpg
+30,0,0,,,MildredIntro.jpg
+40,0,0,,,MildredIntro.jpg
+50,0,0,,(La señora Mildred está enseñando derivadas 9:00.|Parece controlar la clase firmemente.),MildredTeach.jpg
+100,0,0,,,MildredCrop.jpg
+110,0,0,,,MildredCrop.jpg
+120,0,0,,,MildredCrop.jpg
+130,0,0,,,MildredCrop.jpg
+200,0,0,Common_PlayerNotRestrained,(La señora Mildred está enseñando derivadas 9:00.|Parece controlar la clase firmemente.),MildredTeach.jpg
+200,0,0,Common_PlayerRestrained,(La clase de la señora Mildred continúa mientras trasteas en tus esposas |y babeas. Parece que vas a tener que esperar hasta las 9:00.),MildredTeach.jpg
+210,0,0,,(La señora Mildred mantiene completamente el control de la clase.|¿Quieres intentar dominarla?),MildredTeach.jpg
+220,0,0,,,MildredCrop.jpg
+300,0,0,,Jovencita! Vas a quitarme estas esposas ahora mismo.,Mildred_Cuffs.jpg
+310,0,0,,Jovencita!  Vas a quitarme estas esposas ahora mismo.,Mildred_Cuffs.jpg
+320,0,0,,(Muerde su mordaza y parece furiosa.),Mildred_Cuffs_BallGag.jpg
+330,0,0,,Jovencita!  Vas a desatarme ahora mismo.|(Cierra los ojos para mantener algo de dignidad.),Mildred_Rope.jpg
+340,0,0,,(Muerde su mordaza y parece furiosa.)|(Cierra los ojos para mantener algo de dignidad.),Mildred_Rope_BallGag.jpg
+410,0,0,,"(La apoyas en el escritorio y alzas la vara.)|Señorita, Piensa las consecuencias antes de nada.",Mildred_Cuffs_Crop.jpg
+420,0,0,,(La apoyas en el escritorio y alzas la vara.)|(Protesta a través de su mordaza pero es inteligible.),Mildred_Cuffs_Crop.jpg
+430,0,0,,"(La apoyas en el escritorio y alzas la vara.)|Señorita, Piensa las consecuencias antes de nada.",Mildred_Rope_Crop.jpg
+440,0,0,,(La apoyas en el escritorio y alzas la vara.)|(Protesta a través de su mordaza pero es inteligible.),Mildred_Rope_Crop.jpg
