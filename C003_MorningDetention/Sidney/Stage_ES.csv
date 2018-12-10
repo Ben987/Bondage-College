@@ -1,0 +1,31 @@
+﻿Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,¿Supongo que te |castigan a menudo?,¿A menudo?  Le tendrán que poner mi nombre a esta sala.,10,0,0,
+0,0,0,,Te arrepentirás si me metes en|problemas de nuevo.,¡Joder!  Tu eres la que nos ha metido aquí.,10,-1,1,
+0,0,0,,Será mejor que paremos|antes de que nos expulsen.,Que actitud tan mala.  Solo vives una vez.,10,0,-1,
+0,0,0,,Castigada en mi |primera clase.  ¿Está guay no crees?,Es bastante impresionante.,10,1,0,
+10,0,0,,¿Porque te han| atado?,Porque escapé la última vez.|Estos gilipollas quieren asegurarse de que no ocurra.,20,0,0,
+10,0,0,,¿Porqué no me han|atado a mi también?,¡Ja!  ¿De verdad quieres mis esposas?|Intenta escapar como yo y te las pondrán.,20,0,-1,
+10,0,0,,Estás adorable|con las esposas.,(Se sonroja) ¡No!  No intentes|escapar o te atarán a ti también.,20,0,1,
+10,0,0,,Una problemática como|tu debería estar siempre atada.,Te tu merecido en cuanto salga.|Y te apuesto a que te atarán a ti también.,20,-1,0,
+20,0,0,,Al menos estoy contenta|de estar aquí contigo.,"Sí, supongo que podría ser peor.",30,1,0,
+20,0,0,,¿Como pasas el|tiempo aquí?,"No lo sé, mirando el secundero del reloj.",30,0,0,
+20,0,0,,¿Como pasas el|tiempo aquí?,¿quieres escapar?  Encuentra|las llaves de las esposas y te ayudaré.,30,0,0,
+30,0,0,,No hay mucho que|podamos hacer.,"Es verdad, ahora deja de molestarme.|(Se retuerce en sus esposas.)",40,0,0,
+30,0,0,,Voy a pensar en algo.|Quédate callada por ahora.,"(Asiente, se calla y se| retuerce un poco en las esposas.)",40,0,1,
+30,0,0,,Esto es desesperante.|Tenemos que esperar.,Tu eres desesperante.|(Te ignora y se retuerce en las esposas.),40,0,-1,
+100,0,0,,¡Sí!  Ahora toca esperar|a ver que pasa.,¡Oh Sí!  ¡Esto es genial!|Apuesto a que funcionará.,110,1,0,
+100,0,0,,Ahora sabes que no debes|meterte conmigo.,Joder.  Ahora me pregunto|cuanto tardará hasta que funcione.,110,0,1,
+100,0,0,,No digas|nada sobre esto.,"No te preocupes, No lo haré.|Estoy deseando que le haga efecto.",110,0,0,
+150,0,0,,Esto se nos está|llendo de las manos.,¡Eres la mas imbécil de la escuela!|Tenías un buen plan y lo arruinaste.,160,-1,-1,
+150,0,0,,No te preocupes.  La cogeremos|otra vez.,¿otra vez?  ¡La tenías hace unos minutos!|Tenías un buen plan y lo arruinaste.,160,-1,0,
+150,0,0,,¡Cállate!  Se que la |he jodido.,¡Y tanto!  ¡Has desperdiciado tu oportunidad!|Tenías un buen plan y lo arruinaste.,160,-1,1,
+200,0,0,,¡Sí!  Ahora podremos|divertirnos.,(Te mira nerviosa.)|¿Qué tienes en mente?,210,0,0,
+200,0,0,,¿Así que quieres|que te suelte?,¡Claro!  ¿Tienes las llaves|de las esposas?,210,1,-1,
+200,0,0,,Ahora eres toda|mía puta.,¿Que cojones estás diciendo?|(Te mira nerviosa.),210,-1,1,
+210,0,0,Common_PlayerNotRestrained,(Desnudarla.)ADD_MINUTES:1,¡No wait!  ¿Qué estás haciendo?|(Consigues quitarla la ropa.),220,0,0,Strip()
+210,1,0,,(Besarla.)ADD_MINUTES:1,(La besas y permanece callada.),210,0,0,Kiss()
+220,0,0,Common_PlayerNotRestrained,(Vestirla.)ADD_MINUTES:1,¿Hay alguna lógica para lo que estás haciendo?,210,0,0,Dress()
+220,1,0,,(Besarla.)ADD_MINUTES:1,(La besas y permanece callada.),220,0,0,Kiss()
+220,0,0,Common_PlayerNotRestrained,(Hacerla cosquillas.)ADD_MINUTES:1,¡Para de una vez zorra!|(No parece reírse o divertirse.),220,0,0,Tickle()
+220,0,0,EggReady,(Insertar el vibrador.)ADD_MINUTES:1,(Introduces el vibrador en su vagina.  Vibra y|se introduce al fondo.)  ¡Joder!  ¿porqué has hecho eso?,220,-1,1,Insert()
+220,0,0,EggInside,(Quitar el vibrador.)ADD_MINUTES:1,(Deslizas un dedo pero no eres capaz de alcanzarlo.)|¡No puedes alcanzarlo!  ¡Eres una idiota!,220,0,0,
