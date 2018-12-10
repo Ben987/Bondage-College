@@ -1,0 +1,5 @@
+﻿Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,Common_PlayerNotRestrained,(Abrir la bolsa.),Abres con cuidado la bolsa y|buscas algo que te pueda interesar.,10,0,0,
+10,0,0,Common_PlayerNotRestrained,(Cerrar la bolsa.),Cierras la bolsa de la profesora Yuki.,0,0,0,
+10,0,0,PillInBagAvail,(Coger la pastilla adormecedora.),Coges la pastilla de la bolsa.,10,0,0,StealPill()
+10,0,0,EggInBagAvail,(Coger los vibradores.),"Coges los vibradores de control remoto|de la bolsa,pero no puedes encontrar el mando.",10,0,0,StealEgg()
