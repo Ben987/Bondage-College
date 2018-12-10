@@ -1,0 +1,68 @@
+﻿Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,Sí señora.|Lo siento.,Bien.  ¿Ahora serás una buena estudiante?,10,1,-1,
+0,0,0,,"Lo sé, lo sé.|No hace falta repetirlo.","Señorita, tienes un problema con la actitud.|¿Ahora serás una buena estudiante?",10,-1,0,
+0,0,0,,Es todo culpa de Sidney.,También es tu culpa señorita.|¿Ahora serás una buena estudiante?,10,0,0,
+0,0,0,Fighting,Simplemente me defendí|de Sidney.,No hay ninguna razón aceptable para pelear.|¿Ahora serás una buena estudiante?,10,0,0,
+0,0,0,Bondage,¡Admítelo!  Pensabas|que era muy sexy.,"Jovencita, eso no es apropiado.|¿Ahora serás una buena estudiante?",10,0,1,
+10,0,0,,"Si, no quiero causar|más problemas.",Muy bien.  ¿Ahora puedes sentarte y|callarte hasta que acabe el castigo?,20,0,0,
+10,0,0,,"Si Sidney puede|calmarse, lo haré.","Mmmh, vale. ¿Ahora puedes sentarte y|callarte hasta que acabe el castigo?",20,0,0,
+10,0,0,,¿Una buena estudiante?  Antes necesito|una buena profesora.,Necesitas algo de disciplina. ¿Ahora puedes sentarte y|callarte hasta que acabe el castigo?,20,-1,0,
+10,0,0,,Seré buena.  Solo porque|eres maja.,Muy bien.  ¿Ahora puedes sentarte y|callarte hasta que acabe el castigo?,20,1,0,
+20,0,0,,¿Callada durante una hora?|Eso es imposible.,"Al menos inténtalo, será rápido.  Tengo un par de llamadas|que hacer, estate callada.",40,0,1,
+20,0,0,,"Sí, supongo que|puedo estar callada.",Vale.   Tengo un par de llamadas|que hacer, así que estate callada.,40,0,0,
+20,0,0,,Puedo hablar|cuando quiera.,"Tenemos métodos para callarte.  Tengo un par de llamadas|que hacer, estate callada.",40,-1,1,
+20,0,0,,Sí señora.|Estaré callada.,Bien.  Tengo un par de llamadas|que hacer, estate callada.,40,1,-1,
+30,0,0,,No es nada que|te importe.,"Jovencita, dame eso ahora mismo.|(Agarra tus objetos y los confisca.)",40,-1,0,Confiscate()
+30,0,0,,He encontrado|esto en el suelo.,"Gracias señorita, muy amable.|(Sonríe y confisca tus cosas.)",40,1,0,Confiscate()
+30,0,0,,No es nada.|(Esconderlo),"Mmh, vale.  pensé haber visto algo.|Ahora cállate, Tengo llamadas que hacer.",40,0,0,
+50,0,0,Common_PlayerNotRestrained,(Intentar molestarla.)ADD_MINUTES:1,Jovencita.  Para ahora mismo|o te amordazaré.,50,-1,0,Annoyed()
+60,0,0,Common_PlayerRestrained,¡Qué coño!|No puedes atarme.,Puedo hacerlo incluso mejor.  (Se aleja y vuelve|con algo de cinta para tu boca.),60,0,0,GagPlayer()
+70,0,0,Common_PlayerGagged,@Uhmma huhme!,(Te ignora.),70,0,0,
+70,0,0,Common_PlayerGagged,(Poner ojitos tiernos.),(Te ignora.),70,0,0,
+100,0,0,Common_PlayerRestrained,(Buscar la llave de las esposas.)ADD_MINUTES:1,Yuki no parece tener ninguna llave.,100,0,0,SearchCuffKeys()
+100,0,0,Common_PlayerNotRestrained,(Desnudarla.)ADD_MINUTES:1,La quitas la ropa con cuidado para no despertarla.,110,0,0,
+100,0,0,Common_PlayerNotRestrained,(Escapar de la sala de castigo.),,100,0,0,Escape()
+100,0,0,,(Despertarla.)ADD_MINUTES:1,(La agitas muy fuerte y se despierta.)|¿eeeh?  ¿Qué?  ¿Ha pasado?,200,0,0,NoLeave()
+110,0,0,Common_PlayerNotRestrained,(Vestirla.)ADD_MINUTES:1,La vistes con cuidado para no despertarla.,100,0,0,
+110,0,0,CanSearch,(Buscar en sus cosas.)ADD_MINUTES:1,Encuentras esposas y unas llaves.,110,0,0,Search()
+110,0,0,EggReady,(Insertar el vibrador.)ADD_MINUTES:1,Deslizas el vibrador en su vagina y gime un poco.|vibra y se va mas hondo.  Va a ser difícil sacarlo.,110,0,0,Insert()
+110,0,0,EggInside,(Quitar el vibrador.)ADD_MINUTES:1,Deslizas un dedo para sacarlo pero no |puedes alcanzarlo.  Se queda ahí por ahora.,110,0,0,
+110,0,0,Common_PlayerNotRestrained,(Escapar de la sala de castigo.),,110,0,0,Escape()
+110,0,0,,(Despertarla.)ADD_MINUTES:1,(La agitas muy fuerte y la despiertas.)| ¿Qué?  ¿Ha pasado?  ¿Donde está mi ropa?,210,0,0,NoLeave()
+120,0,0,Common_PlayerNotRestrained,(Acostarla en la mesa.)ADD_MINUTES:1,La recuestas en la mesa.,130,0,0,
+120,0,0,EggReady,(Insertar el vibrador.)ADD_MINUTES:1,Deslizas el vibrador en su vagina y gime un poco.|vibra y se va mas hondo.  Va a ser difícil sacarlo.,120,0,0,Insert()
+120,0,0,EggInside,(Quitar el vibrador.)ADD_MINUTES:1,Deslizas un dedo para sacarlo pero no |puedes alcanzarlo.  Se queda ahí por ahora.,120,0,0,
+120,0,0,Common_PlayerNotRestrained,(Escapar de la sala de castigo.),,120,0,0,Escape()
+120,0,0,,(Despertarla.)ADD_MINUTES:1,(La agitas muy fuerte y la despiertas.)|¿Qué? ¿Donde está mi ropa? ¿Porqué estoy atada?,220,0,0,NoLeave()
+130,0,0,Common_PlayerNotRestrained,(Sentarla.)ADD_MINUTES:1,La colocas de nuevo en su asiento.,120,0,0,
+130,0,0,EggReady,(Insertar el vibrador.)ADD_MINUTES:1,Deslizas el vibrador en su vagina y gime un poco.|vibra y se va mas hondo.  Va a ser difícil sacarlo.,130,0,0,Insert()
+130,0,0,EggInside,(Quitar el vibrador.)ADD_MINUTES:1,Deslizas un dedo para sacarlo pero no |puedes alcanzarlo.  Se queda ahí por ahora.,130,0,0,
+130,0,0,Common_PlayerNotRestrained,(Escapar de la sala de castigo.),,130,0,0,Escape()
+130,0,0,,(Despertarla.)ADD_MINUTES:1,(La agitas muy fuerte y la despiertas.)|¿Qué? ¿Donde está mi ropa? ¿Porqué estoy atada?,220,0,0,NoLeave()
+200,0,0,Common_PlayerGagged,@¡ffmmffgg!,Deja que te quite la cinta.|¿Me he quedado dormida?,200,0,0,Ungag()
+200,0,0,,"Sí, te has dormido.",Que vergüenza.  Voy a por otro |vaso de agua.  El castigo puede continuar.,250,0,0,NoCrime()
+200,0,0,,Te dormiste|así que te he despertado.,"Gracias, lo aprecio.  Voy a por otro |vaso de agua.  El castigo puede continuar.",250,1,0,NoCrime()
+200,0,0,,Te he drogado.,"¿¿¿QUÉ???  (Se abalanza sobre ti, te reduce,te|esposa y te amordaza con algo de cinta.)",260,-2,1,FullRestrain()
+200,0,0,!SidneyGone,Sidney te ha drogado.,"¡Mentirosa!  ¡Estaba esposada asi que lo hiciste tú!  (Se abalanza sobre ti, te reduce,te|esposa y te amordaza con algo de cinta.)",260,-2,0,FullRestrain()
+200,0,0,SidneyGone,Sidney te ha drogado.,"¡¡¡SIDNEY!!!  (Salta de su silla,|abandona la sala y corre por el pasillo.)",270,1,0,NoCrime()
+210,0,0,Common_PlayerGagged,@¡mmeffig!,Dejame quitarte la cinta.|¿Así que me he quedado dormida?  ¿Dónde está mi ropa?,210,0,0,Ungag()
+210,0,0,,Te dormiste así que |intenté probarme tu ropa.,Esa es una muy mala idea.  (Se viste.)|voy a por más agua y el castigo puede continuar.,250,-1,0,NoCrime()
+210,0,0,,Pensé que tenías fiebre|así que te quité la ropa.,Que maja.  (Se viste.)|voy a por más agua y el castigo puede continuar.,250,1,0,NoCrime()
+210,0,0,,Te he drogado|y desnudado.,"¿¿¿QUÉ???  (Se abalanza sobre ti, te esposa,|te amordaza y se viste.)",260,-2,1,FullRestrain()
+210,0,0,!SidneyGone,Sidney te ha drogado|y desnudado.,"¡Mentirosa!  ¡Estaba esposada!  (Se abalanza sobre ti, te esposa,|te amordaza y se viste.)",260,-2,0,FullRestrain()
+210,0,0,SidneyGone,Sidney te ha drogado|y desnudado.,"!!!SIDNEY!!!  (Salta de su silla,|se viste rápidamente y abandona la sala .)",270,1,0,NoCrime()
+220,0,0,Common_PlayerGagged,@¡feagerufi!,Agáchate para que te quite la cinta.|¿Dónde está mi ropa?  ¿Porqué estoy atada?,220,0,0,Ungag()
+220,0,0,,Ahora eres mía.,!Quítame estas esposas ahora mismo!,230,-1,2,AllowLeave()
+220,0,0,,"Te he drogado,desnudado|atado.",!Quítame estas esposas ahora mismo!,230,-1,1,AllowLeave()
+220,0,0,!SidneyGone,"Sidney te ha drogado desnudado|y esposado .",¡Mentirosa!  ¡Estaba esposada!  !Lo has hecho tú!|!Quítame estas esposas ahora mismo!,230,-1,0,AllowLeave()
+220,0,0,SidneyGone,"Sidney te ha drogado desnudado|y esposado .",!Gracias!  !SIDNEY!  (Salta de su silla |y corre esposada en ropa interior por el pasillo.),270,1,0,NoCrime()
+230,0,0,,Estás muy guapa|así.,No estás ayudando señorita.|Quítame estas esposas ahora mismo.,230,0,0,
+230,0,0,,(Hacerla cosquillas.)ADD_MINUTES:1,¡¡¡Hey!!! ¡JejeJEJEjeje! !Para!  !Por favor!|(Se ríe muy fuerte y se sonroja.),230,0,0,Tickle()
+230,0,0,,(Azotarla.)ADD_MINUTES:1,!Aw!  !No te atrevas a tocarme!,230,0,0,
+230,0,0,,(Escapar de la sala de castigo.),,230,0,0,Escape()
+250,0,0,SidneyGone,Si buscas a Sidney.|Se fue por el pasillo.,!Gracias!  Quédate aquí y voy a por ella.|(Se marcha corriendo de la sala.),270,1,0,
+250,0,0,Common_PlayerRestrained,(Enseñar tus esposas.),Vas a seguir así por ahora.|Te las quitaré después del castigo.,250,0,0,
+250,0,0,Common_PlayerRestrained,!Hey!  No puedes mantenerme|esposada.,Puedo hacerlo incluso mejor.  (Se marcha y vuelve|con un trozo de cinta para tu boca.),250,0,0,GagPlayer()
+260,0,0,Common_PlayerGagged,@!Phmmf fhme!,(Te ignora.),260,0,0,
+260,0,0,Common_PlayerGagged,(Poner ojitos tiernos.),(Te ignora.),260,0,0,
+270,0,0,,(Escapar de la sala de castigo.),,270,0,0,Escape()
