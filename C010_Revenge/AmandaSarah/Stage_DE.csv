@@ -1,0 +1,167 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,AmandaVictim,Was hab ich|denn getan?,Das weißt du ganz genau! Du hast mich|gefesselt in der Öffentlichkeit zurückgelassen!,10,-1,0,
+0,0,0,!AmandaVictim,Was hab ich|denn getan?,Das weißt du ganz genau! Du hast sie|gefesselt in der Öffentlichkeit zurückgelassen!,10,-1,0,
+0,0,0,AmandaVictim,"Gib's zu, Mädchen.|Es hat dir gefallen.",Nein! Andere Mädchen haben mich|gefunden und es war sehr demütigend.,20,-1,1,
+0,0,0,!AmandaVictim,Sie hatte Spaß.,"Nein! Ein anderer Gast hat sie nackt und|gefesselt gefunden, sie war gedemütigt.",20,-1,0,
+0,0,0,AmandaVictim,Es war wohl|nicht so nett.,Nicht nett? Andere Mädchen haben mich|gefunden und es war sehr demütigend.,20,0,0,
+0,0,0,!AmandaVictim,Es war wohl|nicht so nett.,"Nicht nett? Ein anderer Gast hat sie nackt und|gefesselt gefunden, sie war gedemütigt.",20,0,0,
+0,0,0,,Entschuldigung.,(Sarah tritt vor.) Eine Entschuldigung reicht nicht!|Du musst für deine Taten bezahlen!,30,1,-1,"SwitchFocus(""Sarah"")"
+10,0,0,AmandaVictim,"Gib's zu, Mädchen.|Es hat dir gefallen.",Nein! Andere Mädchen haben mich|gefunden und es war sehr demütigend.,20,-1,1,
+10,0,0,!AmandaVictim,Sie hatte Spaß.,"Nein! Ein anderer Gast hat sie nackt und|gefesselt gefunden, sie war gedemütigt.",20,-1,0,
+10,0,0,AmandaVictim,Es war wohl|nicht so nett.,Nicht nett? Andere Mädchen haben mich|gefunden und es war sehr demütigend.,20,0,0,
+10,0,0,!AmandaVictim,Es war wohl|nicht so nett.,"Nicht nett? Ein anderer Gast hat sie nackt und|gefesselt gefunden, sie war gedemütigt.",20,0,0,
+10,0,0,,Entschuldigung.,(Sarah tritt vor.) Eine Entschuldigung reicht nicht!|Du musst für deine Taten bezahlen!,30,1,-1,"SwitchFocus(""Sarah"")"
+20,0,0,AmandaVictim,"Du hast es verdient,|kleine Schlampe.",(Sarah tritt vor.) Du bist die Schlampe!|Und jetzt wirst du dafür bezahlen!,30,-1,1,"SwitchFocus(""Sarah"")"
+20,0,0,!AmandaVictim,"Sie ist 'ne Schlampe,|sie hat's verdient.",(Sarah tritt vor.) Du bist die Schlampe!|Und jetzt wirst du dafür bezahlen!,30,-1,1,"SwitchFocus(""Sarah"")"
+20,0,0,,Ich bereue es nicht.,(Sarah tritt vor.) Solltest du aber!|Und jetzt wirst du dafür bezahlen!,30,-1,0,"SwitchFocus(""Sarah"")"
+20,0,0,,Es ist nun mal passiert.|Ich muss jetzt los.,"(Sarah tritt vor.) Oh nein, du bleibst hier!|Du sollst dafür bezahlen!",30,0,0,"SwitchFocus(""Sarah"")"
+20,0,0,,Entschuldigung.,(Sarah tritt vor.) Eine Entschuldigung reicht nicht!|Du musst für deine Taten bezahlen!,30,1,-1,"SwitchFocus(""Sarah"")"
+30,0,0,,Ich zahle. Wie|viel wollt ihr?,"Wie viel? Wir wollen kein|Geld, wir wollen Rache!",40,0,-1,
+30,0,0,,Bezahlen? Ich gebe|euch gar nichts.,"Wir wollen gar nichts von|dir, wir wollen Rache!",40,0,0,
+30,0,0,,Das ist nicht witzig.|Geht aus dem Weg.,Natürlich ist es nicht witzig.|Es ist Zeit für unsere Rache!,40,-1,1,
+30,0,10,,"Ruhe, Sarah.|Ich rede mit ihr.",(Sarah lässt den Kopf sinken und Amanda reden.)|Genug! Leg deine Sachen ab und ergib dich.,60,-1,1,"SwitchFocus(""Amanda"")"
+30,0,15,,"Sarah, geh|auf die Knie.","Auf die Knie? Sehr wohl, Miss. (Sie kniet sich|hin und Amanda schaut sie sprachlos an.)",51,0,1,SarahKneel()
+40,0,0,,Bitte verzeiht mir.,Ich könnte dir verzeihen. Aber du musst|trotzdem noch dafür bezahlen.,50,1,-1,
+40,0,0,,Fickt euch und|eure Rache.,"Große, schmutzige Worte für einen so kleinen|Mund. Du wirst sicher oft geknebelt.",50,-1,0,
+40,0,0,,Was wollt ihr von mir?,(Amanda tritt vor.) Erst legst du all deine|Sachen ab und ergibst dich uns.,60,0,0,"SwitchFocus(""Amanda"")"
+40,0,15,,"Sarah, geh|auf die Knie.","Auf die Knie? Sehr wohl, Miss. (Sie kniet sich|hin und Amanda schaut sie sprachlos an.)",51,0,1,SarahKneel()
+50,0,0,,Was wollt ihr von mir?,(Amanda tritt vor.) Erst legst du all deine|Sachen ab und ergibst dich uns.,60,0,0,"SwitchFocus(""Amanda"")"
+50,0,0,,Was ist euer|bescheuerter Plan?,(Amanda tritt vor.) Erst legst du all deine|Sachen ab und ergibst dich uns.,60,-1,0,"SwitchFocus(""Amanda"")"
+50,0,0,,"Schließen wir|Frieden, okay?",(Amanda tritt vor.) Oh nein! Leg all deine|Sachen ab und ergib dich uns.,60,0,-1,"SwitchFocus(""Amanda"")"
+50,0,15,,"Sarah, geh|auf die Knie.","Auf die Knie? Sehr wohl, Miss. (Sie kniet sich|hin und Amanda schaut sie sprachlos an.)",51,0,1,SarahKneel()
+51,0,0,,"Geh mir aus den|Augen, Sklavin.",(Sarah läuft davon und Amanda bleibt zurück.)|SARAH!!! Was zur Hölle? Wir hatten einen Plan!,52,0,1,SarahLeave()
+51,0,0,,Braves Kleines.|Jetzt lauf.,(Sarah läuft davon und Amanda bleibt zurück.)|SARAH!!! Was zur Hölle? Wir hatten einen Plan!,52,1,0,SarahLeave()
+52,0,0,,"Was für einen|Plan, du Niete?",(Sie beruhigt sich und flüstert.) Na ja...|Ähhh... Wir wollten dich in einen Schrank sperren.,53,-1,0,"CalmDown(""Amanda"")"
+52,0,0,,Was war noch|gleich euer Plan?,(Sie beruhigt sich und flüstert.) Na ja...|Ähhh... Wir wollten dich in einen Schrank sperren.,53,0,0,"CalmDown(""Amanda"")"
+52,0,0,,"Hau ab, Amanda.|(Amanda allein lassen.)",,52,0,1,"EarlyEnding(""Alone"")"
+53,0,10,,Dann landest du jetzt|in diesem Schrank.,Oh bitte! Miss COMMON_PLAYERNAME!|Ich bereue es. Ich versuche das nie wieder.,54,0,1,
+53,0,0,,"Tja, war wohl nix. Jetzt geh.|(Amanda in Ruhe lassen.)",,53,0,0,"EarlyEnding(""Alone"")"
+54,0,0,,"Gib nach, Amanda. (Sie|in den Schrank schubsen.)","(Du öffnest einen Schrank und schubst sie hinein.)|Bitte nicht, ich bin klaustrophobisch.",55,-1,1,"EnterLocker(""Amanda"")"
+54,0,0,,Du schuldest mir aber was.|(Amanda in Ruhe lassen.),,54,2,0,"EarlyEnding(""Alone"")"
+55,0,0,,Viel Spaß da drin.|(Die Tür schließen.),(Du schließt und verriegelst den Schrank.)|(Das Wimmern im Inneren ist kaum zu hören.),56,0,0,"CloseLocker(""Amanda"")"
+55,0,0,,"Okay, komm raus und lauf.|(Amanda allein lassen.)",,55,1,1,"EarlyEnding(""Alone"")"
+56,0,0,,(Die Tür öffnen.),(Sie atmet schwer und sieht dich|flehentlich an.) Bitte lass mich raus.,55,0,0,"OpenLocker(""Amanda"")"
+56,0,0,,(Sie zurücklassen|und gehen.),,56,-3,1,"EarlyEnding(""Locker"")"
+60,0,0,,Vergesst es. Ich|behalte meine Tasche.,"Das ist deine letzte Chance. Wenn du dich|nicht sofort ergibst, wenden wir Gewalt an.",70,0,0,
+60,0,0,,"Verschwindet, Versager.|Ich muss weiter.","Das ist deine letzte Chance. Wenn du dich|nicht sofort ergibst, wenden wir Gewalt an.",70,-1,0,
+60,0,0,,"Okay, aber nicht klauen.|(Deine Tasche ablegen.)","Sehr gut, und jetzt zieh dich|aus, bis auf die nackte Haut.",80,1,-1,StealItems()
+60,0,0,,"Ja, Miss.|(Deine Tasche ablegen.)","Gutes Mädchen, und jetzt zieh dich|aus, bis auf die nackte Haut.",80,1,-2,StealItems()
+60,0,15,,Amanda. Halt die Klappe|und knie vor mir.,"Ähhh... Was, Miss? Knien?|(Sie wird rot und scheint verwirrt.)",71,0,0,"CalmDown(""Amanda"")"
+70,0,0,AllowFight,Ihr wollt kämpfen?|Dann lasst uns kämpfen!,,70,0,0,StartFight()
+70,0,0,,Dafür bezahlt ihr noch.|(Deine Tasche ablegen.),Halt die Klappe und zieh alles aus.,80,0,0,StealItems()
+70,0,0,,"Okay, aber nicht klauen.|(Deine Tasche ablegen.)","Sehr gut, und jetzt zieh dich|aus, bis auf die nackte Haut.",80,0,-1,StealItems()
+70,0,15,,Amanda. Halt die Klappe|und knie vor mir.,"Ähhh... Was, Miss? Knien?|(Sie wird rot und scheint verwirrt.)",71,0,0,"CalmDown(""Amanda"")"
+71,0,0,,Sei brav und|geh auf die Knie.,"Ja, Miss. Entschuldige, Sarah.|(Sie verbeugt sich und kniet vor dir.)",72,1,0,AmandaKneel()
+71,0,0,,Ich wiederhole mich|nicht gern. Auf die Knie.,"Ja, Miss. Sie brauchen sich nicht zu wiederholen.|(Sie verbeugt sich und kniet vor dir.)",72,0,1,AmandaKneel()
+72,0,0,,"Gutes Mädchen, jetzt|verrate mir euren Plan.","Es tut mir so leid, Miss. Wir hatten vor,|Sie in ein Schließfach zu sperren.",73,0,0,
+72,0,0,,Was hattet ihr verdammt|nochmal vor?,"Es tut mir so leid, Miss. Wir hatten vor,|Sie in ein Schließfach zu sperren.",73,-1,0,
+73,0,0,,Danke für deine Ehrlichkeit.|Du darfst jetzt gehen.,"(Als sie geht, ruft Sarah ihr entgeistert hinterher.)|Amy! Du Verräterin! Bleib hier!",74,1,0,AmandaLeave()
+73,0,0,,"Gut, jetzt hau ab,|bevor ich mich vergesse.","(Als sie geht, ruft Sarah ihr entgeistert hinterher.)|Amy! Du Verräterin! Bleib hier!",74,0,1,AmandaLeave()
+74,0,10,,"Sarah, du landest jetzt|in dem Schließfach.","Das ist heiß, Miss COMMON_PLAYERNAME.|(Sie betritt kichernd das Schließfach.)",75,0,0,"EnterLocker(""Sarah"")"
+74,5,0,,"Wetten, du traust dich nicht,|ins Schließfach zu steigen?",So eine Herausforderung kann ich doch nicht ablehnen!|(Sie betritt kichernd das Schließfach.),75,0,1,"EnterLocker(""Sarah"")"
+74,0,0,,Nächstes Mal bist du dran.|(Sarah in Ruhe lassen.),,74,0,0,"EarlyEnding(""Alone"")"
+75,0,0,,Viel Spaß da drin.|(Die Tür schließen.),(Du schließt und verriegelst den Schrank.)|(Ihr Kichern im Inneren ist kaum zu hören.),76,0,0,"CloseLocker(""Sarah"")"
+75,0,0,,"Okay, komm raus und lauf.|(Sarah in Ruhe lassen.)",,75,0,0,"EarlyEnding(""Alone"")"
+76,0,0,,(Die Tür öffnen.),(Sie schaut dich lächelnd an.)|Das ist echt atemberaubend.,75,0,0,"OpenLocker(""Sarah"")"
+76,0,0,,(Sie zurücklassen|und gehen.),,76,-1,1,"EarlyEnding(""Locker"")"
+80,0,0,,Mich komplett ausziehen?|Das geht zu weit.,Es war keine Bitte. Zieh dich aus|oder wir machen dich fertig.,90,0,0,
+80,0,0,,Ihr Perversen! Ich|ziehe mich nicht aus.,Es war keine Bitte. Zieh dich aus|oder wir machen dich fertig.,90,-1,0,
+80,0,0,,"Na gut, Miss.|(Dich ausziehen.)","Sehr schön. (Sie lächeln, als du dich im|menschenleeren Flur ausziehst.)",100,0,-1,PlayerStrip()
+80,0,0,,Geschieht mir wohl recht.|(Dich ausziehen.),"Sehr richtig. (Sie lächeln, als du dich im|menschenleeren Flur ausziehst.)",100,1,-1,PlayerStrip()
+90,0,0,AllowFight,Ihr wollt kämpfen?|Dann lasst uns kämpfen!,,90,0,0,StartFight()
+90,0,0,,Ich krieg euch noch.|(Dich ausziehen.),"Klappe! (Sie lächeln, als du dich im|menschenleeren Flur ausziehst.)",100,0,0,PlayerStrip()
+90,0,0,,"Okay, tut mir nicht weh.|(Dich ausziehen.)","Nein, keine Angst. (Sie lächeln, als du dich|im menschenleeren Flur ausziehst.)",100,0,-1,PlayerStrip()
+100,0,0,Common_PlayerChaste,Was ist denn|so lustig?,Der Gürtel! Du hast einen|Keuschheitsgürtel um!,110,0,-1,
+100,0,0,Common_PlayerChaste,Glotz nicht so!,Ich kann nicht anders! Du hast|einen Keuschheitsgürtel um!,110,0,0,
+100,0,0,!Common_PlayerChaste,Zufrieden?,(Sie kichert.) Ein netter Anblick.|Aber gleich wirst du mir noch besser gefallen.,120,0,0,
+100,0,0,!Common_PlayerChaste,Glotz nicht so!,(Sie kichert.) Ein netter Anblick.|Aber gleich wirst du mir noch besser gefallen.,120,0,1,
+110,0,0,,Ja. Und das geht|dich nichts an.,Das ist sexy! Gefällt mir.|Du wirst dich in diesem Schließfach wohlfühlen.,150,0,0,
+110,0,0,,Ich... Ich hab ihn|mir selbst angelegt.,So eine versaute Sub! Gefällt mir.|Du wirst dich in diesem Schließfach wohlfühlen.,150,0,-2,
+120,0,0,,Das ist demütigend. Was|könnte schlimmer sein?,"Keine Sorge. Niemand wird dich|nackt sehen, wenn wir dich einschließen.",160,0,-1,TestForBelt()
+120,0,0,,Nackt in der Schule!|Das ist so ungezogen.,"Ich weiß! Aber niemand wird dich|nackt sehen, wenn wir dich einschließen.",160,1,0,TestForBelt()
+120,0,0,,(Deinen Körper|verdecken.),"Keine Sorge. Niemand wird dich|nackt sehen, wenn wir dich einschließen.",160,0,-1,TestForBelt()
+120,0,0,,(Schweigen.),"Keine Angst. Niemand wird dich|nackt sehen, wenn wir dich einschließen.",160,0,0,TestForBelt()
+130,0,0,,Was ist das|für ein Gürtel?,"Es ist ein Keuschheitsgürtel, und du|wirst eine Weile darin eingesperrt bleiben.",140,0,0,
+130,0,0,,Was zur Hölle?,"Es ist ein Keuschheitsgürtel, und du|wirst eine Weile darin eingesperrt bleiben.",140,-1,0,
+130,0,0,,Spitze! Ist das ein|Keuschheitsgürtel?,Ja! Und wir sperren dich|eine Weile darin ein.,140,1,-1,
+130,0,0,,Pack den Gürtel zurück|in deine Tasche.,Träum weiter! Du wirst eine Weile in diesem|Keuschheitsgürtel eingesperrt bleiben.,140,0,1,
+140,0,0,AllowFight,Fickt euch! Ich mach|euch beide platt!,,140,0,0,StartFight()
+140,0,0,,Gut! Schließt den|blöden Gürtel zu.,"(Sie summt vergnügt, während sie den Gürtel|um deine Hüfte und deinen Schritt schließt.)",150,0,0,LockBelt()
+140,0,0,,Cool! Ich liebe|Keuschheitsgürtel.,Ich auch! (Sie schließt den Gürtel um|deine Hüfte und deinen Schritt.),150,1,-1,LockBelt()
+150,0,0,,(Am Gürtel rütteln.),Der Gürtel ist nicht dein größtes Problem.|Wir schließen dich jetzt nämlich ein.,160,0,0,BeltComment()
+150,0,0,WasBelted,"Ich hoffe für euch, dass|ihr den Schlüssel habt!",Der Schlüssel ist nicht dein größtes Problem.|Wir schließen dich jetzt nämlich ein.,160,0,1,BeltComment()
+150,0,0,,(Lüstern stöhnen.),Du bist so versaut! Ich liebe das.|Und eingeschlossen wirst du so niedlich sein.,160,1,0,BeltComment()
+160,0,0,,Oh ja! Wie macht|ihr das denn?,(Amanda öffnet das Schließfach und lächelt.)|Siehst du diesen Schrank? Da kommst du rein.,170,1,-1,"SwitchFocus(""Amanda"")"
+160,0,0,Common_PlayerClothed,Mich einschließen?,(Amanda öffnet mit ernster Miene das Schließfach.)|Siehst du diesen Schrank? Da kommst du rein.,170,0,0,"SwitchFocus(""Amanda"")"
+160,0,0,Common_PlayerNaked,Mich einschließen?|Nackt reicht doch.,(Amanda öffnet mit ernster Miene das Schließfach.)|Siehst du diesen Schrank? Da kommst du rein.,170,0,0,"SwitchFocus(""Amanda"")"
+160,0,0,,Noch einen Schritt weiter|und es setzt was.,(Amanda öffnet wutentbrannt das Schließfach.)|Siehst du diesen Schrank? Da kommst du rein.,170,-1,1,"SwitchFocus(""Amanda"")"
+170,0,0,,Das kann nicht|dein Ernst sein!,"Mein voller Ernst. Jetzt rein da, bevor|wir Gewalt anwenden müssen.",180,0,0,
+170,0,0,,Niemals! Seid ihr verrückt?,"Halt die Klappe und geh rein,|bevor wir Gewalt anwenden.",180,-1,0,
+170,0,0,,"Okay, aber nicht zu lange.|(Ins Schließfach steigen.)",(Du quetschst dich in den Schrank.)|Das hältst du schon aus. Irgendwelche letzten Worte?,190,1,-1,"EnterLocker(""Player"")"
+170,0,0,,"Ich verstehe, Miss.|(Ins Schließfach steigen.)",(Du quetschst dich in den Schrank.)|Dir passiert schon nichts. Irgendwelche letzten Worte?,190,0,-2,"EnterLocker(""Player"")"
+180,0,0,AllowFight,Niemals! Ich|bekämpfe euch beide!,,180,0,0,StartFight()
+180,0,0,,Gut! Ich mach ja schon.|(Ins Schließfach steigen.),(Du quetschst dich in den Schrank.)|Dir passiert schon nichts. Irgendwelche letzten Worte?,190,0,0,"EnterLocker(""Player"")"
+180,0,0,,"Okay, ich ergebe mich.|(Ins Schließfach steigen.)",(Du quetschst dich in den Schrank.)|Dir passiert schon nichts. Irgendwelche letzten Worte?,190,0,-1,"EnterLocker(""Player"")"
+190,0,0,,Moment! Lasst|uns verhandeln!,Die Verhandlungszeit ist um!|(Sie schlägt die Tür zu und verriegelt sie.),200,0,-1,"CloseLocker(""Player"")"
+190,0,0,,Haltet beim Schlafen|lieber ein Auge offen.,"Versuch du erstmal, hier drin zu schlafen.|(Sie schlägt die Tür zu und verriegelt sie.)",200,0,1,"CloseLocker(""Player"")"
+190,0,0,,(Schweigen.),(Sie schließt die Tür und verriegelt sie.),200,0,0,"CloseLocker(""Player"")"
+200,0,0,,(Geduldig warten.),(Du wartest geduldig im Schrank. Es ist|warm und insgesamt ist nicht viel los.),200,0,0,WaitLocker()
+200,0,0,,HILFE!!!,"(Du rufst um Hilfe, doch|es antwortet niemand.)",200,0,0,WaitLocker()
+200,0,0,,(Gegen die|Tür schlagen.),"(Du schlägst unbeholfen gegen die Tür,|aber niemand scheint es zu bemerken.)",200,0,0,WaitLocker()
+200,0,0,,(Ein Lied singen.),(Du singst zum Spaß ein kleines Lied|und die Zeit vergeht etwas schneller.),200,0,0,WaitLocker()
+200,0,0,,(Es dir bequem machen.),"(Du versuchst eine angenehme Position zu finden,|aber so etwas gibt es an einem so engen Ort nicht.)",200,0,0,WaitLocker()
+200,0,0,,(Masturbieren.),(Du befriedigst dich langsam im Schrank.|Dein Körper schaudert vor sexuellem Genuss.),200,0,0,MasturbateLocker()
+210,0,0,,Hey! Ich hab mir nur|Schweiß abgewischt!,Lügnerin! Du bist ertappt! (Sie streckt die Zunge raus.)|Also hat dir dein kleiner Exkurs im Schrank gefallen?,220,-1,0,StopMasturbating()
+210,0,0,,"Fick dich, Sarah! Kannst|du nicht die Klappe halten?",(Sie hält nur kurz verunsichert Inne.) Wow!|Also hat dir dein kleiner Exkurs im Schrank gefallen?,220,-1,1,StopMasturbating()
+210,0,0,,Was sollte ich denn|sonst da drin machen?,Ganz deiner Meinung! (Sie klatscht froh in die Hände.)|Also hat dir dein kleiner Exkurs im Schrank gefallen?,220,1,0,StopMasturbating()
+210,0,0,,(Rot werden.),Sie hat an sich rumgespielt! Wir haben sie ertappt!|Also hat dir dein kleiner Exkurs im Schrank gefallen?,220,0,-1,StopMasturbating()
+210,0,0,,"Ja! Jetzt mach die Tür zu,|ich war noch nicht fertig.","Ha! Tja, das musst du wohl woanders erledigen.|Also hat dir dein kleiner Exkurs im Schrank gefallen?",220,1,1,StopMasturbating()
+210,0,0,,(Weitermachen.),Das ist unglaublich! Versaut auf oberstem Niveau!|Also hat dir dein kleiner Exkurs im Schrank gefallen?,220,2,0,
+220,0,0,,Es war schrecklich!,"Es hätte viel schlimmer sein können.|Ich hoffe sehr, dass du deine Lektion gelernt hast.",230,-1,-1,StopMasturbating()
+220,0,0,,Das nächste Mal|schließe ich dich ein.,"Oh! Na ja, das könnte spannend sein.|Aber hast du deine Lektion daraus gelernt?",230,0,1,StopMasturbating()
+220,0,0,,Es war besser|als Unterricht.,"Tja, da sind wir uns wohl einig.|Aber hast du deine Lektion gelernt?",230,1,0,StopMasturbating()
+220,0,0,,Ich hatte solche|Angst da drin.,"Das verstehe ich, aber du hast es verdient.|Deine Lektion hast du dann ja wohl gelernt.",230,0,-1,StopMasturbating()
+230,0,0,,Eine Lektion? Ich schmiede|schon Rachepläne.,"(Sie kichert.) Tja, einen Versuch war's wert.|Du kannst jetzt übrigens gehen, wenn du willst.",300,0,1,
+230,0,0,,Kann sein.|Mal sehen.,"Tja, einen Versuch war's wert.|Du kannst jetzt gehen, wenn du willst.",300,0,0,
+230,0,0,,"Ja, ich habe meine|Lektion gelernt.","Gutes Mädchen, dann darfst du jetzt gehen.",300,0,-1,
+250,0,0,,Was für eine|verdammte Lektion?,"Ganz einfach, wenn du mir oder Sarah etwas|tust, bekommst du es mit uns beiden zu tun.",260,-1,1,
+250,0,0,,"Ja, ich habe meine|Lektion gelernt.","Gut. Jetzt weißt du, dass du es mit uns beiden zu|tun bekommst, wenn du mir oder Sarah etwas tust.",260,0,-1,
+250,0,0,,Eine Lektion? Ich schmiede|schon Rachepläne.,"Dir ist wohl nicht viel beizubringen.|Wie auch immer, du kannst jetzt gehen.",300,0,1,
+250,0,0,,Kann sein.|Mal sehen.,"Jetzt weißt du, dass du es mit uns beiden zu tun|bekommst, wenn du mir oder Sarah etwas tust.",260,0,0,
+250,0,0,,Ja. Ich werde keiner von|euch beiden etwas tun.,"Genau das wollte ich hören.|Also, du kannst jetzt gehen.",300,1,0,
+260,0,0,,Dafür werdet|ihr noch zahlen.,"Dir ist wohl nicht viel beizubringen.|Wie auch immer, du kannst jetzt gehen.",300,-1,0,
+260,0,0,,(Ein Peace-Zeichen|mit den Fingern machen.),(Sie erwidert deine Geste.)|Du darfst jetzt gehen.,300,0,0,
+260,0,0,,Ihr zwei seid ein|echt gutes Team.,"(Sie geben sich ein High five.)|Super! Also, du darfst jetzt gehen.",300,1,0,
+260,0,0,,Das nächste Mal fessele ich|euch mit eurer Einwilligung.,"(Sie wird rot.) Na ja, das ist immerhin ein Anfang.|Du darfst jetzt gehen, hab einen schönen Tag.",300,1,1,
+300,0,0,WasBelted,Moment! Was ist|mit dem Gürtel?,"Ach ja, der Gürtel. Nun, komm nach dem|Unterricht zu uns. Dann reden wir darüber.",300,0,0,RemoveWasBelted()
+300,0,0,Common_PlayerNaked,(Dich anziehen|und gehen.),,300,0,0,EndChapter()
+300,0,0,Common_PlayerClothed,(Deine Sachen|nehmen und gehen.),,300,0,0,EndChapter()
+400,0,0,WasBelted,Sei still und schließ|diesen Gürtel auf.,"Tut mir leid, ich kann ihn gerade nicht aufschließen,|aber ich helfe dir nach dem Unterricht.",410,-1,1,
+400,0,0,WasBelted,Kannst du jetzt den|Gürtel aufschließen?,"Tut mir leid, ich kann ihn gerade nicht aufschließen,|aber ich helfe dir nach dem Unterricht.",410,0,0,
+400,0,0,,Ich bin gar nicht so stark.|Ihr seid ein Witz.,Oh mein Gott. Wir sollten|wohl mit Jennifer trainieren.,410,-1,0,
+400,0,0,,"Ich mache seit Jahren|Kampftraining, Mädels.",Oh je. Dann hatten wir keine Chance.,410,0,1,
+400,0,0,,Das war Glück.,Wow! Das muss unglaubliches|Glück gewesen sein.,410,1,-1,
+410,0,0,ItemStolen,Wo ist meine Tasche?,"Hier, du kannst sie wiederhaben.|(Du nimmst all deine Besitztümer an dich.)",410,0,0,RecoverItems()
+410,0,0,ItemStolen,Gebt mir sofort|meinen Kram zurück!,"Natürlich! Wir hatten nicht vor, ihn zu stehen.|(Du nimmst all deine Besitztümer an dich.)",410,0,1,RecoverItems()
+410,0,0,!ItemStolen,"Jetzt wisst ihr, wer|hier das Sagen hat.","(Amanda nickt und tritt zurück.)|Ja, Miss. Wir versuchen das nie wieder.",420,0,1,"SwitchFocus(""Sarah"")"
+410,0,0,!ItemStolen,"Ich hoffe, ihr|seid nicht verletzt.",(Amanda schüttelt den Kopf und tritt zurück.)|Schon gut. Verletzt ist nur unser Stolz.,420,1,0,"SwitchFocus(""Sarah"")"
+410,0,0,!ItemStolen,Ich muss jetzt gehen.|(Sie zurücklassen.),,410,0,0,"EarlyEnding(""FightVictory"")"
+420,0,0,,Warum habt ihr mich also|angehalten? (Grinsen.),(Sie kichert.) Wir wollten dir eine Lektion erteilen|und dich in einen Schrank sperren.,430,0,0,
+420,0,0,,Was hattet|ihr also vor?,(Sie kichert.) Wir wollten dir eine Lektion erteilen|und dich in einen Schrank sperren.,430,0,0,
+420,0,0,,Ich muss jetzt gehen.|(Sie zurücklassen.),,420,0,0,"EarlyEnding(""FightVictory"")"
+430,0,0,,Ach ja? Dann macht mal|zwei Schränke auf.,"Zwei Schränke? Aber natürlich, Miss.|(Sie öffnet zwei Schließfächer und kichert.)",440,0,0,
+430,0,0,,Die Idee gefällt mir.|Mach zwei Schränke auf.,"Zwei Schränke? Aber natürlich, Miss.|(Sie öffnet zwei Schließfächer und kichert.)",440,1,0,
+430,0,0,,Sei still und öffne|diese beiden Schränke.,"Zwei Schränke? Aber natürlich, Miss.|(Sie öffnet zwei Schließfächer und kichert.)",440,-1,1,
+430,0,0,,Ich muss jetzt gehen.|(Sie zurücklassen.),,430,0,0,"EarlyEnding(""FightVictory"")"
+440,0,0,,"Ihr wisst, was ich will. (Mit|den Fingern schnipsen.)","(Sarah kichert und Amanda seufzt, als|sie sich in je ein Schließfach zwängen.)",450,0,1,"EnterLocker(""Both"")"
+440,0,0,,"Rein da, Bitches.","(Sarah kichert und Amanda seufzt, als|sie sich in je ein Schließfach zwängen.)",450,-1,1,"EnterLocker(""Both"")"
+440,0,0,,Ihr werdet da drin|bestimmt Spaß haben.,"(Sarah kichert und Amanda seufzt, als|sie sich in je ein Schließfach zwängen.)",450,1,0,"EnterLocker(""Both"")"
+440,0,0,,Ich muss jetzt gehen.|(Sie zurücklassen.),,440,0,0,"EarlyEnding(""FightVictory"")"
+450,0,0,,Schönen Tag noch!|(Die Türen schließen.),"(Du schließt und verriegelst beide Türen,|während Amanda fleht und Sarah singt.)",460,0,0,"CloseLocker(""Both"")"
+450,0,0,,Vergesst nie diese Lektion.|(Die Türen schließen.),"(Du schließt und verriegelst beide Türen,|während Amanda fleht und Sarah singt.)",460,0,0,"CloseLocker(""Both"")"
+450,0,0,,Das ist genug.|(Sie gehen lassen.),,450,0,0,"EarlyEnding(""FightVictory"")"
+460,0,0,,(Schweigen und|sie belauschen.),,460,0,0,LockerListen()
+460,0,0,,(Zwei Mal bei|Amanda klopfen.),(Du hörst ein leises Wimmern aus|dem Schrank kommen.),460,0,0,
+460,0,0,,(Zwei Mal bei|Sarah klopfen.),(Du hörst Gelächter aus|dem Schrank kommen.),460,0,0,
+460,0,0,,(Die Türen öffnen.),"(Als du die Türen öffnest, lächeln dich beide an|und Amanda flüstert.) Können wir gehen, Miss?",450,0,0,"OpenLocker(""Both"")"
+460,0,0,,(Sie allein lassen|und gehen.),,460,0,0,"EarlyEnding(""DoubleLocker"")"

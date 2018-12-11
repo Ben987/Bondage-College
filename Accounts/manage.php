@@ -8,8 +8,13 @@ header("content-type: text/plain; charset=utf-8");
 <?php
 
 // Returns the character file name
-function GetFileName() {
-	return 'characters/'.$_GET["account"].'.json';
+function GetFileName() {	
+	return 'characters/'.hash('tiger192,3', strtoupper($_GET["account"])).'.json';
+}
+
+// Returns TRUE if the email address is valid
+function ValidEmail($email) {
+    return (preg_match("/(@.*@)|(\.\.)|(@\.)|(\.@)|(^\.)/", $email) || !preg_match("/^.+\@(\[?)[a-zA-Z0-9\-\.]+\.([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/", $email)) ? false : true;
 }
 
 // For any transaction, we validate the login
@@ -41,23 +46,29 @@ if (isset($_GET["command"])) {
 
 	// Checks if all the parameters are there to create an account
 	if ($_GET["command"] == "account_create")
-		if (isset($_GET["account"]) && isset($_GET["password"]) && isset($_GET["character"]) && isset($_GET["email"]) && ($_GET["account"] != "") && ($_GET["password"] != "") && ($_GET["character"] != "")) {
+		if (isset($_GET["account"]) && ($_GET["account"] != "") && !(preg_match('/[^A-Za-z0-9]+/', $_GET["account"])))
+			if (isset($_GET["password"]) && ($_GET["password"] != "") && !(preg_match('/[^A-Za-z0-9]+/', $_GET["password"])))
+				if (isset($_GET["character"]) && ($_GET["character"] != "") && !(preg_match('/[^A-Za-z ]+/', $_GET["character"])))
+					if (isset($_GET["email"]) && (($_GET["email"] == "") || ValidEmail($_GET["email"]))) {
 			
-			// The character file is named like her, we check if it already exists
-			$file = GetFileName();
-			if (!file_exists($file)) {
-				$arr = new stdClass();
-				$arr->AccountName = $_GET["account"];
-				$arr->Password = password_hash($_GET["password"], PASSWORD_DEFAULT);
-				$arr->Email = password_hash($_GET["email"], PASSWORD_DEFAULT);
-				$arr->CharacterName = $_GET["character"];
-				$handle = fopen($file, 'w') or die('Cannot open file: '.$file);
-				fwrite($handle, json_encode($arr));
-				fclose($handle);
-				echo "account_created";		
-			} else echo "account_already_exist";
-
-		} else echo "parameter_error";
+						// The character file is named like her, we check if it already exists
+						$file = GetFileName();
+						if (!file_exists($file)) {
+							$arr = new stdClass();
+							$arr->AccountName = $_GET["account"];
+							$arr->Password = password_hash($_GET["password"], PASSWORD_DEFAULT);
+							$arr->Email = password_hash($_GET["email"], PASSWORD_DEFAULT);
+							$arr->CharacterName = $_GET["character"];
+							$handle = fopen($file, 'w') or die('Cannot open file: '.$file);
+							fwrite($handle, json_encode($arr));
+							fclose($handle);
+							echo "account_created";		
+						} else echo "account_already_exist";
+						
+					} else echo "parameter_email_error";
+				else echo "parameter_character_error";
+			else echo "parameter_password_error";
+		else echo "parameter_account_error";
 
 	// Checks if all the parameters are there to log in
 	if ($_GET["command"] == "account_log") 
@@ -153,7 +164,7 @@ if (isset($_GET["command"])) {
 
 		
 	// Update the reputation for the character
-	if ($_GET["command"] == "reputation_set") 
+	if ($_GET["command"] == "reputation_set")
 		if (ValidLogin($data))
 			if (isset($_GET["type"]) && isset($_GET["value"]) && ($_GET["type"] != "") && ($_GET["value"] != "")) {
 
@@ -184,6 +195,59 @@ if (isset($_GET["command"])) {
 
 			} else echo "parameter_error";
 
+	// Update the skill for the character
+	if ($_GET["command"] == "skill_set")
+		if (ValidLogin($data))
+			if (isset($_GET["type"]) && isset($_GET["level"]) && isset($_GET["progress"]) && ($_GET["type"] != "") && ($_GET["level"] != "") && ($_GET["progress"] != "")) {
+
+				// If the entry is already in the skill array, we update it
+				$arr = json_decode($data);
+				$found = false;
+				if (!isset($arr->Skill)) $arr->Skill = [];
+				foreach ($arr->Skill as $item)
+					if ($item->Type == $_GET["type"]) {
+						$item->Level = $_GET["level"];
+						$item->Progress = $_GET["progress"];
+						$found = true;
+					}
+					
+				// Create the skill entry and add it
+				if (!$found) {
+					$skill = new stdClass();
+					$skill->Type = $_GET["type"];
+					$skill->Level = $_GET["level"];
+					$skill->Progress = $_GET["progress"];
+					array_push($arr->Skill, $skill);
+				}
+
+				// Overwrite the file
+				$file = GetFileName();
+				$myfile = fopen($file, "w") or die("Unable to open file!");
+				fwrite($myfile, json_encode($arr));
+				fclose($myfile);
+				echo "skill_updated";
+
+			} else echo "parameter_error";
+			
+	// Update many character values
+	if ($_GET["command"] == "update_character") 
+		if (ValidLogin($data)) {
+			
+				// Saves specific character values passed as parameters
+				$arr = json_decode($data);
+				if (isset($_GET["money"]) && ($_GET["money"] != "")) $arr->Money = $_GET["money"];
+				if (isset($_GET["owner"]) && ($_GET["owner"] != "")) $arr->Owner = $_GET["owner"];
+				if (isset($_GET["lover"]) && ($_GET["lover"] != "")) $arr->Lover = $_GET["lover"];
+
+				// Overwrite the file
+				$file = GetFileName();
+				$myfile = fopen($file, "w") or die("Unable to open file!");
+				fwrite($myfile, json_encode($arr));
+				fclose($myfile);
+				echo "log_added";
+			
+		}
+			
 } else echo "no_command_error";
 
 ?>

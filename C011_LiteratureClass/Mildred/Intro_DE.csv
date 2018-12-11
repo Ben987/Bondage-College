@@ -1,5 +1,5 @@
 Stage,LoveReq,SubReq,VarReq,IntroText,Image
-0,0,0,,"Da euer Lehrer heute nicht kommen kann, werde|ich diese Stunde übernehmen.  Ihr könnt mich Frau Mildred nennen.",MildredTeach.jpg
+0,0,0,,"Da eure Lehrerin verhindert ist, werde ich diese|Stunde leiten. Ihr kÃ¶nnt mich Miss Mildred nennen.",MildredTeach.jpg
 10,0,0,,,MildredTeach.jpg
 20,0,0,,,MildredAngry.jpg
 30,0,0,,,MildredTeach.jpg

@@ -25,25 +25,34 @@
 		right: 0;
 		position: absolute;
     }
+    * { -webkit-tap-highlight-color:rgba(0,0,0,0); }
 </style>
 
-<script src="Common.js"></script>
-<script src="Drawing.js"></script>
-<script src="Log.js"></script>
-<script src="Reputation.js"></script>
-<script src="Account.js"></script>
-<script src="Character.js"></script>
-<script src="CharacterLogin.js"></script>
-<script src="CharacterAppearance.js"></script>
-<script src="CharacterCreation.js"></script>
-<script src="CharacterName.js"></script>
-<script src="Dialog.js"></script>
-<script src="Inventory.js"></script>
-<script src="Import.js"></script>
-<script src="Assets.js"></script>
+<script src="Scripts/Common.js"></script>
+<script src="Scripts/Drawing.js"></script>
+<script src="Scripts/Log.js"></script>
+<script src="Scripts/Reputation.js"></script>
+<script src="Scripts/Skill.js"></script>
+<script src="Scripts/Account.js"></script>
+<script src="Scripts/Character.js"></script>
+<script src="Scripts/CharacterName.js"></script>
+<script src="Scripts/Dialog.js"></script>
+<script src="Scripts/Text.js"></script>
+<script src="Scripts/Inventory.js"></script>
+<script src="Scripts/Import.js"></script>
+<script src="Scripts/Asset.js"></script>
+<script src="Scripts/MiniGame.js"></script>
 <script src="Assets/Female3DCG/Female3DCG.js"></script>
-<script src="Rooms/MainHall/MainHall.js"></script>
-<script src="Rooms/Introduction/Introduction.js"></script>
+<script src="Screens/Character/Login/Login.js"></script>
+<script src="Screens/Character/Appearance/Appearance.js"></script>
+<script src="Screens/Character/Creation/Creation.js"></script>
+<script src="Screens/Character/InformationSheet/InformationSheet.js"></script>
+<script src="Screens/Room/MainHall/MainHall.js"></script>
+<script src="Screens/Room/Shop/Shop.js"></script>
+<script src="Screens/Room/Introduction/Introduction.js"></script>
+<script src="Screens/Room/MaidQuarters/MaidQuarters.js"></script>
+<script src="Screens/Room/Shibari/Shibari.js"></script>
+<script src="Screens/MiniGame/MaidDrinks/MaidDrinks.js"></script>
 <script>
 
 /*window.onerror = function (message, url, lineNo){
@@ -57,7 +66,7 @@ window.onload = function() {
 	CommonIsMobile = CommonDetectMobile();
 	DrawLoad();
 	AssetLoadAll();
-	CommonSetScreen("CharacterLogin");
+	CommonSetScreen("Character", "Login");
 	MainRun();
 };
 

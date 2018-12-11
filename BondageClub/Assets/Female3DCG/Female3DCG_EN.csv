@@ -67,8 +67,8 @@ Glasses,Glasses3,Style 3
 Glasses,Glasses4,Style 4
 Glasses,Glasses5,Style 5
 Glasses,Glasses6,Style 6
-Glasses,Glasses7,Style 7
-Glasses,Glasses8,Style 8
+Glasses,SunGlasses1,Sunglasses 1
+Glasses,SunGlasses2,Sunglasses 2
 Mouth,,Mouth
 Mouth,Mouth1,Style 1
 Mouth,Mouth2,Style 2
@@ -77,9 +77,9 @@ Mouth,Mouth4,Style 4
 Gloves,,Gloves
 Gloves,Gloves1,Short Gloves
 Gloves,Gloves1,Long Gloves
-Nipples,,Nipples
-Nipples,Nipples1,Small Nipples
-Nipples,Nipples2,Large Nipples
+Nipples,,Nipples Style
+Nipples,Nipples1,Small
+Nipples,Nipples2,Large
 Bra,,Bra
 Bra,Bra1,Style 1
 Bra,Bra2,Style 2
@@ -117,9 +117,12 @@ Shoes,Boots1,Boots
 ItemFeet,,Feet
 ItemFeet,NylonRope,Nylon Rope
 ItemFeet,HempRope,Hemp Rope
+ItemFeet,LeatherBelt,Leather Belt
+ItemFeet,SuspensionHempRope,Suspension Hemp Rope
 ItemLegs,,Legs
 ItemLegs,NylonRope,Nylon Rope
 ItemLegs,HempRope,Hemp Rope
+ItemLegs,LeatherBelt,Leather Belt
 ItemPelvis,,Pelvis
 ItemPelvis,MetalChastityBelt,Metal Chastity Belt
 ItemPelvis,RegularVibratingEgg,Regular Vibrating Egg
@@ -137,14 +140,22 @@ ItemArms,MetalCuffsKey,Metal Cuffs Key
 ItemArms,LeatherArmbinder,Leather Armbinder
 ItemNeck,,Neck
 ItemNeck,LeatherCollar,Leather Collar
+ItemNeck,SlaveCollar,Slave Collar
 ItemMouth,,Mouth
 ItemMouth,SmallClothGag,Small Cloth Gag
 ItemMouth,ClothCleaveGag,Cloth Cleave Gag
 ItemMouth,ClothOTMGag,Cloth OTM Gag
 ItemMouth,ClothOTNGag,Cloth OTN Gag
 ItemMouth,HarnessBallGag,Harness Ball Gag
+ItemMouth,HarnessPanelGag,Harness Panel Gag
 ItemMouth,DuctTapeGag,Duct Tape Gag
 ItemMouth,RegularSleepingPill,Sleeping Pill
 ItemHead,,Head
+ItemHead,ClothBlindfold,Cloth Blindfold
 ItemHead,LeatherBlindfold,Leather Blindfold
 ItemHead,LeatherHood,Leather Hood
+ItemHead,LeatherHoodOpenEyes,Leather Hood Eyes
+ItemMisc,,Misc Items
+ItemMisc,WoodenMaidTray,Wooden Maid Tray
+ItemMisc,WoodenMaidTrayFull,Wooden Maid Tray Full
+ItemMisc,WoodenPaddle,Wooden Paddle

@@ -46,12 +46,6 @@ function C013_BondageClub_Entrance_SarahPunished() {
 	GameLogSpecificAdd(CurrentChapter, "Player", "SarahWillBePunished");
 }
 
-// Chapter 13 Bondage Club - Unlock a specific item
-function C013_BondageClub_Entrance_UnlockItem(ItemType) {
-	PlayerUnlockInventory(ItemType);
-	C013_BondageClub_Entrance_LoadParams();
-}
-
 // Chapter 13 Bondage Club - Ends the Bondage College and loads the Bondage Club game engine, exports a few items
 function C013_BondageClub_Entrance_EnterClub() {
 
@@ -65,6 +59,12 @@ function C013_BondageClub_Entrance_EnterClub() {
 
 	// Exports all items and Sarah's data
 	localStorage.setItem("BondageClubImportSource", "BondageCollege");
+	localStorage.setItem("BondageCollegeExportName", Common_PlayerName);
+	localStorage.setItem("BondageCollegeExportLover", Common_PlayerLover);
+	localStorage.setItem("BondageCollegeExportOwner", Common_PlayerOwner);
+	localStorage.setItem("BondageCollegeExportLockedCollar", (PlayerHasLockedInventory("Collar")) ? "true" : "false");
+	localStorage.setItem("BondageCollegeExportLockedChastityBelt", (PlayerHasLockedInventory("ChastityBelt")) ? "true" : "false");
+	localStorage.setItem("BondageCollegeExportLockedVibratingEgg", (PlayerHasLockedInventory("VibratingEgg")) ? "true" : "false");
 	localStorage.setItem("BondageCollegeExportSarah", Sarah);
 	localStorage.setItem("BondageCollegeExportBallGag", (PlayerHasInventory("BallGag")) ? "true" : "false");
 	localStorage.setItem("BondageCollegeExportClothGag", (PlayerHasInventory("ClothGag")) ? "true" : "false");

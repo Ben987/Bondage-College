@@ -39,7 +39,7 @@ Stage,LoveReq,SubReq,VarReq,IntroText,Image
 200,0,0,LittlePet,"Ich nehme deine Dienste später in Anspruch,|Mäuschen. Aber brauchst du sonst noch etwas?",Library.jpg
 200,0,0,Common_PlayerRestrained,"Du hast dir offenbar Ärger|eingefangen, junge Dame.",Library.jpg
 200,0,0,Common_PlayerGagged,"Du hast dir offenbar Ärger|eingefangen, junge Dame.",Library.jpg
-205,0,0,,"Was schwebt dir vor, junge Dame?",Library.jpg
+205,0,0,,"Was möchtest du|wissen, junge Dame?",Library.jpg
 210,0,0,,"Du brauchst also meine Hilfe,|an deinen Stift zu kommen?",Library.jpg
 220,0,0,,,Library.jpg
 230,0,0,,,Hole.jpg

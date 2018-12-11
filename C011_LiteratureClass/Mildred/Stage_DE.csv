@@ -1,138 +1,138 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Hör genau zu.),"Ich weiß, dass es Disziplinprobleme in diesem Raum gegeben hat und das wird jetzt aufhören.",10,0,0,GoodStudent()
-0,0,0,,(Schau auf die Uhr.),"Ich weiß, dass es Disziplinprobleme in diesem Raum gegeben hat und das wird jetzt aufhören.",10,0,0,
-0,0,0,,(Spiele mit deinen Fingernägeln.),"Ich weiß, dass es Disziplinprobleme in diesem Raum gegeben hat und das wird jetzt aufhören.",10,-1,0,
-0,0,0,,(Entspanne dich auf deinem Stuhl.),"Ich weiß, dass es Disziplinprobleme in diesem Raum gegeben hat und das wird jetzt aufhören.",10,0,0,
-10,0,0,,(Hör genau zu.),"Ich habe die Mittel, euch unter Kontrolle zu halten. Wenn ihr nicht das macht, was ich sage, werdet ihr gefesselt.",20,0,0,GoodStudent()
-10,0,0,,(Sieh gelangweilt aus.),"Ich habe die Mittel, euch unter Kontrolle zu halten. Wenn ihr nicht das macht, was ich sage, werdet ihr gefesselt.",20,0,0,
-10,0,0,,(Gähne laut.),"(Sie schlägt schnell auf das Podium und jeder springt auf.)Wenn ihr nicht das macht was ich sage, werde ich euch fessseln.",20,-1,0,
-20,0,0,,(Hör genau zu.),"Mädchen, heute gibt es einen Überraschungstest, um zu sehen, ob ihr euren Teil gelesen habt.",30,0,0,GoodStudent()
-20,0,0,,(Beuge deinen Kopf und|zitter voller Angst.),"Mädchen, heute gibt es einen Überraschungstest, um zu sehen, ob ihr euren Teil gelesen habt.",30,0,-1,GoodStudent()
-20,0,0,,(Scheue sie|trotzig an.),"Mädchen, heute gibt es einen Überraschungstest, um zu sehen, ob ihr euren Teil gelesen habt.",30,0,1,
-30,0,0,,(Hör genau zu.),"Ihr werdet zu zweit vor die Klasse gehen und Fragen über das, was ihr gelesen habt beantworten.",40,0,0,CheckForCuffs()
-30,0,0,,(Schau auf die Uhr.),"Ihr werdet zu zweit vor die Klasse gehen und Fragen über das, was ihr gelesen habt beantworten.",40,0,0,CheckForCuffs()
-30,0,0,,(Sieh gelangweilt aus.),"Ihr werdet zu zweit vor die Klasse gehen und Fragen über das, was ihr gelesen habt beantworten.",40,0,0,CheckForCuffs()
-30,0,0,,(Entspanne dich auf deinem Stuhl.),"Ihr werdet zu zweit vor die Klasse gehen und Fragen über das, was ihr gelesen habt beantworten.",40,0,0,CheckForCuffs()
-31,0,0,,Das können sie nicht machen!|(Versuche ihr zu wiederstehen.),Ich kann und ich werde das machen!  (Sie greift deine Handgelenke kraftvoll und legt die Handschellen an dir an.),32,0,1,CuffPlayer()
-31,0,0,,Ist das nicht zu viel?|(Versuche zu verhandeln.),"Das ist genau das, was du brauchst.  (Sie greift deine Handgelenke und legt die Handschellen an dir an.)",32,0,0,CuffPlayer()
-31,0,0,,Ja Frau Mildred.|(Lass sie dir Handschellen anlegen.),Sehr gut junges Fräulein.  (Sie greift deine Handgelenke sanft und legt die Handschellen an dir an.),32,0,-1,CuffPlayer()
-31,0,10,,"Mildred, treten sie zurück.|(Versuche sie einzuschüchtern.)",(Sie tretet voller Angst zurück und redet wieder.) Ihr werdet zu zweit Fragen über das Buch beantworten.,40,0,1,
-32,0,0,,Ich werde gut sein Frau Mildred.,"(Sie nickt und geht zurück, um wieder zu reden.) Ihr werdet zu zweit Fragen über das Buch beantworten.",40,0,-1,
-32,0,0,,Sie sind so pervers!,"(Sie runzelt ihre Stirn und geht zurück, um wieder zu reden.) Ihr werdet zu zweit Fragen über das Buch beantworten.",40,-1,0,
-32,0,0,,Das ist gerecht.|Ich verdiene es.,"(Sie nickt und geht zurück, um wieder zu reden.) Ihr werdet zu zweit Fragen über das Buch beantworten.",40,1,0,
-32,0,0,,(Bleibe leise.),"(Sie lächelt und geht zurück, um wieder zu reden.) Ihr werdet zu zweit Fragen über das Buch beantworten.",40,0,0,
-35,0,0,,Das können sie nicht machen!|(Versuche ihr zu wiederstehen.),Ich kann und ich werde das machen!  (Sie greift deine Handgelenke kraftvoll und legt die Handschellen an dir an.),36,0,1,CuffPlayer()
-35,0,0,,Ist das nicht zu viel?|(Versuche zu verhandeln.),"Das ist genau das, was du brauchst.  (Sie greift deine Handgelenke und legt die Handschellen an dir an.)",36,0,0,CuffPlayer()
-35,0,0,,Ja Frau Mildred.|(Lass sie dir Handschellen anlegen.),Sehr gut junges Fräulein.  (Sie greift deine Handgelenke sanft und legt die Handschellen an dir an.),36,0,-1,CuffPlayer()
-35,0,10,,"Mildred, treten sie zurück.|(Versuche sie einzuschüchtern.)",(Sie tretet voller Angst zurück und redet wieder.) Ihr werdet zu zweit Fragen über das Buch beantworten.,40,0,1,
-36,0,0,,Ich werde gut sein Frau Mildred.,"(Sie nickt und geht zurück, um wieder zu reden.) Ihr werdet zu zweit Fragen über das Buch beantworten.",40,0,-1,
-36,0,0,,Sie sind so pervers!,"(Sie runzelt ihre Stirn und geht zurück, um wieder zu reden.) Ihr werdet zu zweit Fragen über das Buch beantworten.",40,-1,0,
-36,0,0,,Das ist gerecht.|Ich verdiene es.,"(She nods and walks back to speak again.)|Two by two, you will answer questions on the book.",40,1,0,
-36,0,0,,(Bleibe leise.),"(Sie lächelt und geht zurück, um wieder zu reden.) Ihr werdet zu zweit Fragen über das Buch beantworten.",40,0,0,
-40,0,0,,(Hör genau zu.),"Wenn ihr eine falsche Antwort gebt, werdet ihr bestraft.  (Sie schlägt auf das Podium.)",50,0,0,GoodStudent()
-40,0,0,,(Seufze voller Langeweile.),"Wenn ihr eine falsche Antwort gebt, werdet ihr bestraft.  (Sie schlägt auf das Podium.)",50,-1,0,
-40,0,0,Common_PlayerRestrained,(Zerre an den Handschellen.),"Wenn ihr eine falsche Antwort gebt, werdet ihr bestraft.  (Sie schlägt auf das Podium.)",50,0,0,
-40,0,0,!Common_PlayerRestrained,(Spiele mit deinen Haaren.),"Wenn ihr eine falsche Antwort gebt, werdet ihr bestraft.  (Sie schlägt auf das Podium.)",50,0,0,
-40,5,0,KnowCheat,Passen sie auf Sidney auf.|Sie wird schummeln.,(Sie geht zu Sidney und starrt sie an.) Ist das wahr Sidney?  Wirst du schummeln?,45,1,0,
-40,0,-5,KnowCheat,"Frau Mildred!  Ich weiß,|dass Sidney schummeln wirdt.",(Sie geht zu Sidney und starrt sie an.) Ist das wahr Sidney?  Wirst du schummeln?,45,1,-1,
-45,0,0,,(Beobachte die Szene.),(Sie legt Handschellen an Sidney an.) Mal sehen wie du jetzt schummeln kannst.,46,0,0,
-45,0,0,,(Lache laut.),(Sie legt Handschellen an Sidney an.) Mal sehen wie du jetzt schummeln kannst.,46,0,0,
-46,0,0,,(Beobachte die Szene.),(Mildred geht wieder nach vorne und redet wieder. Ihr werdet für jede falsche Antwort bestraft.,50,0,0,SwitchSidney()
-46,0,0,,(Mache ein böses Grinsen.),(Mildred geht wieder nach vorne und redet wieder. Ihr werdet für jede falsche Antwort bestraft.,50,0,0,SwitchSidney()
-47,0,0,,"Das passiert, wenn man schummelt.",Fick dich COMMON_PLAYERNAME!|Ich werde dir zeigen was mit Verrätern passiert.,48,-2,0,
+0,0,0,,(Aufmerksam zuhÃ¶ren.),"Ich weiÃŸ, dass es Disziplinprobleme in diesem|Raum gegeben hat. Das nimmt jetzt sein Ende.",10,0,0,GoodStudent()
+0,0,0,,(Auf die Uhr schauen.),"Ich weiÃŸ, dass es Disziplinprobleme in diesem|Raum gegeben hat. Das nimmt jetzt sein Ende.",10,0,0,
+0,0,0,,(An deinen Finger-|nÃ¤geln herumspielen.),"Ich weiÃŸ, dass es Disziplinprobleme in diesem|Raum gegeben hat. Das nimmt jetzt sein Ende.",10,-1,0,
+0,0,0,,(Auf deinem Stuhl|zurÃ¼cklehnen.),"Ich weiÃŸ, dass es Disziplinprobleme in diesem|Raum gegeben hat. Das nimmt jetzt sein Ende.",10,0,0,
+10,0,0,,(Aufmerksam zuhÃ¶ren.),"Ich habe Mittel, euch unter Kontrolle zu halten.|Wer nicht tut, was ich sage, wird gefesselt.",20,0,0,GoodStudent()
+10,0,0,,(Gelangweilt tun.),"Ich habe Mittel, euch unter Kontrolle zu halten.|Wer nicht tut, was ich sage, wird gefesselt.",20,0,0,
+10,0,0,,(Laut gÃ¤hnen.),"(Sie peitscht auf das Podium ein und alle zucken zu-|sammen.) Wer nicht tut, was ich sage, wird gefesselt.",20,-1,0,
+20,0,0,,(Aufmerksam zuhÃ¶ren.),"MÃ¤dchen, heute gibt es einen Ãœberraschungstest,|um zu prÃ¼fen, ob ihr euren Teil gelesen habt.",30,0,0,GoodStudent()
+20,0,0,,(Den Kopf senken|und vor Furcht zittern.),"MÃ¤dchen, heute gibt es einen Ãœberraschungstest,|um zu prÃ¼fen, ob ihr euren Teil gelesen habt.",30,0,-1,GoodStudent()
+20,0,0,,(Sie trotzig ansehen.),"MÃ¤dchen, heute gibt es einen Ãœberraschungstest,|um zu prÃ¼fen, ob ihr euren Teil gelesen habt.",30,0,1,
+30,0,0,,(Aufmerksam zuhÃ¶ren.),Ihr werdet zu zweit vortreten und Fragen|Ã¼ber das Gelesene beantworten.,40,0,0,CheckForCuffs()
+30,0,0,,(Auf die Uhr schauen.),Ihr werdet zu zweit vortreten und Fragen|Ã¼ber das Gelesene beantworten.,40,0,0,CheckForCuffs()
+30,0,0,,(Gelangweilt tun.),Ihr werdet zu zweit vortreten und Fragen|Ã¼ber das Gelesene beantworten.,40,0,0,CheckForCuffs()
+30,0,0,,(Auf deinem Stuhl|zurÃ¼cklehnen.),Ihr werdet zu zweit vortreten und Fragen|Ã¼ber das Gelesene beantworten.,40,0,0,CheckForCuffs()
+31,0,0,,Das kÃ¶nnen Sie nicht tun!|(Dich gegen sie wehren.),Ich kann und ich werde auch! (Sie packt deine|Handgelenke und legt dir Handschellen an.),32,0,1,CuffPlayer()
+31,0,0,,Ist das nicht Ã¼bertrieben?|(Mit ihr verhandeln.),"Es ist genau das, was du brauchst. (Sie packt deine|Handgelenke und legt dir Handschellen an.)",32,0,0,CuffPlayer()
+31,0,0,,"Ja, Miss Mildred. (Die|Handschellen akzeptieren.)","Sehr gut, junges FrÃ¤ulein. (Sie nimmt sanft deine|Handgelenke und legt dir Handschellen an.)",32,0,-1,CuffPlayer()
+31,0,10,,"Mildred, keinen Schritt|weiter. (Sie einschÃ¼chtern.)",(Sie zuckt erschrocken zurÃ¼ck und fÃ¤hrt fort.)|Ihr werdet zu zweit Fragen zum Buch beantworten.,40,0,1,
+32,0,0,,"Ich benehme mich, Miss.","(Sie nickt, kehrt um und fÃ¤hrt fort.)|Ihr werdet zu zweit Fragen zum Buch beantworten.",40,0,-1,
+32,0,0,,Sie sind so pervers!,"(Sie runzelt die Stirn, kehrt um und fÃ¤hrt fort.)|Ihr werdet zu zweit Fragen zum Buch beantworten.",40,-1,0,
+32,0,0,,Das ist gerecht.|Ich hab's verdient.,"(Sie nickt, kehrt um und fÃ¤hrt fort.)|Ihr werdet zu zweit Fragen zum Buch beantworten.",40,1,0,
+32,0,0,,(Schweigen.),"(Sie lÃ¤chelt, kehrt um und fÃ¤hrt fort.)|Ihr werdet zu zweit Fragen zum Buch beantworten.",40,0,0,
+35,0,0,,Das kÃ¶nnen Sie nicht tun!|(Dich gegen sie wehren.),Ich kann und ich werde auch! (Sie packt deine|Handgelenke und legt dir Handschellen an.),36,0,1,CuffPlayer()
+35,0,0,,Ist das nicht Ã¼bertrieben?|(Mit ihr verhandeln.),"Es ist genau das, was du brauchst. (Sie packt deine|Handgelenke und legt dir Handschellen an.)",36,0,0,CuffPlayer()
+35,0,0,,"Ja, Miss Mildred. (Die|Handschellen akzeptieren.)","Sehr gut, junges FrÃ¤ulein. (Sie nimmt sanft deine|Handgelenke und legt dir Handschellen an.)",36,0,-1,CuffPlayer()
+35,0,10,,"Mildred, keinen Schritt|weiter. (Sie einschÃ¼chtern.)",(Sie zuckt erschrocken zurÃ¼ck und fÃ¤hrt fort.)|Ihr werdet zu zweit Fragen zum Buch beantworten.,40,0,1,
+36,0,0,,"Ich benehme mich, Miss.","(Sie nickt, kehrt um und fÃ¤hrt fort.)|Ihr werdet zu zweit Fragen zum Buch beantworten.",40,0,-1,
+36,0,0,,Sie sind so pervers!,"(Sie runzelt die Stirn, kehrt um und fÃ¤hrt fort.)|Ihr werdet zu zweit Fragen zum Buch beantworten.",40,-1,0,
+36,0,0,,Das ist gerecht.|Ich hab's verdient.,"(Sie nickt, kehrt um und fÃ¤hrt fort.)|Ihr werdet zu zweit Fragen zum Buch beantworten.",40,1,0,
+36,0,0,,(Schweigen.),"(Sie lÃ¤chelt, kehrt um und fÃ¤hrt fort.)|Ihr werdet zu zweit Fragen zum Buch beantworten.",40,0,0,
+40,0,0,,(Aufmerksam zuhÃ¶ren.),Bei einer falschen Antwort werdet ihr bestraft.|(Sie peitscht auf das Podium.),50,0,0,GoodStudent()
+40,0,0,,(Gelangweilt seufzen.),Bei einer falschen Antwort werdet ihr bestraft.|(Sie peitscht auf das Podium.),50,-1,0,
+40,0,0,Common_PlayerRestrained,(An den |Handschellen zerren.),Bei einer falschen Antwort werdet ihr bestraft.|(Sie peitscht auf das Podium.),50,0,0,
+40,0,0,!Common_PlayerRestrained,(Mit deinen|Haaren spielen.),Bei einer falschen Antwort werdet ihr bestraft.|(Sie peitscht auf das Podium.),50,0,0,
+40,5,0,KnowCheat,Achten Sie auf Sidney.|Sie wird schummeln.,"(Sie geht zu Sidney und starrt sie an.)|Ist das wahr, Sidney? Wirst du schummeln?",45,1,0,
+40,0,-5,KnowCheat,"Miss Mildred! Sidney|hat vor, zu schummeln.","(Sie geht zu Sidney und starrt sie an.)|Ist das wahr, Sidney? Wirst du schummeln?",45,1,-1,
+45,0,0,,(Zuschauen.),(Sie legt Sidney Handschellen an.)|Mal sehen wie gut du damit schummeln kannst.,46,0,0,
+45,0,0,,(Leise lachen.),(Sie legt Sidney Handschellen an.)|Mal sehen wie gut du damit schummeln kannst.,46,0,0,
+46,0,0,,(Zuschauen.),(Mildred geht wieder nach vorne und fÃ¤hrt fort.)|Ihr werdet fÃ¼r jede falsche Antwort bestraft.,50,0,0,SwitchSidney()
+46,0,0,,(BÃ¶sartig grinsen.),(Mildred geht wieder nach vorne und fÃ¤hrt fort.)|Ihr werdet fÃ¼r jede falsche Antwort bestraft.,50,0,0,SwitchSidney()
+47,0,0,,"Das hast du|davon, BetrÃ¼gerin.","Fick dich, COMMON_PLAYERNAME!|Ich zeige dir, was mit VerrÃ¤tern passiert.",48,-2,0,
 47,0,0,,"Erwischt, Schlampe.",Du bist die Schlampe! Du hast mich verraten!,48,-2,1,
-47,0,0,Common_PlayerRestrained,Das ist nur gerecht.,Gerecht? Scheiß drauf!,48,-1,1,
-47,0,0,,Es tut mir Leid.  Ich hätte das|nicht tun sollen.,"Es ist zu spät dich zu entschuldigen, du Verräter!",48,-1,-1,
-48,0,0,,Das wird den Test|interessanter machen.,(Sie schlägt auf das Podium und jeder springt auf.) Ihr werdet für jede falsche Antwort bestraft.,50,0,0,SwitchMildred()
-48,0,0,,Du siehst in diesen|Handschellen süß aus.,(Sie schlägt auf das Podium und jeder springt auf.) Ihr werdet für jede falsche Antwort bestraft.,50,0,0,SwitchMildred()
-48,0,0,,"(Sieh ihr zu, wie sie sich abquält.)",(Sie schlägt auf das Podium und jeder springt auf.) Ihr werdet für jede falsche Antwort bestraft.,50,0,0,SwitchMildred()
-48,0,0,,(Dreh dich zu Mildred.),"Wenn ihr eine falsche Antwort gebt, werdet ihr bestraft.  (Sie schlägt auf das Podium.)",50,0,0,SwitchMildred()
-50,0,0,,(Hör genau zu.),COMMON_PLAYERNAME und Sidney! Kommt nach vorne und stellt euch einander gegenüber hin.,60,0,0,GoodStudent()
-50,0,0,,(Shau auf deine Schuhe..),COMMON_PLAYERNAME und Sidney! Kommt nach vorne und stellt euch einander gegenüber hin.,60,0,0,
-50,0,0,Common_PlayerRestrained,(Zerre an den Handschellen.),COMMON_PLAYERNAME und Sidney! Kommt nach vorne und stellt euch einander gegenüber hin.,60,0,0,
-50,0,0,!Common_PlayerRestrained,(Schau auf dein Telefon.),COMMON_PLAYERNAME und Sidney! Kommt nach vorne und stellt euch einander gegenüber hin.,60,-1,0,
-60,0,0,,(Gehe nach vorne.),"Der Test wird aus fünf Quizzen, die aus fünf Fragen über die Kapitel eins bis fünf des Buches ""Der Graf von Monte Cristo"", bestehen.",65,0,0,
-65,0,0,,(Hör zu.),"Der erste Student, der drei richtige Antworten gibt, gewinnt und der andere wird bestraft.  Seid ihr bereit?",70,0,0,
-70,0,0,,(Beginne mit dem Test|für Kapitel 1.),,71,0,0,StartTest()
-71,0,0,,(Beginne mit dem Test|für Kapitel 2.),,72,0,0,StartTest()
-71,0,0,LosingTest,Frau Mildred.  Ich gebe auf.|Ich habe das Buch nicht gelesen.,Du solltest dich schämen junges Fräulein. Gehe zurück auf deinen Platz und lerne das nächste mal besser.,210,-2,-2,GiveUpTest()
-72,0,0,,(Beginne mit dem Test|für Kapitel 3.),,73,0,0,StartTest()
-72,0,0,LosingTest,Frau Mildred.  Ich gebe auf.|Ich habe das Buch nicht gelesen.,Du solltest dich schämen junges Fräulein. Gehe zurück auf deinen Platz und lerne das nächste mal besser.,210,-2,-2,GiveUpTest()
-73,0,0,,(Beginne mit dem Test|für Kapitel 4.),,74,0,0,StartTest()
-73,0,0,LosingTest,Frau Mildred.  Ich gebe auf.|Ich habe das Buch nicht gelesen.,Du solltest dich schämen junges Fräulein. Gehe zurück auf deinen Platz und lerne das nächste mal besser.,210,-2,-2,GiveUpTest()
-74,0,0,,(Beginne mit dem Test|für Kapitel 5.),,75,0,0,StartTest()
-75,0,0,,Ist der Test vorbei?,"Ja, herzlichen Glückwunsch zu deinem Sieg.",100,0,0,CheckForWinner()
-75,0,0,,Der Test hat Spaß gemacht.,"In der Tat, herzlichen Glückwunsch zu deinem Sieg.",100,1,0,CheckForWinner()
+47,0,0,Common_PlayerRestrained,Das ist nur gerecht.,Gerecht? Da geb ich 'nen ScheiÃŸ drauf.,48,-1,1,
+47,0,0,,Es tut mir Leid. Das hÃ¤tte|ich nicht tun sollen.,"DafÃ¼r ist es zu spÃ¤t, du VerrÃ¤terin.",48,-1,-1,
+48,0,0,,Das wird den Test|interessanter machen.,(Mildred peitscht auf das Podium und alle zucken zu-|sammen.) Ihr werdet fÃ¼r jede falsche Antwort bestraft.,50,0,0,SwitchMildred()
+48,0,0,,Du siehst in diesen|Handschellen sÃ¼ÃŸ aus.,(Mildred peitscht auf das Podium und alle zucken zu-|sammen.) Ihr werdet fÃ¼r jede falsche Antwort bestraft.,50,0,0,SwitchMildred()
+48,0,0,,(Ihr beim|Zappeln zusehen.),(Mildred peitscht auf das Podium und alle zucken zu-|sammen.) Ihr werdet fÃ¼r jede falsche Antwort bestraft.,50,0,0,SwitchMildred()
+48,0,0,,(Zu Mildred drehen.),Bei einer falschen Antwort werdet ihr bestraft.|(Sie peitscht auf das Podium.),50,0,0,SwitchMildred()
+50,0,0,,(Aufmerksam zuhÃ¶ren.),COMMON_PLAYERNAME und Sidney!|Tretet vor und stellt euch RÃ¼cken zu RÃ¼cken hin.,60,0,0,GoodStudent()
+50,0,0,,(Auf deine|Schuhe schauen.),COMMON_PLAYERNAME und Sidney!|Tretet vor und stellt euch RÃ¼cken zu RÃ¼cken hin.,60,0,0,
+50,0,0,Common_PlayerRestrained,(An den |Handschellen zerren.),COMMON_PLAYERNAME und Sidney!|Tretet vor und stellt euch RÃ¼cken zu RÃ¼cken hin.,60,0,0,
+50,0,0,!Common_PlayerRestrained,(Auf dein|Handy schauen.),COMMON_PLAYERNAME und Sidney!|Tretet vor und stellt euch RÃ¼cken zu RÃ¼cken hin.,60,-1,0,
+60,0,0,,(Nach vorne gehen.),"Der Test hat fÃ¼nf Runden mit je fÃ¼nf Fragen zu den|ersten fÃ¼nf Kapiteln aus ""Der Graf von Monte Christo"".",65,0,0,
+65,0,0,,(ZuhÃ¶ren.),"Wer zuerst drei richtige Antworten gibt, gewinnt|die Runde, die Verliererin wird bestraft. Seid ihr bereit?",70,0,0,
+70,0,0,,(Den Test zu|Kapitel 1 starten.),,71,0,0,StartTest()
+71,0,0,,(Den Test zu|Kapitel 2 starten.),,72,0,0,StartTest()
+71,0,0,LosingTest,Ich gebe auf. Ich habe|das Buch nicht gelesen.,"Du solltest dich schÃ¤men, junges FrÃ¤ulein. Setz|dich und gib dir in Zukunft mehr MÃ¼he beim Lernen.",210,-2,-2,GiveUpTest()
+72,0,0,,(Den Test zu|Kapitel 3 starten.),,73,0,0,StartTest()
+72,0,0,LosingTest,Ich gebe auf. Ich habe|das Buch nicht gelesen.,"Du solltest dich schÃ¤men, junges FrÃ¤ulein. Setz|dich und gib dir in Zukunft mehr MÃ¼he beim Lernen.",210,-2,-2,GiveUpTest()
+73,0,0,,(Den Test zu|Kapitel 4 starten.),,74,0,0,StartTest()
+73,0,0,LosingTest,Ich gebe auf. Ich habe|das Buch nicht gelesen.,"Du solltest dich schÃ¤men, junges FrÃ¤ulein. Setz|dich und gib dir in Zukunft mehr MÃ¼he beim Lernen.",210,-2,-2,GiveUpTest()
+74,0,0,,(Den Test zu|Kapitel 5 starten.),,75,0,0,StartTest()
+75,0,0,,Ist der Test vorbei?,"Ja, herzlichen GlÃ¼ckwunsch zu deinem Sieg.",100,0,0,CheckForWinner()
+75,0,0,,Der Test hat|SpaÃŸ gemacht.,"In der Tat, herzlichen GlÃ¼ckwunsch zu deinem Sieg.",100,1,0,CheckForWinner()
 75,0,0,,Sind wir endlich fertig?,"Ja, das hast du gut gemacht.",100,-1,0,CheckForWinner()
-100,0,0,,Danke Frau Mildred!|Das war einfach.,"Ja, arbeite weiterhin fleißig und du wirst ein großartiger Student werden.",110,1,0,
-100,0,0,,Sidney war grottenschlecht.,(Sie nickt.)  Nimm dir kein Beispiel an ihr und du wirst ein guter Student werden.,110,0,0,
-100,0,0,,Loben sie mich nicht Frau Mildred.|Das Buch war faszinierend.,Schön gesagt junges Fräulein.  Mach weiter so und du wirst ein wundervoller Student werden.,110,1,-1,
-100,0,0,,Das war reines Glück.,"Sagt das nicht, du scheinst jetztendlich doch ein guter Student zu sein.",110,-1,0,
-100,0,0,,Ich kann Sidney in allem besiegen.,"Mag sein, sei aber nicht zu stolz darauf. Es gibt noch bessere Studenten als dich.",110,0,1,
-110,0,0,,Ich bin besser als jeder andere Student hier.,Du bist nicht die Beste von allen junges Fräulein. Wir habem großartige Studenten auf dieser Schule.,120,-1,1,
-110,0,0,,Ich bin einfach der beste.,"Du bist nicht die Beste junges Fräulein, vergiss es. Du bist zu jung um Literatur komplett zu verstehen.",120,0,1,
-110,0,0,!Common_PlayerRestrained,"Ich werde mich bemühen,|der Beste zu sein.",Sehr gut junges Fräulein.  (Sie dreht sich um und wählt neue Studenten für den Test.),300,1,0,
-110,0,0,!Common_PlayerRestrained,Eines Tages werde ich vielleicht|ein guter Student sein.,Sehr gut junges Fräulein.  (Sie dreht sich um und wählt neue Studenten für den Test.),300,0,-1,
-110,0,0,Common_PlayerRestrained,"Ich werde mich bemühen,|der Beste zu sein.",Sehr gut junges Fräulein.  Und du wirst nach der Stunde befreit.,220,1,0,
-110,0,0,Common_PlayerRestrained,Eines Tages werde ich vielleicht|ein guter Student sein.,Sehr gut junges Fräulein.  Und du wirst nach der Stunde befreit.,220,0,-1,
-120,0,0,,"Ich wette, dass ich viel besser|bin als sie!",Ach ja? Ist das eine Herausforderung? Ich könnte ja in einen Test gegen dich antreten.,130,0,1,
-120,0,0,,"Ja, sorrry Frau Mildred.",Nun gut junges Fräulein.  (Sie Dreht sich um und wählt neue Studenten für den Test.),300,0,-1,
-130,0,0,,Mit den selben Regeln?,Die selben Regeln mit den Handschellen und Schlägen. Und Sidney wird die Fragen stellen.,140,0,0,
-130,0,0,,"Das ist in Ordnung, aber|Sidney wird uns bewerten.","In Ordnung, Sidney wird die Fragen stellen. Und die Handschellen- und Schlagregeln bleiben gleich.",140,0,0,
-130,0,0,,"Wobei, wenn ich darüber nachdenke,|kann ich gegen sie nicht antreten.",Weise Wahl junges Fräulein.  (Sie dreht sich um und wählt neue Studenten für den Test.),140,0,-1,
-140,0,0,,(Beginne den Test|gegen Mildred.),,141,0,0,StartTestMildred()
-140,0,0,,"Wobei, wenn ich darüber nachdenke,|kann ich gegen sie nicht antreten.",Weise Wahl junges Fräulein.  (Sie dreht sich um und wählt neue Studenten für den Test.),300,0,-1,
-141,0,0,,(Beginne mit dem Test|für Kapitel 2.),,142,0,0,StartTestMildred()
-142,0,0,,(Beginne mit dem Test|für Kapitel 3.),,143,0,0,StartTestMildred()
-143,0,0,,(Beginne mit dem Test|für Kapitel 4.),,144,0,0,StartTestMildred()
-144,0,0,,(Beginne mit dem Test|für Kapitel 5.),,145,0,0,StartTestMildred()
-145,0,0,,Ist der Test vorbei?,"Ja, also hast du etwas gelehrnt? Niederlagen machen dich stärker.",146,0,0,CheckForWinnerMildred()
-145,0,0,,Sind wir endlich fertig?,"Ja, also hast du etwas gelehrnt? Niederlagen machen dich stärker.",146,0,0,CheckForWinnerMildred()
-146,0,0,,Denke ich.,Sehr gut junges Fräulein.  (Sie dreht sich um und wählt neue Studenten für den Test.),300,0,-1,
-146,0,0,,"Ja, sorrry Frau Mildred.",Sehr gut junges Fräulein.  (Sie dreht sich um und wählt neue Studenten für den Test.),300,1,-2,
-146,0,0,,Sie hatten Glück.,(Sie schüttelt ihren Kopf und wählt neue Studenten für den Test.),300,0,0,
-146,0,0,,Sie haben geschummelt!,"(Sie wird wütend und bringt eine Ballknebel hervor, welche sie um deinen Kopf schnallt.)",230,-1,0,GagPlayer()
-150,0,0,,"Ich habe es ihnen ja gesagt, ich bin der Beste.",Und du hattest recht. Das ist sehr erniedrigend für mich.,160,0,1,
-150,0,0,,Ich hatte Glück.,"Nein, du hast richtiges Talent. Das ist sehr erniedrigend für mich.",160,0,-1,
-150,0,0,,Das war eine ziemliche Herrausforderung.,Ja und du hast sie gewonnen. Das ist sehr erniedrigend für mich.,160,1,0,
-150,0,0,,Sie sind grottenschlecht in Literatur.,Ich denke du hast recht. Das ist sehr erniedrigend für mich.,160,-1,0,
-160,0,0,,"Gehen sie raus, ich werde die Stunde beenden.",(Sidney befreit sie und Mildred geht sich schämend weg. Sie lässt ihre Sachen und ihren Blazer für dich hier.),400,-1,1,FreeBoth()
-160,0,0,,sie können eine Pause machen. Iich werde mit den Tests fortfahren.,(Sidney befreit sie und Mildred geht sich schämend weg. Sie lässt ihre Sachen und ihren Blazer für dich hier.),400,0,1,FreeBoth()
-160,0,0,,"Es ist in Ordnung, sie können mit den Tests fortfahren.",(Sie nickt während Sidney sie befreit. Sie beginnt mit den Tests wieder und ist wieder selbstsicher.),300,1,0,FreeBoth()
-160,0,0,,"Ja, genug Demütigung.",(Sie nickt während Sidney sie befreit. Sie beginnt mit den Tests wieder und ist wieder selbstsicher.),300,0,0,FreeBoth()
-200,0,0,,Sidney hatte Glück.,Vielleicht hatte sie Glück oder vielleicht hast du nicht genug gelernt.,210,0,0,
-200,0,0,,Wen interessierts?,"DICH sollte es interessieren! (Sie schlägt deinen Arm.) Du musst mehr lernen, wenn du Erfolg haben willst.",210,-1,1,
-200,0,0,,Sidney hat geschummelt!,"Das ist eine schlechte Entschuldigung. Wenn du mehr gelernt hättest, hättest du mit Leichtigkeit gewonnen.",210,-1,0,
-200,0,0,,Sorry Frau Mildred. Ich War nervös.,"Ich weiß, dass es schwer ist, vor der Klasse zu reden. Aber wenn du mehr gelernt hättest, wäre es leichter.",210,1,-1,
-210,0,0,,Ja Frau Mildred. Ich werde mehr lernen.,"Sehr gut junges Fräulein. Und keine Sorge. Ich werde dich befreien, sobald die Tests fertig sind.",220,1,-1,
-210,0,0,,"In Ordnung, ich habe es verstanden.","(Sie sieht dich an und nickt.)  In Ordnung. Ich werde dich befreien, sobald die Tests fertig sind.",220,0,0,
-210,0,0,,Meinetwegen. Ich werde härter arbeiten.,"Sehr gut junges Fräulein. Und keine Sorge. Ich werde dich befreien, sobald die Tests fertig sind.",220,1,0,
-210,0,0,,"Ja genau, Literatur ist soooooooo wichtig.","Durch diese Einstellung wirst du noch einen Schulverweis kriegen. Ich werde dich befreien, sobald die Tests fertig sind.",220,-1,1,
-220,0,0,,Sie können micht nicht so lassen!,"(Sie wird wütend und bringt eine Ballknebel hervor, welche sie um deinen Kopf schnallt.)",230,0,1,GagPlayer()
-220,0,0,,Fick dich Mildred!,"(Sie wird wütend und bringt eine Ballknebel hervor, welche sie um deinen Kopf schnallt.)",230,-1,0,GagPlayer()
-220,0,0,,Bitte! Können sie mich jetzt befreien?,(Sie schüttelt ihren Kopf und wählt neue Studenten für den Test.),300,0,-1,MildredLeave()
-220,0,0,,Bestens.,(Sie nickt und wählt neue Studenten für den Test.),300,1,0,MildredLeave()
-220,0,0,,(Bleibe leise.),(Sie nickt und wählt neue Studenten für den Test.),300,0,0,MildredLeave()
-230,0,0,,@Uuugn nuhm!,(Sie schüttelt ihren Kopf und wählt neue Studenten für den Test.),300,0,0,MildredLeave()
-230,0,0,,(Bleibe leise.),(Sie nickt und wählt neue Studenten für den Test.),300,0,0,MildredLeave()
-240,0,0,,@Uuugn nuhm!,(Sie schüttelt ihren Kopf und wählt neue Studenten für den Test.),300,0,0,MildredLeave()
-240,0,0,,(Bleibe leise.),(Sie nickt und wählt neue Studenten für den Test.),300,0,0,MildredLeave()
-250,0,0,,@Uuugn nuhm!,(Sie schüttelt ihren Kopf und wählt neue Studenten für den Test.),300,0,0,MildredLeave()
-250,0,0,,(Bleibe leise.),(Sie nickt und wählt neue Studenten für den Test.),300,0,0,MildredLeave()
-300,0,0,,(Sieh dir die Tests an.),"(Viele Mädchen werden zu zweit gewählt, um vor die Klasse zu gehen.)",310,0,0,WaitTest()
-310,0,0,,(Sieh dir die Tests an.),(Manche schlagen sich richtig gut in dem Literaturtest.),320,0,0,WaitTest()
-320,0,0,,(Sieh dir die Tests an.),(Und manche geraten in Schierigkeiten.),330,0,0,WaitTest()
-330,0,0,,(Sieh dir die Tests an.),"(Mildred scheint es wirklich zu genießen, die schlechten Studenten zu schlagen.)",340,0,0,WaitTest()
-340,0,0,,(Sieh dir die Tests an.),(Manche weinen und manche bleiben stark.),350,0,0,WaitTest()
-350,0,0,Common_PlayerRestrained,(Sieh dir die Tests an.),(Die letzte Stunde wird für dich in Handschellen enden.),360,0,0,WaitTest()
-350,0,0,!Common_PlayerRestrained,(Sieh dir die Tests an.),(Die letzte Stunde wird mit vielen Schlägen enden.),360,0,0,WaitTest()
-360,0,0,,(Warte bis 16:30 Uhr.),,360,0,0,EndChapter()
-400,0,0,,(Nimm ihre Sachen.),(Du ziehst den Lehrerblazer an und nimmst alle Sachen die Mildred hinterlassen hat.),410,0,0,TakeItems()
-410,0,0,,(Führe die Tests durch.),(Mit dem Schlagstock beginnst du die Literaturtests selbst zu machen.),420,0,0,WaitTest()
-420,0,0,,(Führe die Tests durch.),(Manche Studenten schlagen sich gut.),430,0,0,WaitTest()
-430,0,0,,(Führe die Tests durch.),(Manche Studenten versagen.),440,0,0,WaitTest()
-440,0,0,,(Führe die Tests durch.),"(Bist du insgesamt streng, gerecht oder nett zu den Studenten?)",450,0,0,WaitTest()
-450,0,0,,(Sei streng.),(Mit dem Schlagstock und den Handschellen fürst du die Tests streng und diszipliniert durch.),460,0,0,StrictLeader()
-450,0,0,,(Sei gerecht.),(Du versuchst gerecht zu den Studenten zu sein und kein Tyrann zu sein.),460,0,0,FairLeader()
-450,0,0,,(Sei nett.),"(Du bist nett zu den Studenten und versuchst Freunde, anstatt Feinde zu machen.)",460,0,0,EasyLeader()
-460,0,0,,(Führe die Tests bis 16:30 Uhr durch.),,460,0,0,EndChapter()
+100,0,0,,"Danke, Miss!|Das war einfach.","Ja, arbeite weiterhin so fleiÃŸig und|du wirst eine groÃŸartige SchÃ¼lerin werden.",110,1,0,
+100,0,0,,Sidney war|grottenschlecht.,(Sie nickt.) Nimm dir kein Beispiel an ihr|und du wirst eine gute SchÃ¼lerin werden.,110,0,0,
+100,0,0,,"Loben sie mich nicht, Miss.|Das Buch war faszinierend.","SchÃ¶n gesagt, junges FrÃ¤ulein. Mach weiter so|und du wirst eine wundervolle SchÃ¼lerin werden.",110,1,-1,
+100,0,0,,Das war reines GlÃ¼ck.,"Sagt das nicht, du kÃ¶nntest|tatsÃ¤chlich eine gute SchÃ¼lerin sein.",110,-1,0,
+100,0,0,,Sidney mache ich|in allem fertig.,"Mag sein, aber lass dir das nicht zu Kopf steigen.|Es gibt bessere SchÃ¼lerinnen als dich.",110,0,1,
+110,0,0,,Ich bin besser als alle|anderen SchÃ¼ler hier.,"Du bist nicht die Beste von allen, junges FrÃ¤ulein.|Wir haben hier einige groÃŸartige SchÃ¼lerinnen.",120,-1,1,
+110,0,0,,Ich bin einfach die Beste.,"Du bist nicht die Beste, junges FrÃ¤ulein, vergiss es.|Du bist zu jung, um Literatur vollstÃ¤ndig zu verstehen.",120,0,1,
+110,0,0,!Common_PlayerRestrained,"Ich werde mich bemÃ¼hen,|die Beste zu sein.","Sehr schÃ¶n, junges FrÃ¤ulein. (Sie dreht sich um|und wÃ¤hlt das nÃ¤chste Paar fÃ¼r den Test.)",300,1,0,
+110,0,0,!Common_PlayerRestrained,Vielleicht bin ich eines|Tages eine gute SchÃ¼lerin.,"Sehr schÃ¶n, junges FrÃ¤ulein. (Sie dreht sich um|und wÃ¤hlt das nÃ¤chste Paar fÃ¼r den Test.)",300,0,-1,
+110,0,0,Common_PlayerRestrained,"Ich werde mich bemÃ¼hen,|die Beste zu sein.","Sehr schÃ¶n, junges FrÃ¤ulein.|Und du wirst nach der Stunde befreit.",220,1,0,
+110,0,0,Common_PlayerRestrained,Vielleicht bin ich eines|Tages eine gute SchÃ¼lerin.,"Sehr schÃ¶n, junges FrÃ¤ulein.|Und du wirst nach der Stunde befreit.",220,0,-1,
+120,0,0,,"Ich wette, ich bin|viel besser als Sie!",Ach ja? Ist das eine Herausforderung?|Ich kÃ¶nnte ja im Test gegen dich antreten.,130,0,1,
+120,0,0,,"Ja, entschuldigen|Sie, Miss.","Nun gut, junges FrÃ¤ulein. (Sie dreht sich um|und wÃ¤hlt das nÃ¤chste Paar fÃ¼r den Test.)",300,0,-1,
+130,0,0,,Mit denselben Regeln?,Dieselben Regeln mit den Handschellen und der Gerte.|Und Sidney wird die Fragen stellen.,140,0,0,
+130,0,0,,"Das ist in Ordnung, aber|Sidney wird uns bewerten.","Nun gut, Sidney wird die Fragen stellen.|Und die Handschellen- und Strafregeln bleiben gleich.",140,0,0,
+130,0,0,,Andererseits komme ich|wohl kaum gegen Sie an.,"Kluge Entscheidung, junges FrÃ¤ulein. (Sie dreht sich|um und wÃ¤hlt das nÃ¤chste Paar fÃ¼r den Test.)",140,0,-1,
+140,0,0,,(Den Test gegen|Mildred starten.),,141,0,0,StartTestMildred()
+140,0,0,,Andererseits komme ich|wohl kaum gegen Sie an.,"Kluge Entscheidung, junges FrÃ¤ulein. (Sie dreht sich|um und wÃ¤hlt das nÃ¤chste Paar fÃ¼r den Test.)",300,0,-1,
+141,0,0,,(Den Test zu|Kapitel 2 starten.),,142,0,0,StartTestMildred()
+142,0,0,,(Den Test zu|Kapitel 3 starten.),,143,0,0,StartTestMildred()
+143,0,0,,(Den Test zu|Kapitel 4 starten.),,144,0,0,StartTestMildred()
+144,0,0,,(Den Test zu|Kapitel 5 starten.),,145,0,0,StartTestMildred()
+145,0,0,,Ist der Test vorbei?,"Ja, hast du also etwas daraus gelernt?|Niederlagen machen dich stÃ¤rker.",146,0,0,CheckForWinnerMildred()
+145,0,0,,Sind wir endlich fertig?,"Ja, hast du also etwas daraus gelernt?|Niederlagen machen dich stÃ¤rker.",146,0,0,CheckForWinnerMildred()
+146,0,0,,Kann sein.,"Sehr schÃ¶n, junges FrÃ¤ulein. (Sie dreht sich um|und wÃ¤hlt das nÃ¤chste Paar fÃ¼r den Test.)",300,0,-1,
+146,0,0,,"Ja, Miss.|Entschuldigung.","Sehr schÃ¶n, junges FrÃ¤ulein. (Sie dreht sich um|und wÃ¤hlt das nÃ¤chste Paar fÃ¼r den Test.)",300,1,-2,
+146,0,0,,Sie hatten nur GlÃ¼ck.,(Sie schÃ¼ttelt den Kopf und wÃ¤hlt|das nÃ¤chste Paar fÃ¼r den Test.),300,0,0,
+146,0,0,,Sie haben geschummelt!,"(Sie wird wÃ¼tend und holt einen Ballknebel hervor,|den sie dir um den Kopf schnallt.)",230,-1,0,GagPlayer()
+150,0,0,,"Ich sagte doch,|ich bin die Beste.",Und du hattest recht. Das ist mir Ã¤uÃŸerst peinlich.,160,0,1,
+150,0,0,,Ich hatte nur GlÃ¼ck.,"Nein, du hast richtiges Talent.|Das ist mir Ã¤uÃŸerst peinlich.",160,0,-1,
+150,0,0,,Das war eine ziemliche|Herausforderung.,"Ja, und du hast sie gewonnen.|Das ist mir Ã¤uÃŸerst peinlich.",160,1,0,
+150,0,0,,Sie sind grottenschlecht|in Literatur.,Da kÃ¶nntest du recht haben.|Das ist mir Ã¤uÃŸerst peinlich.,160,-1,0,
+160,0,0,,"Hinaus, ich fÃ¼hre|diese Stunde zu ende.",(Sidney befreit sie und Mildred verlÃ¤sst beschÃ¤mt den|Raum. Sie hinterlÃ¤sst dir ihre Sachen und ihren Blazer.),400,-1,1,FreeBoth()
+160,0,0,,Machen Sie eine Pause.|Ich leite den Test.,(Sidney befreit sie und Mildred verlÃ¤sst beschÃ¤mt den|Raum. Sie hinterlÃ¤sst dir ihre Sachen und ihren Blazer.),400,0,1,FreeBoth()
+160,0,0,,"Schon gut, machen Sie|einfach mit dem Test weiter.","(Sie nickt, wÃ¤hrend Sidney sie befreit. Sie setzt|den Test fort und gewinnt ihr Selbstvertrauen zurÃ¼ck.)",300,1,0,FreeBoth()
+160,0,0,,"Ja, genug DemÃ¼tigung.","(Sie nickt, wÃ¤hrend Sidney sie befreit. Sie setzt|den Test fort und gewinnt ihr Selbstvertrauen zurÃ¼ck.)",300,0,0,FreeBoth()
+200,0,0,,Sidney hatte nur GlÃ¼ck.,"Vielleicht hatte sie GlÃ¼ck, oder vielleicht|hast du nicht ausreichend gelernt.",210,0,0,
+200,0,0,,Wen interessiert's?,"DICH sollte es interessieren! (Sie schlÃ¤gt deinen Arm.)|Du musst mehr lernen, wenn du Erfolg haben willst.",210,-1,1,
+200,0,0,,Sidney hat geschummelt!,Das ist eine faule Ausrede. Mehr Wiederholung|und du hÃ¤ttest mit Leichtigkeit gewonnen.,210,-1,0,
+200,0,0,,"Entschuldigen Sie, Miss.|Ich war nervÃ¶s.","Vor einer Klasse zu sprechen kann schwierig sein.|Aber wenn du gelernt mehr hÃ¤ttest, wÃ¤re es einfacher.",210,1,-1,
+210,0,0,,"Ja, Miss Mildred.|Ich werde fleiÃŸiger lernen.","Sehr gut, junges FrÃ¤ulein. Und keine Sorge.|Ich werde dich befreien, sobald die Tests durch sind.",220,1,-1,
+210,0,0,,"Alles klar, verstanden.","(Sie sieht dich an und nickt.) In Ordnung.|Ich werde dich befreien, sobald die Tests durch sind.",220,0,0,
+210,0,0,,Klingt logisch. Ich|werde hÃ¤rter arbeiten.,"Sehr gut, junges FrÃ¤ulein. Und keine Sorge.|Ich werde dich befreien, sobald die Tests durch sind.",220,1,0,
+210,0,0,,"Ja genau, Literatur ist|soooooooo wichtig.","Mit dieser Einstellung wirst du noch der Schule|verwiesen. Ich befreie dich, sobald die Tests durch sind.",220,-1,1,
+220,0,0,,Sie kÃ¶nnen mich|nicht so lassen!,"(Sie wird wÃ¼tend und holt einen Ballknebel hervor,|den sie dir um den Kopf schnallt.)",230,0,1,GagPlayer()
+220,0,0,,"Fick dich, Mildred!","(Sie wird wÃ¼tend und holt einen Ballknebel hervor,|den sie dir um den Kopf schnallt.)",230,-1,0,GagPlayer()
+220,0,0,,Bitte! KÃ¶nnten sie mich|nicht jetzt freilassen?,(Sie schÃ¼ttelt den Kopf und wÃ¤hlt|das nÃ¤chste Paar fÃ¼r den Test.),300,0,-1,MildredLeave()
+220,0,0,,Bestens.,(Sie nickt und wÃ¤hlt das|nÃ¤chste Paar fÃ¼r den Test.),300,1,0,MildredLeave()
+220,0,0,,(Schweigen.),(Sie nickt und wÃ¤hlt das|nÃ¤chste Paar fÃ¼r den Test.),300,0,0,MildredLeave()
+230,0,0,,@Uuugn nuhm!,(Sie schÃ¼ttelt den Kopf und wÃ¤hlt|das nÃ¤chste Paar fÃ¼r den Test.),300,0,0,MildredLeave()
+230,0,0,,(Schweigen.),(Sie nickt und wÃ¤hlt das|nÃ¤chste Paar fÃ¼r den Test.),300,0,0,MildredLeave()
+240,0,0,,@Uuugn nuhm!,(Sie schÃ¼ttelt den Kopf und wÃ¤hlt|das nÃ¤chste Paar fÃ¼r den Test.),300,0,0,MildredLeave()
+240,0,0,,(Schweigen.),(Sie nickt und wÃ¤hlt das|nÃ¤chste Paar fÃ¼r den Test.),300,0,0,MildredLeave()
+250,0,0,,@Uuugn nuhm!,(Sie schÃ¼ttelt den Kopf und wÃ¤hlt|das nÃ¤chste Paar fÃ¼r den Test.),300,0,0,MildredLeave()
+250,0,0,,(Schweigen.),(Sie nickt und wÃ¤hlt das|nÃ¤chste Paar fÃ¼r den Test.),300,0,0,MildredLeave()
+300,0,0,,(Den Tests zusehen.),(Nach und nach werden die MÃ¤dchen|zu zweit nach vorne gerufen.),310,0,0,WaitTest()
+310,0,0,,(Den Tests zusehen.),(Manche schlagen sich in dem Literaturtest richtig gut.),320,0,0,WaitTest()
+320,0,0,,(Den Tests zusehen.),(Und manche geraten in Schierigkeiten.),330,0,0,WaitTest()
+330,0,0,,(Den Tests zusehen.),"(Mildred scheint es wirklich zu genieÃŸen,|die schlechten SchÃ¼lerinnen auszupeitschen.)",340,0,0,WaitTest()
+340,0,0,,(Den Tests zusehen.),"(Manche weinen, andere bleiben stark.)",350,0,0,WaitTest()
+350,0,0,Common_PlayerRestrained,(Den Tests zusehen.),(Deine letzte Stunde endet|mit dir in Handschellen.),360,0,0,WaitTest()
+350,0,0,!Common_PlayerRestrained,(Den Tests zusehen.),(Deine letzte Stunde endet mit|zahlreichen Peitschenhieben.),360,0,0,WaitTest()
+360,0,0,,(Bis 16:30 Uhr warten.),,360,0,0,EndChapter()
+400,0,0,,(Ihre Sachen nehmen.),"(Du ziehst den Lehrerblazer an und nimmst|all die Sachen, die Mildred hinterlassen hat.)",410,0,0,TakeItems()
+410,0,0,,(Die Tests durchfÃ¼hren.),(Mit der Gerte in der Hand Ã¼bernimmst|du die FÃ¼hrung Ã¼ber den Literaturtest.),420,0,0,WaitTest()
+420,0,0,,(Die Tests durchfÃ¼hren.),(Manche SchÃ¼lerinnen schlagen sich gut.),430,0,0,WaitTest()
+430,0,0,,(Die Tests durchfÃ¼hren.),(Andere SchÃ¼lerinnen versagen.),440,0,0,WaitTest()
+440,0,0,,(Die Tests durchfÃ¼hren.),"(Gehst du insgesamt streng, fair|oder locker mit den SchÃ¼lern um?)",450,0,0,WaitTest()
+450,0,0,,(Streng sein.),(Mit der Gerte und den Handschellen bewaffnet|fÃ¼hrst du die Tests streng und diszipliniert durch.),460,0,0,StrictLeader()
+450,0,0,,(Fair sein.),"(Du versuchst, alle SchÃ¼lerinnen fair|zu behandeln, ohne es zu Ã¼bertreiben.)",460,0,0,FairLeader()
+450,0,0,,(Locker sein.),"(Du lÃ¤sst in deiner FÃ¼hrungsposition locker und|versuchst, statt Feinden neue Freunde zu finden.)",460,0,0,EasyLeader()
+460,0,0,,(Bis 16:30 Uhr|die Tests durchfÃ¼hren.),,460,0,0,EndChapter()
