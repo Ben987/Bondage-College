@@ -28,7 +28,18 @@ function C999_Common_ClothGag_Click() {
 // Chapter Common - Self ClothGag
 function C999_Common_ClothGag_SelfGag() {
 	if ((Common_BondageAllowed) && (Common_SelfBondageAllowed)) {
-		PlayerUngag();
+		if (PlayerHasLockedInventory("PantieGag") || PlayerHasLockedInventory("SockGag")) {
+			if (PlayerHasLockedInventory("PantieGag")) {
+				PlayerUngag();
+				PlayerLockInventory("PantieGag");
+				PlayerRemoveInventory("PantieGag", 1);
+			}
+			if (PlayerHasLockedInventory("SockGag")) {
+				PlayerUngag();
+				PlayerLockInventory("SockGag");
+				PlayerRemoveInventory("SockGag", 1);
+			}
+		} else PlayerUngag();
         PlayerRemoveInventory("ClothGag", 1);
         PlayerLockInventory("ClothGag");
 	} else {

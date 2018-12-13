@@ -18,7 +18,7 @@ function PlayerClothes(NewCloth) {
 // Set the restrained and gagged common variables, used by many scenes
 function LoadRestrainStatus() {
 	Common_PlayerRestrained = (PlayerHasLockedInventory("Cuffs") || PlayerHasLockedInventory("Rope") || PlayerHasLockedInventory("Armbinder") || PlayerHasLockedInventory("Manacles"));
-	Common_PlayerGagged = (PlayerHasLockedInventory("BallGag") || PlayerHasLockedInventory("TapeGag") || PlayerHasLockedInventory("ClothGag") || PlayerHasLockedInventory("DoubleOpenGag"));
+	Common_PlayerGagged = (PlayerHasLockedInventory("BallGag") || PlayerHasLockedInventory("TapeGag") || PlayerHasLockedInventory("ClothGag") || PlayerHasLockedInventory("PantieGag") || PlayerHasLockedInventory("SockGag") || PlayerHasLockedInventory("DoubleOpenGag"));
 	Common_PlayerChaste = PlayerHasLockedInventory("ChastityBelt");
 	Common_PlayerNotRestrained = !Common_PlayerRestrained;
 	Common_PlayerNotGagged = !Common_PlayerGagged;
@@ -202,6 +202,8 @@ function PlayerUngag() {
 	if (PlayerHasLockedInventory("BallGag")) { PlayerUnlockInventory("BallGag"); PlayerAddInventory("BallGag", 1); }
 	if (PlayerHasLockedInventory("ClothGag")) { PlayerUnlockInventory("ClothGag"); PlayerAddInventory("ClothGag", 1); }
 	if (PlayerHasLockedInventory("TapeGag")) { PlayerUnlockInventory("TapeGag"); }
+	if (PlayerHasLockedInventory("PantieGag")) { PlayerUnlockInventory("PantieGag"); PlayerAddInventory("PantieGag", 1); }
+	if (PlayerHasLockedInventory("SockGag")) { PlayerUnlockInventory("SockGag"); PlayerAddInventory("SockGag", 1); }
 }
 
 // Add a random item in the player inventory

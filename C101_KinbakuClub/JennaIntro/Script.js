@@ -67,6 +67,8 @@ function C101_KinbakuClub_JennaIntro_ShortCut() {
 	PlayerAddInventory("BallGag", 4);
 	PlayerAddInventory("TapeGag", 8);
 	PlayerAddInventory("ClothGag", 4);
+	PlayerAddInventory("PantieGag", 4);
+	PlayerAddInventory("SockGag", 4);
 	PlayerAddInventory("Collar", 4);
 	PlayerAddInventory("Crop", 1);
 	PlayerAddInventory("VibratingEgg", 4);

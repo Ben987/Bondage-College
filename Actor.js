@@ -207,7 +207,7 @@ function ActorSpecificInBondage(SpecificActor) {
 	} else {
 		for (var A = 0; A < Actor.length; A++)
 			if (Actor[A][ActorName] == SpecificActor)
-				return (ActorSpecificHasInventory(SpecificActor, "Rope") || ActorSpecificHasInventory(SpecificActor, "TwoRopes") || ActorSpecificHasInventory(SpecificActor, "Armbinder") || ActorSpecificHasInventory(SpecificActor, "Cuffs") || ActorSpecificHasInventory(SpecificActor, "Manacles") || ActorSpecificHasInventory(SpecificActor, "BallGag") || ActorSpecificHasInventory(SpecificActor, "TapeGag") || ActorSpecificHasInventory(SpecificActor, "ClothGag"));
+				return (ActorSpecificHasInventory(SpecificActor, "Rope") || ActorSpecificHasInventory(SpecificActor, "TwoRopes") || ActorSpecificHasInventory(SpecificActor, "Armbinder") || ActorSpecificHasInventory(SpecificActor, "Cuffs") || ActorSpecificHasInventory(SpecificActor, "Manacles") || ActorSpecificHasInventory(SpecificActor, "BallGag") || ActorSpecificHasInventory(SpecificActor, "TapeGag") || ActorSpecificHasInventory(SpecificActor, "ClothGag") || ActorSpecificHasInventory(SpecificActor, "PantieGag") || ActorSpecificHasInventory(SpecificActor, "SockGag"));
 	}
 }
 
@@ -235,7 +235,7 @@ function ActorIsGagged() {
 	if (CurrentActor == "")
 		return Common_PlayerGagged;
 	else
-		return (ActorHasInventory("BallGag") || ActorHasInventory("TapeGag") || ActorHasInventory("ClothGag"));
+		return (ActorHasInventory("BallGag") || ActorHasInventory("TapeGag") || ActorHasInventory("ClothGag") || ActorHasInventory("PantieGag") || ActorHasInventory("SockGag"));
 }
 
 // Returns true if the actor is chaste (if there's no actor, we return the player status)
@@ -258,6 +258,8 @@ function ActorUngag() {
 	if (ActorHasInventory("BallGag")) { ActorRemoveInventory("BallGag"); PlayerAddInventory("BallGag", 1); }
 	if (ActorHasInventory("ClothGag")) { ActorRemoveInventory("ClothGag"); PlayerAddInventory("ClothGag", 1); }
 	if (ActorHasInventory("TapeGag")) ActorRemoveInventory("TapeGag");
+	if (ActorHasInventory("PantieGag")) { ActorRemoveInventory("PantieGag"); PlayerAddInventory("PantieGag", 1); }
+	if (ActorHasInventory("SockGag")) { ActorRemoveInventory("SockGag"); PlayerAddInventory("SockGag", 1); }
 }
 
 // Remove the blindfold from the actor and return it to the player
@@ -305,6 +307,14 @@ function ActorApplyRestrain(RestrainName) {
 			ActorAddInventory(RestrainName);
 			CurrentTime = CurrentTime + 60000;
 		}
+
+		// Mouth filling before regular gags (only available in the Kinbaku club for now)
+		if (((RestrainName == "PantieGag") || (RestrainName == "SockGag")) && !(ActorHasInventory("BallGag") || ActorHasInventory("ClothGag") || ActorHasInventory("TapeGag")) && (CurrentChapter == "C101_KinbakuClub")) {
+			PlayerRemoveInventory(RestrainName, 1);
+			ActorAddInventory(RestrainName);
+			CurrentTime = CurrentTime + 60000;
+		}
+
 
 		// Blindfold (only available in the Kinbaku club for now)
 		if ((RestrainName == "Blindfold") && (CurrentChapter == "C101_KinbakuClub")) {
