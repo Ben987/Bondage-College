@@ -81,5 +81,8 @@ function C101_KinbakuClub_Transition_Click() {
 
 	// Jump to the next animation
 	TextPhase++;
-	//if (TextPhase >= 4) SetScene(CurrentChapter, "TheBox");
+	if (TextPhase >= 5) {
+		//SetScene(CurrentChapter, "TheBox");
+		SetScene("C012_AfterClass", "Dorm");
+	}
 }
