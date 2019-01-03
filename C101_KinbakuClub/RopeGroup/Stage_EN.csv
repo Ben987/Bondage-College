@@ -2,7 +2,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 0,0,0,,"Yeah, what's|it too you?","Nothing, we just seem to have a lot of new faces today.",10,0,1,
 0,0,0,,Yep. A new start|and new possibilities.,"Great, I'm sure you will find new possibilities her.",10,1,0,
 0,0,0,,Yes. This is all|new to me.,We will have to make sure you get a|propper introduction to Kinbaku then.,10,0,-1,
-0,0,0,,(Development only|short cut.),,661,,,
+0,0,0,,(Development only|short cut.),,661,0,0,
 10,0,0,,"I'm COMMON_PLAYERNAME,|pleased to meet you miss...","I'm Amelia, this is Charlotte and the twins|Heather and Lucy who are already bound and gagged.",100,1,-1,Introduced()
 10,0,0,,Call me COMMON_PLAYERNAME.,You can call me Amelia. This is Charlotte and the twins|Heather and Lucy who are already bound and gagged.,100,0,0,Introduced()
 10,0,0,,The name's COMMON_PLAYERNAME.|Be sure to remember it.,"OK. I'm Amelia, this is Charlotte and the twins|Heather and Lucy who are already bound and gagged.",100,0,1,Introduced()
@@ -196,7 +196,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 631,0,0,,How many times|have you done this?,"I'm not sure, too many to bother counting.|(She takes you towards a corner of the room.)",632,0,0,
 632,0,0,,Why are you pushing|me over here?,Because there is a suspension ring already setup|in this corner.  (She starts tying you to it.),633,0,0,TyingTime()
 632,0,0,,(Follow her direction.),Thats it. Keep stand under this ring now.|(She starts tying you to it.),633,0,0,TyingTime()
-633,0,0,,Is that ring secure?,Of course it is.  The anchors in the ceiling are|rated to hold at least two girls each.,634,,,TyingTime()
+633,0,0,,Is that ring secure?,Of course it is.  Each anchor in the ceiling is|rated to hold at least two girls each.,634,,,TyingTime()
 633,0,0,,What are you doing?,'Tachi tsuri' is tied to stand up.  Now tying|one leg up turns that into 'Kataashi age tsuri',634,,,TyingTime()
 633,0,0,,(,,634,,,TyingTime()
 634,0,0,,You make that look too easy.,"Yep, I use the ropes and ring like a pulley|hoist to manipulate you however I want to.",635,,,TyingTime()

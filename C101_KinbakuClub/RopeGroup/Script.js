@@ -95,7 +95,7 @@ var C101_KinbakuClub_RopeGroup_Random = 0;							// For random numbers
 // Calculates the scene parameters
 function C101_KinbakuClub_RopeGroup_CalcParams() {
 	C101_KinbakuClub_RopeGroup_PlayerOnlyGagged = Common_PlayerGagged && !Common_PlayerRestrained;
-	C101_KinbakuClub_RopeGroup_Kidnapper = C101_KinbakuClub_RopeGroup_ReadyForSlaves;
+	C101_KinbakuClub_RopeGroup_Kidnapper = C101_KinbakuClub_Slaves_ReadyForSlaves;
 	C101_KinbakuClub_RopeGroup_TwoTiedTwins = C101_KinbakuClub_RopeGroup_LeftTwinStatus == "StartTied" && C101_KinbakuClub_RopeGroup_RightTwinStatus == "StartTied";
 	C101_KinbakuClub_RopeGroup_RemainingTwin = !C101_KinbakuClub_RopeGroup_TwoTiedTwins && !C101_KinbakuClub_RopeGroup_LucyFree && !C101_KinbakuClub_RopeGroup_TwinsRevealed;
 	C101_KinbakuClub_RopeGroup_LucyTied = !C101_KinbakuClub_RopeGroup_TwoTiedTwins && !C101_KinbakuClub_RopeGroup_LucyFree && C101_KinbakuClub_RopeGroup_TwinsRevealed;
