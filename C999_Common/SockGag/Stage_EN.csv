@@ -1,7 +1,7 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 0,0,0,,(Inspect the sock.)|(1 minute),"An odd sock is not much use for wearing,|but it would pack full even the biggest mouth.",0,0,0,
 0,0,0,Common_PlayerNotRestrained,(Gag yourself.)|(1 minute),"You stuff the sock into your mouth,|pushing it all in and packing it full.",10,0,0,SelfGag()
-10,0,0,HasLooseBallGag,(Inspect the loose gag.)|(1 minute),"An odd sock is not much use for wearing,|but it would pack full even the biggest mouth.",10,0,0,ShowImage()
+10,0,0,HasLooseSockGag,(Inspect the loose gag.)|(1 minute),"An odd sock is not much use for wearing,|but it would pack full even the biggest mouth.",10,0,0,ShowImage()
 10,0,0,,(Chew on the sock.)|(1 minute),You chew on the sock wad.|It slowly becomes soaked by your own drool.,10,0,0,
 10,0,0,,(Suck on the sock.)|(1 minute),"You suck on the sock, savouting the taste|and wondering how clean it was.",10,0,0,
 10,0,0,!HasOtherGag,(Spit out the sock.)|(1 minute),You spit the sodden sock out of|your mouth and can now talk again.,0,0,0,SelfUngag()

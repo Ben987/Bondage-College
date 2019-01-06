@@ -173,7 +173,7 @@
 
 // When the code is loaded, start on "Chapter 0" to select a chapter and loads the default language
 window.onload = function() {
-	CheatAllow = true; // Set cheat mode
+	CheatAllow = false; // Set cheat mode
 	MainCanvas = document.getElementById("MainCanvas").getContext("2d");
 	if (localStorage.getItem("CurrentLanguageTag")) CurrentLanguageTag = localStorage.getItem("CurrentLanguageTag");
 	IsMobile = DetectMobile();

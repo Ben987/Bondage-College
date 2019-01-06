@@ -36,6 +36,7 @@ var C101_KinbakuClub_RopeGroup_StruggledForLucy = false;
 var C101_KinbakuClub_RopeGroup_ATwinStillTied = false;
 var C101_KinbakuClub_RopeGroup_LucyIsAnnoyed = 0;					// Lucy will be less inclinded to help the player if true.
 var C101_KinbakuClub_RopeGroup_FriendWaitCount = 0;					// Time log while Lucy talks to Cassi
+var C101_KinbakuClub_RopeGroup_CassiVistied = false;				// logs if Cassi has vistied player
 var C101_KinbakuClub_RopeGroup_PantiesInTheWay = false;				// Panties need removing first
 var C101_KinbakuClub_RopeGroup_ToBeChasteAgain = false;				// Unlocked Chastity belts will be refited
 var C101_KinbakuClub_RopeGroup_PantieGagged = false;
@@ -49,6 +50,14 @@ var C101_KinbakuClub_RopeGroup_CanPressCassi = true;				// true whe player could
 var C101_KinbakuClub_RopeGroup_PressingCassi = false;				// true when legs are wrapped around her head
 var C101_KinbakuClub_RopeGroup_ForcingCassi = false;				// true when pressing cassis head in.
 var C101_KinbakuClub_RopeGroup_CassiBreathPlay = 0;					// How long player has prevented Cassi from breathing
+var C101_KinbakuClub_RopeGroup_CassiLikes = 0;						// Slows down rate of attitude change
+var C101_KinbakuClub_RopeGroup_CassiLikeTreshold = 0;				// Slows down rate of attitude change
+var C101_KinbakuClub_RopeGroup_CassiHates = 0;						// Slows down rate of attitude change
+var C101_KinbakuClub_RopeGroup_CassiHateTreshold = 0;				// Slows down rate of attitude change
+var C101_KinbakuClub_RopeGroup_CassiDominates = 0;					// Slows down rate of attitude change
+var C101_KinbakuClub_RopeGroup_CassiDominateTreshold = 0;			// Slows down rate of attitude change
+var C101_KinbakuClub_RopeGroup_CassiSubmits = 0;					// Slows down rate of attitude change
+var C101_KinbakuClub_RopeGroup_CassiSubmitTreshold = 0;				// Slows down rate of attitude change
 var C101_KinbakuClub_RopeGroup_AnkleGrab = false;					// true when cassi is holding players ankles.
 var C101_KinbakuClub_RopeGroup_fingerinsertion = false;				// if Cassi uses her fingers.
 var C101_KinbakuClub_RopeGroup_LastTongueTechnique = 0;				// previous technique used by tougne
@@ -102,6 +111,7 @@ function C101_KinbakuClub_RopeGroup_CalcParams() {
 	C101_KinbakuClub_RopeGroup_ATwinStillTied = C101_KinbakuClub_RopeGroup_LeftTwinStatus == "StartTied" || C101_KinbakuClub_RopeGroup_RightTwinStatus == "StartTied";
 	if (PlayerGetSkillLevel("Masochist") >= 1) C101_KinbakuClub_RopeGroup_Masochist = true;
 	C101_KinbakuClub_RopeGroup_HasLooseArmbinder = PlayerHasInventory("Armbinder");
+	if (C101_KinbakuClub_RopeGroup_TsuriFrogTied) C101_KinbakuClub_RopeGroup_CanPressCassi = false;
 }
 
 
@@ -131,7 +141,7 @@ function C101_KinbakuClub_RopeGroup_Load() {
 	
 	// Load the scene parameters
 	// Load relevent actor
-	C101_KinbakuClub_RopeGroup_NoActor()
+	C101_KinbakuClub_RopeGroup_ActorLeftAndCanLeave()
 	if (C101_KinbakuClub_RopeGroup_CurrentStage < 100) C101_KinbakuClub_RopeGroup_LoadAmelia()
 	if (C101_KinbakuClub_RopeGroup_CurrentStage >= 700) {
 		if (C101_KinbakuClub_RopeGroup_LeftTwinStatus == "Released") ActorLoad(C101_KinbakuClub_RopeGroup_LeftTwin, "ClubRoom1");
@@ -210,7 +220,7 @@ function C101_KinbakuClub_RopeGroup_Run() {
 	}
 
 	//Suspended
-	if (C101_KinbakuClub_RopeGroup_CurrentStage >= 636 && C101_KinbakuClub_RopeGroup_CurrentStage <= 681) {
+	if ((C101_KinbakuClub_RopeGroup_CurrentStage >= 636 && C101_KinbakuClub_RopeGroup_CurrentStage <= 642) || (C101_KinbakuClub_RopeGroup_CurrentStage >= 650 && C101_KinbakuClub_RopeGroup_CurrentStage <= 690)) {
 		// Player images
 		if (C101_KinbakuClub_RopeGroup_CurrentStage >= 672 && C101_KinbakuClub_RopeGroup_PlayerPose != "") DrawImage(CurrentChapter + "/" + CurrentScreen + "/" + C101_KinbakuClub_RopeGroup_PlayerPose + ".jpg", 835, 75);
 		if (PlayerHasLockedInventory("ChastityBelt"))  DrawImage(CurrentChapter + "/" + CurrentScreen + "/Suspended4ChastityBelt.jpg", 880, 290);
@@ -228,7 +238,7 @@ function C101_KinbakuClub_RopeGroup_Run() {
 		if (C101_KinbakuClub_RopeGroup_CurrentStage == 673) DrawImage(CurrentChapter + "/" + CurrentScreen + "/SusCas_Scissors.png", 700, 77);
 		if (C101_KinbakuClub_RopeGroup_CurrentStage == 674) DrawImage(CurrentChapter + "/" + CurrentScreen + "/SusCas_KneelDown.png", 660, 120);
 		if (C101_KinbakuClub_RopeGroup_CurrentStage == 674 && ActorGetValue(ActorSubmission) >= 0) DrawImage(CurrentChapter + "/" + CurrentScreen + "/SusCas_KneelDownCuffs.png", 776, 403);
-		if (C101_KinbakuClub_RopeGroup_CurrentStage >= 675 && C101_KinbakuClub_RopeGroup_CurrentStage <= 682){
+		if (C101_KinbakuClub_RopeGroup_CurrentStage >= 675 && C101_KinbakuClub_RopeGroup_CurrentStage <= 686){
 			if (C101_KinbakuClub_RopeGroup_PressingCassi) {
 				if (ActorHasInventory("Cuffs")) DrawImage(CurrentChapter + "/" + CurrentScreen + "/SusCas_CunniCuffedPressed.png", 770, 230);
 				else {
@@ -249,6 +259,11 @@ function C101_KinbakuClub_RopeGroup_Run() {
 				}
 			}
 		}
+		if (C101_KinbakuClub_RopeGroup_CurrentStage == 687) DrawImage(CurrentChapter + "/" + CurrentScreen + "/SusCas_Done.png", 835, 73);
+		if (C101_KinbakuClub_RopeGroup_CurrentStage == 687 && ActorHasInventory("Cuffs")) DrawImage(CurrentChapter + "/" + CurrentScreen + "/SusCas_DoneCuffs.png", 874, 193);
+		if (C101_KinbakuClub_RopeGroup_CurrentStage >= 688 && C101_KinbakuClub_RopeGroup_CurrentStage <= 689) DrawImage(CurrentChapter + "/" + CurrentScreen + "/SusCas_DoneBelt.png", 835, 63);
+		if (C101_KinbakuClub_RopeGroup_CurrentStage == 690) DrawImage(CurrentChapter + "/" + CurrentScreen + "/SusCas_DoneBelted.png", 835, 66);
+		
 
 		// Lucy images
 		if (C101_KinbakuClub_RopeGroup_CurrentStage >= 662 && C101_KinbakuClub_RopeGroup_CurrentStage <= 665) DrawImage(CurrentChapter + "/" + CurrentScreen + "/Suspended5Lucy.png", 629, 51);
@@ -337,7 +352,7 @@ function C101_KinbakuClub_RopeGroup_LoadLucy() {
 // Chapter 101 - RopeGroup - set actor to Lucy
 function C101_KinbakuClub_RopeGroup_LoadLucyNoLeave() {
 	ActorLoad("Lucy", "ClubRoom1");
-	LaveIcon = "";
+	LeaveIcon = "";
 }
 
 // Chapter 101 - RopeGroup - set actor to Jenna
@@ -355,13 +370,18 @@ function C101_KinbakuClub_RopeGroup_LoadCassi() {
 // Chapter 101 - RopeGroup - set no actor
 function C101_KinbakuClub_RopeGroup_NoActor() {
 	ActorLoad("", "ClubRoom1");
-	LeaveIcon = "";
+	LeaveIcon = "Wait";
 }
 
 // Chapter 101 - RopeGroup - set no actor
 function C101_KinbakuClub_RopeGroup_ActorLeftAndCanLeave() {
 	ActorLoad("", "ClubRoom1");
-} 
+}
+
+// Chapter 101 - RopeGroup - Player can wait
+function C101_KinbakuClub_RopeGroup_Wait() {
+	LeaveIcon = "Wait";
+}
 
 // Chapter 101 - RopeGroup - Load unknown twin on the right
 function C101_KinbakuClub_RopeGroup_LoadRightTwin() {
@@ -667,6 +687,7 @@ function C101_KinbakuClub_RopeGroup_PlayerWhimperLucy() {
 	} else {
 		if (C101_KinbakuClub_RopeGroup_LucyIsAnnoyed >= 2 || ActorGetValue(ActorLove) >= 1) {
 			OverridenIntroText = GetText("AnnoyedNoUngag");
+			C101_KinbakuClub_RopeGroup_CurrentStage = 640;
 		} else {
 			PlayerUngag();
 			OverridenIntroText = GetText("AnnoyedUngag");
@@ -707,16 +728,18 @@ function C101_KinbakuClub_RopeGroup_FriendOfAFriend() {
 
 // Chapter 101 - RopeGroup - Waiting while lucy goes to ask a friend to help
 function C101_KinbakuClub_RopeGroup_WaitingForFriend() {
+	if (C101_KinbakuClub_RopeGroup_FriendWaitCount == 0) C101_KinbakuClub_RopeGroup_FriendWaitCount = CurrentTime + 300000;
 	C101_KinbakuClub_RopeGroup_FriendWaitCount++
-	if (C101_KinbakuClub_RopeGroup_FriendWaitCount == 3) {
+	if (CurrentTime >= C101_KinbakuClub_RopeGroup_FriendWaitCount && !C101_KinbakuClub_RopeGroup_CassiVistied) {
 		C101_KinbakuClub_RopeGroup_CurrentStage = 662;
 		C101_KinbakuClub_RopeGroup_LoadCassi();
+		C101_KinbakuClub_RopeGroup_CassiVistied = true;
 		if (GameLogQuery(CurrentChapter, CurrentActor, "MetCassi")) {
 			OverridenIntroText = GetText("CassiAppears");
 		} else OverridenIntroText = GetText("NewGirlAppears");
 	} else {
 		CurrentTime = CurrentTime + 60000;
-		if (C101_KinbakuClub_RopeGroup_FriendWaitCount > 3) CurrentTime = CurrentTime + 60000;
+		if (CurrentTime >= C101_KinbakuClub_RopeGroup_FriendWaitCount) CurrentTime = CurrentTime + 60000;
 	}
 }
 
@@ -754,6 +777,12 @@ function C101_KinbakuClub_RopeGroup_PlayerPantieGagged() {
 function C101_KinbakuClub_RopeGroup_PlayerSockGagged() {
 	PlayerLockInventory("SockGag");
 	C101_KinbakuClub_RopeGroup_SockGagged = true;
+}
+
+// Chapter 101 - RopeGroup - Player ball gagged and abbondonded
+function C101_KinbakuClub_RopeGroup_LeftBallGagged() {
+	C101_KinbakuClub_RopeGroup_PlayerBallGagged()
+	C101_KinbakuClub_RopeGroup_NoActor()
 }
 
 // Chapter 101 - RopeGroup - Player gets a tape gag
@@ -795,7 +824,7 @@ function C101_KinbakuClub_RopeGroup_PantiesCut(CassiAction) {
 
 // Chapter 101 - RopeGroup - Cassi will join in the bondage if feeling submissive
 function C101_KinbakuClub_RopeGroup_CassiCuffs() {
-	if (ActorGetValue(ActorSubmission) >= 0) {
+	if (ActorGetValue(ActorSubmission) >= 1) {
 		OverridenIntroText = GetText("CassiCuffed");
 		ActorAddInventory("Cuffs");
 	}
@@ -806,7 +835,10 @@ function C101_KinbakuClub_RopeGroup_CassiCuffs() {
 function C101_KinbakuClub_RopeGroup_CassiCunni(CunnilingusReaction) {
 	CurrentTime = CurrentTime + 10000;
 	if (CunnilingusReaction == 1) C101_KinbakuClub_RopeGroup_PlayerArousal = C101_KinbakuClub_RopeGroup_PlayerArousal + 5;
-	if (CunnilingusReaction == 2) C101_KinbakuClub_RopeGroup_PlayerArousal = C101_KinbakuClub_RopeGroup_PlayerArousal + 20;
+	if (CunnilingusReaction == 2) {
+		C101_KinbakuClub_RopeGroup_PlayerArousal = C101_KinbakuClub_RopeGroup_PlayerArousal + 20;
+		C101_KinbakuClub_RopeGroup_CassiLike();
+	}
 	if (CunnilingusReaction == 3) {
 		C101_KinbakuClub_RopeGroup_PlayerArousal = C101_KinbakuClub_RopeGroup_PlayerArousal + 20;
 		if (C101_KinbakuClub_RopeGroup_PlayerArousal >= 300 && !ActorHasInventory("Cuffs") && !C101_KinbakuClub_RopeGroup_fingerinsertion) {
@@ -814,10 +846,12 @@ function C101_KinbakuClub_RopeGroup_CassiCunni(CunnilingusReaction) {
 			C101_KinbakuClub_RopeGroup_fingerinsertion = true;
 			C101_KinbakuClub_RopeGroup_AnkleGrab = false;
 		}
+		C101_KinbakuClub_RopeGroup_CassiLike();
 	}
 	if (CunnilingusReaction == 4) {
 		C101_KinbakuClub_RopeGroup_PlayerArousal = C101_KinbakuClub_RopeGroup_PlayerArousal + 5;
 		if (PlayerHasLockedInventory("SockGag")) OverridenIntroText = GetText("GruntHelplessSock");
+		C101_KinbakuClub_RopeGroup_CassiSubmit();
 	}
 	if (CunnilingusReaction == 5) {
 		C101_KinbakuClub_RopeGroup_PlayerArousal = C101_KinbakuClub_RopeGroup_PlayerArousal + 5;
@@ -829,6 +863,7 @@ function C101_KinbakuClub_RopeGroup_CassiCunni(CunnilingusReaction) {
 		else {
 			C101_KinbakuClub_RopeGroup_PressingCassi = true;
 			C101_KinbakuClub_RopeGroup_CanPressCassi = false;
+			C101_KinbakuClub_RopeGroup_CassiDominate();
 		}
 	}
 	if (CunnilingusReaction == 7) {
@@ -846,7 +881,8 @@ function C101_KinbakuClub_RopeGroup_CassiCunni(CunnilingusReaction) {
 	}
 	if (CunnilingusReaction == 8) {
 		C101_KinbakuClub_RopeGroup_PlayerArousal = C101_KinbakuClub_RopeGroup_PlayerArousal + 15;
-		ActorChangeAttitude( 0, 1)
+		C101_KinbakuClub_RopeGroup_CassiHate();
+		C101_KinbakuClub_RopeGroup_CassiDominate();
 	}
 	if (CunnilingusReaction == 9) {
 		C101_KinbakuClub_RopeGroup_CassiBreathPlay = 0;
@@ -857,25 +893,72 @@ function C101_KinbakuClub_RopeGroup_CassiCunni(CunnilingusReaction) {
 		C101_KinbakuClub_RopeGroup_PressingCassi = false;
 		C101_KinbakuClub_RopeGroup_CanPressCassi = true;
 	}
-	if (CunnilingusReaction == 11) C101_KinbakuClub_RopeGroup_PlayerArousal = C101_KinbakuClub_RopeGroup_PlayerArousal + 5;
-	if (CunnilingusReaction == 12) C101_KinbakuClub_RopeGroup_PlayerArousal = C101_KinbakuClub_RopeGroup_PlayerArousal + 5;
+	if (CunnilingusReaction == 11) {
+		C101_KinbakuClub_RopeGroup_PlayerArousal = C101_KinbakuClub_RopeGroup_PlayerArousal + 5;
+		C101_KinbakuClub_RopeGroup_CassiHate();
+	}
+	if (CunnilingusReaction == 12) {
+		C101_KinbakuClub_RopeGroup_PlayerArousal = C101_KinbakuClub_RopeGroup_PlayerArousal + 5;
+		C101_KinbakuClub_RopeGroup_CassiSubmit();
+	}
 	if (C101_KinbakuClub_RopeGroup_ForcingCassi && CunnilingusReaction != 9) {
 		C101_KinbakuClub_RopeGroup_CassiBreathPlay++
 		if (C101_KinbakuClub_RopeGroup_CassiBreathPlay == 3) {
 			OverridenIntroText = GetText("CassiErratic");
-			ActorChangeAttitude( -1, 1)
+			C101_KinbakuClub_RopeGroup_CassiHate();
+			C101_KinbakuClub_RopeGroup_CassiDominate();
 		}
 		if (C101_KinbakuClub_RopeGroup_CassiBreathPlay == 5) {
 			OverridenIntroText = GetText("CassiDespirate");
-			ActorChangeAttitude( -1, 1)
+			ActorChangeAttitude( -1, 1);
 		}
 		if (C101_KinbakuClub_RopeGroup_CassiBreathPlay >= 7) {
 			OverridenIntroText = GetText("CassiColapse");
-			ActorChangeAttitude( -1, 1)
+			ActorChangeAttitude( -1, 1);
 			C101_KinbakuClub_RopeGroup_CurrentStage = 682;
 		}
 	}
 	C101_KinbakuClub_RopeGroup_PlayerSusExpression();
+}
+
+// Chapter 101 - RopeGroup - Attitude like change progression during cunnilingus
+function C101_KinbakuClub_RopeGroup_CassiLike() {
+	C101_KinbakuClub_RopeGroup_CassiLikes++;
+	if (C101_KinbakuClub_RopeGroup_CassiLikes > C101_KinbakuClub_RopeGroup_CassiLikeTreshold) {
+		ActorChangeAttitude( 1, 0);
+		C101_KinbakuClub_RopeGroup_CassiLikes = 0;
+		C101_KinbakuClub_RopeGroup_CassiLikeTreshold++;
+	}
+}
+
+// Chapter 101 - RopeGroup - Attitude dislike change progression during cunnilingus
+function C101_KinbakuClub_RopeGroup_CassiHate() {
+	C101_KinbakuClub_RopeGroup_CassiHates++;
+	if (C101_KinbakuClub_RopeGroup_CassiHates > C101_KinbakuClub_RopeGroup_CassiHateTreshold) {
+		ActorChangeAttitude( -1, 0);
+		C101_KinbakuClub_RopeGroup_CassiHates = 0;
+		C101_KinbakuClub_RopeGroup_CassiHateTreshold++;
+	}
+}
+
+// Chapter 101 - RopeGroup - Attitude dominating change progression during cunnilingus
+function C101_KinbakuClub_RopeGroup_CassiDominate() {
+	C101_KinbakuClub_RopeGroup_CassiDominates++;
+	if (C101_KinbakuClub_RopeGroup_CassiDominates > C101_KinbakuClub_RopeGroup_CassiDominateTreshold) {
+		ActorChangeAttitude( 0, 1);
+		C101_KinbakuClub_RopeGroup_CassiDominates = 0;
+		C101_KinbakuClub_RopeGroup_CassiDominateTreshold++;
+	}
+}
+
+// Chapter 101 - RopeGroup - Attitude submitting change progression during cunnilingus
+function C101_KinbakuClub_RopeGroup_CassiSubmit() {
+	C101_KinbakuClub_RopeGroup_CassiSubmits++;
+	if (C101_KinbakuClub_RopeGroup_CassiSubmits > C101_KinbakuClub_RopeGroup_CassiSubmitTreshold) {
+		ActorChangeAttitude( 0, -1);
+		C101_KinbakuClub_RopeGroup_CassiSubmits = 0;
+		C101_KinbakuClub_RopeGroup_CassiSubmitTreshold++;
+	}
 }
 
 // Chapter 101 - RopeGroup - Set player expression
@@ -915,6 +998,7 @@ function C101_KinbakuClub_RopeGroup_CassiChangeTechnique() {
 
 // Chapter 101 - RopeGroup - Cassi may continue for multiple orgasms
 function C101_KinbakuClub_RopeGroup_CassiContinue() {
+	ActorAddOrgasm();
 	C101_KinbakuClub_RopeGroup_PlayerArousal = C101_KinbakuClub_RopeGroup_PlayerArousal - 200;
 	C101_KinbakuClub_RopeGroup_ForcingCassi = false;
 	C101_KinbakuClub_RopeGroup_PressingCassi = false;
@@ -933,6 +1017,46 @@ function C101_KinbakuClub_RopeGroup_CassiContinue() {
 			C101_KinbakuClub_RopeGroup_CurrentStage = 685;
 			OverridenIntroText = GetText("CassiAsks");
 		}
+	}
+}
+
+// Chapter 101 - RopeGroup - Cassi will leave player buzzing
+function C101_KinbakuClub_RopeGroup_PunishmentGlutten() {
+	if (!PlayerHasLockedInventory("VibratingEgg")) {
+		PlayerLockInventory("VibratingEgg");
+		OverridenIntroText = GetText("CassiLeavingGift");
+	}
+	NoActor();
+}
+
+// Chapter 101 - RopeGroup - Cassi might belt oppontent and add kinky extras
+function C101_KinbakuClub_RopeGroup_AddedExtras(ExtraNumber) {
+	if (ExtraNumber == 1 && ActorGetValue(ActorSubmission) >= 3) {
+		OverridenIntroText = GetText("NotBelted");
+		C101_KinbakuClub_RopeGroup_PlayerFreed()
+		C101_KinbakuClub_RopeGroup_CurrentStage = 691;
+	} else {
+		if (!PlayerHasLockedInventory("VibratingEgg") && !PlayerHasLockedInventory("ButtPlug")) {
+			PlayerLockInventory("VibratingEgg");
+			PlayerLockInventory("ButtPlug");
+		} else {
+			if (!PlayerHasLockedInventory("VibratingEgg")) {
+				PlayerLockInventory("VibratingEgg");
+				if (ExtraNumber == 1) OverridenIntroText = GetText("ArgueEggNBelted");
+				else OverridenIntroText = GetText("EggNBelted");
+			} else {
+				if (!PlayerHasLockedInventory("ButtPlug")) {
+					PlayerLockInventory("ButtPlug");
+					if (ExtraNumber == 1) OverridenIntroText = GetText("ArguePlugNBelted");
+					else OverridenIntroText = GetText("PlugNBelted");
+				} else {
+					if (ExtraNumber == 1) OverridenIntroText = GetText("ArgueJustBelted");
+					else OverridenIntroText = GetText("JustBelted");
+				}
+			}
+		}
+		C101_KinbakuClub_RopeGroup_FullyExposed = false;
+		PlayerLockInventory("ChastityBelt");
 	}
 }
 
