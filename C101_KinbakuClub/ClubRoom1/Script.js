@@ -31,8 +31,8 @@ function C101_KinbakuClub_ClubRoom1_Run() {
 	if (C101_KinbakuClub_RopeGroup_RightTwinStatus == "StartTied") DrawImage(CurrentChapter + "/" + CurrentScreen + "/TwinRightStart.png", 800, 155);
 
 	// Draw Save function
-	if ((MouseX >= 550) && (MouseX < 650) && (MouseY >= 500) && (MouseY <= 600)) DrawImage(CurrentChapter + "/" + CurrentScreen + "/Save_Active.png", 550, 500);
-	else DrawImage(CurrentChapter + "/" + CurrentScreen + "/Save_Inactive.png", 550, 500);
+	//if ((MouseX >= 550) && (MouseX < 650) && (MouseY >= 500) && (MouseY <= 600)) DrawImage(CurrentChapter + "/" + CurrentScreen + "/Save_Active.png", 550, 500);
+	//else DrawImage(CurrentChapter + "/" + CurrentScreen + "/Save_Inactive.png", 550, 500);
 
 }
 
@@ -45,7 +45,7 @@ function C101_KinbakuClub_ClubRoom1_Click() {
 	if ((MouseX >= 0) && (MouseX <= 215) && (MouseY >= 45) && (MouseY <= 350)) SetScene(CurrentChapter, "Door");
 	if ((MouseX >= 235) && (MouseX <= 650) && (MouseY >= 140) && (MouseY <= 499)) SetScene(CurrentChapter, "Lauren");
 	if ((MouseX >= 690) && (MouseX <= 1190) && (MouseY >= 100) && (MouseY <= 520)) SetScene(CurrentChapter, "RopeGroup");
-	if ((MouseX >= 550) && (MouseX < 650) && (MouseY >= 500) && (MouseY <= 600)) SaveMenu(CurrentChapter, "ClubRoom1");
+	//if ((MouseX >= 550) && (MouseX < 650) && (MouseY >= 500) && (MouseY <= 600)) SaveMenu(CurrentChapter, "ClubRoom1");
 
 	// Checks if the user clicks on any regular item
 	InventoryClick(GetClickedInventory(), "C101_KinbakuClub", "ClubRoom1");
