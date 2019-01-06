@@ -1,9 +1,9 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Inspect it.)|(1 minute),This chastity belt looks in good condition.|Once locked you'll need a key to unlock it.,0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Lock yourself.)|(1 minute),"You take a deep breath and close the belt|on yourself.  It locks with a loud ""click"".",0,0,0,LockSelf()
-10,0,0,,(Inspect your belt.)|(1 minute),This chastity belt is in good condition.|You'll need the proper key to unlock it.,10,0,0,
-10,0,0,HasLooseBelt,(Inspect the loose belt.)|(1 minute),This chastity belt looks in good condition.|Once locked you'll need a key to unlock it.,10,0,0,ShowImage()
-10,0,0,Common_PlayerNotRestrained,(Remove the belt.)|(1 minute),You try to slide the belt off your hips|but it's locked too tight and doesn't move.,10,0,0,
-10,0,0,Common_PlayerNotRestrained,(Force it open.)|(1 minute),You try to force and pry the belt|open but it remains firmly locked.,10,0,0,
-10,0,0,Common_PlayerNotRestrained,(Try to masturbate.)|(1 minute),You barely slip a finger below the belt.|It's impossible to masturbate like that.,10,0,0,
-10,0,0,,(Rub your clitoris.)|(1 minute),You clumsily rub your clitoris against the belt.|It's somewhat pleasurable but not enough to climax.,10,0,0,
+0,0,0,,(Inspect it.)ADD_MINUTES:1,This chastity belt looks in good condition.|Once locked you'll need a key to unlock it.,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Lock yourself.)ADD_MINUTES:1,"You take a deep breath and close the belt|on yourself.  It locks with a loud ""click"".",0,0,0,LockSelf()
+10,0,0,,(Inspect your belt.)ADD_MINUTES:1,This chastity belt is in good condition.|You'll need the proper key to unlock it.,10,0,0,
+10,0,0,HasLooseBelt,(Inspect the loose belt.)ADD_MINUTES:1,This chastity belt looks in good condition.|Once locked you'll need a key to unlock it.,10,0,0,ShowImage()
+10,0,0,Common_PlayerNotRestrained,(Remove the belt.)ADD_MINUTES:1,You try to slide the belt off your hips|but it's locked too tight and doesn't move.,10,0,0,
+10,0,0,Common_PlayerNotRestrained,(Force it open.)ADD_MINUTES:1,You try to force and pry the belt|open but it remains firmly locked.,10,0,0,
+10,0,0,Common_PlayerNotRestrained,(Try to masturbate.)ADD_MINUTES:1,You barely slip a finger below the belt.|It's impossible to masturbate like that.,10,0,0,
+10,0,0,,(Rub your clitoris.)ADD_MINUTES:1,You clumsily rub your clitoris against the belt.|It's somewhat pleasurable but not enough to climax.,10,0,0,

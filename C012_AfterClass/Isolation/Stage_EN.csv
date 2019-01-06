@@ -1,0 +1,108 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,IsolationEscape,It's the same place|I escaped from today.,You were able to escape from here?|I need to learn some tricks from you.,10,0,1,
+0,0,0,IsolationStuck,It's the same place|I got stuck in today.,(She nods.)  I also got myself|restrained in here a few times.,10,0,-1,
+0,0,0,,This place looks|both scary and fun.,"Yes, I was scared to death the|first time they locked me here.",10,1,-1,
+0,0,0,,It's pretty dark.,"Yes, I think they've put|very little lights on purpose.",10,0,0,
+0,0,0,,Why did you bring|me here you pervert?,(She lowers her voice.)  I've already|warned you that it was a dangerous place.,10,-1,1,
+10,0,0,,I'm scared Sarah.,Check the devices girl.|There are not that scary.,20,0,-1,
+10,0,0,,This is thrilling!,Yes!  Do you want to see the devices?,20,1,0,
+10,0,0,,I can't wait to|strap you up.,(She blushes and nods happily.)|Which device would you like to see?,20,0,1,
+10,0,0,,Can we try|the devices?,"Sure, but we need to be careful.|Which device would you like to see?",20,0,0,
+10,0,0,,This school is sick.,I guess the discipline rules are outdated.|Is there a device you would like to see?,20,-1,0,
+20,0,0,!SarahOnCross,(Check the cross.),(There's a huge wooden cross bolted on|the wall with chains to restrain limbs.),100,0,0,
+20,0,0,SarahOnCross,(Check the cross.),"(Sarah is still struggling on the wooden cross.)|This is my favorite down there, it's fun to struggle.",110,0,0,
+20,0,0,!SarahOnPillory,(Check the pillory.),(There's a wooden pillory bolted on the floor.|Three holes are used to restrain wrists and neck.),200,0,0,
+20,0,0,SarahOnPillory,(Check the pillory.),(Sarah is still struggling in the wooden pillory.)|I feel like a medieval damsel in this device.,210,0,0,
+20,0,0,!SarahOnHorse,(Check the horse.),(There's a wooden horse bolted on the floor.|There's two chains to restrain the legs.),300,0,0,
+20,0,0,SarahOnHorse,(Check the horse.),"(Sarah is still struggling on the wooden horse.)|Wicked!  My hands are free, but I cannot escape.",310,0,0,
+20,0,0,,(Search the place.),You search in the isolation room|but don't find anything interesting.,20,0,0,Search()
+20,0,0,,I don't like|this place.,Don't be so scared and gloomy.|These are fun torture devices.,20,0,0,DontLikeRemark()
+20,0,0,SarahRestrained,Are you doing|ok back there?,(She struggles and yells from afar.)|Yes!  It's a really thrilling situation.,20,0,0,
+20,0,0,!SarahRestrained,I've seen enough.|Let's go back.,(She pouts.)  It's already time to go?,30,0,0,
+20,0,0,SarahRestrained,I've seen enough.|I'm going back.,(She struggles and yells from afar.)|You're not leaving me here like that?,40,0,0,
+30,0,0,,I'm going to my place.|Do you want to come?,Sure!  Let's go see your place.,50,0,0,
+30,0,0,,I'm going to my place.|See you later Sarah.,Alright!  It was fun.  Take care.,60,0,0,
+30,0,0,,Maybe we can stay|here a little longer.,Cool!  That's the spirit!|Which device should we check?,20,0,0,
+40,0,0,,Have fun struggling!|(Leave her stranded.),,40,-2,2,"Leave(""Stranded"")"
+40,0,0,,I was only kidding.|(Stay in the room.),(She sighs and stops struggling.|Which device do you want to see?),20,0,0,
+50,0,0,,(Go back to your|dorm with Sarah.),,50,1,0,"Leave(""Sarah"")"
+60,0,0,,(Back to your dorm.),,60,0,0,"Leave("""")"
+100,0,0,!SarahRestrained,Can I lock you|on the cross?,Sure!  I love to be helpless on that cross.|(She lies on the cross while you lock the chains.),110,0,0,"LockSarah(""Cross"")"
+100,0,0,SarahRestrained,Can I lock you|on the cross?,(She nods happily.)  Of course.|Help me out and I'll try the cross.,100,0,0,
+100,0,0,!SarahRestrained,"Sarah, can you|lock me in it?",Sure!  Follow the shape with your arms and legs.|(You lie on the cross while Sarah locks the chains.),120,0,0,"LockPlayer(""Cross"")"
+100,0,0,SarahRestrained,"Sarah, can you|lock me in it?",(She laughs.)  That's a good one.|Help me out and I'll lock you up.,100,0,0,
+100,0,0,,(Lock yourself.),"(You lock your ankles first, take a deep|breath and snap the cuffs on your wrists.)",120,0,0,"LockPlayer(""Cross"")"
+100,0,0,,(Step back.),(You step back form the device.|Which one would you like to see?),20,0,0,
+110,0,0,,You look cute|on that cross.,(She giggles and nods happily.)|Thanks!  I love being restrained.,110,0,0,CuteRemark()
+110,0,0,,Are you wet|right now?,(She nods and blushes a little.)|Oh yes.  This really turns me on.,110,0,0,WetRemark()
+110,0,0,,(Kiss her.),(She's surprised by your kiss.)|Oh!  I didn't expect that.,110,0,0,
+110,0,0,,(Tickle her.),(She laughs a little but doesn't|seem to enjoy it that much.),110,0,0,
+110,0,0,,(Help her out.),(You unlock the chains and she|get off the cross with a smile.),100,0,0,"LockSarah("""")"
+110,0,0,,(Step back.),"(You step back, leaving Sarah behind.|Which device would you like to see?)",20,0,0,
+120,0,0,!SarahRestrained,This is fun!,You're looking good on that cross.|I should get one for my own room.,120,0,0,DommeRemark()
+120,0,0,SarahRestrained,This is fun!,Yes!  But make sure you can get out.|We don't want to be stuck all night.,120,0,0,DommeRemark()
+120,0,0,,What's the name|of that device?,They call it a St-Andrew's cross.|Don't ask me why I know that.,120,0,0,
+120,0,0,!SarahRestrained,(Rattle the chains.),(You rattle the chains while|she does beat box sounds.),120,0,0,
+120,0,0,SarahRestrained,(Rattle the chains.),(You rattle the chains while she worries.)|Damn it!  How could we be so stupid?,120,0,0,
+120,0,0,!SarahRestrained,Can you help me?,Absolutely!  I will unlock the chains.|(She unlocks you and helps you off.),100,0,0,"LockPlayer("""")"
+120,0,0,SarahRestrained,Can you help me?,Are you serious?  You're also stuck?|(She struggles but cannot free herself.),120,0,0,
+120,0,0,,(Try to get out.),"(You tug and pull with all|limbs, but you cannot get out.)",120,0,0,
+120,0,0,SarahRestrained,(Check Sarah.),(Sarah appears to be in a|similar predicament as you are.),120,0,0,CheckSarah()
+120,0,0,SarahRestrained,(Scream for help.),(You both scream for help but|nobody comes to the rescue.),120,0,0,Wait()
+120,0,0,SarahRestrained,(Wait for help.),"(You wait with Sarah, but nobody comes.)|This is not funny!  I have plans for the night.",120,0,0,Wait()
+200,0,0,!SarahRestrained,Can I lock you|on the pillory?,Absolutely!  I would love to try the pillory.|(She gets in the device while you close it shut.),210,0,0,"LockSarah(""Pillory"")"
+200,0,0,SarahRestrained,Can I lock you|on the pillory?,(She nods happily.)  Of course.|Help me out and I'll try the pillory.,200,0,0,
+200,0,0,!SarahRestrained,"Sarah, can you|lock me in it?",Certainly!  Step in and I will lock it on you.|(You step in the pillory and she close it on you.),220,0,0,"LockPlayer(""Pillory"")"
+200,0,0,SarahRestrained,"Sarah, can you|lock me in it?",(She laughs.)  That's a good one.|Help me out and I'll lock you up.,200,0,0,
+200,0,0,,(Lock yourself.),(You place your head and hands in the|pillory and rock it until it closes shut on you.),220,0,0,"LockPlayer(""Pillory"")"
+200,0,0,,(Step back.),(You step back form the device.|Which one would you like to see?),20,0,0,
+210,0,0,,You look cute|in that pillory.,(She giggles and nods happily.)|Thanks!  I love being restrained.,210,0,0,CuteRemark()
+210,0,0,,Are you wet|right now?,(She nods and blushes a little.)|Oh yes.  This really turns me on.,210,0,0,WetRemark()
+210,0,0,,Do you feel like a|damsel in distress?,Yes!  Maybe Julia could|add a pillory in our next play.,210,0,0,
+210,0,0,,(Spank her.),(You spank her pretty hard on|the butt while she moans of pleasure.),210,0,0,Spank()
+210,0,0,,(Help her out.),(You open the pillory and let her out.),200,0,0,"LockSarah("""")"
+210,0,0,,(Step back.),"(You step back, leaving Sarah behind.|Which device would you like to see?)",20,0,0,
+220,0,0,!SarahRestrained,This is fun!,You're looking good on that pillory.|Next time I need to trick Sidney in one.,220,0,0,DommeRemark()
+220,0,0,SarahRestrained,This is fun!,Yes!  But make sure you can get out.|We don't want to be stuck all night.,220,0,0,DommeRemark()
+220,0,0,,They used this|in medieval times?,"Yep.  If I had rotten tomatoes,|you would be a mess right now.",220,0,0,
+220,0,0,!SarahRestrained,(Pull your tongue.),(She pulls her tongue back at you.)|You're such a goofy slave.,220,0,0,
+220,0,0,SarahRestrained,(Pull your tongue.),"(She pulls her tongue back at you.)|Seriously, can you struggle out?",220,0,0,
+220,0,0,!SarahRestrained,Can you help me?,Yep!  Let me open that device for you.|(She opens the pillory while you step out.),200,0,0,"LockPlayer("""")"
+220,0,0,SarahRestrained,Can you help me?,Are you serious?  You're also stuck?|(She struggles but cannot free herself.),220,0,0,
+220,0,0,,(Try to get out.),"(You try to slide your hands or|head out, but you cannot make it.)",220,0,0,
+220,0,0,SarahRestrained,(Check Sarah.),(Sarah appears to be in a|similar predicament as you are.),220,0,0,CheckSarah()
+220,0,0,SarahRestrained,(Scream for help.),(You both scream for help but|nobody comes to the rescue.),220,0,0,Wait()
+220,0,0,SarahRestrained,(Wait for help.),"(You wait with Sarah, but nobody comes.)|This is not funny!  I have plans for the night.",220,0,0,Wait()
+300,0,0,!SarahRestrained,Can I lock you|on the horse?,Oh yes!  I love this kinky whipping horse.|(She sits while you lock her out of arms reach.),310,0,0,"LockSarah(""Horse"")"
+300,0,0,SarahRestrained,Can I lock you|on the horse?,(She nods happily.)  Of course.|Help me out and I'll try the horse.,300,0,0,
+300,0,0,!SarahRestrained,"Sarah, can you|lock me on it?",Sure!  Just sit and spread you legs wide.|(Sarah locks your legs away from arms reach.),320,0,0,"LockPlayer(""Horse"")"
+300,0,0,SarahRestrained,"Sarah, can you|lock me on it?",(She laughs.)  That's a good one.|Help me out and I'll lock you up.,300,0,0,
+300,0,0,,(Lock yourself.),(You struggle to reach the chains with your feet|but you're able to lock them away from arms reach.),320,0,0,"LockPlayer(""Horse"")"
+300,0,0,,(Step back.),(You step back form the device.|Which one would you like to see?),20,0,0,
+310,0,0,,You look cute|on that horse.,(She giggles and nods happily.)|Thanks!  I love being restrained.,310,0,0,CuteRemark()
+310,0,0,,Are you wet|right now?,(She nods and blushes a little.)|Oh yes.  This really turns me on.,310,0,0,WetRemark()
+310,0,0,,Are you having|fun up there?,I am!  The only thing missing on that|horse is a little extra between the legs.,310,0,0,
+310,0,0,,(Tickle her.),(She laughs a little but doesn't|seem to enjoy it that much.),310,0,0,
+310,0,0,,(Help her out.),(You uncuff her legs|and help her down.),300,0,0,"LockSarah("""")"
+310,0,0,,(Step back.),"(You step back, leaving Sarah behind.|Which device would you like to see?)",20,0,0,
+320,0,0,!SarahRestrained,This is fun!,You're looking good on that horse.|Too bad I'm horrible at whipping.,320,0,0,DommeRemark()
+320,0,0,SarahRestrained,This is fun!,Yes!  But make sure you can get out.|We don't want to be stuck all night.,320,0,0,DommeRemark()
+320,0,0,,(Simulate riding|the horse.),(You simulate riding the horse.)|Giddy up!  Go cowgirl!,320,0,0,
+320,0,0,!Common_PlayerChaste,(Masturbate.),(You rub on the horse but fail to masturbate properly.)|I see you girl!  You're such a naughty slave.,320,0,0,Masturbate()
+320,0,0,!SarahRestrained,Can you help me?,Of course!  Let me help you off that horse.|(She uncuffs your legs and pulls you down.),300,0,0,"LockPlayer("""")"
+320,0,0,SarahRestrained,Can you help me?,Are you serious?  You're also stuck?|(She struggles but cannot free herself.),320,0,0,
+320,0,0,,(Try to get out.),"(You tug and pull on the ankle|cuffs, but they won't come off.)",320,0,0,
+320,0,0,SarahRestrained,(Check Sarah.),(Sarah appears to be in a|similar predicament as you are.),320,0,0,CheckSarah()
+320,0,0,SarahRestrained,(Scream for help.),(You both scream for help but|nobody comes to the rescue.),320,0,0,Wait()
+320,0,0,SarahRestrained,(Wait for help.),"(You wait with Sarah, but nobody comes.)|This is not funny!  I have plans for the night.",320,0,0,Wait()
+400,0,0,,Are you alright?,"Yes, I'm fine.  It was kind of|scary to be left alone in here.",410,1,0,
+400,0,0,,Nobody came|to help you?,No!  But thanks for coming back.|It was scary to be left alone here.,410,0,0,
+400,0,0,,Have you learned|your lesson girl?,I think I did Miss.|I should be more careful.,410,-1,1,
+400,0,0,,I'm sorry Sarah.,It's alright now.  It was kind of|scary to be left alone in here.,410,2,-1,
+410,0,0,,Come back with me.|(Go back with Sarah.),,410,0,0,"Leave(""Sarah"")"
+410,0,0,,Go home girl.|(Go back alone.),,410,0,0,"Leave("""")"
+500,0,0,,Are you alright?,"Yes, I'm alright, but I need to run.|I'm late for my evening downtown.",510,0,0,
+500,0,0,,Nobody came|to help you?,No!  And now I need to run quick.|I'm late for my evening downtown.,510,-1,0,
+500,0,0,,Have you learned|your lesson girl?,"Yes, I should be more careful.|And now I'm late, I need to run.",510,-1,1,
+500,0,0,,I'm sorry Sarah.,It's alright now.  But I need to run.|I'm late for my evening downtown.,510,1,-1,
+510,0,0,,Run Sarah run!|(Go back alone.),,510,0,0,"Leave("""")"

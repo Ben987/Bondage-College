@@ -1,0 +1,42 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,Psssst.,(Sie dreht sich um und flüstert)|Was zur Hölle willst du?,10,0,0,
+0,0,0,,Entschuldige.,"(Sie dreht sich um und starrt dich an.)|Was zur Hölle willst du, Versagerin?",10,0,-1,
+0,0,0,,(Ihr auf die|Schulter tippen.),(Sie dreht sich um und flüstert)|Was zur Hölle willst du?,10,0,0,
+10,0,0,,Ist dir auch|so langweilig?,(Sie flüstert.) Ja verdammt.|Ich langweile mich zu Tode.,20,1,0,
+10,0,0,,WIe lange geht|die Stunde noch?,(Sie flüstert.) Bis neun.|Diese verfickte Stunde geht nie vorbei.,20,0,0,
+10,0,0,,Hast du gefurzt?|Hier stinkt's.,(Sie flüstert.) Nein! Bist du dumm?|Diese Stunde geht nie vorbei.,20,-1,0,
+10,0,0,,Nicht einschlafen.,"(Sie reibt sich die Augen und flüstert.)|Nicht meine Schuld, diese Stunde ist übelst langweilig.",20,0,1,
+20,0,0,,Wir sollten abhauen.,"(Sie nickt und flüstert.) Klar,|aber die Lehrerin lässt uns nicht gehen.",30,1,0,
+20,0,0,,Wie vertreiben wir|uns die Zeit?,(Sie zuckt mit dein Schultern.)|Kein Plan. Wir sitzen hier fest.,30,0,0,
+20,0,0,,Kannst du mir nachher|in Mathe helfen?,(Sie schüttelt den Kopf.) Seh ich aus wie|ein Streber? Ich will einfach nur hier weg.,30,0,-1,
+30,0,0,,Vielleicht können|wir ja entkommen.,(Sie schaut dich neugierig an.)|Wie meinst du das?,40,0,0,
+30,0,0,,"Schnauze, ich|hab 'nen Plan.",(Sie schweigt und sieht dich neugierig an.),40,-1,1,
+40,0,0,,Wir könnten Mildred|zusammen überfallen.,"Überfallen? Du meinst kidnappen?|Das ist riskant, was hab ich davon?",50,0,0,
+40,0,0,,Wir sollten die verdammte|Lehrerin kidnappen.,"Mitten im Unterricht? Ernsthaft?|Das ist riskant, was hab ich davon?",50,1,0,
+40,0,0,,"Du hilfst mir, die|Lehrerin zu fesseln.","Ich soll dir mitten in der Stunde bei sowas helfen?|Das ist riskant, was hab ich davon?",50,0,1,
+50,3,0,PlayerHasRope,Wir sind doch|gute Freunde.,"Kann sein. Okay, ich helfe dir.|(Sie dreht sich um.) Aber du fängst an.",60,0,0,AgreeHelp()
+50,3,0,!PlayerHasRope,Wir sind doch|gute Freunde.,Kann sein. Ich helfe und du nimmst dieses Seil.|(Sie dreht sich um.) Aber du fängst an.,60,0,0,AgreeHelp()
+50,0,3,PlayerHasRope,"Wenn du nicht hilfst,|kannst du was erleben.",Na schön. Ich will nachher keinen Ärger. Ich helfe dir.|(Sie dreht sich um.) Aber du fängst an.,60,0,0,AgreeHelp()
+50,0,3,!PlayerHasRope,"Wenn du nicht hilfst,|kannst du was erleben.","Schön, ich helfe dir. Du kannst auch diese Seile haben.|(Sie dreht sich um.) Aber du fängst an.",60,0,0,AgreeHelp()
+50,0,0,,Tu es! Das|wird ein Spaß.,"Ha! Du glaubst, das überzeugt mich?|Ich brauche was richtig gutes, wenn ich dir helfen soll.",50,0,0,
+50,0,0,,Lass mich|darüber nachdenken.,"(Sie zuckt mit den Schultern.) Gut, ich bin ja hier.|Ich brauche was richtig gutes, wenn ich dir helfen soll.",50,0,0,
+100,0,0,SubdueRemarkReady,"Und ich wette, du siehst|gefesselt auch toll aus.",Was? Das ist nicht dein Ernst. (Sie wird rot.),100,0,1,SubdueRemark()
+100,0,4,SubdueRemarkReady,Gib's zu. Du wärst|gern auch an ihrer Stelle.,(Sie schweigt und wird rot.),100,0,1,SubdueRemark()
+100,0,0,SubdueRemarkReady,High five! Schon|taugt die Stunde was.,High five! Beste Mathestunde aller Zeiten.,100,1,0,SubdueRemark()
+100,0,0,SubdueRemarkReady,Wir haben heute ein|brandneues Fach.,Ja Mann! Das ist viel besser.,100,0,0,SubdueRemark()
+100,0,0,AmandaWhipReady,Willst du Amanda|auspeitschen?ADD_MINUTES:1,Yeah! (Sie nimmt die Gerte und schlägt|ein paar Mal auf Amanda ein.),100,1,0,AmandaWhip()
+100,0,0,SarahWhipReady,Willst du Sarah|auspeitschen?ADD_MINUTES:1,"Oh mann, ja! (Sie nimmt die Gerte und|schlägt einige Male auf Sarah ein.)",100,1,0,SarahWhip()
+100,0,0,Common_PlayerGagged,"@Mmmmmmph, mmph!",(Sie flüstert.) Mach keinen Lärm.,100,0,0,
+100,0,0,Common_PlayerGagged,(Auf dem Knebel|herumkauen.),(Sie flüstert.) Du siehst echt bescheuert aus.,100,0,0,
+100,1,0,Common_PlayerGagged,(Auf den|Knebel zeigen.),(Sie flüstert) Klappe.|Ich helfe dir später.,100,0,0,
+100,-1,0,Common_PlayerGagged,(Auf den|Knebel zeigen.),"(Sie flüstert.) Bleib so, Schlampe.",100,0,0,
+100,0,0,Common_PlayerRestrained,(Mit deinen|Fesseln ringen.),(Sie flüstert.) Da kommst du nie raus.,100,0,0,
+100,0,-2,BowRemarkReady,(Deinen Kopf neigen.),(Sie flüstert.) Du bist erbärmlich.,100,0,-1,BowRemark()
+110,0,0,Common_PlayerGagged,"@Mmmmmmph, mmph!",(Sie verdreht die Augen.),110,0,0,
+110,0,0,Common_PlayerNotRestrained,(Knebel entfernen.)ADD_MINUTES:1,(Du lockerst und entfernst den großen Ball.)|Fick dieses Ding!,100,0,0,Ungag()
+130,0,0,Common_PlayerGagged,"@Mmmmmmph, mmph!",(Sie verdreht die Augen.),130,0,0,
+130,0,0,Common_PlayerNotRestrained,(Knebel entfernen.)ADD_MINUTES:1,(Du lockerst und entfernst den großen Ball.)|Fick dieses Ding!,120,0,0,Ungag()
+140,0,0,Common_PlayerNotRestrained,(Befreien.),(Du löst die Knoten und sie zieht sich an.)|Scheiße! Du bist echt pervers.,100,0,0,Untie()
+150,0,0,Common_PlayerGagged,"@Mmmmmmph, mmph!",(Sie verdreht die Augen.),150,0,0,
+150,0,0,Common_PlayerNotRestrained,(Knebel entfernen.)ADD_MINUTES:1,(Du lockerst und entfernst den großen Ball.)|Fick dieses Ding!,140,0,0,Ungag()
+150,0,0,Common_PlayerNotRestrained,(Befreien.),(Du löst die Knoten und sie zieht sich an.)|(Dann zeigt sie auf ihren Knebel.),110,0,0,Untie()

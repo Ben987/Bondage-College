@@ -1,0 +1,71 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+110,0,0,PlayerIsVillain,Son coeur bat la chamade|face à l'amour véritable.,"Le héros s'avance et répond :|""Mauvaise langue, libérez-la à la hâte.""",130,0,0,"GlobalStage(130, 1, 0)"
+110,0,0,PlayerIsVillain,Son coeur s'est plié|face au grand amour.,"Le chevalier blanc répond dans la confusion :|""Grossier personnage, libérez-la maintenant.""",130,0,0,"GlobalStage(130, -1, 0)"
+110,0,0,PlayerIsVillain,Désolée Julia.|J'ai oublié ma réplique.,"Julia te chuchote :|""Son coeur bat la chamade face à l'amour véritable.""",110,0,0,ForgetLine()
+110,0,0,!PlayerIsVillain,(Tu écoutes calmement.),"Le chevalier noir prend une pose et dit :|""Son coeur bat la chamade face à l'amour véritable.""",120,0,0,"GlobalStage(120, 0, 0)"
+110,0,0,!PlayerIsVillain,(Tu claques tes doigts|avec impatience.),"Le chevalier noir enchaine rapidement et dit :|""Son coeur bat la chamade face à l'amour véritable.""",120,0,1,"GlobalStage(120, 0, 1)"
+130,0,0,PlayerIsVillain,Avancez et vous|rencontrerez l'acier.,Les deux chevaliers se regardent l'un l'autre|pendant que la demoiselle s'avance sur scène.,140,0,0,"GlobalStage(140, -1, 0)"
+130,0,0,PlayerIsVillain,Un pas de plus et vous|aurez à tater de l'acier.,Les deux chevaliers se regardent l'un l'autre|pendant que la demoiselle s'avance sur scène.,140,0,0,"GlobalStage(140, 1, 0)"
+130,0,0,PlayerIsVillain,Désolée Julia.|J'ai oublié ma réplique.,"Julia soupire et chuchote :|""Un pas de plus et vous aurez à tater de l'acier.""",130,0,0,ForgetLine()
+130,0,0,!PlayerIsVillain,(Tu écoutes calmement.),"Le chevalier noir fait un regard menaçant et dit :|""Un pas de plus et vous aurez à tater de l'acier.""",140,0,0,"GlobalStage(140, 0, 0)"
+130,0,0,!PlayerIsVillain,(Tu claques tes doigts|avec impatience.),"Le chevalier noir répond rapidement :|""Un pas de plus et vous aurez à tater de l'acier.""",140,0,0,"GlobalStage(140, 0, 1)"
+130,0,0,!PlayerIsVillain,(Tu fais des grimaces|pour la distraire.),"Le chevalier noir rit et répond :|""Un pas de plus et l'acier vous tatera.""",140,0,0,"GlobalStage(140, -1, 0)"
+200,0,0,PlayerIsVillain,"Héros ! Vous avez son|cœur, sa chair m'appartient.","Le héros prend son épée et crie :|""Votre destinée se finira par l'acier, en garde !""",230,0,0,"GlobalStage(230, 1, 0)"
+200,0,0,PlayerIsVillain,"Héros ! Vous avez son|cœur, mais j'ai son corps.","Le héros tâtonne avec son épée et dit :|""Votre destin sera le métal, en garde !""",230,0,0,"GlobalStage(230, -1, 0)"
+200,0,0,PlayerIsVillain,Désolée Julia.|J'ai oublié ma réplique.,"Julia te chuchote :|""Héros ! Vous avez son coeur, sa chair m'appartient.""",200,0,0,ForgetLine()
+200,0,0,!PlayerIsVillain,(Tu écoutes calmement.),"Le chevalier noir saisit la demoiselle et dit :|""Héros ! Vous avez son coeur, sa chair m'appartient.""",220,0,0,"GlobalStage(220, 0, 0)"
+200,0,0,PlayerIsHeroine,(Tu applaudis légèrement.),"Le chevalier noir saisit la demoiselle et dit :|""Héros ! Vous avez son coeur, sa chair m'appartient.""",220,1,0,"GlobalStage(220, 1, 0)"
+200,0,0,PlayerIsHeroine,(Tu bailles d'ennui.),"Le chevalier noir saisit la demoiselle et dit :|""Héros ! Vous avez son coeur, sa chair m'appartient.""",220,-1,0,"GlobalStage(220, -1, 0)"
+200,0,0,DamselCanInteract,(Tu applaudis légèrement.),"Le chevalier noir saisit la demoiselle et dit :|""Héros ! Vous avez son coeur, sa chair m'appartient.""",220,1,0,"GlobalStage(220, 1, 0)"
+200,0,0,DamselCanInteract,(Tu bailles d'ennui.),"Le chevalier noir saisit la demoiselle et dit :|""Héros ! Vous avez son coeur, sa chair m'appartient.""",220,-1,0,"GlobalStage(220, -1, 0)"
+210,0,0,PlayerIsVillain,"Héros ! Concèdez cette|défaite, elle est à moi.","Le héros prend son épée et crie :|""Votre destinée se finira par l'acier, en garde !""",230,0,0,"GlobalStage(230, 1, 0)"
+210,0,0,PlayerIsVillain,Acceptez votre défaite|Héros ! Elle est à moi.,"Le héros tâtonne avec son épée et dit :|""Votre destin sera le métal, en garde !""",230,0,0,"GlobalStage(230, -1, 0)"
+210,0,0,PlayerIsVillain,Désolée Julia.|J'ai oublié ma réplique.,"Julia soupire et chuchote : |""Héros ! Concèdez cette défaite, elle est à moi.""",200,0,0,ForgetLine()
+210,0,0,!PlayerIsVillain,(Tu écoutes calmement.),"Le chevalier noir regarde la demoiselle et dit :|""Héros ! Concèdez cette défaite, elle est à moi.""",220,0,0,"GlobalStage(220, 0, 0)"
+210,0,0,PlayerIsHeroine,(Tu applaudis légèrement.),"Le chevalier noir regarde la demoiselle et dit :|""Héros ! Concèdez cette défaite, elle est à moi.""",220,1,0,"GlobalStage(220, 1, 0)"
+210,0,0,PlayerIsHeroine,(Tu bailles d'ennui.),"Le chevalier noir regarde la demoiselle et dit :|""Héros ! Concèdez cette défaite, elle est à moi.""",220,-1,0,"GlobalStage(220, -1, 0)"
+210,0,0,DamselCanInteract,(Tu applaudis légèrement.),"Le chevalier noir regarde la demoiselle et dit :|""Héros ! Concèdez cette défaite, elle est à moi.""",220,1,0,"GlobalStage(220, 1, 0)"
+210,0,0,DamselCanInteract,(Tu bailles d'ennui.),"Le chevalier noir regarde la demoiselle et dit :|""Héros ! Concèdez cette défaite, elle est à moi.""",220,-1,0,"GlobalStage(220, -1, 0)"
+230,0,0,PlayerIsVillain,En garde !|(Fait un combat à l'épée.),Vous vous chargez l'une l'autre et|commencez un combat à l'épée drôle mais intense.,235,0,0,NoLeave()
+230,0,0,PlayerIsVillain,"Arrêtez, je me rends.|(Rends-toi.)",Tu lâches ton épée et le chevalier|blanc avance en souriant.,240,0,0,Surrender()
+230,0,0,PlayerIsHeroine,(Fait un combat à l'épée.),Vous vous chargez l'un l'autre et|commencez un combat à l'épée drôle mais intense.,235,0,0,NoLeave()
+230,0,0,PlayerIsHeroine,(Rends-toi.),Tu lâches ton et le chevalier|noir avance en souriant.,270,0,0,Surrender()
+230,0,0,PlayerIsDamsel,(Tu observes le combat.),Les deux chevaliers se chargent l'un l'autre|et s'engagent dans un joli combat à l'épée.,235,0,0,NoLeave()
+235,0,0,CanDoSwordDance,(Tu fais une danse de|l'épée.)ADD_MINUTES:1,"Tu danses gracieusement autour de ton adversaire et|tu la désarmes facilement, elle en reste bouche bée.",270,0,0,SwordDance()
+235,0,0,CanIntimidate,(Tu l'intimides.)ADD_MINUTES:1,Tu fais un regard menaçant à Amanda qui se|bat à peine et te permet de la désarmer.,270,0,0,"GlobalStage(270, 0, 1)"
+235,0,0,CanDisarm,(Tu la désarmes.)ADD_MINUTES:1,"Amanda s'est bien battue, mais tu|finis par gagner en la désarmant.",270,0,0,"GlobalStage(270, 0, 0)"
+235,0,0,PlayerIsVillain,(Tu joues défensif.)ADD_MINUTES:1,Tu t'en tiens aux mouvements défensifs et|Amanda en profite pour te désarmer.,240,0,0,"GlobalStage(240, 0, 0)"
+235,0,0,PlayerIsVillain,(Tu laisses Amanda|gagner.)ADD_MINUTES:1,Tu n'opposes pas beaucoup de résistance|et Amanda te désarme facilement.,240,0,0,"GlobalStage(240, 0, -1)"
+235,0,10,PlayerIsHeroine,(Tu l'intimides.)ADD_MINUTES:1,Tu fais un regard menaçant à Amanda qui se|bat à peine et te permet de la désarmer.,240,0,0,"GlobalStage(240, 0, 1)"
+235,0,2,PlayerIsHeroine,(Tu la désarmes.)ADD_MINUTES:1,"Amanda s'est bien battue, mais tu|finis par gagner en la désarmant.",240,0,0,"GlobalStage(240, 0, 0)"
+235,0,0,PlayerIsHeroine,(Tu joues défensif.)ADD_MINUTES:1,Tu t'en tiens aux mouvements défensifs et|Amanda en profite pour te désarmer.,270,0,0,"GlobalStage(270, 0, 0)"
+235,0,0,PlayerIsHeroine,(Tu laisses Amanda|gagner.)ADD_MINUTES:1,Tu n'opposes pas beaucoup de résistance|et Amanda te désarme facilement.,270,0,0,"GlobalStage(270, 0, -1)"
+235,0,0,PlayerIsDamsel,Hourra champion blanc !,,235,0,0,AmandaSarahFight(-4)
+235,0,0,PlayerIsDamsel,Hourra champion noir !,,235,0,0,AmandaSarahFight(4)
+235,0,0,PlayerIsDamsel,Allez Amanda !,,235,0,0,AmandaSarahFight(2)
+235,0,0,PlayerIsDamsel,Allez Sarah !,,235,0,0,AmandaSarahFight(-2)
+235,0,0,PlayerIsDamsel,(Tu restes silencieuse et|observes le combat.),,235,0,0,AmandaSarahFight(0)
+270,0,0,PlayerIsVillain,Vous êtes mon prisonnier.|(Tu l'attaches.)ADD_MINUTES:1,Tu débarrasses le chevalier blanc de son armure|et l'attaches avec des objets du théâtre.,280,0,0,"GlobalStage(280, -1, 0)"
+270,0,0,PlayerIsVillain,Vous serez mon captif.|(Tu l'attaches.)ADD_MINUTES:1,Tu débarrasses le chevalier blanc de son armure|et l'attaches avec des objets du théâtre.,280,0,0,"GlobalStage(280, 1, 0)"
+270,0,0,PlayerIsVillain,Désolée Julia.|J'ai oublié ma réplique.,"Julia te chuchote :|""Vous serez mon captif.""",270,0,0,ForgetLine()
+270,0,0,PlayerIsHeroine,(Tu restes silencieuse.)ADD_MINUTES:1,"Le chevalier noir te déshabille et|t'attache en disant :""Vous serez mon captif.""",280,0,0,"GlobalStage(280, 0, 0)"
+270,0,0,PlayerIsHeroine,(Tu t'inclines devant le|chevalier noir.)ADD_MINUTES:1,"Le chevalier noir te déshabille et t'attache|en disant : ""Vous serez mon captif.""",280,0,-1,"GlobalStage(280, 0, -1)"
+270,0,0,PlayerIsHeroine,Booooooo !ADD_MINUTES:1,"Le chevalier noir te déshabille et t'attache|en disant : ""Vous serez mon captif.""",280,-1,0,"GlobalStage(280, -1, 0)"
+270,0,0,PlayerIsDamsel,(Tu observes la scène.)ADD_MINUTES:1,"Le méchant déshabille et attache le héros|en disant : ""Vous serez mon captif.""",280,0,0,"GlobalStage(280, 0, 0)"
+270,0,0,PlayerIsDamsel,Hourra chevalier noir !ADD_MINUTES:1,"Le méchant déshabille et attache le héros|en disant : ""Vous serez mon captif.""",280,1,0,"GlobalStage(280, 1, 0)"
+280,0,0,Common_PlayerGagged,@Eeengn em !,Amanda sourit et essaye de ne pas|rire de tes marmonnements bâillonnés.,280,0,0,
+280,10,0,DamselCanInteract,(Tu vas l'embrasser.)ADD_MINUTES:1,Tu te précipites dans ses bras et vous|vous embrassez pour le dernier acte.,290,0,0,FinalKiss()
+280,0,-5,DamselCanInteract,(Tu t'agenouilles à|coté d'elle.)ADD_MINUTES:1,Tu t'inclines et tu t'agenouilles devant le chevalier noir.|Enlaçant doucement ses jambes pour l'acte final.,290,0,0,FinalDomme()
+280,0,0,DamselCanInteract,(Tu vas l'étreindre.)ADD_MINUTES:1,Tu te diriges dans ses bras et tu|l'enlaces pour le dernier acte.,290,0,0,FinalHug()
+280,2,0,DamselCanBeg,(Tu lui fais les yeux doux.)ADD_MINUTES:1,Tu lui fais des doux yeux de supplication|et elle te libère de ton bondage.,280,0,0,ReleasePlayer()
+280,0,0,DamselCanBeg,(Tu te rends.)ADD_MINUTES:1,Tu te rends et elle décide de vous garder|toutes les deux prisonnières pour l'acte final.,300,0,0,FinalTwoPrisoners()
+400,0,0,PlayerIsDamsel,"Messire chevalier, vous|pouvez me ravir ce soir.",(Elle te regarde avec un sourire maléfique.),400,0,0,Ravish()
+400,0,0,PlayerIsHeroine,On devrait s'entraîner au|combat à l'épée ensemble.,(Elle acquiesce et rit.),400,0,0,
+400,0,0,CanConvinceJuliaToStrip,Damoiselle Julia devrait|elle dévoiler ses charmes ?,Assurément gente dame. Damoiselle Julia !|(Julia obéit et se déshabille un peu.),400,0,0,JuliaStrip()
+400,0,0,CanUntie,(Tu la détaches.)ADD_MINUTES:1,(Tu défais les noeuds et elle te jette|la corde tout en s'habillant à nouveau.),400,0,0,Untie()
+400,0,0,CanUnstrap,(Tu la détaches.)ADD_MINUTES:1,(Tu défais les sangles et les lacets|du fourreau pour libérer ses bras.),400,0,0,Untie()
+400,0,0,CanUngag,(Tu la débâillonnes.)ADD_MINUTES:1,(Tu enlèves le bâillon et elle te fixe.)|Es-tu sûre que tout ceci était dans le script ?,400,0,0,Ungag()
+400,0,0,CanKiss,(Tu l'embrasses.)ADD_MINUTES:1,(Tu lui donnes un long baiser sur les lèvres.)|Oh COMMON_PLAYERNAME ! Tu donnes de merveilleux baisers.,400,0,0,Kiss()
+400,0,0,CanAbuse,(Tu la chatouilles.)ADD_MINUTES:1,(Tu la chatouilles sur les côtes et le ventre.|Elle est très chatouilleuse et rit à haute voix.),400,0,0,Tickle()
+400,0,0,CanAbuse,(Tu lui mets une fessée.)ADD_MINUTES:1,(Elle geint à chaque coup.|Il est clair qu'elle n'aime pas ça.),400,0,0,Spank()
+400,0,0,CanAbuse,(Tu la masturbes.)ADD_MINUTES:1,(Tu la saisis et la masturbes lentement.|Elle rougit et essaye de contrôler ses gémissements.),400,0,0,Masturbate()

@@ -1,0 +1,244 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,"Hallo, ja, ich bin gerade|erst hierher gewechselt.",Dachte ich mir. Mein Name ist Natalie.,10,0,0,
+0,0,0,,"Hi, erster Tag, aber es|fühlt sich an wie Wochen.","Erste Tage sind manchmal so.|Natalie, schön dich kennenzulernen.",10,0,0,
+0,0,0,,"Ja, aber du wirst mich|jetzt viel öfter sehen.","Cool, ich bin Natalie.",10,1,0,
+0,0,0,,Neu? Ich bin bestimmt|länger hier als du.,"Okay, das war etwas direkt, entschuldige.|Mein Name ist Natalie.",10,0,1,
+10,0,0,,"Kannst du mir sagen,|wo die Cafeteria ist?","Wenn du wirklich willst, aber sie ist grauenhaft.|Ich esse lieber in einem Schulclub.",20,0,0,
+10,0,0,,Ich hab solchen Hunger.|Kannst du mir bitte helfen?,In einer Mittagspause kann man mehr tun als essen.|Würdest du gern einem Club beitreten?,20,0,-1,
+10,0,0,,Wo findet man hier am|besten was zu futtern?,"Bei vielen Schülern ist ein Café in der Nähe beliebt,|aber ich finde Club-Mahlzeiten viel besser.",20,1,0,
+20,0,0,,Clubs klingen gut.|Lass mal hören.,"Ich bin im Kinbaku-Club, das|ist bei weitem der beste.",30,1,1,
+20,0,0,,Würde mich irgendein|Club aufnehmen?,Na klar. Der Kinbaku-Club|würde dich einfach lieben.,30,1,-1,
+20,0,0,,Sind Clubs nicht|eher was für Geeks?,"Das kann nicht dein Ernst sein, der|Kinbaku-Club ist um einiges cooler als du denkst.",30,0,0,
+20,0,0,,Clubs! Keine Chance.|Ich will nur Essen.,"Wenn das so ist, gehst du|besser die Cafeteria suchen.",40,-1,0,
+20,0,0,,Clubs sind nichts für mich.|Zu viele Rituale.,"Na gut, ich muss dann los. Jemand|anderes zeigt dir bestimmt ein gutes Café.",40,0,0,
+30,0,0,,Na dann los! (Mit|Natalie zum Club gehen.),(Natalie führt dich zu einem|Klassenzimmer in der Nähe.),100,0,0,StartLunch()
+30,0,0,,"Eher nicht, ich brauch|echt was Gutes zu essen.","Na gut, du könntest die Cafeteria|wagen oder dir ein Café suchen.",40,0,0,
+40,0,0,,Dann eine|schöne Mittagspause!,"Danke, dir auch! (Sie winkt und geht.)",50,1,0,EndLunch()
+40,0,0,,"Okay, wir sehen uns.",Klar doch! (Sie winkt und geht.),50,0,0,EndLunch()
+40,0,0,,Du bist scheiße.,"Nein, du! (Sie wirbelt|herum und stürmt davon.)",50,-2,0,EndLunch()
+100,0,0,,"Wow, ist das ein|Reverse Prayer?","Ja, du kennst dich offenbar aus.|Chloe dehnt sich nur ein wenig nach ihrer Ballettstunde.",110,1,0,
+100,0,0,,Geht's ihr gut?|Das sieht brutal aus.,"Klar, Chloe ist ziemlich dehnbar, sie macht Ballett.",110,0,0,
+100,0,0,,"Ich glaube, das würde|ich nicht aushalten.",Wir können nicht alle so dehnbar sein wie Chloe.,110,0,-1,
+100,0,0,,"Oh je, ich wusste nicht,|was Kinbaku ist.","Wörtlich übersetzt heißt es 'festes Binden'.|Keine Sorge, dir passiert schon nichts.",110,0,-1,
+100,0,0,,"Cool, solche Fesseln|würden dir sicher stehen.","Danke, aber ich bin längst nicht|so flexibel wie Chloe hier.",110,1,1,
+110,0,0,,Du hast vorhin|Essen erwähnt.,"Ja, wir haben eine Lieferung bestellt.|Sollen wir uns die Zeit mit Fesseln vertreiben?",120,0,0,
+110,0,0,,Wo ist das Essen?|Ich hab Kohldampf.,Gleich kommt eine Lieferung.|Wollen wir solange etwas Fesseln üben?,120,-1,1,
+110,0,0,,Darf ich jetzt bitte|etwas essen?,"Einen Moment Geduld, es wird gleich geliefert.|Vertreiben wir uns mit etwas Kinbaku die Zeit.",120,0,-1,
+120,0,0,,Kann ich dich fesseln?,Auf keinen Fall. Ein neues Mitglied|muss erstmal eingebunden werden.,130,-1,-1,
+120,0,0,,Kannst du mich fesseln?,"Na klar, für neue Mitglieder ist es|Pflicht, sich als erstes fesseln zu lassen.",130,0,-1,
+120,1,1,,"Nur, wenn ich dich|zuerst fesseln darf?","Also gut, normalerweise sind Neulinge zuerst dran.|Der Club hat eine Menge Seile, bedien dich.",140,0,1,
+120,1,1,,Neulinge werden bestimmt|zuerst gefesselt?,"Natürlich. Vielleicht hätte ich bei dir eine|Ausnahme gemacht, aber zu spät.",130,1,-1,
+130,0,0,,"Wow, ist das aufregend.",(Sie zieht deine Arme nach hinten und|schnürt sie fest zusammen.) Klar ist es das.,150,1,0,PlayerRope()
+130,0,0,,"Autsch, bitte|nicht so fest.",So muss das aber. (Sie zieht deine Arme nach|hinten und schnürt sie fest zusammen.),150,-1,0,PlayerRope()
+130,0,0,,"Okay, Miss, aber|bitte vorsichtig.",Du bist so süß. (Sie zieht deine Arme nach|hinten und schnürt sie fest zusammen.),150,1,-1,PlayerRope()
+140,0,0,,Nimm die Arme|hinter den Rücken.,"Ja, Miss. (Du ziehst ihre Arme nach hinten|und schnürst sie fest zusammen.)",160,0,1,NatalieTied()
+140,0,0,,Du wirst gefesselt|so toll aussehen.,"(Du ziehst ihre Arme nach hinten und schnürst sie|fest zusammen.) Freut mich, dass es dir Spaß macht.",160,1,0,NatalieTied()
+150,0,0,,Ist das der|Lieferservice?,"(Jenna kommt mit dem Essen herein.) Ich hab heute|Pizza bestellt, helft euren Subs beim Essen.",170,0,0,
+160,0,0,,Ist das der|Lieferservice?,"(Jenna kommt mit dem Essen herein.) Ich hab heute|Pizza bestellt, helft euren Subs beim Essen.",180,0,0,
+170,0,0,,"Natalie, hilfst du|mir bitte beim Essen?","Klar, weil du so schön mitspielst.|Gefällt dir denn die Schule bis jetzt?",200,1,-1,
+170,0,0,,"Komm schon, Natalie,|ich hab darauf gewartet.","Klar, du hast dich ja fesseln lassen.|Gefällt dir denn die Schule bis jetzt?",200,1,0,
+180,0,0,,"Möchtest du auch|was, Natalie?",Aber sicher.|Gefällt dir denn die Schule bis jetzt?,250,0,0,
+180,0,0,,"Verdienst du|das, Natalie?","Oh ja, das tue ich, Miss.|Gefällt dir denn die Schule bis jetzt?",250,0,1,
+200,0,0,,Oh ja! Es wirkt wie|eine gute Akademie.,"Ja und nein, manche Fächer sind eher praxisbezogen.|Und was möchtest du später werden?",210,0,0,Eat()
+200,0,0,,Dieses College ist|ein Irrenhaus.,Mir kommt's recht vernünftig vor.|Und was möchtest du später werden?,210,0,0,EatBadMatch()
+200,0,0,,Ich hab noch nie ein so|perverses College gesehen.,(Sie lacht lauthals.) Stimmt vollkommen!|Und was möchtest du später werden?,210,1,0,EatGoodMatch()
+200,0,0,,Schwer zu sagen nach|den paar Stunden.,Ich bin mir auch nach 'ner Weile noch nicht so sicher.|Und was möchtest du später werden?,210,0,0,EatGoodMatch()
+200,0,0,,Es ist 'ne ziemlich|öde Schule.,"Ja, manche Fächer können wohl etwas langweilig sein.|Und was möchtest du später werden?",210,0,0,Eat()
+210,0,0,,Musikerin.,Cool! Und was ist dein Lieblingsfach?,220,0,0,EatGoodMatch()
+210,0,0,,Ärztin.,Nett. Und was ist dein Lieblingsfach?,220,0,0,Eat()
+210,0,0,,Sportlerin.,Cool! Und was ist dein Lieblingsfach?,220,0,0,EatGoodMatch()
+210,0,0,,Lehrerin.,Die waschen Kindern doch nur das Hirn.|Und was ist dein Lieblingsfach?,220,-1,0,EatBadMatch()
+210,0,0,,Schauspielerin.,Nett. Und was ist dein Lieblingsfach?,220,0,0,Eat()
+210,0,0,,Domina.,(Sie grinst.) Und was ist dein Lieblingsfach?,220,1,0,Eat()
+210,0,0,,Architektin.,Nett. Und was ist dein Lieblingsfach?,220,0,0,Eat()
+210,0,0,,Landwirtin.,Wie meine Cousine. Sie kennt sehr viele Knoten.|Und was ist dein Lieblingsfach?,220,0,0,EatGoodMatch()
+210,0,0,,Programmiererin.,Langweilig! Und was ist dein Lieblingsfach?,220,0,0,EatBadMatch()
+210,0,0,,Weiß ich noch nicht.,Du musst doch irgendeine Idee haben.|Was ist dein Lieblingsfach?,220,0,0,EatBadMatch()
+220,0,0,,Mathe.,Wenigstens lügen Zahlen nicht?|Und was machst du so nach der Schule?,230,0,0,Eat()
+220,0,0,,Musik.,Cool! Und was machst du so nach der Schule?,230,0,0,EatGoodMatch()
+220,0,0,,Englisch.,Literatur ist nur kreatives Lügen.|Und was machst du so nach der Schule?,230,0,0,EatBadMatch()
+220,0,0,,Sport.,Die Hojojutsu-Stunden sind toll.|Und was machst du so nach der Schule?,230,0,0,EatGoodMatch()
+220,0,0,,Chemie.,Explosive Reaktionen machen Spaß.|Und was machst du so nach der Schule?,230,0,0,EatGoodMatch()
+220,0,0,,Französisch.,Langweilig! Und was machst du so nach der Schule?,230,0,0,EatBadMatch()
+220,0,0,,Kunst.,Julia hat wenigstens Sinn für Humor!|Und was machst du so nach der Schule?,230,0,0,Eat()
+220,0,0,,Geschichte.,Nett. Und was machst du so nach der Schule?,230,0,0,Eat()
+220,0,0,,Theater.,Nett. Und was machst du so nach der Schule?,230,0,0,Eat()
+220,0,0,,Keine Ahnung.,"Keine Sorge, es geht ums Lernen, nicht ums Wissen.|Und was machst du so nach der Schule?",230,0,0,Eat()
+230,0,0,,Basketball.,Nett. (Ihr esst die Pizzen auf.),240,0,0,Eat()
+230,0,0,,Rockmusik.,Spitze! (Ihr esst die Pizzen auf.),240,0,0,EatGoodMatch()
+230,0,0,,Videospiele.,Cool! (Ihr esst die Pizzen auf.),240,0,0,EatGoodMatch()
+230,0,0,,Cheerleading.,Nett. (Ihr esst die Pizzen auf.),240,0,0,Eat()
+230,0,0,,Auf Partys gehen.,Nett. (Ihr esst die Pizzen auf.),240,0,0,Eat()
+230,0,0,,Rollenspiele.,Cool! (Ihr esst die Pizzen auf.),240,0,0,EatGoodMatch()
+230,0,0,,Mich besaufen.,"Besaufen ist gut, aber Kater sind die Hölle.|(Ihr esst die Pizzen auf.)",240,0,0,EatBadMatch()
+230,0,0,,Klassische Musik.,Nett. (Ihr esst die Pizzen auf.),240,0,0,Eat()
+230,0,0,,Liebe machen.,(Sie lächelt.) Du bist so frech!|(Ihr esst die Pizzen auf.),240,1,0,EatGoodMatch()
+230,0,0,,Ich hab|keine Hobbys.,Ernsthaft? (Ihr esst die Pizzen auf.),240,0,0,EatBadMatch()
+240,0,0,,Was machen wir|jetzt also?,Ist das nicht offensichtlich?,320,0,0,TestMatch()
+240,0,0,,Können wir jetzt noch|etwas Kinbaku üben?,Oh ja.,320,1,0,TestMatch()
+250,0,0,,Oh ja! Es wirkt wie|eine gute Akademie.,"Ja und nein, manche Fächer sind eher praxisbezogen.|Und was möchtest du später werden?",260,0,0,Eat()
+250,0,0,,Dieses College ist|ein Irrenhaus.,Mir kommt's recht vernünftig vor.|Und was möchtest du später werden?,260,0,0,EatBadMatch()
+250,0,0,,Ich hab noch nie ein so|perverses College gesehen.,(Sie lacht lauthals.) Stimmt vollkommen!|Und was möchtest du später werden?,260,0,0,EatGoodMatch()
+250,0,0,,Schwer zu sagen nach|den paar Stunden.,Ich bin mir auch nach 'ner Weile noch nicht so sicher.|Und was möchtest du später werden?,260,0,0,EatGoodMatch()
+250,0,0,,Es ist 'ne ziemlich|öde Schule.,"Ja, manche Fächer können wohl etwas langweilig sein.|Und was möchtest du später werden?",260,0,0,Eat()
+260,0,0,,Musikerin.,Cool! Und was ist dein Lieblingsfach?,270,0,0,EatGoodMatch()
+260,0,0,,Ärztin.,Nett. Und was ist dein Lieblingsfach?,270,0,0,Eat()
+260,0,0,,Sportlerin.,Cool! Und was ist dein Lieblingsfach?,270,0,0,EatGoodMatch()
+260,0,0,,Lehrerin.,Die waschen Kindern doch nur das Hirn.|Und was ist dein Lieblingsfach?,270,-1,0,EatBadMatch()
+260,0,0,,Schauspielerin.,Nett. Und was ist dein Lieblingsfach?,270,0,0,Eat()
+260,0,0,,Domina.,(Sie grinst.) Und was ist dein Lieblingsfach?,270,1,0,Eat()
+260,0,0,,Architektin.,Nett. Und was ist dein Lieblingsfach?,270,0,0,Eat()
+260,0,0,,Landwirtin.,Wie meine Cousine. Sie kennt sehr viele Knoten.|Und was ist dein Lieblingsfach?,270,0,0,EatGoodMatch()
+260,0,0,,Programmiererin.,Langweilig! Und was ist dein Lieblingsfach?,270,0,0,EatBadMatch()
+260,0,0,,Weiß ich noch nicht.,Du musst doch irgendeine Idee haben.|Was ist dein Lieblingsfach?,270,0,0,EatBadMatch()
+270,0,0,,Mathe.,Wenigstens lügen Zahlen nicht?|Und was machst du so nach der Schule?,280,0,0,Eat()
+270,0,0,,Musik.,Cool! Und was machst du so nach der Schule?,280,0,0,EatGoodMatch()
+270,0,0,,Englisch.,Literatur ist nur kreatives Lügen.|Und was machst du so nach der Schule?,280,0,0,EatBadMatch()
+270,0,0,,Sport.,Die Hojojutsu-Stunden sind toll.|Und was machst du so nach der Schule?,280,0,0,EatGoodMatch()
+270,0,0,,Chemie.,Explosive Reaktionen machen Spaß.|Und was machst du so nach der Schule?,280,0,0,EatGoodMatch()
+270,0,0,,Französisch.,Langweilig! Und was machst du so nach der Schule?,280,0,0,EatBadMatch()
+270,0,0,,Kunst.,Julia hat wenigstens Sinn für Humor!|Und was machst du so nach der Schule?,280,0,0,Eat()
+270,0,0,,Geschichte.,Nett. Und was machst du so nach der Schule?,280,0,0,Eat()
+270,0,0,,Theater.,Nett. Und was machst du so nach der Schule?,280,0,0,Eat()
+270,0,0,,Keine Ahnung.,"Keine Sorge, es geht ums Lernen, nicht ums Wissen.|Und was machst du so nach der Schule?",280,0,0,Eat()
+280,0,0,,Basketball.,Nett. (Ihr esst die Pizzen auf.),290,0,0,Eat()
+280,0,0,,Rockmusik.,Spitze! (Ihr esst die Pizzen auf.),290,0,0,EatGoodMatch()
+280,0,0,,Videospiele.,Cool! (Ihr esst die Pizzen auf.),290,0,0,EatGoodMatch()
+280,0,0,,Cheerleading.,Nett. (Ihr esst die Pizzen auf.),290,0,0,Eat()
+280,0,0,,Auf Partys gehen.,Nett. (Ihr esst die Pizzen auf.),290,0,0,Eat()
+280,0,0,,Rollenspiele.,Cool! (Ihr esst die Pizzen auf.),290,0,0,EatGoodMatch()
+280,0,0,,Mich besaufen.,"Besaufen ist gut, aber Kater sind die Hölle.|(Ihr esst die Pizzen auf.)",290,0,0,EatBadMatch()
+280,0,0,,Klassische Musik.,Nett. (Ihr esst die Pizzen auf.),290,0,0,Eat()
+280,0,0,,Liebe machen.,(Sie lächelt.) Du bist so frech!|(Ihr esst die Pizzen auf.),290,1,0,EatGoodMatch()
+280,0,0,,Ich hab|keine Hobbys.,Ernsthaft? (Ihr esst die Pizzen auf.),290,0,0,EatBadMatch()
+290,0,0,,Was machen wir|jetzt also?,Ist das nicht offensichtlich?,300,0,0,TestMatch()
+290,0,0,,Können wir jetzt noch|etwas Kinbaku üben?,Oh ja.,300,1,0,TestMatch()
+300,0,0,,"Zeit, dich noch|mehr zu fesseln.","Du musst lernen, Knoten außer Reichweite zu binden.|(Natalie befreit sich mühelos und geht auf dich zu.)",310,0,0,NatalieEscape()
+310,0,0,,"Warte, kann ich's|nochmal versuchen?",Lerne erst von einer Expertin. (Natalie fesselt dich|und zeigt dir die Knoten außer Reichweite.),320,0,0,SubbieRope()
+310,0,0,,"Okay, zeigst du|mir wie?","Klar doch. (Natalie fesselt dich und erklärt,|wo die Knoten zu platzieren sind.)",320,1,0,SubbieRope()
+310,0,0,,Bitte nicht.|Ich bin keine Sub.,Du bist aber auch keine sehr gute Domme.|(Natalie schnürt deine Arme fest zusammen.),320,0,-1,SubbieRope()
+320,0,0,,Kannst du mir mehr|Kinbaku zeigen?,"Ja, nehmen wir uns deine Beine vor.|(Natalie fesselt deine Beine.) Knebelzeit.",330,0,0,
+320,0,0,,(Flucht versuchen.),Wo willst du denn ganz ohne Erlaubnis hin?|(Natalie fesselt schnell deine Beine.) Knebelzeit.,330,0,-1,
+320,0,0,,(Verspielt ankämpfen.),Du bist 'ne kleine Zappelliese.|(Natalie fesselt deine Beine.) Knebelzeit.,330,1,0,
+330,0,0,,Was?,"Weit aufmachen. (Du öffnest den Mund, Natalie stopft|etwas hinein und bindet es mit einem Tuch fest.)",350,0,0,SubbieClothGag()
+330,0,0,,Du willst mich|wirklich knebeln?,"(Du hast kaum zuende gesprochen, als sie|dir etwas in den Mund stopft und dich knebelt.)",350,0,0,SubbieClothGag()
+330,0,0,,Bitte nicht|noch mehr.,"Du redest zu viel. (Natalie stopft dir|etwas in den Mund und knebelt dich.)",350,0,-1,SubbieClothGag()
+330,0,0,,Das reicht!|(Zähne zusammenbeißen.),Du magst es also auf die harte Tour.|(Natalie kneift dir die Nase zu.),340,1,0,
+340,0,0,,(Den Atem anhalten.|...................),(Du musst schlussendlich Luft holen und|bekommst sofort ein Tuch in den Mund gestopft.),350,0,0,SubbieClothGag()
+340,0,0,,(Um Hilfe rufen.) Hil.....,"(Du bekommst gerade mal eine Silbe heraus, bevor sie|dir ein Tuch in den Mund stopft und dich knebelt.)",350,0,0,SubbieClothGag()
+350,0,0,,(Natalie böse anstarren.),(Natalie schmunzelt.) Du solltest dich eine Weile|beruhigen. (Natalie entfernt sich von dir.),360,0,0,
+350,0,0,,(Winseln und|Hundeaugen machen.),(Natalie lächelt.) Moment! Wer ist ein braver Hund?|Ich komme später wieder. (Natalie entfernt sich von dir.),360,1,-1,
+350,0,0,,(Gegen deine|Fesseln ankämpfen.),"Genau, teste die Seile ein wenig.|(Natalie entfernt sich von dir.)",360,1,0,
+360,0,0,,(Fluchtweg suchen.),(Die Türen sind geschlossen und auf dem|Boden liegt nichts Nützliches herum.),360,0,0,NoEscape()
+360,0,0,,(Um Hilfe rufen.),"(Mit einem vollgestopften Mund hört man|dich noch weniger als mit einem Ballknebel.)",360,0,0,NoHelp()
+360,0,0,,"(Zusehen, was die|anderen treiben.)","(Jenna spielt mit Chloe,|die Natalie fröhlich zumurmelt.)",360,0,0,ChloeSuspended()
+360,0,0,,(Gegen die|Seile ankämpfen.),"(Du windest dich und rollst umher,|aber nichts lockert sich.)",360,0,0,Struggle()
+360,0,0,,(Auf Natalie warten.),"(Du wartest, aber die Clubmitglieder|ignorieren dich weiterhin.)",360,0,0,Wait()
+365,0,0,,@Nhthlnm.,(Natalie nimmt dir das Tuch vom Gesicht.|Du spuckst das Stück Stoff aus.),370,0,0,BadUngag()
+370,0,0,,"Danke, Miss, bitte|lassen Sie mich frei.","Mit Vergnügen, der Unterricht geht gleich weiter.|(Natalie bindet dich los und hilft dir aufzustehen.)",380,1,-1,PlayerRelease()
+370,0,0,,"Wurde auch Zeit, warum|hat das so gedauert?","Ich dachte, du brauchtest etwas Zeit.|(Natalie bindet dich los und du stehst auf.)",380,0,0,PlayerRelease()
+370,0,0,,"Och, ich hatte|gerade Spaß.","Dachte ich mir, aber die Pause ist gleich vorbei.|(Natalie befreit dich.)",380,1,0,PlayerRelease()
+380,0,0,,"Das hat Spaß|gemacht, bis später.",,0,2,0,EndChapter()
+380,0,0,,Wie auch immer dieser|Club erlaubt wurde.,,0,-1,0,EndChapter()
+380,0,0,,"(Schnell weglaufen,|bevor es zu spät ist.)",,0,0,-1,EndChapter()
+400,0,0,,Probieren wir ein paar|meiner Spielsachen.,"Du hast schon eigene, das ist toll!|Willst du mich vorher losbinden und ausziehen?",410,1,0,
+400,0,0,,"Hat der Club etwas,|das ich benutzen kann?",Sicher. (Jenna reicht dir ein paar Dinge.)|Willst du mich vorher losbinden und ausziehen?,410,0,0,GetToys()
+400,0,0,,Könnte jetzt vielleicht|ich gefesselt werden?,Na aber klar doch. Würdest du lieber|von mir oder mit mir gefesselt werden?,405,0,0,
+405,0,0,,Fessel du mich bitte.,"Natürlich, hilfst du mir mal eben? Ich bin gerade|etwas verhindert. (Du bindest sie los.)",505,0,-1,
+405,0,0,,Mit dir gefesselt sein?|Das klingt nach Spaß.,"Jenna, kannst du uns helfen? (Jenna bringt|ein paar Sachen mit und befreit Natalie.)",600,1,0,
+410,0,0,,"Nein, die Uniform|steht dir.",Herzlichen Dank. (Was hast du jetzt mit ihr vor?),430,1,0,
+410,0,0,,"Ja, zeig mal deinen|hübschen Körper.","Meinst du das Ernst? Danke.|(Du bindest sie los und sie zieht sich aus.)",420,1,0,UntieStrip()
+410,0,0,,Diesmal nicht.,In Ordnung. (Was hast du jetzt mit ihr vor?),430,0,0,
+410,0,0,,"Wollen? Ich befehle|dir, dich auszuziehen.","Ähh... Ja, Miss. (Du bindest|sie los und sie zieht sich aus.)",420,0,1,UntieStrip()
+420,0,0,,War das schon alles?,"Entschuldigen Sie, Miss, Sie meinten völlig nackt?|(Sie zieht sich zögernd aus. Was hast du mit ihr vor?)",430,0,1,NatalieNaked()
+420,0,0,,"Süße Unterwäsche,|gefällt mir.","Danke, Miss. (Sie wird rot.)|(Was hast du jetzt mit ihr vor?)",430,1,0,
+420,0,0,,Andererseits sahst|du vorher besser aus.,Was willst du damit sagen? (Sie zieht sich|empört wieder an. Was hast du jetzt mit ihr vor?),430,-2,0,NatalieClothed()
+420,0,0,,Ohne das würdest du|noch besser aussehen.,"Vielleicht, wenn ich stattdessen Seile trage.|(Sie zieht sich zögernd aus. Was hast du  mit ihr vor?)",430,0,1,NatalieNaked()
+430,0,0,,(Sie küssen.),"(Ihr küsst euch kurz, dann bricht sie ab.) Das ist zwar|schön, aber du solltest mich eigentlich fesseln.",430,0,0,Kiss()
+430,0,0,,(Sie kitzeln.),"(Sie zuckt zusammen und stößt dich weg.)|Oh nein, alles nur das nicht.",430,0,0,Tickle()
+430,0,0,,(Sie befriedigen.),"(Sie zittert und stöhnt leise, als du sie befriedigst.)",430,0,0,DomMasturbate()
+430,0,0,TwoRopes,(Ihr auf den|Hintern hauen.),"(Sie schreit auf und zuckt instinktiv|zurück, bevor sie sich dir unterwirft.)",430,0,0,Spank()
+430,0,0,IsRoped,(Sie losbinden.),(Du befreist Natalie langsam|von ihren engen Fesseln.),430,0,0,Untie()
+430,0,0,IsGagged,(Sie entknebeln.),"(Du entfernst den Knebel vorsichtig.)|Danke, mein Kiefer braucht 'ne Pause.",430,0,0,Ungag()
+430,0,0,IsBlindfolded,(Ihre Augenbinde|abnehmen.),"(Sie blinzelt, als ihre Augen sich an das|Licht gewöhnen, und ist froh dich wiederzusehen.)",430,0,0,Unblind()
+430,0,0,IsBoundAndGagged,"Verarscht, du Schlampe.|(Sie im Stich lassen.)",(Willst du sie wirklich so hilflos|gefesselt hier im Stich lassen?),450,0,0,
+430,0,0,,Mir ist langweilig.,"(Du befreist sie.)|Was, jetzt schon? Ich dachte, du hättest Spaß?",480,-1,0,NatalieRelease()
+430,0,0,,Das genügt für|eine Mittagspause.,(Du befreist sie.)|Schon fertig? Na gut.,480,0,0,NatalieRelease()
+450,0,0,,Ja.,(Die anderen Clubmitglieder sind bereits|zu ihren Nachmittagsstunden gegangen.),460,0,0,
+450,0,0,,Nein.,(Was hast du jetzt mit ihr vor?),430,0,0,
+460,0,0,,Ich komme dich nach|der Schule abholen.,(Du küsst sie zum Abschied und lässt sie panisch|und verzwiefelt gegen die Fesseln kämpfen.),470,-1,5,
+460,0,0,,Du bist 'ne abartige Hure|und verdienst Bestrafung.,"(Du kitzelst sie und versohlst ihr den|Hintern, bis sie Tränen weint.)",470,-5,3,
+470,0,0,,"Das war ein Spaß,|bis später, Schlampe.",,0,0,0,EvilEnd()
+470,0,0,,Wie auch immer dieser|Club erlaubt wurde.,,0,0,0,EvilEnd()
+470,0,0,,"(Schnell weglaufen,|bevor es zu spät ist.)",,0,0,0,EvilEnd()
+480,0,0,,Die Pause ist|sowieso fast vorbei.,Da hast du wohl recht.,490,0,0,
+480,0,0,,Ich muss mich auf|die Stunde vorbereiten.,"Faule Ausrede. (Sie ringt dich plötzlich|zu Boden und fesselt und knebelt dich.)",350,0,-1,PlayerBoundGagged()
+490,0,0,,"Das war toll, kann|ich wiederkommen?","Na klar, der Club hat meist Abends größere Treffen.",700,1,0,
+490,0,0,OrgasmDone,Du liebst das.,"(Sie wird rot.) Ja, ich glaube du auch.",700,1,1,
+490,0,0,,Du solltest mich|irgendwann richtig fesseln.,"Oh ja, absolut. Der Klub hat Abends ein Treffen,|da könntest du stundenlang gefesselt sein.",700,1,-1,
+490,0,0,,Danke für das Essen.,"War mir eine Freude, du solltest dem Club beitreten|und am abendlichen Treffen teilnehmen.",700,0,0,
+500,0,0,,Kannst du mich|erst losbinden?,"Ja, du bekommst eine Pause und kannst|dich ausziehen. (Sie bindet dich los.)",510,0,0,PlayerRelease()
+500,0,0,,"Wie wär's, wenn du statt-|dessen gefesselt wirst?","Diesmal nicht, du verdienst das Komplettpaket.|Also ohne Kleidung. (Sie bindet dich los.)",510,0,0,PlayerRelease()
+500,0,0,,Dieses Kinbaku macht|micht total heiß.,"Kann ich verstehen, aber ohne Kleidung|wirst du dich abkühlen. (Sie bindet dich los.)",510,1,0,PlayerRelease()
+500,1,1,,Du bist dran!,"Na ja, okay, ich hab dich ja schon gefesselt.|(Sie bindet dich los und du fesselst sie schnell.)",400,0,1,PlayerReversal()
+505,0,0,,Du kannst mich|jetzt fesseln.,"Ja, aber du solltest erst deine Uniform|ausziehen, um die Seile richtig zu spüren.",510,0,0,
+510,0,0,,Lässt sich machen.|(Uniform ausziehen.),"(Du ziehst dich aus.) Genau, so wirst du|die Seile viel besser spüren können.",530,0,0,PlayerStrip()
+510,0,0,,"Moment, das geht|mir zu schnell.","Schon in Ordnung, möchtest du trotzdem|noch etwas Kinbaku ausprobieren?",520,0,-1,
+510,0,0,,Nein. Ich ziehe mich|nicht vor dir aus.,"Okay, okay, war nur ein Vorschlag.|Bist du trotzdem noch an Kinbaku interessiert?",520,0,1,
+510,0,0,,"Ja, Miss.|(Uniform ausziehen.)",(Du ziehst dich aus.) Du wirst das natürliche Gefühl|von Seilen auf deiner weichen Haut lieben.,530,1,-1,PlayerStrip()
+520,0,0,,Nein.,"Dann glaube ich nicht, dass|dieser Club für dich geeignet ist.",380,-1,0,
+520,0,0,,Ja.,Mit gefesselten Armen sahst du gut aus.|(Natalie fesselt deine Arme erneut.),320,0,0,PlayerRope()
+530,0,0,,Das Seil spüren?,"Ja, du musst es mit all deinen Sinnen erfassen.|(Sie wickelt eine Menge Seil um deinen Oberkörper.)",540,0,0,PlayerRope()
+530,0,0,,"Ich weiß, wie sich Seile|am Handgelenk anfühlen.",Das ist nicht dasselbe wie Seile an deinem Körper.|(Sie schnürt deinen Oberkörper fest ein.),540,-1,0,PlayerRope()
+540,0,0,,Es fühlt sich immer|noch wie Seil an.,"Du verlässt dich zu sehr auf deine Augen,|versuch's hiermit. (Sie verbindet deine Augen.)",550,0,0,PlayerBlindfold()
+540,0,0,,Das Seil ist|einfach nur kratzig.,"Das ist ein Anfang, aber du spürst es nocht nicht richtig.|(Sie verbindet deine Augen.)",550,0,0,PlayerBlindfold()
+550,0,0,,"Warte, nein, bitte.","(Du spürst einen Finger auf deinen Lippen.)|Psst, alles ist gut. Wie fühlt es sich jetzt an?",560,0,-1,
+550,0,0,,Das war unerwartet.,Du hast zu viel geguckt und konntest nichts sehen.|Wie fühlen sich die Seile jetzt an?,560,0,0,
+550,0,0,,Du kannst mir nicht einfach|die Augen verbinden.,"Hör auf zu meckern und sag mir,|wie sich die Seile jetzt anfühlen.",560,-1,0,
+560,0,0,,Immer noch wie Seil.,Ich geb's auf. Das hier spürst du garantiert.|(Sie führt dir ein vibrierendes Ei ein.),570,-1,0,PlayerEgg()
+560,0,0,,Es ist eng und sicher.,"Besser, aber da geht noch was. Versuch's hiermit.|(Sie führt dir ein vibrierendes Ei ein.)",570,0,0,PlayerEgg()
+560,0,0,,Es ist wie eine niemals|endende Umarmung.,"Schon besser, du brauchst nur etwas Motivation.|(Sie führt dir ein vibrierendes Ei ein.)",570,1,0,PlayerEgg()
+560,0,0,,Es fühlt sich so gut|und verlockend an.,Na also. Du hast dir eine Belohnung verdient.|(Sie führt dir ein vibrierendes Ei ein.),570,1,-1,PlayerEgg()
+570,0,0,,"Das ist heftig,|nimm mich jetzt.",Mit Vergnügen.|(Natalie spielt mit deinem Schrittseil.),580,1,0,
+570,0,0,,"Ahhh, bitte knebel|und nimm mich.","Nur, weil du so ein gutes gehorsames Mädchen bist.|(Natalie knebelt dich und spielt mit deinem Schrittseil.)",580,0,-1,PlayerBallGag()
+570,0,0,,"Stopp, das|geht zu weit.","Meinst du? Dann lass ich dich frei.|(Natalie befreit dich.)",590,-1,0,PlayerRelease()
+580,0,0,,(Ihre Berührung|genießen.),"(Du gibst dich ihrer zärtlichen Berührung hin,|während sie am Seil zupft und deine Klitoris befriedigt.)",580,0,0,SubbieMasturbate()
+580,0,0,,(In ihrem|Rhythmus winden.),(Du bewegst deine Hüfte in ihrem Rhythmus|und baust langsam Druck auf.),580,0,0,SubbieMasturbate()
+580,0,0,,(Verspielt ankämpfen.),(Du kämpfst spielerisch mit den Fesseln und|es gefällt ihr. Sie erhöht ihr Tempo ein wenig.),580,0,0,SubbieMasturbate()
+590,0,0,,Kannst du das verdammte|Ei rausnehmen? Bitte.,Wenn du es ganz sicher nicht behalten willst.|(Natalie nimmt das Ei heraus und du ziehst dich an.),700,-1,-1,PlayerNoEgg()
+590,0,0,,Kann ich das|Ei behalten?,"Ja, es ist dein Aufnahmegeschenk.|(Du ziehst dich an.)",700,1,0,PlayerClothed()
+590,0,0,,Kann ich die|Augenbinde behalten?,"Tut mir leid, ich hab nur die eine.|(Du ziehst dich an.)",700,0,0,PlayerClothed()
+600,0,0,,Wie werden wir|zusammen gefesselt?,(Jenna nähert sich.) Nicht gefesselt.|Diesmal verwenden wir Handschellen.,610,0,0,
+600,0,0,,Musst du|Natalie losbinden?,"(Jenna nähert sich.)|Ja, ich hab was anderes mit euch beiden vor.",610,0,1,
+610,0,0,,Was hast du geplant?,Erstmal umarmt ihr zwei Turteltauben euch.|(Du umarmst Natalie.),620,0,0,
+610,0,0,,"Oh, eine Überraschung.","Wahrscheinlich sogar viele. Gib erstmal Natalie|eine dicke Umarmung. (Du umarmst Natalie.)",620,0,0,
+620,0,0,,(Natalie schön|langsam umarmen.),"Genau so, ein Zimmer habt ihr ja schon.|(Jenna schließt die Handschellen um euch herum.)",630,1,0,PlayerCuffed()
+620,0,0,,(Natalie kurz umarmen.),"(Bevor du loslassen kannst, legt Jenna|dir Handschellen an.) Nicht aufhören.",630,-1,0,PlayerCuffed()
+630,0,0,,"Moment, was ist das?","Ein besonderer Doppelknebel, den ihr euch teilen|könnt. (Jenna schnallt dir den seltsamen Knebel um.)",640,0,0,OpenGag()
+630,0,0,,"Das macht Spaß, Natalie.","Stimmt, aber jetzt mach weit auf.|(Jenna schnallt dir einen seltsamen Knebel um.)",640,1,0,OpenGag()
+640,0,0,,@Whhs zhm...,(Natalie bekommt den Knebel auch umgeschnallt|und eure Zungen berühren sich.),650,0,0,
+650,0,0,,(Mit Natalie|freikämpfen.),Geduld. (Jenna gibt euch je einen Vibrator|und eine Fernbedienung.) Jetzt viel Spaß.,660,0,0,
+660,0,0,Remote,(Fernbedienung|verstellen.),,660,0,1,VibeNatalie()
+660,0,0,,(Verspielt ankämpfen.),(Natalie kämpft mit.|Dein Vibrator wird stärker.),660,0,0,VibePlayer()
+660,0,0,,(Natalie träumerisch|ansehen.),(Dein Vibrator wird stärker.|Natalie reibt ihn mit ihrem Bein an dich.),660,1,-1,KneePlayer()
+660,0,0,,(Panisch wegzerren.),(Natalie besänftigt dich so gut sie kann.|Dein Vibrator lässt etwas nach.),660,0,0,Panic()
+660,0,0,,(Zungenkuss machen.),"(Eure Zungen tanzen verführerisch miteinander,|während dein Vibrator stärker wird.)",660,1,0,VibePlayer()
+660,0,0,,(Durch den|Knebel stöhnen.),(Natalie umarmt dich fester.|Dein Vibrator wird stärker.),660,0,0,VibePlayer()
+660,0,0,,(Natalie zärtlich|umarmen.),(Natalie erwidert deine Geste|und eure Zungen treffen sich.),660,0,0,Hug()
+660,0,0,,(Natalies|Knebel lösen.),(Die Knebelriemen sind mit Schlössern gesichert.|Ohne Schlüssel lässt er sich nicht entfernen.),660,0,0,Hug()
+670,0,0,,@Hh Nhthlnm thhngnhh.,(Jenna kommt und befreit Natalie.|Du fällst auf die Knie und schnappst nach Luft.),680,1,0,
+670,0,0,,"@Bhtte, Nhthlnm,|mhhch eh aufh.",(Jenna kommt und befreit Natalie.|Du fällst auf die Knie und schnappst nach Luft.),680,0,-1,
+670,0,0,,@Fhrry.|(Erröten und wegschauen.),(Jenna kommt und befreit Natalie.|Du fällst auf die Knie und schnappst nach Luft.),680,1,-1,
+680,0,0,,@Ghnn ihh mihh|jehht fheilahhen?,"Ja. (Natalie lässt dich frei.)|Also, wie fandest du das?",685,0,0,PlayerRelease()
+680,0,0,,@Bhtte lahht|mihh jehht fhei.,"Sollte ich wohl. (Natalie lässt dich frei.)|Also, wie fandest du das?",685,0,-1,PlayerRelease()
+685,0,0,NoRemote,Du hättest fast|darum gebettelt.,"Ja, sorry. Du hast meinen Daumen auf der Fernbedie-|nung ausrutschen lassen. Zeit für die nächste Stunde.",700,1,2,
+685,0,0,,Hab schon|Besseres erlebt.,"So wie du gerade zusammengebrochen bist, muss ich|das stark bezweifeln. Zeit für die nächste Stunde.",700,-1,0,
+685,0,0,,"Ich kann nicht glauben,|dass du mir sowas antust.","Tut mir leid, ich dachte es gefällt dir.|Zeit für die nächste Stunde.",700,-1,1,
+685,0,0,,"Ich bin noch immer|am Zittern, Miss.","Wie süß. Komm später wieder, wenn es nachlässt.|Zeit für die nächste Stunde.",700,0,-1,
+685,0,0,,Das war fantastisch.,Fand ich auch.|Zeit für die nächste Stunde.,700,1,0,
+685,0,0,,Nächstes Mal|gehörst du mir.,"Ein nächstes Mal, das höre ich gern.|Zeit für die nächste Stunde.",700,1,1,
+690,0,0,,@Lahht mihh hofoht fhei!,"Ich dachte, es würde dir gefallen.|(Jenna lässt dich frei.)",700,-1,0,PlayerRelease()
+690,0,0,,@Bhtte lahht|mihh jehht fhei.,"Okay, das war vielleicht etwas viel fürs erste Mal.|(Jenna lässt dich frei.)",700,0,-1,PlayerRelease()
+690,0,0,,@Nuh nohh ethah|länheh bhtte.,"Nein, Clubs sollten dich nicht vom Lernen abhalten.|(Jenna lässt dich frei.)",700,0,0,PlayerRelease()
+700,0,0,,Auf in den Unterricht.|(Gehen.),,0,0,0,EndChapter()
+700,0,0,,Treffen wir und nach|der Schule. (Gehen.),,0,1,0,EndChapter()

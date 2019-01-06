@@ -1,5 +1,0 @@
-Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,@Die Studentenwohnung der Mitbewohner,,0,0,0,LaunchRoommatesDorm()
-0,0,0,,@Die Bar,,0,0,0,LaunchPub()
-0,0,0,KnowKinbakuClub,@Kinbaku Club,,0,0,0,LaunchKinbaku()
-0,0,0,KnowBondageClub,@Bondage Club,"Sorry, der Bondage Club ist noch nicht vorhanden.|Es wird in einer zukünftigen Version vorhanden sein.",0,0,0,

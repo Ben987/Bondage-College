@@ -1,0 +1,55 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,"Was willst du, COMMON_PLAYERNAME?|Ich hab keine Zeit zum Labern.",SidneyIntro.jpg
+0,5,0,,COMMON_PLAYERNAME! Hilfst du mir?,SidneyIntroHappy.jpg
+0,0,5,,"Hallo, Miss COMMON_PLAYERNAME.|Darf ich Sie um Hilfe bitten?",SidneyIntroSubbie.jpg
+0,0,0,HelpedEscape,Hey! Du hast mir heute morgen bei der|Flucht geholfen. Kannst du nochmal helfen?,SidneyIntroHappy.jpg
+0,0,0,HasEgg,"Ich krieg diesen beschissenen Vibrator nicht raus!|Das klären wir später, ich hab ein größeres Problem.",SidneyIntro.jpg
+10,0,0,,Ich finde meinen verfickten Geldbeutel|nicht und ich hab einen Scheißhunger!,SidneyIntro.jpg
+10,5,0,,Ich finde meinen verfickten Geldbeutel|nicht und ich hab einen Scheißhunger!,SidneyIntroHappy.jpg
+10,0,5,,Ich kann meinen Geldbeutel nicht|finden und ich bin sehr hungrig!,SidneyIntroSubbie.jpg
+20,0,0,,Kannst du mir Geld geben?|Ich hab meine verfickte Börse verloren.,SidneyIntro.jpg
+20,5,0,,"Ich hab einen Scheißhunger, Kollegin.|Kann ich mir etwas Geld borgen?",SidneyIntroHappy.jpg
+20,0,5,,"Miss, ich weiß nicht, wo mein Geldbeutel ist.|Kann ich mir bitte etwas Geld borgen?",SidneyIntroSubbie.jpg
+30,0,0,,Können wir gehen? Ich hab solchen Hunger.,SidneyIntro.jpg
+30,5,0,,Können wir gehen? Ich hab solchen Hunger.,SidneyIntroHappy.jpg
+30,0,5,,Können wir gehen? Ich hab solchen Hunger.,SidneyIntroSubbie.jpg
+90,0,0,,(Sidney ist fort.),SidneyGone.jpg
+100,0,0,,Was zur Hölle willst du?|Ich will nicht mit dir reden.,SidneyIntroGrumpy.jpg
+110,0,0,,Ich hab meinen verfickten Geldbeutel|verloren und ich hab einen Scheißhunger!,SidneyIntroGrumpy.jpg
+120,0,0,,,SidneyIntroGrumpy.jpg
+130,0,0,,,SidneyPlayerBasement.jpg
+140,0,0,,,SidneyPlayerBasement.jpg
+150,0,0,,,SidneyPlayerPillory.jpg
+160,0,0,,,PlayerPillory.jpg
+170,0,0,,,SidneyPlayerPillory.jpg
+180,0,0,,,SidneyPlayerBasement.jpg
+200,0,0,,,SidneyPlayerLunch0.jpg
+210,0,0,,,SidneyPlayerLunch0.jpg
+220,0,0,,,SidneyPlayerLunch0.jpg
+230,0,0,,,SidneyPlayerLunch0.jpg
+240,0,0,,,SidneyPlayerLunch0.jpg
+250,0,0,,,SidneyPlayerLunch0.jpg
+260,0,0,,,SidneyPlayerLunch0.jpg
+270,0,0,,,SidneyPlayerLunch0.jpg
+280,0,0,,,SidneyPlayerLunch0.jpg
+290,0,0,,,SidneyPlayerLunch0.jpg
+300,0,0,,,SidneySmoke.jpg
+310,0,0,,,PlayerSmoke.jpg
+320,0,0,,,SidneySmoke.jpg
+330,0,0,,,SidneyPlayerSmokeSit.jpg
+340,0,0,,,SidneySit.jpg
+350,0,0,,,SidneySit.jpg
+400,0,0,,,SidneyPlayerSmokeSit.jpg
+410,0,0,,,AmandaSurrounded.jpg
+420,0,0,,,AmandaGrabed.jpg
+430,0,0,,,AmandaStripped.jpg
+440,0,0,,,AmandaBeated.jpg
+450,0,0,,,AmandaBound.jpg
+490,0,0,,,AmandaGone.jpg
+500,0,0,,,SidneyPlayerSmokeSit.jpg
+510,0,0,,,SarahSurrounded.jpg
+520,0,0,,,SarahGrabed.jpg
+530,0,0,,,SarahStripped.jpg
+540,0,0,,,SarahBeated.jpg
+550,0,0,,,SarahBound.jpg
+590,0,0,,,SarahGone.jpg

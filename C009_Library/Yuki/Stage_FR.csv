@@ -1,0 +1,256 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,"En effet,|c'est mon premier jour.","Bienvenue dans notre université.|Je suis le professeur Yuki.",1,0,0,
+0,0,0,,Je suis surprise que vous|ne me connaissiez pas.,Je n'ai jamais entendu parlé de toi.|Je suis le professeur Yuki.,1,0,1,
+0,0,0,,"Oui Madame, la rentrée|est toujours terrifiante.","N'aie pas peur, tout ira bien.|Je suis le professeur Yuki.",1,0,-1,
+1,0,0,,"Ravie de vous rencontrer,|professeur Yuki.",Moi de même jeune fille.|Merci de garder le silence dans la bibliothèque.,2,1,0,
+1,0,0,,Salut Yuki.,"(Elle grimace.) C'est professeur Yuki, quoi qu'il en soit.|Je te prie de garder le silence dans la bibliothèque.",2,-1,0,
+1,0,0,!Common_PlayerRestrained,(Tu lui serres la main.),"(Elle te serre fermement la main.) A présent,|je te prierais de garder le silence dans la bibliothèque.",2,0,0,
+2,0,0,,(Tu acquiesces|en silence.),Parfait.|Tu recherches un livre en particulier ?,100,1,-1,
+2,0,0,,"Ouais, ouais...",(Elle te lance un regard furieux.)|Tu recherches un livre en particulier ?,100,-1,1,
+2,0,0,,Je ferai attention.,Très bien.|Tu recherches un livre en particulier ?,100,0,0,
+5,0,0,Common_PlayerRestrained,(Tu tires sur tes entraves.),"Laissez-moi vous aider ma petite demoiselle.|(Elle te libère.) Tu peux y aller.",6,0,0,TestRelease()
+5,0,0,Common_PlayerGagged,@Numn ngnnnuh !,"Laissez-moi vous aider ma petite demoiselle.|(Elle te libère.) Tu peux y aller.",6,0,0,TestRelease()
+5,0,0,,"Pouvez-vous m'aider,|Madame ?","Volontiers ma petite demoiselle.|(Elle te libère.) Tu peux y aller à présent.",6,0,0,TestRelease()
+5,0,0,,C'est Jennifer.,Ça me surprend beaucoup venant de sa part.|(Elle te libère.) Tu peux y aller à présent.,6,0,0,TestRelease()
+6,0,0,,(Tu acquiesces|et tu t'en vas.),,6,0,0,PlayerLeaveForBook()
+6,0,0,,Entendu Madame.|(Tu t'en vas.),,6,0,0,PlayerLeaveForBook()
+10,0,0,,Ça ne me dit rien.,Je suis sûre que tu vas t'en souvenir.|(Elle saisit ta chevelure et s'assoit sur son bureau.),700,0,0,StartPleasure()
+10,0,0,,Oui Madame Yuki.|Je m'en souviens.,"Très bien ma petite chienne, approche.|(Elle saisit ta chevelure et s'assoit sur son bureau.)",700,1,-1,StartPleasure()
+10,0,0,,Un marché ?|Vous plaisantez.,(Elle fronce les sourcils.) Tu vas voir si je plaisante.|(Elle saisit ta chevelure et s'assoit sur son bureau.),700,-1,1,StartPleasure()
+20,0,0,,Une étudiante est|venu m'aider.,"Tu as eu beaucoup de chance, jeune fille.|Peux-tu me promettre d'être sage à présent ?",22,0,0,
+20,0,0,,Un professeur est|venu m'aider.,"Tu as eu beaucoup de chance, jeune fille.|Peux-tu me promettre d'être sage à présent ?",22,0,0,
+20,0,0,,J'ai beaucoup lutté.,"C'est assez impressionnant. Alors tu penses que|tu peux t'extirper de n'importe quelle situation ?",21,1,0,
+20,0,0,,Facile ! Je suis une|reine de l'évasion !,Je ne te crois pas. Tu penses que tu peux|t'extirper de n'importe quelle situation ?,21,0,1,
+20,0,0,,Occupez-vous|de vos fesses.,Voyons voir si notre petite demoiselle peux s'échapper|à présent. (Elle t'attrape et te fait enfiler un fourreau.),300,-1,1,RestrainPlayer()
+21,0,0,,Aucun lien|ne m'arrête !,"C'est ce qu'on va voir jeune fille, essaye d'échapper |à ceci. (Elle t'attrape et te fait enfiler un fourreau.)",300,0,1,RestrainPlayer()
+21,0,0,,Non. J'ai eu beaucoup|de chance ce matin.,Tu sors de l'ordinaire.|Peux-tu me promettre d'être sage à présent ?,22,0,0,
+22,0,0,,"D'accord,|je vous le promets.",Très bien.|De quel livre as-tu besoin ?,100,0,0,NoSecondChance()
+22,0,0,,"C'est entendu, je vous|promets d'être sage.",Parfait.|De quel livre as-tu besoin ?,100,1,0,NoSecondChance()
+22,0,0,,"Ouais, ouais...|je vous le promets.",Quoi qu'il en soit.|De quel livre as-tu besoin ?,100,-1,0,NoSecondChance()
+22,0,0,,Jamais de la vie !,"Si tu ne sais pas te tenir, tu resteras attachée.|(Elle t'attrape et te fait enfiler un fourreau.)",300,-1,1,RestrainPlayer()
+30,0,0,,"Oui Madame,|j'ai retenu la leçon.",Bien. Maintenant promet-moi de te tenir|tranquille et de ne plus causer d'ennuis.,31,0,-1,
+30,0,0,,Cette heure en isolement|est passée assez vite.,"(Elle grimace.) La prochaine fois ce sera la journée.|Bon, peux-tu me promettre d'être sage à présent ",31,0,1,
+30,0,0,,Je suis navrée de ne pas|avoir pu vous satisfaire.,"Voici ta seconde chance ma petit chienne.|(Elle saisit ta chevelure et s'assoit sur son bureau.)",700,0,-1,StartPleasure()
+30,0,0,,Je suis sûre que je|peux vous faire jouir.,Ah vraiment ? Voyons cela ma petit chienne.|(Elle saisit ta chevelure et s'assoit sur son bureau.),700,0,1,StartPleasure()
+31,0,0,,"D'accord,|je vous le promets.",Très bien.|De quel livre as-tu besoin ?,100,0,0,NoSecondChance()
+31,0,0,,"C'est entendu, je vous|promets d'être sage.",Parfait.|De quel livre as-tu besoin ?,100,1,0,NoSecondChance()
+31,0,0,,"Ouais, ouais...|je vous le promets.",Quoi qu'il en soit.|De quel livre as-tu besoin ?,100,-1,0,NoSecondChance()
+31,0,0,,Jamais de la vie !,"Si tu ne sais pas te tenir, tu resteras attachée.|(Elle t'attrape et te fait enfiler un fourreau.)",300,-1,1,RestrainPlayer()
+40,0,0,,"Avoir des problèmes,|c'est ma spécialité.",(Elle soupire.) Promet-moi de te tenir tranquille|et de ne plus causer d'ennuis.,41,0,1,
+40,0,0,,Je ne causerai|plus de problèmes.,"Bien, promet-moi de te tenir tranquille|et de ne plus causer d'ennuis.",41,0,0,
+40,0,0,,"Oui Madame, je serais|une bonne fille à présent.","Très bien, promet-moi de te tenir tranquille|et de ne plus causer d'ennuis.",41,0,-1,
+41,0,0,,"D'accord,|je vous le promets.",Très bien.|De quel livre as-tu besoin ?,100,0,0,NoSecondChance()
+41,0,0,,"C'est entendu, je vous|promets d'être sage.",Parfait.|De quel livre as-tu besoin ?,100,1,0,NoSecondChance()
+41,0,0,,"Ouais, ouais...|je vous le promets.",Quoi qu'il en soit.|De quel livre as-tu besoin ?,100,-1,0,NoSecondChance()
+41,0,0,,Jamais de la vie !,"Si tu ne sais pas te tenir, tu resteras attachée.|(Elle t'attrape et te fait enfiler un fourreau.)",300,-1,1,RestrainPlayer()
+50,0,0,,Vous la saluerez|de ma part.,"Ça ne m'amuse pas, jeune fille.|De quel livre as-tu besoin ?",100,-1,1,
+50,0,0,,"On s'est déjà rencontrés.",C'est bien ce qu'on m'a dit.|De quel livre as-tu besoin ?,100,0,0,
+50,0,0,,On dirait que j'ai|déjà une réputation.,Pas une très flatteuse.|De quel livre as-tu besoin ?,100,0,1,
+50,0,0,,Mildred n'est qu'une|vieille sorcière.,"Je devrais te scotcher la bouche.|Quoi qu'il en soit. De quel livre as-tu besoin ?",100,-2,0,
+50,0,0,,Je suis désolée pour|mon comportement.,Il n'est pas trop tard pour changer.|Tu recherches un livre en particulier ?,100,1,-1,
+60,0,0,,"La retenue était justifiée.",C'est la bonne attitude.|De quel livre as-tu besoin ?,100,1,0,
+60,0,0,,"Oui Madame, ça ne|se reproduira plus.",C'est très bien ma petite demoiselle.|De quel livre as-tu besoin ?,100,1,-1,
+60,0,0,,Elle m'a cherchée !,Je ne veux pas en entendre davantage.|Quoi qu'il en soit. De quel livre as-tu besoin ?,100,-1,1,
+60,0,0,,(Tu acquiesces.),Bien. De quel livre as-tu besoin ?,100,0,-1,
+70,0,0,,"La retenue était justifiée.",C'est la bonne attitude.|De quel livre as-tu besoin ?,100,1,0,
+70,0,0,,"Oui Madame, ça ne|se reproduira plus.",C'est très bien ma petite demoiselle.|De quel livre as-tu besoin ?,100,1,-1,
+70,0,0,,Je ne regrette|rien du tout !,Quelle petite peste arrogante.|Quoi qu'il en soit. De quel livre as-tu besoin ?,100,-1,1,
+70,0,0,,(Tu acquiesces.),Bien. De quel livre as-tu besoin ?,100,0,-1,
+80,0,0,,J'ai vu quelque chose de|brillant à l'intérieur.,La curiosité est un vilain défaut.|Promets-moi de ne plus jamais recommencer.,81,-1,0,
+80,0,0,,J'ai vu du fromage|au fond.,C'est ça et tu as fini piégé par une tapette à souris ?|Promets-moi de ne plus jamais recommencer.,81,-2,0,
+80,0,0,PenInHole,J'ai fait tomber mon|stylo à l'intérieur.,"Ma pauvre petite, tu m'as l'air maladroite.|Tu as besoin d'aide pour le récupérer ?",83,0,-1,
+80,0,0,,Une méchante brune m'a|poussé à l'intérieur.,"Sidney ! (Elle serre le poing.)|Jeune fille, tu vas devoir apprendre à te défendre.",82,0,-1,
+81,0,0,,"Oui Madame,|je vous le promets.","Parfait ma petite demoiselle, suis-moi. (Tu la suis.)|Tu recherches un livre en particulier ?",100,1,-1,
+81,0,0,,Je ne le referai plus.,"Très bien jeune fille, suis-moi. (Tu la suis.)|Tu recherches un livre en particulier ?",100,0,0,
+81,0,0,,"Ouais, ouais...|Je ne le referai plus.","Je n'aime pas ton attitude, suis-moi. (Tu la suis.)|Quoi qu'il en soit, tu recherches un livre en particulier ?",100,-1,1,
+81,0,0,,"C'est vrai, c'était stupide.|Je ne le referai plus.","Bonne réponse jeune fille, suis-moi. (Tu la suis.)|Tu recherches un livre en particulier ?",100,1,0,
+82,0,0,,Merci pour ce conseil.,Suis-moi. (Tu la suis jusqu'à son bureau.)|Tu recherches un livre en particulier ?,100,1,0,
+82,0,0,,Ne vous inquiétez pas.|Je lui ferai payer.,"Tenez-vous en à la défense Mademoiselle, suivez-moi.|Tu recherches un livre en particulier ?",100,-1,1,
+82,0,0,,Pourriez-vous m'aider|à me défendre ?,"Oui nous verrons cela, suis-moi. (Tu la suis.)|Tu recherches un livre en particulier ?",100,1,-2,
+82,0,0,,"Ouais, je devrais|m'y mettre.","Très bien, suis-moi. (Tu la suis.) Quoi qu'il en soit,|tu recherches un livre en particulier ?",100,0,0,
+83,0,0,,"Oui, pouvez-vous|le récupérer ?",Je crois que je l'aperçois.|Ça ne va pas être facile de l'atteindre.,240,0,0,
+83,0,0,,Oh oui Madame.|Je n'y arrive pas.,Je crois que je l'aperçois.|Ça ne va pas être facile de l'atteindre.,240,0,-1,
+83,0,0,,"Ça ira,|j'en ai un autre.","D'accord, mais tu aurais pu être blessée.|Promets-moi de ne plus jamais recommencer.",81,0,0,
+90,0,0,,Rien du tout.,"Sale petite menteuse, tu avais ta main sous ta jupe.|Qu'est-ce que c'est que cette revue ?",91,-1,0,
+90,0,0,,Je lisais.,Tu avais ta main sous ta jupe.|Qu'est-ce que c'est que cette revue ?,91,0,0,
+90,0,0,,Ce n'est pas|vos affaires.,Sois polie ! Ça me regarde parfaitement.|Qu'est-ce que c'est que cette revue ?,91,-1,1,
+90,0,0,,(Tu piques un fard et|baisses la tête.),Tu devrais avoir honte.|Qu'est-ce que c'est que cette revue ?,91,1,-1,
+90,0,0,,J'avais une|démangeaison.,"Sale petite menteuse, tu ne te grattais pas.|Qu'est-ce que c'est que cette revue ?",91,-1,0,
+90,0,0,,Je suis désolée Madame.|Je me masturbais.,"Ma petite demoiselle, vous devriez avoir honte.|Qu'est-ce que c'est que cette revue ?",91,1,-2,
+91,0,0,,C'est une revue coquine.,(Elle acquiesce et confisque la revue.)|Promets-moi de ne plus jamais recommencer.,92,0,0,NoMoreSweetGwendoline()
+91,0,0,,C'est une bande dessinée.,(Elle te saisit des mains la revue et la confisque.)|Promets-moi de ne plus jamais recommencer.,92,-1,0,NoMoreSweetGwendoline()
+91,0,0,,Vous devez connaître.|C'est Sweet Gwendoline.,(Elle se renfrogne et confisque la revue.)|Promets-moi de ne plus jamais recommencer.,92,0,1,NoMoreSweetGwendoline()
+91,0,0,,"S'il vous plaît, prenez-la.|Ça n'a rien à faire ici.",(Elle sourit et confisque la revue.)|Promets-moi de ne plus jamais recommencer.,92,1,-1,NoMoreSweetGwendoline()
+92,0,0,,"Oui Madame,|je vous le promets.","Parfait ma petite demoiselle, suis-moi. (Tu la suis.)|Tu recherches un livre en particulier ?",100,1,-1,
+92,0,0,,Je ne le referai plus.,"Très bien jeune fille, suis-moi. (Tu la suis.)|Tu recherches un livre en particulier ?",100,0,0,
+92,0,0,,"Ouais, ouais...|Je ne le referai plus.","Je n'aime pas ton attitude, suis-moi. (Tu la suis.)|Quoi qu'il en soit, tu recherches un livre en particulier ?",100,-1,1,
+92,0,0,,"C'est vrai, c'était stupide.|Je ne le referai plus.","Bonne réponse jeune fille, suis-moi. (Tu la suis.)|Tu recherches un livre en particulier ?",100,1,0,
+100,0,0,BookAlreadyFound,J'ai déjà trouvé|mon livre,Très bien.|Trouves-toi une place et lit en silence.,200,0,0,AllowLeave()
+100,0,0,,Le comte de|Monte Cristo.,"Regarde dans la section littérature. A partir|de l'allée principale, seconde étagère à gauche.",120,0,0,AllowLeave()
+100,0,0,,Cinquante nuances|de Grey.,"Jeune fille, tu ne trouveras pas un tel navet|dans notre bel établissement.",110,-1,0,
+100,0,0,,Justine du marquis|de Sade.,Tu n'es pas assez mature pour ce genre de littérature.|Ce livre n'est pas autorisé pour les premières années.,110,1,1,
+110,0,0,,"En fait, j'ai besoin du|Comte de Monte Cristo.","Regarde dans la section littérature. A partir|de l'allée principale, seconde étagère à gauche.",120,0,0,AllowLeave()
+120,0,0,,Merci Madame.|(Tu t'en vas.),,200,0,1,PlayerLeaveForBook()
+120,0,0,,Merci Yuki !|(Tu t'en vas.),,200,0,0,PlayerLeaveForBook()
+120,0,0,,(Tu t'en vas.),,200,-1,0,PlayerLeaveForBook()
+180,0,0,,J'ai vu quelque chose de|brillant à l'intérieur.,La curiosité est un vilain défaut.|Promets-moi de ne plus jamais recommencer.,181,-1,0,
+180,0,0,,J'ai vu du fromage|au fond.,C'est ça et tu as fini piégé par une tapette à souris ?|Promets-moi de ne plus jamais recommencer.,181,-2,0,
+180,0,0,PenInHole,J'ai fait tomber mon|stylo à l'intérieur.,"Ma pauvre petite, tu m'as l'air maladroite.|Tu as besoin d'aide pour le récupérer ?",183,0,-1,
+180,0,0,,Une méchante brune m'a|poussé à l'intérieur.,"Sidney ! (Elle serre le poing.)|Jeune fille, tu vas devoir apprendre à te défendre.",182,0,-1,
+181,0,0,,"Oui Madame,|je vous le promets.","Parfait ma petite demoiselle, suis-moi. (Tu la suis.)|J'espère que tu t'éviteras d'autres ennuis à l'avenir.",200,1,-1,
+181,0,0,,Je ne le referai plus.,"Très bien jeune fille, suis-moi. (Tu la suis.)|J'espère que tu t'éviteras d'autres ennuis à l'avenir.",200,0,0,
+181,0,0,,"Ouais, ouais...|Je ne le referai plus.","Je n'aime pas ton attitude, suis-moi. (Tu la suis.)|J'espère que tu t'éviteras d'autres ennuis à l'avenir.",200,-1,1,
+181,0,0,,"C'est vrai, c'était stupide.|Je ne le referai plus.","Bonne réponse jeune fille, suis-moi. (Tu la suis.)|J'espère que tu t'éviteras d'autres ennuis à l'avenir.",200,1,0,
+182,0,0,,Merci pour ce conseil.,"Suis-moi. (Tu la suis jusqu'à son bureau.)|J'espère que tu t'éviteras d'autres ennuis à l'avenir.",200,1,0,
+182,0,0,,Ne vous inquiétez pas.|Je lui ferai payer.,"Tenez-vous en à la défense Mademoiselle, suivez-moi.|J'espère que tu t'éviteras d'autres ennuis à l'avenir.",200,-1,1,
+182,0,0,,Pourriez-vous m'aider|à me défendre ?,"Oui nous verrons cela, suis-moi. (Tu la suis.)|J'espère que tu t'éviteras d'autres ennuis à l'avenir.",200,1,-2,
+182,0,0,,"Ouais, je devrais|m'y mettre.","Très bien, suis-moi. (Tu la suis.)|J'espère que tu t'éviteras d'autres ennuis à l'avenir.",200,0,0,
+183,0,0,,"Oui, pouvez-vous|le récupérer ?",Je crois que je l'aperçois.|Ça ne va pas être facile de l'atteindre.,240,0,0,
+183,0,0,,Oh oui Madame.|Je n'y arrive pas.,Je crois que je l'aperçois.|Ça ne va pas être facile de l'atteindre.,240,0,-1,
+183,0,0,,"Ça ira,|j'en ai un autre.","D'accord, mais tu aurais pu être blessée.|Promets-moi de ne plus jamais recommencer.",181,0,0,
+190,0,0,,Rien du tout.,"Sale petite menteuse, tu avais ta main sous ta jupe.|Qu'est-ce que c'est que cette revue ?",191,-1,0,
+190,0,0,,Je lisais.,Tu avais ta main sous ta jupe.|Qu'est-ce que c'est que cette revue ?,191,0,0,
+190,0,0,,Ce n'est pas|vos affaires.,Sois polie ! Ça me regarde parfaitement.|Qu'est-ce que c'est que cette revue ?,191,-1,1,
+190,0,0,,(Tu piques un fard et|baisses la tête.),Tu devrais avoir honte.|Qu'est-ce que c'est que cette revue ?,191,1,-1,
+190,0,0,,J'avais une|démangeaison.,"Sale petite menteuse, tu ne te grattais pas.|Qu'est-ce que c'est que cette revue ?",191,-1,0,
+190,0,0,,Je suis désolée Madame.|Je me masturbais.,"Ma petite demoiselle, vous devriez avoir honte.|Qu'est-ce que c'est que cette revue ?",191,1,-2,
+191,0,0,,C'est une revue coquine.,(Elle acquiesce et confisque la revue.)|Promets-moi de ne plus jamais recommencer.,192,0,0,NoMoreSweetGwendoline()
+191,0,0,,C'est une bande dessinée.,(Elle te saisit des mains la revue et la confisque.)|Promets-moi de ne plus jamais recommencer.,192,-1,0,NoMoreSweetGwendoline()
+191,0,0,,Vous devez connaître.|C'est Sweet Gwendoline.,(Elle se renfrogne et confisque la revue.)|Promets-moi de ne plus jamais recommencer.,192,0,1,NoMoreSweetGwendoline()
+191,0,0,,"S'il vous plaît, prenez-la.|Ça n'a rien à faire ici.",(Elle sourit et confisque la revue.)|Promets-moi de ne plus jamais recommencer.,192,1,-1,NoMoreSweetGwendoline()
+192,0,0,,"Oui Madame,|je vous le promets.","Parfait ma petite demoiselle, suis-moi. (Tu la suis.)|J'espère que tu t'éviteras d'autres ennuis à l'avenir.",200,1,-1,
+192,0,0,,Je ne le referai plus.,"Très bien jeune fille, suis-moi. (Tu la suis.)|J'espère que tu t'éviteras d'autres ennuis à l'avenir.",200,0,0,
+192,0,0,,"Ouais, ouais...|Je ne le referai plus.","Je n'aime pas ton attitude, suis-moi. (Tu la suis.)|J'espère que tu t'éviteras d'autres ennuis à l'avenir.",200,-1,1,
+192,0,0,,"C'est vrai, c'était stupide.|Je ne le referai plus.","Bonne réponse jeune fille, suis-moi. (Tu la suis.)|J'espère que tu t'éviteras d'autres ennuis à l'avenir.",200,1,0,
+200,0,0,Common_PlayerRestrained,(Tu tires sur tes entraves.),"Laissez-moi vous aider ma petite demoiselle.|(Elle te libère.) Est-ce que ça va aller maintenant ?",200,0,0,TestRelease()
+200,0,0,Common_PlayerGagged,@Mmhm mneeeas.,"Laissez-moi vous aider ma petite demoiselle.|(Elle te libère.) Est-ce que ça va aller maintenant ?",200,0,0,TestRelease()
+200,0,0,CanAskForDoor,Il y a une porte|verrouillée.,"En effet, et tu n'es pas autorisée|à accèder à cette partie de la bibliothèque.",200,0,0,
+200,0,0,PenInHole,"Madame, j'ai laissé tomber|mon stylo dans un trou.",Oh ! Et tu as besoin d'aide pour le récupérer ?,210,0,0,
+200,0,0,CanPleasure,"J'ai quelque chose d'ordre|privée à vous demander.","Vas-y jeune fille, qu'as-tu en tête ?",205,0,0,
+200,0,0,LittlePet,"Voudriez-vous que je vous|fasse à nouveau ""plaisir"" ?","Pas maintenant ma petite chienne,|je ferais appel à tes services plus tard.",200,0,0,
+200,0,0,,Ça ira Madame.|(Tu t'en vas.),,200,0,0,PlayerLeaveForBook()
+200,0,0,,(Tu fouilles son bureau.)ADD_MINUTES:1,"Ne touchez à rien, jeune fille.",200,-1,0,AnnoyYuki()
+200,0,0,,(Tu fouilles son sac.)ADD_MINUTES:1,Qu'est-ce que tu fais ?|Ne touches pas à mon sac.,200,-1,0,AnnoyYuki()
+200,0,0,,(Tu fais du bruit.)ADD_MINUTES:1,"Le silence est d'or jeune fille.|Surtout dans la bibliothèque.",200,-1,0,AnnoyYuki()
+205,0,0,,Je vous aime bien.|Puis-je vous embrasser ?,"Non, mais il y a bien une chose que tu peux faire.|(Elle saisit ta chevelure et s'assoit sur son bureau.)",700,0,0,StartPleasure()
+205,0,0,,Je veux que vous me|donniez du plaisir.,"C'est non, mais toi tu peux certainement me satisfaire.|(Elle saisit ta chevelure et s'assoit sur son bureau.)",700,0,1,StartPleasure()
+205,0,0,,J'adorerais vous satisfaire.,Approche ma merveilleuse petite chienne.|(Elle saisit ta chevelure et s'assoit sur son bureau.),700,1,-1,StartPleasure()
+205,0,0,,Depuis combien de temps|vous enseignez ici ?,C'est donc ça ta demande ?|C'est ma 3ème année dans cette université.,200,0,0,NoPleasure()
+210,0,0,,"C'est bien cela.","Désolée, je n'ai pas le temps pour ça.",200,0,0,TestForHelp()
+210,0,0,,Je vais essayer de le|récupérer par moi même.,"Très bien, je suis sûre que tu peux y arriver.",200,0,0,
+220,0,0,,Dans un trou sombre|sur une étagère.,"D'accord, allons voir ça.|(Vous vous dirigez vers l'étagère.)",230,0,0,
+220,0,0,,Dans un stupide trou|sur une étagère.,"Bon, allons voir ça.|(Vous vous dirigez vers l'étagère.)",230,-1,0,
+230,0,0,,C'est ici.|Vous le voyez ?,Je crois que je l'aperçois.|Ça ne va pas être facile de l'atteindre.,240,0,0,
+230,0,0,,Vous êtes la meilleure.|Est-ce que vous le voyez ?,Je crois que je l'aperçois.|Ça ne va pas être facile de l'atteindre.,240,1,0,
+240,0,0,,Vous allez devoir|ramper à l'intérieur.,"En effet. Éloigne-toi, jeune fille.|(Elle commence à ramper.)",250,0,0,CrawlInHole()
+240,0,0,,Une super prof comme|vous peut le faire.,"Je vais essayer. Éloigne-toi, jeune fille.|(Elle commence à ramper.)",250,0,-1,CrawlInHole()
+250,0,0,,Vous arrivez à l'atteindre ?,Une seconde... Oui ! Ça y est !|Peux-tu me tirer de la ?,255,0,0,
+250,0,0,,(Tu la pousses.),(Tu essayes de la pousser mais elle reste coincée|à mi-chemin.) Il faut me tirer ! Pas me pousser !,260,-1,1,
+255,0,0,,Oui Madame.|(Tu la tires.),"(Tu l'aides à sortir et elle te donne ton stylo.)|Jeune fille, fait plus attention la prochaine fois.",270,1,0,
+255,0,0,,(Tu la pousses.),(Tu essayes de la pousser mais elle reste coincée|à mi-chemin.) Il faut me tirer ! Pas me pousser !,260,-1,1,
+260,0,0,,Oups ! Désolée.|(Tu la tires.),"(Tu l'aides à sortir et elle te donne ton stylo.)|Jeune fille, fait plus attention la prochaine fois.",270,1,0,
+260,0,0,,Maintenant on va|pouvoir s'amuser.,Qu'est-ce que tu as dit ? Sors-moi de la !|(Elle se débat mais ne parvient pas à sortir.),500,-2,1,StuckInHole()
+270,0,0,,"Je le ferais, merci.|(Elle s'en va.)",,200,0,0,LeaveForHole()
+270,0,0,,Entendu Madame Yuki.|(Elle s'en va.),,200,0,-1,LeaveForHole()
+280,0,0,,J'ai vu quelque chose de|brillant à l'intérieur.,Je m'en moque. (Elle te traîne dans son bureau|situé dans une autre section de la bibliothèque.),291,-1,0,
+280,0,0,,J'ai vu du fromage|au fond.,Ça ne m'amuse pas. (Elle te traîne dans son bureau|situé dans une autre section de la bibliothèque.),291,-2,0,
+280,0,0,PenInHole,J'ai fait tomber mon|stylo à l'intérieur.,Je m'en moque. (Elle te traîne dans son bureau|situé dans une autre section de la bibliothèque.),291,0,-1,
+280,0,0,,Une méchante brune m'a|poussé à l'intérieur.,Je m'en moque. (Elle te traîne dans son bureau|situé dans une autre section de la bibliothèque.),291,0,-1,
+290,0,0,,Rien du tout.,Ne me mens pas. (Elle te traîne dans son bureau|situé dans une autre section de la bibliothèque.),291,-1,0,
+290,0,0,,Je lisais.,Ne me mens pas. (Elle te traîne dans son bureau|situé dans une autre section de la bibliothèque.),291,0,0,
+290,0,0,,Ce n'est pas|vos affaires.,Tais-toi. (Elle te traîne dans son bureau|situé dans une autre section de la bibliothèque.),291,-1,1,
+290,0,0,,(Tu piques un fard et|baisses la tête.),Viens avec moi. (Elle te traîne dans son bureau|situé dans une autre section de la bibliothèque.),291,1,-1,
+290,0,0,,J'avais une|démangeaison.,Ne me mens pas. (Elle te traîne dans son bureau|situé dans une autre section de la bibliothèque.),291,-1,0,
+290,0,0,,Je suis désolée Madame.|Je me masturbais.,Viens avec moi. (Elle te traîne dans son bureau|situé dans une autre section de la bibliothèque.),291,1,-2,
+291,0,0,,"Pitié Madame.|Je suis désolée.",C'est trop tard pour être désolée ma petite demoiselle.|(Elle te saisit et te fait enfiler un fourreau.),300,0,-1,RestrainPlayer()
+291,0,0,,Et donc ?,Je vais m'assurer que tu ne causeras plus d'ennuis.|(Elle te saisit et te fait enfiler un fourreau.),300,-1,0,RestrainPlayer()
+291,0,0,,(Tu gardes le silence.),"Bien, je ne veux plus t'entendre à présent.|(Elle te saisit et te fait enfiler un fourreau.)",300,0,0,RestrainPlayer()
+300,0,0,,Ouïe ! Ça fait mal !,Avec ceci tu te tiendras tranquille|jusqu'à ton prochain cours.,310,0,-1,
+300,0,0,,(Tu luttes farouchement.),"Tu ne t'échapperas pas de ce fourreau, jeune fille.|Tu resteras attachée jusqu'à ton prochain cours.",310,0,1,
+300,0,0,,Qu'est-ce que|c'est que ça ?,"C'est un fourreau en cuir, jeune fille.|Tu resteras attachée jusqu'à ton prochain cours.",310,0,0,
+300,0,0,,Allez-vous faire foutre !| Salope !,(Elle t'attache rapidement à son bureau et|te scotche la bouche.) J'en ai assez entendu.,340,-1,0,GagPlayer()
+310,0,0,,Vous ne pouvez|pas faire ça !,"Je le peux et même faire encore mieux. (Elle attache le|fourreau à son bureau, t'obligeant à t'asseoir sur le sol.)",320,0,0,
+310,0,0,,"C'est un juste retour|des choses, j'imagine.","Tout à fait. (Elle attache le fourreau à|son bureau, t'obligeant à t'asseoir sur le sol.)",320,1,0,
+310,0,0,,Allez-vous faire foutre !| Salope !,(Elle t'attache rapidement à son bureau et|te scotche la bouche.) J'en ai assez entendu.,340,-1,0,GagPlayer()
+320,0,0,,"S'il vous plaît, vous ne|pouvez pas me retenir ici.",Purge ta peine et tient toi tranquille.|(Elle s'éloigne puis se met à lire.),330,0,0,
+320,0,0,,C'est de la barbarie !,Purge ta peine et tient toi tranquille.|(Elle s'éloigne puis se met à lire.),330,0,0,
+320,0,0,,Allez-vous faire foutre !| Salope !,"J'en ai assez entendu. (Elle te scotche la bouche.)|Maintenant, purge ta peine et ne fait plus un bruit.",340,-1,0,GagPlayer()
+330,0,0,,(Tu luttes pour te libérer.),(Tu luttes pour retirer le fourreau en cuir|mais ça ne change pas grand chose.),330,0,0,TwoMinutes()
+330,0,0,,(Tu attends patiemment.),(Tu attends patiemment sous le bureau.|Le temps semble s'écouler très lentement.),330,0,0,TwoMinutes()
+330,0,0,,Revenez ici !,(Elle ne revient que pour te bâillonner|la bouche avec du scotch.),340,0,0,GagPlayer()
+340,0,0,,@Oomnp nhai !,(Elle semble t'entendre mais|elle ne bouge pas et ne dis rien.),340,0,0,TwoMinutes()
+340,0,0,,@Mmammih !,(Elle semble t'entendre mais|elle ne bouge pas et ne dis rien.),340,0,0,TwoMinutes()
+340,0,0,,(Tu luttes pour te libérer.),(Tu luttes pour retirer le fourreau en cuir|mais ça ne change pas grand chose.),340,0,0,TwoMinutes()
+340,0,0,,(Tu attends patiemment.),(Tu attends patiemment sous le bureau.|Le temps semble s'écouler très lentement.),340,0,0,TwoMinutes()
+400,0,0,,Vous allez bien Madame ?|Vous avez l'air fatiguée.,"(Elle acquiesce et s'effondre lentement|vers le sol, s'endormant rapidement.)",410,0,-1,Sleep()
+400,0,0,,(Tu l'attrapes et|l'allonges sur le sol.),(Tu l'attrapes et l'allonges sur le sol où elle s'endort.),410,0,1,Sleep()
+400,0,0,,Vous êtes fatiquée ?,"(Elle acquiesce et s'effondre lentement|vers le sol, s'endormant rapidement.)",410,0,0,Sleep()
+410,0,0,,(Tu fouilles la pièce.),,410,0,0,StartSearch()
+410,0,0,!Common_PlayerRestrained,(Tu la réveilles),(Tu la réveilles et l'aides à se relever.)|Que s'est-il passé ? Je me suis endormie ?,420,0,0,Wake()
+420,0,0,,"En effet.",C'est embarrassant. (Elle semble confuse.)|Promets-moi de bien te tenir et tu pourras y aller.,430,0,0,"SetPose("""")"
+420,0,0,,Vous dormiez à|même le sol.,C'est embarrassant. (Elle semble confuse.|Promets-moi de bien te tenir et tu pourras y aller.,430,0,0,"SetPose("""")"
+420,0,0,,Je vous ai droguée.,QUOI ! (Elle te saisit rapidement|les bras et te fait enfiler un fourreau.),300,0,0,RestrainPlayer()
+430,0,0,,"Je vous le promets,|à bientôt. (Tu t'en vas.)",,200,1,0,PlayerLeaveForBook()
+430,0,0,,Je ne causerai plus|d'ennuis. (Tu t'en vas.),,200,0,0,PlayerLeaveForBook()
+500,0,0,,Battez-vous pour moi !,"(Elle lutte éperdument pour sortir, mais sans succès.)",500,0,0,
+500,0,0,!Common_PlayerRestrained,(Tu la caresses.)ADD_MINUTES:1,(Tu caresses soigneusement ses jambes et|tu entends de faibles gémissements.),500,0,0,Caress()
+500,0,0,!Common_PlayerRestrained,(Tu la chatouilles.)ADD_MINUTES:1,(Elle se fâche mais elle ne peut réprimer son fou rire.),500,0,0,Tickle()
+500,0,0,!Common_PlayerRestrained,(Tu enlèves sa culotte.)ADD_MINUTES:1,(Tu lui saisis les jambes et lui enlèves lentement|sa culotte pendant qu'elle hurle de colère.),510,0,0,
+500,0,0,!Common_PlayerRestrained,(Tu la libères.),(Tu es sûre de vouloir la libérer ?|Clique une nouvelle fois pour confirmer.),500,0,0,ReleaseFromHole()
+510,0,0,!Common_PlayerRestrained,(Tu la masturbes.)ADD_MINUTES:1,(Tu la masturbes lentement et affectueusement.|Tu peux l'entendre se débattre et gémir.),510,0,0,Masturbate()
+510,0,0,!Common_PlayerGagged,(Tu lui lèches la chatte.)ADD_MINUTES:1,(Tu te penches pour lui lécher lentement la chatte.|Tu peux l'entendre se débattre et gémir.),510,0,0,Masturbate()
+510,0,0,!Common_PlayerRestrained,(Tu la caresses.)ADD_MINUTES:1,(Tu caresses soigneusement ses jambes et|tu entends de faibles gémissements.),510,0,0,Caress()
+510,0,0,!Common_PlayerRestrained,(Tu la chatouilles.)ADD_MINUTES:1,(Elle se fâche mais elle ne peut réprimer son fou rire.),510,0,0,Tickle()
+510,0,0,!Common_PlayerRestrained,(Tu lui remets sa culotte.)ADD_MINUTES:1,(Tu lui saisis les jambes et lui remet|sa culotte pendant qu'elle se débat.),500,0,0,
+510,0,0,!Common_PlayerRestrained,(Tu la libères.),(Tu es sûre de vouloir la libérer ?|Clique une nouvelle fois pour confirmer.),510,0,0,ReleaseFromHole()
+511,0,0,!Common_PlayerRestrained,"Yuki, tu le mérites.|(Tu la fais jouir.)","(Tu continues et lui donnes un énorme orgasme,|mouillant ses jambes par la même occasion.)",512,1,0,HoleOrgasm()
+511,0,0,!Common_PlayerRestrained,Je contrôle tes orgasmes.|(Tu la fais jouir.),"(Tu continues et lui donnes un énorme orgasme,|mouillant ses jambes par la même occasion.)",512,0,1,HoleOrgasm()
+511,0,0,,Tu ne le mérites pas.|(Tu arrêtes.),Quoi ! Tu ne peux pas me faire ça !|(Elle essaye de te donner un coup mais échoue.),510,-1,1,
+511,0,0,,Tu jouiras mais plus tard.|(Tu arrêtes.),Quoi ! Tu ne peux pas me faire ça !|(Elle essaye de te donner un coup mais échoue.),510,0,1,
+512,0,0,!Common_PlayerGagged,"Madame, je vous nettoie.|(Tu lèches ses jambes.)","(Tu lui lèches les jambes pour nettoyer son jus,|elle gémit doucement.) Brave fille.",510,1,-1,
+512,0,0,,Vous êtes ma salope|à présent.,"Je ne serai jamais ta salope, jeune fille.|Sors-moi de ce maudit trou !",510,-1,1,
+512,0,0,!Common_PlayerRestrained,Bon prof.|(Tu la caresses.),(Elle soupire et se calme quelques secondes.),510,1,0,
+520,0,0,,J'espère que vous|appréciez la ceinture.,Tu ferais mieux de me l'enlever tout de suite !,520,0,0,
+520,0,0,!Common_PlayerRestrained,(Tu la caresses.)ADD_MINUTES:1,(Tu caresses soigneusement ses jambes et|tu entends de faibles gémissements.),520,0,0,Caress()
+520,0,0,!Common_PlayerRestrained,(Tu la chatouilles.)ADD_MINUTES:1,(Elle se fâche mais elle ne peut réprimer son fou rire.),520,0,0,Tickle()
+520,0,0,!Common_PlayerRestrained,(Tu la libères.),(Tu es sûre de vouloir la libérer ?|Clique une nouvelle fois pour confirmer.),520,0,0,ReleaseFromHole()
+530,0,0,,"Madame, je suis désolée.|(Tu l'accompagnes.)ADD_MINUTES:1",(Elle t'emmène dans son bureau situé|dans une autre section de la bibliothèque.),600,0,-1,
+530,0,0,,"Entendu, allons-y.|(Tu l'accompagnes.)ADD_MINUTES:1",(Elle t'emmène dans son bureau situé|dans une autre section de la bibliothèque.),600,0,0,
+530,0,0,,C'est pas la peine de crier.|(Tu l'accompagnes.)ADD_MINUTES:1,(Elle t'emmène dans son bureau situé|dans une autre section de la bibliothèque.),600,0,1,
+600,0,0,,Qu'est-ce que|vous voulez ?,"La vengeance ! Ce que tu as fait était inapproprié.|Tournes-toi, les mains derrière le dos.",610,0,0,TestSleep()
+600,0,0,,(Tu gardes le silence.),"(Elle te fixe puis prend une profonde inspiration.)|Tournes-toi, les mains derrière le dos.",610,0,-1,TestSleep()
+600,0,0,,Quoi de neuf docteur ?,"Tu n'es pas drôle du tout, jeune fille.|Tournes-toi, les mains derrière le dos.",610,-1,0,TestSleep()
+610,0,5,,Non. J'ai une bien|meilleure idée.,Je n'aime pas ce ton. De quoi parles-tu ?,620,0,0,
+610,0,0,,Non ! Hors de question !|(Tu essayes de résister.),(Tu essayes de résister mais elle parvient à|immobiliser tes bras et les mettre dans un fourreau.),300,0,1,RestrainPlayer()
+610,0,0,,"Bien, faites vite.|(Tu te retournes.)","(Tu te retournes, les mains derrière le dos.|Elle les aggripe et te fait enfiler un fourreau.)",300,0,0,RestrainPlayer()
+610,0,0,,Oui Madame Yuki.|(Tu te retournes.),"(Tu te retournes, les mains derrière le dos.|Elle les aggripe et te fait enfiler un fourreau.)",300,0,-1,RestrainPlayer()
+620,0,0,,"Quelle humiliation cela|serait, si les gens savaient.",Tu n'envisages quand même pas de|colporter des rumeurs sur cet incident ?,630,0,0,"SetPose("""")"
+620,0,0,,"Tout le monde saura ce qui|s'est passé, à moins que...",A moins que quoi ? Tu n'envisages quand|même pas de colporter des rumeurs ?,630,0,0,"SetPose("""")"
+630,0,0,,Si vous passez l'éponge.|Je ne parlerai pas.,"Bien, marché conclu Mademoiselle.|Je ne te punirai pas.",640,0,1,
+630,0,0,,Vous me faites une fleur.|Je vous fais une fleur.,"Très bien, marché conclu.|Je ne te punirai pas.",640,0,0,
+640,0,0,,"Parfait, j'y vais à présent.|(Tu t'en vas.)",,650,0,0,PlayerLeaveForBook()
+640,0,0,,Je ne veux plus|vous revoir.,Parfait ! Va-t'en alors.,650,-1,0,
+640,0,0,,On est donc d'accord Yuki.|(Tu lui serres la main.),"(Vous vous serrez la main d'une poignée ferme.)|Tu es libre de circuler jeune fille.",650,1,0,
+650,0,0,,(Tu t'en vas.),,650,0,0,PlayerLeaveForBook()
+700,0,0,,Vous êtes toute chaude ?|(Tu la lèches.),"Je suis bouillante ma petite chienne, éteins-moi.|(Elle enlève sa culotte et te ramène vers elle.)",710,0,0,
+700,0,0,,Ça a l'air délicieux !|(Tu la lèches.),"Tu es affamée ma petite chienne, voici ton dessert.|(Elle enlève sa culotte et te ramène vers elle.)",710,1,0,
+700,0,0,,(Tu acquiesces en silence|et commences à la lécher.),Tu es prête pour porter un collier ma petite chienne.|(Elle enlève sa culotte et te ramène vers elle.),710,1,-1,
+700,0,0,,Ceci n'est pas approprié.|(Tu te dégages.),Bien ! Peu m'importe !|Qu'est-ce qui t'amènes alors ?,200,-1,0,TestPullAway()
+700,0,0,,Laissez tomber Yuki.|(Tu te dégages.),Bien ! Peu m'importe !|Qu'est-ce qui t'amènes alors ?,200,-2,1,TestPullAway()
+710,0,0,,(Tu fourres ton nez|dans sa chatte.)ADD_MINUTES:1,(Elle écarte ses jambes et gémit doucement.),710,0,0,Pleasure(1)
+710,0,0,,(Tu lèches son clitoris.)ADD_MINUTES:1,(Elle te tire par les cheveux et tremble.),710,0,0,Pleasure(2)
+710,0,0,,(Tu mets ta langue|à l'intérieur.)ADD_MINUTES:1,(Elle fait des va-et-vient avec ta tête|à l'aide de ses mains.),710,0,0,Pleasure(3)
+710,0,0,,(Tu masturbes son clitoris.)ADD_MINUTES:1,Oh COMMON_PLAYERNAME !|Oh oui !,710,0,0,Pleasure(4)
+710,0,0,,(Tu fais des va-et-vient|avec ton doigt)ADD_MINUTES:1,Plus vite ! Plus fort !  Encore un peu !,710,0,0,Pleasure(5)
+710,0,0,,(Tu t'arrêtes et recules.),(Elle enroule rapidement ses jambes|autour de ta tête et te ramène à l'intérieur.),710,0,0,
+720,0,0,,(Tu lèches son jus.)ADD_MINUTES:1,(Tu lèches ses lèvres pour nettoyer son jus|puis elle te libère.) Brave fille.,730,1,-1,
+720,0,0,,(Tu essayes de reprendre|ton souffle.),(Elle te libère.) Ma pauvre petite chienne.,730,0,-1,
+720,0,0,,(Tu t'éloignes|rapidement.),(Tu t'éloignes très vite d'elle.)|N'aie pas honte de ce que tu as fait.,730,-1,0,
+730,0,0,,Vous avez aimé ?,Oui. Et j'espère qu'on remettra ça.|As-tu besoin d'autre chose ?,200,0,0,StopPleasure()
+730,0,0,,"Yuki, vous êtes délicieuse.",Merci. J'espère qu'on remettra ça.|As-tu besoin d'autre chose ?,200,0,1,StopPleasure()
+730,0,0,,"Madame,|avez-vous aimé ?","Oui ma petite chienne, on remettra ça.|As-tu besoin d'autre chose ?",200,0,-1,StopPleasure()
+730,0,0,,C'était coquin !,Quel pied ! Il faut qu'on remette ça.|As-tu besoin d'autre chose ?,200,0,0,StopPleasure()
+750,0,0,,Vous êtes frigide ?,"Non ! Tu n'es tout simplement pas doué pour ça.|Maintenant, fiche le camp si tu n'as besoin de rien.",200,-1,0,StopPleasure()
+750,0,0,,Je peux vous attacher|pour vous aider à jouir.,"Jeune fille ! Je t'ai dit que ça suffisait.|Maintenant, file si tu n'as besoin de rien.",200,0,1,StopPleasure()
+750,0,0,,Je suis désolée Madame.|J'ai besoin de m'entrainer.,"Tu pourras t'entraîner à nouveau mais plus tard.|En attendant file si tu n'as besoin de rien.",200,1,0,StopPleasure()
+750,0,0,,(Tu baisses ta tête|couverte de honte.),"(Elle soupire.) Tu as beaucoup à apprendre ma petite|demoiselle. Maintenant, file si tu n'as besoin de rien.",200,0,-1,StopPleasure()

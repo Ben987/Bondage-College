@@ -1,0 +1,3 @@
+﻿Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+10,0,0,,(Disolver la pastilla.),¿Echas la pastilla en el vaso y se disuelve rápidamente.,0,0,0,BreakPill()
+10,0,0,,(Quedarte con la pastilla.),Decides mantener la pastilla en tu poder.,0,0,0,

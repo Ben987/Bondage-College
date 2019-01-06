@@ -1,0 +1,21 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,"(Both dressed in your school outfit, you get back|to the college and sneak into the isolation room.)",IsolationSarah.jpg
+10,0,0,,,IsolationSarah.jpg
+20,0,0,,,IsolationSarah.jpg
+30,0,0,,,IsolationSarah.jpg
+40,0,0,,,IsolationSarah.jpg
+50,0,0,,,IsolationSarah.jpg
+60,0,0,,,IsolationSarah.jpg
+100,0,0,,,Cross.jpg
+110,0,0,,,CrossSarah.jpg
+120,0,0,,,CrossPlayer.jpg
+200,0,0,,,Pillory.jpg
+210,0,0,,,PillorySarah.jpg
+220,0,0,,,PilloryPlayer.jpg
+300,0,0,,,Horse.jpg
+310,0,0,,,HorseSarah.jpg
+320,0,0,,,HorsePlayer.jpg
+400,0,0,,(You go back to the isolation room|and rescue Sarah from her device.),IsolationRescueSarah.jpg
+410,0,0,,,IsolationRescueSarah.jpg
+500,0,0,,(You go back to the isolation room|and rescue Sarah from her device.),IsolationRescueSarah.jpg
+510,0,0,,,IsolationRescueSarah.jpg

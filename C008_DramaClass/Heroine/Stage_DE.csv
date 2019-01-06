@@ -1,0 +1,49 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+100,0,0,PlayerIsHeroine,Schurke! Ihr habt|meine Verlobte geraubt.,"Amanda tritt schnell herbei und entgegnet:|""Ihr Herzschlag verkündete ihre wahre Liebe.""",120,0,0,"GlobalStage(120, 1, 0)"
+100,0,0,PlayerIsHeroine,Dieb! Du hast meine|Braut gestohlen.,"Amanda scheint verwirrt und antwortet:|""Ihr Herz schlägt für die wahre Liebe.""",120,0,0,"GlobalStage(120, -1, 0)"
+100,0,0,PlayerIsHeroine,"Tut mir leid, Julia. Ich hab|meinen Text vergessen.","Julia flüstert dir zu:|""Schurke! Ihr habt meine Verlobte geraubt.""",100,0,0,ForgetLine()
+100,0,0,!PlayerIsHeroine,(Still zuhören.),"Der weiße Ritter tritt langsam herbei und sagt:|""Schurke! Ihr habt meine Verlobte geraubt.""",110,0,0,"GlobalStage(110, 0, 0)"
+100,0,0,!PlayerIsHeroine,(Ungeduldig mit den|Fingern schnipsen.),"Der weiße Ritter tritt hastig herbei und sagt:|""Schurke! Ihr habt meine Verlobte geraubt.""",110,0,0,"GlobalStage(110, 0, 1)"
+120,0,0,PlayerIsHeroine,"Lügner, lass|sie sofort frei.","Amanda kichert und antwortet:|""Komm näher und schmecke Stahl.""",140,0,0,"GlobalStage(140, -1, 0)"
+120,0,0,PlayerIsHeroine,"Falsche Zunge, befreie|er sie geschwind.","Amanda starrt dich an und verkündet feierlich:|""Schreitet näher und trefft auf Stahl.""",140,0,0,"GlobalStage(140, 1, 0)"
+120,0,0,PlayerIsHeroine,"Tut mir leid, Julia. Ich hab|meinen Text vergessen.","Julia seufzt und flüstert:|""Falsche Zunge, befreie er sie geschwind.""",120,0,0,ForgetLine()
+120,0,0,!PlayerIsHeroine,(Still zuhören.),"Der weiße Ritter sagt standhaft:|""Falsche Zunge, befreie er sie geschwind.""",130,0,0,"GlobalStage(130, 0, 0)"
+120,0,0,!PlayerIsHeroine,(Ungeduldig mit den|Fingern schnipsen.),"Der weiße Ritter sagt schnell:|""Falsche Zunge, befreie er sie geschwind.""",130,0,0,"GlobalStage(130, 0, 1)"
+120,0,0,!PlayerIsHeroine,(Sie mit albernen|Grimassen ablenken.),"Der weiße Ritter lacht und sagt:|""Falsche Zunge, befreie er sie sofort.""",130,0,0,"GlobalStage(130, -1, 0)"
+220,0,0,PlayerIsHeroine,"Das Schicksal wählt|also Metall, en garde!",Ihr zieht gleichzeitig eure Schwerter|und tretet einen Schritt vor.,230,0,0,"GlobalStage(230, -1, 0)"
+220,0,0,PlayerIsHeroine,"Drum wählt das Schicksal|Stahl, en garde!",Ihr zieht gleichzeitig eure Schwerter|und tretet einen Schritt vor.,230,0,0,"GlobalStage(230, 1, 0)"
+220,0,0,CanProposeTrio,Ist Euch ménage à trois|ein Begriff?,"Amanda wirkt überrascht und entgegnet:|""Wir sollen uns lieben? Alle drei? Seid Ihr sicher?""",225,0,0,
+220,0,0,PlayerIsHeroine,"Tut mir leid, Julia. Ich hab|meinen Text vergessen.","Julia flüstert dir zu:|""Drum wählt das Schicksal Stahl, en garde!""",220,0,0,ForgetLine()
+220,0,0,VillainCanTaunt,Die gefesselte Maid|gehört sogleich mir.,"Amanda ergreift wütend ihr Schwert und sagt:|""Drum wählt das Schicksal Stahl, en garde!""",230,0,1,"GlobalStage(230, 0, 1)"
+220,0,0,!PlayerIsHeroine,(Still zuhören.),"Der weiße Ritter ergreift sein Schwert und sagt:|""Drum wählt das Schicksal Stahl, en garde!""",230,0,0,"GlobalStage(230, 0, 0)"
+220,0,0,PlayerIsVillain,(Gelangweilt gähnen.),"Der weiße Ritter ergreift sein Schwert und sagt:|""Drum wählt das Schicksal Stahl, en garde!""",230,0,0,"GlobalStage(230, -1, 0)"
+220,0,0,PlayerIsVillain,(Leise applaudieren.),"Der weiße Ritter ergreift sein Schwert und sagt:|""Drum wählt das Schicksal Stahl, en garde!""",230,0,0,"GlobalStage(230, 1, 0)"
+220,0,0,DamselCanInteract,(Gelangweilt gähnen.),"Der weiße Ritter ergreift sein Schwert und sagt:|""Drum wählt das Schicksal Stahl, en garde!""",230,0,0,"GlobalStage(230, -1, 0)"
+220,0,0,DamselCanInteract,(Leise applaudieren.),"Der weiße Ritter ergreift sein Schwert und sagt:|""Drum wählt das Schicksal Stahl, en garde!""",230,0,0,"GlobalStage(230, 1, 0)"
+225,0,0,,"Vergiss es, en garde!",Ihr zieht gleichzeitig eure Schwerter|und tretet einen Schritt vor.,230,0,0,"GlobalStage(230, 0, 0)"
+225,0,0,,"Jawohl, teilen wir|die verbotene Liebe.",Ihr kommt zusammen um euch zu küssen|und beendet das Stück als Liebesdreieck.,226,0,0,FinalTrio()
+240,0,0,PlayerIsHeroine,Euch wird eine gerechte|Strafe ereilen. (Sie fesseln.)ADD_MINUTES:1,Du sammelst ein paar Gegenstände aus dem Theater|und fesselt Amanda den schwarzen Ritter.,250,0,0,"GlobalStage(250, 1, 0)"
+240,0,0,PlayerIsHeroine,Du wirst bestraft werden.|(Sie fesseln.)ADD_MINUTES:1,Du sammelst ein paar Gegenstände aus dem Theater|und fesselt Amanda den schwarzen Ritter.,250,0,0,"GlobalStage(250, -1, 0)"
+240,0,0,PlayerIsHeroine,"Tut mir leid, Julia. Ich hab|meinen Text vergessen.","Julia flüstert dir zu:|""Euch wird eine gerechte Strafe ereilen.""",240,0,0,ForgetLine()
+240,0,0,PlayerIsVillain,(Still zuhören.)ADD_MINUTES:1,"Der weiße Ritter zieht dich aus, fesselt dich|und sagt: ""Euch wird eine gerechte Strafe ereilen.""",250,0,0,"GlobalStage(250, 0, 0)"
+240,0,0,PlayerIsVillain,(Dich vor dem weißen|Ritter verneigen.)ADD_MINUTES:1,"Der weiße Ritter zieht dich aus, fesselt dich|und sagt: ""Euch wird eine gerechte Strafe ereilen.""",250,0,-1,"GlobalStage(250, 0, -1)"
+240,0,0,PlayerIsVillain,Wie doof!ADD_MINUTES:1,"Der weiße Ritter zieht dich aus, fesselt dich|und sagt: ""Euch wird eine gerechte Strafe ereilen.""",250,-1,0,"GlobalStage(250, -1, 0)"
+240,0,0,PlayerIsDamsel,(Die Szene beobachten.)ADD_MINUTES:1,"Die Heldin zieht die Böse aus, fesselt sie|und sagt: ""Euch wird eine gerechte Strafe ereilen.""",250,0,0,"GlobalStage(250, 0, 0)"
+240,0,0,PlayerIsDamsel,"Hurra, weißer Ritter!ADD_MINUTES:1","Die Heldin zieht die Böse aus, fesselt sie|und sagt: ""Euch wird eine gerechte Strafe ereilen.""",250,1,0,"GlobalStage(250, 1, 0)"
+250,0,0,Common_PlayerGagged,@Mng nuuum!,"Amanda kichert ein wenig über dein Gemurmel,|konzentriert sich aber auf ihre Rolle.",250,0,0,
+250,10,0,DamselCanInteract,(Sie küssen.)ADD_MINUTES:1,Du eilst in ihre Arme und ihr küsst|euch zärtlich im letzten Akt.,260,0,0,FinalKiss()
+250,0,-5,DamselCanInteract,(Vor ihr knien.)ADD_MINUTES:1,Du verneigst dich und kniest vor dem weißen Ritter.|Im letzten Akt umarmst du liebevoll ihre Beine.,260,0,0,FinalDomme()
+250,0,0,DamselCanInteract,(Sie umarmen.)ADD_MINUTES:1,Du läufst in ihre Arme und ihr|umarmt euch im letzten Akt.,260,0,0,FinalHug()
+250,2,0,DamselCanBeg,(Flehende Augen machen.)ADD_MINUTES:1,Du setzt einen lieblich flehenden Blick auf|und sie befreit dich aus deinen Fesseln.,250,0,0,ReleasePlayer()
+250,0,0,DamselCanBeg,(Dich ihr unterwerfen.)ADD_MINUTES:1,"Du unterwirfst dich und sie beschließt, euch|beide im letzten Akt gefangen zu halten.",300,0,0,FinalTwoPrisoners()
+400,0,0,PlayerIsVillain,Das nächste Mal findest|du deine Jungfrau nie.,(Sie runzelt die Stirn und kichert gleich danach.),400,0,0,
+400,0,0,PlayerIsDamsel,Deine weiße Rüstung|ist so romantisch!,(Sie schaut auf ihre Rüstung|und zuckt mit den Schultern.),400,0,0,
+400,0,0,CanConvinceJuliaToStrip,Sollte Fräulein Julia nicht|ihren Charme zeigen?,"Wohl wahr, Milady. Fräulein Julia!|(Julia gehorcht und zieht sich ein bisschen aus.)",400,0,0,JuliaStrip()
+400,0,0,CanUntie,(Sie losbinden.)ADD_MINUTES:1,"(Du löst die Knoten und verstaust|das Seil, während sie sich anzieht.)",400,0,0,Untie()
+400,0,0,CanUnstrap,(Sie befreien.)ADD_MINUTES:1,(Du löst die Riemen und Bänder des|Handschuhs und lässt ihre Arme frei.),400,0,0,Untie()
+400,0,0,CanUngag,(Sie entknebeln.)ADD_MINUTES:1,(Du entfernst ihren Knebel und sie kichert.)|Was für ein versautes Theaterstück.,400,0,0,Ungag()
+400,0,0,CanKiss,(Sie küssen.)ADD_MINUTES:1,(Du näherst dich und gibst ihr einen langen Kuss auf|die Lippen. Sie schweigt und genießt den Moment.),400,0,0,Kiss()
+400,0,0,CanAbuse,(Sie kitzeln.)ADD_MINUTES:1,"(Sie versucht deinen Fingern zu|entgehen, kann aber nur lachen.)",400,0,0,Tickle()
+400,0,0,CanAbuse,(Ihr auf den|Hintern hauen.)ADD_MINUTES:1,"(Sie wimmert bei jedem Treffer und du|bist dir nicht ganz sicher, ob es ihr gefällt.)",400,0,0,Spank()
+400,0,0,CanAbuse,(Sie befriedigen.)ADD_MINUTES:1,"(Du fängst an, sie liebevoll zu befriedigen.|Sie stöhnt, zittert und atmet schwer.)",400,0,0,Masturbate()
+400,0,0,CanBeg,(Flehende Augen machen.)ADD_MINUTES:1,"Ihr seid viel zu niedlich,|um freigelassen zu werden.",400,0,0,BegRelease()

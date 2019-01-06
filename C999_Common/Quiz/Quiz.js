@@ -54,11 +54,11 @@ function QuizLoad(ActorLeft, ImageActorLeft, ActorRight, ImageActorRight, ActorL
 	QuizBetweenQuestionTimer = 0;
 	
 	// Loads the quiz texts and questions
-	if (QuizText == null) ReadCSV("QuizText", "C999_Common/Quiz/Text_" + CurrentLanguageTag + ".csv");
+	if (QuizText == null) ReadCSV("QuizText", "C999_Common", "Quiz", "Text", CurrentLanguageTag);
 	QuizQuestion = null;
 	QuizAnswer = null;
 	QuizShuffleDone = false;
-	ReadCSV("QuizQuestion", "C999_Common/Quiz/Questions/" + QuestionFile + "_" + CurrentLanguageTag + ".csv");
+	ReadCSV("QuizQuestion", "C999_Common", "Quiz/Questions", QuestionFile, CurrentLanguageTag);
 
 	// Loads the parameters
 	QuizActorLeft = ActorLeft;

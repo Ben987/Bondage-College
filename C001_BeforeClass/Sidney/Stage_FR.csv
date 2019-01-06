@@ -30,26 +30,26 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 200,0,0,BondageNotConfronted,"Désolée. je les adore, |peux-tu me ligoter ?","Tu es pathétique, tu finiras par me lécher les bottes.|Maintenant ! Rends-les moi. (Elle te les prends.)",300,0,-2,GiveRope()
 200,0,0,,Les voilà tes cordes. |Cache les mieux.,Ok ! Maintenant laisse-moi tranquille.|(Elle te les prends et se retourne.),300,1,0,GiveRope()
 200,0,0,,Discutons un peu plus.,"Mmmh. Ok.|De quoi veux-tu me parler ?",200,0,0,StopRope()
-200,0,2,,(Tu la déshabilles|et la ligotes.) (1 minute),(Tu lui aggripes le poignet et l'attaches par derrière.|Elle se débat mais fini par capituler.),220,0,0,Tie()
-200,0,4,,"Allez, déshabille-toi.|(Tu la ligotes.) (1 minute)",(Elle enlève son uniforme à contrecoeur|et te tend son poignet pour que tu l'attaches.),220,0,0,TieSub()
+200,0,2,,(Tu la déshabilles|et la ligotes.)ADD_MINUTES:1,(Tu lui aggripes le poignet et l'attaches par derrière.|Elle se débat mais fini par capituler.),220,0,0,Tie()
+200,0,4,,"Allez, déshabille-toi.|(Tu la ligotes.)ADD_MINUTES:1",(Elle enlève son uniforme à contrecoeur|et te tend son poignet pour que tu l'attaches.),220,0,0,TieSub()
 200,0,0,,"Si tu les veux,|viens les chercher.",,40,-2,0,Fight()
 220,0,0,,(Tu la retournes.),Putain ! Qu'est-ce que tu fais ?|(Tu la forces à se retourner.),230,0,0,
-220,0,0,,(Tu la détaches.)|(1 minute),"(Tu détaches ses bras pendant qu'elle t'injure.|Une fois détachée, elle te repousse avec colère.)",200,0,0,Untie()
-220,0,0,,(Tu la chatouilles.)|(1 minute),J'ai dis que je n'étais pas chatouilleuse !|(Son regard est rempli de colère.),220,0,0,Tickle()
-220,1,0,,(Tu l'embrasses.)|(1 minute),(Elle te regarde d'un air ahuri|et reste sans voix.),220,0,0,
-220,0,0,AmandaInBondage,(Tu la fais câliner |Amanda.) (1 min),(Les deux filles sont forcées de se câliner et de se|frotter.) Putain ! Quelle genre de perverse es-tu ?,240,-1,0,
+220,0,0,,(Tu la détaches.)ADD_MINUTES:1,"(Tu détaches ses bras pendant qu'elle t'injure.|Une fois détachée, elle te repousse avec colère.)",200,0,0,Untie()
+220,0,0,,(Tu la chatouilles.)ADD_MINUTES:1,J'ai dis que je n'étais pas chatouilleuse !|(Son regard est rempli de colère.),220,0,0,Tickle()
+220,1,0,,(Tu l'embrasses.)ADD_MINUTES:1,(Elle te regarde d'un air ahuri|et reste sans voix.),220,0,0,
+220,0,0,AmandaInBondage,(Tu la fais câliner |Amanda.)ADD_MINUTES:1,(Les deux filles sont forcées de se câliner et de se|frotter.) Putain ! Quelle genre de perverse es-tu ?,240,-1,0,
 220,0,0,,Ces cordes s'adaptent|tendrement sur ton corps.,Oh ! Mmmmh... Merci... Je suppose.,220,0,0,
-220,0,0,,"Si je te libère, je pourrais|te rattacher ? (1 min)",Ça me semble juste. Affaire conclue.|(Tu la détaches et lui serre la main.),310,1,1,Untie()
-220,0,0,,"Si je te libère, plus tard,|tu me ligoteras ? (1 min)",Ça marche ! La vengeance sera douce.|(Tu la détaches et lui serre la main.),310,1,-2,Untie()
+220,0,0,,"Si je te libère, je pourrais|te rattacher ?ADD_MINUTES:1",Ça me semble juste. Affaire conclue.|(Tu la détaches et lui serre la main.),310,1,1,Untie()
+220,0,0,,"Si je te libère, plus tard,|tu me ligoteras ?ADD_MINUTES:1",Ça marche ! La vengeance sera douce.|(Tu la détaches et lui serre la main.),310,1,-2,Untie()
 230,0,0,,(Tu la retournes.),(Tu la retournes pendant|qu'elle te fixe furieusement.),220,0,0,
-230,0,0,,(Tu la détaches.)|(1 minute),"(Tu détaches ses bras pendant qu'elle t'injure.|Une fois détachée, elle te repousse avec colère.)",200,0,0,Untie()
-230,0,0,,(Tu la chatouilles.)|(1 minute),J'ai dis que je n'étais pas chatouilleuse !|(Son regard est rempli de colère.),230,0,0,Tickle()
-230,0,0,,(Tu lui mets une fessée.)|(1 minute),(Tu lui flanques une fessée devant les autres|étudiantes.) C'est le mieux que tu puisses faire ?,230,0,0,
+230,0,0,,(Tu la détaches.)ADD_MINUTES:1,"(Tu détaches ses bras pendant qu'elle t'injure.|Une fois détachée, elle te repousse avec colère.)",200,0,0,Untie()
+230,0,0,,(Tu la chatouilles.)ADD_MINUTES:1,J'ai dis que je n'étais pas chatouilleuse !|(Son regard est rempli de colère.),230,0,0,Tickle()
+230,0,0,,(Tu lui mets une fessée.)ADD_MINUTES:1,(Tu lui flanques une fessée devant les autres|étudiantes.) C'est le mieux que tu puisses faire ?,230,0,0,
 230,0,0,,"Au vu de ta culotte, t'es en|train de prendre ton pied.",Arrête de mater sale perverse !,230,0,0,PantiesRemark()
-230,0,0,,"Si je te libère, je pourrais|te rattacher ? (1 min)",Ça me semble juste. Affaire conclue.|(Tu la détaches et lui serre la main.),310,1,1,Untie()
-230,0,0,,"Si je te libère, plus tard|tu me ligoteras ? (1 min)",Ça marche ! La vengeance sera douce.|(Tu la détaches et lui serre la main.),310,1,-2,Untie()
+230,0,0,,"Si je te libère, je pourrais|te rattacher ?ADD_MINUTES:1",Ça me semble juste. Affaire conclue.|(Tu la détaches et lui serre la main.),310,1,1,Untie()
+230,0,0,,"Si je te libère, plus tard|tu me ligoteras ?ADD_MINUTES:1",Ça marche ! La vengeance sera douce.|(Tu la détaches et lui serre la main.),310,1,-2,Untie()
 240,0,0,,(Tu les sépares.),Enfin ! C'était une mauvaise idée !,220,0,0,
-240,0,0,,(Tu les forces à|s'embrasser.) (1 min),"(Tu les forces à s'embrasser, Sidney à l'air furieuse.)|Amanda, si tu mets la langue je te la coupe.",250,0,0,KissAmanda()
+240,0,0,,(Tu les forces à|s'embrasser.)ADD_MINUTES:1,"(Tu les forces à s'embrasser, Sidney à l'air furieuse.)|Amanda, si tu mets la langue je te la coupe.",250,0,0,KissAmanda()
 240,0,0,,Vous faites un joli|couple de bondage.,"(Elles te fixent, leurs regards en dit long.)",240,0,0,
 250,0,0,,(Tu les sépares.),Enfin ! C'était une idée pourrie !,220,0,0,
 250,0,0,,(Tu stoppes les baisers.),"Admets-le ! Je suis meilleure que cette stupide blonde.|(Elle essaye d'intimider Amanda qui détourne le regard.)",240,0,0,

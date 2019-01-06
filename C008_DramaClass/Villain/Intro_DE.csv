@@ -1,0 +1,42 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+100,0,0,PlayerIsVillain,(Der weiße Ritter eröffnet das Stück.),Background.jpg
+100,0,0,!PlayerIsVillain,(Sie sieht den weißen Ritter an.),Background.jpg
+110,0,0,PlayerIsVillain,(Als der schwarze Ritter|hast du das Wort.),Background.jpg
+110,0,0,!PlayerIsVillain,(Sie sagt gleich ihren Text.),Background.jpg
+120,0,0,PlayerIsVillain,(Der weiße Ritter ist an der Reihe.),Background.jpg
+120,0,0,!PlayerIsVillain,(Sie sieht den weißen Ritter an.),Background.jpg
+130,0,0,PlayerIsVillain,(Als der schwarze Ritter|hast du jetzt das Wort.),Background.jpg
+130,0,0,!PlayerIsVillain,(Sie sagt gleich ihren Text.),Background.jpg
+140,0,0,PlayerIsVillain,(Die Jungfrau ist an der Reihe.),Background.jpg
+140,0,0,!PlayerIsVillain,(Sie sieht die Jungfrau an.),Background.jpg
+150,0,0,PlayerIsVillain,(Die Jungfrau ist an der Reihe.),Background.jpg
+150,0,0,!PlayerIsVillain,(Sie sieht die Jungfrau an.),Background.jpg
+160,0,0,PlayerIsVillain,(Die Jungfrau ist an der Reihe.),Background.jpg
+160,0,0,!PlayerIsVillain,(Sie sieht die Jungfrau an.),Background.jpg
+200,0,0,PlayerIsVillain,(Als der schwarze Ritter|hast du jetzt das Wort.),Background.jpg
+200,0,0,!PlayerIsVillain,(Sie sagt gleich ihren Text.),Background.jpg
+210,0,0,PlayerIsVillain,(Als der schwarze Ritter|hast du jetzt das Wort.),Background.jpg
+210,0,0,!PlayerIsVillain,(Sie sagt gleich ihren Text.),Background.jpg
+220,0,0,PlayerIsVillain,(Der weiße Ritter ist an der Reihe.),Background.jpg
+220,0,0,!PlayerIsVillain,(Sie sieht den weißen Ritter an.),Background.jpg
+230,0,0,PlayerIsVillain,(Als der schwarze Ritter|hast du jetzt das Wort.),Background.jpg
+230,0,0,!PlayerIsVillain,(Sie sagt gleich ihren Text.),Background.jpg
+235,0,0,,,Background.jpg
+240,0,0,PlayerIsVillain,(Der weiße Ritter ist an der Reihe.),Background.jpg
+240,0,0,!PlayerIsVillain,(Sie sieht den weißen Ritter an.),Background.jpg
+250,0,0,PlayerIsVillain,(Die Jungfrau ist an der Reihe.),Background.jpg
+250,0,0,!PlayerIsVillain,(Sie sieht die Jungfrau an.),Background.jpg
+251,0,0,,,Background.jpg
+270,0,0,PlayerIsVillain,(Als der schwarze Ritter|hast du jetzt das Wort.),Background.jpg
+270,0,0,!PlayerIsVillain,(Sie sagt gleich ihren Text.),Background.jpg
+280,0,0,PlayerIsVillain,(Die Jungfrau ist an der Reihe.),Background.jpg
+280,0,0,!PlayerIsVillain,(Sie sieht die Jungfrau an.),Background.jpg
+290,0,0,,,Background.jpg
+300,0,0,!PlayerIsVillain,"Das war ein tolles Stück. Ich hätte nie|gedacht, dass ich den Bösewicht spielen kann.",Background.jpg
+300,0,0,IsGagged,"(Sie versucht ihren Knebel loszuwerden,|gibt aber schnell auf.)",Background.jpg
+300,0,0,PlayerIsVillain,(Das Stück ist zu Ende.),Background.jpg
+400,0,0,PlayerIsHeroine,"Was wollt Ihr, weißer Ritter?",Background.jpg
+400,0,0,PlayerIsDamsel,Oh wunderschöne Maid.|Wie kann ich behilflich sein?,Background.jpg
+400,0,0,Common_PlayerGagged,(Sie sieht auf deinen Knebel und kichert.),Background.jpg
+400,0,0,IsGagged,(Sie schweigt und starrt dich an.),Background.jpg
+500,0,0,,(Das Stück geht wohl doch noch weiter.|Du kannst noch mit den anderen interagieren.),Background.jpg

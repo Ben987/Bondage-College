@@ -1,0 +1,25 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,IsHeroine,Je vois que tu nous rejoins pour la pièce de théâtre.|Je joue le chevalier blanc héroïque.,Background.jpg
+0,0,0,!IsHeroine,Je vois que tu nous rejoins pour la pièce de théâtre.|Je joue le méchant chevalier noir.,Background.jpg
+0,5,0,IsHeroine,Ça fait plaisir de voir que tu nous rejoins pour la pièce.|Je joue le chevalier blanc héroïque.,Background.jpg
+0,5,0,!IsHeroine,Ça fait plaisir de voir que tu nous rejoins pour la pièce.|Je joue le méchant chevalier noir.,Background.jpg
+0,0,5,IsHeroine,"Bienvenue au cours d'art dramatique, Madame.|Je jouerai le chevalier blanc héroïque.",Background.jpg
+0,0,5,!IsHeroine,"Bienvenue au cours d'art dramatique, Madame.|Je jouerai le méchant chevalier noir.",Background.jpg
+0,0,0,Common_PlayerGagged,Tu es mignonne avec ce bâillon.|Mais ce n'est pas nécessaire pour la pièce.,Background.jpg
+10,0,0,,Tu peux te couvrir les yeux le temps que je me change.,Background.jpg
+10,0,5,,"Madame COMMON_PLAYERNAME, Pouvez-vous vous couvrir|les yeux le temps que je me change s'il vous plaît ?",Background.jpg
+10,0,0,Common_PlayerGagged,Tu es mignonne avec ce bâillon.|Mais ce n'est pas nécessaire pour la pièce.,Background.jpg
+20,0,0,,,CoverEyes.jpg
+30,0,0,,Pourquoi tu n'as pas garder tes yeux fermés ?,Background.jpg
+40,0,0,,J'imagine que tu peux me voir me changer.|Peux-tu m'aider à mettre cette armure ?,Background.jpg
+40,0,0,Common_PlayerGagged,Tu es mignonne avec ce bâillon.|Mais peux-tu m'aider à mettre cette armure ?,Background.jpg
+40,0,0,Common_PlayerRestrained,Tes entraves sont pas mal.|Mais tu ne pourras pas m'aider.,Background.jpg
+40,0,0,IsChaste,(Elle tire sur la ceinture.) COMMON_PLAYERNAME ?|Tu as la clé de la ceinture ?,Background.jpg
+40,0,0,IsRestrained,"Ce n'est peut-être pas le meilleur moment pour ça.|(Elle se débat.) Pourrais-tu me libérer, s'il te plaît ?",Background.jpg
+40,0,0,IsGagged,Aaaeemg ngee nnaaagn !|(Elle lutte avec le bâillon.),Background.jpg
+50,0,0,SarahMissing,Sarah est encore en retard pour le cours.|On y va sans elle ?,Background.jpg
+50,0,0,!SarahMissing,Tout le monde est prêt pour la pièce ?,Background.jpg
+100,0,0,,(Amanda est toujours en train de récupérer|de son magnifique orgasme.),BackgroundOrgasm.jpg
+200,0,0,,"Une soumise comme toi ne devrait pas avoir de clés,|je vais la prendre. (Elle prend la clé de tes menottes.)",Background.jpg
+300,0,0,,,Background.jpg
+310,0,0,,,Background.jpg

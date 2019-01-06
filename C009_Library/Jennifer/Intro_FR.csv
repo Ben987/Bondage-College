@@ -1,0 +1,58 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,"(Jennifer est en train de lire, elle pose son livre.)|Salut COMMON_PLAYERNAME.",CouchLeft.jpg
+0,5,0,,"(Jennifer est en train de lire, elle pose son livre.)|COMMON_PLAYERNAME ! Ça fait plaisir de te voir.",CouchLeft.jpg
+0,0,5,,"(Jennifer est en train de lire, elle pose son livre.)|Bonjour Madame COMMON_PLAYERNAME.",CouchLeft.jpg
+0,0,0,TennisVictory,"(Jennifer est en train de lire, elle pose son livre.)|Hé ! Salut ! Je peux avoir ma revanche ?",CouchLeft.jpg
+0,0,0,TennisDefeat,"(Jennifer est en train de lire, elle pose son livre.)|Hé ! Salut ! Tu veux ta revanche ?",CouchLeft.jpg
+0,0,0,Common_PlayerRestrained,"(Jennifer semble intriguée par votre situation.)|Qu'est-ce qui t'es arrivée ? Pourquoi es-tu attachée ?",CouchLeft.jpg
+0,0,0,HasEgg,"(Jennifer est en train de lire, elle pose son livre.)|J'ai pu retirer ton oeuf.",CouchLeft.jpg
+10,0,0,,J'ai trouvé un livre intéressant sur|l'histoire des Jeux Olympiques.,CouchLeft.jpg
+20,0,0,,"De quel livre as-tu besoin ?",CouchLeft.jpg
+30,0,0,,"De quel livre as-tu besoin ?",CouchLeft.jpg
+40,0,0,,"Tu le trouveras sûrement dans la section littérature.|Reviens sur tes pas, va tout droit et regarde à gauche.",CouchLeft.jpg
+100,0,0,,Tu as besoin d'autre chose ?,CouchLeft.jpg
+100,5,0,,Hé COMMON_PLAYERNAME !|Tu as besoin d'autre chose ?,CouchLeft.jpg
+100,0,5,,Re-bonjour Madame COMMON_PLAYERNAME.|Avez-vous besoin d'autre chose ?,CouchLeft.jpg
+110,0,0,,"Qu'est-ce qui ne va pas avec ma façon de m'asseoir ?|Ne t'inquiétes pas, je me sens bien pourtant.",CouchLeft.jpg
+120,0,0,,Je ne peux pas m'allonger.|Et si quelqu'un veut s'asseoir ?,CouchLeft.jpg
+130,0,0,,(Elle s'allonge sur le canapé et te regarde.)|Est-ce que j'ai l'air plus détendue à présent ?,Couch.jpg
+140,0,0,,(Elle s'allonge sur le canapé et te regarde.)|Tu veux autre chose ?,Couch.jpg
+150,0,0,,Je sais que je n'ai pas beaucoup d'amies.,Couch.jpg
+150,5,0,,Je sais que je n'ai pas beaucoup d'amies.|Mais je suis toujours heureuse de parler avec toi.,Couch.jpg
+155,0,0,,"Si tu veux, on pourrait être amies et s'entraider ?",Couch.jpg
+160,0,0,,"Ce n'est pas facile de changer.|Peux-tu m'aider à être plus confiante ?",Couch.jpg
+170,0,0,,Tu le pensais vraiment ?|Tu me trouves jolie ?,Couch.jpg
+171,0,0,,,Couch.jpg
+172,0,0,,,Couch.jpg
+173,0,0,,,Couch.jpg
+174,0,0,,,Couch.jpg
+175,0,0,,,Couch.jpg
+176,0,0,,,Couch.jpg
+177,0,0,,,Couch.jpg
+178,0,0,,,Couch.jpg
+180,0,0,,On pourrait parler plus tard ?|J'aimerais terminer ce livre.,CouchLeft.jpg
+180,0,0,IsChaste,"Tu devras déverrouiller cette ceinture plus tard.|J'aimerais terminer ce livre à présent.",CouchLeft.jpg
+180,0,0,ArtDone,"Ton dessin m'a beaucoup plu.|A présent, j'aimerais terminer ce livre.",CouchLeft.jpg
+180,0,0,OrgasmDone,J'ai passé un merveilleux moment aujourd'hui.|J'espère qu'on se reverra après l'école.,CouchLeft.jpg
+180,0,0,ThreeOrgasmDone,(Elle chuchote.) Trois orgasmes de cet ampleur.|J'espère sincèrement qu'on se reverra après l'école.,CouchLeft.jpg
+181,0,0,,"Comment s'enlève cette ceinture ?",CouchLeft.jpg
+190,0,0,,(Jennifer est partie.),Couch.jpg
+200,0,0,,"(Tu t'assieds à côté de Jennifer.)|Alors COMMON_PLAYERNAME, quoi de neuf ?",Couch.jpg
+210,0,0,,(Tu t'assieds à côté de Jennifer.)|C'est un bon emplacement pour lire.,Couch.jpg
+211,0,0,,(Tu t'assieds à côté de Jennifer.)|Y a-t-il quelque chose dont tu aimerais me faire part ?,Couch.jpg
+212,0,0,,(Tu t'assieds à côté de Jennifer.)|De quoi parlait-on ? (Elle rougit.),Couch.jpg
+213,0,0,,(Tu t'assieds à côté de Jennifer.)|De quoi parlait-on ? (Elle rougit.),Couch.jpg
+220,0,0,,(Tu t'assieds à côté de Jennifer.)|De quoi parlait-on ? (Elle rougit.),Couch.jpg
+230,0,0,,(Tu t'assieds à côté de Jennifer.)|Tu veux vraiment faire l'amour avec moi ?,Couch.jpg
+235,0,0,,,Couch.jpg
+240,0,0,,,Couch.jpg
+245,0,0,,,Couch.jpg
+250,0,0,,,Couch.jpg
+260,0,0,,,Couch.jpg
+270,0,0,,,CouchCenter.jpg
+280,0,0,,,CouchCenter.jpg
+300,0,0,,,Couch.jpg
+310,0,0,,,Couch.jpg
+320,0,0,,(Elle te fixe et semble s'inquiéter.),Couch.jpg
+400,0,0,,,Couch.jpg
+410,0,0,,"(Elle rit.) L'aventurière du bondage !|Allons, j'aimerais finir ce livre.",CouchLeft.jpg

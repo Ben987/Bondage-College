@@ -1,0 +1,43 @@
+PlayerGagged,,,"I love your gag, it looks both comfy and effective.",,
+ItemMouth,,,(She licks her lips seeing the gag and allows you to silence her easily.),,
+RemoveItemMouth,,,(You remove her gag and she sighs.)  I hope you have another gag for me Miss.,,
+ItemArms,,,(She hums a happy song as you restrain her arms.)  I hope you come to the Dojo more often Miss.,,
+RemoveItemArms,,,(You free her arms and she stretches a little.)  What will you use on me next?,,
+ItemLegs,,,(You restrain her legs securely while she moans of pleasure.)  This is wonderful.,,
+RemoveItemLegs,,,(You release her legs.)  You can tie me up any time you want Miss.,,
+SuspensionHempRope,,,(You restrain her legs with the long hemp rope and suspend her by the feet from the ceiling.)  Oh my god!,,
+ItemFeet,,,(She wiggles her feet playfully as you restrain them.)  This is great.,,
+RemoveSuspensionHempRope,,,(You untie the hemp rope from the ceiling and slowly get her down.)  Wow!  That was quite a ride.,,
+RemoveItemFeet,,,(You release her feet and she jumps playfully.)  More bondage Miss?,,
+ItemNeck,,,"(You strap the collar on her neck while she frowns.)  I'm a free subbie Miss, I'm not looking for a collar.",,
+RemoveItemNeck,,,(You remove the collar around her neck.)  Much better!  I love bondage but I'm not ready to commit.,,
+ItemPelvis,,,(She rocks her hips and struggles as you lock the device on her.),,
+RemoveItemPelvis,,,(She seems relieved as you unlock the device.)  Domo arigato Miss DialogPlayerName.,,
+ItemTorso,,,(You prepare a full body harness on her torso as she blushes.)  This is very erotic.,,
+RemoveItemTorso,,,"(You remove the body harness from her torso.)  Too bad, it was both kinky and comfy.",,
+ItemHead,,,(You strap the device on her head as she hums a happy song.)  This will enhance the helplessness.,,
+RemoveItemHead,,,(You remove the device and she looks at you.)  That was quite an experience.,,
+ItemTorsoLeatherWhip,,,"(She moans as you whip her breast, enjoying the pain.)",,
+ItemTorsoLeatherCrop,,,(She jumps and makes her breast wiggle with each hit.)  You're the best Miss.,,
+ItemPelvisLeatherWhip,,,(She trembles and moans with each lashes.)  More Miss!  More!,,
+ItemPelvisLeatherCrop,,,(You whip her butt with the leather crop as she wiggles it for more.),,
+0,,,Konichiwa Miss.  I hope you're enjoying the Dojo.,,
+0,,"Hi girl, I'm DialogPlayerName.","It's a pleasure to meet you Miss, I'm DialogCharacterName.",DialogRemove(),
+0,,Are you ok up there?,"(She nods.)  Yes, as long as I don't spin too much, I'm fine.",,AllowSpank()
+0,10,What's going on here?,You are in the Shibari Dojo.  Most people come here to practice their rope and escape techniques.,,
+0,,(Spank her on the butt.),(You spank her on the butt as she dangles on the rope.)  Oooooh!  I love the way it stings Miss.,Spank(),AllowSpank()
+0,,I need to go.  (Leave her.),,DialogLeave(),
+10,,Why are you naked?,The traditional art of Shibari is often practiced naked.  Anyone here can strip down.,,
+10,,What is Shibari?,It's Japanese rope bondage.  Ask our teacher for more details.,,
+10,,Are you training now?,"Yes and no, I'm enjoying my bondage more than trying to escape.",,AllowSpank()
+10,,Can I tie you up?,"Absolutely, I'm ready for any challenge.  I especially love rope bondage and suspension.",,
+10,,Will you tie me up?,"No Miss, I'm sorry, I'm a submissive.",,
+10,0,Let's talk about something else.,Yes Miss.,,
+MaidRescue,,,Konichiwa Miss.  It seems that we got in trouble.,,
+MaidRescue,,Do you need help?,"(She shakes her head no.)  I'm fine, things like that happen all the time.  Check with the teacher.",,
+MaidRescue,,What happened here?,"A Japanese speaking girl came in and argued with the teacher.  She did some judo, stripped and restrained our poor teacher.",,"IsRescueScenario(""JapaneseGirl"")"
+MaidRescue,,What happened here?,A bratty student challenged the teacher to be suspended.  Our good teacher accepted and well... was left like that.  (She giggles.),,"IsRescueScenario(""RebelStudent"")"
+MaidRescue,,What happened here?,"Our teacher wanted to see if she could suspend and restrain herself.  She managed to do it, but I think she got stuck.",,"IsRescueScenario(""SelfBondage"")"
+MaidRescue,,What happened here?,"The Head Mistress came with customers.  They tried Shibari on the teacher but didn't had time to release her, so they called the maids.",,"IsRescueScenario(""HeadMistress"")"
+MaidRescue,,(Spank her on the butt.),(You spank her on the butt as she dangles on the rope.)  Oooooh!  I love the way it stings Miss.,Spank(),AllowSpank()
+MaidRescue,,I'll go get help.  (Leave her.),,DialogLeave(),

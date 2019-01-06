@@ -1,0 +1,35 @@
+Tag,Content
+ChangeComplete,Bin fertig! (Du nimmst sie Hände von den Augen.)|Sind alle bereit für das Stück?
+CheaterPunishment,"Keine Ausflüchte, du musst eine Lektion lernen! (Sie|zieht dich bis auf die Unterwäsche aus und fesselt dich.)"
+DressWithBelt,"(Du hilfst ihr beim Anziehen, aber sie ist verärgert.) Gut,|aber nach dem Stück nimmst du besser den Gürtel ab."
+RefuseBondage,(Sie sieht deinen Gegenstand und drückt ihn|schnell von sich. Du brauchst mind. +2 Dominanz.)
+RefuseBelt,"(Du zeigst ihr den Gürtel, aber sie|sieht verärgert aus und lehnt ihn ab.)"
+PlayerRandomBondage,Na gut. (Amanda nimmt wahllos Dinge aus|deiner Tasche und fesselt dich damit.)
+UndressBeforeBondage,"Mmmh, klar, warum nicht.|Aber du musst dich erst ausziehen."
+NoBondageItem,"(Sie schaut in deine Tasche.) Tut mir leid, COMMON_PLAYERNAME.|Du hast nichts dabei, das ich verwenden könnte."
+UntiePlayer,"Du siehst gefesselt süß aus, aber ich helfe dir.|(Sie löst die Knoten und befreit dich.)"
+UnstrapPlayer,"Du siehst süß darin aus, aber ich helfe dir.|(Sie löst die Riemen und Bänder und befreit dich.)"
+Collar,"(Du brauchst mind. +20 Dominanz und eine|Zeremonie, um Amanda ein Halsband anzulegen.)"
+Crop,"(Du schlägst sie ziemlich doll, während sie|zappelt und wimmert. Es gefällt ihr nicht.)"
+Rope,"(Du wickelst das Seil um ihren Körper, während|sie ihre Aufregung zu verbergen versucht.)"
+TwoRopes,(Du nimmst ein zweites Seil und bindest|ihre Beine in eine kniende Position.)
+Cuffs,"(Sie wehrt sich kaum, als du ihre Hände packst|und ihr hinter dem Rücken Handschellen anlegst.)"
+Armbinder,"(Sie dreht sich langsam um, damit du ihre Arme in|den Handschuh leiten und ihn zubinden kannst.)"
+BallGag,"(Sie wehrt sich ein bisschen, aber du bekommst|den Knebel um ihren Kopf geschnallt.)"
+TapeGag,"(Sie wehrt sich ein bisschen, aber du bekommst|das Band über ihren Mund geklebt.)"
+ClothGag,"(Sie wehrt sich ein bisschen, aber du steckst ihr die|Füllung in den Mund und bindest den Knebel fest."
+CuffsKey,"(Sie hält dir ihre Hände hin, damit du die|Handschellen einfacher aufschließen kannst.)"
+VibratingEgg,"(Beim Anblick des Eis macht sie die Beine zu,|aber du schiebst es dennoch hinein.)"
+ChastityBelt,"(Beim Anblick des Gürtels wird sie panisch,|aber du lässt ihn eng um sie einrasten.)"
+MasturbateBelt,(Dein Befriedigungsversuch misslingt. Du bekommst|kaum einen Finger unter den Gürtel gesteckt.)
+Masturbate,"(Du befriedigst sie in zügigem Tempo,|aber sie bleibt still und kämpft mit ihren Fesseln.)"
+MasturbateGood,(Du befriedigst sie in zügigem Tempo|und sie kann ihr Stöhnen nicht zurückhalten.)
+MasturbateOrgasm,(Sie zittert wie Espenlaub und bekommt|einen Orgasmus mitten im Umkleideraum.)
+StripBeforeFun,"Was willst du damit? Ich versuche mich|umzuziehen, wenn's dir nichts ausmacht."
+CostumeBlocksFun,Keine Zeit für so etwas.|Ich habe meine Rüstung schon an.
+TakeKey,"Folgsame Mädchen brauchen keine Schlüssel, her|damit. (Sie nimmt deinen Handschellenschlüssel weg.)"
+UncuffAccept,"Du siehst darin süß aus, aber ich helfe dir. (Sie|nimmt ihren Schlüssel und öffnet deine Handschellen.)"
+UncuffRefuse,"Nö! (Sie lässt den Schlüssel vor deiner Nase baumeln.)|Versuch's weiter, vielleicht kommst du raus."
+CannotFree,(Sie deutet auf ihre eigenen Fesseln und seufzt.)
+CannotFreeGagged,(Sie schüttelt den Kopf.)
+HelpWhileGagged,(Sie hilft dir langsam aus ihren Fesseln|und kichert in ihren Knebel.)

@@ -10,12 +10,12 @@ Domme1,Dure à cuire
 Domme2,Dominante
 Domme3,Reine
 Sub1,Fille timide
-Sub2,Docile
-Sub3,Obéissante
+Sub2,Soumise
+Sub3,Dévouée
 LoveDomme1,Branchée
 LoveDomme2,Populaire
 LoveDomme3,Princesse
-LoveSub1,Geek
+LoveSub1,Intello
 LoveSub2,Précieuse
 LoveSub3,Chouchoute
 HateDomme1,Brute
@@ -30,6 +30,7 @@ Skills,Talents
 Level,Niveau
 Profile,Profil
 Relationships,Relations
+KinbakuClub,Club Kinbaku
 Owner,Maîtresse :
 NoOwner,Aucune
 Lover,Petite amie :

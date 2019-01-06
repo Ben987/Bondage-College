@@ -26,28 +26,28 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 80,0,0,Common_PlayerGagged,@Eehmmo ehm ehher !,"Je suis désolée, je ne peux pas te comprendre.",80,0,0,
 80,0,0,Common_PlayerGagged,(Tu gémis et trembles.),"Crois-moi, j'ai de la peine pour toi. Tu dois te sentir|humiliée. Je te réconforterai après la scéance.",80,0,0,PityComment()
 100,0,0,StunningBeautyReady,"Ne sois pas timide, tu es|d'une beauté stupéfiante.","Moi ? Une beauté ? Oh,|tu es si gentille et adorable.",100,0,0,StunningBeauty()
-100,0,1,,Ne devrais-tu pas te|déshabiller ? (1 minute),Je... Je suppose que je peux.|(Elle se déshabille lentement.),110,0,0,"SetCloth(1, 0, 0)"
-100,0,1,,Ôte tes vêtements.| (1 minute),Je... Oui... Désolée.|(Elle se déshabille lentement.),110,0,0,"SetCloth(1, 0, 1)"
-100,0,1,,Tu devrais nous dévoiler|ton joli corps. (1 minute),Tu penses vraiment que je suis jolie ?|(Elle se déshabille lentement.),110,0,0,"SetCloth(1, 1, 0)"
-110,0,2,,Dois-je les enlever|moi-même ? (1 minute),"NON ! Oups, Je ne voulais pas crier, je vais le faire.|(Elle s'empourpre et enlève ses sous-vêtements.)",120,0,0,"SetCloth(2, -1, 1)"
-110,0,2,,Plus que quelques effets|à enlever. (1 minute),"Oui, si Julia a pu le faire, je le peux aussi.|(Elle s'empourpre et enlève ses sous-vêtements.)",120,0,0,"SetCloth(2, 0, 0)"
-110,0,2,,"Si Julia peut se déshabiller,|tu peux le faire. (1 minute)","Oui, si Julia a pu le faire, je le peux aussi.|(Elle s'empourpre et enlève ses sous-vêtements.)",120,0,0,"SetCloth(2, 0, 0)"
-110,0,2,,Montre-nous plus de peau|et des os. (1 minute),Des os ? Je ne suis pas si maigre que ça.|(Elle s'empourpre et enlève ses sous-vêtements.),120,0,0,"SetCloth(2, -1, 0)"
-110,0,0,,Peut-être que tu devrais|te rhabiller. (1 minute),"Tu le penses ? Oui, on est à l'université après tout.|(Elle ramasse ses vêtements et se rhabille.)",100,0,0,"SetCloth(0, 0, 0)"
-120,0,0,,Peut-être que tu devrais|te rhabiller. (1 minute),"Tu le penses ? Oui, on est à l'université après tout.|(Elle ramasse ses vêtements et se rhabille.)",100,0,0,"SetCloth(0, 0, 0)"
-120,0,0,,Réessayons avec tes|sous-vêtements. (1 minute),(Elle soupire.) Je ne comprendrai jamais l'art.|(Elle se remet en sous-vêtements.),110,0,0,"SetCloth(1, 0, 0)"
+100,0,1,,Ne devrais-tu pas te|déshabiller ?ADD_MINUTES:1,Je... Je suppose que je peux.|(Elle se déshabille lentement.),110,0,0,"SetCloth(1, 0, 0)"
+100,0,1,,Ôte tes vêtements.|ADD_MINUTES:1,Je... Oui... Désolée.|(Elle se déshabille lentement.),110,0,0,"SetCloth(1, 0, 1)"
+100,0,1,,Tu devrais nous dévoiler|ton joli corps.ADD_MINUTES:1,Tu penses vraiment que je suis jolie ?|(Elle se déshabille lentement.),110,0,0,"SetCloth(1, 1, 0)"
+110,0,2,,Dois-je les enlever|moi-même ?ADD_MINUTES:1,"NON ! Oups, Je ne voulais pas crier, je vais le faire.|(Elle s'empourpre et enlève ses sous-vêtements.)",120,0,0,"SetCloth(2, -1, 1)"
+110,0,2,,Plus que quelques effets|à enlever.ADD_MINUTES:1,"Oui, si Julia a pu le faire, je le peux aussi.|(Elle s'empourpre et enlève ses sous-vêtements.)",120,0,0,"SetCloth(2, 0, 0)"
+110,0,2,,"Si Julia peut se déshabiller,|tu peux le faire.ADD_MINUTES:1","Oui, si Julia a pu le faire, je le peux aussi.|(Elle s'empourpre et enlève ses sous-vêtements.)",120,0,0,"SetCloth(2, 0, 0)"
+110,0,2,,Montre-nous plus de peau|et des os.ADD_MINUTES:1,Des os ? Je ne suis pas si maigre que ça.|(Elle s'empourpre et enlève ses sous-vêtements.),120,0,0,"SetCloth(2, -1, 0)"
+110,0,0,,Peut-être que tu devrais|te rhabiller.ADD_MINUTES:1,"Tu le penses ? Oui, on est à l'université après tout.|(Elle ramasse ses vêtements et se rhabille.)",100,0,0,"SetCloth(0, 0, 0)"
+120,0,0,,Peut-être que tu devrais|te rhabiller.ADD_MINUTES:1,"Tu le penses ? Oui, on est à l'université après tout.|(Elle ramasse ses vêtements et se rhabille.)",100,0,0,"SetCloth(0, 0, 0)"
+120,0,0,,Réessayons avec tes|sous-vêtements.ADD_MINUTES:1,(Elle soupire.) Je ne comprendrai jamais l'art.|(Elle se remet en sous-vêtements.),110,0,0,"SetCloth(1, 0, 0)"
 130,0,0,,Ne t'inquiète pas Jennifer.|Tout ira bien.,(Elle acquiesce lentement.),130,0,0,TrustComment()
 130,0,0,EggInside,Cet oeuf te rappellera|qui est la chef.,(Elle incline sa tête.),130,0,0,EggComment()
-130,2,0,KissReady,(Tu l'embrasses.)|(1 minute),"S'il te plaît, non. Ce n'est pas mon truc.|(Elle n'a pas l'air d'apprécier le baiser.)",130,-1,0,Kiss()
-130,0,0,,(Tu resserres les cordes.)|(1 minute),(Les cordes sont déjà|aussi serrées qu'elles peuvent l'être.),130,0,0,Tighten()
-130,0,0,,(Tu la chatouilles.)|(1 minute),"(Embarrassée, elle se recroqueville|pour éviter tes chatouilles.)",130,0,0,Tickle()
-130,0,0,Common_PlayerNotRestrained,(Tu la détaches.)|(1 minute),(Tu la détaches et elle te jette les cordes.)|Je peux aller m'asseoir maintenant ?,120,0,0,Untie()
+130,2,0,KissReady,(Tu l'embrasses.)ADD_MINUTES:1,"S'il te plaît, non. Ce n'est pas mon truc.|(Elle n'a pas l'air d'apprécier le baiser.)",130,-1,0,Kiss()
+130,0,0,,(Tu resserres les cordes.)ADD_MINUTES:1,(Les cordes sont déjà|aussi serrées qu'elles peuvent l'être.),130,0,0,Tighten()
+130,0,0,,(Tu la chatouilles.)ADD_MINUTES:1,"(Embarrassée, elle se recroqueville|pour éviter tes chatouilles.)",130,0,0,Tickle()
+130,0,0,Common_PlayerNotRestrained,(Tu la détaches.)ADD_MINUTES:1,(Tu la détaches et elle te jette les cordes.)|Je peux aller m'asseoir maintenant ?,120,0,0,Untie()
 130,0,0,PaintAvail,(Tu peins Jennifer.)|(30 minutes),(Tu la peins soigneusement et lui montre le tableau.)|S'il te plaît détruis ce tableau une fois le cours terminé.,130,0,0,Paint()
-140,0,0,,(Tu resserres les cordes.)|(1 minute),(Les cordes sont déjà|aussi serrées qu'elles peuvent l'être.),140,0,0,Tighten()
-140,0,0,,(Tu la chatouilles.)|(1 minute),"(Embarrassée, elle se recroqueville|pour éviter tes chatouilles.)",140,0,0,Tickle()
-140,0,0,Common_PlayerNotRestrained,(Tu la débâillones.)|(1 minute),"(Tu détaches le bâillon et libère sa bouche)|Tu peux me détacher maintenant ?",130,0,0,Ungag()
+140,0,0,,(Tu resserres les cordes.)ADD_MINUTES:1,(Les cordes sont déjà|aussi serrées qu'elles peuvent l'être.),140,0,0,Tighten()
+140,0,0,,(Tu la chatouilles.)ADD_MINUTES:1,"(Embarrassée, elle se recroqueville|pour éviter tes chatouilles.)",140,0,0,Tickle()
+140,0,0,Common_PlayerNotRestrained,(Tu la débâillones.)ADD_MINUTES:1,"(Tu détaches le bâillon et libère sa bouche)|Tu peux me détacher maintenant ?",130,0,0,Ungag()
 140,0,0,PaintAvail,(Tu peins Jennifer.)|(30 minutes),(Tu la peins soigneusement et lui montre le tableau.)|(Elle regarde ton oeuvre d'art et gémit.),140,0,0,Paint()
-150,0,0,,(Tu resserres les cordes.)|(1 minute),(Les cordes sont déjà|aussi serrées qu'elles peuvent l'être.),150,0,0,Tighten()
-150,0,0,,(Tu la chatouilles.)|(1 minute),"(Embarrassée, elle se recroqueville|pour éviter tes chatouilles.)",150,0,0,Tickle()
-150,0,0,Common_PlayerNotRestrained,(Tu la débâillones.)|(1 minute),"(Tu enlèves le ruban adhésif de sa bouche.)|Tu peux me détacher maintenant ?",130,0,0,Ungag()
+150,0,0,,(Tu resserres les cordes.)ADD_MINUTES:1,(Les cordes sont déjà|aussi serrées qu'elles peuvent l'être.),150,0,0,Tighten()
+150,0,0,,(Tu la chatouilles.)ADD_MINUTES:1,"(Embarrassée, elle se recroqueville|pour éviter tes chatouilles.)",150,0,0,Tickle()
+150,0,0,Common_PlayerNotRestrained,(Tu la débâillones.)ADD_MINUTES:1,"(Tu enlèves le ruban adhésif de sa bouche.)|Tu peux me détacher maintenant ?",130,0,0,Ungag()
 150,0,0,PaintAvail,(Tu peins Jennifer.)|(30 minutes),(Tu la peins soigneusement et lui montre le tableau.)|(Elle regarde ton oeuvre d'art et gémit.),150,0,0,Paint()

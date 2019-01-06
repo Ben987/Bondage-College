@@ -1,0 +1,55 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,IsDamsel,Du siehst als Jungfrau so reizend aus.|Hoffentlich bist du bereit fürs Teatro!,JuliaShow.jpg
+0,0,0,IsHeroine,Der grausame schwarze Ritter ist da.|Hoffentlich bist du bereit fürs Teatro!,JuliaShow.jpg
+0,0,0,IsVillain,Oh! Der tapfere weiße Ritter.|Hoffentlich bist du bereit fürs Teatro!,JuliaShow.jpg
+10,0,0,,,Julia.jpg
+20,0,0,,,JuliaShow.jpg
+100,0,0,IsHeroine,"(Sie flüstert dir zu.) Schau nicht zu mir.|Das ist dein Moment, ein Star zu sein.",JuliaLookPlayer.jpg
+100,0,0,!IsHeroine,(Sie sieht den weißen Ritter an.),JuliaLookAway.jpg
+110,0,0,IsVillain,"(Sie flüstert dir zu.) Schau nicht zu mir.|Das ist dein Moment, ein Star zu sein.",JuliaLookPlayer.jpg
+110,0,0,!IsVillain,(Sie sieht den schwarzen Ritter an.),JuliaLookAway.jpg
+120,0,0,IsHeroine,"(Sie flüstert dir zu.) Schau nicht zu mir.|Das ist dein Moment, ein Star zu sein.",JuliaLookPlayer.jpg
+120,0,0,!IsHeroine,(Sie sieht den weißen Ritter an.),JuliaLookAway.jpg
+130,0,0,IsVillain,"(Sie flüstert dir zu.) Schau nicht zu mir.|Das ist dein Moment, ein Star zu sein.",JuliaLookPlayer.jpg
+130,0,0,!IsVillain,(Sie sieht den schwarzen Ritter an.),JuliaLookAway.jpg
+140,0,0,IsDamsel,"(Sie flüstert dir zu.) Schau nicht zu mir.|Das ist dein Moment, ein Star zu sein.",JuliaLookPlayer.jpg
+140,0,0,!IsDamsel,(Sie sieht die Jungfrau an.),JuliaLookAway.jpg
+150,0,0,IsDamsel,"(Sie flüstert dir zu.) Schau nicht zu mir.|Das ist dein Moment, ein Star zu sein.",JuliaLookPlayer.jpg
+150,0,0,!IsDamsel,(Sie sieht die Jungfrau an.),JuliaLookAway.jpg
+160,0,0,IsDamsel,"(Sie flüstert dir zu.) Schau nicht zu mir.|Das ist dein Moment, ein Star zu sein.",JuliaLookPlayer.jpg
+160,0,0,!IsDamsel,(Sie sieht die Jungfrau an.),JuliaLookAway.jpg
+200,0,0,IsVillain,"(Sie flüstert dir zu.) Schau nicht zu mir.|Das ist dein Moment, ein Star zu sein.",JuliaLookPlayer.jpg
+200,0,0,!IsVillain,(Sie sieht den schwarzen Ritter an.),JuliaLookAway.jpg
+210,0,0,IsVillain,"(Sie flüstert dir zu.) Schau nicht zu mir.|Das ist dein Moment, ein Star zu sein.",JuliaLookPlayer.jpg
+210,0,0,!IsVillain,(Sie sieht den schwarzen Ritter an.),JuliaLookAway.jpg
+220,0,0,IsHeroine,"(Sie flüstert dir zu.) Schau nicht zu mir.|Das ist dein Moment, ein Star zu sein.",JuliaLookPlayer.jpg
+220,0,0,!IsHeroine,(Sie sieht den weißen Ritter an.),JuliaLookAway.jpg
+230,0,0,IsVillain,"(Sie flüstert dir zu.) Schau nicht zu mir.|Das ist dein Moment, ein Star zu sein.",JuliaLookPlayer.jpg
+230,0,0,!IsVillain,(Sie sieht den schwarzen Ritter an.),JuliaLookAway.jpg
+240,0,0,IsHeroine,"(Sie flüstert dir zu.) Schau nicht zu mir.|Das ist dein Moment, ein Star zu sein.",JuliaLookPlayer.jpg
+240,0,0,!IsHeroine,(Sie sieht den weißen Ritter an.),JuliaLookAway.jpg
+250,0,0,IsDamsel,"(Sie flüstert dir zu.) Schau nicht zu mir.|Das ist dein Moment, ein Star zu sein.",JuliaLookPlayer.jpg
+250,0,0,!IsDamsel,(Sie sieht die Jungfrau an.),JuliaLookAway.jpg
+270,0,0,IsVillain,"(Sie flüstert dir zu.) Schau nicht zu mir.|Das ist dein Moment, ein Star zu sein.",JuliaLookPlayer.jpg
+270,0,0,!IsVillain,(Sie sieht den schwarzen Ritter an.),JuliaLookAway.jpg
+280,0,0,IsDamsel,"(Sie flüstert dir zu.) Schau nicht zu mir.|Das ist dein Moment, ein Star zu sein.",JuliaLookPlayer.jpg
+280,0,0,!IsDamsel,(Sie sieht die Jungfrau an.),JuliaLookAway.jpg
+300,0,0,EndingKiss,Bravo! Bravo! Bravisimo!|Was für ein wundervoller Kuss am Ende!,Background.jpg
+300,0,0,EndingHug,Bravo! Mille Bravo!|Und so eine schöne Umarmung am Ende.,Background.jpg
+300,0,0,EndingDomme,"Bravo! Das dominante Ende war|unerwartet, aber Theater kann chaotisch sein.",Background.jpg
+300,0,0,EndingTwoPrisoners,"Bravo! Das Ende mit den zwei Gefangenen war|unerwartet, aber Theater kann chaotisch sein.",Background.jpg
+300,0,0,EndingTrio,"In den Jahren, die ich dieses Stück durchnehme,|hat es nie in einem ménage à trois geendet. Bravo!",Background.jpg
+310,0,0,,"Es war toll, euch allen zuzusehen.|Und ihr konntet sogar improvisieren.",Background.jpg
+320,0,0,,Jetzt noch mitspielen?|Aber in welcher Rolle?,Background.jpg
+330,0,0,,,Background.jpg
+340,0,0,,,Background.jpg
+400,0,0,IsDamsel,Meine liebe Kameradin der Gefangenschaft.|Was wird mit uns geschehen?,Background.jpg
+400,0,0,IsHeroine,Oh mein weißer Held!|Wonach dürstet es Euch?,Background.jpg
+400,0,0,IsVillain,Oh großer schwarzer Ritter!|Wonach dürstet es Euch?,Background.jpg
+410,0,0,IsDamsel,Meine liebe Kameradin der Gefangenschaft.|Was wird mit uns geschehen?,Background.jpg
+410,0,0,IsHeroine,Oh mein weißer Held!|Wonach dürstet es Euch?,Background.jpg
+410,0,0,IsVillain,Oh großer schwarzer Ritter!|Wonach dürstet es Euch?,Background.jpg
+410,0,0,Common_PlayerGagged,"Mich deucht, Ihr werdet nicht viel sprechen.",Background.jpg
+410,0,0,IsGagged,Om nong!  Olog amogn!|(Sie spielt mit ihrem Knebel.),Background.jpg
+500,0,0,,Als holde Königin des Landes erwarte|ich Respekt und Ergebenheit.,Background.jpg
+500,0,0,Common_PlayerGagged,"Mich deucht, Ihr werdet nicht viel sprechen.",Background.jpg

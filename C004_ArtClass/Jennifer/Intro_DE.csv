@@ -1,0 +1,22 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,Willkommen zur Kunststunde.|Bist du neu hier?,Jennifer.jpg
+10,0,0,,"Ich bin Jennifer, freut mich sehr.",Jennifer.jpg
+20,0,0,,"Kunst ist ganz nett, aber Sport ist mir lieber.",Jennifer.jpg
+30,0,0,,Wolltest du etwas?,Jennifer.jpg
+40,0,0,,"Sag schon, woran dachtest du?",Jennifer.jpg
+50,0,0,,Du willst die Lehrerin also nackt sehen?|(Du brauchst 2 Liebe oder Dominanz zum Überzeugen.),Jennifer.jpg
+60,0,0,,"Erwähne mal Sandro Botticellis ""Die Geburt der Venus"".|Das könnte sie dazu bringen, ihr Kleid ausziehen.",Jennifer.jpg
+60,0,0,JuliaStrip,Es hat geklappt! Das ist wirklich erstaunlich.,Jennifer.jpg
+70,0,0,,"Ich wusste nicht, dass Julia so mutig ist.",Jennifer.jpg
+80,0,0,,Zwei Modelle! Damit hab ich nicht gerechnet.,Jennifer.jpg
+80,0,0,Common_PlayerGagged,Warum bist du geknebelt?,Jennifer.jpg
+80,0,0,Common_PlayerRestrained,Ist das nicht demütigend?,Jennifer.jpg
+100,0,0,,"Ich stehe nicht so gerne Modell.|(Du brauchst +1 Dominanz, um sie auszuziehen.)",JenniferPose.jpg
+110,0,0,,"Ich stehe nicht so gerne Modell.|(Du brauchst +2 Dominanz, um sie nackig zu machen.)",JenniferUnderwear.jpg
+120,0,0,,"Das ist irgendwie demütigend.|(Du brauchst +3 Dominanz, um sie zu fesseln.)",JenniferNaked.jpg
+130,0,0,,Das ist so demütigend.|(Sie scheint keine Freude zu haben.),JenniferRope.jpg
+130,0,0,EggInside,Kannst du bitte dieses pinke Ding rausnehmen?|(Das Ei lässt sie gelegentlich erzittern.),JenniferRope.jpg
+140,0,0,,Mhu nugin hm! (Vor der ganzen Klasse gefesselt|zu sein scheint ihr nicht zu gefallen.),JenniferRopeBallGag.jpg
+140,0,0,EggInside,(Das Ei lässt sie gelegentlich zittern und schwitzen.|Vor der Klasse gefesselt zu sein gefällt ihr nicht.),JenniferRopeBallGag.jpg
+150,0,0,,Mhu nugin hm! (Vor der ganzen Klasse gefesselt|zu sein scheint ihr nicht zu gefallen.),JenniferRopeTapeGag.jpg
+150,0,0,EggInside,(Das Ei lässt sie gelegentlich zittern und schwitzen.|Vor der Klasse gefesselt zu sein gefällt ihr nicht.),JenniferRopeTapeGag.jpg

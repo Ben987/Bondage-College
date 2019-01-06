@@ -274,7 +274,7 @@ function C009_Library_Search_TakeInvitation() {
 function C009_Library_Search_SearchCabinet() {
 	if (!C009_Library_Search_SearchCabinetDone) {
 		OverridenIntroText = GetText("FindCabinet");
-		PlayerAddRandomItem();
+		PlayerAddInventory("Collar", 1);
 		C009_Library_Search_SearchCabinetDone = true;
 	}
 }

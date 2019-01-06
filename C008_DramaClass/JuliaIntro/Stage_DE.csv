@@ -1,0 +1,22 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,"Komm her, Julia!|(Julia umarmen.)ADD_MINUTES:1",Si! (Sie schlingt ihre Arme um dich|und drückt dich an ihre Brust.),10,1,0,Hug()
+0,0,0,,Eine Umarmung? Ganz|sicher? (Julia umarmen.)ADD_MINUTES:1,So ängstlich! (Sie schlingt ihre Arme um dich|und drückt dich an ihre Brust.),10,1,-1,Hug()
+0,0,0,,"Bitte, keine Umarmung.",So eine schüchterne neue Schülerin.|Willkommen im Schauspielunterricht!,20,0,-1,
+0,0,0,,"Vergiss es, Julia.","(Sie verzieht das Gesicht, lächelt aber schnell wieder.)|Willkommen im Schauspielunterricht, COMMON_PLAYERNAME!",20,-1,1,
+10,0,0,,Nette Umarmung.,"Si! Ich liebe große und warme Umarmungen!|Willkommen im Schauspielunterricht, COMMON_PLAYERNAME.",20,0,0,
+10,0,0,,Deine Umarmungen|sind die besten.,"Si! Ich liebe große und warme Umarmungen!|Willkommen im Schauspielunterricht, COMMON_PLAYERNAME.",20,0,0,
+10,0,0,,Ich krieg keine Luft!,"Tut mir so leid, neue Schülerin.|Willkommen im Schauspielunterricht!",20,0,-1,
+10,0,0,,(Ihre Brust küssen.),"Nein, COMMON_PLAYERNAME. (Sie drückt dich weg.)|Jedenfalls willkommen im Schauspielunterricht.",20,-1,0,
+20,0,0,,Schauspielunterricht?,"Si! Heute übt ihr eure Rollen für ein|Theaterstück, das wir bald aufführen.",30,0,0,
+20,0,0,,Planst du ein|Theaterstück?,"Si! Heute übt ihr eure Rollen für ein|Theaterstück, das wir bald aufführen.",30,0,0,
+30,0,0,,Wovon handelt|das Stück?,"Es heißt ""Die Zwei Ritter"", ein mittelalterliches Stück,|in dem zwei Rivalen dieselbe Jungfrau lieben.",40,0,0,
+30,0,0,,Spielen wir was|von Shakespeare?,"Nein, es ist das mittelalterliche Stück ""Die Zwei Ritter"",|in dem zwei Rivalen dieselbe Jungfrau lieben.",40,0,0,
+40,0,0,,Und welche Rolle|spiele ich?,"Du kannst der heldenhafte weiße Ritter, der böse|schwarze Ritter oder die Jungfrau in Nöten sein.",50,0,0,CheckRole()
+40,0,0,,Toll! Welche Rolle|bekomme ich?,"Du kannst der heldenhafte weiße Ritter, der böse|schwarze Ritter oder die Jungfrau in Nöten sein.",50,1,0,CheckRole()
+40,0,0,,Drama ist nichts|für mich.,"Unsinn! Du kannst der heldenhafte weiße Ritter, der|böse schwarze Ritter oder die Jungfrau in Nöten sein.",50,-1,0,CheckRole()
+40,0,0,,Ich will eine starke|Figur spielen.,"Du kannst der heldenhafte weiße Ritter, der böse|schwarze Ritter oder die Jungfrau in Nöten sein.",50,0,1,CheckRole()
+40,0,0,,Ich kann unmöglich vor|einem Publikum spielen.,"Nur Mut! Du kannst der heldenhafte weiße Ritter, der|böse schwarze Ritter oder die Jungfrau in Nöten sein.",50,0,-1,CheckRole()
+50,0,0,,Ich spiele die Heldin.,Sehr gut. Geh in den Umkleideraum und|zieh die weiße Heldenrüstung an.,60,0,0,"SetRole(""Heroine"")"
+50,0,0,,Ich spiele den|Bösewicht.,Sehr gut. Geh in den Umkleideraum und|zieh die schwarze Ritterrüstung an.,60,0,0,"SetRole(""Villain"")"
+50,0,0,,Ich spiele die Jungfrau.,Sehr gut. Geh in den Umkleideraum und|zieh das Hochzeitskleid der Jungfrau an.,60,0,0,"SetRole(""Damsel"")"
+60,0,0,,Ich gehe mich umziehen.|(Zum Umkleideraum.),,60,0,0,DressingRoom()

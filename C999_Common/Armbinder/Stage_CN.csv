@@ -1,7 +1,7 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Inspect it.)|(1 minute),This armbinder seems very strong.|It won't break if someone struggles in it.,0,0,0,
-0,0,0,,(Play with it.)|(1 minute),You play with the leather straps and laces.|The feel on your skin makes you shiver.,0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Strap yourself.)|(1 minute),You slide your arms inside but it won't|hold without someone else to lace and strap.,0,0,0,
-10,0,0,HasLooseArmbinder,(Play with the loose|armbinder.)  (1 minute),You play with the loose armbinder|while being restrained but can't do much.,10,0,0,ShowImage()
-10,0,0,,(Try to break it.)|(1 minute),"Using all your strength, you try to|break the armbinder but fail miserably.",10,0,0,
-10,0,0,,(Struggle to get out.)|(1 minute),You struggle madly in the device|but cannot manage to get out.,10,0,0,
+0,0,0,,(调查它)|(1 分钟),这件单手套看起来非常结实。|即使挣扎也不会坏掉。,0,0,0,
+0,0,0,,(玩一玩)|(1 分钟),你玩了玩肩带和系带。|这触感令你浑身发抖。,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(自缚)|(1 分钟),你把你的胳膊伸了进去，|但是如果没有人帮你系上固定好，它会掉下来。,0,0,0,
+10,0,0,HasLooseArmbinder,(玩一玩松脱的单手套)|(1 分钟),你在被束缚的情况下玩了玩|松脱的单手套，遗憾的是你做不了什么。,10,0,0,ShowImage()
+10,0,0,,(尝试弄坏它)|(1 分钟),"你使出了浑身解数，不幸的是|单手套并没有坏掉。",10,0,0,
+10,0,0,,(尝试挣脱)|(1 分钟),你疯狂地挣扎，可惜没能挣脱。,10,0,0,

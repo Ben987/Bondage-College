@@ -1,12 +1,12 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Tu l'examines)|(1 minute),Cette croix en bois a quatre menottes attachées à elle.|Rendant vulnérable n'importe qui d'accroché.,0,0,0,
+0,0,0,,(Tu l'examines)ADD_MINUTES:1,Cette croix en bois a quatre menottes attachées à elle.|Rendant vulnérable n'importe qui d'accroché.,0,0,0,
 0,0,0,,(Tu menottes un poignet.),Tu essayes d'atteindre les menottes du haut pour|sangler ton poignet mais tu ne peux les atteindre.,0,0,0,
 0,0,0,,(Tu menottes une cheville.),Tu pourrais sûrement sangler ta cheville.|Tu es sûre de vouloir le faire ?,10,0,0,
-10,0,0,,(Tu menottes une cheville.)|(1 minute),Tu te reposes sur la croix et tu joues avec|l'entrave de ta cheville jusqu'à ce qu'elle se resserre.,20,0,0,Trap()
+10,0,0,,(Tu menottes une cheville.)ADD_MINUTES:1,Tu te reposes sur la croix et tu joues avec|l'entrave de ta cheville jusqu'à ce qu'elle se resserre.,20,0,0,Trap()
 10,0,0,,(Tu ne le fais pas.),Tu t'éloignes de la croix.,0,0,0,
-20,0,0,,(Tu tires sur ton entrave.)|(1 minute),Tu tires sur ton entrave|mais elle est fermement attachée à la croix.,20,0,0,
-20,0,0,,(Tu essayes de|t'échapper.) (1 minute),Tu luttes pour retirer ta cheville|mais ton pied est coincé.,20,0,0,
-20,0,0,,(Tu menottes l'autre|cheville.) (1 minute),Tu joues avec la deuxième entrave|de ta jambe jusqu'à ce qu'elle se resserre.,30,0,0,
-30,0,0,,(Tu tires sur les|menottes.) (1 minute),Tu tires sur les menottes|mais elles sont fermement attachées à la croix.,30,0,0,
-30,0,0,,(Tu essayes de|t'échapper.) (1 minute),Tu luttes pour retirer tes chevilles|mais tes pieds sont coincés.,30,0,0,
+20,0,0,,(Tu tires sur ton entrave.)ADD_MINUTES:1,Tu tires sur ton entrave|mais elle est fermement attachée à la croix.,20,0,0,
+20,0,0,,(Tu essayes de|t'échapper.)ADD_MINUTES:1,Tu luttes pour retirer ta cheville|mais ton pied est coincé.,20,0,0,
+20,0,0,,(Tu menottes l'autre|cheville.)ADD_MINUTES:1,Tu joues avec la deuxième entrave|de ta jambe jusqu'à ce qu'elle se resserre.,30,0,0,
+30,0,0,,(Tu tires sur les|menottes.)ADD_MINUTES:1,Tu tires sur les menottes|mais elles sont fermement attachées à la croix.,30,0,0,
+30,0,0,,(Tu essayes de|t'échapper.)ADD_MINUTES:1,Tu luttes pour retirer tes chevilles|mais tes pieds sont coincés.,30,0,0,
 30,0,0,,@UUUMNGH !,Il n'y a personne qui puisse t'entendre.,30,0,0,

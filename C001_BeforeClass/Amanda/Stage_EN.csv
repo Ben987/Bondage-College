@@ -23,27 +23,27 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 200,0,0,BondageNotConfronted,"Admit it girl, you would|love to be tied up.",Oh my god!  (She blushes red.)|No... Y... No... the class is starting really soon.,200,-1,1,ConfrontBondage()
 200,0,0,StopRopeSubAllowed,"I love bondage,|could you tie me up?","Oh!  You're a submissive, maybe after school.|(She winks.) What were we talking about newcomer?",200,0,-2,StopRopeSub()
 200,0,0,,We can use them later.|(Hide the ropes.),Later? (She looks at you curiously.)|So what were we talking about newcomer?,200,0,0,StopRope()
-200,0,2,,(Grab her and remove|her uniform.) (1 minute),Oh lord no!  Not again!|(She tries to defend herself but fails.),220,0,0,Strip()
-200,0,4,,"Subbie girl, remove your|uniform now. (1 minute)",N... Errr... Yes Miss...|(She submissively removes her top and skirt.),220,0,0,
-220,0,0,,(Tie her.)|(1 minute),(You wrap the ropes around her body and tie her|arms behind her back.  She moans quietly.),230,0,0,Tie()
-220,0,0,,Put back your clothes.|(1 minute),Oh lord yes!  This is embarrassing.,200,0,0,
+200,0,2,,(Grab her and remove|her uniform.)ADD_MINUTES:1,Oh lord no!  Not again!|(She tries to defend herself but fails.),220,0,0,Strip()
+200,0,4,,"Subbie girl, remove your|uniform now.ADD_MINUTES:1",N... Errr... Yes Miss...|(She submissively removes her top and skirt.),220,0,0,
+220,0,0,,(Tie her.)ADD_MINUTES:1,(You wrap the ropes around her body and tie her|arms behind her back.  She moans quietly.),230,0,0,Tie()
+220,0,0,,Put back your clothes.ADD_MINUTES:1,Oh lord yes!  This is embarrassing.,200,0,0,
 230,0,0,,(Turn her.),What?  Oh lord!  What are you doing?|(You force her to turn around.),240,0,0,
-230,0,0,,(Untie her.)|(1 minute),(You slowly untie her) Thank you so much!|Is it alright if I put my clothes back on?,220,0,0,Untie()
-230,0,0,,(Tickle her.)|(1 minute),(She blushes and can't stop laughing.)|Hey!  Haaahahahaha!  You're funny.,230,0,0,Tickle()
-230,1,0,,(Kiss her.)|(1 minute),Another kiss?|(She blushes red and smiles at you.),230,0,0,Kiss()
-230,0,0,SidneyInBondage,(Make her hug Sidney.)|(1 minute),(Both girls are forced to hug and rub each other.)|Oh my!  This is not appropriated.,250,0,0,
+230,0,0,,(Untie her.)ADD_MINUTES:1,(You slowly untie her) Thank you so much!|Is it alright if I put my clothes back on?,220,0,0,Untie()
+230,0,0,,(Tickle her.)ADD_MINUTES:1,(She blushes and can't stop laughing.)|Hey!  Haaahahahaha!  You're funny.,230,0,0,Tickle()
+230,1,0,,(Kiss her.)ADD_MINUTES:1,Another kiss?|(She blushes red and smiles at you.),230,0,0,Kiss()
+230,0,0,SidneyInBondage,(Make her hug Sidney.)ADD_MINUTES:1,(Both girls are forced to hug and rub each other.)|Oh my!  This is not appropriated.,250,0,0,
 230,0,0,,You look like an|angel in bondage.,(She giggles and smiles at you.),230,0,0,
-230,0,0,,"If I untie you, can I tie|you up later? (1 minute)",Ooooh!  Yes!  Of course!|(You untie her and shake her hand.),300,1,1,Untie()
-230,0,0,,"If I untie you, will you|tie me later? (1 minute)","Hehehe, alright.|(You untie her and shake her hand.)",300,1,-2,Untie()
+230,0,0,,"If I untie you, can I tie|you up later?ADD_MINUTES:1",Ooooh!  Yes!  Of course!|(You untie her and shake her hand.),300,1,1,Untie()
+230,0,0,,"If I untie you, will you|tie me later?ADD_MINUTES:1","Hehehe, alright.|(You untie her and shake her hand.)",300,1,-2,Untie()
 240,0,0,,(Turn her.),(You force her to turn around.)|Oooohh!  I actually prefer seeing you.,230,0,0,
-240,0,0,,(Untie her.)|(1 minute),(You slowly untie her) Thank you so much!|Is it alright if I put my clothes back on?,220,0,0,Untie()
-240,0,0,,(Tickle her.)|(1 minute),(She blushes and can't stop laughing.)|Hey!  Haaahahahaha!  You're funny.,240,0,0,Tickle()
-240,0,0,,(Spank her.)|(1 minute),(You spank her again but she seems to take it better.)|Stop that!,240,0,0,Spank()
+240,0,0,,(Untie her.)ADD_MINUTES:1,(You slowly untie her) Thank you so much!|Is it alright if I put my clothes back on?,220,0,0,Untie()
+240,0,0,,(Tickle her.)ADD_MINUTES:1,(She blushes and can't stop laughing.)|Hey!  Haaahahahaha!  You're funny.,240,0,0,Tickle()
+240,0,0,,(Spank her.)ADD_MINUTES:1,(You spank her again but she seems to take it better.)|Stop that!,240,0,0,Spank()
 240,0,0,,You have a nice|butt you know?,Really?  (She blushes red.),240,0,0,
-240,0,0,,"If I untie you, can I tie|you up later? (1 minute)",Ooooh!  Yes!  Of course!|(You untie her and shake her hand.),300,1,1,Untie()
-240,0,0,,"If I untie you, will you|tie me later? (1 minute)","Hehehe, alright.|(You untie her and shake her hand.)",300,1,-2,Untie()
+240,0,0,,"If I untie you, can I tie|you up later?ADD_MINUTES:1",Ooooh!  Yes!  Of course!|(You untie her and shake her hand.),300,1,1,Untie()
+240,0,0,,"If I untie you, will you|tie me later?ADD_MINUTES:1","Hehehe, alright.|(You untie her and shake her hand.)",300,1,-2,Untie()
 250,0,0,,(Separate them.),Thank you.  That was embarrassing.,230,0,0,
-250,0,0,,(Force them to kiss.)|(1 minute),Another kiss?  This is gross!|(You push them together for another kiss.),260,0,0,ForceKiss()
+250,0,0,,(Force them to kiss.)ADD_MINUTES:1,Another kiss?  This is gross!|(You push them together for another kiss.),260,0,0,ForceKiss()
 250,0,0,,You two make a nice|bondage couple.,(They both stare at you.),250,0,0,
 260,0,0,,(Separate them.),Thank you.  That was embarrassing.,230,0,0,
 260,0,0,,(Stop the kisses.),"No offense Sidney,|but you're not my type.",250,0,0,

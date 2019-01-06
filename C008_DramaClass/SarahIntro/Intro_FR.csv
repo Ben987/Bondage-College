@@ -1,0 +1,21 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,Salut COMMON_PLAYERNAME.|Peux-tu m'aider à trouver mon costume ?,Background.jpg
+0,5,0,,Oh super ! COMMON_PLAYERNAME !|Peux-tu m'aider à trouver mon costume ?,Background.jpg
+0,0,5,,Mes salutations Madame COMMON_PLAYERNAME.|Pourriez-vous m'aider à trouver mon costume ?,Background.jpg
+0,0,0,AmandaMissing,Qu'est-ce qui se passe ? Amanda est en retard et|je ne trouve pas mon costume. Peux-tu m'aider ?,Background.jpg
+10,0,0,,J'ai enfin mon costume.|Ça te dérange si je me déshabille ici ?,Background.jpg
+20,0,0,IsDamsel,J'ai ma robe de mariée.|Peux-tu m'aider à me changer ?,Background.jpg
+20,0,0,!IsDamsel,J'ai mon armure blanche.|Peux-tu m'aider à me changer ?,Background.jpg
+20,0,0,AmandaMissing,"C'est étrange....  Amanda n'est jamais en retard.|Bon, hé bien ! Peux-tu m'aider à changer ?",Background.jpg
+20,0,0,Common_PlayerGagged,"J'adore ton bâillon, je peux en avoir un ?|Ou peux-tu m'aider à me changer ?",Background.jpg
+20,0,0,Common_PlayerRestrained,(Elle rit et semble jalouse.)|Pourquoi es-tu attachée et pas moi ?,Background.jpg
+20,0,0,IsRestrained,"Tu es si coquine ! Mais la pièce va commencer.|Peux-tu m'aider, que je puisse mettre mon costume ?",Background.jpg
+20,0,0,IsGagged,Uugnmph mhn nungn !|(Elle semble apprécier son bâillon.),Background.jpg
+30,0,0,,Tu aimes mon costume ?|On est prête pour la pièce ?,Background.jpg
+30,0,0,AmandaMissing,On y va sans Amanda ?|On est prête pour la pièce ?,Background.jpg
+30,0,0,IsChaste,Je n'arrive pas à croire que tu m'as mise cette ceinture.|On doit vraiment la déverrouiller après la pièce.,Background.jpg
+100,0,0,,(Elle te regarde et rit.)|Tu as besoin d'aide avec ce bâillon ?,Background.jpg
+100,0,0,AmandaMissing,"C'est de la folie ! Amanda est en retard et|tu es bâillonnée. As-tu besoin d'aide ?",Background.jpg
+200,0,0,,(Sarah se remet encore lentement de son orgasme.),BackgroundOrgasm.jpg
+300,0,0,,,Background.jpg
+310,0,0,,,Background.jpg

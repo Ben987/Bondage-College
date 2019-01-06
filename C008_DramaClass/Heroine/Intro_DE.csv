@@ -1,0 +1,43 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+100,0,0,PlayerIsHeroine,(Als der weiße Ritter sollst du|das Stück eröffnen.),Background.jpg
+100,0,0,!PlayerIsHeroine,(Der weiße Ritter eröffnet gleich das Stück.),Background.jpg
+110,0,0,PlayerIsHeroine,(Der schwarze Ritter ist an der Reihe.),Background.jpg
+110,0,0,!PlayerIsHeroine,(Sie sieht den schwarzen Ritter an.),Background.jpg
+120,0,0,PlayerIsHeroine,(Als der weiße Ritter|hast du jetzt das Wort.),Background.jpg
+120,0,0,!PlayerIsHeroine,(Der weiße Ritter sagt gleich seinen Text.),Background.jpg
+130,0,0,PlayerIsHeroine,(Der schwarze Ritter ist an der Reihe.),Background.jpg
+130,0,0,!PlayerIsHeroine,(Sie sieht den schwarzen Ritter an.),Background.jpg
+140,0,0,PlayerIsHeroine,(Die Jungfrau ist an der Reihe.),Background.jpg
+140,0,0,!PlayerIsHeroine,(Sie sieht die Jungfrau an.),Background.jpg
+150,0,0,PlayerIsHeroine,(Die Jungfrau ist an der Reihe.),Background.jpg
+150,0,0,!PlayerIsHeroine,(Sie sieht die Jungfrau an.),Background.jpg
+160,0,0,PlayerIsHeroine,(Die Jungfrau ist an der Reihe.),Background.jpg
+160,0,0,!PlayerIsHeroine,(Sie sieht die Jungfrau an.),Background.jpg
+200,0,0,PlayerIsHeroine,(Der schwarze Ritter ist an der Reihe.),Background.jpg
+200,0,0,!PlayerIsHeroine,(Sie sieht den schwarzen Ritter an.),Background.jpg
+210,0,0,PlayerIsHeroine,(Der schwarze Ritter ist an der Reihe.),Background.jpg
+210,0,0,!PlayerIsHeroine,(Sie sieht den schwarzen Ritter an.),Background.jpg
+220,0,0,PlayerIsHeroine,(Als der weiße Ritter|hast du jetzt das Wort.),Background.jpg
+220,0,0,!PlayerIsHeroine,(Der weiße Ritter sagt gleich seinen Text.),Background.jpg
+225,0,0,,,Background.jpg
+226,0,0,,,Background.jpg
+230,0,0,PlayerIsHeroine,(Der schwarze Ritter ist an der Reihe.),Background.jpg
+230,0,0,!PlayerIsHeroine,(Sie sieht den schwarzen Ritter an.),Background.jpg
+240,0,0,PlayerIsHeroine,(Als der weiße Ritter|hast du jetzt das Wort.),Background.jpg
+240,0,0,!PlayerIsHeroine,(Der weiße Ritter sagt gleich seinen Text.),Background.jpg
+250,0,0,PlayerIsHeroine,(Die Jungfrau ist an der Reihe.),Background.jpg
+250,0,0,!PlayerIsHeroine,(Sie sieht die Jungfrau an.),Background.jpg
+251,0,0,,,Background.jpg
+260,0,0,,,Background.jpg
+270,0,0,PlayerIsHeroine,(Der schwarze Ritter ist an der Reihe.),Background.jpg
+270,0,0,!PlayerIsHeroine,(Sie sieht den schwarzen Ritter an.),Background.jpg
+280,0,0,PlayerIsHeroine,(Die Jungfrau ist an der Reihe.),Background.jpg
+280,0,0,!PlayerIsHeroine,(Sie sieht die Jungfrau an.),Background.jpg
+300,0,0,!PlayerIsHeroine,Es war wirklich nett. Hoffentlich|war ich ein guter weißer Ritter.,Background.jpg
+300,0,0,IsGagged,Mnuh gnunmn n muh!,Background.jpg
+300,0,0,PlayerIsHeroine,(Das Stück ist zu Ende.),Background.jpg
+400,0,0,PlayerIsVillain,Schwazer Ritter! Du Verbrecher!|Was willst du jetzt?,Background.jpg
+400,0,0,PlayerIsDamsel,Meine geliebte Verlobte.|Was kann ich für dich tun?,Background.jpg
+400,0,0,Common_PlayerGagged,(Sie sieht auf deinen Knebel und kichert.),Background.jpg
+400,0,0,IsGagged,Aaem mne nyyo!,Background.jpg
+500,0,0,,(Das Stück geht wohl doch noch weiter.|Du kannst noch mit den anderen interagieren.),Background.jpg

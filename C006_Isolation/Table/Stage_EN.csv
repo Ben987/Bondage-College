@@ -1,3 +1,3 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Inspect it.)|(1 minute),It looks like someone could be restrained on it.|There's room between the panels to slide straps.,0,0,0,
-10,0,0,,(Cut the rope.)|(1 minute),,0,0,0,CutRope()
+0,0,0,,(Inspect it.)ADD_MINUTES:1,It looks like someone could be restrained on it.|There's room between the panels to slide straps.,0,0,0,
+10,0,0,,(Cut the rope.)ADD_MINUTES:1,,0,0,0,CutRope()

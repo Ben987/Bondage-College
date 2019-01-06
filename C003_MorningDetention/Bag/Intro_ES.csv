@@ -1,0 +1,5 @@
+﻿Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,Common_PlayerNotRestrained,La bolsa de la profesora Yuki esta en el suelo sin vigilar.,Bag.jpg
+0,0,0,Common_PlayerRestrained,La bolsa de la profesora Yuki esta en el suelo sin vigilar .|No puedes abrirla sin ser detectada.,Bag.jpg
+10,0,0,Common_PlayerNotRestrained,La bolsa de la profesora sigue abierta.,Bag.jpg
+10,0,0,Common_PlayerRestrained,La bolsa de la profesora sigue abierta.|No puedes registrarla sin ser detectada.,Bag.jpg

@@ -119,17 +119,17 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 330,0,0,,On devrait|sécher l'école.,Oh ouais ! La meilleure idée de tous les temps !|(Elle rit et te fixe le regard vide.),330,0,0,
 330,0,0,HateAmanda,Tu veux te venger|d'Amanda ?,Putain ouais ! Faisons-le maintenant.|Tu vas m'aider à la tabasser ?,400,0,0,
 330,0,0,HateSarah,Tu veux te venger|de Sarah ?,Putain ouais ! Faisons-le maintenant.|Tu vas m'aider à la tabasser ?,500,0,0,
-330,0,0,,(Tu fumes avec elle.)|(1 minute),(Vous partagez toutes les deux une bouffée|et vous restez assis sans rien faire.),330,0,0,
-330,0,0,,(Tu la fixes.)|(1 minute),(Tu la regardes oisivement pendant|qu'elle t'envoit sa fumée au visage.),330,0,0,
-330,0,0,,(Tu enlèves ses vêtements.)|(1 minute),"(Elle te fixe et repousse ta main.)|(""+8"" en amour ou en soumission pour la déshabiller.)",330,0,0,RemoveClothes()
+330,0,0,,(Tu fumes avec elle.)ADD_MINUTES:1,(Vous partagez toutes les deux une bouffée|et vous restez assis sans rien faire.),330,0,0,
+330,0,0,,(Tu la fixes.)ADD_MINUTES:1,(Tu la regardes oisivement pendant|qu'elle t'envoit sa fumée au visage.),330,0,0,
+330,0,0,,(Tu enlèves ses vêtements.)ADD_MINUTES:1,"(Elle te fixe et repousse ta main.)|(""+8"" en amour ou en soumission pour la déshabiller.)",330,0,0,RemoveClothes()
 330,0,0,,Rentrons.|(Vous rentrez à l'université.),,0,0,0,EndChapter()
 340,0,0,!IsGagged,Ça va ?,"Oh, bon sang ! Ouais !|(Elle a l'air défoncée.)",340,0,0,
 340,0,0,!CuteRemarkDone,Tu es plutôt mignonne|comme ça.,"(Elle se regarde, rougit un peu et acquiesce.)",340,0,0,CuteRemark()
-340,0,0,,(Tu la chatouilles.)|(1 minute),"(Soit elle n'est pas chatouilleuse, soit elle est|trop défoncée, mais elle ne réagit pas beaucoup.)",340,0,0,
-340,0,0,,(Tu la masturbes.)|(1 minute),,340,0,0,Masturbate()
-340,0,0,IsRoped,(Tu la détaches.)|(1 minute),(Elle semble apprécier mais ne réagit pas|tant que ça pendant que tu la détaches.),340,0,0,Untie()
-340,0,0,IsGagged,(Tu la débâillonnes.)|(1 minute),(Tu la débâillonnes et elle te fixe.)|Oh la vache ! C'est assez intense.,340,0,0,Ungag()
-340,0,0,,(Tu la laisses se rhabiller.)|(1 minute),(Tu la laisses tranquille et elle remet ses vêtements.),330,0,0,Release()
+340,0,0,,(Tu la chatouilles.)ADD_MINUTES:1,"(Soit elle n'est pas chatouilleuse, soit elle est|trop défoncée, mais elle ne réagit pas beaucoup.)",340,0,0,
+340,0,0,,(Tu la masturbes.)ADD_MINUTES:1,,340,0,0,Masturbate()
+340,0,0,IsRoped,(Tu la détaches.)ADD_MINUTES:1,(Elle semble apprécier mais ne réagit pas|tant que ça pendant que tu la détaches.),340,0,0,Untie()
+340,0,0,IsGagged,(Tu la débâillonnes.)ADD_MINUTES:1,(Tu la débâillonnes et elle te fixe.)|Oh la vache ! C'est assez intense.,340,0,0,Ungag()
+340,0,0,,(Tu la laisses se rhabiller.)ADD_MINUTES:1,(Tu la laisses tranquille et elle remet ses vêtements.),330,0,0,Release()
 340,0,0,IsBoundAndGagged,"Je t'ai piégé, salope."|(Tu l'abandonnes.),,340,0,0,EvilEnd()
 340,0,0,,Rentrons.|(Vous rentrez à l'université.),,0,0,0,EndChapter()
 350,0,0,,Jouis pour moi chérie.|(Tu la fais jouir.),(Tu la masturbes doucement pendant qu'elle gémit|et s'abandonne jusqu'à atteindre un doux orgasme.),340,1,0,Orgasm()
@@ -138,31 +138,31 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 350,0,0,,Tu ne le mérites pas.|(Tu ne la laisses pas jouir.),(Tu arrêtes de la masturber et|elle s'arrête lentement de gémir.),340,0,-1,NoOrgasm()
 400,0,0,,"Tabasser Amanda ?|Non, c'est trop extrême.",Ce n'est pas assez extrême ! Un jour elle paiera.,330,0,0,
 400,0,0,,Oui ! Allons la chercher|tout de suite.,Alors viens avec moi ! (Vous marchez toutes les deux|jusqu'à une classe vide où Amanda est en train de lire.),410,0,0,StartBeatUp()
-410,0,0,,(Tu aides Sidney à mater|Amanda.) (1 minute),(Vous sautez toutes les deux sur Amanda|et Sidney la maîtrise.) Déshabille-la !,420,1,0,
+410,0,0,,(Tu aides Sidney à mater|Amanda.)ADD_MINUTES:1,(Vous sautez toutes les deux sur Amanda|et Sidney la maîtrise.) Déshabille-la !,420,1,0,
 410,0,0,,Je ne peux pas le faire.|(Tu laisses Amanda partir.),"Sale traitresse ! Tu as de la chance, Amanda.|(Amanda emballe rapidement ses affaires et s'enfuit.)",490,-3,-2,
-420,0,0,,(Tu déshabilles|Amanda.) (1 minute),(tu la fous à poil pendant que Sidney|la tient dans ses bras.) Frappe la !,430,1,0,
+420,0,0,,(Tu déshabilles|Amanda.)ADD_MINUTES:1,(tu la fous à poil pendant que Sidney|la tient dans ses bras.) Frappe la !,430,1,0,
 420,0,0,,Je ne peux pas faire ça.|(Tu laisses Amanda partir.),"Sale traitresse ! Tu as de la chance, Amanda.|(Amanda emballe rapidement ses affaires et s'enfuit.)",490,-3,-2,
-430,0,0,,(Tu bats Amanda.)|(1 minute),(Tu frappes Amanda jusqu'à ce qu'elle s'écroule|au sol.) Laisse-moi m'occuper du reste !,440,0,1,"BeatUp(""Amanda"")"
-430,0,0,,"Je suis trop faible,|Madame. (1 minute)","(Sidney lutte seule et bat Amanda qui|s'effondre au sol.) Bouge de là, fillette !",440,0,-1,
+430,0,0,,(Tu bats Amanda.)ADD_MINUTES:1,(Tu frappes Amanda jusqu'à ce qu'elle s'écroule|au sol.) Laisse-moi m'occuper du reste !,440,0,1,"BeatUp(""Amanda"")"
+430,0,0,,"Je suis trop faible,|Madame.ADD_MINUTES:1","(Sidney lutte seule et bat Amanda qui|s'effondre au sol.) Bouge de là, fillette !",440,0,-1,
 430,0,0,,Je ne peux pas faire ça.|(Tu laisses Amanda partir.),"Sale traitresse ! Tu as de la chance, Amanda.|(Amanda emballe rapidement ses affaires et s'enfuit.)",490,-3,-2,
-440,0,0,,Vas-y !|(1 minute),(Sidney bâillonne et ligote Amanda.)|Fuyons avant de nous faire prendre !,450,1,0,"TieUp(""Amanda"")"
+440,0,0,,Vas-y !ADD_MINUTES:1,(Sidney bâillonne et ligote Amanda.)|Fuyons avant de nous faire prendre !,450,1,0,"TieUp(""Amanda"")"
 440,0,0,,Ça va trop loin. (Tu aides|Amanda à se lever.),"Sale traitresse ! Tu as de la chance, Amanda.|(Amanda emballe rapidement ses affaires et s'enfuit.)",490,-3,-2,
 450,0,0,,"Oui, Madame Sidney.|(Tu l'abandonnes.)",,0,0,-1,"CrimeStranded(""Amanda"")"
 450,0,0,,Tirons nous vite !|(Tu l'abandonnes.),,0,0,1,"CrimeStranded(""Amanda"")"
-450,0,0,,Ça va trop loin.|(Tu la libères.) (1 minute),"Sale traitresse ! Tu as de la chance, Amanda.|(Amanda emballe rapidement ses affaires et s'enfuit.)",490,-3,-2,
+450,0,0,,Ça va trop loin.|(Tu la libères.)ADD_MINUTES:1,"Sale traitresse ! Tu as de la chance, Amanda.|(Amanda emballe rapidement ses affaires et s'enfuit.)",490,-3,-2,
 490,0,0,,Rentrons.|(Tu retournes en cours.),,0,0,0,EndChapter()
 500,0,0,,"Tabasser Sarah ?|Non, c'est trop extrême.",Ce n'est pas assez extrême ! Un jour elle paiera.,330,0,0,
 500,0,0,,Oui ! Allons la chercher|tout de suite.,Alors viens avec moi ! (Vous marchez toutes les deux|jusqu'à la cour de l'école où Sarah se la coule douce.),510,0,0,StartBeatUp()
-510,0,0,,(Tu aides Sidney à mater|Sarah.) (1 minute),(Vous sautez toutes les deux sur Sarah|et Sidney la maîtrise.) Déshabille-la !,520,1,0,
+510,0,0,,(Tu aides Sidney à mater|Sarah.)ADD_MINUTES:1,(Vous sautez toutes les deux sur Sarah|et Sidney la maîtrise.) Déshabille-la !,520,1,0,
 510,0,0,,Je ne peux pas faire ça.|(Tu laisses Sarah partir.),"Sale traitresse ! Tu as de la chance, Sarah.|(Sarah tire la langue et s'enfuit rapidement.)",590,-3,-2,
-520,0,0,,(Tu déshabilles|Sarah.) (1 minute),(tu la fous à poil pendant que Sidney|la tient dans ses bras.) Frappe la !,530,1,0,
+520,0,0,,(Tu déshabilles|Sarah.)ADD_MINUTES:1,(tu la fous à poil pendant que Sidney|la tient dans ses bras.) Frappe la !,530,1,0,
 520,0,0,,Je ne peux pas faire ça.|(Tu laisses Sarah partir.),"Sale traitresse ! Tu as de la chance, Sarah.|(Sarah tire la langue et s'enfuit rapidement.)",590,-3,-2,
-530,0,0,,(Tu bats Sarah.)|(1 minute),(Tu frappes Sarah jusqu'à ce qu'elle s'écroule|au sol.) Laisse-moi m'occuper du reste !,540,0,1,"BeatUp(""Sarah"")"
-530,0,0,,"Je suis trop faible,|Madame (1 minute)","(Sidney lutte seule et bat Sarah qui|s'effondre au sol.) Bouge de là, fillette !",540,0,-1,
+530,0,0,,(Tu bats Sarah.)ADD_MINUTES:1,(Tu frappes Sarah jusqu'à ce qu'elle s'écroule|au sol.) Laisse-moi m'occuper du reste !,540,0,1,"BeatUp(""Sarah"")"
+530,0,0,,"Je suis trop faible,|MadameADD_MINUTES:1","(Sidney lutte seule et bat Sarah qui|s'effondre au sol.) Bouge de là, fillette !",540,0,-1,
 530,0,0,,Je ne peux pas faire ça.|(Tu laisses Sarah partir.),"Sale traitresse ! Tu as de la chance, Sarah.|(Sarah tire la langue et s'enfuit rapidement.)",590,-3,-2,
-540,0,0,,Vas-y !|(1 minute),(Sidney bâillonne et attache Sarah à la clôture.)|Fuyons avant qu'on se fasse prendre !,550,1,0,"TieUp(""Sarah"")"
+540,0,0,,Vas-y !ADD_MINUTES:1,(Sidney bâillonne et attache Sarah à la clôture.)|Fuyons avant qu'on se fasse prendre !,550,1,0,"TieUp(""Sarah"")"
 540,0,0,,Ça va trop loin. (Tu aides|Sarah à se lever.),"Sale traitresse ! Tu as de la chance, Sarah.|(Sarah tire la langue et s'enfuit rapidement.)",590,-3,-2,
 550,0,0,,"Oui, Madame Sidney.|(Tu l'abandonnes.)",,0,0,-1,"CrimeStranded(""Sarah"")"
 550,0,0,,Tirons nous vite !|(Tu l'abandonnes.),,0,0,1,"CrimeStranded(""Sarah"")"
-550,0,0,,Ça va trop loin.|(Tu la libères.) (1 minute),"Sale traitresse ! Tu as de la chance, Sarah.|(Sarah tire la langue et s'enfuit rapidement.)",590,-3,-2,
+550,0,0,,Ça va trop loin.|(Tu la libères.)ADD_MINUTES:1,"Sale traitresse ! Tu as de la chance, Sarah.|(Sarah tire la langue et s'enfuit rapidement.)",590,-3,-2,
 590,0,0,,Rentrons.|(Tu retournes en cours.),,0,0,0,EndChapter()

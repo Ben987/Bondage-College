@@ -1,0 +1,55 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,IsDamsel,Tu es une adorable demoiselle.|J'espère que tu es prête à jouer !,JuliaShow.jpg
+0,0,0,IsHeroine,Oh ! L'héroïque chevalier blanc.|J'espère que tu es prête à jouer !,JuliaShow.jpg
+0,0,0,IsVillain,Le terrible chevalier noir est ici.|J'espère que tu es prête à jouer !,JuliaShow.jpg
+10,0,0,,,Julia.jpg
+20,0,0,,,JuliaShow.jpg
+100,0,0,IsHeroine,(Elle chuchote.) Ne me regarde pas.|C'est le moment de briller comme une vedette.,JuliaLookPlayer.jpg
+100,0,0,!IsHeroine,(Elle regarde le chevalier blanc.),JuliaLookAway.jpg
+110,0,0,IsVillain,(Elle chuchote.) Ne me regarde pas.|C'est le moment de briller comme une vedette.,JuliaLookPlayer.jpg
+110,0,0,!IsVillain,(Elle regarde le chevalier noir.),JuliaLookAway.jpg
+120,0,0,IsHeroine,(Elle chuchote.) Ne me regarde pas.|C'est le moment de briller comme une vedette.,JuliaLookPlayer.jpg
+120,0,0,!IsHeroine,(Elle regarde le chevalier blanc.),JuliaLookAway.jpg
+130,0,0,IsVillain,(Elle chuchote.) Ne me regarde pas.|C'est le moment de briller comme une vedette.,JuliaLookPlayer.jpg
+130,0,0,!IsVillain,(Elle regarde le chevalier noir.),JuliaLookAway.jpg
+140,0,0,IsDamsel,(Elle chuchote.) Ne me regarde pas.|C'est le moment de briller comme une vedette.,JuliaLookPlayer.jpg
+140,0,0,!IsDamsel,(Elle regarde la demoiselle.),JuliaLookAway.jpg
+150,0,0,IsDamsel,(Elle chuchote.) Ne me regarde pas.|C'est le moment de briller comme une vedette.,JuliaLookPlayer.jpg
+150,0,0,!IsDamsel,(Elle regarde la demoiselle.),JuliaLookAway.jpg
+160,0,0,IsDamsel,(Elle chuchote.) Ne me regarde pas.|C'est le moment de briller comme une vedette.,JuliaLookPlayer.jpg
+160,0,0,!IsDamsel,(Elle regarde la demoiselle.),JuliaLookAway.jpg
+200,0,0,IsVillain,(Elle chuchote.) Ne me regarde pas.|C'est le moment de briller comme une vedette.,JuliaLookPlayer.jpg
+200,0,0,!IsVillain,(Elle regarde le chevalier noir.),JuliaLookAway.jpg
+210,0,0,IsVillain,(Elle chuchote.) Ne me regarde pas.|C'est le moment de briller comme une vedette.,JuliaLookPlayer.jpg
+210,0,0,!IsVillain,(Elle regarde le chevalier noir.),JuliaLookAway.jpg
+220,0,0,IsHeroine,(Elle chuchote.) Ne me regarde pas.|C'est le moment de briller comme une vedette.,JuliaLookPlayer.jpg
+220,0,0,!IsHeroine,(Elle regarde le chevalier blanc.),JuliaLookAway.jpg
+230,0,0,IsVillain,(Elle chuchote.) Ne me regarde pas.|C'est le moment de briller comme une vedette.,JuliaLookPlayer.jpg
+230,0,0,!IsVillain,(Elle regarde le chevalier noir.),JuliaLookAway.jpg
+240,0,0,IsHeroine,(Elle chuchote.) Ne me regarde pas.|C'est le moment de briller comme une vedette.,JuliaLookPlayer.jpg
+240,0,0,!IsHeroine,(Elle regarde le chevalier blanc.),JuliaLookAway.jpg
+250,0,0,IsDamsel,(Elle chuchote.) Ne me regarde pas.|C'est le moment de briller comme une vedette.,JuliaLookPlayer.jpg
+250,0,0,!IsDamsel,(Elle regarde la demoiselle.),JuliaLookAway.jpg
+270,0,0,IsVillain,(Elle chuchote.) Ne me regarde pas.|C'est le moment de briller comme une vedette.,JuliaLookPlayer.jpg
+270,0,0,!IsVillain,(Elle regarde le chevalier noir.),JuliaLookAway.jpg
+280,0,0,IsDamsel,(Elle chuchote.) Ne me regarde pas.|C'est le moment de briller comme une vedette.,JuliaLookPlayer.jpg
+280,0,0,!IsDamsel,(Elle regarde la demoiselle.),JuliaLookAway.jpg
+300,0,0,EndingKiss,Bravo! Bravo !  Bravisimo !|Quel magnifique baiser final !,Background.jpg
+300,0,0,EndingHug,Bravo ! Mille Bravo !|Et quel beau câlin à la fin.,Background.jpg
+300,0,0,EndingDomme,Bravo ! La fin dominante était inattendue|mais le théâtre peut être chaotique.,Background.jpg
+300,0,0,EndingTwoPrisoners,Bravo ! La fin avec les deux prisonniers était|inattendue mais le théâtre peut être chaotique.,Background.jpg
+300,0,0,EndingTrio,"Depuis des années que je fais cette pièce, je ne l'ai|jamais vue se terminer en un ménage à trois. Bravo !",Background.jpg
+310,0,0,,C'était génial de vous voir toutes jouer la comédie.|Et il y avait de la place pour improviser.,Background.jpg
+320,0,0,,Rejoindre la pièce maintenant ? Mais pour quel rôle ?,Background.jpg
+330,0,0,,,Background.jpg
+340,0,0,,,Background.jpg
+400,0,0,IsDamsel,Ma douce amie damoiselle.|Que va-t-il nous arriver ?,Background.jpg
+400,0,0,IsHeroine,"Oh, mon héros blanc !|Qu'attendez-vous de moi ?",Background.jpg
+400,0,0,IsVillain,"Oh, grand chevalier noir !|Qu'attendez-vous de moi ?",Background.jpg
+410,0,0,IsDamsel,Ma douce amie damoiselle.|Que va-t-il nous arriver ?,Background.jpg
+410,0,0,IsHeroine,"Oh, mon héros blanc !|Qu'attendez-vous de moi ?",Background.jpg
+410,0,0,IsVillain,"Oh, grand chevalier noir !|Qu'attendez-vous de moi ?",Background.jpg
+410,0,0,Common_PlayerGagged,Je suppose que vous ne parlerez pas beaucoup.,Background.jpg
+410,0,0,IsGagged,Om nong ! Olog amogn !|(Elle s'amuse avec son bâillon.),Background.jpg
+500,0,0,,En tant que reine de cette contrée.|Je m'attends au respect et à la dévotion.,Background.jpg
+500,0,0,Common_PlayerGagged,Je suppose que vous ne parlerez pas beaucoup.,Background.jpg

@@ -12,10 +12,37 @@ function CheatKey() {
 		if (!RaceEnded && (RaceTimer > 0)) { if (KeyPress == 42) { RaceProgress = RaceGoal; RaceEnd(true); } return; }
 		if (!QuizEnded && (QuizTimer > 0) && (QuizBetweenQuestionTimer == 0) && (QuizAnswerText == "")) { if (KeyPress == 42) { QuizAnswerText = QuizQuestion[QuizProgressLeft + QuizProgressRight][QuizQuestionAnswer1]; QuizAnswerBy = "Left"; QuizProgressLeft++; QuizBetweenQuestionTimer = QuizTimer + QuizOtherQuestionTime; } return; }
 		
-		// Actors and inventory cheat
+		// If we must manipulate time using + and -
+		if (KeyPress == 43) CheatTime(900000);
+		if (KeyPress == 45) CheatTime(-900000);
+		
+		// Specific cheats by functions
 		if (CurrentActor != "") CheatActor();
+		if ((CurrentChapter == "C012_AfterClass") && (CurrentScreen == "Dorm")) CheatDorm();
 		CheatSkill();
 		CheatInventory();
+
+	}
+
+}
+
+// Cheats the clock by adding or removing time
+function CheatTime(TimeChange) {
+
+	// Time must be running to allow cheating it
+	if (RunTimer) {
+
+		// Change the main clock
+		CurrentTime = CurrentTime + TimeChange;
+		if (CurrentTime <= 0) CurrentTime = 1;
+
+		// Change all the timed events in the game log to fit with that change
+		for (var L = 0; L < GameLog.length; L++)
+			if (GameLog[L][GameLogTimer] > 0) {
+				GameLog[L][GameLogTimer] = GameLog[L][GameLogTimer] + TimeChange;
+				if (GameLog[L][GameLogTimer] <= 0) GameLog[L][GameLogTimer] = 1;
+				if (GameLog[L][GameLogTimer] > 24 * 60 * 60 * 1000) GameLog[L][GameLogTimer] = 24 * 60 * 60 * 1000;
+			}
 
 	}
 
@@ -52,4 +79,16 @@ function CheatInventory() {
 	if ((KeyPress == 83) || (KeyPress == 115)) PlayerAddInventory("SleepingPill", 1);
 	if ((KeyPress == 84) || (KeyPress == 116)) PlayerAddInventory("TapeGag", 1);
 	if ((KeyPress == 86) || (KeyPress == 118)) PlayerAddInventory("VibratingEgg", 1);
+}
+
+// Cheats that are specific to the player's dorm room
+function CheatDorm() {
+
+	// If the player isn't grounded, she can be released by using *
+	if ((KeyPress == 42) && !GameLogQuery(CurrentChapter, "", "EventGrounded")) {
+		PlayerReleaseBondage();
+		if (PlayerHasLockedInventory("ChastityBelt")) { PlayerUnlockInventory("ChastityBelt"); PlayerAddInventory("ChastityBelt", 1); }
+		if (PlayerHasLockedInventory("VibratingEgg")) { PlayerUnlockInventory("VibratingEgg"); PlayerAddInventory("VibratingEgg", 1); }		
+	}
+
 }

@@ -1,0 +1,77 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,Malen ist nicht|meine Stärke.,Oh! Das kriegst du bestimmt hin.|Ist Kunst nicht so dein Ding?,10,0,-1,
+0,0,0,,Ich komme|schon klar.,Ganz bestimmt.|Gefällt dir die Kunststunde mit Julia?,10,0,0,
+0,0,0,,Ich würde lieber|dich malen.,(Sie wird rot.) Sehr nett von dir.|Dir gefällt unsere Lehrerin also nicht?,10,1,0,
+0,0,0,BondageDone,"Wenn du brav bist, fessele|ich dich heute nochmal","(Sie neigt ihren Kopf.) Ja, Miss.|Wie gefällt dir der Kunstunterricht mit Julia?",10,0,1,
+10,0,0,,Julia ist ein recht|großes Bildmodell.,"Sei nicht so gemein zu ihr. Sie ist vielleicht|etwas kräftig, aber sie ist 'ne gute Lehrerin.",20,-1,0,
+10,0,0,,Ihr Kleid hat|zu viele Details.,Darum geht es ja! Sie ist|kein einfaches Bildmodell.,20,0,0,
+10,0,0,,"Kunst ist okay,|aber Julia nicht.","Sei nicht so gemein zu ihr. Sie wird langsam|alt, aber sie ist 'ne gute Lehrerin.",20,-1,0,
+20,0,0,,"Wäre es nicht besser,|wenn sie nackt wäre?",Ganz deiner Meinung. Aber wie|willst du sie dazu bringen?,30,1,0,
+20,0,0,,Gib's zu. Sie würde|dir ohne Kleid gefallen.,(Sie kichert.) Das stimmt.|Aber wie willst du sie zum Ausziehen überreden?,30,0,1,
+20,0,0,,"Ich schaff das nur, wenn|sie das Kleid auszieht.",Das Kleid ausziehen? Keine schlechte Idee.|Aber bring sie erstmal dazu.,30,0,-1,
+30,0,0,,"Hilf mir, sie|zu überreden.","Ich hab keine Ahnung wie.|Frag mal Jennifer, sie ist klug.",30,0,0,
+100,0,0,,Ob wir da noch einen|drauflegen können?,Noch mehr? Was willst du denn?,110,0,0,
+100,0,0,,Sollen wir das|Ganze aufpeppen?,Pepp! Pepp! Pepp! Was hast du vor?,110,1,0,
+110,0,0,,Wir sollten|Julia fesseln.,Sie fesseln? Wie hinterhältig.|Wie willst du sie dazu bringen?,120,0,0,
+110,0,0,,Julia wäre gefesselt|noch besser,"Ja, ja, ja und ja. Aber|wie überredest du sie?",120,1,0,
+110,0,0,,"Wir sollten ihren|fetten Arsch fesseln.","Hätte ich anders gesagt, aber die Idee|gefällt mir. Wie willst du sie überzeugen?",120,-1,1,
+120,0,0,,Wir können sie|mit Kunst übereugen.,"Oh! Da fällt mir sogar was ein.|Erzähl ihr von ""Shibari"", der japanischen Fesselkunst.",130,0,0,ShibariComment()
+120,0,0,,Sie liebt Kunst.|Bringt uns das weiter?,"Ja! Pass auf. Ich hab den perfekten Plan.|Erzähl ihr von ""Shibari"", der japanischen Fesselkunst.",130,0,-1,ShibariComment()
+130,0,0,CanBeTied,"Sarah, kannst|du mich fesseln?","Ich werde lieber selbst gefesselt, aber schauen wir mal.|(Sie nimmt dein Seil und fesselt dich ganz ordentlich.)",130,0,0,TiePlayer()
+130,0,0,CanBeBallGagged,"Schau in meine Tasche,|da ist ein Ballknebel.","Oh gut! Weit aufmachen, hübsches Modell.|(Sie befestigt den Ballknebel in deinem Mund.)",130,0,0,BallGagPlayer()
+130,0,0,Common_PlayerRestrained,"Sarah, kannst|du mir helfen?",,130,0,0,BegForRelease()
+130,0,0,Common_PlayerGagged,"@Nanghn, uuumng!",(Sie kichert) Du bist geknebelt so süß.,130,0,0,
+130,0,0,Common_PlayerGagged,(Deinen Kopf neigen.),"Du wärst eine nette Sklavin, weißt du?",130,0,0,BowHead()
+130,0,0,GetTapeAvail,Hast du noch andere|Ideen?ADD_MINUTES:1,"Ja! Ich hab hier was, das du benutzen kannst.|(Sie geht weg und kommt mit Klebeband zurück.)",130,0,0,GetTape()
+130,0,0,IsModel,Solltest du dich nicht aus-|ziehen wie Julia?ADD_MINUTES:1,(Sie kichert.) Hast recht.|(Sie zieht ihre Uniform aus.),140,0,0,"SetCloth(1, 0, 0)"
+130,0,0,IsModel,"Zeig mehr Haut,|Blondchen.ADD_MINUTES:1",Blondchen? Mmmh. Okay.|(Sie zieht ihre Uniform aus.),140,0,0,"SetCloth(1, -1, 1)"
+130,0,0,IsModel,Du wärst süß ohne|die Uniform.ADD_MINUTES:1,Meinst du das echt?|(Sie zieht ihre Uniform aus.),140,0,0,"SetCloth(1, 1, 0)"
+140,0,0,GetTapeAvail,Hast du noch andere|Ideen?ADD_MINUTES:1,"Ja! Ich hab hier was, das du benutzen kannst.|(Sie geht weg und kommt mit Klebeband zurück.)",140,0,0,GetTape()
+140,0,0,IsModel,Komm schon! Das kannst|du doch besser.ADD_MINUTES:1,"Ja, ich weiß, das war nur der Vorgeschmack.|(Sie schlüpft spielerisch aus ihrer Unterwäsche.)",150,0,0,"SetCloth(2, 0, 1)"
+140,0,0,IsModel,"Du weißt, was du|zu tun hast.ADD_MINUTES:1",Und wie ich das weiß. Im Namen der Kunst!|(Sie schlüpft spielerisch aus ihrer Unterwäsche.),150,0,0,"SetCloth(2, 0, 0)"
+140,0,0,IsModel,Traust du dich noch mehr?|(Scheu kichern.)ADD_MINUTES:1,Ah! Eine einfache Mutprobe!|(Sie schlüpft spielerisch aus ihrer Unterwäsche.),150,0,0,"SetCloth(2, 0, -1)"
+140,0,0,IsModel,Posier mal in deiner|Uniform.ADD_MINUTES:1,Entscheide dich mal.|(Sie zieht sich wieder an und schmollt.),130,0,0,"SetCloth(0, 0, 0)"
+150,0,0,GetTapeAvail,Hast du noch andere|Ideen?ADD_MINUTES:1,"Ja! Ich hab hier was, das du benutzen kannst.|(Sie geht weg und kommt mit Klebeband zurück.)",150,0,0,GetTape()
+150,0,0,IsModel,Versuch die Pose in|Unterwäsche.ADD_MINUTES:1,Das ist aber nicht so sexy.|(Sie zieht ihre Unterwäsche an und schmollt.),140,0,0,"SetCloth(1, 0, 0)"
+150,0,0,IsModel,Probieren wir nochmal|die Uniform.ADD_MINUTES:1,Wirklich? Bin ich nicht hübsch genug?|(Sie zieht sich wieder an und schmollt.),130,0,0,"SetCloth(0, 0, 0)"
+160,0,5,CollarRemarkReady,Dir will man direkt|ein Halsband umlegen.,"Im Ernst? Danke, Miss.|(Sie wird rot und lächelt.)",160,1,1,CollarRemark()
+160,0,0,EggInside,Sarah. Gefällt|dir das Ei?,Und wie! Vielen Dank.|Das Surren erinnert mich an dich.,160,0,0,
+160,2,0,Common_PlayerNotGagged,(Küssen.)ADD_MINUTES:1,"(Sie wird rot.) Du bist so nett,|du erinnerst mich an Amanda.",160,0,0,Kiss()
+160,0,0,,(Seile enger ziehen.)ADD_MINUTES:1,Diese Seile lassen sich|nicht noch enger ziehen.,160,0,0,Tighten()
+160,0,0,Common_PlayerNotRestrained,(Befreien.)ADD_MINUTES:1,"Oooooch, warum hast du mich losgebunden?|(Sie steckt die Zunge raus und nimmt ihre Pose ein.)",150,0,0,Untie()
+160,0,0,Common_PlayerNotRestrained,(Kitzeln.)ADD_MINUTES:1,"Du bist witzig. Aber war das schon alles?|(Sie kichert, bleibt aber unbeeindruckt.)",160,0,0,
+160,0,0,PaintAvail,(Sarah malen.)|(30 Minuten),(Du malst sie sorgfältig ab und zeigst ihr das Ergebnis.)|Wow! So ein perverses Bild. Ich liebe es!,160,0,0,Paint()
+170,0,0,CrotchRopeReady,(Mit ihrem Schrittseil|spielen.)ADD_MINUTES:1,"(Du spielst mit dem Schrittseil und sie fällt bebend|auf die Kniee, bereit für einen großen Orgasmus.)",200,0,0,OrgasmStart()
+170,0,0,,(Seile enger ziehen.)ADD_MINUTES:1,Diese Seile lassen sich|nicht noch enger ziehen.,170,0,0,Tighten()
+170,0,0,Common_PlayerNotRestrained,(Knebel entfernen.)ADD_MINUTES:1,(Sie streckt ihren Kiefer und lächelt.)|Hast du noch etwas Größeres auf Lager?,160,0,0,Ungag()
+170,0,0,Common_PlayerNotRestrained,(Kitzeln.)ADD_MINUTES:1,"(Sie kichert, bleibt aber unbeeindruckt.)",170,0,0,
+170,0,0,PaintAvail,(Sarah malen.)|(30 Minuten),(Du malst sie sorgfältig ab und zeigst ihr das Ergebnis.)|(Sie betrachtet dein Werk und nickt zufrieden.),170,0,0,Paint()
+180,0,0,CrotchRopeReady,(Mit ihrem Schrittseil|spielen.)ADD_MINUTES:1,"(Du spielst mit dem Schrittseil und sie fällt bebend|auf die Kniee, bereit für einen großen Orgasmus.)",250,0,0,OrgasmStart()
+180,0,0,,(Seile enger ziehen.)ADD_MINUTES:1,Diese Seile lassen sich|nicht noch enger ziehen.,180,0,0,Tighten()
+180,0,0,Common_PlayerNotRestrained,(Knebel entfernen.)ADD_MINUTES:1,(Sie lächelt dich an.) Das Klebeband|war eine meiner besten Ideen.,160,0,0,Ungag()
+180,0,0,Common_PlayerNotRestrained,(Kitzeln.)ADD_MINUTES:1,"(Sie kichert, bleibt aber unbeeindruckt.)",180,0,0,
+180,0,0,PaintAvail,(Sarah malen.)|(30 Minuten),(Du malst sie sorgfältig ab und zeigst ihr das Ergebnis.)|(Sie betrachtet dein Werk und nickt zufrieden.),180,0,0,Paint()
+200,0,0,,"Willst du zum Höhepunkt,|meine Kleine?",(Sie nickt sanft und|versucht sich zusammenzureißen.),210,0,1,
+200,0,0,,Die Nutte will|also kommen?,"(Sie schüttelt den Kopf, dann nickt sie|und versucht sich zusammenzureißen.)",210,-1,0,
+200,0,0,,Du scheinst kurz|vorm Himmel zu sein.,"(Sie nickt glücklich und|versucht sich zusammenzureißen.)",210,1,0,
+200,0,0,,Armes Ding.|(Ihr hochhelfen.)ADD_MINUTES:1,(Du hilfst ihr beim Aufstehen und|sie reißt sich langsam zusammen.),170,0,0,
+210,0,0,,Hast du dir verdient.|(Befriedigen.)ADD_MINUTES:1,"(Du spielst mit dem Schrittseil und sie erreicht einen|stillen Orgasmus. Manche bemerken es, andere nicht.)",220,1,0,Orgasm()
+210,0,0,,Du gehörst jetzt mir.|(Befriedigen.)ADD_MINUTES:1,"(Du spielst mit dem Schrittseil und sie erreicht einen|stillen Orgasmus. Manche bemerken es, andere nicht.)",220,0,1,Orgasm()
+210,0,0,,Du verdienst es nicht.|(Ihr hochhelfen.)ADD_MINUTES:1,(Du verweigerst ihr den Höhepunkt und hilfst ihr|beim Aufstehen. Sie schaut dich bettelnd an.),170,-1,1,
+210,0,0,,Nicht im Unterricht.|(Ihr hochhelfen.)ADD_MINUTES:1,(Du verweigerst ihr den Höhepunkt und hilfst ihr|beim Aufstehen. Sie schaut dich bettelnd an.),170,-1,-1,
+220,0,0,,Gutes Mädchen.|(Ihr hochhelfen.)ADD_MINUTES:1,"(Sie nickt und zittert, während|du ihr auf die Beine hilfst.)",170,1,0,
+220,0,0,,Du bist eine Hure.|(Ihr hochhelfen.)ADD_MINUTES:1,"(Sie runzelt die Stirn und zittert, während|du ihr auf die Beine hilfst.)",170,-1,1,
+220,0,0,,Nächstes Mal bin ich dran.|(Ihr hochhelfen.)ADD_MINUTES:1,"(Sie kichert und zittert, während|du ihr auf die Beine hilfst.)",170,0,-1,
+220,0,0,,(Ihr schweigend auf die|Beine helfen.)ADD_MINUTES:1,"(Sie ist noch am Zittern, während|du ihr auf die Beine hilfst.)",170,0,0,
+250,0,0,,"Willst du zum Höhepunkt,|meine Kleine?",(Sie nickt sanft und|versucht sich zusammenzureißen.),260,0,1,
+250,0,0,,Die Nutte will|also kommen?,"(Sie schüttelt den Kopf, dann nickt sie|und versucht sich zusammenzureißen.)",260,-1,0,
+250,0,0,,Du scheinst kurz|vorm Himmel zu sein.,"(Sie nickt glücklich und|versucht sich zusammenzureißen.)",260,1,0,
+250,0,0,,Armes Ding.|(Ihr hochhelfen.)ADD_MINUTES:1,(Du hilfst ihr beim Aufstehen und|sie reißt sich langsam zusammen.),180,0,0,
+260,0,0,,Hast du dir verdient.|(Befriedigen.)ADD_MINUTES:1,"(Du spielst mit dem Schrittseil und sie erreicht einen|stillen Orgasmus. Manche bemerken es, andere nicht.)",270,1,0,Orgasm()
+260,0,0,,Du gehörst jetzt mir.|(Befriedigen.)ADD_MINUTES:1,"(Du spielst mit dem Schrittseil und sie erreicht einen|stillen Orgasmus. Manche bemerken es, andere nicht.)",270,0,1,Orgasm()
+260,0,0,,Du verdienst es nicht.|(Ihr hochhelfen.)ADD_MINUTES:1,(Du verweigerst ihr den Höhepunkt und hilfst ihr|beim Aufstehen. Sie schaut dich bettelnd an.),180,-1,1,
+260,0,0,,Nicht im Unterricht.|(Ihr hochhelfen.)ADD_MINUTES:1,(Du verweigerst ihr den Höhepunkt und hilfst ihr|beim Aufstehen. Sie schaut dich bettelnd an.),180,-1,-1,
+270,0,0,,Gutes Mädchen.|(Ihr hochhelfen.)ADD_MINUTES:1,"(Sie nickt und zittert, während|du ihr auf die Beine hilfst.)",180,1,0,
+270,0,0,,Du bist eine Hure.|(Ihr hochhelfen.)ADD_MINUTES:1,"(Sie runzelt die Stirn und zittert, während|du ihr auf die Beine hilfst.)",180,-1,1,
+270,0,0,,Nächstes Mal bin ich dran.|(Ihr hochhelfen.)ADD_MINUTES:1,"(Sie kichert und zittert, während|du ihr auf die Beine hilfst.)",180,0,-1,
+270,0,0,,(Ihr schweigend auf die|Beine helfen.)ADD_MINUTES:1,"(Sie ist noch am Zittern, während|du ihr auf die Beine hilfst.)",180,0,0,

@@ -1,0 +1,5 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,RopeAvail,(Seil aufheben.),Du hebst das Seil auf.,0,0,0,TakeRope()
+0,0,0,CollarAvail,(Halsband aufheben.),Du hebst das Halsband auf.,0,0,0,TakeCollar()
+0,0,0,,(Kette aufheben.),"Du versuchst die Kette zu nehmen,|aber sie ist fest im Boden verankert.",0,0,0,
+0,0,0,HookAvail,(Haken aufheben.),Du hebst einen alten Metallhaken auf.,0,0,0,TakeHook()

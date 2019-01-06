@@ -1,9 +1,9 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Inspect it.)|(1 minute),This chastity belt looks in good condition.|Once locked you'll need a key to unlock it.,0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Lock yourself.)|(1 minute),"You take a deep breath and close the belt|on yourself.  It locks with a loud ""click"".",0,0,0,LockSelf()
-10,0,0,,(Inspect your belt.)|(1 minute),This chastity belt is in good condition.|You'll need the proper key to unlock it.,10,0,0,
-10,0,0,HasLooseBelt,(Inspect the loose belt.)|(1 minute),This chastity belt looks in good condition.|Once locked you'll need a key to unlock it.,10,0,0,ShowImage()
-10,0,0,Common_PlayerNotRestrained,(Remove the belt.)|(1 minute),You try to slide the belt off your hips|but it's locked too tight and doesn't move.,10,0,0,
-10,0,0,Common_PlayerNotRestrained,(Force it open.)|(1 minute),You try to force and pry the belt|open but it remains firmly locked.,10,0,0,
-10,0,0,Common_PlayerNotRestrained,(Try to masturbate.)|(1 minute),You barely slip a finger below the belt.|It's impossible to masturbate like that.,10,0,0,
-10,0,0,,(Rub your clitoris.)|(1 minute),You clumsily rub your clitoris against the belt.|It's somewhat pleasurable but not enough to climax.,10,0,0,
+0,0,0,,(检查它)|(1 分钟),这件贞操带看起来状况良好。|一旦锁上它你需要钥匙才能打开。,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(锁住自己)|(1 分钟),"你深吸一口气并且在你身上合上了贞操带。|“啪嗒”，清脆的一声，它锁上了。",0,0,0,LockSelf()
+10,0,0,,(检查你的贞操带)|(1 分钟),这件贞操带看起来状况良好。|你需要正确的钥匙才能打开它。,10,0,0,
+10,0,0,HasLooseBelt,(Inspect the loose belt.)|(1 分钟),这件贞操带看起来状况良好。|一旦锁上它你需要钥匙才能打开。,10,0,0,ShowImage()
+10,0,0,Common_PlayerNotRestrained,(脱下贞操带)|(1 分钟),你尝试将贞操带从臀部滑下来，|但是它锁得紧紧的，并且纹丝不动。,10,0,0,
+10,0,0,Common_PlayerNotRestrained,(强行打开它)|(1 分钟),你尝试强行撬开它，|但是它还是牢牢地锁在那里。,10,0,0,
+10,0,0,Common_PlayerNotRestrained,(尝试自慰)|(1 分钟),你只能勉强伸进去一根手指。|这样是不可能自慰的。,10,0,0,
+10,0,0,,(摩擦你的阴蒂)|(1 分钟),你笨拙地隔着贞操带摩擦你的阴蒂。|这有点令人愉悦但并不足以达到高潮。,10,0,0,

@@ -1,0 +1,12 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,(Untersuchen.)ADD_MINUTES:1,Dieses hölzerne Kreuz hat vier Manschetten.|Eine daran festgebundene Person wäre sehr wehrlos.,0,0,0,
+0,0,0,,(Eine Hand|einsperren.),"Du versuchst deine Hand in eine der Manschetten|zu sperren, aber gefesselt kommst du nicht ran.",0,0,0,
+0,0,0,,(Einen Fuß|einsperren.),Du könntest wahrscheinlich deinen Fuß einschließen.|Möchtest du das wirklich tun?,10,0,0,
+10,0,0,,(Einen Fuß|einsperren.)ADD_MINUTES:1,"Du lehnst dich gegen das Kreuz und drückst mit|dem Fuß gegen die Manschette, bis sie zuschnappt.",20,0,0,Trap()
+10,0,0,,(Es nicht tun.),Du trittst von dem Gerät zurück.,0,0,0,
+20,0,0,,(An der Manschette|rütteln.)ADD_MINUTES:1,"Du zerrst an der Manschette, aber|sie ist fest am Kreuz verankert.",20,0,0,
+20,0,0,,(Herausgleiten.)ADD_MINUTES:1,"Du versuchst deinen Knöchel aus der Manschette|zu ziehen, aber dein Fuß steckt fest.",20,0,0,
+20,0,0,,(Anderen Fuß|einsperren.)ADD_MINUTES:1,"Du spielst mit der zweiten Manschette, bis dein anderer|Fuß eingesperrt ist. Deine Beine sind gespreizt.",30,0,0,
+30,0,0,,(An den Manschetten|rütteln.)ADD_MINUTES:1,"Du zerrst an den Manschetten, aber|sie sind fest am Kreuz verankert.",30,0,0,
+30,0,0,,(Herausgleiten.)ADD_MINUTES:1,"Du versuchst deine Knöchel aus den Manschetten|zu ziehen, aber deine Füße stecken fest.",30,0,0,
+30,0,0,,@UUUMNGH!,"Es ist niemand da, um dich zu hören.",30,0,0,

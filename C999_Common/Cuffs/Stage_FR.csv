@@ -1,8 +1,8 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Tu les examines.)|(1 minute),"Elles ont l'air assez solide, Il n'y a aucun|moyen de se libérer sans une clé.",0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Tu te menottes.)|(1 minute),Tu te menottes les mains derrière ton dos. Tu ressens|des frémissements quand tu entends le dernier clic.,10,0,0,SelfCuff()
-10,0,0,HasLooseCuffs,(Tu examines une autre|paire) (1 minute),"Difficilement, tu examines les menottes de métal.|Elles sont solide, on ne peut pas se libérer sans la clé.",10,0,0,ShowImage()
-10,0,0,,(Tu essayes de les|enlever.) (1 minute),Tu essayes de faire glisser tes mains en dehors|des menottes mais tu échoues lamentablement.,10,0,0,
-10,0,0,,(Tu essayes de les|casser.) (1 minute),Tu essayes de casser les menottes|mais elles n'ont pas une égratignure.,10,0,0,
-10,0,0,HasKey,(Tu te libères)|(1 minute),Tu farfouilles un moment pour trouver|la clé et tu te libères.,0,0,0,Unlock()
-10,0,0,CanEscape,(Tu t'évades.)|(1 minute),"Tu travails maladroitement avec la pince|à cheveux mais tu arrives à te libérer.",0,0,0,Escape()
+0,0,0,,(Tu les examines.)ADD_MINUTES:1,"Elles sont solides.|Il n'y a aucun moyen de se libérer sans une clé.",0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Tu te menottes.)ADD_MINUTES:1,Tu te menottes les mains derrière le dos. Des frissons|te parcourent le corps quand tu entends le dernier clic.,10,0,0,SelfCuff()
+10,0,0,HasLooseCuffs,(Tu examines une|autre paire)ADD_MINUTES:1,"Tu examines, non sans peine, les menottes.|Elles semblent solides, on ne peut se libérer sans clé.",10,0,0,ShowImage()
+10,0,0,,(Tu essayes de|les enlever.)ADD_MINUTES:1,Tu essayes de faire glisser tes mains pour retirer|les menottes mais tu échoues lamentablement.,10,0,0,
+10,0,0,,(Tu essayes de|les casser.)ADD_MINUTES:1,Tu essayes de casser les menottes|mais elles n'ont pas une égratignure.,10,0,0,
+10,0,0,HasKey,(Tu te libères.)ADD_MINUTES:1,"Tu farfouilles un moment pour trouver la clé,|puis tu parviens finalement à te libérer.",0,0,0,Unlock()
+10,0,0,CanEscape,(Tu t'évades.)ADD_MINUTES:1,"Tu tâtonnes un moment avec une épingle à cheveux,|puis tu parviens à forcer l'ouverture du mécanisme.",0,0,0,Escape()

@@ -1,7 +1,7 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Inspect the tape.)|(1 minute),"It's a strong, one time use duct tape.  It will|be hard to understand someone gagged with it.",0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Gag yourself.)|(1 minute),You pull a band of duct tape and|apply it firmly over your mouth.,10,0,0,SelfGag()
-10,0,0,HasLooseTape,(Inspect the loose tape.)|(1 minute),"It's a strong, one time use duct tape.  It will|be hard to understand someone gagged with it.",10,0,0,ShowImage()
-10,0,0,,(Force your mouth|open.)  (1 minute),You try to force your mouth|open but the tape is too strong.,10,0,0,
-10,0,0,,(Push with your lips.)|(1 minute),You try to push away the|tape but it doesn't move.,10,0,0,
-10,0,0,Common_PlayerNotRestrained,(Ungag yourself.)|(1 minute),You rip the tape away from your face.|It hurts pretty bad but you can talk again.,0,0,0,SelfUngag()
+0,0,0,,(Inspect the tape.)ADD_MINUTES:1,"It's a strong, one time use duct tape.  It will|be hard to understand someone gagged with it.",0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Gag yourself.)ADD_MINUTES:1,You pull a band of duct tape and|apply it firmly over your mouth.,10,0,0,SelfGag()
+10,0,0,HasLooseTape,(Inspect the loose tape.)ADD_MINUTES:1,"It's a strong, one time use duct tape.  It will|be hard to understand someone gagged with it.",10,0,0,ShowImage()
+10,0,0,,(Force your|mouth open.)ADD_MINUTES:1,You try to force your mouth|open but the tape is too strong.,10,0,0,
+10,0,0,,(Push with your lips.)ADD_MINUTES:1,You try to push away the|tape but it doesn't move.,10,0,0,
+10,0,0,Common_PlayerNotRestrained,(Ungag yourself.)ADD_MINUTES:1,You rip the tape away from your face.|It hurts pretty bad but you can talk again.,0,0,0,SelfUngag()

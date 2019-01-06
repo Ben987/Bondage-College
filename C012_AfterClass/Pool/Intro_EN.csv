@@ -1,4 +1,30 @@
 Stage,LoveReq,SubReq,VarReq,IntroText,Image
-0,0,0,EmptyPool,You arrive at the college pool but|nobody is swimming right now.,PoolEmpty.jpg
+0,0,0,,You arrive at the college pool.|Nobody is swimming right now.,PoolEmpty.jpg
+0,0,0,JenniferAvail,You arrive at the college pool.|Jennifer is swimming alone.,PoolEmpty.jpg
 10,0,0,,,PoolSwimAlone.jpg
 20,0,0,,,PoolSwimMoves.jpg
+100,0,0,,,Showers.jpg
+100,0,0,,,Showers.jpg
+101,0,0,,,Showering.jpg
+101,0,0,,,Showering.jpg
+110,0,0,,,Showers.jpg
+120,0,0,,,Showers.jpg
+130,0,0,,,Showers.jpg
+140,0,0,,,Showers.jpg
+150,0,0,,,Showers.jpg
+160,0,0,,(The bully stares at you and laughs.)|Get lost girl!  You're no match for me.,Showers.jpg
+170,0,0,,"(The bully bows her head in shame.)|You won, you can have that bitch.",Showers.jpg
+180,0,0,,,Showers.jpg
+200,0,0,,(You start to swim and chat with Jennifer.)|You didn't help me much with that bully.,PoolSwimWithJennifer.jpg
+201,0,0,,,PoolSwimWithJennifer.jpg
+210,0,0,,(You start to swim and chat with Jennifer.)|Thanks for trying to help with that bully.,PoolSwimWithJennifer.jpg
+211,0,0,,,PoolSwimWithJennifer.jpg
+220,0,0,,(You start to swim and chat with Jennifer.)|Thank you for your help with that bully.,PoolSwimWithJennifer.jpg
+221,0,0,,,PoolSwimWithJennifer.jpg
+222,0,0,,,PoolSwimWithJennifer.jpg
+230,0,0,,(You get closer to Jennifer|and start to swim with her.),PoolSwimWithJennifer.jpg
+231,0,0,,,PoolSwimWithJennifer.jpg
+232,0,0,,,PoolSwimWithJennifer.jpg
+235,0,0,,,PoolSwimWithJennifer.jpg
+236,0,0,,,PoolSwimWithJennifer.jpg
+240,0,0,,,PoolSwimWithJennifer.jpg

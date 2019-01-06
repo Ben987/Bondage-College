@@ -1,0 +1,71 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,Okay.,Schön. Willkommen auf unserem Gelände. Du|wirst hier hoffentlich eine Menge lernen.,10,0,0,
+0,0,0,,"Jawohl,|Miss Mildred.",Sehr gut. Willkommen auf unserem schönen Gelände.|Du wirst hier hoffentlich eine Menge lernen.,10,1,-1,
+0,0,0,,(Schweigen.),"Ein stilles Mädchen, gut. Willkommen auf unserem|Gelände. Du wirst hier hoffentlich eine Menge lernen.",10,0,0,
+0,0,0,,Wohl kaum.,Vielleicht muss ich dir erstmal Manieren beibrignen.|Du wirst hier hoffentlich eine Menge lernen.,10,-1,1,
+10,0,0,,"Das hoffe ich|auch, Miss Mildred.","Wenn du dich an die Regeln hältst,|wirst du zu einer feinen Dame.",20,0,-1,
+10,0,0,,Dann unterrichten|Sie mich bitte.,"Sehr wohl. Wenn du dich an die Regeln|hältst, wirst du zu einer feinen Dame.",20,0,0,
+10,0,0,,"Ich glaube, mir|wirds's hier gefallen.","Ganz bestimmt, wenn du dich an die|Regeln hältst, wirst du zu einer feinen Dame.",20,1,0,
+10,0,0,,"Ich hoffe, Ihr Unter-|richt ist informativ.","Natürlich. Wenn du dich an die Regeln|hältst, wirst du zu einer feinen Dame.",20,0,1,
+10,0,0,,(Gähnen.),"Schülerin, wenn du jemals zu einer feinen Dame|werden willst, musst du dir der Regeln bewusst sein.",20,-1,0,
+10,0,0,,(Langsam nicken.),"Wenn du die Regeln der Akademie befolgst,|wirst du zu einer feinen Dame.",20,0,-1,
+20,0,0,,Eine feine Dame?|Soll das ein Scherz sein?,"Ich scherze nicht, kleines Fräulein. Heute behandeln|wir Ableitungen. Ich hoffe, du hast deine Bücher.",30,-1,1,
+20,0,0,,Eine feine Dame?|Wie schön.,"(Sie lächelt dich an.) Heute behandeln wir|Ableitungen. Ich hoffe, du hast deine Bücher.",30,1,0,
+20,0,0,,(Zu Boden schauen|und langsam nicken.),"(Sie lächelt dich an.) Heute behandeln wir|Ableitungen. Ich hoffe, du hast deine Bücher.",30,0,-1,
+30,0,0,,"Ja, Miss Mildred. Ich|bin zum Lernen bereit.",Sehr gut. Öffne dein Buch auf|Seite 147 und wiederhole die Formeln.,40,1,-1,
+30,0,0,,Ableitungen?|Was zur Hölle?,(Sie schlägt mit der Gerte auf deinen Tisch.)|Hüte deine Zunge und öffne das Buch auf Seite 147.,40,-1,0,
+30,0,0,,Ableitungen?|Ich liebe Mathe.,(Sie schlägt mit der Gerte auf deinen Tisch.)|Hüte deine Zunge und öffne das Buch auf Seite 147.,40,1,0,
+30,0,0,,Ableitungen?|Das ist kompliziert.,Dann an die Arbeit. Öffne dein Buch auf|Seite 147 und wiederhole die Formeln.,40,0,0,
+40,0,0,,(Das Buch schweigend|aufschlagen.),"Gut. Sei still, während ich unterrichte.|(Sie kehrt nach vorne zurück und fängt an.)",50,0,0,
+40,0,0,,(Zur Uhr an der|Wand schauen.),"(Sie schaut dich streng an, geht zu ihrem|Schreibtisch und beginnt mit dem Unterricht.)",50,-1,0,
+40,0,0,,"Ja, Miss Mildred.|(Das Buch öffnen.)","Sehr gut. Sei still, während ich unterrichte.|(Sie kehrt nach vorne zurück und fängt an.)",50,0,-1,
+40,0,0,,"Ja, genug gequatscht.|(Das Buch öffnen.)","Gut! Sei still, während ich unterrichte.|(Sie kehrt nach vorne zurück und fängt an.)",50,0,1,
+100,0,0,,Miss Mildred! Was|machen Sie da?,"Dir eine Lektion erteilen, Fräulein.|(Sie schlägt dich leicht mit der Gerte.)",110,0,0,
+100,0,0,,Was zur Hölle?,Eine solche Ausdrucksweise wird nicht geduldet.|(Sie schlägt dich recht doll mit der Gerte.),110,-1,0,
+100,0,0,,Hey! Das können|Sie nicht tun.,"Natürlich, was glaubst du, wo du hier bist?|(Sie schlägt dich leicht mit der Gerte.)",110,0,0,
+100,0,0,,(Nach ihr treten.),"Du bist zu temperamentvoll, lerne hieraus.|(Sie schlägt dich recht doll mit der Gerte.)",110,-1,1,
+110,0,0,,Scheiße! Das|tut weh!,Unterlasse diese Ausdrücke!|(Sie schlägt dich richtig doll.),120,-1,0,
+110,0,0,,Au! Miss Mildred.|Bitte hören Sie auf.,"Erst, wenn du deine Lektion gelernt hast.|(Sie schlägt dich leicht und grinst.)",120,1,0,
+110,0,0,,"(Schweigen und|gleichgültig wirken.)","Du bist stark, aber das kann ich ändern.|(Sie schlägt dich richtig doll.)",120,0,1,
+110,0,0,,"Ha! Ist das alles,|was Sie drauf haben?","So eine schlechte Erziehung, das treibe ich dir aus.|(Sie schlägt dich richtig doll.)",120,-1,1,
+110,0,0,,(Schreie unterdrücken.),"Lass dir das eine Lehre sein, Fräulein.|(Sie schlägt erneut zu, aber nicht sehr doll.)",120,0,0,
+120,0,0,,"Bitte, Miss!|Ich benehme mich.","(Sie gibt dir einen letzten, leichten Schlag.)|Du wirst also brav sein und die Regeln befolgen?",130,1,-1,
+120,0,0,,Miss Mildred. Ich habe|meine Lektion gelernt.,"(Sie gibt dir einen letzten, leichten Schlag.)|Du wirst also brav sein und die Regeln befolgen?",130,1,0,
+120,0,0,,"Sie glauben,|das tut mir weh?","(Sie gibt dir einen letzten, heftigen Schlag.)|Letzte Ermahnung, wirst du dich an die Regeln halten?",130,0,0,
+120,0,0,,"Fick dich,|Schlampe!","(Sie gibt dir einen letzten, heftigen Schlag.)|Letzte Ermahnung, wirst du dich an die Regeln halten?",130,-1,1,
+130,0,0,,"Ja, Miss Mildred.|Bitte verzeihen Sie mir.",Es sei dir verziehen.|Beginnen wir mit dem Unterricht.,50,2,-1,
+130,0,0,,"Ja, ich werde|brav sein.",Schön. Beginnen wir mit dem Unterricht.,50,1,0,
+130,0,0,,Niemals! Ich befolge|meine eigenen Regeln.,"(Sie legt dir Handschellen an und knebelt dich.)|Wer sich nicht benehmen kann, verbringt die Stunde so.",50,0,0,RestrainPlayer()
+130,0,0,,(Nicht antworten.),"(Sie legt dir Handschellen an und knebelt dich.)|Da du so gerne schweigst, bleibst du jetzt so.",50,0,-1,RestrainPlayer()
+200,0,0,Common_PlayerNotRestrained,(Dazwischenreden.),,200,-1,0,Disturb()
+200,0,0,Common_PlayerNotRestrained,"(Versuchen, Mildred|zu überwältigen.)","Versuchen, Mildred zu überwältigen und zu fesseln?|(Jeder der dir hilft erhöht deine Erolgschance.)",210,0,0,
+200,0,0,Common_PlayerRestrained,Mmmmph!,(Sie ignoriert dein Geschrei und|die anderen Schülerinnen kichern.),200,0,0,
+200,0,0,Common_PlayerRestrained,(An den Handschellen|rütteln.)ADD_MINUTES:1,(Du kämpfst vergeblich. Sie ist von der Aussichts-|losigkeit deiner Lage überzeugt und ignoriert dich.),200,0,0,
+210,0,0,Common_PlayerNotRestrained,"(Ja, überfallen.)",,210,-2,0,Subdue()
+210,0,0,,"(Nein, vielleicht|später.)",Du verzichtest auf deinen Plan.|(Miss Mildred unterrichtet weiter.),200,0,0,
+220,0,0,,Eine Lektion von|Ihnen? Niemals!,"(Sie gibt dir 6 starke Hiebe und fesselt dich.)|Da du dich nicht benehmen kannst, bleibst du so.",220,0,1,RestrainPlayer()
+220,0,0,,"Fick dich,|Schlampe!","(Sie gibt dir 10 starke Hiebe und fesselt dich.)|Da du dich nicht benehmen kannst, bleibst du so.",220,-1,0,RestrainPlayer()
+220,0,0,,Nein! Bitte! Es|tut mir so leid.,"(Sie gibt dir 2 starke Hiebe und fesselt dich.)|Dafür ist es zu spät, du bleibst jetzt so.",220,0,-1,RestrainPlayer()
+220,0,0,,(Schweigen.),"(Sie gibt dir 4 starke Hiebe und fesselt dich.)|Da du dich nicht benehmen kannst, bleibst du so.",220,0,0,RestrainPlayer()
+300,0,0,,"Mildred, ich bin|jetzt der Boss.","Der Boss? Aber ich leite den Unterricht. Auf|dich kommt eine Menge Ärger zu, Fräulein.",310,0,1,
+300,0,0,,"Jetzt wird diese Stunde|endlich interessant.","Unfug! Ich leite den Unterricht. Auf|dich kommt eine Menge Ärger zu, Fräulein.",310,0,0,
+300,0,0,,"Wenn Sie mitspielen,|ist es schnell vorüber.",(Sie nickt und schweigt.),310,0,1,
+300,0,0,,"Hätte nicht gedacht,|dass Sie so hübsch sind.","(Sie wird rot.) Junge Dame,|was genau hast du vor?",310,1,0,
+310,0,0,Common_PlayerNotRestrained,(Kitzeln.)ADD_MINUTES:1,(Sie versucht dir auszuweichen und lacht leise.)|Du gräbst deine Grube nur noch tiefer!,310,0,0,
+310,0,0,SearchAvail,(Ihre Sachen durchsuchen.)ADD_MINUTES:1,(Du durchsuchst ihr Zeug und findest viel|interessantes.) Du kleine Diebin!,310,-1,0,Search()
+320,0,0,Common_PlayerNotRestrained,(Kitzeln.)ADD_MINUTES:1,(Sie versucht dir auszuweichen und lacht leise.),320,0,0,
+320,0,0,Common_PlayerNotRestrained,(Knebel entfernen.)ADD_MINUTES:1,(Du lockerst langsam ihern Knebel.)|Junge Dame! Dies ist äußerst unangemessen.,310,0,0,Ungag()
+330,0,0,Common_PlayerNotRestrained,(Kitzeln.)ADD_MINUTES:1,(Sie versucht dir auszuweichen und lacht leise.)|Du gräbst deine Grube nur noch tiefer!,330,0,0,
+330,0,0,SearchAvail,(Ihre Sachen durchsuchen.)ADD_MINUTES:1,(Du durchsuchst ihr Zeug und findest viel|interessantes.) Du kleine Diebin!,330,-1,0,Search()
+340,0,0,Common_PlayerNotRestrained,(Kitzeln.)ADD_MINUTES:1,(Sie versucht dir auszuweichen und lacht leise.),340,0,0,
+340,0,0,Common_PlayerNotRestrained,(Knebel entfernen.)ADD_MINUTES:1,(Du lockerst langsam ihern Knebel.)|Junge Dame! Dies ist äußerst unangemessen.,330,0,0,Ungag()
+410,0,0,Common_PlayerNotRestrained,(Auspeitschen.)ADD_MINUTES:1,(Du gibst ihr einen heftigen Gertenhieb.)|Kleines Fräulein! Das wirst du noch bereuen!,410,0,0,Whip()
+410,0,0,Common_PlayerNotRestrained,(Gerte weglegen.)ADD_MINUTES:1,(Du legst die Gerte weg und|hilfst ihr wieder auf die Beine.),310,0,0,
+420,0,0,Common_PlayerNotRestrained,(Auspeitschen.)ADD_MINUTES:1,(Du gibst ihr einen heftigen Gertenhieb.)|(Sie kreischt wütend in den Knebel.),420,0,0,Whip()
+420,0,0,Common_PlayerNotRestrained,(Gerte weglegen.)ADD_MINUTES:1,(Du legst die Gerte weg und|hilfst ihr wieder auf die Beine.),320,0,0,
+420,0,0,Common_PlayerNotRestrained,(Knebel entfernen.)ADD_MINUTES:1,(Du lockerst langsam ihern Knebel.)|Junge Dame! Dies ist äußerst unangemessen.,410,0,0,Ungag()
+430,0,0,Common_PlayerNotRestrained,(Auspeitschen.)ADD_MINUTES:1,(Du gibst ihr einen heftigen Gertenhieb.)|Kleines Fräulein! Das wirst du noch bereuen!,430,0,0,Whip()
+430,0,0,Common_PlayerNotRestrained,(Gerte weglegen.)ADD_MINUTES:1,(Du legst die Gerte weg und|hilfst ihr wieder auf die Beine.),330,0,0,
+440,0,0,Common_PlayerNotRestrained,(Auspeitschen.)ADD_MINUTES:1,(Du gibst ihr einen heftigen Gertenhieb.)|(Sie kreischt wütend in den Knebel.),440,0,0,Whip()
+440,0,0,Common_PlayerNotRestrained,(Gerte weglegen.)ADD_MINUTES:1,(Du legst die Gerte weg und|hilfst ihr wieder auf die Beine.),340,0,0,
+440,0,0,Common_PlayerNotRestrained,(Knebel entfernen.)ADD_MINUTES:1,(Du lockerst langsam ihern Knebel.)|Junge Dame! Dies ist äußerst unangemessen.,430,0,0,Ungag()

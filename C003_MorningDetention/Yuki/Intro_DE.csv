@@ -1,0 +1,35 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,"Mitschülerinnen zu fesseln ist streng verboten.|Ich hoffe, dieses Nachsitzen ist dir eine Lehre.",YukiFace.jpg
+0,0,0,Fighting,"Prügeleien sind inakzeptabel, junge Dame.|Ich hoffe, das Nachsitzen tut dir gut.",YukiFace.jpg
+0,0,0,Sleepy,"Dein Verhalten war inakzeptabel, junge Dame.|(Sie gähnt laut.)",YukiSleepy.jpg
+10,0,0,,Wirst du jetzt artig sein?,YukiFace.jpg
+10,0,0,Sleepy,Wirst du jetzt artig sein?,YukiSleepy.jpg
+20,0,0,,Kannst du für die Dauer des Nachsitzens ruhig sein?,YukiFace.jpg
+20,0,0,Sleepy,Kannst du für die Dauer des Nachsitzens ruhig sein?,YukiSleepy.jpg
+30,0,0,,Was hast du da in der Hand?,YukiFace.jpg
+30,0,0,Sleepy,Was hast du da in der Hand?,YukiSleepy.jpg
+40,0,0,,,YukiFace.jpg
+40,0,0,Sleepy,,YukiSleepy.jpg
+50,0,0,,"Bitte verhalte dich leise, junge Dame.|Das Nachsitzen endet um neun Uhr.",YukiFace.jpg
+50,0,0,Sleepy,"(Sie gähnt und scheint gegen Müdigkeit anzukämpfen.)|(Es dauert wohl ein paar Minuten, bis die Tablette wirkt.)",YukiSleepy.jpg
+60,0,0,,"Bitte verhalte dich leise, junge Dame.|Das Nachsitzen endet um neun Uhr.",YukiFace.jpg
+60,0,0,Sleepy,"(Sie gähnt und scheint gegen Müdigkeit anzukämpfen.)|(Es dauert wohl ein paar Minuten, bis die Tablette wirkt.)",YukiSleepy.jpg
+70,0,0,,"Dieser Knebel bringt dich zum Schweigen, Fräulein.|Das Nachsitzen endet um neun Uhr.",YukiFace.jpg
+70,0,0,Sleepy,"(Sie gähnt und scheint gegen Müdigkeit anzukämpfen.)|(Es dauert wohl ein paar Minuten, bis die Tablette wirkt.)",YukiSleepy.jpg
+100,0,0,,(Die Lehrerin Yuki schläft tief und fest.),YukiSleep.jpg
+100,0,0,EggInside,(Die Lehrerin Yuki schläft tief und fest.|Das Ei lässt sie ab und zu beben und stöhnen.),YukiSleep.jpg
+110,0,0,,(Die Lehrerin Yuki schläft tief|und fest in ihrer Unterwäsche.),YukiStrip.jpg
+110,0,0,EggInside,(Yuki schläft tief und fest in ihrer Unterwäsche.|Das Ei lässt sie ab und zu beben und stöhnen.),YukiStrip.jpg
+120,0,0,,(Die Lehrerin Yuki schläft in|Handschellen in ihrer Unterwäsche.),YukiCuffs.jpg
+120,0,0,EggInside,(Yuki schläft in Handschellen und Unterwäsche.|Das Ei lässt sie ab und zu beben und stöhnen.),YukiCuffs.jpg
+130,0,0,,(Die Lehrerin Yuki schläft in|Handschellen in ihrer Unterwäsche.),YukiLay.jpg
+130,0,0,EggInside,(Yuki schläft in Handschellen und Unterwäsche.|Das Ei lässt sie ab und zu beben und stöhnen.),YukiLay.jpg
+200,0,0,,Was ist passiert? Bin ich eingeschlafen?,YukiSleepy.jpg
+210,0,0,,Bin ich eingeschlafen? Wer hat mich ausgezogen?,YukiSleepyStrip.jpg
+220,0,0,,Was ist passiert? Bin ich eingeschlafen? Wer hat|mich ausgezogen und mir Handschellen angelegt?,YukiAwakeCuffs.jpg
+230,0,0,,Du handelst dir nur noch mehr Ärger ein. Nimm mir|auf der Stelle die Handschellen ab!,YukiAwakeCuffs.jpg
+250,0,0,,Sei ruhig beim Nachsitzen.,YukiFace.jpg
+250,0,0,EggInside,Puh! Ist es zu warm hier drin?|(Das Ei bringt sie offenbar ins Schwitzen.),YukiFace.jpg
+260,0,0,,(Sie ist noch immer wütend und ignoriert dich.),YukiFace.jpg
+260,0,0,EggInside,(Sie ist noch immer wütend und ignoriert dich.)|(Das Ei scheint sie sehr ins Schwitzen zu bringen.),YukiFace.jpg
+270,0,0,,(Yuki ist fort.),YukiGone.jpg

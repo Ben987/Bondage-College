@@ -1,7 +1,7 @@
 Tag,Content
-EnterName,Gib dein Namen ein und suche dir ein Skill aus.
+EnterName,Gib deinen Namen ein und suche dir einen Skill aus.
 ValidChars,Du kannst nur Buchstaben und Leerzeichen verwenden.
-Validate,STarte das Spiel
+Validate,Starte das Spiel
 Skill0,Kein Skill
 Skill1,Kunst
 Skill2,Kampf

@@ -1,0 +1,42 @@
+﻿Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,Psssst.,(Se da la vuelta y sussura)|¿Que cojones quieres?,10,0,0,
+0,0,0,,Perdona.,(Se da la vuelta y te mira)|¿Que cojones quieres perdedora?,10,0,-1,
+0,0,0,,(Tocar su hombro.),(Se da la vuelta y sussura)|¿Que cojones quieres?,10,0,0,
+10,0,0,,¿Estás tan aburrida como yo?,(Susurra.) Joder que si.|Estoy demasiado aburrida.,20,1,0,
+10,0,0,,¿Cuanto dura |esta clase?,(Susurra.) Hasta las 9.|Esta puta clase no termina nunca.,20,0,0,
+10,0,0,,¿Te has tirado un pedo?|Porque aquí apesta.,(Susurra.) ¡No!  ¿Eres|estupida?  Esta clase no parece acabar nunca.,20,-1,0,
+10,0,0,,No te duermas.,"(Se frota los ojos y susurra.)|No es mi culpa, esta clase es muy aburrida.",20,0,1,
+20,0,0,,Deberíamos irnos.,"(Asiente y susurra.) Claro,|pero la profe no nos va a dejar.",30,1,0,
+20,0,0,,¿Como matamos el tiempo?,(Se encoje de hombros.)|No sé.  Estamos atrapadas aquí.,30,0,0,
+20,0,0,,¿Podrías ayudarme|en mates después de clases?,(Sacude la cabeza en señal de no.)  ¿Te parezco una|empollona?  Lo unico que quiero hacer es largarme de aquí.,30,0,-1,
+30,0,0,,Debe de haber|una forma de escapar.,(Te mira curiosa.)|¿Que tienes en mente?,40,0,0,
+30,0,0,,"Callate, tengo|un plan.",(Se calla y te mira curiosa.),40,-1,1,
+40,0,0,,Podríamos intentar|dominar a Mildred juntas.,"¿Dominarla?  ¿Como un secuestro?|¿Es peligroso, que pinto yo en esto?",50,0,0,
+40,0,0,,Deberíamos secuestrar|a la puta profesora.,"¿Secuestrarla en clase?  ¿En serio?|¿Es peligroso, que pinto yo en esto?",50,1,0,
+40,0,0,,Podrías ayudarme a|atar a la profesora.,"¿Ayudarte a secuestrarla en clase?|¿Es peligroso, que pinto yo en esto?",50,0,1,
+50,3,0,PlayerHasRope,Podrías hacerlo porque |somos buenas amigas.,"Supongo.  Vale, te ayudaré.|(Se da la vuelta.) Pero empiezas tu.",60,0,0,AgreeHelp()
+50,3,0,!PlayerHasRope,Podrías hacerlo porque |somos buenas amigas.,Supongo.  Te ayudaré y coge esta cuerda.|(Se da la vuelta.) Pero empiezas tu.,60,0,0,AgreeHelp()
+50,0,3,PlayerHasRope,Si no me ayudas.|te vas a enterar.,Vale.  No quiero problemas.  Ayudaré.|(Se da la vuelta.) Pero empiezas tu.,60,0,0,AgreeHelp()
+50,0,3,!PlayerHasRope,Si no me ayudas.|te vas a enterar.,"Vale, te ayudaré.  Usa estas cuerdas si quieres.|(Se da la vuelta.) Pero empiezas tu",60,0,0,AgreeHelp()
+50,0,0,,¡Hazlo!  Será divertido.,¡Ja!  ¿Piensas que vas a convencerme con eso?|Necesito algo mejor si quieres que te ayude.,50,0,0,
+50,0,0,,Déjame pensarlo.,"(Se encoge de hombros.)  Bien, No estaré lejos.|Necesito algo mejor si quieres que te ayude.",50,0,0,
+100,0,0,SubdueRemarkReady,Te apuesto a que estarías|genial atada.,¿Qué?  No puedes decirlo en serio. (Se sonroja.),100,0,1,SubdueRemark()
+100,0,4,SubdueRemarkReady,Admítelo.  Te encantaría|estar como ella.,(Se queda callada y se sonroja.),100,0,1,SubdueRemark()
+100,0,0,SubdueRemarkReady,¡Choca esos cinco!  Ahora tenemos|una buena clase.,¡Sí señor!  La mejor clase que hemos tenido.,100,1,0,SubdueRemark()
+100,0,0,SubdueRemarkReady,Hoy tenemos|una clase nueva.,¡Joder,Sí!  Esto es mucho mejor.,100,0,0,SubdueRemark()
+100,0,0,AmandaWhipReady,¿Quieres azotar a |Amanda?ADD_MINUTES:1,¡Sí!  (Coge tu fusta|y la azota unas cuantas veces.),100,1,0,AmandaWhip()
+100,0,0,SarahWhipReady,¿Quieres azotar a |Amanda?ADD_MINUTES:1,¡Sí!  (Coge tu fusta|y la azota muchas veces.),100,1,0,SarahWhip()
+100,0,0,Common_PlayerGagged,"@Uuuummph, mmph!",(Susurra.) Deja de hacer ruido.,100,0,0,
+100,0,0,Common_PlayerGagged,(Morder la mordaza.),(Susurra.) Pareces idiota.,100,0,0,
+100,1,0,Common_PlayerGagged,(Intentar señalar la|BallGag.),(Susurra.) Cállate.|Te ayudaré después de clase.,100,0,0,
+100,-1,0,Common_PlayerGagged,(Try to point|to the BallGag.),(Susurra.) Sigue calladita zorra.,100,0,0,
+100,0,0,Common_PlayerRestrained,(Retorcerte en tus|ataduras.),(Susurra.) No te vas a escapar.,100,0,0,
+100,0,-2,BowRemarkReady,(Inclinar tu cabeza.),(Susurra.) Eres patética.,100,0,-1,BowRemark()
+110,0,0,Common_PlayerGagged,"@Uuuummph, mmph!",(Pone los ojos en blanco.),110,0,0,
+110,0,0,Common_PlayerNotRestrained,(Quitar su mordaza.)ADD_MINUTES:1,(Desabrochas y quitas la pelota de su boca.)|¡Puta mordaza!,100,0,0,Ungag()
+130,0,0,Common_PlayerGagged,"@Uuuummph, mmph!",(Pone los ojos en blanco.),130,0,0,
+130,0,0,Common_PlayerNotRestrained,(Quitar su mordaza.)ADD_MINUTES:1,(Desabrochas y quitas la pelota de su boca.)|¡Puta mordaza!,120,0,0,Ungag()
+140,0,0,Common_PlayerNotRestrained,(Desatarla.),(Desaces los nudos y se libera.)|¡Joder!  eres una pervertida.,100,0,0,Untie()
+150,0,0,Common_PlayerGagged,"@Uuuummph, mmph!",(Pone los ojos en blanco.),150,0,0,
+150,0,0,Common_PlayerNotRestrained,(Quitar su mordaza.)ADD_MINUTES:1,(Desabrochas y quitas la pelota de su boca.)|¡Puta mordaza!,140,0,0,Ungag()
+150,0,0,Common_PlayerNotRestrained,(Desatarla.),(Desaces los nudos y se libera.)|(Señala a la mordaza.),110,0,0,Untie()

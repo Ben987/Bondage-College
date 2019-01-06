@@ -86,9 +86,9 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 150,0,0,,"Une soupe, s'il vous plaît.",C'est un choix très sain.|(Elle commande la même chose.),160,0,0,GoodMatch()
 150,0,0,,"Un hamburger,|s'il vous plaît.",Je suppose que tu peux faire le plein de protéines|après un match. (Elle commande une petite salade.),160,0,0,
 150,0,0,,"Un plateau de nachos,|s'il vous plaît.",Je suppose que tu peux faire le plein de protéines|après un match. (Elle commande une petite salade.),160,0,0,
-150,0,0,,"Juste un cheesecake,|s'il vous plaît.",Ce n'est pas très sain.|(Elle commande la même chose.),160,0,0,BadMatch()
+150,0,0,,"Juste un cheesecake,|s'il vous plaît.",Ce n'est pas très sain.|(Elle commande une petite salade.),160,0,0,BadMatch()
 150,0,0,,"Une soupe et une salade,|s'il vous plaît.",C'est un choix très sain.|(Elle commande la même chose.),160,0,0,GoodMatch()
-150,0,0,,"Un chili dog,|s'il vous plaît.",Ce n'est pas très sain.|(Elle commande la même chose.),160,0,0,BadMatch()
+150,0,0,,"Un chili dog,|s'il vous plaît.",Ce n'est pas très sain.|(Elle commande une petite salade.),160,0,0,BadMatch()
 150,0,0,,"Un fettuccine alfredo,|s'il vous plaît.",Je suppose que tu peux faire le plein de protéines|après un match. (Elle commande une petite salade.),160,0,0,
 150,0,0,,"Juste de l'eau,|s'il vous plaît.",Tu possèdes une grande maîtrise de soi.|(Elle commande une petite salade.),160,0,0,GoodMatch()
 160,0,0,TennisVictory,Je te souhaite|un bon repas.,(Vous prenez toutes les deux votre déjeuner|et Jennifer règle l'addition.),170,0,0,EatLunch()
@@ -113,31 +113,31 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 185,0,0,!AllowObey,Rentrons.|(Tu rentres à l'université.),,0,0,0,EndChapter()
 200,0,0,,"Souviens-toi, tu es|mon esclave à présent.","Ne dis pas esclave, ça sonne si mal.|Mais c'est pas grave, tu peux être ma chef.",220,-1,0,
 200,0,0,,Tu dois obéir à|tout ce que je dis.,"(Elle acquiesce.) D'accord, mais il y a des limites.",220,0,0,
-200,8,0,,Je peux avoir un baiser ?|(1 minute),(Elle rougit et sourit.) Bien sûr.|(Vous vous embrassez avec amour.),210,1,0,Kiss()
-200,0,8,,(Tu l'attrapes et la|déshabilles.) (1 minute),(Elle reste sans voix pendant que tu|l'attrapes et la forces à se déshabiller.),240,-1,1,
-210,0,0,,(Tu l'embrasses à|nouveau.) (1 minute),(Vous vous embrassez à nouveau sur le terrain|de tennis tout en gémissant légèrement.),210,0,0,
+200,8,0,,Je peux avoir un baiser ?ADD_MINUTES:1,(Elle rougit et sourit.) Bien sûr.|(Vous vous embrassez avec amour.),210,1,0,Kiss()
+200,0,8,,(Tu l'attrapes et la|déshabilles.)ADD_MINUTES:1,(Elle reste sans voix pendant que tu|l'attrapes et la forces à se déshabiller.),240,-1,1,
+210,0,0,,(Tu l'embrasses à|nouveau.)ADD_MINUTES:1,(Vous vous embrassez à nouveau sur le terrain|de tennis tout en gémissant légèrement.),210,0,0,
 210,0,0,,"Je t'aime, mais ne|précipitons pas les choses.","Toi ? Je ? Tu m'aimes ? Allons-y doucement.|(Elle détourne le regard, confuse et nerveuse.)",215,1,0,BonusDone()
 210,0,0,,"Souviens-toi, tu es|mon esclave à présent.","Ne dis pas esclave, ça sonne si mal.|Mais c'est pas grave, tu peux être ma chef.",220,-1,0,
 210,0,0,,Tu dois obéir à|tout ce que je dis.,"(Elle acquiesce.) D'accord, mais il y a des limites.",220,0,0,
-210,0,8,,(Tu l'attrapes et la|déshabilles.) (1 minute),(Elle reste sans voix pendant que tu|l'attrapes et la forces à se déshabiller.),240,-1,1,
+210,0,8,,(Tu l'attrapes et la|déshabilles.)ADD_MINUTES:1,(Elle reste sans voix pendant que tu|l'attrapes et la forces à se déshabiller.),240,-1,1,
 215,0,0,,"Rentrons, ma chérie."|(Tu rentres à l'université),,0,1,0,EndChapter()
-220,0,0,,Fais un tour de piste.|(1 minute),Oui coach ! (Elle court autour de la cour.),220,0,0,Exercise()
-220,0,0,,Faites cinq pompes.|(1 minute),Oui coach ! (Elle fait cinq pompes.),220,0,0,Exercise()
+220,0,0,,Fais un tour de piste.ADD_MINUTES:1,Oui coach ! (Elle court autour de la cour.),220,0,0,Exercise()
+220,0,0,,Faites cinq pompes.ADD_MINUTES:1,Oui coach ! (Elle fait cinq pompes.),220,0,0,Exercise()
 220,0,0,,"D'accord, mets-toi|en sous-vêtements.",Me mettre en sous-vêtements ?|Mais des gens vont bientôt arriver.,230,-1,0,
 220,0,0,,"Jeune fille, enlève|cette jupe ridicule.",Enlever ma jupe ? Ici ?|Mais des gens vont bientôt arriver.,230,-1,1,
-220,0,8,,(Tu l'attrapes et la|déshabilles.) (1 minute),(Elle reste sans voix pendant que tu|l'attrapes et la forces à se déshabiller.),240,-1,1,
+220,0,8,,(Tu l'attrapes et la|déshabilles.)ADD_MINUTES:1,(Elle reste sans voix pendant que tu|l'attrapes et la forces à se déshabiller.),240,-1,1,
 230,0,0,,Il n'y a personne.|Tu peux le faire !,"Bon d'accord mais si quelqu'un vient,|Je me rhabillerais. (Elle se déshabille.)",240,0,0,
 230,0,0,,Tu m'as entendu|la première fois.,"Bon d'accord mais si quelqu'un vient,|Je me rhabillerais. (Elle se déshabille.)",240,0,1,
-230,0,8,,(Tu l'attrapes et la|déshabilles.) (1 minute),(Elle reste sans voix pendant que tu|l'attrapes et la forces à se déshabiller.),240,-1,1,
+230,0,8,,(Tu l'attrapes et la|déshabilles.)ADD_MINUTES:1,(Elle reste sans voix pendant que tu|l'attrapes et la forces à se déshabiller.),240,-1,1,
 230,0,0,,"Je plaisantais, on s'en va."|(Tu rentres à l'université.),,0,1,0,EndChapter()
 240,0,0,OrgasmCommentAvail,J'espère que ton voyage|au paradis t'a plu.,(Elle te regarde et acquiesce lentement.),240,1,0,OrgasmComment()
 240,0,0,OrgasmCommentAvail,"La prochaine fois, tu me|supplieras de te faire jouir.","(Elle fronce les sourcils, puis elle incline|lentement la tête en direction du sol.)",240,-1,1,OrgasmComment()
 240,0,0,NeverHurtAvail,"Crois-moi, Jennifer. Je ne|te ferai jamais de mal.",(Elle prend une grande inspiration|et acquiesce lentement.),240,0,0,NeverHurtComment()
-240,0,0,,(Tu la chatouilles.)|(1 minute),"(Tu la chatouilles, mais elle ne rit pas|beaucoup et ne semble pas apprécier.)",240,0,0,Tickle()
-240,0,0,,(Tu lui mets une fessée.)|(1 minute),"(Tu essayes de lui donner une fessée,|mais elle te repousse rapidement.)",240,0,0,Spank()
-240,0,0,,(Tu la masturbes.)|(1 minute),"(Tu essayes de la masturber,|mais elle repousse ta main.)",240,0,0,Masturbate()
-240,0,0,IsRoped,(Tu la détaches.)|(1 minute),(Tu défais les noeuds de la corde et|tu la libères du filet de tennis.),240,0,0,Untie()
-240,0,0,IsGagged,(Tu la débâillonnes.)|(1 minute),"(Tu lui enleves doucement le bâillon.)|Merci, c'était un peu gênant.",240,0,0,Ungag()
+240,0,0,,(Tu la chatouilles.)ADD_MINUTES:1,"(Tu la chatouilles, mais elle ne rit pas|beaucoup et ne semble pas apprécier.)",240,0,0,Tickle()
+240,0,0,,(Tu lui mets une fessée.)ADD_MINUTES:1,"(Tu essayes de lui donner une fessée,|mais elle te repousse rapidement.)",240,0,0,Spank()
+240,0,0,,(Tu la masturbes.)ADD_MINUTES:1,"(Tu essayes de la masturber,|mais elle repousse ta main.)",240,0,0,Masturbate()
+240,0,0,IsRoped,(Tu la détaches.)ADD_MINUTES:1,(Tu défais les noeuds de la corde et|tu la libères du filet de tennis.),240,0,0,Untie()
+240,0,0,IsGagged,(Tu la débâillonnes.)ADD_MINUTES:1,"(Tu lui enleves doucement le bâillon.)|Merci, c'était un peu gênant.",240,0,0,Ungag()
 240,0,0,IsBoundAndGagged,"Je t'ai piégé, salope."|(Tu l'abandonnes.),,240,0,0,EvilEnd()
 240,0,0,,C'est suffisant.|(Tu la libères.),(Tu la libères et elle se rhabille.) Waouh !|Je suis si heureuse que personne ne soit passé.,250,0,0,DressHerBack()
 250,0,0,,"Tu t'es amusée,|aujourd'hui ?","J'ai des sentiments mitigés, je dois l'admettre.|On retourne à l'école ?",260,0,0,
@@ -146,9 +146,9 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 250,0,0,,Remettons ça|un autre jour.,"J'en suis pas si sûre, on verra.|On retourne à l'école ?",260,0,0,
 250,0,0,,"La prochaine fois,|tu m'attacheras ?","(Elle rit.) Bien sûr, pourquoi pas ?|On retourne à l'école ?",260,0,-1,
 250,0,0,,Habitue-toi à être attachée.|Ça se reproduira.,"Oh, pas en public, j'espère.|On retourne à l'école ?",260,0,1,
-260,8,0,,Un dernier baiser ?|(1 minute),(Vous vous agrippez l'une à l'autre dans une étreinte|amoureuse et vous vous embrassez passionnément.),270,1,0,BonusDone()
+260,8,0,,Un dernier baiser ?ADD_MINUTES:1,(Vous vous agrippez l'une à l'autre dans une étreinte|amoureuse et vous vous embrassez passionnément.),270,1,0,BonusDone()
 260,0,0,,Rentrons.|(Tu rentres à l'université.),,0,0,0,EndChapter()
-270,0,0,,(Tu l'embrasses à|nouveau.) (1 minute),(Vous fermez les yeux et continuez à vous embrasser.),270,0,0,
+270,0,0,,(Tu l'embrasses à|nouveau.)ADD_MINUTES:1,(Vous fermez les yeux et continuez à vous embrasser.),270,0,0,
 270,0,0,,Rentrons.|(Tu rentres à l'université.),,0,0,0,EndChapter()
 300,0,0,,Qu'est-ce qu'on fait là ?,Je suis ta chef et ton coach.|Je vais te remettre en forme.,310,0,0,
 300,0,0,,Tu veux refaire une|partie de tennis ?,"Non. Mais en tant que chef et coach,|je vais te remettre en forme.",310,0,0,
@@ -181,8 +181,8 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 420,0,0,,Ordonnez-moi de me|déshabiller bon sang !,"Oui, Madame.  Je...  Je veux dire.|Tu devrais te déshabiller maintenant !",430,0,1,
 420,0,0,,"Le premier pas est|de me déshabiller.","Te déshabiller ? Bien sûr, bien sûr.|Tu devrais te déshabiller maintenant !",430,0,0,
 420,0,1,,"Oublie ça, on s'en va.|(Tu rentres à l'université.)",,0,0,0,EndChapter()
-430,0,0,,(Tu soupires et tu te|déshabilles.) (1 minute),"(Tu soupires et tu te déshabilles à contrecoeur.)|Très bien ! Maintenant, je vais... Tu vas...",440,-1,0,Strip()
-430,0,0,,"(Tu te déshabilles,|enjouée) (1 minute)","(Tu fais une petite danse et tu te déshabille.)|Bien ! Maintenant, je vais... Tu vas...",440,0,0,Strip()
+430,0,0,,(Tu soupires et tu te|déshabilles.)ADD_MINUTES:1,"(Tu soupires et tu te déshabilles à contrecoeur.)|Très bien ! Maintenant, je vais... Tu vas...",440,-1,0,Strip()
+430,0,0,,"(Tu te déshabilles,|enjouée)ADD_MINUTES:1","(Tu fais une petite danse et tu te déshabille.)|Bien ! Maintenant, je vais... Tu vas...",440,0,0,Strip()
 430,0,1,,"Oublie ça, on s'en va.|(Tu rentres à l'université.)",,0,0,0,EndChapter()
 440,0,0,,La douleur est une bonne|façon de punir.,"Bien sûr !  Maintenant, tu vas te pencher.|(Elle fait tourner sa raquette et regarde ton fessier.)",450,0,0,
 440,0,0,,"Sois dominante, bon sang !|Punis-moi !",Assez ! J'exige que tu te penches.|(Elle fait tourner sa raquette et regarde ton fessier.),450,-1,1,
@@ -191,10 +191,10 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 450,0,0,,(Tu inclines la tête|et tu te penches.),"Respire profondément, ça pourrait être douloureux.|(Elle lève sa raquette, prête à te frapper.)",460,0,-1,
 450,0,0,,Tu t'en sors mieux.|(Tu te penches.),"Respire profondément, ça pourrait être douloureux.|(Elle lève sa raquette, prête à te frapper.)",460,0,0,
 450,0,1,,"Oublie ça, on s'en va.|(Tu rentres à l'université.)",,0,0,0,EndChapter()
-460,0,0,,(Tu fermes les yeux.)|(1 minute),(Tu fermes les yeux pendant qu'elle te|donne un joli coup de raquette.),460,0,0,RacketHit(2)
-460,0,0,,(Tu lèves tes fesses.)|(1 minute),(Tu te positionnes pour être frappé et tu reçois|un bon smash en plein sur les fesses.),460,0,0,RacketHit(3)
-460,0,0,,(Tu essayes d'esquiver.)|(1 minute),(Tu bouges à la dernière seconde mais elle|réussit à te frapper maladroitement.),460,0,0,RacketHit(1)
-460,0,0,HasRestrainsAvail,Attends ! Fouille|mon sac. (1 minute),(Elle fouille dans ton sac et|trouve de quoi te restreindre.),460,0,0,CheckBag()
+460,0,0,,(Tu fermes les yeux.)ADD_MINUTES:1,(Tu fermes les yeux pendant qu'elle te|donne un joli coup de raquette.),460,0,0,RacketHit(2)
+460,0,0,,(Tu lèves tes fesses.)ADD_MINUTES:1,(Tu te positionnes pour être frappé et tu reçois|un bon smash en plein sur les fesses.),460,0,0,RacketHit(3)
+460,0,0,,(Tu essayes d'esquiver.)ADD_MINUTES:1,(Tu bouges à la dernière seconde mais elle|réussit à te frapper maladroitement.),460,0,0,RacketHit(1)
+460,0,0,HasRestrainsAvail,Attends ! Fouille|mon sac.ADD_MINUTES:1,(Elle fouille dans ton sac et|trouve de quoi te restreindre.),460,0,0,CheckBag()
 460,0,1,,"Oublie ça, on s'en va.|(Tu rentres à l'université.)",,0,0,0,EndChapter()
 470,0,0,,"Oui, c'était raisonnable.",D'accord ! Rhabille-toi et allons-y.|(Tu ramasses tes vêtements et te rhabilles.),480,0,0,DressBack()
 470,0,0,,Tu ne seras jamais|une bonne Dom.,Ça craint. Rhabille-toi et allons-y.|(Tu ramasses tes vêtements et te rhabilles.),480,-1,0,DressBack()

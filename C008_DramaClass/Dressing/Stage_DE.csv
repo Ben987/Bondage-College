@@ -1,0 +1,9 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,Common_PlayerNotRestrained,(Raum durchsuchen.)ADD_MINUTES:1,"Du durchsuchst den Raum,|findest aber nichts Brauchbares.",10,0,0,Search()
+10,0,0,Common_PlayerNotRestrained,(Raum durchsuchen.)ADD_MINUTES:1,"Du durchsuchst den Raum,|findest aber nichts Brauchbares.",10,0,0,Search()
+10,0,0,Common_PlayerNotRestrained,(Dich ausziehen.)ADD_MINUTES:1,Du ziehst deine Schuluniform aus|und behältst nur deine Unterwäsche an.,20,0,0,Strip()
+20,0,0,Common_PlayerNotRestrained,(Raum durchsuchen.)ADD_MINUTES:1,"Du durchsuchst den Raum,|findest aber nichts Brauchbares.",20,0,0,Search()
+20,0,0,Common_PlayerNotRestrained,(Wieder anziehen.)ADD_MINUTES:1,Du ziehst deine Schuluniform wieder an.,10,0,0,DressBack()
+20,0,0,Common_PlayerNotRestrained,(Dein Kostüm anziehen.)ADD_MINUTES:1,"Du ziehst das beste Kostüm an,|das du für deine Rolle finden konntest.",30,0,0,Costume()
+30,0,0,Common_PlayerNotRestrained,(Raum durchsuchen.)ADD_MINUTES:1,"Du durchsuchst den Raum,|findest aber nichts Brauchbares.",30,0,0,Search()
+30,0,0,Common_PlayerNotRestrained,(Dich ausziehen.)ADD_MINUTES:1,Du ziehst dein Kostüm aus|und behältst nur deine Unterwäsche an.,20,0,0,Strip()

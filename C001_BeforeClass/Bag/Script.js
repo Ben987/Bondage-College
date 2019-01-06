@@ -21,6 +21,7 @@ function C001_BeforeClass_Bag_Click() {
 function C001_BeforeClass_Bag_GetRope() {
 	PlayerAddInventory("Rope", 2);
 	GameLogSpecificAdd(CurrentChapter, "Sidney", "StealRopes");
+	AchievementUnlock("LearningTheRopes");
 }
 
 // If the player annoys Sidney by pulling on her back

@@ -1,0 +1,20 @@
+﻿Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,!BondageBefore,(No parece que quiera girarse|pero parece que escucha.),SidneyBack.jpg
+0,1,0,!BondageBefore,(Se da la vuelta y susurra) ¿Qué?,SidneyFace.jpg
+0,0,0,BondageBefore,(No se da la vuelta pero sussura.)|Olvídalo.  no me vas a atar de nuevo.,SidneyBack.jpg
+0,1,0,BondageBefore,(Se da la vuelta y susurra)|No creas que vas a atarme de nuevo.,SidneyFace.jpg
+10,0,0,,(Se da la vuelta y susurra)|¿Qué?,SidneyFace.jpg
+20,0,0,,(Se da la vuelta y susurra)|¿Tambien te aburres en tus pensamientos?,SidneyFace.jpg
+30,0,0,,(Se da la vuelta y susurra)|Ojalá hubiera una forma de salir de aquí temprano.,SidneyFace.jpg
+40,0,0,,(Se da la vuelta y susurra)|¿Qué tienes en mente?,SidneyFace.jpg
+50,0,0,,¿Quieres dominarla?  ¿Que quieres que haga?|(Necesitas 3 de amor o sumisión para convencerla.),SidneyFace.jpg
+60,0,0,,(SNo parece que quiera girarse pero susurra.)|Te ayudaré, pero haz el primer movimiento.,SidneyBack.jpg
+100,0,0,Common_PlayerNotGagged,¡Joder!  ¡Eso ha estado genial!,SidneyFace.jpg
+100,0,0,Common_PlayerGagged,(Señala tu mordaza y sonríe.),SidneyFace.jpg
+100,2,0,Common_PlayerGagged,(Se da la vuelta y susurra.)|Te liberaré despues de clase.,SidneyFace.jpg
+100,-2,0,Common_PlayerGagged,(No se da la vuelta pero sussura.)|Te jodes, ya tienes lo que te mereces.,SidneyBack.jpg
+110,0,0,,(Te mira enfadada y|muerde su mordaza.),Sidney_BallGag.jpg
+120,0,0,,"(Forcejea en sus esposas,|intentando liberarse.)",Sidney_Cuffs.jpg
+130,0,0,,(Te mira enfadada y|muerde su mordaza.),Sidney_Cuffs_BallGag.jpg
+140,0,0,,(Intenta desacer los nudos pero falla.),Sidney_Rope.jpg
+150,0,0,,(Te mira enfadada y|muerde su mordaza.),Sidney_Rope_BallGag.jpg

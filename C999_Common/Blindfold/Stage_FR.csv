@@ -1,6 +1,6 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Tu inspectes le bandeau.)|(1 minute),Ce bandeau est complètement opaque.|Il sera impossible de voir quoi que ce soit en le portant.,0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Tu te bandes les yeux.)|(1 minute),Tu mets le bandeau sur tes yeux|et tu boucles les sangles derrière ta tête.,10,0,0,SelfBlind()
-10,0,0,Common_PlayerNotRestrained,(Tu agites ta main|devant toi.) (1 minute),"Tu es sûre qu'elle est là, mais tu ne peux pas la voir.",10,0,0,
-10,0,0,,(Tu essayes de défaire|le bandeau.) (1 minute),Tu essayes de le frotter contre un objet mais les sangles|tiennent fermement. Tu auras besoin de tes mains.,10,0,0,
-10,0,0,Common_PlayerNotRestrained,(Tu enlèves le bandeau.)|(1 minute),"Tu défais les sangles, retires le bandeau|et tu peux voir à nouveau.",0,0,0,SelfUnBlind()
+0,0,0,,(Tu inspectes le bandeau.)ADD_MINUTES:1,Ce bandeau est complètement opaque.|Il sera impossible de voir quoi que ce soit en le portant.,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Tu te bandes les yeux.)ADD_MINUTES:1,Tu mets le bandeau sur tes yeux|et tu boucles les sangles derrière ta tête.,10,0,0,SelfBlind()
+10,0,0,Common_PlayerNotRestrained,(Tu agites ta main|devant toi.)ADD_MINUTES:1,"Tu es pourtant sûre qu'elle est là,|mais tu ne peux pas la voir pour t'en assurer.",10,0,0,
+10,0,0,,(Tu essayes de retirer|le bandeau.)ADD_MINUTES:1,Tu essayes de le retirer en le frottant contre un objet|mais les sangles tiennent fermement.,10,0,0,
+10,0,0,Common_PlayerNotRestrained,(Tu enlèves le bandeau.)ADD_MINUTES:1,"Tu défais les sangles, retires le bandeau|et tu peux voir à nouveau.",0,0,0,SelfUnBlind()

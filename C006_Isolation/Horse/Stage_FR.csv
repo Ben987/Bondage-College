@@ -1,8 +1,8 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,!BoltUndone,(Tu l'examines.)|(1 minute),"Ce ""cheval"" est utilisé pour se faire fouetter sous tous|les angles. Il y a un vieux boulon rouillé à l'arrière.",0,0,0,AllowBolt()
-0,0,0,BoltUndone,(Tu l'examines.)|(1 minute),"Ce ""cheval"" est utilisé pour se faire fouetter sous tous|les angles. Tu as ramassé la tôle qui était tombé.",0,0,0,
-0,0,0,BoltSeen,(Tu dévisses le boulon.)|(1 minute),"Ce vieux boulon pourrait être dévissé, mais pas à mains|nues. Tu auras besoin d'une meilleure adhérence.",0,0,0,
+0,0,0,!BoltUndone,(Tu l'examines.)ADD_MINUTES:1,"Ce ""cheval"" est utilisé pour se faire fouetter sous tous|les angles. Il y a un vieux boulon rouillé à l'arrière.",0,0,0,AllowBolt()
+0,0,0,BoltUndone,(Tu l'examines.)ADD_MINUTES:1,"Ce ""cheval"" est utilisé pour se faire fouetter sous tous|les angles. Tu as ramassé la tôle qui était tombé.",0,0,0,
+0,0,0,BoltSeen,(Tu dévisses le boulon.)ADD_MINUTES:1,"Ce vieux boulon pourrait être dévissé, mais pas à mains|nues. Tu auras besoin d'une meilleure adhérence.",0,0,0,
 0,0,0,MetalAvail,(Tu ramasses la tôle.),Tu ramasses la tôle.,0,0,0,TakeMetal()
-0,0,0,,(Tu montes à cheval.)|(1 minute),Tu essayes d'atteindre les menottes du haut pour|sangler ton poignet mais tu ne peut pas les atteindre.,10,0,0,
-10,0,0,,(Tu essayes de te stimuler.)|(1 minute),Tu essayes de te stimuler|et c'est assez agréable.,10,0,0,
-10,0,0,,(Tu descends.)|(1 minute),"Tu descends du ""cheval""".,0,0,0,
+0,0,0,,(Tu montes à cheval.)ADD_MINUTES:1,Tu essayes d'atteindre les menottes du haut pour|sangler ton poignet mais tu ne peut pas les atteindre.,10,0,0,
+10,0,0,,(Tu essayes de te stimuler.)ADD_MINUTES:1,Tu essayes de te stimuler|et c'est assez agréable.,10,0,0,
+10,0,0,,(Tu descends.)ADD_MINUTES:1,"Tu descends du ""cheval""".,0,0,0,

@@ -1,0 +1,4 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,Ein Pranger steht im Raum.,Pillory.jpg
+10,0,0,,"Möchtest du versuchen,|deinen Kopf hineinzuzwängen?",PilloryHead.jpg
+20,0,0,,,PilloryLocked.jpg

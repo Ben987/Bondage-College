@@ -22,10 +22,10 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 200,0,0,,Oui ! Maintenant|on peut s'amuser.,(Elle te regarde nerveusement.)|Qu'est-ce que tu as en tête ?,210,0,0,
 200,0,0,,Alors tu veux sortir ?,Oui ! Tu as les clés de ses menottes ?,210,1,-1,
 200,0,0,,"Tu es toute à moi|maintenant, salope !",Mais de quoi tu parles putain ?|(Elle te regarde nerveusement.),210,-1,1,
-210,0,0,Common_PlayerNotRestrained,(Tu la déshabilles.)|(1 minute),Oula attends ! Qu'est-ce que tu fais ?|(Tu la forces à se déshabiller.),220,0,0,Strip()
-210,1,0,,(Tu l'embrasses.)|(1 minute),(Tu l'embrasses et elle reste sans voix.),210,0,0,Kiss()
-220,0,0,Common_PlayerNotRestrained,(Tu la rhabilles.)|(1 minute),Y'a-t'il une seule logique dans tout ce que tu fais ?,210,0,0,Dress()
-220,1,0,,(Tu l'embrasses.)|(1 minute),(Tu l'embrasses et elle reste sans voix.),220,0,0,Kiss()
-220,0,0,Common_PlayerNotRestrained,(Tu la chatouilles.)|(1 minute),Va te faire foutre ! Toi et ton fétiche sur les chatouilles !|(Elle ne semble pas rire ni s'amuser.),220,0,0,Tickle()
-220,0,0,EggReady,(Tu insères l'oeuf.)|(1 minute),(Tu insères l'oeuf dans son vagin. Il vibre et s'enfonce|profondément.) Putain ! Pourquoi tu as fait ça ?,220,-1,1,Insert()
-220,0,0,EggInside,(Tu enlèves l'oeuf.)|(1 minute),(Tu glisses un doigt à l'intérieur mais tu n'arrives pas à|l'attraper.) Tu ne peux pas l'attraper ! Mais quelle idiote !,220,0,0,
+210,0,0,Common_PlayerNotRestrained,(Tu la déshabilles.)ADD_MINUTES:1,Oula attends ! Qu'est-ce que tu fais ?|(Tu la forces à se déshabiller.),220,0,0,Strip()
+210,1,0,,(Tu l'embrasses.)ADD_MINUTES:1,(Tu l'embrasses et elle reste sans voix.),210,0,0,Kiss()
+220,0,0,Common_PlayerNotRestrained,(Tu la rhabilles.)ADD_MINUTES:1,Y'a-t'il une seule logique dans tout ce que tu fais ?,210,0,0,Dress()
+220,1,0,,(Tu l'embrasses.)ADD_MINUTES:1,(Tu l'embrasses et elle reste sans voix.),220,0,0,Kiss()
+220,0,0,Common_PlayerNotRestrained,(Tu la chatouilles.)ADD_MINUTES:1,Va te faire foutre ! Toi et ton fétiche sur les chatouilles !|(Elle ne semble pas rire ni s'amuser.),220,0,0,Tickle()
+220,0,0,EggReady,(Tu insères l'oeuf.)ADD_MINUTES:1,(Tu insères l'oeuf dans son vagin. Il vibre et s'enfonce|profondément.) Putain ! Pourquoi tu as fait ça ?,220,-1,1,Insert()
+220,0,0,EggInside,(Tu enlèves l'oeuf.)ADD_MINUTES:1,(Tu glisses un doigt à l'intérieur mais tu n'arrives pas à|l'attraper.) Tu ne peux pas l'attraper ! Mais quelle idiote !,220,0,0,

@@ -1,0 +1,30 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,Da bist du ja! Dieses pinke Ding spielt in mir noch|verrückt. Wie bekommt man das raus?,Jennifer.jpg
+5,0,0,,Hi! Gleich zwei Stunden hintereinander mit|dir zusammen. Wollen wir Judo trainieren?,Jennifer.jpg
+5,-2,0,,(Sie seufzt.) Oh je. Du schon wieder.|Wir werden wohl zusammen trainieren müssen.,Jennifer.jpg
+5,2,0,,"Was für ein toller Zufall! Es wird bestimmt|lustig, zusammen Judo zu trainieren.",Jennifer.jpg
+10,0,0,,Hast du schon mal Judo gemacht?,Jennifer.jpg
+20,0,0,,Übung macht bekanntlich den Meister.|Sollen wir üben oder richtig kämpfen?,Jennifer.jpg
+100,0,0,,Du kämpfst gut! Als Nächstes musst du mich be-|wegungsunfähig machen. Ich versuche mich zu wehren.,JenniferLosing.jpg
+110,0,0,!Turnabout,"Der nächste Schritt zur Selbstverteidigung ist,|mein Outfit zu entfernen und mich zu fesseln.",JenniferLosing.jpg
+110,0,0,Turnabout,"Oh wow! Du hast echt den Spieß umgedreht.|Dann versuch mich mal zu fesseln, wird nicht einfach.",JenniferLosing.jpg
+200,0,0,,Als Siegerin muss ich dich für den nächsten Selbst-|verteidigungsschritt bewegungsunfähig machen.,JenniferWinning.jpg
+210,0,0,!Turnabout,Als Abschluss meiner Verteidigung muss|ich dein Outfit entfernen und dich fesseln.,JenniferWinning.jpg
+210,0,0,Turnabout,"Man weiß nie, wer zuletzt lacht.|Jetzt bin ich dran, dich zu fesseln.",JenniferWinning.jpg
+400,0,0,!DefeatedHardMode,"Du bist gut, aber nächstes Mal kämpfe ich besser.|Hat dir dieses Selbstverteidigungstraining gefallen?",JenniferDefeat.jpg
+400,0,0,DefeatedHardMode,"Das war spitze! Du kämpfst echt gut.|Ich muss viel üben, um mitzuhalten.",JenniferDefeat.jpg
+400,0,0,DefeatedHardModePerfect,Das war genial! Du kämpfst perfekt.|Nimm zum Abschluss den Knebel aus meiner Tasche.,JenniferDefeat.jpg
+410,0,0,,Du hast mich ziemlich gut gefesselt.|Selbstverteidigung hast du wohl drauf.,JenniferDefeat.jpg
+420,0,0,,(Sie wimmert und schaut dich an.|Sie will offenbar losgebunden werden.),JenniferDefeatBallGag.jpg
+430,0,0,,(Sie wimmert und schaut dich an.|Sie will offenbar losgebunden werden.),JenniferDefeatTapeGag.jpg
+450,0,0,,(Sie wird rot und weicht deinem Blick aus.),JenniferDefeatClimax.jpg
+460,0,0,,(Sie wird rot und weicht deinem Blick aus.),JenniferDefeatClimaxBallGag.jpg
+470,0,0,,(Sie wird rot und weicht deinem Blick aus.),JenniferDefeatClimaxTapeGag.jpg
+500,0,0,,Ein nettes kleines Paket!|Ist Judo nicht einfach großartig?,JenniferVictory.jpg
+510,0,0,,"Hoffentlich hast du im Kampf etwas Neues gelernt.|Deine neue Aufgabe ist es, dich zu befreien.",JenniferVictory.jpg
+520,0,0,,"Hoffentlich hast du im Kampf etwas Neues gelernt.|Deine neue Aufgabe ist es, dich zu befreien.",JenniferVictoryBallGag.jpg
+530,0,0,,"Hoffentlich hast du im Kampf etwas Neues gelernt.|Deine neue Aufgabe ist es, dich zu befreien.",JenniferVictoryTapeGag.jpg
+550,0,0,,Alles okay? Du hast echt heftig gezittert.,JenniferVictoryClimax.jpg
+560,0,0,,"Nicke, wenn alles okay ist.|Du hast echt heftig gezittert.",JenniferVictoryClimaxBallGag.jpg
+570,0,0,,"Nicke, wenn alles okay ist.|Du hast echt heftig gezittert.",JenniferVictoryClimaxTapeGag.jpg
+600,0,0,,Lust auf noch eine Trainingsrunde vor der Pause?,Jennifer.jpg

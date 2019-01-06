@@ -22,28 +22,28 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 220,0,0,DamselCanInteract,(Applaud lightly.),"The white knight grabs her sword and says:|""So fate chooseth steel, en garde!""",230,0,0,"GlobalStage(230, 1, 0)"
 225,0,0,,"Forget it, en garde!",You simultaneously unsheathe your|swords and take a step forward.,230,0,0,"GlobalStage(230, 0, 0)"
 225,0,0,,"Aye, let's shareth|forbiden loveth",You all get together to share kisses|and conclude the play in a love trio.,226,0,0,FinalTrio()
-240,0,0,PlayerIsHeroine,Law shalt judgeth thee.|(Restrain her) (1 minute),You pick a few items from the theater|and restrain Amanda the black knight.,250,0,0,"GlobalStage(250, 1, 0)"
-240,0,0,PlayerIsHeroine,You will be judged.|(Restrain her) (1 minute),You pick a few items from the theater|and restrain Amanda the black knight.,250,0,0,"GlobalStage(250, -1, 0)"
+240,0,0,PlayerIsHeroine,Law shalt judgeth thee.|(Restrain her)ADD_MINUTES:1,You pick a few items from the theater|and restrain Amanda the black knight.,250,0,0,"GlobalStage(250, 1, 0)"
+240,0,0,PlayerIsHeroine,You will be judged.|(Restrain her)ADD_MINUTES:1,You pick a few items from the theater|and restrain Amanda the black knight.,250,0,0,"GlobalStage(250, -1, 0)"
 240,0,0,PlayerIsHeroine,Sorry Julia.|I forgot my line.,"Julia whispers to you:|""Law shalt judgeth thee.""",240,0,0,ForgetLine()
-240,0,0,PlayerIsVillain,(Listen quietly.)|(1 minute),"The white knight strips and restrains you|while saying: ""Law shalt judgeth thee.""",250,0,0,"GlobalStage(250, 0, 0)"
-240,0,0,PlayerIsVillain,(Bow to the white|knight.) (1 minute),"The white knight strips and restrains you|while saying: ""Law shalt judgeth thee.""",250,0,-1,"GlobalStage(250, 0, -1)"
-240,0,0,PlayerIsVillain,That sucks!|(1 minute),"The white knight strips and restrains you|while saying: ""Law shalt judgeth thee.""",250,-1,0,"GlobalStage(250, -1, 0)"
-240,0,0,PlayerIsDamsel,(Watch the scene.)|(1 minute),"The heroine strips and restrains the villain|while saying: ""Law shalt judgeth thee.""",250,0,0,"GlobalStage(250, 0, 0)"
-240,0,0,PlayerIsDamsel,Hurray white knight!|(1 minute),"The heroine strips and restrains the villain|while saying: ""Law shalt judgeth thee.""",250,1,0,"GlobalStage(250, 1, 0)"
+240,0,0,PlayerIsVillain,(Listen quietly.)ADD_MINUTES:1,"The white knight strips and restrains you|while saying: ""Law shalt judgeth thee.""",250,0,0,"GlobalStage(250, 0, 0)"
+240,0,0,PlayerIsVillain,(Bow to the white|knight.)ADD_MINUTES:1,"The white knight strips and restrains you|while saying: ""Law shalt judgeth thee.""",250,0,-1,"GlobalStage(250, 0, -1)"
+240,0,0,PlayerIsVillain,That sucks!ADD_MINUTES:1,"The white knight strips and restrains you|while saying: ""Law shalt judgeth thee.""",250,-1,0,"GlobalStage(250, -1, 0)"
+240,0,0,PlayerIsDamsel,(Watch the scene.)ADD_MINUTES:1,"The heroine strips and restrains the villain|while saying: ""Law shalt judgeth thee.""",250,0,0,"GlobalStage(250, 0, 0)"
+240,0,0,PlayerIsDamsel,Hurray white knight!ADD_MINUTES:1,"The heroine strips and restrains the villain|while saying: ""Law shalt judgeth thee.""",250,1,0,"GlobalStage(250, 1, 0)"
 250,0,0,Common_PlayerGagged,@Mng nuuum!,Amanda giggles a little at your gagged|mumblings but stays focused on her role.,250,0,0,
-250,10,0,DamselCanInteract,(Rush to kiss her.)|(1 minute),You rush into her arms and you|both kiss tenderly for the final act.,260,0,0,FinalKiss()
-250,0,-5,DamselCanInteract,(Kneel for her.)|(1 minute),You bow and kneel for the white knight.|Hugging her legs lovingly for the final act.,260,0,0,FinalDomme()
-250,0,0,DamselCanInteract,(Go hug her.)|(1 minute),You go in her arms and|you hug for the final act.,260,0,0,FinalHug()
-250,2,0,DamselCanBeg,(Make pleading eyes.)|(1 minute),You make sweet pleading eyes and|she releases you from your bondage.,250,0,0,ReleasePlayer()
-250,0,0,DamselCanBeg,(Surrender to her.)|(1 minute),You surrender to her and she decides to|keep you both prisoners for the final act.,300,0,0,FinalTwoPrisoners()
+250,10,0,DamselCanInteract,(Rush to kiss her.)ADD_MINUTES:1,You rush into her arms and you|both kiss tenderly for the final act.,260,0,0,FinalKiss()
+250,0,-5,DamselCanInteract,(Kneel for her.)ADD_MINUTES:1,You bow and kneel for the white knight.|Hugging her legs lovingly for the final act.,260,0,0,FinalDomme()
+250,0,0,DamselCanInteract,(Go hug her.)ADD_MINUTES:1,You go in her arms and|you hug for the final act.,260,0,0,FinalHug()
+250,2,0,DamselCanBeg,(Make pleading eyes.)ADD_MINUTES:1,You make sweet pleading eyes and|she releases you from your bondage.,250,0,0,ReleasePlayer()
+250,0,0,DamselCanBeg,(Surrender to her.)ADD_MINUTES:1,You surrender to her and she decides to|keep you both prisoners for the final act.,300,0,0,FinalTwoPrisoners()
 400,0,0,PlayerIsVillain,Next time you will|never find your damsel.,(She frowns at you and giggles right after.),400,0,0,
 400,0,0,PlayerIsDamsel,Your white armor|is so romantic!,(She looks at the armor and shrugs.),400,0,0,
 400,0,0,CanConvinceJuliaToStrip,Shouldn't damsel Julia|show her charms?,Very true milady.  Damsel Julia!|(Julia obeys and strips a little.),400,0,0,JuliaStrip()
-400,0,0,CanUntie,(Untie her.)|(1 minute),(You undo the knots and stash|the rope while she dresses back.),400,0,0,Untie()
-400,0,0,CanUnstrap,(Unstrap her.)|(1 minute),(You undo the straps and laces|of the binder to free her arms.),400,0,0,Untie()
-400,0,0,CanUngag,(Ungag her.)|(1 minute),(You remove the gag and she giggles.)|This is such a kinky play.,400,0,0,Ungag()
-400,0,0,CanKiss,(Kiss her.)|(1 minute),(You get close and give her a long kiss on the lips.)|(She stays silent and appreciates the moment.),400,0,0,Kiss()
-400,0,0,CanAbuse,(Tickle her.)|(1 minute),(She struggles to avoid your tickling|but can't do much but to laugh.),400,0,0,Tickle()
-400,0,0,CanAbuse,(Spank her.)|(1 minute),"(She whimpers with each hit, you're|not totally sure if she enjoys it or not.)",400,0,0,Spank()
-400,0,0,CanAbuse,(Masturbate her.)|(1 minute),"(You grab her and masturbate her lovingly.|She moans, trembles and breathes heavily.)",400,0,0,Masturbate()
-400,0,0,CanBeg,(Make pleading eyes.)|(1 minute),Thou art way too cute to be released.,400,0,0,BegRelease()
+400,0,0,CanUntie,(Untie her.)ADD_MINUTES:1,(You undo the knots and stash|the rope while she dresses back.),400,0,0,Untie()
+400,0,0,CanUnstrap,(Unstrap her.)ADD_MINUTES:1,(You undo the straps and laces|of the binder to free her arms.),400,0,0,Untie()
+400,0,0,CanUngag,(Ungag her.)ADD_MINUTES:1,(You remove the gag and she giggles.)|This is such a kinky play.,400,0,0,Ungag()
+400,0,0,CanKiss,(Kiss her.)ADD_MINUTES:1,(You get close and give her a long kiss on the lips.)|(She stays silent and appreciates the moment.),400,0,0,Kiss()
+400,0,0,CanAbuse,(Tickle her.)ADD_MINUTES:1,(She struggles to avoid your tickling|but can't do much but to laugh.),400,0,0,Tickle()
+400,0,0,CanAbuse,(Spank her.)ADD_MINUTES:1,"(She whimpers with each hit, you're|not totally sure if she enjoys it or not.)",400,0,0,Spank()
+400,0,0,CanAbuse,(Masturbate her.)ADD_MINUTES:1,"(You grab her and masturbate her lovingly.|She moans, trembles and breathes heavily.)",400,0,0,Masturbate()
+400,0,0,CanBeg,(Make pleading eyes.)ADD_MINUTES:1,Thou art way too cute to be released.,400,0,0,BegRelease()

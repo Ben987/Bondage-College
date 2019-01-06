@@ -1,0 +1,5 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,Common_PlayerNotRestrained,Yukis Tasche liegt unbewacht da.,Bag.jpg
+0,0,0,Common_PlayerRestrained,Yukis Tasche liegt unbewacht da.|Mit Handschellen kannst du sie nicht unbemerkt öffnen.,Bag.jpg
+10,0,0,Common_PlayerNotRestrained,Die Lehrertasche ist noch offen.,Bag.jpg
+10,0,0,Common_PlayerRestrained,Die Lehrertasche ist noch offen. Mit Handschellen|kannst du sie nicht unbemerkt durchsuchen.,Bag.jpg

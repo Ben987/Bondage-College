@@ -1,0 +1,24 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,"Willkommen in meiner Klasse, junge Dame.|Du drafst mich Miss Mildred nennen.",MildredIntro.jpg
+10,0,0,,,MildredIntro.jpg
+20,0,0,,,MildredIntro.jpg
+30,0,0,,,MildredIntro.jpg
+40,0,0,,,MildredIntro.jpg
+50,0,0,,(Miss Mildred lehrt bis 9:00 Uhr Ableitungen.|Sie scheint die Klasse fest im Griff zu haben.),MildredTeach.jpg
+100,0,0,,,MildredCrop.jpg
+110,0,0,,,MildredCrop.jpg
+120,0,0,,,MildredCrop.jpg
+130,0,0,,,MildredCrop.jpg
+200,0,0,Common_PlayerNotRestrained,(Miss Mildred lehrt bis 9:00 Uhr Ableitungen.|Sie scheint die Klasse fest im Griff zu haben.),MildredTeach.jpg
+200,0,0,Common_PlayerRestrained,"(Miss Mildred unterrichtet weiter, während du strampelst|und sabberst. Du musst wohl bis 9:00 Uhr warten.)",MildredTeach.jpg
+210,0,0,,(Miss Mildred hat ihre Klasse völlig unter Kontrolle.|Möchtest du sie wirklich überfallen?),MildredTeach.jpg
+220,0,0,,,MildredCrop.jpg
+300,0,0,,Junge Dame! Sperre auf der|Stelle diese Handschellen auf.,Mildred_Cuffs.jpg
+310,0,0,,Junge Dame! Sperre auf der|Stelle diese Handschellen auf.,Mildred_Cuffs.jpg
+320,0,0,,(Sie beißt auf ihren Knebel und ist außer sich.),Mildred_Cuffs_BallGag.jpg
+330,0,0,,"Junge Dame! Binde mich auf der Stelle los.|(Sie schließt die Augen, um etwas Würde zu bewahren.)",Mildred_Rope.jpg
+340,0,0,,"(Sie beißt voller Wut auf ihren Knebel.)|(Sie schließt die Augen, um etwas Würde zu bewahren.)",Mildred_Rope_BallGag.jpg
+410,0,0,,"(Du beugst sie über den Tisch und hebst die Gerte.)|Junge Dame, denk an die Konsequenzen.",Mildred_Cuffs_Crop.jpg
+420,0,0,,(Du beugst sie über den Tisch und hebst die Gerte.)|(Sie protestiert unverständlich in ihren Knebel.),Mildred_Cuffs_Crop.jpg
+430,0,0,,"(Du beugst sie über den Tisch und hebst die Gerte.)|Junge Dame, denk an die Konsequenzen.",Mildred_Rope_Crop.jpg
+440,0,0,,(Du beugst sie über den Tisch und hebst die Gerte.)|(Sie protestiert unverständlich in ihren Knebel.),Mildred_Rope_Crop.jpg

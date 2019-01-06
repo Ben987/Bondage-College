@@ -1,0 +1,42 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,A jouer ? Je n'en sais rien.,Allume ta flamme COMMON_PLAYERNAME !|Voici ton texte. (Elle te tend une feuille.),10,0,-1,
+0,0,0,,Je vais casser|la baraque !,C'est le bon état d'esprit COMMON_PLAYERNAME !|Voici ton texte. (Elle te tend une feuille.),10,0,1,
+0,0,0,,Je suis prête Julia.,"""Magnifico"" COMMON_PLAYERNAME !|Voici ton texte. (Elle te tend une feuille.)",10,0,0,
+0,0,0,,Cette pièce va être nulle.,Quelle mauvaise attitude COMMON_PLAYERNAME.|Voici ton texte. (Elle te tend une feuille.),10,-1,-1,
+10,0,0,,(Tu lis le script.)ADD_MINUTES:1,"C'est un grand rôle, n'est-ce pas ? Maintenant, monte|sur scène. Le chevalier blanc commence en premier.",20,0,0,
+10,0,0,,(Tu lis le script|avec minutie.)ADD_MINUTES:1,"Oh ! Une élève méticuleuse ! Maintenant, monte|sur scène. Le chevalier blanc commence en premier.",20,1,0,
+10,0,0,,(Tu balayes rapidement|le script)ADD_MINUTES:1,"Tu sembles vraiment confiante. Maintenant, monte|sur scène. Le chevalier blanc commence en premier.",20,0,1,
+10,0,0,!ScriptRefused,Je ne veux pas lire ça.,Comment vas-tu jouer sans connaître le scénario ?|Ma petite COMMON_PLAYERNAME ! Lit-le.,10,0,0,RefuseScript()
+20,0,0,,(Tu montes sur scène.),,100,0,0,StartDrama()
+20,0,0,,On peut improviser ?,"""Si"" ! Tu peux improviser mais ne|t'éloignes pas trop du scénario.",20,0,0,
+100,0,0,,(Tu te concentres| sur la pièce.),,100,0,0,StartDrama()
+100,0,0,,On peut improviser ?,"""Si"" ! Tu peux improviser mais ne|t'éloignes pas trop du scénario.",100,0,0,
+300,0,0,Common_PlayerGagged,(Tu lui fais les yeux doux.)ADD_MINUTES:1,Tu fais des yeux doux à Julia.|Elle sourit et te libère de ton bondage.,300,0,0,ReleasePlayer()
+300,0,0,,C'était une pièce amusante.,"""Si"" ! Et il y avait de la place pour improviser.",310,0,0,
+300,0,0,,"Cette pièce était|géniale, Julia.",Merci beaucoup COMMON_PLAYERNAME !|Et il y avait de la place pour improviser.,310,1,0,
+300,0,0,,Cette pièce était|trop chaotique.,"Le chaos, c'est l'art et l'art, c'est le chaos.|Je voulais que tu improvises.",310,-1,0,
+300,0,0,,"La prochaine fois,|je veux un meilleur rôle.",Je suis sûre que nous trouverons un rôle parfait pour|toi. Et il y a toujours de la place pour l'improvisation.,310,0,1,
+300,0,0,,Je pense que le drame|n'est pas pour moi.,Tu t'es bien débrouillée. N'ai pas peur de la scène.|Et il y a toujours de la place pour l'improvisation.,310,0,-1,
+310,0,0,,"Si on peut improviser, vous|devriez vous joindre à nous.",Rejoindre la pièce après qu'elle soit terminée ?|Mais quel rôle jouerai-je ?,320,0,0,
+310,0,0,,"Laissez l'improvisation|émerger, rejoignez-nous.",Rejoindre la pièce après que nous la clôturâmes ?|Mais quel protagoniste dussé-je interpréter ?,320,1,0,
+320,0,0,IsDamsel,"Une demoiselle comme moi|appartenant au chevalier.",Oyez ! Je seroie la douce damoiselle|protégée par le chevalier.,330,0,0,JuliaEntersPlay()
+320,0,0,!IsDamsel,"Une deuxième demoiselle,|appartenant au chevalier.",Oyez ! Je seroie la douce damoiselle|protégée par le chevalier.,330,0,1,JuliaEntersPlay()
+320,0,0,,Soyez la reine qui règne|sur les chevaliers.,Oyez ! Je seroie la reine qui règne sur la contrée.,340,0,-1,JuliaEntersPlay()
+400,0,5,IsDamsel,Une vraie demoiselle doit|se dévoiler d'avantage.,Oyez ! Entendu gente dame.|(Elle enlève quelques vêtements.),410,0,0,Strip()
+400,5,0,IsDamsel,Vous devriez nous dévoiler|vos charmes mademoiselle,Oyez ! Entendu gente dame.|(Elle enlève quelques vêtements.),410,0,0,Strip()
+400,0,0,IsDamsel,"Damoiselle, mon amie, quel|chevalier préfèrez-vous ?","Bonne question. Leurs maîtrises de l'art populaire est|merveilleuse, mais le chevalier blanc est plus héroïque.",400,0,0,
+400,0,0,!IsDamsel,"Damoiselle, vous devriez|nous dévoiler tes charmes.",Oyez ! Entendu mon chevalier.|(Elle enlève quelques vêtements.),410,0,0,Strip()
+400,0,0,!IsDamsel,"Damoiselle, obéissez et|montrez-moi plus de peau.",Oyez ! Entendu mon chevalier.|(Elle enlève quelques vêtements.),410,0,1,Strip()
+410,0,0,!IsGagged,"Vous êtes ravissante|ce soir, très chère.","Eh bien, merci, j'apprécie.",410,0,0,
+410,0,0,!IsGagged,"Vous êtes très pittoresque|ce soir, très chère.",(Elle rougit.) Votre admiration est fort flatteuse.,410,0,0,QuaintComment()
+410,0,0,CanUntie,(Tu la détaches.)ADD_MINUTES:1,(Tu défais les noeuds et la libères des|cordes pendant qu'elle s'étire joyeusement.),410,0,0,Untie()
+410,0,0,CanUngag,(Tu la débâillonnes.)ADD_MINUTES:1,(Tu enlèves le bâillon et elle sourit.)|Je vous accorde la miséricorde !,410,0,0,Ungag()
+410,0,0,CanKiss,(Tu l'embrasses.)ADD_MINUTES:1,(Tu t'approches et tu lui fais un long baiser sur|les lèvres.) COMMON_PLAYERNAME ! C'est inapproprié.,410,0,0,Kiss()
+410,0,0,CanAbuse,(Tu la chatouilles.)ADD_MINUTES:1,"(Elle rit et se dandine dans son bondage|quand tu la chatouilles, elle a l'air d'apprécier.)",410,0,0,Tickle()
+410,0,0,CanAbuse,(Tu lui mets une fessée.)ADD_MINUTES:1,(Tu lui donnes une bonne fessée.|Elle semble trouver ça inapproprié.),410,0,0,Spank()
+410,0,0,CanAbuse,(Tu la masturbes.)ADD_MINUTES:1,(Elle lutte mais elle ne peut éviter ton touché.|Elle semble trouver ceci très inapproprié.),410,0,0,Masturbate()
+500,0,0,,"Vous êtes magnifique|ce soir, ma reine.","Eh bien, merci, j'apprécie.",500,0,0,
+500,0,0,,"Vous êtes très pittoresque|ce soir, très chère.",(Elle rougit.) Votre admiration est fort flatteuse.,500,0,0,QuaintComment()
+500,0,0,,Ma reine ! Vous avez|pris du poids ?,C'est un crime de lèse-majesté ! Comment osez-vous ?|(Elle te maîtrise et t'attache.),500,0,0,WeightComment()
+500,0,0,RebellionAvail,Votre Altesse !|Une rébellion se prépare.,Il n'en sera rien ! Gardes !|(Elle convoque et attache tout le monde.),500,0,0,Rebellion()
+500,0,0,Common_PlayerRestrained,(Tu lui fais les yeux doux.)ADD_MINUTES:1,"Alors, besoin d'aide ? La reine|préfère vous savoir attaché.",500,0,0,BegRelease()

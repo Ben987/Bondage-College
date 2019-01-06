@@ -17,8 +17,8 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 30,0,0,,You can't do that.,Of course I can.  Now|you will remove your uniform.,40,0,0,
 40,0,0,,Strip?  Sorry but you're|way too ugly for me.,"(She pushes you on a pillory and locks it.)|If you resist, I'll have to use these devices.",70,-1,0,
 40,0,0,,Forget it lady.|I'm not stripping.,"(She pushes you on a pillory and locks it.)|If you resist, I'll have to use these devices.",70,0,0,
-40,0,0,,"Damn it!  Ok, ok.|(Strip.)  (1 minute)",Very well.  And you are expected to wear|this.  (She shows you a leather collar.),50,0,0,
-40,0,0,,It's only for your eyes.|(Strip.)  (1 minute),Of course.  And you are expected to wear|this.  (She shows you a leather collar.),50,1,0,
+40,0,0,,"Damn it!  Ok, ok.|(Strip.) ADD_MINUTES:1",Very well.  And you are expected to wear|this.  (She shows you a leather collar.),50,0,0,
+40,0,0,,It's only for your eyes.|(Strip.) ADD_MINUTES:1,Of course.  And you are expected to wear|this.  (She shows you a leather collar.),50,1,0,
 50,0,0,,Yes Miss.|(Bow your head.),(She straps the collar around your neck.)|And how do you feel now?  Vulnerable?,100,0,-1,AddCollar()
 50,0,0,,A collar?  Do I|look like a dog?,"(She pushes you on a pillory and locks it.)|If you resist, I'll have to use these devices.",80,0,0,
 50,0,0,,Mmmh.  Ok.|(Bow your head.),(She straps the collar around your neck.)|And how do you feel now?  Vulnerable?,100,0,0,AddCollar()
@@ -64,9 +64,9 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 170,0,0,,(Bow your head.),"Good girl, I'll be back at 11:30.|(She stands up and leaves the room.)",180,0,-1,AllowLeave()
 170,0,0,,@UUHEE!,You're so cute.  I'll be back at 11:30.|(She stands up and leaves the room.),180,0,0,AllowLeave()
 170,0,0,,@Heesee ehhem.,You're so cute.  I'll be back at 11:30.|(She stands up and leaves the room.),180,0,0,AllowLeave()
-200,0,0,,(Nuzzle against her|pussy.) (1 minute),(She opens her legs and moans softly.),200,0,0,Pleasure(1)
-200,0,0,,(Lick her clitoris.)|(1 minute),(She pulls you close by the hair and trembles.),200,0,0,Pleasure(2)
-200,0,0,,(Push your tongue|inside.)  (1 minute),(She pulls your head back|and forth with both hands.),200,0,0,Pleasure(3)
+200,0,0,,(Nuzzle against her|pussy.)ADD_MINUTES:1,(She opens her legs and moans softly.),200,0,0,Pleasure(1)
+200,0,0,,(Lick her clitoris.)ADD_MINUTES:1,(She pulls you close by the hair and trembles.),200,0,0,Pleasure(2)
+200,0,0,,(Push your tongue|inside.) ADD_MINUTES:1,(She pulls your head back|and forth with both hands.),200,0,0,Pleasure(3)
 200,0,0,AllowPullBack,(Stop and pull back.),(You pull back and she looks disappointed.)|So you're going to give up?,210,0,0,CheckToStop()
 210,0,0,,I was only taking|my breath.  (Go back.),Very good.  (She grabs your|hair and pulls you back in.),200,0,0,
 210,0,0,,"Sorry Miss, I|cannot do it.","Fine, I don't care anyway.|(She gets more rope and ties your legs.)",150,-1,0,

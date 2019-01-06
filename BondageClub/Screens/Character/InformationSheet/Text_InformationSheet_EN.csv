@@ -1,0 +1,24 @@
+Name,Name: 
+Title,Title:
+TitleHeadMaid,Head Maid
+TitleMaid,Maid
+TitleMasterKidnapper,Master Kidnapper
+TitleKidnapper,Kidnapper
+TitleNone,None
+Lover,Lover:
+Owner,Owner:
+LoverNone,None
+OwnerNone,None
+Money,Money:
+Reputation,- Reputation -
+ReputationNone,None
+ReputationDominantPositive,Dominant:
+ReputationDominantNegative,Submissive:
+ReputationMaidPositive,Maid Sorority:
+ReputationGamblingPositive,Gambling Hall:
+ReputationKidnapPositive,Kidnappers League:
+Skill,- Skills -
+SkillNone,None
+SkillBondage,Bondage:
+SkillEvasion,Evasion:
+SkillWillpower,Willpower:

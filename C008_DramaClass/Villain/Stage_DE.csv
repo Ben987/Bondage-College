@@ -1,0 +1,71 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+110,0,0,PlayerIsVillain,Ihr Herzschlag verkündete|ihre wahre Liebe.,"Der Held tritt vor und entgegnet:|""Falsche Zunge, befreie er sie geschwind.""",130,0,0,"GlobalStage(130, 1, 0)"
+110,0,0,PlayerIsVillain,Ihr Herz schlägt|für die wahre Liebe.,"Der weiße Ritter antwortet verdutzt:|""Lügner, lass sie sofort frei!""",130,0,0,"GlobalStage(130, -1, 0)"
+110,0,0,PlayerIsVillain,"Tut mir leid, Julia. Ich hab|meinen Text vergessen.","Julia flüstert dir zu:|""Ihr Herzschlag verkündete ihre wahre Liebe.""",110,0,0,ForgetLine()
+110,0,0,!PlayerIsVillain,(Still zuhören.),"Der schwarze Ritter geht in Position und spricht:|""Ihr Herzschlag verkündete ihre wahre Liebe.""",120,0,0,"GlobalStage(120, 0, 0)"
+110,0,0,!PlayerIsVillain,(Ungeduldig mit den|Fingern schnipsen.),"Der schwarze Ritter hastet herbei und sagt:|""Ihr Herzschlag verkündete ihre wahre Liebe.""",120,0,1,"GlobalStage(120, 0, 1)"
+130,0,0,PlayerIsVillain,Komm näher und|schmecke Stahl.,"Beide Ritter starren sich an,|während die Jungfrau die Bühne betritt.",140,0,0,"GlobalStage(140, -1, 0)"
+130,0,0,PlayerIsVillain,Schreitet näher und|trefft auf Stahl.,"Beide Ritter starren sich an,|während die Jungfrau die Bühne betritt.",140,0,0,"GlobalStage(140, 1, 0)"
+130,0,0,PlayerIsVillain,"Tut mir leid, Julia. Ich hab|meinen Text vergessen.","Julia seufzt und flüstert:|""Schreitet näher und trefft auf Stahl.""",130,0,0,ForgetLine()
+130,0,0,!PlayerIsVillain,(Still zuhören.),"Der schwarze Ritter schaut bedrohlich und spricht:|""Schreitet näher und trefft auf Stahl.""",140,0,0,"GlobalStage(140, 0, 0)"
+130,0,0,!PlayerIsVillain,(Ungeduldig mit den|Fingern schnipsen.),"Der schwarze Ritter antwortet hastig:|""Schreitet näher und trefft auf Stahl.""",140,0,0,"GlobalStage(140, 0, 1)"
+130,0,0,!PlayerIsVillain,(Sie mit albernen|Grimassen ablenken.),"Der schwarze Ritter kichert und antwortet:|""Tritt näher und du triffst auf Stahl.""",140,0,0,"GlobalStage(140, -1, 0)"
+200,0,0,PlayerIsVillain,"Held! Ihr habt's Herz,|doch ihr Leib ist mein.","Der Held ergreift sein Schwert und ruft:|""Drum wählt das Schicksal Stahl, en garde!""",230,0,0,"GlobalStage(230, 1, 0)"
+200,0,0,PlayerIsVillain,"Held! Du hast ihr Herz,|aber ich ihren Körper.","Der Held tastet nach seinem Schwert und sagt:|""Das Schicksal hat also Stahl gewählt, en garde!""",230,0,0,"GlobalStage(230, -1, 0)"
+200,0,0,PlayerIsVillain,"Tut mir leid, Julia. Ich hab|meinen Text vergessen.","Julia flüstert dir zu:|""Held! Ihr habt's Herz, doch ihr Leib ist mein.""",200,0,0,ForgetLine()
+200,0,0,!PlayerIsVillain,(Still zuhören.),"Der schwarze Ritter packt die Jungfrau und spricht:|""Held! Ihr habt's Herz, doch ihr Leib ist mein.""",220,0,0,"GlobalStage(220, 0, 0)"
+200,0,0,PlayerIsHeroine,(Leise applaudieren.),"Der schwarze Ritter packt die Jungfrau und spricht:|""Held! Ihr habt's Herz, doch ihr Leib ist mein.""",220,1,0,"GlobalStage(220, 1, 0)"
+200,0,0,PlayerIsHeroine,(Gelangweilt gähnen.),"Der schwarze Ritter packt die Jungfrau und spricht:|""Held! Ihr habt's Herz, doch ihr Leib ist mein.""",220,-1,0,"GlobalStage(220, -1, 0)"
+200,0,0,DamselCanInteract,(Leise applaudieren.),"Der schwarze Ritter packt die Jungfrau und spricht:|""Held! Ihr habt's Herz, doch ihr Leib ist mein.""",220,1,0,"GlobalStage(220, 1, 0)"
+200,0,0,DamselCanInteract,(Gelangweilt gähnen.),"Der schwarze Ritter packt die Jungfrau und spricht:|""Held! Ihr habt's Herz, doch ihr Leib ist mein.""",220,-1,0,"GlobalStage(220, -1, 0)"
+210,0,0,PlayerIsVillain,"Held! Gestehe er die|Niederlage, sie ist mein.","Der Held ergreift sein Schwert und ruft:|""Drum wählt das Schicksal Stahl, en garde!""",230,0,0,"GlobalStage(230, 1, 0)"
+210,0,0,PlayerIsVillain,"Sieh es ein, Held!|Sie gehört mir.","Der Held tastet nach seinem Schwert und sagt:|""Das Schicksal hat also Stahl gewählt, en garde!""",230,0,0,"GlobalStage(230, -1, 0)"
+210,0,0,PlayerIsVillain,"Tut mir leid, Julia. Ich hab|meinen Text vergessen.","Julia seufzt und flüstert dir zu:|""Held! Gestehe er die Niederlage, sie ist mein.""",200,0,0,ForgetLine()
+210,0,0,!PlayerIsVillain,(Still zuhören.),"Der schwarze Ritter sieht die Jungfrau an und spricht:|""Held! Gestehe er die Niederlage, sie ist mein.""",220,0,0,"GlobalStage(220, 0, 0)"
+210,0,0,PlayerIsHeroine,(Leise applaudieren.),"Der schwarze Ritter sieht die Jungfrau an und spricht:|""Held! Gestehe er die Niederlage, sie ist mein.""",220,1,0,"GlobalStage(220, 1, 0)"
+210,0,0,PlayerIsHeroine,(Gelangweilt gähnen.),"Der schwarze Ritter sieht die Jungfrau an und spricht:|""Held! Gestehe er die Niederlage, sie ist mein.""",220,-1,0,"GlobalStage(220, -1, 0)"
+210,0,0,DamselCanInteract,(Leise applaudieren.),"Der schwarze Ritter sieht die Jungfrau an und spricht:|""Held! Gestehe er die Niederlage, sie ist mein.""",220,1,0,"GlobalStage(220, 1, 0)"
+210,0,0,DamselCanInteract,(Gelangweilt gähnen.),"Der schwarze Ritter sieht die Jungfrau an und spricht:|""Held! Gestehe er die Niederlage, sie ist mein.""",220,-1,0,"GlobalStage(220, -1, 0)"
+230,0,0,PlayerIsVillain,En garde!|(Schwertkampf beginnen.),Ihr stürmt aufeinander zu und beginnt|einen ulkigen aber erbitterten Schwertkampf.,235,0,0,NoLeave()
+230,0,0,PlayerIsVillain,"Halt, ich ergebe mich.|(Kampflos aufgeben.)",Du lässt dein Schwert fallen und|der weiße Ritter tritt grinsend vor.,240,0,0,Surrender()
+230,0,0,PlayerIsHeroine,(Schwertkampf beginnen.),Ihr stürmt aufeinander zu und beginnt|einen ulkigen aber erbitterten Schwertkampf.,235,0,0,NoLeave()
+230,0,0,PlayerIsHeroine,(Kampflos aufgeben.),Du lässt dein Schwert fallen und der|schwarze Ritter tritt grinsend vor.,270,0,0,Surrender()
+230,0,0,PlayerIsDamsel,(Dem Kampf zuschauen.),Die Ritter stürmen aufeinander zu und beginnen|einen recht eleganten Schwertkampf.,235,0,0,NoLeave()
+235,0,0,CanDoSwordDance,(Schwertertanz machen.)ADD_MINUTES:1,Du tanzt anmutig um deine verwunderte|Gegnerin herum und entwaffnest sie mühelos.,270,0,0,SwordDance()
+235,0,0,CanIntimidate,(Sie einschüchtern.)ADD_MINUTES:1,"Du schaust Amanda boshaft an, sodass sie sich|kaum noch verteidigt und einfach entwaffnen lässt.",270,0,0,"GlobalStage(270, 0, 1)"
+235,0,0,CanDisarm,(Sie entwaffnen.)ADD_MINUTES:1,"Amanda kämpft ganz ordentlich, aber du|gewinnst, indem du sie entwaffnest.",270,0,0,"GlobalStage(270, 0, 0)"
+235,0,0,PlayerIsVillain,(Defensiv kämpfen.)ADD_MINUTES:1,"Du machst defensive Manöver, was Amanda|ausnutzt, um dich zu entwaffnen.",240,0,0,"GlobalStage(240, 0, 0)"
+235,0,0,PlayerIsVillain,(Amanda gewinnen lassen.)ADD_MINUTES:1,Du setzt dich kaum zur Wehr und|Amanda entwaffnet dich mühelos.,240,0,0,"GlobalStage(240, 0, -1)"
+235,0,10,PlayerIsHeroine,(Sie einschüchtern.)ADD_MINUTES:1,"Du schaust Amanda boshaft an, sodass sie sich|kaum noch verteidigt und einfach entwaffnen lässt.",240,0,0,"GlobalStage(240, 0, 1)"
+235,0,2,PlayerIsHeroine,(Sie entwaffnen.)ADD_MINUTES:1,"Amanda kämpft ganz ordentlich, aber du|gewinnst, indem du sie entwaffnest.",240,0,0,"GlobalStage(240, 0, 0)"
+235,0,0,PlayerIsHeroine,(Defensiv kämpfen.)ADD_MINUTES:1,"Du machst defensive Manöver, was Amanda|ausnutzt, um dich zu entwaffnen.",270,0,0,"GlobalStage(270, 0, 0)"
+235,0,0,PlayerIsHeroine,(Amanda gewinnen lassen.)ADD_MINUTES:1,Du setzt dich kaum zur Wehr und|Amanda entwaffnet dich mühelos.,270,0,0,"GlobalStage(270, 0, -1)"
+235,0,0,PlayerIsDamsel,Hurra für den|weißen Recken!,,235,0,0,AmandaSarahFight(-4)
+235,0,0,PlayerIsDamsel,Hurra für den|schwarzen Recken!,,235,0,0,AmandaSarahFight(4)
+235,0,0,PlayerIsDamsel,"Los, Amanda!",,235,0,0,AmandaSarahFight(2)
+235,0,0,PlayerIsDamsel,"Los, Sarah!",,235,0,0,AmandaSarahFight(-2)
+235,0,0,PlayerIsDamsel,(Den Kampf schweigend|beobachten.),,235,0,0,AmandaSarahFight(0)
+270,0,0,PlayerIsVillain,Du bist meine Gefangene.|(Sie fesseln.)ADD_MINUTES:1,Du ziehst dem weißen Ritter die Rüstung aus|und fesselst ihn mit Theaterrequisiten.,280,0,0,"GlobalStage(280, -1, 0)"
+270,0,0,PlayerIsVillain,Ihr seid mein Gefangener.|(Sie fesseln.)ADD_MINUTES:1,Du ziehst dem weißen Ritter die Rüstung aus|und fesselst ihn mit Theaterrequisiten.,280,0,0,"GlobalStage(280, 1, 0)"
+270,0,0,PlayerIsVillain,"Tut mir leid, Julia. Ich hab|meinen Text vergessen.","Julia flüstert dir zu:|""Ihr seid mein Gefangener.""",270,0,0,ForgetLine()
+270,0,0,PlayerIsHeroine,(Schweigen.)ADD_MINUTES:1,"Der schwarze Ritter zieht dich aus, fesselt|dich und spricht: ""Ihr seid mein Gefangener.""",280,0,0,"GlobalStage(280, 0, 0)"
+270,0,0,PlayerIsHeroine,(Dich vor dem schwarzen|Ritter verneigen.)ADD_MINUTES:1,"Der schwarze Ritter zieht dich aus, fesselt|dich und spricht: ""Ihr seid mein Gefangener.""",280,0,-1,"GlobalStage(280, 0, -1)"
+270,0,0,PlayerIsHeroine,Buuuuuhh!ADD_MINUTES:1,"Der schwarze Ritter zieht dich aus, fesselt|dich und spricht: ""Ihr seid mein Gefangener.""",280,-1,0,"GlobalStage(280, -1, 0)"
+270,0,0,PlayerIsDamsel,(Der Szene zuschauen.)ADD_MINUTES:1,"Die Böse zieht die Heldin aus, fesselt|sie und spricht: ""Ihr seid mein Gefangener.""",280,0,0,"GlobalStage(280, 0, 0)"
+270,0,0,PlayerIsDamsel,"Hurra, schwarzer Ritter!ADD_MINUTES:1","Die Böse zieht die Heldin aus, fesselt|sie und spricht: ""Ihr seid mein Gefangener.""",280,1,0,"GlobalStage(280, 1, 0)"
+280,0,0,Common_PlayerGagged,@Eeengn em!,Amanda lächelt und versucht nicht über|dein geknebeltes Gemurmel zu lachen.,280,0,0,
+280,10,0,DamselCanInteract,(Sie küssen.)ADD_MINUTES:1,Du eilst in ihre Arme und ihr|küsst euch im letzten Akt.,290,0,0,FinalKiss()
+280,0,-5,DamselCanInteract,(Vor ihr knien.)ADD_MINUTES:1,Du verneigst dich und kniest vor dem schwarzen Ritter.|Im letzten Akt umarmst du sanft ihre Beine.,290,0,0,FinalDomme()
+280,0,0,DamselCanInteract,(Sie umarmen.)ADD_MINUTES:1,Du läufst in ihre Arme und ihr|umarmt euch im letzten Akt.,290,0,0,FinalHug()
+280,2,0,DamselCanBeg,(Flehende Augen machen.)ADD_MINUTES:1,Du setzt einen lieblich flehenden Blick auf|und sie befreit dich aus deinen Fesseln.,280,0,0,ReleasePlayer()
+280,0,0,DamselCanBeg,(Dich ihr unterwerfen.)ADD_MINUTES:1,"Du unterwirfst dich und sie beschließt, euch|beide im letzten Akt gefangen zu halten.",300,0,0,FinalTwoPrisoners()
+400,0,0,PlayerIsDamsel,Heute Nacht könnt ihr|über mich herfallen.,(Sie schaut dich bedrohlich grinsend an.),400,0,0,Ravish()
+400,0,0,PlayerIsHeroine,Wir sollten zusammen|im Schwertkampf trainieren.,(Sie nickt und kichert.),400,0,0,
+400,0,0,CanConvinceJuliaToStrip,Sollte Fräulein Julia nicht|ihren Charme zeigen?,"Wohl wahr, Milady. Fräulein Julia!|(Julia gehorcht und zieht sich ein bisschen aus.)",400,0,0,JuliaStrip()
+400,0,0,CanUntie,(Sie losbinden.)ADD_MINUTES:1,(Du löst die Knoten und sie wirft|dir beim Anziehen das Seil zu.),400,0,0,Untie()
+400,0,0,CanUnstrap,(Sie befreien.)ADD_MINUTES:1,(Du löst die Riemen und Bänder des|Handschuhs und lässt ihre Arme frei.),400,0,0,Untie()
+400,0,0,CanUngag,(Sie entknebeln.)ADD_MINUTES:1,(Du entfernst ihren Knebel und sie starrt dich an.)|Stand das auch wirklich genau so im Text?,400,0,0,Ungag()
+400,0,0,CanKiss,(Sie küssen.)ADD_MINUTES:1,"(Du näherst dich und gibst ihr einen langen Kuss auf die|Lippen.) Oh, COMMON_PLAYERNAME! Du küsst wundervoll.",400,0,0,Kiss()
+400,0,0,CanAbuse,(Sie kitzeln.)ADD_MINUTES:1,(Du kitzelst ihre Seiten und ihren Bauch.|Sie ist sehr kitzlig und lacht lautstark.),400,0,0,Tickle()
+400,0,0,CanAbuse,(Ihr auf den|Hintern hauen.)ADD_MINUTES:1,(Sie wimmert bei jedem Treffer.|Es gefällt ihr offensichtlich nicht.),400,0,0,Spank()
+400,0,0,CanAbuse,(Sie befriedigen.)ADD_MINUTES:1,"(Du packst sie und befriedigst sie langsam. Sie versucht|mit rotem Gesicht, ihr Stöhnen zu unterdrücken.)",400,0,0,Masturbate()

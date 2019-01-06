@@ -59,23 +59,23 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 40,0,0,SubdueSuccess,Aimerais-tu être|ligotée avec Amanda ?,Ligotée avec ma Amy adorée ?|Ça serait un rêve qui deviendrait réalité.,50,1,1,
 40,0,0,SubdueSuccess,Devrions nous mettre fin|à tout ce bondage ?,Non ! C'est le meilleur cours que j'ai jamais eu.,50,-1,-1,
 110,0,0,Common_PlayerGagged,@Uugnm mugn !,Loongm monng gnu !,110,0,0,
-110,0,0,Common_PlayerNotRestrained,(Tu la débâillonnes.)|(1 minute),(Tu détaches le bâillon et retires la grosse boule.)|Booouuuh ! Tu me bâilloneras de nouveau plus tard ?,100,0,0,Ungag()
+110,0,0,Common_PlayerNotRestrained,(Tu la débâillonnes.)ADD_MINUTES:1,(Tu détaches le bâillon et retires la grosse boule.)|Booouuuh ! Tu me bâilloneras de nouveau plus tard ?,100,0,0,Ungag()
 130,0,0,Common_PlayerGagged,@Uugnm mugn !,Loongm monng gnu !,130,0,0,
-130,0,0,Common_PlayerNotRestrained,(Tu la débâillonnes.)|(1 minute),(Tu détaches le bâillon et retires la grosse boule.)|Oh ! Tu me bâilloneras de nouveau plus tard ?,120,0,0,Ungag()
-140,0,0,Common_PlayerNotRestrained,(Tu la chatouilles.)|(1 minute),"(Tu la chatouilles et elle rit doucement.)|Hé hé hé, qu'est-ce que tu feras ensuite ?",140,0,0,
-140,0,0,Common_PlayerNotRestrained,(Tu la détaches.)|(1 minute),(Tu défais les noeuds et elle se rhabille.)|C'était super ! Nous devrions le refaire.,100,0,0,Untie()
-140,0,0,BondageHugReady,"Aimerais-tu faire un câlin|à Amanda ? (1 minute)",Câliner Amy ? Oh oui ! (Elle se dirige|vers son amie et lui fait un calin très sexy.),160,0,0,BondageHug()
+130,0,0,Common_PlayerNotRestrained,(Tu la débâillonnes.)ADD_MINUTES:1,(Tu détaches le bâillon et retires la grosse boule.)|Oh ! Tu me bâilloneras de nouveau plus tard ?,120,0,0,Ungag()
+140,0,0,Common_PlayerNotRestrained,(Tu la chatouilles.)ADD_MINUTES:1,"(Tu la chatouilles et elle rit doucement.)|Hé hé hé, qu'est-ce que tu feras ensuite ?",140,0,0,
+140,0,0,Common_PlayerNotRestrained,(Tu la détaches.)ADD_MINUTES:1,(Tu défais les noeuds et elle se rhabille.)|C'était super ! Nous devrions le refaire.,100,0,0,Untie()
+140,0,0,BondageHugReady,"Aimerais-tu faire un câlin|à Amanda ?ADD_MINUTES:1",Câliner Amy ? Oh oui ! (Elle se dirige|vers son amie et lui fait un calin très sexy.),160,0,0,BondageHug()
 150,0,0,Common_PlayerGagged,@Uugnm mugn !,Loongm monng gnu !,150,0,0,
-150,0,0,Common_PlayerNotRestrained,(Tu la chatouilles.)|(1 minute),(Tu la chatouilles et elle rit doucement.),150,0,0,
-150,0,0,Common_PlayerNotRestrained,(Tu la débâillonnes.)|(1 minute),(Tu détaches le bâillon et retires la grosse boule.)|As-tu un autre bâillon pour moi ?,140,0,0,Ungag()
-150,0,0,Common_PlayerNotRestrained,(Tu la détaches.)|(1 minute),(Tu défais les noeuds et elle se rhabille.)|(Elle mâche le bâillon joyeusement.),110,0,0,Untie()
-150,0,0,BondageHugReady,"Aimerais-tu faire un câlin|à Amanda ? (1 minute)","(Elle hoche la tête avec joie, se dirige|vers son amie et lui fait un calin très sexy.)",170,0,0,BondageHug()
-160,0,0,,Aimerais-tu|l'embrasser ? (1 minute),(Elle rougit et hoche la tête.) Un baiser Amy ?|(Elle se rapproche et embrasse Amanda.),160,0,0,KissAmanda()
+150,0,0,Common_PlayerNotRestrained,(Tu la chatouilles.)ADD_MINUTES:1,(Tu la chatouilles et elle rit doucement.),150,0,0,
+150,0,0,Common_PlayerNotRestrained,(Tu la débâillonnes.)ADD_MINUTES:1,(Tu détaches le bâillon et retires la grosse boule.)|As-tu un autre bâillon pour moi ?,140,0,0,Ungag()
+150,0,0,Common_PlayerNotRestrained,(Tu la détaches.)ADD_MINUTES:1,(Tu défais les noeuds et elle se rhabille.)|(Elle mâche le bâillon joyeusement.),110,0,0,Untie()
+150,0,0,BondageHugReady,"Aimerais-tu faire un câlin|à Amanda ?ADD_MINUTES:1","(Elle hoche la tête avec joie, se dirige|vers son amie et lui fait un calin très sexy.)",170,0,0,BondageHug()
+160,0,0,,Aimerais-tu|l'embrasser ?ADD_MINUTES:1,(Elle rougit et hoche la tête.) Un baiser Amy ?|(Elle se rapproche et embrasse Amanda.),160,0,0,KissAmanda()
 160,0,0,,Vous êtes amoureuse ?,Je ne te répondrai pas.|(Elle te tire la langue.),160,0,0,
-160,0,0,Common_PlayerNotRestrained,(Tu les sépares.)|(1 minute),A plus tard Amy. (Elle lui fait un clin d'oeil.),140,0,0,Separate()
+160,0,0,Common_PlayerNotRestrained,(Tu les sépares.)ADD_MINUTES:1,A plus tard Amy. (Elle lui fait un clin d'oeil.),140,0,0,Separate()
 170,0,0,,Vous faites un joli|couple de bondage.,(Elle hoche la tête joyeusement.),170,0,0,BondageDuo()
-170,0,0,Common_PlayerNotRestrained,(Tu les sépares.)|(1 minute),(Elle retourne à contrecoeur à sa chaise.),150,0,0,Separate()
-170,0,0,Common_PlayerNotRestrained,(Tu la débâillonnes.)|(1 minute),(Tu détaches les sangles et retires le bâillon-boule.)|N'est-ce pas excitant Amanda ?,160,0,0,Ungag()
+170,0,0,Common_PlayerNotRestrained,(Tu les sépares.)ADD_MINUTES:1,(Elle retourne à contrecoeur à sa chaise.),150,0,0,Separate()
+170,0,0,Common_PlayerNotRestrained,(Tu la débâillonnes.)ADD_MINUTES:1,(Tu détaches les sangles et retires le bâillon-boule.)|N'est-ce pas excitant Amanda ?,160,0,0,Ungag()
 200,0,0,,"@Uuumph, mmph !","(Elle rigole.) Je ne comprends pas.|Je m'appelle Sarah, ravie de te rencontrer.",210,0,0,
 200,0,0,,(Tu hoches la tête|doucement.),"(Elle rit.) Tu es superbe comme ça.|Je m'appelle Sarah, ravie de te rencontrer.",210,0,-1,
 200,0,0,,(Tu essayes de pointer|du doigt Mildred.),"Elle t'a attaché ? C'est sympas de sa part.|Je m'appelle Sarah, enchantée de te rencontrer.",210,0,0,

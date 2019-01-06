@@ -1,0 +1,79 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,"Bonjour jeune fille, es-tu nouvelle ?|Je ne t'avais jamais vu auparavant.",Library.jpg
+1,0,0,,"Bienvenue dans notre université.|Je suis le professeur Yuki.",Library.jpg
+2,0,0,,Je te prie de ne pas faire trop|de bruit dans la bibliothèque.,Library.jpg
+5,0,0,Common_PlayerGagged,"Dis-moi jeune fille, pourquoi es-tu bâillonnée ?",Library.jpg
+5,0,0,Common_PlayerRestrained,"Dis-moi jeune fille, pourquoi es-tu attachée ?",Library.jpg
+6,0,0,,,Library.jpg
+10,0,0,,Hmmmm ! Ma petite chienne est de retour.|J'espère que tu te rappelles de notre marché.,Library.jpg
+20,0,0,,"Enfin, te voilà ! Je te cherche depuis des heures.|Comment t'es-tu échappé ?",Library.jpg
+21,0,0,,Je suis impressionné par ton évasion. Tu penses|que tu peux t'extirper de n'importe quelle situation ?,Library.jpg
+22,0,0,,Promet-moi de te tenir tranquille|et de ne plus causer d'ennuis.,Library.jpg
+30,0,0,,"Ma petite chienne ""bonne à rien"" est de retour.|As-tu appris quelque chose de ta détention ?",Library.jpg
+31,0,0,,Promet-moi de te tenir tranquille|et de ne plus causer d'ennuis.,Library.jpg
+40,0,0,,J'espère tu as appris quelque chose de ta détention.|Tu éviteras les ennuis à présent ?,Library.jpg
+41,0,0,,Promet-moi de te tenir tranquille|et de ne plus causer d'ennuis.,Library.jpg
+50,0,0,,Tu dois être COMMON_PLAYERNAME.|Le professeur Mildred m'a parlé de toi.,Library.jpg
+60,0,0,,"Jeune fille, j'espère que tu ne te battras plus|et que tu as su tirer une leçon de ta retenue.",Library.jpg
+70,0,0,,"Jeune fille, j'espère que tu te tiendras bien|et que tu as su tirer une leçon de ta retenue.",Library.jpg
+80,0,0,,"(Yuki saisit tes jambes et te sort de là.)|Jeune fille, qu'est-ce que tu faisais la dedans ?",Hole.jpg
+81,0,0,,,Hole.jpg
+82,0,0,,,Hole.jpg
+83,0,0,,,Hole.jpg
+90,0,0,,"(Yuki te tape l'épaule.)|Qu'est-ce que tu fais, jeune fille ?",Gwendoline.jpg
+91,0,0,,,Gwendoline.jpg
+92,0,0,,,Gwendoline.jpg
+100,0,0,,Quel livre cherches-tu ?,Library.jpg
+100,0,0,IsolationEarlyReleaseYuki,Revoici ma petite chienne.|Quel livre cherches-tu ?,Library.jpg
+110,0,0,,De quel livre as-tu besoin ?,Library.jpg
+120,0,0,,"Regarde dans la section littérature. A partir|de l'allée principale, seconde étagère à gauche.",Library.jpg
+180,0,0,,"(Yuki saisit tes jambes et te sort de là.)|Jeune fille, qu'est-ce que tu faisais la dedans ?",Hole.jpg
+181,0,0,,,Hole.jpg
+182,0,0,,,Hole.jpg
+183,0,0,,,Hole.jpg
+190,0,0,,"(Yuki te tape l'épaule.)|Qu'est-ce que tu fais, jeune fille ?",Gwendoline.jpg
+191,0,0,,,Gwendoline.jpg
+192,0,0,,,Gwendoline.jpg
+200,0,0,,Il y a t'il autre chose dont tu as besoin ?,Library.jpg
+200,-3,0,,(Elle te fait un regard noir.)|Qu'est-ce que tu veux à présent ?,Library.jpg
+200,0,0,LittlePet,"Ma petite chienne, tes services seront requis plus tard.|Il y a t'il autre chose dont tu as besoin ?",Library.jpg
+200,0,0,Common_PlayerRestrained,On dirait que tu t'es attirée des ennuis jeune fille.,Library.jpg
+200,0,0,Common_PlayerGagged,On dirait que tu t'es attirée des ennuis jeune fille.,Library.jpg
+205,0,0,,Qu'as-tu en tête jeune fille ?,Library.jpg
+210,0,0,,Tu as besoin de mon aide pour récupérer ton stylo ?,Library.jpg
+220,0,0,,,Library.jpg
+230,0,0,,,Hole.jpg
+240,0,0,,,Hole.jpg
+250,0,0,,,HoleYuki.jpg
+255,0,0,,,HoleYuki.jpg
+260,0,0,,,HoleYuki.jpg
+270,0,0,,,Hole.jpg
+280,0,0,,"Jeune fille, tu m'avais promis de te tenir tranquille.|Qu'est-ce que tu faisais la dedans ?",Hole.jpg
+290,0,0,,"Jeune fille, tu m'avais promis de te tenir tranquille.|Dis-moi ce que tu étais en train de faire.",Gwendoline.jpg
+291,0,0,,,Library.jpg
+300,0,0,,,Library.jpg
+310,0,0,,,Library.jpg
+320,0,0,,,DeskFloor.jpg
+330,0,0,,,DeskFloor.jpg
+340,0,0,,,DeskFloorGagged.jpg
+400,0,0,,,Library.jpg
+410,0,0,,(Yuki est toujours en train de|dormir allongée sur le sol.),LibraryFloor.jpg
+420,0,0,,,Library.jpg
+430,0,0,,,Library.jpg
+500,0,0,,(Yuki se débat toujours.),HoleYuki.jpg
+510,0,0,,(Yuki est toujours en train de lutter pour sortir.|Sa culotte est sur le sol.),HoleYukiNoPanties.jpg
+511,0,0,,"(Yuki est toujours bloquée dans le trou,|dégoulinante et frissonnante. Prête à jouir.)",HoleYukiNoPanties.jpg
+512,0,0,,"(Yuki est toujours bloquée dans le trou,|haletante après un orgasme merveilleux.)",HoleYukiNoPantiesOrgasm.jpg
+520,0,0,,(Yuki est toujours en train de lutter pour sortir.|Elle porte une ceinture de chasteté.),HoleYukiChastityBelt.jpg
+530,0,0,,,Hole.jpg
+600,0,0,,,Library.jpg
+610,0,0,,,Library.jpg
+620,0,0,,,Library.jpg
+630,0,0,,,Library.jpg
+640,0,0,,,Library.jpg
+650,0,0,,(Elle te fixe et garde le silence.),Library.jpg
+700,0,0,,,Library.jpg
+710,0,0,,,Library.jpg
+720,0,0,,,LibraryOrgasm.jpg
+730,0,0,,,Library.jpg
+750,0,0,,,Library.jpg

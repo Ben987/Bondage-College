@@ -1,0 +1,161 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,SidneyVictim,Wovon redest du?,Spiel nicht die Dumme! Du hast mich gefesselt|und geknebelt in der Ecke sitzen lassen.,10,-1,0,
+0,0,0,!SidneyVictim,Wovon redest du?,Spiel nicht die Dumme! Du hast sie gefesselt|und geknebelt auf dem Tennisfeld gelassen.,10,-1,0,
+0,0,0,SidneyVictim,"Gib's zu, Mädchen.|Es hat dir gefallen.","Nein, verdammt! Du musst dafür bezahlen.",20,-1,1,
+0,0,0,!SidneyVictim,Sie hatte Spaß.,"(Jennifer will etwas sagen, aber Sidney unterbricht.)|Sie kam heulend angelaufen! Dafür musst du bezahlen.",20,-1,0,
+0,0,0,SidneyVictim,Es war wohl|nicht sehr nett.,Nicht nett? Du Schlampe!|Dafür musst du bezahlen.,20,0,0,
+0,0,0,!SidneyVictim,Es war wohl|nicht sehr nett.,"(Jennifer will etwas sagen, aber Sidney unterbricht.)|Sie kam heulend angelaufen! Dafür musst du bezahlen.",20,0,0,
+0,0,0,,Entschuldigung.,Eine Entschuldigung reicht nicht.|Du musst dafür bezahlen.,20,1,-1,
+10,0,0,SidneyVictim,"Gib's zu, Mädchen.|Es hat dir gefallen.","Nein, verdammt! Du musst dafür bezahlen.",20,-1,1,
+10,0,0,!SidneyVictim,Sie hatte Spaß.,"(Jennifer will etwas sagen, aber Sidney unterbricht.)|Sie kam heulend angelaufen! Dafür musst du bezahlen.",20,-1,0,
+10,0,0,SidneyVictim,Es war wohl|nicht sehr nett.,Nicht nett? Du Schlampe!|Dafür musst du bezahlen.,20,0,0,
+10,0,0,!SidneyVictim,Es war wohl|nicht sehr nett.,"(Jennifer will etwas sagen, aber Sidney unterbricht.)|Sie kam heulend angelaufen! Dafür musst du bezahlen.",20,0,0,
+10,0,0,SidneyVictim,"Du hast es verdient,|du dumme Schlampe.",Das war's! Ich breche dir alle Knochen.,90,-1,1,ProvokePose()
+10,0,0,!SidneyVictim,Warum nimmst|du sie in Schutz?,"(Jennifer will etwas sagen, aber Sidney unterbricht.)|Ich mache, was ich will. Und du musst dafür bezahlen.",20,1,0,
+10,0,0,,Entschuldigung.,Eine Entschuldigung reicht nicht.|Du musst dafür bezahlen.,20,1,-1,
+20,0,0,,Ihr zwei wollt|also Rache?,Genau! Ich mache dich zu meiner Bitch.,30,1,0,
+20,0,0,,"Aus dem Weg, Punk.|Das ist nicht lustig.","Und ob es lustig ist, verdammt.|Ich mache dich zu meiner Bitch.",30,-1,1,
+20,0,0,,"Bitte, Miss Sidney.|Ich will keinen Ärger.","Zu spät, du hast welchen gefunden.|Ich mache dich zu meiner Bitch.",30,0,-1,
+20,0,0,,Bezahlen? Wie viel?,"Es geht nicht um Geld, es geht um Rache.|Ich mache dich zu meiner Bitch.",30,0,0,
+20,0,0,,"Vergiss es, Mädchen.|Ich zahle nicht.","Es geht nicht um Geld, es geht um Rache.|Ich mache dich zu meiner Bitch.",30,0,1,
+30,5,0,,Vielleicht können wir das|als Freunde verhandeln.,Verhandeln? Was bietest du an?,31,0,0,
+30,0,0,,Du bist die Bitch.,"Schnauze, Bitch! Jetzt komm mit uns|nach draußen und mach keinen Ärger.",40,-1,0,
+30,0,0,,Was habt ihr|beiden vor?,Das wirst du bald sehen. Jetzt komm mit|uns nach draußen und mach keinen Ärger.,40,0,0,
+30,0,0,,"Vergiss es, Mädel. Ich|bin nicht deine Bitch.",Das war kein Vorschlag. Jetzt komm mit|uns nach draußen und mach keinen Ärger.,40,0,1,
+30,0,0,,"Hört mal, es tut mir leid,|okay? Was wollt ihr?",Dafür ist es zu spät. Jetzt komm mit uns|nach draußen und mach keinen Ärger.,40,0,-1,
+30,0,0,,"Aus dem Weg,|du Schwein!",Das war's! Ich breche dir alle Knochen.,90,-1,1,ProvokePose()
+31,0,0,CanBribe,Wie wär's hiermit? (Dein|halbes Inventar anbieten.),"Deal! Du bist auf dich allein gestellt, Jennifer. (Sidney|nimmt ein paar Sachen aus deiner Tasche und geht.)",32,1,0,Bribe()
+31,0,0,,Wie wär's mit|einem Kuss?,Bist du nicht mehr ganz dicht? Jetzt komm|mit uns nach draußen und mach keinen Ärger.,40,-1,0,
+31,0,0,,Ich kaufe dir|Abendessen.,"Verlockend, aber das reicht nicht. Jetzt komm|mit uns nach draußen und mach keinen Ärger.",40,1,0,
+31,0,0,,Vergiss es.,Vergeude nicht unsere Zeit. Jetzt komm mit|uns nach draußen und mach keinen Ärger.,40,0,0,
+32,0,0,,"Bleib locker, Jen.","(Sie beruhigt sich und schaut sich um.)|Tja, jetzt sind wir wohl allein.",33,1,0,"CalmDown(""Jennifer"")"
+32,0,0,,"Ganz ruhig, Mädchen.","(Sie beruhigt sich und schaut sich um.)|Tja, jetzt sind wir wohl allein.",33,0,1,"CalmDown(""Jennifer"")"
+32,0,0,,"Lauf, Jennifer.|(Sie gehen lassen.)",,33,1,0,"EarlyEnding(""Bribe"")"
+33,0,0,,"Verrate mir jetzt|euren Plan, Mädchen.","Na ja... (Sie wird rot.) Sidney|wollte dich fesseln wie eine ""Bitch"".",34,0,1,
+33,0,0,,"Also, was hattet ihr|denn mit mir vor?","Na ja... (Sie wird rot.) Sidney|wollte dich fesseln wie eine ""Bitch"".",34,0,0,
+33,0,0,,"Lauf, Jennifer.|(Sie gehen lassen.)",,34,1,0,"EarlyEnding(""Bribe"")"
+34,0,0,,Wie eine Bitch? Was|soll das heißen?,"Die Arme und Beine werden gebeugt und gefesselt,|sodass man auf den Ellbogen und Knien laufen muss.",35,0,0,
+34,0,0,,Also gefesselt|auf allen Vieren?,"Ja, die Arme und Beine werden gebeugt und gefesselt,|sodass man auf den Ellbogen und Knien laufen muss.",35,0,0,
+34,0,0,,"Lauf, Jennifer.|(Sie gehen lassen.)",,35,1,0,"EarlyEnding(""Bribe"")"
+35,0,0,,Dann gib mir|mal deine Seile.,Oh! Aber sicher.|(Sie gibt dir ihre Seile.),36,0,0,GetTwoRopes()
+35,0,0,,Sei du meine Bitch.|Gib mir deine Seile.,"Au weia! Natürlich, Miss.|(Sie gibt dir deine Seile.)",36,-1,1,GetTwoRopes()
+35,0,0,,"Lauf, Jennifer.|(Sie gehen lassen.)",,36,1,0,"EarlyEnding(""Bribe"")"
+36,0,0,,"Zieh dich aus,|Mädchen.","(Sie schaut zu Boden und schüttelt den Kopf.)|(Du brauchst +5 Dominanz, damit sie gehorcht.)",36,0,0,JenniferTestStrip()
+36,0,0,,"Mach dich|nackig, Jennifer.","(Sie schaut zu Boden und schüttelt den Kopf.)|(Du brauchst +5 Dominanz, damit sie gehorcht.)",36,0,0,JenniferTestStrip()
+36,0,0,,"Lauf, Jennifer.|(Sie gehen lassen.)",,37,1,0,"EarlyEnding(""Bribe"")"
+37,0,0,,"Rache ist süß, Bitch!|(Sie fesseln.)","(Sie wimmert leise, während du ihre Arme und|Beine fesselst und sie auf alle Viere zwingst.)",38,-1,1,JenniferDog()
+37,0,0,,Es wird nicht wehtun.|(Sie fesseln.),"(Sie wimmert leise, während du ihre Arme und|Beine fesselst und sie auf alle Viere zwingst.)",38,1,0,JenniferDog()
+37,0,0,,"Lauf, Jennifer.|(Sie gehen lassen.)",,38,1,0,"EarlyEnding(""Bribe"")"
+38,0,0,,So ein süßes|Hündchen.,(Sie schaut zu Boden und wimmert.),38,0,0,JenniferCute()
+38,0,0,,Lauf etwas umher.,(Sie dackelt mühselig durch den Flur.|Sie hat keinen Spaß an der Demütigung.),38,0,0,JenniferCrawl()
+38,0,0,!IsGagged,Lass ein|Bellen hören.,(Sie wird rot und bellt.)|Wuff! Wuff! Wuff!,38,0,0,JenniferBark()
+38,0,0,IsGagged,(Sie entknebeln.),"(Du entfernst den Knebel und sie flüstert dir zu.)|Danke, Miss COMMON_PLAYERNAME.",38,0,0,Ungag()
+38,0,0,,(Sie befriedigen.),(Du bekommst kaum einen Finger unter ihre Metall-|Unterwäsche und kannst sie nicht befriedigen.),38,0,0,MasturbateJennifer()
+38,0,0,,Ich helfe dir.|(Sie losbinden.),(Du bindest sie los und sie steht auf.)|Das war demütigend. Kann ich jetzt gehen?,39,1,0,Untie()
+38,0,0,,"Viel Spaß, Bitch.|(Sie im Stich lassen.)",,39,-2,1,"EarlyEnding(""JenniferDog"")"
+39,0,0,,Du sahst gefesselt süß|aus. (Sie gehen lassen.),,39,1,0,"EarlyEnding(""JenniferDog"")"
+39,0,0,,"Vergiss nie, wer der Boss|ist. (Sie gehen lassen.)",,39,0,1,"EarlyEnding(""JenniferDog"")"
+40,0,0,,Na schön! Gehen wir.|(Nach draußen.),(Ihr geht zusammen raus auf die Laufbahn.)|(Jennifer tritt schließlich zu dir heran.),100,0,0,GoOutside()
+40,0,0,,"Ja, Miss.|(Nach draußen.)",(Ihr geht zusammen raus auf die Laufbahn.)|(Jennifer tritt schließlich zu dir heran.),100,0,-1,GoOutside()
+40,0,0,AllowFight,"Fick dich, du Schwein!|Ich gehe nicht raus.",Das war's! Ich breche dir alle Knochen.,90,-1,1,ProvokePose()
+90,0,0,AllowFight,Ihr wollt kämpfen?|Dann lasst uns kämpfen.,,90,0,0,StartFight()
+90,0,0,,Tut mir nicht weh!|Ich ergebe mich.,Du bist 'ne elende Versagerin. Jetzt komm mit raus.|(Jennifer öffnet die Tür und Sidney schubst dich raus.),100,0,-1,GoOutside()
+100,0,0,,Wo sind wir?,"An der Laufbahn, hier findet|deine... nun ja... Bestrafung statt.",110,0,0,
+100,0,0,,"Ihr habt hoffentlich einen|guten Grund, rauszugehen.",Sidney und ich haben die Laufbahn für...|na ja... deine Bestrafung ausgewählt.,110,0,1,
+100,0,0,,Warum draußen?,Sidney und ich haben die Laufbahn für...|na ja... deine Bestrafung ausgewählt.,110,0,0,
+100,0,0,,Könnten wir bitte|wieder reingehen?,Nein. Sidney und ich haben die Laufbahn für...|na ja... deine Bestrafung ausgewählt.,110,0,-1,
+110,0,0,,Was für eine Bestrafung?,Du wirst eine Runde um die Bahn laufen.,120,0,0,
+110,0,0,,"Jen, findest du nicht,|das geht zu weit?","Keine Sorge, du hast es schnell hinter dir.|Du musst einfach nur eine Runde um die Bahn laufen.",120,1,0,
+110,0,0,,(Den Kopf senken.)|Geschieht mir wohl recht.,Es ist gerecht und es geht schnell vorbei.|Du musst einfach nur eine Runde um die Bahn laufen.,120,1,-1,
+110,0,0,,Fickt euch und|eure Bestrafung.,(Sie runzelt die Stirn.) Es ist bald vorbei.|Du musst einfach nur eine Runde um die Bahn laufen.,120,-1,1,
+120,0,0,,Das war's? Eine Runde?|Wer hatte die blöde Idee?,Es gibt aber einen Haken.|Du musst es nackt tun.,130,-1,0,
+120,0,0,,Eine Runde? Das ist|'ne schwache Bestrafung.,Es gibt aber einen Haken.|Du musst es nackt tun.,130,0,1,
+120,0,0,,Klingt einfach.,Ganz so einfach ist es nicht.|Du musst es nackt tun.,130,0,0,
+130,0,0,,Nackt? Ich kann mich doch|draußen nicht ausziehen.,Bitte mach kein Theater.|Ich will keine Gewalt anwenden.,150,0,0,
+130,0,0,,Du siehst nackt bestimmt|noch süßer aus als ich.,(Sie wird rot.) Bitte zieh dich aus.|Ich will keine Gewalt anwenden.,150,1,1,
+130,0,0,,"Nein, verdammt! Ich|ziehe mich nicht aus.",Bitte mach kein Theater.|Ich will keine Gewalt anwenden.,150,-1,1,
+130,10,0,,"Jen, wir sind doch|gute Freunde, oder?",Freunde? Ich hab keine Fr-...|Ich meine... Ich denke schon.,131,0,0,
+130,0,0,,Gut! Bringen wir's hinter|uns. (Dich ausziehen.),"(Du ziehst dich auf dem Sportplatz aus.)|Sehr gut, du musst einfach nur eine Runde laufen.",160,0,0,PlayerStrip()
+130,0,0,,"Ja, Miss Jennifer.|(Dich ausziehen.)","(Du ziehst dich auf dem Sportplatz aus.)|Sehr gut, du musst einfach nur eine Runde laufen.",160,0,-1,PlayerStrip()
+131,0,0,,"Ja, und Freunde|beschützen einander.",Das... Das ist durchaus wahr.|Ich bin wohl keine sehr gute Freundin.,132,1,0,
+131,0,0,,"Unsere Freundschaft|ist beendet, Jennifer.","Tut mir leid, bitte zieh dich aus.|Ich will keine Gewalt anwenden.",150,-2,0,
+132,0,0,,"Schon gut, geh wieder|rein, wir sehen uns.","Ja! Es tut mir leid, Sidney, aber ich muss gehen.|(Sidney tritt verärgert auf dich zu.)",133,0,0,JenniferLeave()
+132,0,0,,"Unsere Freundschaft|ist beendet, Jennifer.","Tut mir leid, bitte zieh dich aus.|Ich will keine Gewalt anwenden.",150,-2,0,
+133,0,0,,"Bleib locker, Sidney.","Mmmmh, na schön, scheiß auf Jennifer.|(Sie beruhigt sich und senkt die Fäuste.)",134,1,0,"CalmDown(""Sidney"")"
+133,0,0,,"Ganz ruhig, Mädchen.","Mmmmh, na schön, scheiß auf Jennifer.|(Sie beruhigt sich und senkt die Fäuste.)",134,0,1,"CalmDown(""Sidney"")"
+133,0,0,,"Hau ab, Sidney.|(Sie gehen lassen.)",,134,0,0,"EarlyEnding(""JenniferFriend"")"
+134,0,0,,Du wolltest mich also|hier draußen erniedrigen?,Dieser beschissene Plan ist geplatzt.|Können wir das alles einfach vergessen?,135,0,0,
+134,0,0,,"Allein bist du nicht|mehr so stark, was?","Hör mal, COMMON_PLAYERNAME.|Können wir das alles einfach vergessen?",135,0,1,
+134,0,0,,"Hau ab, Sidney.|(Sie gehen lassen.)",,135,0,0,"EarlyEnding(""JenniferFriend"")"
+135,0,5,,"Ausziehen, Schlampe. Ich|bin noch nicht fertig mit dir.","Fick dich, COMMON_PLAYERNAME!|(Du brauchst +5 Dominanz, damit sie gehorcht.)",135,-1,1,SidneyUnderwear()
+135,0,0,,So einfach ist das|nicht. Zieh dich aus.,"Fick dich, COMMON_PLAYERNAME!|(Du brauchst +5 Dominanz, damit sie gehorcht.)",135,0,0,SidneyUnderwear()
+135,0,0,,"Na schön, hau ab.|(Sie gehen lassen.)",,136,0,0,"EarlyEnding(""JenniferFriend"")"
+136,0,0,,Zieh deine|Unterwäsche aus.,"Du bist pervers, COMMON_PLAYERNAME. (Sie|zieht sich aus und legt ihre Kleidung in eine Tasche.)",137,0,0,SidneyNaked()
+136,0,0,,"Du bist süß, Sidney.|Zeig mir mehr.","Mmmh, danke, du bist schon ganz in Ordnung. (Sie|zieht sich aus und legt ihre Kleidung in eine Tasche.)",137,1,0,SidneyNaked()
+136,0,0,,"Zeig mehr Haut,|Fettilein.",Merk dir das: Eines Tages wirst du bezahlen. (Sie|zieht sich aus und legt ihre Kleidung in eine Tasche.),137,-1,0,SidneyNaked()
+136,0,0,,Das ist genug.|(Sie gehen lassen.),,137,0,0,"EarlyEnding(""JenniferFriend"")"
+137,0,0,,Was ist in|der Tasche?,Geht dich nichts an.,137,0,0,
+137,0,0,,(Ihre Tasche|durchsuchen.),"(Du findest darin Kleidung, zwei Seile, Klebeband|und einen künstlichen Schweineschwanz und -Ohren.)",138,0,0,SearchSidneyBag()
+137,0,0,,Das ist genug.|(Sie gehen lassen.),,138,0,0,"EarlyEnding(""JenniferFriend"")"
+138,0,0,,Ein Schweinekostüm?,"Nein, verdammt! Also, ja, schon.|Aber es ist für S-... jemand anderes.",139,0,0,
+138,0,0,,Machst du ein|Schweinchen-Cosplay?,Schweinchen-Cosplay? Bist du verrückt?|Das ist für S-... jemand anderes.,139,-1,0,
+138,0,0,,Das ist genug.|(Sie gehen lassen.),,139,0,0,"EarlyEnding(""JenniferFriend"")"
+139,0,0,,"Es ist für dich,|Schweinchen. Zieh es an.","Nenn mich nie wieder... Ach, scheiß drauf.|(Sie zieht das Kostüm widerwillig an.)",140,-1,1,SidneyPig()
+139,0,0,,"Zeig das Kostüm her.|Zieh es an, Sidney.","Scheiße, das kann nicht dein verdammter Ernst sein.|(Sie zieht das Kostüm widerwillig an.)",140,0,0,SidneyPig()
+139,0,0,,Das ist genug.|(Sie gehen lassen.),,140,0,0,"EarlyEnding(""JenniferFriend"")"
+140,0,0,,So schlimm ist es nicht.|Irgendwie niedlich.,"(Sie wird etwas rot.) Na ja, danke.|War's das also? Hattest du deinen Spaß?",141,1,0,
+140,0,0,,(Dir das Lachen|verkneifen.),(Sie verdreht theatralisch die Augen.)|War's das? Hattest du deinen Spaß?,141,0,0,
+140,0,0,,Ha! Du wurdest|dafür geboren.,"Fick dich, COMMON_PLAYERNAME!|War's das also? Hattest du deinen Spaß?",141,-1,0,
+140,0,0,,Das ist genug.|(Sie gehen lassen.),,141,0,0,"EarlyEnding(""JenniferFriend"")"
+141,0,0,,Der Spaß fängt erst an.|(Sie als Schwein fesseln.),(Du umwickelst ihre Arme und Beine mit|Seilen und zwingst sie so auf alle Viere.),142,0,0,SidneyRope()
+141,0,0,,"Gib mir die Hände, Mädel.|(Sie als Schwein fesseln.)",(Du umwickelst ihre Arme und Beine mit|Seilen und zwingst sie so auf alle Viere.),142,0,1,SidneyRope()
+141,0,0,,Das ist genug.|(Sie gehen lassen.),,142,0,0,"EarlyEnding(""JenniferFriend"")"
+142,0,0,,So ein süßes|kleines Schweinchen.,(Sie grummelt und starrt dich an.),142,0,0,SidneyCute()
+142,0,0,,Lauf etwas|umher.,"(Sie watschelt unbeholfen über die Laufbahn,|rasend vor Wut und Demütigung.)",142,0,0,SidneyWalk()
+142,0,0,!IsGagged,"Sidney, sag|""Oiiiiink"".","(Sie wirft dir einen wütenden Blick zu.)|Fahr zur Hölle, COMMON_PLAYERNAME.",142,0,0,SidneyPigTalk()
+142,0,0,IsGagged,(Sie entknebeln.),(Du entfernst den Knebel von ihrem Mund.)|Fick dich und fick diesen Knebel.,142,0,0,Ungag()
+142,0,0,,(Sie befriedigen.),(Du bekommst kaum einen Finger unter ihre Metall-|Unterwäsche und kannst sie nicht befriedigen.),142,0,0,MasturbateSidney()
+142,0,0,,Ich helfe dir.|(Sie losbinden.),(Du befreist sie und sie wirft das Schweinekostüm ab.)|Eines Tages zahlst du dafür. Kann ich jetzt gehen?,143,1,0,Untie()
+142,0,0,,"Viel Spaß, Bitch.|(Sie im Stich lassen.)",,143,-2,1,"EarlyEnding(""SidneyPig"")"
+143,0,0,,Du sahst gefesselt süß|aus. (Sie gehen lassen.),,143,1,0,"EarlyEnding(""SidneyPig"")"
+143,0,0,,"Vergiss nie, wer der Boss|ist. (Sie gehen lassen.)",,143,0,1,"EarlyEnding(""SidneyPig"")"
+150,0,0,!Common_PlayerChaste,Gut! Bringen wir's hinter|uns. (Dich ausziehen.),"(Du ziehst dich auf dem Sportplatz aus.)|Sehr gut, du musst nur eine einzige Runde laufen.",160,0,0,PlayerStrip()
+150,0,0,!Common_PlayerChaste,"Ja, Miss Jennifer.|(Dich ausziehen.)","(Du ziehst dich auf dem Sportplatz aus.)|Sehr gut, du musst nur eine einzige Runde laufen.",160,0,-1,PlayerStrip()
+150,0,0,Common_PlayerChaste,Gut! Bringen wir's hinter|uns. (Dich ausziehen.),"(Du ziehst dich aus und sie starren auf deinen Gürtel.)|Oh, wow! Ist das ein Keuschheitsgürtel?",155,0,0,PlayerStrip()
+150,0,0,Common_PlayerChaste,"Ja, Miss Jennifer.|(Dich ausziehen.)","(Du ziehst dich aus und sie starren auf deinen Gürtel.)|Oh, wow! Ist das ein Keuschheitsgürtel?",155,0,-1,PlayerStrip()
+150,0,0,AllowFight,Ich zeige euch Gewalt!|(Gegen beide kämpfen.),,150,-1,1,StartFight()
+150,0,0,AllowFight,Macht euch kampfbereit.|(Gegen beide kämpfen.),,150,0,0,StartFight()
+155,0,0,,"Ja, und es geht|dich nichts an.","Gut, kein Wunder, dass du so mies drauf bist.|Also dann! Du musst nur eine Runde laufen.",160,-1,0,
+155,0,0,,"Ja, ich hab ihn mir|quasi selbst umgespannt.","Ich weiß nicht, ob das sexy oder einfach nur dumm ist.|Also dann! Du musst nur eine Runde laufen.",160,0,-1,
+155,0,0,,"Weißt du, wie man die|Dinger aufbekommt?","Keine Ahnung, such dir 'nen Schlüsseldienst.|Also dann! Du musst nur eine Runde laufen.",160,0,0,
+160,0,0,,"Okay, bringen wir's|schnell hinter uns.","So einfach ist das nicht. Sidney will,|dass du geknebelt läufst.",170,0,0,
+160,0,0,,Macht Platz. Ich laufe|eure dämliche Runde.,"So einfach ist das nicht. Sidney will,|dass du geknebelt läufst.",170,0,1,
+160,0,0,,"Bitte, Miss. Das ist|sehr erniedrigend.","Ich weiß, und es könnte schlimmer werden.|Sidney will, dass du geknebelt läufst.",170,0,-1,
+160,0,0,AllowFight,Nur über meine Leiche!|(Gegen beide kämpfen.),,160,-1,1,StartFight()
+170,0,0,,Dann knebel mich|halt. Mir doch egal.,"(Sidney tritt vor und klebt deinen Mund zu.)|Das reicht! Gib mir die Seile, Jen.",180,-1,0,GagPlayer()
+170,0,0,,Kindische Rachepläne|sind doch nichts für euch.,"(Sidney tritt vor und klebt deinen Mund zu.)|Das reicht! Gib mir die Seile, Jen.",180,1,0,GagPlayer()
+170,0,0,,Spitze! Ich liebe Knebel.,"(Sidney tritt vor und klebt deinen Mund zu.)|Du Ferkel! Gib mir die Seile, Jen.",180,0,-1,GagPlayer()
+170,0,0,,(Schweigen.),"(Sidney tritt vor und klebt deinen Mund zu.)|Bleib so! Gib mir die Seile, Jen.",180,0,0,GagPlayer()
+170,0,0,AllowFight,Nur über meine Leiche!|(Gegen beide kämpfen.),,170,-1,1,StartFight()
+180,0,0,,@UUHGN!,"(Sie ignorieren dich und fesseln deine Arme und Beine,|sodass du auf den Knien und Ellbogen stehst.)",190,0,0,RopePlayer()
+180,0,0,,(Sie bedrohlich|anstarren.),"(Sie ignorieren dich und fesseln deine Arme und Beine,|sodass du auf den Knien und Ellbogen stehst.)",190,0,1,RopePlayer()
+180,0,0,,(Wimmern.),"(Sie ignorieren dich und fesseln deine Arme und Beine,|sodass du auf den Knien und Ellbogen stehst.)",190,0,-1,RopePlayer()
+180,0,0,AllowFight,(Die Fäuste heben und|gegen beide kämpfen.),,180,-1,1,StartFight()
+190,0,0,,(Wild mit den|Seilen ringen.),"Da kommst du nicht raus, Mädchen, geh auf die Bahn.|Ich filme dein Rennen für die Nachwelt.",200,0,0,
+190,0,0,,@Mgo Mmmay!,Halt die Fresse und geh auf die Bahn.|Ich filme dein Rennen für die Nachwelt.,200,0,0,
+190,0,0,,(Ihnen den|Stinkefinger zeigen.),"Du hast Mut, aber geh auf die Bahn.|Ich filme dein Rennen für die Nachwelt.",200,1,1,
+190,0,0,,(Um Gnade|winseln.),Du bist so erbärmlich. Geh auf die Bahn.|Ich filme dein Rennen für die Nachwelt.,200,-1,-1,
+200,0,0,,(Loslaufen.),,200,0,0,StartRace()
+300,0,0,RaceVictory,(Daumen hoch zeigen.),So ist es richtig!|(Sie lässt dich frei.),310,1,0,ReleasePlayer()
+300,0,0,RaceVictory,(Ihr den|Stinkefinger zeigen.),(Sie runzelt die Stirn und lässt dich frei.),310,-1,1,ReleasePlayer()
+300,0,0,RaceVictory,(Erschöpft zu|Boden fallen.),Lass mich dir helfen.|(Sie lässt dich frei.),310,0,-1,ReleasePlayer()
+300,0,0,!RaceVictory,(Um Gnade|winseln.),Lass mich dir helfen.|(Sie lässt dich frei.),310,0,-1,ReleasePlayer()
+300,0,0,!RaceVictory,(Wild mit den|Seilen ringen.),Lass mich dir helfen.|(Sie lässt dich frei.),310,0,0,ReleasePlayer()
+300,0,0,!RaceVictory,(Ihr den|Stinkefinger zeigen.),(Sie runzelt die Stirn und lässt dich frei.),310,-1,1,ReleasePlayer()
+300,0,0,,(Schweigen.),Das sollte genügen.|(Sie lässt dich frei.),310,0,0,ReleasePlayer()
+310,0,0,,Kann ich jetzt gehen?,"Ja, du kannst deine Sachen|mitnehmen und gehen.",320,0,0,
+310,0,0,,Her mit der Kamera!,(Sidney zeigt dir den Mittelfinger.)|Du solltest deine Sachen nehmen und gehen.,320,0,1,
+310,0,0,,Das war dämlich.,Du hast für deine Taten bezahlt.|Jetzt nimm deine Sachen und geh.,320,-1,0,
+310,0,0,,Es war eine|gerechte Bestrafung.,"Gut gesagt, vergiss diese Lektion nicht.|Jetzt nimm deine Sachen und geh.",320,1,0,
+310,0,0,,Das war heiß. Ich|hatte 'ne Menge Spaß.,"Die Lektion ist wohl an dir vorbeigegangen.|Egal, nimm deine Sachen und geh.",320,0,-1,
+320,0,0,,(Zurück zum College.),,320,0,0,"EarlyEnding(""TrackRun"")"

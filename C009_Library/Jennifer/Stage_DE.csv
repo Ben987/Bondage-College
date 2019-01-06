@@ -1,0 +1,187 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,Common_PlayerGagged,@Mnaaaeg mmh!,(Sie sieht auf deinen Knebel und kichert.),0,0,0,
+0,0,0,HasEgg,Wie hast du es|herausbekommen?,"Das ist etwas peinlich, aber ich musste|es richtig krampfhaft hinausdrücken.",0,0,0,
+0,0,0,HasEgg,Kann ich das Ei|zurückbekommen?,"Zu spät, ich hab's weggeworfen.",0,0,0,QueryEgg()
+0,0,0,HasEgg,"Jen, ich will|das Ei zurück.","Zu spät, ich hab's weggeworfen.",0,-1,1,QueryEgg()
+0,0,0,,Was machst|du denn hier?,Ich lese etwas über die|Geschichte der Olympiade.,10,0,0,
+0,0,0,,Wie geht's dir?,"Gut, danke, ich lese etwas über die|Geschichte der Olympischen Spiele.",10,1,0,
+0,0,0,,Diese Bibliothek|ist ziemlich öde.,Finde ich nicht. Ich hab ein interessantes Buch über|die Geschichte der Olympischen Spiele gefunden.,10,-1,0,
+0,0,0,TennisVictory,Wir könnten später|Tennis spielen.,Toll! Und diesmal gewinne ich!,0,0,0,
+0,0,0,TennisDefeat,Wir könnten später|Tennis spielen.,Super! Vielleicht gewinnst du ja diesmal.,0,0,0,
+10,0,0,,Die Olympiade?|Das ist interessant.,"Durchaus, die Spiele sind auch sehr politisch.|Und du? Wonach suchst du?",20,1,0,
+10,0,0,!BookAlreadyFound,Ich muss ein|Buch finden.,Ach? Welches Buch suchst du denn?,20,0,0,
+10,0,0,,Wen kümmert|die Olympiade?,(Sie runzelt die Stirn.) Millionen von Leuten.|Egal. Wonach suchst du denn?,20,-1,0,
+10,0,0,,Nimm kein Doping wie|die ganzen Sportler.,(Sie schüttelt den Kopf.) Natürlich nicht.|Und du? Wonach suchst du?,20,0,1,
+10,0,0,,Du wärst eine|großartige Olympierin.,Das ist wirklich sehr nett von dir.|Und du? Wonach suchst du?,20,1,-1,
+20,0,0,BookAlreadyFound,Ich habe mein Buch|schon gefunden.,Gut! Dann viel Spaß beim Lesen.,100,0,0,
+20,0,0,,Der Graf von|Monte Christo.,"Das findest du bestimmt im Literatur-Bereich.|Geh von hier zurück, geradeaus und dann rechts.",40,0,0,
+20,0,0,,Fifty Shades of Grey.,"(Sie kichert.) Ich bezweifle stark, dass|du dieses Buch hier findest.",30,0,-1,
+20,0,0,,Justine von|Marquis de Sade.,"Au weia! Das könnte im geschlossenen Bereich sein.|Frag mal Miss Yuki, sie ist hier irgendwo.",30,0,1,
+30,0,0,,"Ich suche auch ""Der|Graf von Monte Christo.""","Das findest du bestimmt im Literatur-Bereich.|Geh von hier zurück, geradeaus und dann rechts.",40,0,0,
+30,0,0,,"Danke, Jen!|(Weggehen.)",,100,0,0,PlayerLeave()
+30,0,0,,(Weggehen.),,100,-1,0,PlayerLeave()
+40,0,0,,"Danke, Jen!|(Weggehen.)",,100,0,0,PlayerLeave()
+40,0,0,,(Weggehen.),,100,-1,0,PlayerLeave()
+100,0,0,,Warum sitzt du|so komisch?,Was stimmt denn nicht mit meiner Sitzart?,110,0,0,
+100,0,0,,Das sieht nicht|bequem aus.,"Geht schon, ich finde es bequem genug.",110,0,0,
+100,0,0,,Kann ich mich|zu dir setzen?,"Entschuldige, aber ich lese lieber allein.",100,0,0,TestSitTogether()
+100,0,5,,"Weg da, ich|will hier sitzen.","Na gut, du kannst meinen Platz haben.|(Sie steht auf und geht weg.)",190,-1,1,JenniferLeave()
+110,0,0,,"Entspann dich doch etwas,|benutze die ganze Couch.","Ich kann mich nicht über die ganze Couch legen.|Was, wenn sich jemand setzen will?",120,0,0,
+110,0,0,,Du benutzt nur ein|Drittel der Couch.,"Ich kann mich nicht über die ganze Couch legen.|Was, wenn sich jemand setzen will?",120,0,0,
+110,0,0,,Du siehst so einsam aus.|Benutze die ganze Couch.,"Ich kann mich nicht über die ganze Couch legen.|Was, wenn sich jemand setzen will?",120,0,0,
+110,0,0,,Kann ich mich|zu dir setzen?,"Entschuldige, aber ich lese lieber allein.",110,0,0,TestSitTogether()
+110,0,5,,"Weg da, ich|will hier sitzen.","Na gut, du kannst meinen Platz haben.|(Sie steht auf und geht weg.)",190,-1,1,JenniferLeave()
+120,0,0,,"Leg dich doch hin, dann|wirkst du nicht so einsam.",Einsam? Sehe ich echt so einsam aus?|(Sie legt sich auf die Couch.),130,-1,0,NewPose()
+120,0,0,,"Leg dich hin, das|wirkt selbstsicherer.",Ich wollte nicht unsicher wirken.|(Sie legt sich auf die Couch.),130,0,0,NewPose()
+120,0,5,,"Leg dich hin, Mädchen.","Ja, Miss COMMON_PLAYERNAME.|(Sie legt sich auf die Couch.)",130,0,1,NewPose()
+120,0,0,,Kann ich mich|zu dir setzen?,"Entschuldige, aber ich lese lieber allein.",120,0,0,TestSitTogether()
+120,0,5,,"Weg da, ich|will hier sitzen.","Na gut, du kannst meinen Platz haben.|(Sie steht auf und geht weg.)",190,-1,1,JenniferLeave()
+130,0,0,,Jetzt siehst du|besser aus.,"Wirklich? Na gut, danke.|Das war ein netter Ratschlag.",140,0,0,
+130,0,0,,Ist das bequem?,"Ich glaube schon, danke.|Das war ein netter Ratschlag.",140,1,0,
+130,0,0,,Kann ich mich|zu dir setzen?,"Entschuldige, aber ich lese lieber allein.",140,0,0,TestSitTogether()
+130,0,5,,"Weg da, ich|will hier sitzen.","Na gut, du kannst meinen Platz haben.|(Sie steht auf und geht weg.)",190,-1,1,JenniferLeave()
+140,0,0,,Wieso bist du|immer allein?,Bin ich gar nicht! Ich spiele in vielen Mannschaften.|Aber ich hab wohl nicht sehr viele echte Freunde.,150,-1,0,
+140,0,0,,Du scheinst nicht|viele Freunde zu haben.,"Na ja, ich hab Sidney... wenn sie Geld braucht.|(Sie seufzt.) Echte Freunde hab ich wohl nicht.",150,0,0,
+140,0,0,,"Du scheinst oft allein|zu sein, genau wie ich.","Du bist also auch eine Einzelgängerin? Es|stimmt schon, dass ich kaum Freunde habe.",150,1,-1,
+140,0,0,,Kann ich mich|zu dir setzen?,"Entschuldige, aber ich lese lieber allein.",150,0,0,TestSitTogether()
+140,0,5,,"Weg da, ich|will hier sitzen.","Na gut, du kannst meinen Platz haben.|(Sie steht auf und geht weg.)",190,-1,1,JenniferLeave()
+150,0,0,,"Wir könnten Freunde|sein, wenn du magst.","Das wäre schön. Wir könnten Freunde|sein, die einander helfen.",155,1,-1,NewPose()
+150,0,0,,Dann lass uns|Freunde sein.,"Das wäre schön. Wir könnten Freunde|sein, die einander helfen.",155,1,0,NewPose()
+150,0,0,,Du musst erst deine|Schüchternheit überwinden.,"Ich weiß, aber es ist nicht einfach, sich zu ändern.|Hilfst du mir, selbstbewusster zu werden?",160,0,0,NewPose()
+150,0,0,,Kann ich mich|zu dir setzen?,"Entschuldige, aber ich lese lieber allein.",150,0,0,TestSitTogether()
+150,0,5,,"Weg da, ich|will hier sitzen.","Na gut, du kannst meinen Platz haben.|(Sie steht auf und geht weg.)",190,-1,1,JenniferLeave()
+155,0,0,,"Ja, ich helfe dir mit|deiner Schüchternheit.","Es ist nicht einfach, sich zu ändern.|Hilfst du mir, selbstbewusster zu werden?",160,0,0,
+155,0,0,,"Ja, bald bist du so|selbstsicher wie ich.",Das Selbstbewusstsein zu stärken ist nicht einfach.|Kannst du mir wirklich helfen?,160,0,1,
+160,0,0,,Als erstes musst du stolz|auf deinen Körper sein.,Stolz auf meinen Körper?|Findest du mich wirklich hübsch?,170,0,0,
+160,0,0,,Du bist so hübsch.|Versteck dich nicht.,"Du bist so nett, COMMON_PLAYERNAME.|Du findest mich wirklich hübsch?",170,1,0,
+160,0,0,,Kann ich mich|zu dir setzen?,"Entschuldige, aber ich lese lieber allein.",160,0,0,TestSitTogether()
+160,0,5,,"Weg da, ich|will hier sitzen.","Na gut, du kannst meinen Platz haben.|(Sie steht auf und geht weg.)",190,-1,1,JenniferLeave()
+170,10,0,,Du bist niedlich. Zeig mir|doch etwas mehr von dir.,"Bist du sicher? Also gut, ich tu's für dich.|(Sie wird rot und zieht langsam ihre Uniform aus.)",171,0,0,"Strip(""Underwear"")"
+170,0,10,,Keine Scheu. Zieh dich aus|und zeig deinen Körper.,"Jawohl, Miss, es ist sicher zu meinem Besten.|(Sie wird rot und zieht langsam ihre Uniform aus.)",171,0,0,"Strip(""Underwear"")"
+170,0,0,,"Ja, du solltest|mehr Haut zeigen.",Hier etwa? Ich bekomme Ärger von Yuki. (Du|brauchst +10 Liebe oder Dominanz zum Überzeugen.),170,0,0,TestStrip()
+170,5,0,CanAskDate,"Lass uns heute Abend|zusammen ausgehen, Jen.","Ich? Ausgehen? Heute Abend? Mit dir?|Klingt interessant, ich denke mal darüber nach.",170,1,0,AskDate()
+170,0,0,,"Du bist hübsch, lass|uns später reden.","Ja, reden wir besser später weiter.|Ich würde gern noch ein bisschen lesen.",180,0,0,NewPose()
+170,0,0,,Kann ich mich|zu dir setzen?,"Entschuldige, aber ich lese lieber allein.",170,0,0,TestSitTogether()
+171,0,0,,"Komm schon, Mädchen.|Versteck dich nicht.","Ich... Ja, ich sollte mich nicht so schämen.|(Sie legt sich hin und entspannt sich ein wenig.)",172,0,1,NewPose()
+171,0,0,,"Ganz ruhig, Liebes.|Niemand starrt dich an.","Ich... Du hast ja recht, ich sollte mich entspannen.|(Sie legt sich hin und entspannt sich ein wenig.)",172,1,0,NewPose()
+171,0,0,,"Mach dich locker, Jen.","Ich... Du hast ja recht, einfach locker bleiben.|(Sie legt sich hin und entspannt sich ein wenig.)",172,0,0,NewPose()
+172,0,10,,"Mädel, weg mit|der Unterwäsche.","Jawohl, Miss, es gibt wohl kein Zurück.|(Sie zieht sich aus und wird nervös.)",174,-1,1,"Strip(""Naked"")"
+172,0,0,,Wow! Ich hätte auch|gern so einen Körper.,"Du bist auch hübsch, COMMON_PLAYERNAME.|Ich kann das hier nicht glauben, es ist so waghalsig.",173,1,-1,
+172,0,0,,"Du siehst toll aus, Jen.","Vielen Dank, COMMON_PLAYERNAME.|Ich kann das hier nicht glauben, es ist so waghalsig.",173,0,0,
+173,0,0,,Noch ein Schritt|bis zur Perfektion.,"Mmmh, es gibt wohl kein Zurück mehr.|(Sie zieht sich aus und wird nervös.)",174,0,0,"Strip(""Naked"")"
+173,0,0,,"Um dich zu überwinden,|solltest du nackt sein.","Ja, es gibt wohl kein Zurück mehr.|(Sie zieht sich aus und wird nervös.)",174,0,0,"Strip(""Naked"")"
+174,0,0,,Frieren deine Knochen?|Warum bedeckst du dich?,Kalt? Oh nein. Ich sollte mich beruhigen. (Sie|nimmt langsam die Arme runter und entspannt sich.),175,-1,0,NewPose()
+174,0,0,,"Ganz ruhig, Jen.|Du siehst toll aus.",Natürlich. Ich sollte mich beruhigen. (Sie|nimmt langsam die Arme runter und entspannt sich.),175,0,0,NewPose()
+174,0,0,,"Bist du sicher, dass|du das möchtest?","Ja, ja, alles okay. Ich sollte mich beruhigen. (Sie|nimmt langsam die Arme runter und entspannt sich.)",175,0,-1,NewPose()
+174,0,0,,"Arme runter, Liebes.|Zeig mir deine Schönheit.","(Sie lächelt.) Ja, ich sollte mich beruhigen. (Sie|nimmt langsam die Arme runter und entspannt sich.)",175,1,0,NewPose()
+175,0,0,,"Ich bin stolz auf|dich, Mädchen.",Meinst du das ernst? Das|bedeutet mir sehr viel.,176,0,1,
+175,0,0,,(Einen Daumen|hoch zeigen.),"(Sie kichert und entspannt sich etwas mehr.)|Ich hätte nie gedacht, dass ich mich das traue.",176,0,0,
+175,0,0,,(Schnell mit dem|Handy Fotos machen.),(Du nimmst schnell dein Handy und machst Fotos.|Sie zieht sich an und läuft in Tränen davon.),190,-3,1,JenniferLeave()
+176,0,0,IsArtist,"Wenn du eine Pose|machst, male ich dich.",Wie aufregend! Das ist genau wie im Film.|(Sie nimmt ihre Brille ab und eine Pose ein.),177,0,0,NewPose()
+176,0,0,,Fühlst du dich|schon selbstsicherer?,"Ich glaube schon, aber ich bin noch etwas nervös.|Sollte ich mich anziehen? Ich will nicht erwischt werden.",178,0,0,
+176,0,0,,Du hast Mumm für|'ne Außenseiterin.,Bitte nenn mich nicht so. Das mag ich nicht.|Sollte ich mich anziehen? Ich will nicht erwischt werden.,178,-1,0,
+176,0,0,,"Glückwunsch, Jen. Du|hast es geschafft.","Danke, COMMON_PLAYERNAME, das ist nett.|Sollte ich mich anziehen? Ich will nicht erwischt werden.",178,0,0,
+177,0,0,Painted,"Du bist mein|Lieblingsmodel, Jennifer.","Du schmeichelst mir. Du hast mich heute|Morgen schon gemalt, und jetzt wieder.",177,0,0,FavoriteModel()
+177,0,0,,(Schnelle Skizze zeichnen.)|(5 Minuten),(Du zeichnest sie schnell und zeigst ihr das Ergebnis.)|Sieht gut aus. Du könntest es Julia zeigen.,178,0,0,DrawJennifer(5)
+177,0,0,,(Sie komplett zeichnen.)|(15 Minuten),"(Du zeichnest sie sorgfältig und zeigst ihr das Bild.)|Sehr schmeichelhaft, kann ich eine Kopie haben?",178,0,0,DrawJennifer(15)
+177,0,0,,(Ein Kunstwerk malen.)|(30 Minuten),"(Du zeichnest sie meisterlich und zeigst ihr das Bild.)|Wow! Ich wusste nicht, dass du so viel Talent hast.",178,0,0,DrawJennifer(30)
+177,0,0,,Das dauert zu lange.|Machen wir es später.,"Ja, und jemand könnte uns sehen.|Sollte ich mich wieder anziehen?",178,0,0,NewPose()
+178,0,0,,"Zieh dich an, ich hab|genug Knochen gesehen.",(Sie zieht sich schlecht gelaunt wieder an.)|Dann lese ich mal mein Buch weiter.,180,-1,0,"Strip(""Clothed"")"
+178,0,0,,"Zieh dich an, alles|Gute hat ein Ende.","(Sie lächelt und zieht sich wieder an.)|Es war aufregend, aber ich würde gern weiterlesen.",180,1,0,"Strip(""Clothed"")"
+178,0,0,,Leider ist es|Zeit zum Anziehen.,"(Sie nickt und zieht sich wieder an.)|Es hat Spaß gemacht, aber ich würde gern weiterlesen.",180,0,0,"Strip(""Clothed"")"
+178,0,0,,"Zieh dich an, nächstes Mal|mach ich mich nackig.",(Sie kichert und zieht sich wieder an.)|Dann lese ich mal mein Buch weiter.,180,0,-1,"Strip(""Clothed"")"
+180,0,0,Common_PlayerGagged,@Mnaaaeg mmh!,(Sie blickt auf deinen Knebel und kichert.),180,0,0,
+180,0,0,Common_PlayerRestrained,"Jen, kannst du|mich befreien?","Tut mir leid, aber ich helfe dir nicht.",180,0,0,TestRelease()
+180,0,0,Common_PlayerRestrained,(Auf die Knie|gehen und betteln.),"Tut mir leid, aber ich helfe dir nicht.",180,0,0,TestRelease()
+180,0,0,OrgasmDone,"Na, hat dir unsere|Spielstunde gefallen?","(Sie wird etwas rot.) Ja, sehr.|Es war schön, sie mit dir zu verbringen.",180,0,0,
+180,0,0,PlayerOrgasmDone,Du hast mir heute|sehr viel Freude bereitet.,"Freut mich, dass ich gut war.|Ich hab so wenig Erfahrung.",180,0,0,
+180,0,0,,Wir sehen uns!|(Weggehen.),,180,0,0,PlayerLeave()
+180,0,5,,"Weg da, ich|will hier sitzen.","Na gut, du kannst meinen Platz haben.|(Sie steht auf und geht weg.)",190,-1,1,JenniferLeave()
+181,0,0,,Ich schließe ihn|heute Abend auf.,"Na gut, dann gedulde ich mich.",180,0,0,NewPose()
+181,0,0,,"Keine Ahnung, wie man|den aufbekommt.",Was? Das ist nicht witzig!|Ich rufe später einen Schlüsseldienst.,180,-2,0,NewPose()
+181,0,0,,"Er bleibt zu, bis ich|mich umentscheide.",Och bitte! Das kann nicht dein Ernst sein!|Mach ihn bitte möglichst bald auf.,180,-1,1,NewPose()
+181,0,0,,Ich finde eine Lösung.|(Weggehen.),,181,0,0,PlayerLeave()
+200,0,0,,Eine gute Couch|hast du da gefunden.,"Oh ja, es ist ein sehr guter Ort zum Lesen.",210,0,0,
+200,0,0,,Gemütlich hier.,"Oh ja, es ist ein sehr guter Ort zum Lesen.",210,0,0,
+200,0,0,,Das ist nicht|sehr bequem.,Findest du? Ich liebe diese Couch.|Das ist mein Lieblingsplatz zum Lesen.,210,-1,0,
+200,0,0,,(Dich in die Couch|sinken lassen.),(Ihr macht es euch beide auf der Couch gemütlich.)|Das ist ein sehr guter Ort zum Lesen.,210,1,0,
+210,0,0,,Ich würde gern mehr|über dich erfahren.,Oh! Was möchtest du denn wissen?,211,0,0,
+210,0,0,,(Sie anstarren.),"(Sie wird nervös und senkt ihren Kopf.)|Gibt es etwas, worüber du reden möchtest?",211,0,1,
+210,0,0,,"Ich mag dich, Jen.","Ich mag dich auch, COMMON_PLAYERNAME.",220,1,0,
+210,0,0,,Ich sollte gehen.|(Weggehen.),,180,-1,0,PlayerLeave()
+211,0,0,,Stehst du auf Mädchen?,Oh Mann! Na ja... Schon... Glaube ich.|Ich war allerdings noch nie auf einem Date.,212,0,0,
+211,0,0,,Findest du mich hübsch?,Natürlich bist du hübsch.|Ich mag dein Aussehen und deine Persönlichkeit.,213,0,0,
+211,0,0,,(Kichernd herab schauen.)|Magst du mich?,"Na klar. Wir kennen uns zwar erst|einen Tag, aber du kommst mir nett vor.",213,0,-1,
+212,0,0,,Findest du mich hübsch?,Natürlich bist du hübsch.|Ich mag dein Aussehen und deine Persönlichkeit.,213,0,0,
+212,0,0,,(Kichernd herab schauen.)|Magst du mich?,"Na klar. Wir kennen uns zwar erst|einen Tag, aber du kommst mir nett vor.",213,0,-1,
+213,15,0,,"Ich liebe dich, Jen.","Ich liebe dich, COMMON_PLAYERNAME.",220,1,0,
+213,0,0,,"Ich mag dich, Jen.","Ich mag dich auch, COMMON_PLAYERNAME.",220,0,0,
+213,0,0,,Ich sollte gehen.|(Weggehen.),,180,-1,0,PlayerLeave()
+220,0,0,,Möchtest du mit|mir Liebe machen?,"Wirklich? In der Bibliothek? (Sie sieht sich um.)|Ja, COMMON_PLAYERNAME. Tun wir's.",230,0,0,TestMakeLove()
+220,0,0,,Willst du 'nen|Orgasmus?,"Ernsthaft? In der Bibliothek? (Sie sieht sich um.)|Okay, COMMON_PLAYERNAME. Tun wir's.",230,-1,0,TestMakeLove()
+220,0,0,,"Mädel, dich krall|ich mir jetzt.","Mich krallen? (Sie sieht sich nervös um.)|Ich schätze, da spricht nichts gegen.",230,-1,1,TestMakeLove()
+230,0,0,,"Keine Sorge, es wird|Spaß machen. (Ausziehen.)",(Sie nickt und ihr zieht euch beide|bis auf die Unterwäsche aus.),240,0,0,"StripBoth(""Underwear"")"
+230,0,0,,Wir müssen erst|etwas Kleidung ablegen.,(Sie nickt und ihr zieht euch beide|bis auf die Unterwäsche aus.),240,0,0,"StripBoth(""Underwear"")"
+230,0,0,,(Kichern.) Wollen wir uns|gemeinsam ausziehen?,(Sie nickt und ihr zieht euch beide|bis auf die Unterwäsche aus.),240,0,-1,"StripBoth(""Underwear"")"
+230,0,0,,Zeig mir deinen|sexy Körper.,(Sie nickt und ihr zieht euch beide|bis auf die Unterwäsche aus.),240,-1,0,"StripBoth(""Underwear"")"
+235,0,0,,"Der Gürtel? Ja, das|könnte ein Problem sein.",Das ist ja fies. Aber bestimmt können|wir trotzdem irgendwie Spaß haben.,240,0,-1,
+235,0,0,,Beachte den Gürtel nicht.|Wir haben auch so Spaß.,Ja! So ein läppischer Metallgürtel wird uns|nicht von unserem Spaß abhalten.,240,0,0,
+235,0,0,,(Am Gürtel rütteln|und seufzen.),Du armes kleines Ding. Keine Sorge.|Wir können den Moment auch so genießen.,240,1,-2,
+240,0,0,!Common_PlayerChaste,"Mädel, du siehst|scharf aus.",Oh wow! Vielen Dank.|Du bist auch hübsch.,245,0,1,
+240,0,0,!Common_PlayerChaste,"Du bist wunder-|schön, Jen.","Das bedeutet mir sehr viel, danke.|Du bist auch sehr hübsch.",245,1,0,
+240,0,0,!Common_PlayerChaste,Vergeuden wir keine|Zeit. (Ausziehen.),"(Sie nickt und ihr zieht euch beide aus.)|Ich hab Angst! Was, wenn uns jemand sieht?",250,0,0,"StripBoth(""Naked"")"
+240,0,0,Common_PlayerChaste,Du bist dran.,"(Sie nickt und zieht sich nervös aus.)|Ich hab Angst! Was, wenn uns jemand sieht?",250,0,0,"Strip(""Naked"")"
+240,0,0,Common_PlayerChaste,"Vergeuden wir keine Zeit.|Zieh dich aus, Jen.","(Sie nickt und zieht sich nervös aus.)|Ich hab Angst! Was, wenn uns jemand sieht?",250,0,1,"Strip(""Naked"")"
+245,0,0,,"Ich bin etwas nervös,|aber es gibt kein Zurück.","(Sie nickt und ihr zieht euch beide aus.)|Ich hab Angst! Was, wenn uns jemand sieht?",250,0,-1,"StripBoth(""Naked"")"
+245,0,0,,Vergeuden wir keine|Zeit. (Ausziehen.),"(Sie nickt und ihr zieht euch beide aus.)|Ich hab Angst! Was, wenn uns jemand sieht?",250,0,0,"StripBoth(""Naked"")"
+250,0,0,,"Wenn jemand kommt,|laufen wir.","Ja! Guter Plan. Aber jetzt weiß ich|ehrlich gesagt nicht, was ich tun soll.",260,0,-1,
+250,0,0,,Niemand wird|hierher kommen.,"Hast ja recht. Aber jetzt weiß ich|ehrlich gesagt nicht, was ich tun soll.",260,0,0,
+250,0,0,,Ich beschütze dich.,"Das ist toll! Aber jetzt weiß ich|ehrlich gesagt nicht, was ich tun soll.",260,0,1,
+260,0,-5,,Miss? Darf ich|Sie befriedigen?,"(Sie nickt und nimmt ihre Beine auseinander,|während du auf die Knie gehst.)",270,0,-1,NewPose()
+260,0,0,Common_PlayerChaste,"Ich trage einen Gürtel,|also befriedige ich dich.","(Sie nickt und nimmt ihre Beine auseinander,|während du auf die Knie gehst.)",270,0,0,NewPose()
+260,0,0,!Common_PlayerChaste,Ich werde dich|befriedigen.,"(Sie nickt und nimmt ihre Beine auseinander,|während du auf die Knie gehst.)",270,0,0,NewPose()
+260,0,0,!Common_PlayerChaste,Befriedigst du mich?,"(Sie nickt und geht auf die Knie, während|du deine Beine auseinander nimmst.)",280,0,0,TestPleasurePlayer()
+260,0,5,!Common_PlayerChaste,Geh auf die Knie und|benutze deine Zunge.,"(Sie nickt und geht auf die Knie, während|du deine Beine auseinander nimmst.)",280,0,1,TestPleasurePlayer()
+270,0,0,,(An ihre Klitoris|schmiegen.),(Du reibst deine Nase und deinen Mund|an ihre Klitoris und sie stöhnt leise.),270,0,0,PleasureJennifer()
+270,0,0,,(Ihre Schamlippen|lecken.),(Du leckst liebevoll ihre Schamlippen|und sie atmet schneller und schneller.),270,0,0,PleasureJennifer()
+270,0,0,,(Deine Zunge|hineinstecken.),(Du schiebst deine Zunge rein und raus|und sie drückt dich tiefer hinein.),270,0,0,PleasureJennifer()
+270,0,0,,(Deinen Mund und|einen Finger benutzen.),(Du stimmulierst sie mit deinem Mund und|einem Finger und sie bebt vor Freude.),270,0,0,PleasureJennifer()
+270,0,0,!Common_PlayerChaste,Lass uns wechseln.,"Ja, du bist dran.|(Ihr tauscht eure Plätze.)",280,0,0,TestSwitchPlayer()
+270,0,0,,Das reicht.|(Komplett aufhören.),"Ja, jemand könnte uns sehen.|(Ihr zieht euch beide wieder an.)",180,0,0,ReleaseJennifer()
+280,0,0,,(Lüstern stöhnen.),"(Du stöhnst langsam, während sie|ungeschickt deine Schamlippen leckt.)",280,0,0,PleasurePlayer()
+280,0,0,,(Schwer atmen.),"(Dein Atem wird schwerer, als sie deine|Klitoris leckt und daran lutscht.)",280,0,0,PleasurePlayer()
+280,0,0,,(Ihren Kopf drücken.),"(Du drückst ihren Kopf zwischen deine Beine,|während sie leckt und nach Luft ringt.)",280,0,0,PleasurePlayer()
+280,0,0,,(Ihr Haar packen.),"(Du packst sie an den Haaren und zwingst sie|tiefer hinein, während ihre Zunge spielt.)",280,0,0,PleasurePlayer()
+280,0,0,,Lass uns wechseln.,"Klar, jetzt bin wohl ich dran.|(Ihr tauscht eure Plätze.)",270,0,0,TestSwitchJennifer()
+280,0,0,,Das reicht.|(Komplett aufhören.),"Ja, jemand könnte uns sehen.|(Ihr zieht euch beide wieder an.)",180,0,0,ReleaseJennifer()
+300,0,0,,Möchtest du ein|Spiel mit mir spielen?,Ein Spiel? Was denn für ein Spiel?,310,1,0,TestTurnTables()
+300,0,0,,Ich hab da heute ein|paar Sachen gefunden.,Oh! Was hast du denn so gefunden?,310,0,0,TestTurnTables()
+300,0,0,,"Mädchen, unterwirf|dich mnir jetzt.",(Sie senkt den Kopf und schaut zu Boden.)|Was willst du von mir?,310,-1,1,TestTurnTables()
+300,0,0,,Möchtest du|mich fesseln?,Schicken wir dich auf ein kleines Bondage-Abenteuer.|(Sie fesselt dich mit deinen eigenen Sachen.),300,0,-1,RestrainPlayer()
+310,0,0,,Du wirst jetzt|meine Bitch sein.,,320,-1,1,
+310,0,0,,Ich hab etwas versautes|Spielzeug für dich.,,320,-1,0,
+310,0,0,,Du wirst jetzt eine|Weile festgebunden.,,320,0,1,
+310,0,0,,Möchtest du|mich fesseln?,Schicken wir dich auf ein kleines Bondage-Abenteuer.|(Sie fesselt dich mit deinen eigenen Sachen.),300,0,-1,RestrainPlayer()
+320,0,0,CanUntie,(Sie losbinden.)ADD_MINUTES:1,"(Du bindest sie los, während sie|gegen das Unbehagen ankämpft.)",320,0,0,Untie()
+320,0,0,CanUnstrap,(Sie befreien.)ADD_MINUTES:1,(Du lässt ihre Arme aus dem Monohandschuh frei|und sie streckt sich zur Entspannung.),320,0,0,Untie()
+320,0,0,CanUngag,(Sie entknebeln.)ADD_MINUTES:1,"(Du entfernst den Knebel und sie starrt dich an.)|Bitte, war dieser Knebel wirklich notwendig?",320,0,0,Ungag()
+320,0,0,CanKiss,(Sie küssen.)ADD_MINUTES:1,(Du küsst sie langsam und sie starrt dich sprachlos an.),320,0,0,Kiss()
+320,0,0,CanAbuse,(Sie kitzeln.)ADD_MINUTES:1,(Du kitzelst sie und sie windet sich leicht.|Sie scheint nicht sehr kitzlig zu sein.),320,0,0,Tickle()
+320,0,0,CanAbuse,(Ihr auf den|Hintern hauen.)ADD_MINUTES:1,(Du schlägst sie ziemlich doll auf den Po. Sie|guckt unzufrieden und scheint Schmerzen zu haben.),320,0,0,Spank()
+320,0,0,CanAbuse,(Sie befriedigen.)ADD_MINUTES:1,,320,0,0,Masturbate()
+320,0,0,CanAddUnderwear,"Jen, zieh deine Unter-|wäsche wieder an.",(Sie nickt langsam und zieht|ihre Unterwäsche wieder an.),320,0,0,"Strip(""Underwear"")"
+320,0,0,CanRemoveUnderwear,"Mach dich|nackig, Mädchen.",(Sie nickt langsam und zieht sich aus.),320,0,0,"Strip(""Naked"")"
+320,0,0,!IsChaste,Das reicht.|Zieh dich an.,(Sie nickt und du hilfst ihr beim Anziehen.)|Das war mal ein echt waghalsiges Erlebnis.,180,0,0,ReleaseJennifer()
+320,0,0,IsChaste,Das reicht.|Zieh dich an.,(Sie nickt und du hilfst ihr beim Anziehen.) Willst|du den Gürtel wieder? Wie bekommt man den ab?,181,0,0,ReleaseJennifer()
+400,0,0,Common_PlayerGagged,@Uuumph!,(Sie kichert.) Durch die Bibliothek zu laufen wird|für dich jetzt sehr viel abenteuerlicher sein.,400,0,0,
+400,0,0,Common_PlayerGagged,@Nnoong gnoou!,"Da du neu in der Schule bist, ist das|eine gute Gelegenheit zum Erkunden.",400,0,0,
+400,0,0,Common_PlayerRestrained,(Mit deinen|Fesseln kämpfen.),"Du hast sie mitgebracht, du solltest sie ausprobieren.|Geh und hab Spaß, kleine Bondage-Abenteurerin.",400,0,0,
+400,0,0,Common_PlayerRestrained,(Entfesselung versuchen.),"Wenn's dir nichts ausmacht, würde|ich gern dieses Buch zu Ende lesen.",400,0,0,
+400,0,0,,(Weggehen.),,400,0,0,PlayerLeave()
+410,0,0,Common_PlayerGagged,@Uuumph!,(Sie kichert.) Durch die Bibliothek zu laufen wird|für dich jetzt sehr viel abenteuerlicher sein.,410,0,0,
+410,0,0,Common_PlayerGagged,@Nnoong gnoou!,"Da du neu in der Schule bist, ist das|eine gute Gelegenheit zum Erkunden.",410,0,0,
+410,0,0,Common_PlayerRestrained,(Mit deinen|Fesseln kämpfen.),"Du hast sie mitgebracht, du solltest sie ausprobieren.|Geh und hab Spaß, kleine Bondage-Abenteurerin.",410,0,0,
+410,0,0,Common_PlayerRestrained,(Entfesselung versuchen.),"Wenn's dir nichts ausmacht, würde|ich gern dieses Buch zu Ende lesen.",410,0,0,
+410,0,0,Common_PlayerRestrained,"Jen, kannst du|mich befreien?","Tut mir leid, aber ich helfe dir nicht.",410,0,0,TestRelease()
+410,0,0,Common_PlayerRestrained,(Auf die Knie|gehen und betteln.),"Tut mir leid, aber ich helfe dir nicht.",410,0,0,TestRelease()
+410,0,0,,Reden wir später.|(Weggehen.),,410,0,0,PlayerLeave()

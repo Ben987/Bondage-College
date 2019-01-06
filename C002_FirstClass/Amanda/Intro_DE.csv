@@ -1,0 +1,21 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,!BondageBefore,"(Sie sieht dich an, bleibt aber still,|um die Lehrerin nicht zu ärgern.)",Amanda.jpg
+0,1,0,!BondageBefore,(Sie flüstert) Wir sollten später reden.|Miss Mildred unterrichtet gerade.,Amanda.jpg
+0,0,0,BondageBefore,"(Sie sieht dich an und flüstert)|Nicht an Bondage denken, wir haben Unterricht.",Amanda.jpg
+0,1,0,BondageBefore,"(Sie sieht dich an und flüstert)|Kein Bondage mehr bitte, wir haben Unterricht.",Amanda.jpg
+10,0,0,,(Sie flüstert) Möchtest du etwas?,Amanda.jpg
+20,0,0,,(Sie flüstert) Dir scheint der|Unterricht nicht zu gefallen.,Amanda.jpg
+30,0,0,,(Sie flüstert) Was schwebt dir vor?,Amanda.jpg
+40,0,0,,(Sie flüstert) Du willst Miss Mildred kidnappen?|(Du brauchst 4 Liebe oder Dominanz zum Überzeugen.),Amanda.jpg
+50,0,0,,"(Sie flüstert und wird rot.) Ich helfe|dir, aber mach du den ersten Schritt.",Amanda.jpg
+100,0,0,Common_PlayerNotGagged,Oh mein Gott! Das ist unglaublich!,Amanda.jpg
+100,0,0,Common_PlayerGagged,"(Sie kichert leise, während sie dich anguckt.)",Amanda.jpg
+100,2,0,Common_PlayerGagged,(Sie sieht dich an und flüstert.)|Du siehst so süß aus mit diesem Knebel.,Amanda.jpg
+100,-2,0,Common_PlayerGagged,"(Sie sieht dich an und flüstert.)|Ich glaube, geknebelt gefällst du mir besser.",Amanda.jpg
+110,0,0,,(Sie wimmert in ihrem Knebel und|schüttelt ihren Kopf hin und her.),Amanda_BallGag.jpg
+120,0,0,,"(Sie rüttelt an ihren Handschellen und|versucht, eine Hand herauszubekommen.)",Amanda_Cuffs.jpg
+130,0,0,,(Sie wimmert in ihrem Knebel und|schüttelt ihren Kopf hin und her.),Amanda_Cuffs_BallGag.jpg
+140,0,0,,(Sie reibt ihre Haut an das Seil|und scheint das Gefühl zu genießen.),Amanda_Rope.jpg
+150,0,0,,(Sie wimmert in ihrem Knebel und|schüttelt ihren Kopf hin und her.),Amanda_Rope_BallGag.jpg
+160,0,0,,,Amanda_Rope.jpg
+170,0,0,,,Amanda_Rope_BallGag.jpg

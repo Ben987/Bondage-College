@@ -37,9 +37,9 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 140,0,0,WorkOfArtReady,Vous êtes vraiment|une oeuvre d'art.,C'est gentil de ta part COMMON_PLAYERNAME.|Tu es charmante.,140,0,0,WorkOfArt()
 140,0,0,,Peut-être qu'on devrait|ajouter un autre modèle.,Tu le penses ? Je suis intriguée.|Qui devrait poser avec moi ?,150,0,0,QueryNewModel()
 140,0,0,,Ce serait plus joli|si on ajoutait un modèle.,"Je ne suis donc pas assez jolie ? Sottises !|Mais je suis intriguée, qui devrait poser avec moi ?",150,-1,0,QueryNewModel()
-150,0,0,,Je vais poser avec vous.|(1 minute),Oh ! C'est très audacieux ! Approche. Votre attention !|Nous avons un modèle supplémentaire.,160,0,0,"NewModel(""Player"")"
-150,0,0,,Sarah devrait poser.|(1 minute),"C'est une bonne idée, Sarah, avance-toi s'il te plaît.|Il est temps de peindre, à vos pinceaux !",160,0,0,"NewModel(""Sarah"")"
-150,0,0,,Jennifer devrait poser.|(1 minute),"Intéressant, Jennifer, avance-toi s'il te plaît.|Il est temps de peindre, à vos pinceaux !",160,0,0,"NewModel(""Jennifer"")"
+150,0,0,,Je vais poser avec vous.ADD_MINUTES:1,Oh ! C'est très audacieux ! Approche. Votre attention !|Nous avons un modèle supplémentaire.,160,0,0,"NewModel(""Player"")"
+150,0,0,,Sarah devrait poser.ADD_MINUTES:1,"C'est une bonne idée, Sarah, avance-toi s'il te plaît.|Il est temps de peindre, à vos pinceaux !",160,0,0,"NewModel(""Sarah"")"
+150,0,0,,Jennifer devrait poser.ADD_MINUTES:1,"Intéressant, Jennifer, avance-toi s'il te plaît.|Il est temps de peindre, à vos pinceaux !",160,0,0,"NewModel(""Jennifer"")"
 150,0,0,CanBegForRelease,@HUUIA ! HMMH EE !,Tiens la pose.|Je ne comprends pas un seul mot.,150,0,0,GaggedSpeach()
 150,0,0,CanBegForRelease,(Tu gémis et fait un|regard de chien battu.),,150,0,0,BegForRelease()
 170,0,1,Common_PlayerNotRestrained,Changeons de modèle|à nouveau.,Alors ? Qui devrait poser avec moi ?,150,0,0,ChangeModel()
@@ -47,12 +47,12 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 170,0,0,CanDoSelfBondage,Je vous montre l'auto|shibari!  (Tu te ligotes.),"(Nue devant la classe, tu parviens à entourer|la corde sur toi-même et faire un noeud.)",170,0,0,SelfBondage()
 170,0,0,CanBegForRelease,@HUUIA ! HMMH EE !,Tiens la pose.|Ce n'est pas le moment de bavarder.,170,0,0,GaggedSpeach()
 170,0,0,CanBegForRelease,(Tu gémis et fais un|regard de chien battu.),,170,0,0,BegForRelease()
-170,0,0,AllowUnderwear,Nos tenues sont|différentes. (1 minute),"""Si !"" C'est bizarre que tu sois vêtue. (Tu enlèves|lentement ton uniforme.) Maintenant peignez !",180,0,0,PlayerRemoveOutfit()
-170,0,0,AllowNaked,Nous sommes toujours|différentes. (1 minute),Très audacieuse ! Tu devrais aussi être nue. (Tu retires|lentement tes sous-vêtements.) Maintenant peignez !,180,0,0,PlayerStrip()
+170,0,0,AllowUnderwear,Nos tenues sont|différentes.ADD_MINUTES:1,"""Si !"" C'est bizarre que tu sois vêtue. (Tu enlèves|lentement ton uniforme.) Maintenant peignez !",180,0,0,PlayerRemoveOutfit()
+170,0,0,AllowNaked,Nous sommes toujours|différentes.ADD_MINUTES:1,Très audacieuse ! Tu devrais aussi être nue. (Tu retires|lentement tes sous-vêtements.) Maintenant peignez !,180,0,0,PlayerStrip()
 170,0,0,AllowShibari,"Avez-vous entendu|parler de ""Shibari"" ?","""Si !"" Le Shibari est l'art japonais du bondage à la corde.|Prends ces cordes, on peut les utiliser pour la séance.",170,0,0,ShibariStart()
 170,0,1,AllowShibari,"Julia, avez-vous déjà|essayé le ""Shibari"" ?","L'art japonais du bondage à la corde, jamais essayé.|Prends ces cordes, on peut les utiliser pour la séance.",170,0,1,ShibariStart()
-170,0,0,IsRestrained,(Tu la chatouilles.)|(1 minute),(Elle rit légèrement et semble apprécier.),170,0,0,Tickle()
-170,0,0,IsRestrained,(Tu resserres les cordes.)|(1 minute),Les cordes sont déjà|aussi serrées qu'elles peuvent l'être.,170,0,0,Tighten()
-170,0,0,IsRestrained,(Tu la libères.)|(1 minute),(Tu défais les noeuds et tu la reläches.)|Tu n'aimais pas le Shibari après tout ?,170,0,0,Release()
-170,0,0,IsGagged,(Tu la débâillones.)|(1 minute),(Tu enlèves le bâillon et elle sourit.)|L'art peut être fou parfois. Maintenant peignez !,170,0,0,TryUngag()
+170,0,0,IsRestrained,(Tu la chatouilles.)ADD_MINUTES:1,(Elle rit légèrement et semble apprécier.),170,0,0,Tickle()
+170,0,0,IsRestrained,(Tu resserres les cordes.)ADD_MINUTES:1,Les cordes sont déjà|aussi serrées qu'elles peuvent l'être.,170,0,0,Tighten()
+170,0,0,IsRestrained,(Tu la libères.)ADD_MINUTES:1,(Tu défais les noeuds et tu la reläches.)|Tu n'aimais pas le Shibari après tout ?,170,0,0,Release()
+170,0,0,IsGagged,(Tu la débâillones.)ADD_MINUTES:1,(Tu enlèves le bâillon et elle sourit.)|L'art peut être fou parfois. Maintenant peignez !,170,0,0,TryUngag()
 170,0,0,PaintAvail,(Tu peins Julia.)|(30 minutes),(Tu la peins soigneusement et lui montre le tableau.)|(Elle regarde ton tableau et saute de joie.),170,0,0,Paint()

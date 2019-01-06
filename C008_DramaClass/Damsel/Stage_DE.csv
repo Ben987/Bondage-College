@@ -1,0 +1,57 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+140,0,0,PlayerIsDamsel,Haltet ein! Bevor|Blut zu Boden gießt.,Beide Ritter sehen die Jungfrau an.,150,0,0,"GlobalStage(150, 1, 0)"
+140,0,0,PlayerIsDamsel,Stopp! Bevor sich|die Erde rot färbt.,Beide Ritter sehen die Jungfrau an.,150,0,0,"GlobalStage(150, -1, 0)"
+140,0,0,PlayerIsDamsel,"Tut mir leid, Julia. Ich hab|meinen Text vergessen.","Julia flüstert dir zu:|""Haltet ein! Bevor Blut zu Boden gießt.""",140,0,0,ForgetLine()
+140,0,0,!PlayerIsDamsel,(Still zuhören.),"Sarah tritt wie eine Prinzessin heran und spricht:|""Haltet ein! Bevor Blut zu Boden gießt.""",150,0,0,"GlobalStage(150, 0, 0)"
+140,0,0,!PlayerIsDamsel,(Ungeduldig mit den|Fingern schnipsen.),"Sarah eilt auf die Bühne und sagt:|""Haltet ein! Bevor sich der Boden rot färbt.""",150,0,0,"GlobalStage(150, 0, 1)"
+140,0,0,!PlayerIsDamsel,(Sie mit albernen|Grimassen ablenken.),"Sarah verkneift sich ein Lachen und sagt:|""Stopp! Bevor Blut auf die Erde gießt.""",150,0,0,"GlobalStage(150, -1, 0)"
+150,0,0,PlayerIsDamsel,"Erlaubt mir, von|Herzen zu sprechen.",Beide Ritter sehen dich verwundert an.,160,0,0,"GlobalStage(160, -1, 0)"
+150,0,0,PlayerIsDamsel,"Erlaubt meinem Herzen,|Wahrheit zu sprechen.",Beide Ritter sehen dich beklommen an.,160,0,0,"GlobalStage(160, 1, 0)"
+150,0,0,PlayerIsDamsel,"Tut mir leid, Julia. Ich hab|meinen Text vergessen.","Julia seufzt und flüstert:|""Erlaubt meinem Herzen, Wahrheit zu sprechen.""",150,0,0,ForgetLine()
+150,0,0,!PlayerIsDamsel,(Still zuhören.),"Sarah sieht beide Ritter an und spricht:|""Erlaubt meinem Herzen, Wahrheit zu sprechen.""",160,0,0,"GlobalStage(160, 0, 0)"
+150,0,0,!PlayerIsDamsel,(Ungeduldig mit den|Fingern schnipsen.),"Sarah sagt hastig:|""Erlaubt meinem Herz, die Wahrheit zu sagen.""",160,0,0,"GlobalStage(160, 0, 1)"
+150,0,0,!PlayerIsDamsel,(Sie mit einem Daumen|nach oben anfeuern.),"Sarah lächelt dich an und sagt:|""Erlaubt meinem Herzen, Wahrheit zu sprechen.""",160,0,0,"GlobalStage(160, 1, 0)"
+160,0,0,PlayerIsDamsel,Ich liebe den|weißen Helden.,Der schwarze Ritter blickt dich erbost|an und rückt in den Mittelpunkt.,200,0,0,"GlobalStage(200, -1, 0)"
+160,0,0,PlayerIsDamsel,Ich bekenne Liebe|dem weißen Helden.,Der schwarze Ritter blickt dich erbost|an und rückt in den Mittelpunkt.,200,0,0,"GlobalStage(200, 1, 0)"
+160,0,0,PlayerIsDamsel,Ich liebe den|schwarzen Ritter.,Der schwarze Ritter lächelt|und rückt in den Mittelpunkt.,210,0,0,"GlobalStage(210, -1, 0)"
+160,0,0,PlayerIsDamsel,Ich bekenne Liebe|dem schwarzen Recken.,Der schwarze Ritter lächelt|und rückt in den Mittelpunkt.,210,0,0,"GlobalStage(210, 1, 0)"
+160,0,0,PlayerIsDamsel,"Tut mir leid, Julia. Ich hab|meinen Text vergessen.","Julia seufzt und flüstert dir zu:|""Ich bekenne Liebe dem weißen Helden.""",150,0,0,ForgetLine()
+160,0,0,!PlayerIsDamsel,(Still zuhören.),,160,0,0,SarahChooseKnight()
+160,0,0,!PlayerIsDamsel,(Ungeduldig mit den|Fingern schnipsen.),,160,0,0,SarahChooseKnight()
+250,0,0,CanKissHeroine,(Eilig die Heldin küssen.)ADD_MINUTES:1,Du eilst für einen wundervollen Endkuss|in die Arme des weißen Ritters.,260,0,0,FinalKiss()
+250,0,0,CanKneelHeroine,(Neben der Heldin knien.)ADD_MINUTES:1,Du kniest dich respektvoll neben Sarah|und umarmst im letzten Akt ihre Beine.,260,0,0,FinalDomme()
+250,0,0,CanHugHeroine,(Die Heldin umarmen.)ADD_MINUTES:1,Du breitest die Arme aus umarmst im|letzten Akt den weißen Ritter.,260,0,0,FinalHug()
+250,10,0,PlayerIsHeroine,(Sie eilig küssen.)ADD_MINUTES:1,Du eilst zu Sarah und ihr teilt |im letzten Akt einen lieblichen Kuss.,260,0,0,FinalKiss()
+250,0,10,PlayerIsHeroine,(Auf den Boden deuten.)ADD_MINUTES:1,Sarah kniet sich respektvoll neben dir hin|und umarmt im letzten Akt deine Beine.,260,0,0,FinalDomme()
+250,0,0,PlayerIsHeroine,(Sie umarmen.)ADD_MINUTES:1,Du gehst zu Sarah und gibst ihr im|letzten Akt eine warme Umarmung.,260,0,0,FinalHug()
+250,0,0,PlayerIsVillain,(Der Szene zuschauen.)ADD_MINUTES:1,Amanda eilt zu Sarah und sie teilen|im letzten Akt einen lieblichen Kuss.,260,0,0,FinalKiss()
+255,0,0,,(Sie freilassen.)ADD_MINUTES:1,Du befreist sie aus ihrer Zwickmühle|und sie schaut dich lächelnd an.,250,0,0,ReleaseDamsel()
+255,0,0,,Du sollst meine|gebundene Braut sein.ADD_MINUTES:1,Die Jungfrau nickt zustimmend und lächelt.|Das Stück endet mit beiden in Gefangenschaft.,300,0,0,FinalTwoPrisoners()
+255,0,0,,Du wirst meine|gefesselte Frau sein.ADD_MINUTES:1,Die Jungfrau nickt zustimmend und lächelt.|Das Stück endet mit beiden in Gefangenschaft.,300,0,0,FinalTwoPrisoners()
+255,0,0,,"Tut mir leid, Julia. Ich hab|meinen Text vergessen.","Julia lacht laut und sagt:|""Improvisiere einfach, das steht nicht im Text.""",255,0,0,
+280,0,0,CanKissVillain,(Eilig die Böse küssen.)ADD_MINUTES:1,Du eilst für einen wundervollen Endkuss|in die Arme des schwarzen Ritters.,290,0,0,FinalKiss()
+280,0,0,CanKneelVillain,(Neben der Bösen knien.)ADD_MINUTES:1,Du kniest dich respektvoll neben Amanda|und umarmst im letzten Akt ihre Beine.,290,0,0,FinalDomme()
+280,0,0,CanHugVillain,(Die Böse umarmen.)ADD_MINUTES:1,Du breitest die Arme aus umarmst im|letzten Akt den schwarzen Ritter.,290,0,0,FinalHug()
+280,10,0,PlayerIsVillain,(Sie packen und küssen.)ADD_MINUTES:1,Du reißt sie an dich und gibst ihr|im letzten Akt einen zärtlichen Kuss.,290,0,0,FinalKiss()
+280,0,10,PlayerIsVillain,(Auf den Boden deuten.)ADD_MINUTES:1,Sarah kniet sich respektvoll neben dir hin|und umarmt im letzten Akt deine Beine.,290,0,0,FinalDomme()
+280,0,0,PlayerIsVillain,(Sie umarmen.)ADD_MINUTES:1,Du reißt sie an dich und gibst ihr im|letzten Akt eine lange Umarmung.,290,0,0,FinalHug()
+280,0,0,PlayerIsHeroine,(Der Szene zuschauen.)ADD_MINUTES:1,Amanda reißt Sarah an sich und sie geben|sich im letzten Akt einen zärtlichen Kuss.,290,0,0,FinalKiss()
+285,0,0,,(Sie freilassen.)ADD_MINUTES:1,Du befreist sie aus ihrer Zwickmühle|und sie schaut dich fragend an.,280,0,0,ReleaseDamsel()
+285,0,0,,Du sollst meine|Gefangene sein.ADD_MINUTES:1,Die Jungfrau schüttelt den Kopf und kichert.|Das Stück endet mit beiden in Gefangenschaft.,300,0,0,FinalTwoPrisoners()
+285,0,0,,Du bist meine Gefangene.ADD_MINUTES:1,Die Jungfrau schüttelt den Kopf und kichert.|Das Stück endet mit beiden in Gefangenschaft.,300,0,0,FinalTwoPrisoners()
+285,0,0,,"Tut mir leid, Julia. Ich hab|meinen Text vergessen.","Julia lacht laut und sagt:|""Improvisiere einfach, das steht nicht im Text.""",285,0,0,
+400,0,0,,Ich heirate dich nicht.|Raus aus dem Kleid.,"Natürlich, edler Ritter, das tut mir leid.|(Sie entfernt ihr Kleid und wirft es beiseite.)",410,-1,1,Strip()
+400,0,0,,Holde Maid. Offenbare|deinen makellosen Körper.,"Oh ja, mein edler Ritter! Mit Vergnügen.|(Sie entfernt ihr Kleid und wirft es beiseite.)",410,1,0,Strip()
+400,0,0,,In diesem Kleid|siehst du nicht gut aus.,Gibt es mir 'nen fetten Arsch? Weg damit.|(Sie entfernt ihr Kleid und wirft es beiseite.),410,-1,0,Strip()
+400,0,0,,In Unterwäsche wärst|du noch schärfer.,Ja! Großartige Idee. Weg damit.|(Sie entfernt ihr Kleid und wirft es beiseite.),410,1,-1,Strip()
+410,0,0,!IsRestrained,"Tanze für mich,|schönes Fräulein.ADD_MINUTES:1",(Sie kichert und führt einen|Balletttanz auf Zehenspitzen vor.),410,0,0,
+410,0,0,!IsRestrained,"Tanzet für mich,|holde Maid.ADD_MINUTES:1",(Sie kichert und führt einen|Balletttanz auf Zehenspitzen vor.),410,0,0,
+410,0,0,IsRestrained,"Tanze für mich,|schönes Fräulein.ADD_MINUTES:1","(Sie tanzt sehr unbeholfen in ihren|Fesseln und lacht ununterbrochen.)",410,0,0,
+410,0,0,IsRestrained,"Tanzet für mich,|holde Maid.ADD_MINUTES:1","(Sie tanzt sehr unbeholfen in ihren|Fesseln und lacht ununterbrochen.)",410,0,0,
+410,0,0,CanUntie,(Sie losbinden.)ADD_MINUTES:1,"(Sie wehrt sich und versucht gefesselt zu bleiben,|aber du lockerst die Knoten und befreist sie.)",410,0,0,Untie()
+410,0,0,CanUnstrap,(Sie befreien.)ADD_MINUTES:1,"(Sie versucht den Monohandschuh anzubehalten,|aber du machst die Riemen auf.)",410,0,0,Untie()
+410,0,0,CanUngag,(Sie entknebeln.)ADD_MINUTES:1,(Du entfernst ihren Knebel und sie sieht dich an.)|Kann die reizende Dame noch einen Knebel haben?,410,0,0,Ungag()
+410,0,0,CanKiss,(Sie küssen.)ADD_MINUTES:1,(Du näherst dich und küsst sie lange auf die Lippen.)|(Sie kichert.) Das ist ein sehr schöner Kuss.,410,0,0,Kiss()
+410,0,0,CanAbuse,(Sie kitzeln.)ADD_MINUTES:1,(Sie kichert und kämpft halbherzig dagegen an.|Sie scheint nicht besonders kitzlig zu sein.),410,0,0,
+410,0,0,CanAbuse,(Ihr auf den|Hintern hauen.)ADD_MINUTES:1,(Du schlägst ihr ziemlich doll auf den Hintern.|Sie stöhnt bei jedem Treffer leise und freut sich.),410,0,0,Spank()
+410,0,0,CanAbuse,(Sie befriedigen.)ADD_MINUTES:1,(Du befriedigst sie langsam und sie|stöhnt schneller und schneller.),410,0,0,Masturbate()

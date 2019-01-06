@@ -1,0 +1,21 @@
+﻿Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,!BondageBefore,(Te mira y se queda callada para no| molestar a la profesora.),Amanda.jpg
+0,1,0,!BondageBefore,(Suspira) Deberíamos hablar despues |de clase. La señorita Mildren esta dando clase.,Amanda.jpg
+0,0,0,BondageBefore,"(Te mira y susurra)|No pienses en bondage, estamos en clase.",Amanda.jpg
+0,1,0,BondageBefore,"(Te mira y susurra)|No mas bondage por favor, estamos en clase",Amanda.jpg
+10,0,0,,(Susurra) ¿Quieres algo?,Amanda.jpg
+20,0,0,,(Susurra) No parece|que estes disfrutando esta clase.,Amanda.jpg
+30,0,0,,(Susurra)¿Qué tienes en mente?,Amanda.jpg
+40,0,0,(Susurra ¿Quieres dominar a la señorita Mildren?|(Necesitas 4 de amor o sumisión para someterla.),Amanda.jpg
+50,0,0,,"(Susurra y se sonroja.) Te ayudaré|, pero tu tienes que hacer el primer movimiento",Amanda.jpg
+100,0,0,Common_PlayerNotGagged,!Oh dios mío! !Esto es increíble!,Amanda.jpg
+100,0,0,Common_PlayerGagged,(Se ríe timidamente mientras te mira.),Amanda.jpg
+100,2,0,Common_PlayerGagged,(Te mira y susurras.)|Estás adorable con esa mordaza.,Amanda.jpg
+100,-2,0,Common_PlayerGagged,(Te mira y susurra.)|Creo que me gustas mas cuando estás amordazada.,Amanda.jpg
+110,0,0,,(Gime a través de su mordaza y|agita la cabeza de izquierda a derecha.),Amanda_BallGag.jpg
+120,0,0,,"(Se retuerce en sus esposas,|intentando liberar una de sus manos.)",Amanda_Cuffs.jpg
+130,0,0,,(Gime a través de su mordaza y|agita la cabeza de izquierda a derecha.)	,Amanda_Cuffs_BallGag.jpg
+140,0,0,,(Roza su piel contra la |cuerda y parece que lo disfruta.)	,Amanda_Rope.jpg
+150,0,0,,(Gime a través de su mordaza y|agita la cabeza de izquierda a derecha.)	,Amanda_Rope_BallGag.jpg
+160,0,0,,,Amanda_Rope.jpg
+170,0,0,,,Amanda_Rope_BallGag.jpg

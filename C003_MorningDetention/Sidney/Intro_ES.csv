@@ -1,0 +1,29 @@
+﻿Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,Seguro que sabes como líarla con cuerdas.|¿Que quieres ahora? (Te mira.),SidneyFace.jpg
+0,-1,0,,¡Idiota!  Mira lo que has hecho con las cuerdas.|¿Que coño quieres? (She stares at you.),SidneyFace.jpg
+0,1,0,,¡Ja! Este bondage en clase es|un poco atrevido.  ¿Qué quieres ahora?,SidneyFace.jpg
+0,0,0,FightDefeat,Ha sido fácil vencerte.|¿Así que quieres ahora?,SidneyFace.jpg
+0,0,0,FightVictory,Has tenido mucha suerte para|vencerme.  ¿Que quieres ahora?,SidneyFace.jpg
+0,0,0,Common_PlayerGagged,¡Ja!  Te encuentras atada|y amordazada.  Eres muy problemática.,SidneyFace.jpg
+10,0,0,,Deja de mirar a las esposas.,SidneyCuffs.jpg
+10,0,0,Common_PlayerGagged,¡Ja!  Te encuentras atada|y amordazada.  Eres muy problemática.,SidneyFace.jpg
+20,0,0,,"Otra vez castigada, ¡que aburrimiento!",SidneyFace.jpg
+20,0,0,Common_PlayerGagged,¡Ja!  Te encuentras atada|y amordazada.  Eres muy problemática.,SidneyFace.jpg
+30,0,0,,What do you want now?,SidneyFace.jpg
+30,0,0,Common_PlayerGagged,¡Ja!  Te encuentras atada|y amordazada.  Eres muy problemática.,SidneyFace.jpg
+40,0,0,,(Te ignora y trata de librarse de las esposas.),SidneyCuffs.jpg
+40,1,0,,No hay mucho que pueda hacer.|Toca esperar hasta las 9.,SidneyFace.jpg
+40,0,0,Common_PlayerRestrained,No puedo creer que tu también |estés atada.  You're such a troublemaker.,SidneyFace.jpg
+40,0,0,Common_PlayerGagged,¡Ja!  Te encuentras atada|y amordazada.  Eres muy problemática.,SidneyFace.jpg
+100,0,0,,Esto es jodidamente increíble.|¡He visto lo que has hecho!,SidneyFace.jpg
+110,0,0,,"(Mira a la profesora, y|te guiña un ojo.)",SidneyFace.jpg
+150,0,0,,¿Para que coño la despiertas?,SidneyFace.jpg
+160,0,0,,Tenías un buen plan y lo has arruinado.,SidneyFace.jpg
+200,0,0,,¡Joder!  Has drogado a la puta profesora.,SidneyFace.jpg
+200,2,0,,¡Joder!  Has drogado a la puta profesora.|¿Podemos ser amigas?  Me encantaría.,SidneyFace.jpg
+200,0,2,,"¡Joder!  Has drogado a la puta profesora.|Por favor enséñame, quiero aprender de ti.",SidneyFace.jpg
+210,0,0,,¿Qué quieres?|¿Puedes ayudarme a escapar?,SidneyFace.jpg
+210,0,0,EggInside,¡Este puto vibrador va a hacer que me corra!|Quítamelo o te daré una paliza.,SidneyFace.jpg
+220,0,0,,Eres una puta depravada.,SidneyStrip.jpg
+220,0,0,EggInside,¡Este puto vibrador va a hacer que me corra!|Quítamelo o te daré una paliza.,SidneyStrip.jpg
+300,0,0,,(Sidney se ha ido.),SidneyGone.jpg

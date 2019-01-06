@@ -27,7 +27,7 @@ function C999_Common_Blindfold_Click() {
 
 // Chapter Common - Self Blindfold
 function C999_Common_Blindfold_SelfBlind() {
-	if ((Common_BondageAllowed) && (Common_SelfBondageAllowed)) {
+	if ((Common_BondageAllowed) && (Common_SelfBondageAllowed) && ((LeaveChapter == "C101_KinbakuClub") || (LeaveScreen == "Natalie"))) {
         PlayerRemoveInventory("Blindfold", 1);
         PlayerLockInventory("Blindfold");
 	} else {

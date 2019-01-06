@@ -1,0 +1,58 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,"Nett dich kennen-|zulernen, Julia.","Ja! Jetzt gib mir eine große|Umarmung, neue Schülerin.",10,1,0,
+0,0,0,,"Schön Sie kennenzu-|lernen, Miss Giuliana.","Neineineinein, nenn mich Julia. Jetzt gib mir|eine große Umarmung, neue Schülerin.",10,0,-1,
+0,0,0,,Kunst? Oh Mann.|(Augen verdrehen.),"Kunst ist das Feuer! Und ich bin die Flamme.|Jetzt gib mir eine große Umarmung, neue Schülerin.",10,-1,1,
+0,0,0,,(Woanders hinsehen.),"Schau hierher, neue Schülerin. Komm näher|und gib mir eine große Umarmung.",10,-1,0,
+10,0,0,,"Eine Umarmung?|Klar, warum nicht.",Si! (Sie drückt dich an sich und|deinen Kopf zwischen ihre Brüste.),20,0,0,Hug()
+10,0,0,,Natürlich!|(Die Arme öffnen.),Si! (Sie drückt dich fest an sich und|deinen Kopf zwischen ihre Brüste.),20,1,0,Hug()
+10,0,0,,"Nein, danke.","Na gut, neue Schülerin, keine Umarmung.|Aber ich hoffe, du bist zum Malen bereit.",30,0,0,
+10,0,0,,Dich umarmen?|Vergiss es.,Du hast also die Flamme und den Zorn.|Dieses Fach ist wie für dich geschaffen.,30,-1,0,
+20,0,0,,Was für eine|herzliche Begrüßung.,"Si! (Sie lässt dich los.)|Ich hoffe, du bist zum Malen bereit.",30,0,0,
+20,0,0,,(Dein Gesicht tiefer in|ihre Brust versenken.),"Neineineinein, lass das. Mach dich lieber|zum Malen bereit, neue Schülerin.",30,-1,1,
+20,0,0,,Ich krieg keine Luft!,"(Sie lässt dich los.) Tut mir leid, neue Schülerin.|So, ich hoffe, du bist zum Malen bereit.",30,0,-1,
+30,0,0,,"Mmmmh, okay.",Du musst mehr Begeisterung zeigen!|Ihr sollt mich nämlich malen wie da Vinci!,40,0,0,
+30,0,0,,Malen? Das wird|'ne Katastrophe.,Die einzige Katastrophe ist dein mangelndes Selbst-|vertrauen. Heute malt ihr mich wie da Vinci.,40,-1,0,
+30,0,0,,"Super! Ich liebe|es, zu malen.",Fabelhaft! Und heute kommt was ganz besonderes.|Ihr werdet mich malen wie da Vinci.,40,1,0,
+30,0,0,,Ich kann nicht malen.,Unsinn! Jeder kann malen.|Und heute malt ihr mich wie da Vinci.,40,0,-1,
+40,0,0,,Dich malen? Ich brauch'|'ne größere Leinwand.,(Sie starrt dich an.) Das sagst du bestimmt|wegen meines traditionellen Kleids.,50,-1,1,
+40,0,0,,Oh! Ich werde|viele Farben brauchen.,"Si! Vor allem, wenn du all die Details auf|meinem traditionellen Kleid übernehmen willst.",50,1,0,
+40,0,0,,Das könnte mir zu|schwierig sein.,Mein traditionelles Kleid hat viele Details.|Aber du bekommst ganz sicher ein gutes Bild hin.,50,0,-1,
+50,0,0,,Her mit dem Pinsel.,Schön. Zeig mir deinen inneren Michelangelo.|(Sie nimmt eine Pose ein.),60,0,0,
+50,0,0,,Dann versuch ich's mal.|(Traurig seufzen.),Michelangelo versucht nicht.  Michelangelo macht!|Legt los! (Sie nimmt eine Pose ein.),60,0,-1,
+50,0,0,,Also gut! Ich will deine|beste Pose sehen!,Perfekt! Zeig mir deinen inneren Michelangelo.|(Sie nimmt eine Pose ein.),60,0,1,
+60,2,0,BigHugReady,Bekomme ich noch|eine Umarmung?,Si! (Sie drückt deinen Kopf fest in ihre Brust.|Du bekommst fast keine Luft.),60,0,0,BigHug()
+60,0,0,Sandro,"Hast du Botticellis ""Die Ge-|burt der Venus"" gesehen?",Si! Du durftest Sandro Botticellis|Meisterwerk bewundern?,70,0,0,
+60,0,0,Sandro,"Kennst du ""Die Geburt der|Venus""? (Scheu kichern.)",,70,0,-1,
+70,0,0,,"Ich wette, du wärst|eine traumhafte Venus.",(Sie lächelt.) Ich?|Die wundervolle Venus?,80,1,0,
+70,0,0,,Du könntest eine|Venus-Pose machen.,Ich? Eine Venus-Pose?|So wie Botticellis Venus?,80,0,0,
+80,0,0,,"Ja, aber du musst|mehr Haut zeigen.",Für die große Venus! (Sie entfernt ihr Oberteil|und enthüllt ihre Brust.) An die Pinsel!,100,0,0,RemoveTop()
+80,0,0,,"Ja, zeig uns deine|Kurven wie Venus.",Für die große Venus! (Sie entfernt ihr Oberteil|und enthüllt ihre Brust.) An die Pinsel!,100,0,1,RemoveTop()
+110,0,0,,Du siehst gut aus.,Gut? Gut ist nicht umwerfend.|Gut ist keine Kunst.,120,0,0,
+110,0,0,,Magnifico!|Fast perfekt.,Si! Aber fast perfekt ist nicht perfekt.,120,1,0,
+110,0,0,,Das könnte besser sein.,Besser? Gefällt es dir nicht?,120,0,1,
+110,0,0,,Speckvenus. (Hust.) ,"(Sie gibt dir einen bösen Blick.)|Gefällt es dir nicht, neue Schülerin?",120,-1,0,
+120,0,0,,Die große Venus war|vollständig nackt.,Wohl wahr! Für Botticelli und Venus also!|(Sie zieht alles aus.) Ran an die Pinsel!,130,0,0,Strip()
+120,0,0,,Mach es wie Venus|und zieh alles aus.,"Si, si, si!  Für Botticelli und Venus also!|(Sie zieht alles aus.) Ran an die Pinsel!",130,0,1,Strip()
+120,0,0,,Kannst du noch mehr aus-|ziehen? (Scheu kichern.),"Du scheues Mädchen, ich zeige dir die Künstlerflamme.|(Sie zieht alles aus.) Ran an die Pinsel!",130,0,-1,Strip()
+140,0,0,WorkOfArtReady,Du bist wahrlich|ein Meisterwerk.,"Wie nett von dir, COMMON_PLAYERNAME.|Du bist eine reizende Schülerin.",140,0,0,WorkOfArt()
+140,0,0,,Vielleicht sollte noch|jemand Modell stehen.,Findest du? Interessant.|Wer sollte mit mir Modell stehen?,150,0,0,QueryNewModel()
+140,0,0,,"Es wäre schöner, wenn|noch jemand Modell steht.","Ich bin allein also nicht schön genug? Unsinn!|Aber gut, wer sollte mit mir Modell stehen?",150,-1,0,QueryNewModel()
+150,0,0,,Ich stehe Modell.ADD_MINUTES:1,Oh! Wie mutig! Komm her.|Schülerinnen! Wir haben ein neues Modell.,160,0,0,"NewModel(""Player"")"
+150,0,0,,Sarah sollte Modell|stehen.ADD_MINUTES:1,"Gute Idee. Sarah, komm bitte nach vorne.|Zeit zu malen, ran an die Pinsel!",160,0,0,"NewModel(""Sarah"")"
+150,0,0,,Jennifer sollte Modell|stehen.ADD_MINUTES:1,"Interessant. Jennifer, komm bitte nach vorne.|Zeit zu malen, ran an die Pinsel!",160,0,0,"NewModel(""Jennifer"")"
+150,0,0,CanBegForRelease,@HUUIA! HMMF MIIA!,"Halte die Pose, neue Schülerin.|Ich verstehe kein Wort.",150,0,0,GaggedSpeach()
+150,0,0,CanBegForRelease,(Wimmern und traurigen|Hundeblick machen.),,150,0,0,BegForRelease()
+170,0,1,Common_PlayerNotRestrained,Wir sollten das|Modell wechseln.,Schon wieder? Wer sollte|mit mir Modell stehen?,150,0,0,ChangeModel()
+170,0,-1,,Kann ich mich|bitte setzen?,Nein! Armes Ding. Du musst erst deine|Schüchternheit überwinden und die Flamme entfachen.,170,0,0,
+170,0,0,CanDoSelfBondage,Ich zeige euch Self-|Shibari! (Selbst fesseln.),"(Nackt und vor der ganzen Klasse schaffst|du es, das Seil um deinen eigenen Körper zu binden.)",170,0,0,SelfBondage()
+170,0,0,CanBegForRelease,@HUUIA! HMMF MIIA!,"Halte die Pose, neue Schülerin.|Keine Zeit zum Quatschen.",170,0,0,GaggedSpeach()
+170,0,0,CanBegForRelease,(Wimmern und traurigen|Hundeblick machen.),,170,0,0,BegForRelease()
+170,0,0,AllowUnderwear,Unsere Kleidung ist|verschieden.ADD_MINUTES:1,"Si! Es ist komisch, dass du gekleidet bist.|(Du ziehst langsam deine Uniform aus.) Weitermalen!",180,0,0,PlayerRemoveOutfit()
+170,0,0,AllowNaked,Wir haben noch immer ver-|schiedenes an.ADD_MINUTES:1,Sehr mutig! Du solltest dich auch entblößen. (Du|entfernst langsam deine Unterwäsche.) Weitermalen!,180,0,0,PlayerStrip()
+170,0,0,AllowShibari,"Hast du von|""Shibari"" gehört?","Si! Shibari ist die Kunst der japanischen Fesselung.|Hier sind ein paar Seile, das können wir heute machen.",170,0,0,ShibariStart()
+170,0,1,AllowShibari,"Hey Julia, hast du schon|mal ""Shibari"" probiert?","Japanische Fesselkunst habe ich noch nie ausprobiert.|Hier sind ein paar Seile, das können wir heute machen.",170,0,1,ShibariStart()
+170,0,0,IsRestrained,(Kitzeln.)ADD_MINUTES:1,(Sie kichert ein wenig und es scheint ihr zu gefallen.),170,0,0,Tickle()
+170,0,0,IsRestrained,(Seile enger ziehen.)ADD_MINUTES:1,Diese Seile lassen sich nicht mehr enger ziehen.,170,0,0,Tighten()
+170,0,0,IsRestrained,(Befreien.)ADD_MINUTES:1,(Do löst die Knoten und lässt sie frei.)|Dann hat dir Shibari also doch nicht gefallen?,170,0,0,Release()
+170,0,0,IsGagged,(Knebel entfernen.)ADD_MINUTES:1,(Du entfernst den Knebel und sie lächelt.)|Kunst ist manchmal verrückt. Weiter geht's!,170,0,0,TryUngag()
+170,0,0,PaintAvail,(Julia malen.)|(30 Minuten),(Du malst sie sorgfältig ab und zeigst ihr das Ergebnis.)|(Sie betrachtet dein Bild und hüpft vor Freude.),170,0,0,Paint()

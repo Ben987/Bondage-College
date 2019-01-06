@@ -1,0 +1,44 @@
+# No Tab, use spaces only.
+# Please align it correctly if you modify this file.
+# Time zone: UTC+8, Beijing
+
+Ver Date        Path                            Author              Status              Remark
+
+12B 20180702    C000_Intro_ChapterSelect        Dwscdv3 & adscvbgf  √                   Revised
+12B 20180704    C000_Intro_CreatePlayer         Dwscdv3             √
+12B 20180701    C000_Intro_Intro                Dwscdv3             √
+
+12B 20180704    C001_BeforeClass_Amanda         Dwscdv3             √
+12B 20180702    C001_BeforeClass_Bag            Dwscdv3             √
+12B 20180702    C001_BeforeClass_Fight          Dwscdv3             √
+12B 20180702    C001_BeforeClass_FightIntro     Dwscdv3             √
+12B 20180702    C001_BeforeClass_FightOutro     Dwscdv3             √
+12B 20180702    C001_BeforeClass_Intro          Dwscdv3             √
+12B 20180702    C001_BeforeClass_Outro          Dwscdv3             √
+12B 20180702    C001_BeforeClass_Sidney         Dwscdv3             √
+
+...
+
+12B 20180703    C999_Common_Armbinder           Dwscdv3             √
+12B 20180703    C999_Common_BallGag             adscvbgf & Dwscdv3  √                   Revised
+12B 20180703    C999_Common_Blindfold           Dwscdv3             √
+12B 20180703    C999_Common_ChastityBelt        Dwscdv3             √
+12B 20180703    C999_Common_ClothGag            Dwscdv3             √
+12B 20180703    C999_Common_Collar              adscvbgf & Dwscdv3  √                   Revised
+12B 20180703    C999_Common_Crop                adscvbgf & Dwscdv3  √                   Polished
+12B 20180703    C999_Common_Cuffs               adscvbgf & Dwscdv3  √                   Revised
+12B ?           C999_Common_CuffsKey            adscvbgf            √
+12B 20180703    C999_Common_DoubleOpenGag       Dwscdv3             √
+                C999_Common_Fights
+?   ?           C999_Common_GameLoad            adscvbgf            Trad. Chinese
+?   ?           C999_Common_GameSave            adscvbgf            Trad. Chinese
+12B 20180704    C999_Common_Manacles            Dwscdv3             √
+12B ?           C999_Common_MetalSheet          adscvbgf            √
+12B 20180704    C999_Common_Player              adscvbgf & Dwscdv3  √                   Revised
+                C999_Common_Quiz
+                C999_Common_Races
+12B 20180704    C999_Common_Rope                Dwscdv3 & adscvbgf  √                   Revised
+12B ?           C999_Common_RustyHook           adscvbgf            √
+12B ?           C999_Common_SleepingPill        adscvbgf            √
+12B 20180704    C999_Common_TapeGag             adscvbgf & Dwscdv3  √                   Revised
+12B 20180704    C999_Common_VibratingEgg        Dwscdv3 & adscvbgf  √                   Revised

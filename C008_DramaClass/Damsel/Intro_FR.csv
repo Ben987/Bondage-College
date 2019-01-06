@@ -1,0 +1,50 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+100,0,0,PlayerIsDamsel,(Le chevalier blanc est sur le point de commencer.),Background.jpg
+100,0,0,!PlayerIsDamsel,(Elle observe le chevalier blanc.),Background.jpg
+110,0,0,PlayerIsDamsel,(Le chevalier noir est le prochain à parler.),Background.jpg
+110,0,0,!PlayerIsDamsel,(Elle observe le chevalier noir.),Background.jpg
+120,0,0,PlayerIsDamsel,(Le chevalier blanc est le prochain à parler.),Background.jpg
+120,0,0,!PlayerIsDamsel,(Elle observe le chevalier blanc.),Background.jpg
+130,0,0,PlayerIsDamsel,(Le chevalier noir est le prochain à parler.),Background.jpg
+130,0,0,!PlayerIsDamsel,(Elle observe le chevalier noir.),Background.jpg
+140,0,0,PlayerIsDamsel,"(Demoiselle, ta réplique est la suivante.)",Background.jpg
+140,0,0,!PlayerIsDamsel,(Elle est sur le point de dire sa réplique.),Background.jpg
+150,0,0,PlayerIsDamsel,"(Demoiselle, ta réplique est la suivante.)",Background.jpg
+150,0,0,!PlayerIsDamsel,(Elle est sur le point de dire sa réplique.),Background.jpg
+160,0,0,PlayerIsDamsel,"(Demoiselle, ta réplique est la suivante.)",Background.jpg
+160,0,0,!PlayerIsDamsel,(Elle est sur le point de dire sa réplique.),Background.jpg
+200,0,0,PlayerIsDamsel,(Le chevalier noir est le prochain à parler.),Background.jpg
+200,0,0,!PlayerIsDamsel,(Elle observe le chevalier noir.),Background.jpg
+210,0,0,PlayerIsDamsel,(Le chevalier noir est le prochain à parler.),Background.jpg
+210,0,0,!PlayerIsDamsel,(Elle observe le chevalier noir.),Background.jpg
+220,0,0,PlayerIsDamsel,(Le chevalier blanc est le prochain à parler.),Background.jpg
+220,0,0,!PlayerIsDamsel,(Elle observe le chevalier blanc.),Background.jpg
+230,0,0,PlayerIsDamsel,(Le chevalier noir est le prochain à parler.),Background.jpg
+230,0,0,!PlayerIsDamsel,(Elle observe le chevalier noir.),Background.jpg
+240,0,0,PlayerIsDamsel,(Le chevalier blanc est le prochain à parler.),Background.jpg
+240,0,0,!PlayerIsDamsel,(Elle observe le chevalier blanc.),Background.jpg
+250,0,0,PlayerIsDamsel,"(Demoiselle, ça devrait être ta réplique,|mais tu ne peux plus parler pour l'instant.)",Background.jpg
+250,0,0,CanHugHeroine,"(Demoiselle, ta réplique est la suivante.)",Background.jpg
+250,0,0,!PlayerIsDamsel,(Elle est prête pour l'acte final.),Background.jpg
+251,0,0,,,Background.jpg
+255,0,0,,(Elle est prête pour l'acte final.),Background.jpg
+260,0,0,,,Background.jpg
+270,0,0,PlayerIsDamsel,(Le chevalier noir est le prochain à parler.),Background.jpg
+270,0,0,!PlayerIsDamsel,(Elle observe le chevalier noir.),Background.jpg
+280,0,0,PlayerIsDamsel,"(Demoiselle, ça devrait être ta réplique,|mais tu ne peux plus parler pour l'instant.)",Background.jpg
+280,0,0,CanHugVillain,"(Demoiselle, ta réplique est la suivante.)",Background.jpg
+280,0,0,!PlayerIsDamsel,(Elle est prête pour l'acte final.),Background.jpg
+285,0,0,,(Elle est prête pour l'acte final.),Background.jpg
+290,0,0,,,Background.jpg
+300,0,0,!PlayerIsDamsel,C'était une pièce amusante.|J'ai vraiment apprécié d'être la demoiselle.,Background.jpg
+300,0,0,IsGagged,(Elle fredonne une chanson joyeuse dans son bâillon.),Background.jpg
+300,0,0,PlayerIsDamsel,(La pièce est terminée.),Background.jpg
+400,0,0,PlayerIsHeroine,Mon héro ! Qu'attendez-vous de moi ?,Background.jpg
+400,0,0,PlayerIsVillain,"Seigneur, le chevalier noir.|Qu'attendez-vous de moi ?",Background.jpg
+400,0,0,Common_PlayerGagged,"Messire chevalier, ce bâillon vous va à ravir.",Background.jpg
+400,0,0,IsGagged,Uuurgmn !,Background.jpg
+410,0,0,PlayerIsHeroine,Mon héro ! Qu'attendez-vous de moi ?,Background.jpg
+410,0,0,PlayerIsVillain,"Seigneur, le chevalier noir.|Qu'attendez-vous de moi ?",Background.jpg
+410,0,0,Common_PlayerGagged,"Messire chevalier, ce bâillon vous va à ravir.",Background.jpg
+410,0,0,IsGagged,Uuurgmn!,Background.jpg
+500,0,0,,(On dirait que la pièce n'est pas totalement terminée.|Tu peux toujours interagir avec les autres.),Background.jpg

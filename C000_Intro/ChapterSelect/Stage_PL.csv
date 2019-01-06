@@ -1,19 +1,28 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 0,0,0,,Nowa gra,,0,0,0,"LoadChapter(""C001_BeforeClass"")"
-0,0,0,,Wczytaj grÍ,,0,0,0,LoadScreen()
-0,0,0,,"Wybierz rozdzia≥","Wybierz rozdzia≥, ktÛry chcesz rozegraÊ.|Jeúli nie gra≥eú nigdy wczeúniej, zacznij od rozdzia≥u pierwszego.",10,0,0,
-0,0,0,,Wybierz jÍzyk,,20,0,0,
-10,0,0,,"Rozdzia≥ 1|Przed zajÍciami",,10,0,0,"LoadChapter(""C001_BeforeClass"")"
-10,0,0,,"Rozdzia≥ 2|Pierwsze zajÍcia",,10,0,0,"LoadChapter(""C002_FirstClass"")"
-10,0,0,,"Rozdzia≥ 3|Poranna kara",,10,0,0,"LoadChapter(""C003_MorningDetention"")"
-10,0,0,,"Rozdzia≥ 4|ZajÍcia plastyczne",,10,0,0,"LoadChapter(""C004_ArtClass"")"
-10,0,0,,"Rozdzia≥ 5|Wychowanie fizyczne",,10,0,0,"LoadChapter(""C005_GymClass"")"
-10,0,0,,"Rozdzia≥ 6|Odosobnienie",,10,0,0,"LoadChapter(""C006_Isolation"")"
-10,0,0,,"Rozdzia≥ 7|Przerwa obiadowa",,10,0,0,"LoadChapter(""C007_LunchBreak"")"
-10,0,0,,"Rozdzia≥ 8|ZajÍcia teatralne",,10,0,0,"LoadChapter(""C008_DramaClass"")"
-10,0,0,,"Rozdzia≥ 10|Zemsta",,10,0,0,"LoadChapter(""C010_Revenge"")"
-10,0,0,,"Menu g≥Ûwne","Witaj w Akademii Bondage|Baw siÍ dobrze, zaglπdaj we wszystkie zakamarki i daj siÍ ponieúÊ!",0,0,0,
-20,0,0,,Angielski,,0,0,0,"SetLanguage(""EN"")"
-20,0,0,,Francuski|Made by gottspende,,0,0,0,"SetLanguage(""FR"")"
-20,0,0,,ChiÒski|Made by asdcvbgf,,0,0,0,"SetLanguage(""CN"")"
-20,0,0,,Spanish (Chapter 1)|Made by Rafael R,,0,0,0,"SetLanguage(""ES"")"
+0,0,0,,Wczytaj grƒô,,0,0,0,LoadScreen()
+0,0,0,,"Wybierz rozdzia≈Ç","Wybierz rozdzia≈Ç, kt√≥ry chcesz rozegraƒá.|Je≈õli nie gra≈Çe≈õ nigdy wcze≈õniej, zacznij od rozdzia≈Çu pierwszego.",10,0,0,
+0,0,0,,Wybierz jƒôzyk,,30,0,0,
+0,0,0,,Game Credits,A huge THANK YOU to everyone|that contributed to the game.,0,0,0,RollCredits()
+10,0,0,,"Rozdzia≈Ç 1|Przed zajƒôciami",,10,0,0,"LoadChapter(""C001_BeforeClass"")"
+10,0,0,,"Rozdzia≈Ç 2|Pierwsze zajƒôcia",,10,0,0,"LoadChapter(""C002_FirstClass"")"
+10,0,0,,"Rozdzia≈Ç 3|Poranna kara",,10,0,0,"LoadChapter(""C003_MorningDetention"")"
+10,0,0,,"Rozdzia≈Ç 4|Zajƒôcia plastyczne",,10,0,0,"LoadChapter(""C004_ArtClass"")"
+10,0,0,,"Rozdzia≈Ç 5|Wychowanie fizyczne",,10,0,0,"LoadChapter(""C005_GymClass"")"
+10,0,0,,"Rozdzia≈Ç 6|Odosobnienie",,10,0,0,"LoadChapter(""C006_Isolation"")"
+10,0,0,,"Rozdzia≈Ç 7|Przerwa obiadowa",,10,0,0,"LoadChapter(""C007_LunchBreak"")"
+10,0,0,,"Rozdzia≈Ç 8|Zajƒôcia teatralne",,10,0,0,"LoadChapter(""C008_DramaClass"")"
+10,0,0,,Dalsze Rozdzia≈Çy,"Wybierz rozdzia≈Ç, kt√≥ry chcesz rozegraƒá.|Je≈õli nie gra≈Çe≈õ nigdy wcze≈õniej, zacznij od rozdzia≈Çu pierwszego.",20,0,0,
+10,0,0,,"Menu g≈Ç√≥wne","Witaj w Akademii Bondage|Baw siƒô dobrze, zaglƒÖdaj we wszystkie zakamarki i daj siƒô ponie≈õƒá!",0,0,0,
+20,0,0,,Chapter 9|Library,,20,0,0,"LoadChapter(""C009_Library"")"
+20,0,0,,"Rozdzia≈Ç 10|Zemsta",,20,0,0,"LoadChapter(""C010_Revenge"")"
+20,0,0,,Chapter 11|Literature Class,,20,0,0,"LoadChapter(""C011_LiteratureClass"")"
+20,0,0,,Chapter 12|After Class,,20,0,0,"LoadChapter(""C012_AfterClass"")"
+20,0,0,,Chapter 101|Kinbaku Club by wildsj,,20,0,0,"LoadChapter(""C101_KinbakuClub"")"
+20,0,0,,Poprzednie Rozdzia≈Çy,"Wybierz rozdzia≈Ç, kt√≥ry chcesz rozegraƒá.|Je≈õli nie gra≈Çe≈õ nigdy wcze≈õniej, zacznij od rozdzia≈Çu pierwszego.",10,0,0,
+20,0,0,,"Menu g≈Ç√≥wne","Witaj w Akademii Bondage|Baw siƒô dobrze, zaglƒÖdaj we wszystkie zakamarki i daj siƒô ponie≈õƒá!",0,0,0,
+30,0,0,,Angielski,,0,0,0,"SetLanguage(""EN"")"
+30,0,0,,Francuski|Made by gottspende,,0,0,0,"SetLanguage(""FR"")"
+30,0,0,,Chi≈Ñski|Dwscdv3 & asdcvbgf,,0,0,0,"SetLanguage(""CN"")"
+30,0,0,,Hiszpa≈Ñski (Rozdzia≈Çy 1 & 2)|Rafael R & tree13003,,0,0,0,"SetLanguage(""ES"")"
+30,0,0,,"Niemiecki (Rozdzia≈Çy 1 do 11)|adokilume, Knife, fleisch11",,0,0,0,"SetLanguage(""DE"")"

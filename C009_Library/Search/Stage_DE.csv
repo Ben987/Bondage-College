@@ -1,0 +1,71 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+10,0,0,!Common_PlayerRestrained,(Suchen.)ADD_MINUTES:1,"Du durchsuchst die Regale, findest|aber nur Bücher über Chemie.",10,0,0,
+10,0,0,CanSit,(Hinsetzen.)ADD_MINUTES:1,Du setzt und entspannst dich|eine Weile auf dem Stuhl.,15,0,0,
+15,0,0,,(Aufstehen.)ADD_MINUTES:1,Du erhebst dich vom Stuhl.,10,0,0,
+30,0,0,!Common_PlayerRestrained,(Suchen.)ADD_MINUTES:1,"Du durchsuchst die Regale, findest|aber nur langweilige Mathebücher. ",30,0,0,
+31,0,0,!Common_PlayerRestrained,(Suchen.)ADD_MINUTES:1,"Du suchst am hinteren Ende das Gangs,|findest aber nichts Interessantes.",31,0,0,SearchCounter()
+32,0,0,!Common_PlayerRestrained,(Suchen.)ADD_MINUTES:1,Du durchsuchst die Regale und findest|zwischen den Büchern ein Comicheft.,33,0,0,SearchGwendoline()
+33,0,0,,(Den Comic|herausnehmen.)ADD_MINUTES:1,"Es ist ein alter Comic namens ""Sweet Gwendoline"",|geschrieben und gezeichnet von John Willie.",34,0,0,
+33,0,0,,(Ignorieren.),Du lässt den Comic zwischen den Büchern stecken.,32,0,0,
+34,0,0,,(Den Comic aufschlagen.)ADD_MINUTES:1,"Du blätterst im Comic. Er handelt von Gwendoline,|einer Blondine, die oft gefesselt wird.",35,0,0,
+34,0,0,,(Zurücklegen.),Du lässt den Comic zwischen den Büchern stecken.,32,0,0,
+35,0,0,,(Weiterlesen.)ADD_MINUTES:1,"Du liest etwas weiter, die Dame wird in|viele ausweglose Positionen verwickelt.",36,0,0,
+35,0,0,,(Masturbieren.)ADD_MINUTES:1,"Du masturbierst leise, während du in das|Heft schaust, und dir wird schön warm.",35,0,0,Masturbate()
+35,0,0,,(Zurücklegen.),Du lässt den Comic zwischen den Büchern stecken.,32,0,0,
+36,0,0,,(Weiterlesen.)ADD_MINUTES:1,Der Comic enthält eine Anleitung zum|Fesseln mit Seilen für Fortgeschrittene.,37,0,0,
+36,0,0,,(Masturbieren.)ADD_MINUTES:1,"Du masturbierst leise, während du in das|Heft schaust, und dir wird schön warm.",36,0,0,Masturbate()
+36,0,0,,(Zurücklegen.),Du lässt den Comic zwischen den Büchern stecken.,32,0,0,
+37,0,0,CanLearnRopeMastery,(Den Comic studieren.)|(15 Minuten),Du studierst die Fesseltechniken im Comic und|hast womöglich ein paar neue Tricks gelernt.,37,0,0,LearnRopeMastery()
+37,0,0,,(Masturbieren.)ADD_MINUTES:1,"Du masturbierst leise, während du in das|Heft schaust, und dir wird schön warm.",37,0,0,Masturbate()
+37,0,0,,(Zurücklegen.),Du lässt den Comic zwischen den Büchern stecken.,32,0,0,
+40,0,0,!Common_PlayerRestrained,(Suchen.)ADD_MINUTES:1,"Du durchsuchst die Regale und findest|das Buch, das du lesen sollst.",41,0,0,SetReadProgress()
+41,0,0,,(Kapitel 1 lesen.),"Du liest das erste Kapitel:|""Marseille - Die Ankunft"".",42,0,0,ReadTime()
+42,0,0,,(Kapitel 2 lesen.),"Du liest das zweite Kapitel:|""Vater und Sohn"".",43,0,0,ReadTime()
+43,0,0,,(Kapitel 3 lesen.),"Du liest das dritte Kapitel:|""Die Katalanen"".",44,0,0,ReadTime()
+44,0,0,,(Kapitel 4 lesen.),"Du liest das vierte Kapitel:|""Das Komplott"".",45,0,0,ReadTime()
+45,0,0,,(Kapitel 5 lesen.),"Du liest das fünfte Kapitel: ""Das Verlobungsmahl"".|Du bist nun bereit für die nächste Stunde.",46,0,0,ReadTime()
+46,0,0,,(Alles nochmal lesen.),Als gute Schülerin liest du dir alle|Kapitel noch einmal durch.,46,0,0,ReadFull()
+50,0,0,!Common_PlayerRestrained,(Suchen.)ADD_MINUTES:1,"Du durchsuchst die Regale, findest|aber nur Bücher über Philosophie.",50,0,0,
+60,0,0,!Common_PlayerRestrained,(Suchen.)ADD_MINUTES:1,"Du durchsuchst die Regale, findest|aber nur Geschichtsbücher.",60,0,0,
+60,0,0,CanSit,(Hinsetzen.)ADD_MINUTES:1,Du setzt und entspannst dich auf der großen Couch.|Sie ist recht bequem und bietet Platz für zwei.,65,0,0,
+61,0,0,!Common_PlayerRestrained,(Suchen.)ADD_MINUTES:1,"Du durchsuchst die Regale, findest|aber nur Geschichtsbücher.",61,0,0,
+65,0,0,,(Aufstehen.)ADD_MINUTES:1,Du erhebst dich von der Couch.,60,0,0,
+70,0,0,!Common_PlayerRestrained,(Den Schreibtisch|untersuchen.)ADD_MINUTES:1,"Du untersuchst den Schreibtisch,|findest aber nichts Interessantes.",70,0,0,SearchDesk()
+70,0,0,!Common_PlayerRestrained,(Die Tasche durchsuchen.)ADD_MINUTES:1,Du öffnest die Tasche der Lehrerin Yuki.,71,0,0,
+70,0,0,CanCheckYuki,(Nach Yuki sehen.),,70,0,0,CheckYuki()
+71,0,0,CanStealEgg,(Vibrierendes Ei stehlen.),Du nimmst das vibrierende Ei aus Yukis Tasche.,71,0,0,StealEgg()
+71,0,0,CanStealPill,(Schlaftablette stehlen.),Du nimmst die Schlaftablette aus Yukis Tasche.,71,0,0,StealPill()
+71,0,0,CanStealArmbinder,(Monohandschuh stehlen.),Du nimmst den Monohandschuh aus Yukis Tasche.,71,0,0,StealArmbinder()
+71,0,0,CanStealTape,(Klebeband stehlen.),Du nimmst das Klebeband aus Yukis Tasche.,71,0,0,StealTape()
+71,0,0,,(Die Tasche weglegen.),Du lässt die Tasche im Raum liegen.,70,0,0,
+80,0,0,!Common_PlayerRestrained,(Anklopfen.),"Du klopfst an die Tür, aber es antwortet niemand.",80,0,0,
+80,0,0,,(Lauschen.)ADD_MINUTES:1,"Du drückst dein Ohr gegen die Tür,|aber es ist nichts zu hören.",80,0,0,
+80,0,0,!Common_PlayerRestrained,(Öffnen.),"Du versuchst die Tür zu öffnen, aber sie ist abge-|schlossen. Du bräuchtest einen passenden Schlüssel.",80,0,0,UnlockDoor()
+80,0,0,!Common_PlayerRestrained,(Aufbrechen.)ADD_MINUTES:1,"Du trittst und rammst deine Schulter gegen|die Tür, aber sie bleibt fest verschlossen.",80,0,0,ForceDoor()
+81,0,0,,(Öffnen.),,81,0,0,OpenDoor()
+85,0,0,!Common_PlayerRestrained,(Die Bücher|durchsuchen.)ADD_MINUTES:1,Du findest nur Bücher über Psychologie.,85,0,0,
+85,0,0,!Common_PlayerRestrained,(Das Loch|untersuchen.)ADD_MINUTES:1,"Du untersuchst das dunkle Loch im Regal.|Es ist tief, dein Arm reicht nicht bis zum Ende.",86,0,0,
+86,0,0,,(Ins Loch steigen.)ADD_MINUTES:1,"Du kannst dich gerade so ins Loch quetschen.|Bist du sicher, dass du da rein willst?",87,0,0,NoLeave()
+87,0,0,,(Hinein.)ADD_MINUTES:1,Du rutschst tiefer hinein und bleibst stecken.|Die andere Seite ist sehr dunkel und staubig.,88,0,0,StuckInHole()
+87,0,0,,(Raus da.)ADD_MINUTES:1,Du kommst vorsichtig aus dem Loch heraus.,85,0,0,AllowLeave()
+87,0,0,!PenInHole,(Einen Stift|liegen lassen.),Du hinterlässt einen Stift im dunklen Loch.,87,0,0,LeavePenInHole()
+87,0,0,PenInHole,(Den Stift nehmen.),Du nimmst deinen Stift aus dem dunklen Loch.,87,0,0,TakePenInHole()
+88,0,0,,(Dich tiefer|hineinzwängen.),"Du versuchst, tiefer in das Loch zu|kriechen, aber du kommst nicht weiter.",88,0,0,TwoMinutes()
+88,0,0,,(Dich herauszwängen.),"Du versuchst wieder herauszukommen,|aber du steckst fest.",88,0,0,StruggleBack()
+88,0,0,,(Das Regal treten.),"Du trittst wüst und unbeholfen gegen|das Regal, aber es bringt nichts.",88,0,0,TwoMinutes()
+88,0,0,,(Geduldig warten.),"Du wartest ein paar Minuten, aber|niemand kommt, um dir zu helfen.",88,0,0,TwoMinutes()
+88,0,0,,HILFE!!!,"Du schreist um Hilfe, aber|niemand kommt dir zur Rettung.",88,0,0,TwoMinutes()
+88,0,0,!PenInHole,(Einen Stift|liegen lassen.),Du hinterlässt einen Stift im dunklen Loch.,88,0,0,LeavePenInHole()
+88,0,0,PenInHole,(Den Stift nehmen.),Du nimmst deinen Stift aus dem dunklen Loch.,88,0,0,TakePenInHole()
+90,0,0,CanClimb,(Klettern.)ADD_MINUTES:1,"Du kletterst wie ein Äffchen am|Regal hoch, findest aber nichts.",90,0,0,Climb()
+90,0,0,!CanClimb,(Klettern.)ADD_MINUTES:1,"Du versuchst am Regal hochzuklettern,|schaffst es aber nicht und gibst auf.",90,0,0,
+100,0,0,!Common_PlayerRestrained,(Suchen.)ADD_MINUTES:1,"Du siehst eine Menge kontroverser Bücher, aber|es ist nichts wirklich Interessantes mehr da.",100,0,0,SearchO()
+101,0,0,,(Die Inhaltsangabe|lesen.)ADD_MINUTES:1,"Es scheint die Geschichte einer Frau zu sein,|die ihre Unterwürfige Seite entdeckt.",101,0,0,
+101,0,0,,(Es aufschlagen.),"Als du durch das Buch blätterst,|findest du eine Einladungskarte.",102,0,0,
+102,0,0,,(Die Einladung lesen.)ADD_MINUTES:1,"Es ist eine Einladung zu einem gewissen|""Bondage-Club"", der in der Stadt liegen soll.",103,0,0,
+103,0,0,,(Mitnehmen.),Du steckst sowohl das Buch als auch die|Einladung ein. Könnte nützlich werden.,100,0,0,TakeInvitation()
+105,0,0,!Common_PlayerRestrained,(Suchen.)ADD_MINUTES:1,"Du durchsuchst den hölzernen Schrank,|findest aber nichts Interessantes.",105,0,0,SearchCabinet()
+106,0,0,!Common_PlayerRestrained,(Suchen.)ADD_MINUTES:1,"Du durchsuchst den Raum, findest|aber nichts Interessantes.",106,0,0,
+106,0,0,,(Den Tisch untersuchen.),"Der Tisch ist riesig. Er weist metallene|Ringe auf, es ist aber nichts daran befestigt.",106,0,0,
+106,0,0,,(Die Stühle untersuchen.),"Die Stühle sehen bequem aus. Der hinterste|ist riesig und es ist ein ""S"" darin eingraviert.",106,0,0,
+106,0,0,,(Das Gemälde|untersuchen.),"Es ist ein streng aussehender, alter Mann|abgebildet, offenbar der Gründer der Schule.",106,0,0,

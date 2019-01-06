@@ -22,56 +22,56 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 130,0,0,Common_PlayerRestrained,"Sarah, can you help me?",,130,0,0,BegForRelease()
 130,0,0,Common_PlayerGagged,"@Nanghn, uuumng!",(She giggles)  You're so cute with that gag.,130,0,0,
 130,0,0,Common_PlayerGagged,(Bow your head.),You're a nice submissive you know?,130,0,0,BowHead()
-130,0,0,GetTapeAvail,Anything else to spice|things up?  (1 minute),Yes!  I have something you can use here.|(She walks around and returns with some tape.),130,0,0,GetTape()
-130,0,0,IsModel,Shouldn't you undress|like Julia? (1 minute),(She giggles.)  Indeed.|(She strips to her underwear.),140,0,0,"SetCloth(1, 0, 0)"
-130,0,0,IsModel,Show some more skin|blondie.  (1 minute),Blondie?  Mmmh.  Ok.|(She strips to her underwear.),140,0,0,"SetCloth(1, -1, 1)"
-130,0,0,IsModel,You would be cute without|that outfit.  (1 minute),You really think so?|(She strips to her underwear.),140,0,0,"SetCloth(1, 1, 0)"
-140,0,0,GetTapeAvail,Anything else to spice|things up?  (1 minute),Yes!  I have something you can use here.|(She walks around and returns with some tape.),140,0,0,GetTape()
-140,0,0,IsModel,Common girl!  You can|do better.  (1 minute),"I know, I know, I was teasing.|(She playfully removes her undies.)",150,0,0,"SetCloth(2, 0, 1)"
-140,0,0,IsModel,I think you know what|to do now.  (1 minute),I certainly do.  For art!|(She playfully removes her undies.),150,0,0,"SetCloth(2, 0, 0)"
-140,0,0,IsModel,Do you dare stripping?|(Giggle shyly.)  (1 minute),Ah!  An easy dare!|(She playfully removes her undies.),150,0,0,"SetCloth(2, 0, -1)"
-140,0,0,IsModel,Let's see that pose with|your outfit.  (1 minute),Try to make your mind.|(She dresses back and pouts.),130,0,0,"SetCloth(0, 0, 0)"
-150,0,0,GetTapeAvail,Anything else to spice|things up?  (1 minute),Yes!  I have something you can use here.|(She walks around and returns with some tape.),150,0,0,GetTape()
-150,0,0,IsModel,Try the pose with your|undies on.  (1 minute),It won't be as sexy though.|(She puts back her underwear and pouts.),140,0,0,"SetCloth(1, 0, 0)"
-150,0,0,IsModel,Let's try your outfit|again.  (1 minute),Really?  I'm not pretty enough?|(She puts back her outfit and pouts.),130,0,0,"SetCloth(0, 0, 0)"
+130,0,0,GetTapeAvail,Anything else to spice|things up? ADD_MINUTES:1,Yes!  I have something you can use here.|(She walks around and returns with some tape.),130,0,0,GetTape()
+130,0,0,IsModel,Shouldn't you undress|like Julia?ADD_MINUTES:1,(She giggles.)  Indeed.|(She strips to her underwear.),140,0,0,"SetCloth(1, 0, 0)"
+130,0,0,IsModel,Show some more skin|blondie. ADD_MINUTES:1,Blondie?  Mmmh.  Ok.|(She strips to her underwear.),140,0,0,"SetCloth(1, -1, 1)"
+130,0,0,IsModel,You would be cute without|that outfit. ADD_MINUTES:1,You really think so?|(She strips to her underwear.),140,0,0,"SetCloth(1, 1, 0)"
+140,0,0,GetTapeAvail,Anything else to spice|things up? ADD_MINUTES:1,Yes!  I have something you can use here.|(She walks around and returns with some tape.),140,0,0,GetTape()
+140,0,0,IsModel,Common girl!  You can|do better. ADD_MINUTES:1,"I know, I know, I was teasing.|(She playfully removes her undies.)",150,0,0,"SetCloth(2, 0, 1)"
+140,0,0,IsModel,I think you know what|to do now. ADD_MINUTES:1,I certainly do.  For art!|(She playfully removes her undies.),150,0,0,"SetCloth(2, 0, 0)"
+140,0,0,IsModel,Do you dare stripping?|(Giggle shyly.) ADD_MINUTES:1,Ah!  An easy dare!|(She playfully removes her undies.),150,0,0,"SetCloth(2, 0, -1)"
+140,0,0,IsModel,Let's see that pose with|your outfit. ADD_MINUTES:1,Try to make your mind.|(She dresses back and pouts.),130,0,0,"SetCloth(0, 0, 0)"
+150,0,0,GetTapeAvail,Anything else to spice|things up? ADD_MINUTES:1,Yes!  I have something you can use here.|(She walks around and returns with some tape.),150,0,0,GetTape()
+150,0,0,IsModel,Try the pose with your|undies on. ADD_MINUTES:1,It won't be as sexy though.|(She puts back her underwear and pouts.),140,0,0,"SetCloth(1, 0, 0)"
+150,0,0,IsModel,Let's try your outfit|again. ADD_MINUTES:1,Really?  I'm not pretty enough?|(She puts back her outfit and pouts.),130,0,0,"SetCloth(0, 0, 0)"
 160,0,5,CollarRemarkReady,You're good enough|to be collared.,You think?  Thanks Miss.|(She blushes and smiles.),160,1,1,CollarRemark()
 160,0,0,EggInside,Sarah.  Are you|enjoying the egg?,I am!  Thank you so much.|It's buzzing remind me of you.,160,0,0,
-160,2,0,Common_PlayerNotGagged,(Kiss her.)|(1 minute),"(She blushes.)  You're so|nice, you remind me of Amanda.",160,0,0,Kiss()
-160,0,0,,(Tighten the ropes.)|(1 minute),The ropes are as tight as they can be.,160,0,0,Tighten()
-160,0,0,Common_PlayerNotRestrained,(Untie her.)|(1 minute),"Ooooooh, why did you untie me?|(She pulls her tongue and takes her pose.)",150,0,0,Untie()
-160,0,0,Common_PlayerNotRestrained,(Tickle her.)|(1 minute),You're funny.  But is that the best you can do?|(She giggles but isn't impressed by your tickling.),160,0,0,
+160,2,0,Common_PlayerNotGagged,(Kiss her.)ADD_MINUTES:1,"(She blushes.)  You're so|nice, you remind me of Amanda.",160,0,0,Kiss()
+160,0,0,,(Tighten the ropes.)ADD_MINUTES:1,The ropes are as tight as they can be.,160,0,0,Tighten()
+160,0,0,Common_PlayerNotRestrained,(Untie her.)ADD_MINUTES:1,"Ooooooh, why did you untie me?|(She pulls her tongue and takes her pose.)",150,0,0,Untie()
+160,0,0,Common_PlayerNotRestrained,(Tickle her.)ADD_MINUTES:1,You're funny.  But is that the best you can do?|(She giggles but isn't impressed by your tickling.),160,0,0,
 160,0,0,PaintAvail,(Paint Sarah.)|(30 minutes),(You carefully paint her and show the result.)|Wow!  This is such a kinky painting.  I love it!,160,0,0,Paint()
-170,0,0,CrotchRopeReady,(Play with the crotch|rope.)  (1 minute),(You play while she trembles and falls on|her knees.  Ready to have a huge orgasm.),200,0,0,OrgasmStart()
-170,0,0,,(Tighten the ropes.)|(1 minute),The ropes are as tight as they can be.,170,0,0,Tighten()
-170,0,0,Common_PlayerNotRestrained,(Ungag her.)|(1 minute),(She stretches her jaw and smiles)|Do you have a bigger gag coming up?,160,0,0,Ungag()
-170,0,0,Common_PlayerNotRestrained,(Tickle her.)|(1 minute),(She giggles but isn't impressed by your tickling.),170,0,0,
+170,0,0,CrotchRopeReady,(Play with the crotch|rope.) ADD_MINUTES:1,(You play while she trembles and falls on|her knees.  Ready to have a huge orgasm.),200,0,0,OrgasmStart()
+170,0,0,,(Tighten the ropes.)ADD_MINUTES:1,The ropes are as tight as they can be.,170,0,0,Tighten()
+170,0,0,Common_PlayerNotRestrained,(Ungag her.)ADD_MINUTES:1,(She stretches her jaw and smiles)|Do you have a bigger gag coming up?,160,0,0,Ungag()
+170,0,0,Common_PlayerNotRestrained,(Tickle her.)ADD_MINUTES:1,(She giggles but isn't impressed by your tickling.),170,0,0,
 170,0,0,PaintAvail,(Paint Sarah.)|(30 minutes),(You carefully paint her and show the result.)|(She looks at your work of art and nods happily.),170,0,0,Paint()
-180,0,0,CrotchRopeReady,(Play with the crotch|rope.)  (1 minute),(You play while she trembles and falls on|her knees.  Ready to have a huge orgasm.),250,0,0,OrgasmStart()
-180,0,0,,(Tighten the ropes.)|(1 minute),The ropes are as tight as they can be.,180,0,0,Tighten()
-180,0,0,Common_PlayerNotRestrained,(Ungag her.)|(1 minute),(She smiles at you.)  This tape|was the best idea I've ever had.,160,0,0,Ungag()
-180,0,0,Common_PlayerNotRestrained,(Tickle her.)|(1 minute),(She giggles but isn't impressed by your tickling.),180,0,0,
+180,0,0,CrotchRopeReady,(Play with the crotch|rope.) ADD_MINUTES:1,(You play while she trembles and falls on|her knees.  Ready to have a huge orgasm.),250,0,0,OrgasmStart()
+180,0,0,,(Tighten the ropes.)ADD_MINUTES:1,The ropes are as tight as they can be.,180,0,0,Tighten()
+180,0,0,Common_PlayerNotRestrained,(Ungag her.)ADD_MINUTES:1,(She smiles at you.)  This tape|was the best idea I've ever had.,160,0,0,Ungag()
+180,0,0,Common_PlayerNotRestrained,(Tickle her.)ADD_MINUTES:1,(She giggles but isn't impressed by your tickling.),180,0,0,
 180,0,0,PaintAvail,(Paint Sarah.)|(30 minutes),(You carefully paint her and show the result.)|(She looks at your work of art and nods happily.),180,0,0,Paint()
 200,0,0,,Do you want to|climax subbie girl?,"(She nods slowly, trying to control herself.)",210,0,1,
 200,0,0,,So this slut|wants to cum?,"(She shakes her head from left to right, then|from up to down, trying to control herself.)",210,-1,0,
 200,0,0,,You seem ready|to reach heaven.,"(She nods happily, trying to control herself.)",210,1,0,
-200,0,0,,Poor girl.|(Help her up.) (1 minute),(You help her stand up as she|slowly regains control of herself.),170,0,0,
-210,0,0,,You deserve it.|(Pleasure her.) (1 minute),"(You play with her crotch rope and she gets|a quiet orgasm.  Some notice it, other don't.)",220,1,0,Orgasm()
-210,0,0,,You're mine now.|(Pleasure her.) (1 minute),"(You play with her crotch rope and she gets|a quiet orgasm.  Some notice it, other don't.)",220,0,1,Orgasm()
-210,0,0,,You don't deserve it.|(Help her up.) (1 minute),(You deny her of her orgasm and help|her stand up.  She makes puppy eyes at you.),170,-1,1,
-210,0,0,,Not in class.|(Help her up.) (1 minute),(You deny her of her orgasm and help|her stand up.  She makes puppy eyes at you.),170,-1,-1,
-220,0,0,,Good girl.|(Help her up.) (1 minute),(She nods and trembles while you pick|her up and raise her on her feet.),170,1,0,
-220,0,0,,You're a whore.|(Help her up.) (1 minute),(She frowns and trembles while you pick|her up and raise her on her feet.),170,-1,1,
-220,0,0,,Next time I'll be tied up.|(Help her up.) (1 minute),(She giggles and trembles while you pick|her up and raise her on her feet.),170,0,-1,
-220,0,0,,(Stay silent and help|her stand up.) (1 minute),(She still trembles while you pick|her up and raise her on her feet.),170,0,0,
+200,0,0,,Poor girl.|(Help her up.)ADD_MINUTES:1,(You help her stand up as she|slowly regains control of herself.),170,0,0,
+210,0,0,,You deserve it.|(Pleasure her.)ADD_MINUTES:1,"(You play with her crotch rope and she gets|a quiet orgasm.  Some notice it, other don't.)",220,1,0,Orgasm()
+210,0,0,,You're mine now.|(Pleasure her.)ADD_MINUTES:1,"(You play with her crotch rope and she gets|a quiet orgasm.  Some notice it, other don't.)",220,0,1,Orgasm()
+210,0,0,,You don't deserve it.|(Help her up.)ADD_MINUTES:1,(You deny her of her orgasm and help|her stand up.  She makes puppy eyes at you.),170,-1,1,
+210,0,0,,Not in class.|(Help her up.)ADD_MINUTES:1,(You deny her of her orgasm and help|her stand up.  She makes puppy eyes at you.),170,-1,-1,
+220,0,0,,Good girl.|(Help her up.)ADD_MINUTES:1,(She nods and trembles while you pick|her up and raise her on her feet.),170,1,0,
+220,0,0,,You're a whore.|(Help her up.)ADD_MINUTES:1,(She frowns and trembles while you pick|her up and raise her on her feet.),170,-1,1,
+220,0,0,,Next time I'll be tied up.|(Help her up.)ADD_MINUTES:1,(She giggles and trembles while you pick|her up and raise her on her feet.),170,0,-1,
+220,0,0,,(Stay silent and help|her stand up.)ADD_MINUTES:1,(She still trembles while you pick|her up and raise her on her feet.),170,0,0,
 250,0,0,,Do you want to|climax subbie girl?,"(She nods slowly, trying to control herself.)",260,0,1,
 250,0,0,,So this slut|wants to cum?,"(She shakes her head from left to right, then|from up to down, trying to control herself.)",260,-1,0,
 250,0,0,,You seem ready|to reach heaven.,"(She nods happily, trying to control herself.)",260,1,0,
-250,0,0,,Poor girl.|(Help her up.) (1 minute),(You help her stand up as she|slowly regains control of herself.),180,0,0,
-260,0,0,,You deserve it.|(Pleasure her.) (1 minute),"(You play with her crotch rope and she gets|a quiet orgasm.  Some notice it, other don't.)",270,1,0,Orgasm()
-260,0,0,,You're mine now.|(Pleasure her.) (1 minute),"(You play with her crotch rope and she gets|a quiet orgasm.  Some notice it, other don't.)",270,0,1,Orgasm()
-260,0,0,,You don't deserve it.|(Help her up.) (1 minute),(You deny her of her orgasm and help|her stand up.  She makes puppy eyes at you.),180,-1,1,
-260,0,0,,Not in class.|(Help her up.) (1 minute),(You deny her of her orgasm and help|her stand up.  She makes puppy eyes at you.),180,-1,-1,
-270,0,0,,Good girl.|(Help her up.) (1 minute),(She nods and trembles while you pick|her up and raise her on her feet.),180,1,0,
-270,0,0,,You're a whore.|(Help her up.) (1 minute),(She frowns and trembles while you pick|her up and raise her on her feet.),180,-1,1,
-270,0,0,,Next time I'll be tied up.|(Help her up.) (1 minute),(She giggles and trembles while you pick|her up and raise her on her feet.),180,0,-1,
-270,0,0,,(Stay silent and help|her stand up.) (1 minute),(She still trembles while you pick|her up and raise her on her feet.),180,0,0,
+250,0,0,,Poor girl.|(Help her up.)ADD_MINUTES:1,(You help her stand up as she|slowly regains control of herself.),180,0,0,
+260,0,0,,You deserve it.|(Pleasure her.)ADD_MINUTES:1,"(You play with her crotch rope and she gets|a quiet orgasm.  Some notice it, other don't.)",270,1,0,Orgasm()
+260,0,0,,You're mine now.|(Pleasure her.)ADD_MINUTES:1,"(You play with her crotch rope and she gets|a quiet orgasm.  Some notice it, other don't.)",270,0,1,Orgasm()
+260,0,0,,You don't deserve it.|(Help her up.)ADD_MINUTES:1,(You deny her of her orgasm and help|her stand up.  She makes puppy eyes at you.),180,-1,1,
+260,0,0,,Not in class.|(Help her up.)ADD_MINUTES:1,(You deny her of her orgasm and help|her stand up.  She makes puppy eyes at you.),180,-1,-1,
+270,0,0,,Good girl.|(Help her up.)ADD_MINUTES:1,(She nods and trembles while you pick|her up and raise her on her feet.),180,1,0,
+270,0,0,,You're a whore.|(Help her up.)ADD_MINUTES:1,(She frowns and trembles while you pick|her up and raise her on her feet.),180,-1,1,
+270,0,0,,Next time I'll be tied up.|(Help her up.)ADD_MINUTES:1,(She giggles and trembles while you pick|her up and raise her on her feet.),180,0,-1,
+270,0,0,,(Stay silent and help|her stand up.)ADD_MINUTES:1,(She still trembles while you pick|her up and raise her on her feet.),180,0,0,

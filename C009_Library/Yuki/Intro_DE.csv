@@ -1,0 +1,79 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,"Guten Tag, junge Dame. Ich heiße dich noch|nie gesehen, bist du eine neue Schülerin?",Library.jpg
+1,0,0,,"Willkommen an unserem College,|ich bin Miss Yuki.",Library.jpg
+2,0,0,,Bitte verhalte dich in der Bibliothek leise.,Library.jpg
+5,0,0,Common_PlayerGagged,"Junge Dame, warum bist du geknebelt?",Library.jpg
+5,0,0,Common_PlayerRestrained,"Junge Dame, warum bist du gefesselt?",Library.jpg
+6,0,0,,,Library.jpg
+10,0,0,,Prima! Mein kleines Schoßhündchen ist da.|Du erinnerst dich hoffentlich an unsere Abmachung.,Library.jpg
+20,0,0,,Da bist du ja! Ich suche schon seit Stunden|nach dir. Wie bist du entkommen?,Library.jpg
+21,0,0,,"Ich bin von deiner Flucht aus der Isolation beeindruckt.|Meinst du, du kannst dich aus allen Fesseln befreien?",Library.jpg
+22,0,0,,"Versprich mir, leise zu sein|und keinen Ärger zu machen.",Library.jpg
+30,0,0,,"Wenn das nicht mein unbegabtes Schoßhündchen ist.|Ich hoffe, du hast aus der Isolation etwas gelernt.",Library.jpg
+31,0,0,,"Versprich mir, leise zu sein|und keinen Ärger zu machen.",Library.jpg
+40,0,0,,Hoffentlich hast du etwas aus der Isolation gelernt.|Hältst du dich jetzt von Ärger fern?,Library.jpg
+41,0,0,,"Versprich mir, leise zu sein|und keinen Ärger zu machen.",Library.jpg
+50,0,0,,Du musst COMMON_PLAYERNAME sein.|Miss Mildred hat mir von dir erzählt.,Library.jpg
+60,0,0,,"Junge Dame, dein Nachsitzen war dir hoffentlich|eine Lehre, keine Raufereien zu provozieren.",Library.jpg
+70,0,0,,"Junge Dame, dein Nachsitzen war dir|hoffentlich eine Lehre, keinen Ärger zu machen.",Library.jpg
+80,0,0,,"(Yuki zieht dich an den Beinen heraus.)|Junge Dame, was hast du da drin gemacht?",Hole.jpg
+81,0,0,,,Hole.jpg
+82,0,0,,,Hole.jpg
+83,0,0,,,Hole.jpg
+90,0,0,,"(Yuki tippt dir auf die Schulter.)|Junge Dame, was machst du da?",Gwendoline.jpg
+91,0,0,,,Gwendoline.jpg
+92,0,0,,,Gwendoline.jpg
+100,0,0,,Nach welchem Buch suchst du?,Library.jpg
+100,0,0,IsolationEarlyReleaseYuki,"Hallo, mein kleines Schoßhündchen.|Nach welchem Buch suchst du denn?",Library.jpg
+110,0,0,,Nach welchem Buch suchst du?,Library.jpg
+120,0,0,,Sieh im Literatur-Bereich nach. Vom Hauptgang|aus das zweite Regal zu deiner Linken.,Library.jpg
+180,0,0,,"(Yuki zieht dich an den Beinen heraus.)|Junge Dame, was hast du da drin gemacht?",Hole.jpg
+181,0,0,,,Hole.jpg
+182,0,0,,,Hole.jpg
+183,0,0,,,Hole.jpg
+190,0,0,,"(Yuki tippt dir auf die Schulter.)|Junge Dame, was machst du da?",Gwendoline.jpg
+191,0,0,,,Gwendoline.jpg
+192,0,0,,,Gwendoline.jpg
+200,0,0,,Brauchst du sonst noch etwas?,Library.jpg
+200,-3,0,,(Sie schaut dich böse an.)|Was willst du jetzt?,Library.jpg
+200,0,0,LittlePet,"Ich nehme deine Dienste später in Anspruch,|Mäuschen. Aber brauchst du sonst noch etwas?",Library.jpg
+200,0,0,Common_PlayerRestrained,"Du hast dir offenbar Ärger|eingefangen, junge Dame.",Library.jpg
+200,0,0,Common_PlayerGagged,"Du hast dir offenbar Ärger|eingefangen, junge Dame.",Library.jpg
+205,0,0,,"Was möchtest du|wissen, junge Dame?",Library.jpg
+210,0,0,,"Du brauchst also meine Hilfe,|an deinen Stift zu kommen?",Library.jpg
+220,0,0,,,Library.jpg
+230,0,0,,,Hole.jpg
+240,0,0,,,Hole.jpg
+250,0,0,,,HoleYuki.jpg
+255,0,0,,,HoleYuki.jpg
+260,0,0,,,HoleYuki.jpg
+270,0,0,,,Hole.jpg
+280,0,0,,"Junge Dame, du hast versprochen,|artig zu sein. Was treibst du also da drin?",Hole.jpg
+290,0,0,,"Junge Dame, du hast versprochen, artig|zu sein. Jetzt sag mir, was du da machst.",Gwendoline.jpg
+291,0,0,,,Library.jpg
+300,0,0,,,Library.jpg
+310,0,0,,,Library.jpg
+320,0,0,,,DeskFloor.jpg
+330,0,0,,,DeskFloor.jpg
+340,0,0,,,DeskFloorGagged.jpg
+400,0,0,,,Library.jpg
+410,0,0,,(Yuki schläft noch immer am Boden.),LibraryFloor.jpg
+420,0,0,,,Library.jpg
+430,0,0,,,Library.jpg
+500,0,0,,"(Yuki versucht noch immer, sich freizukämpfen.)",HoleYuki.jpg
+510,0,0,,"(Yuki versucht noch immer, sich freizukämpfen.|Ihr Höschen liegt auf dem Boden.)",HoleYukiNoPanties.jpg
+511,0,0,,(Yuki steckt noch im Loch fest und ist tropfend|und zitternd kurz vor einem Orgasmus.),HoleYukiNoPanties.jpg
+512,0,0,,(Yuki steckt noch im Loch und erholt sich schwer|atmend von einem wundervollen Orgasmus.),HoleYukiNoPantiesOrgasm.jpg
+520,0,0,,"(Yuki versucht noch immer, sich freizukämpfen.|Sie ist in einem Keuschheitsgürtel gefangen.)",HoleYukiChastityBelt.jpg
+530,0,0,,,Hole.jpg
+600,0,0,,,Library.jpg
+610,0,0,,,Library.jpg
+620,0,0,,,Library.jpg
+630,0,0,,,Library.jpg
+640,0,0,,,Library.jpg
+650,0,0,,(Sie starrt dich an und schweigt.),Library.jpg
+700,0,0,,,Library.jpg
+710,0,0,,,Library.jpg
+720,0,0,,,LibraryOrgasm.jpg
+730,0,0,,,Library.jpg
+750,0,0,,,Library.jpg

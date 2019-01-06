@@ -1,8 +1,8 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,!BoltUndone,(Inspect it.)|(1 minute),"This ""horse"" is used to whip on every angles.|There's an old rusty bolt on the back side.",0,0,0,AllowBolt()
-0,0,0,BoltUndone,(Inspect it.)|(1 minute),"This ""horse"" is used to whip on every angles.|A metal sheet fell when you undid the bolt.",0,0,0,
-0,0,0,BoltSeen,(Undo the bolt.)|(1 minute),The old bolt could be undone but not with|your bare hands.  You'll need a better grip.,0,0,0,
+0,0,0,!BoltUndone,(Inspect it.)ADD_MINUTES:1,"This ""horse"" is used to whip on every angles.|There's an old rusty bolt on the back side.",0,0,0,AllowBolt()
+0,0,0,BoltUndone,(Inspect it.)ADD_MINUTES:1,"This ""horse"" is used to whip on every angles.|A metal sheet fell when you undid the bolt.",0,0,0,
+0,0,0,BoltSeen,(Undo the bolt.)ADD_MINUTES:1,The old bolt could be undone but not with|your bare hands.  You'll need a better grip.,0,0,0,
 0,0,0,MetalAvail,(Pick up the|metal sheet.),You pick up the metal sheet.,0,0,0,TakeMetal()
-0,0,0,,(Ride the horse.)|(1 minute),You try to reach the top cuffs to lock your|wrist but cannot reach them in your position.,10,0,0,
-10,0,0,,(Try to stimulate.)|(1 minute),You try to stimulate yourself on the|device and it feels somewhat pleasurable.,10,0,0,
-10,0,0,,(Step down.)|(1 minute),You pull back from the device.,0,0,0,
+0,0,0,,(Ride the horse.)ADD_MINUTES:1,You try to reach the top cuffs to lock your|wrist but cannot reach them in your position.,10,0,0,
+10,0,0,,(Try to stimulate.)ADD_MINUTES:1,You try to stimulate yourself on the|device and it feels somewhat pleasurable.,10,0,0,
+10,0,0,,(Step down.)ADD_MINUTES:1,You pull back from the device.,0,0,0,

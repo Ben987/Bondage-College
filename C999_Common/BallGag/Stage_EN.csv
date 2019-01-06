@@ -1,7 +1,7 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Inspect the gag.)|(1 minute),This big ball gag has a full head harness.|It will be hard to be understood while wearing it.,0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Gag yourself.)|(1 minute),"You pull the harness over your head,|push the ball in and strap the buckles.",10,0,0,SelfGag()
-10,0,0,HasLooseBallGag,(Inspect the loose gag.)|(1 minute),This big ball gag has a full head harness.|It will be hard to be understood while wearing it.,10,0,0,ShowImage()
-10,0,0,,(Chew on the ball.)|(1 minute),You chew on the gag.  It helps your jaw|a little but doesn't damage the gag at all.,10,0,0,
-10,0,0,,(Try to spit the ball.)|(1 minute),You try to spit the ball and push it with your tongue|but it doesn't move.  You'll need your hands.,10,0,0,
-10,0,0,Common_PlayerNotRestrained,(Ungag yourself.)|(1 minute),"You undo all the straps, pull out|the ball and can now talk again.",0,0,0,SelfUngag()
+0,0,0,,(Inspect the gag.)ADD_MINUTES:1,This big ball gag has a full head harness.|It will be hard to be understood while wearing it.,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Gag yourself.)ADD_MINUTES:1,"You pull the harness over your head,|push the ball in and strap the buckles.",10,0,0,SelfGag()
+10,0,0,HasLooseBallGag,(Inspect the loose gag.)ADD_MINUTES:1,This big ball gag has a full head harness.|It will be hard to be understood while wearing it.,10,0,0,ShowImage()
+10,0,0,,(Chew on the ball.)ADD_MINUTES:1,You chew on the gag.  It helps your jaw|a little but doesn't damage the gag at all.,10,0,0,
+10,0,0,,(Try to spit the ball.)ADD_MINUTES:1,You try to spit the ball and push it with your tongue|but it doesn't move.  You'll need your hands.,10,0,0,
+10,0,0,Common_PlayerNotRestrained,(Ungag yourself.)ADD_MINUTES:1,"You undo all the straps, pull out|the ball and can now talk again.",0,0,0,SelfUngag()

@@ -23,27 +23,27 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 200,0,0,BondageNotConfronted,"Admets-le petite, |tu adorerais être ligotée.","Oh, je... (Elle devient cramoisie.)|No... Ou... No... le cours va commencer.",200,-1,1,ConfrontBondage()
 200,0,0,StopRopeSubAllowed,"J'adore le bondage,|Pourrais-tu me ligoter ?","Je vois ! Tu es le genre ""soumise"", peut-être après|l'école. (Elle te fait un clin d'oeil.) De quoi on parlait ?",200,0,-2,StopRopeSub()
 200,0,0,,Pour les utiliser plus tard.|(Tu caches les cordes.),Plus tard ? (Elle te regarde avec curiosité.)|De quoi on parlait ?,200,0,0,StopRope()
-200,0,2,,(Tu la saisis et enlèves|son uniforme.) (1 minute),Oh non ! Pas encore !|(Elle essaye de se défendre mais elle échoue.),220,0,0,Strip()
-200,0,4,,"""Soumise"", enlève ton|uniforme. (1 minute)","N... Je... Oui, madame...|(Elle enlève docilement son haut et sa jupe.)",220,0,0,
-220,0,0,,(Tu la ligotes.)|(1 minute),(Tu enveloppes son corps et lui attaches|les bras derrière son dos. Elle gémit doucement.),230,0,0,Tie()
-220,0,0,,Remets tes vêtements.|(1 minute),Quel soulagement ! C'était embarrassant.,200,0,0,
+200,0,2,,(Tu la saisis et enlèves|son uniforme.)ADD_MINUTES:1,Oh non ! Pas encore !|(Elle essaye de se défendre mais elle échoue.),220,0,0,Strip()
+200,0,4,,"""Soumise"", enlève ton|uniforme.ADD_MINUTES:1","N... Je... Oui, madame...|(Elle enlève docilement son haut et sa jupe.)",220,0,0,
+220,0,0,,(Tu la ligotes.)ADD_MINUTES:1,(Tu enveloppes son corps et lui attaches|les bras derrière son dos. Elle gémit doucement.),230,0,0,Tie()
+220,0,0,,Remets tes vêtements.ADD_MINUTES:1,Quel soulagement ! C'était embarrassant.,200,0,0,
 230,0,0,,(Tu la retournes.), Quoi ? Mon dieu ! Qu'est-ce que tu fais ?|(Tu la forces à se retourner.),240,0,0,
-230,0,0,,(Tu la détaches.)|(1 minute),"(Tu la détaches doucement) Merci beaucoup !|C'est bon, je peux me rhabiller ?",220,0,0,Untie()
-230,0,0,,(Tu la chatouilles.)|(1 minute),(Elle rougit et ne peut s'arrêter de rire.)|Hé ! Ha ha ha ha ha ! Tu es amusante.,230,0,0,Tickle()
-230,1,0,,(Tu l'embrasses.)|(1 minute),Un autre baiser ?|(Elle devient cramoisie et te sourit.),230,0,0,Kiss()
-230,0,0,SidneyInBondage,(Tu la fais câliner |Sidney.) (1 min),(Les deux filles sont forcées de se câliner et de|se frotter.) Oh non ! Ce n'est pas convenable.,250,0,0,
+230,0,0,,(Tu la détaches.)ADD_MINUTES:1,"(Tu la détaches doucement) Merci beaucoup !|C'est bon, je peux me rhabiller ?",220,0,0,Untie()
+230,0,0,,(Tu la chatouilles.)ADD_MINUTES:1,(Elle rougit et ne peut s'arrêter de rire.)|Hé ! Ha ha ha ha ha ! Tu es amusante.,230,0,0,Tickle()
+230,1,0,,(Tu l'embrasses.)ADD_MINUTES:1,Un autre baiser ?|(Elle devient cramoisie et te sourit.),230,0,0,Kiss()
+230,0,0,SidneyInBondage,(Tu la fais câliner |Sidney.)ADD_MINUTES:1,(Les deux filles sont forcées de se câliner et de|se frotter.) Oh non ! Ce n'est pas convenable.,250,0,0,
 230,0,0,,Tu as l'air d'un ange|avec ce bondage.,(Elle rit et te sourit.),230,0,0,
-230,0,0,,"Si je te libère, je pourrais|te rattacher ? (1 min)",Oh oui ! Bien sûr !|(Tu la détaches et lui serre la main.),300,1,1,Untie()
-230,0,0,,"Si je te libère, plus tard,|tu me ligoteras ? (1 min)","(Rires.) C'est d'accord.|(Tu la détaches et lui serre la main.)",300,1,-2,Untie()
+230,0,0,,"Si je te libère, je pourrais|te rattacher ?ADD_MINUTES:1",Oh oui ! Bien sûr !|(Tu la détaches et lui serre la main.),300,1,1,Untie()
+230,0,0,,"Si je te libère, plus tard,|tu me ligoteras ?ADD_MINUTES:1","(Rires.) C'est d'accord.|(Tu la détaches et lui serre la main.)",300,1,-2,Untie()
 240,0,0,,(Tu la retournes.),(Tu la forces à se retourner.)|"Hum-hum ! En fait, je préfère te voir.",230,0,0,
-240,0,0,,(Tu la détaches.)|(1 minute),"(Tu la détaches doucement) Merci beaucoup !|C'est bon, je peux me rhabiller ?",220,0,0,Untie()
-240,0,0,,(Tu la chatouilles.)|(1 minute),(Elle rougit et ne peut s'arrêter de rire.)|Hé ! Ha ha ha ha ha ! Tu es amusante.,240,0,0,Tickle()
-240,0,0,,(Tu lui mets une fessée.)|(1 minute),(Tu lui en mets une autre mais elle passe mieux.)|Arrête !,240,0,0,Spank()
+240,0,0,,(Tu la détaches.)ADD_MINUTES:1,"(Tu la détaches doucement) Merci beaucoup !|C'est bon, je peux me rhabiller ?",220,0,0,Untie()
+240,0,0,,(Tu la chatouilles.)ADD_MINUTES:1,(Elle rougit et ne peut s'arrêter de rire.)|Hé ! Ha ha ha ha ha ! Tu es amusante.,240,0,0,Tickle()
+240,0,0,,(Tu lui mets une fessée.)ADD_MINUTES:1,(Tu lui en mets une autre mais elle passe mieux.)|Arrête !,240,0,0,Spank()
 240,0,0,,Tu sais que tu as|de jolies fesses ?, Vraiment ? (Son visage s'empourpre.),240,0,0,
-240,0,0,,"Si je te libère, je pourrais|te rattacher ? (1 min)",Oh oui ! Bien sûr !|(Tu la détaches et lui serre la main.),300,1,1,Untie()
-240,0,0,,"Si je te libère, plus tard,|tu me ligoteras ? (1 min)","(Rires.) C'est d'accord.|(Tu la détaches et lui serre la main.)",300,1,-2,Untie()
+240,0,0,,"Si je te libère, je pourrais|te rattacher ?ADD_MINUTES:1",Oh oui ! Bien sûr !|(Tu la détaches et lui serre la main.),300,1,1,Untie()
+240,0,0,,"Si je te libère, plus tard,|tu me ligoteras ?ADD_MINUTES:1","(Rires.) C'est d'accord.|(Tu la détaches et lui serre la main.)",300,1,-2,Untie()
 250,0,0,,(Tu les sépares.),Merci. C'était vraiment embarrassant.,230,0,0,
-250,0,0,,(Tu les forces à|s'embrasser.) (1 min),Un autre baiser ? C'est dégueu !|(Tu les rapproches pour un autre baiser.),260,0,0,ForceKiss()
+250,0,0,,(Tu les forces à|s'embrasser.)ADD_MINUTES:1,Un autre baiser ? C'est dégueu !|(Tu les rapproches pour un autre baiser.),260,0,0,ForceKiss()
 250,0,0,,Vous faites un joli|couple de bondage.,"(Elles te fixent, leurs regards en dit long.)",250,0,0,
 260,0,0,,(Tu les sépares.),Merci. C'était vraiment embarrassant.,230,0,0,
 260,0,0,,(Tu stoppes les baisers.),"Le prends pas mal Sidney,|mais tu n'es pas mon genre.",250,0,0,

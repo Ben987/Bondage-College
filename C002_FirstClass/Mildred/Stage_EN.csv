@@ -40,7 +40,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 200,0,0,Common_PlayerNotRestrained,(Talk to get|her attention.),,200,-1,0,Disturb()
 200,0,0,Common_PlayerNotRestrained,(Try to subdue|Miss Mildred.),Do you want to try to subdue and tie up Miss Mildred?|(Each student that helps gives better odds to do it.),210,0,0,
 200,0,0,Common_PlayerRestrained,Uummph!,(She ignores your screams|and the other students giggle.),200,0,0,
-200,0,0,Common_PlayerRestrained,(Tug on your cuffs.)|(1 minute),(You struggle futilely.  She's confident|that you will not escape and ignores you.),200,0,0,
+200,0,0,Common_PlayerRestrained,(Tug on your cuffs.)ADD_MINUTES:1,(You struggle futilely.  She's confident|that you will not escape and ignores you.),200,0,0,
 210,0,0,Common_PlayerNotRestrained,"(Yes, try to|subdue her.)",,210,-2,0,Subdue()
 210,0,0,,"(No, maybe later.)",You give up on your kidnapping plan.|(Miss Mildred continues to teach her class.),200,0,0,
 220,0,0,,A lesson from|you?  No way!,"(She hits you hard 6 times then cuffs and gags you.)|Since you cannot behave, you will stay like that.",220,0,1,RestrainPlayer()
@@ -51,21 +51,21 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 300,0,0,,"Lady, this class will|finally be interesting.",Nonsense!  I'm in charge of this class.|You are in a world of trouble little Miss.,310,0,0,
 300,0,0,,"If you cooperate, it|will be over quickly.",(She nods and stays silent.),310,0,1,
 300,0,0,,I didn't expect you|to be so pretty.,"(She blushes.)  Young lady,|what exactly are you planning?",310,1,0,
-310,0,0,Common_PlayerNotRestrained,(Tickle her.)|(1 minute),(She trashes to avoid you and laughs silently.)|You're only sinking deeper in trouble!,310,0,0,
-310,0,0,SearchAvail,(Search in her stuff.)|(1 minute),(You search in her stuff and find many|interesting items.)  You little thief!,310,-1,0,Search()
-320,0,0,Common_PlayerNotRestrained,(Tickle her.)|(1 minute),(She trashes to avoid you and laughs silently.),320,0,0,
-320,0,0,Common_PlayerNotRestrained,(Ungag her.)|(1 minute),(You slowly unbuckle her gag.)|Young lady!  This is highly inappropriate.,310,0,0,Ungag()
-330,0,0,Common_PlayerNotRestrained,(Tickle her.)|(1 minute),(She trashes to avoid you and laughs silently.)|You're only sinking deeper in trouble!,330,0,0,
-330,0,0,SearchAvail,(Search in her stuff.)|(1 minute),(You search in her stuff and find many|interesting items.)  You little thief!,330,-1,0,Search()
-340,0,0,Common_PlayerNotRestrained,(Tickle her.)|(1 minute),(She trashes to avoid you and laughs silently.),340,0,0,
-340,0,0,Common_PlayerNotRestrained,(Ungag her.)|(1 minute),(You slowly unbuckle her gag.)|Young lady!  This is highly inappropriate.,330,0,0,Ungag()
-410,0,0,Common_PlayerNotRestrained,(Whip her.)|(1 minute),(You whip her pretty hard with the crop.)|Little Miss!  You will regret what you're doing!,410,0,0,Whip()
-410,0,0,Common_PlayerNotRestrained,(Put away the crop.)|(1 minute),(You put away the crop and|get her back on her feet.),310,0,0,
-420,0,0,Common_PlayerNotRestrained,(Whip her.)|(1 minute),(You whip her pretty hard with the crop.)|(She screams angrily in her gag.),420,0,0,Whip()
-420,0,0,Common_PlayerNotRestrained,(Put away the crop.)|(1 minute),(You put away the crop and|get her back on her feet.),320,0,0,
-420,0,0,Common_PlayerNotRestrained,(Ungag her.)|(1 minute),(You slowly unbuckle her gag.)|Young lady!  This is highly inappropriate.,410,0,0,Ungag()
-430,0,0,Common_PlayerNotRestrained,(Whip her.)|(1 minute),(You whip her pretty hard with the crop.)|Little Miss!  You will regret what you're doing!,430,0,0,Whip()
-430,0,0,Common_PlayerNotRestrained,(Put away the crop.)|(1 minute),(You put away the crop and|get her back on her feet.),330,0,0,
-440,0,0,Common_PlayerNotRestrained,(Whip her.)|(1 minute),(You whip her pretty hard with the crop.)|(She screams angrily in her gag.),440,0,0,Whip()
-440,0,0,Common_PlayerNotRestrained,(Put away the crop.)|(1 minute),(You put away the crop and|get her back on her feet.),340,0,0,
-440,0,0,Common_PlayerNotRestrained,(Ungag her.)|(1 minute),(You slowly unbuckle her gag.)|Young lady!  This is highly inappropriate.,430,0,0,Ungag()
+310,0,0,Common_PlayerNotRestrained,(Tickle her.)ADD_MINUTES:1,(She trashes to avoid you and laughs silently.)|You're only sinking deeper in trouble!,310,0,0,
+310,0,0,SearchAvail,(Search in her stuff.)ADD_MINUTES:1,(You search in her stuff and find many|interesting items.)  You little thief!,310,-1,0,Search()
+320,0,0,Common_PlayerNotRestrained,(Tickle her.)ADD_MINUTES:1,(She trashes to avoid you and laughs silently.),320,0,0,
+320,0,0,Common_PlayerNotRestrained,(Ungag her.)ADD_MINUTES:1,(You slowly unbuckle her gag.)|Young lady!  This is highly inappropriate.,310,0,0,Ungag()
+330,0,0,Common_PlayerNotRestrained,(Tickle her.)ADD_MINUTES:1,(She trashes to avoid you and laughs silently.)|You're only sinking deeper in trouble!,330,0,0,
+330,0,0,SearchAvail,(Search in her stuff.)ADD_MINUTES:1,(You search in her stuff and find many|interesting items.)  You little thief!,330,-1,0,Search()
+340,0,0,Common_PlayerNotRestrained,(Tickle her.)ADD_MINUTES:1,(She trashes to avoid you and laughs silently.),340,0,0,
+340,0,0,Common_PlayerNotRestrained,(Ungag her.)ADD_MINUTES:1,(You slowly unbuckle her gag.)|Young lady!  This is highly inappropriate.,330,0,0,Ungag()
+410,0,0,Common_PlayerNotRestrained,(Whip her.)ADD_MINUTES:1,(You whip her pretty hard with the crop.)|Little Miss!  You will regret what you're doing!,410,0,0,Whip()
+410,0,0,Common_PlayerNotRestrained,(Put away the crop.)ADD_MINUTES:1,(You put away the crop and|get her back on her feet.),310,0,0,
+420,0,0,Common_PlayerNotRestrained,(Whip her.)ADD_MINUTES:1,(You whip her pretty hard with the crop.)|(She screams angrily in her gag.),420,0,0,Whip()
+420,0,0,Common_PlayerNotRestrained,(Put away the crop.)ADD_MINUTES:1,(You put away the crop and|get her back on her feet.),320,0,0,
+420,0,0,Common_PlayerNotRestrained,(Ungag her.)ADD_MINUTES:1,(You slowly unbuckle her gag.)|Young lady!  This is highly inappropriate.,410,0,0,Ungag()
+430,0,0,Common_PlayerNotRestrained,(Whip her.)ADD_MINUTES:1,(You whip her pretty hard with the crop.)|Little Miss!  You will regret what you're doing!,430,0,0,Whip()
+430,0,0,Common_PlayerNotRestrained,(Put away the crop.)ADD_MINUTES:1,(You put away the crop and|get her back on her feet.),330,0,0,
+440,0,0,Common_PlayerNotRestrained,(Whip her.)ADD_MINUTES:1,(You whip her pretty hard with the crop.)|(She screams angrily in her gag.),440,0,0,Whip()
+440,0,0,Common_PlayerNotRestrained,(Put away the crop.)ADD_MINUTES:1,(You put away the crop and|get her back on her feet.),340,0,0,
+440,0,0,Common_PlayerNotRestrained,(Ungag her.)ADD_MINUTES:1,(You slowly unbuckle her gag.)|Young lady!  This is highly inappropriate.,430,0,0,Ungag()

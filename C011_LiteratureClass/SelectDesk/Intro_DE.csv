@@ -1,5 +1,5 @@
 Stage,LoveReq,SubReq,VarReq,IntroText,Image
-0,0,0,,The class is almost full but the teacher is still missing.|There's an empty desk in the front and back rows.,TeacherPodium.jpg
+0,0,0,,"Der Raum ist fast voll, aber die Lehrerin fehlt. Es gibt in|der ersten und letzten Reihe noch je einen freien Platz.",TeacherPodium.jpg
 10,0,0,,,FrontDesk.jpg
 20,0,0,,,NatalieWaiting.jpg
 50,0,0,,,BackDesk.jpg

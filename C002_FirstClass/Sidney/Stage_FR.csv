@@ -24,8 +24,8 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 100,0,4,SubdueRemarkReady,"Admets-le. Tu adorerais|être comme elle.","(Elle reste silencieuse et devient cramoisie.)",100,0,1,SubdueRemark()
 100,0,0,SubdueRemarkReady,"Tape m'en cinq ! Enfin|un cours intéressant.","(Elle te frappe la paume de la main)|Le meilleur cours de maths de tous les temps.",100,1,0,SubdueRemark()
 100,0,0,SubdueRemarkReady,"Nous avons un nouveau|style de cours aujourd'hui.","Ouais ! C'est nettement mieux.",100,0,0,SubdueRemark()
-100,0,0,AmandaWhipReady,"Tu veux fouetter|Amanda ? (1 minute)","Ouais ! (Elle prend la cravache|et donne quelques coups à Amanda.)",100,1,0,AmandaWhip()
-100,0,0,SarahWhipReady,"Tu veux fouetter|Sarah ? (1 minute)","Mais carrément ! (Elle prend la cravache|et donne quelques coups à Sarah.)",100,1,0,SarahWhip()
+100,0,0,AmandaWhipReady,"Tu veux fouetter|Amanda ?ADD_MINUTES:1","Ouais ! (Elle prend la cravache|et donne quelques coups à Amanda.)",100,1,0,AmandaWhip()
+100,0,0,SarahWhipReady,"Tu veux fouetter|Sarah ?ADD_MINUTES:1","Mais carrément ! (Elle prend la cravache|et donne quelques coups à Sarah.)",100,1,0,SarahWhip()
 100,0,0,Common_PlayerGagged,"@Uuuummph, mmph !",(Elle chuchote.) Arrête de faire du bruit.,100,0,0,
 100,0,0,Common_PlayerGagged,(Tu mâches la boule.),(Elle chuchote.) Tu as l'air d'une idiote.,100,0,0,
 100,1,0,Common_PlayerGagged,(Tu essayes de montrer|du doigt la boule.),(Elle chuchote) La ferme.|Je t'aiderai après le cours.,100,0,0,
@@ -33,10 +33,10 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 100,0,0,Common_PlayerRestrained,(Tu essais de|te libérer.),(Elle chuchote.) Tu n'arriveras jamais à te libérer.,100,0,0,
 100,0,-2,BowRemarkReady,(Tu baisses la tête.),(Elle chuchotte.) Tu es pitoyable.,100,0,-1,BowRemark()
 110,0,0,Common_PlayerGagged,"@Uuuummph, mmph !",(Elle lève les yeux au ciel.),110,0,0,
-110,0,0,Common_PlayerNotRestrained,(Tu la débâillonnes.)|(1 minute),(Tu détaches le bâillon et retires la grosse boule.)|Putain de bâillon !,100,0,0,Ungag()
+110,0,0,Common_PlayerNotRestrained,(Tu la débâillonnes.)ADD_MINUTES:1,(Tu détaches le bâillon et retires la grosse boule.)|Putain de bâillon !,100,0,0,Ungag()
 130,0,0,Common_PlayerGagged,"@Uuuummph, mmph !",(Elle lève les yeux au ciel.),130,0,0,
-130,0,0,Common_PlayerNotRestrained,(Tu la débâillonnes.)|(1 minute),(Tu détaches le bâillon et retires la grosse boule.)|Putain de bâillon !,120,0,0,Ungag()
+130,0,0,Common_PlayerNotRestrained,(Tu la débâillonnes.)ADD_MINUTES:1,(Tu détaches le bâillon et retires la grosse boule.)|Putain de bâillon !,120,0,0,Ungag()
 140,0,0,Common_PlayerNotRestrained,(Tu la détaches.),(Tu défais les noeuds et elle se rhabille.)|Fait chier ! Tu es une sacrée perverse.,100,0,0,Untie()
 150,0,0,Common_PlayerGagged,"@Uuuummph, mmph !",(Elle lève les yeux au ciel.),150,0,0,
-150,0,0,Common_PlayerNotRestrained,(Tu la débâillonnes.)|(1 minute),(Tu détaches le bâillon et retires la grosse boule.)|Putain de bâillon !,140,0,0,Ungag()
+150,0,0,Common_PlayerNotRestrained,(Tu la débâillonnes.)ADD_MINUTES:1,(Tu détaches le bâillon et retires la grosse boule.)|Putain de bâillon !,140,0,0,Ungag()
 150,0,0,Common_PlayerNotRestrained,(Tu la détaches.),(Tu défais les noeuds et elle se rhabille.)|(Elle t'indique les sangles de son bâillon.),110,0,0,Untie()

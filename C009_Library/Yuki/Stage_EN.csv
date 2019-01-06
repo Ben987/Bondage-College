@@ -129,9 +129,9 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 200,0,0,CanPleasure,"Miss, can I ask you|something personal?",Of course young lady.|What's on your mind?,205,0,0,
 200,0,0,LittlePet,Would you like|more pleasure?,"Not now my little pet, but I'll|need your personal services later.",200,0,0,
 200,0,0,,I'm fine Miss.|(Walk away.),,200,0,0,PlayerLeaveForBook()
-200,0,0,,(Search on her desk.)|(1 minute),"Young lady, do not touch|at the things on my desk.",200,-1,0,AnnoyYuki()
-200,0,0,,(Search in her purse.)|(1 minute),What are you doing?|Don't touch my purse.,200,-1,0,AnnoyYuki()
-200,0,0,,(Make some noise.)|(1 minute),Silence is gold young lady.|Especially in the library.,200,-1,0,AnnoyYuki()
+200,0,0,,(Search on her desk.)ADD_MINUTES:1,"Young lady, do not touch|at the things on my desk.",200,-1,0,AnnoyYuki()
+200,0,0,,(Search in her purse.)ADD_MINUTES:1,What are you doing?|Don't touch my purse.,200,-1,0,AnnoyYuki()
+200,0,0,,(Make some noise.)ADD_MINUTES:1,Silence is gold young lady.|Especially in the library.,200,-1,0,AnnoyYuki()
 205,0,0,,I kind of like you.|Can I kiss you?,"No, but there's something else you can do.|(She grabs your hair and sits on her desk.)",700,0,0,StartPleasure()
 205,0,0,,I want you to|pleasure me.,"No, but you certainly can pleasure me.|(She grabs your hair and sits on her desk.)",700,0,1,StartPleasure()
 205,0,0,,I would love|to pleasure you.,Come here my wonderful little pet.|(She grabs your hair and sits on her desk.),700,1,-1,StartPleasure()
@@ -193,15 +193,15 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 430,0,0,,"I promise, take care.|(Walk away.)",,200,1,0,PlayerLeaveForBook()
 430,0,0,,I won't cause any trouble.|(Walk away.),,200,0,0,PlayerLeaveForBook()
 500,0,0,,Struggle for me!,(She struggles madly to get out of|the hole cannot manage to do it.),500,0,0,
-500,0,0,!Common_PlayerRestrained,(Caress her.)|(1 minute),(You caress her legs lovingly and you can|hear faint moans coming from inside.),500,0,0,Caress()
-500,0,0,!Common_PlayerRestrained,(Tickle her.)|(1 minute),(She gets really angry when you tickle|her but cannot stop laughing like a child.),500,0,0,Tickle()
-500,0,0,!Common_PlayerRestrained,(Remove her panties.)|(1 minute),(You grab her legs and slowly remove|her panties while she screams in anger.),510,0,0,
+500,0,0,!Common_PlayerRestrained,(Caress her.)ADD_MINUTES:1,(You caress her legs lovingly and you can|hear faint moans coming from inside.),500,0,0,Caress()
+500,0,0,!Common_PlayerRestrained,(Tickle her.)ADD_MINUTES:1,(She gets really angry when you tickle|her but cannot stop laughing like a child.),500,0,0,Tickle()
+500,0,0,!Common_PlayerRestrained,(Remove her panties.)ADD_MINUTES:1,(You grab her legs and slowly remove|her panties while she screams in anger.),510,0,0,
 500,0,0,!Common_PlayerRestrained,(Release her.),(Are you sure you want to release her?|Click on the same option again to do it.),500,0,0,ReleaseFromHole()
-510,0,0,!Common_PlayerRestrained,(Masturbate her.)|(1 minute),(You masturbate her slowly and lovingly.|You can hear her struggling and moaning.),510,0,0,Masturbate()
-510,0,0,!Common_PlayerGagged,(Lick her pussy.)|(1 minute),(You bend down to lick her pussy slowly.|You can hear her struggling and moaning.),510,0,0,Masturbate()
-510,0,0,!Common_PlayerRestrained,(Caress her.)|(1 minute),(You caress her legs lovingly and you can|hear faint moans coming from inside.),510,0,0,Caress()
-510,0,0,!Common_PlayerRestrained,(Tickle her.)|(1 minute),(She gets really angry when you tickle|her but cannot stop laughing like a child.),510,0,0,Tickle()
-510,0,0,!Common_PlayerRestrained,(Put back her panties.)|(1 minute),(You grab her legs and put her|panties back on while she struggles.),500,0,0,
+510,0,0,!Common_PlayerRestrained,(Masturbate her.)ADD_MINUTES:1,(You masturbate her slowly and lovingly.|You can hear her struggling and moaning.),510,0,0,Masturbate()
+510,0,0,!Common_PlayerGagged,(Lick her pussy.)ADD_MINUTES:1,(You bend down to lick her pussy slowly.|You can hear her struggling and moaning.),510,0,0,Masturbate()
+510,0,0,!Common_PlayerRestrained,(Caress her.)ADD_MINUTES:1,(You caress her legs lovingly and you can|hear faint moans coming from inside.),510,0,0,Caress()
+510,0,0,!Common_PlayerRestrained,(Tickle her.)ADD_MINUTES:1,(She gets really angry when you tickle|her but cannot stop laughing like a child.),510,0,0,Tickle()
+510,0,0,!Common_PlayerRestrained,(Put back her panties.)ADD_MINUTES:1,(You grab her legs and put her|panties back on while she struggles.),500,0,0,
 510,0,0,!Common_PlayerRestrained,(Release her.),(Are you sure you want to release her?|Click on the same option again to do it.),510,0,0,ReleaseFromHole()
 511,0,0,!Common_PlayerRestrained,"Yuki, you deserve it.|(Make her climax.)",(You touch her again and she gets a huge|orgasm.  Wetting her legs in the process.),512,1,0,HoleOrgasm()
 511,0,0,!Common_PlayerRestrained,I control your orgasms.|(Make her climax.),(You touch her again and she gets a huge|orgasm.  Wetting her legs in the process.),512,0,1,HoleOrgasm()
@@ -211,12 +211,12 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 512,0,0,,You're my bitch now.,I'll never be your bitch young lady.|Get me out of that stupid hole!,510,-1,1,
 512,0,0,!Common_PlayerRestrained,Good teacher.|(Caress her.),(She sighs and quiets down for a few seconds.),510,1,0,
 520,0,0,,I hope you're|enjoying the belt.,You better unlock it right now!,520,0,0,
-520,0,0,!Common_PlayerRestrained,(Caress her.)|(1 minute),(You caress her legs lovingly and you can|hear faint moans coming from inside.),520,0,0,Caress()
-520,0,0,!Common_PlayerRestrained,(Tickle her.)|(1 minute),(She gets really angry when you tickle|her but cannot stop laughing like a child.),520,0,0,Tickle()
+520,0,0,!Common_PlayerRestrained,(Caress her.)ADD_MINUTES:1,(You caress her legs lovingly and you can|hear faint moans coming from inside.),520,0,0,Caress()
+520,0,0,!Common_PlayerRestrained,(Tickle her.)ADD_MINUTES:1,(She gets really angry when you tickle|her but cannot stop laughing like a child.),520,0,0,Tickle()
 520,0,0,!Common_PlayerRestrained,(Release her.),(Are you sure you want to release her?|Click on the same option again to do it.),520,0,0,ReleaseFromHole()
-530,0,0,,"Yes Miss, I'm sorry.|(Walk with her.) (1 minute)",(She drags you to her desk in|another section of the library.),600,0,-1,
-530,0,0,,"Alright, let's go.|(Walk with her.) (1 minute)",(She drags you to her desk in|another section of the library.),600,0,0,
-530,0,0,,Fine!  No need to yell.|(Walk with her.) (1 minute),(She drags you to her desk in|another section of the library.),600,0,1,
+530,0,0,,"Yes Miss, I'm sorry.|(Walk with her.)ADD_MINUTES:1",(She drags you to her desk in|another section of the library.),600,0,-1,
+530,0,0,,"Alright, let's go.|(Walk with her.)ADD_MINUTES:1",(She drags you to her desk in|another section of the library.),600,0,0,
+530,0,0,,Fine!  No need to yell.|(Walk with her.)ADD_MINUTES:1,(She drags you to her desk in|another section of the library.),600,0,1,
 600,0,0,,What do you want?,Revenge!  What you did was inappropriate.|Turn around and give me your hands.,610,0,0,TestSleep()
 600,0,0,,(Stay quiet.),(She stares at you and takes a deep breath.)|Turn around and give me your hands.,610,0,-1,TestSleep()
 600,0,0,,What's up doc?,You're not funny at all young lady.|Turn around and give me your hands.,610,-1,0,TestSleep()
@@ -237,13 +237,13 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 700,0,0,,(Nod slowly and|start to eat her.),You're good enough to be collared little pet.|(She removes her panties and brings you closer.),710,1,-1,
 700,0,0,,This isn't proper.|(Pull away.),Fine!  I don't care at all!|What do you want then?,200,-1,0,TestPullAway()
 700,0,0,,Forget it Yuki.|(Pull away.),Fine!  I don't care at all!|What do you want then?,200,-2,1,TestPullAway()
-710,0,0,,(Nuzzle against her|pussy.) (1 minute),(She opens her legs and moans softly.),710,0,0,Pleasure(1)
-710,0,0,,(Lick her clitoris.)|(1 minute),(She pulls you close by the hair and trembles.),710,0,0,Pleasure(2)
-710,0,0,,(Push your tongue|inside.)  (1 minute),(She pulls your head back|and forth with both hands.),710,0,0,Pleasure(3)
-710,0,0,,(Masturbate her clitoris.)|(1 minute),Oh COMMON_PLAYERNAME!|Oh yes!,710,0,0,Pleasure(4)
-710,0,0,,(Slide a finger in and|out.)  (1 minute),Faster!  Harder!  Faster!,710,0,0,Pleasure(5)
+710,0,0,,(Nuzzle against her|pussy.)ADD_MINUTES:1,(She opens her legs and moans softly.),710,0,0,Pleasure(1)
+710,0,0,,(Lick her clitoris.)ADD_MINUTES:1,(She pulls you close by the hair and trembles.),710,0,0,Pleasure(2)
+710,0,0,,(Push your tongue|inside.) ADD_MINUTES:1,(She pulls your head back|and forth with both hands.),710,0,0,Pleasure(3)
+710,0,0,,(Masturbate her clitoris.)ADD_MINUTES:1,Oh COMMON_PLAYERNAME!|Oh yes!,710,0,0,Pleasure(4)
+710,0,0,,(Slide a finger in and|out.) ADD_MINUTES:1,Faster!  Harder!  Faster!,710,0,0,Pleasure(5)
 710,0,0,,(Stop and pull back.),(She quickly wraps her legs around|your head and pulls you back in.),710,0,0,
-720,0,0,,(Lick her juices.)|(1 minute),(You lick her pussy lips to clean her juices|before she lets you go.)  Good girl.,730,1,-1,
+720,0,0,,(Lick her juices.)ADD_MINUTES:1,(You lick her pussy lips to clean her juices|before she lets you go.)  Good girl.,730,1,-1,
 720,0,0,,(Struggle for air.),(She lets you go.)|Poor little pet.,730,0,-1,
 720,0,0,,(Pull back quickly.),(You pull back very quickly from her.)|Don't be ashamed of what you did.,730,-1,0,
 730,0,0,,You liked it?,Yes.  And I hope we can do it again.|Is there anything you need from me?,200,0,0,StopPleasure()

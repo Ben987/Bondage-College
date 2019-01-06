@@ -29,20 +29,20 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 100,0,0,Common_PlayerRestrained,"(Tu tires sur tes liens.)","(Elle tourne sa tête de gauche à droite.)",100,0,0,
 100,0,-2,BowRemarkReady,"(Tu baisses la tête.)","(Elle chuchote.) Tu es tellement|mignonne attachée et bâillonée.",100,1,-1,BowRemark()
 110,0,0,Common_PlayerGagged,"@Uuuummph, mmph !",(Elle rit et marmonne.),110,0,0,
-110,0,0,Common_PlayerNotRestrained,(Tu la débâillonnes.)|(1 minute),"(Tu détaches le bâillon et retires la grosse boule.)|Merci. C'était vraiment inconfortable.",100,0,0,Ungag()
+110,0,0,Common_PlayerNotRestrained,(Tu la débâillonnes.)ADD_MINUTES:1,"(Tu détaches le bâillon et retires la grosse boule.)|Merci. C'était vraiment inconfortable.",100,0,0,Ungag()
 130,0,0,Common_PlayerGagged,"@Uuuummph, mmph !",(Elle rit et marmonne.),130,0,0,
-130,0,0,Common_PlayerNotRestrained,(Tu la débâillonnes.)|(1 minute),"(Tu détaches le bâillon et retires la grosse boule.)|Merci. C'était vraiment inconfortable.",120,0,0,Ungag()
-140,0,0,Common_PlayerNotRestrained,(Tu la chatouilles.)|(1 minute),"(Tu la chatouilles et elle rit comme une folle.)|Ha ha HA HA ha ! S'il te plaît, arrête ! S'il te plaît.",140,0,0,Tickle()
-140,0,0,Common_PlayerNotRestrained,(Tu la détaches.)|(1 minute),(Tu défais les noeuds et elle se rhabille.)|Tu sais bien faire les noeuds. (Elle rit.),100,0,0,Untie()
-140,0,0,BondageHugReady,Aimerais-tu faire un calin|à Sarah ? (1 minute),(Elle donne un chaleureux câlin à Sarah|et susurre quelque chose de doux dans son oreille.),160,0,0,BondageHug()
+130,0,0,Common_PlayerNotRestrained,(Tu la débâillonnes.)ADD_MINUTES:1,"(Tu détaches le bâillon et retires la grosse boule.)|Merci. C'était vraiment inconfortable.",120,0,0,Ungag()
+140,0,0,Common_PlayerNotRestrained,(Tu la chatouilles.)ADD_MINUTES:1,"(Tu la chatouilles et elle rit comme une folle.)|Ha ha HA HA ha ! S'il te plaît, arrête ! S'il te plaît.",140,0,0,Tickle()
+140,0,0,Common_PlayerNotRestrained,(Tu la détaches.)ADD_MINUTES:1,(Tu défais les noeuds et elle se rhabille.)|Tu sais bien faire les noeuds. (Elle rit.),100,0,0,Untie()
+140,0,0,BondageHugReady,Aimerais-tu faire un calin|à Sarah ?ADD_MINUTES:1,(Elle donne un chaleureux câlin à Sarah|et susurre quelque chose de doux dans son oreille.),160,0,0,BondageHug()
 150,0,0,Common_PlayerGagged,"@Uuuummph, mmph !",(Elle rit et marmonne.),150,0,0,
-150,0,0,Common_PlayerNotRestrained,(Tu la chatouilles.)|(1 minute),"(Tu la chatouilles et elle rit comme une folle|dans son bâillon, elle devient cramoisie juste après.)",150,0,0,Tickle()
-150,0,0,Common_PlayerNotRestrained,(Tu la débâillonnes.)|(1 minute),(Tu détaches le bâillon et retires la grosse boule.)|Merci. C'était vraiment inconfortable.,140,0,0,Ungag()
-150,0,0,Common_PlayerNotRestrained,(Tu la détaches.)|(1 minute),(Tu défais les noeuds et elle se rhabille.)|(Elle t'indique les sangles de son bâillon.),110,0,0,Untie()
-150,0,0,BondageHugReady,"Aimerais-tu faire un câlin|à Sarah ? (1 minute)","(Elle hésite mais se déplace lentement vers son amie|pour lui donner un câlin chaleureux.)",170,0,0,BondageHug()
-160,0,0,,Aimerais-tu|l'embrasser ? (1 minute),"Sarah, tu veux bien m'embrasser ?|(Elle se rapproche et embrasse Sarah.)",160,0,0,KissSarah()
+150,0,0,Common_PlayerNotRestrained,(Tu la chatouilles.)ADD_MINUTES:1,"(Tu la chatouilles et elle rit comme une folle|dans son bâillon, elle devient cramoisie juste après.)",150,0,0,Tickle()
+150,0,0,Common_PlayerNotRestrained,(Tu la débâillonnes.)ADD_MINUTES:1,(Tu détaches le bâillon et retires la grosse boule.)|Merci. C'était vraiment inconfortable.,140,0,0,Ungag()
+150,0,0,Common_PlayerNotRestrained,(Tu la détaches.)ADD_MINUTES:1,(Tu défais les noeuds et elle se rhabille.)|(Elle t'indique les sangles de son bâillon.),110,0,0,Untie()
+150,0,0,BondageHugReady,"Aimerais-tu faire un câlin|à Sarah ?ADD_MINUTES:1","(Elle hésite mais se déplace lentement vers son amie|pour lui donner un câlin chaleureux.)",170,0,0,BondageHug()
+160,0,0,,Aimerais-tu|l'embrasser ?ADD_MINUTES:1,"Sarah, tu veux bien m'embrasser ?|(Elle se rapproche et embrasse Sarah.)",160,0,0,KissSarah()
 160,0,0,,Vous êtes amoureuse ?,Je... Euh... C'est... (Elle devient cramoisie.),160,0,0,
-160,0,0,Common_PlayerNotRestrained,(Tu les sépares.)|(1 minute),(Elle murmure quelque chose à Sarah|et elles se séparent.),140,0,0,Separate()
+160,0,0,Common_PlayerNotRestrained,(Tu les sépares.)ADD_MINUTES:1,(Elle murmure quelque chose à Sarah|et elles se séparent.),140,0,0,Separate()
 170,0,0,,Vous faites un joli|couple de bondage.,(Elle rougit et détourne le regard.),170,0,0,
-170,0,0,Common_PlayerNotRestrained,(Tu les sépares.)|(1 minute),(Elle regarde Sarah une dernière fois|et retourne s'assoir sur sa chaise.),150,0,0,Separate()
-170,0,0,Common_PlayerNotRestrained,(Tu la détaches.)|(1 minute),"(Tu détaches le bâillon et retires la grosse boule.)|Merci. C'était vraiment inconfortable.",160,0,0,Ungag()
+170,0,0,Common_PlayerNotRestrained,(Tu les sépares.)ADD_MINUTES:1,(Elle regarde Sarah une dernière fois|et retourne s'assoir sur sa chaise.),150,0,0,Separate()
+170,0,0,Common_PlayerNotRestrained,(Tu la détaches.)ADD_MINUTES:1,"(Tu détaches le bâillon et retires la grosse boule.)|Merci. C'était vraiment inconfortable.",160,0,0,Ungag()

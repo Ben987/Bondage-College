@@ -40,7 +40,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 200,0,0,Common_PlayerNotRestrained,(Tu parles pour attirer|son attention.),,200,-1,0,Disturb()
 200,0,0,Common_PlayerNotRestrained,(Tu essayes de maîtriser|Madame Mildred.),Veux-tu essayer de maîtriser Madame Mildred ?|(Chaque étudiante qui t'aide augmentera tes chances.),210,0,0,
 200,0,0,Common_PlayerRestrained,"Uummph !","(Elle ignore tes cris|et les autres étudiantes rient.)",200,0,0,
-200,0,0,Common_PlayerRestrained,(Tu tires sur tes menottes.)|(1 minute),(Tu luttes vainement. Elle est convaincue|que tu ne t'échapperas pas et t'ignores),200,0,0,
+200,0,0,Common_PlayerRestrained,(Tu tires sur tes menottes.)ADD_MINUTES:1,(Tu luttes vainement. Elle est convaincue|que tu ne t'échapperas pas et t'ignores),200,0,0,
 210,0,0,Common_PlayerNotRestrained,"(Tu essayes|de la maîtriser.)",,210,-2,0,Subdue()
 210,0,0,,"(Peut-être|plus tard.)","Tu renonces à ton plan d'enlèvement.|(Madame Mildred continue d'enseigner.)",200,0,0,
 220,0,0,,"Une leçon de vous ?|Pas moyen !","(Tu prends 6 coup sec, elle te menotte et te bâillonne.)|Puisque tu ne sais pas te tenir, tu resteras attachée.",220,0,1,RestrainPlayer()
@@ -51,21 +51,21 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 300,0,0,,"""Madame"", ce cours va|enfin devenir intéressant.","Non-sens ! Je suis la responsable de cette classe.|Vous allez au-devant de grands soucis mademoiselle.",310,0,0,
 300,0,0,,"Si vous coopérez,|Ça sera vite finis.",(Elle hocha la tête et reste silencieuse.),310,0,1,
 300,0,0,,"Je ne m'attendais pas à|ce que vous soyez si jolie".,"(Elle rougit.) Jeune fille,|Qu'est-ce que tu as prévu exactement ?",310,1,0,
-310,0,0,Common_PlayerNotRestrained,(Tu la chatouilles.)|(1 minute),(Elle se recroqueville pour t'éviter et rit en silence.)|Tu ne fais que prolonger l'inévitable !,310,0,0,
-310,0,0,SearchAvail,(Tu fouilles dans ses|affaires.) (1 minute),(Tu fouilles dans ses affaires et trouves des objets|très intéressants.) Sale petite voleuse !,310,-1,0,Search()
-320,0,0,Common_PlayerNotRestrained,(Tu la chatouilles.)|(1 minute),(Elle se recroqueville pour t'éviter et rit en silence.),320,0,0,
-320,0,0,Common_PlayerNotRestrained,(Tu la débâillones.)|(1 minute),(Tu lui enlèves doucement son bâillon.)|Jeune fille ! Ceci est vraiment inapproprié.,310,0,0,Ungag()
-330,0,0,Common_PlayerNotRestrained,(Tu la chatouilles.)|(1 minute),(Elle se recroqueville pour t'éviter et rit en silence.)|Tu ne fais que prolonger l'inévitable !,330,0,0,
-330,0,0,SearchAvail,(Tu fouilles dans ses|affaires.)|(1 minute),(Tu fouilles dans ses affaires et trouves des objets|très intéressants.) Sale petite voleuse !,330,-1,0,Search()
-340,0,0,Common_PlayerNotRestrained,(Tu la chatouilles.)|(1 minute),(Elle se recroqueville pour t'éviter et rit en silence.),340,0,0,
-340,0,0,Common_PlayerNotRestrained,(Tu la débâillones.)|(1 minute),(Tu lui enlèves doucement son bâillon.)|Jeune fille ! Ceci est vraiment inapproprié.,330,0,0,Ungag()
-410,0,0,Common_PlayerNotRestrained,(Tu la fouettes.)|(1 minute),(Tu lui donnes un grand coup de cravache.)|Mademoiselle ! Vous regretterez ces actes !,410,0,0,Whip()
-410,0,0,Common_PlayerNotRestrained,(Tu ranges la cravache.)|(1 minute),(Tu ranges la cravache et tu la remets sur ses pieds.),310,0,0,
-420,0,0,Common_PlayerNotRestrained,(Tu la fouettes.)|(1 minute),(Tu lui donnes un grand coup de cravache.)|(Elle crie de colère dans son bâillon.),420,0,0,Whip()
-420,0,0,Common_PlayerNotRestrained,(Tu ranges la cravache.)|(1 minute),(Tu ranges la cravache et tu la remets sur ses pieds.),320,0,0,
-420,0,0,Common_PlayerNotRestrained,(Tu la débâillones.)|(1 minute),(Tu lui enlèves doucement son bâillon.)|Jeune fille ! Ceci est vraiment inapproprié.,410,0,0,Ungag()
-430,0,0,Common_PlayerNotRestrained,(Tu la fouettes.)|(1 minute),(Tu lui donnes un grand coup de cravache.)|Mademoiselle ! Vous regretterez ces actes !,430,0,0,Whip()
-430,0,0,Common_PlayerNotRestrained,(Tu ranges la cravache.)|(1 minute),(Tu ranges la cravache et tu la remets sur ses pieds.),330,0,0,
-440,0,0,Common_PlayerNotRestrained,(Tu la fouettes.)|(1 minute),(Tu lui donnes un grand coup de cravache.)|(Elle crie de colère dans son bâillon.),440,0,0,Whip()
-440,0,0,Common_PlayerNotRestrained,(Tu ranges la cravache.)|(1 minute),(Tu ranges la cravache et tu la remets sur ses pieds.),340,0,0,
-440,0,0,Common_PlayerNotRestrained,(Tu la débâillones.)|(1 minute),(Tu lui enlèves doucement son bâillon.)|Jeune fille ! Ceci est vraiment inapproprié.,430,0,0,Ungag()
+310,0,0,Common_PlayerNotRestrained,(Tu la chatouilles.)ADD_MINUTES:1,(Elle se recroqueville pour t'éviter et rit en silence.)|Tu ne fais que prolonger l'inévitable !,310,0,0,
+310,0,0,SearchAvail,(Tu fouilles dans ses|affaires.)ADD_MINUTES:1,(Tu fouilles dans ses affaires et trouves des objets|très intéressants.) Sale petite voleuse !,310,-1,0,Search()
+320,0,0,Common_PlayerNotRestrained,(Tu la chatouilles.)ADD_MINUTES:1,(Elle se recroqueville pour t'éviter et rit en silence.),320,0,0,
+320,0,0,Common_PlayerNotRestrained,(Tu la débâillones.)ADD_MINUTES:1,(Tu lui enlèves doucement son bâillon.)|Jeune fille ! Ceci est vraiment inapproprié.,310,0,0,Ungag()
+330,0,0,Common_PlayerNotRestrained,(Tu la chatouilles.)ADD_MINUTES:1,(Elle se recroqueville pour t'éviter et rit en silence.)|Tu ne fais que prolonger l'inévitable !,330,0,0,
+330,0,0,SearchAvail,(Tu fouilles dans ses|affaires.)ADD_MINUTES:1,(Tu fouilles dans ses affaires et trouves des objets|très intéressants.) Sale petite voleuse !,330,-1,0,Search()
+340,0,0,Common_PlayerNotRestrained,(Tu la chatouilles.)ADD_MINUTES:1,(Elle se recroqueville pour t'éviter et rit en silence.),340,0,0,
+340,0,0,Common_PlayerNotRestrained,(Tu la débâillones.)ADD_MINUTES:1,(Tu lui enlèves doucement son bâillon.)|Jeune fille ! Ceci est vraiment inapproprié.,330,0,0,Ungag()
+410,0,0,Common_PlayerNotRestrained,(Tu la fouettes.)ADD_MINUTES:1,(Tu lui donnes un grand coup de cravache.)|Mademoiselle ! Vous regretterez ces actes !,410,0,0,Whip()
+410,0,0,Common_PlayerNotRestrained,(Tu ranges la cravache.)ADD_MINUTES:1,(Tu ranges la cravache et tu la remets sur ses pieds.),310,0,0,
+420,0,0,Common_PlayerNotRestrained,(Tu la fouettes.)ADD_MINUTES:1,(Tu lui donnes un grand coup de cravache.)|(Elle crie de colère dans son bâillon.),420,0,0,Whip()
+420,0,0,Common_PlayerNotRestrained,(Tu ranges la cravache.)ADD_MINUTES:1,(Tu ranges la cravache et tu la remets sur ses pieds.),320,0,0,
+420,0,0,Common_PlayerNotRestrained,(Tu la débâillones.)ADD_MINUTES:1,(Tu lui enlèves doucement son bâillon.)|Jeune fille ! Ceci est vraiment inapproprié.,410,0,0,Ungag()
+430,0,0,Common_PlayerNotRestrained,(Tu la fouettes.)ADD_MINUTES:1,(Tu lui donnes un grand coup de cravache.)|Mademoiselle ! Vous regretterez ces actes !,430,0,0,Whip()
+430,0,0,Common_PlayerNotRestrained,(Tu ranges la cravache.)ADD_MINUTES:1,(Tu ranges la cravache et tu la remets sur ses pieds.),330,0,0,
+440,0,0,Common_PlayerNotRestrained,(Tu la fouettes.)ADD_MINUTES:1,(Tu lui donnes un grand coup de cravache.)|(Elle crie de colère dans son bâillon.),440,0,0,Whip()
+440,0,0,Common_PlayerNotRestrained,(Tu ranges la cravache.)ADD_MINUTES:1,(Tu ranges la cravache et tu la remets sur ses pieds.),340,0,0,
+440,0,0,Common_PlayerNotRestrained,(Tu la débâillones.)ADD_MINUTES:1,(Tu lui enlèves doucement son bâillon.)|Jeune fille ! Ceci est vraiment inapproprié.,430,0,0,Ungag()

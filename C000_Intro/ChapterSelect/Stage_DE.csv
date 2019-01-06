@@ -1,28 +1,28 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 0,0,0,,Neues Spiel,,0,0,0,"LoadChapter(""C001_BeforeClass"")"
-0,0,0,,Lade Spiel,,0,0,0,LoadScreen()
-0,0,0,,Wähle ein Kapitel,"Wähle das Kapitel, welches du Spielen willst.|Wenn du das Spiel noch nie gespielt hast, starte von Kapitel 1.",10,0,0,
-0,0,0,,Wecksle Sprache,,30,0,0,
-0,0,0,,Game Credits,Ein riesiges DANKE an alle|die zum Spiel beigetragen haben.,0,0,0,RollCredits()
+0,0,0,,Spiel laden,,0,0,0,LoadScreen()
+0,0,0,,Kapitel wählen,"Wähle das Kapitel, welches du spielen willst.|Wenn du zum ersten Mal spielst, starte von Kapitel 1.",10,0,0,
+0,0,0,,Sprache wechseln,,30,0,0,
+0,0,0,,Credits,"Ein riesiges DANKE an alle,|die zum Spiel beigetragen haben.",0,0,0,RollCredits()
 10,0,0,,Kapitel 1|Vor dem Unterricht,,10,0,0,"LoadChapter(""C001_BeforeClass"")"
 10,0,0,,Kapitel 2|Erste Stunde,,10,0,0,"LoadChapter(""C002_FirstClass"")"
-10,0,0,,Kapitel 3|Morgentliches Nachsitzen,,10,0,0,"LoadChapter(""C003_MorningDetention"")"
+10,0,0,,Kapitel 3|Morgendliches Nachsitzen,,10,0,0,"LoadChapter(""C003_MorningDetention"")"
 10,0,0,,Kapitel 4|Kunstunterricht,,10,0,0,"LoadChapter(""C004_ArtClass"")"
 10,0,0,,Kapitel 5|Sportstunde,,10,0,0,"LoadChapter(""C005_GymClass"")"
-10,0,0,,Kapitel 6|Isolierung,,10,0,0,"LoadChapter(""C006_Isolation"")"
+10,0,0,,Kapitel 6|Isolation,,10,0,0,"LoadChapter(""C006_Isolation"")"
 10,0,0,,Kapitel 7|Mittagspause,,10,0,0,"LoadChapter(""C007_LunchBreak"")"
 10,0,0,,Kapitel 8|Schauspielunterricht,,10,0,0,"LoadChapter(""C008_DramaClass"")"
-10,0,0,,Mehr Kapitel,"Wähle ein Kapitel,""Wähle das Kapitel, welches du Spielen willst.|Wenn du das Spiel noch nie gespielt hast, starte von Kapitel 1.",20,0,0,
-10,0,0,,Hautmenü,Willkommen zur Bondage Schule.|Hab Spaß und sei Neugierig.,0,0,0,
-20,0,0,,Kapitel 9|Bücherei,,20,0,0,"LoadChapter(""C009_Library"")"
+10,0,0,,Mehr Kapitel,"Wähle das Kapitel, welches du spielen willst.|Wenn du zum ersten Mal spielst, starte von Kapitel 1.",20,0,0,
+10,0,0,,Hauptmenü,Willkommen zur Bondage-Schule.|Hab Spaß und sei Neugierig.,0,0,0,
+20,0,0,,Kapitel 9|Bibliothek,,20,0,0,"LoadChapter(""C009_Library"")"
 20,0,0,,Kapitel 10|Rache,,20,0,0,"LoadChapter(""C010_Revenge"")"
-20,0,0,,Kapitel 11|Litteratur,,20,0,0,"LoadChapter(""C011_LiteratureClass"")"
+20,0,0,,Kapitel 11|Literatur,,20,0,0,"LoadChapter(""C011_LiteratureClass"")"
 20,0,0,,Kapitel 12|Nach der Schule,,20,0,0,"LoadChapter(""C012_AfterClass"")"
-20,0,0,,Kapitel 101|Kinbaku Club von wildsj,,20,0,0,"LoadChapter(""C101_KinbakuClub"")"
-20,0,0,,Vorherige Kapitel,"Wähle ein Kapitel,""Wähle das Kapitel, welches du Spielen willst.|Wenn du das Spiel noch nie gespielt hast, starte von Kapite 1.",10,0,0,
-20,0,0,,Hauptmenü,Willkommen zur Bondage Schule.,0,0,0,
-30,0,0,,English,,0,0,0,"SetLanguage(""EN"")"
-30,0,0,,Französich (Kapitel 1 bis 7)|Geschrieben von gottspende,,0,0,0,"SetLanguage(""FR"")"
-30,0,0,,Chinesisch (Kapitel 5)|Geschrieben von asdcvbgf,,0,0,0,"SetLanguage(""CN"")"
-30,0,0,,Spanisch (Kapitel 1)|Geschrieben von Rafael R,,0,0,0,"SetLanguage(""ES"")"
-30,0,0,,Deutsch (Kapitel 1 und 12)|Von Knife und fleisch11,,0,0,0,"SetLanguage(""DE"")"
+20,0,0,,Kapitel 101|Kinbaku-Club von wildsj,,20,0,0,"LoadChapter(""C101_KinbakuClub"")"
+20,0,0,,Vorherige Kapitel,"Wähle das Kapitel, welches du spielen willst.|Wenn du zum ersten Mal spielst, starte von Kapitel 1.",10,0,0,
+20,0,0,,Hauptmenü,Willkommen zur Bondage-Schule.,0,0,0,
+30,0,0,,Englisch,,0,0,0,"SetLanguage(""EN"")"
+30,0,0,,Französich (Kapitel 1 bis 9)|Geschrieben von gottspende,,0,0,0,"SetLanguage(""FR"")"
+30,0,0,,Chinesisch (Kapitel 1 & 5)|Dwscdv3 & asdcvbgf,,0,0,0,"SetLanguage(""CN"")"
+30,0,0,,Spanisch (Kapitel 1 & 2)|Rafael R & tree13003,,0,0,0,"SetLanguage(""ES"")"
+30,0,0,,"Deutsch (Kapitel 1 bis 11)|adokilume, Knife, fleisch11",,0,0,0,"SetLanguage(""DE"")"

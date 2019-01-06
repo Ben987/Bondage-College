@@ -119,17 +119,17 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 330,0,0,,We should|skip school.,Oh yeah!  Best idea ever!|(She giggles and stares blankly.),330,0,0,
 330,0,0,HateAmanda,Do you want to get|even with Amanda?,Fuck yeah!  Let's do it now.|Will you help beat her up?,400,0,0,
 330,0,0,HateSarah,Do you want to get|even with Sarah?,Fuck yeah!  Let's do it now.|Will you help beat her up?,500,0,0,
-330,0,0,,(Smoke with her.)|(1 minute),(You both share a puff and sit idly.),330,0,0,
-330,0,0,,(Stare at her.)|(1 minute),(You stare at her idly while|she smokes a puff in your face.),330,0,0,
-330,0,0,,(Remove her clothes.)|(1 minute),(She stares and pushes your hand away.)|(You need +8 love or submission to strip her.),330,0,0,RemoveClothes()
+330,0,0,,(Smoke with her.)ADD_MINUTES:1,(You both share a puff and sit idly.),330,0,0,
+330,0,0,,(Stare at her.)ADD_MINUTES:1,(You stare at her idly while|she smokes a puff in your face.),330,0,0,
+330,0,0,,(Remove her clothes.)ADD_MINUTES:1,(She stares and pushes your hand away.)|(You need +8 love or submission to strip her.),330,0,0,RemoveClothes()
 330,0,0,,Let's go back.|(Back to college.),,0,0,0,EndChapter()
 340,0,0,!IsGagged,Are you ok?,Oh hell yeah!|(She looks stoned.),340,0,0,
 340,0,0,!CuteRemarkDone,You look pretty|cute like that.,"(She looks at herself, blushes|a little and nods back at you.)",340,0,0,CuteRemark()
-340,0,0,,(Tickle her.)|(1 minute),(Either she's not ticklish or she's|too stoned but she doesn't react much.),340,0,0,
-340,0,0,,(Masturbate her.)|(1 minute),,340,0,0,Masturbate()
-340,0,0,IsRoped,(Untie her.)|(1 minute),(She seems to appreciate but doesn't|react that much while you untie her.),340,0,0,Untie()
-340,0,0,IsGagged,(Ungag her.)|(1 minute),(You ungag her and she stares at you.)|Oh Fuck!  This is pretty intense.,340,0,0,Ungag()
-340,0,0,,(Dress her back.)|(1 minute),(You let her go and she|puts her clothes back on.),330,0,0,Release()
+340,0,0,,(Tickle her.)ADD_MINUTES:1,(Either she's not ticklish or she's|too stoned but she doesn't react much.),340,0,0,
+340,0,0,,(Masturbate her.)ADD_MINUTES:1,,340,0,0,Masturbate()
+340,0,0,IsRoped,(Untie her.)ADD_MINUTES:1,(She seems to appreciate but doesn't|react that much while you untie her.),340,0,0,Untie()
+340,0,0,IsGagged,(Ungag her.)ADD_MINUTES:1,(You ungag her and she stares at you.)|Oh Fuck!  This is pretty intense.,340,0,0,Ungag()
+340,0,0,,(Dress her back.)ADD_MINUTES:1,(You let her go and she|puts her clothes back on.),330,0,0,Release()
 340,0,0,IsBoundAndGagged,I tricked you bitch.|(Leave her stranded.),,340,0,0,EvilEnd()
 340,0,0,,Let's go back.|(Back to college.),,0,0,0,EndChapter()
 350,0,0,,Cum for me sweetie.|(Make her climax.),(You masturbate her gently while she|moans and surrenders to a sweet orgasm.),340,1,0,Orgasm()
@@ -138,31 +138,31 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 350,0,0,,You don't deserve it.|(Don't let her climax.),(You stop masturbating her|and she slowly stops to moan.),340,0,-1,NoOrgasm()
 400,0,0,,"Beat up Amanda?|No, it's too extreme.",It's not extreme enough!|Someday she will pay.,330,0,0,
 400,0,0,,Yes!  Let's get|her right now.,Come with me then!  (You both walk to|an empty class where Amanda is reading.),410,0,0,StartBeatUp()
-410,0,0,,(Help Sidney to subdue|Amanda.)  (1 minute),(You both jump on Amanda and Sidney|gets a holds on her.)  Strip her down!,420,1,0,
+410,0,0,,(Help Sidney to subdue|Amanda.) ADD_MINUTES:1,(You both jump on Amanda and Sidney|gets a holds on her.)  Strip her down!,420,1,0,
 410,0,0,,I cannot do that.|(Don't subdue Amanda.),You fucking traitor!  You're lucky Amanda.|(Amanda quickly packs her stuff and runs away.),490,-3,-2,
-420,0,0,,(Help Sidney to strip|Amanda.)  (1 minute),(You strip her down naked while|Sidney holds her.)  Beat her!,430,1,0,
+420,0,0,,(Help Sidney to strip|Amanda.) ADD_MINUTES:1,(You strip her down naked while|Sidney holds her.)  Beat her!,430,1,0,
 420,0,0,,I cannot do that.|(Let Amanda go.),You fucking traitor!  You're lucky Amanda.|(Amanda quickly packs her stuff and runs away.),490,-3,-2,
-430,0,0,,(Beat up Amanda.)|(1 minute),(You kick and punch Amanda until she|crumbles to the ground.)  Let me do the rest!,440,0,1,"BeatUp(""Amanda"")"
-430,0,0,,I'm too weak Miss.|(1 minute),(Sidney struggles alone and beats up Amanda that|crumbles to the ground.)  Move away girl!,440,0,-1,
+430,0,0,,(Beat up Amanda.)ADD_MINUTES:1,(You kick and punch Amanda until she|crumbles to the ground.)  Let me do the rest!,440,0,1,"BeatUp(""Amanda"")"
+430,0,0,,I'm too weak Miss.ADD_MINUTES:1,(Sidney struggles alone and beats up Amanda that|crumbles to the ground.)  Move away girl!,440,0,-1,
 430,0,0,,I cannot do that.|(Let Amanda go.),You fucking traitor!  You're lucky Amanda.|(Amanda quickly packs her stuff and runs away.),490,-3,-2,
-440,0,0,,Go ahead!|(1 minute),(Sidney gags and hogties Amanda.)|Let's run before we get caught!,450,1,0,"TieUp(""Amanda"")"
+440,0,0,,Go ahead!ADD_MINUTES:1,(Sidney gags and hogties Amanda.)|Let's run before we get caught!,450,1,0,"TieUp(""Amanda"")"
 440,0,0,,This is going too far.|(Help Amanda to get up.),You fucking traitor!  You're lucky Amanda.|(Amanda quickly packs her stuff and runs away.),490,-3,-2,
 450,0,0,,Yes Miss Sidney.|(Leave her stranded.),,0,0,-1,"CrimeStranded(""Amanda"")"
 450,0,0,,Run like hell girl!|(Leave her stranded.),,0,0,1,"CrimeStranded(""Amanda"")"
-450,0,0,,This is going too far.|(Release her.)  (1 minute),You fucking traitor!  You're lucky Amanda.|(Amanda quickly packs her stuff and runs away.),490,-3,-2,
+450,0,0,,This is going too far.|(Release her.) ADD_MINUTES:1,You fucking traitor!  You're lucky Amanda.|(Amanda quickly packs her stuff and runs away.),490,-3,-2,
 490,0,0,,Let's go back.|(Back to classes.),,0,0,0,EndChapter()
 500,0,0,,"Beat up Sarah?|No, it's too extreme.",It's not extreme enough!|Someday she will pay.,330,0,0,
 500,0,0,,Yes!  Let's get|her right now.,Come with me then!  (You both walk to|the schoolyard where Sarah is chilling.),510,0,0,StartBeatUp()
-510,0,0,,(Help Sidney to subdue|Sarah.)  (1 minute),(You both jump on Sarah and Sidney|gets a holds on her.)  Strip her down!,520,1,0,
+510,0,0,,(Help Sidney to subdue|Sarah.) ADD_MINUTES:1,(You both jump on Sarah and Sidney|gets a holds on her.)  Strip her down!,520,1,0,
 510,0,0,,I cannot do that.|(Don't subdue Sarah.),You fucking traitor!  You're lucky Sarah.|(Sarah pulls her tongue and quickly runs away.),590,-3,-2,
-520,0,0,,(Help Sidney to strip|Sarah.)  (1 minute),(You strip her down naked while|Sidney holds her.)  Beat her!,530,1,0,
+520,0,0,,(Help Sidney to strip|Sarah.) ADD_MINUTES:1,(You strip her down naked while|Sidney holds her.)  Beat her!,530,1,0,
 520,0,0,,I cannot do that.|(Let Sarah go.),You fucking traitor!  You're lucky Sarah.|(Sarah pulls her tongue and quickly runs away.),590,-3,-2,
-530,0,0,,(Beat up Sarah.)|(1 minute),(You kick and punch Sarah until she|crumbles to the ground.)  Let me do the rest!,540,0,1,"BeatUp(""Sarah"")"
-530,0,0,,I'm too weak Miss.|(1 minute),(Sidney struggles alone and beats up Sarah that|crumbles to the ground.)  Move away girl!,540,0,-1,
+530,0,0,,(Beat up Sarah.)ADD_MINUTES:1,(You kick and punch Sarah until she|crumbles to the ground.)  Let me do the rest!,540,0,1,"BeatUp(""Sarah"")"
+530,0,0,,I'm too weak Miss.ADD_MINUTES:1,(Sidney struggles alone and beats up Sarah that|crumbles to the ground.)  Move away girl!,540,0,-1,
 530,0,0,,I cannot do that.|(Let Sarah go.),You fucking traitor!  You're lucky Sarah.|(Sarah pulls her tongue and quickly runs away.),590,-3,-2,
-540,0,0,,Go ahead!|(1 minute),(Sidney gags and binds Sarah on the fence.)|Let's fucking run before we get caught!,550,1,0,"TieUp(""Sarah"")"
+540,0,0,,Go ahead!ADD_MINUTES:1,(Sidney gags and binds Sarah on the fence.)|Let's fucking run before we get caught!,550,1,0,"TieUp(""Sarah"")"
 540,0,0,,This is going too far.|(Help Sarah to get up.),You fucking traitor!  You're lucky Sarah.|(Sarah pulls her tongue and quickly runs away.),590,-3,-2,
 550,0,0,,Yes Miss Sidney.|(Leave her stranded.),,0,0,-1,"CrimeStranded(""Sarah"")"
 550,0,0,,Run like hell girl!|(Leave her stranded.),,0,0,1,"CrimeStranded(""Sarah"")"
-550,0,0,,This is going too far.|(Release her.)  (1 minute),You fucking traitor!  You're lucky Sarah.|(Sarah pulls her tongue and quickly runs away.),590,-3,-2,
+550,0,0,,This is going too far.|(Release her.) ADD_MINUTES:1,You fucking traitor!  You're lucky Sarah.|(Sarah pulls her tongue and quickly runs away.),590,-3,-2,
 590,0,0,,Let's go back.|(Back to classes.),,0,0,0,EndChapter()

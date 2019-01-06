@@ -1,9 +1,9 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Tu joues avec.)|(1 minute),Tu joues avec la corde. Tu ressens|une sensation très douce et lisse contre ta peau.,0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Tu te ligotes.)|(1 minute),Tu tentes de te ligoter mais tu n'arrives pas à faire de|bons noeuds. Tu auras besoin de quelqu'un d'autre.,0,0,0,QuerySelfBondage()
-10,0,0,HasLooseRope,(Tu joues avec une autre|corde.) (1 minute),Tu joues avec une autre corde. Tu ressens|une sensation très douce et lisse contre ta peau.,10,0,0,ShowImage()
-10,0,0,,(Tu essayes d'atteindre|un noeud.) (1 minute),Tu te démènes pour atteindre un noeud |mais tu n'y arrives pas.,10,0,0,
-10,0,0,,(Tu luttes pour te libérer.)|(1 minute),Tu luttes comme une folle|mais tu n'arrives pas à te libérer.,10,0,0,
-10,0,0,,(Tu tires sur la corde|d'entrejambe.) (1 minute),Tu parviens à tirer sur la|corde d'entrejambe et c'est plutôt agréable.,10,0,0,
-20,0,0,,(Tu te ligotes.),Tu entoures minutieusement ton torse avec la|corde et parvient à faire un noeud serré.,10,0,0,DoSelfBondage()
-20,0,0,,(Tu renonces.),Tu résistes à l'idée de te ligoter toi-même.,0,0,0,
+0,0,0,,(Tu joues avec.)ADD_MINUTES:1,Tu joues avec la corde et tu ressens|une sensation très douce et lisse contre ta peau.,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Tu te ligotes.)ADD_MINUTES:1,Tu tentes de te ligoter mais tu n'arrives pas à faire de|bons noeuds. Tu auras besoin de quelqu'un d'autre.,0,0,0,QuerySelfBondage()
+10,0,0,HasLooseRope,(Tu joues avec une|autre corde.)ADD_MINUTES:1,Tu joues avec la corde et tu ressens|une sensation très douce et lisse contre ta peau.,10,0,0,ShowImage()
+10,0,0,,(Tu essayes d'atteindre|un noeud.)ADD_MINUTES:1,"Tu te démènes pour atteindre un noeud, sans succès.",10,0,0,
+10,0,0,,(Tu luttes pour te libérer.)ADD_MINUTES:1,Tu luttes comme une folle|mais tu n'arrives pas à te libérer.,10,0,0,
+10,0,0,,(Tu tires sur la corde|d'entrejambe.)ADD_MINUTES:1,"Tu parviens à tirer sur la corde située au niveau|de l'entrejambe la sensation est plutôt agréable.",10,0,0,
+20,0,0,,(Tu te ligotes.),Tu entoures minutieusement ton torse avec la corde|et parvient à faire un noeud serré et sûr.,10,0,0,DoSelfBondage()
+20,0,0,,(Tu renonces.),Tu résistes à l'idée de te ligoter.,0,0,0,

@@ -78,23 +78,23 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 200,0,0,,Merci de m'avoir montré|ce charmant café.,Tout le plaisir est pour moi ! On s'est bien amusés.,210,1,-1,
 200,0,0,,"Je voulais que tu saches,|j'ai passé un bon moment.",Moi aussi ! On a l'air de bien s'entendre.,210,1,0,
 200,0,0,HasSeduction,"Amy, tu es la personne|la plus mignonne ici.",(Elle pique un fard et rit.) Tu l'es aussi COMMON_PLAYERNAME.,210,2,0,
-200,0,0,,Je peux t'embrasser ?|(1 minute),(Elle acquiesce et met ses lèvres sur les tiennes.),220,1,0,
-200,0,0,,(Tu gardes le silence et|l'embrasses.) (1 minute),"(Sans dire un mot, vous|vous embrassez sur les lèvres.)",220,0,1,
+200,0,0,,Je peux t'embrasser ?ADD_MINUTES:1,(Elle acquiesce et met ses lèvres sur les tiennes.),220,1,0,
+200,0,0,,(Tu gardes le silence et|l'embrasses.)ADD_MINUTES:1,"(Sans dire un mot, vous|vous embrassez sur les lèvres.)",220,0,1,
 200,0,0,,Mieux vaut ne pas être|en retard. (Vous rentrez.),,0,0,0,EndBonus()
-210,0,0,,Je t'aime Amanda.|(1 minute),(Elle rougit et met ses lèvres sur les tiennes.),220,1,0,
-210,0,0,,Je peux t'embrasser ?|(1 minute),(Elle acquiesce et met ses lèvres sur les tiennes.),220,1,-1,
-210,0,0,,(Tu gardes le silence et|l'embrasses.) (1 minute),"(Sans dire un mot, vous|vous embrassez sur les lèvres.)",220,0,1,
+210,0,0,,Je t'aime Amanda.ADD_MINUTES:1,(Elle rougit et met ses lèvres sur les tiennes.),220,1,0,
+210,0,0,,Je peux t'embrasser ?ADD_MINUTES:1,(Elle acquiesce et met ses lèvres sur les tiennes.),220,1,-1,
+210,0,0,,(Tu gardes le silence et|l'embrasses.)ADD_MINUTES:1,"(Sans dire un mot, vous|vous embrassez sur les lèvres.)",220,0,1,
 210,0,0,,Mieux vaut ne pas être|en retard. (Vous rentrez.),,0,0,0,EndBonus()
-220,0,0,,(Tu l'embrasses encore.)|(1 minute),(Tu l'attrapes et tu l'embrasses à nouveau|pendant qu'elle gémit doucement.),220,0,0,
-220,0,0,,Tu as les lèvres d'un ange.|(1 minute),(Vous vous agrippez l'une l'autre et vous faites un long|et passionné baiser profond avec vos langues.),230,1,0,
-220,0,0,,(Vous faites un baiser|profond.) (1 minute),(Vous vous agrippez l'une l'autre et vous faites un long|et passionné baiser profond avec vos langues.),230,0,0,
+220,0,0,,(Tu l'embrasses encore.)ADD_MINUTES:1,(Tu l'attrapes et tu l'embrasses à nouveau|pendant qu'elle gémit doucement.),220,0,0,
+220,0,0,,Tu as les lèvres d'un ange.ADD_MINUTES:1,(Vous vous agrippez l'une l'autre et vous faites un long|et passionné baiser profond avec vos langues.),230,1,0,
+220,0,0,,(Vous faites un baiser|profond.)ADD_MINUTES:1,(Vous vous agrippez l'une l'autre et vous faites un long|et passionné baiser profond avec vos langues.),230,0,0,
 220,0,0,,Mieux vaut ne pas être|en retard. (Vous rentrez.),,0,0,0,EndBonus()
-230,0,0,,Mmmmmhmmmh.|(1 minute),(Vous gardez toutes les deux le rythme|et vous jouez chacune avec la langue de l'autre.),230,0,0,
+230,0,0,,Mmmmmhmmmh.ADD_MINUTES:1,(Vous gardez toutes les deux le rythme|et vous jouez chacune avec la langue de l'autre.),230,0,0,
 230,0,0,MakeLoveReady,Aimerais-tu faire l'amour ?,"Je suis désolée, mais mon coeur est déjà pris.|(Elle soupire.) Même si elle ne le sait pas.",230,0,0,TestMakeLove()
 230,0,0,,Mieux vaut ne pas être|en retard. (Vous rentrez.),,0,0,0,EndBonus()
-240,0,0,,(Tu l'embrasses.)|(1 minute),(Vous vous embrassez tendrement.|Gémissant à chaque contact.),240,0,0,
-240,0,0,,(Tu masses sa poitrine.)|(1 minute),(Vous vous massez les seins avec amour.|En les pressant doucement sans vous faire mal.),240,0,0,
-240,0,0,,(Tu la masturbes)|(1 minute),(Vous vous masturbez l'une l'autre et gémissez|doucement. En veillant à ce que personne ne regarde.),240,0,0,LoveMasturbate()
+240,0,0,,(Tu l'embrasses.)ADD_MINUTES:1,(Vous vous embrassez tendrement.|Gémissant à chaque contact.),240,0,0,
+240,0,0,,(Tu masses sa poitrine.)ADD_MINUTES:1,(Vous vous massez les seins avec amour.|En les pressant doucement sans vous faire mal.),240,0,0,
+240,0,0,,(Tu la masturbes)ADD_MINUTES:1,(Vous vous masturbez l'une l'autre et gémissez|doucement. En veillant à ce que personne ne regarde.),240,0,0,LoveMasturbate()
 240,0,0,,Mieux vaut ne pas être|en retard. (Vous rentrez.),,0,0,0,EndBonus()
 250,0,0,,Je n'ai jamais été|touchée comme ça.,(Elle rit.) Allons. Je suis sûre que tu exagères.,260,0,-1,
 250,0,0,,Whouhaou !|Je reste sans voix.,(Elle acquiesce et rougit.) Et c'était si inattendu.,260,0,0,
@@ -102,38 +102,38 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 250,0,0,,Est-ce que tu as jouis ?,"Ne t'inquiètes pas, j'ai passé un moment merveilleux.",260,0,1,
 250,0,0,,Tu pensais à|quelqu'un d'autre ?,"Je... Non !  Je... C'est... Je suis désolée.|Ne t'inquiètes pas, c'était merveilleux.",260,-1,1,
 250,0,0,,Mieux vaut ne pas être|en retard. (Vous rentrez.),,0,0,0,EndBonus()
-260,0,0,,Un baiser mon amour ?|(1 minute),(Elle acquiesce et t'embrasse tendrement.),280,1,0,
-260,0,0,,(Tu gardes le silence et|l'embrasses.) (1 minute),(Vous vous embrassez tendrement.),280,0,1,
+260,0,0,,Un baiser mon amour ?ADD_MINUTES:1,(Elle acquiesce et t'embrasse tendrement.),280,1,0,
+260,0,0,,(Tu gardes le silence et|l'embrasses.)ADD_MINUTES:1,(Vous vous embrassez tendrement.),280,0,1,
 260,0,0,,Je ferai mieux|la prochaine fois.,"Ne dis pas ça, c'était super ! Rentrons à l'école.",270,0,-1,
 260,0,0,,"La prochaine fois, tu vas|jouir comme une folle.",(Elle fronce les sourcils.) Rentrons à l'école.,270,-1,1,
 260,0,0,,Mieux vaut ne pas être|en retard. (Vous rentrez.),,0,0,0,EndBonus()
 270,0,0,,Rentrons ensemble.|(Vous rentrez.),,0,0,0,EndBonus()
 270,0,0,,Je vais rentrer seule.|(Vous rentrez.),,0,-1,0,EndBonus()
 270,0,0,,Mieux vaut ne pas être|en retard. (Vous rentrez.),,0,0,0,EndBonus()
-280,0,0,,(Tu l'embrasses encore.)|(1 minute),(Elle rit et t'embrasse à nouveau.),280,0,0,
+280,0,0,,(Tu l'embrasses encore.)ADD_MINUTES:1,(Elle rit et t'embrasse à nouveau.),280,0,0,
 280,0,0,,Mieux vaut ne pas être|en retard. (Vous rentrez.),,0,0,0,EndBonus()
-300,0,0,,(Tu gardes le silence et|l'embrasses.) (1 minute),(Tu la pousses contre la clôture et|lui donnes un baiser sur les lèvres.),310,0,1,
-300,0,0,,"C'était amusant, mais je|veux un baiser. (1 minute)",(Tu la pousses contre la clôture et|lui donnes un baiser sur les lèvres.),310,0,1,
-300,0,0,,Tu es magnifique. Je peux|t'embrasser ? (1 minute),(Elle acquiesce pendant que tu la pousses contre|la clôture et lui donnes un baiser sur les lèvres.),310,1,0,
+300,0,0,,(Tu gardes le silence et|l'embrasses.)ADD_MINUTES:1,(Tu la pousses contre la clôture et|lui donnes un baiser sur les lèvres.),310,0,1,
+300,0,0,,"C'était amusant, mais je|veux un baiser.ADD_MINUTES:1",(Tu la pousses contre la clôture et|lui donnes un baiser sur les lèvres.),310,0,1,
+300,0,0,,Tu es magnifique. Je peux|t'embrasser ?ADD_MINUTES:1,(Elle acquiesce pendant que tu la pousses contre|la clôture et lui donnes un baiser sur les lèvres.),310,1,0,
 300,1,0,,"Je voulais que tu saches,|j'ai passé un bon moment.",Moi aussi ! On a l'air de bien s'entendre.,320,1,0,
 300,0,0,,Tu t'es amusée|aujourd'hui ?,Oh oui ! On a l'air de bien s'entendre.,320,0,0,
 300,0,0,,"Amanda, je vais te|prendre maintenant.",Je... Mais... (Tu l'as fait taire avec ta main|et tu la pousses contre la clôture.),330,-1,1,
 300,0,0,,"Salope, tu vas te|taire maintenant.",Je... Mais... (Tu l'as fait taire avec ta main|et tu la pousses contre la clôture.),330,-2,1,
-310,0,0,,(Tu l'embrasses encore.)|(1 minute),(Elle gémit silencieusement mais ne résiste pas|pendant que tu l'embrasses à nouveau.),310,0,0,
+310,0,0,,(Tu l'embrasses encore.)ADD_MINUTES:1,(Elle gémit silencieusement mais ne résiste pas|pendant que tu l'embrasses à nouveau.),310,0,0,
 310,1,0,,"Je voulais que tu saches,|j'ai passé un bon moment.",Moi aussi ! On a l'air de bien s'entendre.,320,0,0,
 310,0,0,,Tu t'es amusée|aujourd'hui ?,Oh oui ! On a l'air de bien s'entendre.,320,0,0,
 310,0,0,,"Amanda, je vais te|prendre maintenant.",Je... Mais... (Tu l'as fait taire avec ta main|et tu la pousses contre la clôture.),330,-1,1,
 310,0,0,,"Salope, tu vas te|taire maintenant.",Je... Mais... (Tu l'as fait taire avec ta main|et tu la pousses contre la clôture.),330,-2,1,
 320,0,0,,Mieux vaut ne pas être|en retard. (Vous rentrez.),,0,0,0,EndBonus()
-320,5,0,,Je veux plus de romance.|(1 minute),"(Elle acquiesce lentement, saisit tes|mains et te donne un tendre baiser.)",220,0,0,
+320,5,0,,Je veux plus de romance.ADD_MINUTES:1,"(Elle acquiesce lentement, saisit tes|mains et te donne un tendre baiser.)",220,0,0,
 320,0,0,,Tu veux un orgasme ?,Non... Oui... (Tu l'as fait taire avec ta main|et tu la pousses contre la clôture.),330,0,0,
 320,0,0,,"Amanda, je vais te|prendre maintenant.",Je... Mais... (Tu l'as fait taire avec ta main|et tu la pousses contre la clôture.),330,-1,1,
 320,0,0,,"Salope, tu vas te|taire maintenant.",Je... Mais... (Tu l'as fait taire avec ta main|et tu la pousses contre la clôture.),330,-2,1,
-330,0,0,,(Tu l'embrasses.)|(1 minute),(Tu l'embrasses doucement pendant qu'elle gémit.),330,0,0,
-330,0,0,,(Tu la chatouilles.)|(1 minute),(Elle se démène joyeusement pour éviter|tes chatouilles et elle à l'air d'aimer ça.),330,0,0,Tickle()
-330,0,0,,(Tu la masturbes.)|(1 minute),"(Elle gémit silencieusement pendant que tu la touches,|tremblant légèrement par ton contact affectueux.)",330,0,0,Masturbate()
-330,0,0,IsRoped,(Tu la détaches.)|(1 minute),"(Un noeud à la fois, tu la libères de son bondage.)",330,0,0,Untie()
-330,0,0,IsGagged,(Tu la débâillonnes.)|(1 minute),"(Tu enlèves soigneusement le bâillon.)|Merci, ce n'était pas confortable.",330,0,0,Ungag()
+330,0,0,,(Tu l'embrasses.)ADD_MINUTES:1,(Tu l'embrasses doucement pendant qu'elle gémit.),330,0,0,
+330,0,0,,(Tu la chatouilles.)ADD_MINUTES:1,(Elle se démène joyeusement pour éviter|tes chatouilles et elle à l'air d'aimer ça.),330,0,0,Tickle()
+330,0,0,,(Tu la masturbes.)ADD_MINUTES:1,"(Elle gémit silencieusement pendant que tu la touches,|tremblant légèrement par ton contact affectueux.)",330,0,0,Masturbate()
+330,0,0,IsRoped,(Tu la détaches.)ADD_MINUTES:1,"(Un noeud à la fois, tu la libères de son bondage.)",330,0,0,Untie()
+330,0,0,IsGagged,(Tu la débâillonnes.)ADD_MINUTES:1,"(Tu enlèves soigneusement le bâillon.)|Merci, ce n'était pas confortable.",330,0,0,Ungag()
 330,0,0,IsBoundAndGagged,"Je t'ai piégé, salope."|(Tu l'abandonnes.),,330,0,0,EvilEnd()
 330,0,0,,Rentrons.|(Vous rentrez à l'école.),,0,0,0,EndBonus()
 400,0,0,,Pourquoi m'as-tu|emmener ici ?,"J'ai une idée folle, mais tu dois me faire confiance.|Vas-tu te soumettre et enlever ton uniforme pour moi ?",410,0,0,
@@ -148,20 +148,20 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 420,0,0,,"D'accord, Amanda.|(Tu te retournes.)","(Elle t'attrape par les fesses et sourit.)|Maintenant, je vais t'attacher avec des cordes, ça ira ?",430,0,0,
 420,0,0,,(Tu essayes de renverser|la situation.),"(Elle est plus forte que toi et te force à te retourner.)|Puisque tu ne sais pas te tenir, Je vais devoir t'attacher.",430,0,1,
 420,0,0,,On devrait peut-être arrêter|(Tu te rhabilles.),"Entendu, je ne te forcerai jamais.|(Tu te rhabilles.) Rentrons.",490,-1,0,
-430,0,0,,"Oui, Madame Amanda.|(Tu obéis.) (1 minute)",(Elle saisit tes bras et forme des cercles avec la corde|autour d'eux et de ton corps.) Ouvre la bouche !,440,0,-1,SubbieRope()
-430,0,0,,"Alors, c'est pour de vrai ?|(Tu obéis.) (1 minute)",(Elle saisit tes bras et forme des cercles avec la corde|autour d'eux et de ton corps.) Ouvre la bouche !,440,0,0,SubbieRope()
+430,0,0,,"Oui, Madame Amanda.|(Tu obéis.)ADD_MINUTES:1",(Elle saisit tes bras et forme des cercles avec la corde|autour d'eux et de ton corps.) Ouvre la bouche !,440,0,-1,SubbieRope()
+430,0,0,,"Alors, c'est pour de vrai ?|(Tu obéis.)ADD_MINUTES:1",(Elle saisit tes bras et forme des cercles avec la corde|autour d'eux et de ton corps.) Ouvre la bouche !,440,0,0,SubbieRope()
 430,0,0,,On devrait peut-être arrêter|(Tu te rhabilles.),"Entendu, je ne te forcerai jamais.|(Tu te rhabilles.) Rentrons.",490,-1,0,
-440,0,0,,(Tu tires la langue.)|(1 minute),"(Elle rit et te tire la langue à son tour.)|Allez ""Soumise"", ouvre bien grand la bouche.",440,0,0,
-440,0,0,,(Tu serres les dents.)|(1 minute),"Tu ne me facile pas la tâche, tu sais.|Allez ""Soumise"", ouvre bien grand la bouche.",440,0,0,ClenchTeeth()
-440,0,0,,(Tu ouvres la bouche.)|(1 minute),(Elle te met un bâillon et boucle les sangles.)|Je peux te caresser maintenant ? Veux-tu jouir ?,450,0,0,SubbieGag()
+440,0,0,,(Tu tires la langue.)ADD_MINUTES:1,"(Elle rit et te tire la langue à son tour.)|Allez ""Soumise"", ouvre bien grand la bouche.",440,0,0,
+440,0,0,,(Tu serres les dents.)ADD_MINUTES:1,"Tu ne me facile pas la tâche, tu sais.|Allez ""Soumise"", ouvre bien grand la bouche.",440,0,0,ClenchTeeth()
+440,0,0,,(Tu ouvres la bouche.)ADD_MINUTES:1,(Elle te met un bâillon et boucle les sangles.)|Je peux te caresser maintenant ? Veux-tu jouir ?,450,0,0,SubbieGag()
 440,0,0,,On devrait peut-être arrêter|Peux-tu me libérer ?,"Entendu, je ne te forcerai jamais.|(Elle te libère.) Rentrons.",490,-1,0,SubbieRelease()
 450,0,0,,@Hheesh. (Tu acquiesces|lentement.),(Elle te pousse contre la clôture et|commence à se frotter la main.),460,0,0,
 450,0,0,,@UOOG ! (Tu acquiesces|rapidement.),(Elle te pousse contre la clôture et|commence à se frotter la main.),460,1,0,
 450,0,0,,(Tu secoues la tête|de gauche à droite.),"(Elle te chatouille pour s'amuser et te libère.)|C'est bon, j'espère que tu t'es bien amusée. Rentrons.",490,-1,0,SubbieRelease()
-460,0,0,,(Tu apprécies son toucher.)|(1 minute),(Tu t'abandonnes à son contact affectueux pendant qu'|elle tire la corde d'entrejambe et caresse ton clitoris.),460,0,0,SubbieMasturbate()
-460,0,0,,(Tu te tortilles avec rythme.)|(1 minute),"(Tu bouges tes fesses pour suivre son rythme.|Lentement, accumulant la jouissance par son toucher.)",460,0,0,SubbieMasturbate()
-460,0,0,,(Tu luttes joyeusement.)|(1 minute),(Tu luttes joyeusement et elle semble apprécier.|Elle prend de la vitesse et te masturbe un peu plus fort.),460,0,0,SubbieMasturbate()
-460,0,0,,"(Tu luttes, paniquée.)|(1 minute)","(Elle constate que tu paniques et te libère.) C'est bon,|j'espère que tu t'es quand même amusée. Rentrons.",490,-1,-1,SubbieRelease()
+460,0,0,,(Tu apprécies son toucher.)ADD_MINUTES:1,(Tu t'abandonnes à son contact affectueux pendant qu'|elle tire la corde d'entrejambe et caresse ton clitoris.),460,0,0,SubbieMasturbate()
+460,0,0,,(Tu te tortilles avec rythme.)ADD_MINUTES:1,"(Tu bouges tes fesses pour suivre son rythme.|Lentement, accumulant la jouissance par son toucher.)",460,0,0,SubbieMasturbate()
+460,0,0,,(Tu luttes joyeusement.)ADD_MINUTES:1,(Tu luttes joyeusement et elle semble apprécier.|Elle prend de la vitesse et te masturbe un peu plus fort.),460,0,0,SubbieMasturbate()
+460,0,0,,"(Tu luttes, paniquée.)ADD_MINUTES:1","(Elle constate que tu paniques et te libère.) C'est bon,|j'espère que tu t'es quand même amusée. Rentrons.",490,-1,-1,SubbieRelease()
 470,0,0,,(Tu t'empourpres|et fixe le sol.),"Ne sois pas timide, la jouissance n'est pas une|mauvaise chose. (Elle enlève ton bâillon.) Tu as aimé ?",480,0,-1,SubbieUngag()
 470,0,0,,@Uuuumph gnu !,"(Elle rit et détache ton bâillon.)|Alors dis-moi, est-ce que ça t'a plu ?",480,0,0,SubbieUngag()
 470,0,0,,(Tu rapproches tes fesses|encore plus prêt.),"Encore ? Peut-être plus tard. (Elle rit et détache|ton bâillon.) Alors, est-ce que ça t'a plu ?",480,0,0,SubbieUngag()

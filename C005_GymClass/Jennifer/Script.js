@@ -19,6 +19,7 @@ var C005_GymClass_Jennifer_PlayerHasBallGag = false;
 var C005_GymClass_Jennifer_PlayerHasTapeGag = false;
 var C005_GymClass_Jennifer_Turnabout = false;
 var C005_GymClass_Jennifer_TrainingReady = true;
+var C005_GymClass_Jennifer_CollarFound = false;
 
 // Chapter 5 - Jennifer Load
 function C005_GymClass_Jennifer_Load() {
@@ -323,4 +324,13 @@ function C005_GymClass_Jennifer_TrainFighting() {
 		CurrentTime = CurrentTime + 0.5 * 60 * 60 * 1000;
 		C005_GymClass_Jennifer_TrainingReady = false;
 	} else OverridenIntroText = GetText("TrainFightingNoTime");
+}
+
+// Chapter 5 - The player can find a collar while searching
+function C005_GymClass_Jennifer_Search() {
+	if (C005_GymClass_Jennifer_CollarFound == false) {
+		C005_GymClass_Jennifer_CollarFound = true;
+		PlayerAddInventory("Collar", 1);
+		OverridenIntroText = GetText("FindCollar");
+	}
 }

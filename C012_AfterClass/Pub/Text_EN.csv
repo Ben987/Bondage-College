@@ -1,2 +1,3 @@
 Tag,Content
-SidneyLeavesOnTime,(You take one last drink with Sidney|but she has to go.  Leaving you alone.)
+SidneyLeavesOnTime,"(You take one last drink with Sidney,|but she must go.  Leaving you alone.)"
+FindCrop,You find an old equestrian trophy on|the wall with a crop that you could use.

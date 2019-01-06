@@ -11,7 +11,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 10,0,0,,Chapitre 5|Le cours de Gym,,10,0,0,"LoadChapter(""C005_GymClass"")"
 10,0,0,,Chapitre 6|L'isolement,,10,0,0,"LoadChapter(""C006_Isolation"")"
 10,0,0,,Chapitre 7|La pause déjeuner,,10,0,0,"LoadChapter(""C007_LunchBreak"")"
-10,0,0,,Chapitre 8|Le cours de Théâtre,,10,0,0,"LoadChapter(""C008_DramaClass"")"
+10,0,0,,Chapitre 8|Le cours d'Art Dramatique,,10,0,0,"LoadChapter(""C008_DramaClass"")"
 10,0,0,,Autres chapitres,"Sélectionnez le chapitre que vous voulez.|Si c'est votre 1ère partie, commencez au chapitre 1.",20,0,0,
 10,0,0,,Menu principal,"Bienvenue à l'Université du Bondage.|Amusez-vous bien, soyez curieux(se) et coquin(e).",0,0,0,
 20,0,0,,Chapitre 9|La bibliothèque,,20,0,0,"LoadChapter(""C009_Library"")"
@@ -22,7 +22,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 20,0,0,,Autres chapitres,"Sélectionnez le chapitre que vous voulez.|Si c'est votre 1ère partie, commencez au chapitre 1.",10,0,0,
 20,0,0,,Menu principal,"Bienvenue à l'Université du Bondage.|Amusez-vous bien, soyez curieux(se) et coquin(e).",0,0,0,
 30,0,0,,Anglais,,0,0,0,"SetLanguage(""EN"")"
-30,0,0,,"Français (Chapitre 1 à 7)|Traduit par gottspende",,0,0,0,"SetLanguage(""FR"")"
-30,0,0,,Chinois (Chapitre 5)|Traduit par asdcvbgf,,0,0,0,"SetLanguage(""CN"")"
-30,0,0,,Espagnol (Chapitre 1)|Traduit par Rafael R,,0,0,0,"SetLanguage(""ES"")"
-30,0,0,,Allemand (Chapitre 1 & 11)|Par Knife et fleisch11,,0,0,0,"SetLanguage(""DE"")"
+30,0,0,,"Français (Chapitre 1 à 9)|Traduit par gottspende",,0,0,0,"SetLanguage(""FR"")"
+30,0,0,,Chinois (Chapitre 1 & 5)|Par Dwscdv3 et asdcvbgf,,0,0,0,"SetLanguage(""CN"")"
+30,0,0,,Espagnol (Chapitre 1 & 2)|Par Rafael et tree13003,,0,0,0,"SetLanguage(""ES"")"
+30,0,0,,"Allemand (Ch. 1 à 11)|adokilume, Knife, fleisch11",,0,0,0,"SetLanguage(""DE"")"

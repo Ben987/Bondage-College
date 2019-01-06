@@ -1,0 +1,35 @@
+﻿Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,Atar a otros estudiantes esta prohibido.|Espero que aprendas una lección de este castigo.,YukiFace.jpg
+0,0,0,Fighting,Pelear en el colegio es inaceptable jovencita.|Espero que el tiempo de castigo te sirva.,YukiFace.jpg
+0,0,0,Sleepy,Lo que has hecho no es aceptable|Jovencita.  (Bosteza.),YukiSleepy.jpg
+10,0,0,,¿Ahora intentarás ser mejor estudiante?,YukiFace.jpg
+10,0,0,Sleepy,¿Ahora intentarás ser mejor estudiante?,YukiSleepy.jpg
+20,0,0,,¿Puedes sentarte y callarte durante el castigo?,YukiFace.jpg
+20,0,0,Sleepy,¿Puedes sentarte y callarte durante el castigo?,YukiSleepy.jpg
+30,0,0,,¿Qué tienes en la mano?,YukiFace.jpg
+30,0,0,Sleepy,¿Qué tienes en la mano?,YukiSleepy.jpg
+40,0,0,,,YukiFace.jpg
+40,0,0,Sleepy,,YukiSleepy.jpg
+50,0,0,,Estate callada jovencita.|Estás castigada hasta las 9.,YukiFace.jpg
+50,0,0,Sleepy,(Bosteza y se esfuerza por no dormirse.)|(Pasarán un par de minutos antes de que haga efecto.),YukiSleepy.jpg
+60,0,0,,Estate callada jovencita.|Estás castigada hasta las 9.,YukiFace.jpg
+60,0,0,Sleepy,(Bosteza y se esfuerza por no dormirse.)|(Pasarán un par de minutos antes de que haga efecto.),YukiSleepy.jpg
+70,0,0,,Esta mordaza te mantendrá callada.|Estás castigada hasta las 9.,YukiFace.jpg
+70,0,0,Sleepy,(Bosteza y se esfuerza por no dormirse.)|(Pasarán un par de minutos antes de que haga efecto.),YukiSleepy.jpg
+100,0,0,,(La profesora Yuki duerme profundamente.),YukiSleep.jpg
+100,0,0,EggInside,(La profesora Yuki duerme profundamente.|Tiembla y gime de vez en cuando por el vibrador.),YukiSleep.jpg
+110,0,0,,(La profesora Yuki duerme profundamente en ropa interior.),YukiStrip.jpg
+110,0,0,EggInside,(La profesora Yuki duerme profundamente en ropa interior.|Tiembla y gime de vez en cuando por el vibrador.),YukiStrip.jpg
+120,0,0,,(La profesora Yuki duerme atada en ropa interior.),YukiCuffs.jpg
+120,0,0,EggInside,(La profesora Yuki duerme atada en ropa interior.|Tiembla y gime de vez en cuando por el vibrador.),YukiCuffs.jpg
+130,0,0,,(La profesora Yuki duerme atada en ropa interior.),YukiLay.jpg
+130,0,0,EggInside,(La profesora Yuki duerme atada en ropa interior.|Tiembla y gime de vez en cuando por el vibrador.),YukiLay.jpg
+200,0,0,,¿Que ha pasado?  ¿Me he quedado dormida?,YukiSleepy.jpg
+210,0,0,,¿Me he quedado dormida?  ¿Quién me ha quitado la ropa?,YukiSleepyStrip.jpg
+220,0,0,,¿Que ha pasado?   ¿Me he quedado dormida?|¿Quien me ha atado y desnudado?,YukiAwakeCuffs.jpg
+230,0,0,,Solo te estas metiendo cada vez mas en problemas.|¡Quítame estas esposas ahora!,YukiAwakeCuffs.jpg
+250,0,0,,Mantente callada durante el castigo.,YukiFace.jpg
+250,0,0,EggInside,¡AH!  ¿No hace mucho calor aquí?|(Parece sudar a causa del huevo.),YukiFace.jpg
+260,0,0,,(Sigue furiosa y te ignora.),YukiFace.jpg
+260,0,0,EggInside,(Sigue furiosa y te ignora.)|(También parece sudar a causa del huevo.),YukiFace.jpg
+270,0,0,,(Yuki se ha ido.),YukiGone.jpg

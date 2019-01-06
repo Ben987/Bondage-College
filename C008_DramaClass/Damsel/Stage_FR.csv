@@ -1,0 +1,57 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+140,0,0,PlayerIsDamsel,Halte ! Avant que la terre|ne vire cramoisi.,Les deux chevaliers regardent la demoiselle.,150,0,0,"GlobalStage(150, 1, 0)"
+140,0,0,PlayerIsDamsel,Stop ! Avant que le sol|ne devienne rouge.,Les deux chevaliers regardent la demoiselle.,150,0,0,"GlobalStage(150, -1, 0)"
+140,0,0,PlayerIsDamsel,Désolée Julia.|J'ai oublié ma réplique.,"Julia te chuchote :|""Halte ! Avant que la terre ne vire cramoisi.""",140,0,0,ForgetLine()
+140,0,0,!PlayerIsDamsel,(Tu écoutes calmement.),"Sarah s'avance comme une princesse et dit :|""Halte ! Avant que le sol ne vire cramoisi.""",150,0,0,"GlobalStage(150, 0, 0)"
+140,0,0,!PlayerIsDamsel,(Tu claques tes doigts|avec impatience.),"Sarah se précipite sur scène et dit :|""Halte! Avant que le sol ne devienne rouge.""",150,0,0,"GlobalStage(150, 0, 1)"
+140,0,0,!PlayerIsDamsel,(Tu fais des grimaces|pour la distraire.),"Sarah se retient de rire et dit :|""Stop ! Avant que la terre ne vire cramoisi.""",150,0,0,"GlobalStage(150, -1, 0)"
+150,0,0,PlayerIsDamsel,Permettez-moi de parler|avec mon coeur.,Les deux chevaliers te regardent curieusement.,160,0,0,"GlobalStage(160, -1, 0)"
+150,0,0,PlayerIsDamsel,Laisser mon coeur vous|attester d'une voix pure.,Les deux chevaliers te regardent avec anxiété.,160,0,0,"GlobalStage(160, 1, 0)"
+150,0,0,PlayerIsDamsel,Désolée Julia.|J'ai oublié ma réplique.,"Julia soupire et chuchote :|""Laisser mon coeur vous attester d'une voix pure.""",150,0,0,ForgetLine()
+150,0,0,!PlayerIsDamsel,(Tu écoutes calmement.),"Sarah regarde les deux chevaliers et dit :|""Laisser mon coeur vous attester d'une voix pure.""",160,0,0,"GlobalStage(160, 0, 0)"
+150,0,0,!PlayerIsDamsel,(Tu claques tes doigts|avec impatience.),"Sarah accélère et dit :|""Permettez à mon coeur de vous attester d'une voix pure.""",160,0,0,"GlobalStage(160, 0, 1)"
+150,0,0,!PlayerIsDamsel,(Tu lève ton pouce|pour l'acclamer),"Sarah te sourit et dit :|""Laisser mon coeur vous attester d'une voix pure.""",160,0,0,"GlobalStage(160, 1, 0)"
+160,0,0,PlayerIsDamsel,J'aime le héros blanc.,Le chevalier noir te regarde avec|colère et prend la parole.,200,0,0,"GlobalStage(200, -1, 0)"
+160,0,0,PlayerIsDamsel,Je proclame mon amour|envers le héros blanc.,Le chevalier noir te regarde avec|colère et prend la parole.,200,0,0,"GlobalStage(200, 1, 0)"
+160,0,0,PlayerIsDamsel,J'aime le chevalier noir.,Le chevalier noir sourit et prend la parole.,210,0,0,"GlobalStage(210, -1, 0)"
+160,0,0,PlayerIsDamsel,Je proclame mon amour|envers le champion noir.,Le chevalier noir sourit et prend la parole.,210,0,0,"GlobalStage(210, 1, 0)"
+160,0,0,PlayerIsDamsel,Désolée Julia.|J'ai oublié ma réplique.,"Julia soupire et chuchote :|""Je proclame mon amour envers le héros blanc.""",150,0,0,ForgetLine()
+160,0,0,!PlayerIsDamsel,(Tu écoutes calmement.),,160,0,0,SarahChooseKnight()
+160,0,0,!PlayerIsDamsel,(Tu claques tes doigts|avec impatience.),,160,0,0,SarahChooseKnight()
+250,0,0,CanKissHeroine,(Tu vas embrasser|l'héroïne.)ADD_MINUTES:1,Tu te précipites dans les bras du chevalier|blanc pour un merveilleux baiser final.,260,0,0,FinalKiss()
+250,0,0,CanKneelHeroine,(Tu t'agenouilles à coté|de l'héroïne.)ADD_MINUTES:1,Tu t'agenouilles respectueusement à coté de Sarah|et tu étreins ses jambes pour le dernier acte.,260,0,0,FinalDomme()
+250,0,0,CanHugHeroine,(Tu vas étreindre l'héroïne.)ADD_MINUTES:1,Tu ouvres les bras et étreins le|chevalier blanc pour le dernier acte.,260,0,0,FinalHug()
+250,10,0,PlayerIsHeroine,(Tu te précipites pour|l'embrasser.)ADD_MINUTES:1,Tu te précipites vers Sarah et vous|partagez un baiser pour le dernier acte.,260,0,0,FinalKiss()
+250,0,10,PlayerIsHeroine,(Tu pointes le sol.)ADD_MINUTES:1,Sarah s'agenouille respectueusement à côté de toi|et serre tes jambes dans ses bras pour le dernier acte.,260,0,0,FinalDomme()
+250,0,0,PlayerIsHeroine,(Tu vas l'étreindre.)ADD_MINUTES:1,Tu vas voir Sarah et tu lui fais|un câlin chaleureux pour le dernier acte.,260,0,0,FinalHug()
+250,0,0,PlayerIsVillain,(Tu observes la scène.)ADD_MINUTES:1,Amanda se précipite vers Sarah et elles|partagent un beau baiser pour le dernier acte.,260,0,0,FinalKiss()
+255,0,0,,(Tu la libères.)ADD_MINUTES:1,Tu la libères de ses liens pendant|qu'elle te regarde avec le sourire.,250,0,0,ReleaseDamsel()
+255,0,0,,Vous subsisterez en tant|que femme liée.ADD_MINUTES:1,La demoiselle fait oui de la tête et sourit.|La pièce se termine avec deux prisonnières.,300,0,0,FinalTwoPrisoners()
+255,0,0,,Vous serez ma femme liée.ADD_MINUTES:1,La demoiselle fait oui de la tête et sourit.|La pièce se termine avec deux prisonnières.,300,0,0,FinalTwoPrisoners()
+255,0,0,,Désolée Julia.|J'ai oublié ma réplique.,"Julia rit à haute voix et dit : ""Ne t'inquiètes pas|et improvises, nous sommes sortis du script.""",255,0,0,
+280,0,0,CanKissVillain,(Tu vas embrasser|le méchant.)ADD_MINUTES:1,Tu te précipites dans les bras du chevalier|noir pour un merveilleux baiser final.,290,0,0,FinalKiss()
+280,0,0,CanKneelVillain,(Tu t'agenouilles à coté|du méchant.)ADD_MINUTES:1,Tu t'agenouilles respectueusement à côté d'Amanda|et tu étreins ses jambes pour le dernier acte.,290,0,0,FinalDomme()
+280,0,0,CanHugVillain,(Tu vas étreindre|le méchant.)ADD_MINUTES:1,Tu ouvres les bras et étreins le|chevalier noir pour le dernier acte.,290,0,0,FinalHug()
+280,10,0,PlayerIsVillain,(Tu la saisis et l'embrasses.)ADD_MINUTES:1,Tu la tires près de toi et lui donnes|un tendre baiser pour l'acte final.,290,0,0,FinalKiss()
+280,0,10,PlayerIsVillain,(Tu pointes le sol.)ADD_MINUTES:1,Sarah s'agenouille respectueusement à côté de toi|et serre tes jambes dans ses bras pour le dernier acte.,290,0,0,FinalDomme()
+280,0,0,PlayerIsVillain,(Tu vas l'étreindre.)ADD_MINUTES:1,Tu la tires près de toi et lui donnes une longue|et chaleureuse accolade pour le dernier acte.,290,0,0,FinalHug()
+280,0,0,PlayerIsHeroine,(Tu observes la scène.)ADD_MINUTES:1,Amanda saisit Sarah et elles s'embrassent|tendrement pour le dernier acte.,290,0,0,FinalKiss()
+285,0,0,,(Tu la libères.)ADD_MINUTES:1,Tu la libères de ses liens pendant|qu'elle te regarde curieusement.,280,0,0,ReleaseDamsel()
+285,0,0,,Vous serez ma captive.ADD_MINUTES:1,La demoiselle secoue la tête et rit.|La pièce se termine avec deux prisonnières.,300,0,0,FinalTwoPrisoners()
+285,0,0,,Vous êtes ma prisonnière.ADD_MINUTES:1,La demoiselle secoue la tête et rit.|La pièce se termine avec deux prisonnières.,300,0,0,FinalTwoPrisoners()
+285,0,0,,Désolée Julia.|J'ai oublié ma réplique.,"Julia rit à haute voix et dit : ""Ne t'inquiètes pas|et improvises, nous sommes sortis du script.""",285,0,0,
+400,0,0,,Je ne vous épouserez pas.|Enlevez cette robe,"Bien sûr, beau chevalier. Navrée de l'apprendre.|(Elle enlève sa robe et la jette.)",410,-1,1,Strip()
+400,0,0,,Jolie demoiselle. Montrez|nous votre corps parfait.,"Oh oui, mon beau chevalier ! Laissez-moi faire.|(Elle enlève sa robe et la jette.)",410,1,0,Strip()
+400,0,0,,Vous n'avez pas une bonne|silhouette dans cette robe.,Ça me donne de grosses fesses ? Je vais l'enlever.|(Elle enlève sa robe et la jette.),410,-1,0,Strip()
+400,0,0,,Ce serait encore plus|coquin en sous-vêtements.,Oui ! C'est une bonne idée. Je vais l'enlever.|(Elle enlève sa robe et la jette.),410,1,-1,Strip()
+410,0,0,!IsRestrained,"Dansez pour moi, douce|demoiselle.ADD_MINUTES:1",(Elle rit et exécute une danse de ballerine.),410,0,0,
+410,0,0,!IsRestrained,"Guinchez pour moi, douce|damoiselle.ADD_MINUTES:1",(Elle rit et exécute une danse de ballerine.),410,0,0,
+410,0,0,IsRestrained,"Dansez pour moi, douce|demoiselle.ADD_MINUTES:1","(Elle exécute une danse très maladroite|dans ses entraves en riant tout du long.)",410,0,0,
+410,0,0,IsRestrained,"Guinchez pour moi, douce|damoiselle.ADD_MINUTES:1","(Elle exécute une danse très maladroite|dans ses entraves en riant tout du long.)",410,0,0,
+410,0,0,CanUntie,(Tu la détaches.)ADD_MINUTES:1,(Elle résiste pour rester attachée mais tu|parviens à défaire les noeuds et la libérer.),410,0,0,Untie()
+410,0,0,CanUnstrap,(Tu la détaches.)ADD_MINUTES:1,(Elle résiste pour garder le fourreau|mais tu parviens à le détacher.),410,0,0,Untie()
+410,0,0,CanUngag,(Tu la débâillonnes.)ADD_MINUTES:1,(Tu enlèves le bâillon et elle te regarde.) Cette jolie|demoiselle peut-elle avoir un autre bâillon ?,410,0,0,Ungag()
+410,0,0,CanKiss,(Tu l'embrasses.)ADD_MINUTES:1,(Tu t'approches et tu lui fais un long baiser sur|les lèvres.) (Elle rit.) C'est un très bon baiser.,410,0,0,Kiss()
+410,0,0,CanAbuse,(Tu la chatouilles.)ADD_MINUTES:1,(Elle rit et se débat légèrement.|Elle n'a pas l'air très chatouilleuse.),410,0,0,
+410,0,0,CanAbuse,(Tu lui mets une fessée.)ADD_MINUTES:1,(Tu lui donnes une bonne fessée. Elle gémit|doucement à chaque coup et apprécie.),410,0,0,Spank()
+410,0,0,CanAbuse,(Tu la masturbes.)ADD_MINUTES:1,(Tu la masturbes lentement pendant|qu'elle gémit de plus en plus vite.),410,0,0,Masturbate()

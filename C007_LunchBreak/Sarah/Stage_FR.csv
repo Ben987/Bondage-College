@@ -67,11 +67,11 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 160,0,0,,Tu es une mignonne souris|qui adore le fromage ?,C'est cela ! (Elle fait une imitation loufoque de souris.)|Je vais me laver les mains. (Elle se rend aux toilettes.),170,1,0,RestroomTimerStart(true)
 160,0,0,,"Ne te soucis pas de|l'addition elle est pour moi.",Pour de vrai ? C'est très généreux de ta part.|Je vais me laver les mains. (Elle se rend aux toilettes.),170,0,1,RestroomTimerStart(true)
 160,0,0,,Tu peux prendre l'addition ?|Je la prendrai une autre fois,Hmm. Je suppose... (Elle n'a pas l'air contente.)|Je vais me laver les mains. (Elle se rend aux toilettes.),170,-1,0,RestroomTimerStart(false)
-170,0,0,,(Tu attends patiemment.)|(1 minute),"Tu attends patiemment, mais elle n'est|pas encore revenue des toilettes.",170,0,0,RestroomTimerRun()
-170,0,0,,(Tu regardes dehors.)|(1 minute),Tu regardes passer les gens à l'extérieur et tu attends.|Elle n'est pas encore revenue des toilettes.,170,0,0,RestroomTimerRun()
+170,0,0,,(Tu attends patiemment.)ADD_MINUTES:1,"Tu attends patiemment, mais elle n'est|pas encore revenue des toilettes.",170,0,0,RestroomTimerRun()
+170,0,0,,(Tu regardes dehors.)ADD_MINUTES:1,Tu regardes passer les gens à l'extérieur et tu attends.|Elle n'est pas encore revenue des toilettes.,170,0,0,RestroomTimerRun()
 170,0,0,,(Tu te rends aux toilettes.),Tu te rends aux toilettes|mais l'unique porte est fermée.,180,0,0,
 170,0,0,,(Tu sors du café.)|(Tu retournes à l'université.),,0,-3,0,LeaveStranded()
-180,0,0,,(Tu attends devant|la porte.) (1 minute),"(Tu attends patiemment devant|la porte, mais elle ne revient pas.)",180,0,0,RestroomTimerRun()
+180,0,0,,(Tu attends devant|la porte.)ADD_MINUTES:1,"(Tu attends patiemment devant|la porte, mais elle ne revient pas.)",180,0,0,RestroomTimerRun()
 180,0,0,,(Tu frappes à la porte.),(Tu peux entendre la voix de Sarah.)|Donne-moi une minute s'il te plaît !,180,0,0,
 180,0,0,,(Tu ouvres la porte.),(Tu essayes d'entrer mais la porte est verrouillée.),180,0,0,
 180,0,0,,(Tu enfonces la porte.),(Tu essayes d'enfoncer la porte|mais elle ne bouge pas.),180,0,0,
@@ -94,7 +94,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 210,0,0,,Je t'aime Sarah.|Je peux t'embrasser ?,"(Sans se dire un mot, vous vous câlinez l'une l'autre|dans une étreinte d'amour et vous vous embrassez.)",220,1,0,Kiss()
 210,0,5,,"Jeune fille, je vais te|prendre maintenant.","Quoi ? Mais Madame,|nous sommes dans un lieu public.",230,-1,1,
 210,0,0,,Le repas doit être prêt.|(Vous sortez des toilettes.),(Elle acquiesce et vous retournez à votre table.),300,0,0,
-220,0,0,,(Tu l'embrasses à nouveau)|(1 minute),(Vous vous embrassez tranquillement|dans les toilettes du restaurant.),220,0,0,
+220,0,0,,(Tu l'embrasses à nouveau)ADD_MINUTES:1,(Vous vous embrassez tranquillement|dans les toilettes du restaurant.),220,0,0,
 220,0,0,,Soyons coquines !,(Elle rit.) Coquine ? Qu'as-tu en tête ?,230,0,0,
 220,0,5,,"Jeune fille, je vais te|prendre maintenant.","Quoi ? Mais Madame,|nous sommes dans un lieu public.",230,-1,1,
 220,0,0,,Le repas doit être prêt.|(Vous sortez des toilettes.),(Elle acquiesce et vous retournez à votre table.),300,-1,0,
@@ -107,10 +107,10 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 240,0,0,,Nous devrions arrêter ça.|(Vous sortez des toilettes.),(Elle soupire et vous vous rhabillez|toutes les deux et retournez à votre table.),300,-1,-1,Dress()
 250,0,0,,(Tu te frottes contre elle.)|(1 minute.),(Vous vous frottez l'une contre l'autre et|gémissez dans une extase lente et douce.),250,0,0,MakeLove()
 250,0,0,,(Tu vous doigtes toutes|les deux.) (1 minute.),(Tu te doigtes et tu la doigte elle aussi en même temps.|Vous tremblez et transpirez à cause des mouvements.),250,0,0,MakeLove()
-250,0,0,,(Tu pinces ses tétons.)|(1 minute),(Elle pousse de légers cris quand tu lui pinces|ses tétons et ça a l'air de beaucoup lui plaire.),250,0,0,Violence()
-250,0,5,,(Tu la gifles.)|(1 minute),(Tu la gifles assez fort sur le visage.|Elle incline la tête et accélère ses mouvements.),250,0,0,Violence()
-250,0,0,IsRoped,(Tu la détaches.)|(1 minute),(Elle luttle pour rester attachée|mais tu parviens à défaire les noeuds.),250,0,0,Untie()
-250,0,0,IsGagged,(Tu la débâillonnes.)|(1 minute),(Elle luttle pour garder le bâillon|mais tu parviens à l'enlever.),250,0,0,Ungag()
+250,0,0,,(Tu pinces ses tétons.)ADD_MINUTES:1,(Elle pousse de légers cris quand tu lui pinces|ses tétons et ça a l'air de beaucoup lui plaire.),250,0,0,Violence()
+250,0,5,,(Tu la gifles.)ADD_MINUTES:1,(Tu la gifles assez fort sur le visage.|Elle incline la tête et accélère ses mouvements.),250,0,0,Violence()
+250,0,0,IsRoped,(Tu la détaches.)ADD_MINUTES:1,(Elle luttle pour rester attachée|mais tu parviens à défaire les noeuds.),250,0,0,Untie()
+250,0,0,IsGagged,(Tu la débâillonnes.)ADD_MINUTES:1,(Elle luttle pour garder le bâillon|mais tu parviens à l'enlever.),250,0,0,Ungag()
 250,0,0,IsBoundAndGagged,"Je t'ai piégé, salope."|(Tu l'abandonnes.),,250,0,0,EvilEnd()
 250,0,0,,Nous devrions arrêter ça.|(Vous sortez des toilettes.),(Elle soupire et vous vous rhabillez|toutes les deux et retournez à votre table.),300,-2,-1,Dress()
 260,0,0,,C'était magnifique.|(Tu l'aides à se lever.),(Tu l'aides à se lever et elle acquiesce.)|Oui ! C'était de la pure magie.,270,1,0,Release()

@@ -78,23 +78,23 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 200,0,0,,Thanks for showing|me this lovely cafe.,My pleasure!  We had a good time.,210,1,-1,
 200,0,0,,I wanted you to know|that I had a great time.,I did too!  We seem to fit well together.,210,1,0,
 200,0,0,HasSeduction,"Amy, you're the sweetest|thing in this college.",(She blushes red and giggles.)|You're also sweet COMMON_PLAYERNAME.,210,2,0,
-200,0,0,,Can I kiss you?|(1 minute),(She nods and puts her lips against yours.),220,1,0,Kiss()
-200,0,0,,(Stay silent and kiss her.)|(1 minute),,220,0,1,Kiss()
+200,0,0,,Can I kiss you?ADD_MINUTES:1,(She nods and puts her lips against yours.),220,1,0,Kiss()
+200,0,0,,(Stay silent and kiss her.)ADD_MINUTES:1,,220,0,1,Kiss()
 200,0,0,,Better not be late.|(Back to college.),,0,0,0,EndBonus()
-210,0,0,,I love you Amanda.|(1 minute),(She blushes and puts her lips against yours.),220,1,0,Kiss()
-210,0,0,,Can I kiss you?|(1 minute),(She nods and puts her lips against yours.),220,1,-1,Kiss()
-210,0,0,,(Stay silent and kiss her.)|(1 minute),"(Without saying a word, you|kiss each other on the lips.)",220,0,1,Kiss()
+210,0,0,,I love you Amanda.ADD_MINUTES:1,(She blushes and puts her lips against yours.),220,1,0,Kiss()
+210,0,0,,Can I kiss you?ADD_MINUTES:1,(She nods and puts her lips against yours.),220,1,-1,Kiss()
+210,0,0,,(Stay silent and kiss her.)ADD_MINUTES:1,"(Without saying a word, you|kiss each other on the lips.)",220,0,1,Kiss()
 210,0,0,,Better not be late.|(Back to college.),,0,0,0,EndBonus()
-220,0,0,,(Kiss her again.)|(1 minute),(You grab her and kiss her|again while she moans quietly.),220,0,0,
-220,0,0,,You have angel lips.|(1 minute),(You grab each other and do a long|and passionate French kiss with your tongues.),230,1,0,
-220,0,0,,(French kiss her.)|(1 minute),(You grab each other and do a long|and passionate French kiss with your tongues.),230,0,0,
+220,0,0,,(Kiss her again.)ADD_MINUTES:1,(You grab her and kiss her|again while she moans quietly.),220,0,0,
+220,0,0,,You have angel lips.ADD_MINUTES:1,(You grab each other and do a long|and passionate French kiss with your tongues.),230,1,0,
+220,0,0,,(French kiss her.)ADD_MINUTES:1,(You grab each other and do a long|and passionate French kiss with your tongues.),230,0,0,
 220,0,0,,Better not be late.|(Back to college.),,0,0,0,EndBonus()
-230,0,0,,Mmmmmhmmmh.|(1 minute),(You both keep up the pace and|play with each other tongues.),230,0,0,
+230,0,0,,Mmmmmhmmmh.ADD_MINUTES:1,(You both keep up the pace and|play with each other tongues.),230,0,0,
 230,0,0,MakeLoveReady,Would you like to|make love with me?,"I'm sorry, but my heart is already taken.|(She sighs.)  Even if she doesn't know.",230,0,0,TestMakeLove()
 230,0,0,,Better not be late.|(Back to college.),,0,0,0,EndBonus()
-240,0,0,,(Kiss her.)|(1 minute),(You kiss each other tenderly.|Moaning with each touch.),240,0,0,Kiss()
-240,0,0,,(Massage her breast.)|(1 minute),(You massage each other breast lovingly.|Gently squeezing without hurting.),240,0,0,
-240,0,0,,(Masturbate her.)|(1 minute),(You both masturbate each other and moan|softly.  Making sure nobody is looking.),240,0,0,LoveMasturbate()
+240,0,0,,(Kiss her.)ADD_MINUTES:1,(You kiss each other tenderly.|Moaning with each touch.),240,0,0,Kiss()
+240,0,0,,(Massage her breast.)ADD_MINUTES:1,(You massage each other breast lovingly.|Gently squeezing without hurting.),240,0,0,
+240,0,0,,(Masturbate her.)ADD_MINUTES:1,(You both masturbate each other and moan|softly.  Making sure nobody is looking.),240,0,0,LoveMasturbate()
 240,0,0,,Better not be late.|(Back to college.),,0,0,0,EndBonus()
 250,0,0,,I've never been|touched like that.,(She giggles.)  Oh lord.|I'm sure you're exaggerating.,260,0,-1,
 250,0,0,,Wow!  I'm speechless.,(She nods and blushes.)|And it was so unexpected.,260,0,0,
@@ -102,38 +102,38 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 250,0,0,,Did you also cum?,"Don't worry, I had a wonderful time.",260,0,1,
 250,0,0,,You were thinking|about someone else?,"I... No!  I... That's...  I'm sorry.|Don't worry, it was wonderful.",260,-1,1,
 250,0,0,,Better not be late.|(Back to college.),,0,0,0,EndBonus()
-260,0,0,,A kiss my love?|(1 minute),(She nods and kisses you tenderly.),280,1,0,Kiss()
-260,0,0,,(Stay silent and kiss her.)|(1 minute),(You kiss each other tenderly.),280,0,1,Kiss()
+260,0,0,,A kiss my love?ADD_MINUTES:1,(She nods and kisses you tenderly.),280,1,0,Kiss()
+260,0,0,,(Stay silent and kiss her.)ADD_MINUTES:1,(You kiss each other tenderly.),280,0,1,Kiss()
 260,0,0,,I will be even|better next time.,"Don't say that, it was great!|Let's go back to school.",270,0,-1,
 260,0,0,,Next time you|will cum like crazy.,(She frowns at your words.)|Let's go back to school.,270,-1,1,
 260,0,0,,Better not be late.|(Back to college.),,0,0,0,EndBonus()
 270,0,0,,Let's walk together.|(Back to college.),,0,0,0,EndBonus()
 270,0,0,,I'll walk back alone.|(Back to college.),,0,-1,0,EndBonus()
 270,0,0,,Better not be late.|(Back to college.),,0,0,0,EndBonus()
-280,0,0,,(Kiss her again.)|(1 minute),(She giggles and kisses you again.),280,0,0,
+280,0,0,,(Kiss her again.)ADD_MINUTES:1,(She giggles and kisses you again.),280,0,0,
 280,0,0,,Better not be late.|(Back to college.),,0,0,0,EndBonus()
-300,0,0,,(Stay silent and kiss her.)|(1 minute),(You push her against the fence|and give her a kiss on the lips.),310,0,1,Kiss()
-300,0,0,,It was fun but I want a|kiss now.  (1 minute),(You push her against the fence|and give her a kiss on the lips.),310,0,1,Kiss()
-300,0,0,,You're beautiful.  Can I|kiss you?  (1 minute),(She nods while you push her against|the fence and give her a kiss on the lips.),310,1,0,Kiss()
+300,0,0,,(Stay silent and kiss her.)ADD_MINUTES:1,(You push her against the fence|and give her a kiss on the lips.),310,0,1,Kiss()
+300,0,0,,It was fun but I want a|kiss now. ADD_MINUTES:1,(You push her against the fence|and give her a kiss on the lips.),310,0,1,Kiss()
+300,0,0,,You're beautiful.  Can I|kiss you? ADD_MINUTES:1,(She nods while you push her against|the fence and give her a kiss on the lips.),310,1,0,Kiss()
 300,1,0,,I wanted you to know|that I had a great time.,I did too!  We seem to fit well together.,320,1,0,
 300,0,0,,Did you have|fun today?,Oh yes!  We seem to fit well together.,320,0,0,
 300,0,0,,"Amanda, I will|have you now.",I... But... (You shut her up with your|hand and push her against the fence.),330,-1,1,
 300,0,0,,"Slut, you will|shut up now.",I... But... (You shut her up with your|hand and push her against the fence.),330,-2,1,
-310,0,0,,(Kiss her again.)|(1 minute),(She moans silently but doesn't|resist while you kiss her again.),310,0,0,
+310,0,0,,(Kiss her again.)ADD_MINUTES:1,(She moans silently but doesn't|resist while you kiss her again.),310,0,0,
 310,1,0,,I wanted you to know|that I had a great time.,I did too!  We seem to fit well together.,320,0,0,
 310,0,0,,Did you have|fun today?,Oh yes!  We seem to fit well together.,320,0,0,
 310,0,0,,"Amanda, I will|have you now.",I... But... (You shut her up with your|hand and push her against the fence.),330,-1,1,
 310,0,0,,"Slut, you will|shut up now.",I... But... (You shut her up with your|hand and push her against the fence.),330,-2,1,
 320,0,0,,Better not be late.|(Back to college.),,0,0,0,EndBonus()
-320,5,0,,I want more romance.|(1 minute),(She nods slowly and grabs|your hands for a loving kiss.),220,0,0,Kiss()
+320,5,0,,I want more romance.ADD_MINUTES:1,(She nods slowly and grabs|your hands for a loving kiss.),220,0,0,Kiss()
 320,0,0,,Would you like|an orgasm?,No... Yes... (You place your hand over|her mouth and push her against the fence.),330,0,0,
 320,0,0,,"Amanda, I will|have you now.",I... But... (You shut her up with your|hand and push her against the fence.),330,-1,1,
 320,0,0,,"Slut, you will|shut up now.",I... But... (You shut her up with your|hand and push her against the fence.),330,-2,1,
-330,0,0,,(Kiss her.)|(1 minute),(You kiss her slowly while she moans.),330,0,0,Kiss()
-330,0,0,,(Tickle her.)|(1 minute),(She struggles playfully to avoid|your tickling but seems to enjoy it.),330,0,0,Tickle()
-330,0,0,,(Masturbate her.)|(1 minute),(She moans silently while you masturbate her.|Trembling lightly at your loving touch.),330,0,0,Masturbate()
-330,0,0,IsRoped,(Untie her.)|(1 minute),"(One knot at a time, you|release her from her bondage.)",330,0,0,Untie()
-330,0,0,IsGagged,(Ungag her.)|(1 minute),"(You carefully remove the gag.)|Thank you, that wasn't comfy.",330,0,0,Ungag()
+330,0,0,,(Kiss her.)ADD_MINUTES:1,(You kiss her slowly while she moans.),330,0,0,Kiss()
+330,0,0,,(Tickle her.)ADD_MINUTES:1,(She struggles playfully to avoid|your tickling but seems to enjoy it.),330,0,0,Tickle()
+330,0,0,,(Masturbate her.)ADD_MINUTES:1,(She moans silently while you masturbate her.|Trembling lightly at your loving touch.),330,0,0,Masturbate()
+330,0,0,IsRoped,(Untie her.)ADD_MINUTES:1,"(One knot at a time, you|release her from her bondage.)",330,0,0,Untie()
+330,0,0,IsGagged,(Ungag her.)ADD_MINUTES:1,"(You carefully remove the gag.)|Thank you, that wasn't comfy.",330,0,0,Ungag()
 330,0,0,IsBoundAndGagged,I tricked you bitch.|(Leave her stranded.),,330,0,0,EvilEnd()
 330,0,0,,Let's go back.|(Back to school.),,0,0,0,EndBonus()
 400,0,0,,Why did you|drag me here?,I have a wild idea but you need to trust me.|Will you submit to me and remove your outfit?,410,0,0,
@@ -142,26 +142,26 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 400,0,0,,(Try to push her away.),(She pushes you back.)  I have a wild idea.|Will you submit to me and remove your outfit?,410,0,1,
 410,0,0,,Submit to you?|I'll never do that.,I respect that and would never force you.|Let's go back to school then.,490,0,2,
 410,0,0,,Not here in public.|But maybe later.,"Its ok, I would never force you.|Let's go back to school then.",490,0,0,
-410,0,0,,"Alright, I will submit.|(Strip.)  (1 minute)","Wonderful!  This is so kinky, I love it.|Now turn around, hands behind your back.",420,0,0,SubbieStrip()
-410,0,0,,Yes Miss Amanda.|(Strip.)  (1 minute),"Good girl!  This is so kinky, I love it.|Now turn around, hands behind your back.",420,0,-1,SubbieStrip()
+410,0,0,,"Alright, I will submit.|(Strip.) ADD_MINUTES:1","Wonderful!  This is so kinky, I love it.|Now turn around, hands behind your back.",420,0,0,SubbieStrip()
+410,0,0,,Yes Miss Amanda.|(Strip.) ADD_MINUTES:1,"Good girl!  This is so kinky, I love it.|Now turn around, hands behind your back.",420,0,-1,SubbieStrip()
 420,0,0,,This is great.|(Turn around.),"I know!  I told you it would be kinky.|Now I will tie you up with ropes, it's fine?",430,1,0,
 420,0,0,,Ok Amanda.|(Turn around.),"(She grabs your butt and smiles.)|Now I will tie you up with ropes, it's fine?",430,0,0,
 420,0,0,,(Try to turn the|tables and strip her.),"(She's stronger than you and forces you to turn.)|Since you cannot behave, I will restrain you.",430,0,1,
 420,0,0,,Maybe we should stop.|(Dress back up.),"Its ok, I would never force you.|(You dress back.)  Let's go back.",490,-1,0,
-430,0,0,,Yes Miss Amanda.|(Obey.)  (1 minute),(She grabs your arms and circle rope|around them and your body.)  Open wide!,440,0,-1,SubbieRope()
-430,0,0,,So this is for real?|(Obey.)  (1 minute),(She grabs your arms and circle rope|around them and your body.)  Open wide!,440,0,0,SubbieRope()
+430,0,0,,Yes Miss Amanda.|(Obey.) ADD_MINUTES:1,(She grabs your arms and circle rope|around them and your body.)  Open wide!,440,0,-1,SubbieRope()
+430,0,0,,So this is for real?|(Obey.) ADD_MINUTES:1,(She grabs your arms and circle rope|around them and your body.)  Open wide!,440,0,0,SubbieRope()
 430,0,0,,Maybe we should stop.|(Dress back up.),"Its ok, I would never force you.|(You dress back.)  Let's go back.",490,-1,0,
-440,0,0,,(Pull your tongue.)|(1 minute),(She giggles and pulls her tongue also.)|Common!  Open wide subbie girl.,440,0,0,
-440,0,0,,(Clench your teeth.)|(1 minute),You're not helping at all you know.|Common!  Open wide subbie girl.,440,0,0,ClenchTeeth()
-440,0,0,,(Open wide.)|(1 minute),(She pushes a ballgag in and straps it.)|Can I touch you now?  Do you want pleasure?,450,0,0,SubbieGag()
+440,0,0,,(Pull your tongue.)ADD_MINUTES:1,(She giggles and pulls her tongue also.)|Common!  Open wide subbie girl.,440,0,0,
+440,0,0,,(Clench your teeth.)ADD_MINUTES:1,You're not helping at all you know.|Common!  Open wide subbie girl.,440,0,0,ClenchTeeth()
+440,0,0,,(Open wide.)ADD_MINUTES:1,(She pushes a ballgag in and straps it.)|Can I touch you now?  Do you want pleasure?,450,0,0,SubbieGag()
 440,0,0,,Maybe we should stop.|Can you release me?,"Its ok, I would never force you.|(She releases you.)  Let's go back.",490,-1,0,SubbieRelease()
 450,0,0,,@Hheesh hissh.|(Nod slowly.),(She pushes you against the|fence and starts to rub her hand.),460,0,0,
 450,0,0,,@UOOG HEESSH!|(Nod rapidly.),(She pushes you against the|fence and starts to rub her hand.),460,1,0,
 450,0,0,,(Shake your head|from left to right.),"(She tickles you for fun and releases you.)|Its fine, I hope you had fun.  Let's go back.",490,-1,0,SubbieRelease()
-460,0,0,,(Enjoy her touch.)|(1 minute),(You surrender to her loving touch while she tugs|on the crotch rope and masturbates your clitoris.),460,0,0,SubbieMasturbate()
-460,0,0,,(Squirm to her rhythm.)|(1 minute),(You move your butt to follow her rhythm.|Slowly building up pleasure from her touch.),460,0,0,SubbieMasturbate()
-460,0,0,,(Struggle playfully.)|(1 minute),(You struggle playfully and she seems to enjoy it.|She picks up speed and masturbates a little harder.),460,0,0,SubbieMasturbate()
-460,0,0,,(Struggle in panic.)|(1 minute),"(She realizes your panic and releases you.)|Its fine, I hope you still had fun.  Let's go back.",490,-1,-1,SubbieRelease()
+460,0,0,,(Enjoy her touch.)ADD_MINUTES:1,(You surrender to her loving touch while she tugs|on the crotch rope and masturbates your clitoris.),460,0,0,SubbieMasturbate()
+460,0,0,,(Squirm to her rhythm.)ADD_MINUTES:1,(You move your butt to follow her rhythm.|Slowly building up pleasure from her touch.),460,0,0,SubbieMasturbate()
+460,0,0,,(Struggle playfully.)ADD_MINUTES:1,(You struggle playfully and she seems to enjoy it.|She picks up speed and masturbates a little harder.),460,0,0,SubbieMasturbate()
+460,0,0,,(Struggle in panic.)ADD_MINUTES:1,"(She realizes your panic and releases you.)|Its fine, I hope you still had fun.  Let's go back.",490,-1,-1,SubbieRelease()
 470,0,0,,(Blush red and|look at the ground.),"Don't be shy, pleasure cannot be wrong.|(She unstraps your gag.)  Did you enjoy it?",480,0,-1,SubbieUngag()
 470,0,0,,@Uuuumph gnu!,"(She giggles and unstraps your gag.)|So tell me, did you enjoy it?",480,0,0,SubbieUngag()
 470,0,0,,(Move your butt closer.),Again?  Maybe later.  (She giggles and|unstraps your gag.) So did you enjoy it?,480,0,0,SubbieUngag()

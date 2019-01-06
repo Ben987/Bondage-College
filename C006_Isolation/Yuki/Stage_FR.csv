@@ -17,8 +17,8 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 30,0,0,,Vous ne pouvez|pas faire ça.,Bien sûr que je le peux. Maintenant|tu vas enlever ton uniforme.,40,0,0,
 40,0,0,,"Désolée, mais vous êtes|trop moche pour moi.","(Elle te met au pilori et referme la planche.)|Puisque tu résistes, je vais devoir utiliser ces appareils.",70,-1,0,
 40,0,0,,"Oubliez ça, madame.|Je ne me déshabillerai pas.","(Elle te met au pilori et referme la planche.)|Puisque tu résistes, je vais devoir utiliser ces appareils.",70,0,0,
-40,0,0,,"Bon sang ! Ok, ok. (Tu|te déshabilles.) (1 minute)",Très bien. Et tu es censée porter ceci.|(Elle te montre un collier en cuir.),50,0,0,
-40,0,0,,Juste pour vos yeux. (Tu|te déshabilles.) (1 minute),Évidemment. Et tu es censée porter ceci.|(Elle te montre un collier en cuir.),50,1,0,
+40,0,0,,"Bon sang ! Ok, ok. (Tu|te déshabilles.)ADD_MINUTES:1",Très bien. Et tu es censée porter ceci.|(Elle te montre un collier en cuir.),50,0,0,
+40,0,0,,Juste pour vos yeux. (Tu|te déshabilles.)ADD_MINUTES:1,Évidemment. Et tu es censée porter ceci.|(Elle te montre un collier en cuir.),50,1,0,
 50,0,0,,Oui Madame.|(Tu inclines la tête.),(Elle te met le collier autour du cou.)|Comment tu te sens maintenant ? Vulnérable ?,100,0,-1,AddCollar()
 50,0,0,,Un collier ?|J'ai l'air d'un chien ?,"(Elle te met au pilori et referme la planche.)|Puisque tu résistes, je vais devoir utiliser ces appareils.",80,0,0,
 50,0,0,,Mmm. D'accord.|(Tu inclines la tête.),(Elle te met le collier autour du cou.)|Comment tu te sens maintenant ? Vulnérable ?,100,0,0,AddCollar()
@@ -64,9 +64,9 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 170,0,0,,(Tu inclines la tête.),"Bonne petite, je serai de retour à 11h30.|(Elle se lève et quitte la pièce.)",180,0,-1,AllowLeave()
 170,0,0,,@UUHEE !,Tu es si mignonne. Je serai de retour à 11h30.|(Elle se lève et quitte la pièce.),180,0,0,AllowLeave()
 170,0,0,,@Heesee ehhem.,Tu es si mignonne. Je serai de retour à 11h30.|(Elle se lève et quitte la pièce.),180,0,0,AllowLeave()
-200,0,0,,(Tu pousses ton nez contre|sa chatte.) (1 minute),(Elle ouvre les jambes et gémit doucement.),200,0,0,Pleasure(1)
-200,0,0,,(Tu lèches son clitoris.)|(1 minute),(Elle te tire par les cheveux et tremble.),200,0,0,Pleasure(2)
-200,0,0,,(Tu pousses ta langue|à l'intérieur.) (1 minute),(Elle te tire la tête en avant et|en arrière avec les deux mains.),200,0,0,Pleasure(3)
+200,0,0,,(Tu pousses ton nez contre|sa chatte.)ADD_MINUTES:1,(Elle ouvre les jambes et gémit doucement.),200,0,0,Pleasure(1)
+200,0,0,,(Tu lèches son clitoris.)ADD_MINUTES:1,(Elle te tire par les cheveux et tremble.),200,0,0,Pleasure(2)
+200,0,0,,(Tu pousses ta langue|à l'intérieur.)ADD_MINUTES:1,(Elle te tire la tête en avant et|en arrière avec les deux mains.),200,0,0,Pleasure(3)
 200,0,0,AllowPullBack,(Tu arrêtes et te retires.),"(Tu te retires et elle a l'air désappointé.)|Alors, tu vas abandonner ?",210,0,0,CheckToStop()
 210,0,0,,Je ne faisais que reprendre|mon souffle. (Tu t'y remets.),Très bien. (Elle t'aggripe par les|cheveux et te ramène à l'intérieur.),200,0,0,
 210,0,0,,"Désolée Madame,|Je ne peux pas le faire.","Bien, Ce n'est pas grave.|(Elle prend plus de cordes et t'attache les jambes.)",150,-1,0,

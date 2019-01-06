@@ -31,41 +31,41 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 230,0,0,PlayerIsHeroine,(Do a sword fight.),You charge each other and start|a funny but intense sword fight.,235,0,0,NoLeave()
 230,0,0,PlayerIsHeroine,(Surrender without a fight.),You drop your sword and the black|knight steps forward with a grin.,270,0,0,Surrender()
 230,0,0,PlayerIsDamsel,(Watch the fight.),Both knights charge on each other and|engage in a pretty neat sword fight.,235,0,0,NoLeave()
-235,0,0,CanDoSwordDance,(Do a sword dance.)|(1 minute),You dance gracefully around your opponent and|easily disarm her while she's dazzled by you.,270,0,0,SwordDance()
-235,0,0,CanIntimidate,(Intimidate her.)|(1 minute),You give a menacing look to Amanda which|barely fights and lets you disarm her.,270,0,0,"GlobalStage(270, 0, 1)"
-235,0,0,CanDisarm,(Disarm her.)|(1 minute),Amanda puts a pretty nice fight but|you're able to win by disarming her.,270,0,0,"GlobalStage(270, 0, 0)"
-235,0,0,PlayerIsVillain,(Play defensive.)|(1 minute),You stick to defensive moves and Amanda|takes advantage of it to disarm you.,240,0,0,"GlobalStage(240, 0, 0)"
-235,0,0,PlayerIsVillain,(Let Amanda win.)|(1 minute),You don't put much of a fight|and Amanda easily disarms you.,240,0,0,"GlobalStage(240, 0, -1)"
-235,0,10,PlayerIsHeroine,(Intimidate her.)|(1 minute),You give a menacing look to Amanda which|barely fights and lets you disarm her.,240,0,0,"GlobalStage(240, 0, 1)"
-235,0,2,PlayerIsHeroine,(Disarm her.)|(1 minute),Amanda puts a pretty nice fight but|you're able to win by disarming her.,240,0,0,"GlobalStage(240, 0, 0)"
-235,0,0,PlayerIsHeroine,(Play defensive.)|(1 minute),You stick to defensive moves and Amanda|takes advantage of it to disarm you.,270,0,0,"GlobalStage(270, 0, 0)"
-235,0,0,PlayerIsHeroine,(Let Amanda win.)|(1 minute),You don't put much of a fight|and Amanda easily disarms you.,270,0,0,"GlobalStage(270, 0, -1)"
+235,0,0,CanDoSwordDance,(Do a sword dance.)ADD_MINUTES:1,You dance gracefully around your opponent and|easily disarm her while she's dazzled by you.,270,0,0,SwordDance()
+235,0,0,CanIntimidate,(Intimidate her.)ADD_MINUTES:1,You give a menacing look to Amanda which|barely fights and lets you disarm her.,270,0,0,"GlobalStage(270, 0, 1)"
+235,0,0,CanDisarm,(Disarm her.)ADD_MINUTES:1,Amanda puts a pretty nice fight but|you're able to win by disarming her.,270,0,0,"GlobalStage(270, 0, 0)"
+235,0,0,PlayerIsVillain,(Play defensive.)ADD_MINUTES:1,You stick to defensive moves and Amanda|takes advantage of it to disarm you.,240,0,0,"GlobalStage(240, 0, 0)"
+235,0,0,PlayerIsVillain,(Let Amanda win.)ADD_MINUTES:1,You don't put much of a fight|and Amanda easily disarms you.,240,0,0,"GlobalStage(240, 0, -1)"
+235,0,10,PlayerIsHeroine,(Intimidate her.)ADD_MINUTES:1,You give a menacing look to Amanda which|barely fights and lets you disarm her.,240,0,0,"GlobalStage(240, 0, 1)"
+235,0,2,PlayerIsHeroine,(Disarm her.)ADD_MINUTES:1,Amanda puts a pretty nice fight but|you're able to win by disarming her.,240,0,0,"GlobalStage(240, 0, 0)"
+235,0,0,PlayerIsHeroine,(Play defensive.)ADD_MINUTES:1,You stick to defensive moves and Amanda|takes advantage of it to disarm you.,270,0,0,"GlobalStage(270, 0, 0)"
+235,0,0,PlayerIsHeroine,(Let Amanda win.)ADD_MINUTES:1,You don't put much of a fight|and Amanda easily disarms you.,270,0,0,"GlobalStage(270, 0, -1)"
 235,0,0,PlayerIsDamsel,Hurray for thy|white champion!,,235,0,0,AmandaSarahFight(-4)
 235,0,0,PlayerIsDamsel,Hurray for thy|black champion!,,235,0,0,AmandaSarahFight(4)
 235,0,0,PlayerIsDamsel,Go Amanda!,,235,0,0,AmandaSarahFight(2)
 235,0,0,PlayerIsDamsel,Go Sarah!,,235,0,0,AmandaSarahFight(-2)
 235,0,0,PlayerIsDamsel,(Stay silent and|watch the fight.),,235,0,0,AmandaSarahFight(0)
-270,0,0,PlayerIsVillain,You're my prisoner.|(Restrain her.) (1 minute),You strip the white knight from her armor and|restrain her with items from the theater.,280,0,0,"GlobalStage(280, -1, 0)"
-270,0,0,PlayerIsVillain,Thou art mine prisoner.|(Restrain her.) (1 minute),You strip the white knight from her armor and|restrain her with items from the theater.,280,0,0,"GlobalStage(280, 1, 0)"
+270,0,0,PlayerIsVillain,You're my prisoner.|(Restrain her.)ADD_MINUTES:1,You strip the white knight from her armor and|restrain her with items from the theater.,280,0,0,"GlobalStage(280, -1, 0)"
+270,0,0,PlayerIsVillain,Thou art mine prisoner.|(Restrain her.)ADD_MINUTES:1,You strip the white knight from her armor and|restrain her with items from the theater.,280,0,0,"GlobalStage(280, 1, 0)"
 270,0,0,PlayerIsVillain,Sorry Julia.|I forgot my line.,"Julia whispers to you:|""Thou art mine prisoner.""",270,0,0,ForgetLine()
-270,0,0,PlayerIsHeroine,(Stay silent.)|(1 minute),"The black knight strips and restrains you|while saying: ""Thou art mine prisoner.""",280,0,0,"GlobalStage(280, 0, 0)"
-270,0,0,PlayerIsHeroine,(Bow to the black|knight.) (1 minute),"The black knight strips and restrains you|while saying: ""Thou art mine prisoner.""",280,0,-1,"GlobalStage(280, 0, -1)"
-270,0,0,PlayerIsHeroine,Booooooo!|(1 minute),"The black knight strips and restrains you|while saying: ""Thou art mine prisoner.""",280,-1,0,"GlobalStage(280, -1, 0)"
-270,0,0,PlayerIsDamsel,(Watch the scene.)|(1 minute),"The villain strips and restrains the heroine|while saying: ""Thou art mine prisoner.""",280,0,0,"GlobalStage(280, 0, 0)"
-270,0,0,PlayerIsDamsel,Hurray black knight!|(1 minute),"The villain strips and restrains the heroine|while saying: ""Thou art mine prisoner.""",280,1,0,"GlobalStage(280, 1, 0)"
+270,0,0,PlayerIsHeroine,(Stay silent.)ADD_MINUTES:1,"The black knight strips and restrains you|while saying: ""Thou art mine prisoner.""",280,0,0,"GlobalStage(280, 0, 0)"
+270,0,0,PlayerIsHeroine,(Bow to the black|knight.)ADD_MINUTES:1,"The black knight strips and restrains you|while saying: ""Thou art mine prisoner.""",280,0,-1,"GlobalStage(280, 0, -1)"
+270,0,0,PlayerIsHeroine,Booooooo!ADD_MINUTES:1,"The black knight strips and restrains you|while saying: ""Thou art mine prisoner.""",280,-1,0,"GlobalStage(280, -1, 0)"
+270,0,0,PlayerIsDamsel,(Watch the scene.)ADD_MINUTES:1,"The villain strips and restrains the heroine|while saying: ""Thou art mine prisoner.""",280,0,0,"GlobalStage(280, 0, 0)"
+270,0,0,PlayerIsDamsel,Hurray black knight!ADD_MINUTES:1,"The villain strips and restrains the heroine|while saying: ""Thou art mine prisoner.""",280,1,0,"GlobalStage(280, 1, 0)"
 280,0,0,Common_PlayerGagged,@Eeengn em!,Amanda smiles and tries not to|laugh at your gagged mumblings.,280,0,0,
-280,10,0,DamselCanInteract,(Go kiss her.)|(1 minute),You rush into her arms and|you both kiss for the final act.,290,0,0,FinalKiss()
-280,0,-5,DamselCanInteract,(Kneel for her.)|(1 minute),You bow and kneel for the black knight.|Hugging her legs gently for the final act.,290,0,0,FinalDomme()
-280,0,0,DamselCanInteract,(Go hug her.)|(1 minute),You go in her arms and|you hug for the final act.,290,0,0,FinalHug()
-280,2,0,DamselCanBeg,(Make pleading eyes.)|(1 minute),You make sweet pleading eyes and|she releases you from your bondage.,280,0,0,ReleasePlayer()
-280,0,0,DamselCanBeg,(Surrender to her.)|(1 minute),You surrender to her and she decides to|keep you both prisoners for the final act.,300,0,0,FinalTwoPrisoners()
+280,10,0,DamselCanInteract,(Go kiss her.)ADD_MINUTES:1,You rush into her arms and|you both kiss for the final act.,290,0,0,FinalKiss()
+280,0,-5,DamselCanInteract,(Kneel for her.)ADD_MINUTES:1,You bow and kneel for the black knight.|Hugging her legs gently for the final act.,290,0,0,FinalDomme()
+280,0,0,DamselCanInteract,(Go hug her.)ADD_MINUTES:1,You go in her arms and|you hug for the final act.,290,0,0,FinalHug()
+280,2,0,DamselCanBeg,(Make pleading eyes.)ADD_MINUTES:1,You make sweet pleading eyes and|she releases you from your bondage.,280,0,0,ReleasePlayer()
+280,0,0,DamselCanBeg,(Surrender to her.)ADD_MINUTES:1,You surrender to her and she decides to|keep you both prisoners for the final act.,300,0,0,FinalTwoPrisoners()
 400,0,0,PlayerIsDamsel,"Sir knight, you can|ravish me tonight.",(She looks at you with an evil grin.),400,0,0,Ravish()
 400,0,0,PlayerIsHeroine,We should train in|sword fighting together.,(She nods and giggles.),400,0,0,
 400,0,0,CanConvinceJuliaToStrip,Shouldn't damsel Julia|show her charms?,Very true milady.  Damsel Julia!|(Julia obeys and strips a little.),400,0,0,JuliaStrip()
-400,0,0,CanUntie,(Untie her.)|(1 minute),(You undo the knots and she throws|the rope at you while dressing back up.),400,0,0,Untie()
-400,0,0,CanUnstrap,(Unstrap her.)|(1 minute),(You undo the straps and laces|of the binder to free her arms.),400,0,0,Untie()
-400,0,0,CanUngag,(Ungag her.)|(1 minute),(You remove the gag and she stares at you.)|Are you sure all of this was in the script?,400,0,0,Ungag()
-400,0,0,CanKiss,(Kiss her.)|(1 minute),(You get close and give her a long kiss on the lips.)|Oh COMMON_PLAYERNAME!  You give wonderful kisses.,400,0,0,Kiss()
-400,0,0,CanAbuse,(Tickle her.)|(1 minute),(You tickle her on the ribs and tummy.|She very ticklish and laughs out loud.),400,0,0,Tickle()
-400,0,0,CanAbuse,(Spank her.)|(1 minute),(She whimpers with each hit.|She clearly doesn't enjoy it.),400,0,0,Spank()
-400,0,0,CanAbuse,(Masturbate her.)|(1 minute),(You grab her and masturbate her slowly.|She blushes and tries to control her moaning.),400,0,0,Masturbate()
+400,0,0,CanUntie,(Untie her.)ADD_MINUTES:1,(You undo the knots and she throws|the rope at you while dressing back up.),400,0,0,Untie()
+400,0,0,CanUnstrap,(Unstrap her.)ADD_MINUTES:1,(You undo the straps and laces|of the binder to free her arms.),400,0,0,Untie()
+400,0,0,CanUngag,(Ungag her.)ADD_MINUTES:1,(You remove the gag and she stares at you.)|Are you sure all of this was in the script?,400,0,0,Ungag()
+400,0,0,CanKiss,(Kiss her.)ADD_MINUTES:1,(You get close and give her a long kiss on the lips.)|Oh COMMON_PLAYERNAME!  You give wonderful kisses.,400,0,0,Kiss()
+400,0,0,CanAbuse,(Tickle her.)ADD_MINUTES:1,(You tickle her on the ribs and tummy.|She very ticklish and laughs out loud.),400,0,0,Tickle()
+400,0,0,CanAbuse,(Spank her.)ADD_MINUTES:1,(She whimpers with each hit.|She clearly doesn't enjoy it.),400,0,0,Spank()
+400,0,0,CanAbuse,(Masturbate her.)ADD_MINUTES:1,(You grab her and masturbate her slowly.|She blushes and tries to control her moaning.),400,0,0,Masturbate()

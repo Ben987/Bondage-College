@@ -1,10 +1,10 @@
 Tag,Content
-NatalieAngry,Don't look at me COMMON_PLAYERNAME.|You will pay for what you did at lunch.
-NatalieClubIntro,(Your neighbors seem busy but Natalie looks at you.)|COMMON_PLAYERNAME!  Did you like the club?
-NatalieIgnore,(Your neighbors seem busy.  Natalie sits next to|you but stares at the clock and ignores you.)
-SidneySub,(She lowers her eyes and speaks politely.)|Greetings.  I hope your first day went well.
-SidneyPig,Get lost.  I will kill you after|school for what you did outside.
-SidneyAngry,Get lost.  I don't want to talk with you.
-SidneyDomme,"Dork, this row is for cool girls only.|You're not allowed to sit here."
-SidneyLove,Welcome to the cool girls row.|It's great to have you here.
-SidneyIgnore,(Your neighbors seem busy except for|Sidney that's staring blankly at the room.)
+NatalieAngry,"Schau mich nicht an, COMMON_PLAYERNAME.|Die Mittagspause wird dir noch leid tun."
+NatalieClubIntro,"(Die meisten sind beschäftigt, nur Natalie sieht dich an.)| COMMON_PLAYERNAME! Hat dir der Club gefallen?"
+NatalieIgnore,"(Deine Nachbarn wirken beschäftigt. Natalie sitzt neben|dir, starrt aber auf die Uhr und beachtet dich nicht.)"
+SidneySub,"(Sie senkt ihren Blick und spricht mit höflichem Ton.)|Guten Tag. Ich hoffe, dein erster Tag verlief gut."
+SidneyPig,"Hau ab. Ich bringe dich nach der Schule|dafür um, was du draußen getan hast."
+SidneyAngry,Hau ab. Ich will nicht mit dir reden.
+SidneyDomme,"Diese Reihe ist nur für coole Mädels, Dumpfbacke.|Du darfst hier nicht sitzen."
+SidneyLove,"Willkommen in der Reihe der coolen Mädels.|Es ist toll, dich hier zu haben."
+SidneyIgnore,"(Deine Nachbarn wirken beschäftigt, bis auf|Sidney, die mit leeren Augen in den Raum blickt.)"
