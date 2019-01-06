@@ -1,14 +1,14 @@
 Tag,Content
-Easy,Easy
-Normal,Normal
-Hard,Hard
-FirstQuestionIn,First question in
-NextQuestionIn,Next question in
-Difficulty,Difficulty:
-Opponent,Opponent:
-Perfect,Perfect!  Click|anywhere to continue.
-Victory,You won!  Click|anywhere to continue.
-Defeat,You lost!  Click|anywhere to continue.
-Explanation,Give the correct answer|before your opponent.
-GoodAnswer,Correct!
-BadAnswer,Wrong!
+Easy,简单
+Normal,中等
+Hard,困难
+FirstQuestionIn,第一题…
+NextQuestionIn,下一题…
+Difficulty,难度:
+Opponent,对手:
+Perfect,完胜！点击以继续。
+Victory,你赢了！点击以继续。
+Defeat,你输了！点击以继续。
+Explanation,抢在你的对手之前给出正确答案。
+GoodAnswer,正确！
+BadAnswer,错误！

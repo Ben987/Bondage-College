@@ -1,0 +1,35 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,将其他学生绑起来是严令禁止的。|我希望你能从这次拘留中吸取教训。,YukiFace.jpg
+0,0,0,Fighting,在校园中打架是不可接受的，小姐。|我希望这次拘留能让你吸取教训。,YukiFace.jpg
+0,0,0,Sleepy,你的所作所为是不可接受的，小姐。|（她大声地打哈欠。）,YukiSleepy.jpg
+10,0,0,,现在你想试着做一名好学生了吗？,YukiFace.jpg
+10,0,0,Sleepy,现在你想试着做一名好学生了吗？,YukiSleepy.jpg
+20,0,0,,你能安静地坐到拘留结束吗？,YukiFace.jpg
+20,0,0,Sleepy,你能安静地坐到拘留结束吗？,YukiSleepy.jpg
+30,0,0,,你手里的是什么？,YukiFace.jpg
+30,0,0,Sleepy,你手里的是什么？,YukiSleepy.jpg
+40,0,0,,,YukiFace.jpg
+40,0,0,Sleepy,,YukiSleepy.jpg
+50,0,0,,安静，小姐。|你的拘留将在九点结束。,YukiFace.jpg
+50,0,0,Sleepy,（她打着哈欠并努力维持清醒。）|（药片起效可能需要几分钟的时间。）,YukiSleepy.jpg
+60,0,0,,安静，小姐。|你的拘留将在九点结束。,YukiFace.jpg
+60,0,0,Sleepy,（她打着哈欠并努力维持清醒。）|（药片起效可能需要几分钟的时间。）,YukiSleepy.jpg
+70,0,0,,堵嘴将会让你保持安静，小姐。|你的拘留将在九点结束。,YukiFace.jpg
+70,0,0,Sleepy,（她打着哈欠并努力维持清醒。）|（药片起效可能需要几分钟的时间。）,YukiSleepy.jpg
+100,0,0,,（Yuki 老师睡得很香。）,YukiSleep.jpg
+100,0,0,EggInside,（Yuki 老师睡得很香。|由于跳蛋，她时不时地颤抖和呻吟。）,YukiSleep.jpg
+110,0,0,,（Yuki 老师只穿着内衣，睡得很香。）,YukiStrip.jpg
+110,0,0,EggInside,（Yuki 老师只穿着内衣，睡得很香。|由于跳蛋，她时不时地颤抖和呻吟。）,YukiStrip.jpg
+120,0,0,,（Yuki 老师被铐着，只穿着|内衣，并且睡得很香。）,YukiCuffs.jpg
+120,0,0,EggInside,（Yuki 老师被铐着，只穿着内衣，并且睡得|很香。由于跳蛋，她时不时地颤抖和呻吟。）,YukiCuffs.jpg
+130,0,0,,（Yuki 老师被铐着，只穿着|内衣，并且睡得很香。）,YukiLay.jpg
+130,0,0,EggInside,（Yuki 老师被铐着，只穿着内衣，并且睡得|很香。由于跳蛋，她时不时地颤抖和呻吟。）,YukiLay.jpg
+200,0,0,,发生了什么？我睡着了吗？,YukiSleepy.jpg
+210,0,0,,我睡着了吗？谁把我衣服脱了？,YukiSleepyStrip.jpg
+220,0,0,,发生了什么？我睡着了吗？|是谁脱了我衣服还把我铐起来了？,YukiAwakeCuffs.jpg
+230,0,0,,你只会让自己陷入更大的麻烦。|快把手铐给我打开！,YukiAwakeCuffs.jpg
+250,0,0,,拘留期间请保持安静。,YukiFace.jpg
+250,0,0,EggInside,啊！这地方是不是太热了？|（她看起来因为跳蛋而开始流汗。）,YukiFace.jpg
+260,0,0,,（她仍然对你很生气并且无视你。）,YukiFace.jpg
+260,0,0,EggInside,（她仍然对你很生气并且无视你。）|（同时她看起来因为跳蛋流了很多汗。）,YukiFace.jpg
+270,0,0,,（Yuki 已经走了。）,YukiGone.jpg

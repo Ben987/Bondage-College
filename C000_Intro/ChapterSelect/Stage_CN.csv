@@ -6,7 +6,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 0,0,0,,制作组,非常感谢每一位对本游戏有所贡献的人。,0,0,0,RollCredits()
 10,0,0,,第 1 章|课前时间,,10,0,0,"LoadChapter(""C001_BeforeClass"")"
 10,0,0,,第 2 章|第一课,,10,0,0,"LoadChapter(""C002_FirstClass"")"
-10,0,0,,第 3 章|早上,,10,0,0,"LoadChapter(""C003_MorningDetention"")"
+10,0,0,,第 3 章|晨间拘留,,10,0,0,"LoadChapter(""C003_MorningDetention"")"
 10,0,0,,第 4 章|艺术课,,10,0,0,"LoadChapter(""C004_ArtClass"")"
 10,0,0,,第 5 章|体育课,,10,0,0,"LoadChapter(""C005_GymClass"")"
 10,0,0,,第 6 章|禁闭,,10,0,0,"LoadChapter(""C006_Isolation"")"

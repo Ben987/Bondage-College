@@ -1,0 +1,5 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,Common_PlayerNotRestrained,(把包打开。),你小心翼翼地打开老师的包|并寻找一些有趣的东西。,10,0,0,
+10,0,0,Common_PlayerNotRestrained,(把包合上。),你合上了 Yuki 老师的包。,0,0,0,
+10,0,0,PillInBagAvail,(偷走安眠药。),你从包里拿走了药片。,10,0,0,StealPill()
+10,0,0,EggInBagAvail,(偷走跳蛋。),你从包里拿走了远程遥控的跳蛋，|但是你没有找到遥控器。,10,0,0,StealEgg()

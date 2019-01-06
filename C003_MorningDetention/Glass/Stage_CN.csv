@@ -1,0 +1,3 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+10,0,0,,(把药放进去。),你把安眠药放进了杯子里，|它很快就溶解掉了。,0,0,0,BreakPill()
+10,0,0,,(把药留着。),你把安眠药自己留着了。,0,0,0,
