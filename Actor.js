@@ -103,8 +103,13 @@ function ActorInteractionAvailable(LoveReq, SubReq, VarReq, InText, ForIntro) {
 	if ((VarReq != "") && (VarReq.substr(0, 7) != "Common_") && (VarReq.substr(0, 1) != "!") && (window[CurrentChapter + "_" + CurrentScreen + "_" + VarReq] == false)) return false;
 	if ((VarReq != "") && (VarReq.substr(0, 7) != "Common_") && (VarReq.substr(0, 1) == "!") && (window[CurrentChapter + "_" + CurrentScreen + "_" + VarReq.substr(1)] == true)) return false;
 	
-	// Check if the player is gagged, only interactions that starts with ( or @ are allowed
-	if ((InText.substr(0, 1) != "(") && (InText.substr(0, 1) != "@") && Common_PlayerGagged && !ForIntro) return false;
+	// Check if the player is gagged, only interactions that starts with '(', '（' or '@' are allowed
+	var nonSpeechActionsStart = [
+		"(",
+		"（", // Full-width bracket used in CJK languages
+		"@",
+	];
+	if ((nonSpeechActionsStart.indexOf(InText.substr(0, 1) < 0)) && Common_PlayerGagged && !ForIntro) return false;
 	
 	// Since nothing blocks, we allow it
 	return true;
