@@ -35,10 +35,10 @@ function GamblingLoad() {
 		GamblingSecondSub = CharacterLoadNPC("NPC_Gambling_SecondSub");
 		GamblingFirstSub.AllowItem = false;
 		GamblingSecondSub.AllowItem = false;
-		GamblingAppearanceList[GamblingFirstSub.ID] = GamblingFirstSub.Appearance;
-		GamblingAppearanceList[GamblingSecondSub.ID] = GamblingSecondSub.Appearance;
+		GamblingAppearanceList[GamblingFirstSub.ID] = new Object(GamblingFirstSub.Appearance);
+		GamblingAppearanceList[GamblingSecondSub.ID] = new Object(GamblingSecondSub.Appearance);
 	}
-	GamblingAppearanceList[Player.ID] = Player.Appearance;
+	GamblingAppearanceList[Player.ID] = new Object(Player.Appearance);
 	// Rescue mission load
 	if ((MaidQuartersCurrentRescue == "Gambling") && !MaidQuartersCurrentRescueStarted) {
 		MaidQuartersCurrentRescueStarted = true;

@@ -280,8 +280,8 @@ var AssetFemale3DCG = [
 		Asset: [ 
 			{ Name: "MetalChastityBelt", Effect: ["Chaste", "Lock"], Value: 100, Prerequisite: "AccessPussy", Time: 20, RemoveTime: 10 },
 			{ Name: "RegularVibratingEgg", Enable: false, Value: 25, Effect: [], Prerequisite: "AccessPussy", Time: 5, Bonus: [{Type: "KidnapManipulation", Factor: 3}] },
-			{ Name: "LeatherCrop", Value: 40, Wear: false, Bonus: [{Type: "KidnapDomination", Factor: 3}] },
-			{ Name: "LeatherWhip", Value: 60, Wear: false, Bonus: [{Type: "KidnapBruteForce", Factor: 3}] }
+			{ Name: "LeatherCrop", Value: 40, Wear: false, BuyGroup: "LeatherCrop", Bonus: [{Type: "KidnapDomination", Factor: 3}] },
+			{ Name: "LeatherWhip", Value: 60, Wear: false, BuyGroup: "LeatherWhip", Bonus: [{Type: "KidnapBruteForce", Factor: 3}] }
 		]
 	},
 
@@ -300,8 +300,8 @@ var AssetFemale3DCG = [
 			{ Name: "NylonRopeHarness", Value: 25, Prerequisite: "AccessTorso", Time: 25 },
 			{ Name: "HempRopeHarness", Value: 50, Prerequisite: "AccessTorso", Time: 25, RemoveTime: 35, Difficulty: 2 },
 			{ Name: "LeatherHarness", Value: 100, Prerequisite: "AccessTorso", Time: 15, RemoveTime: 10 },
-			{ Name: "LeatherCrop", Value: 40, Wear: false, Bonus: [{Type: "KidnapDomination", Factor: 3}] },
-			{ Name: "LeatherWhip", Value: 60, Wear: false, Bonus: [{Type: "KidnapBruteForce", Factor: 3}] }
+			{ Name: "LeatherCrop", Value: 40, Wear: false, BuyGroup: "LeatherCrop", Bonus: [{Type: "KidnapDomination", Factor: 3}] },
+			{ Name: "LeatherWhip", Value: 60, Wear: false, BuyGroup: "LeatherWhip", Bonus: [{Type: "KidnapBruteForce", Factor: 3}] }
 		]
 	},
 

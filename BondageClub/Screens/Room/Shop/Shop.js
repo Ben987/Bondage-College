@@ -104,9 +104,18 @@ function ShopClick() {
 					if (InventoryAvailable(Player, Asset[A].Name, Asset[A].Group.Name)) ShopText = TextGet("AlreadyOwned");
 					else if (Asset[A].Value > Player.Money) ShopText = TextGet("NotEnoughMoney");
 					else {
+						
+						// Add the item and removes the money
 						CharacterChangeMoney(Player, Asset[A].Value * -1);
 						InventoryAdd(Player, Asset[A].Name, Asset[A].Group.Name);
 						ShopText = TextGet("ThankYou");
+						
+						// Add any item that belongs in the same buy group
+						if (Asset[A].BuyGroup != null)
+							for(var B = 0; B < Asset.length; B++)
+								if ((Asset[B] != null) && (Asset[B].BuyGroup != null) && (Asset[B].BuyGroup == Asset[A].BuyGroup))
+									InventoryAdd(Player, Asset[B].Name, Asset[B].Group.Name);
+
 					}
 					
 				}

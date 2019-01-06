@@ -11,27 +11,32 @@ ItemNeck,,,(She struggles as you strap the collar around her neck.)  I'm not loo
 RemoveItemNeck,,,(You remove the collar from her neck.)  Yes!  This is much better.,,
 ItemPelvis,,,(She struggles as you lock the device on her.)  No!  I don't have the key for that!,,
 RemoveItemPelvis,,,(She looks really happy as you unlock the device.)  Thank you so much Miss DialogPlayerName.,,
-ItemHead,,,(You remove the device as she shakes her head joyfully.)  Wonderful!  You've made my day much easier.,,
+ItemHead,,,(You strap the device on her head as she sighs.)  It will be an interesting experience.,,
 RemoveItemHead,,,"(You remove the device and she nods rapidly.)  Thanks a million, this is much better.",,
+ItemTorsoLeatherWhip,,,(She trembles of painas you whip her breast.) This is a gambling hall no torture chamber.,,
+ItemTorsoLeatherCrop,,,(You swing the crop on her torso as she moans.) Oh, that's not a game anymore.,,
+ItemPelvisLeatherWhip,,,(You whip her butt as she jumps from the pain.) I do not find that funny.,,
+ItemPelvisLeatherCrop,,,(She moans each time the crop lands on it.) How can I still sit like this?,,
 0,,,Welcome to the Gambling Hall. Let's play a Game?,,
-0,,"Hello, I'm DialogPlayerName. Pleased to meet you.",Pleased to meet you too.  I'm DialogCharacterName.,DialogRemove(),
+0,,"Hello, I'm DialogPlayerName. Pleased to meet you.",Pleased to meet you too. I'm DialogCharacterName.,DialogRemove(),
 0,,What's going on here?,In the Gambling Hall we play kinky games of chance.,DialogRemove(),
 0,,Let's play a simple dice game.,"Let's play, good luck","SimpleDiceController(""new"")",CanPlaySimpleDice()
 0,70,(Struggle in your restraints.),Have you fun?,,Player.IsRestrained()
 0,30,(Play with your own rules.),(She looks expectant),,FirstSubRestrained()
 0,,Let's play fifteen and six.,(she gives you three dice),"TwentyOneController(""new"")",CanPlayTwentyOne()
 0,10,I'd like to ask you some questions.,Don't be shy.  How can I help you?,,
+0,,Let's talk later.  (Leave her.),Pleased to meet you too. I'm DialogCharacterName.,DialogLeave(),
 10,11,Which games can I play here? ,That depends on your reputation. First a simple dice game. ,,
 10,20,Can you explain the rules to me?,"Yes, which game interests you",,
 10,,Can I get better in the games?,"No, they are games of chance.",,
 10,,How do I get reputation?,By winning games.,,
 10,,Can I tie you up?,Only if you win a game.,,
 10,,Will you restrain me?,"of course, if I win.",,
-10,0,I don't have any more questions.,Alright. Let's play a Game?,,
+10,0,I don't have any more questions.,All right. Let's play a Game?,,
 11,10,(Listen.),"At a higher reputation still fifteen and six, then more games with other players.",,
 20,10,What are the rules of the simple dice Game?,"We both roll a dice, whoever has the higher number may tie the opponent",,
 20,50,What are the rules of fifteen and six?,You roll three or more dice and count the points. Then I dice. Whoever has more points has won the Turn. ,,
-30,,(Tickle her.),"(You tickle her on the arms and feets.  She giggles, laughs and cries a little.)",,
+30,,(Tickle her.),"(You tickle her on the arms and feet. She giggles, laughs and cries a little.)",,
 30,,(Kiss her.),(You put your hand behind her head and pull her to your lips for a long and kinky kiss.),,Player.CanInteract()
 30,,(Fondle her.),(You fondle her butt and breast as she moans slowly and blushes.),,Player.CanTalk()
 30,,(Slap her.),(You swiftly slap her on the face.  She bows down her head and whimpers.),,
@@ -39,9 +44,8 @@ RemoveItemHead,,,"(You remove the device and she nods rapidly.)  Thanks a millio
 30,0,(End the Game),(You go back a step and she looks surprised),,
 50,51,(Listen.),Anyone who has more than 21 points has automatically lost the Turn.,,
 51,10,(Listen.),"Every Turn the loser strips. If he has nothing left, he gets a little more tied up.",,
-0,,Let's talk later.  (Leave her.),,DialogLeave(),
-70,72,"Please Miss, can you relase me?",Let's decide the dice.,,!FirstSubRestrained()
-70,0,"Please Miss, can you relase me?",(She show your her restraints.),,FirstSubRestrained()
+70,72,"Please Miss, can you release me?",Let's decide the dice.,,!FirstSubRestrained()
+70,0,"Please Miss, can you release me?",(She show your her restraints.),,FirstSubRestrained()
 70,0,(Struggle in your restraints.),(She giggles.)  Well someone seems to be having fun.,,
 70,71,(Whimper and make pleading eyes.),Do you need help?,,
 71,72,(Nod yes.),Let's decide the dice.,,!FirstSubRestrained()
@@ -50,9 +54,9 @@ RemoveItemHead,,,"(You remove the device and she nods rapidly.)  Thanks a millio
 71,0,(Frown at her.),(She show your her restraints.),,FirstSubRestrained()
 72,,"Yes, of corse",,"ReleasePlayerGame(""new"")",Player.CanTalk()
 72,,(look angry),,"ReleasePlayerGame(""new"")",!Player.CanTalk()
-72,0,No No No !,,,Player.CanTalk()
-72,0,(Shake your head),,,!Player.CanTalk()
-81,0,"Jeah, I won",you were lucky. and can tie me,"SimpleDiceController(""win"")",ShowDiceStack()
+72,0,No No No !,"All right, then have fun alone. ",,Player.CanTalk()
+72,0,(Shake your head),(She takes a step backwards),,!Player.CanTalk()
+81,0,"Yeah, I won",you were lucky. and can tie me,"SimpleDiceController(""win"")",ShowDiceStack()
 82,0,"Congratulation, you won",I want to test some Items,"SimpleDiceController(""lost"")",ShowDiceStack()
 83,0,It is undecided,I'll definitely win next time,"SimpleDiceController(""eqaul"")",ShowDiceStack()
 103,,I want to add a dice ,(she gives you another dice),"TwentyOneController(""add"")",ShowDiceStack()
@@ -100,13 +104,13 @@ RemoveItemHead,,,"(You remove the device and she nods rapidly.)  Thanks a millio
 126,,"26 Points, oh shit, I lost",(she grins),"TwentyOneController(""lost_next"")",ShowDiceStack()
 161,,I win. Take off your Accessories,(She take her Accessories off),"TwentyOneController(""win_next"")",ShowDiceStack()
 162,,I win. Take off your Dress,(She take her Dress off),"TwentyOneController(""win_next"")",ShowDiceStack()
-163,,I win. Take off your Underware,(She take her Underware off),"TwentyOneController(""win_next"")",ShowDiceStack()
+163,,I win. Take off your Underwear,(She take her Underwear off),"TwentyOneController(""win_next"")",ShowDiceStack()
 164,,I win. I will tied your Legs,(She nod slowly),"TwentyOneController(""win_next"")",ShowDiceStack()
-165,,I win. I will tied your Arms,(she stuggle),"TwentyOneController(""win_next"")",ShowDiceStack()
+165,,I win. I will tied your Arms,(she struggle),"TwentyOneController(""win_next"")",ShowDiceStack()
 166,,I win. I will tied your Mouth,(she mumbles),"TwentyOneController(""win_next"")",ShowDiceStack()
 171,,"Oh, I lost. (Take off your Accessories)",(she grins),"TwentyOneController(""lost_next"")",ShowDiceStack()
-172,,"Oh, I lost. (Take off the Dess)",hurry up ,"TwentyOneController(""lost_next"")",ShowDiceStack()
-173,,"Oh, I lost. (Take off the Underware)",that's right ,"TwentyOneController(""lost_next"")",ShowDiceStack()
+172,,"Oh, I lost. (Take off the Dress)",hurry up ,"TwentyOneController(""lost_next"")",ShowDiceStack()
+173,,"Oh, I lost. (Take off the Underwear)",that's right ,"TwentyOneController(""lost_next"")",ShowDiceStack()
 174,,"Oh, I lost. (Accept the tied Legs)",it dresses you ,"TwentyOneController(""lost_next"")",ShowDiceStack()
 175,,"Oh, I lost. (Accept the tied Arms)",just a little bit more ,"TwentyOneController(""lost_next"")",ShowDiceStack()
 176,,"Oh, I lost. (Accept the tied Mouth)",The winner take it all,"TwentyOneController(""lost_next"")",ShowDiceStack()
@@ -151,4 +155,4 @@ ActivitySpank,,(Pretend it doesn't hurt.),,"ReleasePlayerGame(""next"")",ShowNpc
 ActivityReleaseIntro,,,(She releases you and sighs.)  Feel the power of freedom.,,
 ActivityRelease,0,Take care.,Welcome to the Gambling Hall. Let's play a Game?,,ShowNpcDice()
 ActivityRelease,0,Thanks!  That was fun.,Welcome to the Gambling Hall. Let's play a Game?,,ShowNpcDice()
-ActivityRelease,0,(Leave her.),Welcome to the Gambling Hall. Let's play a Game?,,ShowNpcDice()
+ActivityRelease,0,(Leave her.),Welcome to the Gambling Hall. Let's play a Game?,DialogLeave(),ShowNpcDice()
