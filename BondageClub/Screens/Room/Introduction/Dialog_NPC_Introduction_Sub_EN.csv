@@ -3,20 +3,20 @@ ItemMouth,,,(She licks her lips seeing the gag and allows you to silence her eas
 RemoveItemMouth,,,(You remove her gag and she smiles at you.)  You're quite fun Miss.  Let me know if you want me to try another gag.,,
 ItemArms,,,(She turns around submissively while you restrain her arms.)  You have lots of potential in the club Miss.,,
 RemoveItemArms,,,(You free her arms and she stretches a little.)  That was nice Miss.,,
-ItemLegs,,,(She stands still while you restrain her legs securely.)  I love it.,,
-RemoveItemLegs,,,(You release her legs while she wiggles her butt.)  Good bondage Miss.,,
-ItemFeet,,,(She giggles while you restrain her feet.  Preventing her from walking.),,
-RemoveItemFeet,,,(You release her feet and she jumps playfully.)  You can tie me up anytime Miss.,,
-ItemNeck,,,"(You strap the collar on her while she blushes.)  Collars have a special meaning, someday you might find a sub for you in the club.",,
+ItemLegs,,,(She stands still while you restrain her legs securely.)  Ooh I love it.,,
+RemoveItemLegs,,,(You release her legs while she wiggles her butt.)  Good bondage Miss!,,
+ItemFeet,,,(She giggles while you restrain her feet, preventing her from walking.),,
+RemoveItemFeet,,,(You release her feet and she jumps playfully.)  You can tie me up anytime you want Miss.,,
+ItemNeck,,,(You strap the collar on her while she blushes.)  Collars have a special meaning. Someday you might find a sub for you in the club.,,
 RemoveItemNeck,,,(You remove the collar around her neck.)  You can also lock collars on willing submissives.,,
 ItemPelvis,,,(You snap the belt around her waist while she wiggles her butt.)  This is so kinky!  Thanks Miss.,,
-RemoveItemPelvis,,,(You unlock the belt from her waist and crotch.)  I can't wait to see what you'll use on me next.,,
-ItemHead,,,(You strap the device on her head as she tries to look around.)  It will heighten any other bondage.,,
+RemoveItemPelvis,,,(You unlock the belt from her waist and crotch.)  I can't wait to see what you'll use on me next...,,
+ItemHead,,,"(You strap the device on her head as she tries to look around.)  You know, this will heighten my other senses. Including touch...",,
 RemoveItemHead,,,(You remove the device and she looks at you.)  That was pretty intense.  What else can we try?,,
-ItemTorsoLeatherWhip,,,(She trembles of pain and pleasure as you whip her breast.)  Miss!  This is wonderful.,,
-ItemTorsoLeatherCrop,,,(You swing the crop on her torso as she moans.)  You have lots of talents Miss.,,
+ItemTorsoLeatherWhip,,,(She trembles of pain and pleasure as you whip her breast.)  Ohhhh Miss!  This is wonderful.,,
+ItemTorsoLeatherCrop,,,(You swing the crop on her torso as she moans.)  Mmmh! You have lots of talents Miss.,,
 ItemPelvisLeatherWhip,,,(You whip her butt as she jumps from the pain.)  It hurts soooooo good Miss.,,
-ItemPelvisLeatherCrop,,,(She moans and shakes her butt each time the crop lands on it.),,
+ItemPelvisLeatherCrop,,,(She moans and shakes her butt each time the crop lands on it.) I love the pain Miss.,,
 0,,,Greetings head maid DialogPlayerName.  Welcome to the introduction class.,,IsHeadMaid
 0,,,Greetings maid DialogPlayerName.  Welcome to the introduction class.,,IsMaid
 0,,,Greetings Miss.  Welcome to the Bondage Club.,,!IsMaid
@@ -30,7 +30,7 @@ ItemPelvisLeatherCrop,,,(She moans and shakes her butt each time the crop lands 
 0,,"I need to go, take care.  (Leave her.)",,DialogLeave(),
 10,,"So, you're a kinky girl?",(She nods and blushes.)  Yes Miss.,DialogRemove(),
 10,20,What are you doing here?,I'm helping the maid staff to introduce newcomers to the club.,,
-10,,What is this room?,"This is the introduction class room, to learn about basic bondage.",DialogRemove(),
+10,,What is this room?,"This is the introduction class room, where newcomers learn about basic bondage.",DialogRemove(),
 20,,"So, you work for the club?","Not yet, but I hope to become a maid someday.",DialogRemove(),
 20,30,Tell me about the maids.,The maids are the work force of the club.  They do everything from cleaning to releasing helpless victims.,,!IsMaid
 20,0,Tell me about the maids.,You probably know more about the maid sorority than me.  Do you need anything else?,,IsMaid
@@ -40,7 +40,7 @@ ItemPelvisLeatherCrop,,,(She moans and shakes her butt each time the crop lands 
 MaidRescue,,,Thanks for coming to the rescue Miss.,,
 MaidRescue,,Do you need help?,"(She nods slowly.)  Yes please, can you release me and our friendly maid here?  Check with her if everything is fine.",,!IsBothFree()
 MaidRescue,,Is everything alright now?,I think everything is fine.  Please check with the maid to make sure.,,IsBothFree()
-MaidRescue,,What happened here?,"An intimidating woman dressed in latex came in.  Without a word, she forced us into armbinders, belts and gagged us before leaving.",,"IsRescueScenario(""LatexWoman"")"
+MaidRescue,,What happened here?,"An intimidating woman dressed in latex came in.  Without a word, she forced us into armbinders, belts, and then she gagged us before leaving.",,"IsRescueScenario(""LatexWoman"")"
 MaidRescue,,What happened here?,A newcomer wanted to learn about armbinders and got a little too carried away.  She left for the maid quarters to ask for help.,,"IsRescueScenario(""Newcomer"")"
 MaidRescue,,What happened here?,"Another maid came in and started a fight with our friendly maid here.  As you can guess, the other girl won.",,"IsRescueScenario(""MaidFight"")"
 MaidRescue,,What happened here?,"A sales woman came to sell us armbinders and some belts.  As you can see, she was very convincing.  (She giggles.)",,"IsRescueScenario(""SalesWoman"")"
