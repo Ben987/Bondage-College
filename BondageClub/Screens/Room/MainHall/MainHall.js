@@ -38,6 +38,8 @@ function MainHallRun() {
 		if (Player.CanWalk()) DrawButton(25, 25, 450, 65, TextGet("Gambling"), "White");
 		if (Player.CanWalk()) DrawButton(25, 115, 450, 65, TextGet("Nursery"), "White");
 		if (Player.CanWalk()) DrawButton(25, 205, 450, 65, TextGet("SlaveMarket"), "White");
+		if (Player.CanWalk()) DrawButton(25, 300, 450, 65, TextGet("Prison"), "White");
+		if (Player.CanWalk()) DrawButton(25, 395, 450, 65, TextGet("Photographic"), "White");
 		
 		// Check if there's a new maid rescue event to trigger
 		if ((!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk()) && (MainHallNextEventTimer == null)) MainHallNextEventTimer = ReputationTimer("Dominant", true);
@@ -85,6 +87,8 @@ function MainHallClick() {
 		if ((MouseX >= 25) && (MouseX < 475) && (MouseY >= 25) && (MouseY < 90) && Player.CanWalk()) MainHallWalk("Gambling");
 		if ((MouseX >= 25) && (MouseX < 475) && (MouseY >= 115) && (MouseY < 180) && Player.CanWalk()) MainHallWalk("Nursery");
 		if ((MouseX >= 25) && (MouseX < 475) && (MouseY >= 205) && (MouseY < 270) && Player.CanWalk()) MainHallWalk("SlaveMarket");
+		if ((MouseX >= 25) && (MouseX < 475) && (MouseY >= 300) && (MouseY < 365) && Player.CanWalk()) MainHallWalk("Prison");
+		if ((MouseX >= 25) && (MouseX < 475) && (MouseY >= 395) && (MouseY < 460) && Player.CanWalk()) MainHallWalk("Photographic");
 
 	}
 

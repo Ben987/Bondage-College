@@ -1,0 +1,74 @@
+PlayerGagged,,,"Speech is of time, silence is of eternity.",,
+ItemMouth,,,(She gives a curious look at the gag but doesn't resist as you silence her.),,
+RemoveItemMouth,,,"(You remove her gag slowly.)  Thanks Miss, it will be easier to do my job.",,
+ItemArms,,,(She nods and turns around as you restrain her arms securely.)  It will be a kinky work day.,,
+RemoveItemArms,,,"(You free her arms and she stretches.)  Thanks head maid DialogPlayerName, this will make my work easier.",,
+ItemLegs,,,(She submits as you restrain her legs.)  Another kinky day in our kinky club.,,
+RemoveItemLegs,,,(You release her legs while she shakes her butt.)  Thanks Miss.,,
+ItemFeet,,,(You restrain her feet securely.)  I'll stay in the hall then.,,
+RemoveItemFeet,,,(You release her feet.)  Much better.,,
+ItemNeck,,,(You strap the collar on her while she blushes.)  Someday I'll find a wonderful Mistress like you Miss.,,
+RemoveItemNeck,,,(You remove the collar around her neck.)  Freedom is overrated.,,
+ItemPelvis,,,(She frowns as you lock the device on her.)  I hope you will unlock it after my shift Miss.,,
+RemoveItemPelvis,,,(She nods happily as you unlock the device.)  Yes!  That's very nice of you Miss.,,
+ItemHead,,,(You strap the device on her head as she mumbles.)  It will be a kinky work day it seems.,,
+RemoveItemHead,,,(You remove the device and she nods slowly.)  You're the best head maid DialogPlayerName.,,
+0,,,"Hello, a new Star is Born.",,
+0,,Please take a Photo.,Smily.,ShotThePlayerPhoto(),
+0,10,I'll strip some Cloth,"Yea, show me your wonderful Body.",,
+0,20,I want to use some toys,Show me some.,,
+0,,(Nod helples.),Do you need help?,PlayerRelease(),Player.IsRestrained()
+0,,Good By. (Leave her.),,DialogLeave(),
+10,,(Remove Hat),"Forward, only courage.",PlayerClothRemove("Hat"),PlayerClothAvailable("Hat")
+10,,(Remove Gloves),"Forward, only courage.",PlayerClothRemove("Gloves"),PlayerClothAvailable("Gloves")
+10,,(Remove Cloth),"Forward, only courage.",PlayerClothRemove("Cloth"),PlayerClothAvailable("Cloth")
+10,,(Remove Bra),"Forward, only courage.",PlayerClothRemove("Bra"),PlayerBraAvailable()
+10,,(Remove lower Cloth),"Forward, only courage.",PlayerClothRemove("ClothLower"),PlayerClothAvailable("ClothLower")
+10,,(Remove Panties),"Forward, only courage.",PlayerClothRemove("Panties"),PlayerPantiesAvailable()
+10,,(Remove Socks),"Forward, only courage.",PlayerClothRemove("Socks"),PlayerSocksAvailable()
+10,,(Remove Shoes),"Forward, only courage.",PlayerClothRemove("Shoes"),PlayerClothAvailable("Shoes")
+10,0,that's enough for now,All right then,,
+20,21,Use some toys for the Head,Is it alright?,UseGroup("ItemHead"),
+20,22,Use some toys for the Mounth,Is it alright?,UseGroup("ItemMouth"),
+20,23,Use some toys for the Neck,Is it alright?,UseGroup("ItemNeck"),
+20,24,Use some toys for the Arms,what do you want,,
+20,25,Use some toys for the Torso,Is it alright?,UseGroup("ItemTorso"),
+20,26,Use some toys for the Legs,Is it alright?,UseGroup("ItemLegs"),
+20,27,Use some toys for the Feet,Is it alright?,UseGroup("ItemFeet"),
+20,0,That's how I feel,All right sould i take a Photo?,,Player.CanTalk()
+20,0,(Node),,!Player.CanTalk()
+21,20,Cloth Blindfold,Is it alright?,"UseAsset(""ClothBlindfold"",""ItemHead"")","PlayerAssetAvailable(""ClothBlindfold"", ""ItemHead"")"
+21,20,Leather Blindfold,Is it alright?,"UseAsset(""LeatherBlindfold"",""ItemHead"")","PlayerAssetAvailable(""LeatherBlindfold"", ""ItemHead"")"
+21,20,Leather Hood,Is it alright?,"UseAsset(""LeatherHood"",""ItemHead"")","PlayerAssetAvailable(""LeatherHood"", ""ItemHead"")"
+21,20,Leather Hood Eyes,Is it alright?,"UseAsset(""LeatherHoodOpenEyes"",""ItemHead"")","PlayerAssetAvailable(""LeatherHoodOpenEyes"", ""ItemHead"")"
+21,20,Nothing,what else should it be?,,
+20,0,(Node),,!Player.CanTalk()
+22,20,Small Cloth Gag,Is it alright?,"UseAsset(""SmallClothGag"",""ItemMouth"")","PlayerAssetAvailable(""SmallClothGag"", ""ItemMouth"")"
+22,20,Cloth Cleave Gag,Is it alright?,"UseAsset(""ClothCleaveGag"",""ItemMouth"")","PlayerAssetAvailable(""ClothCleaveGag"", ""ItemMouth"")"
+22,20,Cloth OTM Gag,Is it alright?,"UseAsset(""ClothOTMGag"",""ItemMouth"")","PlayerAssetAvailable(""ClothOTMGag"", ""ItemMouth"")"
+22,20,Cloth OTN Gag,Is it alright?,"UseAsset(""ClothOTNGag"",""ItemMouth"")","PlayerAssetAvailable(""ClothOTNGag"", ""ItemMouth"")"
+22,20,Harness Ball Gag,Is it alright?,"UseAsset(""HarnessBallGag"",""ItemMouth"")","PlayerAssetAvailable(""HarnessBallGag"", ""ItemMouth"")"
+22,20,Harness Panel Gag,Is it alright?,"UseAsset(""HarnessPanelGag"",""ItemMouth"")","PlayerAssetAvailable(""HarnessPanelGag"", ""ItemMouth"")"
+22,20,Ring Gag,Is it alright?,"UseAsset(""RingGag"",""ItemMouth"")","PlayerAssetAvailable(""RingGag"", ""ItemMouth"")"
+22,20,Duct Tape Gag,Is it alright?,"UseAsset(""DuctTapeGag"",""ItemMouth"")","PlayerAssetAvailable(""DuctTapeGag"", ""ItemMouth"")"
+22,20,Duster Gag,Is it alright?,"UseAsset(""DusterGag"",""ItemMouth"")","PlayerAssetAvailable(""DusterGag"", ""ItemMouth"")"
+22,20,Nothing,what else should it be?,,
+23,20,Leather Collar,Is it alright?,"UseAsset(""LeatherCollar"",""ItemNeck"")","PlayerAssetAvailable(""LeatherCollar"", ""ItemNeck"")"
+23,20,Nothing,what else should it be?,,
+24,20,Nylon Rope,Is it alright?,"UseAsset(""NylonRope"",""ItemArms"")","PlayerAssetAvailable(""NylonRope"", ""ItemArms"")"
+24,20,Hemp Rope,Is it alright?,"UseAsset(""HempRope"",""ItemArms"")","PlayerAssetAvailable(""HempRope"", ""ItemArms"")"
+24,20,Metal Cuffs,Is it alright?,"UseAsset(""MetalCuffs"",""ItemArms"")","PlayerAssetAvailable(""MetalCuffs"", ""ItemArms"")"
+24,20,Leather Armbinder,Is it alright?,"UseAsset(""LeatherArmbinder"",""ItemArms"")","PlayerAssetAvailable(""LeatherArmbinder"", ""ItemArms"")"
+24,20,Nothing,what else should it be?,,
+25,20,Nylon Rope Harness,Is it alright?,"UseAsset(""NylonRopeHarness"",""ItemTorso"")","PlayerAssetAvailable(""NylonRopeHarness"", ""ItemTorso"")"
+25,20,Hemp Rope Harness,Is it alright?,"UseAsset(""HempRopeHarness"",""ItemTorso"")","PlayerAssetAvailable(""HempRopeHarness"", ""ItemTorso"")"
+25,20,Leather Harness,Is it alright?,"UseAsset(""LeatherHarness"",""ItemTorso"")","PlayerAssetAvailable(""LeatherHarness"", ""ItemTorso"")"
+25,20,Nothing,what else should it be?,,
+26,20,Nylon Rope,Is it alright?,"UseAsset(""NylonRope"",""ItemLegs"")","PlayerAssetAvailable(""NylonRope"", ""ItemLegs"")"
+26,20,Hemp Rope,Is it alright?,"UseAsset(""HempRope"",""ItemLegs"")","PlayerAssetAvailable(""HempRope"", ""ItemLegs"")"
+26,20,Leather Belt,Is it alright?,"UseAsset(""LeatherBelt"",""ItemLegs"")","PlayerAssetAvailable(""LeatherBelt"", ""ItemLegs"")"
+26,20,Nothing,what else should it be?,,
+27,20,Nylon Rope,Is it alright?,"UseAsset(""NylonRope"",""ItemFeet"")","PlayerAssetAvailable(""NylonRope"", ""ItemFeet"")"
+27,20,Hemp Rope,Is it alright?,"UseAsset(""HempRope"",""ItemFeet"")","PlayerAssetAvailable(""HempRope"", ""ItemFeet"")"
+27,20,Leather Belt,Is it alright?,"UseAsset(""LeatherBelt"",""ItemFeet"")","PlayerAssetAvailable(""LeatherBelt"", ""ItemFeet"")"
+27,20,Nothing,what else should it be?,,

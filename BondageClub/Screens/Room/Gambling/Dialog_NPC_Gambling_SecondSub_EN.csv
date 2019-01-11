@@ -107,11 +107,12 @@ ItemPelvisLeatherCrop,,,(She moans each time the crop lands on it.) How can I st
 326,,I win. Open wide!,(She opens her mouth slowly and you gag her, and then take the REPLACEMONEY $ winnings.),"DaredSixController(""win"")",ShowDiceStack()
 330,0,(Cheer.),(She mumbles into the gag.),,,
 340,0,(Mumble into the gag.),(She cheers.),,,
+GamblingSecondSubTied,,,"(she shows her restraints.) I would like to, but ...",,
 MaidRescue,,,(She struggles in her restraints.)  Can you release me?,,IsSubsRestrained(),
 MaidRescue,,I'll go get help.  (Leave her.),,DialogLeave(),,
 MaidRescue,,What happened here?,I lost a game and the winner just left me all tied up!,,,
 MaidRescue,,Do you need help?,"Yes please, can you release us?",,IsSubsRestrained(),
-MaidRescue,MaidRescueComplete,Is everything alright now?,"Yes, much better now, thanks.  Please thank the maids sorority for me!.,CompleteRescue(),!IsSubsRestrained()
+MaidRescue,MaidRescueComplete,Is everything alright now?,"Yes, much better now, thanks.  Please thank the maids sorority for me!.",CompleteRescue(),!IsSubsRestrained()
 MaidRescueComplete,0,Great!  A chore well done.,Absolutely.  Is there something I can do for you?,,
 MaidRescueComplete,0,No problem.  We are here to serve you Miss.,That's great to hear!  Is there something I can do for you?,DialogChangeReputation(""""Dominant"""""," -2)""",,
 MaidRescueComplete,0,"Alright, but take more care next time.","I will, thanks.  Is there something I can do for you?","DialogChangeReputation(""Dominant"", 2)",,

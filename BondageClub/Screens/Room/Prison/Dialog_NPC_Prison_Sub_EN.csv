@@ -1,0 +1,23 @@
+PlayerGagged,,,"Speech is of time, silence is of eternity.",,
+ItemMouth,,,(She gives a curious look at the gag but doesn't resist as you silence her.),,
+RemoveItemMouth,,,"(You remove her gag slowly.)  Thanks Miss, it will be easier to do my job.",,
+ItemArms,,,(She nods and turns around as you restrain her arms securely.)  It will be a kinky work day.,,
+RemoveItemArms,,,"(You free her arms and she stretches.)  Thanks head maid DialogPlayerName, this will make my work easier.",,
+ItemLegs,,,(She submits as you restrain her legs.)  Another kinky day in our kinky club.,,
+RemoveItemLegs,,,(You release her legs while she shakes her butt.)  Thanks Miss.,,
+ItemFeet,,,(You restrain her feet securely.)  I'll stay in the hall then.,,
+RemoveItemFeet,,,(You release her feet.)  Much better.,,
+ItemNeck,,,(You strap the collar on her while she blushes.)  Someday I'll find a wonderful Mistress like you Miss.,,
+RemoveItemNeck,,,(You remove the collar around her neck.)  Freedom is overrated.,,
+ItemPelvis,,,(She frowns as you lock the device on her.)  I hope you will unlock it after my shift Miss.,,
+RemoveItemPelvis,,,(She nods happily as you unlock the device.)  Yes!  That's very nice of you Miss.,,
+ItemHead,,,(You strap the device on her head as she mumbles.)  It will be a kinky work day it seems.,,
+RemoveItemHead,,,(You remove the device and she nods slowly.)  You're the best head maid DialogPlayerName.,,
+0,,,"(A girl come in and looks arround) Hello, wat's going on here?",,
+0,,It's under Construction. Please go out.,,NpcSendAway(),!PrisonNPCIsBehindBars()
+0,,I search for a curious person in Handcuffs for some Tests.,"Now, it sounds interesting.",NpcHandcuffing(),PrisonSubAskCuff()
+0,,(Shoves she into the cell and closes the door),(She looks surprised),CellNpcIn(),PrisonNPCIsHandcuffedOut()
+0,,(Strip Search her for a Key),Is that necessary?,NpcHavySearch(),PrisonNPCIsBehindBars()
+0,,(Give her the clothes back),(She Nods slowly),,PrisonNPCIsBehindBars()
+0,,(let her out),"Thanks, next time it's your turn",CellNpcOut(),PrisonNPCIsBehindBars()
+0,,(Leave her),,DialogLeave(),

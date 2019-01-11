@@ -13,8 +13,8 @@ var MaidQuartersIsMaid = false;
 var MaidQuartersIsHeadMaid = false
 var MaidQuartersDominantRep = 0;
 var MaidQuartersCurrentRescue = "";
-var MaidQuartersRescueList = ["IntroductionClass", "ShibariDojo", "Shop", "Gambling"];
-var MaidQuartersRescueStage = ["310", "320", "330", "340"];
+var MaidQuartersRescueList = ["IntroductionClass", "ShibariDojo", "Shop", "Gambling", "Prison"];
+var MaidQuartersRescueStage = ["310", "320", "330", "340", "350"];
 var MaidQuartersCurrentRescueStarted = false;
 var MaidQuartersCurrentRescueCompleted = false;
 
