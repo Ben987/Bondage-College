@@ -15,7 +15,7 @@ Ver Date        Path                                Author              Status  
 12B 20180702    C001_BeforeClass_FightOutro         Dwscdv3             √
 12B 20180702    C001_BeforeClass_Intro              Dwscdv3             √
 12B 20180702    C001_BeforeClass_Outro              Dwscdv3             √
-12B 20180702    C001_BeforeClass_Sidney             Dwscdv3             √
+13B 20190117    C001_BeforeClass_Sidney             Dwscdv3             √                   Revision 1
 
                 C002_FirstClass_Amanda              
 13B 20190104    C002_FirstClass_Intro               Dwscdv3             √
@@ -29,7 +29,7 @@ Ver Date        Path                                Author              Status  
 13B 20190106    C003_MorningDetention_Glass         Dwscdv3             √
 13B 20190106    C003_MorningDetention_Intro         Dwscdv3             √
 13B 20190106    C003_MorningDetention_Outro         Dwscdv3             √
-13B 20190106    C003_MorningDetention_Sidney        Dwscdv3             √
+13B 20190117    C003_MorningDetention_Sidney        Dwscdv3             √                   Revision 1
 13B 20190106    C003_MorningDetention_Yuki          Dwscdv3             √
 
 ...

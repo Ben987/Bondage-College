@@ -10,7 +10,7 @@ Stage,LoveReq,SubReq,VarReq,IntroText,Image
 120,0,0,,,MildredCrop.jpg
 130,0,0,,,MildredCrop.jpg
 200,0,0,Common_PlayerNotRestrained,（Mildred 小姐教导数到 9:00。|看起来她牢牢掌握住了整个班级。）,MildredTeach.jpg
-200,0,0,Common_PlayerRestrained,（你的双手被困在手铐中并不停地流口水，|Mildred 小姐继续讲课。你只能等到 9:00。）,MildredTeach.jpg
+200,0,0,Common_PlayerRestrained,（你疯狂挣扎着手铐并不停地流口水，|Mildred 小姐继续讲课。你只能等到 9:00。）,MildredTeach.jpg
 210,0,0,,（Mildred 小姐正牢牢掌控她的班级。|你真的要试着制服她吗？）,MildredTeach.jpg
 220,0,0,,,MildredCrop.jpg
 300,0,0,,小姐！你必须立刻给我打开手铐。,Mildred_Cuffs.jpg
