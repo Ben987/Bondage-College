@@ -19,10 +19,10 @@ Ver Date        Path                                Author              Status  
 
                 C002_FirstClass_Amanda              
 13B 20190104    C002_FirstClass_Intro               Dwscdv3             √
-                C002_FirstClass_Mildred             Dwscdv3             20%
-                C002_FirstClass_Outro               
+13B 20190117    C002_FirstClass_Mildred             Dwscdv3             √
+13B 20190117    C002_FirstClass_Outro               Dwscdv3             √
 13B 20190107    C002_FirstClass_Sarah               Dwscdv3             √
-                C002_FirstClass_SarahIntro          
+13B 20190117    C002_FirstClass_SarahIntro          Dwscdv3             √
                 C002_FirstClass_Sidney              
 
 13B 20190106    C003_MorningDetention_Bag           Dwscdv3             √

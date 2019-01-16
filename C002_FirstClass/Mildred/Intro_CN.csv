@@ -1,0 +1,24 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,欢迎来上我的课，这位小姐。|你应该称呼我 Mildred 小姐。,MildredIntro.jpg
+10,0,0,,,MildredIntro.jpg
+20,0,0,,,MildredIntro.jpg
+30,0,0,,,MildredIntro.jpg
+40,0,0,,,MildredIntro.jpg
+50,0,0,,（Mildred 小姐教导数到 9:00。|看起来她牢牢掌握住了整个班级。）,MildredTeach.jpg
+100,0,0,,,MildredCrop.jpg
+110,0,0,,,MildredCrop.jpg
+120,0,0,,,MildredCrop.jpg
+130,0,0,,,MildredCrop.jpg
+200,0,0,Common_PlayerNotRestrained,（Mildred 小姐教导数到 9:00。|看起来她牢牢掌握住了整个班级。）,MildredTeach.jpg
+200,0,0,Common_PlayerRestrained,（你的双手被困在手铐中并不停地流口水，|Mildred 小姐继续讲课。你只能等到 9:00。）,MildredTeach.jpg
+210,0,0,,（Mildred 小姐正牢牢掌控她的班级。|你真的要试着制服她吗？）,MildredTeach.jpg
+220,0,0,,,MildredCrop.jpg
+300,0,0,,小姐！你必须立刻给我打开手铐。,Mildred_Cuffs.jpg
+310,0,0,,小姐！你必须立刻给我打开手铐。,Mildred_Cuffs.jpg
+320,0,0,,（她用力咬着口塞，看起来气急败坏。）,Mildred_Cuffs_BallGag.jpg
+330,0,0,,小姐！你必须立刻给我解开。|（她闭上眼睛想保持些威严。）,Mildred_Rope.jpg
+340,0,0,,（她用力咬着口塞，看起来气急败坏。）|（她闭上眼睛想保持些威严。）,Mildred_Rope_BallGag.jpg
+410,0,0,,（你把她按趴在桌子上然后举起了鞭子。）|小姐，在你这么做之前先想想你的以后。,Mildred_Cuffs_Crop.jpg
+420,0,0,,（你把她按趴在桌子上然后举起了鞭子。）|（她从口塞中发出含糊不清的抗议声。）,Mildred_Cuffs_Crop.jpg
+430,0,0,,（你把她按趴在桌子上然后举起了鞭子。）|小姐，在你这么做之前先想想你的以后。,Mildred_Rope_Crop.jpg
+440,0,0,,（你把她按趴在桌子上然后举起了鞭子。）|（她从口塞中发出含糊不清的抗议声。）,Mildred_Rope_Crop.jpg
