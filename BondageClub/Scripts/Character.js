@@ -279,6 +279,25 @@ function CharacterNaked(C) {
 	CharacterRefresh(C);
 }
 
+// Removes all appearance items from the character
+function CharacterIsNaked(C) {
+	for(var A = 0; A < C.Appearance.length; A++) {
+		if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Category == "Appearance") && C.Appearance[A].Asset.Group.AllowNone && !C.Appearance[A].Asset.Group.KeepNaked) return false;
+		if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Name == "ItemPelvis")) return false;
+	}
+	return true;
+}
+
+// Removes all appearance items from the character expect underwear
+function CharacterUnderwear(C, Appearance) {
+	CharacterAppearanceNaked(C);
+	for(var A = 0; A < Appearance.length; A++)
+		if ((Appearance[A].Asset != null) && Appearance[A].Asset.Group.Underwear && (Appearance[A].Asset.Group.Category == "Appearance"))
+			C.Appearance.push(Appearance[A]);
+	C.Appearance = CharacterAppearanceSort(C.Appearance);
+	CharacterRefresh(C);
+}
+
 // Redress the character based on a specific appearance object
 function CharacterDress(C, Appearance) {
 	for(var A = 0; A < Appearance.length; A++)

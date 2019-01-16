@@ -5,12 +5,20 @@ var PrivateCharacter = [];
 var PrivateCharacterTypeList = ["NPC_Private_VisitorShy", "NPC_Private_VisitorHorny", "NPC_Private_VisitorTough"];
 var PrivateCharacterToSave = 0;
 
-// Returns TRUE if a 
+// Returns TRUE if a specific dialog option is allowed
 function PrivateIsCaged() { return (CurrentCharacter.Cage == null) ? false : true }
 function PrivateVendorCanPlay() { return (LogQuery("RentRoom", "PrivateRoom") && LogQuery("Wardrobe", "PrivateRoom") && LogQuery("Cage", "PrivateRoom") && Player.CanInteract() && PrivateVendor.CanInteract()) }
+function PrivateAllowChange() { return (!CurrentCharacter.IsRestrained() && (ReputationGet("Dominant") + 25 >= NPCTraitGet(CurrentCharacter, "Dominant"))) }
+function PrivateWontChange() { return (!CurrentCharacter.IsRestrained() && (ReputationGet("Dominant") + 25 < NPCTraitGet(CurrentCharacter, "Dominant"))) }
+function PrivateIsRestrained() { return (CurrentCharacter.IsRestrained()) }
+function PrivateAllowRestain() { return (CurrentCharacter.IsRestrained() || (ReputationGet("Dominant") + 25 >= NPCTraitGet(CurrentCharacter, "Dominant"))) }
+function PrivateNobodyGagged() { return (Player.CanTalk() && CurrentCharacter.CanTalk()) }
+function PrivateCanMasturbate() { return (CharacterIsNaked(CurrentCharacter) && !Player.IsRestrained()) }
 
 // Loads the private room vendor NPC
 function PrivateLoad() {
+	
+	// Loads the vendor and NPC from storage
 	PrivateVendor = CharacterLoadNPC("NPC_Private_Vendor");
 	PrivateVendor.AllowItem = false;
 	if (PrivateCharacter.length == 0) {
@@ -19,6 +27,12 @@ function PrivateLoad() {
 		PrivateLoadCharacter(2);
 		PrivateLoadCharacter(3);
 	}
+
+	// Checks if we allow items on each NPC based on their trait and dominant reputation of the player
+	if (PrivateCharacter.length >= 2) PrivateCharacter[1].AllowItem = ((ReputationGet("Dominant") + 25 >= NPCTraitGet(PrivateCharacter[1], "Dominant")) || PrivateCharacter[1].IsRestrained());
+	if (PrivateCharacter.length >= 3) PrivateCharacter[2].AllowItem = ((ReputationGet("Dominant") + 25 >= NPCTraitGet(PrivateCharacter[2], "Dominant")) || PrivateCharacter[2].IsRestrained());
+	if (PrivateCharacter.length >= 4) PrivateCharacter[3].AllowItem = ((ReputationGet("Dominant") + 25 >= NPCTraitGet(PrivateCharacter[3], "Dominant")) || PrivateCharacter[3].IsRestrained());
+
 }
 
 // Draw all the characters in the private room
@@ -137,7 +151,8 @@ function PrivateLoadCharacter(ID) {
 		var C = CharacterLoadNPC("NPC_Private_Custom");
 		C.Name = Char.Name;
 		C.AccountName = "NPC_Private_Custom" + ID.toString();
-		C.Appearance = Char.Appearance.slice();
+		if (Char.Appearance != null) C.Appearance = Char.Appearance.slice();
+		if (Char.AppearanceFull != null) C.AppearanceFull = Char.AppearanceFull.slice();
 		if (Char.Trait != null) C.Trait = Char.Trait.slice();
 		if (Char.Cage != null) C.Cage = Char.Cage;
 		NPCTraitDialog(C);
@@ -154,7 +169,8 @@ function PrivateSaveCharacter(ID) {
 			Trait: PrivateCharacter[ID].Trait,
 			Cage: PrivateCharacter[ID].Cage,
 			AccountName: PrivateCharacter[ID].AccountName,
-			Appearance: PrivateCharacter[ID].Appearance.slice()
+			Appearance: PrivateCharacter[ID].Appearance.slice(),
+			AppearanceFull: PrivateCharacter[ID].AppearanceFull.slice()
 		};
 		localStorage.setItem("BondageClubPrivateRoomCharacter" + Player.AccountName + ID.toString(), JSON.stringify(C));
 	} else localStorage.removeItem("BondageClubPrivateRoomCharacter" + Player.AccountName + ID.toString());
@@ -166,6 +182,7 @@ function PrivateAddCharacter(Template) {
 	C.Name = Template.Name;
 	C.AccountName = "NPC_Private_Custom" + PrivateCharacter.length.toString();
 	C.Appearance = Template.Appearance.slice();
+	C.AppearanceFull = Template.Appearance.slice();
 	NPCTraitGenerate(C);
 	NPCTraitDialog(C);
 	CharacterRefresh(C);
@@ -191,4 +208,11 @@ function PrivateKickOut() {
 	if (PrivateCharacter[1] != null) PrivateCharacter[1].AccountName = "NPC_Private_Custom1";
 	if (PrivateCharacter[2] != null) PrivateCharacter[2].AccountName = "NPC_Private_Custom2";
 	DialogLeave();
+}
+
+// When the player tells the character to change
+function PrivateChange(NewCloth) {
+	if (NewCloth == "Cloth") CharacterDress(CurrentCharacter, CurrentCharacter.AppearanceFull);
+	if (NewCloth == "Underwear") CharacterUnderwear(CurrentCharacter, CurrentCharacter.AppearanceFull);
+	if (NewCloth == "Naked") CharacterNaked(CurrentCharacter);
 }

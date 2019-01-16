@@ -41,7 +41,7 @@ function NPCTraitGetOptionValue(Dialog, NPCTrait) {
 				if (NPCTrait[N].Name.trim() == DialogTrait[T].trim())
 					Value = Value + NPCTrait[N].Value;
 				else 
-					if (NPCTrait[N].Name.trim() == NPCTraitReverse(DialogTrait[T]).trim())
+					if (NPCTrait[N].Name.trim() == NPCTraitReverse(DialogTrait[T].trim()))
 						Value = Value - 10000;
 		return Value;
 	} else return 0;
@@ -78,4 +78,17 @@ function NPCTraitDialog(C) {
 		if (C.Dialog[D].Group != null)
 			NPCTraitKeepBestOption(C, C.Dialog[D].Group)
 	
+}
+
+// Returns the trait value of an NPC
+function NPCTraitGet(C, TraitType) {
+
+	// For each NPC trait
+	var Reverse = NPCTraitReverse(TraitType);
+	for(var T = 0; T < C.Trait.length; T++) {
+		if (TraitType == C.Trait[T].Name) return C.Trait[T].Value;
+		if (Reverse == C.Trait[T].Name) return C.Trait[T].Value * -1;
+	}
+	return 0;
+
 }
