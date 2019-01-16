@@ -1,23 +1,38 @@
-PlayerGagged,,,"Speech is of time, silence is of eternity.",,
-ItemMouth,,,(She gives a curious look at the gag but doesn't resist as you silence her.),,
-RemoveItemMouth,,,"(You remove her gag slowly.)  Thanks Miss, it will be easier to do my job.",,
-ItemArms,,,(She nods and turns around as you restrain her arms securely.)  It will be a kinky work day.,,
-RemoveItemArms,,,"(You free her arms and she stretches.)  Thanks head maid DialogPlayerName, this will make my work easier.",,
-ItemLegs,,,(She submits as you restrain her legs.)  Another kinky day in our kinky club.,,
-RemoveItemLegs,,,(You release her legs while she shakes her butt.)  Thanks Miss.,,
-ItemFeet,,,(You restrain her feet securely.)  I'll stay in the hall then.,,
-RemoveItemFeet,,,(You release her feet.)  Much better.,,
-ItemNeck,,,(You strap the collar on her while she blushes.)  Someday I'll find a wonderful Mistress like you Miss.,,
-RemoveItemNeck,,,(You remove the collar around her neck.)  Freedom is overrated.,,
-ItemPelvis,,,(She frowns as you lock the device on her.)  I hope you will unlock it after my shift Miss.,,
-RemoveItemPelvis,,,(She nods happily as you unlock the device.)  Yes!  That's very nice of you Miss.,,
-ItemHead,,,(You strap the device on her head as she mumbles.)  It will be a kinky work day it seems.,,
-RemoveItemHead,,,(You remove the device and she nods slowly.)  You're the best head maid DialogPlayerName.,,
+PlayerGagged,,,Rest is the first civil duty,,
+ItemMouth,,,(She opens her mouth wide.)  It must be well ,,
+RemoveItemMouth,,,(You remove her gag and she sighs.)  Finally.,,
+ItemArms,,,(She tugs at the shackles.) Is that necessary? ,,
+RemoveItemArms,,,(You free her arms and she stretches a little.)  What will you use on me next?,,
+ItemLegs,,,(You restrain her legs securely.)  As if I could run away.,,
+RemoveItemLegs,,,(You release her legs.)  You can tie me up any time you want Miss.,,
+ItemFeet,,,(She wiggles her feet playfully as you restrain them.)  More bondage Miss?,,
+RemoveItemFeet,,,(You release her feet and she jumps playfully.)  This is great.,,
+ItemNeck,,,(You strap the collar on her neck while she frowns.)  I am a free club member.,,
+RemoveItemNeck,,,(You remove the collar around her neck.)  Much better!,,
+ItemPelvis,,,(She tries to fight back while the device is put on.),,
+RemoveItemPelvis,,,(She seems relieved as you unlock the device.),,
+ItemHead,,,(You strap the device on her head.)  A dark cell in the cell in the Prison.,,
+RemoveItemHead,,,(You remove the device and she looks at you.)  Fiat Lux.,,
+ItemTorso,,,(You prepare a full body harness on her torso as she blushes.)  Something was missing.,,
+RemoveItemTorso,,,(You remove the body harness from her torso.)  A first step to freedom.,,
+ItemTorsoLeatherWhip,,,"(She moans as you whip her breast, enjoying the pain.)",,
+ItemTorsoLeatherCrop,,,(She jumps and makes her breast wiggle with each hit.)  I am a bad person.,,
+ItemPelvisLeatherWhip,,,(She trembles and moans with each lashes.)  Punishment is needed!,,
+ItemPelvisLeatherCrop,,,(You whip her butt with the leather crop as she wiggles it for more.),,
 0,,,"(A girl come in and looks arround) Hello, wat's going on here?",,
-0,,It's under Construction. Please go out.,,NpcSendAway(),!PrisonNPCIsBehindBars()
-0,,I search for a curious person in Handcuffs for some Tests.,"Now, it sounds interesting.",NpcHandcuffing(),PrisonSubAskCuff()
-0,,(Shoves she into the cell and closes the door),(She looks surprised),CellNpcIn(),PrisonNPCIsHandcuffedOut()
-0,,(Strip Search her for a Key),Is that necessary?,NpcHavySearch(),PrisonNPCIsBehindBars()
-0,,(Give her the clothes back),(She Nods slowly),,PrisonNPCIsBehindBars()
-0,,(let her out),"Thanks, next time it's your turn",CellNpcOut(),PrisonNPCIsBehindBars()
+0,,It's under Construction. Please go out.,,SubSendAway(),!PrisonSubIsBehindBars()
+0,,I search for a curious person in Handcuffs for some Tests.,,SubHandcuffing(),PrisonSubAskForCuff()
+0,,(Shoves she into the cell and closes the door),(She looks surprised),CellSubIn(),PrisonSubIsHandcuffedOut()
+0,,(Strip Search her for a Key),Is that necessary?,SubHavySearch(),PrisonSubCanStripSearch()
+0,,(Give her the clothes back),(She Nods slowly),SubClothBack(),PrisonSubCanClothBack()
+0,10,(Torture),(She looks worried),,PrisonSubIsBehindBars()
+0,,(let her out),"Thanks, next time it's your turn",CellSubOut(),PrisonSubIsBehindBars()
 0,,(Leave her),,DialogLeave(),
+10,,(Spank her Butt),(She squirms painfully),,
+10,,(Slap into her Face),(She whines and is scared),,
+10,,(Fondle her Brest),(She moans joyfully),,
+10,,(Tickle her Feet),(She laughs out loud),,
+10,,(massages her neck),(She purrs like a kitten),,
+10,0,(End torture),(She breathes in relief),,
+PrisonSubInterrest,0,,"Now, it sounds interesting. Her I am.",,
+PrisonSubNoInterrest,0,,then I'll go better.,,

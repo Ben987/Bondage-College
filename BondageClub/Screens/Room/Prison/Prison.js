@@ -1,22 +1,29 @@
 "use strict";
 var PrisonBackground = "Prison";
-var PrisonMaid = null;
-var PrisonSub = null;
-var PrisonPlayerAppearance = null;
-var PrisonSubAppearance = null;
-var PrisonMaidAppearance = null;
-var PrisonPlayerBehindBars = false;
-var PrisonSubBehindBars = false;
-var PrisonSubSelfCuffed = false;
-var PrisonMaidIsPresent = true;
-var PrisonSubIsPresent = false;
-var PrisonMaidIsAngry =false;
 var PrisonNextEventTimer = null;
 var PrisonerMetalCuffsKey = null;
+
+var PrisonMaid = null;
+var PrisonMaidAppearance = null;
+var PrisonMaidIsPresent = true;
+var PrisonMaidIsAngry =false;
 var PrisonMaidCharacter = null;
 var PrisonMaidCharacterList = ["Friendly", "Neutral", "Evil", "Chaotic"];
 var PrisonMaidChaotic = null;
-var PrisonSubAskCuff = false;
+
+var PrisonSub = null;
+var PrisonSubAppearance = null;
+var PrisonSubBehindBars = false;
+var PrisonSubSelfCuffed = false;
+var PrisonSubIsPresent = false;
+var PrisonSubAskedCuff = false;
+var PrisonSubIsLeaveOut = true;
+var PrisonSubIsStripSearch = false;
+
+var PrisonPlayerAppearance = null;
+var PrisonPlayerBehindBars = false;
+
+
 
 // Returns TRUE if the Player is in Handcuffes
 function PrisonPlayerIsHandcuffed() {return PrisonCharacterAppearanceAvailable(Player, "MetalCuffs", "ItemArms");}
@@ -25,9 +32,12 @@ function PrisonPlayerIsLegTied()    {return PrisonCharacterAppearanceAvailable(P
 function PrisonPlayerIsFeetTied()   {return PrisonCharacterAppearanceAvailable(Player, "LeatherBelt", "ItemFeet");}
 function PrisonPlayerIsOTMGag()     {return PrisonCharacterAppearanceAvailable(Player, "ClothOTMGag", "ItemMouth");}
 function PrisonPlayerIsStriped()    {return !(PrisonCharacterAppearanceGroupAvailable(Player, "Cloth"));}
-function PrisonNPCIsHandcuffedOut() {return (PrisonSubSelfCuffed && !PrisonSubBehindBars);}
-function PrisonNPCIsBehindBars()    {return PrisonSubBehindBars;}
-function PrisonNPCIsFree()          {return (!PrisonSubBehindBars && !PrisonSubSelfCuffed);}
+function PrisonSubIsHandcuffedOut() {return (PrisonSubSelfCuffed && !PrisonSubBehindBars);}
+function PrisonSubIsBehindBars()    {return PrisonSubBehindBars;}
+function PrisonSubIsFree()          {return (!PrisonSubBehindBars && !PrisonSubSelfCuffed);}
+function PrisonSubAskForCuff()      {return (!PrisonSubAskedCuff);}
+function PrisonSubCanStripSearch()  {return  (!PrisonSubIsStripSearch && PrisonSubBehindBars)}
+function PrisonSubCanClothBack()    {return  (PrisonSubIsStripSearch && PrisonSubBehindBars)}
 
 /*      Room     */
 // Loads the Prison
@@ -45,22 +55,21 @@ function PrisonLoad() {
 	PrisonPlayerAppearance = Player.Appearance.slice();
 	PrisonNextEventTimer = null;
 	
-	if ((MaidQuartersCurrentRescue == "Prison") && !MaidQuartersCurrentRescueStarted) {
-		PrisonSub =  CharacterLoadNPC("NPC_Prison_Sub");
-		PrisonNextEventTimer = new Date().getTime() + (10000 * Math.random()) + (5000);
+	if ((MaidQuartersCurrentRescue == "Prison") && !MaidQuartersCurrentRescueStarted && !PrisonSubBehindBars && MaidQuartersCurrentRescueCompleted == false) {
+		PrisonSub = CharacterLoadNPC("NPC_Prison_Sub");
+		PrisonNextEventTimer = new Date().getTime() + (1 * Math.random()) + (5000);
 	}
 }
 
 // Run the Prison, draw all characters
 function PrisonRun() {
-	if ((MaidQuartersCurrentRescue == "Prison") && !MaidQuartersCurrentRescueStarted) {
+	if ((MaidQuartersCurrentRescue == "Prison") && MaidQuartersCurrentRescueCompleted == false) {
 		if (!PrisonSubBehindBars) DrawImage("Screens/Room/Prison/Cage_open.png", 0, 0);
 		if (PrisonSubIsPresent) DrawCharacter(PrisonSub, 500, 0, 1);
 		if (PrisonSubBehindBars) DrawImage("Screens/Room/Prison/Cage_close.png", 0, 0);
 		DrawCharacter(Player, 1000, 0, 1);
-		if (Player.CanWalk()) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 		DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
-		if (MaidQuartersCurrentRescueCompleted = false) {
+		if (MaidQuartersCurrentRescue == "Prison" && MaidQuartersCurrentRescueCompleted == false && PrisonSubIsPresent == true) {
 			DrawButton(1885, 25, 90, 90, "", "White", "Screens/Room/Prison/eye.png");
 		} else if (Player.CanWalk()) {
 			DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
@@ -70,10 +79,10 @@ function PrisonRun() {
 			CharacterDelete("NPC_Prison_Sub");
 			PrisonSub = CharacterLoadNPC("NPC_Prison_Sub");
 			PrisonSubAppearance = PrisonSub.Appearance.slice();
-			PrisonSubAskCuff = false;
+			PrisonSubAskedCuff = false;
 			PrisonSubIsPresent = true;
+			PrisonSubIsLeaveOut = false;
 			PrisonNextEventTimer = null;
-			MaidQuartersCurrentRescueCompleted = true;
 		} 
 	} else {
 		if (!PrisonPlayerBehindBars) DrawImage("Screens/Room/Prison/Cage_open.png", 0, 0);
@@ -99,19 +108,19 @@ function PrisonRun() {
 
 // When the user clicks in the Cell
 function PrisonClick() {
-	if ((MaidQuartersCurrentRescue == "Prison") && !MaidQuartersCurrentRescueStarted) {
+	if ((MaidQuartersCurrentRescue == "Prison") && MaidQuartersCurrentRescueCompleted == false) {
 		if ((MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-		if ((MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000) && PrisonMaidIsPresent) CharacterSetCurrent(PrisonSub);
+		if ((MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000) && PrisonSubIsPresent) CharacterSetCurrent(PrisonSub);
 	} else {
 		if ((MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
 		if ((MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000) && PrisonMaidIsPresent) CharacterSetCurrent(PrisonMaid);
 	}
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) {
-		if ((MaidQuartersCurrentRescue == "Prison") && !MaidQuartersCurrentRescueStarted && MaidQuartersCurrentRescueCompleted == false) {
+		if (MaidQuartersCurrentRescue == "Prison" && MaidQuartersCurrentRescueCompleted == false && PrisonSubIsPresent == true) {
 			CharacterSetCurrent(Player);
 			Player.CurrentDialog = TextGet("Watch");
 		} else if ((Player.CanWalk() && !PrisonPlayerBehindBars)) {
-			CommonSetScreen("Room", "MainHall");
+			PrisonLeaveCell();
 		} else if (PrisonPlayerBehindBars) {
 			CharacterSetCurrent(Player);
 			Player.CurrentDialog = TextGet("LockKey");
@@ -234,7 +243,7 @@ function PrisonerClothBack(C){
 				InventoryWear(C, PrisonPlayerAppearance[A].Asset.Name, "ClothLower", PrisonPlayerAppearance[A].Color );
 			}
 		}
-		CharacterRefresh(Player);
+		CharacterRefresh(C);
 		PrisonMaid.CurrentDialog = DialogFind(PrisonMaid, "PrisonMaidClothBack");
 	} else {
 		PrisonMaid.CurrentDialog = DialogFind(PrisonMaid, "PrisonMaidClothBackNot");
@@ -370,28 +379,31 @@ function PrisonCellPlayerWait(){
 
 /*      NPC     */
 // PrisonSub leave the Room
-function PrisonNpcSendAway(){
+function PrisonSubSendAway(){
 	PrisonSubIsPresent = false;
 	DialogLeave();
 }
 
 //Check if Prison NPC Wear Handcuffes
-function PrisonNpcHandcuffing(){
+function PrisonSubHandcuffing(){
 	if (Math.random() > 0.5) {
 		InventoryWear(PrisonSub, "MetalCuffs", "ItemArms");
 		PrisonSubSelfCuffed = true;
+		PrisonSub.CurrentDialog = DialogFind(PrisonSub, "PrisonSubInterrest");
+	} else {
+		PrisonSub.CurrentDialog = DialogFind(PrisonSub, "PrisonSubNoInterrest");
 	}
-	PrisonSubAskCuff = false;
+	PrisonSubAskedCuff = true;
 }
 
 // Shoves NPC in Cell
-function PrisonCellNpcIn(){
+function PrisonCellSubIn(){
 	PrisonSubBehindBars = true;
 	PrisonSub.AllowItem = true;
 }
 
 //Strip Search the NPC
-function PrisonNpcHavySearch(){
+function PrisonSubHavySearch(){
 	InventoryRemove(PrisonSub, "Hat"); 
 	InventoryRemove(PrisonSub, "Shoes"); 
 	InventoryRemove(PrisonSub, "Gloves"); 
@@ -401,13 +413,49 @@ function PrisonNpcHavySearch(){
 	InventoryWear(PrisonSub, "LeatherBelt", "ItemLegs");
 	InventoryWear(PrisonSub, "LeatherBelt", "ItemFeet");
 	InventoryWear(PrisonSub, "HarnessPanelGag", "ItemMouth");
+	PrisonSubIsStripSearch = true;
 }
 
 //Let NPC out of Cell
-function PrisonCellNpcOut(){
+function PrisonCellSubOut(){
 	PrisonSubBehindBars = false;
+	PrisonSubIsLeaveOut = true;
 	CharacterRelease(PrisonSub);
 	PrisonSub.AllowItem = false;
+	PrisonSubSelfCuffed = false;
 	PrisonSub.Appearance = PrisonSubAppearance;
+	CharacterRefresh(PrisonSub);
+}
+
+//The Prison NPC Leave the Cell
+function PrisonLeaveCell(){
+	if (!PrisonSubBehindBars) {
+		PrisonSubIsPresent = false;
+		PrisonSubSelfCuffed = false;
+	}
+		if (MaidQuartersCurrentRescue == "Prison") MaidQuartersCurrentRescueCompleted = true;
+	CommonSetScreen("Room", "MainHall");
+}
+
+//Give Cloth back to Sub
+function PrisonSubClothBack() {
+	for (var A = 0; A < PrisonSubAppearance.length; A++) {
+		if (PrisonSubAppearance[A].Asset.Group.Name == "Hat") {
+			InventoryWear(PrisonSub, PrisonSubAppearance[A].Asset.Name, "Hat", PrisonSubAppearance[A].Color );
+		}
+		if (PrisonSubAppearance[A].Asset.Group.Name == "Shoes") {
+			InventoryWear(PrisonSub, PrisonSubAppearance[A].Asset.Name, "Shoes", PrisonSubAppearance[A].Color );
+		}
+		if (PrisonSubAppearance[A].Asset.Group.Name == "Gloves") {
+			InventoryWear(PrisonSub, PrisonSubAppearance[A].Asset.Name, "Gloves", PrisonSubAppearance[A].Color );
+		}
+		if (PrisonSubAppearance[A].Asset.Group.Name == "Cloth") {
+			InventoryWear(PrisonSub, PrisonSubAppearance[A].Asset.Name, "Cloth", PrisonSubAppearance[A].Color );
+		}
+		if (PrisonSubAppearance[A].Asset.Group.Name == "ClothLower") {
+			InventoryWear(PrisonSub, PrisonSubAppearance[A].Asset.Name, "ClothLower", PrisonSubAppearance[A].Color );
+		}
+	}
+	PrisonSubIsStripSearch = false;
 	CharacterRefresh(PrisonSub);
 }

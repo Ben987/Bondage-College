@@ -1,48 +1,61 @@
-PlayerGagged,,,"Speech is of time, silence is of eternity.",,
-ItemMouth,,,(She gives a curious look at the gag but doesn't resist as you silence her.),,
-RemoveItemMouth,,,"(You remove her gag slowly.)  Thanks Miss, it will be easier to do my job.",,
-ItemArms,,,(She nods and turns around as you restrain her arms securely.)  It will be a kinky work day.,,
-RemoveItemArms,,,"(You free her arms and she stretches.)  Thanks head maid DialogPlayerName, this will make my work easier.",,
-ItemLegs,,,(She submits as you restrain her legs.)  Another kinky day in our kinky club.,,
-RemoveItemLegs,,,(You release her legs while she shakes her butt.)  Thanks Miss.,,
-ItemFeet,,,(You restrain her feet securely.)  I'll stay in the hall then.,,
-RemoveItemFeet,,,(You release her feet.)  Much better.,,
-ItemNeck,,,(You strap the collar on her while she blushes.)  Someday I'll find a wonderful Mistress like you Miss.,,
-RemoveItemNeck,,,(You remove the collar around her neck.)  Freedom is overrated.,,
-ItemPelvis,,,(She frowns as you lock the device on her.)  I hope you will unlock it after my shift Miss.,,
-RemoveItemPelvis,,,(She nods happily as you unlock the device.)  Yes!  That's very nice of you Miss.,,
-ItemHead,,,(You strap the device on her head as she mumbles.)  It will be a kinky work day it seems.,,
-RemoveItemHead,,,(You remove the device and she nods slowly.)  You're the best head maid DialogPlayerName.,,
-0,,,"Hello, a new Star is Born.",,
-0,,Please take a Photo.,Smily.,ShotThePlayerPhoto(),
-0,10,I'll strip some Cloth,"Yea, show me your wonderful Body.",,
-0,20,I want to use some toys,Show me some.,,
-0,,(Nod helples.),Do you need help?,PlayerRelease(),Player.IsRestrained()
+PlayerGagged,,,"Wink if I should take pictures, nod for free.",,
+ItemMouth,,,(She licks her lips seeing the gag and allows you to silence her easily.),,
+RemoveItemMouth,,,(You remove her gag and she sighs.)  I hope you have another gag for me Miss.,,
+ItemArms,,,(She hums a happy song as you restrain her arms.)  I hope you come to the Dojo more often Miss.,,
+RemoveItemArms,,,(You free her arms and she stretches a little.)  What will you use on me next?,,
+ItemLegs,,,(You restrain her legs securely while she moans of pleasure.)  This is wonderful.,,
+RemoveItemLegs,,,(You release her legs.)  You can tie me up any time you want Miss.,,
+SuspensionHempRope,,,(You restrain her legs with the long hemp rope and suspend her by the feet from the ceiling.)  Oh my god!,,
+ItemFeet,,,(She wiggles her feet playfully as you restrain them.)  This is great.,,
+RemoveSuspensionHempRope,,,(You untie the hemp rope from the ceiling and slowly get her down.)  Wow!  That was quite a ride.,,
+RemoveItemFeet,,,(You release her feet and she jumps playfully.)  More bondage Miss?,,
+ItemNeck,,,"(You strap the collar on her neck while she frowns.)  I'm a free subbie Miss, I'm not looking for a collar.",,
+RemoveItemNeck,,,(You remove the collar around her neck.)  Much better!  I love bondage but I'm not ready to commit.,,
+ItemPelvis,,,(She rocks her hips and struggles as you lock the device on her.),,
+RemoveItemPelvis,,,(She seems relieved as you unlock the device.)  Domo arigato Miss DialogPlayerName.,,
+ItemTorso,,,(You prepare a full body harness on her torso as she blushes.)  This is very erotic.,,
+RemoveItemTorso,,,"(You remove the body harness from her torso.)  Too bad, it was both kinky and comfy.",,
+ItemHead,,,(You strap the device on her head as she hums a happy song.)  This will enhance the helplessness.,,
+RemoveItemHead,,,(You remove the device and she looks at you.)  That was quite an experience.,,
+ItemTorsoLeatherWhip,,,"(She moans as you whip her breast, enjoying the pain.)",,
+ItemTorsoLeatherCrop,,,(She jumps and makes her breast wiggle with each hit.)  You're the best Miss.,,
+ItemPelvisLeatherWhip,,,(She trembles and moans with each lashes.)  More Miss!  More!,,
+ItemPelvisLeatherCrop,,,(You whip her butt with the leather crop as she wiggles it for more.),,
+0,,,"Hello I'm DialogCharacterName,  the Club Photograph and a Model.",,
+0,,"Hello, I'm DialogPlayerName. Pleased to meet you.",Pleased to meet you. Would you like to take a picture of you or me?,DialogRemove(),
+0,100,I'd like to ask you some questions.,Don't be shy.  How can I help you?,,
+0,,Please take a Photo.,please look friendly.,ShotThePlayerPhoto(),Player.CanTalk()
+0,,(Wink),Please look helpless.,ShotThePlayerPhoto(),!Player.CanTalk()
+0,10,I'll strip some Cloth.,"Yea, show me your wonderful Body.",,
+0,20,I want to use some toys.,What should it be?,,
+0,40,Please take off your clothes.,Where should I start?,,
+0,,(Nod helples.),I'm already helping,PlayerRelease(),Player.IsRestrained()
 0,,Good By. (Leave her.),,DialogLeave(),
-10,,(Remove Hat),"Forward, only courage.",PlayerClothRemove("Hat"),PlayerClothAvailable("Hat")
-10,,(Remove Gloves),"Forward, only courage.",PlayerClothRemove("Gloves"),PlayerClothAvailable("Gloves")
-10,,(Remove Cloth),"Forward, only courage.",PlayerClothRemove("Cloth"),PlayerClothAvailable("Cloth")
-10,,(Remove Bra),"Forward, only courage.",PlayerClothRemove("Bra"),PlayerBraAvailable()
-10,,(Remove lower Cloth),"Forward, only courage.",PlayerClothRemove("ClothLower"),PlayerClothAvailable("ClothLower")
-10,,(Remove Panties),"Forward, only courage.",PlayerClothRemove("Panties"),PlayerPantiesAvailable()
-10,,(Remove Socks),"Forward, only courage.",PlayerClothRemove("Socks"),PlayerSocksAvailable()
-10,,(Remove Shoes),"Forward, only courage.",PlayerClothRemove("Shoes"),PlayerClothAvailable("Shoes")
+10,,(Remove Hat),"Forward, only courage.","PlayerClothRemove(""Hat"")",PlayerHatAvailable()
+10,,(Remove Gloves),"Forward, only courage.","PlayerClothRemove(""Gloves"")",PlayerGlovesAvailable()
+10,,(Remove Cloth),"Forward, only courage.","PlayerClothRemove(""Cloth"")",PlayerClothAvailable()
+10,,(Remove Bra),"Forward, only courage.","PlayerClothRemove(""Bra"")",PlayerBraAvailable()
+10,,(Remove lower Cloth),"Forward, only courage.","PlayerClothRemove(""ClothLower"")",PlayerClothLowerAvailable()
+10,,(Remove Panties),"Forward, only courage.","PlayerClothRemove(""Panties"")",PlayerPantiesAvailable()
+10,,(Remove Socks),"Forward, only courage.","PlayerClothRemove(""Socks"")",PlayerSocksAvailable()
+10,,(Remove Shoes),"Forward, only courage.","PlayerClothRemove(""Shoes"")",PlayerShoesAvailable()
+10,,I will dress back,If you think,PlayerDressBack(),
 10,0,that's enough for now,All right then,,
-20,21,Use some toys for the Head,Is it alright?,UseGroup("ItemHead"),
-20,22,Use some toys for the Mounth,Is it alright?,UseGroup("ItemMouth"),
-20,23,Use some toys for the Neck,Is it alright?,UseGroup("ItemNeck"),
+20,21,Use some toys for the Head,Is it alright?,"UseGroup(""ItemHead"")",
+20,22,Use some toys for the Mounth,Is it alright?,"UseGroup(""ItemMouth"")",
+20,23,Use some toys for the Neck,Is it alright?,"UseGroup(""ItemNeck"")",
 20,24,Use some toys for the Arms,what do you want,,
-20,25,Use some toys for the Torso,Is it alright?,UseGroup("ItemTorso"),
-20,26,Use some toys for the Legs,Is it alright?,UseGroup("ItemLegs"),
-20,27,Use some toys for the Feet,Is it alright?,UseGroup("ItemFeet"),
+20,25,Use some toys for the Torso,Is it alright?,"UseGroup(""ItemTorso"")",
+20,26,Use some toys for the Legs,Is it alright?,"UseGroup(""ItemLegs"")",
+20,27,Use some toys for the Feet,Is it alright?,"UseGroup(""ItemFeet"")",
 20,0,That's how I feel,All right sould i take a Photo?,,Player.CanTalk()
-20,0,(Node),,!Player.CanTalk()
+20,0,(Node),,,!Player.CanTalk()
 21,20,Cloth Blindfold,Is it alright?,"UseAsset(""ClothBlindfold"",""ItemHead"")","PlayerAssetAvailable(""ClothBlindfold"", ""ItemHead"")"
 21,20,Leather Blindfold,Is it alright?,"UseAsset(""LeatherBlindfold"",""ItemHead"")","PlayerAssetAvailable(""LeatherBlindfold"", ""ItemHead"")"
 21,20,Leather Hood,Is it alright?,"UseAsset(""LeatherHood"",""ItemHead"")","PlayerAssetAvailable(""LeatherHood"", ""ItemHead"")"
 21,20,Leather Hood Eyes,Is it alright?,"UseAsset(""LeatherHoodOpenEyes"",""ItemHead"")","PlayerAssetAvailable(""LeatherHoodOpenEyes"", ""ItemHead"")"
 21,20,Nothing,what else should it be?,,
-20,0,(Node),,!Player.CanTalk()
+20,0,(Node),,,!Player.CanTalk()
 22,20,Small Cloth Gag,Is it alright?,"UseAsset(""SmallClothGag"",""ItemMouth"")","PlayerAssetAvailable(""SmallClothGag"", ""ItemMouth"")"
 22,20,Cloth Cleave Gag,Is it alright?,"UseAsset(""ClothCleaveGag"",""ItemMouth"")","PlayerAssetAvailable(""ClothCleaveGag"", ""ItemMouth"")"
 22,20,Cloth OTM Gag,Is it alright?,"UseAsset(""ClothOTMGag"",""ItemMouth"")","PlayerAssetAvailable(""ClothOTMGag"", ""ItemMouth"")"
@@ -72,3 +85,19 @@ RemoveItemHead,,,(You remove the device and she nods slowly.)  You're the best h
 27,20,Hemp Rope,Is it alright?,"UseAsset(""HempRope"",""ItemFeet"")","PlayerAssetAvailable(""HempRope"", ""ItemFeet"")"
 27,20,Leather Belt,Is it alright?,"UseAsset(""LeatherBelt"",""ItemFeet"")","PlayerAssetAvailable(""LeatherBelt"", ""ItemFeet"")"
 27,20,Nothing,what else should it be?,,
+40,,Take off your hat.,(she throws him away in a wide arc.),"SubClothRemove(""Hat"")",SubHatAvailable()
+40,,Take off your Gloves,(finger-for-finger she takes them off.),"SubClothRemove(""Gloves"")",SubGlovesAvailable()
+40,,Take off your Cloth.,(She slowly strips her off.),"SubClothRemove(""Cloth"")",SubClothAvailable()
+40,,Take off your Bra.,"(In an elegant turn, she take it off.)","SubClothRemove(""Bra"")",SubBraAvailable()
+40,,Take off your lower Cloth.,(She strips her and wiggles her butt.),"SubClothRemove(""ClothLower"")",SubClothLowerAvailable()
+40,,Take off your Panties.,(She slowly pulls them down.),"SubClothRemove(""Panties"")",SubPantiesAvailable()
+40,,Take off your Socks.,"(one by one, she takes off her Socks.)","SubClothRemove(""Socks"")",SubSocksAvailable()
+40,,Take off your Shoes.,(She steps her aside.),"SubClothRemove(""Shoes"")",SubShoesAvailable()
+40,,Please dress back.,"All right, if you think so.",,SubDressBack()
+40,0,that's enough for now,she shows a bright smile.,,
+100,,What's going on here?,In the photo studio you can make pictures and collect them.,,
+100,,What do the pictures cost?,"Nothing, this is a service of the club.",,
+100,,why is the room so barren?,this is a neutral photo background.,,
+100,,Can I tie you up?,"Of course, if necessary for the foto session.",,
+100,,Will you restrain me?,I would do much more for a good picture.,,
+100,0,I don't have any more questions.,"So then, show your best pose.",,
