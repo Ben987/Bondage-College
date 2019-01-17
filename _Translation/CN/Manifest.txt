@@ -4,7 +4,7 @@
 
 Ver Date        Path                                Author              Status              Remark
 
-13B 20190106    C000_Intro_ChapterSelect            Dwscdv3 & adscvbgf  √                   Revised
+13B 20190106    C000_Intro_ChapterSelect            Dwscdv3 & asdcvbgf  √                   Revised
 12B 20180704    C000_Intro_CreatePlayer             Dwscdv3             √
 12B 20180701    C000_Intro_Intro                    Dwscdv3             √
 
@@ -34,6 +34,15 @@ Ver Date        Path                                Author              Status  
 
 ...
 
+7C  201709      C005_GymClass_GymFight              asdcvbgf            √
+7C  201709      C005_GymClass_Intro                 asdcvbgf            √
+7C  201709      C005_GymClass_Jennifer              asdcvbgf            √
+7C  201709      C005_GymClass_LoseFight             asdcvbgf            √
+7C  201709      C005_GymClass_Outro                 asdcvbgf            √
+7C  201709      C005_GymClass_WinFight              asdcvbgf            √
+
+...
+
                 C008_DramaClass_AmandaIntro         
                 C008_DramaClass_Damsel              
                 C008_DramaClass_Dressing            
@@ -51,25 +60,25 @@ Ver Date        Path                                Author              Status  
 
 13B 20190106    C999_Common_Achievements            Dwscdv3             √                   Names remain untranslated
 12B 20180703    C999_Common_Armbinder               Dwscdv3             √
-12B 20180703    C999_Common_BallGag                 adscvbgf & Dwscdv3  √                   Revised
+12B 20180703    C999_Common_BallGag                 asdcvbgf & Dwscdv3  √                   Revised
 12B 20180703    C999_Common_Blindfold               Dwscdv3             √
 12B 20180703    C999_Common_ChastityBelt            Dwscdv3             √
 12B 20180703    C999_Common_ClothGag                Dwscdv3             √
-12B 20180703    C999_Common_Collar                  adscvbgf & Dwscdv3  √                   Revised
-12B 20180703    C999_Common_Crop                    adscvbgf & Dwscdv3  √                   Polished
-12B 20180703    C999_Common_Cuffs                   adscvbgf & Dwscdv3  √                   Revised
-12B ?           C999_Common_CuffsKey                adscvbgf            √
+12B 20180703    C999_Common_Collar                  asdcvbgf & Dwscdv3  √                   Revised
+12B 20180703    C999_Common_Crop                    asdcvbgf & Dwscdv3  √                   Polished
+12B 20180703    C999_Common_Cuffs                   asdcvbgf & Dwscdv3  √                   Revised
+12B ?           C999_Common_CuffsKey                asdcvbgf            √
 12B 20180703    C999_Common_DoubleOpenGag           Dwscdv3             √
 13B 20190107    C999_Common_Fights                  Dwscdv3             √
-?   ?           C999_Common_GameLoad                adscvbgf            Trad. Chinese
-?   ?           C999_Common_GameSave                adscvbgf            Trad. Chinese
+?   ?           C999_Common_GameLoad                asdcvbgf            Trad. Chinese
+?   ?           C999_Common_GameSave                asdcvbgf            Trad. Chinese
 12B 20180704    C999_Common_Manacles                Dwscdv3             √
-12B ?           C999_Common_MetalSheet              adscvbgf            √
-13B 20190106    C999_Common_Player                  adscvbgf & Dwscdv3  √                   Revised
+12B ?           C999_Common_MetalSheet              asdcvbgf            √
+13B 20190106    C999_Common_Player                  asdcvbgf & Dwscdv3  √                   Revised
 13B 20190106    C999_Common_Quiz                    Dwscdv3             10%                 Translated only UI
 13B 20190107    C999_Common_Races                   Dwscdv3             √
-12B 20180704    C999_Common_Rope                    Dwscdv3 & adscvbgf  √                   Revised
-12B ?           C999_Common_RustyHook               adscvbgf            √
-12B ?           C999_Common_SleepingPill            adscvbgf            √
-12B 20180704    C999_Common_TapeGag                 adscvbgf & Dwscdv3  √                   Revised
-12B 20180704    C999_Common_VibratingEgg            Dwscdv3 & adscvbgf  √                   Revised
+12B 20180704    C999_Common_Rope                    Dwscdv3 & asdcvbgf  √                   Revised
+12B ?           C999_Common_RustyHook               asdcvbgf            √
+12B ?           C999_Common_SleepingPill            asdcvbgf            √
+12B 20180704    C999_Common_TapeGag                 asdcvbgf & Dwscdv3  √                   Revised
+12B 20180704    C999_Common_VibratingEgg            Dwscdv3 & asdcvbgf  √                   Revised
