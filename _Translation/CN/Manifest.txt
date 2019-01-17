@@ -8,7 +8,7 @@ Ver Date        Path                                Author              Status  
 12B 20180704    C000_Intro_CreatePlayer             Dwscdv3             √
 12B 20180701    C000_Intro_Intro                    Dwscdv3             √
 
-12B 20180704    C001_BeforeClass_Amanda             Dwscdv3             √
+13B 20190117    C001_BeforeClass_Amanda             Dwscdv3             √                   Revision 1
 12B 20180702    C001_BeforeClass_Bag                Dwscdv3             √
 12B 20180702    C001_BeforeClass_Fight              Dwscdv3             √
 12B 20180702    C001_BeforeClass_FightIntro         Dwscdv3             √

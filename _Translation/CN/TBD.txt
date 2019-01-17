@@ -1,4 +1,0 @@
-C001_BeforeClass
-    Amanda
-        Text_CN.csv
-            Line 4
