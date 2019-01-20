@@ -4,6 +4,7 @@ var PrivateVendor = null;
 var PrivateCharacter = [];
 var PrivateCharacterTypeList = ["NPC_Private_VisitorShy", "NPC_Private_VisitorHorny", "NPC_Private_VisitorTough"];
 var PrivateCharacterToSave = 0;
+var PrivateReleaseTimer = 0;
 
 // Returns TRUE if a specific dialog option is allowed
 function PrivateIsCaged() { return (CurrentCharacter.Cage == null) ? false : true }
@@ -14,6 +15,10 @@ function PrivateIsRestrained() { return (CurrentCharacter.IsRestrained()) }
 function PrivateAllowRestain() { return (CurrentCharacter.IsRestrained() || (ReputationGet("Dominant") + 25 >= NPCTraitGet(CurrentCharacter, "Dominant"))) }
 function PrivateNobodyGagged() { return (Player.CanTalk() && CurrentCharacter.CanTalk()) }
 function PrivateCanMasturbate() { return (CharacterIsNaked(CurrentCharacter) && !Player.IsRestrained()) }
+function PrivateAllowRestainPlayer() { return (!Player.IsRestrained() && !CurrentCharacter.IsRestrained() && (ReputationGet("Dominant") - 25 <= NPCTraitGet(CurrentCharacter, "Dominant"))) }
+function PrivateWontRestainPlayer() { return (!Player.IsRestrained() && !CurrentCharacter.IsRestrained() && (ReputationGet("Dominant") - 25 > NPCTraitGet(CurrentCharacter, "Dominant"))) }
+function PrivateAllowReleasePlayer() { return (Player.IsRestrained() && CurrentCharacter.CanInteract() && CommonTime() > PrivateReleaseTimer) }
+function PrivateWontReleasePlayer() { return (Player.IsRestrained() && CurrentCharacter.CanInteract() && CommonTime() <= PrivateReleaseTimer) }
 
 // Loads the private room vendor NPC
 function PrivateLoad() {
@@ -215,4 +220,10 @@ function PrivateChange(NewCloth) {
 	if (NewCloth == "Cloth") CharacterDress(CurrentCharacter, CurrentCharacter.AppearanceFull);
 	if (NewCloth == "Underwear") CharacterUnderwear(CurrentCharacter, CurrentCharacter.AppearanceFull);
 	if (NewCloth == "Naked") CharacterNaked(CurrentCharacter);
+}
+
+// When a custom NPC restrains the player, there's a minute timer before release
+function PrivateRestrainPlayer() {
+	CharacterFullRandomRestrain(Player);
+	PrivateReleaseTimer = CommonTime() + 60000;
 }

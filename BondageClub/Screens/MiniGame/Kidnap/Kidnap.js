@@ -5,7 +5,9 @@ var KidnapBackground = "KidnapLeagueDark";
 var KidnapReturnFunction = "";
 var KidnapOpponent = null;
 var KidnapPlayerCloth = null;
+var KidnapPlayerClothLower = null;
 var	KidnapOpponentCloth = null;
+var	KidnapOpponentClothLower = null;
 var KidnapTimer = 0;
 var KidnapMode = "";
 var KidnapDialog = "";
@@ -107,7 +109,10 @@ function KidnapUpperHandMoveAvailable(MoveType, DoMove) {
 
 	// If we need to check to strip the opponent
 	if ((MoveType == 0) && (InventoryGet(KidnapUpperHandVictim, "Cloth") != null)) {
-		if (DoMove) InventoryRemove(KidnapUpperHandVictim, "Cloth");
+		if (DoMove) {
+			InventoryRemove(KidnapUpperHandVictim, "Cloth");
+			InventoryRemove(KidnapUpperHandVictim, "ClothLower");
+		}
 		return true;
 	}
 
@@ -120,8 +125,10 @@ function KidnapUpperHandMoveAvailable(MoveType, DoMove) {
 	// If we need to check to dress back
 	var C = (KidnapUpperHandVictim.ID == 0) ? KidnapOpponent : Player;
 	var Cloth = (KidnapUpperHandVictim.ID == 0) ? KidnapOpponentCloth : KidnapPlayerCloth;
+	var ClothLower = (KidnapUpperHandVictim.ID == 0) ? KidnapOpponentClothLower : KidnapPlayerClothLower;
 	if ((MoveType == 4) && (InventoryGet(C, "Cloth") == null) && (Cloth != null)) {
 		if (DoMove) InventoryWear(C, Cloth.Asset.Name, "Cloth", Cloth.Color);
+		if (DoMove && (ClothLower != null)) InventoryWear(C, ClothLower.Asset.Name, "ClothLower", ClothLower.Color);
 		return true;
 	}
 
@@ -262,7 +269,9 @@ function KidnapStart(Opponent, Background, Difficulty, ReturnFunction) {
 	KidnapVictory = false;
 	KidnapReturnFunction = ReturnFunction;
 	KidnapPlayerCloth = InventoryGet(Player, "Cloth");
+	KidnapPlayerClothLower = InventoryGet(Player, "ClothLower");
 	KidnapOpponentCloth = InventoryGet(Opponent, "Cloth");
+	KidnapOpponentClothLower = InventoryGet(Opponent, "ClothLower");
 	KidnapOpponent = Opponent;
 	KidnapBackground = Background;
 	CurrentCharacter = null;

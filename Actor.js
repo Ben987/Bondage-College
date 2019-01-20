@@ -109,7 +109,7 @@ function ActorInteractionAvailable(LoveReq, SubReq, VarReq, InText, ForIntro) {
 		"（", // Full-width bracket used in CJK languages
 		"@",
 	];
-	if ((nonSpeechActionsStart.indexOf(InText.substr(0, 1) < 0)) && Common_PlayerGagged && !ForIntro) return false;
+	if ((nonSpeechActionsStart.indexOf(InText.substr(0, 1)) < 0) && Common_PlayerGagged && !ForIntro) return false;
 	
 	// Since nothing blocks, we allow it
 	return true;

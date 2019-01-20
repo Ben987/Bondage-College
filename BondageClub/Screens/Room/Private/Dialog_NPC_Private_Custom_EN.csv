@@ -120,6 +120,30 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  That was fun!  
 0,,Can I tie you up?,"Don't even try, I'm more Dominant than you will ever be.",,!AllowRestain(),CannotRestrain,Serious|Dominant
 0,,Can I tie you up?,"A subbie tying a subbie?  No, let's find a real Domme.",,!AllowRestain(),CannotRestrain,Playful|Submissive
 0,,Can I tie you up?,"I refuse.  You don't have the strength, techniques and mental capacity to do an effective bondage.  You'll only end up hurting me.",,!AllowRestain(),CannotRestrain,Wise|Peaceful
+0,,Will you tie me up?,Sure!  Give me your arms and I'll fix you up.  (She restrains you.),RestrainPlayer(),AllowRestainPlayer(),WillRestrainPlayer,
+0,,Will you tie me up?,My pleasure girl.  I'll make it extra tight for you.  (She hurts you a little while restraining you.),RestrainPlayer(),AllowRestainPlayer(),WillRestrainPlayer,Dominant|Violent
+0,,Will you tie me up?,A sub tying a sub?  I guess we can try that.  (She giggles and restrains you.),RestrainPlayer(),AllowRestainPlayer(),WillRestrainPlayer,Submissive|Playful
+0,,Will you tie me up?,"Come closer and stay still little one, I don't want to you.  (She carefully restrains you.)",RestrainPlayer(),AllowRestainPlayer(),WillRestrainPlayer,Peaceful|Polite
+0,,Will you tie me up?,I can't tie up a strong woman like you.,,WontRestainPlayer(),WontRestrainPlayer,
+0,,Will you tie me up?,I've tied up lots of bitches around here.  But I won't dare touching someone like ya.,,WontRestainPlayer(),WontRestrainPlayer,Dominant|Rude
+0,,Will you tie me up?,"(She shakes her head no.)  Miss, I must politely decline your offer.  It wouldn't be proper.",,WontRestainPlayer(),WontRestrainPlayer,Submissive|Polite
+0,,Will you tie me up?,"Me?  Restrain you?  I don't know...  I mean, I don't want...  I mean, I'm not sure.",,WontRestainPlayer(),WontRestrainPlayer,Dumb|Frigid
+0,,Can you release me?,(She nods and slowly releases you.)  I guess I can help you out now.,DialogRelease(Player),AllowReleasePlayer(),WillReleasePlayer,
+0,,Can you release me?,Are you in pain girl?  Let me see these limbs.  (She releases you and checks on your health.),DialogRelease(Player),AllowReleasePlayer(),WillReleasePlayer,Dominant|Peaceful
+0,,Can you release me?,"I'm not sure how Miss, let me try.  (She fumbles a little but finally releases you.)",DialogRelease(Player),AllowReleasePlayer(),WillReleasePlayer,Submissive|Dumb
+0,,Can you release me?,"It's been long enough, and you deserve some freedom.  Just remember what killed the cat.  (She releases you.)",DialogRelease(Player),AllowReleasePlayer(),WillReleasePlayer,Serious|Wise
+0,,Can you release me?,"Not now, you can struggle some more.  (She watches you and laughs.)",,WontReleasePlayer(),WontReleasePlayer,
+0,,Can you release me?,"Girl, put some more efforts in your struggling and maybe I'll help you.",,WontReleasePlayer(),WontReleasePlayer,Dominant|Serious
+0,,Can you release me?,I must decline Miss.  Your predicament is directly related to your actions and you must learn from them.,,WontReleasePlayer(),WontReleasePlayer,Submissive|Wise
+0,,Can you release me?,Fuck no!  Seeing you struggle like a slut is such a turn on for me.,,WontReleasePlayer(),WontReleasePlayer,Horny|Rude
+0,,(Struggle and whimper for help.),(She nods and slowly releases you.)  I guess I can help you out now.,DialogRelease(Player),AllowReleasePlayer(),StruggleWillReleasePlayer,
+0,,(Struggle and whimper for help.),Are you in pain girl?  Let me see these limbs.  (She releases you and checks on your health.),DialogRelease(Player),AllowReleasePlayer(),StruggleWillReleasePlayer,Dominant|Peaceful
+0,,(Struggle and whimper for help.),"I'm not sure how Miss, let me try.  (She fumbles a little but finally releases you.)",DialogRelease(Player),AllowReleasePlayer(),StruggleWillReleasePlayer,Submissive|Dumb
+0,,(Struggle and whimper for help.),"It's been long enough, and you deserve some freedom.  Just remember what killed the cat.  (She releases you.)",DialogRelease(Player),AllowReleasePlayer(),StruggleWillReleasePlayer,Serious|Wise
+0,,(Struggle and whimper for help.),"Not now, you can struggle some more.  (She watches you and laughs.)",,WontReleasePlayer(),StruggleWontReleasePlayer,
+0,,(Struggle and whimper for help.),"Girl, put some more efforts in your struggling and maybe I'll help you.",,WontReleasePlayer(),StruggleWontReleasePlayer,Dominant|Serious
+0,,(Struggle and whimper for help.),I must decline Miss.  Your predicament is directly related to your actions and you must learn from them.,,WontReleasePlayer(),StruggleWontReleasePlayer,Submissive|Wise
+0,,(Struggle and whimper for help.),Fuck no!  Seeing you struggle like a slut is such a turn on for me.,,WontReleasePlayer(),StruggleWontReleasePlayer,Horny|Rude
 0,20,You could wear something else.,Alright.  And what should I wear?,,AllowChange(),ChangeCloth,
 0,20,You could wear something else.,(She twirls on herself and giggles.)  Of course!  What would be appealing for your eyes?,,AllowChange(),ChangeCloth,Playful|Polite
 0,20,You could wear something else.,Oh yeah!  You're feelin' horny babe?,,AllowChange(),ChangeCloth,Horny|Rude
@@ -132,7 +156,10 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  That was fun!  
 0,10,You should go.,(She seems angry.)  You're fucking kicking me out?,,,KickOut,Rude|Violent
 0,10,You should go.,"Friends are like fish, they start to stink when you keep them for too long.  Do you want me to leave now?",,,KickOut,Wise|Serious
 0,100,(Play with her.),"(You move closer, ready to play with her.)",,AllowRestain(),,
-0,,(Play with her.),(She pushes you back.)  Hold on girl.  I'm not in the mood for that.,,!AllowRestain(),,
+0,,(Play with her.),(She stops you from doing anything.)  What do you think you're doing?,,!AllowRestain(),WontPlay,
+0,,(Play with her.),(She pushes you back.)  Hold on girl.  I'm not in the mood for that.,,!AllowRestain(),WontPlay,Dominant|Frigid
+0,,(Play with her.),"(She swiftly pushes you back, almost making you fall.)  Sorry to be so harsh, but I must clearly decline your offer.",,!AllowRestain(),WontPlay,Polite|Violent
+0,,(Play with her.),"(She blocks you right away.)  Shit, don't be a fool.  I'm the boss in here and I decide.",,!AllowRestain(),WontPlay,Rude|Serious
 0,,(Leave her.),,DialogLeave(),,,
 10,0,"Yes, get out.  (Kick her out.)",,KickOut(),,,
 10,0,"No, you can stay.",Alright.  What would you like to do?,,,CancelKickOut,
