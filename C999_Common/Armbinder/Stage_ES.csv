@@ -1,0 +1,7 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,(Examínalo.)|(1 minuto),El Armbinder parece muy resistente|no se romperá aunque lo intentes.,0,0,0,
+0,0,0,,(Juega con él)|(1 minuto),Juegas con el armbinder. El tacto| del cuero en la piel te produce escalofríos.,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Atrápate a ti misma.)|(1 minuto),Deslizas los brazos dentro pero no te|no te atrapará si no te ayudan a cerrarlo.,0,0,0,
+10,0,0,HasLooseArmbinder,(Juegas con el armbinder|suelto.)  (1 minuto),Juegas con el armbinder suelto mientras| estás atrapada pero no puedes hacer nada.,10,0,0,ShowImage()
+10,0,0,,(Intenta romperlo.)|(1 minuto),"Intentas romperlo con todas tus |fuerzas pero fallas miserablemente.",10,0,0,
+10,0,0,,(Lucha por liberarte.)|(1 minuto),Luchas desesperada por liberarte|pero no lo consigues.,10,0,0,
