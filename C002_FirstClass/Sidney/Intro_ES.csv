@@ -1,0 +1,20 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,!BondageBefore,(No se molesta en mirarte|pero parece que te escucha.),SidneyBack.jpg
+0,1,0,!BondageBefore,(Se vuelve y te susurra) ¿Qué?,SidneyFace.jpg
+0,0,0,BondageBefore,(No se vuelve pero susurra.)|Olvídalo.  No me vas a atar otra vez.,SidneyBack.jpg
+0,1,0,BondageBefore,(Se vuelve y te susurra )|No creas que me vas a atar de nuevo.,SidneyFace.jpg
+10,0,0,,(Se vuelve y te susurra) ¿Qué?,SidneyFace.jpg
+20,0,0,,(Se vuelve y te susurra)|¿Tu también te aburres a lo bestia?,SidneyFace.jpg
+30,0,0,,(Se vuelve y te susurra)|Ojalá hubiera una forma de escarse de aquí.,SidneyFace.jpg
+40,0,0,,(Se vuelve y te susurra)|¿Qué tienes pensado?,SidneyFace.jpg
+50,0,0,,¿Quieres secuestrarle?  ¿Y qué gano yo con eso?|(Necesitas 3 en amor o sumisión para convencerle.),SidneyFace.jpg
+60,0,0,,(No se vuelve pero susurra.)|Te voy a ayudar pero tu das el primer paso.,SidneyBack.jpg
+100,0,0,Common_PlayerNotGagged,¡Mierda! ¡Eso ha sido jodidamente genial!,SidneyFace.jpg
+100,0,0,Common_PlayerGagged,(Apunta a tu mordaza y sonrie.),SidneyFace.jpg
+100,2,0,Common_PlayerGagged,(Se vuelve y te susurra.)|Te liberaré después de la clase.,SidneyFace.jpg
+100,-2,0,Common_PlayerGagged,(No se vuelve pero susurra.)|Tienes lo que que mereces.,SidneyBack.jpg
+110,0,0,,(Te mira furiosa e|intenta morder la mordaza.),Sidney_BallGag.jpg
+120,0,0,,"(Se retuerce con las esposas,|intentando forzarlas.)",Sidney_Cuffs.jpg
+130,0,0,,(Te mira furiosa e|intenta morder la mordaza.),Sidney_Cuffs_BallGag.jpg
+140,0,0,,"(Lucha por alcanzar algún nudo, pero falla.)",Sidney_Rope.jpg
+150,0,0,,(Te mira furiosa e|intenta morder la mordaza.),Sidney_Rope_BallGag.jpg
