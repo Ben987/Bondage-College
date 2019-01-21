@@ -1,0 +1,35 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,Common_PlayerGagged,Estás genial con esa mordaza.|¿Puedo tener yo una?,Sarah.jpg
+10,0,0,Common_PlayerGagged,Estás genial con esa mordaza.|¿Puedo tener yo una?,Sarah.jpg
+20,0,0,Common_PlayerGagged,Estás genial con esa mordaza.|¿Puedo tener yo una?,Sarah.jpg
+30,0,0,Common_PlayerGagged,Estás genial con esa mordaza.|¿Puedo tener yo una?,Sarah.jpg
+40,0,0,Common_PlayerGagged,Estás genial con esa mordaza.|¿Puedo tener yo una?,Sarah.jpg
+50,0,0,Common_PlayerGagged,Estás genial con esa mordaza.|¿Puedo tener yo una?,Sarah.jpg
+60,0,0,Common_PlayerGagged,Estás genial con esa mordaza.|¿Puedo tener yo una?,Sarah.jpg
+0,0,0,SubdueNotDone,"(Te mira y susurra.)|Hola colega, soy Sarah.",Sarah.jpg
+10,0,0,SubdueNotDone,¿Es tu primera clase de|mates con Miss Mildred?,Sarah.jpg
+20,0,0,SubdueNotDone,(Bosteza y te mira.),Sarah.jpg
+30,0,0,SubdueNotDone,Miss Mildred es una profe|muy dura ¿verdad?,Sarah.jpg
+40,0,0,SubdueNotDone,"Me interesa, ¿En qué|estás pensando?",Sarah.jpg
+50,0,0,SubdueNotDone,¿Quieres reducir y raptar a Miss Mildred?|(Necesitas +2 en amor o sumisión para convencerle.),Sarah.jpg
+60,0,0,SubdueNotDone,Te ayudaré.|Pero el secuestro lo empiezas tu.,Sarah.jpg
+0,0,0,SubdueSuccess,¡Guau!  Por primera vez me |hubiera gustado llegar a tiempo.,Sarah.jpg
+10,0,0,SubdueSuccess,"Soy Sarah, encantada de conocerte.",Sarah.jpg
+20,0,0,SubdueSuccess,¡Es la mejor clase de la historia!,Sarah.jpg
+30,0,0,SubdueSuccess,"Ahora deberías humillar a cerdita|Ehh. Quiero decir…a Sidney",Sarah.jpg
+40,0,0,SubdueSuccess,¿Te quedan algunas ataduras para mi?,Sarah.jpg
+50,0,0,SubdueSuccess,¿Te quedan algunas ataduras para mi?,Sarah.jpg
+60,0,0,SubdueSuccess,¿Te quedan algunas ataduras para mi?,Sarah.jpg
+110,0,0,,(juega a masticar  la mordaza|y te hace un gesto de aprobación.),Sarah_BallGag.jpg
+120,0,0,,(Juega con las esposas.)|Necesito esposas como estas en casa.,Sarah_Cuffs.jpg
+130,0,0,,(Juega con las esposas y|parece disfrutar de estar atada.),Sarah_Cuffs_BallGag.jpg
+140,0,0,,(Juega con las cuerdas y parece disfrutar.)|Me encanta cómo me has atado.,Sarah_Rope.jpg
+150,0,0,,(Juega con las cuerdas y se acaricia el cuerpo.|Parece disfrutar mucho.),Sarah_Rope_BallGag.jpg
+200,0,0,,Parece que alguien tiene |aún más problemas que yo.,Sarah.jpg
+210,0,0,,"Soy Sarah, encantada de conocerte.",Sarah.jpg
+220,0,0,,¿Y…qué te ha pasado?,Sarah.jpg
+230,0,0,,Estás preciosa atada así.,Sarah.jpg
+240,0,0,,Me encantaría estar|atada como tu.,Sarah.jpg
+250,0,0,,¿Crees que puedo meterme en lios |como tu si molesto a la profe?,Sarah.jpg
+260,0,0,,(Juega a morder la mordaza|y tirar de las esposas.),Sarah_Cuffs_BallGag.jpg
+300,0,0,,Esta clase es aburridísima.|Espero que acabe pronto.,Sarah.jpg
