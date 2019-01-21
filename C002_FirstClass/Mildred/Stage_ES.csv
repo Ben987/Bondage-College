@@ -1,0 +1,71 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,De acuerdo, genial.  Bienvenida a nuesta institución. |Confío en que aprenderá mucho aquí.,10,0,0,
+0,0,0,,Si Miss Mildred.,Muy bien.  Bienvenida a nuesta institución. |Confío en que aprenderá mucho aquí.,10,1,-1,
+0,0,0,,(Quédate callada.),"Una chica callada.  Bienvenida a nuesta institución. |Confío en que aprenderá mucho aquí.",10,0,0,
+0,0,0,,Eso no es probable.,Debería enseñarte disciplina más que matemáticas.|Confío en que aprenderá mucho aquí.,10,-1,1,
+10,0,0,,Espero aprender|mucho Miss Mildred.,"Si sigues las normas de la academia,|llegarás a ser una dama educada.",20,0,-1,
+10,0,0,,Por favor. Enséñame.,"Lo haré. Si sigues las normas de la academia,|llegarás a ser una dama educada.",20,0,0,
+10,0,0,,Creo que me va|gustar esto.,"Segro que sí,Si sigues las normas de la academia,|llegarás a ser una dama educada.",20,1,0,
+10,0,0,,Confío en que su clase|sea provechosa.,"Lo será.  Si sigues las normas de la academia,|llegarás a ser una dama educada.",20,0,1,
+10,0,0,,(Bostezas.),"estudiante,si quieres una buena educación,|necesitarás centrarte y seguir las normas.",20,-1,0,
+10,0,0,,(Asientes.),"Si sigues las normas de la academia,|llegarás a ser una dama educada.",20,0,-1,
+20,0,0,,¿Dama educada?|¿Es una broma?,Yo no bromeo jovencita.  Hoy|estudiaremos derivadas.  Confío en que tengas los libros.,30,-1,1,
+20,0,0,,¿Dama educada?|Es genial.,(Te sonrie.)  Hoy|estudiaremos derivadas.  Confío en que tengas los libros.,30,1,0,
+20,0,0,,(inclinas la cabeza|y asientes.),(Te sonrie.)  Hoy|estudiaremos derivadas.  Confío en que tengas los libros.,30,0,-1,
+30,0,0,,Si Miss Mildred.|Estoy deseando aprender.,Muy ben.  Ahora abre|en la página 147 y revisa las fórmulas.,40,1,-1,
+30,0,0,,¿Derivadas?|¡Joder?,(Golpea la mesa con la fusta.)  Cuida|tu lenguaje y abre el libro en la página 147.,40,-1,0,
+30,0,0,,¿Derivadas?|Me encantan las mates.,(Golpea la mesa con la fusta.)  Cuida|tu lenguaje y abre el libro en la página 147 147.,40,1,0,
+30,0,0,,¿Derivadas?|Son difíciles.,Entonces empieza a trabajar.  Abre|el libro en la página 147 y revisa las fórmulas.,40,0,0,
+40,0,0,,(Guarda silencio|y abre el libro.),Bien. Silencio mientras explico.|(Vuelve a su mesa y empieza a explicar.),50,0,0,
+40,0,0,,(Miras el reloj|de la pared.),(Te mira con severidad y| vuelve a su mesa para seguir explicando.),50,-1,0,
+40,0,0,,Si Miss Mildred.|(Abres el libro.),Muy bien.  Silencio mientras explico.|(Vuelve a su mesa para continuar la lección.),50,0,-1,
+40,0,0,,"Vale, basta de charla.|(Abres el libro.)",¡Bien!.  Silencio mientras explico.|(Vuelve a su mesa para continuar la lección.),50,0,1,
+100,0,0,,¡Miss Mildred! ¿Qué|estás haciendo?,Enseñarte una lección jovencita.|(Te golpea ligeramente con la fusta.),110,0,0,
+100,0,0,,¿Qué coño?,NO voy a tolerar esa clase de lenguage.|(Te pega muy fuerte con la fusta.),110,-1,0,
+100,0,0,,¡Hey!  No puedes|hacer eso.,"Claro que puedo, no tienes ni idea de dónde estás.|(Te golpea ligeramente con la fusta.)",110,0,0,
+100,0,0,,(Intenta pegarle.),"Así que eres una niña peleona, esto te enseñará.|(Te pega muy fuerte con la fusta.)",110,-1,1,
+110,0,0,,¡Mierda!  ¡Eso duele!,¡Menuda bocazas!|(Te pega realmente fuerte.),120,-1,0,
+110,0,0,,¡Ay!  Miss Mildred.|Para por favor.,Pararé cuando aprendas la lección.|(Te pega otra vez y sonríe.),120,1,0,
+110,0,0,,"(Cállate, y finge|que no te importa.)","Eres dura, pero yo te someteré.|(Te pega muy fuerte otra vez.)",120,0,1,
+110,0,0,,¡Ja!  ¿No sabes |hacerlo mejor?,"¡Qué maleducada!, Te someteré.|(Te pega muy fuerte otra vez.)",120,-1,1,
+110,0,0,,(Manten la calma|e intenta no gritar.),Aprende esta lección jovencita.|(Te pega otra vez pero no muy fuerte.),120,0,0,
+120,0,0,,¡Por favor, señorita!|Seré buena.,(Te pega flojo una vez más.)|¿Asi que serás buena y cumplirás las normas?,130,1,-1,
+120,0,0,,Miss Mildred.|Aprendí la lección.,(Te pega suave una vez más.)|¿así que serás educada y respetarás las reglas?,130,1,0,
+120,0,0,,¿Crees que me|puedes hacer daño?,"(Te pega muy fuerte una vez más.)|Ultimo aviso, ¿Serás buena y respetarás las normas?",130,0,0,
+120,0,0,,¡Jódete zorra!,"(Te pega muy fuerte una vez más)|Ultimo aviso, ¿Serás buena y respetarás las normas?",130,-1,1,
+130,0,0,,Si Miss Mildred.|Por favor. Perdóname.,Estás perdonada. Ahora empecemos la clase.,50,2,-1,
+130,0,0,,"Si,seré buena.",Bien.  Ahora podemos empezar la clase.,50,1,0,
+130,0,0,,¡Ni de coña! Yo sigo|mis propias normas.,"(Te esposa y te pone una mordaza de bola.)|Si no sabes comportarte, estarás en clase así.",50,0,0,RestrainPlayer()
+130,0,0,,(Te niegas a contestar.),"(Te esposa y te pone una mordaza de bola.)|Si no quieres contestar, te quedaras en silencio.",50,0,-1,RestrainPlayer()
+200,0,0,Common_PlayerNotRestrained,(Habla para|llamar su atención.),,200,-1,0,Disturb()
+200,0,0,Common_PlayerNotRestrained,(Intenta reducir|a Miss Mildred.),¿Quieres intentar reducir y atar a Miss Mildred?|(Cada estudiante que ayude aumenta la posibilidad de conseguirlo.),210,0,0,
+200,0,0,Common_PlayerRestrained,¡Uummph!,(Ignora tus quejas|y las otras estudiantes se rien.),200,0,0,
+200,0,0,Common_PlayerRestrained,(Tiras de las esposas.)|(1 minuto),(Te esfuera inútilmente.  Ella está segura de|que no escaparás y te ignora.),200,0,0,
+210,0,0,Common_PlayerNotRestrained,"(Si, Intenta|someterle.)",,210,-2,0,Subdue()
+210,0,0,,"(No, quizá más tarde.)",Renuncias a raptarle.|(Miss Mildred continua explicando la lección.),200,0,0,
+220,0,0,,Enseñarme a mi|¡Ni de coña!,"(Te pega 6 veces, después te esposa y amordaza.)|Como no sabes comportarte, te quedarás así.",220,0,1,RestrainPlayer()
+220,0,0,,¡Jódete zorra!,"(Te pega 10 veces, después te esposa y amordaza.)|Como no sabes comportarte, te quedarás así.",220,-1,0,RestrainPlayer()
+220,0,0,,No!  ¡Por facor!|lo siento.,"(Te pega 2 veces, después te esposa y amordaza.)|Es tarde para excusas, te quedarás así.",220,0,-1,RestrainPlayer()
+220,0,0,,(Quédate callada.),"(Te pega 4 veces, después te esposa y amordaza.)|Como no sabes comportarte, te quedarás así..",220,0,0,RestrainPlayer()
+300,0,0,,"Mildred,aquí|mando yo ahora.",¿Mandas? Yo soy la profesora.|Vas a tener muchos problemas señorita.,310,0,1,
+300,0,0,,"Profe, la clase|sepone interesante.",¡Tonterías!  Sigo al mando.|Vas a tener muchos problemas señorita.,310,0,0,
+300,0,0,,"Si colaboras, esto|acabará rápido.",(asiente y se queda callada.),310,0,1,
+300,0,0,,No esperaba que|fueras tan guapa.,"(Se ruboriza)  jovencita,|¿Qué has planeado exactamente?",310,1,0,
+310,0,0,Common_PlayerNotRestrained,(hazle cosquillas.)|(1 minuto),(Intenta resistirse sin éxito y se rie silenciosamente.)|¡Estás agravando tus problemas!,310,0,0,
+310,0,0,SearchAvail,(Busca entre su cosas.)|(1 minuto),(Buscas entre sus cosas y encuentras|cosas interesantes.)  ¡Ladronzuela!,310,-1,0,Search()
+320,0,0,Common_PlayerNotRestrained,(Hazle cosquilas.)|(1 minuto),(Intenta resistirse sin éxito y se rie silenciosamente.),320,0,0,
+320,0,0,Common_PlayerNotRestrained,(Quítale la mordaza.)|(1 minuto),(Desabrochas lentamente la mordaza.)|¡Jovencita!  Esto es muy inapropiado.,310,0,0,Ungag()
+330,0,0,Common_PlayerNotRestrained,(Hazle cosquilas.)|(1 minuto),(Intenta resistirse sin éxito y se rie silenciosamente)|¡Estás agravando tus problemas!,330,0,0,
+330,0,0,SearchAvail,(Busca entre su cosas.)|(1 minuto),(Buscas entre sus cosas y encuentras|cosas interesantes.)  ¡Ladronzuela!,330,-1,0,Search()
+340,0,0,Common_PlayerNotRestrained,(Hazle cosquillas)|(1 minuto),(Intenta resistirse sin éxito y se rie silenciosamente.),340,0,0,
+340,0,0,Common_PlayerNotRestrained,(Quítale la mordaza.)|(1 minuto),(Desabrochas lentamente la mordaza.)|¡Jovencita!  Esto es muy inapropiado.,330,0,0,Ungag()
+410,0,0,Common_PlayerNotRestrained,(dale latigazos.)|(1 minuto),(le pegas muy fuerte con la fusta.)|¡Señorita!  ¡Te vas a arrepentir de esto!,410,0,0,Whip()
+410,0,0,Common_PlayerNotRestrained,(Aparta la fusta.)|(1 minuto),(Apartas la fusta y|le vuelves a poner de pie),310,0,0,
+420,0,0,Common_PlayerNotRestrained,(dale latigazos.)|(1 minuto),(le pegas muy fuerte con la fusta.)|(Grita enfadada con su mordaza.),420,0,0,Whip()
+420,0,0,Common_PlayerNotRestrained,(Aparta la fusta.)|(1 minuto),(Apartas la fusta y|le vuelves a poner de pie),320,0,0,
+420,0,0,Common_PlayerNotRestrained,(Quítale la mordaza.)|(1 minuto),(Desabrochas lentamente la mordaza.)|¡Jovencita!  Esto es muy inapropiado.,410,0,0,Ungag()
+430,0,0,Common_PlayerNotRestrained,(dale latigazos.)|(1 minuto),(le pegas muy fuerte con la fusta.)|¡Señorita!  ¡Te vas a arrepentir de esto!,430,0,0,Whip()
+430,0,0,Common_PlayerNotRestrained,(Aparta la fusta.)|(1 minuto),(Apartas la fusta y|le vuelves a poner de pie),330,0,0,
+440,0,0,Common_PlayerNotRestrained,(dale latigazos.)|(1 minuto),(le pegas muy fuerte con la fusta.)|(Grita enfadada con su mordaza.).),440,0,0,Whip()
+440,0,0,Common_PlayerNotRestrained,(Aparta la fusta.)|(1 minuto),(Apartas la fusta y|le vuelves a poner de pie),340,0,0,
+440,0,0,Common_PlayerNotRestrained,(Quítale la mordaza.)|(1 minuto),(Desabrochas lentamente la mordaza.)|¡Jovencita!  Esto es muy inapropiado.,430,0,0,Ungag()
