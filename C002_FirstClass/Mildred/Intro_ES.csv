@@ -1,0 +1,24 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,Bienvenida a mi clase jovencita.|Te dirigiras a mi como Miss Mildred.,MildredIntro.jpg
+10,0,0,,,MildredIntro.jpg
+20,0,0,,,MildredIntro.jpg
+30,0,0,,,MildredIntro.jpg
+40,0,0,,,MildredIntro.jpg
+50,0,0,,(Miss Mildred enseña derivadas hasta las 9:00.|Parece controlar la clase con mano dura.),MildredTeach.jpg
+100,0,0,,,MildredCrop.jpg
+110,0,0,,,MildredCrop.jpg
+120,0,0,,,MildredCrop.jpg
+130,0,0,,,MildredCrop.jpg
+200,0,0,Common_PlayerNotRestrained,(Miss Mildred enseña derivadas hasta las 9:00.|Parece controlar la clase con mano dura.),MildredTeach.jpg
+200,0,0,Common_PlayerRestrained,(Miss Mildred continua la clase mientras sufres con|las esposas y la mordaza. Tendrás que esperar a las 9:00.),MildredTeach.jpg
+210,0,0,,(Miss Mildred controla totalmente su clase.|¿De verdad quieres intentar someterle?),MildredTeach.jpg
+220,0,0,,,MildredCrop.jpg
+300,0,0,,¡Jovencita!  Abre estas esposas YA.,Mildred_Cuffs.jpg
+310,0,0,,¡Jovencita!  Abre estas esposas YAw.,Mildred_Cuffs.jpg
+320,0,0,,(Muerde la mordaza y parece furiosa.),Mildred_Cuffs_BallGag.jpg
+330,0,0,,¡Jovencita! Desátame YA.|(Cierra los ojos para mantener algo de dignidad.),Mildred_Rope.jpg
+340,0,0,,(Muerde la mordaza y parece furiosa.)|(Cierra los ojos para mantener algo de dignidad.),Mildred_Rope_BallGag.jpg
+410,0,0,,"(Le pones sobre el pupitre y levantas la fusta.)|Señorita, piense en su futuro antes de seguir.",Mildred_Cuffs_Crop.jpg
+420,0,0,,(Le pones sobre el pupitre y levantas la fusta.)|"(Protesta, pero con la mordaza no se le entiende.)",Mildred_Cuffs_Crop.jpg
+430,0,0,,"(Le pones sobre el pupitre y levantas la fusta.)|Señorita, piense en su futuro antes de seguir.",Mildred_Rope_Crop.jpg
+440,0,0,,(Le pones sobre el pupitre y levantas la fusta.)|(Protesta, pero con la mordaza no se le entiende.),Mildred_Rope_Crop.jpg
