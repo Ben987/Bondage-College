@@ -46,8 +46,8 @@ ItemHead,,,(You strap the device on her head as she sighs.)  Next time I won't l
 RemoveItemHead,,,(You release her head as she nods rapidly.)  How do you fit all these items in such a small outfit?,,
 ItemTorso,,,(You strap the harness on her torso as she blushes.)  You're quite a kinky kidnapper.,,
 RemoveItemTorso,,,(She stretches as you release her from the harness.)  It will be easier to breath like that.,,
-ItemTorsoLeatherWhip,,,(She whimpers and cries as you whip her breast.)  Revenge will be sweet!,,
-ItemTorsoLeatherCrop,,,"(You lash the crop on her torso, hitting her breast.)  Ow!  Careful with that crop.",,
+ItemBreastLeatherWhip,,,(She whimpers and cries as you whip her breast.)  Revenge will be sweet!,,
+ItemBreastLeatherCrop,,,"(You lash the crop on her torso, hitting her breast.)  Ow!  Careful with that crop.",,
 ItemPelvisLeatherWhip,,,(You whip her butt as she grumbles.)  I'll make sure to get a whip next time I'm facing you.,,
 ItemPelvisLeatherCrop,,,(You whack the leather crop right on her butt.)  Ouch! I'll put my next bounty on you.,,
 SuspensionHempRope,,,(You restrain her feet with the long hemp rope and suspend her from the ceiling.)  Oh my... You're quite a kidnapper!,,
@@ -94,19 +94,21 @@ BountyShop,,,(Your bounty is currently shopping and seems to be annoyed by you.)
 100,105,"Girl, you're in big trouble.",(She gulps and bows her head.),"DialogChangeReputation(""Dominant"", 3)",
 100,105,"Either I was lucky, or you've let me win.",(She shakes her head no.),"DialogChangeReputation(""Dominant"", -1)",
 100,110,(Play with her.),"(You move closer, ready to play with her.)",,
+100,,(Bring her to your room.),,TransferToRoom(),CanTransferToRoom()
 100,,(Let her go.),,RandomEnd(),
 101,,,NOEXIT,,
 101,105,You're in big trouble my bounty.,(She gulps and bows her head.),"DialogChangeReputation(""Dominant"", 3)",
 101,105,More money and more fun for me.,(She rolls her eyes up.),,
 101,105,I can't believe I'll get your bounty.,(She shrugs and sighs.),"DialogChangeReputation(""Dominant"", -1)",
 101,110,(Play with her.),"(You move closer to her, ready to play with her.)",,
+101,,(Bring her to your room.),,TransferToRoom(),CanTransferToRoom()
 101,,(Release her to go collect.),,RandomEnd(),
 105,,,NOEXIT,,
 105,,You know you're a cute captive?,(She blushes and bows her head.)  Thanks Miss.,DialogRemove(),
 105,,Do you enjoy being restrained?,(She nods slowly.)  I wouldn't be in the Kidnappers League if I didn't like it.,,
 105,120,How much do you value your freedom?,Will you let me go if I give you some money?,,
 105,110,(Play with her.),"(You move closer to her, ready to play with her.)",,
-105,,Come with me.  (Bring her to your room.),,TransferToRoom(),CanTransferToRoom()
+105,,(Bring her to your room.),,TransferToRoom(),CanTransferToRoom()
 105,,(Let her go.),,RandomEnd(),
 110,,,NOEXIT,,
 110,,(Tickle her.),"(You tickle her on the ribs and tummy.  She giggles, laughs, and squirms around, trying to escape.)",,Player.CanInteract()
@@ -152,7 +154,7 @@ ActivityAddFeet,,I wasn't planning to run anyway.,,RandomActivityLaunch(),
 ActivityAddFeet,,(Hop and jump clumsily.),,RandomActivityLaunch(),
 ActivityAddFeet,,(Try to keep your balance.),,RandomActivityLaunch(),
 ActivityRemoveFeetIntro,,,(She releases your feet.)  You can have your feet back for now.  But I'll find a better restraint later.,,
-ActivityRemoveFeet,,Thanks!  You're almost too good at this kidnapping thing.,,RandomActivityLaunch(),Player.CanTalk()
+ActivityRemoveFeet,,Thanks!  You're a great kidnapper.,,RandomActivityLaunch(),Player.CanTalk()
 ActivityRemoveFeet,,It will be easier to stand up like this.,,RandomActivityLaunch(),
 ActivityRemoveFeet,,(Stretch and relax your feet.),,RandomActivityLaunch(),
 ActivityRemoveFeet,,(Stay silent and wait to be released.),,RandomActivityLaunch(),
@@ -193,7 +195,7 @@ ActivityEndIntro,,,"(She releases you and sighs.)  Sadly, I need to go. But I'll
 ActivityEnd,,Take care.,,RandomEnd(),
 ActivityEnd,,Thanks!  That was fun.,,RandomEnd(),
 ActivityEnd,ActivityEnd3,Would you like to visit my room?,You have your own room?  I'm curious to see it.,,VisitRoom
-ActivityEnd,ActivityEnd2,Would you like to visit my room?,"Not now, I need to go.  Take care!",,!VisitRoom
+ActivityEnd,ActivityEnd2,Would you like to visit my room?,"Not now, I need to go.  Take care!",,WontVisitRoom()
 ActivityEnd,ActivityEnd2,I'll get you next time bitch.,Oh yeah?  Better leave you restrained then.  (She picks a few items to restrain you.),DialogFullRandomRestrain(Player),
 ActivityEnd,,(Leave her.),,RandomEnd(),
 ActivityEnd2,,(Leave her.),,RandomEnd(),

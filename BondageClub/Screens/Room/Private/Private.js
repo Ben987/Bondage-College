@@ -122,7 +122,7 @@ function PrivateClickCharacter() {
 function PrivateClick() {
 	if ((MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000) && !LogQuery("RentRoom", "PrivateRoom")) CharacterSetCurrent(Player);
 	if ((MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000) && !LogQuery("RentRoom", "PrivateRoom")) CharacterSetCurrent(PrivateVendor);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk() && (Player.Cage == null)) CommonSetScreen("Room", "MainHall");
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk() && (Player.Cage == null)) { CharacterAppearanceValidate(Player); CommonSetScreen("Room", "MainHall"); }
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355) && LogQuery("RentRoom", "PrivateRoom") && (Player.Cage == null)) CharacterSetCurrent(PrivateVendor);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475) && LogQuery("RentRoom", "PrivateRoom")) { CharacterAppearanceReturnRoom = "Private"; CommonSetScreen("Character", "Appearance"); }
@@ -193,6 +193,7 @@ function PrivateAddCharacter(Template) {
 	CharacterRefresh(C);
 	PrivateCharacter.push(C);
 	PrivateSaveCharacter(PrivateCharacter.length - 1);
+	C.AllowItem = ((ReputationGet("Dominant") + 25 >= NPCTraitGet(C, "Dominant")) || C.IsRestrained());
 }
 
 // Returns the ID of the private room current character

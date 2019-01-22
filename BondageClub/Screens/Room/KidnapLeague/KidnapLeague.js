@@ -17,14 +17,15 @@ var KidnapLeagueBountyVictory = null;
 var KidnapLeagueVisitRoom = false;
 
 // Returns TRUE if the dialog option are available
-function KidnapLeagueAllowKidnap() { return (!Player.IsRestrained() && !KidnapLeagueTrainer.IsRestrained()); }
-function KidnapLeagueIsTrainerRestrained() { return KidnapLeagueTrainer.IsRestrained(); }
-function KidnapLeagueResetTimer() { KidnapLeagueRandomKidnapperTimer = CommonTime() + 180000; }
-function KidnapLeagueCanTakeBounty() { return ((ReputationGet("Kidnap") > 0) && (KidnapLeagueBounty == null)); }
-function KidnapLeagueBountyTaken() { return ((ReputationGet("Kidnap") > 0) && (KidnapLeagueBounty != null) && (KidnapLeagueBountyVictory == null)); }
-function KidnapLeagueBountyWasVictory() { return ((ReputationGet("Kidnap") > 0) && (KidnapLeagueBounty != null) && (KidnapLeagueBountyVictory == true)); }
-function KidnapLeagueBountyWasDefeat() { return ((ReputationGet("Kidnap") > 0) && (KidnapLeagueBounty != null) && (KidnapLeagueBountyVictory == false)); }
-function KidnapLeagueCanTransferToRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (JSON.parse(localStorage.getItem("BondageClubPrivateRoomCharacter" + Player.AccountName + "3")) == null)); }
+function KidnapLeagueAllowKidnap() { return (!Player.IsRestrained() && !KidnapLeagueTrainer.IsRestrained()) }
+function KidnapLeagueIsTrainerRestrained() { return KidnapLeagueTrainer.IsRestrained() }
+function KidnapLeagueResetTimer() { KidnapLeagueRandomKidnapperTimer = CommonTime() + 180000 }
+function KidnapLeagueCanTakeBounty() { return ((ReputationGet("Kidnap") > 0) && (KidnapLeagueBounty == null)) }
+function KidnapLeagueBountyTaken() { return ((ReputationGet("Kidnap") > 0) && (KidnapLeagueBounty != null) && (KidnapLeagueBountyVictory == null)) }
+function KidnapLeagueBountyWasVictory() { return ((ReputationGet("Kidnap") > 0) && (KidnapLeagueBounty != null) && (KidnapLeagueBountyVictory == true)) }
+function KidnapLeagueBountyWasDefeat() { return ((ReputationGet("Kidnap") > 0) && (KidnapLeagueBounty != null) && (KidnapLeagueBountyVictory == false)) }
+function KidnapLeagueCanTransferToRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (JSON.parse(localStorage.getItem("BondageClubPrivateRoomCharacter" + Player.AccountName + "3")) == null)) }
+function KidnapLeagueWontVisitRoom() { return (!KidnapLeagueVisitRoom && KidnapLeagueCanTransferToRoom()) }
 
 // Loads the kidnap league NPC
 function KidnapLeagueLoad() {
@@ -280,6 +281,7 @@ function KidnapLeagueRandomActivityLaunch() {
 // When the player transfers the kidnapper to her room 
 function KidnapLeagueTransferToRoom() {
 	KidnapLeagueRandomEnd();
+	CharacterRelease(Player);
 	CommonSetScreen("Room", "Private");
 	PrivateAddCharacter(KidnapLeagueRandomKidnapper);
 }

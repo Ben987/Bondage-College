@@ -58,7 +58,8 @@ function InventoryAvailable(C, InventoryName, InventoryGroup) {
 // Returns TRUE if we can equip the item
 function InventoryAllow(C, Prerequisite) {
 	if ((Prerequisite == "AccessTorso") && (InventoryGet(C, "Cloth") != null)) { DialogSetText("RemoveClothesForItem"); return false; }
-	if ((Prerequisite == "AccessPussy") && ((InventoryGet(C, "Cloth") != null) || (InventoryGet(C, "Panties") != null))) { DialogSetText("RemoveClothesForItem"); return false; }
+	if ((Prerequisite == "AccessBreast") && ((InventoryGet(C, "Cloth") != null) || (InventoryGet(C, "Bra") != null))) { DialogSetText("RemoveClothesForItem"); return false; }
+	if ((Prerequisite == "AccessVulva") && ((InventoryGet(C, "Cloth") != null) || (InventoryGet(C, "ClothLower") != null) || (InventoryGet(C, "Panties") != null))) { DialogSetText("RemoveClothesForItem"); return false; }
 	return true;
 }
 

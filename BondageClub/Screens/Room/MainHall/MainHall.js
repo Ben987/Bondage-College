@@ -42,7 +42,7 @@ function MainHallRun() {
 		if (Player.CanWalk()) DrawButton(25, 385, 450, 65, TextGet("SlaveMarket"), "White");
 		
 		// Check if there's a new maid rescue event to trigger
-		if ((!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk()) && (MainHallNextEventTimer == null)) MainHallNextEventTimer = ReputationTimer("Dominant", true);
+		if ((!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk()) && (MainHallNextEventTimer == null)) MainHallNextEventTimer = CommonTime() + Math.floor(30000 * (1 + Math.random()));
 		if ((MainHallNextEventTimer != null) && (new Date().getTime() > MainHallNextEventTimer)) {
 			MainHallNextEventTimer = null;
 			if (!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk()) {

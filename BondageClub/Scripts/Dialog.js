@@ -489,6 +489,7 @@ function DialogGarble(C, CD) {
 	// Variables to build the new string and check if we are in a parentheses
 	var NS = "";
 	var Par = false;
+	if (CD == null) CD = "";
 		
 	// Total gags always returns "..."
 	if (C.Effect.indexOf("GagTotal") >= 0) {

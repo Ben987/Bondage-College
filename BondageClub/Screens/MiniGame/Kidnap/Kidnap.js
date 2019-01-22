@@ -146,7 +146,6 @@ function KidnapUpperHandMoveAvailable(MoveType, DoMove) {
 
 }
 
-
 // Returns the opponent upper hand move determined by the AI
 function KidnapAIMoveUpperHand() {
 	var Try = 0;
