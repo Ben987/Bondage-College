@@ -46,7 +46,7 @@ function PrisonLoad() {
 		PrisonMaid =  CharacterLoadNPC("NPC_Prison_Maid");
 		PrisonMaidCharacter = CommonRandomItemFromList(PrisonMaidCharacter, PrisonMaidCharacterList);
 		PrisonMaidAppearance = PrisonMaid.Appearance.slice();
-		if (LogQuery("LeadSorority", "Maid")) {
+		if (LogQuery("LeadSorority", "Maid") && !PrisonPlayerBehindBars) {
 			PrisonMaid.AllowItem = true;
 		} else {
 			PrisonMaid.AllowItem = false;
