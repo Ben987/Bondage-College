@@ -9,24 +9,29 @@ function InventoryAdd(C, NewItemName, NewItemGroup, Push) {
 			return;
 
 	// Searches to find the item asset in the current character assets family
-	var NewItemAsset;
+	var NewItemAsset = null;
 	for (var A = 0; A < Asset.length; A++)
 		if ((Asset[A].Name == NewItemName) && (Asset[A].Group.Name == NewItemGroup) && (Asset[A].Group.Family == C.AssetFamily)) {
 			NewItemAsset = Asset[A];
 			break;
 		}
-		
-	// Creates the item and pushes it in the inventory queue
-	var NewItem = {
-		Name: NewItemName,
-		Group: NewItemGroup,
-		Asset: NewItemAsset
-	}
-	C.Inventory.push(NewItem);
 
-	// Sends the new item to the server if it's for the current player
-	if ((C.ID == 0) && ((Push == null) || Push))
-		AccountRequest("inventory_add", "&name=" + NewItemName + "&group=" + NewItemGroup);
+	// Only add the item if we found the asset
+	if (NewItemAsset != null) {
+		
+		// Creates the item and pushes it in the inventory queue
+		var NewItem = {
+			Name: NewItemName,
+			Group: NewItemGroup,
+			Asset: NewItemAsset
+		}
+		C.Inventory.push(NewItem);
+
+		// Sends the new item to the server if it's for the current player
+		if ((C.ID == 0) && ((Push == null) || Push))
+			AccountRequest("inventory_add", "&name=" + NewItemName + "&group=" + NewItemGroup);
+
+	}
 
 }
 

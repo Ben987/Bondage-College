@@ -32,10 +32,13 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		CanTalk : function() { return ((this.Effect.indexOf("GagLight") < 0) && (this.Effect.indexOf("GagNormal") < 0) && (this.Effect.indexOf("GagHeavy") < 0) && (this.Effect.indexOf("GagTotal") < 0)) },
 		CanWalk : function() { return (this.Effect.indexOf("Freeze") < 0) },
 		CanInteract : function() { return (this.Effect.indexOf("Block") < 0) },
-		IsProne : function() { return (this.Effect.indexOf("Prone") > 0) },
+		IsProne : function() { return (this.Effect.indexOf("Prone") >= 0) },
 		IsRestrained : function() { return ((this.Effect.indexOf("Freeze") >= 0) || (this.Effect.indexOf("Block") >= 0) || (this.Effect.indexOf("Prone") >= 0)) },
-		IsBlind : function() { return ((Player.Effect.indexOf("BlindLight") >= 0) || (Player.Effect.indexOf("BlindNormal") >= 0) || (Player.Effect.indexOf("BlindHeavy") >= 0)) }
-		
+		IsBlind : function() { return ((Player.Effect.indexOf("BlindLight") >= 0) || (Player.Effect.indexOf("BlindNormal") >= 0) || (Player.Effect.indexOf("BlindHeavy") >= 0)) },
+		IsChaste : function() { return ((this.Effect.indexOf("Chaste") >= 0) || (this.Effect.indexOf("BreastChaste") >= 0)) },
+		IsVulvaChaste : function() { return (this.Effect.indexOf("Chaste") >= 0) },
+		IsBreastChaste : function() { return (this.Effect.indexOf("BreastChaste") >= 0) },
+		IsOwned : function() { return ((this.Owner != null) && (this.Owner != "")) }
 	}
 
 	// If the character doesn't exist, we create it
@@ -330,11 +333,23 @@ function CharacterGetBonus(C, BonusType) {
 }
 
 // Fully restrain a character with random items
-function CharacterFullRandomRestrain(C) {
-	InventoryWearRandom(Player, "ItemArms");
-	if (Math.random() >= 0.6) InventoryWearRandom(Player, "ItemHead");
-	if (Math.random() >= 0.3) InventoryWearRandom(Player, "ItemMouth");
-	if (Math.random() >= 0.6) InventoryWearRandom(Player, "ItemNeck");
-	if (Math.random() >= 0.3) InventoryWearRandom(Player, "ItemLegs");
-	if (Math.random() >= 0.3) InventoryWearRandom(Player, "ItemFeet");
+function CharacterFullRandomRestrain(C, Ratio) {
+	
+	// Sets the ratio depending on the parameter
+	var RatioRare = 0.75;
+	var RatioNormal = 0.25;	
+	if (Ratio != null) {
+		if (Ratio.trim().toUpperCase() == "FEW") { RatioRare = 1; RatioNormal = 0.5; }
+		if (Ratio.trim().toUpperCase() == "LOT") { RatioRare = 0.5; RatioNormal = 0; }
+		if (Ratio.trim().toUpperCase() == "ALL") { RatioRare = 0; RatioNormal = 0; }
+	}
+	
+	// Apply each item if needed
+	if (InventoryGet(C, "ItemArms") == null) InventoryWearRandom(C, "ItemArms");
+	if ((Math.random() >= RatioRare) && (InventoryGet(C, "ItemHead") == null)) InventoryWearRandom(C, "ItemHead");
+	if ((Math.random() >= RatioNormal) && (InventoryGet(C, "ItemMouth") == null)) InventoryWearRandom(C, "ItemMouth");
+	if ((Math.random() >= RatioRare) && (InventoryGet(C, "ItemNeck") == null)) InventoryWearRandom(C, "ItemNeck");
+	if ((Math.random() >= RatioNormal) && (InventoryGet(C, "ItemLegs") == null)) InventoryWearRandom(C, "ItemLegs");
+	if ((Math.random() >= RatioNormal) && (InventoryGet(C, "ItemFeet") == null)) InventoryWearRandom(C, "ItemFeet");
+
 }

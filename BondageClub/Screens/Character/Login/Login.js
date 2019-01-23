@@ -137,6 +137,7 @@ function LoginResponse(CharacterData) {
 		CharacterAppearanceValidate(Player);
 		document.getElementById("InputName").parentNode.removeChild(document.getElementById("InputName"));
 		document.getElementById("InputPassword").parentNode.removeChild(document.getElementById("InputPassword"));
+		PrivateCharacter = [];
 		CommonSetScreen("Room", "MainHall");
 	} else LoginMessage = TextGet("ErrorLoadingCharacterData");
 }

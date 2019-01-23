@@ -350,7 +350,7 @@ var AssetFemale3DCG = [
 		Asset: [
 			{ Name: "StraightPiercing", Value: 10, Prerequisite: "AccessBreast", Time: 15 },
 			{ Name: "RoundPiercing", Value: 20, Prerequisite: "AccessBreast", Time: 15 },
-			{ Name: "MetalChastityBra", Value: 75, Effect: ["Lock"], Prerequisite: "AccessBreast", Time: 15 },
+			{ Name: "MetalChastityBra", Value: 75, Effect: ["Lock", "BreastChaste"], Prerequisite: "AccessBreast", Time: 15 },
 			{ Name: "LeatherCrop", Value: 40, Wear: false, BuyGroup: "LeatherCrop", Bonus: [{Type: "KidnapDomination", Factor: 3}] },
 			{ Name: "LeatherWhip", Value: 60, Wear: false, BuyGroup: "LeatherWhip", Bonus: [{Type: "KidnapBruteForce", Factor: 3}] }
 		]
