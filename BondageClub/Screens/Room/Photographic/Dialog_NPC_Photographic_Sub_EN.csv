@@ -1,31 +1,31 @@
-PlayerGagged,,,"Wink if I should take pictures, nod for free.",,
+PlayerGagged,,,"Wink if I should take pictures, nod when I should free you.",,
 ItemMouth,,,(She licks her lips seeing the gag and allows you to silence her easily.),,
-RemoveItemMouth,,,(You remove her gag and she sighs.)  I hope you have another gag for me Miss.,,
+RemoveItemMouth,,,(You remove her gag and she sighs.)  I hope that was worth it.,,
 ItemArms,,,(She hums a happy song as you restrain her arms.)  I hope you come to the Dojo more often Miss.,,
 RemoveItemArms,,,(You free her arms and she stretches a little.)  What will you use on me next?,,
 ItemLegs,,,(You restrain her legs securely while she moans of pleasure.)  This is wonderful.,,
-RemoveItemLegs,,,(You release her legs.)  You can tie me up any time you want Miss.,,
+RemoveItemLegs,,,(You release her legs.)  What do you do not do everything for a great photo.,,
 SuspensionHempRope,,,(You restrain her legs with the long hemp rope and suspend her by the feet from the ceiling.)  Oh my god!,,
 ItemFeet,,,(She wiggles her feet playfully as you restrain them.)  This is great.,,
-RemoveSuspensionHempRope,,,(You untie the hemp rope from the ceiling and slowly get her down.)  Wow!  That was quite a ride.,,
-RemoveItemFeet,,,(You release her feet and she jumps playfully.)  More bondage Miss?,,
-ItemNeck,,,"(You strap the collar on her neck while she frowns.)  I'm a free subbie Miss, I'm not looking for a collar.",,
-RemoveItemNeck,,,(You remove the collar around her neck.)  Much better!  I love bondage but I'm not ready to commit.,,
+RemoveSuspensionHempRope,,,(You untie the hemp rope from the ceiling.)  Wow!  That was quite a ride.,,
+RemoveItemFeet,,,(You release her feet.)  Sweet freedom?,,
+ItemNeck,,,(You strap the collar on her neck.)  That looks definitely submissive.,,
+RemoveItemNeck,,,(You remove the collar around her neck.)  Much better!,,
 ItemPelvis,,,(She rocks her hips and struggles as you lock the device on her.),,
-RemoveItemPelvis,,,(She seems relieved as you unlock the device.)  Domo arigato Miss DialogPlayerName.,,
+RemoveItemPelvis,,,"(She seems relieved as you unlock the device.)  Thanks, that was overdue.",,
 ItemTorso,,,(You prepare a full body harness on her torso as she blushes.)  This is very erotic.,,
-RemoveItemTorso,,,"(You remove the body harness from her torso.)  Too bad, it was both kinky and comfy.",,
-ItemHead,,,(You strap the device on her head as she hums a happy song.)  This will enhance the helplessness.,,
+RemoveItemTorso,,,(You remove the body harness from her torso.)  The natural should shine.,,
+ItemHead,,,(You strap the device on her head as she hums a happy song.)  Does not that seem too anonymous?.,,
 RemoveItemHead,,,(You remove the device and she looks at you.)  That was quite an experience.,,
-ItemBreastLeatherWhip,,,"(She moans as you whip her breast, enjoying the pain.)",,
-ItemBreastLeatherCrop,,,(She jumps and makes her breast wiggle with each hit.)  You're the best Miss.,,
-ItemPelvisLeatherWhip,,,(She trembles and moans with each lashes.)  More Miss!  More!,,
+ItemBreastLeatherWhip,,,(She moans as you whip her breast.)  Who wants to be beautiful must suffer.,,
+ItemBreastLeatherCrop,,,(She jumps and makes her breast wiggle with each hit.)  Everything for the art.,,
+ItemPelvisLeatherWhip,,,(She trembles and moans with each lashes.)  Only this gives real striations.,,
 ItemPelvisLeatherCrop,,,(You whip her butt with the leather crop as she wiggles it for more.),,
 0,,,"Hello I'm DialogCharacterName,  the Club Photograph and a Model.",,
 0,,"Hello, I'm DialogPlayerName. Pleased to meet you.",Pleased to meet you. Would you like to take a picture of you or me?,DialogRemove(),
 0,100,I'd like to ask you some questions.,Don't be shy.  How can I help you?,,
-0,,Please take a Photo.,please look friendly.,ShotThePlayerPhoto(),Player.CanTalk()
-0,,(Wink),Please look helpless.,ShotThePlayerPhoto(),!Player.CanTalk()
+0,,Please take a Photo.,please look friendly.,ShotThePlayerPhoto(),PhotographicSubCanAskForPhoto()
+0,,(Wink),Please look helpless.,ShotThePlayerPhoto(),PhotographicSubCanWinkForPhoto()
 0,10,I'll strip some Cloth.,"Yea, show me your wonderful Body.",,
 0,20,I want to use some toys.,What should it be?,,
 0,40,Please take off your clothes.,Where should I start?,,
@@ -34,57 +34,22 @@ ItemPelvisLeatherCrop,,,(You whip her butt with the leather crop as she wiggles 
 10,,(Remove Hat),"Forward, only courage.","PlayerClothRemove(""Hat"")",PlayerHatAvailable()
 10,,(Remove Gloves),"Forward, only courage.","PlayerClothRemove(""Gloves"")",PlayerGlovesAvailable()
 10,,(Remove Cloth),"Forward, only courage.","PlayerClothRemove(""Cloth"")",PlayerClothAvailable()
-10,,(Remove Bra),"Forward, only courage.","PlayerClothRemove(""Bra"")",PlayerBraAvailable()
+10,,(Remove Bra),Show me your curves.,"PlayerClothRemove(""Bra"")",PlayerBraAvailable()
 10,,(Remove lower Cloth),"Forward, only courage.","PlayerClothRemove(""ClothLower"")",PlayerClothLowerAvailable()
-10,,(Remove Panties),"Forward, only courage.","PlayerClothRemove(""Panties"")",PlayerPantiesAvailable()
+10,,(Remove Panties),What an unrestrained beast.,"PlayerClothRemove(""Panties"")",PlayerPantiesAvailable()
 10,,(Remove Socks),"Forward, only courage.","PlayerClothRemove(""Socks"")",PlayerSocksAvailable()
-10,,(Remove Shoes),"Forward, only courage.","PlayerClothRemove(""Shoes"")",PlayerShoesAvailable()
+10,,(Remove Shoes),A first step.,"PlayerClothRemove(""Shoes"")",PlayerShoesAvailable()
 10,,I will dress back,If you think,PlayerDressBack(),
 10,0,that's enough for now,All right then,,
-20,21,Use some toys for the Head,Is it alright?,"UseGroup(""ItemHead"")",
-20,22,Use some toys for the Mounth,Is it alright?,"UseGroup(""ItemMouth"")",
-20,23,Use some toys for the Neck,Is it alright?,"UseGroup(""ItemNeck"")",
-20,24,Use some toys for the Arms,what do you want,,
-20,25,Use some toys for the Torso,Is it alright?,"UseGroup(""ItemTorso"")",
-20,26,Use some toys for the Legs,Is it alright?,"UseGroup(""ItemLegs"")",
-20,27,Use some toys for the Feet,Is it alright?,"UseGroup(""ItemFeet"")",
-20,0,That's how I feel,All right sould i take a Photo?,,Player.CanTalk()
+20,,Use some toys for the Head,Is it alright?,"StartInventoryPlayer(""ItemHead"")",
+20,,Use some toys for the Mounth,Is it alright?,"StartInventoryPlayer(""ItemMouth"")",
+20,,Use some toys for the Neck,Is it alright?,"StartInventoryPlayer(""ItemNeck"")",
+20,,Use some toys for the Arms,what do you want,"StartInventoryPlayer(""ItemArms"")",
+20,,Use some toys for the Torso,Is it alright?,"StartInventoryPlayer(""ItemTorso"")",
+20,,Use some toys for the Legs,Is it alright?,"StartInventoryPlayer(""ItemLegs"")",
+20,,Use some toys for the Feet,Is it alright?,"StartInventoryPlayer(""ItemFeet"")",
+20,0,That's how I feel,"All right, should i take a Photo?",,Player.CanTalk()
 20,0,(Node),,,!Player.CanTalk()
-21,20,Cloth Blindfold,Is it alright?,"UseAsset(""ClothBlindfold"",""ItemHead"")","PlayerAssetAvailable(""ClothBlindfold"", ""ItemHead"")"
-21,20,Leather Blindfold,Is it alright?,"UseAsset(""LeatherBlindfold"",""ItemHead"")","PlayerAssetAvailable(""LeatherBlindfold"", ""ItemHead"")"
-21,20,Leather Hood,Is it alright?,"UseAsset(""LeatherHood"",""ItemHead"")","PlayerAssetAvailable(""LeatherHood"", ""ItemHead"")"
-21,20,Leather Hood Eyes,Is it alright?,"UseAsset(""LeatherHoodOpenEyes"",""ItemHead"")","PlayerAssetAvailable(""LeatherHoodOpenEyes"", ""ItemHead"")"
-21,20,Nothing,what else should it be?,,
-20,0,(Node),,,!Player.CanTalk()
-22,20,Small Cloth Gag,Is it alright?,"UseAsset(""SmallClothGag"",""ItemMouth"")","PlayerAssetAvailable(""SmallClothGag"", ""ItemMouth"")"
-22,20,Cloth Cleave Gag,Is it alright?,"UseAsset(""ClothCleaveGag"",""ItemMouth"")","PlayerAssetAvailable(""ClothCleaveGag"", ""ItemMouth"")"
-22,20,Cloth OTM Gag,Is it alright?,"UseAsset(""ClothOTMGag"",""ItemMouth"")","PlayerAssetAvailable(""ClothOTMGag"", ""ItemMouth"")"
-22,20,Cloth OTN Gag,Is it alright?,"UseAsset(""ClothOTNGag"",""ItemMouth"")","PlayerAssetAvailable(""ClothOTNGag"", ""ItemMouth"")"
-22,20,Harness Ball Gag,Is it alright?,"UseAsset(""HarnessBallGag"",""ItemMouth"")","PlayerAssetAvailable(""HarnessBallGag"", ""ItemMouth"")"
-22,20,Harness Panel Gag,Is it alright?,"UseAsset(""HarnessPanelGag"",""ItemMouth"")","PlayerAssetAvailable(""HarnessPanelGag"", ""ItemMouth"")"
-22,20,Ring Gag,Is it alright?,"UseAsset(""RingGag"",""ItemMouth"")","PlayerAssetAvailable(""RingGag"", ""ItemMouth"")"
-22,20,Duct Tape Gag,Is it alright?,"UseAsset(""DuctTapeGag"",""ItemMouth"")","PlayerAssetAvailable(""DuctTapeGag"", ""ItemMouth"")"
-22,20,Duster Gag,Is it alright?,"UseAsset(""DusterGag"",""ItemMouth"")","PlayerAssetAvailable(""DusterGag"", ""ItemMouth"")"
-22,20,Nothing,what else should it be?,,
-23,20,Leather Collar,Is it alright?,"UseAsset(""LeatherCollar"",""ItemNeck"")","PlayerAssetAvailable(""LeatherCollar"", ""ItemNeck"")"
-23,20,Nothing,what else should it be?,,
-24,20,Nylon Rope,Is it alright?,"UseAsset(""NylonRope"",""ItemArms"")","PlayerAssetAvailable(""NylonRope"", ""ItemArms"")"
-24,20,Hemp Rope,Is it alright?,"UseAsset(""HempRope"",""ItemArms"")","PlayerAssetAvailable(""HempRope"", ""ItemArms"")"
-24,20,Metal Cuffs,Is it alright?,"UseAsset(""MetalCuffs"",""ItemArms"")","PlayerAssetAvailable(""MetalCuffs"", ""ItemArms"")"
-24,20,Leather Armbinder,Is it alright?,"UseAsset(""LeatherArmbinder"",""ItemArms"")","PlayerAssetAvailable(""LeatherArmbinder"", ""ItemArms"")"
-24,20,Nothing,what else should it be?,,
-25,20,Nylon Rope Harness,Is it alright?,"UseAsset(""NylonRopeHarness"",""ItemTorso"")","PlayerAssetAvailable(""NylonRopeHarness"", ""ItemTorso"")"
-25,20,Hemp Rope Harness,Is it alright?,"UseAsset(""HempRopeHarness"",""ItemTorso"")","PlayerAssetAvailable(""HempRopeHarness"", ""ItemTorso"")"
-25,20,Leather Harness,Is it alright?,"UseAsset(""LeatherHarness"",""ItemTorso"")","PlayerAssetAvailable(""LeatherHarness"", ""ItemTorso"")"
-25,20,Nothing,what else should it be?,,
-26,20,Nylon Rope,Is it alright?,"UseAsset(""NylonRope"",""ItemLegs"")","PlayerAssetAvailable(""NylonRope"", ""ItemLegs"")"
-26,20,Hemp Rope,Is it alright?,"UseAsset(""HempRope"",""ItemLegs"")","PlayerAssetAvailable(""HempRope"", ""ItemLegs"")"
-26,20,Leather Belt,Is it alright?,"UseAsset(""LeatherBelt"",""ItemLegs"")","PlayerAssetAvailable(""LeatherBelt"", ""ItemLegs"")"
-26,20,Nothing,what else should it be?,,
-27,20,Nylon Rope,Is it alright?,"UseAsset(""NylonRope"",""ItemFeet"")","PlayerAssetAvailable(""NylonRope"", ""ItemFeet"")"
-27,20,Hemp Rope,Is it alright?,"UseAsset(""HempRope"",""ItemFeet"")","PlayerAssetAvailable(""HempRope"", ""ItemFeet"")"
-27,20,Leather Belt,Is it alright?,"UseAsset(""LeatherBelt"",""ItemFeet"")","PlayerAssetAvailable(""LeatherBelt"", ""ItemFeet"")"
-27,20,Nothing,what else should it be?,,
 40,,Take off your hat.,(she throws him away in a wide arc.),"SubClothRemove(""Hat"")",SubHatAvailable()
 40,,Take off your Gloves,(finger-for-finger she takes them off.),"SubClothRemove(""Gloves"")",SubGlovesAvailable()
 40,,Take off your Cloth.,(She slowly strips her off.),"SubClothRemove(""Cloth"")",SubClothAvailable()
@@ -93,7 +58,7 @@ ItemPelvisLeatherCrop,,,(You whip her butt with the leather crop as she wiggles 
 40,,Take off your Panties.,(She slowly pulls them down.),"SubClothRemove(""Panties"")",SubPantiesAvailable()
 40,,Take off your Socks.,"(one by one, she takes off her Socks.)","SubClothRemove(""Socks"")",SubSocksAvailable()
 40,,Take off your Shoes.,(She steps her aside.),"SubClothRemove(""Shoes"")",SubShoesAvailable()
-40,,Please dress back.,"All right, if you think so.",,SubDressBack()
+40,,Please dress back.,"All right, if you think so.",SubDressBack(),
 40,0,that's enough for now,she shows a bright smile.,,
 100,,What's going on here?,In the photo studio you can make pictures and collect them.,,
 100,,What do the pictures cost?,"Nothing, this is a service of the club.",,
@@ -101,3 +66,4 @@ ItemPelvisLeatherCrop,,,(You whip her butt with the leather crop as she wiggles 
 100,,Can I tie you up?,"Of course, if necessary for the foto session.",,
 100,,Will you restrain me?,I would do much more for a good picture.,,
 100,0,I don't have any more questions.,"So then, show your best pose.",,
+PhotographicSubTied,0,,"(she shows her restraints.) I would like to, but ...",,
