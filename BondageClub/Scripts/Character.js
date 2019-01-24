@@ -175,6 +175,16 @@ function CharacterLoadNPC(NPCType) {
 		C.AllowItem = (LogQuery("LeadSorority", "Maid"));
 	}
 
+	// Mistress archetype
+	if (NPCType.indexOf("Mistress") >= 0) {
+		var ColorList = ["#333333", "#AA4444", "#AAAAAA"];
+		var Color = CommonRandomItemFromList("", ColorList);
+		InventoryAdd(C, "MistressGloves", "Gloves");
+		CharacterAppearanceSetItem(C, "Gloves", C.Inventory[C.Inventory.length - 1].Asset);
+		CharacterAppearanceSetColorForGroup(C, Color, "Gloves");
+		CharacterAppearanceSetItem(C, "Hat", null);
+	}
+	
 	// Returns the new character
 	return C;
 	

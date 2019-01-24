@@ -13,6 +13,7 @@ function ManagementGetMistressAngryCount(InCount) { return (InCount == Managemen
 function ManagementMistressAngryAdd() { ManagementMistressAngryCount++ }
 function ManagementMistressWillRelease() { return (CommonTime() >= ManagementMistressReleaseTimer) }
 function ManagementFriendIsChaste() { return true } 
+function ManagementCanPlayWithoutPermission() { return (!ManagementMistressAllowPlay && Player.CanInteract()) } 
 
 // Loads the club management room, creates the Mistress and sub character
 function ManagementLoad() {
@@ -53,6 +54,7 @@ function ManagementClick() {
 // Releases the player and dress her back
 function ManagementPlayerStrip() {
 	ManagementPlayerAppearance = Player.Appearance.slice();
+	CharacterRelease(Player);
 	CharacterNaked(Player);
 }
 
@@ -82,4 +84,17 @@ function ManagementPlayerRelease() {
 	CharacterRelease(Player);
 	CharacterDress(Player, ManagementPlayerAppearance);
 	ManagementMistressAllowPlay = false;
+}
+
+// When the player switches from the sub to the Mistress because she's angry
+function ManagementSwitchToAngryMistress() {
+	if (ManagementMistressAngryCount >= 3) {
+		ManagementMistress.Stage = "11";
+		CharacterSetCurrent(ManagementMistress);
+		ManagementMistress.CurrentDialog = DialogFind(ManagementMistress, "TouchSubPunishment");
+	} else {
+		ManagementMistress.Stage = "30";
+		CharacterSetCurrent(ManagementMistress);
+		ManagementMistressAngryCount++;
+	}
 }
