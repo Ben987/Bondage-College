@@ -179,10 +179,13 @@ function CharacterLoadNPC(NPCType) {
 	if (NPCType.indexOf("Mistress") >= 0) {
 		var ColorList = ["#333333", "#AA4444", "#AAAAAA"];
 		var Color = CommonRandomItemFromList("", ColorList);
+		CharacterAppearanceSetItem(C, "Hat", null);
 		InventoryAdd(C, "MistressGloves", "Gloves");
 		CharacterAppearanceSetItem(C, "Gloves", C.Inventory[C.Inventory.length - 1].Asset);
 		CharacterAppearanceSetColorForGroup(C, Color, "Gloves");
-		CharacterAppearanceSetItem(C, "Hat", null);
+		InventoryAdd(C, "MistressBoots", "Shoes");
+		CharacterAppearanceSetItem(C, "Shoes", C.Inventory[C.Inventory.length - 1].Asset);
+		CharacterAppearanceSetColorForGroup(C, Color, "Shoes");
 	}
 	
 	// Returns the new character

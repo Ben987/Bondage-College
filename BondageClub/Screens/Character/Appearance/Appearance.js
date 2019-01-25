@@ -234,6 +234,13 @@ function CharacterAppearanceBuildCanvas(C) {
 					for (var P = 0; P < C.Pose.length; P++)
 						if (C.Pose[P] == CA.Asset.Group.AllowPose[AP])
 							Pose = C.Pose[P] + "/";
+
+			// If we must apply alpha masks to the current image as it is being drawn
+			if (CA.Asset.Alpha != null)
+				for (var AL = 0; AL < CA.Asset.Alpha.length; AL++) {
+					C.Canvas.getContext("2d").clearRect(CA.Asset.Alpha[AL][0], CA.Asset.Alpha[AL][1], CA.Asset.Alpha[AL][2], CA.Asset.Alpha[AL][3]);
+					C.CanvasBlink.getContext("2d").clearRect(CA.Asset.Alpha[AL][0], CA.Asset.Alpha[AL][1], CA.Asset.Alpha[AL][2], CA.Asset.Alpha[AL][3]);
+				}
 			
 			// Draw the item on the canvas (default or empty means no special color, # means apply a color, regular text means we apply that text)
 			if (CA.Asset.Visible) {

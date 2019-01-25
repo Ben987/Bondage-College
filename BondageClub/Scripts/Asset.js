@@ -59,6 +59,7 @@ function AssetAdd(NewAsset) {
 		RemoveTime: (NewAsset.RemoveTime == null) ? ((NewAsset.Time == null) ? 0 : NewAsset.Time) : NewAsset.RemoveTime,
 		DrawingPriority: NewAsset.Priority,
 		HeightModifier: (NewAsset.Height == null) ? 0 : NewAsset.Height,
+		Alpha: NewAsset.Alpha,
 		Prerequisite: NewAsset.Prerequisite
 	}
 	Asset.push(A);

@@ -228,7 +228,8 @@ var AssetFemale3DCG = [
 			{ Name: "Sneakers2", Height: 3 },
 			{ Name: "Heels1", Height: 15 },
 			{ Name: "Heels2", Height: 15 },
-			{ Name: "Boots1", Height: 9 }
+			{ Name: "Boots1", Height: 9 },
+			{ Name: "MistressBoots", Height: 35, Value: -1, Alpha: [[125, 800, 250, 200]] }
 		]
 	},
 
