@@ -25,11 +25,11 @@ ItemPelvisLeatherCrop,,,(You whip her butt with the leather crop as she wiggles 
 0,,"Hello, I'm DialogPlayerName. Pleased to meet you.",Pleased to meet you. Would you like to take a picture of you or me?,DialogRemove(),
 0,100,I'd like to ask you some questions.,Don't be shy.  How can I help you?,,
 0,,Please take a Photo.,please look friendly.,ShotThePlayerPhoto(),PhotographicSubCanAskForPhoto()
-0,,(Wink),Please look helpless.,ShotThePlayerPhoto(),PhotographicSubCanWinkForPhoto()
-0,10,I'll strip some Cloth.,"Yea, show me your wonderful Body.",,
+0,,(Wink for a Photo),Please look helpless.,ShotThePlayerPhoto(),PhotographicSubCanWinkForPhoto()
+0,10,I'll strip some Cloth.,"Yea, show me your wonderful Body.",,!Player.IsRestrained()
 0,20,I want to use some toys.,What should it be?,,
-0,40,Please take off your clothes.,Where should I start?,,
-0,,(Nod helples.),I'm already helping,PlayerRelease(),Player.IsRestrained()
+0,40,Please take off your clothes.,Where should I start?,,!PhotographicSubIsRestrained()
+0,,(Nod for help.),I'm already helping,PlayerRelease(),Player.IsRestrained()
 0,,Good By. (Leave her.),,DialogLeave(),
 10,,(Remove Hat),"Forward, only courage.","PlayerClothRemove(""Hat"")",PlayerHatAvailable()
 10,,(Remove Gloves),"Forward, only courage.","PlayerClothRemove(""Gloves"")",PlayerGlovesAvailable()
@@ -39,17 +39,17 @@ ItemPelvisLeatherCrop,,,(You whip her butt with the leather crop as she wiggles 
 10,,(Remove Panties),What an unrestrained beast.,"PlayerClothRemove(""Panties"")",PlayerPantiesAvailable()
 10,,(Remove Socks),"Forward, only courage.","PlayerClothRemove(""Socks"")",PlayerSocksAvailable()
 10,,(Remove Shoes),A first step.,"PlayerClothRemove(""Shoes"")",PlayerShoesAvailable()
-10,,I will dress back,If you think,PlayerDressBack(),
-10,0,that's enough for now,All right then,,
-20,,Use some toys for the Head,Is it alright?,"StartInventoryPlayer(""ItemHead"")",
-20,,Use some toys for the Mounth,Is it alright?,"StartInventoryPlayer(""ItemMouth"")",
-20,,Use some toys for the Neck,Is it alright?,"StartInventoryPlayer(""ItemNeck"")",
-20,,Use some toys for the Arms,what do you want,"StartInventoryPlayer(""ItemArms"")",
-20,,Use some toys for the Torso,Is it alright?,"StartInventoryPlayer(""ItemTorso"")",
-20,,Use some toys for the Legs,Is it alright?,"StartInventoryPlayer(""ItemLegs"")",
-20,,Use some toys for the Feet,Is it alright?,"StartInventoryPlayer(""ItemFeet"")",
-20,0,That's how I feel,"All right, should i take a Photo?",,Player.CanTalk()
-20,0,(Node),,,!Player.CanTalk()
+10,,I will dress back.,If you think.,PlayerDressBack(),
+10,0,that's enough for now.,All right then.,,
+20,,Use some toys for the Head.,Is it alright?,"StartInventoryPlayer(""ItemHead"")",
+20,,Use some toys for the Mounth.,Is it alright?,"StartInventoryPlayer(""ItemMouth"")",
+20,,Use some toys for the Neck.,Is it alright?,"StartInventoryPlayer(""ItemNeck"")",
+20,,Use some toys for the Arms.,what do you want.,"StartInventoryPlayer(""ItemArms"")",
+20,,Use some toys for the Torso.,Is it alright?,"StartInventoryPlayer(""ItemTorso"")",
+20,,Use some toys for the Legs.,Is it alright?,"StartInventoryPlayer(""ItemLegs"")",
+20,,Use some toys for the Feet.,Is it alright?,"StartInventoryPlayer(""ItemFeet"")",
+20,0,That's how I feel.,"All right, should i take a Photo?",,Player.CanTalk()
+20,0,(Node satisfied),"Wink if I should take pictures, nod when I should free you.",,!Player.CanTalk()
 40,,Take off your hat.,(she throws him away in a wide arc.),"SubClothRemove(""Hat"")",SubHatAvailable()
 40,,Take off your Gloves,(finger-for-finger she takes them off.),"SubClothRemove(""Gloves"")",SubGlovesAvailable()
 40,,Take off your Cloth.,(She slowly strips her off.),"SubClothRemove(""Cloth"")",SubClothAvailable()

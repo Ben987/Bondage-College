@@ -18,6 +18,7 @@ function PhotographicPlayerSocksAvailable() {return (PhotographicAppearanceAvail
 function PhotographicPlayerBraAvailable() {return (PhotographicAppearanceAvailable(Player, "Bra")&&!PhotographicAppearanceAvailable(Player, "Cloth"));}
 function PhotographicPlayerPantiesAvailable() {return (PhotographicAppearanceAvailable(Player, "Panties")&&!PhotographicAppearanceAvailable(Player, "Cloth")&&!PhotographicAppearanceAvailable(Player, "ClothLower"));}
 
+function PhotographicSubIsRestrained() {return PhotographicSub.IsRestrained()}
 function PhotographicSubHatAvailable() {return PhotographicAppearanceAvailable(PhotographicSub, "Hat");}
 function PhotographicSubGlovesAvailable() {return PhotographicAppearanceAvailable(PhotographicSub, "Gloves");}
 function PhotographicSubClothAvailable() {return PhotographicAppearanceAvailable(PhotographicSub, "Cloth");}
@@ -26,12 +27,12 @@ function PhotographicSubShoesAvailable() {return PhotographicAppearanceAvailable
 function PhotographicSubSocksAvailable() {return (PhotographicAppearanceAvailable(PhotographicSub, "Socks")&&!PhotographicAppearanceAvailable(PhotographicSub, "Shoes"));}
 function PhotographicSubBraAvailable() {return (PhotographicAppearanceAvailable(PhotographicSub, "Bra")&&!PhotographicAppearanceAvailable(PhotographicSub, "Cloth"));}
 function PhotographicSubPantiesAvailable() {return (PhotographicAppearanceAvailable(PhotographicSub, "Panties")&&!PhotographicAppearanceAvailable(PhotographicSub, "Cloth")&&!PhotographicAppearanceAvailable(Player, "ClothLower"));}
-function PhotographicSubCanAskForPhoto() {return Player.CanTalk() && PhotographicSub.IsRestrained()}
+function PhotographicSubCanAskForPhoto() {return Player.CanTalk() && !PhotographicSub.IsRestrained()}
 function PhotographicSubCanWinkForPhoto() {return !Player.CanTalk() && !PhotographicSub.IsRestrained()}
 
 function PhotographicLoad() {
 	if (PhotographicSub == null) {
-		PhotographicSub =  CharacterLoadNPC("NPC_Photographic_Sub");
+		PhotographicSub = CharacterLoadNPC("NPC_Photographic_Sub");
 		PhotographicSubAppearance = PhotographicSub.Appearance.slice();
 		PhotographicSub.AllowItem = true;
 	}
@@ -176,7 +177,7 @@ function PhotographicPlayerDressBack() {
 }
 
 function PhotographicSubDressBack() {
-	CharacterDress(Player, PhotographicPlayerAppearance);
+	CharacterDress(PhotographicSub, PhotographicSubAppearance);
 }
 
 function PhotographicSubClothRemove(Group){
