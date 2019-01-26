@@ -1,6 +1,7 @@
 "use strict";
 var PrisonBackground = "Prison";
 var PrisonNextEventTimer = null;
+var PrisonNextEvent = false;
 var PrisonerMetalCuffsKey = null;
 
 var PrisonMaid = null;
@@ -23,9 +24,7 @@ var PrisonSubIsStripSearch = false;
 var PrisonPlayerAppearance = null;
 var PrisonPlayerBehindBars = false;
 
-
-
-// Returns TRUE if the Player is in Handcuffes
+// functions for Dialogs
 function PrisonPlayerIsHandcuffed() {return PrisonCharacterAppearanceAvailable(Player, "MetalCuffs", "ItemArms");}
 function PrisonPlayerIsPanelGag()   {return PrisonCharacterAppearanceAvailable(Player, "HarnessPanelGag", "ItemMouth");}
 function PrisonPlayerIsLegTied()    {return PrisonCharacterAppearanceAvailable(Player, "LeatherBelt", "ItemLegs");}
@@ -43,7 +42,7 @@ function PrisonSubCanClothBack()    {return  (PrisonSubIsStripSearch && PrisonSu
 // Loads the Prison
 function PrisonLoad() {
 	if (PrisonMaid == null) {
-		PrisonMaid =  CharacterLoadNPC("NPC_Prison_Maid");
+		PrisonMaid = CharacterLoadNPC("NPC_Prison_Maid");
 		PrisonMaidCharacter = CommonRandomItemFromList(PrisonMaidCharacter, PrisonMaidCharacterList);
 		PrisonMaidAppearance = PrisonMaid.Appearance.slice();
 		if (LogQuery("LeadSorority", "Maid") && !PrisonPlayerBehindBars) {
@@ -53,17 +52,23 @@ function PrisonLoad() {
 		}
 	}
 	PrisonPlayerAppearance = Player.Appearance.slice();
-	PrisonNextEventTimer = null;
+	PrisonNextEventTimer = new Date().getTime() + (10000 * Math.random()) + (5000);
 	
 	if ((MaidQuartersCurrentRescue == "Prison") && !MaidQuartersCurrentRescueStarted && !PrisonSubBehindBars && MaidQuartersCurrentRescueCompleted == false) {
 		PrisonSub = CharacterLoadNPC("NPC_Prison_Sub");
-		PrisonNextEventTimer = new Date().getTime() + (1 * Math.random()) + (5000);
 	}
 }
 
 // Run the Prison, draw all characters
 function PrisonRun() {
+	if (PrisonNextEventTimer == null) PrisonNextEventTimer = new Date().getTime() + (10000 * Math.random()) + (5000);
+	if (new Date().getTime() > PrisonNextEventTimer) {
+		PrisonNextEventTimer = new Date().getTime() + (10000 * Math.random()) + (5000)
+		PrisonNextEvent = true;
+	}
+	
 	if ((MaidQuartersCurrentRescue == "Prison") && MaidQuartersCurrentRescueCompleted == false) {
+		//Player is Maid and NPC is Visitor
 		if (!PrisonSubBehindBars) {
 			DrawImage("Screens/Room/Prison/Cage_open.png", 0, 0);
 			if (PrisonSubIsPresent) DrawCharacter(PrisonSub, 500, 0, 1);
@@ -74,12 +79,12 @@ function PrisonRun() {
 		}
 		DrawCharacter(Player, 1000, 0, 1);
 		DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
-		if (MaidQuartersCurrentRescue == "Prison" && MaidQuartersCurrentRescueCompleted == false && PrisonSubIsPresent == true) {
+		if (PrisonSubIsPresent == true) {
 			DrawButton(1885, 25, 90, 90, "", "White", "Screens/Room/Prison/eye.png");
 		} else if (Player.CanWalk()) {
 			DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 		}
-		if ((PrisonNextEventTimer != null) && (new Date().getTime() > PrisonNextEventTimer) && MaidQuartersCurrentRescueCompleted == false) {
+		if (PrisonNextEvent == true && PrisonSubIsPresent == false) {
 			PrisonSub = null;
 			CharacterDelete("NPC_Prison_Sub");
 			PrisonSub = CharacterLoadNPC("NPC_Prison_Sub");
@@ -87,9 +92,12 @@ function PrisonRun() {
 			PrisonSubAskedCuff = false;
 			PrisonSubIsPresent = true;
 			PrisonSubIsLeaveOut = false;
-			PrisonNextEventTimer = null;
-		} 
+			PrisonNextEvent = false;
+		} else if (PrisonNextEvent == true){
+			PrisonNextEvent = false;
+		}
 	} else {
+		//Player is Vistor an Maid is NPC 
 		if (PrisonPlayerBehindBars) {
 			DrawCharacter(Player, 500, 50, 0.95);
 			DrawImage("Screens/Room/Prison/Cage_close.png", 0, 0);
@@ -102,15 +110,17 @@ function PrisonRun() {
 		if (PrisonPlayerBehindBars) DrawButton(1885, 25, 90, 90, "", "White", "Screens/Room/Prison/ButtonBar.png");
 		DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
 		// Check if the new maid come
-		if ((PrisonNextEventTimer != null) && (new Date().getTime() > PrisonNextEventTimer)) {
+		if (PrisonNextEvent == true && PrisonMaidIsPresent == false ) {
 			PrisonMaid = null;
 			CharacterDelete("NPC_Prison_Maid");
-			PrisonMaid =  CharacterLoadNPC("NPC_Prison_Maid");
+			PrisonMaid = CharacterLoadNPC("NPC_Prison_Maid");
 			PrisonMaidCharacter = CommonRandomItemFromList(PrisonMaidCharacter, PrisonMaidCharacterList);
-			PrisonNextEventTimer = null;
+			PrisonNextEvent = false;
 			PrisonMaidIsPresent = true;
 			PrisonMaidIsAngry = false;
 			PrisonMaid.Stage = "20";
+		} else if (PrisonNextEvent == true){
+			PrisonNextEvent = false;
 		}
 	}
 }
@@ -157,7 +167,7 @@ function PrisonCharacterAppearanceGroupAvailable (C, AppearanceGroup) {
 /*      Player     */
 //Player going in cell
 function PrisonCellPlayerIn(){
-	PrisonMaidIsAngry =true;
+	PrisonMaidIsAngry = true;
 	PrisonPlayerBehindBars = true;
 }
 
@@ -172,7 +182,6 @@ function PrisonCellPlayerOut(){
 //Maid leave the Prison for 5-15 second
 function PrisonMaidLeave(){
 	PrisonMaidIsPresent = false;
-	PrisonNextEventTimer = new Date().getTime() + (10000 * Math.random()) + (5000);
 }
 
 //Player releases and get back his Cloth, only if the Maid is not angry
@@ -216,7 +225,7 @@ function PrisonHavySearch(C){
 
 // The Light Search Prozess for the Player
 function PrisonLightSearch(C){
-	if (PrisonerMetalCuffsKey = null) {
+	if (PrisonerMetalCuffsKey == null) {
 		PrisonMaidIsAngry = true;
 		InventoryWear(C, "MetalCuffs", "ItemArms");
 		if (!C.CanTalk) InventoryWear(Player, "HarnessBallGag", "ItemMouth");
@@ -233,7 +242,7 @@ function PrisonLightSearch(C){
 
 // The Cloth Back Prozess for Prisoner
 function PrisonerClothBack(C){
-	PrisonMaidIsAngry =true;
+	PrisonMaidIsAngry = true;
 	if (PrisonPlayerIsStriped()) {
 		for (var A = 0; A < PrisonPlayerAppearance.length; A++) {
 			if (PrisonPlayerAppearance[A].Asset.Group.Name == "Hat") {
@@ -261,7 +270,7 @@ function PrisonerClothBack(C){
 
 // Remove the Letherbelts from the Prisoner 
 function PrisonCuffsRelief(){
-	PrisonMaidIsAngry =true;
+	PrisonMaidIsAngry = true;
 	if (PrisonPlayerIsPanelGag() || PrisonPlayerIsLegTied() || PrisonPlayerIsFeetTied()) {
 		PrisonMaidIsAngry = true;
 		CharacterRelease(Player);
@@ -277,7 +286,7 @@ function PrisonCuffsRelief(){
 
 // Light Torture for the Prison Player
 function PrisonMaidLightTorture(){
-	PrisonMaidIsAngry =true;
+	PrisonMaidIsAngry = true;
 	PrisonMaid.Stage = "PrisonerTortured";
 	var torture = Math.random() * 4;
 	if (torture < 1) {
@@ -293,7 +302,7 @@ function PrisonMaidLightTorture(){
 
 // Hevy Torture for the Prison Player
 function PrisonMaidHevyTorture(){
-	PrisonMaidIsAngry =true;
+	PrisonMaidIsAngry = true;
 	PrisonMaid.Stage = "PrisonerTortured";
 	var torture = Math.random() * 5
 	if (torture < 1) {
@@ -442,7 +451,7 @@ function PrisonLeaveCell(){
 		PrisonSubIsPresent = false;
 		PrisonSubSelfCuffed = false;
 	}
-		if (MaidQuartersCurrentRescue == "Prison") MaidQuartersCurrentRescueCompleted = true;
+	if (MaidQuartersCurrentRescue == "Prison") MaidQuartersCurrentRescueCompleted = true;
 	CommonSetScreen("Room", "MainHall");
 }
 
