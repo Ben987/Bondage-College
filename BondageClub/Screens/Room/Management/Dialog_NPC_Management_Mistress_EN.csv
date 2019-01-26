@@ -86,9 +86,36 @@ TouchSubPunishment,,,(She pulls you to her by the hair.)  Never touch my pet!  N
 56,,(Leave her.),,DialogLeave(),
 100,,What are the rules for chastity items?,"Only the club Mistresses can unlock chastity devices.  If you have an owner, you need your owner permission to be unlocked.",,
 100,,Can I buy a key?,"No, the keys are not for sales.  They are for Mistresses only.",,
-100,,"I'm stuck, I need your help.",TO DO,,Player.IsChaste()
-100,,A friend of mine needs your help.,TO DO,,FriendIsChaste()
+100,110,"I'm stuck, I need your help.",(She smirks.)  So a subbie girl got herself locked?  What's your story?,,Player.IsChaste()
+100,130,A friend of mine needs your help.,What friend?  You're alone girl.,,FriendIsChaste()
 100,0,Let's talk about something else.,"Alright, but make it snappy.",,
+110,111,I wanted to protect myself.,"Since you're not owned, all there is to do is pay the unlocking fee and lick my heels.  (She points to her boot.)",,!Player.IsOwned()
+110,111,I was inspecting the belt and it locked on me.,"Since you're not owned, all there is to do is pay the unlocking fee and lick my heels.  (She points to her boot.)",,!Player.IsOwned()
+110,111,Someone played a prank on me.,"Since you're not owned, all there is to do is pay the unlocking fee and lick my heels.  (She points to her boot.)",,!Player.IsOwned()
+110,111,"I've played a crazy game of: ""Truth or Dare"".","Since you're not owned, all there is to do is pay the unlocking fee and lick my heels.  (She points to her boot.)",,!Player.IsOwned()
+111,112,I'm not kissing your ass or licking your heels.,You can't blame me for trying.  Just pay the unlocking fee of 25$ then.,,"DialogReputationGreater(""Dominant"", 40)"
+111,,Lick your heels?  That's the regular procedure?,"My duty, my rules.  So you lick or your leave?",DialogRemove(),
+111,112,Fine.  (Lick her heels.),"(You bend down and slowly lick her heels as she laughs.)  Good girl, the unlocking fee is 25$.",,
+111,0,I won't lick your heels!,(She laughs.)  Then you stay chaste. ,,
+112,,That's extortion!,"No, that's a lesson.  So you pay or you go?",DialogRemove(),
+112,113,Please unlock the bra.  (Pay her 25$.),Alright.  (You remove your clothes and she unlocks the bra.)  How does it feel?,"UnlockItem(""ItemBreast"")",CanUnlockBra()
+112,113,Please unlock the belt.  (Pay her 25$.),Alright.  (You remove your clothes and she unlocks the belt.)  How does it feel?,"UnlockItem(""ItemPelvis"")",CanUnlockBelt()
+112,0,I don't have enough money.,Get to work then.  I'm not doing any discount.,,!DialogMoneyGreater(25)
+112,0,I'll think about it.,Think about ways to stop wasting my time girl.,,
+113,0,Better!  I'll never get stuck again.,(She laughs.)  They all say that and they all come back.,"DialogChangeReputation(""Dominant"", 2)",
+113,0,This is great!,Be careful not to get locked again.  I don't do discount for multiple release.,,
+113,0,"(Blush.)  This is wonderful, thanks Mistress.","She pets your head.  Good girl, be careful not to get locked again.","DialogChangeReputation(""Dominant"", -2)",
+120,,I wanted to protect myself.,TO DO,,Player.IsOwned()
+120,,I was inspecting the belt and it locked on me.,TO DO,,Player.IsOwned()
+120,,Someone played a prank on me.,TO DO,,Player.IsOwned()
+120,,"I've played a crazy game of: ""Truth or Dare"".",TO DO,,Player.IsOwned()
+120,,My Mistress wanted to protect me.,TO DO,,Player.IsOwned()
+120,,My owner punished me.,TO DO,,Player.IsOwned()
+130,131,She's in my private room.,"I'll make a deal with you then.  I'll send a maid to your room, and she will unlock all of your friends that are not owned by someone else for 50$.",,
+130,131,In my room Mistress.,"I'll make a deal with you then.  I'll send a maid to your room, and she will unlock all of your friends that are not owned by someone else for 50$.",,
+131,0,Deal!  (Pay her 50$.),Very good.  (She takes the money and sends a maid to your private room.)  Anything else?,ReleasePrivateRoom(),DialogMoneyGreater(50)
+131,0,I don't have enough money.,Get to work then.  I'm not doing any discount.,,!DialogMoneyGreater(50)
+131,0,I'll think about it.,Think about ways to stop wasting my time girl.,,
 200,,What is a D/s family?,You can build your own D/s family or join a Dominant family.  A submissive can only have one Mistress.  A Mistress can have many submissives.,,
 200,,Will you be my Mistress?,"No, my D/s family is complete.  I'm not looking for a new slave.",DialogRemove(),
 200,,Can I collar and own anyone?,"BDSM is consensual.  As long as the person isn't already owned and consent to be your slave, you can collar her.",,

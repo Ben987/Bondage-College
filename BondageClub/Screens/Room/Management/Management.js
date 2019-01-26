@@ -12,7 +12,7 @@ function ManagementNoTitle() { return (!LogQuery("JoinedSorority", "Maid") && (R
 function ManagementGetMistressAngryCount(InCount) { return (InCount == ManagementMistressAngryCount) }
 function ManagementMistressAngryAdd() { ManagementMistressAngryCount++ }
 function ManagementMistressWillRelease() { return (CommonTime() >= ManagementMistressReleaseTimer) }
-function ManagementFriendIsChaste() { return true } 
+function ManagementFriendIsChaste() { return (((PrivateCharacter.length > 1) && PrivateCharacter[1].IsChaste()) || ((PrivateCharacter.length > 2) && PrivateCharacter[2].IsChaste()) || ((PrivateCharacter.length > 3) && PrivateCharacter[3].IsChaste())); } 
 function ManagementCanPlayWithoutPermission() { return (!ManagementMistressAllowPlay && Player.CanInteract()) } 
 
 // Loads the club management room, creates the Mistress and sub character
@@ -97,4 +97,19 @@ function ManagementSwitchToAngryMistress() {
 		CharacterSetCurrent(ManagementMistress);
 		ManagementMistressAngryCount++;
 	}
+}
+
+// Releases all girls that are locked in chastity items in the private room
+function ManagementReleasePrivateRoom() {
+	for (var P = 1; P < PrivateCharacter.length; P++) {
+		if (PrivateCharacter[P].IsVulvaChaste()) InventoryRemove(PrivateCharacter[P], "ItemPelvis");
+		if (PrivateCharacter[P].IsBreastChaste()) InventoryRemove(PrivateCharacter[P], "ItemBreast");
+	}
+	CharacterChangeMoney(Player, -50);
+}
+
+// When the player gets unlocked
+function ManagementUnlockItem(ItemGroup) {
+	InventoryRemove(PrivateCharacter[P], ItemGroup);
+	CharacterChangeMoney(Player, -25);
 }
