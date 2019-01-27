@@ -23,7 +23,7 @@ Ver Date        Path                                Author              Status  
 13B 20190117    C002_FirstClass_Outro               Dwscdv3             √
 13B 20190107    C002_FirstClass_Sarah               Dwscdv3             √
 13B 20190117    C002_FirstClass_SarahIntro          Dwscdv3             √
-                C002_FirstClass_Sidney              
+13B 20190128    C002_FirstClass_Sidney              Dwscdv3             √
 
 13B 20190106    C003_MorningDetention_Bag           Dwscdv3             √
 13B 20190106    C003_MorningDetention_Glass         Dwscdv3             √
