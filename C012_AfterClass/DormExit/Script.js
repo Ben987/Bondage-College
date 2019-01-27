@@ -30,7 +30,7 @@ function C012_AfterClass_DormExit_Click() {
 
 }
 
-// Chapter 12 After Class - Launch the Kinbaku club chapter if the player isn't restrained, gagged and is wearing school clothes
+// Chapter 12 After Class - Launch the Kinbaku club chapter if the player isn't restrained, gagged, is wearing school clothes and the club has not finished.
 function C012_AfterClass_DormExit_LaunchKinbaku() {
 	if (!Common_PlayerRestrained && !Common_PlayerGagged) {
 		if (Common_PlayerClothed && (Common_PlayerCostume == "")) {

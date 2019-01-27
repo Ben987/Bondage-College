@@ -59,6 +59,7 @@ var C101_KinbakuClub_Slaves_HandsSpecialTime = 0; // Time when a special hands i
 var C101_KinbakuClub_Slaves_AlreadyGround = false;
 var C101_KinbakuClub_Slaves_LongerDone = false;
 var C101_KinbakuClub_Slaves_NewMistress = false;
+var C101_KinbakuClub_Slaves_PlayerAlreadyCollared = false;
 
 // Calculates the scene parameters
 function C101_KinbakuClub_Slaves_CalcParams() {
@@ -72,6 +73,7 @@ function C101_KinbakuClub_Slaves_CalcParams() {
 	C101_KinbakuClub_Slaves_PlayerVeryAroused = (C101_KinbakuClub_Slaves_PlayerArousal > 400);
 	C101_KinbakuClub_Slaves_NotGaggedForIt = C101_KinbakuClub_Slaves_NotGaggingForIt && Common_PlayerGagged;
 	if (PlayerHasLockedInventory("Manacles")) PlayerClothes("Underwear");
+	C101_KinbakuClub_Slaves_PlayerAlreadyCollared = PlayerHasLockedInventory("Collar")
 }
 
 // Chapter 101 - Slaves Load
@@ -444,8 +446,13 @@ function C101_KinbakuClub_Slaves_EricaTrick() {
 // Chapter 101 - Slaves - Jenna leaves the player manacled
 function C101_KinbakuClub_Slaves_JennaLeaves() {
 	if (C101_KinbakuClub_Slaves_NewMistress) {
-		OverridenIntroText = GetText("Mistress");
-		C101_KinbakuClub_Slaves_CurrentStage = 330;
+		if (C101_KinbakuClub_Slaves_PlayerAlreadyCollared) {
+			C101_KinbakuClub_Slaves_CurrentStage = 350;
+			OverridenIntroText = GetText("SeeCollar");
+		} else {
+			OverridenIntroText = GetText("Mistress");
+			C101_KinbakuClub_Slaves_CurrentStage = 330;
+		}
 		C101_KinbakuClub_Slaves_NewMistress = false;
 	}
 	else {
@@ -860,4 +867,13 @@ function C101_KinbakuClub_Slaves_MistressesCollar() {
 	C999_Common_Collar_LockedOn = true;
 	C999_Common_Collar_KeyHolder = "Jenna";
 	CurrentTime = CurrentTime + 30000
+}
+
+// Chapter 101 - Slaves - Jenna locks a loose collar
+function C101_KinbakuClub_Slaves_CollarCheck() {
+	if (!C999_Common_Collar_LockedOn) {
+		C101_KinbakuClub_Slaves_MistressesCollar()
+		OverridenIntroText = GetText("LockCollar");
+		C101_KinbakuClub_Slaves_CurrentStage = 370;
+	}
 }

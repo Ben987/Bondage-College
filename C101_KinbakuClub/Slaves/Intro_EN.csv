@@ -31,7 +31,11 @@ Stage,LoveReq,SubReq,VarReq,IntroText,Image
 290,0,0,,,PlayerManacles.jpg
 295,0,0,,,PlayerManacles.jpg
 300,0,0,,,PlayerManacles.jpg
-310,0,0,,,PlayerDressing.jpg
+310,0,0,!PlayerAlreadyCollared,,PlayerDressing.jpg
+310,0,0,PlayerAlreadyCollared,,PlayerDressingCollar.jpg
 320,0,0,,,PlayerDressed.jpg
 330,0,0,,,PlayerJennaCollar.jpg
 340,0,0,,,PlayerCollared.jpg
+350,0,0,,,PlayerCollared.jpg
+360,0,0,,,PlayerCollared.jpg
+370,0,0,,,PlayerCollared.jpg

@@ -33,7 +33,18 @@ function C999_Common_TapeGag_Click() {
 // Chapter Common - Self TapeGag
 function C999_Common_TapeGag_SelfGag() {
 	if ((Common_BondageAllowed) && (Common_SelfBondageAllowed)) {
-		PlayerUngag();
+		if (PlayerHasLockedInventory("PantieGag") || PlayerHasLockedInventory("SockGag")) {
+			if (PlayerHasLockedInventory("PantieGag")) {
+				PlayerUngag();
+				PlayerLockInventory("PantieGag");
+				PlayerRemoveInventory("PantieGag", 1);
+			}
+			if (PlayerHasLockedInventory("SockGag")) {
+				PlayerUngag();
+				PlayerLockInventory("SockGag");
+				PlayerRemoveInventory("SockGag", 1);
+			}
+		} else PlayerUngag();
 		PlayerRemoveInventory("TapeGag", 1);
 		PlayerLockInventory("TapeGag");
 		C999_Common_TapeGag_HasLooseTape = PlayerHasInventory("TapeGag");

@@ -8,17 +8,25 @@ BodyLower,Small,Small
 BodyLower,Normal,Normal
 BodyLower,Large,Large
 BodyLower,Xlarge,Xlarge
+Hands,,Hands
+Hands,Default,Default
 Cloth,,Cloth
 Cloth,CollegeOutfit1,College
 Cloth,MaidOutfit1,Maid
 Cloth,StudentOutfit1,Student Black
 Cloth,StudentOutfit2,Student Bow
-Cloth,TopSkirt1,Top & Skirt
-Cloth,TopShorts1,Top & Shorts
 Cloth,BabydollDress1,Babydoll Dress
 Cloth,TeacherOutfit1,Teacher
-Cloth,TennisOutfit1,Tennis
 Cloth,ChineseDress1,Chinese Dress
+Cloth,ChineseDress2,Chinese Long
+Cloth,TShirt1,T-Shirt
+Cloth,TennisShirt1,Tennis
+Cloth,Sweater1,Sweater
+ClothLower,,Lower Cloth
+ClothLower,Skirt1,Skirt
+ClothLower,TennisSkirt1,Tennis
+ClothLower,Jeans1,Jeans
+ClothLower,Shorts1,Shorts
 HairBack,,Back Hair
 HairBack,HairBack1,Style 1
 HairBack,HairBack2,Style 2
@@ -76,9 +84,6 @@ Mouth,Mouth1,Style 1
 Mouth,Mouth2,Style 2
 Mouth,Mouth3,Style 3
 Mouth,Mouth4,Style 4
-Gloves,,Gloves
-Gloves,Gloves1,Short Gloves
-Gloves,Gloves1,Long Gloves
 Nipples,,Nipples Style
 Nipples,Nipples1,Small
 Nipples,Nipples2,Large
@@ -86,6 +91,10 @@ Bra,,Bra
 Bra,Bra1,Style 1
 Bra,Bra2,Style 2
 Bra,Bra7,Style 3
+Gloves,,Gloves
+Gloves,Gloves1,Short Gloves
+Gloves,Gloves2,Long Gloves
+Gloves,MistressGloves,Mistress Gloves
 Pussy,,Pussy
 Pussy,PussyLight1,Light 1
 Pussy,PussyLight2,Light 2
@@ -115,6 +124,7 @@ Shoes,Sneakers2,Sneakers Dark
 Shoes,Heels1,Heels
 Shoes,Heels2,Heels Strap
 Shoes,Boots1,Boots
+Shoes,MistressBoots,Mistress Boots
 ItemFeet,,Feet
 ItemFeet,NylonRope,Nylon Rope
 ItemFeet,HempRope,Hemp Rope
@@ -124,17 +134,26 @@ ItemLegs,,Legs
 ItemLegs,NylonRope,Nylon Rope
 ItemLegs,HempRope,Hemp Rope
 ItemLegs,LeatherBelt,Leather Belt
+ItemVulva,,Vulva
+ItemVulva,VibratingEgg,Vibrating Egg
+ItemVulva,VibratingWand,Vibrating Wand
+ItemButt,,Butt
+ItemButt,BlackButtPlug,Black Butt Plug
+ItemButt,TailButtPlug,Tail Butt Plug
 ItemPelvis,,Pelvis
 ItemPelvis,MetalChastityBelt,Metal Chastity Belt
-ItemPelvis,RegularVibratingEgg,Regular Vibrating Egg
 ItemPelvis,LeatherCrop,Leather Crop
 ItemPelvis,LeatherWhip,Leather Whip
 ItemTorso,,Torso
 ItemTorso,NylonRopeHarness,Nylon Rope Harness
 ItemTorso,HempRopeHarness,Hemp Rope Harness
 ItemTorso,LeatherHarness,Leather Harness
-ItemTorso,LeatherCrop,Leather Crop
-ItemTorso,LeatherWhip,Leather Whip
+ItemBreast,,Breast
+ItemBreast,StraightPiercing,Straight Piercing
+ItemBreast,RoundPiercing,Round Piercing
+ItemBreast,MetalChastityBra,Metal Chastity Bra
+ItemBreast,LeatherCrop,Leather Crop
+ItemBreast,LeatherWhip,Leather Whip
 ItemArms,,Arms
 ItemArms,NylonRope,Nylon Rope
 ItemArms,HempRope,Hemp Rope
@@ -151,6 +170,7 @@ ItemMouth,ClothOTMGag,Cloth OTM Gag
 ItemMouth,ClothOTNGag,Cloth OTN Gag
 ItemMouth,HarnessBallGag,Harness Ball Gag
 ItemMouth,HarnessPanelGag,Harness Panel Gag
+ItemMouth,RingGag,Ring Gag
 ItemMouth,DuctTapeGag,Duct Tape Gag
 ItemMouth,DusterGag,Duster Gag
 ItemMouth,RegularSleepingPill,Sleeping Pill

@@ -109,7 +109,7 @@ function ActorInteractionAvailable(LoveReq, SubReq, VarReq, InText, ForIntro) {
 		"（", // Full-width bracket used in CJK languages
 		"@",
 	];
-	if ((nonSpeechActionsStart.indexOf(InText.substr(0, 1) < 0)) && Common_PlayerGagged && !ForIntro) return false;
+	if ((nonSpeechActionsStart.indexOf(InText.substr(0, 1)) < 0) && Common_PlayerGagged && !ForIntro) return false;
 	
 	// Since nothing blocks, we allow it
 	return true;
@@ -223,7 +223,7 @@ function ActorSpecificInBondage(SpecificActor) {
 	} else {
 		for (var A = 0; A < Actor.length; A++)
 			if (Actor[A][ActorName] == SpecificActor)
-				return (ActorSpecificHasInventory(SpecificActor, "Rope") || ActorSpecificHasInventory(SpecificActor, "TwoRopes") || ActorSpecificHasInventory(SpecificActor, "ThreeRopes") || ActorSpecificHasInventory(SpecificActor, "Armbinder") || ActorSpecificHasInventory(SpecificActor, "Cuffs") || ActorSpecificHasInventory(SpecificActor, "Manacles") || ActorSpecificHasInventory(SpecificActor, "BallGag") || ActorSpecificHasInventory(SpecificActor, "TapeGag") || ActorSpecificHasInventory(SpecificActor, "ClothGag"));
+				return (ActorSpecificHasInventory(SpecificActor, "Rope") || ActorSpecificHasInventory(SpecificActor, "TwoRopes") || ActorSpecificHasInventory(SpecificActor, "ThreeRopes") || ActorSpecificHasInventory(SpecificActor, "Armbinder") || ActorSpecificHasInventory(SpecificActor, "Cuffs") || ActorSpecificHasInventory(SpecificActor, "Manacles") || ActorSpecificHasInventory(SpecificActor, "BallGag") || ActorSpecificHasInventory(SpecificActor, "TapeGag") || ActorSpecificHasInventory(SpecificActor, "ClothGag") || ActorSpecificHasInventory(SpecificActor, "PantieGag") || ActorSpecificHasInventory(SpecificActor, "SockGag"));
 	}
 }
 
@@ -262,7 +262,7 @@ function ActorIsGagged() {
 	if (CurrentActor == "")
 		return Common_PlayerGagged;
 	else
-		return (ActorHasInventory("BallGag") || ActorHasInventory("TapeGag") || ActorHasInventory("ClothGag"));
+		return (ActorHasInventory("BallGag") || ActorHasInventory("TapeGag") || ActorHasInventory("ClothGag") || ActorHasInventory("PantieGag") || ActorHasInventory("SockGag"));
 }
 
 // Returns true if the actor is chaste (if there's no actor, we return the player status)
@@ -286,6 +286,8 @@ function ActorUngag() {
 	if (ActorHasInventory("BallGag")) { ActorRemoveInventory("BallGag"); PlayerAddInventory("BallGag", 1); }
 	if (ActorHasInventory("ClothGag")) { ActorRemoveInventory("ClothGag"); PlayerAddInventory("ClothGag", 1); }
 	if (ActorHasInventory("TapeGag")) ActorRemoveInventory("TapeGag");
+	if (ActorHasInventory("PantieGag")) { ActorRemoveInventory("PantieGag"); PlayerAddInventory("PantieGag", 1); }
+	if (ActorHasInventory("SockGag")) { ActorRemoveInventory("SockGag"); PlayerAddInventory("SockGag", 1); }
 }
 
 // Remove the blindfold from the actor and return it to the player
@@ -342,6 +344,14 @@ function ActorApplyRestrain(RestrainName) {
 			CurrentTime = CurrentTime + 60000;
 		}
 
+		// Mouth filling before regular gags (only available in the Kinbaku club for now)
+		if (((RestrainName == "PantieGag") || (RestrainName == "SockGag")) && !(ActorHasInventory("BallGag") || ActorHasInventory("ClothGag") || ActorHasInventory("TapeGag")) && (CurrentChapter == "C101_KinbakuClub")) {
+			PlayerRemoveInventory(RestrainName, 1);
+			ActorAddInventory(RestrainName);
+			CurrentTime = CurrentTime + 60000;
+		}
+
+
 		// Blindfold (only available in the Kinbaku club for now)
 		if ((RestrainName == "Blindfold") && (CurrentChapter == "C101_KinbakuClub")) {
 			PlayerRemoveInventory("Blindfold", 1);
@@ -351,6 +361,15 @@ function ActorApplyRestrain(RestrainName) {
 
 		// Vaginal items (cannot be used if the actor is chaste)
 		if ((RestrainName == "ChastityBelt") || (RestrainName == "VibratingEgg")) {
+			if (!ActorIsChaste()) {
+				PlayerRemoveInventory(RestrainName, 1);
+				ActorAddInventory(RestrainName);
+				CurrentTime = CurrentTime + 60000;
+			} else return;
+		}
+
+		// Anal items (cannot be used if the actor is chaste) (only available in the Kinbaku club for now)
+		if ((RestrainName == "ChastityBelt") || (RestrainName == "ButtPlug")) {
 			if (!ActorIsChaste()) {
 				PlayerRemoveInventory(RestrainName, 1);
 				ActorAddInventory(RestrainName);
@@ -386,15 +405,16 @@ function ActorSpecificHasInventory(QueryActor, QueryInventory) {
 
 }
 
-// Clear all inventory from an actor (expect the egg, chastitybelt and collar)
+// Clear all inventory from an actor (expect the egg, plug, chastitybelt and collar)
 function ActorSpecificClearInventory(QueryActor, Recover) {	
 	for (var A = 0; A < Actor.length; A++)
 		if (Actor[A][ActorName] == QueryActor) {
 			var HadEgg = ActorSpecificHasInventory(QueryActor, "VibratingEgg");
+			var HadPlug = ActorSpecificHasInventory(QueryActor, "ButtPlug");
 			var HadCollar = ActorSpecificHasInventory(QueryActor, "Collar");
 			var HadBelt = ActorSpecificHasInventory(QueryActor, "ChastityBelt");
 			while (Actor[A][ActorInventory].length > 0) {
-				if ((Actor[A][ActorInventory][0] != "VibratingEgg") && (Actor[A][ActorInventory][0] != "TwoRopes") && (Actor[A][ActorInventory][0] != "ThreeRopes") && (Actor[A][ActorInventory][0] != "Collar") && (Actor[A][ActorInventory][0] != "ChastityBelt") && (Actor[A][ActorInventory][0] != "TapeGag") && Recover)
+				if ((Actor[A][ActorInventory][0] != "VibratingEgg") && (Actor[A][ActorInventory][0] != "ButtPlug") && (Actor[A][ActorInventory][0] != "TwoRopes") && (Actor[A][ActorInventory][0] != "ThreeRopes") && (Actor[A][ActorInventory][0] != "Collar") && (Actor[A][ActorInventory][0] != "ChastityBelt") && (Actor[A][ActorInventory][0] != "TapeGag") && Recover)
 					PlayerAddInventory(Actor[A][ActorInventory][0], 1);
 				if ((Actor[A][ActorInventory][0] == "ThreeRopes") && Recover)
 					PlayerAddInventory("Rope", 1);
@@ -403,6 +423,7 @@ function ActorSpecificClearInventory(QueryActor, Recover) {
 				Actor[A][ActorInventory].splice(0, 1);
 			}
 			if (HadEgg) Actor[A][ActorInventory].push("VibratingEgg");
+			if (HadPlug) Actor[A][ActorInventory].push("ButtPlug");
 			if (HadCollar) Actor[A][ActorInventory].push("Collar");
 			if (HadBelt) Actor[A][ActorInventory].push("ChastityBelt");
 		}

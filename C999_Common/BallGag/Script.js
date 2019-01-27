@@ -33,7 +33,18 @@ function C999_Common_BallGag_Click() {
 // Chapter Common - Self BallGag
 function C999_Common_BallGag_SelfGag() {
 	if ((Common_BondageAllowed) && (Common_SelfBondageAllowed)) {
-		PlayerUngag();
+		if (PlayerHasLockedInventory("PantieGag") || PlayerHasLockedInventory("SockGag")) {
+			if (PlayerHasLockedInventory("PantieGag")) {
+				PlayerUngag();
+				PlayerLockInventory("PantieGag");
+				PlayerRemoveInventory("PantieGag", 1);
+			}
+			if (PlayerHasLockedInventory("SockGag")) {
+				PlayerUngag();
+				PlayerLockInventory("SockGag");
+				PlayerRemoveInventory("SockGag", 1);
+			}
+		} else PlayerUngag();
 		PlayerRemoveInventory("BallGag", 1);
 		PlayerLockInventory("BallGag");
 		C999_Common_BallGag_HasLooseBallGag = PlayerHasInventory("BallGag");

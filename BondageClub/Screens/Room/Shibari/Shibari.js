@@ -119,7 +119,7 @@ function ShibariRestrainPlayer(Level) {
 	if (Level >= 3) InventoryWear(Player, "SuspensionHempRope", "ItemFeet", "Default", (Level - 1) * 3);
 	if ((Level >= 4) && (InventoryGet(Player, "Cloth") == null) && (InventoryGet(Player, "ItemTorso") == null)) InventoryWear(Player, "HempRopeHarness", "ItemTorso", "Default", (Level - 1) * 3);
 	if (Level >= 4) InventoryWearRandom(Player, "ItemMouth");
-	ShibariTeacherReleaseTimer = CommonTime() + ((Level + 1) * 30000);
+	ShibariTeacherReleaseTimer = CommonTime() + 60000;
 }
 
 // On the first submissive comment, we lower the dominant value

@@ -1,0 +1,17 @@
+PlayerGagged,,,Welcome to Mistress lair.  The club management office.,,
+0,,,Welcome to Mistress lair.  The club management office.,,
+0,,Who are you?,"I'm DialogCharacterName, pleased to meet you Miss.",DialogRemove(),
+0,,Why are you restrained?,(She struggles playfully.)  Mistress loves to have me restrained while she works.,DialogRemove(),
+0,,Can I play with you?,(She shakes her head no.)  I don't think Mistress would approve.,,
+0,,(Play with her.),,SwitchToAngryMistress(),CanPlayWithoutPermission()
+0,10,(Play with her.),(You get closer to her.),,MistressAllowPlay
+0,,(Release her.),,SwitchToAngryMistress(),CanPlayWithoutPermission()
+0,,"I need to go, take care.  (Leave her.)",,DialogLeave(),
+10,,(Try to talk with her.),(You both try to speak to each other but fail to have a coherent conversation.),,
+10,,(Lean on her.),(You lean on each other shoulder and rest for a while.),,
+10,,(Nuzzle with her.),(You clumsily nuzzle each other in your restraints and giggle.),,
+10,,(Give her a restrained hug.),(You get close to each other for a long submissive hug.),,
+10,,(Rub your body against hers.),(You both rub your bodies against each other and moan slowly.),,
+10,,(Try to masturbate her.),(You rub your armbinder against her chastity belt and realize that you won't be able to give her any pleasure.),,
+10,,(Try to release her.),"(You struggle in your armbinder and try to release her, but fail miserably.)",,
+10,0,(Step back.),(You step back.),,

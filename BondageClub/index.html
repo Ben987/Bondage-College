@@ -42,11 +42,13 @@
 <script src="Scripts/Import.js"></script>
 <script src="Scripts/Asset.js"></script>
 <script src="Scripts/MiniGame.js"></script>
+<script src="Scripts/NPC.js"></script>
 <script src="Assets/Female3DCG/Female3DCG.js"></script>
 <script src="Screens/Character/Login/Login.js"></script>
 <script src="Screens/Character/Appearance/Appearance.js"></script>
 <script src="Screens/Character/Creation/Creation.js"></script>
 <script src="Screens/Character/InformationSheet/InformationSheet.js"></script>
+<script src="Screens/Character/Wardrobe/Wardrobe.js"></script>
 <script src="Screens/Character/Cheat/Cheat.js"></script>
 <script src="Screens/Room/MainHall/MainHall.js"></script>
 <script src="Screens/Room/Shop/Shop.js"></script>
@@ -54,7 +56,14 @@
 <script src="Screens/Room/MaidQuarters/MaidQuarters.js"></script>
 <script src="Screens/Room/Shibari/Shibari.js"></script>
 <script src="Screens/Room/KidnapLeague/KidnapLeague.js"></script>
+<script src="Screens/Room/Private/Private.js"></script>
+<script src="Screens/Room/Management/Management.js"></script>
 <script src="Screens/Room/Gambling/Gambling.js"></script>
+<script src="Screens/Room/Nursery/Nursery.js"></script>
+<script src="Screens/Room/SlaveMarket/SlaveMarket.js"></script>
+<script src="Screens/Room/Prison/Prison.js"></script>
+<script src="Screens/Room/Photographic/Photographic.js"></script>
+<script src="Screens/Room/Stable/Stable.js"></script>
 <script src="Screens/MiniGame/Kidnap/Kidnap.js"></script>
 <script src="Screens/MiniGame/MaidDrinks/MaidDrinks.js"></script>
 <script src="Screens/MiniGame/MaidCleaning/MaidCleaning.js"></script>
@@ -68,7 +77,7 @@
 
 // When the code is loaded, we start the game engine
 window.onload = function() {
-	CheatImport();
+	//CheatImport();
 	CommonIsMobile = CommonDetectMobile();
 	DrawLoad();
 	AssetLoadAll();

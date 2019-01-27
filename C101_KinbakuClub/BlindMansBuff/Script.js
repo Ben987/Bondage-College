@@ -1,5 +1,6 @@
 var C101_KinbakuClub_BlindMansBuff_CurrentStage = 0;
 var C101_KinbakuClub_BlindMansBuff_PlayerIsCuffed = false;
+var C101_KinbakuClub_BlindMansBuff_PlayerIsTied = false;
 var C101_KinbakuClub_BlindMansBuff_PlayerCuffCall = false;
 var C101_KinbakuClub_BlindMansBuff_PlayerIsGagged = false;
 var C101_KinbakuClub_BlindMansBuff_TouchSomebody = false;
@@ -16,7 +17,7 @@ var C101_KinbakuClub_BlindMansBuff_PlayerIsFree = true;
 // Calculates the scene parameters
 function C101_KinbakuClub_BlindMansBuff_CalcParams() {
 	C101_KinbakuClub_BlindMansBuff_PlayerIsCuffed = PlayerHasLockedInventory("Cuffs");
-	//if (!PlayerHasLockedInventory("Cuffs")) C101_KinbakuClub_BlindMansBuff_PlayerIsCuffed = false;
+	C101_KinbakuClub_BlindMansBuff_PlayerIsTied = PlayerHasLockedInventory("Rope");
 	C101_KinbakuClub_BlindMansBuff_PlayerIsGagged = Common_PlayerGagged;
 	C101_KinbakuClub_BlindMansBuff_PlayerIsFree = Common_PlayerNotRestrained;
 }
@@ -243,7 +244,7 @@ function C101_KinbakuClub_BlindMansBuff_UnCuffed() {
 
 // Chapter 101 - BlindMansBuff - Player has their ropes untied
 function C101_KinbakuClub_BlindMansBuff_Untie() {
-	PlayerUnlockInventory("rope");
+	PlayerReleaseBondage();
 	C101_KinbakuClub_BlindMansBuff_CalcParams()
 }
 
@@ -252,7 +253,7 @@ function C101_KinbakuClub_BlindMansBuff_SlaveCall() {
 	if (C101_KinbakuClub_BlindMansBuff_EricaHelping) C101_KinbakuClub_BlindMansBuff_CurrentStage == 110;
 	if (C101_KinbakuClub_BlindMansBuff_GagCall >= 1) {
 		OverridenIntroText = GetText("Helped");
-		PlayerUnlockInventory("BallGag");
+		PlayerUngag();
 		C101_KinbakuClub_BlindMansBuff_CalcParams()
 	}
 	C101_KinbakuClub_BlindMansBuff_GagCall++;

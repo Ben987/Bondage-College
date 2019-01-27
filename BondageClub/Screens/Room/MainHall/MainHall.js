@@ -12,7 +12,8 @@ function MainHallLoad() {
 	MainHallMaid = CharacterLoadNPC("NPC_MainHall_Maid");
 	MainHallIsMaid = LogQuery("JoinedSorority", "Maid");
 	MainHallIsHeadMaid = LogQuery("LeadSorority", "Maid");
-	CommonReadCSV("NoArravVar", "Room", "KidnapLeague", "Dialog_NPC_KidnapLeague_RandomKidnapper_" + CommonGetWorkingLanguage());	
+	CommonReadCSV("NoArravVar", "Room", "KidnapLeague", "Dialog_NPC_KidnapLeague_RandomKidnapper_" + CommonGetWorkingLanguage());
+	CommonReadCSV("NoArravVar", "Room", "Private", "Dialog_NPC_Private_Custom_" + CommonGetWorkingLanguage());
 }
 
 // Run the main hall screen
@@ -31,12 +32,19 @@ function MainHallRun() {
 		if (Player.CanWalk()) DrawButton(1525, 240, 450, 65, TextGet("MaidQuarters"), "White");
 		if (Player.CanWalk()) DrawButton(1525, 335, 450, 65, TextGet("ShibariDojo"), "White");
 		if (Player.CanWalk()) DrawButton(1525, 430, 450, 65, TextGet("KidnapLeague"), "White");
+		if (Player.CanWalk()) DrawButton(1525, 525, 450, 65, TextGet("PrivateRoom"), "White");
+		if (Player.CanWalk()) DrawButton(1525, 620, 450, 65, TextGet("ClubManagement"), "White");
 
 		// Draws the custom content rooms
 		if (Player.CanWalk()) DrawButton(25, 25, 450, 65, TextGet("Gambling"), "White");
+		if (Player.CanWalk()) DrawButton(25, 115, 450, 65, TextGet("Prison"), "White");
+		if (Player.CanWalk()) DrawButton(25, 205, 450, 65, TextGet("Photographic"), "White");
+		if (Player.CanWalk()) DrawButton(25, 295, 450, 65, TextGet("Stable"), "White");
+		if (Player.CanWalk()) DrawButton(25, 385, 450, 65, TextGet("Nursery"), "White");
+		if (Player.CanWalk()) DrawButton(25, 475, 450, 65, TextGet("SlaveMarket"), "White");
 		
 		// Check if there's a new maid rescue event to trigger
-		if ((!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk()) && (MainHallNextEventTimer == null)) MainHallNextEventTimer = ReputationTimer("Dominant", true);
+		if ((!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk()) && (MainHallNextEventTimer == null)) MainHallNextEventTimer = CommonTime() + Math.floor(30000 * (1 + Math.random()));
 		if ((MainHallNextEventTimer != null) && (new Date().getTime() > MainHallNextEventTimer)) {
 			MainHallNextEventTimer = null;
 			if (!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk()) {
@@ -52,8 +60,8 @@ function MainHallRun() {
 
 // When the player walks to another room, she can be attacked by a random kidnapper
 function MainHallWalk(RoomName) {
-	if ((Math.random() > 0.45) && (KidnapLeagueRandomKidnapperTimer < CommonTime()) && (ReputationGet("Kidnap") > 0)) KidnapLeagueRandomIntro();
-	else if ((KidnapLeagueBountyLocation == RoomName) && (KidnapLeagueBounty != null) && (KidnapLeagueBountyVictory == null) && Player.CanInteract() && (RepuationGet("Kidnap") > 0)) KidnapLeagueBountyStart();
+	if ((Math.random() > 0.95) && (KidnapLeagueRandomKidnapperTimer < CommonTime()) && (ReputationGet("Kidnap") > 0)) KidnapLeagueRandomIntro();
+	else if ((KidnapLeagueBountyLocation == RoomName) && (KidnapLeagueBounty != null) && (KidnapLeagueBountyVictory == null) && Player.CanInteract() && (ReputationGet("Kidnap") > 0)) KidnapLeagueBountyStart();
 	else CommonSetScreen("Room", RoomName);
 }
 
@@ -75,9 +83,16 @@ function MainHallClick() {
 		if ((MouseX >= 1525) && (MouseX < 1975) && (MouseY >= 240) && (MouseY < 305) && Player.CanWalk()) MainHallWalk("MaidQuarters");
 		if ((MouseX >= 1525) && (MouseX < 1975) && (MouseY >= 335) && (MouseY < 400) && Player.CanWalk()) MainHallWalk("Shibari");
 		if ((MouseX >= 1525) && (MouseX < 1975) && (MouseY >= 430) && (MouseY < 495) && Player.CanWalk()) MainHallWalk("KidnapLeague");
+		if ((MouseX >= 1525) && (MouseX < 1975) && (MouseY >= 525) && (MouseY < 590) && Player.CanWalk()) MainHallWalk("Private");
+		if ((MouseX >= 1525) && (MouseX < 1975) && (MouseY >= 620) && (MouseY < 685) && Player.CanWalk()) MainHallWalk("Management");
 
 		// Custom content rooms
 		if ((MouseX >= 25) && (MouseX < 475) && (MouseY >= 25) && (MouseY < 90) && Player.CanWalk()) MainHallWalk("Gambling");
+		if ((MouseX >= 25) && (MouseX < 475) && (MouseY >= 115) && (MouseY < 180) && Player.CanWalk()) MainHallWalk("Prison");
+		if ((MouseX >= 25) && (MouseX < 475) && (MouseY >= 205) && (MouseY < 270) && Player.CanWalk()) MainHallWalk("Photographic");
+		if ((MouseX >= 25) && (MouseX < 475) && (MouseY >= 295) && (MouseY < 360) && Player.CanWalk()) MainHallWalk("Stable");
+		if ((MouseX >= 25) && (MouseX < 475) && (MouseY >= 385) && (MouseY < 450) && Player.CanWalk()) MainHallWalk("Nursery");
+		if ((MouseX >= 25) && (MouseX < 475) && (MouseY >= 475) && (MouseY < 540) && Player.CanWalk()) MainHallWalk("SlaveMarket");
 
 	}
 

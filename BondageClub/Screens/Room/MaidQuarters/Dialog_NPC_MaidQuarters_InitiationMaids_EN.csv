@@ -23,6 +23,6 @@ MaidInitiationTransition,,,(A maid comes close to you with a large wooden paddle
 80,90,(Whimper and try to beg for mercy.),"(She smashes the paddle with strength, almost making you fall.)  You've did it!  Welcome to the maid sorority!",DominantRepChange(-2)
 80,90,(Defy them and present your butt proudly.),"(She smashes the paddle with strength, almost making you fall.)  You've did it!  Welcome to the maid sorority!",DominantRepChange(2)
 80,,Oh my god!,,DialogRemove()
-90,,(Catch your breath.),,InitiationTransition(MaidQuartersMaid)
-90,,(Jump of joy clumsily.),,InitiationTransition(MaidQuartersMaid)
-90,,(Cry a few tears.),,InitiationTransition(MaidQuartersMaid)
+90,,(Catch your breath.),,"InitiationTransition(""MainMaid"")"
+90,,(Jump of joy clumsily.),,"InitiationTransition(""MainMaid"")"
+90,,(Cry a few tears.),,"InitiationTransition(""MainMaid"")"

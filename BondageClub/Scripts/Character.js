@@ -32,10 +32,13 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		CanTalk : function() { return ((this.Effect.indexOf("GagLight") < 0) && (this.Effect.indexOf("GagNormal") < 0) && (this.Effect.indexOf("GagHeavy") < 0) && (this.Effect.indexOf("GagTotal") < 0)) },
 		CanWalk : function() { return (this.Effect.indexOf("Freeze") < 0) },
 		CanInteract : function() { return (this.Effect.indexOf("Block") < 0) },
-		IsProne : function() { return (this.Effect.indexOf("Prone") > 0) },
+		IsProne : function() { return (this.Effect.indexOf("Prone") >= 0) },
 		IsRestrained : function() { return ((this.Effect.indexOf("Freeze") >= 0) || (this.Effect.indexOf("Block") >= 0) || (this.Effect.indexOf("Prone") >= 0)) },
-		IsBlind : function() { return ((Player.Effect.indexOf("BlindLight") >= 0) || (Player.Effect.indexOf("BlindNormal") >= 0) || (Player.Effect.indexOf("BlindHeavy") >= 0)) }
-		
+		IsBlind : function() { return ((Player.Effect.indexOf("BlindLight") >= 0) || (Player.Effect.indexOf("BlindNormal") >= 0) || (Player.Effect.indexOf("BlindHeavy") >= 0)) },
+		IsChaste : function() { return ((this.Effect.indexOf("Chaste") >= 0) || (this.Effect.indexOf("BreastChaste") >= 0)) },
+		IsVulvaChaste : function() { return (this.Effect.indexOf("Chaste") >= 0) },
+		IsBreastChaste : function() { return (this.Effect.indexOf("BreastChaste") >= 0) },
+		IsOwned : function() { return ((this.Owner != null) && (this.Owner != "")) }
 	}
 
 	// If the character doesn't exist, we create it
@@ -45,8 +48,10 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		Character[CharacterID] = NewCharacter;
 
 	// Creates the inventory and default appearance
-	if (CharacterID == 0) Player = NewCharacter;
-	CharacterAppearanceSetDefault(NewCharacter);
+	if (CharacterID == 0) {
+		Player = NewCharacter;
+		CharacterAppearanceSetDefault(NewCharacter);
+	}
 		
 	// Load the character image
 	CharacterLoadCanvas(NewCharacter);
@@ -85,6 +90,8 @@ function CharacterBuildDialog(C, CSV) {
 			if ((CSV[L][3] != null) && (CSV[L][3].trim() != "")) D.Result = CSV[L][3].replace("DialogCharacterName", C.Name).replace("DialogPlayerName", Player.Name);
 			if ((CSV[L][4] != null) && (CSV[L][4].trim() != "")) D.Function = ((CSV[L][4].trim().substring(0, 6) == "Dialog") ? "" : CurrentScreen) + CSV[L][4];
 			if ((CSV[L][5] != null) && (CSV[L][5].trim() != "")) D.Prerequisite = CSV[L][5];
+			if ((CSV[L][6] != null) && (CSV[L][6].trim() != "")) D.Group = CSV[L][6];
+			if ((CSV[L][7] != null) && (CSV[L][7].trim() != "")) D.Trait = CSV[L][7];
 			C.Dialog.push(D);
 
 		}
@@ -109,6 +116,35 @@ function CharacterLoadCSVDialog(C) {
         }
     });
 	
+}
+
+// Loads a wardrobe character from storage
+function CharacterLoadFromStorage(StorageName) {
+
+	// Checks if the NPC already exists and returns it if it's the case
+	for (var C = 0; C < Character.length; C++)
+		if (Character[C].AccountName == "Template-" + StorageName)
+			return Character[C];
+		
+	// Gets the character from storage
+	CharacterReset(Character.length, "Female3DCG");
+	C = Character[Character.length - 1];
+	C.AccountName = "Template-" + StorageName;
+	CharacterAppearanceBuildAssets(C);
+	
+	// If there's a saved version, we take it, if not we randomize the slot
+	var App = JSON.parse(localStorage.getItem(StorageName));
+	if (App != null) {
+		C.Appearance = [];
+		for(var A = 0; A < App.length; A++)
+			if ((App[A].Asset != null) && (App[A].Asset.Group.Category == "Appearance"))
+				if ((App[A].Asset.Value == 0) || InventoryAvailable(Player, App[A].Asset.Name, App[A].Asset.Group.Name))
+					C.Appearance.push(App[A]);
+	}
+	else
+		CharacterAppearanceFullRandom(C);
+	return C;
+
 }
 
 // Loads in the NPC character in the buffer
@@ -139,6 +175,19 @@ function CharacterLoadNPC(NPCType) {
 		C.AllowItem = (LogQuery("LeadSorority", "Maid"));
 	}
 
+	// Mistress archetype
+	if (NPCType.indexOf("Mistress") >= 0) {
+		var ColorList = ["#333333", "#AA4444", "#AAAAAA"];
+		var Color = CommonRandomItemFromList("", ColorList);
+		CharacterAppearanceSetItem(C, "Hat", null);
+		InventoryAdd(C, "MistressGloves", "Gloves");
+		CharacterAppearanceSetItem(C, "Gloves", C.Inventory[C.Inventory.length - 1].Asset);
+		CharacterAppearanceSetColorForGroup(C, Color, "Gloves");
+		InventoryAdd(C, "MistressBoots", "Shoes");
+		CharacterAppearanceSetItem(C, "Shoes", C.Inventory[C.Inventory.length - 1].Asset);
+		CharacterAppearanceSetColorForGroup(C, Color, "Shoes");
+	}
+	
 	// Returns the new character
 	return C;
 	
@@ -246,6 +295,25 @@ function CharacterNaked(C) {
 	CharacterRefresh(C);
 }
 
+// Removes all appearance items from the character
+function CharacterIsNaked(C) {
+	for(var A = 0; A < C.Appearance.length; A++) {
+		if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Category == "Appearance") && C.Appearance[A].Asset.Group.AllowNone && !C.Appearance[A].Asset.Group.KeepNaked) return false;
+		if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Name == "ItemPelvis")) return false;
+	}
+	return true;
+}
+
+// Removes all appearance items from the character expect underwear
+function CharacterUnderwear(C, Appearance) {
+	CharacterAppearanceNaked(C);
+	for(var A = 0; A < Appearance.length; A++)
+		if ((Appearance[A].Asset != null) && Appearance[A].Asset.Group.Underwear && (Appearance[A].Asset.Group.Category == "Appearance"))
+			C.Appearance.push(Appearance[A]);
+	C.Appearance = CharacterAppearanceSort(C.Appearance);
+	CharacterRefresh(C);
+}
+
 // Redress the character based on a specific appearance object
 function CharacterDress(C, Appearance) {
 	for(var A = 0; A < Appearance.length; A++)
@@ -278,11 +346,23 @@ function CharacterGetBonus(C, BonusType) {
 }
 
 // Fully restrain a character with random items
-function CharacterFullRandomRestrain(C) {
-	InventoryWearRandom(Player, "ItemArms");
-	if (Math.random() >= 0.6) InventoryWearRandom(Player, "ItemHead");
-	if (Math.random() >= 0.3) InventoryWearRandom(Player, "ItemMouth");
-	if (Math.random() >= 0.6) InventoryWearRandom(Player, "ItemNeck");
-	if (Math.random() >= 0.3) InventoryWearRandom(Player, "ItemLegs");
-	if (Math.random() >= 0.3) InventoryWearRandom(Player, "ItemFeet");
+function CharacterFullRandomRestrain(C, Ratio) {
+	
+	// Sets the ratio depending on the parameter
+	var RatioRare = 0.75;
+	var RatioNormal = 0.25;	
+	if (Ratio != null) {
+		if (Ratio.trim().toUpperCase() == "FEW") { RatioRare = 1; RatioNormal = 0.5; }
+		if (Ratio.trim().toUpperCase() == "LOT") { RatioRare = 0.5; RatioNormal = 0; }
+		if (Ratio.trim().toUpperCase() == "ALL") { RatioRare = 0; RatioNormal = 0; }
+	}
+	
+	// Apply each item if needed
+	if (InventoryGet(C, "ItemArms") == null) InventoryWearRandom(C, "ItemArms");
+	if ((Math.random() >= RatioRare) && (InventoryGet(C, "ItemHead") == null)) InventoryWearRandom(C, "ItemHead");
+	if ((Math.random() >= RatioNormal) && (InventoryGet(C, "ItemMouth") == null)) InventoryWearRandom(C, "ItemMouth");
+	if ((Math.random() >= RatioRare) && (InventoryGet(C, "ItemNeck") == null)) InventoryWearRandom(C, "ItemNeck");
+	if ((Math.random() >= RatioNormal) && (InventoryGet(C, "ItemLegs") == null)) InventoryWearRandom(C, "ItemLegs");
+	if ((Math.random() >= RatioNormal) && (InventoryGet(C, "ItemFeet") == null)) InventoryWearRandom(C, "ItemFeet");
+
 }

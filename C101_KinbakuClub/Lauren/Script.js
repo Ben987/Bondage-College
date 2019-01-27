@@ -57,8 +57,8 @@ function C101_KinbakuClub_Lauren_Load() {
 	// Different stage if player approaches Lauren while tied or cuffed
 	if (C101_KinbakuClub_Lauren_CurrentStage <= 150){
 		if (C101_KinbakuClub_Lauren_CurrentStage >= 30) C101_KinbakuClub_Lauren_PreviousStage = C101_KinbakuClub_Lauren_CurrentStage;
-		if (PlayerHasLockedInventory("Rope")) C101_KinbakuClub_Lauren_CurrentStage = 10;
-		if (!PlayerHasLockedInventory("Rope") && (C101_KinbakuClub_Lauren_CurrentStage == 10 || C101_KinbakuClub_Lauren_CurrentStage == 15)) C101_KinbakuClub_Lauren_CurrentStage = C101_KinbakuClub_Lauren_PreviousStage;
+		if (Common_PlayerRestrained) C101_KinbakuClub_Lauren_CurrentStage = 10;
+		if (!Common_PlayerRestrained && (C101_KinbakuClub_Lauren_CurrentStage == 10 || C101_KinbakuClub_Lauren_CurrentStage == 15)) C101_KinbakuClub_Lauren_CurrentStage = C101_KinbakuClub_Lauren_PreviousStage;
 		if (C101_KinbakuClub_Lauren_CurrentStage < 50 && PlayerHasLockedInventory("Cuffs")) C101_KinbakuClub_Lauren_CurrentStage = 20;
 		if (!Common_PlayerRestrained && ((C101_KinbakuClub_Lauren_CurrentStage > 0 && C101_KinbakuClub_Lauren_CurrentStage < 30) || (C101_KinbakuClub_Lauren_CurrentStage == 50 || C101_KinbakuClub_Lauren_CurrentStage == 55))) C101_KinbakuClub_Lauren_CurrentStage = 0;
 		if (PlayerHasLockedInventory("Cuffs") && (C101_KinbakuClub_Lauren_CurrentStage == 140 || C101_KinbakuClub_Lauren_CurrentStage == 145)) {

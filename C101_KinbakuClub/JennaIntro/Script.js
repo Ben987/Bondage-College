@@ -37,6 +37,7 @@ function C101_KinbakuClub_JennaIntro_Load() {
 	if (C101_KinbakuClub_JennaIntro_CurrentStage == 80) LeaveIcon = "Leave";
 	else LeaveIcon = "";
 
+	GameLogAdd("KinbakuClubInfo");
 }
 
 // Chapter 101 - Jenna Run
@@ -66,12 +67,15 @@ function C101_KinbakuClub_JennaIntro_ShortCut() {
 	PlayerAddInventory("BallGag", 4);
 	PlayerAddInventory("TapeGag", 8);
 	PlayerAddInventory("ClothGag", 4);
+	PlayerAddInventory("PantieGag", 4);
+	PlayerAddInventory("SockGag", 4);
 	PlayerAddInventory("Collar", 4);
 	PlayerAddInventory("Crop", 1);
 	PlayerAddInventory("VibratingEgg", 4);
 	PlayerAddInventory("ChastityBelt", 4);
 	PlayerAddInventory("Armbinder", 4);
 	PlayerAddInventory("Blindfold", 4);
+	PlayerAddInventory("ButtPlug", 4);
 	C101_KinbakuClub_JennaIntro_Done()
 	SetScene(CurrentChapter, "ClubRoom1")
 	PlayerAddSkill("Arts", 1);

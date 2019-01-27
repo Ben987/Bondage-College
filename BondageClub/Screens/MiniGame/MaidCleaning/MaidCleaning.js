@@ -34,12 +34,13 @@ function MaidCleaningDrawSpots() {
 function MaidCleaningLoad() {
 
 	// Picks a random place to clean
-	var Room = Math.floor(Math.random() * 5);
+	var Room = Math.floor(Math.random() * 6);
 	if (Room == 0) MaidCleaningBackground = "MainHall";
-	if (Room == 1) MaidCleaningBackground = "ShibariDojo";
+	if (Room == 1) MaidCleaningBackground = "Shibari";
 	if (Room == 2) MaidCleaningBackground = "Shop";
 	if (Room == 3) MaidCleaningBackground = "Introduction";
 	if (Room == 4) MaidCleaningBackground = "Dressing";
+	if (Room == 5) MaidCleaningBackground = "KidnapLeague";
 
 	// The higher the difficulty, the more spots there will be (less spots on mobile since we cannot swipe the mouse)
 	MaidCleaningPlayerX = 500;

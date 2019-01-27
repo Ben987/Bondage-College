@@ -56,8 +56,8 @@ function DrawLoad() {
 // Returns the image file or build it from the source
 function DrawGetImage(Source) {
 
-    // Search in the cache to find the image
-    if (!DrawCacheImage[Source]) {
+    // Search in the cache to find the image and make sure this image is valid
+    if (!DrawCacheImage[Source] || !DrawCacheImage[Source].complete || (typeof(DrawCacheImage[Source].naturalWidth) == "undefined") || (DrawCacheImage[Source].naturalWidth == 0)) {
         var img = new Image;
         img.src = Source;
         DrawCacheImage[Source] = img;

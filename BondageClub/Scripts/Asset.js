@@ -18,6 +18,7 @@ function AssetGroupAdd(NewAssetFamily, NewAsset) {
 		ColorSchema: (NewAsset.Color == null) ? ["Default"] : NewAsset.Color,
 		ParentSize: (NewAsset.ParentSize == null) ? "" : NewAsset.ParentSize,
 		ParentColor: (NewAsset.ParentColor == null) ? "" : NewAsset.ParentColor,
+		Underwear: (NewAsset.Underwear == null) ? false : NewAsset.Underwear,
 		Zone: NewAsset.Zone,
 		SetPose: NewAsset.SetPose,
 		AllowPose: NewAsset.AllowPose,
@@ -38,13 +39,16 @@ function AssetAdd(NewAsset) {
 		Name: NewAsset.Name,
 		Description: NewAsset.Name,
 		Group: AssetCurrentGroup,
+		ParentItem : NewAsset.ParentItem,
 		Enable: (NewAsset.Enable == null) ? true : NewAsset.Enable,
 		Visible: (NewAsset.Visible == null) ? true : NewAsset.Visible,
 		Wear: (NewAsset.Wear == null) ? true : NewAsset.Wear,
+		BuyGroup: NewAsset.BuyGroup,
 		Effect: NewAsset.Effect,
 		Bonus: NewAsset.Bonus,
 		Block: NewAsset.Block,
 		Hide: NewAsset.Hide,
+		Require: NewAsset.Require,
 		SetPose: NewAsset.SetPose,
 		Value: (NewAsset.Value == null) ? 0 : NewAsset.Value,
 		Difficulty: (NewAsset.Difficulty == null) ? 0 : NewAsset.Difficulty,
@@ -55,6 +59,7 @@ function AssetAdd(NewAsset) {
 		RemoveTime: (NewAsset.RemoveTime == null) ? ((NewAsset.Time == null) ? 0 : NewAsset.Time) : NewAsset.RemoveTime,
 		DrawingPriority: NewAsset.Priority,
 		HeightModifier: (NewAsset.Height == null) ? 0 : NewAsset.Height,
+		Alpha: NewAsset.Alpha,
 		Prerequisite: NewAsset.Prerequisite
 	}
 	Asset.push(A);

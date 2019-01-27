@@ -99,9 +99,9 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 440,0,0,,A gag would help|you concentrate.,"I don't think it would, but if you insist.",450,0,1,Leave()
 440,0,0,,Would you like a gag?,"Not really, but it shouldn't|make this any more difficult.",450,0,0,Leave()
 450,0,0,,Do you give up?,"No, give me a little longer.",450,0,0,GiveUpGagged()
-450,0,0,,So you like the|feel of satin?,"(You gently draw a finger over a bra cup,|startling and causing her to drop the hair clip.)",460,-1,0,
-450,0,0,,"Too slow, times up.|(Release her.)",(You release Lauren and she hastily redresses.),510,-1,1,ReleaseLauren()
-450,0,0,,I think I could escape|that before you.,(Nicole interrupts.) There are plenty more|hand and leg cuffs if you want to try.,455,0,0,NoLeave()
+450,0,0,!Common_PlayerRestrained,So you like the|feel of satin?,"(You gently draw a finger over a bra cup,|startling and causing her to drop the hair clip.)",460,-1,0,
+450,0,0,!Common_PlayerRestrained,"Too slow, times up.|(Release her.)",(You release Lauren and she hastily redresses.),510,-1,1,ReleaseLauren()
+450,0,0,!Common_PlayerRestrained,I think I could escape|that before you.,(Nicole interrupts.) There are plenty more|hand and leg cuffs if you want to try.,455,0,0,NoLeave()
 450,0,0,LaurenGagged,(Ungag her.),"(You remove her gag.)|Thank you, this was tricky enough already.",450,0,0,UngagLauren()
 455,0,0,,I was kidding.,(You turn back to Lauren.),450,0,0,Leave()
 455,0,0,,"Yeah okay,|I'll give it a go.","(You remove you uniform and after unlocking her|cuffs, Nicole helps cuff you to another chair.)",490,0,-3,PlayerCuffed()

@@ -249,9 +249,7 @@ function C101_KinbakuClub_Erica_PlayerSlaved() {
 	C101_KinbakuClub_Erica_PlayerIsSlave = true;
 	CurrentTime = CurrentTime + 180000;
 	PlayerClothes("Underwear");
-	PlayerUnlockInventory("Cuffs");
-	PlayerUnlockInventory("BallGag");
-	PlayerUnlockInventory("TapeGag");
+	PlayerReleaseBondage();
 	PlayerLockInventory("Rope");
 	PlayerLockInventory("ClothGag");
 	PlayerLockInventory("Collar");
@@ -453,7 +451,7 @@ function C101_KinbakuClub_Erica_SkipToTransition() {
 // Chapter 101 - Erica - remove players Collar
 function C101_KinbakuClub_Erica_PlayerReleased() {
 	CurrentTime = CurrentTime + 60000;
-	PlayerUnlockInventory("Collar")
+	if (!C999_Common_Collar_LockedOn) PlayerUnlockInventory("Collar")
 	C101_KinbakuClub_Erica_PlayerIsSlave = false;
 	LeaveIcon = "Leave"
 }
@@ -462,7 +460,7 @@ function C101_KinbakuClub_Erica_PlayerReleased() {
 function C101_KinbakuClub_Erica_PlayerReleasedGag() {
 	CurrentTime = CurrentTime + 60000;
 	PlayerLockInventory("BallGag")
-	PlayerUnlockInventory("Collar")
+	if (!C999_Common_Collar_LockedOn) PlayerUnlockInventory("Collar")
 	C101_KinbakuClub_Erica_PlayerIsSlave = false;
 	LeaveIcon = "Leave"
 }

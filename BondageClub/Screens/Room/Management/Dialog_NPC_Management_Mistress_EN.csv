@@ -1,0 +1,125 @@
+PlayerGagged,,,"Don't waste your time talking, I cannot understand.",,
+TouchSubPunishment,,,(She pulls you to her by the hair.)  Never touch my pet!  Now you're in trouble.,,
+0,,,Greetings head maid DialogPlayerName.  Is there a problem that the sorority cannot handle?,,"DialogLogQuery(""LeadSorority"", ""Maid"")"
+0,,,Greetings master kidnapper DialogPlayerName.  I trust you're having a good time hunting.,,"DialogReputationGreater(""Kidnap"", 100)"
+0,,,Welcome little maid.  How can I help you?,,"DialogLogQuery(""JoinedSorority"", ""Maid"")"
+0,,,Welcome kidnapper.  How can I help you?,,"DialogReputationGreater(""Kidnap"", 50)"
+0,,,Be direct and don't waste my time girl.,,NoTitle()
+0,,Greetings Miss.  My name is DialogPlayerName.,"You seem to have some manners.  I'm DialogCharacterName, I'm in charge of the club today.",DialogRemove(),NoTitle()
+0,10,I have a few questions.,"Don't be shy, but don't waste my time.",,
+0,50,Who's that bound girl?,She's my pet.  She stays with me while I work.,,
+0,100,Can we talk about chastity devices?,"Absolutely, what would you like to know?",,
+0,200,About Dominant/submissive relationships...,I'm listening.  How can I educate you?,,
+0,,"Sorry, I need to go.  (Leave her.)",,DialogLeave(),
+10,,What do you do in the club?,I'm both a Mistress and a manager.  I prepare collaring ceremonies and hold keys for chastity devices.,,
+10,20,Who owns the club?,"The club is owned by every member, but the Head Mistress is truly in charge.",,
+10,,Can I become a club Mistress?,"Sorry, we don't have any openings for club Mistresses right now.  Please come back later.",,"DialogReputationGreater(""Dominant"", 60)"
+10,,Can I become a club Mistress?,You?  Don't make me laugh.  This is job for Dominants only.,,"DialogReputationLess(""Dominant"", 59)"
+10,,Can I become a club slave?,"You could, but not now sub girl.  The club is restructuring, come back later.",,"DialogReputationLess(""Dominant"", -60)"
+10,,Can I become a club slave?,"Being a slave for the Bondage Club is reserved for true submissives, not for you.",,"DialogReputationGreater(""Dominant"", -59)"
+10,,Can I tie you up?,Don't make me laugh.,MistressAngryAdd(),GetMistressAngryCount(0)
+10,,Can I tie you up?,Forget it girl.  Don't bug me with such stupid questions.,MistressAngryAdd(),GetMistressAngryCount(1)
+10,,Can I tie you up?,I said forget it!  Ask me again and you'll be in a world of trouble.,MistressAngryAdd(),GetMistressAngryCount(2)
+10,11,Can I tie you up?,Now you're in trouble!,,GetMistressAngryCount(3)
+10,,Will you tie me up?,I don't have time for that.,MistressAngryAdd(),GetMistressAngryCount(0)
+10,,Will you tie me up?,Forget it girl.  Don't bug me with these kinds of questions.,MistressAngryAdd(),GetMistressAngryCount(1)
+10,,Will you tie me up?,I said forget it!  Ask me again and you'll be in a world of trouble.,MistressAngryAdd(),GetMistressAngryCount(2)
+10,11,Will you tie me up?,Now you're in trouble!,,GetMistressAngryCount(3)
+10,0,Let's talk about something else.,What's on your mind girl?  Don't waste my time.,,
+11,12,I'm sorry Mistress.,Sorry isn't enough.  Strip girl.,"DialogChangeReputation(""Dominant"", -2)",
+11,12,What does that mean?,It means you're going to strip right now.,"DialogChangeReputation(""Dominant"", 2)",
+11,12,(Stay silent.),You need to know your place.  Strip girl.,,
+12,,Strip here?  No way!,(She slaps your face pretty hard.)  Oh yes you will!,DialogRemove(),
+12,13,Yes Mistress.  (Strip for her.),(You slowly strip for her as she smiles.),PlayerStrip(),
+12,13,I'm not stripping!,We'll see about that!  (She painfully locks your arm behind your back until you give up and strip.),PlayerStrip(),
+13,14,That's embarrassing.,And it's about to get worse.  (She forces an armbinder on you and straps it tight.),PlayerArmbinder(0),
+13,14,Are you happy now?,Not yet.  (She forces an armbinder on you and straps it tight.),PlayerArmbinder(2),
+13,14,(Blush and bow your head.),Good girl.  (She forces an armbinder on you and straps it tight.),PlayerArmbinder(-2),
+14,15,This is really tight.,Have you learned your lesson?  Will you be good or I need to restrict you even more?,,
+14,15,(Tug on the binder.),Have you learned your lesson?  Will you be good or I need to restrict you even more?,,
+15,16,"Yes, I've learned my lesson.","Alright.  (She straps your legs with a belt.)  I will release you later, you can struggle for my amusement.","DialogWearItem(""LeatherBelt"", ""ItemFeet"")",
+15,16,Yes Mistress.,"Alright.  (She straps your legs with a belt.)  I will release you later, you can struggle for my amusement.","DialogWearItem(""LeatherBelt"", ""ItemFeet"")",
+15,16,What lesson?,"I'll show you.  (She uses many more items on you.)  I will release you later, you can struggle for my amusement.",PlayerRandomRestrain(),
+15,16,Fuck you!,"Oh yeah?  (She uses many more items on you.)  I will release you later, you can struggle for my amusement.",PlayerRandomRestrain(),
+16,,,How's the bratty girl doing?,,
+16,,Can you please help me?,"Struggle some more, I'm having fun.",,!MistressWillRelease()
+16,,(Whimper and beg for mercy.),"Struggle some more, I'm having fun.",,!MistressWillRelease()
+16,0,Can you please help me?,"Very well, I will help you.  (She releases you.)  Don't annoy me anymore.",PlayerRelease(),MistressWillRelease()
+16,0,(Whimper and beg for mercy.),"Very well, I will help you.  (She releases you.)  Don't annoy me anymore.",PlayerRelease(),MistressWillRelease()
+16,,(Leave her.),,DialogLeave(),
+20,,Who's the Head Mistress?,Mistress Sophie is the club current Head Mistress.  She's a strict but fair manager.,,
+20,,How do you choose the Head Mistress?,There's an electoral process between Mistresses.  You'll learn more if you become a club Mistress yourself.,,
+20,,Can I meet the Head Mistress?,She's not available now.  Please come back later.,,
+20,0,Let's talk about something else.,What's on your mind girl?  Time is money.,,
+30,,,(DialogCharacterName comes in front of you.)  What are you doing?  Don't touch my pet.,,GetMistressAngryCount(0)
+30,,,(DialogCharacterName grabs your arm.)  You're getting on my nerves.  Never touch my pet.,,GetMistressAngryCount(1)
+30,,,(DialogCharacterName grabs your hair.)  Touch my pet again and you'll get in a world of trouble!,,GetMistressAngryCount(2)
+30,0,I'm sorry.  Please forgive me Mistress.,(She gives you a stern look.)  Don't do it again.,"DialogChangeReputation(""Dominant"", -2)",
+30,0,I won't do it again.,(She gives you a stern look.)  Fine.,,
+30,11,I'll do what I want.,You dare to defy me?  Now you're in trouble!,"DialogChangeReputation(""Dominant"", 3)",
+50,,You keep her restrained all day?,"Yes, she's not allowed to stray or talk while I work.",,
+50,,She's enjoying herself?,"Absolutely, she's my submissive and she's a bondage slut.",,
+50,51,Can I play with her?,"(She ponders for a little while.)  You could, but there's a requirement.",,"DialogReputationLess(""Dominant"", 24)"
+50,,Can I play with her?,Forget it.  I don't let any Dominant touch my pet.,,"DialogReputationGreater(""Dominant"", 25)"
+50,,Can I release her?,No.  Don't even dare to try.,MistressAngryAdd(),GetMistressAngryCount(0)
+50,,Can I release her?,Forget it girl.  Don't bug me again on that subject.,MistressAngryAdd(),GetMistressAngryCount(1)
+50,,Can I release her?,I said forget it!  Ask me again and you'll be in a world of trouble.,MistressAngryAdd(),GetMistressAngryCount(2)
+50,11,Can I release her?,Now you're in trouble!,,GetMistressAngryCount(3)
+50,0,Let's talk about something else.,"Fine, and stop staring at my pet.",,
+51,52,What requirement?,"If you want to play with her, you must join her.  Do you agree?",,
+51,52,Please tell me.,"If you want to play with her, you must join her.  Do you agree?",,
+52,,I'm not sure I understand.,"I'm not going to repeat again.  If you want to play with her, you must join her.",DialogRemove(),
+52,53,Alright!  I'll do it!,"(She smirks.)  Very well, strip girl.",,
+52,0,I can't do that.,Don't waste my time then.  Is there anything else you want?,,
+53,54,Yes Mistress.  (Strip for her.),(You slowly strip for her as she smiles.),PlayerStrip(),
+53,54,I'm not stripping!,We'll see about that!  (She painfully locks your arm behind your back until you give up and strip.),PlayerStrip(),
+54,55,That's embarrassing.,And it's about to get worse.  (She forces an armbinder on you and straps it tight.),PlayerArmbinder(-3),
+54,55,Are you happy now?,Not yet.  (She forces an armbinder on you and straps it tight.),PlayerArmbinder(-1),
+54,55,(Blush and bow your head.),Good girl.  (She forces an armbinder on you and straps it tight.),PlayerArmbinder(-4),
+55,56,This is really tight.,And it will get tighter.  (She adds more items.)  You two can play now.,PlayerRandomRestrainPlay(),
+55,56,You're a great Mistress.,I try my best.  (She adds more items.)  You two can play now.,PlayerRandomRestrainPlay(),
+55,56,(Tug on the binder.),Enjoy your predicament.  (She adds more items.)  You two can play now.,PlayerRandomRestrainPlay(),
+56,,Can you please help me?,"Play some more, I'm having fun.",,!MistressWillRelease()
+56,,(Whimper and beg for mercy.),"Play some more, I'm having fun.",,!MistressWillRelease()
+56,0,Can you please help me?,"Very well, I will help you.  (She releases you.)  I hope you had fun with my pet.",PlayerRelease(),MistressWillRelease()
+56,0,(Whimper and beg for mercy.),"Very well, I will help you.  (She releases you.)  I hope you had fun with my pet.",PlayerRelease(),MistressWillRelease()
+56,,(Leave her.),,DialogLeave(),
+100,,What are the rules for chastity items?,"Only the club Mistresses can unlock chastity devices.  If you have an owner, you need your owner permission to be unlocked.",,
+100,,Can I buy a key?,"No, the keys are not for sales.  They are for Mistresses only.",,
+100,110,"I'm stuck, I need your help.",(She smirks.)  So a subbie girl got herself locked?  What's your story?,,Player.IsChaste()
+100,130,A friend of mine needs your help.,What friend?  You're alone girl.,,FriendIsChaste()
+100,0,Let's talk about something else.,"Alright, but make it snappy.",,
+110,111,I wanted to protect myself.,"Since you're not owned, all there is to do is pay the unlocking fee and lick my heels.  (She points to her boot.)",,!Player.IsOwned()
+110,111,I was inspecting the belt and it locked on me.,"Since you're not owned, all there is to do is pay the unlocking fee and lick my heels.  (She points to her boot.)",,!Player.IsOwned()
+110,111,Someone played a prank on me.,"Since you're not owned, all there is to do is pay the unlocking fee and lick my heels.  (She points to her boot.)",,!Player.IsOwned()
+110,111,"I've played a crazy game of: ""Truth or Dare"".","Since you're not owned, all there is to do is pay the unlocking fee and lick my heels.  (She points to her boot.)",,!Player.IsOwned()
+111,112,I'm not kissing your ass or licking your heels.,You can't blame me for trying.  Just pay the unlocking fee of 25$ then.,,"DialogReputationGreater(""Dominant"", 40)"
+111,,Lick your heels?  That's the regular procedure?,"My duty, my rules.  So you lick or your leave?",DialogRemove(),
+111,112,Fine.  (Lick her heels.),"(You bend down and slowly lick her heels as she laughs.)  Good girl, the unlocking fee is 25$.",,
+111,0,I won't lick your heels!,(She laughs.)  Then you stay chaste. ,,
+112,,That's extortion!,"No, that's a lesson.  So you pay or you go?",DialogRemove(),
+112,113,Please unlock the bra.  (Pay her 25$.),Alright.  (You remove your clothes and she unlocks the bra.)  How does it feel?,"UnlockItem(""ItemBreast"")",CanUnlockBra()
+112,113,Please unlock the belt.  (Pay her 25$.),Alright.  (You remove your clothes and she unlocks the belt.)  How does it feel?,"UnlockItem(""ItemPelvis"")",CanUnlockBelt()
+112,0,I don't have enough money.,Get to work then.  I'm not doing any discount.,,!DialogMoneyGreater(25)
+112,0,I'll think about it.,Think about ways to stop wasting my time girl.,,
+113,0,Better!  I'll never get stuck again.,(She laughs.)  They all say that and they all come back.,"DialogChangeReputation(""Dominant"", 2)",
+113,0,This is great!,Be careful not to get locked again.  I don't do discount for multiple release.,,
+113,0,"(Blush.)  This is wonderful, thanks Mistress.","She pets your head.  Good girl, be careful not to get locked again.","DialogChangeReputation(""Dominant"", -2)",
+120,,I wanted to protect myself.,TO DO,,Player.IsOwned()
+120,,I was inspecting the belt and it locked on me.,TO DO,,Player.IsOwned()
+120,,Someone played a prank on me.,TO DO,,Player.IsOwned()
+120,,"I've played a crazy game of: ""Truth or Dare"".",TO DO,,Player.IsOwned()
+120,,My Mistress wanted to protect me.,TO DO,,Player.IsOwned()
+120,,My owner punished me.,TO DO,,Player.IsOwned()
+130,131,She's in my private room.,"I'll make a deal with you then.  I'll send a maid to your room, and she will unlock all of your friends that are not owned by someone else for 50$.",,
+130,131,In my room Mistress.,"I'll make a deal with you then.  I'll send a maid to your room, and she will unlock all of your friends that are not owned by someone else for 50$.",,
+131,0,Deal!  (Pay her 50$.),Very good.  (She takes the money and sends a maid to your private room.)  Anything else?,ReleasePrivateRoom(),DialogMoneyGreater(50)
+131,0,I don't have enough money.,Get to work then.  I'm not doing any discount.,,!DialogMoneyGreater(50)
+131,0,I'll think about it.,Think about ways to stop wasting my time girl.,,
+200,,What is a D/s family?,You can build your own D/s family or join a Dominant family.  A submissive can only have one Mistress.  A Mistress can have many submissives.,,
+200,,Will you be my Mistress?,"No, my D/s family is complete.  I'm not looking for a new slave.",DialogRemove(),
+200,,Can I collar and own anyone?,"BDSM is consensual.  As long as the person isn't already owned and consent to be your slave, you can collar her.",,
+200,,I want to collar a submissive.,"Perfect!  You'll have to wait though, the club is restructuring.  Please come back later.",,
+200,,A Dominant wants to collar me.,"You must be thrilled sub girl.  You'll have to wait though, the club is restructuring.  Come back later.",,!Player.IsOwned()
+200,,I want to be released from my owner.,"I'm sorry to hear that.  You'll have to wait though, the club is restructuring.  Come back later.",,Player.IsOwned()
+200,0,Let's talk about something else.,As long as you don't ask anything idiotic.,,

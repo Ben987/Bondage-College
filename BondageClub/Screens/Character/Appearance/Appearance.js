@@ -7,6 +7,7 @@ var CharacterAppearanceBackup = null;
 var CharacterAppearanceAssets = [];
 var CharacterAppearanceColorPicker = "";
 var CharacterAppearanceColorPickerBackup = "";
+var CharacterAppearanceReturnRoom = "MainHall";
 
 // Builds all the assets that can be used to dress up the character
 function CharacterAppearanceBuildAssets(C) {
@@ -91,6 +92,22 @@ function CharacterAppearanceSetDefault(C) {
 	
 }
 
+// Returns TRUE if the item group is required from 
+function CharacterAppearanceRequired(C, GroupName) {
+	for (var A = 0; A < C.Appearance.length; A++)
+		if ((C.Appearance[A].Asset.Require != null) && (C.Appearance[A].Asset.Require.indexOf(GroupName) >= 0))
+			return true;
+	return false;
+}
+
+// Returns TRUE if the item group must be hidden and not chosen
+function CharacterAppearanceMustHide(C, GroupName) {
+	for (var A = 0; A < C.Appearance.length; A++)
+		if ((C.Appearance[A].Asset.Hide != null) && (C.Appearance[A].Asset.Hide.indexOf(GroupName) >= 0))
+			return true;
+	return false;
+}
+
 // Sets a full random set of items for a character
 function CharacterAppearanceFullRandom(C) {
 
@@ -103,19 +120,27 @@ function CharacterAppearanceFullRandom(C) {
 
 	// For each item group (non default items only show at a 20% rate)
 	for (var A = 0; A < AssetGroup.length; A++)
-		if ((AssetGroup[A].Category == "Appearance") && (AssetGroup[A].IsDefault || (Math.random() < 0.2))) {
+		if ((AssetGroup[A].Category == "Appearance") && (AssetGroup[A].IsDefault || (Math.random() < 0.2) || CharacterAppearanceRequired(C, AssetGroup[A].Name)) && !CharacterAppearanceMustHide(C, AssetGroup[A].Name)) {
 			
 			// Get the parent size
 			var ParentSize = "";
 			if (AssetGroup[A].ParentSize != "") 
 				ParentSize = CharacterAppearanceGetCurrentValue(C, AssetGroup[A].ParentSize, "Name");
 		
-			// Prepares an array of all possible items
+			// Check for a parent
 			var R = [];
 			for (var I = 0; I < CharacterAppearanceAssets.length; I++)
-				if ((CharacterAppearanceAssets[I].Group.Name == AssetGroup[A].Name) && ((ParentSize == "") || (CharacterAppearanceAssets[I].Name == ParentSize)))
-					R.push(CharacterAppearanceAssets[I]);
-
+				if ((CharacterAppearanceAssets[I].Group.Name == AssetGroup[A].Name) && (CharacterAppearanceAssets[I].ParentItem != null) && ((ParentSize == "") || (CharacterAppearanceAssets[I].Name == ParentSize)))
+					for (var P = 0; P < C.Appearance.length; P++)
+						if (C.Appearance[P].Asset.Name == CharacterAppearanceAssets[I].ParentItem)
+							R.push(CharacterAppearanceAssets[I]);
+			
+			// Since there was no parent, get all the possible items
+			if (R.length == 0)
+				for (var I = 0; I < CharacterAppearanceAssets.length; I++)
+					if ((CharacterAppearanceAssets[I].Group.Name == AssetGroup[A].Name) && (CharacterAppearanceAssets[I].ParentItem == null) && ((ParentSize == "") || (CharacterAppearanceAssets[I].Name == ParentSize)))
+						R.push(CharacterAppearanceAssets[I]);
+				
 			// Picks a random item and color and add it
 			if (R.length > 0) {
 				var SelectedAsset = R[Math.round(Math.random() * (R.length - 1))];			
@@ -209,6 +234,13 @@ function CharacterAppearanceBuildCanvas(C) {
 					for (var P = 0; P < C.Pose.length; P++)
 						if (C.Pose[P] == CA.Asset.Group.AllowPose[AP])
 							Pose = C.Pose[P] + "/";
+
+			// If we must apply alpha masks to the current image as it is being drawn
+			if (CA.Asset.Alpha != null)
+				for (var AL = 0; AL < CA.Asset.Alpha.length; AL++) {
+					C.Canvas.getContext("2d").clearRect(CA.Asset.Alpha[AL][0], CA.Asset.Alpha[AL][1], CA.Asset.Alpha[AL][2], CA.Asset.Alpha[AL][3]);
+					C.CanvasBlink.getContext("2d").clearRect(CA.Asset.Alpha[AL][0], CA.Asset.Alpha[AL][1], CA.Asset.Alpha[AL][2], CA.Asset.Alpha[AL][3]);
+				}
 			
 			// Draw the item on the canvas (default or empty means no special color, # means apply a color, regular text means we apply that text)
 			if (CA.Asset.Visible) {
@@ -460,36 +492,60 @@ function AppearanceClick() {
 function CharacterAppearanceExit(C) {
 	C.Appearance = CharacterAppearanceBackup;
 	CharacterLoadCanvas(C);
-	if ((C.AccountName != "") && (C.AccountPassword != "")) CommonSetScreen("Room", "MainHall");
+	if ((C.AccountName != "") && (C.AccountPassword != "")) CommonSetScreen("Room", CharacterAppearanceReturnRoom);
 	else CommonSetScreen("Character", "Login");
+	CharacterAppearanceReturnRoom = "MainHall";
 }
 
 // When the player is ready, we make sure she at least has an outfit
 function CharacterAppearanceReady(C) {
 	
 	// Make sure the character has one item of each default type
-	for (var A = 0; A < AssetGroup.length; A++)
-		if (AssetGroup[A].IsDefault) {
+	if (CharacterAppearanceReturnRoom == "MainHall")
+		for (var A = 0; A < AssetGroup.length; A++)
+			if ((AssetGroup[A].IsDefault) || CharacterAppearanceRequired(C, AssetGroup[A].Name)) {
 
-			// Check to find at least one item from the group
-			var Found = false;
-			for (var P = 0; P < C.Appearance.length; P++)
-				if (C.Appearance[P].Asset.Group.Name == AssetGroup[A].Name)
-					Found = true;
+				// Check to find at least one item from the group
+				var Found = false;
+				for (var P = 0; P < C.Appearance.length; P++)
+					if (C.Appearance[P].Asset.Group.Name == AssetGroup[A].Name)
+						Found = true;
 
-			// If we didn't found the group, we warn the user
-			if (!Found) {
-				CharacterAppearanceHeaderText = TextGet("MustPickItem") + " " + AssetGroup[A].Name;
-				return;
+				// If we didn't found the group, we warn the user
+				if (!Found) {
+					CharacterAppearanceHeaderText = TextGet("MustPickItem") + " " + AssetGroup[A].Name;
+					return;
+				}
+
 			}
-
-		}
 
 	// If there's no error, we continue to the login or main hall if already logged
 	if ((C.ID == 0) && (C.AccountName != "") && (C.AccountPassword != "")) {
 		CharacterAppearanceSave(C);
-		CommonSetScreen("Room", "MainHall");
+		CommonSetScreen("Room", CharacterAppearanceReturnRoom);
+		CharacterAppearanceReturnRoom = "MainHall";
 	} else CommonSetScreen("Character", "Creation");
+
+}
+
+// Copy the appearance from a character to another
+function CharacterAppearanceCopy(FromC, ToC) {
+
+	// Removes any previous appearance asset
+	for(var A = 0; A < ToC.Appearance.length; A++)
+		if ((ToC.Appearance[A].Asset != null) && (ToC.Appearance[A].Asset.Group.Category == "Appearance")) {
+			ToC.Appearance.splice(A, 1);
+			A--;
+		}
+
+	// Adds all appearance assets from the first character to the second
+	for(var A = 0; A < FromC.Appearance.length; A++)
+		if ((FromC.Appearance[A].Asset != null) && (FromC.Appearance[A].Asset.Group.Category == "Appearance"))
+			ToC.Appearance.push(FromC.Appearance[A]);
+
+	// Refreshes the second character and saves it if it's the player
+	CharacterRefresh(ToC);
+	if (ToC.ID == 0) CharacterAppearanceSave(ToC);
 
 }
 

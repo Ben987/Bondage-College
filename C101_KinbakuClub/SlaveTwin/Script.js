@@ -55,7 +55,7 @@ function C101_KinbakuClub_SlaveTwin_Load() {
 
 	// Initial load of twin settings
 	if (!C101_KinbakuClub_SlaveTwin_TwinCaptured) {
-		if (C101_KinbakuClub_RopeGroup_LeftTwinKidnapped) {
+		if (C101_KinbakuClub_RopeGroup_LeftTwinStatus == "Kidnapped") {
 			C101_KinbakuClub_SlaveTwin_KidnappedTwin = C101_KinbakuClub_RopeGroup_LeftTwin;
 			C101_KinbakuClub_SlaveTwin_TiedElbowsTouching = true;
 		}
@@ -108,6 +108,7 @@ function C101_KinbakuClub_SlaveTwin_Load() {
 function C101_KinbakuClub_SlaveTwin_Run() {
 	BuildInteraction(C101_KinbakuClub_SlaveTwin_CurrentStage);
 
+	if (C101_KinbakuClub_SlaveTwin_CurrentStage == 0 && C101_KinbakuClub_RopeGroup_LucyFree) OverridenIntroText = GetText("HeatherGivenAway");
 
 	// Build image when twin is locked in manacle collar
 	if (C101_KinbakuClub_SlaveTwin_CurrentStage >= 5 && C101_KinbakuClub_SlaveTwin_CurrentStage <= 390) {
@@ -663,7 +664,7 @@ function C101_KinbakuClub_SlaveTwin_HelpPlayer() {
 		C101_KinbakuClub_SlaveTwin_CurrentStage = 5;
 	} else {
 		if (!PlayerHasLockedInventory("Cuffs")) {
-			PlayerUnlockAllInventory();
+			PlayerReleaseBondage();
 			PlayerClothes("");
 		}
 		if (PlayerHasLockedInventory("Cuffs")) {

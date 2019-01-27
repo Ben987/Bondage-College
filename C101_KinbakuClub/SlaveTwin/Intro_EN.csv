@@ -1,8 +1,10 @@
 Stage,LoveReq,SubReq,VarReq,IntroText,Image
-0,0,0,TiedElbowsTouching,(She struggles as you grab and drag|her away before Amelia and Charlotte can react.),KidnapLeftTwin.jpg
-0,0,0,!TiedElbowsTouching,(She struggles as you grab and drag|her away before Amelia and Charlotte can react.),KidnapRightTwin.jpg
+0,0,0,TiedElbowsTouching,(She struggles helplessly as you grab and drag|her away before anyone can react.),KidnapLeftTwin.jpg
+0,0,0,!TiedElbowsTouching,(She struggles helplessly as you grab and drag|her away before anyone can react.),KidnapRightTwin.jpg
+1,0,0,TiedElbowsTouching,Have fun then.|(Lucy waves goodbye as you drag her sister away.),KidnapLeftTwin.jpg
+1,0,0,!TiedElbowsTouching,Have fun then.|(Lucy waves goodbye as you drag her sister away.),KidnapRightTwin.jpg
 5,0,0,,(She notices your own bondage and giggles.),TwinBackground.jpg
-6,0,0,,"(She can hear you are there,|but there isn't much either of you can do.",TwinBackground.jpg
+6,0,0,,"(She can hear you are there,|but there isn't much either of you can do like this.",TwinBackground.jpg
 9,0,0,,Don't try using anything on me.,TwinBackground.jpg
 10,0,0,,(She is all of a quiver and struggling in panic.),TwinBackground.jpg
 15,0,0,,,TwinBackground.jpg

@@ -1,91 +1,98 @@
 PlayerGagged,,,It seems that someone got kidnapped recently.  (She giggles.)  I can't understand you though.,,
 KidnapVictory,,,(She bows her head.)  Congratulations on your victory!  I'm your victim.,,
 KidnapDefeat,,,(She smiles.)  That was a fun fight wasn't it?,,
-BountyIntroduction,,,"You need to find and kidnap BOUNTYNAME.  She usually kidnaps newcommers.  If you succeed, you'll get paid BOUNTYAMOUNT$.",,
-BountyShibari,,,Your bounty is BOUNTYNAME.  She really likes Japanese rope bondage.  The bounty amout is BOUNTYAMOUNT$.,,
+BountyIntroduction,,,"You need to find and kidnap BOUNTYNAME.  She usually kidnaps newcomers.  If you succeed, you'll get paid BOUNTYAMOUNT$.",,
+BountyShibari,,,Your bounty is BOUNTYNAME.  She really likes Japanese rope bondage.  The bounty amount is BOUNTYAMOUNT$.,,
 BountyShop,,,Find and restrain BOUNTYNAME for a bounty of BOUNTYAMOUNT$.  She's a big spender and loves to shop.,,
 BountyMaidQuarters,,,There's a bounty of BOUNTYAMOUNT$ for BOUNTYNAME.  She's a part time maid for the club.,,
-BountyPay,,,Very good!  You deserve your pay.  (She gives you BOUNTYAMOUNT$.)  Did she give you trouble?,,
-CantReleasePlayer,,,"Look at me, I cannot help you now.",,
-ItemMouth,,,"(She first shakes her head to avoid the gag, but finally surrenders as you silence her.)",,
-RemoveItemMouth,,,"(You remove her gag while she stretches her mouth.)  Thanks Miss, it's hard to dispatch maids with that gag.",,
-ItemArms,,,(She sighs and turns around while you restrain her arms.)  It might be a little hard to work like that Miss.,,
-RemoveItemArms,,,(You free her arms and she nods happily.)  Thanks a lot Miss.,,
-ItemLegs,,,(She submits to you while you restrain her legs securely.)  I don't need to move anyway.,,
-RemoveItemLegs,,,(You release her legs from the restraint.)  Let me know if I can help you Miss.,,
-ItemFeet,,,(She looks puzzled as you restrain her feet.)  I'll stay on guard here Miss.,,
-RemoveItemFeet,,,"(You release her feet and she wiggles them.)  Thanks Miss, it was troublesome.",,
-ItemNeck,,,(You strap the collar on her while she blushes.)  You're quite a Dominant Miss.,,
-RemoveItemNeck,,,(You remove the collar around her neck.)  Thanks Miss.,,
-ItemPelvis,,,(You snap the belt around her waist and crotch while she sighs.)  No more fun for the crew.,,
-RemoveItemPelvis,,,(You unlock the belt from her waist and she smiles.)  Thanks a lot Miss DialogPlayerName.,,
-ItemHead,,,(You strap the device on her head as she nods slowly.)  This will not make my job easier Miss.,,
-RemoveItemHead,,,"(You remove the device and she nods rapidly.)  Thanks a million, this is much better.",,
+BountyPay,,,Very good! Here's your pay.  (She gives you BOUNTYAMOUNT$.)  Did she give you trouble?,,
+ItemMouth,,,(She tries to avoid the gag for a few seconds but surrenders quickly as you insist.),,
+RemoveItemMouth,,,(You remove her gag and she smiles.)  Thanks!  Would you like to do another practice fight?,,
+ItemArms,,,(She struggles for fun but allows you to restrain her.)  I can't count the number of times I've been tied up this month.,,
+RemoveItemArms,,,(You free her arms and she cracks her fingers.)  Ready for another round?,,
+ItemLegs,,,(She wiggles her butt as you restrain her legs.)  A good kidnapper never forgets the legs.,,
+RemoveItemLegs,,,(You release her legs from the bondage device.)  Anything else before we can continue?,,
+ItemFeet,,,(She stands on her toes as you restrain her feet.)  Bondage is great isn't it?,,
+RemoveItemFeet,,,"(You release her feet and she wiggles them.)  Thanks a lot, it's not easy to be forced like that.",,
+ItemNeck,,,(You strap the collar on her while she blushes.)  Collars are important in both BDSM and kidnappings.,,
+RemoveItemNeck,,,(You remove the collar fastened around her neck.)  Much better!,,
+ItemPelvis,,,"(You lock the belt on her as she panics.)  Oh, come on!  That's not fair or funny.",,
+RemoveItemPelvis,,,"(You unlock the device from her waist and she nods.)  That was cruel, even for a kidnapper.",,
+ItemHead,,,(You strap it on her head as she sighs.)  Please don't leave me like this for too long.,,
+RemoveItemHead,,,(You remove the device as she hums a happy song.)  Thanks!  I appreciate it.,,
+ItemTorso,,,(You strap the harness on her torso as she blushes.)  This is pretty kinky Miss.,,
+RemoveItemTorso,,,(She stretches as you release her from the harness.)  It will be easier to breath like that.,,
+ItemBreastLeatherWhip,,,(She whimpers as you whip her breast.)  Hey!  I'm only here to help you practice!,,
+ItemBreastLeatherCrop,,,"(You swing the crop on her torso.)  Ow! I wouldn't do that to you, use it on the other kidnappers.",,
+ItemPelvisLeatherWhip,,,"(You whip her butt as she grumbles.)  Whip the kidnappers, not the teacher!",,
+ItemPelvisLeatherCrop,,,(You lash the leather crop pretty hard on her butt.)  Ahh! I'm glad I'm not facing you in a real match.,,
+SuspensionHempRope,,,(You restrain her feet with the rope and suspend her from the ceiling.)  Woah!  Maybe you should go to the Dojo.,,
+RemoveSuspensionHempRope,,,(You let her down from the ceiling and release her feet.)  Thanks a lot!  I was getting dizzy.,,
 0,,,Welcome to the Kidnappers League.  Are you here to register as a kidnapper?,,"DialogReputationLess(""Kidnap"", 0)"
-0,,,It's wonderful to see you Miss.  It's always thrilling to see one of our best kidnapper.,,"DialogReputationGreater(""Kidnap"", 100)"
+0,,,It's wonderful to see you Miss.  It's always thrilling to see one of our best kidnappers.,,"DialogReputationGreater(""Kidnap"", 100)"
 0,,,"Hi DialogPlayerName, it's always nice to see you.  Do you want to practice with me?",,"DialogReputationGreater(""Kidnap"", 50)"
-0,,,Welcome to the league dear member.  Do you need some explainations or do you want to practice with me?,,"DialogReputationGreater(""Kidnap"", 1)"
+0,,,"Welcome to the league dear member.  Do you need any information, or do you want to practice with me?",,"DialogReputationGreater(""Kidnap"", 1)"
 0,,"Hi, I'm DialogPlayerName.","I'm DialogCharacterName, it's nice to meet you.  I register league kidnappers and do practice fights.",DialogRemove(),"DialogReputationLess(""Kidnap"", 19)"
-0,40,How does kidnappings work?,There's a lot to explain on fighting and kidnapping.  What would you like to know?,,
+0,40,How do kidnappings work?,There's a lot to explain on fighting and kidnapping.  What would you like to know?,,
 0,30,Tell me about the league.,Sure!  What would you like to know?,,
-0,20,I want to join the Kidnappers League.,Excellent!  We are always eager to get new members.  You know the league rules and accept them?,,"DialogReputationLess(""Kidnap"", 0)"
-0,29,I want to leave the league.,"I'm sorry to hear that, but you can come back later.  You will lose your reputation in the league though, are you sure you want to leave?",,"DialogReputationGreater(""Kidnap"", 1)"
-0,50,I will take a bounty hunter job.,We have a many kidnapping bounty available.  Are you looking for an easy target or a challenge?,,CanTakeBounty()
+0,20,I want to join the Kidnappers League.,Excellent!  We are always eager to get new members.  Do you know the league rules and accept them?,,"DialogReputationLess(""Kidnap"", 0)"
+0,29,I want to leave the league.,"I'm sorry to hear that, but you can come back later.  You will lose your reputation in the league though. Are you sure you want to leave?",,"DialogReputationGreater(""Kidnap"", 1)"
+0,50,I'll take a bounty hunter job.,"We have many kidnapping bounties available.  Are you looking for an easy target, or more of a challenge?",,CanTakeBounty()
 0,,Who's my bounty target again?,,BountyRemind(),BountyTaken()
 0,55,"I've succeeded, my bounty was kidnapped.",,BountyPay(),BountyWasVictory()
-0,,I've failed to kidnap my bounty.,Maybe the challenge was too tough for you.  You can take a break or another bounty if you want.,BountyReset(),BountyWasDefeat()
-0,10,I want to practice kidnappings with you.,Great!  I can go easy on you or use all my tricks if you're confident enough.  How will it be?,ResetTrainer(),AllowKidnap()
+0,,I've failed to kidnap my bounty.,"Maybe the challenge was too tough for you.  You can take a break, or pick up another bounty if you want.",BountyReset(),BountyWasDefeat()
+0,10,I want to practice kidnappings with you.,"Great!  I can go easy on you, or use all my tricks if you're confident enough.  Which will it be?",ResetTrainer(),AllowKidnap()
 0,,Let's talk later.  (Leave her.),,DialogLeave(),
 10,,Please go easy on me.,,StartKidnap(-3),
 10,,A regular match please.,,StartKidnap(0),
 10,,Give me a tough fight.,,StartKidnap(4),
-10,,I can face any challenge.,,StartKidnap(8),
+10,,I can face any challenge!,,StartKidnap(8),
 10,0,I've changed my mind.,It's fine.  Would you like to talk then?,,
 20,21,Tell me of the rules.,"First, all league members can kidnap and be kidnapped at any time in the Bondage Club.  Do you agree to that?",,
-20,21,I know the rules.,So you agree that you can kidnap and be kidnapped at any time in the Bondage Club.,,
-21,22,I accept.,"We kidnap each other for fun but it's always consensual.  If someone panics or wants to be release, you must let her go.",,
+20,21,I know the rules.,"So, you agree that you can kidnap and be kidnapped at any time in the Bondage Club.",,
+21,22,I accept.,"We kidnap each other for fun but it's always consensual.  If someone panics or wants to be released, you must let her go.",,
 21,0,I refuse.,"Then you cannot join the kidnappers league, sorry.",,
 22,23,I accept.,"You can fight while you kidnap, but you can't do anything that would leave permanent marks or damage on your opponents.",,
 22,0,I refuse.,"Then you cannot join the kidnappers league, sorry.",,
 23,24,I accept.,You're ready to join the league then!  Are you in?,,
 23,0,I refuse.,"Then you cannot join the kidnappers league, sorry.",,
-24,0,I'm in!  (Join the league.),Welcome to the Kidnappers League then!  I hope you will have fun and cause lots of trouble.,"DialogChangeReputation(""Kidnap"", 1)",
-24,0,I've changed my mind.,"Alright, let me know if you ever want to join the league again.",,
-29,0,I quit.  (Leave the league.),"Fine, you won't be kidnapped and cannot kidnap anymore.","DialogSetReputation(""Kidnap"", 0)",
+24,0,I'm in!  (Join the league.),Welcome to the Kidnappers League!  I hope you have fun and cause lots of trouble.,"DialogChangeReputation(""Kidnap"", 1)",
+24,0,I've changed my mind.,"Alright, let me know if you ever think about joining the league again.",,
+29,0,I quit.  (Leave the league.),"Fine, you won't be kidnapped and cannot kidnap any longer.","DialogSetReputation(""Kidnap"", 0)",
 29,0,I need to think some more. (Stay.),Perfect!  I'm glad you're staying with us.,,
-30,,What is the Kidnappers League?,"We are a kinky group that enjoys kidnapping and being kidnapped.  Even if we play rough, it's always consensual.",,
-30,,The league members kidnap each other all the time?,"Pretty much.  (She giggles.)  Members can stalk, attack and kidnap each other everywhere and at any time in the Bondage Club.",,
+30,,What is the Kidnappers League?,"We are a kinky group that enjoys kidnapping and being kidnapped.  Even though we play rough, it's always consensual.",,
+30,,The league members kidnap each other all the time?,"Pretty much.  (She giggles.)  Members can stalk, attack, and kidnap each other everywhere and at any time in the Bondage Club.",,
 30,,Do people get hurt?,It can happen when a fight gets too intense.  We try to never do anything that could cause permanent injuries.,,
-30,,How can a kidnapping be consensual?,"Just like BDSM, the kidnappings are consensual.  We all agree that we can be kidnapped and we can leave the league if we want to quit.",,
+30,,How can a kidnapping be consensual?,"Just like BDSM, the kidnappings are consensual.  We all agree that we can be kidnapped, and we can leave the league if we want to quit.",,
 30,,How much does it cost?,There's no cost to join and there are bounty hunter jobs that you can take if you need some money.,,
 30,,Can members leave the league?,Of course.  Though you will lose any reputation gained in the league before.,,
 30,0,That's enough.,Very good.  Can I help you with anything else?,,
 40,,How do I kidnap?,"To kidnap, you must fight your opponent and break her willpower.  You can use many types of moves and items to make her submit to you.",,
-40,,How do I win a kidnapping fight?,"To win, you must break your opponent willpower before getting broken yourself.  The first to break will submit and their arms can be restrained.",,
-40,,How can I attack?,Both opponent attack at the same time and can try one move out of four.  Each move have strengths and weaknesses facing other moves.,,
-40,41,Tell me of the different moves.,"Certainly.  We call them the ""BDSM"" moves, they are: Brute Force, Domination, Sneakiness and Manipulation.",,
-40,49,How does move strength works?,"The stronger the move, the harder it will break your opponent willpower.",,
-40,,What's a upper hand in a fight?,You get the upper hand when you do a good move against your opponent.  It will allow you to restrain your opponent or get free yourself.,,
-40,,Can I use items that are not restraints?,"Yes, if you have items such as whips, crops or vibrators, they will give you a starting advantage on different moves.",,
+40,,How do I win a kidnapping fight?,"To win, you must break your opponent's willpower before getting yours broken yourself.  The first to break will submit, and then their arms can be restrained.",,
+40,,How can I attack?,Both kidnappers attack at the same time and can perform any one of four moves.  Each move has strengths and weaknesses against other moves.,,
+40,41,What are these different moves?,"We call them the ""BDSM"" moves, they are: Brute force, Domination, Sneakiness, and Manipulation.",,
+40,49,How does the strength move work?,"The stronger the move, the more it will break your opponent's willpower.",,
+40,,What's an upper hand in a fight?,You get the upper hand when you carry out a good move against your opponent.  It will allow you to restrain your opponent or get free yourself.,,
+40,,Can I use items that are not restraints?,"Yes, if you have items such as whips, crops, or vibrators. They will give you a starting advantage on various moves.",,
 40,0,I know everything I need.,Excellent.  Can I help you with anything else?,,
-41,42,(Listen.),"Brute force is about using phiscal strength and endurance against your opponent.  You can slap, kick, punch and choke but don't go too far.",,
-42,43,(Listen.),"Brute force is good versus Domination, fair versus Manipulation and bad versus Sneakiness.  It's halved if clothes are removed.",,
-43,44,(Listen.),"Domination consists of intimidating, insulting and making your opponent feel weaker than you, breaking it's moral.",,
-44,45,(Listen.),"Domination is good versus Manipulation, fair versus Sneakiness and bad versus Brute force.  Domination is halved when collared.",,
-45,46,(Listen.),"Sneakiness means to ambush, trip, surprise, sneak, tickle or use rapid tricks to break your opponent.",,
-46,47,(Listen.),"Sneakiness is good versus Brute force, fair versus Domination and bad versus Manipulation.  Sneakiness is halved if the feet are restrained.",,
-47,48,(Listen.),"Manipulation is all about deceiving, fooling, charming and seducing your opponent so she will submit to you.",,
-48,40,(Listen.),"Manipulation is good against Sneakiness, fair against Brute force and bad against Domination.  Manipulation is halved if you're gagged.",,
-49,40,(Listen.),"Each time you use a move, it's strength will be halved so it's good to alternate.  Each moves slowly recuperate with time.",,
+41,42,(Listen.),"Brute force is about using physical strength and endurance against your opponent.  You can slap, kick, punch, and choke, but don't go too far.",,
+42,43,(Listen.),"Brute force is good versus Domination, fair versus Manipulation, and bad versus Sneakiness.  Brute force is halved if clothes are removed.",,
+43,44,(Listen.),"Domination consists of intimidating, insulting, and making your opponent feel weaker than you, which breaks their morale.",,
+44,45,(Listen.),"Domination is good versus Manipulation, fair versus Sneakiness, and bad versus Brute force.  Domination is halved when collared.",,
+45,46,(Listen.),"Sneakiness means to ambush, trip, surprise, sneak, tickle, or use rapid tricks to break your opponent.",,
+46,47,(Listen.),"Sneakiness is good versus Brute force, fair versus Domination, and bad versus Manipulation.  Sneakiness is halved if the feet are restrained.",,
+47,48,(Listen.),"Manipulation is all about deceiving, fooling, charming, and seducing your opponent so she will submit to you.",,
+48,40,(Listen.),"Manipulation is good against Sneakiness, fair against Brute force, and bad against Domination.  Manipulation is halved if you're gagged.",,
+49,40,(Listen.),"Each time you use a move, it's strength will be halved, so it's good to alternate between different moves.  Each move slowly recuperates with time.",,
 50,51,I want an easy bounty.,,TakeBounty(0),
 50,51,Give me some challenge.,,TakeBounty(3),
-50,51,I'll take the your top bounty.,,TakeBounty(6),
+50,51,I'll take your top bounty.,,TakeBounty(6),
 50,0,I've changed my mind.,Very well.  Is there something else you want?,,
 51,0,I'll go get her.,Good!  Come back when you've kidnapped her for your reward.,,
 51,0,That girl is in deep trouble!,Perfect!  Come back when you've kidnapped her for your reward.,"DialogChangeReputation(""Dominant"", 1)",
-51,0,I'll try my best.,Alright.  Come back when you've kidnapped her for your reward.,"DialogChangeReputation(""Dominant"", -1)",
+51,0,I'll try my best.,"Alright, good luck.  Come back when you've kidnapped her for your reward.","DialogChangeReputation(""Dominant"", -1)",
 55,0,"Yeah, she did put quite a fight.",That was to be expected of her.  Would you like to take another bounty?,,
-55,0,"No problem, I represent the league.","Very good, that's the spirit.  Would you like to take another bounty then?","DialogChangeReputation(""Kidnap"", 2)",
+55,0,"No problem, I represent the league.","Very good, I like your attitude.  Would you like to take another bounty then?","DialogChangeReputation(""Kidnap"", 2)",
 55,0,It was fair and fun fight.,That's what we aim for in the league.  Would you like to take another bounty?,,
 55,0,"No worries, I'm happy to win or lose anyway.",You're quite a kinky kidnapper.  Would you like to take another bounty?,"DialogChangeReputation(""Dominant"", -1)",
 55,0,"No trouble, I can take on anyone.",You'll go far in the club Miss.  Would you like to take another bounty?,"DialogChangeReputation(""Dominant"", 2)",
@@ -97,21 +104,21 @@ RemoveItemHead,,,"(You remove the device and she nods rapidly.)  Thanks a millio
 100,,Let's talk later.  (Leave her.),,DialogLeave(),
 110,,,"(She struggles some more.)  If you release me, we can do another match.",,IsTrainerRestrained()
 110,,,Would you like to talk some more?  Or do another fight?,,!IsTrainerRestrained()
-110,,What can I do with my victims?,"Anything you want, as long as you don't go over their limits.  You can tickle, spank or even make love with them.",,
+110,,What can I do with my victims?,"Anything you want, as long as you don't go over their limits.  You can tickle, spank, tease, or even make love with them.",,
 110,,Struggle some more!,(She struggles but doesn't really try to escape.)  It's all part of the fun.,,IsTrainerRestrained()
 110,0,Let's chit chat.,What would you like to talk about?,ResetTrainer(),!IsTrainerRestrained()
-110,10,I want to try another practice fight.,Great!  I can go easy on you or use all my tricks if you're confident enough.  How will it be?,ResetTrainer(),AllowKidnap()
+110,10,I want to try another practice fight.,"Great!  I can go easy on you, or use all my tricks if you're confident enough.  Which will it be?",ResetTrainer(),AllowKidnap()
 110,,Let's talk later.  (Leave her.),,DialogLeave(),
 200,210,Congratulations!  That was fun.,Yes!  I hope you've learned a few tricks.,,Player.CanTalk()
 200,210,"Yes, but you're too strong for me.",You'll learn new tricks and you'll get stronger.,"DialogChangeReputation(""Dominant"", -2)",Player.CanTalk()
 200,205,(Struggle to talk.),Do you need help with that gag?,,!Player.CanTalk()
 200,205,(Blush and bow your head.),Poor sweetie.  Do you need help with that gag?,"DialogChangeReputation(""Dominant"", -2)",!Player.CanTalk()
-205,210,(Nod in agreement.),Very well.  (She removes your gag.)  In a real kidnapping you won't be released that easily.,"DialogRemoveItem(""ItemMouth"")",
+205,210,(Nod in agreement.),Very well.  (She removes your gag.)  But in a real kidnapping you won't be released that easily.,"DialogRemoveItem(""ItemMouth"")",
 205,210,(Shake your head no.),"You're a good loser, I respect that.",,
 210,220,I'll train to become the best kidnapper.,Impressive!  I can release you now or you can struggle if you prefer.,"DialogChangeReputation(""Dominant"", 1)",Player.CanTalk()
 210,220,I will practice and get better.,Exactly!  I can release you now or you can struggle if you prefer.,,Player.CanTalk()
-210,220,Maybe I'm not fit to be a kidnapper.,Nonsense!  I can release you now or you can struggle if you prefer.,"DialogChangeReputation(""Dominant"", -1)",Player.CanTalk()
-210,220,(Struggle in your restrains.),You can struggle on your own or I can release you now if you prefer.,,
+210,220,Maybe I'm not fit to be a kidnapper.,Nonsense!  It just takes practice. I can release you now or you can struggle if you prefer.,"DialogChangeReputation(""Dominant"", -1)",Player.CanTalk()
+210,220,(Struggle in your restraints.),You can struggle on your own or I can release you now if you prefer.,,
 220,,,I can release you for another kidnapping if you want.,,
 220,0,I'm already out!,Well done.  Would you like to talk or try again?,ResetTrainer(),!Player.IsRestrained()
 220,0,Can you help me out?,(She releases you.)  Here you go.  Would you like to talk or try again?,ResetTrainer(),Player.IsRestrained()
