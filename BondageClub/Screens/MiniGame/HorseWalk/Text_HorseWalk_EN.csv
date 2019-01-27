@@ -1,3 +1,3 @@
-HorsWalkSpots,Move the Carrots and avoid the crops
-Victory,Congratulations!  
-Defeat,"Sorry, you've failed."
+HorseWalkSpots,Move the Carrots ($CARROTS) and avoid the crops ($CROPS)
+Victory,"Congratulations!  (Carrots: $CARROTS, crops: $CROPS)"
+Defeat,"Sorry, you've failed.  (Carrots: $CARROTS, crops: $CROPS)"

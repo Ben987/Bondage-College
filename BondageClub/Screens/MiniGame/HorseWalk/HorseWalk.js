@@ -1,33 +1,48 @@
 "use strict";
-var HorseWalkBackground = "HorseStable";
+var HorseWalkBackground = "HorseStableLight";
 var HorseWalkCarrots = null;
+var HorseWalkCrops = null;
 var HorseWalkPlayerX = 0;
 var HorseWalkPlayerY = 0;
-var HorseWalkCarrotsize = 100;
+var HorseWalkItemSize = 100;
+var HorseWalkCollectetCarrots = 0;
+var HorseWalkCollectetCrops = 0;
+var HorseWalkSpeed = 1;
+var HorseWalkText =""
 
 // Generates all the Carrots
-function HorseWalkGenerateCarrots(MaxCarrot) {
-
+function HorseWalkGenerateItems(MaxCarrot, MaxCrop) {
 	// Full the Carrots sequence
 	HorseWalkCarrots = [];
 	for(var S = 0; S < MaxCarrot; S++) {
-
 		// Generates each Carrot 1 by 1
 		var NewCarrot = {
 			X : Math.floor(Math.random() * 1980) + 10,
 			Y : Math.floor(Math.random() * 940) + 10,
-			T : Math.floor(Math.random() * 4) + 1
+			T : 1
 		}
 		HorseWalkCarrots.push(NewCarrot);
-
+	}
+	// Full the Carrots sequence
+	HorseWalkCrops = [];
+	for(var S = 0; S < MaxCrop; S++) {
+		// Generates each Carrot 1 by 1
+		var NewCrop = {
+			X : Math.floor(Math.random() * 1980) + 10,
+			Y : Math.floor(Math.random() * 940) + 10,
+			T : Math.floor(Math.random() * 4) + 1
+		}
+		HorseWalkCrops.push(NewCrop);
 	}
 
 }
 
 // Draw the Carrots
-function HorseWalkDrawCarrots() {
+function HorseWalkDrawItem() {
 	for(var S = 0; S < HorseWalkCarrots.length; S++)
-		DrawImage("Screens/MiniGame/HorseWalk/Carrot.png", HorseWalkCarrots[S].X - (HorseWalkCarrotsize / 2), HorseWalkCarrots[S].Y - (HorseWalkCarrotsize / 2));
+		DrawImage("Screens/MiniGame/HorseWalk/Carrot.png", HorseWalkCarrots[S].X - (HorseWalkItemSize / 2), HorseWalkCarrots[S].Y - (HorseWalkItemSize / 2));
+	for(var S = 0; S < HorseWalkCrops.length; S++)
+		DrawImage("Screens/MiniGame/HorseWalk/LeatherCrop.png", HorseWalkCrops[S].X - (HorseWalkItemSize / 2), HorseWalkCrops[S].Y - (HorseWalkItemSize / 2));
 }
 
 // Loads the Horse Walk mini game
@@ -36,15 +51,17 @@ function HorseWalkLoad() {
 	HorseWalkBackground = "HorseStable";
 
 	// The higher the difficulty, the more Carrots there will be (less Carrots on mobile since we cannot swipe the mouse)
-	HorseWalkPlayerX = 500;
-	HorseWalkPlayerY = 0;
+	HorseWalkPlayerX = 900;
+	HorseWalkPlayerY = 400;
 	var Factor = (CommonIsMobile) ? 0.25 : 1;
-	var MaxCarrot = 22 * Factor;
-	if (MiniGameDifficulty == "Normal") MaxCarrot = 36 * Factor;
-	if (MiniGameDifficulty == "Hard") MaxCarrot = 50 * Factor;
-	MiniGameTimer = CommonTime() + 60000;
-	HorseWalkGenerateCarrots(MaxCarrot);
-
+	var MaxCarrot = 6 * Factor;
+	if (MiniGameDifficulty == "Normal") MaxCarrot = 12 * Factor;
+	if (MiniGameDifficulty == "Hard") MaxCarrot = 18 * Factor;
+	MiniGameTimer = CommonTime() + 40000;
+	HorseWalkGenerateItems(MaxCarrot, MaxCarrot);
+	HorseWalkCollectetCarrots = 0;
+	HorseWalkCollectetCrops = 0;
+	HorseWalkSpeed = 1; //ToDo Skill
 }
 
 // Run the maid cleaning mini game
@@ -52,19 +69,31 @@ function HorseWalkRun() {
 
 	// The game ends in victory if everything is clean or in defeat if the time runs out
 	var Time = CommonTime();
-	if (!MiniGameEnded && (HorseWalkCarrots.length == 0)) HorseWalkEnd(true);
-	if (!MiniGameEnded && (Time >= MiniGameTimer)) HorseWalkEnd(false);
+	//if (!MiniGameEnded && (HorseWalkCarrots.length == 0)) HorseWalkEnd(true);
+	if (!MiniGameEnded && (Time >= MiniGameTimer)){
+		if (HorseWalkCollectetCarrots > HorseWalkCollectetCrops) {
+			HorseWalkEnd(true);
+		} else {
+			HorseWalkEnd(false);
+		}
+	}
 	if (Time >= MiniGameTimer + 5000) CommonDynamicFunction(MiniGameReturnFunction + "()");
 
 	// Draw the player character, progress bar and text
 	HorseWalkDoMove();
 	DrawCharacter(Player, HorseWalkPlayerX, HorseWalkPlayerY, 0.4);
-	HorseWalkDrawCarrots();
+	HorseWalkDrawItem();
 	if (!MiniGameEnded) DrawProgressBar(0, 950, 2000, 50, (MiniGameTimer - Time) / 600);
 	else DrawRect(0, 950, 2000, 50, "white");
-	if (Time < MiniGameTimer) DrawText(TextGet("HorsWalkSpots"), 1000, 977, "black", "white");
-	else DrawText(TextGet(MiniGameVictory ? "Victory" : "Defeat"), 1000, 977, "black", "white");
-
+	if (Time < MiniGameTimer) {
+		HorseWalkText = TextGet("HorseWalkSpots");
+		HorseWalkText = HorseWalkText.replace("$CARROTS", HorseWalkCollectetCarrots).replace("$CROPS", HorseWalkCollectetCrops);
+		DrawText(HorseWalkText, 1000, 977, "black", "white");
+	} else {
+		HorseWalkText = TextGet(MiniGameVictory ? "Victory" : "Defeat");
+		HorseWalkText = HorseWalkText.replace("$CARROTS", HorseWalkCollectetCarrots).replace("$CROPS", HorseWalkCollectetCrops);
+		DrawText(HorseWalkText, 1000, 977, "black", "white");
+	}
 }
 
 // Ends the game and sends the result back to the screen
@@ -87,35 +116,43 @@ function HorseWalkDoMove() {
 		HorseWalkPlayerX = HorseWalkPlayerX + (HorseWalkPlayerFactor * HorseWalkPlayerXdiff);
 		HorseWalkPlayerY = HorseWalkPlayerY + (HorseWalkPlayerFactor * HorseWalkPlayerYdiff);*/
 
-		if ( HorseWalkPlayerX > (MouseX - 95) ) {
-			HorseWalkPlayerX -= 5;
-		} else if ( HorseWalkPlayerX < (MouseX - 105) ){
-			HorseWalkPlayerX += 5;
+		if ( HorseWalkPlayerX > (MouseX - 100 + HorseWalkSpeed) ) {
+			HorseWalkPlayerX -= HorseWalkSpeed;
+		} else if ( HorseWalkPlayerX < (MouseX - 100 - HorseWalkSpeed) ){
+			HorseWalkPlayerX += HorseWalkSpeed;
 		} else {
 			HorseWalkPlayerX = MouseX - 100;
 		}
 		
-		if ( HorseWalkPlayerY > (MouseY - 95) ) {
-			HorseWalkPlayerY -= 5;
-		} else if ( (HorseWalkPlayerY) < (MouseY - 105) ){
-			HorseWalkPlayerY += 5;
+		if ( HorseWalkPlayerY > (MouseY - 100 + HorseWalkSpeed) ) {
+			HorseWalkPlayerY -= HorseWalkSpeed;
+		} else if ( (HorseWalkPlayerY) < (MouseY - 100 - HorseWalkSpeed) ){
+			HorseWalkPlayerY += HorseWalkSpeed;
 		} else {
 			HorseWalkPlayerY = MouseY - 100;
 		}
 
 
 
-		var Range = ((CommonIsMobile) ? (HorseWalkCarrotsize / 1.5) : (HorseWalkCarrotsize / 2));
+		var Range = ((CommonIsMobile) ? (HorseWalkItemSize / 1.5) : (HorseWalkItemSize / 2));
 
-		// If the game has started, we check the click position and remove a Carrot at that position
-		if (!MiniGameEnded)
-			for(var S = 0; S < HorseWalkCarrots.length; S++)
+		// If the game has started, we check the click position and remove a Item at that position
+		if (!MiniGameEnded){
+			for(var S = 0; S < HorseWalkCarrots.length; S++){
 				if (((HorseWalkPlayerX+100) >= HorseWalkCarrots[S].X - Range) && ((HorseWalkPlayerX+100) <= HorseWalkCarrots[S].X + Range) && ((HorseWalkPlayerY+100) >= HorseWalkCarrots[S].Y - Range) && ((HorseWalkPlayerY+100) <= HorseWalkCarrots[S].Y + Range)) {
-					if (HorseWalkCarrots[S].T == 1) HorseWalkCarrots.splice(S, 1);
-					else HorseWalkCarrots[S].T--;
+					HorseWalkCarrots.splice(S, 1);
+					HorseWalkCollectetCarrots++;
 					return;
 				}
-		
+			}
+			for(var S = 0; S < HorseWalkCrops.length; S++){
+				if (((HorseWalkPlayerX+100) >= HorseWalkCrops[S].X - Range) && ((HorseWalkPlayerX+100) <= HorseWalkCrops[S].X + Range) && ((HorseWalkPlayerY+100) >= HorseWalkCrops[S].Y - Range) && ((HorseWalkPlayerY+100) <= HorseWalkCrops[S].Y + Range)) {
+					HorseWalkCrops.splice(S, 1);
+					HorseWalkCollectetCrops++;
+					return;
+				}
+			}
+		}
 	}
 
 }
