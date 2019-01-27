@@ -12,7 +12,7 @@ Stage,LoveReq,SubReq,VarReq,IntroText,Image
 30,0,0,SubdueNotDone,Mildred 老师非常严厉，不是吗？,Sarah.jpg
 40,0,0,SubdueNotDone,我很好奇，你正在想些什么？,Sarah.jpg
 50,0,0,SubdueNotDone,你想要制服并绑架 Mildred 小姐？|（你需要 +2 喜爱度或顺从度来说服她。）,Sarah.jpg
-60,0,0,SubdueNotDone,我会帮你的。但是你来打头阵。,Sarah.jpg
+60,0,0,SubdueNotDone,我会帮你的。但是你先上。,Sarah.jpg
 0,0,0,SubdueSuccess,哇哦！这是我头一次希望|我能早点来上数学课。,Sarah.jpg
 10,0,0,SubdueSuccess,我是 Sarah，很高兴认识你。,Sarah.jpg
 20,0,0,SubdueSuccess,这真是最棒的一节数学课了！,Sarah.jpg
