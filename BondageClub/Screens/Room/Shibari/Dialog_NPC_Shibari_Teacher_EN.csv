@@ -55,7 +55,7 @@ RemoveSuspensionHempRope,,,(You untie the hemp rope from the ceiling and slowly 
 20,,I surrender.  Please get me out.,"Struggle some more.  If you really cannot get out, I'll release you.",SurrenderToTeacher(),Player.IsRestrained(),
 20,,(Whimper and make pleading eyes.),"Struggle some more.  If you really cannot get out, I'll release you.",SurrenderToTeacher(),Player.IsRestrained(),
 20,,I'll escape on my own.  (Leave her.),,DialogLeave(),Player.IsRestrained(),
-20,0,I've did it.  (Cheer and smile.),Well done.  I hope you learned some tricks.  Would you like to try again?,,!Player.IsRestrained(),
+20,0,I've done it.  (Cheer and smile.),Well done.  I hope you learned some tricks.  Would you like to try again?,,!Player.IsRestrained(),
 20,0,Piece of cake!  (Be cocky.),(She laughs.)  I hope you learned some tricks.  Would you like to try again?,DomComment(),!Player.IsRestrained(),
 MaidRescue,,,(She struggles in her restraints.)  Can you release me?,,IsTeacherRestrained(),
 MaidRescue,,,(She bows her head respectfully.)  Arigato to you and to the maid sorority.,,!IsTeacherRestrained(),

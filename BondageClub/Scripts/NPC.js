@@ -74,9 +74,10 @@ function NPCTraitKeepBestOption(C, Group) {
 function NPCTraitDialog(C) {
 	
 	// For each dialog option
-	for(var D = 0; D < C.Dialog.length; D++)
-		if (C.Dialog[D].Group != null)
-			NPCTraitKeepBestOption(C, C.Dialog[D].Group)
+	for(var D = 0; D < C.Dialog.length; D++) {
+		if (C.Dialog[D].Group != null) NPCTraitKeepBestOption(C, C.Dialog[D].Group)
+		if (C.Dialog[D].Function != null) C.Dialog[D].Function = C.Dialog[D].Function.replace("MainHall", "");
+	}
 	
 }
 

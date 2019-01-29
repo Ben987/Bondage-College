@@ -14,7 +14,8 @@ function PrivateWontChange() { return (!CurrentCharacter.IsRestrained() && (Repu
 function PrivateIsRestrained() { return (CurrentCharacter.IsRestrained()) }
 function PrivateAllowRestain() { return (CurrentCharacter.IsRestrained() || (ReputationGet("Dominant") + 25 >= NPCTraitGet(CurrentCharacter, "Dominant"))) }
 function PrivateNobodyGagged() { return (Player.CanTalk() && CurrentCharacter.CanTalk()) }
-function PrivateCanMasturbate() { return (CharacterIsNaked(CurrentCharacter) && !Player.IsRestrained()) }
+function PrivateCanMasturbate() { return (CharacterIsNaked(CurrentCharacter) && !CurrentCharacter.IsVulvaChaste() && !Player.IsRestrained()) }
+function PrivateCanFondle() { return (!CurrentCharacter.IsBreastChaste() && !Player.IsRestrained()) }
 function PrivateAllowRestainPlayer() { return (!Player.IsRestrained() && !CurrentCharacter.IsRestrained() && (ReputationGet("Dominant") - 25 <= NPCTraitGet(CurrentCharacter, "Dominant"))) }
 function PrivateWontRestainPlayer() { return (!Player.IsRestrained() && !CurrentCharacter.IsRestrained() && (ReputationGet("Dominant") - 25 > NPCTraitGet(CurrentCharacter, "Dominant"))) }
 function PrivateAllowReleasePlayer() { return (Player.IsRestrained() && CurrentCharacter.CanInteract() && CommonTime() > PrivateReleaseTimer) }
@@ -31,6 +32,9 @@ function PrivateLoad() {
 		PrivateLoadCharacter(1);
 		PrivateLoadCharacter(2);
 		PrivateLoadCharacter(3);
+	} else {
+		for(var C = 1; C < PrivateCharacter.length; C++)
+			NPCTraitDialog(PrivateCharacter[C]);
 	}
 
 	// Checks if we allow items on each NPC based on their trait and dominant reputation of the player
@@ -160,6 +164,7 @@ function PrivateLoadCharacter(ID) {
 		if (Char.AppearanceFull != null) C.AppearanceFull = Char.AppearanceFull.slice();
 		if (Char.Trait != null) C.Trait = Char.Trait.slice();
 		if (Char.Cage != null) C.Cage = Char.Cage;
+		AssetReload(C);
 		NPCTraitDialog(C);
 		CharacterRefresh(C);
 		PrivateCharacter.push(C);

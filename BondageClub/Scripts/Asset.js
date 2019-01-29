@@ -145,3 +145,12 @@ function AssetLoadAll() {
 	AssetGroup = [];
 	AssetLoad(AssetFemale3DCG, "Female3DCG");
 }
+
+// Make sure all the assets from a character are loaded properly
+function AssetReload(C) {
+	for(var A = 0; A < C.Appearance.length; A++)
+		if (C.Appearance[A].Asset != null)
+			for(var S = 0; S < Asset.length; S++)
+				if ((Asset[S].Name == C.Appearance[A].Asset.Name) && (Asset[S].Group.Name == C.Appearance[A].Asset.Group.Name))
+					C.Appearance[A].Asset = Asset[S];
+}

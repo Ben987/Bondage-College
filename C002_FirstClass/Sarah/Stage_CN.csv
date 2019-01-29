@@ -35,8 +35,8 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 30,0,0,SubdueNotDone,安静，我有个计划。,（她闭上了嘴认真听。）,40,0,1,
 40,0,0,SubdueNotDone,我们应该绑架 Mildred。,绑架她？就像捆起来堵上嘴？是个狂野的主意！,50,1,0,
 40,0,0,SubdueNotDone,你要帮我制服老师。,我的天！制服 Mildred 小姐？,50,0,1,
-50,2,0,SubdueNotDone,那么你会帮助|一位朋友吗？,（她傻笑着眨了眨眼。）我的老朋友。|行，我会帮你的，但是你来打头阵。,60,0,0,AgreeHelp()
-50,0,2,SubdueNotDone,去做就对了！|这将成为一场传奇。,好吧！我会帮你的。|但是你来打头阵。,60,0,0,AgreeHelp()
+50,2,0,SubdueNotDone,那么你会帮助|一位朋友吗？,（她傻笑着眨了眨眼。）我的老朋友。|行，我会帮你的，但是你先上。,60,0,0,AgreeHelp()
+50,0,2,SubdueNotDone,去做就对了！|这将成为一场传奇。,好吧！我会帮你的。|但是你先上。,60,0,0,AgreeHelp()
 50,0,0,SubdueNotDone,你会帮我吗？,听起来很好玩，但是我可能会陷入太多的麻烦。,50,0,0,
 50,0,0,SubdueNotDone,先让我想想。,（她点了点头。）当然，我也要想一想。,50,0,0,
 0,0,0,SubdueSuccess,这堂课不是|变得更好了吗？,更好？这是我上过的最棒的一节数学课。|我是 Sarah，很高兴认识你。,10,1,0,

@@ -86,13 +86,20 @@ TouchSubPunishment,,,(She pulls you to her by the hair.)  Never touch my pet!  N
 56,,(Leave her.),,DialogLeave(),
 100,,What are the rules for chastity items?,"Only the club Mistresses can unlock chastity devices.  If you have an owner, you need your owner permission to be unlocked.",,
 100,,Can I buy a key?,"No, the keys are not for sales.  They are for Mistresses only.",,
-100,110,"I'm stuck, I need your help.",(She smirks.)  So a subbie girl got herself locked?  What's your story?,,Player.IsChaste()
+100,110,"I'm stuck, I need your help.",(She smirks.)  So a subbie girl got herself locked?  What's your story?,,AllowReleaseChastity()
+100,,"I'm stuck, I need your help.",(She laughs.)  Better learn to enjoy it girl.  I'm not releasing you.,,RefuseReleaseChastity()
 100,130,A friend of mine needs your help.,What friend?  You're alone girl.,,FriendIsChaste()
 100,0,Let's talk about something else.,"Alright, but make it snappy.",,
 110,111,I wanted to protect myself.,"Since you're not owned, all there is to do is pay the unlocking fee and lick my heels.  (She points to her boot.)",,!Player.IsOwned()
 110,111,I was inspecting the belt and it locked on me.,"Since you're not owned, all there is to do is pay the unlocking fee and lick my heels.  (She points to her boot.)",,!Player.IsOwned()
 110,111,Someone played a prank on me.,"Since you're not owned, all there is to do is pay the unlocking fee and lick my heels.  (She points to her boot.)",,!Player.IsOwned()
-110,111,"I've played a crazy game of: ""Truth or Dare"".","Since you're not owned, all there is to do is pay the unlocking fee and lick my heels.  (She points to her boot.)",,!Player.IsOwned()
+110,111,"I've played a crazy ""Truth or Dare"" game.","Since you're not owned, all there is to do is pay the unlocking fee and lick my heels.  (She points to her boot.)",,!Player.IsOwned()
+110,120,I wanted to protect myself.,"I understand.  But since you're owned, I need your Mistress approval to unlock any chastity item from you.",,Player.IsOwned()
+110,120,I was inspecting the belt and it locked on me.,"(She grins.)  Of course.  Since you're owned, I need your Mistress approval to unlock any chastity item from you.",,Player.IsOwned()
+110,120,Someone played a prank on me.,"I understand.  But since you're owned, I need your Mistress approval to unlock any chastity item from you.",,Player.IsOwned()
+110,120,"I've played a crazy game of: ""Truth or Dare"".","I hope you won that game.  Since you're owned, I need your Mistress approval to unlock any chastity item from you.",,Player.IsOwned()
+110,120,My Mistress wanted to protect me.,"Very well, but you know that I need your Mistress approval to unlock any chastity item from you.",,Player.IsOwned()
+110,120,My owner punished me.,I bet you deserved it.  You know that I need your Mistress approval to unlock any chastity item from you.,,Player.IsOwned()
 111,112,I'm not kissing your ass or licking your heels.,You can't blame me for trying.  Just pay the unlocking fee of 25$ then.,,"DialogReputationGreater(""Dominant"", 40)"
 111,,Lick your heels?  That's the regular procedure?,"My duty, my rules.  So you lick or your leave?",DialogRemove(),
 111,112,Fine.  (Lick her heels.),"(You bend down and slowly lick her heels as she laughs.)  Good girl, the unlocking fee is 25$.",,
@@ -105,12 +112,33 @@ TouchSubPunishment,,,(She pulls you to her by the hair.)  Never touch my pet!  N
 113,0,Better!  I'll never get stuck again.,(She laughs.)  They all say that and they all come back.,"DialogChangeReputation(""Dominant"", 2)",
 113,0,This is great!,Be careful not to get locked again.  I don't do discount for multiple release.,,
 113,0,"(Blush.)  This is wonderful, thanks Mistress.","She pets your head.  Good girl, be careful not to get locked again.","DialogChangeReputation(""Dominant"", -2)",
-120,,I wanted to protect myself.,TO DO,,Player.IsOwned()
-120,,I was inspecting the belt and it locked on me.,TO DO,,Player.IsOwned()
-120,,Someone played a prank on me.,TO DO,,Player.IsOwned()
-120,,"I've played a crazy game of: ""Truth or Dare"".",TO DO,,Player.IsOwned()
-120,,My Mistress wanted to protect me.,TO DO,,Player.IsOwned()
-120,,My owner punished me.,TO DO,,Player.IsOwned()
+120,121,My owner isn't a club member.,That's not a problem girl.  We will call her to get her approval.,,OwnerFromBondageCollege()
+120,121,My Mistress is a college student.,That's not a problem girl.  We will call her to get her approval.,,OwnerFromBondageCollege()
+120,121,My owner is in my private room.,Excellent.  I will send a maid to get her approval.,,OwnerInPrivateRoom()
+120,121,Mistress is in the club right now.,Good.  I will send a maid to get her approval.,,OwnerInPrivateRoom()
+120,121,I can go get my owner.,You don't need to do anything.  I will send a maid to get her approval.,,OwnerInPrivateRoom()
+120,121,I'm not sure where my owner is.,"Don't worry, we will find her.  I will send a maid to get her approval.",,OwnerAway()
+120,121,My Mistress isn't around.,"Don't worry, we will find her.  I will send a maid to get her approval.",,OwnerAway()
+121,122,That's easy!,"It's not that easy, there's a 20$ fee to contact your Mistress and a 25$ fee for any item to remove.  And you won't get any refund if she refuses.",,
+121,122,Thanks Mistress.,"Hold on girl, there's a 20$ fee to contact your Mistress and a 25$ fee for any item to remove.  And you won't get any refund if she refuses.",,
+121,122,Does it cost anything?,"Of course, there's a 20$ fee to contact your Mistress and a 25$ fee for any item to remove.  And you won't get any refund if she refuses.",,
+122,123,Please contact her. (Pay her 20$.),(She takes your money and sends a maid to contact your owner.)  Come back in a few minutes,ContactOwner(),DialogMoneyGreater(20)
+122,0,I don't have enough money.,Get to work then.  I'm not doing any discount.,,!DialogMoneyGreater(20)
+122,0,I'll think about it.,Think about ways to stop wasting my time girl.,,
+123,,,"(She grins.)  Welcome back, chaste girl.",,
+123,,Have you contacted my owner?,"Not yet, don't be hasty.  Come back in a few minutes.",,OwnerPending()
+123,124,Have you contacted my owner?,"Yes, and your Mistress accepted to get you out.  It cost 25$ for each item to unlock.",,OwnerAccepted()
+123,129,Have you contacted my owner?,"Yes, and your Mistress refused to unlock you.  You will stay chaste girl.",,OwnerRefused()
+123,,I'll wait. (Leave her.),,DialogLeave(),
+124,,,Which chastity device should I unlock?  The fee is 25$ per item.,,
+124,124,Please unlock the bra.  (Pay her 25$.),"Very well, undress subbie girl.  (You remove your clothes and she unlocks the bra.)","UnlockItem(""ItemBreast"")",CanUnlockBra()
+124,124,Please unlock the belt.  (Pay her 25$.),"Very well, undress subbie girl.  (You remove your clothes and she unlocks the belt.)","UnlockItem(""ItemPelvis"")",CanUnlockBelt()
+124,,I don't have enough money.,Get to work then.  I'm not doing any discount.,,!DialogMoneyGreater(25)
+124,0,I'm fine now.  Thanks.,"Alright.  If you ask again, you will have to go through the same procedure.",EndChastityRelease(),
+124,,I'll be right back.  (Leave her.),,DialogLeave(),
+129,0,Yes Mistress.  (Bow your head.),"Good girl, enjoy your chaste life.  (She smirks.)","DialogChangeReputation(""Dominant"", -2)",
+129,0,What?  That's unfair!,Life isn't fair girl.  I'm not unlocking you.  (She grins.),"DialogChangeReputation(""Dominant"", 2)",
+129,0,Alright.,Good.  Is there anything else you need?,,
 130,131,She's in my private room.,"I'll make a deal with you then.  I'll send a maid to your room, and she will unlock all of your friends that are not owned by someone else for 50$.",,
 130,131,In my room Mistress.,"I'll make a deal with you then.  I'll send a maid to your room, and she will unlock all of your friends that are not owned by someone else for 50$.",,
 131,0,Deal!  (Pay her 50$.),Very good.  (She takes the money and sends a maid to your private room.)  Anything else?,ReleasePrivateRoom(),DialogMoneyGreater(50)

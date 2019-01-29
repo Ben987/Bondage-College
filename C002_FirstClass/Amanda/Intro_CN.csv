@@ -1,0 +1,21 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,!BondageBefore,（她看向你但是保持安静|来确保没有打搅到老师。）,Amanda.jpg
+0,1,0,!BondageBefore,（她小声说道）我们应该下课再聊。|Mildred 小姐正在讲课。,Amanda.jpg
+0,0,0,BondageBefore,（她看着你小声说道）|不要想着捆绑的事，我们正在上课。,Amanda.jpg
+0,1,0,BondageBefore,（她看着你小声说道）|请不要玩捆绑了，我们正在上课。,Amanda.jpg
+10,0,0,,（她小声说道）你想要干什么？,Amanda.jpg
+20,0,0,,（她小声说道）你看起来并不享受这堂课。,Amanda.jpg
+30,0,0,,（她小声说道）你是怎么想的？,Amanda.jpg
+40,0,0,,（她小声说道）你想绑架 Mildred 小姐？|（你需要至少 +4 喜爱度或顺从度来说服她。）,Amanda.jpg
+50,0,0,,（她脸红着小声说道）|我会帮你，但是你先上。,Amanda.jpg
+100,0,0,Common_PlayerNotGagged,我的天呐！难以置信！,Amanda.jpg
+100,0,0,Common_PlayerGagged,（她看着你轻轻地傻笑着。）,Amanda.jpg
+100,2,0,Common_PlayerGagged,（她看着你小声说道）|你戴着这个口塞看起来很可爱。,Amanda.jpg
+100,-2,0,Common_PlayerGagged,（她看着你小声说道）|我觉得我更喜欢你被堵上嘴。,Amanda.jpg
+110,0,0,,（她从口塞中发出呜咽的声音并左右甩着头。）,Amanda_BallGag.jpg
+120,0,0,,（她用力拉扯着手铐，想要把手抽出来。）,Amanda_Cuffs.jpg
+130,0,0,,（她从口塞中发出呜咽的声音并左右甩着头。）,Amanda_Cuffs_BallGag.jpg
+140,0,0,,（她的皮肤不断摩擦着绳子，|看起来正享受着这种感觉。）,Amanda_Rope.jpg
+150,0,0,,（她从口塞中发出呜咽的声音并左右甩着头。）,Amanda_Rope_BallGag.jpg
+160,0,0,,,Amanda_Rope.jpg
+170,0,0,,,Amanda_Rope_BallGag.jpg

@@ -44,7 +44,7 @@ function MainHallRun() {
 		if (Player.CanWalk()) DrawButton(25, 475, 450, 65, TextGet("SlaveMarket"), "White");
 		
 		// Check if there's a new maid rescue event to trigger
-		if ((!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk()) && (MainHallNextEventTimer == null)) MainHallNextEventTimer = CommonTime() + Math.floor(30000 * (1 + Math.random()));
+		if ((!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk()) && (MainHallNextEventTimer == null)) MainHallNextEventTimer = CommonTime() + 40000 + Math.floor(Math.random() * 40000);
 		if ((MainHallNextEventTimer != null) && (new Date().getTime() > MainHallNextEventTimer)) {
 			MainHallNextEventTimer = null;
 			if (!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk()) {

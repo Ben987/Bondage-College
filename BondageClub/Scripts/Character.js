@@ -186,6 +186,12 @@ function CharacterLoadNPC(NPCType) {
 		InventoryAdd(C, "MistressBoots", "Shoes");
 		CharacterAppearanceSetItem(C, "Shoes", C.Inventory[C.Inventory.length - 1].Asset);
 		CharacterAppearanceSetColorForGroup(C, Color, "Shoes");
+		InventoryAdd(C, "MistressTop", "Cloth");
+		CharacterAppearanceSetItem(C, "Cloth", C.Inventory[C.Inventory.length - 1].Asset);
+		CharacterAppearanceSetColorForGroup(C, Color, "Cloth");
+		InventoryAdd(C, "MistressBottom", "ClothLower");
+		CharacterAppearanceSetItem(C, "ClothLower", C.Inventory[C.Inventory.length - 1].Asset);
+		CharacterAppearanceSetColorForGroup(C, Color, "ClothLower");
 	}
 	
 	// Returns the new character
@@ -292,15 +298,16 @@ function CharacterRefresh(C) {
 // Removes all appearance items from the character
 function CharacterNaked(C) {
 	CharacterAppearanceNaked(C);
+	AssetReload(C);
+	C.Appearance = CharacterAppearanceSort(C.Appearance);
 	CharacterRefresh(C);
 }
 
 // Removes all appearance items from the character
 function CharacterIsNaked(C) {
-	for(var A = 0; A < C.Appearance.length; A++) {
-		if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Category == "Appearance") && C.Appearance[A].Asset.Group.AllowNone && !C.Appearance[A].Asset.Group.KeepNaked) return false;
-		if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Name == "ItemPelvis")) return false;
-	}
+	for(var A = 0; A < C.Appearance.length; A++)
+		if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Category == "Appearance") && C.Appearance[A].Asset.Group.AllowNone && !C.Appearance[A].Asset.Group.KeepNaked) 
+			return false;
 	return true;
 }
 
@@ -310,6 +317,7 @@ function CharacterUnderwear(C, Appearance) {
 	for(var A = 0; A < Appearance.length; A++)
 		if ((Appearance[A].Asset != null) && Appearance[A].Asset.Group.Underwear && (Appearance[A].Asset.Group.Category == "Appearance"))
 			C.Appearance.push(Appearance[A]);
+	AssetReload(C);
 	C.Appearance = CharacterAppearanceSort(C.Appearance);
 	CharacterRefresh(C);
 }
@@ -320,6 +328,7 @@ function CharacterDress(C, Appearance) {
 		if ((Appearance[A].Asset != null) && (Appearance[A].Asset.Group.Category == "Appearance"))
 			if (InventoryGet(C, Appearance[A].Asset.Group.Name) == null)
 				C.Appearance.push(Appearance[A]);
+	AssetReload(C);
 	C.Appearance = CharacterAppearanceSort(C.Appearance);
 	CharacterRefresh(C);
 }

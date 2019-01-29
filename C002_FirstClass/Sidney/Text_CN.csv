@@ -1,0 +1,16 @@
+Tag,Content
+StealKeys,啊哦！（她偷走了你的手铐钥匙并大笑着。）
+BallGagWilling,（她深吸一口气，然后张开嘴接受口球。）
+BallGagReluctant,（她咬紧牙关想阻止你，|但你还是把口球推了进去并扣上。）
+BallGagRefuse,她拒绝被堵嘴并把你推开。|（你需要至少 +2 顺从度来堵上 Sidney 的嘴。）
+CuffsReplaceRope,（你解开绳子让她穿上衣服，|然后紧接着将她铐上了。）
+CuffsWilling,（她低下头坐了下来，|并把手臂伸到背后让你铐起来。）
+CuffsReluctant,（她想推开你但你还是牵制住并铐上了她。）
+CuffsRefuse,她拒绝被铐起来并把你推开。|（你需要至少 +2 顺从度来铐上 Sidney。）
+CuffsUnlock,（你打开了她的手铐，她看起来很感激。）
+RopeReplaceCuffs,（你打开了手铐，她脱下衣服，|然后你把她严严实实地绑了起来。）
+RopeWilling,（她低下头脱掉衣服，|你将瑟瑟发抖的她绑了起来。）
+RopeReluctant,（你和她搏斗了一会来脱下她的衣服，|然后在她的激烈抵抗中将她绑了起来。）
+RopeRefuse,她拒绝被绑起来并把你推开。|（你需要至少 +2 顺从度来把 Sidney 绑起来。）
+CropGagged,（你用鞭子抽了 Sidney 几下。|她发出抱怨并愤怒地看着你。）
+Crop,（你用鞭子抽了 Sidney 几下。）|甘霖娘！你也不过如此？

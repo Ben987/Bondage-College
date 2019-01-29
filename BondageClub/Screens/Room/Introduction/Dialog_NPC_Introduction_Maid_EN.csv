@@ -116,7 +116,7 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  Ow
 340,,"Don't look, I will escape by myself.  (Leave her.)",,DialogLeave(),Player.IsRestrained()
 340,,,Well done!  You were able to struggle out.,,!Player.IsRestrained()
 340,350,That was easy.,I'll make it tighter next time.  Did you enjoy being tied up?,,!Player.IsRestrained()
-340,350,"It took a while, but I've did it.",That's great.  Did you enjoy being tied up?,,!Player.IsRestrained()
+340,350,"It took a while, but I've done it.",That's great.  Did you enjoy being tied up?,,!Player.IsRestrained()
 350,360,"Sure, it was fun.",That's the spirit!  You're ready to explore the club then.,,
 350,360,"I loved it, I hope happens often.",That's the spirit!  You're ready to explore the club then.,ChangeMaidOpinion(-1),
 350,360,I would rather strap you up.,"Not now, but you're ready to explore the club and do some bondage.",ChangeMaidOpinion(1),

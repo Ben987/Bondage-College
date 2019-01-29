@@ -6,14 +6,26 @@ var ManagementMistressAngryCount = 0;
 var ManagementMistressReleaseTimer = 0;
 var ManagementPlayerAppearance = null;
 var ManagementMistressAllowPlay = false;
+var ManagementCanReleaseChastity = true;
 
 // Returns TRUE if the dialog situation is allowed
 function ManagementNoTitle() { return (!LogQuery("JoinedSorority", "Maid") && (ReputationGet(RepType) < 50)) }
 function ManagementGetMistressAngryCount(InCount) { return (InCount == ManagementMistressAngryCount) }
 function ManagementMistressAngryAdd() { ManagementMistressAngryCount++ }
 function ManagementMistressWillRelease() { return (CommonTime() >= ManagementMistressReleaseTimer) }
-function ManagementFriendIsChaste() { return (((PrivateCharacter.length > 1) && PrivateCharacter[1].IsChaste()) || ((PrivateCharacter.length > 2) && PrivateCharacter[2].IsChaste()) || ((PrivateCharacter.length > 3) && PrivateCharacter[3].IsChaste())); } 
-function ManagementCanPlayWithoutPermission() { return (!ManagementMistressAllowPlay && Player.CanInteract()) } 
+function ManagementFriendIsChaste() { return (((PrivateCharacter.length > 1) && PrivateCharacter[1].IsChaste()) || ((PrivateCharacter.length > 2) && PrivateCharacter[2].IsChaste()) || ((PrivateCharacter.length > 3) && PrivateCharacter[3].IsChaste())); }
+function ManagementCanPlayWithoutPermission() { return (!ManagementMistressAllowPlay && Player.CanInteract() && (ManagementMistressReleaseTimer == 0)) } 
+function ManagementOwnerFromBondageCollege() { return ((Player.Owner == "NPC-Sidney") || (Player.Owner == "NPC-Amanda") || (Player.Owner == "NPC-Jennifer")) }
+function ManagementOwnerInPrivateRoom() { return false }
+function ManagementOwnerAway() { return false }
+function ManagementAllowReleaseChastity() { return (Player.IsChaste() && ManagementCanReleaseChastity) }
+function ManagementRefuseReleaseChastity() { return (Player.IsChaste() && !ManagementCanReleaseChastity) }
+function ManagementOwnerPending() { return (CommonTime() < ManagementMistressReleaseTimer) }
+function ManagementOwnerAccepted() { return ((CommonTime() >= ManagementMistressReleaseTimer) && ManagementCanReleaseChastity) }
+function ManagementOwnerRefused() { return ((CommonTime() >= ManagementMistressReleaseTimer) && !ManagementCanReleaseChastity) }
+function ManagementCanUnlockBra() { return ((Player.Money >= 25) && Player.IsBreastChaste()) }
+function ManagementCanUnlockBelt() { return ((Player.Money >= 25) && Player.IsVulvaChaste()) }
+function ManagementEndChastityRelease() { ManagementMistressReleaseTimer = 0; }
 
 // Loads the club management room, creates the Mistress and sub character
 function ManagementLoad() {
@@ -71,6 +83,7 @@ function ManagementPlayerRandomRestrain() {
 	CharacterFullRandomRestrain(Player, "Lot");
 	InventoryWear(Player, "MetalChastityBelt", "ItemPelvis");
 	InventoryWear(Player, "MetalChastityBra", "ItemBreast");
+	ManagementCanReleaseChastity = false;
 }
 
 // Starts the submissive play mode for the player
@@ -84,6 +97,7 @@ function ManagementPlayerRelease() {
 	CharacterRelease(Player);
 	CharacterDress(Player, ManagementPlayerAppearance);
 	ManagementMistressAllowPlay = false;
+	ManagementMistressReleaseTimer = 0;
 }
 
 // When the player switches from the sub to the Mistress because she's angry
@@ -104,12 +118,21 @@ function ManagementReleasePrivateRoom() {
 	for (var P = 1; P < PrivateCharacter.length; P++) {
 		if (PrivateCharacter[P].IsVulvaChaste()) InventoryRemove(PrivateCharacter[P], "ItemPelvis");
 		if (PrivateCharacter[P].IsBreastChaste()) InventoryRemove(PrivateCharacter[P], "ItemBreast");
+		PrivateSaveCharacter(P);
 	}
 	CharacterChangeMoney(Player, -50);
 }
 
 // When the player gets unlocked
 function ManagementUnlockItem(ItemGroup) {
-	InventoryRemove(PrivateCharacter[P], ItemGroup);
+	InventoryRemove(Player, ItemGroup);
 	CharacterChangeMoney(Player, -25);
+}
+
+// When the Mistress will contact the player owner
+function ManagementContactOwner() {
+	ManagementMistressReleaseTimer = CommonTime() + 200000 + Math.floor(Math.random() * 200000);
+	CharacterChangeMoney(Player, -20);
+	ManagementCanReleaseChastity = (Math.random() >= 0.3);
+	if (Player.Owner == "NPC-Sidney") ManagementCanReleaseChastity = (Math.random() >= 0.6);
 }

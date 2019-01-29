@@ -52,7 +52,8 @@ var AssetFemale3DCG = [
 			{ Name: "ChineseDress2", Value: 100 },
 			{ Name: "TShirt1", Require: ["ClothLower"] },
 			{ Name: "TennisShirt1", Require: ["ClothLower"] },
-			{ Name: "Sweater1", Require: ["ClothLower"] }
+			{ Name: "Sweater1", Require: ["ClothLower"] },
+			{ Name: "MistressTop", Require: ["ClothLower"], Hide: ["Bra"], Value: -1 }
 		]
 	},
 	
@@ -70,7 +71,8 @@ var AssetFemale3DCG = [
 			{ Name: "Skirt1" },
 			{ Name: "TennisSkirt1", ParentItem: "TennisShirt1" },
 			{ Name: "Jeans1" },
-			{ Name: "Shorts1" }
+			{ Name: "Shorts1" },
+			{ Name: "MistressBottom", Hide: ["Panties"], Value: -1 }
 		]
 	},
 	 
@@ -229,7 +231,7 @@ var AssetFemale3DCG = [
 			{ Name: "Heels1", Height: 15 },
 			{ Name: "Heels2", Height: 15 },
 			{ Name: "Boots1", Height: 9 },
-			{ Name: "MistressBoots", Height: 35, Value: -1, Alpha: [[125, 800, 250, 200]] }
+			{ Name: "MistressBoots", Height: 35, Value: -1, Hide: ["Socks"], Alpha: [[125, 800, 250, 200]] }
 		]
 	},
 

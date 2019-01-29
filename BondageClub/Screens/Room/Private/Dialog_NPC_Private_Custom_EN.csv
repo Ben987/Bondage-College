@@ -144,7 +144,7 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  That was fun!  
 0,,Will you tie me up?,Sure!  Give me your arms and I'll fix you up.  (She restrains you.),RestrainPlayer(),AllowRestainPlayer(),WillRestrainPlayer,
 0,,Will you tie me up?,My pleasure girl.  I'll make it extra tight for you.  (She hurts you a little while restraining you.),RestrainPlayer(),AllowRestainPlayer(),WillRestrainPlayer,Dominant|Violent
 0,,Will you tie me up?,A sub tying a sub?  I guess we can try that.  (She giggles and restrains you.),RestrainPlayer(),AllowRestainPlayer(),WillRestrainPlayer,Submissive|Playful
-0,,Will you tie me up?,"Come closer and stay still little one, I don't want to you.  (She carefully restrains you.)",RestrainPlayer(),AllowRestainPlayer(),WillRestrainPlayer,Peaceful|Polite
+0,,Will you tie me up?,"Come closer and stay still little one, I don't want to hurt you.  (She carefully restrains you.)",RestrainPlayer(),AllowRestainPlayer(),WillRestrainPlayer,Peaceful|Polite
 0,,Will you tie me up?,I can't tie up a strong woman like you.,,WontRestainPlayer(),WontRestrainPlayer,
 0,,Will you tie me up?,I've tied up lots of bitches around here.  But I won't dare touching someone like ya.,,WontRestainPlayer(),WontRestrainPlayer,Dominant|Rude
 0,,Will you tie me up?,"(She shakes her head no.)  Miss, I must politely decline your offer.  It wouldn't be proper.",,WontRestainPlayer(),WontRestrainPlayer,Submissive|Polite
@@ -200,10 +200,10 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  That was fun!  
 100,,(Kiss her.),(You get close to her to share a kiss.  She really likes it and forcefully pushes her tongue in your mouth.),,NobodyGagged(),PlayKiss,Horny|Violent
 100,,(Kiss her.),(She blushes as you get closer for a kiss.  You share a sober but lovely embrace on the lips.)  You certainly share your affection with fervor.,,NobodyGagged(),PlayKiss,Polite|Peaceful
 100,,(Kiss her.),"(She doesn't react much as you share a slow kiss.)  Kisses have a cultural and emotional impact on most, but it doesn't do much for me.",,NobodyGagged(),PlayKiss,Frigid|Wise
-100,,(Fondle her.),(You fondle her breast and butt as she blushes.)  You have wonderful hands.,,Player.CanInteract(),PlayFondle,
-100,,(Fondle her.),(You fondle her breast and butt as she moans loudly.)  Your loving hands are such a pleasure on my tender skin.,,Player.CanInteract(),PlayFondle,Horny|Polite
-100,,(Fondle her.),"(You fondle her breasts and butt, but she doesn't react much.)  That's the best you can do?  Smack that ass!",,Player.CanInteract(),PlayFondle,Violent|Playful
-100,,(Fondle her.),"(You fondle her breasts and butt as she moans lightly.)  You're good girl.  If I ever need a masseuse, I'll call you for sure.",,Player.CanInteract(),PlayFondle,Serious|Dominant
+100,,(Fondle her breast.),(You fondle her breast as she blushes.)  You have wonderful hands.,,CanFondle(),PlayFondle,
+100,,(Fondle her breast.),(You fondle her breast as she moans loudly.)  Your loving hands are such a pleasure on my tender skin.,,CanFondle(),PlayFondle,Horny|Polite
+100,,(Fondle her breast.),"(You fondle her breast but she doesn't react much.)  That's the best you can do?  Smack them, pinch them, whip them!",,CanFondle(),PlayFondle,Violent|Playful
+100,,(Fondle her breast.),"(You fondle her breast as she moans lightly.)  You're good girl.  If I ever need a masseuse, I'll call you for sure.",,CanFondle(),PlayFondle,Serious|Dominant
 100,,(Slap her.),(She's stunned as you slap her on the face.)  What was that for?,,Player.CanInteract(),PlaySlap,
 100,,(Slap her.),"(You slap her hard on the face, but she stands her ground.)  I've been slapped all my life, I can take it.",,Player.CanInteract(),PlaySlap,Violent|Dumb
 100,,(Slap her.),"(She whimpers and bows her head as you slap her hard.)  Miss, what did I do to deserve such a harsh treatment?",,Player.CanInteract(),PlaySlap,Polite|Peaceful
