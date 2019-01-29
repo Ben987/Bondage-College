@@ -27,7 +27,8 @@ ItemPelvisLeatherCrop,,,(You whip her butt with the leather crop as she wiggles 
 0,,Please take a Photo.,please look friendly.,ShotThePlayerPhoto(),PhotographicSubCanAskForPhoto()
 0,,(Wink for a Photo),Please look helpless.,ShotThePlayerPhoto(),PhotographicSubCanWinkForPhoto()
 0,10,I'll strip some Cloth.,"Yea, show me your wonderful Body.",,!Player.IsRestrained()
-0,20,I want to use some toys.,What should it be?,,
+0,20,Please use some toys on me.,What should it be?,,!PhotographicSubIsRestrained()
+0,,Please use some toys on me.,She points to her restraints.,,PhotographicSubIsRestrained()
 0,40,Please take off your clothes.,Where should I start?,,!PhotographicSubIsRestrained()
 0,,(Nod for help.),I'm already helping,PlayerRelease(),Player.IsRestrained()
 0,,Good By. (Leave her.),,DialogLeave(),
