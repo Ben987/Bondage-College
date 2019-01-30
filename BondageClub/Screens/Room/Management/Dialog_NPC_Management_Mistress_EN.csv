@@ -35,8 +35,8 @@ TouchSubPunishment,,,(She pulls you to her by the hair.)  Never touch my pet!  N
 13,14,That's embarrassing.,And it's about to get worse.  (She forces an armbinder on you and straps it tight.),PlayerArmbinder(0),
 13,14,Are you happy now?,Not yet.  (She forces an armbinder on you and straps it tight.),PlayerArmbinder(2),
 13,14,(Blush and bow your head.),Good girl.  (She forces an armbinder on you and straps it tight.),PlayerArmbinder(-2),
-14,15,This is really tight.,Have you learned your lesson?  Will you be good or I need to restrict you even more?,,
-14,15,(Tug on the binder.),Have you learned your lesson?  Will you be good or I need to restrict you even more?,,
+14,15,This is really tight.,"Have you learned your lesson?  Will you be good, or I need to restrict you even more?",,
+14,15,(Tug on the binder.),"Have you learned your lesson?  Will you be good, or I need to restrict you even more?",,
 15,16,"Yes, I've learned my lesson.","Alright.  (She straps your legs with a belt.)  I will release you later, you can struggle for my amusement.","DialogWearItem(""LeatherBelt"", ""ItemFeet"")",
 15,16,Yes Mistress.,"Alright.  (She straps your legs with a belt.)  I will release you later, you can struggle for my amusement.","DialogWearItem(""LeatherBelt"", ""ItemFeet"")",
 15,16,What lesson?,"I'll show you.  (She uses many more items on you.)  I will release you later, you can struggle for my amusement.",PlayerRandomRestrain(),
@@ -86,7 +86,7 @@ TouchSubPunishment,,,(She pulls you to her by the hair.)  Never touch my pet!  N
 56,,(Leave her.),,DialogLeave(),
 100,,What are the rules for chastity items?,"Only the club Mistresses can unlock chastity devices.  If you have an owner, you need your owner permission to be unlocked.",,
 100,,Can I buy a key?,"No, the keys are not for sales.  They are for Mistresses only.",,
-100,110,"I'm stuck, I need your help.",(She smirks.)  So a subbie girl got herself locked?  What's your story?,,AllowReleaseChastity()
+100,110,"I'm stuck, I need your help.","(She smirks.)  So, a subbie girl got herself locked?  What's your story?",,AllowReleaseChastity()
 100,,"I'm stuck, I need your help.",(She laughs.)  Better learn to enjoy it girl.  I'm not releasing you.,,RefuseReleaseChastity()
 100,130,A friend of mine needs your help.,What friend?  You're alone girl.,,FriendIsChaste()
 100,0,Let's talk about something else.,"Alright, but make it snappy.",,
@@ -101,15 +101,15 @@ TouchSubPunishment,,,(She pulls you to her by the hair.)  Never touch my pet!  N
 110,120,My Mistress wanted to protect me.,"Very well, but you know that I need your Mistress approval to unlock any chastity item from you.",,Player.IsOwned()
 110,120,My owner punished me.,I bet you deserved it.  You know that I need your Mistress approval to unlock any chastity item from you.,,Player.IsOwned()
 111,112,I'm not kissing your ass or licking your heels.,You can't blame me for trying.  Just pay the unlocking fee of 25$ then.,,"DialogReputationGreater(""Dominant"", 40)"
-111,,Lick your heels?  That's the regular procedure?,"My duty, my rules.  So you lick or your leave?",DialogRemove(),
+111,,Lick your heels?  That's the regular procedure?,"My duty, my rules.  You lick or your leave?",DialogRemove(),
 111,112,Fine.  (Lick her heels.),"(You bend down and slowly lick her heels as she laughs.)  Good girl, the unlocking fee is 25$.",,
 111,0,I won't lick your heels!,(She laughs.)  Then you stay chaste. ,,
-112,,That's extortion!,"No, that's a lesson.  So you pay or you go?",DialogRemove(),
+112,,That's extortion!,"No, that's a lesson.  You pay or you go?",DialogRemove(),
 112,113,Please unlock the bra.  (Pay her 25$.),Alright.  (You remove your clothes and she unlocks the bra.)  How does it feel?,"UnlockItem(""ItemBreast"")",CanUnlockBra()
 112,113,Please unlock the belt.  (Pay her 25$.),Alright.  (You remove your clothes and she unlocks the belt.)  How does it feel?,"UnlockItem(""ItemPelvis"")",CanUnlockBelt()
 112,0,I don't have enough money.,Get to work then.  I'm not doing any discount.,,!DialogMoneyGreater(25)
 112,0,I'll think about it.,Think about ways to stop wasting my time girl.,,
-113,0,Better!  I'll never get stuck again.,(She laughs.)  They all say that and they all come back.,"DialogChangeReputation(""Dominant"", 2)",
+113,0,Better!  I'll never get stuck again.,"(She laughs.)  They all say that, and they all come back.","DialogChangeReputation(""Dominant"", 2)",
 113,0,This is great!,Be careful not to get locked again.  I don't do discount for multiple release.,,
 113,0,"(Blush.)  This is wonderful, thanks Mistress.","She pets your head.  Good girl, be careful not to get locked again.","DialogChangeReputation(""Dominant"", -2)",
 120,121,My owner isn't a club member.,That's not a problem girl.  We will call her to get her approval.,,OwnerFromBondageCollege()
@@ -136,7 +136,7 @@ TouchSubPunishment,,,(She pulls you to her by the hair.)  Never touch my pet!  N
 124,,I don't have enough money.,Get to work then.  I'm not doing any discount.,,!DialogMoneyGreater(25)
 124,0,I'm fine now.  Thanks.,"Alright.  If you ask again, you will have to go through the same procedure.",EndChastityRelease(),
 124,,I'll be right back.  (Leave her.),,DialogLeave(),
-129,0,Yes Mistress.  (Bow your head.),"Good girl, enjoy your chaste life.  (She smirks.)","DialogChangeReputation(""Dominant"", -2)",
+129,0,Yes Mistress.  (Bow your head.),Good girl.  Enjoy your chaste life.  (She smirks.),"DialogChangeReputation(""Dominant"", -2)",
 129,0,What?  That's unfair!,Life isn't fair girl.  I'm not unlocking you.  (She grins.),"DialogChangeReputation(""Dominant"", 2)",
 129,0,Alright.,Good.  Is there anything else you need?,,
 130,131,She's in my private room.,"I'll make a deal with you then.  I'll send a maid to your room, and she will unlock all of your friends that are not owned by someone else for 50$.",,
@@ -147,7 +147,7 @@ TouchSubPunishment,,,(She pulls you to her by the hair.)  Never touch my pet!  N
 200,,What is a D/s family?,You can build your own D/s family or join a Dominant family.  A submissive can only have one Mistress.  A Mistress can have many submissives.,,
 200,,Will you be my Mistress?,"No, my D/s family is complete.  I'm not looking for a new slave.",DialogRemove(),
 200,,Can I collar and own anyone?,"BDSM is consensual.  As long as the person isn't already owned and consent to be your slave, you can collar her.",,
-200,,I want to collar a submissive.,"Perfect!  You'll have to wait though, the club is restructuring.  Please come back later.",,
-200,,A Dominant wants to collar me.,"You must be thrilled sub girl.  You'll have to wait though, the club is restructuring.  Come back later.",,!Player.IsOwned()
-200,,I want to be released from my owner.,"I'm sorry to hear that.  You'll have to wait though, the club is restructuring.  Come back later.",,Player.IsOwned()
+200,,I want to collar a submissive.,Perfect!  You'll have to wait though.  The club is restructuring.  Please come back later.,,
+200,,A Dominant wants to collar me.,You must be thrilled sub girl.  You'll have to wait though.  The club is restructuring.  Come back later.,,!Player.IsOwned()
+200,,I want to be released from my owner.,I'm sorry to hear that.  You'll have to wait though.  The club is restructuring.  Come back later.,,Player.IsOwned()
 200,0,Let's talk about something else.,As long as you don't ask anything idiotic.,,

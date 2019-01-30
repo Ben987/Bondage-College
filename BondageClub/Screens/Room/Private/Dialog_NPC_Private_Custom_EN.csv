@@ -37,7 +37,7 @@ RemoveItemFeet,,,(She gains a firm balance as you release her feet.)  Much bette
 RemoveItemFeet,,,"(You release her feet and she wiggles them.)  I love feet bondage, you can also whip and tickle them if you want.",,,RemoveItemFeet,Submissive|Violent
 RemoveItemFeet,,,"(You release her feet as she nods slowly.)  Thanks, it was awkward and uncomfortable to be forced like that.",,,RemoveItemFeet,Serious|Peaceful
 ItemNeck,,,"(You strap the collar on her as she nods.)  Don't worry, I can breathe fine.",,,ItemNeck,
-ItemNeck,,,"(You fasten the collar around her neck as she grumbles.)  Girl, collars are not toys but serious symbols, do not play with them.",,,ItemNeck,Dominant|Serious
+ItemNeck,,,"(You fasten the collar around her neck as she grumbles.)  Girl, collars are not toys, but serious symbols.  Do not play with them.",,,ItemNeck,Dominant|Serious
 ItemNeck,,,(You strap the collar on her as she blushes.)  Is there a hidden message there?  (She giggles.),,,ItemNeck,Submissive|Playful
 ItemNeck,,,"(She adjusts her neck to her new collar.)  You can choke me with it if you want, but always check on my well being.",,,ItemNeck,Violent|Wise
 RemoveItemNeck,,,(You remove the collar fastened around her neck.)  This is better!,,,RemoveItemNeck,
@@ -78,8 +78,8 @@ ItemBreast,,,(She holds her breath as you use the item.)  Oh my!  What did I do 
 ItemBreast,,,"(She moans as you use the device on her.)  Oh yes Miss!  My breast is yours to pierce, slap or lock.",,,ItemBreast,Violent|Submissive
 ItemBreast,,,"(She whimpers as you use the device on her breast.)  Sorry to object, but this isn't very convenient or comfortable.",,,ItemBreast,Peaceful|Polite
 RemoveItemBreast,,,(She wiggles her breast slowly as you remove the device.)  Thanks!  This is better.,,,RemoveItemBreast,
-RemoveItemBreast,,,(She grumbles as you use remove the item.)  You should be thoughful and don't remove anything until I'm hurt and broken.,,,RemoveItemBreast,Violent|Serious
-RemoveItemBreast,,,(She wiggles her breast happily as you remove the item.)  Oh hell yeah!  That shit was hurting really bad.,,,RemoveItemBreast,Peaceful|Rude
+RemoveItemBreast,,,(She grumbles as you use remove the item.)  Be thoughtful and don't remove anything until I'm hurt and broken.,,,RemoveItemBreast,Violent|Serious
+RemoveItemBreast,,,"(She wiggles her breast happily as you remove the item.)  Oh, hell yeah!  That shit was hurting really bad.",,,RemoveItemBreast,Peaceful|Rude
 ItemBreastLeatherWhip,,,(She jumps and does small whimpers each time you hit her breast.)  It stings!,,,ItemBreastLeatherWhip,
 ItemBreastLeatherWhip,,,(She moans of pleasure with each lash on her breast.)  Oh yeah!  Hit me harder!,,,ItemBreastLeatherWhip,Violent
 ItemBreastLeatherWhip,,,(She whimpers and cries as you whip her breast.)  Ow!  Please stop!  It hurts really bad.,,,ItemBreastLeatherWhip,Peaceful
@@ -93,11 +93,11 @@ ItemPelvisLeatherCrop,,,"(You lash the leather crop pretty hard on her butt.)  O
 ItemPelvisLeatherCrop,,,(You swing the leather crop on her butt as she moans.)  Harder!  The pain feels so good.,,,ItemPelvisLeatherCrop,Violent
 ItemPelvisLeatherCrop,,,(She trembles and whimpers from the pain.)  I'll be good Miss.  Please stop hurting me.,,,ItemPelvisLeatherCrop,Peaceful
 ItemVulvaVibratingWand,,,"(She moans softly as you massage her pussy with the wand.)  Mmmmh, this is lovely.",,,ItemVulvaVibratingWand,
-ItemVulvaVibratingWand,,,"(She moans loudly as you massage her pussy with the wand.)  Oh fuck yeah!  Babe, this is hot!",,,ItemVulvaVibratingWand,Horny|Rude
-ItemVulvaVibratingWand,,,(You massage her pussy with the wand but she stays cold.)  I'm very sorry Miss.  I'm not in the mood.,,,ItemVulvaVibratingWand,Frigid|Submissive
+ItemVulvaVibratingWand,,,"(She moans loudly as you massage her pussy with the wand.)  Oh, fuck yeah!  Babe, this is hot!",,,ItemVulvaVibratingWand,Horny|Rude
+ItemVulvaVibratingWand,,,"(You massage her pussy with the wand, but she stays cold.)  I'm very sorry Miss.  I'm not in the mood.",,,ItemVulvaVibratingWand,Frigid|Submissive
 VibratingEgg,,,(She wiggles her butt as you slide the egg inside.)  Now this is kinky!,,,VibratingEgg,
 VibratingEgg,,,"(She moans loudly as you slide the egg inside.)  This egg is perfect.  It's soft, sexy, discrete and so pleasurable.",,,VibratingEgg,Horny|Peaceful
-VibratingEgg,,,"(You slide the egg inside but she barely reacts to it.)  I don't want to top from the bottom, but this egg would work better on someone else.",,,VibratingEgg,Frigid|Wise
+VibratingEgg,,,"(You slide the egg inside, but she barely reacts to it.)  I don't want to top from the bottom, but this egg would work better on someone else.",,,VibratingEgg,Frigid|Wise
 RemoveVibratingEgg,,,(She does one last moan as you remove the egg.)  Ooooh!  That was quite a stimulation.,,,RemoveVibratingEgg,
 RemoveVibratingEgg,,,(She trashes violently to try to stop you but you're able to recover the egg.)  Hey!  Put it back!,,,RemoveVibratingEgg,Horny|Violent
 RemoveVibratingEgg,,,"(She doesn't react as you remove the egg.)  Maybe it doesn't work, I didn't feel a thing in there.",,,RemoveVibratingEgg,Frigid|Dumb
@@ -202,7 +202,7 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  That was fun!  
 100,,(Kiss her.),"(She doesn't react much as you share a slow kiss.)  Kisses have a cultural and emotional impact on most, but it doesn't do much for me.",,NobodyGagged(),PlayKiss,Frigid|Wise
 100,,(Fondle her breast.),(You fondle her breast as she blushes.)  You have wonderful hands.,,CanFondle(),PlayFondle,
 100,,(Fondle her breast.),(You fondle her breast as she moans loudly.)  Your loving hands are such a pleasure on my tender skin.,,CanFondle(),PlayFondle,Horny|Polite
-100,,(Fondle her breast.),"(You fondle her breast but she doesn't react much.)  That's the best you can do?  Smack them, pinch them, whip them!",,CanFondle(),PlayFondle,Violent|Playful
+100,,(Fondle her breast.),"(You fondle her breast, but she doesn't react much.)  That's the best you can do?  Smack them, pinch them, whip them!",,CanFondle(),PlayFondle,Violent|Playful
 100,,(Fondle her breast.),"(You fondle her breast as she moans lightly.)  You're good girl.  If I ever need a masseuse, I'll call you for sure.",,CanFondle(),PlayFondle,Serious|Dominant
 100,,(Slap her.),(She's stunned as you slap her on the face.)  What was that for?,,Player.CanInteract(),PlaySlap,
 100,,(Slap her.),"(You slap her hard on the face, but she stands her ground.)  I've been slapped all my life, I can take it.",,Player.CanInteract(),PlaySlap,Violent|Dumb

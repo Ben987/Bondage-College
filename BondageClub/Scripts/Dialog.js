@@ -418,7 +418,7 @@ function DialogDrawItemMenu(C) {
 			// Draw the current operation and progress
 			DrawText(DialogProgressOperation, 1500, 650, "White", "Black");
 			DrawProgressBar(1200, 700, 600, 100, DialogProgress);
-			DrawText((CommonIsMobile) ? "Click here to speed up the progress" : "Alternate keys A and S to speed up", 1500, 900, "White", "Black");
+			DrawText(DialogFind(Player, (CommonIsMobile) ? "ProgressClick" : "ProgressKeys"), 1500, 900, "White", "Black");
 
 			// If the operation is completed
 			if (DialogProgress >= 100) {
@@ -451,26 +451,26 @@ function DialogDrawItemMenu(C) {
 
 				// Draw the struggle option
 				if ((C.ID == 0) && (Item.Asset.Effect != null) && (Item.Asset.Effect.indexOf("Block") >= 0) && (Item.Asset.Effect.indexOf("Struggle") >= 0)) {
-					DrawText("Struggle to free yourself", 1250, 62, "White", "Black");
+					DrawText(DialogFind(Player, "CanStruggle"), 1250, 62, "White", "Black");
 					DrawButton(1500, 25, 225, 75, "Struggle", "White");
 				}
 
 				// Draw the unlock option
 				if ((C.ID == 0) && (Item.Asset.Effect != null) && (Item.Asset.Effect.indexOf("Block") >= 0) && (Item.Asset.Effect.indexOf("Lock") >= 0)) {
 					if (DialogCanUnlock(C)) {
-						DrawText("You can unlock yourself", 1250, 62, "White", "Black");
+						DrawText(DialogFind(Player, "CanUnlock"), 1250, 62, "White", "Black");
 						DrawButton(1500, 25, 225, 75, "Unlock", "White");
-					} else DrawText("You don't have the proper key", 1350, 62, "White", "Black");
+					} else DrawText(DialogFind(Player, "CannotUnlock"), 1350, 62, "White", "Black");
 				}
 
 				// Draw the no struggle option
 				if ((C.ID == 0) && (Item.Asset.Effect != null) && (Item.Asset.Effect.indexOf("Block") >= 0) && (Item.Asset.Effect.indexOf("Lock") < 0) && (Item.Asset.Effect.indexOf("Struggle") < 0))
-					DrawText("You'll need help to get out", 1250, 62, "White", "Black");
+					DrawText(DialogFind(Player, "CannotStruggle"), 1250, 62, "White", "Black");
 			}
 			
 			// Show the no access text
-			if (InventoryGroupIsBlocked(C)) DrawText("This zone is out of reach from another item", 1500, 700, "White", "Black");
-			else DrawText("You cannot access your items", 1500, 700, "White", "Black");
+			if (InventoryGroupIsBlocked(C)) DrawText(DialogFind(Player, "ZoneBlocked"), 1500, 700, "White", "Black");
+			else DrawText(DialogFind(Player, "AccessBlocked"), 1500, 700, "White", "Black");
 			
 		}
 		

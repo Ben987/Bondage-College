@@ -135,11 +135,11 @@ function DrawCharacter(C, X, Y, Zoom) {
 			if ((C.Name != "") && (CurrentModule == "Room")) 
 				if (!Player.IsBlind())
 					DrawText(C.Name, X + 255, Y + 980, "White", "Black");
-			
+
 		}
 
 }
-		
+
 // Draw a zoomed image from a source to a specific canvas
 function DrawImageZoomCanvas(Source, Canvas, SX, SY, SWidth, SHeight, X, Y, Width, Height) {
 	Canvas.drawImage(DrawGetImage(Source), SX, SY, Math.round(SWidth), Math.round(SHeight), X, Y, Width, Height);
@@ -207,7 +207,7 @@ function DrawImageCanvasColorize(Source, Canvas, X, Y, Zoom, HexColor, FullAlpha
 				data[p + 0] = rgbColor.r * trans;
 				data[p + 1] = rgbColor.g * trans;
 				data[p + 2] = rgbColor.b * trans;
-			}		
+			}
 		} else {
 			for(var p = 0, len = data.length; p < len; p+=4) {
 				trans = ((data[p] + data[p + 1] + data[p + 2]) / 383);

@@ -567,10 +567,10 @@ function CharacterAppearanceSave(C) {
 
 // Loads the character appearance from the JSON file
 function CharacterAppearanceLoadFromAccount(C, Appearance) {
-	
+
 	// Make sure we have something to load
 	if (Appearance != null) {
-	
+
 		// For each appearance item to load
 		C.Appearance = [];
 		for (var A = 0; A < Appearance.length; A++) {
@@ -587,7 +587,7 @@ function CharacterAppearanceLoadFromAccount(C, Appearance) {
 					C.Appearance.push(NA);
 					break;
 				}
-				
+
 		}
 
 		// Draw the character canvas

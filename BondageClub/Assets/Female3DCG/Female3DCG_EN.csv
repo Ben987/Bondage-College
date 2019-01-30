@@ -151,8 +151,9 @@ ItemTorso,NylonRopeHarness,Nylon Rope Harness
 ItemTorso,HempRopeHarness,Hemp Rope Harness
 ItemTorso,LeatherHarness,Leather Harness
 ItemBreast,,Breast
-ItemBreast,StraightPiercing,Straight Piercing
-ItemBreast,RoundPiercing,Round Piercing
+ItemBreast,StraightPiercing,Straight Piercings
+ItemBreast,RoundPiercing,Round Piercings
+ItemBreast,NippleClamp,Nipple Clamps
 ItemBreast,MetalChastityBra,Metal Chastity Bra
 ItemBreast,LeatherCrop,Leather Crop
 ItemBreast,LeatherWhip,Leather Whip

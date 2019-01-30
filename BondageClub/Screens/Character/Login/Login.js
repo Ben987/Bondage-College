@@ -4,7 +4,7 @@ var LoginMessage = "";
 var LoginCredits = null;
 var LoginCreditsPosition = 0;
 var LoginThankYou = "";
-var LoginThankYouList = ["Alvin", "Bryce", "Christian", "Designated", "Dick", "EugeneTooms", "Gopanka", "Jdmsouls22", "Jyeoh", "Laioken", "Michal", "Mindtie", "Nick", "Overlord", "Paradox", "Rashiash", "Ryner", "Shadow", "Shaun", "Simeon", "Simon", "Sky Lord", "Terry", "Winterisbest", "William", "Xepherio", "Zack"];
+var LoginThankYouList = ["Alvin", "Bryce", "Christian", "Designated", "Dick", "EugeneTooms", "Gopanka", "Jdmsouls22", "Jyeoh", "Karel", "Laioken", "Michal", "Mindtie", "Nick", "Overlord", "Paradox", "Rashiash", "Ryner", "Shadow", "Setsu95", "Shaun", "Simeon", "Simon", "Sky", "Terry", "William", "Winterisbest", "Xepherio", "Zack"];
 var LoginThankYouNext = 0;
 
 // Loads the next thank you bubble
@@ -187,5 +187,5 @@ function LoginClick() {
 
 		} else LoginMessage = TextGet("InvalidNamePassword");
 	}
-	
+
 }
