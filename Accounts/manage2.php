@@ -237,8 +237,8 @@ if (isset($_GET["command"])) {
 				// Saves specific character values passed as parameters
 				$arr = json_decode($data);
 				if (isset($_GET["money"]) && ($_GET["money"] != "")) $arr->Money = $_GET["money"];
-				if (isset($_GET["owner"]) && ($_GET["owner"] != "")) $arr->Owner = $_GET["owner"];
-				if (isset($_GET["lover"]) && ($_GET["lover"] != "")) $arr->Lover = $_GET["lover"];
+				if (isset($_GET["owner"])) $arr->Owner = $_GET["owner"];
+				if (isset($_GET["lover"])) $arr->Lover = $_GET["lover"];
 
 				// Overwrite the file
 				$file = GetFileName();

@@ -1,5 +1,6 @@
 "use strict";
 var MainHallBackground = "MainHall";
+var MainHallStartEventTimer = null;
 var MainHallNextEventTimer = null;
 var MainHallMaid = null;
 var MainHallIsMaid = false;
@@ -8,6 +9,7 @@ var MainHallIsHeadMaid = false;
 // Main hall loading
 function MainHallLoad() {
 	MainHallBackground = "MainHall";
+	MainHallStartEventTimer = null;
 	MainHallNextEventTimer = null;
 	MainHallMaid = CharacterLoadNPC("NPC_MainHall_Maid");
 	MainHallIsMaid = LogQuery("JoinedSorority", "Maid");
@@ -44,14 +46,29 @@ function MainHallRun() {
 		if (Player.CanWalk()) DrawButton(25, 475, 450, 65, TextGet("SlaveMarket"), "White");
 		
 		// Check if there's a new maid rescue event to trigger
-		if ((!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk()) && (MainHallNextEventTimer == null)) MainHallNextEventTimer = CommonTime() + 40000 + Math.floor(Math.random() * 40000);
-		if ((MainHallNextEventTimer != null) && (new Date().getTime() > MainHallNextEventTimer)) {
-			MainHallNextEventTimer = null;
-			if (!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk()) {
-				MainHallMaid.Stage = "0";
-				CharacterRelease(MainHallMaid);
-				CharacterSetCurrent(MainHallMaid);
+		if ((!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk())) {
+			if (MainHallNextEventTimer == null) {
+				MainHallStartEventTimer = CommonTime();
+				MainHallNextEventTimer = CommonTime() + 40000 + Math.floor(Math.random() * 40000);
 			}
+		} else {
+			MainHallStartEventTimer = null;
+			MainHallNextEventTimer = null;
+		}
+		
+		// If we must send a maid to rescue the player
+		if ((MainHallNextEventTimer != null) && (CommonTime() >= MainHallNextEventTimer)) {
+			MainHallMaid.Stage = "0";
+			CharacterRelease(MainHallMaid);
+			CharacterSetCurrent(MainHallMaid);
+			MainHallStartEventTimer = null;
+			MainHallNextEventTimer = null;
+		}
+		
+		// If we must show a progress bar for the rescue maid
+		if ((!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk()) && (MainHallStartEventTimer != null) && (MainHallNextEventTimer != null)) {
+			DrawText(TextGet("RescueIsComing"), 1750, 925, "White", "Black");
+			DrawProgressBar(1525, 955, 450, 35, (1 - ((MainHallNextEventTimer - CommonTime()) / (MainHallNextEventTimer - MainHallStartEventTimer))) * 100);
 		}
 
 	} else DrawText(TextGet("SyncWithServer"), 1000, 500, "White", "Black");

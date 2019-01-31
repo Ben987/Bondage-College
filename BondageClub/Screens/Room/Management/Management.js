@@ -9,7 +9,7 @@ var ManagementMistressAllowPlay = false;
 var ManagementCanReleaseChastity = true;
 
 // Returns TRUE if the dialog situation is allowed
-function ManagementNoTitle() { return (!LogQuery("JoinedSorority", "Maid") && (ReputationGet(RepType) < 50)) }
+function ManagementNoTitle() { return (!LogQuery("JoinedSorority", "Maid") && (ReputationGet("Kidnap") < 50)) }
 function ManagementGetMistressAngryCount(InCount) { return (InCount == ManagementMistressAngryCount) }
 function ManagementMistressAngryAdd() { ManagementMistressAngryCount++ }
 function ManagementMistressWillRelease() { return (CommonTime() >= ManagementMistressReleaseTimer) }
@@ -17,7 +17,7 @@ function ManagementFriendIsChaste() { return (((PrivateCharacter.length > 1) && 
 function ManagementCanPlayWithoutPermission() { return (!ManagementMistressAllowPlay && Player.CanInteract() && (ManagementMistressReleaseTimer == 0)) } 
 function ManagementOwnerFromBondageCollege() { return ((Player.Owner == "NPC-Sidney") || (Player.Owner == "NPC-Amanda") || (Player.Owner == "NPC-Jennifer")) }
 function ManagementOwnerInPrivateRoom() { return false }
-function ManagementOwnerAway() { return false }
+function ManagementOwnerAway() { return !((Player.Owner == "NPC-Sidney") || (Player.Owner == "NPC-Amanda") || (Player.Owner == "NPC-Jennifer")) }
 function ManagementAllowReleaseChastity() { return (Player.IsChaste() && ManagementCanReleaseChastity) }
 function ManagementRefuseReleaseChastity() { return (Player.IsChaste() && !ManagementCanReleaseChastity) }
 function ManagementOwnerPending() { return (CommonTime() < ManagementMistressReleaseTimer) }
@@ -25,7 +25,9 @@ function ManagementOwnerAccepted() { return ((CommonTime() >= ManagementMistress
 function ManagementOwnerRefused() { return ((CommonTime() >= ManagementMistressReleaseTimer) && !ManagementCanReleaseChastity) }
 function ManagementCanUnlockBra() { return ((Player.Money >= 25) && Player.IsBreastChaste()) }
 function ManagementCanUnlockBelt() { return ((Player.Money >= 25) && Player.IsVulvaChaste()) }
-function ManagementEndChastityRelease() { ManagementMistressReleaseTimer = 0; }
+function ManagementEndChastityRelease() { ManagementMistressReleaseTimer = 0 }
+function ManagementCanReleaseFromOwnerFirst() { return ((Player.Money >= 60) && !LogQuery("ReleasedFromOwner", "Management")) }
+function ManagementCanReleaseFromOwner() { return ((Player.Money >= 200) && LogQuery("ReleasedFromOwner", "Management")) }
 
 // Loads the club management room, creates the Mistress and sub character
 function ManagementLoad() {
@@ -135,4 +137,13 @@ function ManagementContactOwner() {
 	CharacterChangeMoney(Player, -20);
 	ManagementCanReleaseChastity = (Math.random() >= 0.3);
 	if (Player.Owner == "NPC-Sidney") ManagementCanReleaseChastity = (Math.random() >= 0.6);
+}
+
+// When the Mistress releases the player from her owner
+function ManagementReleaseFromOwner(RepChange) {
+	Player.Owner = "";
+	AccountSync();
+	InventoryRemove(Player, "ItemNeck");
+	ReputationProgress("Dominant", RepChange);
+	LogAdd("ReleasedFromOwner", "Management");
 }

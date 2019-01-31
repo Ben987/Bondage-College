@@ -38,7 +38,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsChaste : function() { return ((this.Effect.indexOf("Chaste") >= 0) || (this.Effect.indexOf("BreastChaste") >= 0)) },
 		IsVulvaChaste : function() { return (this.Effect.indexOf("Chaste") >= 0) },
 		IsBreastChaste : function() { return (this.Effect.indexOf("BreastChaste") >= 0) },
-		IsOwned : function() { return ((this.Owner != null) && (this.Owner != "")) }
+		IsOwned : function() { return ((this.Owner != null) && (this.Owner.trim() != "")) }
 	}
 
 	// If the character doesn't exist, we create it
