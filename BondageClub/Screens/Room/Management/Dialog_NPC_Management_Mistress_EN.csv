@@ -1,4 +1,7 @@
 PlayerGagged,,,"Don't waste your time talking, I cannot understand.",,
+TouchSubAngry1,,,(DialogCharacterName comes in front of you.)  What are you doing?  Don't touch my pet.,,
+TouchSubAngry2,,,(DialogCharacterName grabs your arm.)  You're getting on my nerves.  Never touch my kitty.,,
+TouchSubAngry3,,,(DialogCharacterName grabs your hair.)  Touch my pet again and you'll get in a world of trouble!,,
 TouchSubPunishment,,,(She pulls you to her by the hair.)  Never touch my pet!  Now you're in trouble.,,
 0,,,Greetings head maid DialogPlayerName.  Is there a problem that the sorority cannot handle?,,"DialogLogQuery(""LeadSorority"", ""Maid"")"
 0,,,Greetings master kidnapper DialogPlayerName.  I trust you're having a good time hunting.,,"DialogReputationGreater(""Kidnap"", 100)"
@@ -7,7 +10,7 @@ TouchSubPunishment,,,(She pulls you to her by the hair.)  Never touch my pet!  N
 0,,,Be direct and don't waste my time girl.,,NoTitle()
 0,,Greetings Miss.  My name is DialogPlayerName.,"You seem to have some manners.  I'm DialogCharacterName, I'm in charge of the club today.",DialogRemove(),NoTitle()
 0,10,I have a few questions.,"Don't be shy, but don't waste my time.",,
-0,50,Who's that bound girl?,She's my pet.  She stays with me while I work.,,
+0,50,Who's that bound girl?,She's my kitty.  She stays with me while I work.,,
 0,100,Can we talk about chastity devices?,"Absolutely, what would you like to know?",,
 0,200,About Dominant/submissive relationships...,I'm listening.  How can I educate you?,,
 0,,"Sorry, I need to go.  (Leave her.)",,DialogLeave(),
@@ -51,12 +54,10 @@ TouchSubPunishment,,,(She pulls you to her by the hair.)  Never touch my pet!  N
 20,,How do you choose the Head Mistress?,There's an electoral process between Mistresses.  You'll learn more if you become a club Mistress yourself.,,
 20,,Can I meet the Head Mistress?,She's not available now.  Please come back later.,,
 20,0,Let's talk about something else.,What's on your mind girl?  Time is money.,,
-30,,,(DialogCharacterName comes in front of you.)  What are you doing?  Don't touch my pet.,,GetMistressAngryCount(0)
-30,,,(DialogCharacterName grabs your arm.)  You're getting on my nerves.  Never touch my pet.,,GetMistressAngryCount(1)
-30,,,(DialogCharacterName grabs your hair.)  Touch my pet again and you'll get in a world of trouble!,,GetMistressAngryCount(2)
 30,0,I'm sorry.  Please forgive me Mistress.,(She gives you a stern look.)  Don't do it again.,"DialogChangeReputation(""Dominant"", -2)",
 30,0,I won't do it again.,(She gives you a stern look.)  Fine.,,
 30,11,I'll do what I want.,You dare to defy me?  Now you're in trouble!,"DialogChangeReputation(""Dominant"", 3)",
+50,,Why the ears and tail?,"She's a neko, a girl with cat features.  Don't judge her, she's a good kitty.",,
 50,,You keep her restrained all day?,"Yes, she's not allowed to stray or talk while I work.",,
 50,,She's enjoying herself?,"Absolutely, she's my submissive and she's a bondage slut.",,
 50,51,Can I play with her?,"(She ponders for a little while.)  You could, but there's a requirement.",,"DialogReputationLess(""Dominant"", 24)"
@@ -144,12 +145,13 @@ TouchSubPunishment,,,(She pulls you to her by the hair.)  Never touch my pet!  N
 131,0,Deal!  (Pay her 50$.),Very good.  (She takes the money and sends a maid to your private room.)  Anything else?,ReleasePrivateRoom(),DialogMoneyGreater(50)
 131,0,I don't have enough money.,Get to work then.  I'm not doing any discount.,,!DialogMoneyGreater(50)
 131,0,I'll think about it.,Think about ways to stop wasting my time girl.,,
-200,,What is a D/s family?,You can build your own D/s family or join a Dominant family.  A submissive can only have one Mistress.  A Mistress can have many submissives.,,
+200,,What is a D/s family?,You can build your own D/s family or join a Dominant family.  A submissive can only have one Mistress.  A Mistress can have many collared submissives.,,
+200,,Is there a fee to collar or be collared?,"Yes, the Dominant must pay 100$ for each pet, we provide the locking collar.  If a slave wants freedom, she will pay 60$ on the first occurrence and 200$ on others.",,
 200,,Will you be my Mistress?,"No, my D/s family is complete.  I'm not looking for a new slave.",DialogRemove(),
 200,,Can I collar and own anyone?,"BDSM is consensual.  As long as the person isn't already owned and consent to be your slave, you can collar her.",,
 200,,I want to collar a submissive.,Perfect!  You'll have to wait though.  The club is restructuring.  Please come back later.,,
 200,,A Dominant wants to collar me.,You must be thrilled sub girl.  You'll have to wait though.  The club is restructuring.  Come back later.,,!Player.IsOwned()
-200,210,I want to be released from my owner.,I'm sorry to hear that.  Breaking a BDSM bond is pretty serious.  Tell me your story.,,Player.IsOwned()
+200,210,I want to be released from my owner.,"I'm sorry to hear that.  Breaking a BDSM bond is serious.  Tell me your story, why do you want to leave?",,Player.IsOwned()
 200,0,Let's talk about something else.,As long as you don't ask anything idiotic.,,
 210,211,My Mistress doesn't want to join the club.,"I understand.  BDSM is consensual, you have the right to leave your owner.  Since we don't encourage flyby slaves, there's a fee for your freedom.",,OwnerFromBondageCollege()
 210,211,"My owner is a student, she's not mature enough.","That makes sense.  BDSM is consensual, you have the right to leave your owner.  Since we don't encourage flyby slaves, there's a fee for your freedom.",,OwnerFromBondageCollege()
@@ -158,10 +160,11 @@ TouchSubPunishment,,,(She pulls you to her by the hair.)  Never touch my pet!  N
 210,211,I've found a better Mistress.,"The Bondage Club isn't a shopping mall for Dominants.  (She frowns at you.)  Since we don't encourage flyby slaves, there's a fee for your freedom.",,
 210,211,My owner doesn't want me anymore.,"Poor girl, I'm sure you'll find a good owner someday.  But since we don't encourage flyby slaves, there's a fee for your freedom.",,
 210,211,Mistress wants to become a slave.,"People change you know, it can happen to the best of us.  Since we don't encourage flyby slaves, there's a fee for your freedom.",,
+210,0,I guess I don't have any good reason.,Then that collar stays around your neck girl.  Go see your Mistress and work things out with her.,,
 211,212,How much does it cost?,"The regular cost to be released from your owner bond is 200$.  But since everyone can make mistakes, it cost 60$ if it's the first time you do it.",,
 211,212,I'm kind of poor.,"The regular cost to be released from your owner bond is 200$.  But since everyone can make mistakes, it cost 60$ if it's the first time you do it.",,
 211,212,(Let her talk.),"The regular cost to be released from your owner bond is 200$.  But since everyone can make mistakes, it cost 60$ if it's the first time you do it.",,
-212,,Why is there two different prices?,We want to make sure that our members take their D/s relationship seriously.  You can see the higher price as a punitive measure.,DialogRemove(),
+212,,Why are there two different prices?,We want to make sure that our members take their D/s relationship seriously.  You can see the higher price as a punitive measure.,DialogRemove(),
 212,213,I want my freedom. (Pay her 60$),"Very well, it seems that we've lost a pet.  I will remove your slave collar, get on your knees girl.",DialogChangeMoney(-60),CanReleaseFromOwnerFirst()
 212,213,I want my freedom. (Pay her 200$),"Take your time before getting collared again.  I will remove your slave collar, get on your knees girl.",DialogChangeMoney(-200),CanReleaseFromOwner()
 212,0,Let me think about it.,"Think girl, this is a serious decision.",,

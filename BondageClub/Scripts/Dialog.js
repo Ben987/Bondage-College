@@ -285,7 +285,7 @@ function DialogClick() {
 				// If the item at position is clicked
 				if ((MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275) && DialogInventory[I].Asset.Enable) {
 
-					// Cannot change item if the previous one is locked
+					// Cannot change item if the previous one is locked or blocked by another group
 					var Item = InventoryGet(C, C.FocusGroup.Name);
 					if ((Item == null) || (Item.Asset.Effect == null) || (Item.Asset.Effect.indexOf("Lock") < 0)) {
 						if (!InventoryGroupIsBlocked(C))
@@ -300,9 +300,14 @@ function DialogClick() {
 									}
 					} else {
 
-						// If the item can unlock another item
+						// If the item can unlock another item or simply show dialog text (not wearable)
 						if ((DialogInventory[I].Asset.Effect != null) && (DialogInventory[I].Asset.Effect.indexOf("Unlock-" + Item.Asset.Name) >= 0))
 							DialogProgressStart(C, Item, null);
+						else
+							if (!DialogInventory[I].Asset.Wear) {
+								C.CurrentDialog = DialogFind(C, DialogInventory[I].Asset.Group.Name + DialogInventory[I].Asset.Name);
+								DialogLeaveItemMenu();
+							}
 
 					}
 					break;
@@ -468,7 +473,7 @@ function DialogDrawItemMenu(C) {
 				if ((C.ID == 0) && (Item.Asset.Effect != null) && (Item.Asset.Effect.indexOf("Block") >= 0) && (Item.Asset.Effect.indexOf("Lock") < 0) && (Item.Asset.Effect.indexOf("Struggle") < 0))
 					DrawText(DialogFind(Player, "CannotStruggle"), 1250, 62, "White", "Black");
 			}
-			
+
 			// Show the no access text
 			if (InventoryGroupIsBlocked(C)) DrawText(DialogFind(Player, "ZoneBlocked"), 1500, 700, "White", "Black");
 			else DrawText(DialogFind(Player, "AccessBlocked"), 1500, 700, "White", "Black");

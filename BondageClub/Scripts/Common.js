@@ -180,7 +180,6 @@ function CommonDynamicFunctionParams(FunctionName) {
 
 }
 
-
 // Sets the current screen and calls the loading script if needed, only allow the change screen if the player can walk
 function CommonSetScreen(NewModule, NewScreen) {
 	CurrentModule = NewModule;

@@ -40,6 +40,8 @@ function ManagementLoad() {
 		CharacterNaked(ManagementSub);
 		InventoryWear(ManagementSub, "SlaveCollar", "ItemNeck");
 		CharacterFullRandomRestrain(ManagementSub, "Lot");
+		InventoryWear(ManagementSub, "Ears" + (Math.floor(Math.random() * 2) + 1).toString(), "Hat", "#BBBBBB");
+		InventoryWear(ManagementSub, "TailButtPlug", "ItemButt");
 		InventoryWear(ManagementSub, "MetalChastityBelt", "ItemPelvis");
 		InventoryWear(ManagementSub, "MetalChastityBra", "ItemBreast");
 		ManagementSub.AllowItem = false;
@@ -104,6 +106,7 @@ function ManagementPlayerRelease() {
 
 // When the player switches from the sub to the Mistress because she's angry
 function ManagementSwitchToAngryMistress() {
+	ManagementSub.Stage = "0";
 	if (ManagementMistressAngryCount >= 3) {
 		ManagementMistress.Stage = "11";
 		CharacterSetCurrent(ManagementMistress);
@@ -112,6 +115,7 @@ function ManagementSwitchToAngryMistress() {
 		ManagementMistress.Stage = "30";
 		CharacterSetCurrent(ManagementMistress);
 		ManagementMistressAngryCount++;
+		ManagementMistress.CurrentDialog = DialogFind(ManagementMistress, "TouchSubAngry" + ManagementMistressAngryCount.toString());
 	}
 }
 
