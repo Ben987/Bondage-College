@@ -2,6 +2,7 @@
 var Asset = [];
 var AssetGroup = [];
 var AssetCurrentGroup;
+var Pose = [];
 
 // Adds a new asset group to the main list
 function AssetGroupAdd(NewAssetFamily, NewAsset) {
@@ -144,6 +145,7 @@ function AssetLoadAll() {
 	Asset = [];
 	AssetGroup = [];
 	AssetLoad(AssetFemale3DCG, "Female3DCG");
+	Pose = PoseFemale3DCG;
 }
 
 // Make sure all the assets from a character are loaded properly

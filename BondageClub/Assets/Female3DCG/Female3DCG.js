@@ -1,3 +1,4 @@
+// 3D Custom Girl based assets
 var AssetFemale3DCG = [
 
 	// Appearance specific
@@ -18,7 +19,7 @@ var AssetFemale3DCG = [
 		AllowColorize: false,
 		ParentSize: "BodyUpper",
 		ParentColor: "BodyUpper",
-		AllowPose: ["LegsClosed"],
+		AllowPose: ["LegsClosed", "Kneel"],
 		Color: ["White", "Asian", "Black"],
 		Top: 462,
 		Asset: ["Small", "Normal", "Large", "XLarge"]
@@ -79,12 +80,12 @@ var AssetFemale3DCG = [
 	{
 		Group: "HairBack",
 		Priority: 2,
-		KeepNaked: true,
+		AllowNone: false,
 		Color: ["#6a3628", "#202020", "#dcc787", "#6c2132", "#999999", "#dddddd", "#e781b1", "#81e7b1", "#81b1e7", "#eeee99", "#ee9999", "#ee99ee"],
 		AllowPose: ["Suspension"],
 		Left: 50,
 		Top: 0,
-		Asset: ["HairBack1", "HairBack2", "HairBack4", "HairBack10", "HairBack14", "HairBack15", "HairBack16", "HairBack17", "HairBack18", "HairBack19"]
+		Asset: ["HairNone", "HairBack1", "HairBack2", "HairBack4", "HairBack10", "HairBack14", "HairBack15", "HairBack16", "HairBack17", "HairBack18", "HairBack19"]
 	},
 
 	{
@@ -265,6 +266,7 @@ var AssetFemale3DCG = [
 		Effect: ["Prone"],
 		Color: ["Default"],
 		SetPose: ["LegsClosed"],
+		AllowPose: ["Kneel"],
 		Left: 125,
 		Top: 500,
 		Zone: [[100, 580, 300, 170]],
@@ -446,6 +448,17 @@ var AssetFemale3DCG = [
 			{ Name: "WoodenMaidTrayFull", Enable: false, Value: -1 },
 			{ Name: "WoodenPaddle", Enable: false, Value: -1 },
 		]
+	}
+
+];
+
+// 3D Custom Girl based pose
+var PoseFemale3DCG = [
+
+	{
+		Name: "Kneel",
+		OverrideHeight: -250,
+		Hide: ["Shoes", "Socks", "ItemFeet"]
 	}
 
 ];

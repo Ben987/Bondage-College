@@ -125,8 +125,8 @@ function LoginResponse(CharacterData) {
 		Player.AccountPassword = document.getElementById("InputPassword").value.trim();
 		Player.AssetFamily = C.AssetFamily;
 		if (CommonIsNumeric(C.Money)) Player.Money = C.Money;
-		Player.Owner = C.Owner;
-		Player.Lover = C.Lover;
+		Player.Owner = ((C.Owner == null) || (C.Owner == "undefined")) ? "" : C.Owner;
+		Player.Lover = ((C.Lover == null) || (C.Lover == "undefined")) ? "" : C.Lover;
 		CharacterAppearanceLoadFromAccount(Player, C.Appearance);
 		InventoryRemove(Player, "ItemMisc");
 		InventoryLoad(Player, C.Inventory, false);

@@ -190,10 +190,17 @@ function CharacterAppearanceSort(AP) {
 	return Arr;
 }
 
-function CharacterAppearanceVisibke(C, GroupName) {
+// Returns TRUE if we can show the item group
+function CharacterAppearanceVisible(C, GroupName) {
 	for (var A = 0; A < C.Appearance.length; A++)
 		if ((C.Appearance[A].Asset.Hide != null) && (C.Appearance[A].Asset.Hide.indexOf(GroupName) >= 0))
 			return false;
+	if (C.Pose != null)
+		for (var A = 0; A < C.Pose.length; A++)
+			for (var P = 0; P < Pose.length; P++)
+				if (Pose[P].Name == C.Pose[A])
+					if ((Pose[P].Hide != null) && (Pose[P].Hide.indexOf(GroupName) >= 0))
+						return false;
 	return true;
 }
 
@@ -217,7 +224,7 @@ function CharacterAppearanceBuildCanvas(C) {
 	
 	// Loops in all items worn by the character
 	for (var A = 0; A < C.Appearance.length; A++) 
-		if (CharacterAppearanceVisibke(C, C.Appearance[A].Asset.Group.Name)) {
+		if (CharacterAppearanceVisible(C, C.Appearance[A].Asset.Group.Name)) {
 
 			// If there's a father group, we must add it to find the correct image
 			var CA = C.Appearance[A];
@@ -544,6 +551,7 @@ function CharacterAppearanceCopy(FromC, ToC) {
 			ToC.Appearance.push(FromC.Appearance[A]);
 
 	// Refreshes the second character and saves it if it's the player
+	AssetReload(ToC);
 	CharacterRefresh(ToC);
 	if (ToC.ID == 0) CharacterAppearanceSave(ToC);
 

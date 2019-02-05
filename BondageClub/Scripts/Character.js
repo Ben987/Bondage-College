@@ -30,7 +30,8 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		AllowItem: true,
 		HeightModifier: 0,
 		CanTalk : function() { return ((this.Effect.indexOf("GagLight") < 0) && (this.Effect.indexOf("GagNormal") < 0) && (this.Effect.indexOf("GagHeavy") < 0) && (this.Effect.indexOf("GagTotal") < 0)) },
-		CanWalk : function() { return (this.Effect.indexOf("Freeze") < 0) },
+		CanWalk : function() { return ((this.Effect.indexOf("Freeze") < 0) && ((this.Pose == null) || (this.Pose.indexOf("Kneel") < 0))) },
+		CanKneel : function() { return ((this.Effect.indexOf("Freeze") < 0) && ((this.Pose == null) || (this.Pose.indexOf("LegsClosed") < 0))) },
 		CanInteract : function() { return (this.Effect.indexOf("Block") < 0) },
 		IsProne : function() { return (this.Effect.indexOf("Prone") >= 0) },
 		IsRestrained : function() { return ((this.Effect.indexOf("Freeze") >= 0) || (this.Effect.indexOf("Block") >= 0) || (this.Effect.indexOf("Prone") >= 0)) },
@@ -218,6 +219,7 @@ function CharacterAddPose(C, NewPose) {
 // Resets the current pose list on a character
 function CharacterLoadPose(C) {	
 	C.Pose = [];
+	if (C.ActivePose != null) C.Pose.push(C.ActivePose);
 	for (var A = 0; A < C.Appearance.length; A++) {
 		if (C.Appearance[A].Asset.SetPose != null)
 			CharacterAddPose(C, C.Appearance[A].Asset.SetPose);
@@ -260,8 +262,14 @@ function CharacterLoadCanvas(C) {
 	// Sets the total height modifier for that character
 	C.HeightModifier = 0;
 	for (var A = 0; A < C.Appearance.length; A++)
-		C.HeightModifier = C.HeightModifier + C.Appearance[A].Asset.HeightModifier;
-	
+		C.HeightModifier = C.HeightModifier + C.Appearance[A].Asset.HeightModifier;	
+	if (C.Pose != null)
+		for (var A = 0; A < C.Pose.length; A++)
+			for (var P = 0; P < Pose.length; P++)
+				if (Pose[P].Name == C.Pose[A])
+					if (Pose[P].OverrideHeight != null)
+						C.HeightModifier = Pose[P].OverrideHeight;
+
 	// Reload the canvas
 	CharacterAppearanceBuildCanvas(C);
 
@@ -374,4 +382,10 @@ function CharacterFullRandomRestrain(C, Ratio) {
 	if ((Math.random() >= RatioNormal) && (InventoryGet(C, "ItemLegs") == null)) InventoryWearRandom(C, "ItemLegs");
 	if ((Math.random() >= RatioNormal) && (InventoryGet(C, "ItemFeet") == null)) InventoryWearRandom(C, "ItemFeet");
 
+}
+
+// Sets a new pose for the character
+function CharacterSetActivePose(C, NewPose) {
+	C.ActivePose = NewPose;
+	CharacterRefresh(C);
 }
