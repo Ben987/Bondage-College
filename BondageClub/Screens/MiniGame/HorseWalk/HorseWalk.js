@@ -5,8 +5,8 @@ var HorseWalkCrops = null;
 var HorseWalkPlayerX = 0;
 var HorseWalkPlayerY = 0;
 var HorseWalkItemSize = 100;
-var HorseWalkCollectetCarrots = 0;
-var HorseWalkCollectetCrops = 0;
+var HorseWalkCollectedCarrots = 0;
+var HorseWalkCollectedCrops = 0;
 var HorseWalkSpeed = 1;
 var HorseWalkText =""
 
@@ -40,7 +40,7 @@ function HorseWalkGenerateItems(MaxCarrot, MaxCrop) {
 // Draw the Carrots
 function HorseWalkDrawItem() {
 	for(var S = 0; S < HorseWalkCarrots.length; S++)
-		DrawImage("Screens/MiniGame/HorseWalk/Carrot.png", HorseWalkCarrots[S].X - (HorseWalkItemSize / 2), HorseWalkCarrots[S].Y - (HorseWalkItemSize / 2));
+		DrawImage("Screens/MiniGame/HorseWalk/carrot.png", HorseWalkCarrots[S].X - (HorseWalkItemSize / 2), HorseWalkCarrots[S].Y - (HorseWalkItemSize / 2));
 	for(var S = 0; S < HorseWalkCrops.length; S++)
 		DrawImage("Screens/MiniGame/HorseWalk/LeatherCrop.png", HorseWalkCrops[S].X - (HorseWalkItemSize / 2), HorseWalkCrops[S].Y - (HorseWalkItemSize / 2));
 }
@@ -59,8 +59,8 @@ function HorseWalkLoad() {
 	if (MiniGameDifficulty == "Hard") MaxCarrot = 18 * Factor;
 	MiniGameTimer = CommonTime() + 40000;
 	HorseWalkGenerateItems(MaxCarrot, MaxCarrot);
-	HorseWalkCollectetCarrots = 0;
-	HorseWalkCollectetCrops = 0;
+	HorseWalkCollectedCarrots = 0;
+	HorseWalkCollectedCrops = 0;
 	HorseWalkSpeed = 1; //ToDo Skill
 }
 
@@ -71,7 +71,7 @@ function HorseWalkRun() {
 	var Time = CommonTime();
 	//if (!MiniGameEnded && (HorseWalkCarrots.length == 0)) HorseWalkEnd(true);
 	if (!MiniGameEnded && (Time >= MiniGameTimer)){
-		if (HorseWalkCollectetCarrots > HorseWalkCollectetCrops) {
+		if (HorseWalkCollectedCarrots > HorseWalkCollectedCrops) {
 			HorseWalkEnd(true);
 		} else {
 			HorseWalkEnd(false);
@@ -87,11 +87,11 @@ function HorseWalkRun() {
 	else DrawRect(0, 950, 2000, 50, "white");
 	if (Time < MiniGameTimer) {
 		HorseWalkText = TextGet("HorseWalkSpots");
-		HorseWalkText = HorseWalkText.replace("$CARROTS", HorseWalkCollectetCarrots).replace("$CROPS", HorseWalkCollectetCrops);
+		HorseWalkText = HorseWalkText.replace("$CARROTS", HorseWalkCollectedCarrots).replace("$CROPS", HorseWalkCollectedCrops);
 		DrawText(HorseWalkText, 1000, 977, "black", "white");
 	} else {
 		HorseWalkText = TextGet(MiniGameVictory ? "Victory" : "Defeat");
-		HorseWalkText = HorseWalkText.replace("$CARROTS", HorseWalkCollectetCarrots).replace("$CROPS", HorseWalkCollectetCrops);
+		HorseWalkText = HorseWalkText.replace("$CARROTS", HorseWalkCollectedCarrots).replace("$CROPS", HorseWalkCollectedCrops);
 		DrawText(HorseWalkText, 1000, 977, "black", "white");
 	}
 }
@@ -103,7 +103,7 @@ function HorseWalkEnd(Victory) {
 	MiniGameTimer = CommonTime();
 }
 
-// When the user clicks in the maid cleaning mini game
+// When the user clicks in the horse walk game
 function HorseWalkDoMove() {
 
 	// If the position changed
@@ -141,14 +141,14 @@ function HorseWalkDoMove() {
 			for(var S = 0; S < HorseWalkCarrots.length; S++){
 				if (((HorseWalkPlayerX+100) >= HorseWalkCarrots[S].X - Range) && ((HorseWalkPlayerX+100) <= HorseWalkCarrots[S].X + Range) && ((HorseWalkPlayerY+100) >= HorseWalkCarrots[S].Y - Range) && ((HorseWalkPlayerY+100) <= HorseWalkCarrots[S].Y + Range)) {
 					HorseWalkCarrots.splice(S, 1);
-					HorseWalkCollectetCarrots++;
+					HorseWalkCollectedCarrots++;
 					return;
 				}
 			}
 			for(var S = 0; S < HorseWalkCrops.length; S++){
 				if (((HorseWalkPlayerX+100) >= HorseWalkCrops[S].X - Range) && ((HorseWalkPlayerX+100) <= HorseWalkCrops[S].X + Range) && ((HorseWalkPlayerY+100) >= HorseWalkCrops[S].Y - Range) && ((HorseWalkPlayerY+100) <= HorseWalkCrops[S].Y + Range)) {
 					HorseWalkCrops.splice(S, 1);
-					HorseWalkCollectetCrops++;
+					HorseWalkCollectedCrops++;
 					return;
 				}
 			}

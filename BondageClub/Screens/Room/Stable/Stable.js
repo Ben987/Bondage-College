@@ -15,6 +15,9 @@ var StablePlayerTrainingBehavior = 0;
 // functions for Dialogs
 function StablePlayerIsDressOff() {return StablePlayerDressOff;} 
 function StablePlayerIsCollared() {return StableCharacterAppearanceGroupAvailable(Player, "ItemNeck")}
+function StablePlayerOtherPony()  {return StableTrainer.Stage == "StableTrainingOtherPoniesBack";}
+function StablePlayerIsolation()  {return StableTrainer.Stage == "StableTrainingIsolationBack";}
+
 
 // Loads the stable characters with many restrains
 function StableLoad() {
@@ -34,14 +37,13 @@ function StableLoad() {
 		StableWearPonyEquipment(StablePony, 0);
 		StablePony.AllowItem = false;
 	}
-	StablePlayerAppearance = Player.Appearance.slice(); //todo origin cloth
 }
 
 // Run the stable, draw all 3 characters
 function StableRun() {
 	if (StableProgress >= 0) {
 		DrawButton(1750, 25, 225, 75, "Cancel", "White");
-		DrawCharacter(Player, 500, 0, 1);
+		DrawCharacter(Player, 500, 0, 1); //todo pose change
 		StableGenericDrawProgress();
 	} else {
 		DrawCharacter(Player, 250, 0, 1);
@@ -74,7 +76,7 @@ function StableClick() {
 ////////////////////////////////////////////////////////////////////////////////////////////
 //Start the Demo
 function StableTrialTraining() {
-	StableGenericProgressStart(60, 0, "Screens/Room/Stable/treadmill.png", "HorseStableDark", StableTrainer, "StableTrainingPass", "StableTrainingPassIntro", "StableTrainingFail", "StableTrainingFailIntro", 2);
+	StableGenericProgressStart(60, 0, "Screens/Room/Stable/toyhorse.png", "HorseStableDark", StableTrainer, 0, "StableTrainerToyHorseFin", 0, "StableTrainerToyHorseCancel", 2,  TextGet("Toyhorse"));
 }
 
 function StablePayTheFee(){
@@ -144,8 +146,10 @@ function StablePlayerGetTrainingLesson() {
 function StablePlayerTrainingGallop(Behavior) {
 	StablePlayerTrainingLessons++;
 	StablePlayerTrainingBehavior += parseInt(Behavior);
-	//todo skill elegance
-	if (Math.random() > 0.2) {
+	var StableDressage = SkillGetLevel(Player, "Dressage");
+	var StableDifficulty = 2;
+	SkillProgress("Dressage", StableDifficulty * 5);
+	if ((Math.random() * StableDifficulty) < StableDressage) {
 		StablePlayerTrainingBehavior += 2;
 		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingPassIntro");
 		StableTrainer.Stage = "StableTrainingPass";
@@ -160,8 +164,10 @@ function StablePlayerTrainingGallop(Behavior) {
 function StablePlayerTrainingWalk(Behavior) {
 	StablePlayerTrainingLessons++;
 	StablePlayerTrainingBehavior += parseInt(Behavior);
-	//todo skill elegance
-	if (Math.random() > 0.4) {
+	var StableDressage = SkillGetLevel(Player, "Dressage");
+	var StableDifficulty = 4;
+	SkillProgress("Dressage", StableDifficulty * 5);
+	if ((Math.random() * StableDifficulty) < StableDressage) {
 		StablePlayerTrainingBehavior += 2;
 		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingPassIntro");
 		StableTrainer.Stage = "StableTrainingPass";
@@ -176,8 +182,10 @@ function StablePlayerTrainingWalk(Behavior) {
 function StablePlayerTrainingDance(Behavior) {
 	StablePlayerTrainingLessons++;
 	StablePlayerTrainingBehavior += parseInt(Behavior);
-	//todo skill elegance
-	if (Math.random() > 0.6) {
+	var StableDressage = SkillGetLevel(Player, "Dressage");
+	var StableDifficulty = 6;
+	SkillProgress("Dressage", StableDifficulty * 5);
+	if ((Math.random() * StableDifficulty) < StableDressage) {
 		StablePlayerTrainingBehavior += 2;
 		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingPassIntro");
 		StableTrainer.Stage = "StableTrainingPass";
@@ -192,8 +200,10 @@ function StablePlayerTrainingDance(Behavior) {
 function StablePlayerTrainingHurdles(Behavior){
 	StablePlayerTrainingLessons++;
 	StablePlayerTrainingBehavior += parseInt(Behavior);
-	//todo skill elegance
-	if (Math.random() > 0.8) {
+	var StableDressage = SkillGetLevel(Player, "Dressage");
+	var StableDifficulty = 8;
+	SkillProgress("Dressage", StableDifficulty * 5);
+	if ((Math.random() * StableDifficulty) < StableDressage) {
 		StablePlayerTrainingBehavior += 2;
 		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingPassIntro");
 		StableTrainer.Stage = "StableTrainingPass";
@@ -207,20 +217,27 @@ function StablePlayerTrainingHurdles(Behavior){
 //Start Traning Treadmill
 function StablePlayerTrainingTreadmill(Behavior) {
 	StablePlayerTrainingBehavior += parseInt(Behavior);
-	StableGenericProgressStart(120, 0, "Screens/Room/Stable/treadmill.png", "HorseStableDark", StableTrainer, "StableTrainingPass", "StableTrainingPassIntro", "StableTrainingFail", "StableTrainingFailIntro", 2);
+	var StableDressage = SkillGetLevel(Player, "Dressage");
+	var StableDifficulty = 6;
+	SkillProgress("Dressage", StableDifficulty * 5);
+	StableGenericProgressStart(StableDifficulty * 20, StableDressage, "Screens/Room/Stable/treadmill.png", "HorseStableDark", StableTrainer, "StableTrainingPass", "StableTrainingPassIntro", "StableTrainingFail", "StableTrainingFailIntro", 2, TextGet("Treadmill"));
 	StablePlayerTrainingLessons += 2;
 }
 
 //Start Traning Carriage
 function StablePlayerTrainingCarriage(Behavior) {
 	StablePlayerTrainingBehavior += parseInt(Behavior);
-	StableGenericProgressStart(180, 0, "Screens/Room/Stable/horsecarriage.png", "HorseStableDark", StableTrainer, "StableTrainingPass", "StableTrainingPassIntro", "StableTrainingFail", "StableTrainingFailIntro", 2);
+	var StableDressage = SkillGetLevel(Player, "Dressage");
+	var StableDifficulty = 6;
+	SkillProgress("Dressage", StableDifficulty * 5);
+	StableGenericProgressStart(StableDifficulty * 20, StableDressage, "Screens/Room/Stable/horsecarriage.png", "HorseStableDark", StableTrainer, "StableTrainingPass", "StableTrainingPassIntro", "StableTrainingFail", "StableTrainingFailIntro", 2, TextGet("Carriage"));
 	StablePlayerTrainingLessons += 2;
 }
 
 //Start Traning Carrots - MiniGame
 function StablePlayerTrainingCarrots(Behavior) {
 	StablePlayerTrainingBehavior += parseInt(Behavior);
+	//todo minigame integr.
 	MiniGameStart("HorseWalk", "Normal", "StablePlayerTrainingCarrotsEnd");
 	StablePlayerTrainingLessons += 3;
 }
@@ -328,19 +345,20 @@ function StablePlayerTrainingFail(Behavior) {
 }
 
 function StablePlayerOtherPonys() {
-	CharacterSetCurrent(StablePony); //todo->Pony dialog
+	CharacterSetCurrent(StablePony);
 	StableTrainer.Stage = "StableTrainingOtherPoniesBack";
 }
 
 function StablePlayerToStable() {
 	InventoryWear(Player, "LeatherBelt", "ItemFeet");
 	CharacterSetCurrent(Player);
-	StableTrainer.Stage = "StableTrainingOtherPoniesBack";
+	StableTrainer.Stage = "StableTrainingIsolationBack";
 	//todo timer
 }
 
 //Start the Pony introduction
 function StableDressPonyStart(){
+	if (StablePlayerAppearance == null) StablePlayerAppearance = Player.Appearance.slice();
 	StablePlayerDressOff = true;
 	CharacterNaked(Player);
 }
@@ -355,7 +373,6 @@ function StableBecomePonyFin(){
 function StableTrainingStoped() {
 	InventoryRemove(Player, "ItemArms");
 	StablePlayerTrainingLessons = 0;
-	//todo set skill elegance
 }
 
 //Dress Caracter Back
@@ -409,12 +426,11 @@ var StableProgressBehavior = 0;
 var StableProgressOperation = null;
 var StableProgressStruggleCount = null;
 
-function StableGenericProgressStart(Timer, S, Item, Background, Character, Stage, CurrentDialog, CancelStage, CancelCurrentDialog, Behavior) {
+function StableGenericProgressStart(Timer, S, Item, Background, Character, Stage, CurrentDialog, CancelStage, CancelCurrentDialog, Behavior, ProgressOperation) {
 	DialogLeave()
 	if (Timer < 1) Timer = 1;
 	StableProgressAuto = CommonRunInterval * (0.1333 + (S * 0.1333)) / (Timer * CheatFactor("DoubleItemSpeed", 0.5));
 	StableProgressClick = CommonRunInterval * 2.5 / (Timer * CheatFactor("DoubleItemSpeed", 0.5));
-	//todo skill elegance
 	if (S < 0) { StableProgressAuto = StableProgressAuto / 2; StableProgressClick = StableProgressClick / 2; }
 	StableBackground = Background;
 	StableProgressItem = Item;
@@ -427,6 +443,7 @@ function StableGenericProgressStart(Timer, S, Item, Background, Character, Stage
 	StableProgressCancelDialog = CancelCurrentDialog;
 	StableProgressBehavior = Behavior;
 	StableProgressStruggleCount = 0;
+	StableProgressOperation = ProgressOperation;
 }
 
 function StableGenericDrawProgress() {
@@ -457,7 +474,6 @@ function StableGenericCancel(){
 function StableGenericProgressEnd() {
 	StableProgress = -1;
 	StableBackground = "HorseStable"
-	//SkillProgress("Elegance", DialogProgressSkill); //todo
 	CharacterSetCurrent(StableProgressCharacter);
 	if (StableProgressFinished) {
 		StableProgressCharacter.Stage = StableProgressEndStage;
