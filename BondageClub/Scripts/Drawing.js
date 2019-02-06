@@ -132,7 +132,7 @@ function DrawCharacter(C, X, Y, Zoom) {
 						DrawEmptyRect(C.FocusGroup.Zone[Z][0] + X, C.FocusGroup.Zone[Z][1] + Y - C.HeightModifier, C.FocusGroup.Zone[Z][2], C.FocusGroup.Zone[Z][3], "cyan");
 			
 			// Draw the character name below herself
-			if ((C.Name != "") && (CurrentModule == "Room")) 
+			if ((C.Name != "") && (CurrentModule == "Room") && (CurrentScreen != "Private")) 
 				if (!Player.IsBlind())
 					DrawText(C.Name, X + 255, Y + 980, "White", "Black");
 
