@@ -22,3 +22,17 @@ SkillNone,None
 SkillBondage,Bondage:
 SkillEvasion,Evasion:
 SkillWillpower,Willpower:
+SkillDressage,Pony Dressage:
+Trait,- Traits -
+TraitDominant,Dominant:
+TraitSubmissive,Submissive:
+TraitViolent,Violent:
+TraitPeaceful,Peaceful:
+TraitHorny,Horny:
+TraitFrigid,Frigid:
+TraitRude,Rude:
+TraitPolite,Polite:
+TraitWise,Wise:
+TraitDumb,Dumb:
+TraitSerious,Serious:
+TraitPlayful,Playful:

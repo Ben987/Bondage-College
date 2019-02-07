@@ -113,6 +113,7 @@ function PhotographicClick() {
 			Player.FocusGroup = null;
 			CharacterSetCurrent(PhotographicSub);
 			PhotographicSub.CurrentDialog = TextGet("MoreItem");
+			PhotographicBackground = "grey";
 		}
 
 	}
@@ -184,8 +185,8 @@ function PhotographicSubClothRemove(Group){
 	InventoryRemove(PhotographicSub, Group); 
 }
 
-//from shop
 function PhotographicStartInventoryPlayer(ItemGroup) {
+	PhotographicBackground = "greyDark";
 
 	// Finds the asset group to shop with
 	for (var A = 0; A < AssetGroup.length; A++)
