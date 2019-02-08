@@ -99,14 +99,18 @@ function CreationRun() {
 
 // When the ajax response returns, we analyze it's data
 function CreationResponse(CharacterData) {
-	if ((CharacterData != null) && (CharacterData == "account_created")) {
+	if ((CharacterData != null) && (CharacterData.indexOf("account_created") >= 0)) {
 		
 		// Keep the character data and pushes it's appearance to the server
 		Player.Name = document.getElementById("InputCharacter").value.trim();
 		Player.AccountName = document.getElementById("InputName").value.trim();
 		Player.AccountPassword = document.getElementById("InputPassword1").value.trim();
-		
+		CurrentTime = parseInt(CharacterData.replace("account_created", ""));
+		if (isNaN(CurrentTime)) CurrentTime = CommonTime();
+
 		// Imports logs, inventory and Sarah status from the Bondage College
+		PrivateCharacter = [];
+		Log = [];
 		ImportBondageCollege(Player);
 
 		// Flush the controls and enters the main hall

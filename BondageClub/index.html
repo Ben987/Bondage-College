@@ -90,6 +90,7 @@ window.onload = function() {
 function MainRun() {
 	DrawProcess();
 	AccountProcess();
+	CurrentTime = CurrentTime + CommonRunInterval;
 	setTimeout(MainRun, CommonRunInterval);
 }
 

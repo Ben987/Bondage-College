@@ -93,3 +93,33 @@ function NPCTraitGet(C, TraitType) {
 	return 0;
 
 }
+
+// Adds a new event in the NPC log
+function NPCEventAdd(C, EventName, EventValue) {
+	if (C.Event == null) C.Event = [];
+	for(var E = 0; E < C.Event.length; E++)
+		if (C.Event[E].Name == EventName)
+			return;
+	var NewEvent = {
+		Name: EventName,
+		Value: EventValue
+	}
+	C.Event.push(NewEvent);
+}
+
+// Returns the NPC event value (0 if the event isn't logged)
+function NPCEventGet(C, EventName) {
+	if (C.Event != null)
+		for(var E = 0; E < C.Event.length; E++)
+			if (C.Event[E].Name == EventName)
+				return C.Event[E].Value;
+	return 0;
+}
+
+// For longer events, the serious trait will dictate the time (1 day if playful, 3 days if nothing, 7 days if serious)
+function NPCLongEventDelay(C) {
+	var T = NPCTraitGet(C, "Serious");
+	if (T > 0) return 604800000;
+	if (T < 0) return 86400000;
+	return 259200000;
+}

@@ -30,6 +30,7 @@ function DialogAllowItem(Allow) { return CurrentCharacter.AllowItem = (Allow.toU
 function DialogIsKneeling(C) { return (C.toUpperCase().trim() == "PLAYER") ? Player.IsKneeling() : CurrentCharacter.IsKneeling() }
 function DialogIsOwner() { return (CurrentCharacter.Name == Player.Owner.replace("NPC-", "")) }
 function DialogIsProperty() { return (CurrentCharacter.Owner == Player.Name) }
+function DialogSetPose(C, NewPose) { CharacterSetActivePose((C.toUpperCase().trim() == "PLAYER") ? Player : CurrentCharacter, ((NewPose != null) && (NewPose != "")) ? NewPose : null); }
 
 // Returns TRUE if the dialog prerequisite condition is met
 function DialogPrerequisite(D) {

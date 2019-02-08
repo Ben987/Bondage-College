@@ -31,6 +31,8 @@ function ValidLogin(&$data) {
 				$data = fread($myfile, filesize($file));
 				fclose($myfile);
 				$arr = json_decode($data);
+				$arr->CurrentTime = time() * 1000;
+				$data = json_encode($arr);
 				if (password_verify($_GET["password"], $arr->Password)) {
 					return true;
 				} else echo "invalid_password";
@@ -54,6 +56,8 @@ if (isset($_GET["command"])) {
 						// The character file is named like her, we check if it already exists
 						$file = GetFileName();
 						if (!file_exists($file)) {
+							
+							// Creates the new character file
 							$arr = new stdClass();
 							$arr->AccountName = $_GET["account"];
 							$arr->Password = password_hash($_GET["password"], PASSWORD_DEFAULT);
@@ -62,7 +66,10 @@ if (isset($_GET["command"])) {
 							$handle = fopen($file, 'w') or die('Cannot open file: '.$file);
 							fwrite($handle, json_encode($arr));
 							fclose($handle);
-							echo "account_created";		
+
+							// Returns account_created with the current time in millisecond to let the game knows that it worked
+							echo "account_created".(time() * 1000);
+
 						} else echo "account_already_exist";
 						
 					} else echo "parameter_email_error";
@@ -114,13 +121,14 @@ if (isset($_GET["command"])) {
 				
 				// Fills the appearance array
 				$p = 0;
-				while (isset($_GET["name".$p]) && isset($_GET["group".$p]) && isset($_GET["color".$p]) && ($_GET["name".$p] != "") && ($_GET["group".$p] != "") && ($_GET["color".$p] != "")) {
-
+				while (isset($_GET["name".$p]) && isset($_GET["group".$p]) && ($_GET["name".$p] != "") && ($_GET["group".$p] != "")) {
+				
 					// Adds the appearance in the array
 					$appearance = new stdClass();
 					$appearance->Name = $_GET["name".$p];
 					$appearance->Group = $_GET["group".$p];
-					$appearance->Color = str_replace("|", "#", $_GET["color".$p]);
+					if (isset($_GET["color".$p]) && ($_GET["color".$p] != "")) $appearance->Color = str_replace("|", "#", $_GET["color".$p]);
+					if (isset($_GET["difficulty".$p]) && ($_GET["difficulty".$p] != "")) $appearance->Difficulty = $_GET["difficulty".$p];
 					array_push($arr->Appearance, $appearance);
 					$p++;
 				
@@ -236,8 +244,8 @@ if (isset($_GET["command"])) {
 				// Saves specific character values passed as parameters
 				$arr = json_decode($data);
 				if (isset($_GET["money"]) && ($_GET["money"] != "")) $arr->Money = $_GET["money"];
-				if (isset($_GET["owner"]) && ($_GET["owner"] != "")) $arr->Owner = $_GET["owner"];
-				if (isset($_GET["lover"]) && ($_GET["lover"] != "")) $arr->Lover = $_GET["lover"];
+				if (isset($_GET["owner"])) $arr->Owner = $_GET["owner"];
+				if (isset($_GET["lover"])) $arr->Lover = $_GET["lover"];
 
 				// Overwrite the file
 				$file = GetFileName();

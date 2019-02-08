@@ -40,6 +40,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsVulvaChaste : function() { return (this.Effect.indexOf("Chaste") >= 0) },
 		IsBreastChaste : function() { return (this.Effect.indexOf("BreastChaste") >= 0) },
 		IsOwned : function() { return ((this.Owner != null) && (this.Owner.trim() != "")) },
+		IsOwner : function() { return ((NPCEventGet(this, "EndSubTrial") > 0) || (this.Name == Player.Owner.replace("NPC-", ""))) },
 		IsKneeling: function () { return ((this.Pose != null) && (this.Pose.indexOf("Kneel") >= 0)) }
 	}
 
@@ -381,7 +382,7 @@ function CharacterFullRandomRestrain(C, Ratio) {
 	if ((Math.random() >= RatioNormal) && (InventoryGet(C, "ItemMouth") == null)) InventoryWearRandom(C, "ItemMouth");
 	if ((Math.random() >= RatioRare) && (InventoryGet(C, "ItemNeck") == null)) InventoryWearRandom(C, "ItemNeck");
 	if ((Math.random() >= RatioNormal) && (InventoryGet(C, "ItemLegs") == null)) InventoryWearRandom(C, "ItemLegs");
-	if ((Math.random() >= RatioNormal) && (InventoryGet(C, "ItemFeet") == null)) InventoryWearRandom(C, "ItemFeet");
+	if ((Math.random() >= RatioNormal) && !C.IsKneeling() && (InventoryGet(C, "ItemFeet") == null)) InventoryWearRandom(C, "ItemFeet");
 
 }
 

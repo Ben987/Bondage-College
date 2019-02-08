@@ -120,7 +120,7 @@ function IntroductionGagPlayer() {
 		CharacterRelease(Player);
 		IntroductionMaid.CurrentDialog = DialogFind(IntroductionMaid, "ReleaseHeadMaid");
 		IntroductionMaid.Stage = "370";
-	} else DialogWearItem("SmallClothGag", "ItemMouth")
+	} else DialogWearItem("SmallClothGag", "ItemMouth");
 }
 
 // When the player rescue both girls and completes the mission

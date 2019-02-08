@@ -120,13 +120,22 @@ function LoginRun() {
 function LoginResponse(CharacterData) {
 	var C = JSON.parse(CharacterData);
 	if ((C.CharacterName != null) && (C.AccountName != null)) {
+		
+		// Sets the player character info
 		Player.Name = C.CharacterName;
 		Player.AccountName = C.AccountName;
 		Player.AccountPassword = document.getElementById("InputPassword").value.trim();
-		Player.AssetFamily = C.AssetFamily;
+		Player.AssetFamily = C.AssetFamily;		
 		if (CommonIsNumeric(C.Money)) Player.Money = C.Money;
 		Player.Owner = ((C.Owner == null) || (C.Owner == "undefined")) ? "" : C.Owner;
 		Player.Lover = ((C.Lover == null) || (C.Lover == "undefined")) ? "" : C.Lover;
+
+		// Sets the current time based on the server
+		if (C.CurrentTime == null) C.CurrentTime = CommonTime();
+		CurrentTime = parseInt(C.CurrentTime);
+		if (isNaN(CurrentTime)) CurrentTime = CommonTime();
+
+		// Loads the player character model and data
 		CharacterAppearanceLoadFromAccount(Player, C.Appearance);
 		InventoryRemove(Player, "ItemMisc");
 		InventoryLoad(Player, C.Inventory, false);
@@ -137,9 +146,12 @@ function LoginResponse(CharacterData) {
 		CharacterAppearanceValidate(Player);
 		document.getElementById("InputName").parentNode.removeChild(document.getElementById("InputName"));
 		document.getElementById("InputPassword").parentNode.removeChild(document.getElementById("InputPassword"));
+		
+		// Starts the game in the main hall while loading characters in the private room
 		PrivateCharacter = [];
 		CommonSetScreen("Room", "Private");
 		CommonSetScreen("Room", "MainHall");
+		
 	} else LoginMessage = TextGet("ErrorLoadingCharacterData");
 }
 

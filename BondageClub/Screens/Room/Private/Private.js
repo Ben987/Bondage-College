@@ -25,7 +25,9 @@ function PrivateWontKneel() { return (CurrentCharacter.CanKneel() && !CurrentCha
 function PrivateCannotKneel() { return (!CurrentCharacter.CanKneel() && !CurrentCharacter.IsKneeling()) }
 function PrivateCanStandUp() { return (CurrentCharacter.CanKneel() && CurrentCharacter.IsKneeling()) }
 function PrivateCannotStandUp() { return (!CurrentCharacter.CanKneel() && CurrentCharacter.IsKneeling()) }
-function PrivateKneel() { CharacterSetActivePose(CurrentCharacter, (CurrentCharacter.ActivePose == null) ? "Kneel" : null); }
+function PrivateWouldTakePlayerAsSub() { return (!PrivatePlayerIsOwned() && !PrivateIsCaged() && !CurrentCharacter.IsKneeling() && !CurrentCharacter.IsRestrained() && (ReputationGet("Dominant") + 50 <= NPCTraitGet(CurrentCharacter, "Dominant")) && (CurrentTime >= NPCEventGet(CurrentCharacter, "PrivateRoomEntry") + NPCLongEventDelay(CurrentCharacter))) }
+function PrivateWontTakePlayerAsSub() { return (!PrivatePlayerIsOwned() && !PrivateIsCaged() && !CurrentCharacter.IsKneeling() && !CurrentCharacter.IsRestrained() && (ReputationGet("Dominant") + 50 > NPCTraitGet(CurrentCharacter, "Dominant"))) }
+function PrivateNeedTimeToTakePlayerAsSub() { return (!PrivatePlayerIsOwned() && !PrivateIsCaged() && !CurrentCharacter.IsKneeling() && !CurrentCharacter.IsRestrained() && (ReputationGet("Dominant") + 50 <= NPCTraitGet(CurrentCharacter, "Dominant")) && (CurrentTime < NPCEventGet(CurrentCharacter, "PrivateRoomEntry") + NPCLongEventDelay(CurrentCharacter))) }
 
 // Loads the private room vendor NPC
 function PrivateLoad() {
@@ -66,7 +68,8 @@ function PrivateDrawCharacter() {
 		DrawButton(X + 145 + C * S, 900, 90, 90, "", "White", "Icons/Character.png");
 		if (LogQuery("Cage", "PrivateRoom"))
 			if ((Player.Cage == null) || (C == 0))
-				DrawButton(X + 265 + C * S, 900, 90, 90, "", "White", "Icons/Cage.png");
+				if (!PrivateCharacter[C].IsOwner())
+					DrawButton(X + 265 + C * S, 900, 90, 90, "", "White", "Icons/Cage.png");
 	}
 	
 }
@@ -107,10 +110,11 @@ function PrivateClickCharacterButton() {
 	// For each character, we find the one to cage, doesn't allow to do it if already in a cage
 	for(var C = 0; C < PrivateCharacter.length; C++) {
 		if ((MouseX >= X + 265 + C * S) && (MouseX <= X + 355 + C * S))
-			if ((Player.Cage == null) || (C == 0)) {
-				PrivateCharacter[C].Cage = (PrivateCharacter[C].Cage == null) ? true : null;
-				PrivateSaveCharacter(C);
-			}
+			if ((Player.Cage == null) || (C == 0))
+				if (!PrivateCharacter[C].IsOwner()) {
+					PrivateCharacter[C].Cage = (PrivateCharacter[C].Cage == null) ? true : null;
+					if (C > 0) PrivateSaveCharacter(C);
+				}
 		if ((MouseX >= X + 145 + C * S) && (MouseX <= X + 235 + C * S))
 			InformationSheetLoadCharacter(PrivateCharacter[C]);
 	}
@@ -128,6 +132,7 @@ function PrivateClickCharacter() {
 	for(var C = 0; C < PrivateCharacter.length; C++)
 		if ((MouseX >= X + C * S) && (MouseX <= X + S + C * S)) {
 			PrivateCharacterToSave = C;
+			if ((PrivateCharacter[C].Stage == "0") && PrivateCharacter[C].IsOwner()) PrivateCharacter[C].Stage = "1000";
 			CharacterSetCurrent(PrivateCharacter[C]);
 		}
 
@@ -175,10 +180,12 @@ function PrivateLoadCharacter(ID) {
 		if (Char.AppearanceFull != null) C.AppearanceFull = Char.AppearanceFull.slice();
 		if (Char.Trait != null) C.Trait = Char.Trait.slice();
 		if (Char.Cage != null) C.Cage = Char.Cage;
+		if (Char.Event != null) C.Event = Char.Event;
 		AssetReload(C);
 		NPCTraitDialog(C);
 		CharacterRefresh(C);
 		PrivateCharacter.push(C);
+		if (NPCEventGet(C, "PrivateRoomEntry") == 0) NPCEventAdd(C, "PrivateRoomEntry", CurrentTime - 604800000);
 	}
 }
 
@@ -191,7 +198,8 @@ function PrivateSaveCharacter(ID) {
 			Cage: PrivateCharacter[ID].Cage,
 			AccountName: PrivateCharacter[ID].AccountName,
 			Appearance: PrivateCharacter[ID].Appearance.slice(),
-			AppearanceFull: PrivateCharacter[ID].AppearanceFull.slice()
+			AppearanceFull: PrivateCharacter[ID].AppearanceFull.slice(),
+			Event: PrivateCharacter[ID].Event
 		};
 		localStorage.setItem("BondageClubPrivateRoomCharacter" + Player.AccountName + ID.toString(), JSON.stringify(C));
 	} else localStorage.removeItem("BondageClubPrivateRoomCharacter" + Player.AccountName + ID.toString());
@@ -243,4 +251,20 @@ function PrivateChange(NewCloth) {
 function PrivateRestrainPlayer() {
 	CharacterFullRandomRestrain(Player);
 	PrivateReleaseTimer = CommonTime() + 60000;
+}
+
+// When a the player starts a submissive trial with an NPC
+function PrivateStartTrial(ChangeRep) {
+	DialogChangeReputation("Dominant", ChangeRep);
+	CharacterDress(CurrentCharacter, CurrentCharacter.AppearanceFull);
+	NPCEventAdd(CurrentCharacter, "EndSubTrial", CurrentTime + NPCLongEventDelay(CurrentCharacter));
+}
+
+// Returns TRUE if the player is owned (from the room or not)
+function PrivatePlayerIsOwned() {
+	if (Player.Owner != "") return true;
+	for(var C = 0; C < PrivateCharacter.length; C++)
+		if (PrivateCharacter[C].IsOwner())
+			return true;
+	return false;
 }

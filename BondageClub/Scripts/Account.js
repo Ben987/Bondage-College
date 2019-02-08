@@ -1,5 +1,5 @@
 "use strict";
-var AccountAddress = "http://www.bondageprojects.com/accounts/manage2.php";
+var AccountAddress = "http://www.bondageprojects.com/accounts/manage.php";
 var AccountURL = [];
 var AccountReady = true;
 
