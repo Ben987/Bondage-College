@@ -1,7 +1,7 @@
 "use strict";
 var CheatBackground = "Sheet";
 var CheatAllow = false;
-var CheatList = ["DoubleReputation", "DoubleSkill", "DoubleMoney", "DoubleItemSpeed"];
+var CheatList = ["DoubleReputation", "DoubleSkill", "DoubleMoney", "DoubleItemSpeed", "ControlRandomKidnap"];
 var CheatActivated = [];
 
 // Returns TRUE if the cheat is currently active
