@@ -32,12 +32,19 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 0,,"Hello, I'm DialogPlayerName.  Pleased to meet you.",(She Whinny'ing),DialogRemove(),
 0,,What's going on in here?,(She stamps),,
 0,,(Try to trot to her),(She turns away.),,StablePlayerIsolation()
+0,,(Whinny to her),(She kick your Butt),,StablePlayerIsolation()
 0,10,(Trot to her),(She nudges you with her nose),,StablePlayerOtherPony()
 0,,I can't stay to chat.  (Leave her.),,DialogLeave(),
 10,,(Try to talk with her.),(You both try to mumble to each other but it makes no sense),,
 10,,(Lean on her.),(You lean and rest on each other hips while she whinny slowly.),,
 10,,(Nuzzle with her.),(You clumsily nuzzle each other in your restraints and giggle.),,
 10,,(Rub your body against hers.),(You both rub your bodies against each other and moan slowly.),,
-10,,(Try to masturbate her.),(You rub your armband against her and hear the satisfied snort.),,
-10,,(Try to release her.),(You struggle in your armbinder and try to release her.  But you fail miserably.),,
+10,,(Try to masturbate her with your finger.),(You rub your armband against her and hear the satisfied snort.),,
+10,,(Try to masturbate her with your feet.),(You both rub your feets against and hear have a lot of fun.),,
+10,11,(more . . .),,,
 10,0,(Step back.),(You step back.),,
+11,,(Try to release her.),(You struggle in your armbinder and try to release her.  But you fail miserably.),,
+11,,(Try to kiss her),"(You try to kiss her, but the Gag bothers you.)",,Player.CanTalk()
+11,,(Try to masturbate her with your tongue.),(You leak her to an orgasm),,Player.CanTalk()
+11,10,(more . . .),,,
+11,0,(Step back.),(You step back.),,

@@ -61,17 +61,19 @@ function HorseWalkLoad() {
 	HorseWalkGenerateItems(MaxCarrot, MaxCarrot);
 	HorseWalkCollectedCarrots = 0;
 	HorseWalkCollectedCrops = 0;
-	HorseWalkSpeed = 1; //ToDo Skill
+	HorseWalkSpeed = 1 + SkillGetLevel(Player, "Dressage")/5;
 }
 
 // Run the maid cleaning mini game
 function HorseWalkRun() {
 
-	// The game ends in victory if everything is clean or in defeat if the time runs out
+	// The game ends in victory if the time runs out
 	var Time = CommonTime();
 	//if (!MiniGameEnded && (HorseWalkCarrots.length == 0)) HorseWalkEnd(true);
 	if (!MiniGameEnded && (Time >= MiniGameTimer)){
 		if (HorseWalkCollectedCarrots > HorseWalkCollectedCrops) {
+			var HorseWalkSkillProgress = (HorseWalkCollectedCarrots - HorseWalkCollectedCrops) * 5;
+			SkillProgress("Dressage",  HorseWalkSkillProgress);
 			HorseWalkEnd(true);
 		} else {
 			HorseWalkEnd(false);
@@ -109,13 +111,6 @@ function HorseWalkDoMove() {
 	// If the position changed
 	if (((HorseWalkPlayerX != MouseX - 100) || (HorseWalkPlayerY != MouseY - 100)) && (MouseX >= 0) && (MouseY >= 0)) {
 		
-		// Sets the player position		
-		/*var HorseWalkPlayerXdiff = HorseWalkPlayerX - MouseX - 100;
-		var HorseWalkPlayerYdiff = HorseWalkPlayerY - MouseY - 100;
-		var HorseWalkPlayerFactor = Math.sqrt(Math.pow(HorseWalkPlayerXdiff, 2) + Math.pow(HorseWalkPlayerYdiff, 2));
-		HorseWalkPlayerX = HorseWalkPlayerX + (HorseWalkPlayerFactor * HorseWalkPlayerXdiff);
-		HorseWalkPlayerY = HorseWalkPlayerY + (HorseWalkPlayerFactor * HorseWalkPlayerYdiff);*/
-
 		if ( HorseWalkPlayerX > (MouseX - 100 + HorseWalkSpeed) ) {
 			HorseWalkPlayerX -= HorseWalkSpeed;
 		} else if ( HorseWalkPlayerX < (MouseX - 100 - HorseWalkSpeed) ){

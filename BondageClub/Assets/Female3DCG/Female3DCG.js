@@ -64,7 +64,7 @@ var AssetFemale3DCG = [
 		Default: false,
 		ParentGroup: "BodyLower",
 		ParentColor: "Cloth",
-		AllowPose: ["LegsClosed"],
+		AllowPose: ["LegsClosed", "Kneel"],
 		Color: ["Default", "#bbbbbb", "#808080", "#202020", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
 		Left: 125,
 		Top: 400,

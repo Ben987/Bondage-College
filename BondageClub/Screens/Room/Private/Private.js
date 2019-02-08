@@ -20,6 +20,12 @@ function PrivateAllowRestainPlayer() { return (!Player.IsRestrained() && !Curren
 function PrivateWontRestainPlayer() { return (!Player.IsRestrained() && !CurrentCharacter.IsRestrained() && (ReputationGet("Dominant") - 25 > NPCTraitGet(CurrentCharacter, "Dominant"))) }
 function PrivateAllowReleasePlayer() { return (Player.IsRestrained() && CurrentCharacter.CanInteract() && CommonTime() > PrivateReleaseTimer) }
 function PrivateWontReleasePlayer() { return (Player.IsRestrained() && CurrentCharacter.CanInteract() && CommonTime() <= PrivateReleaseTimer) }
+function PrivateWillKneel() { return (CurrentCharacter.CanKneel() && !CurrentCharacter.IsKneeling() && (ReputationGet("Dominant") > NPCTraitGet(CurrentCharacter, "Dominant"))) }
+function PrivateWontKneel() { return (CurrentCharacter.CanKneel() && !CurrentCharacter.IsKneeling() && (ReputationGet("Dominant") <= NPCTraitGet(CurrentCharacter, "Dominant"))) }
+function PrivateCannotKneel() { return (!CurrentCharacter.CanKneel() && !CurrentCharacter.IsKneeling()) }
+function PrivateCanStandUp() { return (CurrentCharacter.CanKneel() && CurrentCharacter.IsKneeling()) }
+function PrivateCannotStandUp() { return (!CurrentCharacter.CanKneel() && CurrentCharacter.IsKneeling()) }
+function PrivateKneel() { CharacterSetActivePose(CurrentCharacter, (CurrentCharacter.ActivePose == null) ? "Kneel" : null); }
 
 // Loads the private room vendor NPC
 function PrivateLoad() {
@@ -57,9 +63,10 @@ function PrivateDrawCharacter() {
 		if (PrivateCharacter[C].Cage != null) DrawImage("Screens/Room/Private/CageBack.png", X + C * S, 0);
 		DrawCharacter(PrivateCharacter[C], X + C * S, 0, 1);
 		if (PrivateCharacter[C].Cage != null) DrawImage("Screens/Room/Private/CageFront.png", X + C * S, 0);
-		if (LogQuery("Cage", "PrivateRoom")) 
+		DrawButton(X + 145 + C * S, 900, 90, 90, "", "White", "Icons/Character.png");
+		if (LogQuery("Cage", "PrivateRoom"))
 			if ((Player.Cage == null) || (C == 0))
-				DrawButton(X + 380 + C * S, 900, 90, 90, "", "White", "Icons/Cage.png");
+				DrawButton(X + 265 + C * S, 900, 90, 90, "", "White", "Icons/Cage.png");
 	}
 	
 }
@@ -70,9 +77,9 @@ function PrivateRun() {
 	// The vendor is only shown if the room isn't rent
 	if (LogQuery("RentRoom", "PrivateRoom")) {
 		PrivateDrawCharacter();
-		if ((Player.Cage == null) && Player.CanWalk()) DrawButton(1885, 385, 90, 90, "", "White", "Icons/Shop.png");
-		DrawButton(1885, 505, 90, 90, "", "White", "Icons/Dress.png");
-		if (LogQuery("Wardrobe", "PrivateRoom")) DrawButton(1885, 625, 90, 90, "", "White", "Icons/Wardrobe.png");
+		if ((Player.Cage == null) && Player.CanWalk()) DrawButton(1885, 265, 90, 90, "", "White", "Icons/Shop.png");
+		DrawButton(1885, 385, 90, 90, "", "White", "Icons/Dress.png");
+		if (LogQuery("Wardrobe", "PrivateRoom")) DrawButton(1885, 505, 90, 90, "", "White", "Icons/Wardrobe.png");
 	} else {
 		DrawCharacter(Player, 500, 0, 1);
 		DrawCharacter(PrivateVendor, 1000, 0, 1);
@@ -80,8 +87,7 @@ function PrivateRun() {
 	
 	// Standard buttons
 	if (Player.CanWalk() && (Player.Cage == null)) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
-	DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
-	if (Player.CanKneel()) DrawButton(1885, 265, 90, 90, "", "White", "Icons/Kneel.png");
+	if (Player.CanKneel()) DrawButton(1885, 145, 90, 90, "", "White", "Icons/Kneel.png");
 	
 	// If we must save a character status after a dialog
 	if (PrivateCharacterToSave > 0) {
@@ -92,19 +98,22 @@ function PrivateRun() {
 }
 
 // Checks if the user clicked on a cage button
-function PrivateClickCage() {
+function PrivateClickCharacterButton() {
 	
 	// Defines the character position in the private screen
 	var X = 1000 - PrivateCharacter.length * 250;
 	var S = (PrivateCharacter.length == 4) ? 470 : 500;
 
 	// For each character, we find the one to cage, doesn't allow to do it if already in a cage
-	for(var C = 0; C < PrivateCharacter.length; C++)
-		if ((MouseX >= X + 380 + C * S) && (MouseX <= X + 470 + C * S)) 
+	for(var C = 0; C < PrivateCharacter.length; C++) {
+		if ((MouseX >= X + 265 + C * S) && (MouseX <= X + 355 + C * S))
 			if ((Player.Cage == null) || (C == 0)) {
 				PrivateCharacter[C].Cage = (PrivateCharacter[C].Cage == null) ? true : null;
 				PrivateSaveCharacter(C);
 			}
+		if ((MouseX >= X + 145 + C * S) && (MouseX <= X + 235 + C * S))
+			InformationSheetLoadCharacter(PrivateCharacter[C]);
+	}
 
 }
 
@@ -129,13 +138,12 @@ function PrivateClick() {
 	if ((MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000) && !LogQuery("RentRoom", "PrivateRoom")) CharacterSetCurrent(Player);
 	if ((MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000) && !LogQuery("RentRoom", "PrivateRoom")) CharacterSetCurrent(PrivateVendor);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk() && (Player.Cage == null)) { CharacterAppearanceValidate(Player); CommonSetScreen("Room", "MainHall"); }
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355) && LogQuery("RentRoom", "PrivateRoom") && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475) && LogQuery("RentRoom", "PrivateRoom") && Player.CanWalk() && (Player.Cage == null)) CharacterSetCurrent(PrivateVendor);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 505) && (MouseY < 595) && LogQuery("RentRoom", "PrivateRoom")) { CharacterAppearanceReturnRoom = "Private"; CommonSetScreen("Character", "Appearance"); }
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 625) && (MouseY < 715) && LogQuery("RentRoom", "PrivateRoom") && LogQuery("Wardrobe", "PrivateRoom")) CommonSetScreen("Character", "Wardrobe");
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235) && LogQuery("RentRoom", "PrivateRoom") && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355) && LogQuery("RentRoom", "PrivateRoom") && Player.CanWalk() && (Player.Cage == null)) CharacterSetCurrent(PrivateVendor);
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475) && LogQuery("RentRoom", "PrivateRoom")) { CharacterAppearanceReturnRoom = "Private"; CommonSetScreen("Character", "Appearance"); }
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 505) && (MouseY < 595) && LogQuery("RentRoom", "PrivateRoom") && LogQuery("Wardrobe", "PrivateRoom")) CommonSetScreen("Character", "Wardrobe");
 	if ((MouseX <= 1885) && (MouseY < 900) && LogQuery("RentRoom", "PrivateRoom") && (Player.Cage == null)) PrivateClickCharacter();
-	if ((MouseX <= 1885) && (MouseY >= 900) && LogQuery("RentRoom", "PrivateRoom") && LogQuery("Cage", "PrivateRoom")) PrivateClickCage();
+	if ((MouseX <= 1885) && (MouseY >= 900) && LogQuery("RentRoom", "PrivateRoom") && LogQuery("Cage", "PrivateRoom")) PrivateClickCharacterButton();
 }
 
 // When the player rents the room

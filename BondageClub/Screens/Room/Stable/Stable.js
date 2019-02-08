@@ -6,6 +6,7 @@ var StablePony = null;
 var StablePlayerAppearance = null;
 var StablePlayerDressOff = false;
 var StablePlayerIsPony = false;
+var StablePlayerTrainingActiv = false;
 var StablePlayerTrainingLessons = 0;
 var StablePlayerTrainingBehavior = 0;
 
@@ -15,7 +16,7 @@ var StablePlayerTrainingBehavior = 0;
 // functions for Dialogs
 function StablePlayerIsDressOff() {return StablePlayerDressOff;} 
 function StablePlayerIsCollared() {return StableCharacterAppearanceGroupAvailable(Player, "ItemNeck")}
-function StablePlayerOtherPony()  {return StableTrainer.Stage == "StableTrainingOtherPoniesBack";}
+function StablePlayerOtherPony()  {return StableTrainer.Stage == "StableTrainingOtherPoniesBack" || StableTrainer.Stage == "StableTrainingEnd";}
 function StablePlayerIsolation()  {return StableTrainer.Stage == "StableTrainingIsolationBack";}
 
 
@@ -42,14 +43,12 @@ function StableLoad() {
 // Run the stable, draw all 3 characters
 function StableRun() {
 	if (StableProgress >= 0) {
-		DrawButton(1750, 25, 225, 75, "Cancel", "White");
-		DrawCharacter(Player, 500, 0, 1); //todo pose change
 		StableGenericDrawProgress();
 	} else {
 		DrawCharacter(Player, 250, 0, 1);
 		DrawCharacter(StableTrainer, 750, 0, 1);
 		DrawCharacter(StablePony, 1250, 0, 1);
-		if (Player.CanWalk()) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
+		if (Player.CanWalk() && !StablePlayerTrainingActiv) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 //		DrawButton(1885, 145, 90, 90, "", "White", "Screens/Room/Stable/Horse.png");
 	}
 	StablePlayerIsPony = LogQuery("JoinedStable", "Pony");
@@ -66,7 +65,7 @@ function StableClick() {
 		if ((MouseX >= 250) && (MouseX < 750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
 		if ((MouseX >= 750) && (MouseX < 1250) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(StableTrainer);
 		if ((MouseX >= 1250) && (MouseX < 1750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(StablePony);
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
+		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk() && !StablePlayerTrainingActiv) CommonSetScreen("Room", "MainHall");
 //		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) StableMiniGameStart("HorseWalk", "Normal");
 	}
 }
@@ -76,7 +75,7 @@ function StableClick() {
 ////////////////////////////////////////////////////////////////////////////////////////////
 //Start the Demo
 function StableTrialTraining() {
-	StableGenericProgressStart(60, 0, "Screens/Room/Stable/toyhorse.png", "HorseStableDark", StableTrainer, 0, "StableTrainerToyHorseFin", 0, "StableTrainerToyHorseCancel", 2,  TextGet("Toyhorse"));
+	StableGenericProgressStart(60, 0, 0, "Screens/Room/Stable/toyhorse.png", "HorseStableDark", StableTrainer, null, 0, "StableTrainerToyHorseFin", 0, "StableTrainerToyHorseCancel", 2,  TextGet("Toyhorse"));
 }
 
 function StablePayTheFee(){
@@ -105,6 +104,7 @@ function StablePlayerStartTrainingLesson() {
 	if (!StablePlayerIsCollared()) {
 		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingStartCollar");
 	} else {
+		StablePlayerTrainingActiv = true;
 		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingStartIntro");
 		StableTrainer.Stage = "StableTrainingStart";
 	}
@@ -116,7 +116,7 @@ function StablePlayerGetTrainingLesson() {
 		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingEndIntro");
 		StableTrainer.Stage = "StableTrainingEnd";
 	} else {
-		var TrainSelection = Math.random() * 11;
+		var TrainSelection = Math.random() * (10 + SkillGetLevel(Player, "Dressage"));
 		if (TrainSelection < 3) {
 			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingGallopIntro");
 			StableTrainer.Stage = "StableTrainingGallop";
@@ -138,7 +138,11 @@ function StablePlayerGetTrainingLesson() {
 		} else if (TrainSelection < 11) {
 			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingHurdlesIntro");
 			StableTrainer.Stage = "StableTrainingHurdles";
+		} else if (TrainSelection < 12) {
+			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingRaceIntro");
+			StableTrainer.Stage = "StableTrainingRace";
 		}
+		//todo 13-20
 	}
 }
 
@@ -220,7 +224,7 @@ function StablePlayerTrainingTreadmill(Behavior) {
 	var StableDressage = SkillGetLevel(Player, "Dressage");
 	var StableDifficulty = 6;
 	SkillProgress("Dressage", StableDifficulty * 5);
-	StableGenericProgressStart(StableDifficulty * 20, StableDressage, "Screens/Room/Stable/treadmill.png", "HorseStableDark", StableTrainer, "StableTrainingPass", "StableTrainingPassIntro", "StableTrainingFail", "StableTrainingFailIntro", 2, TextGet("Treadmill"));
+	StableGenericProgressStart((StableDifficulty + StableDressage) * 20, StableDressage, StableDressage, "Screens/Room/Stable/treadmill.png", "HorseStableDark", StableTrainer, null, "StableTrainingPass", "StableTrainingPassIntro", "StableTrainingFail", "StableTrainingFailIntro", 2, TextGet("Treadmill"));
 	StablePlayerTrainingLessons += 2;
 }
 
@@ -228,9 +232,19 @@ function StablePlayerTrainingTreadmill(Behavior) {
 function StablePlayerTrainingCarriage(Behavior) {
 	StablePlayerTrainingBehavior += parseInt(Behavior);
 	var StableDressage = SkillGetLevel(Player, "Dressage");
-	var StableDifficulty = 6;
+	var StableDifficulty = 9;
 	SkillProgress("Dressage", StableDifficulty * 5);
-	StableGenericProgressStart(StableDifficulty * 20, StableDressage, "Screens/Room/Stable/horsecarriage.png", "HorseStableDark", StableTrainer, "StableTrainingPass", "StableTrainingPassIntro", "StableTrainingFail", "StableTrainingFailIntro", 2, TextGet("Carriage"));
+	StableGenericProgressStart((StableDifficulty + StableDressage) * 20, StableDressage, StableDressage, "Screens/Room/Stable/horsecarriage.png", "HorseStableDark", StableTrainer, null, "StableTrainingPass", "StableTrainingPassIntro", "StableTrainingFail", "StableTrainingFailIntro", 2, TextGet("Carriage"));
+	StablePlayerTrainingLessons += 2;
+}
+
+//Start Traning Carriage
+function StablePlayerTrainingRace(Behavior) {
+	StablePlayerTrainingBehavior += parseInt(Behavior);
+	var StableDressage = SkillGetLevel(Player, "Dressage");
+	var StableDifficulty = 9;
+	SkillProgress("Dressage", StableDifficulty * 5);
+	StableGenericProgressStart((StableDifficulty + StableDressage) * 20, StableDressage, StableDressage + 1, "Screens/Room/Stable/treadmill.png", "HorseStableDark", StableTrainer, StablePony, "StableTrainingPass", "StableTrainingPassIntro", "StableTrainingFail", "StableTrainingFailIntro", 2, TextGet("Treadmill"));
 	StablePlayerTrainingLessons += 2;
 }
 
@@ -371,8 +385,16 @@ function StableBecomePonyFin(){
 
 //Stop the Traning and Remove some Items
 function StableTrainingStoped() {
+	StablePlayerTrainingActiv = false;
 	InventoryRemove(Player, "ItemArms");
 	StablePlayerTrainingLessons = 0;
+}
+
+//Player can go to ponies after training
+function StablePlayerToHerd() {
+	StableWearPonyEquipment(Player);
+	CharacterSetCurrent(StablePony);
+
 }
 
 //Dress Caracter Back
@@ -398,6 +420,7 @@ function StablePlayerWearEquipment(Behavior) {
 
 //Dress Characker like a Pony
 function StableWearPonyEquipment(C) {
+	CharacterNaked(C);
 	InventoryWear(C, "Ears2", "Hat");
 	InventoryWear(C, "LeatherHarness", "ItemTorso");
 	InventoryWear(C, "HarnessBallGag", "ItemMouth");
@@ -405,19 +428,22 @@ function StableWearPonyEquipment(C) {
 	InventoryWear(C, "BlackButtPlug", "ItemButt");
 	InventoryRemove(C, "ItemFeet");
 	InventoryRemove(C, "ItemLegs");
-	CharacterRefresh(Player);
+	CharacterRefresh(C);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 //Generic Progress Bar
 ////////////////////////////////////////////////////////////////////////////////////////////
 var StableProgress = -1;
+var StableSecondProgress = -1;
 var StableProgressAuto = 0;
+var StableSecondProgressAuto = 0;
 var StableProgressClick = 0;
 var StableProgressLastKeyPress = 0;
 var StableProgressItem = '';
 var StableProgressFinished = false; 
 var StableProgressCharacter = null;
+var StableProgressSecondCharacter = null;
 var StableProgressEndStage = 0;
 var StableProgressEndDialog = null;
 var StableProgressCancelStage = null;
@@ -426,17 +452,25 @@ var StableProgressBehavior = 0;
 var StableProgressOperation = null;
 var StableProgressStruggleCount = null;
 
-function StableGenericProgressStart(Timer, S, Item, Background, Character, Stage, CurrentDialog, CancelStage, CancelCurrentDialog, Behavior, ProgressOperation) {
+function StableGenericProgressStart(Timer, S, S2, Item, Background, Character, SecondCharacter, Stage, CurrentDialog, CancelStage, CancelCurrentDialog, Behavior, ProgressOperation) {
 	DialogLeave()
 	if (Timer < 1) Timer = 1;
+	//Charakter
 	StableProgressAuto = CommonRunInterval * (0.1333 + (S * 0.1333)) / (Timer * CheatFactor("DoubleItemSpeed", 0.5));
 	StableProgressClick = CommonRunInterval * 2.5 / (Timer * CheatFactor("DoubleItemSpeed", 0.5));
+	StableProgress = 0;
 	if (S < 0) { StableProgressAuto = StableProgressAuto / 2; StableProgressClick = StableProgressClick / 2; }
+	//Second Caracter
+	StableSecondProgressAuto = CommonRunInterval * (0.1333 + (S2 * 0.1333)) / (Timer * CheatFactor("DoubleItemSpeed", 0.5));
+	if (S2 < 0) { StableSecondProgressAuto = StableSecondProgressAuto / 2; }
+	StableSecondProgress = 0;
+	
 	StableBackground = Background;
 	StableProgressItem = Item;
 	StableProgress = 0;
 	StableProgressFinished = false;
 	StableProgressCharacter = Character;
+	StableProgressSecondCharacter = SecondCharacter;
 	StableProgressEndStage = Stage;
 	StableProgressEndDialog = CurrentDialog;
 	StableProgressCancelStage = CancelStage;
@@ -446,8 +480,10 @@ function StableGenericProgressStart(Timer, S, Item, Background, Character, Stage
 	StableProgressOperation = ProgressOperation;
 }
 
-function StableGenericDrawProgress() {
+/*function StableGenericDrawProgress() {
 	if (StableProgress >= 0) {
+		DrawButton(1750, 25, 225, 75, "Cancel", "White");
+		DrawCharacter(Player, 500, 0, 1); //todo pose change
 		DrawRect(1385, 250, 225, 225, "white");
 		DrawImage(StableProgressItem, 1387, 252);
 		DrawText(StableProgressOperation, 1500, 650, "White", "Black"); //todo generic text
@@ -457,6 +493,44 @@ function StableGenericDrawProgress() {
 		DrawText(DialogFind(Player, (CommonIsMobile) ? "ProgressClick" : "ProgressKeys"), 1500, 900, "White", "Black");
 		if (StableProgress >= 100) {
 			StableGenericFinished();
+		}
+	}
+}*/
+
+function StableGenericDrawProgress() {
+	if (StableProgress >= 0) {
+		DrawButton(1750, 25, 225, 75, "Cancel", "White");
+//		DrawText(StableProgressOperation, 1500, 650, "White", "Black"); //todo generic text
+		StableProgress = StableProgress + StableProgressAuto;
+		if (StableProgress < 0) StableProgress = 0;
+		var StableGenericPlayerPosition = (1700 * StableProgress/100) + 50;
+
+		StableSecondProgress = StableSecondProgress + StableSecondProgressAuto;
+		if (StableSecondProgress < 0) StableSecondProgress = 0;
+		var StableGenericSecondPosition = (1700 * StableSecondProgress/100) + 50;
+
+
+		if (StableProgressSecondCharacter == null) {
+			DrawRect(300, 150, 225, 225, "white");
+			DrawImage(StableProgressItem, 302, 152);
+			DrawText(StableProgressOperation, 1000, 175, "White", "Black");
+			DrawText(DialogFind(Player, (CommonIsMobile) ? "ProgressClick" : "ProgressKeys"), 1000, 275, "White", "Black");
+			DrawRect(200, 500, 20, 400, "white");
+			DrawRect(1800, 500, 20, 400, "white");
+			DrawCharacter(Player, StableGenericPlayerPosition, 500, 0.4); //todo pose change
+		} else {
+			DrawText(DialogFind(Player, (CommonIsMobile) ? "ProgressClick" : "ProgressKeys"), 600, 25, "White", "Black");
+			DrawRect(200, 200, 20, 800, "white");
+			DrawRect(1800, 200, 20, 800, "white");
+			DrawCharacter(Player, StableGenericPlayerPosition, 200, 0.4); //todo pose change
+			DrawCharacter(StableProgressSecondCharacter, StableGenericSecondPosition, 600, 0.4); //todo pose change
+		}
+//		DrawProgressBar(1200, 700, 600, 100, StableProgress);
+//		DrawText(DialogFind(Player, (CommonIsMobile) ? "ProgressClick" : "ProgressKeys"), 1500, 900, "White", "Black");
+		if (StableProgress >= 100) {
+			StableGenericFinished();
+		} else if (StableSecondProgress >= 100) {
+			StableGenericCancel(); 
 		}
 	}
 }
