@@ -44,6 +44,8 @@ function MainHallRun() {
 		if (Player.CanWalk()) DrawButton(25, 295, 450, 65, TextGet("Stable"), "White");
 		if (Player.CanWalk()) DrawButton(25, 385, 450, 65, TextGet("Nursery"), "White");
 		if (Player.CanWalk()) DrawButton(25, 475, 450, 65, TextGet("SlaveMarket"), "White");
+		if (Player.CanWalk()) DrawButton(25, 565, 450, 65, TextGet("RandomKidnap"), "White");
+		if (Player.CanWalk()) DrawButton(25, 625, 450, 35, TextGet("RandomKidnap1"), "White");
 		
 		// Check if there's a new maid rescue event to trigger
 		if ((!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk())) {
@@ -77,8 +79,9 @@ function MainHallRun() {
 
 // When the player walks to another room, she can be attacked by a random kidnapper
 function MainHallWalk(RoomName) {
-	if ((Math.random() > 0.95) && (KidnapLeagueRandomKidnapperTimer < CommonTime()) && (ReputationGet("Kidnap") > 0)) KidnapLeagueRandomIntro();
+	if ((Math.random() > 0.95) && (KidnapLeagueRandomKidnapperTimer < CommonTime()) && (ReputationGet("Kidnap") > 0) && CheatFactor("ControlRandomKidnap") == 1) KidnapLeagueRandomIntro();
 	else if ((KidnapLeagueBountyLocation == RoomName) && (KidnapLeagueBounty != null) && (KidnapLeagueBountyVictory == null) && Player.CanInteract() && (ReputationGet("Kidnap") > 0)) KidnapLeagueBountyStart();
+	else if (CheatFactor("ControlRandomKidnap") != 1) CommonSetScreen("Room", RoomName);
 	else CommonSetScreen("Room", RoomName);
 }
 
@@ -110,6 +113,7 @@ function MainHallClick() {
 		if ((MouseX >= 25) && (MouseX < 475) && (MouseY >= 295) && (MouseY < 360) && Player.CanWalk()) MainHallWalk("Stable");
 		if ((MouseX >= 25) && (MouseX < 475) && (MouseY >= 385) && (MouseY < 450) && Player.CanWalk()) MainHallWalk("Nursery");
 		if ((MouseX >= 25) && (MouseX < 475) && (MouseY >= 475) && (MouseY < 540) && Player.CanWalk()) MainHallWalk("SlaveMarket");
+		if ((MouseX >= 25) && (MouseX < 475) && (MouseY >= 565) && (MouseY < 630) && Player.CanWalk()) KidnapLeagueRandomIntro();
 
 	}
 

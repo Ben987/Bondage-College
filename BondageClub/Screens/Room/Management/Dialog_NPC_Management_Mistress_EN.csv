@@ -3,6 +3,7 @@ TouchSubAngry1,,,(DialogCharacterName comes in front of you.)  What are you doin
 TouchSubAngry2,,,(DialogCharacterName grabs your arm.)  You're getting on my nerves.  Never touch my kitty.,,
 TouchSubAngry3,,,(DialogCharacterName grabs your hair.)  Touch my pet again and you'll get in a world of trouble!,,
 TouchSubPunishment,,,(She pulls you to her by the hair.)  Never touch my pet!  Now you're in trouble.,,
+KneelToTalk,,,"Submissive girl, what are you doing standing up in my presence?  Get on your knees if you want to speak to me.",,
 0,,,Greetings head maid DialogPlayerName.  Is there a problem that the sorority cannot handle?,,"DialogLogQuery(""LeadSorority"", ""Maid"")"
 0,,,Greetings master kidnapper DialogPlayerName.  I trust you're having a good time hunting.,,"DialogReputationGreater(""Kidnap"", 100)"
 0,,,Welcome little maid.  How can I help you?,,"DialogLogQuery(""JoinedSorority"", ""Maid"")"
@@ -14,6 +15,9 @@ TouchSubPunishment,,,(She pulls you to her by the hair.)  Never touch my pet!  N
 0,100,Can we talk about chastity devices?,"Absolutely, what would you like to know?",,
 0,200,About Dominant/submissive relationships...,I'm listening.  How can I educate you?,,
 0,,"Sorry, I need to go.  (Leave her.)",,DialogLeave(),
+5,0,"Oops, I'm sorry Miss.  (Kneel for her.)",(She smirks as your kneel down for her.)  Good girl.  What can I do for you?,"DialogSetPose(Player, ""Kneel"")",
+5,0,(Bow your head and kneel.),(She smirks as your kneel down for her.)  Good girl.  What can I do for you?,"DialogSetPose(Player, ""Kneel"")",
+5,,We cannot talk then.  (Leave her.),,DialogLeave(),
 10,,What do you do in the club?,I'm both a Mistress and a manager.  I prepare collaring ceremonies and hold keys for chastity devices.,,
 10,20,Who owns the club?,"The club is owned by every member, but the Head Mistress is truly in charge.",,
 10,,Can I become a club Mistress?,"Sorry, we don't have any openings for club Mistresses right now.  Please come back later.",,"DialogReputationGreater(""Dominant"", 60)"
@@ -165,12 +169,12 @@ TouchSubPunishment,,,(She pulls you to her by the hair.)  Never touch my pet!  N
 211,212,I'm kind of poor.,"The regular cost to be released from your owner bond is 200$.  But since everyone can make mistakes, it cost 60$ if it's the first time you do it.",,
 211,212,(Let her talk.),"The regular cost to be released from your owner bond is 200$.  But since everyone can make mistakes, it cost 60$ if it's the first time you do it.",,
 212,,Why are there two different prices?,We want to make sure that our members take their D/s relationship seriously.  You can see the higher price as a punitive measure.,DialogRemove(),
-212,213,I want my freedom. (Pay her 60$),"Very well, it seems that we've lost a pet.  I will remove your slave collar, get on your knees girl.",DialogChangeMoney(-60),CanReleaseFromOwnerFirst()
-212,213,I want my freedom. (Pay her 200$),"Take your time before getting collared again.  I will remove your slave collar, get on your knees girl.",DialogChangeMoney(-200),CanReleaseFromOwner()
+212,213,I want my freedom. (Pay her 60$),"Very well, it seems that we've lost a pet.  I will remove the slave collar from your neck.",DialogChangeMoney(-60),CanReleaseFromOwnerFirst()
+212,213,I want my freedom. (Pay her 200$),Take your time before getting collared again.  I will remove the slave collar from your neck.,DialogChangeMoney(-200),CanReleaseFromOwner()
 212,0,Let me think about it.,"Think girl, this is a serious decision.",,
-213,214,Alright.  (Get on your knees.),"(She gets a special key and unlocks the collar from your neck.)  You're free girl, enjoy the club as you see fit.",ReleaseFromOwner(10),
-213,214,(Bow your head and kneel.),"(She gets a special key and unlocks the collar from your neck.)  You're free girl, enjoy the club as you see fit.",ReleaseFromOwner(7),
-213,214,It's the last time I kneel.  (Kneel.),"(She gets a special key and unlocks the collar from your neck.)  You're free girl, enjoy the club as you see fit.",ReleaseFromOwner(13),
+213,214,Alright.  (Expose your neck.),"(She gets a special key and unlocks the collar from your neck.)  You're free girl, enjoy the club as you see fit.",ReleaseFromOwner(10),
+213,214,(Bow your head and expose your neck.),"(She gets a special key and unlocks the collar from your neck.)  You're free girl, enjoy the club as you see fit.",ReleaseFromOwner(7),
+213,214,I won't get collared again.  (Expose your neck.),"(She gets a special key and unlocks the collar from your neck.)  You're free girl, enjoy the club as you see fit.",ReleaseFromOwner(13),
 214,0,Thanks a lot.,My pleasure.  Is there anything else you need?,,
 214,0,I will!,Good.  Is there anything else you need?,,
 214,0,(Nod happily.),Is there anything else you need?,,

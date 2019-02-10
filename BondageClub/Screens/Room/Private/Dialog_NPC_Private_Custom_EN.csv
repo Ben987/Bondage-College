@@ -232,7 +232,7 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  That was fun!  
 12,0,"No, you can stay.","Sorry, I'm kind of confused now.  What would you like to do?",,,CancelKickOut,Dumb|Polite
 20,,Do you have a D/s family in the club?,I don't have a D/s family.  And I'm not sure I'm interested in having one.,,,FamilyNotOwner,
 20,,Do you have a D/s family in the club?,"Sadly, I don't have any owner.  I hope I'll find the perfect Mistress someday.",,,FamilyNotOwner,Submissive
-20,,Do you have a D/s family in the club?,I don't have any submissive.  Finding the perfect BDSM is quite a quest.,,,FamilyNotOwner,Dominant
+20,,Do you have a D/s family in the club?,I don't have any submissive.  Finding the perfect BDSM match is quite a quest.,,,FamilyNotOwner,Dominant
 20,21,Are you looking for a submissive?,(She smiles.)  It could be fun to own a subbie girl.,,WouldTakePlayerAsSub(),WouldTakePlayerAsSub,
 20,21,Are you looking for a submissive?,"(She giggles.)  I'm a sub myself, so I would need someone that's really submissive.",,WouldTakePlayerAsSub(),WouldTakePlayerAsSub,Submissive
 20,21,Are you looking for a submissive?,"(She smirks.)  Girl, I'm always hunting for slaves.",,WouldTakePlayerAsSub(),WouldTakePlayerAsSub,Dominant
@@ -317,45 +317,79 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  That was fun!  
 1000,1010,Can we talk Mistress?,(She starts to sing.)  Let's talk about sex subbie!  Let's talk about you and me!,,,DomStartTalk,Horny
 1000,1010,Can we talk Mistress?,"Absolutely, what will be the topic of our discussion or debate?",,,DomStartTalk,Polite
 1000,1010,Can we talk Mistress?,What's up slave?,,,DomStartTalk,Rude
-1000,,Will you tie me up?,Sure!  Give me your arms and I'll fix you up.  (She restrains you.),RestrainPlayer(),,DomWillRestrainPlayer,
-1000,,Will you tie me up?,My pleasure girl.  I'll make it extra tight for you.  (She hurts you a little while restraining you.),RestrainPlayer(),,DomWillRestrainPlayer,Dominant|Violent
-1000,,Will you tie me up?,A sub tying a sub?  I guess we can try that.  (She giggles and restrains you.),RestrainPlayer(),,DomWillRestrainPlayer,Submissive|Playful
+1000,,Will you tie me up?,Sure my sub!  Give me your arms and I'll fix you up.  (She restrains you.),RestrainPlayer(),,DomWillRestrainPlayer,
+1000,,Will you tie me up?,My pleasure.  I'll make it extra tight for you my slave.  (She hurts you a little while restraining you.),RestrainPlayer(),,DomWillRestrainPlayer,Dominant|Violent
+1000,,Will you tie me up?,Good idea my subbie.  (She giggles and restrains you.)  Now I need someone else to restrain me.,RestrainPlayer(),,DomWillRestrainPlayer,Submissive|Playful
 1000,,Will you tie me up?,"Come closer and stay still little one, I don't want to hurt you.  (She carefully restrains you.)",RestrainPlayer(),,DomWillRestrainPlayer,Peaceful|Polite
 1000,,Can you release me?,(She nods and slowly releases you.)  I guess I can help you out now.,DialogRelease(Player),AllowReleasePlayer(),DomWillReleasePlayer,
-1000,,Can you release me?,Are you in pain girl?  Let me see these limbs.  (She releases you and checks on your health.),DialogRelease(Player),AllowReleasePlayer(),DomWillReleasePlayer,Dominant|Peaceful
-1000,,Can you release me?,"I'm not sure how Miss, let me try.  (She fumbles a little but finally releases you.)",DialogRelease(Player),AllowReleasePlayer(),DomWillReleasePlayer,Submissive|Dumb
-1000,,Can you release me?,"It's been long enough, and you deserve some freedom.  Just remember what killed the cat.  (She releases you.)",DialogRelease(Player),AllowReleasePlayer(),DomWillReleasePlayer,Serious|Wise
-1000,,Can you release me?,"Not now, you can struggle some more.  (She watches you and laughs.)",,WontReleasePlayer(),DomWontReleasePlayer,
+1000,,Can you release me?,Are you in pain my slave?  Let me see these limbs.  (She releases you and checks on your health.),DialogRelease(Player),AllowReleasePlayer(),DomWillReleasePlayer,Dominant|Peaceful
+1000,,Can you release me?,"I'm not that great at releasing, usually it's other people that do it.  (She fumbles a little but finally releases you.)",DialogRelease(Player),AllowReleasePlayer(),DomWillReleasePlayer,Submissive|Dumb
+1000,,Can you release me?,"It's been long enough, and you deserve some freedom my submissive.  Just remember what killed the cat.  (She releases you.)",DialogRelease(Player),AllowReleasePlayer(),DomWillReleasePlayer,Serious|Wise
+1000,,Can you release me?,"Not now my sub, you can struggle some more.  (She watches you and laughs.)",,WontReleasePlayer(),DomWontReleasePlayer,
 1000,,Can you release me?,"Girl, put some more efforts in your struggling and maybe I'll help you.",,WontReleasePlayer(),DomWontReleasePlayer,Dominant|Serious
-1000,,Can you release me?,I must decline Miss.  Your predicament is directly related to your actions and you must learn from them.,,WontReleasePlayer(),DomWontReleasePlayer,Submissive|Wise
-1000,,Can you release me?,Fuck no!  Seeing you struggle like a slut is such a turn on for me.,,WontReleasePlayer(),DomWontReleasePlayer,Horny|Rude
+1000,,Can you release me?,I decline.  Your predicament is directly related to your actions and you must learn from them.,,WontReleasePlayer(),DomWontReleasePlayer,Submissive|Wise
+1000,,Can you release me?,Fuck no!  Seeing my slut struggle like that is huge turn on for me.,,WontReleasePlayer(),DomWontReleasePlayer,Horny|Rude
 1000,,(Struggle and whimper for help.),(She nods and slowly releases you.)  I guess I can help you out now.,DialogRelease(Player),AllowReleasePlayer(),DomStruggleWontReleasePlayer,
-1000,,(Struggle and whimper for help.),Are you in pain girl?  Let me see these limbs.  (She releases you and checks on your health.),DialogRelease(Player),AllowReleasePlayer(),DomStruggleWontReleasePlayer,Dominant|Peaceful
-1000,,(Struggle and whimper for help.),"I'm not sure how Miss, let me try.  (She fumbles a little but finally releases you.)",DialogRelease(Player),AllowReleasePlayer(),DomStruggleWontReleasePlayer,Submissive|Dumb
-1000,,(Struggle and whimper for help.),"It's been long enough, and you deserve some freedom.  Just remember what killed the cat.  (She releases you.)",DialogRelease(Player),AllowReleasePlayer(),DomStruggleWontReleasePlayer,Serious|Wise
-1000,,(Struggle and whimper for help.),"Not now, you can struggle some more.  (She watches you and laughs.)",,WontReleasePlayer(),DomStruggleWontReleasePlayer,
+1000,,(Struggle and whimper for help.),Are you in pain my slave?  Let me see these limbs.  (She releases you and checks on your health.),DialogRelease(Player),AllowReleasePlayer(),DomStruggleWontReleasePlayer,Dominant|Peaceful
+1000,,(Struggle and whimper for help.),"I'm not that great at releasing, usually it's other people that do it.  (She fumbles a little but finally releases you.)",DialogRelease(Player),AllowReleasePlayer(),DomStruggleWontReleasePlayer,Submissive|Dumb
+1000,,(Struggle and whimper for help.),"It's been long enough, and you deserve some freedom my submissive.  Just remember what killed the cat.  (She releases you.)",DialogRelease(Player),AllowReleasePlayer(),DomStruggleWontReleasePlayer,Serious|Wise
+1000,,(Struggle and whimper for help.),"Not now my sub, you can struggle some more.  (She watches you and laughs.)",,WontReleasePlayer(),DomStruggleWontReleasePlayer,
 1000,,(Struggle and whimper for help.),"Girl, put some more efforts in your struggling and maybe I'll help you.",,WontReleasePlayer(),DomStruggleWontReleasePlayer,Dominant|Serious
-1000,,(Struggle and whimper for help.),I must decline Miss.  Your predicament is directly related to your actions and you must learn from them.,,WontReleasePlayer(),DomStruggleWontReleasePlayer,Submissive|Wise
-1000,,(Struggle and whimper for help.),Fuck no!  Seeing you struggle like a slut is such a turn on for me.,,WontReleasePlayer(),DomStruggleWontReleasePlayer,Horny|Rude
+1000,,(Struggle and whimper for help.),I decline.  Your predicament is directly related to your actions and you must learn from them.,,WontReleasePlayer(),DomStruggleWontReleasePlayer,Submissive|Wise
+1000,,(Struggle and whimper for help.),Fuck no!  Seeing my slut struggle like that is huge turn on for me.,,WontReleasePlayer(),DomStruggleWontReleasePlayer,Horny|Rude
 1000,,(Leave her.),,DialogLeave(),,,
 1010,,,Is there anything else you want to talk about my submissive?,,,DomIntroTalk,
 1010,,,"Girl, do you still want to talk?",,,DomIntroTalk,Dominant|Dumb
 1010,,,"Hey bitch, be direct if ya need to speak.",,,DomIntroTalk,Rude|Serious
 1010,,,Anything else you would to entertain?  We could lecture on philosophy or littérature if you prefer.,,,DomIntroTalk,Wise|Polite
-1010,1020,Can we talk about BDSM families?,"Absolutely, what's on your mind exactly?",,,DomFamilyTalk,
-1010,1020,Can we talk about BDSM families?,Oh!  That's serious!  (She tries to stay focus and listen to your words.),,,DomFamilyTalk,Playful
-1010,1020,Can we talk about BDSM families?,It's probably the most important kind of discussion around here.,,,DomFamilyTalk,Serious
-1010,1020,Can we talk about BDSM families?,"Very well, BDSM and D/s families are intriguing topics for me aswell.",,,DomFamilyTalk,Wise
-1010,1020,Can we talk about BDSM families?,Oh my!  I know I'll get confused again.  (She listens.),,,DomFamilyTalk,Dumb
+1010,,Please tell me about you.,There's not much to tell.  I enjoy BDSM like everyone here.,DialogRemove(),,DomNPCProfile,
+1010,,Please tell me about you.,"As you know, I'm mostly known as a Domme around here.  I love to see girls in tight bondage.",DialogRemove(),,DomNPCProfile,Dominant
+1010,,Please tell me about you.,I love the Bondage Club and BDSM.  Being tied up is a huge turn on for me.,DialogRemove(),,DomNPCProfile,Submissive
+1010,,Please tell me about you.,"Everyone has its fetishes, one of mine is pain.  I love to put other people in pain and harsh positions.",DialogRemove(),,DomNPCProfile,Violent
+1010,,Please tell me about you.,What can I tell you?  I like BDSM but I usually prefer the softer side of it.  I'm known to care for others.,DialogRemove(),,DomNPCProfile,Peaceful
+1010,,Please tell me about you.,"I'll be honest and go straight to the point, I mostly come here for sex.",DialogRemove(),,DomNPCProfile,Horny
+1010,,Please tell me about you.,"Unlike most people, BDSM isn't sexual for me.  I love the control and the restraints but I'm not here for sex.",DialogRemove(),,DomNPCProfile,Frigid
+1010,,Please tell me about you.,What the fuck can I tell you?  I'm a kinky Domme yo.,DialogRemove(),,DomNPCProfile,Rude
+1010,,Please tell me about you.,"(She nods.)  For me, the club is fascinating, but I don't have many acquaintances yet.  I'm glad I've had the chance to get you.",DialogRemove(),,DomNPCProfile,Polite
+1010,,Please tell me about you.,I love to learn and study.  And BDSM reveal interesting aspects of human nature.  It's a mirror of who we are and our social evolution.,DialogRemove(),,DomNPCProfile,Wise
+1010,,Please tell me about you.,I don't know what tell you.  I'm a club member and I like BDSM.,DialogRemove(),,DomNPCProfile,Dumb
+1010,,Please tell me about you.,"I'm not known to be the life a party.  For me, BDSM should be taken seriously to avoid any harm or pitfalls.",DialogRemove(),,DomNPCProfile,Serious
+1010,,Please tell me about you.,"I like clubs, parties, bondage and life in general.  I have many wonderful friends like you in the club.",DialogRemove(),,DomNPCProfile,Playful
+1010,,Are you happy to have me as your sub?,"Yes, it's fun to have a sub like you.  (She smiles.)",DialogRemove(),,DomHappy,
+1010,,Are you happy to have me as your sub?,"(She slaps your ass and gives you a stern.)  Don't worry girl, you'll know when I'm unhappy with you.",DialogRemove(),,DomHappy,Violent|Serious
+1010,,Are you happy to have me as your sub?,(She caresses your hair slowly.)  I'm beyond pleased to own such a wonderful submissive as you little one.,DialogRemove(),,DomHappy,Peaceful|Polite
+1010,,Are you happy to have me as your sub?,"Oh hell yeah, owning you makes me all wet.",DialogRemove(),,DomHappy,Horny|Rude
+1010,,Are you happy to have me as your sub?,"I am, we share a bond that's beyond the physical realm.",DialogRemove(),,DomHappy,Frigid|Wise
+1010,,Do you have a D/s family in the club?,I only have one submissive and it's you girl.,,,DomFamilyOwner,
+1010,,Do you have a D/s family in the club?,I have one subbie and it's best.  (She winks at you.),,,DomFamilyOwner,Playful
+1010,,Do you have a D/s family in the club?,Don't ask questions when you already know the answer.  I have you and that's enough.,,,DomFamilyOwner,Serious
+1010,,Do you have a D/s family in the club?,"I only have one ass to whip red, and it's yours.",,,DomFamilyOwner,Violent
+1010,,Do you have a D/s family in the club?,I only take care of you my precious DialogPlayerName.,,,DomFamilyOwner,Peaceful
+1010,,When is our D/s trial period done?,(She thinks for a little while.)  In DialogHours hours my sub.  Be patient.,ShowTrialHours(),TrialInProgress(),DomTrialNotDone,
+1010,,When is our D/s trial period done?,In DialogHours hours little one.  Patience is the key for your collar.,ShowTrialHours(),TrialInProgress(),DomTrialNotDone,Wise
+1010,,When is our D/s trial period done?,Uuuuuh.  (She thinks for a long time.)  I think it's in DialogHours hours slave.,ShowTrialHours(),TrialInProgress(),DomTrialNotDone,Dumb
+1010,1011,Is our D/s trial period done?,Yes is it.  And I'm ready to do the last step and collar you.  Do you still want me as your owner?,,TrialDone(),DomTrialDone,
+1010,1011,Is our D/s trial period done?,You've waited long enough and proved your loyalty.  I'm ready to collar you if you still want me as your Mistress.,,TrialDone(),DomTrialDone,Serious
+1010,1011,Is our D/s trial period done?,Yes!  That wasn't too long.  You are still willing to be collared by me?,,TrialDone(),DomTrialDone,Playful
+1010,1019,Our trial isn't working for me.  Can we stop it?,"I'm sorry to hear that, of course we can stop the trial.  Are you sure you don't want me as your Mistress?",,TrialCanCancel(),DomTrialStopAsk,
+1010,1019,Our trial isn't working for me.  Can we stop it?,It chagrins me to hear that.  We can absolutely stop the trial if you don't want me as your Mistress.,,TrialCanCancel(),DomTrialStopAsk,Polite
+1010,1019,Our trial isn't working for me.  Can we stop it?,"Shit, are you for real?  Bitch, we can scrap the trial if you don't want me as your Mistress.",,TrialCanCancel(),DomTrialStopAsk,Rude
 1010,1000,That's all I wanted to talk about.,(She nods.)  Anything else is on your mind my sub?,,,DomEndTalk,
 1010,1000,That's all I wanted to talk about.,"I agree, let's stop the trival conversations that leads nowhere.",,,DomEndTalk,Serious
 1010,1000,That's all I wanted to talk about.,Yep!  Time for some action and some fun!,,,DomEndTalk,Playful
 1010,1000,That's all I wanted to talk about.,"Good, cause I was about to gag your ass to stop you from yacking.",,,DomEndTalk,Rude
 1010,1000,That's all I wanted to talk about.,Yeah!  Let's go find some beer or something else to drink my girl.,,,DomEndTalk,Dumb
 1010,,(Leave her.),,DialogLeave(),,,
-1020,,Do you have a D/s family in the club?,I only have one submissive and it's you girl.,,,DomFamilyOwner,
-1020,,Do you have a D/s family in the club?,I have one subbie and it's best.  (She winks at you.),,,DomFamilyOwner,Playful
-1020,,Do you have a D/s family in the club?,Don't ask questions when you already know the answer.  I have you and that's enough.,,,DomFamilyOwner,Serious
-1020,,Do you have a D/s family in the club?,"I only have one ass to whip red, and it's yours.",,,DomFamilyOwner,Violent
-1020,,Do you have a D/s family in the club?,I only take care of you my precious DialogPlayerName.,,,DomFamilyOwner,Peaceful
 1020,1010,Can we talk about something else?,(She nods.)  Don't be shy.,,,,
+1011,1012,Yes Mistress.  I'm ready for the collar.,TO DO ,,,DomReadyForCollar,
+1011,1012,Yes Mistress.  I'm ready for the collar.,TO DO ,,,DomReadyForCollar,Horny
+1011,1012,Yes Mistress.  I'm ready for the collar.,TO DO ,,,DomReadyForCollar,Frigid
+1011,1010,"Not yet, can we continue the trial?","(She nods and smiles.)  Absolutely, take your time my sub.",,,DomContinueTrial,
+1011,1010,"Not yet, can we continue the trial?",(She slaps your butt and laughs.)  Sure we can slave girl.  No rush.,,,DomContinueTrial,Violent
+1011,1010,"Not yet, can we continue the trial?",(She caresses your cheek and smiles.)  Take all the time you need my precious girl.,,,DomContinueTrial,Peaceful
+1019,0,"Sorry, I want my freedom.","Very well, don't call me ""Mistress"" anymore.  We are back as friends.",StopTrial(6),,DomStopTrial,
+1019,0,"Sorry, I want my freedom.","I understand your calling for freedom and adventure my friend.  The trial is over, do not address me as Mistress anymore.",StopTrial(6),,DomStopTrial,Wise
+1019,0,"Sorry, I want my freedom.","I don't understand but I can't do much I guess.  The trial is over, I'm not your Mistress anymore.",StopTrial(6),,DomStopTrial,Dumb
+1019,1010,Let's continue the trial Mistress.,You've got me scared for a while.  I'm happy you've changed your mind my sub.,,,DomDontStopTrial,
+1019,1010,Let's continue the trial Mistress.,"Very good my submissive.  If you're scared or unsure, we can always talk about it.",,,DomDontStopTrial,Serious
+1019,1010,Let's continue the trial Mistress.,Great!  I can't wait to collar you my subbie.,,,DomDontStopTrial,Playful

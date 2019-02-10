@@ -106,7 +106,7 @@ function MaidQuartersMiniGameEnd() {
 // When the mini game / maid chore is successful, the player gets paid
 function MaidQuartersMiniGamePay() {
 	ReputationProgress("Maid", 4);
-	var M = 8;
+	var M = 10;
 	if (MiniGameDifficulty == "Normal") M = M * 1.5;
 	if (MiniGameDifficulty == "Hard") M = M * 2;
 	MaidQuartersMaid.CurrentDialog = MaidQuartersMaid.CurrentDialog.replace("REPLACEMONEY", M.toString());
@@ -117,7 +117,7 @@ function MaidQuartersMiniGamePay() {
 function MaidQuartersRescuePay() {
 	MaidQuartersRemoveMaidUniform();
 	ReputationProgress("Maid", 4);
-	var M = 8 + Math.floor(Math.random() * 9);
+	var M = 10 + Math.floor(Math.random() * 11);
 	MaidQuartersMaid.CurrentDialog = MaidQuartersMaid.CurrentDialog.replace("REPLACEMONEY", M.toString());
 	CharacterChangeMoney(Player, M);
 }

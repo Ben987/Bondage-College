@@ -28,6 +28,9 @@ function PrivateCannotStandUp() { return (!CurrentCharacter.CanKneel() && Curren
 function PrivateWouldTakePlayerAsSub() { return (!PrivatePlayerIsOwned() && !PrivateIsCaged() && !CurrentCharacter.IsKneeling() && !CurrentCharacter.IsRestrained() && (ReputationGet("Dominant") + 50 <= NPCTraitGet(CurrentCharacter, "Dominant")) && (CurrentTime >= NPCEventGet(CurrentCharacter, "PrivateRoomEntry") + NPCLongEventDelay(CurrentCharacter))) }
 function PrivateWontTakePlayerAsSub() { return (!PrivatePlayerIsOwned() && !PrivateIsCaged() && !CurrentCharacter.IsKneeling() && !CurrentCharacter.IsRestrained() && (ReputationGet("Dominant") + 50 > NPCTraitGet(CurrentCharacter, "Dominant"))) }
 function PrivateNeedTimeToTakePlayerAsSub() { return (!PrivatePlayerIsOwned() && !PrivateIsCaged() && !CurrentCharacter.IsKneeling() && !CurrentCharacter.IsRestrained() && (ReputationGet("Dominant") + 50 <= NPCTraitGet(CurrentCharacter, "Dominant")) && (CurrentTime < NPCEventGet(CurrentCharacter, "PrivateRoomEntry") + NPCLongEventDelay(CurrentCharacter))) }
+function PrivateTrialInProgress() { return ((CurrentTime < NPCEventGet(CurrentCharacter, "EndSubTrial")) && (NPCEventGet(CurrentCharacter, "EndSubTrial") > 0)) }
+function PrivateTrialDone() { return ((CurrentTime >= NPCEventGet(CurrentCharacter, "EndSubTrial")) && (NPCEventGet(CurrentCharacter, "EndSubTrial") > 0)) }
+function PrivateTrialCanCancel() { return (NPCEventGet(CurrentCharacter, "EndSubTrial") > 0) }
 
 // Loads the private room vendor NPC
 function PrivateLoad() {
@@ -218,6 +221,7 @@ function PrivateAddCharacter(Template) {
 	PrivateCharacter.push(C);
 	PrivateSaveCharacter(PrivateCharacter.length - 1);
 	C.AllowItem = ((ReputationGet("Dominant") + 25 >= NPCTraitGet(C, "Dominant")) || C.IsRestrained());
+	NPCEventAdd(C, "PrivateRoomEntry", CurrentTime);
 }
 
 // Returns the ID of the private room current character
@@ -253,11 +257,24 @@ function PrivateRestrainPlayer() {
 	PrivateReleaseTimer = CommonTime() + 60000;
 }
 
-// When a the player starts a submissive trial with an NPC
+// When the player starts a submissive trial with an NPC
 function PrivateStartTrial(ChangeRep) {
 	DialogChangeReputation("Dominant", ChangeRep);
 	CharacterDress(CurrentCharacter, CurrentCharacter.AppearanceFull);
 	NPCEventAdd(CurrentCharacter, "EndSubTrial", CurrentTime + NPCLongEventDelay(CurrentCharacter));
+	PrivateSaveCharacter(PrivateGetCurrentID());
+}
+
+// When the player stops a submissive trial with an NPC
+function PrivateStopTrial(ChangeRep) {
+	DialogChangeReputation("Dominant", ChangeRep);
+	NPCEventDelete(CurrentCharacter, "EndSubTrial");
+	PrivateSaveCharacter(PrivateGetCurrentID());
+}
+
+// Shows the number or hours remaining for the trial
+function PrivateShowTrialHours() {
+	CurrentCharacter.CurrentDialog = CurrentCharacter.CurrentDialog.replace("DialogHours", Math.ceil((NPCEventGet(CurrentCharacter, "EndSubTrial") - CurrentTime) / 3600000).toString());
 }
 
 // Returns TRUE if the player is owned (from the room or not)

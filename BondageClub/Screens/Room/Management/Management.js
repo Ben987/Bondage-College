@@ -44,6 +44,7 @@ function ManagementLoad() {
 		InventoryWear(ManagementSub, "TailButtPlug", "ItemButt");
 		InventoryWear(ManagementSub, "MetalChastityBelt", "ItemPelvis");
 		InventoryWear(ManagementSub, "MetalChastityBra", "ItemBreast");
+		CharacterSetActivePose(ManagementSub, "Kneel");
 		ManagementSub.AllowItem = false;
 	}
 }
@@ -56,15 +57,24 @@ function ManagementRun() {
 	DrawCharacter(ManagementSub, 1250, 0, 1);
 	if (Player.CanWalk()) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 	DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
+	if (Player.CanKneel()) DrawButton(1885, 265, 90, 90, "", "White", "Icons/Kneel.png");
 }
 
 // When the user clicks in the management room
 function ManagementClick() {
 	if ((MouseX >= 250) && (MouseX < 750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-	if ((MouseX >= 750) && (MouseX < 1250) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(ManagementMistress);
+	if ((MouseX >= 750) && (MouseX < 1250) && (MouseY >= 0) && (MouseY < 1000)) {
+		if (((ManagementMistress.Stage == "0") || (ManagementMistress.Stage == "5")) && (ReputationGet("Dominant") < 0) && !Player.IsKneeling()) {
+			ManagementMistress.CurrentDialog = DialogFind(ManagementMistress, "KneelToTalk");
+			ManagementMistress.Stage = "5";
+		}
+		if ((ManagementMistress.Stage == "5") && Player.IsKneeling()) ManagementMistress.Stage = "0";
+		CharacterSetCurrent(ManagementMistress);
+	}
 	if ((MouseX >= 1250) && (MouseX < 1750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(ManagementSub);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355) && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
 }
 
 // Releases the player and dress her back

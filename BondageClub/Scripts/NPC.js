@@ -107,6 +107,14 @@ function NPCEventAdd(C, EventName, EventValue) {
 	C.Event.push(NewEvent);
 }
 
+// Deletes a NPC event from the log
+function NPCEventDelete(C, EventName) {
+	if (C.Event == null) C.Event = [];
+	for(var E = 0; E < C.Event.length; E++)
+		if (C.Event[E].Name == EventName)
+			C.Event.splice(E, 1);
+}
+
 // Returns the NPC event value (0 if the event isn't logged)
 function NPCEventGet(C, EventName) {
 	if (C.Event != null)
