@@ -141,8 +141,31 @@ function StablePlayerGetTrainingLesson() {
 		} else if (TrainSelection < 12) {
 			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingRaceIntro");
 			StableTrainer.Stage = "StableTrainingRace";
+		} else if (TrainSelection < 13) {
+			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingDanceIntro");
+			StableTrainer.Stage = "StableTrainingDance";
+		} else if (TrainSelection < 14) {
+			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingHurdlesIntro");
+			StableTrainer.Stage = "StableTrainingHurdles";
+		} else if (TrainSelection < 15) {
+			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingTreadmillIntro");
+			StableTrainer.Stage = "StableTrainingTreadmill";
+		} else if (TrainSelection < 16) {
+			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingStrongRaceIntro");
+			StableTrainer.Stage = "StableTrainingStrongRace";
+		} else if (TrainSelection < 17) {
+			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingCarriageIntro");
+			StableTrainer.Stage = "StableTrainingCarriage";
+		} else if (TrainSelection < 18) {
+			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingHurdlesIntro");
+			StableTrainer.Stage = "StableTrainingHurdles";
+		} else if (TrainSelection < 19) {
+			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingStrongTreadmillIntro");
+			StableTrainer.Stage = "StableTrainingStrongTreadmill";
+		} else if (TrainSelection < 20) {
+//			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingRaceIntro");
+//			StableTrainer.Stage = "StableTrainingRace";
 		}
-		//todo 13-20
 	}
 }
 
@@ -228,6 +251,17 @@ function StablePlayerTrainingTreadmill(Behavior) {
 	StablePlayerTrainingLessons += 2;
 }
 
+//Start Traning Strong Treadmill
+function StablePlayerTrainingStongTreadmill(Behavior) {
+	StablePlayerTrainingBehavior += parseInt(Behavior);
+	var StableDressage = SkillGetLevel(Player, "Dressage");
+	var StableDifficulty = 6;
+	InventoryWear(Player, "LeatherBelt", "ItemLegs");
+	SkillProgress("Dressage", StableDifficulty * 10);
+	StableGenericProgressStart((StableDifficulty + StableDressage) * 20, StableDressage - 4, StableDressage, "Screens/Room/Stable/treadmill.png", "HorseStableDark", StableTrainer, null, "StableTrainingPass", "StableTrainingPassIntro", "StableTrainingFail", "StableTrainingFailIntro", 2, TextGet("Treadmill"));
+	StablePlayerTrainingLessons += 2;
+}
+
 //Start Traning Carriage
 function StablePlayerTrainingCarriage(Behavior) {
 	StablePlayerTrainingBehavior += parseInt(Behavior);
@@ -238,13 +272,35 @@ function StablePlayerTrainingCarriage(Behavior) {
 	StablePlayerTrainingLessons += 2;
 }
 
-//Start Traning Carriage
+//Start Traning Strong Carriage
+function StablePlayerTrainingCarriage(Behavior) {
+	StablePlayerTrainingBehavior += parseInt(Behavior);
+	var StableDressage = SkillGetLevel(Player, "Dressage");
+	var StableDifficulty = 9;
+	InventoryWear(Player, "LeatherBelt", "ItemLegs");
+	SkillProgress("Dressage", StableDifficulty * 10);
+	StableGenericProgressStart((StableDifficulty + StableDressage) * 20, StableDressage - 4, StableDressage, "Screens/Room/Stable/horsecarriage.png", "HorseStableDark", StableTrainer, null, "StableTrainingPass", "StableTrainingPassIntro", "StableTrainingFail", "StableTrainingFailIntro", 2, TextGet("Carriage"));
+	StablePlayerTrainingLessons += 2;
+}
+
+
+//Start Traning Race
 function StablePlayerTrainingRace(Behavior) {
 	StablePlayerTrainingBehavior += parseInt(Behavior);
 	var StableDressage = SkillGetLevel(Player, "Dressage");
 	var StableDifficulty = 9;
 	SkillProgress("Dressage", StableDifficulty * 5);
 	StableGenericProgressStart((StableDifficulty + StableDressage) * 20, StableDressage, StableDressage + 1, "Screens/Room/Stable/treadmill.png", "HorseStableDark", StableTrainer, StablePony, "StableTrainingPass", "StableTrainingPassIntro", "StableTrainingFail", "StableTrainingFailIntro", 2, TextGet("Treadmill"));
+	StablePlayerTrainingLessons += 2;
+}
+
+//Start Traning Stron Race
+function StablePlayerTrainingRace(Behavior) {
+	StablePlayerTrainingBehavior += parseInt(Behavior);
+	var StableDressage = SkillGetLevel(Player, "Dressage");
+	var StableDifficulty = 9;
+	SkillProgress("Dressage", StableDifficulty * 5);
+	StableGenericProgressStart((StableDifficulty + StableDressage) * 20, StableDressage, StableDressage + 2, "Screens/Room/Stable/treadmill.png", "HorseStableDark", StableTrainer, StablePony, "StableTrainingPass", "StableTrainingPassIntro", "StableTrainingFail", "StableTrainingFailIntro", 2, TextGet("Treadmill"));
 	StablePlayerTrainingLessons += 2;
 }
 
@@ -511,13 +567,13 @@ function StableGenericDrawProgress() {
 
 
 		if (StableProgressSecondCharacter == null) {
-			DrawRect(300, 150, 225, 225, "white");
-			DrawImage(StableProgressItem, 302, 152);
-			DrawText(StableProgressOperation, 1000, 175, "White", "Black");
-			DrawText(DialogFind(Player, (CommonIsMobile) ? "ProgressClick" : "ProgressKeys"), 1000, 275, "White", "Black");
-			DrawRect(200, 500, 20, 400, "white");
-			DrawRect(1800, 500, 20, 400, "white");
-			DrawCharacter(Player, StableGenericPlayerPosition, 500, 0.4); //todo pose change
+			DrawRect(300, 25, 225, 225, "white");
+			DrawImage(StableProgressItem, 302, 27);
+			DrawText(StableProgressOperation, 1000, 50, "White", "Black");
+			DrawText(DialogFind(Player, (CommonIsMobile) ? "ProgressClick" : "ProgressKeys"), 1000, 150, "White", "Black");
+			DrawRect(200, 300, 20, 675, "white");
+			DrawRect(1800, 300, 20, 675, "white");
+			DrawCharacter(Player, StableGenericPlayerPosition, 300, 0.7); //todo pose change
 		} else {
 			DrawText(DialogFind(Player, (CommonIsMobile) ? "ProgressClick" : "ProgressKeys"), 600, 25, "White", "Black");
 			DrawRect(200, 200, 20, 800, "white");
