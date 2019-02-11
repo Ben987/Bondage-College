@@ -317,10 +317,8 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  That was fun!  
 1000,1010,Can we talk Mistress?,(She starts to sing.)  Let's talk about sex subbie!  Let's talk about you and me!,,,DomStartTalk,Horny
 1000,1010,Can we talk Mistress?,"Absolutely, what will be the topic of our discussion or debate?",,,DomStartTalk,Polite
 1000,1010,Can we talk Mistress?,What's up slave?,,,DomStartTalk,Rude
-1000,,Will you tie me up?,Sure my sub!  Give me your arms and I'll fix you up.  (She restrains you.),RestrainPlayer(),,DomWillRestrainPlayer,
-1000,,Will you tie me up?,My pleasure.  I'll make it extra tight for you my slave.  (She hurts you a little while restraining you.),RestrainPlayer(),,DomWillRestrainPlayer,Dominant|Violent
-1000,,Will you tie me up?,Good idea my subbie.  (She giggles and restrains you.)  Now I need someone else to restrain me.,RestrainPlayer(),,DomWillRestrainPlayer,Submissive|Playful
-1000,,Will you tie me up?,"Come closer and stay still little one, I don't want to hurt you.  (She carefully restrains you.)",RestrainPlayer(),,DomWillRestrainPlayer,Peaceful|Polite
+1000,,What would you like to do?,,StartActivity(),Player.CanTalk(),,
+1000,,(Try to get her attention.),,StartActivity(),!Player.CanTalk(),,
 1000,,Can you release me?,(She nods and slowly releases you.)  I guess I can help you out now.,DialogRelease(Player),AllowReleasePlayer(),DomWillReleasePlayer,
 1000,,Can you release me?,Are you in pain my slave?  Let me see these limbs.  (She releases you and checks on your health.),DialogRelease(Player),AllowReleasePlayer(),DomWillReleasePlayer,Dominant|Peaceful
 1000,,Can you release me?,"I'm not that great at releasing, usually it's other people that do it.  (She fumbles a little but finally releases you.)",DialogRelease(Player),AllowReleasePlayer(),DomWillReleasePlayer,Submissive|Dumb
@@ -329,10 +327,10 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  That was fun!  
 1000,,Can you release me?,"Girl, put some more efforts in your struggling and maybe I'll help you.",,WontReleasePlayer(),DomWontReleasePlayer,Dominant|Serious
 1000,,Can you release me?,I decline.  Your predicament is directly related to your actions and you must learn from them.,,WontReleasePlayer(),DomWontReleasePlayer,Submissive|Wise
 1000,,Can you release me?,Fuck no!  Seeing my slut struggle like that is huge turn on for me.,,WontReleasePlayer(),DomWontReleasePlayer,Horny|Rude
-1000,,(Struggle and whimper for help.),(She nods and slowly releases you.)  I guess I can help you out now.,DialogRelease(Player),AllowReleasePlayer(),DomStruggleWontReleasePlayer,
-1000,,(Struggle and whimper for help.),Are you in pain my slave?  Let me see these limbs.  (She releases you and checks on your health.),DialogRelease(Player),AllowReleasePlayer(),DomStruggleWontReleasePlayer,Dominant|Peaceful
-1000,,(Struggle and whimper for help.),"I'm not that great at releasing, usually it's other people that do it.  (She fumbles a little but finally releases you.)",DialogRelease(Player),AllowReleasePlayer(),DomStruggleWontReleasePlayer,Submissive|Dumb
-1000,,(Struggle and whimper for help.),"It's been long enough, and you deserve some freedom my submissive.  Just remember what killed the cat.  (She releases you.)",DialogRelease(Player),AllowReleasePlayer(),DomStruggleWontReleasePlayer,Serious|Wise
+1000,,(Struggle and whimper for help.),(She nods and slowly releases you.)  I guess I can help you out now.,DialogRelease(Player),AllowReleasePlayer(),DomStruggleWillReleasePlayer,
+1000,,(Struggle and whimper for help.),Are you in pain my slave?  Let me see these limbs.  (She releases you and checks on your health.),DialogRelease(Player),AllowReleasePlayer(),DomStruggleWillReleasePlayer,Dominant|Peaceful
+1000,,(Struggle and whimper for help.),"I'm not that great at releasing, usually it's other people that do it.  (She fumbles a little but finally releases you.)",DialogRelease(Player),AllowReleasePlayer(),DomStruggleWillReleasePlayer,Submissive|Dumb
+1000,,(Struggle and whimper for help.),"It's been long enough, and you deserve some freedom my submissive.  Just remember what killed the cat.  (She releases you.)",DialogRelease(Player),AllowReleasePlayer(),DomStruggleWillReleasePlayer,Serious|Wise
 1000,,(Struggle and whimper for help.),"Not now my sub, you can struggle some more.  (She watches you and laughs.)",,WontReleasePlayer(),DomStruggleWontReleasePlayer,
 1000,,(Struggle and whimper for help.),"Girl, put some more efforts in your struggling and maybe I'll help you.",,WontReleasePlayer(),DomStruggleWontReleasePlayer,Dominant|Serious
 1000,,(Struggle and whimper for help.),I decline.  Your predicament is directly related to your actions and you must learn from them.,,WontReleasePlayer(),DomStruggleWontReleasePlayer,Submissive|Wise
@@ -341,7 +339,7 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  That was fun!  
 1010,,,Is there anything else you want to talk about my submissive?,,,DomIntroTalk,
 1010,,,"Girl, do you still want to talk?",,,DomIntroTalk,Dominant|Dumb
 1010,,,"Hey bitch, be direct if ya need to speak.",,,DomIntroTalk,Rude|Serious
-1010,,,Anything else you would to entertain?  We could lecture on philosophy or littérature if you prefer.,,,DomIntroTalk,Wise|Polite
+1010,,,Anything else you would to entertain?  We could lecture on philosophy or litterature if you prefer.,,,DomIntroTalk,Wise|Polite
 1010,,Please tell me about you.,There's not much to tell.  I enjoy BDSM like everyone here.,DialogRemove(),,DomNPCProfile,
 1010,,Please tell me about you.,"As you know, I'm mostly known as a Domme around here.  I love to see girls in tight bondage.",DialogRemove(),,DomNPCProfile,Dominant
 1010,,Please tell me about you.,I love the Bondage Club and BDSM.  Being tied up is a huge turn on for me.,DialogRemove(),,DomNPCProfile,Submissive
@@ -393,3 +391,50 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  That was fun!  
 1019,1010,Let's continue the trial Mistress.,You've got me scared for a while.  I'm happy you've changed your mind my sub.,,,DomDontStopTrial,
 1019,1010,Let's continue the trial Mistress.,"Very good my submissive.  If you're scared or unsure, we can always talk about it.",,,DomDontStopTrial,Serious
 1019,1010,Let's continue the trial Mistress.,Great!  I can't wait to collar you my subbie.,,,DomDontStopTrial,Playful
+ActivityGagIntro,,,I think you talk way too much and that you should be gagged.,,,DomActivityGagIntro,
+ActivityGagIntro,,,"My submissive, silence is gold and you're pretty bad at staying quiet.  A gag would be perfect for you.",,,DomActivityGagIntro,Wise
+ActivityGagIntro,,,It's not easy to think when you talk all the time.  Maybe a gag will help.,,,DomActivityGagIntro,Dumb
+ActivityGagIntro,,,You need some training on the art of staying quiet.  A gag will be perfect that.,,,DomActivityGagIntro,Serious
+ActivityGagIntro,,,I think you would be adorable and cute with a gag.  Let's try one on you!,,,DomActivityGagIntro,Playful
+ActivityGag,1000,Yes Mistress.  (Open your mouth.),(She uses a gag to silence you and smiles.)  Good girl.,"DialogWearRandomItem(""ItemMouth"")",,,
+ActivityGag,1000,That's unfair!,(She uses a gag to silence you and smiles.)  Who said slavery was fair?,"DialogWearRandomItem(""ItemMouth"")",,,
+ActivityGag,1000,"Oh no, please Mistress, I'll be quiet.",(She uses a gag to silence you and smiles.)  Of course you'll be quiet.,"DialogWearRandomItem(""ItemMouth"")",,,
+ActivityGag,1000,(Roll your eyes up.),(She uses a gag to silence you and smiles.)  This is much better.,"DialogWearRandomItem(""ItemMouth"")",,,
+ActivityGag,1000,(Nod and bow your head.),(She uses a gag to silence you and smiles.)  You're a good submissive.,"DialogWearRandomItem(""ItemMouth"")",,,
+ActivityUngagIntro,,,"You've been gagged for long enough, you can talk now.",,,DomActivityUngagIntro,
+ActivityUngagIntro,,,"You must be dry or thirsty from the gag, let me help you my submissive.",,,DomActivityUngagIntro,Peaceful
+ActivityUngagIntro,,,I've had enough with that gag.  I want to kiss these sexy lips.,,,DomActivityUngagIntro,Horny
+ActivityUngagIntro,,,I'm fucking tired of trying to understand ya girl.  I'll remove that gag.,,,DomActivityUngagIntro,Rude
+ActivityUngagIntro,,,You've been silenced for long enough little one.  I will release you from this impairment.,,,DomActivityUngagIntro,Polite
+ActivityUngag,1000,(Hum a happy song.),(She removes the gag from your mouth.)  You're such a fun submissive.,"DialogRemoveItem(""ItemMouth"")",,,
+ActivityUngag,1000,(Nod happily.),(She removes the gag from your mouth.)  Don't think it allows you to annoy me.,"DialogRemoveItem(""ItemMouth"")",,,
+ActivityUngag,1000,(Help her to remove your gag.),(She removes the gag from your mouth and scratches your head.)  Good girl.,"DialogRemoveItem(""ItemMouth"")",,,
+ActivityRestrainIntro,,,"We are in the Bondage Club my sub, you know you should be tied up.",,,DomActivityRestrainIntro,
+ActivityRestrainIntro,,,"My girl, it would be really sexy to get you in restraints.",,,DomActivityRestrainIntro,Horny
+ActivityRestrainIntro,,,"You've playing with these hands way too much, it's time to stop and restrain them.",,,DomActivityRestrainIntro,Frigid
+ActivityRestrainIntro,,,"Girl, being a slave isn't always easy.  You need to suffer from the restraints, give me your hands.",,,DomActivityRestrainIntro,Violent
+ActivityRestrainIntro,,,"(She gently grabs your hands.)  My subbie, it's time to test your limits and restrain these pretty hands.",,,DomActivityRestrainIntro,Peaceful
+ActivityRestrain,1000,Yes Mistress.  (Give your hands.),(She restrains your arms and smiles.)  A happy sub is a restrained sub.,"DialogWearRandomItem(""ItemArms"")",Player.CanTalk(),,
+ActivityRestrain,1000,Really?  Not right now!,"(She restrains your arms and nods.)  Absolutely, you're not in control girl.","DialogWearRandomItem(""ItemArms"")",Player.CanTalk(),,
+ActivityRestrain,1000,"Please, we don't need to do that.",(She restrains your arms and grins.)  A sub needs to be restrained.,"DialogWearRandomItem(""ItemArms"")",Player.CanTalk(),,
+ActivityRestrain,1000,(Sigh and give your hands.),(She stays silent and restrains your arms.),"DialogWearRandomItem(""ItemArms"")",,,
+ActivityRestrain,1000,(Nod and bow your head.),(She restrains your arms and pets your head.)  Good girl.,"DialogWearRandomItem(""ItemArms"")",,,
+ActivityFullRestrainIntro,,,"We are in the Bondage Club my sub, you should be fully restrained.",,,DomActivityFullRestrainIntro,
+ActivityFullRestrainIntro,,,"My girl, it would be really sexy to get you fully restrained.",,,DomActivityFullRestrainIntro,Horny
+ActivityFullRestrainIntro,,,"You've playing with these hands way too much, it's time to fully restrain you.",,,DomActivityFullRestrainIntro,Frigid
+ActivityFullRestrainIntro,,,"Girl, being a slave isn't always easy.  You need to feel the pain from lots of the restraints.",,,DomActivityFullRestrainIntro,Violent
+ActivityFullRestrainIntro,,,"(She gently grabs your hands.)  My subbie, it's time to test your limits and restrain you fully.",,,DomActivityFullRestrainIntro,Peaceful
+ActivityFullRestrain,1000,Yes Mistress.  (Give your hands.),(She restrains you with many items and smiles.)  A happy sub is a restrained sub.,"DialogWearRandomItem(""ItemArms"")",Player.CanTalk(),,
+ActivityFullRestrain,1000,Really?  Not right now!,"(She restrains you with many items and nods.)  Absolutely, you're not in control girl.","DialogWearRandomItem(""ItemArms"")",Player.CanTalk(),,
+ActivityFullRestrain,1000,"Please, we don't need to do that.",(She restrains you with many items and grins.)  A sub needs to be restrained.,"DialogWearRandomItem(""ItemArms"")",Player.CanTalk(),,
+ActivityFullRestrain,1000,(Sigh and give your hands.),(She stays silent and restrains you with many items.),"DialogWearRandomItem(""ItemArms"")",,,
+ActivityFullRestrain,1000,(Nod and bow your head.),(She restrains you with many items and pets your head.)  Good girl.,"DialogWearRandomItem(""ItemArms"")",,,
+ActivityReleaseIntro,,,You're cute when you're restrained but you deserve a break.  Let me help you.,,,DomActivityReleaseIntro,
+ActivityReleaseIntro,,,I don't have enough time to watch you and protect you from yourself girl.  I'll let you go.,,,DomActivityReleaseIntro,Serious
+ActivityReleaseIntro,,,"It's so much fun to see you struggle, but I guess all good things has to end.",,,DomActivityReleaseIntro,Playful
+ActivityReleaseIntro,,,"You're lucky as hell bitch, I'll let you go for now.",,,DomActivityReleaseIntro,Rude
+ActivityReleaseIntro,,,"It's been both amusing and alluring to see you struggle my little submissive, but it's time set you free.",,,DomActivityReleaseIntro,Polite
+ActivityRelease,1000,Thanks Mistress.,(She releases you and laughs.)  Don't get too used to your freedom girl.,DialogRelease(Player),Player.CanTalk(),,
+ActivityRelease,1000,You're the best!,(She releases you and gives you a hug.)  And you're the best submissive.,DialogRelease(Player),Player.CanTalk(),,
+ActivityRelease,1000,(Nod happily.),(She releases you and smiles back at you.),DialogRelease(Player),,,
+ActivityRelease,1000,(Struggle one last time.),"(She releases you and laughs.)  Too bad, I love to see you struggle.",DialogRelease(Player),,,

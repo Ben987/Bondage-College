@@ -5,6 +5,8 @@ var PrivateCharacter = [];
 var PrivateCharacterTypeList = ["NPC_Private_VisitorShy", "NPC_Private_VisitorHorny", "NPC_Private_VisitorTough"];
 var PrivateCharacterToSave = 0;
 var PrivateReleaseTimer = 0;
+var PrivateRandomActivityList = ["Gag", "Ungag", "Restrain", "FullRestrain", "Release"];
+var PrivateRandomActivity = "";
 
 // Returns TRUE if a specific dialog option is allowed
 function PrivateIsCaged() { return (CurrentCharacter.Cage == null) ? false : true }
@@ -179,6 +181,7 @@ function PrivateLoadCharacter(ID) {
 		var C = CharacterLoadNPC("NPC_Private_Custom");
 		C.Name = Char.Name;
 		C.AccountName = "NPC_Private_Custom" + ID.toString();
+		if (Char.Title != null) C.Title = Char.Title;
 		if (Char.Appearance != null) C.Appearance = Char.Appearance.slice();
 		if (Char.AppearanceFull != null) C.AppearanceFull = Char.AppearanceFull.slice();
 		if (Char.Trait != null) C.Trait = Char.Trait.slice();
@@ -197,6 +200,7 @@ function PrivateSaveCharacter(ID) {
 	if (PrivateCharacter[ID] != null) {
 		var C = {
 			Name: PrivateCharacter[ID].Name,
+			Title: PrivateCharacter[ID].Title,
 			Trait: PrivateCharacter[ID].Trait,
 			Cage: PrivateCharacter[ID].Cage,
 			AccountName: PrivateCharacter[ID].AccountName,
@@ -209,19 +213,21 @@ function PrivateSaveCharacter(ID) {
 };
 
 // When a new character is added to the room
-function PrivateAddCharacter(Template) {
+function PrivateAddCharacter(Template, Archetype) {
 	var C = CharacterLoadNPC("NPC_Private_Custom");
 	C.Name = Template.Name;
 	C.AccountName = "NPC_Private_Custom" + PrivateCharacter.length.toString();
 	C.Appearance = Template.Appearance.slice();
 	C.AppearanceFull = Template.Appearance.slice();
+	if ((Archetype != null) && (Archetype != "")) C.Title = Archetype;
 	NPCTraitGenerate(C);
+	if ((Archetype != null) && (Archetype == "Mistress")) NPCTraitSet(C, "Dominant", 60 + Math.floor(Math.random() * 41));
 	NPCTraitDialog(C);
 	CharacterRefresh(C);
 	PrivateCharacter.push(C);
+	NPCEventAdd(C, "PrivateRoomEntry", CurrentTime);
 	PrivateSaveCharacter(PrivateCharacter.length - 1);
 	C.AllowItem = ((ReputationGet("Dominant") + 25 >= NPCTraitGet(C, "Dominant")) || C.IsRestrained());
-	NPCEventAdd(C, "PrivateRoomEntry", CurrentTime);
 }
 
 // Returns the ID of the private room current character
@@ -284,4 +290,30 @@ function PrivatePlayerIsOwned() {
 		if (PrivateCharacter[C].IsOwner())
 			return true;
 	return false;
+}
+
+// Starts a random activity for the player as submissive
+function PrivateStartActivity() {
+
+	// Finds a valid activity for the player
+	var Act = "";
+	while (true) {
+
+		// Picks an activity at random
+		Act = CommonRandomItemFromList(PrivateRandomActivity, PrivateRandomActivityList);
+
+		// If the activity is valid
+		if ((Act == "Gag") && (InventoryGet(Player, "ItemMouth") == null)) break;
+		if ((Act == "Ungag") && (!InventoryGet(Player, "ItemMouth") == null)) break;
+		if ((Act == "Restrain") && (InventoryGet(Player, "ItemArms") == null)) break;
+		if ((Act == "FullRestrain") && (InventoryGet(Player, "ItemArms") == null)) break;
+		if ((Act == "Release") && Player.IsRestrained()) break;
+
+	}
+
+	// Starts the activity
+	PrivateRandomActivity = Act;
+	CurrentCharacter.Stage = "Activity" + PrivateRandomActivity;
+	CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "Activity" + PrivateRandomActivity + "Intro");
+
 }

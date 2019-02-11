@@ -5,6 +5,7 @@ var KidnapLeagueRandomKidnapper = null;
 var KidnapLeagueRandomKidnapperScenario = "0";
 var KidnapLeagueRandomKidnapperDifficulty = 0;
 var KidnapLeagueRandomKidnapperTimer = 0;
+var KidnapLeagueArchetype = null;
 var KidnapLeagueWillPayForFreedom = false;
 var KidnapLeagueRandomActivityList = ["AddGag", "RemoveGag", "AddFeet", "RemoveFeet", "AddLegs", "RemoveLegs", "Tickle", "Spank", "Kiss", "Fondle"];
 var KidnapLeagueRandomActivity = "";
@@ -64,6 +65,7 @@ function KidnapLeagueTakeBounty(Difficulty) {
 	CharacterDelete("NPC_KidnapLeague_RandomKidnapper");
 	KidnapLeagueBounty = CharacterLoadNPC("NPC_KidnapLeague_RandomKidnapper");
 	KidnapLeagueBountyLocation = CommonRandomItemFromList(KidnapLeagueBountyLocation, KidnapLeagueBountyLocationList);
+	KidnapLeagueArchetype = (KidnapLeagueBountyLocation == "MaidQuarters") ? "Maid" : null;
 	KidnapLeagueBountyRemind();
 	KidnapLeagueBountyVictory = null;
 	if (KidnapLeagueBountyLocation == "MaidQuarters") { InventoryWear(KidnapLeagueBounty, "MaidOutfit1", "Cloth", "Default"); InventoryWear(KidnapLeagueBounty, "MaidHairband1", "Hat", "Default"); }
@@ -153,19 +155,33 @@ function KidnapLeagueResetTrainer() {
 
 // When the player gets in a random kidnap match
 function KidnapLeagueRandomIntro() {
+	
+	// Sets the kidnapping scene
 	CommonSetScreen("Room", "KidnapLeague");
 	KidnapLeagueBackground = "MainHall";
 	KidnapLeagueRandomKidnapper = null;
-	CharacterDelete("NPC_KidnapLeague_RandomKidnapper");
+	CharacterDelete("NPC_KidnapLeague_RandomKidnapper");	
 	KidnapLeagueRandomKidnapper = CharacterLoadNPC("NPC_KidnapLeague_RandomKidnapper");	
 	CharacterSetCurrent(KidnapLeagueRandomKidnapper);
-	KidnapLeagueRandomKidnapperDifficulty = Math.floor(Math.random() * 6);
-	KidnapLeagueRandomKidnapperScenario = (Math.floor(Math.random() * 6)).toString();
+	
+	// A Mistress can pop if the player is a master kidnapper
+	if ((ReputationGet("Kidnap") >= 100) && (Math.floor(Math.random() * 10) == 0)) {
+		CharacterArchetypeClothes(KidnapLeagueRandomKidnapper, "Mistress");
+		KidnapLeagueRandomKidnapperScenario = "6";
+		KidnapLeagueRandomKidnapperDifficulty = 10;
+		KidnapLeagueArchetype = "Mistress";
+	} else {
+		KidnapLeagueRandomKidnapperScenario = (Math.floor(Math.random() * 6)).toString();
+		KidnapLeagueRandomKidnapperDifficulty = Math.floor(Math.random() * 6);
+		KidnapLeagueArchetype = "";
+	}
+	
+	// If the player is already tied up, we skip the fight
 	if (Player.CanInteract()) {
 		KidnapLeagueRandomKidnapper.Stage = KidnapLeagueRandomKidnapperScenario.toString();
 		KidnapLeagueRandomKidnapper.CurrentDialog = DialogFind(KidnapLeagueRandomKidnapper, "Intro" + KidnapLeagueRandomKidnapperScenario);
 	} else {
-		KidnapLeagueRandomKidnapper.Stage = "200";
+		KidnapLeagueRandomKidnapper.Stage = "202";
 		KidnapLeagueRandomKidnapper.CurrentDialog = DialogFind(KidnapLeagueRandomKidnapper, "Automatic" + KidnapLeagueRandomKidnapperScenario);
 	}
 }
@@ -283,5 +299,5 @@ function KidnapLeagueTransferToRoom() {
 	KidnapLeagueRandomEnd();
 	CharacterRelease(Player);
 	CommonSetScreen("Room", "Private");
-	PrivateAddCharacter(KidnapLeagueRandomKidnapper);
+	PrivateAddCharacter(KidnapLeagueRandomKidnapper, KidnapLeagueArchetype);
 }

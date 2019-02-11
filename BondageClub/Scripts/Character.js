@@ -150,25 +150,11 @@ function CharacterLoadFromStorage(StorageName) {
 
 }
 
-// Loads in the NPC character in the buffer
-function CharacterLoadNPC(NPCType) {
-
-	// Checks if the NPC already exists and returns it if it's the case
-	for (var C = 0; C < Character.length; C++)
-		if (Character[C].AccountName == NPCType)
-			return Character[C];
-
-	// Randomize the new character
-	CharacterReset(Character.length, "Female3DCG");
-	C = Character[Character.length - 1];
-	C.AccountName = NPCType;
-	CharacterLoadCSVDialog(C);
-	CharacterRandomName(C);
-	CharacterAppearanceBuildAssets(C);
-	CharacterAppearanceFullRandom(C);
+// Sets the clothes based on a character archetype
+function CharacterArchetypeClothes(C, Archetype) {
 	
 	// Maid archetype
-	if (NPCType.indexOf("Maid") >= 0) {
+	if (Archetype == "Maid") {
 		InventoryAdd(C, "MaidOutfit1", "Cloth");
 		CharacterAppearanceSetItem(C, "Cloth", C.Inventory[C.Inventory.length - 1].Asset);
 		CharacterAppearanceSetColorForGroup(C, "Default", "Cloth");
@@ -179,7 +165,7 @@ function CharacterLoadNPC(NPCType) {
 	}
 
 	// Mistress archetype
-	if (NPCType.indexOf("Mistress") >= 0) {
+	if (Archetype == "Mistress") {
 		var ColorList = ["#333333", "#AA4444", "#AAAAAA"];
 		var Color = CommonRandomItemFromList("", ColorList);
 		CharacterAppearanceSetItem(C, "Hat", null);
@@ -196,7 +182,30 @@ function CharacterLoadNPC(NPCType) {
 		CharacterAppearanceSetItem(C, "ClothLower", C.Inventory[C.Inventory.length - 1].Asset);
 		CharacterAppearanceSetColorForGroup(C, Color, "ClothLower");
 	}
-	
+
+}
+
+// Loads in the NPC character in the buffer
+function CharacterLoadNPC(NPCType) {
+
+	// Checks if the NPC already exists and returns it if it's the case
+	for (var C = 0; C < Character.length; C++)
+		if (Character[C].AccountName == NPCType)
+			return Character[C];
+
+	// Randomize the new character
+	CharacterReset(Character.length, "Female3DCG");
+	C = Character[Character.length - 1];
+	C.AccountName = NPCType;
+	CharacterLoadCSVDialog(C);
+	CharacterRandomName(C);
+	CharacterAppearanceBuildAssets(C);
+	CharacterAppearanceFullRandom(C);
+
+	// Sets archetype clothes
+	if (NPCType.indexOf("Maid") >= 0) CharacterArchetypeClothes(C, "Maid");
+	if (NPCType.indexOf("Mistress") >= 0) CharacterArchetypeClothes(C, "Mistress");
+
 	// Returns the new character
 	return C;
 	

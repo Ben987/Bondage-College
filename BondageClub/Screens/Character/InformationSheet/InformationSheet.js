@@ -21,7 +21,7 @@ function InformationSheetRun() {
 	DrawCharacter(C, 50, 50, 0.9);
 	MainCanvas.textAlign = "left";
 	DrawText(TextGet("Name") + " " + C.Name, 550, 125, "Black", "Gray");
-	DrawText(TextGet("Title") + " " + ((C.ID == 0) ? InformationSheetGetTitle() : TextGet("TitleNone")), 550, 200, "Black", "Gray");
+	DrawText(TextGet("Title") + " " + ((C.ID == 0) ? InformationSheetGetTitle() : (C.Title == null) ? TextGet("TitleNone") : TextGet("Title" + C.Title)), 550, 200, "Black", "Gray");
 	DrawText(TextGet("Owner") + " " + (((C.Owner == null) || (C.Owner == "")) ? TextGet("OwnerNone") : C.Owner.replace("NPC-", "")), 550, 275, "Black", "Gray");
 	DrawText(TextGet("Lover") + " " + (((C.Lover == null) || (C.Lover == "")) ? TextGet("LoverNone") : C.Lover.replace("NPC-", "")), 550, 350, "Black", "Gray");
 	if (C.ID == 0) DrawText(TextGet("Money") + " " + C.Money.toString() + " $", 550, 425, "Black", "Gray");
@@ -62,7 +62,6 @@ function InformationSheetRun() {
 		} else DrawText(TextGet("TraitUnknown"), 1000, 200, "Black", "Gray");
 
 	}
-	
 
 	// Draw the last controls
 	MainCanvas.textAlign = "center";

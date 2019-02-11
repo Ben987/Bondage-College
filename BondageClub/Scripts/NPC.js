@@ -8,6 +8,15 @@ var NPCTrait = [
 	["Serious", "Playful"],
 ]
 
+// Sets a specific trait for a NPC
+function NPCTraitSet(C, TraitName, TraitValue) {
+	var ReverseName = NPCTraitReverse(TraitName);
+	for(var T = 0; T < C.Trait.length; T++)
+		if ((C.Trait[T].Name == TraitName) || (C.Trait[T].Name == ReverseName))
+			C.Trait.splice(T, 1);
+	C.Trait.push({ Name: TraitName, Value: TraitValue });
+}
+
 // Generate random traits for a NPC (70% odds for each traits, can switch on both sides, strength is from 1 to 100)
 function NPCTraitGenerate(C) {
 	C.Trait = [];
