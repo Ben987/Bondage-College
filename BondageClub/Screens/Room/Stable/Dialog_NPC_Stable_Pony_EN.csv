@@ -34,6 +34,7 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  Much better!  I
 0,,(Try to trot to her),(She turns away.),,StablePlayerIsolation()
 0,,(Whinny to her),(She kick your Butt),,StablePlayerIsolation()
 0,10,(Trot to her),(She nudges you with her nose),,StablePlayerOtherPony()
+0,20,(Start the Training.),(She looks expectant.),,PlayerIsTrainer
 0,,I can't stay to chat.  (Leave her.),,DialogLeave(),
 10,,(Try to talk with her.),(You both try to mumble to each other but it makes no sense),,
 10,,(Lean on her.),(You lean and rest on each other hips while she whinny slowly.),,
@@ -45,6 +46,38 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  Much better!  I
 10,0,(Step back.),(You step back.),,
 11,,(Try to release her.),(You struggle in your armbinder and try to release her.  But you fail miserably.),,
 11,,(Try to kiss her),"(You try to kiss her, but the Gag bothers you.)",,Player.CanTalk()
-11,,(Try to masturbate her with your tongue.),(You leak her to an orgasm),,Player.CanTalk()
+11,,(Try to masturbate her with your tongue.),(You leak her to an orgasm.),,Player.CanTalk()
 11,10,(more . . .),,,
 11,0,(Step back.),(You step back.),,
+20,21,(Before this exercise starts check the equipment.),,PonyWearEquipment(),StableTrainingExercisesAvailable()
+20,0,(Send her back to the herd. End the Training),(She trots back into her box.),,
+21,22,(Gallop through the manege.),,PonyTraining(85),
+21,22,(Go a few steps and lift the legs properly.),,PonyTraining(75),
+21,22,(Dance a round through the manege.),,PonyTraining(65),
+21,22,(Train walking on the treadmill.),,PonyTraining(55),
+21,22,(Train with the carriage.),,PonyTraining(45),
+21,22,(Get out on the pasture to collect carrots.),,PonyTraining(35),
+21,22,(You have to practice jumping over the hurdles.),,PonyTraining(25),
+21,22,(You have to do a race.),,PonyTraining(15),
+22,23,(Reward her.),(She trot to you.),,PonyPass
+22,20,(Ignore her.),(She waits patiently.),,
+22,24,(Punish her.),(She ignore you.),,PonyFail
+23,,(Caress her head.),(She whinny excitedly.),,
+23,,(Scratching her back.),(She moans satisfied.),,
+23,,(Take a brush and Straightens her hair.),(She waits patiently.),,
+23,,(Takes a sponge and cleans she.),(She waits patiently.),,
+23,,(Give her an oatcake.),(She grabs greedy for it.),,
+23,20,(Enough Reward.),(She looks to you.),,
+24,,(Pop with the Whip.),(She jump together.),,
+24,,(Hit with the whip her back.),"(Startled, she takes a step forward.)",,
+24,,(Hit the whip again her hip.),(She is crying in pain.),,
+24,,(Hit the whip again her butt.),(She stands upright and looks carefully.),,
+24,,(Hit with the whip her legs.),(Tense she looks to manage.),,
+24,,(Hit with the whip her Breast.),(She whimpers with pain.),,
+24,,(Pours a bucket of ice water over her.),(She stands rigid and motionless in fright.),,
+24,20,(Enough Punish.),(She looks to you.),,
+StablePonyPassIntro,22,,(She is a good match.),,
+StablePonyFailIntro,23,,(She fails miserably.),,
+StablePonyCheckEquipmentWait,21,,(She waits patiently.),,
+StablePonyCheckEquipmentWhinny,21,,(She whinny excitedly.),,
+StablePonyCheckEquipmentKick,21,,(She is kicking you.),,

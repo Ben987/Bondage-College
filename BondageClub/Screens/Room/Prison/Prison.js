@@ -52,7 +52,7 @@ function PrisonLoad() {
 		}
 	}
 	PrisonPlayerAppearance = Player.Appearance.slice();
-	PrisonNextEventTimer = new Date().getTime() + (10000 * Math.random()) + (5000);
+	PrisonNextEventTimer = new Date().getTime() + (20000 * Math.random()) + (10000);
 	
 	if ((MaidQuartersCurrentRescue == "Prison") && !MaidQuartersCurrentRescueStarted && !PrisonSubBehindBars && MaidQuartersCurrentRescueCompleted == false) {
 		PrisonSub = CharacterLoadNPC("NPC_Prison_Sub");
@@ -61,9 +61,9 @@ function PrisonLoad() {
 
 // Run the Prison, draw all characters
 function PrisonRun() {
-	if (PrisonNextEventTimer == null) PrisonNextEventTimer = new Date().getTime() + (10000 * Math.random()) + (5000);
+	if (PrisonNextEventTimer == null) PrisonNextEventTimer = new Date().getTime() + (20000 * Math.random()) + (10000);
 	if (new Date().getTime() > PrisonNextEventTimer) {
-		PrisonNextEventTimer = new Date().getTime() + (10000 * Math.random()) + (5000)
+		PrisonNextEventTimer = new Date().getTime() + (20000 * Math.random()) + (10000)
 		PrisonNextEvent = true;
 	}
 	
