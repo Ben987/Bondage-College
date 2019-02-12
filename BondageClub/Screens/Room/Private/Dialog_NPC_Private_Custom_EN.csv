@@ -157,6 +157,10 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  That was fun!  
 0,,Can you release me?,"Girl, put some more efforts in your struggling and maybe I'll help you.",,WontReleasePlayer(),WontReleasePlayer,Dominant|Serious
 0,,Can you release me?,I must decline Miss.  Your predicament is directly related to your actions and you must learn from them.,,WontReleasePlayer(),WontReleasePlayer,Submissive|Wise
 0,,Can you release me?,Fuck no!  Seeing you struggle like a slut is such a turn on for me.,,WontReleasePlayer(),WontReleasePlayer,Horny|Rude
+0,,Can you release me?,"Your owner is right there, go beg her.",,WontReleasePlayerOwner(),WontReleasePlayerOwner,
+0,,Can you release me?,"(She laughs at your predicament.)  You're a cute slave girl, but I'm not responsible for you.  Ask your Mistress.",,WontReleasePlayerOwner(),WontReleasePlayerOwner,Dominant|Serious
+0,,Can you release me?,I must decline Miss.  Your Mistress is responsible for your well being and to release you.,,WontReleasePlayerOwner(),WontReleasePlayerOwner,Submissive|Wise
+0,,Can you release me?,"Yo girl, if your owner is leaving your ass like that, I'm not letting you go.",,WontReleasePlayerOwner(),WontReleasePlayerOwner,Horny|Rude
 0,,(Struggle and whimper for help.),(She nods and slowly releases you.)  I guess I can help you out now.,DialogRelease(Player),AllowReleasePlayer(),StruggleWillReleasePlayer,
 0,,(Struggle and whimper for help.),Are you in pain girl?  Let me see these limbs.  (She releases you and checks on your health.),DialogRelease(Player),AllowReleasePlayer(),StruggleWillReleasePlayer,Dominant|Peaceful
 0,,(Struggle and whimper for help.),"I'm not sure how Miss, let me try.  (She fumbles a little but finally releases you.)",DialogRelease(Player),AllowReleasePlayer(),StruggleWillReleasePlayer,Submissive|Dumb
@@ -165,6 +169,10 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  That was fun!  
 0,,(Struggle and whimper for help.),"Girl, put some more efforts in your struggling and maybe I'll help you.",,WontReleasePlayer(),StruggleWontReleasePlayer,Dominant|Serious
 0,,(Struggle and whimper for help.),I must decline Miss.  Your predicament is directly related to your actions and you must learn from them.,,WontReleasePlayer(),StruggleWontReleasePlayer,Submissive|Wise
 0,,(Struggle and whimper for help.),Fuck no!  Seeing you struggle like a slut is such a turn on for me.,,WontReleasePlayer(),StruggleWontReleasePlayer,Horny|Rude
+0,,(Struggle and whimper for help.),"Your owner is right there, go beg her.",,WontReleasePlayerOwner(),StruggleWontReleasePlayerOwner,
+0,,(Struggle and whimper for help.),"(She laughs at your predicament.)  You're a cute slave girl, but I'm not responsible for you.  Ask your Mistress.",,WontReleasePlayerOwner(),StruggleWontReleasePlayerOwner,Dominant|Serious
+0,,(Struggle and whimper for help.),I must decline Miss.  Your Mistress is responsible for your well being and to release you.,,WontReleasePlayerOwner(),StruggleWontReleasePlayerOwner,Submissive|Wise
+0,,(Struggle and whimper for help.),"Yo girl, if your owner is leaving your ass like that, I'm not letting you go.",,WontReleasePlayerOwner(),StruggleWontReleasePlayerOwner,Horny|Rude
 0,100,(Play with her.),"(You move closer, ready to play with her.)",,AllowRestain(),,
 0,,(Play with her.),(She stops you from doing anything.)  What do you think you're doing?,,!AllowRestain(),WontPlay,
 0,,(Play with her.),(She pushes you back.)  Hold on girl.  I'm not in the mood for that.,,!AllowRestain(),WontPlay,Dominant|Frigid
@@ -215,6 +223,10 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  That was fun!  
 10,12,You should go.,Should I leave you alone Miss?,,,KickOut,Submissive|Polite
 10,12,You should go.,(She seems angry.)  You're fucking kicking me out?,,,KickOut,Rude|Violent
 10,12,You should go.,"Friends are like fish, they start to stink when you keep them for too long.  Do you want me to leave now?",,,KickOut,Wise|Serious
+10,,Let's chat.  (Spend time to chat with her.),(You spend some quality time chatting together and she seems to appreciate.),NPCInteraction(1),,TimeChitChat,
+10,,Let's chat.  (Spend time to chat with her.),(You spend some time chit-chatting together.  It's fun but she politely lets you know that you could be more productive.),,,TimeChitChat,Serious|Polite
+10,,Let's chat.  (Spend time to chat with her.),"(You two talk about politic, science and human nature.  It's different from the club kinks but still very interesting.)",NPCInteraction(1),,TimeChitChat,Frigid|Wise
+10,,Let's chat.  (Spend time to chat with her.),(You try to have a meaningful conversation but it doesn't go anywhere.  All she seems to focus on is sex.),NPCInteraction(-1),,TimeChitChat,Horny|Dumb
 10,0,Enough chit-chat.,(She nods.)  What would you like to do now?,,,EndTalk,
 10,0,Enough chit-chat.,"I agree, let's stop the trival conversations that leads nowhere.",,,EndTalk,Serious
 10,0,Enough chit-chat.,Yep!  Time for some action and some fun!,,,EndTalk,Playful
@@ -274,28 +286,28 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  That was fun!  
 26,1000,I can't wait to be collared.,Don't rush it my sub.  The trial period will decide if you get collared or not.,StartTrial(-4),,,
 100,,,What would you like to do?,,,,
 100,,(Tickle her.),"(You tickle her on the ribs and tummy.  She seems to enjoy it and cannot resist laughing.)  Hehehe, it tickles!",,Player.CanInteract(),PlayTickle,
-100,,(Tickle her.),(You tickle her on the ribs and tummy.  She laughs out loud and almost cries.)  Eeeeeaaahahaha!  You're so funnyyyyahaha!,,Player.CanInteract(),PlayTickle,Playful|Peaceful
-100,,(Tickle her.),(You tickle her on the ribs and tummy.  She barely laughs and doesn't seem to enjoy it.)  That's child play.  You can do better than that.,,Player.CanInteract(),PlayTickle,Serious|Violent
+100,,(Tickle her.),(You tickle her on the ribs and tummy.  She laughs out loud and almost cries.)  Eeeeeaaahahaha!  You're so funnyyyyahaha!,NPCInteraction(1),Player.CanInteract(),PlayTickle,Playful|Peaceful
+100,,(Tickle her.),(You tickle her on the ribs and tummy.  She barely laughs and doesn't seem to enjoy it.)  That's child play.  You can do better than that.,NPCInteraction(-1),Player.CanInteract(),PlayTickle,Serious|Violent
 100,,(Tickle her.),"(You tickle her on the ribs and tummy.  She laughs a little and blushes.)  Hahahaaaaha, ya can tickle me between ma legs if ya want.",,Player.CanInteract(),PlayTickle,Horny|Rude
 100,,(Kiss her.),"(You get close to each other and share a lovely kiss on the lips.)  Mmmmh, this is nice.",,NobodyGagged(),PlayKiss,
-100,,(Kiss her.),(You get close to her to share a kiss.  She really likes it and forcefully pushes her tongue in your mouth.),,NobodyGagged(),PlayKiss,Horny|Violent
+100,,(Kiss her.),(You get close to her to share a kiss.  She really likes it and forcefully pushes her tongue in your mouth.),NPCInteraction(1),NobodyGagged(),PlayKiss,Horny|Violent
 100,,(Kiss her.),(She blushes as you get closer for a kiss.  You share a sober but lovely embrace on the lips.)  You certainly share your affection with fervor.,,NobodyGagged(),PlayKiss,Polite|Peaceful
-100,,(Kiss her.),"(She doesn't react much as you share a slow kiss.)  Kisses have a cultural and emotional impact on most, but it doesn't do much for me.",,NobodyGagged(),PlayKiss,Frigid|Wise
+100,,(Kiss her.),"(She doesn't react much as you share a slow kiss.)  Kisses have a cultural and emotional impact on most, but it doesn't do much for me.",NPCInteraction(-1),NobodyGagged(),PlayKiss,Frigid|Wise
 100,,(Fondle her breast.),(You fondle her breast as she blushes.)  You have wonderful hands.,,CanFondle(),PlayFondle,
-100,,(Fondle her breast.),(You fondle her breast as she moans loudly.)  Your loving hands are such a pleasure on my tender skin.,,CanFondle(),PlayFondle,Horny|Polite
-100,,(Fondle her breast.),"(You fondle her breast, but she doesn't react much.)  That's the best you can do?  Smack them, pinch them, whip them!",,CanFondle(),PlayFondle,Violent|Playful
+100,,(Fondle her breast.),(You fondle her breast as she moans loudly.)  Your loving hands are such a pleasure on my tender skin.,NPCInteraction(1),CanFondle(),PlayFondle,Horny|Polite
+100,,(Fondle her breast.),"(You fondle her breast, but she doesn't react much.)  That's the best you can do?  Smack them, pinch them, whip them!",NPCInteraction(-1),CanFondle(),PlayFondle,Violent|Playful
 100,,(Fondle her breast.),"(You fondle her breast as she moans lightly.)  You're good girl.  If I ever need a masseuse, I'll call you for sure.",,CanFondle(),PlayFondle,Serious|Dominant
 100,,(Slap her.),(She's stunned as you slap her on the face.)  What was that for?,,Player.CanInteract(),PlaySlap,
-100,,(Slap her.),"(You slap her hard on the face, but she stands her ground.)  I've been slapped all my life, I can take it.",,Player.CanInteract(),PlaySlap,Violent|Dumb
-100,,(Slap her.),"(She whimpers and bows her head as you slap her hard.)  Miss, what did I do to deserve such a harsh treatment?",,Player.CanInteract(),PlaySlap,Polite|Peaceful
+100,,(Slap her.),"(You slap her hard on the face, but she stands her ground.)  I've been slapped all my life, I can take it.",NPCInteraction(1),Player.CanInteract(),PlaySlap,Violent|Dumb
+100,,(Slap her.),"(She whimpers and bows her head as you slap her hard.)  Miss, what did I do to deserve such a harsh treatment?",NPCInteraction(-1),Player.CanInteract(),PlaySlap,Polite|Peaceful
 100,,(Slap her.),(She grumbles as you slap her on the face.)  Violence can enforce good behavior temporarily but can also instigate repressed fears and panics.,,Player.CanInteract(),PlaySlap,Serious|Wise
 100,,(Spank her.),"(You spank her on the butt, and she jumps from the pain.)  Ow!  Oh my.",,Player.CanInteract(),PlaySpank,
-100,,(Spank her.),"(You spank her hard on the butt and she seems to enjoy the pain.)  If you're serious on inflicting pain, you could get a crop or a whip.",,Player.CanInteract(),PlaySpank,Violent|Serious
+100,,(Spank her.),"(You spank her hard on the butt and she seems to enjoy the pain.)  That's nice.  But if you're serious on inflicting pain, you could get a crop or a whip.",NPCInteraction(1),Player.CanInteract(),PlaySpank,Violent|Serious
 100,,(Spank her.),(She whimpers as you spank her pretty hard on the butt.)  This punishment seems unfair.  I'm sorry if I've broken a regulation.,,Player.CanInteract(),PlaySpank,Frigid|Polite
-100,,(Spank her.),(She cowers from the pain and sharply inhales with each hit.)  Fuck it hurts!  Why the hell are you doing that?,,Player.CanInteract(),PlaySpank,Peaceful|Rude
+100,,(Spank her.),(She cowers from the pain and sharply inhales with each hit.)  Fuck it hurts!  Why the hell are you doing that?,NPCInteraction(-1),Player.CanInteract(),PlaySpank,Peaceful|Rude
 100,,(Masturbate her.),(You masturbate her lovingly as she breathes faster and faster.)  Is it getting hot in here?,,CanMasturbate(),PlayMasturbate,
-100,,(Masturbate her.),"(You masturbate her slowly as she shakes her hips and hums a sexy song.)  Oooohh yeah, this feels sooooo good.",,CanMasturbate(),PlayMasturbate,Horny|Playful
-100,,(Masturbate her.),"(You masturbate her lovingly, but she doesn't seem to enjoy it.)  I'll be blunt ok?  I'm not in that fricking club for sex.",,CanMasturbate(),PlayMasturbate,Frigid|Rude
+100,,(Masturbate her.),"(You masturbate her slowly as she shakes her hips and hums a sexy song.)  Oooohh yeah, this feels sooooo good.",NPCInteraction(1),CanMasturbate(),PlayMasturbate,Horny|Playful
+100,,(Masturbate her.),"(You masturbate her lovingly, but she doesn't seem to enjoy it.)  I'll be blunt ok?  I'm not in that fricking club for sex.",NPCInteraction(-1),CanMasturbate(),PlayMasturbate,Frigid|Rude
 100,,(Masturbate her.),"(You masturbate her with passion as she moans and blushes.)  Miss, it would be an honor to become your love slave one day.",,CanMasturbate(),PlayMasturbate,Submissive|Polite
 100,0,(Stop playing.),(You take a step back.),,,,
 100,,(Leave her.),,DialogLeave(),,,
@@ -325,7 +337,7 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  That was fun!  
 1000,,Can you release me?,"It's been long enough, and you deserve some freedom my submissive.  Just remember what killed the cat.  (She releases you.)",DialogRelease(Player),AllowReleasePlayer(),DomWillReleasePlayer,Serious|Wise
 1000,,Can you release me?,"Not now my sub, you can struggle some more.  (She watches you and laughs.)",,WontReleasePlayer(),DomWontReleasePlayer,
 1000,,Can you release me?,"Girl, put some more efforts in your struggling and maybe I'll help you.",,WontReleasePlayer(),DomWontReleasePlayer,Dominant|Serious
-1000,,Can you release me?,I decline.  Your predicament is directly related to your actions and you must learn from them.,,WontReleasePlayer(),DomWontReleasePlayer,Submissive|Wise
+1000,,Can you release me?,I decline.  Your predicament is a submissive lesson that you must learn from.,,WontReleasePlayer(),DomWontReleasePlayer,Submissive|Wise
 1000,,Can you release me?,Fuck no!  Seeing my slut struggle like that is huge turn on for me.,,WontReleasePlayer(),DomWontReleasePlayer,Horny|Rude
 1000,,(Struggle and whimper for help.),(She nods and slowly releases you.)  I guess I can help you out now.,DialogRelease(Player),AllowReleasePlayer(),DomStruggleWillReleasePlayer,
 1000,,(Struggle and whimper for help.),Are you in pain my slave?  Let me see these limbs.  (She releases you and checks on your health.),DialogRelease(Player),AllowReleasePlayer(),DomStruggleWillReleasePlayer,Dominant|Peaceful
@@ -333,7 +345,7 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  That was fun!  
 1000,,(Struggle and whimper for help.),"It's been long enough, and you deserve some freedom my submissive.  Just remember what killed the cat.  (She releases you.)",DialogRelease(Player),AllowReleasePlayer(),DomStruggleWillReleasePlayer,Serious|Wise
 1000,,(Struggle and whimper for help.),"Not now my sub, you can struggle some more.  (She watches you and laughs.)",,WontReleasePlayer(),DomStruggleWontReleasePlayer,
 1000,,(Struggle and whimper for help.),"Girl, put some more efforts in your struggling and maybe I'll help you.",,WontReleasePlayer(),DomStruggleWontReleasePlayer,Dominant|Serious
-1000,,(Struggle and whimper for help.),I decline.  Your predicament is directly related to your actions and you must learn from them.,,WontReleasePlayer(),DomStruggleWontReleasePlayer,Submissive|Wise
+1000,,(Struggle and whimper for help.),I decline.  Your predicament is a submissive lesson that you must learn from.,,WontReleasePlayer(),DomStruggleWontReleasePlayer,Submissive|Wise
 1000,,(Struggle and whimper for help.),Fuck no!  Seeing my slut struggle like that is huge turn on for me.,,WontReleasePlayer(),DomStruggleWontReleasePlayer,Horny|Rude
 1000,,(Leave her.),,DialogLeave(),,,
 1010,,,Is there anything else you want to talk about my submissive?,,,DomIntroTalk,
@@ -396,45 +408,133 @@ ActivityGagIntro,,,"My submissive, silence is gold and you're pretty bad at stay
 ActivityGagIntro,,,It's not easy to think when you talk all the time.  Maybe a gag will help.,,,DomActivityGagIntro,Dumb
 ActivityGagIntro,,,You need some training on the art of staying quiet.  A gag will be perfect that.,,,DomActivityGagIntro,Serious
 ActivityGagIntro,,,I think you would be adorable and cute with a gag.  Let's try one on you!,,,DomActivityGagIntro,Playful
-ActivityGag,1000,Yes Mistress.  (Open your mouth.),(She uses a gag to silence you and smiles.)  Good girl.,"DialogWearRandomItem(""ItemMouth"")",,,
-ActivityGag,1000,That's unfair!,(She uses a gag to silence you and smiles.)  Who said slavery was fair?,"DialogWearRandomItem(""ItemMouth"")",,,
-ActivityGag,1000,"Oh no, please Mistress, I'll be quiet.",(She uses a gag to silence you and smiles.)  Of course you'll be quiet.,"DialogWearRandomItem(""ItemMouth"")",,,
-ActivityGag,1000,(Roll your eyes up.),(She uses a gag to silence you and smiles.)  This is much better.,"DialogWearRandomItem(""ItemMouth"")",,,
-ActivityGag,1000,(Nod and bow your head.),(She uses a gag to silence you and smiles.)  You're a good submissive.,"DialogWearRandomItem(""ItemMouth"")",,,
+ActivityGag,1000,Yes Mistress.  (Open your mouth.),(She uses a gag to silence you and smiles.)  Good girl.,ActivityRun(1),,,
+ActivityGag,1000,That's unfair!,(She uses a gag to silence you and grins.)  Who said slavery was fair?,ActivityRun(-1),,,
+ActivityGag,1000,Very well.,(She uses a gag to silence you and smiles.)  This is better.,ActivityRun(0),,,
+ActivityGag,1000,No!  Please Mistress!  I'll be quiet.,(She uses a gag to silence you and frowns.)  Of course you'll be quiet.,ActivityRun(-4),,,
+ActivityGag,1000,(Roll your eyes up.),(She uses a gag to silence you and smiles.)  This is much better.,ActivityRun(-1),,,
+ActivityGag,1000,(Nod and bow your head.),(She uses a gag to silence you and smiles.)  You're a good submissive.,ActivityRun(1),,,
 ActivityUngagIntro,,,"You've been gagged for long enough, you can talk now.",,,DomActivityUngagIntro,
 ActivityUngagIntro,,,"You must be dry or thirsty from the gag, let me help you my submissive.",,,DomActivityUngagIntro,Peaceful
 ActivityUngagIntro,,,I've had enough with that gag.  I want to kiss these sexy lips.,,,DomActivityUngagIntro,Horny
 ActivityUngagIntro,,,I'm fucking tired of trying to understand ya girl.  I'll remove that gag.,,,DomActivityUngagIntro,Rude
 ActivityUngagIntro,,,You've been silenced for long enough little one.  I will release you from this impairment.,,,DomActivityUngagIntro,Polite
-ActivityUngag,1000,(Hum a happy song.),(She removes the gag from your mouth.)  You're such a fun submissive.,"DialogRemoveItem(""ItemMouth"")",,,
-ActivityUngag,1000,(Nod happily.),(She removes the gag from your mouth.)  Don't think it allows you to annoy me.,"DialogRemoveItem(""ItemMouth"")",,,
-ActivityUngag,1000,(Help her to remove your gag.),(She removes the gag from your mouth and scratches your head.)  Good girl.,"DialogRemoveItem(""ItemMouth"")",,,
+ActivityUngag,1000,(Nod quickly.),(She removes the item and allows you to talk.)  You were cute with that gag.,ActivityRun(0),,,
+ActivityUngag,1000,(Hum a happy song.),(She removes the item and allows you to talk.)  You're such a fun submissive.,ActivityRun(1),,,
+ActivityUngag,1000,(Grumble in the gag.),(She removes the item and allows you to talk.)  Don't think it allows you to annoy me.,ActivityRun(-2),,,
+ActivityUngag,1000,(Help her to remove your gag.),(She removes the item and allows you to talk.)  Good girl.,ActivityRun(1),,,
 ActivityRestrainIntro,,,"We are in the Bondage Club my sub, you know you should be tied up.",,,DomActivityRestrainIntro,
 ActivityRestrainIntro,,,"My girl, it would be really sexy to get you in restraints.",,,DomActivityRestrainIntro,Horny
 ActivityRestrainIntro,,,"You've playing with these hands way too much, it's time to stop and restrain them.",,,DomActivityRestrainIntro,Frigid
 ActivityRestrainIntro,,,"Girl, being a slave isn't always easy.  You need to suffer from the restraints, give me your hands.",,,DomActivityRestrainIntro,Violent
 ActivityRestrainIntro,,,"(She gently grabs your hands.)  My subbie, it's time to test your limits and restrain these pretty hands.",,,DomActivityRestrainIntro,Peaceful
-ActivityRestrain,1000,Yes Mistress.  (Give your hands.),(She restrains your arms and smiles.)  A happy sub is a restrained sub.,"DialogWearRandomItem(""ItemArms"")",Player.CanTalk(),,
-ActivityRestrain,1000,Really?  Not right now!,"(She restrains your arms and nods.)  Absolutely, you're not in control girl.","DialogWearRandomItem(""ItemArms"")",Player.CanTalk(),,
-ActivityRestrain,1000,"Please, we don't need to do that.",(She restrains your arms and grins.)  A sub needs to be restrained.,"DialogWearRandomItem(""ItemArms"")",Player.CanTalk(),,
-ActivityRestrain,1000,(Sigh and give your hands.),(She stays silent and restrains your arms.),"DialogWearRandomItem(""ItemArms"")",,,
-ActivityRestrain,1000,(Nod and bow your head.),(She restrains your arms and pets your head.)  Good girl.,"DialogWearRandomItem(""ItemArms"")",,,
+ActivityRestrain,1000,Yes Mistress.  (Give your hands.),(She restrains your arms and smiles.)  A happy sub is a restrained sub.,ActivityRun(1),Player.CanTalk(),,
+ActivityRestrain,1000,Really?  Right now?,"(She restrains your arms and nods.)  Yes, right now.",ActivityRun(0),Player.CanTalk(),,
+ActivityRestrain,1000,"Mistress, please don't restrain me.",(She frowns and restrains you tightly.)  You're not in control girl.,ActivityRun(-4),Player.CanTalk(),,
+ActivityRestrain,1000,(Sigh and give your hands.),(She stays silent and restrains your arms.),ActivityRun(0),,,
+ActivityRestrain,1000,(Nod and bow your head.),(She restrains your arms and pets your head.)  Good girl.,ActivityRun(1),,,
+ActivityRestrain,1000,(Grumble and try to stop her.),(She frowns and restrains you tightly.)  You're not in control girl.,ActivityRun(-4),,,
 ActivityFullRestrainIntro,,,"We are in the Bondage Club my sub, you should be fully restrained.",,,DomActivityFullRestrainIntro,
 ActivityFullRestrainIntro,,,"My girl, it would be really sexy to get you fully restrained.",,,DomActivityFullRestrainIntro,Horny
 ActivityFullRestrainIntro,,,"You've playing with these hands way too much, it's time to fully restrain you.",,,DomActivityFullRestrainIntro,Frigid
 ActivityFullRestrainIntro,,,"Girl, being a slave isn't always easy.  You need to feel the pain from lots of the restraints.",,,DomActivityFullRestrainIntro,Violent
 ActivityFullRestrainIntro,,,"(She gently grabs your hands.)  My subbie, it's time to test your limits and restrain you fully.",,,DomActivityFullRestrainIntro,Peaceful
-ActivityFullRestrain,1000,Yes Mistress.  (Give your hands.),(She restrains you with many items and smiles.)  A happy sub is a restrained sub.,"DialogWearRandomItem(""ItemArms"")",Player.CanTalk(),,
-ActivityFullRestrain,1000,Really?  Not right now!,"(She restrains you with many items and nods.)  Absolutely, you're not in control girl.","DialogWearRandomItem(""ItemArms"")",Player.CanTalk(),,
-ActivityFullRestrain,1000,"Please, we don't need to do that.",(She restrains you with many items and grins.)  A sub needs to be restrained.,"DialogWearRandomItem(""ItemArms"")",Player.CanTalk(),,
-ActivityFullRestrain,1000,(Sigh and give your hands.),(She stays silent and restrains you with many items.),"DialogWearRandomItem(""ItemArms"")",,,
-ActivityFullRestrain,1000,(Nod and bow your head.),(She restrains you with many items and pets your head.)  Good girl.,"DialogWearRandomItem(""ItemArms"")",,,
+ActivityFullRestrain,1000,Yes Mistress.  (Politely give your hands.),(She restrains you with many items and smiles.)  A happy sub is a restrained sub.,ActivityRun(1),Player.CanTalk(),,
+ActivityFullRestrain,1000,Really?  Right now?,"(She restrains you with many items and nods.)  Yes, right now, you're not in control girl.",ActivityRun(0),Player.CanTalk(),,
+ActivityFullRestrain,1000,"Mistress, please don't restrain me.",(She frowns and restrains you with many items.)  You're not in control girl.,ActivityRun(-4),Player.CanTalk(),,
+ActivityFullRestrain,1000,(Sigh and give your hands.),(She stays silent and restrains you with many items.),ActivityRun(0),,,
+ActivityFullRestrain,1000,(Nod and promptly give your hands.),(She restrains you with many items and pets your head.)  Good girl.,ActivityRun(1),,,
+ActivityFullRestrain,1000,(Grumble and try to stop her.),(She frowns and restrains you with many items.)  You're not in control girl.,ActivityRun(-4),,,
 ActivityReleaseIntro,,,You're cute when you're restrained but you deserve a break.  Let me help you.,,,DomActivityReleaseIntro,
 ActivityReleaseIntro,,,I don't have enough time to watch you and protect you from yourself girl.  I'll let you go.,,,DomActivityReleaseIntro,Serious
 ActivityReleaseIntro,,,"It's so much fun to see you struggle, but I guess all good things has to end.",,,DomActivityReleaseIntro,Playful
 ActivityReleaseIntro,,,"You're lucky as hell bitch, I'll let you go for now.",,,DomActivityReleaseIntro,Rude
 ActivityReleaseIntro,,,"It's been both amusing and alluring to see you struggle my little submissive, but it's time set you free.",,,DomActivityReleaseIntro,Polite
-ActivityRelease,1000,Thanks Mistress.,(She releases you and laughs.)  Don't get too used to your freedom girl.,DialogRelease(Player),Player.CanTalk(),,
-ActivityRelease,1000,You're the best!,(She releases you and gives you a hug.)  And you're the best submissive.,DialogRelease(Player),Player.CanTalk(),,
-ActivityRelease,1000,(Nod happily.),(She releases you and smiles back at you.),DialogRelease(Player),,,
-ActivityRelease,1000,(Struggle one last time.),"(She releases you and laughs.)  Too bad, I love to see you struggle.",DialogRelease(Player),,,
+ActivityRelease,1000,Thanks Mistress.,(She releases you and laughs.)  Don't get too used to your freedom girl.,ActivityRun(0),Player.CanTalk(),,
+ActivityRelease,1000,You're the best!,(She releases you and gives you a hug.)  And you're the best submissive.,ActivityRun(1),Player.CanTalk(),,
+ActivityRelease,1000,(Nod happily.),(She releases you and smiles back at you.),ActivityRun(1),,,
+ActivityRelease,1000,(Struggle one last time.),"(She releases you and laughs.)  Too bad, I love to see you struggle.",ActivityRun(0),,,
+ActivityTickleIntro,,,(She starts to tickle you lightly.)  Are you ticklish my girl?,,,DomActivityTickleIntro,
+ActivityTickleIntro,,,"(She starts to tickle you lightly.)  Tell me slut, are you ticklish?",,,DomActivityTickleIntro,Rude
+ActivityTickleIntro,,,"(She starts to tickle you lightly.)  Be honest little one, do you appreciate the fine art of tickling?",,,DomActivityTickleIntro,Polite
+ActivityTickle,,Hehehe.  It tickles!,And it will tickle even more!  (She tickles you a little faster.),ActivityRun(0),Player.CanTalk(),,
+ActivityTickle,,That's the best you can do?,No!  That's the best!  (She tickles you faster and faster.),ActivityRun(-1),Player.CanTalk(),,
+ActivityTickle,,Eeeeeaahahahaaaha!,(She seems to enjoy your reaction and tickles you mercilesly.),ActivityRun(1),Player.CanTalk(),,
+ActivityTickle,,Stop Mistress!  I don't like it.,I don't think so!  (She frowns and tickles you some more.),ActivityRun(-4),Player.CanTalk(),,
+ActivityTickle,,(Laugh out loud and cry.),(She seems to enjoy your reaction and tickles you mercilesly.),ActivityRun(1),,,
+ActivityTickle,,(Giggle and shake your body.),It's not over girl!  (She tickles you a little faster.),ActivityRun(0),,,
+ActivityTickle,,(Act tough and pretend you don't care.),(She sees your reaction as a challenge and tickles you faster and faster.),ActivityRun(-1),,,
+ActivityTickle,,(Grumble and try to stop her.),You're not in control girl.  (She frowns and tickles you some more.),ActivityRun(-4),,,
+ActivityTickleOutro,,,(She tickles you a little more and stops.)  That's enough.  We'll do it later my sub.,,,DomActivityTickleOutro,
+ActivityTickleOutro,,,"(She tickles you a little more and stops, catching her breath.)  Let's stop, I'm exhausted.",,,DomActivityTickleOutro,Peaceful
+ActivityTickleOutro,,,"(She tickles you a little more and stops.)  Enough of that, next time I'll get my whip.",,,DomActivityTickleOutro,Violent
+ActivitySpankIntro,,,(She starts to Spank you lightly.)  Are you ticklish my girl?,,,DomActivitySpankIntro,
+ActivitySpankIntro,,,"(She starts to Spank you lightly.)  Tell me slut, are you ticklish?",,,DomActivitySpankIntro,Rude
+ActivitySpankIntro,,,"(She starts to Spank you lightly.)  Be honest little one, do you appreciate the fine art of tickling?",,,DomActivitySpankIntro,Polite
+ActivitySpank,,Hehehe.  It Spanks!,And it will Spank even more!  (She Spanks you a little faster.),ActivityRun(0),Player.CanTalk(),,
+ActivitySpank,,That's the best you can do?,No!  That's the best!  (She Spanks you faster and faster.),ActivityRun(-1),Player.CanTalk(),,
+ActivitySpank,,Eeeeeaahahahaaaha!,(She seems to enjoy your reaction and Spanks you mercilesly.),ActivityRun(1),Player.CanTalk(),,
+ActivitySpank,,Stop Mistress!  I don't like it.,I don't think so!  (She frowns and Spanks you some more.),ActivityRun(-4),Player.CanTalk(),,
+ActivitySpank,,(Laugh out loud and cry.),(She seems to enjoy your reaction and Spanks you mercilesly.),ActivityRun(1),,,
+ActivitySpank,,(Giggle and shake your body.),It's not over girl!  (She Spanks you a little faster.),ActivityRun(0),,,
+ActivitySpank,,(Act tough and pretend you don't care.),(She sees your reaction as a challenge and Spanks you faster and faster.),ActivityRun(-1),,,
+ActivitySpank,,(Grumble and try to stop her.),You're not in control girl.  (She frowns and Spanks you some more.),ActivityRun(-4),,,
+ActivitySpankOutro,,,(She Spanks you a little more and stops.)  That's enough.  We'll do it later my sub.,,,DomActivitySpankOutro,
+ActivitySpankOutro,,,"(She Spanks you a little more and stops, catching her breath.)  Let's stop, I'm exhausted.",,,DomActivitySpankOutro,Peaceful
+ActivitySpankOutro,,,"(She Spanks you a little more and stops.)  Enough of that, next time I'll get my whip.",,,DomActivitySpankOutro,Violent
+ActivityPetIntro,,,(She starts to Pet you lightly.)  Are you ticklish my girl?,,,DomActivityPetIntro,
+ActivityPetIntro,,,"(She starts to Pet you lightly.)  Tell me slut, are you ticklish?",,,DomActivityPetIntro,Rude
+ActivityPetIntro,,,"(She starts to Pet you lightly.)  Be honest little one, do you appreciate the fine art of tickling?",,,DomActivityPetIntro,Polite
+ActivityPet,,Hehehe.  It Pets!,And it will Pet even more!  (She Pets you a little faster.),ActivityRun(0),Player.CanTalk(),,
+ActivityPet,,That's the best you can do?,No!  That's the best!  (She Pets you faster and faster.),ActivityRun(-1),Player.CanTalk(),,
+ActivityPet,,Eeeeeaahahahaaaha!,(She seems to enjoy your reaction and Pets you mercilesly.),ActivityRun(1),Player.CanTalk(),,
+ActivityPet,,Stop Mistress!  I don't like it.,I don't think so!  (She frowns and Pets you some more.),ActivityRun(-4),Player.CanTalk(),,
+ActivityPet,,(Laugh out loud and cry.),(She seems to enjoy your reaction and Pets you mercilesly.),ActivityRun(1),,,
+ActivityPet,,(Giggle and shake your body.),It's not over girl!  (She Pets you a little faster.),ActivityRun(0),,,
+ActivityPet,,(Act tough and pretend you don't care.),(She sees your reaction as a challenge and Pets you faster and faster.),ActivityRun(-1),,,
+ActivityPet,,(Grumble and try to stop her.),You're not in control girl.  (She frowns and Pets you some more.),ActivityRun(-4),,,
+ActivityPetOutro,,,(She Pets you a little more and stops.)  That's enough.  We'll do it later my sub.,,,DomActivityPetOutro,
+ActivityPetOutro,,,"(She Pets you a little more and stops, catching her breath.)  Let's stop, I'm exhausted.",,,DomActivityPetOutro,Peaceful
+ActivityPetOutro,,,"(She Pets you a little more and stops.)  Enough of that, next time I'll get my whip.",,,DomActivityPetOutro,Violent
+ActivitySlapIntro,,,(She starts to Slap you lightly.)  Are you ticklish my girl?,,,DomActivitySlapIntro,
+ActivitySlapIntro,,,"(She starts to Slap you lightly.)  Tell me slut, are you ticklish?",,,DomActivitySlapIntro,Rude
+ActivitySlapIntro,,,"(She starts to Slap you lightly.)  Be honest little one, do you appreciate the fine art of tickling?",,,DomActivitySlapIntro,Polite
+ActivitySlap,,Hehehe.  It Slaps!,And it will Slap even more!  (She Slaps you a little faster.),ActivityRun(0),Player.CanTalk(),,
+ActivitySlap,,That's the best you can do?,No!  That's the best!  (She Slaps you faster and faster.),ActivityRun(-1),Player.CanTalk(),,
+ActivitySlap,,Eeeeeaahahahaaaha!,(She seems to enjoy your reaction and Slaps you mercilesly.),ActivityRun(1),Player.CanTalk(),,
+ActivitySlap,,Stop Mistress!  I don't like it.,I don't think so!  (She frowns and Slaps you some more.),ActivityRun(-4),Player.CanTalk(),,
+ActivitySlap,,(Laugh out loud and cry.),(She seems to enjoy your reaction and Slaps you mercilesly.),ActivityRun(1),,,
+ActivitySlap,,(Giggle and shake your body.),It's not over girl!  (She Slaps you a little faster.),ActivityRun(0),,,
+ActivitySlap,,(Act tough and pretend you don't care.),(She sees your reaction as a challenge and Slaps you faster and faster.),ActivityRun(-1),,,
+ActivitySlap,,(Grumble and try to stop her.),You're not in control girl.  (She frowns and Slaps you some more.),ActivityRun(-4),,,
+ActivitySlapOutro,,,(She Slaps you a little more and stops.)  That's enough.  We'll do it later my sub.,,,DomActivitySlapOutro,
+ActivitySlapOutro,,,"(She Slaps you a little more and stops, catching her breath.)  Let's stop, I'm exhausted.",,,DomActivitySlapOutro,Peaceful
+ActivitySlapOutro,,,"(She Slaps you a little more and stops.)  Enough of that, next time I'll get my whip.",,,DomActivitySlapOutro,Violent
+ActivityKissIntro,,,(She starts to Kiss you lightly.)  Are you ticklish my girl?,,,DomActivityKissIntro,
+ActivityKissIntro,,,"(She starts to Kiss you lightly.)  Tell me slut, are you ticklish?",,,DomActivityKissIntro,Rude
+ActivityKissIntro,,,"(She starts to Kiss you lightly.)  Be honest little one, do you appreciate the fine art of tickling?",,,DomActivityKissIntro,Polite
+ActivityKiss,,Hehehe.  It Kisss!,And it will Kiss even more!  (She Kisss you a little faster.),ActivityRun(0),Player.CanTalk(),,
+ActivityKiss,,That's the best you can do?,No!  That's the best!  (She Kisss you faster and faster.),ActivityRun(-1),Player.CanTalk(),,
+ActivityKiss,,Eeeeeaahahahaaaha!,(She seems to enjoy your reaction and Kisss you mercilesly.),ActivityRun(1),Player.CanTalk(),,
+ActivityKiss,,Stop Mistress!  I don't like it.,I don't think so!  (She frowns and Kisss you some more.),ActivityRun(-4),Player.CanTalk(),,
+ActivityKiss,,(Laugh out loud and cry.),(She seems to enjoy your reaction and Kisss you mercilesly.),ActivityRun(1),,,
+ActivityKiss,,(Giggle and shake your body.),It's not over girl!  (She Kisss you a little faster.),ActivityRun(0),,,
+ActivityKiss,,(Act tough and pretend you don't care.),(She sees your reaction as a challenge and Kisss you faster and faster.),ActivityRun(-1),,,
+ActivityKiss,,(Grumble and try to stop her.),You're not in control girl.  (She frowns and Kisss you some more.),ActivityRun(-4),,,
+ActivityKissOutro,,,(She Kisss you a little more and stops.)  That's enough.  We'll do it later my sub.,,,DomActivityKissOutro,
+ActivityKissOutro,,,"(She Kisss you a little more and stops, catching her breath.)  Let's stop, I'm exhausted.",,,DomActivityKissOutro,Peaceful
+ActivityKissOutro,,,"(She Kisss you a little more and stops.)  Enough of that, next time I'll get my whip.",,,DomActivityKissOutro,Violent
+ActivityFondleIntro,,,(She starts to Fondle you lightly.)  Are you ticklish my girl?,,,DomActivityFondleIntro,
+ActivityFondleIntro,,,"(She starts to Fondle you lightly.)  Tell me slut, are you ticklish?",,,DomActivityFondleIntro,Rude
+ActivityFondleIntro,,,"(She starts to Fondle you lightly.)  Be honest little one, do you appreciate the fine art of tickling?",,,DomActivityFondleIntro,Polite
+ActivityFondle,,Hehehe.  It Fondles!,And it will Fondle even more!  (She Fondles you a little faster.),ActivityRun(0),Player.CanTalk(),,
+ActivityFondle,,That's the best you can do?,No!  That's the best!  (She Fondles you faster and faster.),ActivityRun(-1),Player.CanTalk(),,
+ActivityFondle,,Eeeeeaahahahaaaha!,(She seems to enjoy your reaction and Fondles you mercilesly.),ActivityRun(1),Player.CanTalk(),,
+ActivityFondle,,Stop Mistress!  I don't like it.,I don't think so!  (She frowns and Fondles you some more.),ActivityRun(-4),Player.CanTalk(),,
+ActivityFondle,,(Laugh out loud and cry.),(She seems to enjoy your reaction and Fondles you mercilesly.),ActivityRun(1),,,
+ActivityFondle,,(Giggle and shake your body.),It's not over girl!  (She Fondles you a little faster.),ActivityRun(0),,,
+ActivityFondle,,(Act tough and pretend you don't care.),(She sees your reaction as a challenge and Fondles you faster and faster.),ActivityRun(-1),,,
+ActivityFondle,,(Grumble and try to stop her.),You're not in control girl.  (She frowns and Fondles you some more.),ActivityRun(-4),,,
+ActivityFondleOutro,,,(She Fondles you a little more and stops.)  That's enough.  We'll do it later my sub.,,,DomActivityFondleOutro,
+ActivityFondleOutro,,,"(She Fondles you a little more and stops, catching her breath.)  Let's stop, I'm exhausted.",,,DomActivityFondleOutro,Peaceful
+ActivityFondleOutro,,,"(She Fondles you a little more and stops.)  Enough of that, next time I'll get my whip.",,,DomActivityFondleOutro,Violent

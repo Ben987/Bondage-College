@@ -5,8 +5,10 @@ var PrivateCharacter = [];
 var PrivateCharacterTypeList = ["NPC_Private_VisitorShy", "NPC_Private_VisitorHorny", "NPC_Private_VisitorTough"];
 var PrivateCharacterToSave = 0;
 var PrivateReleaseTimer = 0;
-var PrivateRandomActivityList = ["Gag", "Ungag", "Restrain", "FullRestrain", "Release"];
+var PrivateRandomActivityList = ["Gag", "Ungag", "Restrain", "FullRestrain", "Release", "Tickle", "Spank", "Pet", "Slap", "Kiss", "Fondle"];
 var PrivateRandomActivity = "";
+var PrivateRandomActivityCount = 0;
+var PrivateRandomActivityAffectLove = true;
 
 // Returns TRUE if a specific dialog option is allowed
 function PrivateIsCaged() { return (CurrentCharacter.Cage == null) ? false : true }
@@ -20,8 +22,9 @@ function PrivateCanMasturbate() { return (CharacterIsNaked(CurrentCharacter) && 
 function PrivateCanFondle() { return (!CurrentCharacter.IsBreastChaste() && !Player.IsRestrained()) }
 function PrivateAllowRestainPlayer() { return (!Player.IsRestrained() && !CurrentCharacter.IsRestrained() && (ReputationGet("Dominant") - 25 <= NPCTraitGet(CurrentCharacter, "Dominant"))) }
 function PrivateWontRestainPlayer() { return (!Player.IsRestrained() && !CurrentCharacter.IsRestrained() && (ReputationGet("Dominant") - 25 > NPCTraitGet(CurrentCharacter, "Dominant"))) }
-function PrivateAllowReleasePlayer() { return (Player.IsRestrained() && CurrentCharacter.CanInteract() && CommonTime() > PrivateReleaseTimer) }
-function PrivateWontReleasePlayer() { return (Player.IsRestrained() && CurrentCharacter.CanInteract() && CommonTime() <= PrivateReleaseTimer) }
+function PrivateAllowReleasePlayer() { return (Player.IsRestrained() && CurrentCharacter.CanInteract() && (CommonTime() > PrivateReleaseTimer) && !PrivateOwnerInRoom()) }
+function PrivateWontReleasePlayer() { return (Player.IsRestrained() && CurrentCharacter.CanInteract() && (CommonTime() <= PrivateReleaseTimer) && !PrivateOwnerInRoom()) }
+function PrivateWontReleasePlayerOwner() { return (Player.IsRestrained() && CurrentCharacter.CanInteract() && PrivateOwnerInRoom()) }
 function PrivateWillKneel() { return (CurrentCharacter.CanKneel() && !CurrentCharacter.IsKneeling() && (ReputationGet("Dominant") > NPCTraitGet(CurrentCharacter, "Dominant"))) }
 function PrivateWontKneel() { return (CurrentCharacter.CanKneel() && !CurrentCharacter.IsKneeling() && (ReputationGet("Dominant") <= NPCTraitGet(CurrentCharacter, "Dominant"))) }
 function PrivateCannotKneel() { return (!CurrentCharacter.CanKneel() && !CurrentCharacter.IsKneeling()) }
@@ -33,6 +36,7 @@ function PrivateNeedTimeToTakePlayerAsSub() { return (!PrivatePlayerIsOwned() &&
 function PrivateTrialInProgress() { return ((CurrentTime < NPCEventGet(CurrentCharacter, "EndSubTrial")) && (NPCEventGet(CurrentCharacter, "EndSubTrial") > 0)) }
 function PrivateTrialDone() { return ((CurrentTime >= NPCEventGet(CurrentCharacter, "EndSubTrial")) && (NPCEventGet(CurrentCharacter, "EndSubTrial") > 0)) }
 function PrivateTrialCanCancel() { return (NPCEventGet(CurrentCharacter, "EndSubTrial") > 0) }
+function PrivateNPCInteraction(LoveFactor) { if ((CurrentCharacter.Love < 60) || (parseInt(LoveFactor) < 0)) NPCLoveChange(CurrentCharacter, LoveFactor); }
 
 // Loads the private room vendor NPC
 function PrivateLoad() {
@@ -187,6 +191,7 @@ function PrivateLoadCharacter(ID) {
 		if (Char.Trait != null) C.Trait = Char.Trait.slice();
 		if (Char.Cage != null) C.Cage = Char.Cage;
 		if (Char.Event != null) C.Event = Char.Event;
+		C.Love = (Char.Love == null) ? 0 : parseInt(Char.Love);
 		AssetReload(C);
 		NPCTraitDialog(C);
 		CharacterRefresh(C);
@@ -200,6 +205,7 @@ function PrivateSaveCharacter(ID) {
 	if (PrivateCharacter[ID] != null) {
 		var C = {
 			Name: PrivateCharacter[ID].Name,
+			Love: PrivateCharacter[ID].Love,
 			Title: PrivateCharacter[ID].Title,
 			Trait: PrivateCharacter[ID].Trait,
 			Cage: PrivateCharacter[ID].Cage,
@@ -219,6 +225,7 @@ function PrivateAddCharacter(Template, Archetype) {
 	C.AccountName = "NPC_Private_Custom" + PrivateCharacter.length.toString();
 	C.Appearance = Template.Appearance.slice();
 	C.AppearanceFull = Template.Appearance.slice();
+	C.Love = 0;
 	if ((Archetype != null) && (Archetype != "")) C.Title = Archetype;
 	NPCTraitGenerate(C);
 	if ((Archetype != null) && (Archetype == "Mistress")) NPCTraitSet(C, "Dominant", 60 + Math.floor(Math.random() * 41));
@@ -257,10 +264,18 @@ function PrivateChange(NewCloth) {
 	if (NewCloth == "Naked") CharacterNaked(CurrentCharacter);
 }
 
+// Returns TRUE if the player owner is already in the room
+function PrivateOwnerInRoom() {
+	for(var C = 1; C < PrivateCharacter.length; C++)
+		if (PrivateCharacter[C].IsOwner() && (PrivateCharacter[C].ID != CurrentCharacter.ID))
+			return true;
+	return false;
+}
+
 // When a custom NPC restrains the player, there's a minute timer before release
 function PrivateRestrainPlayer() {
 	CharacterFullRandomRestrain(Player);
-	PrivateReleaseTimer = CommonTime() + 60000;
+	PrivateReleaseTimer = CommonTime() + (Math.random() * 60000) + 60000;
 }
 
 // When the player starts a submissive trial with an NPC
@@ -268,6 +283,7 @@ function PrivateStartTrial(ChangeRep) {
 	DialogChangeReputation("Dominant", ChangeRep);
 	CharacterDress(CurrentCharacter, CurrentCharacter.AppearanceFull);
 	NPCEventAdd(CurrentCharacter, "EndSubTrial", CurrentTime + NPCLongEventDelay(CurrentCharacter));
+	NPCLoveChange(CurrentCharacter, 30);
 	PrivateSaveCharacter(PrivateGetCurrentID());
 }
 
@@ -275,6 +291,7 @@ function PrivateStartTrial(ChangeRep) {
 function PrivateStopTrial(ChangeRep) {
 	DialogChangeReputation("Dominant", ChangeRep);
 	NPCEventDelete(CurrentCharacter, "EndSubTrial");
+	NPCLoveChange(CurrentCharacter, -30);
 	PrivateSaveCharacter(PrivateGetCurrentID());
 }
 
@@ -303,17 +320,52 @@ function PrivateStartActivity() {
 		Act = CommonRandomItemFromList(PrivateRandomActivity, PrivateRandomActivityList);
 
 		// If the activity is valid
-		if ((Act == "Gag") && (InventoryGet(Player, "ItemMouth") == null)) break;
-		if ((Act == "Ungag") && (!InventoryGet(Player, "ItemMouth") == null)) break;
+		if ((Act == "Gag") && Player.CanTalk()) break;
+		if ((Act == "Ungag") && !Player.CanTalk()) break;
 		if ((Act == "Restrain") && (InventoryGet(Player, "ItemArms") == null)) break;
 		if ((Act == "FullRestrain") && (InventoryGet(Player, "ItemArms") == null)) break;
 		if ((Act == "Release") && Player.IsRestrained()) break;
+		if ((Act == "Tickle") && (NPCTraitGet(CurrentCharacter, "Playful") >= 0)) break;
+		if ((Act == "Spank") && (NPCTraitGet(CurrentCharacter, "Violent") >= 0)) break;
+		if ((Act == "Pet") && Player.CanTalk() && (NPCTraitGet(CurrentCharacter, "Peaceful") > 0)) break;
+		if ((Act == "Slap") && Player.CanTalk() && (NPCTraitGet(CurrentCharacter, "Violent") > 0)) break;
+		if ((Act == "Kiss") && Player.CanTalk() && (NPCTraitGet(CurrentCharacter, "Horny") >= 0)) break;
+		if ((Act == "Fondle") && !Player.IsBreastChaste() && (NPCTraitGet(CurrentCharacter, "Horny") > 0)) break;
 
 	}
 
-	// Starts the activity
+	// Starts the activity (any activity adds +2 love automatically)
 	PrivateRandomActivity = Act;
+	NPCLoveChange(CurrentCharacter, 2);
+	PrivateRandomActivityAffectLove = true;
+	PrivateRandomActivityCount = 0;
 	CurrentCharacter.Stage = "Activity" + PrivateRandomActivity;
 	CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "Activity" + PrivateRandomActivity + "Intro");
+
+}
+
+// Runs the current activity
+function PrivateActivityRun(LoveFactor) {
+
+	// Changes the love factor only once per activity (except if negative)
+	PrivateRandomActivityCount++;
+	if ((LoveFactor < 0) || PrivateRandomActivityAffectLove) NPCLoveChange(CurrentCharacter, LoveFactor);
+	if ((LoveFactor > 0) && PrivateRandomActivityAffectLove) PrivateRandomActivityAffectLove = false;
+
+	// The restraining activities are harsher for serious NPCs
+	if (PrivateRandomActivity == "Gag") InventoryWearRandom(Player, "ItemMouth");
+	if (PrivateRandomActivity == "Restrain") InventoryWearRandom(Player, "ItemArms");
+	if ((PrivateRandomActivity == "FullRestrain") && (NPCTraitGet(CurrentCharacter, "Playful") > 0)) CharacterFullRandomRestrain(Player, "Few");
+	if ((PrivateRandomActivity == "FullRestrain") && (NPCTraitGet(CurrentCharacter, "Playful") == 0)) CharacterFullRandomRestrain(Player);
+	if ((PrivateRandomActivity == "FullRestrain") && (NPCTraitGet(CurrentCharacter, "Serious") > 0)) CharacterFullRandomRestrain(Player, "Lot");
+	if (PrivateRandomActivity == "Release") CharacterRelease(Player);
+	if (PrivateRandomActivity == "Ungag") { InventoryRemove(Player, "ItemMouth"); InventoryRemove(Player, "ItemHead"); }
+	if ((PrivateRandomActivity == "Gag") || (PrivateRandomActivity == "Restrain") || (PrivateRandomActivity == "FullRestrain")) PrivateReleaseTimer = CommonTime() + (Math.random() * 60000) + 60000;
+	
+	// After running the activity a few times, we stop
+	if (PrivateRandomActivityCount >= Math.floor(Math.random() * 6) + 3) {
+		CurrentCharacter.Stage = "1000";
+		CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "Activity" + PrivateRandomActivity + "Outro");
+	}
 
 }

@@ -82,14 +82,14 @@ function DrawCharacter(C, X, Y, Zoom) {
 
 	// Make sure we have a character
 	if (C != null) 
-		if ((C.ID == 0) || (Player.Effect.indexOf("BlindHeavy") < 0)) {
+		if ((C.ID == 0) || (Player.Effect.indexOf("BlindHeavy") < 0) || (CurrentScreen == "InformationSheet")) {
 
 			// There's 2 different canvas, one blinking and one that doesn't
 			var seconds = new Date().getTime();
 			var Canvas = (Math.round(seconds / 400) % C.BlinkFactor == 0) ? C.CanvasBlink : C.Canvas;
 			
 			// If we must dark the Canvas characters
-			if ((C.ID != 0) && Player.IsBlind()) {
+			if ((C.ID != 0) && Player.IsBlind() && (CurrentScreen != "InformationSheet")) {
 				var CanvasH = document.createElement("canvas");
 				CanvasH.width = Canvas.width;
 				CanvasH.height = Canvas.height;

@@ -40,3 +40,13 @@ TraitWise,Wise:
 TraitDumb,Dumb:
 TraitSerious,Serious:
 TraitPlayful,Playful:
+Relationship,Relation:
+RelationshipPerfect,(Perfect)
+RelationshipGreat,(Great)
+RelationshipGood,(Good)
+RelationshipFair,(Fair)
+RelationshipNeutral,(Neutral)
+RelationshipPoor,(Poor)
+RelationshipBad,(Bad)
+RelationshipHorrible,(Horrible)
+RelationshipAtrocious,(Atrocious)

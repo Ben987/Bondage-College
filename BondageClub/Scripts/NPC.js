@@ -107,8 +107,10 @@ function NPCTraitGet(C, TraitType) {
 function NPCEventAdd(C, EventName, EventValue) {
 	if (C.Event == null) C.Event = [];
 	for(var E = 0; E < C.Event.length; E++)
-		if (C.Event[E].Name == EventName)
+		if (C.Event[E].Name == EventName) {
+			C.Event[E].Value = EventValue;
 			return;
+		}
 	var NewEvent = {
 		Name: EventName,
 		Value: EventValue
@@ -139,4 +141,22 @@ function NPCLongEventDelay(C) {
 	if (T > 0) return 604800000;
 	if (T < 0) return 86400000;
 	return 259200000;
+}
+
+// Sets the love factor for an NPC
+function NPCLoveChange(C, LoveFactor) {
+	LoveFactor = parseInt(LoveFactor);
+	if (C.Love == null) C.Love = LoveFactor;
+	else C.Love = C.Love + LoveFactor;
+	if (C.Love < -100) C.Love = -100;
+	if (C.Love > 100) C.Love = 100;	
+}
+
+// Raises the love factor progressively with interaction time
+function NPCInteraction() {
+	if ((CurrentCharacter != null) && (CurrentCharacter.ID != 0))
+		if (CurrentTime >= NPCEventGet(CurrentCharacter, "LastInteraction")) {
+			NPCEventAdd(CurrentCharacter, "LastInteraction", CurrentTime + 20000);
+			if (CurrentCharacter.Love < 50) NPCLoveChange(CurrentCharacter, 1);
+		}
 }

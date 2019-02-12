@@ -13,6 +13,19 @@ function InformationSheetGetTitle() {
 	return TextGet("TitleNone");
 }
 
+// Returns the NPC love text
+function InformationSheetGetLove(Love) {
+	if (Love >= 100) return TextGet("Relationship") + " " + Love.toString() + " " + TextGet("RelationshipPerfect");
+	if (Love >= 75) return TextGet("Relationship") + " " + Love.toString() + " " + TextGet("RelationshipGreat");
+	if (Love >= 50) return TextGet("Relationship") + " " + Love.toString() + " " + TextGet("RelationshipGood");
+	if (Love >= 25) return TextGet("Relationship") + " " + Love.toString() + " " + TextGet("RelationshipFair");
+	if (Love > -25) return TextGet("Relationship") + " " + Love.toString() + " " + TextGet("RelationshipNeutral");
+	if (Love > -50) return TextGet("Relationship") + " " + Love.toString() + " " + TextGet("RelationshipPoor");
+	if (Love > -75) return TextGet("Relationship") + " " + Love.toString() + " " + TextGet("RelationshipBad");
+	if (Love > -100) return TextGet("Relationship") + " " + Love.toString() + " " + TextGet("RelationshipHorrible");
+	return TextGet("Relationship") + " " + Love.toString() + " " + TextGet("RelationshipAtrocious");
+}
+
 // Run the character info screen
 function InformationSheetRun() {
 
@@ -26,6 +39,7 @@ function InformationSheetRun() {
 	DrawText(TextGet("Lover") + " " + (((C.Lover == null) || (C.Lover == "")) ? TextGet("LoverNone") : C.Lover.replace("NPC-", "")), 550, 350, "Black", "Gray");
 	if (C.ID == 0) DrawText(TextGet("Money") + " " + C.Money.toString() + " $", 550, 425, "Black", "Gray");
 	else DrawText(TextGet("FriendsFor") + " " + (Math.floor((CurrentTime - NPCEventGet(C, "PrivateRoomEntry")) / 86400000)).toString() + " " + TextGet("Days"), 550, 425, "Black", "Gray");
+	if ((C.ID != 0) && (C.Love != null)) DrawText(InformationSheetGetLove(C.Love), 550, 500, "Black", "Gray");
 
 	// For player character, we show the reputation and skills
 	if (C.ID == 0) {
