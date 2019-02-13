@@ -1,7 +1,7 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(调查胶带)|(1 分钟),这是一卷粘性很强的一次性布胶带。|别人很难听懂被封住嘴的人在说些什么。,0,0,0,
-0,0,0,Common_PlayerNotRestrained,(粘上自己的嘴)|(1 分钟),你撕下了一段胶带，|然后牢牢贴在自己嘴上。,10,0,0,SelfGag()
-10,0,0,HasLooseTape,(调查松脱的胶带)|(1 分钟),"这是一卷粘性很强的一次性布胶带。|别人很难听懂被封住嘴的人在说些什么。",10,0,0,ShowImage()
-10,0,0,,(张开嘴)  (1 分钟),你试着用力张开嘴巴，|但是胶带粘得太结实了。,10,0,0,
-10,0,0,,(用舌头顶)|(1 分钟),你试着顶开胶带，|但胶带纹丝不动。,10,0,0,
-10,0,0,Common_PlayerNotRestrained,(撕下胶带)|(1 分钟),你把胶带撕了下来，感觉特别疼。|不过现在你又能说话了。,0,0,0,SelfUngag()
+0,0,0,,(调查胶带)ADD_MINUTES:1,这是一卷粘性很强的一次性布胶带。|别人很难听懂被封住嘴的人在说些什么。,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(粘上自己的嘴)ADD_MINUTES:1,你撕下了一段胶带，|然后牢牢贴在自己嘴上。,10,0,0,SelfGag()
+10,0,0,HasLooseTape,(调查松脱的胶带)ADD_MINUTES:1,"这是一卷粘性很强的一次性布胶带。|别人很难听懂被封住嘴的人在说些什么。",10,0,0,ShowImage()
+10,0,0,,(张开嘴) ADD_MINUTES:1,你试着用力张开嘴巴，|但是胶带粘得太结实了。,10,0,0,
+10,0,0,,(用舌头顶)ADD_MINUTES:1,你试着顶开胶带，|但胶带纹丝不动。,10,0,0,
+10,0,0,Common_PlayerNotRestrained,(撕下胶带)ADD_MINUTES:1,你把胶带撕了下来，感觉特别疼。|不过现在你又能说话了。,0,0,0,SelfUngag()

@@ -27,7 +27,7 @@ function CharacterAppearanceBuildAssets(C) {
 function CharacterAppearanceValidate(C) {
 	
 	// Prevent changing the player if there's a no change rule
-	if ((C != 0) || !LogQuery("BlockChange", "Rule")) {
+	if ((C.ID != 0) || !LogQuery("BlockChange", "Rule")) {
 	
 		// Remove any appearance item that's not in inventory
 		var Refresh = false;

@@ -5,7 +5,7 @@ ItemArms,,,(She turns around submissively while you restrain her arms.)  You hav
 RemoveItemArms,,,(You free her arms and she stretches a little.)  That was nice Miss.,,
 ItemLegs,,,(She stands still while you restrain her legs securely.)  Ooh I love it.,,
 RemoveItemLegs,,,(You release her legs while she wiggles her butt.)  Good bondage Miss!,,
-ItemFeet,,,(She giggles while you restrain her feet, preventing her from walking.),,
+ItemFeet,,,(She giggles while you restrain her feet, preventing her from walking.),
 RemoveItemFeet,,,(You release her feet and she jumps playfully.)  You can tie me up anytime you want Miss.,,
 ItemNeck,,,(You strap the collar on her while she blushes.)  Collars have a special meaning. Someday you might find a sub for you in the club.,,
 RemoveItemNeck,,,(You remove the collar around her neck.)  You can also lock collars on willing submissives.,,
@@ -17,6 +17,7 @@ ItemBreastLeatherWhip,,,(She trembles of pain and pleasure as you whip her breas
 ItemBreastLeatherCrop,,,(You swing the crop on her torso as she moans.)  Mmmh! You have lots of talents Miss.,,
 ItemPelvisLeatherWhip,,,(You whip her butt as she jumps from the pain.)  It hurts soooooo good Miss.,,
 ItemPelvisLeatherCrop,,,(She moans and shakes her butt each time the crop lands on it.) I love the pain Miss.,,
+0,,,(She giggles.)  Greetings naked girl.  Welcome to the introduction class.,,Player.IsNaked()
 0,,,Greetings head maid DialogPlayerName.  Welcome to the introduction class.,,IsHeadMaid
 0,,,Greetings maid DialogPlayerName.  Welcome to the introduction class.,,IsMaid
 0,,,Greetings Miss.  Welcome to the Bondage Club.,,!IsMaid

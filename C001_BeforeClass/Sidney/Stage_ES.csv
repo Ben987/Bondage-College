@@ -34,7 +34,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 200,0,4,,Al final te rendirás.|(desnúdale y átale)ADD_MINUTES:1,(Se quita el uniforme con dudas|y te ofrece sus muñecas para que se las ates.),220,0,0,TieSub()
 200,0,0,,"Si las quieres,|ven y pelea.",,40,-2,0,Fight()
 220,0,0,,(Dale la vuelta.),¡Joder! ¿Qué haces ahora?|(Le fuerzas a que se de la vuelta.),230,0,0,
-220,0,0,,(desátale.)|(1 minute),"(Le desatas los brazos mientras ella te insulta.|Una vez libre, te empuja con furia.)",200,0,0,Untie()
+220,0,0,,(desátale.)ADD_MINUTES:1,"(Le desatas los brazos mientras ella te insulta.|Una vez libre, te empuja con furia.)",200,0,0,Untie()
 220,0,0,,(Hazle cosquillas)ADD_MINUTES:1,¡Te dije que no tengo cosquillas!|(Te echa una mirada furiosa.),220,0,0,Tickle()
 220,1,0,,(Bésale)ADD_MINUTES:1,(Te mira perpleja después|del beso y se queda callada.),220,0,0,
 220,0,0,AmandaInBondage,(Haz que abrace a Amanda.)ADD_MINUTES:1,(Fuerza a las dos chicas a abrazarse y frotarse.)|¡Joder!  ¿Qué clase de pervertida eres?,240,-1,0,

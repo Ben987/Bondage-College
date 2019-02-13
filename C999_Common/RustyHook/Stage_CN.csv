@@ -1,2 +1,2 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(调查)|(1 分钟),这锈铁钩看上去非常易折。|你可以用它折磨人或者钓鱼。,0,0,0,
+0,0,0,,(调查)ADD_MINUTES:1,这锈铁钩看上去非常易折。|你可以用它折磨人或者钓鱼。,0,0,0,

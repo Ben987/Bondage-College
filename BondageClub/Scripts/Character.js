@@ -42,7 +42,8 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsBreastChaste : function() { return (this.Effect.indexOf("BreastChaste") >= 0) },
 		IsOwned : function() { return ((this.Owner != null) && (this.Owner.trim() != "")) },
 		IsOwner : function() { return ((NPCEventGet(this, "EndSubTrial") > 0) || (this.Name == Player.Owner.replace("NPC-", ""))) },
-		IsKneeling: function () { return ((this.Pose != null) && (this.Pose.indexOf("Kneel") >= 0)) }
+		IsKneeling: function () { return ((this.Pose != null) && (this.Pose.indexOf("Kneel") >= 0)) },
+		IsNaked : function () { return CharacterIsNaked(this); }
 	}
 
 	// If the character doesn't exist, we create it
@@ -382,13 +383,15 @@ function CharacterUnderwear(C, Appearance) {
 
 // Redress the character based on a specific appearance object
 function CharacterDress(C, Appearance) {
-	for(var A = 0; A < Appearance.length; A++)
-		if ((Appearance[A].Asset != null) && (Appearance[A].Asset.Group.Category == "Appearance"))
-			if (InventoryGet(C, Appearance[A].Asset.Group.Name) == null)
-				C.Appearance.push(Appearance[A]);
-	AssetReload(C);
-	C.Appearance = CharacterAppearanceSort(C.Appearance);
-	CharacterRefresh(C);
+	if ((Appearance != null) && (Appearance.length > 0)) {
+		for(var A = 0; A < Appearance.length; A++)
+			if ((Appearance[A].Asset != null) && (Appearance[A].Asset.Group.Category == "Appearance"))
+				if (InventoryGet(C, Appearance[A].Asset.Group.Name) == null)
+					C.Appearance.push(Appearance[A]);
+		AssetReload(C);
+		C.Appearance = CharacterAppearanceSort(C.Appearance);
+		CharacterRefresh(C);
+	}
 }
 
 // Removes any binding item from the character

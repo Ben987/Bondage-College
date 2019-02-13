@@ -408,6 +408,7 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  That was fun!  
 1019,1010,Let's continue the trial Mistress.,You've got me scared for a while.  I'm happy you've changed your mind my sub.,,,DomDontStopTrial,
 1019,1010,Let's continue the trial Mistress.,"Very good my submissive.  If you're scared or unsure, we can always talk about it.",,,DomDontStopTrial,Serious
 1019,1010,Let's continue the trial Mistress.,Great!  I can't wait to collar you my subbie.,,,DomDontStopTrial,Playful
+ActivityNone,,,(She ignores you.),,,,
 ActivityGagIntro,,,I think you talk way too much and that you should be gagged.,,,DomActivityGagIntro,
 ActivityGagIntro,,,"My submissive, silence is gold and you're pretty bad at staying quiet.  A gag would be perfect for you.",,,DomActivityGagIntro,Wise
 ActivityGagIntro,,,It's not easy to think when you talk all the time.  Maybe a gag will help.,,,DomActivityGagIntro,Dumb
@@ -552,12 +553,12 @@ ActivityNaked,ActivityNoChange,(Shake your head no.),(She grumbles and forces yo
 ActivityUnderwearIntro,,,"Make yourself at ease my subbie, you're in your room.  I've found these underwear for you.",,,DomActivityUnderwearIntro,
 ActivityUnderwearIntro,,,"Fuck girl, I want to see you in these undies.  Time to change!",,,DomActivityUnderwearIntro,Rude
 ActivityUnderwearIntro,,,It would be a delight for my eyes if I could see your beauty in these underwear.  It's time to change little one.,,,DomActivityUnderwearIntro,Polite
-ActivityUnderwear,ActivityNoChange,Alright.  (Get in your underwear.),"(You change for her as she smiles.)  You'll stay in your undies for 5 minutes, you cannot change.",ActivityRun(0),Player.CanTalk(),,
-ActivityUnderwear,ActivityNoChange,Yes Mistress.  (Get in your underwear.),"(You change for her as she smirks.)  Good girl, and now you cannot change again for 5 minutes.",ActivityRun(1),Player.CanTalk(),,
-ActivityUnderwear,ActivityNoChange,It might be cold.  (Get in your underwear.),"(You change for her as she nods.)  Stay like that, you cannot change for 5 minutes.",ActivityRun(-1),Player.CanTalk(),,
+ActivityUnderwear,ActivityNoChange,Alright.  (Wear the undies.),"(You change for her as she smiles.)  You'll stay in your undies for 5 minutes, you cannot change.",ActivityRun(0),Player.CanTalk(),,
+ActivityUnderwear,ActivityNoChange,Yes Mistress.  (Wear the undies.),"(You change for her as she smirks.)  Good girl, and now you cannot change again for 5 minutes.",ActivityRun(1),Player.CanTalk(),,
+ActivityUnderwear,ActivityNoChange,It might be cold.  (Wear the undies.),"(You change for her as she nods.)  Stay like that, you cannot change for 5 minutes.",ActivityRun(-1),Player.CanTalk(),,
 ActivityUnderwear,ActivityNoChange,Please!  I don't want to change.,(She grumbles and forces you to change.)  There!  And you cannot change for 5 minutes.,ActivityRun(-4),Player.CanTalk(),,
-ActivityUnderwear,ActivityNoChange,(Get in your underwear slowly.),"(You change for her as she smiles.)  You'll stay in your undies for 5 minutes, you cannot change.",ActivityRun(0),,,
-ActivityUnderwear,ActivityNoChange,(Roll your eyes up and strip.),"(You change for her as she nods.)  Stay like that, you cannot change for 5 minutes.",ActivityRun(-1),,,
+ActivityUnderwear,ActivityNoChange,(Slowly change in the undies.),"(You change for her as she smiles.)  You'll stay in your undies for 5 minutes, you cannot change.",ActivityRun(0),,,
+ActivityUnderwear,ActivityNoChange,(Roll your eyes up and change.),"(You change for her as she nods.)  Stay like that, you cannot change for 5 minutes.",ActivityRun(-1),,,
 ActivityUnderwear,ActivityNoChange,(Bow your head and change quickly.),"(You change for her as she smirks.)  Good girl, and now you cannot change again for 5 minutes.",ActivityRun(1),,,
 ActivityUnderwear,ActivityNoChange,(Shake your head no.),(She grumbles and forces you to change.)  There!  And you cannot change for 5 minutes.,ActivityRun(-4),,,
 ActivityRandomClothesIntro,,,It's time for you to change.  I've found some new clothes for you.,,,DomActivityRandomClothesIntro,
@@ -583,3 +584,14 @@ ActivityNoChange,1000,5 minutes!  That's unfair!,Naaaaa!  It won't take that lon
 ActivityNoChange,1000,(Bow your head.),I'll watch you to make sure you don't change.,BlockChange(5),,DomActivityNoChange4,
 ActivityNoChange,1000,(Bow your head.),"Excellent, I'll enforce the rule myself.",BlockChange(5),,DomActivityNoChange4,Serious
 ActivityNoChange,1000,(Bow your head.),I'll watch you.  It won't take that long.,BlockChange(5),,DomActivityNoChange4,Playful
+ActivityShibariIntro,,,"Little one, I've been studying in the dojo lately and I've found a few rope tricks that I want to try on your naked body.",,,DomActivityShibariIntro,
+ActivityShibariIntro,,,"Slave, I've been hanging around the dojo lately and found some tight rope techniques that I want to try on your naked body.",,,DomActivityShibariIntro,Violent
+ActivityShibariIntro,,,"My precious, I've been at the dojo lately and found rope techniques that should be both comfy and secure.  I want to try them on your naked body.",,,DomActivityShibariIntro,Peaceful
+ActivityShibari,1000,Yes Mistress.  (Let her tie you up.),"(She makes sure your naked and restrains you with hemp ropes from the ceiling.)  Wonderful, have fun struggling.",ActivityRun(1),Player.CanTalk(),,
+ActivityShibari,1000,I'm not sure.  (Let her tie you up.),(She forces you naked and restrains you with hemp ropes from the ceiling.)  Never doubt my bondage skills.,ActivityRun(-1),Player.CanTalk(),,
+ActivityShibari,1000,Alright.  (Let her tie you up.),"(She makes sure your naked and restrains you with hemp ropes from the ceiling.)  This is nice, have fun struggling.",ActivityRun(0),Player.CanTalk(),,
+ActivityShibari,1000,Please!  I don't want to do that.,(She frowns but forces you naked and restrains you with hemp ropes from the ceiling.)  There!  Struggle for me.,ActivityRun(-4),Player.CanTalk(),,
+ActivityShibari,1000,(Let her tie you up.),"(She makes sure your naked and restrains you with hemp ropes from the ceiling.)  This is nice, have fun struggling.",ActivityRun(0),,,
+ActivityShibari,1000,(Roll your eyes up and nod.),(She forces you naked and restrains you with hemp ropes from the ceiling.)  Never doubt my bondage skills.,ActivityRun(-1),,,
+ActivityShibari,1000,(Bow your head submissively.),"(She makes sure your naked and restrains you with hemp ropes from the ceiling.)  Wonderful, have fun struggling.",ActivityRun(1),,,
+ActivityShibari,1000,(Shake your head no.),(She frowns but forces you naked and restrains you with hemp ropes from the ceiling.)  There!  Struggle for me.,ActivityRun(-4),,,

@@ -1,2 +1,2 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Untersuchen.)|(1 Minute),Dieser rostige Haken wirkt etwas brüchig. Vielleicht|kann man ihn zum Foltern oder Angeln verwenden.,0,0,0,
+0,0,0,,(Untersuchen.)ADD_MINUTES:1,Dieser rostige Haken wirkt etwas brüchig. Vielleicht|kann man ihn zum Foltern oder Angeln verwenden.,0,0,0,

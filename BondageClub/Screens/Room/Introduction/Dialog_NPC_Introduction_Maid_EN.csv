@@ -18,6 +18,7 @@ ItemBreastLeatherWhip,,,(She jumps from the searing pain on her breast.)  Ouch! 
 ItemBreastLeatherCrop,,,(You whip her breast with the leather crop as she whimpers and bows her head.) Owwwwwww!,,
 ItemPelvisLeatherWhip,,,(You whip her butt hard as she sighs.)  Ahh! I promise I'll work harder Miss Head Maid!,,
 ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  Oww! That stings Miss!.,,
+0,,,(She stares at you.)  Hello naked girl.  Welcome to the introduction class.,,Player.IsNaked()
 0,,,"Hello head maid DialogPlayerName, welcome to the introduction class.",,IsHeadMaid
 0,,,"Hi sister, welcome to the introduction class.",,IsMaid
 0,,,"Hello there, welcome to the introduction class.",,!IsMaid

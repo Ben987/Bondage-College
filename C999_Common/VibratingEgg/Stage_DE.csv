@@ -1,9 +1,9 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Untersuchen.)|(1 Minute),"Dieses kleine Ei vibriert willkürlich. Nach dem Einsetzen|könnte es schwierig sein, es herauszubekommen.",0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Einsetzen.)|(1 Minute),"Du steckst dir das Ei in die Vagina. Es vibriert und|rutscht tiefer hinein, ob du es wieder raus bekommst?",0,0,0,Insert()
-10,0,0,HasLooseEgg,(Freies Ei untersuchen.)|(1 Minute),"Dieses kleine Ei vibriert willkürlich. Nach dem Einsetzen|könnte es schwierig sein, es herauszubekommen.",10,0,0,ShowImage()
-10,0,0,!Common_PlayerChaste,(Mit einem Finger|entfernen) (1 Minute),"Du steckst einen Finger hinein, kannst das|Ei aber nicht greifen. Du musst damit leben.",10,0,0,
-10,0,0,Common_PlayerChaste,(Mit einem Finger|entfernen) (1 Minute),"Du rüttelst am Gürtel und versuchst einen|Finger hineinzustecken, aber so kommst du nicht ran.",10,0,0,
-10,0,0,,(Durch Pressen|entfernen.) (1 Minute),"Du windest dich und versuchst das Ei aus deiner Vagina|zu drücken, aber ohne Erfolg. Du musst damit leben.",10,0,0,Contract()
-20,0,0,HasLooseEgg,(Freies Ei untersuchen.)|(1 Minute),"Dieses kleine Ei vibriert willkürlich. Nach dem Einsetzen|könnte es schwierig sein, es herauszubekommen.",20,0,0,ShowImage()
-20,0,0,,(Durch Pressen|entfernen.) (1 Minute),"Du windest dich und drückst mit deiner Vagina, aber|ohne eine freie Hand kannst du das Ei nicht entfernen.",20,0,0,
+0,0,0,,(Untersuchen.)ADD_MINUTES:1,"Dieses kleine Ei vibriert willkürlich. Nach dem Einsetzen|könnte es schwierig sein, es herauszubekommen.",0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Einsetzen.)ADD_MINUTES:1,"Du steckst dir das Ei in die Vagina. Es vibriert und|rutscht tiefer hinein, ob du es wieder raus bekommst?",0,0,0,Insert()
+10,0,0,HasLooseEgg,(Freies Ei untersuchen.)ADD_MINUTES:1,"Dieses kleine Ei vibriert willkürlich. Nach dem Einsetzen|könnte es schwierig sein, es herauszubekommen.",10,0,0,ShowImage()
+10,0,0,!Common_PlayerChaste,(Mit einem Finger|entfernen)ADD_MINUTES:1,"Du steckst einen Finger hinein, kannst das|Ei aber nicht greifen. Du musst damit leben.",10,0,0,
+10,0,0,Common_PlayerChaste,(Mit einem Finger|entfernen)ADD_MINUTES:1,"Du rüttelst am Gürtel und versuchst einen|Finger hineinzustecken, aber so kommst du nicht ran.",10,0,0,
+10,0,0,,(Durch Pressen|entfernen.)ADD_MINUTES:1,"Du windest dich und versuchst das Ei aus deiner Vagina|zu drücken, aber ohne Erfolg. Du musst damit leben.",10,0,0,Contract()
+20,0,0,HasLooseEgg,(Freies Ei untersuchen.)ADD_MINUTES:1,"Dieses kleine Ei vibriert willkürlich. Nach dem Einsetzen|könnte es schwierig sein, es herauszubekommen.",20,0,0,ShowImage()
+20,0,0,,(Durch Pressen|entfernen.)ADD_MINUTES:1,"Du windest dich und drückst mit deiner Vagina, aber|ohne eine freie Hand kannst du das Ei nicht entfernen.",20,0,0,

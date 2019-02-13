@@ -4,6 +4,7 @@ TouchSubAngry2,,,(DialogCharacterName grabs your arm.)  You're getting on my ner
 TouchSubAngry3,,,(DialogCharacterName grabs your hair.)  Touch my pet again and you'll get in a world of trouble!,,
 TouchSubPunishment,,,(She pulls you to her by the hair.)  Never touch my pet!  Now you're in trouble.,,
 KneelToTalk,,,"Submissive girl, what are you doing standing up in my presence?  Get on your knees if you want to speak to me.",,
+0,,,(She looks at you and grins.)  Be direct and don't waste my time naked girl.,,Player.IsNaked()
 0,,,Greetings head maid DialogPlayerName.  Is there a problem that the sorority cannot handle?,,"DialogLogQuery(""LeadSorority"", ""Maid"")"
 0,,,Greetings master kidnapper DialogPlayerName.  I trust you're having a good time hunting.,,"DialogReputationGreater(""Kidnap"", 100)"
 0,,,Welcome little maid.  How can I help you?,,"DialogLogQuery(""JoinedSorority"", ""Maid"")"
@@ -74,7 +75,8 @@ KneelToTalk,,,"Submissive girl, what are you doing standing up in my presence?  
 51,52,What requirement?,"If you want to play with her, you must join her.  Do you agree?",,
 51,52,Please tell me.,"If you want to play with her, you must join her.  Do you agree?",,
 52,,I'm not sure I understand.,"I'm not going to repeat again.  If you want to play with her, you must join her.",DialogRemove(),
-52,53,Alright!  I'll do it!,"(She smirks.)  Very well, strip girl.",,
+52,53,Alright!  I'll do it!,"(She smirks.)  Very well, strip girl.",,!Player.IsNaked()
+52,55,Alright!  I'll do it!,Good girl.  (She forces an armbinder on you and straps it tight.),PlayerArmbinder(-3),Player.IsNaked()
 52,0,I can't do that.,Don't waste my time then.  Is there anything else you want?,,
 53,54,Yes Mistress.  (Strip for her.),(You slowly strip for her as she smiles.),PlayerStrip(),
 53,54,I'm not stripping!,We'll see about that!  (She painfully locks your arm behind your back until you give up and strip.),PlayerStrip(),

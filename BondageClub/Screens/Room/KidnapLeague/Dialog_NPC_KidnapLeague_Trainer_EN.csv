@@ -28,6 +28,7 @@ ItemPelvisLeatherWhip,,,"(You whip her butt as she grumbles.)  Whip the kidnappe
 ItemPelvisLeatherCrop,,,(You lash the leather crop pretty hard on her butt.)  Ahh! I'm glad I'm not facing you in a real match.,,
 SuspensionHempRope,,,(You restrain her feet with the rope and suspend her from the ceiling.)  Woah!  Maybe you should go to the Dojo.,,
 RemoveSuspensionHempRope,,,(You let her down from the ceiling and release her feet.)  Thanks a lot!  I was getting dizzy.,,
+0,,,(She grins.)  Hello naked girl.  Welcome to the Kidnappers League.,,Player.IsNaked()
 0,,,Welcome to the Kidnappers League.  Are you here to register as a kidnapper?,,"DialogReputationLess(""Kidnap"", 0)"
 0,,,It's wonderful to see you Miss.  It's always thrilling to see one of our best kidnappers.,,"DialogReputationGreater(""Kidnap"", 100)"
 0,,,"Hi DialogPlayerName, it's always nice to see you.  Do you want to practice with me?",,"DialogReputationGreater(""Kidnap"", 50)"

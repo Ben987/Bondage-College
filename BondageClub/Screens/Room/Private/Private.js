@@ -5,7 +5,7 @@ var PrivateCharacter = [];
 var PrivateCharacterTypeList = ["NPC_Private_VisitorShy", "NPC_Private_VisitorHorny", "NPC_Private_VisitorTough"];
 var PrivateCharacterToSave = 0;
 var PrivateReleaseTimer = 0;
-var PrivateRandomActivityList = ["Gag", "Ungag", "Restrain", "FullRestrain", "Release", "Tickle", "Spank", "Pet", "Slap", "Kiss", "Fondle", "Naked", "Underwear", "RandomClothes"];
+var PrivateRandomActivityList = ["Gag", "Ungag", "Restrain", "FullRestrain", "Release", "Tickle", "Spank", "Pet", "Slap", "Kiss", "Fondle", "Naked", "Underwear", "RandomClothes", "Shibari"];
 var PrivateRandomActivity = "";
 var PrivateRandomActivityCount = 0;
 var PrivateRandomActivityAffectLove = true;
@@ -314,6 +314,7 @@ function PrivateStartActivity() {
 
 	// Finds a valid activity for the player
 	var Act = "";
+	var Count = 0;
 	while (true) {
 
 		// Picks an activity at random
@@ -334,6 +335,14 @@ function PrivateStartActivity() {
 		if ((Act == "Naked") && !CharacterIsNaked(Player) && (NPCTraitGet(CurrentCharacter, "Horny") >= 0) && Player.CanChange()) break;
 		if ((Act == "Underwear") && !CharacterIsInUnderwear(Player) && Player.CanChange()) break;
 		if ((Act == "RandomClothes") && Player.CanChange()) break;
+		if ((Act == "Shibari") && Player.CanChange() && (NPCTraitGet(CurrentCharacter, "Wise") >= 0)) break;
+		
+		// After 100 tries, we give up on picking an activity and the owner ignore the player
+		Count++;
+		if (Count >= 100) {
+			CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "ActivityNone");
+			return;
+		}
 
 	}
 
@@ -367,6 +376,17 @@ function PrivateActivityRun(LoveFactor) {
 	if (PrivateRandomActivity == "Naked") CharacterNaked(Player);
 	if (PrivateRandomActivity == "Underwear") CharacterRandomUnderwear(Player);
 	if (PrivateRandomActivity == "RandomClothes") CharacterAppearanceFullRandom(Player, true);
+
+	// In Shibari, the player gets naked and fully roped in hemp
+	if (PrivateRandomActivity == "Shibari") {
+		CharacterNaked(Player);
+		InventoryWear(Player, "HempRope", "ItemArms", "Default", Math.floor(Math.random() * 10) + 1);
+		InventoryWear(Player, "HempRope", "ItemLegs", "Default", Math.floor(Math.random() * 10) + 1);
+		InventoryWear(Player, "SuspensionHempRope", "ItemFeet", "Default", Math.floor(Math.random() * 10) + 1);
+		InventoryWear(Player, "HempRopeHarness", "ItemTorso", "Default", Math.floor(Math.random() * 10) + 1);
+		InventoryWearRandom(Player, "ItemMouth");
+		PrivateReleaseTimer = CommonTime() + (Math.random() * 60000) + 60000;
+	}
 
 	// After running the activity a few times, we stop
 	if (PrivateRandomActivityCount >= Math.floor(Math.random() * 4) + 2) {

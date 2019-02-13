@@ -1,3 +1,3 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(调查)|(1 分钟),钥匙是用不锈钢造的，|应该能解开大部分的手铐。,0,0,0,
-0,0,0,IsCuffed,(解开手铐)|(1 分钟),你笨拙地试了一会，|终于解开了锁。,0,0,0,Unlock()
+0,0,0,,(调查)ADD_MINUTES:1,钥匙是用不锈钢造的，|应该能解开大部分的手铐。,0,0,0,
+0,0,0,IsCuffed,(解开手铐)ADD_MINUTES:1,你笨拙地试了一会，|终于解开了锁。,0,0,0,Unlock()
