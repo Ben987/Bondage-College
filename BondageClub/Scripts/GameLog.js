@@ -2,12 +2,16 @@
 var Log = [];
 
 // Add a new log to the server side
-function LogAdd(NewLogName, NewLogGroup, Push) {
+function LogAdd(NewLogName, NewLogGroup, NewLogValue, Push) {
+
+	// Makes sure the value is numeric
+	if (NewLogValue != null) NewLogValue = parseInt(NewLogValue);
 
 	// Checks to make sure we don't duplicate a log
 	var AddToLog = true;
 	for (var L = 0; L < Log.length; L++)
 		if ((Log[L].Name == NewLogName) && (Log[L].Group == NewLogGroup)) {
+			Log[L].Value = NewLogValue;
 			AddToLog = false;
 			break;
 		}
@@ -16,22 +20,24 @@ function LogAdd(NewLogName, NewLogGroup, Push) {
 	if (AddToLog) {
 		var NewLog = {
 			Name: NewLogName,
-			Group: NewLogGroup
+			Group: NewLogGroup,
+			Value: NewLogValue
 		}
 		Log.push(NewLog);
 	}
 
 	// Sends the log to the server
 	if ((Push == null) || Push)
-		AccountRequest("log_add", "&name=" + NewLogName + "&group=" + NewLogGroup);
+		AccountRequest("log_add", "&name=" + NewLogName + "&group=" + NewLogGroup + ((NewLogValue != null) ? "&value=" + NewLogValue : ""));
 
 }
 
-// Checks if the log exists, return true if it does
+// Checks if the log exists, return true if it does (if there's a value, it counts as an expiry time)
 function LogQuery(QueryLogName, QueryLogGroup) {
 	for (var L = 0; L < Log.length; L++)
 		if ((Log[L].Name == QueryLogName) && (Log[L].Group == QueryLogGroup))
-			return true;
+			if ((Log[L].Value == null) || (Log[L].Value >= CurrentTime))
+				return true;
 	return false;
 }
 
@@ -44,7 +50,7 @@ function LogLoad(NewLog) {
 
 		// Add each log entry one by one
 		for (var L = 0; L < NewLog.length; L++)
-			LogAdd(NewLog[L].Name, NewLog[L].Group, false);
+			LogAdd(NewLog[L].Name, NewLog[L].Group, NewLog[L].Value, false);
 
 	}
 	

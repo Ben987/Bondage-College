@@ -26,36 +26,41 @@ function CharacterAppearanceBuildAssets(C) {
 // Makes sure the character appearance is valid from inventory and cloth requirement
 function CharacterAppearanceValidate(C) {
 	
-	// Remove any appearance item that's not in inventory
-	var Refresh = false;
-	for(var A = 0; A < C.Appearance.length; A++)
-		if ((C.Appearance[A].Asset.Value != 0) && (C.Appearance[A].Asset.Group.Category == "Appearance") && !InventoryAvailable(C, C.Appearance[A].Asset.Name, C.Appearance[A].Asset.Group.Name)) {
-			C.Appearance.splice(A, 1);
-			Refresh = true;
-			A--;
-		}
+	// Prevent changing the player if there's a no change rule
+	if ((C != 0) || !LogQuery("BlockChange", "Rule")) {
+	
+		// Remove any appearance item that's not in inventory
+		var Refresh = false;
+		for(var A = 0; A < C.Appearance.length; A++)
+			if ((C.Appearance[A].Asset.Value != 0) && (C.Appearance[A].Asset.Group.Category == "Appearance") && !InventoryAvailable(C, C.Appearance[A].Asset.Name, C.Appearance[A].Asset.Group.Name)) {
+				C.Appearance.splice(A, 1);
+				Refresh = true;
+				A--;
+			}
 
-	// Remove items flagged as "Remove At Login"
-	var Refresh = false;
-	for(var A = 0; A < C.Appearance.length; A++)
-		if (C.Appearance[A].Asset.RemoveAtLogin) {
-			C.Appearance.splice(A, 1);
-			Refresh = true;
-			A--;
-		}
+		// Remove items flagged as "Remove At Login"
+		var Refresh = false;
+		for(var A = 0; A < C.Appearance.length; A++)
+			if (C.Appearance[A].Asset.RemoveAtLogin) {
+				C.Appearance.splice(A, 1);
+				Refresh = true;
+				A--;
+			}
 
-	// Dress back if there are missing appearance items
-	for(var A = 0; A < AssetGroup.length; A++)
-		if (AssetGroup[A].IsDefault && (CharacterAppearanceGetCurrentValue(C, AssetGroup[A].Name, "Name") == "None"))
-			for(var B = 0; B < Asset.length; B++)
-				if (Asset[B].Group.Name == AssetGroup[A].Name) {
-					C.Appearance.push({ Asset: Asset[B], Color: Asset[B].Group.ColorSchema[0] });
-					Refresh = true;
-					break;
-				}
-				
-	// If we must refresh the character and push the appearance to the server
-	if (Refresh) CharacterRefresh(C);
+		// Dress back if there are missing appearance items
+		for(var A = 0; A < AssetGroup.length; A++)
+			if (AssetGroup[A].IsDefault && (CharacterAppearanceGetCurrentValue(C, AssetGroup[A].Name, "Name") == "None"))
+				for(var B = 0; B < Asset.length; B++)
+					if (Asset[B].Group.Name == AssetGroup[A].Name) {
+						C.Appearance.push({ Asset: Asset[B], Color: Asset[B].Group.ColorSchema[0] });
+						Refresh = true;
+						break;
+					}
+					
+		// If we must refresh the character and push the appearance to the server
+		if (Refresh) CharacterRefresh(C);
+		
+	}
 
 }
 
@@ -109,18 +114,19 @@ function CharacterAppearanceMustHide(C, GroupName) {
 }
 
 // Sets a full random set of items for a character
-function CharacterAppearanceFullRandom(C) {
+function CharacterAppearanceFullRandom(C, ClothOnly) {
 
 	// Clear the current appearance
 	for (var A = 0; A < C.Appearance.length; A++)
-		if (C.Appearance[A].Asset.Group.Category == "Appearance") {
-			C.Appearance.splice(A, 1);
-			A--;
-		}
+		if (C.Appearance[A].Asset.Group.Category == "Appearance") 
+			if ((ClothOnly == null) || (C.Appearance[A].Asset.Group.AllowNone)) {
+				C.Appearance.splice(A, 1);
+				A--;
+			}
 
 	// For each item group (non default items only show at a 20% rate)
 	for (var A = 0; A < AssetGroup.length; A++)
-		if ((AssetGroup[A].Category == "Appearance") && (AssetGroup[A].IsDefault || (Math.random() < 0.2) || CharacterAppearanceRequired(C, AssetGroup[A].Name)) && !CharacterAppearanceMustHide(C, AssetGroup[A].Name)) {
+		if ((AssetGroup[A].Category == "Appearance") && (AssetGroup[A].IsDefault || (Math.random() < 0.2) || CharacterAppearanceRequired(C, AssetGroup[A].Name)) && !CharacterAppearanceMustHide(C, AssetGroup[A].Name) && (CharacterAppearanceGetCurrentValue(C, AssetGroup[A].Name, "Name") == "None")) {
 			
 			// Get the parent size
 			var ParentSize = "";

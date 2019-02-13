@@ -33,6 +33,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		CanWalk : function() { return ((this.Effect.indexOf("Freeze") < 0) && ((this.Pose == null) || (this.Pose.indexOf("Kneel") < 0))) },
 		CanKneel : function() { return ((this.Effect.indexOf("Freeze") < 0) && ((this.Pose == null) || (this.Pose.indexOf("LegsClosed") < 0))) },
 		CanInteract : function() { return (this.Effect.indexOf("Block") < 0) },
+		CanChange : function() { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("Block") < 0) && (this.Effect.indexOf("Prone") < 0) && !LogQuery("BlockChange", "Rule")) },
 		IsProne : function() { return (this.Effect.indexOf("Prone") >= 0) },
 		IsRestrained : function() { return ((this.Effect.indexOf("Freeze") >= 0) || (this.Effect.indexOf("Block") >= 0) || (this.Effect.indexOf("Prone") >= 0)) },
 		IsBlind : function() { return ((Player.Effect.indexOf("BlindLight") >= 0) || (Player.Effect.indexOf("BlindNormal") >= 0) || (Player.Effect.indexOf("BlindHeavy") >= 0)) },
@@ -314,6 +315,22 @@ function CharacterRefresh(C) {
 	if (CurrentModule != "Character") CharacterAppearanceSave(C);
 }
 
+// Returns TRUE if a character is naked
+function CharacterIsNaked(C) {
+	for(var A = 0; A < C.Appearance.length; A++)
+		if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Category == "Appearance") && C.Appearance[A].Asset.Group.AllowNone && !C.Appearance[A].Asset.Group.KeepNaked) 
+			return false;
+	return true;
+}
+
+// Returns TRUE if a character is in her underwear
+function CharacterIsInUnderwear(C) {
+	for(var A = 0; A < C.Appearance.length; A++)
+		if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Category == "Appearance") && C.Appearance[A].Asset.Group.AllowNone && !C.Appearance[A].Asset.Group.KeepNaked && !C.Appearance[A].Asset.Group.Underwear)
+			return false;
+	return true;
+}
+
 // Removes all appearance items from the character
 function CharacterNaked(C) {
 	CharacterAppearanceNaked(C);
@@ -322,12 +339,34 @@ function CharacterNaked(C) {
 	CharacterRefresh(C);
 }
 
-// Removes all appearance items from the character
-function CharacterIsNaked(C) {
-	for(var A = 0; A < C.Appearance.length; A++)
-		if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Category == "Appearance") && C.Appearance[A].Asset.Group.AllowNone && !C.Appearance[A].Asset.Group.KeepNaked) 
-			return false;
-	return true;
+// Dress the character in random underwear
+function CharacterRandomUnderwear(C) {
+
+	// Clear the current clothes
+	for (var A = 0; A < C.Appearance.length; A++)
+		if ((C.Appearance[A].Asset.Group.Category == "Appearance") && C.Appearance[A].Asset.Group.AllowNone) {
+			C.Appearance.splice(A, 1);
+			A--;
+		}
+
+	// Generate random undies at a random color
+	var Color = "";
+	for(var A = 0; A < AssetGroup.length; A++)
+		if ((AssetGroup[A].Category == "Appearance") && AssetGroup[A].Underwear && (AssetGroup[A].IsDefault || (Math.random() < 0.2))) {
+			var Group = [];
+			if (Color == "") Color = CommonRandomItemFromList("", AssetGroup[A].ColorSchema);
+			for(var I = 0; I < Asset.length; I++)
+				if ((Asset[I].Group.Name == AssetGroup[A].Name) && ((Asset[I].Value == 0) || InventoryAvailable(C, Asset[I].Name, Asset[I].Group.Name)))
+					Group.push(Asset[I]);
+			if (Group.length > 0)
+				CharacterAppearanceSetItem(C, AssetGroup[A].Name, Group[Math.floor(Group.length * Math.random())], Color);
+		}
+
+	// Refreshes the character
+	AssetReload(C);
+	C.Appearance = CharacterAppearanceSort(C.Appearance);
+	CharacterRefresh(C);
+
 }
 
 // Removes all appearance items from the character expect underwear
@@ -384,7 +423,7 @@ function CharacterFullRandomRestrain(C, Ratio) {
 		if (Ratio.trim().toUpperCase() == "LOT") { RatioRare = 0.5; RatioNormal = 0; }
 		if (Ratio.trim().toUpperCase() == "ALL") { RatioRare = 0; RatioNormal = 0; }
 	}
-	
+
 	// Apply each item if needed
 	if (InventoryGet(C, "ItemArms") == null) InventoryWearRandom(C, "ItemArms");
 	if ((Math.random() >= RatioRare) && (InventoryGet(C, "ItemHead") == null)) InventoryWearRandom(C, "ItemHead");

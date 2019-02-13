@@ -27,7 +27,7 @@ function MainHallRun() {
 		// Draws the character and main hall buttons
 		DrawCharacter(Player, 750, 0, 1);
 		DrawButton(1525, 25, 90, 90, "", "White", "Icons/Character.png");
-		DrawButton(1645, 25, 90, 90, "", "White", "Icons/Dress.png");
+		if (!LogQuery("BlockChange", "Rule")) DrawButton(1645, 25, 90, 90, "", "White", "Icons/Dress.png");
 		if (Player.CanWalk()) DrawButton(1765, 25, 90, 90, "", "White", "Icons/Shop.png");
 		DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 		if (Player.CanWalk()) DrawButton(1525, 145, 450, 65, TextGet("IntroductionClass"), "White");
@@ -92,7 +92,7 @@ function MainHallClick() {
 		// Character and main buttons
 		if ((MouseX >= 750) && (MouseX < 1250) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
 		if ((MouseX >= 1525) && (MouseX < 1615) && (MouseY >= 25) && (MouseY < 115)) InformationSheetLoadCharacter(Player);
-		if ((MouseX >= 1645) && (MouseX < 1735) && (MouseY >= 25) && (MouseY < 115)) CommonSetScreen("Character", "Appearance");
+		if ((MouseX >= 1645) && (MouseX < 1735) && (MouseY >= 25) && (MouseY < 115) && !LogQuery("BlockChange", "Rule")) CommonSetScreen("Character", "Appearance");
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) CommonSetScreen("Character", "Login");
 
 		// Main game rooms

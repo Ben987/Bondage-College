@@ -46,7 +46,7 @@ function PhotographicRun() {
 		DrawCharacter(PhotographicSub, 750, 0, 1);
 		if (Player.CanWalk()) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 		DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
-		if (Player.CanInteract()) DrawButton(1885, 265, 90, 90, "", "White", "Icons/Dress.png");
+		if (Player.CanChange()) DrawButton(1885, 265, 90, 90, "", "White", "Icons/Dress.png");
 		if (Player.CanInteract()) DrawButton(1885, 385, 90, 90, "", "White", "Screens/Room/Photographic/foto.png");
 	} else {//if (PhotographicStartInventory)
 		DrawCharacter(Player, 0, 0, 1);
@@ -80,7 +80,7 @@ function PhotographicClick() {
 		if ((MouseX >= 750) && (MouseX < 1250) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(PhotographicSub);
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355) && Player.CanInteract()) {CharacterAppearanceReturnRoom = "Photographic"; CommonSetScreen("Character", "Appearance");};//
+		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355) && Player.CanChange()) {CharacterAppearanceReturnRoom = "Photographic"; CommonSetScreen("Character", "Appearance");};//
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475) && Player.CanInteract()) PhotographicCanvasToPng(750);
 	} else {//if (PhotographicStartInventory)
 		// The user can select a different body by clicking on the vendor

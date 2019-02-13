@@ -157,6 +157,6 @@ function NPCInteraction() {
 	if ((CurrentCharacter != null) && (CurrentCharacter.ID != 0))
 		if (CurrentTime >= NPCEventGet(CurrentCharacter, "LastInteraction")) {
 			NPCEventAdd(CurrentCharacter, "LastInteraction", CurrentTime + 20000);
-			if (CurrentCharacter.Love < 50) NPCLoveChange(CurrentCharacter, 1);
+			if (CurrentCharacter.Love < 60) NPCLoveChange(CurrentCharacter, 1);
 		}
 }

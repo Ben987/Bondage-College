@@ -5,7 +5,7 @@ var PrivateCharacter = [];
 var PrivateCharacterTypeList = ["NPC_Private_VisitorShy", "NPC_Private_VisitorHorny", "NPC_Private_VisitorTough"];
 var PrivateCharacterToSave = 0;
 var PrivateReleaseTimer = 0;
-var PrivateRandomActivityList = ["Gag", "Ungag", "Restrain", "FullRestrain", "Release", "Tickle", "Spank", "Pet", "Slap", "Kiss", "Fondle"];
+var PrivateRandomActivityList = ["Gag", "Ungag", "Restrain", "FullRestrain", "Release", "Tickle", "Spank", "Pet", "Slap", "Kiss", "Fondle", "Naked", "Underwear", "RandomClothes"];
 var PrivateRandomActivity = "";
 var PrivateRandomActivityCount = 0;
 var PrivateRandomActivityAffectLove = true;
@@ -90,8 +90,8 @@ function PrivateRun() {
 	if (LogQuery("RentRoom", "PrivateRoom")) {
 		PrivateDrawCharacter();
 		if ((Player.Cage == null) && Player.CanWalk()) DrawButton(1885, 265, 90, 90, "", "White", "Icons/Shop.png");
-		DrawButton(1885, 385, 90, 90, "", "White", "Icons/Dress.png");
-		if (LogQuery("Wardrobe", "PrivateRoom")) DrawButton(1885, 505, 90, 90, "", "White", "Icons/Wardrobe.png");
+		if (!LogQuery("BlockChange", "Rule")) DrawButton(1885, 385, 90, 90, "", "White", "Icons/Dress.png");
+		if (LogQuery("Wardrobe", "PrivateRoom") && !LogQuery("BlockChange", "Rule")) DrawButton(1885, 505, 90, 90, "", "White", "Icons/Wardrobe.png");
 	} else {
 		DrawCharacter(Player, 500, 0, 1);
 		DrawCharacter(PrivateVendor, 1000, 0, 1);
@@ -154,8 +154,8 @@ function PrivateClick() {
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk() && (Player.Cage == null)) { CharacterAppearanceValidate(Player); CommonSetScreen("Room", "MainHall"); }
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235) && LogQuery("RentRoom", "PrivateRoom") && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355) && LogQuery("RentRoom", "PrivateRoom") && Player.CanWalk() && (Player.Cage == null)) CharacterSetCurrent(PrivateVendor);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475) && LogQuery("RentRoom", "PrivateRoom")) { CharacterAppearanceReturnRoom = "Private"; CommonSetScreen("Character", "Appearance"); }
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 505) && (MouseY < 595) && LogQuery("RentRoom", "PrivateRoom") && LogQuery("Wardrobe", "PrivateRoom")) CommonSetScreen("Character", "Wardrobe");
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475) && LogQuery("RentRoom", "PrivateRoom") && !LogQuery("BlockChange", "Rule")) { CharacterAppearanceReturnRoom = "Private"; CommonSetScreen("Character", "Appearance"); }
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 505) && (MouseY < 595) && LogQuery("RentRoom", "PrivateRoom") && !LogQuery("BlockChange", "Rule") && LogQuery("Wardrobe", "PrivateRoom")) CommonSetScreen("Character", "Wardrobe");
 	if ((MouseX <= 1885) && (MouseY < 900) && LogQuery("RentRoom", "PrivateRoom") && (Player.Cage == null)) PrivateClickCharacter();
 	if ((MouseX <= 1885) && (MouseY >= 900) && LogQuery("RentRoom", "PrivateRoom") && LogQuery("Cage", "PrivateRoom")) PrivateClickCharacterButton();
 }
@@ -321,16 +321,19 @@ function PrivateStartActivity() {
 
 		// If the activity is valid
 		if ((Act == "Gag") && Player.CanTalk()) break;
-		if ((Act == "Ungag") && !Player.CanTalk()) break;
+		if ((Act == "Ungag") && !Player.CanTalk() && (CommonTime() > PrivateReleaseTimer)) break;
 		if ((Act == "Restrain") && (InventoryGet(Player, "ItemArms") == null)) break;
 		if ((Act == "FullRestrain") && (InventoryGet(Player, "ItemArms") == null)) break;
-		if ((Act == "Release") && Player.IsRestrained()) break;
+		if ((Act == "Release") && Player.IsRestrained() && (CommonTime() > PrivateReleaseTimer)) break;
 		if ((Act == "Tickle") && (NPCTraitGet(CurrentCharacter, "Playful") >= 0)) break;
 		if ((Act == "Spank") && (NPCTraitGet(CurrentCharacter, "Violent") >= 0)) break;
-		if ((Act == "Pet") && Player.CanTalk() && (NPCTraitGet(CurrentCharacter, "Peaceful") > 0)) break;
-		if ((Act == "Slap") && Player.CanTalk() && (NPCTraitGet(CurrentCharacter, "Violent") > 0)) break;
-		if ((Act == "Kiss") && Player.CanTalk() && (NPCTraitGet(CurrentCharacter, "Horny") >= 0)) break;
+		if ((Act == "Pet") && (NPCTraitGet(CurrentCharacter, "Peaceful") > 0)) break;
+		if ((Act == "Slap") && (CurrentCharacter.Love < 50) && (NPCTraitGet(CurrentCharacter, "Violent") > 0)) break;
+		if ((Act == "Kiss") && Player.CanTalk() && (CurrentCharacter.Love >= 50) && (NPCTraitGet(CurrentCharacter, "Horny") >= 0)) break;
 		if ((Act == "Fondle") && !Player.IsBreastChaste() && (NPCTraitGet(CurrentCharacter, "Horny") > 0)) break;
+		if ((Act == "Naked") && !CharacterIsNaked(Player) && (NPCTraitGet(CurrentCharacter, "Horny") >= 0) && Player.CanChange()) break;
+		if ((Act == "Underwear") && !CharacterIsInUnderwear(Player) && Player.CanChange()) break;
+		if ((Act == "RandomClothes") && Player.CanChange()) break;
 
 	}
 
@@ -361,11 +364,20 @@ function PrivateActivityRun(LoveFactor) {
 	if (PrivateRandomActivity == "Release") CharacterRelease(Player);
 	if (PrivateRandomActivity == "Ungag") { InventoryRemove(Player, "ItemMouth"); InventoryRemove(Player, "ItemHead"); }
 	if ((PrivateRandomActivity == "Gag") || (PrivateRandomActivity == "Restrain") || (PrivateRandomActivity == "FullRestrain")) PrivateReleaseTimer = CommonTime() + (Math.random() * 60000) + 60000;
-	
+	if (PrivateRandomActivity == "Naked") CharacterNaked(Player);
+	if (PrivateRandomActivity == "Underwear") CharacterRandomUnderwear(Player);
+	if (PrivateRandomActivity == "RandomClothes") CharacterAppearanceFullRandom(Player, true);
+
 	// After running the activity a few times, we stop
-	if (PrivateRandomActivityCount >= Math.floor(Math.random() * 6) + 3) {
+	if (PrivateRandomActivityCount >= Math.floor(Math.random() * 4) + 2) {
 		CurrentCharacter.Stage = "1000";
 		CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "Activity" + PrivateRandomActivity + "Outro");
 	}
 
+}
+
+// Set the no change rule for the player
+function PrivateBlockChange(Minutes) {
+	LogAdd("BlockChange", "Rule", CurrentTime + (Minutes * 60000));
+	CharacterAppearanceSave(Player);
 }

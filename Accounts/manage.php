@@ -148,18 +148,27 @@ if (isset($_GET["command"])) {
 		if (ValidLogin($data))
 			if (isset($_GET["name"]) && isset($_GET["group"]) && ($_GET["name"] != "") && ($_GET["group"] != "")) {
 
-				// If the entry is already in the log, we exit
+				// Loads the log
 				$arr = json_decode($data);
 				if (!isset($arr->Log)) $arr->Log = [];
-				foreach ($arr->Log as $item)
-					if (($item->Name == $_GET["name"]) && ($item->Group == $_GET["group"]))
-						die("already_in_log");
+				$must_add = 1;
 
-				// Create the log entry and add it
-				$log = new stdClass();
-				$log->Name = $_GET["name"];
-				$log->Group = $_GET["group"];
-				array_push($arr->Log, $log);
+				// If the entry is already in the log, we update it
+				foreach ($arr->Log as $item)
+					if (($item->Name == $_GET["name"]) && ($item->Group == $_GET["group"])) {
+						if (isset($_GET["value"]) && ($_GET["value"] != "")) $item->Value = $_GET["value"];
+						else unset($item->Value);
+						$must_add = 0;
+					}
+
+				// Creates the log entry and add it if we need too
+				if ($must_add == 1) {
+					$log = new stdClass();
+					$log->Name = $_GET["name"];
+					$log->Group = $_GET["group"];
+					if (isset($_GET["value"]) && ($_GET["value"] != "")) $log->Value = $_GET["value"];
+					array_push($arr->Log, $log);
+				}
 
 				// Overwrite the file
 				$file = GetFileName();
