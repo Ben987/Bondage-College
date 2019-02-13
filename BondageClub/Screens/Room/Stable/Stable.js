@@ -9,6 +9,7 @@ var StablePlayerAppearance = null;
 var StablePlayerDressOff = false;
 var StablePlayerIsPony = false;
 var StablePlayerIsTrainer = false;
+var StablePlayerIsNewby = false;
 var StablePlayerTrainingActiv = false;
 var StablePlayerTrainingLessons = 0;
 var StablePlayerTrainingBehavior = 0;
@@ -52,8 +53,9 @@ function StableRun() {
 		DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
 //		DrawButton(1885, 265, 90, 90, "", "White", "Screens/Room/Stable/Horse.png");
 	}
-	StablePlayerIsPony = (LogQuery("JoinedStable", "Pony") && (ReputationGet("Dominant") > -30));
+	StablePlayerIsPony = (LogQuery("JoinedStable", "Pony") && (ReputationGet("Dominant") < -30));
 	StablePlayerIsTrainer = (LogQuery("JoinedStable", "Trainer") && (ReputationGet("Dominant") > 30));
+	StablePlayerIsNewby = (!StablePlayerIsPony && !StablePlayerIsTrainer);
 }
 
 // When the user clicks in the stable
@@ -561,7 +563,6 @@ function StablePonyTraining (probability) {
 
 
 /* todo
-Player pay for Training
 Player StablePony.AllowItem
 minigame?
 */
