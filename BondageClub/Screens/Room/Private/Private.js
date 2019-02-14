@@ -37,6 +37,7 @@ function PrivateTrialInProgress() { return ((CurrentTime < NPCEventGet(CurrentCh
 function PrivateTrialDone() { return ((CurrentTime >= NPCEventGet(CurrentCharacter, "EndSubTrial")) && (NPCEventGet(CurrentCharacter, "EndSubTrial") > 0)) }
 function PrivateTrialCanCancel() { return (NPCEventGet(CurrentCharacter, "EndSubTrial") > 0) }
 function PrivateNPCInteraction(LoveFactor) { if ((CurrentCharacter.Love < 60) || (parseInt(LoveFactor) < 0)) NPCLoveChange(CurrentCharacter, LoveFactor); }
+function PrivateWillForgive() { return (NPCEventGet(CurrentCharacter, "RefusedActivity") < CurrentTime - 60000) }
 
 // Loads the private room vendor NPC
 function PrivateLoad() {
@@ -361,8 +362,35 @@ function PrivateActivityRun(LoveFactor) {
 
 	// Changes the love factor only once per activity (except if negative)
 	PrivateRandomActivityCount++;
+	LoveFactor = parseInt(LoveFactor);
 	if ((LoveFactor < 0) || PrivateRandomActivityAffectLove) NPCLoveChange(CurrentCharacter, LoveFactor);
 	if ((LoveFactor > 0) && PrivateRandomActivityAffectLove) PrivateRandomActivityAffectLove = false;
+
+	// If the player refused to do the activity, she will be either forced, punished or the Domme will stop it
+	if (LoveFactor <= -3) {
+
+		// Each factor is randomized and added to a stat, punish is automatic if two refusal in two minutes
+		var Force = Math.random() * 100 + NPCTraitGet(CurrentCharacter, "Violent");
+		var Punish = Math.random() * 100 + NPCTraitGet(CurrentCharacter, "Serious");
+		var Stop = Math.random() * 100 + NPCTraitGet(CurrentCharacter, "Wise");
+		if (NPCEventGet(CurrentCharacter, "RefusedActivity") >= CurrentTime - 120000) Punish = 500;
+		NPCEventAdd(CurrentCharacter, "RefusedActivity", CurrentTime);
+
+		// If we must punish
+		if ((Punish > Force) && (Punish > Stop)) {
+			CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "ActivityPunishIntro");
+			CurrentCharacter.Stage = "ActivityPunish";
+			return;
+		}
+
+		// If we must stop the activity
+		if ((Stop > Force) && (Stop > Punish)) {
+			CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "ActivityStop");
+			CurrentCharacter.Stage = "1001";
+			return;
+		}
+
+	}
 
 	// The restraining activities are harsher for serious NPCs
 	if (PrivateRandomActivity == "Gag") InventoryWearRandom(Player, "ItemMouth");

@@ -353,6 +353,16 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  That was fun!  
 1000,,"Mistress, can I wear something else now?","Girl, if you complain too much I'll have to extend the time.  You need to wait.",,"DialogLogQuery(""BlockChange"", ""Rule"")",DomCanChange,Serious
 1000,,"Mistress, can I wear something else now?","Not yet my subbie, you need to wait a little more.",,"DialogLogQuery(""BlockChange"", ""Rule"")",DomCanChange,Playful
 1000,,(Leave her.),,DialogLeave(),,,
+1001,,,(She looks angry.)  What do you want now?,,,DomAngry,
+1001,,,(She looks angry.)  What the fuck?,,,DomAngry,Rude
+1001,,,"(She looks angry.)  My submissive, I'm still irritated by your behavior.",,,DomAngry,Polite
+1001,,,(She cracks her knuckles hard.)  What do you want now?,,,DomAngry,Violent
+1001,,,(She looks disappointed.)  What do you want?,,,DomAngry,Peaceful
+1001,1000,I'm sorry Mistress.,"Fine, I forgive you girl.  Let's bury the hatchet.",,WillForgive(),,
+1001,1000,(Whimper and beg.),"Fine, I forgive you girl.  Let's bury the hatchet.",,WillForgive(),,
+1001,,I'm sorry Mistress.,(She shakes her head no.)  I'm still angry at you.,,!WillForgive(),,
+1001,,(Whimper and beg.),(She shakes her head no.)  I'm still angry at you.,,!WillForgive(),,
+1001,,(Leave her.),,DialogLeave(),,,
 1010,,,Is there anything else you want to talk about my submissive?,,,DomIntroTalk,
 1010,,,"Girl, do you still want to talk?",,,DomIntroTalk,Dominant|Dumb
 1010,,,"Hey bitch, be direct if ya need to speak.",,,DomIntroTalk,Rude|Serious
@@ -408,6 +418,9 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  That was fun!  
 1019,1010,Let's continue the trial Mistress.,You've got me scared for a while.  I'm happy you've changed your mind my sub.,,,DomDontStopTrial,
 1019,1010,Let's continue the trial Mistress.,"Very good my submissive.  If you're scared or unsure, we can always talk about it.",,,DomDontStopTrial,Serious
 1019,1010,Let's continue the trial Mistress.,Great!  I can't wait to collar you my subbie.,,,DomDontStopTrial,Playful
+ActivityStop,,,Fine!  (She pushes you back.)  You can play without me girl.,,,DomActivityStop,
+ActivityStop,,,(She pushes you back.)  If you cannot obey then you're not worth my time.,,,DomActivityStop,Wise
+ActivityStop,,,(She pushes you back.)  Back off!,,,DomActivityStop,Dumb
 ActivityNone,,,(She ignores you.),,,,
 ActivityGagIntro,,,I think you talk way too much and that you should be gagged.,,,DomActivityGagIntro,
 ActivityGagIntro,,,"My submissive, silence is gold and you're pretty bad at staying quiet.  A gag would be perfect for you.",,,DomActivityGagIntro,Wise
@@ -417,7 +430,7 @@ ActivityGagIntro,,,I think you would be adorable and cute with a gag.  Let's try
 ActivityGag,1000,Yes Mistress.  (Open your mouth.),(She uses a gag to silence you and smiles.)  Good girl.,ActivityRun(1),,,
 ActivityGag,1000,That's unfair!,(She uses a gag to silence you and grins.)  Who said slavery was fair?,ActivityRun(-1),,,
 ActivityGag,1000,Very well.,(She uses a gag to silence you and smiles.)  This is better.,ActivityRun(0),,,
-ActivityGag,1000,No!  Please Mistress!  I'll be quiet.,(She uses a gag to silence you and frowns.)  Of course you'll be quiet.,ActivityRun(-4),,,
+ActivityGag,1000,No!  Please Mistress!  I'll be quiet.,(She uses a gag to silence you and frowns.)  Of course you'll be quiet.,ActivityRun(-7),,,
 ActivityGag,1000,(Roll your eyes up.),(She uses a gag to silence you and smiles.)  This is much better.,ActivityRun(-1),,,
 ActivityGag,1000,(Nod and bow your head.),(She uses a gag to silence you and smiles.)  You're a good submissive.,ActivityRun(1),,,
 ActivityUngagIntro,,,"You've been gagged for long enough, you can talk now.",,,DomActivityUngagIntro,
@@ -436,10 +449,10 @@ ActivityRestrainIntro,,,"Girl, being a slave isn't always easy.  You need to suf
 ActivityRestrainIntro,,,"(She gently grabs your hands.)  My subbie, it's time to test your limits and restrain these pretty hands.",,,DomActivityRestrainIntro,Peaceful
 ActivityRestrain,1000,Yes Mistress.  (Give your hands.),(She restrains your arms and smiles.)  A happy sub is a restrained sub.,ActivityRun(1),Player.CanTalk(),,
 ActivityRestrain,1000,Really?  Right now?,"(She restrains your arms and nods.)  Yes, right now.",ActivityRun(0),Player.CanTalk(),,
-ActivityRestrain,1000,"Mistress, please don't restrain me.",(She frowns and restrains you tightly.)  You're not in control girl.,ActivityRun(-4),Player.CanTalk(),,
+ActivityRestrain,1000,"Mistress, please don't restrain me.",(She frowns and restrains you tightly.)  You're not in control girl.,ActivityRun(-7),Player.CanTalk(),,
 ActivityRestrain,1000,(Sigh and give your hands.),(She stays silent and restrains your arms.),ActivityRun(0),,,
 ActivityRestrain,1000,(Nod and bow your head.),(She restrains your arms and pets your head.)  Good girl.,ActivityRun(1),,,
-ActivityRestrain,1000,(Grumble and try to stop her.),(She frowns and restrains you tightly.)  You're not in control girl.,ActivityRun(-4),,,
+ActivityRestrain,1000,(Grumble and try to stop her.),(She frowns and restrains you tightly.)  You're not in control girl.,ActivityRun(-7),,,
 ActivityFullRestrainIntro,,,"We are in the Bondage Club my sub, you should be fully restrained.",,,DomActivityFullRestrainIntro,
 ActivityFullRestrainIntro,,,"My girl, it would be really sexy to get you fully restrained.",,,DomActivityFullRestrainIntro,Horny
 ActivityFullRestrainIntro,,,"You've playing with these hands way too much, it's time to fully restrain you.",,,DomActivityFullRestrainIntro,Frigid
@@ -447,10 +460,10 @@ ActivityFullRestrainIntro,,,"Girl, being a slave isn't always easy.  You need to
 ActivityFullRestrainIntro,,,"(She gently grabs your hands.)  My subbie, it's time to test your limits and restrain you fully.",,,DomActivityFullRestrainIntro,Peaceful
 ActivityFullRestrain,1000,Yes Mistress.  (Politely give your hands.),(She restrains you with many items and smiles.)  A happy sub is a restrained sub.,ActivityRun(1),Player.CanTalk(),,
 ActivityFullRestrain,1000,Really?  Right now?,"(She restrains you with many items and nods.)  Yes, right now, you're not in control girl.",ActivityRun(0),Player.CanTalk(),,
-ActivityFullRestrain,1000,"Mistress, please don't restrain me.",(She frowns and restrains you with many items.)  You're not in control girl.,ActivityRun(-4),Player.CanTalk(),,
+ActivityFullRestrain,1000,"Mistress, please don't restrain me.",(She frowns and restrains you with many items.)  You're not in control girl.,ActivityRun(-7),Player.CanTalk(),,
 ActivityFullRestrain,1000,(Sigh and give your hands.),(She stays silent and restrains you with many items.),ActivityRun(0),,,
 ActivityFullRestrain,1000,(Nod and promptly give your hands.),(She restrains you with many items and pets your head.)  Good girl.,ActivityRun(1),,,
-ActivityFullRestrain,1000,(Grumble and try to stop her.),(She frowns and restrains you with many items.)  You're not in control girl.,ActivityRun(-4),,,
+ActivityFullRestrain,1000,(Grumble and try to stop her.),(She frowns and restrains you with many items.)  You're not in control girl.,ActivityRun(-7),,,
 ActivityReleaseIntro,,,You're cute when you're restrained but you deserve a break.  Let me help you.,,,DomActivityReleaseIntro,
 ActivityReleaseIntro,,,I don't have enough time to watch you and protect you from yourself girl.  I'll let you go.,,,DomActivityReleaseIntro,Serious
 ActivityReleaseIntro,,,"It's so much fun to see you struggle, but I guess all good things has to end.",,,DomActivityReleaseIntro,Playful
@@ -466,11 +479,11 @@ ActivityTickleIntro,,,"(She starts to tickle you lightly.)  Be honest little one
 ActivityTickle,,Hehehe.  It tickles!,And it will tickle even more!  (She tickles you a little faster.),ActivityRun(0),Player.CanTalk(),,
 ActivityTickle,,That's the best you can do?,No!  That's the best!  (She tickles you faster and faster.),ActivityRun(-1),Player.CanTalk(),,
 ActivityTickle,,Eeeeeaahahahaaaha!,(She seems to enjoy your reaction and tickles you mercilesly.),ActivityRun(1),Player.CanTalk(),,
-ActivityTickle,,Stop Mistress!  I don't like it.,I don't think so!  (She frowns and tickles you some more.),ActivityRun(-4),Player.CanTalk(),,
+ActivityTickle,,Stop Mistress!  I don't like it.,I don't think so!  (She frowns and tickles you some more.),ActivityRun(-7),Player.CanTalk(),,
 ActivityTickle,,(Laugh out loud and cry.),(She seems to enjoy your reaction and tickles you mercilesly.),ActivityRun(1),,,
 ActivityTickle,,(Giggle and shake your body.),It's not over girl!  (She tickles you a little faster.),ActivityRun(0),,,
 ActivityTickle,,(Act tough and pretend you don't care.),(She sees your reaction as a challenge and tickles you faster and faster.),ActivityRun(-1),,,
-ActivityTickle,,(Grumble and try to stop her.),You're not in control girl.  (She frowns and tickles you some more.),ActivityRun(-4),,,
+ActivityTickle,,(Grumble and try to stop her.),You're not in control girl.  (She frowns and tickles you some more.),ActivityRun(-7),,,
 ActivityTickleOutro,,,(She tickles you a little more and stops.)  That's enough.  We'll do it later my sub.,,,DomActivityTickleOutro,
 ActivityTickleOutro,,,"(She tickles you a little more and stops, catching her breath.)  Let's stop, I'm exhausted.",,,DomActivityTickleOutro,Peaceful
 ActivityTickleOutro,,,"(She tickles you a little more and stops.)  Enough of that, next time I'll get my whip.",,,DomActivityTickleOutro,Violent
@@ -480,11 +493,11 @@ ActivitySpankIntro,,,(She gives you a quick spank on the butt.)  I want to spank
 ActivitySpank,,Ooow!  You're really strong.,(She smiles and spanks you again.)  Endure the pain my girl.,ActivityRun(1),Player.CanTalk(),,
 ActivitySpank,,Ah!  I barely felt that.,(She raises her hand higher and spanks harder.)  You think you're tough?,ActivityRun(-1),Player.CanTalk(),,
 ActivitySpank,,Ow!  Please don't hit too hard.,(She aims at your butt and spanks it again.)  Remember who owns you.,ActivityRun(0),Player.CanTalk(),,
-ActivitySpank,,Stop Mistress!  I don't like it.,You're not in control girl.  (She frowns and spanks you harder.),ActivityRun(-4),Player.CanTalk(),,
+ActivitySpank,,Stop Mistress!  I don't like it.,You're not in control girl.  (She frowns and spanks you harder.),ActivityRun(-7),Player.CanTalk(),,
 ActivitySpank,,(Stay silent and endure the pain.),(She aims at your butt and spanks it again.)  Remember who owns you.,ActivityRun(0),,,
 ActivitySpank,,(Act tough and pretend you don't care.),(She raises her hand higher and spanks harder.)  You think you're tough?,ActivityRun(-1),,,
 ActivitySpank,,(Whimper and wiggle your butt.),(She smiles and spanks you again.)  Endure the pain my girl.,ActivityRun(1),,,
-ActivitySpank,,(Grumble and try to stop her.),You're not in control girl.  (She frowns and spanks you harder.),ActivityRun(-4),,,
+ActivitySpank,,(Grumble and try to stop her.),You're not in control girl.  (She frowns and spanks you harder.),ActivityRun(-7),,,
 ActivitySpankOutro,,,(She spanks you one last time and stops.)  That's enough.  Wait before you sit down.,,,DomActivitySpankOutro,
 ActivitySpankOutro,,,(She spanks you one last time and stops.)  That's enough.  Remember that your ass is mine.,,,DomActivitySpankOutro,Serious|Rude
 ActivitySpankOutro,,,(She spanks you one last time and stops.)  Owning a submissive like you is quite enjoyable.,,,DomActivitySpankOutro,Playful|Polite
@@ -506,11 +519,11 @@ ActivitySlapIntro,,,(She slaps your face by surprise.)  Who's your Mistress?  Wh
 ActivitySlap,,What the fuck?,(She slaps your face harder.)  Wrong answer!  Who's your owner?,ActivityRun(-1),Player.CanTalk(),,
 ActivitySlap,,Ow!  You're my owner.,(She slaps your face and smirks.)  You can do better!  Who do you belong too?,ActivityRun(0),Player.CanTalk(),,
 ActivitySlap,,I belong to you Mistress.  Body and soul.,"(She slaps you a little slower.)  Good girl, repeat again!",ActivityRun(1),Player.CanTalk(),,
-ActivitySlap,,Stop Mistress!  I don't like it.,(She slaps your face pretty hard.)  You're not in control slave.,ActivityRun(-4),Player.CanTalk(),,
+ActivitySlap,,Stop Mistress!  I don't like it.,(She slaps your face pretty hard.)  You're not in control slave.,ActivityRun(-7),Player.CanTalk(),,
 ActivitySlap,,(Try not too scream too loud.),(She slaps your face and smirks.)  Feel the pain!  Who do you belong too?,ActivityRun(0),,,
 ActivitySlap,,(Whimper and cower from the pain.),(She slaps you a little slower.)  Endure the pain and remember who's your owner.,ActivityRun(1),,,
 ActivitySlap,,(Act tough and pretend you don't care.),(She slaps your face harder.)  I'll break you girl!  Who's your owner?,ActivityRun(-1),,,
-ActivitySlap,,(Grumble and try to stop her.),(She slaps your face pretty hard.)  You're not in control slave.,ActivityRun(-4),,,
+ActivitySlap,,(Grumble and try to stop her.),(She slaps your face pretty hard.)  You're not in control slave.,ActivityRun(-7),,,
 ActivitySlapOutro,,,(She slaps your face one last time and stops.)  That's enough.  Remember that I'm in charge.,,,DomActivitySlapOutro,
 ActivitySlapOutro,,,(She slaps your face one last time and stops.)  You've had enough submissive reinforcement for now.,,,DomActivitySlapOutro,Wise
 ActivitySlapOutro,,,(She slaps your face one last time and stops.)  Now you know what's coming if you disobey or act like a whore.,,,DomActivitySlapOutro,Frigid
@@ -521,7 +534,7 @@ ActivityKiss,,This is nice.,(She closes her eyes and kisses again.)  Very nice.,
 ActivityKiss,,I love you Mistress.  (Kiss her back.),(You both exchange a long kiss.)  I love you my girl.,ActivityRun(1),,,
 ActivityKiss,,(Close your eyes and moan.),(She pushes her tongue inside for a sweet French kiss.),ActivityRun(1),,,
 ActivityKiss,,(Stay cold and quiet.),(She kisses you again and checks your reaction.)  Feel the love my sub.,ActivityRun(-1),,,
-ActivityKiss,,"Eeeew, no more kisses please.",I'll get all the kisses I want!  (She forces you to kiss some more.),ActivityRun(-4),,,
+ActivityKiss,,"Eeeew, no more kisses please.",I'll get all the kisses I want!  (She forces you to kiss some more.),ActivityRun(-7),,,
 ActivityKissOutro,,,(She gives you one last kiss and pulls back.)  I'll taste these lips again soon.,,,DomActivityKissOutro,
 ActivityKissOutro,,,(She gives you one last kiss and pulls back.)  I need to enjoy these lips before you get gagged.  (She winks.),,,DomActivityKissOutro,Dominant
 ActivityKissOutro,,,(She bites your lips by surprise and pulls back.)  Pleasure and pain my slave.,,,DomActivityKissOutro,Violent
@@ -531,11 +544,11 @@ ActivityFondleIntro,,,(She grabs your breast and starts to fondle it while pinch
 ActivityFondle,,Oh Mistress!  I'm all wet.,(She fondles them some more and moans.)  I'm also wet my girl.,ActivityRun(1),Player.CanTalk(),,
 ActivityFondle,,Harder!  I want to feel it.,(She stares at you and grabs them harder.)  Don't pretend you don't like it girl.,ActivityRun(-1),Player.CanTalk(),,
 ActivityFondle,,I love your touch.,(She fondles them slowly and lovingly.)  And I love touching you.,ActivityRun(1),Player.CanTalk(),,
-ActivityFondle,,Stop Mistress!  I don't like it.,I don't think so!  (She frowns and grabs them harder.),ActivityRun(-4),Player.CanTalk(),,
+ActivityFondle,,Stop Mistress!  I don't like it.,I don't think so!  (She frowns and grabs them harder.),ActivityRun(-7),Player.CanTalk(),,
 ActivityFondle,,(Act tough and pretend you don't care.),(She stares at you and grabs them harder.)  Don't pretend you don't like it girl.,ActivityRun(-1),,,
 ActivityFondle,,(Moan silently.),(She fondles them slowly and lovingly.)  I love touching you.,ActivityRun(0),,,
 ActivityFondle,,(Moan and tremble of pleasure.),(She fondles them some more and moans.)  You make me all wet my sub.,ActivityRun(1),,,
-ActivityFondle,,(Grumble and try to stop her.),You're not in control girl.  (She frowns and grabs them harder.),ActivityRun(-4),,,
+ActivityFondle,,(Grumble and try to stop her.),You're not in control girl.  (She frowns and grabs them harder.),ActivityRun(-7),,,
 ActivityFondleOutro,,,(She grabs them one last time and stops.)  I love your sexy breast my girl.,,,DomActivityFondleOutro,
 ActivityFondleOutro,,,"(She grabs them one last time and stops.)  Girl, I love your porn star rack.",,,DomActivityFondleOutro,Dumb
 ActivityFondleOutro,,,(She grabs them one last time and stops.)  Always take good care of your twins my little subbie.,,,DomActivityFondleOutro,Peaceful
@@ -545,33 +558,33 @@ ActivityNakedIntro,,,Get daring and get naked my subbie!,,,DomActivityNakedIntro
 ActivityNaked,ActivityNoChange,Alright.  (Strip down.),"(You strip down naked as she smiles.)  Good, and you'll stay like that for 5 minutes.",ActivityRun(0),Player.CanTalk(),,
 ActivityNaked,ActivityNoChange,It might be cold.  (Strip down.),"(You strip down naked as she nods.)  You'll be fine, you can dress back up in 5 minutes.",ActivityRun(-1),Player.CanTalk(),,
 ActivityNaked,ActivityNoChange,Yes Mistress.  (Strip down.),"(You strip down naked as she smirks.)  Good girl, you can dress back up in 5 minutes.",ActivityRun(1),Player.CanTalk(),,
-ActivityNaked,ActivityNoChange,Please!  I don't want to strip.,(She grumbles and forces you to strip.)  There!  And you cannot dress back up for 5 minutes.,ActivityRun(-4),Player.CanTalk(),,
+ActivityNaked,ActivityNoChange,Please!  I don't want to strip.,(She grumbles and forces you to strip.)  There!  And you cannot dress back up for 5 minutes.,ActivityRun(-7),Player.CanTalk(),,
 ActivityNaked,ActivityNoChange,(Roll your eyes up and strip.),"(You strip down naked as she nods.)  You'll be fine, you can dress back up in 5 minutes.",ActivityRun(-1),,,
 ActivityNaked,ActivityNoChange,(Bow your head and strip quickly.),"(You strip down naked as she smirks.)  Good girl, you can dress back up in 5 minutes.",ActivityRun(1),,,
 ActivityNaked,ActivityNoChange,(Strip slowly.),"(You strip down naked as she smiles.)  Good, and you'll stay like that for 5 minutes.",ActivityRun(0),,,
-ActivityNaked,ActivityNoChange,(Shake your head no.),(She grumbles and forces you to strip.)  There!  And you cannot dress back up for 5 minutes.,ActivityRun(-4),,,
+ActivityNaked,ActivityNoChange,(Shake your head no.),(She grumbles and forces you to strip.)  There!  And you cannot dress back up for 5 minutes.,ActivityRun(-7),,,
 ActivityUnderwearIntro,,,"Make yourself at ease my subbie, you're in your room.  I've found these underwear for you.",,,DomActivityUnderwearIntro,
 ActivityUnderwearIntro,,,"Fuck girl, I want to see you in these undies.  Time to change!",,,DomActivityUnderwearIntro,Rude
 ActivityUnderwearIntro,,,It would be a delight for my eyes if I could see your beauty in these underwear.  It's time to change little one.,,,DomActivityUnderwearIntro,Polite
 ActivityUnderwear,ActivityNoChange,Alright.  (Wear the undies.),"(You change for her as she smiles.)  You'll stay in your undies for 5 minutes, you cannot change.",ActivityRun(0),Player.CanTalk(),,
 ActivityUnderwear,ActivityNoChange,Yes Mistress.  (Wear the undies.),"(You change for her as she smirks.)  Good girl, and now you cannot change again for 5 minutes.",ActivityRun(1),Player.CanTalk(),,
 ActivityUnderwear,ActivityNoChange,It might be cold.  (Wear the undies.),"(You change for her as she nods.)  Stay like that, you cannot change for 5 minutes.",ActivityRun(-1),Player.CanTalk(),,
-ActivityUnderwear,ActivityNoChange,Please!  I don't want to change.,(She grumbles and forces you to change.)  There!  And you cannot change for 5 minutes.,ActivityRun(-4),Player.CanTalk(),,
+ActivityUnderwear,ActivityNoChange,Please!  I don't want to change.,(She grumbles and forces you to change.)  There!  And you cannot change for 5 minutes.,ActivityRun(-7),Player.CanTalk(),,
 ActivityUnderwear,ActivityNoChange,(Slowly change in the undies.),"(You change for her as she smiles.)  You'll stay in your undies for 5 minutes, you cannot change.",ActivityRun(0),,,
 ActivityUnderwear,ActivityNoChange,(Roll your eyes up and change.),"(You change for her as she nods.)  Stay like that, you cannot change for 5 minutes.",ActivityRun(-1),,,
 ActivityUnderwear,ActivityNoChange,(Bow your head and change quickly.),"(You change for her as she smirks.)  Good girl, and now you cannot change again for 5 minutes.",ActivityRun(1),,,
-ActivityUnderwear,ActivityNoChange,(Shake your head no.),(She grumbles and forces you to change.)  There!  And you cannot change for 5 minutes.,ActivityRun(-4),,,
+ActivityUnderwear,ActivityNoChange,(Shake your head no.),(She grumbles and forces you to change.)  There!  And you cannot change for 5 minutes.,ActivityRun(-7),,,
 ActivityRandomClothesIntro,,,It's time for you to change.  I've found some new clothes for you.,,,DomActivityRandomClothesIntro,
 ActivityRandomClothesIntro,,,"Like a submissive doll, I'm thinking about dressing you up with new clothes that I've got.",,,DomActivityRandomClothesIntro,Wise
 ActivityRandomClothesIntro,,,I want to see new clothes on you.  Dress in this random stuff I've found.,,,DomActivityRandomClothesIntro,Dumb
 ActivityRandomClothes,ActivityNoChange,It better be pretty.  (Change for her.),"(You change for her as she nods.)  Stay like that, you cannot change for 5 minutes.",ActivityRun(-1),Player.CanTalk(),,
 ActivityRandomClothes,ActivityNoChange,Alright.  (Change for her.),"(You change for her as she smiles.)  These are your new clothes for 5 minutes, you cannot change.",ActivityRun(0),Player.CanTalk(),,
 ActivityRandomClothes,ActivityNoChange,Yes Mistress.  (Change for her.),"(You change for her as she smirks.)  Good girl, and now you cannot change again for 5 minutes.",ActivityRun(1),Player.CanTalk(),,
-ActivityRandomClothes,ActivityNoChange,Please!  I don't want to change.,(She grumbles and forces you to change.)  There!  And you cannot change for 5 minutes.,ActivityRun(-4),Player.CanTalk(),,
+ActivityRandomClothes,ActivityNoChange,Please!  I don't want to change.,(She grumbles and forces you to change.)  There!  And you cannot change for 5 minutes.,ActivityRun(-7),Player.CanTalk(),,
 ActivityRandomClothes,ActivityNoChange,(Bow your head and change quickly.),"(You change for her as she smirks.)  Good girl, and now you cannot change again for 5 minutes.",ActivityRun(1),,,
 ActivityRandomClothes,ActivityNoChange,(Change slowly.),"(You change for her as she smiles.)  These are your new clothes for 5 minutes, you cannot change.",ActivityRun(0),,,
 ActivityRandomClothes,ActivityNoChange,(Roll your eyes up and change.),"(You change for her as she nods.)  Stay like that, you cannot change for 5 minutes.",ActivityRun(-1),,,
-ActivityRandomClothes,ActivityNoChange,(Shake your head no.),(She grumbles and forces you to change.)  There!  And you cannot change for 5 minutes.,ActivityRun(-4),,,
+ActivityRandomClothes,ActivityNoChange,(Shake your head no.),(She grumbles and forces you to change.)  There!  And you cannot change for 5 minutes.,ActivityRun(-7),,,
 ActivityNoChange,1000,Easy enough.,"Since it's so easy, let's make it 10 minutes.  I'll make sure you won't change.",BlockChange(10),,DomActivityNoChange1,
 ActivityNoChange,1000,Easy enough.,Too easy?  Let's make it 15 minutes then.  I'll make sure the rule will be enforced.  (She grins.),BlockChange(15),,DomActivityNoChange1,Serious
 ActivityNoChange,1000,Easy enough.,Sure!  It won't take that long.,BlockChange(5),,DomActivityNoChange1,Playful
@@ -590,8 +603,12 @@ ActivityShibariIntro,,,"My precious, I've been at the dojo lately and found rope
 ActivityShibari,1000,Yes Mistress.  (Let her tie you up.),"(She makes sure your naked and restrains you with hemp ropes from the ceiling.)  Wonderful, have fun struggling.",ActivityRun(1),Player.CanTalk(),,
 ActivityShibari,1000,I'm not sure.  (Let her tie you up.),(She forces you naked and restrains you with hemp ropes from the ceiling.)  Never doubt my bondage skills.,ActivityRun(-1),Player.CanTalk(),,
 ActivityShibari,1000,Alright.  (Let her tie you up.),"(She makes sure your naked and restrains you with hemp ropes from the ceiling.)  This is nice, have fun struggling.",ActivityRun(0),Player.CanTalk(),,
-ActivityShibari,1000,Please!  I don't want to do that.,(She frowns but forces you naked and restrains you with hemp ropes from the ceiling.)  There!  Struggle for me.,ActivityRun(-4),Player.CanTalk(),,
+ActivityShibari,1000,Please!  I don't want to do that.,(She frowns but forces you naked and restrains you with hemp ropes from the ceiling.)  There!  Struggle for me.,ActivityRun(-7),Player.CanTalk(),,
 ActivityShibari,1000,(Let her tie you up.),"(She makes sure your naked and restrains you with hemp ropes from the ceiling.)  This is nice, have fun struggling.",ActivityRun(0),,,
 ActivityShibari,1000,(Roll your eyes up and nod.),(She forces you naked and restrains you with hemp ropes from the ceiling.)  Never doubt my bondage skills.,ActivityRun(-1),,,
 ActivityShibari,1000,(Bow your head submissively.),"(She makes sure your naked and restrains you with hemp ropes from the ceiling.)  Wonderful, have fun struggling.",ActivityRun(1),,,
-ActivityShibari,1000,(Shake your head no.),(She frowns but forces you naked and restrains you with hemp ropes from the ceiling.)  There!  Struggle for me.,ActivityRun(-4),,,
+ActivityShibari,1000,(Shake your head no.),(She frowns but forces you naked and restrains you with hemp ropes from the ceiling.)  There!  Struggle for me.,ActivityRun(-7),,,
+ActivityPunishIntro,,,(She seems furious.)  That's enough!  You must be punished.,,,DomActivityPunish,
+ActivityPunishIntro,,,(She slaps your face.)  Slave!  You must be punished.,,,DomActivityPunish,Violent
+ActivityPunishIntro,,,"(She speaks with a calm and menacing voice.)  I'm sorry my precious subsmissive, but you must be punished.",,,DomActivityPunish,Peaceful
+ActivityPunish,,TO DO,TO DO,,,,
