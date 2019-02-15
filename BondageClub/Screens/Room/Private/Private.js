@@ -5,10 +5,12 @@ var PrivateCharacter = [];
 var PrivateCharacterTypeList = ["NPC_Private_VisitorShy", "NPC_Private_VisitorHorny", "NPC_Private_VisitorTough"];
 var PrivateCharacterToSave = 0;
 var PrivateReleaseTimer = 0;
-var PrivateRandomActivityList = ["Gag", "Ungag", "Restrain", "FullRestrain", "Release", "Tickle", "Spank", "Pet", "Slap", "Kiss", "Fondle", "Naked", "Underwear", "RandomClothes", "Shibari"];
-var PrivateRandomActivity = "";
-var PrivateRandomActivityCount = 0;
-var PrivateRandomActivityAffectLove = true;
+var PrivateActivity = "";
+var PrivateActivityCount = 0;
+var PrivateActivityAffectLove = true;
+var PrivateActivityList = ["Gag", "Ungag", "Restrain", "FullRestrain", "Release", "Tickle", "Spank", "Pet", "Slap", "Kiss", "Fondle", "Naked", "Underwear", "RandomClothes", "Shibari"];
+var PrivatePunishment = "";
+var PrivatePunishmentList = ["Cage", "Bound", "BoundPet", "ChastityBelt", "ChastityBra", "ForceNaked", "ConfiscateKey"];
 
 // Returns TRUE if a specific dialog option is allowed
 function PrivateIsCaged() { return (CurrentCharacter.Cage == null) ? false : true }
@@ -120,11 +122,12 @@ function PrivateClickCharacterButton() {
 	// For each character, we find the one to cage, doesn't allow to do it if already in a cage
 	for(var C = 0; C < PrivateCharacter.length; C++) {
 		if ((MouseX >= X + 265 + C * S) && (MouseX <= X + 355 + C * S))
-			if ((Player.Cage == null) || (C == 0))
-				if (!PrivateCharacter[C].IsOwner()) {
-					PrivateCharacter[C].Cage = (PrivateCharacter[C].Cage == null) ? true : null;
-					if (C > 0) PrivateSaveCharacter(C);
-				}
+			if (LogQuery("Cage", "PrivateRoom"))
+				if ((Player.Cage == null) || (C == 0))
+					if (!PrivateCharacter[C].IsOwner()) {
+						PrivateCharacter[C].Cage = (PrivateCharacter[C].Cage == null) ? true : null;
+						if (C > 0) PrivateSaveCharacter(C);
+					}
 		if ((MouseX >= X + 145 + C * S) && (MouseX <= X + 235 + C * S))
 			InformationSheetLoadCharacter(PrivateCharacter[C]);
 	}
@@ -158,7 +161,7 @@ function PrivateClick() {
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475) && LogQuery("RentRoom", "PrivateRoom") && !LogQuery("BlockChange", "Rule")) { CharacterAppearanceReturnRoom = "Private"; CommonSetScreen("Character", "Appearance"); }
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 505) && (MouseY < 595) && LogQuery("RentRoom", "PrivateRoom") && !LogQuery("BlockChange", "Rule") && LogQuery("Wardrobe", "PrivateRoom")) CommonSetScreen("Character", "Wardrobe");
 	if ((MouseX <= 1885) && (MouseY < 900) && LogQuery("RentRoom", "PrivateRoom") && (Player.Cage == null)) PrivateClickCharacter();
-	if ((MouseX <= 1885) && (MouseY >= 900) && LogQuery("RentRoom", "PrivateRoom") && LogQuery("Cage", "PrivateRoom")) PrivateClickCharacterButton();
+	if ((MouseX <= 1885) && (MouseY >= 900) && LogQuery("RentRoom", "PrivateRoom")) PrivateClickCharacterButton();
 }
 
 // When the player rents the room
@@ -319,7 +322,7 @@ function PrivateStartActivity() {
 	while (true) {
 
 		// Picks an activity at random
-		Act = CommonRandomItemFromList(PrivateRandomActivity, PrivateRandomActivityList);
+		Act = CommonRandomItemFromList(PrivateActivity, PrivateActivityList);
 
 		// If the activity is valid
 		if ((Act == "Gag") && Player.CanTalk()) break;
@@ -348,12 +351,12 @@ function PrivateStartActivity() {
 	}
 
 	// Starts the activity (any activity adds +2 love automatically)
-	PrivateRandomActivity = Act;
+	PrivateActivity = Act;
 	NPCLoveChange(CurrentCharacter, 2);
-	PrivateRandomActivityAffectLove = true;
-	PrivateRandomActivityCount = 0;
-	CurrentCharacter.Stage = "Activity" + PrivateRandomActivity;
-	CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "Activity" + PrivateRandomActivity + "Intro");
+	PrivateActivityAffectLove = true;
+	PrivateActivityCount = 0;
+	CurrentCharacter.Stage = "Activity" + PrivateActivity;
+	CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "Activity" + PrivateActivity + "Intro");
 
 }
 
@@ -361,10 +364,10 @@ function PrivateStartActivity() {
 function PrivateActivityRun(LoveFactor) {
 
 	// Changes the love factor only once per activity (except if negative)
-	PrivateRandomActivityCount++;
+	PrivateActivityCount++;
 	LoveFactor = parseInt(LoveFactor);
-	if ((LoveFactor < 0) || PrivateRandomActivityAffectLove) NPCLoveChange(CurrentCharacter, LoveFactor);
-	if ((LoveFactor > 0) && PrivateRandomActivityAffectLove) PrivateRandomActivityAffectLove = false;
+	if ((LoveFactor < 0) || PrivateActivityAffectLove) NPCLoveChange(CurrentCharacter, LoveFactor);
+	if ((LoveFactor > 0) && PrivateActivityAffectLove) PrivateActivityAffectLove = false;
 
 	// If the player refused to do the activity, she will be either forced, punished or the Domme will stop it
 	if (LoveFactor <= -3) {
@@ -378,8 +381,8 @@ function PrivateActivityRun(LoveFactor) {
 
 		// If we must punish
 		if ((Punish > Force) && (Punish > Stop)) {
-			CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "ActivityPunishIntro");
-			CurrentCharacter.Stage = "ActivityPunish";
+			CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "PunishIntro");
+			CurrentCharacter.Stage = "Punish";
 			return;
 		}
 
@@ -393,20 +396,20 @@ function PrivateActivityRun(LoveFactor) {
 	}
 
 	// The restraining activities are harsher for serious NPCs
-	if (PrivateRandomActivity == "Gag") InventoryWearRandom(Player, "ItemMouth");
-	if (PrivateRandomActivity == "Restrain") InventoryWearRandom(Player, "ItemArms");
-	if ((PrivateRandomActivity == "FullRestrain") && (NPCTraitGet(CurrentCharacter, "Playful") > 0)) CharacterFullRandomRestrain(Player, "Few");
-	if ((PrivateRandomActivity == "FullRestrain") && (NPCTraitGet(CurrentCharacter, "Playful") == 0)) CharacterFullRandomRestrain(Player);
-	if ((PrivateRandomActivity == "FullRestrain") && (NPCTraitGet(CurrentCharacter, "Serious") > 0)) CharacterFullRandomRestrain(Player, "Lot");
-	if (PrivateRandomActivity == "Release") CharacterRelease(Player);
-	if (PrivateRandomActivity == "Ungag") { InventoryRemove(Player, "ItemMouth"); InventoryRemove(Player, "ItemHead"); }
-	if ((PrivateRandomActivity == "Gag") || (PrivateRandomActivity == "Restrain") || (PrivateRandomActivity == "FullRestrain")) PrivateReleaseTimer = CommonTime() + (Math.random() * 60000) + 60000;
-	if (PrivateRandomActivity == "Naked") CharacterNaked(Player);
-	if (PrivateRandomActivity == "Underwear") CharacterRandomUnderwear(Player);
-	if (PrivateRandomActivity == "RandomClothes") CharacterAppearanceFullRandom(Player, true);
+	if (PrivateActivity == "Gag") InventoryWearRandom(Player, "ItemMouth");
+	if (PrivateActivity == "Restrain") InventoryWearRandom(Player, "ItemArms");
+	if ((PrivateActivity == "FullRestrain") && (NPCTraitGet(CurrentCharacter, "Playful") > 0)) CharacterFullRandomRestrain(Player, "Few");
+	if ((PrivateActivity == "FullRestrain") && (NPCTraitGet(CurrentCharacter, "Playful") == 0)) CharacterFullRandomRestrain(Player);
+	if ((PrivateActivity == "FullRestrain") && (NPCTraitGet(CurrentCharacter, "Serious") > 0)) CharacterFullRandomRestrain(Player, "Lot");
+	if (PrivateActivity == "Release") CharacterRelease(Player);
+	if (PrivateActivity == "Ungag") { InventoryRemove(Player, "ItemMouth"); InventoryRemove(Player, "ItemHead"); }
+	if ((PrivateActivity == "Gag") || (PrivateActivity == "Restrain") || (PrivateActivity == "FullRestrain")) PrivateReleaseTimer = CommonTime() + (Math.random() * 60000) + 60000;
+	if (PrivateActivity == "Naked") CharacterNaked(Player);
+	if (PrivateActivity == "Underwear") CharacterRandomUnderwear(Player);
+	if (PrivateActivity == "RandomClothes") CharacterAppearanceFullRandom(Player, true);
 
 	// In Shibari, the player gets naked and fully roped in hemp
-	if (PrivateRandomActivity == "Shibari") {
+	if (PrivateActivity == "Shibari") {
 		CharacterNaked(Player);
 		InventoryWear(Player, "HempRope", "ItemArms", "Default", Math.floor(Math.random() * 10) + 1);
 		InventoryWear(Player, "HempRope", "ItemLegs", "Default", Math.floor(Math.random() * 10) + 1);
@@ -417,9 +420,9 @@ function PrivateActivityRun(LoveFactor) {
 	}
 
 	// After running the activity a few times, we stop
-	if (PrivateRandomActivityCount >= Math.floor(Math.random() * 4) + 2) {
+	if (PrivateActivityCount >= Math.floor(Math.random() * 4) + 2) {
 		CurrentCharacter.Stage = "1000";
-		CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "Activity" + PrivateRandomActivity + "Outro");
+		CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "Activity" + PrivateActivity + "Outro");
 	}
 
 }
@@ -428,4 +431,47 @@ function PrivateActivityRun(LoveFactor) {
 function PrivateBlockChange(Minutes) {
 	LogAdd("BlockChange", "Rule", CurrentTime + (Minutes * 60000));
 	CharacterAppearanceSave(Player);
+}
+
+// Starts a random punishment for the player as submissive
+function PrivateStartPunishment() {
+	
+	// Release the player first
+	if (Player.IsRestrained()) {
+		CharacterRelease(Player);
+		CurrentCharacter.Stage = "PunishmentReleaseBefore";
+		CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "PunishmentReleaseBeforeIntro");
+		return;
+	}
+
+	// Strip the player second
+	if (!Player.IsNaked()) {
+		CharacterRelease(Player);
+		CurrentCharacter.Stage = "PunishmentStripBefore";
+		CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "PunishmentStripBeforeIntro");
+		return;
+	}
+	
+	// Finds a valid punishment for the player
+	var Count = 0;
+	while (true) {
+
+		// Picks an punishment at random
+		PrivatePunishment = CommonRandomItemFromList("", PrivatePunishmentList);
+		
+		// If the punishment is valid
+		if ((PrivatePunishment == "Cage") && (LogQuery("Cage", "PrivateRoom"))) break;
+		if (PrivatePunishment == "Bound") break;
+		if ((PrivatePunishment == "BoundPet") && !Player.IsVulvaChaste()) break;
+		if ((PrivatePunishment == "ChastityBelt") && !Player.IsVulvaChaste()) break;
+		if ((PrivatePunishment == "ChastityBra") && !Player.IsVulvaChaste()) break;
+		if ((PrivatePunishment == "ForceNaked") && (NPCTraitGet(CurrentCharacter, "Horny") >= 0)) break;
+		if ((PrivatePunishment == "ConfiscateKey") && InventoryAvailable(Player, "MetalCuffsKey", "ItemArms")) break;
+
+	}
+
+	// Starts the punishment
+	CurrentCharacter.Stage = "Punishment" + PrivatePunishment;
+	CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "Punishment" + PrivatePunishment + "Intro");
+
 }

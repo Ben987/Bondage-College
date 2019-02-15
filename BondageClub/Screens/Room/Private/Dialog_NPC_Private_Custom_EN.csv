@@ -608,7 +608,11 @@ ActivityShibari,1000,(Let her tie you up.),"(She makes sure your naked and restr
 ActivityShibari,1000,(Roll your eyes up and nod.),(She forces you naked and restrains you with hemp ropes from the ceiling.)  Never doubt my bondage skills.,ActivityRun(-1),,,
 ActivityShibari,1000,(Bow your head submissively.),"(She makes sure your naked and restrains you with hemp ropes from the ceiling.)  Wonderful, have fun struggling.",ActivityRun(1),,,
 ActivityShibari,1000,(Shake your head no.),(She frowns but forces you naked and restrains you with hemp ropes from the ceiling.)  There!  Struggle for me.,ActivityRun(-7),,,
-ActivityPunishIntro,,,(She seems furious.)  That's enough!  You must be punished.,,,DomActivityPunish,
-ActivityPunishIntro,,,(She slaps your face.)  Slave!  You must be punished.,,,DomActivityPunish,Violent
-ActivityPunishIntro,,,"(She speaks with a calm and menacing voice.)  I'm sorry my precious subsmissive, but you must be punished.",,,DomActivityPunish,Peaceful
-ActivityPunish,,TO DO,TO DO,,,,
+PunishIntro,,,(She seems furious.)  That's enough!  You must be punished.,,,DomPunishIntro,
+PunishIntro,,,(She slaps your face.)  Slave!  You must be punished.,,,DomPunishIntro,Violent
+PunishIntro,,,"(She speaks with a calm and menacing voice.)  I'm sorry my precious subsmissive, but you must be punished.",,,DomPunishIntro,Peaceful
+Punish,,Punished?  What does that mean?,,SelectPunishment(),Player.CanTalk(),,
+Punish,,Oh please!  Don't punish me.,,SelectPunishment(),Player.CanTalk(),,
+Punish,,You cannot be serious.,,SelectPunishment(),Player.CanTalk(),,
+Punish,,(Grumble and pout.),,SelectPunishment(),,,
+Punish,,(Bow your head.),,SelectPunishment(),,,
