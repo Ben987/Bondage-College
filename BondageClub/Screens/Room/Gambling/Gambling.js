@@ -16,6 +16,7 @@ var GamblingShowMoney = false;	//Show Money in DiceStack
 var GamblingAppearanceFirst = null;
 var GamblingAppearanceSecond = null;
 var GamblingAppearancePlayer = null;
+var GamblingIllegalChange = false; //Sub Player lost Cloth although forbidden by Mistress
 
 // Returns TRUE if a dialog is permitted
 function GamblingIsSubsRestrained() { return (GamblingFirstSub.IsRestrained() || !GamblingFirstSub.CanTalk() || GamblingSecondSub.IsRestrained() || !GamblingSecondSub.CanTalk());}
@@ -70,7 +71,7 @@ function GamblingRun() {
 	if ((ReputationGet("Gambling") > 20) || MaidQuartersCurrentRescue == "Gambling") DrawCharacter(GamblingSecondSub, 1250, 0, 1);
 	if (Player.CanWalk()) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 	DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
-	if (Player.CanChange()) DrawButton(1885, 265, 90, 90, "", "White", "Icons/Dress.png");
+	if (Player.CanInteract()) DrawButton(1885, 265, 90, 90, "", "White", "Icons/Dress.png"); //Only Dess Back after loose Game
 }
 
 // When the user clicks in the Gambling Hall
@@ -78,9 +79,21 @@ function GamblingClick() {
 	if ((MouseX >= 250) && (MouseX < 750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(GamblingFirstSub);
 	if ((MouseX >= 750) && (MouseX < 1250) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
 	if (((MouseX >= 1250) && (MouseX < 1750) && (MouseY >= 0) && (MouseY < 1000)) && ((ReputationGet("Gambling") > 20) || MaidQuartersCurrentRescue == "Gambling") ) CharacterSetCurrent(GamblingSecondSub);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) GamblingLeaveRoom();
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355) && Player.CanChange()) GamblingDressBackPlayer();
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355)) GamblingDressBackPlayer();
+}
+
+//If the Player Illegal Strip the Cloth send to Prison 
+function GamblingLeaveRoom(){
+	if (GamblingIllegalChange) {
+		InventoryWear(Player, "MetalCuffs", "ItemArms");
+		PrisonPlayerForIllegalChange = true;
+		PrisonPlayerBehindBars = true;
+		CommonSetScreen("Room", "Prison");
+	} else {
+		CommonSetScreen("Room", "MainHall");
+	}
 }
 
 // Print the Stack of Dices and the Sum of Ponits and Player Money
@@ -490,6 +503,7 @@ function GamblingStripTied(gstCarachter, gstLevel){
 		InventoryRemove(gstCarachter, "Hat"); 
 		InventoryRemove(gstCarachter, "Shoes"); 
 		InventoryRemove(gstCarachter, "Gloves"); 
+		if (!Player.CanChange()) GamblingIllegalChange = true;
 	} else if (gstLevel == 2) {
 		InventoryRemove(gstCarachter, "Cloth"); 
 		InventoryRemove(gstCarachter, "ClothLower"); 

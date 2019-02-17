@@ -303,7 +303,8 @@ var AssetFemale3DCG = [
 		Zone: [[250, 500, 150, 80]],
 		Asset: [
 			{ Name: "BlackButtPlug", Value: 20, Prerequisite: "AccessVulva", Time: 10 },
-			{ Name: "TailButtPlug", Value: 50, Prerequisite: "AccessVulva", Time: 10 }
+			{ Name: "TailButtPlug", Value: 50, Prerequisite: "AccessVulva", Time: 10 },
+			{ Name: "HorsetailPlug", Value: 50, Prerequisite: "AccessVulva", Time: 10 }
 		]
 	},
 

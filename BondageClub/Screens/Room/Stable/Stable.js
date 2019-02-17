@@ -51,7 +51,7 @@ function StableRun() {
 		DrawCharacter(StablePony, 1250, 0, 1);
 		if (Player.CanWalk() && !StablePlayerTrainingActiv) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 		DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
-//		DrawButton(1885, 265, 90, 90, "", "White", "Screens/Room/Stable/Horse.png");
+		//DrawButton(1885, 265, 90, 90, "", "White", "Screens/Room/Stable/Horse.png");
 	}
 	StablePlayerIsPony = (LogQuery("JoinedStable", "Pony") && (ReputationGet("Dominant") < -30));
 	StablePlayerIsTrainer = (LogQuery("JoinedStable", "Trainer") && (ReputationGet("Dominant") > 30));
@@ -70,7 +70,7 @@ function StableClick() {
 		if ((MouseX >= 1250) && (MouseX < 1750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(StablePony);
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk() && !StablePlayerTrainingActiv) CommonSetScreen("Room", "MainHall");
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
-//		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355)) StableMiniGameStart("HorseWalk", "Normal");
+		//if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355)) MiniGameStart("HorseWalk", "Hurdle", "StableMiniEnd");
 	}
 }
 
@@ -90,7 +90,7 @@ function StablePayTheFee(){
 function StableCanBecomePony(){
 	if (ReputationGet("Dominant") > -30) {
 		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableBecomePonySubIntro");
-	} else if (!(StableCheckInventory(Player, "HarnessBallGag", "ItemMouth") && StableCheckInventory(Player, "LeatherArmbinder", "ItemArms") && StableCheckInventory(Player, "LeatherHarness", "ItemTorso") && StableCheckInventory(Player, "BlackButtPlug", "ItemButt"))) {
+	} else if (!(StableCheckInventory(Player, "HarnessBallGag", "ItemMouth") && StableCheckInventory(Player, "LeatherArmbinder", "ItemArms") && StableCheckInventory(Player, "LeatherHarness", "ItemTorso") && StableCheckInventory(Player, "HorsetailPlug", "ItemButt"))) {
 		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableBecomePonyEquipmentIntro");
 		StableTrainer.Stage = "StableBecomePonyEquipment";
 	} else if (StableCharacterAppearanceGroupAvailable(Player, "ItemNeck")) {
@@ -182,10 +182,13 @@ function StablePlayerTrainingGallop(Behavior) {
 	SkillProgress("Dressage", StableDifficulty * 5);
 	if ((Math.random() * StableDifficulty) < StableDressage) {
 		StablePlayerTrainingBehavior += 2;
+	} else {
+		StablePlayerTrainingBehavior -= 2;
+	}
+	if (StablePlayerTrainingBehavior > 0) {
 		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingPassIntro");
 		StableTrainer.Stage = "StableTrainingPass";
 	} else {
-		StablePlayerTrainingBehavior -= 2;
 		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingFailIntro");
 		StableTrainer.Stage = "StableTrainingFail";
 	}
@@ -200,10 +203,13 @@ function StablePlayerTrainingWalk(Behavior) {
 	SkillProgress("Dressage", StableDifficulty * 5);
 	if ((Math.random() * StableDifficulty) < StableDressage) {
 		StablePlayerTrainingBehavior += 2;
+	} else {
+		StablePlayerTrainingBehavior -= 2;
+	}
+	if (StablePlayerTrainingBehavior > 0) {
 		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingPassIntro");
 		StableTrainer.Stage = "StableTrainingPass";
 	} else {
-		StablePlayerTrainingBehavior -= 2;
 		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingFailIntro");
 		StableTrainer.Stage = "StableTrainingFail";
 	}
@@ -218,10 +224,13 @@ function StablePlayerTrainingDance(Behavior) {
 	SkillProgress("Dressage", StableDifficulty * 5);
 	if ((Math.random() * StableDifficulty) < StableDressage) {
 		StablePlayerTrainingBehavior += 2;
+	} else {
+		StablePlayerTrainingBehavior -= 2;
+	}
+	if (StablePlayerTrainingBehavior > 0) {
 		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingPassIntro");
 		StableTrainer.Stage = "StableTrainingPass";
 	} else {
-		StablePlayerTrainingBehavior -= 2;
 		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingFailIntro");
 		StableTrainer.Stage = "StableTrainingFail";
 	}
@@ -229,21 +238,37 @@ function StablePlayerTrainingDance(Behavior) {
 
 //Start Traning Hurdle
 function StablePlayerTrainingHurdles(Behavior){
-	StablePlayerTrainingLessons++;
 	StablePlayerTrainingBehavior += parseInt(Behavior);
+	MiniGameStart("HorseWalk", "Hurdle", "StablePlayerTrainingHurdlesEnd");
+	StablePlayerTrainingLessons += 2;
+
 	var StableDressage = SkillGetLevel(Player, "Dressage");
 	var StableDifficulty = 8;
 	SkillProgress("Dressage", StableDifficulty * 5);
 	if ((Math.random() * StableDifficulty) < StableDressage) {
 		StablePlayerTrainingBehavior += 2;
+	} else {
+		StablePlayerTrainingBehavior -= 2;
+	}
+}
+
+function StablePlayerTrainingHurdlesEnd() {	
+	CommonSetScreen("Room", "Stable");
+	CharacterSetCurrent(StableTrainer);
+	if (MiniGameVictory) {
+		StablePlayerTrainingBehavior += 2;
+	} else {
+		StablePlayerTrainingBehavior -= 2;
+	}		
+	if (StablePlayerTrainingBehavior > 0) {
 		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingPassIntro");
 		StableTrainer.Stage = "StableTrainingPass";
 	} else {
-		StablePlayerTrainingBehavior -= 2;
 		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingFailIntro");
 		StableTrainer.Stage = "StableTrainingFail";
 	}
 }
+
 
 //Start Traning Treadmill
 function StablePlayerTrainingTreadmill(Behavior) {
@@ -277,7 +302,7 @@ function StablePlayerTrainingCarriage(Behavior) {
 }
 
 //Start Traning Strong Carriage
-function StablePlayerTrainingCarriage(Behavior) {
+function StablePlayerTrainingStrongCarriage(Behavior) {
 	StablePlayerTrainingBehavior += parseInt(Behavior);
 	var StableDressage = SkillGetLevel(Player, "Dressage");
 	var StableDifficulty = 3;
@@ -286,7 +311,6 @@ function StablePlayerTrainingCarriage(Behavior) {
 	StableGenericProgressStart((StableDifficulty + StableDressage) * 20, StableDressage - 6, StableDressage, "Screens/Room/Stable/horsecarriage.png", "HorseStableDark", StableTrainer, null, "StableTrainingPass", "StableTrainingPassIntro", "StableTrainingFail", "StableTrainingFailIntro", 2, TextGet("Carriage"));
 	StablePlayerTrainingLessons += 2;
 }
-
 
 //Start Traning Race
 function StablePlayerTrainingRace(Behavior) {
@@ -298,7 +322,7 @@ function StablePlayerTrainingRace(Behavior) {
 	StablePlayerTrainingLessons += 2;
 }
 
-//Start Traning Stron Race
+//Start Traning Strong Race
 function StablePlayerTrainingRace(Behavior) {
 	StablePlayerTrainingBehavior += parseInt(Behavior);
 	var StableDressage = SkillGetLevel(Player, "Dressage");
@@ -311,9 +335,8 @@ function StablePlayerTrainingRace(Behavior) {
 //Start Traning Carrots - MiniGame
 function StablePlayerTrainingCarrots(Behavior) {
 	StablePlayerTrainingBehavior += parseInt(Behavior);
-	//todo minigame integr.
-	MiniGameStart("HorseWalk", "Normal", "StablePlayerTrainingCarrotsEnd");
-	StablePlayerTrainingLessons += 3;
+	MiniGameStart("HorseWalk", "Carrot", "StablePlayerTrainingCarrotsEnd");
+	StablePlayerTrainingLessons += 2;
 }
 
 //End Traning Carrots - MiniGame
@@ -321,14 +344,17 @@ function StablePlayerTrainingCarrotsEnd() {
 	CommonSetScreen("Room", "Stable");
 	CharacterSetCurrent(StableTrainer);
 	if (MiniGameVictory) {
+		StablePlayerTrainingBehavior += 2;
+	} else {
+		StablePlayerTrainingBehavior -= 2;
+	}		
+	if (StablePlayerTrainingBehavior > 0) {
 		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingPassIntro");
 		StableTrainer.Stage = "StableTrainingPass";
-		StablePlayerTrainingBehavior += 2;
 	} else {
 		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingFailIntro");
 		StableTrainer.Stage = "StableTrainingFail";
-		StablePlayerTrainingBehavior -= 2;
-	}		
+	}
 }
 
 //Reward for passed
@@ -480,7 +506,7 @@ function StableWearPonyEquipment(C) {
 	InventoryWear(C, "LeatherHarness", "ItemTorso");
 	InventoryWear(C, "HarnessBallGag", "ItemMouth");
 	InventoryWear(C, "LeatherArmbinder", "ItemArms");
-	InventoryWear(C, "BlackButtPlug", "ItemButt");
+	InventoryWear(C, "HorsetailPlug", "ItemButt");
 	InventoryRemove(C, "ItemFeet");
 	InventoryRemove(C, "ItemLegs");
 	CharacterRefresh(C);
@@ -568,7 +594,7 @@ minigame?
 */
 
 ////////////////////////////////////////////////////////////////////////////////////////////
-//Generic Progress Bar
+//Run the Line
 ////////////////////////////////////////////////////////////////////////////////////////////
 var StableProgress = -1;
 var StableSecondProgress = -1;

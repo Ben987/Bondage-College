@@ -23,6 +23,7 @@ var PrisonSubIsStripSearch = false;
 
 var PrisonPlayerAppearance = null;
 var PrisonPlayerBehindBars = false;
+var PrisonPlayerForIllegalChange = false;
 
 // functions for Dialogs
 function PrisonPlayerIsHandcuffed() {return PrisonCharacterAppearanceAvailable(Player, "MetalCuffs", "ItemArms");}
@@ -56,6 +57,11 @@ function PrisonLoad() {
 	
 	if ((MaidQuartersCurrentRescue == "Prison") && !MaidQuartersCurrentRescueStarted && !PrisonSubBehindBars && MaidQuartersCurrentRescueCompleted == false) {
 		PrisonSub = CharacterLoadNPC("NPC_Prison_Sub");
+	}
+	if (GamblingIllegalChange == true) {
+		GamblingIllegalChange = false;
+		PrisonMaid.Stage = "20";
+		PrisonMaid.CurrentDialog = DialogFind(PrisonMaid, "PrisonIllegalChangeIntro");
 	}
 }
 
