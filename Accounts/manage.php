@@ -106,7 +106,33 @@ if (isset($_GET["command"])) {
 				fwrite($myfile, json_encode($arr));
 				fclose($myfile);
 				echo "inventory_added";
-					
+
+			} else echo "parameter_error";
+
+	// Removes an item from the account inventory
+	if ($_GET["command"] == "inventory_delete") 
+		if (ValidLogin($data))
+			if (isset($_GET["name"]) && isset($_GET["group"]) && ($_GET["name"] != "") && ($_GET["group"] != "")) {
+
+				// If the item is already in inventory, we delete it
+				$arr = json_decode($data);
+				if (!isset($arr->Inventory)) $arr->Inventory = [];
+				$pos = -1;
+				$p = 0;
+				foreach ($arr->Inventory as $item) {
+					if (($item->Name == $_GET["name"]) && ($item->Group == $_GET["group"]))
+						$pos = $p;
+					$p = $p + 1;
+				}
+				if ($pos >= 0) array_splice($arr->Inventory, $pos, 1);
+
+				// Overwrite the file
+				$file = GetFileName();
+				$myfile = fopen($file, "w") or die("Unable to open file!");
+				fwrite($myfile, json_encode($arr));
+				fclose($myfile);
+				echo "inventory_deleted";
+
 			} else echo "parameter_error";
 
 	// Add an item to the account inventory

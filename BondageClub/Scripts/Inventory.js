@@ -35,6 +35,20 @@ function InventoryAdd(C, NewItemName, NewItemGroup, Push) {
 
 }
 
+// Deletes an item from the character inventory
+function InventoryDelete(C, DelItemName, DelItemGroup, Push) {
+
+	// First, we remove the item from the player inventory
+	for (var I = 0; I < C.Inventory.length; I++)
+		if ((C.Inventory[I].Name == DelItemName) && (C.Inventory[I].Group == DelItemGroup))
+			C.Inventory.splice(I, 1);
+
+	// Next, we call the player account service to remove the item
+	if ((C.ID == 0) && ((Push == null) || Push))
+		AccountRequest("inventory_delete", "&name=" + DelItemName + "&group=" + DelItemGroup);
+
+}
+
 // Loads the inventory from the account
 function InventoryLoad(C, Inventory, Import) {
 	

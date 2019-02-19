@@ -593,10 +593,14 @@ ActivityNoChange,1000,"Ok, I won't change for 5 minutes.","Excellent, I'll enfor
 ActivityNoChange,1000,"Ok, I won't change for 5 minutes.",Nice!  It won't take that long.,BlockChange(5),,DomActivityNoChange2,Playful
 ActivityNoChange,1000,5 minutes!  That's unfair!,Unfair?  Let's make it 10 minutes then.  (She laughs.),BlockChange(10),,DomActivityNoChange3,
 ActivityNoChange,1000,5 minutes!  That's unfair!,You want to negotiate?  It will be 15 minutes then.  (She grins.),BlockChange(15),,DomActivityNoChange3,Serious
-ActivityNoChange,1000,5 minutes!  That's unfair!,Naaaaa!  It won't take that long.,BlockChange(5),,DomActivityNoChange3,Playful
-ActivityNoChange,1000,(Bow your head.),I'll watch you to make sure you don't change.,BlockChange(5),,DomActivityNoChange4,
-ActivityNoChange,1000,(Bow your head.),"Excellent, I'll enforce the rule myself.",BlockChange(5),,DomActivityNoChange4,Serious
-ActivityNoChange,1000,(Bow your head.),I'll watch you.  It won't take that long.,BlockChange(5),,DomActivityNoChange4,Playful
+ActivityNoChange,1000,5 minutes!  That's unfair!,"Yeah, it might be unfair.  Let's make it only 2 minutes then.",BlockChange(2),,DomActivityNoChange3,Playful
+ActivityNoChange,1000,"Mistress, this is harsh.","Sorry girl, my decision stands.  You'll stay like that for 5 minutes.",BlockChange(5),,DomActivityNoChange4,
+ActivityNoChange,1000,"Mistress, this is harsh.","Yeah, it might be too harsh.  Let's make it only 2 minutes then.",BlockChange(2),,DomActivityNoChange4,Playful
+ActivityNoChange,1000,"Mistress, this is harsh.","(She caresses your hair.)  True, it might too harsh for you my precious subbie.  Let's make it only 2 minutes.",BlockChange(2),,DomActivityNoChange4,Peaceful
+ActivityNoChange,1000,(Bow your head.),I'll watch you to make sure you don't change.,BlockChange(5),,DomActivityNoChange5,
+ActivityNoChange,1000,(Bow your head.),You're a good slave and should be rewarded.  Let's make it only 2 minutes without changing.,BlockChange(2),,DomActivityNoChange5,Dominant
+ActivityNoChange,1000,(Bow your head.),"Excellent, I'll enforce the rule myself.",BlockChange(5),,DomActivityNoChange5,Serious
+ActivityNoChange,1000,(Bow your head.),I'll watch you.  It won't take that long.,BlockChange(5),,DomActivityNoChange5,Playful
 ActivityShibariIntro,,,"Little one, I've been studying in the dojo lately and I've found a few rope tricks that I want to try on your naked body.",,,DomActivityShibariIntro,
 ActivityShibariIntro,,,"Slave, I've been hanging around the dojo lately and found some tight rope techniques that I want to try on your naked body.",,,DomActivityShibariIntro,Violent
 ActivityShibariIntro,,,"My precious, I've been at the dojo lately and found rope techniques that should be both comfy and secure.  I want to try them on your naked body.",,,DomActivityShibariIntro,Peaceful
@@ -611,8 +615,58 @@ ActivityShibari,1000,(Shake your head no.),(She frowns but forces you naked and 
 PunishIntro,,,(She seems furious.)  That's enough!  You must be punished.,,,DomPunishIntro,
 PunishIntro,,,(She slaps your face.)  Slave!  You must be punished.,,,DomPunishIntro,Violent
 PunishIntro,,,"(She speaks with a calm and menacing voice.)  I'm sorry my precious subsmissive, but you must be punished.",,,DomPunishIntro,Peaceful
+PunishIntro,,,(She seems furious.)  You little bitch!  I'll fucking punish you.,,,DomPunishIntro,Rude
+PunishIntro,,,"(She seems furious.)  My submissive, you've crossed a red line.  You deserve to be punished.",,,DomPunishIntro,Polite
 Punish,,Punished?  What does that mean?,,SelectPunishment(),Player.CanTalk(),,
 Punish,,Oh please!  Don't punish me.,,SelectPunishment(),Player.CanTalk(),,
 Punish,,You cannot be serious.,,SelectPunishment(),Player.CanTalk(),,
 Punish,,(Grumble and pout.),,SelectPunishment(),,,
 Punish,,(Bow your head.),,SelectPunishment(),,,
+PunishReleaseBeforeIntro,,,(She releases you and frowns.)  I hope you're ashamed of yourself.,,,DomPunishReleaseBefore,
+PunishReleaseBeforeIntro,,,(She releases you and gives you a stern look.)  I'm very disappointed in you.  I hope you're ashamed of yourself.,,,DomPunishReleaseBefore,Serious
+PunishReleaseBeforeIntro,,,(She releases you.)  Do you feel a little ashamed my subbie?,,,DomPunishReleaseBefore,Playful
+PunishReleaseBefore,,I'm very sorry Mistress.,,SelectPunishment(),,,
+PunishReleaseBefore,,Why should I be ashamed?,,SelectPunishment(),,,
+PunishReleaseBefore,,(Look at your feet in shame.),,SelectPunishment(),,,
+PunishStripBeforeIntro,,,(She forces you to strip naked.)  Now your punishment can begin.,,,DomPunishStripBefore,
+PunishStripBeforeIntro,,,"(She forces you to strip naked.)  Slut, your sexy ass is ready to be punished.",,,DomPunishStripBefore,Horny|Rude
+PunishStripBeforeIntro,,,"(She forces you to strip naked.)  I hate to do this, but this is for your own good.  You're ready to be punished.",,,DomPunishStripBefore,Frigid|Wise
+PunishStripBefore,,Yes Mistress.,,SelectPunishment(),,,
+PunishStripBefore,,This is too much!,,SelectPunishment(),,,
+PunishStripBefore,,(Try to look away.),,SelectPunishment(),,,
+PunishCageIntro,,,"My submissive, since you have cages around here, you're going to spend some time into one.  I'll give you the keys back when I'm satisfied.",,,,
+PunishCage,1001,Alright Mistress.  (Get in the cage.),,RunPunishment(),,,
+PunishCage,1001,Cages are cold.  (Get in the cage.),,RunPunishment(),,,
+PunishCage,1001,(Stay silent and get in the cage.),,RunPunishment(),,,
+PunishBoundIntro,,,Bound,,,,
+PunishBound,1001,TO DO,TO DO,RunPunishment(),,,
+PunishBound,1001,TO DO,TO DO,RunPunishment(),,,
+PunishBound,1001,TO DO,TO DO,RunPunishment(),,,
+PunishBoundPetIntro,,,BoundPet,,,,
+PunishBoundPet,1001,TO DO,TO DO,RunPunishment(),,,
+PunishBoundPet,1001,TO DO,TO DO,RunPunishment(),,,
+PunishBoundPet,1001,TO DO,TO DO,RunPunishment(),,,
+PunishChastityBeltIntro,,,ChastityBelt,,,,
+PunishChastityBelt,1001,TO DO,TO DO,RunPunishment(),,,
+PunishChastityBelt,1001,TO DO,TO DO,RunPunishment(),,,
+PunishChastityBelt,1001,TO DO,TO DO,RunPunishment(),,,
+PunishChastityBraIntro,,,ChastityBra,,,,
+PunishChastityBra,1001,TO DO,TO DO,RunPunishment(),,,
+PunishChastityBra,1001,TO DO,TO DO,RunPunishment(),,,
+PunishChastityBra,1001,TO DO,TO DO,RunPunishment(),,,
+PunishForceNakedIntro,,,ForceNaked,,,,
+PunishForceNaked,1001,TO DO,TO DO,RunPunishment(),,,
+PunishForceNaked,1001,TO DO,TO DO,RunPunishment(),,,
+PunishForceNaked,1001,TO DO,TO DO,RunPunishment(),,,
+PunishConfiscateKeyIntro,,,ConfiscateKey,,,,
+PunishConfiscateKey,1001,TO DO,TO DO,RunPunishment(),,,
+PunishConfiscateKey,1001,TO DO,TO DO,RunPunishment(),,,
+PunishConfiscateKey,1001,TO DO,TO DO,RunPunishment(),,,
+PunishConfiscateCropIntro,,,ConfiscateCrop,,,,
+PunishConfiscateCrop,1001,TO DO,TO DO,RunPunishment(),,,
+PunishConfiscateCrop,1001,TO DO,TO DO,RunPunishment(),,,
+PunishConfiscateCrop,1001,TO DO,TO DO,RunPunishment(),,,
+PunishConfiscateWhipIntro,,,ConfiscateWhip,,,,
+PunishConfiscateWhip,1001,TO DO,TO DO,RunPunishment(),,,
+PunishConfiscateWhip,1001,TO DO,TO DO,RunPunishment(),,,
+PunishConfiscateWhip,1001,TO DO,TO DO,RunPunishment(),,,

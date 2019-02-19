@@ -32,9 +32,9 @@ function PrivateWontKneel() { return (CurrentCharacter.CanKneel() && !CurrentCha
 function PrivateCannotKneel() { return (!CurrentCharacter.CanKneel() && !CurrentCharacter.IsKneeling()) }
 function PrivateCanStandUp() { return (CurrentCharacter.CanKneel() && CurrentCharacter.IsKneeling()) }
 function PrivateCannotStandUp() { return (!CurrentCharacter.CanKneel() && CurrentCharacter.IsKneeling()) }
-function PrivateWouldTakePlayerAsSub() { return (!PrivatePlayerIsOwned() && !PrivateIsCaged() && !CurrentCharacter.IsKneeling() && !CurrentCharacter.IsRestrained() && (ReputationGet("Dominant") + 50 <= NPCTraitGet(CurrentCharacter, "Dominant")) && (CurrentTime >= NPCEventGet(CurrentCharacter, "PrivateRoomEntry") + NPCLongEventDelay(CurrentCharacter))) }
-function PrivateWontTakePlayerAsSub() { return (!PrivatePlayerIsOwned() && !PrivateIsCaged() && !CurrentCharacter.IsKneeling() && !CurrentCharacter.IsRestrained() && (ReputationGet("Dominant") + 50 > NPCTraitGet(CurrentCharacter, "Dominant"))) }
-function PrivateNeedTimeToTakePlayerAsSub() { return (!PrivatePlayerIsOwned() && !PrivateIsCaged() && !CurrentCharacter.IsKneeling() && !CurrentCharacter.IsRestrained() && (ReputationGet("Dominant") + 50 <= NPCTraitGet(CurrentCharacter, "Dominant")) && (CurrentTime < NPCEventGet(CurrentCharacter, "PrivateRoomEntry") + NPCLongEventDelay(CurrentCharacter))) }
+function PrivateWouldTakePlayerAsSub() { return (!PrivatePlayerIsOwned() && !PrivateIsCaged() && !CurrentCharacter.IsKneeling() && !CurrentCharacter.IsRestrained() && (CurrentCharacter.Love >= 50) && (ReputationGet("Dominant") + 50 <= NPCTraitGet(CurrentCharacter, "Dominant")) && (CurrentTime >= NPCEventGet(CurrentCharacter, "PrivateRoomEntry") + NPCLongEventDelay(CurrentCharacter))) }
+function PrivateWontTakePlayerAsSub() { return (!PrivatePlayerIsOwned() && !PrivateIsCaged() && !CurrentCharacter.IsKneeling() && !CurrentCharacter.IsRestrained() && ((ReputationGet("Dominant") + 50 > NPCTraitGet(CurrentCharacter, "Dominant")) || (CurrentCharacter.Love < 50))) }
+function PrivateNeedTimeToTakePlayerAsSub() { return (!PrivatePlayerIsOwned() && !PrivateIsCaged() && !CurrentCharacter.IsKneeling() && !CurrentCharacter.IsRestrained() && (CurrentCharacter.Love >= 50) && (ReputationGet("Dominant") + 50 <= NPCTraitGet(CurrentCharacter, "Dominant")) && (CurrentTime < NPCEventGet(CurrentCharacter, "PrivateRoomEntry") + NPCLongEventDelay(CurrentCharacter))) }
 function PrivateTrialInProgress() { return ((CurrentTime < NPCEventGet(CurrentCharacter, "EndSubTrial")) && (NPCEventGet(CurrentCharacter, "EndSubTrial") > 0)) }
 function PrivateTrialDone() { return ((CurrentTime >= NPCEventGet(CurrentCharacter, "EndSubTrial")) && (NPCEventGet(CurrentCharacter, "EndSubTrial") > 0)) }
 function PrivateTrialCanCancel() { return (NPCEventGet(CurrentCharacter, "EndSubTrial") > 0) }
@@ -62,6 +62,7 @@ function PrivateLoad() {
 	if (PrivateCharacter.length >= 2) PrivateCharacter[1].AllowItem = ((ReputationGet("Dominant") + 25 >= NPCTraitGet(PrivateCharacter[1], "Dominant")) || PrivateCharacter[1].IsRestrained());
 	if (PrivateCharacter.length >= 3) PrivateCharacter[2].AllowItem = ((ReputationGet("Dominant") + 25 >= NPCTraitGet(PrivateCharacter[2], "Dominant")) || PrivateCharacter[2].IsRestrained());
 	if (PrivateCharacter.length >= 4) PrivateCharacter[3].AllowItem = ((ReputationGet("Dominant") + 25 >= NPCTraitGet(PrivateCharacter[3], "Dominant")) || PrivateCharacter[3].IsRestrained());
+	PrivateRelationDecay();
 
 }
 
@@ -282,6 +283,26 @@ function PrivateRestrainPlayer() {
 	PrivateReleaseTimer = CommonTime() + (Math.random() * 60000) + 60000;
 }
 
+// Relationship with any NPC will decay with time, below -100, the NPC leaves if she's not caged
+function PrivateRelationDecay() {
+	for(var C = 1; C < PrivateCharacter.length; C++) {
+		var LastDecay = NPCEventGet(PrivateCharacter[C], "LastDecay");
+		if (LastDecay == 0) 
+			NPCEventAdd(PrivateCharacter[C], "LastDecay", CurrentTime);
+		else 
+			if (LastDecay <= CurrentTime - 7200000) {
+				var Decay = Math.floor((CurrentTime - LastDecay) / 7200000);
+				NPCEventAdd(PrivateCharacter[C], "LastDecay", LastDecay + (Decay * 7200000));
+				NPCLoveChange(PrivateCharacter[C], Decay * -1);
+				PrivateSaveCharacter(C);
+				if ((PrivateCharacter[C].Love <= -100) && (PrivateCharacter[C].Cage == null)) {
+					CurrentCharacter = PrivateCharacter[C];
+					PrivateKickOut();
+				}
+			}
+	}
+}
+
 // When the player starts a submissive trial with an NPC
 function PrivateStartTrial(ChangeRep) {
 	DialogChangeReputation("Dominant", ChangeRep);
@@ -372,11 +393,11 @@ function PrivateActivityRun(LoveFactor) {
 	// If the player refused to do the activity, she will be either forced, punished or the Domme will stop it
 	if (LoveFactor <= -3) {
 
-		// Each factor is randomized and added to a stat, punish is automatic if two refusal in two minutes
-		var Force = Math.random() * 100 + NPCTraitGet(CurrentCharacter, "Violent");
-		var Punish = Math.random() * 100 + NPCTraitGet(CurrentCharacter, "Serious");
-		var Stop = Math.random() * 100 + NPCTraitGet(CurrentCharacter, "Wise");
-		if (NPCEventGet(CurrentCharacter, "RefusedActivity") >= CurrentTime - 120000) Punish = 500;
+		// Each factor is randomized and added to a stat, punishment is increased if the another activity was refused in the last 5 minutes
+		var Force = Math.random() * 150 + NPCTraitGet(CurrentCharacter, "Violent");
+		var Punish = Math.random() * 150 + NPCTraitGet(CurrentCharacter, "Serious");
+		var Stop = Math.random() * 150 + NPCTraitGet(CurrentCharacter, "Wise");
+		if (NPCEventGet(CurrentCharacter, "RefusedActivity") >= CurrentTime - 300000) Punish = Punish + 100;
 		NPCEventAdd(CurrentCharacter, "RefusedActivity", CurrentTime);
 
 		// If we must punish
@@ -411,6 +432,7 @@ function PrivateActivityRun(LoveFactor) {
 	// In Shibari, the player gets naked and fully roped in hemp
 	if (PrivateActivity == "Shibari") {
 		CharacterNaked(Player);
+		CharacterSetActivePose(Player, null);
 		InventoryWear(Player, "HempRope", "ItemArms", "Default", Math.floor(Math.random() * 10) + 1);
 		InventoryWear(Player, "HempRope", "ItemLegs", "Default", Math.floor(Math.random() * 10) + 1);
 		InventoryWear(Player, "SuspensionHempRope", "ItemFeet", "Default", Math.floor(Math.random() * 10) + 1);
@@ -434,21 +456,21 @@ function PrivateBlockChange(Minutes) {
 }
 
 // Starts a random punishment for the player as submissive
-function PrivateStartPunishment() {
+function PrivateSelectPunishment() {
 	
 	// Release the player first
 	if (Player.IsRestrained()) {
 		CharacterRelease(Player);
-		CurrentCharacter.Stage = "PunishmentReleaseBefore";
-		CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "PunishmentReleaseBeforeIntro");
+		CurrentCharacter.Stage = "PunishReleaseBefore";
+		CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "PunishReleaseBeforeIntro");
 		return;
 	}
 
 	// Strip the player second
 	if (!Player.IsNaked()) {
-		CharacterRelease(Player);
-		CurrentCharacter.Stage = "PunishmentStripBefore";
-		CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "PunishmentStripBeforeIntro");
+		CharacterNaked(Player);
+		CurrentCharacter.Stage = "PunishStripBefore";
+		CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "PunishStripBeforeIntro");
 		return;
 	}
 	
@@ -462,16 +484,34 @@ function PrivateStartPunishment() {
 		// If the punishment is valid
 		if ((PrivatePunishment == "Cage") && (LogQuery("Cage", "PrivateRoom"))) break;
 		if (PrivatePunishment == "Bound") break;
-		if ((PrivatePunishment == "BoundPet") && !Player.IsVulvaChaste()) break;
-		if ((PrivatePunishment == "ChastityBelt") && !Player.IsVulvaChaste()) break;
-		if ((PrivatePunishment == "ChastityBra") && !Player.IsVulvaChaste()) break;
+		if ((PrivatePunishment == "BoundPet") && !Player.IsVulvaChaste() && (NPCTraitGet(CurrentCharacter, "Playful") >= 0)) break;
+		if ((PrivatePunishment == "ChastityBelt") && !Player.IsVulvaChaste() && (NPCTraitGet(CurrentCharacter, "Frigid") >= 0)) break;
+		if ((PrivatePunishment == "ChastityBra") && !Player.IsBreastChaste() && (NPCTraitGet(CurrentCharacter, "Frigid") >= 0)) break;
 		if ((PrivatePunishment == "ForceNaked") && (NPCTraitGet(CurrentCharacter, "Horny") >= 0)) break;
 		if ((PrivatePunishment == "ConfiscateKey") && InventoryAvailable(Player, "MetalCuffsKey", "ItemArms")) break;
+		if ((PrivatePunishment == "ConfiscateCrop") && InventoryAvailable(Player, "LeatherCrop", "ItemPelvis")) break;
+		if ((PrivatePunishment == "ConfiscateWhip") && InventoryAvailable(Player, "LeatherWhip", "ItemPelvis")) break;
 
 	}
 
 	// Starts the punishment
-	CurrentCharacter.Stage = "Punishment" + PrivatePunishment;
-	CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "Punishment" + PrivatePunishment + "Intro");
+	CurrentCharacter.Stage = "Punish" + PrivatePunishment;
+	CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "Punish" + PrivatePunishment + "Intro");
 
+}
+
+// Runs the player punishment
+function PrivateRunPunishment() {
+	if (PrivatePunishment == "Cage") { Player.Cage = true; LogAdd("BlockCage", "Rule", CurrentTime + (150000)); DialogLeave(); }
+	if (PrivatePunishment == "Bound") { PrivateReleaseTimer = CommonTime() + 300000; CharacterFullRandomRestrain(Player, "All"); InventoryRemove(Player, "ItemArms"); InventoryWear(Player, "LeatherArmbinder", "ItemArms"); InventorySetDifficulty(Player, "ItemArms", 20); }
+	if (PrivatePunishment == "BoundPet") { PrivateReleaseTimer = CommonTime() + 300000; CharacterSetActivePose(Player, "Kneel"); InventoryWear(Player, "LeatherBelt", "ItemLegs"); InventoryWear(Player, "TailButtPlug", "ItemButt"); InventoryWear(Player, "LeatherArmbinder", "ItemArms"); InventorySetDifficulty(Player, "ItemArms", 20); }
+	if ((PrivatePunishment == "ChastityBelt") && (NPCTraitGet(CurrentCharacter, "Horny") >= 0) && (InventoryGet(Player, "ItemVulva") == null)) InventoryWear(Player, "VibratingEgg", "ItemVulva");
+	if ((PrivatePunishment == "ChastityBelt") && (NPCTraitGet(CurrentCharacter, "Horny") >= 0) && (InventoryGet(Player, "ItemButt") == null)) InventoryWear(Player, "BlackButtPlug", "ItemButt");
+	if (PrivatePunishment == "ChastityBelt") InventoryWear(Player, "MetalChastityBelt", "ItemPelvis");
+	if (PrivatePunishment == "ChastityBra") InventoryWear(Player, "MetalChastityBra", "ItemBreast");
+	if (PrivatePunishment == "ForceNaked") LogAdd("BlockChange", "Rule", CurrentTime + 1800000);
+	if (PrivatePunishment == "ConfiscateKey") InventoryDelete(Player, "MetalCuffsKey", "ItemArms");
+	if (PrivatePunishment == "ConfiscateCrop") { InventoryDelete(Player, "LeatherCrop", "ItemPelvis"); InventoryDelete(Player, "LeatherCrop", "ItemBreast"); }
+	if (PrivatePunishment == "ConfiscateWhip") { InventoryDelete(Player, "LeatherWhip", "ItemPelvis"); InventoryDelete(Player, "LeatherWhip", "ItemBreast"); }
+	NPCEventAdd(CurrentCharacter, "RefusedActivity", CurrentTime);
 }
