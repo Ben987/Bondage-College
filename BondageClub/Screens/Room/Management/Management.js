@@ -16,7 +16,7 @@ function ManagementMistressWillRelease() { return (CommonTime() >= ManagementMis
 function ManagementFriendIsChaste() { return (((PrivateCharacter.length > 1) && PrivateCharacter[1].IsChaste()) || ((PrivateCharacter.length > 2) && PrivateCharacter[2].IsChaste()) || ((PrivateCharacter.length > 3) && PrivateCharacter[3].IsChaste())); }
 function ManagementCanPlayWithoutPermission() { return (!ManagementMistressAllowPlay && Player.CanInteract() && (ManagementMistressReleaseTimer == 0)) } 
 function ManagementOwnerFromBondageCollege() { return ((Player.Owner == "NPC-Sidney") || (Player.Owner == "NPC-Amanda") || (Player.Owner == "NPC-Jennifer")) }
-function ManagementOwnerInPrivateRoom() { return false }
+function ManagementOwnerInPrivateRoom() { return PrivateOwnerInRoom() }
 function ManagementOwnerAway() { return !((Player.Owner == "NPC-Sidney") || (Player.Owner == "NPC-Amanda") || (Player.Owner == "NPC-Jennifer")) }
 function ManagementAllowReleaseChastity() { return (Player.IsChaste() && ManagementCanReleaseChastity) }
 function ManagementRefuseReleaseChastity() { return (Player.IsChaste() && !ManagementCanReleaseChastity) }
@@ -28,6 +28,8 @@ function ManagementCanUnlockBelt() { return ((Player.Money >= 25) && Player.IsVu
 function ManagementEndChastityRelease() { ManagementMistressReleaseTimer = 0 }
 function ManagementCanReleaseFromOwnerFirst() { return ((Player.Money >= 60) && !LogQuery("ReleasedFromOwner", "Management")) }
 function ManagementCanReleaseFromOwner() { return ((Player.Money >= 200) && LogQuery("ReleasedFromOwner", "Management")) }
+function ManagementCanBeReleased() { return ((Player.Owner != "") && !PrivateOwnerInRoom()) }
+function ManagementCannotBeReleased() { return ((Player.Owner != "") && PrivateOwnerInRoom()) }
 
 // Loads the club management room, creates the Mistress and sub character
 function ManagementLoad() {

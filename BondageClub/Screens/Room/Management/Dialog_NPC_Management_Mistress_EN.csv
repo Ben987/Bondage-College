@@ -156,12 +156,13 @@ KneelToTalk,,,"Submissive girl, what are you doing standing up in my presence?  
 200,,Will you be my Mistress?,"No, my D/s family is complete.  I'm not looking for a new slave.",DialogRemove(),
 200,,Can I collar and own anyone?,"BDSM is consensual.  As long as the person isn't already owned and consent to be your slave, you can collar her.",,
 200,,I want to collar a submissive.,Perfect!  You'll have to wait though.  The club is restructuring.  Please come back later.,,
-200,,A Dominant wants to collar me.,You must be thrilled sub girl.  You'll have to wait though.  The club is restructuring.  Come back later.,,!Player.IsOwned()
-200,210,I want to be released from my owner.,"I'm sorry to hear that.  Breaking a BDSM bond is serious.  Tell me your story, why do you want to leave?",,Player.IsOwned()
+200,,A Dominant wants to collar me.,"You must be thrilled sub girl, but your Dominant will arrange the collaring ceremony, not you.  Ask her politely to contact us.",,!Player.IsOwned()
+200,210,I want to be released from my owner.,"I'm sorry to hear that.  Breaking a BDSM bond is serious.  Tell me your story, why do you want to leave?",,CanBeReleased()
+200,,I want to be released from my owner.,"Girl, I know your owner.  Speak with her about it first.",,CannotBeReleased()
 200,0,Let's talk about something else.,As long as you don't ask anything idiotic.,,
 210,211,My Mistress doesn't want to join the club.,"I understand.  BDSM is consensual, you have the right to leave your owner.  Since we don't encourage flyby slaves, there's a fee for your freedom.",,OwnerFromBondageCollege()
 210,211,"My owner is a student, she's not mature enough.","That makes sense.  BDSM is consensual, you have the right to leave your owner.  Since we don't encourage flyby slaves, there's a fee for your freedom.",,OwnerFromBondageCollege()
-210,211,My owner disappeared.,"Poor girl, I'm sure you'll find another owner someday.  Since we don't encourage flyby slaves, there's a fee for your freedom.",,OwnerAway()
+210,211,My owner disappeared.,"Poor girl, I'm sure you'll find another owner someday.  Since we don't encourage flyby slaves, there's a fee for your freedom.",,
 210,211,My limits were broken too many times.,"I'm sorry for you, some limits are not meant to be broken.  Since we don't encourage flyby slaves, there's a fee for your freedom.",,
 210,211,I've found a better Mistress.,"The Bondage Club isn't a shopping mall for Dominants.  (She frowns at you.)  Since we don't encourage flyby slaves, there's a fee for your freedom.",,
 210,211,My owner doesn't want me anymore.,"Poor girl, I'm sure you'll find a good owner someday.  But since we don't encourage flyby slaves, there's a fee for your freedom.",,

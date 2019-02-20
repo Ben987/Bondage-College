@@ -32,14 +32,18 @@ function PrivateWontKneel() { return (CurrentCharacter.CanKneel() && !CurrentCha
 function PrivateCannotKneel() { return (!CurrentCharacter.CanKneel() && !CurrentCharacter.IsKneeling()) }
 function PrivateCanStandUp() { return (CurrentCharacter.CanKneel() && CurrentCharacter.IsKneeling()) }
 function PrivateCannotStandUp() { return (!CurrentCharacter.CanKneel() && CurrentCharacter.IsKneeling()) }
-function PrivateWouldTakePlayerAsSub() { return (!PrivatePlayerIsOwned() && !PrivateIsCaged() && !CurrentCharacter.IsKneeling() && !CurrentCharacter.IsRestrained() && (CurrentCharacter.Love >= 50) && (ReputationGet("Dominant") + 50 <= NPCTraitGet(CurrentCharacter, "Dominant")) && (CurrentTime >= NPCEventGet(CurrentCharacter, "PrivateRoomEntry") + NPCLongEventDelay(CurrentCharacter))) }
+function PrivateWouldTakePlayerAsSub() { return (!PrivatePlayerIsOwned() && !PrivateIsCaged() && !CurrentCharacter.IsKneeling() && !CurrentCharacter.IsRestrained() && (CurrentCharacter.Love >= 50) && (ReputationGet("Dominant") + 50 <= NPCTraitGet(CurrentCharacter, "Dominant")) && (CurrentTime >= CheatFactor("SkipTrialPeriod", 0) * NPCEventGet(CurrentCharacter, "PrivateRoomEntry") + NPCLongEventDelay(CurrentCharacter))) }
 function PrivateWontTakePlayerAsSub() { return (!PrivatePlayerIsOwned() && !PrivateIsCaged() && !CurrentCharacter.IsKneeling() && !CurrentCharacter.IsRestrained() && ((ReputationGet("Dominant") + 50 > NPCTraitGet(CurrentCharacter, "Dominant")) || (CurrentCharacter.Love < 50))) }
-function PrivateNeedTimeToTakePlayerAsSub() { return (!PrivatePlayerIsOwned() && !PrivateIsCaged() && !CurrentCharacter.IsKneeling() && !CurrentCharacter.IsRestrained() && (CurrentCharacter.Love >= 50) && (ReputationGet("Dominant") + 50 <= NPCTraitGet(CurrentCharacter, "Dominant")) && (CurrentTime < NPCEventGet(CurrentCharacter, "PrivateRoomEntry") + NPCLongEventDelay(CurrentCharacter))) }
-function PrivateTrialInProgress() { return ((CurrentTime < NPCEventGet(CurrentCharacter, "EndSubTrial")) && (NPCEventGet(CurrentCharacter, "EndSubTrial") > 0)) }
-function PrivateTrialDone() { return ((CurrentTime >= NPCEventGet(CurrentCharacter, "EndSubTrial")) && (NPCEventGet(CurrentCharacter, "EndSubTrial") > 0)) }
-function PrivateTrialCanCancel() { return (NPCEventGet(CurrentCharacter, "EndSubTrial") > 0) }
+function PrivateNeedTimeToTakePlayerAsSub() { return (!PrivatePlayerIsOwned() && !PrivateIsCaged() && !CurrentCharacter.IsKneeling() && !CurrentCharacter.IsRestrained() && (CurrentCharacter.Love >= 50) && (ReputationGet("Dominant") + 50 <= NPCTraitGet(CurrentCharacter, "Dominant")) && (CurrentTime < CheatFactor("SkipTrialPeriod", 0) * NPCEventGet(CurrentCharacter, "PrivateRoomEntry") + NPCLongEventDelay(CurrentCharacter))) }
+function PrivateTrialInProgress() { return ((Player.Owner == "") && (CurrentTime < CheatFactor("SkipTrialPeriod", 0) * NPCEventGet(CurrentCharacter, "EndSubTrial")) && (NPCEventGet(CurrentCharacter, "EndSubTrial") > 0)) }
+function PrivateTrialDoneEnoughLove() { return ((Player.Owner == "") && (CurrentTime >= CheatFactor("SkipTrialPeriod", 0) * NPCEventGet(CurrentCharacter, "EndSubTrial")) && (NPCEventGet(CurrentCharacter, "EndSubTrial") > 0) && (CurrentCharacter.Love >= 90)) }
+function PrivateTrialDoneNotEnoughLove() { return ((Player.Owner == "") && (CurrentTime >= CheatFactor("SkipTrialPeriod", 0) * NPCEventGet(CurrentCharacter, "EndSubTrial")) && (NPCEventGet(CurrentCharacter, "EndSubTrial") > 0) && (CurrentCharacter.Love < 90)) }
+function PrivateTrialCanCancel() { return ((Player.Owner == "") && NPCEventGet(CurrentCharacter, "EndSubTrial") > 0) }
 function PrivateNPCInteraction(LoveFactor) { if ((CurrentCharacter.Love < 60) || (parseInt(LoveFactor) < 0)) NPCLoveChange(CurrentCharacter, LoveFactor); }
 function PrivateWillForgive() { return (NPCEventGet(CurrentCharacter, "RefusedActivity") < CurrentTime - 60000) }
+function PrivateIsHappy() { return (CurrentCharacter.Love >= 0) }
+function PrivateCanAskUncollar() { return (DialogIsOwner() && (NPCEventGet(CurrentCharacter, "PlayerCollaring") > 0) && (CurrentTime >= CheatFactor("SkipTrialPeriod", 0) * NPCEventGet(CurrentCharacter, "PlayerCollaring") + NPCLongEventDelay(CurrentCharacter))); }
+function PrivateCannotAskUncollar() { return (DialogIsOwner() && (NPCEventGet(CurrentCharacter, "PlayerCollaring") > 0) && (CurrentTime < CheatFactor("SkipTrialPeriod", 0) * NPCEventGet(CurrentCharacter, "PlayerCollaring") + NPCLongEventDelay(CurrentCharacter))); }
 
 // Loads the private room vendor NPC
 function PrivateLoad() {
@@ -145,9 +149,19 @@ function PrivateClickCharacter() {
 	// For each character, we find the one that was clicked and open it's dialog
 	for(var C = 0; C < PrivateCharacter.length; C++)
 		if ((MouseX >= X + C * S) && (MouseX <= X + S + C * S)) {
+			
+			// Sets the new character (1000 if she's owner)
 			PrivateCharacterToSave = C;
 			if ((PrivateCharacter[C].Stage == "0") && PrivateCharacter[C].IsOwner()) PrivateCharacter[C].Stage = "1000";
 			CharacterSetCurrent(PrivateCharacter[C]);
+
+			// If the owner is serious, she might force the player to kneel
+			if ((CurrentCharacter.Stage == "1000") && (CurrentCharacter.Name == Player.Owner.replace("NPC-", "")) && !Player.IsKneeling() && (NPCTraitGet(CurrentCharacter, "Serious") >= Math.random() * 100 - 25)) {
+				CurrentCharacter.Stage = "1005";
+				NPCLoveChange(CurrentCharacter, -3);
+				CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "PlayerMustKneel");
+			}
+			
 		}
 
 }
@@ -316,7 +330,7 @@ function PrivateStartTrial(ChangeRep) {
 function PrivateStopTrial(ChangeRep) {
 	DialogChangeReputation("Dominant", ChangeRep);
 	NPCEventDelete(CurrentCharacter, "EndSubTrial");
-	NPCLoveChange(CurrentCharacter, -30);
+	NPCLoveChange(CurrentCharacter, -60);
 	PrivateSaveCharacter(PrivateGetCurrentID());
 }
 
@@ -480,7 +494,7 @@ function PrivateSelectPunishment() {
 
 		// Picks an punishment at random
 		PrivatePunishment = CommonRandomItemFromList("", PrivatePunishmentList);
-		
+
 		// If the punishment is valid
 		if ((PrivatePunishment == "Cage") && (LogQuery("Cage", "PrivateRoom"))) break;
 		if (PrivatePunishment == "Bound") break;
@@ -501,10 +515,11 @@ function PrivateSelectPunishment() {
 }
 
 // Runs the player punishment
-function PrivateRunPunishment() {
+function PrivateRunPunishment(LoveFactor) {
+	NPCLoveChange(CurrentCharacter, LoveFactor);
 	if (PrivatePunishment == "Cage") { Player.Cage = true; LogAdd("BlockCage", "Rule", CurrentTime + (150000)); DialogLeave(); }
-	if (PrivatePunishment == "Bound") { PrivateReleaseTimer = CommonTime() + 300000; CharacterFullRandomRestrain(Player, "All"); InventoryRemove(Player, "ItemArms"); InventoryWear(Player, "LeatherArmbinder", "ItemArms"); InventorySetDifficulty(Player, "ItemArms", 20); }
-	if (PrivatePunishment == "BoundPet") { PrivateReleaseTimer = CommonTime() + 300000; CharacterSetActivePose(Player, "Kneel"); InventoryWear(Player, "LeatherBelt", "ItemLegs"); InventoryWear(Player, "TailButtPlug", "ItemButt"); InventoryWear(Player, "LeatherArmbinder", "ItemArms"); InventorySetDifficulty(Player, "ItemArms", 20); }
+	if (PrivatePunishment == "Bound") { PrivateReleaseTimer = CommonTime() + 300000; CharacterFullRandomRestrain(Player, "All"); InventoryRemove(Player, "ItemArms"); InventoryWear(Player, "HempRope", "ItemArms"); InventorySetDifficulty(Player, "ItemArms", 20); }
+	if (PrivatePunishment == "BoundPet") { PrivateReleaseTimer = CommonTime() + 300000; CharacterSetActivePose(Player, "Kneel"); InventoryWear(Player, "LeatherBelt", "ItemLegs"); InventoryWear(Player, "TailButtPlug", "ItemButt"); InventoryWear(Player, "Ears" + (Math.floor(Math.random() * 2) + 1).toString(), "Hat"); InventoryWear(Player, "LeatherArmbinder", "ItemArms"); InventorySetDifficulty(Player, "ItemArms", 20); }
 	if ((PrivatePunishment == "ChastityBelt") && (NPCTraitGet(CurrentCharacter, "Horny") >= 0) && (InventoryGet(Player, "ItemVulva") == null)) InventoryWear(Player, "VibratingEgg", "ItemVulva");
 	if ((PrivatePunishment == "ChastityBelt") && (NPCTraitGet(CurrentCharacter, "Horny") >= 0) && (InventoryGet(Player, "ItemButt") == null)) InventoryWear(Player, "BlackButtPlug", "ItemButt");
 	if (PrivatePunishment == "ChastityBelt") InventoryWear(Player, "MetalChastityBelt", "ItemPelvis");
@@ -514,4 +529,18 @@ function PrivateRunPunishment() {
 	if (PrivatePunishment == "ConfiscateCrop") { InventoryDelete(Player, "LeatherCrop", "ItemPelvis"); InventoryDelete(Player, "LeatherCrop", "ItemBreast"); }
 	if (PrivatePunishment == "ConfiscateWhip") { InventoryDelete(Player, "LeatherWhip", "ItemPelvis"); InventoryDelete(Player, "LeatherWhip", "ItemBreast"); }
 	NPCEventAdd(CurrentCharacter, "RefusedActivity", CurrentTime);
+}
+
+// Sets up the player collaring ceremony with the club management
+function PrivatePlayerCollaring() {
+	NPCEventDelete(CurrentCharacter, "EndSubTrial");
+	NPCEventAdd(CurrentCharacter, "PlayerCollaring", CurrentTime);
+	InventoryRemove(Player, "ItemNeck");
+	CharacterSetActivePose(Player, null);
+	ReputationProgress("Dominant", -20);
+	Player.Owner = "NPC-" + CurrentCharacter.Name;
+	AccountSync();
+	PlayerCollaringMistress = CurrentCharacter;
+	CommonSetScreen("Cutscene", "PlayerCollaring");
+	DialogLeave();
 }

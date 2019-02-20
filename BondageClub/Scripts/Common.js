@@ -11,6 +11,7 @@ var CurrentTime = 0;
 var CommonIsMobile = false;
 var CommonRunInterval = 20;
 var CommonCSVCache = {};
+var CutsceneStage = 0;
 
 // Returns TRUE if the variable is a number
 function CommonIsNumeric(n) {
