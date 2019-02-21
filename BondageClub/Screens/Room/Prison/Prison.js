@@ -60,6 +60,7 @@ function PrisonLoad() {
 	}
 	if (GamblingIllegalChange == true) {
 		GamblingIllegalChange = false;
+		CharacterSetCurrent(PrisonMaid);
 		PrisonMaid.Stage = "20";
 		PrisonMaid.CurrentDialog = DialogFind(PrisonMaid, "PrisonIllegalChangeIntro");
 	}

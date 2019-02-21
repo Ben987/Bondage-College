@@ -178,19 +178,26 @@ function StablePlayerTrainingGallop(Behavior) {
 	StablePlayerTrainingLessons++;
 	StablePlayerTrainingBehavior += parseInt(Behavior);
 	var StableDressage = SkillGetLevel(Player, "Dressage");
-	var StableDifficulty = 2;
+	var StableDifficulty = 3;
 	SkillProgress("Dressage", StableDifficulty * 5);
 	if ((Math.random() * StableDifficulty) < StableDressage) {
 		StablePlayerTrainingBehavior += 2;
+		if (StablePlayerTrainingBehavior > 2) {
+			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingSuccessPassIntro");
+			StableTrainer.Stage = "StableTrainingSuccessPass";
+		} else {
+			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingSuccessFailIntro");
+			StableTrainer.Stage = "StableTrainingSuccessFail";
+		}
 	} else {
 		StablePlayerTrainingBehavior -= 2;
-	}
-	if (StablePlayerTrainingBehavior > 0) {
-		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingPassIntro");
-		StableTrainer.Stage = "StableTrainingPass";
-	} else {
-		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingFailIntro");
-		StableTrainer.Stage = "StableTrainingFail";
+		if (StablePlayerTrainingBehavior >= 0) {
+			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingPassPunishIntro");
+			StableTrainer.Stage = "StableTrainingPassPunish";
+		} else {
+			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingFailPunishIntro");
+			StableTrainer.Stage = "StableTrainingPunishFail";
+		}
 	}
 }
 
@@ -199,19 +206,26 @@ function StablePlayerTrainingWalk(Behavior) {
 	StablePlayerTrainingLessons++;
 	StablePlayerTrainingBehavior += parseInt(Behavior);
 	var StableDressage = SkillGetLevel(Player, "Dressage");
-	var StableDifficulty = 4;
+	var StableDifficulty = 6;
 	SkillProgress("Dressage", StableDifficulty * 5);
 	if ((Math.random() * StableDifficulty) < StableDressage) {
 		StablePlayerTrainingBehavior += 2;
+		if (StablePlayerTrainingBehavior > 2) {
+			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingSuccessPassIntro");
+			StableTrainer.Stage = "StableTrainingSuccessPass";
+		} else {
+			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingSuccessFailIntro");
+			StableTrainer.Stage = "StableTrainingSuccessFail";
+		}
 	} else {
 		StablePlayerTrainingBehavior -= 2;
-	}
-	if (StablePlayerTrainingBehavior > 0) {
-		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingPassIntro");
-		StableTrainer.Stage = "StableTrainingPass";
-	} else {
-		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingFailIntro");
-		StableTrainer.Stage = "StableTrainingFail";
+		if (StablePlayerTrainingBehavior >= 0) {
+			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingPassPunishIntro");
+			StableTrainer.Stage = "StableTrainingPassPunish";
+		} else {
+			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingFailPunishIntro");
+			StableTrainer.Stage = "StableTrainingPunishFail";
+		}
 	}
 }
 
@@ -220,19 +234,26 @@ function StablePlayerTrainingDance(Behavior) {
 	StablePlayerTrainingLessons++;
 	StablePlayerTrainingBehavior += parseInt(Behavior);
 	var StableDressage = SkillGetLevel(Player, "Dressage");
-	var StableDifficulty = 6;
+	var StableDifficulty = 9;
 	SkillProgress("Dressage", StableDifficulty * 5);
 	if ((Math.random() * StableDifficulty) < StableDressage) {
 		StablePlayerTrainingBehavior += 2;
+		if (StablePlayerTrainingBehavior > 2) {
+			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingSuccessPassIntro");
+			StableTrainer.Stage = "StableTrainingSuccessPass";
+		} else {
+			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingSuccessFailIntro");
+			StableTrainer.Stage = "StableTrainingSuccessFail";
+		}
 	} else {
 		StablePlayerTrainingBehavior -= 2;
-	}
-	if (StablePlayerTrainingBehavior > 0) {
-		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingPassIntro");
-		StableTrainer.Stage = "StableTrainingPass";
-	} else {
-		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingFailIntro");
-		StableTrainer.Stage = "StableTrainingFail";
+		if (StablePlayerTrainingBehavior >= 0) {
+			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingPassPunishIntro");
+			StableTrainer.Stage = "StableTrainingPassPunish";
+		} else {
+			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingFailPunishIntro");
+			StableTrainer.Stage = "StableTrainingPunishFail";
+		}
 	}
 }
 
@@ -241,15 +262,6 @@ function StablePlayerTrainingHurdles(Behavior){
 	StablePlayerTrainingBehavior += parseInt(Behavior);
 	MiniGameStart("HorseWalk", "Hurdle", "StablePlayerTrainingHurdlesEnd");
 	StablePlayerTrainingLessons += 2;
-
-	var StableDressage = SkillGetLevel(Player, "Dressage");
-	var StableDifficulty = 8;
-	SkillProgress("Dressage", StableDifficulty * 5);
-	if ((Math.random() * StableDifficulty) < StableDressage) {
-		StablePlayerTrainingBehavior += 2;
-	} else {
-		StablePlayerTrainingBehavior -= 2;
-	}
 }
 
 function StablePlayerTrainingHurdlesEnd() {	
@@ -257,18 +269,24 @@ function StablePlayerTrainingHurdlesEnd() {
 	CharacterSetCurrent(StableTrainer);
 	if (MiniGameVictory) {
 		StablePlayerTrainingBehavior += 2;
+		if (StablePlayerTrainingBehavior > 2) {
+			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingSuccessPassIntro");
+			StableTrainer.Stage = "StableTrainingSuccessPass";
+		} else {
+			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingSuccessFailIntro");
+			StableTrainer.Stage = "StableTrainingSuccessFail";
+		}
 	} else {
 		StablePlayerTrainingBehavior -= 2;
-	}		
-	if (StablePlayerTrainingBehavior > 0) {
-		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingPassIntro");
-		StableTrainer.Stage = "StableTrainingPass";
-	} else {
-		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingFailIntro");
-		StableTrainer.Stage = "StableTrainingFail";
+		if (StablePlayerTrainingBehavior >= 0) {
+			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingPassPunishIntro");
+			StableTrainer.Stage = "StableTrainingPassPunish";
+		} else {
+			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingFailPunishIntro");
+			StableTrainer.Stage = "StableTrainingPunishFail";
+		}
 	}
 }
-
 
 //Start Traning Treadmill
 function StablePlayerTrainingTreadmill(Behavior) {
@@ -345,15 +363,22 @@ function StablePlayerTrainingCarrotsEnd() {
 	CharacterSetCurrent(StableTrainer);
 	if (MiniGameVictory) {
 		StablePlayerTrainingBehavior += 2;
+		if (StablePlayerTrainingBehavior > 2) {
+			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingSuccessPassIntro");
+			StableTrainer.Stage = "StableTrainingSuccessPass";
+		} else {
+			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingSuccessFailIntro");
+			StableTrainer.Stage = "StableTrainingSuccessFail";
+		}
 	} else {
 		StablePlayerTrainingBehavior -= 2;
-	}		
-	if (StablePlayerTrainingBehavior > 0) {
-		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingPassIntro");
-		StableTrainer.Stage = "StableTrainingPass";
-	} else {
-		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingFailIntro");
-		StableTrainer.Stage = "StableTrainingFail";
+		if (StablePlayerTrainingBehavior >= 0) {
+			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingPassPunishIntro");
+			StableTrainer.Stage = "StableTrainingPassPunish";
+		} else {
+			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingFailPunishIntro");
+			StableTrainer.Stage = "StableTrainingPunishFail";
+		}
 	}
 }
 
@@ -374,8 +399,8 @@ function StablePlayerTrainingPass(Behavior) {
 			StableTrainer.Stage = "StableTrainingScratching";
 		} else if (PassSelection < 3) {
 			StablePlayerTrainingBehavior -= 2;
-			for(var i = 0; i < Player.Appearance.length; i++) 
-				if (Player.Appearance[i].Asset.Group.Name == "HairBack") Player.Appearance[i].Asset.Name = "HairBack19";
+			/*for(var i = 0; i < Player.Appearance.length; i++) 
+				if (Player.Appearance[i].Asset.Group.Name == "HairBack") Player.Appearance[i].Asset.Name = "HairBack19";*/
 			CharacterRefresh(Player);
 			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingStraightenIntro");
 			StableTrainer.Stage = "StableTrainingStraighten";
@@ -591,6 +616,8 @@ function StablePonyTraining (probability) {
 /* todo
 Player StablePony.AllowItem
 minigame?
+-whipe the pony not the trainer
+-cycletraining
 */
 
 ////////////////////////////////////////////////////////////////////////////////////////////
