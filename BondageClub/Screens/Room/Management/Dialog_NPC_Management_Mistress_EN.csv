@@ -153,7 +153,8 @@ KneelToTalk,,,"Submissive girl, what are you doing standing up in my presence?  
 131,0,I'll think about it.,Think about ways to stop wasting my time girl.,,
 200,,What is a D/s family?,You can build your own D/s family or join a Dominant family.  A submissive can only have one Mistress.  A Mistress can have many collared submissives.,,
 200,,Is there a fee to collar or be collared?,"Yes, the Dominant must pay 100$ for each pet, we provide the locking collar.  If a slave wants freedom, she will pay 60$ on the first occurrence and 200$ on others.",,
-200,,Will you be my Mistress?,"No, my D/s family is complete.  I'm not looking for a new slave.",DialogRemove(),
+200,220,Will you be my Mistress?,"I've heard about you girl, they say you're one of the best slave around.  You would offer yourself to me?",,WillOwnPlayer()
+200,,Will you be my Mistress?,"Girl, my standards are high.  If I get a new slave, she would have to be the perfect submissive.",,WontOwnPlayer()
 200,,Can I collar and own anyone?,"BDSM is consensual.  As long as the person isn't already owned and consent to be your slave, you can collar her.",,
 200,,I want to collar a submissive.,Perfect!  You'll have to wait though.  The club is restructuring.  Please come back later.,,
 200,,A Dominant wants to collar me.,"You must be thrilled sub girl, but your Dominant will arrange the collaring ceremony, not you.  Ask her politely to contact us.",,!Player.IsOwned()
@@ -181,3 +182,13 @@ KneelToTalk,,,"Submissive girl, what are you doing standing up in my presence?  
 214,0,Thanks a lot.,My pleasure.  Is there anything else you need?,,
 214,0,I will!,Good.  Is there anything else you need?,,
 214,0,(Nod happily.),Is there anything else you need?,,
+220,221,Yes Miss.  Would you collar someone like me?,"I might be interested, but I need to know you better first.  Is there a place we could meet?",,
+220,221,I need a strong woman like you to control me.,"I might be interested, but I need to know you better first.  Is there a place we could meet?",,
+220,221,(Nod slowly and bow your head.),"I might be interested, but I need to know you better first.  Is there a place we could meet?",,
+220,0,Let me think about it.,"Of course, think very carefully slave girl.","DialogChangeReputation(""Dominant"", 1)",
+221,222,I have my private room in the club.,That could certainly work.  I'll take my kitty to her cage and go see your place right after.,,
+221,222,"Yes, we could use my room Miss.",That could certainly work.  I'll take my kitty to her cage and go see your place right after.,,
+221,0,I don't know.,It's fine girl.  Let me know if you can find a good place where we could meet after my shift.,,
+222,223,"Great, I'll see you there.",,SendMistressToPrivateRoom(3),
+222,223,Take your time Miss.,,SendMistressToPrivateRoom(1),
+222,223,You're welcome any time.,,SendMistressToPrivateRoom(2),

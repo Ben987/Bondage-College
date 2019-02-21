@@ -8,9 +8,9 @@ var PrivateReleaseTimer = 0;
 var PrivateActivity = "";
 var PrivateActivityCount = 0;
 var PrivateActivityAffectLove = true;
-var PrivateActivityList = ["Gag", "Ungag", "Restrain", "FullRestrain", "Release", "Tickle", "Spank", "Pet", "Slap", "Kiss", "Fondle", "Naked", "Underwear", "RandomClothes", "Shibari"];
+var PrivateActivityList = ["Gag", "Ungag", "Restrain", "FullRestrain", "Release", "Tickle", "Spank", "Pet", "Slap", "Kiss", "Fondle", "Naked", "Underwear", "RandomClothes", "Shibari", "Gift"];
 var PrivatePunishment = "";
-var PrivatePunishmentList = ["Cage", "Bound", "BoundPet", "ChastityBelt", "ChastityBra", "ForceNaked", "ConfiscateKey"];
+var PrivatePunishmentList = ["Cage", "Bound", "BoundPet", "ChastityBelt", "ChastityBra", "ForceNaked", "ConfiscateKey", "ConfiscateCrop", "ConfiscateWhip"];
 
 // Returns TRUE if a specific dialog option is allowed
 function PrivateIsCaged() { return (CurrentCharacter.Cage == null) ? false : true }
@@ -83,7 +83,7 @@ function PrivateDrawCharacter() {
 		DrawCharacter(PrivateCharacter[C], X + C * S, 0, 1);
 		if (PrivateCharacter[C].Cage != null) DrawImage("Screens/Room/Private/CageFront.png", X + C * S, 0);
 		DrawButton(X + 145 + C * S, 900, 90, 90, "", "White", "Icons/Character.png");
-		if (LogQuery("Cage", "PrivateRoom"))
+		if (LogQuery("Cage", "PrivateRoom") && !LogQuery("BlockCage", "Rule"))
 			if ((Player.Cage == null) || (C == 0))
 				if (!PrivateCharacter[C].IsOwner())
 					DrawButton(X + 265 + C * S, 900, 90, 90, "", "White", "Icons/Cage.png");
@@ -127,7 +127,7 @@ function PrivateClickCharacterButton() {
 	// For each character, we find the one to cage, doesn't allow to do it if already in a cage
 	for(var C = 0; C < PrivateCharacter.length; C++) {
 		if ((MouseX >= X + 265 + C * S) && (MouseX <= X + 355 + C * S))
-			if (LogQuery("Cage", "PrivateRoom"))
+			if (LogQuery("Cage", "PrivateRoom") && !LogQuery("BlockCage", "Rule"))
 				if ((Player.Cage == null) || (C == 0))
 					if (!PrivateCharacter[C].IsOwner()) {
 						PrivateCharacter[C].Cage = (PrivateCharacter[C].Cage == null) ? true : null;
@@ -375,6 +375,7 @@ function PrivateStartActivity() {
 		if ((Act == "Underwear") && !CharacterIsInUnderwear(Player) && Player.CanChange()) break;
 		if ((Act == "RandomClothes") && Player.CanChange()) break;
 		if ((Act == "Shibari") && Player.CanChange() && (NPCTraitGet(CurrentCharacter, "Wise") >= 0)) break;
+		if ((Act == "Gift") && (Player.Owner != "") && (CurrentCharacter.Love >= 90) && (CurrentTime >= NPCEventGet(CurrentCharacter, "LastGift") + 86400000)) break;
 		
 		// After 100 tries, we give up on picking an activity and the owner ignore the player
 		Count++;
@@ -411,7 +412,8 @@ function PrivateActivityRun(LoveFactor) {
 		var Force = Math.random() * 150 + NPCTraitGet(CurrentCharacter, "Violent");
 		var Punish = Math.random() * 150 + NPCTraitGet(CurrentCharacter, "Serious");
 		var Stop = Math.random() * 150 + NPCTraitGet(CurrentCharacter, "Wise");
-		if (NPCEventGet(CurrentCharacter, "RefusedActivity") >= CurrentTime - 300000) Punish = Punish + 100;
+		if (NPCEventGet(CurrentCharacter, "RefusedActivity") >= CurrentTime - 300000) Punish = Punish + 50;
+		if (Player.Owner == "") Stop = Stop + 50;
 		NPCEventAdd(CurrentCharacter, "RefusedActivity", CurrentTime);
 
 		// If we must punish
@@ -443,6 +445,12 @@ function PrivateActivityRun(LoveFactor) {
 	if (PrivateActivity == "Underwear") CharacterRandomUnderwear(Player);
 	if (PrivateActivity == "RandomClothes") CharacterAppearanceFullRandom(Player, true);
 
+	// The gift can only happen once a day if the player is fully collared
+	if (PrivateActivity == "Gift") {
+		CharacterChangeMoney(Player, 50);
+		NPCEventAdd(CurrentCharacter, "LastGift", CurrentTime);
+	}
+	
 	// In Shibari, the player gets naked and fully roped in hemp
 	if (PrivateActivity == "Shibari") {
 		CharacterNaked(Player);
@@ -517,9 +525,10 @@ function PrivateSelectPunishment() {
 // Runs the player punishment
 function PrivateRunPunishment(LoveFactor) {
 	NPCLoveChange(CurrentCharacter, LoveFactor);
-	if (PrivatePunishment == "Cage") { Player.Cage = true; LogAdd("BlockCage", "Rule", CurrentTime + (150000)); DialogLeave(); }
-	if (PrivatePunishment == "Bound") { PrivateReleaseTimer = CommonTime() + 300000; CharacterFullRandomRestrain(Player, "All"); InventoryRemove(Player, "ItemArms"); InventoryWear(Player, "HempRope", "ItemArms"); InventorySetDifficulty(Player, "ItemArms", 20); }
-	if (PrivatePunishment == "BoundPet") { PrivateReleaseTimer = CommonTime() + 300000; CharacterSetActivePose(Player, "Kneel"); InventoryWear(Player, "LeatherBelt", "ItemLegs"); InventoryWear(Player, "TailButtPlug", "ItemButt"); InventoryWear(Player, "Ears" + (Math.floor(Math.random() * 2) + 1).toString(), "Hat"); InventoryWear(Player, "LeatherArmbinder", "ItemArms"); InventorySetDifficulty(Player, "ItemArms", 20); }
+	NPCEventAdd(CurrentCharacter, "RefusedActivity", CurrentTime);
+	if (PrivatePunishment == "Cage") { Player.Cage = true; LogAdd("BlockCage", "Rule", CurrentTime + 150000); DialogLeave(); }
+	if (PrivatePunishment == "Bound") { PrivateReleaseTimer = CommonTime() + 300000; CharacterFullRandomRestrain(Player, "All"); InventoryRemove(Player, "ItemArms"); InventoryWear(Player, "HempRope", "ItemArms"); InventorySetDifficulty(Player, "ItemArms", 12); }
+	if (PrivatePunishment == "BoundPet") { PrivateReleaseTimer = CommonTime() + 300000; CharacterSetActivePose(Player, "Kneel"); InventoryWear(Player, "LeatherBelt", "ItemLegs"); InventoryWear(Player, "TailButtPlug", "ItemButt"); InventoryWear(Player, "Ears" + (Math.floor(Math.random() * 2) + 1).toString(), "Hat"); InventoryWear(Player, "LeatherArmbinder", "ItemArms"); InventorySetDifficulty(Player, "ItemArms", 15); }
 	if ((PrivatePunishment == "ChastityBelt") && (NPCTraitGet(CurrentCharacter, "Horny") >= 0) && (InventoryGet(Player, "ItemVulva") == null)) InventoryWear(Player, "VibratingEgg", "ItemVulva");
 	if ((PrivatePunishment == "ChastityBelt") && (NPCTraitGet(CurrentCharacter, "Horny") >= 0) && (InventoryGet(Player, "ItemButt") == null)) InventoryWear(Player, "BlackButtPlug", "ItemButt");
 	if (PrivatePunishment == "ChastityBelt") InventoryWear(Player, "MetalChastityBelt", "ItemPelvis");
@@ -528,7 +537,6 @@ function PrivateRunPunishment(LoveFactor) {
 	if (PrivatePunishment == "ConfiscateKey") InventoryDelete(Player, "MetalCuffsKey", "ItemArms");
 	if (PrivatePunishment == "ConfiscateCrop") { InventoryDelete(Player, "LeatherCrop", "ItemPelvis"); InventoryDelete(Player, "LeatherCrop", "ItemBreast"); }
 	if (PrivatePunishment == "ConfiscateWhip") { InventoryDelete(Player, "LeatherWhip", "ItemPelvis"); InventoryDelete(Player, "LeatherWhip", "ItemBreast"); }
-	NPCEventAdd(CurrentCharacter, "RefusedActivity", CurrentTime);
 }
 
 // Sets up the player collaring ceremony with the club management

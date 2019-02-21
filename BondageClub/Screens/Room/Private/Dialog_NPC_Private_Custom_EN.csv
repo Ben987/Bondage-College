@@ -648,6 +648,14 @@ ActivityShibari,1000,(Let her tie you up.),"(She makes sure your naked and restr
 ActivityShibari,1000,(Roll your eyes up and nod.),(She forces you naked and restrains you with hemp ropes from the ceiling.)  Never doubt my bondage skills.,ActivityRun(-1),,,
 ActivityShibari,1000,(Bow your head submissively.),"(She makes sure your naked and restrains you with hemp ropes from the ceiling.)  Wonderful, have fun struggling.",ActivityRun(1),,,
 ActivityShibari,1000,(Shake your head no.),(She frowns but forces you naked and restrains you with hemp ropes from the ceiling.)  There!  Struggle for me.,ActivityRun(-7),,,
+ActivityGiftIntro,,,"My girl, you make me really happy and I want to reward you.  I'll give you 50$ so you can do some shopping.",,,DomActivityGiftIntro,
+ActivityGiftIntro,,,"My wonderful submissive, I truly appreciate owning you and I want you to feel appreciated.  Take these 50$ and purchase something you desire.",,,DomActivityGiftIntro,Wise|Polite
+ActivityGiftIntro,,,"You're a great bitch and should get a gift.  (She checks her purse for a while.)  Here's 50$, get something kinky!",,,DomActivityGiftIntro,Dumb|Rude
+ActivityGift,1000,Wow!  Thank you.,My pleasure.  Spend it on something I can use on you.  (She winks and gives you 50$.),ActivityRun(0),Player.CanTalk(),,
+ActivityGift,1000,You're the best Mistress ever!,And you're the best sub.  Spend it on something I can use on you.  (She winks and gives you 50$.),ActivityRun(1),Player.CanTalk(),,
+ActivityGift,1000,I cannot take it.,"Slave, take it and spend it on something I can use on you.  (She gives you 50$.)",ActivityRun(-1),Player.CanTalk(),,
+ActivityGift,1000,(Nod politely and take the money.),Spend it on something I can use on you.  (She winks and gives you 50$.),ActivityRun(0),,,
+ActivityGift,1000,(Refuse the money.),"Slave, take it and spend it on something I can use on you.  (She gives you 50$.)",ActivityRun(-1),,,
 PunishIntro,,,(She seems furious.)  That's enough!  You must be punished.,,,DomPunishIntro,
 PunishIntro,,,(She slaps your face.)  Slave!  You must be punished.,,,DomPunishIntro,Violent
 PunishIntro,,,"(She speaks with a calm and menacing voice.)  I'm sorry my precious subsmissive, but you must be punished.",,,DomPunishIntro,Peaceful

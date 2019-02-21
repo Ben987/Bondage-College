@@ -7,6 +7,7 @@ var ManagementMistressReleaseTimer = 0;
 var ManagementPlayerAppearance = null;
 var ManagementMistressAllowPlay = false;
 var ManagementCanReleaseChastity = true;
+var ManagementEmpty = false;
 
 // Returns TRUE if the dialog situation is allowed
 function ManagementNoTitle() { return (!LogQuery("JoinedSorority", "Maid") && (ReputationGet("Kidnap") < 50)) }
@@ -30,6 +31,8 @@ function ManagementCanReleaseFromOwnerFirst() { return ((Player.Money >= 60) && 
 function ManagementCanReleaseFromOwner() { return ((Player.Money >= 200) && LogQuery("ReleasedFromOwner", "Management")) }
 function ManagementCanBeReleased() { return ((Player.Owner != "") && !PrivateOwnerInRoom()) }
 function ManagementCannotBeReleased() { return ((Player.Owner != "") && PrivateOwnerInRoom()) }
+function ManagementWillOwnPlayer() { return ((Player.Owner == "") && (ReputationGet("Dominant") <= -100) && (ManagementMistressAngryCount == 0) && (PrivateCharacter.length <= 3) && !PrivatePlayerIsOwned()) }
+function ManagementWontOwnPlayer() { return ((Player.Owner == "") && (ReputationGet("Dominant") <= -1) && (ReputationGet("Dominant") >= -99) && (PrivateCharacter.length <= 3) && !PrivatePlayerIsOwned()) }
 
 // Loads the club management room, creates the Mistress and sub character
 function ManagementLoad() {
@@ -55,8 +58,8 @@ function ManagementLoad() {
 function ManagementRun() {
 	ManagementLoad();
 	DrawCharacter(Player, 250, 0, 1);
-	DrawCharacter(ManagementMistress, 750, 0, 1);
-	DrawCharacter(ManagementSub, 1250, 0, 1);
+	if (!ManagementEmpty) DrawCharacter(ManagementMistress, 750, 0, 1);
+	if (!ManagementEmpty) DrawCharacter(ManagementSub, 1250, 0, 1);
 	if (Player.CanWalk()) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 	DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
 	if (Player.CanKneel()) DrawButton(1885, 265, 90, 90, "", "White", "Icons/Kneel.png");
@@ -65,7 +68,7 @@ function ManagementRun() {
 // When the user clicks in the management room
 function ManagementClick() {
 	if ((MouseX >= 250) && (MouseX < 750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-	if ((MouseX >= 750) && (MouseX < 1250) && (MouseY >= 0) && (MouseY < 1000)) {
+	if ((MouseX >= 750) && (MouseX < 1250) && (MouseY >= 0) && (MouseY < 1000) && !ManagementEmpty) {
 		if (((ManagementMistress.Stage == "0") || (ManagementMistress.Stage == "5")) && (ReputationGet("Dominant") < 0) && !Player.IsKneeling()) {
 			ManagementMistress.CurrentDialog = DialogFind(ManagementMistress, "KneelToTalk");
 			ManagementMistress.Stage = "5";
@@ -73,7 +76,7 @@ function ManagementClick() {
 		if ((ManagementMistress.Stage == "5") && Player.IsKneeling()) ManagementMistress.Stage = "0";
 		CharacterSetCurrent(ManagementMistress);
 	}
-	if ((MouseX >= 1250) && (MouseX < 1750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(ManagementSub);
+	if ((MouseX >= 1250) && (MouseX < 1750) && (MouseY >= 0) && (MouseY < 1000) && !ManagementEmpty) CharacterSetCurrent(ManagementSub);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355) && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
@@ -162,4 +165,11 @@ function ManagementReleaseFromOwner(RepChange) {
 	InventoryRemove(Player, "ItemNeck");
 	ReputationProgress("Dominant", RepChange);
 	LogAdd("ReleasedFromOwner", "Management");
+}
+
+// When the Mistress leaves her job to go see the player
+function ManagementSendMistressToPrivateRoom(RepChange) {
+	ReputationProgress("Dominant", RepChange);
+	ManagementEmpty = true;
+	DialogLeave();
 }
