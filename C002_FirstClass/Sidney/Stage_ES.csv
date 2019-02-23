@@ -15,7 +15,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 40,0,0,,Deberíamos secuestrar a|la puta de la profe.,"¿Secuestrarle en clase?  ¿De verdad?|Eso es peligroso, ¿Qué gano yo?",50,1,0,
 40,0,0,,Me vas a ayudar|a atar a la profe.,"¿Ayudarte a secuestrarle?|Eso es peligroso, ¿Qué gano yo?",50,0,1,
 50,3,0,PlayerHasRope,Puedes hacerlo por|nuestra amistad.,"Ya veo.  Ok, Te ayudaré.|(Se da la vuelta.) Pero tu haces el primer movimiento.",60,0,0,AgreeHelp()
-50,3,0,!PlayerHasRope,Puedes hacerlo por|nuestra amistad.,"Ya veo.  Ok, Te ayudaré.|(Se da la vuelta.) Pero tu haces el primer movimiento.,60,0,0,AgreeHelp()
+50,3,0,PlayerHasRope,Puedes hacerlo por|nuestra amistad.,"Ya veo.  Ok, Te ayudaré.|(Se da la vuelta.) Pero tu haces el primer movimiento.,60,0,0,AgreeHelp()
 50,0,3,PlayerHasRope,Si no me ayudas|Te vas a enterar.,Vale.  No quiero problemas luego.  Te ayudaré.|(Se da la vuelta.) Pero tu haces el primer movimiento.,60,0,0,AgreeHelp()
 50,0,3,!PlayerHasRope,Si no me ayudas|Te vas a enterar.,"Vale,Te ayudaré.  Si quieres puedes usar estas cuerdas.|(Se da la vuelta.) Pero tu haces el primer movimiento.",60,0,0,AgreeHelp()
 50,0,0,,¡Hazlo! Será divertido.,¡Ja!  ¿Crees que me puedes convencer así?|Dame algo bueno si quieres que te ayude.,50,0,0,
