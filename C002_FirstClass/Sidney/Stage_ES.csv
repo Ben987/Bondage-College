@@ -29,7 +29,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 100,0,0,Common_PlayerGagged,"@Uuuummph, mmph!",(Susurra.) Deja de hacer ruido.,100,0,0,
 100,0,0,Common_PlayerGagged,(Muerdes la mordaza.),(Susurra.) pareces una idiota.,100,0,0,
 100,1,0,Common_PlayerGagged,(Intentas señalar|la mordaza.),(Susurra) Calla.|Te ayudaré después de clase.,100,0,0,
-100,-1,0,Common_PlayerGagged,(Intentas señalar|la mordaza.),(Susurra.) "Quédate la mordaza,puta.",100,0,0,
+100,-1,0,Common_PlayerGagged,(Intentas señalar|la mordaza.),"(Susurra.) Quédate la mordaza,puta.",100,0,0,
 100,0,0,Common_PlayerRestrained,(Luchas contra |las ataduras.),(Susurra.)Nunca te liberarás.,100,0,0,
 100,0,-2,BowRemarkReady,(Inclinas la cabeza.),(Ella susurra.) Eres patética.,100,0,-1,BowRemark()
 110,0,0,Common_PlayerGagged,"@Uuuummph, mmph!",(Levanta la mirada.),110,0,0,
