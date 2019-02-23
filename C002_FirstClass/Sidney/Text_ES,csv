@@ -1,0 +1,16 @@
+Tag,Content
+StealKeys,Yonk!  (Te roba las llaves de las esposas y se rie.)
+BallGagWilling,(Respira hondo y|abre la boca para la mordaza.)
+BallGagReluctant,(Cierra la boca para evitarlo|pero consigues ponerle la mordaza.)
+BallGagRefuse,Te empuja y se niega a que le amordaces.|(necesitas 2 de sumision para amordazar a Sidney.)
+CuffsReplaceRope,(Le desatas para que se pueda vestir|pero le esposas justo después.)
+CuffsWilling,"(inclina la cabeza, se sienta y pone | las manos en la espalda para que se las esposes.)"
+CuffsReluctant,(Se resiste pero consigues|reducirle para ponerle las esposas.)
+CuffsRefuse,Te empuja y se niega a que le esposes.|(Necesitas 2 de sumisión para esposar a Sidney.)
+CuffsUnlock,(Abres las esposas|y te lo agradece.)
+RopeReplaceCuffs,"(abres las esposas, se desnuda,|y atas atas con cuerdas.)"
+RopeWilling,"(Inclina la cabeza y se desnuda, |le atas con las cuerdas mientras se estremece.)"
+RopeReluctant,(peleas y consigues desnudarles|le atas con las cuerdas a pesar de que se resiste.)
+RopeRefuse,Te empuja y se niega a que le ates.|(Necesitas 2 de sumisión para atar a Sidney.)
+CropGagged,(Golpeas a Sidney con la fusta.|Gruñe y te mira con odio.)
+Crop,(golpeas a Sidney con la fusta.)|¡Puta!  ¿Eso es lo mejor que sabes hacer?
