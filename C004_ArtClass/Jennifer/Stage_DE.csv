@@ -6,7 +6,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 10,0,0,,Kannst du mir|beim Malen helfen?,"Helfen? Glaub mir, du bist bestimmt besser als ich.|Ich bin keine Künstlerin, Sport liegt mir eher.",20,0,-1,
 10,0,0,,Du siehst nicht aus|wie eine Malerin.,"Stimmt genau, ich hab von Kunst|keine Ahnung. Im Sport bin ich viel besser.",20,0,1,
 10,0,0,,Dieses Fach ist|so sinnlos.,"Du bist ziemlich negativ eingestellt. Sport würde aber|schon mehr Spaß machen, darin bin ich besser.",20,-1,0,
-20,0,0,,Sport? Das Wort kennt|unsere fette Lehrerin nicht.,"Psst. Vorsicht! Sie ist stärker als sie aussieht.|Und ja, Julia ist Künstlerin, keine Sportlerin.",30,-1,0,
+20,0,0,,Sport? Das Wort kennt|unsere fette Lehrerin nicht.,"Psst. Vorsicht! Sie ist stärker, als sie aussieht.|Und ja, Julia ist Künstlerin, keine Sportlerin.",30,-1,0,
 20,0,0,,"Du bist zu schlank,|um Sport zu machen.",Was weißt du schon? Ich bin gut in Form.,30,-1,1,
 20,0,0,,Ja! Ich freu mich schon|auf die Sportstunde!,(Sie zeigt dir einen Daumen nach oben.),30,1,0,
 20,0,0,,Malen wird wohl ganz| entspannend sein.,Klar. Und Sarah scheint Spaß zu haben.,30,0,0,
@@ -14,7 +14,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 30,0,0,,So langweilig. (Gähnen.),Kopf hoch! So schlimm ist es nicht.,40,-1,0,
 30,0,0,,Die Stunde könnte mehr|Spaß vertragen!,Mehr Spaß? Jetzt bin ich aber gespannt.|Was meinst du damit?,40,1,0,
 40,0,0,,Unsere Lehrerin sollte|ihre Kurven zeigen.,"Ihre Kurven? (Sie kichert.) Du meinst,|sie soll ihr Kleid ausziehen?",50,1,0,
-40,0,0,,"Es wäre besser, wenn|Julia ihr Kleid auszieht.",Ein sexy Portrait? Ich weiß nicht.,50,0,0,
+40,0,0,,"Es wäre besser, wenn|Julia ihr Kleid auszieht.",Ein sexy Porträt? Ich weiß nicht.,50,0,0,
 40,0,0,,"Hilf mir, sie aus diesem|Kleid zu locken.","Oh! Wie hinterhältig.|Du meinst, das kriegen wir hin?",50,0,1,
 50,2,0,,"Hilf mir sie zu über-|reden, meine Freundin.","Mal überlegen... Sie liebt italienische Maler.|Erwähne mal Sandro Botticellis ""Die Geburt der Venus"".",60,0,0,SandroComment()
 50,0,2,,"Du wirst mir helfen,|sie zu überreden.","Mal überlegen... Sie liebt italienische Maler.|Erwähne mal Sandro Botticellis ""Die Geburt der Venus"".",60,0,0,SandroComment()
@@ -26,28 +26,28 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 80,0,0,Common_PlayerGagged,@Eehmmo ehm ehher!,"Tut mir leid, ich verstehe nichts.",80,0,0,
 80,0,0,Common_PlayerGagged,(Wimmern und zittern.),"Glaub mir, ich fühle mit dir. Das muss so demütigend|für dich sein. Ich heitere dich später auf.",80,0,0,PityComment()
 100,0,0,StunningBeautyReady,"Keine Scheu, du bist|umwerfend schön.","Ich? Schön? Ach je,|du bist so lieb und nett.",100,0,0,StunningBeauty()
-100,0,1,,Solltest du dich nicht aus-|ziehen wie Julia?ADD_MINUTES:1,Ich... Ich schätze schon.|(Sie zieht sich langsam aus.),110,0,0,"SetCloth(1, 0, 0)"
-100,0,1,,Zieh deine Uniform|aus.ADD_MINUTES:1,Ich... Ja... 'Tschuldigung.|(Sie zieht sich langsam aus.),110,0,0,"SetCloth(1, 0, 1)"
-100,0,1,,Zeig uns deinen hübschen|Körper.ADD_MINUTES:1,Du findest mich wirklich hübsch?|(Sie zieht sich langsam aus.),110,0,0,"SetCloth(1, 1, 0)"
-110,0,2,,Brauchst du etwa Hilfe|beim Ausziehen?ADD_MINUTES:1,"NEIN! Ups, ich wollte nicht schreien, ich mach schon.|(Sie wird rot und entfernt ihre Unterwäsche.)",120,0,0,"SetCloth(2, -1, 1)"
-110,0,2,,Du hast Julia fast|aufgeholt.ADD_MINUTES:1,"Ja, wenn Julia das kann, kann ich es auch.|(Sie wird rot und entfernt ihre Unterwäsche.)",120,0,0,"SetCloth(2, 0, 0)"
-110,0,2,,"Wenn Julia das kann,|dann du auch.ADD_MINUTES:1","Ja, wenn Julia sich das traut, kann ich es auch.|(Sie wird rot und entfernt ihre Unterwäsche.)",120,0,0,"SetCloth(2, 0, 0)"
-110,0,2,,Zeig uns mehr Haut|und Knochen. ADD_MINUTES:1,Knochen? So dünn bin ich doch gar nicht.|(Sie wird rot und entfernt ihre Unterwäsche.),120,0,0,"SetCloth(2, -1, 0)"
-110,0,0,,Vielleicht solltest du dich|wieder anziehen.ADD_MINUTES:1,"Meinst du? Ja, das hier ist schließlich eine Schule.|(Sie hebt ihre Sachen auf und zieht sich an.)",100,0,0,"SetCloth(0, 0, 0)"
-120,0,0,,Vielleicht solltest du dich|wieder anziehen.ADD_MINUTES:1,"Meinst du? Ja, das hier ist schließlich eine Schule.|(Sie hebt ihre Sachen auf und zieht sich an.)",100,0,0,"SetCloth(0, 0, 0)"
-120,0,0,,Versuch nochmal deine|Unterwäsche.ADD_MINUTES:1,(Sie seufzt.) Ich werde Kunst nie verstehen.|(Sie zieht ihre Unterwäsche wieder an.),110,0,0,"SetCloth(1, 0, 0)"
+100,0,1,,Solltest du dich nicht|ausziehen wie Julia?ADD_MINUTES:1,Ich... Ich schätze schon.|(Sie zieht sich langsam aus.),110,0,0,"SetCloth(1, 0, 0)"
+100,0,1,,Zieh deine Uniform aus.ADD_MINUTES:1,Ich... Ja... 'Tschuldigung.|(Sie zieht sich langsam aus.),110,0,0,"SetCloth(1, 0, 1)"
+100,0,1,,Zeig uns deinen|hübschen Körper.ADD_MINUTES:1,Du findest mich wirklich hübsch?|(Sie zieht sich langsam aus.),110,0,0,"SetCloth(1, 1, 0)"
+110,0,2,,Brauchst du etwa|Hilfe beim Ausziehen?ADD_MINUTES:1,"NEIN! Ups, ich wollte nicht schreien, ich mach schon.|(Sie wird rot und entfernt ihre Unterwäsche.)",120,0,0,"SetCloth(2, -1, 1)"
+110,0,2,,Du hast Julia|fast eingeholt.ADD_MINUTES:1,"Ja, wenn Julia das kann, kann ich es auch.|(Sie wird rot und entfernt ihre Unterwäsche.)",120,0,0,"SetCloth(2, 0, 0)"
+110,0,2,,"Wenn Julia das kann,|kannst du das auch.ADD_MINUTES:1","Ja, wenn Julia sich das traut, kann ich es auch.|(Sie wird rot und entfernt ihre Unterwäsche.)",120,0,0,"SetCloth(2, 0, 0)"
+110,0,2,,Zeig uns mehr|Haut und Knochen. ADD_MINUTES:1,Knochen? So dünn bin ich doch gar nicht.|(Sie wird rot und entfernt ihre Unterwäsche.),120,0,0,"SetCloth(2, -1, 0)"
+110,0,0,,Vielleicht solltest du|dich wieder anziehen.ADD_MINUTES:1,"Meinst du? Ja, das hier ist schließlich eine Schule.|(Sie hebt ihre Sachen auf und zieht sich an.)",100,0,0,"SetCloth(0, 0, 0)"
+120,0,0,,Vielleicht solltest du|dich wieder anziehen.ADD_MINUTES:1,"Meinst du? Ja, das hier ist schließlich eine Schule.|(Sie hebt ihre Sachen auf und zieht sich an.)",100,0,0,"SetCloth(0, 0, 0)"
+120,0,0,,Versuch nochmal|deine Unterwäsche.ADD_MINUTES:1,(Sie seufzt.) Ich werde Kunst nie verstehen.|(Sie zieht ihre Unterwäsche wieder an.),110,0,0,"SetCloth(1, 0, 0)"
 130,0,0,,"Keine Sorge, Jennifer.|Alles wird gut.",(Sie nickt langsam.),130,0,0,TrustComment()
-130,0,0,EggInside,"Das Ei wird dich erinnern,|wer hier der Boss ist.",(Sie neigt ihren Kopf.),130,0,0,EggComment()
-130,2,0,KissReady,(Küssen.)ADD_MINUTES:1,Bitte nicht. Ich möchte das nicht.|(Der Kuss scheint ihr nicht zu gefallen.),130,-1,0,Kiss()
-130,0,0,,(Seile enger ziehen.)ADD_MINUTES:1,(Diese Fesseln lassen sich|nicht mehr enger ziehen.),130,0,0,Tighten()
-130,0,0,,(Kitzeln.)ADD_MINUTES:1,"(Sie kauert beschämt, um dir zu entgehen.)",130,0,0,Tickle()
-130,0,0,Common_PlayerNotRestrained,(Befreien.)ADD_MINUTES:1,(Du befreist sie und sie wirft die Seile|nach dir.)  Kann ich mich jetzt hinsetzen?,120,0,0,Untie()
+130,0,0,EggInside,"Das Ei wird dich erinnern,|wer hier der Boss ist.",(Sie senkt den Kopf.),130,0,0,EggComment()
+130,2,0,KissReady,(Sie küssen.)ADD_MINUTES:1,Bitte nicht. Ich möchte das nicht.|(Der Kuss scheint ihr nicht zu gefallen.),130,-1,0,Kiss()
+130,0,0,,(Die Seile|enger ziehen.)ADD_MINUTES:1,(Diese Fesseln lassen sich|nicht mehr enger ziehen.),130,0,0,Tighten()
+130,0,0,,(Sie kitzeln.)ADD_MINUTES:1,"(Sie kauert beschämt, um dir zu entgehen.)",130,0,0,Tickle()
+130,0,0,Common_PlayerNotRestrained,(Sie befreien.)ADD_MINUTES:1,(Du befreist sie und sie wirft die Seile|nach dir.)  Kann ich mich jetzt hinsetzen?,120,0,0,Untie()
 130,0,0,PaintAvail,(Jennifer malen.)|(30 Minuten),(Du malst sie sorgfältig ab und zeigst ihr das Ergebnis.)|Bitte vernichte dieses Bild nach der Stunde.,130,0,0,Paint()
-140,0,0,,(Seile enger ziehen.)ADD_MINUTES:1,(Diese Fesseln lassen sich|nicht mehr enger ziehen.),140,0,0,Tighten()
-140,0,0,,(Kitzeln.)ADD_MINUTES:1,"(Sie kauert beschämt, um dir zu entgehen.)",140,0,0,Tickle()
-140,0,0,Common_PlayerNotRestrained,(Knebel entfernen.)ADD_MINUTES:1,(Du lockerst den Knebel und nimmst ihn|ihr aus dem Mund.) Kannst du mich jetzt losbinden?,130,0,0,Ungag()
+140,0,0,,(Die Seile|enger ziehen.)ADD_MINUTES:1,(Diese Fesseln lassen sich|nicht mehr enger ziehen.),140,0,0,Tighten()
+140,0,0,,(Sie kitzeln.)ADD_MINUTES:1,"(Sie kauert beschämt, um dir zu entgehen.)",140,0,0,Tickle()
+140,0,0,Common_PlayerNotRestrained,(Sie entknebeln.)ADD_MINUTES:1,(Du lockerst den Knebel und nimmst ihn|ihr aus dem Mund.) Kannst du mich jetzt losbinden?,130,0,0,Ungag()
 140,0,0,PaintAvail,(Jennifer malen.)|(30 Minuten),(Du malst sie sorgfältig ab und zeigst ihr das Ergebnis.)|(Sie betrachtet dein Werk und wimmert.),140,0,0,Paint()
-150,0,0,,(Seile enger ziehen.)ADD_MINUTES:1,(Diese Fesseln lassen sich|nicht mehr enger ziehen.),150,0,0,Tighten()
-150,0,0,,(Kitzeln.)ADD_MINUTES:1,"(Sie kauert beschämt, um dir zu entgehen.)",150,0,0,Tickle()
-150,0,0,Common_PlayerNotRestrained,(Knebel entfernen.)ADD_MINUTES:1,"(Du ziehst ihr das Klebeband vom Mund.)|Okay, kannst du mich jetzt losbinden?",130,0,0,Ungag()
+150,0,0,,(Die Seile|enger ziehen.)ADD_MINUTES:1,(Diese Fesseln lassen sich|nicht mehr enger ziehen.),150,0,0,Tighten()
+150,0,0,,(Sie kitzeln.)ADD_MINUTES:1,"(Sie kauert beschämt, um dir zu entgehen.)",150,0,0,Tickle()
+150,0,0,Common_PlayerNotRestrained,(Sie entknebeln.)ADD_MINUTES:1,"(Du ziehst ihr das Klebeband vom Mund.)|Okay, kannst du mich jetzt losbinden?",130,0,0,Ungag()
 150,0,0,PaintAvail,(Jennifer malen.)|(30 Minuten),(Du malst sie sorgfältig ab und zeigst ihr das Ergebnis.)|(Sie betrachtet dein Werk und wimmert.),150,0,0,Paint()

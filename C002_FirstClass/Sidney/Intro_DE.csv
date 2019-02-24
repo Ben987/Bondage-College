@@ -2,7 +2,7 @@ Stage,LoveReq,SubReq,VarReq,IntroText,Image
 0,0,0,!BondageBefore,"(Sie dreht sich nicht um,|scheint dich aber zu hören.)",SidneyBack.jpg
 0,1,0,!BondageBefore,(Sie dreht sich um und flüstert) Was?,SidneyFace.jpg
 0,0,0,BondageBefore,"(Sie dreht sich nicht um, aber flüstert.)|Vergiss es. Nochmal fesselst du mich nicht.",SidneyBack.jpg
-0,1,0,BondageBefore,"(Sie dreht sich um und flüstert)|Denk nichtmal dran, mich wieder zu fesseln.",SidneyFace.jpg
+0,1,0,BondageBefore,"(Sie dreht sich um und flüstert)|Denk nicht mal dran, mich wieder zu fesseln.",SidneyFace.jpg
 10,0,0,,(Sie dreht sich um und flüstert) Was?,SidneyFace.jpg
 20,0,0,,(Sie dreht sich um und flüstert)|Bist du auch zu Tode gelangweilt?,SidneyFace.jpg
 30,0,0,,"(Sie dreht sich um und flüstert)|Ich wünschte, wir kämen hier irgendwie früher raus.",SidneyFace.jpg
@@ -12,7 +12,7 @@ Stage,LoveReq,SubReq,VarReq,IntroText,Image
 100,0,0,Common_PlayerNotGagged,Scheiße! Das war verdammt geil!,SidneyFace.jpg
 100,0,0,Common_PlayerGagged,(Sie zeigt auf deinen Knebel und grinst.),SidneyFace.jpg
 100,2,0,Common_PlayerGagged,(Sie dreht sich um und flüstert.)|Ich helfe dir nach der Stunde da raus.,SidneyFace.jpg
-100,-2,0,Common_PlayerGagged,"(Sie dreht sich nicht um, aber flüstert.)|Du hast verfickt nochmal bekommen was du verdienst.",SidneyBack.jpg
+100,-2,0,Common_PlayerGagged,"(Sie dreht sich nicht um, aber flüstert.)|Du hast verfickt nochmal bekommen, was du verdienst.",SidneyBack.jpg
 110,0,0,,(Sie sieht dich böse an und|kaut auf ihrem Knebel herum.),Sidney_BallGag.jpg
 120,0,0,,(Sie zerrt an ihren Handschellen|und versucht sie aufzustemmen.),Sidney_Cuffs.jpg
 130,0,0,,(Sie sieht dich böse an und|kaut auf ihrem Knebel herum.),Sidney_Cuffs_BallGag.jpg

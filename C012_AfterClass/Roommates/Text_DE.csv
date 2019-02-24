@@ -1,0 +1,17 @@
+Tag,Content
+GoDormLoveAmanda,"Ja, das könnte Spaß machen mit dir.|Kann ich in meinem Pyjama rüberkommen?"
+GoDormDommeAmanda,"Natürlich, Miss, ich werde folgen.|Kann ich in meinem Pyjama gehen?"
+GoDormLoveSarah,"Cool! Ich kann nicht lange bleiben, aber|ich würde liebend gern dein Zimmer sehen."
+GoDormDommeSarah,"Natürlich, Miss. Ich werde nicht lange bleiben können,|aber ich würde liebend gern Ihr Zimmer sehen."
+GoDormIsolationSarah,Nach unserem Keller-Ausflug würde ich liebend gern|dein Zimmer sehen. Ich kann aber nicht lange bleiben.
+GoDormLoveJennifer,Ich könnte heute auf mein Training verzichten und|mit dir mitkommen. Gehen wir jetzt gleich?
+GoDormDommeJennifer,"Ich könnte heute anstelle meines Trainings mit|Ihnen mitkommen, Miss. Gehen wir jetzt gleich?"
+NoIsolationIntroSarah,"Im Moment ist kaum was los.|Wir können plaudern, wenn du willst."
+CannotRefuseIsolation,"(Sarah packt dich mit ernster Miene energisch am Arm.)|Du lebst nur ein Mal, Mädchen. Komm mit."
+SarahKickOutAfter20,"Tut mir leid, aber ich kann mich nicht weiter unterhalten.|Ich muss zu einem Club in der Stadt."
+JenniferKickOutAfter18,"Keine Zeit mehr zum Reden, ich gehe Laufen.|Du kannst mitkommen oder wir reden später weiter."
+SarahIntroduceJennifer,JENNNNNNNNN! (Du hörst etwas.)|Jep! Da kommt sie schon.
+RaceJenniferDefeat,(Ihr lauft eine Weile zusammen um die Bahn.|Jennifer ist viel schneller und schafft mehr Runden.)
+RaceJenniferTie,"(Ihr lauft eine Weile zusammen um die Bahn.|Ihr seid praktisch gleich schnell, niemand gewinnt.)"
+RaceJenniferVictory,(Ihr lauft eine Weile zusammen um die Bahn. Du bist|schneller als Jennifer und schaffst mehr Runden.)
+JenniferSkipPool,Ich könnte eigentlich aufs Schwimmen verzichten|und mit dir mitkommen. Gehen wir jetzt gleich?

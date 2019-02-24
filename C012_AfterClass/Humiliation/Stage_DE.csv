@@ -1,0 +1,5 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,(Deine Demütigung|ertragen.),"Sie achtet darauf, dass möglichst|viele Leute deine Blamage sehen.",10,0,0,Process()
+10,0,0,,(Deine Demütigung|ertragen.),Sie führt dich an viele verschiedene|öffentliche Orte und macht Fotos.,20,0,0,Process()
+20,0,0,,(Deine Demütigung|ertragen.),"Sie besucht mit dir einen letzten Ort|und sagt dir, dass es vorbei ist.",30,0,0,Process()
+30,0,0,,(Zurück zum Zimmer.),,40,0,0,BackToDorm()

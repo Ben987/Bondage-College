@@ -1,0 +1,105 @@
+PlayerGagged,,,Club slaves are so much better when they are gagged.,,
+Intro0,,,(A maid crosses your path and stops.)  Nice!  I guess I can take a break to play with you.,,
+IntroRestrained0,,,(A maid crosses your path and stops.)  You're cute when you're restrained!  I guess I can take a break to play with you.,,
+Intro1,,,(A club member crosses your path and makes a devious smile.)  A slave just for me!,,
+IntroRestrained1,,,(A club member taps on your shoulder and makes a devious smile.)  A gift that's already wrapped up!,,
+Intro2,,,(A girl runs down the hall to meet you.)  You're a club slave?  This is great!,,
+IntroRestrained2,,,(A girl runs down the hall to meet you.)  You're a club slave?  And you're already restrained?  This is great!,,
+Intro3,,,(A club member chases you down.)  Slave girl!  Please me now!,,
+IntroRestrained3,,,(A club member chases you down.)  Slave girl!  Please me now!,,
+Intro4,,,"(A kidnap league member rushes to you.)  There's no bounty available right now, so you'll be second pick slave.",,
+IntroRestrained4,,,"(A kidnap league member rushes to you.)  There's no bounty available right now, so you'll be second pick slave.",,
+Intro5,,,"(A girl sneaks up behind you.)  Your cute ass is mine, slave girl.",,
+IntroRestrained5,,,"(A girl sneaks up behind you and checks your bondage.)  Your cute ass is mine, restrained girl.",,
+Intro6,,,(A club member jumps of joy seeing you.)  Yes!  A club slave just for me.,,
+IntroRestrained6,,,(A club member jumps of joy seeing you.)  Yes!  A restrained slave just for me.,,
+0,,I'm here to serve you Miss.,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
+0,,How can I please you?,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
+0,,Will you release me?,,ClubSlaveRandomActivityLaunch(),Player.IsRestrained()
+0,,Do as you wish.  I'm your slave.,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
+0,,Please don't be too rough.,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
+0,,(Try to struggle out.),,ClubSlaveRandomActivityLaunch(),Player.IsRestrained()
+0,,(Let her play with you.),,ClubSlaveRandomActivityLaunch(),
+ActivityAddArmsIntro,,,(She restrains your arms and smiles.)  An unrestrained club slave?  That wasn't proper.,,
+ActivityAddArms,,This is tight.,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
+ActivityAddArms,,I agree Miss.,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
+ActivityAddArms,,(Tug on the restraint.),,ClubSlaveRandomActivityLaunch(),
+ActivityAddArms,,(Struggle playfully.),,ClubSlaveRandomActivityLaunch(),
+ActivityRemoveArmsIntro,,,(She releases your arms and giggles.)  Enjoy your freedom while it lasts.,,
+ActivityRemoveArms,,Thank you Miss.,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
+ActivityRemoveArms,,You can use another item if you want.,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
+ActivityRemoveArms,,(Nod happily.),,ClubSlaveRandomActivityLaunch(),
+ActivityRemoveArms,,(Stretch your arms.),,ClubSlaveRandomActivityLaunch(),
+ActivityAddGagIntro,,,(She gets a gag and uses it to silence you.)  That's better.  A slave doesn't need to talk anyway.,,
+ActivityAddGag,,(Roll your eyes up.),,ClubSlaveRandomActivityLaunch(),
+ActivityAddGag,,(Nod and bow your head.),,ClubSlaveRandomActivityLaunch(),
+ActivityAddGag,,(Adjust your mouth to the gag.),,ClubSlaveRandomActivityLaunch(),
+ActivityRemoveGagIntro,,,(She removes the gag and grins.)  Enjoy your chit chat while you can.,,
+ActivityRemoveGag,,Thanks a lot.,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
+ActivityRemoveGag,,Sweet.  Will you let me go?,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
+ActivityRemoveGag,,(Stay silent.),,ClubSlaveRandomActivityLaunch(),
+ActivityAddTorsoIntro,,,(She slowly straps a harness around your body and grins.)  A kinky work of art!,,
+ActivityAddTorso,,This is very kinky.,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
+ActivityAddTorso,,I'm glad to be your art model.,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
+ActivityAddTorso,,(Wiggle your body.),,ClubSlaveRandomActivityLaunch(),
+ActivityAddTorso,,(Nod slowly.),,ClubSlaveRandomActivityLaunch(),
+ActivityRemoveTorsoIntro,,,(She removes the harness from your body.)  I'll find something else for you to wear.,,
+ActivityRemoveTorso,,It's easier to breath now.,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
+ActivityRemoveTorso,,You can use anything you want Miss.,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
+ActivityRemoveTorso,,(Hum a happy song.),,ClubSlaveRandomActivityLaunch(),
+ActivityRemoveTorso,,(Wiggle your body.),,ClubSlaveRandomActivityLaunch(),
+ActivityAddFeetIntro,,,(She restrains your feet and giggles.)  You won't be running away now.,,
+ActivityAddFeet,,I wasn't planning to run anyway.,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
+ActivityAddFeet,,(Hop and jump clumsily.),,ClubSlaveRandomActivityLaunch(),
+ActivityAddFeet,,(Try to keep your balance.),,ClubSlaveRandomActivityLaunch(),
+ActivityRemoveFeetIntro,,,(She releases your feet.)  You can have your feet back for now.  But I'll find a better restraint later.,,
+ActivityRemoveFeet,,Thanks!  You're a lot of fun Miss.,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
+ActivityRemoveFeet,,It will be easier to stand up like this.,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
+ActivityRemoveFeet,,(Stretch and relax your feet.),,ClubSlaveRandomActivityLaunch(),
+ActivityRemoveFeet,,(Stay silent and wait to be released.),,ClubSlaveRandomActivityLaunch(),
+ActivityAddLegsIntro,,,(She restrains your legs securely.)  You look so cute when you're all tied up.,,
+ActivityAddLegs,,You would be even cuter.,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
+ActivityAddLegs,,(Wiggle your butt playfully.),,ClubSlaveRandomActivityLaunch(),
+ActivityAddLegs,,(Stay quiet.),,ClubSlaveRandomActivityLaunch(),
+ActivityRemoveLegsIntro,,,(She releases your legs.)  Shake your butt for me my cute slave.,,
+ActivityRemoveLegs,,Do I look like a dancer?,,ClubSlaveRandomActivityLaunch(),
+ActivityRemoveLegs,,(Shake your butt for her.),,ClubSlaveRandomActivityLaunch(),
+ActivityRemoveLegs,,(Stand still.),,ClubSlaveRandomActivityLaunch(),
+ActivityTickleIntro,,,(She gets closer and starts to tickle you without mercy.)  Tickle!  Tickle!  Tickle!,,
+ActivityTickle,,No please! Stop!,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
+ActivityTickle,,Eeeeeeaahahahaha!  Stop it!  Hahaahaahi.,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
+ActivityTickle,,(Laugh out loud.),,ClubSlaveRandomActivityLaunch(),
+ActivityTickle,,(Pretend you're not ticklish.),,ClubSlaveRandomActivityLaunch(),
+ActivitySpankIntro,,,(She raises her hand and spanks you many times on the butt.)  Endure the pain. It's not like you have much choice.,,
+ActivitySpank,,Ow!  That stings!,,ClubSlaveRandomActivityLaunch(),
+ActivitySpank,,That's the best you can do?,,ClubSlaveRandomActivityLaunch(),
+ActivitySpank,,(Whimper from the pain.),,ClubSlaveRandomActivityLaunch(),
+ActivitySpank,,(Pretend it doesn't hurt.),,ClubSlaveRandomActivityLaunch(),
+ActivityKissIntro,,,(She gets close to you and plants a long loving kiss on your lips.)  Mmmmmmmmh.,,
+ActivityKiss,,You're quite a loving Domme.,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
+ActivityKiss,,You have wonderful lips.,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
+ActivityKiss,,(Close your eyes and kiss back.),,ClubSlaveRandomActivityLaunch(),
+ActivityKiss,,(Push your tongue inside.),,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
+ActivityKiss,,(Moan into your gag.),,ClubSlaveRandomActivityLaunch(),!Player.CanTalk()
+ActivityKiss,,(Stay silent and cold.),,ClubSlaveRandomActivityLaunch(),
+ActivityFondleIntro,,,"(She caresses and gropes your breast firmly.)  You know you have an amazing body, right?",,
+ActivityFondle,,And you have amazing hands Miss.,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
+ActivityFondle,,Miss!  That... That feels so good...,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
+ActivityFondle,,(Moan with pleasure.),,ClubSlaveRandomActivityLaunch(),
+ActivityFondle,,(Stay silent and cold.),,ClubSlaveRandomActivityLaunch(),
+ActivityMasturbateIntro,,,(She starts to masturbate you slowly to tease you.)  Being a slave makes you horny doesn't it?,,
+ActivityMasturbate,,"Yes Miss, very horny.  (Blush red.)",,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
+ActivityMasturbate,,"Aaaaaaah yes, touch me Miss.",,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
+ActivityMasturbate,,(Shiver and moan from the pleasure.),,ClubSlaveRandomActivityLaunch(),
+ActivityMasturbate,,(Stay silent and cold.),,ClubSlaveRandomActivityLaunch(),
+ActivityEndReleaseIntro,,,"(She releases you and smile.)  I need to go slave, it was fun.  I'll get you another time!",,
+ActivityEndIntro,,,"(She smiles.)  I need to go slave, it was fun.  I'll get you another time!",,
+ActivityEnd,,Take care.  Enjoy the club.,,ClubSlaveRandomActivityEnd(0),Player.CanTalk()
+ActivityEnd,,I'm here to serve Miss.,,ClubSlaveRandomActivityEnd(-3),Player.CanTalk()
+ActivityEnd,,Thanks!  That was fun.,,ClubSlaveRandomActivityEnd(1),Player.CanTalk()
+ActivityEnd,ActivityEnd2,(Struggle in your restraints.),"Slave, you can stay like that.  Enjoy your struggling.",,Player.IsRestrained()
+ActivityEnd,ActivityEnd3,Would you like to visit my room?,You have your own room?  I'm curious to see it.,,VisitRoom
+ActivityEnd,ActivityEnd2,Would you like to visit my room?,"Not now, I need to go.  Take care!",,WontVisitRoom()
+ActivityEnd,,(Leave her.),,ClubSlaveRandomActivityEnd(0),
+ActivityEnd2,,(Leave her.),,ClubSlaveRandomActivityEnd(0),
+ActivityEnd3,,Follow me!  (Bring her to your room.),,ClubSlaveTransferToRoom(),

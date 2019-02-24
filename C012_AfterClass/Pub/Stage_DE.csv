@@ -1,4 +1,206 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,SidneyAvail,Sidney,,100,0,0,SidneyStart()
-0,0,0,,Warte ein bischen,Du wartest ein bischen und|siehst dir die Menschenmenge in der Bar an.,0,0,0,Wait()
-0,0,0,,Verlasse die Bar,,0,0,0,Leave()
+0,0,0,SidneyAvail,Sidney ansprechen.,,0,0,0,SidneyStart()
+0,0,0,,Eine Weile warten.,Du wartest eine Weile und|beobachtest die Leute im Pub. ,0,0,0,Wait()
+0,0,0,,Den Pub durchsuchen.,"Du durchsuchst den Pub,|findest aber nichts Interessantes.",0,0,0,Search()
+0,0,0,,Den Pub verlassen.,,0,0,0,Leave()
+100,0,0,Common_PlayerChaste,Ich hab das gleiche|Problem. Ich arbeite daran.,Schön! Aber beeil dich damit.|Dieser Gürtel macht mich verrückt.,101,1,0,
+100,0,8,,"Ruhig, Mädel. Ich entschei-|de, wann du ihn abnimmst.","(Sie senkt den Kopf.) Also gut, Miss.|Aber dieses Ding macht mich wirklich verrückt.",101,0,1,"SetPose(""Shy"")"
+100,8,0,,"Ich will dich doch|nur etwas ärgern, Süße.","(Sie wird rot.) Aber warum denn?|Du weißt, dass mich das verrückt macht?",101,1,0,"SetPose("""")"
+100,0,0,,"Keine Ahnung, wie|man den aufbekommt.","Spiel nicht mit Scheiß rum, von dem du keine|Ahnung hast! Du weißt, dass mich das verrückt macht?",101,0,-1,
+100,0,0,,Du solltest dich|besser daran gewöhnen.,"Fick dich doch! Ich komm da schon irgendwie raus.|Du weißt, dass mich das verrückt macht?",101,-1,0,
+100,0,0,,In meinem Zimmer|hab ich Werkzeug dafür.,Toll! Das könnte vielleicht klappen.|Dieser Gürtel macht mich verrückt.,101,1,0,
+100,0,0,,Irgendwie bekommst du|den schon ab.,Kann sein. Aber hoffentlich bald.|Dieser Gürtel macht mich verrückt.,101,0,0,
+101,0,0,,Das hilft dir mit deiner|Selbstbeherrschung.,Ich brauche keine Selbstbeherrschung!|(Sie haut auf den Tisch.),102,0,1,
+101,0,8,,Das ist Teil|deines Trainings.,Training? Was zur Hölle?|(Sie haut auf den Tisch.),102,0,1,
+101,0,0,,Ist ja auch nicht schwer. Du|bist doch schon verrückt.,"Du bist nicht lustig, COMMON_PLAYERNAME!|(Sie haut auf den Tisch.)",102,-1,0,
+101,0,0,,"Ja, das muss|frustrierend sein.","Scheiße, ja, es ist frustrierend!|(Sie haut auf den Tisch.)",102,0,0,
+102,0,0,,Werde nicht aggressiv.,"Ich geb dir gleich aggr-... (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,0,0,"SetPose(""Duck"")"
+102,0,0,,Tu mir nicht weh!,"Du bist jämmerlich, Mädel. (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,0,-1,"SetPose(""Duck"")"
+102,0,0,,Willst du kämpfen?,"Dann kämpfen wir eben! (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,0,1,"SetPose(""Duck"")"
+102,0,0,,Alle Achtung! Das war|ein heftiger Schlag.,"So sieht's aus, Mädel! (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,1,-1,"SetPose(""Duck"")"
+110,0,8,,"Ruhig, Mädel. Ich entschei-|de, wann es rauskommt.","(Sie senkt den Kopf.) Also gut, Miss.|Aber dieses Ding macht mich wirklich verrückt.",111,0,1,"SetPose(""Shy"")"
+110,8,0,,"Ich will dich doch|nur etwas ärgern, Süße.","(Sie wird rot.) Aber warum denn?|Du weißt, dass mich das verrückt macht?",111,1,0,"SetPose("""")"
+110,0,0,,"Keine Ahnung, wie|man das rausbekommt.","Spiel nicht mit Scheiß rum, von dem du keine|Ahnung hast! Du weißt, dass mich das verrückt macht?",111,0,-1,
+110,0,0,,Du solltest dich|besser daran gewöhnen.,"Fick dich doch! Ich bekomm das schon irgendwie raus.|Du weißt, dass mich das verrückt macht?",111,-1,0,
+110,0,0,,Irgendwie bekommst du|es schon heraus.,Kann sein. Aber hoffentlich bald.|Dieses Ei macht mich verrückt.,111,0,0,
+111,0,0,,Du bist jetzt sicher|ganz wuschig.,"Scheiße, ja, es soll da raus!|(Sie haut auf den Tisch.)",112,0,0,
+111,0,8,,Das ist Teil|deines Trainings.,Training? Was zur Hölle?|(Sie haut auf den Tisch.),112,0,1,
+111,0,0,,Ist ja auch nicht schwer. Du|bist doch schon verrückt.,"Du bist nicht lustig, COMMON_PLAYERNAME!|(Sie haut auf den Tisch.)",112,-1,0,
+112,0,0,,Werde nicht aggressiv.,"Ich geb dir gleich aggr-... (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,0,0,"SetPose(""Duck"")"
+112,0,0,,Tu mir nicht weh!,"Du bist jämmerlich, Mädel. (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,0,-1,"SetPose(""Duck"")"
+112,0,0,,Willst du kämpfen?,"Dann kämpfen wir eben! (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,0,1,"SetPose(""Duck"")"
+112,0,0,,Alle Achtung! Das war|ein heftiger Schlag.,"So sieht's aus, Mädel! (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,1,-1,"SetPose(""Duck"")"
+120,0,0,,Ein Bier? Na gut.|(Ihr ein Bier kaufen.),(Du gibst ihr ein Bier aus und sie lächelt.)|Perfekt! Jetzt kannst du mit mir abhängen.,121,0,0,
+120,0,0,,"Natürlich, Miss.|(Ihr ein Bier kaufen.)",(Du gibst ihr ein Bier aus und sie lächelt.)|Perfekt! Jetzt kannst du mit mir abhängen.,121,0,-1,
+120,0,0,,Hol dir selber|ein Bier.,Du hast endlich etwas Mumm?|Dann kannst du auch mit mir abhängen.,121,0,1,
+120,0,0,,Vergiss es!|(Sidney verlassen.),Du lässt Sidney zurück und gehst wieder zur Bar.,0,0,1,SidneyEnd()
+121,0,0,,"Wie geht's, Miss?",Ich bin nicht besoffen. Könnte also besser sein.,122,0,-1,
+121,0,0,,Betrinkst du|dich hier?,"Jep, langsam aber sicher.",122,0,0,
+121,0,0,,Wie ist das Bier?,"Ziemlich beschissen, aber billig.|Perfekt zum Besaufen.",122,1,0,
+121,0,0,,Du trinkst also allein?,"Was geht's dich an? Ich kann|mich besaufen, wie ich will.",122,-1,1,
+122,0,0,,Du solltest dir nicht|ständig die Kante geben.,"Bist du etwa meine Mom? (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,0,1,"SetPose(""Duck"")"
+122,0,0,,Komasaufen ist|gefährlich.,"Du Lusche. (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,-1,0,"SetPose(""Duck"")"
+122,0,0,,Darauf trink' ich einen.,"Prost! (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,1,0,"SetPose(""Duck"")"
+122,0,0,,"Auch eine Art, den|Abend zu verbringen.","Die beste Art. (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,0,0,"SetPose(""Duck"")"
+130,0,0,,Ich wollte mich|hier entspannen.,"Gute Idee. Schule ist so langweilig.|Wir brauchen etwas Zeit, das Leben zu genießen.",131,0,0,
+130,0,0,,Ich bin zum Trinken hier.|Hol mir mal ein Bier.,Tolle Idee! (Sie kommt mit zwei Bieren zurück.)|Das ist so viel besser als unser langweiliges College.,131,1,1,
+130,0,0,,Ich hab mich verlaufen|und bin hier gelandet.,Verlaufen? Das ist ziemlich bescheuert.|Immerhin bist du nicht im langweiligen Unterricht.,131,0,-1,"SetPose("""")"
+130,0,0,,Ich bin zum Trinken hier.|Hol mir etwas Rotwein.,Okay. (Sie kommt mit Wein und einem Bier zurück.)|Das ist so viel besser als unser langweiliges College.,131,0,1,
+131,0,0,,Selber langweilig!,(Sie schaut dich verärgert an.)|Du wirkst angespannt. Bock auf Rauchen?,132,-1,0,
+131,0,0,,"Ja, es war ein|langer Tag.","Ja, verdammt. Lass ihn uns vergessen.|Rauchst du mit mir?",132,0,0,
+131,0,0,,Mit dir in der Nähe|ist es nie langweilig.,"Du bist so lieb, COMMON_PLAYERNAME.|Willst du mit mir rauchen?",132,1,0,
+132,0,0,,"Du solltest das Rauchen|aufgeben, Mädchen.","Das höre ich so... (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,-1,1,"SetPose(""Duck"")"
+132,0,0,,Vom Rauchen|wird mir übel.,"Das ist Pech. (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,0,-1,"SetPose(""Duck"")"
+132,0,0,,Später vielleicht.,"Soll mir recht... (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,0,0,"SetPose(""Duck"")"
+132,0,0,,Ja! Gehen wir|eine rauchen.,"Perfekt! Lass mich... (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,1,0,"SetPose(""Duck"")"
+140,0,0,,"Ich bin hier, um dir|in den Arsch zu treten.","Ach ja? Gehen wir raus, dann|breche ich dir die Knochen.",141,-1,1,"SetPose(""Angry"")"
+140,0,0,,Was ist dein Problem?,"Du bist mein bekacktes Problem!|Gehen wir raus, dann mach ich dich platt.",141,0,0,
+140,0,0,,Bist du immer noch|sauer auf mich?,"Natürlich bin ich noch scheißsauer!|Gehen wir raus, dann mach ich dich platt.",141,0,-1,
+140,0,0,,Können wir reden?,(Sie starrt dich an.)|Was willst du?,142,0,0,
+140,0,0,,"Ganz ruhig, Mädchen.",(Sie starrt dich an.)|Was willst du?,142,0,1,
+140,0,0,,Ich spendiere dir als|Friedensangebot ein Bier.,"(Sie nimmt das Bier und beruhigt sich.)|Also schön. Sag mir, was du willst.",142,1,0,"SetPose("""")"
+141,0,0,,Warte! Das|geht zu weit.,"Zu spät, Trottel... (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,0,-1,"SetPose(""Duck"")"
+141,0,0,,Wie wär's mit|Armdrücken?,"Das wäre auch... (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,0,0,"SetPose(""Duck"")"
+141,0,0,,Kämpfen wir|doch gleich hier!,"Du sagst es, Mädel! (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,0,1,"SetPose(""Duck"")"
+142,0,0,,Vielleicht könnten wir|uns in der Schule helfen.,"Kann schon sein... (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,1,0,"SetPose(""Duck"")"
+142,0,0,,Ich brauche Schutz.,"Gibt's nicht umsonst... (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,0,-1,"SetPose(""Duck"")"
+142,0,0,,Ich bräuchte da|von dir einen Rat.,"Frag doch, Trottel... (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,0,0,"SetPose(""Duck"")"
+150,0,0,,"Danke, Kameradin!|Wie geht's dir denn?",Ich bin nicht besoffen. Könnte also besser sein.,152,1,0,
+150,0,0,,Betrinkst du|dich hier?,"Jep, langsam aber sicher.",152,0,0,
+150,0,0,,Wie ist das Bier?,"Ziemlich beschissen, aber billig.|Perfekt zum Besaufen.",152,0,0,
+150,0,0,,Du trinkst also allein?,"Was geht's dich an? Ich kann|mich besaufen, wie ich will.",152,-1,1,
+150,0,0,,Du siehst süß aus|in diesen Shorts.,"Danke, du bist auch sehr hübsch.",151,1,0,
+150,0,0,,"Hey, Sexy!|Nette Beine.",Schönen Dank. Du siehst auch toll aus.,151,0,1,
+150,0,0,,Ich zahle|für das Bier.,Gutes Mädchen! (Sie lacht.)|Zeit sich zu besaufen.,152,0,-1,
+151,0,0,,(Rot werden.) Du findest|mich wirklich hübsch?,"Klar doch. (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,0,-1,"SetPose(""Duck"")"
+151,0,0,,"Jep, ich bin die|Hübscheste hier.","Was? Du bist nicht... (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,-1,0,"SetPose(""Duck"")"
+151,0,0,,Wir machen uns|einen netten Abend.,"Ja, er wird bestimmt... (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,0,0,"SetPose(""Duck"")"
+152,0,0,,Du solltest dir nicht|ständig die Kante geben.,"Bist du etwa meine Mom? (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,0,1,"SetPose(""Duck"")"
+152,0,0,,Komasaufen ist|gefährlich.,"Du Lusche. (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,-1,0,"SetPose(""Duck"")"
+152,0,0,,Darauf trink' ich einen.,"Prost! (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,1,0,"SetPose(""Duck"")"
+152,0,0,,"Auch eine Art, den|Abend zu verbringen.","Die beste Art. (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,0,0,"SetPose(""Duck"")"
+160,0,0,,Oh ja! Ich kann's|selbst nicht glauben.,(Sie nickt hastig.) Mildred muss jetzt|ziemlich angepisst auf dich sein.,161,0,-1,
+160,0,0,,Gewöhn dich dran.,(Sie nickt höflich.) Mildred muss jetzt|ziemlich angepisst auf dich sein.,161,0,1,
+160,0,0,,Hat es dir gefallen?,(Sie nickt glücklich.) Mildred muss jetzt|ziemlich angepisst auf dich sein.,161,0,0,
+161,0,8,,Mildred ist jetzt|meine Bitch.,Das ist verdammt geil!|Wir brauchen mehr Mädels wie dich.,162,1,1,
+161,0,0,,Mach dir keine|Gedanken über sie.,"'Nen Scheiß mach ich mir über sie.|Scheiße, wir brauchen mehr Mädels wie dich.",162,0,0,
+161,0,0,,Mildred kann|mich mal.,"Ja, wen kümmern die Lehrer?|Alter, wir brauchen mehr Mädels wie dich.",162,1,0,
+161,0,0,,Handel mir keinen|Ärger bei ihr ein.,"Du hast mich falsch verstanden. Ich finde|eigentlich, wir brauchen mehr Mädels wie dich.",162,-1,0,
+162,0,0,,Und wir brauchen hübsche|Mädchen wie dich.,"Das ist so nett von... (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,1,0,"SetPose(""Duck"")"
+162,0,0,,Und weniger|Mädels wie dich.,"Was soll das... (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,-1,0,"SetPose(""Duck"")"
+162,0,0,,Vielleicht ist das etwas|zu weit gegangen.,"Sag sowas nicht. (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,0,-1,"SetPose(""Duck"")"
+162,0,0,,"Jep, ich gebe dieser Schule|etwas Führungskraft.","Tolle Neuigkeiten! (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,0,1,"SetPose(""Duck"")"
+162,0,0,,Danke!,"Und noch was... (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,0,0,"SetPose(""Duck"")"
+170,0,0,,Fass mich an|und du stirbst.,"Ach ja? Gehen wir raus, dann|breche ich dir die Knochen.",141,-1,1,
+170,0,0,,Was ist dein Problem?,"Du bist mein bekacktes Problem!|Gehen wir raus, dann mach ich dich platt.",141,0,0,
+170,0,0,,Bist du immer noch|sauer auf mich?,"Natürlich bin ich noch scheißsauer!|Gehen wir raus, dann mach ich dich platt.",141,0,-1,
+170,0,0,,Können wir reden?,(Sie zeigt auf dich.)|Was willst du?,142,0,0,"SetPose(""Point"")"
+170,0,0,,"Ganz ruhig, Mädchen.",(Sie starrt dich an.)|Was willst du?,142,0,1,"SetPose("""")"
+170,0,0,,Ich spendiere dir als|Friedensangebot ein Bier.,"(Sie nimmt das Bier und beruhigt sich.)|Also schön. Sag mir, was du willst.",142,1,0,"SetPose("""")"
+180,0,0,,Ich doch nicht!|(Ihr zuzwinkern.),"Ha! Der war gut.|Also, was willst du?",190,1,0,
+180,0,0,,"Ich versuche, nicht|erwischt zu werden.","Na dann viel Glück dabei.|Also, was willst du?",190,0,0,
+180,0,0,,"Jep, ich bin für|Schwierigkeiten bekannt.","Das ist ja auch nicht verkehrt.|Also,was willst du jetzt?",190,0,1,
+180,0,0,,"Nein, ich hab|mich geändert.","Das ist verdammt lahm.|Na ja, was willst du?",190,0,-1,
+180,0,0,,"Du machst hier Schwierig-|keiten, nicht ich.","(Sie schaut dich verärgert an.)|Scheiß drauf, was willst du?",190,-1,0,
+190,0,0,,Ich will mit dir|einen trinken.,"Da hab ich absolut nichts gegen.|Also, wie war dein erster Tag?",191,1,0,
+190,0,0,HasSeduction,Ich will deine schönen|Augen sehen.,"(Sie wird rot und senkt den Kopf.)|Also, hat dir dein erster Tag gefallen?",191,1,1,"SetPose(""Shy"")"
+190,0,0,,Ich will plaudern.,Okay. Wie war denn dein erster Tag?,191,0,0,
+190,0,0,,Ich will dir 'nen|Drink ausgeben.,"Immer her damit, Mädchen! (Sie lacht.)|Wie war denn dein erster Tag?",191,1,-1,
+190,0,0,,Ich will was|von deinem Gras.,Ganz ruhig. Wir rauchen später.|Wie war denn dein erster Tag?,191,0,1,
+190,0,0,,Ich will dir in|den Arsch treten.,"Ach ja? Gehen wir raus, dann|breche ich dir die Knochen.",141,-1,1,"SetPose(""Angry"")"
+191,0,0,,Es war super!|Ich liebe die Lehrer.,"(Sie zeigt auf dich.) Du bist 'ne Niete.|Weißt du wenigstens, wie man Party macht?",192,-1,-1,"SetPose(""Point"")"
+191,0,0,,Es hätte schlimmer|sein können.,"Jep! Also, willst du hier Party machen?",192,0,0,
+191,0,0,,"Ich wurde bestraft, also|war es ein guter Tag.","Du magst es, bestraft zu werden? Du bist komisch.|Weißt du wenigstens, wie man Party macht?",192,1,-1,
+191,0,0,,"Ganz gut, denke ich. Ich|hab etwas Ärger gemacht.","So ist es verdammt richtig!|Also, willst du hier Party machen?",192,0,1,
+191,0,0,,Diese Schule|ist scheiße.,"Ja, verdammt! Also, willst du hier Party machen?",192,1,0,
+191,0,0,,Das Bildungsniveau|scheint adäquat.,"Was ist das für 'ne verdammte Sprache?|Weißt du wenigstens, wie man Party macht?",192,-1,0,
+192,0,0,,Ich schmeiße|die Partys.,"Das ist doch was. (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,0,1,"SetPose(""Duck"")"
+192,0,0,,Partys sind okay.,"Wenn das Bier billig ist... (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,0,0,"SetPose(""Duck"")"
+192,0,0,,Ich bin ein Partylöwe!,"Lass rocken! (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,1,0,"SetPose(""Duck"")"
+192,0,0,,Ich gehe Partys|meistens aus dem Weg.,"Das ist lahm. (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,0,-1,"SetPose(""Duck"")"
+192,0,0,,Ich feiere nur mit|guten Freunden.,"Das kann ich versteh-... (Sie hält inne.) Oh, Scheiße!|(Sie blickt umher und duckt sich hinter der Theke.)",200,1,-1,"SetPose(""Duck"")"
+200,0,0,,Was ist los?,"Pssst. Sei still, sonst sieht sie mich noch.",201,0,0,
+200,0,0,,"Warum hast du|Angst, Mädchen?",Schnauze! Sonst sieht sie mich noch.,201,0,1,
+200,0,0,,Hat jemand 'ne Knarre?,"Bist du bekloppt? Jetzt sei still,|sonst sieht sie mich noch.",201,0,-1,
+200,0,0,,(Dich umsehen.),"(Du schaust dich um, siehst aber nichts Unge-|wöhnliches. Sidney ist leise und duckt sich weiterhin.)",200,0,0,
+201,0,0,,Du bist leicht|zu erschrecken.,"Ich hab keine Angst! Ich will einfach|nicht, dass meine Pusherin mich sieht.",202,-1,1,
+201,0,0,,Über wen redest du?,Meine Pusherin ist hier.|Sie soll mich nicht sehen.,202,0,0,
+201,0,0,,"Wer? Ich hoffe, es|sind keine Lehrer hier.","Keine Lehrer, aber meine Pusherin.|Sie soll mich nicht sehen.",202,0,-1,
+201,0,0,,"Mit mir bist du|sicher, Kameradin.",Danke. Meine Pusherin ist hier.|Sie soll mich nicht sehen.,202,1,0,
+201,0,0,,"Wenn du Schwierigkeiten|hast, helfe ich dir nicht.",Schnauze! Meine Pusherin ist hier.|Sie soll mich nicht sehen.,202,-1,0,
+202,0,0,,Vielleicht kann ich helfen.|Du schuldest ihr Geld?,"Ja, so viel ist es nicht. Aber sie verkauft|mir nichts mehr, wenn ich nicht bleche.",203,1,0,
+202,0,0,,Also geht es um Geld?,"Ja, so viel ist es nicht. Aber sie verkauft|mir nichts mehr, wenn ich nicht bleche.",203,0,0,
+202,0,0,,Du hast Drogenschulden?|Wie erbärmlich.,"Fick dich! So viel ist es nicht, aber sie verkauft|mir nichts mehr, wenn ich nicht bleche.",203,-1,0,
+203,0,0,,Ist sie gefährlich?,Nicht wirklich. Aber sie hat das beste Gras|in der Gegend und ich will noch mehr davon.,203,0,0,
+203,0,0,,Und was machst du jetzt?,"Mich verstecken, bis sie geht.",203,0,0,
+203,0,0,,Ich könnte|mit ihr reden.,Das würdest du tun?|Das wäre großartig.,204,0,0,
+203,0,0,,Ich bringe das|für dich in Ordnung.,"Danke, COMMON_PLAYERNAME.|Das wäre genial.",204,0,0,
+203,0,0,,Dir ist nicht zu helfen.|(Sidney allein lassen.),Du überlässt Sidney ihren Problemen.,0,-1,0,SidneyEnd()
+203,0,0,,Wir können uns|bei mir verstecken.,"Es ist zu riskant, hier rauszugehen.|Sie könnte mich sehen.",203,0,0,
+203,10,0,,"Wir machen uns zusam-|men vom Acker, Schatz.","Also gut! Ich bin bereit, wenn du es bist.",205,1,0,
+203,0,10,,"Wenn ich ""los"" sage,|rennst du mit mir weg.","Ja, Miss! Ich bin jederzeit bereit.",205,0,1,
+203,1,-10,,Miss Sidney. Ich gebe|Deckung für die Flucht.,"Okay, Mädchen! Ich bin bereit, wenn du es bist.",205,0,-1,
+204,0,0,,"Bleib hier, Sidney.|(Zur Pusherin gehen.)","(Du gehst rüber zu Sidneys Pusherin.)|Hi, willst du was von mir?",210,1,0,"SetActor("""")"
+204,0,0,,Vielleicht ist das|keine so gute Idee.,"Ja, bleib leise, irgendwann geht sie schon weg.",203,0,0,
+205,0,0,,(Mit Sidney weglaufen.),"(Ihr lauft beide davon und begebt euch zu|deinem Zimmer, wo Sidney nach Atem ringt.)",300,0,0,"LeaveWithSidney(""Exhausted"")"
+210,0,0,,"Ja, ich wollte|über Sidney sprechen.",Was ist mit ihr?,211,0,0,
+210,0,0,,Kennst du Sidney?,Ja. Was ist mit ihr?,211,0,0,
+210,0,0,,Ich bin wegen Sidney hier.,Okay. Was ist mit ihr?,211,0,0,
+211,0,0,,Sie schuldet dir Geld?,"Ja, tut sie. Und sie sollte eigentlich|schon letzte Woche zahlen.",212,0,0,
+211,0,0,,"Wie ich höre, hat sie|gewisse Schulden bei dir.","Ja, hat sie. Und sie sollte eigentlich|schon letzte Woche zahlen.",212,0,0,
+212,0,0,,"Ich bin hier, um ihre|Schuld zu begleichen.",(Sie schaut dich interessiert an.)|Also zahlst du sie mir jetzt zurück?,213,0,0,
+212,0,0,!SidneyBelted,"Ich weiß, wie man|sie zum Bezahlen kriegt.",Toll! Und was wäre das für ein Trick?,216,0,0,
+212,0,0,,Vergiss die Schulden oder|ich breche dir die Beine.,"(Sie schnappt nach Luft.) Gut! Die Schuld ist getilgt.|Aber sag ihr, dass sie nie wieder was von mir kriegt.",219,0,0,"GameLog(""DebtIntimidate"")"
+213,0,0,,Ich zahle die Hälfte. (Die|halbe Schuld begleichen.),"Na gut. Aber sag ihr, dass sie|nächste Woche den Rest zahlen muss.",219,0,0,"GameLog(""DebtPayHalf"")"
+213,0,0,,Ich zahle alles. (Die|ganze Schuld begleichen.),(Sie nimmt das Geld und seufzt.)|Warum bist du so nett zu ihr?,214,0,0,"GameLog(""DebtPayFull"")"
+213,0,0,,Ich zahle doppelt. (Die|Schuld doppelt begleichen.),(Sie nimmt das Geld und lächelt.)|Warum bist du so nett zu ihr?,214,0,0,"GameLog(""DebtPayDouble"")"
+213,0,0,,Nein. Vergiss die Schuld|oder ich zerfetze dich.,"(Sie schnappt nach Luft.) Gut! Die Schuld ist getilgt.|Aber sag ihr, dass sie nie wieder was von mir kriegt.",219,0,0,"GameLog(""DebtIntimidate"")"
+214,0,0,,Sie ist mir|untergeben.,Dann halte sie von Ärger fern.|(Sie gibt dir einen Keuschheitsgürtel.),215,0,0,GetChastityBelt()
+214,0,0,,Sie ist meine Bitch.,Dann halte sie von Ärger fern.|(Sie gibt dir einen Keuschheitsgürtel.),215,0,0,GetChastityBelt()
+214,0,0,,Sie ist meine Herrin.,"Sag ihr, sie soll sich sehr glücklich schätzen.",219,0,0,
+214,0,0,,Sie ist eine gute|Freundin von mir.,"Sag ihr, dass sie eine wunderbare Freundin hat.",219,0,0,
+214,0,0,,Sie ist meine|feste Freundin.,"Sag ihr, sie soll sich sehr glücklich schätzen.",219,0,0,
+214,0,0,,So bin ich eben.|(Weggehen.),(Du gehst grinsend zu Sidney zurück.)|Was ist passiert? Was hat sie gesagt?,220,0,0,"SetActor(""Sidney"")"
+214,0,0,,Ist doch egal.|(Weggehen.),(Du gehst grinsend zu Sidney zurück.)|Was ist passiert? Was hat sie gesagt?,220,0,0,"SetActor(""Sidney"")"
+215,0,0,,Danke!|(Weggehen.),(Du gehst grinsend zu Sidney zurück.)|Was ist passiert? Was hat sie gesagt?,220,0,0,"SetActor(""Sidney"")"
+216,0,0,,Wir können|sie verprügeln.,Das wäre nicht gut fürs Geschäft.,216,0,0,
+216,0,0,,Wir können aus|ihrem Zimmer klauen.,Das ist nicht meine Art.,216,0,0,
+216,0,0,,"Ich sperre sie in einen|Gürtel, bis sie zahlt.",In einen Keuschheitsgürtel? Das ist eine tolle Idee!|Sie würde sicher sehr bald bezahlen.,217,0,0,
+216,0,0,,Ich stecke ihren Arsch in|einen Keuschheitsgürtel.,"Das ist eine großartige Idee, Miss!|Ich bin sicher, dass sie bezahlen würde.",217,0,0,
+217,0,0,,Genau! Du hast bald|schon dein Geld.,"Super! Sag ihr, dass sie blechen soll,|bevor sie durchdreht.",219,0,0,"GameLog(""DebtChastityBelt"")"
+217,0,0,,Hast du so|einen Gürtel?,(Sie wird rot.) Ja. Nimm ihn.|(Sie gibt dir einen Keuschheitsgürtel.),215,0,0,GetChastityBelt()
+219,0,0,,Mache ich.|(Weggehen.),(Du gehst grinsend zu Sidney zurück.)|Was ist passiert? Was hat sie gesagt?,220,0,0,"SetActor(""Sidney"")"
+219,0,0,,"Ja, Miss.|(Weggehen.)",(Du gehst grinsend zu Sidney zurück.)|Was ist passiert? Was hat sie gesagt?,220,0,0,"SetActor(""Sidney"")"
+219,0,0,,Hau ab.|(Weggehen.),(Du gehst grinsend zu Sidney zurück.)|Was ist passiert? Was hat sie gesagt?,220,0,0,"SetActor(""Sidney"")"
+220,0,0,,Deine Schuld|ist getilgt.,"Ja, Mann!|Du hast richtig was gut bei mir.",222,2,0,"SetPose("""")"
+220,0,0,,Du kannst sie|nächste Woche bezahlen.,Das ist eine echte Erleichterung!|Du hast richtig was gut bei mir.,222,1,0,"SetPose("""")"
+220,0,0,,Sie wird dir kein|Gras mehr verkaufen.,Nicht dein Ernst! Du Vollhonk! Du hast es verkackt!,221,-2,0,"SetPose(""Angry"")"
+221,0,0,,Ich hab mein|Bestes gegeben.,Und wie ein beschissener Nichtsnutz versagt!|(Sie geht wütend aus dem Pub.),0,0,0,SidneyEnd()
+221,0,0,,"Tut mir leid, Sidney.",Du bist verdammt erbärmlich! Hoffnungslos.|(Sie geht wütend aus dem Pub.),0,0,-1,SidneyEnd()
+221,0,0,,Drogen aufzugeben|wird dir guttun.,"Fick dich, COMMON_PLAYERNAME!|(Sie geht wütend aus dem Pub.)",0,-1,1,SidneyEnd()
+222,0,0,ChastityBeltDeal,Es gibt da aber eine|gewisse Abmachung.,Eine Abmachung? Was zur Hölle?,223,0,1,"SetPose(""Shy"")"
+222,0,0,ChastityBeltDeal,Du musst dafür|aber etwas anziehen.,Etwas anziehen? Was zur Hölle?,223,0,1,"SetPose(""Shy"")"
+222,0,0,,Kein Thema.,Du bist so verdammt großzügig.|Was machst du also heute Abend?,224,1,0,
+222,0,0,,Du kannst dich irgendwie|bei mir revanchieren.,Alles klar. Was machst du also heute Abend?,224,0,0,
+222,0,0,,Du zahlst mir|das Doppelte.,"Verdammt! Ich wusste, es gibt einen Haken.|Na schön! (Sie geht wütend davon.)",0,-2,1,SidneyEnd()
+223,0,0,,Komm in mein Zimmer.|Ich erkläre dir alles.,Okay. Gehen wir jetzt gleich?,225,0,0,
+223,0,0,,Mach dir darüber|erstmal keine Gedanken.,Na gut. Was machst du also heute Abend?,224,0,0,
+224,0,0,,Ich chille hier mit dir. (Zeit|mit Sidney verbringen.),"(Du verbringst eine Weile damit,|mit Sidney zu plaudern und zu trinken.)",224,0,0,WaitWithSidney()
+224,0,0,,Möchtest du mein|Zimmer sehen?,"Und den Pub verlassen?|Nein, später vielleicht.",224,0,0,
+224,10,0,,"Süße, möchtest du|sehen, wo ich wohne?",(Sie wird rot.) Na klar.|Gehen wir jetzt gleich?,225,1,0,"SetPose(""Shy"")"
+224,0,10,,Steh auf! Wir gehen|in mein Zimmer.,(Sie springt auf.) Okay.|Gehen wir jetzt gleich?,225,0,1,"SetPose(""Shy"")"
+224,1,-10,,Miss Sidney. In meinem|Zimmer ist Essen für Sie.,Essen? Dann mal los!|Bist du so weit?,225,0,-1,"SetPose(""Point"")"
+224,0,0,,Ich muss los. Bis dann!|(Zurück zum Zimmer.),,224,0,0,Leave()
+225,0,0,,"Gehen wir, Sidney!|(Zurück zum Zimmer.)","(Ihr geht zusammen zu deinem Zimmer zurück.)|Nett. Es macht dir nichts aus, dass ich hier bin?",320,0,0,"LeaveWithSidney("""")"
+300,0,0,,Geschafft!,"Ja, hoffentlich hat sie mich|nicht wegrennen sehen.",310,0,0,
+300,0,0,,Das war aufregend.,"Ja, Mann! Hoffentlich hat sie mich|nicht wegrennen sehen.",310,1,0,
+300,0,0,,Du rennst|zu langsam.,(Sie atmet schwer und hustet.)|Solange sie mich nicht gesehen hat.,310,-1,0,
+300,0,0,,Du bist ziemlich|gut im Laufen.,"Lass den Sarkasmus, ich hasse das.|Na ja, hoffentlich hat sie mich nicht gesehen.",310,-1,0,
+310,0,0,,Denk nicht darüber. Will-|kommen in meiner Stube!,"Ganz nett hast du's hier. Es macht dir nichts aus,|wenn ich hier ein paar Stunden untertauche?",320,0,1,
+310,0,0,,"Ja, ich bin auch nervös.|Also, hier wohne ich.","Ganz nett hast du's hier. Es macht dir nichts aus,|wenn ich hier ein paar Stunden untertauche?",320,0,-1,
+310,0,0,,Bestimmt ist alles gut. Will-|kommen in meiner Stube.,"Ganz nett hast du's hier. Es macht dir nichts aus,|wenn ich hier ein paar Stunden untertauche?",320,0,0,
+320,0,0,,Mach nichts dreckig.,(Sie runzelt die Stirn.) Ich bleib eh nicht|lange hier. Ich gehe um zwanzig Uhr.,330,-1,0,
+320,0,0,,Du kannst hier|übernachten.,Das wird nicht nötig sein. Ich bleib|nicht lange. Ich gehe um zwanzig Uhr.,330,0,0,
+320,0,0,,"Fühle dich wie zu|Hause, Kameradin.",Vielen Dank! Ich bleib auch nicht zu|lange hier. Ich gehe um zwanzig Uhr.,330,1,0,
+320,0,0,,Mi casa es su casa.,"Ich kann kein Japanisch. Ich bleib|nicht lange, ich gehe um zwanzig Uhr.",330,0,0,
+330,0,0,,"Okay, Sidney.|(Zurück zum Zimmer.)",,330,0,0,BackToDorm()

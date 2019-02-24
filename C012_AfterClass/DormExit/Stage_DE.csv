@@ -1,0 +1,11 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,@Zum WG-Zimmer.,,0,0,0,LaunchRoommatesDorm()
+0,0,0,,@Zur Schulbibliothek.,,0,0,0,LaunchLibrary()
+0,0,0,,@Zum Schul-Pub.,,0,0,0,LaunchPub()
+0,0,0,,@Zum Schul-|Schwimmbad.,,0,0,0,LaunchPool()
+0,0,0,RescueSarahAvail,@Sarah befreien gehen.,,0,0,0,LaunchRescueSarah()
+0,0,0,!KnowKinbakuClub,@Durch das|College wandern.,,0,0,0,LaunchKinbaku()
+0,0,0,KnowKinbakuClub,@Zum Kinbaku-Club.,,0,0,0,LaunchKinbaku()
+0,0,0,KnowBondageClub,@Zum Bondage-Club.,"Bist du bereit, dein Abenteuer im College zu|beenden und allein zum Bondage-Club zu gehen?",0,0,0,LaunchBondageClub()
+10,0,0,,"Ja, ich bin bereit.|(In den Club.)",,0,0,0,EnterBondageClub()
+10,0,0,,Noch nicht.,Wohin möchtest du gehen?,0,0,0,

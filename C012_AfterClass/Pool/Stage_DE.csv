@@ -1,0 +1,91 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,Eine Weile warten.,Du setzt dich eine Weile und schaust|den Leuten beim Kommen und Gehen zu.,0,0,0,Wait()
+0,0,0,,In der Dusche nachsehen.,Der Duschraum ist menschenleer.,100,0,0,EnterShower()
+0,0,0,JenniferAvail,Mit Jennifer schwimmen.,,230,0,0,SwimWithJennifer()
+0,0,0,,Allein schwimmen.,Du schwimmst eine Weile allein.|Es ist gutes Training und es entspannt dich.,10,0,0,Swim()
+0,0,0,,Die Umgebung|durchsuchen.,"Du findest ein paar Schwimmwesten und|Rettungsringe, aber nichts wirklich Interessantes.",0,0,0,Search()
+0,0,0,,Zurück zu deinem Zimmer.,,0,0,0,Leave()
+10,0,0,,Allein schwimmen.,Du schwimmst eine Weile allein.|Es ist gutes Training und es entspannt dich.,10,0,0,Swim()
+10,0,0,HasSports,Ein paar Figuren machen.,Du machst zum Spaß ein paar ziemlich|beeindruckende Figuren im Wasser.,20,0,0,Swim()
+10,0,0,,Den Pool verlassen.,"Du kommst aus dem Wasser und|siehst dich um, ob jemand kommt.",0,0,0,
+20,0,0,,Allein schwimmen.,Du schwimmst eine Weile allein.|Es ist gutes Training und es entspannt dich.,10,0,0,Swim()
+20,0,0,HasSports,Mehr Figuren machen.,Du machst zum Spaß weitere|erstaunliche Figuren im Wasser.,20,0,0,Swim()
+20,0,0,,Den Pool verlassen.,"Du kommst aus dem Wasser und|siehst dich um, ob jemand kommt.",0,0,0,
+100,0,0,,Duschen gehen.,Du gehst unter die warme|Dusche und entspannst dich.,101,0,0,Shower()
+100,0,0,,Die Umgebung|durchsuchen.,"Du findest etwas Seife und Shampoo,|aber nichts wirklich Interessantes.",100,0,0,SearchShower()
+100,0,0,,Zum Pool gehen.,Du gehst zum Pool zurück.,0,0,0,EnterPool()
+100,0,0,,Zurück zu deinem Zimmer.,,100,0,0,Leave()
+101,0,0,,Weiterduschen.,Du bleibst unter der warmen Dusche.,101,0,0,Shower()
+101,0,0,,Aufhören zu duschen.,Du gehst aus der Dusche raus.,100,0,0,EnterShower()
+110,0,0,,Rühr sie nicht an!,(Das Mädchen wirft dir einen bedrohlichen Blick zu.)|Wer bist du? Verschwinde von hier!,120,0,2,FaceFront()
+110,0,0,,Was ist hier los?,(Das Mädchen wirft dir einen wütenden Blick zu.)|Geht dich nichts an! Verschwinde von hier!,120,1,1,FaceFront()
+110,0,0,,(Schweigen.),"(Das Mädchen bemerkt dich.)|Verschwinde von hier, Kleine!",120,0,0,FaceFront()
+110,0,0,,Hilfe! Hilfe! Hilfe!|(Rennen und schreien.),(Du rennst zum Pool zurück.|Jennifer folgt dir und springt ins Wasser.),0,0,-2,EnterPool()
+110,0,0,,(Dich leise zurückziehen.),"(Du gehst leise zum Pool zurück, während|Jennifer dir hinterher sprintet und ins Wasser springt.)",0,-1,-1,EnterPool()
+120,0,0,,Na gut. Ich geh ja schon.|(Zurück zum Pool.),"(Du gehst zurück, während Jennifer dir|hinterher sprintet und ins Wasser springt.)",0,-1,-1,EnterPool()
+120,0,0,,"Ich gehe nirgendwohin,|Mädchen.",Dann bleib doch. Sie ist sowieso meine Bitch.|(Sie dreht sich zu Jennifer und zeigt auf sie.),130,0,1,FaceEachOther()
+120,0,0,,Mobbst du sie?,"Ich kann machen, was ich will. Sie ist meine Bitch.|(Sie dreht sich zu Jennifer und zeigt auf sie.)",130,1,0,FaceEachOther()
+120,0,0,,"Lauf, Jennifer!|(Weglaufen.)",(Ihr lauft beide zum Pool zurück und|Jennifer springt schnell hinein.),0,1,-2,EnterPool()
+130,0,0,,"Bist du ihre|Bitch, Jennifer?","(Jennifer schüttelt den Kopf und kassiert eine Ohrfeige.)|Oh doch, das bist du, und du ziehst mein Halsband an!",140,0,0,
+130,0,0,,Sie scheint da nicht|deiner Meinung zu sein.,"(Jennifer schüttelt den Kopf und kassiert eine Ohrfeige.)|Du bist meine Bitch, also zieh mein Halsband an!",140,0,0,
+130,0,0,,Bitte lass sie in Ruhe. Sie|zeigt keine Einwilligung.,"(Jennifer schüttelt den Kopf und kassiert eine Ohrfeige.)|Du bist meine Bitch, also zieh mein Halsband an!",140,1,-1,
+130,0,0,,"Wenn sie deine Bitch ist,|leg ihr ein Halsband an.","(Jennifer schüttelt den Kopf und kassiert eine Ohrfeige.)|So sieht's aus, Bitch, du ziehst mein Halsband an!",140,-1,1,
+140,0,0,,Du kannst niemandem|ein Halsband aufzwingen.,(Das Mädchen erhebt eine Faust gegen dich.)|Ich zwinge deiner Fresse gleich meine Faust auf!,150,1,0,FaceFront()
+140,0,0,,Sie will kein|Halsband tragen.,(Das Mädchen erhebt eine Faust gegen dich.)|Mach 'nen Abgang oder ich mach dich platt!,150,0,0,FaceFront()
+140,0,0,,Das kannst du nicht|tun. Sie gehört mir.,(Das Mädchen erhebt eine Faust gegen dich.)|Ach ja? Willst du um sie kämpfen?,150,0,1,FaceFront()
+140,0,0,,"Du steckst so richtig in|Schwierigkeiten, Jennifer.",(Das Mädchen erhebt eine Faust gegen dich.)|Mach 'nen Abgang oder ich mach dich platt!,150,-1,0,FaceFront()
+140,0,0,,(Schweigen.),(Das Mädchen erhebt eine Faust gegen dich.)|Jetzt hau ab oder ich mach dich platt!,150,0,-1,FaceFront()
+150,0,0,,"Bleib auf Distanz, Jennifer.|(Mit ihr kämpfen.)",,150,1,1,Fight()
+150,0,0,,Du bist sowas von tot!|(Mit ihr kämpfen.),,150,0,2,Fight()
+150,0,0,,Na gut. Ich geh ja schon.|(Zurück zum Pool.),"(Du gehst zurück, während Jennifer dir|hinterher sprintet und ins Wasser springt.)",0,-1,-1,EnterPool()
+150,0,0,,"Lauf, Jennifer!|(Weglaufen.)",(Ihr lauft beide zum Pool zurück und|Jennifer springt schnell hinein.),0,1,-2,EnterPool()
+160,0,0,,Na gut. Ich geh ja schon.|(Zurück zum Pool.),"(Du gehst zurück, während Jennifer dir|hinterher sprintet und ins Wasser springt.)",0,-1,-1,EnterPool()
+170,0,0,,Fass sie noch ein Mal an|und ich töte dich.,"(Das Mädchen schaut weg und gibt dir ein Halsband.)|Dann gib ihr das, damit klar ist, dass sie dir gehört.",180,0,1,GetCollar()
+170,0,0,,Belästige nie wieder|meine Freundin.,"(Das Mädchen schaut weg und gibt dir ein Halsband.)|Dann gib ihr das, damit klar ist, dass sie dir gehört.",180,1,0,GetCollar()
+170,0,0,,Sie ist meine Schlampe.,"(Das Mädchen schaut weg und gibt dir ein Halsband.)|Dann gib ihr das, damit klar ist, dass sie dir gehört.",180,-1,2,GetCollar()
+180,0,0,,Mal sehen.|Ist jetzt alles geregelt?,(Die Schlägerin verlässt grummelnd den Raum.|Jennifer lächelt und geht zum Pool zurück.),100,0,0,
+180,0,0,,"Schön. Haut ab, ihr zwei.|Ich brauch eine Dusche.",(Die Schlägerin verlässt grummelnd den Raum.|Jennifer lächelt und geht zum Pool zurück.),100,0,0,
+200,0,0,,Ich wollte keine|Szene machen.,Ich verstehe schon. Zum Glück bin ich gut im Laufen.|Wie geht man am besten mit solchen Leuten um?,201,0,0,
+200,0,0,,Ich weiß. Tut mir leid.,Schon okay. Darum mache ich Lauftraining.|Wie geht man am besten mit solchen Leuten um?,201,0,-1,
+200,0,0,,"Wichtig ist nur,|dass du entkommen bist.","Danke. Es ist praktisch, schnell laufen zu können.|Wie geht man am besten mit solchen Leuten um?",201,1,0,
+201,0,0,,Du solltest mit einer|Lehrerin sprechen.,Vielleicht hast du recht.|Danke für den Tipp.,230,0,-1,
+201,0,0,,Du solltest|ihr auflauern.,"Ihr auflauern? Ich weiß nicht.|Na ja, danke für den Tipp.",230,0,1,
+201,0,0,,Du solltest sie|erniedrigen.,Das würde alles nur schlimmer machen.|Trotzdem danke für den Tipp.,230,-1,0,
+201,0,0,,Du solltest dich|mit ihr versöhnen.,"Sehr weise, aber das wird nicht einfach.|Danke für den guten Rat.",230,1,0,
+201,0,0,,Du solltest sie ignorieren.,"Das ist nicht einfach, könnte aber klappen.|Danke für den Tipp.",230,0,0,
+210,0,0,,Es war ein fairer Kampf.,"Du hast tapfer gekämpft. Ich hätte gern deinen Mut.|Ich mache Kampfsport, aber bei Mobbing friere ich ein.",211,1,0,
+210,0,0,,Diese Schlampe kämpft|mit schmutzigen Tricks.,"Sie ist ziemlich zäh. Ich hätte gern deinen Mut.|Ich mache Kampfsport, aber bei Mobbing friere ich ein.",211,-1,0,
+210,0,0,,Das nächste Mal|mach ich sie fertig.,"Du hast tapfer gekämpft. Ich hätte gern deinen Mut.|Ich mache Kampfsport, aber bei Mobbing friere ich ein.",211,0,1,
+210,0,0,,"Es war vielleicht nicht die|beste Idee, zu kämpfen.","Du hast tapfer gekämpft. Ich hätte gern deinen Mut.|Ich mache Kampfsport, aber bei Mobbing friere ich ein.",211,0,0,
+210,0,0,,Ich habe jetzt überall|Schmerzen.,"Das tat bestimmt weh. Ich hätte gern deinen Mut.|Ich mache Kampfsport, aber bei Mobbing friere ich ein.",211,0,-1,
+211,0,0,,"Es ist nie einfach, sich|gegen Mobbing zu wehren.","Ich weiß, das nächste Mal sollte ich kämpfen wie du.",230,0,0,
+211,0,0,,Wir sollten uns gegenseitig|bewachen und beschützen.,"Das ist eine sehr gute Idee.|Vielen Dank, COMMON_PLAYERNAME.",230,1,-1,
+211,0,0,,Wir sollten ihr auflauern|und uns rächen.,Das ist eine sehr gefährliche Idee.|Es könnte alles noch schlimmer machen.,230,-1,1,
+211,0,0,,Du solltest mehr|an dich glauben.,"Ich weiß, das nächste Mal sollte ich kämpfen wie du.",230,0,0,
+220,0,0,,"Ich hatte Glück, uns hätte|etwas passieren können.","Mag sein, aber du hast tapfer gekämpft und gewonnen.|Du bist mein Vorbild, COMMON_PLAYERNAME.",221,0,-1,
+220,0,0,,Hat dir der Kampf gefallen?,"Und wie! Du hast tapfer gekämpft und gewonnen.|Du bist mein Vorbild, COMMON_PLAYERNAME.",221,0,0,
+220,0,0,,Ich könnte sie|jederzeit feritgmachen.,"Beeindruckend! Du warst tapfer und hast gewonnen.|Du bist mein Vorbild, COMMON_PLAYERNAME.",221,0,1,
+221,0,0,,Nicht der Rede wert.,Du bist so freundlich und bescheiden.|Nochmal danke für deine Hilfe.,230,1,0,
+221,0,0,,Wir hätten ihre Klamotten|stehlen sollen.,Oh nein! Das wäre zu erniedrigend.|Egal. Danke nochmal für deine Hilfe.,230,-1,0,
+221,0,10,,"Ich könnte mehr als nur|ein Vorbild sein, weißt du?",Mehr als ein Vorbild? So wie ein Sensei?,222,0,0,
+221,0,10,,Vielleicht sollte ich dir|dieses Halsband anlegen.,Mir das Halsband anlegen?|Was meinst du damit?,222,0,0,
+222,0,0,,Ich erkläre dir|später alles.,"Jetzt bin ich richtig neugierig, Miss.|Nun ja, danke nochmal für die Hilfe.",230,0,0,
+222,0,0,,"Das ist kein guter Ort,|um darüber zu reden.","Jetzt bin ich richtig neugierig, Miss.|Nun ja, danke nochmal für die Hilfe.",230,0,0,
+230,0,0,,(Mit ihr schwimmen.),(Ihr schwimmt zusammen und verbringt|eine schöne Zeit miteinander.),230,0,0,SwimTogether()
+230,0,0,,Du schwimmst hier|also den ganzen Abend?,Ich komme nach meinem Lauftraining|zum Entspannen hierher.,231,0,0,
+230,0,0,,Bist du öfter hier?,"Immer wenn ich laufen gehe,|komme ich gleich danach hierher.",231,0,0,
+230,0,0,,Geht es dir jetzt besser?,"Mir geht's gut, danke. Ich glaube, sie ist gegangen.|Sie kann nicht schwimmen, also bin ich hier sicher.",235,0,0,
+230,0,0,,Ist diese Schlägerin|noch in der Nähe?,"Ich glaube, sie ist gegangen. Hoffe ich.|Sie kann nicht schwimmen, also bin ich hier sicher.",235,0,0,
+230,0,0,,(Den Pool verlassen.),Du gehst aus dem Wasser raus.,0,0,0,UnloadJennifer()
+231,0,0,,Du verbringst deine|Abende allein?,Nein! Na ja... Leider doch.|Ich sollte mehr Freunde finden.,232,0,0,
+231,0,0,,Du läufst und schwimmst|nicht mit deinen Freunden?,Ich hab nicht sehr viele Freunde.|(Sie seufzt und meidet deinen Blick.),232,0,0,
+232,0,0,,Sei nicht so allein.|Komm mit in mein Zimmer.,"Nein, danke. Ich will noch etwas schwimmen.",230,0,0,TestGoDorm()
+232,0,0,,Wir könnten Freunde sein.|Ich lade dich zu mir ein.,Nicht jetzt. Ich will noch etwas schwimmen.,230,0,0,TestGoDorm()
+232,0,0,,Du findest bestimmt|neue Freunde.,"Danke. Ich versuche, mir darüber keine|zu großen Gedanken zu machen.",230,0,0,
+235,0,0,,Mit mir bist du sicher.,"Ja, alles ist besser, wenn du da bist.",236,0,0,
+235,0,0,,Zusammen sind wir sicher.,"Ja, alles ist besser, wenn du da bist.",236,0,0,
+235,0,0,,Sie ist weg. Keine Angst.,"Ja, alles ist besser, wenn du da bist.",236,0,0,
+236,0,0,,Dann komm doch mit|mir in mein Zimmer.,"Nein, danke. Ich will noch etwas schwimmen.",230,0,0,TestGoDorm()
+236,0,0,,Ich kann dich in mein|Zimmer begleiten.,"Nein, danke. Ich will noch etwas schwimmen.",230,0,0,TestGoDorm()
+236,0,0,,Du solltest gefahrlos|zurückgehen können.,Meinst du? Das ist beruhigend.,230,0,0,
+240,0,0,,Gehen wir! (Zurück|zu deinem Zimmer.),,240,0,0,LeaveWithJennifer()

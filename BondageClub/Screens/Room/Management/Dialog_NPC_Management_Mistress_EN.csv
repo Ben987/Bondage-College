@@ -15,16 +15,15 @@ KneelToTalk,,,"Submissive girl, what are you doing standing up in my presence?  
 0,50,Who's that bound girl?,She's my kitty.  She stays with me while I work.,,
 0,100,Can we talk about chastity devices?,"Absolutely, what would you like to know?",,
 0,200,About Dominant/submissive relationships...,I'm listening.  How can I educate you?,,
+0,300,About club slaves...,"Yes, what would you like to know?",,
 0,,"Sorry, I need to go.  (Leave her.)",,DialogLeave(),
-5,0,"Oops, I'm sorry Miss.  (Kneel for her.)",(She smirks as your kneel down for her.)  Good girl.  What can I do for you?,"DialogSetPose(Player, ""Kneel"")",
-5,0,(Bow your head and kneel.),(She smirks as your kneel down for her.)  Good girl.  What can I do for you?,"DialogSetPose(Player, ""Kneel"")",
+5,0,"Oops, I'm sorry Miss.  (Kneel for her.)",(She smirks as you kneel down for her.)  Good girl.  What can I do for you?,"DialogSetPose(Player, ""Kneel"")",
+5,0,(Bow your head and kneel.),(She smirks as you kneel down for her.)  Good girl.  What can I do for you?,"DialogSetPose(Player, ""Kneel"")",
 5,,We cannot talk then.  (Leave her.),,DialogLeave(),
 10,,What do you do in the club?,I'm both a Mistress and a manager.  I prepare collaring ceremonies and hold keys for chastity devices.,,
 10,20,Who owns the club?,"The club is owned by every member, but the Head Mistress is truly in charge.",,
 10,,Can I become a club Mistress?,"Sorry, we don't have any openings for club Mistresses right now.  Please come back later.",,"DialogReputationGreater(""Dominant"", 60)"
 10,,Can I become a club Mistress?,You?  Don't make me laugh.  This is job for Dominants only.,,"DialogReputationLess(""Dominant"", 59)"
-10,,Can I become a club slave?,"You could, but not now sub girl.  The club is restructuring, come back later.",,"DialogReputationLess(""Dominant"", -60)"
-10,,Can I become a club slave?,"Being a slave for the Bondage Club is reserved for true submissives, not for you.",,"DialogReputationGreater(""Dominant"", -59)"
 10,,Can I tie you up?,Don't make me laugh.,MistressAngryAdd(),GetMistressAngryCount(0)
 10,,Can I tie you up?,Forget it girl.  Don't bug me with such stupid questions.,MistressAngryAdd(),GetMistressAngryCount(1)
 10,,Can I tie you up?,I said forget it!  Ask me again and you'll be in a world of trouble.,MistressAngryAdd(),GetMistressAngryCount(2)
@@ -38,17 +37,22 @@ KneelToTalk,,,"Submissive girl, what are you doing standing up in my presence?  
 11,12,What does that mean?,It means you're going to strip right now.,"DialogChangeReputation(""Dominant"", 2)",
 11,12,(Stay silent.),You need to know your place.  Strip girl.,,
 12,,Strip here?  No way!,(She slaps your face pretty hard.)  Oh yes you will!,DialogRemove(),
-12,13,Yes Mistress.  (Strip for her.),(You slowly strip for her as she smiles.),PlayerStrip(),
+12,13,Yes Mistress.,(You slowly strip for her as she smiles.),PlayerStrip(),
 12,13,I'm not stripping!,We'll see about that!  (She painfully locks your arm behind your back until you give up and strip.),PlayerStrip(),
+12,13,(Strip slowly.),(You slowly strip for her as she smiles.),PlayerStrip(),
 13,14,That's embarrassing.,And it's about to get worse.  (She forces an armbinder on you and straps it tight.),PlayerArmbinder(0),
 13,14,Are you happy now?,Not yet.  (She forces an armbinder on you and straps it tight.),PlayerArmbinder(2),
 13,14,(Blush and bow your head.),Good girl.  (She forces an armbinder on you and straps it tight.),PlayerArmbinder(-2),
 14,15,This is really tight.,"Have you learned your lesson?  Will you be good, or I need to restrict you even more?",,
 14,15,(Tug on the binder.),"Have you learned your lesson?  Will you be good, or I need to restrict you even more?",,
-15,16,"Yes, I've learned my lesson.","Alright.  (She straps your legs with a belt.)  I will release you later, you can struggle for my amusement.","DialogWearItem(""LeatherBelt"", ""ItemFeet"")",
-15,16,Yes Mistress.,"Alright.  (She straps your legs with a belt.)  I will release you later, you can struggle for my amusement.","DialogWearItem(""LeatherBelt"", ""ItemFeet"")",
+15,16,"Yes, I've learned my lesson.","Alright.  (She straps your legs with a belt.)  I will release you later, you can struggle for my amusement.","DialogWearItem(""LeatherBelt"", ""ItemFeet"")",!Player.IsKneeling()
+15,16,"Yes, I've learned my lesson.","Alright.  (She straps your legs with a belt.)  I will release you later, you can struggle for my amusement.","DialogWearItem(""LeatherBelt"", ""ItemLegs"")",Player.IsKneeling()
+15,16,Yes Mistress.,"Alright.  (She straps your legs with a belt.)  I will release you later, you can struggle for my amusement.","DialogWearItem(""LeatherBelt"", ""ItemFeet"")",!Player.IsKneeling()
+15,16,Yes Mistress.,"Alright.  (She straps your legs with a belt.)  I will release you later, you can struggle for my amusement.","DialogWearItem(""LeatherBelt"", ""ItemLegs"")",Player.IsKneeling()
 15,16,What lesson?,"I'll show you.  (She uses many more items on you.)  I will release you later, you can struggle for my amusement.",PlayerRandomRestrain(),
 15,16,Fuck you!,"Oh yeah?  (She uses many more items on you.)  I will release you later, you can struggle for my amusement.",PlayerRandomRestrain(),
+15,16,(Nod and blush.),"Alright.  (She straps your legs with a belt.)  I will release you later, you can struggle for my amusement.","DialogWearItem(""LeatherBelt"", ""ItemFeet"")",!Player.IsKneeling()
+15,16,(Nod and blush.),"Alright.  (She straps your legs with a belt.)  I will release you later, you can struggle for my amusement.","DialogWearItem(""LeatherBelt"", ""ItemLegs"")",Player.IsKneeling()
 16,,,How's the bratty girl doing?,,
 16,,Can you please help me?,"Struggle some more, I'm having fun.",,!MistressWillRelease()
 16,,(Whimper and beg for mercy.),"Struggle some more, I'm having fun.",,!MistressWillRelease()
@@ -62,6 +66,7 @@ KneelToTalk,,,"Submissive girl, what are you doing standing up in my presence?  
 30,0,I'm sorry.  Please forgive me Mistress.,(She gives you a stern look.)  Don't do it again.,"DialogChangeReputation(""Dominant"", -2)",
 30,0,I won't do it again.,(She gives you a stern look.)  Fine.,,
 30,11,I'll do what I want.,You dare to defy me?  Now you're in trouble!,"DialogChangeReputation(""Dominant"", 3)",
+30,0,(Nod politely and look down.),(She gives you a stern look.)  Don't do it again.,"DialogChangeReputation(""Dominant"", -2)",
 50,,Why the ears and tail?,"She's a neko, a girl with cat features.  Don't judge her, she's a good kitty.",,
 50,,You keep her restrained all day?,"Yes, she's not allowed to stray or talk while I work.",,
 50,,She's enjoying herself?,"Absolutely, she's my submissive and she's a bondage slut.",,
@@ -153,7 +158,7 @@ KneelToTalk,,,"Submissive girl, what are you doing standing up in my presence?  
 131,0,I'll think about it.,Think about ways to stop wasting my time girl.,,
 200,,What is a D/s family?,You can build your own D/s family or join a Dominant family.  A submissive can only have one Mistress.  A Mistress can have many collared submissives.,,
 200,,Is there a fee to collar or be collared?,"Yes, the Dominant must pay 100$ for each pet, we provide the locking collar.  If a slave wants freedom, she will pay 60$ on the first occurrence and 200$ on others.",,
-200,220,Will you be my Mistress?,"I've heard about you girl, they say you're one of the best slave around.  You would offer yourself to me?",,WillOwnPlayer()
+200,220,Will you be my Mistress?,"I've heard about you girl, they say you're one of the best slaves around.  You would offer yourself to me?",,WillOwnPlayer()
 200,,Will you be my Mistress?,"Girl, my standards are high.  If I get a new slave, she would have to be the perfect submissive.",,WontOwnPlayer()
 200,,Can I collar and own anyone?,"BDSM is consensual.  As long as the person isn't already owned and consent to be your slave, you can collar her.",,
 200,,I want to collar a submissive.,Perfect!  You'll have to wait though.  The club is restructuring.  Please come back later.,,
@@ -189,6 +194,38 @@ KneelToTalk,,,"Submissive girl, what are you doing standing up in my presence?  
 221,222,I have my private room in the club.,That could certainly work.  I'll take my kitty to her cage and go see your place right after.,,
 221,222,"Yes, we could use my room Miss.",That could certainly work.  I'll take my kitty to her cage and go see your place right after.,,
 221,0,I don't know.,It's fine girl.  Let me know if you can find a good place where we could meet after my shift.,,
-222,223,"Great, I'll see you there.",,SendMistressToPrivateRoom(3),
+222,223,"Great, I'll see you there.",,SendMistressToPrivateRoom(2),
 222,223,Take your time Miss.,,SendMistressToPrivateRoom(1),
 222,223,You're welcome any time.,,SendMistressToPrivateRoom(2),
+300,,What are club slaves?,Submissive girls can take slavery contracts with the club and get paid for it.  They become preys for anyone to play with while under that contract.,,
+300,,What are the slave contract terms?,The contract lasts for one hour and the girl gets paid 80$ at the end of it.  A special collar will be locked for the contract duration.,,
+300,,There's a special collar?,"Regular slaves wear the red collar, which means they are already taken.  Club slaves wear the green collar, which means they are open for anyone.",,
+300,,What must club slaves do?,Club slaves can still enjoy the club but must be naked at all times.  They can be approached by any club member to be restrained or played with.,,
+300,,What if the sub is already owned?,"As long as the owner doesn't disapprove, a regular slave can take a club slave contract for one hour.  We will swap collars and lock the slave collar again in the end.",,
+300,,Can I become a club slave?,"No, you're not submissive enough.",,"DialogReputationGreater(""Dominant"", -49)"
+300,310,Can I become a club slave?,"You could, are you sure you understand the terms and commitments?  Do you accept the contract?",,"DialogReputationLess(""Dominant"", -50)"
+300,0,Let's talk about something else.,"Alright girl, but don't waste my time.",,
+310,320,I accept the terms.  I want to be a club slave.,"Very good, it's time to strip girl.",,!Player.IsNaked()
+310,330,I accept the terms.  I want to be a club slave.,"Since you're already naked, it's time for your collar slave.",,Player.IsNaked()
+310,300,Let's review the rules first.,"Fine, what troubles you?",,
+320,330,Yes Miss.  (Strip.),(You strip down as she smirks.)  It's time for your collar slave.,PlayerStrip(),
+320,330,My pleasure.  (Strip.),(You strip down as she smirks.)  It's time for your collar slave.,PlayerStrip(),
+330,340,Very well.  (Present your neck.),(She removes your regular collar and straps a club slave collar around your neck.  She locks it securely with a strong padlock.)  Good girl.,ClubSlaveCollar(-5),Player.IsOwned()
+330,340,Very well.  (Present your neck.),(She straps a club slave collar around your neck.  She locks it securely with a strong padlock.)  Good girl.,ClubSlaveCollar(-5),!Player.IsOwned()
+330,340,Please don't strap it too tight.,(She removes your regular collar and straps a club slave collar around your neck.  She locks it securely with a strong padlock.)  Don't complain.,ClubSlaveCollar(-3),Player.IsOwned()
+330,340,Please don't strap it too tight.,(She straps a club slave collar around your neck.  She locks it securely with a strong padlock.)  Don't complain.,ClubSlaveCollar(-3),!Player.IsOwned()
+330,340,It's an honor to serve the club.,"(She removes your regular collar and straps a club slave collar around your neck.  She locks it securely with a strong padlock.)  Slave, make us proud.",ClubSlaveCollar(-7),Player.IsOwned()
+330,340,It's an honor to serve the club.,"(She straps a club slave collar around your neck.  She locks it securely with a strong padlock.)  Slave, make us proud.",ClubSlaveCollar(-7),!Player.IsOwned()
+340,350,Am I ready Miss?,You're ready slave.  Go in the club and make sure everyone see's you.  Make our customers and members happy.,,
+340,350,I should wander in the club?,Absolutely.  Go in the club and make sure everyone see's you.  Make our customers and members happy.,,
+340,350,(Stay silent.),Get going girl!  Go in the club and make sure everyone see's you.  Make our customers and members happy.,,
+350,,,"Don't stay here girl, you're on duty.  Go in the club and make sure everyone see's you.  Make our customers and members happy.",,"DialogLogQuery(""ClubSlave"", ""Management"")"
+350,,,Your slave time is done girl.  Are you here to complete your contract?,,"!DialogLogQuery(""ClubSlave"", ""Management"")"
+350,360,"Miss, I wish to complete my contract.","Very good, did you enjoy your experience?",,"!DialogLogQuery(""ClubSlave"", ""Management"")"
+350,,(Bow your head and leave her.),,DialogLeave(),
+360,0,It was very kinky Miss.,"(She swaps your collars and laughs.)  Very good, here's your money slave.  (She gives you 80$.)",FinishClubSlave(0),Player.IsOwned()
+360,0,It was very kinky Miss.,"(She removes your collar and laughs.)  Very good, here's your money slave.  (She gives you 80$.)",FinishClubSlave(0),!Player.IsOwned()
+360,0,I loved it.  I hope to do it again.,(She swaps your collars and grins.)  You can come back anytime.  Here's your money slave.  (She gives you 80$.),FinishClubSlave(-3),Player.IsOwned()
+360,0,I loved it.  I hope to do it again.,(She removes your collar and grins.)  You can come back anytime.  Here's your money slave.  (She gives you 80$.),FinishClubSlave(-3),!Player.IsOwned()
+360,0,Maybe I'm not fit to be a public slave.,(She swaps your collars and nods.)  Going public isn't for everyone.  Here's your money girl.  (She gives you 80$.),FinishClubSlave(2),Player.IsOwned()
+360,0,Maybe I'm not fit to be a public slave.,(She removes your collar and nods.)  Going public isn't for everyone.  Here's your money girl.  (She gives you 80$.),FinishClubSlave(2),!Player.IsOwned()

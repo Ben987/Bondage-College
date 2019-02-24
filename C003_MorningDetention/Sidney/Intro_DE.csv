@@ -2,7 +2,7 @@ Stage,LoveReq,SubReq,VarReq,IntroText,Image
 0,0,0,,Du verstehst also was vom Umgang mit Seilen.|Was willst du jetzt? (Sie starrt dich an.),SidneyFace.jpg
 0,-1,0,,"Du Dummkopf! Sieh nur, was du angerichtet hast.|Was zur Hölle willst du? (Sie starrt dich an.)",SidneyFace.jpg
 0,1,0,,"Ha! Das Fesseln in der Klasse war ziemlich|gewagt. Also, was willst du jetzt?",SidneyFace.jpg
-0,0,0,FightDefeat,"Dich fertig zu machen war so einfach.|Also, was willst du jetzt?",SidneyFace.jpg
+0,0,0,FightDefeat,"Dich fertigzumachen war so einfach.|Also, was willst du jetzt?",SidneyFace.jpg
 0,0,0,FightVictory,Dass du mich besiegt hast war nur|verdammtes Glück. Was willst du jetzt?,SidneyFace.jpg
 0,0,0,Common_PlayerGagged,Ha! Du wurdest festgenommen und|geknebelt. Du ziehst Ärger magisch an.,SidneyFace.jpg
 10,0,0,,Glotz nicht so auf die dummen Handschellen.,SidneyCuffs.jpg

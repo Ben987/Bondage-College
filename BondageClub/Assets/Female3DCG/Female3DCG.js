@@ -393,7 +393,8 @@ var AssetFemale3DCG = [
 		Zone: [[150, 210, 200, 50]],
 		Asset: [ 
 			{ Name: "LeatherCollar", Value: 40, Time: 5 },
-			{ Name: "SlaveCollar", Random: false, Effect: ["Lock"], Enable: true, Value: -1, Time: 5 }
+			{ Name: "SlaveCollar", Random: false, Effect: ["Lock"], Enable: false, Value: -1, Time: 5 },
+			{ Name: "ClubSlaveCollar", Random: false, Effect: ["Lock"], Enable: false, Value: -1, Time: 5 }
 		]
 	},
 	

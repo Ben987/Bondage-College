@@ -1,0 +1,174 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,"Also, was gibt's?",Dorm.jpg
+0,10,0,,"Dein Zimmer ist richtig nett.|Also, was gibt's?",Dorm.jpg
+0,0,-10,,"Hey, Mädchen, was gibt's?",Dorm.jpg
+0,0,10,,"Miss, was gibt es Neues?",Dorm.jpg
+0,0,0,Common_PlayerNaked,(Sie betrachtet deinen nackten Körper.)|Du bist so eine unanständige Schülerin.,Dorm.jpg
+0,10,0,Common_PlayerNaked,(Sie betrachtet deinen nackten Körper.)|Du bist so eine unanständige Freundin.,Dorm.jpg
+0,0,-10,Common_PlayerNaked,(Sie betrachtet deinen nackten Körper.)|Du bist so ein unanständiges Mädchen.,Dorm.jpg
+0,0,10,Common_PlayerNaked,"(Sie betrachtet deinen nackten Körper.)|Miss, Sie sind so unanständig.",Dorm.jpg
+0,0,0,Common_ActorIsLover,"Was gibt's, Schatz?",Dorm.jpg
+0,0,0,Common_ActorIsOwner,"Was gibt's, mein Schützling?",Dorm.jpg
+0,0,0,Common_ActorIsOwned,"Was gibt's, Herrin?",Dorm.jpg
+0,0,0,IsRoped,"(Sie bemüht sich, einen Knoten zu erreichen.)|Das ist eng, kannst du mir helfen?",Dorm.jpg
+0,0,0,IsStrapped,(Sie versucht sich mühsam aus dem Handschuh zu|befreien.) Das ist unbequem. Kannst du mir helfen?,Dorm.jpg
+0,0,0,IsGagged,Ohm uuooohmg uom nougn!,Dorm.jpg
+10,0,0,,,Dorm.jpg
+20,0,0,,,Dorm.jpg
+100,0,0,,(Sie sieht dich an und lächelt.)|Du bist so eine liebe Freundin.,Dorm.jpg
+100,0,0,Common_ActorIsOwned,(Sie sieht dich an und lächelt.)|Ihr seid so eine nette Herrin.,Dorm.jpg
+100,0,0,Common_ActorIsOwner,(Sie sieht dich an und lächelt.)|Du bist so ein lieber Schützling.,Dorm.jpg
+105,0,0,,,Dorm.jpg
+106,0,0,,,Dorm.jpg
+110,0,0,,,Dorm.jpg
+120,0,0,,,Dorm.jpg
+130,0,0,,,Dorm.jpg
+140,0,0,,,Dorm.jpg
+150,0,0,,,Dorm.jpg
+160,0,0,,,StartDating.jpg
+170,0,0,,,Dorm.jpg
+190,0,0,,,Dorm.jpg
+191,0,0,,,Dorm.jpg
+192,0,0,,,StopDating.jpg
+193,0,0,,,StopDating.jpg
+194,0,0,,,Dorm.jpg
+200,0,0,,"Training? Aber ich treibe reichlich Sport, Miss.",Dorm.jpg
+200,0,0,Common_ActorIsLover,"Im Ernst, Schatz?|Ich treibe schon sehr viel Sport.",Dorm.jpg
+210,0,0,,,Dorm.jpg
+220,0,0,,,Dorm.jpg
+230,0,0,,,Dorm.jpg
+240,0,0,,,Dorm.jpg
+245,0,0,,,Dorm.jpg
+250,0,0,,,Dorm.jpg
+260,0,0,,,Dorm.jpg
+270,0,0,,,Dorm.jpg
+280,0,0,,,Dorm.jpg
+290,0,0,,,Dorm.jpg
+291,0,0,,,Dorm.jpg
+292,0,0,,,Dorm.jpg
+293,0,0,,,Dorm.jpg
+294,0,0,,,Dorm.jpg
+295,0,0,,,Dorm.jpg
+296,0,0,,,Dorm.jpg
+297,0,0,,,Dorm.jpg
+300,0,0,,"Ich sehe doch, wie du dich in meiner Nähe benimmst.|Hattest du jemals einen Mentor?",Dorm.jpg
+300,0,0,Common_ActorIsLover,"Baby, ich glaube, ich kenne dich ganz gut.|Hattest du jemals einen Mentor?",Dorm.jpg
+301,0,0,,,Dorm.jpg
+302,0,0,,,Dorm.jpg
+303,0,0,,,Dorm.jpg
+304,0,0,,,Dorm.jpg
+305,0,0,,,Dorm.jpg
+306,0,0,,,Dorm.jpg
+307,0,0,,,Dorm.jpg
+308,0,0,,,Dorm.jpg
+309,0,0,,,Dorm.jpg
+320,0,0,,,Dorm.jpg
+321,0,0,,,Dorm.jpg
+322,0,0,,,Dorm.jpg
+323,0,0,,,Dorm.jpg
+324,0,0,,,Dorm.jpg
+325,0,0,,,Dorm.jpg
+326,0,0,,,Dorm.jpg
+327,0,0,,,Dorm.jpg
+328,0,0,,,Dorm.jpg
+329,0,0,,,Dorm.jpg
+330,0,0,,,Dorm.jpg
+331,0,0,,,Dorm.jpg
+399,0,0,,,Dorm.jpg
+450,0,0,,"(Jennifer steckt ihren Finger durch deinen Halsband-|Ring.) Bereit zum Trainieren, mein Schützling?",Dorm.jpg
+450,0,0,Common_ActorIsLover,"(Jennifer steckt ihren Finger durch deinen|Halsband-Ring.) Bereit zum Trainieren, Baby?",Dorm.jpg
+500,0,0,,,Dorm.jpg
+510,0,0,,,Dorm.jpg
+520,0,0,,,Dorm.jpg
+530,0,0,,,Dorm.jpg
+540,0,0,,,PlayerJenniferFight.jpg
+550,0,0,,,PlayerJenniferFightDefeat.jpg
+560,0,0,,,PlayerJenniferFightVictory.jpg
+570,0,0,,,Dorm.jpg
+590,0,0,,,Dorm.jpg
+591,0,0,,,PlayerJenniferFight.jpg
+592,0,0,,,PlayerJenniferFightDefeat.jpg
+593,0,0,,,PlayerJenniferFightVictory.jpg
+594,0,0,,,Dorm.jpg
+600,0,0,,,Dorm.jpg
+610,0,0,,,Dorm.jpg
+630,0,0,,,Dorm.jpg
+631,0,0,,,Dorm.jpg
+632,0,0,,,Dorm.jpg
+633,0,0,,,Dorm.jpg
+634,0,0,,,Dorm.jpg
+635,0,0,,,Dorm.jpg
+640,0,0,,,Dorm.jpg
+641,0,0,,,Dorm.jpg
+642,0,0,,,DormOrgasm.jpg
+650,0,0,,"Das wäre reizend.|Ich hab ein Spielzeug, das wir ausprobieren könnten.",Dorm.jpg
+650,0,0,Common_ActorIsLover,"Das wäre wundervoll, Schatz. Ich hab ein|nettes Spielzeug, das wir ausprobieren könnten.",Dorm.jpg
+650,0,0,Common_ActorIsOwned,"Natürlich, Herrin.|Ich hab ein Spielzeug, das wir ausprobieren könnten.",Dorm.jpg
+650,0,0,Common_ActorIsOwner,"Das wäre wundervoll, mein Schützling. Ich hab ein|nettes Spielzeug, das wir ausprobieren könnten.",Dorm.jpg
+651,0,0,,,Dorm.jpg
+790,0,0,,Wirfst du mich ernsthaft raus?,Door.jpg
+790,0,0,Common_ActorIsLover,Wirfst du mich ernsthaft raus?|Ist das das Ende unserer Liebesgeschichte?,StopDating.jpg
+791,0,0,,,Door.jpg
+800,0,0,,,Dorm.jpg
+810,0,0,,,JenniferPushUps.jpg
+820,0,0,,,JenniferSitUps.jpg
+830,0,0,,,JenniferSquats.jpg
+840,0,0,,,JenniferJumpingJacks.jpg
+3010,0,0,,Du wirst dich umziehen und mit mir trainieren.|Ich will dich in deiner Unterwäsche sehen.,Dorm.jpg
+3010,0,0,Common_ActorIsLover,"Du wirst dich umziehen und mit mir trainieren.|Ich will dich in deiner Unterwäsche sehen, Baby.",Dorm.jpg
+3020,0,0,,Du wirst dich umziehen und mit mir trainieren.|Ich will dich in deiner Schuluniform sehen.,Dorm.jpg
+3020,0,0,Common_ActorIsLover,"Du wirst dich umziehen und mit mir trainieren.|Ich will dich in deinen Schulklamotten sehen, Baby.",Dorm.jpg
+3030,0,0,,Du wirst dich umziehen und mit mir trainieren.|Ich will dich in deiner Badekleidung sehen.,Dorm.jpg
+3030,0,0,Common_ActorIsLover,"Du wirst dich umziehen und mit mir trainieren.|Ich will dich in deinem Bikini sehen, Baby.",Dorm.jpg
+3050,0,0,,Du wirst dich umziehen und mit mir trainieren.|Ich will dich in einem normalen Kleid sehen.,Dorm.jpg
+3050,0,0,Common_ActorIsLover,"Du wirst dich umziehen und mit mir trainieren.|Ich will dich in deinem guten Kleid sehen, Baby.",Dorm.jpg
+3060,0,0,,Du wirst dich umziehen und mit mir trainieren.|Ich will dich in deiner Tenniskleidung sehen.,Dorm.jpg
+3060,0,0,Common_ActorIsLover,"Du wirst dich umziehen und mit mir trainieren.|Ich will dich in deiner Tennisausrüstung sehen, Baby.",Dorm.jpg
+3090,0,0,,,Dorm.jpg
+3091,0,0,,"(Sie zeigt einen Daumen nach oben.) Du siehst perfekt|aus. Bleib so, du darfst dich nicht mehr umziehen.",Dorm.jpg
+3091,0,0,Common_ActorIsLover,"(Sie zeigt einen Daumen nach oben.) Ich liebe es,|Schatz. Bleib so, du darfst dich nicht mehr umziehen.",Dorm.jpg
+3092,0,0,,,Dorm.jpg
+3093,0,0,,,Dorm.jpg
+3100,0,0,,"Mein Schützling, ich werde dich fesseln und knebeln,|um deine Gelenkigkeit und dein Geschick zu trainieren.",Dorm.jpg
+3110,0,0,,"Mein Schützling, ich werde dich fesseln, um deine|Gelenkigkeit und dein Geschick zu trainieren.",Dorm.jpg
+3120,0,0,,Du wirst nun das Schweigen trainieren.|Ich werde einen deiner Knebel benutzen.,Dorm.jpg
+3130,0,0,,"Hier, lass mich dir helfen, mein Schützling.|(Sie befreit dich und zwinkert dir zu.)",Dorm.jpg
+3140,0,0,,Du brauchst zum Trainieren keine Schlüssel.|Her damit! Die nehme ich.,Dorm.jpg
+3150,0,0,,"Ist das eine Gerte? Das ist ein Trainingsutensil für|Mentoren, nicht für Schützlinge. Die nehme ich.",Dorm.jpg
+3160,0,0,,(Dein vibrierendes Ei fängt willkürlich an zu summen.)|Ist das ein pinkes vibrierendes Ei in deiner Tasche?,Dorm.jpg
+3161,0,0,,,Dorm.jpg
+3162,0,0,,,Dorm.jpg
+3190,0,0,,,Dorm.jpg
+3191,0,0,,,Dorm.jpg
+3200,0,0,,"Es wird Zeit, dass du trainierst. Mach|ein paar Liegestütze in deiner Unterwäsche.",Dorm.jpg
+3201,0,0,,,PlayerPushUp.jpg
+3210,0,0,,"Es wird Zeit, dass du trainierst. Mach|ein paar Sit-ups in deiner Unterwäsche.",Dorm.jpg
+3211,0,0,,,PlayerSitUp.jpg
+3230,0,0,,Diese Gerte ist irgendwie interessant.|Trainieren wir dein Durchhaltevermögen.,Dorm.jpg
+3231,0,0,,,Dorm.jpg
+3290,0,0,,,Dorm.jpg
+3291,0,0,,,Dorm.jpg
+3800,0,0,,(Jennifer packt dich und sieht dich streng an.)|Die Regeln sind eindeutig. Was hast du da gemacht?,Dorm.jpg
+3801,0,0,,,Dorm.jpg
+3810,0,0,,(Jennifer packt dich und sieht dich streng an.)|Die Regeln sind eindeutig. Was hast du da gemacht?,Dorm.jpg
+3811,0,0,,,Dorm.jpg
+3900,0,0,,"Genug! Du hast dir ein Straftraining verdient.|Etwas, das dir eine Lehre sein wird.",Dorm.jpg
+3901,0,0,,,Dorm.jpg
+3902,0,0,,,Dorm.jpg
+3903,0,0,,,Dorm.jpg
+3910,0,0,,COMMON_PLAYERNAME. Du hast nun Zimmerarrest.,Dorm.jpg
+3911,0,0,,,Dorm.jpg
+3912,0,0,,,Dorm.jpg
+3913,0,0,,,Dorm.jpg
+3914,0,0,,,Dorm.jpg
+3915,0,0,,Hast du etwas gelernt?,Dorm.jpg
+3920,0,0,,"Mein Schützling, dein Training wird keusch ablaufen.|Du wirst deinen eigenen Keuschheitsgürtel tragen.",Dorm.jpg
+3921,0,0,,,Dorm.jpg
+3922,0,0,,,Dorm.jpg
+3923,0,0,,,Dorm.jpg
+3930,0,0,,"Du musst lernen, welche Rolle du hier spielst.|Etwas Demütigung sollte helfen.",Dorm.jpg
+3931,0,0,,,Dorm.jpg
+3932,0,0,,,Dorm.jpg
+3940,0,0,,"Zur Strafe wirst du trainieren|müssen, während du schläfst.",Dorm.jpg
+3941,0,0,,,Dorm.jpg
+3999,0,0,,,Dorm.jpg

@@ -161,8 +161,8 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 380,0,0,,It will be so|much fun.,Great!  That's a good attitude.|Let me know when you're ready.,0,0,0,"BondageClubInvite(""Love"")"
 380,0,0,,I hope I will|find an owner.,Great!  That's the subbie spirit.|Let me know when you're ready.,0,0,0,"BondageClubInvite(""Sub"")"
 380,0,0,,I don't think I|will go tonight.,"That's cool, we can do|something else before I go.",0,0,0,
-400,0,0,BondageClubInvitationBySarah,(Nod yes slowly.)|(Go to the club.),(The Bondage Club will be available|in another version of the game.),400,0,0,
-400,0,0,BondageClubInvitationBySarah,Yes!  Let's go!|(Go to the club.),(The Bondage Club will be available|in another version of the game.),400,0,0,
+400,0,0,BondageClubInvitationBySarah,(Nod yes slowly.)|(Go to the club.),,400,0,0,EnterBondageClub()
+400,0,0,BondageClubInvitationBySarah,Yes!  Let's go!|(Go to the club.),,400,0,0,EnterBondageClub()
 400,0,0,Common_PlayerGagged,@UNGN MH NUUOGH!,(She giggles and leaves your dorm.),410,0,0,
 400,0,0,Common_PlayerRestrained,Can you help me|before you go?,I'm sure you will find help.|(She leaves your dorm.),410,0,0,
 400,0,0,!Common_ActorIsOwned,Have fun Sarah!,I will.  (She leaves your dorm.),410,0,0,

@@ -51,14 +51,14 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 140,0,0,,Ich bewundere|Ihre Fesselkünste.,"Ich musste vor dir schon andere erziehen. Irgendwelche|letzten Worte, bevor du geknebelt und isoliert wirst?",150,1,0,
 150,0,0,,(Schweigen.),(Sie schnallt dir einen Ballknebel um.)|Versuche etwas aus deiner Zeit hier zu lernen.,200,0,0,AddGag()
 150,0,0,,Eines Tages zahlen Sie.,(Sie seufzt und schnallt dir einen Ballknebel um.)|Versuche etwas aus deiner Zeit hier zu lernen.,200,0,0,AddGag()
-150,0,0,,Miss Mildred!,(Sie schüttelt den Kopf schnallt dir einen Knebel um.)|Versuche etwas aus deiner Zeit hier zu lernen.,200,0,0,AddGag()
+150,0,0,,Miss Mildred!,(Sie schüttelt den Kopf und schnallt dir einen Knebel|um.) Versuche etwas aus deiner Zeit hier zu lernen.,200,0,0,AddGag()
 150,5,0,,"Miss Mildred, ich habe ver-|standen. Ich benehme mich.","(Sie lächelt dich an.) Du versprichst|also, keinen Ärger mehr zu machen?",160,0,0,
 150,1,-5,,"Oh bitte, Miss Mildred.|(Wimmern und heulen.)","Armes Mädchen. Vielleicht war ich zu streng.|Versprichst du, ab jetzt artig zu sein?",160,0,0,
 150,0,6,,"Wenn Sie mich hierlassen,|verklagt Sie mein Dad.","Mmh. Ein Rechtsstreit wäre lästig. Na gut, junge Dame,|ich befreie dich, wenn du versprichst, artig zu sein.",160,0,0,
 160,0,0,,"Ja, ich verspreche|es, Miss.",Sehr schön. (Sie lässt dich frei.) Zieh dich|an und genieße deine verfrühte Mittagspause.,170,0,0,Release()
 160,0,0,,Ich mache keinen|Ärger mehr.,Also gut. (Sie lässt dich frei.) Zieh dich|an und genieße deine verfrühte Mittagspause.,170,0,0,Release()
-160,0,0,,"Ich will kein Mitleid.|Tun Sie, was Sie wollen!",(Sie schüttelt den Kopf schnallt dir einen Knebel um.)|Versuche etwas aus deiner Zeit hier zu lernen.,200,0,1,AddGag()
-160,0,0,,"FICK DICH, DU SCHWEIN!",(Sie schüttelt den Kopf schnallt dir einen Knebel um.)|Versuche etwas aus deiner Zeit hier zu lernen.,200,-1,0,AddGag()
+160,0,0,,"Ich will kein Mitleid.|Tun Sie, was Sie wollen!",(Sie schüttelt den Kopf und schnallt dir einen Knebel|um.) Versuche etwas aus deiner Zeit hier zu lernen.,200,0,1,AddGag()
+160,0,0,,"FICK DICH, DU SCHWEIN!",(Sie schüttelt den Kopf und schnallt dir einen Knebel|um.) Versuche etwas aus deiner Zeit hier zu lernen.,200,-1,0,AddGag()
 170,0,0,,"Ja, Miss.|(Den Raum verlassen.)",,170,0,0,LeaveIsolation()
 170,0,0,,(Nicken und lächeln.)|(Den Raum verlassen.),,170,0,0,LeaveIsolation()
 200,0,0,,MMMF! AGN!,(Sie geht langsam zur Tür.)|Ich bin um 11:30 Uhr zurück.,210,0,0,AllowLeave()

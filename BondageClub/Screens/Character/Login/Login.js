@@ -4,7 +4,8 @@ var LoginMessage = "";
 var LoginCredits = null;
 var LoginCreditsPosition = 0;
 var LoginThankYou = "";
-var LoginThankYouList = ["Alvin", "Bryce", "Christian", "Designated", "Dick", "EugeneTooms", "Gopanka", "Jdmsouls22", "Jyeoh", "Karel", "Laioken", "Michal", "Mindtie", "Nick", "Overlord", "Paradox", "Rashiash", "Ryner", "Shadow", "Setsu95", "Shaun", "Simeon", "Simon", "Sky", "Strangerhood", "Terry", "William", "Winterisbest", "Xepherio", "Zack"];
+var LoginThankYouList = ["Alvin", "Bryce", "Christian", "Designated", "Dick", "EugeneTooms", "Gopanka", "Jdmsouls22", "Jyeoh", "Karel", "Kitten", "Laioken", "Michal", "Mindtie", "MunchyCat", 
+						 "Nick", "Overlord", "Paradox", "Rashiash", "Ryner", "Setsu95", "Shadow", "Shaun", "Simeon", "Sky", "Strangerhood", "Terry", "William", "Winterisbest", "Xepherio"];
 var LoginThankYouNext = 0;
 
 // Loads the next thank you bubble
@@ -150,7 +151,14 @@ function LoginResponse(CharacterData) {
 		// Starts the game in the main hall while loading characters in the private room
 		PrivateCharacter = [];
 		CommonSetScreen("Room", "Private");
-		CommonSetScreen("Room", "MainHall");
+		
+		// If the player must start in her room, in her cage
+		if (LogQuery("SleepCage", "Rule")) {
+			InventoryRemove(Player, "ItemFeet");
+			InventoryRemove(Player, "ItemLegs");
+			Player.Cage = true;
+			CharacterSetActivePose(Player, "Kneel");
+		} else CommonSetScreen("Room", "MainHall");
 		
 	} else LoginMessage = TextGet("ErrorLoadingCharacterData");
 }

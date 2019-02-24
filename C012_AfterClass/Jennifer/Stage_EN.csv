@@ -102,8 +102,8 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 245,0,0,,(Stay silent and point|at her clothes.),(She strips.)  I rarely strip for anyone.|You have a strange magnetism over me.,250,0,0,"ForceChangeActor(""Naked"")"
 250,0,0,,"Admit it, you like|to obey my orders.","I'm don't know why, but you might be right.|I do feel very submissive toward you.",260,0,0,
 250,0,0,,It's easy to explain.|You're a submissive.,I do feel very submissive toward you.,260,0,0,
-250,0,0,,It's Dominant magnetism.|You cannot escape it.,It's quite powerful.  Kind of scary.|I do feel very submissive toward you.,260,0,0,RefuseSubmit()
-250,0,0,,"Cunt, you crave|to serve me.",(She frowns and looks down.)|I do feel submissive toward you.,260,0,0,
+250,0,0,,It's Dominant magnetism.|You cannot escape it.,It's quite powerful.  Kind of scary.|I do feel very submissive toward you.,260,0,0,
+250,0,0,,"Cunt, you crave|to serve me.",(She frowns and looks down.)|I do feel submissive toward you.,260,0,0,RefuseSubmit()
 260,0,0,,"As a bitch, you|will be collared.",A collar?  I've seen girls wearing that.|They seem to have a protector.,270,0,0,RefuseSubmit()
 260,0,0,,I will collar you|for your training.,A collar?  I've seen girls wearing that.|They seem to have a protector.,270,0,0,
 260,0,0,,As my sub.  I will lock a|collar around your neck.,A collar?  I've seen girls wearing that.|They seem to have a protector.,270,0,0,

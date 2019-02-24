@@ -1,5 +1,5 @@
 Stage,LoveReq,SubReq,VarReq,IntroText,Image
 0,0,0,,Die Schultasche hängt unbeaufsichtigt auf dem|Rücken des Mädchens. Aber die Träger hat sie um.,BagClosed.jpg
 10,0,0,,Die Schultaschenriemen hängen lose.|Du siehst Seile in der Tasche.,BagOpen.jpg
-20,0,0,,Die Schultaschenriemen hängen lose.|Da ist nichts interresanntes mehr drin.,BagOpen.jpg
+20,0,0,,Die Schultaschenriemen hängen lose.|Da ist nichts Interessantes mehr drin.,BagOpen.jpg
 30,0,0,,Die Tasche ist zu und bewacht.|Du wirst mit der Besitzerin reden müssen.,BagClosed.jpg

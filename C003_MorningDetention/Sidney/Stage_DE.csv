@@ -23,9 +23,9 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 200,0,0,,Möchtest du|da raus?,Ja verdammt! Hast du die Schlüssel|für diese Handschellen?,210,1,-1,
 200,0,0,,"Jetzt gehörst du|mir, Bitch.",Was zur Hölle laberst du da?|(Sie schaut dich nervös an.),210,-1,1,
 210,0,0,Common_PlayerNotRestrained,(Sie ausziehen.)ADD_MINUTES:1,"Whoa, Moment! Was machst du da?|(Du zwingst sie, sich auszuziehen.)",220,0,0,Strip()
-210,1,0,,(Küssen.)ADD_MINUTES:1,(Du küsst sie und sie bleibt sprachlos.),210,0,0,Kiss()
+210,1,0,,(Sie küssen.)ADD_MINUTES:1,(Du küsst sie und sie bleibt sprachlos.),210,0,0,Kiss()
 220,0,0,Common_PlayerNotRestrained,(Sie wieder anziehen.)ADD_MINUTES:1,Folgt dein Handeln irgendeiner Logik?,210,0,0,Dress()
-220,1,0,,(Küssen.)ADD_MINUTES:1,(Du küsst sie und sie bleibt sprachlos.),220,0,0,Kiss()
-220,0,0,Common_PlayerNotRestrained,(Kitzeln.)ADD_MINUTES:1,Fick dich und dein Kitzelfetisch!|(Sie lacht nicht und scheint keinen Spaß zu haben.),220,0,0,Tickle()
+220,1,0,,(Sie küssen.)ADD_MINUTES:1,(Du küsst sie und sie bleibt sprachlos.),220,0,0,Kiss()
+220,0,0,Common_PlayerNotRestrained,(Sie kitzeln.)ADD_MINUTES:1,Fick dich und dein Kitzelfetisch!|(Sie lacht nicht und scheint keinen Spaß zu haben.),220,0,0,Tickle()
 220,0,0,EggReady,(Das Ei einsetzen.)ADD_MINUTES:1,(Du schiebst das Ei in ihre Vagina. Es summt|und gleitet tiefer hinein.) Fuck! Warum tust du das?,220,-1,1,Insert()
 220,0,0,EggInside,(Das Ei entfernen.)ADD_MINUTES:1,"(Du steckst einen Finger rein, kommst aber nicht|an das Ei.) Du kommst nicht ran! Du bist so nutzlos!",220,0,0,
