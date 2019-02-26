@@ -184,6 +184,7 @@ function GetWorkingLanguage() {
 	if ((CurrentLanguageTag == "PL") && ((CurrentChapter == "C000_Intro"))) return "PL";
 	if ((CurrentLanguageTag == "ES") && ((CurrentChapter == "C000_Intro") || (CurrentChapter == "C001_BeforeClass") || (CurrentChapter == "C002_FirstClass") || (CurrentChapter == "C003_MorningDetention"))) return "ES";
 	if ((CurrentLanguageTag == "CN") && ((CurrentChapter == "C000_Intro") || (CurrentChapter == "C001_BeforeClass") || (CurrentChapter == "C002_FirstClass") || (CurrentChapter == "C003_MorningDetention") || (CurrentChapter == "C005_GymClass") || (CurrentChapter == "C999_Common"))) return "CN";
+	if ((CurrentLanguageTag == "RU") && ((CurrentChapter == "C000_Intro") || (CurrentChapter == "C001_BeforeClass"))) return "RU";
 	return "EN";
     //return CurrentLanguageTag;
 }
