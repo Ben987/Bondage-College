@@ -25,4 +25,5 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 30,0,0,,Francés (Capítulos 1 a 9)|Autor gottspende,,0,0,0,"SetLanguage(""FR"")"
 30,0,0,,"Chino (Capítulo 1 to 3, 5)|Autor Dwscdv3 & asdcvbgf",,0,0,0,"SetLanguage(""CN"")"
 30,0,0,,Español (Capítulo 1 & 2)|Rafael R. & tree13003,,0,0,0,"SetLanguage(""ES"")"
-30,0,0,,"Alemán (Capítulo 1 a 13)|adokilume, Knife, fleisch11",,0,0,0,"SetLanguage(""DE"")"
+30,0,0,,"Alemán (Capítulo 1 a 11)|adokilume, Knife, fleisch11",,0,0,0,"SetLanguage(""DE"")"
+30,0,0,,"Ruso (Chapter 1)|Fluend",,0,0,0,"SetLanguage(""RU"")"

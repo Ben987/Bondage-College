@@ -25,4 +25,5 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 30,0,0,,Französisch (Kapitel 1 bis 9)|Geschrieben von gottspende,,0,0,0,"SetLanguage(""FR"")"
 30,0,0,,"Chinesisch Kapitel 1 bis 3, 5|Dwscdv3 & asdcvbgf",,0,0,0,"SetLanguage(""CN"")"
 30,0,0,,Spanisch (Kapitel 1 & 2)|Rafael R & tree13003,,0,0,0,"SetLanguage(""ES"")"
-30,0,0,,"Deutsch (Kapitel 1 bis 13)|adokilume, Knife, fleisch11",,0,0,0,"SetLanguage(""DE"")"
+30,0,0,,"Deutsch (Kapitel 1 bis 11)|adokilume, Knife, fleisch11",,0,0,0,"SetLanguage(""DE"")"
+30,0,0,,"Russisch (Kapitel 1)|Fluend",,0,0,0,"SetLanguage(""RU"")"
