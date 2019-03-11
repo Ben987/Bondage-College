@@ -1,0 +1,109 @@
+PlayerGagged,,,Pacified big babies sound adorable when they try to talk.,,
+ItemMouth,,,"(She first shakes her head to avoid the gag, but finally surrenders as you silence her.)",,
+RemoveItemMouth,,,"(You remove her gag while she stretches her mouth.)  Thanks Miss, it's hard to dispatch maids with that gag.",,
+ItemArms,,,(She sighs and turns around while you restrain her arms.)  It might be a little hard to work like that Miss.,,
+RemoveItemArms,,,(You free her arms and she nods happily.)  Thanks a lot Miss.,,
+ItemLegs,,,(She submits to you while you restrain her legs securely.)  I don't need to move anyway.,,
+RemoveItemLegs,,,(You release her legs from the restraint.)  Let me know if I can help you Miss.,,
+ItemFeet,,,(She looks puzzled as you restrain her feet.)  I'll stay on guard here Miss.,,
+RemoveItemFeet,,,"(You release her feet and she wiggles them.)  Thanks Miss, it was troublesome.",,
+ItemNeck,,,(You strap the collar on her while she blushes.)  You're quite a Dominant Miss.,,
+RemoveItemNeck,,,(You remove the collar around her neck.)  Thanks Miss.,,
+ItemPelvis,,,(You snap the belt around her waist and crotch while she sighs.)  No more fun for the crew.,,
+RemoveItemPelvis,,,(You unlock the belt from her waist and she smiles.)  Thanks a lot Miss DialogPlayerName.,,
+ItemHead,,,(You strap the device on her head as she nods slowly.)  This will not make my job easier Miss.,,
+RemoveItemHead,,,"(You remove the device and she nods rapidly.)  Thanks a million, this is much better.",,
+ItemTorsoLeatherWhip,,,(She jumps from the searing pain on her breast.)  Ouch!  Miss Head Maid!,,
+ItemTorsoLeatherCrop,,,(You whip her breast with the leather crop as she whimpers and bows her head.),,
+ItemPelvisLeatherWhip,,,(You whip her butt hard as she sighs.)  I promise I'll work harder Miss Head Maid.,,
+ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A maid work isn't easy.,,
+0,,,Welcome to the Nursery.  How can I help you?,,
+12345,,(Nod yes.),"(She removes your gag and gives you a hug.)  It's okay sweetie.  There you go, that's better.",NurseUngagPlayer(),!Player.CanTalk()
+0,,"Hello, I'm DialogPlayerName.  Pleased to meet you.","Pleased to meet you too.  I'm DialogCharacterName, I'm one of the nurses.",DialogRemove(),"DialogReputationLess(""ABDL"", 9)"
+0,5,What is this place?,"This is the nursery, setup as a safe environment for adult babies in need of some motherly compassion, fun and discipline.",,
+0,10,May I join the nursery?,"Of course, we are always welcoming to good little boys and girls.  You are aware of what the nursery's requirements of those in its care?",,"DialogReputationLess(""ABDL"", 0)"
+0,20,I'm ready to join the nursery again.,"Wonderful, have you rembered the $5 fee for diapers?",,"DialogReputationGreater(""ABDL"", 1)"
+0,3,Who runs this nursery?,Nurses like myself look after the adult babies.  We are supervised by the nursery's matrons.,,
+0,,I can't stay to chat.  (Leave her.),,DialogLeave(),
+0,,ReduceRep,ABDL rep -1,"DialogChangeReputation(""ABDL"", -1)",
+12345,1,"Help me with some items, pwitty pwease.",What items would you like some help you with?,,Player.CanTalk()
+12345,1,(Make pleading eyes at her.),Is there something you want to tell me?,,!Player.CanTalk()
+1,,I want some mittens,Certainly.  (She slips thumbless padded mittens over your hands and buckels them snuggly secure aroud your wrists.),"DialogWearItem(""PaddedMittens"", ""ItemArms"")",Player.CanTalk()
+1,,Can you help take off now?,I suppsoe I can unbuckle them.  Don't go cause any mischief now will you.,"DialogRemoveItem(""ItemArms"")",Player.CanTalk()
+1,,Got anything else?,I have something special for you.  (She padlocks your hands inside thumbless padded mittens.),"DialogWearItem(""PaddedMittensLocked"", ""ItemArms"")",Player.CanTalk()
+1,,"I wanna pwitty dwess, pwease.","Certainly, your are going to look adorable.  (She removes your clothes, selects a dress and helps you into it.","DialogWearItem(""AdultBabyDress1"", ""Cloth"")",
+1,,Bitty?,Maybe latter if you are very good.  You can such on this for now.  (She pops a pacifier into your mouth.),"DialogWearItem(""PacifierGag"", ""ItemMouth"")",Player.CanTalk()
+1,,(Whimper and cry.),What is the matter sweetie?  (She removes your gag.),"DialogRemoveItem(""ItemMouth"")",!Player.CanTalk()
+1,,This stinks.,Where did you get such a dirty mouth?  (She pushes a pacifier in your mouth with a harness atached to hold it firmly in place.),"DialogWearItem(""HarnessPacifierGag"", ""ItemMouth"")",Player.CanTalk()
+1,0,Thank you.,Run along now and remember to behave yourself this time.,,Player.CanTalk()
+1,0,(Curtsey to her.),,,!Player.CanTalk()
+3,,Can I become a nurse?,We are not hiring nurses at the moment.  When we do we only hire club memebers with good repultations in the nursery and the maid sorority.,,
+3,,Can I become a matron?,Only the top nurses are ever granted that privilege.,,
+3,,Ooh Matron.,Carry on like that and you will feel a painsy-wainsy in your botty-wotty!,,
+3,,Would I have to wear a uniform.,This uniform is mandatory for the nurses working here.  The matrons have a choice of uniforms.,,
+3,0,I'll bear that in mind.,"If we do start hiring, we will put a notice up.",,
+5,,Who would want that?,You would be surprised and we don't judge our charges.  Even some of the most dominant kidnappers also like a cuddle and nap time.,,
+5,,I though this place was a bondage club.,It is indeed.  We can use a variety of items and methods to ensure our adult babies are always on their best behaviour.,,
+5,,"Intriguing, do tell me more.","Club members can join in with our other adult babies, play in the nursery and be looked after by the nurses.",,
+5,,Is this place just for people with that fetish?,We will also provide a time out discipline service for trouble makers. We could also prep or provide full care for slaves and failed kidnappers.,,
+5,0,I want to talk about something else.,What can I help you with?,,
+10,50,Yes.,"Good, that will be $5 and I will help get you ready.",,
+10,12,No.,The primary requirement is diapers.  They are mandatory on entry and a fresh diaper must be purchased for each visit.  They cost $5,,
+10,0,I don't want to join.,Make up your mind or do you really need someone to care and help make those difficult decisions for you?,,
+12,14,"Okay, what else is there?","We don't allow big girl clothes either.  You can just wear diapers, but we have a super selection lovely dresses you can wear.",,
+12,,Why the fee?,This place is not cheap to run.  The price for the diapers covers other running cost.,,
+12,,What do you mean by a fresh diaper every visit?,It would be increadibly irresposible of us to risk putting a big babie in soiled diapers just to save a few dollars.,,
+12,,Diapers? You are kidding me right?,Sorry but it is in the rules.  We wouldn't want an adult babie having a whoopsie and making a horrid mess.,,
+12,0,This is not the place for me.,That's okay.  Let me know if you change your mind.,,"DialogReputationLess(""ABDL"", 0)"
+14,16,Is there just a dress code?,"No, this is peacful place.  Adult babies can talk, although many prefer pacifiers.  However we will not tolerate disruptive behaviour.",,
+14,,What about clothes for boys?,"They also wear dresses in here.  In a pre-victorian nurseries, young boys were unbreeched and wore dresses, just like the girls.",,
+14,,Why dresses?,To look gorgeous of course and these dresses have high hemlines so it's easier for us to check there aren't any dirty diapers.,,
+14,,What about shorts or T shirts?,"Goodness me, certainly not.  We take great pride in making sure the adult babies in our care always look thier best.",,
+14,0,No way am I dressing like that.,That's a shame.  I'm sure you would have looked fabulous. ,,
+16,18,I Understand.  Is there anything else?,"Adult babies can wonder around the club, but we don't advise it so we fitted a safety gate to the door to keep helpless babies safe inside.",,
+16,,What if I want to play rough?,"We encourage you to play with each other, but play nicely or you will feel the sting of a hairbrush on your tooshie.",,
+16,,I'll cry if I want to.,"Of course and we will do our best to comfort those in distressed, but we don't allow riotous behaviour that upsets others.",,
+16,,What about bondage?,"That is fine as long you are all playing happy, although some items are hardly suitable for in here.  The nursery has some more appropriate restraints.",,
+18,25,"I would like to join now, pwease.","Wonderful.  That will be $5 and you need to sign this form, then I will help you into your first diaper.",,"DialogReputationLess(""ABDL"", 0)"
+18,20,Thanks for reminding me.,You're welcome.  Have you rembered the $5 fee for diapers?,,"DialogReputationGreater(""ABDL"", 1)"
+18,,Is there an issue with the rest of the club?,"Not really, but don't expect people to take you seriously while you are wearing a diaper or an adordorable baby dress.",,
+18,0,Actually I don't want to join now.,I am sorry to hear that.  Do let me know if your mind.,,
+20,0,Yes here it is. (Pay $5.),Thank you.  Now lets get you changed.,,
+20,0,"Sorry, maybe another time.",Just let me know when you are ready.,,
+20,12,What were the nursery requirements again?,The primary requirement is diapers.  They are mandatory on entry and a fresh diaper must be purchased for each visit and cost $5,,
+25,0,(Sign the form and pay $5.),Thank you.  Now lets get you changed.,,
+25,,What is this form for.,It's just a formal agreement that during your stay we will care for you and in return you will obide by the rules of the nursery.,,
+25,,Do I have to sign this.,"Yes, it is the backbone of the caring structure we provide.",,
+25,,(Skim read the small print.),(...right to remain silent...   ...power of attorney...   ...any methods of discipline deemed necessary...),,
+25,0,Actually I'll pass.,Agreeing to be cared for isn't for everyone I suppose.,,
+50,60,Here you go.  (Pay $5.),Thank you.  Now lets get you ready.  (She pulls you to one side and swiftly removes all your clothes.),PlayerUndress(),
+50,55,I can dress myself.  (Pay $5.),"My how you have grown, such a big girl now. She gives you space you to get yourself changed.",,"DialogReputationGreater(""ABDL"", 10)"
+50,12,What were those requirments again?,The primary requirement is diapers.  They are mandatory on entry and a fresh diaper must be purchased for each visit.  They cost $5,,
+50,0,I don't have $5 for this.,That is a shame.  Do come back when you have found some pocket money.,,
+55,,,Do you need some help getting changed?,,
+55,,No I will be fine.,Let me know if you do need some help.,,
+55,60,Yes please.,"It's okay, lets start again shall we?  (She swiftly removes all your clothes.)",PlayerUndress(),
+55,,(Go back to changing.),,DialogLeave(),
+60,70,(Blush and try to cover yourself.),"No need to feel ashamed, I am just here to help you.  (She fits a large padded diaper to you.)",PlayerDiapered(-4),
+60,70,Don't get any ideas.,"I wasn't, I have to do this to help you.  (She hastily fits a large padded diaper to you.)",PlayerDiapered(2),
+60,70,(Wait patiently.),I've got a comfy clean diaper for you.  (She fits a large padded diaper to you.),PlayerDiapered(),
+70,80,"You are going to give me a bra, aren't you?",A bra on a baby?  That would be absurd.  Lift up your arms now.  (She pulls a dress over you head and helps you into it.),PlayerWearBabyDress(),
+70,80,"Come on, this is taking too long.",Someones getting tetchy.  I bet you are bursting to fill that diaper.  (She helps you into a dress.),PlayerWearBabyDress(),
+70,80,(Wait patiently.),"You are and well behaved, you'll get on well here.  Now lift up your arms.  (She pulls a dress over you head and helps you into it.)",PlayerWearBabyDress(),
+80,90,Am I ready to play in the nursery now?,Almost there.  (She buckles thumbless mittens over both your hands and puts a pacifier in your mouth.)  Perfect.,PlayerRestrained(1),
+80,90,This dress is ridiculous.,Ridiculously cute.  You look adorable in it.  (She buckles thumbless mittens over both your hands and puts a pacifier in your mouth.) Helplessly adorable.,PlayerRestrained(1),
+80,90,(Wait patiently.),"Hold still just a little longer, only a few accessories left to add now.  (She adds thumbless mittens for your hands and a pacifier in your mouth.)",PlayerRestrained(1),
+90,,(Twirl around.),"Such a sweet little girl, you really look precious.  You can waddle along now and enjoy the nusrsery.",,
+90,95,(Spit out the pacifier.),What ever is the matter darling?,"DialogRemoveItem(""ItemMouth"")",NurseryPlayerIsPacified()
+90,,(Spit out the pacifier.),(This pacifier is not going anywhere.  The harness holds it securely in place and your mouth firmly closed around the nipple.),,NurseryPlayerIsHarnessPacified()
+90,,(Test the mittens.),(The mittens are buckled snuggly around your wrists.  Your thumbs are trapped inside and you can't grip anything one handed.),,
+90,100,(Leave her and join the rest of the nursery.),,DialogLeave(),
+95,90,I want to suck on a real nipple.,It's not feeding time yet dear.  This all you have got for now.  (She puts a pacifier in your mouth.),"DialogWearItem(""PacifierGag"", ""ItemMouth"")",
+95,90,I am not sucking on a pacifier.,"That's okay sweetie.  If you change your mind, just ask.",,"DialogReputationGreater(""Dominant"", 20)"
+95,90,I am not sucking on a pacifier.,"Stop whining, it's not very lady like.  Here this will ease your anxiety.  (She puts a pacifier in your mouth.)","DialogWearItem(""PacifierGag"", ""ItemMouth"")","DialogReputationLess(""Dominant"", 19)"
+95,90,No way can you keep that in my mouth.,"That's okay sweetie.  If you change your mind, just ask.",,"DialogReputationGreater(""Dominant"", 50)"
+95,90,No way can you keep that in my mouth.,This pacifier should help you avoid the naughty corner.  (She puts a different pacifier in your mouth and secures it with the harness attached to it.),"DialogWearItem(""HarnessPacifierGag"", ""ItemMouth"")","DialogReputationLess(""Dominant"", 49)"
+100,,,"What's the matter Baby DialogPlayerName, what made you cry?",,
+100,,I woshth my binky.,"Awww never mind, here have another one.  (She puts a pacifier in your mouth.)","DialogWearItem(""PacifierGag"", ""ItemMouth"")",Player.CanTalk()
+100,,(Cry and mumble into your pacifier.),"I'm sorry, I didin't understand that.  Try again now.  (She removes the device from your mouth.)","DialogRemoveItem(""ItemMouth"")",!Player.CanTalk()
+100,,(Leave her.),,DialogLeave(),
