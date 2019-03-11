@@ -80,8 +80,8 @@ function MainHallClick() {
 
 		// Custom content rooms
 		if ((MouseX >= 25) && (MouseX < 475) && (MouseY >= 25) && (MouseY < 90) && Player.CanWalk()) MainHallWalk("Gambling");
-		if ((MouseX >= 25) && (MouseX < 475) && (MouseY >= 120) && (MouseY < 155) && Player.CanWalk()) MainHallWalk("Nursery");
-		if ((MouseX >= 25) && (MouseX < 475) && (MouseY >= 210) && (MouseY < 245) && Player.CanWalk()) MainHallWalk("SlaveMarket");
+		if ((MouseX >= 25) && (MouseX < 475) && (MouseY >= 120) && (MouseY < 185) && Player.CanWalk()) MainHallWalk("Nursery");
+		if ((MouseX >= 25) && (MouseX < 475) && (MouseY >= 210) && (MouseY < 275) && Player.CanWalk()) MainHallWalk("SlaveMarket");
 
 	}
 
