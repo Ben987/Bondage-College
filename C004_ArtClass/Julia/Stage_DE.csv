@@ -38,8 +38,8 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 140,0,0,,Vielleicht sollte noch|jemand Modell stehen.,Findest du? Interessant.|Wer sollte mit mir Modell stehen?,150,0,0,QueryNewModel()
 140,0,0,,"Es wäre schöner, wenn|noch jemand Modell steht.","Ich bin allein also nicht schön genug? Unsinn!|Aber gut, wer sollte mit mir Modell stehen?",150,-1,0,QueryNewModel()
 150,0,0,,Ich stehe Modell.ADD_MINUTES:1,Oh! Wie mutig! Komm her.|Schülerinnen! Wir haben ein neues Modell.,160,0,0,"NewModel(""Player"")"
-150,0,0,,Sarah sollte Modell|stehen.ADD_MINUTES:1,"Gute Idee. Sarah, komm bitte nach vorne.|Zeit zu malen, ran an die Pinsel!",160,0,0,"NewModel(""Sarah"")"
-150,0,0,,Jennifer sollte Modell|stehen.ADD_MINUTES:1,"Interessant. Jennifer, komm bitte nach vorne.|Zeit zu malen, ran an die Pinsel!",160,0,0,"NewModel(""Jennifer"")"
+150,0,0,,Sarah sollte|Modell stehen.ADD_MINUTES:1,"Gute Idee. Sarah, komm bitte nach vorne.|Zeit zu malen, ran an die Pinsel!",160,0,0,"NewModel(""Sarah"")"
+150,0,0,,Jennifer sollte|Modell stehen.ADD_MINUTES:1,"Interessant. Jennifer, komm bitte nach vorne.|Zeit zu malen, ran an die Pinsel!",160,0,0,"NewModel(""Jennifer"")"
 150,0,0,CanBegForRelease,@HUUIA! HMMF MIIA!,"Halte die Pose, neue Schülerin.|Ich verstehe kein Wort.",150,0,0,GaggedSpeach()
 150,0,0,CanBegForRelease,(Wimmern und traurigen|Hundeblick machen.),,150,0,0,BegForRelease()
 170,0,1,Common_PlayerNotRestrained,Wir sollten das|Modell wechseln.,Schon wieder? Wer sollte|mit mir Modell stehen?,150,0,0,ChangeModel()
@@ -47,12 +47,12 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 170,0,0,CanDoSelfBondage,Ich zeige euch Self-|Shibari! (Selbst fesseln.),"(Nackt und vor der ganzen Klasse schaffst|du es, das Seil um deinen eigenen Körper zu binden.)",170,0,0,SelfBondage()
 170,0,0,CanBegForRelease,@HUUIA! HMMF MIIA!,"Halte die Pose, neue Schülerin.|Keine Zeit zum Quatschen.",170,0,0,GaggedSpeach()
 170,0,0,CanBegForRelease,(Wimmern und traurigen|Hundeblick machen.),,170,0,0,BegForRelease()
-170,0,0,AllowUnderwear,Unsere Kleidung ist|verschieden.ADD_MINUTES:1,"Si! Es ist komisch, dass du gekleidet bist.|(Du ziehst langsam deine Uniform aus.) Weitermalen!",180,0,0,PlayerRemoveOutfit()
-170,0,0,AllowNaked,Wir haben noch immer ver-|schiedenes an.ADD_MINUTES:1,Sehr mutig! Du solltest dich auch entblößen. (Du|entfernst langsam deine Unterwäsche.) Weitermalen!,180,0,0,PlayerStrip()
+170,0,0,AllowUnderwear,Unsere Kleidung|ist verschieden.ADD_MINUTES:1,"Si! Es ist komisch, dass du gekleidet bist.|(Du ziehst langsam deine Uniform aus.) Weitermalen!",180,0,0,PlayerRemoveOutfit()
+170,0,0,AllowNaked,Wir haben noch immer|Unterschiedliches an.ADD_MINUTES:1,Sehr mutig! Du solltest dich auch entblößen. (Du|entfernst langsam deine Unterwäsche.) Weitermalen!,180,0,0,PlayerStrip()
 170,0,0,AllowShibari,"Hast du von|""Shibari"" gehört?","Si! Shibari ist die Kunst der japanischen Fesselung.|Hier sind ein paar Seile, das können wir heute machen.",170,0,0,ShibariStart()
 170,0,1,AllowShibari,"Hey Julia, hast du schon|mal ""Shibari"" probiert?","Japanische Fesselkunst habe ich noch nie ausprobiert.|Hier sind ein paar Seile, das können wir heute machen.",170,0,1,ShibariStart()
-170,0,0,IsRestrained,(Kitzeln.)ADD_MINUTES:1,(Sie kichert ein wenig und es scheint ihr zu gefallen.),170,0,0,Tickle()
-170,0,0,IsRestrained,(Seile enger ziehen.)ADD_MINUTES:1,Diese Seile lassen sich nicht mehr enger ziehen.,170,0,0,Tighten()
-170,0,0,IsRestrained,(Befreien.)ADD_MINUTES:1,(Do löst die Knoten und lässt sie frei.)|Dann hat dir Shibari also doch nicht gefallen?,170,0,0,Release()
-170,0,0,IsGagged,(Knebel entfernen.)ADD_MINUTES:1,(Du entfernst den Knebel und sie lächelt.)|Kunst ist manchmal verrückt. Weiter geht's!,170,0,0,TryUngag()
+170,0,0,IsRestrained,(Sie kitzeln.)ADD_MINUTES:1,(Sie kichert ein wenig und es scheint ihr zu gefallen.),170,0,0,Tickle()
+170,0,0,IsRestrained,(Die Seile|enger ziehen.)ADD_MINUTES:1,Diese Seile lassen sich nicht mehr enger ziehen.,170,0,0,Tighten()
+170,0,0,IsRestrained,(Sie befreien.)ADD_MINUTES:1,(Do löst die Knoten und lässt sie frei.)|Dann hat dir Shibari also doch nicht gefallen?,170,0,0,Release()
+170,0,0,IsGagged,(Sie entknebeln.)ADD_MINUTES:1,(Du entfernst den Knebel und sie lächelt.)|Kunst ist manchmal verrückt. Weiter geht's!,170,0,0,TryUngag()
 170,0,0,PaintAvail,(Julia malen.)|(30 Minuten),(Du malst sie sorgfältig ab und zeigst ihr das Ergebnis.)|(Sie betrachtet dein Bild und hüpft vor Freude.),170,0,0,Paint()

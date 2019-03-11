@@ -1,0 +1,45 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,Hallo. Du musst wohl die Neue sein. Ich bin|Erica und das hier sind die heutigen Sklavinnen.,Erica.jpg
+10,0,0,,Kann ich dich für eine Sklavin begeistern?|Ich biete nur hochwertige Ware.,Erica.jpg
+20,0,0,,"Sie können nicht mehr wirklich darum bitten, wenn|sie schon überfallen, gefesselt und geknebelt wurden.",Erica.jpg
+25,0,0,,Entführung und Sklaverei sind|aktive Bestandteile dieses Clubs.,Erica.jpg
+30,0,0,,"Also, bist du an Sklavinnen interessiert?",Erica.jpg
+40,0,0,,"Schonmal darüber nachgedacht,|mit Sklaverei per Entführung anzufangen?",Erica.jpg
+50,0,0,,Du solltest dich als Kidnapperin versuchen.,Erica.jpg
+55,0,0,,Jenna hat eine Tasche voll Ketten an der Tür gelassen.|Damit könntest du deine Sklaven festhalten.,Erica.jpg
+60,0,0,,"Du solltest dich darauf konzentrieren,|deine eigenen Sklaven zu fangen.",Erica.jpg
+90,0,0,,"Komm wieder, wenn du bereit bist, das hier zu tragen.",EricaSlaver.jpg
+100,0,0,First,"Sieh an, hat sich ein weiteres wehrloses Mädchen|ins Territorium der Sklavenhändlerin verirrt?",EricaSlaver.jpg
+100,0,0,Again,"So sieht man sich wieder. Bist du|jetzt bereit, meine Sklavin zu sein?",EricaSlaver.jpg
+110,0,0,,Ich entführe bloß ein wehrloses Mädchen.|(Erica nimmt dir die Augenbinde ab.),EricaPlayerCollared.jpg
+111,0,0,,"Tut mir leid, Süße, du bist jetzt nur noch meine Sklavin.|(Erica nimmt dir die Augenbinde ab.)",EricaPlayerCollared.jpg
+112,0,0,,Du gibst eine süße Sklavin ab.|(Erica nimmt dir die Augenbinde ab.),EricaPlayerCollared.jpg
+150,0,0,,"Netter Versuch, aber da hast du den falschen|Kampf verloren. Jetzt bist du meine Sklavin.",EricaKidnapper.jpg
+160,0,0,,,EricaPlayerFloored.jpg
+165,0,0,,,EricaPlayerFloored.jpg
+170,0,0,,,EricaPlayerCaptured.jpg
+180,0,0,,,EricaPlayerLegsTied.jpg
+200,0,0,PlayerClothGag,,EricaPlayerSlaveCloth.jpg
+200,0,0,PlayerBallGag,,EricaPlayerSlaveBall.jpg
+210,0,0,,,EricaPlayerKneelingCloth.jpg
+220,0,0,,,EricaPleasure.jpg
+230,0,0,,,EricaPlayerKneelingRing.jpg
+240,0,0,PlayerNotGagged,,EricaPlayerKneeling.jpg
+240,0,0,PlayerRingGag,,EricaPlayerKneelingRing.jpg
+250,0,0,PlayerNotGagged,,EricaPlayerKneeling.jpg
+250,0,0,PlayerRingGag,,EricaPlayerKneelingRing.jpg
+260,0,0,,,EricaPlayerKneelingBall.jpg
+270,0,0,,,EricaPlayerSlaveBall.jpg
+280,0,0,,,EricaFedUp.jpg
+290,0,0,,"Hab ich dir nicht gesagt, du sollst weggehen?",EricaFedUp.jpg
+300,0,0,,"(Du hast Erica in deiner Gewalt, aber sie|versucht noch, deinem Griff zu entkommen.)",EricaCaptured.jpg
+310,0,0,,(Was hast du nun mit ihr vor?),Background.jpg
+315,0,0,,,Background.jpg
+320,0,0,,,Slaves.jpg
+325,0,0,,"(Erica ist wehrlos, aber diesbezüglich|kannst du nicht mehr viel tun.)",Background.jpg
+330,0,0,,,SlaveDancerGagged.jpg
+340,0,0,,,SlaveHood.jpg
+350,0,0,,"(Erica beobachtet dich nervös. Sie macht dir keinen|Ärger mehr, sollte aber besser alleingelassen werden.)",EricaNervious.jpg
+400,0,0,,,EricaLetGoAngry.jpg
+410,0,0,,,EricaGrabAngry.jpg
+420,0,0,,,EricaForceAngry.jpg

@@ -1,10 +1,10 @@
 Tag,Content
-Easy,Easy
-Normal,Normal
-Hard,Hard
-StartsIn,Starts in
-Opponent,Opponent:
-Difficulty,Difficulty:
-Perfect,Perfect fight!  Click on any opponent to continue.
-Victory,You won!  Click on any opponent to continue.
-Defeat,You lost!  Click on any opponent to continue.
+Easy,简单
+Normal,中等
+Hard,困难
+StartsIn,开始…
+Opponent,对手:
+Difficulty,难度:
+Perfect,完美的战斗！点击任意对手以继续。
+Victory,你胜利了！点击任意对手以继续。
+Defeat,你失败了！点击任意对手以继续。

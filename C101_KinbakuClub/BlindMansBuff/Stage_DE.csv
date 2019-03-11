@@ -1,0 +1,42 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,"Nein, ich wollte nur die|Augenbinde anprobieren.","Wäre ein Spiel nicht der perfekte Test dafür?|Versuch mal, jemanden von uns zu fangen.",10,0,0,
+0,0,0,,Das ist eine tolle Idee.,"Klar, behalte nur im Kopf, wo du gerade bist.|Versuch, eine von uns zu fangen, ohne zu stürzen.",10,0,0,
+0,0,0,PlayerIsGagged,@Mmmp hmmf,"Dann fang uns doch.|Pass nur auf, wo du langgehst, hihihi!",10,0,0,
+5,0,0,EricaHelping,(Stillstehen und|dem Club lauschen.),(Jemand tippt dir auf die Schulter.)|Brauchst du vielleicht Hilfe?,7,0,0,
+5,0,0,PlayerIsFree,(Die Augenbinde|abnehmen.),(Das helle Licht blendet dich. Der Club hört auf zu|spielen und nimmt seine vorigen Aktivitäten wieder auf.),15,0,0,UnBlindfold()
+7,0,0,,"Ja, könntest|du mir helfen?","Sicher doch. (Du fühlst, wie dir ein|Halsband fest umgeschnallt wird.)",120,0,0,Collared()
+7,0,0,PlayerIsFree,"Nein, geht schon. (Die|Augenbinde abnehmen.)",,15,0,0,UnBlindfold()
+7,0,0,PlayerIsCuffed,"Ja, lass sofort|meine Hände frei.",(Jemand nimmt deine Handschellen ab.),5,0,0,UnCuffed()
+7,0,0,PlayerIsGagged,@Ummh hmm,"(Du fühlst, wie dir ein Halsband fest|umgeschnallt wird.) Du gehörst jetzt mir.",120,0,0,Collared()
+10,0,0,,(Stillstehen|und lauschen.),Stand,10,0,0,StandStill()
+10,0,0,,(Vorwärts gehen.),Forwards,10,0,0,Fore()
+10,0,0,,(Nach links gehen.),Left,10,0,0,Turn()
+10,0,0,,(Nach rechts gehen.),Right,10,0,0,Turn()
+10,0,0,,(Rückwärts gehen.),Back,10,0,0,Aft()
+10,0,0,,Marco.,Polo,10,0,0,Marco()
+10,0,0,PlayerIsCuffed,"Hey, nehmt mir sofort|die Handschellen ab.","Zwing uns doch; wenn du jemanden irgendwo|festhalten kannst, helfen wir anderen dir.",10,0,0,SomeoneUncuff()
+10,0,0,PlayerRobbed,Gebt mir meine|Sachen zurück.,"Nur, wenn du gewinnst. Wir geben dir was|du brauchst, wenn du jemanden fängst.",10,0,0,Complain()
+10,0,0,PlayerIsGagged,@Mmmmmmp,"Komm schon, du schaffst das. Wenn du jemanden|irgendwo festhalten kannst, helfen wir anderen dir.",10,0,0,
+10,0,0,TouchSomebody,"(Versuchen, sie|zu fangen.)","(Du hattest sie fast, aber sie hat sich aus deinem|Griff befreit und ist außer Reichweite gerannt.)",10,0,0,Capture()
+10,0,0,FeelSomebody,"(Versuchen, sie|festzurempeln.)","(Du rammst sie, aber da hinter ihr nichts zum Gegen-|halten ist, weicht sie dir einfach nach hinten aus.)",10,0,0,Capture()
+20,0,0,,(Aufstehen.),,10,0,0,LifeLost()
+20,0,0,,(Gebannt sitzenbleiben.),Gibst du etwa schon auf?,25,0,0,
+25,0,0,,(Aufstehen und|weitermachen.),,10,0,0,LifeLost()
+25,0,0,,(Aufgeben.),"COMMON_PLAYERNAME hat das Spiel|aufgegeben, auf sie.",30,0,0,
+30,0,0,,"Nein, wartet, ich will das|nicht mehr spielen.",(Die Mädels packen dich in Handschellen|und knebeln dich.) So sind nun mal die Regeln.,40,0,0,Lost()
+30,0,0,PlayerIsGagged,@Bhtth whtht,"(Die Mädels stellen sicher, dass du enge|Handschellen trägst und ordentlich geknebelt bist.)",40,0,0,Lost()
+40,0,0,,"(Versuchen, zu|entkommen.)",,40,0,0,GameOver()
+40,0,0,,"(Versuchen, sie|anzuflehen.)",,40,0,0,GameOver()
+100,0,0,EricaHelping,(Stillstehen und|dem Tumult lauschen.),(Jemand tippt dir auf die Schulter.)|Brauchst du vielleicht Hilfe?,110,0,0,
+100,0,0,PlayerIsCuffed,"Hey, nehmt mir sofort|die Handschellen ab.",(Jemand schließt die Handschellen auf.),100,0,0,UnCuffed()
+100,0,0,PlayerIsTied,Kann mich bitte|jemand losbinden?,Okay. (Jemand löst die Knoten und du|kannst dich aus dem Seil freizappeln.),100,0,0,Untie()
+100,0,0,PlayerIsGagged,@Mmmmmmp,"(Niemand antwortet, aber du|hörst jemanden auf dich zukommen.)",100,0,0,SlaveCall()
+100,0,0,PlayerIsFree,(Die Augenbinde|abnehmen.),,200,0,0,UnBlindfold()
+110,0,0,,"Ja, könntest|du mir helfen?","Sicher doch. (Du fühlst, wie dir ein|Halsband fest umgeschnallt wird.)",120,0,0,Collared()
+110,0,0,PlayerIsFree,"Nein, geht schon. (Die|Augenbinde abnehmen.)",,200,0,0,UnBlindfold()
+110,0,0,PlayerIsCuffed,"Ja, lass sofort|meine Hände frei.",(Jemand nimmt deine Handschellen ab.),100,0,0,UnCuffed()
+110,0,0,PlayerIsTied,"Ja, binde mich|sofort los.",Okay. (Jemand löst die Knoten und du|kannst dich aus dem Seil freizappeln.),100,0,0,Untie()
+110,0,0,PlayerIsGagged,@Ummh hmm,"(Du fühlst, wie dir ein Halsband fest|umgeschnallt wird.) Du gehörst jetzt mir.",120,0,0,Collared()
+120,0,0,,"Hey, was|tust du da?",,120,0,0,EricaKidnap1()
+120,0,0,,"Nein, bitte lass|mich gehen.",,120,0,0,EricaKidnap2()
+120,0,0,PlayerIsGagged,@Mmmmf!!!,,120,0,0,EricaKidnap3()

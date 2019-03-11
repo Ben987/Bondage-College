@@ -7,10 +7,12 @@ var KeyPress = "";
 var CurrentModule;
 var CurrentScreen;
 var CurrentCharacter = null;
+var CurrentTime = 0;
+var CurrentOnlinePlayers = 0;
 var CommonIsMobile = false;
-var CommonCurrentTimer = 0;
 var CommonRunInterval = 20;
 var CommonCSVCache = {};
+var CutsceneStage = 0;
 
 // Returns TRUE if the variable is a number
 function CommonIsNumeric(n) {
@@ -179,7 +181,6 @@ function CommonDynamicFunctionParams(FunctionName) {
 	}
 
 }
-
 
 // Sets the current screen and calls the loading script if needed, only allow the change screen if the player can walk
 function CommonSetScreen(NewModule, NewScreen) {

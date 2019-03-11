@@ -1,3 +1,3 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Untersuchen.)|(1 Minute),Sie besteht aus gutem Leder und tut bestimmt|ordentlich weh. Sie hinterlässt keine bleibenden Spuren.,0,0,0,
-0,0,0,Common_PlayerNotRestrained,(An dir testen.)|(1 Minute),Du peitschst dir auf die Handfläche und fühlst den|Schmerz. Der rote Fleck sollte schnell verblassen.,0,0,0,
+0,0,0,,(Untersuchen.)ADD_MINUTES:1,Sie besteht aus gutem Leder und tut bestimmt or-|dentlich weh. Sie hinterlässt keine bleibenden Spuren.,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Sie an dir testen.)ADD_MINUTES:1,Du peitschst dir auf die Handfläche und fühlst den|Schmerz. Der rote Fleck sollte schnell verblassen.,0,0,0,

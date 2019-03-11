@@ -16,6 +16,7 @@ var DialogInventory = [];
 function DialogReputationLess(RepType, Value) { return (ReputationGet(RepType) <= Value); } // Returns TRUE if a specific reputation type is less or equal than a given value
 function DialogReputationGreater(RepType, Value) { return (ReputationGet(RepType) >= Value); } // Returns FALSE if a specific reputation type is greater or equal than a given value
 function DialogMoneyGreater(Amount) { return (parseInt(Player.Money) >= parseInt(Amount)); } // Returns TRUE if the player has enough money
+function DialogChangeMoney(Amount) { CharacterChangeMoney(Player, Amount); } // Change the player money amount
 function DialogSetReputation(RepType, Value) { ReputationChange(RepType, (parseInt(ReputationGet(RepType)) * -1) + parseInt(Value)); } // Sets a fixed number for the player specific reputation
 function DialogChangeReputation(RepType, Value) { ReputationProgress(RepType, Value); } // Change the player reputation progressively through dialog options (a reputation is easier to break than to build)
 function DialogWearItem(AssetName, AssetGroup) { InventoryWear(Player, AssetName, AssetGroup); } // Equips a specific item on the player from dialog
@@ -24,6 +25,14 @@ function DialogRemoveItem(AssetGroup) { InventoryRemove(Player, AssetGroup); } /
 function DialogRelease(C) { CharacterRelease((C.toUpperCase().trim() == "PLAYER") ? Player : CurrentCharacter); } // Releases a character from restraints
 function DialogNaked(C) { CharacterNaked((C.toUpperCase().trim() == "PLAYER") ? Player : CurrentCharacter); } // Strips a character naked and removes the restrains
 function DialogFullRandomRestrain(C) { CharacterFullRandomRestrain((C.toUpperCase().trim() == "PLAYER") ? Player : CurrentCharacter); } // Strips a character naked and removes the restrains
+function DialogLogQuery(LogType, LogGroup) { return LogQuery(LogType, LogGroup); } // Returns TRUE if a specific log is registered
+function DialogAllowItem(Allow) { return CurrentCharacter.AllowItem = (Allow.toUpperCase().trim() == "TRUE"); } // Sets the AllowItem flag on the current character
+function DialogIsKneeling(C) { return (C.toUpperCase().trim() == "PLAYER") ? Player.IsKneeling() : CurrentCharacter.IsKneeling() }
+function DialogIsOwner() { return (CurrentCharacter.Name == Player.Owner.replace("NPC-", "")) }
+function DialogIsProperty() { return (CurrentCharacter.Owner == Player.Name) }
+function DialogIsRestrained(C) { return ((C.toUpperCase().trim() == "PLAYER") ? Player.IsRestrained() : CurrentCharacter.IsRestrained()) }
+function DialogCanInteract(C) { return ((C.toUpperCase().trim() == "PLAYER") ? Player.CanInteract() : CurrentCharacter.CanInteract()) }
+function DialogSetPose(C, NewPose) { CharacterSetActivePose((C.toUpperCase().trim() == "PLAYER") ? Player : CurrentCharacter, ((NewPose != null) && (NewPose != "")) ? NewPose : null); }
 
 // Returns TRUE if the dialog prerequisite condition is met
 function DialogPrerequisite(D) {
@@ -282,7 +291,7 @@ function DialogClick() {
 				// If the item at position is clicked
 				if ((MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275) && DialogInventory[I].Asset.Enable) {
 
-					// Cannot change item if the previous one is locked
+					// Cannot change item if the previous one is locked or blocked by another group
 					var Item = InventoryGet(C, C.FocusGroup.Name);
 					if ((Item == null) || (Item.Asset.Effect == null) || (Item.Asset.Effect.indexOf("Lock") < 0)) {
 						if (!InventoryGroupIsBlocked(C))
@@ -297,9 +306,14 @@ function DialogClick() {
 									}
 					} else {
 
-						// If the item can unlock another item
+						// If the item can unlock another item or simply show dialog text (not wearable)
 						if ((DialogInventory[I].Asset.Effect != null) && (DialogInventory[I].Asset.Effect.indexOf("Unlock-" + Item.Asset.Name) >= 0))
 							DialogProgressStart(C, Item, null);
+						else
+							if (!DialogInventory[I].Asset.Wear) {
+								C.CurrentDialog = DialogFind(C, DialogInventory[I].Asset.Group.Name + DialogInventory[I].Asset.Name);
+								DialogLeaveItemMenu();
+							}
 
 					}
 					break;
@@ -416,7 +430,7 @@ function DialogDrawItemMenu(C) {
 			// Draw the current operation and progress
 			DrawText(DialogProgressOperation, 1500, 650, "White", "Black");
 			DrawProgressBar(1200, 700, 600, 100, DialogProgress);
-			DrawText((CommonIsMobile) ? "Click here to speed up the progress" : "Alternate keys A and S to speed up", 1500, 900, "White", "Black");
+			DrawText(DialogFind(Player, (CommonIsMobile) ? "ProgressClick" : "ProgressKeys"), 1500, 900, "White", "Black");
 
 			// If the operation is completed
 			if (DialogProgress >= 100) {
@@ -449,26 +463,26 @@ function DialogDrawItemMenu(C) {
 
 				// Draw the struggle option
 				if ((C.ID == 0) && (Item.Asset.Effect != null) && (Item.Asset.Effect.indexOf("Block") >= 0) && (Item.Asset.Effect.indexOf("Struggle") >= 0)) {
-					DrawText("Struggle to free yourself", 1250, 62, "White", "Black");
+					DrawText(DialogFind(Player, "CanStruggle"), 1250, 62, "White", "Black");
 					DrawButton(1500, 25, 225, 75, "Struggle", "White");
 				}
 
 				// Draw the unlock option
 				if ((C.ID == 0) && (Item.Asset.Effect != null) && (Item.Asset.Effect.indexOf("Block") >= 0) && (Item.Asset.Effect.indexOf("Lock") >= 0)) {
 					if (DialogCanUnlock(C)) {
-						DrawText("You can unlock yourself", 1250, 62, "White", "Black");
+						DrawText(DialogFind(Player, "CanUnlock"), 1250, 62, "White", "Black");
 						DrawButton(1500, 25, 225, 75, "Unlock", "White");
-					} else DrawText("You don't have the proper key", 1350, 62, "White", "Black");
+					} else DrawText(DialogFind(Player, "CannotUnlock"), 1350, 62, "White", "Black");
 				}
 
 				// Draw the no struggle option
 				if ((C.ID == 0) && (Item.Asset.Effect != null) && (Item.Asset.Effect.indexOf("Block") >= 0) && (Item.Asset.Effect.indexOf("Lock") < 0) && (Item.Asset.Effect.indexOf("Struggle") < 0))
-					DrawText("You'll need help to get out", 1250, 62, "White", "Black");
+					DrawText(DialogFind(Player, "CannotStruggle"), 1250, 62, "White", "Black");
 			}
-			
+
 			// Show the no access text
-			if (InventoryGroupIsBlocked(C)) DrawText("This zone is out of reach from another item", 1500, 700, "White", "Black");
-			else DrawText("You cannot access your items", 1500, 700, "White", "Black");
+			if (InventoryGroupIsBlocked(C)) DrawText(DialogFind(Player, "ZoneBlocked"), 1500, 700, "White", "Black");
+			else DrawText(DialogFind(Player, "AccessBlocked"), 1500, 700, "White", "Black");
 			
 		}
 		
@@ -487,6 +501,7 @@ function DialogGarble(C, CD) {
 	// Variables to build the new string and check if we are in a parentheses
 	var NS = "";
 	var Par = false;
+	if (CD == null) CD = "";
 		
 	// Total gags always returns "..."
 	if (C.Effect.indexOf("GagTotal") >= 0) {
@@ -597,9 +612,12 @@ function DialogDraw() {
 		var pos = 0;
 		for(var D = 0; D < CurrentCharacter.Dialog.length; D++)
 			if ((CurrentCharacter.Dialog[D].Stage == CurrentCharacter.Stage) && (CurrentCharacter.Dialog[D].Option != null) && DialogPrerequisite(D)) {
-					DrawTextWrap(DialogGarble(Player, CurrentCharacter.Dialog[D].Option), 1025, 160 + 105 * pos, 950, 80, "black", ((MouseX >= 1025) && (MouseX <= 1975) && (MouseY >= 160 + pos * 105) && (MouseY <= 240 + pos * 105) && !CommonIsMobile) ? "cyan" : "white");
-					pos++;
-				}
+				DrawTextWrap(DialogGarble(Player, CurrentCharacter.Dialog[D].Option), 1025, 160 + 105 * pos, 950, 80, "black", ((MouseX >= 1025) && (MouseX <= 1975) && (MouseY >= 160 + pos * 105) && (MouseY <= 240 + pos * 105) && !CommonIsMobile) ? "cyan" : "white");
+				pos++;
+			}
+
+		// The more time you spend with an NPC, the more the love will rise
+		NPCInteraction();
 
 	}
 

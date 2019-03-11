@@ -86,8 +86,8 @@ function ShibariRun() {
 	DrawCharacter(ShibariStudent, 1250, 0, 1);
 	if (Player.CanWalk()) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 	DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
-	if (Player.CanInteract()) DrawButton(1885, 265, 90, 90, "", "White", "Icons/Dress.png");
-	if (Player.CanInteract()) DrawButton(1885, 385, 90, 90, "", "White", "Icons/Naked.png");
+	if (Player.CanChange()) DrawButton(1885, 265, 90, 90, "", "White", "Icons/Dress.png");
+	if (Player.CanChange()) DrawButton(1885, 385, 90, 90, "", "White", "Icons/Naked.png");
 }
 
 // When the user clicks in the shibari dojo
@@ -96,8 +96,8 @@ function ShibariClick() {
 	if ((MouseX >= 750) && (MouseX < 1250) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(ShibariTeacher);
 	if ((MouseX >= 1250) && (MouseX < 1750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(ShibariStudent);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355) && Player.CanInteract()) CharacterDress(Player, ShibariPlayerAppearance);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475) && Player.CanInteract()) CharacterNaked(Player);
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355) && Player.CanChange()) CharacterDress(Player, ShibariPlayerAppearance);
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475) && Player.CanChange()) CharacterNaked(Player);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) {
 		CharacterDress(Player, ShibariPlayerAppearance);
 		ShibariPlayerAppearance = null;

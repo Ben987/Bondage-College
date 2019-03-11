@@ -13,7 +13,10 @@ var PlayerIsFox = true;	//Player is Fox by Fox and Hunter
 var GamblingMoneyBet = 0;	//Money Bet in Current Game
 var GamblingShowDiceSum = true; //Show Summ of Dice Dots in DiceStack
 var GamblingShowMoney = false;	//Show Money in DiceStack
-var GamblingAppearanceList = []; //List for Appearance to dress back
+var GamblingAppearanceFirst = null;
+var GamblingAppearanceSecond = null;
+var GamblingAppearancePlayer = null;
+var GamblingIllegalChange = false; //Sub Player lost Cloth although forbidden by Mistress
 
 // Returns TRUE if a dialog is permitted
 function GamblingIsSubsRestrained() { return (GamblingFirstSub.IsRestrained() || !GamblingFirstSub.CanTalk() || GamblingSecondSub.IsRestrained() || !GamblingSecondSub.CanTalk());}
@@ -35,10 +38,10 @@ function GamblingLoad() {
 		GamblingSecondSub = CharacterLoadNPC("NPC_Gambling_SecondSub");
 		GamblingFirstSub.AllowItem = false;
 		GamblingSecondSub.AllowItem = false;
-		GamblingAppearanceList[GamblingFirstSub.ID] = new Object(GamblingFirstSub.Appearance);
-		GamblingAppearanceList[GamblingSecondSub.ID] = new Object(GamblingSecondSub.Appearance);
+		GamblingAppearanceFirst = GamblingFirstSub.Appearance.slice();
+		GamblingAppearanceSecond = GamblingSecondSub.Appearance.slice();
 	}
-	GamblingAppearanceList[Player.ID] = new Object(Player.Appearance);
+	GamblingAppearancePlayer = Player.Appearance.slice();
 	// Rescue mission load
 	if ((MaidQuartersCurrentRescue == "Gambling") && !MaidQuartersCurrentRescueStarted) {
 		MaidQuartersCurrentRescueStarted = true;
@@ -68,7 +71,7 @@ function GamblingRun() {
 	if ((ReputationGet("Gambling") > 20) || MaidQuartersCurrentRescue == "Gambling") DrawCharacter(GamblingSecondSub, 1250, 0, 1);
 	if (Player.CanWalk()) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 	DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
-	if (Player.CanInteract()) DrawButton(1885, 265, 90, 90, "", "White", "Icons/Dress.png");
+	if (Player.CanInteract()) DrawButton(1885, 265, 90, 90, "", "White", "Icons/Dress.png"); //Only Dess Back after loose Game
 }
 
 // When the user clicks in the Gambling Hall
@@ -76,9 +79,21 @@ function GamblingClick() {
 	if ((MouseX >= 250) && (MouseX < 750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(GamblingFirstSub);
 	if ((MouseX >= 750) && (MouseX < 1250) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
 	if (((MouseX >= 1250) && (MouseX < 1750) && (MouseY >= 0) && (MouseY < 1000)) && ((ReputationGet("Gambling") > 20) || MaidQuartersCurrentRescue == "Gambling") ) CharacterSetCurrent(GamblingSecondSub);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) GamblingLeaveRoom();
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355)) GamblingDressBackDefault(Player);
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355)) GamblingDressBackPlayer();
+}
+
+//If the Player Illegal Strip the Cloth send to Prison 
+function GamblingLeaveRoom(){
+	if (GamblingIllegalChange) {
+		InventoryWear(Player, "MetalCuffs", "ItemArms");
+		PrisonPlayerForIllegalChange = true;
+		PrisonPlayerBehindBars = true;
+		CommonSetScreen("Room", "Prison");
+	} else {
+		CommonSetScreen("Room", "MainHall");
+	}
 }
 
 // Print the Stack of Dices and the Sum of Ponits and Player Money
@@ -158,8 +173,10 @@ function GamblingTwentyOneController(TwentyOneState) {
 		PlayerDiceStack = [];
 		GamblingNpcDiceStack = [];
 		CharacterRelease(Player);
-		GamblingDressBackDefault(Player);
-		GamblingDressBackDefault(GamblingFirstSub);
+		GamblingFirstSub.Appearance = GamblingAppearanceFirst.slice();
+		CharacterRefresh(GamblingFirstSub);
+		Player.Appearance = GamblingAppearancePlayer.slice();
+		CharacterRefresh(Player);
 
 		for (var i = 1; i <= 3; i++) {
 			PlayerDice = Math.floor(Math.random() * 6) + 1;
@@ -201,7 +218,8 @@ function GamblingTwentyOneController(TwentyOneState) {
 		//the next turn started automaticly
 		if (GamblingStripTied(GamblingFirstSub, GamblingNpcSubState)) {
 			CharacterRelease(Player);
-			GamblingDressBackDefault(Player);
+			Player.Appearance = GamblingAppearancePlayer.slice();
+			CharacterRefresh(Player);
 			GamblingFirstSub.AllowItem = true;
 			GamblingFirstSub.Stage = 0; 
 			ReputationProgress("Gambling", 3);
@@ -220,7 +238,8 @@ function GamblingTwentyOneController(TwentyOneState) {
 		//the next turn started automaticly
 		if (GamblingStripTied(Player, GamblingPlayerSubState)) {
 			CharacterRelease(GamblingFirstSub);
-			GamblingDressBackDefault(GamblingFirstSub);
+			GamblingFirstSub.Appearance = GamblingAppearanceFirst.slice();
+			CharacterRefresh(GamblingFirstSub);
 			GamblingFirstSub.Stage = 0; 
 			}
 
@@ -317,8 +336,10 @@ function GamblingStreetRoissyController (StreetRoissyState){
 		GamblingNpcSubState = 1; 
 		PlayerDiceStack = [];
 		GamblingNpcDiceStack = [];
-		GamblingDressBackDefault(Player);
-		GamblingDressBackDefault(GamblingSecondSub);
+		GamblingSecondSub.Appearance = GamblingAppearanceSecond.slice();
+		CharacterRefresh(GamblingSecondSub);
+		Player.Appearance = GamblingAppearancePlayer.slice();
+		CharacterRefresh(Player);
 		GamblingSecondSub.Stage = 200;
 	} else if (StreetRoissyState == "nextDice"){
 		PlayerDice = Math.floor(Math.random() * 6) + 1;
@@ -365,7 +386,8 @@ function GamblingStreetRoissyController (StreetRoissyState){
 		if (GamblingStripTied(GamblingSecondSub, GamblingPlayerSubState)) {
 			ReputationProgress("Gambling", 2);
 			CharacterRelease(Player);
-			GamblingDressBackDefault(Player);
+			Player.Appearance = GamblingAppearancePlayer.slice();
+			CharacterRefresh(Player);
 			GamblingSecondSub.AllowItem = true;
 			GamblingSecondSub.CurrentDialog = GamblingSecondSub.CurrentDialog.replace("REPLACEMONEY", GamblingMoneyBet.toString());
 			CharacterChangeMoney(Player, GamblingMoneyBet);
@@ -379,7 +401,8 @@ function GamblingStreetRoissyController (StreetRoissyState){
 		if (GamblingStripTied(Player, GamblingNpcSubState)) {
 			CharacterRelease(GamblingSecondSub);
 			GamblingSecondSub.CurrentDialog = GamblingSecondSub.CurrentDialog.replace("REPLACEMONEY", GamblingMoneyBet.toString());
-			GamblingDressBackDefault(GamblingSecondSub);
+			GamblingSecondSub.Appearance = GamblingAppearanceSecond.slice();
+			CharacterRefresh(GamblingSecondSub);
 			GamblingSecondSub.AllowItem = false;
 			GamblingStreetRoissyController ("end");
 		} else {	
@@ -406,8 +429,10 @@ function GamblingDaredSixController (DaredSixState){
 		GamblingNpcSubState = 1; 
 		PlayerDiceStack = [];
 		GamblingNpcDiceStack = [];
-		GamblingDressBackDefault(Player);
-		GamblingDressBackDefault(GamblingSecondSub);
+		GamblingSecondSub.Appearance = GamblingAppearanceSecond.slice();
+		CharacterRefresh(GamblingSecondSub);
+		Player.Appearance = GamblingAppearancePlayer.slice();
+		CharacterRefresh(Player);
 		GamblingDaredSixController("add");
 	} else if (DaredSixState == "add"){
 		PlayerDice = Math.floor(Math.random() * 6) + 1;
@@ -440,7 +465,8 @@ function GamblingDaredSixController (DaredSixState){
 		if (GamblingStripTied(GamblingSecondSub, GamblingNpcSubState)) {
 			CharacterChangeMoney(Player, GamblingMoneyBet);
 			CharacterRelease(Player);
-			GamblingDressBackDefault(Player);
+			Player.Appearance = GamblingAppearancePlayer.slice();
+			CharacterRefresh(Player);
 			GamblingSecondSub.AllowItem = true;
 			GamblingSecondSub.Stage = 330; 
 			GamblingSecondSub.CurrentDialog = GamblingSecondSub.CurrentDialog.replace("REPLACEMONEY", GamblingMoneyBet.toString());
@@ -456,7 +482,8 @@ function GamblingDaredSixController (DaredSixState){
 		GamblingNpcDiceStack = [];
 		if (GamblingStripTied(Player, GamblingPlayerSubState)) {
 			CharacterRelease(GamblingSecondSub);
-			GamblingDressBackDefault(GamblingSecondSub);
+			GamblingSecondSub.Appearance = GamblingAppearanceSecond.slice();
+			CharacterRefresh(GamblingSecondSub);
 			GamblingSecondSub.AllowItem = false;
 			GamblingSecondSub.Stage = 340; 
 			GamblingSecondSub.CurrentDialog = GamblingSecondSub.CurrentDialog.replace("REPLACEMONEY", GamblingMoneyBet.toString());
@@ -476,8 +503,10 @@ function GamblingStripTied(gstCarachter, gstLevel){
 		InventoryRemove(gstCarachter, "Hat"); 
 		InventoryRemove(gstCarachter, "Shoes"); 
 		InventoryRemove(gstCarachter, "Gloves"); 
+		if (!Player.CanChange()) GamblingIllegalChange = true;
 	} else if (gstLevel == 2) {
 		InventoryRemove(gstCarachter, "Cloth"); 
+		InventoryRemove(gstCarachter, "ClothLower"); 
 	} else if (gstLevel == 3) {
 		InventoryRemove(gstCarachter, "Bra"); 
 		InventoryRemove(gstCarachter, "Panties"); 
@@ -542,24 +571,30 @@ function GamblingReleasePlayerGame(ReleaseState) {
 
 //Release Player for Money
 function GamblingPayForFreedom(){
-	CharacterChangeMoney(Player, -25);
-	CharacterRelease(Player);
+	if (!GamblingSecondSub.IsRestrained()){
+		CharacterChangeMoney(Player, -25);
+		CharacterRelease(Player);
+	} else {
+		GamblingSecondSub.Stage = "0";
+		GamblingSecondSub.CurrentDialog = DialogFind(GamblingSecondSub, "GamblingSecondSubTied");
+	}
 }
-
 //Dress Caracter Back
-function GamblingDressBackDefault(DressBackCaracter) {
-	DressBackCaracter.Appearance = GamblingAppearanceList[DressBackCaracter.ID];
-	CharacterRefresh(DressBackCaracter);
+function GamblingDressBackPlayer() {
+	Player.Appearance = GamblingAppearancePlayer.slice();
+	CharacterRefresh(Player);
 }
 
 // When the player rescues the Gambling Subs
 function GamblingCompleteRescue() {
 	GamblingFirstSub.AllowItem = false;
 	GamblingSecondSub.AllowItem = false;
-	GamblingDressBackDefault(GamblingFirstSub);
-	GamblingDressBackDefault(GamblingSecondSub);
 	CharacterRelease(GamblingFirstSub);
 	CharacterRelease(GamblingSecondSub);
+	GamblingFirstSub.Appearance = GamblingAppearanceFirst.slice();
+	GamblingSecondSub.Appearance = GamblingAppearanceSecond.slice();
+	CharacterRefresh(GamblingFirstSub);
+	CharacterRefresh(GamblingSecondSub);
 	GamblingFirstSub.Stage = 0;
 	GamblingSecondSub.Stage = 0;
 	MaidQuartersCurrentRescueCompleted = true;

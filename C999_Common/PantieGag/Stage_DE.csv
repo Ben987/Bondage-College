@@ -1,0 +1,8 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,(Das Höschen|untersuchen.)ADD_MINUTES:1,"Die Etikettgröße ist XXXL. Viel zu groß für dich,|aber genau richtig, um die größten Münder zu stopfen.",0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Dich selbst knebeln.)ADD_MINUTES:1,Du ballst das Höschen zusammen|und stopfst es dir prall in den Mund.,10,0,0,SelfGag()
+10,0,0,HasLoosePantieGag,(Das freie Höschen|untersuchen.)ADD_MINUTES:1,"Die Etikettgröße ist XXXL. Viel zu groß für dich,|aber genau richtig, um die größten Münder zu stopfen.",10,0,0,ShowImage()
+10,0,0,,(Auf dem Höschen|herumkauen.)ADD_MINUTES:1,Du kaust auf dem Höschen herum.|Es saugt sich langsam mit deinem Speichel voll.,10,0,0,
+10,0,0,,(An dem Höschen|lutschen.)ADD_MINUTES:1,"Du lutschst an dem Höschen, genießt das Aroma|und fragst dich, wie sauber es war.",10,0,0,
+10,0,0,!HasOtherGag,(Das Höschen|ausspucken.)ADD_MINUTES:1,Du spuckst das durchnässte Höschen aus deinem|Mund und kannst nun wieder vernünftig reden.,0,0,0,SelfUngag()
+10,0,0,HasOtherGag,(Das Höschen|ausspucken.)ADD_MINUTES:1,"Du versuchst das Höschen auszuspucken, aber der|andere Knebel hält es fest. Nimm zuerst den ab.",10,0,0,

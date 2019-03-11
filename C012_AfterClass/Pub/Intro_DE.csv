@@ -1,4 +1,60 @@
 Stage,LoveReq,SubReq,VarReq,IntroText,Image
-0,0,0,EmptyPub,Die Bar ist ziemlich lehr um diese Zeit.|Niemand vom College ist hier.,Pub.jpg
-0,0,0,!EmptyPub,Studenten versammeln sich nach der Schule in der Bar.|Wen m�chtest du treffen?,Pub.jpg
-100,0,0,,,PubActor.jpg
+0,0,0,EmptyPub,Der Pub ist um diese Zeit ziemlich leer.|Aus dem College ist niemand hier.,Pub.jpg
+0,0,0,!EmptyPub,Nach Schulschluss sammeln sich einige Schüler|im Pub. Wen möchtest du ansprechen?,Pub.jpg
+100,0,0,,Da bist du! Wegen dir stecke ich immer|noch in diesem Scheißgürtel fest.,PubActor.jpg
+100,-8,0,,"Fick dich, COMMON_PLAYERNAME!|Schließ sofort diesen Gürtel auf!",PubActor.jpg
+100,0,8,,Oh! Miss COMMON_PLAYERNAME!|Könnten Sie jetzt bitte meinen Gürtel aufschließen?,PubActor.jpg
+101,0,0,,,PubActor.jpg
+102,0,0,,,PubActor.jpg
+110,0,0,,Da bist du! Wegen dir steckt immer noch|dieses beschissene Ei in mir fest.,PubActor.jpg
+110,-8,0,,"Fick dich, COMMON_PLAYERNAME!|Nimm sofort dieses Ei raus!",PubActor.jpg
+110,0,8,,Oh! Miss COMMON_PLAYERNAME!|Könnten Sie jetzt bitte das Ei herausnehmen?,PubActor.jpg
+111,0,0,,,PubActor.jpg
+112,0,0,,,PubActor.jpg
+120,0,0,,"Hey, Mädel! Wenn du hier sitzen|willst, bring mir ein Bier.",PubActor.jpg
+120,8,0,,"Hey, Süße! Wenn du hier sitzen|willst, bring mir ein Bier.",PubActor.jpg
+120,-8,0,,"Hey, Arschgesicht! Wenn du hier sitzen|willst, bring mir ein Bier.",PubActor.jpg
+121,0,0,,,PubActor.jpg
+122,0,0,,,PubActor.jpg
+130,0,0,,"Hallo, Miss COMMON_PLAYERNAME.|Was führt Sie hierher?",PubActor.jpg
+131,0,0,,,PubActor.jpg
+132,0,0,,,PubActor.jpg
+140,0,0,,Scheiße! Wieso redest du mit mir?,PubActor.jpg
+141,0,0,,,PubActor.jpg
+142,0,0,,,PubActor.jpg
+150,0,0,,"Toll, dich zu sehen!|Trinken wir zusammen ein Bier.",PubActor.jpg
+151,0,0,,,PubActor.jpg
+152,0,0,,,PubActor.jpg
+160,0,0,,"Ich kann nicht glauben, dass du die Kontrolle|über die Literaturstunde übernommen hast.",PubActor.jpg
+161,0,0,,,PubActor.jpg
+162,0,0,,,PubActor.jpg
+170,0,0,,"Ich fasse immer noch nicht, dass du mich draußen|nackt gefesselt hast. Ich sollte dir in den Arsch treten.",PubActor.jpg
+180,0,0,,"Hey, Nachsitz-Kumpel.|Machst du immer noch Schwierigkeiten?",PubActor.jpg
+190,0,0,,Oh! Du bist's. Was willst du?,PubActor.jpg
+191,0,0,,,PubActor.jpg
+192,0,0,,,PubActor.jpg
+200,0,0,,,PubActor.jpg
+201,0,0,,,PubActor.jpg
+202,0,0,,,PubActor.jpg
+203,0,0,,,PubActor.jpg
+204,0,0,,,PubActor.jpg
+205,0,0,,,PubActor.jpg
+210,0,0,,,PubPusher.jpg
+211,0,0,,,PubPusher.jpg
+212,0,0,,,PubPusher.jpg
+213,0,0,,,PubPusher.jpg
+214,0,0,,,PubPusher.jpg
+215,0,0,,,PubPusher.jpg
+216,0,0,,,PubPusher.jpg
+217,0,0,,,PubPusher.jpg
+219,0,0,,,PubPusher.jpg
+220,0,0,,,PubActor.jpg
+221,0,0,,,PubActor.jpg
+222,0,0,,,PubActor.jpg
+223,0,0,,,PubActor.jpg
+224,0,0,,,PubActor.jpg
+225,0,0,,,PubActor.jpg
+300,0,0,,,Dorm.jpg
+310,0,0,,,Dorm.jpg
+320,0,0,,,Dorm.jpg
+330,0,0,,,Dorm.jpg

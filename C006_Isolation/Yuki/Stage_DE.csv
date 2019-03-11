@@ -64,7 +64,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 170,0,0,,(Den Kopf senken.),"Gutes Mädchen, ich bin um 11:30 Uhr zurück.|(Sie steht auf und verlässt den Raum.)",180,0,-1,AllowLeave()
 170,0,0,,@UUHEE!,Du bist so süß. Ich bin um 11:30 Uhr zurück.|(Sie steht auf und verlässt den Raum.),180,0,0,AllowLeave()
 170,0,0,,@Heesee ehhem.,Du bist so süß. Ich bin um 11:30 Uhr zurück.|(Sie steht auf und verlässt den Raum.),180,0,0,AllowLeave()
-200,0,0,,(An ihre Muschi|reiben.)ADD_MINUTES:1,(Sie spreizt die Beine und stöhnt leise.),200,0,0,Pleasure(1)
+200,0,0,,(An ihre Muschi reiben.)ADD_MINUTES:1,(Sie spreizt die Beine und stöhnt leise.),200,0,0,Pleasure(1)
 200,0,0,,(Ihre Klitoris lecken.)ADD_MINUTES:1,(Sie zieht dich an den Haaren näher und bebt.),200,0,0,Pleasure(2)
 200,0,0,,(Zunge reinstecken.)ADD_MINUTES:1,(Sie bewegt deinen Kopf mit beiden|Händen vor und zurück.),200,0,0,Pleasure(3)
 200,0,0,AllowPullBack,(Aufhören und|zurücklehnen.),(Du hörst auf und sie sieht enttäuscht aus.)|Du gibst also schon auf?,210,0,0,CheckToStop()

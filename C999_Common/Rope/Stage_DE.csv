@@ -1,9 +1,9 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Damit spielen.)|(1 Minute),Du spielst mit dem Seil. Es fühlt|sich weich und geschmeidig an.,0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Selbst fesseln.)|(1 Minute),"Du versuchst dich zu fesseln, bekommst aber|keinen guten Knoten hin. Du wirst Hilfe brauchen.",0,0,0,QuerySelfBondage()
-10,0,0,HasLooseRope,(Mit freiem Seil|spielen.)  (1 Minute),Du spielst in deinen Fesseln mit dem freien Seil.|Es fühlt sich weich und geschmeidig an.,10,0,0,ShowImage()
-10,0,0,,(Nach einem Knoten|greifen.) (1 Minute),"Du versuchst einen Knoten zu erreichen|und zu lösen, schaffst es aber nicht.",10,0,0,
-10,0,0,,(Ausbruch versuchen.)|(1 Minute),"Du zappelst wie wild herum, bekommst|das Seil aber nicht gelockert.",10,0,0,
-10,0,0,,(Am Schrittseil ziehen.)|(1 Minute),"Du schaffst es, an dem Seil an deinem Schritt zu|ziehen, und es löst ein angenehmes Gefühl aus.",10,0,0,
-20,0,0,,(Selbst fesseln.),"Du wickelst das Seil vorsichtig um deinen Oberkörper|und machst einen engen, festen Knoten.",10,0,0,DoSelfBondage()
+0,0,0,,(Damit spielen.)ADD_MINUTES:1,Du spielst mit dem Seil. Es fühlt|sich weich und geschmeidig an.,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Dich selbst fesseln.)ADD_MINUTES:1,"Du versuchst dich zu fesseln, bekommst aber|keinen guten Knoten hin. Du wirst Hilfe brauchen.",0,0,0,QuerySelfBondage()
+10,0,0,HasLooseRope,(Mit dem freien|Seil spielen.) ADD_MINUTES:1,Du spielst in deinen Fesseln mit dem freien Seil.|Es fühlt sich weich und geschmeidig an.,10,0,0,ShowImage()
+10,0,0,,(Nach einem|Knoten greifen.)ADD_MINUTES:1,"Du versuchst einen Knoten zu erreichen|und zu lösen, schaffst es aber nicht.",10,0,0,
+10,0,0,,"(Versuchen,|auszubrechen.)ADD_MINUTES:1","Du zappelst wie wild herum, bekommst|das Seil aber nicht gelockert.",10,0,0,
+10,0,0,,(Am Schrittseil ziehen.)ADD_MINUTES:1,"Du schaffst es, an dem Seil an deinem Schritt zu|ziehen, und es löst ein angenehmes Gefühl aus.",10,0,0,
+20,0,0,,(Dich selbst fesseln.),"Du wickelst das Seil vorsichtig um deinen Oberkörper|und machst einen engen, festen Knoten.",10,0,0,DoSelfBondage()
 20,0,0,,(Lieber nicht.),"Du widerstehst dem Drang,|dich selbst zu fesseln.",0,0,0,

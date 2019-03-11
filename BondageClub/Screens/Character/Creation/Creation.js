@@ -11,58 +11,13 @@ function CreationLoad() {
 		ImportBondageCollegeData = true;
 		if (localStorage.getItem("BondageCollegeExportName") != null) DefaultName = localStorage.getItem("BondageCollegeExportName");
 	} else ImportBondageCollegeData = null;
-
-	// Creates a text box to enter the character name
-	var InputCharacter = document.createElement('input');
-	InputCharacter.setAttribute("ID", "InputCharacter");
-	InputCharacter.setAttribute("name", "InputCharacter");
-	InputCharacter.setAttribute("type", "text");
-	InputCharacter.setAttribute("value", DefaultName);
-	InputCharacter.setAttribute("maxlength", "20");
-	InputCharacter.setAttribute("onfocus", "this.removeAttribute('readonly');");
-	InputCharacter.addEventListener("keypress", KeyDown);
-	document.body.appendChild(InputCharacter);
 	
-	// Creates a text box to enter the account name
-	var InputName = document.createElement('input');
-	InputName.setAttribute("ID", "InputName");
-	InputName.setAttribute("name", "InputName");
-	InputName.setAttribute("type", "text");
-	InputName.setAttribute("value", "");
-	InputName.setAttribute("maxlength", "20");
-	InputName.setAttribute("onfocus", "this.removeAttribute('readonly');");
-	InputName.addEventListener("keypress", KeyDown);
-	document.body.appendChild(InputName);
-
-	// Creates a text box to enter the account password
-	var InputPassword1 = document.createElement('input');
-	InputPassword1.setAttribute("ID", "InputPassword1");
-	InputPassword1.setAttribute("name", "InputPassword1");
-	InputPassword1.setAttribute("type", "password");
-	InputPassword1.setAttribute("value", "");
-	InputPassword1.setAttribute("maxlength", "20");
-	InputPassword1.addEventListener("keypress", KeyDown);
-	document.body.appendChild(InputPassword1);
-
-	// Creates a text box to enter the account password again
-	var InputPassword2 = document.createElement('input');
-	InputPassword2.setAttribute("ID", "InputPassword2");
-	InputPassword2.setAttribute("name", "InputPassword2");
-	InputPassword2.setAttribute("type", "password");
-	InputPassword2.setAttribute("value", "");
-	InputPassword2.setAttribute("maxlength", "20");
-	InputPassword2.addEventListener("keypress", KeyDown);
-	document.body.appendChild(InputPassword2);
-	
-	// Creates a text box to enter the account email
-	var InputEmail = document.createElement('input');
-	InputEmail.setAttribute("ID", "InputEmail");
-	InputEmail.setAttribute("name", "InputEmail");
-	InputEmail.setAttribute("type", "text");
-	InputEmail.setAttribute("value", "");
-	InputEmail.setAttribute("maxlength", "100");
-	InputEmail.addEventListener("keypress", KeyDown);
-	document.body.appendChild(InputEmail);
+	// Creates the text fields element
+	ElementCreateInput("InputCharacter", "text", DefaultName, "20");
+	ElementCreateInput("InputName", "text", "", "20");
+	ElementCreateInput("InputPassword1", "password", "", "20");
+	ElementCreateInput("InputPassword2", "password", "", "20");
+	ElementCreateInput("InputEmail", "text", "", "100");
 
 }
 
@@ -70,11 +25,11 @@ function CreationLoad() {
 function CreationRun() {
 	
 	// Places the controls on the screen
-	DrawElementPosition("InputCharacter", 1250, 175, 500);
-	DrawElementPosition("InputName", 1250, 305, 500);
-	DrawElementPosition("InputPassword1", 1250, 435, 500);
-	DrawElementPosition("InputPassword2", 1250, 565, 500);
-	DrawElementPosition("InputEmail", 1250, 695, 500);
+	ElementPosition("InputCharacter", 1250, 175, 500);
+	ElementPosition("InputName", 1250, 305, 500);
+	ElementPosition("InputPassword1", 1250, 435, 500);
+	ElementPosition("InputPassword2", 1250, 565, 500);
+	ElementPosition("InputEmail", 1250, 695, 500);
 		
 	// Draw the character, the labels and buttons
 	if (CreationMessage == "") CreationMessage = TextGet("EnterAccountCharacterInfo");
@@ -99,25 +54,29 @@ function CreationRun() {
 
 // When the ajax response returns, we analyze it's data
 function CreationResponse(CharacterData) {
-	if ((CharacterData != null) && (CharacterData == "account_created")) {
-		
+	if ((CharacterData != null) && (CharacterData.indexOf("AccountCreated") >= 0)) {
+
 		// Keep the character data and pushes it's appearance to the server
-		Player.Name = document.getElementById("InputCharacter").value.trim();
-		Player.AccountName = document.getElementById("InputName").value.trim();
-		Player.AccountPassword = document.getElementById("InputPassword1").value.trim();
-		
+		Player.Name = ElementValue("InputCharacter");
+		Player.AccountName = ElementValue("InputName");
+		Player.Creation = CurrentTime;
+		Player.Money = 100;
+
 		// Imports logs, inventory and Sarah status from the Bondage College
+		PrivateCharacter = [];
+		PrivateCharacter.push(Player);
+		Log = [];
 		ImportBondageCollege(Player);
 
 		// Flush the controls and enters the main hall
-		CharacterAppearanceSave(Player);
-		document.getElementById("InputCharacter").parentNode.removeChild(document.getElementById("InputCharacter"));
-		document.getElementById("InputName").parentNode.removeChild(document.getElementById("InputName"));
-		document.getElementById("InputPassword1").parentNode.removeChild(document.getElementById("InputPassword1"));
-		document.getElementById("InputPassword2").parentNode.removeChild(document.getElementById("InputPassword2"));
-		document.getElementById("InputEmail").parentNode.removeChild(document.getElementById("InputEmail"));
+		ServerPlayerAppearanceSync();
+		ElementRemove("InputCharacter");
+		ElementRemove("InputName");
+		ElementRemove("InputPassword1");
+		ElementRemove("InputPassword2");
+		ElementRemove("InputEmail");
 		CommonSetScreen("Room", "MainHall");
-		
+
 	} else CreationMessage = TextGet("Error") + " " + CharacterData;
 }
 
@@ -130,11 +89,11 @@ function CreationClick() {
 
 	// If we must go back to the login screen
 	if ((MouseX >= 1440) && (MouseX <= 1560) && (MouseY >= 920) && (MouseY <= 980)) {
-		document.getElementById("InputCharacter").parentNode.removeChild(document.getElementById("InputCharacter"));
-		document.getElementById("InputName").parentNode.removeChild(document.getElementById("InputName"));
-		document.getElementById("InputPassword1").parentNode.removeChild(document.getElementById("InputPassword1"));
-		document.getElementById("InputPassword2").parentNode.removeChild(document.getElementById("InputPassword2"));
-		document.getElementById("InputEmail").parentNode.removeChild(document.getElementById("InputEmail"));
+		ElementRemove("InputCharacter");
+		ElementRemove("InputName");
+		ElementRemove("InputPassword1");
+		ElementRemove("InputPassword2");
+		ElementRemove("InputEmail");
 		CommonSetScreen("Character", "Login");
 	}
 	
@@ -142,11 +101,11 @@ function CreationClick() {
 	if ((MouseX >= 1050) && (MouseX <= 1450) && (MouseY >= 825) && (MouseY <= 885)) {
 		
 		// First, we make sure both passwords are the same
-		var CharacterName = document.getElementById("InputCharacter").value.trim();
-		var Name = document.getElementById("InputName").value.trim();
-		var Password1 = document.getElementById("InputPassword1").value.trim();
-		var Password2 = document.getElementById("InputPassword2").value.trim();
-		var Email = document.getElementById("InputEmail").value.trim();
+		var CharacterName = ElementValue("InputCharacter");
+		var Name = ElementValue("InputName");
+		var Password1 = ElementValue("InputPassword1");
+		var Password2 = ElementValue("InputPassword2");
+		var Email = ElementValue("InputEmail");
 		
 		// If both password matches
 		if (Password1 == Password2) {
@@ -155,20 +114,10 @@ function CreationClick() {
 			var LN = /^[a-zA-Z0-9 ]+$/;
 			var LS = /^[a-zA-Z ]+$/;
 			var E = /^[a-zA-Z0-9@.]+$/;
-			if (CharacterName.match(LS) && Name.match(LN) && Password1.match(LN) && (Email.match(E) || Email == "") && (CharacterName.length > 0) && (CharacterName.length <= 20) && (Name.length > 0) && (Name.length <= 20) && (Password1.length > 0) && (Password1.length <= 20) && (Email.length <= 100)) {
-
-				// Calls the PHP page to create the accounts
-				var xmlhttp = new XMLHttpRequest();
-				xmlhttp.onreadystatechange = function() {
-					if (xmlhttp.readyState == XMLHttpRequest.DONE) {
-						if (xmlhttp.status == 200) CreationResponse(xmlhttp.responseText.trim().toString());
-						else CreationMessage = TextGet("Error") + " " + xmlhttp.status.toString();
-					}
-				};
-				xmlhttp.open("GET", AccountAddress + "?command=account_create&character=" + CharacterName + "&account=" + Name + "&password=" + Password1 + "&email=" + Email, true);
-				xmlhttp.send();
-
-			} else CreationMessage = TextGet("InvalidData");
+			if (CharacterName.match(LS) && Name.match(LN) && Password1.match(LN) && (Email.match(E) || Email == "") && (CharacterName.length > 0) && (CharacterName.length <= 20) && (Name.length > 0) && (Name.length <= 20) && (Password1.length > 0) && (Password1.length <= 20) && (Email.length <= 100))
+				ServerSend("AccountCreate", { Name: CharacterName, AccountName: Name, Password: Password1, Email: Email } );
+			else 
+				CreationMessage = TextGet("InvalidData");
 
 		} else CreationMessage = TextGet("BothPasswordDoNotMatch");
 	}

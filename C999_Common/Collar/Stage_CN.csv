@@ -1,6 +1,6 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(调查项圈)|(1 分钟),"这条项圈可以用挂锁锁起来。|它的大小适合人用，上面绣有 ""S"" 字。",0,0,0,
-0,0,0,Common_PlayerNotRestrained,(戴上项圈)|(1 分钟),你把项圈戴在脖子上，|然后扣上了它。,10,0,0,SelfCollar()
-10,0,0,HasLooseCollar,(调查未锁的项圈)  (1 minute),"这条项圈可以用挂锁锁起来。|它的大小适合人用，上面绣有 ""S"" 字。",10,0,0,ShowImage()
-10,0,0,,(伸脖子)|(1 分钟),你伸了伸脖子让自己放松一下，|但你总能感觉到项圈的存在。,10,0,0,
-10,0,0,Common_PlayerNotRestrained,(解开项圈)|(1 分钟),你解开扣子，拿下了项圈。,0,0,0,SelfUncollar()
+0,0,0,,(调查项圈)ADD_MINUTES:1,"这条项圈可以用挂锁锁起来。|它的大小适合人用，上面绣有 ""S"" 字。",0,0,0,
+0,0,0,Common_PlayerNotRestrained,(戴上项圈)ADD_MINUTES:1,你把项圈戴在脖子上，|然后扣上了它。,10,0,0,SelfCollar()
+10,0,0,HasLooseCollar,(调查未锁的项圈) ADD_MINUTES:1,"这条项圈可以用挂锁锁起来。|它的大小适合人用，上面绣有 ""S"" 字。",10,0,0,ShowImage()
+10,0,0,,(伸脖子)ADD_MINUTES:1,你伸了伸脖子让自己放松一下，|但你总能感觉到项圈的存在。,10,0,0,
+10,0,0,Common_PlayerNotRestrained,(解开项圈)ADD_MINUTES:1,你解开扣子，拿下了项圈。,0,0,0,SelfUncollar()

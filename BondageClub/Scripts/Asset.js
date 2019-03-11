@@ -2,6 +2,7 @@
 var Asset = [];
 var AssetGroup = [];
 var AssetCurrentGroup;
+var Pose = [];
 
 // Adds a new asset group to the main list
 function AssetGroupAdd(NewAssetFamily, NewAsset) {
@@ -18,6 +19,7 @@ function AssetGroupAdd(NewAssetFamily, NewAsset) {
 		ColorSchema: (NewAsset.Color == null) ? ["Default"] : NewAsset.Color,
 		ParentSize: (NewAsset.ParentSize == null) ? "" : NewAsset.ParentSize,
 		ParentColor: (NewAsset.ParentColor == null) ? "" : NewAsset.ParentColor,
+		Underwear: (NewAsset.Underwear == null) ? false : NewAsset.Underwear,
 		Zone: NewAsset.Zone,
 		SetPose: NewAsset.SetPose,
 		AllowPose: NewAsset.AllowPose,
@@ -58,6 +60,7 @@ function AssetAdd(NewAsset) {
 		RemoveTime: (NewAsset.RemoveTime == null) ? ((NewAsset.Time == null) ? 0 : NewAsset.Time) : NewAsset.RemoveTime,
 		DrawingPriority: NewAsset.Priority,
 		HeightModifier: (NewAsset.Height == null) ? 0 : NewAsset.Height,
+		Alpha: NewAsset.Alpha,
 		Prerequisite: NewAsset.Prerequisite
 	}
 	Asset.push(A);
@@ -142,4 +145,14 @@ function AssetLoadAll() {
 	Asset = [];
 	AssetGroup = [];
 	AssetLoad(AssetFemale3DCG, "Female3DCG");
+	Pose = PoseFemale3DCG;
+}
+
+// Make sure all the assets from a character are loaded properly
+function AssetReload(C) {
+	for(var A = 0; A < C.Appearance.length; A++)
+		if (C.Appearance[A].Asset != null)
+			for(var S = 0; S < Asset.length; S++)
+				if ((Asset[S].Name == C.Appearance[A].Asset.Name) && (Asset[S].Group.Name == C.Appearance[A].Asset.Group.Name))
+					C.Appearance[A].Asset = Asset[S];
 }

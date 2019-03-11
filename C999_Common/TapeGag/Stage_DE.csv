@@ -1,7 +1,7 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Untersuchen.)|(1 Minute),Es ist starkes Einwegklebeband.|Damit geknebelt wäre man kaum zu verstehen.,0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Selbst knebeln.)|(1 Minute),Du ziehst ein Stück Klebeband ab|und drückst es fest an deinen Mund.,10,0,0,SelfGag()
-10,0,0,HasLooseTape,(Freies Klebeband|unteruchen.) (1 Minute),Es ist starkes Einwegklebeband.|Damit geknebelt wäre man kaum zu verstehen.,10,0,0,ShowImage()
-10,0,0,,(Mund aufreißen.)|(1 Minute),"Du versuchst den Mund aufzureißen,|aber das Klebeband ist zu stark.",10,0,0,
-10,0,0,,(Mit den Lippen|drücken.) (1 Minute),"Du versuchst das Klebeband wegzudrücken,|aber es rührt sich nicht.",10,0,0,
-10,0,0,Common_PlayerNotRestrained,(Knebel entfernen.)|(1 Minute),"Du reißt dir das Klebeband vom Gesicht.|Es tut höllisch weh, aber du kannst wieder sprechen.",0,0,0,SelfUngag()
+0,0,0,,(Untersuchen.)ADD_MINUTES:1,Es ist starkes Einwegklebeband.|Damit geknebelt wäre man kaum zu verstehen.,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Dich selbst knebeln.)ADD_MINUTES:1,Du ziehst ein Stück Klebeband ab|und drückst es fest an deinen Mund.,10,0,0,SelfGag()
+10,0,0,HasLooseTape,(Das freie Klebeband|untersuchen.)ADD_MINUTES:1,Es ist starkes Einwegklebeband.|Damit geknebelt wäre man kaum zu verstehen.,10,0,0,ShowImage()
+10,0,0,,(Den Mund aufreißen.)ADD_MINUTES:1,"Du versuchst den Mund aufzureißen,|aber das Klebeband ist zu stark.",10,0,0,
+10,0,0,,(Mit den Lippen|dagegendrücken.)ADD_MINUTES:1,"Du versuchst das Klebeband wegzudrücken,|aber es rührt sich nicht.",10,0,0,
+10,0,0,Common_PlayerNotRestrained,(Den Knebel abnehmen.)ADD_MINUTES:1,"Du reißt dir das Klebeband vom Gesicht.|Es tut höllisch weh, aber du kannst wieder sprechen.",0,0,0,SelfUngag()

@@ -56,8 +56,8 @@ function DrawLoad() {
 // Returns the image file or build it from the source
 function DrawGetImage(Source) {
 
-    // Search in the cache to find the image
-    if (!DrawCacheImage[Source]) {
+    // Search in the cache to find the image and make sure this image is valid
+    if (!DrawCacheImage[Source] || !DrawCacheImage[Source].complete || (typeof(DrawCacheImage[Source].naturalWidth) == "undefined") || (DrawCacheImage[Source].naturalWidth == 0)) {
         var img = new Image;
         img.src = Source;
         DrawCacheImage[Source] = img;
@@ -82,14 +82,14 @@ function DrawCharacter(C, X, Y, Zoom) {
 
 	// Make sure we have a character
 	if (C != null) 
-		if ((C.ID == 0) || (Player.Effect.indexOf("BlindHeavy") < 0)) {
+		if ((C.ID == 0) || (Player.Effect.indexOf("BlindHeavy") < 0) || (CurrentScreen == "InformationSheet")) {
 
 			// There's 2 different canvas, one blinking and one that doesn't
 			var seconds = new Date().getTime();
 			var Canvas = (Math.round(seconds / 400) % C.BlinkFactor == 0) ? C.CanvasBlink : C.Canvas;
 			
 			// If we must dark the Canvas characters
-			if ((C.ID != 0) && Player.IsBlind()) {
+			if ((C.ID != 0) && Player.IsBlind() && (CurrentScreen != "InformationSheet")) {
 				var CanvasH = document.createElement("canvas");
 				CanvasH.width = Canvas.width;
 				CanvasH.height = Canvas.height;
@@ -132,14 +132,14 @@ function DrawCharacter(C, X, Y, Zoom) {
 						DrawEmptyRect(C.FocusGroup.Zone[Z][0] + X, C.FocusGroup.Zone[Z][1] + Y - C.HeightModifier, C.FocusGroup.Zone[Z][2], C.FocusGroup.Zone[Z][3], "cyan");
 			
 			// Draw the character name below herself
-			if ((C.Name != "") && (CurrentModule == "Room")) 
+			if ((C.Name != "") && (CurrentModule == "Room") && (CurrentScreen != "Private")) 
 				if (!Player.IsBlind())
 					DrawText(C.Name, X + 255, Y + 980, "White", "Black");
-			
+
 		}
 
 }
-		
+
 // Draw a zoomed image from a source to a specific canvas
 function DrawImageZoomCanvas(Source, Canvas, SX, SY, SWidth, SHeight, X, Y, Width, Height) {
 	Canvas.drawImage(DrawGetImage(Source), SX, SY, Math.round(SWidth), Math.round(SHeight), X, Y, Width, Height);
@@ -207,7 +207,7 @@ function DrawImageCanvasColorize(Source, Canvas, X, Y, Zoom, HexColor, FullAlpha
 				data[p + 0] = rgbColor.r * trans;
 				data[p + 1] = rgbColor.g * trans;
 				data[p + 2] = rgbColor.b * trans;
-			}		
+			}
 		} else {
 			for(var p = 0, len = data.length; p < len; p+=4) {
 				trans = ((data[p] + data[p + 1] + data[p + 2]) / 383);
@@ -416,32 +416,4 @@ function DrawItemPreview(X, Y, Item) {
 	DrawRect(X, Y, 225, 275, "white");
 	DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.Group.Name + "/Preview/" + Item.Asset.Name + ".png", X + 2, Y + 2, 221, 221);
 	DrawTextFit(Item.Asset.Description, X + 110, Y + 250, 221, "black");
-}
-
-// Draw a regular HTML element at a specific position
-function DrawElementPosition(ElementID, X, Y, W) {
-	
-	// Different positions based on the width/height ratio
-	var Font;
-	var Height;
-	var Left;
-	var Width;
-	var Top;
-	if (DrawScreenWidth <= DrawScreenHeight * 2) {
-		Font = (DrawScreenWidth / 50);
-		Height = Font * 1.15;
-		Left = ((X - (W / 2)) * DrawScreenWidth / 2000);
-		Width = (W * DrawScreenWidth / 2000) - 18;
-		Top = (Y * DrawScreenWidth / 2000) + ((DrawScreenHeight * 2 - DrawScreenWidth) / 4) - (Height / 2);
-	} else {
-		Font = (DrawScreenHeight / 25);
-		Height = Font * 1.15;
-		Left = ((X - (W / 2)) * DrawScreenHeight / 1000) + (DrawScreenWidth - DrawScreenHeight * 2) / 2;
-		Width = (W * DrawScreenHeight / 1000) - 18;
-		Top = (Y * DrawScreenHeight / 1000) - (Height / 2);
-	}
-
-	// Sets the element style
-	document.getElementById(ElementID).setAttribute("style", "font-size:" + Font + "px; font-family:Arial; position:absolute; padding-left:10px; left:" + Left + "px; top:" + Top + "px; width:" + Width + "px; height:" + Height + "px;");
-	
 }

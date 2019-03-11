@@ -1,0 +1,15 @@
+Tag,Content
+BallGagWilling,（她张大嘴巴让你把口球推进去并扣上。）
+BallGagReluctant,（她咬紧牙关想阻止你，|但你还是把口球推了进去并扣上。）
+BallGagRefuse,她拒绝被堵嘴并往后退了一步。|（你需要至少 +2 顺从度来堵上 Amanda 的嘴。）
+CuffsReplaceRope,（你解开绳子让她穿上衣服，|然后紧接着将她铐上了。）
+CuffsWilling,（她低下头坐了下来，|并把手臂伸到背后让你铐起来。）
+CuffsReluctant,（她想推开你但你还是牵制住并铐上了她。）
+CuffsRefuse,她拒绝被铐起来并把你推开。|（你需要至少 +2 顺从度来铐上 Amanda。）
+CuffsUnlock,（你打开了她的手铐，她看起来很感激。）
+RopeReplaceCuffs,（你打开了手铐，她脱下衣服，|然后你把她严严实实地绑了起来。）
+RopeWilling,（她低下头脱掉衣服，|你将瑟瑟发抖的她绑了起来。）
+RopeReluctant,（你和她搏斗了一会来脱下她的衣服，|然后在她的激烈抵抗中将她绑了起来。）
+RopeRefuse,她拒绝被绑起来并把你推开。|（你需要至少 +2 顺从度来把 Amanda 绑起来。）
+CropGagged,（你用鞭子打了 Amanda 几下。|她哭了起来，看起来很讨厌这样。）
+Crop,（你用鞭子打了 Amanda 几下。）|噢！好疼！你怎么这么卑鄙？

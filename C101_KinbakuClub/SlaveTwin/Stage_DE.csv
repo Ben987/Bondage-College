@@ -1,0 +1,182 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,Du bist jetzt|meine Sklavin.,"(Sie zappelt vergebens, als du sie durch den Raum|führst und sie per Halsband an die Wand kettest.)",10,0,1,CanLeave()
+0,0,0,,Wir beide werden|etwas Spaß haben.,(Sie schnaubt und versucht sich vergeblich zu wehren.|Mit dem Hals an der Wand kettest du deinen Spaß fest.),10,-1,0,CanLeave()
+0,0,0,,"Ich bin hier, um dich|vor ihnen zu retten.","(Sie beruhigt sich, als du sie wegführst, zappelt dann|aber wieder, als du ihr das Halsband anlegst.)",10,0,0,CanLeave()
+5,0,0,,Könntest du|mir helfen?,(Sie kichert und schüttelt den Kopf.),5,0,0,HelpMe()
+5,0,0,Common_PlayerGagged,(Ihr deine|Fesseln zeigen.),(Sie kichert und schüttelt den Kopf.),5,0,0,HelpMe()
+9,0,0,,Mit ihr reden.,,20,0,0,
+9,0,0,,Würdest du mich|vielleicht fesseln?,"Na gut, gefesselt bist du auch nicht weniger hilfreich.|(Sie setzt ein paar deiner Sachen gegen dich ein.)",5,0,-1,RandomBondage()
+9,0,0,Common_PlayerGagged,(Deinen Knebel|abnehmen.),,9,0,0,RemoveYourGag()
+10,0,0,TwinGagged,(Ihren Knebel abnehmen.),"(Du nimmst den Knebel ab und sie ruft sofort los.)|Hilf mir hier raus, bevor Jenna wiederkommt, bitte!",10,0,0,RemoveGag()
+10,0,0,!TwinGagged,Mit ihr reden.,"Bitte, du hattest deinen Spaß, kannst du jetzt irgendwie|diese Ketten aufkriegen, bevor Jenna wiederkommt?",20,0,0,LucyCheck()
+10,0,0,Blinded,(Ihre Augenbinde|abnehmen.),"(Du nimmst ihre Augenbinde ab.|Sie blinzelt, als sie sich an das Licht gewöhnt.)",10,0,0,RemoveBlindfold()
+10,0,0,,(Mit ihr spielen.),"(Du musterst sie und überlegst,|was du mit ihr tun könntest.)",200,0,0,
+10,0,0,TwinRestrained,(Ihre Arme befreien.),"(Sobald ihre Arme frei sind, entfernt sie|schnell so viele Fesseln, wie sie kann.)",10,0,0,AlmostFreed()
+10,0,0,TiedLegs,(Ihre Beine losbinden.),"(Du entfernst das Seil von ihren Beinen,|sodass sie einfacher stehen kann.)",10,0,0,UntieLegs()
+10,0,0,!SkirtRemoved,(Ihren Rock|ausziehen.),(Du ziehst ihren Rock herunter|und enthüllst knappe Spitzenunterwäsche.),10,0,0,RemoveSkirt()
+10,0,0,!UniformRemoved,(Ihre Uniform|ausziehen.),"(Du bekommst ihre Uniform nicht ab,|solange ihre Arme gefesselt sind.)",10,0,0,RemoveUniform()
+10,0,0,!TwinRestrained,(Ihre Arme in|Ketten legen.),(Du zwingst ihre Arme nach hinten|und legst ihnen die Ketten an.),10,0,1,ManacleArms()
+10,0,0,!Kneeling,(Ihre Beine in|Ketten legen.),(Du drückst sie auf die Knie und|legst ihren Beinen die Ketten an.),10,0,0,ManacleLegs()
+10,0,0,Kneeling,(Ihre Beine befreien.),(Ihre Beine sind von Robusten Ketten umschlossen.|Ohne richtigen Schlüssel kannst du sie nicht befreien.),10,0,0,
+15,0,0,,(Sie asymmetrisch|fesseln.),"(Du bekommst sie gefesselt.)|Auu, warum musst du mich denn gerade so fesseln?",10,0,0,TieUp(1)
+15,0,0,,(Ihre Ellenbogen|aneinander fesseln.),"(Du bekommst sie gefesselt.)|Auu, warum musst du mich denn gerade so fesseln?",10,0,0,TieUp(2)
+15,0,0,,(Ihre Arme hinter|ihrem Rücken fesseln.),"(Du bekommst sie gefesselt.) So ist es immerhin|besser als die Art, wie ich vorhin gefesselt war.",10,0,0,TieUp(3)
+20,0,0,,(Ihre Fesseln justieren.),"(Du musterst sie und überlegst,|was du mit ihr tun könntest.)",10,0,0,
+20,0,0,,(Mit ihr spielen.),"(Du musterst sie und überlegst,|was du mit ihr tun könntest.)",200,0,0,
+20,0,0,,"Könntest du helfen,|mich zu fesseln?",So kann ich leider nicht viel tun.,20,0,0,RestrainMe()
+20,0,0,Jenna,Was ist denn mit|dir und Jenna?,"Nicht mit mir, es war Heather. Sie hat Jenna einen|Streich gespielt. Angeblich hat sie immer noch Narben.",30,0,0,JennaDone()
+20,0,0,Compliment,Du siehst so|richtig süß aus.,"In einem Raum voller Mädels heißt das nicht viel.|Moment, warum schaust du mich so an?",40,0,0,ComplimentDone()
+20,0,0,YouEnjoyIt,Macht dir das Spaß?,"Nein, ich bin diesem Club nicht beigetreten,|um gefesselt und geknebelt zu werden.",50,0,0,YouEnjoyItDone()
+20,0,0,Underwear,"Schöne Unterwäsche, die|Mädels lieben dich sicher.",Was! Nein. Ich habe einen Freund.,60,0,0,UnderwearDone()
+20,0,0,Boyfriend,Dein Freund steht|also auf Bondage?,"Nicht der jetzige, es war der davor, der mir eine|Menge Kinbaku auf die harte Tour beigebracht hat.",70,0,0,BoyfriendDone()
+20,0,0,TiedLegs,Diese Fesselung steht dir.,Könntest du bitte wenigstens meine Beine losbinden?|Ich kann mich so kaum aufrecht halten.,20,0,0,BondageComplimentDone()
+20,0,0,!TiedLegs,Diese Fesselung steht dir.,"Nein, tut sie nicht, sie ist peinlich. Könntest du jetzt|bitte herausfinden, wie du mich befreien kannst?",20,0,0,BondageComplimentDone()
+21,0,0,PlayerHasArmbinder,Ich brauche Hilfe mit|diesem Monohandschuh.,"Okay. (Sie nimmt den Handschuh, leitet deine|Arme hinein und schnürt ihn fest.) Gut so?",22,0,-1,PlayerArmbinder()
+21,0,0,PlayerHasRope,Könntest du|mich fesseln?,"Okay. (Du ziehst deine Uniform aus und sie|fängt an, dich zu fesseln.) So, schön fest verschnürt.",22,0,-1,PlayerRope()
+21,0,0,,Du kannst mein|ganzes Zeug benutzen.,Okay. (Sie nimmt ein paar deiner Sachen|und setzt sie gegen dich ein.) Gut so?,22,0,-1,RandomBondage()
+21,0,0,,Das war nur Spaß.,"Hör bitte auf herumzualbern und hilf mir, diese|verdammten Ketten irgendwie aufzukriegen.",20,-1,0,NoKidding()
+22,0,0,,"Auu, das|ist zu eng.","Sorry, aber du wolltest es ja.",5,0,-1,FurtherBondage()
+22,0,0,,Das ist klasse.,"Freut mich, dass es dir gefällt.",5,1,-1,FurtherBondage()
+22,0,0,,"Hervorragend, aus dir|wird eine gute Dienerin.","Was! Du wirst mich doch nicht etwa so lassen, oder?",5,-1,1,FurtherBondage()
+22,0,0,,(Herumdrehen.),"(Sie kichert, als du deine neuen Fesseln präsentierst.)",5,0,0,FurtherBondage()
+22,0,0,,(Einen Hofknicks|machen.),Vielleicht solltest lieber du an die|Wand gekettet und mein Spielzeug sein.,5,1,-1,FurtherBondage()
+22,0,0,,Kannst du mich|jetzt freilassen?,Jetzt schon? Das waren doch kaum fünf Sekunden.|Das kannst du ruhig noch etwas länger anbehalten.,5,0,-1,FurtherBondage()
+22,0,0,Common_PlayerGagged,@Dhnkh.,"Gern geschehen, glaube ich.",5,1,0,FurtherBondage()
+22,0,0,Common_PlayerGagged,@Khnnht dh mhch|jhft frhhlhsshn?,Jetzt schon? Das waren doch kaum fünf Sekunden.|Das kannst du ruhig noch etwas länger anbehalten.,5,0,-1,FurtherBondage()
+23,0,0,,(Still warten.),"(Sie nimmt ein Vibrator-Ei und steckt es in deine|Vagina, dann legt sie dir einen Keuschheitsgürtel an.)",24,0,0,EggAndBelt()
+23,0,0,,"Moment, was machst|du denn da?","(Sie nimmt ein Vibrator-Ei und steckt es in deine|Vagina, dann legt sie dir einen Keuschheitsgürtel an.)",24,-1,0,EggAndBelt()
+23,0,0,Common_PlayerGagged,"@Mhmhnt, whs mhchst|dh dhnn dh?","(Sie nimmt ein Vibrator-Ei und steckt es in deine|Vagina, dann legt sie dir einen Keuschheitsgürtel an.)",24,-1,0,EggAndBelt()
+24,0,0,,Warum hast|du das getan?,"Weil es so ziemlich das einzige|ist, das ich jetzt tun kann.",5,0,0,CanLeave()
+24,0,0,Common_PlayerGagged,@Whrhm hhst dh dhs ghthn?,"Weil es so ziemlich das einzige|ist, das ich jetzt tun kann.",5,0,0,CanLeave()
+24,0,0,,Nimm das sofort weg.,"Tut mir leid, das geht nicht so einfach.",5,0,1,CanLeave()
+24,0,0,Common_PlayerGagged,@Nhmm dhs shfhrt whg.,"Tut mir leid, das geht nicht so einfach.",5,0,1,CanLeave()
+24,0,0,,(Einen Hofknicks|machen.),Vielleicht solltest lieber du an die|Wand gekettet und mein Spielzeug sein.,5,1,-1,CanLeave()
+24,0,0,,"Danke, Herrin.","Ich bin nicht deine Herrin. Es gibt aber sicher|Andere, die dich liebend gern als Haustier hätten.",5,0,-1,CanLeave()
+24,0,0,Common_PlayerGagged,"@Dhnkh, Hhrrhn.","Ich bin nicht deine Herrin. Es gibt aber sicher|Andere, die dich liebend gern als Haustier hätten.",5,0,-1,CanLeave()
+24,0,0,,(Dich von ihr|entfernen.),,5,0,0,Leave()
+30,0,0,,Was hat Heather getan?,"Wir wissen es nicht, aber ich glaube, Heather|hat Jenna gefesselt, als sonst niemand da war.",31,0,0,
+30,0,0,,Jenna hat's|bestimmt verdient.,"Vielleicht. Jenna ist manchmal streng, aber von Heather|gefesselt zu sein, mit sonst niemandem in der Nähe... ",31,0,1,
+31,0,0,,Und Jenna will es|an dir auslassen?,"Die Meisten im Club können uns nicht ausein-|anderhalten. Jenna könnte denken, ich sei Heather.",32,0,0,
+31,0,0,,Vielleicht sollte Jenna|dich bestrafen.,"Aber ich bin Lucy und es war doch|Heather, die ihr das angetan hat.",32,-1,1,
+31,0,0,,"Ich könnte ihr sagen,|dass du es nicht warst.","Das könnte helfen, aber ich glaube|nicht, dass sie ein Risiko eingehen wird.",32,1,0,
+32,0,0,,Vielleicht bist du Heather|und verdienst eine Strafe.,"Nein, bitte, du musst mir glauben, ich bin Lucy.",33,-1,1,
+32,0,0,,"Kannst du beweisen,|dass du Lucy bist?","Nicht ohne Weiteres, Heather ist sehr gut darin, mich|zu imitieren. Sie trägt sogar die gleiche Unterwäsche.",33,0,0,
+32,0,0,,Wir sollten|Heather entlarven.,"Das wird nicht einfach, sie würde ihre Identität erst|enthüllen, wenn du nichts mehr gegen sie tun kannst.",33,1,0,
+33,0,0,,Ich hole den Schlüssel.,"Oh, danke, bitte beeil dich.",20,1,0,
+33,0,0,,Ich lasse Jenna über dein|Schicksal entscheiden.,"Nein, bitte, du musst mir helfen, zu entkommen.",20,0,1,
+33,0,0,,Jenna wird meine|Sklavin nicht anrühren.,"Du verstehst das nicht. Diese Ketten machen mich zu|Jennas Sklavin, es sei denn, du hast den Schlüssel.",20,-1,1,
+33,0,0,,Ich zwinge Heather|zum Geständnis.,"Das wäre toll. Moment, dir ist aber klar, dass meine|Schwester etwas gestehen muss, nicht ich?",20,1,1,
+40,0,0,,"Komm schon, du|bist ein Hingucker.","Na ja, ich schätze, mein Freund findet das auch,|aber nicht unbedingt in Fesseln.",41,1,0,MentionedBoyfriend()
+40,0,0,,Kannst du nicht einfach ein|Kompliment annehmen?,"Wenn das ein Kompliment sein soll, ist es nicht gerade|wirksam, solange es nicht von meinem Freund kommt.",41,0,0,MentionedBoyfriend()
+40,0,1,,Verheimliche nicht deine|Gefühle für mich.,"Was? Nein, alle meine Gefühle|richten sich an meinen Freund.",41,0,1,MentionedBoyfriend()
+40,0,0,,"Ach, nichts,|ich... äh... wollte nur....","Vergiss es, ich habe einen Freund.",20,0,-1,MentionedBoyfriend()
+41,0,0,,Hast du denn gar keine|Gefühle für Mädchen?,Nicht diese Art von Gefühlen.,20,0,0,
+41,0,0,,Du bist mir gerade|wehrlos ausgesetzt.,"Mag sein, dass ich wehrlos bin, aber ich teile|keine der Gefühle, die du offenbar für mich hast.",20,-1,1,
+41,0,0,,Er hat dich bestimmt|geknebelt am liebsten.,"Nein, wir haben einfach eine ganz normale Beziehung.",20,-1,0,
+41,0,0,,Er würde dich|jetzt so anhimmeln.,Das weiß ich nicht so genau.,20,1,1,
+50,0,0,,Warum bist du|dann beigetreten?,"Ich weiß rein zufällig einiges über Seiltechniken,|also hat Jenna mich zum Beitritt überredet.",51,0,0,
+50,0,0,,Also fesselst du|gern Mädchen?,"Nicht wirklich, Jenna hat mich zum Beitritt überredet,|damit ich mein Wissen über Seiltechniken weitergebe.",51,0,0,
+50,0,0,,"Du würdest nicht hier|bleiben, wenn das stimmt.","Nein, so ist es nicht. Ich komme nur her,|um Anderen mit Seiltechniken zu helfen.",51,0,1,
+51,0,0,,"Du hilfst schon, indem|wir an dir üben können.","Ich sollte es eigentlich nur Leuten erklären,|nicht auch der Übungsdummy sein.",20,0,1,
+51,0,0,,Du könntest sie|an mir demonstrieren.,Nicht jetzt. Selbst mit freien Händen ist das|an dieser kurzen Leine etwas unbequem.,52,0,-1,
+51,0,0,,Würdest du mir auch neue|Techniken beibringen?,"Ja, wenn du mich aus diesen|verdammten Ketten herausholst.",52,1,0,
+52,0,0,,Du kannst es auch|so demonstrieren.,"Nein, bitte, manche Fesselmethoden sind wirklich unbe-|haglich, wenn man sich dabei nicht frei bewegen kann.",20,0,-1,
+52,0,0,,"Wenn ich dich befreie,|bringst du mir was bei.","Ja, was du willst, wenn du jetzt|diese Ketten aufschließen kannst.",20,0,1,
+52,0,0,,Dann sollte ich dich|besser befreien.,"Ja, dann helfe ich dir.",20,1,0,
+60,0,0,,Du kommst darin in|eine Mädchenschule.,Mein Freund geht auf ein gemischtes College.|Ich halte seine Gedanken gern den ganzen Tag bei mir.,20,0,0,
+60,0,0,,"Also, ich finde, du siehst|darin umwerfend aus.","Ähm, danke. Es ist aber ziemlich peinlich,|so zur Schau gestellt zu werden.",20,1,1,
+60,0,0,,Er steht wohl auf Nutten.,"NEIN, ich bin keine Nutte. Es ist zwar sexy,|aber nur für seine Augen bestimmt.",20,-1,1,
+70,0,0,,Fesselt dich dein|jetziger Freund auch?,"Nein, aber er lässt mich ab und zu Kinbaku an ihm|üben, wenn ich etwas Süßes anziehe und ihn anmache.",71,0,0,
+70,0,0,,Eine Menge? Es muss|dir sehr gefallen haben.,"Nicht wirklich. Ich tat es ihm zuliebe,|aber es ist außer Kontrolle geraten.",73,0,0,
+71,0,0,,Also magst|du es doch.,"Vielleicht ein bisschen. Es fühlt sich gut an, die Hosen|anzuhaben, auch wenn ich dabei einen Rock trage.",20,1,0,
+71,0,0,,Mich könntest du auch mit|etwas Süßem anmachen.,"Du bist nicht mein Freund, aber ich würde|dich fesseln und knebeln, damit du Ruhe gibst.",20,0,-1,
+73,0,0,,Was ist passiert?,Ich will nicht darüber reden.,74,0,0,
+73,0,0,,Hat es dir irgendwann|zu viel Spaß gemacht?,"Nein, wobei das vielleicht besser gewesen wäre.|Ich will nicht darüber reden.",74,-1,0,
+74,0,0,,"Okay, ich zwinge dich|nicht zu reden.","Danke, würdest du also bitte einen|Weg finden, mich zu befreien?",20,1,0,
+74,0,0,,Och bitte. Ich lasse mich|auch von dir fesseln.,"Nein, aber ich könnte dich fesseln und knebeln,|damit du mir nicht mehr auf den Senkel gehst.",20,0,-1,CanTellMore()
+74,0,0,,Soll ich es etwa aus|dir herauskitzeln?,"Bitte hör auf, ich möchte wirklich|nicht mit dir darüber reden.",20,-1,-1,CanTellMore()
+74,3,0,,Du kannst es einer|Freundin ruhig sagen.,"Entschuldige, wir sind keine so engen Freunde und ich|möchte wirklich nicht, dass darüber getratscht wird.",20,1,0,CanTellMore()
+75,0,0,,"Ich verspreche, es keiner|Menschenseele zu sagen.",Na gut. (Sie holt tief Luft.) Heather hat sich|als mich ausgegeben und mit ihm geflirtet.,76,0,0,
+75,0,0,,Ich verspreche|gar nichts.,Dann brauchst du auch nichts zu erfahren.,20,0,0,
+75,0,0,!TwinRestrained,Ich schwöre es mit|dem kleinen Finger.,(Sie lacht und schüttelt deinen Kleinen Finger.) Heather|hat sich als mich ausgegeben und mit ihm geflirtet.,76,1,-1,
+75,0,0,,"Jetzt mach schon,|raus damit.",Vergiss es. Die Leute scheren sich|offenbar nur noch um Klatsch.,20,-1,0,
+76,0,0,,Das geht ja gar nicht.|Was dachte er darüber?,"Er dachte einfach, sie wäre ich und wirklich willig.|Er zog sie aus, fesselte sie und nahm seine Sachen ab.",77,1,0,
+76,0,0,,"Ich dachte, Zwillinge|wären sowas gewohnt?","Ja, aber er dachte, sie wäre ich und wirklich willig.|Er zog sie aus, fesselte sie und nahm seine Sachen ab.",77,0,0,
+76,0,0,,Du hättest bei|ihm sein sollen.,"Man kann nicht andauernd bei jemandem sein. Er zog|Heather aus, fesselte sie und nahm seine Sachen ab.",77,-1,0,
+77,0,0,,Sie wollte mit deinem|Freund Fesselsex haben?,"Nein, sie hat nur herumgealbert, aber er knebelte sie|mit ihrem eigenen Höschen und ignorierte ihr Geschrei.",78,0,0,
+77,0,0,,Das geschieht|ihr wohl recht.,"Sie ist nervig, aber sie hat nicht verdient, dass er sie|mit dem eigenen Höschen knebelt, obwohl sie schreit.",78,-1,1,
+77,0,0,,Wie hat er|sie gefesselt?,"Wie einen Ball, wenn du das wissen musst. Als sie|anfing zu schreien, knebelte er sie mit ihrem Höschen.",78,-1,0,
+78,0,0,,"Oh nein, er hat deine|Schwester vergewaltigt?",Zum Glück nicht. Ich habe den Lärm gehört|und bin gerade noch rechtzeitig aufgetaucht.,79,0,0,
+78,0,0,,Hat er das mit|dir auch gemacht?,"Wir haben versaute Kamasutra-Sachen probiert,|aber nie so etwas. Ich kam gerade noch rechtzeitig.",79,0,1,
+78,0,0,,Das klingt nach Spaß.,"Für dich vielleicht, für Heather ganz bestimmt nicht.|Ich hörte den Lärm und kam gerade noch rechtzeitig.",79,-1,-1,
+79,0,0,,Also hast du|ihn sausen lassen.,"Ich hätte ihn auch anzeigen sollen. Heather war klar|in Panik und er dachte, er könne einfach weitermachen.",80,0,0,
+79,0,0,,"Wusste er, dass du eine|Zwillingsschwester hast?","Ja. Ich glaube, er wusste sogar, dass es Heather war,|die er fast... Ich hätte ihn anzeigen sollen.",80,0,0,
+79,0,0,,"Ein Glück,|dass du da warst.","Ich schätze schon. Er lachte einfach nur, bis ich drohte,|ihn anzuzeigen. Das hätte ich vielleicht tun sollen.",80,1,0,
+79,0,0,,Du hättest|mitmachen können.,"Nicht witzig. Ich glaube, er hat sogar mehr Seile auf-|gehoben, als ich reinkam. Ich hätte ihn anzeigen sollen.",80,-2,0,
+80,0,0,,Geht es|Heather jetzt gut?,"Heather ist immer noch Heather, aber immerhin|hält sie sich jetzt aus meinen Beziehungen raus.",20,1,0,
+80,0,0,,Ist mit dir|alles in Ordnung?,"Ja, jetzt schon. Ich schätze, Heather|hat mich unbeabsichtigt vor ihm gerettet.",20,1,0,
+80,0,0,,"OMG, das ist ein Knüller.","Arrgh, du rücksichtslose Kuh! Wenn du das|irgendwem erzählst, reiße ich dir die Kehle auf.",20,-10,-1,
+80,0,0,,Ich bin ja jetzt da.|Wir können ihn anzeigen.,"Danke. Ich bin mir aber nicht sicher,|ich muss darüber nachdenken.",20,1,0,
+100,0,0,,(Ihre Fesseln justieren.),"(Du musterst sie und überlegst,|was du mit ihr tun könntest.)",10,0,0,
+100,0,0,,(Mit ihr spielen.),"(Du musterst sie und überlegst,|was du mit ihr tun könntest.)",200,0,0,
+100,0,0,,"Könntest du helfen,|mich zu fesseln?",So kann ich leider nicht viel tun.,20,0,0,RestrainMe()
+100,0,0,Jenna,Was ist denn mit|dir und Jenna?,"Ach, nichts. Sie dachte, ich wäre Lucy, und ich fragte,|ob ich eine neue Kinbaku-Technik an ihr testen kann.",110,0,0,
+100,0,0,Compliment,Du siehst so|richtig süß aus.,"Wir sollten mal sehen, wie süß du in Ketten bist.",120,0,0,ComplimentDone()
+100,0,0,YouEnjoyIt,Macht dir das Spaß?,"Auf keinen Fall, ich bin kein|Haustier, das man an der Leine hält.",130,0,0,YouEnjoyItDone()
+100,0,0,Underwear,"Schöne Unterwäsche, die|Mädels lieben dich sicher.","Was? Nein, das ist eben so, wenn man eine Schwester|imitiert, die wohl eine Schwäche für versaute Jungs hat.",140,0,0,UnderwearDone()
+100,0,0,TiedLegs,Diese Fesselung steht dir.,Könntest du bitte wenigstens meine Beine losbinden?|Ich kann mich so kaum aufrecht halten.,100,0,0,BondageComplimentDone()
+110,5,0,,Was hast du also getan?,"Zu Beginn genau das, was ich sagte. Ich habe eine|Armfesselung im chinesischen Stil an ihr ausprobiert.",111,0,0,JennaDone()
+110,5,0,,Klasse. Sie hat's|bestimmt verdient.,"Verdient oder nicht, sie hat es bekommen. Ich|begann mit einer Armfesselung im chinesischen Stil.",111,1,0,JennaDone()
+110,0,0,,"Wenn es nichts ist, wa-|rum hast du dann Angst?","Hey, es war nur ein Scherz, aber Jenna ist so still,|was das angeht. Sie muss etwas vorhaben.",110,-1,1,HeatherScared()
+110,0,0,,Würdest du mir|mehr verraten?,"Wohl kaum, der ganze Club kann|gerne wegen der Details rätseln.",110,0,0,
+111,0,0,,Das hört sich|nicht nach viel an.,"Es hat gereicht, sie am Befreien zu hindern,|bis nur noch wir beide im Club übrig waren.",112,0,0,
+111,0,0,,Was für eine|Methode ist das?,"Ich glaube, Lucy nennt es die Fünf Blumen. Jenna war|darin hilflos, bis nur noch wir beide im Club waren.",112,0,0,
+111,0,3,,"Komm schon, her mit|den leckeren Details.","Okay, ich hatte sie gefesselt und geknebelt und dann|mit einem Analhaken auf Zehenspitzen gezwungen.",114,1,1,
+111,0,0,,"Hmmm, chinesischer Stil...","Hey, pass auf, sonst erlebst du das am eigenen Körper.|Also, es waren nur noch wir beide im Clubraum übrig.",112,0,-1,
+112,0,0,,"Ohh, und dann?","Ich fügte mehr Seile hinzu, knebelte sie,|und dann zeigte ich ihr den Analhaken.",113,1,0,
+112,0,0,,Würdest du mir diese|Technik zeigen?,"Später vielleicht, ich könnte dich fesseln und knebeln,|und dann auch denselben Analhaken an dir benutzen.",113,0,-1,
+112,0,0,,"Wenn das alles wäre, wür-|dest du nicht so schwitzen.","Nein, die Seile und der Knebel machten ihr nichts aus.|Es war der Analhaken, auf den sie nicht so scharf war.",113,0,1,
+113,0,0,,"Autsch, das klingt|schmerzhaft.","Bei Gelegenheit könnte ich dich mal damit auf Zehen-|spitzen halten, dann hast du auch keine Zweifel mehr.",114,0,-1,
+113,0,0,,"Cool, hast du den|Haken benutzt?","Jep, sie hatte keine Wahl. Ich ließ ihn von der Decke|hängen und zog sie damit auf ihre Zehenspitzen.",114,1,0,
+113,0,0,,"War sie damit einver-|standen, den zu benutzen?","Bist du etwa ihre Mutter? Wohl kaum, aber das hielt|mich nicht davon ab, sie auf Zehenspitzen zu heben.",114,-1,0,
+114,0,0,,Genau das könnte|ich jetzt mit dir machen.,"Ähm, es ist wohl ganz gut, dass ich den Haken und|meine anderen Sachen heute nicht dabei habe.",115,0,1,
+114,0,0,,Wie lange hast du sie|so hängen lassen?,"Eine Stunde vielleicht. Die Zeit verfliegt, wenn man|Spaß mit Nippelklemmen und einer Gerte hat.",115,0,0,
+114,0,0,,Hatte sie Spaß daran?,"Ich konnte ihr Kreischen nicht verstehen. Damit fing sie|an, als ich die Nippelklemmen und die Gerte benutzte.",115,0,0,
+114,0,0,,Das hätte ich zu gern mit|eigenen Augen gesehen.,"Ihr zuzusehen hat Spaß gemacht, aber die Nippelklem-|men und die Gerte haben den Spaß noch vergrößert.",115,1,0,
+114,0,0,,"Ich hoffe, sie|konnte sich befreien.","Kaum, die Seile und der Haken hielten sie genau da,|wo sie für die Nippelklemmen und die Gerte sein sollte.",115,-1,0,
+115,0,0,,Hast du sie so|zurückgelassen?,"Fast, aber ich hab die Seile gelockert, damit sie sich be-|freien konnte, während ich mit meinem Kram davonlief.",116,0,0,
+115,0,0,,Wie hat sie sich|daraus befreit?,"Gar nicht. Ich nahm mein Zeug mitsamt Haken,|lockerte die Seile für sie ein wenig und rannte davon.",116,0,0,
+115,0,0,,"Ich hoffe, du hast|sie nicht so gelassen.",Was interessiert es dich? Vielleicht|sollte ich dich irgendwann mal so lassen.,116,-1,-1,
+115,0,0,,Nippelklemmen könnte|ich gut gebrauchen.,"Ja, der Kauf war es wert, nur um Jennas Blick zu|sehen. Ich musste sie aber entkommen lassen.",116,1,0,
+116,0,0,,Ich wäre zu gern|dabei gewesen.,"Du könntest Jenna auch reinlegen. Bring sie dazu, dir|den Schlüssel zu geben, und hol mich hier endlich raus.",100,1,0,
+116,0,0,,Warum hast du|ihr das angetan?,"Außer, um ihr diesen lästig selbstgefälligen|Blick aus dem Gesicht zu wischen, warum nicht?",100,0,0,
+116,0,0,,Und jetzt bist|du ihre Sklavin.,"Diese verdammten Ketten, kannst du ihr bitte|den Schlüssel abnehmen, bevor sie wiederkommt?",100,0,1,
+116,0,0,,"Es war dumm von dir,|das mit Jenna zu machen.","Na und? Ich mache gern das Beste aus meinen|wenigen Gelegenheiten, etwas Spaß zu haben.",100,-1,0,
+120,0,0,,"Nee, du bist viel süßer.","Ich möchte dir nicht die Gelegenheit rauben,|nur weil du nicht so süß bist wie ich.",100,1,-1,
+120,0,0,,Die Jungs werden|dich so einfach lieben.,NEIN! Was zur Hölle hast du gehört?|Halt einfach den Mund.,100,-2,1,
+120,0,0,,"Wehrlos, süß, und auf-|müpfig, wie hinreißend.","Leck mich. Du hättest keinen Grund zu Grinsen,|wenn ich nicht an die Wand gekettet wäre.",100,-1,0,
+130,0,0,,"Reg dich ab, ich|kann dich befreien.","Klar, hol dir den Schlüssel von|Jenna, dann rege ich mich ab.",100,1,0,
+130,0,0,,Aber du bist jetzt|mein Haustier.,Träum weiter. In diesen Ketten hat sowieso|Jenna einen höheren Anspruch als du.,100,-1,1,
+130,0,0,,"Ach komm, du bist so über-|zeugend als Maid in Nöten.",Herumhängen und auf Rettung warten|ist auch nicht gerade mein Ding.,100,0,1,
+140,0,0,,Sie trägt die|gleiche Unterwäsche?,"Ja, aber ich glaube kaum,|dass sie dich nachsehen lässt.",100,0,0,
+140,0,0,,Ist das der einzige Grund?,"Wer weiß? Vielleicht trägt sie das Zeug auch,|um zu sehen, wie weit ich gehen würde.",100,0,1,
+140,0,0,,An einem versauten Freund|ist doch nichts verkehrt.,Meinst du? Ein paar davon sind richtig gestört.,100,-1,0,
+140,0,0,,"Ihr seid gut darin,|gleich auszusehen.","Ja, sogar unsere Mutter verzweifelt daran.",100,1,0,
+200,0,0,,(Ihre Fesseln justieren.),"(Du musterst sie und überlegst,|was du mit ihr tun könntest.)",10,0,0,
+200,0,0,!TwinGagged,Mit ihr reden.,"Bitte, du hattest deinen Spaß, kannst du jetzt irgendwie|diese Ketten aufkriegen, bevor Jenna wiederkommt?",20,0,0,LucyCheck()
+200,0,0,NeitherGagged,(Sie küssen.),"(Sie drückt dich von sich weg.)|Hey, du bist nicht mein Typ.",200,0,0,Kiss()
+200,0,0,,(Sie kitzeln.),"(Sie drückt deine Hände von sich weg.)|Nein, nicht. Lass mich in Ruhe.",200,0,0,Tickle()
+200,0,0,,(Ihr auf den|Hintern hauen.),(Sie drückt deine Hände von sich weg.)|Lass mich in Ruhe.,200,0,0,Spank()
+200,0,0,UniformRemoved,(Mit ihren Brüsten spielen.),"(Sie drückt dich von sich weg.)|Ich bin keine Lesbe, lass mich in Ruhe.",200,0,0,PlayBreasts()
+200,0,0,SkirtOutOfWay,(Sie befriedigen.),"(Sie drückt dich von sich weg.)|Ich bin keine Lesbe, das ist nicht drin.",200,0,0,Masturbate()
+210,0,0,,"Komm schon, das|wird dir gefallen.","Nhhn, ghh whg.",200,0,0,
+210,0,0,BoyfriendAlreadyMentioned,"Stell dir vor, ich bin|dein geliebter Freund.",(Sie seufzt und wimmert zweifelnd.),200,0,0,PretendBoyfriend()
+210,0,0,,(Sie weiter befriedigen.),"(Der Knebel unterdrückt ihre Schreie kaum,|als sie wie verrückt den Kopf schüttelt.)",200,-1,0,Bully()
+210,0,0,,(Ihren Hintern hauen|und sie befriedigen.),"(Der Knebel unterdrückt ihre Schreie kaum,|als sie vor Wut und Schmerz aufheult.)",200,-1,1,Bully()
+300,0,0,,"Ja, hilf mir hier raus.",(Sie entfernt deine Fesseln.),20,0,0,HelpPlayer()
+300,0,0,,"Nein, das ist es nicht.","Oh, wobei brauchst du denn dann meine Hilfe?",310,0,0,
+300,0,0,Common_PlayerGagged,(Nicken.),(Sie entfernt deine Fesseln.),20,0,0,HelpPlayer()
+300,0,0,Common_PlayerGagged,(Den Kopf schütteln.),"Oh, wobei brauchst du denn dann meine Hilfe?",310,0,0,
+310,0,0,,Würdest du mich|bitte knebeln?,"Erst brauchen wir etwas,|womit wir dich knebeln können.",5,0,-1,RandomGag()
+310,0,0,,Mich juckt da was und|es muss gerubbelt werden.,"Wo denn? Oh nein, dieses Zeug mache ich nicht|mit Mädchen. Ich habe einen Freund, weißt du.",5,-1,0,
+310,0,0,Common_PlayerGagged,(Auf deinen Intim-|bereich gucken.),"Was ist denn? Oh nein, dieses Zeug mache ich nicht|mit Mädchen. Ich habe einen Freund, weißt du.",5,-1,0,

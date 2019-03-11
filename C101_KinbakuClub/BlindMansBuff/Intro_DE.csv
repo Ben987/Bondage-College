@@ -1,0 +1,14 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,"Hey, Club, sieht aus, als ob|die Neue Blinde Kuh spielen will.",BlindMansBuff.jpg
+5,0,0,,"(Ohne etwas sehen zu können, bleiben dir|nur die Geräusche des belebten Clubraums.)",BlindMansBuff.jpg
+7,0,0,,,BlindMansBuff.jpg
+10,0,0,,"Bist du bereit, weiterzuspielen?",BlindMansBuff.jpg
+15,0,0,,"(Das helle Licht blendet deine Augen,|während sie sich an den Raum gewöhnen.)",TooBright.JPG
+20,0,0,,(Du bist umgefallen und auf dem Boden gelandet.),BlindMansBuff.jpg
+25,0,0,,Gibst du etwa schon auf?,BlindMansBuff.jpg
+30,0,0,,,BlindMansBuff.jpg
+40,0,0,,,BlindMansBuff.jpg
+100,0,0,,,BlindMansBuff.jpg
+110,0,0,,,BlindMansBuff.jpg
+120,0,0,,,BlindMansBuff.jpg
+200,0,0,,,BlindMansBuff.jpg

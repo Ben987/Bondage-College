@@ -1,0 +1,36 @@
+Tag,Content
+Touching,"(Deine ausgestreckten Hände berühren etwas,|das sich wie ein Shirt und ein Arm anfühlt.)"
+Feeling,(Du hörst ein Kichern und spürst|jemanden an dir vorbeisausen.)
+Wrestle,(Du packst sie und ringst krampfhaft mit ihr. Jemand|anders reicht dir Handschellen und hilft beim Fang.)
+Pin,"(Du schubst und klemmst sie fest gegen etwas.|Du fühlst, wie die Anderen dem Fang zur Hilfe eilen.)"
+Dodged,(Sie weicht deinem Fangversuch aus|und du fällst jämmerlich auf den Boden.)
+Marco0,Polo.|(Das kam von der anderen Seite des Raums.)
+Marco1,"Polo.|(Es klang, als käme es gleich von rechts neben dir.)"
+Marco2,Polo.|(Das war jemand dicht hinter dir.)
+Marco3,"Polo. (Das kam definitiv von vorne,|aber ein paar Schritte entfernt.)"
+Listen0,"(Du hörst, wie links von dir jemand kichert|und vor dir jemand einen Tisch anrempelt.)"
+Listen1,"(Eines der Mädchen schreit Polo in|dein rechtes Ohr, bevor sie davonläuft.)"
+Listen2,(Vor dir und leicht rechts|schiebt jemand Tische umher.)
+Listen3,"(Eine unheimliche Stille füllt den Raum, unterbrochen|von hörbaren Zehenspitzen und Gelächter.)"
+Turn0,(Du drehst dich und machst einen Schritt.)
+Turn1,"(Du drehst dich und bemerkst einen Stuhl im Weg,|den du vorsichtig umrundest.)"
+Turn2,"(Plötzliche Töne lassen dich schnell herumwirbeln.|Nichts, aber wie weit hast du dich gerade gedreht?)"
+Turn3,"(Du drehst dich vorsichtig um, überzeugt, dass|dort ein Tisch stehen sollte, aber offenbar doch nicht.)"
+Forwards0,(Mit einem selbstbewussten Schritt nach vorne|polterst du geradewegs in ein paar Tische.)
+Forwards1,"(Als du vorwärts gehst, ruft hinter dir jemand.)|Nein, hier sind wir."
+Forwards2,"(Als du vorwärts gehst, siehst du unter der Augenbinde|einen Stuhl. Links ruft jemand.) Mist, danebengelaufen."
+Forwards3,"(Da ist nichts, als du vorwärts gehst.)"
+Backwards0,(Vorsichtig rückwärts schleichend findest du nichts.)
+Backwards1,"(Du hörst etwas und drehst dich schnell um,|findest aber nichts als Luft.)"
+Backwards2,"(Ein Tisch steht dir im Weg und knarzt,|als du dich daran herumtastest.)"
+Backwards3,"Psst, sie hört uns noch. (War das eine Gruppe|von Mädchen links oder eher direkt vor dir?)"
+Lost0,(Du stolperst über einen Stuhl und fällst.)|Wieder mal daneben. Gebt ihr ein Handicap.
+Lost1,"(Ein Schubs lässt dich über jemand hinter dir hockendes|stolpern.) Sie ist am Boden, das macht ein Handicap."
+Lost2,"(Als du gegen einen Tisch läufst, stößt dich jemand zu|Boden.) Wir haben wohl die Handicap-Phase erreicht."
+Lost3,(Vor Verwirrung stolperst du über deine eigenen|Füße und landest am Boden.) Das gibt ein Handicap.
+Cuffed,"(Als du aufstehst, packt jemand deine Arme, legt dir|hinter dem Rücken Handschellen an und läuft davon.)"
+StealItems,"(Eine Gruppe hält dich fest, sucht dich nach Gegen-|ständen ab und läuft damit davon, bevor du aufstehst.)"
+Gagged,"(Als du aufstehst, drückt dir jemand einen Ballknebel|in den Mund, schnallt ihn fest und rennt davon.)"
+ShutUp,"Ach, halt die Klappe. (Ein Ballknebel wird dir in den|Mund gerammt und festgeschnallt.) Weitermachen."
+GameOver,"Pech gehabt, das war dein letzter Versuch. Du kannst|es jederzeit wiederholen, aber erst kommt die Strafe."
+Helped,(Jemand entfernt deinen Knebel.)|Du wolltest was sagen?

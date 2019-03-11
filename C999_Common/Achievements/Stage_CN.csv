@@ -1,0 +1,17 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,[主菜单],,0,0,0,MainMenu()
+0,0,0,,[下一页],,10,0,0,
+0,0,0,!LearningTheRopes,???,在上课前得到一些绳子。,0,0,0,
+0,0,0,LearningTheRopes,Learning the ropes,从 Sidney 的包里偷走绳子。,0,0,0,ShowImage('C001_BeforeClass/Bag/BagOpen.jpg')
+0,0,0,!MatchMadeInHell,???,在上课前强迫两个互相不喜欢的人接吻。,0,0,0,
+0,0,0,MatchMadeInHell,Match made in hell,在上课前强迫 Amanda 和 Sidney 接吻。,0,0,0,ShowImage('C001_BeforeClass/Amanda/AmandaBondageKiss.jpg')
+0,0,0,!HappyEaster,???,找到一只隐藏的蛋。,0,0,0,
+0,0,0,HappyEaster,Happy Easter!,在美术课中找到一只隐藏的“蛋”。,0,0,0,ShowImage('C004_ArtClass/HiddenEgg/HiddenEgg.jpg')
+0,0,0,!BeggarsChoosers,???,打破你的牢笼，只为将自己锁在另一副刑具里。,0,0,0,
+0,0,0,BeggarsChoosers,Beggars can be choosers,打破你的牢笼，只为将自己锁在另一副刑具里。,0,0,0,ShowImage('C006_Isolation/Horse/HorseRide.jpg')
+0,0,0,!SpeedrunningBitch,???,在一分钟内完成 Sidney 和 Jennifer 的比赛。,0,0,0,
+0,0,0,SpeedrunningBitch,Speedrunning Bitch,在一分钟内完成 Sidney 和 Jennifer 的比赛。,0,0,0,ShowImage('C999_Common/Races/Actors/Player/ChastityBelt_Rope_Collar_TapeGag_Dog_Move_2.png')
+10,0,0,,[上一页],,0,0,0,
+10,0,0,,[下一页],,20,0,0,
+20,0,0,,[上一页],,10,0,0,
+20,0,0,,[主菜单],,0,0,0,MainMenu()

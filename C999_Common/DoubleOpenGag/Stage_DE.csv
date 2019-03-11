@@ -1,6 +1,6 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Knebel untersuchen.)|(1 Minute),Dieser Knebel verbindet die offenen Münder zweier|Leute. Sie müssen nonverbal kommunizieren.,0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Selbst knebeln.)|(1 Minute),Dun schnallst das Mundstück mit den Riemen fest.|Du brauchst aber noch jemanden zum Mitspielen.,10,0,0,SelfGag()
-10,0,0,,(Auf Mundstück kauen.)|(1 Minute),"Du versuchst auf den Knebel zu kauen, tust|dir am Metall aber nur die Zähne weh.",10,0,0,
-10,0,0,,(Mundstück ausspucken.)|(1 Minute),"Du versuchst das Mundstück auszuspucken, aber die|Riemen halten es fest. Du brauchst deine Hände.",10,0,0,
-10,0,0,Common_PlayerNotRestrained,(Knebel abnehmen.)|(1 Minute),"Du löst die Reimen, entfernst das|Mundstück und kannst wieder vernünftig reden.",0,0,0,SelfUngag()
+0,0,0,,(Den Knebel|untersuchen.)ADD_MINUTES:1,Dieser Knebel verbindet die offenen Münder zweier|Leute. Sie müssen nonverbal kommunizieren.,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Dich selbst knebeln.)ADD_MINUTES:1,Du schnallst das Mundstück mit den Riemen fest.|Du brauchst aber noch jemanden zum Mitspielen.,10,0,0,SelfGag()
+10,0,0,,(Auf dem Mundstück|herumkauen.)ADD_MINUTES:1,"Du versuchst auf den Knebel zu kauen, tust|dir am Metall aber nur die Zähne weh.",10,0,0,
+10,0,0,,(Das Mundstück|ausspucken.)ADD_MINUTES:1,"Du versuchst das Mundstück auszuspucken, aber die|Riemen halten es fest. Du brauchst deine Hände.",10,0,0,
+10,0,0,Common_PlayerNotRestrained,(Den Knebel abnehmen.)ADD_MINUTES:1,"Du löst die Riemen, entfernst das|Mundstück und kannst wieder vernünftig reden.",0,0,0,SelfUngag()

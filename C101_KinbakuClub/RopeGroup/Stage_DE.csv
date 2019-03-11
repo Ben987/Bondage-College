@@ -1,0 +1,559 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,"Ja, warum die Frage?","Nur so, wir scheinen heute|viele neue Gesichter zu haben.",10,0,1,
+0,0,0,,Jep. Ein neuer Anfang|mit neuen Möglichkeiten.,"Super, hier findest du ganz sicher neue Möglichkeiten.",10,1,0,
+0,0,0,,Ja. Das hier ist|alles neu für mich.,"Dann sollten wir dafür sorgen, dass du eine|vernünftige Einführung in Kinbaku bekommst.",10,0,-1,
+01234,0,0,,(Abkürzung nur|für Entwickler.),,600,0,0,
+10,0,0,,"Ich bin COMMON_PLAYERNAME,|sehr erfreut, Miss...","Ich bin Amelia, das ist Charlotte und die Gefesselten|und Geknebelten sind die Zwillinge Heather und Lucy.",100,1,-1,Introduced()
+10,0,0,,Nenn mich COMMON_PLAYERNAME.,Du kannst mich Amelia nennen. Das ist Charlotte und|die Gefesselten sind die Zwillinge Heather und Lucy,100,0,0,Introduced()
+10,0,0,,COMMON_PLAYERNAME der Name.|Vergiss ihn ja nicht.,"Okay. Ich bin Amelia, das ist Charlotte und die|Gefesselten sind die Zwillinge Heather und Lucy.",100,0,1,Introduced()
+50,0,0,,Kannst du mir|bitte helfen?,"Klar, ich kann nachsehen, ob diese Seile auch fest sind.|(Amelia prüft, ob deine Fesseln eng genug sitzen.)",50,,,
+50,0,0,,Noch nie ein gefesseltes|Mädchen gesehen?,"Doch, aber man sieht nicht alle Tage ein süßes gefes-|seltes Mädchen, das sich einem einfach präsentiert.",50,,,
+50,0,0,,(Auf deine|Fesseln deuten.),"Ja, steht dir ausgezeichnet.",50,,,
+50,0,0,PlayerOnlyGagged,(Deinen Knebel|abnehmen.),"(Amelia packt und fesselt dich.) Wenn du geknebelt|bist, solltest du ihn auch nicht abnehmen können.",50,,,PlayerTied()
+100,0,0,,(Mit Amelia reden.),(Worüber möchtest du mit Amelia reden?),200,0,0,LoadAmelia()
+100,0,0,,(Mit Charlotte reden.),(Worüber möchtest du mit Charlotte reden?),300,0,0,LoadCharlotte()
+100,0,0,TwoTiedTwins,(Zur ferneren|Zwillingsschwester.),"Sie schaut zu dir hoch und macht|Andeutungen, dass du sie befreien sollst.",400,0,0,LoadLeftTwin()
+100,0,0,TwoTiedTwins,(Zur näheren|Zwillingsschwester.),"Sie schaut zu dir hoch und macht|Andeutungen, dass du sie befreien sollst.",450,0,0,LoadRightTwin()
+100,0,0,RemainingTwin,(Zur übrigen|Zwillingsschwester.),"Sie schaut zu dir hoch und macht|Andeutungen, dass du sie befreien sollst.",400,0,0,LoadRemainingTwin()
+100,0,0,LucyTied,(Zu Lucy gehen.),"Sie schaut zu dir hoch und macht|Andeutungen, dass du sie befreien sollst.",430,0,0,LoadLucy()
+100,0,0,LucyFree,(Mit Lucy reden.),"Hey, möchtest du wieder gefesselt werden?",600,0,0,LoadLucy()
+110,0,0,,"Na gut, jetzt|lass mich los.","Gut, werde nur nicht zu gierig.|(Sie lässt deinen Arm los.)",100,0,0,CanLeave()
+110,0,0,,"Ja, Miss, ich mache|das nicht nochmal.","Gut, zu viel Gier zahlt sich nicht aus.|(Sie lässt deinen Arm los.)",100,0,-1,CanLeave()
+110,0,0,,"Versuch doch,|mich aufzuhalten.","(Du schüttelst dich aus Amelias Griff frei.)|Das werde ich, wenn du so weitermachst.",100,-1,0,TryStopMe()
+120,0,0,,Lass mich los.,"Nein, du brauchst eine Auszeit.|(Sie führt dich mit Gewalt durch den Raum.)",125,-1,0,
+120,0,0,,Es tut mir wirklich leid.|Das war das letzte Mal.,Diesmal gehe ich auf Nummer sicher.|(Sie führt dich mit Gewalt durch den Raum.),125,0,-1,
+120,1,2,,(Dich aus ihrem|Griff befreien.),"Na gut, aber versuch das hier nicht nochmal.",100,-1,0,
+125,0,0,,Bitte lass mich los.,- Dieser Text sollte nicht angezeigt werden -,125,0,-1,PlayerLockedAway()
+125,0,0,,"Okay, aber tu|mir nicht weh.",- Dieser Text sollte nicht angezeigt werden -,125,1,0,PlayerLockedAway()
+125,0,0,,Pfoten weg.,- Dieser Text sollte nicht angezeigt werden -,125,-1,0,PlayerLockedAway()
+200,0,0,Amelia210NotDone,Weißt du viel|über Kinbaku?,"Ich weiß genug, um jeden hilflos fesseln zu können.",210,0,0,Amelia210Done()
+200,0,0,Amelia220NotDone,Hast du Charlotte|schon gefesselt?,"Sie war das reinste Nervenbündel, als ich es tun wollte.|Erst beim Fesseln der Zwillinge hat sie sich beruhigt.",220,0,0,Amelia220Done()
+200,0,0,Amelia230NotDone,"Was ist besser, Box-Tie|oder Ellbogen zusammen?","Beides hat seine Vorteile. Ich mag es, wie zusammen-|gebundene Ellbogen die Sub so richtig präsentieren.",230,0,0,Amelia230Done()
+200,0,0,,Wir sollten jetzt etwas|Kinbaku machen.,"Ja, das sollten wir, und jetzt werde ich dich fesseln.",260,0,0,
+200,0,0,Amelia250NotDone,"Heather und Lucy,|wer ist wer?","Wir sind uns unsicher, darum haben wir an beiden ein|paar Kinbaku-Muster ausprobiert und sie geknebelt.",250,0,0,Amelia250Done()
+200,0,0,AnyoneKnow,Kann hier irgendwer die|Zwillinge unterscheiden?,"Jenna scheint es zu wissen, aber sie ist nicht|hier, also können wir sie nicht fragen.",200,0,0,
+200,0,0,UngagTwins,Müssen die Zwillinge|geknebelt sein?,Ja. Wir wollen uns Heathers Lügen nicht anhören.,200,,,
+200,0,0,InspectedTwins,Warum sind sie so|unbequem gefesselt?,"Damit Heather zugibt, welche von beiden sie ist,|und dafür angenehmere Fesseln bekommt.",255,,,
+200,0,0,,(Zurück zum|Rest der Gruppe.),(Amelia erzählt Charlotte etwas über Kinbaku.),100,0,0,
+210,0,0,,Sogar mich?,Sogar dich.,200,0,0,
+210,0,0,,Also fesselst du dich auch|selbst bis zur Hilflosigkeit?,So meinte ich das nicht.,200,0,1,
+210,0,0,HasRopeMastery,"Große Worte, aber ich bin|eine Meisterin mit Seilen.","Schön und gut, aber meinst du damit nur|das Fesseln oder auch das Entkommen?",215,1,0,
+210,0,0,,Würdest du|mich fesseln?,"Wenn du bereit bist, frag einfach, und du|wirst komplett in meiner Gewalt sein.",200,0,-1,
+215,0,0,,Bis jetzt habe ich mich nie|wirklich befreien können.,"Also hast du es gemeistert, unterwürfig zu sein.",200,0,-1,
+215,0,0,EscapedIsolationMildred,Mildred hat mich gefesselt|und ich bin entkommen.,"Beeindruckend, dafür musst du sie richtig angepisst|haben, und dann macht sie keine halben Sachen.",200,1,1,
+215,0,0,EscapedIsolationYuki,Yuki hat mich gefesselt|und ich bin entkommen.,"Beeindruckend, aber ich hätte nicht gedacht, dass Yuki|einfach jemanden fesseln und allein lassen würde.",216,1,0,
+215,0,0,,Mich halten|keine Seile fest.,Das ist eine gewagte Behauptung.|Dreh dich um und wir stellen sie auf die Probe.,218,0,0,
+216,0,0,,Ich gab ihr Schlafmittel und|sie fesselte mich im Keller.,"Wenn du sowas tust, sollten wir dich|vielleicht dauerhaft gefesselt lassen.",200,-1,0,
+216,0,0,IsolationYukiOrgasm,Sie zwang mich zu Oralsex|und knebelte mich danach.,"Haha, das klingt nach einem Ansporn zum Ausbruch,|oder wolltest du diesen Knebel lieber genießen?",217,0,0,
+216,0,0,IsolationYukiOrgasm,"Sie wollte etwas Kontrolle,|als ich sie kommen ließ.","Wow, alle Achtung.",200,1,1,
+217,0,0,,Der Knebel konnte|gar nicht schnell raus.,Überrascht mich nicht.,200,0,0,
+217,0,0,,Ich wollte den Knebel nach|dem Ausbruch behalten.,"Du musst eine sehr folgsame Lehrerschleimerin sein,|wenn du den Geschmack deiner Herrin so sehr liebst.",200,0,-2,
+218,0,0,,Ehrlich gesagt bin ich|noch nicht ganz bereit.,Für ein feiges Huhn reißt du|deinen Schnabel ganz schön weit auf.,200,-1,-1,
+218,0,0,,"Nur zu, gib dein Bestes.|(Dich für sie umdrehen.)","(Amelia hilft dir aus deiner Uniform, zieht deine|Hände nach hinten und fängt an, dich zu fesseln.)",500,1,1,AmeliaTies()
+220,0,0,,Ihre Nerven|sind doch egal.,"Das ist eine widerliche Einstellung,|es sollte allen Beteiligten Spaß machen.",200,-1,0,
+220,0,0,,Was macht|sie dann hier?,"Sie sagte, sie ist mit einer Freundin hier,|mehr wollte sie mir nicht verraten.",225,0,0,
+220,0,0,,Also will sie nur|Andere dominieren?,"Weiß nicht, ich musste sie überreden, mir beim Fesseln|der Zwillinge zu helfen, aber das schien ihr zu gefallen.",225,0,0,
+225,0,0,,"Ich könnte sie überreden,|sich fesseln zu lassen.",Du kannst es gern versuchen.,200,1,0,
+225,0,0,,"Vielleicht würde es ihr|gefallen, an mir zu üben.","Ganz bestimmt, wenn du sie|erstmal dazu kriegen würdest.",200,0,-1,
+230,0,0,,Beim Box-Tie ist dafür|aber der Unterleib frei.,"Stimmt, wenn du darauf stehst. Er hält|auch ungezogene Hände auseinander.",231,,,
+230,0,0,,Ellbogen zusammen drückt|wirklich die Brust raus.,So könnte man es ausdrücken.,233,,,
+231,0,0,,"Hey, Charlotte,|was magst du denn lieber?","Na ja, ich habe keine Meinung dazu.",232,0,0,Charlotte()
+231,0,0,,"Nicht weit genug, dass ich|nicht ans Schrittseil käme.","Du musst es wirklich lieben, gefesselt zu sein.",200,1,-1,
+231,0,0,,Und es ist über längere Zeit|angenehmer für die Sub.,"Klar, aber manchmal, wie bei den Zwillingen|hier, ist das Unbehagen entscheidend.",200,0,0,
+231,0,0,HasLooseArmbinder,Mein Monohandschuh|macht die Hände nutzlos.,"Cool, hast du den selber schon anprobiert?",235,0,0,
+232,0,0,,Du solltest beides probie-|ren und dich entscheiden.,"Nein, wirklich, ich brauche keine Meinung dazu.|(Du wendest dich wieder Amelia zu.)",200,-1,1,Amelia()
+232,0,0,,Was würdest du|an mir anwenden?,"Wenn Amelia dich fesselt, kann sie das entscheiden.|(Du wendest dich wieder Amelia zu.)",200,0,-1,Amelia()
+233,0,0,,Du hast der Einen hier die|Ellbogen gut verschnürt.,"Ja, mit gefesselten Ellbogen und den Händen vorne|kommt sie wohl höchstens an ihre eigenen Brüste.",234,1,0,
+233,0,0,,Manche können die Hilfe|am Vorbau gebrauchen.,"Mag sein, ein paar von uns sind eben|von Natur aus reicher beschenkt als andere.",234,,,
+234,0,0,,"Ich weiß nicht, ob ich da|Unterstützung brauche.","Jedes kleine Stückchen hilft, aber|du siehst auch so schon ganz gut aus.",200,0,0,
+234,0,0,,"Deine wären gigantisch,|wenn du gefesselt wärst.",Dazu wird es nicht kommen.,200,-1,1,
+234,0,0,HasLooseArmbinder,Mein Monohandschuh|hält Ellbogen gut fest.,"Cool, hast du den selber schon anprobiert?",235,0,0,
+235,0,0,,"Nein, zum Selbstfesseln|taugt der nicht.","Ich helfe dir, ihn umzuschnallen.",236,1,-1,
+235,0,0,,"Nein, der ist nur für|meine Lieblingssklaven.","Ein paar der Mädels hier im Club würden deswegen|alles tun, um dein liebstes Haustier zu sein.",200,0,0,
+235,0,0,,"Nein, aber probier|du ihn doch mal.","Vergiss es. Wenn du das versuchst,|kannst du das Ding als Armschiene benutzen.",200,-1,0,
+236,0,0,,"Ich weiß noch nicht so|recht, ob ich das will.","Unsinn, komm schon, du würdest|so schön unterwürfig darin aussehen.",236,0,-1,
+236,0,0,,"Nein, ein andermal.","Okay, dein Pech.",200,0,0,
+236,0,0,,Würdest du? Danke.|Ich hatte Probleme damit.,"(Amelia hilft dir in den Handschuh und festigt die|Bänder und Riemen, bis sich deine Ellbogen berühren.)",500,1,-1,PlayerArmbinded()
+250,0,0,,Haben sie beide|die Fesseln nötig?,"Lucy ist ganz lieb, wenn sie nicht gerade jemandem den|Freund ausspannt, und kennt viele Kinbaku-Techniken.",251,,,
+250,0,0,,Wirst du mich auch|so fesseln müssen?,"Vielleicht, aber Lucy müssten wir gar nicht fesseln, sie|könnte eindrucksvolles Kinbaku an dir demonstrieren.",251,0,-1,
+251,0,0,,Und Heather?,"Sie ist der böse Zwilling, der seine Schwester imitiert.|Sie behaupten beide, Lucy zu sein.",252,0,0,
+251,0,0,,"Ich weiß bereits genug,|um jeden zu fesseln.","Lucy könnte dir zeigen, dass Kinbaku mehr als nur|Fesseln ist. Heather hingegen bringt dir Schmerzen bei.",252,0,1,
+252,0,0,,Wir sollten Lucy identi-|fizieren und befreien.,"Ja, sie würde dir einiges beibringen, aber woher|willst du wissen, welche von beiden sie ist?",200,0,0,
+252,0,0,,Am besten lassen wir|sie beide fest verknotet.,"Stimmt wohl. Wenn wir wüssten, wer von beiden|Lucy ist, könnte sie uns etwas Neues beibringen.",200,0,1,
+255,0,0,,"Cool, machen wir ihre|Fesseln noch enger.",Sie sind schon eng genug. Alles Weitere|würde ihren Blutkreislauf einschränken.,200,,,
+255,0,0,,Sind diese Fesseln auch|schmerzhaft genug?,Lass dich doch von mir fesseln und urteile selbst.,260,0,0,
+255,0,0,,"Wow, ich könnte diese Fes-|seln nicht lange aushalten.","Ein so zartes Mädchen wie du sagt das vielleicht, aber|du würdest trotzdem so lange so bleiben, wie ich will.",200,,,
+255,0,0,,Würde Heather sich|darauf einlassen?,"Es muss besser sein als das, aber sie hofft wohl, dass|Lucy zuerst nachgibt und behauptet, Heather zu sein.",200,,,
+260,0,0,,"Ja, Miss Amelia.","(Amelia hilft dir aus deiner Uniform, zieht deine|Hände nach hinten und fängt an, dich zu fesseln.)",500,1,-1,AmeliaTies()
+260,0,3,,"Okay, zeig mal,|was du drauf hast.",(Amelia verschränkt und fesselt deine|Arme geschwind hinter deinem Rücken.),500,0,0,AmeliaTiesDom()
+260,0,0,,Du wirst mich|nicht fesseln.,"Gut, dann eben nicht jetzt, aber wenn|du bereit bist, nenn mich einfach Miss Amelia.",200,0,0,NotTieMe()
+260,0,0,,Wir könnten doch|auch Charlotte fesseln.,"Ich glaube, dafür ist sie noch nicht bereit.|Du siehst sehr viel williger aus.",200,0,0,TieCharlotte()
+300,0,0,Charlotte310NotDone,Du hast also die Mädels|so extrem eng gefesselt?,"Nein, so war es nicht. Amelia hat sie gefesselt|und sagte mir, ich soll ihr helfen.",310,0,0,Charlotte310Done()
+300,0,0,Charlotte320NotDone,Bist du öfter hier?,"Nein, nein, ich gehöre nicht zu diesem Club,|eine Freundin wollte sich nur hier mit mir treffen.",320,0,0,Charlotte320Done()
+300,0,0,Charlotte330NotDone,"Du bist bestimmt lieber|die, die gefesselt wird.","Ich interessiere mich nicht wirklich für Bondage, ehrlich.|Ich warte hier nur auf eine Freundin.",330,0,0,Charlotte330Done()
+300,0,0,Charlotte340NotDone,Du solltest jetzt|gefesselt sein.,Wie meinst du das? Das möchte ich wirklich nicht.,340,-1,1,Charlotte340Done()
+300,0,0,Charlotte350NotDone,"Was meinst du, was den|Zwillingen noch fehlt?","Ich weiß nicht, vielleicht sollten wir sie losbinden.",350,0,0,Charlotte350Done()
+300,0,0,Charlotte360NotDone,"Du hältst die Tasche ziem-|lich fest, was ist da drin?","Nichts weiter, nur meine Hausaufgaben.",360,0,0,Charlotte360Done()
+300,0,0,,"Irgendeine Ahnung, wer|von den beiden wer ist?","Nein, aber Lucy ist ehrlich, anders als ihre Schwester.|Hmmm, kennst du das Rätsel mit den zwei Wächtern?",300,0,0,
+300,0,0,,(Zurück zum|Rest der Gruppe.),(Amelia erzählt Charlotte etwas über Kinbaku.),100,0,0,
+310,0,0,,Macht dir das Fesseln|denn keinen Spaß?,"Es ist nicht mein Ding, Amelia hat mich nur|um etwas Hilfe dabei gebeten, das ist alles.",311,0,1,
+310,0,0,,"Komm schon, du scheinst|sehr geholfen zu haben.",Vielleicht ein bisschen. Es ist nicht wirklich mein Ding.,311,1,0,
+311,0,0,,Also wirst du lieber|selbst gefesselt.,Ernsthaft? Wer würde schon gern gefesselt werden?,312,-1,1,
+311,0,0,,Was ist denn dein Ding?,"Oh, nun, es ist... Moment, mein Ding... Sorry,|ich dachte, da war gerade meine Freundin im Flur.",300,0,0,
+312,0,0,,Ich zum Beispiel.,"Interessant, nicht, dass ich dich|gern fesseln würde, versteht sich.",300,0,-1,
+312,0,0,,Einige der Mädels hier|scheinen es zu mögen.,"Na ja, die Art, wie manche von ihnen es|zum Ausdruck bringen, wirkt irgendwie falsch.",300,0,0,
+312,0,0,,"Jemand, der es|nicht zugeben will.","Ich habe keine Ahnung, wovon du sprichst.",300,0,1,
+320,0,0,,"Oh, wirklich? Du scheinst|dich hier wohl zu fühlen.","Na ja, ähm, es ist ja nur ein College-Club.|Daran ist doch nichts verkehrt.",300,0,0,
+320,0,0,,Wer ist denn diese|Freundin von dir?,"Oh, sie ist noch nicht da.",321,0,0,
+321,0,0,,"Vielleicht bin ich ja die|Freundin, die du erwartest.","Na ja, wir kennen uns zwar kaum,|aber wir könnten Freunde sein, denke ich.",322,1,0,
+3210,0,0,,,,,,,
+322,0,0,,"Na klar, wir sind hier|doch alles Freunde.","Kann sein. Ich bin mir noch nicht ganz sicher,|ob ein paar der Mädels hier wirklich so freundlich sind.",300,1,0,
+322,0,0,,Freunde mit|gewissen Vorzügen?,"Ich verstehe nicht genau, was du meinst?",323,0,0,
+323,0,0,,"Einfach nur, dass wir uns|in Zeiten der Not helfen.","Klar, ware Freunde erkennt man ja in der Not.",300,1,0,
+323,0,0,,"Sagen wir, es sind nicht nur|Seile, die Spaß machen.","Ich weiß wirklich nicht genau, was du meinst.|Egal, gab es noch etwas anderes?",300,-1,1,
+330,0,0,,- Fortsetzung folgt -,- Fortsetzung folgt -,300,,,
+340,0,0,,Du klingst nicht|gerade überzeugt.,"Nein, wirklich, ich stehe nicht auf so etwas.",300,0,0,
+340,0,0,,"Oh, die Dame, wie mich|dünkt, gelobt zu viel.","Nein, nein, Moment... Was... Ich...|Bitte nicht fesseln.",300,0,1,
+350,0,0,,Etwas Haue auf den Popo|sollte sie motivieren.,"Das ist doch nur grausam, sie scheinen|auch so schon genug Schmerzen zu haben.",300,-1,0,
+350,0,0,,"Wie wär's, wenn wir|sie ausziehen?","Ich weiß nicht, worauf du da hinauswillst,|und ich bin nicht an ihrer Tortur interessiert.",300,0,0,
+360,0,0,,"Oh, okay. Hier wird sie|wohl kein Hund auffressen.",Ein Hund würde sicher gern darauf herumkauen.,300,0,0,
+360,0,0,,"Komm schon, mir|kannst du es sagen.","Ich sagte doch, es sind|bloß langweilige Hausaufgaben.",300,-1,0,
+360,0,0,,Damit könnte|ich dir helfen.,"Nein, nein, das kriege ich auch noch allein hin.",300,0,1,
+400,0,0,,"Ich wünschte, ich wäre|auch so straff gefesselt.",(Amelia meldet sich zu Wort.)|Diesen Wunsch könnten wir dir erfüllen.,400,,,
+400,0,0,,"Ich glaube, wir sollten dich|die ganze Nacht so lassen.",(Das Mädchen schüttelt den|Kopf und ächzt vor Schmerz.),400,,,
+400,0,0,,Das ist mal eine|neuartige Bindung.,"(Amelia:) Ja, das hat Lucy letzte Woche an Natalie ge-|zeigt. Kein klassisches Kinbaku, aber sehr schmerzhaft.",400,,,
+400,0,0,,(Sie befragen.),"(Es muss irgendwie herauszufinden sein,|welche der Zwillingsschwestern sie ist.)",410,,,
+400,0,0,Kidnapper,(Sie entführen.),- Dieser Text sollte nicht angezeigt werden -,400,,,Kidnap()
+400,0,0,,(Sie befreien.),"(Amelia meldet sich zu Wort, als du nach einem|Knoten greifst.) Bist du sicher, dass das Lucy ist?",420,0,0,
+400,0,0,,(Zurück zum|Rest der Gruppe.),(Amelia erzählte gerade Charlotte etwas über Kinbaku.),100,0,0,
+410,0,0,,Bist du Lucy?,(Sie nickt.),410,,,
+410,0,0,,Bist du Heather?,(Sie schüttelt den Kopf.),410,,,
+410,0,0,,Ist deine Schwester Lucy?,(Sie schüttelt den Kopf.),410,,,
+410,0,0,,"Würde deine Schwester|behaupten, Lucy zu sein?",- Dieser Text sollte nicht angezeigt werden -,410,,,WouldYourSister()
+410,0,0,,Du warst sehr böse und|musst bestraft werden.,"(Sie fleht dich an. Charlotte meldet sich zu Wort.)|Lass sie in Ruhe, sie ist ganz aufgebracht.",410,,,NaughtyLeft()
+410,0,0,,"Ich finde, du solltest noch|fester gefesselt sein.",(Sie wimmert und schüttelt den Kopf. Mit den Armen|in dieser Position hat sie bereits genug Schmerzen.),410,,,TighterLeft()
+410,0,0,,(Deine Herangehens-|weise überdenken.),(Was tust du jetzt?),400,,,
+410,0,0,,(Zurück zum|Rest der Gruppe.),(Amelia erzählte gerade Charlotte etwas über Kinbaku.),100,0,0,
+420,0,0,,"Ja, ich weiß genau,|wer das ist.","(Du befreist sie.) Danke. Ich hab's satt, dass|Heather sich als mich ausgibt. Ich bin Lucy.",400,0,0,ReleaseTwin()
+420,0,0,,"Nein, ich bin mir|nicht sicher.",(Du lässt sie gefesselt und denkst|über deine Herangehensweise nach.),400,0,0,
+430,0,0,Kidnapper,(Sie entführen.),- Dieser Text sollte nicht angezeigt werden -,430,0,0,Kidnap()
+430,0,0,,(Sie befreien.),"(Du befreist sie.) Danke. Ich hab's satt, dass|Heather sich als mich ausgibt. Ich bin Lucy.",600,0,0,ReleaseLucy()
+430,0,0,,Sollte ich dich|jetzt losbinden?,Bhndh mhch hndlhch lhs. Ihh hhb schhn hhnhn Krhmpf.|(Binde mich endlich los. Ich hab schon einen Krampf.),430,0,0,
+430,0,0,,Willst du so bleiben oder zu|deiner Schwester kommen?,Dhs hst nhcht lhsthg. Bhtth bhndh mhch lhs.|(Das ist nicht lustig. Bitte binde mich los.),430,0,0,JoinSister()
+430,0,0,,(Zurück zum|Rest der Gruppe.),(Amelia erzählte gerade Charlotte etwas über Kinbaku.),100,0,0,
+450,0,0,,"Hast du ein Glück, so|fest gefesselt zu sein.",(Amelia meldet sich zu Wort.)|Dieses Glück könnte auch dein sein.,450,,,
+450,0,0,,(Sie kitzeln.),(Du setzt dich auf ihren Schoß und kitzelst ihre|freien Achselhöhlen. Sie ist wehrlos und kichert.),460,,,
+450,0,0,,Das ist eine|interessante Fesselung.,"(Amelia:) Ja, das hat Lucy uns letztens gezeigt.|Asymmetrisches Fesseln gehört wohl bei Kinbaku dazu.",450,,,
+450,0,0,,(Sie befragen.),"(Es muss irgendwie herauszufinden sein,|welche der Zwillingsschwestern sie ist.)",470,,,
+450,0,0,Kidnapper,(Sie entführen.),- Dieser Text sollte nicht angezeigt werden -,450,,,Kidnap()
+450,0,0,,(Sie befreien.),"(Amelia meldet sich zu Wort, als du nach einem|Knoten greifst.) Bist du sicher, dass das Lucy ist?",490,0,0,
+450,0,0,,(Zurück zum|Rest der Gruppe.),(Amelia erzählte gerade Charlotte etwas über Kinbaku.),100,0,0,
+460,0,0,,"(Aufhören, sie zu kitzeln.)",(Du stehst auf und lässt sie zu Atem kommen.),450,,,
+460,0,0,,(Sie weiterkitzeln.),"(Als du sie gnadenlos kitzelst kommen ihr vor|Lachen die Tränen und sie fleht dich an, aufzuhören.)",465,,,
+465,0,0,,Bist du Heather?,"(Sie nickt widerwillig.) Jh, Mhff.|(Du stehst auf und lässt sie zu Atem kommen.)",450,,,
+465,0,0,,"(Aufhören, sie zu kitzeln.)",(Du stehst auf und lässt sie zu Atem kommen.),450,,,
+465,0,0,,(Sie weiterkitzeln.),"(Charlotte versucht, dich zu unterbrechen.)|Das reicht, sie ist schon ganz aufgebracht.",465,0,0,CharlotteDislike()
+470,0,0,,Bist du Lucy?,(Sie nickt.),470,,,
+470,0,0,,Bist du Heather?,(Sie schüttelt den Kopf.),470,,,
+470,0,0,,Ist deine Schwester Lucy?,(Sie schüttelt den Kopf.),470,,,
+470,0,0,,"Würde deine Schwester|behaupten, Lucy zu sein?",- Dieser Text sollte nicht angezeigt werden -,470,,,WouldYourSister()
+470,0,0,,Du warst sehr böse und|musst bestraft werden.,"(Sie fleht dich an. Charlotte meldet sich zu Wort.)|Lass sie in Ruhe, sie ist ganz aufgebracht.",470,,,NaughtyRight()
+470,0,0,,"Ich finde, du solltest noch|fester gefesselt sein.",(Sie wimmert und schüttelt den Kopf. Mit den Armen|in dieser Position hat sie bereits genug Schmerzen.),470,,,TighterRight()
+470,0,0,,(Deine Herangehens-|weise überdenken.),(Was tust du jetzt?),450,,,
+470,0,0,,(Zurück zum|Rest der Gruppe.),(Amelia erzählte gerade Charlotte etwas über Kinbaku.),100,,,
+490,0,0,,"Ja, ich weiß genau,|wer das ist.","(Du befreist sie.) Danke. Ich hab's satt, dass|Heather sich als mich ausgibt. Ich bin Lucy.",450,0,0,ReleaseTwin()
+490,0,0,,"Nein, ich bin mir|nicht sicher.",(Du lässt sie gefesselt und denkst|über deine Herangehensweise nach.),450,0,0,
+500,0,0,,- Fortsetzung folgt -,- Fortsetzung folgt -,500,,,
+600,0,0,,Kann ich dich jetzt fesseln?,"Sorry, ich hatte genug für einen Tag und würde lieber|die Arme ausstrecken. Kann ich Kinbaku an dir üben?",600,0,0,
+600,0,0,,Würdest du|mich bitte fesseln?,"Klar. Hmmm, sollen wir das einfach halten, oder|möchtest du lieber ein fortgeschrittenes Erlebnis?",620,0,0,LucyTieMe()
+600,0,0,ATwinStillTied,Wir sollten mehr Kinbaku|an Heather üben.,"Hmm, das klingt schon verlockend.",600,0,0,
+600,0,0,ATwinStillTied,"Ist es okay, wenn ich|deine Schwester entführe?","Nimm sie, solange du sie nicht entkommen lässt.",610,0,0,
+600,0,0,,(Zurück zum|Rest der Gruppe.),(Amelia erzählt Charlotte etwas über Kinbaku.),100,0,0,
+610,0,0,Kidnapper,Ich hab genau das|Richtige für sie.,- Dieser Text sollte nicht angezeigt werden -,600,0,0,Kidnap()
+610,0,0,!Kidnapper,"Ich weiß nicht, ob ich|das garantieren kann.","Dann behalte ich sie lieber. Wäre doch schade, wenn|sie ihre Verabredung mit Jenna verpassen würde.",600,0,0,
+610,0,0,,Müssen wir sie wirklich|gefesselt lassen?,Ja. Ich will nicht wieder verwechselt werden und an|ihrer Stelle Jennas Zorn zu spüren bekommen.,600,0,0,
+620,0,0,,"Andererseits, vielleicht|lieber doch nicht jetzt.","Wie du willst. Sag einfach, wann du bereit bist.",600,0,0,
+620,0,0,,Eine einfache Fesselung|wäre ganz nett.,Alles klar. (Bald schon sind deine Arme fest hinter|deinem Rücken verknotet.) Wie gefällt dir das?,621,1,0,PlayerTied()
+620,0,0,,Was stellst du dir da vor?,Hast du schonmal Tsuri Kinbaku ausprobiert?,630,0,0,
+621,0,0,,"Hmm, die gute|alte Armfesselung.","Sie ist nun mal altbewährt. Ich glaube kaum, dass du|dich ohne Hilfe daraus befreist. Also dann, viel Spaß.",622,0,0,CanLeave()
+621,0,0,,Danke.,"Gern geschehen.|Also dann, viel Spaß noch.",622,1,0,CanLeave()
+621,0,0,,"Ähm, das ist etwas zu eng.","Unsinn, dein Blutkreislauf wird nicht gestört und du|sollst ja nicht einfach herausflutschen. Also, viel Spaß.",622,0,-1,CanLeave()
+621,0,0,,"Nicht schlecht,|könnte aber besser sein.","Versuch du mal, jemanden mit Krämpfen in den Armen|zu fesseln. Mal sehen, ob du dich befreien kannst.",622,-1,1,CanLeave()
+622,0,0,,(Probeweise in den|Fesseln herumzappeln.),"Es ist immer schön, wenn dir jemand zeigt,|wie gut deine Fesselkünste sind und wie hilflos er ist.",622,0,0,StruggleForLucy()
+622,0,0,,Du kannst mich|jetzt losbinden.,"Ohh, agh. Sorry, ich glaube, die Krämpfe|in meinen Armen kommen zurück.",622,0,0,WillLucyUntie()
+622,0,0,Common_PlayerGagged,@Dh khnnst mhch lhsbhndhn.|(Du kannst mich losbinden.),"Sorry, ich kann leider gar nicht|verstehen, was du mir sagen willst.",622,0,0,
+622,0,0,,"(Versuchen, den Seilen|zu entkommen.)",(Die Seile geben kein Stück nach und es scheint auch|gar keinen Knoten zu geben. Lucy lächelt dich an.),622,0,0,StruggleForLucy()
+622,0,0,,Könnten wir etwas|anderes probieren?,"Ohh, ja, ich weiß auch genau, was.|(Sie führt dich zu einer Ecke des Raums.)",632,1,0,
+622,0,0,Common_PlayerGagged,(Lucy erwartungsvoll|ansehen.),Was ist denn? Möchtest du etwas|mehr Kinbaku ausprobieren?,623,0,0,
+622,0,0,,"Also, wirst du|öfter gefesselt?","Ich glaube, wir haben genug geplaudert.|(Sie nimmt etwas Stoff und knebelt dich.)",622,0,0,PlayerClothGag()
+623,0,0,,(Nicken.),"Oh, toll. Komm her. (Sie begleitet dich|aufgeregt zu einer Ecke des Raums.)",632,1,0,
+623,0,0,,(Den Kopf schütteln.),"Oh, na ja, dann schlage ich vor,|du versuchst es mit jemand anderem.",622,0,0,
+630,0,0,,"Nein, was ist das?",Es ist Kinbaku im Hängen. Zuerst brauchst du einen|Harnisch. (Sie fesselt deine Arme und deine Brust.),631,0,0,PlayerTied()
+630,0,0,,"Ja, ich glaube schon.",Immerhin ein Anfang. Bereiten wir dich fürs Herab-|hängen vor. (Sie fesselt deine Arme und deine Brust.),631,0,0,PlayerTied()
+630,0,0,,"Andererseits, vielleicht|lieber doch nicht jetzt.","Unsinn, du solltest mal ausprobieren, herumzuhängen.|(Sie fängt an, deine Arme und deine Brust zu fesseln.)",631,0,0,WillLucyTie()
+631,0,0,,"Weißt du auch sicher,|was du da tust?","Natürlich. Du bist nicht die Erste, die ich aufhänge.|(Sie schubst dich in eine Ecke des Raums.)",632,0,-1,
+631,0,0,,Beeilung. Ich kann|das kaum abwarten.,"Ja, ich mach schon, so schnell ich kann.|(Sie bringt dich in eine Ecke des Raums.)",632,1,1,
+631,0,0,,Wie oft hast du|das schon gemacht?,"Weiß nicht, zu oft zum Zählen.|(Sie bringt dich in eine Ecke des Raums.)",632,0,0,
+632,0,0,,Warum schubst du|mich hierher?,"Weil hier schon ein Ring zum Aufhängen an|der Decke ist. (Sie fängt an, dich daran anzubinden.)",633,0,0,TyingTime()
+632,0,0,,(Ihrer Führung folgen.),"Genau. Bleib hier unter diesem Ring stehen.|(Sie fängt an, dich daran anzubinden.)",633,0,0,TyingTime()
+633,0,0,,Ist dieser Ring|stark genug?,"Natürlich. Jeder Ankerpunkt an der Decke ist zertifiziert,|jeweils mindestens zwei Mädchen tragen zu können.",634,0,-1,TyingTime()
+633,0,0,,Was machst du da?,"'Tachi tsuri' ist eine aufrechte Fesselung. Wenn ich jetzt|ein Bein hochbinde, wird daraus 'Kataashi age tsuri'.",634,1,0,TyingTime()
+633,0,0,,(Ihr schweigend zusehen.),"'Tachi tsuri' ist eine aufrechte Fesselung. Wenn ich jetzt|ein Bein hochbinde, wird daraus 'Kataashi age tsuri'.",634,0,0,TyingTime()
+633,0,0,,(Dich von Lucy|wegziehen.),(Das Seil an der Decke hält dich auf. Lucy zieht eins|deiner Beine nach oben und lässt dich schwanken.),634,0,0,TyingTime()
+634,0,0,,Bei dir sieht das|so einfach aus.,"Jep, ich benutze die Seile und den Ring als Flaschen-|zug, um dich nach Lust und Laune zu manipulieren.",635,1,0,TyingTime()
+634,0,0,,"(Versuchen, zu zappeln.)","(Sie bindet die Seile schnell fest und fängt mit dem|anderen Bein an.) Halt still, dauert nicht mehr lange.",635,0,-1,TyingTime()
+634,0,0,,(Ihr schweigend zusehen.),(Leise bei der Arbeit summend bindet Lucy dein|erhobenes Bein fest und macht sich ans andere Bein.),635,0,0,TyingTime()
+635,0,0,,"Ich glaube, das|reicht schon.",Jetzt aufzuhören hat keinen Sinn. (Sie zieht dein|anderes Bein empor und du baumelst in der Luft.),636,0,-1,TyingTime()
+635,0,0,Common_PlayerGagged,"@Hch glhhbh, dhs|rhhcht schhn.",Jetzt aufzuhören hat keinen Sinn. (Sie zieht dein|anderes Bein empor und du baumelst in der Luft.),636,0,-1,TyingTime()
+635,0,0,,Machst du das Gleiche|auch mit diesem Bein?,"Ja. Ich könnte es dabei belassen, aber ich hänge|dich lieber komplett auf. Im 'M ji kaikyaku tsuri'-Stil.",636,0,0,TyingTime()
+635,0,0,,"Was Seile angeht, lässt du|einen echt nicht hängen.","Doch, aber auf eine andere Art. (Sie zieht dein|anderes Bein empor und du baumelst in der Luft.)",636,1,0,TyingTime()
+635,0,0,,(Ihr schweigend zusehen.),(Leise summend zieht Lucy dein anderes|Bein empor und du baumelst in der Luft.),636,0,0,TyingTime()
+636,0,0,,Bist du fertig?,"Ich glaube schon. (Sie dreht dich langsam herum,|um ihre Arbeit zu überprüfen und anzupassen.)",638,0,0,Wait()
+636,0,0,,"Ähhh, könntest du bitte|meinen Rock richten?","Tut mir leid, diese Methode kann die|gefesselte Person sehr offen lassen.",638,0,-1,Wait()
+636,0,0,,"(Versuchen, deine|Arme zu befreien.)","Vorsicht. Am Ende befreist du dich wirklich irgendwie,|fällst nach hinten und brichst dir noch den Schädel.",638,0,0,Wait()
+636,0,0,,(Verzweifelt strampeln.),"Haha. Ich liebe motivierte Gefangene,|auch wenn ihre Mühen zwecklos sind.",638,1,-1,Wait()
+636,0,0,,Das macht Spaß.,"Du spielst also gern die Jungfrau in Nöten? Wir sollten|dich als Prinzessin verkleiden, bevor wir dich fesseln.",637,1,0,Wait()
+637,0,0,,"Ähh, nein, danke.","Wie du willst, aber unterwürfige Mitglieder dienen|oft als Models bei Clubausstellungen und Dioramas.",638,0,0,
+637,0,0,,"Ohh, ja, bitte.","Nicht jetzt, aber du könntest mal bei einer Bondage-|Ausstellung oder einem Diorama als Model mitmachen.",638,1,-1,
+638,0,0,,"Was machen wir jetzt, wo|du mich verschnürt hast?","Hast du aufgepasst, wie ich dich|gefesselt habe, und etwas dabei gelernt?",639,0,0,
+638,0,0,Common_PlayerGagged,(Lucy fragend ansehen.),"Hast du aufgepasst, wie ich dich|gefesselt habe, und etwas dabei gelernt?",639,0,0,
+639,0,0,,"Ja, es war faszinierend.","Gut, man kann allein beim Zusehen eine Menge lernen,|und es geht nichts über Erfahrung am eigenen Leib.",640,1,0,LearntRopeSkill()
+639,0,0,,(Nicken.),"Gut, man kann allein beim Zusehen eine Menge lernen,|und es geht nichts über Erfahrung am eigenen Leib.",640,1,0,LearntRopeSkill()
+639,0,0,,"Nicht wirklich, ich bin|gedanklich abgeschweift.","Mal ehrlich, manchen Leuten ist nicht zu helfen.|Du bist genauso schlimm wie Chloe.",640,-1,0,
+639,0,0,,(Den Kopf schütteln.),"Mal ehrlich, manchen Leuten ist nicht zu helfen.|Du bist genauso schlimm wie Chloe.",640,-1,0,
+640,0,0,,"Es wäre schade, diesen|Moment nicht auszukosten.","Wow, wie rallig bist du denn bitte?|Willst du etwas Befriedigung?",660,0,0,
+640,0,0,,(Verführerisch stöhnen.),Du bist ein sehr einfach zu erregendes Mädchen.|Willst du etwas Befriedigung?,660,0,0,
+640,0,0,,Wirst du meine Herrin sein|und mich öfter fesseln?,"Sorry, das ganze Herrinnen-Zeug ist nicht mein Ding.|Dich zu fesseln ist aber kein Problem.",640,0,0,
+640,0,0,,Kannst du mich|jetzt losbinden?,"Könnte ich, aber das war viel zu viel Arbeit,|um dich so früh schon freizulassen.",640,0,0,
+640,1,-1,,"Könnten Sie mich befreien,|Miss Lucy? Bitte, bitte.",Wenn du schon so lieb bittest.|(Sie befreit dich vorsichtig aus deinen Fesseln.),643,1,0,PlayerReleased()
+640,0,0,Common_PlayerGagged,"(Wimmern und versuchen,|den Knebel auszuspucken.)","Ohhh, du armes Kleines. Lass mich dir helfen.|(Sie nimmt dir den Knebel ab.)",641,0,0,PlayerWhimperLucy()
+640,0,0,Common_PlayerGagged,@Bhnhnh.,"Was? Oh, aber ich bin doch sanft zu dir. Vielleicht hast|du Kieferschmerzen? (Sie nimmt dir den Knebel ab.)",641,0,-1,PlayerBhnhnhLucy()
+640,0,0,,Banana.,Was ist los? Du wolltest von mir gefesselt werden|und ich gehe ganz sanft mit dir um.,642,0,0,
+6400,0,0,,Kann ich dich|etwas fragen?,Klar. Du hast ja erstmal sonst nichts vor.,650,0,0,
+641,0,0,,"Danke, Miss Lucy.","Du sagst so liebe Dinge, es ist eine|Schande, dass du geknebelt warst.",640,1,-1,
+641,0,0,,Danke.,Kein Problem.,640,0,0,
+641,0,0,,Wurde auch|verdammt Zeit.,"Also, wenn du sonst nichts zu sagen hast! (Sie zwängt|und schnallt dir einen großen Ballknebel in den Mund.)",640,-2,0,RudeToLucy()
+642,0,0,,"Ich weiß, aber das ist viel|mehr, als ich erwartet hab.","Oh, kein Problem. In diesem Club musst du |sein, wenn du empfindlich bist. (Sie befreit dich.)",643,0,-1,PlayerReleased()
+642,0,0,,"Es ist ein Safeword, was|verstehst du daran nicht?","Oh je, tut mir leid, wirklich leid. Ich wollte das|nicht so ausarten lassen. (Sie befreit dich.)",643,0,2,PlayerReleased()
+642,0,0,,"Binde mich endlich los,|du dumme Blondine.","Du weißt schon, dass Kühe nicht reden! (Sie zwängt|und schnallt dir einen großen Ballknebel in den Mund.)",640,-2,0,RudeToLucy()
+642,0,0,,Schon gut. Ich bin nur|etwas nervös geworden.,"Kein Problem. Ich werde nichts mehr tun,|außer, wenn du mich darum bittest.",640,0,0,
+643,0,0,,Das war toll. Können|wir noch etwas machen?,"Das war erstmal genug Herumhängen, aber du kannst|gerne gefesselt bleiben. (Sie macht sich an die Arbeit.)",644,1,-1,PlayerTied()
+643,0,0,,Das war toll. Kann|ich das mit dir versuchen?,"Freut mich, aber für den Moment lasse ich|mich auf keinen Fall noch einmal fesseln.",647,1,0,
+643,0,0,,"Gut, jetzt bist du dran.","Was? Nein, bitte, NEIN!|Ich bin schon ungern gefesselt, wenn ich fit bin.",647,-1,1,
+643,0,0,,War das alles?,"Fürs Erste schon. Komm später zu mir, wenn du selbst|jemanden aufhängen möchtest. (Sie geht davon.)",649,0,0,LucyPromise()
+644,0,0,,Vergiss nicht meine|große Klappe.,Wie könnte ich? (Sie stopft deinen Mund|mit einem Stoffknebel voll.) Wie findest du das?,645,0,-1,PlayerClothGag()
+644,0,0,,Das ist toll.,Du fährst ja wirklich darauf ab! Wie findest du das?,646,1,0,
+644,0,0,,"Was, einfach eine|stinknormale Fesselung?","Das reicht, um dich von Ärger fern- oder darin zu halten.|Und dieses Tuch kümmert sich um jegliche Kritik.",645,-1,0,PlayerClothGag()
+645,0,0,,@Thm ghg fmmmf|mffmgtnvm.,"Ja, alle Töne schön zu einem|unverständlichen Gemurmel vermindert.",646,1,0,
+645,0,0,,(Schweigen.),"Du weißt offenbar, wie man|sich mit einem Knebel benimmt.",646,0,-1,
+646,0,0,,(Verspielt zappeln.),"Gut, viel Spaß. Komm später zu mir, wenn du selbst|jemanden aufhängen möchtest. (Sie geht davon.)",649,1,-1,LucyPromise()
+646,0,0,,Geht in Ordnung.,"Gut, viel Spaß. Komm später zu mir, wenn du selbst|jemanden aufhängen möchtest. (Sie geht davon.)",649,0,0,LucyPromise()
+646,0,0,,(Wimmern und betteln.),"Du brauchst eine Spielkameradin. Komm später zu mir,|wenn du jemanden aufhängen willst. (Sie geht davon.)",649,0,-1,LucyPromise()
+646,0,0,,(Gelangweilt gucken.),"Du brauchst eine Spielkameradin. Komm später zu mir,|wenn du jemanden aufhängen willst. (Sie geht davon.)",649,0,0,LucyPromise()
+647,1,0,,"Ohhh, bitte, nicht|mal für eine Freundin?","Es ist nett, dass du mich so siehst, aber meine Arme|tun immer noch von dem weh, was Amelia getan hat.",648,1,0,
+647,0,1,,Du sollst mir gehorchen.,"Ich sagte nein, lass mich in Ruhe. (Sie geht davon.)",649,-1,1,ActorLeftAndCanLeave()
+647,0,0,,Na gut.,Danke für dein Verständnis. Ist sonst noch was?,648,0,0,
+648,0,0,,Können wir noch|etwas machen?,"Das war erstmal genug Herumhängen, aber du kannst|gerne gefesselt bleiben. (Sie macht sich an die Arbeit.)",644,1,-1,PlayerTied()
+648,0,0,,Ich schätze nicht.,"Schau doch nicht so geknickt. Komm später zu mir,|wenn du jemanden aufhängen willst. (Sie geht davon.)",649,0,0,LucyPromise()
+650,,,,@To Do.,- To do -,640,,,
+660,0,0,,"Oh, bitte! Ich kann mich so|nicht mal an etwas reiben.","Tut mir leid, ich bin nicht lesbisch und|befriedige auch nicht gern hilflose Mädchen.",640,0,0,FriendOfAFriend()
+660,0,0,,(Eifrig nicken.),"Tut mir leid, ich bin nicht lesbisch und|befriedige auch nicht gern hilflose Mädchen.",640,0,0,FriendOfAFriend()
+660,0,0,,Ein Knebel würde|auch schon reichen.,"Oh, in diesem Fall kann ich gern deine Stimme|bändigen. (Sie schnallt dir einen Knebel um.)",640,0,-1,PlayerBallGagged()
+660,0,0,,"Nein, ähhh...|So ist es nicht.","Schon gut, Bondage scheint manche Leute|öfter mal durcheinander zu bringen.",640,1,-1,
+660,0,0,,(Rot werden und|ihren Blick meiden.),"Schon gut, Bondage scheint manche Leute|öfter mal durcheinander zu bringen.",640,0,-1,
+661,0,0,,(In den Seilen zappeln.),"(Du krümmst und windest dich, aber die|enge Umarmung der Seile hält dich gefangen.)",661,0,0,WaitingForFriend()
+661,0,0,,(Still herumhängen.),"(Du wartest so geduldig wie möglich, während sich der|Druck der Seile in deine Arme und deine Brust beißt.)",661,0,0,WaitingForFriend()
+661,0,0,,"(Versuchen,|zu entkommen.)","(Du windest dich testweise, aber die Schwerkraft|hält die Seile an deinen Armen vollkommen straff.)",661,0,0,WaitingForFriend()
+661,0,0,,"(Versuchen, um|Hilfe zu rufen.)",(Der Großteil des Clubs scheint zu beschäftigt|zu sein oder deine Schreie zu ignorieren.),661,0,0,WaitingForFriend()
+661,0,0,,@BHNHNH.,(Niemand scheint das Safeword vernommen zu haben.|Lucy unterhält sich mit dem Rücken zu dir.),661,0,0,WaitingForFriend()
+662,0,0,Common_PlayerGagged,"@Hmllh, Ghffn.","Oh, wo sind denn meine Manieren? Hier, nehmen|wir das mal raus. (Sie nimmt dir den Knebel ab.)",663,0,0,PlayerIsUngagged()
+662,0,0,Common_PlayerGagged,(Schweigen.),"Oh, wo sind denn meine Manieren? Hier, nehmen|wir das mal raus. (Sie nimmt dir den Knebel ab.)",663,0,-1,PlayerIsUngagged()
+662,0,0,,"Hallo, Cassi.","Lucy sagte, du hättest da ein Problem,|bei dem sie dir nicht helfen kann.",663,0,0,
+662,0,0,,"Wollen wir sehen, wie süß|du in diesen Fesseln wärst?","Bring mich nicht in Versuchung. Ich soll auf|den Club aufpassen, solange Jenna nicht da ist.",663,0,1,
+662,0,0,!Common_PlayerGagged,(Schweigen.),"Ohhh, du bist etwas nervös, wie ich sehe.|Keine Angst, ich will dir nur helfen.",663,0,-1,
+663,0,0,,"Du bist hier, um|mir zu helfen?","Klar helfe ich dir. Und zwar mit den ganz wichtigen|Dingen, die man Lucy nicht zumuten kann.",664,0,0,
+663,0,0,,Was hast du|mit mir vor?,"Ich werde einem sehr ralligen Mädchen bei etwas ganz|Wichtigem helfen, zu dem Lucy nicht in der Lage ist.",664,0,-1,
+663,0,0,,Kannst du mich|jetzt losbinden?,"Wie, nach der ganzen Mühe, die Lucy sich gemacht|hat? Niemals. Sie hat mir von deinem Problem erzählt.",664,0,0,
+664,0,0,,"Oh Gott, bitte.|Das ist so frustrierend.","Wow, du hast keine Witze gemacht, Lucy.|Okay, halte durch. Eins nach dem anderen.",665,1,0,
+664,0,0,,(Rot werden und|ihren Blick meiden.),"Hehe, wir wissen genau, wie scharf|du bist, aber eins nach dem anderen.",665,0,-1,
+664,0,0,,Worauf wartest du dann|noch? Jetzt mach schon.,"Ganz ruhig, Tiger. Erst müssen wir|dich etwas auf die Action vorbereiten.",665,-1,1,
+664,0,0,,Eigentlich ist alles okay.|Ich brauche keine Hilfe.,"Oh, ähm, wenn das so ist, gehört sie wieder ganz dir,|Lucy. (Cassi geht schmollend und murmelnd davon.)",640,-1,1,LoadLucyNoLeave()
+665,0,0,,Was meinst du damit?,Zuallererst muss dieser Keuschheitsgürtel weg.|(Lucy lässt dich mit Cassi allein.),666,0,0,PlayerIsNotChaste()
+665,0,0,,(Sie anstarren.),"Na los, nehmen wir diesen Keuschheitsgürtel ab.|(Lucy lässt dich mit Cassi allein.)",666,0,0,PlayerIsNotChaste()
+666,0,0,,"Tut mir leid, aber ich habe|keinen Schlüssel dafür.","Das ist kein Problem. Zu deinem Glück habe ich einen|Universalschlüssel, der genau solche Gürtel öffnet.",667,0,-1,
+666,0,0,,Rein zufällig trage|ich den ziemlich gern.,Echt jetzt? Erstens: Das ist komisch. Zweitens: Ich hab|einen Universalschlüssel. Drittens: Du wolltest das.,667,-1,0,
+666,0,0,RevengeBelted,Amanda und Sarah haben|mich darin gefangen.,"Tja, keine von beiden ist hier, aber ich habe einen|Universalschlüssel, der genau solche Gürtel öffnet.",667,0,0,
+666,0,0,,Kannst du ihn|etwa abnehmen?,"Na klar, das ist eine ziemlich verbreitete Gürtelmarke,|für die ich zufällig einen Universalschlüssel habe.",667,0,0,
+667,0,0,,Du hast einen Schlüssel?|Bitte gib mir die Freiheit.,"Das werde ich, aber der Gürtel kommt schön fest|wieder an seinen Platz, bevor du losgebunden wirst.",668,1,-1,RemovePlayersChastity()
+667,0,0,,"Ich wusste nicht, dass es|Universalschlüssel gibt.",Leider haben manche Gürtel spezielle Schlösser.|Ich werde dich nachher wieder schön zuschließen.,668,0,0,RemovePlayersChastity()
+667,0,0,,Steh nicht so rum. Nimm|mir den blöden Gürtel ab.,"Kein Grund, dich so aufzuführen. Ich schließe|ihn wieder ab, bevor du losgebunden wirst.",668,-1,1,RemovePlayersChastity()
+668,0,0,,"Komisches Gefühl,|da unten frei zu sein.","Ja, das Gefühl würde ich auch gern etwas|besser kennen. Also, Höschen oder Socke?",669,1,0,
+668,0,0,,Ich will diesen Schlüssel.,"Nein, du kannst dir deinen eigenen kaufen. Genug ge-|redet, du hast genau eine Wahl. Höschen oder Socke?",669,0,1,
+668,0,0,,Bitte schließ mich|nicht wieder darin ein.,"Freie Wahl ist ein nicht selbstverständlicher Luxus.|Eine Wahl hast du aber, Höschen oder Socke?",669,0,-1,
+668,0,0,,"Wozu ein Gürtel, wenn an-|dere den Schlüssel haben?","Keuschheitsgürtel sind, wie die Polizei, zum Bestrafen|da, nicht zum Beschützen. Egal, Höschen oder Socke?",669,0,0,
+668,0,0,,Aaaah! Der ganze Club|kann meine Klitoris sehen.,"Ganz ruhig, wir haben alle selbst eine, aber ich|kann deine Aufregung dämpfen. Höschen oder Socke?",669,1,-2,
+668,0,0,,Passt dieser Schlüssel|in jedes Schloss?,"Nein, nur in bestimmte Arten von Keuschheitsgürteln.|Jetzt, wo das erledigt ist, Höschen oder Socke?",669,0,0,
+669,0,0,,Höschen.,Alles klar. (Sie ballt das große Höschen zusammen und|stopft es dir in den Mund.) Kriegst du den Mund zu?,671,1,0,PlayerPantieGagged()
+669,0,0,,Socke.,"Alles klar. (Sie stopft deinen Mund mit einer Socke voll.)|Versuche, deine Lippen zu schließen.",671,1,0,PlayerSockGagged()
+669,0,0,,(Deinen Mund|zusammenpressen.),"Verleite mich nicht dazu, dich zu bestrafen. Socke oder|Höschen ist die einzige Wahl, die du gerade hast.",669,0,0,
+669,0,0,,Was soll das denn|für eine Wahl sein?,"Ganz einfach. Worauf willst du herumkauen,|während du im Paradies bist?",669,0,0,
+669,0,0,,Ich möchte das nicht.,Entweder das oder ich lasse dich allein hier hängen.|Geknebelt wirst du so oder so.,670,0,0,
+670,0,0,,"Okay, Höschen bitte.",(Sie ballt das große Höschen zusammen und stopft es|dir in den Mund.) Geht doch. Kriegst du den Mund zu?,671,0,-1,PlayerPantieGagged()
+670,0,0,,"Okay, die Socke bitte.","(Sie stopft deinen Mund mit einer Socke voll.)|Schon besser. Versuche, deine Lippen zu schließen.",671,0,-1,PlayerSockGagged()
+670,0,0,,Auf keinen Fall kommt|sowas in meinen Mund.,Ganz wie du willst. (Sie bringt dich mit einem|Ballknebel zum Schweigen und geht davon.),661,-1,1,LeftBallGagged()
+671,0,0,PantieGagged,(Das Höschen|ausspucken.),"(Cassi ist zu schnell. Bevor dein Mund frei ist, drückt|sie es wieder hinein und klebt es mit Klebeband fest.)",672,-1,0,PlayerTapeGagged()
+671,0,0,SockGagged,(Die Socke|ausspucken.),"(Cassi ist zu schnell. Bevor dein Mund frei ist, drückt|sie sie wieder hinein und klebt sie mit Klebeband fest.)",672,-1,0,PlayerTapeGagged()
+671,0,0,,@Mhmm dhm hmmm?|(Muss das sein?),Aber klar doch! (Cassi schließt das Kleidungsstück|mit einem Klebeband in deinem Mund ein.),672,0,0,PlayerTapeGagged()
+671,0,0,PantieGagged,"(Versuchen, den Mund um|das Höschen zu schließen.)","(Du bekommst deine Lippen nicht zusammen,|bevor Cassi Klebeband darüber glattstreift.)",672,0,-1,PlayerTapeGagged()
+671,0,0,SockGagged,"(Versuchen, den Mund um|die Socke zu schließen.)","(Du bekommst deine Lippen nicht zusammen,|bevor Cassi Klebeband darüber glattstreift.)",672,0,-1,PlayerTapeGagged()
+671,0,0,PantieGagged,(Fest auf das|Höschen beißen.),"Hey, ganz ruhig. (Sie drückt Klebeband über deine|gebleckten Zähne, um das Höschen festzuhalten.)",672,0,1,PlayerTapeGagged()
+671,0,0,SockGagged,(Fest auf die|Socke beißen.),"Hey, ganz ruhig. (Sie drückt Klebeband über deine|gebleckten Zähne, um die Socke festzuhalten.)",672,0,1,PlayerTapeGagged()
+671,0,0,PantieGagged,(Fröhlich summen.),"Versuchst du etwa, Chloe neidisch zu machen?|(Cassi sichert das Höschen mit Klebeband.)",672,1,0,PlayerTapeGagged()
+671,0,0,SockGagged,(Fröhlich summen.),"Versuchst du etwa, Chloe neidisch zu machen?|(Cassi sichert die Socke mit Klebeband.)",672,1,0,PlayerTapeGagged()
+672,0,0,PantieGagged,(Auf dem Höschen in dei-|nem Mund herumkauen.),"(Du fragst dich langsam,|ob die Unterwäsche sauber war.)",674,0,0,CassiLegTie(1)
+672,0,0,SockGagged,(Auf der Socke in deinem|Mund herumkauen.),"(Du fragst dich langsam,|ob die Socke sauber war.)",674,0,0,CassiLegTie(2)
+672,0,0,PantieGagged,(Das Höschen|ausspucken.),"(Jetzt ist es zu spät, das Klebeband hält|das Höschen in deinem Mund gefangen.)",674,0,0,CassiLegTie(3)
+672,0,0,SockGagged,(Die Socke|ausspucken.),"(Jetzt ist es zu spät, das Klebeband hält|die Socke in deinem Mund gefangen.)",674,0,0,CassiLegTie(4)
+672,0,0,,(Fröhlich summen.),(Die Kombination aus Unterwäsche und|Klebeband dämpft dich fast vollständig ab.),674,1,0,CassiLegTie(5)
+672,0,0,,(Still warten.),(Du denkst über deine Lage nach.),674,0,-1,CassiLegTie(6)
+673,0,0,,(Nervös den|Kopf schütteln.),"Die müssen weg, aber keine Angst, der Club|hat für genau solche Fälle Ersatzunterwäsche.",674,0,-1,PantiesCut(0)
+673,0,0,,(Eifrig nicken.),"Weißt du, wenn du einen Keuschheitsgürtel tragen|würdest, müsste ich kein gutes Höschen zerschneiden.",674,1,0,PantiesCut(1)
+673,0,0,,(Gewaltig mit den|Hüften schwingen.),"Sorry, aber es geht nicht anders, ohne deine Beine zu|befreien. Der Club hat genau dafür Ersatzunterwäsche.",674,0,1,PantiesCut(0)
+673,0,0,,@Bhnhnh.,(Cassi scheint dich nicht zu hören und macht weiter.)|Der Club hat Ersatzunterwäsche für solche Fälle.,674,0,0,PantiesCut(0)
+673,0,0,!TsuriFrogTied,(Nach Cassi treten.),Autsch. Du willst noch mehr Fesseln? (Sie faltet und|fesselt deine Beine und schneidet dein Höschen ab.),674,0,0,PantiesCut(2)
+674,0,0,,(Fröhlich nicken.),"Hoffentlich genießt du das so, wie ich es gern würde.|(Cassi fängt an, sich an deine Muschi zu schmiegen.)",675,1,0,CassiCuffs()
+674,0,0,,"@Mntthmschm mmch|hm nhmmt, Schmhmph!",Dein Mund macht die Wäsche noch ganz schmutzig.|(Cassi zögert und schmiegt sich dann an deine Muschi.),675,-1,1,CassiCuffs()
+674,0,0,,@Bhnhnh.,(Weder Cassi noch der Club scheinen dich hören|zu können. Cassi schmiegt sich an deine Muschi.),675,0,0,CassiCuffs()
+675,0,0,,(Mulmig wimmern.),"(Du fühlst, wie Cassis Zunge sanft deine Lippen|trennt und zärtlich über deine Klitoris streicht.)",680,0,-1,
+675,0,0,,(Ungeduldig die|Hüften bewegen.),"(Du fühlst, wie Cassis Zunge durch deine Lippen dringt|und in langen, kräftigen Zügen deine Klitoris leckt.)",680,0,1,
+675,0,0,,(Dich entspannen und|das Gefühl genießen.),"(Du fühlst, wie Cassis Zunge deine Lippen ausein-|anderdrückt und in langen Zügen deine Klitoris leckt.)",680,0,0,
+6800,0,0,,(Cassis Technik|in Stille auskosten.),"(Du hängst wie in Trance da, während|Cassis Zunge über deine Klitoris tanzt.)",680,0,0,CassiCunni(1)
+680,0,0,,(Lüstern stöhnen.),"(Cassi spielt weiter mit deiner Klitoris, bleibt an der|richtigen Stelle und verlängert dein dumpfes Stöhnen.)",680,0,0,CassiCunni(2)
+680,0,0,,(Schwer atmen.),"(Cassi stimuliert deine Klitoris, während dein|ganzer Körper bei jedem Atemzug bebt.)",680,0,0,CassiCunni(3)
+680,0,0,,(Hilflos ächzen.),"(Cassi leckt stetig weiter, während du dich|windest und an dem Höschen würgst.)",680,0,0,CassiCunni(4)
+680,0,0,,(Ungeduldig murmeln.),- cassi changes style of stimulation.   reduce arousal?,680,0,0,CassiCunni(5)
+680,0,0,,(Deine Hüften schwingen.),(Cassi spielt weiter mit deiner Klitoris und richtet|sich nach dem Rhythmus deiner Bewegung.),680,0,0,CassiCunni(2)
+680,0,0,,(Deine Hüften|unbeholfen verlagern.),- cassi changes style of stimulation.   reduce arousal?,680,0,0,CassiCunni(5)
+680,0,0,CanPressCassi,(Ihren Kopf mit deinen|Beinen festhalten.),"(Du überraschst Cassi, als du deine Füße um ihren|Kopf legt, aber sie leckt deine Klitoris sofort weiter.)",680,0,0,CassiCunni(6)
+680,0,0,PressingCassi,(Ihren Kopf fest in|deinen Schritt drücken.),"(Cassis Mund und Nase werden fest an dich gepresst.|Sie fängt an zu zappeln, hört aber nicht auf zu lecken.)",680,0,0,CassiCunni(7)
+680,0,0,ForcingCassi,(Sie weiterhin fest|an dich drücken.),"(Cassi zappelt verzweifelt. Da sie nicht|davonkommt, versucht sie, schneller zu lecken.)",680,0,0,CassiCunni(8)
+680,0,0,ForcingCassi,(Deinen Halt um|Cassi lockern.),"(Cassi leckt weiter, schaut aber nervös zu dir hoch|und atmet wieder durch die Nase.)",680,0,0,CassiCunni(9)
+680,0,0,PressingCassi,(Ihren Kopf loslassen.),"(Du lässt deine Beine von Cassi abrutschen,|die dich weiterhin mit ihrer Zunge bearbeitet.)",680,0,0,CassiCunni(10)
+680,0,0,,"(Versuchen, Cassi|zu ignorieren.)","(Du versuchst dich gedanklich und körperlich|abzulenken, aber Cassis Zunge ist erbarmungslos.)",680,0,0,CassiCunni(11)
+680,0,0,,(Krampfhaft zappeln.),"(Cassi lehnt sich tiefer hinein und lässt ihre Zunge an|deiner Klitoris, während du dich krümmst und windest.)",680,0,0,CassiCunni(12)
+681,0,0,,(Fröhlich aufheulen.),"(Als dein Orgasmus abklingt, bemerkst du, dass Cassi|noch immer und ununterbrochen mit Hochdruck leckt.)",680,0,-1,CassiContinue()
+681,0,0,,(Begeistert schaudern.),"(Als dein Orgasmus abklingt, bemerkst du, dass Cassi|noch immer und ununterbrochen mit Hochdruck leckt.)",680,1,0,CassiContinue()
+681,0,0,,(In deinen|Knebel kreischen.),"(Als dein Orgasmus abklingt, bemerkst du, dass Cassi|noch immer und ununterbrochen mit Hochdruck leckt.)",680,0,0,CassiContinue()
+682,0,0,,"(Versuchen, dich|zu befreien.)","(Die Seile sind kein bisschen lockerer. Cassi schnappt|nach Luft und eilt davon, um ihren Schlüssel zu holen.)",661,0,0,NoActor()
+682,0,0,,@HMLFT MMR!,"(Die zuschauenden Mädels lachen, als Cassi nach Luft|schnappt und davoneilt, um ihren Schlüssel zu holen.)",661,0,0,NoActor()
+682,0,0,,(Herumhängen.),"(Cassi schnappt nach Luft und eilt davon, um ihren|Handschellenschlüssel zu holen. Sie lässt dich allein.)",661,0,0,NoActor()
+685,0,0,,(Nicken.),"Du wirst bald spüren, was für Krämpfe man von|Hängen bekommt. Ich binde dich jetzt besser los.",687,0,0,
+685,0,0,,(Den Kopf schütteln.),"Du versautes Mädchen, du liebst, was mit dir passiert.|(Sie leckt deine Klitoris weiter.)",680,1,-1,
+686,0,0,,(Nicken.),"Vielleicht ein andermal, wenn du nett zu mir bist.|Ich sollte dich jetzt wirklich losbinden.",687,0,0,
+686,0,0,,(Den Kopf schütteln.),"Sei nicht so gierig, das war viel mehr, als manche|von uns je bekommen. Ich sollte dich jetzt losbinden.",687,-1,0,
+687,0,0,,(Nicken.),"Wegen deiner Unterwäsche, die ich zerstört habe. Der|Club kann dir dafür diesen Keuschheitsgürtel leihen.",688,0,0,
+687,0,0,,(Den Kopf schütteln.),"Du bekommst wohl nie genug! Na ja, ich sollte|zurück zu Alyssa, Tschau. (Sie lässt dich hängen.)",661,0,-1,PunishmentGlutten()
+688,0,0,,(Nicken.),"Super, brauchst du noch ein paar Extras,|um deine privaten Stellen zu beschäftigen?",689,0,-1,
+688,0,0,,(Den Kopf schütteln.),"Komm schon, du musst doch irgendeine Unterwäsche|tragen. Ich kann sie dir aufpeppen, wenn du willst?",689,0,0,
+689,0,0,,(Nicken.),"Die sind perfekt. (Sie steckt dir ein Ei in die Vagina und|einen Stöpsel in den Po, dann kommt der Gürtel herum.)",690,0,0,AddedExtras(0)
+689,0,0,,(Den Kopf schütteln.),"Nicht meckern. (Sie steckt dir ein Ei in die Vagina und|einen Stöpsel in den Po, dann kommt der Gürtel herum.)",690,0,0,AddedExtras(1)
+690,0,0,,(Den Kopf hängenlassen|und wimmern.),"Ohhh, nicht weinen, ich musste schon|Schlimmeres durchmachen. (Sie befreit dich.)",691,0,-1,PlayerFreed()
+690,0,0,,(Sie zornig ansehen.),"Ups, jetzt ist es eh zu spät.|(Sie befreit dich.)",691,0,1,PlayerFreed()
+690,0,0,,(Zufrieden stöhnen.),"Ich wusste doch, dass dir das gefällt.|(Sie befreit dich.)",691,1,0,PlayerFreed()
+690,0,0,,(Stöhnen.),Jetzt dauert es nicht mehr lange.|(Sie befreit dich.),691,0,0,PlayerFreed()
+691,0,0,,Das war klasse. Können|wir das nochmal machen?,"Das freut mich, aber du solltest dich etwas strecken|und ich sollte wirklich langsam nach Alyssa sehen.",691,0,0,
+691,0,0,,"Klasse, jetzt kann ich|dich zum Dank lecken.",Das dürfte im Moment etwas schwierig werden|und ich sollte wirklich langsam nach Alyssa sehen.,691,0,0,
+691,0,0,,"Könnte ein Krampf sein,|aber ich zittere immer noch.","Fühlt sich toll an, was?",691,0,0,
+691,0,0,,Was sollte das Ganze?,"Na ja... ich... ähhhh...|Ich dachte, das war klar, und es schien dir zu gefallen.",691,0,0,
+691,0,0,Common_PlayerChaste,Schließe sofort diesen|verdammten Gürtel auf!,"Er bleibt verschlossen, bis du Zeit hattest,|dich ein wenig zu beruhigen. Gewöhn dich dran.",691,0,0,
+691,0,0,Common_PlayerChaste,Bitte lass mich aus|diesem Gürtel raus.,"Ich habe ihn dir gerade erst angelegt. Du solltest ihn|mal einen ganzen Tag anbehalten, oder sogar zwei.",691,0,0,
+691,0,0,Common_PlayerChaste,"Was ist mit dem Stöpsel,|wenn ich aufs Klo muss?",Das hältst du schon aus... Für heute zumindest.|Morgen bringe ich den Schlüssel ins College mit.,691,0,0,
+700,0,0,,"So, Lucy, sollten wir jetzt|deine Fänger fesseln?","Bei Amelia ist das leichter gesagt als getan. Ich weiß|viel über Kinbaku, möchtest du vielleicht gefesselt sein?",710,0,1,
+700,0,0,,Dir muss jetzt|bestimmt alles wehtun.,"Ja, ich muss mir die Arme ausstrecken. Kann ich dich|fesseln, um die Durchblutung wieder anzuregen?",710,1,0,
+710,0,0,,"Nein, du fesselst|mich nicht.","Ach bitte, ich hab eine tolle Idee,|die ich gern ausprobieren würde.",710,0,0,
+710,0,0,,Fessel doch lieber|Amelia oder Charlotte.,"Nein, ich würde wirklich gern eine|neue Idee an dir ausprobieren.",710,0,0,
+710,0,0,ATwinStillTied,Wirst du deine Schwester|einfach so da lassen?,"Sie kann diese Pose noch eine Weile aushalten.|Komm schon, du könntest ihr Gesellschaft leisten.",710,0,0,
+710,0,0,,"Okay, aber bringen wir|es schnell hinter uns.","Mal sehen, das könnte dir gefallen. (Sie fängt mit|deinen Armen an, legt dich hin und fesselt deine Beine.)",720,0,1,PlayerTied()
+710,0,0,,"Klar, zeig mir,|was du drauf hast.","Danke, das könnte dir gefallen. (Sie fängt mit deinen|Armen an, legt dich hin und fesselt deine Beine.)",720,1,0,PlayerTied()
+710,0,0,,"Ich weiß nicht, ob ich|gefesselt sein will.","Entspann dich, das könnte dir gefallen. (Sie fängt mit|deinen Armen an, legt dich hin und fesselt deine Beine.)",720,0,-1,PlayerTied()
+720,0,0,,"Komm schon, das ist|nichts Besonderes.","Einen Moment. (Sie bindet ein Schrittseil, zieht es um|deine Arme und verbindet es mit deinen Beinen.)",730,0,1,PlayerTied()
+720,0,0,,Könntest du das noch|etwas restriktiver machen?,"Sicher doch. (Sie bindet ein Schrittseil, zieht es um|deine Arme und verbindet es mit deinen Beinen.)",730,1,-1,PlayerTied()
+720,0,0,,"Tja, so kann ich wohl nicht|einfach davonlaufen.","Das ist der Plan. (Sie bindet ein Schrittseil, zieht es um|deine Arme und verbindet es mit deinen Beinen.)",730,0,-1,PlayerTied()
+730,0,0,,(Nach einem|Knoten greifen.),"(Du tastest hinter dir nach einem Knoten, aber|dadurch bohrt sich das Schrittseil tiefer in dich hinein.)",730,0,0,HelplessKnot()
+730,0,0,,"(Versuchen, in diesen|Fesseln zu zappeln.)","(Als du mit den Beinen zappelst, zerren sie am|Schrittseil, das sich tiefer in dich hinein bohrt.)",730,0,0,HelplessStruggle()
+730,0,0,,Das ist genug. Du kannst|mich jetzt freilassen.,"Moment noch, bin gleich fertig. (Sie schnallt|dir einen Knebel um und unterbricht deinen Protest.)",740,0,-1,PlayerBallGagged()
+730,0,0,,Das ist toll.,"Ja, aber da fehlt noch was. (Sie schnallt dir|einen Knebel in den Mund.) Schon besser.",740,1,-1,PlayerBallGagged()
+730,0,0,,Jetzt will ich dich|so gefesselt sehen.,"Wer 'will', bekommt nichts. Höflicher wäre die Frage:|""Dürfte ich bitte einen Knebel haben?"" Ja, darfst du.",740,0,0,PlayerBallGagged()
+740,0,0,,(Nach einem|Knoten greifen.),"(Du tastest hinter dir nach einem Knoten, aber|dadurch bohrt sich das Schrittseil tiefer in dich hinein.)",740,0,0,HelplessKnot()
+740,0,0,,"(Versuchen, in diesen|Fesseln zu zappeln.)","(Als du mit den Beinen zappelst, zerren sie am|Schrittseil, das sich tiefer in dich hinein bohrt.)",740,0,-1,HelplessStruggle()
+740,0,0,,@Bhnhnh.,"Ganz ruhig, das ist nicht so schlimm, wenn du nicht|zappelst. Du kannst das noch eine Weile aushalten.",740,0,0,HelplessTime()
+740,0,0,,(Den Knebel ausspucken.),"(Es gelingt dir nicht, ihn auszuspucken.) Keine Angst,|das ist nicht derselbe, an dem ich sabbern musste.",740,0,0,HelplessTime()
+740,0,0,,(Auf dem Knebel|herumkauen.),"Hmmm, vielleicht sollte ich dir einen größeren Knebel|besorgen oder dir vorher etwas in den Mund stopfen.",740,0,0,HelplessTime()
+740,0,0,,"@Dhs rhcht, lhss|mhch jhtft frhh.","Wie war das? Ich kann dich nicht richtig|verstehen, wenn du den Mund voll hast.",740,0,0,HelplessTime()
+740,0,0,,"@Thhng nhh, thnf|hhgtnm Hmf hwfhmm.","Keine Ursache. Ich dachte mir doch,|dass dir das gefällt.",740,0,0,HelplessThankYou()
+740,0,0,,(Am Schrittseil|ziehen.),"(Du kannst nicht anders, als leise vor Wollust und|Schmerz zu stöhnen, als du dich selbst reizt.)",740,0,0,HelplessTug()
+750,0,0,,@Wnll nhh lmt|mm gh nhw?,"Ja, gleich. Wenn du Interesse hast, könnte ich noch|eine andere Kinbaku-Method an dir demonstrieren?",760,0,0,
+750,0,0,,@Bhthh lhss mhch frhh. Hch|bhn hhn ghths Mhdchhn.,"Ein gutes Mädchen? Du wärst ein großartiges Mädchen,|wenn du mich mehr Kinbaku an dir demonstrieren lässt.",760,1,-1,
+750,0,0,,@Bhnhnh?,Gerade eben ging es dir damit noch gut. Vielleicht|hast du Schmerzen und wärst lieber anders gefesselt?,760,0,0,
+750,0,0,,(Wimmern.),Was ist denn los? Etwas mehr|Kinbaku könnte dich aufheitern.,760,0,0,
+750,0,0,,(Auf dein|Schrittseil deuten.),"Ich mag es zwar, Leute zu fesseln,|aber ich befriedige nicht gern andere Mädchen. Sorry.",750,0,0,
+760,0,0,,(Den Kopf schütteln.),Bist du dir wirklich sicher?|Du wärst so ein supersüßes Model.,765,0,0,
+760,0,0,,(Nicken.),"Klasse. Ich will etwas versuchen, das etwas|abenteuerlicher ist. (Sie befreit deine Beine.)",770,1,0,
+760,0,0,,@N fhpphfm fh,"Keine Angst, das wird etwas ganz Besonderes, um dich|aufzuheitern, versprochen. (Sie befreit deine Beine.)",770,0,1,
+760,0,0,,"@Bhtth, hch flhhh dhch hn.|Lhss mhch frhh.",Bist du dir wirklich sicher?|Du wärst so ein supersüßes Model.,765,0,-1,
+765,0,0,,@Bhtth hhfhhrhn.|Bhndh mhch lhs.,"Lässt sich machen. (Sie befreit dich und hilft dir hoch.)|Wenn du wieder gefesselt sein willst, frag einfach.",600,0,0,PlayerFreed()
+765,0,0,,@Dh fhndhst mhch|whrklhch shphrshß?,"Warum denn nicht? Du bist unwiderstehlich süß. Sei|doch so lieb und hilf mir, etwas anderes zu modeln.",760,0,0,
+770,0,0,,(Auf deine Arme deuten.),Die können so bleiben. (Sie hilft dir hoch|und führt dich in eine Ecke des Raums.),632,0,0,
+770,0,0,,@Lhsst dh mhch frhh?|(Lässt du mich frei?),"Nein, ich musste nur deine Beine losbinden. (Sie hilft|dir hoch und führt dich in eine Ecke des Raums.)",632,0,0,
+770,0,0,,(Von ihr weglaufen.),Wo willst du denn hin? (Sie packt dich an herabhän-|genden Seilen und führt dich in eine Ecke des Raums.),632,1,0,
+800,0,0,,"@HHLFH, hs hst Hmhthmr!","Nicht doch. Ich sagte Treffer, nicht Pfeffer. (Bei Heathers|Antwort ignoriert der Club deinen dumpfen Aufschrei.)",810,0,0,
+800,0,0,,@Bhnhnh?,"Wohin hättest du die Banane|denn gern, du unartiges Mädchen?",810,0,0,
+800,0,0,,@Hch whhß.|(Ich weiß.),Dann hast du mich mit Absicht befreit und dich fesseln|und knebeln lassen? Das ist pervers und wird bestraft.,810,1,0,
+810,0,0,,(Sie zornig anstarren.),"Oh, findest du das etwa nicht streng genug?|Ich könnte es für dich natürlich noch extremer machen.",811,0,1,
+810,0,0,,"@Lhss mhch frhh, Schlhmph!|(Lass mich frei, Schlampe!)","Oh, findest du das etwa nicht streng genug?|Ich könnte es für dich natürlich noch extremer machen.",811,-1,0,
+810,0,0,,@Bhtth bhndh mhch lhs.|(Bitte binde mich los.),"Ohhh, unterwirfst du dich meinem Willen?",820,0,-1,
+810,0,0,,(Wimmern und deinen|Kopf vor ihr verneigen.),"Ohhh, unterwirfst du dich meinem Willen?",820,1,-1,
+810,0,0,,"(Zappeln, um dem|Hogtie zu entkommen.)","(Du zappelst wie wild, aber die Seile geben nicht nach.)|Du kannst gern den ganzen Abend so weitermachen.",810,0,0,
+810,0,0,,(Nach einem|Knoten suchen.),"Du brauchst mehr als Glück zum Entkommen,|dieses Kinbaku ist makellos. Dank deiner Einwilligung.",810,0,0,
+811,0,0,,(Sie zornig anstarren.),"Gut, wenn du es auf die Tour willst. (Sie rollt dich her-|um, knöpft dein Hemd auf und entblößt deine Brüste.)",812,0,1,Exposed()
+811,0,0,,@Dh khnnst mhch mhl!|(Du kannst mich mal!),"Foltern? Wenn du darauf bestehst... (Sie rollt dich her-|um, knöpft dein Hemd auf und entblößt deine Brüste.)",812,0,0,Exposed()
+811,0,0,,(Den Kopf schütteln.),Du unterwirfst dich also meinem Willen?,820,0,0,
+811,0,0,,(Wimmern und deinen|Kopf vor ihr verneigen.),"Tja, du bist wohl noch so ein versautes Mädchen.|(Sie rollt dich herum und entblößt deine Brüste.)",812,0,-1,Exposed()
+812,0,0,,(Sie zornig anstarren.),"Mal sehen, ob du auch hiermit die Fassung behältst.|(Sie befestigt ein Paar Klammern an deinen Nippeln.)",813,0,1,Clamped()
+812,0,0,,"@Nhhn, bhtth nhcht.|(Nein, bitte nicht.)","Tut mir leid, aber du sagtest, du willst die ausprobieren.|(Sie befestigt ein Paar Klammern an deinen Nippeln.)",813,0,-1,Clamped()
+812,0,0,,(Mit deinen freien|Brüsten wackeln.),"Geduld, meine perverse Freundin. (Sie packt deine|Brüste und befestigt an beiden Nippeln eine Klammer.)",813,1,-1,Clamped()
+812,0,0,,@GNHDH!|(GNADE!),"Oh, gut, du unterwirfst dich also meinem Willen?",820,0,0,Mercy()
+813,0,0,,(Vor Schmerz|kreischen.),"Ich hab dich gewarnt, aber du|wolltest das ja unbedingt ausprobieren.",813,0,-1,Sensetive()
+813,0,0,,(Lüstern stöhnen.),"Mir war nicht klar, dass du in Wirklichkeit eine|Masochistin bist. (Sie spielt mit den Klammern.)",813,1,-2,Masochism()
+813,0,0,,(Sie zornig anstarren.),"Du hältst mehr aus als ich dachte, aber du wolltest|es ja auf die harte Tour. (Sie zieht an der Kette.)",813,0,1,Defiant()
+813,0,0,,@GNHDH!|(GNADE!),"Ganz ruhig. Du sagtest doch, ich soll alles geben.",813,0,-1,Sensetive()
+813,0,0,,(Dich in deinen|Fesseln winden.),Du scheinst richtig darauf abzugehen. (Sie spielt|mit den Klammern an deinen Nippeln herum.),813,0,-2,Masochism()
+813,0,0,,"@Hhhhrrgh, dh Schlhmph.|(Du Schlampe.)","Du sagst starke Sachen, wenn du nicht gerade heulst.|(Sie zerrt an der Kette zwischen den Klammern.)",813,-1,0,Defiant()
+813,0,0,!Guessing,@Bhnhnh,"Du weißt doch, wir hatten ein anderes Safeword ver-|einbart. Alber nicht herum, oder ist dir das zu einfach?",813,0,0,SafeWord()
+813,0,0,Guessing,(Ein anderes|Safeword versuchen.),(Ein Versuch kann nicht schaden.),814,0,0,SafeWord()
+813,0,0,,(Dich von Heather|wegschieben.),"Ich tue, was du wolltest, also bleib hier und komm|damit klar. (Sie zieht dich mit den Klammern zurück.)",813,0,0,Tug()
+813,0,0,BreakDown,(Schluchzen und|vor Schmerz aufheulen.),"Scheiße, hör auf zu weinen,|es tut mir leid, du hättest was sagen sollen.",840,0,-1,Crying()
+814,0,0,,@Rmd.|(Red.),"Red Light? Okay, dann trinke ich bei Roxanne, wenn|wir später in der Bar bei dem Song hierüber lachen.",813,0,0,
+814,0,0,,@Jhftnn Bnmbmr.|(Justin Bieber.),"Ich mag ihn. Ich kann mir niemanden vorstellen, der|sich beim Gedanken an Bieber nicht wohlfühlen würde.",813,0,0,
+814,0,0,,"@Hn, ghrhmbh|(Ay, caramba!)","Keine Angst, ich werde schon|nicht deine Shorts fressen.",813,0,0,
+814,0,0,,@Mhrmntm.|(Marmite.),"Du liebst das? Okay, ich persönlich würde es hassen.|(Sie schnipst die Klammern mit der Kette.)",813,0,0,Tug()
+814,0,0,,@Hglhhhmh.|(Oklahoma.),"Da kann ich dich hinbringen,|nachdem du dich unterworfen hast.",813,0,0,
+814,0,0,,@Fhfmwhrd.|(Safeword.),"Komm schon, du warst doch nicht so einfallslos, als wir|uns darauf geeinigt haben. (Sie ruckelt an der Kette.)",813,0,0,Tug()
+814,0,0,,@Vhrtrhmhn.|(Vertrauen.),"Ja, Regel nummer eins: Vertraue niemandem.",813,0,0,
+814,0,0,,@Bmmtlmjhngm.|(Beetlejuice.),Sag das dreimal hintereinander|und es wird auch nichts ändern.,813,0,0,
+814,0,0,,@Hnnhrn.|(Einhorn.),"Du hättest jetzt wohl gern ein Horn, was?|(Sie zieht langsam an der Kette.)",813,0,0,Tug()
+814,0,0,,@Hhfflmphff.|(Hufflepuff.),"Sorry, ich hab meinen Zauberstab nicht dabei,|ich konnte ihn einfach nicht finden.",813,0,0,
+820,0,0,,"@Jh, Mhff.|(Nicken.)",Gutes Mädchen. Ich werde mich jetzt an |Amelia rächen und du wirst mir dabei helfen.,850,0,0,
+820,0,0,,"@Nhhn, th hch nhcht.|(Den Kopf schütteln.)","Gut, wenn das so ist, können wir ja weiterspielen.|(Sie rollt dich herum und entblößt deine Brüste.)",812,0,0,CarryOn()
+820,0,0,,@Dhhnhm Whllhn?|(Deinem Willen?),"Du sollst alle meine Befehle befolgen, Dummerchen.",820,0,0,
+821,0,0,,(Nicken.),Gut. Ich werde mich jetzt an Amelia|rächen und du wirst mir dabei helfen.,850,0,0,
+821,0,0,,"@Jh, Mhff.|(Ja, Miss.)","Ausgezeichnet. Du wärst ein nettes Spielzeug, aber|erst hilfst du mir, es Amelia heimzuzahlen.",850,1,-1,
+821,0,0,!CannotBluff,(Den Kopf schütteln.),Mach mir nichts vor. Ich sehe es doch|in deinen Augen. Unterwirfst du dich mir jetzt?,821,0,0,NoBluffing()
+822,0,0,,(Nicken.),Gut. Ich werde mich jetzt an Amelia|rächen und du wirst mir dabei helfen.,850,0,0,
+822,0,0,,"@Jh, Hhrrhn.|(Ja, Herrin.)","Wärst du nicht schon vergeben, würde ich dich be-|halten, aber jetzt hilfst du mir, es Amelia heimzuzahlen.",850,0,-1,NoMistress()
+822,0,0,!CannotBluff,(Den Kopf schütteln.),Mach mir nichts vor. Ich sehe es doch|in deinen Augen. Unterwirfst du dich mir jetzt?,822,0,0,NoBluffing()
+823,0,0,,@Lhss mhch shfhrt frhh!|(Lass mich sofort frei!),"Sorry, du sagtest, ich soll nicht aufhören, bis du dich|unterwirfst. Ich gebe dir aber Zeit zum Nachdenken.",824,0,1,
+823,0,0,,@Hs hht nhh Sphß ghmhcht.|(Es hat nie Spaß gemacht.),"Spaß? Du wolltest beweisen, wie viel du einstecken|kannst. Ich lasse dich in Ruhe darüber nachdenken.",824,0,0,
+823,0,0,,@Dh bhst hbschhmlhch.|(Du bist abscheulich.),"Nein, ich befolge nur artig deine Anweisungen,|aber jetzt kannst du allein weiterspielen.",824,-1,0,
+824,0,0,,@Bhtth nhcht.|(Bitte nicht.),Du hattest deine Chance.|(Sie zieht dir die Augenbinde über.),860,0,-1,
+824,0,0,,"@Fhck dhch hns|Knhm, Schlhmph!",Ich sollte deinen Mund mit Seife auswaschen.|(Sie zieht dir die Augenbinde über.),860,-2,0,
+830,0,0,,(Mit deinen freien|Brüsten wackeln.),"(Du wackelst, so gut es geht, und das Gewicht|der Klammern zwirbelt an deinen Nippeln.)",830,0,0,WaitingForMistress()
+830,0,0,,(Nach einem|Knoten greifen.),"(Du tastest hinter dir nach einem Knoten, aber|dadurch bohrt sich das Schrittseil tiefer in dich hinein.)",830,0,0,HelplessKnot()
+830,0,0,,"(Versuchen, in diesen|Fesseln zu zappeln.)","(Als du mit den Beinen zappelst, zerren sie am|Schrittseil, das sich tiefer in dich hinein bohrt.)",830,0,0,HelplessStruggle()
+830,0,0,,(Lüstern stöhnen.),"(Du kannst nicht anders, als das berennende|Gefühl in deinen Nippeln zu genießen.)",830,0,0,WaitingForMistress()
+830,0,0,,"(Versuchen, die Nippel-|Klammern loszuwerden.)","(Du versuchst, die Klammern am Boden abzustreifen,|aber das reizt deine armen Nippel nur noch mehr.)",830,0,0,WaitingForMistress()
+830,0,0,,"(Zappeln, um dem|Hogtie zu entkommen.)","(Du strampelst wie verrückt, aber nur das Schrittseil|gibt etwas nach und zieht sich bei jedem Tritt fest.)",830,0,0,WaitingForMistress()
+830,0,0,,(Nach einem|Knoten suchen.),"(Du tastest sorgfältig umher, findest aber keinen|einzigen Knoten. Du wurdest sehr gekonnt verschnürt.)",830,0,0,WaitingForMistress()
+830,0,0,,Auf dem Knebel|herumkauen.,"(Der große Ball gibt nicht nach. Du seufzt zufrieden|und genießt es, wie sehr dein Kiefer schmerzt.)",830,0,0,WaitingForMistress()
+831,0,0,,@Hhrrhn?|(Herrin?),"Ganz genau. Ich habe hier ein Halsband mit|einem Schloss, damit du das niemals vergisst.",832,1,0,
+831,0,0,,@Hmhthmr.|(Heather.),Leder? Wie hast du das erraten? Ich habe hier ein|schönes Lederhalsband mit Schloss für deinen Hals.,832,0,0,
+832,0,0,,(Deinen Kopf senken.),(Heather schließt das Halsband um deinem Hals ab|und verbirgt es unter deinem Hemdkragen.),833,0,-1,PlayerCollared()
+832,0,0,,@Whhth hhnhn Mhmmnt.|(Warte einen Moment.),(Heather schließt das Halsband ab und verbirgt es|unter deinem Hemdkragen.) Sagtest du etwas?,833,0,0,PlayerCollared()
+833,0,0,,"@Dhnkh, Hhrrhn.|(Danke, Herrin.)","Wir werden uns jetzt an Amelia rächen. Wenn du|brav bist, bestrafe ich dich nachher fürs Helfen.",850,0,-2,
+840,0,0,,(Qualvoll kreischen|und heulen.),HEATHER! Mitten im vollen Club? Du hast Nerven.|(Jenna und einige andere Mädels umzingeln Heather.),841,0,0,LoadJenna()
+840,0,0,,(Leise wimmern|und schluchzen.),HEATHER! Mitten im vollen Club? Du hast Nerven.|(Jenna und einige andere Mädels umzingeln Heather.),841,0,0,LoadJenna()
+840,0,0,,(Verzweifelt flennen|und murmeln.),HEATHER! Mitten im vollen Club? Du hast Nerven.|(Jenna und einige andere Mädels umzingeln Heather.),841,0,0,LoadJenna()
+840,0,0,,(Leise schniefen|und weinen.),HEATHER! Mitten im vollen Club? Du hast Nerven.|(Jenna und einige andere Mädels umzingeln Heather.),841,0,0,LoadJenna()
+841,0,0,,@Jmnnh!|(Jenna!),"Halte kurz durch, COMMON_PLAYERNAME.|(Sie stürzen sich auf Heather, ergreifen und fesseln sie.)",842,1,0,
+841,0,0,,(Weiterhin weinen.),"(Sie stürzen sich auf Heather,|ergreifen und fesseln sie.)",842,0,-1,
+842,0,0,,(Weiterhin weinen.),"Alles wird gut. (Heather wird davongebracht, während|Jenna die Klammern entfernt und dich tröstet.)",843,0,-1,HeatherTaken()
+842,0,0,,@Hmlft mhr hndlhch!|(Helft mir endlich!),"Ganz ruhig. (Heather wird davongebracht, während|Jenna die Klammern entfernt und dich tröstet.)",843,0,1,HeatherTaken()
+842,0,0,,"@Hmlft mhr, bhtth.|(Helft mir, bitte.)","Aber klar. (Heather wird davongebracht, während|Jenna die Klammern entfernt und dich tröstet.)",843,1,-1,HeatherTaken()
+843,0,0,,@Dhs ghfhllt mhr.|(Das gefällt mir.),"Das kann ich mir vorstellen. Du fragst dich wohl,|warum ich dich noch nicht losgebunden habe?",844,1,0,
+843,0,0,,@Bhtth bhndh mhch lhs.|(Bitte binde mich los.),"Du fragst dich wohl, warum ich|dich noch nicht losgebunden habe?",844,0,0,
+843,0,0,,@Whs hhst dh mht mhr vhr?|(Was hast du mit mir vor?),"Nichts Besonderes. Du fragst dich wohl,|warum ich dich noch nicht losgebunden habe?",844,0,-1,
+844,0,0,,(Nicken.),"Mir ist aufgefallen, dass du auf meine Brüste guckst|und versuchst, deinen Kopf in meinen Schritt zu reiben.",845,0,0,
+844,0,0,,(Den Kopf schütteln.),"Mir ist aufgefallen, dass du auf meine Brüste guckst|und versuchst, deinen Kopf in meinen Schritt zu reiben.",845,1,0,
+845,0,0,,Ghr nhcht whhr!|(Den Kopf schütteln.),Siehst du? Du tust es schon wieder. (Sie zwickt einen|deiner schmerzenden Nippel und streichelt ihn sanft.),846,0,0,
+845,0,0,,(Sie zornig anstarren.),"Spielverderberin. Na gut, dann binde ich dich jetzt los.|(Sie nimmt deinen Knebel ab und bindet dich los.)",848,0,1,PlayerReleased()
+845,0,0,,(Kichern und sie|begeistert reiben.),"Ohhh, ruhig, Mädchen. Chloe wird noch eifersüchtig.|(Sie zwickt einen deiner Nippel und streichelt ihn sanft.)",846,1,0,
+845,0,0,,"(Erröten und entschuldi-|gen.) Tht mhr lhhd, Mhff.","Kein Problem, mir gefällt das und dein rotes Gesicht.|(Sie zwickt einen deiner Nippel und streichelt ihn sanft.)",846,1,-1,
+845,0,0,,@Trhhm whmthr.|(Träum weiter.),"Wenn du so bockig bist, suche dir jemand anderes.|(Sie nimmt deinen Knebel ab und bindet dich los.)",848,0,0,PlayerReleased()
+846,0,0,,(Wimmern und stöhnen.),"Heather weiß, wie wirksam Schmerzen sind. Es ist nur|schade, dass sie nichts Angenehmes damit kombiniert.",847,0,-1,
+846,0,0,,(Quieken und|erneut weinen.),"Entschuldige, du musstest wohl wirklich leiden. Ich helfe|dir. (Sie nimmt deinen Knebel ab und bindet dich los.)",848,0,0,PlayerReleased()
+846,0,0,,(Jaulen und dich dann|erfreut an sie kuscheln.),"Deine Stimmung hat sich verändert. Erstaunlich, wie|ein paar nette Reize den Schmerz umwandeln können.",847,1,-1,
+846,0,0,,"@Nhhn, dhs tht hcht whh.|(Nein, das tut echt weh.)","Damit musst du rechnen, wenn du dir sowas einbrockst.|(Sie nimmt deinen Knebel ab und bindet dich los.)",848,0,-1,PlayerReleased()
+847,0,0,,(Nicken.),"Gut, aber jetzt ist nicht die Zeit dafür. Du solltest dich|strecken. (Sie nimmt deinen Knebel ab und befreit dich.)",848,1,0,PlayerReleased()
+847,0,0,,(Den Kopf schütteln.),"Mach dir nichts vor. Egal, du solltest dich jetzt etwas|strecken. (Sie nimmt deinen Knebel ab und befreit dich.)",848,0,0,PlayerReleased()
+848,0,0,,Würdest du noch ein|wenig mit mir spielen?,"Nach all dem? Vielleicht später, halte dich|erstmal aus Ärger raus. (Sie lässt dich allein.)",849,1,-1,ActorLeftAndCanLeave()
+848,0,0,,Das war so erniedrigend.,"Erzähl mir nicht, dass dir nichts davon gefallen hat.|(Sie lässt dich allein.)",849,0,-1,ActorLeftAndCanLeave()
+848,0,0,,"Lass du dich doch fesseln|und schau, ob es dir gefällt.",Warum sollte es mir nicht gefallen? Ein paar von uns|haben leider Verantwortungen. (Sie lässt dich allein.),849,0,1,ActorLeftAndCanLeave()
+848,0,0,,"Danke, die Pause|hatte ich nötig.","Kein Problem, manche Clubmitglieder lassen sich|einfach etwas mitreißen. (Sie lässt dich allein.)",849,1,0,ActorLeftAndCanLeave()
+848,0,0,,Diese Nippelfolter|war schrecklich.,"Du kannst von Glück reden, dass Heather dich nicht aus|dem vollen Raum geschmuggelt hat. (Sie geht davon.)",849,0,0,ActorLeftAndCanLeave()
+850,0,0,,(Nicken.),"(Sie fängt an, dich loszubinden.)",852,0,0,HadClamps()
+850,0,0,,(Den Kopf schütteln.),Du kannst auch gerne gefesselt und geknebelt bleiben.,851,0,0,
+851,0,0,,"@Ihh hhlfh dhr nhcht, dh Khh.|(Ich helfe dir nicht, du Kuh.)","Wenn du so bleiben willst, ist das für mich|kein Problem. (Sie holt eine Augenbinde hervor.)",824,-1,0,
+851,0,0,,"@Fhrrn, hch hhlfh dhr.|(Sorry, ich helfe dir.)","Schon besser. Vergiss deinen Rang nicht.|(Sie fängt an, dich loszubinden.)",852,0,-1,
+852,0,0,Masochist,(Enttäuscht schmollen.),"Ich brauche dich in Bewegung, aber du kannst etwas|anderes haben. (Sie zeigt dir etwas aus Gummi.)",853,0,0,
+852,0,0,,(Deine Beine strecken.),Gut. Du musst reaktionsfähig sein.|(Sie befreit dich.),856,0,0,PlayerReleased()
+852,0,0,,@Whr dhs nhthg?|(War das nötig?),"Ja, es war eine Kostprobe von dem, was passiert,|wenn du mir nicht gehorchst. (Sie befreit dich.)",856,0,0,PlayerReleased()
+853,0,0,,(Nicken.),"Gutes Mädchen, ich will dich kreischen hören. (Sie|fängt an, dir den Analstöpsel in den Po zu drücken.)",854,1,0,ChastityPlug()
+853,0,0,,(Den Kopf schütteln.),"Im Moment habe ich Wichtigeres zu tun, aber|später wirst du gestöpselt. (Sie befreit dich.)",856,0,0,NoDisobedience()
+854,0,0,,"(Deinen Arsch entspannen,|dann fröhlich kreischen.)","(Der Stöpsel rutscht hinein.) Sehr gut, Mädchen. Sieh|zu, dass der drin bleibt, bis ich dich ihn entfernen lasse.",855,1,-1,PluggedHappily()
+854,0,0,,"(Deinen Arsch entspannen,|dann panisch kreischen.)","(Der Stöpsel rutscht hinein.) Zu spät,|und wag es ja nicht, ihn herauszunehmen.",855,0,-1,PluggedPanic()
+854,0,0,,(Deinen Arsch verkrampfen|und den Kopf schütteln.),"(Sie übt weiterhin sanften Druck auf den Stöpsel aus.)|Du gehst nirgends hin, bis du dich entspannst.",854,0,0,Resist()
+854,0,0,,"(Deinen Arsch verkrampfen,|flehen und betteln.)","(Sie übt weiterhin sanften Druck auf den Stöpsel aus.)|Ruhig, Freundin. Man soll immer Neues ausprobieren.",854,0,0,Beg()
+854,0,0,,(Deinen Arsch entspannen|und ruhig bleiben.),"(Der Stöpsel rutscht hinein.) Das war langweilig.|Egal, behalte ihn da drin.",855,-1,0,PluggedAccept()
+855,0,0,,"@Jh, Mhff.|(Ja, Miss.)","Prächtig. Wenn du ganz brav bist, schenke ich dir|vielleicht sogar einen größeren. (Sie befreit dich.)",856,1,0,PlayerReleased()
+855,0,0,,@Hft dhf dhhn Hrmft?|(Ist das dein Ernst?),"Wenn du ihn rausnimmst, stopfe ich dir irgendwie|einen noch größeren in den Arsch. (Sie befreit dich.)",856,-1,0,PlayerReleased()
+856,0,0,,Was tun wir jetzt?,Ich zeige Amelia eine Art Knoten und du|packst sie von hinten. Hast du das kapiert?,857,0,0,
+856,0,0,PlugCommentAvailable,Dieser Stöpsel fühlt|sich viel zu groß an.,"Unsinn, ich bringe deinem netten kleinen Arsch|noch bei, viel größere Dinger zu verschlucken.",856,0,-1,PlugSize()
+856,0,0,,Kann ich jetzt gehen?,"Noch nicht. Du musst Amelia für mich festhalten,|wenn ich sie ablenke. Hast du das kapiert?",857,0,-1,
+857,0,0,,"Ja, kapiert.","Gut, enttäusche mich nicht.|(Sie nimmt das Seil und spricht Amelia an.)",858,1,0,ActorLeftAndCanLeave()
+857,0,0,,Ist das aufregend!,"Bleib ruhig. Amelia soll nichts merken, bis es zu|spät ist. (Sie nimmt das Seil und spricht Amelia an.)",858,0,0,ActorLeftAndCanLeave()
+857,0,0,,Muss ich das tun?,"Wir könnten das unter uns diskutieren. Tu einfach, was|ich sage. (Sie nimmt das Seil und spricht Amelia an.)",858,-1,0,ActorLeftAndCanLeave()
+860,0,0,,"@Fhrrn, hch hhlfh dhr.|(Sorry, ich helfe dir.)","Dafür ist es zu spät. Ich gehe ohne dich etwas Spaß|haben. (Du hörst, wie sie aufsteht und sich entfernt.)",861,0,-1,NoActor()
+860,0,2,,@Dhs zhhl hch dhr hhmm.|(Das zahl ich dir heim.),"Harte Worte, aber dazu wird es nicht kommen.|(Du hörst, wie sie aufsteht und sich entfernt.)",861,-1,0,NoActor()
+860,0,0,,(Sie ignorieren.),"Wie, keine letzten Worte? Ach, was soll's.|(Du hörst, wie sie aufsteht und sich entfernt.)",861,0,0,NoActor()
+861,0,0,,(Die Augenbinde|abstreifen.),"(Du versuchst sie am Boden abzustreifen, aber ihr|Band und die Gurte des Knebels halten sie fest.)",861,0,0,Waiting()
+861,0,0,,"(Zappeln, um dem|Hogtie zu entkommen.)","(Du strampelst wie verrückt, aber nur das Schrittseil|gibt etwas nach und zieht sich bei jedem Tritt fest.)",861,0,0,Waiting()
+861,0,0,,(Nach einem|Knoten suchen.),"(Du tastest sorgfältig umher, findest aber keinen|einzigen Knoten. Du wurdest sehr gekonnt verschnürt.)",861,0,0,Waiting()
+861,0,0,Masochist,(Auf dem Knebel|herumkauen.),"(Der große Ball gibt nicht nach. Du seufzt zufrieden|und genießt es, wie sehr dein Kiefer schmerzt.)",861,0,0,Waiting()
+861,0,0,!Masochist,(Auf dem Knebel|herumkauen.),"(Der große Ball gibt nicht nach. Du knurrst verzweifelt,|als dir auffällt, wie sehr dein Kiefer schmerzt.)",861,0,0,Waiting()
+861,0,0,NippleClamped,"(Versuchen, die Nippel-|Klammern loszuwerden.)","(Du versuchst, die Klammern am Boden abzustreifen,|aber das reizt deine armen Nippel nur noch mehr.)",861,0,0,Waiting()
+861,0,0,,(Auf Hilfe warten.),"(Du liegst schmerzend, sabbernd und leise|stöhnend da. In der Nähe hörst du Leute ihr Ding tun.)",861,0,0,Waiting()
+861,0,0,,@HMLFH!,"(Du rufst und schreist, bis im Club Stille einkehrt.|Dann lacht jemand und die Geräusche gehen weiter.)",861,0,0,Waiting()
+861,0,0,,@BHNHNH!,(Jemand kommt herüber und tastet dich prüfend ab.)|Mit dir ist alles okay. (Sie geht wieder.),861,0,0,Waiting()
+900,0,0,,"Ja, Miss.",- Fortsetzung folgt -,900,0,0,
+9000,0,0,,"Ja, Miss.","Gut, jetzt stell dich da hin. Du weißt, was zu tun ist.|(Sie fängt an, mit Amelia zu sprechen.)",910,0,0,NoLeave()
+900,0,0,,"Bist du sicher, dass|das eine gute Idee ist?","Ja, ist es. Missachte meine Befehle nicht,|sonst muss ich dir Disziplin beibringen.",900,0,0,
+900,0,0,PlayerWasPlugged,Kann ich den Stöpsel|herausnehmen?,"Nein, und ich hoffe für dich, dass|er noch da ist, wenn ich nachsehe.",900,0,0,
+900,0,0,,Ich hab noch was|anderes zu erledigen.,"Gut, aber beeil dich.|Bist du soweit?",900,0,0,
+910,0,0,,(Ihnen zuhören.),"(Lucy erzählt von einem Knoten, den sie 'Somerville-|Palstek' nennt. Sie wirft dir mehrmals kurze Blicke zu.)",910,0,0,
+910,0,0,,(Amelia packen.),"(Du packst Amelia und ziehst ihre Arme nach hinten,|während Heather sie schnell mit dem Seil fesselt.)",920,0,0,
+910,0,0,,"Amelia, das ist|übrigens Heather.",Was!,910,,,
+920,0,0,,"Wow, das hat|sogar geklappt.","Jep, gute Arbeit, sie am Ausreißen zu hindern.|(Zusammen fesselt und knebelt ihr Amelia.)",920,,,
+920,0,0,,"Es tut mir leid, Amelia.","(Amelia fängt an, dich anzuschreien, aber Heather|knebelt sie schnell und ihr fesselt sie gemeinsam.)",920,,,
+999,,,,,,,,,
+999,,,,,,,,,
+999,,,,,,,,,
+999,,,,,,,,,
+999,,,,,,,,,
+999,,,,,,,,,
+999,,,,,,,,,
+999,,,,,,,,,
+999,,,,,,,,,
+999,,,,,,,,,
+999,,,,,,,,,
+999,,,,,,,,,
+999,,,,,,,,,

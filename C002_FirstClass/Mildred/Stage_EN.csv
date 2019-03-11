@@ -14,7 +14,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 20,0,0,,(Bow your head|and slowly nod.),(She smiles at you.)  Today we will|study derivatives.  I trust you have your books.,30,0,-1,
 30,0,0,,Yes Miss Mildred.|I'm eager to learn.,Very good.  Now open your book|at page 147 and review the formulas.,40,1,-1,
 30,0,0,,Derivatives?|What the fuck?,(She hits your desk with her crop.)  Watch|your language and open your book at page 147.,40,-1,0,
-30,0,0,,Derivatives?|I love math.,(She hits your desk with her crop.)  Watch|your language and open your book at page 147.,40,1,0,
+30,0,0,,Derivatives?|I love math.,Excellent.  Now open your book|at page 147 and review the formulas.,40,1,0,
 30,0,0,,Derivatives?|That's complicated.,Start to work then.  Now open your|book at page 147 and review the formulas.,40,0,0,
 40,0,0,,(Stay silent and|open the book.),Good. Now be quiet while I teach.|(She gets back to her desk and starts teaching.),50,0,0,
 40,0,0,,(Check the clock|on the wall.),(She gives you a stern look and gets|back to her desk to start teaching.),50,-1,0,

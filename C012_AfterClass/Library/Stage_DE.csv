@@ -1,0 +1,101 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,AmandaAvail,Amanda ansprechen.,,0,0,0,AmandaStart()
+0,0,0,,Eine Weile lernen.,Du lernst eine Weile und|machst ein paar Hausaufgaben.,0,0,0,Wait()
+0,0,0,,Die Bibliothek|durchsuchen.,"Du schaust dich in der Bibliothek um,|findest aber nichts Interessantes.",0,0,0,Search()
+0,0,0,,Die Bibliothek|verlassen.,,0,0,0,Leave()
+10,0,0,,Die Bibliothek|verlassen.,,0,0,0,Leave()
+100,0,0,,Ich brauche|deine Hilfe nicht.,(Sie runzelt die Stirn.) Wie du meinst.|Du kannst mit mir zusammen lernen.,200,-1,0,
+100,0,0,,"Ja, das ist mir|zu schwer.",Vielleicht kann ich ja helfen.|Wir können gemeinsam lernen.,200,0,-1,
+100,0,0,,Was machst du da?,"Ich bereite mich auf eine Prüfung nächste Woche vor.|Wir können gemeinsam lernen, wenn du willst.",200,0,0,
+100,0,0,,"Keine Sorge, ich|komme klar.","Du hast Selbstvertrauen, das ist gut.|Du kannst hier mit mir lernen, wenn du willst.",200,0,1,
+100,0,0,,"Nein, ich wollte|dich sehen.",Das ist sehr lieb von dir.|Wir können gemeinsam lernen.,200,1,0,
+110,0,0,,Nenn mich nicht Miss.|Das klingt albern.,"(Sie senkt den Kopf.) Entschuldige, COMMON_PLAYERNAME.|Du kannst hier mit mir lernen, wenn du willst.",200,0,-1,
+110,0,0,,Ich wollte dich sehen.,Das ist sehr lieb von dir.|Wir können gemeinsam lernen.,200,1,0,
+110,0,0,,"Mir war langweilig,|also bin ich hergekommen.","Langweilig in unserem tollen College? Seltsam.|Du kannst hier mit mir lernen, wenn du willst.",200,-1,0,
+110,0,0,,Ich schaue mir die|Bibliothek an.,"Es ist ein hervorragender Ort zum Lernen.|Wir können gemeinsam lernen, wenn du willst.",200,0,0,
+110,0,0,,"Ich suche Mädchen, denen|ich Ärger machen kann.","(Deine Antwort verschlägt ihr die Sprache.) Nun...|Wow... Du kannst hier mit mir lernen, wenn du willst.",200,0,1,
+120,0,0,,Mädel. Redet man so|mit neuen Mitschülern?,"Tut mir leid, das war schon etwas unhöflich.|Wir können gemeinsam lernen, wenn du willst.",200,0,1,
+120,0,0,,"Ist Lernen alles,|was du je tust?","Nein, aber ich hätte gern gute Noten.|Wir können gemeinsam lernen, wenn du willst.",200,-1,0,
+120,0,0,,Können wir Frieden|schließen?,"Na gut. (Sie schüttelt deine Hand.)|Wir können gemeinsam lernen, wenn du willst.",200,1,0,
+120,0,0,,Das vorhin tut mir leid.|Sei bitte nicht sauer.,"Vielleicht sollten wir nochmal von vorne anfangen.|Du kannst hier mit mir lernen, wenn du willst.",200,0,-1,
+120,0,0,,Ich schaue mir nur die|Schulbibliothek an.,"Es ist ein sehr guter Ort zum Lernen.|Wir können gemeinsam lernen, wenn du willst.",200,0,0,
+130,0,0,,Ja! Ich habe tolle|Hausaufgaben auf.,"Sehr gut, meine Liebe.|Wir können gemeinsam lernen.",200,1,0,
+130,0,0,,"Nein, ich wollte mir|die Bibliothek ansehen.","Es ist ein wundervoller Ort zum Lernen.|Wir können gemeinsam lernen, wenn du willst.",200,0,0,
+130,0,0,,Hausaufgaben machen|ist nur für Versager.,"(Sie runzelt die Stirn.) Das kann nicht dein Ernst sein.|Wir können gemeinsam lernen, wenn du willst.",200,-1,0,
+130,0,0,,"Ja, ich muss arbeiten,|um nicht durchzufallen.","Sehr gut, lass dich nicht unterkriegen.|Wir können gemeinsam lernen.",200,0,-1,
+130,0,0,,Jep! Damit ich perfekte|Noten bekomme.,"Perfekte Noten? Das ist beeindruckend.|Wir können gemeinsam lernen, wenn du willst.",200,0,1,
+140,0,0,Common_PlayerChaste,"Kann ich nicht, tut mir leid.|Ich bin auch verriegelt.","Dann wissen wir ja beide, wie sich die Andere fühlt.|Du kannst hier mit mir lernen, wenn du willst.",200,1,-1,
+140,0,0,,Ich kann ihn|nicht aufschließen.,"Na gut, dann suche ich mir einen Schlüsseldienst.|Du kannst hier lernen, wenn du willst.",200,0,0,
+140,0,0,,Keuschheit hilft dir|beim Konzentrieren.,"Was? Ich... Aber... Aber... Na schön...|Wir können gemeinsam lernen, wenn du willst.",200,0,1,
+140,0,0,,"Wenn du brav bist,|lasse ich dich raus.","(Sie wird rot.) Dann werde ich artig sein.|Wir können gemeinsam lernen, wenn du willst.",200,1,-1,
+140,0,0,,Nutten gehören|abgesperrt.,"Warum bist du so gemein? Vergiss es.|Du kannst hier lernen, wenn du willst.",200,-1,1,
+140,0,0,,Über solche Gürtel zu|reden macht mich wuschig.,"Du bist so pervers, COMMON_PLAYERNAME.|Wir können gemeinsam lernen, wenn du willst.",200,0,-1,
+150,0,0,HasEgg,"Ich hab auch eins, es|macht Spaß, lass es drin.","(Sie kichert.) Du bist so pervers.|Wir können gemeinsam lernen, wenn du willst.",200,1,-1,
+150,0,0,,Ist Lernen nicht viel|spannender mit dem Ei?,"Nein! Es hilft kein bisschen. Egal.|Du kannst hier mit mir lernen, wenn du willst.",200,-1,0,
+150,0,0,,Solche Eier sind gut|für Nutten wie mich.,"Bezeichne dich doch nicht als Nutte. Egal.|Du kannst hier mit mir lernen, wenn du willst.",200,0,-1,
+150,0,0,,Ich kann dir nicht helfen.,"Na gut. Wir können gemeinsam lernen, wenn du willst.",200,0,0,
+150,0,0,,"Nein, du behältst es|noch eine Weile drin.","(Sie verneigt sich und seufzt.) Nun gut, Miss.|Wir können gemeinsam lernen, wenn Sie wollen.",200,0,1,
+150,0,0,,Ich helfe dir später und|steck's mir selber rein.,"(Sie kichert.) Du bist ziemlich pervers.|Wir können gemeinsam lernen, wenn du willst.",200,1,0,
+160,0,0,,Das nächste Mal sperre|ich dich da drin ein.,"(Deine Antwort verschlägt ihr die Sprache.) Ich... Egal.|Du kannst hier mit mir lernen, wenn du willst.",200,0,1,
+160,0,0,,Ich hatte einen Riesenspaß|in diesem Schließfach.,"Dann sollte ich dich nochmal darin einsperren.|Wir können gemeinsam lernen, wenn du willst.",200,0,-1,
+160,0,0,,Ich hab schlimmeres erlebt.,"Okay. Du kannst hier lernen, wenn du willst.",200,0,0,
+160,0,0,,Ich will nicht|darüber reden.,"Oh je! Alles klar.|Du kannst hier lernen, wenn du willst.",200,-1,0,
+160,0,0,,Ich hab da drin|von dir geträumt.,"(Sie wird rot und kichert.)|Wir können gemeinsam lernen, wenn du willst.",200,1,0,
+170,0,0,,"Das war mal ein|verrückter Tag, was?","Ja, das kannst du laut sagen.|Du kannst hier lernen, wenn du willst.",200,0,0,
+170,0,0,,"Nächstes Mal bin ich dran,|eingesperrt zu werden.","(Sie kichert und nickt.) Auf jeden Fall!|Wir können gemeinsam lernen, wenn du willst.",200,0,-1,
+170,0,0,,Du sahst da drin|bezaubernd aus.,"(Sie lächelt ein wenig.) Na ja, danke.|Wir können gemeinsam lernen, wenn du willst.",200,1,0,
+170,0,0,,Nächstes Mal sperre ich|dich in mein Zimmer.,"(Sie wirkt nervös.) Ich... Aber... Au weia...|Na, egal. Du kannst hier lernen, wenn du willst.",200,0,1,
+170,0,0,,Eine Streberin im Schließ-|fach. Passt doch perfekt.,"(Sie scheint deinen Spruch nicht witzig zu finden.)|Wie auch immer. Du kannst hier lernen, wenn du willst.",200,-1,0,
+180,0,0,,"Die Schlampe hat be-|kommen, was sie verdient.","Vielleicht solltest du sie nicht Schlampe nennen.|Egal. Du kannst hier lernen, wenn du willst.",200,-1,0,
+180,0,0,,Nächstes Mal lassen wir|sie auf ihren Knien betteln.,"Wow! Pass auf, nicht der Schule verwiesen zu werden.|Wir können gemeinsam lernen, wenn du willst.",200,0,1,
+180,0,0,,Du siehst also gern|Lehrer in Fesseln?,"(Sie wird rot und nickt.) Ja, das war unterhaltsam.|Du kannst hier mit mir lernen, wenn du willst.",200,1,0,
+180,0,0,,Jetzt bereue ich|es irgendwie.,"Nicht doch! Es war eine unvergessliche Stunde.|Wir können gemeinsam lernen, wenn du willst.",200,0,-1,
+180,0,0,,Es war eine|denkwürdige Stunde.,"Ja, sie sollte im Jahrbuch stehen.|Wir können gemeinsam lernen, wenn du willst.",200,0,0,
+190,0,0,,Ging so.,Okay. Welche Lehrerin magst du denn am liebsten?,191,0,0,
+190,0,0,,Ich hab viel gelernt.,Unsere Lehrerinnen sind echt klasse.|Welche magst du am liebsten?,191,1,0,
+190,0,0,,Ich hab mich zu|Tode gelangweilt.,"Das tut mir sehr leid.|Gab es eine Lehrerin, die du mochtest?",191,-1,0,
+190,0,0,,"Jep, ich hab 'ne Menge|Ärger angestellt.",(Sie nickt höflich.) Bestens.|Und welche Lehrerin magst du am liebsten?,191,0,1,
+190,0,0,,Ich hab keine|Freunde gefunden.,"Du armes Mädchen, mit der Zeit wird das schon.|Gab es eine Lehrerin, die du mochtest?",191,0,-1,
+191,0,0,,Mildred.,"Ja, Miss Mildred ist streng aber gerecht.|Du kannst hier lernen, wenn du willst.",200,0,1,
+191,0,0,,Yuki.,"Schön, ich bin ihr hier ein paar Mal begegnet.|Wir können gemeinsam lernen, wenn du willst.",200,0,0,
+191,0,0,,Julia.,"Toll! Miss Julia ist so witzig und lebhaft.|Wir können gemeinsam lernen, wenn du willst.",200,1,0,
+191,0,0,,Ich weiß nicht.,"Sei nicht so zurückhaltend, Mädchen.|Wir können gemeinsam lernen.",200,0,-1,
+200,0,0,,Lass uns|zusammen lernen.,"(Du und Amanda fangt an,|gemeinsam zu lernen.)",300,0,0,StartStudy()
+200,0,0,,(Deine Bücher|aufschlagen.),"(Du und Amanda fangt an,|gemeinsam zu lernen.)",300,0,0,StartStudy()
+200,0,0,,Was lernst du gerade?,"Meine Hausaufgaben sind fertig, also bereite|ich mich auf kommende Stunden vor.",205,0,0,
+200,0,0,,(In ihr Buch spähen.),(Sie scheint sich auf die nächsten|Mathestunden vorzubereiten.),205,0,0,
+200,0,0,,Lernen ist langweilig.,Warum bist du dann hier?|Was möchtest du lieber machen?,210,0,0,
+200,0,0,,Wir sollten|woanders hingehen.,Oh! Was möchtest du denn machen?,210,0,0,
+200,0,0,,Ich muss wieder los.|(Die Bibliothek verlassen.),,200,0,0,Leave()
+205,0,0,,Lass uns|zusammen lernen.,"(Du und Amanda fangt an,|gemeinsam zu lernen.)",300,0,0,StartStudy()
+205,0,0,,Du bist dem Stoff schon|so weit voraus?,Vielleicht könnte ich mir schon eine Pause gönnen.|Was würdest du gern stattdessen machen?,210,0,0,
+205,0,0,,Kommende Stunden?|Hast du kein Leben?,Ich habe sehr wohl ein Leben! Ich beweise es dir.|Was würdest du gern unternehmen?,210,0,0,
+210,0,0,,"Vergiss es, Amanda.|Lernen wir zusammen.","(Du und Amanda fangt an,|gemeinsam zu lernen.)",300,0,0,StartStudy()
+210,0,0,PlayerDormAvail,Komm in mein Zimmer.|Lass uns Spaß haben.,"Nein, das wäre unangebracht.",210,0,0,TestPlayerDorm()
+210,0,0,AmandaDormAvail,Wir könnten|zu dir gehen.,"Zu mir... Aber was ist, wenn Sar-...|Nein, gehen wir lieber nicht zu mir.",210,0,0,TestAmandaDorm()
+210,0,0,DinnerAvail,Lass uns was|essen gehen.,"Danke, aber ich hab schon gegessen.|Auf leeren Magen lernt es sich nicht gut.",210,0,0,TestDinner()
+210,0,0,,Vergiss es.,Wie du meinst.,200,0,0,
+220,0,0,,Dann mal los! (Sie in|dein Zimmer bringen.),,220,0,0,LeaveWithAmanda()
+230,0,0,PlayerDormAvail,Komm in mein Zimmer.|Lass uns Spaß haben.,"Nein, das wäre unangebracht.",230,0,0,TestPlayerDorm()
+230,0,0,AmandaDormAvail,Wir könnten|zu dir gehen.,"Zu mir... Aber was ist, wenn Sar-...|Nein, gehen wir lieber nicht zu mir.",230,0,0,TestAmandaDorm()
+230,0,0,DinnerAvail,Lass uns was|essen gehen.,"Danke, aber ich hab schon gegessen.|Auf leeren Magen lernt es sich nicht gut.",230,0,0,TestDinner()
+230,0,0,,Bis bald.|(Zurück in dein Zimmer.),,230,0,0,Leave()
+300,0,0,,(Mit Amanda lernen.),(Ihr lernt zusammen und helft euch gegenseitig.|Sie scheint Gefallen daran zu haben.),300,0,0,StudyWithAmanda()
+300,0,0,,Brauchst du Hilfe?,"Ja, etwas Hilfe wäre nett.|(Du hilfst ihr beim Lernen und gibst ihr ein paar Tipps.)",300,0,0,HelpAmanda()
+300,0,0,,Kannst du mir helfen?,"Na klar, ich helfe dir gern.|(Sie hilft dir beim Lernen.)",300,0,0,HelpPlayer()
+300,0,0,,Sollten wir etwas|anderes machen?,Was würdest du denn gern tun?,210,0,0,StopStudy()
+300,0,0,PoemAvail,Ich hab ein Gedicht gefun-|den. Willst du es hören?,"Ein Gedicht? (Sie nickt.)|Ja, das wäre wunderbar.",310,0,0,StartPoem()
+300,0,0,,Ich muss wieder los.|(Die Bibliothek verlassen.),,300,0,0,Leave()
+310,0,0,,"Sie naht in Schönheit|wie die Nacht,","(Sie wiederholt leise jedes Wort.)|Sie naht in Schönheit wie die Nacht,",311,0,0,
+310,0,0,,Vergiss es.|Es ist albern.,"Oh! (Sie wirkt sehr enttäuscht.)|Du hast recht, Poesie ist nicht mehr angesagt.",300,-1,0,
+311,0,0,,"Gewölklos, rein|und sternenlicht;","(Sie wiederholt leise jedes Wort.)|Gewölklos, rein und sternenlicht;",312,0,0,
+311,0,0,,Vergiss es.|Es ist albern.,"Oh! (Sie wirkt sehr enttäuscht.)|Du hast recht, Poesie ist nicht mehr angesagt.",300,-1,0,
+312,0,0,,Des Dunkels wie|des Schimmers Pracht,(Sie wiederholt leise jedes Wort.)|Des Dunkels wie des Schimmers Pracht,313,0,0,
+312,0,0,,Vergiss es.|Es ist albern.,"Oh! (Sie wirkt sehr enttäuscht.)|Du hast recht, Poesie ist nicht mehr angesagt.",300,-1,0,
+313,0,0,,Eint sich in Aug'|und Angesicht,(Sie wiederholt leise jedes Wort.)|Eint sich in Aug' und Angesicht,314,0,0,
+313,0,0,,Vergiss es.|Es ist albern.,"Oh! (Sie wirkt sehr enttäuscht.)|Du hast recht, Poesie ist nicht mehr angesagt.",300,-1,0,
+314,0,0,,"Mit jenes Lichtes|sanfter Macht,","(Sie wiederholt leise jedes Wort.)|Mit jenes Lichtes sanfter Macht,",315,0,0,
+314,0,0,,Vergiss es.|Es ist albern.,"Oh! (Sie wirkt sehr enttäuscht.)|Du hast recht, Poesie ist nicht mehr angesagt.",300,-1,0,
+315,0,0,,Das dem geschmückten|Tag gebricht.,(Sie wiederholt leise jedes Wort.)|Das dem geschmückten Tag gebricht.,316,0,0,
+315,0,0,,Vergiss es.|Es ist albern.,"Oh! (Sie wirkt sehr enttäuscht.)|Du hast recht, Poesie ist nicht mehr angesagt.",300,-1,0,
+316,0,0,,Hat es dir gefallen?,"Es war fantastisch! (Sie blickt umher.)|Ups, das war laut, lass uns lernen.",300,2,0,FinishPoem()

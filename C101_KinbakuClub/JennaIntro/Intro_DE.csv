@@ -1,0 +1,20 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,"Ich wusste, du würdest wiederkommen.|Ich muss dir ein paar Dinge erklären.",JennaWaiting.jpg
+5,0,0,,"Hallo, du musst wohl die Neue sein.",JennaWaiting.jpg
+10,0,0,,Es geht um diesen Club und es geht auch um Natalie.,JennaWaiting.jpg
+15,0,0,,"Das ist der Kinbaku-Club unserer Schule. Du bist|herzlich eingeladen, deinen Abend hier zu verbringen.",JennaWaiting.jpg
+20,0,0,,"Es geht um diesen Club und|eine Wette, die Natalie gemacht hat.",JennaWaiting.jpg
+25,0,0,,Ich bin Jenna.,JennaWaiting.jpg
+30,0,0,,Ich erkläre dir ein wenig über diesen Club.,JennaWaiting.jpg
+40,0,0,,"Das College glaubt, dieser Club beschäftige sich mit|""Kulturellen Kunstformen, Fertigkeiten und Gymnastik"".",JennaWaiting.jpg
+50,0,0,,"Offiziell schon, ein paar der Lehrer wissen es besser.|Außerdem ist es nicht nur Kinbaku mit Seilen.",JennaWaiting.jpg
+55,0,0,,Der Club ist sehr inklusiv und wir verwenden|eine große Auswahl von Utensilien und Techniken.,JennaWaiting.jpg
+56,0,0,,"Nein, es gibt Richtlinien für Einvernehmlichkeit.|Der Club bestraft intern jeden, der zu weit geht.",JennaWaiting.jpg
+60,0,0,,"Dennoch berufen wir uns auf Safewords wie 'Banane',|damit es ganz sicher allen gut geht und Spaß macht.",JennaWaiting.jpg
+70,0,0,,"Natalie hätte sich eine Menge Ärger ersparen können.|Ach ja, hier ein Seil als Willkommensgeschenk.",JennaWaiting.jpg
+75,0,0,,"Ginge es nach ihr, wäre sie die ganze Zeit gefesselt.|Ich sagte ihr, sie soll endlich mal eine Auszeit nehmen.",JennaWaiting.jpg
+80,0,0,,(Jenna hat den Raum verlassen.),JennaGone.jpg
+100,0,0,,"Du hast vielleicht Nerven, dich nach dem|was du getan hast hier noch blicken zu lassen.",JennaAngry.jpg
+110,0,0,,"Meine FREUNDIN erholt sich von|dem, was DU ihr angetan hast.",JennaAngry.jpg
+120,0,0,,Ihre nächste Stunde war Mathe und sie wurde|danach von einer wutentbrannten Mildred entdeckt.,JennaAngry.jpg
+130,0,0,,"Dann wirst du sicher kein Problem damit|haben, diesen nächsten Scherz hinzunehmen.",ClubMenacing.jpg

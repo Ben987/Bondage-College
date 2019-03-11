@@ -1,0 +1,6 @@
+HorseWalkCarrotSpots,Move the Carrots ($CARROTS) and avoid the crops ($CROPS)
+CarrotVictory,"Congratulations!  (Carrots: $CARROTS, crops: $CROPS)"
+CarrotDefeat,"Sorry, you've failed.  (Carrots: $CARROTS, crops: $CROPS)"
+HorseWalkHurdleSpots,"Jump over the Hurdles. Win: ($HURDLEWIN), Failed: ($HURDLEFAIL)"
+HurdleVictory,"Congratulations!  (Win: $HURDLEWIN, Failed: $HURDLEFAIL)"
+HurdleDefeat,"Sorry, you've failed.  (Win: $HURDLEWIN, Failed: $HURDLEFAIL)"

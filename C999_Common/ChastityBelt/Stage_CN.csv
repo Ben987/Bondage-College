@@ -1,9 +1,9 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(检查它)|(1 分钟),这件贞操带看起来状况良好。|一旦锁上它你需要钥匙才能打开。,0,0,0,
-0,0,0,Common_PlayerNotRestrained,(锁住自己)|(1 分钟),"你深吸一口气并且在你身上合上了贞操带。|“啪嗒”，清脆的一声，它锁上了。",0,0,0,LockSelf()
-10,0,0,,(检查你的贞操带)|(1 分钟),这件贞操带看起来状况良好。|你需要正确的钥匙才能打开它。,10,0,0,
-10,0,0,HasLooseBelt,(Inspect the loose belt.)|(1 分钟),这件贞操带看起来状况良好。|一旦锁上它你需要钥匙才能打开。,10,0,0,ShowImage()
-10,0,0,Common_PlayerNotRestrained,(脱下贞操带)|(1 分钟),你尝试将贞操带从臀部滑下来，|但是它锁得紧紧的，并且纹丝不动。,10,0,0,
-10,0,0,Common_PlayerNotRestrained,(强行打开它)|(1 分钟),你尝试强行撬开它，|但是它还是牢牢地锁在那里。,10,0,0,
-10,0,0,Common_PlayerNotRestrained,(尝试自慰)|(1 分钟),你只能勉强伸进去一根手指。|这样是不可能自慰的。,10,0,0,
-10,0,0,,(摩擦你的阴蒂)|(1 分钟),你笨拙地隔着贞操带摩擦你的阴蒂。|这有点令人愉悦但并不足以达到高潮。,10,0,0,
+0,0,0,,(检查它)ADD_MINUTES:1,这件贞操带看起来状况良好。|一旦锁上它你需要钥匙才能打开。,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(锁住自己)ADD_MINUTES:1,"你深吸一口气并且在你身上合上了贞操带。|“啪嗒”，清脆的一声，它锁上了。",0,0,0,LockSelf()
+10,0,0,,(检查你的贞操带)ADD_MINUTES:1,这件贞操带看起来状况良好。|你需要正确的钥匙才能打开它。,10,0,0,
+10,0,0,HasLooseBelt,(Inspect the loose belt.)ADD_MINUTES:1,这件贞操带看起来状况良好。|一旦锁上它你需要钥匙才能打开。,10,0,0,ShowImage()
+10,0,0,Common_PlayerNotRestrained,(脱下贞操带)ADD_MINUTES:1,你尝试将贞操带从臀部滑下来，|但是它锁得紧紧的，并且纹丝不动。,10,0,0,
+10,0,0,Common_PlayerNotRestrained,(强行打开它)ADD_MINUTES:1,你尝试强行撬开它，|但是它还是牢牢地锁在那里。,10,0,0,
+10,0,0,Common_PlayerNotRestrained,(尝试自慰)ADD_MINUTES:1,你只能勉强伸进去一根手指。|这样是不可能自慰的。,10,0,0,
+10,0,0,,(摩擦你的阴蒂)ADD_MINUTES:1,你笨拙地隔着贞操带摩擦你的阴蒂。|这有点令人愉悦但并不足以达到高潮。,10,0,0,

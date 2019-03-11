@@ -1,2 +1,2 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(调查)|(1 分钟),这片药的效力似乎挺强的。|你可以把它混在食物或者饮料之中。,0,0,0,
+0,0,0,,(调查)ADD_MINUTES:1,这片药的效力似乎挺强的。|你可以把它混在食物或者饮料之中。,0,0,0,

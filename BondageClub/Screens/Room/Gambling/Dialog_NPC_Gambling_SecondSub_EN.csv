@@ -1,118 +1,129 @@
-PlayerGagged,,,Blessed those who have nothing to say and yet remain silent ,,
-ItemMouth,,,(She shakes her head no but you're able to gag and silence her.),,
-RemoveItemMouth,,,(You remove her gag while she stretches her mouth.)  It's hard to play dumb.,,
-ItemArms,,,(She grumbles but complies as you restrain her arms.)  How can I dice this way?,,
-RemoveItemArms,,,(You free her arms and she gives you a thumbs up.)  That's better.,,
-ItemLegs,,,(She looks down as you restrain her legs securely.)  I'm not going out anyway.,,
+PlayerGagged,,,Blessed those who have nothing to say and yet remain silent. ,,
+ItemMouth,,,(She shakes her head but you're able to gag and silence her.),,
+RemoveItemMouth,,,"(You remove her gag and she stretches her mouth.)  ""Thanks,  that was getting uncomfortable.""",,
+ItemArms,,,(She grumbles but complies as you restrain her arms.)  How can I roll the dice like this?,,
+RemoveItemArms,,,"(You free her arms and she gives you a thumbs up.)  That's better, thanks!.",,
+ItemLegs,,,(She looks down as you restrain her legs securely.)  I'm not going anywhere anyway.,,
 RemoveItemLegs,,,(You release her legs from the restraint.)  You're quite good with restraints Miss.,,
-ItemFeet,,,(She looks puzzled as you restrain her feet.)  I won't run anytime soon.,,
+ItemFeet,,,(She looks puzzled as you restrain her feet.)  I don't plan on leaving Miss.,,
 RemoveItemFeet,,,(You release her feet.)  Wonderful!,,
 ItemNeck,,,(She struggles as you strap the collar around her neck.)  I'm not looking for an owner.,,
 RemoveItemNeck,,,(You remove the collar from her neck.)  Yes!  This is much better.,,
-ItemPelvis,,,(She struggles as you lock the device on her.)  No!  I don't have the key for that!,,
+ItemPelvis,,,"(She struggles as you lock the device on her.)  No, please!  I don't have the key for that!",,
 RemoveItemPelvis,,,(She looks really happy as you unlock the device.)  Thank you so much Miss DialogPlayerName.,,
-ItemHead,,,(You strap the device on her head as she sighs.)  It will be an interesting experience.,,
+ItemHead,,,(You put the device as she shakes her head.)  Ow!  You've made my day much awfully,,
 RemoveItemHead,,,"(You remove the device and she nods rapidly.)  Thanks a million, this is much better.",,
-ItemTorsoLeatherWhip,,,(She trembles of painas you whip her breast.) This is a gambling hall no torture chamber.,,
-ItemTorsoLeatherCrop,,,(You swing the crop on her torso as she moans.) Oh, that's not a game anymore.,,
+ItemBreastLeatherWhip,,,(She trembles of painas you whip her breast.) This is a gambling hall no torture chamber.,,
+ItemBreastLeatherCrop,,,"(You swing the crop on her torso as she moans.) Oh, that's not a game anymore.",,
 ItemPelvisLeatherWhip,,,(You whip her butt as she jumps from the pain.) I do not find that funny.,,
 ItemPelvisLeatherCrop,,,(She moans each time the crop lands on it.) How can I still sit like this?,,
-0,,,Welcome to the Gambling Hall. Let's play a Game?,,
+ItemTorso,,,I like my clothes better.,,
+RemoveItemTorso,,,"(You remove the device and she nods rapidly.)  Thanks a million, this is much better.",,
+ItemButt,,,I can not concentrate that way.,,
+RemoveItemButt,,,"Uff, close at last",,
+ItemBreast,,,"Oh, that's really necessary?",,
+RemoveItemBreast,,,She looks at you satisfied.,,
+ItemVulvaVibratingWand,,,you will pay for it.,,
+VibratingEgg,,,"I want to play with dices, not with eggs.",,
+RemoveVibratingEgg,,,"Thanks, now I can concentrate on the essential.",,
+SuspensionHempRope,,,woe to the vanquished.,,
+RemoveSuspensionHempRope,,,finally floor again under the feet.,,
+0,,,Welcome to the Gambling Hall. Shall we play a game?,,
 0,,"Hello, I'm DialogPlayerName.  Pleased to meet you.",Pleased to meet you too.  I'm DialogCharacterName.,DialogRemove(),
 0,10,I'd like to ask you some questions.,What do you want to know?,,
-0,30,(Play with your own rules.),(She looks expectant),,SecondSubRestrained()
-0,100,Let's play Catch the Fox,What is your choice?,"FoxController(""new"")",CanPlayFox()
-0,200,Let's play Street to Roissy,Catch the Dice.,"StreetRoissyController(""new"")",CanPlayStreetRoissy()
-0,300,Let's play Dare Six,The dice will fall.,"DaredSixController(""new"")",CanPlayDaredSix()
+0,30,(Play with your own rules.),(She looks expectant.),,SecondSubRestrained()
+0,100,Let's play Catch the Fox.,Would you like to be the fox or the hunter?,"FoxController(""new"")",CanPlayFox()
+0,200,Let's play Street to Roissy.,"Ok, you're on.","StreetRoissyController(""new"")",CanPlayStreetRoissy()
+0,300,Let's play Dare Six.,"I'm ready, let's go.","DaredSixController(""new"")",CanPlayDaredSix()
 0,50,(Struggle in your restraints.),Do you need help?,,Player.IsRestrained()
-0,,Let's talk later. (Leave her.),Pleased to meet you too.  I'm DialogCharacterName.,DialogLeave(),
-10,,which games can I play with you?,I only play with you when you have reputation and money,,!CanPlayFox()
-10,,which games can I play with you?,"Depending on reputation and money: Fox and hunter, Street to Roissy or Dare Six.",,CanPlayFox()
-10,11,Can you explain the rules to me?,No game no rules ,,!CanPlayFox()
-10,11,Can you explain the rules to me?,"Yes, which game interests you",,CanPlayFox()
-10,,Can I tie you up?,Only if you win a game ,,
-10,,Will you restrain me?,"of course, if I win or you run out of money",,
-10,0,I don't have any more questions.,Alright. Let's play a Game?,,
-11,12,What are the rules of Catch the Fox?,"One player is the fox, the other the hunter. The hunter pays a hunting lease of 10 $. ",,CanPlayFox()
-11,20,What are the rules of Street to Roissy?,It is diced alternately. each player must roll the numbers from 1 to 6 in turn.,,CanPlayStreetRoissy()
-11,25,What are the rules of Dare Six?,You roll every round as many times as you want and count the points together.,,CanPlayDaredSix()
-11,10,I have another question.,Which?,,
-12,13,(Listen.),The fox tries to catch them as prey. Fox and hunter take turns throwing dice.,,
-13,14,(Listen.),"The fox gets a dice lead. He has to score 30 points by dice, so that he can escape with his prey.",,
-14,10,(Listen.),If the hunter has equal or more points he has caught the fox and gets the lease back.,,
-20,21,(Listen.),For each correct throw the opponent is sent a step direction roissy. ,,
-21,22,(Listen.),"For every wrong throw, the player pays 1 $.",,
-22,10,(Listen.),Lost who is first in Roissy. The winner gets the money.,,
-25,26,(Listen.),You roll every round as many times as you want and count the points together.,,
-26,27,(Listen.),Then I dice. If you have more points you win the round.,,
-27,28,(Listen.),"However, if you throw a 6, you automatically lose the round.",,
-28,10,(Listen.),The game loses the one who has lost 6 rounds first. ,,
-30,,(Tickle her.),"(You tickle her on the arms and feet. She giggles, laughs and cries a little.)",,
-30,,(Kiss her.),(You put your hand behind her head and pull her to your lips for a long and kinky kiss.),,Player.CanInteract()
-30,,(Fondle her.),(You fondle her butt and breast as she moans slowly and blushes.),,Player.CanTalk()
-30,,(Slap her.),(You swiftly slap her on the face. She bows down her head and whimpers.),,
-30,,(Spank her.),(You spank her hard on the butt as she jumps from the pain.),,Player.CanInteract()
-30,0,(End the Game),(You go back a step and she looks surprised),,
-50,51,(Nod yes.),Are you ready to pay $ 25? ,,!Player.CanTalk()
-50,51,"Yes, can you release me?",Are you ready to pay $ 25? ,,Player.CanTalk()
-50,0,(Shake your head),Then just play alone,,!Player.CanTalk()
-50,0,"No, thanks.",Then just play alone,,Player.CanTalk()
-51,0,(Nod yes.),(she release you and takes the money),PayForFreedom(),!Player.CanTalk()
-51,0,"yes, you can get the money",(she release you and takes the money),PayForFreedom(),Player.CanTalk()
-51,0,(Shake your head),Up to you ,,!Player.CanTalk()
-51,0,"never, that's outrageous (Leave her.)",Up to you ,DialogLeave(),Player.CanTalk()
-100,101,I play the Fox,Start with your Dices,"FoxController(""fox"")",ShowDiceStack()
-100,101,I play the Hunter,I'm starting,"FoxController(""hunter"")",ShowDiceStack()
-101,,Next roll,O.k.,"FoxController(""NextDice"")",ShowDiceStack()
-102,0,The fox has escaped (Take the win),(she gives you the profit REPLACEMONEY $),"FoxController(""player_fox_win"")",ShowDiceStack()
-103,0,Congratulation (give her the win),(she quickly takes the money),"FoxController(""player_hunter_lost"")",ShowDiceStack()
-104,0,you caught the fox,(she tied you up),"FoxController(""player_fox_lost"")",ShowDiceStack()
-105,0,I caught the fox,(she gives the REPLACEMONEY $ back),"FoxController(""player_hunter_win"")",ShowDiceStack()
-200,,(Dice),(Dice),"StreetRoissyController(""nextDice"")",ShowDiceStack()
-202,,(Cheer),(she mumbles into the gag),"StreetRoissyController(""win"")",ShowDiceStack()
-203,,I walk the Line,Can you see the place to be?,"StreetRoissyController(""nextDice"")",ShowDiceStack()
-204,0,(struggle),Have you fun?,"StreetRoissyController(""lost"")",ShowDiceStack()
-210,,We walk side by side,On a long street,"StreetRoissyController(""both"")",ShowDiceStack()
-211,,Both right. Take off your Accessories,(She take her Accessories off and executes her action),"StreetRoissyController(""both"")",ShowDiceStack()
-212,,Both right. Take off your Dress,(She take her Dress off and executes her action),"StreetRoissyController(""both"")",ShowDiceStack()
-213,,Both right. Take off your Underwear,(She take her Underwear off and executes her action),"StreetRoissyController(""both"")",ShowDiceStack()
-214,,Both right. I will tied your Legs,(She nod slowly and executes her action),"StreetRoissyController(""both"")",ShowDiceStack()
-215,,Both right. I will tied your Arms,(she struggle and executes her action),"StreetRoissyController(""both"")",ShowDiceStack()
-216,,I win. I will tied your Mouth,(she mumbles and executes her action),"StreetRoissyController(""both"")",ShowDiceStack()
-220,,There can only be one winner,Lets dice again,"StreetRoissyController(""nextDice"")",ShowDiceStack()
-231,,"Oh, I lost. (Take off your Accessories)",(she grins),"StreetRoissyController(""lost"")",ShowDiceStack()
-232,,"Oh, I lost. (Take off the Dress)",hurry up ,"StreetRoissyController(""lost"")",ShowDiceStack()
-233,,"Oh, I lost. (Take off the Underwear)",that's right ,"StreetRoissyController(""lost"")",ShowDiceStack()
-234,,"Oh, I lost. (Accept the tied Legs)",it dresses you ,"StreetRoissyController(""lost"")",ShowDiceStack()
-235,,"Oh, I lost. (Accept the tied Arms)",just a little bit more ,"StreetRoissyController(""lost"")",ShowDiceStack()
-236,,"Oh, I lost. (Accept the tied Mouth)",The winner take it all. The win is REPLACEMONEY $,"StreetRoissyController(""lost"")",ShowDiceStack()
-241,,I win. Take off your Accessories,(She take her Accessories off),"StreetRoissyController(""win"")",ShowDiceStack()
-242,,I win. Take off your Dress,(She take her Dress off),"StreetRoissyController(""win"")",ShowDiceStack()
-243,,I win. Take off your Underwear,(She take her Underwear off),"StreetRoissyController(""win"")",ShowDiceStack()
-244,,I win. I will tied your Legs,(She nod slowly),"StreetRoissyController(""win"")",ShowDiceStack()
-245,,I win. I will tied your Arms,(she struggle),"StreetRoissyController(""win"")",ShowDiceStack()
-246,,I win. I will tied your Mouth,(she mumbles. You win REPLACEMONEY $),"StreetRoissyController(""win"")",ShowDiceStack()
-300,,I want to add a dice ,(she gives you another dice),"DaredSixController(""add"")",ShowDiceStack()
-300,,That's are enough,(she nods slowly),"DaredSixController(""fin"")",ShowDiceStack()
-311,,"Oh, I lost. (Take off your Accessories)",(she grins),"DaredSixController(""lost"")",ShowDiceStack()
-312,,"Oh, I lost. (Take off the Dess)",hurry up ,"DaredSixController(""lost"")",ShowDiceStack()
-313,,"Oh, I lost. (Take off the Underwear)",that's right ,"DaredSixController(""lost"")",ShowDiceStack()
-314,,"Oh, I lost. (Accept the tied Legs)",it dresses you ,"DaredSixController(""lost"")",ShowDiceStack()
-315,,"Oh, I lost. (Accept the tied Arms)",just a little bit more ,"DaredSixController(""lost"")",ShowDiceStack()
-316,,"Oh, I lost. (Accept the tied Mouth)",The winner take it all. The win is REPLACEMONEY $,"DaredSixController(""lost"")",ShowDiceStack()
-321,,I win. Take off your Accessories,(She take her Accessories off),"DaredSixController(""win"")",ShowDiceStack()
-322,,I win. Take off your Dress,(She take her Dress off),"DaredSixController(""win"")",ShowDiceStack()
-323,,I win. Take off your Underwear,(She take her Underwear off),"DaredSixController(""win"")",ShowDiceStack()
-324,,I win. I will tied your Legs,(She nod slowly),"DaredSixController(""win"")",ShowDiceStack()
-325,,I win. I will tied your Arms,(she struggle),"DaredSixController(""win"")",ShowDiceStack()
-326,,I win. I will tied your Mouth,(she mumbles. You win REPLACEMONEY $),"DaredSixController(""win"")",ShowDiceStack()
-330,0,(Cheer),(mumbles),,
-340,0,(mumbles),(Cheer.),,
+0,,Let's talk later. (Leave her.),,DialogLeave(),
+10,,Which games can I play with you?,"Come back when you have a higher reputation and some money, and you'll see.",,!CanPlayFox()
+10,,Which games can I play with you?,"Depending on reputation and money: Catch the Fox, Street to Roissy or Dare Six.",,
+10,11,Can you explain the rules to me?,Not until you have a high enough reputation and some money.,CanPlayFox(),!CanPlayFox()
+10,11,Can you explain the rules to me?,Sure. Which game?,,CanPlayFox()
+10,,Can I tie you up?,Only if you win a game. ,,
+10,,Will you restrain me?,"You bet your ass I will, if I win or if you run out of money.",,
+10,0,I don't have any more questions.,Alright. Shall we play a game?,,
+11,12,What are the rules of Catch the Fox?,"One player is the fox, the other is the hunter. The hunter pays a hunting lease of 10$. ",,CanPlayFox()
+11,20,What are the rules of Street to Roissy?,"Both players roll the dice simultaneously. Each player must roll a 1 first, then 2, 3, 4, 5, and finally 6.",,CanPlayStreetRoissy()
+11,26,What are the rules of Dare Six?,"In each round, you roll a dice as many times as you want and count the points together.",,CanPlayDaredSix()
+11,10,I have another question.,"Ok, go ahead.",,
+12,13,(Listen.),The fox tries to catch them as prey. The fox and the hunter take turns throwing dice.,,
+13,14,(Listen.),The fox gets a dice lead and needs to reach a total of 30 to escape the hunter.,,
+14,10,(Listen.),"If the hunter's score is equal to or as high as the fox's score, they catch the fox and get the lease back.",,
+20,21,(Listen.),"If a player rolls the wrong number, they pay 1$ and roll again. ",,
+21,22,(Listen.),"If a player rolls the correct number, the opponent takes a step towards Roissy and either remove clothes or add restraints.",,
+22,10,(Listen.),"The first person to reach Roissy loses, and the winner takes all the money.",,
+26,27,(Listen.),Then I roll the dice. Whoever has more points wins the round.,,
+27,28,(Listen.),"However, if you throw a 6, you instantly lose the round.",,
+28,10,(Listen.),The first player to lose 6 rounds loses the game. ,,
+30,,(Tickle her.),(You tickle her behind the knees and feet.  She squirms around laughing and trying to escape.),,
+30,,(Kiss her.),(You grab a clump of her hair and place a firm and passionate kiss on her lips.),,Player.CanInteract()
+30,,(Fondle her.),"(You fondle her breasts and butt, making her moan softly.)",,Player.CanTalk()
+30,,(Slap her.),(You slap her firmly in the face. She gasps from the pain and bows her head.),,
+30,,(Spank her.),(You spank her hard and she yelps from the pain.),,Player.CanInteract()
+30,0,(End the Game.),(You go back a step and she looks surprised.),,
+50,51,(Nod yes.),Are you ready to pay 25$? ,,!Player.CanTalk()
+50,51,"Yes, can you release me?",Are you ready to pay 25$? ,,Player.CanTalk()
+50,0,(Shake your head.),Tough luck then.,,!Player.CanTalk()
+50,0,"No, thanks.","Fair enough, but I'm not letting you out.",,Player.CanTalk()
+51,0,(Nod yes.),(She release you and takes the money.),PayForFreedom(),!Player.CanTalk()
+51,0,"Yes, you can have the money.",(She release you and takes the money.),PayForFreedom(),Player.CanTalk()
+51,0,(Shake your head.),Up to you.,,!Player.CanTalk()
+51,0,"No way, not a chance! (Leave her.)",Up to you.,DialogLeave(),Player.CanTalk()
+100,101,I'll play as the fox.,You roll first then.,"FoxController(""fox"")",ShowDiceStack()
+100,101,I'll play as the hunter.,"Ok, I'll roll first then.","FoxController(""hunter"")",ShowDiceStack()
+101,,Next roll.,Ok.,"FoxController(""NextDice"")",ShowDiceStack()
+102,0,The fox has escaped! (Take the win.),(She gives you the profit of REPLACEMONEY $.),"FoxController(""player_fox_win"")",ShowDiceStack()
+103,0,Congratulations! (Give her the win.),(She quickly takes the money.),"FoxController(""player_hunter_lost"")",ShowDiceStack()
+104,0,"Uh oh, you caught me!", (She ties you up.),"FoxController(""player_fox_lost"")",ShowDiceStack()
+105,0,Ahah! You can't escape me!,(She gives you the REPLACEMONEY $ back.),"FoxController(""player_hunter_win"")",ShowDiceStack()
+200,,(Roll the dice.),(You both roll the dice.),"StreetRoissyController(""nextDice"")",ShowDiceStack()
+202,,(Cheer.),(She mumbles into the gag.),"StreetRoissyController(""win"")",ShowDiceStack()
+203,,I walk the line.,Can you see the place to be?,"StreetRoissyController(""nextDice"")",ShowDiceStack()
+204,0,(Struggle.),Are you enjoying yourself there?,"StreetRoissyController(""lost"")",ShowDiceStack()
+210,,We walk side by side.,On a long street.,"StreetRoissyController(""both"")",ShowDiceStack()
+211,,Both right. Take off your accessories.,(She takes her accessories off while you both move towards Roissy.),"StreetRoissyController(""both"")",ShowDiceStack()
+212,,Both right. Take off your clothes.,(She takes her clothes off while you both move towards Roissy.),"StreetRoissyController(""both"")",ShowDiceStack()
+213,,Both right. Take off your underwear.,(She takes her underwear off while you both move towards Roissy.),"StreetRoissyController(""both"")",ShowDiceStack()
+214,,Both right. You'll have to start hopping!,(She nod slowly while you tie her legs and then you both move towards Roissy.),"StreetRoissyController(""both"")",ShowDiceStack()
+215,,Both right. Rolling might get difficult now...,(She struggles while you bind her arms and then you both move towards Roissy.),"StreetRoissyController(""both"")",ShowDiceStack()
+216,,I win. Time to gag you.,(She mumbles as you stuff the gag into her mouth and you step towards Roissy.),"StreetRoissyController(""both"")",ShowDiceStack()
+220,,There can only be one winner!,Lets roll the dice again.,"StreetRoissyController(""nextDice"")",ShowDiceStack()
+231,,"Oh, I lost. (Take off your accessories.)",I like where this is going.,"StreetRoissyController(""lost"")",ShowDiceStack()
+232,,"Oh, I lost. (Take off your clothes.)",Hurry up!,"StreetRoissyController(""lost"")",ShowDiceStack()
+233,,"Oh, I lost. (Take off your underwear.)",Feeling exposed?,"StreetRoissyController(""lost"")",ShowDiceStack()
+234,,"Oh, I lost. (Let her tie your legs.)",Don't lose your balance now.,"StreetRoissyController(""lost"")",ShowDiceStack()
+235,,"Oh, I lost. (Let her tie your arms.)",Just a little bit more to go... ,"StreetRoissyController(""lost"")",ShowDiceStack()
+236,,"Oh, I lost. (Try to resist her putting the gag in.)",Oh no you don't!  (She forces the gag into your mouth and takes the REPLACEMONEY $ winnings.),"StreetRoissyController(""lost"")",ShowDiceStack()
+241,,I win. Take off your accessories.,(She take her accessories off.),"StreetRoissyController(""win"")",ShowDiceStack()
+242,,I win. Lose the clothes.,(She take her clothes off.),"StreetRoissyController(""win"")",ShowDiceStack()
+243,,I win. Time for you to get naked.,(She take her underwear off.),"StreetRoissyController(""win"")",ShowDiceStack()
+244,,"I win. Let's tie up those legs, shall we?",(She nods slowly as you bind her legs.),"StreetRoissyController(""win"")",ShowDiceStack()
+245,,I win. You don't need those arms to roll the dice.,(She struggles as you tie her arms behind her.),"StreetRoissyController(""win"")",ShowDiceStack()
+246,,I win. Time for the final touch!,"(She mumbles as you gag her, and then you take the REPLACEMONEY $ winnings.)","StreetRoissyController(""win"")",ShowDiceStack()
+300,,I want to add a dice. ,(She gives you another dice.),"DaredSixController(""add"")",ShowDiceStack()
+300,,That's enough.,(She nods slowly and rolls her dice.),"DaredSixController(""fin"")",ShowDiceStack()
+311,,"Oh, I lost. (Take off your accessories.)",(She smiles menacingly.),"DaredSixController(""lost"")",ShowDiceStack()
+312,,"Oh, I lost. (Take off your clothes.)",Quickly now!,"DaredSixController(""lost"")",ShowDiceStack()
+313,,"Oh, I lost. (Take off your underwear.)",I hope you're not too cold!,"DaredSixController(""lost"")",ShowDiceStack()
+314,,"Oh, I lost. (Let her tie your legs.)","Looking better already, don't you think?","DaredSixController(""lost"")",ShowDiceStack()
+315,,"Oh, I lost. (Let her tie your arms.)","Hey, you look great like this...","DaredSixController(""lost"")",ShowDiceStack()
+316,,"Oh, I lost. (Open your mouth.)",This gag is perfect for you. (She takes the REPLACEMONEY $ winnings.),"DaredSixController(""lost"")",ShowDiceStack()
+321,,I win. Take off those accessories.,(She removes her accessories.),"DaredSixController(""win"")",ShowDiceStack()
+322,,I win. Let's see some underwear.,(She drops her clothes to the floor.),"DaredSixController(""win"")",ShowDiceStack()
+323,,I win. Lose the bra and panties.,(She removes her underwear.),"DaredSixController(""win"")",ShowDiceStack()
+324,,I win. Let's get those legs tied up.,(She nods slowly as you tie her legs together.),"DaredSixController(""win"")",ShowDiceStack()
+325,,I win. Time to keep those arms out of the way.,(She looks down as you tie her arms behind her.),"DaredSixController(""win"")",ShowDiceStack()
+326,,I win. Open wide!,"(She opens her mouth slowly and you gag her, and then take the REPLACEMONEY $ winnings.)","DaredSixController(""win"")",ShowDiceStack()
+330,0,(Cheer.),(She mumbles into the gag.),,
+340,0,(Mumble into the gag.),(She cheers.),,
+GamblingSecondSubTied,,,"(she shows her restraints.) I would like to, but ...",,
 MaidRescue,,,(She struggles in her restraints.)  Can you release me?,,IsSubsRestrained()
-MaidRescue,,I'll go get help.  (Leave her.),Pleased to meet you too.  I'm DialogCharacterName.,DialogLeave(),
-MaidRescue,,What happened here?,I lost a game and the winner left,,
-MaidRescue,,Do you need help?,"Yes please, can you release all Players",,IsSubsRestrained()
-MaidRescue,MaidRescueComplete,Is everything alright now?,You've took care of everything.  Please send my regards to the maids of the sorority.,CompleteRescue(),!IsSubsRestrained()
+MaidRescue,,I'll go get help.  (Leave her.),,DialogLeave(),
+MaidRescue,,What happened here?,I lost a game and the winner just left me all tied up!,,
+MaidRescue,,Do you need help?,"Yes please, can you release us?",,IsSubsRestrained()
+MaidRescue,MaidRescueComplete,Is everything alright now?,"Yes, much better now, thanks.  Please thank the maids sorority for me!.",CompleteRescue(),!IsSubsRestrained()
 MaidRescueComplete,0,Great!  A chore well done.,Absolutely.  Is there something I can do for you?,,
-MaidRescueComplete,0,No problem.  We are there to serve you.,This is great!  Is there something I can do for you?,"DialogChangeReputation(""Dominant"", -2)",
-MaidRescueComplete,0,"Alright, but be more careful next time.","I will, thanks.  Is there something I can do for you?","DialogChangeReputation(""Dominant"", 2)",
+MaidRescueComplete,0,No problem.  We are here to serve you Miss.,That's great to hear!  Is there something I can do for you?,"DialogChangeReputation(""Dominant"", -2)",
+MaidRescueComplete,0,"Alright, but take more care next time.","I will, thanks.  Is there something I can do for you?","DialogChangeReputation(""Dominant"", 2)",

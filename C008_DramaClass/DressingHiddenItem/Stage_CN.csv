@@ -1,0 +1,2 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,Common_PlayerNotRestrained,(搜寻。)ADD_MINUTES:1,你在这堆东西中翻找了一会|但是没找到任何有趣的东西。,0,0,0,Search()

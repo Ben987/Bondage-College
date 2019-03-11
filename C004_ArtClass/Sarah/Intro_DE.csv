@@ -1,7 +1,7 @@
 Stage,LoveReq,SubReq,VarReq,IntroText,Image
 0,0,0,,Kunst ist mein Lieblingsfach.|Wie kommst du mit deinem Bild voran?,Sarah.jpg
-0,2,0,,Hey there friend! Isn't art fun?|Wie kommst du mit deinem Bild voran?,Sarah.jpg
-0,0,2,,(Sie verneigt schnell ihren Kopf.)|Wie kommst du denn mit deinem Bild voran?,Sarah.jpg
+0,2,0,,"Hey, Freundin! Kunst macht Spaß, was?|Wie kommst du mit deinem Bild voran?",Sarah.jpg
+0,0,2,,(Sie senkt schnell ihren Kopf.)|Wie kommst du denn mit deinem Bild voran?,Sarah.jpg
 0,0,0,BondageDone,(Sie kichert.) Fesselst du mich mal wieder?|Und wie kommst du mit deinem Bild voran?,Sarah.jpg
 10,0,0,,Gefällt dir Julias Kunstunterricht?,Sarah.jpg
 20,0,0,,"Julia ist nicht gerade das einfachste Bildmodell, was?",Sarah.jpg
@@ -9,7 +9,7 @@ Stage,LoveReq,SubReq,VarReq,IntroText,Image
 50,0,0,,Sehr schön! Sie hat ihr Oberteil abgelegt.|Kannst du sie noch weiter treiben?,Sarah.jpg
 100,0,0,,Das ist klasse!|Du hast sie nackig gemacht.,Sarah.jpg
 100,0,0,IsModel,Gefällt dir die Pose? (Sie kichert.)|Das ist alles so aufregend!,Sarah.jpg
-110,0,0,,Du hast diesen hinterlistegn Blick|im Auge. Was planst du?,Sarah.jpg
+110,0,0,,Du hast diesen hinterlistigen Blick|im Auge. Was planst du?,Sarah.jpg
 120,0,0,,"Wie willst du sie überreden,|sich fesseln zu lassen?",Sarah.jpg
 130,0,0,,"Dieser ""Shibari""-Plan ist die|beste Idee, die ich je hatte.",Sarah.jpg
 130,0,0,Common_PlayerRestrained,"Du siehst süß aus, ich liebe Bondage.",Sarah.jpg

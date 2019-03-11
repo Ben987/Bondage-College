@@ -1,13 +1,13 @@
 Tag,Content
-Easy,Easy
-Normal,Normal
-Hard,Hard
-StartsIn,Starts in
-Difficulty,Difficulty:
-Perfect,Perfect race!  Click on yourself to continue.
-Victory,You made it!  Click on yourself to continue.
-Defeat,You failed!  Click on yourself to continue.
-Combo,Combo:
-Speed,Speed:
-Timer,Time left:
-RaceTime,Race time:
+Easy,简单
+Normal,中等
+Hard,困难
+StartsIn,开始…
+Difficulty,难度:
+Perfect,完美的较量！点击你自己以继续。
+Victory,你做到了！点击你自己以继续。
+Defeat,你被打败了！点击你自己以继续。
+Combo,连击:
+Speed,速度:
+Timer,剩余时间:
+RaceTime,竞赛时间:

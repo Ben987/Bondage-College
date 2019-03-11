@@ -31,6 +31,8 @@ function ValidLogin(&$data) {
 				$data = fread($myfile, filesize($file));
 				fclose($myfile);
 				$arr = json_decode($data);
+				$arr->CurrentTime = time() * 1000;
+				$data = json_encode($arr);
 				if (password_verify($_GET["password"], $arr->Password)) {
 					return true;
 				} else echo "invalid_password";
@@ -54,6 +56,8 @@ if (isset($_GET["command"])) {
 						// The character file is named like her, we check if it already exists
 						$file = GetFileName();
 						if (!file_exists($file)) {
+							
+							// Creates the new character file
 							$arr = new stdClass();
 							$arr->AccountName = $_GET["account"];
 							$arr->Password = password_hash($_GET["password"], PASSWORD_DEFAULT);
@@ -62,7 +66,10 @@ if (isset($_GET["command"])) {
 							$handle = fopen($file, 'w') or die('Cannot open file: '.$file);
 							fwrite($handle, json_encode($arr));
 							fclose($handle);
-							echo "account_created";		
+
+							// Returns account_created with the current time in millisecond to let the game knows that it worked
+							echo "account_created".(time() * 1000);
+
 						} else echo "account_already_exist";
 						
 					} else echo "parameter_email_error";
@@ -99,7 +106,33 @@ if (isset($_GET["command"])) {
 				fwrite($myfile, json_encode($arr));
 				fclose($myfile);
 				echo "inventory_added";
-					
+
+			} else echo "parameter_error";
+
+	// Removes an item from the account inventory
+	if ($_GET["command"] == "inventory_delete") 
+		if (ValidLogin($data))
+			if (isset($_GET["name"]) && isset($_GET["group"]) && ($_GET["name"] != "") && ($_GET["group"] != "")) {
+
+				// If the item is already in inventory, we delete it
+				$arr = json_decode($data);
+				if (!isset($arr->Inventory)) $arr->Inventory = [];
+				$pos = -1;
+				$p = 0;
+				foreach ($arr->Inventory as $item) {
+					if (($item->Name == $_GET["name"]) && ($item->Group == $_GET["group"]))
+						$pos = $p;
+					$p = $p + 1;
+				}
+				if ($pos >= 0) array_splice($arr->Inventory, $pos, 1);
+
+				// Overwrite the file
+				$file = GetFileName();
+				$myfile = fopen($file, "w") or die("Unable to open file!");
+				fwrite($myfile, json_encode($arr));
+				fclose($myfile);
+				echo "inventory_deleted";
+
 			} else echo "parameter_error";
 
 	// Add an item to the account inventory
@@ -114,13 +147,14 @@ if (isset($_GET["command"])) {
 				
 				// Fills the appearance array
 				$p = 0;
-				while (isset($_GET["name".$p]) && isset($_GET["group".$p]) && isset($_GET["color".$p]) && ($_GET["name".$p] != "") && ($_GET["group".$p] != "") && ($_GET["color".$p] != "")) {
-
+				while (isset($_GET["name".$p]) && isset($_GET["group".$p]) && ($_GET["name".$p] != "") && ($_GET["group".$p] != "")) {
+				
 					// Adds the appearance in the array
 					$appearance = new stdClass();
 					$appearance->Name = $_GET["name".$p];
 					$appearance->Group = $_GET["group".$p];
-					$appearance->Color = str_replace("|", "#", $_GET["color".$p]);
+					if (isset($_GET["color".$p]) && ($_GET["color".$p] != "")) $appearance->Color = str_replace("|", "#", $_GET["color".$p]);
+					if (isset($_GET["difficulty".$p]) && ($_GET["difficulty".$p] != "")) $appearance->Difficulty = $_GET["difficulty".$p];
 					array_push($arr->Appearance, $appearance);
 					$p++;
 				
@@ -140,18 +174,27 @@ if (isset($_GET["command"])) {
 		if (ValidLogin($data))
 			if (isset($_GET["name"]) && isset($_GET["group"]) && ($_GET["name"] != "") && ($_GET["group"] != "")) {
 
-				// If the entry is already in the log, we exit
+				// Loads the log
 				$arr = json_decode($data);
 				if (!isset($arr->Log)) $arr->Log = [];
-				foreach ($arr->Log as $item)
-					if (($item->Name == $_GET["name"]) && ($item->Group == $_GET["group"]))
-						die("already_in_log");
+				$must_add = 1;
 
-				// Create the log entry and add it
-				$log = new stdClass();
-				$log->Name = $_GET["name"];
-				$log->Group = $_GET["group"];
-				array_push($arr->Log, $log);
+				// If the entry is already in the log, we update it
+				foreach ($arr->Log as $item)
+					if (($item->Name == $_GET["name"]) && ($item->Group == $_GET["group"])) {
+						if (isset($_GET["value"]) && ($_GET["value"] != "")) $item->Value = $_GET["value"];
+						else unset($item->Value);
+						$must_add = 0;
+					}
+
+				// Creates the log entry and add it if we need too
+				if ($must_add == 1) {
+					$log = new stdClass();
+					$log->Name = $_GET["name"];
+					$log->Group = $_GET["group"];
+					if (isset($_GET["value"]) && ($_GET["value"] != "")) $log->Value = $_GET["value"];
+					array_push($arr->Log, $log);
+				}
 
 				// Overwrite the file
 				$file = GetFileName();
@@ -236,8 +279,8 @@ if (isset($_GET["command"])) {
 				// Saves specific character values passed as parameters
 				$arr = json_decode($data);
 				if (isset($_GET["money"]) && ($_GET["money"] != "")) $arr->Money = $_GET["money"];
-				if (isset($_GET["owner"]) && ($_GET["owner"] != "")) $arr->Owner = $_GET["owner"];
-				if (isset($_GET["lover"]) && ($_GET["lover"] != "")) $arr->Lover = $_GET["lover"];
+				if (isset($_GET["owner"])) $arr->Owner = $_GET["owner"];
+				if (isset($_GET["lover"])) $arr->Lover = $_GET["lover"];
 
 				// Overwrite the file
 				$file = GetFileName();

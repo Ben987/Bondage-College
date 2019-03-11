@@ -1,0 +1,30 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,EmptyLibrary,"Die Schulbibliothek ist um diese Zeit ziemlich leer.|Es ist ein ruhiger Ort, um Hausaufgaben zu machen.",Library.jpg
+0,0,0,!EmptyLibrary,Es sind ein paar Schüler in der Bibliothek.|Wen möchtest du ansprechen?,Library.jpg
+100,0,0,,"Hi, Mädchen. (Sie sieht dich an und schmunzelt.)|Du brauchst sicher Hilfe mit den Hausaufgaben.",Chair.jpg
+100,10,0,,"Schön dich zu sehen, COMMON_PLAYERNAME.|Du brauchst sicher Hilfe mit den Hausaufgaben.",Chair.jpg
+100,-10,0,,"Oh, du bist's. (Sie wirkt enttäuscht.)|Du brauchst sicher Hilfe mit den Hausaufgaben.",Chair.jpg
+110,0,0,,"Hi, Miss COMMON_PLAYERNAME.|Was führt Sie in die Bibliothek?",Chair.jpg
+120,0,0,,Ich lerne gerade. Das ist kein|guter Moment zum Reden.,Chair.jpg
+130,0,0,,Schön dich wiederzusehen!|Bist du wegen deiner Hausaufgaben hier?,Chair.jpg
+140,0,0,,Oh mein Gott! COMMON_PLAYERNAME!|Kannst du jetzt den Gürtel aufschließen?,Chair.jpg
+150,0,0,,Das ist mir so peinlich. Ich bekomme|dein Ei nicht heraus. Hilfst du mir?,Chair.jpg
+160,0,0,,(Sie kichert.) Hat dir dein Aufenthalt|im Schließfach vorhin Spaß gemacht?,Chair.jpg
+170,0,0,,"Ich kann nicht glauben, dass du mich vorhin|in dieses Schließfach gesperrt hast.",Chair.jpg
+180,0,0,,"Ich muss noch immer darüber lachen, was|heute Morgen mit Miss Mildred passiert ist.",Chair.jpg
+190,0,0,,Hallo. Hat dir dein erster Tag an|unserer Schule gefallen?,Chair.jpg
+191,0,0,,,Chair.jpg
+200,0,0,,Hallo mal wieder. Wollen wir|gemeinsam lernen?,Chair.jpg
+200,0,10,,"Hallo nochmal, Miss. Wollen wir|hier gemeinsam lernen?",Chair.jpg
+205,0,0,,,Chair.jpg
+210,0,0,,,Chair.jpg
+220,0,0,,,Chair.jpg
+230,0,0,,,Chair.jpg
+300,0,0,,,Desk.jpg
+310,0,0,,,Desk.jpg
+311,0,0,,,Desk.jpg
+312,0,0,,,Desk.jpg
+313,0,0,,,Desk.jpg
+314,0,0,,,Desk.jpg
+315,0,0,,,Desk.jpg
+316,0,0,,,Desk.jpg

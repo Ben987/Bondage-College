@@ -1,6 +1,6 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Halsband untersuchen.)|(1 Minute),Es könnte mit einem Schloss gesichert werden.|Es ist für Menschen gedacht und ein ""S"" ist aufgenäht.,0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Halsband anlegen.)|(1 Minute),Du legst dir das Halsband um|den Hals und befestigst es.,10,0,0,SelfCollar()
-10,0,0,HasLooseCollar,(Freies Halsband|untersuchen.)  (1 Minute),Es könnte mit einem Schloss gesichert werden.|Es ist für Menschen gedacht und ein ""S"" ist aufgenäht.,10,0,0,ShowImage()
-10,0,0,,(Hals strecken.)|(1 Minute),"Du streckst deinen Hals zum Entspannen,|aber das Halsband spürst du trotzdem.",10,0,0,
-10,0,0,Common_PlayerNotRestrained,(Halsband abnehmen.)|(1 Minute),Du lockerst das Halsband und nimmst es ab.,0,0,0,SelfUncollar()
+0,0,0,,(Das Halsband|untersuchen.)ADD_MINUTES:1,Es könnte mit einem Schloss gesichert werden.|Es ist für Menschen gedacht und ein S ist aufgenäht.,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Dir das Halsband|anlegen.)ADD_MINUTES:1,Du legst dir das Halsband um|den Hals und befestigst es.,10,0,0,SelfCollar()
+10,0,0,HasLooseCollar,(Das freie Halsband|untersuchen.) ADD_MINUTES:1,Es könnte mit einem Schloss gesichert werden.|Es ist für Menschen gedacht und ein S ist aufgenäht.,10,0,0,ShowImage()
+10,0,0,,(Deinen Hals strecken.)ADD_MINUTES:1,"Du streckst deinen Hals zum Entspannen,|aber das Halsband spürst du trotzdem.",10,0,0,
+10,0,0,Common_PlayerNotRestrained,(Das Halsband|abnehmen.)ADD_MINUTES:1,Du lockerst das Halsband und nimmst es ab.,0,0,0,SelfUncollar()

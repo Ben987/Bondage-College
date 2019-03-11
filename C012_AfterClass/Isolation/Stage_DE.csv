@@ -1,0 +1,108 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,IsolationEscape,"Das ist der Ort, von dem|ich heute entkommen bin.",Du konntest von hier entkommen?|Ich muss ein paar Tricks von dir lernen.,10,0,1,
+0,0,0,IsolationStuck,Genau hier war|ich heute gefangen.,(Sie nickt.) Ich hab mich hier auch|schon ein paar Mal festhalten lassen.,10,0,-1,
+0,0,0,,"Sieht gruselig aus,|aber auch nach Spaß.","Ja, ich hatte Todesangst, als sie mich|zum ersten Mal hier eingesperrt haben.",10,1,-1,
+0,0,0,,Es ist recht dunkel.,"Ja, ich glaube, der Raum ist mit|Absicht nicht so gut beleuchtet.",10,0,0,
+0,0,0,,"Warum führst du mich|hierher, du Perverse?","(Sie senkt ihre Stimme.) Ich hab dich doch|gewarnt, dass es ein gefährlicher Ort ist.",10,-1,1,
+10,0,0,,"Ich hab Angst, Sarah.","Schau dir die Geräte an, Mädchen.|So schlimm sind sie nicht.",20,0,-1,
+10,0,0,,Ist das aufregend!,Ja! Willst du die Geräte sehen?,20,1,0,
+10,0,0,,"Ich kann's kaum erwarten,|dich festzuschnallen.",(Sie wird rot und nickt fröhlich.)|Welches Gerät möchtest du sehen?,20,0,1,
+10,0,0,,Können wir die|Geräte ausprobieren?,"Klar, aber wir müssen vorsichtig sein.|Welches Gerät möchtest du sehen?",20,0,0,
+10,0,0,,Diese Schule ist krank.,Die Regeln für Disziplin sind vielleicht etwas veraltet.|Möchtest du eins der Geräte sehen?,20,-1,0,
+20,0,0,!SarahOnCross,(Das Kreuz ansehen.),"(An der Wand ist ein großes hölzernes Kreuz befestigt,|woran Gliedmaßen angekettet werden können.)",100,0,0,
+20,0,0,SarahOnCross,(Das Kreuz ansehen.),"(Sarah kämpft noch mit dem hölzernen Kreuz.)|Das ist mein Lieblingsteil hier, es macht solchen Spaß.",110,0,0,
+20,0,0,!SarahOnPillory,(Den Pranger ansehen.),(Ein Holzpranger ist am Boden verankert. Mit drei|Löchern werden Handgelenke und Hals festgehalten.),200,0,0,
+20,0,0,SarahOnPillory,(Den Pranger ansehen.),(Sarah kämpft noch mit dem Holzpranger.) Ich fühl|mich hier drin wie ein mittelalterliches Burgfräulein.,210,0,0,
+20,0,0,!SarahOnHorse,(Den Bock ansehen.),(Es ist ein Holzbock am Boden verankert.|Es gibt zwei Ketten zum Festhalten der Beine.),300,0,0,
+20,0,0,SarahOnHorse,(Den Bock ansehen.),"(Sarah kämpft noch auf dem Holzbock.) Wahnsinn!|Meine Hände sind frei, aber ich kann nicht runter.",310,0,0,
+20,0,0,,(Den Raum durchsuchen.),"Du durchsuchst den Isolationsraum,|findest aber nichts Interessantes.",20,0,0,Search()
+20,0,0,,Mir gefällt dieser Ort nicht.,Sei nicht so ängstlich und trübselig.|Das sind alles lustige Folterinstrumente.,20,0,0,DontLikeRemark()
+20,0,0,SarahRestrained,Alles klar bei dir?,(Sie zappelt und ruft durch den Raum.)|Ja! Es ist eine echt aufregende Situation.,20,0,0,
+20,0,0,!SarahRestrained,Ich hab genug gesehen.|Gehen wir zurück.,(Sie schmollt.) Ist es schon Zeit zu gehen?,30,0,0,
+20,0,0,SarahRestrained,Ich hab genug gesehen.|Ich gehe zurück.,(Sie zappelt und ruft durch den Raum.)|Du würdest mich doch nicht hier lassen?,40,0,0,
+30,0,0,,Ich gehe in mein Zimmer.|Willst du mitkommen?,Klar! Gehen wir zu dir.,50,0,0,
+30,0,0,,"Ich gehe in mein Zimmer.|Bis später, Sarah.",Na gut! Das hat Spaß gemacht. Pass auf dich auf.,60,0,0,
+30,0,0,,Vielleicht können wir|noch eine Weile bleiben.,Cool! Das lob ich mir!|Was sollen wir ausprobieren?,20,0,0,
+40,0,0,,Viel Spaß noch!|(Sie zurücklassen.),,40,-2,2,"Leave(""Stranded"")"
+40,0,0,,War nur Spaß.|(Im Raum bleiben.),(Sie seufzt und hört auf zu zappeln.|Welches Gerät willst du dir ansehen?),20,0,0,
+50,0,0,,(Mit Sarah in|dein Zimmer gehen.),,50,1,0,"Leave(""Sarah"")"
+60,0,0,,(Zurück zu|deinem Zimmer.),,60,0,0,"Leave("""")"
+100,0,0,!SarahRestrained,Kann ich dich|ans Kreuz ketten?,"Klar! Ich liebe es, hilflos an diesem Kreuz zu hängen.|(Sie lehnt sich ans Kreuz und du schließt die Ketten.)",110,0,0,"LockSarah(""Cross"")"
+100,0,0,SarahRestrained,Kann ich dich|ans Kreuz ketten?,"(Sie nickt fröhlich.) Na sicher.|Hilf mir eben, dann probier ich das Kreuz aus.",100,0,0,
+100,0,0,!SarahRestrained,"Sarah, kannst|du mich anketten?",Klar! Leg deine Arme und Beine an die Form.|(Du lehnst dich ans Kreuz und Sarah kettet dich fest.),120,0,0,"LockPlayer(""Cross"")"
+100,0,0,SarahRestrained,"Sarah, kannst|du mich anketten?","(Sie lacht.) Der war gut.|Hilf mir hier raus, dann kette ich dich fest.",100,0,0,
+100,0,0,,(Dich selbst anketten.),"(Du kettest erst deine Knöchel fest, dann holst du tief|Luft und lässt die Handgelenkfesseln zuschnappen.)",120,0,0,"LockPlayer(""Cross"")"
+100,0,0,,(Zurücktreten.),(Du trittst von der Vorrichtung zurück.|Was möchtest du dir ansehen?),20,0,0,
+110,0,0,,Du bist süß|an diesem Kreuz.,"(Sie kichert und nickt vergnügt.)|Danke! Ich liebe es, gefesselt zu sein.",110,0,0,CuteRemark()
+110,0,0,,Macht dich das feucht?,(Sie nickt und wird etwas rot.)|Oh ja. Das turnt mich richtig an.,110,0,0,WetRemark()
+110,0,0,,(Sie küssen.),(Dein Kuss überrascht sie.)|Oh! Das hab ich nicht erwartet.,110,0,0,
+110,0,0,,(Sie kitzeln.),"(Sie lacht ein wenig, scheint aber|nicht besonders viel Spaß daran zu haben.)",110,0,0,
+110,0,0,,(Sie befreien.),(Du löst die Ketten und sie|kommt lächelnd vom Kreuz herab.),100,0,0,"LockSarah("""")"
+110,0,0,,(Zurücktreten.),(Du trittst zurück und überlässt Sarah sich selbst.|Was möchtest du dir ansehen?),20,0,0,
+120,0,0,!SarahRestrained,Das macht Spaß!,Du siehst gut aus auf diesem Kreuz.|Ich sollte mir so eins für mein Zimmer besorgen.,120,0,0,DommeRemark()
+120,0,0,SarahRestrained,Das macht Spaß!,"Ja! Aber achte darauf, dass du dich befreien kannst.|Wir wollen nicht die ganze Nacht hier feststecken.",120,0,0,DommeRemark()
+120,0,0,,Wie heißt dieses Ding?,"Man nennt das ein Andreaskreuz.|Frag nicht, woher ich das weiß.",120,0,0,
+120,0,0,!SarahRestrained,(An den Ketten rütteln.),"(Du rüttelst an den Ketten, während sie beatboxt.)",120,0,0,
+120,0,0,SarahRestrained,(An den Ketten rütteln.),"(Während du an den Ketten rüttelst, wirkt sie besorgt.)|Verdammt! Wie konnten wir nur so dumm sein?",120,0,0,
+120,0,0,!SarahRestrained,Kannst du mir helfen?,Na klar! Ich schließe diese Ketten auf.|(Sie lässt dich frei und hilft dir runter.),100,0,0,"LockPlayer("""")"
+120,0,0,SarahRestrained,Kannst du mir helfen?,"Ist das dein Ernst? Du steckst auch fest?|(Sie zappelt, kann sich aber nicht befreien.)",120,0,0,
+120,0,0,,"(Versuchen,|dich zu befreien.)","(Du zerrst an allen vier Enden,|kommst aber nicht frei.)",120,0,0,
+120,0,0,SarahRestrained,(Zu Sarah schauen.),(Sarah scheint in einer|ähnlichen Lage zu stecken wie du.),120,0,0,CheckSarah()
+120,0,0,SarahRestrained,(Um Hilfe schreien.),"(Ihr schreit beide um Hilfe,|aber niemand eilt euch zur Rettung.)",120,0,0,Wait()
+120,0,0,SarahRestrained,(Auf Hilfe warten.),"(Du wartest mit Sarah, doch es kommt niemand.)|Das ist nicht witzig! Ich hatte heute Abend was vor.",120,0,0,Wait()
+200,0,0,!SarahRestrained,Kann ich dich in|den Pranger sperren?,Auf jeden Fall! Lass mich den Pranger ausprobieren.|(Sie begibt sich hinein und du machst das Gerät zu.),210,0,0,"LockSarah(""Pillory"")"
+200,0,0,SarahRestrained,Kann ich dich in|den Pranger sperren?,"(Sie nickt fröhlich.) Na sicher.|Hilf mir eben, dann probier ich den Pranger aus.",200,0,0,
+200,0,0,!SarahRestrained,"Sarah, kannst du|mich darin einsperren?","Na klar! Geh rein, dann mach ich ihn dir zu.|(Du stellst dich in den Pranger und sie schließt ihn.)",220,0,0,"LockPlayer(""Pillory"")"
+200,0,0,SarahRestrained,"Sarah, kannst du|mich darin einsperren?","(Sie lacht.) Der war gut.|Hilf mir hier raus, dann schließ ich dich ein.",200,0,0,
+200,0,0,,(Dich selbst einsperren.),"(Du platzierst deinen Kopf und deine Hände im|Pranger und ziehst daran, bis er zuschnappt.)",220,0,0,"LockPlayer(""Pillory"")"
+200,0,0,,(Zurücktreten.),(Du trittst von der Vorrichtung zurück.|Was möchtest du dir ansehen?),20,0,0,
+210,0,0,,Du bist süß|in diesem Pranger.,"(Sie kichert und nickt vergnügt.)|Danke! Ich liebe es, gefesselt zu sein.",210,0,0,CuteRemark()
+210,0,0,,Macht dich das feucht?,(Sie nickt und wird etwas rot.)|Oh ja. Das turnt mich richtig an.,210,0,0,WetRemark()
+210,0,0,,Fühlst du dich wie eine|holde Maid in Nöten?,Ja! Vielleicht könnte Julia in unser|nächstes Stück einen Pranger einbauen.,210,0,0,
+210,0,0,,(Ihr auf den Hintern hauen.),(Du haust ihr ziemlich doll auf den|Hintern und sie stöhnt vor Wollust.),210,0,0,Spank()
+210,0,0,,(Sie befreien.),(Du öffnest den Pranger und lässt sie raus.),200,0,0,"LockSarah("""")"
+210,0,0,,(Zurücktreten.),(Du trittst zurück und überlässt Sarah sich selbst.|Was möchtest du dir ansehen?),20,0,0,
+220,0,0,!SarahRestrained,Das macht Spaß!,Du siehst gut aus in diesem Pranger.|Ich muss irgendwie Sidney in einen reinkriegen.,220,0,0,DommeRemark()
+220,0,0,SarahRestrained,Das macht Spaß!,"Ja! Aber achte darauf, dass du dich befreien kannst.|Wir wollen nicht die ganze Nacht hier feststecken.",220,0,0,DommeRemark()
+220,0,0,,Sowas haben die|im Mittelalter benutzt?,"Jep. Wenn ich faulige Tomaten hätte,|wärst du jetzt ziemlich matschig.",220,0,0,
+220,0,0,!SarahRestrained,(Die Zunge rausstrecken.),(Sie streckt dir auch ihre Zunge entgegen.)|Du bist so eine alberne Sklavin.,220,0,0,
+220,0,0,SarahRestrained,(Die Zunge rausstrecken.),"(Sie streckt dir auch ihre Zunge entgegen.)|Aber jetzt mal im Ernst, kommst du da raus?",220,0,0,
+220,0,0,!SarahRestrained,Kannst du mir helfen?,Jep! Lass mich das für dich aufmachen.|(Sie öffnet den Pranger und du kommst heraus.),200,0,0,"LockPlayer("""")"
+220,0,0,SarahRestrained,Kannst du mir helfen?,"Ist das dein Ernst? Du steckst auch fest?|(Sie zappelt, kann sich aber nicht befreien.)",220,0,0,
+220,0,0,,"(Versuchen,|dich zu befreien.)","(Du versuchst, deine Hände oder deinen Kopf|herauszuzwängen, schaffst es aber nicht.)",220,0,0,
+220,0,0,SarahRestrained,(Zu Sarah schauen.),(Sarah scheint in einer|ähnlichen Lage zu stecken wie du.),220,0,0,CheckSarah()
+220,0,0,SarahRestrained,(Um Hilfe schreien.),"(Ihr schreit beide um Hilfe,|aber niemand eilt euch zur Rettung.)",220,0,0,Wait()
+220,0,0,SarahRestrained,(Auf Hilfe warten.),"(Du wartest mit Sarah, doch es kommt niemand.)|Das ist nicht witzig! Ich hatte heute Abend was vor.",220,0,0,Wait()
+300,0,0,!SarahRestrained,Kann ich dich auf|den Bock ketten?,Oh ja! Ich liebe diesen perversen Peitschbock.|(Sie setzt sich und du kettest ihre Beine fest.),310,0,0,"LockSarah(""Horse"")"
+300,0,0,SarahRestrained,Kann ich dich auf|den Bock ketten?,"(Sie nickt fröhlich.) Na sicher.|Hilf mir eben, dann probier ich den Bock aus.",300,0,0,
+300,0,0,!SarahRestrained,"Sarah, kannst du|mich darauf anketten?",Klar! Setz dich und nimm die Beine auseinander.|(Sarah kettet deine Beine außer Reichweite fest.),320,0,0,"LockPlayer(""Horse"")"
+300,0,0,SarahRestrained,"Sarah, kannst du|mich darauf anketten?","(Sie lacht.) Der war gut.|Hilf mir hier raus, dann kette ich dich fest.",300,0,0,
+300,0,0,,(Dich selbst anketten.),"(Mit etwas Mühe gelingt es dir, deine|Beine freihändig in die Ketten zu bekommen.)",320,0,0,"LockPlayer(""Horse"")"
+300,0,0,,(Zurücktreten.),(Du trittst von der Vorrichtung zurück.|Was möchtest du dir ansehen?),20,0,0,
+310,0,0,,Du bist süß|auf diesem Bock.,"(Sie kichert und nickt vergnügt.)|Danke! Ich liebe es, gefesselt zu sein.",310,0,0,CuteRemark()
+310,0,0,,Macht dich das feucht?,(Sie nickt und wird etwas rot.)|Oh ja. Das turnt mich richtig an.,310,0,0,WetRemark()
+310,0,0,,Hast du Spaß da oben?,Und wie! Es fehlt nur ein gewisses|Etwas zwischen den Beinen.,310,0,0,
+310,0,0,,(Sie kitzeln.),"(Sie lacht ein wenig, scheint aber|nicht besonders viel Spaß daran zu haben.)",310,0,0,
+310,0,0,,(Sie befreien.),(Du befreist ihre Beine und hilfst ihr herunter.),300,0,0,"LockSarah("""")"
+310,0,0,,(Zurücktreten.),(Du trittst zurück und überlässt Sarah sich selbst.|Was möchtest du dir ansehen?),20,0,0,
+320,0,0,!SarahRestrained,Das macht Spaß!,"Du siehst gut aus auf diesem Bock.|Schade, dass ich nicht mit Peitschen umgehen kann.",320,0,0,DommeRemark()
+320,0,0,SarahRestrained,Das macht Spaß!,"Ja! Aber achte darauf, dass du dich befreien kannst.|Wir wollen nicht die ganze Nacht hier feststecken.",320,0,0,DommeRemark()
+320,0,0,,"(So tun, als|würdest du reiten.)","(Du spielst, als würdest du auf einem Pferd reiten.)|Hü-hott! Los, Cowgirl!",320,0,0,
+320,0,0,!Common_PlayerChaste,(Dich befriedigen.),"(Du reibst dich an den Bock, aber es bringt nicht viel.)|Ich sehe das, Mädchen! So eine ungezogene Sklavin.",320,0,0,Masturbate()
+320,0,0,!SarahRestrained,Kannst du mir helfen?,Na klar! Lass mich dir da runterhelfen.|(Sie befreit deine Beine und zieht dich herab.),300,0,0,"LockPlayer("""")"
+320,0,0,SarahRestrained,Kannst du mir helfen?,"Ist das dein Ernst? Du steckst auch fest?|(Sie zappelt, kann sich aber nicht befreien.)",320,0,0,
+320,0,0,,"(Versuchen,|dich zu befreien.)","(Du rüttelst und zerrst an den Fußfesseln,|aber sie geben nicht nach.)",320,0,0,
+320,0,0,SarahRestrained,(Zu Sarah schauen.),(Sarah scheint in einer|ähnlichen Lage zu stecken wie du.),320,0,0,CheckSarah()
+320,0,0,SarahRestrained,(Um Hilfe schreien.),"(Ihr schreit beide um Hilfe,|aber niemand eilt euch zur Rettung.)",320,0,0,Wait()
+320,0,0,SarahRestrained,(Auf Hilfe warten.),"(Du wartest mit Sarah, doch es kommt niemand.)|Das ist nicht witzig! Ich hatte heute Abend was vor.",320,0,0,Wait()
+400,0,0,,Geht es dir gut?,"Ja, alles okay. Es war etwas unheimlich,|allein hiergelassen zu werden.",410,1,0,
+400,0,0,,"Niemand ist gekommen,|um dir zu helfen?","Nein! Aber danke, dass du wiedergekommen bist.|Es war unheimlich, allein hiergelassen zu werden.",410,0,0,
+400,0,0,,"Hast du deine Lektion|gelernt, Mädchen?","Ich glaube schon, Miss.|Ich sollte vorsichtiger sein.",410,-1,1,
+400,0,0,,"Tut mir leid, Sarah.","Jetzt ist alles gut. Es war etwas unheimlich,|allein hiergelassen zu werden.",410,2,-1,
+410,0,0,,Komm mit mir zurück.|(Mit Sarah zurück.),,410,0,0,"Leave(""Sarah"")"
+410,0,0,,"Geh nach Hause, Kleine.|(Allein zurück.)",,410,0,0,"Leave("""")"
+500,0,0,,Geht es dir gut?,"Ja, mir geht's gut, aber ich muss los.|Ich bin spät dran für meinen Abend in der Stadt.",510,0,0,
+500,0,0,,"Niemand ist gekommen,|um dir zu helfen?",Nein! Und ich muss jetzt sofort los.|Ich bin spät dran für meinen Abend in der Stadt.,510,-1,0,
+500,0,0,,"Hast du deine Lektion|gelernt, Mädchen?","Ja, ich sollte vorsichtiger sein.|Und jetzt bin ich spät dran, ich muss los.",510,-1,1,
+500,0,0,,"Tut mir leid, Sarah.",Jetzt ist alles gut. Aber ich muss los.|Ich bin spät dran für meinen Abend in der Stadt.,510,1,-1,
+510,0,0,,"Lauf, Sarah, lauf!|(Allein zurück.)",,510,0,0,"Leave("""")"

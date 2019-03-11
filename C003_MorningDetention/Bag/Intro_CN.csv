@@ -1,0 +1,5 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,Common_PlayerNotRestrained,Yuki 老师的包放在那里无人看管。,Bag.jpg
+0,0,0,Common_PlayerRestrained,Yuki 老师的包放在那里无人看管。你在|戴着手铐的时候没法不引人注意地打开它。,Bag.jpg
+10,0,0,Common_PlayerNotRestrained,老师的包还敞开着。,Bag.jpg
+10,0,0,Common_PlayerRestrained,Yuki 老师的包放在那里无人看管。你在|戴着手铐的时候没法不引人注意地翻东西。,Bag.jpg

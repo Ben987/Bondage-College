@@ -13,16 +13,17 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 10,0,0,,Kapitel 7|Mittagspause,,10,0,0,"LoadChapter(""C007_LunchBreak"")"
 10,0,0,,Kapitel 8|Schauspielunterricht,,10,0,0,"LoadChapter(""C008_DramaClass"")"
 10,0,0,,Mehr Kapitel,"Wähle das Kapitel, welches du spielen willst.|Wenn du zum ersten Mal spielst, starte von Kapitel 1.",20,0,0,
-10,0,0,,Hauptmenü,Willkommen zur Bondage-Schule.|Hab Spaß und sei Neugierig.,0,0,0,
+10,0,0,,Hauptmenü,Willkommen zum Bondage-College.|Hab Spaß und sei neugierig.,0,0,0,
 20,0,0,,Kapitel 9|Bibliothek,,20,0,0,"LoadChapter(""C009_Library"")"
 20,0,0,,Kapitel 10|Rache,,20,0,0,"LoadChapter(""C010_Revenge"")"
 20,0,0,,Kapitel 11|Literatur,,20,0,0,"LoadChapter(""C011_LiteratureClass"")"
 20,0,0,,Kapitel 12|Nach der Schule,,20,0,0,"LoadChapter(""C012_AfterClass"")"
 20,0,0,,Kapitel 101|Kinbaku-Club von wildsj,,20,0,0,"LoadChapter(""C101_KinbakuClub"")"
 20,0,0,,Vorherige Kapitel,"Wähle das Kapitel, welches du spielen willst.|Wenn du zum ersten Mal spielst, starte von Kapitel 1.",10,0,0,
-20,0,0,,Hauptmenü,Willkommen zur Bondage-Schule.,0,0,0,
+20,0,0,,Hauptmenü,Willkommen zum Bondage-College.|Hab Spaß und sei neugierig.,0,0,0,
 30,0,0,,Englisch,,0,0,0,"SetLanguage(""EN"")"
-30,0,0,,Französich (Kapitel 1 bis 9)|Geschrieben von gottspende,,0,0,0,"SetLanguage(""FR"")"
-30,0,0,,Chinesisch (Kapitel 1 & 5)|Dwscdv3 & asdcvbgf,,0,0,0,"SetLanguage(""CN"")"
+30,0,0,,Französisch (Kapitel 1 bis 9)|Geschrieben von gottspende,,0,0,0,"SetLanguage(""FR"")"
+30,0,0,,"Chinesisch Kapitel 1 bis 3, 5|Dwscdv3 & asdcvbgf",,0,0,0,"SetLanguage(""CN"")"
 30,0,0,,Spanisch (Kapitel 1 & 2)|Rafael R & tree13003,,0,0,0,"SetLanguage(""ES"")"
-30,0,0,,"Deutsch (Kapitel 1 bis 11)|adokilume, Knife, fleisch11",,0,0,0,"SetLanguage(""DE"")"
+30,0,0,,"Deutsch (Kapitel 1 bis 13)|adokilume, Knife, fleisch11",,0,0,0,"SetLanguage(""DE"")"
+30,0,0,,"Russisch (Kapitel 1)|Fluend",,0,0,0,"SetLanguage(""RU"")"

@@ -1,0 +1,30 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,Du kommst beim College-Pool an.|Im Moment schwimmt hier niemand.,PoolEmpty.jpg
+0,0,0,JenniferAvail,Du kommst beim College-Pool an.|Jennifer schwimmt allein.,PoolEmpty.jpg
+10,0,0,,,PoolSwimAlone.jpg
+20,0,0,,,PoolSwimMoves.jpg
+100,0,0,,,Showers.jpg
+100,0,0,,,Showers.jpg
+101,0,0,,,Showering.jpg
+101,0,0,,,Showering.jpg
+110,0,0,,,Showers.jpg
+120,0,0,,,Showers.jpg
+130,0,0,,,Showers.jpg
+140,0,0,,,Showers.jpg
+150,0,0,,,Showers.jpg
+160,0,0,,"(Die Schlägerin starrt dich an und lacht.)|Hau ab, Mädchen! Gegen mich bist du nichts.",Showers.jpg
+170,0,0,,"(Die Schlägerin senkt beschämt den Kopf.)|Du hast gewonnen, die Schlampe gehört dir.",Showers.jpg
+180,0,0,,,Showers.jpg
+200,0,0,,(Du schwimmst und plauderst mit Jennifer.)|Du warst mir mit dieser Schlägerin keine große Hilfe.,PoolSwimWithJennifer.jpg
+201,0,0,,,PoolSwimWithJennifer.jpg
+210,0,0,,"(Du schwimmst und plauderst mit Jennifer.)|Danke, dass du mir mit der Schlägerin helfen wolltest.",PoolSwimWithJennifer.jpg
+211,0,0,,,PoolSwimWithJennifer.jpg
+220,0,0,,(Du schwimmst und plauderst mit Jennifer.)|Danke für deine Hilfe mit dieser Schlägerin.,PoolSwimWithJennifer.jpg
+221,0,0,,,PoolSwimWithJennifer.jpg
+222,0,0,,,PoolSwimWithJennifer.jpg
+230,0,0,,(Du näherst dich Jennifer ein wenig|und schwimmst mit ihr.),PoolSwimWithJennifer.jpg
+231,0,0,,,PoolSwimWithJennifer.jpg
+232,0,0,,,PoolSwimWithJennifer.jpg
+235,0,0,,,PoolSwimWithJennifer.jpg
+236,0,0,,,PoolSwimWithJennifer.jpg
+240,0,0,,,PoolSwimWithJennifer.jpg

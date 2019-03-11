@@ -1,0 +1,119 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,Common_PlayerNaked,@Masturbieren.,"Du kannst nicht masturbieren,|während du gefesselt bist.",0,0,0,StartMasturbate()
+0,0,0,!Common_PlayerNaked,@Ausziehen zum|Masturbieren.,"Du kannst nicht masturbieren,|während du gefesselt bist.",0,0,0,StartMasturbate()
+0,0,0,,@Schlafen gehen.|(Den Tag beenden.),Möchtest du wirklich schlafen?|Hierdurch enden der Tag und das Spiel.,10,0,0,
+10,0,0,,"@Ja, schlafen gehen.|(Den Tag beenden.)",,10,0,0,"EndChapter("""")"
+10,0,0,,"@Nein, wach bleiben.|(Fortfahren.)",Du hast wohl noch ein wenig Energie.,0,0,0,
+100,0,0,,@Deine Brust massieren.,Du massierst dir langsam mit einer|Hand die Brust und stöhnst leise.,100,0,0,MasturbateUp()
+100,0,0,,@Deinen Nippel kneifen.,Du kneifst dir in den eigenen Nippel|und wimmerst leise vor Schmerz.,100,0,0,MasturbateUp()
+100,0,0,,@Deine Klitoris massieren.,Du reibst zärtlich deine Klitoris|und stöhnst immer lauter.,100,0,0,MasturbateDown()
+100,0,0,,@Mit deiner Vagina spielen.,Mit zwei Fingern spielst du mit deinen Schamlippen|und die Reize lassen dich erschaudern.,100,0,0,MasturbateDown()
+100,0,0,,@Einen Finger rein-|und rausbewegen.,"Du steckst deinen Zeigefinger hinein und|wieder heraus, dein Atem wird immer schneller.",100,0,0,MasturbateDown()
+100,0,0,,@Innen erkunden.,Du erkundest das Innere deiner Vagina.|Du stößt dabei auf sehr angenehme Stellen.,100,0,0,MasturbateDown()
+100,0,0,,@Aufhören und aufstehen.,Du richtest dich vom Bett auf.,0,0,0,StopMasturbate()
+110,0,0,,@Dich gehen lassen|und kommen.,"Du verlierst dich in wunderbarer Ekstase, während|deine Finger dir einen lieblichen Orgasmus bescheren.",120,0,0,Climax()
+110,0,0,,@Aufhören.,"Du beruhigst dich, atmest tief durch und hörst|auf, bevor du den Höhepunkt erreichst.",100,0,0,StopMasturbate()
+120,0,0,,@Weiter masturbieren.,"Nur um sicherzugehen, dass du zufrieden bist,|spielst du erneut an dir herum.",100,0,0,
+120,0,0,,@Aufhören und aufstehen.,Du richtest dich entspannt und erfrischt vom Bett auf.,0,0,0,StopMasturbate()
+200,0,0,,(Ihre Lippen küssen.),"(Du küsst sanft ihre Lippen, aber sie scheint es nicht|besonders zu mögen und befriedigt sich selbst.)",200,0,0,"Sex(-1, 1, false, false)"
+200,0,0,,(Ihre Brust küssen.),"(Ihr küsst euch gegenseitig die Brüste, aber|sie findet nicht so viel Gefallen daran wie du.)",200,0,0,"Sex(0, 1, false, false)"
+200,0,0,,(Ihre Brust massieren.),"(Ihr massiert euch gegenseitig die Brüste, aber|sie findet nicht so viel Gefallen daran wie du.)",200,0,0,"Sex(0, 1, false, false)"
+200,0,0,,(Ihre Nippel kneifen.),(Ihr kneift euch gegenseitig in die Nippel und|zuckt und kreischt beide vor Schmerz.),200,0,0,"Sex(1, 1, false, false)"
+200,0,0,SexSoft,(Mit ihrer Klitoris spielen.),(Ihr spielt langsam gegenseitig mit|euren Klitorides und stöhnt leise.),200,0,0,"Sex(1, 1, true, false)"
+200,0,0,SexSoft,(Ihre Vagina streicheln.),(Ihr streichelt gegenseitig sanft eure|Schamlippen und stöhnt leise.),200,0,0,"Sex(1, 1, true, false)"
+200,0,0,SexSoft,(Einen Finger reinstecken.),(Ihr befriedigt euch gegenseitig mit einem Finger|und sie scheint großen Spaß daran zu haben.),200,0,0,"Sex(2, 1, true, false)"
+200,0,0,SexWild,(Sie naschen.),(Ihr leckt euch gegenseitig in der 69-Position|und sie scheint großen Spaß daran zu haben.),200,0,0,"Sex(2, 1, true, false)"
+200,0,0,SexWild,(Sie fisten.),"(Du fistest sie, während sie dich befriedigt.|Sie kreischt und zittert vor Ekstase.)",200,0,0,"Sex(3, 1, true, false)"
+200,0,0,,Das reicht.|(Aufstehen.),Wir hören schon auf? Das ging schnell.,200,0,0,LeaveBedFromSex()
+210,0,0,,(Nah an ihr liegen.),(Ihr liegt euch zärtlich in den Armen.)|Scheiße! Das war verdammt geil!,220,0,0,AfterSex()
+210,0,0,Common_ActorIsLover,(Ihren Hals küssen.),"(Du küsst ihren Hals, während sie nach|Atem ringt.) Das war toll, Süße!",220,0,0,AfterSex()
+210,0,0,Common_ActorIsLover,"Ich liebe dich, Sidney.","(Sie lächelt und beruhigt langsam ihren Atem.)|Ich liebe dich, Schatz. Das war klasse!",220,0,0,AfterSex()
+210,0,0,,Es war wundervoll.,"Ja, verdammt! Das war klasse.",220,0,0,AfterSex()
+210,0,0,,Du bist gut zu Vögeln.,(Sie kommt wieder zu Atem und kichert.)|Danke dir! Das war verdammt geil.,220,0,1,AfterSex()
+210,0,0,,Ich bin sprachlos.,Dann sag ich's für dich.|Das war verdammt geil!,220,0,-1,AfterSex()
+220,0,0,,"Ich schätze, alle guten|Dinge haben ein Ende.",Jep! (Ihr steht beide auf.),900,0,0,OffBed()
+220,0,0,,(Schweigen|und aufstehen.),(Ihr steht beide schweigend auf.),900,0,0,OffBed()
+220,0,0,Common_ActorIsOwned,"Raus aus dem|Bett, Sklavin.","Ja, Herrin! (Ihr steht beide auf.)",900,0,0,OffBed()
+220,0,0,Common_ActorIsOwner,"Stehen wir auf, Herrin?","Ja, Schlampe. (Ihr steht beide auf.)",900,0,0,OffBed()
+220,0,0,Common_ActorIsLover,Möchtest du so mit|mir einschlafen?,"Klar, Schatz. Es wäre verdammt|schön, zusammen zu schlafen.",230,0,0,
+230,0,0,,Mit Sidney schlafen.|(Den Tag beenden.),,230,0,0,"EndChapter(""Lover"")"
+230,0,0,,"Vielleicht später,|meine Liebe. (Aufstehen.)","Ja, Schlaf ist eh für Versager.",900,0,0,OffBed()
+300,0,0,,(Ihre Beine streicheln.),(Ihr umklammert und streichelt euch|langsam und liebevoll gegenseitig die Beine.),300,0,0,"Sex(0, 1, false, false)"
+300,0,0,,(Ihre Beine küssen.),(Ihr küsst euch langsam gegenseitig die Beine.|Bei jedem Kontakt stöhnt sie leise.),300,0,0,"Sex(1, 1, false, false)"
+300,0,0,,(Ihre Vagina küssen.),(Ihr küsst euch gegenseitig die Schamlippen.|Die Feuchtigkeitswerte nehmen zu.),300,0,0,"Sex(1, 1, false, true)"
+300,0,0,,(Deine Nase an ihre|Klitoris reiben.),"(Sie lacht und schaudert, als ihr euch|gegenseitig an eure Klitorides schmiegt.)",300,0,0,"Sex(1, 1, false, true)"
+300,0,0,SexSoft,(Ihre Vagina streicheln.),"(Sie stöhnt laut, als ihr euch beide|gegenseitig die Vaginas streichelt.)",300,0,0,"Sex(2, 1, true, false)"
+300,0,0,SexSoft,(Ihre Vagina lecken.),"(Sie zittert heftig, als ihr euch beide|gegenseitig die Vaginas leckt.)",300,0,0,"Sex(2, 1, true, true)"
+300,0,0,SexSoft,(Einen Finger|reinstecken.),(Ihr steckt euch gegenseitig einen Finger hinein|und beginnt eine aufregende Erkundungstour.),300,0,0,"Sex(1, 1, false, false)"
+300,0,0,SexWild,(Sie naschen.),"(Sie stöhnt und hat heftige sexuelle|Zuckungen, als ihr euch liebevoll leckt.)",300,0,0,"Sex(3, 1, true, true)"
+300,0,0,SexWild,(Sie fisten.),"(Du versuchst deine Faust einzuführen,|tust ihr dabei aber nur weh.)",300,0,0,"Sex(-1, 1, false, false)"
+300,0,0,,Das reicht.|(Aufstehen.),Wir hören schon auf?|Das ging irgendwie schnell.,300,0,0,LeaveBedFromSex()
+310,0,0,,(Auf ihr ruhen.),"(Du bleibst auf ihr liegen, als ihr euch umklammert.)|Das sexuelle Paradies ist ein so wundervoller Ort.",320,0,0,AfterSex()
+310,0,0,,(Ihre Füße küssen.),(Du küsst sanft ihre Füße und sie kichert.)|Das sexuelle Paradies ist ein so wundervoller Ort.,320,0,-1,AfterSex()
+310,0,0,Common_ActorIsLover,"Ich liebe dich, Amanda.","(Sie lächelt und klammert sich an dich.)|Ich liebe dich, COMMON_PLAYERNAME.",320,1,0,AfterSex()
+310,0,0,,Es war wundervoll.,(Sie nickt und umklammert dich fest.)|Das sexuelle Paradies ist ein so toller Ort.,320,1,0,AfterSex()
+310,0,0,,Du bist gut zu Vögeln.,"(Sie seufzt.) Ich verstehe schon, was du meinst,|aber das lässt sich auch gepflegter ausdrücken.",320,-1,1,AfterSex()
+310,0,0,,Ich bin sprachlos.,Geht mir genauso. Das sexuelle|Paradies ist ein so wundervoller Ort.,320,0,0,AfterSex()
+320,0,0,,"Ich schätze, alle guten|Dinge haben ein Ende.","Ja, schön gesagt. (Ihr steht beide auf.)",900,0,0,OffBed()
+320,0,0,,(Schweigen|und aufstehen.),(Ihr steht beide schweigend auf.),900,0,0,OffBed()
+320,0,0,Common_ActorIsOwned,"Raus aus dem|Bett, Sklavin.","Ja, Herrin, natürlich.|(Ihr steht beide flink auf.)",900,0,0,OffBed()
+320,0,0,Common_ActorIsOwner,"Stehen wir auf, Herrin?","Ja, meine Kleine. (Ihr steht beide auf.)",900,0,0,OffBed()
+320,0,0,Common_ActorIsLover,Möchtest du so mit|mir einschlafen?,"Ja, meine Liebe, das ist eine wundervolle Idee.|In deinen Armen würde ich schlafen wie ein Engel.",330,0,0,
+330,0,0,,Mit Amanda schlafen.|(Den Tag beenden.),,330,0,0,"EndChapter(""Lover"")"
+330,0,0,,"Vielleicht später,|meine Liebe. (Aufstehen.)","Ja, machen wir etwas mehr aus|unserer ersten gemeinsamen Nacht.",900,0,0,OffBed()
+400,0,0,,(Ihr schmeicheln.),"(Ihr tauscht nette und liebevolle Worte aus.|Es gefällt ihr, aber es macht sie nicht scharf.)",400,0,0,"Sex(0, 1, false, false)"
+400,0,0,,(Sie beleidigen.),"(Du nennst sie Hure, Schlampe, Fotze und so weiter.|Sie wird rot und auch ziemlich feucht.)",400,0,0,"Sex(1, 1, false, false)"
+400,0,0,,(Ihre Beine streicheln.),(Ihr streichelt euch gegenseitig langsam die Beine.|Es scheint sie nicht wirklich scharf zu machen.),400,0,0,"Sex(0, 1, false, true)"
+400,0,0,,(Ihren Hintern hauen.),(Du schlägst ihr ziemlich doll auf den Hintern|und sie stöhnt vor Lust und Schmerz.),400,0,0,"Sex(2, 1, false, true)"
+400,0,0,,(Ihre Beine küssen.),(Ihr küsst euch langsam gegenseitig die Beine.|Es scheint ihr nicht so richtig zu gefallen.),400,0,0,"Sex(0, 1, false, false)"
+400,0,0,SexSoft,(Langsam an sie reiben.),(Ihr reibt euch langsam und zärtlich aneinander|und spürt die zunehmende Ekstase.),400,0,0,"Sex(1, 1, true, false)"
+400,0,0,SexWild,(Ihre Klitoris befriedigen.),"(Sie stöhnt laut und zittert,|als du ihre Klitoris befriedigst.)",400,0,0,"Sex(2, 1, true, true)"
+400,0,0,SexSoft,(Deine Klitoris|befriedigen.),(Ihr befriedigt euch beide selbst und|schaudert vor zunehmender Lust.),400,0,0,"Sex(1, 1, true, true)"
+400,0,0,SexWild,(Schnell an sie reiben.),(Ihr reibt euch schnell und ohne Pausen aneinander.|Die sexuelle Ekstase nimmt rasend schnell zu.),400,0,0,"Sex(2, 1, true, false)"
+400,0,0,,Das reicht.|(Aufstehen.),Jetzt? Ach komm schon!|Das ging zu schnell.,400,0,0,LeaveBedFromSex()
+410,0,0,,(Verschnaufen.),(Ihr entspannt euch schwer atmend.)|Es gibt nichts Besseres als Sex.,420,0,0,AfterSex()
+410,0,0,,(Ihre Füße küssen.),(Du küsst sanft ihre Füße und sie kichert.)|Es gibt nichts Besseres als Sex.,420,0,-1,AfterSex()
+410,0,0,Common_ActorIsLover,"Ich liebe dich, Sarah.","(Sie lächelt und schaut dich an.)|Ich liebe dich, COMMON_PLAYERNAME.",420,1,0,AfterSex()
+410,0,0,,Es war wundervoll.,(Sie nickt und reibt noch etwas weiter.)|Es gibt nichts Besseres als Sex.,420,1,0,AfterSex()
+410,0,0,,Du bist gut zu Vögeln.,(Sie nickt.) Das freut mich zu hören.|Es gibt nichts Besseres als Sex.,420,0,1,AfterSex()
+410,0,0,,Ich bin sprachlos.,"Ach was, sag ruhig, wie du dich fühlst.|Es gibt nichts Besseres als Sex.",420,-1,0,AfterSex()
+420,0,0,CanDateSarah,"Sarah, würdest du|mit mir gehen?","Nein, ich bin ein freier Vogel, ich halt's lieber simpel.|(Du brauchst +20 Liebe, um Sarah zu daten.)",420,0,0,TestLoveSarah()
+420,0,0,CanDateSarah,Wir könnten mehr als|nur Fickfreunde sein.,"Nein, ich bin ein freier Vogel, ich halt's lieber simpel.|(Du brauchst +20 Liebe, um Sarah zu daten.)",420,0,0,TestLoveSarah()
+420,0,0,,"Ich schätze, alle guten|Dinge haben ein Ende.","Ja, aber wir können's später nochmal machen.|(Sie zwinkert dir zu, als ihr beide aufsteht.)",900,0,0,OffBed()
+420,0,0,,(Schweigen|und aufstehen.),(Ihr steht beide schweigend auf.),900,0,0,OffBed()
+420,0,0,Common_ActorIsOwned,"Raus aus dem|Bett, Sklavin.","Oh je! Natürlich, Herrin.|(Ihr steht beide flink auf.)",900,0,0,OffBed()
+420,0,0,Common_ActorIsLover,Möchtest du so mit|mir einschlafen?,"Klar, es wäre echt sexy,|nackt in deinen Armen zu schlafen.",430,0,0,
+430,0,0,,Mit Sarah schlafen.|(Den Tag beenden.),,430,0,0,"EndChapter(""Lover"")"
+430,0,0,,"Vielleicht später,|meine Liebe. (Aufstehen.)",Oh ja! Die Nacht ist noch jung.,900,0,0,OffBed()
+500,0,0,,(Ihr schmeicheln.),(Ihr tauscht nette und liebevolle Worte aus.|Es gefällt ihr und sie bewegt sich langsam rückwärts.),500,0,0,"Sex(1, 1, false, false)"
+500,0,0,,(Sie beleidigen.),"(Du nennst sie Hure, Schlampe, Fotze und so weiter.|Es gefällt ihr nicht und sie hört auf, sich zu bewegen.)",500,0,0,"Sex(0, 1, false, false)"
+500,0,0,,(Ihren Hintern streicheln.),(Ihr streichelt euch langsam gegenseitig die Hintern.|Sie stöhnt und windet sich um den Dildo.),500,0,0,"Sex(1, 1, false, false)"
+500,0,0,,(Ihren Hintern hauen.),(Du schlägst ihr ziemlich doll auf den Hintern.|Sie wimmert und beklagt sich.),500,0,0,"Sex(0, 1, false, false)"
+500,0,0,,(Deine Brust befriedigen.),"(Ihr befriedigt eure Brüste,|aber Jennifer zeigt kaum eine Reaktion.)",500,0,0,"Sex(0, 1, false, true)"
+500,0,0,SexSoft,(Deine Klitoris befriedigen.),(Ihr befriedigt euch beide selbst und|schaudert vor zunehmender Lust.),500,0,0,"Sex(2, 1, true, true)"
+500,0,0,SexSoft,(Mit dem Hintern wackeln.),(Ihr wackelt beide verspielt mit den Hintern|und spürt die gegenseitige Bewegung in euch.),500,0,0,"Sex(1, 1, false, true)"
+500,0,0,SexSoft,(Langsam bewegen.),(Du bewegst dich mit dem langen Dildo langsam|vor und zurück und stöhnst vor Wollust.),500,0,0,"Sex(2, 1, true, true)"
+500,0,0,SexWild,(Schnell bewegen.),(Du bewegst dich sehr schnell vor und zurück.|Ihr fickt euch gegenseitig im perfekten Rhythmus.),500,0,0,"Sex(3, 1, true, true)"
+500,0,0,,Das reicht.|(Aufstehen.),Jetzt? Ach komm schon!|Das ging zu schnell.,500,0,0,LeaveBedFromSex()
+510,0,0,,(Verschnaufen.),(Ihr entspannt euch schwer atmend.)|Das ist viel besser als Laufen!,520,0,0,AfterSex()
+510,0,0,Common_ActorIsLover,"Ich liebe dich, Jennifer.","(Sie schaut dich träumerisch an.)|Ich liebe dich, COMMON_PLAYERNAME.",520,1,0,AfterSex()
+510,0,0,,Es war wundervoll.,(Sie nickt und wackelt noch ein wenig.)|Das ist viel besser als Laufen!,520,0,0,AfterSex()
+510,0,0,,Du bist gut zu Vögeln.,(Sie runzelt die Stirn.) Vielleicht könntest|du das irgendwie anders sagen.,520,-1,1,AfterSex()
+510,0,0,,Ich bin sprachlos.,"Sag nichts, erinnere dich einfach an diesen schönen|Moment, den wir zusammen verbracht haben.",520,1,-1,AfterSex()
+520,0,0,,"Ich schätze, alle guten|Dinge haben ein Ende.","Ja, aber das war bestimmt nicht das letzte Mal.|(Sie lächelt dich an, als ihr beide aufsteht.)",900,0,0,OffBed()
+520,0,0,,(Schweigen|und aufstehen.),(Ihr steht beide schweigend auf.),900,0,0,OffBed()
+520,0,0,Common_ActorIsOwned,"Raus aus dem|Bett, Sklavin.","Ja, Herrin! Natürlich.|(Ihr steht beide flink auf.)",900,0,0,OffBed()
+520,0,0,Common_ActorIsLover,"Möchtest du mit mir|schlafen, meine Liebe?","Ja, Liebling. Es wäre toll,|einzuschlafen, während wir knuddeln.",530,0,0,
+530,0,0,,Mit Jennifer schlafen.|(Den Tag beenden.),,530,0,0,"EndChapter(""Lover"")"
+530,0,0,,"Vielleicht später,|meine Liebe. (Aufstehen.)","Klar, wir haben noch Zeit.",900,0,0,OffBed()
+800,0,0,,Ihr zwei seid so süß.,"Danke! Ich bin so froh, dass wir zusammen sind.|(Amanda kuschelt sich in ihre Arme und lächelt.)",800,0,0,
+800,0,0,,"Sagt Bescheid, wenn|ihr etwas braucht.","Wir haben schon alles, was wir brauchen.|(Amanda ergänzt.) Wir haben uns.",800,0,0,
+800,0,0,,"Ich bin so froh, dass|ihr euch gefunden habt.","Alles dank dir, COMMON_PLAYERNAME.|(Amanda nickt und küsst Sarah.)",800,0,0,
+800,0,0,,Kann ich mitmachen?,"Ein Dreier? Das ist 'ne abgefahrene Idee!|Aber nicht jetzt, es ist unser erster Tag.",800,0,0,
+800,0,0,!AmandaOwner,"Das reicht, Mädels.|Raus aus meinem Bett.","(Sie seufzen, stehen auf und ziehen sich wieder an.)",0,0,0,LoversOffBed()
+800,0,0,,(Ihnen einen Daumen|hoch zeigen.),"(Sie geben sich einen langen, lieblichen|Kuss und umarmen sich zärtlich.)",800,0,0,
+810,0,0,!AmandaOwner,Nö. Der Gürtel|dient deinem Schutz.,"Das ist so unfair! Keusch an unserem ersten Tag.|Aber danke, dass wir dein Bett benutzen dürfen.",800,0,0,
+810,0,0,,Ich hab keinen Schlüssel|für diesen Gürtel.,"Das ist ein Riesenproblem! Keusch am ersten Tag.|Aber danke, dass wir dein Bett benutzen dürfen.",800,0,0,
+810,0,0,!AmandaOwner,Nicht jetzt.|Später vielleicht.,"Hoffentlich nicht zu spät! Züchtige Liebe ist nicht so toll.|Aber danke, dass wir dein Bett benutzen dürfen.",800,0,0,
+810,0,0,,(Den Kopf schütteln.),"Das ist so unfair! Keusch an unserem ersten Tag.|Aber danke, dass wir dein Bett benutzen dürfen.",800,0,0,
+900,0,0,,(Zurück zum Zimmer.),,900,0,0,BackToDorm()

@@ -1,0 +1,215 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,"So ist es, nett dich|kennenzulernen.","Ebenso. Es ist immer schön,|neue Clubmitglieder zu sehen.",30,1,0,
+0,0,0,PlayerGagged,"@Eh ihf nhhm,|dhhf gmnmnzhlmnmn.","Tut mir leid, ich verstehe Knebelsprache noch nicht.|Du müsstest erst den Knebel abnehmen.",25,0,0,
+0,0,0,,(Nicken.),"Sei nicht so schüchtern, wir sind hier alles Freunde.",30,0,-1,
+10,0,0,,"Könntest du helfen,|mich zu befreien?","Tut mir leid, aber du hast dir das irgendwie eingebrockt,|also musst du da auch selbst wieder rauskommen.",15,0,0,
+10,0,0,PlayerGagged,@Bhtte bmndm mihh lhf.,"Tut mir leid, ich verstehe Knebelsprache noch nicht.|Du müsstest erst den Knebel abnehmen.",15,0,0,
+10,0,0,,(Nicken.),"Gut, dann viel Spaß dabei.",15,0,0,TiedNod()
+20,0,0,,Könntest du diese|Handschellen abnehmen?,"Ich habe zwar keinen Handschellenschlüssel, aber ich|kann dir beibringen, wie man sich daraus befreit.",50,0,0,
+20,0,0,,Dir würden sie noch|viel besser stehen.,"Handschellen neigen bei mir dazu, einfach|abzufallen. Möchtest du lernen, wie das geht?",50,0,0,
+20,0,0,PlayerGagged,@Bhtte bmndm mihh lhf.,"Tut mir leid, ich verstehe Knebelsprache noch nicht.|Du müsstest erst den Knebel abnehmen.",25,0,0,
+20,0,0,,(Nicken.),"Und auch noch so unterwürfig. Möchtest du|so bleiben oder lernen, wie man sich befreit?",50,0,-1,
+25,0,0,PlayerGagged,@Bhtte bmndm mihh lhf.,"Tut mir leid, ich verstehe Knebelsprache noch nicht.|Du müsstest erst den Knebel abnehmen.",25,0,0,
+30,0,0,,Was macht ihr da?,"Ich bringe Nicole bei, wie man sich ohne Schlüssel|aus Handschellen befreit. Weißt du, wie das geht?",40,0,0,
+30,0,0,,Kann ich dich fesseln?,"Wow, jetzt nicht, ich bringe Nicole bei, wie man sich aus|Handschellen befreit. Möchtest du das auch lernen?",40,0,1,
+30,0,0,,Würdest du|mich fesseln?,"Später vielleicht, ich bringe Nicole bei, wie man sich|aus Handschellen befreit. Das solltest du auch lernen.",40,0,-1,
+30,0,0,BlindfoldAvailable,Braucht ihr diese|Augenbinde?,"Ich wollte versuchen, mich blind zu befreien, aber du|kannst sie dir leihen. Die ist gut, probier sie mal an.",30,0,0,GetBlindfold()
+40,0,0,,"Ich wusste nicht,|dass das möglich ist.",Nichts ist unmöglich. Eigentlich ist der|Handschellen-Mechanismus sogar sehr primitiv.,100,0,0,
+40,0,0,,"Wie, etwa indem du dir|die Daumen ausrenkst?","Sei nicht albern, es geht auch viel angenehmer. Der|Handschellen-Mechanismus ist eigentlich sehr primitiv.",100,-1,0,
+40,0,0,,"Interessant,|erzähl weiter.",Klar. Der Handschellen-Mechanismus|ist im Grunde sehr primitiv.,100,1,0,
+40,0,0,,Handschellen interessieren|mich nicht wirklich.,"Kein Problem, dann sprich mal mit den|Mädels nebenan. Sie reden über Seiltechniken.",45,0,0,
+45,0,0,BlindfoldAvailable,Braucht ihr diese|Augenbinde?,"Ich wollte versuchen, mich blind zu befreien, aber du|kannst sie dir leihen. Die ist gut, probier sie mal an.",45,0,0,GetBlindfold()
+50,0,0,PlayerHasKey,"Ich hab zwar Schlüssel,|aber ich möchte es lernen.","Schlüssel sind gut, können aber verloren gehen. Der|Handschellen-Mechanismus ist eigentlich sehr primitiv.",100,1,0,
+50,0,0,,"Bitte bring es mir bei,|die Dinger tun weh.","Natürlich, Süße. Der Handschellen-|Mechanismus ist eigentlich sehr primitiv.",100,1,-1,
+50,0,0,,"Ja, sag es mir|auf der Stelle.","Okay, ganz ruhig. Der Handschellen-|Mechanismus ist eigentlich sehr primitiv.",100,0,1,
+50,0,0,,"Vergiss es, ich suche mir|einfach 'nen Schlüssel.",Viel Glück dabei.,55,-1,0,
+50,0,0,PlayerGagged,@Bhtte bmndm mihh lhf.,"Tut mir leid, ich verstehe Knebelsprache noch nicht.|Du müsstest erst den Knebel abnehmen.",50,0,0,
+50,0,0,PlayerGagged,(Nicken.),"Jemand muss dich aus gutem Grund geknebelt haben.|Lass dir den Knebel abnehmen, dann können wir reden.",50,0,0,
+100,0,0,,Mir kommt er|recht wirksam vor.,"Wirksam, aber primitiv. Es ist nur eine gefederte Klinke|auf einer Sperre, und der Schlüssel hebt die Klinke an.",110,0,0,
+100,0,0,,Dieser ganze Raum|ist etwas primitiv.,"Hab dich nicht so. Es ist nur eine gefederte Klinke|auf einer Sperre, und der Schlüssel hebt die Klinke an.",110,0,0,
+110,0,0,,Und was machst du|dann ohne Schlüssel?,"Ich drücke die Klinke von der Sperrvorrichtung, indem|ich einen dünnen Metallstreifen dazwischenschiebe.",120,0,0,
+110,0,0,,Also knackst du|einfach das Schloss?,"Das geht auch, aber ich schiebe einfach einen Metall-|streifen zwischen die Klinke und die Sperrvorrichtung.",120,0,1,
+110,0,0,,Was meintest du|gerade mit Schinken?,Mach dir keinen Kopf über die Fachbegriffe. Du musst|nur einen Metallstreifen in die richtige Stelle schieben.,120,0,-1,
+120,0,0,,"Wie, du zauberst einfach|Metallstreifen herbei?","Die Zauberei besteht darin, sie clever zu verstecken.|Gewöhnliche Haarspangen sind ideal und diskret.",130,0,0,
+120,0,0,,So etwas|hab ich nicht.,"Viele von uns tragen schon genau das Richtige.|Eine Haarspange ist alles, was du brauchst.",130,0,-1,
+120,0,0,,"Hmmm, was in dieser Art|könnte ich denn haben?","Das ist genau die richtige Herangehensweise. Alles,|was wir hier brauchen, ist eine normale Haarspange.",130,1,0,
+130,0,0,,"Kannst du mir zeigen,|wie das geht?","Leg dir erst Handschellen an, dann gehen|wir es gemeinsam durch, wie mit Nicole.",140,0,0,AlreadyCuffed()
+130,0,0,,"Mach schon. Zeig|uns, wie es geht.","Na ja, das könnte ich, aber leg dir doch Handschellen|an und versuch es einfach selbst, so wie Nicole.",140,0,1,AlreadyCuffed()
+140,0,0,,Alles klar. (Dir selbst|Handschellen anlegen.),(Du nimmst die Handschellen und legst sie dir hinter|dem Rücken an.) Du bist eine sehr folgsame Schülerin.,150,1,-1,PlayerCuffed()
+140,0,0,,Das ist doch|nicht dein Ernst?,"Doch. Wenn du nicht mitmachst,|bringe ich dir auch nichts bei.",145,0,0,
+145,0,0,,"Na gut, hoffentlich|bringt das was.","(Du nimmst die Handschellen und legst sie dir an.)|Das wird es, wenn du keinen Fehler machst.",150,0,0,PlayerCuffed()
+145,0,0,,"Nein, das ist|mir zu blöd.",Wie du willst. Ich muss es dir nicht sagen.,145,0,0,
+150,0,0,,"Moment, wie soll ich an 'ne|Haarspange rankommen?",Daran hättest du vorher denken müssen. Am besten|hältst du immer ein paar an deinem Körper versteckt.,160,0,0,
+150,0,0,,(Erwartungsvoll die|Hand ausstrecken.),"Was? Ach so, eine Haarspange. Am besten hältst du für|alle Fälle immer ein paar an deinem Körper versteckt.",160,-1,1,
+150,0,0,,"Ähm, ich komme so|nicht an meinen Kopf.","Natürlich, darum zahlt es sich aus, immer|ein paar an deiner Kleidung zu verstecken.",160,0,-1,
+160,0,0,,Dürfte ich bitte|eine Spange haben?,Ja. (Sie befestigt eine Haarspange an|der Taille deines Rocks.) Du bist bereit.,170,0,-1,KinkyClip()
+160,0,0,,"Komm schon, gib|mir eine Haarspange.",Klar. (Sie befestigt eine Haarspange an|der Taille deines Rocks.) Du bist bereit.,170,0,0,KinkyClip()
+165,0,0,,"Sexy Versteck,|gefällt mir.","Es soll nicht sexy sein, es ist einfach eine gute Idee,|ein paar an verschiedenen Stellen zu verstecken.",170,1,0,
+165,0,0,,"Ähh, musstest du sie|gerade da verstecken?","Ja, ein Entführer könnte deine Uniform entfernen.|Mehrere verschiedene Verstecke sind eine gute Idee.",170,0,-1,
+170,0,0,,Und was mache ich jetzt?,"Nimm die Haarspange und brich das breite|Ende ab, indem du es hin und her biegst.",180,0,0,
+180,0,0,,"(Tun, was sie sagt.)","(Die Spange zerbricht mit etwas Mühe deiner Finger.)|Genau, du brauchst nur das dünne Ende mit der Niete.",190,0,0,
+190,0,0,,Und jetzt?,"Das ist der Metallstreifen, den du brauchst. Stecke es|an den Zacken entlang ins Schloss der Handschellen.",200,0,0,
+190,0,0,,Das stecke ich also|in die Handschellen?,Richtig. Stecke es an den Zacken|entlang ins Schloss der Handschellen.,200,1,0,
+200,0,0,,(Den Streifen in die|Handschellen stecken.),"(Nach ein wenig Fummelei bekommst du die Hand-|schellen auf.) Spitze, Nicole hat es noch nicht raus.",205,0,0,ReleaseTest()
+205,0,0,,(Es erneut versuchen.),(Nach ein wenig Fummelei bekommst du die Hand-|schellen auf.) Na also. Immerhin schneller als Nicole.,205,0,0,ReleaseTest()
+210,0,0,,Danke. Hast du noch|mehr Haarspangen?,"Keine Ursache. Ich hab 'nen Haufen|Haarspangen dabei, hier, nimm dir ein paar.",220,1,0,LearntEscape()
+210,0,0,,"Na ja, ich schätze,|das hat geklappt.","Immerhin bist du die Handschellen los.|Hier hast du ein paar Haarspangen, nur für den Fall.",220,-1,0,LearntEscape()
+220,0,0,BlindfoldAvailable,Braucht ihr diese|Augenbinde?,"Ich wollte versuchen, mich blind zu befreien, aber du|kannst sie dir leihen. Die ist gut, probier sie mal an.",220,0,0,GetBlindfold()
+300,0,0,,"Na, wen haben|wir denn da?","Ja, du hast mich erwischt, aber nicht mehr lange. Wenn|Nicole mich loslässt, kann ich mich sofort befreien.",310,0,0,
+300,0,0,,Das ist aber mal|ein hübscher Fang.,"Danke, aber Handschellen können mich nicht|lange halten. Nicole, du kannst jetzt loslassen.",310,1,0,
+300,0,0,,Wen hab ich erwischt?,"Mich, und ohne Nicole wäre ich diese Handschellen|schon los, bevor du die Augenbinde abgenommen hast.",310,0,0,
+310,0,0,,Dann sollte|ich dich fesseln.,"Niemals, ich hasse es, wie sich Seile anfühlen.",315,0,0,
+310,0,0,,Du kannst wirklich aus allen|Handschellen entkommen?,"Klar doch. Alle möglichen Handschellen,|ohne Schlüssel, ohne Probleme. Willst du mal sehen?",320,0,0,
+310,0,0,,Du hast also|einfach einen Schlüssel?,"Nein, ich kann mich aus allen Handschellen|befreien, ohne einen Schlüssel zu brauchen.",320,0,0,
+315,0,0,,Und wenn ich ganz|lieb darum bitte?,Die Antwort lautet immer noch nein.,320,0,0,
+315,0,0,,Als könntest du|was dagegen tun.,"Pass auf, dieser Club sieht Mobbing nicht gern.",320,-1,0,
+320,0,0,,"Na gut, dann|versuch's mal.","(Nicole lässt sie los und Lauren streift kurz darauf|die Handschellen ab.) Na also, sag ich doch.",330,0,0,
+320,0,0,,"Zeig mal, was|du drauf hast.",Ich bin die Beste. (Nicole lässt sie los und Lauren|hat sich kurz darauf von den Handschellen befreit.),330,1,0,
+330,0,0,,"Hmmm, das sah nicht|sehr schwierig aus.",Ich bin schneller als alle anderen hier.,340,-1,0,
+330,0,0,,Du hast einfach|eine Haarspange benutzt.,Na und? Das zählt trotzdem als Befreiung.,340,0,0,
+330,0,0,,"Wow, du scheinst echt|keine Mühe zu haben.","Ja, Handschellen hinter dem Rücken|sehe ich kaum als Herausforderung an.",340,1,-1,
+340,0,0,,Wie wär's mit einer|richtigen Herausforderung?,"Nur zu, ich kann mich aus allen|Handschellen irgendwie befreien.",350,0,0,
+340,0,0,,Ich könnte dich mit|Handschellen festhalten.,"Da wäre ich mir nicht so sicher,|aber du kannst es gern versuchen.",350,0,1,
+350,0,0,,Zieh erst deine|Uniform aus.,Was? Na gut. (Sie zieht sich widerwillig aus.)|Ich kann auch ohne ein Ass im Ärmel entkommen.,360,0,1,
+350,0,0,,Was hast du denn noch|für Asse im Ärmel?,"Eine Menge, aber die brauch ich nicht. (Sie zieht|zuversichtlich ihre Uniform aus, um es zu beweisen.)",360,0,-1,
+360,0,0,,Schöne glänzende|Satinunterwäsche.,"(Sie wird rot.)|Ich mag das Gefühl von weichem Satin, das ist alles.",370,0,0,
+360,0,1,,"Sexy Unterwäsche,|zieh die auch aus.","(Sie wird rot.) Nicht hier, das ist einfach nur falsch,|und das soll gar nicht sexy sein.",370,-1,0,
+360,0,1,,Satin? Wer ist hier die|Versaute unter uns?,"(Sie wird rot.) Bitte, das ist es nicht, ich bevorzuge|einfach das Gefühl von weicher Satinunterwäsche.",370,0,1,
+360,0,0,,"OMG, ich hätte auch gern|so sexy Unterwäsche.","(Sie wird rot.) Das ist nicht sexy, weicher|Satin fühlt sich einfach angenehmer an.",370,0,-1,
+370,0,0,,"Okay, wie viele|Handschellen haben wir?","(Nicole spricht.) Lauren hat jede Menge in ihrer|Tasche, und dazu noch etwas größere Fußfesseln.",380,0,0,
+370,0,0,,"Ich weiß nicht, ob ich|genug Handschellen habe.","(Nicole spricht.) Kein Problem, Lauren hat|eine Tasche voll mit Hand- und Fußfesseln.",380,0,-1,
+370,0,0,,"Ich glaube, du brauchst|mehr Handschellen.",In meiner Tasche sind noch mehr Handschellen|und Fußfesseln. Ich mag Herausforderungen.,380,1,0,
+380,0,0,,"Gut, die können wir|benutzen. Setz dich.","Du hast nichts von Stühlen gesagt, aber egal.|(Lauren setzt sich auf ihren Stuhl.)",390,0,0,
+380,0,0,,Hervorragend. Du solltest|dich hierfür setzen.,"Schön, dass du dich so für Entfesselungskunst|begeisterst. (Lauren setzt sich auf ihren Stuhl.)",390,1,0,
+390,0,0,,Kann ich jetzt deine|Beine anketten?,"Ich schätze schon. (Du nimmst Fußfesseln,|ziehst ihre Füße nach hinten und kettest sie fest.)",400,0,-1,
+390,0,0,,"Zeit, die Beine|auseinander zu nehmen.","Was hast du gesagt? (Sie ist verdutzt, während du ihre|Füße an die Rückseite des Stuhls kettest.)",400,-1,0,
+390,0,0,,Fangen wir mit|deinen Beinen an.,Meinetwegen. (Du kettest ihre Knöchel mit|Fußfesseln an die Rückseite des Stuhls.),400,0,0,
+400,0,0,,"Gut, jetzt eine Handschelle|für jede Hand.","Es ist egal, wie viele du benutzt,|ich entkomme so oder so.",410,0,0,
+400,0,0,,Gib mir jetzt deine Hände.,Etwa so?|(Du legst jeder Hand eine Handschelle an.),410,0,1,
+400,0,0,,Lass mich bitte|deine Hände anketten.,Wenn du schon so nett bittest. (Sie hält dir ihre|Arme hin und du legst beiden Seiten Handschellen an.),410,1,-1,
+410,0,0,,Kreuze deine Arme|hinter dem Stuhl.,(Sie gehorcht und du schließt die offenen Enden|um die entgegengesetzten Seiten des Stuhls.),420,0,0,LaurenCuffed()
+410,0,0,,(Ihre Arme nach|hinten ziehen.),"Hey, immer sachte. (Du kettest jeden Arm|an die entgegengesetzte Seite des Stuhls.)",420,-1,1,LaurenCuffed()
+410,0,0,,Nimm deine Arme auf der|Stelle hinter den Rücken.,Das geht auch höflich. (Du kettest jeden Arm|an die entgegengesetzte Seite des Stuhls.),420,-1,0,LaurenCuffed()
+420,0,0,,"Okay, du kannst ver-|suchen, dich zu befreien.","(Sie zieht eine Spange aus ihrem Pferdeschwanz und|fummelt damit herum.) Moment, was hast du gemacht?",430,0,0,
+420,0,0,,"Viel Glück, jetzt noch|da rauszukommen.","Oh je, das wird doch schwierig. (Sie zieht eine Spange|aus ihrem Pferdeschwanz und fummelt damit herum.)",430,0,1,
+420,0,0,,Versuch's. Ich würde|nicht auf Erfolg wetten.,"Sicher bin ich auch nicht, aber ich versuch's. (Sie zieht|eine Spange aus ihrem Pferdeschwanz und fummelt.)",430,0,-1,
+430,0,0,,"Ich dachte, du könntest|dich aus Allem befreien?","Aber ich brauche beide Hände zusammen, um eine|Scheibe rauszubrechen. (Sie versucht es einhändig.)",440,0,1,
+430,0,0,HasClip,"Cool, das ist ein|kreatives Versteck dafür.","Sieh zu und lerne. Wobei, das hier|ist viel schwieriger, als ich dachte.",440,1,0,
+430,0,0,,Was ist denn nun?,"'Tschuldige, das ist viel|schwieriger, als ich erwartet hatte.",440,-1,1,
+440,0,0,,Geknebelt könntest du|dich besser konzentrieren.,"Das glaube ich nicht, aber wenn es sein muss.",450,0,1,Leave()
+440,0,0,,Möchtest du|einen Knebel?,"Nicht unbedingt, aber dadurch sollte|das hier auch nicht viel schwieriger werden.",450,0,0,Leave()
+450,0,0,,Gibst du auf?,"Nein, gib mir noch etwas Zeit.",450,0,0,GiveUpGagged()
+450,0,0,!Common_PlayerRestrained,Du magst also das|Gefühl von Satin?,"(Du streifst sanft einen Finger über ihren BH, wodurch|sie sich erschreckt und die Haarspange fallenlässt.)",460,-1,0,
+450,0,0,!Common_PlayerRestrained,"Zu langsam, die Zeit|ist um. (Sie befreien.)",(Du befreist Lauren und sie|zieht sich hastig wieder an.),510,-1,1,ReleaseLauren()
+450,0,0,!Common_PlayerRestrained,"Ich glaube, ich könnte mich|schneller daraus befreien.","(Nicole meldet sich zu Wort.) In der Tasche sind noch|mehr Hand- und Fußfesseln, falls du's versuchen willst.",455,0,0,NoLeave()
+450,0,0,LaurenGagged,(Sie entknebeln.),"(Du nimmst ihr den Knebel ab.)|Danke, das war so schon schwierig genug.",450,0,0,UngagLauren()
+455,0,0,,Das war nur Spaß.,(Du wendest dich wieder Lauren zu.),450,0,0,Leave()
+455,0,0,,"Ja, okay, ich|versuch's auch mal.","(Du ziehst deine Uniform aus, und nachdem sie|frei ist, kettet dich Nicole an einen zweiten Stuhl.)",490,0,-3,PlayerCuffed()
+460,0,0,,Was mache|ich jetzt mit dir?,"Keine Ahnung, ich hab noch|nie so in der Klemme gesteckt.",460,0,0,Ask()
+460,0,0,,(Sanft ihre|Brüste streicheln.),(Bei deiner sanften Berührung stöhnt sie sehr leise.),460,0,0,StrokeBreasts()
+460,0,0,,(Ihre Brüste|begrabschen.),"Warte, das ist viel zu grob. Hör auf.",460,0,0,GropeBreasts()
+460,0,0,,(Ihre Nippel kneifen.),"(Lauren kreischt.)|Lass mich los, du Perverse.",460,0,0,PinchNipples()
+460,0,0,,(Sie küssen.),"(Als du sie zu küssen versuchst, schreckt Lauren|zurück.) Was hat dir denn diesen Eindruck gegeben?",460,0,0,Kiss()
+460,0,0,,(Ihren in Höschen|gehüllten Po streicheln.),"Mmmmm mm mmmmmm. (Lauren zuckt, scheint|deine Berührung durch den Satin aber auszukosten.)",460,0,0,CaressBum()
+460,0,0,,(Ihr einen Klaps|auf den Po geben.),"Aua, was sollte das denn?",460,0,0,SlapBum()
+460,0,0,,(Um ihren Schritt|herum reiben.),"Hey, lass das. Denk nicht mal daran, das zu tun.",460,0,0,RubCrotch()
+460,0,0,,(Sie befriedigen.),"Agh, was zur Hölle glaubst du, was du da tust? NEIN.",460,0,0,Masturbate()
+460,0,0,,Hast du genug?,(Sie nickt.),470,0,0,Enough()
+470,0,0,LaurenGagged,(Sie entknebeln.),(Du nimmst ihr den Knebel ab.) Danke.,470,0,0,UngagLauren()
+470,0,0,,(Sie freilassen.),(Du lässt Lauren frei und sie|zieht sich hastig wieder an.),510,1,0,ReleaseLauren()
+470,0,0,,(Sie weiter ärgern.),"(Nachdem sie vorhin die Haarspange fallengelassen|hat, ist sie nun hilflos an den Stuhl gekettet.)",460,0,0,
+470,0,0,,"Ich würde so gern auch ver-|suchen, da auszubrechen.","(Nicole meldet sich zu Wort.) Wir haben noch mehr|Hand- und Fußfesseln, brauchst du Hilfe?",480,0,0,NoLeave()
+480,0,0,,Das war nur Spaß.,(Du wendest dich wieder Lauren zu.),470,0,0,Leave()
+480,0,0,,"Wärst du so nett?|Ja, bitte.","(Du ziehst deine Uniform aus, und nachdem sie|frei ist, kettet dich Nicole an einen zweiten Stuhl.)",490,0,-3,PlayerCuffed()
+490,0,0,,"(Versuchen,|auszubrechen.)","(Du windest dich und zerrst, aber die|Handschellen sind viel zu stark.)",490,0,0,
+490,0,0,,(Die Handschellen|untersuchen.),"(Es sind richtige Handschellen aus Stahl,|keine Spielzeuge mit Hebeln zum Befreien.)",490,0,0,
+490,0,0,HasClip,"(Versuchen, dich mit einer|Haarspange zu befreien.)",(Du hattest eine Haarspange am Bund deines|Höschens versteckt. Du kommst gerade so ran.),490,0,0,ReachedClip()
+490,0,0,GotClip,"(Versuchen, die|Haarspange zu benutzen.)","(Du stellst fest, dass es viel schwieriger ist, die|Haarspange mit nur einer Hand zu manipulieren.)",490,0,0,UseClip()
+490,0,0,ItsHard,(Es weiterhin mit der|Haarspange versuchen.),"(Als du beharrt versuchst, die Haarspange mit|nur einer Hand zu verbiegen, fällt sie zu Boden.)",490,0,0,DropClip()
+490,0,0,,"Ich gebe auf, kannst|du mich freilassen?","(Nicole spöttelt.) Komm schon, du|kannst jetzt nicht einfach so aufgeben.",490,0,0,
+490,0,0,,"Es nützt nichts,|kannst du mir helfen?",(Nicole seufzt und knebelt dich mit etwas Stoff.)|Hör auf zu meckern und mach weiter.,490,0,-1,PlayerClothGagged()
+490,0,0,PlayerGagged,"@Nnghlm, bhtte hmlf mh.","(Nicole ignoriert dich und versucht wieder|selbst, sich aus Handschellen zu befreien.)",500,0,0,
+490,0,0,,(Fluchtversuche|aufgeben.),"(Nicole fängt an sich zu langweilen und versucht|wieder selbst, sich aus Handschellen zu befreien.)",500,0,-1,
+500,0,0,,Kann mir bitte|jemand helfen?,"(Nicole knebelt dich mit etwas Stoff.)|Sei still, ich versuche mich zu konzentrieren.",500,0,-1,PlayerClothGagged()
+500,0,0,PlayerGagged,@HMLFM!,(Deine gedämpften Hilfeschreie werden von der|allgemeinen Geräuschkulisse des Clubs übertönt.),500,0,0,
+500,0,0,,(Weiter zappeln.),(Du kannst nichts tun. Deine Gliedmaßen fangen|bei dieser grausamen Pose langsam zu leiden an.,500,0,0,
+500,0,0,,(Auf Hilfe warten.),(Du sitzt einfach nur unbequem da.),500,0,0,Wait()
+510,0,0,,Hat dir das gefallen?,"Nicht wirklich, das war ziemlich grausam.|(Sie fängt wieder an, Nicole zu unterrichten.)",520,0,0,Enjoyment()
+510,0,0,,Das sollten wir|nochmal machen.,"Finde ich nicht.|(Sie fängt wieder an, Nicole zu unterrichten.)",520,0,0,Again()
+600,0,0,,"(Versuchen, dich|zu bewegen.)","Halt still. (Lauren nimmt dir die Augenbinde ab.)|Hätte nicht gedacht, dass das so gut läuft.",610,0,0,RemoveBlindfold()
+600,0,0,,(Versuchen zu sprechen.),"Sei still. (Lauren nimmt dir die Augenbinde ab.)|Hätte nicht gedacht, dass das so gut läuft.",610,0,-1,RemoveBlindfold()
+610,0,0,,@Lhhf mh ghnmn.,"Versuche, diesem Strappado zu entkommen, während|ich mir überlege, was ich mit dir mache. (Sie geht.)",620,0,0,
+610,0,0,,@Whf ehwhtht?,"Du kannst versuchen, dich zu befreien, während|ich mir überlege, was ich mit dir mache. (Sie geht.)",620,0,0,
+620,0,0,,(Deine Lage untersuchen.),"(Du bist mit Handschellen an einer herabhängenden|Kette befestigt, die deine Arme hinter dir oben hält.)",630,0,0,
+620,0,0,,(Geduldig warten.),"(Du wartest still und leise, ohne dich wegbewegen,|aufrichten oder hinsetzen zu können.)",620,0,-1,LaurenReturn()
+620,0,0,,(Um Hilfe rufen.),(Deine gedämpften Hilfeschreie werden von der|allgemeinen Geräuschkulisse des Clubs übertönt.),620,0,0,LaurenReturn()
+630,0,0,,(Ausbrechen.),(Du wirst von robustem Stahl festgehalten. Mit deiner|eingeschränkten Bewegung kommst du da nicht raus.),630,0,0,LaurenReturn()
+630,0,0,HasKey,(Einen Handschellen-|Schlüssel benutzen.),(Der Schlüssel ist mit all deinen anderen Sachen in|deiner Tasche. So kommst du da unmöglich ran.),630,0,0,
+630,0,0,HasClip,"(Versuchen, eine|Haarspange zu benutzen.)",(Deine Hände kommen nicht an die in deiner Kleidung|oder in deinen Haaren verborgenen Spangen heran.),630,0,0,HandsTooHigh()
+630,0,0,LocateClip,(Wie kriege ich eine Haar-|spange in meine Hände?),"(Du hast Haarspangen an deinem Pferdeschwanz,|Hemd, Rock und Höschen versteckt.)",630,0,0,ClipOptions()
+630,0,0,SafeClips,(Deinen Pferdeschwanz|nach oben schwingen.),"(Du schüttelst und neigst energisch den Kopf. Dein|Haar wirbelt, kommt deinen Händen aber nicht nah.) ",630,0,0,LaurenReturn()
+630,0,0,SafeClips,"(Die Arme biegen, um an|dein Hemd zu kommen.)","(Es bringt nichts, deine Hände sind über den Schultern|befestigt und deine Arme biegen sich nicht so weit.)",630,0,0,LaurenReturn()
+630,0,0,SafeClips,"(Hochspringen, um an|deinen Rock zu kommen.)","(Nicht einmal ohne Fesseln könntest du so hoch|springen, jetzt sind es nur mickrige Hüpfer.)",630,0,0,LaurenReturn()
+630,0,0,RiskyClip,"(Versuchen, an dein|Höschen zu kommen.)","(Du machst einen Vorwärtssalto, indem|du deine Beine nach hinten trittst.)",630,0,0,ReachingPanties()
+630,0,0,UsefulClip,(Dich mit der|Haarspange befreien.),"(Vorsichtig brichst du eine Scheibe aus der Spange|und öffnest die Handschellen, als Lauren zurückkehrt.)",800,2,1,Escape()
+630,0,0,,(Geduldig warten.),"(Du wartest still und leise, ohne dich wegbewegen,|aufrichten oder hinsetzen zu können.)",630,0,-1,LaurenReturn()
+630,0,0,,(Um Hilfe rufen.),(Deine gedämpften Hilfeschreie werden von der|allgemeinen Geräuschkulisse des Clubs übertönt.),630,0,0,LaurenReturn()
+640,0,0,,(Nach der|Haarspange greifen.),"(Bevor du mit der Hand die Spange erreichst, meldet|sich die Schwerkraft und du fällst wieder zu Boden.)",630,0,0,
+640,0,0,,(Mit deinen Beinen nach|der Kette greifen.),"(Du bekommst die Kette zu fassen.) Seht mal, pinke|Unterhöschen. (Der ganze Club kichert und lacht.)",650,0,0,
+650,0,0,,(Die Haarspange nehmen.),"(Als du danach greifst, rutschen deine Beine ab, du|plumpst zu Boden und zerrst dir schmerzhaft die Arme.)",630,0,0,
+650,0,0,,(Dein Höschen verbergen.),"(Du lässt hastig mit den Beinen los, landest und schüt-|telst deinen Rock herab, um deine Würde zu retten.)",630,0,-3,Embarrassed()
+650,0,0,,(Deinen Halt mit den|Beinen festigen.),"(Du ignorierst den Club, sorgst mit deinen Beinen|kurz für besseren Halt und stabilisierst dich.)",660,0,1,Confident()
+660,0,0,,(Die Haarspange nehmen.),(Du holst die Haarspange von deinem Höschen und|lässt deine Beine sachte wieder zu Boden gleiten.),630,0,0,RetrieveClip()
+660,0,0,,(Das Blut in deinen|Kopf strömen fühlen.),"(Lauren ruft dir zu.) Ich hätte Fußfesseln und noch ein|Vorhängeschloss, falls du so bleiben willst?",670,0,0,
+670,0,0,,(Nicken.),"Sorry, das wäre zu gefährlich. (Sie hilft dir runter.) Sollte|ich dich vielleicht davon abhalten, das nochmal zu tun?",680,1,0,
+670,0,0,,(Den Kopf schütteln.),(Du holst hastig die Haarspange von deinem Höschen| und lässt deine Beine wieder zu Boden gleiten.),630,0,0,RetrieveClip()
+680,0,0,,(Nicken.),"(Sie legt dir Fußfesseln und ein Halsband an, verbindet|beides mit einer Kette und geht wieder davon.)",690,0,0,LegCuffs()
+680,0,0,,(Den Kopf schütteln.),"Wie du willst, aber sei vorsichtig.|(Sie geht wieder davon.)",630,0,0,
+690,0,0,,(Ausbrechen.),(Du wirst von robustem Stahl festgehalten. Mit deiner|eingeschränkten Bewegung kommst du da nicht raus.),690,0,0,LaurenReturn()
+690,0,0,,(Deinen Pferdeschwanz|nach oben schwingen.),"(Du schüttelst und neigst energisch den Kopf. Dein|Haar wirbelt, kommt deinen Händen aber nicht nah.) ",690,0,0,LaurenReturn()
+690,0,0,,"(Die Arme biegen, um an|eine Spange zu kommen.)","(Es bringt nichts, deine Hände sind über den Schultern|befestigt und die kriegst du jetzt gar nicht mehr hoch.)",690,0,0,LaurenReturn()
+690,0,0,,"(Hochspringen, um an|deinen Rock zu kommen.)","(Nicht einmal ohne Fesseln könntest du so hoch sprin-|gen, in Ketten sind deine Hüpfer nur noch erbärmlich.)",690,0,-1,LaurenReturn()
+690,0,0,,"(Versuchen, an dein|Höschen zu kommen.)","(Du ziehst dich wieder zusammen, aber als du nach|hinten trittst, hält dich die Kette am Halsband auf.)",690,0,0,LaurenReturn()
+690,0,0,,(Geduldig warten.),"(Du wartest still und leise, ohne dich wegbewegen,|aufrichten oder hinsetzen zu können.)",690,0,-1,LaurenReturn()
+690,0,0,,(Um Hilfe rufen.),(Deine gedämpften Hilfeschreie werden von der|allgemeinen Geräuschkulisse des Clubs übertönt.),690,0,0,LaurenReturn()
+700,0,0,,(Nicken.),"Wow, die verrückten Geschichten sind also wahr! Okay,|warte kurz, Cassidy sagte, ich soll was versuchen.",730,-1,-1,NodRevenge()
+700,0,0,,(Den Kopf schütteln.),"Bist du sicher? Ich hab ein paar verrückte Geschichten|darüber gehört, was du heute so getrieben hast.",710,0,0,ShakeRevenge()
+700,0,0,,@Gnngn?,"Tut mir leid, ich verstehe keine Knebelsprache.",700,0,0,
+710,0,0,,(Nicken.),"Oh, das ist gut, Cassidy meinte, ich soll intim mit mei-|ner versauten Gefangenen spielen. (Sie befreit dich.)",720,1,0,StrappadoRelease()
+710,0,0,,(Den Kopf schütteln.),"Dachte ich mir. Bitte hab Nachsicht, das hier ist neu|für mich, aber Cassidy meinte, ich soll das lernen.",730,0,1,
+710,0,0,,@Whf fhh Ghffhftmn?,"Ich hab keinen Schimmer, was du mir sagen willst.",710,0,0,
+720,0,0,,Danke.,"Gerne. Ich wusste, dass diese versauten Geschichten|nicht stimmen, du bist so freundlich. (Sie geht wieder.)",525,1,0,CanLeave()
+720,0,0,,Wir könnten|trotzdem intim werden.,"Oh mein Gott, du bist doch eine Schlampe.|(Sie stürmt davon.)",525,-1,0,CanLeave()
+730,0,0,,@Whf hft dh vh?,"(Sie ignoriert dein Gemurmel, geht um dich herum,|hockt sich hin und erlaubt sich einen Blick.)",740,0,0,ExtraRestraint()
+730,0,0,,(Nervös aussehen.),"Mir ist dabei auch nicht ganz wohl, aber ich muss. (Sie|hockt sich hinter dir hin und erlaubt sich einen Blick.)",740,0,-1,ExtraRestraint()
+730,0,0,,(Ermutigend nicken.),"Na gut, hoffentlich gefällt dir das. (Sie hockt|sich hinter dir hin und erlaubt sich einen Blick.)",740,1,0,ExtraRestraint()
+735,0,0,,(Nach Lauren treten.),"Aua, bitte mach das nicht schwieriger, als es ist.|(Sie legt dir Fußfesseln mit einer Halsbandkette an.)",740,-1,1,LegCuffs()
+735,0,0,,"(Abwarten, was sie|als Nächstes tut.)",Ich sollte das unser beider Sicherheit zuliebe tun.|(Sie legt dir Fußfesseln mit einer Halsbandkette an.),740,0,0,LegCuffs()
+740,0,0,,(Leise stöhnen.),"(Lauren fängt an, indem sie eine unruhige|Hand an deinem Oberschenkel entlang reibt.)",740,0,0,LaurenIntimate()
+740,0,0,,(Erbärmlich wimmern.),"(Lauren fängt an, indem sie eine unruhige|Hand an deinem Oberschenkel entlang reibt.)",740,0,-1,LaurenIntimate()
+740,0,0,,(Fröhlich knurren.),"(Lauren fängt an, indem sie eine unruhige|Hand an deinem Oberschenkel entlang reibt.)",740,1,0,LaurenIntimate()
+740,0,0,,(Wütend schnauben.),"(Lauren fängt an, indem sie eine unruhige|Hand an deinem Oberschenkel entlang reibt.)",740,-1,1,LaurenIntimate()
+740,0,0,,(Mit den Hüften wackeln.),"(Lauren fängt an, indem sie eine unruhige|Hand an deinem Oberschenkel entlang reibt.)",740,0,0,LaurenIntimate()
+740,0,0,,"(Versuchen, ihr|auszuweichen.)","(Lauren fängt an, indem sie eine unruhige|Hand an deinem Oberschenkel entlang reibt.)",740,0,-1,LaurenIntimate()
+740,0,0,,(Laut stöhnen.),"(Lauren fängt an, indem sie eine unruhige|Hand an deinem Oberschenkel entlang reibt.)",740,-1,0,LaurenIntimate()
+740,0,0,,(Verzweifelt zappeln.),"(Lauren fängt an, indem sie eine unruhige|Hand an deinem Oberschenkel entlang reibt.)",740,0,-1,LaurenIntimate()
+740,0,0,,(Verspielt zappeln.),"(Lauren fängt an, indem sie eine unruhige|Hand an deinem Oberschenkel entlang reibt.)",740,1,-1,LaurenIntimate()
+740,0,0,,(Untätig sein.),"(Lauren fängt an, indem sie eine unruhige|Hand an deinem Oberschenkel entlang reibt.)",740,0,0,LaurenIntimate()
+745,0,0,,(Nicken.),Wenn du darauf bestehst.|(Sie zieht dir dein Höschen runter.),740,0,0,Nod()
+745,0,0,,(Den Kopf schütteln.),"Du hast recht, das war eine dumme Idee. CASSI!|(Sie stürmt davon und lässt dich zurück.)",750,0,0,Shake()
+746,0,0,,(Nicken.),Du bist ja wirklich versaut!|(Sie steckt dir einen Finger in den Arsch.),740,0,0,Nod2()
+746,0,0,,(Den Kopf schütteln.),"Sorry, was hab ich mir dabei gedacht? (Sie zieht hastig|dein Höschen hoch, läuft davon und lässt dich zurück.)",750,0,0,
+750,0,0,,"(Versuchen,|auszubrechen.)","(Du windest dich und zerrst, aber deine|Stahlfesseln sind viel zu stark.)",750,0,0,PostOBreak()
+750,0,0,EscapeArtist,"(Versuchen, eine|Haarspange zu benutzen.)","(Dein Körper schmerzt nach diesem Strappado. Du|hast keine Kraft mehr, eine Haarspange zu nehmen.)",750,0,0,PostOClip()
+750,0,0,,(Leise warten.),"(Voller Schmerzen und ohne dich bewegen, aufrichten|oder hinsetzen zu können, hängst du einfach nur rum.)",750,0,0,Wait()
+750,0,0,,(Um Hilfe rufen.),(Deine gedämpften Hilfeschreie werden von der|allgemeinen Geräuschkulisse des Clubs übertönt.),750,0,0,PostOCall()
+800,0,0,,(Deinen Knebel|abnehmen.),Das war eine beeindruckende Entfesselung.,810,0,0,PlayerFree()
+800,0,0,,@Whf wlft dh jhtft?,Könntest du das ohne den Knebel noch einmal sagen?,800,0,0,
+810,0,0,,Danke.,"Wenn du mich entschuldigst, ich muss Nicole weiter|unterrichten. Sie hat den Dreh noch immer nicht raus.",525,1,0,CanLeave()
+810,0,0,,"Wollen wir sehen, wie|beeindruckend du bist?","Ein andermal, ich muss Nicole weiter unterrichten.|Sie hat den Dreh noch immer nicht raus.",525,0,0,CanLeave()
+900,0,0,,"Siehst du nicht,|dass ich beschäftigt bin?","(Jenna wirbelt dich herum.)|WAS ZUR HÖLLE GLAUBST DU, WAS DU DA TUST?",910,-1,0,JennaFurious()
+900,0,0,,"Warte, es tut mir leid.|Das wollte ich nicht.","(Du drehst dich zu Jenna um.) Das hat ihr eindeutig|nicht gefallen, und du hast trotzdem weitergemacht.",910,1,0,Jenna()
+900,0,0,,Was ist denn|mit Lauren los?,"(Du drehst dich zu Jenna um.)|Es ist nur, dass du sie misshandelst.",910,0,0,Jenna()
+910,0,0,,"Es tut mir so leid, wirklich.",,910,0,0,Discipline()
+910,0,0,,"Verzieh dich, Jenna,|sonst bist du die Nächste.",,910,0,0,Discipline()
+910,0,0,,Und was juckt dich das?,,910,0,0,Discipline()

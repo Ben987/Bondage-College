@@ -30,10 +30,9 @@
 
 <script src="Scripts/Common.js"></script>
 <script src="Scripts/Drawing.js"></script>
-<script src="Scripts/Log.js"></script>
+<script src="Scripts/GameLog.js"></script>
 <script src="Scripts/Reputation.js"></script>
 <script src="Scripts/Skill.js"></script>
-<script src="Scripts/Account.js"></script>
 <script src="Scripts/Character.js"></script>
 <script src="Scripts/CharacterName.js"></script>
 <script src="Scripts/Dialog.js"></script>
@@ -42,11 +41,16 @@
 <script src="Scripts/Import.js"></script>
 <script src="Scripts/Asset.js"></script>
 <script src="Scripts/MiniGame.js"></script>
+<script src="Scripts/NPC.js"></script>
+<script src="Scripts/Server.js"></script>
+<script src="Scripts/Element.js"></script>
+<script src="Scripts/socket.io/socket.io.js"></script>
 <script src="Assets/Female3DCG/Female3DCG.js"></script>
 <script src="Screens/Character/Login/Login.js"></script>
 <script src="Screens/Character/Appearance/Appearance.js"></script>
 <script src="Screens/Character/Creation/Creation.js"></script>
 <script src="Screens/Character/InformationSheet/InformationSheet.js"></script>
+<script src="Screens/Character/Wardrobe/Wardrobe.js"></script>
 <script src="Screens/Character/Cheat/Cheat.js"></script>
 <script src="Screens/Room/MainHall/MainHall.js"></script>
 <script src="Screens/Room/Shop/Shop.js"></script>
@@ -54,34 +58,56 @@
 <script src="Screens/Room/MaidQuarters/MaidQuarters.js"></script>
 <script src="Screens/Room/Shibari/Shibari.js"></script>
 <script src="Screens/Room/KidnapLeague/KidnapLeague.js"></script>
+<script src="Screens/Room/Private/Private.js"></script>
+<script src="Screens/Room/Management/Management.js"></script>
 <script src="Screens/Room/Gambling/Gambling.js"></script>
 <script src="Screens/Room/Nursery/Nursery.js"></script>
 <script src="Screens/Room/SlaveMarket/SlaveMarket.js"></script>
+<script src="Screens/Room/Prison/Prison.js"></script>
+<script src="Screens/Room/Photographic/Photographic.js"></script>
+<script src="Screens/Room/Stable/Stable.js"></script>
+<script src="Screens/MiniGame/HorseWalk/HorseWalk.js"></script>
 <script src="Screens/MiniGame/Kidnap/Kidnap.js"></script>
 <script src="Screens/MiniGame/MaidDrinks/MaidDrinks.js"></script>
 <script src="Screens/MiniGame/MaidCleaning/MaidCleaning.js"></script>
+<script src="Screens/Cutscene/PlayerCollaring/PlayerCollaring.js"></script>
+<script src="Screens/Cutscene/PlayerMistress/PlayerMistress.js"></script>
+<script src="Screens/Cutscene/NPCCollaring/NPCCollaring.js"></script>
 <script>
 
 /*window.onerror = function (message, url, lineNo){
     console.log('Error: ' + message + '\n' + 'Line Number: ' + lineNo);
 	CharacterLoginMessage = 'Error: ' + message + '\n' + 'Line Number: ' + lineNo;
     return true;
+	
+	TO DO:
+	
+	Credit Fluend for Russian translation
+	Credit Adokilume for Kinbaku translation
+	Translation system for the Bondage Club
+	Set Double Money + Double Skill at launch until fixed date
+	
+	NEXT VERSION
+	Time to become Mistress goes from 1 week to 1 month
+
 }*/
 
 // When the code is loaded, we start the game engine
 window.onload = function() {
 	//CheatImport();
+	ServerURL = "https://bondage-club-server.herokuapp.com/";
 	CommonIsMobile = CommonDetectMobile();
 	DrawLoad();
 	AssetLoadAll();
 	CommonSetScreen("Character", "Login");
+	ServerInit();
 	MainRun();
 };
 
-// Main game running state, runs the drawing and account functions
+// Main game running state, runs the drawing
 function MainRun() {
 	DrawProcess();
-	AccountProcess();
+	CurrentTime = CurrentTime + CommonRunInterval;
 	setTimeout(MainRun, CommonRunInterval);
 }
 

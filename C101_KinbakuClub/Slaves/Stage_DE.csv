@@ -1,0 +1,199 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,!Common_PlayerRestrained,(Den Inhalt|untersuchen.),"Die Tasche scheint voll mit Metallmanschetten|zu sein, die in Gruppen mit Ketten verbunden sind.",10,0,0,
+0,0,0,,(Die Umgebung|untersuchen.),"Bei der Tasche findest du nichts weiter Interessantes,|bis dir ein paar Metallringe unter der Tafel auffallen.",20,0,0,
+0,0,0,SelfSlaveAvailable,(Die freien Ketten|anprobieren.),"Du nimmst einen Satz Ketten und probierst sie an, aber|ohne Vorhängeschlösser fallen sie einfach ab.",100,0,0,
+0,0,0,,(Zurück zum Clubraum.),Du kannst nun Clubmitglieder fangen und sie mit|diesen Ketten als deine eigenen Sklaven halten.,40,0,0,Leave()
+10,0,0,,(Die Ketten untersuchen.),"Es sind Ketten für Hals, Handgelenke und Knöchel.|Es gibt auch jeweils eine Kette, deren Ende frei ist.",10,0,0,ManaclesCheck()
+10,0,0,,(Die restlichen|Inhalte untersuchen.),In der Tasche befinden sich auch viele Schlösser|zum Sichern der Ketten. Schlüssel siehst du hier nicht.,10,0,0,PadlocksCheck()
+10,0,0,,(Die Ketten mitnehmen.),Die sind ziemlich schwer. Am besten lässt du|sie hier und bringst die Sklaven zu ihnen.,10,0,0,
+10,0,0,,(Die Umgebung|untersuchen.),"Bei der Tasche findest du nichts weiter Interessantes,|bis dir ein paar Metallringe unter der Tafel auffallen.",20,0,0,
+10,0,0,SelfSlaveAvailable,(Die freien Ketten|anprobieren.),"Du nimmst einen Satz Ketten und probierst sie an, aber|ohne Vorhängeschlösser fallen sie einfach ab.",100,0,0,
+10,0,0,,(Zurück zum Clubraum.),Du kannst nun Clubmitglieder fangen und sie mit|diesen Ketten als deine eigenen Sklaven halten.,40,0,0,Leave()
+20,0,0,,(Die Ringe untersuchen.),Sie scheinen fest in der Wand verankert zu sein|und sind wohl zur Verwendung mit den Ketten gedacht.,20,0,0,RingsCheck()
+20,0,0,,(Zurück zur Tasche.),Die Tasche enthält eine|Menge metallener Gegenstände.,0,0,0,
+20,0,0,SelfSlaveAvailable,(Die freien Ketten|anprobieren.),"Du nimmst einen Satz Ketten und probierst sie an, aber|ohne Vorhängeschlösser fallen sie einfach ab.",100,0,0,
+20,0,0,,(Zurück zum Clubraum.),Du kannst nun Clubmitglieder fangen und sie mit|diesen Ketten als deine eigenen Sklaven halten.,40,0,0,Leave()
+40,0,0,,(Nochmal die|Tasche ansehen.),"Die Aussicht, was du mit diesen|Fesseln tun könntest, ist verlockend.",0,0,0,
+40,0,0,,(Dir ein paar|Sklaven fangen.),Auf zur Sklavenjagd.,40,0,0,Leave()
+100,0,0,,(Die Fesseln|abschließen.),"Wer A sagt, muss auch B sagen. Du ziehst deine|Uniform aus und kettest deinen Hals an die Wand.",110,0,0,NeckManacle()
+100,0,0,,(Die Ketten in die|Tasche zurücklegen.),"Vielleicht ein andermal, du legst die Ketten zurück.",0,0,0,
+110,0,0,,(Die Kette an|der Wand ziehen.),"Du ziehst mit ganzer Kraft an der Kette,|aber der Ring in der Wand ist unnachgiebig.",110,0,0,
+110,0,0,,"(Versuchen, die|Schlösser zu entfernen.)",Die großen Vorhängeschlösser sitzen fest.|Ohne Schlüssel lassen sie sich nicht öffnen.,110,0,0,
+110,0,0,,(Nochmal in die|Tasche schauen.),"Du guckst nochmal nach, aber da sind keine Schlüssel|drin und du kommst auch an nichts anderes mehr ran.",110,0,0,
+110,0,0,Common_PlayerGagged,(Deinen Knebel|abnehmen.),"Du nimmst deinen Knebel ab, solange du noch kannst.",110,0,0,PlayerRemoveGag()
+110,0,0,,Um Hilfe rufen.,"Du rufst durch den Raum. Ein paar Mädels schauen|zu dir, kichern und wenden sich direkt wieder ab.",110,0,0,
+110,0,0,,(Dir die übrigen|Manschetten anschließen.),"Du kannst nirgends mehr hin, aber willst du wirklich|deine ganze Freiheit aufgeben? Wenn ja, klicke erneut.",110,0,0,FullManacle()
+115,0,0,,Du hast hoffentlich|Schlüssel dafür?,"Nein, du bist jetzt nicht mehr mein Problem.|(Sie lässt dich dort zurück.)",120,0,0,ActorLeaves()
+115,0,0,,"Es tut mir leid, Erica.",Dafür ist es zu spät. Fürs nächste Mal|weißt du Bescheid. (Sie lässt dich dort zurück.),120,1,-1,ActorLeaves()
+115,0,0,,Ist das nicht|etwas übertrieben?,"Das hast du nun mal davon, mich demütigen zu wollen.|(Sie lässt dich dort zurück.)",120,0,0,ActorLeaves()
+115,0,0,Common_PlayerGagged,@Mrngh Hf tht mhh lhhd.,Dafür ist es zu spät. Fürs nächste Mal|weißt du Bescheid. (Sie lässt dich dort zurück.),120,1,-1,ActorLeaves()
+115,0,0,Common_PlayerGagged,(An den Schlössern|rütteln.),"Ich hab keine Schlüssel dafür, du bist nicht mehr|mein Problem. (Sie lässt dich dort zurück.)",120,0,0,ActorLeaves()
+116,0,0,,(Ihr hinterherrufen.),(Amelia ignoriert dich und|kehrt zu ihrer Gruppe zurück.),120,0,0,ActorLeaves()
+116,0,0,,(Amelia ignorieren.),(Ohne Amelia kannst du dich auf deinen|Fluchtversuch aus diesen Ketten konzentrieren.),120,0,0,ActorLeaves()
+120,0,0,,Um Hilfe rufen.,"Du rufst durch den Raum. Ein paar Mädels schauen|zu dir, kichern und wenden sich direkt wieder ab.",120,0,0,ExploreManacles()
+120,0,0,Common_PlayerGagged,(In den Knebel|schreien.),Offenbar hört oder bemerkt|niemand deine gedämpften Schreie.,120,0,0,ExploreManacles()
+120,0,0,,(Gegen die Ketten|ankämpfen.),"Du strampelst panisch, aber der unnachgiebige|Stahl ist um einiges stärker als du.",120,0,0,ExploreManacles()
+120,0,0,,(Verspielt ankämpfen.),Du testest deinen Spielraum. Es macht irgendwie Spaß|und es sollte bald jemand Interesse an dir finden.,120,0,0,ExploreManacles()
+120,0,0,!ShortLeash,(Dich hinlegen.),"Die Kette zur Wand ist nicht lang genug. Du musst|aufrecht bleiben, um nicht gewürgt zu werden.",120,0,0,ExploreManacles()
+120,0,0,!ShortLeash,(Aufstehen.),"Die Kette zwischen Halsband und Knöcheln ist zu kurz.|Du kannst nicht bequem hocken, also kniest du wieder.",120,0,0,ExploreManacles()
+120,0,0,!ShortLeash,(Wegbewegen.),"Du kannst etwas umher humpeln, aber nur eine|kurze Distanz, bevor die Kette zur Wand dich aufhält.",120,0,0,ExploreManacles()
+120,0,0,,(Die Schlösser|überprüfen.),"Du überprüfst verzweifelt die Schlösser an deinen|Handgelenken, aber sie sind beide fest verschlossen.",120,0,0,ExploreManacles()
+120,0,0,ShortLeash,"(Versuchen, dich|zu bewegen.)","(Jenna hat die Leinenkette gekürzt, bevor sie ging.|Jetzt kannst du dich kaum noch bewegen.)",120,0,0,
+120,0,0,,(Geduldig warten.),"Du wartest in aller Stille, wie eine gute Sklavin. Offenbar|bist du auch genauso unsichtbar wie eine gute Sklavin.",120,0,0,WaitJenna()
+120,0,0,JennaWillGag,"JENNA, du kannst mich|doch nicht so lassen.","Du hast recht, ich vergaß, dich zu knebeln.|(Jenna knebelt dich und entfernt sich wieder.)",120,0,0,PlayerGagged()
+130,0,0,,"Hey, Jenna, lass mich|aus diesen Dingern raus.","Immer langsam, ich bin nicht diejenige, die dich|darin eingesperrt hat. Also, wer war es denn?",140,0,1,
+130,0,0,,"Hallo, Jenna.","Hallo, diese Ketten stehen dir wirklich gut.|Also, wer hat dich denn darin eingesperrt?",140,1,0,
+130,0,0,,"Jenna, bitte hilf mir.","(Jenna lächelt verständnisvoll.) Ohhh, du armes|Mädchen. Wer hat dich denn darin eingesperrt?",140,0,-1,
+130,0,0,Common_PlayerGagged,(Jenna anstarren.),"(Du versuchst es, hältst Jennas starkem Blick aber|nicht stand.) Möchtest du diesen Knebel loswerden?",135,0,1,StareJenna()
+130,0,0,Common_PlayerGagged,(Zu ihr hochschauen.),Hallo mal wieder. Möchtest du|diesen Knebel loswerden?,135,1,0,
+130,0,0,Common_PlayerGagged,(Sie anwimmern.),"(Jenna lächelt verständnisvoll.) Ohhh, du armes|Mädchen. Möchtest du diesen Knebel loswerden?",135,1,-1,
+135,0,0,,(Nicken.),"Nun, ich finde, er steht dir, also kann er so bleiben.|Wer hat dich denn darin eingesperrt?",140,0,0,PlayerMightRemoveGag()
+135,0,0,,(Den Kopf schütteln.),"Gut. Ich hätte ihn dir ohnehin nicht einfach so abge-|nommen. Also, wer hat dich denn darin eingesperrt?",140,0,-1,
+140,0,0,,Ich war das.,"Ich weiß, Cassidy hat mir eine Nachricht geschickt.|Das tut nichts zur Sache, du bist jetzt meine Sklavin.",150,0,-1,ClaimSelf()
+140,0,0,,Das war Erica.,"Ich weiß, Cassidy hat mir eine Nachricht geschickt.|Das tut nichts zur Sache, du bist jetzt meine Sklavin.",150,0,0,ClaimErica()
+140,0,0,,Das war Amelia.,"Ich weiß, Cassidy hat mir eine Nachricht geschickt.|Das tut nichts zur Sache, du bist jetzt meine Sklavin.",150,0,0,ClaimAmelia()
+140,0,0,,Sie alle.,"Ich weiß, Cassidy hat mir eine Nachricht geschickt.|Das tut nichts zur Sache, du bist jetzt meine Sklavin.",150,0,0,ClaimAll()
+140,0,0,Common_PlayerGagged,(Herabschauen.),"Ich weiß, Cassidy hat mir eine Nachricht geschickt.|Das tut nichts zur Sache, du bist jetzt meine Sklavin.",150,0,-1,ClaimSelf()
+140,0,0,Common_PlayerGagged,(Zu Erica schauen.),"Ich weiß, Cassidy hat mir eine Nachricht geschickt.|Das tut nichts zur Sache, du bist jetzt meine Sklavin.",150,0,0,ClaimErica()
+140,0,0,Common_PlayerGagged,(Zu Amelia schauen.),"Ich weiß, Cassidy hat mir eine Nachricht geschickt.|Das tut nichts zur Sache, du bist jetzt meine Sklavin.",150,0,0,ClaimAmelia()
+140,0,0,Common_PlayerGagged,(Auf sie alle schauen.),"Ich weiß, Cassidy hat mir eine Nachricht geschickt.|Das tut nichts zur Sache, du bist jetzt meine Sklavin.",150,0,0,ClaimAll()
+150,0,0,,Was?,"Diese Ketten gehören mir, also gehört alles, was darin|gefangen ist, ebenfalls mir. Das weiß der ganze Club.",160,0,0,EricaTrick()
+150,0,0,,"Ja, Miss.","So ist es gut, Sklavin.",160,1,-1,
+150,0,0,,Ich bin nicht deine Sklavin.,"Du darfst gern deine Meinung haben, aber in|deiner jetzigen Lage bedeutet sie nicht viel.",160,0,0,
+150,0,0,Common_PlayerGagged,(Nicken.),"So ist es gut, Sklavin.",160,1,-1,
+150,0,0,Common_PlayerGagged,(Den Kopf schütteln.),"Du darfst gern deine Meinung haben, aber in|deiner jetzigen Lage bedeutet sie nicht viel.",160,0,0,
+150,0,0,Common_PlayerGagged,@Whhs?,"Diese Ketten gehören mir, also gehört alles, was darin|gefangen ist, ebenfalls mir. Das weiß der ganze Club.",160,0,0,
+155,0,0,ChloeIsSlave,,Jenna befreit Chloe nimmt sie in den Arm.,160,,,
+160,0,0,,Was hast du|jetzt mit mir vor?,"Nun, fürs Erste spielen wir ein kleines Spiel,|bei dem es um Selbstkontrolle geht.",170,0,0,
+160,0,0,,Bitte lass mich|so nicht allein.,"Keine Sorge, wir beide spielen jetzt ein kleines|Spiel, es geht um Selbstkontrolle.",170,0,-1,
+160,0,0,,Wir sollten jetzt|etwas Spaß haben.,Warum eigentlich nicht? Spielen wir|ein kleines Spiel der Selbstkontrolle.,170,1,1,
+160,0,0,ButErica,"Aber Erica sagte,|ich kann sie benutzen.","Jedes Mitglied kann sie benutzen, aber ihr Inhalt gehört|trotzdem mir. Zeit für ein kleines Selbstkontroll-Spiel.",170,0,0,
+160,0,0,Common_PlayerGagged,(Gegen deine|Fesseln strampeln.),"Da kommst du nicht raus. Wir beide spielen jetzt|ein kleines Spiel, es geht um Selbstkontrolle.",170,0,0,
+160,0,0,Common_PlayerGagged,(Wimmern.),"Ohhh, du bist zu süß. Wir beide spielen|jetzt ein kleines Spiel, es geht um Selbstkontrolle.",170,1,-1,
+170,0,0,,Wie spielt man das?,"Du kniest da und wenn du um einen Orgasmus bettelst,|hast du verloren. Reden und Lachen werden bestraft.",180,0,0,
+170,0,0,,Und wenn ich|nicht mitspiele?,"Du musst. Du kniest da und verlierst, wenn du um|einen Orgasmus bettelst. Reden und Lachen verboten.",180,-1,0,
+170,0,0,,"Prima, ich mag Spiele.","Super. Du kniest einfach da, ohne Reden oder Lachen.|Wenn du um einen Orgasmus bettelst, verlierst du.",180,1,0,
+170,0,0,Common_PlayerGagged,(Begeistert nicken.),"Super. Du kniest einfach da, ohne Reden oder Lachen.|Wenn du um einen Orgasmus bettelst, verlierst du.",180,1,0,
+170,0,0,Common_PlayerGagged,(Dich damit abfinden.),"Ach komm, du kniest nur da, ohne Reden oder Lachen.|Wenn du um einen Orgasmus bettelst, verlierst du.",180,0,-1,
+170,0,0,Common_PlayerGagged,@NHHN. (Trotzig|den Kopf schütteln.),"Doch. Du kniest einfach da, ohne Reden oder Lachen.|Wenn du um einen Orgasmus bettelst, verlierst du.",180,0,1,
+180,0,0,,Du wirst mich niemals|zum Betteln bringen.,"Wenn du ausreichend erregt bist, wirst du noch|etwas anderes tun können, als mich anzubetteln.",190,0,1,
+180,0,-1,,"Was, wenn ich|verlieren will?","Genieße das Spiel, so sehr du willst, aber|ich werde merken, wann du wirklich erregt bist.",190,0,-1,
+180,0,0,,Wodurch würdest|du verlieren?,"Sklaven sind wie Gäste im Kasino. Das Haus verliert|nie. Versuch, deine Erregung unter Kontrolle zu halten.",190,0,0,
+180,0,0,Common_PlayerChaste,Viel Glück bei diesem|Keuschheitsgürtel.,"Der Gürtel hindert mich nicht daran, dich zu erregen.|Er erschwert es dir nur, danach Erlösung zu erhalten.",190,0,0,
+180,0,0,,Du bist krank.,"Nicht halb so krank wie ein Mädchen, das sich in Ketten|legen lässt. Halte deine Erregung unter Kontrolle.",190,-1,0,
+180,0,0,Common_PlayerGagged,(Panisch zappeln.),"Hey, ganz ruhig. Du musst dich einfach nur|beherrschen und nicht allzu sehr erregen lassen.",190,0,0,
+180,0,0,Common_PlayerGagged,(Nicken.),"Okay, du musst dich einfach nur beherrschen|und nicht allzu sehr erregen lassen.",190,1,0,
+180,0,0,ChasteGagged,(Auf deinen Keuschheits-|gürtel herabsehen.),"Der Gürtel hindert mich nicht daran, dich zu erregen.|Er erschwert es dir nur, danach Erlösung zu erhalten.",190,0,0,
+190,0,0,,Okay.,"Gut, dann bereite ich mich vor. (Jenna zieht sich|Gummihandschuhe über und holt einen Pinsel hervor.)",200,0,0,
+190,0,0,,Na dann los. Du|kriegst mich nicht.,Das werden wir noch sehen. (Jenna zieht sich|Gummihandschuhe über und holt einen Pinsel hervor.),200,0,1,
+190,0,0,,"Niemals, das|spiele ich nicht.","Für Sturköpfe wie dich sollte dieses Spiel kein Problem|sein. Bist du sicher, dass du es nicht spielen möchtest?",195,0,1,
+190,0,0,,Bitte nicht.|Ich werde brav sein.,"Eine brave Sklavin würde gehorchen und mitspielen.|Bist du sicher, dass du das nicht möchtest?",195,0,-1,
+190,0,0,Common_PlayerGagged,(Panisch zappeln.),"Eine brave Sklavin würde gehorchen und mitspielen.|Bist du sicher, dass du das nicht möchtest?",195,0,-1,
+190,0,0,Common_PlayerGagged,(Nicken.),"Gut, dann bereite ich mich vor. (Jenna zieht sich|Gummihandschuhe über und holt einen Pinsel hervor.)",200,0,0,
+195,0,0,,Ich sagte nein.,"Gut, dann viel Spaß noch.|(Jenna geht davon und unterhält sich mit Cassidy.)",120,0,0,JennaLeaves()
+195,0,0,,"Okay, ich spiele mit.","Na also, dann fangen wir mal an. (Jenna zieht sich|Gummihandschuhe über und holt einen Pinsel hervor.)",200,0,-1,
+195,0,0,Common_PlayerGagged,(Nicken.),"Gut, dann viel Spaß noch.|(Jenna geht davon und unterhält sich mit Cassidy.)",120,0,0,JennaLeaves()
+195,0,0,Common_PlayerGagged,(Den Kopf schütteln.),"Na also, dann fangen wir mal an. (Jenna zieht sich|Gummihandschuhe über und holt einen Pinsel hervor.)",200,0,-1,
+200,0,0,,(Dich gefasst machen.),"Gut, wurde langsam Zeit, dass du still bist.|(Jenna fängt an, dich sanft mit dem Pinsel zu kitzeln.)",210,0,0,StartGame()
+200,0,0,,"Moment, wozu|Handschuhe?","Du bist nicht die Einzige, die das spielt. Jetzt sei still.|(Jenna fängt an, dich sanft mit dem Pinsel zu kitzeln.)",210,-1,0,StartGame()
+200,0,0,Common_PlayerGagged,"@Mhmhnt, whfh|Hhndfhmhh?","Du bist nicht die Einzige, die das spielt. Jetzt sei still.|(Jenna fängt an, dich sanft mit dem Pinsel zu kitzeln.)",210,-1,0,StartGame()
+210,0,0,Option1,(Dir in den|Arm kneifen.),(Du bohrst dir einen Fingernagel in den Arm.|Der Schmerz lenkt dich etwas von Jennas Reizen ab.),210,0,0,Select1()
+210,0,0,Option2,(Verspielt zappeln.),"(Jenna lächelt und teilt deinen Spaß, aber|es hilft dir gewiss nicht, ruhig zu bleiben.)",210,1,-1,Select2()
+210,0,0,Option4,(Die Augen schließen.),"(Du schließt die Augen und meditierst eine|Weile, um Jennas Reize zu ignorieren.)",210,0,0,Select4()
+210,0,0,Option5,(Kichern.),"Jenna gibt dir einen leichten Klaps, um dein Lachen zu|stoppen, während sie dich weiter mit dem Pinsel reizt.",210,0,0,Select5()
+210,0,0,Option6,(Lachen.),"(Jenna hört auf und gibt dir einen heftigen Klaps.) Nicht|lachen, hab ich gesagt. (Dann reizt sie dich weiter.)",210,0,-1,Select6()
+210,0,0,Option7,(Dich hinsetzen.),"Ich sagte, du sollst knien. (Jenna gibt dir einen schnel-|len Klaps zur Korrektur.) Versuche das nicht nochmal.",210,0,0,Select7()
+210,0,0,Option8,(An deine liebsten|Dinge denken.),(Du lenkst dich mit unerotischen Gedanken ab.),210,0,0,Select8()
+210,0,0,Option9,"Iiek, nein, die Stelle|ist echt empfindlich.","Nicht reden, hab ich gesagt. (Sie kitzelt die Stelle noch|etwas mehr, gibt dir einen Klaps und reizt dich weiter.)",210,0,0,Select9()
+210,0,0,Option9Gagged,"@Hh, dhs khfhlt sh.","Solange du nicht bettelst, solltest du still sein. (Jenna|findet eine empfindliche Stelle und kitzelt gnadenlos.)",210,0,0,Select9()
+210,0,0,Option10,"Aaarrgh,|du Schlampe.","Pass auf, was du sagst. Wenn du wieder so mit deiner|Herrin sprichst, muss ich dir wohl den Mund einseifen.",210,-1,1,Select10()
+210,0,0,Option10Gagged,"@Hhhrrgh,|dh Schlhmph.","Pass auf, was du sagst. Wenn du wieder so mit deiner|Herrin sprichst, muss ich dir wohl den Mund einseifen.",210,-1,0,Select10()
+210,0,0,Option3,(Deinen Atem|regulieren.),"(Du konzentrierst dich darauf, langsam zu atmen,|um dich von Jennas pausenlosen Reizen abzulenken.)",210,0,0,Select3()
+210,0,0,Option11,"(Versuchen, Jenna|auszuweichen.)",(Jenna packt dein Halsband und hält dich still.)|Hör auf zu zappeln oder ich verkürze die Ketten.,210,0,0,Select11()
+210,0,0,Option12,(Leise stöhnen.),"(Jenna lächelt und reizt dich weiter,|als du offenbarst, wie sehr dir das gefällt.)",210,1,-1,Select12()
+210,0,0,!PlayerVeryAroused,"Bitte, Jenna,|ich möchte kommen.","Mach mir nichts vor. Ich sehe doch, dass du noch nicht|so erregt bist. (Sie reizt dich weiter mit dem Pinsel.)",210,0,0,NoEnd()
+210,0,0,PlayerNotVeryArousedGagged,"@Bhtth, Jmnnh,|ihh mhhdh khmmhm.","Mach mir nichts vor. Ich sehe doch, dass du noch nicht|so erregt bist. (Sie reizt dich weiter mit dem Pinsel.)",210,0,0,NoEnd()
+210,0,0,PlayerVeryAroused,"Bitte, Jenna, ich|muss wirklich kommen.",Dieser Text sollte nicht angezeigt werden,250,1,-1,EndGame()
+210,0,0,PlayerVeryArousedGagged,"@Bhtth, Jmnnh, ihh|mhhs whglhh khmmhm.",Dieser Text sollte nicht angezeigt werden,250,1,-1,EndGame()
+210,0,0,NotGaggingForIt,Banane.,"(Jenna hört auf, dich zu reizen.)|War das etwas zu viel?",220,0,0,CryWolf()
+210,0,0,NotGaggedForIt,@Bhnhnh.,"(Jenna hört auf, dich zu reizen.)|War das etwas zu viel?",220,0,0,CryWolf()
+220,0,0,,Ja.,"(Jenna nimmt dich in den Arm.)|Alles ist gut. Möchtest du aufhören, zu spielen?",230,0,0,
+220,0,0,,"Nein, ich wollte nur|eine Atempause.","Freche Sklavin. (Jenna knebelt dich und gibt dir einen|Klaps, bevor sie dich weiter reizt.)",210,-1,-1,FalseBanana()
+220,0,0,Common_PlayerGagged,(Nicken.),"(Jenna nimmt dich in den Arm.)|Alles ist gut. Möchtest du aufhören, zu spielen?",230,0,0,
+220,0,0,Common_PlayerGagged,(Den Kopf schütteln.),"Spiel nicht auf Zeit. (Jenna gibt dir einen|heftigen Klaps, bevor sie dich weiter reizt.)",210,0,-1,FalseBanana()
+230,0,0,,"Ja, das ist|erniedrigend.","Es tut mir leid, ich wollte dich nicht zu weit treiben.",240,0,0,UnderwearBack()
+230,0,0,,"Nein, es war nur|dieser letzte Teil.","Okay, wir können etwas langsamer weitermachen.|(Jenna lässt dich kurz erholen, bevor sie weitermacht.)",210,0,0,TeaseStageBack()
+230,0,0,Common_PlayerGagged,(Nicken.),Ich wollte dich nicht zu weit treiben.|(Jenna nimmt deinen Knebel ab.),240,0,0,UnderwearBack()
+230,0,0,Common_PlayerGagged,(Den Kopf schütteln.),"Okay, wir können etwas langsamer weitermachen.|(Jenna lässt dich kurz erholen, bevor sie weitermacht.)",210,0,0,TeaseStageBack()
+240,0,0,,Kannst du mich|jetzt freilassen?,"Du musst immer noch lernen, bei Clubtreffen vorsich-|tiger zu sein. (Sie steht auf und lässt dich zurück.)",120,1,-1,
+240,0,0,,Können wir etwas|anderes spielen?,"Nicht jetzt, ich muss mich um andere Angelegenheiten|kümmern. (Sie steht auf und lässt dich zurück.)",120,1,0,
+240,0,0,,Jetzt sollte ich das|an dir versuchen.,"Später vielleicht, wenn du brav genug bist.|(Sie steht auf und lässt dich zurück.)",120,0,1,
+240,0,0,,Kann ich eine|Mitsklavin haben?,"Nein, du brauchst etwas Ruhe, um runterzukommen.|(Sie steht auf und lässt dich zurück.)",120,0,0,
+250,0,0,,"Ja, bitte.","Du bittest freundlich, aber du hast es nicht verdient.|(Sie macht dich zurecht und lässt dich dann zurück.)",120,0,0,Relief()
+250,0,0,,Lass mich in Ruhe.,"Gut, wie du willst.|(Sie macht dich zurecht und lässt dich dann zurück.)",120,-1,0,LeftSmart()
+250,0,0,,"Nur, wenn|du das denkst?","Vielleicht ein andermal, wenn du ganz brav bist.|(Sie macht dich zurecht und lässt dich dann zurück.)",120,1,0,Relief()
+250,0,0,,Ich sollte lieber|dafür bestraft werden.,"Na, das ist doch mal eine Idee.|Du warst ein wirklich böses Mädchen, nicht wahr?",260,0,0,
+250,0,0,Common_PlayerGagged,(Nicken.),"Tja, deine Herrin ist da anderer Meinung.|(Sie macht dich zurecht und lässt dich dann zurück.)",120,0,0,Relief()
+250,0,0,Common_PlayerGagged,(Den Kopf schütteln.),"Gut, das findet deine Herrin nämlich auch.|(Sie macht dich zurecht und lässt dich dann zurück.)",120,1,0,LeftSmart()
+250,0,0,Common_PlayerGagged,@Khnnht dh bhtth|dhn Knhbhl hbnhmhn?,Was hast du da gesagt?|(Jenna nimmt dir den Knebel ab.),250,0,0,PlayerRemoveGag()
+260,0,0,,"Ja, Miss.",(Spieler bekommt das Outro mit Sack überm Kopf.),260,0,0,Discipline()
+260,0,0,,"Nein, das war ein Witz.",Damit solltest du vorsichtig sein.|(Sie macht dich zurecht und lässt dich dann zurück.),120,0,0,LeftSmart()
+270,0,0,!Common_PlayerChaste,Jetzt lass mich|doch endlich kommen.,"Ganz ruhig, hier, lass dich entspannen. (Sie fängt an,|dich mit dem Stabvibrator zu befriedigen.)",280,0,0,
+270,0,0,!Common_PlayerChaste,"Wow, du hast einen|Magic Wand im College.","Man kann nie wissen, wann man etwas Magie braucht.|(Sie fängt an, dich mit dem Stabvibrator zu befriedigen.)",280,0,0,
+270,0,0,Common_PlayerChaste,Jetzt lass mich|doch endlich kommen.,"Ganz ruhig, hier, lass dich entspannen. (Der|Keuschheitsgürtel resoniert mit der starken Vibration.)",280,0,0,
+270,0,0,Common_PlayerChaste,"Wow, du hast einen|Magic Wand im College.",Bei dem Gürtel kann etwas Magie nicht schaden. (Der|Keuschheitsgürtel resoniert mit der starken Vibration.),280,0,0,
+270,0,0,Common_PlayerChaste,Was ist mit diesem|verdammten Gürtel?,"Keine Sorge, hiermit sollte es gehen. (Der Keusch-|heitsgürtel resoniert mit der starken Vibration.)",280,0,0,
+270,0,0,GaggedNotChaste,(Nicken.),"Ja, so ist's brav, Sklavin. (Sie fängt an,|dich mit dem Stabvibrator zu befriedigen.)",280,1,0,
+270,0,0,GaggedNotChaste,(Den Kopf schütteln.),"Das ist jetzt deine einzige Wahl. (Sie fängt|an, dich mit dem Stabvibrator zu befriedigen.)",280,0,0,
+270,0,0,ChasteGagged,(Nicken.),"Ja, so ist's brav, Sklavin. (Der Keusch-|heitsgürtel resoniert mit der starken Vibration.)",280,1,0,
+270,0,0,ChasteGagged,(Den Kopf schütteln.),Das ist jetzt deine einzige Wahl. (Der Keusch-|heitsgürtel resoniert mit der starken Vibration.),280,0,0,
+280,0,0,,(Gegen den|Vibrator reiben.),"(Jenna nimmt den Vibrator weg.) Beachte deinen Rang,|Sklavin, und empfange Gaben deiner Herrin mit Würde.",285,-1,0,
+280,0,0,,(Die Vibrationen|genießen.),"(Jenna drückt mit dem Vibrator fester zu,|als du lüstern stöhnst.) Sag meinen Namen.",290,1,0,Vibed()
+280,0,0,,(Verspielt zappeln.),(Jenna folgt mit dem Vibrator deinen Bewegungen|und bringt dich an die Schwelle.) Sag meinen Namen.,290,0,-1,Vibed()
+280,0,0,,(Panisch zappeln.),"Tut mir leid, ist dir das zu extrem?",286,0,0,
+285,0,0,,"Ja, Herrin.",Schon besser. Versuchen wir das nochmal.,280,0,-1,Grind()
+285,0,0,,Lass das Vorspiel.,Na gut. Du solltest eh nichts fürs Verlieren bekommen.|(Sie macht dich zurecht und lässt dich dann zurück.),120,0,0,LeftSmart()
+285,0,0,Common_PlayerGagged,"@Jh, Hhrrhn.|(Ja, Herrin.)",Schon besser. Versuchen wir das nochmal.,280,0,-1,Grind()
+285,0,0,Common_PlayerGagged,@Lhss dhs Vhrsfhhl.|(Lass das Vorspiel.),Na gut. Du solltest eh nichts fürs Verlieren bekommen.|(Sie macht dich zurecht und lässt dich dann zurück.),120,0,0,LeftSmart()
+286,0,0,,"Nein, es hat mich|nur erschreckt.","Ich versuche, etwas gemächlicher anzufangen.|(Sie befriedigt dich langsam mit dem Stabvibrator.)",280,0,0,
+286,0,0,,Ja.,"Hey, alles ist gut, ich werde dich nicht zwingen.|(Sie macht dich zurecht und lässt dich dann zurück.)",120,0,0,LeftSmart()
+286,0,0,Common_PlayerGagged,(Den Kopf schütteln.),"Ich versuche, etwas gemächlicher anzufangen.|(Sie befriedigt dich langsam mit dem Stabvibrator.)",280,0,0,
+286,0,0,Common_PlayerGagged,(Nicken.),"Hey, alles ist gut, ich werde dich nicht zwingen.|(Sie macht dich zurecht und lässt dich dann zurück.)",120,0,0,LeftSmart()
+290,0,0,,Jenna.,(Sie treibt dich über die Schwelle zu einem Orgasmus.)|Willkommen im Paradies.,300,1,0,
+290,0,-2,,Herrin Jenna.,"(Sie treibt dich über die Schwelle zu einem Orgasmus.)|Jetzt bestimme ich, wann du kommst.",300,0,-1,MistressJenna()
+290,0,0,,Was?,Sag meinen Namen.,290,0,0,
+290,0,0,,Schlampe.,(Sie gibt dir eine heftige Ohrfeige.)|Du undankbares Gör.,295,-1,0,
+290,0,0,Common_PlayerGagged,@Jmnnh.,(Sie treibt dich über die Schwelle zu einem Orgasmus.)|Willkommen im Paradies.,300,1,0,
+290,0,-2,Common_PlayerGagged,@Hhrrhn Jmnnh.,"(Sie treibt dich über die Schwelle zu einem Orgasmus.)|Jetzt bestimme ich, wann du kommst.",300,0,-1,MistressJenna()
+290,0,0,Common_PlayerGagged,@Whhs?,Sag meinen Namen.,290,0,0,
+290,0,0,Common_PlayerGagged,@Schlhmph.,(Sie gibt dir eine heftige Ohrfeige.)|Du undankbares Gör.,295,-1,0,
+295,0,0,,Es tut mir leid.,Das will ich auch hoffen.|(Sie macht dich zurecht und lässt dich dann zurück.),120,0,-1,LeftSmart()
+295,0,0,,Trotzdem Schlampe.,"Das reicht, du kannst hier gerne verrotten.|(Sie knebelt dich und lässt dich entblößt zurück.)",120,-1,0,Bitch()
+295,0,0,Common_PlayerGagged,@Hs tht mhr lhhd.,(Sie macht dich zurecht und lässt dich dann zurück.),120,0,-1,LeftSmart()
+295,0,0,Common_PlayerGagged,@Thhtfdhm Schlhmph.,"Das reicht, du kannst hier gerne verrotten.|(Sie lässt dich entblößt zurück.)",120,-1,0,Bitch()
+300,0,0,,Danke.,Gern geschehen.|(Jenna hört auf und befreit dich von den Ketten.),310,1,0,Relieved()
+300,0,0,,Bitte nur noch|ein bisschen mehr.,Wenn du darauf bestehst.|(Jenna befriedigt dich weiter.),300,0,-1,Longer()
+300,0,0,Common_PlayerGagged,@Dhnkh.,Gern geschehen.|(Jenna hört auf und befreit dich von den Ketten.),310,1,0,Relieved()
+300,0,0,Common_PlayerGagged,@Bhtth nhr nhhh|hhn Bhsshhhn mhhr.,Wenn du darauf bestehst.|(Jenna befriedigt dich weiter.),300,0,-1,Longer()
+300,0,0,,(Zu Atem kommen.),"(Jenna hört auf und befreit dich,|während du dich langsam erholst.)",310,0,0,Relieved()
+310,0,0,,Das war der Hammer.,"Freut mich, dass es dir gefallen hat. Dieser Club|leitet sich aber nicht von selbst, also bis später.",320,1,0,JennaLeaves()
+310,0,0,,Kann ich dich|jetzt fesseln?,"Vielleicht etwas später, wenn du brav bist. Dieser Club|leitet sich aber nicht von selbst, also bis später.",320,0,0,JennaLeaves()
+310,0,0,,Können wir das alles|nochmal machen?,"Nicht jetzt, vielleicht gebe ich dir nach dem|Wettbewerb ein paar Privatstunden. Bis später.",320,0,-1,JennaLeaves()
+310,0,0,,"War das alles,|was du kannst?","Ich habe dich vorhin nicht klagen hören.|""Oh, Jenna, ohh..."" (Sie geht spöttelnd davon.)",320,-1,0,JennaLeaves()
+330,0,0,,(Das Halsband|annehmen.),(Du lässt dir von Jenna das Halsband anlegen.|Sie sichert es mit einem kleinen Schloss.),340,0,-1,MistressesCollar()
+330,0,0,,Ein Geschenk|für mich?,"Ja, ein Geschenk für meine liebe neue Sklavin. (Sie|sichert das Halsband an dir mit einem kleinen Schloss.)",340,1,0,MistressesCollar()
+330,0,0,,(Dich Jenna|widersetzen.),Du hast mich Herrin genannt. (Du bist zu erschöpft und|sie sichert das Halsband mit einem kleinen Schloss.),340,0,0,MistressesCollar()
+340,0,0,,Kann ich den Schlüssel|dafür haben?,"Nein, aber du könntest dir die Freiheit verdienen. Dieser|Club leitet sich aber nicht von selbst, also bis später.",320,0,0,JennaLeaves()
+340,0,0,,"Danke, Herrin Jenna.","Braves Mädchen, jetzt ab mit dir. Dieser Club|leitet sich nicht von selbst, also bis später.",320,1,0,JennaLeaves()
+340,0,0,,(Jenna anstarren.),"Keine Sorge, du gewöhnst dich bald daran. Dieser Club|leitet sich aber nicht von selbst, also bis später.",320,0,1,JennaLeaves()
+350,0,0,,Was machst du da?,"Wie ich es mir dachte, du hast bereits eine Herrin.|Warum sind all die süßen Subs schon vergeben?",360,0,0,CollarCheck()
+350,0,0,,"Ja, Herrin.","Spar dir die Schmeicheleien. Sieht aus, als|würdest du bereits jemand anderem gehören.",360,0,-1,CollarCheck()
+350,0,0,,Gefällt es dir?,"Du siehst entzückend darin aus. Ich würde es ab-|schließen, wenn du nicht schon einen Besitzer hättest.",360,1,0,CollarCheck()
+350,0,0,,Willst du es haben?,"Ich würde gern ein Schloss daran hängen, aber offen-|bar hatte bereits jemand anderes dieses Vergnügen.",360,0,0,CollarCheck()
+360,0,0,,Könntest du mir in|die Freiheit helfen?,"Nein, handle das mit deiner Herrin aus. Dieser|Club leitet sich nicht von selbst, also bis später.",320,0,0,JennaLeaves()
+360,0,0,,"Ich wünschte, du|wärst meine Herrin.","Wenn du je Kälte um deinen Hals spürst, komm zu mir.|Dieser Club leitet sich nicht von selbst, also bis später.",320,1,-1,JennaLeaves()
+360,0,0,,Du hättest nicht mit|mir spielen sollen.,"Deine Herrin sollte dich an einer kürzeren Leine halten.|Dieser Club leitet sich nicht von selbst, also bis später.",320,0,-1,JennaLeaves()
+370,0,0,,"Danke, Herrin Jenna.","Braves Mädchen, jetzt ab mit dir. Dieser Club|leitet sich nicht von selbst, also bis später.",320,1,-1,JennaLeaves()
+370,0,0,,Du hast das Halsband|zu fest gezogen.,"Unsinn, es war davor zu locker. Dieser Club leitet|sich aber nicht von selbst, also bis später.",320,0,-1,JennaLeaves()
+370,0,0,,(Jenna anstarren.),"Keine Sorge, du gewöhnst dich bald daran. Dieser Club|leitet sich aber nicht von selbst, also bis später.",320,0,1,JennaLeaves()
+370,0,0,,Kann ich den Schlüssel|dafür haben?,"Nein, aber du könntest dir die Freiheit verdienen. Dieser|Club leitet sich aber nicht von selbst, also bis später.",320,0,0,JennaLeaves()

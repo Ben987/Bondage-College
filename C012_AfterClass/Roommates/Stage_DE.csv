@@ -1,0 +1,93 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,Anklopfen.,"Du klopfst an die Tür,|doch es antwortet niemand.",0,0,0,Knock()
+0,0,0,,Zurück zu|deinem Zimmer.,,0,0,0,Leave()
+100,0,0,,Wie geht's dir?,Mir geht es gut. Ich entspanne mich zu Hause.|Und was ist mit dir? Was gibt es Neues?,110,0,0,
+100,0,0,,Was läuft bei dir?,"Nicht viel, ich entspanne mich zu Hause.|Und du? Was machst du heute Abend?",110,0,0,
+100,0,0,,Süßer Pyjama.,"(Sie schaut an sich herab und nickt.)|Also, was machst du heute Abend?",110,0,0,
+100,0,0,,Ist Sarah hier?,"Nein, ich glaube, sie ist in einem Club in der Stadt.",100,0,0,
+100,0,0,,Ist Sidney hier?,"Nein, ich glaube, sie ist auf einem Konzert.",100,0,0,
+100,0,0,,Ist Jennifer hier?,"Nein, wahrscheinlich joggt sie draußen|oder sie schwimmt im Pool.",100,0,0,
+100,0,0,,"'Tschuldigung, falsche Tür.|(Weggehen.)",,100,0,0,Leave()
+110,0,0,,(Mit Amanda plaudern.),(Ihr unterhaltet euch über die Schule|und lernt euch etwas besser kennen.),110,0,0,ChitChat()
+110,0,0,,Wir könnten bei mir eine|Pyjama-Party machen.,Es ist zu spät für eine Party.|Machen wir das ein anderes Mal.,110,0,0,TestInviteAmanda()
+110,0,0,,Wollen wir uns|bei mir entspannen?,"Nein danke, ich würde lieber hier bleiben.",110,0,0,TestInviteAmanda()
+110,0,0,,Bei mir ist nichts los.|Kann ich hier rumhängen?,"Klar, wir können über die|Schule reden, wenn du willst.",110,0,0,
+110,0,0,,Wollen wir|rausgehen?,Dafür ist es etwas spät.|Bleiben wir drinnen.,110,0,0,
+110,0,0,,"Tut mir leid, ich muss los.|(Weggehen.)",,110,0,0,Leave()
+120,0,0,,Komm im Pyjama!|(Mit Amanda zurück.),,120,0,0,LeaveWithAmanda()
+200,0,0,,Wie geht's dir?,Mir geht's ganz gut. Und dir?|Hast du in der Schule Ärger bekommen?,220,0,0,TestIsolationSarah()
+200,0,0,,Was läuft bei dir?,"Nicht viel, im Moment ist es ziemlich ruhig.|Und? Hast du in der Schule Ärger bekommen?",220,0,0,TestIsolationSarah()
+200,0,0,,Ist Amanda hier?,"Nein, sie könnte in der Bibliothek sein.",200,0,0,
+200,0,0,,Ist Sidney hier?,"Nein, vielleicht hat sie ja der Zoo abgeholt.",200,0,0,
+200,0,0,,Ist Jennifer hier?,"JENNNNNNNNNIFER! (Sie wartet.)|Nö, sie ist entweder nicht da oder taub.",200,0,0,CheckJenniferAvail()
+200,0,0,,"'Tschuldigung, falsche Tür.|(Weggehen.)",,200,0,0,Leave()
+201,0,0,,"Na gut, Sarah. (Zurück|zu deinem Zimmer.)",,201,0,0,Leave()
+201,0,0,,Viel Spaß heute! (Zurück|zu deinem Zimmer.),,201,1,0,Leave()
+201,0,0,,Na schön! Du bist scheiße.|(Zurück zu deinem Zimmer.),,201,-1,0,Leave()
+202,0,0,,"Danke, Sarah!|(Auf Jennifer warten.)",,300,0,0,LoadJennifer()
+210,0,0,,(Mit Sarah plaudern.),(Ihr unterhaltet euch über Musik und Partys|und lernt euch etwas besser kennen.),210,0,0,ChitChat()
+210,0,0,,Wir könnten bei|mir Party machen.,"Das ist 'ne ziemlich coole Idee, aber|ich hab schon Pläne für heute Abend.",210,0,0,TestInviteSarah()
+210,0,0,,Möchtest du mein|Zimmer besuchen?,"Nein danke, ich hab einen|großen Abend zu planen.",210,0,0,TestInviteSarah()
+210,0,0,,Was machst du|heute Abend?,Ich gehe in einen Club in der Stadt.|Vielleicht nehme ich dich irgendwann mit.,210,0,0,
+210,0,0,IsolationAvail,Willst du immer noch|in den Keller gehen?,Das könnte echt spannend werden.|Willst du jetzt gleich dort hin?,212,0,0,
+210,0,0,,Bei mir ist's langweilig.|Kann ich hier rumhängen?,"Klar, aber ich muss gegen zwanzig Uhr los.",210,0,0,
+210,0,0,,Wollen wir|rausgehen?,"Vielleicht morgen, COMMON_PLAYERNAME.|Ich hab heute Abend schon was vor.",210,0,0,
+210,0,0,,"Tut mir leid, ich muss los.|(Weggehen.)",,210,0,0,Leave()
+211,0,0,,Komm doch kurz mit!|(Mit Sarah zurück.),,211,0,0,LeaveWithSarah()
+212,0,0,,Ja! Gehen wir.|(In den Keller.),,212,1,0,EnterIsolation()
+212,0,0,,Nein. Das ist|keine gute Idee.,Okay. Wir können uns hier unterhalten.,210,0,0,TestRefuseIsolation()
+220,0,0,,Ich bekomme keinen Ärger.|Ich mache Anderen Ärger.,Spitze! Hast du jemanden in den Keller verschleppt?,221,0,1,
+220,0,0,,"Ja, ich hatte heute|ziemlich viel Ärger.",Toll! Warst du im Keller?,221,1,0,
+220,0,0,,"Nö, kein Ärger heute.",(Sie nickt.) Dann warst du wohl auch nicht im Keller?,221,-1,0,
+220,0,0,,Ich bin eine gute Nudel.|Ich kriege keinen Ärger.,(Sie kichert.) Dann warst du wohl auch nicht im Keller?,221,0,-1,
+221,0,0,,Was für ein Keller?,Es gibt einen Isolationsraum im Schulkeller. Voller|Fesseln und Folterinstrumente für unartige Schüler.,222,0,0,
+221,0,0,,Ich war dort.,Hast du den Isolationsraum gesehen?|Den mit den Folterinstrumenten?,222,0,0,
+221,0,0,,"Nein, ich war|nicht im Keller.",Dann ist dir der beste Ort der Schule entgangen!|Da ist ein Raum voll mit Folterinstrumenten.,222,0,0,
+222,0,0,,Klingt interessant.,Und wie! Ich wurde schon oft da drin bestraft.,223,0,0,
+222,0,0,,(Grinsen.) Folterinstru-|mente? Ich bin ganz Ohr.,(Sie schluckt und nickt.) Es ist atemberaubend.|Ich wurde schon oft da unten bestraft.,223,0,1,
+222,0,0,,In einer Schule?|Ist das legal?,"(Sie zuckt mit den Schultern.) Keine Ahnung, aber|es ist toll. Ich wurde schon oft da unten bestraft.",223,0,-1,
+223,0,0,,Ich würde auch|gern bestraft werden.,(Sie kichert.) Ließe sich einrichten.|Möchtest du den Raum sehen?,224,1,-1,
+223,0,0,,Ich muss irgendwann|in diesen Keller rein.,Möchtest du ihn jetzt gleich sehen?,224,0,0,
+223,0,0,,Jemand wie du sollte|auch bestraft werden.,Dann könntest du mich ja vielleicht bestrafen.|Möchtest du den Raum sehen?,224,-1,1,
+223,0,0,,Wie komme|ich da rein?,"Ich kann dir hineinhelfen, wenn du willst.|Möchtest du jetzt gleich hin?",224,0,0,
+224,0,0,,Ja! Gehen wir.|(In den Keller.),,224,1,0,EnterIsolation()
+224,0,0,,Nein. Das ist|keine gute Idee.,"(Sie wirkt enttäuscht.) Na gut. Wir können hier|bleiben und quatschen, wenn dir das lieber ist.",210,-1,0,TestRefuseIsolation()
+225,0,0,,"Na gut, Miss.|(In den Keller.)",,225,1,-1,EnterIsolation()
+300,0,0,,Wie geht's dir?,"Gut, danke.|Was führt dich her?",310,0,0,
+300,0,0,,Was läuft bei dir?,Gerade nicht viel.|Was führt dich her?,310,0,0,
+300,0,0,,Kann ich mit|Amanda sprechen?,"Tut mir leid, sie ist gerade nicht da.|Vielleicht lernt sie noch in der Schule.",300,0,0,
+300,0,0,,Kann ich mit|Sidney sprechen?,"Tut mir leid, sie ist gerade nicht da.|Vielleicht ist sie im Campus-Pub.",300,0,0,
+300,0,0,,Kann ich mit|Sarah sprechen?,"Tut mir leid, sie ist gerade nicht da.|Sie könnte bei einer Technoparty sein oder so.",300,0,0,
+300,0,0,,"'Tschuldigung, falsche Tür.|(Weggehen.)",,300,0,0,Leave()
+310,0,0,,(Mit Jennifer plaudern.),(Ihr unterhaltet euch über Sport und Kunst|und lernt euch etwas besser kennen.),310,0,0,ChitChat()
+310,0,0,,Möchtest du mein|Zimmer besuchen?,"Tut mir leid, dafür reicht meine Zeit nicht.",310,0,0,TestInviteJennifer()
+310,0,0,,Möchtest du mit|mir Laufen gehen?,Ja! Lass uns gleich losgehen.|Das ist hervorragendes Training.,320,1,0,
+310,0,0,,Was machst du|heute Abend?,Erst gehe ich Laufen und danach|mache ich wahrscheinlich am Pool Halt.,310,0,0,
+310,0,0,JenniferBelt,Ich helfe dir später|mit deinem Gürtel.,"Danke, das lenkt langsam richtig ab.",310,0,0,
+310,0,0,,Bei mir ist's langweilig.|Kann ich hier rumhängen?,Absolut kein Problem. Aber gegen|achtzehn Uhr gehe ich Laufen.,310,0,0,
+310,0,0,,"Ich muss los, Jennifer.|(Weggehen.)",,310,0,0,Leave()
+311,0,0,,"Na gut, Jennifer. (Zurück|zu deinem Zimmer.)",,311,0,0,Leave()
+311,0,0,,Viel Spaß beim Laufen!|(Zurück zu deinem Zimmer.),,311,1,0,Leave()
+311,0,0,,Laufen ist für Versager.|(Zurück zu deinem Zimmer.),,311,-1,0,Leave()
+311,0,0,,Ich komme mit!|(Mit Jennifer laufen.),Schön! Das ist hervorragendes Training.,320,0,0,
+312,0,0,,Ja! Gehen wir.|(Mit Jennifer zurück.),,312,0,0,LeaveWithJennifer()
+312,0,0,,Wir können später gehen.|(Bei ihr bleiben.),Also gut. Wir können uns unterhalten|und besser kennenlernen.,310,0,0,
+320,0,0,!WearingTennisOutfit,Was sollen wir zum|Laufen anziehen?,Wir können passende Tenniskleidung tragen.|(Ihr zieht euch eure Tenniskleidung an.),321,0,0,WearTennisOutfit()
+320,0,0,!WearingTennisOutfit,Wir könnten zum Laufen|Tenniskleidung anziehen.,Ja! Dann haben wir Partnerlooks.|(Ihr zieht euch eure Tenniskleidung an.),321,0,0,WearTennisOutfit()
+320,0,0,WearingTennisOutfit,Wir können in unserer|Tenniskleidung laufen.,Ja! Dann haben wir einen Partnerlook.|(Sie zieht sich ihre Tenniskleidung an.),321,0,0,WearTennisOutfit()
+320,0,0,WearingTennisOutfit,Zieh dich so an wie|ich und wir können los.,Klar! Dann haben wir einen Partnerlook.|(Sie zieht sich ihre Tenniskleidung an.),321,0,0,WearTennisOutfit()
+321,0,0,,Bist du bereit?,(Ihr geht zum Sportplatz der Schule|und fangt an zu Joggen.),322,0,0,EnterTrack()
+321,0,0,,Perfekt! Gehen wir.,(Ihr geht zum Sportplatz der Schule|und fangt an zu Joggen.),322,0,0,EnterTrack()
+321,0,0,,Siehst gut aus.|Zeit zu laufen!,(Ihr geht zum Sportplatz der Schule|und fangt an zu Joggen.),322,0,0,EnterTrack()
+322,0,0,,Friss meinen Staub!|(Mit Jennifer laufen.),,323,0,1,RunWithJennifer()
+322,0,0,,Gehen wir's langsam an.|(Mit Jennifer laufen.),,323,0,-1,RunWithJennifer()
+322,0,0,,Na dann los!|(Mit Jennifer laufen.),,323,0,0,RunWithJennifer()
+323,0,0,,Das hat Spaß gemacht!,"Ja, zu zweit ist Laufen viel besser.|Ich gehe noch zum Pool, kommst du mit?",324,0,0,
+323,0,0,,Gutes Rennen.,"Ja, zu zweit ist Laufen viel besser.|Ich gehe noch zum Pool, kommst du mit?",324,0,0,
+323,0,0,,Das reicht.,"Genug gelaufen für heute.|Ich gehe noch zum Pool, kommst du mit?",324,0,0,
+324,0,0,!Common_PlayerChaste,Ich hole meinen Bikini. (Um-|ziehen und schwimmen.),,324,0,0,PoolWithJennifer()
+324,0,0,Common_PlayerChaste,Sieht schlecht aus. (Mit|deinem Gürtel ins Zimmer.),,324,0,0,Leave()
+324,0,0,,Vergiss den Pool.|Komm in mein Zimmer.,"Sorry, aber ich möchte schwimmen.|Wir sehen uns später.",326,0,0,TestSkipPool()
+324,0,0,,Ich schwimme nicht gern.|(Zurück zu deinem Zimmer.),,324,0,0,Leave()
+325,0,0,,Gehen wir.|(Mit Jennifer zurück.),,325,0,0,LeaveWithJennifer()
+326,0,0,,Frohes Schwimmen.|(Zurück zu deinem Zimmer.),,326,0,0,Leave()

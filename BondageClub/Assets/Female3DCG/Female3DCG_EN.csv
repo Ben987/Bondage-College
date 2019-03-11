@@ -22,16 +22,20 @@ Cloth,ChineseDress2,Chinese Long
 Cloth,TShirt1,T-Shirt
 Cloth,TennisShirt1,Tennis
 Cloth,Sweater1,Sweater
+Cloth,MistressTop1,Mistress Top
 Cloth,AdultBabyDress1,AB Dress 1
 Cloth,AdultBabyDress2,AB Dress 2
 Cloth,AdultBabyDress3,AB Dress 3
 Cloth,NurseUniform,Nurse Uniform
+ClothLower,,Bottom
 ClothLower,,Lower Cloth
 ClothLower,Skirt1,Skirt
 ClothLower,TennisSkirt1,Tennis
 ClothLower,Jeans1,Jeans
 ClothLower,Shorts1,Shorts
+ClothLower,MistressBottom,Mistress Bottom
 HairBack,,Back Hair
+HairBack,HairNone,None
 HairBack,HairBack1,Style 1
 HairBack,HairBack2,Style 2
 HairBack,HairBack4,Style 3
@@ -98,7 +102,8 @@ Bra,Bra2,Style 2
 Bra,Bra7,Style 3
 Gloves,,Gloves
 Gloves,Gloves1,Short Gloves
-Gloves,Gloves1,Long Gloves
+Gloves,Gloves2,Long Gloves
+Gloves,MistressGloves,Mistress Gloves
 Pussy,,Pussy
 Pussy,PussyLight1,Light 1
 Pussy,PussyLight2,Light 2
@@ -129,6 +134,7 @@ Shoes,Sneakers2,Sneakers Dark
 Shoes,Heels1,Heels
 Shoes,Heels2,Heels Strap
 Shoes,Boots1,Boots
+Shoes,MistressBoots,Mistress Boots
 ItemFeet,,Feet
 ItemFeet,NylonRope,Nylon Rope
 ItemFeet,HempRope,Hemp Rope
@@ -138,9 +144,16 @@ ItemLegs,,Legs
 ItemLegs,NylonRope,Nylon Rope
 ItemLegs,HempRope,Hemp Rope
 ItemLegs,LeatherBelt,Leather Belt
+ItemVulva,,Vulva
+ItemVulva,VibratingEgg,Vibrating Egg
+ItemVulva,VibratingWand,Vibrating Wand
+ItemButt,,Butt
+ItemButt,BlackButtPlug,Black Butt Plug
+ItemButt,TailButtPlug,Kitty Butt Plug
+ItemButt,HorseButtPlug,Horse Butt Plug
 ItemPelvis,,Pelvis
 ItemPelvis,MetalChastityBelt,Metal Chastity Belt
-ItemPelvis,RegularVibratingEgg,Regular Vibrating Egg
+ItemPelvis,MetalChastityBeltKey,Metal Chastity Belt Key
 ItemPelvis,LeatherCrop,Leather Crop
 ItemPelvis,LeatherWhip,Leather Whip
 ItemTorso,,Torso
@@ -148,8 +161,14 @@ ItemTorso,NylonRopeHarness,Nylon Rope Harness
 ItemTorso,HempRopeHarness,Hemp Rope Harness
 ItemTorso,LeatherHarness,Leather Harness
 ItemTorso,AdultBabyHarness,Adult Baby Harness
-ItemTorso,LeatherCrop,Leather Crop
-ItemTorso,LeatherWhip,Leather Whip
+ItemBreast,,Breast
+ItemBreast,StraightPiercing,Straight Piercings
+ItemBreast,RoundPiercing,Round Piercings
+ItemBreast,NippleClamp,Nipple Clamps
+ItemBreast,MetalChastityBra,Metal Chastity Bra
+ItemBreast,MetalChastityBraKey,Metal Chastity Bra Key
+ItemBreast,LeatherCrop,Leather Crop
+ItemBreast,LeatherWhip,Leather Whip
 ItemArms,,Arms
 ItemArms,NylonRope,Nylon Rope
 ItemArms,HempRope,Hemp Rope
@@ -163,6 +182,7 @@ ItemArms,PaddedMittensHarnessLocked,Thumbless Mittens Locked
 ItemNeck,,Neck
 ItemNeck,LeatherCollar,Leather Collar
 ItemNeck,SlaveCollar,Slave Collar
+ItemNeck,ClubSlaveCollar,Club Slave Collar
 ItemMouth,,Mouth
 ItemMouth,SmallClothGag,Small Cloth Gag
 ItemMouth,ClothCleaveGag,Cloth Cleave Gag

@@ -1,6 +1,7 @@
 // Actor variables
 var CurrentActor;
 var Actor = [];
+var ActorNamesText = null;
 var ActorName = 0;
 var ActorLove = 1;
 var ActorSubmission = 2;
@@ -22,6 +23,7 @@ function ActorLoad(ActorToLoad, ActorLeaveScreen) {
 
 	// Sets if the actor is the player lover, submissive or Mistress
 	CurrentActor = ActorToLoad;
+	if (ActorToLoad == "") return;
 	Common_ActorIsLover = (CurrentActor == Common_PlayerLover);
 	Common_ActorIsOwner = (CurrentActor == Common_PlayerOwner);
 	Common_ActorIsOwned = (ActorGetValue(ActorOwner) == "Player");
@@ -46,6 +48,13 @@ function ActorSpecificGetValue(SpecificActorName, ValueType) {
 	for (var L = 0; L < Actor.length; L++)
 		if (SpecificActorName == Actor[L][ActorName])
 			return Actor[L][ValueType];	
+}
+
+// Return the current actor's localized name
+function ActorGetDisplayName() {
+	if (ActorNamesText == null) ReadCSV("ActorNamesText", "C999_Common", "ActorNames", "Text", GetWorkingLanguageForChapter("C999_Common"));
+	if (ActorGetValue(ActorHideName)) return GetCSVText(ActorNamesText, "Unknown");
+	return GetCSVText(ActorNamesText, CurrentActor);
 }
 
 // Change positively or negatively the current actor attitude toward the player
@@ -103,8 +112,13 @@ function ActorInteractionAvailable(LoveReq, SubReq, VarReq, InText, ForIntro) {
 	if ((VarReq != "") && (VarReq.substr(0, 7) != "Common_") && (VarReq.substr(0, 1) != "!") && (window[CurrentChapter + "_" + CurrentScreen + "_" + VarReq] == false)) return false;
 	if ((VarReq != "") && (VarReq.substr(0, 7) != "Common_") && (VarReq.substr(0, 1) == "!") && (window[CurrentChapter + "_" + CurrentScreen + "_" + VarReq.substr(1)] == true)) return false;
 	
-	// Check if the player is gagged, only interactions that starts with ( or @ are allowed
-	if ((InText.substr(0, 1) != "(") && (InText.substr(0, 1) != "@") && Common_PlayerGagged && !ForIntro) return false;
+	// Check if the player is gagged, only interactions that starts with '(', '（' or '@' are allowed
+	var nonSpeechActionsStart = [
+		"(",
+		"（", // Full-width bracket used in CJK languages
+		"@",
+	];
+	if ((nonSpeechActionsStart.indexOf(InText.substr(0, 1)) < 0) && Common_PlayerGagged && !ForIntro) return false;
 	
 	// Since nothing blocks, we allow it
 	return true;

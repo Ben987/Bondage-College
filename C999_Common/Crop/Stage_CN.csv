@@ -1,3 +1,3 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(调查它)|(1 分钟),它由上好的皮革制作而成，被打到的话肯定非常疼。|它不会留下永久的伤痕。,0,0,0,
-0,0,0,Common_PlayerNotRestrained,(鞭打自己)|(1 分钟),你打了一下自己的手掌，并感觉到刺痛。|红印应该很快就会消退。,0,0,0,
+0,0,0,,(调查它)ADD_MINUTES:1,它由上好的皮革制作而成，被打到的话肯定非常疼。|它不会留下永久的伤痕。,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(鞭打自己)ADD_MINUTES:1,你打了一下自己的手掌，并感觉到刺痛。|红印应该很快就会消退。,0,0,0,

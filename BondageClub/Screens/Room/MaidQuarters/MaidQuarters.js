@@ -13,15 +13,15 @@ var MaidQuartersIsMaid = false;
 var MaidQuartersIsHeadMaid = false
 var MaidQuartersDominantRep = 0;
 var MaidQuartersCurrentRescue = "";
-var MaidQuartersRescueList = ["IntroductionClass", "ShibariDojo", "Shop", "Gambling"];
-var MaidQuartersRescueStage = ["310", "320", "330", "340"];
+var MaidQuartersRescueList = ["IntroductionClass", "ShibariDojo", "Shop", "Gambling", "Prison"];
+var MaidQuartersRescueStage = ["310", "320", "330", "340", "350"];
 var MaidQuartersCurrentRescueStarted = false;
 var MaidQuartersCurrentRescueCompleted = false;
 
 // Returns TRUE if the player is dressed in a maid uniform or can take a specific chore
 function MaidQuartersPlayerInMaidUniform() { return ((CharacterAppearanceGetCurrentValue(Player, "Cloth", "Name") == "MaidOutfit1") && (CharacterAppearanceGetCurrentValue(Player, "Hat", "Name") == "MaidHairband1")) }
-function MaidQuartersAllowMaidDrinks() { return (!Player.IsRestrained() && !MaidQuartersMaid.IsRestrained()); }
-function MaidQuartersAllowMaidCleaning() { return (!Player.IsRestrained() && !MaidQuartersMaid.IsRestrained()); }
+function MaidQuartersAllowMaidDrinks() { return (!Player.IsRestrained() && !MaidQuartersMaid.IsRestrained() && !LogQuery("ClubMistress", "Management")); }
+function MaidQuartersAllowMaidCleaning() { return (!Player.IsRestrained() && !MaidQuartersMaid.IsRestrained() && !LogQuery("ClubMistress", "Management")); }
 function MaidQuartersAllowRescue() { return (!Player.IsRestrained()); }
 function MaidQuartersAllowCancelRescue() { return (MaidQuartersCurrentRescueStarted && !MaidQuartersCurrentRescueCompleted); }
 
@@ -106,7 +106,7 @@ function MaidQuartersMiniGameEnd() {
 // When the mini game / maid chore is successful, the player gets paid
 function MaidQuartersMiniGamePay() {
 	ReputationProgress("Maid", 4);
-	var M = 8;
+	var M = 10;
 	if (MiniGameDifficulty == "Normal") M = M * 1.5;
 	if (MiniGameDifficulty == "Hard") M = M * 2;
 	MaidQuartersMaid.CurrentDialog = MaidQuartersMaid.CurrentDialog.replace("REPLACEMONEY", M.toString());
@@ -117,7 +117,7 @@ function MaidQuartersMiniGamePay() {
 function MaidQuartersRescuePay() {
 	MaidQuartersRemoveMaidUniform();
 	ReputationProgress("Maid", 4);
-	var M = 8 + Math.floor(Math.random() * 9);
+	var M = 10 + Math.floor(Math.random() * 11);
 	MaidQuartersMaid.CurrentDialog = MaidQuartersMaid.CurrentDialog.replace("REPLACEMONEY", M.toString());
 	CharacterChangeMoney(Player, M);
 }

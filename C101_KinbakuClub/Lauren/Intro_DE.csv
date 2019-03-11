@@ -1,0 +1,75 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,"Hallo, du bist bestimmt COMMON_PLAYERNAME?|Ich bin Lauren.",Lauren.jpg
+10,0,0,,"Hallo. Da steckt wohl jemand|ziemlich in der Klemme, was?",Lauren.jpg
+15,0,0,,"Wie ich sehe, bleibst du lieber gefesselt.",Lauren.jpg
+20,0,0,,"Hallo, die Handschellen stehen dir.",Lauren.jpg
+25,0,0,,"Wie ich sehe, bleibst du lieber geknebelt.",Lauren.jpg
+30,0,0,,Hallo mal wieder.,Lauren.jpg
+40,0,0,,"Ich bringe Nicole gerade bei, wie man ohne Schlüssel|aus Handschellen ausbricht. Willst du das auch lernen?",Lauren.jpg
+45,0,0,,"Die Gruppe nebenan diskutiert gerade|Seiltechniken, falls dich das interessiert.",Lauren.jpg
+50,0,0,,"Möchtest du lernen, wie man|sich aus Handschellen befreit?",Lauren.jpg
+55,0,0,,Schon den Schlüssel gefunden?,Lauren.jpg
+100,0,0,,Der Handschellen-Mechanismus|ist eigentlich sehr primitiv.,Lauren.jpg
+110,0,0,,"Weißt du noch, was ich über|Handschellen-Mechanismen sagte?",Lauren.jpg
+120,0,0,,"Ich sagte gerade, dass ich einen Metallstreifen|zwischen die Klinke und die Sperrvorrichtung stecke.",Lauren.jpg
+130,0,0,,Möchtest du die Technik jetzt lernen?,Lauren.jpg
+140,0,0,,"Wenn du bereit bist, leg dir Handschellen an|und ich erkläre dir, wie du dich befreist.",Lauren.jpg
+145,0,0,,"Ich erkläre es dir nur, wenn du bereit bist, dir|Handschellen anzulegen, um es selbst zu versuchen.",Lauren.jpg
+150,0,0,,"Großartig, wir können anfangen.",Lauren.jpg
+160,0,0,,,Lauren.jpg
+165,0,0,,,LaurenReaching.jpg
+170,0,0,,,LaurenReaching.jpg
+180,0,0,,,Lauren.jpg
+190,0,0,,Image? - Broken hair clip in players hands?,Lauren.jpg
+200,0,0,,,Lauren.jpg
+205,0,0,,,Lauren.jpg
+210,0,0,,,Lauren.jpg
+220,0,0,,"Hi, könntest du einen Moment warten?|Nicole hat Schwierigkeiten und braucht meine Hilfe.",Lauren.jpg
+300,0,0,,"(Du nimmst die Augenbinde ab,|um zu sehen, wen du gefangen hast.)",LaurenCaught.jpg
+310,0,0,,,LaurenTalking.jpg
+320,0,0,,,LaurenTalking.jpg
+330,0,0,,,LaurenEscaped.jpg
+340,0,0,,,LaurenEscaped.jpg
+350,0,0,,,LaurenEscaped.jpg
+360,0,0,,,LaurenUndressed.jpg
+370,0,0,,,LaurenSatinComment.jpg
+380,0,0,,,LaurenBag.jpg
+390,0,0,,,LaurenSat.jpg
+400,0,0,,,LaurenLegCuffs.jpg
+410,0,0,,,LaurenWristCuffs.jpg
+420,0,0,,,LaurenChairCuffed.jpg
+430,0,0,,,LaurenRealized.jpg
+440,0,0,,,LaurenRealized.jpg
+450,0,0,,"(Lauren versucht noch immer, sich zu befreien.)",LaurenRealized.jpg
+455,0,0,,,NicoleOffer.jpg
+460,0,0,,"(Lauren ist noch immer an den Stuhl gekettet|und schafft es nicht, sich zu befreien.)",LaurenHelpless.jpg
+470,0,0,,"(Lauren ist noch immer an den Stuhl gekettet|und schafft es nicht, sich zu befreien.)",LaurenHelpless.jpg
+480,0,0,,,NicoleOffer.jpg
+490,0,0,,,PlayerChairCuffed.jpg
+500,0,0,,,PlayerChairCuffed.jpg
+510,0,0,,,Lauren.jpg
+520,0,0,,"(Lauren ist damit beschäftigt, Nicole zu unterrichten.)",LaurenDone.jpg
+525,0,0,,,LaurenPlayerGone.jpg
+600,0,0,,(Deine Arme werden hinter dir in die Luft gehoben|und die Handschellen an etwas befestigt.),BlindMansBuff.jpg
+610,0,0,,,LaurenCaptor.jpg
+620,0,0,,,LaurenGone.jpg
+630,0,0,,,PlayerStrappado.jpg
+640,0,0,,,PlayerFlip.jpg
+650,0,0,,,PlayerGrab.jpg
+660,0,0,,,PlayerLegWrap.jpg
+670,0,0,,,PlayerHoldingOn.jpg
+680,0,0,,,PlayerHelpedDown.jpg
+690,0,0,,,PlayerLegCuffs.jpg
+700,0,0,,,LaurenCaptor.jpg
+710,0,0,,,LaurenCaptor.jpg
+720,0,0,,,LaurenPlayerReleased.jpg
+730,0,0,,,LaurenCaptor.jpg
+735,0,0,,,LaurenPeak.jpg
+740,0,0,,,LaurenPeakLegCuffs.jpg
+745,0,0,,,LaurenContinue1.jpg
+746,0,0,,,LaurenContinue2.jpg
+750,0,0,,,PlayerLegCuffs.jpg
+800,0,0,,,LaurenPlayerReleased.jpg
+810,0,0,,,LaurenPlayerReleased.jpg
+900,0,0,,,LaurenCrying.jpg
+910,0,0,,,LaurenJenna.jpg

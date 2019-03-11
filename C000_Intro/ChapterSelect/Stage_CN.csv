@@ -6,7 +6,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 0,0,0,,制作组,非常感谢每一位对本游戏有所贡献的人。,0,0,0,RollCredits()
 10,0,0,,第 1 章|课前时间,,10,0,0,"LoadChapter(""C001_BeforeClass"")"
 10,0,0,,第 2 章|第一课,,10,0,0,"LoadChapter(""C002_FirstClass"")"
-10,0,0,,第 3 章|早上,,10,0,0,"LoadChapter(""C003_MorningDetention"")"
+10,0,0,,第 3 章|晨间拘留,,10,0,0,"LoadChapter(""C003_MorningDetention"")"
 10,0,0,,第 4 章|艺术课,,10,0,0,"LoadChapter(""C004_ArtClass"")"
 10,0,0,,第 5 章|体育课,,10,0,0,"LoadChapter(""C005_GymClass"")"
 10,0,0,,第 6 章|禁闭,,10,0,0,"LoadChapter(""C006_Isolation"")"
@@ -23,6 +23,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 20,0,0,,主菜单,欢迎来到束缚学院。|希望各位绅士玩得开心，不断找到新惊喜。,0,0,0,
 30,0,0,,English,,0,0,0,"SetLanguage(""EN"")"
 30,0,0,,French (Chapter 1 to 9)|Made by gottspende,,0,0,0,"SetLanguage(""FR"")"
-30,0,0,,Chinese (Chapter 1 & 5)|By Dwscdv3 & asdcvbgf,,0,0,0,"SetLanguage(""CN"")"
+30,0,0,,"Chinese (Chapter 1 to 3, 5)|By Dwscdv3 & asdcvbgf",,0,0,0,"SetLanguage(""CN"")"
 30,0,0,,Spanish (Chapter 1 & 2)|By Rafael R & tree13003,,0,0,0,"SetLanguage(""ES"")"
-30,0,0,,"German (Chapter 1 to 11)|adokilume, Knife, fleisch11",,0,0,0,"SetLanguage(""DE"")"
+30,0,0,,"German (Chapter 1 to 13)|adokilume, Knife, fleisch11",,0,0,0,"SetLanguage(""DE"")"
+30,0,0,,"Russian (Chapter 1)|Fluend",,0,0,0,"SetLanguage(""RU"")"

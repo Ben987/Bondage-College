@@ -1,0 +1,8 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,(Die Socke untersuchen.)ADD_MINUTES:1,"Eine einzelne Socke ist zum Tragen kaum zu gebrau-|chen, könnte aber selbst die größten Münder stopfen.",0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Dich selbst knebeln.)ADD_MINUTES:1,"Du stopfst dir die Socke in den Mund,|drückst sie komplett hinein und füllst ihn damit aus.",10,0,0,SelfGag()
+10,0,0,HasLooseSockGag,(Die freie Socke|untersuchen.)ADD_MINUTES:1,"Eine einzelne Socke ist zum Tragen kaum zu gebrau-|chen, könnte aber selbst die größten Münder stopfen.",10,0,0,ShowImage()
+10,0,0,,(Auf der Socke|herumkauen.)ADD_MINUTES:1,Du kaust auf der Socke herum.|Sie saugt sich langsam mit deinem Speichel voll.,10,0,0,
+10,0,0,,(An der Socke|lutschen.)ADD_MINUTES:1,"Du lutschst an der Socke, genießt das Aroma|und fragst dich, wie sauber sie war.",10,0,0,
+10,0,0,!HasOtherGag,(Die Socke ausspucken.)ADD_MINUTES:1,Du spuckst die durchnässte Socke aus deinem|Mund und kannst nun wieder vernünftig reden.,0,0,0,SelfUngag()
+10,0,0,HasOtherGag,(Die Socke ausspucken.)ADD_MINUTES:1,"Du versuchst die Socke auszuspucken, aber der|andere Knebel hält sie fest. Nimm zuerst den ab.",10,0,0,

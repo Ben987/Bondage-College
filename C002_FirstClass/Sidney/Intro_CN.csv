@@ -1,0 +1,20 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,!BondageBefore,（她懒得转过身来，不过有在听。）,SidneyBack.jpg
+0,1,0,!BondageBefore,（她转过来小声说道）什么事？,SidneyFace.jpg
+0,0,0,BondageBefore,（她并没有转过来，不过小声说道）|算了吧。我不会再让你绑起来的。,SidneyBack.jpg
+0,1,0,BondageBefore,（她转过来小声说道）|别想着再把我绑起来。,SidneyFace.jpg
+10,0,0,,（她转过来小声说道）什么事？,SidneyFace.jpg
+20,0,0,,（她转过来小声说道）|你也感到无聊吗？,SidneyFace.jpg
+30,0,0,,（她转过来小声说道）|我希望能有办法提前离开这里。,SidneyFace.jpg
+40,0,0,,（她转过来小声说道）|你在想些什么？,SidneyFace.jpg
+50,0,0,,你想绑架她？这对我有什么好处？|（你需要至少 +3 喜爱度或顺从度来说服她。）,SidneyFace.jpg
+60,0,0,,（她懒得转过身来，不过小声说道）|我会帮你，但是你先上。,SidneyBack.jpg
+100,0,0,Common_PlayerNotGagged,靠！这真她娘的棒！,SidneyFace.jpg
+100,0,0,Common_PlayerGagged,（她指着你的口塞露出微笑。）,SidneyFace.jpg
+100,2,0,Common_PlayerGagged,（她转过来小声说道）|下课后我会帮你的。,SidneyFace.jpg
+100,-2,0,Common_PlayerGagged,（她并没有转过来，不过小声说道）|这她妈是你应得的报应。,SidneyBack.jpg
+110,0,0,,（她用力咬着口塞，愤怒地看着你。）,Sidney_BallGag.jpg
+120,0,0,,（她拉扯着手铐，想要强行挣开。）,Sidney_Cuffs.jpg
+130,0,0,,（她用力咬着口塞，愤怒地看着你。）,Sidney_Cuffs_BallGag.jpg
+140,0,0,,（她疯狂挣扎想够到绳结，但这只是徒劳。）,Sidney_Rope.jpg
+150,0,0,,（她用力咬着口塞，愤怒地看着你。）,Sidney_Rope_BallGag.jpg

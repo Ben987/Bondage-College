@@ -1,0 +1,536 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,Common_ActorIsOwner,"Mentorin, ist es Zeit|für mein Training?","Nicht jetzt, wir machen eine kurze Pause.|Dein Training wird später fortgesetzt.",0,0,0,RandomJenniferDommeEvent()
+0,0,0,Common_ActorIsOwner,"Mentorin, darf ich mir|etwas anderes anziehen?","Natürlich, mein kleiner Schützling.|Du darfst anziehen, was du willst.",0,0,0,IsChangingBlocked()
+0,5,0,!Common_ActorIsLover,"Du siehst so|hübsch aus, Jennifer.","Du siehst viel besser aus als ich.|(Du brauchst +20 Liebe, um Jennifer zu daten.)",0,0,0,TestLove()
+0,0,0,,Wir müssen reden.,Ja? Was ist denn?,0,0,0,TestTalk()
+0,0,5,!Common_ActorIsOwned,"Mädchen, du brauchst|etwas Training.","Ich trainiere schon fast täglich, Miss. (Du|brauchst +20 Dominanz, um Jennifer zu versklaven.)",0,0,0,TestDomme()
+0,0,-5,!Common_ActorIsOwner,Miss Jennifer.|Ich bewundere Sie.,"Dafür sehe ich nicht wirklich einen Grund. (Du brauchst|-20 Dominanz, um dich Jennifer zu unterwerfen.)",0,0,0,TestSub()
+0,0,0,Common_PlayerGagged,@Om nnnuoogn mh!,"Mit genug Übung wird man dich vielleicht irgendwann|verstehen können, auch wenn du geknebelt bist.",0,0,0,TestUnbind()
+0,0,0,Common_ActorIsOwner,(Ein sexy Lied summen|und aus Spaß tanzen.),"Nicht jetzt, wir machen eine kurze Pause.|Dein Training wird später fortgesetzt.",0,0,0,RandomJenniferDommeEvent()
+0,0,0,Common_PlayerRestrained,(Mit deinen|Fesseln ringen.),"Nö, du kommst da nicht raus.|Es ist toll, dir dabei zuzusehen.",0,0,0,TestUnbind()
+0,0,0,!Common_ActorIsOwner,Du solltest etwas|anderes anziehen.,"Nein, danke. Ich fühle mich so ganz wohl.",0,0,0,TestChange()
+0,0,0,SexAvail,Möchtest du mit|mir Liebe machen?,"Nein, mir ist nicht danach.|Machen wir was anderes.",0,0,0,TestSex()
+0,0,0,PleasurePlayerAvail,"Meine Sklavin, du wirst|mich jetzt befriedigen.","Wie soll ich Euch befriedigen, Herrin?",630,0,0,TestPleasurePlayer()
+0,0,0,!Common_PlayerRestrained,(Mit ihr spielen.),(Du gehst einen Schritt auf sie zu.),10,0,0,
+10,5,0,!Common_PlayerGagged,(Sie küssen.),(Du gehst nah an sie heran und gibst ihr|einen süßen Kuss auf die Lippen.),10,0,0,Kiss()
+10,1,0,!Common_PlayerRestrained,(Sie kitzeln.),"(Du kommst näher und kitzelst ihre Brust,|aber sie zeigt kaum eine Reaktion.)",10,0,0,Tickle()
+10,0,5,!Common_PlayerRestrained,(Ihr auf den|Hintern hauen.),(Du gibst ihr einen starken Klaps auf den|Hintern und sie starrt dich unerfreut an.),10,0,0,Spank()
+10,0,0,CanMasturbate,(Sie befriedigen.),"(Du lehnst dich zu ihr, um sie zu befriedigen,|aber sie drängt dich von sich weg.)",10,0,0,StartMasturbate()
+10,0,0,IsGagged,(Sie entknebeln.),(Du entfernst ihren Knebel.)|Danke! Das ist besser.,10,0,0,Ungag()
+10,0,0,IsRoped,(Sie losbinden.),"(Du löst die Knoten und entfernst die Seile,|während sie sich langsam streckt.)",10,0,0,Untie()
+10,0,0,IsStrapped,(Sie losschnallen.),(Du löst die Riemen und entfernst|den Handschuh von ihren Armen.),10,0,0,Untie()
+10,0,0,,(Aufhören.),(Du trittst einen Schritt zurück.),0,0,0,
+20,0,0,ChatAvail,Ich wüsste gern|mehr über dich.,"Also gut, wir können uns über mich unterhalten.",0,0,0,StartChat()
+20,0,0,AllowTraining,Wie war's mit einem|Trainingskampf?,Na klar! Wir könnten noch einen Übergriff|auf dem Schulgelände simulieren.,590,0,0,StartTraining()
+20,0,0,Common_ActorIsOwned,Gehen wir mal|deine Regeln durch.,"(Sie wirkt beunruhigt.)|Natürlich, Herrin.",610,0,0,
+20,0,0,Common_ActorIsOwned,Mach dich bereit! Es wird|Zeit für etwas Training.,"Ja, Herrin! (Sie hüpft vor Freude.)",800,0,0,ChangeToTrain()
+20,0,0,Common_PlayerChaste,Kannst du mir bitte mit|diesem Gürtel helfen?,Leider nicht. Ich habe keinen|Schlüssel für diesen Gürtel.,0,0,0,
+20,0,0,Common_ActorIsLover,Was unsere|Beziehung angeht...,"Was ist denn los, Süße?",190,0,0,
+20,0,0,CanKickOut,"Es wird Zeit, dass du|mein Zimmer verlässt.",(Sie sieht sehr enttäuscht aus.)|Wirfst du mich raus?,790,-1,1,"ActorSetPose("""")"
+20,0,0,,Vergiss es.,"Na gut. Also, wie könnten|wir jetzt etwas Spaß haben?",0,0,0,
+100,0,0,,Hast du einen|Liebespartner?,"Nein, ich war noch nie mit jemandem zusammen.",110,0,0,TestRelationship()
+100,0,0,,Hast du einen|festen Freund?,"Nein, ich war noch nie mit jemandem zusammen.",110,0,0,TestRelationship()
+100,0,0,,Hast du eine|feste Freundin?,"Nein, ich war noch nie mit jemandem zusammen.",110,0,0,TestRelationship()
+105,0,0,,"Ja, ich kann mich|glücklich schätzen.",Du hast viel mehr Glück als ich.|Reden wir über was anderes.,0,0,0,
+105,0,0,,Du findest|schon jemanden.,"Ich hoffe, eines Tages jemanden zu finden.|Reden wir über was anderes.",0,0,0,
+105,0,0,Common_ActorIsOwned,Ich wäre lieber|mit dir zusammen.,"Bitte trennt euch zuerst mit ihr, Herrin.|Ich möchte kein Teil eines Liebesdreiecks sein.",106,0,0,
+105,0,0,!Common_ActorIsOwned,Ich wäre lieber|mit dir zusammen.,Du musst erst mit ihr Schluss machen.|Ich möchte kein Teil eines Liebesdreiecks sein.,106,0,0,
+106,0,0,,"Ja, das mache ich.","Das hätte ich nicht erwartet.|Sag Bescheid, wenn du es tust.",0,0,0,
+106,0,0,,Ich denke darüber nach.,"Also gut, sag Bescheid, wenn ihr euch trennt.",0,0,0,
+106,0,0,,Das kann ich nicht.,"Das verstehe ich vollkommen, meine Liebe.|Reden wir über was anderes.",0,0,0,
+110,0,0,,Was hältst du von mir?,"Du bist meine beste Freundin, COMMON_PLAYERNAME.|Ich genieße jeden Moment, den ich mit dir verbringe.",120,0,0,
+110,0,0,,Magst du mich?,"Na klar. Du bist die Beste, COMMON_PLAYERNAME.|Ich genieße jeden Moment, den ich mit dir verbringe.",120,0,0,
+110,0,0,,Würdest du mit jemandem|wie mir zusammen sein?,"Na klar. Du bist die Beste, COMMON_PLAYERNAME.|Ich genieße jeden Moment, den ich mit dir verbringe.",120,0,0,
+120,0,0,,"Ich glaube, ich|liebe dich, Jennifer.",Würdest du wirklich mit einer Verliererin|wie mir zusammen sein wollen?,130,0,0,
+120,0,0,,Ich liebe deinen|sexy Körper.,Würdest du wirklich mit einer Verliererin|wie mir zusammen sein wollen?,130,0,0,
+120,0,0,,Ich hab schon beim Mas-|turbieren an dich gedacht.,"Ich... Ich weiß nicht, was ich dazu sagen soll.|Reden wir über was anderes.",0,0,0,
+120,0,0,,Ich will dich|auf der Stelle ficken.,"Ich... Ich weiß nicht, was ich dazu sagen soll.|Reden wir über was anderes.",0,0,0,
+130,0,0,,"Sorry, eine Verliererin|kann ich nicht daten.",(Sie seufzt und schaut zu Boden.)|Reden wir über was anderes.,0,0,0,
+130,0,0,,Wir beide könnten|verliebte Verlierer sein.,"Das klingt wundervoll.|Ich liebe dich, COMMON_PLAYERNAME.",140,0,0,
+130,0,0,,Du bist keine Verliererin. Du|hast mein Herz gewonnen.,"Du hast meins auch erobert.|Ich liebe dich, COMMON_PLAYERNAME.",140,0,0,
+130,0,0,,(Sie mit einem Kuss|zum Schweigen bringen.),"(Sie ist überrascht und lächelt.)|Ich liebe dich, COMMON_PLAYERNAME.",140,0,0,
+140,0,0,,Würdest du meine|Freundin sein?,Ja! Wärst du auch meine Freundin?,150,0,0,
+140,0,0,,Willst du mich heiraten?,Was? Lass diese Albernheiten sein.|Reden wir über was anderes.,0,0,0,
+140,0,0,,"Ich liebe dich, Jennifer.",(Sie nickt mit einem strahlenden Lächeln.)|Willst du meine Freundin sein?,150,0,0,
+150,0,0,,Ja!!!|(Sie küssen.),"(Ihr fallt euch in die Arme, um euch zu|befummeln und leidenschaftlich zu küssen.)",160,3,0,StartDating()
+150,0,0,,Ich muss erst|darüber nachdenken.,"(Sie sieht enttäuscht aus.)|Na gut, lass dir Zeit.",0,0,0,
+160,0,0,AllowSexAfterDate,"Zeig mir deinen|sexy Körper, Schatz.","Ja, Schatz, ich hab auch ein Spielzeug auszuprobieren.|(Ihr zieht euch aus und sie holt einen Doppel-Dildo.)",170,0,1,BothNaked()
+160,0,0,AllowSexAfterDate,(Rot werden|und dich ausziehen.),"Nicht so schüchtern, Baby, ich hab da ein Spielzeug.|(Ihr zieht euch aus und sie holt einen Doppel-Dildo.)",170,0,-1,BothNaked()
+160,0,0,AllowSexAfterDate,Ich will mit dir|Liebe machen.,"Das ist auch mein Wunsch, ich hätte da ein Spielzeug.|(Ihr zieht euch aus und sie holt einen Doppel-Dildo.)",170,1,0,BothNaked()
+160,0,0,,Ich bin so glücklich!,"Ich auch, Baby!",0,0,0,
+160,0,0,,Das muss ich unbedingt|meinen Freunden erzählen.,"Ich kann's kaum abwarten, es meiner Familie zu erzäh-|len. Hoffentlich lerne ich deine Freunde bald kennen.",0,1,0,
+160,0,0,,Wir sollten|später ausgehen.,Ausgehen? Wir haben doch uns.|Brauchen wir noch mehr?,0,-1,0,
+170,0,0,,Du bist so ungezogen!|(Ins Bett.),,0,0,0,MakeLove()
+170,0,0,!Common_ActorIsOwner,(Sie aufs Bett schubsen.),,0,0,1,MakeLove()
+170,0,0,!Common_ActorIsOwned,(Dich von ihr ins|Bett tragen lassen.),,0,0,-1,MakeLove()
+190,0,0,,"Ich... Ich... Ich hab verges-|sen, was ich sagen wollte.","(Sie wirkt etwas nervös.)|Du hast mir Angst gemacht, Schatz.",0,0,0,
+190,0,0,,"Ich glaube, das mit uns|beiden klappt so nicht.","(Sie scheint am Boden zerstört.)|Du machst Schluss, Baby?",191,0,0,
+190,0,0,,Ich will Schluss machen.,"(Sie scheint am Boden zerstört.)|Du machst Schluss, Baby?",191,0,0,
+191,0,0,,"Nein, bleiben|wir zusammen.",Spiel nicht so mit meinen Gefühlen.,0,0,0,
+191,0,0,Common_ActorIsOwned,"Es ist aus, aber ich|behalte dich als Sklavin.","(Sie senkt den Kopf und weint lautlos.)|Ja, Herrin, es war zu schön, um wahr zu sein.",192,-5,0,BreakUp()
+191,0,0,!Common_ActorIsOwned,"Ja, es ist aus.","(Sie schüttelt den Kopf, als wolle sie es nicht|wahrhaben.) Ich wusste, das würde nicht anhalten.",193,-5,0,BreakUp()
+192,0,0,,Es tut mir leid.|Nicht weinen.,"Schon gut, wahrscheinlich war es meine Schuld.|Reden wir über was anderes.",0,0,-1,AllowLeave()
+192,0,0,,Jemanden wie mich|verdienst du nicht.,Streu nicht noch Salz in die Wunde.|Reden wir über was anderes.,0,-1,1,AllowLeave()
+192,0,0,,Es war von Anfang|an ein Fehler.,"Ja, es war ein wundervoller Fehler.|Reden wir über was anderes.",0,0,0,AllowLeave()
+192,0,0,,"Du findest noch jemanden,|der perfekt für dich ist.",Meinst du? Das bezweifle ich stark.|Reden wir über was anderes.,0,1,0,AllowLeave()
+193,0,0,,Es tut mir leid.|Nicht weinen.,Ich weine nicht! Ich gehe!|(Sie rennt aus deinem Zimmer hinaus.),194,0,-1,JenniferLeave()
+193,0,0,,Jemanden wie mich|verdienst du nicht.,Streu nicht noch Salz in die Wunde.|(Sie rennt aus deinem Zimmer hinaus.),194,-1,1,JenniferLeave()
+193,0,0,,Es war von Anfang|an ein Fehler.,Diesen Fehler mache ich nicht nochmal!|(Sie rennt aus deinem Zimmer hinaus.),194,0,0,JenniferLeave()
+193,0,0,,"Du findest noch jemanden,|der perfekt für dich ist.","Das ist nett, aber ich sollte trotzdem gehen.|(Sie rennt aus deinem Zimmer hinaus.)",194,1,0,JenniferLeave()
+200,0,0,,Ich rede nicht über Sport.,Worüber denn dann?|(Sie schaut zu Boden und meidet deinen Blick.),210,0,0,
+200,0,0,,"Komm schon, Mädchen, du|weißt, wie ich das meine.","Es tut mir leid, Miss, ich bin mir|nicht sicher, worauf Sie hinauswollen.",210,0,0,
+200,0,0,,(Die Arme verschränken|und sie anstarren.),"(Sie schluckt.) Sie reden nicht über Sport, oder, Miss?",210,0,0,
+210,0,0,,Ich rede von|deiner Einstellung.,"Ja, ich weiß, dass ich nicht gut unter Menschen bin.|Ich überlege, Soziologie-Unterricht zu nehmen.",220,0,0,
+210,0,0,,"Mädel, du bist|eine Versagerin.","(Sie seufzt.) Ich weiß, ich bin schlecht unter Menschen.|Ich überlege, Soziologie-Unterricht zu nehmen.",220,0,0,RefuseSubmit()
+210,0,0,,"Du brauchst Hilfe,|die Schule zu überleben.","(Sie nickt.) Im sozialen Sinne, nehme ich an?|Ich überlege, Soziologie-Unterricht zu nehmen.",220,0,0,
+210,0,0,,Du musst selbst-|bewusster werden.,"Ja, ich weiß, dass ich nicht gut unter Menschen bin.|Ich überlege, Soziologie-Unterricht zu nehmen.",220,0,0,
+220,0,0,,Dumme Idee. Du|brauchst etwas Strengeres.,"(Sie seufzt.) Etwas Strengeres?|Was meinen Sie damit, Miss?",230,0,0,RefuseSubmit()
+220,0,0,,Das reicht nicht. Du|brauchst härteres Training.,Härteres Training? Sicher?|Was meinst du damit?,230,0,0,
+220,0,0,,Vergiss den Unterricht. Du|brauchst echtes Training.,Echtes Training? Ich bin verwirrt.|Was meinst du damit?,230,0,0,
+230,0,0,,Ich kann dich umprogram-|mieren. Beliebter machen.,Mich beliebter machen?|Wie funktioniert das?,240,0,0,
+230,0,0,,"Ich helfe dir, deine sozialen|Ängste loszuwerden.","Das klingt zu gut, um wahr zu sein.|Wie funktioniert das?",240,0,0,
+230,0,0,,"Ich trainiere dich,|waghalsiger zu werden.",Könnte eine gute Idee sein.|Wie funktioniert das?,240,0,0,
+230,0,0,,"Du bist die Oberschlampe,|wenn ich mit dir fertig bin.",(Sie schüttelt den Kopf.)|Wie genau willst du das bewerkstelligen?,240,0,0,RefuseSubmit()
+230,0,0,,Mit meiner Hilfe|wird man dich lieben.,Ich könnte in der Schule geliebt werden?|Wie funktioniert das?,240,0,0,
+240,0,0,IsNaked,Den ersten Schritt hast du|getan. Etwas Haut zeigen.,(Sie wird rot.) Ich ziehe mich für kaum jemanden aus.|Du hast eine seltsame Kraft über mich.,250,0,0,
+240,0,0,IsNaked,Du bist nackt. Das ist|schonmal ein Anfang.,(Sie wird rot.) Ich ziehe mich für kaum jemanden aus.|Du hast eine seltsame Kraft über mich.,250,0,0,
+240,0,0,!IsNaked,Zuerst musst du|deine Kleidung ausziehen.,(Sie sieht dich überrascht an.)|Ernsthaft? Warum?,245,0,0,
+240,0,0,!IsNaked,Befolge meine Befehle|und zieh dich aus.,(Sie sieht dich überrascht an.)|Ernsthaft? Warum?,245,0,0,
+240,0,0,!IsNaked,"Ausziehen, Schlampe!",(Sie schüttelt den Kopf.)|Ernsthaft? Warum?,245,0,0,RefuseSubmit()
+245,0,0,,Ich werde mich|nicht wiederholen.,(Sie zieht sich aus.) Ich ziehe mich für kaum|jemanden aus. Du hast eine seltsame Kraft über mich.,250,0,0,"ForceChangeActor(""Naked"")"
+245,0,0,,Es ist Teil|deines Trainings.,(Sie zieht sich aus.) Ich ziehe mich für kaum|jemanden aus. Du hast eine seltsame Kraft über mich.,250,0,0,"ForceChangeActor(""Naked"")"
+245,0,0,,(Schweigen und auf|ihre Kleidung deuten.),(Sie zieht sich aus.) Ich ziehe mich für kaum|jemanden aus. Du hast eine seltsame Kraft über mich.,250,0,0,"ForceChangeActor(""Naked"")"
+250,0,0,,"Gib's zu, du magst es,|meine Befehle zu befolgen.","Ich weiß nicht warum, aber da ist was dran.|Ich fühle mich dir gegenüber sehr unterwürfig.",260,0,0,
+250,0,0,,Das ist einfach erklärt.|Du bist Unterwürfig.,Ich fühle mich dir gegenüber|schon irgendwie unterwürfig.,260,0,0,
+250,0,0,,Die Kraft der Dominanz.|Widerstand ist zwecklos.,Sie ist wirklich mächtig. Irgendwie unheimlich.|Ich fühle mich dir gegenüber schon sehr unterwürfig.,260,0,0,
+250,0,0,,"Du sehnst dich danach,|mir zu dienen, Fotze.",(Sie schaut stirnrunzelnd zu Boden.)|Ich fühle mich dir gegenüber schon unterwürfig.,260,0,0,RefuseSubmit()
+260,0,0,,Als eine Bitch wirst|du ein Halsband tragen.,Ein Halsband? Ich habe andere Mädchen mit solchen|gesehen. Sie scheinen Beschützer zu haben.,270,0,0,RefuseSubmit()
+260,0,0,,Ich werde dir fürs Training|ein Halsband anlegen.,Ein Halsband? Ich habe andere Mädchen mit solchen|gesehen. Sie scheinen Beschützer zu haben.,270,0,0,
+260,0,0,,Als meine Sub schließe|ich dir ein Halsband um.,Ein Halsband? Ich habe andere Mädchen mit solchen|gesehen. Sie scheinen Beschützer zu haben.,270,0,0,
+270,0,0,,"Sobald du es trägst, bist|du durch mich geschützt.","Sie wollen mich wirklich|trainieren und beschützen, Miss?",280,0,0,
+270,0,0,,"Das Halsband bedeutet,|du bist mein Eigentum.","(Sie tritt einen Schritt zurück.)|Sie wollen mich besitzen, Miss?",280,0,0,RefuseSubmit()
+270,0,0,,Nur die besten Subs haben|eine Herrin gefunden.,Sie wollen wirklich meine Herrin werden?,280,0,0,
+270,0,0,,"Du gehörst zu meiner|Familie, wenn du es trägst.","Eine Familie zu haben klingt nett.|Wollen Sie mir das Halsband anlegen, Miss?",280,0,0,
+280,0,0,,"Jennifer, wirst du|mein Halsband tragen?","Tut mir leid, ich glaube, ich kann das nicht.|Reden wir über was anderes.",0,0,0,TestEnslave()
+280,0,0,,Hab's mir anders überlegt.|(Kein Halsband anlegen.),"(Sie wirkt verunsichert.) Ich verstehe, Miss.|Dann reden wir über was anderes.",0,0,0,EndEnslaveJennifer()
+290,0,0,,"Ich kontrolliere dein Leben,|inklusive Sex und Hobbys.",Das klingt wirklich hart.|Aber wenn es zum Training gehört.,291,0,1,
+290,0,0,,Als meine Sub wirst du|sehr beliebt werden.,"Es wäre ein Traum, Miss!",291,1,0,
+290,0,0,,Du wirst mir gehorchen|wie ein Hund.,"(Sie seufzt und schaut zu Boden.)|Ein Hund? Sehr wohl, Miss.",291,-1,1,
+291,0,0,,Du wirst dir keine|andere Herrin suchen.,"(Sie schluckt.) Natürlich, Herrin.",292,-1,1,
+291,0,0,,Wie redest du mich an?,"Das weiß ich, ich werde Sie von|nun an als ""Herrin"" bezeichnen.",292,0,0,
+291,0,0,,"Du wirst mich nun|""Herrin"" nennen.","Ja, Herrin, einverstanden.",292,0,0,
+291,0,0,,Ich werde deine Herrin sein.|Ist das für dich in Ordnung?,"Ja, Herrin, natürlich.",292,0,-1,
+292,0,0,,Geh auf die Knie.,(Sie kniet sich langsam vor dir hin.),293,0,0,"ActorSetPose(""Kneel"")"
+292,0,0,,Würdest du dich bitte|für mich hinknien?,(Sie kniet sich langsam vor dir hin.),293,0,-1,"ActorSetPose(""Kneel"")"
+292,0,0,,"Auf die Knie,|Schlampe.",(Sie kniet sich langsam vor dir hin.),293,-1,1,"ActorSetPose(""Kneel"")"
+293,0,0,,"Sobald das Halsband sitzt,|bist du mein Eigentum.","(Sie sieht das Halsband an und nickt.)|Ich verstehe und bin einverstanden, Herrin.",294,0,0,
+293,0,0,,Nach diesem Halsband|gibt es kein Zurück mehr.,"(Sie sieht das Halsband an und nickt.)|Ich verstehe und bin einverstanden, Herrin.",294,0,0,
+294,0,0,,(Ihr das Halsband|umschließen.),(Du legst das Lederhalsband um ihren Hals|und schließt es mit einem Vorhängeschloss zu.),295,0,3,LockCollarJennifer()
+295,0,0,,Du bist jetzt|meine Bitch.,"(Sie rückt sich das Halsband zurecht.)|Ja, Herrin, ich befolge Eure Regeln.",296,-1,0,
+295,0,0,,Du gehörst mir.,"(Sie rückt sich das Halsband zurecht.)|Ja, Herrin, ich befolge Eure Regeln.",296,0,0,
+295,0,0,,Du bist mir|jetzt untergeben.,"(Sie rückt sich das Halsband zurecht.)|Ja, Herrin, ich befolge Eure Regeln.",296,0,0,
+296,0,0,,"Ich schwöre, dich|zu beschützen.","(Sie nickt.) Danke, Herrin.|Ich werde sicher viel lernen.",297,1,0,
+296,0,0,,"Ich schwöre, dir zu helfen.","(Sie lächelt.) Danke, Herrin.|Ich werde sicher viel lernen.",297,1,-1,
+296,0,0,,"Ich schwöre, dich|zu disziplinieren.","(Sie atmet schwer.) Danke, Herrin.|Ich werde sicher viel lernen.",297,-1,1,
+297,0,0,,"Steh auf, meine|süße Sklavin.",(Sie lächelt und erhebt sich langsam.)|Ich kann mein Training kaum erwarten.,0,1,0,EndEnslaveJennifer()
+297,0,0,,"Steh auf, Schlampe.",(Sie runzelt die Stirn und erhebt sich langsam.)|Ich kann mein Training kaum erwarten.,0,-1,0,EndEnslaveJennifer()
+297,0,0,,Steh auf.,(Sie nickt und erhebt sich langsam.)|Ich kann mein Training kaum erwarten.,0,0,0,EndEnslaveJennifer()
+300,0,0,,Einen Mentor?,"Ein Mentor ist ein Coach für das Leben, der dir|Ratschläge gibt und dich trainiert, besser zu werden.",301,0,0,
+300,0,0,,"Du meinst, ich|brauche einen Mentor?","Du brauchst einen Coach für das Leben, der dir|Ratschläge gibt und dich trainiert, besser zu werden.",301,0,0,
+300,0,0,,Was macht denn|ein Mentor?,"Ein Mentor ist ein Coach für das Leben, der dir|Ratschläge gibt und dich trainiert, besser zu werden.",301,0,0,
+301,0,0,,"Sind Sie eine Mentorin,|Miss Jennifer?","Nein, aber ich hatte selbst schon Mentoren.|Vielleicht könnte ich dich trainieren, Mädchen.",302,0,0,
+301,0,0,,Würdest du|mich coachen?,"Ja. Vielleicht könnte ich|dich trainieren, Mädchen.",302,0,0,
+301,0,0,,Wie eine Herrin?,"Ja, manche bevorzugen die Bezeichnung ""Herrin"".|Mmmh. Vielleicht könnte ich dich trainieren, Mädchen.",302,0,0,
+301,0,0,,"Hatten Sie auch|Mentoren, Miss?","Ja, ich hatte selbst schon Mentoren.|Vielleicht könnte ich dich trainieren, Mädchen.",302,0,0,
+302,0,0,,Mich trainieren?|Wie denn?,"Ich kann dir mentale und körperliche Disziplin beibrin-|gen, das hilft bei vielen Sportarten und in der Schule.",303,0,0,
+302,0,0,,(Schweigen.),"Ich kann dir mentale und körperliche Disziplin beibrin-|gen, das hilft bei vielen Sportarten und in der Schule.",303,0,0,
+302,0,0,,Training ist|nichts für mich.,"Mag sein. Aber denk darüber nach und sag|Bescheid, wenn du es dir anders überlegst.",399,0,0,
+303,0,0,,Disziplin ist|nichts für mich.,"Mag sein. Aber denk darüber nach und sag|Bescheid, wenn du es dir anders überlegst.",399,0,0,
+303,0,0,,Klingt anstrengend.,Wir gehen die Sache Schritt für Schritt an.|Aber du musst dich an meine Regeln halten.,304,0,0,
+303,0,0,,Gefällt mir.,"Sehr schön, freut mich, dass dir die Idee gefällt.|Aber du musst dich an meine Regeln halten.",304,0,0,
+303,0,0,,Mehr Disziplin|könnte hilfreich sein.,"Auf jeden Fall, aber das bedeutet auch,|dass du dich an meine Regeln halten musst.",304,0,0,
+304,0,0,,Was für Regeln?,"Ich entscheide, was du anziehst, mit|wem du schläfst und wie du trainierst.",305,0,0,
+304,0,0,,Regeln sind|was für Versager.,"Dann wird das nichts. Denk darüber nach und|sag Bescheid, wenn du es dir anders überlegst.",399,0,0,
+304,0,0,,Viele Regeln?,"Ich entscheide, was du anziehst, mit|wem du schläfst und wie du trainierst.",305,0,0,
+305,0,0,,Und du wärst dann|meine Mentorin?,"Ja, ich wäre deine Mentorin|und du mein Schützling.",306,0,0,
+305,0,0,,Und du bist ganz|sicher dazu bereit?,"Ja, ich wäre deine Mentorin|und du mein Schützling.",306,0,0,
+305,0,0,Common_ActorIsLover,"Mein Schatz, du würdest|mich wirklich betreuen?","Ja, ich wäre deine Mentorin|und du mein Schützling.",306,0,0,
+305,0,0,,"Ich weiß nicht, ob|das so eine gute Idee ist.","Keine Ahnung. Denk darüber nach und|sag Bescheid, wenn du es tun willst.",399,0,0,
+306,0,0,,Ich bin keine Sklavin!,"Dann wird das nichts. Denk darüber nach und|sag Bescheid, wenn du es dir anders überlegst.",399,0,0,
+306,0,0,,Was ist ein Schützling?,Als mein Schützling unterwirfst du dich mir völlig. Ich|schütze und trainiere dich und lege dir ein Halsband an.,307,0,0,
+306,0,0,,Ich wäre deine Sklavin?,"Keine Sklavin, aber du unterwirfst dich mir völlig. Ich|schütze und trainiere dich und lege dir ein Halsband an.",307,0,0,
+306,0,0,,Du würdest mich besitzen?,"In gewisser Weise ja, du unterwirfst dich mir völlig. Ich|schütze und trainiere dich und lege dir ein Halsband an.",307,0,0,
+306,0,0,,(Schweigen.),Als mein Schützling unterwirfst du dich mir völlig. Ich|schütze und trainiere dich und lege dir ein Halsband an.,307,0,0,
+306,0,0,,Das klingt|nicht richtig.,"Dann wird das nichts. Denk darüber nach und|sag Bescheid, wenn du es dir anders überlegst.",399,0,0,
+307,0,0,,Ein Halsband?|Wie ein Hund?,"Nein. Dein Halsband zeigt, dass du Eigentum bist.|Es ist eine Schultradition, weiß nicht genau warum.",308,0,0,
+307,0,0,,In der Schule waren auch|Mädchen mit Halsbändern.,"Das bedeutet, dass diese Mädchen Eigentümer sind.|Es ist eine Schultradition, weiß nicht genau warum.",308,0,0,
+307,0,0,,Ich bin keine Bitch!,"Dann wird das nichts. Denk darüber nach und|sag Bescheid, wenn du es dir anders überlegst.",399,0,0,
+307,0,0,,Ein BDSM-Halsband?|Das ist sexy.,"Vielleicht. Dein Halsband zeigt, dass du Eigentum bist.|Es ist eine Schultradition, weiß nicht genau warum.",308,0,0,
+308,0,0,,Ich hab Angst.,"Ich weiß, es ist unheimlich. Denk darüber nach|und sag Bescheid, wenn du es dir anders überlegst.",399,0,0,
+308,0,0,,Dann willst du|mich wirklich besitzen?,"Ja, das will ich. Willst du mein Schützling sein?|Akzeptierst du mein abgeschlossenes Halsband?",309,0,0,
+308,0,0,,Das ist aufregend.,"Ja, das ist es. Willst du mein Schützling sein?|Akzeptierst du mein abgeschlossenes Halsband?",309,0,0,
+309,0,0,Common_PlayerNaked,"Ja, Miss Jennifer.|(Dich unterwerfen.)","Super! Man nennt das hier die Halsband-Zeremonie.|Ich bitte dich nun, dich vor mir hinzuknien.",321,0,0,
+309,0,0,!Common_PlayerNaked,"Ja, Miss Jennifer.|(Dich unterwerfen.)","Super! Man nennt das hier die Halsband-Zeremonie.|Ich bitte dich nun, dich auszuziehen.",320,0,0,
+309,0,0,,Das kann ich nicht tun.,"Ich werde dich nicht zwingen. Denk darüber nach|und sag Bescheid, wenn du es dir anders überlegst.",399,0,0,
+320,0,0,,"Ja, Miss.|(Dich ausziehen.)","(Du ziehst dich für Jennifer aus und sie nickt.)|Sehr gut, mein Schützling. Jetzt geh auf die Knie.",321,0,0,PlayerStrip()
+320,0,0,,Warum sollte ich|mich ausziehen?,Es gehört zur Zeremonie.|Traditionen sind wichtig.,320,0,0,
+321,0,0,,"Ja, Miss Jennifer.|(Auf die Knie gehen.)","Sprich mir nach: ""Heute werde|ich zu Eurem Schützling.""",322,0,1,"SetPlayerPose(""BackKneel"")"
+321,0,0,,Mit Vergnügen.|(Auf die Knie gehen.),"Sprich mir nach: ""Heute werde|ich zu Eurem Schützling.""",322,0,0,"SetPlayerPose(""BackKneel"")"
+322,0,0,,(Zuhören.),"(Sie wartet darauf, dass du ihr nachsprichst.)",323,0,0,
+323,0,0,,Heute bin ich|Euer Schützling.,"""Heute werdet Ihr zu meiner Mentorin.""",324,-1,0,
+323,0,0,,Heute werde ich|zu Eurem Schützling.,"""Heute werdet Ihr zu meiner Mentorin.""",324,1,0,
+323,0,0,,Heute werde ich|Euer Schützling.,"""Heute werdet Ihr zu meiner Mentorin.""",324,-1,0,
+324,0,0,,(Zuhören.),"(Sie wartet darauf, dass du ihr nachsprichst.)",325,0,0,
+325,0,0,,Heute werdet Ihr|zu meiner Mentorin.,"""Ich schwöre, treu, folgsam und ehrlich zu sein.""",326,1,0,
+325,0,0,,Heute werdet Ihr|meine Mentorin.,"""Ich schwöre, treu, folgsam und ehrlich zu sein.""",326,-1,0,
+325,0,0,,Heute seid Ihr|meine Mentorin.,"""Ich schwöre, treu, folgsam und ehrlich zu sein.""",326,-1,0,
+326,0,0,,(Zuhören.),"(Sie wartet darauf, dass du ihr nachsprichst.)",327,0,0,
+327,0,0,,"Ich schwöre, treu, ehrlich|und folgsam zu sein.",(Sie holt ein robustes Lederhalsband aus|ihrer Tasche.) Bitte gib mir deinen Hals.,328,-1,0,
+327,0,0,,"Ich schwöre, folgsam, treu|und ehrlich zu sein.",(Sie holt ein robustes Lederhalsband aus|ihrer Tasche.) Bitte gib mir deinen Hals.,328,-1,0,
+327,0,0,,"Ich schwöre, ehrlich, treu|und folgsam zu sein.",(Sie holt ein robustes Lederhalsband aus|ihrer Tasche.) Bitte gib mir deinen Hals.,328,-1,0,
+327,0,0,,"Ich schwöre, treu, folgsam|und ehrlich zu sein.",(Sie holt ein robustes Lederhalsband aus|ihrer Tasche.) Bitte gib mir deinen Hals.,328,1,0,
+327,0,0,,"Ich schwöre, ehrlich,|folgsam und treu zu sein.",(Sie holt ein robustes Lederhalsband aus|ihrer Tasche.) Bitte gib mir deinen Hals.,328,-1,0,
+327,0,0,,"Ich schwöre, folgsam,|ehrlich und treu zu sein.",(Sie holt ein robustes Lederhalsband aus|ihrer Tasche.) Bitte gib mir deinen Hals.,328,-1,0,
+328,0,0,!Common_ActorIsLover,(Ihr deinen|Hals hinhalten.),"(Sie schnallt das Halsband fest und schließt es ab.)|Von nun an nennst du mich nur noch ""Mentorin"".",329,0,-3,PlayerCollared()
+328,0,0,Common_ActorIsLover,(Ihr deinen|Hals hinhalten.),"(Sie schnallt das Halsband fest und schließt es ab.)|Von nun an nennst du mich ""Mentorin"", Schatz.",329,0,-3,PlayerCollared()
+329,0,0,,Ich bin so glücklich!,Ich bin auch aufgeregt. Ich bereite|bald einen Trainingsplan für dich vor.,330,1,0,
+329,0,0,,"Ich weiß, dass ich|gut aufgehoben bin.","Ich versuche, eine gute Mentorin zu sein. Ich|bereite bald einen Trainingsplan für dich vor.",330,1,0,
+329,0,0,,Ich fühle mich|nicht so gut.,Das wird schon. Ich bereite bald|einen Trainingsplan für dich vor.,330,-1,0,
+329,0,0,,(Schweigen und auf|ihre Füße schauen.),"Ich bereite bald einen Trainingsplan|für dich vor, mein kleiner Schützling.",330,0,-1,
+329,0,0,,Muss das Halsband|so eng sein?,Du gewöhnst dich daran. Ich bereite|bald einen Trainingsplan für dich vor.,330,0,1,
+330,0,0,,Ich kann mein|Training kaum erwarten!,"Das lob ich mir! Wir fangen bald an.|Jetzt steh auf, die Zeremonie ist vorbei.",331,1,0,
+330,0,0,,"Okay, Jennifer.","Nein, Mädchen, du musst mich ""Mentorin"" nennen.|Jetzt steh auf, die Zeremonie ist vorbei.",331,-1,0,
+330,0,0,,Sehr gut.,"Steh auf, mein Schützling.|Die Zeremonie ist vorbei.",331,0,0,
+331,0,0,,"Ja, Mentorin.|(Aufstehen.)","Ich bin froh, dich in meiner Obhut|zu haben, mein kleiner Schützling.",0,0,0,PlayerStandUp()
+331,0,0,,(Schweigen|und aufstehen.),"Ich bin froh, dich in meiner Obhut|zu haben, mein kleiner Schützling.",0,0,0,PlayerStandUp()
+399,0,0,,"Sehr wohl, Miss.|(Zurück zum Zimmer.)",,399,0,0,BackToDorm()
+450,0,0,,Ja! Zeit zu trainieren.,,0,0,0,RandomJenniferDommeEvent()
+450,0,0,,Was für ein Training?,,0,0,0,RandomJenniferDommeEvent()
+450,0,0,,(Fröhlich nicken.),,0,0,0,RandomJenniferDommeEvent()
+450,0,0,,(Überrascht gucken.),,0,0,0,RandomJenniferDommeEvent()
+500,0,0,,Hast du Freunde?,"Ja und nein, Sidney kann ganz freundlich sein,|wenn sie mich nicht gerade wegen Geld mobbt.",510,0,0,
+500,0,0,,Was machst du so|außerhalb der Schule?,"Ich gehe laufen und schwimmen und|mache Kampfsport, wenn ich einen Partner finde.",510,0,0,
+500,0,0,,Warum bist du|immer allein?,Bitte sag das nicht. Ich bin nicht immer allein.|Ich hab Mitbewohner... die ständig streiten.,510,-1,1,
+500,0,0,,Was ist dein|Lieblingssport?,"Ich liebe Tennis, Basketball und viele Kampfsportarten.|Ich wünschte, mehr Leute hier würden da mitmachen.",510,1,0,
+500,0,0,,Du siehst einsam aus.|Genau wie ich.,"Ich weiß, wie du dich fühlst. Man findet|eher Feinde als Freunde, wenn man die Neue ist.",510,1,-1,
+510,0,0,,"Und du musst fit bleiben,|um dich zu verteidigen?","Ja. Aber ich brauche jemanden, mit dem|ich das Kämpfen trainieren kann.",520,1,0,
+510,0,0,,Wie gehst du mit|Mobbing um?,"Bis jetzt nicht besonders gut. Ich bräuchte|jemanden, mit dem ich Kampftraining machen kann.",520,0,0,
+510,0,0,,Wurdest du schon mal|öffentlich befummelt?,"Ja, es war schrecklich, darum trainiere ich. Ich brauche|jemanden, mit dem ich das Kämpfen üben kann.",520,-1,0,
+510,0,0,,Hast du es|mit Boxen versucht?,"Ja, aber Judo oder Karate sind mir lieber.|Ich brauche jemanden zum Üben.",520,0,0,
+520,0,0,,"Wir könnten kämpfen,|wenn du mir nicht wehtust.","Vielleicht kein richtiger Kampf, aber wir|könnten einen Übergriff in der Schule simulieren.",530,0,-1,
+520,0,0,,Wir könnten zur Übung|miteinander kämpfen.,"Vielleicht kein richtiger Kampf, aber wir|könnten einen Übergriff in der Schule simulieren.",530,0,0,
+520,0,0,,Ich könnte dir das|Kämpfen beibringen.,"Vielleicht kein richtiger Kampf, aber wir|könnten einen Übergriff in der Schule simulieren.",530,0,1,
+520,0,0,,Such dir jemand Anderen.|Ich hasse Kämpfen.,"Also gut, ich suche mir jemand Anderen.|Also, was gibt's Neues?",0,-1,-1,AllowLeave()
+520,0,0,,Du solltest in der|Schule jemanden finden.,"Ja, vielleicht finde ich jemand Anderen.|Also, was gibt's Neues?",0,-1,0,AllowLeave()
+530,0,0,,Simulieren wir eine|kleine Prügelei.,(Ihr packt euch gegenseitig in euren Schuluniformen.),540,0,0,StartFight()
+530,0,0,,"Also gut, dann los!",(Ihr packt euch gegenseitig in euren Schuluniformen.),540,0,0,StartFight()
+530,0,0,,Nein! Das ist|keine gute Idee.,"Gut, wir müssen ja nicht zusammen trainieren.|Also, was gibt's sonst noch Neues?",0,-1,0,AllowLeave()
+540,0,0,,"(Versuchen, sie|zu besiegen.)","(Du gibst dein Bestes, kommst aber nicht gegen|sie an. Sie hält deine Arme hinter deinem Rücken fest.)",550,0,-1,Fight(false)
+540,0,0,,(Sie gewinnen lassen.),(Du gibst dir kaum Mühe und verlierst.|Sie hält deine Arme hinter deinem Rücken fest.),550,0,-1,Fight(true)
+550,0,0,,Au! Bitte lass|mich los!,(Sie lässt dich los.) 'Tschuldigung.|Ich wollte dir nicht wehtun.,570,0,-1,
+550,0,0,,Du hast geschummelt!,(Sie lässt dich los und runzelt die Stirn.)|Ich hab nicht geschummelt! Es war ein fairer Kampf.,570,-1,0,
+550,0,0,,Du bist echt|gut darin!,"(Sie lässt dich los und lächelt.)|Danke, du brauchst auch etwas Übung.",570,1,0,
+560,0,0,,Das hat Spaß gemacht!,(Du lässt sie los und sie lächelt.)|Ja! Aber ich brauche mehr Übung.,570,1,0,
+560,0,0,,Du bist schwach.,(Du lässt sie los und sie senkt den Kopf.)|Du bist echt stark. Ich muss mehr trainieren.,570,-1,1,
+560,0,0,,Ich hatte Glück.,"(Du lässt sie los und sie schüttelt den Kopf.) Ich glaube|nicht, dass das Glück war. Ich muss mehr trainieren.",570,1,-1,
+570,0,0,,Wir können später mehr|Kampftraining machen.,"Super! Sag Bescheid, wann immer dir danach ist.",0,1,0,UnlockTraining()
+570,0,0,,"Nein, das reicht mir.",(Sie wirkt enttäuscht.) Also gut.|Ich suche mir einen anderen Trainingspartner.,0,-1,0,AllowLeave()
+590,0,0,,"Also gut, dann los!",(Ihr packt euch gegenseitig in euren Schuluniformen.),591,0,0,StartFight()
+591,0,0,,"(Versuchen, sie|zu besiegen.)","(Du gibst dein Bestes, kommst aber nicht gegen|sie an. Sie hält deine Arme hinter deinem Rücken fest.)",592,0,0,Fight(false)
+591,0,0,,(Sie gewinnen lassen.),(Du gibst dir kaum Mühe und verlierst.|Sie hält deine Arme hinter deinem Rücken fest.),592,0,0,Fight(true)
+592,0,0,,Au! Bitte lass|mich los!,(Sie lässt dich los.) 'Tschuldigung.|Ich wollte dir nicht wehtun.,594,0,0,
+592,0,0,,Du hast geschummelt!,(Sie lässt dich los und runzelt die Stirn.)|Ich hab nicht geschummelt! Es war ein fairer Kampf.,594,0,0,
+592,0,0,,Du bist echt|gut darin!,"(Sie lässt dich los und lächelt.)|Danke, du brauchst auch etwas Übung.",594,0,0,
+593,0,0,,Das hat Spaß gemacht!,(Du lässt sie los und sie lächelt.)|Ja! Aber ich brauche mehr Übung.,594,0,0,
+593,0,0,,Du bist schwach.,(Du lässt sie los und sie senkt den Kopf.)|Du bist echt stark. Ich muss mehr trainieren.,594,0,0,
+593,0,0,,Ich hatte Glück.,"(Du lässt sie los und sie schüttelt den Kopf.) Ich glaube|nicht, dass das Glück war. Ich muss mehr trainieren.",594,0,0,
+594,0,0,,Wir können später mehr|Kampftraining machen.,"Super! Sag Bescheid, wann immer dir danach ist.",0,0,0,AllowLeave()
+594,0,0,,Übung macht|den Meister.,"Richtig! Sag Bescheid, wenn du weiterüben willst.",0,0,0,AllowLeave()
+600,0,0,,Zieh deine|Schuluniform an.,"Gut, unsere College hat ganz nette Uniformen.|(Sie zieht ihre Schuluniform an.)",0,0,0,"ForceChangeActor(""Clothed"")"
+600,0,0,AllowTennisOutfit,Zieh deine|Tenniskleidung an.,(Sie nickt und zieht sich um.) Klar!|Lass uns morgen eine Runde spielen.,0,0,0,"ForceChangeActor(""Tennis"")"
+600,0,0,AllowSwimsuit,Zieh deine|Badesachen an.,(Sie nickt und zieht sich um.) Also gut.|Möchtest du zurück zum Pool?,0,0,0,"ForceChangeActor(""Swimsuit"")"
+600,0,0,!HasBelt,Lass deine|Unterwäsche sehen.,Planst du etwas Verrücktes?|(Sie zeigt dir ihre Unterwäsche.),0,0,0,"ForceChangeActor(""Underwear"")"
+600,0,0,,Zieh dich aus.,Mach bitte keine Fotos.|(Sie zieht sich für dich aus.),0,0,0,"ForceChangeActor(""Naked"")"
+600,0,0,,Vergiss es.,(Sie nickt langsam.),0,0,0,
+610,0,0,,Du darfst dir heute einen|schönen Abend machen.,"Danke, Herrin. Aber ich hab|nichts vor, also bleibe ich hier.",0,0,0,"SetCurfew(""None"")"
+610,0,0,,"Genieße deinen Abend,|aber du schläfst hier.","Ich schlafe in Eurem Zimmer?|Das hab ich nicht erwartet, Herrin.",0,0,0,"SetCurfew(""24"")"
+610,0,0,CanSetCurfew22,"Du darfst Spaß haben, aber|sei um 22 Uhr wieder hier.","Danke, Herrin. Aber ich hab|nichts vor, also bleibe ich hier.",0,0,0,"SetCurfew(""22"")"
+610,0,0,,Du darfst mein Zimmer|heute nicht verlassen.,"Also gut, Herrin. Ich hatte|sowieso nicht vor, rauszugehen.",0,0,0,"SetCurfew(""Stay"")"
+630,0,0,,Zieh dich erst aus.,(Sie nickt und zieht sich langsam für dich aus.),631,0,0,"ForceChangeActor(""Naked"")"
+630,0,0,,"Ausziehen, Mädchen.",(Sie nickt und zieht sich langsam für dich aus.),631,0,0,"ForceChangeActor(""Naked"")"
+630,0,0,,Ich hab's mir|anders überlegt.,"Okay. Was möchtet Ihr tun, Herrin?",0,0,0,EndEnslaveJennifer()
+631,0,0,,Komm mit ins Bett.|(Ausziehen und ins Bett.),"(Du ziehst dich aus und zerrst sie zum|Bett, wo sie vor dir auf die Knie geht.)",632,0,0,StartPleasurePlayer()
+631,0,0,,"An die Arbeit, Sklavin.|(Ausziehen und ins Bett.)","(Du ziehst dich aus und zerrst sie zum|Bett, wo sie vor dir auf die Knie geht.)",632,0,0,StartPleasurePlayer()
+631,0,0,,"Komm, mein liebes Kleines.|(Ausziehen und ins Bett.)","(Du ziehst dich aus und zerrst sie zum|Bett, wo sie vor dir auf die Knie geht.)",632,0,0,StartPleasurePlayer()
+631,0,0,,Ich hab's mir|anders überlegt.,"Okay. Was möchtet Ihr tun, Herrin?",0,0,0,EndEnslaveJennifer()
+632,0,0,,"Befriedige mich,|meine Kleine.","(Sie bückt sich nah an deine Vagina|und fängt an, langsam zu lecken.)",633,0,0,
+632,0,0,,"Leck, Schlampe!","(Sie bückt sich nah an deine Vagina|und fängt an, langsam zu lecken.)",633,0,0,
+632,0,0,,"Du weißt,|was zu tun ist.","(Sie bückt sich nah an deine Vagina|und fängt an, langsam zu lecken.)",633,0,0,
+633,0,0,,(Dich befriedigen lassen.),(Du lässt dich von Jennifer oral befriedigen|und driftest langsam in Ekstase ab.),633,0,0,PleasurePlayer()
+633,0,0,,Das reicht!|(Alles abbrechen.),"(Du drückst sie weg und lässt sie aufhören.)|War das gut, Herrin? Seid Ihr befriedigt?",635,0,0,StopPleasureFromJennifer()
+633,0,0,,"(Sie zwingen,|schneller zu werden.)","(Du drückst deine Beine um ihren Kopf zusammen,|sodass sie nach Atem ringt und schneller wird.)",633,0,0,PleasurePlayerSetSpeed(1)
+633,0,0,,"(Sie zwingen,|langsamer zu werden.)","(Du lässt deine Beine um ihren Kopf locker,|sodass sie ihren Rhythmus verlangsamen kann.)",633,0,0,PleasurePlayerSetSpeed(-1)
+634,0,0,,"Aaaaah! Aufhören, Sklavin!|(Alles abbrechen.)","(Ihr haltet an und steht beide auf.)|Hat es Euch gefallen, Herrin? Wie war's?",635,0,0,StopPleasureFromJennifer()
+634,0,0,,Das reicht!|(Alles abbrechen.),"(Ihr haltet an und steht beide auf.)|Hat es Euch gefallen, Herrin? Wie war's?",635,0,0,StopPleasureFromJennifer()
+635,0,0,,Es war wundervoll.|Ich zittere noch immer.,"Es freut mich sehr, das zu hören.|Was möchtet Ihr jetzt tun?",0,0,0,"EndPleasureFromJennifer(2, -1)"
+635,0,0,,Es war gut.,"Es freut mich, das zu hören.|Was möchtet Ihr jetzt tun?",0,0,0,"EndPleasureFromJennifer(1, 0)"
+635,0,0,,Es war okay.,"Ich gebe mir beim nächsten Mal mehr Mühe, Herrin.|Was möchtet Ihr jetzt tun?",0,0,0,"EndPleasureFromJennifer(0, 0)"
+635,0,0,,"Wenn wir das jeden Tag|üben, wird das schon.","Jeden Tag, Herrin? Au weia!|Was möchtet Ihr jetzt tun?",0,0,0,"EndPleasureFromJennifer(0, 1)"
+635,0,0,,Ich hab schon|Besseres erlebt.,"Das tut mir sehr leid, Herrin.|Was möchtet Ihr jetzt tun?",0,0,0,"EndPleasureFromJennifer(-1, 0)"
+635,0,0,,Du brauchst etwas|Oral-Training.,"Ich werde für Euch trainieren, Herrin.|Was möchtet Ihr jetzt tun?",0,0,0,"EndPleasureFromJennifer(-2, 1)"
+640,0,0,!Common_PlayerGagged,(Sie küssen.),"(Du küsst sie liebevoll,|während sie leise stöhnt.)",640,0,0,Masturbate(0)
+640,0,0,,(Ihre Brust massieren.),"(Du massierst ihre kleine Brust,|aber es scheint sie nicht anzumachen.)",640,0,0,Masturbate(0)
+640,0,0,,(Ihren Nippel kneifen.),(Sie wimmert vor Schmerz.|Es scheint ihr nicht zu gefallen.),640,0,0,Masturbate(-1)
+640,0,0,,(Ihr auf den Hintern|klatschen.),"(Du haust ihr ein paar Mal auf den Hintern,|während sie vor Schmerz wimmert.)",640,0,0,Masturbate(-1)
+640,0,0,,(Ihre Klitoris|streicheln.),(Sie schaudert ein wenig und scheint|deine sanfte Berührung zu genießen.),640,0,0,Masturbate(1)
+640,0,0,,(Mit ihrer Vagina spielen.),"(Sie stöhnt laut und atmet immer schneller,|während sie die Kontrolle verliert.)",640,0,0,Masturbate(2)
+640,0,0,,(Einen Finger rein-|und rausbewegen.),(Deine zarte Berührung lässt sie|leise stöhnen und langsam zittern.),640,0,0,Masturbate(1)
+640,0,0,!Common_PlayerGagged,(Sie naschen.),"(Du vernaschst sie leidenschaftlich, während|sie laut stöhnt und wie wild zittert.)",640,0,0,Masturbate(2)
+640,0,0,,(Sie fisten.),"(Du versuchst, eine ganze Hand in sie|hineinzubekommen, tust Jennifer aber nur weh.)",640,0,0,Masturbate(-2)
+640,0,0,,(Alles abbrechen.),(Du brichst alles ab und lässt sie los.),0,0,0,EndEnslaveJennifer()
+641,0,0,,(Orgasmus herbeiführen.),(Du befriedigst sie weiter und sie bricht schnell|mit einem wundervollen Orgasmus zusammen.),642,0,0,JenniferOrgasm()
+641,0,0,Common_ActorIsOwned,"Du verdienst es, Sklavin.|(Orgasmus herbeiführen.)",(Du befriedigst sie weiter und sie bricht schnell|mit einem wundervollen Orgasmus zusammen.),642,0,0,JenniferOrgasm()
+641,0,0,,(Alles abbrechen.),(Du brichst alles ab und lässt sie los.|Sie seufzt und wirkt ziemlich enttäuscht.),0,0,0,JenniferDeniedOrgasm()
+641,0,0,Common_ActorIsOwned,"Du verdienst es nicht,|Sklavin. (Alles abbrechen.)",(Du brichst alles ab und lässt sie los.|Sie seufzt und wirkt ziemlich enttäuscht.),0,0,0,JenniferDeniedOrgasm()
+642,0,0,Common_ActorIsLover,"Ich liebe dich,|Jennifer.","(Sie wird rot und atmet durch,|während sie aufsteht.)",0,1,0,EndEnslaveJennifer()
+642,0,0,,Du bist so eine Nutte.,"(Sie runzelt die Stirn und atmet|durch, während sie aufsteht.)",0,-1,1,EndEnslaveJennifer()
+642,0,0,,Hoffentlich|hat's dir gefallen.,"(Sie nickt und atmet durch,|während sie aufsteht.)",0,0,0,EndEnslaveJennifer()
+642,0,0,,"Ich bestimme, wann|du kommst, Mädchen.","(Sie nickt und atmet durch,|während sie aufsteht.)",0,0,1,EndEnslaveJennifer()
+642,0,0,,(Sie umarmen.),"(Du gibst ihr eine warme Umarmung|und hilfst ihr, sich zu erholen.)",0,1,-1,EndEnslaveJennifer()
+642,0,0,,(Ihr beim|Erholen helfen.),"(Du hilfst ihr, sich zu erholen.)",0,0,-1,EndEnslaveJennifer()
+650,0,0,,Alles klar.,(Sie holt einen doppelseitigen Dildo|aus ihrer Tasche und errötet.),651,0,0,
+650,0,0,,Klar! Zeig dein Spielzeug.,(Sie holt einen doppelseitigen Dildo|aus ihrer Tasche und errötet.),651,0,0,
+650,0,0,,Was für ein Spielzeug?,(Sie holt einen doppelseitigen Dildo|aus ihrer Tasche und errötet.),651,0,0,
+650,0,0,Common_ActorIsOwner,"Ein Spielzeug, Mentorin?",(Sie holt einen doppelseitigen Dildo|aus ihrer Tasche und lächelt.),651,0,0,
+650,0,0,Common_ActorIsOwned,"Du bist wild|drauf, meine Kleine.",(Sie holt einen doppelseitigen Dildo|aus ihrer Tasche und errötet.),651,0,0,
+651,0,0,,(Ins Bett gehen.),,0,0,0,MakeLove()
+651,0,0,!Common_ActorIsOwner,(Sie aufs Bett schubsen.),,0,0,0,MakeLove()
+651,0,0,!Common_ActorIsOwned,(Dich von ihr ins|Bett tragen lassen.),,0,0,0,MakeLove()
+790,0,0,,Komm irgendwann anders.|Heute muss ich lernen.,"Kein Ding, bis später dann.|(Sie geht hinaus und schließt die Tür.)",791,-1,0,KickedOut()
+790,0,0,,Du musst gehen.|Wir reden später.,"Na gut, bis später dann.|(Sie geht hinaus und schließt die Tür.)",791,-2,0,KickedOut()
+790,0,0,,Sei nicht sauer.|Es tut mir leid.,"Schon gut, bis später dann.|(Sie geht hinaus und schließt die Tür.)",791,-1,-1,KickedOut()
+790,0,0,,"Nimm deinen Scheiß|und hau ab, Mädchen.","Du brauchst nicht so bissig zu sein, weißt du.|(Sie geht hinaus und schließt die Tür.)",791,-2,1,KickedOut()
+791,0,0,,(Zurück zum Zimmer.),,791,0,0,BackToDorm()
+800,0,0,,Mach ein paar|Liegestütze!,"(Sie nickt fröhlich und fängt an, ein paar|ziemlich extreme Liegestütze zu machen.)",810,0,0,SubTraining()
+800,0,0,,Mach ein paar|Sit-ups!,"(Sie nickt fröhlich und fängt an, ein paar|ziemlich extreme Sit-ups zu machen.)",820,0,0,SubTraining()
+800,0,0,,Mach ein paar|Kniebeugen!,"(Sie nickt fröhlich und fängt an, ein paar|ziemlich extreme Kniebeugen zu machen.)",830,0,0,SubTraining()
+800,0,0,,Mach ein paar|Hampelmänner!,"(Sie nickt fröhlich und fängt an, ein paar|ziemlich extreme Hampelmänner zu machen.)",840,0,0,SubTraining()
+810,0,0,,Weiter so!,(Sie verschnauft kurz und macht weitere Liegestütze.),810,0,0,SubTraining()
+810,0,0,,Mach ein paar|Sit-ups!,"(Sie nickt und fängt an, ein paar Sit-ups zu machen.)",820,0,0,SubTraining()
+810,0,0,,Mach ein paar|Kniebeugen!,"(Sie nickt und fängt an,|ein paar Kniebeugen zu machen.)",830,0,0,SubTraining()
+810,0,0,,Mach ein paar|Hampelmänner!,"(Sie nickt und fängt an,|ein paar Hampelmänner zu machen.)",840,0,0,SubTraining()
+810,0,0,,Das reicht!,"(Sie steht auf.) Sehr wohl, Herrin.|Es ist wundervoll, von Euch trainiert zu werden.",0,0,0,"ActorSetPose(""Exhausted"")"
+820,0,0,,Mach ein paar|Liegestütze!,"(Sie nickt und fängt an,|ein paar Liegestütze zu machen.)",810,0,0,SubTraining()
+820,0,0,,Weiter so!,(Sie verschnauft kurz und macht weitere Sit-ups.),820,0,0,SubTraining()
+820,0,0,,Mach ein paar|Kniebeugen!,"(Sie nickt und fängt an,|ein paar Kniebeugen zu machen.)",830,0,0,SubTraining()
+820,0,0,,Mach ein paar|Hampelmänner!,"(Sie nickt und fängt an,|ein paar Hampelmänner zu machen.)",840,0,0,SubTraining()
+820,0,0,,Das reicht!,"(Sie steht auf.) Sehr wohl, Herrin.|Es ist wundervoll, von Euch trainiert zu werden.",0,0,0,"ActorSetPose(""Exhausted"")"
+830,0,0,,Mach ein paar|Liegestütze!,"(Sie nickt und fängt an,|ein paar Liegestütze zu machen.)",810,0,0,SubTraining()
+830,0,0,,Mach ein paar|Sit-ups!,"(Sie nickt und fängt an, ein paar Sit-ups zu machen.)",820,0,0,SubTraining()
+830,0,0,,Weiter so!,(Sie verschnauft kurz und macht weitere Kniebeugen.),830,0,0,SubTraining()
+830,0,0,,Mach ein paar|Hampelmänner!,"(Sie nickt und fängt an,|ein paar Hampelmänner zu machen.)",840,0,0,SubTraining()
+830,0,0,,Das reicht!,"(Sie steht auf.) Sehr wohl, Herrin.|Es ist wundervoll, von Euch trainiert zu werden.",0,0,0,"ActorSetPose(""Exhausted"")"
+840,0,0,,Mach ein paar|Liegestütze!,"(Sie nickt und fängt an,|ein paar Liegestütze zu machen.)",810,0,0,SubTraining()
+840,0,0,,Mach ein paar|Sit-ups!,"(Sie nickt und fängt an, ein paar Sit-ups zu machen.)",820,0,0,SubTraining()
+840,0,0,,Mach ein paar|Kniebeugen!,"(Sie nickt und fängt an,|ein paar Kniebeugen zu machen.)",830,0,0,SubTraining()
+840,0,0,,Weiter so!,(Sie verschnauft kurz und|macht weitere Hampelmänner.),840,0,0,SubTraining()
+840,0,0,,Das reicht!,"(Sie hört auf.) Sehr wohl, Herrin.|Es ist wundervoll, von Euch trainiert zu werden.",0,0,0,"ActorSetPose(""Exhausted"")"
+3010,0,0,,"Ja, Mentorin. (Zur|Unterwäsche wechseln.)","(Du ziehst dich für Jennifer um,|während sie dich ansieht und lächelt.)",3090,0,0,"ForceChangePlayer(""Underwear"")"
+3010,0,0,,(Langsam nicken.) (Zur|Unterwäsche wechseln.),"(Du ziehst dich für Jennifer um,|während sie dich ansieht und lächelt.)",3090,0,0,"ForceChangePlayer(""Underwear"")"
+3010,0,0,,Das will ich nicht tun.,"Na schön, dann machen wir eben Pause.|(Sie dreht sich genervt um.)",3093,0,0,TestPunish()
+3010,0,0,,(Den Kopf schütteln.),"Na schön, dann machen wir eben Pause.|(Sie dreht sich genervt um.)",3093,0,0,TestPunish()
+3020,0,0,,"Ja, Mentorin.|(Deine Uniform anziehen.)","(Du ziehst dich für Jennifer um,|während sie dich ansieht und lächelt.)",3090,0,0,"ForceChangePlayer(""Clothed"")"
+3020,0,0,,(Langsam nicken.)|(Deine Uniform anziehen.),"(Du ziehst dich für Jennifer um,|während sie dich ansieht und lächelt.)",3090,0,0,"ForceChangePlayer(""Clothed"")"
+3020,0,0,,Das will ich nicht tun.,"Na schön, dann machen wir eben Pause.|(Sie dreht sich genervt um.)",3093,0,0,TestPunish()
+3020,0,0,,(Den Kopf schütteln.),"Na schön, dann machen wir eben Pause.|(Sie dreht sich genervt um.)",3093,0,0,TestPunish()
+3030,0,0,,"Ja, Mentorin.|(Deinen Bikini anziehen.)","(Du ziehst dich für Jennifer um,|während sie dich ansieht und lächelt.)",3090,0,0,"ForceChangePlayer(""RedBikini"")"
+3030,0,0,,(Langsam nicken.)|(Deinen Bikini anziehen.),"(Du ziehst dich für Jennifer um,|während sie dich ansieht und lächelt.)",3090,0,0,"ForceChangePlayer(""RedBikini"")"
+3030,0,0,,Das will ich nicht tun.,"Na schön, dann machen wir eben Pause.|(Sie dreht sich genervt um.)",3093,0,0,TestPunish()
+3030,0,0,,(Den Kopf schütteln.),"Na schön, dann machen wir eben Pause.|(Sie dreht sich genervt um.)",3093,0,0,TestPunish()
+3050,0,0,,"Ja, Mentorin.|(Dein Kleid anziehen.)","(Du ziehst dich für Jennifer um,|während sie dich ansieht und lächelt.)",3090,0,0,"ForceChangePlayer(""BlackDress"")"
+3050,0,0,,(Langsam nicken.)|(Dein Kleid anziehen.),"(Du ziehst dich für Jennifer um,|während sie dich ansieht und lächelt.)",3090,0,0,"ForceChangePlayer(""BlackDress"")"
+3050,0,0,,Das will ich nicht tun.,"Na schön, dann machen wir eben Pause.|(Sie dreht sich genervt um.)",3093,0,0,TestPunish()
+3050,0,0,,(Den Kopf schütteln.),"Na schön, dann machen wir eben Pause.|(Sie dreht sich genervt um.)",3093,0,0,TestPunish()
+3060,0,0,,"Ja, Mentorin.|(Tenniskleidung anziehen.)","(Du ziehst dich für Jennifer um,|während sie dich ansieht und lächelt.)",3090,0,0,"ForceChangePlayer(""Tennis"")"
+3060,0,0,,(Langsam nicken.)|(Tenniskleidung anziehen.),"(Du ziehst dich für Jennifer um,|während sie dich ansieht und lächelt.)",3090,0,0,"ForceChangePlayer(""Tennis"")"
+3060,0,0,,Das will ich nicht tun.,"Na schön, dann machen wir eben Pause.|(Sie dreht sich genervt um.)",3093,0,0,TestPunish()
+3060,0,0,,(Den Kopf schütteln.),"Na schön, dann machen wir eben Pause.|(Sie dreht sich genervt um.)",3093,0,0,TestPunish()
+3090,0,0,,Sehe ich gut aus?,"Und wie! Jetzt machen wir ein paar Übungen.|(Sie lächelt und fängt an, Übungen zu machen.)",3092,0,0,TestBlockChanging()
+3090,0,0,,Seid Ihr zufrieden?,"Und wie! Jetzt machen wir ein paar Übungen.|(Sie lächelt und fängt an, Übungen zu machen.)",3092,0,0,TestBlockChanging()
+3090,0,0,,(Den Kopf senken.),"Gut siehst du aus! Jetzt machen wir ein paar Übungen.|(Sie lächelt und fängt an, Übungen zu machen.)",3092,0,0,TestBlockChanging()
+3091,0,0,,Ich darf mich nicht|umziehen? Wie lange?,"Bis ich mich umentscheide, jetzt ab in Bewegung!|(Sie lächelt und fängt an, Übungen zu machen.)",3092,0,0,AllowLeave()
+3091,0,0,,(Langsam nicken.),"Bleib so und bewege deinen Körper!|(Sie lächelt und fängt an, Übungen zu machen.)",3092,0,0,AllowLeave()
+3091,0,0,Common_PlayerGagged,@Eehp oheem!,"Bleib so und bewege deinen Körper!|(Sie lächelt und fängt an, Übungen zu machen.)",3092,0,0,AllowLeave()
+3091,0,0,,(Schmollen.),"Arbeite an deiner Einstellung und beweg deinen Körper!|(Sie fängt stirnrunzelnd an, Übungen zu machen.)",3092,0,0,AllowLeave()
+3091,0,0,,Das ist nicht fair!,"Arbeite an deiner Einstellung und beweg deinen Körper!|(Sie fängt stirnrunzelnd an, Übungen zu machen.)",3092,0,0,AllowLeave()
+3092,0,0,,(Etwas trainieren und|zurück zum Zimmer.),,3092,0,0,BackToDorm()
+3093,0,0,,(Zurück zum Zimmer.),,3093,0,0,BackToDorm()
+3100,0,0,,"Ja, Mentorin.|(Ihr deine Sachen zeigen.)",(Sie nimmt ein paar deiner Gegenstände|und setzt sie gegen dich ein.),3190,0,0,"ForceRandomBondage(""Full"")"
+3100,0,0,,(Langsam nicken und ihr|deine Sachen zeigen.),(Sie nimmt ein paar deiner Gegenstände|und setzt sie gegen dich ein.),3190,0,0,"ForceRandomBondage(""Full"")"
+3100,0,0,,Das will ich nicht tun.,"Na schön, dann machen wir eben Pause.|(Sie dreht sich genervt um.)",3191,0,0,TestPunish()
+3110,0,0,,"Ja, Mentorin.|(Ihr deine Sachen zeigen.)",(Sie nimmt einen deiner Gegenstände|und fesselt dich damit.),3190,0,0,"ForceRandomBondage(""Restrain"")"
+3110,0,0,,(Langsam nicken und ihr|deine Sachen zeigen.),(Sie nimmt einen deiner Gegenstände|und fesselt dich damit.),3190,0,0,"ForceRandomBondage(""Restrain"")"
+3110,0,0,,Das will ich nicht tun.,"Na schön, dann machen wir eben Pause.|(Sie dreht sich genervt um.)",3191,0,0,TestPunish()
+3120,0,0,,"Ja, Mentorin.|(Ihr deine Sachen zeigen.)",(Sie nimmt einen deiner Knebel|und knebelt dich damit.),3190,0,0,"ForceRandomBondage(""Gag"")"
+3120,0,0,,(Langsam nicken und ihr|deine Sachen zeigen.),(Sie nimmt einen deiner Knebel|und knebelt dich damit.),3190,0,0,"ForceRandomBondage(""Gag"")"
+3120,0,0,,Das will ich nicht tun.,"Na schön, dann machen wir eben Pause.|(Sie dreht sich genervt um.)",3191,0,0,TestPunish()
+3130,0,0,,"Danke, Mentorin!","Nicht der Rede wert, jetzt bewegen wir uns!|(Sie fängt an, Übungen zu machen.)",3191,0,0,AllowLeave()
+3130,0,0,,(Höflich nicken.),"Jetzt bist du bereit für etwas Bewegung!|(Sie fängt an, Übungen zu machen.)",3191,0,0,AllowLeave()
+3140,0,0,,"Ja, Mentorin. (Ihr|deine Schlüssel geben.)","Danke, mein Schützling (Sie nimmt deine|Schlüssel und fängt an, Übungen zu machen.)",3191,0,-1,ConfiscateKeys()
+3140,0,0,,(Den Kopf senken und ihr|deine Schlüssel geben.),"Danke, mein Schützling (Sie nimmt deine|Schlüssel und fängt an, Übungen zu machen.)",3191,0,-1,ConfiscateKeys()
+3140,0,0,,Nein! Das sind|meine Schlüssel!,"Na schön, dann machen wir eben Pause.|(Sie dreht sich genervt um.)",3191,0,1,TestPunish()
+3140,0,0,,(Den Kopf schütteln|und dich weigern.),"Na schön, dann machen wir eben Pause.|(Sie dreht sich genervt um.)",3191,0,1,TestPunish()
+3150,0,0,,"Ja, Mentorin.|(Ihr deine Gerte geben.)","(Sie nimmt die Gerte und betrachtet sie mit Interesse.)|Ruh dich aus, ich trainiere bald deine Ausdauer.",3191,1,0,ConfiscateCrop()
+3150,0,0,,(Den Kopf senken und|ihr deine Gerte geben.),"(Sie nimmt die Gerte und betrachtet sie mit Interesse.)|Ruh dich aus, ich trainiere bald deine Ausdauer.",3191,1,0,ConfiscateCrop()
+3150,0,0,,Nein! Die gehört dir nicht!,"Na schön, dann machen wir eben Pause.|(Sie dreht sich genervt um.)",3191,-1,0,TestPunish()
+3150,0,0,,(Den Kopf schütteln|und dich weigern.),"Na schön, dann machen wir eben Pause.|(Sie dreht sich genervt um.)",3191,-1,0,TestPunish()
+3160,0,0,,"Ja, Mentorin.|Es ist ein schmutziges Ei.",Also gut. Ich setze es dir zum Vaginaltraining ein.,3161,0,0,
+3160,0,0,,(Langsam nicken.),Also gut. Ich setze es dir zum Vaginaltraining ein.,3161,0,0,
+3160,0,0,,(Mit den Schultern zucken.),Sei nicht so schüchtern. Ich|setze es dir zum Vaginaltraining ein.,3161,0,0,
+3160,0,0,,"Ich weiß nicht, wie das|da hingekommen ist.",Sei nicht so schüchtern. Ich|setze es dir zum Vaginaltraining ein.,3161,0,0,
+3161,0,0,,"Mit größtem|Vergnügen, Mentorin.",(Sie steckt das Ei in dich hinein.)|Du bist so ein perverser kleiner Schützling.,3162,0,-1,InsertEgg()
+3161,0,0,,"Wie es Euch|beliebt, Mentorin.",(Sie steckt das Ei in dich hinein.)|Du bist so ein perverser kleiner Schützling.,3162,1,0,InsertEgg()
+3161,0,0,,(Fröhlich nicken.),(Sie steckt das Ei in dich hinein.)|Du bist so ein perverser kleiner Schützling.,3162,0,-1,InsertEgg()
+3161,0,0,,"Nein, verdammt!","Na schön, dann machen wir eben Pause.|(Sie dreht sich genervt um.)",3191,0,1,TestPunish()
+3161,0,0,,"Nein, bitte, Mentorin.|Das könnt Ihr nicht tun.","Na schön, dann machen wir eben Pause.|(Sie dreht sich genervt um.)",3191,-1,0,TestPunish()
+3161,0,0,,(Den Kopf schütteln.),"Na schön, dann machen wir eben Pause.|(Sie dreht sich genervt um.)",3191,0,0,TestPunish()
+3162,0,0,,Das kitzelt!,"Training der Vaginalmuskeln? Ich liebe es.|(Sie fängt an, ein paar Übungen zu machen.)",3191,0,0,AllowLeave()
+3162,0,0,,(Rot werden.),"Training der Vaginalmuskeln? Ich liebe es.|(Sie fängt an, ein paar Übungen zu machen.)",3191,0,0,AllowLeave()
+3190,0,0,!Common_PlayerRestrained,"Tut mir leid, dass Ihr nichts|Passendes gefunden habt.","Wir machen später was anderes.|(Sie fängt an, ein paar Übungen zu machen.)",3191,0,0,AllowLeave()
+3190,0,0,Common_PlayerRestrained,Seht Ihr mich|gern gefesselt?,"Und wie. Jetzt trainiere deine Entfesselungskünste.|(Sie fängt an, ein paar Übungen zu machen.)",3191,0,0,AllowLeave()
+3190,0,0,Common_PlayerGagged,@Niighn mhim!,"Es ist toll, meinen eigenen Schützling zu haben.|(Sie fängt an, ein paar Übungen zu machen.)",3191,0,0,AllowLeave()
+3190,0,0,,(Den Kopf senken.),"Es ist toll, meinen eigenen Schützling zu haben.|(Sie fängt an, ein paar Übungen zu machen.)",3191,0,0,AllowLeave()
+3200,0,0,,"Ja, Mentorin.|(Liegestütze anfangen.)","(Du legst dich in deiner Unterwäsche hin,|um ein paar Liegestütze zu machen.)",3201,0,0,"DoActivity(""PushUp"", 0, 0)"
+3200,0,0,,Gute Idee!|(Liegestütze anfangen.),"(Du legst dich in deiner Unterwäsche hin,|um ein paar Liegestütze zu machen.)",3201,0,0,"DoActivity(""PushUp"", 1, 0)"
+3200,0,0,,(Seufzen und|Liegestütze anfangen.),"(Du legst dich in deiner Unterwäsche hin,|um ein paar Liegestütze zu machen.)",3201,0,0,"DoActivity(""PushUp"", -1, 0)"
+3200,0,0,,(Fröhlich nicken.),"(Du legst dich in deiner Unterwäsche hin,|um ein paar Liegestütze zu machen.)",3201,0,0,"DoActivity(""PushUp"", 1, 0)"
+3200,0,0,,(Langsam nicken.),"(Du legst dich in deiner Unterwäsche hin,|um ein paar Liegestütze zu machen.)",3201,0,0,"DoActivity(""PushUp"", 0, 0)"
+3200,0,0,,Das will ich nicht tun.,"Na schön, dann machen wir eben Pause.|(Sie dreht sich genervt um.)",3291,0,0,TestPunish()
+3200,0,0,,(Den Kopf schütteln.),"Na schön, dann machen wir eben Pause.|(Sie dreht sich genervt um.)",3291,0,0,TestPunish()
+3201,0,0,,(Liegestütz auf den|Knien machen.),Komm schon! Das kannst du doch besser.,3201,0,0,"DoActivity(""PushUp"", -1, 0)"
+3201,0,0,,(Liegestütz auf den|Zehenspitzen machen.),Toll machst du das! Weiter so.,3201,0,0,"DoActivity(""PushUp"", 1, 0)"
+3201,0,0,,(Gewöhnlichen|Liegestütz machen.),"Ja, mein Schützling! Nochmal!",3201,0,0,"DoActivity(""PushUp"", 0, 0)"
+3201,0,0,,(Ausruhen.),"Ich weiß, du hast die Kraft dazu.|Los, mein Schützling! Tu es für mich.",3201,0,0,"DoActivity(""PushUp"", -1, 0)"
+3201,0,0,,Das reicht!|Ich bin erschöpft.,"Na schön, dann machen wir eben Pause.|(Sie dreht sich genervt um.)",3291,0,0,TestPunish()
+3201,0,0,,(Grummeln und|komplett aufhören.),"Na schön, dann machen wir eben Pause.|(Sie dreht sich genervt um.)",3291,0,0,TestPunish()
+3210,0,0,,"Ja, Mentorin.|(Sit-ups anfangen.)","(Du legst dich in deiner Unterwäsche hin,|um ein paar Sit-ups zu machen.)",3211,0,0,"DoActivity(""SitUp"", 0, 0)"
+3210,0,0,,Gute Idee!|(Sit-ups anfangen.),"(Du legst dich in deiner Unterwäsche hin,|um ein paar Sit-ups zu machen.)",3211,0,0,"DoActivity(""SitUp"", 1, 0)"
+3210,0,0,,(Seufzen und|Sit-ups anfangen.),"(Du legst dich in deiner Unterwäsche hin,|um ein paar Sit-ups zu machen.)",3211,0,0,"DoActivity(""SitUp"", -1, 0)"
+3210,0,0,,(Fröhlich nicken.),"(Du legst dich in deiner Unterwäsche hin,|um ein paar Sit-ups zu machen.)",3211,0,0,"DoActivity(""SitUp"", 1, 0)"
+3210,0,0,,(Langsam nicken.),"(Du legst dich in deiner Unterwäsche hin,|um ein paar Sit-ups zu machen.)",3211,0,0,"DoActivity(""SitUp"", 0, 0)"
+3210,0,0,,Das will ich nicht tun.,"Na schön, dann machen wir eben Pause.|(Sie dreht sich genervt um.)",3291,0,0,TestPunish()
+3210,0,0,,(Den Kopf schütteln.),"Na schön, dann machen wir eben Pause.|(Sie dreht sich genervt um.)",3291,0,0,TestPunish()
+3211,0,0,,(Einen halben|Sit-up machen.),Komm schon! Das kannst du doch besser.,3211,0,0,"DoActivity(""SitUp"", -1, 0)"
+3211,0,0,,(Einen lebhaften|Sit-up machen.),Toll machst du das! Weiter so.,3211,0,0,"DoActivity(""SitUp"", 1, 0)"
+3211,0,0,,(Einen gewöhnlichen|Sit-up machen.),"Ja, mein Schützling! Nochmal!",3211,0,0,"DoActivity(""SitUp"", 0, 0)"
+3211,0,0,,(Ausruhen.),"Ich weiß, du hast die Kraft dazu.|Los, mein Schützling! Tu es für mich.",3211,0,0,"DoActivity(""SitUp"", -1, 0)"
+3211,0,0,,Das reicht!|Ich bin erschöpft.,"Na schön, dann machen wir eben Pause.|(Sie dreht sich genervt um.)",3291,0,0,TestPunish()
+3211,0,0,,(Grummeln und|komplett aufhören.),"Na schön, dann machen wir eben Pause.|(Sie dreht sich genervt um.)",3291,0,0,TestPunish()
+3230,0,0,,Ist das nötig?,"Ja, du brauchst Ausdauer, um gegen Mobbing an-|zukommen. (Sie schwingt die Gerte auf deinen Bauch.)",3231,0,0,"DoActivity(""Crop"", -1, 0)"
+3230,0,0,,Wird das wehtun?,Nach regelmäßigem Training tut es nicht mehr weh.|(Sie schwingt die Gerte sanft auf deine Rippen.),3231,0,0,"DoActivity(""Crop"", 0, 0)"
+3230,0,0,,Super! Schmerz|macht mich geil.,Dann sollte dir diese Ausdauerübung leicht fallen.|(Sie schwingt die Gerte rasch auf deine Brust.),3231,0,0,"DoActivity(""Crop"", 1, 0)"
+3230,0,0,,(Fröhlich nicken.),"Du brauchst Ausdauer, um gegen Mobbing anzu-|kommen. (Sie schwingt die Gerte auf deinen Bauch.)",3231,0,0,"DoActivity(""Crop"", 1, 0)"
+3230,0,0,,(Langsam nicken.),"Du brauchst Ausdauer, um gegen Mobbing anzu-|kommen. (Sie schwingt die Gerte auf deinen Bauch.)",3231,0,0,"DoActivity(""Crop"", 0, 0)"
+3230,0,0,,Ich will das|nicht trainieren.,"Na schön, dann machen wir eben Pause.|(Sie dreht sich genervt um.)",3291,0,0,TestPunish()
+3230,0,0,,(Den Kopf schütteln.),"Na schön, dann machen wir eben Pause.|(Sie dreht sich genervt um.)",3231,0,0,TestPunish()
+3231,0,0,,"(So tun, als würde es|dir nichts ausmachen.)","Du bist ziemlich stark, mein Schützling.|(Sie peitscht dir richtig doll aufs Bein.)",3231,0,0,"DoActivity(""Crop"", 1, 0)"
+3231,0,0,,"Mehr, Mentorin!|Ich war böse.",Du nimmst das nicht ernst.|(Sie peitscht dir stirnrunzelnd auf den Po.),3231,0,0,"DoActivity(""Crop"", -1, 0)"
+3231,0,0,,(Tief durchatmen.),"Ja, denk daran, tiefe Atemzüge zu nehmen.|(Sie peitscht dir ziemlich doll auf den Rücken.)",3231,0,0,"DoActivity(""Crop"", 0, 0)"
+3231,0,0,,(Lüstern stöhnen.),Du nimmst das nicht ernst.|(Sie peitscht dir stirnrunzelnd auf den Po.),3231,0,0,"DoActivity(""Crop"", -1, 0)"
+3231,0,0,,Ist das|schon alles?,"Du bist ziemlich stark, mein Schützling.|(Sie peitscht dir richtig doll aufs Bein.)",3231,0,0,"DoActivity(""Crop"", 1, 0)"
+3231,0,0,,(Dem Schmerz|standhalten.),"Sei stark, mein Schützling, du hältst das aus.|(Sie peitscht dir ziemlich doll auf den Rücken.)",3231,0,0,"DoActivity(""Crop"", 0, 0)"
+3231,0,0,,Aufhören!,"Na schön, dann machen wir eben Pause.|(Sie dreht sich genervt um.)",3291,0,0,TestPunish()
+3231,0,0,,"(Grummeln und versuchen,|dich zu wehren.)","Na schön, dann machen wir eben Pause.|(Sie dreht sich genervt um.)",3291,0,0,TestPunish()
+3290,0,0,,"Ja, Mentorin.","Ruh dich kurz aus, mein Schützling.|Bald beginnt der nächste Teil deines Trainings.",3291,0,0,AllowLeave()
+3290,0,0,,(Nicken und Atem holen.),"Ruh dich kurz aus, mein Schützling.|Bald beginnt der nächste Teil deines Trainings.",3291,0,0,AllowLeave()
+3290,0,0,,Ich verstehe.,"Ruh dich kurz aus, mein Schützling.|Bald beginnt der nächste Teil deines Trainings.",3291,0,0,AllowLeave()
+3800,0,0,,(Überrascht gucken.),"Hast du die Regeln vergessen?|Es ist dir verboten, dich umzuziehen!",3801,0,0,
+3800,0,0,,"Ich war dabei,|mich umzuziehen.","Hast du die Regeln vergessen?|Es ist dir verboten, dich umzuziehen!",3801,0,0,
+3800,0,0,,(Den Kopf senken.),"Hast du die Regeln vergessen?|Es ist dir verboten, dich umzuziehen!",3801,0,0,
+3800,0,0,,"Was meint Ihr, Mentorin?","Hast du die Regeln vergessen?|Es ist dir verboten, dich umzuziehen!",3801,0,0,
+3801,0,0,,Ich wollte mich für|Euch hübsch machen.,"Disziplin und Gehorsam sind äußerst wichtig.|Mach dich bereit, Mädchen. Du musst bestraft werden.",3900,0,0,
+3801,0,0,,"Ich dachte,|das war nur Spaß.","Disziplin und Gehorsam sind äußerst wichtig.|Mach dich bereit, Mädchen. Du musst bestraft werden.",3900,0,0,
+3801,0,0,,"Es tut mir leid, Mentorin.","Disziplin und Gehorsam sind äußerst wichtig.|Mach dich bereit, Mädchen. Du musst bestraft werden.",3900,0,0,
+3801,0,0,,(Schweigen.),"Disziplin und Gehorsam sind äußerst wichtig.|Mach dich bereit, Mädchen. Du musst bestraft werden.",3900,0,0,
+3801,0,0,,(Reuevoll gucken.),"Disziplin und Gehorsam sind äußerst wichtig.|Mach dich bereit, Mädchen. Du musst bestraft werden.",3900,0,0,
+3810,0,0,,(Überrascht gucken.),Du wolltest gerade masturbieren.|Direkt vor der Nase deiner Mentorin.,3811,0,0,
+3810,0,0,,Ich wollte gerade|etwas Spaß haben.,Du wolltest gerade masturbieren.|Direkt vor der Nase deiner Mentorin.,3811,0,0,
+3810,0,0,,(Den Kopf senken.),Du wolltest gerade masturbieren.|Direkt vor der Nase deiner Mentorin.,3811,0,0,
+3810,0,0,,Ich wollte mich|schlafen legen.,Du wolltest gerade masturbieren.|Direkt vor der Nase deiner Mentorin.,3811,0,0,
+3811,0,0,,"Ich dachte, es wäre okay.","Disziplin und Gehorsam sind äußerst wichtig.|Mach dich bereit, Mädchen. Du musst bestraft werden.",3900,0,0,
+3811,0,0,,"Es tut mir leid, Herrin.","Disziplin und Gehorsam sind äußerst wichtig.|Mach dich bereit, Mädchen. Du musst bestraft werden.",3900,0,0,
+3811,0,0,,(Schweigen.),"Disziplin und Gehorsam sind äußerst wichtig.|Mach dich bereit, Mädchen. Du musst bestraft werden.",3900,0,0,
+3811,0,0,,(Reuevoll gucken.),"Disziplin und Gehorsam sind äußerst wichtig.|Mach dich bereit, Mädchen. Du musst bestraft werden.",3900,0,0,
+3900,0,0,,Bestraft? Jetzt echt?,"Ja, sehr echt.|Zieh dich aus, mein Schützling.",3901,-1,0,ReleaseBeforePunish()
+3900,0,0,,"Ja, Mentorin.","Du wirst Disziplin lernen.|Zieh dich aus, mein Schützling.",3901,-1,-1,ReleaseBeforePunish()
+3900,0,0,,Bestraft? Spitze!,"Das wird kein Spaß!|Zieh dich aus, mein Schützling.",3901,-1,-1,ReleaseBeforePunish()
+3900,0,0,,(Langsam nicken.),"Du wirst Disziplin lernen.|Zieh dich aus, mein Schützling.",3901,-1,0,ReleaseBeforePunish()
+3900,0,0,,Das kannst du nicht tun!,"Natürlich kann ich das.|Zieh dich aus, mein Schützling.",3901,-1,1,ReleaseBeforePunish()
+3900,0,0,,(Den Kopf schütteln.),"Versuch nicht, dich zu wehren, Mädchen.|Zieh dich aus, mein Schützling.",3901,-1,1,ReleaseBeforePunish()
+3901,0,0,,Also schön.|(Dich ausziehen.),"(Du ziehst dich unter ihrem missbilligenden Blick aus.)|Gut, du bist bereit für deine Bestrafung.",3903,0,0,"ForceChangePlayer(""Naked"")"
+3901,0,0,,(Höflich nicken.)|(Dich ausziehen.),"(Du ziehst dich unter ihrem missbilligenden Blick aus.)|Gut, du bist bereit für deine Bestrafung.",3903,0,0,"ForceChangePlayer(""Naked"")"
+3901,0,0,,Mit Vergnügen.|(Dich ausziehen.),"(Du ziehst dich unter ihrem missbilligenden Blick aus.)|Gut, du bist bereit für deine Bestrafung.",3903,0,-1,"ForceChangePlayer(""Naked"")"
+3901,0,0,,(Den Kopf schütteln.),"Zwing mich nicht, dir wehzutun.|Zieh dich auf der Stelle aus.",3902,-1,1,
+3901,0,0,,Ich ziehe mich nicht aus!,"Zwing mich nicht, dir wehzutun.|Zieh dich auf der Stelle aus.",3902,-1,1,
+3902,0,0,,Also schön.|(Dich ausziehen.),"(Du ziehst dich unter ihrem missbilligenden Blick aus.)|Gut, du bist bereit für deine Bestrafung.",3903,0,0,"ForceChangePlayer(""Naked"")"
+3902,0,0,,(Höflich nicken.)|(Dich ausziehen.),"(Du ziehst dich unter ihrem missbilligenden Blick aus.)|Gut, du bist bereit für deine Bestrafung.",3903,0,0,"ForceChangePlayer(""Naked"")"
+3903,0,0,,Oh-oh.,,3903,0,0,StartPunishment()
+3903,0,0,,(Tief Luft holen.),,3903,0,0,StartPunishment()
+3903,0,0,,(Hundeblick aufsetzen.),,3903,0,0,StartPunishment()
+3903,0,0,,"Ja, Mentorin.",,3903,0,0,StartPunishment()
+3910,0,0,,Zimmerarrest? Was|bedeutet das?,"Du bleibst für eine Weile gefesselt und isoliert.|Jetzt nimm die Arme hinter den Rücken, Mädchen.",3911,0,0,
+3910,0,0,,(Sie fragend ansehen.),"Du bleibst für eine Weile gefesselt und isoliert.|Jetzt nimm die Arme hinter den Rücken, Mädchen.",3911,0,0,
+3910,0,0,,"Nein, bitte.|Ich werde brav sein.","Genug! Du wirst eine Weile gefesselt bleiben.|Jetzt nimm die Arme hinter den Rücken, Mädchen.",3911,0,0,
+3911,0,0,,"Ja, Mentorin. (Deine Arme|nach hinten nehmen.)",(Sie packt deine Arme und bindet sie fest.)|Sehr gut. Jetzt Mund auf. Du wirst geknebelt.,3912,0,-1,RopePlayer()
+3911,0,0,,(Seufzen und deine Arme|nach hinten nehmen.),(Sie packt deine Arme und bindet sie fest.)|Gut. Jetzt Mund auf. Du wirst geknebelt.,3912,0,0,RopePlayer()
+3911,0,0,,Können wir darüber reden?,(Sie packt deine Arme und bindet sie fest.)|Nein! Jetzt Mund auf. Du wirst geknebelt.,3912,0,1,RopePlayer()
+3912,0,0,,Das ist zu eng.,Das nächste Mal wird noch schlimmer.|(Sie bringt dich mit einem Knebel zum Schweigen.),3913,0,0,GagPlayer()
+3912,0,0,,Ihr seid sehr gut darin.,Ich hab Erfahrung mit Mobbing.|(Sie bringt dich mit einem Knebel zum Schweigen.),3913,0,0,GagPlayer()
+3912,0,0,,Drauf geschissen!|Knebel mich nicht.,"Du hast nichts zu sagen, Mädchen.|(Sie bringt dich mit einem Knebel zum Schweigen.)",3913,-1,0,GagPlayer()
+3912,0,0,,(Im Seil zappeln.),"Ja, arbeite an deinen Entfesselungskünsten.|(Sie bringt dich mit einem Knebel zum Schweigen.)",3913,0,0,GagPlayer()
+3912,0,0,,"Bitte, Mentorin!|Nicht knebeln.","Zum Betteln ist es zu spät, mein Schützling.|(Sie bringt dich mit einem Knebel zum Schweigen.)",3913,0,0,GagPlayer()
+3912,0,0,,(Weit aufmachen.),"Sehr gut, du lernst schnell.|(Sie bringt dich mit einem Knebel zum Schweigen.)",3913,1,0,GagPlayer()
+3913,0,0,,(Schweigen.),"(Sie drückt dich zu Boden, beugt dich nach vorne|und fesselt dich mit Seilen in dieser strengen Pose.)",3914,0,0,"SetPlayerPose(""FoldPunishment"")"
+3913,0,0,,(Den Kopf senken.),"(Sie drückt dich zu Boden, beugt dich nach vorne|und fesselt dich mit Seilen in dieser strengen Pose.)",3914,0,0,"SetPlayerPose(""FoldPunishment"")"
+3913,0,0,,@Mmhm ngggnm!,"(Sie drückt dich zu Boden, beugt dich nach vorne|und fesselt dich mit Seilen in dieser strengen Pose.)",3914,0,0,"SetPlayerPose(""FoldPunishment"")"
+3914,0,0,,(Flehend gucken.),"Du bleibst so, bis ich es mir anders überlege.|(Sie macht ein paar Übungen und ignoriert dich.)",3999,0,0,"EndPunishment(""Grounded"")"
+3914,0,0,,(Schmollen und grummeln.),"Du bleibst so, bis ich es mir anders überlege.|(Sie macht ein paar Übungen und ignoriert dich.)",3999,0,0,"EndPunishment(""Grounded"")"
+3914,0,0,,(Den Boden anstarren.),"Du bleibst so, bis ich es mir anders überlege.|(Sie macht ein paar Übungen und ignoriert dich.)",3999,0,0,"EndPunishment(""Grounded"")"
+3914,0,0,,@Oouu lmu mpm!,"Du bleibst so, bis ich es mir anders überlege.|(Sie macht ein paar Übungen und ignoriert dich.)",3999,0,0,"EndPunishment(""Grounded"")"
+3915,0,0,,(Nicken.),"Sehr gut, mein Schützling. (Sie befreit dich.)|Ruh dich aus, dein Training geht in Kürze weiter.",3999,0,0,ReleasePlayer()
+3915,0,0,,(Den Kopf schütteln.),Dann bleibst du halt so.|(Sie ignoriert dich weiterhin.),3999,0,0,"EndPunishment(""Grounded"")"
+3915,0,0,,@Aaehm!,"Gib mir eine klare Antwort, Mädchen.|Nicken für Ja. Kopfschütteln für Nein.",3915,0,0,
+3920,0,0,,Ein Keuschheitsgürtel?|Das ist reine Folter!,"Du wirst mehr Zeit fürs Training haben,|wenn du nicht mehr an dir herumspielst.",3921,0,0,
+3920,0,0,,Mentorin! Könnt Ihr mir lie-|ber den Hintern versohlen?,Das hast du nicht zu entscheiden.|Du wirst keusch sein.,3921,0,1,
+3920,0,0,,"Nein, bitte.|Ich werde brav sein.","Du wirst brav sein und du wirst trainieren,|anstatt zu masturbieren.",3921,0,0,
+3920,0,0,,"Nein, verdammt!",(Sie sieht dich bedrohlich an.)|Drück dich gepflegt aus! Du wirst keusch sein.,3921,-1,1,
+3920,0,0,,(Langsam nicken.),"Du wirst mehr Zeit fürs Training haben,|wenn du nicht mehr an dir herumspielst.",3921,0,-1,
+3921,0,0,,Ist wohl nur gerecht.,Auf jeden Fall. Jetzt nimm die Beine auseinander.,3922,1,0,
+3921,0,0,,Ich hab keinen Schlüssel|für diesen Gürtel!,Ich werde den Schlüssel auftreiben.|Jetzt nimm die Beine auseinander.,3922,0,0,
+3921,0,0,,Das ist|menschenunwürdig!,Gehorche deiner Mentorin|und nimm die Beine auseinander.,3922,-1,0,
+3921,0,0,,Für wie lange?,Bis ich es mir anders überlege.|Jetzt nimm die Beine auseinander.,3922,0,0,
+3921,0,0,Common_ActorIsLover,"Schatz, wir können dann|nicht mehr Liebe machen.","Es ist zu deinem Besten, Schatz, und es ist|nicht für immer. Jetzt nimm die Beine auseinander.",3922,1,0,
+3922,0,0,,"Ja, Mentorin.|(Deine Beine spreizen.)",(Sie umgibt deine Hüfte mit|dem Gürtel und schließt die Schrittplatte zu.),3923,0,-1,LockChastityBelt()
+3922,0,0,,Na schön! Scheiß drauf.|(Deine Beine spreizen.),(Sie umgibt deine Hüfte mit|dem Gürtel und schließt die Schrittplatte zu.),3923,0,1,LockChastityBelt()
+3922,0,0,,(Tief durchatmen und|deine Beine spreizen.),(Sie umgibt deine Hüfte mit|dem Gürtel und schließt die Schrittplatte zu.),3923,0,0,LockChastityBelt()
+3922,0,0,,Niemals!,Widersprich mir nicht!|Nimm sofort die Beine auseinander!,3922,0,0,
+3923,0,0,,Muss er so eng sitzen?,"Muss er, also gewöhn dich dran.|Ruh dich aus, mein Schützling.",3999,0,0,"EndPunishment(""Belted"")"
+3923,0,0,,Das ist so pervers!,"Im Gegensatz zu dir in nächster Zeit.|Ruh dich aus, mein Schützling.",3999,0,0,"EndPunishment(""Belted"")"
+3923,0,0,,(Den Kopf senken.),Es ist nicht für immer.|Jetzt ruh dich aus.,3999,0,0,"EndPunishment(""Belted"")"
+3930,0,0,,Was genau soll|das bedeuten?,Wir gehen raus an die Öffentlichkeit|und du wirst zur Bestrafung gedemütigt.,3931,0,0,
+3930,0,0,,Demütigung?|Das ist doch gar nichts.,Wir gehen raus an die Öffentlichkeit|und du wirst zur Bestrafung gedemütigt.,3931,0,1,
+3930,0,0,,"Oh, bitte, Mentorin!|Nicht demütigen.",Wir gehen raus an die Öffentlichkeit|und du wirst zur Bestrafung gedemütigt.,3931,0,-1,
+3930,0,0,,"Ich habe Angst vor|dem, was jetzt kommt.",Wir gehen raus an die Öffentlichkeit|und du wirst zur Bestrafung gedemütigt.,3931,0,0,
+3931,0,0,,Öffentliche Demütigung?|Das ist Bullshit!,"Es wird dir auf jeden Fall eine Lehre sein.|Gehen wir raus, mein nackter Schützling.",3932,-1,0,
+3931,0,0,,"Nackt im Freien?|Oh, Gütiger.","Es wird dir auf jeden Fall eine Lehre sein.|Gehen wir raus, mein nackter Schützling.",3932,0,0,
+3931,0,0,,"Das klingt hart|aber fair, Mentorin.","Es wird dir auf jeden Fall eine Lehre sein.|Gehen wir raus, mein nackter Schützling.",3932,1,0,
+3932,0,0,,"Ja, gehen wir.|(Nackt nach draußen.)",,3932,0,0,StartPlayerHumiliation()
+3932,0,0,,Mentorin! Bitte!,"Hör auf zu jammern, Mädchen.|Wir gehen jetzt.",3932,0,0,
+3940,0,0,,Im Schlaf trainieren?|Ich verstehe nicht.,Heute Nacht schläfst du gefesselt und geknebelt.|Diese Bestrafung trainiert deine Ausdauer.,3941,0,0,
+3940,0,0,,"Ich habe Angst vor|dem, was jetzt kommt.",Heute Nacht schläfst du gefesselt und geknebelt.|Diese Bestrafung trainiert deine Ausdauer.,3941,0,1,
+3940,0,0,,"Ja, Mentorin.",Heute Nacht schläfst du gefesselt und geknebelt.|Diese Bestrafung trainiert deine Ausdauer.,3941,0,0,
+3940,0,0,,(Still zuhören.),Heute Nacht schläfst du gefesselt und geknebelt.|Diese Bestrafung trainiert deine Ausdauer.,3941,0,-1,
+3941,0,0,,"Oh, bitte, Mentorin!|Ich kann so nicht schlafen.",Es ist streng aber gerecht. Ruh dich erstmal aus.|Dein Training geht schon sehr bald weiter.,3999,0,-1,"EndPunishment(""SleepBoundAndGagged"")"
+3941,0,0,,"Ihr seid so|pervers, Mentorin.",Diese Bestrafung ist nicht für Perverses gedacht.|Wie dem auch sei. Dein Training geht bald weiter.,3999,-1,1,"EndPunishment(""SleepBoundAndGagged"")"
+3941,0,0,,"Sehr wohl, Mentorin.|Das ist gerecht.",Gut. Jetzt machen wir erstmal eine Pause.|Dein Training geht bald weiter.,3999,1,0,"EndPunishment(""SleepBoundAndGagged"")"
+3941,0,0,,Das ist Quälerei!,Mein Entschluss steht fest. Jetzt ruh dich aus.|Dein Training geht schon sehr bald weiter.,3999,0,0,"EndPunishment(""SleepBoundAndGagged"")"

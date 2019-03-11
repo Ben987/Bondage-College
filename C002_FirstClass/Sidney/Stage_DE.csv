@@ -25,18 +25,18 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 100,0,0,SubdueRemarkReady,High five! Schon|taugt die Stunde was.,High five! Beste Mathestunde aller Zeiten.,100,1,0,SubdueRemark()
 100,0,0,SubdueRemarkReady,Wir haben heute ein|brandneues Fach.,Ja Mann! Das ist viel besser.,100,0,0,SubdueRemark()
 100,0,0,AmandaWhipReady,Willst du Amanda|auspeitschen?ADD_MINUTES:1,Yeah! (Sie nimmt die Gerte und schlägt|ein paar Mal auf Amanda ein.),100,1,0,AmandaWhip()
-100,0,0,SarahWhipReady,Willst du Sarah|auspeitschen?ADD_MINUTES:1,"Oh mann, ja! (Sie nimmt die Gerte und|schlägt einige Male auf Sarah ein.)",100,1,0,SarahWhip()
+100,0,0,SarahWhipReady,Willst du Sarah|auspeitschen?ADD_MINUTES:1,"Oh Mann, ja! (Sie nimmt die Gerte und|schlägt einige Male auf Sarah ein.)",100,1,0,SarahWhip()
 100,0,0,Common_PlayerGagged,"@Mmmmmmph, mmph!",(Sie flüstert.) Mach keinen Lärm.,100,0,0,
 100,0,0,Common_PlayerGagged,(Auf dem Knebel|herumkauen.),(Sie flüstert.) Du siehst echt bescheuert aus.,100,0,0,
 100,1,0,Common_PlayerGagged,(Auf den|Knebel zeigen.),(Sie flüstert) Klappe.|Ich helfe dir später.,100,0,0,
 100,-1,0,Common_PlayerGagged,(Auf den|Knebel zeigen.),"(Sie flüstert.) Bleib so, Schlampe.",100,0,0,
 100,0,0,Common_PlayerRestrained,(Mit deinen|Fesseln ringen.),(Sie flüstert.) Da kommst du nie raus.,100,0,0,
-100,0,-2,BowRemarkReady,(Deinen Kopf neigen.),(Sie flüstert.) Du bist erbärmlich.,100,0,-1,BowRemark()
+100,0,-2,BowRemarkReady,(Den Kopf senken.),(Sie flüstert.) Du bist erbärmlich.,100,0,-1,BowRemark()
 110,0,0,Common_PlayerGagged,"@Mmmmmmph, mmph!",(Sie verdreht die Augen.),110,0,0,
-110,0,0,Common_PlayerNotRestrained,(Knebel entfernen.)ADD_MINUTES:1,(Du lockerst und entfernst den großen Ball.)|Fick dieses Ding!,100,0,0,Ungag()
+110,0,0,Common_PlayerNotRestrained,(Sie entknebeln.)ADD_MINUTES:1,(Du lockerst und entfernst den großen Ball.)|Fick dieses Ding!,100,0,0,Ungag()
 130,0,0,Common_PlayerGagged,"@Mmmmmmph, mmph!",(Sie verdreht die Augen.),130,0,0,
-130,0,0,Common_PlayerNotRestrained,(Knebel entfernen.)ADD_MINUTES:1,(Du lockerst und entfernst den großen Ball.)|Fick dieses Ding!,120,0,0,Ungag()
-140,0,0,Common_PlayerNotRestrained,(Befreien.),(Du löst die Knoten und sie zieht sich an.)|Scheiße! Du bist echt pervers.,100,0,0,Untie()
+130,0,0,Common_PlayerNotRestrained,(Sie entknebeln.)ADD_MINUTES:1,(Du lockerst und entfernst den großen Ball.)|Fick dieses Ding!,120,0,0,Ungag()
+140,0,0,Common_PlayerNotRestrained,(Sie befreien.),(Du löst die Knoten und sie zieht sich an.)|Scheiße! Du bist echt pervers.,100,0,0,Untie()
 150,0,0,Common_PlayerGagged,"@Mmmmmmph, mmph!",(Sie verdreht die Augen.),150,0,0,
-150,0,0,Common_PlayerNotRestrained,(Knebel entfernen.)ADD_MINUTES:1,(Du lockerst und entfernst den großen Ball.)|Fick dieses Ding!,140,0,0,Ungag()
-150,0,0,Common_PlayerNotRestrained,(Befreien.),(Du löst die Knoten und sie zieht sich an.)|(Dann zeigt sie auf ihren Knebel.),110,0,0,Untie()
+150,0,0,Common_PlayerNotRestrained,(Sie entknebeln.)ADD_MINUTES:1,(Du lockerst und entfernst den großen Ball.)|Fick dieses Ding!,140,0,0,Ungag()
+150,0,0,Common_PlayerNotRestrained,(Sie befreien.),(Du löst die Knoten und sie zieht sich an.)|(Dann zeigt sie auf ihren Knebel.),110,0,0,Untie()

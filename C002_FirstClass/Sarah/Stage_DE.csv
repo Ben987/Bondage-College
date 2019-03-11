@@ -31,7 +31,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 20,0,0,SubdueNotDone,Wie vertreibst du|dir die Zeit?,"Ich denke an gestern Abend. (Sie kichert.)|Miss Mildred ist ziemlich langweilig, was?",30,0,0,
 20,0,0,SubdueNotDone,Ist dir auch|so langweilig?,"Und wie. Miss Mildred ist eine gute|Lehrerin, aber sehr trocken.",30,1,0,
 20,0,0,SubdueNotDone,Die Lehrerin mag|dich also nicht.,Ich weiß! Danke für die Erinnerung.|Miss Mildred ist sehr streng zu mir.,30,-1,0,
-30,0,0,SubdueNotDone,WIllst du mit|ihr abrechnen?,Abrechnen? Mit Miss Mildred?|Woran denkst du da genau?,40,0,0,
+30,0,0,SubdueNotDone,Willst du mit|ihr abrechnen?,Abrechnen? Mit Miss Mildred?|Woran denkst du da genau?,40,0,0,
 30,0,0,SubdueNotDone,"Bleib still,|ich hab einen Plan.",(Sie schweigt und hört dir zu.),40,0,1,
 40,0,0,SubdueNotDone,Wir sollten|Mildred kidnappen.,Kidnappen? Du meinst Fesseln und Knebeln?|Das ist 'ne abgefahrene Idee!,50,1,0,
 40,0,0,SubdueNotDone,"Du hilfst mir, die|Lehrerin zu überfallen.",Oh wow! Miss Mildred überfallen?,50,0,1,
@@ -40,7 +40,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 50,0,0,SubdueNotDone,Hilfst du mir?,"Klingt lustig, aber es könnte|eine Menge Ärger geben.",50,0,0,
 50,0,0,SubdueNotDone,Lass mich noch|darüber nachdenken.,"(Sie nickt.) Klar, das mach ich auch.",50,0,0,
 0,0,0,SubdueSuccess,Ist die Stunde jetzt|nicht viel besser?,"Besser? Es ist die beste Mathestunde aller Zeiten.|Ich bin Sarah, schön dich kennenzulernen.",10,1,0,
-0,0,0,SubdueSuccess,Gefällt dir deine|Lehrerin so?,"Sie sieht in ihrer Unterwäsche reizend aus. (Sie lächelt.)|Ich bin Sarah, schön dich kennenzulernen.",10,1,0,
+0,0,0,SubdueSuccess,Gefällt dir deine|Lehrerin so?,"Sie sieht in ihrer Unterwäsche reizend aus.|(Sie lächelt.) Ich bin Sarah, schön dich kennenzulernen.",10,1,0,
 0,0,0,SubdueSuccess,Das hat sie verdient.,"Hat sie das? Kann sein.|Ich bin Sarah, schön dich kennenzulernen.",10,0,0,
 10,0,0,SubdueSuccess,(Zurücklehnen|und begutachten.),(Sie begutachtet Mildred ebenfalls.)|Was für ein Anblick.,20,0,0,
 10,0,0,SubdueSuccess,Ich bin jetzt|die Klassenchefin.,Wohl wahr. Wir haben 'ne neue Lehrerin.,20,0,1,
@@ -52,41 +52,41 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 20,0,0,SubdueSuccess,Wir sollten gehen.,Und die Show verpassen? Oh nein.,30,0,0,
 20,0,0,SubdueSuccess,Sollte ich Amanda|auch demütigen?,"Bitte nicht, sie ist meine beste Freundin.|Sie wird bestimmt Albträume haben.",30,-1,0,
 30,0,0,SubdueSuccess,Macht dich dieser|Anblick feucht?,(Sie wird rot.)|Das kann ich nicht beantworten.,40,0,1,
-30,0,0,SubdueSuccess,Sidney starrt uns an.|Soll ich sie bestrafen?,Ja! Tolle Idde. (Sie kichert.),40,1,0,
+30,0,0,SubdueSuccess,Sidney starrt uns an.|Soll ich sie bestrafen?,Ja! Tolle Idee. (Sie kichert.),40,1,0,
 30,0,0,SubdueSuccess,Wir können uns|entspannt zurücklehnen.,Gute Idee. (Sie legt sich hin|und betrachtet die Lehrerin.),40,0,0,
 30,0,0,SubdueSuccess,Ich liebe Bondage.|Kannst du mich fesseln?,"Ich bin nicht gut im Fesseln. Aber wenn|du das willst, ich kenne da einen Club.",40,0,-1,
 40,0,0,SubdueSuccess,"Die Zeit sollte jetzt|wie im Flug vergehen.","Stimmt. Zu schnell für meinen Geschmack.|Lass uns ein paar Fotos machen, bevor es vorbei ist.",50,0,0,
 40,0,0,SubdueSuccess,Möchtest du mit|Amanda gefesselt sein?,Gefesselt mit meiner lieben Amy?|Das wäre ein Traum.,50,1,1,
 40,0,0,SubdueSuccess,Sollten wir all dem|ein Ende setzen?,"Nein! Das ist die beste Stunde, die ich je hatte.",50,-1,-1,
 110,0,0,Common_PlayerGagged,@Aagnm mugn!,Loongm monng gnu!,110,0,0,
-110,0,0,Common_PlayerNotRestrained,(Knebel entfernen.)ADD_MINUTES:1,(Du lockerst und entfernst den großen Ball.)|Buuuuuuh! Knebelst du mich später nochmal?,100,0,0,Ungag()
+110,0,0,Common_PlayerNotRestrained,(Sie entknebeln.)ADD_MINUTES:1,(Du lockerst und entfernst den großen Ball.)|Buuuuuuh! Knebelst du mich später nochmal?,100,0,0,Ungag()
 130,0,0,Common_PlayerGagged,@Aagnm mugn!,Loongm monng gnu!,130,0,0,
-130,0,0,Common_PlayerNotRestrained,(Knebel entfernen.)ADD_MINUTES:1,(Du lockerst und entfernst den großen Ball.)|Oh! Knebelst du mich später nochmal?,120,0,0,Ungag()
-140,0,0,Common_PlayerNotRestrained,(Kitzeln.)ADD_MINUTES:1,"(Du kitzelst sie und sie kichert ein wenig.)|Hehehe, was hast du als nächstes vor?",140,0,0,
-140,0,0,Common_PlayerNotRestrained,(Befreien.)ADD_MINUTES:1,(Du löst die Knoten und sie zieht sich an.)|Das war spitze! Müssen wir nochmal machen.,100,0,0,Untie()
-140,0,0,BondageHugReady,Möchtest du Amanda|umarmen?ADD_MINUTES:1,Amy umarmen? Oh ja! (Sie geht zu ihrer|Freundin und gibt ihr eine sexy Fesselumarmung.),160,0,0,BondageHug()
+130,0,0,Common_PlayerNotRestrained,(Sie entknebeln.)ADD_MINUTES:1,(Du lockerst und entfernst den großen Ball.)|Oh! Knebelst du mich später nochmal?,120,0,0,Ungag()
+140,0,0,Common_PlayerNotRestrained,(Sie kitzeln.)ADD_MINUTES:1,"(Du kitzelst sie und sie kichert ein wenig.)|Hehehe, was hast du als Nächstes vor?",140,0,0,
+140,0,0,Common_PlayerNotRestrained,(Sie befreien.)ADD_MINUTES:1,(Du löst die Knoten und sie zieht sich an.)|Das war spitze! Müssen wir nochmal machen.,100,0,0,Untie()
+140,0,0,BondageHugReady,Möchtest du|Amanda umarmen?ADD_MINUTES:1,Amy umarmen? Oh ja! (Sie geht zu ihrer|Freundin und gibt ihr eine sexy Fesselumarmung.),160,0,0,BondageHug()
 150,0,0,Common_PlayerGagged,@Aagnm mugn!,Loongm monng gnu!,150,0,0,
-150,0,0,Common_PlayerNotRestrained,(Kitzeln.)ADD_MINUTES:1,(Du kitzelst sie und sie kichert ein wenig.),150,0,0,
-150,0,0,Common_PlayerNotRestrained,(Knebel entfernen.)ADD_MINUTES:1,(Du lockerst und entfernst den großen Ball.)|hast du noch einen Knebel für mich?,140,0,0,Ungag()
-150,0,0,Common_PlayerNotRestrained,(Befreien.)ADD_MINUTES:1,(Du löst die Knoten und sie zieht sich an.)|(Danach kaut sie fröhlich auf dem Knebel herum.),110,0,0,Untie()
-150,0,0,BondageHugReady,Möchtest du Amanda|umarmen?ADD_MINUTES:1,"(Sie nicht fröhlich, geht zu ihrer|Freundin und gibt ihr eine sexy Fesselumarmung.)",170,0,0,BondageHug()
+150,0,0,Common_PlayerNotRestrained,(Sie kitzeln.)ADD_MINUTES:1,(Du kitzelst sie und sie kichert ein wenig.),150,0,0,
+150,0,0,Common_PlayerNotRestrained,(Sie entknebeln.)ADD_MINUTES:1,(Du lockerst und entfernst den großen Ball.)|hast du noch einen Knebel für mich?,140,0,0,Ungag()
+150,0,0,Common_PlayerNotRestrained,(Sie befreien.)ADD_MINUTES:1,(Du löst die Knoten und sie zieht sich an.)|(Danach kaut sie fröhlich auf dem Knebel herum.),110,0,0,Untie()
+150,0,0,BondageHugReady,Möchtest du|Amanda umarmen?ADD_MINUTES:1,"(Sie nicht fröhlich, geht zu ihrer|Freundin und gibt ihr eine sexy Fesselumarmung.)",170,0,0,BondageHug()
 160,0,0,,Möchtest du sie küssen?ADD_MINUTES:1,"(Sie wird rot und nickt.) Ein Kuss, Amy?|(Sie kommt näher und küsst Amanda.)",160,0,0,KissAmanda()
 160,0,0,,Liebt ihr euch?,Das sag ich dir nicht.|(Sie streckt ihre Zunge raus.),160,0,0,
 160,0,0,Common_PlayerNotRestrained,(Die beiden trennen.)ADD_MINUTES:1,"Bis später, Amy. (Sie zwinkert.)",140,0,0,Separate()
 170,0,0,,Ihr zwei seid ein|nettes Bondage-Duo.,(Sie nickt zufrieden.),170,0,0,BondageDuo()
 170,0,0,Common_PlayerNotRestrained,(Die beiden trennen.)ADD_MINUTES:1,(Sie kehrt widerwillig zu ihrem Platz zurück.),150,0,0,Separate()
-170,0,0,Common_PlayerNotRestrained,(Knebel entfernen.)ADD_MINUTES:1,"(Du lockerst und entfernst den Knebel.)|Ist das nicht aufregend, Amanda?",160,0,0,Ungag()
+170,0,0,Common_PlayerNotRestrained,(Sie entknebeln.)ADD_MINUTES:1,"(Du lockerst und entfernst den Knebel.)|Ist das nicht aufregend, Amanda?",160,0,0,Ungag()
 200,0,0,,"@Mmmmph, mmph!","(Sie lacht.) Verstehe kein Wort.|Ich bin Sarah, schön dich kennenzulernen.",210,0,0,
 200,0,0,,(Langsam nicken.),"(Sie kichert.) Das steht dir super.|Ich bin Sarah, schön dich kennenzulernen.",210,0,-1,
 200,0,0,,"(Versuchen, auf|Mildred zu zeigen.)","Sie hat dich gefesselt? Sehr schön.|Ich bin Sarah, nett dich kennenzulernen.",210,0,0,
-210,0,0,,"(Versuchen, ihre|Hand zu schütteln.)",(Sie kommt näher und schüttelt deine gefesslete Hand.)|Wie ulkig! Was ist denn passiert?,220,1,0,
+210,0,0,,"(Versuchen, ihre|Hand zu schütteln.)",(Sie kommt näher und schüttelt deine|gefesselete Hand.) Wie ulkig! Was ist denn passiert?,220,1,0,
 210,0,0,,@Mmhgnm!,"Schön dich kennenzulernen, ""Mmhgnm"".|(Sie lacht.) Was ist denn passiert?",220,0,0,
 220,0,0,,@Iff fohe|Mmdeng effem.,Ich verstehe kein Wort.|Aber du siehst gefesselt bezaubernd aus.,230,0,0,
 220,0,0,,(Mit den Schultern|zucken.),Ist bestimmt eh schwer zu erklären.|Du siehst gefesselt bezaubernd aus.,230,0,0,
 220,0,0,,(Sie ernst ansehen.),"Sorry, das kannst du wohl nicht erklären.|Du siehst gefesselt bezaubernd aus.",230,0,1,
 230,0,0,,@Oomngn!,"Ich liebe dein Gemurmel. Und ich wünschte,|ich könnte auch gefesselt sein.",240,0,0,
 230,0,0,,(Fröhlich nicken.),"Klingt, als hättest du eine Menge Spaß.|Ich wünschte, ich könnte auch gefesselt sein.",240,1,0,
-230,0,0,,(Deinen Kopf neigen.),"Du bist auch unterwürfig? Ich wünschte,|ich könnte auch gefesselt sein.",240,0,-1,
+230,0,0,,(Den Kopf senken.),"Du bist auch unterwürfig? Ich wünschte,|ich könnte auch gefesselt sein.",240,0,-1,
 240,0,0,,(Nicken.),"Du meinst, ich könnte Ärger bekommen wie du,|wenn ich die Lehrerin nerve?",250,0,0,
 240,0,0,,(Den Kopf schütteln.),Du hast ja recht. Ich sollte|mich auf den Unterricht konzentrieren.,300,-1,0,
 250,0,0,,(Nicken),"(Sie brüllt, um die Lehrerin zu nerven, und hat|kurz danach auch einen Knebel und Handschellen.)",260,0,1,AnnoyMildred()
