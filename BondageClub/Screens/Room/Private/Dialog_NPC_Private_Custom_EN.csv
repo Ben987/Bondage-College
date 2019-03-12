@@ -112,6 +112,11 @@ MistressVow,,,I vow to be a good Mistress for you my slave.  To be strict but fa
 MistressVow,,,I vow to be a good Mistress for you my subbie.  I hope we will have fun together and meets lots of friends.,,,MistressVow,Playful|Frigid
 MistressVow,,,I vow to be a good Mistress for you bitch.  The make you my sex slave.,,,MistressVow,Horny|Rude
 MistressVow,,,I vow to be a good Mistress for you my precious.  To protect and nurture you.  To be honest and just.,,,MistressVow,Peaceful|Wise
+SubmissiveVow,,,I vow to be a good submissive for you Mistress.  To be always honest.,,,SubmissiveVow,
+SubmissiveVow,,,I vow to be a good slave for you Mistress.  To accept any punishment with dignity.,,,SubmissiveVow,Serious|Submissive
+SubmissiveVow,,,I vow to be a good subbie for you Mistress.  To be a friend in good and bad times.,,,SubmissiveVow,Playful|Frigid
+SubmissiveVow,,,I vow to be a good slut for you Mistress.  To be there for all your needs.,,,SubmissiveVow,Horny|Rude
+SubmissiveVow,,,I vow to be a good submissive for you Mistress.  To care for your needs and devote my life to you.,,,SubmissiveVow,Peaceful|Wise
 PlayerMustKneel,,,"Girl, what are you doing standing up?  Get on your knees.",,,PlayerMustKneel,
 PlayerMustKneel,,,"(She looks at you and grins.)  My precious slave, you should know better than standing up in front of me.  Get on your knees.",,,PlayerMustKneel,Serious|Peaceful
 PlayerMustKneel,,,Foolish slave girl!  Don't you know your social status and fucking etiquette?  On your knees!,,,PlayerMustKneel,Rude|Wise
@@ -217,6 +222,7 @@ PlayerMustKneel,,,"(She licks her lips.)  Hey sexy sub, you know what would turn
 10,,Get on your knees.,Absolutely Miss.  I will find a comfy kneeling position for your pleasure.  (She comfortably sits on knees.),"DialogSetPose(CurrentCharacter, ""Kneel"")",WillKneel(),WillKneel,Submissive|Peaceful
 10,,Get on your knees.,"Consider yourself lucky, I don't kneel for many girls.  (She reluctantly kneels for you.)","DialogSetPose(CurrentCharacter, ""Kneel"")",WillKneel(),WillKneel,Dominant|Serious
 10,,Get on your knees.,Kneeling is boring.  I'm punished or what?  (She pouts and kneels for you.),"DialogSetPose(CurrentCharacter, ""Kneel"")",WillKneel(),WillKneel,Playful|Dumb
+10,,(Point at the floor.),(She nods and kneels for you.),"DialogSetPose(CurrentCharacter, ""Kneel"")",WillKneelGagged(),,
 10,,Get on your knees.,"No, I'm not in the mood for that.",,WontKneel(),WontKneel,
 10,,Get on your knees.,"Sorry yo.  I already spent too much time on my knees, I'm not doin' it for you.",,WontKneel(),WontKneel,Submissive|Rude
 10,,Get on your knees.,"(She laughs at you.)  Kneeling isn't fun, it's the last thing I'll do for you girl.",,WontKneel(),WontKneel,Dominant|Playful
@@ -226,6 +232,7 @@ PlayerMustKneel,,,"(She licks her lips.)  Hey sexy sub, you know what would turn
 10,,Stand up.,(She happily jumps back up.)  Thanks Miss!,"DialogSetPose(CurrentCharacter, """")",CanStandUp(),StandUp,Submissive|Playful
 10,,Stand up.,It's about time!  Kneeling is for wimpy subs anyway.,"DialogSetPose(CurrentCharacter, """")",CanStandUp(),StandUp,Dominant|Violent
 10,,Stand up.,"Tremendous!  (She stands up slowly.)  I must confess, my legs were starting to hurt.","DialogSetPose(CurrentCharacter, """")",CanStandUp(),StandUp,Peaceful|Polite
+10,,(Point at the floor then upward.),(She nods and stands up.),"DialogSetPose(CurrentCharacter, """")",CanStandUpGagged(),,
 10,,Stand up.,(She wiggles her restrained legs and shrugs.),,CannotStandUp(),,
 10,12,You should go.,You want me to leave now?,,,KickOut,
 10,12,You should go.,Oh!  You want some privacy?  (She winks.),,,KickOut,Dominant|Horny
@@ -260,10 +267,20 @@ PlayerMustKneel,,,"(She licks her lips.)  Hey sexy sub, you know what would turn
 20,21,Are you looking for a submissive?,"(She looks at you and smirks.)  Girl, I'm always hunting for slaves.",,WouldTakePlayerAsSub(),WouldTakePlayerAsSub,Dominant
 20,,Are you looking for a submissive?,"It would be nice, but I could only take a submissive that I like and that I've known for a while.",,WontTakePlayerAsSub(),WontTakePlayerAsSub,
 20,,Are you looking for a submissive?,(She giggles.)  I'm not sure I would be a great Domme.  I would need someone that I love and that's very submissive.,,WontTakePlayerAsSub(),WontTakePlayerAsSub,Submissive
-20,,Are you looking for a submissive?,Someone like you?  (She smirks.)  I need to get better aquinted and make sure you're submissive enough first.,,WontTakePlayerAsSub(),WontTakePlayerAsSub,Dominant
+20,,Are you looking for a submissive?,Someone like you?  (She smirks.)  I need to get better acquainted and make sure you're submissive enough first.,,WontTakePlayerAsSub(),WontTakePlayerAsSub,Dominant
 20,,Are you looking for a submissive?,You mean yourself?  I need more time to get to know you.,,NeedTimeToTakePlayerAsSub(),NeedTimeToTakePlayerAsSub,
 20,,Are you looking for a submissive?,(She giggles.)  Me?  Looking for a subbie?  Like you?  I don't know.  I need more time first to get to know you.,,NeedTimeToTakePlayerAsSub(),NeedTimeToTakePlayerAsSub,Submissive
 20,,Are you looking for a submissive?,"Girl, we barely know each other.  I need more time to get to know you.",,NeedTimeToTakePlayerAsSub(),NeedTimeToTakePlayerAsSub,Dominant
+20,30,Are you looking for an owner?,(She blushes.)  To serve someone like you Miss?  I must admit that it would be quite a thrill.,,WouldTakePlayerAsDom(),WouldTakePlayerAsDom,
+20,30,Are you looking for an owner?,(She nods.)  My flesh and my soul crave to serve someone like you Miss.,,WouldTakePlayerAsDom(),WouldTakePlayerAsDom,Violent
+20,30,Are you looking for an owner?,"(She smiles.)  I've been waiting for the perfect Dominant to take care and cherish me, someone like you Miss.",,WouldTakePlayerAsDom(),WouldTakePlayerAsDom,Peaceful
+20,,Are you looking for an owner?,"Are you talking about yourself?  If that's the case, I'm not.  I need a friendly but tough Domme to control me.",,WontTakePlayerAsDom(),WontTakePlayerAsDom,
+20,,Are you looking for an owner?,"Yourself?  I'm sorry but I refuse.  The perfect Dominant for me would be someone that's both a friend and a strong authority figure, you don't qualify.",,WontTakePlayerAsDom(),WontTakePlayerAsDom,Wise
+20,,Are you looking for an owner?,I don't know.  I need someone I like and that's tough.  You know someone like that?,,WontTakePlayerAsDom(),WontTakePlayerAsDom,Dumb
+20,,Are you looking for an owner?,You're considering me Miss?  That's thrilling but we don't know each that much.  Let's spend more time together first.,,NeedTimeToTakePlayerAsDom(),NeedTimeToTakePlayerAsDom,
+20,,Are you looking for an owner?,(She shrugs.)  You look like one hell of a Domme but I don't know you enough.  Let's wait ok?,,NeedTimeToTakePlayerAsDom(),NeedTimeToTakePlayerAsDom,Rude
+20,,Are you looking for an owner?,"I must decline Miss.  You seem to be a wonderful Dominant, but we haven't spent enough time together to begin a BDSM relationship.",,NeedTimeToTakePlayerAsDom(),NeedTimeToTakePlayerAsDom,Polite
+20,,Are you looking for an owner?,Can you help me out first so we can talk?,,DialogIsRestrained(CurrentCharacter),,
 20,10,Let's talk about something else.,(She nods.)  Sure.,,,,
 21,22,Would you consider someone like me?,I might.  Are you sure you're ready to be owned?,,,ConsiderSub,
 21,22,Would you consider someone like me?,That's quite a commitment.  Are you sure you're ready to be owned?,,,ConsiderSub,Serious
@@ -294,6 +311,24 @@ PlayerMustKneel,,,"(She licks her lips.)  Hey sexy sub, you know what would turn
 26,1000,This is great!,"Yes my submissive, let's hope this trial goes well.",StartTrial(-6),,,
 26,1000,I will try my best to please you Mistress.,I know you will my subbie.  (She smiles at you.),StartTrial(-8),,,
 26,1000,I can't wait to be collared.,Don't rush it my sub.  The trial period will decide if you get collared or not.,StartTrial(-4),,,
+30,,Get on your knees girl.,(She nods and gets down on her knees.)  Yes Miss.,"DialogSetPose(CurrentCharacter, ""Kneel"")",!DialogIsKneeling(CurrentCharacter),KneelToSubmitToPlayer,
+30,,Get on your knees girl.,"(She drops down on her knees very quickly, hurting herself.)  Ow!  Yes Miss.  Of course Miss.","DialogSetPose(CurrentCharacter, ""Kneel"")",!DialogIsKneeling(CurrentCharacter),KneelToSubmitToPlayer,Violent|Dumb
+30,,Get on your knees girl.,(She slowly kneels comfortably in a nadu position for you.)  Absolutely Miss.,"DialogSetPose(CurrentCharacter, ""Kneel"")",!DialogIsKneeling(CurrentCharacter),KneelToSubmitToPlayer,Peaceful|Wise
+30,31,I could take you as my sub.,It would be awesome Miss.  Do you really want to start a D/s trial period with me?,,DialogIsKneeling(CurrentCharacter),KneelingToSubmitToPlayer,
+30,31,I could take you as my sub.,I'm all fucking wet now.  You want to start a D/s trial period with me?,,DialogIsKneeling(CurrentCharacter),KneelingToSubmitToPlayer,Horny|Rude
+30,31,I could take you as my sub.,"My soul is shivering, it's like a dream that comes to fruition.  Do you really want to begin a D/s trial period with me?",,DialogIsKneeling(CurrentCharacter),KneelingToSubmitToPlayer,Frigid|Polite
+30,,Give me some time to think about it.,Of course Miss.,,,,
+31,32,"Yes, we'll do a trial period.",Yes Miss.  And for how long should it last?,,,TrialPeriodPlayerAsDom,
+31,32,"Yes, we'll do a trial period.","Absolutely, trial periods are very important Miss.",,,TrialPeriodPlayerAsDom,Serious
+31,32,"Yes, we'll do a trial period.","Trial periods are boring, but I guess we can do a short one Miss.",,,TrialPeriodPlayerAsDom,Playful
+31,0,"No, I'm not doing any trial period.",These are club rules Miss.  We cannot go against the rules.  Let's talk about something else then.,,,,
+32,33,One day is enough.,"Short and sweet then.  Alright.  Do I start to call you ""Mistress"" now?",StartDomTrial(1),,,
+32,33,Three days minimum.,"That's fair and reasonable.  Do I start to call you ""Mistress"" now?",StartDomTrial(3),,,
+32,33,A full week.,"That's a long trial but we will get to know each other better.  Do I start to call you ""Mistress"" now?",StartDomTrial(7),,,
+33,2000,"Yes girl, address me as ""Mistress"".",Very well Mistress DialogPlayerName.  I'm very happy to start this submissive trial with you.,,,TrialPeriodStartPlayerAsDom,
+33,2000,"Yes girl, address me as ""Mistress"".",Absolutely Mistress DialogPlayerName.  Do not hesitate to discipline me physically if I forget your proper title.,,,TrialPeriodStartPlayerAsDom,Violent|Serious
+33,2000,"Yes girl, address me as ""Mistress"".",Yes Mistress DialogPlayerName.  Your little slut is ready to serve you any way you want.,,,TrialPeriodStartPlayerAsDom,Horny|Rude
+33,2000,"Yes girl, address me as ""Mistress"".",With great pleasure Mistress DialogPlayerName.  Let's aspire that this trial period will bloom into a long-lasting D/s relationship.,,,TrialPeriodStartPlayerAsDom,Polite|Wise
 100,,,What would you like to do?,,,,
 100,,(Tickle her.),"(You tickle her on the ribs and tummy.  She seems to enjoy it and cannot resist laughing.)  Hehehe, it tickles!",,Player.CanInteract(),PlayTickle,
 100,,(Tickle her.),(You tickle her on the ribs and tummy.  She laughs out loud and almost cries.)  Eeeeeaaahahaha!  You're so funnyyyyahaha!,NPCInteraction(1),Player.CanInteract(),PlayTickle,Playful|Peaceful
@@ -379,7 +414,7 @@ PlayerMustKneel,,,"(She licks her lips.)  Hey sexy sub, you know what would turn
 1010,,,Is there anything else you want to talk about my submissive?,,,DomIntroTalk,
 1010,,,"Girl, do you still want to talk?",,,DomIntroTalk,Dominant|Dumb
 1010,,,"Hey bitch, be direct if ya need to speak.",,,DomIntroTalk,Rude|Serious
-1010,,,Anything else you would to entertain?  We could lecture on philosophy or literature if you prefer.,,,DomIntroTalk,Wise|Polite
+1010,,,Anything else you would like to entertain?  We could lecture on philosophy or literature if you prefer.,,,DomIntroTalk,Wise|Polite
 1010,,Please tell me about you.,There's not much to tell.  I enjoy BDSM like everyone here.,DialogRemove(),,DomNPCProfile,
 1010,,Please tell me about you.,"As you know, I'm mostly known as a Domme around here.  I love to see girls in tight bondage.",DialogRemove(),,DomNPCProfile,Dominant
 1010,,Please tell me about you.,I love the Bondage Club and BDSM.  Being tied up is a huge turn on for me.,DialogRemove(),,DomNPCProfile,Submissive
@@ -398,11 +433,16 @@ PlayerMustKneel,,,"(She licks her lips.)  Hey sexy sub, you know what would turn
 1010,,Are you happy to have me as your sub?,(She caresses your hair slowly.)  I'm beyond pleased to own such a wonderful submissive as you little one.,,IsHappy(),DomHappy,Peaceful|Polite
 1010,,Are you happy to have me as your sub?,"Oh, hell yeah, owning you makes me all wet.",,IsHappy(),DomHappy,Horny|Rude
 1010,,Are you happy to have me as your sub?,"I am, we share a bond that's beyond the physical realm.",,IsHappy(),DomHappy,Frigid|Wise
-1010,,Are you happy to have me as your sub?,"I do have some regrets, maybe it wasn't the best of ideas.",,!IsHappy(),DomNotHappy,
-1010,,Are you happy to have me as your sub?,(She slaps your face and gives you a stern look.)  No!  You need to please me better slave.,,!IsHappy(),DomNotHappy,Violent|Serious
-1010,,Are you happy to have me as your sub?,"(She caresses your hair.)  I'll be honest with you, I'm not that happy about our relationship.  I hope it gets better with time.",,!IsHappy(),DomNotHappy,Peaceful|Polite
-1010,,Are you happy to have me as your sub?,"No slut!  If you can't get me wet, you're not worth much.",,!IsHappy(),DomNotHappy,Horny|Rude
-1010,,Are you happy to have me as your sub?,"Not really dear submissive.  Strangely enough, our platonic relationship isn't working for me.",,!IsHappy(),DomNotHappy,Frigid|Wise
+1010,,Are you happy to have me as your sub?,Yes and no.  We have our good and our sour moments.,,IsNeutral(),DomNeutral,
+1010,,Are you happy to have me as your sub?,(She slaps your butt.)  Please me better and I'll be happy.,,IsNeutral(),DomNeutral,Violent|Serious
+1010,,Are you happy to have me as your sub?,"(She caresses your hair.)  I'll be honest with you, I'm concerned about our relationship.  I hope it gets better with time.",,IsNeutral(),DomNeutral,Peaceful|Polite
+1010,,Are you happy to have me as your sub?,Yes and no slut.  You need to work harder to get me wet.,,IsNeutral(),DomNeutral,Horny|Rude
+1010,,Are you happy to have me as your sub?,I don't know my dear submissive.  We seem to be losing that strong bond that we've shared before.,,IsNeutral(),DomNeutral,Frigid|Wise
+1010,,Are you happy to have me as your sub?,"I do have some regrets, maybe it wasn't the best of ideas.",,IsUnhappy(),DomUnhappy,
+1010,,Are you happy to have me as your sub?,(She slaps your face and gives you a stern look.)  No!  You need to please me better slave.,,IsUnhappy(),DomUnhappy,Violent|Serious
+1010,,Are you happy to have me as your sub?,"(She caresses your hair.)  I'll be honest with you, I'm not pleased of our relationship.  I hope it gets better soon.",,IsUnhappy(),DomUnhappy,Peaceful|Polite
+1010,,Are you happy to have me as your sub?,"No slut!  If you can't get me wet, you're not worth much.",,IsUnhappy(),DomUnhappy,Horny|Rude
+1010,,Are you happy to have me as your sub?,"Not really dear submissive.  Strangely enough, our platonic relationship isn't working for me.",,IsUnhappy(),DomUnhappy,Frigid|Wise
 1010,,Do you have a D/s family in the club?,I only have one submissive and its you girl.,,!IsMistress(),DomFamilyOwner,
 1010,,Do you have a D/s family in the club?,I have one subbie and it's best.  (She winks at you.),,!IsMistress(),DomFamilyOwner,Playful
 1010,,Do you have a D/s family in the club?,Don't ask questions when you already know the answer.  I have you and that's enough.,,!IsMistress(),DomFamilyOwner,Serious
@@ -724,3 +764,164 @@ PunishSleepCage,1001,Mistress!  This is torture!,"Nonsense.  You will wake up ev
 PunishSleepCage,1001,It might be hard to sleep in there.,"You'll get used to it.  You will wake up everyday in your cage, remembering who's your owner.",RunPunishment(0),,,
 PunishSleepCage,1001,I'm not sure I understand.,"It's easy, you will wake up everyday in your cage, remembering who's your owner.",RunPunishment(0),,,
 PunishSleepCage,1001,Very well Mistress.,"Good, you will wake up everyday in your cage, remembering who's your owner.",RunPunishment(1),,,
+2000,,,(She seems confused seeing you on your knees.)  Yes Mistress?,,DialogIsKneeling(Player),SubIntroPlayerKneeling,
+2000,,,(She seems confused seeing you on your knees.)  What the fuck?,,DialogIsKneeling(Player),SubIntroPlayerKneeling,Dominant|Rude
+2000,,,(She seems confused seeing you on your knees.)  Is everything alright Mistress?,,DialogIsKneeling(Player),SubIntroPlayerKneeling,Peaceful|Wise
+2000,,,What would you like to do Mistress?,,,SubIntro,
+2000,,,Is there something kinky you would like to do Mistress?,,,SubIntro,Horny
+2000,,,(She bows her head and stays silent.),,,SubIntro,Frigid
+2000,,,Yo Mistress.  What's up?,,,SubIntro,Rude
+2000,,,Greetings Mistress.  How can I demonstrate my devotion to you?,,,SubIntro,Polite
+2000,,,What do you want Mistress?,,,SubIntro,Dominant
+2000,,,"Mistress, what do you desire from your submissive?",,,SubIntro,Wise
+2000,,,Yes Miss?  Errr... Mistress?,,,SubIntro,Dumb
+2000,,,Mistress!  What could we do to have fun?,,,SubIntro,Playful
+2000,,,How can we further my submissive training Mistress?,,,SubIntro,Serious
+2000,,,(She seems happy and calm when you get to her.)  Yes Mistress?,,,SubIntro,Peaceful
+2000,,,(She wiggles her butt.)  Are you in a spanking mood Mistress?,,,SubIntro,Violent
+2000,2010,Let's talk my girl.,What would you like to talk about?,,,SubStartTalk,
+2000,2010,Let's talk my girl.,"(She nods slowly.)  Very good, I do enjoy our long discussions.",,,SubStartTalk,Frigid
+2000,2010,Let's talk my girl.,(She nods quickly.)  What will be the kinky subject of the day?,,,SubStartTalk,Horny
+2000,2010,Let's talk my girl.,"Absolutely, what will be the topic of our discussion or debate?",,,SubStartTalk,Polite
+2000,2010,Let's talk my girl.,What's up Mistress?,,,SubStartTalk,Rude
+2000,2040,You should wear something else.,Alright Mistress.  And what should I wear?,,!DialogIsRestrained(CurrentCharacter),SubChangeCloth,
+2000,2040,You should wear something else.,(She twirls on herself and giggles.)  Of course!  What would be appealing for your eyes?,,!DialogIsRestrained(CurrentCharacter),SubChangeCloth,Playful|Polite
+2000,2040,You should wear something else.,Oh yeah!  You're feelin' horny Mistress?,,!DialogIsRestrained(CurrentCharacter),SubChangeCloth,Horny|Rude
+2000,2040,You should wear something else.,I don't mind Mistress.  We are in you room after all.  What would you like to see?,,!DialogIsRestrained(CurrentCharacter),SubChangeCloth,Serious|Wise
+2000,,You should wear something else.,(She struggles in her restraints.)  It might be a little hard.,,DialogIsRestrained(CurrentCharacter),,
+2000,,Can you release me?,Of course Mistress.  (She releases you.),DialogRelease(Player),AllowReleasePlayer(),SubWillReleasePlayer,
+2000,,Can you release me?,"Yes, were you naughty Mistress?  (She releases you.)",DialogRelease(Player),AllowReleasePlayer(),SubWillReleasePlayer,Playful
+2000,,Can you release me?,"Of course, seeing you restrained doesn't feel right.  (She releases you.)",DialogRelease(Player),AllowReleasePlayer(),SubWillReleasePlayer,Serious
+2000,,Can you release me?,You needed a Dominant break Mistress?  I can understand that.  (She releases you.),DialogRelease(Player),AllowReleasePlayer(),SubWillReleasePlayer,Wise
+2000,,Can you release me?,Uh?  You got in trouble?  (She releases you.),DialogRelease(Player),AllowReleasePlayer(),SubWillReleasePlayer,Dumb
+2000,,Can you release me?,"I'm sorry Mistress, but your own Mistress is watching, and I don't want to get us both in trouble.",,WontReleasePlayerOwner(),SubWontReleasePlayerOwner,
+2000,,Can you release me?,Sure thing!  (She starts to release you but stops when she sees your Mistress staring at her.)  Oops!,,WontReleasePlayerOwner(),SubWontReleasePlayerOwner,Playful|Dumb
+2000,,Can you release me?,It wouldn't be wise Mistress.  Your owner is the final arbiter on your of freedom.,,WontReleasePlayerOwner(),SubWontReleasePlayerOwner,Serious|Wise
+2000,,(Struggle and plead for help.),Of course Mistress.  (She releases you.),DialogRelease(Player),AllowReleasePlayer(),SubStruggleWillReleasePlayer,
+2000,,(Struggle and plead for help.),"Yes, were you naughty Mistress?  (She releases you.)",DialogRelease(Player),AllowReleasePlayer(),SubStruggleWillReleasePlayer,Playful
+2000,,(Struggle and plead for help.),"Of course, seeing you restrained doesn't feel right.  (She releases you.)",DialogRelease(Player),AllowReleasePlayer(),SubStruggleWillReleasePlayer,Serious
+2000,,(Struggle and plead for help.),You needed a Dominant break Mistress?  I can understand that.  (She releases you.),DialogRelease(Player),AllowReleasePlayer(),SubStruggleWillReleasePlayer,Wise
+2000,,(Struggle and plead for help.),Uh?  You got in trouble?  (She releases you.),DialogRelease(Player),AllowReleasePlayer(),SubStruggleWillReleasePlayer,Dumb
+2000,,(Struggle and plead for help.),"I'm sorry Mistress, but your own Mistress is watching, and I don't want to get us both in trouble.",,WontReleasePlayerOwner(),SubStruggleWontReleasePlayerOwner,
+2000,,(Struggle and plead for help.),Sure thing!  (She starts to release you but stops when she sees your Mistress staring at her.)  Oops!,,WontReleasePlayerOwner(),SubStruggleWontReleasePlayerOwner,Playful|Dumb
+2000,,(Struggle and plead for help.),It wouldn't be wise Mistress.  Your owner is the final arbiter on your of freedom.,,WontReleasePlayerOwner(),SubStruggleWontReleasePlayerOwner,Serious|Wise
+2000,,Get on your knees.,(She nods and gets on her knees.),"DialogSetPose(CurrentCharacter, ""Kneel"")",WillKneel(),SubWillKneel,
+2000,,Get on your knees.,Absolutely Miss.  I will find a comfy kneeling position for your pleasure.  (She comfortably sits on knees.),"DialogSetPose(CurrentCharacter, ""Kneel"")",WillKneel(),SubWillKneel,Submissive|Peaceful
+2000,,Get on your knees.,"Consider yourself Mistress, I don't kneel for many girls.  (She reluctantly kneels for you.)","DialogSetPose(CurrentCharacter, ""Kneel"")",WillKneel(),SubWillKneel,Dominant|Serious
+2000,,Get on your knees.,Kneeling is boring.  I'm punished or what?  (She pouts and kneels for you.),"DialogSetPose(CurrentCharacter, ""Kneel"")",WillKneel(),SubWillKneel,Playful|Dumb
+2000,,(Point at the floor.),(She nods and kneels for you.),"DialogSetPose(CurrentCharacter, ""Kneel"")",WillKneelGagged(),,
+2000,,Get on your knees.,(She wiggles her restrained legs and shrugs.),,CannotKneel(),,
+2000,,Stand up.,Alright!  Time to move.  (She stands up.),"DialogSetPose(CurrentCharacter, """")",CanStandUp(),SubStandUp,
+2000,,Stand up.,(She happily jumps back up.)  Thanks Mistress!,"DialogSetPose(CurrentCharacter, """")",CanStandUp(),SubStandUp,Submissive|Playful
+2000,,Stand up.,It's about time!  Kneeling is for wimpy subs anyway.,"DialogSetPose(CurrentCharacter, """")",CanStandUp(),SubStandUp,Dominant|Violent
+2000,,Stand up.,"Tremendous!  (She stands up slowly.)  I must confess, my legs were starting to hurt.","DialogSetPose(CurrentCharacter, """")",CanStandUp(),SubStandUp,Peaceful|Polite
+2000,,(Point at the floor then upward.),(She nods and stands up.),"DialogSetPose(CurrentCharacter, """")",CanStandUpGagged(),,
+2000,,Stand up.,(She wiggles her restrained legs and shrugs.),,CannotStandUp(),,
+2000,2100,(Play with her.),"(You move closer, ready to play with her.)",,AllowRestain(),,
+2000,,(Leave her.),,DialogLeave(),,,
+2010,,,Is there anything else you want to talk about Mistress?,,,SubIntroTalk,
+2010,,,"Mistress, do you still want to talk?",,,SubIntroTalk,Dominant|Dumb
+2010,,,"Hey Mistress, we need to chat some more?",,,SubIntroTalk,Rude|Serious
+2010,,,Anything else you would like to entertain Mistress?  We could lecture on philosophy or literature if you prefer.,,,SubIntroTalk,Wise|Polite
+2010,,Tell me about you.,There's not much to tell.  I enjoy BDSM like everyone here.,DialogRemove(),,SubNPCProfile,
+2010,,Tell me about you.,"I usually don't surrender to other girls, I'm mostly known as a Domme.  You're the exception Mistress.",DialogRemove(),,SubNPCProfile,Dominant
+2010,,Tell me about you.,I love the Bondage Club and BDSM.  Being tied up is a huge turn on for me.,DialogRemove(),,SubNPCProfile,Submissive
+2010,,Tell me about you.,"Everyone has its fetishes, one of mine is pain.  I get pleasure from physical pain and harsh bondage positions.",DialogRemove(),,SubNPCProfile,Violent
+2010,,Tell me about you.,I like BDSM but I usually prefer the softer side of it.  I prefer light restraints and gags.,DialogRemove(),,SubNPCProfile,Peaceful
+2010,,Tell me about you.,I'll be honest and go straight to the point Mistress.  Your slut is mostly here for sex.,DialogRemove(),,SubNPCProfile,Horny
+2010,,Tell me about you.,"Unlike most people, BDSM isn't sexual for me.  I love the control and the restraints but I'm not here for sex.",DialogRemove(),,SubNPCProfile,Frigid
+2010,,Tell me about you.,What the fuck can I tell you?  I'm a kinky slave yo.,DialogRemove(),,SubNPCProfile,Rude
+2010,,Tell me about you.,"(She nods.)  For me, the club is fascinating, but I don't have many acquaintances yet.  I'm glad you've took me in.",DialogRemove(),,SubNPCProfile,Polite
+2010,,Tell me about you.,I love to learn and study.  And BDSM reveal interesting aspects of human nature.  It's a mirror of who we are and our social evolution.,DialogRemove(),,SubNPCProfile,Wise
+2010,,Tell me about you.,I don't know what tell you.  I'm a club member and I like BDSM.,DialogRemove(),,SubNPCProfile,Dumb
+2010,,Tell me about you.,"I'm not known to be the life a party.  For me, BDSM should be taken seriously to avoid any harm or pitfalls.",DialogRemove(),,SubNPCProfile,Serious
+2010,,Tell me about you.,"I like clubs, parties, bondage and life in general.  I have many wonderful friends in the club but you're the best Mistress.",DialogRemove(),,SubNPCProfile,Playful
+2010,,Are you happy to be owned by me?,"Yes, it's great to have a Mistress like you.",,IsHappy(),SubHappy,
+2010,,Are you happy to be owned by me?,"(She nods rapidly.)  I'm happy Mistress.  And if you're aren't happy with me, just punish me hard.",,IsHappy(),SubHappy,Violent|Serious
+2010,,Are you happy to be owned by me?,(She nods slowly.)  I'm beyond pleased that such a wonderful Mistress is taking care of me.,,IsHappy(),SubHappy,Peaceful|Polite
+2010,,Are you happy to be owned by me?,"Oh, hell yeah, being your slut makes me all wet.",,IsHappy(),SubHappy,Horny|Rude
+2010,,Are you happy to be owned by me?,"I am, we share a bond that's beyond the physical realm.",,IsHappy(),SubHappy,Frigid|Wise
+2010,,Are you happy to be owned by me?,Yes and no.  We have our good and our sour moments.,,IsNeutral(),SubNeutral,
+2010,,Are you happy to be owned by me?,"(She seems uncertain.)  I guess our relationship lost some intensity, but we can kick it up.",,IsNeutral(),SubNeutral,Violent|Serious
+2010,,Are you happy to be owned by me?,"(She shrugs.)  I'll be honest with you, I'm concerned about our relationship.  I hope it gets better with time.",,IsNeutral(),SubNeutral,Peaceful|Polite
+2010,,Are you happy to be owned by me?,Yes and no Mistress.  Your cunt isn't as wet as she used to be.,,IsNeutral(),SubNeutral,Horny|Rude
+2010,,Are you happy to be owned by me?,I don't know my dear Mistress.  We seem to be losing that strong bond that we've shared before.,,IsNeutral(),SubNeutral,Frigid|Wise
+2010,,Are you happy to be owned by me?,"I do have some regrets, maybe it wasn't the best of ideas.",,IsUnhappy(),SubUnhappy,
+2010,,Are you happy to be owned by me?,(She grumbles.)  No!  Our relationship isn't intense enough.,,IsUnhappy(),SubUnhappy,Violent|Serious
+2010,,Are you happy to be owned by me?,"(She sighs.)  I'll be honest with you, I'm not happy about our relationship.  I hope it gets better soon.",,IsUnhappy(),SubUnhappy,Peaceful|Polite
+2010,,Are you happy to be owned by me?,Shit no!  I think I'm frustrated sexually.,,IsUnhappy(),SubUnhappy,Horny|Rude
+2010,,Are you happy to be owned by me?,"Not really dear Mistress.  Strangely enough, our platonic relationship isn't working for me.",,IsUnhappy(),SubUnhappy,Frigid|Wise
+2010,,How's the trial so far?,It's doing ok Mistress.  I understand why the club enforces that rule.,,SubTrialInProgress(),SubTrialInProgress,
+2010,,How's the trial so far?,It's doing well Mistress.  It's giving us ample time to know each other.,,SubTrialInProgress(),SubTrialInProgress,Serious|Wise
+2010,,How's the trial so far?,It's soooooooooooo long Mistress.  I can't wait to be collared.,,SubTrialInProgress(),SubTrialInProgress,Playful|Dumb
+2010,2020,The trial is over my girl.,Yes!  Do you still want to collar me Mistress?,,SubTrialOverWilling(),SubTrialOverWilling,
+2010,2020,The trial is over my girl.,"Yes, the collaring time has come.  Mistress, do you still want me as your slave?",,SubTrialOverWilling(),SubTrialOverWilling,Serious|Wise
+2010,2020,The trial is over my girl.,Oh my!  Do you still want me Miss?  Err...  Mistress?,,SubTrialOverWilling(),SubTrialOverWilling,Playful|Dumb
+2010,,The trial is over my girl.,"Already?  I haven't made my mind yet.  Please, lets spend more time together first.",,SubTrialOverUnwilling(),SubTrialOverUnwilling,
+2010,,The trial is over my girl.,"It was too fast Mistress, I need more time to make sure we are the perfect match.",,SubTrialOverUnwilling(),SubTrialOverUnwilling,Serious|Wise
+2010,,The trial is over my girl.,Really?  Already?  I know!  I want a collar!  But I'm not certain.  Can we play some more?,,SubTrialOverUnwilling(),SubTrialOverUnwilling,Playful|Dumb
+2010,,Let's chat.  (Spend time to chat with her.),(You spend some quality time chatting together and she seems to appreciate.),NPCInteraction(1),,SubTimeChitChat,
+2010,,Let's chat.  (Spend time to chat with her.),(You spend some time chit-chatting together.  It's fun but she politely lets you know that you could be more productive.),,,SubTimeChitChat,Serious|Polite
+2010,,Let's chat.  (Spend time to chat with her.),"(You two talk about politic, science and human nature.  It's different from the club kinks but still very interesting.)",NPCInteraction(1),,SubTimeChitChat,Frigid|Wise
+2010,,Let's chat.  (Spend time to chat with her.),"(You try to have a meaningful conversation, but it doesn't go anywhere.  All she seems to focus on is sex.)",NPCInteraction(-1),,SubTimeChitChat,Horny|Dumb
+2010,2030,You should go.,Mistress?  You want me to leave now?  This is the end between us?,,,SubKickOut,
+2010,2030,You should go.,Is the bell tolling on our relationship Mistress?  Is this the end of the epic tale that we've shared?,,,SubKickOut,Wise|Polite
+2010,2030,You should go.,What the fuck?  You're kicking me out?  It's the end?,,,SubKickOut,Rude|Dumb
+2010,2000,That's all I wanted to talk about.,(She nods.)  What would you like to do then?,,,SubEndTalk,
+2010,2000,That's all I wanted to talk about.,"I agree, let's stop the trivial conversations and do more training.",,,SubEndTalk,Serious
+2010,2000,That's all I wanted to talk about.,Yes Mistress!  Time for some action and some fun!,,,SubEndTalk,Playful
+2010,2000,That's all I wanted to talk about.,Hell yeah!  What could we do?,,,SubEndTalk,Rude
+2010,2000,That's all I wanted to talk about.,Yeah!  Let's go find some beer or something else to drink Mistress.,,,SubEndTalk,Dumb
+2010,,(Leave her.),,DialogLeave(),,,
+2020,2021,"Yes slave, I'm ready to collar you.","Mistress, I would be thrilled to become your permanent submissive.  I will accept your collar.",,,SubReadyForCollar,
+2020,2021,"Yes slave, I'm ready to collar you.","Dear Mistress, being owned by your caring hands would be a dream.  I will accept your loving collar.",,,SubReadyForCollar,Peaceful
+2020,2021,"Yes slave, I'm ready to collar you.","Mistress, I wish to surrender my flesh and freedom to you.  I will accept your tight collar.",,,SubReadyForCollar,Violent
+2020,2010,No.  Let's continue the trial.,(She sighs.)  Yes Mistress.,,,,
+2021,2022,Great!  I will setup the collaring ceremony.,You're the best!  I think there's a 100$ cost to prepare the ceremony though.,,,SubSetupCollaring,
+2021,2022,Great!  I will setup the collaring ceremony.,This is wonderful Mistress.  Do you have the 100$ to cover the ceremony cost?,,,SubSetupCollaring,Wise
+2021,2022,Great!  I will setup the collaring ceremony.,"Great!  Is there a cost for the ceremony?  10$?  50$?  Oh no, I think it's 100$.",,,SubSetupCollaring,Dumb
+2022,2010,I don't have enough money.,"It's fine Mistress, take the time you need to find the money.",,!DialogMoneyGreater(100),,
+2022,2023,"Yes, I have enough money.",This is really thrilling!  Should we go right now?,,DialogMoneyGreater(100),,
+2023,2024,Yes.  (Do the collaring ceremony.),,NPCCollaring(),,,
+2023,2010,"Not right now, but soon.",(She nods.)  It will be wonderful.,,,,
+2024,2000,I vow to be honest and just.,(She nods and smiles.)  Yes Mistress.,,,,
+2024,2000,I vow to be strict but fair.,(She nods and smiles.)  Yes Mistress.,,,,
+2024,2000,I vow to be fun and joyful.,(She nods and smiles.)  Yes Mistress.,,,,
+2024,2000,I vow to nurture you and help you grow.,(She nods and smiles.)  Yes Mistress.,,,,
+2024,2000,I vow to protect you and care for you.,(She nods and smiles.)  Yes Mistress.,,,,
+2030,2000,It's over slave.  (Kick her out.),,KickOut(),,,
+2030,2000,"No, you can stay.",(She seems confused.)  Alright Mistress.  What would you like to do?,NPCInteraction(-5),,SubCancelKickOut,
+2030,2000,"No, you can stay.",You got me scared Mistress.  What would you like to do?,NPCInteraction(-5),,SubCancelKickOut,Submissive|Peaceful
+2030,2000,"No, you can stay.","Make up your mind Mistress.  So, what's up?",NPCInteraction(-5),,SubCancelKickOut,Dominant|Rude
+2030,2000,"No, you can stay.","Sorry, I'm kind of confused Mistress.  What would you like to do?",NPCInteraction(-5),,SubCancelKickOut,Dumb|Polite
+2040,2000,Get fully dressed.,(She nods and makes sure she's wearing all her clothes.)  I hope it looks fine.,"Change(""Cloth"")",,,
+2040,2000,Get in your underwear.,(She nods and makes sure she's wearing only her underwear.)  I'm not sure where this is going.,"Change(""Underwear"")",,,
+2040,2000,Get naked.,(She blushes and gets fully naked.)  Something kinky is brewing.,"Change(""Naked"")",,,
+2040,2000,Stay like that.,Yes Mistress.  What would you like to do then?,,,,
+2100,,,What would you like to do Mistress?,,,,
+2100,,(Tickle her.),"(You tickle her on the ribs and tummy.  She seems to enjoy it and cannot resist laughing.)  Hehehe, it tickles!",,Player.CanInteract(),SubPlayTickle,
+2100,,(Tickle her.),(You tickle her on the ribs and tummy.  She laughs out loud and almost cries.)  Eeeeeaaahahaha!  You're so funnyyyyahaha!,NPCInteraction(1),Player.CanInteract(),SubPlayTickle,Playful|Peaceful
+2100,,(Tickle her.),"(You tickle her on the ribs and tummy.  She barely laughs and doesn't seem to enjoy it.)  Mistress, you can do better than that.",NPCInteraction(-1),Player.CanInteract(),SubPlayTickle,Serious|Violent
+2100,,(Tickle her.),"(You tickle her on the ribs and tummy.  She laughs a little and blushes.)  Hahahaaaaha, ya can tickle me between ma legs if ya want.",,Player.CanInteract(),SubPlayTickle,Horny|Rude
+2100,,(Kiss her.),"(You get close to each other and share a lovely kiss on the lips.)  Mmmmh, this is nice.",,NobodyGagged(),SubPlayKiss,
+2100,,(Kiss her.),(You get close to her to share a kiss.  She really likes it and pushes her tongue in your mouth.),NPCInteraction(1),NobodyGagged(),SubPlayKiss,Horny|Violent
+2100,,(Kiss her.),(She blushes as you get closer for a kiss.  You share a sober but lovely embrace on the lips.)  You certainly share your affection with fervor.,,NobodyGagged(),SubPlayKiss,Polite|Peaceful
+2100,,(Kiss her.),"(She doesn't react much as you share a slow kiss.)  Kisses have a cultural and emotional impact on most, but it doesn't do much for me.",NPCInteraction(-1),NobodyGagged(),SubPlayKiss,Frigid|Wise
+2100,,(Fondle her breast.),(You fondle her breast as she blushes.)  You have wonderful hands.,,CanFondle(),SubPlayFondle,
+2100,,(Fondle her breast.),(You fondle her breast as she moans loudly.)  Your loving hands are such a pleasure on my tender skin.,NPCInteraction(1),CanFondle(),SubPlayFondle,Horny|Polite
+2100,,(Fondle her breast.),"(You fondle her breast, but she doesn't react much.)  You can do better Mistress.  Smack them, pinch them, whip them!",NPCInteraction(-1),CanFondle(),SubPlayFondle,Violent|Playful
+2100,,(Fondle her breast.),(You fondle her breast as she moans lightly.)  You truly have masseuse hands Mistress.,,CanFondle(),SubPlayFondle,Serious|Dominant
+2100,,(Slap her.),(She's stunned as you slap her on the face.)  Mistress DialogPlayerName?  What was that for?,,Player.CanInteract(),SubPlaySlap,
+2100,,(Slap her.),"(You slap her hard on the face, but she stands her ground.)  I've been slapped all my life, I can take it.",NPCInteraction(1),Player.CanInteract(),SubPlaySlap,Violent|Dumb
+2100,,(Slap her.),"(She whimpers and bows her head as you slap her hard.)  Mistress, what did I do to deserve such a harsh treatment?",NPCInteraction(-1),Player.CanInteract(),SubPlaySlap,Polite|Peaceful
+2100,,(Slap her.),(She grumbles as you slap her on the face.)  Violence can enforce good behavior temporarily but can also instigate repressed fears and panics.,,Player.CanInteract(),SubPlaySlap,Serious|Wise
+2100,,(Spank her.),"(You spank her on the butt, and she jumps from the pain.)  Ow!  Oh my.",,Player.CanInteract(),SubPlaySpank,
+2100,,(Spank her.),"(You spank her hard on the butt and she seems to enjoy the pain.)  If you're serious on inflicting pain, you could get a crop or a whip.",NPCInteraction(1),Player.CanInteract(),SubPlaySpank,Violent|Serious
+2100,,(Spank her.),(She whimpers as you spank her pretty hard on the butt.)  This punishment seems unfair.  I'm sorry if I've broken a regulation.,,Player.CanInteract(),SubPlaySpank,Frigid|Polite
+2100,,(Spank her.),(She cowers from the pain and sharply inhales with each hit.)  Fuck it hurts!  Why are you doing that Mistress?,NPCInteraction(-1),Player.CanInteract(),SubPlaySpank,Peaceful|Rude
+2100,,(Masturbate her.),(You masturbate her lovingly as she breathes faster and faster.)  Is it getting hot in here?,,CanMasturbate(),SubPlayMasturbate,
+2100,,(Masturbate her.),"(You masturbate her slowly as she shakes her hips and hums a sexy song.)  Oooohh yeah, this feels sooooo good.",NPCInteraction(1),CanMasturbate(),SubPlayMasturbate,Horny|Playful
+2100,,(Masturbate her.),"(You masturbate her lovingly, but she doesn't seem to enjoy it.)  I'll be blunt Mistress.  I'm not in that fricking club for sex.",NPCInteraction(-1),CanMasturbate(),SubPlayMasturbate,Frigid|Rude
+2100,,(Masturbate her.),"(You masturbate her with passion as she moans and blushes.)  Mistress, being your slave is such a thrill.",,CanMasturbate(),SubPlayMasturbate,Submissive|Polite
+2100,2000,(Stop playing.),(You take a step back.),,,,
+2100,,(Leave her.),,DialogLeave(),,,

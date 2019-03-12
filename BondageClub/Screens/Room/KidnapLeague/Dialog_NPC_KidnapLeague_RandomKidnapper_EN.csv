@@ -122,7 +122,7 @@ BountyShop,,,(Your bounty is currently shopping and seems to be annoyed by you.)
 105,,(Let her go.),,RandomEnd(),
 110,,,NOEXIT,,
 110,,(Tickle her.),"(You tickle her on the ribs and tummy.  She giggles, laughs, and squirms around, trying to escape.)",,Player.CanInteract()
-110,,(Kiss her.),(You put both hands behind her head and pull her firmly to your lips for a passionate kinky kiss.),,Player.CanInteract()
+110,,(Kiss her.),(You put both hands behind her head and pull her firmly to your lips for a passionate kinky kiss.),,CanKiss()
 110,,(Fondle her.),(You playfully fondle her breasts and butt as she moans softly and blushes.),,Player.CanTalk()
 110,,(Slap her.),(You harshly slap her in the face.  She bows down her head and lets out a little moan.),,Player.CanInteract()
 110,,(Spank her.),(You spank her hard on the butt and she sharply inhales from the pain.),,Player.CanInteract()

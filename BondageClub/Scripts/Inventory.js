@@ -29,7 +29,7 @@ function InventoryAdd(C, NewItemName, NewItemGroup, Push) {
 
 		// Sends the new item to the server if it's for the current player
 		if ((C.ID == 0) && ((Push == null) || Push))
-			AccountRequest("inventory_add", "&name=" + NewItemName + "&group=" + NewItemGroup);
+			ServerPlayerInventorySync();
 
 	}
 
@@ -40,12 +40,14 @@ function InventoryDelete(C, DelItemName, DelItemGroup, Push) {
 
 	// First, we remove the item from the player inventory
 	for (var I = 0; I < C.Inventory.length; I++)
-		if ((C.Inventory[I].Name == DelItemName) && (C.Inventory[I].Group == DelItemGroup))
+		if ((C.Inventory[I].Name == DelItemName) && (C.Inventory[I].Group == DelItemGroup)) {
 			C.Inventory.splice(I, 1);
+			break;
+		}
 
 	// Next, we call the player account service to remove the item
 	if ((C.ID == 0) && ((Push == null) || Push))
-		AccountRequest("inventory_delete", "&name=" + DelItemName + "&group=" + DelItemGroup);
+		ServerPlayerInventorySync();
 
 }
 
@@ -76,6 +78,7 @@ function InventoryAvailable(C, InventoryName, InventoryGroup) {
 
 // Returns TRUE if we can equip the item
 function InventoryAllow(C, Prerequisite) {
+	if (Prerequisite == null) return true;
 	if ((Prerequisite == "AccessTorso") && (InventoryGet(C, "Cloth") != null)) { DialogSetText("RemoveClothesForItem"); return false; }
 	if ((Prerequisite == "AccessBreast") && ((InventoryGet(C, "Cloth") != null) || (InventoryGet(C, "Bra") != null))) { DialogSetText("RemoveClothesForItem"); return false; }
 	if ((Prerequisite == "AccessVulva") && ((InventoryGet(C, "Cloth") != null) || (InventoryGet(C, "ClothLower") != null) || (InventoryGet(C, "Panties") != null))) { DialogSetText("RemoveClothesForItem"); return false; }
@@ -95,7 +98,6 @@ function InventoryWear(C, AssetName, AssetGroup, ItemColor, Difficulty) {
 	for (var A = 0; A < Asset.length; A++)
 		if ((Asset[A].Name == AssetName) && (Asset[A].Group.Name == AssetGroup))
 			CharacterAppearanceSetItem(C, AssetGroup, Asset[A], ItemColor, Difficulty);
-	CharacterRefresh(C);
 }
 
 // Sets the difficulty to remove an item
@@ -104,7 +106,7 @@ function InventorySetDifficulty(C, AssetGroup, Difficulty) {
 		for (var A = 0; A < C.Appearance.length; A++)
 			if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Name == AssetGroup))
 				C.Appearance[A].Difficulty = Difficulty;
-	if (CurrentModule != "Character") CharacterAppearanceSave(C);
+	if ((CurrentModule != "Character") && (C.ID == 0)) ServerPlayerAppearanceSync();
 }
 
 // Returns TRUE if there's already a locked item at a given position

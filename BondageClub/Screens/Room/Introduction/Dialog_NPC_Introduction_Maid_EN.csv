@@ -18,11 +18,12 @@ ItemBreastLeatherWhip,,,(She jumps from the searing pain on her breast.)  Ouch! 
 ItemBreastLeatherCrop,,,(You whip her breast with the leather crop as she whimpers and bows her head.) Owwwwwww!,,
 ItemPelvisLeatherWhip,,,(You whip her butt hard as she sighs.)  Ahh! I promise I'll work harder Miss Head Maid!,,
 ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  Oww! That stings Miss!.,,
+0,,,Greetings Mistress DialogPlayerName.  Welcome to the introduction class.  (She does curtsies for you.),,"DialogLogQuery(""ClubMistress"", ""Management"")"
+0,,,Greetings head maid DialogPlayerName.  Welcome to the introduction class.  (She does curtsies for you.),,IsHeadMaid
 0,,,(She stares at you.)  Hello naked girl.  Welcome to the introduction class.,,Player.IsNaked()
-0,,,"Hello head maid DialogPlayerName, welcome to the introduction class.",,IsHeadMaid
 0,,,"Hi sister, welcome to the introduction class.",,IsMaid
 0,,,"Hello there, welcome to the introduction class.",,!IsMaid
-0,,"Hi, my name is DialogPlayerName.","Pleased to meet you.  I'm DialogCharacterName, I work here as a maid.",DialogRemove(),!IsMaid
+0,,"Hi, my name is DialogPlayerName.","Pleased to meet you.  I'm DialogCharacterName, I work here as a maid.",DialogRemove(),NoTitle()
 0,10,"Thanks, little maid.  What's going on here?","In here, you can learn how to restrain someone, and how to escape by yourself.",ChangeMaidOpinion(1),
 0,10,Introduction class?,"In this class, you can learn how to restrain someone, and how to free yourself.",,
 0,100,I don't need any introduction.,"Very well, would you like to practice with us then?",,
@@ -66,8 +67,8 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  Ow
 100,,Let's practice later.  (Leave her.),,DialogLeave(),
 200,220,I can use my favorite restraints on her?,"Of course, use anything you want on her.  She's very submissive, I'm sure she'll enjoy it.",,HasBasicItems
 200,210,Can I have some items to practice with?,"Use these basic items. They are easy to use, but also easy to struggle out from.",,!HasBasicItems
-210,220,Thanks!  (Take the items.),(She gives you ropes for her arms and legs, plus a basic cloth gag.),GetBasicItems()
-210,220,This is sweet.  (Take the items.),(She gives you ropes for her arms and legs, plus a basic cloth gag.),GetBasicItems()
+210,220,Thanks!  (Take the items.),"(She gives you ropes for her arms and legs,  plus a basic cloth gag.)",GetBasicItems(),
+210,220,This is sweet.  (Take the items.),"(She gives you ropes for her arms and legs,  plus a basic cloth gag.)",GetBasicItems(),
 220,230,I'll make it extra tight.,"Impressive.  Make sure to restrain her arms, her feet and to gag her.",ChangeMaidOpinion(1),
 220,230,I'm ready!,"Wonderful.  Make sure to restrain her arms and her feet, and don't forget to gag her!",,
 220,230,I can do it now?,"Absolutely.  Make sure to restrain her arms and her feet, and don't forget to gag her!",ChangeMaidOpinion(-1),
@@ -105,7 +106,7 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  Ow
 300,310,"I'm ready, you can tie me up.",(She wraps a white nylon rope around your feet and does two knots.),"DialogWearItem(""NylonRope"", ""ItemFeet"")",AllowRestrainPlayer()
 300,,Not yet.  Give me some time.  (Leave her.),,DialogLeave(),
 310,320,I won't be running away now.,That's for sure.  (She wraps a second rope around your legs.),"DialogWearItem(""NylonRope"", ""ItemLegs"")",
-310,320,That's all?,Hah, of course not. Much left to do.  (She wraps a second rope around your legs.),"DialogWearItem(""NylonRope"", ""ItemLegs"")"
+310,320,That's all?,"Hah, of course not.  Much left to do.  (She wraps a second rope around your legs.)","DialogWearItem(""NylonRope"", ""ItemLegs"")",
 320,330,It feels good.,"(She nods and wraps a third rope around your body and arms, forcing them to stick into your back.)","DialogWearItem(""NylonRope"", ""ItemArms"")",
 320,330,You sure know the ropes.,"(She smiles and wraps a third rope around your body and arms, forcing them to stick into your back.)","DialogWearItem(""NylonRope"", ""ItemArms"")",
 330,340,It's too tight!,You'll get used to it.  Now do you think you can escape?,ChangeMaidOpinion(-1),

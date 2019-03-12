@@ -10,7 +10,6 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		Name: "",
 		AssetFamily: CharacterAssetFamily,
 		AccountName: "",
-		AccountPassword: "",
 		Owner: "",
 		Lover: "",
 		Money: 0,
@@ -41,6 +40,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsVulvaChaste : function() { return (this.Effect.indexOf("Chaste") >= 0) },
 		IsBreastChaste : function() { return (this.Effect.indexOf("BreastChaste") >= 0) },
 		IsOwned : function() { return ((this.Owner != null) && (this.Owner.trim() != "")) },
+		IsOwnedByPlayer : function() { return (((this.Owner != null) && (this.Owner.trim() == Player.Name)) || (NPCEventGet(this, "EndDomTrial") > 0)) },
 		IsOwner : function() { return ((NPCEventGet(this, "EndSubTrial") > 0) || (this.Name == Player.Owner.replace("NPC-", ""))) },
 		IsKneeling: function () { return ((this.Pose != null) && (this.Pose.indexOf("Kneel") >= 0)) },
 		IsNaked : function () { return CharacterIsNaked(this); }
@@ -123,44 +123,15 @@ function CharacterLoadCSVDialog(C) {
 	
 }
 
-// Loads a wardrobe character from storage
-function CharacterLoadFromStorage(StorageName) {
-
-	// Checks if the NPC already exists and returns it if it's the case
-	for (var C = 0; C < Character.length; C++)
-		if (Character[C].AccountName == "Template-" + StorageName)
-			return Character[C];
-		
-	// Gets the character from storage
-	CharacterReset(Character.length, "Female3DCG");
-	C = Character[Character.length - 1];
-	C.AccountName = "Template-" + StorageName;
-	CharacterAppearanceBuildAssets(C);
-	
-	// If there's a saved version, we take it, if not we randomize the slot
-	var App = JSON.parse(localStorage.getItem(StorageName));
-	if (App != null) {
-		C.Appearance = [];
-		for(var A = 0; A < App.length; A++)
-			if ((App[A].Asset != null) && (App[A].Asset.Group.Category == "Appearance"))
-				if ((App[A].Asset.Value == 0) || InventoryAvailable(Player, App[A].Asset.Name, App[A].Asset.Group.Name))
-					C.Appearance.push(App[A]);
-	}
-	else
-		CharacterAppearanceFullRandom(C);
-	return C;
-
-}
-
 // Sets the clothes based on a character archetype
-function CharacterArchetypeClothes(C, Archetype) {
+function CharacterArchetypeClothes(C, Archetype, ForceColor) {
 	
 	// Maid archetype
 	if (Archetype == "Maid") {
-		InventoryAdd(C, "MaidOutfit1", "Cloth");
+		InventoryAdd(C, "MaidOutfit1", "Cloth", false);
 		CharacterAppearanceSetItem(C, "Cloth", C.Inventory[C.Inventory.length - 1].Asset);
 		CharacterAppearanceSetColorForGroup(C, "Default", "Cloth");
-		InventoryAdd(C, "MaidHairband1", "Hat");
+		InventoryAdd(C, "MaidHairband1", "Hat", false);
 		CharacterAppearanceSetItem(C, "Hat", C.Inventory[C.Inventory.length - 1].Asset);
 		CharacterAppearanceSetColorForGroup(C, "Default", "Hat");
 		C.AllowItem = (LogQuery("LeadSorority", "Maid"));
@@ -169,20 +140,18 @@ function CharacterArchetypeClothes(C, Archetype) {
 	// Mistress archetype
 	if (Archetype == "Mistress") {
 		var ColorList = ["#333333", "#AA4444", "#AAAAAA"];
-		var Color = CommonRandomItemFromList("", ColorList);
+		var Color = (ForceColor == null) ? CommonRandomItemFromList("", ColorList) : ForceColor;
 		CharacterAppearanceSetItem(C, "Hat", null);
-		InventoryAdd(C, "MistressGloves", "Gloves");
-		CharacterAppearanceSetItem(C, "Gloves", C.Inventory[C.Inventory.length - 1].Asset);
-		CharacterAppearanceSetColorForGroup(C, Color, "Gloves");
-		InventoryAdd(C, "MistressBoots", "Shoes");
-		CharacterAppearanceSetItem(C, "Shoes", C.Inventory[C.Inventory.length - 1].Asset);
-		CharacterAppearanceSetColorForGroup(C, Color, "Shoes");
-		InventoryAdd(C, "MistressTop", "Cloth");
-		CharacterAppearanceSetItem(C, "Cloth", C.Inventory[C.Inventory.length - 1].Asset);
-		CharacterAppearanceSetColorForGroup(C, Color, "Cloth");
-		InventoryAdd(C, "MistressBottom", "ClothLower");
-		CharacterAppearanceSetItem(C, "ClothLower", C.Inventory[C.Inventory.length - 1].Asset);
-		CharacterAppearanceSetColorForGroup(C, Color, "ClothLower");
+		InventoryAdd(C, "MistressGloves", "Gloves", false);
+		InventoryWear(C, "MistressGloves", "Gloves", Color);
+		InventoryAdd(C, "MistressBoots", "Shoes", false);
+		InventoryWear(C, "MistressBoots", "Shoes", Color);
+		InventoryAdd(C, "MistressTop", "Cloth", false);
+		InventoryWear(C, "MistressTop", "Cloth", Color);
+		InventoryAdd(C, "MistressBottom", "ClothLower", false);
+		InventoryWear(C, "MistressBottom", "ClothLower", Color);
+		InventoryAdd(C, "MetalChastityBeltKey", "ItemPelvis", false);
+		InventoryAdd(C, "MetalChastityBraKey", "ItemBreast", false);
 	}
 
 }
@@ -305,15 +274,15 @@ function CharacterSetCurrent(C) {
 // Changes the character money and sync with the account server
 function CharacterChangeMoney(C, Value) {
 	C.Money = parseInt(C.Money) + parseInt(Value) * ((Value > 0) ? CheatFactor("DoubleMoney", 2) : 1);
-	AccountSync();
+	ServerPlayerSync();
 }
 
 // Refreshes the character parameters
-function CharacterRefresh(C) {	
+function CharacterRefresh(C, Push) {
 	CharacterLoadEffect(C);
 	CharacterLoadPose(C);	
 	CharacterLoadCanvas(C);
-	if (CurrentModule != "Character") CharacterAppearanceSave(C);
+	if ((CurrentModule != "Character") && (C.ID == 0) && ((Push == null) || (Push == true))) ServerPlayerAppearanceSync();
 }
 
 // Returns TRUE if a character is naked
@@ -440,5 +409,5 @@ function CharacterFullRandomRestrain(C, Ratio) {
 // Sets a new pose for the character
 function CharacterSetActivePose(C, NewPose) {
 	C.ActivePose = NewPose;
-	CharacterRefresh(C);
+	CharacterRefresh(C, false);
 }

@@ -23,7 +23,7 @@ Cloth,TShirt1,T-Shirt
 Cloth,TennisShirt1,Tennis
 Cloth,Sweater1,Sweater
 Cloth,MistressTop1,Mistress Top
-ClothLower,,Lower Cloth
+ClothLower,,Bottom
 ClothLower,Skirt1,Skirt
 ClothLower,TennisSkirt1,Tennis
 ClothLower,Jeans1,Jeans
@@ -146,6 +146,7 @@ ItemButt,TailButtPlug,Kitty Butt Plug
 ItemButt,HorseButtPlug,Horse Butt Plug
 ItemPelvis,,Pelvis
 ItemPelvis,MetalChastityBelt,Metal Chastity Belt
+ItemPelvis,MetalChastityBeltKey,Metal Chastity Belt Key
 ItemPelvis,LeatherCrop,Leather Crop
 ItemPelvis,LeatherWhip,Leather Whip
 ItemTorso,,Torso
@@ -157,6 +158,7 @@ ItemBreast,StraightPiercing,Straight Piercings
 ItemBreast,RoundPiercing,Round Piercings
 ItemBreast,NippleClamp,Nipple Clamps
 ItemBreast,MetalChastityBra,Metal Chastity Bra
+ItemBreast,MetalChastityBraKey,Metal Chastity Bra Key
 ItemBreast,LeatherCrop,Leather Crop
 ItemBreast,LeatherWhip,Leather Whip
 ItemArms,,Arms

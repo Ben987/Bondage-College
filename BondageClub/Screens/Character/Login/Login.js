@@ -4,8 +4,8 @@ var LoginMessage = "";
 var LoginCredits = null;
 var LoginCreditsPosition = 0;
 var LoginThankYou = "";
-var LoginThankYouList = ["Alvin", "Bryce", "Christian", "Designated", "Dick", "EugeneTooms", "Gopanka", "Jdmsouls22", "Jyeoh", "Karel", "Kitten", "Laioken", "Michal", "Mindtie", "MunchyCat", 
-						 "Nick", "Overlord", "Paradox", "Rashiash", "Ryner", "Setsu95", "Shadow", "Shaun", "Simeon", "Sky", "Strangerhood", "Terry", "William", "Winterisbest", "Xepherio"];
+var LoginThankYouList = ["Alvin", "Bryce", "Christian", "Designated", "Dick", "EugeneTooms", "Gopanka", /*"Jdmsouls22",*/ "Jyeoh", /*"Karel",*/ "Kitten", "Laioken", "Michal", "Mindtie", "MunchyCat", 
+						 "Nick", "Overlord", "Paradox", "Rashiash", "Ryner", "Setsu95", "Shadow", /*"Shaun",*/ "Simeon", "Sky", "Strangerhood", "Terry", "William", "Winterisbest", "Xepherio"];
 var LoginThankYouNext = 0;
 
 // Loads the next thank you bubble
@@ -67,26 +67,8 @@ function LoginLoad() {
 	CharacterLoadCSVDialog(Player);
 	LoginMessage = "";
 	if (LoginCredits == null) CommonReadCSV("LoginCredits", CurrentModule, CurrentScreen, "GameCredits");
-
-	// Creates a text box to enter the player name
-	var InputName = document.createElement('input');
-	InputName.setAttribute("ID", "InputName");
-	InputName.setAttribute("name", "InputName");
-	InputName.setAttribute("type", "text");
-	InputName.setAttribute("value", "");
-	InputName.setAttribute("maxlength", "20");
-	InputName.addEventListener("keypress", KeyDown);
-	document.body.appendChild(InputName);
-
-	// Creates a text box to enter the player name
-	var InputPassword = document.createElement('input');
-	InputPassword.setAttribute("ID", "InputPassword");
-	InputPassword.setAttribute("name", "InputPassword");
-	InputPassword.setAttribute("type", "password");
-	InputPassword.setAttribute("value", "");
-	InputPassword.setAttribute("maxlength", "20");
-	InputPassword.addEventListener("keypress", KeyDown);
-	document.body.appendChild(InputPassword);
+	ElementCreateInput("InputName", "text", "", "20");
+	ElementCreateInput("InputPassword", "password", "", "20");
 
 }
 
@@ -101,9 +83,9 @@ function LoginRun() {
 	DrawText(TextGet("Welcome"), 1000, 50, "White", "Black");
 	DrawText(LoginMessage, 1000, 100, "White", "Black");
 	DrawText(TextGet("AccountName"), 1000, 200, "White", "Black");
-	DrawElementPosition("InputName", 1000, 260, 500);
+	ElementPosition("InputName", 1000, 260, 500);
 	DrawText(TextGet("Password"), 1000, 350, "White", "Black");
-	DrawElementPosition("InputPassword", 1000, 410, 500);
+	ElementPosition("InputPassword", 1000, 410, 500);
 	DrawButton(925, 500, 150, 60, TextGet("Login"), "White", "");
 	DrawText(TextGet("CreateNewCharacter"), 1000, 670, "White", "Black");
 	DrawButton(850, 740, 300, 60, TextGet("NewCharacter"), "White", "");
@@ -118,49 +100,58 @@ function LoginRun() {
 }
 
 // When the character logs, we analyze the data
-function LoginResponse(CharacterData) {
-	var C = JSON.parse(CharacterData);
-	if ((C.CharacterName != null) && (C.AccountName != null)) {
-		
-		// Sets the player character info
-		Player.Name = C.CharacterName;
-		Player.AccountName = C.AccountName;
-		Player.AccountPassword = document.getElementById("InputPassword").value.trim();
-		Player.AssetFamily = C.AssetFamily;		
-		if (CommonIsNumeric(C.Money)) Player.Money = C.Money;
-		Player.Owner = ((C.Owner == null) || (C.Owner == "undefined")) ? "" : C.Owner;
-		Player.Lover = ((C.Lover == null) || (C.Lover == "undefined")) ? "" : C.Lover;
+function LoginResponse(C) {
 
-		// Sets the current time based on the server
-		if (C.CurrentTime == null) C.CurrentTime = CommonTime();
-		CurrentTime = parseInt(C.CurrentTime);
-		if (isNaN(CurrentTime)) CurrentTime = CommonTime();
+	// If the return package contains a name and a account name
+	if (typeof C == "object") {
+		if ((C.Name != null) && (C.AccountName != null)) {
 
-		// Loads the player character model and data
-		CharacterAppearanceLoadFromAccount(Player, C.Appearance);
-		InventoryRemove(Player, "ItemMisc");
-		InventoryLoad(Player, C.Inventory, false);
-		LogLoad(C.Log);
-		ReputationLoad(C.Reputation);
-		SkillLoad(C.Skill);
-		CharacterLoadCSVDialog(Player);
-		CharacterAppearanceValidate(Player);
-		document.getElementById("InputName").parentNode.removeChild(document.getElementById("InputName"));
-		document.getElementById("InputPassword").parentNode.removeChild(document.getElementById("InputPassword"));
-		
-		// Starts the game in the main hall while loading characters in the private room
-		PrivateCharacter = [];
-		CommonSetScreen("Room", "Private");
-		
-		// If the player must start in her room, in her cage
-		if (LogQuery("SleepCage", "Rule")) {
-			InventoryRemove(Player, "ItemFeet");
-			InventoryRemove(Player, "ItemLegs");
-			Player.Cage = true;
-			CharacterSetActivePose(Player, "Kneel");
-		} else CommonSetScreen("Room", "MainHall");
-		
-	} else LoginMessage = TextGet("ErrorLoadingCharacterData");
+			// Make sure we have values
+			if (C.Appearance == null) C.Appearance = [];
+			if (C.AssetFamily == null) C.AssetFamily = "Female3DCG";			
+
+			// Sets the player character info
+			Player.Name = C.Name;
+			Player.AccountName = C.AccountName;
+			Player.AssetFamily = C.AssetFamily;		
+			if (CommonIsNumeric(C.Money)) Player.Money = C.Money;
+			Player.Owner = ((C.Owner == null) || (C.Owner == "undefined")) ? "" : C.Owner;
+			Player.Lover = ((C.Lover == null) || (C.Lover == "undefined")) ? "" : C.Lover;
+			Player.Creation = C.Creation;
+			Player.Wardrobe = C.Wardrobe;
+
+			// Loads the player character model and data
+			Player.Appearance = ServerAppearanceLoadFromBundle(C.AssetFamily, C.Appearance);
+			InventoryRemove(Player, "ItemMisc");
+			InventoryLoad(Player, C.Inventory, false);
+			LogLoad(C.Log);
+			ReputationLoad(C.Reputation);
+			SkillLoad(C.Skill);
+			CharacterLoadCSVDialog(Player);
+			if (!LogQuery("SleepCage", "Rule") || (Player.Owner == "")) CharacterAppearanceValidate(Player);
+			CharacterRefresh(Player, false);
+			ElementRemove("InputName");
+			ElementRemove("InputPassword");
+
+			// Starts the game in the main hall while loading characters in the private room
+			PrivateCharacter = [];
+			PrivateCharacter.push(Player);
+			if (C.PrivateCharacter != null)
+				for(var P = 0; P < C.PrivateCharacter.length; P++)
+					PrivateCharacter.push(C.PrivateCharacter[P]);
+
+			// If the player must start in her room, in her cage
+			if (LogQuery("SleepCage", "Rule") && (Player.Owner != "")) {
+				InventoryRemove(Player, "ItemFeet");
+				InventoryRemove(Player, "ItemLegs");
+				Player.Cage = true;
+				CharacterSetActivePose(Player, "Kneel");
+				CommonSetScreen("Room", "Private");
+			} else CommonSetScreen("Room", "MainHall");
+			
+		} else LoginMessage = TextGet("ErrorLoadingCharacterData");
+	} else LoginMessage = TextGet(C);
+
 }
 
 // When the user clicks on the character login screen
@@ -168,15 +159,15 @@ function LoginClick() {
 	
 	// Opens the cheat panel
 	if (CheatAllow && ((MouseX >= 850) && (MouseX <= 1150) && (MouseY >= 870) && (MouseY <= 930))) {
-		document.getElementById("InputName").parentNode.removeChild(document.getElementById("InputName"));
-		document.getElementById("InputPassword").parentNode.removeChild(document.getElementById("InputPassword"));
+		ElementRemove("InputName");
+		ElementRemove("InputPassword");
 		CommonSetScreen("Character", "Cheat");
 	}
 	
 	// If we must create a new character
 	if ((MouseX >= 850) && (MouseX <= 1150) && (MouseY >= 740) && (MouseY <= 800)) {
-		document.getElementById("InputName").parentNode.removeChild(document.getElementById("InputName"));
-		document.getElementById("InputPassword").parentNode.removeChild(document.getElementById("InputPassword"));
+		ElementRemove("InputName");
+		ElementRemove("InputPassword");
 		CharacterAppearanceSetDefault(Player);
 		InventoryRemove(Player, "ItemFeet");
 		InventoryRemove(Player, "ItemLegs");
@@ -186,26 +177,13 @@ function LoginClick() {
 	
 	// If we must try to login
 	if ((MouseX >= 925) && (MouseX <= 1075) && (MouseY >= 500) && (MouseY <= 560)) {
-		var Name = document.getElementById("InputName").value.trim();
-		var Password = document.getElementById("InputPassword").value.trim();
+		var Name = ElementValue("InputName");
+		var Password = ElementValue("InputPassword");
 		var letters = /^[a-zA-Z0-9]+$/;
-		if (Name.match(letters) && Password.match(letters) && (Name.length > 0) && (Name.length <= 20) && (Password.length > 0) && (Password.length <= 20)) {
-
-			// Calls the PHP page to check if the login is correct
-			LoginMessage = TextGet("ValidatingNamePassword");
-			var xmlhttp = new XMLHttpRequest();
-			xmlhttp.onreadystatechange = function() {
-				if (xmlhttp.readyState == XMLHttpRequest.DONE) {
-				   if (xmlhttp.status == 200) {
-					   if (xmlhttp.responseText.trim().substring(0, 1) == "{") LoginResponse(xmlhttp.responseText);
-					   else LoginMessage = TextGet("InvalidNamePassword");
-				   } else LoginMessage = TextGet("Error") + " " + xmlhttp.status.toString();
-				}
-			};
-			xmlhttp.open("GET", AccountAddress + "?command=account_log&account=" + Name + "&password=" + Password, true);
-			xmlhttp.send();
-
-		} else LoginMessage = TextGet("InvalidNamePassword");
+		if (Name.match(letters) && Password.match(letters) && (Name.length > 0) && (Name.length <= 20) && (Password.length > 0) && (Password.length <= 20))
+			ServerSend("AccountLogin", { AccountName: Name, Password: Password } );
+		else
+			LoginMessage = TextGet("InvalidNamePassword");
 	}
 
 }

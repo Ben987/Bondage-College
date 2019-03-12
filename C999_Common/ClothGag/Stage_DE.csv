@@ -1,6 +1,6 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Knebel untersuchen.)ADD_MINUTES:1,Dieser Knebel füllt mit einem Stofftuch den Mund.|Noch ein Tuch wird zum Halt um den Kopf gebunden.,0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Selbst knebeln.)ADD_MINUTES:1,Du stopfst dir ein Tuch in den Mund und bindest|ein weiteres darüber und um deinen Kopf.,10,0,0,SelfGag()
-10,0,0,,(Auf dem Tuch kauen.)ADD_MINUTES:1,"Du kaust auf der Füllung herum. Es entlastet deinen Kiefer, macht dem Stoff aber nichts aus.",10,0,0,
+0,0,0,,(Den Knebel untersuchen.)ADD_MINUTES:1,Dieser Knebel füllt mit einem Stofftuch den Mund.|Noch ein Tuch wird zum Halt um den Kopf gebunden.,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Dich selbst knebeln.)ADD_MINUTES:1,Du stopfst dir ein Tuch in den Mund und bindest|ein weiteres darüber und um deinen Kopf.,10,0,0,SelfGag()
+10,0,0,,(Auf dem Tuch|herumkauen.)ADD_MINUTES:1,"Du kaust auf der Füllung herum. Es entlastet|deinen Kiefer, macht dem Stoff aber nichts aus.",10,0,0,
 10,0,0,,(Das Tuch ausspucken.)ADD_MINUTES:1,"Du versuchst die Füllung auszuspucken, aber das|andere Tuch ist im Weg. Du brauchst deine Hände.",10,0,0,
-10,0,0,Common_PlayerNotRestrained,(Knebel entfernen.)ADD_MINUTES:1,"Du lockerst den ganzen Stoff, nimmst die|Füllung heraus und kannst wieder sprechen.",0,0,0,SelfUngag()
+10,0,0,Common_PlayerNotRestrained,(Den Knebel abnehmen.)ADD_MINUTES:1,"Du lockerst den ganzen Stoff, nimmst die|Füllung heraus und kannst wieder sprechen.",0,0,0,SelfUngag()

@@ -149,8 +149,7 @@ function DrawPosNegValue(Value, X, Y) {
 function DrawActorStats(Left, Top) {
 	
 	// Draw the actor name and icon
-	if (ActorGetValue(ActorHideName)) DrawText("Unknown", Left - 200, Top + 17, "black");
-	else DrawText(CurrentActor, Left - 200, Top + 17, "black");
+	DrawText(ActorGetDisplayName(), Left - 200, Top + 17, "black");
 	if (CurrentActor == Common_PlayerLover) DrawImage("Icons/Lover.png", Left - 110, Top);
 	else DrawImage("Icons/Heart.png", Left - 110, Top);
 	if (ActorGetValue(ActorOwner) == "Player") DrawImage("Icons/Collared.png", Left - 10, Top);

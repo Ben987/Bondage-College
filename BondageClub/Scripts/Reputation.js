@@ -2,7 +2,7 @@
 
 // Pushes the reputation to the server
 function ReputationSave(R) {
-	AccountRequest("reputation_set", "&type=" + R.Type + "&value=" + R.Value);
+	ServerPlayerReputationSync();
 }
 
 // When we need to alter a reputation (positive or negative)

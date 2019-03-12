@@ -17,11 +17,12 @@ ItemBreastLeatherWhip,,,(She trembles of pain and pleasure as you whip her breas
 ItemBreastLeatherCrop,,,(You swing the crop on her torso as she moans.)  Mmmh! You have lots of talents Miss.,,
 ItemPelvisLeatherWhip,,,(You whip her butt as she jumps from the pain.)  It hurts soooooo good Miss.,,
 ItemPelvisLeatherCrop,,,(She moans and shakes her butt each time the crop lands on it.) I love the pain Miss.,,
+0,,,It's an honor to see you at the introduction class Mistress DialogPlayerName.,,"DialogLogQuery(""ClubMistress"", ""Management"")"
 0,,,(She giggles.)  Greetings naked girl.  Welcome to the introduction class.,,Player.IsNaked()
 0,,,Greetings head maid DialogPlayerName.  Welcome to the introduction class.,,IsHeadMaid
 0,,,Greetings maid DialogPlayerName.  Welcome to the introduction class.,,IsMaid
 0,,,Greetings Miss.  Welcome to the Bondage Club.,,!IsMaid
-0,,I'm new here.  My name is DialogPlayerName.,Pleased to meet you Miss DialogPlayerName.  I hope you will enjoy yourself in the club.,DialogRemove(),!IsMaid
+0,,"Hello, my name is DialogPlayerName.",Pleased to meet you Miss DialogPlayerName.  I hope you will enjoy yourself in the club.,DialogRemove(),NoTitle()
 0,,Who are you?,I'm a new club member.  My name is DialogCharacterName.,DialogRemove(),
 0,10,What's going on here?,This is a BDSM club.  People come from all over the world to share their kinks.,,
 0,10,Tell me about the club.,The Bondage Club is pretty old.  People come from all over the world to share their kinks.,,

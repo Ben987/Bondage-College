@@ -1,0 +1,11 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,(Die Tür öffnen.),(Die Tür wurde abgeschlossen|und rührt sich nicht.),10,0,0,
+10,0,0,NotForce,"(Versuchen, sie mit|Gewalt zu öffnen.)",(Cassi ruft dir zu.) Der Club schließt sie zur Sicherheit|der Mitglieder ab. Jenna hat dich vorhin reingelassen.,10,0,0,Force()
+10,0,0,NotKick,(Die Tür treten.),"(Cassi ruft dir zu.) Lass das, du kommst nicht|raus, bis jemand vom Vorsitz zurückkommt.",10,0,0,Kick()
+10,0,0,NotWho,Wer hat den|Türschlüssel?,"(Cassi ruft dir zu.) Jenna hat dich reingelassen, aber|sie und der Rest vom Vorsitz sind gerade nicht da.",10,0,0,Who()
+10,0,0,NotRestroom,Aber ich muss ganz|dringend zur Toilette.,"(Cassi ruft dir zu.) Anfängerfehler. Versuch|durchzuhalten, bis jemand vom Vorsitz zurückkommt.",10,0,-1,NeedsRestroom()
+20,0,0,,(Die Tür öffnen.),(Die Tür wurde abgeschlossen|und rührt sich nicht.),30,0,0,
+30,0,0,NotPlead,@Bhdhm lmft mmfh hhf.,"(Cassi ruft dir zu.) Die Tür wird abgeschlossen,|um hilflose Mädchen wie dich zu schützen.",30,0,-1,Plead()
+30,0,0,NotRestroom,@Hbh ifh mmf gmmf|dhimnd zh Thmlhmtm.,"(Cassi ruft dir zu.) Anfängerfehler. Versuch|durchzuhalten, bis jemand vom Vorsitz zurückkommt.",30,0,-1,NeedsRestroom()
+30,0,0,NotForce,"(Versuchen, sie mit|Gewalt zu öffnen.)","(Cassi ruft dir zu.) Der Club schließt die Tür ab,|um hilflose Mädchen wie dich zu schützen.",30,0,0,Force()
+30,0,0,NotKick,(Die Tür treten.),"(Cassi ruft dir zu.) Lass das, du kommst nicht|raus, bis jemand vom Vorsitz zurückkommt.",30,0,0,Kick()

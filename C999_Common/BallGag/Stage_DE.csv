@@ -1,7 +1,7 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Knebel untersuchen.)ADD_MINUTES:1,Dieser große Ballknebel hat ein volles Kopfgeschirr.|Der Träger wird kaum zu verstehen sein.,0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Selbst knebeln.)ADD_MINUTES:1,"Du ziehst dir das Geschirr über den Kopf,|schiebst den Ball hinein und schnallst die Gurte fest.",10,0,0,SelfGag()
-10,0,0,HasLooseBallGag,(Freien Knebel prüfen.)ADD_MINUTES:1,Dieser große Ballknebel hat ein volles Kopfgeschirr.|Der Träger wird kaum zu verstehen sein.,10,0,0,ShowImage()
-10,0,0,,(Auf dem Ball kauen.)ADD_MINUTES:1,"Du kaust auf dem Ball herum. Es entlastet deinen|Kiefer ein wenig, macht dem Ball aber nichts aus.",10,0,0,
+0,0,0,,(Den Knebel untersuchen.)ADD_MINUTES:1,Dieser große Ballknebel hat ein volles Kopfgeschirr.|Der Träger wird kaum zu verstehen sein.,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Dich selbst knebeln.)ADD_MINUTES:1,"Du ziehst dir das Geschirr über den Kopf,|schiebst den Ball hinein und schnallst die Gurte fest.",10,0,0,SelfGag()
+10,0,0,HasLooseBallGag,(Den freien|Knebel untersuchen.)ADD_MINUTES:1,Dieser große Ballknebel hat ein volles Kopfgeschirr.|Der Träger wird kaum zu verstehen sein.,10,0,0,ShowImage()
+10,0,0,,(Auf dem Ball|herumkauen.)ADD_MINUTES:1,"Du kaust auf dem Ball herum. Es entlastet deinen|Kiefer ein wenig, macht dem Ball aber nichts aus.",10,0,0,
 10,0,0,,(Den Ball ausspucken.)ADD_MINUTES:1,"Du versuchst den Ball mit der Zunge wegzudrücken,|aber er rührt sich nicht. Du brauchst deine Hände.",10,0,0,
-10,0,0,Common_PlayerNotRestrained,(Knebel abnehmen.)ADD_MINUTES:1,"Du löst alle Gurte, nimmst den Ball|heraus und kannst wieder sprechen.",0,0,0,SelfUngag()
+10,0,0,Common_PlayerNotRestrained,(Den Knebel abnehmen.)ADD_MINUTES:1,"Du löst alle Gurte, nimmst den Ball|heraus und kannst wieder sprechen.",0,0,0,SelfUngag()

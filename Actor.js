@@ -1,6 +1,7 @@
 // Actor variables
 var CurrentActor;
 var Actor = [];
+var ActorNamesText = null;
 var ActorName = 0;
 var ActorLove = 1;
 var ActorSubmission = 2;
@@ -22,6 +23,7 @@ function ActorLoad(ActorToLoad, ActorLeaveScreen) {
 
 	// Sets if the actor is the player lover, submissive or Mistress
 	CurrentActor = ActorToLoad;
+	if (ActorToLoad == "") return;
 	Common_ActorIsLover = (CurrentActor == Common_PlayerLover);
 	Common_ActorIsOwner = (CurrentActor == Common_PlayerOwner);
 	Common_ActorIsOwned = (ActorGetValue(ActorOwner) == "Player");
@@ -46,6 +48,13 @@ function ActorSpecificGetValue(SpecificActorName, ValueType) {
 	for (var L = 0; L < Actor.length; L++)
 		if (SpecificActorName == Actor[L][ActorName])
 			return Actor[L][ValueType];	
+}
+
+// Return the current actor's localized name
+function ActorGetDisplayName() {
+	if (ActorNamesText == null) ReadCSV("ActorNamesText", "C999_Common", "ActorNames", "Text", GetWorkingLanguageForChapter("C999_Common"));
+	if (ActorGetValue(ActorHideName)) return GetCSVText(ActorNamesText, "Unknown");
+	return GetCSVText(ActorNamesText, CurrentActor);
 }
 
 // Change positively or negatively the current actor attitude toward the player

@@ -1,0 +1,41 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,Die Tasche enthält viele metallene Gegenstände.,Bag.jpg
+10,0,0,,,ManacleSet.jpg
+20,0,0,,,WallRing.jpg
+40,0,0,,,Bag.jpg
+100,0,0,,,UnlockedCollar.jpg
+110,0,0,,,Halfway.jpg
+115,0,0,,(Du wehrst dich nicht und lässt dir von Erica|deine Uniform ausziehen und Ketten anlegen.),PlayerManacles.jpg
+116,0,0,,"(Amelia zwingt dich in die Ketten und befestigt|sie an der Wand, dann geht sie davon.)",PlayerManacles.jpg
+120,0,0,,(Du hast dir ein ganz schönes Schlamassel|eingehandelt. Was machst du jetzt?),PlayerManacles.jpg
+130,0,0,,,PlayerManacles.jpg
+140,0,0,,,PlayerManacles.jpg
+150,0,0,,,PlayerManacles.jpg
+155,0,0,,,PlayerManacles.jpg
+160,0,0,,,PlayerManacles.jpg
+170,0,0,,,PlayerManacles.jpg
+180,0,0,,,PlayerManacles.jpg
+190,0,0,,,PlayerManacles.jpg
+195,0,0,,,PlayerManacles.jpg
+200,0,0,,,PlayerManacles.jpg
+210,0,0,,,PlayerManacles.jpg
+220,0,0,,,PlayerManacles.jpg
+230,0,0,,,PlayerManacles.jpg
+240,0,0,,,PlayerManacles.jpg
+250,0,0,,,PlayerManacles.jpg
+260,0,0,,,PlayerManacles.jpg
+270,0,0,,,PlayerManacles.jpg
+280,0,0,,,PlayerManacles.jpg
+285,0,0,,,PlayerManacles.jpg
+286,0,0,,,PlayerManacles.jpg
+290,0,0,,,PlayerManacles.jpg
+295,0,0,,,PlayerManacles.jpg
+300,0,0,,,PlayerManacles.jpg
+310,0,0,!PlayerAlreadyCollared,,PlayerDressing.jpg
+310,0,0,PlayerAlreadyCollared,,PlayerDressingCollar.jpg
+320,0,0,,,PlayerDressed.jpg
+330,0,0,,,PlayerJennaCollar.jpg
+340,0,0,,,PlayerCollared.jpg
+350,0,0,,,PlayerCollared.jpg
+360,0,0,,,PlayerCollared.jpg
+370,0,0,,,PlayerCollared.jpg

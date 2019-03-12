@@ -1,13 +1,13 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Inspect it.)ADD_MINUTES:1,"Despite the reasuring soft silicone and large base,|this butt plug will be a stretch and won't just slip out.",0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Insert it.)ADD_MINUTES:1,You relax and slip the plug in.  It stretches and fills|your ass.  It's stem doesn't feel so small now.,0,0,0,Insert()
-10,0,0,HasLoosePlug,(Inspect the loose plug.)ADD_MINUTES:1,"Despite the soft silicone and large base, this butt plug|will be a stretch and won't just slip out.",10,0,0,ShowImage()
-10,0,0,!Common_PlayerChaste,(Remove it with a hand.)ADD_MINUTES:1,"You relax your ass and slowly pulling on the|plug's base.  It stretches your ass again, as it pops out.",0,0,0,HandOut()
-10,0,0,Common_PlayerChaste,(Remove it with a hand.)ADD_MINUTES:1,"The chastity belt covers over the butt plug,|preventing you from removing it.",10,0,0,
-10,0,0,,(Clench your ass.)ADD_MINUTES:1,"The plug feels mecislessly hard and your|ass painfully tight, until you relax again.",10,0,0,
-10,0,0,!Common_PlayerChaste,(Remove it by contracting.)ADD_MINUTES:1,"You relax, squirm and try to push, but the plug|doesn't budge.  It needs to be pulled as well.",10,0,0,
-10,0,0,Common_PlayerChaste,(Remove it by contracting.)ADD_MINUTES:1,"You relax, squirm and try to push, but the|chasity belt makes sure the plug can't come out.",10,0,0,
-20,0,0,HasLoosePlug,(Inspect the loose egg.)ADD_MINUTES:1,"Despite the soft silicone and large flange, this butt plug|will be a stretch and won't just slip out.",20,0,0,ShowImage()
-20,0,0,!Common_PlayerChaste,(Remove it by contracting.)ADD_MINUTES:1,"You relax, squirm and try to push, but the plug|doesn't budge.  You need a free had to pull it out.",20,0,0,
-20,0,0,Common_PlayerChaste,(Remove it by contracting.)ADD_MINUTES:1,"You relax, squirm and try to push, but the chasity belt makes sure the plug can't come out.",20,0,0,
-20,0,0,,(Clench your ass.)ADD_MINUTES:1,"The plug feels mecislessly hard and your|ass painfully tight, until you relax again.",20,0,0,
+0,0,0,,(Untersuchen.)ADD_MINUTES:1,Trotz des beruhigend weichen Silikons und der breiten|Unterseite wird der Stöpsel kaum einfach herausgleiten.,0,0,0,
+0,0,0,Common_PlayerNotRestrained,(Ihn hineinstecken.)ADD_MINUTES:1,"Du entspannst dich und steckst den Stöpsel hinein. Er|dehnt und füllt deinen Arsch mehr, als du dachtest.",0,0,0,Insert()
+10,0,0,HasLoosePlug,(Den freien Stöpsel|untersuchen.)ADD_MINUTES:1,Trotz des weichen Silikons und der breiten Unterseite|wird dieser Stöpsel wohl kaum einfach herausgleiten.,10,0,0,ShowImage()
+10,0,0,!Common_PlayerChaste,(Ihn mit der Hand|herausnehmen.)ADD_MINUTES:1,"Du entspannst deinen Arsch und ziehst am Stöpsel.|Er dehnt dich erneut, bevor er herausploppt.",0,0,0,HandOut()
+10,0,0,Common_PlayerChaste,(Ihn mit der Hand|herausnehmen.)ADD_MINUTES:1,"Der Keuschheitsgürtel bedeckt deinen Analstöpsel|und hindert dich daran, ihn herauszunehmen.",10,0,0,
+10,0,0,,(Mit dem Arsch drücken.)ADD_MINUTES:1,"Der Stöpsel fühlt sich gnadenlos hart und dein Arsch|schmerzlich voll an, bis du dich wieder entspannst.",10,0,0,
+10,0,0,!Common_PlayerChaste,(Ihn herauspressen.)ADD_MINUTES:1,"Du entspannst und windest dich und drückst, aber der|Stöpsel rührt sich nicht. Er muss auch gezogen werden.",10,0,0,
+10,0,0,Common_PlayerChaste,(Ihn herauspressen.)ADD_MINUTES:1,"Du entspannst und windest dich und drückst, aber der|Keuschheitsgürtel hält den Stöpsel an seinem Platz.",10,0,0,
+20,0,0,HasLoosePlug,(Den freien Stöpsel|untersuchen.)ADD_MINUTES:1,Trotz des weichen Silikons und der breiten Unterseite|wird dieser Stöpsel wohl kaum einfach herausgleiten.,20,0,0,ShowImage()
+20,0,0,!Common_PlayerChaste,(Ihn herauspressen.)ADD_MINUTES:1,"Du entspannst und windest dich und drückst, aber der|Stöpsel rührt sich nicht. Du brauchst eine freie Hand.",20,0,0,
+20,0,0,Common_PlayerChaste,(Ihn herauspressen.)ADD_MINUTES:1,"Du entspannst und windest dich und drückst, aber der|Keuschheitsgürtel hält den Stöpsel an seinem Platz.",20,0,0,
+20,0,0,,(Mit dem Arsch drücken.)ADD_MINUTES:1,"Der Stöpsel fühlt sich gnadenlos hart und dein Arsch|schmerzlich voll an, bis du dich wieder entspannst.",20,0,0,

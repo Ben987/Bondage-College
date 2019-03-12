@@ -179,11 +179,17 @@ function ArrayShuffle(a) {
 
 // Returns a working language if translation isn't fully ready
 function GetWorkingLanguage() {
-	if ((CurrentLanguageTag == "FR") && ((CurrentChapter == "C000_Intro") || (CurrentChapter == "C001_BeforeClass") || (CurrentChapter == "C002_FirstClass") || (CurrentChapter == "C003_MorningDetention") || (CurrentChapter == "C004_ArtClass") || (CurrentChapter == "C005_GymClass") || (CurrentChapter == "C006_Isolation") || (CurrentChapter == "C007_LunchBreak") || (CurrentChapter == "C008_DramaClass") || (CurrentChapter == "C009_Library") || (CurrentChapter == "C999_Common"))) return "FR";
-	if ((CurrentLanguageTag == "DE") && ((CurrentChapter == "C000_Intro") || (CurrentChapter == "C001_BeforeClass") || (CurrentChapter == "C002_FirstClass") || (CurrentChapter == "C003_MorningDetention") || (CurrentChapter == "C004_ArtClass") || (CurrentChapter == "C005_GymClass") || (CurrentChapter == "C006_Isolation") || (CurrentChapter == "C007_LunchBreak") || (CurrentChapter == "C008_DramaClass") || (CurrentChapter == "C009_Library") || (CurrentChapter == "C010_Revenge") || (CurrentChapter == "C011_LiteratureClass") || (CurrentChapter == "C012_AfterClass") || (CurrentChapter == "C013_BondageClub") || (CurrentChapter == "C999_Common"))) return "DE";
-	if ((CurrentLanguageTag == "PL") && ((CurrentChapter == "C000_Intro"))) return "PL";
-	if ((CurrentLanguageTag == "ES") && ((CurrentChapter == "C000_Intro") || (CurrentChapter == "C001_BeforeClass") || (CurrentChapter == "C002_FirstClass") || (CurrentChapter == "C003_MorningDetention"))) return "ES";
-	if ((CurrentLanguageTag == "CN") && ((CurrentChapter == "C000_Intro") || (CurrentChapter == "C001_BeforeClass") || (CurrentChapter == "C002_FirstClass") || (CurrentChapter == "C003_MorningDetention") || (CurrentChapter == "C005_GymClass") || (CurrentChapter == "C999_Common"))) return "CN";
+	return GetWorkingLanguageForChapter(CurrentChapter);
+}
+
+// Returns a working language for a specific chapter
+function GetWorkingLanguageForChapter(Chapter) {
+	if ((CurrentLanguageTag == "FR") && ["C000_Intro", "C001_BeforeClass", "C002_FirstClass", "C003_MorningDetention", "C004_ArtClass", "C005_GymClass", "C006_Isolation", "C007_LunchBreak", "C008_DramaClass", "C009_Library", "C999_Common"].indexOf(Chapter) >= 0) return "FR";
+	if ((CurrentLanguageTag == "DE") && ["C000_Intro", "C001_BeforeClass", "C002_FirstClass", "C003_MorningDetention", "C004_ArtClass", "C005_GymClass", "C006_Isolation", "C007_LunchBreak", "C008_DramaClass", "C009_Library", "C010_Revenge", "C011_LiteratureClass", "C012_AfterClass", "C013_BondageClub", "C101_KinbakuClub", "C999_Common"].indexOf(Chapter) >= 0) return "DE";
+	if ((CurrentLanguageTag == "PL") && ["C000_Intro"].indexOf(Chapter) >= 0) return "PL";
+	if ((CurrentLanguageTag == "ES") && ["C000_Intro", "C001_BeforeClass", "C002_FirstClass", "C003_MorningDetention"].indexOf(Chapter) >= 0) return "ES";
+	if ((CurrentLanguageTag == "CN") && ["C000_Intro", "C001_BeforeClass", "C002_FirstClass", "C003_MorningDetention", "C005_GymClass", "C999_Common"].indexOf(Chapter) >= 0) return "CN";
+	if ((CurrentLanguageTag == "RU") && ["C000_Intro", "C001_BeforeClass"].indexOf(Chapter) >= 0) return "RU";
 	return "EN";
     //return CurrentLanguageTag;
 }

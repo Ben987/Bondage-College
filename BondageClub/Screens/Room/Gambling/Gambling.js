@@ -168,14 +168,14 @@ function GamblingTwentyOneController(TwentyOneState) {
 	
 	if (TwentyOneState == "new"){
 		// Start a New Game
-		GamblingPlayerSubState = 0;
+		Player.Appearance = GamblingAppearancePlayer.slice();
+		GamblingFirstSub.Appearance = GamblingAppearanceFirst.slice();
+		GamblingPlayerSubState = (Player.IsNaked()) ? 3 : 0;
 		GamblingNpcSubState = 0;
 		PlayerDiceStack = [];
 		GamblingNpcDiceStack = [];
 		CharacterRelease(Player);
-		GamblingFirstSub.Appearance = GamblingAppearanceFirst.slice();
 		CharacterRefresh(GamblingFirstSub);
-		Player.Appearance = GamblingAppearancePlayer.slice();
 		CharacterRefresh(Player);
 
 		for (var i = 1; i <= 3; i++) {
@@ -332,13 +332,13 @@ function GamblingStreetRoissyController (StreetRoissyState){
 		GamblingShowDiceSum = false;
 		GamblingShowMoney = true;
 		GamblingMoneyBet = 0;
+		Player.Appearance = GamblingAppearancePlayer.slice();
+		GamblingSecondSub.Appearance = GamblingAppearanceSecond.slice();
 		GamblingPlayerSubState = 1;
-		GamblingNpcSubState = 1; 
+		GamblingNpcSubState = (Player.IsNaked()) ? 4 : 1;
 		PlayerDiceStack = [];
 		GamblingNpcDiceStack = [];
-		GamblingSecondSub.Appearance = GamblingAppearanceSecond.slice();
 		CharacterRefresh(GamblingSecondSub);
-		Player.Appearance = GamblingAppearancePlayer.slice();
 		CharacterRefresh(Player);
 		GamblingSecondSub.Stage = 200;
 	} else if (StreetRoissyState == "nextDice"){
@@ -425,13 +425,13 @@ function GamblingDaredSixController (DaredSixState){
 	if (DaredSixState == "new"){
 		GamblingShowMoney = true;
 		GamblingMoneyBet = 0;
-		GamblingPlayerSubState = 1;
+		Player.Appearance = GamblingAppearancePlayer.slice();
+		GamblingSecondSub.Appearance = GamblingAppearanceSecond.slice();
+		GamblingPlayerSubState = (Player.IsNaked()) ? 4 : 1;
 		GamblingNpcSubState = 1; 
 		PlayerDiceStack = [];
 		GamblingNpcDiceStack = [];
-		GamblingSecondSub.Appearance = GamblingAppearanceSecond.slice();
 		CharacterRefresh(GamblingSecondSub);
-		Player.Appearance = GamblingAppearancePlayer.slice();
 		CharacterRefresh(Player);
 		GamblingDaredSixController("add");
 	} else if (DaredSixState == "add"){
@@ -503,10 +503,10 @@ function GamblingStripTied(gstCarachter, gstLevel){
 		InventoryRemove(gstCarachter, "Hat"); 
 		InventoryRemove(gstCarachter, "Shoes"); 
 		InventoryRemove(gstCarachter, "Gloves"); 
-		if (!Player.CanChange()) GamblingIllegalChange = true;
 	} else if (gstLevel == 2) {
 		InventoryRemove(gstCarachter, "Cloth"); 
 		InventoryRemove(gstCarachter, "ClothLower"); 
+		if (!Player.CanChange()) GamblingIllegalChange = true;
 	} else if (gstLevel == 3) {
 		InventoryRemove(gstCarachter, "Bra"); 
 		InventoryRemove(gstCarachter, "Panties"); 

@@ -3,11 +3,46 @@ var WardrobeBackground = "PrivateDark";
 var WardrobeCharacter = [];
 var WardrobeSelection = -1;
 
+// Loads a wardrobe character 
+function WardrobeLoadCharacter(P) {
+
+	// If it's not loaded
+	if (WardrobeCharacter.length <= P) {
+
+		// Creates a character
+		CharacterReset(Character.length, "Female3DCG");
+		var C = Character[Character.length - 1];
+		C.AccountName = "Wardrobe-" + P.toString();
+		CharacterAppearanceBuildAssets(C);
+
+		// Loads from player data or generates at full random
+		if (Player.Wardrobe[P] != null) {
+			C.Appearance = [];
+			for(var A = 0; A < Player.Wardrobe[P].length; A++)
+				if ((Player.Wardrobe[P][A].Name != null) && (Player.Wardrobe[P][A].Group != null))
+					for (var S = 0; S < Asset.length; S++)
+						if ((Asset[S].Name == Player.Wardrobe[P][A].Name) && (Asset[S].Group.Name == Player.Wardrobe[P][A].Group))
+							if (Asset[S].Group.Category == "Appearance")
+								if ((Asset[S].Value == 0) || InventoryAvailable(Player, Asset[S].Name, Asset[S].Group.Name))
+									CharacterAppearanceSetItem(C, Player.Wardrobe[P][A].Group, Asset[S], Player.Wardrobe[P][A].Color);
+			CharacterLoadCanvas(C);
+		}
+		else
+			CharacterAppearanceFullRandom(C);
+		
+		// Keep the character
+		WardrobeCharacter.push(C);
+
+	}
+
+}
+
 // Loads the wardrobe screen
 function WardrobeLoad() {
+	if (Player.Wardrobe == null) Player.Wardrobe = [];
 	WardrobeSelection = -1;
 	for(var C = 0; C < 12; C++)
-		WardrobeCharacter[C] = CharacterLoadFromStorage("BondageClubWardrobe" + Player.AccountName + C.toString());
+		WardrobeLoadCharacter(C);
 }
 
 // Shows the wardrobe screen
@@ -42,9 +77,9 @@ function WardrobeClick() {
 	// If we must save an outfit
 	if ((MouseX >= 750) && (MouseX < 975) && (MouseY >= 25) && (MouseY < 90) && (WardrobeSelection >= 0)) {
 		CharacterAppearanceCopy(Player, WardrobeCharacter[WardrobeSelection]);
-		localStorage.setItem("BondageClubWardrobe" + Player.AccountName + WardrobeSelection.toString(), JSON.stringify(Player.Appearance));
+		ServerPlayerWardrobeSync();
 	}
-	
+
 	// If we must select a different wardrobe
 	if ((MouseX >= 500) && (MouseX < 2000) && (MouseY >= 100) && (MouseY < 1000))
 		for(var C = 0; C < 12; C++)

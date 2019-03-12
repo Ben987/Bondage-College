@@ -14,6 +14,7 @@ var IntroductionRescueScenarioList = ["LatexWoman", "Newcomer", "MaidFight", "Sa
 function IntroductionIsRescueScenario(ScenarioName) { return (IntroductionRescueScenario == ScenarioName) }
 function IntroductionIsBothFree() { return (!IntroductionMaid.IsRestrained() && IntroductionMaid.CanTalk() && !IntroductionSub.IsRestrained() && IntroductionMaid.CanTalk()) }
 function IntroductionIsMaidRestrained() { return (IntroductionMaid.IsRestrained() || !IntroductionMaid.CanTalk()) }
+function IntroductionNoTitle() { return (!LogQuery("JoinedSorority", "Maid") && !LogQuery("ClubMistress", "Management")) }
 
 // Loads the introduction room
 function IntroductionLoad() {
@@ -73,7 +74,7 @@ function IntroductionClick() {
 
 // The maid opinion will affect the global player Domme/sub reputation at the end of the first training
 function IntroductionChangeMaidOpinion(Bonus) {
-	IntroductionMaidOpinion = IntroductionMaidOpinion + Bonus;
+	IntroductionMaidOpinion = IntroductionMaidOpinion + parseInt(Bonus);
 }
 
 // Gives focus on certain body parts with rectangles
@@ -105,7 +106,7 @@ function IntroductionGetBasicItems() {
 function IntroductionSaveMaidOpinion() {
 	if (!LogQuery("MaidOpinion", "Introduction")) {
 		LogAdd("MaidOpinion", "Introduction");
-		ReputationChange("Dominant", IntroductionMaidOpinion);
+		ReputationProgress("Dominant", IntroductionMaidOpinion);
 	}
 }
 

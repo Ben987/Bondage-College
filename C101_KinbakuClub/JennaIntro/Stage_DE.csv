@@ -1,0 +1,45 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,Was ist denn?,Es geht um diesen Club und auch um Natalie.,10,0,0,
+01234,0,0,,"(Abkürzung zum Club,|nur für Entwickler.)",,80,0,0,ShortCut()
+0,0,0,,Ich weiß über die Bienchen|und Blümchen Bescheid.,"Das werden wir sehen, mir geht es|aber um diesen Club und Natalie.",10,-1,0,
+0,0,0,,"Mach dir keine Mühe, es|ist alles recht offensichtlich.",Dann lass ich dich mal allein dahinterkommen.,70,-1,0,SkipExplanation()
+5,0,0,,"Hallo, was ist hier los?","Das ist der Kinbaku-Club unserer Schule. Du bist|herzlich eingeladen, deinen Abend hier zu verbringen.",15,0,0,
+5000,0,0,,"(Abkürzung zum Club,|nur für Entwickler.)",,80,0,0,ShortCut()
+10,0,0,,Gibt es ein Problem|mit dem Club?,"Nein, aber ich glaube nicht, dass|Natalie dir alles darüber erklärt hat.",30,0,0,
+10,0,0,,Ist Natalie hier? Ich würde|sie gern wiedersehen.,"Im Moment nicht. Sie hat eine Wette mit einem|anderen Mitglied verloren, sollte aber später kommen.",20,1,0,Asked()
+15,0,0,,"Klingt interessant.|Ja, ich bleibe.",Das ist toll. Ich bin Jenna.,25,1,0,
+15,0,0,,"Tut mir leid,|ich muss los.","Bleib doch ein wenig, es könnte dir gefallen.|Ich bin übrigens Jenna.",25,0,0,
+15,0,0,Natalie,Natalie hat diesen|Ort erwähnt.,"Ah ja, Natalie, sie wird später hier sein.|Ich bin Jenna, die andere Clubvertreterin.",25,0,0,Asked()
+20,0,0,,"Also, was war jetzt|wegen des Clubs?","Es ist nur, Natalie hat dir in der Mittagspause|nicht sehr viel über den Club erklärt.",30,0,0,
+20,0,0,,Eine Wette?|Geht es ihr gut?,"Keine Sorge. Sie sollte ein neues Mitglied anwerben,|hat aber den wichtigen Teil der Erklärung vergessen.",30,0,0,
+25,0,0,,Ich bin COMMON_PLAYERNAME.,Cool. Ich sollte dir ein paar|Dinge über diesen Club erklären.,30,0,0,
+25,0,0,,Mein Name ist COMMON_PLAYERNAME.|Sehr erfreut.,"Du sprichst so formell, das ist süß.|Ich muss aber zuerst ein paar Dinge erklären.",30,0,-1,
+30,0,0,,Was gibt es zu erklären?,"Das College glaubt, dieser Club beschäftige sich mit|""Kulturellen Kunstformen, Fertigkeiten und Gymnastik"".",40,0,0,
+30,0,0,,"Spar's dir, ich komme|auch allein zurecht.","Na gut, dann muss ich jetzt los.|(Jenna verlässt den Raum.)",80,-1,1,Done()
+30,0,0,,Das ist nicht mein|erster Kinbaku-Club.,"Dann kennst du die Spielregeln wohl schon. Apropos|Spiel, hier hast du ein Seil als Willkommensgeschenk.",70,0,0,GetRope()
+40,0,0,,Ernsthaft?,"Offiziell schon, ein paar der Lehrer wissen es besser.|Außerdem ist es nicht nur Kinbaku mit Seilen.",50,0,0,
+50,0,0,,Wie meinst du das?,Der Club ist sehr inklusiv und wir verwenden|eine große Auswahl von Utensilien und Techniken.,55,0,0,
+55,0,0,,Also ist alles erlaubt?,"Nein, es gibt Richtlinien für Einvernehmlichkeit.|Der Club bestraft intern jeden, der zu weit geht.",56,0,0,
+56,0,0,,"Das heißt, ihr seid|alle freiwillig hier?","Dennoch berufen wir uns auf Safewords wie 'Banane',|damit es ganz sicher allen gut geht und Spaß macht.",60,0,0,
+60,0,0,,Ist das alles?,"Ziemlich, Natalie hätte sich viel Ärger ersparen können.|Ach ja, hier hast du ein Seil als Willkommensgeschenk.",70,0,0,GetRope()
+70,0,0,,Wofür ist das|Seil gedacht?,Im Ernst? Dreimal darfst du raten.,70,0,0,
+70,0,0,,Was mache ich jetzt?,Es gibt später einen Wettbewerb. Bis dahin kannst|du dich mit dem Club vertraut machen. (Sie geht.),80,0,0,Done()
+70,0,0,,Kann ich jetzt|gefesselt werden?,"Klar, aber ich bevorzuge Stahl. (Sie legt dir Knebel und|Handschellen an und lässt dich ohne Schlüssel zurück.)",80,0,-1,CuffPlayer()
+70,0,0,,Kann ich dich|jetzt fesseln?,Nein. Ich bin jetzt mit jemandem verabredet.|(Jenna verlässt den Raum.),80,0,0,Done()
+70,0,0,NotAsked,"Oh, was war|das mit Natalie?","Sie hat eine Wette mit einem anderen|Mitglied verloren, wird aber später hier sein.",70,-1,0,Asked()
+70,0,0,Concerned,"Ärger? Ich hoffe,|Natalie geht es gut.","Keine Sorge. Solange irgendjemand gefesselt|ist, ist sie normalerweise zufrieden.",70,1,0,ShowConcern()
+70,0,0,Chloe,Ist Chloe da?,"Ginge es nach ihr, wäre sie die ganze Zeit gefesselt.|Ich sagte ihr, sie soll endlich mal eine Auszeit nehmen.",75,0,0,
+75,0,0,,"Ich hab mich darauf|gefreut, sie zu fesseln.","Ich habe dem ganzen Club verboten,|sie zu fesseln. Das gilt auch für dich.",70,0,0,AskChloe()
+75,0,0,,Warum braucht|sie eine Auszeit?,"Ich fürchte, sie wird langsam zu unterwürfig. Im Club ist|das kein Problem, aber sie muss erwachsen werden.",70,0,0,AskChloe()
+100,0,0,,Was soll ich denn|jetzt wieder getan haben?,Außer meine Freundin zu misshandeln|und sie hilflos im Stich zu lassen? Sag du's mir.,110,0,0,
+100,0,0,,"Na und? Pass auf|oder du bist die Nächste.",Denk nicht mal dran. Du hast gerade|die Höhle des Drachen betreten.,110,-1,0,
+100,0,0,,Wo ist meine|Bitch denn hin?,"Meine FREUNDIN erholt sich von|dem, was DU ihr angetan hast.",110,-2,0,
+100,0,0,,"Tut mir leid, ich wollte|das nicht ausarten lassen.","Eine einfache Entschuldigung hilft nicht|nach dem, was Natalie durchgemacht hat.",110,0,-1,
+110,0,0,,Was ist mit ihr passiert?,Ihre nächste Stunde war Mathe und sie wurde|danach von einer wutentbrannten Mildred entdeckt.,120,0,0,
+110,0,0,,Ihr hättet sie doch früher|oder später gefunden.,"Schön wär's, sie wurde von Mildred entdeckt,|nachdem sie eine Mathestunde verpasst hat.",120,-1,0,
+120,0,0,,Kann ich mit ihr reden? Ich|will es wiedergutmachen.,"Noch nicht, aber deine Wiedergutmachung|kann schonmal anfangen.",130,1,-1,
+120,0,0,,Platz da. Ich werde mich|diesem Club vorstellen.,"Nein, zuerst werden sich die Clubmitglieder|dir sehr gründlich vorstellen.",130,-1,0,
+120,0,0,,"Es war nur ein Scherz,|das sollte sie hinnehmen.","Dann wirst du sicher kein Problem damit|haben, diesen nächsten Scherz hinzunehmen.",130,0,0,
+130,0,0,,"Moment, können wir bitte|einfach darüber reden?",,130,0,-1,Discipline()
+130,0,0,,"Es tut mir wirklich|leid, ich gehe schon.",,130,0,-1,Discipline()
+130,0,0,,"Kommt doch, ich werde|mit euch allen fertig.",,130,-1,1,Discipline()

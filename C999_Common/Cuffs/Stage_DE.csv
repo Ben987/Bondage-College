@@ -1,8 +1,8 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 0,0,0,,(Untersuchen.)ADD_MINUTES:1,"Sie sind ziemlich robust, ohne Schlüssel|kommt man da unmöglich raus.",0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Anlegen.)ADD_MINUTES:1,Du lässt sie hinter deinem Rücken einrasten. Das|letzte Klicken bringt dich zum Schaudern.,10,0,0,SelfCuff()
-10,0,0,HasLooseCuffs,(Freie Handschellen|untersuchen.)ADD_MINUTES:1,"Du untersuchst sie unbeholfen in deinen Fesseln.|Sie sind stark, ohne Schlüssel kein Entkommen.",10,0,0,ShowImage()
-10,0,0,,(Herauszwängen.)ADD_MINUTES:1,"Du versuchst erfolglos, deine Hände|aus den Handschellen zu zwängen.",10,0,0,
-10,0,0,,(Aufbrechen.)ADD_MINUTES:1,"Du versuchst die Handschellen zu beschädigen,|richtest aber keinen Kratzer an.",10,0,0,
-10,0,0,HasKey,(Aufschließen.)ADD_MINUTES:1,"Du fummelst eine Weile mit dem Schlüssel herum,|kannst dich aber schließlich befreien.",0,0,0,Unlock()
-10,0,0,CanEscape,(Entriegeln.)ADD_MINUTES:1,"Du fummelst eine Weile mit der Haarspange herum,|bis sich der Mechanismus schließlich löst.",0,0,0,Escape()
+0,0,0,Common_PlayerNotRestrained,(Sie dir selbst anlegen.)ADD_MINUTES:1,Du lässt sie hinter deinem Rücken einrasten. Das|letzte Klicken bringt dich zum Schaudern.,10,0,0,SelfCuff()
+10,0,0,HasLooseCuffs,(Die freien Handschellen|untersuchen.)ADD_MINUTES:1,"Du untersuchst sie unbeholfen in deinen Fesseln.|Sie sind stark, ohne Schlüssel kein Entkommen.",10,0,0,ShowImage()
+10,0,0,,"(Versuchen, deine Hände|herauszuzwängen.)ADD_MINUTES:1","Du versuchst erfolglos, deine Hände|aus den Handschellen zu zwängen.",10,0,0,
+10,0,0,,"(Versuchen, sie|aufzubrechen.)ADD_MINUTES:1","Du versuchst die Handschellen zu beschädigen,|richtest aber keinen Kratzer an.",10,0,0,
+10,0,0,HasKey,(Sie aufschließen.)ADD_MINUTES:1,"Du fummelst eine Weile mit dem Schlüssel herum,|kannst dich aber schließlich befreien.",0,0,0,Unlock()
+10,0,0,CanEscape,(Das Schloss knacken.)ADD_MINUTES:1,"Du fummelst eine Weile mit der Haarspange herum,|bis sich der Mechanismus schließlich löst.",0,0,0,Escape()

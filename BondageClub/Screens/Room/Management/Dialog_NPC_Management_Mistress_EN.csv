@@ -4,7 +4,9 @@ TouchSubAngry2,,,(DialogCharacterName grabs your arm.)  You're getting on my ner
 TouchSubAngry3,,,(DialogCharacterName grabs your hair.)  Touch my pet again and you'll get in a world of trouble!,,
 TouchSubPunishment,,,(She pulls you to her by the hair.)  Never touch my pet!  Now you're in trouble.,,
 KneelToTalk,,,"Submissive girl, what are you doing standing up in my presence?  Get on your knees if you want to speak to me.",,
+MistressExpulsion,,,We Mistresses have been speaking.  It seems you're not fit to wear the heels anymore.,,
 0,,,(She looks at you and grins.)  Be direct and don't waste my time naked girl.,,Player.IsNaked()
+0,,,My respects to you Mistress DialogPlayerName.,,"DialogLogQuery(""ClubMistress"", ""Management"")"
 0,,,Greetings head maid DialogPlayerName.  Is there a problem that the sorority cannot handle?,,"DialogLogQuery(""LeadSorority"", ""Maid"")"
 0,,,Greetings master kidnapper DialogPlayerName.  I trust you're having a good time hunting.,,"DialogReputationGreater(""Kidnap"", 100)"
 0,,,Welcome little maid.  How can I help you?,,"DialogLogQuery(""JoinedSorority"", ""Maid"")"
@@ -14,16 +16,15 @@ KneelToTalk,,,"Submissive girl, what are you doing standing up in my presence?  
 0,10,I have a few questions.,"Don't be shy, but don't waste my time.",,
 0,50,Who's that bound girl?,She's my kitty.  She stays with me while I work.,,
 0,100,Can we talk about chastity devices?,"Absolutely, what would you like to know?",,
-0,200,About Dominant/submissive relationships...,I'm listening.  How can I educate you?,,
-0,300,About club slaves...,"Yes, what would you like to know?",,
+0,200,About Dominant/submissive relationships...,I'm listening.  How can I educate you?,,Player.CanTalk()
+0,400,About club Mistresses...,Speak up.  What would you like to know?,,Player.CanTalk()
+0,300,About club slaves...,"Yes, what would you like to know?",,Player.CanTalk()
 0,,"Sorry, I need to go.  (Leave her.)",,DialogLeave(),
 5,0,"Oops, I'm sorry Miss.  (Kneel for her.)",(She smirks as you kneel down for her.)  Good girl.  What can I do for you?,"DialogSetPose(Player, ""Kneel"")",
 5,0,(Bow your head and kneel.),(She smirks as you kneel down for her.)  Good girl.  What can I do for you?,"DialogSetPose(Player, ""Kneel"")",
 5,,We cannot talk then.  (Leave her.),,DialogLeave(),
 10,,What do you do in the club?,I'm both a Mistress and a manager.  I prepare collaring ceremonies and hold keys for chastity devices.,,
 10,20,Who owns the club?,"The club is owned by every member, but the Head Mistress is truly in charge.",,
-10,,Can I become a club Mistress?,"Sorry, we don't have any openings for club Mistresses right now.  Please come back later.",,"DialogReputationGreater(""Dominant"", 60)"
-10,,Can I become a club Mistress?,You?  Don't make me laugh.  This is job for Dominants only.,,"DialogReputationLess(""Dominant"", 59)"
 10,,Can I tie you up?,Don't make me laugh.,MistressAngryAdd(),GetMistressAngryCount(0)
 10,,Can I tie you up?,Forget it girl.  Don't bug me with such stupid questions.,MistressAngryAdd(),GetMistressAngryCount(1)
 10,,Can I tie you up?,I said forget it!  Ask me again and you'll be in a world of trouble.,MistressAngryAdd(),GetMistressAngryCount(2)
@@ -96,8 +97,9 @@ KneelToTalk,,,"Submissive girl, what are you doing standing up in my presence?  
 56,0,Can you please help me?,"Very well, I will help you.  (She releases you.)  I hope you had fun with my pet.",PlayerRelease(),MistressWillRelease()
 56,0,(Whimper and beg for mercy.),"Very well, I will help you.  (She releases you.)  I hope you had fun with my pet.",PlayerRelease(),MistressWillRelease()
 56,,(Leave her.),,DialogLeave(),
-100,,What are the rules for chastity items?,"Only the club Mistresses can unlock chastity devices.  If you have an owner, you need your owner permission to be unlocked.",,
-100,,Can I buy a key?,"No, the keys are not for sales.  They are for Mistresses only.",DialogRemove(),
+100,,What are the rules for chastity items?,Only the club Mistresses can unlock chastity devices.  Make sure you use your keys wisely.  (She winks at you.),,"DialogLogQuery(""ClubMistress"", ""Management"")"
+100,,What are the rules for chastity items?,"Only the club Mistresses can unlock chastity devices.  If you have an owner, you need your owner permission to be unlocked.",,"!DialogLogQuery(""ClubMistress"", ""Management"")"
+100,,Can I buy a key?,"No, the keys are not for sales.  They are for Mistresses only.",DialogRemove(),"!DialogLogQuery(""ClubMistress"", ""Management"")"
 100,110,"I'm stuck, I need your help.","(She smirks.)  So, a subbie girl got herself locked?  What's your story?",,AllowReleaseChastity()
 100,,"I'm stuck, I need your help.",(She laughs.)  Better learn to enjoy it girl.  I'm not releasing you.,,RefuseReleaseChastity()
 100,130,A friend of mine needs your help.,What friend?  You're alone girl.,,FriendIsChaste()
@@ -161,7 +163,7 @@ KneelToTalk,,,"Submissive girl, what are you doing standing up in my presence?  
 200,220,Will you be my Mistress?,"I've heard about you girl, they say you're one of the best slaves around.  You would offer yourself to me?",,WillOwnPlayer()
 200,,Will you be my Mistress?,"Girl, my standards are high.  If I get a new slave, she would have to be the perfect submissive.",,WontOwnPlayer()
 200,,Can I collar and own anyone?,"BDSM is consensual.  As long as the person isn't already owned and consent to be your slave, you can collar her.",,
-200,,I want to collar a submissive.,Perfect!  You'll have to wait though.  The club is restructuring.  Please come back later.,,
+200,,I want to collar a submissive.,Perfect!  Go get your consenting pet and bring her here.  You will need to pay 100$ for the slave collar and the ceremony.,,
 200,,A Dominant wants to collar me.,"You must be thrilled sub girl, but your Dominant will arrange the collaring ceremony, not you.  Ask her politely to contact us.",,!Player.IsOwned()
 200,210,I want to be released from my owner.,"I'm sorry to hear that.  Breaking a BDSM bond is serious.  Tell me your story, why do you want to leave?",,CanBeReleased()
 200,,I want to be released from my owner.,"Girl, I know your owner.  Speak with her about it first.",,CannotBeReleased()
@@ -229,3 +231,36 @@ KneelToTalk,,,"Submissive girl, what are you doing standing up in my presence?  
 360,0,I loved it.  I hope to do it again.,(She removes your collar and grins.)  You can come back anytime.  Here's your money slave.  (She gives you 80$.),FinishClubSlave(-3),!Player.IsOwned()
 360,0,Maybe I'm not fit to be a public slave.,(She swaps your collars and nods.)  Going public isn't for everyone.  Here's your money girl.  (She gives you 80$.),FinishClubSlave(2),Player.IsOwned()
 360,0,Maybe I'm not fit to be a public slave.,(She removes your collar and nods.)  Going public isn't for everyone.  Here's your money girl.  (She gives you 80$.),FinishClubSlave(2),!Player.IsOwned()
+400,,What are club Mistresses?,We Mistresses are the final arbiters in the club.  We make the rules and enforce them.  It's hard work but it's rewarding.,,
+400,,What are the requirements?,"To apply to be a club Mistress, someone must be a club member for at least one week and be known to be really dominant.",,
+400,,Do they get paid?,Absolutely.  The salary is 100$ per week and they will receive the official Mistress outfit that I'm wearing right now.,,
+400,,Do they have privileges?,They have a special privilege that comes with responsibilities.  Every Mistress get special keys for chastity devices.,,
+400,,What if a Mistress turns submissive?,She will be kicked out of the group and her Mistress clothes will be confiscated.,,
+400,410,Can I become a club Mistress?,You've made quite a reputation for yourself in the club.  Are you serious about becoming a Mistress?,,CanBeClubMistress()
+400,,Can I become a club Mistress?,We've noticed your good reputation but it's not enough.  Work harder to become an elite Dominant.,,CannotBeClubMistress()
+400,,Can I become a club Mistress?,You?  Don't make me laugh.  Being a Mistress is for real Dominants only.,,CannotBeClubMistressLaugh()
+400,,Can I become a club Mistress?,"Girl, you're a new member.  You must be a club member for at least one week before you can apply.",,CannotBeClubMistressTime()
+400,0,I'm here to collect my salary.,(She checks her book and gives you 100$.)  Here you go Mistress DialogPlayerName.  Come again in seven days for your next pay.,MistressPay(),MistressCanBePaid()
+400,0,I'm here to collect my salary.,(She checks her book and frowns.)  You're too early Mistress DialogPlayerName.  It takes a full week between each payment.,,MistressCannotBePaid()
+400,0,That's all I wanted to know.,"Good.  Now, get to the point or get going.",,
+410,420,"Yes, I'm serious.","Excellent!  First, we need to prepare a perfect outfit for you.  Do you prefer black, red or silver?",,
+410,400,Do you think I can do it?,"Not with this attitude.  You'll know when you're ready, and it's not now.","DialogChangeReputation(""Dominant"", -2)",
+410,400,Let me think about it.,"Sure, take your time.",,
+420,430,Black.,Good.  (She snaps her fingers and a submissive girl comes to dress you up.),"GetMistressOutfit(""#333333"")",
+420,430,Red.,Good.  (She snaps her fingers and a submissive girl comes to dress you up.),"GetMistressOutfit(""#AA4444"")",
+420,430,Silver.,Good.  (She snaps her fingers and a submissive girl comes to dress you up.),"GetMistressOutfit(""#AAAAAA"")",
+430,440,"This is perfect, I love it.",(She smiles.)  It's time for your inauguration party Mistress DialogPlayerName.,,
+430,440,Good girl.  (Spank the dressing girl.),(She grins.)  It's time for your inauguration party Mistress DialogPlayerName.,,
+430,440,So much power!,(She nods.)  It's time for your inauguration party Mistress DialogPlayerName.,,
+440,,Excellent!  (Do the inauguration party.),,PlayerMistressCutscene(),
+440,,This should be fun.  (Do the party.),,PlayerMistressCutscene(),
+500,510,What does it mean?,It means that you're not Dominant enough and you're getting kicked out of the Mistresses circle.,,
+500,510,You're kicking me out?,"Correct, you're not Dominant enough, so you're getting kicked out of the Mistresses circle.",,
+500,510,(Stay silent.),"Girl, you've really lost your Dominant touch and you're getting kicked out of the Mistresses circle.","DialogChangeReputation(""Dominant"", -3)",
+510,520,That's unfair!,"Don't make it harder than it should be, you've brought this on yourself.  Now get naked for your shaming.",,
+510,520,I understand.,"Very good, you did bring this on yourself.  Now get naked for your shaming.","DialogChangeReputation(""Dominant"", -2)",
+520,,My shaming?,"Yes, your shaming period will last for an hour.  You will have to wander the club naked, so everyone knows you're not a Mistress anymore.",DialogRemove(),
+520,530,(Grumble and get naked.),You're not allowed to wear clothes for the next hour.  Now surrender your Mistress outfit and chastity keys.,PlayerStrip(),
+520,530,(Stay silent and get naked.),You're not allowed to wear clothes for the next hour.  Now surrender your Mistress outfit and chastity keys.,PlayerStrip(),
+530,0,"Fine, take it.  (Give your Mistress items.)","(She takes your Mistress items and sighs.)  Such a pity, you had so much potential.  Carry on girl.",MistressKicked(),
+530,0,That sucks!  (Give your Mistress items.),"(She takes your Mistress items and sighs.)  Such a pity, you had so much potential.  Carry on girl.",MistressKicked(),

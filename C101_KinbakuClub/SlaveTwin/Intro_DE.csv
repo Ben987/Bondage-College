@@ -1,0 +1,49 @@
+Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,TiedElbowsTouching,"(Sie zappelt hilflos, als du sie packst und|davonschleifst, bevor irgendjemand reagieren kann.)",KidnapLeftTwin.jpg
+0,0,0,!TiedElbowsTouching,"(Sie zappelt hilflos, als du sie packst und|davonschleifst, bevor irgendjemand reagieren kann.)",KidnapRightTwin.jpg
+1,0,0,TiedElbowsTouching,"Na dann viel Spaß. (Lucy winkt zum Abschied,|als du ihre Schwester davonschleifst.)",KidnapLeftTwin.jpg
+1,0,0,!TiedElbowsTouching,"Na dann viel Spaß. (Lucy winkt zum Abschied,|als du ihre Schwester davonschleifst.)",KidnapRightTwin.jpg
+5,0,0,,(Sie bemerkt deine eigenen Fesseln und kichert.),TwinBackground.jpg
+6,0,0,,"(Sie kann hören, dass du da bist, aber|so kann keine von euch besonders viel tun.)",TwinBackground.jpg
+9,0,0,,"Versuch nicht, etwas an mir zu benutzen.",TwinBackground.jpg
+10,0,0,,(Sie schaudert und kämpft panisch mit ihren Fesseln.),TwinBackground.jpg
+15,0,0,,,TwinBackground.jpg
+20,0,0,,"Bitte, du musst mir helfen.",TwinBackground.jpg
+21,0,0,,,TwinBackground.jpg
+22,0,0,,,TwinBackground.jpg
+23,0,0,,,TwinBackground.jpg
+24,0,0,,,TwinBackground.jpg
+30,0,0,,,TwinBackground.jpg
+31,0,0,,,TwinBackground.jpg
+32,0,0,,,TwinBackground.jpg
+33,0,0,,,TwinBackground.jpg
+40,0,0,,,TwinBackground.jpg
+41,0,0,,,TwinBackground.jpg
+50,0,0,,,TwinBackground.jpg
+51,0,0,,,TwinBackground.jpg
+52,0,0,,,TwinBackground.jpg
+60,0,0,,,TwinBackground.jpg
+70,0,0,,,TwinBackground.jpg
+71,0,0,,,TwinBackground.jpg
+73,0,0,,,TwinBackground.jpg
+74,0,0,,,TwinBackground.jpg
+75,0,0,,,TwinBackground.jpg
+76,0,0,,,TwinBackground.jpg
+77,0,0,,,TwinBackground.jpg
+78,0,0,,,TwinBackground.jpg
+79,0,0,,,TwinBackground.jpg
+80,0,0,,,TwinBackground.jpg
+100,0,0,,,TwinBackground.jpg
+110,0,0,,,TwinBackground.jpg
+111,0,0,,,TwinBackground.jpg
+112,0,0,,,TwinBackground.jpg
+113,0,0,,,TwinBackground.jpg
+114,0,0,,,TwinBackground.jpg
+115,0,0,,,TwinBackground.jpg
+116,0,0,,,TwinBackground.jpg
+120,0,0,,,TwinBackground.jpg
+130,0,0,,,TwinBackground.jpg
+200,0,0,,,TwinBackground.jpg
+210,0,0,,,TwinBackground.jpg
+300,0,0,,,TwinBackground.jpg
+310,0,0,,,TwinBackground.jpg

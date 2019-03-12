@@ -30,6 +30,8 @@ function DialogAllowItem(Allow) { return CurrentCharacter.AllowItem = (Allow.toU
 function DialogIsKneeling(C) { return (C.toUpperCase().trim() == "PLAYER") ? Player.IsKneeling() : CurrentCharacter.IsKneeling() }
 function DialogIsOwner() { return (CurrentCharacter.Name == Player.Owner.replace("NPC-", "")) }
 function DialogIsProperty() { return (CurrentCharacter.Owner == Player.Name) }
+function DialogIsRestrained(C) { return ((C.toUpperCase().trim() == "PLAYER") ? Player.IsRestrained() : CurrentCharacter.IsRestrained()) }
+function DialogCanInteract(C) { return ((C.toUpperCase().trim() == "PLAYER") ? Player.CanInteract() : CurrentCharacter.CanInteract()) }
 function DialogSetPose(C, NewPose) { CharacterSetActivePose((C.toUpperCase().trim() == "PLAYER") ? Player : CurrentCharacter, ((NewPose != null) && (NewPose != "")) ? NewPose : null); }
 
 // Returns TRUE if the dialog prerequisite condition is met
@@ -258,7 +260,7 @@ function DialogClick() {
 
 					// Do not allow to remove if it's locked
 					if ((Item.Asset.Effect == null) || (Item.Asset.Effect.indexOf("Lock") < 0))
-						if ((Item.Asset.Prerequisite == null) || InventoryAllow(C, Item.Asset.Prerequisite))
+						if (InventoryAllow(C, Item.Asset.Prerequisite))
 							if (!InventoryGroupIsBlocked(C))
 								DialogProgressStart(C, Item, null);
 
@@ -293,7 +295,7 @@ function DialogClick() {
 					var Item = InventoryGet(C, C.FocusGroup.Name);
 					if ((Item == null) || (Item.Asset.Effect == null) || (Item.Asset.Effect.indexOf("Lock") < 0)) {
 						if (!InventoryGroupIsBlocked(C))
-							if ((DialogInventory[I].Asset.Prerequisite == null) || InventoryAllow(C, DialogInventory[I].Asset.Prerequisite))
+							if (InventoryAllow(C, DialogInventory[I].Asset.Prerequisite))
 								if ((Item == null) || (Item.Asset.Name != DialogInventory[I].Asset.Name))
 									if (DialogInventory[I].Asset.Wear) {
 										if (DialogInventory[I].Asset.SelfBondage || (C.ID != 0)) DialogProgressStart(C, Item, DialogInventory[I]);
@@ -305,13 +307,14 @@ function DialogClick() {
 					} else {
 
 						// If the item can unlock another item or simply show dialog text (not wearable)
-						if ((DialogInventory[I].Asset.Effect != null) && (DialogInventory[I].Asset.Effect.indexOf("Unlock-" + Item.Asset.Name) >= 0))
-							DialogProgressStart(C, Item, null);
-						else
-							if (!DialogInventory[I].Asset.Wear) {
-								C.CurrentDialog = DialogFind(C, DialogInventory[I].Asset.Group.Name + DialogInventory[I].Asset.Name);
-								DialogLeaveItemMenu();
-							}
+						if (InventoryAllow(C, DialogInventory[I].Asset.Prerequisite))
+							if ((DialogInventory[I].Asset.Effect != null) && (DialogInventory[I].Asset.Effect.indexOf("Unlock-" + Item.Asset.Name) >= 0))
+								DialogProgressStart(C, Item, null);
+							else
+								if (!DialogInventory[I].Asset.Wear) {
+									C.CurrentDialog = DialogFind(C, DialogInventory[I].Asset.Group.Name + DialogInventory[I].Asset.Name);
+									DialogLeaveItemMenu();
+								}
 
 					}
 					break;

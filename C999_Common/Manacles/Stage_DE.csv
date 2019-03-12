@@ -1,8 +1,8 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 0,0,0,,(Untersuchen.)ADD_MINUTES:1,Die Fesseln bestehen aus hartem Stahl und|werden mit Vorhängeschlössern gesichert.,0,0,0,
 0,0,0,Common_PlayerNotRestrained,(Damit spielen.)ADD_MINUTES:1,"Du probierst die Fesseln an, ohne sie zu verschließen.|Sie sind eng und würden dich nicht entgleiten lassen.",0,0,0,
-0,0,0,Common_PlayerNotRestrained,(Selbst fesseln.)ADD_MINUTES:1,"Du verschließt die Fesseln an deinem|Hals, Handgelenken und Knöcheln.",10,0,0,SelfShackle()
-10,0,0,HasLooseManacles,(Mit freien Fesseln|spielen.) ADD_MINUTES:1,"Du spielst mit den freien Fesseln, kannst|in deinem Zustand aber nicht viel tun.",10,0,0,ShowImage()
-10,0,0,HasKey,(Aufschließen.)ADD_MINUTES:1,"Du fummelst eine Weile mit dem Schlüssel herum,|kannst dich aber schließlich befreien.",0,0,0,Unlock()
-10,0,0,,(Herauszwängen.)ADD_MINUTES:1,"Du versuchst deine Hände durch die Fesseln|zu zwängen, aber sie sind zu eng.",10,0,0,
-10,0,0,,(Ausbruch versuchen.)ADD_MINUTES:1,"Du zappelst wie wild in den Fesseln herum,|aber der Fluchtversuch ist zwecklos.",10,0,0,
+0,0,0,Common_PlayerNotRestrained,(Dich selbst fesseln.)ADD_MINUTES:1,"Du verschließt die Fesseln an deinem|Hals, Handgelenken und Knöcheln.",10,0,0,SelfShackle()
+10,0,0,HasLooseManacles,(Mit den freien|Ketten spielen.) ADD_MINUTES:1,"Du spielst mit den freien Ketten, kannst|in deinem Zustand aber nicht viel tun.",10,0,0,ShowImage()
+10,0,0,HasKey,(Sie aufschließen.)ADD_MINUTES:1,"Du fummelst eine Weile mit dem Schlüssel herum,|kannst dich aber schließlich befreien.",0,0,0,Unlock()
+10,0,0,,"(Versuchen, deine Hände|herauszuzwängen.)ADD_MINUTES:1","Du versuchst deine Hände durch die Fesseln|zu zwängen, aber sie sind zu eng.",10,0,0,
+10,0,0,,"(Versuchen,|auszubrechen.)ADD_MINUTES:1","Du zappelst wie wild in den Fesseln herum,|aber der Fluchtversuch ist zwecklos.",10,0,0,

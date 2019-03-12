@@ -1,0 +1,129 @@
+Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,,Sklavinnen?,"Genau, an den Willen ihres Meisters gebundene Diener.|Wie wär's mit einer dieser vorzüglichen Sklavinnen?",10,1,0,
+0,0,0,,Die heutigen?,"Würde ich sie dauerhaft behalten, bräuchten|sie zu viel Fürsorge. Möchtest du eine?",10,0,0,
+0,0,0,,"Ähhm, ich|bin COMMON_PLAYERNAME.","Schöner Name, als Sklavin würdest du ihn natürlich|verlieren. Möchtest du eine dieser Sklavinnen kaufen?",10,0,-1,
+10,0,0,Loop1,Haben diese Mädels|darum gebeten?,"Na ja, sie können nicht wirklich bitten, nachdem sie|schon überfallen, gefesselt und geknebelt wurden.",20,0,0,StopLoop1()
+10,0,0,,"Ja, ich nehme|eine Sklavin.","Moment, ich handle nur mit Bargeld und es sieht|nicht so aus, als könntest du dir eine leisten.",30,1,0,NotRichEnough()
+10,0,0,,Diese Mädels|sind nicht mein Typ.,"Andere habe ich momentan nicht auf Lager.|Du könntest dir selbst welche fangen, die du magst.",40,1,1,
+10,0,0,,"Nein, danke.","Nun, wie wäre es, wenn du dich|stattdessen als Kidnapperin versuchst?",30,0,0,
+10,0,0,Loop2,Du kannst nicht|einfach Leute entführen.,"Tja, das habe ich aber. Bist du nun an|etwas Sklaverei interessiert oder nicht?",10,-1,0,StopLoop2()
+20,0,0,,Also hast du sie|tatsächlich entführt?,"Nicht doch, diese beiden wissen, was passiert, wenn|man einer Sklavenhändlerin den Rücken zukehrt.",25,0,0,
+20,0,0,,Genial.,"Ja, die meisten Leute lernen, beim Betreten des Clubs|hinter die Tür zu schauen. Andere lernen es wohl nie.",25,1,0,
+25,0,0,,"Ich kann nicht glauben,|dass du das einfach tust.",Ist aber so. Sie sind ja freiwillig hier hereinspaziert.|Bist du an einer Sklavin interessiert oder nicht?,10,-1,0,
+25,0,0,,Ich möchte nicht|eingefangen werden.,"Tja, möglicherweise wirst du keine Wahl haben.|Bist du an einer Sklavin interessiert oder nicht?",10,0,-1,
+25,0,0,,"Du hast nicht versucht,|mich zu einzufangen.","Nur, weil Jenna die beste Stelle besetzt hatte.|Bist du an einer Sklavin interessiert oder nicht?",10,1,-1,
+25,0,0,,Jenna hat nichts|von Sklaverei gesagt.,"Natürlich nicht, einige der|Mitglieder sind ja praktisch ihre Sklaven.",10,0,0,
+30,0,0,,Dann sollte ich vielleicht|dich versklaven.,"Vielleicht, aber du hast bereits dein Überraschungs-|moment verspielt. Fange dir lieber jemand anderes.",40,1,1,
+30,0,0,Poverty,Würdest du eine andere|Bezahlung annehmen?,Ich könnte dich als Sklavin verkaufen und wir teilen|den Erlös. Oder du fängst dir deine eigene Sklavin.,40,1,-1,SlaveOffer()
+30,0,0,Poverty,Aber ich will so gern|eine eigene Sklavin.,"Ganz ruhig. Es gibt hier genug Mädchen, die nur|darauf warten, als Sklavinnen gefangen zu werden.",40,1,0,
+30,0,0,,Das ist bescheuert.,"Komm schon, es ist nur etwas Spaß.|Du könntest sogar Gefallen am Kidnappen finden.",40,-1,0,
+40,0,0,,Wir können einfach|jedes Mitglied entführen?,"Theoretisch schon. Manche wehren sich in Gruppen,|andere lassen sich einfach fesseln, wenn du sie fragst.",50,0,0,
+40,0,0,SellMe,Du könntest mich|wohl verkaufen.,"Ausgezeichnet, komm her und akzeptiere|diese verbindliche Vereinbarung.",100,0,-1,NoLeave()
+40,0,0,,Kidnapping ist|nichts für mich.,Du hast es noch gar nicht versucht.,50,-1,0,
+40,0,0,,"Na ja, ich habe da ein|Mädchen im Auge.","Hihi, das wird sie sicher nicht kommen sehen.",50,1,0,
+50,0,0,,"Okay, ich versuche|mich als Kidnapperin.","Hier ist kaum noch Platz für Sklaven, aber du kannst|Jennas Tasche voll Ketten neben der Tür benutzen.",55,1,0,
+50,0,0,,"Du gehörst mir. (Versu-|chen, Erica zu kidnappen.)","Netter Versuch, aber|kampflos kriegst du mich nicht.",60,-1,0,Fight()
+50,0,0,,(Dich umdrehen|und gehen.),"(Sie packt dich von hinten.) Kehre nie einer|Sklavenhalterin den Rücken zu, törichtes Mädchen.",150,0,0,NoLeave()
+55,0,0,,Wofür braucht|sie die Ketten?,"Jenna ist fair, aber streng, wenn es um Disziplin geht.|Pass auf, ich glaube, Jenna hat die Schlüssel bei sich.",60,0,0,TryKidnapping()
+55,0,0,,Wie viele Ketten|sind da drin?,"Ziemlich viele, glaube ich. Jenna müsste die Schlüssel|bei sich haben, also wäre jeder hilflos darin gefangen.",60,0,0,TryKidnapping()
+60,0,0,,Wen sollte ich|am besten kidnappen?,Das lasse ich dich mal selbst entscheiden.|Ich muss einer Sklavin ihre Choreografie beibringen.,60,0,0,
+60,0,0,,(Dich umdrehen|und gehen.),"(Sie packt dich von hinten.) Kehre nie einer|Sklavenhalterin den Rücken zu, törichtes Mädchen.",150,0,0,NoLeave()
+60,0,0,,"Sei meine Sklavin. (Versu-|chen, Erica zu kidnappen.)","Netter Versuch, aber|kampflos kriegst du mich nicht.",60,-1,0,Fight()
+100,0,0,,"(Versuchen, zu|entkommen.)","(Sie packt dich und schnallt dir ein Halsband um, bevor|du entkommen kannst.) Du gehörst jetzt mir.",110,0,0,CollarLocked()
+100,0,0,PlayerNotBound,(Gegen sie ankämpfen.),"Wow, du bist kampflustig. Komm wieder, wenn|du für die Kette und das Halsband bereit bist.",90,0,0,ResistedSlavery()
+100,0,0,PlayerNotGagged,"Nein, geh mit jemand|anderem herumalbern.","Oh, hab dich nicht so. Man muss sich wegen eines|kleinen Rollenspiels nicht gleich aufführen wie ein Snob.",90,0,0,ResistedSlavery()
+100,0,0,PlayerNotGagged,Bitte lass mich los.,"Du bittest so lieb, aber das hilft dir jetzt auch nicht.|(Sie schnallt dir das Halsband um.)",110,1,0,CollarLocked()
+100,0,0,,(Dein Schicksal akzeptieren|und dich unterwerfen.),"(Sie schnallt dir das Halsband um.) Die Mädels haben|den ganzen Tag von dir erzählt, und jetzt gehörst du mir.",110,1,-1,CollarLocked()
+100,0,0,PlayerIsFree,"Jetzt gehörst du mir. (Ver-|suchen, Erica zu fangen.)","Netter Versuch, aber|kampflos kriegst du mich nicht.",90,0,0,Fight()
+110,0,0,,(Entkommen.),"(Das Halsband ist fest in der Wand verankert. Sie prüft,|ob du ausgezogen, gefesselt und geknebelt bist.)",170,0,0,PlayerSlaved()
+110,0,0,,(Dich an sie reiben.),"Du bist aber zutraulich, lass mich dir helfen. (Sie prüft,|ob du ausgezogen, gefesselt und geknebelt bist.)",170,1,0,PlayerSlaved()
+110,0,0,PlayerNotBound,(Das Halsband|abnehmen.),"Sklaven sollten sich nicht befreien können. (Sie prüft,|ob du ausgezogen, gefesselt und geknebelt bist.)",170,0,0,PlayerSlaved()
+111,0,0,,(Entkommen.),"(Das Halsband ist fest in der Wand verankert. Sie prüft,|ob du ausgezogen, gefesselt und geknebelt bist.)",170,0,0,PlayerSlaved()
+111,0,0,,(Dich an sie reiben.),"Du bist aber zutraulich, lass mich dir helfen. (Sie prüft,|ob du ausgezogen, gefesselt und geknebelt bist.)",170,1,0,PlayerSlaved()
+111,0,0,PlayerNotBound,(Das Halsband|abnehmen.),"Sklaven sollten sich nicht befreien können. (Sie prüft,|ob du ausgezogen, gefesselt und geknebelt bist.)",170,0,0,PlayerSlaved()
+112,0,0,,(Entkommen.),"(Das Halsband ist fest in der Wand verankert. Sie prüft,|ob du ausgezogen, gefesselt und geknebelt bist.)",170,0,0,PlayerSlaved()
+112,0,0,,(Dich an sie reiben.),"Du bist aber zutraulich, lass mich dir helfen. (Sie prüft,|ob du ausgezogen, gefesselt und geknebelt bist.)",170,1,0,PlayerSlaved()
+112,0,0,PlayerNotBound,(Das Halsband|abnehmen.),"Sklaven sollten sich nicht befreien können. (Sie prüft,|ob du ausgezogen, gefesselt und geknebelt bist.)",170,0,0,PlayerSlaved()
+150,0,0,,(Niederlage|eingestehen.),"So ist's brav. (Du lässt sie deine Kleidung|ausziehen, bevor sie dich hilflos fesselt.)",170,0,-1,PlayerSlaved()
+150,0,0,,(Dich wehren.),"(Sie bringt dich zum Fall, landet auf dir und presst die|Luft aus dir heraus, wonach sie dich hastig fesselt.)",160,0,0,ResistKidnap()
+150,0,0,,@Bhnhnh,"Den Mist kannst du vergessen, du|bist jetzt einfach nur eine Sklavin.",150,0,0,
+160,0,0,,(Schmerzvoll|stöhnen.),"Recht so. (Sie überprüft sorgfältig deinen Körper.)|Alles okay, aber ich könnte die Schmerzen wegküssen.",165,0,0,
+160,0,0,,(Wild zappeln.),"Zu spät, du gehörst mir. Benimm dich und hör|auf zu zappeln. (Sie haut dir doll auf den Hintern.)",170,0,-1,
+165,0,0,,(Nicken.),Das sollte helfen. (Sie besänftigt und|küsst deinen Bauch- und Brustbereich.),170,1,0,KissedBetter()
+165,0,0,,(Den Kopf schütteln.),"Dein Pech, du wirst eh schon bald verkauft.",170,0,0,
+170,0,0,,@Mmmmph,"Ja, der Knebel ist sehr effektiv. (Sie nimmt|noch mehr Seile, um deine Beine zu fesseln.)",180,0,0,ResetImage()
+170,0,0,,(Es muss einen Ausweg ge-|ben. An den Seilen zerren.),"Wenn du dich beweisen willst, nur zu. (Sie nimmt|noch mehr Seile, um deine Beine zu fesseln.)",180,1,0,ResetImage()
+170,0,0,,(Wimmern und betteln.),"Armes Burgfräulein, hier gibt es keine Heldenritter. (Sie|nimmt noch mehr Seile, um deine Beine zu fesseln.)",180,0,-1,ResetImage()
+180,0,0,,(Erica zornig anstarren.),"Das bringt nichts, weißt du? Warte hier, ich|habe andere Sklaven, die Aufmerksamkeit brauchen.",200,1,0,
+180,0,0,,(Schweigend|dasitzen.),"Du wirst langsam langweilig. Ich habe andere|Sklaven, die sich nach Aufmerksamkeit sehnen.",200,-1,0,
+200,0,0,,(Schweigend|dasitzen.),(Weder Erica noch der restliche Club|schenken dir die geringste Beachtung.),200,-1,0,AloneTime()
+200,0,0,,(Dein Gesicht|an Erica reiben.),"(Sie schaut nicht hin und sagt auch nichts,|streichelt aber langsam deinen Kopf.)",200,1,-1,AloneTimeNuzzle()
+200,0,0,,(Aufstehen.),"(Das Seil zwischen Brust und Knöcheln verhindert|alles, was über eine unbequeme Hocke hinausgeht.)",200,0,0,AloneTime()
+200,0,0,,(Wegbewegen.),"(Du kommst nicht weit geschlurft, bevor|Erica die Kette nimmt und dich zurückzerrt.)",200,0,0,AloneTime()
+200,0,0,,(Wütend schreien.)|HMMMMMPPPHH,(Der Club ignoriert dich. Erica zerrt|energisch an deiner Kette.) Ruhe da unten.,200,-1,0,AloneTime()
+200,0,0,,"(Intensiver versuchen,|dich zu befreien.)","(Die Seile sind zu eng und keine Knoten in Reichweite.|Erica scheint dich zu ignorieren, lächelt aber.)",200,1,0,AloneTime()
+200,0,0,,"(Versuchen, den|Knebel abzustreifen.)","(Der Stoff sitzt fest, aber beim Reiben ans|Stuhlbein lockert er sich ein wenig.)",200,0,0,AloneTimeGag()
+210,0,0,,(Das wird langsam alt.|Gelangweilt gucken.),"Man könnte meinen, du willst gar keine Sklavin sein.|(Sie entknebelt dich und rammt dich unter ihren Rock.)",220,-1,0,PlayerUngag()
+210,0,0,,"(Betteln und flehen,|freigelassen zu werden.)","Ich helfe dir gleich, aber mach mich erst glücklich.|(Sie entknebelt dich und zieht dich unter ihren Rock.)",220,1,-1,PlayerUngag()
+210,0,0,,(Wild strampeln|und ziehen.),"Ah, noch so lebhaft. Nutzen wir diese Energie.|(Sie entknebelt dich und zwingt dich unter ihren Rock.)",220,1,0,PlayerUngag()
+220,0,0,,(An ihre Muschi|schmiegen.),(Sie spreizt die Beine und stöhnt leise.),220,0,0,Pleasure(1)
+220,0,0,,(Ihre Klitoris lecken.),(Sie hält dich an den Haaren fest und zittert.),220,0,0,Pleasure(2)
+220,0,0,,(Deine Zunge|hineinstecken.),(Sie bewegt deinen Kopf mit|beiden Händen vor und zurück.),220,0,0,Pleasure(3)
+220,0,0,PlayerNotGagged,(Sie beißen.),(Erica kreischt und zieht dich weg. Wütend und in|Qualen schnallt sie dir einen Ringknebel in den Mund.),230,-2,1,Bite()
+220,0,0,,(Wegziehen.),(Erica hält dich einfach an den Seilen|fest und drückt deinen Kopf wieder hinein.),220,0,0,PullBack()
+230,0,0,,@Lahh mihh loh.,"Sklaven kommen nicht einfach so davon, küsse mein|Aua. (Sie zwingt deinen Kopf wieder unter ihren Rock.)",220,0,0,
+240,0,0,,Bitte nicht noch mehr.,"Nicht noch mehr Pausen? Klar, dafür kann ich sorgen.|(Sie drückt dich wieder nach unten.)",220,1,0,
+240,0,0,,Ich brauchte|nur kurz Luft.,"Klar. (Sie lässt dich kurz verschnaufen,|bevor sie deinen Kopf wieder nach unten lenkt.)",220,0,0,
+240,0,0,,Du bist eine|grausame Schlampe.,"So ein Drecksmaul, das sollte ich einseifen. Das hier|muss reichen. (Sie zwingt dich wieder nach unten.)",220,-1,0,
+240,0,0,PlayerIsGagged,@Bhihhe nihhd nohh mhhr.,"Waa nicht mehr? Pausen? Klar, das lässt sich machen.|(Sie drückt dich wieder nach unten.)",220,1,0,
+240,0,0,PlayerIsGagged,@Ihh bhauhhde|nuh guhhf Luhd.,"Nein, geh zurück an die Arbeit.|(Sie drückt deinen Kopf zurück unter ihren Rock.)",220,0,0,
+240,0,0,PlayerIsGagged,@Hu hift ahne|hrauhame Hlamhe.,"So ein Drecksmaul, das sollte ich einseifen. Das hier|muss reichen. (Sie zwingt dich wieder nach unten.)",220,-1,0,
+250,0,0,,Lässt du|mich jetzt frei?,"Nein. Du bist eine viel zu gute Sklavin, um|freigelassen zu werden. (Sie knebelt dich erneut.)",260,0,0,PlayerRelease()
+250,0,0,,Kannst du mich|jetzt befriedigen?,"Nein, du verdienst keine Befriedigung.|(Sie knebelt dich erneut.)",260,0,0,PlayerPleasure()
+250,0,0,PlayerIsGagged,@Lähhd hu|mihh jefd hrei?,Nein. Aus dir kann eine gute Sklavin werden.|(Sie wechselt deinen Knebel aus.),260,0,0,PlayerRelease()
+250,0,0,PlayerIsGagged,@Gannhd hu mihh|jefd hewriehigen?,"Nein, du verdienst keine Befriedigung.|(Sie wechselt deinen Knebel aus.)",260,0,0,PlayerPleasure()
+260,0,0,PlayerIsGagged,@Mmmmp,"Noch eine Sache, um dich zu beschäftigen. (Sie setzt|dir ein Vibrator-Ei ein und setzt dich wieder hin.)",270,0,0,AddedEgg()
+270,0,0,,(Schweigend|dasitzen.),(Weder Erica noch der restliche Club|schenken dir die geringste Beachtung.),270,0,0,AloneTime()
+270,0,0,,(Dein Gesicht|an Erica reiben.),"(Sie schaut nicht hin und sagt auch nichts,|streichelt aber langsam deinen Kopf.)",270,0,0,AloneTimeNuzzle()
+270,0,0,,(Wegbewegen.),"(Du kommst nicht weit geschlurft, bevor|Erica die Kette nimmt und dich zurückzerrt.)",270,0,0,AloneTime()
+270,0,0,,(Wütend schreien.)|MMMMMPPPHH,(Der Club ignoriert dich. Erica zerrt|energisch an deiner Kette.) Ruhe da unten.,270,0,0,AloneTime()
+270,0,0,,"(Intensiver versuchen,|dich zu befreien.)","(Die Seile sind zu eng und keine Knoten in Reichweite.|Erica scheint dich zu ignorieren, lächelt aber.)",270,0,0,AloneTime()
+270,0,0,,"(Versuchen, den|Knebel abzustreifen.)","(Der Stoff sitzt fest, aber beim Reiben ans|Stuhlbein lockert er sich ein wenig.)",270,0,0,AloneTimeGag()
+270,0,0,,(Am Schrittseil ziehen.),"(Du schaffst es, am Schrittseil zu ziehen. Es ist|recht angenehm, aber das Ei tut nicht viel.)",270,0,0,AloneTimeEgg()
+270,0,0,,(Dein Schicksal akzeptieren|und auf Hilfe warten.),,270,0,-5,SkipToTransition()
+280,0,0,,"Das hat Spaß gemacht,|solange es anhielt.",Vielleicht bist du nächstes Mal eine bessere Sklavin.|(Sie nimmt das Halsband ab.) Behalte das Seil.,290,1,0,PlayerReleased()
+280,0,0,,"Gut, dass ich|dich los bin.","Hüte deine Zunge. (Sie schnallt dir einen Ballknebel um,|bevor sie das Halsband abnimmt.) Behalte das Seil.",290,-1,0,PlayerReleasedGag()
+280,0,0,,Ich werde meine|Rache bekommen.,"Uuuhhh, ich hab Angst. (Sie nimmt spottend das Hals-|band ab.) Behalte das Seil, du siehst darin besser aus.",290,0,0,PlayerReleased()
+300,0,0,,Die Sklavenhalterin|wurde zur Sklavin.,"Ahh, lass mich los, Schlampe.|(Du solltest sie besser fesseln, bevor sie entkommt.)",310,-1,0,GetCollar()
+300,0,0,,"Ich glaube, du|wolltest verlieren.","Nein, nicht wenn alle zusehen, lass mich los.|(Du solltest sie besser fesseln, bevor sie entkommt.)",310,0,1,GetCollar()
+300,0,0,,Du kannst jederzeit|ein Safeword benutzen.,"Scheiß drauf. Lass mich sofort los.|(Du solltest sie besser fesseln, bevor sie entkommt.)",310,0,0,GetCollar()
+310,0,0,,(Sie freilassen.),"(Bist du sicher, dass du das tun willst?)",315,0,0,
+310,0,0,EricaGagged,(Sie entknebeln.),Lass mich sofort los oder es|wird für dich nur noch schlimmer.,310,0,0,EricaUngag()
+310,0,0,EricaBlindfolded,(Ihr die Augenbinde|abnehmen.),(Das Abnehmen der Augenbinde enthüllt|Ericas nach wie vor finsteren Blick.),310,0,0,EricaUnBlindfold()
+310,0,0,EricaTied,(Sie befriedigen.),(Erica blickt finster drein und|versucht sich zu beherrschen.),310,0,0,EricaMasturbate()
+310,0,0,EricaTied,(Ihr auf die|Brüste hauen.),(Du nimmst abwechselnd beide Brüste und gibst|ihnen einen Klaps. Erica knurrt vor Schmerz.),310,0,0,EricaSpanked()
+310,0,0,EricaTied,(Sie kitzeln.),"(Du versuchst mehrmals, Erica zu kitzeln,|aber es scheint keine Wirkung zu haben.)",310,0,0,
+310,0,0,EricaTied,(Mit ihren|Nippeln spielen.),"(Erica grummelt und zuckt, als du ihre|Brüste streichelst und ihre Nippel kneifst.)",310,0,0,EricaNipples()
+310,0,0,EricaTied,(Ericas andere|Sklavinnen untersuchen.),(Welcher Sklavin wendest du dich zu?),320,0,0,
+310,0,0,Keys,Wo sind die Schlüssel für|die Vorhängeschlösser?,"Sag ich dir nicht. Das sind immer noch meine|Sklaven, du kriegst mich nicht klein.",310,0,0,EricaInterogate()
+310,0,0,,"Wie gefällt es dir,|meine Sklavin zu sein?","Du bist eine lausige Meisterin. Du magst mich gefangen|haben, aber meinen Willen hast du nicht gebrochen.",310,0,0,EricaIsBroken()
+315,0,0,,(Ja. Sie freilassen.),(Du befreist Erica und sie zieht sich an). Lass mich|einfach in Ruhe und ich nerve dich nicht mehr.,350,0,0,EricaFreed()
+315,0,0,,(Nein. Sie|nicht freilassen.),,310,0,0,
+320,0,0,,(Die tanzende Sklavin.),(Sie tanzt schon die ganze Zeit. Ihr Gesicht ist|knallrot und sie wirkt äußerst frustriert.),330,0,0,OtherSlaves()
+320,0,0,,(Die maskierte Sklavin.),(Sie liegt schon recht lange da und scheint ihr Schicksal|mit einem gelegentlichen Wimmern hinzunehmen.),340,0,0,OtherSlaves()
+320,0,0,,(Zurück zu Erica.),(Was hast du nun mit ihr vor?),310,0,0,GotoErica()
+330,0,0,,(Ihre Fesseln|untersuchen.),"(Sie trägt ein Lederhalsband, Handschellen und einen|Keuschheitsgürtel. Alles mit Vorhängeschlössern.)",330,0,0,
+330,0,0,SlaveGagged,(Sie entknebeln.),"(Du entfernst ihren Knebel.) Danke, Erica hat mich|gefangen, bevor du ankamst, und mein Kiefer tut weh.",330,0,0,SlaveUngag()
+330,0,0,SlaveUnGagged,Wo sind die Schlüssel für|die Vorhängeschlösser?,"Ich weiß nicht. Erica hält sie immer gut|versteckt, damit ihre Sklaven ja nicht rankommen.",330,0,0,SlaveKeys()
+330,0,0,,"(Versuchen, sie|zu befriedigen.)","(Ihr Gürtel verhindert jede Berührung, aber|sie stöhnt frustriert, als du darauf drückst.) ",330,0,0,SlavePleasure()
+330,0,0,Egg,Was meinst du|mit Spezial-Ei?,"Erica hat spezielle, schwache Vibrationseier.|So foltert sie Sklaven mit frustrierenden Reizen.",330,0,0,SlaveWhatEgg()
+330,0,0,,(Diese Sklavin verlassen.),"(Als du dich wegdrehst, fängt sie wieder zu tanzen an.|Mit welcher Sklavin spielst du jetzt?)",320,0,0,LeaveSlave()
+340,0,0,,(Ihre Fesseln|untersuchen.),"(Die Lederriemen an ihren Gelenken, ihr Halsband und|ihr Keuschheitsgürtel sind mit Schlössern gesichert.)",340,0,0,
+340,0,0,,(Ihre Haube|untersuchen.),"(Eine Lederhaube umhüllt ihren Kopf. Sie ist nur ver-|schnürt, aber der Knoten wird vom Halsband verdeckt.)",340,0,0,
+340,0,0,,"(Versuchen, sie|zu befriedigen.)","(Ihr Gürtel verhindert jede Berührung, aber|sie stöhnt verärgert, als er sich bewegt.) ",340,0,0,SlavePleasure()
+340,0,0,,(Diese Sklavin verlassen.),(Du überlässt sie ihrer Isolation.|Mit welcher Sklavin spielst du jetzt?),320,0,0,
+400,0,0,,(Dich umdrehen|und gehen.),(Erica packt und verdreht hinter dir plötzlich|deinen Arm.) Ich habe genug von dir.,410,0,0,
+410,0,0,,(Dich ergeben.),"(Erica dreht deinen Arm weiter, um die Rangfolge|klarzustellen, und marschiert mit dir durch den Raum.)",420,0,-2,
+410,0,0,,(Dich wehren.),"(Erica dreht kräftig deinen Arm, bis du um Gnade|rufst, und führt dich mit Gewalt durch den Clubraum.)",420,-1,-1,
+420,0,0,,(Dich ergeben.),(Du wehrst dich nicht und lässt dich von|Erica entkleiden und in Ketten legen.),420,1,-1,ManacledSlave()
+420,0,0,,(Dich wehren.),Schnitt zum bösen Ende.,420,0,0,BadEnd()

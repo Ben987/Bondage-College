@@ -2,6 +2,9 @@
 var CheatBackground = "Sheet";
 var CheatAllow = false;
 var CheatList = ["DoubleReputation", "DoubleSkill", "DoubleMoney", "DoubleItemSpeed", "BlockRandomKidnap", "SkipTrialPeriod"];
+var CheatBonusList = ["DoubleMoney", "DoubleSkill"];
+var CheatBonusFactor = 2;
+var CheatBonusTime = 1552967946711;
 var CheatActivated = [];
 
 // Returns TRUE if the cheat is currently active
@@ -9,9 +12,11 @@ function CheatActive(CheatName) {
 	return (CheatAllow && (CheatActivated.indexOf(CheatName) >= 0));
 }
 
-// Returns the factor if the cheat is activated
+// Returns the factor if the cheat is activated (also multiply the bonus factor if it's active)
 function CheatFactor(CheatName, Factor) {
-	return (CheatAllow && (CheatActivated.indexOf(CheatName) >= 0)) ? Factor : 1;
+	Factor = (CheatAllow && (CheatActivated.indexOf(CheatName) >= 0)) ? Factor : 1;
+	if ((CheatBonusTime >= CurrentTime) && (CheatBonusList.indexOf(CheatName) >= 0)) Factor = Factor * CheatBonusFactor;
+	return Factor;
 }
 
 // Imports the cheats from the local storage

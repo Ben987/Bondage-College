@@ -6,19 +6,19 @@ var InformationSheetPreviousScreen = "";
 
 // Gets the best title for the player and returns it
 function InformationSheetGetTitle() {
-	if (SkillGetLevel(Player, "Dressage") > 9) return TextGet("TitlePonyPegasus")
-	else if (SkillGetLevel(Player, "Dressage") >= 8) return TextGet("TitlePonyUnicorn")
-	else if (SkillGetLevel(Player, "Dressage") >= 6) return TextGet("TitlePonyWild")
-	else if (SkillGetLevel(Player, "Dressage") >= 5) return TextGet("TitlePonyHot")
-	else if (SkillGetLevel(Player, "Dressage") >= 4) return TextGet("TitlePonyWarm")
-	else if (SkillGetLevel(Player, "Dressage") >= 3) return TextGet("TitlePonyCold")
-	else if (SkillGetLevel(Player, "Dressage") >= 2) return TextGet("TitlePonyFarm")
-	else if (SkillGetLevel(Player, "Dressage") >= 1) return TextGet("TitlePonyFoal");
-	
+	if (LogQuery("ClubMistress", "Management")) return TextGet("TitleMistress");
+	if (SkillGetLevel(Player, "Dressage") >= 10) return TextGet("TitlePonyPegasus");
 	if (LogQuery("LeadSorority", "Maid")) return TextGet("TitleHeadMaid");
 	if (ReputationGet("Kidnap") >= 100) return TextGet("TitleMasterKidnapper");
+	if (SkillGetLevel(Player, "Dressage") >= 8) return TextGet("TitlePonyUnicorn");
+	if (SkillGetLevel(Player, "Dressage") >= 6) return TextGet("TitlePonyWild");
+	if (SkillGetLevel(Player, "Dressage") >= 5) return TextGet("TitlePonyHot");
 	if (LogQuery("JoinedSorority", "Maid")) return TextGet("TitleMaid");
 	if (ReputationGet("Kidnap") >= 50) return TextGet("TitleKidnapper");
+	if (SkillGetLevel(Player, "Dressage") >= 4) return TextGet("TitlePonyWarm");
+	if (SkillGetLevel(Player, "Dressage") >= 3) return TextGet("TitlePonyCold");
+	if (SkillGetLevel(Player, "Dressage") >= 2) return TextGet("TitlePonyFarm");
+	if (SkillGetLevel(Player, "Dressage") >= 1) return TextGet("TitlePonyFoal");
 	return TextGet("TitleNone");
 }
 
@@ -46,9 +46,10 @@ function InformationSheetRun() {
 	DrawText(TextGet("Title") + " " + ((C.ID == 0) ? InformationSheetGetTitle() : (C.Title == null) ? TextGet("TitleNone") : TextGet("Title" + C.Title)), 550, 200, "Black", "Gray");
 	DrawText(TextGet("Owner") + " " + (((C.Owner == null) || (C.Owner == "")) ? TextGet("OwnerNone") : C.Owner.replace("NPC-", "")), 550, 275, "Black", "Gray");
 	DrawText(TextGet("Lover") + " " + (((C.Lover == null) || (C.Lover == "")) ? TextGet("LoverNone") : C.Lover.replace("NPC-", "")), 550, 350, "Black", "Gray");
-	if (C.ID == 0) DrawText(TextGet("Money") + " " + C.Money.toString() + " $", 550, 425, "Black", "Gray");
+	if (C.ID == 0) DrawText(TextGet("MemberFor") + " " + (Math.floor((CurrentTime - C.Creation) / 86400000)).toString() + " " + TextGet("Days"), 550, 425, "Black", "Gray");
 	else DrawText(TextGet("FriendsFor") + " " + (Math.floor((CurrentTime - NPCEventGet(C, "PrivateRoomEntry")) / 86400000)).toString() + " " + TextGet("Days"), 550, 425, "Black", "Gray");
-	if ((C.ID != 0) && (C.Love != null)) DrawText(InformationSheetGetLove(C.Love), 550, 500, "Black", "Gray");
+	if (C.ID == 0) DrawText(TextGet("Money") + " " + C.Money.toString() + " $", 550, 500, "Black", "Gray");
+	else if (C.Love != null) DrawText(InformationSheetGetLove(C.Love), 550, 500, "Black", "Gray");
 
 	// For player character, we show the reputation and skills
 	if (C.ID == 0) {
