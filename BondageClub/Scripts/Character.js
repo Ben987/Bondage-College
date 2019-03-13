@@ -79,6 +79,13 @@ function CharacterRandomName(C) {
 
 }
 
+function urlExists(FullPath, C) {
+  fetch(FullPath).then(function(status) {
+	  
+
+  });
+}
+
 // Builds the dialog objects from the CSV files
 function CharacterBuildDialog(C, CSV) {
 
@@ -100,6 +107,9 @@ function CharacterBuildDialog(C, CSV) {
 			C.Dialog.push(D);
 
 		}
+		
+	// Translate the dialog if needed
+	TranslationDialog(C);
 
 }
 
@@ -107,7 +117,7 @@ function CharacterBuildDialog(C, CSV) {
 function CharacterLoadCSVDialog(C) {
 
     // Finds the full path of the CSV file to use cache
-    var FullPath = ((C.ID == 0) ? "Screens/Character/Player/Dialog_Player" : "Screens/" + CurrentModule + "/" + CurrentScreen + "/Dialog_" + C.AccountName) + "_" + CommonGetWorkingLanguage() + ".csv";    
+    var FullPath = ((C.ID == 0) ? "Screens/Character/Player/Dialog_Player" : "Screens/" + CurrentModule + "/" + CurrentScreen + "/Dialog_" + C.AccountName) + ".csv";    
     if (CommonCSVCache[FullPath]) {
 		CharacterBuildDialog(C, CommonCSVCache[FullPath]);
         return;

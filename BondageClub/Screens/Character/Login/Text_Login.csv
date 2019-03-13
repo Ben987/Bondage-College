@@ -3,6 +3,7 @@ EnterNamePassword,Enter your name and password
 AccountName,Account Name
 Password,Password
 Login,Login
+Language,Language
 CreateNewCharacter,Or create a new character
 NewCharacter,New Character
 ErrorLoadingCharacterData,Error loading character data

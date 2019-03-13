@@ -56,7 +56,7 @@ function CheatClick() {
 	// When the user exits
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) {
 		CheatExport();
-		CommonSetScreen("Character", "Login");	
+		CommonSetScreen("Character", "Login");
 	}
 	
 	// When the user activates an option

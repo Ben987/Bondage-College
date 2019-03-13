@@ -1,0 +1,10 @@
+﻿Account Name
+Kontobezeichnung
+Password
+Passwort
+Login
+Anmeldung
+Language
+Sprache
+Thank you
+Danke

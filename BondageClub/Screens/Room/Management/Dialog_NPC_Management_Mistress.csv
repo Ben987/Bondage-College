@@ -232,14 +232,14 @@ MistressExpulsion,,,We Mistresses have been speaking.  It seems you're not fit t
 360,0,Maybe I'm not fit to be a public slave.,(She swaps your collars and nods.)  Going public isn't for everyone.  Here's your money girl.  (She gives you 80$.),FinishClubSlave(2),Player.IsOwned()
 360,0,Maybe I'm not fit to be a public slave.,(She removes your collar and nods.)  Going public isn't for everyone.  Here's your money girl.  (She gives you 80$.),FinishClubSlave(2),!Player.IsOwned()
 400,,What are club Mistresses?,We Mistresses are the final arbiters in the club.  We make the rules and enforce them.  It's hard work but it's rewarding.,,
-400,,What are the requirements?,"To apply to be a club Mistress, someone must be a club member for at least one week and be known to be really dominant.",,
+400,,What are the requirements?,"To apply to be a club Mistress, someone must be a club member for at least one month and be known to be really dominant.",,
 400,,Do they get paid?,Absolutely.  The salary is 100$ per week and they will receive the official Mistress outfit that I'm wearing right now.,,
 400,,Do they have privileges?,They have a special privilege that comes with responsibilities.  Every Mistress get special keys for chastity devices.,,
 400,,What if a Mistress turns submissive?,She will be kicked out of the group and her Mistress clothes will be confiscated.,,
 400,410,Can I become a club Mistress?,You've made quite a reputation for yourself in the club.  Are you serious about becoming a Mistress?,,CanBeClubMistress()
 400,,Can I become a club Mistress?,We've noticed your good reputation but it's not enough.  Work harder to become an elite Dominant.,,CannotBeClubMistress()
 400,,Can I become a club Mistress?,You?  Don't make me laugh.  Being a Mistress is for real Dominants only.,,CannotBeClubMistressLaugh()
-400,,Can I become a club Mistress?,"Girl, you're a new member.  You must be a club member for at least one week before you can apply.",,CannotBeClubMistressTime()
+400,,Can I become a club Mistress?,"Girl, you're a new member.  You must be a club member for at least one month before you can apply.",,CannotBeClubMistressTime()
 400,0,I'm here to collect my salary.,(She checks her book and gives you 100$.)  Here you go Mistress DialogPlayerName.  Come again in seven days for your next pay.,MistressPay(),MistressCanBePaid()
 400,0,I'm here to collect my salary.,(She checks her book and frowns.)  You're too early Mistress DialogPlayerName.  It takes a full week between each payment.,,MistressCannotBePaid()
 400,0,That's all I wanted to know.,"Good.  Now, get to the point or get going.",,

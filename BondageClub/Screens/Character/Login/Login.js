@@ -86,9 +86,10 @@ function LoginRun() {
 	ElementPosition("InputName", 1000, 260, 500);
 	DrawText(TextGet("Password"), 1000, 350, "White", "Black");
 	ElementPosition("InputPassword", 1000, 410, 500);
-	DrawButton(925, 500, 150, 60, TextGet("Login"), "White", "");
+	DrawButton(775, 500, 200, 60, TextGet("Login"), "White", "");
+	DrawButton(1025, 500, 200, 60, TextGet("Language"), "White", "");
 	DrawText(TextGet("CreateNewCharacter"), 1000, 670, "White", "Black");
-	DrawButton(850, 740, 300, 60, TextGet("NewCharacter"), "White", "");
+	DrawButton(825, 740, 350, 60, TextGet("NewCharacter"), "White", "");
 	if (CheatAllow) DrawButton(850, 870, 300, 60, TextGet("Cheats"), "White", "");
 
 	// Draw the character and thank you bubble
@@ -132,6 +133,7 @@ function LoginResponse(C) {
 			CharacterRefresh(Player, false);
 			ElementRemove("InputName");
 			ElementRemove("InputPassword");
+			if (ManagementIsClubSlave()) CharacterNaked(Player);
 
 			// Starts the game in the main hall while loading characters in the private room
 			PrivateCharacter = [];
@@ -165,7 +167,7 @@ function LoginClick() {
 	}
 	
 	// If we must create a new character
-	if ((MouseX >= 850) && (MouseX <= 1150) && (MouseY >= 740) && (MouseY <= 800)) {
+	if ((MouseX >= 825) && (MouseX <= 1175) && (MouseY >= 740) && (MouseY <= 800)) {
 		ElementRemove("InputName");
 		ElementRemove("InputPassword");
 		CharacterAppearanceSetDefault(Player);
@@ -176,7 +178,7 @@ function LoginClick() {
 	}
 	
 	// If we must try to login
-	if ((MouseX >= 925) && (MouseX <= 1075) && (MouseY >= 500) && (MouseY <= 560)) {
+	if ((MouseX >= 775) && (MouseX <= 975) && (MouseY >= 500) && (MouseY <= 560)) {
 		var Name = ElementValue("InputName");
 		var Password = ElementValue("InputPassword");
 		var letters = /^[a-zA-Z0-9]+$/;
@@ -186,4 +188,11 @@ function LoginClick() {
 			LoginMessage = TextGet("InvalidNamePassword");
 	}
 
+	// If we must change the language
+	if ((MouseX >= 1025) && (MouseX <= 1225) && (MouseY >= 500) && (MouseY <= 560)) {
+		TranslationNextLanguage();
+		TextLoad();
+		LoginMessage = "";
+	}
+	
 }

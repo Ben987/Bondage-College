@@ -44,6 +44,7 @@
 <script src="Scripts/NPC.js"></script>
 <script src="Scripts/Server.js"></script>
 <script src="Scripts/Element.js"></script>
+<script src="Scripts/Translation.js"></script>
 <script src="Scripts/socket.io/socket.io.js"></script>
 <script src="Assets/Female3DCG/Female3DCG.js"></script>
 <script src="Screens/Character/Login/Login.js"></script>
@@ -75,12 +76,9 @@
 <script src="Screens/Cutscene/NPCCollaring/NPCCollaring.js"></script>
 <script>
 
-
 /*	
-	NEXT VERSION
-	Translation system for the Bondage Club
-	Time to become Mistress goes from 1 week to 1 month
-	Auto-Strip on log on when club slave
+	TO DO
+	Sarah / Chapter 14
 */
 
 // When the code is loaded, we start the game engine
@@ -88,6 +86,7 @@ window.onload = function() {
 	//CheatImport();
 	ServerURL = "https://bondage-club-server.herokuapp.com/";
 	CommonIsMobile = CommonDetectMobile();
+	TranslationLoad();
 	DrawLoad();
 	AssetLoadAll();
 	CommonSetScreen("Character", "Login");

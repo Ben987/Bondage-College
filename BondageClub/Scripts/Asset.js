@@ -99,7 +99,7 @@ function AssetBuildDescription(Family, CSV) {
 function AssetLoadDescription(Family) {
 
     // Finds the full path of the CSV file to use cache
-    var FullPath = "Assets/" + Family + "/" + Family + "_" + CommonGetWorkingLanguage() + ".csv";    
+    var FullPath = "Assets/" + Family + "/" + Family + ".csv";    
     if (CommonCSVCache[FullPath]) {
 		AssetBuildDescription(Family, CommonCSVCache[FullPath]);
         return;
