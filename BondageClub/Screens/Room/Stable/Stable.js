@@ -38,6 +38,7 @@ function StableLoad() {
 		InventoryWear(StablePony, "LeatherCollar", "ItemNeck");
 		StableWearPonyEquipment(StablePony, 0);
 		StablePony.AllowItem = false;
+
 	}
 }
 
@@ -53,7 +54,7 @@ function StableRun() {
 		DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
 		//DrawButton(1885, 265, 90, 90, "", "White", "Screens/Room/Stable/Horse.png");
 	}
-	StablePlayerIsPony = (LogQuery("JoinedStable", "Pony") && (ReputationGet("Dominant") < -30));
+	StablePlayerIsPony = (LogQuery("JoinedStable", "Pony") && (ReputationGet("Dominant") < -30)) && !StablePlayerDressOff;
 	StablePlayerIsTrainer = (LogQuery("JoinedStable", "Trainer") && (ReputationGet("Dominant") > 30));
 	StablePlayerIsNewby = (!StablePlayerIsPony && !StablePlayerIsTrainer);
 }
@@ -70,16 +71,32 @@ function StableClick() {
 		if ((MouseX >= 1250) && (MouseX < 1750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(StablePony);
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk() && !StablePlayerTrainingActiv) CommonSetScreen("Room", "MainHall");
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
-		//if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355)) MiniGameStart("HorseWalk", "Hurdle", "StableMiniEnd");
+		//if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355)) MiniGameStart("HorseWalk", "WhipPony", "StablePonyTrainingHurdlesEnd");
 	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 //Special Room function - Player is Pony
 ////////////////////////////////////////////////////////////////////////////////////////////
-//Start the Demo
-function StableTrialTraining() {
+//Start the Demo for a Ponytraining
+function StableTrialPonyTraining() {
 	StableGenericProgressStart(60, 0, 0, "Screens/Room/Stable/toyhorse.png", "HorseStableDark", StableTrainer, null, 0, "StableTrainerToyHorseFin", 0, "StableTrainerToyHorseCancel", 2,  TextGet("Toyhorse"));
+	SkillProgress("Dressage", 15);
+}
+
+//Start the Demo for a Trainer-training
+function StableTrialTrainerTraining() {
+	MiniGameStart("HorseWalk", "WhipPony", "StableTrialTrainerTrainingEnd");
+}
+
+function StableTrialTrainerTrainingEnd() {
+	CommonSetScreen("Room", "Stable");
+	CharacterSetCurrent(StableTrainer);
+	if (MiniGameVictory) {
+		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainerToyHorseFin");
+	} else {
+		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainerToyHorseCancel");
+	}
 }
 
 function StablePayTheFee(){
@@ -478,7 +495,7 @@ function StablePlayerToStable() {
 
 //Start the Pony introduction
 function StableDressPonyStart(){
-	if (StablePlayerAppearance == null) StablePlayerAppearance = Player.Appearance.slice();
+	StablePlayerAppearance = Player.Appearance.slice();
 	StablePlayerDressOff = true;
 	CharacterNaked(Player);
 }
@@ -504,7 +521,14 @@ function StablePlayerToHerd() {
 
 //Dress Caracter Back
 function StableDressBackPlayer() {
-	Player.Appearance = StablePlayerAppearance.slice();
+	CharacterRelease(Player);
+	//Release Harnes, Plug, Ears2
+	for(var E = 0; E < Player.Appearance.length; E++)
+	if ((Player.Appearance[E].Asset.Group.Name == "ItemTorso") || (Player.Appearance[E].Asset.Group.Name == "Hat") || (Player.Appearance[E].Asset.Group.Name == "ItemButt")) {
+		Player.Appearance.splice(E, 1);
+		E--;
+	}
+	CharacterDress(Player, StablePlayerAppearance);
 	StablePlayerDressOff = false;
 	CharacterRefresh(Player);
 	StableTrainerTrainingExercises = 0;
@@ -521,6 +545,7 @@ function StablePlayerWearEquipment(Behavior) {
 	StablePlayerTrainingBehavior = 0;
 	StablePlayerTrainingBehavior += parseInt(Behavior);
 	StableWearPonyEquipment(Player);
+	if (!StablePlayerIsCollared()) InventoryWear(Player, "LeatherCollar", "ItemNeck");;
 	StablePlayerGetTrainingLesson();
 }
 
@@ -542,7 +567,7 @@ function StableWearPonyEquipment(C) {
 ////////////////////////////////////////////////////////////////////////////////////////////
 //Check if the Player can become a Trainer
 function StableCanBecomeTrainer() {
-	if (SkillGetLevel(Player, "Dressage") < 5) {
+	if (SkillGetLevel(Player, "Dressage") < 3) {
 		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableBecomeTrainerDressageIntro");
 	} else if (ReputationGet("Dominant") < 30) {
 		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableBecomeTrainerDomIntro");
@@ -560,9 +585,9 @@ function StableCanBecomeTrainer() {
 function StableBecomeTrainer() {
 	CharacterChangeMoney(Player, -500);
 	LogAdd("JoinedStable", "Trainer");
-	if (StablePlayerAppearance == null) StablePlayerAppearance = Player.Appearance.slice();
+	StablePlayerAppearance = Player.Appearance.slice();
 	StableWearTrainerEquipment(Player);
-	StableTrainerTrainingExercises = 10;
+	StableTrainerTrainingExercises = 3 + SkillGetLevel(Player, "Dressage");
 	StablePlayerDressOff = true;
 }
 
@@ -577,10 +602,10 @@ function StableWearTrainerEquipment(C) {
 
 //Player Start as a Trainer a rotine
 function StableTrainerStart() {
-	if (StablePlayerAppearance == null) StablePlayerAppearance = Player.Appearance.slice();
+	StablePlayerAppearance = Player.Appearance.slice();
 	CharacterChangeMoney(Player, -10);
 	StableWearTrainerEquipment(Player);
-	StableTrainerTrainingExercises = 10;
+	StableTrainerTrainingExercises = 3 + SkillGetLevel(Player, "Dressage");
 	StablePlayerDressOff = true;
 }
 
@@ -604,20 +629,57 @@ function StablePonyWearEquipment() {
 function StablePonyTraining (probability) {
 	if (parseInt(probability) > Math.random() * 100) {
 		StablePony.CurrentDialog = DialogFind(StablePony, "StablePonyPassIntro");
+		StablePony.Stage = 23;
 		StablePonyPass = true;
 	} else {
 		StablePony.CurrentDialog = DialogFind(StablePony, "StablePonyFailIntro");
+		StablePony.Stage = 24;
 		StablePonyFail = true;
 	}
 	StableTrainerTrainingExercises -= 1;
 }
 
+//Start Traning Hurdle for Player as Trainer
+function StablePonyTrainingHurdles(){
+	MiniGameStart("HorseWalk", "HurdleTraining", "StablePonyTrainingHurdlesEnd");
+	StableTrainerTrainingExercises -= 2;
+}
+
+function StablePonyTrainingHurdlesEnd() {	
+	CommonSetScreen("Room", "Stable");
+	CharacterSetCurrent(StablePony);
+	if (MiniGameVictory) {
+		StablePony.CurrentDialog = DialogFind(StablePony, "StablePonyPassIntro");
+		StablePony.Stage = 23;
+		StablePonyPass = true;
+	} else {
+		StablePony.CurrentDialog = DialogFind(StablePony, "StablePonyFailIntro");
+		StablePony.Stage = 24;
+		StablePonyFail = true;
+	}
+}
+
+//Start the Trainer-training
+function StableTrainerWhip() {
+	MiniGameStart("HorseWalk", "WhipPony", "StableTrainerWhipEnd");
+}
+
+function StableTrainerWhipEnd() {
+	CommonSetScreen("Room", "Stable");
+	CharacterSetCurrent(StablePony);
+	if (MiniGameVictory) {
+		StablePony.CurrentDialog = DialogFind(StablePony, "StablePonyPassIntro");
+		StablePony.Stage = 23;
+		StablePonyPass = true;
+	} else {
+		StablePony.CurrentDialog = DialogFind(StablePony, "StablePonyFailIntro");
+		StablePony.Stage = 24;
+		StablePonyFail = true;
+	}
+}
 
 /* todo
 Player StablePony.AllowItem
-minigame?
--whipe the pony not the trainer
--cycletraining
 */
 
 ////////////////////////////////////////////////////////////////////////////////////////////

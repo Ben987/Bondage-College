@@ -37,7 +37,6 @@ RemoveSuspensionHempRope,,,finally floor again under the feet.,,
 0,300,Let's play Dare Six.,"I'm ready, let's go.","DaredSixController(""new"")",CanPlayDaredSix()
 0,50,(Struggle in your restraints.),Do you need help?,,Player.IsRestrained()
 0,,Let's talk later. (Leave her.),,DialogLeave(),
-10,,Which games can I play with you?,"Come back when you have a higher reputation and some money, and you'll see.",,!CanPlayFox()
 10,,Which games can I play with you?,"Depending on reputation and money: Catch the Fox, Street to Roissy or Dare Six.",,
 10,11,Can you explain the rules to me?,Not until you have a high enough reputation and some money.,CanPlayFox(),!CanPlayFox()
 10,11,Can you explain the rules to me?,Sure. Which game?,,CanPlayFox()

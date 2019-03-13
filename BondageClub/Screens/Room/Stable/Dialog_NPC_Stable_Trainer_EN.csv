@@ -32,9 +32,10 @@ RemoveSuspensionHempRope,,,(She breathes.) Finally.  What should that be?,,
 0,,"Hello, I'm DialogPlayerName.  Pleased to meet you.","Pleased to meet you too.  I'm DialogCharacterName, I'm a Trainer for our Horse Club.",DialogRemove(),
 0,40,Can you answer some questions?,"Yes sure, but hurry up the ponies are waiting.",,
 0,,Can I get a pony training? ,,CanBecomePony(),PlayerIsNewby
-0,,I want a trial training.,"Ok, let us start.",TrialTraining(),PlayerIsNewby
-0,,I'm her for a Training Routine.,,PlayerStartTrainingLesson(),PlayerIsPony
 0,,I want to become a Trainer.,,CanBecomeTrainer(),!PlayerIsTrainer
+0,,I want a trial pony training.,"Ok, let us start.",TrialPonyTraining(),PlayerIsNewby
+0,,I want a trial trainer training.,"Ok, let us start.",TrialTrainerTraining(),PlayerIsNewby
+0,,I'm her for a Training Routine.,,PlayerStartTrainingLesson(),PlayerIsPony
 0,210,I want to train a pony.,I get 10 $ cleaning fee for your riding gear.,,PlayerIsTrainer
 0,,(Dress Back),(She begins to stow the bridle.),DressBackPlayer(),StablePlayerIsDressOff()
 0,,I can't stay to chat.  (Leave her.),,DialogLeave(),
