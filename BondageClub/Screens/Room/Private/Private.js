@@ -9,10 +9,116 @@ var PrivateReleaseTimer = 0;
 var PrivateActivity = "";
 var PrivateActivityCount = 0;
 var PrivateActivityAffectLove = true;
-var PrivateActivityList = ["Gag", "Ungag", "Restrain", "FullRestrain", "Release", "Tickle", "Spank", "Pet", "Slap", "Kiss", "Fondle", "Naked", "Underwear", "RandomClothes", "Shibari", "Gift"];
+//var PrivateActivityList = ["Gag", "Ungag", "Restrain", "FullRestrain", "Release", "Tickle", "Spank", "Pet", "Slap", "Kiss", "Fondle", "Naked", "Underwear", "RandomClothes", "Shibari", "Gift"];
+//Because "use strict"; need a new set of local variables
+
+var PrivateActivityList = [
+	{//Gag
+		name: "Gag",
+		Conditions: [
+			() => Player.CanTalk()	
+		]
+	},{//Ungag
+		name: "Ungag",
+		Conditions: [
+			() => !Player.CanTalk(),
+			() => (CommonTime() > PrivateReleaseTimer)? true : false
+		]
+	},{//Restrain
+		name:"Restrain",
+		Conditions: [
+			() => InventoryGet(Player, "ItemArms") == null
+		]
+	},{//FullRestrain
+		name: "FullRestrain",
+		Conditions:[
+			() => InventoryGet(Player, "ItemArms") == null
+		]
+	},{//Release
+		name: "Release",
+		Conditions:[
+			() => Player.IsRestrained(),
+			() => CommonTime() > PrivateReleaseTimer
+		]
+	},{//Tickle
+		name: "Tickle",
+		Conditions:[
+			() => CurrentCharacter.Trait.map(n=>n.Name).includes("Playful"),
+			() => NPCTraitGet(CurrentCharacter, "Playful") >= 0
+		]
+	},{//Spank
+		name: "Spank",
+		Conditions:[
+			() => CurrentCharacter.Trait.map(n=>n.Name).includes("Violent"),
+			() => NPCTraitGet(CurrentCharacter, "Violent") >= 0
+		]
+	},{//Pet
+		name: "Pet",
+		Conditions:[
+			() => CurrentCharacter.Trait.map(n=>n.Name).includes("Peaceful"),
+			() => NPCTraitGet(CurrentCharacter, "Peaceful") > 0
+		]
+	},{//Slap
+		name: "Slap",
+		Conditions:[
+			() => CurrentCharacter.Trait.map(n=>n.Name).includes("Violent"),
+			()=> NPCTraitGet(CurrentCharacter, "Violent") > 0,
+			() => CurrentCharacter.Love < 50,
+		]
+	},{//Kiss
+		name: "Kiss",
+		Conditions:[
+			() => Player.CanTalk(),
+			() => CurrentCharacter.Love >= 50,
+			() => CurrentCharacter.Trait.map(n=>n.Name).includes("Horny"),
+			() => NPCTraitGet(CurrentCharacter, "Horny") >= 0
+		]
+	},{//Fondle
+		name: "Fondle",
+		Conditions:[
+			() => !Player.IsBreastChaste(),
+			() => CurrentCharacter.Trait.map(n=>n.Name).includes("Horny"),
+			() => NPCTraitGet(CurrentCharacter, "Horny") > 0
+		]
+	},{//Naked
+		name: "Naked",
+		Conditions:[
+			() => !CharacterIsNaked(Player),
+			() => Player.CanChange(),
+			() => CurrentCharacter.Trait.map(n=>n.Name).includes("Horny"),
+			() => NPCTraitGet(CurrentCharacter, "Horny") > 0,
+		]
+	},{//Underwear
+		name: "Underwear",
+		Conditions:[
+			() => !CharacterIsInUnderwear(Player),
+			() => Player.CanChange(),
+		]
+	},{//RandomClothes
+		name: "RandomClothes",
+		Conditions:[
+			() => Player.CanChange()
+		]
+	},{//Shibari
+		name: "Shibari",
+		Conditions:[
+			() => Player.CanChange(),
+			() => CurrentCharacter.Trait.map(n=>n.Name).includes("Wise"),
+			() => NPCTraitGet(CurrentCharacter, "Wise") >= 0,
+		]
+	},{//Gift
+		name: "Gift",
+		Conditions:[
+			() => Player.Owner != "",
+			() => CurrentTime >= NPCEventGet(CurrentCharacter, "LastGift") + 86400000,
+			() => CurrentCharacter.Love >= 90
+		]
+	}
+	]
 var PrivatePunishment = "";
 var PrivatePunishmentList = ["Cage", "Bound", "BoundPet", "ChastityBelt", "ChastityBra", "ForceNaked", "ConfiscateKey", "ConfiscateCrop", "ConfiscateWhip", "SleepCage"];
 
+//#region DIALOG CONDITIONS
 // Returns TRUE if a specific dialog option is allowed
 function PrivateIsCaged() { return (CurrentCharacter.Cage == null) ? false : true }
 function PrivateVendorCanPlay() { return (LogQuery("RentRoom", "PrivateRoom") && LogQuery("Wardrobe", "PrivateRoom") && LogQuery("Cage", "PrivateRoom") && Player.CanInteract() && PrivateVendor.CanInteract()) }
@@ -55,7 +161,9 @@ function PrivateIsNeutral() { return ((CurrentCharacter.Love >= -30) && (Current
 function PrivateSubTrialInProgress() { return ((NPCEventGet(CurrentCharacter, "EndDomTrial") > 0) && (CurrentTime < CheatFactor("SkipTrialPeriod", 0) * NPCEventGet(CurrentCharacter, "EndDomTrial"))) }
 function PrivateSubTrialOverWilling() { return ((NPCEventGet(CurrentCharacter, "EndDomTrial") > 0) && (CurrentTime >= CheatFactor("SkipTrialPeriod", 0) * NPCEventGet(CurrentCharacter, "EndDomTrial")) && (CurrentCharacter.Love >= 90)) }
 function PrivateSubTrialOverUnwilling() { return ((NPCEventGet(CurrentCharacter, "EndDomTrial") > 0) && (CurrentTime >= CheatFactor("SkipTrialPeriod", 0) * NPCEventGet(CurrentCharacter, "EndDomTrial")) && (CurrentCharacter.Love < 90)) }
+//#endregion
 
+//#region temp not touch
 // Loads the private room vendor NPC
 function PrivateLoad() {
 
@@ -341,15 +449,17 @@ function PrivatePlayerIsOwned() {
 			return true;
 	return false;
 }
+//#endregion
 
 // Starts a random activity for the player as submissive
 function PrivateStartActivity() {
 
+	/*
 	// Finds a valid activity for the player
 	var Act = "";
 	var Count = 0;
 	while (true) {
-
+		
 		// Picks an activity at random
 		Act = CommonRandomItemFromList(PrivateActivity, PrivateActivityList);
 
@@ -379,9 +489,18 @@ function PrivateStartActivity() {
 		}
 
 	}
-
+	*/
+	//filter out activities that doesnt fufill all avaliable conditions. 
+	//aka if some(or even one)condition === false then filter out
+	//and then map only the name (activity in string out as array)
+	
+	let Act = PrivateActivityList.filter(n => !n.Conditions.some(x => x() === false))
+								.map(x => x.name);
+	
 	// Starts the activity (any activity adds +2 love automatically)
-	PrivateActivity = Act;
+	//PrivateActivity = Act;
+	//Pick random item from filtered list
+	PrivateActivity = CommonRandomItemFromList(PrivateActivity,Act);
 	PrivateNPCInteraction(2);
 	PrivateActivityAffectLove = true;
 	PrivateActivityCount = 0;
