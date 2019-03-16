@@ -10,53 +10,97 @@ var PrivateActivity = "";
 var PrivateActivityCount = 0;
 var PrivateActivityAffectLove = true;
 //var PrivateActivityList = ["Gag", "Ungag", "Restrain", "FullRestrain", "Release", "Tickle", "Spank", "Pet", "Slap", "Kiss", "Fondle", "Naked", "Underwear", "RandomClothes", "Shibari", "Gift"];
-//Because "use strict"; need a new set of local variables
-
-var PrivateActivityList = [
+// PrivateActivityList objects consits of {name}, {Conditions}, and {Run}
+// {name} contains the string variable to start dialogs 
+//{Conditions} is an array of function that returns a boolean (preferabily arrow functions "() =>" for easy reading)
+//{Conditions} is used to sort out valid activity based on CurrentCharacter
+//Unless all {Conditions} returns true, the activity is not valid
+// Lastly the {Run} array of functions (again prefer "() =>")
+//{Run} is a replica of current if(PrivateActivity == "(Acts)") //do something...
+//To use, just call the object.Run.forEach(x => x())
+//{Run} is more easier to maintain so please use it ;) 
+const PrivateActivityList = [
 	{//Gag
 		name: "Gag",
 		Conditions: [
 			() => Player.CanTalk()	
+		],
+		Run: [
+			() => InventoryWearRandom(Player, "ItemMouth"),
+			() => PrivateReleaseTimer = CommonTime() + (Math.random() * 60000) + 60000
 		]
 	},{//Ungag
 		name: "Ungag",
 		Conditions: [
 			() => !Player.CanTalk(),
 			() => (CommonTime() > PrivateReleaseTimer)? true : false
+		],
+		Run: [
+			() => {
+				 InventoryRemove(Player, "ItemMouth"); 
+				 InventoryRemove(Player, "ItemHead"); 
+			}
 		]
 	},{//Restrain
 		name:"Restrain",
 		Conditions: [
 			() => InventoryGet(Player, "ItemArms") == null
+		],
+		Run: [
+			() => InventoryWearRandom(Player, "ItemArms"),
+			() => PrivateReleaseTimer = CommonTime() + (Math.random() * 60000) + 60000
 		]
-	},{//FullRestrain
+	},{//FullRestrain (Restrain activity are harsher for serious NPCs)
 		name: "FullRestrain",
 		Conditions:[
 			() => InventoryGet(Player, "ItemArms") == null
+		],
+		Run: [
+			() => {
+				if(NPCTraitGet(CurrentCharacter, "Playful") > 0)
+					CharacterFullRandomRestrain(Player, "Few");
+				if(NPCTraitGet(CurrentCharacter, "Playful") == 0)
+					CharacterFullRandomRestrain(Player);
+				if(NPCTraitGet(CurrentCharacter, "Serious") > 0)
+					CharacterFullRandomRestrain(Player, "Lot");	
+			},
+			() => PrivateReleaseTimer = CommonTime() + (Math.random() * 60000) + 60000
 		]
 	},{//Release
 		name: "Release",
 		Conditions:[
 			() => Player.IsRestrained(),
 			() => CommonTime() > PrivateReleaseTimer
+		],
+		Run: [
+			() => CharacterRelease(Player)
 		]
 	},{//Tickle
 		name: "Tickle",
 		Conditions:[
 			() => CurrentCharacter.Trait.map(n=>n.Name).includes("Playful"),
 			() => NPCTraitGet(CurrentCharacter, "Playful") >= 0
+		],
+		Run: [
+
 		]
 	},{//Spank
 		name: "Spank",
 		Conditions:[
 			() => CurrentCharacter.Trait.map(n=>n.Name).includes("Violent"),
 			() => NPCTraitGet(CurrentCharacter, "Violent") >= 0
+		],
+		Run: [
+
 		]
 	},{//Pet
 		name: "Pet",
 		Conditions:[
 			() => CurrentCharacter.Trait.map(n=>n.Name).includes("Peaceful"),
 			() => NPCTraitGet(CurrentCharacter, "Peaceful") > 0
+		],
+		Run: [
+
 		]
 	},{//Slap
 		name: "Slap",
@@ -64,6 +108,9 @@ var PrivateActivityList = [
 			() => CurrentCharacter.Trait.map(n=>n.Name).includes("Violent"),
 			()=> NPCTraitGet(CurrentCharacter, "Violent") > 0,
 			() => CurrentCharacter.Love < 50,
+		],
+		Run: [
+
 		]
 	},{//Kiss
 		name: "Kiss",
@@ -72,6 +119,9 @@ var PrivateActivityList = [
 			() => CurrentCharacter.Love >= 50,
 			() => CurrentCharacter.Trait.map(n=>n.Name).includes("Horny"),
 			() => NPCTraitGet(CurrentCharacter, "Horny") >= 0
+		],
+		Run: [
+
 		]
 	},{//Fondle
 		name: "Fondle",
@@ -79,6 +129,9 @@ var PrivateActivityList = [
 			() => !Player.IsBreastChaste(),
 			() => CurrentCharacter.Trait.map(n=>n.Name).includes("Horny"),
 			() => NPCTraitGet(CurrentCharacter, "Horny") > 0
+		],
+		Run: [
+
 		]
 	},{//Naked
 		name: "Naked",
@@ -87,36 +140,126 @@ var PrivateActivityList = [
 			() => Player.CanChange(),
 			() => CurrentCharacter.Trait.map(n=>n.Name).includes("Horny"),
 			() => NPCTraitGet(CurrentCharacter, "Horny") > 0,
+		],
+		Run: [
+			() => CharacterNaked(Player),
 		]
 	},{//Underwear
 		name: "Underwear",
 		Conditions:[
 			() => !CharacterIsInUnderwear(Player),
 			() => Player.CanChange(),
+		],
+		Run: [
+			() => CharacterRandomUnderwear(Player)
 		]
 	},{//RandomClothes
 		name: "RandomClothes",
 		Conditions:[
 			() => Player.CanChange()
+		],
+		Run: [
+			() => CharacterAppearanceFullRandom(Player, true)
 		]
-	},{//Shibari
+	},{//Shibari (In Shibari, the player gets naked and fully roped in hemp)
 		name: "Shibari",
 		Conditions:[
 			() => Player.CanChange(),
 			() => CurrentCharacter.Trait.map(n=>n.Name).includes("Wise"),
 			() => NPCTraitGet(CurrentCharacter, "Wise") >= 0,
+		],
+		Run: [
+			() => {
+				CharacterNaked(Player);
+				CharacterSetActivePose(Player, null);
+				InventoryWear(Player, "HempRope", "ItemArms", "Default", Math.floor(Math.random() * 10) + 1);
+				InventoryWear(Player, "HempRope", "ItemLegs", "Default", Math.floor(Math.random() * 10) + 1);
+				InventoryWear(Player, "SuspensionHempRope", "ItemFeet", "Default", Math.floor(Math.random() * 10) + 1);
+				InventoryWear(Player, "HempRopeHarness", "ItemTorso", "Default", Math.floor(Math.random() * 10) + 1);
+				InventoryWearRandom(Player, "ItemMouth");
+				PrivateReleaseTimer = CommonTime() + (Math.random() * 60000) + 60000;
+			}
 		]
-	},{//Gift
+	},{//Gift (gift can only happen once a day if the player is fully collared)
 		name: "Gift",
 		Conditions:[
 			() => Player.Owner != "",
 			() => CurrentTime >= NPCEventGet(CurrentCharacter, "LastGift") + 86400000,
 			() => CurrentCharacter.Love >= 90
+		],
+		Run: [
+			() => {
+				CharacterChangeMoney(Player, 50);
+				NPCEventAdd(CurrentCharacter, "LastGift", CurrentTime);
+			}
 		]
 	}
 	]
 var PrivatePunishment = "";
-var PrivatePunishmentList = ["Cage", "Bound", "BoundPet", "ChastityBelt", "ChastityBra", "ForceNaked", "ConfiscateKey", "ConfiscateCrop", "ConfiscateWhip", "SleepCage"];
+//var PrivatePunishmentList = ["Cage", "Bound", "BoundPet", "ChastityBelt", "ChastityBra", "ForceNaked", "ConfiscateKey", "ConfiscateCrop", "ConfiscateWhip", "SleepCage"];
+const PrivatePunishmentList =[
+	{//Cage
+		name: "Cage",
+		Conditions:[
+			() => LogQuery("Cage", "PrivateRoom"),
+		]
+	},{//Bound
+		name: "Bound",
+		Conditions:[
+			() => true,
+		]
+	},{//BoundPet
+		name: "BoundPet",
+		Conditions:[
+			() => !Player.IsVulvaChaste(),
+			() => CurrentCharacter.Trait.map(n=>n.Name).includes("Playful"),
+			() => NPCTraitGet(CurrentCharacter, "Playful") >= 0
+		]
+	},{//ChastityBelt
+		name: "ChastityBelt",
+		Conditions:[
+			() => !Player.IsVulvaChaste(),
+			() => CurrentCharacter.Trait.map(n=>n.Name).includes("Frigid"),
+			() => NPCTraitGet(CurrentCharacter, "Frigid") >= 0
+		]
+	},{//ChastityBra
+		name: "ChastityBra",
+		Conditions:[
+			() => !Player.IsBreastChaste(),
+			() => CurrentCharacter.Trait.map(n=>n.Name).includes("Frigid"),
+			() => NPCTraitGet(CurrentCharacter, "Frigid") >= 0
+		]
+	},{//ForcedNaked
+		name: "ForcedNaked",
+		Conditions:[
+			() => !LogQuery("BlockChange", "Rule"),
+			() => CurrentCharacter.Trait.map(n=>n.Name).includes("Horny"),
+			() => NPCTraitGet(CurrentCharacter, "Horny") >= 0
+		]
+	},{//ConfisticateKey
+		name: "ConfisticateKey",
+		Conditions:[
+			() => InventoryAvailable(Player, "MetalCuffsKey", "ItemArms"),
+
+		]
+	},{//ConfisticateCrop
+		name: "ConfisticateCrop",
+		Conditions:[
+			() => InventoryAvailable(Player, "LeatherCrop", "ItemPelvis")
+		]
+	},{//ConfisticateWip
+		name: "ConfisticateWip",
+		Conditions:[
+			() => InventoryAvailable(Player, "LeatherWhip", "ItemPelvis")
+		]
+	},{//SleepCage
+		name: "SleepCage",
+		Conditions:[
+			() => LogQuery("Cage", "PrivateRoom"),
+			() => !LogQuery("SleepCage", "Rule")
+		]
+	}
+]
 
 //#region DIALOG CONDITIONS
 // Returns TRUE if a specific dialog option is allowed
@@ -383,6 +526,7 @@ function PrivateChange(NewCloth) {
 }
 
 // Returns TRUE if the player owner is already in the room
+//Should this be in the DIALOG CONDITIONS section? <<<<<<
 function PrivateOwnerInRoom() {
 	for(var C = 1; C < PrivateCharacter.length; C++)
 		if (PrivateCharacter[C].IsOwner() && (PrivateCharacter[C].ID != CurrentCharacter.ID))
@@ -442,6 +586,7 @@ function PrivateShowTrialHours() {
 }
 
 // Returns TRUE if the player is owned (from the room or not)
+//Should this be in the DIALOG CONDITIONS section? <<<<<<
 function PrivatePlayerIsOwned() {
 	if (Player.Owner != "") return true;
 	for(var C = 0; C < PrivateCharacter.length; C++)
@@ -451,6 +596,7 @@ function PrivatePlayerIsOwned() {
 }
 //#endregion
 
+//#region tempDone
 // Starts a random activity for the player as submissive
 function PrivateStartActivity() {
 
@@ -493,14 +639,25 @@ function PrivateStartActivity() {
 	//filter out activities that doesnt fufill all avaliable conditions. 
 	//aka if some(or even one)condition === false then filter out
 	//and then map only the name (activity in string out as array)
-	
-	let Act = PrivateActivityList.filter(n => !n.Conditions.some(x => x() === false))
-								.map(x => x.name);
-	
-	// Starts the activity (any activity adds +2 love automatically)
-	//PrivateActivity = Act;
+
+	let ActList = PrivateActivityList.filter(n => !n.Conditions.some(x => x() === false)).map(x => x.name);
 	//Pick random item from filtered list
-	PrivateActivity = CommonRandomItemFromList(PrivateActivity,Act);
+	console.log(ActList);
+	//Set to no activity if there's no more new activity avaliable
+	if(ActList.length == 1){
+		PrivateActivity = ActList[0];
+		console.log(PrivateActivity + " called if");
+	}	
+	else{
+		//CommonRandomItemFromList is buggy if list only have one object that is the same as PrivateActivity
+		PrivateActivity = CommonRandomItemFromList(PrivateActivity,ActList);
+		console.log(PrivateActivity + " called else");
+	}
+		
+		
+	
+	//PrivateActivity = Act;
+	// Starts the activity (any activity adds +2 love automatically)
 	PrivateNPCInteraction(2);
 	PrivateActivityAffectLove = true;
 	PrivateActivityCount = 0;
@@ -544,7 +701,7 @@ function PrivateActivityRun(LoveFactor) {
 		}
 
 	}
-
+	/*
 	// The restraining activities are harsher for serious NPCs
 	if (PrivateActivity == "Gag") InventoryWearRandom(Player, "ItemMouth");
 	if (PrivateActivity == "Restrain") InventoryWearRandom(Player, "ItemArms");
@@ -557,7 +714,8 @@ function PrivateActivityRun(LoveFactor) {
 	if (PrivateActivity == "Naked") CharacterNaked(Player);
 	if (PrivateActivity == "Underwear") CharacterRandomUnderwear(Player);
 	if (PrivateActivity == "RandomClothes") CharacterAppearanceFullRandom(Player, true);
-
+	
+	
 	// The gift can only happen once a day if the player is fully collared
 	if (PrivateActivity == "Gift") {
 		CharacterChangeMoney(Player, 50);
@@ -575,6 +733,17 @@ function PrivateActivityRun(LoveFactor) {
 		InventoryWearRandom(Player, "ItemMouth");
 		PrivateReleaseTimer = CommonTime() + (Math.random() * 60000) + 60000;
 	}
+	*/
+	
+	//Filter out selected activity again (prefer not have to do this *shrug*)
+	//Run selected activity (call all Run functions)
+	//Notes for actions are in PrivateActivityList
+	let selectedActivity = PrivateActivityList.filter(x => x.name == PrivateActivity);
+	if(selectedActivity.length != 1)
+		Console.log("There is posibily matching name for Activities in PrivateActivityList, >>the first in list will be used<<");
+	//if there are run functions, run it 
+	if(selectedActivity[0].Run.length > 0)	
+		selectedActivity[0].Run.forEach(x => x());
 
 	// After running the activity a few times, we stop
 	if (PrivateActivityCount >= Math.floor(Math.random() * 4) + 2) {
@@ -590,6 +759,7 @@ function PrivateBlockChange(Minutes) {
 	ServerPlayerAppearanceSync();
 }
 
+//#endregion
 // Starts a random punishment for the player as submissive
 function PrivateSelectPunishment() {
 	
@@ -610,6 +780,7 @@ function PrivateSelectPunishment() {
 	}
 	
 	// Finds a valid punishment for the player
+	/*
 	var Count = 0;
 	while (true) {
 
@@ -629,7 +800,11 @@ function PrivateSelectPunishment() {
 		if ((PrivatePunishment == "SleepCage") && LogQuery("Cage", "PrivateRoom") && !LogQuery("SleepCage", "Rule")) break;
 
 	}
-
+	*/
+	//filter for valid punishments
+	let ValidPunishments = PrivatePunishmentList.filter(x => !x.Conditions.some(false));
+	//pick random from list of punishments
+	PrivatePunishment = CommonRandomItemFromList(PrivatePunishment,ValidPunishments);
 	// Starts the punishment
 	CurrentCharacter.Stage = "Punish" + PrivatePunishment;
 	CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "Punish" + PrivatePunishment + "Intro");
