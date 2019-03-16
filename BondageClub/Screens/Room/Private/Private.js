@@ -645,13 +645,12 @@ function PrivateStartActivity() {
 	console.log(ActList);
 	//Set to no activity if there's no more new activity avaliable
 	if(ActList.length == 1){
-		PrivateActivity = ActList[0];
-		console.log(PrivateActivity + " called if");
+		CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "ActivityNone");
+		return;
 	}	
 	else{
 		//CommonRandomItemFromList is buggy if list only have one object that is the same as PrivateActivity
 		PrivateActivity = CommonRandomItemFromList(PrivateActivity,ActList);
-		console.log(PrivateActivity + " called else");
 	}
 		
 		
