@@ -202,11 +202,21 @@ const PrivatePunishmentList =[
 		name: "Cage",
 		Conditions:[
 			() => LogQuery("Cage", "PrivateRoom"),
+		],Run:[
+			() => Player.Cage = true,
+			() => LogAdd("BlockCage", "Rule", CurrentTime + 120000),
+			() =>  DialogLeave()
 		]
 	},{//Bound
 		name: "Bound",
 		Conditions:[
 			() => true,
+		],Run:[
+			() => PrivateReleaseTimer = CommonTime() + 240000,
+			() => CharacterFullRandomRestrain(Player, "All"),
+			() => InventoryRemove(Player, "ItemArms"),
+			() => InventoryWear(Player, "HempRope", "ItemArms"),
+			() => InventorySetDifficulty(Player, "ItemArms", 12)
 		]
 	},{//BoundPet
 		name: "BoundPet",
@@ -214,13 +224,31 @@ const PrivatePunishmentList =[
 			() => !Player.IsVulvaChaste(),
 			() => CurrentCharacter.Trait.map(n=>n.Name).includes("Playful"),
 			() => NPCTraitGet(CurrentCharacter, "Playful") >= 0
+		],Run:[
+			() => PrivateReleaseTimer = CommonTime() + 240000,
+			() => CharacterSetActivePose(Player, "Kneel"),
+			() => InventoryWear(Player, "LeatherBelt", "ItemLegs"),
+			() => InventoryWear(Player, "TailButtPlug", "ItemButt"),
+			() => InventoryWear(Player, "Ears" + (Math.floor(Math.random() * 2) + 1).toString(), "Hat"),
+			() => InventoryWear(Player, "LeatherArmbinder", "ItemArms"),
+			() => InventorySetDifficulty(Player, "ItemArms", 15)
 		]
-	},{//ChastityBelt
+	},{//ChastityBelt (if character is horny, add plug and vibrator)
 		name: "ChastityBelt",
 		Conditions:[
 			() => !Player.IsVulvaChaste(),
 			() => CurrentCharacter.Trait.map(n=>n.Name).includes("Frigid"),
 			() => NPCTraitGet(CurrentCharacter, "Frigid") >= 0
+		],Run:[
+			() =>{
+				if(NPCTraitGet(CurrentCharacter, "Horny") >= 0){
+					if(InventoryGet(Player, "ItemVulva") == null)
+						InventoryWear(Player, "VibratingEgg", "ItemVulva");
+					if(InventoryGet(Player, "ItemButt") == null)
+						InventoryWear(Player, "BlackButtPlug", "ItemButt");
+				}	
+			},
+			() => InventoryWear(Player, "MetalChastityBelt", "ItemPelvis")
 		]
 	},{//ChastityBra
 		name: "ChastityBra",
@@ -228,6 +256,8 @@ const PrivatePunishmentList =[
 			() => !Player.IsBreastChaste(),
 			() => CurrentCharacter.Trait.map(n=>n.Name).includes("Frigid"),
 			() => NPCTraitGet(CurrentCharacter, "Frigid") >= 0
+		],Run:[
+			() => InventoryWear(Player, "MetalChastityBra", "ItemBreast")
 		]
 	},{//ForcedNaked
 		name: "ForcedNaked",
@@ -235,28 +265,40 @@ const PrivatePunishmentList =[
 			() => !LogQuery("BlockChange", "Rule"),
 			() => CurrentCharacter.Trait.map(n=>n.Name).includes("Horny"),
 			() => NPCTraitGet(CurrentCharacter, "Horny") >= 0
+		],Run:[
+			() => LogAdd("BlockChange", "Rule", CurrentTime + 1800000)
 		]
 	},{//ConfisticateKey
 		name: "ConfisticateKey",
 		Conditions:[
 			() => InventoryAvailable(Player, "MetalCuffsKey", "ItemArms"),
 
+		],Run:[
+			() => InventoryDelete(Player, "MetalCuffsKey", "ItemArms")
 		]
 	},{//ConfisticateCrop
 		name: "ConfisticateCrop",
 		Conditions:[
 			() => InventoryAvailable(Player, "LeatherCrop", "ItemPelvis")
+		],Run:[
+			() =>  InventoryDelete(Player, "LeatherCrop", "ItemPelvis"),
+			() => InventoryDelete(Player, "LeatherCrop", "ItemBreast")
 		]
 	},{//ConfisticateWip
 		name: "ConfisticateWip",
 		Conditions:[
 			() => InventoryAvailable(Player, "LeatherWhip", "ItemPelvis")
+		],Run:[
+			() => InventoryDelete(Player, "LeatherWhip", "ItemPelvis"),
+			() => InventoryDelete(Player, "LeatherWhip", "ItemBreast")
 		]
 	},{//SleepCage
 		name: "SleepCage",
 		Conditions:[
 			() => LogQuery("Cage", "PrivateRoom"),
 			() => !LogQuery("SleepCage", "Rule")
+		],Run:[
+			() => LogAdd("SleepCage", "Rule", CurrentTime + 604800000)
 		]
 	}
 ]
@@ -739,7 +781,7 @@ function PrivateActivityRun(LoveFactor) {
 	//Notes for actions are in PrivateActivityList
 	let selectedActivity = PrivateActivityList.filter(x => x.name == PrivateActivity);
 	if(selectedActivity.length != 1)
-		Console.log("There is posibily matching name for Activities in PrivateActivityList, >>the first in list will be used<<");
+		Console.log("Might have two activites with same {name}, >>the first in list will be used<<");
 	//if there are run functions, run it 
 	if(selectedActivity[0].Run.length > 0)	
 		selectedActivity[0].Run.forEach(x => x());
@@ -801,7 +843,7 @@ function PrivateSelectPunishment() {
 	}
 	*/
 	//filter for valid punishments
-	let ValidPunishments = PrivatePunishmentList.filter(x => !x.Conditions.some(false));
+	let ValidPunishments = PrivatePunishmentList.filter(x => !x.Conditions.some(x => x() === false)).map(x => x.name);
 	//pick random from list of punishments
 	PrivatePunishment = CommonRandomItemFromList(PrivatePunishment,ValidPunishments);
 	// Starts the punishment
@@ -814,6 +856,7 @@ function PrivateSelectPunishment() {
 function PrivateRunPunishment(LoveFactor) {
 	NPCLoveChange(CurrentCharacter, LoveFactor);
 	NPCEventAdd(CurrentCharacter, "RefusedActivity", CurrentTime);
+	/*
 	if (PrivatePunishment == "Cage") { Player.Cage = true; LogAdd("BlockCage", "Rule", CurrentTime + 120000); DialogLeave(); }
 	if (PrivatePunishment == "Bound") { PrivateReleaseTimer = CommonTime() + 240000; CharacterFullRandomRestrain(Player, "All"); InventoryRemove(Player, "ItemArms"); InventoryWear(Player, "HempRope", "ItemArms"); InventorySetDifficulty(Player, "ItemArms", 12); }
 	if (PrivatePunishment == "BoundPet") { PrivateReleaseTimer = CommonTime() + 240000; CharacterSetActivePose(Player, "Kneel"); InventoryWear(Player, "LeatherBelt", "ItemLegs"); InventoryWear(Player, "TailButtPlug", "ItemButt"); InventoryWear(Player, "Ears" + (Math.floor(Math.random() * 2) + 1).toString(), "Hat"); InventoryWear(Player, "LeatherArmbinder", "ItemArms"); InventorySetDifficulty(Player, "ItemArms", 15); }
@@ -826,6 +869,17 @@ function PrivateRunPunishment(LoveFactor) {
 	if (PrivatePunishment == "ConfiscateCrop") { InventoryDelete(Player, "LeatherCrop", "ItemPelvis"); InventoryDelete(Player, "LeatherCrop", "ItemBreast"); }
 	if (PrivatePunishment == "ConfiscateWhip") { InventoryDelete(Player, "LeatherWhip", "ItemPelvis"); InventoryDelete(Player, "LeatherWhip", "ItemBreast"); }
 	if (PrivatePunishment == "SleepCage") LogAdd("SleepCage", "Rule", CurrentTime + 604800000);
+	*/
+	//Filter out again the pinishment picked
+	let punishment = PrivatePunishmentList.filter(x => x.name == PrivatePunishment)
+	if(punishment.length > 1)
+		console.log("might have two or more punishment with same {name}, >>first in list will be use<<")
+	//if theres no punishment, throw error
+	if(punishment.length < 1){
+		throw "there are no punishment object, check conditios in PrivatePunishmentList"
+	}
+	//if nothing happens run the punishment
+	punishment[0].Run.forEach(x => x());
 }
 
 // Sets up the player collaring ceremony cutscene
