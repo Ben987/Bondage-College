@@ -29,7 +29,7 @@ RemoveVibratingEgg,,,"Thanks, now I can concentrate on the essential.",,
 SuspensionHempRope,,,woe to the vanquished.,,
 RemoveSuspensionHempRope,,,finally floor again under the feet.,,
 0,,,Welcome to the Gambling Hall. Shall we play a game?,,
-0,,"Hello, I'm DialogPlayerName. Pleased to meet you.",Pleased to meet you too.  I'm DialogCharacterName.,DialogRemove(),
+0,,"Hello, I'm DialogPlayerName.  Pleased to meet you.",Pleased to meet you too.  I'm DialogCharacterName.,DialogRemove(),
 0,,What's going on here?,In the Gambling Hall we play kinky games of chance.,DialogRemove(),
 0,,Let's play a simple dice game.,"Let's play, good luck","SimpleDiceController(""new"")",CanPlaySimpleDice()
 0,70,(Struggle in your restraints.),Are you having fun?,,Player.IsRestrained()

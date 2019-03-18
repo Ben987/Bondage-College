@@ -121,7 +121,7 @@ GamblingSecondSubTied,,,"(she shows her restraints.) I would like to, but ...",,
 MaidRescue,,,(She struggles in her restraints.)  Can you release me?,,IsSubsRestrained()
 MaidRescue,,I'll go get help.  (Leave her.),,DialogLeave(),
 MaidRescue,,What happened here?,I lost a game and the winner just left me all tied up!,,
-MaidRescue,,Do you need help?,"Yes please, can you release us?",,IsSubsRestrained()
+MaidRescue,,Do you need help?,"Yes please, can you release us? ",,IsSubsRestrained()
 MaidRescue,MaidRescueComplete,Is everything alright now?,"Yes, much better now, thanks.  Please thank the maids sorority for me!.",CompleteRescue(),!IsSubsRestrained()
 MaidRescueComplete,0,Great!  A chore well done.,Absolutely.  Is there something I can do for you?,,
 MaidRescueComplete,0,No problem.  We are here to serve you Miss.,That's great to hear!  Is there something I can do for you?,"DialogChangeReputation(""Dominant"", -2)",

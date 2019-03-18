@@ -14,6 +14,9 @@ var StablePlayerTrainingActiv = false;
 var StablePlayerTrainingLessons = 0;
 var StablePlayerTrainingBehavior = 0;
 var StableTrainerTrainingExercises = 0;
+var StablePlayerInIsolation = false;
+var StablePlayerInIsolationStart = null;
+var StablePlayerInIsolationEnd = null;
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 //General Room function
@@ -38,14 +41,21 @@ function StableLoad() {
 		InventoryWear(StablePony, "LeatherCollar", "ItemNeck");
 		StableWearPonyEquipment(StablePony, 0);
 		StablePony.AllowItem = false;
-
 	}
+	StablePlayerInIsolation = false;
 }
 
 // Run the stable, draw all 3 characters
 function StableRun() {
 	if (StableProgress >= 0) {
 		StableGenericDrawProgress();
+	} else if (StablePlayerInIsolation == true) {
+		DrawCharacter(Player, 750, 0, 1);
+		DrawText(TextGet("InStable"), 1750, 925, "White", "Black");
+		DrawProgressBar(1525, 955, 450, 35, (1 - ((StablePlayerInIsolationEnd - CommonTime()) / (StablePlayerInIsolationEnd - StablePlayerInIsolationStart))) * 100);
+		if ((StablePlayerInIsolationEnd != null) && (CommonTime() >= StablePlayerInIsolationEnd)) {
+			StablePlayerInIsolation = false;
+		}
 	} else {
 		DrawCharacter(Player, 250, 0, 1);
 		DrawCharacter(StableTrainer, 750, 0, 1);
@@ -56,12 +66,14 @@ function StableRun() {
 	}
 	StablePlayerIsPony = (LogQuery("JoinedStable", "Pony") && (ReputationGet("Dominant") < -30)) && !StablePlayerDressOff;
 	StablePlayerIsTrainer = (LogQuery("JoinedStable", "Trainer") && (ReputationGet("Dominant") > 30));
-	StablePlayerIsNewby = (!StablePlayerIsPony && !StablePlayerIsTrainer);
+	StablePlayerIsNewby = (!LogQuery("JoinedStable", "Pony") && !LogQuery("JoinedStable", "Trainer"));
 }
 
 // When the user clicks in the stable
 function StableClick() {
-	if (StableProgress >= 0) {
+	if (StablePlayerInIsolation == true) {
+		if ((MouseX >= 750) && (MouseX < 1250) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
+	} else if (StableProgress >= 0) {
 		// If the user wants to speed up the add / swap / remove progress
 		if ((MouseX >= 0) && (MouseX < 2000) && (MouseY >= 200) && (MouseY < 1000) && (DialogProgress >= 0) && CommonIsMobile) StableGenericRun(false);
 		if ((MouseX >= 1750) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 100)) StableGenericCancel();
@@ -416,8 +428,7 @@ function StablePlayerTrainingPass(Behavior) {
 			StableTrainer.Stage = "StableTrainingScratching";
 		} else if (PassSelection < 3) {
 			StablePlayerTrainingBehavior -= 2;
-			/*for(var i = 0; i < Player.Appearance.length; i++) 
-				if (Player.Appearance[i].Asset.Group.Name == "HairBack") Player.Appearance[i].Asset.Name = "HairBack19";*/
+			CharacterAppearanceNextItem(Player, "HairBack");
 			CharacterRefresh(Player);
 			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingStraightenIntro");
 			StableTrainer.Stage = "StableTrainingStraighten";
@@ -487,8 +498,11 @@ function StablePlayerOtherPonys() {
 }
 
 function StablePlayerToStable() {
+	StablePlayerInIsolation = true;
+	StablePlayerInIsolationStart = CommonTime();
+	StablePlayerInIsolationEnd = CommonTime() + 40000 + Math.floor(Math.random() * 40000);
+
 	InventoryWear(Player, "LeatherBelt", "ItemFeet");
-	CharacterSetCurrent(Player);
 	StableTrainer.Stage = "StableTrainingIsolationBack";
 	//todo timer
 }
@@ -509,6 +523,7 @@ function StableBecomePonyFin(){
 //Stop the Traning and Remove some Items
 function StableTrainingStoped() {
 	StablePlayerTrainingActiv = false;
+	StablePony.AllowItem = false;
 	InventoryRemove(Player, "ItemArms");
 	StablePlayerTrainingLessons = 0;
 }
@@ -516,12 +531,14 @@ function StableTrainingStoped() {
 //Player can go to ponies after training
 function StablePlayerToHerd() {
 	StableWearPonyEquipment(Player);
+	StablePony.AllowItem = true;
 	CharacterSetCurrent(StablePony);
 }
 
 //Dress Caracter Back
 function StableDressBackPlayer() {
 	CharacterRelease(Player);
+	CharacterNaked(Player);
 	//Release Harnes, Plug, Ears2
 	for(var E = 0; E < Player.Appearance.length; E++)
 	if ((Player.Appearance[E].Asset.Group.Name == "ItemTorso") || (Player.Appearance[E].Asset.Group.Name == "Hat") || (Player.Appearance[E].Asset.Group.Name == "ItemButt")) {
@@ -530,6 +547,7 @@ function StableDressBackPlayer() {
 	}
 	CharacterDress(Player, StablePlayerAppearance);
 	StablePlayerDressOff = false;
+	StablePony.AllowItem = false;
 	CharacterRefresh(Player);
 	StableTrainerTrainingExercises = 0;
 }
@@ -607,6 +625,7 @@ function StableTrainerStart() {
 	StableWearTrainerEquipment(Player);
 	StableTrainerTrainingExercises = 3 + SkillGetLevel(Player, "Dressage");
 	StablePlayerDressOff = true;
+	StablePony.AllowItem = true;
 }
 
 //Dress the Equipment to the Pony
@@ -626,9 +645,10 @@ function StablePonyWearEquipment() {
 	}
 }
 
-function StablePonyTraining (probability) {
+function StablePonyTraining(probability) {
 	if (parseInt(probability) > Math.random() * 100) {
 		StablePony.CurrentDialog = DialogFind(StablePony, "StablePonyPassIntro");
+		SkillProgress("Dressage", (100 - probability));
 		StablePony.Stage = 23;
 		StablePonyPass = true;
 	} else {
@@ -677,6 +697,11 @@ function StableTrainerWhipEnd() {
 		StablePonyFail = true;
 	}
 }
+
+function StablePonyStraightens() {
+	CharacterAppearanceNextItem(StablePony, "HairBack");
+}
+
 
 /* todo
 Player StablePony.AllowItem

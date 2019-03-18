@@ -37,7 +37,7 @@ RemoveVibratingEgg,,,"Pity, we just started.",,
 0,20,Please use some toys on me.,What should it be?,,!PhotographicSubIsRestrained()
 0,,Please use some toys on me.,She points to her restraints.,,PhotographicSubIsRestrained()
 0,40,Please take off your clothes.,Where should I start?,,!PhotographicSubIsRestrained()
-0,,Please change your pose.,"All right, how is it?",SubChangePose(),PhotographicSubCanKeel()
+0,,Please change your pose.,"All right,  how is it?",SubChangePose(),PhotographicSubCanKeel()
 0,,(Nod for help.),I'm already helping,PlayerRelease(),Player.IsRestrained()
 0,,Good By. (Leave her.),,DialogLeave(),
 10,,(Remove Hat),"Forward, only courage.","PlayerClothRemove(""Hat"")",PlayerHatAvailable()
