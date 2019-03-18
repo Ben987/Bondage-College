@@ -172,6 +172,7 @@ function MaidQuartersBecomMaid() {
 // When the player becomes head maid
 function MaidQuartersBecomHeadMaid() {
 	MaidQuartersIsHeadMaid = true;
+	MaidQuartersMaid.AllowItem = true;
 	LogAdd("LeadSorority", "Maid");
 }
 

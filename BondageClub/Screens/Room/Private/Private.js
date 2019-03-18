@@ -157,7 +157,7 @@ function PrivateClickCharacter() {
 			CharacterSetCurrent(PrivateCharacter[C]);
 
 			// If the owner is serious, she might force the player to kneel
-			if ((CurrentCharacter.Stage == "1000") && (CurrentCharacter.Name == Player.Owner.replace("NPC-", "")) && !Player.IsKneeling() && (NPCTraitGet(CurrentCharacter, "Serious") >= Math.random() * 100 - 25)) {
+			if ((CurrentCharacter.Stage == "1000") && (CurrentCharacter.Name == Player.Owner.replace("NPC-", "")) && !Player.IsKneeling() && Player.CanKneel() && (NPCTraitGet(CurrentCharacter, "Serious") >= Math.random() * 100 - 25)) {
 				CurrentCharacter.Stage = "1005";
 				NPCLoveChange(CurrentCharacter, -3);
 				CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "PlayerMustKneel");
@@ -337,8 +337,9 @@ function PrivateShowTrialHours() {
 function PrivatePlayerIsOwned() {
 	if (Player.Owner != "") return true;
 	for(var C = 0; C < PrivateCharacter.length; C++)
-		if (PrivateCharacter[C].IsOwner())
-			return true;
+		if (typeof PrivateCharacter[C].IsOwner === 'function') 
+			if (PrivateCharacter[C].IsOwner())
+				return true;
 	return false;
 }
 

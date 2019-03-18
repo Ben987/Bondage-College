@@ -167,6 +167,7 @@ ItemArms,HempRope,Hemp Rope
 ItemArms,MetalCuffs,Metal Cuffs
 ItemArms,MetalCuffsKey,Metal Cuffs Key
 ItemArms,LeatherArmbinder,Leather Armbinder
+ItemArms,FourLimbsShackles,Four Limbs Shackles
 ItemNeck,,Neck
 ItemNeck,LeatherCollar,Leather Collar
 ItemNeck,SlaveCollar,Slave Collar
@@ -187,6 +188,7 @@ ItemHead,ClothBlindfold,Cloth Blindfold
 ItemHead,LeatherBlindfold,Leather Blindfold
 ItemHead,LeatherHood,Leather Hood
 ItemHead,LeatherHoodOpenEyes,Leather Hood Eyes
+ItemHead,StuddedBlindfold,Studded Blindfold
 ItemMisc,,Misc Items
 ItemMisc,WoodenMaidTray,Wooden Maid Tray
 ItemMisc,WoodenMaidTrayFull,Wooden Maid Tray Full

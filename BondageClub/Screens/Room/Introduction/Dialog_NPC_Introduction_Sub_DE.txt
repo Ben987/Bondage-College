@@ -1,0 +1,172 @@
+###_NPC
+It seems that you've been naughty.  Lovely gag by the way.
+Da war wohl jemand ungezogen. Schöner Knebel übrigens.
+(She licks her lips seeing the gag and allows you to silence her easily.)
+(Beim Anblick des Knebels leckt sie sich die Lippen und lässt sich ohne Widerrede zum Schweigen bringen.)
+(You remove her gag and she smiles at you.)  You're quite fun Miss.  Let me know if you want me to try another gag.
+(Du nimmst ihren Knebel ab und sie lächelt dich an.) Das macht Spaß mit Ihnen, Miss. Sagen Sie Bescheid, wenn ich einen anderen Knebel anprobieren soll.
+(She turns around submissively while you restrain her arms.)  You have lots of potential in the club Miss.
+(Sie dreht sich unterwürfig herum, während du ihre Arme fesselst.) Sie haben in diesem Club eine Menge Potenzial, Miss.
+(You free her arms and she stretches a little.)  That was nice Miss.
+(Du befreist ihre Arme und sie streckt sich ein wenig.) Das war schön, Miss.
+(She stands still while you restrain her legs securely.)  Ooh I love it.
+(Sie steht still, während du ihre Beine fest verbindest.) Uhh, das liebe ich.
+(You release her legs while she wiggles her butt.)  Good bondage Miss!
+(Du befreist ihre Beine, während sie mit dem Po wackelt.) Gut gefesselt, Miss!
+(She giggles while you restrain her feet, preventing her from walking.)
+(Sie kichert, als du ihre Füße verbindest und sie am Laufen hinderst.)
+(You release her feet and she jumps playfully.)  You can tie me up anytime you want Miss.
+(Du befreist ihre Füße und sie hüpft verspielt herum.) Sie können mich jederzeit fesseln, Miss.
+(You strap the collar on her while she blushes.)  Collars have a special meaning. Someday you might find a sub for you in the club.
+(Sie wird rot, als du ihr ein Halsband umlegst.) Halsbänder haben eine besondere Bedeutung. Eines Tages finden Sie hier vielleicht Ihre perfekte Sub.
+(You remove the collar around her neck.)  You can also lock collars on willing submissives.
+(Du nimmst ihr das Halsband ab.) Bei willigen Untergebenen können Halsbänder auch mit Schlössern versehen werden.
+(You snap the belt around her waist while she wiggles her butt.)  This is so kinky!  Thanks Miss.
+(Du lässt den Gürtel um ihre Hüfte zuschnappen und sie wackelt mit dem Po.) Das ist so scharf! Danke, Miss.
+(You unlock the belt from her waist and crotch.)  I can't wait to see what you'll use on me next...
+(Du schließt ihren Gürtel auf.) Ich bin schon gespannt, was Sie als Nächstes an mir anwenden werden...
+(You strap the device on her head as she tries to look around.)  You know, this will heighten my other senses. Including touch...
+(Du schnallst ihr das Ding um den Kopf und sie versucht sich umzusehen.) Das wird meine anderen Sinne schärfen. Auch den Tastsinn...
+(You remove the device and she looks at you.)  That was pretty intense.  What else can we try?
+(Du nimmst das Ding ab und sie sieht dich an.) Das war eine heftige Erfahrung. Was können wir noch ausprobieren?
+(She trembles of pain and pleasure as you whip her breast.)  Ohhhh Miss!  This is wonderful.
+(Sie zittert vor Schmerz und Wollust, als du ihre Brust auspeitschst.) Ohhhh, Miss! Das ist wundervoll.
+(You swing the crop on her torso as she moans.)  Mmmh! You have lots of talents Miss.
+(Du schwingst mit der Gerte auf ihren Körper und sie stöhnt.) Mmmh! Sie sind sehr talentiert, Miss.
+(You whip her butt as she jumps from the pain.)  It hurts soooooo good Miss.
+(Du peitschst ihr auf den Hintern und lässt sie vor Schmerz zusammenzucken.) Es tut soooooo schön weh, Miss.
+(She moans and shakes her butt each time the crop lands on it.) I love the pain Miss.
+(Sie stöhnt und wackelt bei jedem Treffer der Gerte mit dem Po.) Ich liebe den Schmerz, Miss.
+It's an honor to see you at the introduction class Mistress DialogPlayerName.
+Es ist mir eine Ehre, Euch im Einstiegskurs zu begegnen, Herrin DialogPlayerName.
+(She giggles.)  Greetings naked girl.  Welcome to the introduction class.
+(Sie kichert.) Grüß dich, nacktes Mädchen. Willkommen im Einstiegskurs.
+Greetings head maid DialogPlayerName.  Welcome to the introduction class.
+Hallo, Chefdienerin DialogPlayerName. Willkommen im Einstiegskurs.
+Greetings maid DialogPlayerName.  Welcome to the introduction class.
+Hallo, Dienerin DialogPlayerName. Willkommen im Einstiegskurs.
+Greetings Miss.  Welcome to the Bondage Club.
+Seien Sie gegrüßt, Miss. Willkommen im Bondage-Club.
+###_PLAYER
+Hello, my name is DialogPlayerName.
+Hallo, ich heiße DialogPlayerName.
+###_NPC
+Pleased to meet you Miss DialogPlayerName.  I hope you will enjoy yourself in the club.
+Freut mich, Sie kennenzulernen, Miss DialogPlayerName. Ich hoffe, Sie werden im Club ihre Freude haben.
+###_PLAYER
+Who are you?
+Wer bist du?
+###_NPC
+I'm a new club member.  My name is DialogCharacterName.
+Ich bin ein neues Clubmitglied. Mein Name ist DialogCharacterName.
+###_PLAYER
+What's going on here?
+Was geht hier vor sich?
+###_NPC
+This is a BDSM club.  People come from all over the world to share their kinks.
+Dies ist ein BDSM-Club. Leute aus aller Welt teilen hier ihre Vorlieben miteinander.
+###_PLAYER
+Tell me about the club.
+Erzähl mir vom Club.
+###_NPC
+The Bondage Club is pretty old.  People come from all over the world to share their kinks.
+Der Bondage-Club ist ziemlich alt. Leute aus aller Welt teilen hier ihre Vorlieben miteinander.
+###_PLAYER
+Why are you calling me Miss?
+Warum nennst du mich Miss?
+###_NPC
+It's protocol.  Most submissives will call strangers "Miss" or "Sir" to be polite.
+Das ist eine Regel. Die meisten Unterwürfigen sprechen Fremde aus Gründen der Höflichkeit mit "Miss" oder "Sir" an.
+###_PLAYER
+Can I tie you up?
+Kann ich dich fesseln?
+###_NPC
+(She blushes a little.)  With pleasure Miss.  If you need help with restraints, you can ask our friendly maid here.
+(Sie errötet ein wenig.) Mit Vergnügen, Miss. Wenn Sie Hilfe mit der Ausrüstung brauchen, hilft Ihnen unsere freundliche Dienerin hier weiter.
+###_PLAYER
+Will you tie me up?
+Würdest du mich fesseln?
+###_NPC
+No Miss, I'm a submissive.  But our friendly maid here can help you with that.
+Nein, Miss, Ich bin unterwürfig. Aber unsere nette Dienerin hier kann Ihnen dabei helfen.
+###_PLAYER
+I need to go, take care.  (Leave her.)
+Ich muss los, mach's gut. (Sie verlassen.)
+So, you're a kinky girl?
+Du bist also ein versautes Mädchen?
+###_NPC
+(She nods and blushes.)  Yes Miss.
+(Sie nickt und wird rot.) Ja, Miss.
+###_PLAYER
+What are you doing here?
+Was machst du hier?
+###_NPC
+I'm helping the maid staff to introduce newcomers to the club.
+Ich helfe den Dienerinnen, Neulinge mit dem Club vertraut zu machen.
+###_PLAYER
+What is this room?
+Was ist das für ein Raum?
+###_NPC
+This is the introduction class room, where newcomers learn about basic bondage.
+Dies ist der Unterrichtsraum für den Einstiegskurs, wo Neulinge die Bondage-Grundlagen lernen.
+###_PLAYER
+So, you work for the club?
+Du arbeitest also für den Club?
+###_NPC
+Not yet, but I hope to become a maid someday.
+Noch nicht, aber ich möchte eines Tages eine Dienerin werden.
+###_PLAYER
+Tell me about the maids.
+Erzähl mir von den Dienerinnen.
+###_NPC
+The maids are the work force of the club.  They do everything from cleaning to releasing helpless victims.
+Die Dienerinnen sind die Arbeitskräfte des Clubs. Sie tun alles, vom Saubermachen bis hin zum Befreien hilfloser Bondage-Opfer.
+You probably know more about the maid sorority than me.  Do you need anything else?
+Sie wissen sicherlich besser über die Schwesternschaft der Dienerinnen Bescheid als ich. Kann ich sonst etwas für Sie tun?
+###_PLAYER
+Can I become a maid?
+Kann ich eine Dienerin werden?
+###_NPC
+Absolutely, go to the maid quarters and ask for a job.  After a while they may let you join their sorority.
+Natürlich, gehen Sie in die Dienerkammer und bewerben Sie sich auf eine Stelle. Nach einer Weile könnten Sie in die Schwesternschaft aufgenommen werden.
+###_PLAYER
+Thanks for the info.
+Danke für die Info.
+###_NPC
+It's my pleasure Miss.  Is there something else you would like to know?
+Es ist mir eine Freude, Miss. Gibt es noch etwas, dass Sie gern wissen möchten?
+###_PLAYER
+Thanks for the tip.
+Danke für den Tipp.
+###_NPC
+Maybe we'll work together someday.  Is there something else you would like to know?
+Vielleicht sind wir eines Tages Kolleginnen. Gibt es noch etwas, dass Sie gern wissen möchten?
+Thanks for coming to the rescue Miss.
+Danke, dass Sie uns zur Rettung kommen, Miss.
+###_PLAYER
+Do you need help?
+Brauchst du Hilfe?
+###_NPC
+(She nods slowly.)  Yes please, can you release me and our friendly maid here?  Check with her if everything is fine.
+(Sie nickt langsam.) Ja, bitte, könnten Sie mich und die nette Dienerin hier befreien? Fragen Sie sie, ob alles in Ordnung ist.
+###_PLAYER
+Is everything alright now?
+Ist jetzt alles in Ordnung?
+###_NPC
+I think everything is fine.  Please check with the maid to make sure.
+Ich glaube, alles ist gut. Bitte fragen Sie sicherheitshalber bei der Dienerin nach.
+###_PLAYER
+What happened here?
+Was ist hier passiert?
+###_NPC
+An intimidating woman dressed in latex came in.  Without a word, she forced us into armbinders, belts, and then she gagged us before leaving.
+Eine beängstigende, in Latex gekleidete Frau kam herein. Ohne ein Wort zu sagen, legte sie uns Monohandschuhe, Gurte und Knebel an, dann ging sie einfach.
+A newcomer wanted to learn about armbinders and got a little too carried away.  She left for the maid quarters to ask for help.
+Eine Neue wollte etwas über Monohandschuhe lernen und hat sich etwas mitreißen lassen. Sie ist zu den Dienerinnen gelaufen, um Hilfe zu holen.
+Another maid came in and started a fight with our friendly maid here.  As you can guess, the other girl won.
+Eine andere Dienerin kam herein und fing an, mit der netten Dienerin hier zu ringen. Wer gewonnen hat, sieht man ja.
+A sales woman came to sell us armbinders and some belts.  As you can see, she was very convincing.  (She giggles.)
+Eine Verkäuferin kam herein, um uns Monohandschuhe und Gurte zu verkaufen. Wie Sie sehen, war sie sehr überzeugend. (Sie kichert.)
+###_PLAYER
+I'll go get help.  (Leave her.)
+Ich hole Hilfe. (Sie verlassen.)

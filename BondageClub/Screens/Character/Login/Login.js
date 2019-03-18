@@ -63,6 +63,7 @@ function LoginLoad() {
 	// Resets the player and other characters
 	Character = [];
 	CharacterReset(0, "Female3DCG");
+	SarahReset();
 	LoginDoNextThankYou();
 	CharacterLoadCSVDialog(Player);
 	LoginMessage = "";
@@ -104,10 +105,11 @@ function LoginRun() {
 function LoginResponse(C) {
 
 	// If the return package contains a name and a account name
-	if (typeof C == "object") {
+	if (typeof C === "object") {
 		if ((C.Name != null) && (C.AccountName != null)) {
 
 			// Make sure we have values
+			LoginMessage = "";
 			if (C.Appearance == null) C.Appearance = [];
 			if (C.AssetFamily == null) C.AssetFamily = "Female3DCG";			
 
@@ -120,6 +122,7 @@ function LoginResponse(C) {
 			Player.Lover = ((C.Lover == null) || (C.Lover == "undefined")) ? "" : C.Lover;
 			Player.Creation = C.Creation;
 			Player.Wardrobe = C.Wardrobe;
+			WardrobeCharacter = [];
 
 			// Loads the player character model and data
 			Player.Appearance = ServerAppearanceLoadFromBundle(C.AssetFamily, C.Appearance);
@@ -130,6 +133,7 @@ function LoginResponse(C) {
 			SkillLoad(C.Skill);
 			CharacterLoadCSVDialog(Player);
 			if (!LogQuery("SleepCage", "Rule") || (Player.Owner == "")) CharacterAppearanceValidate(Player);
+			SarahSetStatus();
 			CharacterRefresh(Player, false);
 			ElementRemove("InputName");
 			ElementRemove("InputPassword");
@@ -177,13 +181,15 @@ function LoginClick() {
 		CommonSetScreen("Character", "Appearance");
 	}
 	
-	// If we must try to login
-	if ((MouseX >= 775) && (MouseX <= 975) && (MouseY >= 500) && (MouseY <= 560)) {
+	// If we must try to login (make sure we don't send the login query twice)
+	if ((MouseX >= 775) && (MouseX <= 975) && (MouseY >= 500) && (MouseY <= 560) && (LoginMessage != TextGet("ValidatingNamePassword"))) {
 		var Name = ElementValue("InputName");
 		var Password = ElementValue("InputPassword");
 		var letters = /^[a-zA-Z0-9]+$/;
-		if (Name.match(letters) && Password.match(letters) && (Name.length > 0) && (Name.length <= 20) && (Password.length > 0) && (Password.length <= 20))
+		if (Name.match(letters) && Password.match(letters) && (Name.length > 0) && (Name.length <= 20) && (Password.length > 0) && (Password.length <= 20)) {
+			LoginMessage = TextGet("ValidatingNamePassword");
 			ServerSend("AccountLogin", { AccountName: Name, Password: Password } );
+		}
 		else
 			LoginMessage = TextGet("InvalidNamePassword");
 	}

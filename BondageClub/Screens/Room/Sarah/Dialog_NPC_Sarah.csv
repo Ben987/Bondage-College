@@ -1,0 +1,148 @@
+PlayerGagged,,,Communicating with a gag is quite hard.  You'll need to remove it to chat.,,
+ReleaseHeadMaid,,,"Of course, head maid DialogPlayerName.  (She releases you.)",,
+ItemMouth,,,"(She first shakes her head to avoid the gag, but eventually surrenders as you silence her.)",,
+RemoveItemMouth,,,"(You remove her gag while she stretches her mouth.)  Thanks, it's hard to introduce newcomers with that gag.",,
+ItemArms,,,(She sighs and turns around while you restrain her arms.)  It might be a little hard to work like that Miss.,,
+RemoveItemArms,,,"(You free her arms and she nods slowly.)  Thanks a lot Miss, this is much better.",,
+ItemLegs,,,(She submits to you while you restrain her legs.)  Do I get paid overtime if I'm stuck here?,,
+RemoveItemLegs,,,(You release her legs from the restraint.)  You're quite good with restraints Miss.,,
+ItemFeet,,,(She looks puzzled as you restrain her feet.)  I didn't plan on running anytime soon.,,
+RemoveItemFeet,,,(You release her feet.)  Wonderful!,,
+ItemNeck,,,(You strap the collar on her while she blushes.)  I bet you're a great Mistress.,,
+RemoveItemNeck,,,(You remove the collar around her neck while she stares into your eyes.),,
+ItemPelvis,,,"(She struggles as you lock the device on her.)  No, please don't!  I don't have a key!",,
+RemoveItemPelvis,,,(She looks extremely relieved as you unlock the device.)  Thank you so much Miss DialogPlayerName.,,
+ItemHead,,,(You strap the device on her head as she sighs.)  Well this could make my shift difficult...,,
+RemoveItemHead,,,(You remove the device as she shakes her head joyfully.)  Wonderful!  That'll make my day easier.,,
+ItemBreastLeatherWhip,,,(She jumps from the searing pain on her breast.)  Ouch!  Miss Head Maid!,,
+ItemBreastLeatherCrop,,,(You whip her breast with the leather crop as she whimpers and bows her head.) Owwwwwww!,,
+ItemPelvisLeatherWhip,,,(You whip her butt hard as she sighs.)  Ahh! I promise I'll work harder Miss Head Maid!,,
+ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  Oww! That stings Miss!.,,
+0,,,Greetings Mistress DialogPlayerName.  Welcome to the introduction class.  (She does curtsies for you.),,"DialogLogQuery(""ClubMistress"", ""Management"")"
+0,,,Greetings head maid DialogPlayerName.  Welcome to the introduction class.  (She does curtsies for you.),,IsHeadMaid
+0,,,(She stares at you.)  Hello naked girl.  Welcome to the introduction class.,,Player.IsNaked()
+0,,,"Hi sister, welcome to the introduction class.",,IsMaid
+0,,,"Hello there, welcome to the introduction class.",,!IsMaid
+0,,"Hi, my name is DialogPlayerName.","Pleased to meet you.  I'm DialogCharacterName, I work here as a maid.",DialogRemove(),NoTitle()
+0,10,"Thanks, little maid.  What's going on here?","In here, you can learn how to restrain someone, and how to escape by yourself.",ChangeMaidOpinion(1),
+0,10,Introduction class?,"In this class, you can learn how to restrain someone, and how to free yourself.",,
+0,100,I don't need any introduction.,"Very well, would you like to practice with us then?",,
+0,,I can't stay to chat.  (Leave her.),,DialogLeave(),
+10,,Can I strap up anyone at any time?,Yes and no.  You need their consent and you cannot do it in the middle of a conversation.,DialogRemove(),
+10,20,This is great!,I'm glad you like it.  Let me teach you about the body parts your can restrain.,,
+10,20,It sounds kinky. (Blush a little.),It's kinky and it's fun!  Let me teach you first about the body parts your can restrain.,ChangeMaidOpinion(-1),
+10,15,Tell me about the club first.,The Bondage Club is a place for open minded adults to share their BDSM kinks.,,
+10,,You're both a maid and a teacher?,We maids do a lot of work here.  You'll see this with time.,DialogRemove(),!IsMaid
+10,100,I already know that.,"Very well, would you like to practice with us then?",,
+15,20,Fair enough.,Very well.  Let me teach you about the body parts your can restrain.,,
+15,20,Awesome!,I'm glad you like it.  Let me teach you about the body parts your can restrain.,,
+20,30,I'm listening.,"There are eleven body parts to interact with.  To access them, select the body region I will show you.",,
+20,30,Please tell me Miss.,"There are eight body parts to interact with.  To access them, select the body region I will show you.",ChangeMaidOpinion(-1),
+20,30,"Alright, but make it quick.","There are eight body parts to interact with.  To access them, select the body region I will show you.",ChangeMaidOpinion(1),
+20,100,I already know that.,"Very well, would you like to practice with us then?",,
+30,30A,Show me the body regions I can select.,Restraining the feet will prevent your victim from moving away.,"SetZone(""ItemFeet"")",
+30A,30B,(Listen.),Restraining the upper legs will still allow your victim to move around but it creates a nice effect.,"SetZone(""ItemLegs"")",
+30B,30C,(Listen.),"On the pussy or vagina region, you can use items such as vibrators or eggs.  The perfect place to tease your victim and make them climax.","SetZone(""ItemVulva"")",
+30C,30D,(Listen.),"On the butt or anal region, you can use regular butt plugs or fashion plugs suchs as cat tails.","SetZone(""ItemButt"")",
+30D,30E,(Listen.),"On the pelvis, you can use whips, crops or chastity belts.  Know that it will restrict any access to the vagina and anus.","SetZone(""ItemPelvis"")",
+30E,30F,(Listen.),"On the torso, you can use many kinds of harnesses, mostly for esthetics.","SetZone(""ItemTorso"")",
+30F,30G,(Listen.),"The breast region can be used for more chastity devices, piercings and whips or crops.","SetZone(""ItemBreast"")",
+30G,30H,(Listen.),The arms can be restrained using many devices.  This will prevent your victim from using her hands to free herself.,"SetZone(""ItemArms"")",
+30H,30I,(Listen.),"You can use collars on your victim's neck to show everyone that they are yours, enslave them or leash them.","SetZone(""ItemNeck"")",
+30I,30J,(Listen.),"You can use gags to silence your victim, making her unable to speak.","SetZone(""ItemMouth"")",
+30J,30K,(Listen.),"Blindfolds, ear muffs, and hoods can also be used to restrict vision and hearing.","SetZone(""ItemHead"")",
+30K,40,(Listen.),That's about everything. Remember that your arms need to be free to restrain someone.,ClearZone(),
+40,100,Thanks for the info.,"My pleasure! Now we can practice.  Would you prefer to restrain someone, or be tied up yourself?",,
+40,100,That makes sense.,"Of course! And now we can practice.  Would you prefer to restrain someone, or be tied up yourself?",,
+40,200,Can I strap you up now?,"Not me I'm afraid, but we have someone here who would certainly enjoy being your victim.",ChangeMaidOpinion(1),!IsHeadMaid
+40,100,Can I strap you up now?,"I'm all yours if you want me, head maid DialogPlayerName.  I will not resist you.",ChangeMaidOpinion(1),IsHeadMaid
+40,100,Can we practice?,"Absolutely.  Would you prefer to restrain someone, or be tied up yourself?",,
+40,300,Can you tie me up now?,I can certainly tie you up.  It's a good time to practice.,ChangeMaidOpinion(-1),
+100,,,"You can practice your bondage skills here.  Would you prefer to restrain someone, or be tied up yourself?",,
+100,,I want to practice tying you up.,"(She blushes.)  Yes, head maid DialogPlayerName.  I will not resist you.",,IsHeadMaid
+100,200,I want to practice tying you up.,"You can't tie me up, but we have someone here who would certainly enjoy being your subject.",ChangeMaidOpinion(1),!IsHeadMaid
+100,200,Can I tie her up?,"Absolutely, you have the perfect candidate here to practice on.",ChangeMaidOpinion(1),
+100,300,I want to practice freeing myself.,Awesome!  If you're ready now I can get started.,ChangeMaidOpinion(-1),
+100,,Who runs this club?,The Head Mistress is in charge.  You should go present yourself if you haven't already.,DialogRemove(),
+100,,Let's practice later.  (Leave her.),,DialogLeave(),
+200,220,I can use my favorite restraints on her?,"Of course, use anything you want on her.  She's very submissive, I'm sure she'll enjoy it.",,HasBasicItems
+200,210,Can I have some items to practice with?,"Use these basic items. They are easy to use, but also easy to struggle out from.",,!HasBasicItems
+210,220,Thanks!  (Take the items.),"(She gives you ropes for her arms and legs,  plus a basic cloth gag.)",GetBasicItems(),
+210,220,This is sweet.  (Take the items.),"(She gives you ropes for her arms and legs,  plus a basic cloth gag.)",GetBasicItems(),
+220,230,I'll make it extra tight.,"Impressive.  Make sure to restrain her arms, her feet and to gag her.",ChangeMaidOpinion(1),
+220,230,I'm ready!,"Wonderful.  Make sure to restrain her arms and her feet, and don't forget to gag her!",,
+220,230,I can do it now?,"Absolutely.  Make sure to restrain her arms and her feet, and don't forget to gag her!",ChangeMaidOpinion(-1),
+230,,,"Make sure to restrain her arms and her feet, and don't forget to gag her!",,
+230,250,She's restrained pretty well now.,(She looks at your victim and smiles.)  Excellent!  So how does it feel to restrain someone?,,SubRestrained
+230,,Very good.  (Leave her.),,DialogLeave(),
+230,,I can tie her up at any time?,Yes and no.  You cannot strap her up in the middle of a conversation.,,
+230,240,Tell me about the body parts I can restrain.,"There are eleven body parts to interact with.  To access them, select the body region I will show you.",,
+240,240A,Show me the body regions I can select.,Restraining the feet will prevent your victim from moving away.,"SetZone(""ItemFeet"")",
+240A,240B,(Listen.),Restraining the upper legs will still allow your victim to move around but it creates a nice effect.,"SetZone(""ItemLegs"")",
+240B,240C,(Listen.),"On the pussy or vagina region, you can use items such as vibrators or eggs.  The perfect place to tease your victim and make them climax.","SetZone(""ItemVulva"")",
+240C,240D,(Listen.),"On the butt or anal region, you can use regular butt plugs or fashion plugs suchs as cat tails.","SetZone(""ItemButt"")",
+240D,240E,(Listen.),"On the pelvis, you can use whips, crops or chastity belts.  Know that it will restrict any access to the vagina and anus.","SetZone(""ItemPelvis"")",
+240E,240F,(Listen.),"On the torso, you can use many kinds of harnesses, mostly for esthetics.","SetZone(""ItemTorso"")",
+240F,240G,(Listen.),"The breast region can be used for more chastity devices, piercings and whips or crops.","SetZone(""ItemBreast"")",
+240G,240H,(Listen.),The arms can be restrained using many devices.  This will prevent your victim from using her hands to free herself.,"SetZone(""ItemArms"")",
+240H,240I,(Listen.),"You can use collars on your victim's neck to show everyone that they are yours, enslave them or leash them.","SetZone(""ItemNeck"")",
+240I,240J,(Listen.),"You can use gags to silence your victim, making her unable to speak.","SetZone(""ItemMouth"")",
+240J,240K,(Listen.),"Blindfolds, ear muffs, and hoods can also be used to restrict vision and hearing.","SetZone(""ItemHead"")",
+240K,230,(Listen.),That's about everything.  Remember that your arms need to be free to restrain someone.,ClearZone(),
+250,260,It was fun to strap her up.,I'm glad you feel that way.  I think you're ready to explore the club now.,,
+250,260,I would rather be restrained myself.,"Don't worry, I'm sure it will happen often.  I think you're ready to explore the club now.",ChangeMaidOpinion(-1),
+250,260,It's empowering!  I need to find a whip now...,A monster is born!  (She giggles.)  You're ready to explore the club now.,ChangeMaidOpinion(1),
+260,270,I can tie up anyone?,"Anyone that's into bondage, yes.  Have fun causing trouble.",SaveMaidOpinion(),
+260,270,Can I tie you up now?,"(She giggles.)  Not now, I have work to do here.  But I'm sure you'll find victims if you wander around.",SaveMaidOpinion(),!IsHeadMaid
+260,270,Can I tie you up now?,(She giggles.)  If you wish head maid DialogPlayerName.,SaveMaidOpinion(),IsHeadMaid
+270,,,Your introduction class is done.  I hope you have fun in the club!,,
+270,,You were a great teacher.,Well thanks a lot.  (She smiles.)  You're a good student.,DialogRemove(),
+270,,Thanks!  Have a great time.  (Leave her.),,DialogLeave(),
+270,,Can you teach me more about rope bondage?,"If you like rope bondage that much, try the Shibari Dojo.  You might learn a few new tricks.",,
+270,,Tell me about the other types of restraints.,"Some items are impossible to struggle out from, so you'll need to find help.  Also, items like cuffs can be locked, and you'll need a key to unlock them.",,
+270,300,I want to practice freeing myself.,Of course!  If you're ready for the challenge I will tie you up.,,
+300,,,Are you ready to struggle against the ropes?,,Player.CanInteract()
+300,,,Get your arms free first if you want to practice struggling against my ropes.  Let me know when you're ready.,,!Player.CanInteract()
+300,310,"I'm ready, you can tie me up.",(She wraps a white nylon rope around your feet and does two knots.),"DialogWearItem(""NylonRope"", ""ItemFeet"")",AllowRestrainPlayer()
+300,,Not yet.  Give me some time.  (Leave her.),,DialogLeave(),
+310,320,I won't be running away now.,That's for sure.  (She wraps a second rope around your legs.),"DialogWearItem(""NylonRope"", ""ItemLegs"")",
+310,320,That's all?,"Hah, of course not.  Much left to do.  (She wraps a second rope around your legs.)","DialogWearItem(""NylonRope"", ""ItemLegs"")",
+320,330,It feels good.,"(She nods and wraps a third rope around your body and arms, forcing them to stick into your back.)","DialogWearItem(""NylonRope"", ""ItemArms"")",
+320,330,You sure know the ropes.,"(She smiles and wraps a third rope around your body and arms, forcing them to stick into your back.)","DialogWearItem(""NylonRope"", ""ItemArms"")",
+330,340,It's too tight!,You'll get used to it.  Now do you think you can escape?,ChangeMaidOpinion(-1),
+330,340,That's the best you can do?,"You're very bold, I like it.  Now do you think you can escape?",ChangeMaidOpinion(1),
+330,340,This is pretty kinky.,Absolutely!  Now do you think you can escape?,,
+340,,,You're still struggling to get out?  Don't give up.,,Player.IsRestrained()
+340,,How do I escape?,Grab the rope on your arms and try to free yourself.  Good luck!,,Player.IsRestrained()
+340,,Get me out now!,You're not in control girl.  (She grabs your mouth and straps a cloth gag on you.),GagPlayer(),Player.IsRestrained()
+340,,"Don't look, I will escape by myself.  (Leave her.)",,DialogLeave(),Player.IsRestrained()
+340,,,Well done!  You were able to struggle out.,,!Player.IsRestrained()
+340,350,That was easy.,I'll make it tighter next time.  Did you enjoy being tied up?,,!Player.IsRestrained()
+340,350,"It took a while, but I've done it.",That's great.  Did you enjoy being tied up?,,!Player.IsRestrained()
+350,360,"Sure, it was fun.",That's the spirit!  You're ready to explore the club then.,,
+350,360,"I loved it, I hope happens often.",That's the spirit!  You're ready to explore the club then.,ChangeMaidOpinion(-1),
+350,360,I would rather strap you up.,"Not now, but you're ready to explore the club and do some bondage.",ChangeMaidOpinion(1),
+360,370,I'm sure it will be fun to explore the club.,"Oh yes, I'm sure too. Remember to be courteous and respect others.",SaveMaidOpinion(),HasBasicItems
+360,360,Can I have some items to start with?,"Sure, have these ropes and this gag.  (She gives you some ropes and a cloth gag.)",GetBasicItems(),!HasBasicItems
+370,,,You're ready to explore.  Remember to be courteous and respect others.,,
+370,,You were a great teacher.,Well thanks a lot.  You're a good student.,DialogRemove(),
+370,,Thanks!  Take care.  (Leave her.),,DialogLeave(),
+370,,Can I strap her up?,"Sure, my assistant here will be happy to help you practice.",,
+370,,Can I get better at struggling out?,Yes. You might learn new skills to escape faster if you stick around.  Others might also learn skills to make your struggling harder though...,,
+370,,Can you teach me more on rope bondage?,"If you like rope bondage that much, try the Shibari Dojo.  You might learn a few new tricks.",,
+370,,Tell me about the other types of restraints.,"Some items are impossible to struggle out from, so you'll need to find help.  Also, items like cuffs can be locked, and you'll need a key to unlock them.",,
+370,300,I want to practice freeing myself.,Again?  Well of course.  Are you ready to struggle now?,,
+MaidRescue,,,(She struggles and tries to get out.)  Can you please help me?,,IsMaidRestrained()
+MaidRescue,,,(She bows her head respectfully.)  Can you also help our friend here?,,!IsBothFree()
+MaidRescue,,,I will spread the good word of you around the sorority.  Thanks for helping.,,IsBothFree()
+MaidRescue,,Do you need help?,"(She eagerly nods her head.)  Yes, can you release us both?",,!IsBothFree()
+MaidRescue,,Should I help your friend?,"Yes, please release both of us.",,!IsBothFree()
+MaidRescue,MaidRescueComplete,Is everything alright now?,"Everything is great, please report to my sisters of your fine work here.",CompleteRescue(),IsBothFree()
+MaidRescue,,What happened here?,A true maid story. A silent girl in latex gear barged in and strapped us both up in armbinders and belts.  She gagged us and left.,,"IsRescueScenario(""LatexWoman"")"
+MaidRescue,,What happened here?,It started with a new club member curious about armbinders and finished with her running to the maids to get help.,,"IsRescueScenario(""Newcomer"")"
+MaidRescue,,What happened here?,A rival maid of mine came in and we fought.  She got lucky and managed to restrain us in belts and armbinders.,,"IsRescueScenario(""MaidFight"")"
+MaidRescue,,What happened here?,A sales rep came in with belts and armbinders and I think we got a little too carried away by her merchandise.,,"IsRescueScenario(""SalesWoman"")"
+MaidRescue,,I'll go get help.  (Leave her.),,DialogLeave(),
+MaidRescueComplete,0,"As a maid, you owe me a favor now.",(She gulps.)  Yes Miss.  Is there something else you need?,"DialogChangeReputation(""Dominant"", 2)",
+MaidRescueComplete,0,My pleasure.  The maids protect each other.,Well said!  Is there something else you need?,"DialogChangeReputation(""Dominant"", -2)",
+MaidRescueComplete,0,Another satisfied customer.,A very satisfied customer.  Is there something else you need?,,

@@ -1,0 +1,9 @@
+# Begriffe mit schwieriger Übersetzungsentscheidung, Änderungsvorschläge willkommen
+
+English       German/Deutsch Remarks/Anmerkungen
+
+Maid          Dienerin       Eventuell Hausmädchen, ist aber etwas länger
+Head Maid     Chefdienerin
+Mistress      Herrin
+Club Mistress Clubherrin
+Head Mistress Oberherrin     Eventuell Hauptherrin, Direktorin?

@@ -1,0 +1,117 @@
+###_NPC
+Welcome to Mistress lair.  The club management office.
+Willkommen im Herrinnen-Saal. Dem Clubleitungsbüro.
+###_PLAYER
+Who are you?
+Wer bist du?
+###_NPC
+(She purrs like a cat.)  I'm DialogCharacterName, pleased to meet you Miss.
+(Sie schnurrt wie eine Katze.) Ich bin DialogCharacterName, sehr erfreut, Miss.
+###_PLAYER
+Why are you restrained?
+Warum bist du gefesselt?
+###_NPC
+(She struggles playfully.)  Mistress loves to have me restrained while she works.
+(Sie zappelt verspielt.) Herrin liebt es, wenn ich gefesselt bin, während sie arbeitet.
+###_PLAYER
+(Purr and meow like a cat.)
+(Schnurren und miauen wie eine Katze.)
+###_NPC
+(She gets a little bit closer and purrs playfully.)
+(Sie kommt etwas näher und schnurrt spielerisch.)
+###_PLAYER
+Can I play with you?
+Kann ich mit dir spielen?
+###_NPC
+(She shakes her head no.)  I don't think Mistress would approve.
+(Sie schüttelt den Kopf.) Ich glaube nicht, dass Herrin das erlauben würde.
+###_PLAYER
+(Play with her.)
+(Mit ihr spielen.)
+###_NPC
+(You get closer to her.)
+(Du kommst näher an sie heran.)
+###_PLAYER
+(Release her.)
+(Sie befreien.)
+I need to go, take care.  (Leave her.)
+Ich muss los, mach's gut. (Sie verlassen.)
+(Try to talk with her.)
+(Versuchen, mit ihr zu sprechen.)
+###_NPC
+(You both try to speak to each other but fail to have a coherent conversation.)
+(Ihr versucht, miteinander zu sprechen, bekommt aber keine zusammenhängende Unterhaltung zustande.)
+###_PLAYER
+(Lean on her.)
+(Dich an sie lehnen.)
+###_NPC
+(You lean and rest on each other shoulder while she purrs slowly.)
+(Ihr lehnt und rastet gegenseitig auf euren Schultern, während sie langsam schnurrt.)
+###_PLAYER
+(Nuzzle with her.)
+(Dein Gesicht an ihres reiben.)
+###_NPC
+(You clumsily nuzzle each other in your restraints and giggle.)
+(Ihr schmust euch in euren Fesseln unbeholfen aneinander und kichert.)
+###_PLAYER
+(Give her a restrained hug.)
+(Sie gefesselt umarmen.)
+###_NPC
+(You get close to each other for a long submissive hug.  She seems to enjoy it and moans like a cat.)
+(Ihr kommt nah aneinander und gebt euch eine lange, untergiebige Umarmung. Es scheint ihr zu gefallen und sie stöhnt wie eine Katze.)
+###_PLAYER
+(Rub your body against hers.)
+(Deinen Körper an ihren reiben.)
+###_NPC
+(You both rub your bodies against each other and moan slowly.  She slides her tail against your skin.)
+(Ihr reibt eure Körper aneinander und stöhnt langsam. Sie streicht mit ihrem Schwanz über deine Haut.)
+###_PLAYER
+(Try to masturbate her.)
+(Versuchen, sie zu befriedigen.)
+###_NPC
+(You rub your armbinder against her chastity belt and realize that you won't be able to give her any pleasure.)
+(Du reibst deinen Monohandschuh an ihren Keuschheitsgürtel und erkennst, dass du sie unmöglich befriedigen kannst.)
+###_PLAYER
+(Try to release her.)
+(Versuchen, sie zu befreien.)
+###_NPC
+(You struggle in your armbinder and try to release her.  But you fail miserably.)
+(Du zappelst in deinem Monohandschuh herum und versuchst sie zu befreien. Du scheiterst kläglich.)
+###_PLAYER
+(Step back.)
+(Zurücktreten.)
+###_NPC
+(You step back.)
+(Du trittst zurück.)
+###_PLAYER
+I love your ears and tail.
+Ich liebe deine Ohren und deinen Schwanz.
+###_NPC
+(She nods happily.)  I've got the tail at the club store.
+(Sie nickt fröhlich.) Den Schwanz habe ich aus dem Clubladen.
+###_PLAYER
+You're a good kitty.
+Du bist ein braves Kätzchen.
+###_NPC
+(She purrs some more.)  Thank you Miss.
+(Sie schnurrt etwas mehr.) Danke, Miss.
+###_PLAYER
+Are you a furry?
+Bist du ein Furry?
+###_NPC
+(She shakes her head no and grumbles in her gag.)
+(Sie schüttelt den Kopf und grummelt in ihren Knebel.)
+###_PLAYER
+Are you a neko?
+Bist du eine Neko?
+###_NPC
+(She shakes her head yes and purrs.)
+(Sie nickt und schnurrt.)
+###_PLAYER
+(Pet her.)
+(Sie streicheln.)
+(Talk about something else.)
+(Über etwas anderes reden.)
+###_NPC
+(You take one step back.)
+(Du trittst einen Schritt zurück.)
