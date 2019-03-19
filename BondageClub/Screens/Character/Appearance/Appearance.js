@@ -308,7 +308,7 @@ function AppearanceRun() {
 	
 	// Draw the background and the character twice
 	if (CharacterAppearanceHeaderText == "") CharacterAppearanceHeaderText = TextGet("SelectAppearance");
-	DrawCharacter(Player, -550, -100, 4);
+	DrawCharacter(Player, -550, (Player.IsKneeling()) ? -1100 : -100, 4);
 	DrawCharacter(Player, 800, 0, 1);
 	DrawText(CharacterAppearanceHeaderText, 450, 40, "White", "Black");
 

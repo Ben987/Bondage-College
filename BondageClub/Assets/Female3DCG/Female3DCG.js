@@ -219,7 +219,7 @@ var AssetFemale3DCG = [
 		Group: "Shoes",
 		Priority: 19,
 		ParentGroup: "BodyLower",
-		AllowPose: ["LegsClosed"],
+		AllowPose: ["LegsClosed", "Kneel"],
 		Color: ["Default", "#bbbbbb", "#808080", "#202020", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
 		Left: 125,
 		Top: 500,
@@ -464,7 +464,7 @@ var PoseFemale3DCG = [
 	{
 		Name: "Kneel",
 		OverrideHeight: -250,
-		Hide: ["Shoes", "ItemFeet"]
+		Hide: ["ItemFeet"]
 	}
 
 ];

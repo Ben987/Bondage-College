@@ -3,9 +3,14 @@ var SarahBackground = "SarahBedroom";
 var SarahStatus = "";
 var Sarah = null;
 
+// Returns TRUE if a dialog condition matches
+function SarahStatusIs(QueryStatus) { return (QueryStatus == SarahStatus) }
+
 // Sets Sarah status
 function SarahSetStatus() {
-	if (LogQuery("SarahLover", "NPC-Sarah")) SarahStatus = "Lover";
+	if (LogQuery("BondageCollege", "Import")) SarahStatus = "SchoolMate";
+	if (LogQuery("SarahLover", "NPC-Sarah") && (Player.Lover == "NPC-Sarah")) SarahStatus = "Lover";
+	if (LogQuery("SarahLover", "NPC-Sarah") && (Player.Lover != "NPC-Sarah")) SarahStatus = "ExLover";
 	if (LogQuery("SarahCollared", "NPC-Sarah")) SarahStatus = "Owned";
 	if (LogQuery("SarahCollaredWithCurfew", "NPC-Sarah")) SarahStatus = "Curfew";
 	if (LogQuery("SarahWillBePunished", "NPC-Sarah")) SarahStatus = "WillBePunished";
@@ -33,6 +38,10 @@ function SarahLoad() {
 		InventoryWear(Sarah, "Panties1", "Panties", "#a02424");
 		InventoryWear(Sarah, "FourLimbsShackles", "ItemArms");
 		InventoryWear(Sarah, "StuddedBlindfold", "ItemHead");
+		if ((SarahStatus == "Owned") || (SarahStatus == "Curfew")) {
+			InventoryWear(Sarah, "SlaveCollar", "ItemNeck");
+			Sarah.Owner = Player.Name;
+		}
 		CharacterSetActivePose(Sarah, "Kneel");
 
 	}

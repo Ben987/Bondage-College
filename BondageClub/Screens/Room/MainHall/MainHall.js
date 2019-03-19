@@ -88,7 +88,7 @@ function MainHallClick() {
 	if ((MouseX >= 750) && (MouseX < 1250) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
 	if ((MouseX >= 1525) && (MouseX < 1615) && (MouseY >= 25) && (MouseY < 115)) InformationSheetLoadCharacter(Player);
 	if ((MouseX >= 1645) && (MouseX < 1735) && (MouseY >= 25) && (MouseY < 115) && !LogQuery("BlockChange", "Rule")) CommonSetScreen("Character", "Appearance");
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) { ServerSend("AccountDisconnect", null); CommonSetScreen("Character", "Login"); }
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) window.location = window.location;
 
 	// Main game rooms
 	if ((MouseX >= 1765) && (MouseX < 1855) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) MainHallWalk("Shop");

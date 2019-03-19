@@ -5,6 +5,7 @@ var SarahIntroDone = false;
 // Loads the collaring Mistresses
 function SarahIntroLoad() {
 	CutsceneStage = 0;
+	if (Sarah.Owner == Player.Name) SarahIntroBackground = "SarahCollarIntro";
 }
 
 // Runs the collaring cutscene
