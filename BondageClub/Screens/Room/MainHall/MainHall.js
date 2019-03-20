@@ -34,7 +34,7 @@ function MainHallRun() {
 	if (Player.CanWalk()) DrawButton(1525, 430, 450, 65, TextGet("KidnapLeague"), "White");
 	if (Player.CanWalk()) DrawButton(1525, 525, 450, 65, TextGet("PrivateRoom"), "White");
 	if (Player.CanWalk()) DrawButton(1525, 620, 450, 65, TextGet("ClubManagement"), "White");
-	if (Player.CanWalk()) DrawButton(1525, 715, 450, 65, TextGet((SarahStatus == "") ? "ExploreClub" : "SearchSarah"), "White");
+	if (Player.CanWalk()) DrawButton(1525, 715, 450, 65, TextGet((SarahIntroDone) ? "SarahBedroom" : ((SarahStatus == "") ? "ExploreClub" : "SearchSarah")), "White");
 
 	// Draws the custom content rooms
 	if (Player.CanWalk()) DrawButton(25, 25, 450, 65, TextGet("Gambling"), "White");

@@ -1,5 +1,5 @@
-PlayerGagged,,,Communicating with a gag is quite hard.  You'll need to remove it to chat.,,
-ReleaseHeadMaid,,,"Of course, head maid DialogPlayerName.  (She releases you.)",,
+PlayerGagged,,,"Gags are so kinky, can have one?  (She giggles.)",,
+FoundWayToUnlock,,,Have you found a way to get me out?  These shackles are pretty tough.,,
 ItemMouth,,,"(She first shakes her head to avoid the gag, but eventually surrenders as you silence her.)",,
 RemoveItemMouth,,,"(You remove her gag while she stretches her mouth.)  Thanks, it's hard to introduce newcomers with that gag.",,
 ItemArms,,,(She sighs and turns around while you restrain her arms.)  It might be a little hard to work like that Miss.,,
@@ -20,13 +20,71 @@ ItemPelvisLeatherWhip,,,(You whip her butt hard as she sighs.)  Ahh! I promise I
 ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  Oww! That stings Miss!.,,
 0,,,Hello?  Who goes there?,,
 0,10,Who are you?,"Oh hi Miss!  I'm Sarah, have we met before?",,"StatusIs("""")"
-0,10,What's going on?,"I've kind of got in trouble.  (She giggles.)  I'm Sarah, have we met before?",,"StatusIs("""")"
+0,10,What's going on?,"I've got in trouble.  (She struggles and giggles.)  I'm Sarah, have we met before?",,"StatusIs("""")"
+0,10,Why are you restrained?,"I'm getting punished.  (She struggles and giggles.)  I'm Sarah, have we met before?",,"StatusIs("""")"
 0,20,I'm DialogPlayerName.  We've met at the college.,Sweet!  I didn't knew you were a club member.,,"StatusIs(""SchoolMate"")"
-0,30,It's me my love!,I love you baby!  How did you found me?,,"StatusIs(""Lover"")"
-0,40,You don't recognize your ex?,"We didn't date for long, but it was fun.  (She giggles.)  How did you found me?",,"StatusIs(""ExLover"")"
-0,50,"Girl, you can't recognize your owner?",Oops!  So sorry Mistress.  I didn't knew you were here.,,"StatusIs(""Owned"")"
+0,30,It's me my love!,I love you baby!  How did you find me?,,"StatusIs(""Lover"")"
+0,40,You don't recognize your ex?,"We didn't date for long, but it was fun.  (She giggles.)  How did you find me?",,"StatusIs(""ExLover"")"
+0,50,"Girl, you don't recognize your owner?",Oops!  So sorry Mistress!  I didn't knew you were a club member.,,"StatusIs(""Owned"")"
 0,60,"Girl, did you forgot your curfew?",Oh my!  The curfew!  So sorry Mistress.  I hope you're not too mad.,,"StatusIs(""Curfew"")"
 0,70,Sarah!  Did you got punished?,DialogPlayerName!  I'm glad you're here.  This is part of my punishment.,,"StatusIs(""WillBePunished"")"
 0,80,It's great to see you again.,DialogPlayerName!  I'm glad you're here.  Are you enjoying the club?,,"StatusIs(""CameWithPlayer"")"
 0,,(Stay silent.),I know there's someone!  Who are you?  What's going on?,,
 0,,(Leave her.),,DialogLeave(),
+10,100,Nice to meet you.  I'm DialogPlayerName.,And what are you doing here?  Are you a friend of Mistress Sophie?,,
+10,100,"I'm DialogPlayerName, remember it girl.",(She gulps.)  Are you a friend of Mistress Sophie?,,
+20,100,"Yes, I'm a new club member.",Great!  I hope you're having fun like me.  (She struggles playfully.)  Have you met Mistress Sophie?,,
+20,100,I've been a member for a while now.,Excellent!  (She struggles playfully.)  You probably know Mistress Sophie?,,
+20,100,"Girl, I'm pretty well known in the club.","I'm sorry, I don't remember you Miss.  You certainly know Mistress Sophie?",,
+30,,Kisses before questions. (Kiss her.),"(You kiss each other slowly as she moans of pleasure.)  I love you so much.  So, how did you find me?",DialogRemove(),
+30,31,I've searched all over town for you.,You're the best!  And they've accepted you as a club member?,,
+30,31,I've asked your friends about you.,That's clever!  Amanda knows about the Bondage Club.  You're a member now?,,
+30,31,Love is stronger than distance.,You're so romantic baby.  (She smiles.)  You're a club member now?,,
+31,100,"Yes, I've joined this great club!",Awesome!  I hope you're having fun like me.  (She struggles playfully.)  Have you met Mistress Sophie?,,
+31,100,I had to join to enter the building.,"Of course, and I hope you're having fun like me.  (She struggles playfully.)  Have you met Mistress Sophie?",,
+40,,A kiss to remember our love?,"Sure!  (You kiss each other quickly.)  I remember these lips.  (She giggles.)  So, how did you find me?",DialogRemove(),
+40,41,I've searched all over town for you.,You're the best!  And they've accepted you as a club member?,,
+40,41,I've asked your friends about you.,That's clever!  Amanda knows about the Bondage Club.  You're a member now?,,
+40,41,It's pure luck.  I wasn't looking for you.,It's a small world I guess.  (She smiles.)  You're a club member now?,,
+41,100,"Yes, I've joined this great club!",Awesome!  I hope you're having fun like me.  (She struggles playfully.)  Have you met Mistress Sophie?,,
+41,100,I had to join to enter the building.,"Of course, and I hope you're having fun like me.  (She struggles playfully.)  Have you met Mistress Sophie?",,
+50,,I'm glad to see you slave.  (Spank her butt.),"Ow!  I'm so happy to see you Mistress!  Well... hear you.  (She giggles.)  So, you've joined the club?",DialogRemove(),
+50,100,They've had to let me join.,"Of course, a Dominant like you has her place here.  Have you met Mistress Sophie?",,
+50,100,"Yes, I'm a new club member.",Great!  I hope you're having fun like me Mistress.  (She struggles playfully.)  Have you met Mistress Sophie?,,
+50,100,I've been a member for a while now.,That's wonderful Mistress!  (She struggles playfully.)  You probably know Mistress Sophie?,,
+60,61,"It's fine, don't worry about it.","(She smiles.)  You're the best Mistress!  Though, I didn't knew you were a member.  When did you joined?",,
+60,61,We'll talk about your punishment later.,(She bows her head.)  Yes Mistress.  I didn't knew you were a member.  When did you joined?,,
+60,61,I've already planned your punishment.,(She bows her head.)  Yes Mistress.  I didn't knew you were a member.  When did you joined?,,
+61,100,They've had to let me join.,"Of course, a Dominant like you has her place here.  Have you met Mistress Sophie?",,
+61,100,"Yes, I'm a new club member.",Great!  I hope you're having fun like me Mistress.  (She struggles playfully.)  Have you met Mistress Sophie?,,
+61,100,I've been a member for a while now.,That's wonderful Mistress!  (She struggles playfully.)  You probably know Mistress Sophie?,,
+70,100,What's your punishment?,I'm not sure actually.  I'm waiting here for Mistress Sophie to receive it.  Have you met her?,,
+70,100,All of this for bringing a friend?,"Yes and no, I've actually angered Mistress Sophie, one of the club owner.  Have you met her?",,
+80,,Why are you restrained?,"I'm getting punished.  (She struggles and giggles.)  Don't worry, I've seen worse.  So, are you enjoying your visit?",DialogRemove(),
+80,100,"Yes, thanks for introducing me.",Sure!  And I can introduce you to lots of great people around here.  Have you met Mistress Sophie?,,
+80,100,"Yes and no, I still need to explore.","Absolutely, and exploring is part of the fun.  Have you met Mistress Sophie?",,
+80,100,I'm not sure this place is for me.,"I understand, but before you go, there's someone you should meet.  Have you met Mistress Sophie?",,
+100,110,I work with Sophie.  I'm a Mistress here.,Oh!  Are you here to punish me?  I thought she wanted to do it personaly.,,"DialogLogQuery(""ClubMistress"", ""Management"")"
+100,110,Who's Mistress Sophie?,She's one of the club owners and she's going to punish me here a little later.,,
+100,110,Why do you ask?,"She should be here soon, she reserved that room.  She's going to punish me.",,
+110,,,Mistress Sophie?  DialogPlayerName?  Marco?  (She laughs.),,
+110,,I shouldn't be here?,I don't know if you'll get in trouble for being here.  Don't make Mistress Sophie angry.,DialogRemove(),
+110,,Do you want to be left alone?,"I guess you can stay, it's boring to be left alone.  Unless it's part of my punishment and you could get in trouble with Mistress Sophie.",DialogRemove(),
+110,120,Do you want to get out of these chains?,Sure!  It's been a while now.  Do you have the key or something to pick the lock?  (She shows you her restraints.),DialogAllowItem(True),
+110,120,Can I play with you?,Of course!  The more the merrier.  (She giggles and gets a little bit closer.),DialogAllowItem(True),
+110,120,(Play with her.),(She giggles and gets a little bit closer.),DialogAllowItem(True),
+110,,(Leave her.),,DialogLeave(),
+120,,,Mistress Sophie?  DialogPlayerName?  Marco?  (She laughs.),,"DialogIsBlind(""CurrentCharacter"")"
+120,,,DialogPlayerName!  Can you help me out of these shackles?  Or do you want to add more restraints?  (She giggles.),,"!DialogIsBlind(""CurrentCharacter"")"
+120,121,How do you unlock these shackles?,I don't know.  Maybe someone from the club can help.  Or we can wait for Mistress Sophie.,ActivityRun(),
+120,,(Check her shackles.),,CheckShackles(),
+120,,(Tickle her.),"(You tickle her on the tummy, she laughs a little but doesn't seem to enjoy it that much.)",ActivityRun(),Player.CanInteract()
+120,,(Kiss her.),(You kiss each other slowly as she moans of pleasure.)  I love you so much DialogPlayerName.,ActivityRun(),CanKissLover()
+120,,(Kiss her.),(You kiss her as she giggles.)  You're so kinky.,ActivityRun(),CanKissNotLover()
+120,,(Spank her.),(You spank her butt as she jumps and moans.)  You're the best Mistress ever!  So much pain and pleasure!,ActivityRun(),CanSpankOwner()
+120,,(Spank her.),(You spank her butt as she jumps and moans.)  Oh yes!  Pain and pleasure!,ActivityRun(),CanSpankNotOwner()
+120,,(Fondle her.),"(You cup her breast and massage them lovingly, she seems to enjoy it a little.)",ActivityRun(),Player.CanInteract()
+120,,(Masturbate her.),(You masturbate her slowly as she trembles and moans from the pleasure.) Ooooooh yes.,ActivityRun(),Player.CanInteract()
+120,,(Leave her.),,DialogLeave(),
+121,120,I'll go find help.  (Leave her.),,StartUnlockQuest(),
+121,120,Let's wait for Mistress Sophie.,Sure!  (She giggles and struggles in her cuffs.),ActivityRun(),
