@@ -16,7 +16,9 @@ var ManagementRandomActivityList = ["AddArms", "RemoveArms", "AddGag", "RemoveGa
 var ManagementVisitRoom = false;
 
 // Returns TRUE if the dialog situation is allowed
-function ManagementNoTitle() { return (!LogQuery("JoinedSorority", "Maid") && !LogQuery("ClubMistress", "Management") && (ReputationGet("Kidnap") < 50)) }
+function ManagementNoTitle() { return (!LogQuery("JoinedSorority", "Maid") && !LogQuery("ClubMistress", "Management") && (ReputationGet("Kidnap") < 50) && !SarahUnlockQuest) }
+function ManagementSarahUnlockQuest() { return (SarahUnlockQuest) }
+function ManagementIsSarahOwner() { return (SarahUnlockQuest && (Sarah.Owner == Player.Name)) }
 function ManagementGetMistressAngryCount(InCount) { return (InCount == ManagementMistressAngryCount) }
 function ManagementMistressAngryAdd() { ManagementMistressAngryCount++ }
 function ManagementMistressWillRelease() { return (CommonTime() >= ManagementMistressReleaseTimer) }
@@ -351,4 +353,10 @@ function ManagementMistressKicked() {
 	InventoryDelete(Player, "MetalChastityBeltKey", "ItemPelvis", false);
 	InventoryDelete(Player, "MetalChastityBraKey", "ItemBreast", false);
 	ServerPlayerInventorySync();
+}
+
+// Frees Sarah if the player is already her owner
+function ManagementFreeSarah() {
+	ReputationProgress("Dominant", 4);
+	SarahUnlock();
 }

@@ -82,8 +82,6 @@ function DialogLeave() {
 
 // Generic dialog function to remove a piece of the conversation that's already done
 function DialogRemove() {
-
-	// Finds the dialog spot and removes it
 	var pos = 0;
 	for(var D = 0; D < CurrentCharacter.Dialog.length; D++)
 		if ((CurrentCharacter.Dialog[D].Stage == CurrentCharacter.Stage) && (CurrentCharacter.Dialog[D].Option != null) && DialogPrerequisite(D)) {
@@ -94,6 +92,16 @@ function DialogRemove() {
 			pos++;
 		}
 
+}
+
+// Generic dialog function to remove any dialog from a specific group
+function DialogRemoveGroup(GroupName) {
+	GroupName = GroupName.trim().toUpperCase();
+	for(var D = 0; D < CurrentCharacter.Dialog.length; D++)
+		if ((CurrentCharacter.Dialog[D].Group != null) && (CurrentCharacter.Dialog[D].Group.trim().toUpperCase() == GroupName)) {
+			CurrentCharacter.Dialog.splice(D, 1);
+			D--;
+		}
 }
 
 // Leaves the item menu for both characters

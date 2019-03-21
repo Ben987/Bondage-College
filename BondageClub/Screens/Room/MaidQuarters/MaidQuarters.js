@@ -24,6 +24,7 @@ function MaidQuartersAllowMaidDrinks() { return (!Player.IsRestrained() && !Maid
 function MaidQuartersAllowMaidCleaning() { return (!Player.IsRestrained() && !MaidQuartersMaid.IsRestrained() && !LogQuery("ClubMistress", "Management")); }
 function MaidQuartersAllowRescue() { return (!Player.IsRestrained()); }
 function MaidQuartersAllowCancelRescue() { return (MaidQuartersCurrentRescueStarted && !MaidQuartersCurrentRescueCompleted); }
+function MaidQuartersCanFreeSarah() { return (SarahUnlockQuest && LogQuery("LeadSorority", "Maid")) }
 
 // Loads the maid quarters room
 function MaidQuartersLoad() {
@@ -197,4 +198,9 @@ function MaidQuartersCancelRescue() {
 	if (MaidQuartersCurrentRescue == "ShibariDojo") { ShibariCompleteRescue(); ShibariTeacher.Stage = "0"; }
 	if (MaidQuartersCurrentRescue == "Shop") { ShopCompleteRescue(); ShopVendor.Stage = "0"; }
 	if (MaidQuartersCurrentRescue == "Gambling") { GamblingCompleteRescue(); GamblingFirstSub.Stage = "0"; }
+}
+
+// The player as head maid can trick the maids into freeing Sarah
+function MaidQuartersFreeSarah() {
+	SarahUnlock();
 }

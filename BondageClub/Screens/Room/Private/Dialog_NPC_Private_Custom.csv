@@ -271,6 +271,7 @@ PlayerMustKneel,,,"(She licks her lips.)  Hey sexy sub, you know what would turn
 20,,Are you looking for a submissive?,You mean yourself?  I need more time to get to know you.,,NeedTimeToTakePlayerAsSub(),NeedTimeToTakePlayerAsSub,
 20,,Are you looking for a submissive?,(She giggles.)  Me?  Looking for a subbie?  Like you?  I don't know.  I need more time first to get to know you.,,NeedTimeToTakePlayerAsSub(),NeedTimeToTakePlayerAsSub,Submissive
 20,,Are you looking for a submissive?,"Girl, we barely know each other.  I need more time to get to know you.",,NeedTimeToTakePlayerAsSub(),NeedTimeToTakePlayerAsSub,Dominant
+20,,Are you looking for a submissive?,(She blushes and shakes her head no.)  That could never happen Miss.  I don't have any Dominant blood in me.,,NeverTakePlayerAsSub(),,
 20,30,Are you looking for an owner?,(She blushes.)  To serve someone like you Miss?  I must admit that it would be quite a thrill.,,WouldTakePlayerAsDom(),WouldTakePlayerAsDom,
 20,30,Are you looking for an owner?,(She nods.)  My flesh and my soul crave to serve someone like you Miss.,,WouldTakePlayerAsDom(),WouldTakePlayerAsDom,Violent
 20,30,Are you looking for an owner?,"(She smiles.)  I've been waiting for the perfect Dominant to take care and cherish me, someone like you Miss.",,WouldTakePlayerAsDom(),WouldTakePlayerAsDom,Peaceful
@@ -281,6 +282,7 @@ PlayerMustKneel,,,"(She licks her lips.)  Hey sexy sub, you know what would turn
 20,,Are you looking for an owner?,(She shrugs.)  You look like one hell of a Domme but I don't know you enough.  Let's wait ok?,,NeedTimeToTakePlayerAsDom(),NeedTimeToTakePlayerAsDom,Rude
 20,,Are you looking for an owner?,"I must decline Miss.  You seem to be a wonderful Dominant, but we haven't spent enough time together to begin a BDSM relationship.",,NeedTimeToTakePlayerAsDom(),NeedTimeToTakePlayerAsDom,Polite
 20,,Are you looking for an owner?,Can you help me out first so we can talk?,,DialogIsRestrained(CurrentCharacter),,
+20,,Are you looking for an owner?,Forget it girl.  I'll never be collared by anyone.,,NeverTakePlayerAsDom(),,
 20,10,Let's talk about something else.,(She nods.)  Sure.,,,,
 21,22,Would you consider someone like me?,I might.  Are you sure you're ready to be owned?,,,ConsiderSub,
 21,22,Would you consider someone like me?,That's quite a commitment.  Are you sure you're ready to be owned?,,,ConsiderSub,Serious
