@@ -14,7 +14,9 @@ var HorseWalkHitPony = 0;
 var HorseWalkHitTrainer = 0;
 var HorseWalkDrawPony = false;
 var HorseWalkDrawTrainer = false;
-var HorseWalkDrawPosition = 0;
+var HorseWalkDrawXPosition = 0;
+var HorseWalkDrawYPosition = 0;
+var HorseWalkDrawYHeigh = 0;
 var HorseWalkDrawCaracter = 0;
 var HorseWalkSpeed = 1;
 var HorseWalkText =""
@@ -178,8 +180,13 @@ function HorseWalkRun() {
 
 	if (MiniGameDifficulty == "WhipPony") {
 		if (HorseWalkEventTimer < CommonTime()) {
+			if (HorseWalkDrawPony == true && !MiniGameEnded) HorseWalkHitTrainer++;
 			HorseWalkEventTimer = CommonTime() + 1000;
-			if (!MiniGameEnded) HorseWalkDrawPosition = Math.floor(Math.random() * 1500);
+			if (!MiniGameEnded) {
+				HorseWalkDrawXPosition = Math.floor(Math.random() * 1500);
+				HorseWalkDrawYHeigh = Math.floor(Math.random() * 750) + 250;
+				HorseWalkDrawYPosition = Math.floor(Math.random() * (1000 - HorseWalkDrawYHeigh));
+			}
 			HorseWalkDrawCaracter = Math.floor(Math.random() * 5);
 			if (HorseWalkDrawCaracter == 0) {
 				HorseWalkDrawPony = false;
@@ -192,12 +199,12 @@ function HorseWalkRun() {
 				HorseWalkDrawTrainer = false; 
 			}
 		}
-		if (HorseWalkDrawPony) DrawCharacter(StablePony, HorseWalkDrawPosition, 0, 1);
-		if (HorseWalkDrawTrainer) DrawCharacter(StableTrainer, HorseWalkDrawPosition, 0, 1);
+		if (HorseWalkDrawPony) DrawCharacter(StablePony, HorseWalkDrawXPosition, HorseWalkDrawYPosition, HorseWalkDrawYHeigh/1000);
+		if (HorseWalkDrawTrainer) DrawCharacter(StableTrainer, HorseWalkDrawXPosition, HorseWalkDrawYPosition, HorseWalkDrawYHeigh/1000);
 		HorseWalkText = TextGet("HorseWalkHitSpots");
 		HorseWalkText = HorseWalkText.replace("$PONY", HorseWalkHitPony).replace("$TRAINER", HorseWalkHitTrainer);
 		DrawText(HorseWalkText, 1000, 977, "black", "white");
-	} else {
+	} else { //Hurdle & Carrot
 		// Draw the player character, progress bar and text
 		HorseWalkDoMove();
 		if (MiniGameDifficulty == "HurdleTraining") {
@@ -259,7 +266,7 @@ function HorseWalkDoMove() {
 
 		var Range = ((CommonIsMobile) ? (HorseWalkItemSize / 1.5) : (HorseWalkItemSize / 2));
 
-		// If the game has started, we check the click position and remove a Item at that position
+		// If the game has started, we check the click position and change a Item at that position
 		if (!MiniGameEnded){
 			if (MiniGameDifficulty == "Carrot") {
 				for(var S = 0; S < HorseWalkCarrots.length; S++){
@@ -299,8 +306,7 @@ function HorseWalkDoMove() {
 // On mobile, we need to move the player on click
 function HorseWalkClick() {
 	if (MiniGameDifficulty == "WhipPony") {
-		//todo
-		if ((MouseX >= HorseWalkDrawPosition) && (MouseX < (HorseWalkDrawPosition + 500)) && (MouseY >= 0) && (MouseY < 1000)) {
+		if ((MouseX >= HorseWalkDrawXPosition) && (MouseX < (HorseWalkDrawXPosition + (HorseWalkDrawYHeigh / 2))) && (MouseY >= HorseWalkDrawYPosition) && (MouseY < (HorseWalkDrawYPosition + HorseWalkDrawYHeigh))) {
 			if (HorseWalkDrawPony && !MiniGameEnded) {
 				HorseWalkHitPony++;
 				HorseWalkDrawPony = false;

@@ -410,7 +410,7 @@ var AssetFemale3DCG = [
 		Effect: ["GagNormal"],
 		Color: ["Default"],
 		Left: 150,
-		Top: 50,
+		Top: 0,
 		Zone: [[150, 160, 200, 50]],
 		Asset: [ 
 			{ Name: "SmallClothGag", Effect: ["GagLight"], Value: 10, Time: 10 },
@@ -422,6 +422,7 @@ var AssetFemale3DCG = [
 			{ Name: "RingGag", Value: 35, Time: 5 },
 			{ Name: "DuctTapeGag", Value: 20, Time: 5, RemoveTime: 2 },
 			{ Name: "DusterGag", Random: false, RemoveAtLogin: true, Value: -1, Time: 20 },
+			{ Name: "HarnessPonyBits", Random: false, RemoveAtLogin: false, Effect: ["GagHeavy"], Value: -1, Time: 20 },
 			{ Name: "RegularSleepingPill", Enable: false, Wear: false, Value: -1, Bonus: [{Type: "KidnapSneakiness", Factor: 3}] }
 		]
 	},
