@@ -336,7 +336,7 @@ Tell me about the other types of restraints.
 Erzähl mir von den anderen Arten von Fesseln.
 ###_NPC
 Some items are impossible to struggle out from, so you'll need to find help.  Also, items like cuffs can be locked, and you'll need a key to unlock them.
-Bei bestimmten Fesseln ist die Befreiung ohne Hilfe unmöglich. Dinge wie Handschellen lassen sich abschließen und benötigen zum Öffnen einen Schlüssel.
+Bei manchen Fesseln ist das Befreien ohne Hilfe unmöglich. Dinge wie Handschellen lassen sich nur mit einem Schlüssel öffnen.
 Of course!  If you're ready for the challenge I will tie you up.
 Natürlich! Wenn du bereit für die Herausforderung bist, werde ich dich fesseln.
 Are you ready to struggle against the ropes?

@@ -16,7 +16,7 @@ Schweigen ist Gold, und eine geknebelte Sub ist noch besser.
 (You release her legs and she nods slowly.)  You take good care of all the details.
 (Du befreist ihre Beine und sie nickt langsam.) Sie haben ein gutes Auge für alle Details.
 (She complies as you restrain her feet securely.)  You can also try the suspension ropes from the Dojo if you wish.
-(Sie fügt sich, als du ihre Beine fest zusammenbindest.) Sie können auch die Hängeseile des Dojos benutzen, wenn Sie möchten.
+(Sie fügt sich, als du ihre Beine fest verbindest.) Sie können auch die Hängeseile des Dojos benutzen, wenn Sie möchten.
 (You release her feet.)  It will be a lot easier now to monitor the Dojo.
 (Du befreist ihre Füße.) So wird es viel einfacher sein, über das Dojo zu wachen.
 (You strap the collar on her neck while she frowns.)  Collars are nice, but I will never wear a permanent one.
@@ -220,13 +220,13 @@ What happened here?
 Was ist hier passiert?
 ###_NPC
 A Japanese girl started to mess with my ropes.  I've tried to stop her, but she threw me on the floor.  She stripped, restrained and left me dangling.
-Ein japanisches Mädchen machte sich an meinen Seilen zu schaffen. Ich wollte eingreifen und sie warf mich zu Boden. Dann ließ sie mich gefesselt hängen.
+Ein japanisches Mädchen spielte an meinen Seilen herum. Ich wollte eingreifen und sie warf mich zu Boden. Dann ließ sie mich gefesselt hängen.
 A student dared me to try Shibari.  I thought she couldn't do it, but she did and left to get her camera.  I couldn't escape by myself.
 Eine Schülerin forderte mich zu Shibari heraus. Sie fesselte mich überraschend gut und ging ihre Kamera holen. Ich konnte mich nicht befreien.
 (She blushes.)  I wanted to try self-suspension and I somehow put the knots out of reach.  I got stuck like that, this is embarrassing.
 (Sie errötet.) Ich wollte versuchen, mich selbst aufzuhängen und habe irgendwie die Knoten außer Reichweite platziert. Peinlich, dass ich festtecke.
 Milady Head Mistress came in with customers and they wanted to try Shibari on me.  They had to hurry so they called the sorority to get me down.
-Die werte Oberherrin kam mit Kunden herein und sie wollten Shibari an mir ausprobieren. Sie hatten es eilig, also riefen sie die Dienerinnen zur Rettung.
+Die Oberherrin kam mit Kunden herein und sie wollten Shibari an mir ausprobieren. Sie hatten es eilig, also riefen sie die Dienerinnen zur Rettung.
 ###_PLAYER
 I'll go get help.  (Leave her.)
 Ich hole Hilfe. (Sie verlassen.)

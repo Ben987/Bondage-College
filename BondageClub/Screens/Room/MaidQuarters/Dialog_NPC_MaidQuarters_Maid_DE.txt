@@ -303,7 +303,7 @@ Great!  Now open wide little sister.
 Super! Jetzt mach den Mund weit auf, kleine Schwester.
 ###_PLAYER
 I can't wait to initiate other maids.
-Ich freue mich schon auf das Einweihen anderer Dienerinnen.
+Ich freue mich auf das Einweihen anderer Dienerinnen.
 ###_NPC
 It's your turn now.  Open wide little sister.
 Erstmal bist du dran. Mund weit auf, kleine Schwester.
@@ -403,7 +403,7 @@ No Miss, you're already in the sorority.  All you need to do is sign a contract 
 Nein, Miss, sie gehören bereits zur Schwesternschaft. Sie müssen nur einen Vertrag mit dem Club unterschreiben.
 ###_PLAYER
 Perfect!  Give me that contract.  (Sign the contract.)
-Perfekt! Her mit dem Vertrag. (Den Vertrag unterschreiben.)
+Perfekt! Her mit dem Vertrag. (Unterschreiben.)
 ###_NPC
 (You sign the head maid contract.)  The sorority will grow stronger under your rule Miss.
 (Du unterschreibst den Vertrag.) Die Schwesternschaft wird unter Ihrer Herrschaft wachsen, Miss.
@@ -467,7 +467,7 @@ Perfect!  Let me restrain you then.
 Perfekt! Dann lass mich dich mal fesseln.
 ###_PLAYER
 I'll change first.  (Wear the maid uniform.)
-Ich ziehe mich erst um. (Die Dienerinnen-Uniform anziehen.)
+Ich ziehe mich erst um. (Die Uniform anziehen.)
 ###_NPC
 (You change into the maid uniform.)  Perfect!  Let me restrain you then.
 (Du ziehst die Dienerinnen-Uniform an.) Perfekt! Dann lass mich dich mal fesseln.
@@ -479,7 +479,7 @@ You're in the Bondage Club sweetie.  Waitresses need to be restrained.
 Du bist hier im Bondage-Club, Süße. Kellnerinnen müssen gefesselt sein.
 ###_PLAYER
 Very well Miss.  (Blush and allow her to restrain you.)
-Sehr wohl, Miss. (Rot werden und dich von ihr fesseln lassen.)
+Sehr wohl, Miss. (Rot werden und dich fesseln lassen.)
 ###_NPC
 Very good, first I will restrain your legs but not your feet.  You need to be able to walk around.
 Sehr gut, ich fessele zuerst deine Beine, aber nicht deine Füße. Du musst schließlich herumlaufen können.

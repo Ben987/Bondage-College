@@ -68,7 +68,7 @@ function csvToTranslation(arr, comments, mode) {
                 addToResult(row[2], mode, comments, 'PLAYER');
             }
             if (row[3]) {
-                addToResult(row[3], mode, comments, 'NPC');
+                addToResult(row[3], mode, comments, 'NPC' + (row[7] ? ' [' + row[7] + ']' : ''));
             }
         }
         else addToResult(row[textColumn], mode);
@@ -102,7 +102,7 @@ function convert() {
     <p>Paste the content of a Bondage Club CSV file into the box below and click "Convert" to generate a translation template. Then, copy the generated text from the box into your preferred text editor and save it as a TXT file with your language code.</p>
     <textarea id="content"></textarea>
     <p>
-        <input type="checkbox" id="comments"/>
+        <input type="checkbox" id="comments" checked/>
         <label for="comments">Include comments</label>
     </p>
     <p>

@@ -70,14 +70,16 @@
     TO DO
     Check for...
     * Duplicate strings in translation
-    * Strings that are too long (more than 2 lines for player or more than 3 lines for npc)
     * Identical string translated differently in another file of the same language
 */
 
 var EnglishFiles = {};
+var TestCanvas;
 
-//
 window.onload = function() {
+    TestCanvas = document.createElement("canvas").getContext("2d");
+    TestCanvas.font = "36px Arial";
+
 	for (var L = 0; L < TranslationDictionary.length; L++) {
         var Language = TranslationDictionary[L];
         if (Language.LanguageCode === "EN") continue;
@@ -137,16 +139,38 @@ function CreateFileStatusReport(Language, Path) {
 
 function ProcessEnglishFile(File) {
     File.UniqueLines = [];
+    File.Type = "Text";
     var TextColumns;
     if (File.Data[0].length == 2) TextColumns = [1];
     else if (File.Data[0].length == 3) TextColumns = [2];
-    else TextColumns = [2, 3];
+    else {
+        TextColumns = [2, 3];
+        File.Type = "Dialog";
+        File.UniqueLineData = {};
+    }
     for (var L = 0; L < File.Data.length; L++) {
         for (var C = 0; C < TextColumns.length; C++) {
-            var Text = File.Data[L][TextColumns[C]];
+            var Column = TextColumns[C];
+            var Text = File.Data[L][Column];
+            Text = Text.trim();
             if (File.UniqueLines.indexOf(Text) < 0) File.UniqueLines.push(Text.replace("\r", ""));
+            if (File.Type === "Text") continue;
+            if (File.UniqueLineData[Text]) continue;
+            File.UniqueLineData[Text] = {};
+            File.UniqueLineData[Text].Speaker = (Column === 2 ? "Player" : "NPC");
+            if (File.UniqueLineData[Text].Speaker === "NPC") {
+                File.UniqueLineData[Text].HasExitButton = HasExitButton(File.Data, File.Data[L][0]);
+            }
         }
     }
+}
+
+// Modified from DialogIntro() in Dialog.js
+function HasExitButton(Data, Stage) {
+	for(var D = 0; D < Data.length; D++)
+		if ((Data[D][0] == Stage) && (!Data[D][2] || Data[D][2].trim() == "") && (Data[D][3] && Data[D][3].trim() != "")) // && DialogPrerequisite(D)
+			return Data[D][3].trim() !== "" && Data[D][3].trim() !== "NOEXIT";
+	return false;
 }
 
 function GetDataAndAnalyze(Status) {
@@ -167,7 +191,7 @@ function GetDataAndAnalyze(Status) {
             }
             var DataSet = {};
             DataSet.Speaker = Speaker;
-            DataSet.English = Line;
+            DataSet.English = Line.trim();
             DataSet.Line = L + 1;
             var Translation;
             do {
@@ -201,7 +225,36 @@ function AnalyzeStatus(Status) {
         if (Status.Data[T].English.trim() === Status.Data[T].Translation.trim() || Status.Data[T].Translation.trim() === "")
             Status.UntranslatedLines.push(Status.Data[T]);
     }
+    CheckLineLengths(Status);
     CreateStatusSummary(Status);
+}
+
+function CheckLineLengths(Status) {
+    Status.LinesTooLong = [];
+    if (Status.EnglishFile.Type !== "Dialog") return;
+    for (var D = 0; D < Status.Data.length; D++) {
+        var DataSet = Status.Data[D];
+        var MetaData = Status.EnglishFile.UniqueLineData[DataSet.English];
+        if (!MetaData) continue;
+        var MaxWidth = (MetaData.HasExitButton ? 840 : 950);
+        var Words = DataSet.Translation.split(" ");
+        var Lines = [];
+        var CurrentLine = "";
+        for (var W = 0; W < Words.length; W++) {
+            var TestLine = CurrentLine + Words[W] + " ";
+            if (TestCanvas.measureText(TestLine).width > MaxWidth && W > 0) {
+                Lines.push(CurrentLine);
+                CurrentLine = Words[W] + " ";
+            } else {
+                CurrentLine = TestLine;
+            }
+        }
+        Lines.push(CurrentLine);
+        if ((MetaData.Speaker === "NPC" && Lines.length > 3) || (MetaData.Speaker === "Player" && Lines.length > 1)) {
+            DataSet.PreviewLines = Lines;
+            Status.LinesTooLong.push(DataSet);
+        }
+    }
 }
 
 function CreateStatusSummary(Status) {
@@ -218,6 +271,10 @@ function CreateStatusSummary(Status) {
     if (Status.UntranslatedLines.length > 0) {
         Ok = false;
         AddStatusReport(Status, "Error", Status.UntranslatedLines.length + " lines not translated");
+    }
+    if (Status.LinesTooLong.length > 0) {
+        Ok = false;
+        AddStatusReport(Status, "Error", Status.LinesTooLong.length + " lines too long");
     }
     if (Ok) {
         AddStatusReport(Status, "Ok", "OK");
@@ -261,6 +318,16 @@ function ViewDetails(Status) {
             AddNodeWithText(List, "dd", Data.English);
         }
     }
+    if (Status.LinesTooLong.length > 0) {
+        AddNodeWithText(Status.Details, "h4", "These lines of text are too long:");
+        AddNodeWithText(Status.Details, "p", "Text is broken up into lines automatically by the game to fit their available space. NPC text should be no longer than 3 lines, while the Player's answers should ideally just be a single line (2 lines is okay, but should be avoided). The following lines exceed those limits and will overflow their boundaries in the game; consider shortening them.");
+        var List = document.createElement("dl");
+        Status.Details.appendChild(List);
+        for (var Data of Status.LinesTooLong) {
+            AddNodeWithText(List, "dt", "Line " + Data.Line + ":"); // TODO: Display metadata (Player or NPC, Exit Button or no)
+            AddNodeWithText(List, "dd", Data.PreviewLines.join("<br/>"), true);
+        }
+    }
 }
 
 function AddStatusReport(Status, Type, Text) {
@@ -270,9 +337,10 @@ function AddStatusReport(Status, Type, Text) {
     Status.Summary.appendChild(Element);
 }
 
-function AddNodeWithText(Parent, Tag, Text) {
+function AddNodeWithText(Parent, Tag, Text, AllowHTML) {
     var Element = document.createElement(Tag);
-    Element.textContent = Text;
+    if (AllowHTML) Element.innerHTML = Text;
+    else Element.textContent = Text;
     Parent.appendChild(Element);
     return Element;
 }
@@ -284,7 +352,7 @@ function AddNodeWithText(Parent, Tag, Text) {
 <body>
     <h1>Bondage Club Translation Status Report</h1>
     <p>This tool processes all translation files that are currently referenced inside Translation.js. Its main purpose is to check if all translation files are up to date and if there are any potential problems. If a status displays something other than &quot;OK&quot;, click the &quot;View Details&quot; button to learn more.</p>
-    <p>Please note that this tool isn't perfect and is supposed to merely assist the translation process by offering suggestions. Some of the reports may be false alarms, so please use your own judgement to decide if they need to be addressed.</p>
+    <p>Please note that this tool isn't perfect and is supposed to merely assist the translation process by offering suggestions. Some of the reports may be false alarms, so please use your own judgement to decide if they need to be addressed. Also note that length checking only occurs for &quot;Dialog&quot; files.</p>
     <div id="LanguageWrapper"></div>
 </body>
 </html>

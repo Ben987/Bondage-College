@@ -76,6 +76,7 @@ RemoveSuspensionHempRope,,,(You untie the hemp rope from the ceiling and slowly 
 110,120,Can I play with you?,Of course!  The more the merrier.  (She giggles and gets a little bit closer.),DialogAllowItem(True),
 110,120,(Play with her.),(She giggles and gets a little bit closer.),DialogAllowItem(True),
 110,,(Leave her.),,DialogLeave(),
+120,,,I'm so glad that you and Amanda came here.  I wish I could hug you both.,,KnowAmandaInRoom()
 120,,,Mistress Sophie?  DialogPlayerName?  Marco?  (She laughs.),,"DialogIsBlind(""CurrentCharacter"")"
 120,,,DialogPlayerName!  Can you help me out of these shackles?  Or do you want to add more restraints?  (She giggles.),,"!DialogIsBlind(""CurrentCharacter"")"
 120,121,How do you unlock these shackles?,I don't know.  Maybe someone from the club can help.  Or we can wait for Mistress Sophie.,ActivityRun(),

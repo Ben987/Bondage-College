@@ -132,7 +132,6 @@ function LoginResponse(C) {
 			SkillLoad(C.Skill);
 			CharacterLoadCSVDialog(Player);
 			if (!LogQuery("SleepCage", "Rule") || (Player.Owner == "")) CharacterAppearanceValidate(Player);
-			SarahSetStatus();
 			CharacterRefresh(Player, false);
 			ElementRemove("InputName");
 			ElementRemove("InputPassword");
@@ -144,6 +143,7 @@ function LoginResponse(C) {
 			if (C.PrivateCharacter != null)
 				for(var P = 0; P < C.PrivateCharacter.length; P++)
 					PrivateCharacter.push(C.PrivateCharacter[P]);
+			SarahSetStatus();
 
 			// If the player must start in her room, in her cage
 			if (LogQuery("SleepCage", "Rule") && (Player.Owner != "")) {

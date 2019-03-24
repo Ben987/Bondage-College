@@ -1,0 +1,197 @@
+###_NPC
+You've visited some kinky rooms recently?  (She laughs.)
+Du hast wohl letztens ein paar abenteuerliche Räume besucht? (Sie lacht.)
+(She shakes her head from left to right but you're able to silence her.)
+(Sie schüttelt den Kopf hin und her, aber du schaffst es, sie zum Schweigen zu bringen.)
+(You remove her gag and she smiles.)  Thanks!  Do you think I should go back to work?
+(Du nimmst ihren Knebel ab und sie lächelt.) Danke! Meinst du, ich sollte mich wieder an die Arbeit machen?
+(She doesn't resist much and allows you to restrain her.)  It will be a fun shift after all.
+(Sie wehrt sich kaum und lässt sich von dir fesseln.) Das wird wohl doch keine so langweilige Schicht.
+(You free her arms and she claps her hands.)  Well done!  You know your bondage.
+(Du befreist ihre Arme und sie klatscht in die Hände.) Gute Arbeit! Mit Bondage kennst du dich aus.
+(She shakes her butt as you restrain her.)  You went to the shop recently?
+(Sie wackelt mit dem Po, während du sie fesselst.) Warst wohl neulich im Laden?
+(You release her legs as she shakes her butt again.)  Shake your booty!
+(Du befreist ihre Beine und sie wackelt wieder mit dem Po.) Shake your booty!
+(She tries to keep her balance as you restrain her feet.)  Don't worry, I won't fall.
+(Sie hält ihre Balance, als du ihre Füße fesselst.) Keine Sorge, ich falle schon nicht hin.
+(You release her feet and she stands up.)  Any other restraints I could try?
+(Du befreist ihre Füße und sie richtet sich auf.) Gibt es noch andere Fesseln, die ich ausprobieren könnte?
+(You fasten the collar around her neck.)  I'm not looking for an owner you know.
+(Du schnallst ihr das Halsband um.) Ich bin nicht auf der Suche nach einer Besitzerin, weißt du.
+(You remove the collar from her neck.)  Keep that collar, you can bring subs in your room.
+(Du nimmst ihr das Halsband ab.) Behalte das Halsband, du kannst Subs in dein Zimmer einladen.
+(You lock the belt on her as she giggles.)  Strangely, not being able to touch is a turn on for me.
+(Du schließt ihr den Gürtel um und sie kichert.) Seltsamerweise macht es mich an, mich nicht anfassen zu können.
+(You unlock the device from her waist.)  Great!  Metal detectors would have been problematic.
+(Du entfernst das Teil von ihrer Hüfte.) Klasse! Das wäre ein Problem bei Metalldetektoren geworden.
+(You strap it on her head as she grumbles.)  I've never been a fan of these.
+(Du bindest es ihr um den Kopf und sie grummelt.) Mit denen konnte ich mich nie anfreunden.
+(You remove the device as she nods quickly.)  This is much better, thanks!
+(Du nimmst es ab und sie nickt hastig.) So ist es viel besser, danke!
+(She whimpers as you whip her breast.)  Ow!  You already got everything, you won't whip a discount out of me.
+(Sie wimmert, als du ihr auf die Brust peitschst.) Au! Du hast doch schon alles, du wirst keinen Rabatt aus mir heraus prügeln.
+(You swing the crop on her torso.)  That's pretty unfair, I'm only trying to do my job.
+(Du schwingst mit der Gerte auf ihren Körper.) Das ist ziemlich unfair, ich mache hier nur meinen Job.
+(You whip her butt as she whimpers from the pain.)  Bring subs to your place and whip them, not me!
+(Du peitschst ihr auf den Hintern und sie wimmert vor Schmerz.) Hole deine Subs zum Auspeitschen her, nicht mich!
+(You lash the leather crop pretty hard on her.)  Oooow!  I'm glad I'm not your slave.
+(Du drischst mit der Ledergerte ziemlich doll auf sie ein.) Aaaau! Ich bin froh, nicht deine Sklavin zu sein.
+(You restrain her feet and suspend her from the ceiling with the hemp rope.)  Hey!  I still have work to do here.
+(Du fesselst ihre Füße und lässt sie mit dem Hanfseil von der Decke baumeln.) Hey! Ich habe hier immer noch zu arbeiten.
+(You release her from the ceiling and release her feet.)  Good!  I do prefer cages.
+(Du lässt sie von der Decke herab und bindest ihre Füße los.) Gut! Käfige sind mir lieber.
+Welcome to the Bondage Club private rooms.  Are you looking to rent a room?
+Willkommen bei den Privatzimmern des Bondage-Clubs. Möchtest du ein Zimmer mieten?
+Welcome to the Bondage Club private rooms.  Do you want to improve your room?
+Willkommen bei den Privatzimmern des Bondage-Clubs. Möchtest du dein Zimmer aufrüsten?
+###_PLAYER
+Hi, I'm DialogPlayerName.
+Hi, ich bin DialogPlayerName.
+###_NPC
+Nice to meet you, I'm DialogCharacterName.  I rent private rooms and rooms improvements.
+Schön dich kennenzulernen, ich bin DialogCharacterName. Ich vermiete Privatzimmer und deren Ausstattung.
+###_PLAYER
+Can you help me?
+Kannst du mir helfen?
+###_NPC
+No, I'm not allowed to play with customers.  And I prefer to see you like that.  (She winks.)
+Nein, es ist mir nicht erlaubt, mit Kunden zu spielen. Außerdem gefällt mir dieser Anblick. (Sie zwinkert.)
+###_PLAYER
+I have a few questions.
+Ich hätte da ein paar Fragen.
+###_NPC
+Of course.  What would you like to know?
+Natürlich. Was möchtest du wissen?
+###_PLAYER
+I'd like to rent my own room.
+Ich möchte mein eigenes Zimmer mieten.
+###_NPC
+The rent is 250 $.  Do you have enough money?
+Die Miete beträgt 250 $. Hast du ausreichend Geld?
+###_PLAYER
+I'd like to improve my room.
+Ich möchte mein Zimmer aufrüsten.
+###_NPC
+Excellent!  The club can provide wardrobes and cages for private rooms.  What would you like?
+Hervorragend! Der Club kann Kleiderschränke und Käfige für Privatzimmer zur Verfügung stellen. Was möchtest du haben?
+###_PLAYER
+Can we play some kinky games?
+Können wir miteinander spielen?
+###_NPC
+I don't have much to do and it's a quiet day.  I guess we can play.
+Ich habe nicht viel zu tun und es ist ein ruhiger Tag. Spielen wir, würde ich sagen.
+I'd love too, but I have rooms and items to rent.
+Ich würde ja gern, aber ich habe Zimmer und Möbel zu vermieten.
+###_PLAYER
+Let's talk later.  (Leave her.)
+Reden wir später. (Sie verlassen.)
+How much is a room?
+Wie viel kostet ein Zimmer?
+###_NPC
+The price for a regular room is 250$.
+Der Preis für ein gewöhnliches Zimmer beträgt 250$.
+###_PLAYER
+For how long I have the room?
+Wie lange gehört der Raum mir?
+###_NPC
+For as long as you're a club member.
+Solange du ein Mitglied des Clubs bist.
+###_PLAYER
+Can I invite friends over?
+Darf ich Freunde einladen?
+###_NPC
+Of course.  The room isn't huge though, it will not fit more than 4 people.
+Selbstverständlich. Die Zimmer sind aber nicht gerade riesig, es passen höchstens vier Leute hinein.
+###_PLAYER
+Can I get naked in my room?
+Darf ich mich in meinem Zimmer ausziehen?
+###_NPC
+Absolutely, it's your room after all.  You can get naked or have sex.
+Natürlich, es ist schließlich dein Zimmer. Du kannst dich ausziehen und Sex haben.
+###_PLAYER
+What are the improvements I can get?
+Was für eine Ausstattung kann ich kaufen?
+###_NPC
+Wardrobe and cages for now.  But the club is always improving, you can check later.
+Fürs Erste Kleiderschränke und Käfige. Der Club wird stets ausgebaut, du kannst später erneut nachfragen.
+###_PLAYER
+Enough questions.
+Genug der Fragen.
+###_NPC
+Alright.  What can I do for you then?
+Also gut. Was kann ich dann für dich tun?
+###_PLAYER
+Can I tie you up?
+Kann ich dich fesseln?
+###_NPC
+Alright, you can use anything you want on me.  I won't complain too much.
+Na gut, du darfst benutzen, was du willst. Ich werde nicht zu sehr meckern.
+A subbie like you?  No way!  (She grabs your arms and restrains them.)  This is much better.
+Eine Sub wie du? Niemals! (Sie packt deine Arme und fesselt sie.) So ist es viel besser.
+###_PLAYER
+Will you tie me up?
+Würdest du mich fesseln?
+###_NPC
+Sure!  Give me your hands.  (She restrains your arms.)  Anything else I can do for you?
+Klar! Gib mir deine Hände. (Sie fesselt deine Arme.) Kann ich sonst noch was für dich tun?
+Miss, I cannot tie you up.  I don't want to get in trouble with a Domme.
+Miss, ich kann Sie nicht fesseln. Mit Dominanten will ich mir keinen Ärger machen.
+###_PLAYER
+I've changed my mind.
+Ich hab's mir anders überlegt.
+Here's the money. (Pay 250$)
+Hier ist das Geld. (250$ zahlen.)
+###_NPC
+Marvelous!  Here are your room keys.  (She gives you keys for your own room.)
+Fabelhaft! Hier sind deine Zimmerschlüssel. (Sie gibt dir die Schlüssel zu deinem eigenen Zimmer.)
+###_PLAYER
+I don't have enough money.
+Ich habe nicht genug Geld.
+###_NPC
+You can get work as a maid or take kidnapping bounties if you need money.
+Wenn du Geld brauchst, kannst du als Dienerin arbeiten oder als Kidnapperin auf Kopfgeldjagd gehen.
+###_PLAYER
+Great!  This room is mine now?
+Klasse! Dieser Raum gehört jetzt also mir?
+###_NPC
+Make yourself at home.  You can contact me anytime if you need improvements.
+Fühl dich wie zu Hause. Du kannst mich jederzeit rufen, wenn du Ausstattung brauchst.
+###_PLAYER
+Thanks!  (Check your room.)
+Danke! (Dein Zimmer ansehen.)
+I would like a wardrobe.
+Ich möchte einen Kleiderschrank.
+###_NPC
+An excellent choice.  The price is 100$.  Can you afford it?
+Hervorragende Wahl. Das macht dann 100$. Kannst du dir das leisten?
+###_PLAYER
+I want some cages.
+Ich will ein paar Käfige.
+###_NPC
+We have a kinky tenant.  (She giggles.)  We can prepare cages for your room for 150$, do you have the funds?
+Eine perverse Mieterin. (Sie kichert.) Für 150$ stellen wir Käfige in deinem Zimmer auf, reichen deine Finanzen?
+###_PLAYER
+How can I use the wardrobe?
+Wie verwende ich den Kleiderschrank?
+###_NPC
+The wardrobe allows you to sort your clothes and items.  To change from one look to another quickly.
+Im Schrank kannst du eine Kleidung und Spielzeuge sortieren und schnell deinen Look wechseln.
+###_PLAYER
+Here's the money. (Pay 100$)
+Hier ist das Geld. (100$ zahlen.)
+###_NPC
+Wonderful!  Give us a few seconds and we'll prepare your wardrobe.
+Wunderbar! Gib uns ein paar Sekunden und wir stellen deinen Schrank auf.
+###_PLAYER
+Why do I need cages?
+Wozu brauche ich Käfige?
+###_NPC
+To keep your submissives locked down of course.  You don't want to lose your properties.
+Um deine Subs einzusperren, natürlich. Dein Eigentum soll dir ja nicht davonlaufen.
+###_PLAYER
+Here's the money. (Pay 150$)
+Hier ist das Geld. (150$ zahlen.)
+###_NPC
+Wonderful!  We'll move the cages in your room right now.
+Wunderbar! Wir bringen die Käfige sofort in dein Zimmer.

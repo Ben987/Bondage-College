@@ -34,5 +34,10 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 0,,(Shake your head no and leave her.),,DialogLeave(),
 10,20,Thanks Miss.  I really appreciate.,"My pleasure, I'll be around if you need help again.","DialogChangeReputation(""Dominant"", -3)",
 10,20,"I owe you one, scream if you get in trouble.","(She giggles.)  Very well, I'll be around if you need help again.","DialogChangeReputation(""Dominant"", -1)",
+20,30,Can this slave ask you something else?,Of course little club slave.  How can I help you?,,MainHallCanTrickMaid()
 20,,Take care!  (Leave her.),,DialogLeave(),
+30,31,A club customer reserved a bedroom to punish me.,Good for you.  (She laughs.)  And how can I help?,,
+30,,"Nothing, I'm good.  (Leave her.)",,DialogLeave(),
+31,32,There's already a girl chained on the bed.,"I understand, we can't have unhappy customers can we?  I'll go release her.",,
+32,,You're the best!  (Leave her.),,FreeSarah(),
 100,,(Frown and leave her.),,DialogLeave(),

@@ -6,6 +6,9 @@ var MainHallMaid = null;
 var MainHallIsMaid = false;
 var MainHallIsHeadMaid = false;
 
+// Returns TRUE if a dialog option is available
+function MainHallCanTrickMaid() { return (ManagementIsClubSlave() && SarahUnlockQuest) }
+
 // Main hall loading
 function MainHallLoad() {
 	MainHallBackground = "MainHall";
@@ -34,7 +37,7 @@ function MainHallRun() {
 	if (Player.CanWalk()) DrawButton(1525, 430, 450, 65, TextGet("KidnapLeague"), "White");
 	if (Player.CanWalk()) DrawButton(1525, 525, 450, 65, TextGet("PrivateRoom"), "White");
 	if (Player.CanWalk()) DrawButton(1525, 620, 450, 65, TextGet("ClubManagement"), "White");
-	if (Player.CanWalk()) DrawButton(1525, 715, 450, 65, TextGet((SarahIntroDone) ? "SarahBedroom" : ((SarahStatus == "") ? "ExploreClub" : "SearchSarah")), "White");
+	if (Player.CanWalk()) DrawButton(1525, 715, 450, 65, TextGet(SarahRoomLabel()), "White");
 
 	// Draws the custom content rooms
 	if (Player.CanWalk()) DrawButton(25, 25, 450, 65, TextGet("Gambling"), "White");
@@ -135,4 +138,11 @@ function MainHallMaidAngry() {
 			MainHallMaid.CurrentDialog = DialogFind(MainHallMaid, "TeachLesson");
 		}		
 	} else MainHallMaid.CurrentDialog = DialogFind(MainHallMaid, "Cower");
+}
+
+// The maid can be tricked to release Sarah
+function MainHallFreeSarah() {
+	ReputationProgress("Dominant", -4);
+	SarahUnlock();
+	DialogLeave();
 }

@@ -739,7 +739,7 @@ Also gut. (Deinen Hals freimachen.)
 (Bow your head and expose your neck.)
 (Deinen Kopf senken und deinen Hals freimachen.)
 I won't get collared again.  (Expose your neck.)
-Ich lasse mich nicht mehr versklaven. (Deinen Hals freimachen.)
+Das war das letzte Mal. (Deinen Hals freimachen.)
 Thanks a lot.
 Vielen Dank.
 ###_NPC

@@ -18,6 +18,8 @@ var TranslationDictionary = [
 		EnglishName: "German",
 		Files: [
 			"Screens/Character/Login/Text_Login_DE.txt",
+			"Screens/Cutscene/NPCCollaring/Text_NPCCollaring_DE.txt",
+			"Screens/Cutscene/PlayerCollaring/Text_PlayerCollaring_DE.txt",
 			"Screens/Cutscene/PlayerMistress/Text_PlayerMistress_DE.txt",
 			"Screens/Room/Introduction/Dialog_NPC_Introduction_Maid_DE.txt",
 			"Screens/Room/Introduction/Dialog_NPC_Introduction_Sub_DE.txt",
@@ -28,6 +30,8 @@ var TranslationDictionary = [
 			"Screens/Room/Management/Dialog_NPC_Management_Mistress_DE.txt",
 			"Screens/Room/Management/Dialog_NPC_Management_RandomGirl_DE.txt",
 			"Screens/Room/Management/Dialog_NPC_Management_Sub_DE.txt",
+			"Screens/Room/Private/Dialog_NPC_Private_Custom_DE.txt",
+			"Screens/Room/Private/Dialog_NPC_Private_Vendor_DE.txt",
 			"Screens/Room/Shibari/Dialog_NPC_Shibari_Student_DE.txt",
 			"Screens/Room/Shibari/Dialog_NPC_Shibari_Teacher_DE.txt"
 		]

@@ -91,7 +91,7 @@ My pleasure, I'll be around if you need help again.
 War mir eine Freude, ich bin in der Nähe, falls du wieder Hilfe brauchst.
 ###_PLAYER
 I owe you one, scream if you get in trouble.
-Ich schulde dir was, ruf einfach, wenn du ein Problem hast.
+Ich schulde dir was, ruf mich, wenn du ein Problem hast.
 ###_NPC
 (She giggles.)  Very well, I'll be around if you need help again.
 (Sie kichert.) Sehr wohl, ich bin in der Nähe, falls du wieder Hilfe brauchst.
