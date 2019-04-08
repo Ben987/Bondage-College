@@ -80,7 +80,7 @@ function StableRun() {
 		DrawCharacter(Player, 250, 0, 1);
 		DrawCharacter(StableTrainer, 750, 0, 1);
 		DrawCharacter(StablePony, 1250, 0, 1);
-		if (Player.CanWalk() && !StablePlayerTrainingActiv) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
+		if (Player.CanWalk() && (!StablePlayerTrainingActiv || StablePlayerIsExamPony || StablePlayerIsExamTrainer)) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 		DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
 		//DrawButton(1885, 265, 90, 90, "", "White", "Screens/Room/Stable/Horse.png");
 	}
@@ -103,7 +103,7 @@ function StableClick() {
 		if ((MouseX >= 250) && (MouseX < 750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
 		if ((MouseX >= 750) && (MouseX < 1250) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(StableTrainer);
 		if ((MouseX >= 1250) && (MouseX < 1750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(StablePony);
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk() && !StablePlayerTrainingActiv) CommonSetScreen("Room", "MainHall");
+		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk() && (!StablePlayerTrainingActiv || StablePlayerIsExamPony || StablePlayerIsExamTrainer)) CommonSetScreen("Room", "MainHall");
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
 		//if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355)) {LogDelete("JoinedStable", "PonyExam");}
 	}
