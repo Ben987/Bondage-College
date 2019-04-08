@@ -1,4 +1,4 @@
-###_NPC
+﻿###_NPC
 Silence is gold, and a gagged submissive is even better.
 Schweigen ist Gold, und eine geknebelte Sub ist noch besser.
 (She releases you and looks disappointed.)  You'll need more practice if you want to become a true escape artist.
@@ -23,9 +23,9 @@ Schweigen ist Gold, und eine geknebelte Sub ist noch besser.
 (Sie runzelt die Stirn, als du ihr das Halsband umlegst.) Halsbänder sind nett, aber auf Dauer möchte ich keins tragen.
 (You remove the collar around her neck.)  You should find submissives for that collar.
 (Du nimmst ihr das Halsband ab.) Für dieses Halsband sollten Sie sich willige Subs suchen.
-(She struggles and shakes her head no while you lock the device on her.)  Crap!  Why did you do that?
+(She struggles and shakes her head no while you put the device on her.)  Crap!  Why did you do that?
 (Sie zappelt und schüttelt den Kopf, als du ihr das Teil umschließt.) Mist! Was sollte das denn?
-(She seems relieved as you unlock the device.)  Domo arigato Miss DialogPlayerName.
+(She seems relieved as you remove the device.)  Domo arigato Miss DialogPlayerName.
 (Sie wirkt erleichtert, als du das Teil aufschließt.) Domo arigato, Miss DialogPlayerName.
 (You prepare a full body harness on her torso.)  Shibari isn't all about restraining, it's also very artistic.
 (Du legst einen Harnisch um ihren Körper.) Bei Shibari geht es nicht nur ums Fesseln, es ist auch sehr künstlerisch.
@@ -119,7 +119,7 @@ Yes, you're skilled enough to use these ropes everywhere.  (She gives you some r
 Ja, du hast genug Erfahrung, um diese Seile überall zu benutzen. (Sie gibt dir Seile zur Hängefesselung.)
 ###_PLAYER
 Let's talk later.  (Leave her.)
-Reden wir später. (Sie verlassen.)
+Reden wir später. (Dialog beenden.)
 Please go easy on me.
 Etwas Einfaches bitte.
 ###_NPC
@@ -181,7 +181,7 @@ Zappel noch ein wenig. Wenn du dich wirklich nicht befreien kannst, helfe ich di
 (Whimper and make pleading eyes.)
 (Wimmern und flehende Augen machen.)
 I'll escape on my own.  (Leave her.)
-Ich befreie mich selbst. (Sie verlassen.)
+Ich befreie mich selbst. (Dialog beenden.)
 I've done it.  (Cheer and smile.)
 Ich hab's geschafft. (Jubeln und lächeln.)
 ###_NPC
@@ -196,7 +196,7 @@ Kinderspiel! (Spotten.)
 (She struggles in her restraints.)  Can you release me?
 (Sie kämpft mit ihren Fesseln.) Kannst du mich befreien?
 (She bows her head respectfully.)  Arigato to you and to the maid sorority.
-(Sie verneigt respektvoll ihren Kopf.) Arigato an dich und die Schwesternschaft der Dienerinnen.
+(Sie verneigt respektvoll ihren Kopf.) Arigato an dich und die Schwesternschaft der Hausmädchen.
 ###_PLAYER
 Do you need help?
 Brauchst du Hilfe?
@@ -226,10 +226,10 @@ Eine Schülerin forderte mich zu Shibari heraus. Sie fesselte mich überraschend
 (She blushes.)  I wanted to try self-suspension and I somehow put the knots out of reach.  I got stuck like that, this is embarrassing.
 (Sie errötet.) Ich wollte versuchen, mich selbst aufzuhängen und habe irgendwie die Knoten außer Reichweite platziert. Peinlich, dass ich festtecke.
 Milady Head Mistress came in with customers and they wanted to try Shibari on me.  They had to hurry so they called the sorority to get me down.
-Die Oberherrin kam mit Kunden herein und sie wollten Shibari an mir ausprobieren. Sie hatten es eilig, also riefen sie die Dienerinnen zur Rettung.
+Die Hausherrin kam mit Kunden herein und sie wollten Shibari an mir ausprobieren. Sie hatten es eilig, also riefen sie die Hausmädchen zur Rettung.
 ###_PLAYER
 I'll go get help.  (Leave her.)
-Ich hole Hilfe. (Sie verlassen.)
+Ich hole Hilfe. (Dialog beenden.)
 Great!  A chore well done.
 Klasse! Ein gut erfüllter Auftrag.
 ###_NPC

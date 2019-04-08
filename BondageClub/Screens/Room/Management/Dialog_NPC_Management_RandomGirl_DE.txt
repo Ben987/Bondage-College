@@ -2,9 +2,9 @@
 Club slaves are so much better when they are gagged.
 Clubsklaven sind so viel besser, wenn sie geknebelt sind.
 (A maid crosses your path and stops.)  Nice!  I guess I can take a break to play with you.
-(Eine Dienerin läuft dir über den Weg und hält an.) Klasse! Ich gönne mir eine Pause, um mit dir zu spielen.
+(Ein Hausmädchen läuft dir über den Weg und hält an.) Klasse! Ich gönne mir eine Pause, um mit dir zu spielen.
 (A maid crosses your path and stops.)  You're cute when you're restrained!  I guess I can take a break to play with you.
-(Eine Dienerin läuft dir über den Weg und hält an.) Du bist süß, wenn du gefesselt bist! Ich gönne mir eine Pause, um mit dir zu spielen.
+(Ein Hausmädchen läuft dir über den Weg und hält an.) Du bist süß, wenn du gefesselt bist! Ich gönne mir eine Pause, um mit dir zu spielen.
 (A club member crosses your path and makes a devious smile.)  A slave just for me!
 (Ein Clubmitglied läuft dir über den Weg und lächelt verschlagen.) Eine Sklavin für mich allein!
 (A club member taps on your shoulder and makes a devious smile.)  A gift that's already wrapped up!
@@ -235,6 +235,6 @@ Not now, I need to go.  Take care!
 Nicht jetzt, ich muss gehen. Mach's gut!
 ###_PLAYER
 (Leave her.)
-(Sie verlassen.)
+(Dialog beenden.)
 Follow me!  (Bring her to your room.)
 Mir nach! (Sie in dein Zimmer führen.)

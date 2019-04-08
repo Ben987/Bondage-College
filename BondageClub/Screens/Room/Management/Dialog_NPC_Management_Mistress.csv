@@ -11,7 +11,7 @@ MistressExpulsion,,,We Mistresses have been speaking.  It seems you're not fit t
 0,,,Greetings master kidnapper DialogPlayerName.  I trust you're having a good time hunting.,,"DialogReputationGreater(""Kidnap"", 100)",
 0,,,Welcome little maid.  How can I help you?,,"DialogLogQuery(""JoinedSorority"", ""Maid"")",
 0,,,Welcome kidnapper.  How can I help you?,,"DialogReputationGreater(""Kidnap"", 50)",
-0,,,Be direct and don't waste my time girl.,,NoTitle(),
+0,,,Be direct and don't waste my time girl.,,,
 0,,Greetings Miss.  My name is DialogPlayerName.,"You seem to have some manners.  I'm DialogCharacterName, I'm in charge of the club today.",DialogRemove(),NoTitle(),
 0,60,How come Sarah is locked down?,"Sarah you say?  Oh yes, the blond college student.  Mistress Sophie reserved a room for her punishment.","DialogRemoveGroup(""SarahQuest"")",SarahUnlockQuest(),SarahQuest
 0,10,I have a few questions.,"Don't be shy, but don't waste my time.",,,

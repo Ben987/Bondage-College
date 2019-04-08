@@ -10,7 +10,8 @@ var SophieIntroDone = false;
 // Loads the Sarah/Amanda/Sophie intro cutscene
 function SarahIntroLoad() {
 	CutsceneStage = 0;
-	if ((SarahIntroType == "SarahExplore") && (SarahStatus != "")) SarahIntroType = "SarahSearch";
+	if ((SarahIntroType == "SarahExplore") && (SarahStatus != "") && (LogQuery("SarahWillBePunished", "NPC-SarahIntro") || LogQuery("SarahWillBePunished", "NPC-SarahIntro"))) SarahIntroType = "SarahSearch";
+	if ((SarahIntroType == "SarahExplore") && (SarahStatus != "") && !LogQuery("SarahWillBePunished", "NPC-SarahIntro") && !LogQuery("SarahWillBePunished", "NPC-SarahIntro")) SarahIntroType = "SarahSurprise";
 	if ((SarahIntroType == "AmandaExplore") && (AmandaStatus != "")) SarahIntroType = "AmandaSearch";
 	if ((SarahStatus == "Owned") || (SarahStatus == "Curfew")) SarahIntroBackground = "SarahCollarIntro";
 	if ((SarahIntroType == "AmandaSearch") || (SarahIntroType == "AmandaExplore"))

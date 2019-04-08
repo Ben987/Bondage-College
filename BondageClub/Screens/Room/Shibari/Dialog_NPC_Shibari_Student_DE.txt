@@ -1,4 +1,4 @@
-###_NPC
+﻿###_NPC
 I love your gag, it looks both comfy and effective.
 Ihr Knebel gefällt mir, er sieht bequem und effektiv aus.
 (She licks her lips seeing the gag and allows you to silence her easily.)
@@ -21,9 +21,9 @@ Ihr Knebel gefällt mir, er sieht bequem und effektiv aus.
 (Sie runzelt die Stirn, als du ihr das Halsband umlegst.) Ich bin eine freie Sub, Miss, ich suche kein Halsband.
 (You remove the collar around her neck.)  Much better!  I love bondage but I'm not ready to commit.
 (Du nimmst ihr das Halsband ab.) Viel besser! Ich liebe Bondage, aber ich bin nicht bereit für diese Verpflichtung.
-(She rocks her hips and struggles as you lock the device on her.)
+(She rocks her hips and struggles as you put the device on her.)
 (Sie schwankt zappelnd mit den Hüften, als du ihr die Vorrichtung umschließt.)
-(She seems relieved as you unlock the device.)  Domo arigato Miss DialogPlayerName.
+(She seems relieved as you remove the device.)  Domo arigato Miss DialogPlayerName.
 (Sie wirkt erleichtert, als du das Teil aufschließt.) Domo arigato, Miss DialogPlayerName.
 (You prepare a full body harness on her torso as she blushes.)  This is very erotic.
 (Du legst einen Harnisch um ihren Körper und sie errötet.) Das ist sehr erotisch.
@@ -87,7 +87,7 @@ Sie befinden sich im Shibari-Dojo. Die meisten Leute üben hier ihren Umgang mit
 (Du haust ihr auf den Po, während sie am Seil baumelt.) Uuuuuh! Ich liebe dieses brennende Gefühl, Miss.
 ###_PLAYER
 I need to go.  (Leave her.)
-Ich muss los. (Sie verlassen.)
+Ich muss los. (Dialog beenden.)
 Why are you naked?
 Warum bist du nackt?
 ###_NPC
@@ -142,7 +142,7 @@ Eine zickige Schülerin forderte die Lehrerin heraus, sich aufhängen zu lassen.
 Our teacher wanted to see if she could suspend and restrain herself.  She managed to do it, but I think she got stuck.
 Unsere Lehrerin wollte ausprobieren, ob sie sich selbst aufhängen und fesseln kann. Es ist ihr gelungen, aber ich glaube, sie steckt fest.
 The Head Mistress came with customers.  They tried Shibari on the teacher but didn't had time to release her, so they called the maids.
-Die Oberherrin kam mit Kunden herein, die Shibari an der Lehrerin ausprobierten. Sie hatten keine Zeit zum Befreien, also riefen sie die Dienerinnen.
+Die Hausherrin kam mit Kunden herein, die Shibari an der Lehrerin ausprobierten. Sie hatten keine Zeit zum Befreien, also riefen sie die Hausmädchen.
 ###_PLAYER
 I'll go get help.  (Leave her.)
-Ich hole Hilfe. (Sie verlassen.)
+Ich hole Hilfe. (Dialog beenden.)

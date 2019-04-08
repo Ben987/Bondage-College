@@ -2,8 +2,8 @@
 
 English       German/Deutsch Remarks/Anmerkungen
 
-Maid          Dienerin       Eventuell Hausmädchen, ist aber etwas länger
-Head Maid     Chefdienerin
+Maid          Hausmädchen
+Head Maid     Hausdame
 Mistress      Herrin
 Club Mistress Clubherrin
-Head Mistress Oberherrin     Eventuell Hauptherrin, Direktorin?
+Head Mistress Hausherrin

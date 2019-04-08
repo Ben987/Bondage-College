@@ -1,0 +1,398 @@
+###_NPC
+Gags are so kinky, can have one?  (She giggles.)
+Knebel sind so sexy, kann ich einen haben? (Sie kichert.)
+Have you found a way to get me out?  These shackles are pretty tough.
+Hast du herausgefunden, wie du mich befreien kannst? Diese Ketten sind ziemlich fies.
+(She licks her lips seeing the gag and allows you to silence her easily.)
+(Sie leckt sich die Lippen, als sie den Knebel sieht, und lässt sich widerstandslos zum Schweigen bringen.)
+(You remove her gag and she smiles at you.)  This is fun, can I try another gag now?
+(Du nimmst ihren Knebel ab und sie lächelt dich an.) Das macht Spaß, kann ich jetzt einen anderen Knebel haben?
+(She turns around submissively while you restrain her arms.)  I think I know why they've let you join the club.
+(Sie dreht sich unterwürfig um und du fesselst ihre Arme.) Ich weiß schon, warum sie dich in den Club gelassen haben.
+(You free her arms and she stretches a little.)  Are you releasing to strap me up again?
+(Du befreist ihre Arme und sie streckt sich ein wenig.) Befreist du mich, um mich gleich wieder zu fesseln?
+(She stands still while you restrain her legs securely.)  I love it!
+(Sie steht still, während du ihre Beine fest zusammenbindest.) Ich liebe das!
+(You release her legs while she wiggles her butt.)  Struggling while in bondage is so much fun.
+(Du befreist ihre Beine und sie wackelt mit dem Po.) In Fesseln zu zappeln macht so viel Spaß.
+(She giggles while you restrain her feet, preventing her from walking.)
+(Sie kichert, als du ihre Füße fesselst und sie am Laufen hinderst.)
+(You release her feet and she jumps playfully.)  You can tie me up anytime you want.
+(Du befreist ihre Füße und sie hüpft verspielt.) Du kannst mich fesseln, wann immer du willst.
+(You strap the collar on her while she blushes.)  I hope that someday, someone will collar me for good.
+(Du legst ihr das Halsband um und sie wird rot.) Ich hoffe, dass mir eines Tages jemand ein dauerhaftes Halsband anlegt.
+(You remove the collar around her neck.)  Collars are such a turn-on for me.
+(Du nimmst ihr das Halsband ab.) Halsbänder machen mich so an.
+(You snap the belt around her waist as she pouts.)  This is unfair!
+(Du lässt den Gürtel an ihrer Taille zuschnappen und sie schmollt.) Das ist unfair!
+(You unlock the belt from her waist and crotch.)  I can't wait to see what you'll use on me next...
+(Du nimmst den Gürtel von ihrer Taille und ihrem Schritt ab.) Ich bin schon gespannt, was du als Nächstes an mir benutzt...
+(You strap the device on her head as she tries to look around.)  Bondage is such a thrill.
+(Du schnallst ihr das Ding um den Kopf und sie sieht sich um.) Bondage ist so aufregend.
+(You remove the device and she looks at you.)  That was pretty intense.  What else can we try?
+(Du nimmst das Ding ab und sie schaut dich an.) Das war ziemlich heftig. Was hast du sonst noch?
+(She trembles of pain and pleasure as you whip her breast.)  Ohhhh yeah!  This is great.
+(Sie zittert vor Schmerz und Wollust, als du ihr auf die Brüste peitschst.) Ohhhh yeah! Das ist toll.
+(You swing the crop on her torso as she moans.)  Ow!  You have lots of talents.
+(Du schwingst die Gerte auf ihren Körper und sie stöhnt.) Au! Du bist sehr talentiert.
+(You whip her butt as she jumps from the pain.)  It hurts soooooo good.
+(Du peitschst ihr auf den Po und sie zuckt vor Schmerz zusammen.) Das tut soooooo schön weh.
+(She moans and shakes her butt each time the crop lands on it.) God I love pain.
+(Sie stöhnt und wackelt bei jedem Treffer der Gerte mit dem Po.) Gott, ich liebe Schmerz.
+(You restrain her legs with the long hemp rope and suspend her by the feet from the ceiling.)  Weeeeee!
+(Du fesselst ihre Beine mit dem langen Hanfseil und lässt sie an den Füßen von der Decke baumeln.) Weeeeee!
+(You untie the hemp rope from the ceiling and slowly get her down.)  That was a fun ride.
+(Du löst das Hanfseil von der Decke und lässt sie langsam herab.) Das hat Spaß gemacht.
+Hello?  Who goes there?
+Hallo? Wer ist da?
+###_PLAYER
+Who are you?
+Wer bist du?
+###_NPC
+Oh hi Miss!  I'm Sarah, have we met before?
+Oh, hi, Miss! Ich bin Sarah, sind wir uns schon mal begegnet?
+###_PLAYER
+What's going on?
+Was ist hier los?
+###_NPC
+I've got in trouble.  (She struggles and giggles.)  I'm Sarah, have we met before?
+Ich hab Ärger bekommen. (Sie zappelt und kichert.) Ich bin Sarah, kennen wir uns?
+###_PLAYER
+Why are you restrained?
+Warum bist du gefesselt?
+###_NPC
+I'm getting punished.  (She struggles and giggles.)  I'm Sarah, have we met before?
+Ich werde bestraft. (Sie zappelt und kichert.) Ich bin Sarah, kennen wir uns?
+###_PLAYER
+I'm DialogPlayerName.  We've met at the college.
+Ich bin DialogPlayerName. Wir kennen uns vom College.
+###_NPC
+Sweet!  I didn't knew you were a club member.
+Klasse! Ich wusste nicht, dass du zum Club gehörst.
+###_PLAYER
+It's me my love!
+Ich bin es, Schatz!
+###_NPC
+I love you baby!  How did you find me?
+Ich liebe dich, Baby! Wie hast du mich gefunden?
+###_PLAYER
+You don't recognize your ex?
+Erkennst du deine Exfreundin etwa nicht?
+###_NPC
+We didn't date for long, but it was fun.  (She giggles.)  How did you find me?
+Lange waren wir nicht zusammen, es hat aber Spaß gemacht. (Sie kichert.) Wie hast du mich gefunden?
+###_PLAYER
+Girl, you don't recognize your owner?
+Mädchen, erkennst du deine Besitzerin etwa nicht?
+###_NPC
+Oops!  So sorry Mistress!  I didn't knew you were a club member.
+Ups! Es tut mir so leid, Herrin! Ich wusste nicht, dass Ihr Mitglied im Club seid.
+###_PLAYER
+Girl, did you forgot your curfew?
+Mädchen, hast du deine Ausgangssperre vergessen?
+###_NPC
+Oh my!  The curfew!  So sorry Mistress.  I hope you're not too mad.
+Oh nein! Die Ausgangssperre! Es tut mir so leid, Herrin. Ich hoffe, Ihr seid nicht sauer.
+###_PLAYER
+Sarah!  Did you got punished?
+Sarah! Bist du bestraft worden?
+###_NPC
+DialogPlayerName!  I'm glad you're here.  This is part of my punishment.
+DialogPlayerName! Ich bin so froh, dass du da bist. Das hier ist Teil meiner Bestrafung.
+###_PLAYER
+It's great to see you again.
+Schön, dich wiederzusehen.
+###_NPC
+DialogPlayerName!  I'm glad you're here.  Are you enjoying the club?
+DialogPlayerName! Ich bin so froh, dass du da bist. Gefällt dir der Club?
+###_PLAYER
+(Stay silent.)
+(Schweigen.)
+###_NPC
+I know there's someone!  Who are you?  What's going on?
+Ich weiß, dass da jemand ist! Wer bist du? Was ist los?
+###_PLAYER
+(Leave her.)
+(Dialog beenden.)
+Nice to meet you.  I'm DialogPlayerName.
+Nett dich kennenzulernen. Ich bin DialogPlayerName.
+###_NPC
+And what are you doing here?  Are you a friend of Mistress Sophie?
+Und was machst du hier? Bist du mit Herrin Sophie befreundet?
+###_PLAYER
+I'm DialogPlayerName, remember it girl.
+Ich bin DialogPlayerName, vergiss das nicht, Mädchen.
+###_NPC
+(She gulps.)  Are you a friend of Mistress Sophie?
+(Sie schluckt.) Sind Sie mit Herrin Sophie befreundet?
+###_PLAYER
+Yes, I'm a new club member.
+Ja, ich bin neu im Club.
+###_NPC
+Great!  I hope you're having fun like me.  (She struggles playfully.)  Have you met Mistress Sophie?
+Toll! Ich hoffe, du hast genauso viel Spaß wie ich. (Sie zappelt verspielt.) Hast du schon Herrin Sophie kennengelernt?
+###_PLAYER
+I've been a member for a while now.
+Ich bin hier jetzt schon eine ganze Weile dabei.
+###_NPC
+Excellent!  (She struggles playfully.)  You probably know Mistress Sophie?
+Hervorragend! (Sie zappelt verspielt.) Dann kennst du wohl auch Herrin Sophie?
+###_PLAYER
+Girl, I'm pretty well known in the club.
+Ich bin ziemlich bekannt hier im Club, Mädchen.
+###_NPC
+I'm sorry, I don't remember you Miss.  You certainly know Mistress Sophie?
+Verzeihung, ich erinnere mich nicht an Sie, Miss. Sie kennen sicher Herrin Sophie?
+###_PLAYER
+Kisses before questions. (Kiss her.)
+Erst Küsschen, Fragen später. (Sie küssen.)
+###_NPC
+(You kiss each other slowly as she moans of pleasure.)  I love you so much.  So, how did you find me?
+(Ihr küsst euch langsam und sie stöhnt angeregt.) Ich liebe dich so sehr. Also, wie hast du mich gefunden?
+###_PLAYER
+I've searched all over town for you.
+Ich habe in der ganzen Stadt nach dir gesucht.
+###_NPC
+You're the best!  And they've accepted you as a club member?
+Du bist die Beste! Und dann haben sie dich als Clubmitglied aufgenommen?
+###_PLAYER
+I've asked your friends about you.
+Ich habe bei deinen Freunden nach dir gefragt.
+###_NPC
+That's clever!  Amanda knows about the Bondage Club.  You're a member now?
+Clever! Amanda weiß über den Bondage-Club Bescheid. Du bist jetzt also ein Mitglied?
+###_PLAYER
+Love is stronger than distance.
+Liebe ist stärker als jede Entfernung.
+###_NPC
+You're so romantic baby.  (She smiles.)  You're a club member now?
+Du bist so romantisch, Baby. (Sie lächelt.) Du bist jetzt also ein Mitglied?
+###_PLAYER
+Yes, I've joined this great club!
+Ja, ich bin diesem großartigen Club beigetreten!
+###_NPC
+Awesome!  I hope you're having fun like me.  (She struggles playfully.)  Have you met Mistress Sophie?
+Klasse! Ich hoffe, du hast genauso viel Spaß wie ich. (Sie zappelt verspielt.) Kennst du schon Herrin Sophie?
+###_PLAYER
+I had to join to enter the building.
+Ich musste beitreten, um ins Gebäude zu kommen.
+###_NPC
+Of course, and I hope you're having fun like me.  (She struggles playfully.)  Have you met Mistress Sophie?
+Klar, hoffentlich hast du genauso viel Spaß wie ich. (Sie zappelt verspielt.) Kennst du schon Herrin Sophie?
+###_PLAYER
+A kiss to remember our love?
+Ein Kuss auf die Erinnerung an unsere Liebe?
+###_NPC
+Sure!  (You kiss each other quickly.)  I remember these lips.  (She giggles.)  So, how did you find me?
+Klar! (Ihr küsst euch flüchtig.) Ich erinnere mich an diese Lippen. (Sie kichert.) Also, wie hast du mich gefunden?
+###_PLAYER
+It's pure luck.  I wasn't looking for you.
+Reiner Zufall. Ich habe gar nicht nach dir gesucht.
+###_NPC
+It's a small world I guess.  (She smiles.)  You're a club member now?
+Die Welt ist kleiner, als man denkt. (Sie lächelt.) Du bist jetzt also ein Mitglied?
+###_PLAYER
+I'm glad to see you slave.  (Spank her butt.)
+Schön dich zu sehen, Sklavin. (Ihr auf den Po hauen.)
+###_NPC
+Ow!  I'm so happy to see you Mistress!  Well... hear you.  (She giggles.)  So, you've joined the club?
+Au! Bin ich froh, Euch zu sehen, Herrin! Na ja... Euch zu hören. (Sie kichert.) Ihr seid also dem Club beigetreten?
+###_PLAYER
+They've had to let me join.
+Sie mussten mich einfach reinlassen.
+###_NPC
+Of course, a Dominant like you has her place here.  Have you met Mistress Sophie?
+Natürlich, wer so dominant ist, ist hier eindeutig am richtigen Ort. Kennt Ihr schon Herrin Sophie?
+Great!  I hope you're having fun like me Mistress.  (She struggles playfully.)  Have you met Mistress Sophie?
+Toll! Ich hoffe, Ihr habt genauso viel Spaß wie ich, Herrin. (Sie zappelt verspielt.) Kennt ihr schon Herrin Sophie?
+That's wonderful Mistress!  (She struggles playfully.)  You probably know Mistress Sophie?
+Das ist wundervoll, Herrin! (Sie zappelt verspielt.) Ihr kennt sicher Herrin Sophie?
+###_PLAYER
+It's fine, don't worry about it.
+Schon gut, mach dir darüber keine Gedanken.
+###_NPC
+(She smiles.)  You're the best Mistress!  Though, I didn't knew you were a member.  When did you joined?
+(Sie lächelt.) Ihr seid die Beste, Herrin! Ich wusste aber nicht, dass Ihr im Club seid. Seit wann seid Ihr Mitglied?
+###_PLAYER
+We'll talk about your punishment later.
+Wir unterhalten uns später über deine Bestrafung.
+###_NPC
+(She bows her head.)  Yes Mistress.  I didn't knew you were a member.  When did you joined?
+(Sie senkt ihren Kopf.) Ja, Herrin. Ich wusste nicht, dass Ihr im Club seid. Seit wann seid Ihr Mitglied?
+###_PLAYER
+I've already planned your punishment.
+Deine Strafe habe ich bereits geplant.
+What's your punishment?
+Worin besteht deine Bestrafung?
+###_NPC
+I'm not sure actually.  I'm waiting here for Mistress Sophie to receive it.  Have you met her?
+Das weiß ich ehrlich gesagt noch nicht. Ich warte hier auf Herrin Sophie. Kennst du sie?
+###_PLAYER
+All of this for bringing a friend?
+All das nur, weil du eine Freundin mitgenommen hast?
+###_NPC
+Yes and no, I've actually angered Mistress Sophie, one of the club owner.  Have you met her?
+Ja und nein, eigentlich habe ich Herrin Sophie verärgert, eine der Besitzerinnen des Clubs. Kennst du sie?
+I'm getting punished.  (She struggles and giggles.)  Don't worry, I've seen worse.  So, are you enjoying your visit?
+Ich werde bestraft. (Sie zappelt und kichert.) Keine Sorge, ich hab Schlimmeres gesehen. Also, gefällt dir dein Aufenthalt?
+###_PLAYER
+Yes, thanks for introducing me.
+Ja, danke, dass du mich hergebracht hast.
+###_NPC
+Sure!  And I can introduce you to lots of great people around here.  Have you met Mistress Sophie?
+Klar! Und ich kann dich hier mit einer Menge toller Leute bekannt machen. Kennst du Herrin Sophie?
+###_PLAYER
+Yes and no, I still need to explore.
+Ja und nein, ich muss mich noch etwas umsehen.
+###_NPC
+Absolutely, and exploring is part of the fun.  Have you met Mistress Sophie?
+Klar, es macht ja auch Spaß, alles erstmal zu erkunden. Kennst du schon Herrin Sophie?
+###_PLAYER
+I'm not sure this place is for me.
+Ich weiß nicht, ob dieser Club das Richtige für mich ist.
+###_NPC
+I understand, but before you go, there's someone you should meet.  Have you met Mistress Sophie?
+Ich verstehe, aber bevor du gehst, solltest du jemanden kennenlernen. Kennst du schon Herrin Sophie?
+###_PLAYER
+I work with Sophie.  I'm a Mistress here.
+Ich arbeite mit Sophie zusammen. Ich bin hier eine Herrin.
+###_NPC
+Oh!  Are you here to punish me?  I thought she wanted to do it personaly.
+Oh! Bist du hier, um mich zu bestrafen? Ich dachte, sie wollte es persönlich tun.
+###_PLAYER
+Who's Mistress Sophie?
+Wer ist Herrin Sophie?
+###_NPC
+She's one of the club owners and she's going to punish me here a little later.
+Sie ist eine der Clubleiterinnen und wird mich hier etwas später bestrafen.
+###_PLAYER
+Why do you ask?
+Warum fragst du?
+###_NPC
+She should be here soon, she reserved that room.  She's going to punish me.
+Sie sollte bald hier sein. Sie hat dieses Zimmer reserviert, um mich zu bestrafen.
+Mistress Sophie?  DialogPlayerName?  Marco?  (She laughs.)
+Herrin Sophie? DialogPlayerName? Marco? (Sie lacht.)
+###_PLAYER
+I shouldn't be here?
+Sollte ich nicht hier sein?
+###_NPC
+I don't know if you'll get in trouble for being here.  Don't make Mistress Sophie angry.
+Ich weiß nicht, ob du Ärger bekommst, wenn du hierbleibst. Herrin Sophie solltest du lieber nicht wütend machen.
+###_PLAYER
+Do you want to be left alone?
+Willst du allein gelassen werden?
+###_NPC
+I guess you can stay, it's boring to be left alone.  Unless it's part of my punishment and you could get in trouble with Mistress Sophie.
+Ich hätte nichts dagegen, wenn du bleibst, allein ist es langweilig. Aber wenn das Teil meiner Strafe ist, könntest du Ärger mit Herrin Sophie bekommen.
+###_PLAYER
+Do you want to get out of these chains?
+Willst du aus diesen Ketten raus?
+###_NPC
+Sure!  It's been a while now.  Do you have the key or something to pick the lock?  (She shows you her restraints.)
+Klar! Ich warte schon eine ganze Weile. Hast du einen Schlüssel oder etwas zum Schlösser Knacken? (Sie zeigt dir ihre Ketten.)
+###_PLAYER
+Can I play with you?
+Kann ich mit dir spielen?
+###_NPC
+Of course!  The more the merrier.  (She giggles and gets a little bit closer.)
+Na klar! Je mehr, desto besser. (Sie kichert und rückt etwas näher.)
+###_PLAYER
+(Play with her.)
+(Mit ihr spielen.)
+###_NPC
+(She giggles and gets a little bit closer.)
+(Sie kichert und rückt etwas näher.)
+I'm so glad that you and Amanda came here.  I wish I could hug you both.
+Ich bin so froh, dass du und Amanda hergekommen seid. Am liebsten würde ich euch beide umarmen.
+DialogPlayerName!  Can you help me out of these shackles?  Or do you want to add more restraints?  (She giggles.)
+DialogPlayerName! Kannst du mir aus diesen Ketten raushelfen? Oder willst du lieber noch mehr Fesseln draufpacken? (Sie kichert.)
+###_PLAYER
+How do you unlock these shackles?
+Wie bekommt man diese Ketten auf?
+###_NPC
+I don't know.  Maybe someone from the club can help.  Or we can wait for Mistress Sophie.
+Ich weiß nicht. Vielleicht kann jemand im Club helfen. Oder wir warten auf Herrin Sophie.
+###_PLAYER
+(Check her shackles.)
+(Ihre Ketten untersuchen.)
+(Tickle her.)
+(Sie kitzeln.)
+###_NPC
+(You tickle her on the tummy, she laughs a little but doesn't seem to enjoy it that much.)
+(Du kitzelst ihren Bauch und sie lacht ein wenig, scheint aber keine besondere Freude daran zu haben.)
+###_PLAYER
+(Kiss her.)
+(Sie küssen.)
+###_NPC
+(You kiss each other slowly as she moans of pleasure.)  I love you so much DialogPlayerName.
+(Ihr küsst euch langsam und sie stöhnt.) Ich liebe dich so sehr, DialogPlayerName.
+(You kiss her as she giggles.)  You're so kinky.
+(Du küsst sie und sie kichert.) Du bist so versaut.
+###_PLAYER
+(Spank her.)
+(Ihr auf den Hintern hauen.)
+###_NPC
+(You spank her butt as she jumps and moans.)  You're the best Mistress ever!  So much pain and pleasure!
+(Du haust ihr auf den Po und sie zuckt und stöhnt.) Ihr seid die beste Herrin der Welt! So viel Schmerz und Befriedigung!
+(You spank her butt as she jumps and moans.)  Oh yes!  Pain and pleasure!
+(Du haust ihr auf den Po und sie zuckt und stöhnt.) Oh ja! Schmerz und Befriedigung!
+###_PLAYER
+(Fondle her.)
+(Sie befummeln.)
+###_NPC
+(You cup her breast and massage them lovingly, she seems to enjoy it a little.)
+(Du umhüllst ihre Brüste und massierst sie liebevoll, es scheint ihr ein bisschen zu gefallen.)
+###_PLAYER
+(Masturbate her.)
+(Sie befriedigen.)
+###_NPC
+(You masturbate her slowly as she trembles and moans from the pleasure.) Ooooooh yes.
+(Du befriedigst sie langsam und sie zittert und stöhnt vor Wollust.) Ooooooh ja.
+###_PLAYER
+I'll go find help.  (Leave her.)
+Ich hole Hilfe. (Dialog beenden.)
+Let's wait for Mistress Sophie.
+Warten wir auf Herrin Sophie.
+###_NPC
+Sure!  (She giggles and struggles in her cuffs.)
+Klar! (Sie kichert und rüttelt an ihren Manschetten.)
+Thanks for getting me out Mistress.  You're the best!
+Danke für die Befreiung, Herrin. Ihr seid die Beste! 
+Thanks for getting me out DialogPlayerName.  That was sweet.
+Danke für die Befreiung, DialogPlayerName. Das war lieb von dir.
+###_PLAYER
+What will you do?
+Was hast du jetzt vor?
+###_NPC
+I don't know, get in trouble I guess.  (She giggles.)  Do you have any fun plans?
+Ich weiß nicht, Ärger suchen wahrscheinlich. (Sie kichert.) Hast du irgendwelche lustigen Ideen?
+###_PLAYER
+Can we stay here?
+Können wir hier bleiben?
+###_NPC
+I'm not sure, Mistress Sophie reserved the room.  We might get in trouble.
+Ich weiß nicht, Herrin Sophie hat das Zimmer reserviert. Wir könnten Ärger bekommen.
+###_PLAYER
+Do you want to visit my room?
+Willst du mit in mein Zimmer kommen?
+###_NPC
+You have your own room?  Sweet!  I'm curious to see it.
+Du hast dein eigenes Zimmer? Klasse! Ich bin sehr gespannt darauf.
+###_PLAYER
+Come to my room slave.
+Komm in mein Zimmer, Sklavin.
+###_NPC
+Your own room Mistress?  This is kinky!  I'm curious to see it.
+Ihr eigenes Zimmer, Herrin? Ist das aufregend! Ich bin sehr gespannt darauf.
+###_PLAYER
+Go have fun in the club.
+Geh im Club etwas Spaß haben.
+###_NPC
+Thanks!  I hope to see you soon.  (She smiles.)  Take care!
+Danke! Hoffentlich sehen wir uns dann. (Sie lächelt.) Mach's gut!
+###_PLAYER
+Take care!  (Leave her.)
+Mach's gut! (Dialog beenden.)
+Great!  (Bring her to your room.)
+Toll! (Sie in dein Zimmer bringen.)

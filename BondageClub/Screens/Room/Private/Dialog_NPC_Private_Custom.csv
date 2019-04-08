@@ -44,14 +44,22 @@ RemoveItemNeck,,,(You remove the collar fastened around her neck.)  This is bett
 RemoveItemNeck,,,(You remove the collar as she nods.)  This collar isn't for me yo.  Find another bitch.,,,RemoveItemNeck,Dominant|Rude
 RemoveItemNeck,,,"(You remove the collar from her neck.)  Miss, please don't toy with my emotions with collars, this is a strong BDSM symbol.",,,RemoveItemNeck,Submissive|Serious
 RemoveItemNeck,,,(You unfasten the collar from her neck.)  Collars are protective for submissives.  It politely tells Dominants to keep their hands away.,,,RemoveItemNeck,Frigid|Polite
-ItemPelvis,,,(She shakes her head as you lock the belt on her.)  That's no fun!,,,ItemPelvis,
-ItemPelvis,,,(You lock the belt on her as she panics and trashes in vain to make it slip.)  Big mistake girl!,,,ItemPelvis,Dominant|Violent
-ItemPelvis,,,(She almost cries as you lock the belt around her waist.)  This is cruel Miss!  How can I relieve myself now?,,,ItemPelvis,Submissive|Horny
-ItemPelvis,,,(She seems very calm as you lock the belt.)  I don't mind at all.  This item is a shield against rape and unwanted hands.,,,ItemPelvis,Frigid|Peaceful
-RemoveItemPelvis,,,"(You unlock the device from her waist, and she nods.)  That belt was kind of cruel.",,,RemoveItemPelvis,
-RemoveItemPelvis,,,(She nods as you unlock the belt from her.)  This device wasn't intended for me.  I don't need shelter from myself or from others.,,,RemoveItemPelvis,Dominant|Polite
-RemoveItemPelvis,,,"(You unlock the belt as she sighs.)  Miss, will you lock the belt again soon?  I love the sex protection and it reminds me of my place.",,,RemoveItemPelvis,Submissive|Frigid
-RemoveItemPelvis,,,"(She seems relived as you remove the device.)  Oh, hell yeah!  I need to fuck now.",,,RemoveItemPelvis,Rude|Horny
+MetalChastityBelt,,,(She shakes her head as you lock the belt on her.)  That's no fun!,,,MetalChastityBelt,
+MetalChastityBelt,,,(You lock the belt on her as she panics and trashes in vain to make it slip.)  Big mistake girl!,,,MetalChastityBelt,Dominant|Violent
+MetalChastityBelt,,,(She almost cries as you lock the belt around her waist.)  This is cruel Miss!  How can I relieve myself now?,,,MetalChastityBelt,Submissive|Horny
+MetalChastityBelt,,,(She seems very calm as you lock the belt.)  I don't mind at all.  This item is a shield against rape and unwanted hands.,,,MetalChastityBelt,Frigid|Peaceful
+RemoveMetalChastityBelt,,,"(You unlock the device from her waist, and she nods.)  That belt was kind of cruel.",,,RemoveMetalChastityBelt,
+RemoveMetalChastityBelt,,,(She nods as you unlock the belt from her.)  This device wasn't intended for me.  I don't need shelter from myself or from others.,,,RemoveMetalChastityBelt,Dominant|Polite
+RemoveMetalChastityBelt,,,"(You unlock the belt as she sighs.)  Miss, will you lock the belt again soon?  I love the sex protection and it reminds me of my place.",,,RemoveMetalChastityBelt,Submissive|Frigid
+RemoveMetalChastityBelt,,,"(She seems relived as you remove the device.)  Oh, hell yeah!  I need to fuck now.",,,RemoveMetalChastityBelt,Rude|Horny
+StraponPanties,,,(She seems curious as you make her wear the strap-on panties.)  Something kinky is brewing.,,,StraponPanties,
+StraponPanties,,,(She rocks her hips as you make her wear the strap-on panties.)  You wanna be fucked hard?,,,StraponPanties,Violent|Rude
+StraponPanties,,,(She gets wet as you make her wear the strap-on panties.)  So naughty!  Will you use these panties on me later?,,,StraponPanties,Submissive|Horny
+StraponPanties,,,"(She seems disappointed as you make her wear the strap-on panties.)  I'm sorry to disagree, this is not doing it for me.",,,StraponPanties,Frigid|Peaceful
+RemoveStraponPanties,,,(You remove the device from her waist.)  These were some naughty panties.,,,RemoveStraponPanties,
+RemoveStraponPanties,,,"(You remove the device from her waist.)  If you ever need to be fucked hard again, you know what to do.",,,RemoveStraponPanties,Dominant|Rude
+RemoveStraponPanties,,,"(You remove the device from her waist, and she nods.)  Thanks Miss, this item wasn't really suited for me anyway.",,,RemoveStraponPanties,Submissive|Frigid
+RemoveStraponPanties,,,"(You remove the device from her waist, and she sighs.)  Bye bye kinky panties, come back soon.",,,RemoveStraponPanties,Dumb|Horny
 ItemHead,,,(You strap the item on her head as she sighs.)  Please don't leave me like that for too long.,,,ItemHead,
 ItemHead,,,(She trashes her head and tries to avoid the item but you're able to strap it on her.),,,ItemHead,Dominant|Violent
 ItemHead,,,(She takes a deep breath as you strap the device on her head.)  I'm totally under your control Miss.,,,ItemHead,Submissive|Serious
@@ -80,6 +88,13 @@ ItemBreast,,,"(She whimpers as you use the device on her breast.)  Sorry to obje
 RemoveItemBreast,,,(She wiggles her breast slowly as you remove the device.)  Thanks!  This is better.,,,RemoveItemBreast,
 RemoveItemBreast,,,(She grumbles as you use remove the item.)  Be thoughtful and don't remove anything until I'm hurt and broken.,,,RemoveItemBreast,Violent|Serious
 RemoveItemBreast,,,"(She wiggles her breast happily as you remove the item.)  Oh, hell yeah!  That shit was hurting really bad.",,,RemoveItemBreast,Peaceful|Rude
+ItemMetalChastityBra,,,(She holds her breath as you lock her breast away.)  I hope you don't plan on leaving me like that.,,,ItemMetalChastityBra,
+ItemMetalChastityBra,,,"(She seems to disagree as you lock her breast away.)  Miss, I really hope you hold the key for this device.",,,ItemMetalChastityBra,Submissive|Serious
+ItemMetalChastityBra,,,(You lock the chastity bra as she struggles like an animal to remove it.)  Damn it!  I won't come off.,,,ItemMetalChastityBra,Violent|Dumb
+ItemMetalChastityBra,,,"(She nods as you lock the chastity bra on her.)  Support and protection at the same time, this is a great article for submissives.",,,ItemMetalChastityBra,Frigid|Wise
+RemoveMetalChastityBra,,,(She wiggles her breast slowly as you unlock the chastity bra.)  Thanks!  That was kind of cruel.,,,RemoveMetalChastityBra,
+RemoveMetalChastityBra,,,(She stays silent as you use unlock the chastity bra.)  Be thoughtful and don't unlock anything until I'm disciplined.,,,RemoveMetalChastityBra,Violent|Serious
+RemoveMetalChastityBra,,,"(She wiggles her breast happily as you unlock the chastity bra.)  Oh, hell yeah!  The metal was fucking hurting.",,,RemoveMetalChastityBra,Peaceful|Rude
 ItemBreastLeatherWhip,,,(She jumps and does small whimpers each time you hit her.)  It stings!,,,ItemBreastLeatherWhip,
 ItemBreastLeatherWhip,,,(She moans of pleasure with each lash on her breast and torso.)  Oh yeah!  Hit me harder!,,,ItemBreastLeatherWhip,Violent
 ItemBreastLeatherWhip,,,(She whimpers and cries as you whip her breast and torso.)  Ow!  Please stop!  It hurts really bad.,,,ItemBreastLeatherWhip,Peaceful
@@ -524,7 +539,7 @@ ActivityUngag,1000,(Grumble in the gag.),(She removes the item and allows you to
 ActivityUngag,1000,(Help her to remove your gag.),(She removes the item and allows you to talk.)  Good girl.,ActivityRun(1),,,
 ActivityRestrainIntro,,,"We are in the Bondage Club my sub, you know you should be tied up.",,,DomActivityRestrainIntro,
 ActivityRestrainIntro,,,"My girl, it would be really sexy to get you in restraints.",,,DomActivityRestrainIntro,Horny
-ActivityRestrainIntro,,,You've playing with these hands way too much.  Its time to stop and restrain them.,,,DomActivityRestrainIntro,Frigid
+ActivityRestrainIntro,,,You've been playing with these hands way too much.  Its time to stop and restrain them.,,,DomActivityRestrainIntro,Frigid
 ActivityRestrainIntro,,,"Girl, being a slave isn't always easy.  You need to suffer from the restraints, give me your hands.",,,DomActivityRestrainIntro,Violent
 ActivityRestrainIntro,,,"(She gently grabs your hands.)  My subbie, its time to test your limits and restrain these pretty hands.",,,DomActivityRestrainIntro,Peaceful
 ActivityRestrain,1000,Yes Mistress.  (Give your hands.),(She restrains your arms and smiles.)  A happy sub is a restrained sub.,ActivityRun(1),Player.CanTalk(),,
@@ -535,7 +550,7 @@ ActivityRestrain,1000,(Nod and bow your head.),(She restrains your arms and pets
 ActivityRestrain,1000,(Grumble and try to stop her.),(She frowns and restrains you tightly.)  You're not in control girl.,ActivityRun(-7),,,
 ActivityFullRestrainIntro,,,"We are in the Bondage Club my sub, you should be fully restrained.",,,DomActivityFullRestrainIntro,
 ActivityFullRestrainIntro,,,"My girl, it would be really sexy to get you fully restrained.",,,DomActivityFullRestrainIntro,Horny
-ActivityFullRestrainIntro,,,You've playing with these hands way too much.  Its time to fully restrain you.,,,DomActivityFullRestrainIntro,Frigid
+ActivityFullRestrainIntro,,,You've been playing with these hands way too much.  Its time to fully restrain you.,,,DomActivityFullRestrainIntro,Frigid
 ActivityFullRestrainIntro,,,"Girl, being a slave isn't always easy.  You need to feel the pain from lots of the restraints.",,,DomActivityFullRestrainIntro,Violent
 ActivityFullRestrainIntro,,,"(She gently grabs your hands.)  My subbie, its time to test your limits and restrain you fully.",,,DomActivityFullRestrainIntro,Peaceful
 ActivityFullRestrain,1000,Yes Mistress.  (Politely give your hands.),(She restrains you with many items and smiles.)  A happy sub is a restrained sub.,ActivityRun(1),Player.CanTalk(),,

@@ -21,14 +21,14 @@ ItemPelvisLeatherCrop,,,(She moans and shakes her butt each time the crop lands 
 SuspensionHempRope,,,(You restrain her legs with the long hemp rope and suspend her by the feet from the ceiling.)  Weeeeee!,,
 RemoveSuspensionHempRope,,,(You untie the hemp rope from the ceiling and slowly get her down.)  That was a fun ride.,,
 0,,,Hello?  Who goes there?,,
-0,10,Who are you?,"Oh hi Miss!  I'm Sarah, have we met before?",,"StatusIs("""")"
+0,10,Who are you?,"Oh, hi Miss!  I'm Sarah, have we met before?",,"StatusIs("""")"
 0,10,What's going on?,"I've got in trouble.  (She struggles and giggles.)  I'm Sarah, have we met before?",,"StatusIs("""")"
 0,10,Why are you restrained?,"I'm getting punished.  (She struggles and giggles.)  I'm Sarah, have we met before?",,"StatusIs("""")"
-0,20,I'm DialogPlayerName.  We've met at the college.,Sweet!  I didn't knew you were a club member.,,"StatusIs(""SchoolMate"")"
+0,20,I'm DialogPlayerName.  We've met at the college.,Sweet!  I didn't know you were a club member.,,"StatusIs(""SchoolMate"")"
 0,30,It's me my love!,I love you baby!  How did you find me?,,"StatusIs(""Lover"")"
 0,40,You don't recognize your ex?,"We didn't date for long, but it was fun.  (She giggles.)  How did you find me?",,"StatusIs(""ExLover"")"
-0,50,"Girl, you don't recognize your owner?",Oops!  So sorry Mistress!  I didn't knew you were a club member.,,"StatusIs(""Owned"")"
-0,60,"Girl, did you forgot your curfew?",Oh my!  The curfew!  So sorry Mistress.  I hope you're not too mad.,,"StatusIs(""Curfew"")"
+0,50,"Girl, you don't recognize your owner?",Oops!  So sorry Mistress!  I didn't know you were a club member.,,"StatusIs(""Owned"")"
+0,60,"Girl, did you forget your curfew?",Oh my!  The curfew!  So sorry Mistress.  I hope you're not too mad.,,"StatusIs(""Curfew"")"
 0,70,Sarah!  Did you got punished?,DialogPlayerName!  I'm glad you're here.  This is part of my punishment.,,"StatusIs(""WillBePunished"")"
 0,80,It's great to see you again.,DialogPlayerName!  I'm glad you're here.  Are you enjoying the club?,,"StatusIs(""CameWithPlayer"")"
 0,,(Stay silent.),I know there's someone!  Who are you?  What's going on?,,
@@ -51,22 +51,22 @@ RemoveSuspensionHempRope,,,(You untie the hemp rope from the ceiling and slowly 
 41,100,"Yes, I've joined this great club!",Awesome!  I hope you're having fun like me.  (She struggles playfully.)  Have you met Mistress Sophie?,,
 41,100,I had to join to enter the building.,"Of course, and I hope you're having fun like me.  (She struggles playfully.)  Have you met Mistress Sophie?",,
 50,,I'm glad to see you slave.  (Spank her butt.),"Ow!  I'm so happy to see you Mistress!  Well... hear you.  (She giggles.)  So, you've joined the club?",DialogRemove(),
-50,100,They've had to let me join.,"Of course, a Dominant like you has her place here.  Have you met Mistress Sophie?",,
+50,100,They've had to let me join.,"Of course, a Dominant like you have her place here.  Have you met Mistress Sophie?",,
 50,100,"Yes, I'm a new club member.",Great!  I hope you're having fun like me Mistress.  (She struggles playfully.)  Have you met Mistress Sophie?,,
 50,100,I've been a member for a while now.,That's wonderful Mistress!  (She struggles playfully.)  You probably know Mistress Sophie?,,
-60,61,"It's fine, don't worry about it.","(She smiles.)  You're the best Mistress!  Though, I didn't knew you were a member.  When did you joined?",,
-60,61,We'll talk about your punishment later.,(She bows her head.)  Yes Mistress.  I didn't knew you were a member.  When did you joined?,,
-60,61,I've already planned your punishment.,(She bows her head.)  Yes Mistress.  I didn't knew you were a member.  When did you joined?,,
-61,100,They've had to let me join.,"Of course, a Dominant like you has her place here.  Have you met Mistress Sophie?",,
+60,61,"It's fine, don't worry about it.","(She smiles.)  You're the best Mistress!  Though, I didn't know you were a member.  When did you joined?",,
+60,61,We'll talk about your punishment later.,(She bows her head.)  Yes Mistress.  I didn't know you were a member.  When did you joined?,,
+60,61,I've already planned your punishment.,(She bows her head.)  Yes Mistress.  I didn't know you were a member.  When did you joined?,,
+61,100,They've had to let me join.,"Of course, a Dominant like you have her place here.  Have you met Mistress Sophie?",,
 61,100,"Yes, I'm a new club member.",Great!  I hope you're having fun like me Mistress.  (She struggles playfully.)  Have you met Mistress Sophie?,,
 61,100,I've been a member for a while now.,That's wonderful Mistress!  (She struggles playfully.)  You probably know Mistress Sophie?,,
 70,100,What's your punishment?,I'm not sure actually.  I'm waiting here for Mistress Sophie to receive it.  Have you met her?,,
-70,100,All of this for bringing a friend?,"Yes and no, I've actually angered Mistress Sophie, one of the club owner.  Have you met her?",,
+70,100,All of this for bringing a friend?,"Yes and no, I've actually angered Mistress Sophie, one of the club owners.  Have you met her?",,
 80,,Why are you restrained?,"I'm getting punished.  (She struggles and giggles.)  Don't worry, I've seen worse.  So, are you enjoying your visit?",DialogRemove(),
 80,100,"Yes, thanks for introducing me.",Sure!  And I can introduce you to lots of great people around here.  Have you met Mistress Sophie?,,
 80,100,"Yes and no, I still need to explore.","Absolutely, and exploring is part of the fun.  Have you met Mistress Sophie?",,
 80,100,I'm not sure this place is for me.,"I understand, but before you go, there's someone you should meet.  Have you met Mistress Sophie?",,
-100,110,I work with Sophie.  I'm a Mistress here.,Oh!  Are you here to punish me?  I thought she wanted to do it personaly.,,"DialogLogQuery(""ClubMistress"", ""Management"")"
+100,110,I work with Sophie.  I'm a Mistress here.,Oh!  Are you here to punish me?  I thought she wanted to do it personally.,,"DialogLogQuery(""ClubMistress"", ""Management"")"
 100,110,Who's Mistress Sophie?,She's one of the club owners and she's going to punish me here a little later.,,
 100,110,Why do you ask?,"She should be here soon, she reserved that room.  She's going to punish me.",,
 110,,,Mistress Sophie?  DialogPlayerName?  Marco?  (She laughs.),,
@@ -90,7 +90,17 @@ RemoveSuspensionHempRope,,,(You untie the hemp rope from the ceiling and slowly 
 120,,(Masturbate her.),(You masturbate her slowly as she trembles and moans from the pleasure.) Ooooooh yes.,ActivityRun(),Player.CanInteract()
 120,,(Leave her.),,DialogLeave(),
 121,120,I'll go find help.  (Leave her.),,StartUnlockQuest(),
+121,,Have you tried to struggle out?,"(She nods.)  Yes, but the shackles are too tight, I cannot get loose.",DialogRemove(),
+121,130,Maybe I can help you escape.,Oh!  You're an escape artist?  (She giggles.),,"DialogSkillGreater(""Evasion"", 7)"
 121,120,Let's wait for Mistress Sophie.,Sure!  (She giggles and struggles in her cuffs.),ActivityRun(),
+130,131,"Yes, I could show you some tricks.",That's great!  Let's try your tricks then.,,
+130,131,"Maybe, let me see these shackles.",Wonderful!  I hope you will succeed.,,
+131,132,(Inspect the shackles carefully.),"(Using your evasion knowledge, you check her shackles and find a way for her to get out by using a lubricant and struggling in a certain way.)",,
+132,133,I'll need some kind of lubricant to help you.,(She giggles.)  Well that's easy!  Just check in my panties.  Being restrained makes me all wet.,,
+133,134,(Rub the shackles on her panties.),(You rub the shackles on her wet panties as she sings a song.)  This is so kinky!  I wonder if it will work.,,
+133,134,(Gather her pussy fluid for the shackles.),(You grab her pussy and gather some fluid to lubricate her shackles.)  This is so kinky!  I wonder if it will work.,,
+134,121,"Ok girl, try to struggle out.","(She struggles clumsily but cannot get free.)  This is funny, but I don't think this is working.",,
+134,200,(Show her some evasion tricks to help her out.),,Evasion(),
 200,,,Thanks for getting me out Mistress.  You're the best!,,DialogIsProperty()
 200,,,Thanks for getting me out DialogPlayerName.  That was sweet.,,!DialogIsProperty()
 200,,What will you do?,"I don't know, get in trouble I guess.  (She giggles.)  Do you have any fun plans?",DialogRemove(),

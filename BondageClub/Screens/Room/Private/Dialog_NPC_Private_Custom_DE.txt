@@ -562,7 +562,7 @@ Yo, Mädel, wenn dein Frauchen deinen Arsch so verpackt hat, lasse ich dich nich
 (Sie blockt dich sofort ab.) Scheiße! Sei doch nicht dumm. Ich bin hier der verdammte Boss und ich entscheide.
 ###_PLAYER
 (Leave her.)
-(Sie verlassen.)
+(Dialog beenden.)
 Tell me about you.
 Erzähl mir von dir.
 ###_NPC
@@ -835,6 +835,9 @@ Meinst du dich selbst? Ich brauche erst mehr Zeit, dich kennenzulernen.
 ###_NPC [Dominant]
 Girl, we barely know each other.  I need more time to get to know you.
 Wir kennen uns doch kaum, Mädchen. Ich brauche etwas mehr Zeit, dich kennenzulernen.
+###_NPC
+(She blushes and shakes her head no.)  That could never happen Miss.  I don't have any Dominant blood in me.
+(Sie wird rot und schüttelt den Kopf.) Dazu wird es niemals kommen, Miss. In mir fließt kein Tropfen dominantes Blut.
 ###_PLAYER
 Are you looking for an owner?
 Suchst du nach einer Besitzerin?
@@ -868,6 +871,8 @@ Das muss ich ablehnen, Miss. Sie wirken wie eine wunderbare Herrin, aber für ei
 ###_NPC
 Can you help me out first so we can talk?
 Kannst du mir hier erst raushelfen, damit wir reden können?
+Forget it girl.  I'll never be collared by anyone.
+Vergiss es, Mädchen. Nie im Leben lasse ich mir von irgendwem ein Halsband anlegen.
 ###_PLAYER
 Let's talk about something else.
 Reden wir über etwas anderes.

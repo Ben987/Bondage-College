@@ -25,6 +25,10 @@
         padding-left: 2em;
     }
 
+    .FileStatusContainer:nth-child(2n) {
+        background-color: #eee;
+    }
+
     .TranslationFileTitle,
     .TranslationFileSummary {
         display: inline-block;
@@ -298,7 +302,7 @@ function ViewDetails(Status) {
         AddNodeWithText(Status.Details, "h4", "These lines are missing in the translation file (either added or changed from previous version):");
         var List = document.createElement("ul");
         Status.Details.appendChild(List);
-        for (var Line of Status.MissingTranslations) AddNodeWithText(List, "li", Line);
+        for (var Line of Status.MissingTranslations) AddNodeWithText(List, "li", "<pre>" + Line + "</pre>", true);
     }
     if (Status.ObsoleteTranslations.length > 0) {
         AddNodeWithText(Status.Details, "h4", "These lines from the translation file do not appear in the original script (check if they were changed or deleted):");

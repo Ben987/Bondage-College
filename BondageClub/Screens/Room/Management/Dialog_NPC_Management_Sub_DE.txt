@@ -35,7 +35,7 @@ Kann ich mit dir spielen?
 (Release her.)
 (Sie befreien.)
 I need to go, take care.  (Leave her.)
-Ich muss los, mach's gut. (Sie verlassen.)
+Ich muss los, mach's gut. (Dialog beenden.)
 (Try to talk with her.)
 (Versuchen, mit ihr zu sprechen.)
 ###_NPC

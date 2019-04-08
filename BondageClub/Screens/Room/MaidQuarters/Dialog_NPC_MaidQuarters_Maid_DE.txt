@@ -20,13 +20,13 @@ Bewache die Gefängniszelle, damit dort nichts passiert.
 (DialogCharacterName gets you back to the maid quarters and frowns.)  You failed to clean up in time.
 (DialogCharacterName holt dich stirnrunzelnd in die Dienerkammer zurück.) Du hast nicht alles sauber bekommen.
 (DialogCharacterName hugs you and gropes your red butt.)  You're now a full maid my sister.
-(DialogCharacterName umarmt dich und drückt deinen roten Hintern.) jetzt bist du eine vollwertige Dienerin, Schwester.
+(DialogCharacterName umarmt dich und drückt deinen roten Hintern.) Jetzt bist du ein vollwertiges Hausmädchen, Schwester.
 I'm sorry Miss.  I cannot help you.
 Tut mir leid, Miss. Ich kann nicht helfen.
 (She first shakes her head to avoid the gag, but finally surrenders as you silence her.)
 (Sie schüttelt erst den Kopf, um dem Knebel zu entgehen, lässt sich aber schließlich von dir zum Schweigen bringen.)
 (You remove her gag while she stretches her mouth.)  Thanks Miss, it's hard to dispatch maids with that gag.
-(Du nimmst den Knebel ab und sie streckt ihren Mund.) Danke, Miss, geknebelt ist es schwierig, Dienerinnen loszuschicken.
+(Du nimmst den Knebel ab und sie streckt ihren Mund.) Danke, Miss, geknebelt ist es schwierig, Hausmädchen loszuschicken.
 (She sighs and turns around while you restrain her arms.)  It might be a little hard to work like that Miss.
 (Sie seufzt und dreht sich um, als du ihre Arme fesselst.) Das könnte meine Arbeit etwas erschweren, Miss.
 (You free her arms and she nods happily.)  Thanks a lot Miss.
@@ -52,15 +52,15 @@ Tut mir leid, Miss. Ich kann nicht helfen.
 (You remove the device and she nods rapidly.)  Thanks a million, this is much better.
 (Du nimmst das Ding ab und sie nickt energisch.) Tausend Dank, das ist viel besser.
 (She jumps from the searing pain on her breast.)  Ouch!  Miss Head Maid!
-(Sie zuckt vom schneidenden Schmerz auf ihrer Brust zusammen.) Autsch! Frau Chefdienerin!
+(Sie zuckt vom schneidenden Schmerz auf ihrer Brust zusammen.) Autsch! Frau Hausdame!
 (You whip her breast with the leather crop as she whimpers and bows her head.)
 (Du peitschst ihr mit der Ledergerte auf die Brust und sie lässt wimmernd den Kopf hängen.)
 (You whip her butt hard as she sighs.)  I promise I'll work harder Miss Head Maid.
-(Du peitschst ihr kräftig auf den Hintern und sie seufzt.) Ich verspreche, härter zu arbeiten, Frau Chefdienerin.
+(Du peitschst ihr kräftig auf den Hintern und sie seufzt.) Ich verspreche, härter zu arbeiten, Frau Hausdame.
 (She grumbles as you strike her butt with the crop.)  A maid work isn't easy.
-(Sie grummelt, als du ihren Hintern mit der Gerte triffst.) Eine Dienerin hat es nicht leicht.
+(Sie grummelt, als du ihren Hintern mit der Gerte triffst.) Ein Hausmädchen hat es nicht leicht.
 Greetings head maid DialogPlayerName.  How can I help you?  (She does curtsies for you.)
-Servus, Chefdienerin DialogPlayerName. Wie kann ich behilflich sein? (Sie macht vor dir einen Knicks.)
+Servus, Hausdame DialogPlayerName. Wie kann ich behilflich sein? (Sie macht vor dir einen Knicks.)
 How pleasant to see you Mistress DialogPlayerName.  (She does curtsies for you.)
 Welch eine Freude, Euch zu sehen, Herrin DialogPlayerName. (Sie macht vor dir einen Knicks.)
 (She giggles.) Welcome to the Maid Quarters naked girl.  How can I help you?
@@ -68,7 +68,7 @@ Welch eine Freude, Euch zu sehen, Herrin DialogPlayerName. (Sie macht vor dir ei
 Welcome to the Maid Quarters.  How can I help you?
 Willkommen in der Dienerkammer. Wie kann ich behilflich sein?
 You've done a lot for the maid sorority.  You should apply to become a full sister.
-Du hast eine Menge für die Schwesternschaft getan. Du solltest dich als vollwertige Dienerin bewerben.
+Du hast eine Menge für die Schwesternschaft getan. Du solltest dich als vollwertiges Hausmädchen bewerben.
 It's great to see you sister!  How can I help you?
 Schön dich zu sehen, Schwester! Wie kann ich behilflich sein?
 ###_PLAYER
@@ -82,22 +82,22 @@ Hello, I'm DialogPlayerName.  Pleased to meet you.
 Hallo, ich bin DialogPlayerName. Sehr erfreut.
 ###_NPC
 Pleased to meet you too.  I'm DialogCharacterName, I'm responsible to find work for maids.
-Die Freude ist ganz meinerseits. Ich bin DialogCharacterName, ich verteile Aufgaben an Dienerinnen.
+Die Freude ist ganz meinerseits. Ich bin DialogCharacterName, ich verteile Aufgaben an Hausmädchen.
 ###_PLAYER
 What's going on in here?
 Was geht hier vor sich?
 ###_NPC
 Maids come here to get job assignments.  They can earn some money by working for the club.
-Hier holen sich Dienerinnen ihre Aufträge ab. Sie verdienen etwas Geld, indem sie für den Club arbeiten.
+Hier holen sich Hausmädchen ihre Aufträge ab. Sie verdienen etwas Geld, indem sie für den Club arbeiten.
 ###_PLAYER
 What kind of chores do maid do in the club?
-Welche Aufgaben erfüllen Dienerinnen im Club?
+Welche Aufgaben erfüllen Hausmädchen im Club?
 ###_NPC
 Cleaning, serving drinks, testing new devices, rescuing helpless people and more.
 Sie putzen, servieren Getränke, testen neue Geräte, befreien hilflose Mitglieder und einiges mehr.
 ###_PLAYER
 Can I become a maid?
-Kann ich eine Dienerin werden?
+Kann ich ein Hausmädchen werden?
 ###_NPC
 You could, if you're not afraid of work and you don't mind the uniform.
 Du könntest, wenn du gern arbeitest und dir die Uniform nichts ausmacht.
@@ -106,13 +106,13 @@ Do you have work for me?
 Gibt es Arbeit für mich?
 ###_NPC
 Absolutely, these are the chores available for you.  (She shows you a list of maid tasks to complete.)
-Natürlich, du kannst zwischen diesen Aufgaben wählen. (Sie zeigt dir eine Liste von Dienerinnen-Aufgaben.)
+Natürlich, du kannst zwischen diesen Aufgaben wählen. (Sie zeigt dir eine Liste von Hausmädchen-Aufgaben.)
 ###_PLAYER
 I'd like to become a full maid in the sorority.
 Ich möchte der Diener-Schwesternschaft beitreten.
 ###_NPC
 That's awesome!  We would be glad to have you.  You really have the maid calling?
-Das ist toll! Wir würden dich sehr gern aufnehmen. Hast du auch wirklich das Zeug zur Dienerin?
+Das ist toll! Wir würden dich sehr gern aufnehmen. Hast du auch wirklich das Zeug zum Hausmädchen?
 You need to prove yourself first.  Do more work for the sorority and we'll accept you.
 Du musst dich erst beweisen. Wenn du genug Aufgaben für die Schwesternschaft bewältigst, nehmen wir dich auf.
 ###_PLAYER
@@ -120,9 +120,9 @@ Who are the leaders in the sorority?
 Wer leitet die Schwesternschaft?
 ###_NPC
 The leaders are the head maids, they are dominant and experienced maids like you Miss.
-Die Anführer sind die Chefdienerinnen, das sind dominante und erfahrene Dienerinnen wie Sie, Miss.
+Die Anführer sind die Hausdamen, das sind dominante und erfahrene Hausmädchen wie Sie, Miss.
 The leaders are the head maids, they are dominant and experienced maids.  Maybe someday you could be head maid if you work hard enough.
-Die Anführer sind die Chefdienerinnen, sie sind sehr erfahren und dominant. Wenn du hart genug arbeitest, könntest du auch eine werden.
+Die Anführer sind die Hausdamen, sie sind sehr erfahren und dominant. Wenn du hart genug arbeitest, könntest du auch eine werden.
 ###_PLAYER
 Tell me about the club.
 Erzähl mir vom Club.
@@ -130,8 +130,40 @@ Erzähl mir vom Club.
 The Bondage Club has a long history.  It was a secret club back then when BDSM was taboo and forbidden.
 Der Bondage-Club hat eine lange Geschichte. Er war früher ein geheimer Treffpunkt, als BDSM noch tabu und verboten war.
 ###_PLAYER
+As head maid, I have a task for you.
+Als Hausdame habe ich eine Aufgabe für dich.
+###_NPC
+Of course Miss.  What can I do for you?
+Natürlich, Miss. Was kann ich für Sie tun?
+###_PLAYER
 I can't stay to chat.  (Leave her.)
-Keine Zeit zum Plaudern. (Sie verlassen.)
+Keine Zeit zum Plaudern. (Dialog beenden.)
+There's a blond girl stuck in a reserved bedroom.
+Eine Blondine steckt in einem reservierten Zimmer fest.
+###_NPC
+Is that true?  I can send a maid to rescue her right away.  Who reserved the room?
+Ist das wahr? Ich kann unverzüglich ein Hausmädchen schicken, um sie zu befreien. Wer hat das Zimmer reserviert?
+###_PLAYER
+Forget it.
+Vergiss es.
+###_NPC
+Very well.  Is there anything else I can do head maid DialogPlayerName?
+Sehr wohl. Kann ich sonst irgendwie behilflich sein, Hausdame DialogPlayerName?
+###_PLAYER
+It's reserved by Mistress Sophie.
+Es wurde von Herrin Sophie reserviert.
+###_NPC
+(Her eyes widen.)  The sorority cannot interfere then.  Please check with the club management.
+(Sie reißt die Augen auf.) In diesem Fall kann die Schwesternschaft nicht eingreifen. Bitte wenden Sie sich an die Clubleitung.
+###_PLAYER
+I've reserved it.  Send a maid now.
+Ich habe es reserviert. Schicke ein Hausmädchen hin.
+###_NPC
+Yes Miss!  (She sends a maid to unlock Sarah.)  It shouldn't take long.  Is there anything else I can do?
+Ja, Miss! (Sie schickt ein Hausmädchen, um Sarah zu befreien.) Es sollte nicht lange dauern. Kann ich sonst noch behilflich sein?
+###_PLAYER
+Forget it, I'll do it myself.
+Vergiss es, ich erledige das selbst.
 I love the uniform!
 Ich liebe die Uniform!
 ###_NPC
@@ -180,13 +212,13 @@ Yes, I was born to serve.
 Ja, ich wurde zum Dienen geboren.
 ###_NPC
 Perfect!  Your initiation can begin.  (She rings a bell and other maids comes in.)
-Perfekt! Deine Einweihung kann beginnen. (Sie läutet an einer Glocke und andere Dienerinnen kommen herein.)
+Perfekt! Deine Einweihung kann beginnen. (Sie läutet an einer Glocke und andere Hausmädchen kommen herein.)
 ###_PLAYER
 Yes, I love your sorority.
 Ja, ich liebe die Schwesternschaft.
 ###_NPC
 Excellent!  Your initiation can begin.  (She rings a bell and other maids comes in.)
-Hervorragend! Deine Einweihung kann beginnen. (Sie läutet an einer Glocke und andere Dienerinnen kommen herein.)
+Hervorragend! Deine Einweihung kann beginnen. (Sie läutet an einer Glocke und andere Hausmädchen kommen herein.)
 ###_PLAYER
 I'm not sure, let me think about it.
 Ich weiß nicht, lass mich darüber nachdenken.
@@ -303,7 +335,7 @@ Great!  Now open wide little sister.
 Super! Jetzt mach den Mund weit auf, kleine Schwester.
 ###_PLAYER
 I can't wait to initiate other maids.
-Ich freue mich auf das Einweihen anderer Dienerinnen.
+Ich freue mich auf das Einweihen anderer Hausmädchen.
 ###_NPC
 It's your turn now.  Open wide little sister.
 Erstmal bist du dran. Mund weit auf, kleine Schwester.
@@ -346,7 +378,7 @@ I will wear it with pride.
 Ich werde sie mit Stolz tragen.
 ###_NPC
 (You dress up in your own maid uniform while the maids clap their hands.)
-(Du ziehst dir deine eigene Uniform an, während die Dienerinnen Beifall klatschen.)
+(Du ziehst dir deine eigene Uniform an, während die Hausmädchen Beifall klatschen.)
 ###_PLAYER
 Thank you so much.
 Vielen, vielen Dank.
@@ -361,28 +393,28 @@ Ich fange sofort an, die Karriereleiter zu besteigen!
 I hope we will protect each other.
 Ich hoffe, wir werden einander beschützen.
 I'm ready to become head maid.
-Ich bin bereit, Chefdienerin zu werden.
+Ich bin bereit, Hausdame zu werden.
 ###_NPC
 You would be a wonderful head maid Miss.
-Sie wären eine wunderbare Chefdienerin, Miss.
+Sie wären eine wunderbare Hausdame, Miss.
 ###_PLAYER
 Can I become head maid?
-Kann ich Chefdienerin werden?
+Kann ich Hausdame werden?
 ###_NPC
 You'll need to have a perfect reputation in the sorority and be recognized as a dominant in the club first.
 Du brauchst erst einen tadellosen Ruf in der Schwesternschaft und musst im Club als dominant wahrgenommen werden.
 ###_PLAYER
 Tell me of the head maids responsibilities.
-Erzähl mir von der Verantwortung einer Chefdienerin.
+Erzähl mir von der Verantwortung einer Hausdame.
 ###_NPC
 The head maids have regular meetings with the club head Mistress.  They must make sure that the maids are working properly.
-Die Chefdienerinnen treffen sich regelmäßig mit der Oberherrin des Clubs und überwachen die Arbeit der Dienerinnen.
+Die Hausdamen treffen sich regelmäßig mit der Hausherrin des Clubs und überwachen die Arbeit der Hausmädchen.
 ###_PLAYER
 Tell me of the head maids powers.
-Erzähl mir von den Befugnissen von Chefdienerinnen.
+Erzähl mir von den Befugnissen von Hausdamen.
 ###_NPC
 They rule over the regular maids and can restrain them whenever they want.
-Sie herrschen über die einfachen Dienerinnen und können sie nach Lust und Laune fesseln.
+Sie herrschen über die einfachen Hausmädchen und können sie nach Lust und Laune fesseln.
 ###_PLAYER
 Let's talk about something else.
 Reden wir über etwas anderes.
@@ -400,7 +432,7 @@ Is there an initiation?
 Gibt es eine Einweihung?
 ###_NPC
 No Miss, you're already in the sorority.  All you need to do is sign a contract with the club.
-Nein, Miss, sie gehören bereits zur Schwesternschaft. Sie müssen nur einen Vertrag mit dem Club unterschreiben.
+Nein, Miss, Sie gehören bereits zur Schwesternschaft. Sie müssen nur einen Vertrag mit dem Club unterschreiben.
 ###_PLAYER
 Perfect!  Give me that contract.  (Sign the contract.)
 Perfekt! Her mit dem Vertrag. (Unterschreiben.)
@@ -459,7 +491,7 @@ Sure.  How can I help you?
 Klar. Wie kann ich dir helfen?
 ###_PLAYER
 Give me a few minutes first.  (Leave her.)
-Ich brauche noch ein paar Minuten. (Sie verlassen.)
+Ich brauche noch ein paar Minuten. (Dialog beenden.)
 I'm already dressed up.
 Ich habe mich schon ungezogen.
 ###_NPC
@@ -470,7 +502,7 @@ I'll change first.  (Wear the maid uniform.)
 Ich ziehe mich erst um. (Die Uniform anziehen.)
 ###_NPC
 (You change into the maid uniform.)  Perfect!  Let me restrain you then.
-(Du ziehst die Dienerinnen-Uniform an.) Perfekt! Dann lass mich dich mal fesseln.
+(Du ziehst die Hausmädchen-Uniform an.) Perfekt! Dann lass mich dich mal fesseln.
 ###_PLAYER
 Wait!  Restrain me?  Why?
 Moment! Mich fesseln? Warum?
@@ -596,10 +628,10 @@ Alles ist unter Kontrolle.
 Perfect!  Let me pay you for your efforts then.  (She gives you REPLACEMONEY $)
 Perfekt! Hier ist der Lohn für deine Mühe. (Sie gibt dir REPLACEMONEY $)
 (You change into the maid uniform.)  Wonderful!  Make the sorority proud.
-(Du ziehst dir die Dienerinnen-Uniform an.) Wunderbar! Erfülle die Schwesternschaft mit Stolz.
+(Du ziehst dir die Hausmädchen-Uniform an.) Wunderbar! Erfülle die Schwesternschaft mit Stolz.
 ###_PLAYER
 I'll go check the Introduction Class.  (Leave her.)
-Ich sehe im Einstiegskurs nach. (Sie verlassen.)
+Ich sehe im Einstiegskurs nach. (Dialog beenden.)
 I went there, but I couldn't do the rescue mission.
 Ich war da, konnte die Rettung aber nicht durchführen.
 ###_NPC
@@ -609,25 +641,25 @@ Have you inspected the Shibari Dojo?  Is everything alright?
 Hast du das Shibari-Dojo überprüft? Ist da alles in Ordnung?
 ###_PLAYER
 I'll go check the Shibari Dojo.  (Leave her.)
-Ich sehe im Shibari-Dojo nach. (Sie verlassen.)
+Ich sehe im Shibari-Dojo nach. (Dialog beenden.)
 ###_NPC
 What's going on at the Bondage Club store?  Did the vendor got in trouble?
 Was ist im Laden los? Steckt die Verkäuferin in Schwierigkeiten?
 ###_PLAYER
 I'll go check the Bondage Club store.  (Leave her.)
-Ich sehe im Laden nach. (Sie verlassen.)
+Ich sehe im Laden nach. (Dialog beenden.)
 ###_NPC
 What's going on at the Gambling Hall?  Did some Player got in trouble?
 Was ist in der Spielhalle los? Stecken Spieler in Schwierigkeiten?
 ###_PLAYER
 I'll go check the Gambling Hall.  (Leave her.)
-Ich sehe in der Spielhalle nach. (Sie verlassen.)
+Ich sehe in der Spielhalle nach. (Dialog beenden.)
 ###_NPC
 Everything is there in its place?
 Ist alles an seinem Platz?
 ###_PLAYER
 I'll go guard the Prison.  (Leave her.)
-Ich gehe das Gefängnis bewachen. (Sie verlassen.)
+Ich gehe das Gefängnis bewachen. (Dialog beenden.)
 Everyone will be safe as long as I'm in control.
 Alle werden sicher sein, solange es nach mir geht.
 ###_NPC

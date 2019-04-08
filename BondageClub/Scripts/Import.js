@@ -13,12 +13,17 @@ function ImportBondageCollege(C) {
 			// Imports the player lover and owner
 			LogAdd("BondageCollege", "Import");
 			if ((localStorage.getItem("BondageCollegeExportOwner") != null) && (localStorage.getItem("BondageCollegeExportOwner") != "")) C.Owner = "NPC-" + localStorage.getItem("BondageCollegeExportOwner");
-			if ((localStorage.getItem("BondageCollegeExportLover") != null) && (localStorage.getItem("BondageCollegeExportLover") != "")) C.Lover = "NPC-" + localStorage.getItem("BondageCollegeExportLover");			
+			if ((localStorage.getItem("BondageCollegeExportLover") != null) && (localStorage.getItem("BondageCollegeExportLover") != "")) C.Lover = "NPC-" + localStorage.getItem("BondageCollegeExportLover");
 
-			// Imports Sarah status
-			if ((localStorage.getItem("BondageClubImportSource") != null) && (localStorage.getItem("BondageClubImportSource") == "BondageCollege"))
-				if ((localStorage.getItem("BondageCollegeExportSarah") != null) && (localStorage.getItem("BondageCollegeExportSarah") != ""))
-					LogAdd(localStorage.getItem("BondageCollegeExportSarah"), "NPC-Sarah");
+			// Imports the 4 main character status
+			if ((localStorage.getItem("BondageClubImportSource") != null) && (localStorage.getItem("BondageClubImportSource") == "BondageCollege")) {
+				if ((localStorage.getItem("BondageCollegeExportAmanda") != null) && (localStorage.getItem("BondageCollegeExportAmanda") != "")) LogAdd(localStorage.getItem("BondageCollegeExportAmanda"), "NPC-Amanda");
+				if ((localStorage.getItem("BondageCollegeExportSarah") != null) && (localStorage.getItem("BondageCollegeExportSarah") != "")) LogAdd(localStorage.getItem("BondageCollegeExportSarah"), "NPC-Sarah");
+				if ((localStorage.getItem("BondageCollegeExportSidney") != null) && (localStorage.getItem("BondageCollegeExportSidney") != "")) LogAdd(localStorage.getItem("BondageCollegeExportSidney"), "NPC-Sidney");
+				if ((localStorage.getItem("BondageCollegeExportJennifer") != null) && (localStorage.getItem("BondageCollegeExportJennifer") != "")) LogAdd(localStorage.getItem("BondageCollegeExportJennifer"), "NPC-Jennifer");
+				if ((localStorage.getItem("BondageCollegeExportAmandaSarah") != null) && (localStorage.getItem("BondageCollegeExportAmandaSarah") != "")) LogAdd(localStorage.getItem("BondageCollegeExportAmandaSarah"), "NPC-AmandaSarah");
+				if ((localStorage.getItem("BondageCollegeExportSarahIntro") != null) && (localStorage.getItem("BondageCollegeExportSarahIntro") != "")) LogAdd(localStorage.getItem("BondageCollegeExportSarahIntro"), "NPC-SarahIntro");
+			}
 
 			// Imports every inventory items
 			InventoryAdd(C, "CollegeOutfit1", "Cloth");
@@ -46,9 +51,10 @@ function ImportBondageCollege(C) {
 			// Sync with the server
 			ServerPlayerSync();
 			ServerPlayerInventorySync();
+			SarahSetStatus();
 
 		}
-	
+
 	}
 
 }

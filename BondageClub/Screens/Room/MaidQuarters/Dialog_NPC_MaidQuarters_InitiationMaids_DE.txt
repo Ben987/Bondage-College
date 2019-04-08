@@ -1,8 +1,8 @@
 ###_NPC
 (The maids laugh at your mumbles and try to cheer you up.)
-(Die Dienerinnen lachen über dein Gemurmel und versuchen dich aufzuheitern.)
+(Die Hausmädchen lachen über dein Gemurmel und versuchen dich aufzuheitern.)
 (A maid comes close to you with a large wooden paddle.)  I'm first today?  Sweet!  Show me your butt.
-(Eine Dienerin nähert sich mit einem großen Holzpaddel.) Fange ich heute an? Spitze! Zeig mir deinen Po.
+(Ein Hausmädchen nähert sich mit einem großen Holzpaddel.) Fange ich heute an? Spitze! Zeig mir deinen Po.
 ###_PLAYER
 Wait!  Are you serious?
 Moment! Ist das dein Ernst?
@@ -16,7 +16,7 @@ Moment! Ist das dein Ernst?
 (Leicht wimmern.)
 ###_NPC
 (She gives the paddle to another maid which steps forward.)  My turn!
-(Sie reicht das Paddel einer anderen Dienerin, die vortritt.) Ich bin dran!
+(Sie reicht das Paddel einem anderen Hausmädchen, das vortritt.) Ich bin dran!
 ###_PLAYER
 That wasn't too bad.
 Das war gar nicht so schlimm.
@@ -32,7 +32,7 @@ Nicht so doll!
 (Zu Boden schauen.)
 ###_NPC
 (She tosses the flogging device to another maid.)  Don't worry, this won't hurt me.
-(Sie wirft das Bestrafungswerkzeug einer anderen Dienerin zu.) Keine Angst, das wird mir nicht wehtun.
+(Sie wirft das Bestrafungswerkzeug einem anderen Hausmädchen zu.) Keine Angst, das wird mir nicht wehtun.
 ###_PLAYER
 (Stand strong.)
 (Stark bleiben.)
@@ -52,13 +52,13 @@ Vorsicht mit dem Ding.
 (Ein bisschen weinen.)
 ###_NPC
 (Another maid picks the paddle.)  Don't cry little sister, it will be over soon.
-(Eine weitere Dienerin nimmt das Paddel.) Nicht weinen, kleine Schwester, es ist bald vorbei.
+(Ein weiteres Hausmädchen nimmt das Paddel.) Nicht weinen, kleine Schwester, es ist bald vorbei.
 ###_PLAYER
 (Try to look tough.)
 (Versuchen, stark auszusehen.)
 ###_NPC
 (Another maid picks the paddle.)  We have a tough cookie here sisters!
-(Eine weitere Dienerin nimmt das Paddel.) Wir haben es hier mit einem harten Knochen zu tun, Schwestern!
+(Ein weiteres Hausmädchen nimmt das Paddel.) Wir haben es hier mit einem harten Knochen zu tun, Schwestern!
 ###_PLAYER
 Please stop!
 Bitte aufhören!
@@ -78,13 +78,13 @@ Na los, gib alles.
 (Versuchen, stark zu bleiben.)
 ###_NPC
 (Another maid picks the paddle and smiles.)  You're a pro sis, this is the last one.
-(Eine andere Dienerin nimmt das Paddel und lächelt.) Du machst das toll, Schwesterherz, hier kommt der Letzte.
+(Ein anderes Hausmädchen nimmt das Paddel und lächelt.) Du machst das toll, Schwesterherz, hier kommt der Letzte.
 ###_PLAYER
 (Close your eyes and prepare for impact.)
 (Die Augen schließen und auf den Aufprall warten.)
 ###_NPC
 (She smashes the paddle with strength, almost making you fall.)  You've did it!  Welcome to the maid sorority!
-(Sie donnert es mit voller Kraft und bringt dich fast zu Fall.) Du hast es geschafft! Willkommen in der Schwesternschaft der Dienerinnen!
+(Sie donnert es mit voller Kraft und bringt dich fast zu Fall.) Du hast es geschafft! Willkommen in der Schwesternschaft der Hausmädchen!
 ###_PLAYER
 (Whimper and try to beg for mercy.)
 (Wimmern und um Gnade betteln.)

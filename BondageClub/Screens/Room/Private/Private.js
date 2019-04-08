@@ -2,6 +2,7 @@
 var PrivateBackground = "Private";
 var PrivateVendor = null;
 var PrivateCharacter = [];
+var PrivateCharacterOffset = 0;
 var PrivateCharacterTypeList = ["NPC_Private_VisitorShy", "NPC_Private_VisitorHorny", "NPC_Private_VisitorTough"];
 var PrivateCharacterToSave = 0;
 var PrivateCharacterMax = 4;
@@ -15,7 +16,7 @@ var PrivatePunishmentList = ["Cage", "Bound", "BoundPet", "ChastityBelt", "Chast
 
 // Returns TRUE if a specific dialog option is allowed
 function PrivateIsCaged() { return (CurrentCharacter.Cage == null) ? false : true }
-function PrivateVendorCanPlay() { return (LogQuery("RentRoom", "PrivateRoom") && LogQuery("Wardrobe", "PrivateRoom") && LogQuery("Cage", "PrivateRoom") && Player.CanInteract() && PrivateVendor.CanInteract()) }
+function PrivateVendorCanPlay() { return (LogQuery("RentRoom", "PrivateRoom") && LogQuery("Wardrobe", "PrivateRoom") && LogQuery("Cage", "PrivateRoom") && LogQuery("Expansion", "PrivateRoom") && Player.CanInteract() && PrivateVendor.CanInteract()) }
 function PrivateAllowChange() { return (!CurrentCharacter.IsRestrained() && (ReputationGet("Dominant") + 25 >= NPCTraitGet(CurrentCharacter, "Dominant"))) }
 function PrivateWontChange() { return (!CurrentCharacter.IsRestrained() && (ReputationGet("Dominant") + 25 < NPCTraitGet(CurrentCharacter, "Dominant"))) }
 function PrivateIsRestrained() { return (CurrentCharacter.IsRestrained()) }
@@ -75,19 +76,19 @@ function PrivateLoad() {
 function PrivateDrawCharacter() {
 
 	// Defines the character position in the private screen
-	var X = 1000 - PrivateCharacter.length * 250;
-	var S = (PrivateCharacter.length == PrivateCharacterMax) ? 470 : 500;
+	var X = 1000 - ((PrivateCharacter.length - PrivateCharacterOffset) * 250);
+	if (X < 0) X = 0;
 
-	// For each character to draw
-	for(var C = 0; C < PrivateCharacter.length; C++) {
-		if (PrivateCharacter[C].Cage != null) DrawImage("Screens/Room/Private/CageBack.png", X + C * S, 0);
-		DrawCharacter(PrivateCharacter[C], X + C * S, 0, 1);
-		if (PrivateCharacter[C].Cage != null) DrawImage("Screens/Room/Private/CageFront.png", X + C * S, 0);
-		DrawButton(X + 145 + C * S, 900, 90, 90, "", "White", "Icons/Character.png");
+	// For each character to draw (maximum 4 at a time)
+	for(var C = PrivateCharacterOffset; (C < PrivateCharacter.length && C < PrivateCharacterOffset + 4); C++) {
+		if (PrivateCharacter[C].Cage != null) DrawImage("Screens/Room/Private/CageBack.png", X + (C - PrivateCharacterOffset) * 470, 0);
+		DrawCharacter(PrivateCharacter[C], X + (C - PrivateCharacterOffset) * 470, 0, 1);
+		if (PrivateCharacter[C].Cage != null) DrawImage("Screens/Room/Private/CageFront.png", X + (C - PrivateCharacterOffset) * 470, 0);
+		DrawButton(X + 145 + (C - PrivateCharacterOffset) * 470, 900, 90, 90, "", "White", "Icons/Character.png");
 		if (LogQuery("Cage", "PrivateRoom") && !LogQuery("BlockCage", "Rule"))
 			if ((Player.Cage == null) || (C == 0))
 				if (!PrivateCharacter[C].IsOwner())
-					DrawButton(X + 265 + C * S, 900, 90, 90, "", "White", "Icons/Cage.png");
+					DrawButton(X + 265 + (C - PrivateCharacterOffset) * 470, 900, 90, 90, "", "White", "Icons/Cage.png");
 	}
 	
 }
@@ -101,6 +102,7 @@ function PrivateRun() {
 		if ((Player.Cage == null) && Player.CanWalk()) DrawButton(1885, 265, 90, 90, "", "White", "Icons/Shop.png");
 		if (!LogQuery("BlockChange", "Rule")) DrawButton(1885, 385, 90, 90, "", "White", "Icons/Dress.png");
 		if (LogQuery("Wardrobe", "PrivateRoom") && !LogQuery("BlockChange", "Rule")) DrawButton(1885, 505, 90, 90, "", "White", "Icons/Wardrobe.png");
+		if (LogQuery("Expansion", "PrivateRoom")) DrawButton(1885, 625, 90, 90, "", "White", "Icons/Next.png");
 	} else {
 		DrawCharacter(Player, 500, 0, 1);
 		DrawCharacter(PrivateVendor, 1000, 0, 1);
@@ -122,20 +124,25 @@ function PrivateRun() {
 function PrivateClickCharacterButton() {
 	
 	// Defines the character position in the private screen
-	var X = 1000 - PrivateCharacter.length * 250;
-	var S = (PrivateCharacter.length == PrivateCharacterMax) ? 470 : 500;
+	var X = 1000 - ((PrivateCharacter.length - PrivateCharacterOffset) * 250);
+	if (X < 0) X = 0;
 
-	// For each character, we find the one to cage, doesn't allow to do it if already in a cage
-	for(var C = 0; C < PrivateCharacter.length; C++) {
-		if ((MouseX >= X + 265 + C * S) && (MouseX <= X + 355 + C * S))
+	// For each character, we check if the player clicked on the cage or information button
+	for(var C = PrivateCharacterOffset; (C < PrivateCharacter.length && C < PrivateCharacterOffset + 4); C++) {
+		
+		// The cage is only available on certain conditions
+		if ((MouseX >= X + 265 + (C - PrivateCharacterOffset) * 470) && (MouseX <= X + 355 + (C - PrivateCharacterOffset) * 470))
 			if (LogQuery("Cage", "PrivateRoom") && !LogQuery("BlockCage", "Rule"))
 				if ((Player.Cage == null) || (C == 0))
 					if (!PrivateCharacter[C].IsOwner()) {
 						PrivateCharacter[C].Cage = (PrivateCharacter[C].Cage == null) ? true : null;
 						if (C > 0) ServerPrivateCharacterSync();
 					}
-		if ((MouseX >= X + 145 + C * S) && (MouseX <= X + 235 + C * S))
+
+		// The information sheet button is always available
+		if ((MouseX >= X + 145 + (C - PrivateCharacterOffset) * 470) && (MouseX <= X + 235 + (C - PrivateCharacterOffset) * 470))
 			InformationSheetLoadCharacter(PrivateCharacter[C]);
+
 	}
 
 }
@@ -144,12 +151,12 @@ function PrivateClickCharacterButton() {
 function PrivateClickCharacter() {
 
 	// Defines the character position in the private screen
-	var X = 1000 - PrivateCharacter.length * 250;
-	var S = (PrivateCharacter.length == 4) ? 470 : 500;
+	var X = 1000 - ((PrivateCharacter.length - PrivateCharacterOffset) * 250);
+	if (X < 0) X = 0;
 
 	// For each character, we find the one that was clicked and open it's dialog
-	for(var C = 0; C < PrivateCharacter.length; C++)
-		if ((MouseX >= X + C * S) && (MouseX <= X + S + C * S)) {
+	for(var C = PrivateCharacterOffset; (C < PrivateCharacter.length && C < PrivateCharacterOffset + 4); C++)
+		if ((MouseX >= X + (C - PrivateCharacterOffset) * 470) && (MouseX <= X + 470 + (C - PrivateCharacterOffset) * 470)) {
 			
 			// Sets the new character (1000 if she's owner, 2000 if she's owned)
 			PrivateCharacterToSave = C;
@@ -178,6 +185,7 @@ function PrivateClick() {
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355) && LogQuery("RentRoom", "PrivateRoom") && Player.CanWalk() && (Player.Cage == null)) CharacterSetCurrent(PrivateVendor);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475) && LogQuery("RentRoom", "PrivateRoom") && !LogQuery("BlockChange", "Rule")) { CharacterAppearanceReturnRoom = "Private"; CommonSetScreen("Character", "Appearance"); }
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 505) && (MouseY < 595) && LogQuery("RentRoom", "PrivateRoom") && !LogQuery("BlockChange", "Rule") && LogQuery("Wardrobe", "PrivateRoom")) CommonSetScreen("Character", "Wardrobe");
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 625) && (MouseY < 715) && LogQuery("RentRoom", "PrivateRoom") && LogQuery("Expansion", "PrivateRoom")) PrivateCharacterOffset = (PrivateCharacterOffset == 0) ? 4 : 0;
 	if ((MouseX <= 1885) && (MouseY < 900) && LogQuery("RentRoom", "PrivateRoom") && (Player.Cage == null)) PrivateClickCharacter();
 	if ((MouseX <= 1885) && (MouseY >= 900) && LogQuery("RentRoom", "PrivateRoom")) PrivateClickCharacterButton();
 }
@@ -198,6 +206,13 @@ function PrivateGetWardrobe() {
 function PrivateGetCage() {
 	CharacterChangeMoney(Player, -150);
 	LogAdd("Cage", "PrivateRoom");
+}
+
+// When the player gets the room expansion
+function PrivateGetExpansion() {
+	CharacterChangeMoney(Player, -200);
+	LogAdd("Expansion", "PrivateRoom");
+	PrivateCharacterMax = 8;
 }
 
 // Loads the private room character

@@ -2,7 +2,7 @@
 Communicating with a gag is quite hard.  You'll need to remove it to chat.
 Knebel erschweren die Kommunikation um einiges. Du solltest ihn abnehmen, um dich zu unterhalten.
 Of course, head maid DialogPlayerName.  (She releases you.)
-Natürlich, Chefdienerin DialogPlayerName. (Sie befreit dich.)
+Natürlich, Hausdame DialogPlayerName. (Sie befreit dich.)
 (She first shakes her head to avoid the gag, but eventually surrenders as you silence her.)
 (Sie schüttelt erst den Kopf, um dem Knebel zu entgehen, lässt sich aber schließlich von dir zum Schweigen bringen.)
 (You remove her gag while she stretches her mouth.)  Thanks, it's hard to introduce newcomers with that gag.
@@ -32,17 +32,17 @@ Natürlich, Chefdienerin DialogPlayerName. (Sie befreit dich.)
 (You remove the device as she shakes her head joyfully.)  Wonderful!  That'll make my day easier.
 (Du nimmst das Ding ab und sie schüttelt fröhlich den Kopf.) Wundervoll! Das macht meinen Tag gleich viel einfacher.
 (She jumps from the searing pain on her breast.)  Ouch!  Miss Head Maid!
-(Sie zuckt vom schneidenden Schmerz auf ihrer Brust zusammen.) Autsch! Frau Chefdienerin!
+(Sie zuckt vom schneidenden Schmerz auf ihrer Brust zusammen.) Autsch! Frau Hausdame!
 (You whip her breast with the leather crop as she whimpers and bows her head.) Owwwwwww!
 (Du peitschst ihr mit der Ledergerte auf die Brust und sie lässt wimmernd den Kopf hängen.) Auuuuuuu!
 (You whip her butt hard as she sighs.)  Ahh! I promise I'll work harder Miss Head Maid!
-(Du peitschst ihr kräftig auf den Hintern und sie seufzt.) Ahh! Ich verspreche, härter zu arbeiten, Frau Chefdienerin!
+(Du peitschst ihr kräftig auf den Hintern und sie seufzt.) Ahh! Ich verspreche, härter zu arbeiten, Frau Hausdame!
 (She grumbles as you strike her butt with the crop.)  Oww! That stings Miss!.
 (Sie grummelt, als du ihren Hintern mit der Gerte triffst.) Auu! Das tut weh, Miss!
 Greetings Mistress DialogPlayerName.  Welcome to the introduction class.  (She does curtsies for you.)
 Grüßt Euch, Herrin DialogPlayerName. Willkommen beim Einstiegskurs. (Sie verneigt sich vor dir.)
 Greetings head maid DialogPlayerName.  Welcome to the introduction class.  (She does curtsies for you.)
-Grüßen Sie sich, Chefdienerin DialogPlayerName. Willkommen beim Einstiegskurs. (Sie verneigt sich vor dir.)
+Grüßen Sie sich, Hausdame DialogPlayerName. Willkommen beim Einstiegskurs. (Sie verneigt sich vor dir.)
 (She stares at you.)  Hello naked girl.  Welcome to the introduction class.
 (Sie starrt dich an.) Hallo, nacktes Mädchen. Willkommen zum Einstiegskurs.
 Hi sister, welcome to the introduction class.
@@ -54,10 +54,10 @@ Hi, my name is DialogPlayerName.
 Hi, ich heiße DialogPlayerName.
 ###_NPC
 Pleased to meet you.  I'm DialogCharacterName, I work here as a maid.
-Sehr erfreut. Ich bin DialogCharacterName, Ich arbeite hier als Dienerin.
+Sehr erfreut. Ich bin DialogCharacterName, Ich arbeite hier als Hausmädchen.
 ###_PLAYER
 Thanks, little maid.  What's going on here?
-Danke, kleine Dienerin. Was geht hier vor sich?
+Danke, kleines Hausmädchen. Was geht hier vor sich?
 ###_NPC
 In here, you can learn how to restrain someone, and how to escape by yourself.
 Hier kannst du lernen, wie du jemanden fesselst und wie du dich selbst aus Fesseln befreist.
@@ -75,7 +75,7 @@ Very well, would you like to practice with us then?
 Sehr wohl, möchtest du dann mit uns üben?
 ###_PLAYER
 I can't stay to chat.  (Leave her.)
-Ich habe keine Zeit mehr zum Plaudern. (Sie verlassen.)
+Ich habe keine Zeit zum Plaudern. (Dialog beenden.)
 Can I strap up anyone at any time?
 Kann ich jederzeit jeden in Fesseln legen?
 ###_NPC
@@ -101,10 +101,10 @@ The Bondage Club is a place for open minded adults to share their BDSM kinks.
 Der Bondage-Club ist ein Ort für vorurteilslose Erwachsene, die ihre BDSM-Vorlieben miteinander teilen.
 ###_PLAYER
 You're both a maid and a teacher?
-Du bist also eine Dienerin und eine Lehrerin?
+Du bist also ein Hausmädchen und eine Lehrerin?
 ###_NPC
 We maids do a lot of work here.  You'll see this with time.
-Wir Dienerinnen übernehmen hier viele Aufgaben. Das wirst du mit der Zeit sehen.
+Wir Hausmädchen übernehmen hier viele Aufgaben. Das wirst du mit der Zeit sehen.
 ###_PLAYER
 I already know that.
 Das weiß ich bereits.
@@ -180,7 +180,7 @@ Kann ich dich jetzt verschnüren?
 Not me I'm afraid, but we have someone here who would certainly enjoy being your victim.
 Mich leider nicht, aber meine Assistentin hier würde liebend gern dein Opfer spielen.
 I'm all yours if you want me, head maid DialogPlayerName.  I will not resist you.
-Ich stehe Ihnen voll und ganz zur Verfügung, Chefdienerin DialogPlayerName. Wenn Sie mich wollen, wehre ich mich nicht.
+Ich stehe Ihnen voll und ganz zur Verfügung, Hausdame DialogPlayerName. Wenn Sie mich wollen, wehre ich mich nicht.
 ###_PLAYER
 Can we practice?
 Können wir üben?
@@ -200,7 +200,7 @@ I want to practice tying you up.
 Ich möchte üben, dich zu fesseln.
 ###_NPC
 (She blushes.)  Yes, head maid DialogPlayerName.  I will not resist you.
-(Sie wird rot.) Jawohl, Chefdienerin DialogPlayerName. Ich werde mich nicht widersetzen.
+(Sie wird rot.) Jawohl, Hausdame DialogPlayerName. Ich werde mich nicht widersetzen.
 You can't tie me up, but we have someone here who would certainly enjoy being your subject.
 Mich kannst du nicht fesseln, aber meine Assistentin hier wäre liebend gern deine Versuchsperson.
 ###_PLAYER
@@ -220,10 +220,10 @@ Who runs this club?
 Wer leitet diesen Club?
 ###_NPC
 The Head Mistress is in charge.  You should go present yourself if you haven't already.
-Die Oberherrin hat hier das Sagen. Du solltest dich ihr vorstellen gehen, falls du das noch nicht getan hast.
+Die Hausherrin hat hier das Sagen. Du solltest dich ihr vorstellen gehen, falls du das noch nicht getan hast.
 ###_PLAYER
 Let's practice later.  (Leave her.)
-Üben wir später. (Sie verlassen.)
+Üben wir später. (Dialog beenden.)
 I can use my favorite restraints on her?
 Kann ich meine Lieblingsfesseln an ihr benutzen?
 ###_NPC
@@ -271,7 +271,7 @@ Sie ist jetzt ziemlich gut verschnürt.
 (Sie betrachtet dein Opfer und lächelt.) Ausgezeichnet! Wie fühlt es sich an, jemanden zu fesseln?
 ###_PLAYER
 Very good.  (Leave her.)
-Gut. (Sie verlassen.)
+Gut. (Dialog beenden.)
 I can tie her up at any time?
 Kann ich sie jederzeit fesseln?
 ###_NPC
@@ -314,7 +314,7 @@ Kann ich dich jetzt fesseln?
 (She giggles.)  Not now, I have work to do here.  But I'm sure you'll find victims if you wander around.
 (Sie kichert.) Nicht jetzt, ich muss noch arbeiten. Aber du findest sicher ein paar Opfer, wenn du herumwanderst.
 (She giggles.)  If you wish head maid DialogPlayerName.
-(Sie kichert.) Wenn sie wünschen, Chefdienerin DialogPlayerName.
+(Sie kichert.) Wenn sie wünschen, Hausdame DialogPlayerName.
 Your introduction class is done.  I hope you have fun in the club!
 Deine Einweisung ist beendet. Ich hoffe, du wirst im Club viel Spaß haben.
 ###_PLAYER
@@ -325,7 +325,7 @@ Well thanks a lot.  (She smiles.)  You're a good student.
 Na ja, vielen Dank. (Sie lächelt.) Du bist eine gute Schülerin.
 ###_PLAYER
 Thanks!  Have a great time.  (Leave her.)
-Danke! Viel Spaß noch. (Sie verlassen.)
+Danke! Viel Spaß noch. (Dialog beenden.)
 Can you teach me more about rope bondage?
 Kann ich mehr über Seil-Bondage erfahren?
 ###_NPC
@@ -351,7 +351,7 @@ Ich bin bereit, du kannst mich fesseln.
 (Sie bindet ein weißes Nylonseil um deine Füße und macht zwei Knoten.)
 ###_PLAYER
 Not yet.  Give me some time.  (Leave her.)
-Noch nicht. Ich brauche etwas Zeit (Sie verlassen.)
+Noch nicht. Ich brauche etwas Zeit (Dialog beenden.)
 I won't be running away now.
 So kann ich nicht davonlaufen.
 ###_NPC
@@ -409,7 +409,7 @@ You're not in control girl.  (She grabs your mouth and straps a cloth gag on you
 Du hast hier nicht das Sagen, Mädchen. (Sie nimmt deinen Mund und bindet ihn mit etwas Stoff zu.)
 ###_PLAYER
 Don't look, I will escape by myself.  (Leave her.)
-Nicht gucken, ich befreie mich von allein. (Sie verlassen.)
+Nicht gucken, ich befreie mich selbst. (Dialog beenden.)
 ###_NPC
 Well done!  You were able to struggle out.
 Gut gemacht! Du hast es geschafft, dich zu befreien.
@@ -457,7 +457,7 @@ Well thanks a lot.  You're a good student.
 Na ja, vielen Dank. Du bist eine gute Schülerin.
 ###_PLAYER
 Thanks!  Take care.  (Leave her.)
-Danke! Mach's gut. (Sie verlassen.)
+Danke! Mach's gut. (Dialog beenden.)
 Can I strap her up?
 Kann ich sie fesseln?
 ###_NPC
@@ -504,24 +504,24 @@ What happened here?
 Was ist hier passiert?
 ###_NPC
 A true maid story. A silent girl in latex gear barged in and strapped us both up in armbinders and belts.  She gagged us and left.
-Eine typische Dienerinnen-Geschichte. Ein stilles Mädchen in Latex platzte herein und schnallte uns Gurte um. Sie knebelte uns und ging.
+Eine typische Hausmädchen-Geschichte. Ein stilles Mädchen in Latex platzte herein und schnallte uns Gurte um. Sie knebelte uns und ging.
 It started with a new club member curious about armbinders and finished with her running to the maids to get help.
-Es fing mit einer Neuen an, die sich für Monohandschuhe interessierte, und endete darin, dass sie hilfesuchend zu den Dienerinnen rannte.
+Es fing mit einer Neuen an, die sich für Monohandschuhe interessierte, und endete darin, dass sie verzweifelt zu den Hausmädchen rannte.
 A rival maid of mine came in and we fought.  She got lucky and managed to restrain us in belts and armbinders.
 Eine Rivalin von mir kam herein und wir kämpften. Sie hatte Glück und konnte uns Gurte und Monohandschuhe anlegen.
 A sales rep came in with belts and armbinders and I think we got a little too carried away by her merchandise.
 Eine Handelsvertreterin kam mit Gurten und Monohandschuhen herein. Ich glaube, wir haben uns von ihren Produkten zu sehr mitreißen lassen.
 ###_PLAYER
 I'll go get help.  (Leave her.)
-Ich hole Hilfe. (Sie verlassen.)
+Ich hole Hilfe. (Dialog beenden.)
 As a maid, you owe me a favor now.
-Als Dienerin schuldest du mir jetzt einen Gefallen.
+Als Hausmädchen schuldest du mir jetzt einen Gefallen.
 ###_NPC
 (She gulps.)  Yes Miss.  Is there something else you need?
 (Sie schluckt.) Ja, Miss. Kann ich sonst irgendwie behilflich sein?
 ###_PLAYER
 My pleasure.  The maids protect each other.
-Gern geschehen. Die Dienerinnen schützen einander.
+Gern geschehen. Die Hausmädchen schützen einander.
 ###_NPC
 Well said!  Is there something else you need?
 Gut gesagt! Kann ich sonst irgendwie behilflich sein?

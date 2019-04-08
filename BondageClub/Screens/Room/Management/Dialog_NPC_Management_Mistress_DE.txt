@@ -18,11 +18,11 @@ Wir Herrinnen haben uns unterhalten. Es scheint, als wärst du nicht mehr für d
 My respects to you Mistress DialogPlayerName.
 Ich grüße Euch, Herrin DialogPlayerName.
 Greetings head maid DialogPlayerName.  Is there a problem that the sorority cannot handle?
-Hallo, Chefdienerin DialogPlayerName. Gibt es ein Problem, mit dem die Schwesternschaft nicht klarkommt?
+Hallo, Hausdame DialogPlayerName. Gibt es ein Problem, mit dem die Schwesternschaft nicht klarkommt?
 Greetings master kidnapper DialogPlayerName.  I trust you're having a good time hunting.
 Hallo, Kidnappermeisterin DialogPlayerName. Ich hoffe, die Jagd ist ergiebig.
 Welcome little maid.  How can I help you?
-Willkommen, kleine Dienerin. Wie kann ich dir helfen?
+Willkommen, kleines Hausmädchen. Wie kann ich dir helfen?
 Welcome kidnapper.  How can I help you?
 Willkommen, Kidnapperin. Wie kann ich dir helfen?
 Be direct and don't waste my time girl.
@@ -33,6 +33,12 @@ Ich grüße Sie, Miss. Mein Name ist DialogPlayerName.
 ###_NPC
 You seem to have some manners.  I'm DialogCharacterName, I'm in charge of the club today.
 Du scheinst Manieren zu haben. Ich bin DialogCharacterName, ich leite heute den Club.
+###_PLAYER
+How come Sarah is locked down?
+Warum ist Sarah angekettet?
+###_NPC
+Sarah you say?  Oh yes, the blond college student.  Mistress Sophie reserved a room for her punishment.
+Sarah, sagst du? Ah ja, die blonde College-Schülerin. Herrin Sophie hat ein Zimmer für ihre Bestrafung reserviert.
 ###_PLAYER
 I have a few questions.
 Ich habe da ein paar Fragen.
@@ -71,7 +77,7 @@ Yes, what would you like to know?
 Ja, was möchtest du darüber wissen?
 ###_PLAYER
 Sorry, I need to go.  (Leave her.)
-Tut mir leid, ich muss gehen. (Sie verlassen.)
+Tut mir leid, ich muss gehen. (Dialog beenden.)
 Oops, I'm sorry Miss.  (Kneel for her.)
 Ups, Verzeihung, Miss. (Dich hinknien.)
 ###_NPC
@@ -81,7 +87,7 @@ Ups, Verzeihung, Miss. (Dich hinknien.)
 (Bow your head and kneel.)
 (Deinen Kopf senken und dich hinknien.)
 We cannot talk then.  (Leave her.)
-Dann reden wir eben nicht. (Sie verlassen.)
+Dann reden wir eben nicht. (Dialog beenden.)
 What do you do in the club?
 Was ist Ihre Aufgabe im Club?
 ###_NPC
@@ -92,7 +98,7 @@ Who owns the club?
 Wem gehört der Club?
 ###_NPC
 The club is owned by every member, but the Head Mistress is truly in charge.
-Der Club gehört all seinen Mitgliedern, aber die Oberherrin ist die wahre Eigentümerin.
+Der Club gehört all seinen Mitgliedern, aber die Hausherrin ist die wahre Eigentümerin.
 ###_PLAYER
 Can I tie you up?
 Kann ich dich fesseln?
@@ -221,21 +227,21 @@ Very well, I will help you.  (She releases you.)  Don't annoy me anymore.
 Nun gut, ich helfe dir. (Sie befreit dich.) Geh mir nicht mehr auf die Nerven.
 ###_PLAYER
 (Leave her.)
-(Sie verlassen.)
+(Dialog beenden.)
 Who's the Head Mistress?
-Wer ist die Oberherrin?
+Wer ist die Hausherrin?
 ###_NPC
 Mistress Sophie is the club current Head Mistress.  She's a strict but fair manager.
-Herrin Sophie ist die derzeitige Oberherrin des Clubs. Sie ist eine strenge aber gerechte Managerin.
+Herrin Sophie ist die derzeitige Hausherrin des Clubs. Sie ist eine strenge aber gerechte Managerin.
 ###_PLAYER
 How do you choose the Head Mistress?
-Wie wird die Oberherrin bestimmt?
+Wie wird die Hausherrin bestimmt?
 ###_NPC
 There's an electoral process between Mistresses.  You'll learn more if you become a club Mistress yourself.
 Unter den Herrinnen findet ein Wahlverfahren statt. Du erfährst mehr darüber, wenn du selbst Clubherrin wirst.
 ###_PLAYER
 Can I meet the Head Mistress?
-Kann ich die Oberherrin kennenlernen?
+Kann ich die Hausherrin kennenlernen?
 ###_NPC
 She's not available now.  Please come back later.
 Sie ist gerade nicht zu sprechen. Komm bitte später wieder.
@@ -341,6 +347,30 @@ Play some more, I'm having fun.
 Spielt noch etwas, das ist unterhaltsam.
 Very well, I will help you.  (She releases you.)  I hope you had fun with my pet.
 Also gut, ich helfe dir. (Sie befreit dich.) Hoffentlich hattest du Spaß mit meinem Haustier.
+###_PLAYER
+Can you please release her?
+Könnt Ihr sie bitte freilassen?
+###_NPC
+No, Mistress Sophie already made plans.  Do not interfere.
+Nein, Herrin Sophie hat bereits Vorkehrungen getroffen. Mische dich nicht darin ein.
+###_PLAYER
+She's my property, let her go.
+Sie ist mein Eigentum, lasst sie frei.
+###_NPC
+Of course, I will send a maid to warn Mistress Sophie and free your slave.
+Gewiss, ich schicke ein Hausmädchen, um Herrin Sophie Bescheid zu geben und deine Sklavin zu befreien.
+###_PLAYER
+Very well, punish her properly then.
+Alles klar, dann bestraft sie mal gründlich.
+###_NPC
+Don't worry, Mistress Sophie will discipline her well.
+Keine Sorge, Herrin Sophie wird sie hervorragend disziplinieren.
+###_PLAYER
+Thank you.
+Danke.
+###_NPC
+It's my duty.  Is there something else you need?
+Ich tue nur meine Pflicht. Brauchst du noch etwas anderes?
 ###_PLAYER
 What are the rules for chastity items?
 Was sind die Regeln für Keuschheitsgeräte?
@@ -492,25 +522,25 @@ My owner is in my private room.
 Meine Besitzerin ist in meinem Privatzimmer.
 ###_NPC
 Excellent.  I will send a maid to get her approval.
-Hervorragend. Ich schicke eine Dienerin, um ihre Erlaubnis zu erfragen.
+Hervorragend. Ich schicke ein Hausmädchen, um ihre Erlaubnis zu erfragen.
 ###_PLAYER
 Mistress is in the club right now.
 Meine Herrin ist gerade im Club.
 ###_NPC
 Good.  I will send a maid to get her approval.
-Gut. Ich schicke eine Dienerin, um ihre Erlaubnis zu erfragen.
+Gut. Ich schicke ein Hausmädchen, um ihre Erlaubnis zu erfragen.
 ###_PLAYER
 I can go get my owner.
 Ich kann meine Besitzerin holen.
 ###_NPC
 You don't need to do anything.  I will send a maid to get her approval.
-Du brauchst nichts zu tun. Ich schicke eine Dienerin, um ihre Erlaubnis zu erfragen.
+Du brauchst nichts zu tun. Ich schicke ein Hausmädchen, um ihre Erlaubnis zu erfragen.
 ###_PLAYER
 I'm not sure where my owner is.
 Ich weiß nicht, wo meine Besitzerin ist.
 ###_NPC
 Don't worry, we will find her.  I will send a maid to get her approval.
-Keine Angst, wir finden sie. Ich schicke eine Dienerin, um ihre Erlaubnis zu erfragen.
+Keine Angst, wir finden sie. Ich schicke ein Hausmädchen, um ihre Erlaubnis zu erfragen.
 ###_PLAYER
 My Mistress isn't around.
 Meine Herrin ist nicht da.
@@ -536,7 +566,7 @@ Please contact her. (Pay her 20$.)
 Bitte kontaktieren Sie sie. (20$ zahlen.)
 ###_NPC
 (She takes your money and sends a maid to contact your owner.)  Come back in a few minutes
-(Sie nimmt dein Geld und lässt eine Dienerin deine Besitzerin kontaktieren.) Komm in ein paar Minuten zurück.
+(Sie nimmt dein Geld und lässt ein Hausmädchen deine Besitzerin kontaktieren.) Komm in ein paar Minuten zurück.
 (She grins.)  Welcome back, chaste girl.
 (Sie grinst.) Willkommen zurück, Keuschheitsmädchen.
 ###_PLAYER
@@ -551,7 +581,7 @@ Yes, and your Mistress refused to unlock you.  You will stay chaste girl.
 Ja, und deine Herrin hat deine Freilassung verweigert. Deine Keuschheit bleibt bestehen, Mädchen.
 ###_PLAYER
 I'll wait. (Leave her.)
-Ich werde warten. (Sie verlassen.)
+Ich werde warten. (Dialog beenden.)
 ###_NPC
 Which chastity device should I unlock?  The fee is 25$ per item.
 Welches Keuschheitsgerät soll ich öffnen? Die Gebühr beträgt 25$ pro Gegenstand.
@@ -567,7 +597,7 @@ Alright.  If you ask again, you will have to go through the same procedure.
 Also gut. Wenn du das nächste Mal fragst, wird die ganze Prozedur von vorne beginnen.
 ###_PLAYER
 I'll be right back.  (Leave her.)
-Bin gleich wieder da. (Sie verlassen.)
+Bin gleich wieder da. (Dialog beenden.)
 Yes Mistress.  (Bow your head.)
 Ja, Herrin. (Den Kopf senken.)
 ###_NPC
@@ -590,7 +620,7 @@ She's in my private room.
 Sie ist in meinem Privatzimmer.
 ###_NPC
 I'll make a deal with you then.  I'll send a maid to your room, and she will unlock all of your friends that are not owned by someone else for 50$.
-Dann mache ich dir ein Angebot. Für 50$ schicke ich eine Dienerin in dein Zimmer, die all deine Freunde befreit, die nicht jemand anderem gehören.
+Dann mache ich dir ein Angebot. Für 50$ schicke ich ein Hausmädchen in dein Zimmer, das all deine Freunde befreit, die nicht jemand anderem gehören.
 ###_PLAYER
 In my room Mistress.
 In meinem Zimmer, Herrin.
@@ -598,7 +628,7 @@ Deal!  (Pay her 50$.)
 Einverstanden! (50$ zahlen.)
 ###_NPC
 Very good.  (She takes the money and sends a maid to your private room.)  Anything else?
-Sehr gut. (Sie nimmt das Geld und schickt eine Dienerin in dein Privatzimmer.) Sonst noch etwas?
+Sehr gut. (Sie nimmt das Geld und schickt ein Hausmädchen in dein Privatzimmer.) Sonst noch etwas?
 ###_PLAYER
 What is a D/s family?
 Was ist eine D/s-Familie?

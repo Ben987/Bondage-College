@@ -1,7 +1,7 @@
 Synchronizing with server, please wait...
 Synchronisierung mit dem Server, bitte warten...
 A rescue maid is coming...
-Eine Rettungsdienerin kommt...
+Ein Rettungshausmädchen naht...
 Online Members:
 Mitglieder online:
 Introduction Class
@@ -16,6 +16,12 @@ Private Room
 Privatzimmer
 Club Management
 Clubleitung
+Search for Sarah
+Nach Sarah suchen
+Explore the Club
+Den Club erkunden
+Sarah's Bedroom
+Sarahs Zimmer
 Gambling by git4nick
 Spielhalle (git4nick)
 Prison by git4nick

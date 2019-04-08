@@ -42,9 +42,9 @@ Es ist mir eine Ehre, Euch im Einstiegskurs zu begegnen, Herrin DialogPlayerName
 (She giggles.)  Greetings naked girl.  Welcome to the introduction class.
 (Sie kichert.) Grüß dich, nacktes Mädchen. Willkommen im Einstiegskurs.
 Greetings head maid DialogPlayerName.  Welcome to the introduction class.
-Hallo, Chefdienerin DialogPlayerName. Willkommen im Einstiegskurs.
+Hallo, Hausdame DialogPlayerName. Willkommen im Einstiegskurs.
 Greetings maid DialogPlayerName.  Welcome to the introduction class.
-Hallo, Dienerin DialogPlayerName. Willkommen im Einstiegskurs.
+Hallo, Hausmädchen DialogPlayerName. Willkommen im Einstiegskurs.
 Greetings Miss.  Welcome to the Bondage Club.
 Seien Sie gegrüßt, Miss. Willkommen im Bondage-Club.
 ###_PLAYER
@@ -82,16 +82,16 @@ Can I tie you up?
 Kann ich dich fesseln?
 ###_NPC
 (She blushes a little.)  With pleasure Miss.  If you need help with restraints, you can ask our friendly maid here.
-(Sie errötet ein wenig.) Mit Vergnügen, Miss. Wenn Sie Hilfe mit der Ausrüstung brauchen, hilft Ihnen unsere freundliche Dienerin hier weiter.
+(Sie errötet ein wenig.) Mit Vergnügen, Miss. Wenn Sie Hilfe mit der Ausrüstung brauchen, hilft Ihnen unser freundliches Hausmädchen hier weiter.
 ###_PLAYER
 Will you tie me up?
 Würdest du mich fesseln?
 ###_NPC
 No Miss, I'm a submissive.  But our friendly maid here can help you with that.
-Nein, Miss, Ich bin unterwürfig. Aber unsere nette Dienerin hier kann Ihnen dabei helfen.
+Nein, Miss, Ich bin unterwürfig. Aber unser nettes Hausmädchen hier kann Ihnen dabei helfen.
 ###_PLAYER
 I need to go, take care.  (Leave her.)
-Ich muss los, mach's gut. (Sie verlassen.)
+Ich muss los, mach's gut. (Dialog beenden.)
 So, you're a kinky girl?
 Du bist also ein versautes Mädchen?
 ###_NPC
@@ -102,7 +102,7 @@ What are you doing here?
 Was machst du hier?
 ###_NPC
 I'm helping the maid staff to introduce newcomers to the club.
-Ich helfe den Dienerinnen, Neulinge mit dem Club vertraut zu machen.
+Ich helfe den Hausmädchen, Neulinge mit dem Club vertraut zu machen.
 ###_PLAYER
 What is this room?
 Was ist das für ein Raum?
@@ -114,18 +114,18 @@ So, you work for the club?
 Du arbeitest also für den Club?
 ###_NPC
 Not yet, but I hope to become a maid someday.
-Noch nicht, aber ich möchte eines Tages eine Dienerin werden.
+Noch nicht, aber ich möchte eines Tages ein Hausmädchen werden.
 ###_PLAYER
 Tell me about the maids.
-Erzähl mir von den Dienerinnen.
+Erzähl mir von den Hausmädchen.
 ###_NPC
 The maids are the work force of the club.  They do everything from cleaning to releasing helpless victims.
-Die Dienerinnen sind die Arbeitskräfte des Clubs. Sie tun alles, vom Saubermachen bis hin zum Befreien hilfloser Bondage-Opfer.
+Die Hausmädchen sind die Arbeitskräfte des Clubs. Sie tun alles, vom Saubermachen bis hin zum Befreien hilfloser Bondage-Opfer.
 You probably know more about the maid sorority than me.  Do you need anything else?
-Sie wissen sicherlich besser über die Schwesternschaft der Dienerinnen Bescheid als ich. Kann ich sonst etwas für Sie tun?
+Sie wissen sicherlich besser über die Schwesternschaft der Hausmädchen Bescheid als ich. Kann ich sonst etwas für Sie tun?
 ###_PLAYER
 Can I become a maid?
-Kann ich eine Dienerin werden?
+Kann ich ein Hausmädchen werden?
 ###_NPC
 Absolutely, go to the maid quarters and ask for a job.  After a while they may let you join their sorority.
 Natürlich, gehen Sie in die Dienerkammer und bewerben Sie sich auf eine Stelle. Nach einer Weile könnten Sie in die Schwesternschaft aufgenommen werden.
@@ -148,13 +148,13 @@ Do you need help?
 Brauchst du Hilfe?
 ###_NPC
 (She nods slowly.)  Yes please, can you release me and our friendly maid here?  Check with her if everything is fine.
-(Sie nickt langsam.) Ja, bitte, könnten Sie mich und die nette Dienerin hier befreien? Fragen Sie sie, ob alles in Ordnung ist.
+(Sie nickt langsam.) Ja, bitte, könnten Sie mich und das nette Hausmädchen hier befreien? Fragen Sie sie, ob alles in Ordnung ist.
 ###_PLAYER
 Is everything alright now?
 Ist jetzt alles in Ordnung?
 ###_NPC
 I think everything is fine.  Please check with the maid to make sure.
-Ich glaube, alles ist gut. Bitte fragen Sie sicherheitshalber bei der Dienerin nach.
+Ich glaube, alles ist gut. Bitte fragen Sie sicherheitshalber beim Hausmädchen nach.
 ###_PLAYER
 What happened here?
 Was ist hier passiert?
@@ -162,11 +162,11 @@ Was ist hier passiert?
 An intimidating woman dressed in latex came in.  Without a word, she forced us into armbinders, belts, and then she gagged us before leaving.
 Eine beängstigende Frau in Latex kam herein. Ohne ein Wort legte sie uns Monohandschuhe, Gurte und Knebel an, dann ging sie einfach.
 A newcomer wanted to learn about armbinders and got a little too carried away.  She left for the maid quarters to ask for help.
-Eine Neue wollte etwas über Monohandschuhe lernen und hat sich etwas mitreißen lassen. Sie ist zu den Dienerinnen gelaufen, um Hilfe zu holen.
+Eine Neue wollte etwas über Monohandschuhe lernen und hat sich etwas mitreißen lassen. Sie ist zu den Hausmädchen gelaufen, um Hilfe zu holen.
 Another maid came in and started a fight with our friendly maid here.  As you can guess, the other girl won.
-Eine andere Dienerin kam herein und fing an, mit der netten Dienerin hier zu ringen. Wer gewonnen hat, sieht man ja.
+Ein anderes Hausmädchen kam herein und fing an, mit dem netten Hausmädchen hier zu ringen. Wer gewonnen hat, sieht man ja.
 A sales woman came to sell us armbinders and some belts.  As you can see, she was very convincing.  (She giggles.)
 Eine Verkäuferin kam herein, um uns Monohandschuhe und Gurte zu verkaufen. Wie Sie sehen, war sie sehr überzeugend. (Sie kichert.)
 ###_PLAYER
 I'll go get help.  (Leave her.)
-Ich hole Hilfe. (Sie verlassen.)
+Ich hole Hilfe. (Dialog beenden.)

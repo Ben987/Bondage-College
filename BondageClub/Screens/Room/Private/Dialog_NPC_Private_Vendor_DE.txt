@@ -85,7 +85,7 @@ I'd love too, but I have rooms and items to rent.
 Ich würde ja gern, aber ich habe Zimmer und Möbel zu vermieten.
 ###_PLAYER
 Let's talk later.  (Leave her.)
-Reden wir später. (Sie verlassen.)
+Reden wir später. (Dialog beenden.)
 How much is a room?
 Wie viel kostet ein Zimmer?
 ###_NPC
@@ -150,7 +150,7 @@ I don't have enough money.
 Ich habe nicht genug Geld.
 ###_NPC
 You can get work as a maid or take kidnapping bounties if you need money.
-Wenn du Geld brauchst, kannst du als Dienerin arbeiten oder als Kidnapperin auf Kopfgeldjagd gehen.
+Wenn du Geld brauchst, kannst du als Hausmädchen arbeiten oder als Kidnapperin auf Kopfgeldjagd gehen.
 ###_PLAYER
 Great!  This room is mine now?
 Klasse! Dieser Raum gehört jetzt also mir?

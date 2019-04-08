@@ -1,0 +1,18 @@
+Easy
+Einfach
+Normal
+Normal
+Hard
+Schwierig
+Starts in
+Beginnt in
+Difficulty:
+Schwierigkeitsgrad:
+Perfect!  You didn't lose a drop.
+Perfekt! Du hast keinen Tropfen verschüttet.
+You did it!  Your customers are satisfied.
+Geschafft! Deine Kunden sind zufrieden.
+You failed, you've spilled your drinks.
+Du hast verloren und deine Getränke verschüttet.
+Click on yourself to continue.
+Klicke dich an, um fortzufahren.

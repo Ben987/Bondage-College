@@ -18,7 +18,7 @@ Es tut mir leid, Miss. Ich kann gerade nicht helfen.
 (She nods and turns around as you restrain her arms securely.)  It will be a kinky work day.
 (Sie nickt und dreht sich um, damit du ihre Arme festmachen kannst.) Das wird ein lustiger Arbeitstag.
 (You free her arms and she stretches.)  Thanks head maid DialogPlayerName, this will make my work easier.
-(Du befreist ihre Arme und sie streckt sich.) Danke, Chefdienerin DialogPlayerName, das erleichtert meine Arbeit.
+(Du befreist ihre Arme und sie streckt sich.) Danke, Hausdame DialogPlayerName, das erleichtert meine Arbeit.
 (She submits as you restrain her legs.)  Another kinky day in our kinky club.
 (Sie lässt sich von dir die Beine fesseln.) Noch ein versauter Tag in unserem versauten Club.
 (You release her legs while she shakes her butt.)  Thanks Miss.
@@ -38,29 +38,29 @@ Es tut mir leid, Miss. Ich kann gerade nicht helfen.
 (You strap the device on her head as she mumbles.)  It will be a kinky work day it seems.
 (Du schnallst ihr das Ding um den Kopf und sie murmelt.) Das wird wohl ein lustiger Arbeitstag.
 (You remove the device and she nods slowly.)  You're the best head maid DialogPlayerName.
-(Du nimmst das Ding ab und sie nickt langsam.) Sie sind die Beste, Chefdienerin DialogPlayerName.
+(Du nimmst das Ding ab und sie nickt langsam.) Sie sind die Beste, Hausdame DialogPlayerName.
 (She jumps from the searing pain on her breast.)  Ouch!  Miss Head Maid!
-(Sie zuckt vom schneidenden Schmerz auf ihrer Brust zusammen.) Autsch! Frau Chefdienerin!
+(Sie zuckt vom schneidenden Schmerz auf ihrer Brust zusammen.) Autsch! Frau Hausdame!
 (You whip her breast with the leather crop as she whimpers and bows her head.)
 (Du peitschst ihr mit der Ledergerte auf die Brust und sie lässt wimmernd den Kopf hängen.)
 (You whip her butt hard as she sighs.)  I promise I'll work harder Miss Head Maid.
-(Du peitschst ihr kräftig auf den Hintern und sie seufzt.) Ich verspreche, härter zu arbeiten, Frau Chefdienerin.
+(Du peitschst ihr kräftig auf den Hintern und sie seufzt.) Ich verspreche, härter zu arbeiten, Frau Hausdame.
 (She grumbles as you strike her butt with the crop.)  A maid work isn't easy.
-(Sie grummelt, als du ihren Hintern mit der Gerte triffst.) Eine Dienerin hat es nicht leicht.
+(Sie grummelt, als du ihren Hintern mit der Gerte triffst.) Ein Hausmädchen hat es nicht leicht.
 (A maid walks by and greets you.)  Hi naked girl, are you trouble?  Do you need help?
-(Eine Dienerin kommt vorbei und grüßt dich.) Hi, nacktes Mädchen, steckst du in Schwierigkeiten? Brauchst du Hilfe?
+(Ein Hausmädchen kommt vorbei und grüßt dich.) Hi, nacktes Mädchen, steckst du in Schwierigkeiten? Brauchst du Hilfe?
 (A maid walks by and greets you.)  Greetings head maid DialogPlayerName, are you trouble?  Do you need help?
-(Eine Dienerin kommt vorbei und grüßt dich.) Servus, Chefdienerin DialogPlayerName, stecken Sie in Schwierigkeiten? Brauchen Sie Hilfe?
+(Ein Hausmädchen kommt vorbei und grüßt dich.) Servus, Hausdame DialogPlayerName, stecken Sie in Schwierigkeiten? Brauchen Sie Hilfe?
 (A maid walks by and greets you.)  Hi Sister, are you trouble?  Do you need help?
-(Eine Dienerin kommt vorbei und grüßt dich.) Hi, Schwester, steckst du in Schwierigkeiten? Brauchst du Hilfe?
+(Ein Hausmädchen kommt vorbei und grüßt dich.) Hi, Schwester, steckst du in Schwierigkeiten? Brauchst du Hilfe?
 (A maid walks by and greets you.)  Are you trouble?  Do you need help?
-(Eine Dienerin kommt vorbei und grüßt dich.) Steckst du in Schwierigkeiten? Brauchst du Hilfe?
+(Ein Hausmädchen kommt vorbei und grüßt dich.) Steckst du in Schwierigkeiten? Brauchst du Hilfe?
 ###_PLAYER
 Who are you?
 Wer bist du?
 ###_NPC
 I'm DialogCharacterName, I work here as a maid to help submissives in trouble.  Do you need help?
-Ich bin DialogCharacterName, Ich arbeite hier als Dienerin, um Subs aus der Klemme zu helfen. Brauchst du Hilfe?
+Ich bin DialogCharacterName, Ich arbeite hier als Hausmädchen, um Subs aus der Klemme zu helfen. Brauchst du Hilfe?
 ###_PLAYER
 (Nod yes.)
 (Nicken.)
@@ -77,10 +77,10 @@ It seems that you need something to shut your foul mouth.  (She produces a gag a
 Offenbar brauchst du etwas, um dein Drecksmaul zu stopfen. (Sie bringt dich mit einem Knebel zum Schweigen.)
 ###_PLAYER
 I'm fine, thanks. (Leave her.)
-Nein, danke, alles in Ordnung. (Sie verlassen.)
+Nein, danke, alles in Ordnung. (Dialog beenden.)
 ###_NPC
 Pleased to meet you.  I'm DialogCharacterName, I work here as a maid.
-Freut mich, dich kennenzulernen. Ich bin DialogCharacterName, ich arbeite hier als Dienerin.
+Freut mich, dich kennenzulernen. Ich bin DialogCharacterName, ich arbeite hier als Hausmädchen.
 ###_PLAYER
 (Shake your head no and leave her.)
 (Den Kopf schütteln und sie verlassen.)
@@ -96,7 +96,29 @@ Ich schulde dir was, ruf mich, wenn du ein Problem hast.
 (She giggles.)  Very well, I'll be around if you need help again.
 (Sie kichert.) Sehr wohl, ich bin in der Nähe, falls du wieder Hilfe brauchst.
 ###_PLAYER
+Can this slave ask you something else?
+Darf diese Sklavin noch eine Frage stellen?
+###_NPC
+Of course little club slave.  How can I help you?
+Natürlich, kleine Clubsklavin. Was kann ich für dich tun?
+###_PLAYER
 Take care!  (Leave her.)
-Mach's gut! (Sie verlassen.)
+Mach's gut! (Dialog beenden.)
+A club customer reserved a bedroom to punish me.
+Jemand hat ein Zimmer reserviert, um mich zu bestrafen.
+###_NPC
+Good for you.  (She laughs.)  And how can I help?
+Schön für dich. (Sie lacht.) Und wie kann ich helfen?
+###_PLAYER
+Nothing, I'm good.  (Leave her.)
+Nichts, es geht schon. (Dialog beenden.)
+There's already a girl chained on the bed.
+Da ist schon ein Mädchen ans Bett gekettet.
+###_NPC
+I understand, we can't have unhappy customers can we?  I'll go release her.
+Ich verstehe, wir wollen ja nicht, dass ein Kunde unzufrieden ist, oder? Ich gehe sie befreien.
+###_PLAYER
+You're the best!  (Leave her.)
+Vielen Dank! (Dialog beenden.)
 (Frown and leave her.)
 (Die Stirn runzeln und sie verlassen.)
