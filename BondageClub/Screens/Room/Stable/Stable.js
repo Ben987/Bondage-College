@@ -141,7 +141,7 @@ function StablePayTheFee(){
 function StableCanBecomePony(){
 	if (ReputationGet("Dominant") > -30) {
 		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableBecomePonySubIntro");
-	} else if (!(StableCheckInventory(Player, "HarnessPonyBits", "ItemMouth") && StableCheckInventory(Player, "LeatherArmbinder", "ItemArms") && StableCheckInventory(Player, "LeatherHarness", "ItemTorso") && StableCheckInventory(Player, "HorsetailPlug", "ItemButt"))) {
+	} else if (!(StableCheckInventory(Player, "HarnessBallGag", "ItemMouth") && StableCheckInventory(Player, "LeatherArmbinder", "ItemArms") && StableCheckInventory(Player, "LeatherHarness", "ItemTorso") && StableCheckInventory(Player, "HorsetailPlug", "ItemButt"))) {
 		StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableBecomePonyEquipmentIntro");
 		StableTrainer.Stage = "StableBecomePonyEquipment";
 	} else if (StableCharacterAppearanceGroupAvailable(Player, "ItemNeck")) {
