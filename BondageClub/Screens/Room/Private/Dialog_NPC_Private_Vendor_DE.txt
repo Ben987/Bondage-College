@@ -73,8 +73,8 @@ Die Miete beträgt 250 $. Hast du ausreichend Geld?
 I'd like to improve my room.
 Ich möchte mein Zimmer aufrüsten.
 ###_NPC
-Excellent!  The club can provide wardrobes and cages for private rooms.  What would you like?
-Hervorragend! Der Club kann Kleiderschränke und Käfige für Privatzimmer zur Verfügung stellen. Was möchtest du haben?
+Excellent!  The club can provide wardrobes, cages and expansions for private rooms.  What would you like?
+Hervorragend! Der Club kann Kleiderschränke, Käfige und Erweiterungen für Privatzimmer zur Verfügung stellen. Was möchtest du haben?
 ###_PLAYER
 Can we play some kinky games?
 Können wir miteinander spielen?
@@ -113,8 +113,8 @@ Natürlich, es ist schließlich dein Zimmer. Du kannst dich ausziehen und Sex ha
 What are the improvements I can get?
 Was für eine Ausstattung kann ich kaufen?
 ###_NPC
-Wardrobe and cages for now.  But the club is always improving, you can check later.
-Fürs Erste Kleiderschränke und Käfige. Der Club wird stets ausgebaut, du kannst später erneut nachfragen.
+Wardrobe, cages and a room expansion for now.  But the club is always improving, you can check later.
+Fürs Erste Kleiderschränke, Käfige und Zimmererweitrungen. Der Club wird stets ausgebaut, du kannst später erneut nachfragen.
 ###_PLAYER
 Enough questions.
 Genug der Fragen.
@@ -172,6 +172,12 @@ Ich will ein paar Käfige.
 We have a kinky tenant.  (She giggles.)  We can prepare cages for your room for 150$, do you have the funds?
 Eine perverse Mieterin. (Sie kichert.) Für 150$ stellen wir Käfige in deinem Zimmer auf, reichen deine Finanzen?
 ###_PLAYER
+I'd like to invite more people.
+Ich möchte mehr Leute einladen.
+###_NPC
+Of course, we can double the size of your room for 200$, do you have the funds?
+Natürlich, für 200$ können wir die Größe deines Zimmers verdoppeln, hast du genug Geld?
+###_PLAYER
 How can I use the wardrobe?
 Wie verwende ich den Kleiderschrank?
 ###_NPC
@@ -195,3 +201,15 @@ Hier ist das Geld. (150$ zahlen.)
 ###_NPC
 Wonderful!  We'll move the cages in your room right now.
 Wunderbar! Wir bringen die Käfige sofort in dein Zimmer.
+###_PLAYER
+How does it work?
+Wie funktioniert das?
+###_NPC
+It's easy, just navigate to check on your friends in the expanded part of your room.  Four more friends will be able to join.
+Ganz einfach, navigiere einfach zum ausgebauten Teil deines Zimmers, um nach deinen Freunden dort zu sehen. Es können dich vier weitere Freunde besuchen.
+###_PLAYER
+Here's the money. (Pay 200$)
+Hier ist das Geld. (200$ zahlen.)
+###_NPC
+Wonderful!  Here are the keys for the expansion doors.  (She gives you the room expansion keys.)
+Wunderbar! Hier ist der Schlüssel für deine Ausbau-Tür. (Sie gibt dir die Erweiterungsschlüssel.)

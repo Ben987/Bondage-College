@@ -161,6 +161,30 @@ Moment! Das musst... (Du bringst sie mit einem Knebel zum Schweigen, als sie etw
 (She seems relived as you remove the device.)  Oh, hell yeah!  I need to fuck now.
 (Sie wirkt erleichtert, als du ihn abnimmst.) Oh, ja, verdammt! Ich muss sofort ficken.
 ###_NPC
+(She seems curious as you make her wear the strap-on panties.)  Something kinky is brewing.
+(Sie wirkt neugierig, als du ihr den Umschnalldildo überziehst.) Hier braut sich was Perverses zusammen.
+###_NPC [Violent|Rude]
+(She rocks her hips as you make her wear the strap-on panties.)  You wanna be fucked hard?
+(Sie schwingt ihre Hüften, als du ihr den Umschnalldildo überziehst.) Willst du hart gefickt werden?
+###_NPC [Submissive|Horny]
+(She gets wet as you make her wear the strap-on panties.)  So naughty!  Will you use these panties on me later?
+(Sie wird feucht, als du ihr den Umschnalldildo überziehst.) Wie versaut! Probierst du den nachher auch bei mir aus?
+###_NPC [Frigid|Peaceful]
+(She seems disappointed as you make her wear the strap-on panties.)  I'm sorry to disagree, this is not doing it for me.
+(Sie wirkt unzufrieden, als du ihr den Umschnalldildo überziehst.) Ich will ja nicht streiten, aber das macht nichts mit mir.
+###_NPC
+(You remove the device from her waist.)  These were some naughty panties.
+(Du entfernst das Gerät von ihrer Taille.) Das war ziemlich perverse Unterwäsche.
+###_NPC [Dominant|Rude]
+(You remove the device from her waist.)  If you ever need to be fucked hard again, you know what to do.
+(Du entfernst das Gerät von ihrer Taille.) Wenn du je wieder hart gefickt werden willst, weißt du Bescheid.
+###_NPC [Submissive|Frigid]
+(You remove the device from her waist, and she nods.)  Thanks Miss, this item wasn't really suited for me anyway.
+(Du entfernst das Gerät von ihrer Taille und sie nickt.) Danke, Miss, diese Vorrichtung war für mich sowieso nicht wirklich geeignet.
+###_NPC [Dumb|Horny]
+(You remove the device from her waist, and she sighs.)  Bye bye kinky panties, come back soon.
+(Du entfernst das Gerät von ihrer Taille und sie seufzt.) Tschüss, du sexy Unterhose, komm bald wieder zurück.
+###_NPC
 (You strap the item on her head as she sighs.)  Please don't leave me like that for too long.
 (Du schnallst ihr das Ding um den Kopf und sie seufzt.) Bitte lass mich nicht zu lange so.
 ###_NPC [Dominant|Violent]
@@ -244,6 +268,27 @@ Moment! Das musst... (Du bringst sie mit einem Knebel zum Schweigen, als sie etw
 ###_NPC [Peaceful|Rude]
 (She wiggles her breast happily as you remove the item.)  Oh, hell yeah!  That shit was hurting really bad.
 (Sie wackelt fröhlich mit der Brust, als du es entfernst.) Oh, ja, verdammt! Der Scheiß hat richtig wehgetan.
+###_NPC
+(She holds her breath as you lock her breast away.)  I hope you don't plan on leaving me like that.
+(Sie hält die Luft an, als du ihre Brüste wegsperrst.) Ich hoffe, du willst mich nicht so lassen.
+###_NPC [Submissive|Serious]
+(She seems to disagree as you lock her breast away.)  Miss, I really hope you hold the key for this device.
+(Sie scheint nicht damit einverstanden zu sein, als du ihre Brüste wegsperrst.) Miss, ich hoffe sehr, dass Sie den Schlüssel dafür haben.
+###_NPC [Violent|Dumb]
+(You lock the chastity bra as she struggles like an animal to remove it.)  Damn it!  I won't come off.
+(Du schließt ihr den Keuschheits-BH um und sie rangelt damit wie ein Tier.) Verdammt! Das geht nicht ab.
+###_NPC [Frigid|Wise]
+(She nods as you lock the chastity bra on her.)  Support and protection at the same time, this is a great article for submissives.
+(Sie nickt, als du ihr den Keuschheits-BH anlegst.) Halt und Schutz zur gleichen Zeit, dies ist ein großartiges Produkt für Subs.
+###_NPC
+(She wiggles her breast slowly as you unlock the chastity bra.)  Thanks!  That was kind of cruel.
+(Sie wackelt langsam mit den Brüsten, als du den Keuschheits-BH aufschließt.) Danke! Das war schon irgendwie grausam.
+###_NPC [Violent|Serious]
+(She stays silent as you use unlock the chastity bra.)  Be thoughtful and don't unlock anything until I'm disciplined.
+(Sie schweigt, als du den Keuschheits-BH aufschließt.) Bleibe bedacht und schließe nichts auf, bis ich diszipliniert bin.
+###_NPC [Peaceful|Rude]
+(She wiggles her breast happily as you unlock the chastity bra.)  Oh, hell yeah!  The metal was fucking hurting.
+(Sie wackelt fröhlich mit den Brüsten, als du den Keuschheits-BH aufschließt.) Oh, Hammer! Das Metall hat scheiße wehgetan.
 ###_NPC
 (She jumps and does small whimpers each time you hit her.)  It stings!
 (Sie hüpft und wimmert leise bei jedem Treffer.) Es ziept!
@@ -1684,7 +1729,7 @@ Wir sind hier im Bondage-Club, meine Kleine, also solltest du gefesselt sein.
 My girl, it would be really sexy to get you in restraints.
 Es wäre wirklich sexy, dich in Fesseln zu legen, mein Mädchen.
 ###_NPC [Frigid]
-You've playing with these hands way too much.  Its time to stop and restrain them.
+You've been playing with these hands way too much.  Its time to stop and restrain them.
 Du spielst viel zu viel mit diesen Händen herum. Es wird Zeit, dem mit Fesseln ein Ende zu setzen.
 ###_NPC [Violent]
 Girl, being a slave isn't always easy.  You need to suffer from the restraints, give me your hands.
@@ -1728,7 +1773,7 @@ Wir sind hier im Bondage-Club, meine Kleine, also solltest du vollständig gefes
 My girl, it would be really sexy to get you fully restrained.
 Es wäre wirklich sexy, dich komplett in Fesseln zu legen, mein Mädchen.
 ###_NPC [Frigid]
-You've playing with these hands way too much.  Its time to fully restrain you.
+You've been playing with these hands way too much.  Its time to fully restrain you.
 Du spielst viel zu viel mit diesen Händen herum. Es wird Zeit, dich vollständig zu fesseln.
 ###_NPC [Violent]
 Girl, being a slave isn't always easy.  You need to feel the pain from lots of the restraints.

@@ -1,0 +1,49 @@
+###_NPC
+Select an item to use
+Wähle einen Gegenstand aus
+Cannot use on yourself
+Nicht an dir selbst anwendbar
+Remove some clothes first
+Erst ausziehen!
+Swapping...
+Auswechseln...
+Struggling...
+Befreien...
+Unlocking...
+Aufschließen...
+Removing...
+Entfernen...
+Locking...
+Abschließen...
+Adding...
+Hinzufügen...
+Impossible to escape!
+Entkommen unmöglich!
+Struggle to free yourself
+Zappeln, um dich zu befreien
+You'll need help to get out
+Du brauchst Hilfe zum Befreien
+You can unlock yourself
+Du kannst dich befreien
+You don't have the proper key
+Dir fehlt der richtige Schlüssel
+This zone is out of reach from another item
+Diese Zone wird von einem anderen Objekt versperrt
+You cannot access your items
+Du kommst nicht an deine Items
+Click here to speed up the progress
+Klicke hier zum Beschleunigen
+Alternate keys A and S to speed up
+Abwechselnd A und S zum Beschleunigen drücken
+(You can use or remove items by selecting specific body regions on yourself.)
+(Wähle eine deiner Körperregionen, um Items zu benutzen oder zu entfernen.)
+(You clumsily whip your own breast and tummy.  It would be more painful if someone else did it.)
+(Du peitschst ungeschickt auf deine eigene Brust und deinen Bauch. Es wäre schmerzhafter, wenn jemand anderes es tun würde.)
+(You swing the crop on yourself a few times.  You can feel your breast and tummy becoming more sensitive.)
+(Du schwingst die Ledergerte einige Male auf dich. Du kannst fühlen, wie deine Brust und dein Bauch empfindlicher werden.)
+(You need a few tries but you're able to somewhat whip your own butt and feel the pain.)
+(Du brauchst ein paar Versuche, aber du peitschst halbwegs deinen Hintern und fühlst den Schmerz.)
+(You lash the leather crop pretty hard on your own butt.  Jumping from each good hit.)
+(Du schlägst die Ledergerte ziemlich doll auf deinen Hintern. Du springst bei jedem guten Treffer auf.)
+(You slowly massage your pussy with the wand.  Trembling from pleasure and excitement.)
+(Du massierst langsam mit dem Vibrator deine Pussy. Du zitterst dabei vor Freude und Aufregung.)

@@ -11,7 +11,7 @@
 (Du befreist ihre Arme und sie streckt sich.) Vielen Dank, ich wurde heute schon sehr viel gefesselt.
 (She submits as you restrain her legs.)  It won't be easy to leave this club.
 (Sie lässt sich von dir die Beine fesseln.) Es wird nicht einfach werden, diesen Club zu verlassen.
-(You release her legs while she shakes her butt.)  Thanks you very much.
+(You release her legs while she shakes her butt.)  Thank you very much.
 (Du befreist ihre Beine und sie wackelt mit dem Po.) Vielen lieben Dank.
 (You restrain her feet securely.)  I'm not going anywhere I guess.
 (Du bindest ihre Füße fest zusammen.) Dann bleibe ich wohl erstmal hier.
@@ -25,6 +25,18 @@
 (Sie runzelt die Stirn, als du das Teil verschließt.) Das ist so demütigend.
 (She nods happily as you remove the device.)  This is great.  Thanks a lot.
 (Sie nickt fröhlich, als du das Teil aufschließt.) Das ist toll. Vielen Dank.
+(You prepare a full body harness on her torso as she blushes.)  You truly enjoy bondage in this club.
+(Du verpasst ihr einen Ganzkörperharnisch und sie wird rot.) Euch scheint Bondage in diesem Club sehr zu gefallen.
+(You remove the body harness from her torso.)  Thanks, I appreciate.
+(Du entfernst den Harnisch von ihrem Körper.) Danke, das ist nett.
+(She struggles as you slide the device inside.)  This is so naughty and humiliating.
+(Sie zappelt, als du das Ding hineinsteckst.) Das ist so ungezogen und demütigend.
+(She catches her breath as you remove the plug.)  It hurts you know?
+(Sie schnappt nach Luft, als du den Stöpsel entfernst.) Das tut weh, weißt du?
+(She holds her breath as you use the item on her breast.)  Please be careful!
+(Sie hält die Luft an, als du ihre Brust bearbeitest.) Bitte sei vorsichtig!
+(She stays silent and nods as you remove the device from her breast.)
+(Sie schweigt und nickt, als du das Ding von ihrer Brust entfernst.)
 (You strap the device on her head as she mumbles.)  It seems that it will get worse before it gets better.
 (Du schnallst ihr das Ding um den Kopf und sie murmelt.) Es muss wohl erst schlimmer werden, bevor es besser wird.
 (You remove the device and she nods slowly.)  You're the best!
@@ -37,6 +49,12 @@
 (Du peitschst ihr kräftig auf den Hintern und sie seufzt.) Nnngh. Es tut mir leid, was habe ich falsch gemacht?
 (She grumbles as you strike her butt with the crop.)  This club isn't very welcoming
 (Sie grummelt, als du ihren Hintern mit der Gerte triffst.) Dieser Club ist nicht gerade gastfreundlich.
+(She blushes red as you massage her pussy with the wand.)  Oh god!  Please, this is too much.
+(Sie wird rot, als du ihre Pussy mit dem Vibrator massierst.) Oh Gott! Bitte, das ist zu viel.
+(She struggles as you slide the egg inside.)  Oh my!  Are there no limits in this club?
+(Sie zappelt, als du das Ei hineinsteckst.) Oh je! Gibt es in diesem Club denn gar keine Limits?
+(She nods happily as you remove the egg.)  Is this club only for perverts?
+(Sie nickt zufrieden, als du das Ei entfernst.) Ist dieser Club etwa nur für Perverse?
 (You restrain her legs with the long hemp rope and suspend her by the feet from the ceiling.)  Woah!
 (Du fesselst ihre Beine mit dem langen Hanfseil und lässt sie an den Füßen von der Decke baumeln.) Woah!
 (You untie the hemp rope from the ceiling and slowly get her down.)  That was scary.
@@ -64,11 +82,43 @@ Wer bist du? Ich bin DialogPlayerName.
 My name is Amanda, I'm a college student.  Pleased to me you.
 Mein Name ist Amanda, ich bin eine College-Schülerin. Schön dich kennenzulernen.
 ###_PLAYER
-Why are you here?
-Warum bist du hier?
+Amanda!  Why are you here?
+Amanda! Warum bist du hier?
 ###_NPC
-I came here to look for and rescue my friend Sarah.  But I've got restrained by twins and a maid on the way.
-Ich wollte meine Freundin Sarah suchen und retten. Aber unterwegs wurde ich von Zwillingen und einem Hausmädchen gefesselt.
+I came here to look for and rescue Sarah.  But I've got restrained by twins and a maid on the way.
+Ich wollte Sarah suchen und retten. Aber unterwegs wurde ich von Zwillingen und einem Hausmädchen gefesselt.
+###_PLAYER
+Sweetie!  Why are you here?
+Liebling! Warum bist du hier?
+###_NPC
+My love, I came here to look for and rescue Sarah.  But I've got restrained by twins and a maid on the way.
+Ich wollte Sarah suchen und retten, meine Liebste. Aber unterwegs wurde ich von Zwillingen und einem Hausmädchen gefesselt.
+DialogPlayerName, I came here to look for and rescue Sarah.  But I've got restrained by twins and a maid on the way.
+DialogPlayerName, ich wollte Sarah suchen und retten. Aber unterwegs wurde ich von Zwillingen und einem Hausmädchen gefesselt.
+###_PLAYER
+Why are you here my slave?
+Warum bist du hier, meine Sklavin?
+###_NPC
+Mistress, I came here to look for and rescue Sarah.  But I've got restrained by twins and a maid on the way.
+Herrin, ich wollte Sarah suchen und retten. Aber unterwegs wurde ich von Zwillingen und einem Hausmädchen gefesselt.
+###_PLAYER
+Don't you have a curfew slave?
+Hast du nicht Ausgangssperre, Sklavin?
+###_NPC
+I'm sorry Mistress, I came here to look for and rescue Sarah.  But I've got restrained by twins and a maid on the way.
+Tut mir leid, Herrin, ich wollte Sarah suchen und retten. Aber unterwegs wurde ich von Zwillingen und einem Hausmädchen gefesselt.
+###_PLAYER
+What brings you here Mistress?
+Was führt Euch her, Herrin?
+###_NPC
+I came here to look for and rescue Sarah my subbie.  But I've got restrained by twins and a maid on the way.
+Ich wollte Sarah suchen und retten, meine Kleine. Aber unterwegs wurde ich von Zwillingen und einem Hausmädchen gefesselt.
+###_PLAYER
+Miss, why are you here?
+Miss, warum sind Sie hier?
+###_NPC
+Girl, I came here to look for and rescue Sarah.  But I've got restrained by twins and a maid on the way.
+Ich wollte Sarah suchen und retten, Mädchen. Aber unterwegs wurde ich von Zwillingen und einem Hausmädchen gefesselt.
 ###_PLAYER
 How can we unlock her shackles?
 Wie bekommen wir ihre Ketten auf?
@@ -88,6 +138,12 @@ Ich bin mir nicht sicher. Kennst du jemanden im Club, der uns helfen könnte?
 (You lovingly masturbate her as she blushes red.)  Oh my god!  What if we get caught?
 (Du befriedigst sie liebevoll und sie wird rot.) Oh mein Gott! Was, wenn uns jemand sieht?
 ###_PLAYER
+I love you!  (Kiss her.)
+Ich liebe dich! (Sie küssen.)
+###_NPC
+(You share a long and lovely kiss.)  I love you so much DialogPlayerName.
+(Ihr gebt euch einen langen und liebevollen Kuss.) Ich liebe dich so sehr, DialogPlayerName.
+###_PLAYER
 Move along, you should not be here.
 Weitergehen, du solltest nicht hier sein.
 ###_NPC
@@ -104,6 +160,18 @@ Willst du mein Zimmer sehen?
 ###_PLAYER
 (Leave her.)
 (Dialog beenden.)
+You braved the club to rescue your lover?
+Du trotzt dem Club, um deine Geliebte zu retten?
+###_NPC
+(She blushes.)  Yes, I did.  I would do anything for my girlfriend.
+(Sie wird rot.) So ist es. Für meine geliebte Freundin würde ich alles tun.
+###_PLAYER
+You braved the club to rescue your friend?
+Du trotzt dem Club, um deine Freundin zu retten?
+###_NPC
+(She blushes.)  Yes, I did.  I would do anything for Sarah.
+(Sie wird rot.) So ist es. Für Sarah würde ich alles tun.
+###_PLAYER
 (Bring her to your room.)
 (Sie in dein Zimmer bringen.)
 Not right now.  (Stay here.)
@@ -119,3 +187,87 @@ Warte, du kannst bleiben.
 ###_NPC
 Very well, thanks Miss.
 Sehr wohl, danke, Miss.
+###_PLAYER
+You two are adorable.
+Ihr zwei seid bezaubernd.
+###_NPC
+Thank you very much, it means a lot to me.  Our love bloomed thanks to you DialogPlayerName.
+Vielen Dank, das bedeutet mir sehr viel. Unsere Liebe ist nur dank dir erblüht, DialogPlayerName.
+###_PLAYER
+I'm glad you two could find each other.
+Ich bin froh, dass ihr euch gefunden habt.
+###_NPC
+Our love bloomed thanks to you DialogPlayerName.  I cannot thank you enough.
+Unsere Liebe ist nur dank dir erblüht, DialogPlayerName. Ich kann dir gar nicht genug danken.
+###_PLAYER
+Are you two in love?
+Seid ihr ineinander verliebt?
+###_NPC
+(She blushes red.)  Errr... Well...  I mean...  Can we talk about something else?
+(Sie wird rot.) Ähhh... Nun... ich meine... Können wir über etwas anderes reden?
+###_PLAYER
+You're a good friend for her.
+Du bist eine gute Freundin für sie.
+###_NPC
+Thanks, I try to be a good friend.
+Danke, ich gebe mein Bestes, eine gute Freundin zu sein.
+###_PLAYER
+You're her knight in shiny armor?
+Bist du ihr Ritter in glänzender Rüstung?
+###_NPC
+(She giggles.)  It's a poetic way to say it.
+(Sie kichert.) Das ist eine poetische Art, es auszudrücken.
+###_PLAYER
+Where do you study?
+Auf welches College gehst du?
+###_NPC
+The college is in the old part of the town, it's an ancient gated building with a garden and a tennis court.  Maybe you've seen it before.
+Das College liegt in der Altstadt, es ist ein uraltes Bauwerk mit einer Pforte, einem Garten und einem Tennisplatz. Vielleicht kennst du es vom Sehen.
+###_PLAYER
+You're from that rich daughter college?
+Du gehst auf dieses College für reiche Töchter?
+###_NPC
+(She shakes her head no.)  Don't say that.  It's a fine establishment for women to learn skills and prepare a career.
+(Sie schüttelt den Kopf.) Sag das nicht. Es ist eine wunderbare Einrichtung, die Frauen nützliche Fähigkeiten für ihre Karriere vermittelt.
+###_PLAYER
+Quit school, you could be a model.
+Vergiss das College, du solltest Model werden.
+###_NPC
+(She blushes and bows her head.)  You're kind but I must disagree.  Getting a good education is too important for me.
+(Sie wird rot und senkt ihren Kopf.) Das ist lieb gemeint, aber ich muss widersprechen. Eine gute Bildung ist mir zu wichtig.
+###_PLAYER
+You sound pretty smart.
+Du klingst ziemlich klug.
+###_NPC
+Thanks, I'm no genius but I do get excellent grades in school.
+Danke, ich bin kein Genie, aber ich bekomme durchaus gute Noten in der Schule.
+###_PLAYER
+Are you a nerd?
+Bist du eine Streberin?
+###_NPC
+(She grumbles quietly.)  I don't like that terminology.  But I do get excellent grades in school.
+(Sie grummelt leise.) Ich mag diese Begrifflichkeit nicht. Aber ich bekomme durchaus hervorragende Noten in der Schule.
+###_PLAYER
+You talk a lot girl.
+Du redest viel, Mädchen.
+###_NPC
+I'm sorry.  I guess I'm relieved to be able to talk after being gagged for so long.
+Tut mir leid. Ich bin wohl einfach nur erleichtert, wieder reden zu können, nachdem ich so lange geknebelt war.
+###_PLAYER
+You don't seem to fit in the club.
+Du scheinst nicht zum Club zu passen.
+###_NPC
+I came here to look for and rescue my friend Sarah.  But I've got restrained by twins and a maid on the way.
+Ich wollte meine Freundin Sarah suchen und retten. Aber unterwegs wurde ich von Zwillingen und einem Hausmädchen gefesselt.
+###_PLAYER
+So, you're an angel in slut town?
+Also, bist du ein Engel in Nutten-Town?
+###_NPC
+(She doesn't seem to appreciate.)  No!  I came here to look for and rescue my friend Sarah.  But I've got in trouble on the way.
+(Sie scheint das nicht zu würdigen.) Nein! Ich wollte meine Freundin Sarah suchen und retten. Aber unterwegs geriet ich in Schwierigkeiten.
+###_PLAYER
+And you're a club member?
+Und du bist Clubmitglied?
+###_NPC
+Not really.  I came here to look for and rescue my friend Sarah.  But I've got restrained by twins and a maid on the way.
+Nicht wirklich. Ich wollte meine Freundin Sarah suchen und retten. Aber unterwegs wurde ich von Zwillingen und einem Hausmädchen gefesselt.

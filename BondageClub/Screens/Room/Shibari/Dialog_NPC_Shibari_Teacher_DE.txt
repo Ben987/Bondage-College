@@ -24,9 +24,9 @@ Schweigen ist Gold, und eine geknebelte Sub ist noch besser.
 (You remove the collar around her neck.)  You should find submissives for that collar.
 (Du nimmst ihr das Halsband ab.) Für dieses Halsband sollten Sie sich willige Subs suchen.
 (She struggles and shakes her head no while you put the device on her.)  Crap!  Why did you do that?
-(Sie zappelt und schüttelt den Kopf, als du ihr das Teil umschließt.) Mist! Was sollte das denn?
+(Sie zappelt und schüttelt den Kopf, als du ihr das Teil anlegst.) Mist! Was sollte das denn?
 (She seems relieved as you remove the device.)  Domo arigato Miss DialogPlayerName.
-(Sie wirkt erleichtert, als du das Teil aufschließt.) Domo arigato, Miss DialogPlayerName.
+(Sie wirkt erleichtert, als du das Teil abnimmst.) Domo arigato, Miss DialogPlayerName.
 (You prepare a full body harness on her torso.)  Shibari isn't all about restraining, it's also very artistic.
 (Du legst einen Harnisch um ihren Körper.) Bei Shibari geht es nicht nur ums Fesseln, es ist auch sehr künstlerisch.
 (You remove the body harness from her torso as she nods.)  You can try different shapes and patterns.

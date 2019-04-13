@@ -27,17 +27,31 @@ function MainHallRun() {
 
 	// Draws the character and main hall buttons
 	DrawCharacter(Player, 750, 0, 1);
-	DrawButton(1525, 25, 90, 90, "", "White", "Icons/Character.png");
-	if (!LogQuery("BlockChange", "Rule")) DrawButton(1645, 25, 90, 90, "", "White", "Icons/Dress.png");
-	if (Player.CanWalk()) DrawButton(1765, 25, 90, 90, "", "White", "Icons/Shop.png");
+	
+	// Char, Dressing & Exit
+	DrawButton(1645, 25, 90, 90, "", "White", "Icons/Character.png");
+	if (!LogQuery("BlockChange", "Rule")) DrawButton(1765, 25, 90, 90, "", "White", "Icons/Dress.png");
 	DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
-	if (Player.CanWalk()) DrawButton(1525, 145, 450, 65, TextGet("IntroductionClass"), "White");
-	if (Player.CanWalk()) DrawButton(1525, 240, 450, 65, TextGet("MaidQuarters"), "White");
-	if (Player.CanWalk()) DrawButton(1525, 335, 450, 65, TextGet("ShibariDojo"), "White");
-	if (Player.CanWalk()) DrawButton(1525, 430, 450, 65, TextGet("KidnapLeague"), "White");
-	if (Player.CanWalk()) DrawButton(1525, 525, 450, 65, TextGet("PrivateRoom"), "White");
-	if (Player.CanWalk()) DrawButton(1525, 620, 450, 65, TextGet("ClubManagement"), "White");
-	if (Player.CanWalk()) DrawButton(1525, 715, 450, 65, TextGet(SarahRoomLabel()), "White");
+
+	// The options below are only available if the player can move
+	if (Player.CanWalk()) {
+
+		// Chat, Shop & Private Room
+		DrawButton(1645, 145, 90, 90, "", "White", "Icons/Chat.png");
+		DrawButton(1765, 145, 90, 90, "", "White", "Icons/Shop.png");
+		DrawButton(1885, 145, 90, 90, "", "White", "Icons/Private.png");
+
+		// Introduction, Maid & Management
+		DrawButton(1645, 265, 90, 90, "", "White", "Icons/Introduction.png");
+		DrawButton(1765, 265, 90, 90, "", "White", "Icons/Maid.png");
+		DrawButton(1885, 265, 90, 90, "", "White", "Icons/Management.png");
+
+		// Kidnap League, Dojo, Explore/Sarah
+		DrawButton(1645, 385, 90, 90, "", "White", "Icons/Kidnap.png");
+		DrawButton(1765, 385, 90, 90, "", "White", "Icons/Dojo.png");
+		DrawButton(1885, 385, 90, 90, "", "White", "Icons/Explore.png");
+
+	}
 
 	// Draws the custom content rooms
 	if (Player.CanWalk()) DrawButton(25, 25, 450, 65, TextGet("Gambling"), "White");
@@ -86,22 +100,32 @@ function MainHallWalk(RoomName) {
 
 // When the user clicks in the main hall screen
 function MainHallClick() {
-		
-	// Character and main buttons
+
+	// Character, Dressing & Exit
 	if ((MouseX >= 750) && (MouseX < 1250) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-	if ((MouseX >= 1525) && (MouseX < 1615) && (MouseY >= 25) && (MouseY < 115)) InformationSheetLoadCharacter(Player);
-	if ((MouseX >= 1645) && (MouseX < 1735) && (MouseY >= 25) && (MouseY < 115) && !LogQuery("BlockChange", "Rule")) CommonSetScreen("Character", "Appearance");
+	if ((MouseX >= 1645) && (MouseX < 1735) && (MouseY >= 25) && (MouseY < 115)) InformationSheetLoadCharacter(Player);
+	if ((MouseX >= 1765) && (MouseX < 1855) && (MouseY >= 25) && (MouseY < 115) && !LogQuery("BlockChange", "Rule")) CommonSetScreen("Character", "Appearance");
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) window.location = window.location;
 
-	// Main game rooms
-	if ((MouseX >= 1765) && (MouseX < 1855) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) MainHallWalk("Shop");
-	if ((MouseX >= 1525) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 210) && Player.CanWalk()) MainHallWalk("Introduction"); 
-	if ((MouseX >= 1525) && (MouseX < 1975) && (MouseY >= 240) && (MouseY < 305) && Player.CanWalk()) MainHallWalk("MaidQuarters");
-	if ((MouseX >= 1525) && (MouseX < 1975) && (MouseY >= 335) && (MouseY < 400) && Player.CanWalk()) MainHallWalk("Shibari");
-	if ((MouseX >= 1525) && (MouseX < 1975) && (MouseY >= 430) && (MouseY < 495) && Player.CanWalk()) MainHallWalk("KidnapLeague");
-	if ((MouseX >= 1525) && (MouseX < 1975) && (MouseY >= 525) && (MouseY < 590) && Player.CanWalk()) MainHallWalk("Private");
-	if ((MouseX >= 1525) && (MouseX < 1975) && (MouseY >= 620) && (MouseY < 685) && Player.CanWalk()) MainHallWalk("Management");
-	if ((MouseX >= 1525) && (MouseX < 1975) && (MouseY >= 715) && (MouseY < 780) && Player.CanWalk()) MainHallWalk("Sarah");
+	// The options below are only available if the player can move
+	if (Player.CanWalk()) {
+
+		// Chat, Shop & Private Room
+		if ((MouseX >= 1645) && (MouseX < 1735) && (MouseY >= 145) && (MouseY < 235)) CommonSetScreen("Online", "ChatSearch");
+		if ((MouseX >= 1765) && (MouseX < 1855) && (MouseY >= 145) && (MouseY < 235)) MainHallWalk("Shop");
+		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) MainHallWalk("Private");
+
+		// Introduction, Maid & Management
+		if ((MouseX >= 1645) && (MouseX < 1735) && (MouseY >= 265) && (MouseY < 355)) MainHallWalk("Introduction");
+		if ((MouseX >= 1765) && (MouseX < 1855) && (MouseY >= 265) && (MouseY < 355)) MainHallWalk("MaidQuarters");
+		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355)) MainHallWalk("Management");
+
+		// Kidnap League, Dojo, Explore/Sarah
+		if ((MouseX >= 1645) && (MouseX < 1735) && (MouseY >= 385) && (MouseY < 475)) MainHallWalk("KidnapLeague");
+		if ((MouseX >= 1765) && (MouseX < 1855) && (MouseY >= 385) && (MouseY < 475)) MainHallWalk("Shibari");
+		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475)) MainHallWalk("Sarah");
+
+	}
 
 	// Custom content rooms
 	if ((MouseX >= 25) && (MouseX < 475) && (MouseY >= 25) && (MouseY < 90) && Player.CanWalk()) MainHallWalk("Gambling");

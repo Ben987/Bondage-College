@@ -11,6 +11,8 @@ function ServerInit() {
 	ServerSocket.on("LoginResponse", function (data) { LoginResponse(data) });
 	ServerSocket.on("disconnect", function (data) { ServerDisconnect() } );
 	ServerSocket.on("ForceDisconnect", function (data) { ServerDisconnect(data) } );
+	ServerSocket.on("ChatRoomSearchResult", function (data) { ChatSearchResult = data; } );
+	ServerSocket.on("ChatRoomSearchResponse", function (data) { ChatSearchResponse(data); } );
 }
 
 // When the server sends some information to the client, we keep it in variables
@@ -21,12 +23,8 @@ function ServerInfo(data) {
 
 // When the server disconnects, we go back to the login screen
 function ServerDisconnect(data) {
-	if (Player.Name != "" ) {
-		if (CurrentCharacter != null) 
-			DialogLeave(); 
-		CommonSetScreen("Character", "Login"); 
-		LoginMessage = TextGet((data != null) ? data : "ErrorDisconnectedFromServer");
-	}
+	if (Player.Name != "" ) window.location = window.location;
+	else if (CurrentScreen == "Login") LoginMessage = TextGet((data != null) ? data : "ErrorDisconnectedFromServer");
 }
 
 // Sends a message to the server
