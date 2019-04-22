@@ -337,7 +337,7 @@ function DrawButton(Left, Top, Width, Height, Label, Color, Image, HoveringText)
 	
 	// Draw the hovering text
 	if ((HoveringText != null) && (MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile) {
-		Left = Left - 425;
+		Left = (MouseX > 1000) ? Left - 425 : Left + 115;
 		Top = Top + 12;
 		MainCanvas.beginPath();
 		MainCanvas.rect(Left, Top, 400, 65);

@@ -50,14 +50,18 @@ function MainHallRun() {
 		DrawButton(1645, 385, 90, 90, "", "White", "Icons/Kidnap.png", TextGet("KidnapLeague"));
 		DrawButton(1765, 385, 90, 90, "", "White", "Icons/Dojo.png", TextGet("ShibariDojo"));
 		DrawButton(1885, 385, 90, 90, "", "White", "Icons/Explore.png", TextGet(SarahRoomLabel()));
+		// Draws the custom content rooms
+		// Gambling, Prison, Photographic
+		DrawButton(265, 145, 90, 90, "", "White", "Icons/Foto.png", TextGet("Photographic"));
+		DrawButton(145, 145, 90, 90, "", "White", "Icons/Cage.png", TextGet("Prison"));
+		DrawButton(25, 145, 90, 90, "", "White", "Icons/Random.png", TextGet("Gambling"));
+		
+		//Stable, Magic-Theater
+		DrawButton(145, 265, 90, 90, "", "White", "Icons/Magic.png", TextGet("Magic"));
+		DrawButton(25, 265, 90, 90, "", "White", "Icons/Horse.png", TextGet("Stable"));
 
 	}
 
-	// Draws the custom content rooms
-	if (Player.CanWalk()) DrawButton(25, 25, 450, 65, TextGet("Gambling"), "White");
-	if (Player.CanWalk()) DrawButton(25, 115, 450, 65, TextGet("Prison"), "White");
-	if (Player.CanWalk()) DrawButton(25, 205, 450, 65, TextGet("Photographic"), "White");
-	if (Player.CanWalk()) DrawButton(25, 295, 450, 65, TextGet("Stable"), "White");
 	if (Player.CanWalk()) DrawButton(25, 385, 450, 65, TextGet("Nursery"), "White");
 	if (Player.CanWalk()) DrawButton(25, 475, 450, 65, TextGet("SlaveMarket"), "White");
 	if (Player.CanWalk() && ((ReputationGet("Kidnap") > 0) || ManagementIsClubSlave())) DrawButton(25, 565, 450, 65, TextGet("RandomKidnap"), "White");
@@ -125,13 +129,18 @@ function MainHallClick() {
 		if ((MouseX >= 1765) && (MouseX < 1855) && (MouseY >= 385) && (MouseY < 475)) MainHallWalk("Shibari");
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475)) MainHallWalk("Sarah");
 
+		// Custom content rooms
+		// Chat, Shop & Private Room
+		if ((MouseX >=   25) && (MouseX <  115) && (MouseY >= 145) && (MouseY < 235)) MainHallWalk("Gambling");
+		if ((MouseX >=  145) && (MouseX <  235) && (MouseY >= 145) && (MouseY < 235)) MainHallWalk("Prison");
+		if ((MouseX >=  265) && (MouseX <  355) && (MouseY >= 145) && (MouseY < 235)) MainHallWalk("Photographic");
+
+		// Introduction, Maid & Management
+		if ((MouseX >=   25) && (MouseX <  115) && (MouseY >= 265) && (MouseY < 355)) MainHallWalk("Stable");
+		if ((MouseX >=  145) && (MouseX <  235) && (MouseY >= 265) && (MouseY < 355)) MainHallWalk("Magic");
 	}
 
 	// Custom content rooms
-	if ((MouseX >= 25) && (MouseX < 475) && (MouseY >= 25) && (MouseY < 90) && Player.CanWalk()) MainHallWalk("Gambling");
-	if ((MouseX >= 25) && (MouseX < 475) && (MouseY >= 115) && (MouseY < 180) && Player.CanWalk()) MainHallWalk("Prison");
-	if ((MouseX >= 25) && (MouseX < 475) && (MouseY >= 205) && (MouseY < 270) && Player.CanWalk()) MainHallWalk("Photographic");
-	if ((MouseX >= 25) && (MouseX < 475) && (MouseY >= 295) && (MouseY < 360) && Player.CanWalk()) MainHallWalk("Stable");
 	if ((MouseX >= 25) && (MouseX < 475) && (MouseY >= 385) && (MouseY < 450) && Player.CanWalk()) MainHallWalk("Nursery");
 	if ((MouseX >= 25) && (MouseX < 475) && (MouseY >= 475) && (MouseY < 540) && Player.CanWalk()) MainHallWalk("SlaveMarket");
 	if ((MouseX >= 25) && (MouseX < 475) && (MouseY >= 565) && (MouseY < 630) && Player.CanWalk() && ((ReputationGet("Kidnap") > 0) || ManagementIsClubSlave())) { if (ManagementIsClubSlave()) ManagementClubSlaveRandomIntro(); else KidnapLeagueRandomIntro(); }
