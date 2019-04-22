@@ -61,8 +61,10 @@ function CreationResponse(CharacterData) {
 		Player.AccountName = ElementValue("InputName");
 		Player.Creation = CurrentTime;
 		Player.Money = 100;
+		Player.OnlineID = CharacterData.substring(14, 100);
 
 		// Imports logs, inventory and Sarah status from the Bondage College
+		CreationMessage = "";
 		PrivateCharacter = [];
 		PrivateCharacter.push(Player);
 		Log = [];
@@ -97,8 +99,8 @@ function CreationClick() {
 		CommonSetScreen("Character", "Login");
 	}
 	
-	// If we must try to create a new account
-	if ((MouseX >= 1050) && (MouseX <= 1450) && (MouseY >= 825) && (MouseY <= 885)) {
+	// If we must try to create a new account (make sure we don't create it twice)
+	if ((MouseX >= 1050) && (MouseX <= 1450) && (MouseY >= 825) && (MouseY <= 885) && (CreationMessage != TextGet("CreatingCharacter"))) {
 		
 		// First, we make sure both passwords are the same
 		var CharacterName = ElementValue("InputCharacter");
@@ -114,8 +116,10 @@ function CreationClick() {
 			var LN = /^[a-zA-Z0-9 ]+$/;
 			var LS = /^[a-zA-Z ]+$/;
 			var E = /^[a-zA-Z0-9@.]+$/;
-			if (CharacterName.match(LS) && Name.match(LN) && Password1.match(LN) && (Email.match(E) || Email == "") && (CharacterName.length > 0) && (CharacterName.length <= 20) && (Name.length > 0) && (Name.length <= 20) && (Password1.length > 0) && (Password1.length <= 20) && (Email.length <= 100))
+			if (CharacterName.match(LS) && Name.match(LN) && Password1.match(LN) && (Email.match(E) || Email == "") && (CharacterName.length > 0) && (CharacterName.length <= 20) && (Name.length > 0) && (Name.length <= 20) && (Password1.length > 0) && (Password1.length <= 20) && (Email.length <= 100)) {
+				CreationMessage = TextGet("CreatingCharacter");
 				ServerSend("AccountCreate", { Name: CharacterName, AccountName: Name, Password: Password1, Email: Email } );
+			}
 			else 
 				CreationMessage = TextGet("InvalidData");
 

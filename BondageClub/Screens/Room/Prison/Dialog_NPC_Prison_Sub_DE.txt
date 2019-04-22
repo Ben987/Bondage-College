@@ -1,0 +1,131 @@
+###_NPC
+Rest is the first civil duty.
+Ruhe ist die oberste Bürgerpflicht.
+(She opens her mouth wide.)  It must be well.
+(Sie macht den Mund weit auf.) Wenn es sein muss.
+(You remove her gag and she sighs.)  Finally.
+(Du nimmst ihren Knebel ab und sie seufzt.) Endlich.
+(She tugs at the shackles.) Is that necessary? 
+(Sie zerrt an den Fesseln.) Ist das nötig?
+(You free her arms and she stretches a little.)  What will you use on me next?
+(Du befreist ihre Arme und sie streckt sich ein wenig.) Was werden Sie als Nächstes benutzen?
+(You restrain her legs securely.)  As if I could run away.
+(Du bindest ihre Beine fest zusammen.) Als ob ich weglaufen könnte.
+(You release her legs.)  You can tie me up any time you want Miss.
+(Du befreist ihre Beine.) Sie können mich jederzeit fesseln, Miss, wann immer Sie wollen.
+(She wiggles her feet playfully as you restrain them.)  More bondage Miss?
+(Sie wackelt verspielt mit den Füßen, als du sie fesselst.) Mehr Bondage, Miss?
+(You release her feet and she jumps playfully.)  This is great.
+(Du befreist ihre Füße und sie hüpft vergnügt.) Das ist toll.
+(You strap the collar on her neck while she frowns.)  I am a free club member.
+(Sie runzelt die Stirn, als du ihr das Halsband umlegst.) Ich bin ein freies Clubmitglied.
+(You remove the collar around her neck.)  Much better!
+(Du nimmst ihr das Halsband ab.) Viel besser!
+(She tries to fight back while the device is put on.)
+(Sie versucht sich zu wehren, als du ihr das Teil anlegst.)
+(She seems relieved as you unlock the device.)
+(Sie wirkt erleichtert, als du das Teil aufschließt.)
+(You strap the device on her head.)  A dark cell in the cell in the Prison.
+(Du schnallst ihr das Ding um den Kopf.) Eine dunkle Zelle in der Gefängniszelle.
+(You remove the device and she looks at you.)  Fiat Lux.
+(Du nimmst das Ding ab und sie sieht dich an.) Es werde Licht.
+(You prepare a full body harness on her torso as she blushes.)  Something was missing.
+(Du legst einen Harnisch um ihren Körper und sie errötet.) Es hat etwas gefehlt.
+(You remove the body harness from her torso.)  A first step to freedom.
+(Du entfernst den Harnisch von ihrem Körper.) Ein erster Schritt in die Freiheit.
+(She moans as you whip her breast, enjoying the pain.)
+(Sie stöhnt und genießt den Schmerz, als du ihre Brüste und ihren Oberkörper auspeitschst.)
+(She jumps and makes her breast wiggle with each hit.)  I am a bad person.
+(Sie zuckt und wackelt bei jedem Treffer mit der Brust.) Ich bin ein schlechter Mensch.
+(She trembles and moans with each lashes.)  Punishment is needed!
+(Sie zittert und stöhnt bei jedem Hieb.) Ich brauche Bestrafung!
+(You whip her butt with the leather crop as she wiggles it for more.)
+(Du peitschst ihr mit der Ledergerte auf den Hintern, mit dem sie einladend wackelt.)
+(She wriggles in her shackles.)  I confess everything you want.
+(Sie windet sich in ihren Fesseln.) Ich gestehe alles, was du willst.
+(She looks surprised.) Sweet pains.
+(Sie wirkt überrascht.) Süßer Schmerz.
+Uff. I could not have lasted much longer.
+Uff. Das hätte ich nicht viel länger ausgehalten.
+(You restrain her legs with the long hemp rope and suspend her by the feet from the ceiling.)  Oh my god!
+(Du fesselst ihre Beine mit dem langen Hanfseil und lässt sie an den Füßen von der Decke baumeln.) Oh mein Gott!
+(You untie the hemp rope from the ceiling and slowly get her down.)  Wow!  That was quite a ride.
+(Du löst das Hanfseil von der Decke und lässt sie langsam herab.) Wow! Das war echt abgefahren.
+(A girl come in and looks arround) Hello, wat's going on here?
+(Ein Mädchen kommt herein und schaut sich um.) Hallo, was geht hier vor sich?
+###_PLAYER
+It's under Construction. Please go out.
+Es ist noch nicht fertig. Bitte geh wieder.
+I search for a curious person in Handcuffs for some Tests.
+Ich suche nach neugierigen Leuten in Handschellen.
+(Shoves she into the cell and closes the door)
+(Sie in die Zelle schubsen und die Tür verriegeln.)
+###_NPC
+(She looks surprised)
+(Sie wirkt überrascht.)
+###_PLAYER
+(Strip Search her for a Key)
+(Leibesvisitation nach einem Schlüssel vornehmen.)
+###_NPC
+Is that necessary?
+Ist das nötig?
+###_PLAYER
+(Give her the clothes back)
+(Ihr ihre Kleidung zurückgeben.)
+###_NPC
+(She Nods slowly)
+(Sie nickt langsam.)
+###_PLAYER
+(Torture)
+(Sie foltern.)
+###_NPC
+(She looks worried)
+(Sie sieht besorgt aus.)
+###_PLAYER
+(let her out)
+(Sie rauslassen.)
+###_NPC
+Thanks, next time it's your turn.
+Danke, das nächste Mal bist du dran.
+###_PLAYER
+(Leave her)
+(Dialog beenden.)
+(Spank her Butt)
+(Ihr auf den Hintern hauen.)
+###_NPC
+(She squirms painfully)
+(Sie windet sich vor Schmerz.)
+###_PLAYER
+(Slap into her Face)
+(Ihr eine Ohrfeige geben.)
+###_NPC
+(She whines and is scared)
+(Sie jammert verängstigt.)
+###_PLAYER
+(Fondle her Brest)
+(Ihre Brust befummeln.)
+###_NPC
+(She moans joyfully)
+(Sie stöhnt glücklich.)
+###_PLAYER
+(Tickle her Feet)
+(Ihre Füße kitzeln.)
+###_NPC
+(She laughs out loud)
+(Sie lacht lauthals.)
+###_PLAYER
+(massages her neck)
+(Ihren Hals massieren.)
+###_NPC
+(She purrs like a kitten)
+(Sie schnurrt wie ein Kätzchen.)
+###_PLAYER
+(End torture)
+(Die Folter beenden.)
+###_NPC
+(She breathes in relief)
+(Sie atmet erleichtert auf.)
+Now, it sounds interesting. Her I am.
+Das klingt doch mal interessant. Hier bin ich.
+then I'll go better.
+Dann gehe ich besser.

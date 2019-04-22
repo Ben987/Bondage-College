@@ -1,0 +1,100 @@
+###_NPC
+(The maids laugh at your mumbles and try to cheer you up.)
+(Die Hausmädchen lachen über dein Gemurmel und versuchen dich aufzuheitern.)
+(A maid comes close to you with a large wooden paddle.)  I'm first today?  Sweet!  Show me your butt.
+(Ein Hausmädchen nähert sich mit einem großen Holzpaddel.) Fange ich heute an? Spitze! Zeig mir deinen Po.
+###_PLAYER
+Wait!  Are you serious?
+Moment! Ist das dein Ernst?
+(Present your butt.)
+(Deinen Po präsentieren.)
+###_NPC
+(She lightly hits your butt with the paddle and giggle.)  Welcome to the sorority!
+(Sie haut dir leicht mit dem Paddel auf den Po und kichert.) Willkommen in der Schwesternschaft!
+###_PLAYER
+(Whimper lightly.)
+(Leicht wimmern.)
+###_NPC
+(She gives the paddle to another maid which steps forward.)  My turn!
+(Sie reicht das Paddel einem anderen Hausmädchen, das vortritt.) Ich bin dran!
+###_PLAYER
+That wasn't too bad.
+Das war gar nicht so schlimm.
+(Nod happily.)
+(Fröhlich nicken.)
+###_NPC
+(She swings the paddle on the same spot as before.)  Right on!  Welcome sister.
+(Sie schwingt das Paddel auf genau dieselbe Stelle.) Genau! Willkommen, Schwester!
+###_PLAYER
+Don't hit too hard!
+Nicht so doll!
+(Stare at the floor.)
+(Zu Boden schauen.)
+###_NPC
+(She tosses the flogging device to another maid.)  Don't worry, this won't hurt me.
+(Sie wirft das Bestrafungswerkzeug einem anderen Hausmädchen zu.) Keine Angst, das wird mir nicht wehtun.
+###_PLAYER
+(Stand strong.)
+(Stark bleiben.)
+###_NPC
+(She wacks your butt pretty good and laughs.)  One of us!
+(Sie knallt dir ziemlich doll auf den Po und lacht.) Eine von uns!
+###_PLAYER
+Careful with that.
+Vorsicht mit dem Ding.
+(Try to dodge her.)
+(Versuchen, ihr auszuweichen.)
+###_NPC
+(You try to dodge but she hits you easily and laughs.)  Nice try sis!
+(Du versuchst auszuweichen, aber sie trifft dich mit Leichtigkeit und lacht.) Netter Versuch, Schwesterherz!
+###_PLAYER
+(Cry a little.)
+(Ein bisschen weinen.)
+###_NPC
+(Another maid picks the paddle.)  Don't cry little sister, it will be over soon.
+(Ein weiteres Hausmädchen nimmt das Paddel.) Nicht weinen, kleine Schwester, es ist bald vorbei.
+###_PLAYER
+(Try to look tough.)
+(Versuchen, stark auszusehen.)
+###_NPC
+(Another maid picks the paddle.)  We have a tough cookie here sisters!
+(Ein weiteres Hausmädchen nimmt das Paddel.) Wir haben es hier mit einem harten Knochen zu tun, Schwestern!
+###_PLAYER
+Please stop!
+Bitte aufhören!
+Do your worst.
+Na los, gib alles.
+###_NPC
+(She swings a pretty mean one that stings right on impact.)  Sisters in pain, sisters for life!
+(Sie landet einen ziemlich gemeinen Treffer, der beim Aufprall brennt.) Schwestern mit Schmerzen sind Schwestern fürs Leben!
+###_PLAYER
+(Fall on the floor.)
+(Zu Boden fallen.)
+###_NPC
+(They catch you before you fall and another one picks the paddle.)  Be strong, this is the last one.
+(Sie fangen dich vor dem Aufprall auf und eine andere ergreift das Paddel.) Sei stark, hier kommt der Letzte.
+###_PLAYER
+(Try to stay strong.)
+(Versuchen, stark zu bleiben.)
+###_NPC
+(Another maid picks the paddle and smiles.)  You're a pro sis, this is the last one.
+(Ein anderes Hausmädchen nimmt das Paddel und lächelt.) Du machst das toll, Schwesterherz, hier kommt der Letzte.
+###_PLAYER
+(Close your eyes and prepare for impact.)
+(Die Augen schließen und auf den Aufprall warten.)
+###_NPC
+(She smashes the paddle with strength, almost making you fall.)  You've did it!  Welcome to the maid sorority!
+(Sie donnert es mit voller Kraft und bringt dich fast zu Fall.) Du hast es geschafft! Willkommen in der Schwesternschaft der Hausmädchen!
+###_PLAYER
+(Whimper and try to beg for mercy.)
+(Wimmern und um Gnade betteln.)
+(Defy them and present your butt proudly.)
+(Ihnen trotzen und stolz deinen Po präsentieren.)
+Oh my god!
+Oh mein Gott!
+(Catch your breath.)
+(Zu Atem kommen.)
+(Jump of joy clumsily.)
+(Unbeholfen vor Freude hüpfen.)
+(Cry a few tears.)
+(Ein paar Tränen weinen.)

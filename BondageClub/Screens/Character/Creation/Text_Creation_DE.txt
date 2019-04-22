@@ -1,0 +1,28 @@
+Enter your account & character information
+Gib deine Account- und Charakterinformationen ein
+Character name (letters & spaces)
+Charaktername (Buchstaben & Leerzeichen)
+Account name (letters & numbers)
+Account-Name (Buchstaben & Ziffern)
+Account password (letters & numbers)
+Account-Passwort (Buchstaben & Ziffern)
+Confirm password (letters & numbers)
+Passwort bestätigen (Buchstaben & Ziffern)
+Email (optional, to recover password)
+E-Mail (Optional, für die Passwortwiederherstellung)
+Create your account
+Account erstellen
+Your account already exists?
+Existiert dein Account bereits?
+Login
+Anmelden
+Creating your character...
+Dein Charakter wird erstellt...
+Error:
+Fehler:
+Invalid character, account name, password or email
+Charakter, Account-Name, Passwort oder E-Mail ungültig
+Both passwords do not match
+Die Passwörter stimmen nicht überein
+Import Bondage College data
+Daten aus Bondage College importieren

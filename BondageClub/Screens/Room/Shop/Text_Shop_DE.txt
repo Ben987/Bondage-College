@@ -1,0 +1,12 @@
+Can I interest you in anything else?
+Kann ich dich noch für etwas anderes begeistern?
+Select the item you want to buy.
+Wähle, was du kaufen möchtest.
+There are no items to sell for this category.
+In dieser Kategorie steht nichts zum Verkauf.
+You already own this item.
+Das besitzt du bereits.
+You don't have enough money.
+Du hast nicht genug Geld.
+Thank you!  Something else?
+Danke! Darf es sonst noch etwas sein?

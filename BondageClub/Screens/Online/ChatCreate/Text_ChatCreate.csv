@@ -1,0 +1,12 @@
+EnterRoomInfo,Enter your room information
+RoomName,Room Name (Letters & numbers only)
+RoomDescription,A short description or what's going on.
+RoomPrivate,Private (Need exact name to find it)
+RoomBackground,Select the background
+Create,Create
+Cancel,Cancel
+CreatingRoom,Creating your room...
+ResponseRoomAlreadyExist,This room name is already taken
+ResponseAccountError,"Account error, try to relog"
+ResponseInvalidRoomData,Invalid room data
+ResponseChatRoomCreated,"Room created, joining it..."

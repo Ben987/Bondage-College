@@ -1,0 +1,504 @@
+###_NPC
+Blessed those who have nothing to say and yet remain silent 
+Gesegnet sei, wer nichts zu sagen hat und daher schweigt.
+(She shakes her head but you're able to gag and silence her.)
+(Sie schüttelt den Kopf, aber du schaffst es, sie mit einem Knebel zum Schweigen zu bringen.)
+(You remove her gag and she stretches her mouth.)  I was starting to drool...
+(Du nimmst ihren Knebel ab und sie streckt ihren Mund.) Ich fing schon an zu sabbern...
+(She grumbles but complies as you restrain her arms.)  How can I roll the dice this way?
+(Sie grummelt, lässt dich aber ihre Arme fesseln.) Wie soll ich denn jetzt würfeln?
+(You free her arms and she gives you a thumbs up.)  That's better.
+(Du befreist ihre Arme und sie zeigt dir einen Daumen nach oben.) So ist es besser.
+(She looks down as you restrain her legs securely.)  I'm not going anywhere anyway.
+(Sie schaut herab, als du ihre Beine fest zusammenbindest.) Ich wollte sowieso nirgendwo hin.
+(You release her legs from the restraint.)  You're quite good with restraints Miss.
+(Du befreist ihre Beine.) Sie gehen geschickt damit um, Miss.
+(She looks puzzled as you restrain her feet.)  I don't plan to run anytime soon.
+(Sie guckt verwirrt, als du ihre Füße fesselst.) Ich habe nicht vor, demnächst wegzulaufen.
+(You release her feet.)  Wonderful!
+(Du befreist ihre Füße.) Wundervoll!
+(She struggles as you strap the collar around her neck.)  I'm not looking for an owner.
+(Sie zappelt, als du ihr das Halsband umlegst.) Ich suche nicht nach einer Besitzerin.
+(You remove the collar from her neck.)  Yes!  This is much better.
+(Du nimmst ihr das Halsband ab.) Ja! Das ist viel besser.
+(She struggles as you lock the device on her.)  No, please!  I don't have the key for that!
+(Sie zappelt, als du es verschließt.) Nein, bitte! Ich habe keinen Schlüssel dafür!
+(She looks really happy as you unlock the device.)  Thank you so much Miss DialogPlayerName.
+(Sie wirkt sehr glücklich, als du es aufschließt.) Vielen lieben Dank, Miss DialogPlayerName.
+(You put the device as she shakes her head.)  Ow!  You've made my day much awfully
+(Sie schüttelt den Kopf, als du es ihr umschnallst.) Au! Du hast meinen Tag ganz schön furchtbar gemacht.
+(You remove the device and she nods rapidly.)  Thanks a million, this is much better.
+(Du nimmst das Ding ab und sie nickt energisch.) Tausend Dank, das ist viel besser.
+(She trembles of painas you whip her breast.) This is a gambling hall no torture chamber.
+(Sie zittert vor Schmerz, als du ihre Brust auspeitscht.) Das hier ist die Spielhalle, nicht die Folterkammer.
+(You swing the crop on her torso as she moans.) Oh, that's not a game anymore.
+(Du schwingst die Gerte auf ihren Körper und sie stöhnt.) Oh, das ist jetzt kein Spiel mehr.
+(You whip her butt as she jumps from the pain.) I do not find that funny.
+(Du peitschst ihr auf den Hintern und sie zuckt vor Schmerz zusammen.) Ich finde das nicht lustig.
+(She moans each time the crop lands on it.) How can I still sit like this?
+(Sie stöhnt bei jedem Treffer der Gerte.) Wie soll ich denn jetzt noch sitzen?
+I like my clothes better.
+Meine Kleidung ist mir lieber.
+I can not concentrate that way.
+So kann ich mich nicht konzentrieren.
+Uff, close at last
+Uff, na endlich.
+Oh, that's really necessary?
+Oh, muss das wirklich sein?
+She looks at you satisfied.
+(Sie sieht dich zufrieden an.)
+According to which rules is this allowed?
+Nach welchen Regeln ist das erlaubt?
+I want to play with dices, not with eggs.
+Ich will mit Würfeln spielen, nicht mit Eiern.
+Thanks, now I can concentrate on the essential.
+Danke, jetzt kann ich mich aufs Wesentliche konzentrieren.
+woe to the vanquished.
+Wehe den Besiegten.
+finally floor again under the feet.
+Endlich wieder Boden unter den Füßen.
+Welcome to the Gambling Hall. Shall we play a game?
+Willkommen in der Spielhalle. Ein Spiel gefällig?
+###_PLAYER
+Hello, I'm DialogPlayerName.  Pleased to meet you.
+Hallo, ich bin DialogPlayerName. Sehr erfreut.
+###_NPC
+Pleased to meet you too.  I'm DialogCharacterName.
+Die Freude ist ganz meinerseits. Ich bin DialogCharacterName.
+###_PLAYER
+What's going on here?
+Was geht hier vor sich?
+###_NPC
+In the Gambling Hall we play kinky games of chance.
+In der Spielhalle finden Glücksspiele mit ungewöhnlichen Einsätzen statt.
+###_PLAYER
+Let's play a simple dice game.
+Spielen wir ein einfaches Würfelspiel.
+###_NPC
+Let's play, good luck
+Alles klar, viel Glück!
+###_PLAYER
+(Struggle in your restraints.)
+(Mit deinen Fesseln kämpfen.)
+###_NPC
+Are you having fun?
+Hast du Spaß?
+###_PLAYER
+(Play with your own rules.)
+(Nach deinen eigenen Regeln spielen.)
+###_NPC
+(She looks expectant)
+(Sie sieht dich erwartungsvoll an.)
+###_PLAYER
+Let's play fifteen and six.
+Spielen wir Siebzehn und Vier.
+###_NPC
+(she gives you three dice)
+(Sie gibt dir drei Würfel.)
+###_PLAYER
+I'd like to ask you some questions.
+Ich hätte da ein paar Fragen.
+###_NPC
+Don't be shy.  How can I help you?
+Nur keine Scheu. Wie kann ich dir helfen?
+###_PLAYER
+Which games can I play here? 
+Was kann ich hier spielen?
+###_NPC
+That depends on your reputation. Only a simple dice game at first. 
+Das hängt von deinem Rang ab. Am Anfang nur ein einfaches Würfelspiel.
+###_PLAYER
+Can you explain the rules to me?
+Kannst du mir die Regeln erklären?
+###_NPC
+Of course, which game interests you?
+Natürlich, an welchem Spiel bist du interessiert?
+###_PLAYER
+Can I get better in the games?
+Kann ich in diesen Spielen besser werden?
+###_NPC
+No, they are games of chance.
+Nein, es sind Glücksspiele.
+###_PLAYER
+How do I get reputation?
+Wie verbessere ich meinen Rang?
+###_NPC
+By winning games.
+Indem du Spiele gewinnst.
+###_PLAYER
+Can I tie you up?
+Kann ich dich fesseln?
+###_NPC
+Only if you win a game.
+Nur, wenn du ein Spiel gewinnst.
+###_PLAYER
+Will you restrain me?
+Würdest du mich fesseln?
+###_NPC
+Most certainly, if I win.
+Auf jeden Fall, wenn ich gewinne.
+###_PLAYER
+I don't have any more questions.
+Ich habe keine weiteren Fragen.
+###_NPC
+Alright. Shall we play a game?
+Also gut. Ein Spiel gefällig?
+###_PLAYER
+(Listen.)
+(Zuhören.)
+###_NPC
+At a higher reputation still fifteen and six, and eventually more games with other players.
+Bei einem höheren Rang kommt Siebzehn und Vier dazu, und später andere Spiele mit anderen Leuten.
+###_PLAYER
+What are the rules of the simple dice game?
+Was sind die Regeln des einfachen Würfelspiels?
+###_NPC
+We both roll a dice. Whoever has the higher number may tie the opponent
+Wir würfeln beide ein Mal. Wer die höhere Zahl hat, darf den Gegner fesseln.
+###_PLAYER
+What are the rules of fifteen and six?
+Was sind die Regeln beim Siebzehn und Vier?
+###_NPC
+You roll three or more dice and count the points. Then I roll, and whoever has the most points wins. 
+Du wirfst drei oder mehr Würfel und zählst sie zusammen. Dann würfele ich, und wer die höhere Punktzahl hat, gewinnt.
+###_PLAYER
+(Tickle her.)
+(Sie kitzeln.)
+###_NPC
+(You tickle her around the underarms and rubs.  She giggles, laughs and cries a little.)
+(Du kitzelst sie an den Seiten und unter den Armen. Sie kichert, lacht und weint ein wenig.)
+###_PLAYER
+(Kiss her.)
+(Sie küssen.)
+###_NPC
+(You put your hand behind her head and pull her to your lips for a long and kinky kiss.)
+(Du legst deine Hand um ihren Kopf, ziehst sie zu deinen Lippen heran und gibst ihr einen langen Kuss.)
+###_PLAYER
+(Fondle her.)
+(Sie befummeln.)
+###_NPC
+(You playfully tease her breasts as she gasps softly and blushes.)
+(Du spielst mit ihren Brüsten, während sie leise stöhnt und rot wird.)
+###_PLAYER
+(Slap her.)
+(Ihr eine Ohrfeige geben.)
+###_NPC
+(You swiftly slap her on the face.  She bows down her head and whimpers.)
+(Du gibst ihr eine schnelle Ohrfeige. Sie senkt ihren Kopf und wimmert.)
+###_PLAYER
+(Spank her.)
+(Ihr auf den Hintern hauen.)
+###_NPC
+(You spank her hard on the butt and she jumps from the pain.)
+(Du gibst ihr einen harten Klaps auf den Po und sie zuckt vor Schmerz zusammen.)
+###_PLAYER
+(End the Game)
+(Das Spiel beenden.)
+###_NPC
+(You go back a step and she looks surprised.)
+(Du trittst einen Schritt zurück und sie sieht überrascht aus.)
+If you go over 21 points you instantly lose the round.
+Wer aber 21 Punkte überschreitet, verliert die Runde sofort.
+Every round the loser strips. If they have no clothes left, they get a little more tied up.
+Nach jeder Runde zieht der Verlierer etwas aus. Ist keine Kleidung mehr übrig, kommen Fesseln hinzu.
+###_PLAYER
+Let's talk later.  (Leave her.)
+Reden wir später. (Dialog beenden.)
+Please Miss, can you release me?
+Bitte, Miss, können Sie mich befreien?
+###_NPC
+Let's see what the dice say...
+Mal sehen, was die Würfel dazu sagen...
+(Show her your restraints.)
+(Ihr deine Fesseln zeigen.)
+(She giggles.)  Well someone seems to be having fun.
+(Sie kichert.) Tja, da scheint wohl jemand Spaß zu haben.
+###_PLAYER
+(Whimper and make pleading eyes.)
+(Wimmern und flehende Augen machen.)
+###_NPC
+Do you need help?
+Brauchst du Hilfe?
+###_PLAYER
+(Nod yes.)
+(Nicken.)
+###_NPC
+Let's let the dice decide...
+Lassen wir die Würfel entscheiden...
+###_PLAYER
+(Frown at her.)
+(Die Stirn runzeln.)
+###_NPC
+Fine, you can stay like that if you want.
+Na gut, du kannst auch gern so bleiben, wenn du willst.
+###_PLAYER
+Yes, of course.
+Ja, natürlich.
+(Look angry)
+(Verärgert gucken.)
+No, please! No dice!
+Nein, bitte! Keine Würfel!
+###_NPC
+Fine, stay like that then.
+Gut, dann bleibst du eben so.
+###_PLAYER
+(Shake your head)
+(Deinen Kopf schütteln.)
+###_NPC
+Oh, you want to stay as you are? Fine with me.
+Oh, du willst also lieber so bleiben? Geht in Ordnung.
+###_PLAYER
+Yeah, I won!
+Yeah, gewonnen!
+###_NPC
+You were lucky. I guess you get to tie me up.
+Du hattest Glück. Jetzt darfst du mich wohl fesseln.
+###_PLAYER
+Dammit! You win.
+Verdammt! Du hast gewonnen.
+###_NPC
+I want to test some items...
+Ich will ein paar Sachen ausprobieren...
+###_PLAYER
+It's a draw.
+Unentschieden.
+###_NPC
+ I'll definitely win next time!
+Beim nächsten Mal gewinne ich bestimmt!
+###_PLAYER
+I want to add a dice. 
+Ich will noch einen Würfel.
+###_NPC
+(She gives you another dice.)
+(Sie gibt dir noch einen Würfel.)
+###_PLAYER
+3 points are enough
+3 Punkte reichen.
+###_NPC
+My roll. 
+Ich bin dran.
+###_PLAYER
+4 points are enough
+4 Punkte reichen.
+5 points are enough
+5 Punkte reichen.
+6 points are enough
+6 Punkte reichen.
+7 points are enough
+7 Punkte reichen.
+8 points are enough
+8 Punkte reichen.
+9 points are enough
+9 Punkte reichen.
+10 points are enough
+10 Punkte reichen.
+11 points are enough
+11 Punkte reichen.
+12 points are enough
+12 Punkte reichen.
+13 points are enough
+13 Punkte reichen.
+14 points are enough
+14 Punkte reichen.
+15 points are enough
+15 Punkte reichen.
+16 points are enough
+16 Punkte reichen.
+17 points are enough
+17 Punkte reichen.
+18 points are enough
+18 Punkte reichen.
+19 points are enough
+19 Punkte reichen.
+20 points are enough
+20 Punkte reichen.
+21 points are enough
+21 Punkte reichen.
+22 points. Oh shit, I lost!
+22 Punkte. Oh, Scheiße, verloren!
+###_NPC
+(She grins.)
+(Sie grinst.)
+###_PLAYER
+23 points. Oh shit, I lost!
+23 Punkte. Oh, Scheiße, verloren!
+24 points. Oh shit, I lost!
+24 Punkte. Oh, Scheiße, verloren!
+25 points. Oh shit, I lost!
+25 Punkte. Oh, Scheiße, verloren!
+26 points. Oh shit, I lost!
+26 Punkte. Oh, Scheiße, verloren!
+I win. Take off those accessories.
+Gewonnen. Nimm diese Accessoires ab.
+###_NPC
+(She takes all her accessories off.)
+(Sie nimmt all ihre Accessoires ab.)
+###_PLAYER
+I win. Time to lose those clothes.
+Gewonnen. Zeit, diese Kleidung abzulegen.
+###_NPC
+(She takes her clothes off.)
+(Sie zieht ihre Kleidung aus.)
+###_PLAYER
+I win. You should slip out of that underwear.
+Gewonnen. Weg mit der Unterwäsche.
+###_NPC
+(She removes her underwear.)
+(Sie nimmt ihre Unterwäsche ab.)
+###_PLAYER
+I win. Let's secure your legs first.
+Gewonnen. Binden wir erstmal deine Beine fest.
+###_NPC
+(She nods slowly while you tie her legs.)
+(Sie nickt langsam, während du ihre Beine fesselst.)
+###_PLAYER
+I win. You don't need to use your arms for this game.
+Gewonnen. Du brauchst deine Arme hier nicht.
+###_NPC
+(She struggles while you bind her arms behind her back.)
+(Sie zappelt, als du ihre Arme hinter ihrem Rücken fesselst.)
+###_PLAYER
+I win. Come on, open up.
+Gewonnen. Komm schon, Mund auf.
+###_NPC
+(She reluctantly accepts the gag.)
+(Sie nimmt widerwillig den Knebel an.)
+###_PLAYER
+Oh, I lost. (Take off your accessories)
+Oh, verloren. (Deine Accessoires abnehmen.)
+Oh, I lost. (Take off your clothes)
+Oh, verloren. (Deine Kleidung ausziehen.)
+###_NPC
+Whoops, time to lose some clothes! 
+Ups, Zeit, etwas Haut zu zeigen!
+###_PLAYER
+Oh, I lost. (Take off your underwear)
+Oh, verloren. (Deine Unterwäsche ausziehen.)
+###_NPC
+Are you starting to feel exposed? 
+Fühlst du dich langsam entblößt?
+###_PLAYER
+Oh, I lost. (Let her tie your legs)
+Oh, verloren. (Sie deine Beine fesseln lassen.)
+###_NPC
+Looks like you're not going anywhere. 
+So schnell kommst du wohl nicht mehr davon.
+###_PLAYER
+Oh, I lost. (Let her tie your arms)
+Oh, verloren. (Sie deine Arme fesseln lassen.)
+###_NPC
+Not much before you can't move at all... 
+Du bist schon fast vollkommen hilflos...
+###_PLAYER
+Oh, I lost. (Open your mouth and let her gag you)
+Oh, verloren. (Dich von ihr Knebeln lassen.)
+###_NPC
+You lose! Open up, it's time for a gag...
+Du hast verloren! Mund auf, es wird Zeit für einen Knebel...
+(She struggles in her restraints.)  Can you release me?
+(Sie zappelt in ihren Fesseln.) Kannst du mich befreien?
+###_PLAYER
+I'll go find some help.  (Leave her.)
+Ich hole Hilfe. (Dialog beenden.)
+What happened here?
+Was ist hier passiert?
+###_NPC
+I lost a game and the winner left me!
+Ich habe ein Spiel verloren und die Siegerin ist einfach gegangen!
+Yes please, can you release us all?
+Ja, bitte, kannst du uns alle befreien?
+###_PLAYER
+Is everything alright now?
+Ist jetzt alles in Ordnung?
+###_NPC
+Yeah, you've taken care of everything!  Please send my regards to the maids of the sorority.
+Ja, du hast dich um alles gekümmert! Richte den Hausmädchen der Schwesternschaft meine besten Grüße aus.
+###_PLAYER
+Great!  A chore well done.
+Klasse! Eine gut erfüllte Aufgabe.
+###_NPC
+Absolutely.  Is there something I can do for you?
+Auf jeden Fall. Kann ich etwas für dich tun?
+###_PLAYER
+No problem.  We are here to serve you.
+Kein Problem. Wir sind dazu da, euch zu dienen.
+###_NPC
+I like the sound of that!  Is there something I can do for you?
+Das hört sich gut an! Kann ich etwas für dich tun?
+###_PLAYER
+Alright, but be more careful next time.
+Gut, aber sei in Zukunft vorsichtiger.
+###_NPC
+I will, thankyou.  Is there something I can do for you?
+Das werde ich, danke. Kann ich etwas für dich tun?
+(She gets close to you for a long and loving kiss on your lips.)  Mmmmmmmmh...
+(Sie kommt näher und gibt dir einen langen und zärtlichen Kuss auf die Lippen.) Mmmmmmmmh...
+###_PLAYER
+That's not fair!
+Das ist nicht fair!
+You have wonderful lips...
+Du hast wundervolle Lippen...
+(Close your eyes and kiss back.)
+(Die Augen schließen und den Kuss erwidern.)
+(Close your eyes and moan into your gag.)
+(Die Augen schließen und in deinen Knebel stöhnen.)
+(Push your tongue inside.)
+(Deine Zunge hineinstecken.)
+(Push your tongue into your gag.)
+(Deine Zunge in den Knebel drücken.)
+(Stay silent and cold.)
+(Still und kühl bleiben.)
+###_NPC
+(She harshly slaps your face) How does it feel to be mine?
+(Sie gibt dir eine heftige Ohrfeige.) Wie fühlt es sich an, mir zu gehören?
+###_PLAYER
+Hey!  That really hurts!
+Hey! Das tut wirklich weh!
+You'll know true pain after your next downfall.
+Nächstes Mal bringe ich dir wahre Schmerzen bei.
+(Whimper from the pain.)
+(Vor Schmerz wimmern.)
+(Thrash around in your bondage.)
+(Dich in deinen Fesseln winden.)
+(Pretend it doesn't hurt.)
+(So tun, als würde es nicht wehtun.)
+###_NPC
+(She gets closer and starts to tickle you without mercy.)  Are you ticklish?
+(Sie kommt näher und fängt an, dich gnadenlos zu kitzeln.) Bist du kitzelig?
+###_PLAYER
+Eeeeeeaahahahaha!  Stop it!  Hahaahaahi.
+Iiiieeaahahahaha! Aufhören! Hahaahaahi.
+(Laugh out loud.)
+(Lauthals lachen.)
+(Scream into your gag.)
+(In deinen Knebel schreien.)
+(Try to pretend you're not ticklish.)
+(So tun, als wärst du nicht kitzelig.)
+###_NPC
+(She caresses and fondles your body and breasts slowly.)  Mmmmmm I could do this all day!
+(Sie streichelt und befummelt langsam deinen Körper und deine Brüste.) Mmmmmm, das könnte ich den ganzen Tag machen!
+###_PLAYER
+If you release me I'll touch you back.
+Wenn du mich befreist, kann ich dich auch anfassen.
+Miss!  Is that proper?
+Miss! Ist das anständig?
+(Moan with pleasure.)
+(Lüstern stöhnen.)
+(Shiver in your restraints.)
+(In deinen Fesseln schaudern.)
+###_NPC
+(She raises her hand and spanks you many times on the butt.)  Take the pain, girl!
+(Sie erhebt ihre Hand und haut dir mehrmals auf den Hintern.) Akzeptiere den Schmerz, Mädchen!
+###_PLAYER
+You'll get that back!
+Das bekommst du zurück!
+###_NPC
+(She releases you and sighs.)  Enjoy the freedom while you have it.
+(Sie befreit dich und seufzt.) Genieße deine Freiheit, solange du sie hast.
+###_PLAYER
+Take care.
+Mach's gut.
+Thanks!  That was fun.
+Danke! Das hat Spaß gemacht.
+(Leave her.)
+(Dialog beenden.)

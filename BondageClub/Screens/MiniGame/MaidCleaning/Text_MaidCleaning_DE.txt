@@ -1,0 +1,6 @@
+Move the duster over every dirty spot before the supervisor comes back.
+Bewege den Staubwedel über jeden Schmutzfleck, bevor deine Aufseherin wiederkommt.
+Congratulations!  You've cleaned everything in time.
+Glückwunsch! Du hast alles rechtzeitig saubergemacht.
+Sorry, you've failed to clean everything in time.
+Leider hast du nicht alles rechtzeitig saubergemacht.

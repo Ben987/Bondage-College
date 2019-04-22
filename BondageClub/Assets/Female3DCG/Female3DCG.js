@@ -229,7 +229,7 @@ var AssetFemale3DCG = [
 		Group: "Shoes",
 		Priority: 19,
 		ParentGroup: "BodyLower",
-		AllowPose: ["LegsClosed"],
+		AllowPose: ["LegsClosed", "Kneel"],
 		Color: ["Default", "#bbbbbb", "#808080", "#202020", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
 		Left: 125,
 		Top: 500,
@@ -261,9 +261,9 @@ var AssetFemale3DCG = [
 		Zone: [[100, 750, 300, 240]],
 		Asset: [ 
 			{ Name: "NylonRope", Value: 15, Time: 10 },
-			{ Name: "HempRope", Value: 30, Time: 10, RemoveTime: 15, Difficulty: 2 },
+			{ Name: "HempRope", Value: 30, Time: 10, RemoveTime: 15, Difficulty: 3 },
 			{ Name: "LeatherBelt", Value: 25, Time: 5 },
-			{ Name: "SuspensionHempRope", SelfBondage: false, Random: false, RemoveAtLogin: true, SetPose: ["Suspension", "LegsClosed"], Effect: ["Freeze", "Prone", "Struggle"], Value: -1, Height: 150, Time: 30, Difficulty: 2 }
+			{ Name: "SuspensionHempRope", SelfBondage: false, Random: false, RemoveAtLogin: true, SetPose: ["Suspension", "LegsClosed"], Effect: ["Freeze", "Prone", "Struggle"], Value: -1, Height: 150, Time: 30, Difficulty: 3, Alpha: [[125, 850, 250, 150]] }
 		]
 	},
 
@@ -282,7 +282,7 @@ var AssetFemale3DCG = [
 		Zone: [[100, 580, 300, 170]],
 		Asset: [ 
 			{ Name: "NylonRope", Value: 15, Time: 10 },
-			{ Name: "HempRope", Value: 30, Time: 10, RemoveTime: 15, Difficulty: 2 },
+			{ Name: "HempRope", Value: 30, Time: 10, RemoveTime: 15, Difficulty: 3 },
 			{ Name: "LeatherBelt", Value: 25, Time: 5 }
 		]
 	},
@@ -330,9 +330,10 @@ var AssetFemale3DCG = [
 		Zone: [[150, 420, 200, 80]],
 		Asset: [
 			{ Name: "MetalChastityBelt", Effect: ["Chaste", "Lock"], Block: ["ItemVulva", "ItemButt"], Value: 100, Prerequisite: "AccessVulva", Time: 20, RemoveTime: 10 },
-			{ Name: "MetalChastityBeltKey", Wear: false, Value: -1, Effect: ["Unlock-MetalChastityBelt"], Time: 5 },
+			{ Name: "MetalChastityBeltKey", Wear: false, Value: -1, Effect: ["Unlock-MetalChastityBelt"], Prerequisite: "AccessVulva", Time: 5 },
 			{ Name: "LeatherCrop", Value: 40, Wear: false, BuyGroup: "LeatherCrop", Bonus: [{Type: "KidnapDomination", Factor: 3}] },
-			{ Name: "LeatherWhip", Value: 60, Wear: false, BuyGroup: "LeatherWhip", Bonus: [{Type: "KidnapBruteForce", Factor: 3}] }
+			{ Name: "LeatherWhip", Value: 60, Wear: false, BuyGroup: "LeatherWhip", Bonus: [{Type: "KidnapBruteForce", Factor: 3}] },
+			{ Name: "StraponPanties", Effect: ["Chaste"], Block: ["ItemVulva", "ItemButt"], Value: 50, Prerequisite: "AccessVulva", Time: 15 }
 		]
 	},
 	
@@ -349,8 +350,8 @@ var AssetFemale3DCG = [
 		Zone: [[150, 340, 200, 80]],
 		Asset: [ 
 			{ Name: "NylonRopeHarness", Value: 25, Prerequisite: "AccessTorso", Time: 25 },
-			{ Name: "HempRopeHarness", Value: 50, Prerequisite: "AccessTorso", Time: 25, RemoveTime: 35, Difficulty: 2 },
 			{ Name: "AdultBabyHarness", Value: -1, Priority: 24, Time: 15, RemoveTime: 10 },
+			{ Name: "HempRopeHarness", Value: 50, Prerequisite: "AccessTorso", Time: 25, RemoveTime: 35, Difficulty: 3 },
 			{ Name: "LeatherHarness", Value: 100, Prerequisite: "AccessTorso", Time: 15, RemoveTime: 10 }
 		]
 	},
@@ -370,7 +371,7 @@ var AssetFemale3DCG = [
 			{ Name: "RoundPiercing", Value: 20, Prerequisite: "AccessBreast", Time: 15 },
 			{ Name: "NippleClamp", Value: 35, Prerequisite: "AccessBreast", Time: 10 },
 			{ Name: "MetalChastityBra", Value: 75, Effect: ["Lock", "BreastChaste"], Prerequisite: "AccessBreast", Time: 15 },
-			{ Name: "MetalChastityBraKey", Wear: false, Value: -1, Effect: ["Unlock-MetalChastityBra"], Time: 5 },
+			{ Name: "MetalChastityBraKey", Wear: false, Value: -1, Effect: ["Unlock-MetalChastityBra"], Prerequisite: "AccessBreast", Time: 5 },
 			{ Name: "LeatherCrop", Value: 40, Wear: false, BuyGroup: "LeatherCrop", Bonus: [{Type: "KidnapDomination", Factor: 3}] },
 			{ Name: "LeatherWhip", Value: 60, Wear: false, BuyGroup: "LeatherWhip", Bonus: [{Type: "KidnapBruteForce", Factor: 3}] }
 		]
@@ -388,14 +389,15 @@ var AssetFemale3DCG = [
 		Zone: [[50, 250, 100, 250], [350, 250, 100, 250]],
 		Asset: [ 
 			{ Name: "NylonRope", SelfBondage: false, Value: 15, SetPose: ["BackBoxTie"], Effect: ["Block", "Prone", "Struggle"], Time: 15 },
-			{ Name: "HempRope", SelfBondage: false, Value: 30, SetPose: ["BackBoxTie"], Effect: ["Block", "Prone", "Struggle"], Time: 20, Difficulty: 2 },
+			{ Name: "HempRope", SelfBondage: false, Value: 30, SetPose: ["BackBoxTie"], Effect: ["Block", "Prone", "Struggle"], Time: 20, Difficulty: 3 },
 			{ Name: "MetalCuffs", Priority: 22, Value: 50, SetPose: ["BackCuffs"], Effect: ["Block", "Prone", "Lock"], Time: 5 },
 			{ Name: "MetalCuffsKey", Wear: false, Value: 25, Effect: ["Unlock-MetalCuffs"], Time: 5 },
 			{ Name: "LeatherArmbinder", SelfBondage: false, Priority: 2, Value: 80, SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone", "Struggle"], Time: 25, RemoveTime: 10, Difficulty: 10 },
 			{ Name: "PaddedMittens", SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Struggle"], Time: 25, RemoveTime: 10, Difficulty: 4 },
 			{ Name: "PaddedMittensLocked", Random: false, SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Lock"], Time: 12 },
 			{ Name: "PaddedMittensHarness", Random: false, SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Struggle"], Time: 25, RemoveTime: 10, Difficulty: 4 },
-			{ Name: "PaddedMittensHarnessLocked", Random: false, SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Lock"], Time: 12 }
+			{ Name: "PaddedMittensHarnessLocked", Random: false, SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Lock"], Time: 12 },
+			{ Name: "FourLimbsShackles", Enable: false, Value: -1, SetPose: ["BackBoxTie"], Effect: ["Block", "Prone", "Lock"], Time: 30 }
 		]
 	},
 
@@ -423,7 +425,7 @@ var AssetFemale3DCG = [
 		Effect: ["GagNormal"],
 		Color: ["Default"],
 		Left: 150,
-		Top: 50,
+		Top: 0,
 		Zone: [[150, 160, 200, 50]],
 		Asset: [ 
 			{ Name: "SmallClothGag", Effect: ["GagLight"], Value: 10, Time: 10 },
@@ -434,9 +436,11 @@ var AssetFemale3DCG = [
 			{ Name: "HarnessPanelGag", Effect: ["GagHeavy"], Value: 80, Time: 20 },
 			{ Name: "RingGag", Value: 35, Time: 5 },
 			{ Name: "DuctTapeGag", Value: 20, Time: 5, RemoveTime: 2 },
-			{ Name: "DusterGag", Random: false, RemoveAtLogin: true, Value: -1, Time: 5 },
 			{ Name: "PacifierGag", Random: false, Effect: ["GagLight"], Value: -1, Time: 2 },
 			{ Name: "HarnessPacifierGag", Random: false, Effect: ["GagLight"], Value: -1, Time: 20 },
+			{ Name: "DusterGag", Random: false, RemoveAtLogin: true, Value: -1, Time: 20 },
+			{ Name: "HarnessPonyBits", Random: false, Effect: ["GagHeavy"], Value: -1, Time: 20 },
+			{ Name: "PumpGag", Effect: [], Random: false, Extended: true, Value: 100, Time: 20 },
 			{ Name: "RegularSleepingPill", Enable: false, Wear: false, Value: -1, Bonus: [{Type: "KidnapSneakiness", Factor: 3}] }
 		]
 	},
@@ -454,7 +458,8 @@ var AssetFemale3DCG = [
 			{ Name: "ClothBlindfold", Effect: ["BlindLight", "Prone"], Hide: ["Glasses"], Value: 20, Time: 5 },
 			{ Name: "LeatherBlindfold", Effect: ["BlindNormal", "Prone"], Hide: ["Glasses"], Value: 40, Time: 5 },
 			{ Name: "LeatherHood", Effect: ["BlindHeavy", "Prone", "GagLight"], Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth", "Eyes"], Block: ["ItemMouth", "ItemNeck"], Value: 90, Time: 15 },
-			{ Name: "LeatherHoodOpenEyes", Effect: ["Prone", "GagLight"], Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth"], Block: ["ItemMouth", "ItemNeck"], Value: 60, Time: 15 }
+			{ Name: "LeatherHoodOpenEyes", Effect: ["Prone", "GagLight"], Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth"], Block: ["ItemMouth", "ItemNeck"], Value: 60, Time: 15 },
+			{ Name: "StuddedBlindfold", Effect: ["BlindNormal", "Prone"], Hide: ["Glasses"], Value: -1, Time: 5 }
 		]
 	},
 
@@ -479,7 +484,7 @@ var PoseFemale3DCG = [
 	{
 		Name: "Kneel",
 		OverrideHeight: -250,
-		Hide: ["Shoes", "ItemFeet"]
+		Hide: ["ItemFeet"]
 	}
 
 ];

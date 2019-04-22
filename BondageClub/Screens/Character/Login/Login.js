@@ -4,8 +4,8 @@ var LoginMessage = "";
 var LoginCredits = null;
 var LoginCreditsPosition = 0;
 var LoginThankYou = "";
-var LoginThankYouList = ["Alvin", "Bryce", "Christian", "Designated", "Dick", "EugeneTooms", "Gopanka", /*"Jdmsouls22",*/ "Jyeoh", /*"Karel",*/ "Kitten", "Laioken", "Michal", "Mindtie", "MunchyCat", 
-						 "Nick", "Overlord", "Paradox", "Rashiash", "Ryner", "Setsu95", "Shadow", /*"Shaun",*/ "Simeon", "Sky", "Strangerhood", "Terry", "William", "Winterisbest", "Xepherio"];
+var LoginThankYouList = ["Alvin", "Bryce", "Christian", "Designated", "Dick", "Escurse", "EugeneTooms", "Gopanka", /*"Jdmsouls22",*/ "Jyeoh", "Karel", "Kitten", "Laioken", "Michal", "Mindtie", "MunchyCat", 
+						"Nick", "Overlord", "Paradox", "Rashiash", "Ryner", "Setsu95", "Shadow", "Shaun", "Simeon", "Sky", "Terry", "William", "Winterisbest", "Xepherio"];
 var LoginThankYouNext = 0;
 
 // Loads the next thank you bubble
@@ -86,9 +86,10 @@ function LoginRun() {
 	ElementPosition("InputName", 1000, 260, 500);
 	DrawText(TextGet("Password"), 1000, 350, "White", "Black");
 	ElementPosition("InputPassword", 1000, 410, 500);
-	DrawButton(925, 500, 150, 60, TextGet("Login"), "White", "");
+	DrawButton(775, 500, 200, 60, TextGet("Login"), "White", "");
+	DrawButton(1025, 500, 200, 60, TextGet("Language"), "White", "");
 	DrawText(TextGet("CreateNewCharacter"), 1000, 670, "White", "Black");
-	DrawButton(850, 740, 300, 60, TextGet("NewCharacter"), "White", "");
+	DrawButton(825, 740, 350, 60, TextGet("NewCharacter"), "White", "");
 	if (CheatAllow) DrawButton(850, 870, 300, 60, TextGet("Cheats"), "White", "");
 
 	// Draw the character and thank you bubble
@@ -103,10 +104,11 @@ function LoginRun() {
 function LoginResponse(C) {
 
 	// If the return package contains a name and a account name
-	if (typeof C == "object") {
+	if (typeof C === "object") {
 		if ((C.Name != null) && (C.AccountName != null)) {
 
 			// Make sure we have values
+			LoginMessage = "";
 			if (C.Appearance == null) C.Appearance = [];
 			if (C.AssetFamily == null) C.AssetFamily = "Female3DCG";			
 
@@ -119,6 +121,8 @@ function LoginResponse(C) {
 			Player.Lover = ((C.Lover == null) || (C.Lover == "undefined")) ? "" : C.Lover;
 			Player.Creation = C.Creation;
 			Player.Wardrobe = C.Wardrobe;
+			Player.OnlineID = C.ID.toString();
+			WardrobeCharacter = [];
 
 			// Loads the player character model and data
 			Player.Appearance = ServerAppearanceLoadFromBundle(C.AssetFamily, C.Appearance);
@@ -129,9 +133,11 @@ function LoginResponse(C) {
 			SkillLoad(C.Skill);
 			CharacterLoadCSVDialog(Player);
 			if (!LogQuery("SleepCage", "Rule") || (Player.Owner == "")) CharacterAppearanceValidate(Player);
+			PrivateCharacterMax = (LogQuery("Expansion", "PrivateRoom")) ? 8 : 4;
 			CharacterRefresh(Player, false);
 			ElementRemove("InputName");
 			ElementRemove("InputPassword");
+			if (ManagementIsClubSlave()) CharacterNaked(Player);
 
 			// Starts the game in the main hall while loading characters in the private room
 			PrivateCharacter = [];
@@ -139,6 +145,7 @@ function LoginResponse(C) {
 			if (C.PrivateCharacter != null)
 				for(var P = 0; P < C.PrivateCharacter.length; P++)
 					PrivateCharacter.push(C.PrivateCharacter[P]);
+			SarahSetStatus();
 
 			// If the player must start in her room, in her cage
 			if (LogQuery("SleepCage", "Rule") && (Player.Owner != "")) {
@@ -165,7 +172,7 @@ function LoginClick() {
 	}
 	
 	// If we must create a new character
-	if ((MouseX >= 850) && (MouseX <= 1150) && (MouseY >= 740) && (MouseY <= 800)) {
+	if ((MouseX >= 825) && (MouseX <= 1175) && (MouseY >= 740) && (MouseY <= 800)) {
 		ElementRemove("InputName");
 		ElementRemove("InputPassword");
 		CharacterAppearanceSetDefault(Player);
@@ -175,15 +182,25 @@ function LoginClick() {
 		CommonSetScreen("Character", "Appearance");
 	}
 	
-	// If we must try to login
-	if ((MouseX >= 925) && (MouseX <= 1075) && (MouseY >= 500) && (MouseY <= 560)) {
+	// If we must try to login (make sure we don't send the login query twice)
+	if ((MouseX >= 775) && (MouseX <= 975) && (MouseY >= 500) && (MouseY <= 560) && (LoginMessage != TextGet("ValidatingNamePassword"))) {
 		var Name = ElementValue("InputName");
 		var Password = ElementValue("InputPassword");
 		var letters = /^[a-zA-Z0-9]+$/;
-		if (Name.match(letters) && Password.match(letters) && (Name.length > 0) && (Name.length <= 20) && (Password.length > 0) && (Password.length <= 20))
+		if (Name.match(letters) && Password.match(letters) && (Name.length > 0) && (Name.length <= 20) && (Password.length > 0) && (Password.length <= 20)) {
+			LoginMessage = TextGet("ValidatingNamePassword");
 			ServerSend("AccountLogin", { AccountName: Name, Password: Password } );
+		}
 		else
 			LoginMessage = TextGet("InvalidNamePassword");
 	}
 
+	// If we must change the language
+	if ((MouseX >= 1025) && (MouseX <= 1225) && (MouseY >= 500) && (MouseY <= 560)) {
+		TranslationNextLanguage();
+		TextLoad();
+		AssetLoadDescription("Female3DCG");
+		LoginMessage = "";
+	}
+	
 }

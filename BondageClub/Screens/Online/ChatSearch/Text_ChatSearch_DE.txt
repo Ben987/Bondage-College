@@ -1,0 +1,18 @@
+No chat room found, you can create a new one.
+Kein Chatraum gefunden, du kannst einen neuen erstellen.
+Search for a room by name:
+Raum per Name suchen:
+Search for a room
+Raum suchen
+Create your room
+Raum erstellen
+This room is already full
+Dieser Raum ist bereits voll
+Room doesn't exist anymore
+Raum existiert nicht mehr
+Account Error
+Account-Fehler
+Invalid Room Data
+Ungültige Raumdaten
+Entering the room...
+Raum wird betreten...

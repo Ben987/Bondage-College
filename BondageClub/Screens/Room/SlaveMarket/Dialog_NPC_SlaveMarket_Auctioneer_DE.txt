@@ -1,0 +1,193 @@
+###_NPC
+Nice gag, but you might want to remove unless you want to be entered in the next action.
+Netter Knebel, aber den solltest du vielleicht abnehmen, wenn du nicht in der nächsten Auktion landen willst.
+Can you go check on the Introduction Class?  Sometimes new members get out of control.
+Kannst du bitte im Einstiegskurs nach dem Rechten sehen? Neulinge geraten manchmal außer Kontrolle.
+I've heard rumors of trouble going on at the Shibari Dojo.  Can you make sure everyone is fine?
+Ich habe von Ärger im Shibari-Dojo gehört. Kannst du nachsehen, ob alles in Ordnung ist?
+I think that something went wrong at the store.  Can you go there to help the vendor?
+Ich glaube, im Laden ist etwas schiefgelaufen. Könntest du hingehen und der Verkäuferin helfen?
+I think that something went wrong at the Gambling Hall.  Can you go there to help the players?
+Ich glaube, in der Spielhalle  ist etwas schiefgelaufen. Könntest du hingehen und den Spielern helfen?
+(You come back to DialogCharacterName with an empty drink platter.)  Well done!
+(Du kehrst mit einer leeren Servierplatte zu DialogCharacterName zurück.) Gute Arbeit!
+(You come back to DialogCharacterName with spilled drinks all over your uniform.)
+(Du kehrst in deiner mit Getränken befleckten Uniform zu DialogCharacterName zurück.)
+(DialogCharacterName gets you back to the maid quarters and smiles.)  You've did it!
+(DialogCharacterName holt dich lächelnd in die Dienerkammer zurück.) Du hast es geschafft!
+(DialogCharacterName gets you back to the maid quarters and frowns.)  You failed to clean up in time.
+(DialogCharacterName holt dich stirnrunzelnd in die Dienerkammer zurück.) Du hast nicht alles sauber bekommen.
+(DialogCharacterName hugs you and gropes your red butt.)  You're now a full maid my sister.
+(DialogCharacterName umarmt dich und drückt deinen roten Hintern.) Jetzt bist du ein vollwertiges Hausmädchen, Schwester.
+I'm sorry Miss.  I cannot help you.
+Tut mir leid, Miss. Ich kann nicht helfen.
+(She first shakes her head to avoid the gag, but finally surrenders as you silence her.)
+(Sie schüttelt erst den Kopf, um dem Knebel zu entgehen, lässt sich aber schließlich von dir zum Schweigen bringen.)
+(You remove her gag while she stretches her mouth.)  Thanks Miss, it's hard to dispatch maids with that gag.
+(Du nimmst den Knebel ab und sie streckt ihren Mund.) Danke, Miss, geknebelt ist es schwierig, Hausmädchen loszuschicken.
+(She sighs and turns around while you restrain her arms.)  It might be a little hard to work like that Miss.
+(Sie seufzt und dreht sich um, als du ihre Arme fesselst.) Das könnte meine Arbeit etwas erschweren, Miss.
+(You free her arms and she nods happily.)  Thanks a lot Miss.
+(Du befreist ihre Arme und sie nickt glücklich.) Vielen Dank, Miss.
+(She submits to you while you restrain her legs securely.)  I don't need to move anyway.
+(Sie lässt sich von dir ordentlich die Beine fesseln.) Ich muss sowieso nicht von hier weg.
+(You release her legs from the restraint.)  Let me know if I can help you Miss.
+(Du befreist ihre Beine.) Sagen Sie Bescheid, wenn ich behilflich sein kann, Miss.
+(She looks puzzled as you restrain her feet.)  I'll stay on guard here Miss.
+(Sie guckt verwirrt, als du ihre Füße fesselst.) Ich halte hier die Stellung, Miss.
+(You release her feet and she wiggles them.)  Thanks Miss, it was troublesome.
+(Du befreist ihre Füße und sie wackelt mit ihnen herum.) Danke, Miss, das war problematisch.
+(You strap the collar on her while she blushes.)  You're quite a Dominant Miss.
+(Du legst ihr das Halsband um und sie wird rot.) Sie sind ziemlich dominant, Miss.
+(You remove the collar around her neck.)  Thanks Miss.
+(Du nimmst ihr das Halsband ab.) Danke, Miss.
+(You snap the belt around her waist and crotch while she sighs.)  No more fun for the crew.
+(Du lässt den Gürtel um ihre Taille zuschnappen und sie seufzt.) Kein Spaß mehr für die Crew.
+(You unlock the belt from her waist and she smiles.)  Thanks a lot Miss DialogPlayerName.
+(Du öffnest den Gürtel von ihrer Taille und sie lächelt.) Vielen Dank, Miss DialogPlayerName.
+(You strap the device on her head as she nods slowly.)  This will not make my job easier Miss.
+(Du schnallst ihr das Ding um den Kopf und sie nickt langsam.) Das wird meine Arbeit nicht einfacher machen, Miss.
+(You remove the device and she nods rapidly.)  Thanks a million, this is much better.
+(Du nimmst das Ding ab und sie nickt energisch.) Tausend Dank, das ist viel besser.
+(She jumps from the searing pain on her breast.)  Ouch!  Miss Head Maid!
+(Sie zuckt vom schneidenden Schmerz auf ihrer Brust zusammen.) Autsch! Frau Hausdame!
+(You whip her breast with the leather crop as she whimpers and bows her head.)
+(Du peitschst ihr mit der Ledergerte auf die Brust und sie lässt wimmernd den Kopf hängen.)
+(You whip her butt hard as she sighs.)  I promise I'll work harder Miss Head Maid.
+(Du peitschst ihr kräftig auf den Hintern und sie seufzt.) Ich verspreche, härter zu arbeiten, Frau Hausdame.
+(She grumbles as you strike her butt with the crop.)  A maid work isn't easy.
+(Sie grummelt, als du ihren Hintern mit der Gerte triffst.) Ein Hausmädchen hat es nicht leicht.
+Welcome to the slave market.  Are you here to buy, sell or be sold?
+Willkommen beim Sklavenmarkt. Bist du zum Kaufen, Verkaufen oder Verkauftwerden hier?
+###_PLAYER
+Who are you.
+Wer bist du?
+###_NPC
+I am the market's auctioneer for today.  I organise and run the auctions.
+Ich bin die heutige Auktionatorin des Sklavenmarkts. Ich organisiere und leite die Auktionen.
+###_PLAYER
+I want to know more about these auctions.
+Ich will mehr über diese Auktionen wissen.
+###_NPC
+I have a moment to spare, what do you want to know?
+Ich habe etwas Zeit, was willst du denn wissen?
+###_PLAYER
+I want to buy a slave in the next sale.
+Ich will beim nächsten Verkauf eine Sklavin kaufen.
+###_NPC
+I will start the next auction soon.  Do I need to explain how it works.
+Die nächste Auktion wird bald beginnen. Soll ich dir erklären, wie sie funktioniert?
+###_PLAYER
+I want to sell a slave in the next sale.
+Ich will in der nächsten Auktion eine Sklavin verkaufen.
+###_NPC
+Sure, who do you want enter.  I will need to check that they also are okay with this.
+Klar, wen möchtest du eintragen? Ich werde prüfen müssen, ob diese Person auch damit einverstanden ist.
+###_PLAYER
+I want to be entered in the next sale.
+Ich möchte mich zum nächsten Verkauf anbieten.
+###_NPC
+Okay.  To be entered you must be one of the market's own slaves or your owner must grant you entry.
+Okay. Dafür musst du entweder eine eigene Sklavin des Markts sein oder deine Besitzerin um Erlaubnis fragen.
+###_PLAYER
+Does this place only hold auctions?
+Finden hier nur Auktionen statt?
+###_NPC
+No, the market has traders on site.  Their services include dealing with slavery contracts and locksmith services.
+Nein, es gibt auch Kaufleute im Markt. Sie befassen sich unter Anderem mit Sklavenverträgen und Schlüsseldiensten.
+###_PLAYER
+Can I tie you up?
+Kann ich dich fesseln?
+###_NPC
+Don't even think about trying it.  This market has it's own security to ensure that business runs smoothly.
+Denk nicht mal daran. Dieser Markt hat eigene Sicherheitskräfte, um einen reibungslosen Handel zu gewährleisten.
+###_PLAYER
+Time is money, Bye.  (Leave her.)
+Zeit ist Geld, tschau. (Dialog beenden.)
+Slavery contracts?
+Sklavenverträge?
+###_NPC
+They can help slaves buy there freedom or buy people wishing to become the market's slaves.
+Sie helfen Sklaven, ihre Freiheit zu kaufen, oder Leuten, die zu Marktsklaven werden wollen.
+###_PLAYER
+Locksmith?
+Schlüsseldienste?
+###_NPC
+They can deal with most locks or metal restraints.  Hand for changing the locked collars on slaves.
+Sie können mit den meisten Schlössern und metallenen Fesseln umgehen. Praktisch, um die Halsbänder von Sklaven auszutauschen.
+###_PLAYER
+Do they do anything else?
+Machen sie noch irgendwas anderes?
+###_NPC
+You will have to ask one of them yourself to find out more.
+Du wirst schon jemanden davon selbst fragen müssen, um mehr zu erfahren.
+###_PLAYER
+Okay, I got it.
+Okay, verstanden.
+###_NPC
+Good.  There is an trader here now if you have any busness for her. 
+Gut. Es ist gerade eine Kauffrau hier, falls du irgendwelche Geschäfte für sie hast.
+###_PLAYER
+Tell me about buying slaves.
+Erkläre mir das Kaufen von Sklaven.
+###_NPC
+Owners will enter their slaves for auction as permenant contracts or short term leases.
+Besitzer melden ihre Sklaven zur Auktion an, entweder als Dauervertrag oder als befristete Leihgabe.
+###_PLAYER
+Tell me about selling slaves.
+Erkläre mir das Verkaufen von Sklaven.
+Tell me about being sold.
+Erkläre mir, was es mit dem Verkauftwerden auf sich hat.
+How do I become one of the market's slaves?
+Wie werde ich eine Sklavin des Markts?
+###_NPC
+Speak to our resident trader.  They can make and terminate bonds of slavery.
+Sprich mit der Kauffrau hier. Sie kann Sklavenverhältnisse festlegen und aufheben.
+###_PLAYER
+That was all I needed to know.
+Mehr muss ich nicht wissen.
+###_NPC
+Do you want to buy, sell or be sold now?
+Willst du jetzt kaufen, verkaufen oder verkauft werden?
+###_PLAYER
+(Keep listening.)
+(Weiter zuhören.)
+###_NPC
+Only free members can bid to buy a slave.  We do not accept slaves proxy bidding for the owners.
+Nur freie Mitglieder können Geld auf Sklaven bieten. Wir lassen keine Sklaven stellvertretend für ihre Besitzer bieten.
+The highest bidder wins the auction.
+Der Höchstanbieter gewinnt die Auktion.
+Slaves are sold as seen, you bid at your own risk.
+Sklaven werden so wie gesehen verkauft, also wird auf eigene Gefahr geboten.
+We will add a buyers commission of 10% to the final bid.
+Dem Höchstgebot fügen wir eine Käuferprovision von 10% hinzu.
+Slaves must be paid for in full immediately after the auction ends.
+Der Betrag ist unmittelbar nach der Auktion vollständig zu bezahlen.
+Winning bidders who refuse to or cannot pay will be become a market slave and entered in the next auction.
+Höchstbietende, die nicht zahlen wollen oder können, werden zu Marktsklaven und bei der nächsten Auktion angeboten.
+Winning bidders who refuse to or cannot pay will be severely punished for wasting our time.
+Höchstbietende, die nicht zahlen wollen oder können, werden strengstens dafür bestraft, unsere Zeit verschwendet zu haben.
+Once paid for, the buyer must take their new slave away or the market can take care of them for a holding fee.
+Nach der Bezahlung müssen Käufer ihre neuen Sklaven mitnehmen, oder der Markt kann sich gegen eine Gebühr um sie kümmern.
+This is useful if a buyer is shopping for multiple new slaves.
+Das ist dann praktisch, wenn jemand mehrere Sklaven hintereinander kaufen will.
+There is a listing fee of $50 payed up front and 10% commission taken from the final bid before the seller is paid.
+Es gibt eine Eintraggebühr von 50$, die vorab gezahlt wird, und eine Provision von 10% wird vom Höchstgebot abgerechnet, bevor der Verkäufer bezahlt wird.
+Sellers can set a reserve price, but the listing fee is not refunded if the slave is not sold.
+Verkäufer können ein Mindestgebot bestimmen, aber die Eintraggebühr wird nicht erstattet, wenn niemand die Sklaven kauft.
+Sellers may prepare their slaves before the auction to get a good price, but not after the auction has started.
+Verkäufer können ihre Sklaven herrichten, um einen guten Preis zu erzielen, aber nur bis zum Beginn der Auktion.
+If the buyer doesn't pay up, slaves are returned to their owner, however the listing fee is not refunded.
+Wenn Käufer nicht zahlen, bekommen Besitzer ihre Sklaven zurück, die Eintraggebühr wird jedoch nicht erstattet.
+Slaves owned by the market can ask to be entered into the auction and recive a share of the income.
+Sklaven, die dem Markt selbst gehören, können darum bitten, bei der Auktion angeboten zu werden, und erhalten einen Anteil des Gewinns.
+Before the auction slaves may be preped by their owners.  The market's security will ensure unrule slaves cooperate.
+Vor der Auktion können Besitzer ihre Sklaven herrichten. Unsere Sicherheitskräfte sorgen für die Kooperation widerspenstiger Sklaven.
+Slaves must be securely collared and gagged before the auction starts.  Clothing and any other bondage is optional.
+Sklaven müssen vor Beginn der Auktion ein Halsband und einen Knebel tragen. Jede andere Form von Kleidung oder Fesseln ist optional.
+During the auction slaves may do what they can to influance the buyers.  
+Während der Auktion ist Sklaven alles erlaubt, um die Käufer zu beeinflussen.
+You may manage to attact more bids and a better price or buyers with particular interests.
+Du könntest mehr Angebote und einen höheren Preis erzielen, oder Käufer mit bestimmten Interessen auf dich aufmerksam machen.
+Once the buyer has paid, they can take the slave away and do as the please with them, within the terms of the contract.
+Sobald ein Käufer bezahlt hat, darf er die Sklavin mitnehmen und alles Beliebige mit ihr tun, im Rahmen des Vertrags.

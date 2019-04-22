@@ -16,7 +16,9 @@ var ManagementRandomActivityList = ["AddArms", "RemoveArms", "AddGag", "RemoveGa
 var ManagementVisitRoom = false;
 
 // Returns TRUE if the dialog situation is allowed
-function ManagementNoTitle() { return (!LogQuery("JoinedSorority", "Maid") && !LogQuery("ClubMistress", "Management") && (ReputationGet("Kidnap") < 50)) }
+function ManagementNoTitle() { return (!LogQuery("JoinedSorority", "Maid") && !LogQuery("ClubMistress", "Management") && (ReputationGet("Kidnap") < 50) && !SarahUnlockQuest) }
+function ManagementSarahUnlockQuest() { return (SarahUnlockQuest) }
+function ManagementIsSarahOwner() { return (SarahUnlockQuest && (Sarah.Owner == Player.Name)) }
 function ManagementGetMistressAngryCount(InCount) { return (InCount == ManagementMistressAngryCount) }
 function ManagementMistressAngryAdd() { ManagementMistressAngryCount++ }
 function ManagementMistressWillRelease() { return (CommonTime() >= ManagementMistressReleaseTimer) }
@@ -36,18 +38,26 @@ function ManagementCanReleaseFromOwnerFirst() { return ((Player.Money >= 60) && 
 function ManagementCanReleaseFromOwner() { return ((Player.Money >= 200) && LogQuery("ReleasedFromOwner", "Management")) }
 function ManagementCanBeReleased() { return ((Player.Owner != "") && !PrivateOwnerInRoom()) }
 function ManagementCannotBeReleased() { return ((Player.Owner != "") && PrivateOwnerInRoom()) }
-function ManagementWillOwnPlayer() { return ((Player.Owner == "") && (ReputationGet("Dominant") <= -100) && (ManagementMistressAngryCount == 0) && (PrivateCharacter.length <= 3) && !PrivatePlayerIsOwned() && ManagementNoMistressInPrivateRoom()) }
-function ManagementWontOwnPlayer() { return ((Player.Owner == "") && (ReputationGet("Dominant") <= -1) && (ReputationGet("Dominant") >= -99) && (PrivateCharacter.length <= 3) && !PrivatePlayerIsOwned() && ManagementNoMistressInPrivateRoom()) }
-function ManagementNoMistressInPrivateRoom() { return (((PrivateCharacter.length <= 1) || (PrivateCharacter[1].Title == null) || (PrivateCharacter[1].Title != "Mistress")) && ((PrivateCharacter.length <= 2) || (PrivateCharacter[2].Title == null) || (PrivateCharacter[2].Title != "Mistress"))) }
+function ManagementWillOwnPlayer() { return ((Player.Owner == "") && (ReputationGet("Dominant") <= -100) && (ManagementMistressAngryCount == 0) && (PrivateCharacter.length <= PrivateCharacterMax) && !PrivatePlayerIsOwned() && ManagementNoMistressInPrivateRoom()) }
+function ManagementWontOwnPlayer() { return ((Player.Owner == "") && (ReputationGet("Dominant") <= -1) && (ReputationGet("Dominant") >= -99) && (PrivateCharacter.length <= PrivateCharacterMax) && !PrivatePlayerIsOwned() && ManagementNoMistressInPrivateRoom()) }
 function ManagementIsClubSlave() { return ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "ClubSlaveCollar")) }
 function ManagementCanTransferToRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax)) }
 function ManagementWontVisitRoom() { return (!ManagementVisitRoom && ManagementCanTransferToRoom()) }
-function ManagementCanBeClubMistress() { return ((ReputationGet("Dominant") >= 100) && ((Math.floor((CurrentTime - Player.Creation) / 86400000)) >= 7) && !LogQuery("ClubMistress", "Management") && !Player.IsRestrained() && !Player.IsKneeling() && !LogQuery("BlockChange", "Rule")) }
-function ManagementCannotBeClubMistress() { return ((ReputationGet("Dominant") < 100) && (ReputationGet("Dominant") >= 50) && ((Math.floor((CurrentTime - Player.Creation) / 86400000)) >= 7) && !LogQuery("ClubMistress", "Management") && !Player.IsRestrained() && !Player.IsKneeling() && !LogQuery("BlockChange", "Rule")) }
-function ManagementCannotBeClubMistressLaugh() { return ((ReputationGet("Dominant") < 50) && ((Math.floor((CurrentTime - Player.Creation) / 86400000)) >= 7) && !LogQuery("ClubMistress", "Management") && !Player.IsRestrained() && !Player.IsKneeling() && !LogQuery("BlockChange", "Rule")) }
-function ManagementCannotBeClubMistressTime() { return (((Math.floor((CurrentTime - Player.Creation) / 86400000)) < 7) && !LogQuery("ClubMistress", "Management") && !Player.IsRestrained() && !Player.IsKneeling() && !LogQuery("BlockChange", "Rule")) }
+function ManagementCanBeClubMistress() { return ((ReputationGet("Dominant") >= 100) && ((Math.floor((CurrentTime - Player.Creation) / 86400000)) >= 30) && !LogQuery("ClubMistress", "Management") && !Player.IsRestrained() && !Player.IsKneeling() && !LogQuery("BlockChange", "Rule")) }
+function ManagementCannotBeClubMistress() { return ((ReputationGet("Dominant") < 100) && (ReputationGet("Dominant") >= 50) && ((Math.floor((CurrentTime - Player.Creation) / 86400000)) >= 30) && !LogQuery("ClubMistress", "Management") && !Player.IsRestrained() && !Player.IsKneeling() && !LogQuery("BlockChange", "Rule")) }
+function ManagementCannotBeClubMistressLaugh() { return ((ReputationGet("Dominant") < 50) && ((Math.floor((CurrentTime - Player.Creation) / 86400000)) >= 30) && !LogQuery("ClubMistress", "Management") && !Player.IsRestrained() && !Player.IsKneeling() && !LogQuery("BlockChange", "Rule")) }
+function ManagementCannotBeClubMistressTime() { return (((Math.floor((CurrentTime - Player.Creation) / 86400000)) < 30) && !LogQuery("ClubMistress", "Management") && !Player.IsRestrained() && !Player.IsKneeling() && !LogQuery("BlockChange", "Rule")) }
 function ManagementMistressCanBePaid() { return (LogQuery("ClubMistress", "Management") && !LogQuery("MistressWasPaid", "Management")) }
 function ManagementMistressCannotBePaid() { return (LogQuery("ClubMistress", "Management") && LogQuery("MistressWasPaid", "Management")) }
+
+// Returns TRUE if there's no other Mistress in the player private room
+function ManagementNoMistressInPrivateRoom() {
+	if (PrivateCharacter.length <= 1) return true;
+	for (var C = 1; C < PrivateCharacter.length; C++)
+		if ((PrivateCharacter[C].Title != null) && (PrivateCharacter[C].Title == "Mistress"))
+			return false;
+	return true;
+}
 
 // Returns TRUE if any friend in the private room is chaste
 function ManagementFriendIsChaste() {
@@ -351,4 +361,10 @@ function ManagementMistressKicked() {
 	InventoryDelete(Player, "MetalChastityBeltKey", "ItemPelvis", false);
 	InventoryDelete(Player, "MetalChastityBraKey", "ItemBreast", false);
 	ServerPlayerInventorySync();
+}
+
+// Frees Sarah if the player is already her owner
+function ManagementFreeSarah() {
+	ReputationProgress("Dominant", 4);
+	SarahUnlock();
 }

@@ -1,0 +1,9 @@
+NoChatRoomFound,"No chat room found, you can create a new one."
+EnterName,Search for a room by name:
+"SearchRoom	",Search for a room
+"CreateRoom	",Create your room
+ResponseRoomFull,This room is already full
+ResponseCannotFindRoom,Room doesn't exist anymore
+ResponseAccountError,Account Error
+ResponseInvalidRoomData,Invalid Room Data
+ResponseJoinedRoom,Entering the room...

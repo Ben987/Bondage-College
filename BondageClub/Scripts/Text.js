@@ -27,6 +27,9 @@ function TextBuild(CSV) {
 
 		}
 
+	// Translate the text
+	TranslationText(Text);
+
 }
 
 // Loads the CSV text file of the current screen
@@ -35,7 +38,7 @@ function TextLoad(TextGroup) {
     // Finds the full path of the CSV file to use cache
 	Text = null;
 	if ((TextGroup == null) || (TextGroup = "")) TextGroup = CurrentScreen;
-    var FullPath = "Screens/" + CurrentModule + "/" + TextGroup + "/Text_" + TextGroup + "_" + CommonGetWorkingLanguage() + ".csv";    
+    var FullPath = "Screens/" + CurrentModule + "/" + TextGroup + "/Text_" + TextGroup + ".csv";
     if (CommonCSVCache[FullPath]) {
 		TextBuild(CommonCSVCache[FullPath]);
         return;

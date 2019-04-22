@@ -1,0 +1,229 @@
+###_NPC
+This is the only store in town that receives gagged customers.
+Das hier ist der einzige Laden der Stadt, der geknebelte Kundschaft empfängt.
+(She shakes her head no but you're able to gag and silence her.)
+(Sie schüttelt den Kopf, aber du schaffst es, sie mit einem Knebel zum Schweigen zu bringen.)
+(You remove her gag and she thanks you.)  Thanks a lot, my job requires me to speak.
+(Du nimmst ihren Knebel ab und sie bedankt sich.) Vielen Dank, ich muss bei meinem Job sprechen können.
+(She grumbles but complies as you restrain her arms.)  What about the store?
+(Sie grummelt, lässt dich aber ihre Arme fesseln.) Was ist mit dem Laden?
+(You free her arms and she gives you a thumbs up.)  The club thanks you Miss.
+(Du befreist ihre Arme und sie zeigt dir einen Daumen nach oben.) Der Club dankt Ihnen, Miss.
+(She looks down as you restrain her legs securely.)  I'm not going out anyway.
+(Sie schaut herab, als du ihre Beine fest zusammenbindest.) Ich wollte sowieso nirgendwo hin.
+(You release her legs and she nods.)  Don't you want to buy something?
+(Du befreist ihre Beine und sie nickt.) Willst du nicht etwas kaufen?
+(She giggles as you restrain her feet.)  That's why they call it a fixed job.
+(Sie kichert, als du ihre Füße fesselst.) Darum nennt man das einen festen Arbeitsplatz.
+(You release her feet and she stretches them.)  I have the best customers in town.
+(Du befreist ihre Füße und sie streckt sie.) Ich habe die besten Kunden der Stadt.
+(She struggles as you strap the collar around her neck.)  I'm not looking for an owner.
+(Sie zappelt, als du ihr das Halsband umlegst.) Ich suche nicht nach einer Besitzerin.
+(You remove the collar from her neck.)  Yes!  This is much better.
+(Du nimmst ihr das Halsband ab.) Ja! Das ist viel besser.
+(You snap the belt around her waist while she sighs.)  Damn it.  I can't sell anymore keys for these.
+(Du lässt den Gürtel um sie zuschnappen und sie seufzt.) Verdammt. Ich darf keine Schlüssel mehr dafür verkaufen.
+(You unlock the belt from her waist and she smiles.)  I owe you one.
+(Du öffnest den Gürtel von ihrer Taille und sie lächelt.) Ich schulde dir was.
+(You strap the device on her head as she complains.)  The store!  Think about the store!
+(Du schnallst ihr das Ding um den Kopf.) Der Laden! Denk doch mal einer an den Laden!
+(You remove the device and she looks relived.)  Thanks.  Nothing was stolen?
+(Du nimmst das Ding ab und sie wirkt erleichtert.) Danke. Wurde auch nichts gestohlen?
+(She whimpers as you whip her breast.)  Ouch!  You're whipping too hard.
+(Sie wimmert, als du ihr auf die Brust peitschst.) Autsch! Du peitschst zu kräftig.
+(You swing the crop on her torso as she grumbles.)  That's what they call trying the merchandise.
+(Du schwingst die Gerte auf ihren Körper und sie grummelt.) Das ist also mit Warentest gemeint.
+(You whip her butt as she whimpers.)  Oooww.  Are you a satified customer?
+(Du peitschst ihr auf den Hintern und sie wimmert.) Aaauu. Bist du eine zufriedene Kundin?
+(You lash the leather crop pretty hard on her butt.)  Damn it!  I need a better job.
+(Du drischst mit der Ledergerte ziemlich doll auf ihren Hintern ein.) Verdammt! Ich brauche einen besseren Job.
+Greetings Mistress DialogPlayerName.  What are you looking for today?
+Ich grüße Euch, Herrin DialogPlayerName. Was darf es denn heute sein?
+(She looks at you and giggles.)  Are you looking for some clothes?
+(Sie sieht dich an und kichert.) Kann ich dir etwas aus unserem Kleidungssortiment anbieten?
+Welcome to the Bondage Club store.  What are you looking for today?
+Willkommen im Laden des Bondage-Clubs. Was darf es denn heute sein?
+###_PLAYER
+I'm looking for clothes and accessories.
+Ich schaue nach Kleidung und Zubehör.
+###_NPC
+Of course, what kind of clothes?
+Na klar, welche Kleidung hättest du gern?
+###_PLAYER
+I'm looking for underwear.
+Ich schaue nach Unterwäsche.
+###_NPC
+Absolutely, what kind of underwear?
+Kein Problem, welche Art von Unterwäsche?
+###_PLAYER
+I'm looking for kinky items for the head.
+Ich schaue nach sexy Sachen für den Kopf.
+###_NPC
+Excellent!  For which body part exactly?
+Ausgezeichnet! Für welches Körperteil genau?
+###_PLAYER
+I'm looking for kinky items for the body or arms.
+Ich schaue nach sexy Sachen für Körper order Arme.
+I'm looking for kinky items for the legs.
+Ich schaue nach sexy Sachen für die Beine.
+I'd like to ask you some questions.
+Ich möchte dir einige Fragen stellen.
+###_NPC
+Don't be shy.  How can I help you?
+Sei nicht schüchtern. Wie kann ich dir helfen?
+###_PLAYER
+Can you help me out?
+Kannst du mir helfen?
+###_NPC
+I'm not allowed to release you.  But I can help you to shop and pay.  I will be honest.
+Ich darf dich nicht gehen lassen. Ich kann dir beim Einkaufen und Bezahlen helfen. Ich werde dabei ehrlich sein.
+###_PLAYER
+I need to run.  (Leave her.)
+Ich muss gehen. (Dialog beenden.)
+###_NPC
+You have some questions for me?
+Du hast Fragen an mich?
+###_PLAYER
+What are you selling?
+Was verkaufst du?
+###_NPC
+Look around, there are clothes of all kinds and lots of BDSM gear.
+Schau dich um, wir haben Kleidung jeder Art und jede Menge BDSM-Zeug.
+###_PLAYER
+Who owns this store?
+Wem gehört dieser Laden?
+###_NPC
+It belongs to the Bondage Club.  All profits go back to the organization.
+Er gehört dem Bondage-Club. Alle Einnahmen gehen zurück an den Verband.
+###_PLAYER
+Can I tie you up?
+Kann ich dich fesseln?
+###_NPC
+I'll make a deal with you.  If you buy everything from the store, I'll let you use the items on me.
+Lass uns einen Deal machen. Wenn du alle Artikel im Laden kaufst, darfst du sie an mir benutzen.
+###_PLAYER
+Will you restrain me?
+Würdest du mich fesseln?
+###_NPC
+Maybe later after my shift.
+Vielleicht später, nach meiner Schicht.
+###_PLAYER
+I don't have any more questions.
+Ich habe keine weiteren Fragen.
+###_NPC
+Alright, would you like to buy something then?
+Okay, möchtest du was kaufen?
+###_PLAYER
+Let's talk later.  (Leave her.)
+Reden wir später. (Dialog beenden.)
+Check my items.  I've bought everything.
+Schau mal. Ich habe alles gekauft.
+###_NPC
+No way!  Well a deal is a deal.  You can strap me up if you want.
+Nicht dein Ernst! Na ja, Deal ist Deal. Du kannst mich fesseln, wenn du willst.
+###_PLAYER
+I'll remember that deal.
+Den Deal behalte ich im Kopf.
+###_NPC
+Sure!  Do you have more questions for me?
+Sicher! Hast du noch mehr Fragen an mich?
+###_PLAYER
+Regular clothes or outfits.
+Gewöhnliche Kleidung oder Outfits.
+Hats or head accessories.
+Hüte oder Kopfbedeckungen.
+Do you have glasses?
+Hast du Brillen?
+Show me your gloves.
+Zeig mir deine Handschuhe.
+Maybe some shoes.
+Ein Paar Schuhe vielleicht.
+I've changed my mind.
+Ich habe meine Meinung geändert.
+###_NPC
+Can I help you with something else?
+Wie kann ich dir noch helfen?
+###_PLAYER
+Can I see your bras?
+Kann ich deine BHs sehen?
+Maybe some panties.
+Vielleicht ein paar Höschen.
+Do you sell socks?
+Verkaufst du Socken?
+Can I see your hoods and blindfolds?
+Kann ich die Hauben und Augenbinden sehen?
+I'm looking for gags.
+Ich suche nach Knebeln.
+What about collars?
+Was ist mit Halsbändern?
+Show me your arm restraints.
+Zeig mir deine Armfesseln.
+Something for the breast.
+Etwas für die Brust.
+Any harnesses for the torso?
+Eine Art Harnisch für den Torso?
+Do you sell chastity belts?
+Verkaufst du Keuschheitsgürtel?
+Kinky items for the kinky region.
+Sexy Zeug für die Sexregion.
+What can be used on the butt?
+Was gibt es denn so für'n Arsch?
+Something to restrain the legs.
+Etwas, um die Beine zu fesseln.
+What do you have for feet?
+Was hast du für Füße auf Lager?
+###_NPC
+(She struggles in her restraints.)  Help!
+(Sie zappelt in ihren Fesseln.) Hilfe!
+(She gives you a thumbs up.)  Everything is back to normal, thanks to you and the sorority.
+(Sie zeigt einen Daumen nach oben.) Alles ist wieder normal, dank dir und der Schwesternschaft.
+###_PLAYER
+Do you need help?
+Brauchst du Hilfe?
+###_NPC
+(She nods quickly.)  Yes, yes, yes!  Please help.
+(Sie nickt hastig.) Ja, ja, ja! Bitte hilf mir.
+###_PLAYER
+Anything was stolen?
+Wurde etwas gestohlen?
+###_NPC
+(She shrugs.)  I sure hope not.
+(Sie zuckt mit den Schultern.) Das will ich mal nicht hoffen.
+###_PLAYER
+Is everything alright now?
+Ist jetzt alles wieder gut?
+###_NPC
+You've took care of everything.  Please send my regards to the maids of the sorority.
+Du hast dich um alles gekümmert. Bitte richte den Hausmädchen der Schwesternschaft meine besten Grüße aus.
+###_PLAYER
+What happened here?
+Was ist hier passiert?
+###_NPC
+I've made a deal with a client that if she bought everything, she could use the items on me.  So, she did just that.
+Ich habe mit einer Kundin vereinbart, dass sie alles an mir benutzen darf, wenn sie alles kauft. Und das hat sie dann halt getan.
+A burglar surprised and restrained me.  The maids caught her and dragged her away.  I guess they sent you to help me.
+Eine Diebin hat mich überrascht und gefesselt. Die Hausmädchen nahmen sie gefangen und brachten sie weg. Dann schickten sie wohl dich zu mir.
+I was bored and wanted to try a few items.  I think I got a little carried away.
+Mir wahr langweilig und ich wollte ein paar der Artikel ausprobieren. Ich hab mich wohl etwas mitreißen lassen.
+There wasn't any customer and I fell asleep.  The Head Mistress caught me and restrained me like that until she called the maids.
+Es waren keine Kunden da und ich bin eingeschlafen. Die Hausherrin hat mich erwischt und gefesselt, bevor sie die Hausmädchen rief.
+###_PLAYER
+I'll go get help.  (Leave her.)
+Ich hole Hilfe. (Dialog beenden.)
+I'm glad to be of service Miss.
+Ich bin froh, Ihnen behilflich zu sein, Miss.
+###_NPC
+You maids are so sweet.  Would you like to buy something?
+Ihr Hausmädchen seid so lieb. Möchtest du etwas kaufen?
+###_PLAYER
+Will you give me a discount?
+Gibst du mir Rabatt?
+###_NPC
+Nice try, but I can't do that.  The sorority will pay you for your work though.  Would you like to buy something?
+Netter Versuch, aber das geht nicht. Die Schwesternschaft wird dich für deine Arbeit bezahlen. Möchtest du etwas kaufen?
+###_PLAYER
+The sorority will always protect you.
+Die Schwesternschaft wird dich immer schützen.
+###_NPC
+It's great to feel protected.  Would you like to buy something?
+Das ist gut zu wissen. Möchtest du etwas kaufen?

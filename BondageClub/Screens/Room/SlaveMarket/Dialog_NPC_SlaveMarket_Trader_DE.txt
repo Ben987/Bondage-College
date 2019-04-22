@@ -1,0 +1,185 @@
+###_NPC
+Nice gag, but you might want to remove unless you want to be entered in the next action.
+Netter Knebel, aber den solltest du vielleicht abnehmen, wenn du nicht in der nächsten Auktion landen willst.
+Can you go check on the Introduction Class?  Sometimes new members get out of control.
+Kannst du bitte im Einstiegskurs nach dem Rechten sehen? Neulinge geraten manchmal außer Kontrolle.
+I've heard rumors of trouble going on at the Shibari Dojo.  Can you make sure everyone is fine?
+Ich habe von Ärger im Shibari-Dojo gehört. Kannst du nachsehen, ob alles in Ordnung ist?
+I think that something went wrong at the store.  Can you go there to help the vendor?
+Ich glaube, im Laden ist etwas schiefgelaufen. Könntest du hingehen und der Verkäuferin helfen?
+I think that something went wrong at the Gambling Hall.  Can you go there to help the players?
+Ich glaube, in der Spielhalle  ist etwas schiefgelaufen. Könntest du hingehen und den Spielern helfen?
+(You come back to DialogCharacterName with an empty drink platter.)  Well done!
+(Du kehrst mit einer leeren Servierplatte zu DialogCharacterName zurück.) Gute Arbeit!
+(You come back to DialogCharacterName with spilled drinks all over your uniform.)
+(Du kehrst in deiner mit Getränken befleckten Uniform zu DialogCharacterName zurück.)
+(DialogCharacterName gets you back to the maid quarters and smiles.)  You've did it!
+(DialogCharacterName holt dich lächelnd in die Dienerkammer zurück.) Du hast es geschafft!
+(DialogCharacterName gets you back to the maid quarters and frowns.)  You failed to clean up in time.
+(DialogCharacterName holt dich stirnrunzelnd in die Dienerkammer zurück.) Du hast nicht alles sauber bekommen.
+(DialogCharacterName hugs you and gropes your red butt.)  You're now a full maid my sister.
+(DialogCharacterName umarmt dich und drückt deinen roten Hintern.) Jetzt bist du ein vollwertiges Hausmädchen, Schwester.
+I'm sorry Miss.  I cannot help you.
+Tut mir leid, Miss. Ich kann nicht helfen.
+(She first shakes her head to avoid the gag, but finally surrenders as you silence her.)
+(Sie schüttelt erst den Kopf, um dem Knebel zu entgehen, lässt sich aber schließlich von dir zum Schweigen bringen.)
+(You remove her gag while she stretches her mouth.)  Thanks Miss, it's hard to dispatch maids with that gag.
+(Du nimmst den Knebel ab und sie streckt ihren Mund.) Danke, Miss, geknebelt ist es schwierig, Hausmädchen loszuschicken.
+(She sighs and turns around while you restrain her arms.)  It might be a little hard to work like that Miss.
+(Sie seufzt und dreht sich um, als du ihre Arme fesselst.) Das könnte meine Arbeit etwas erschweren, Miss.
+(You free her arms and she nods happily.)  Thanks a lot Miss.
+(Du befreist ihre Arme und sie nickt glücklich.) Vielen Dank, Miss.
+(She submits to you while you restrain her legs securely.)  I don't need to move anyway.
+(Sie lässt sich von dir ordentlich die Beine fesseln.) Ich muss sowieso nicht von hier weg.
+(You release her legs from the restraint.)  Let me know if I can help you Miss.
+(Du befreist ihre Beine.) Sagen Sie Bescheid, wenn ich behilflich sein kann, Miss.
+(She looks puzzled as you restrain her feet.)  I'll stay on guard here Miss.
+(Sie guckt verwirrt, als du ihre Füße fesselst.) Ich halte hier die Stellung, Miss.
+(You release her feet and she wiggles them.)  Thanks Miss, it was troublesome.
+(Du befreist ihre Füße und sie wackelt mit ihnen herum.) Danke, Miss, das war problematisch.
+(You strap the collar on her while she blushes.)  You're quite a Dominant Miss.
+(Du legst ihr das Halsband um und sie wird rot.) Sie sind ziemlich dominant, Miss.
+(You remove the collar around her neck.)  Thanks Miss.
+(Du nimmst ihr das Halsband ab.) Danke, Miss.
+(You snap the belt around her waist and crotch while she sighs.)  No more fun for the crew.
+(Du lässt den Gürtel um ihre Taille zuschnappen und sie seufzt.) Kein Spaß mehr für die Crew.
+(You unlock the belt from her waist and she smiles.)  Thanks a lot Miss DialogPlayerName.
+(Du öffnest den Gürtel von ihrer Taille und sie lächelt.) Vielen Dank, Miss DialogPlayerName.
+(You strap the device on her head as she nods slowly.)  This will not make my job easier Miss.
+(Du schnallst ihr das Ding um den Kopf und sie nickt langsam.) Das wird meine Arbeit nicht einfacher machen, Miss.
+(You remove the device and she nods rapidly.)  Thanks a million, this is much better.
+(Du nimmst das Ding ab und sie nickt energisch.) Tausend Dank, das ist viel besser.
+(She jumps from the searing pain on her breast.)  Ouch!  Miss Head Maid!
+(Sie zuckt vom schneidenden Schmerz auf ihrer Brust zusammen.) Autsch! Frau Hausdame!
+(You whip her breast with the leather crop as she whimpers and bows her head.)
+(Du peitschst ihr mit der Ledergerte auf die Brust und sie lässt wimmernd den Kopf hängen.)
+(You whip her butt hard as she sighs.)  I promise I'll work harder Miss Head Maid.
+(Du peitschst ihr kräftig auf den Hintern und sie seufzt.) Ich verspreche, härter zu arbeiten, Frau Hausdame.
+(She grumbles as you strike her butt with the crop.)  A maid work isn't easy.
+(Sie grummelt, als du ihren Hintern mit der Gerte triffst.) Ein Hausmädchen hat es nicht leicht.
+Welcome to the slave market.  What services are you intrested in?
+Willkommen beim Sklavenmarkt, an welchen Dienstleistungen bist du interessiert?
+###_PLAYER
+Hi, I'm DialogPlayerName.
+Hi, ich bin DialogPlayerName.
+###_NPC
+Hello there.  Welcome to the market.  My name is DialogCharacterName.
+Hallo. Willkommen beim Sklavenmarkt. Mein Name ist DialogCharacterName.
+###_PLAYER
+Who are you.
+Wer bist du?
+###_NPC
+I am a trader in this market.  I mostly provide services to the slave auctions.
+Ich bin eine Kauffrau dieses Markts. Hauptsächlich biete ich Dienste für Sklavenauktionen an.
+###_PLAYER
+What services do you provide.
+Welche Dienste bietest du an?
+###_NPC
+I trade club members into and out of slavery for the market.  I also some goods and techinical services.
+Ich kaufe für den Markt Clubmitglieder in die Sklaverei ein und auch wieder heraus. Ich biete auch einige Waren und technische Dienste an.
+###_PLAYER
+I want to trade.
+Ich möchte handeln.
+I need a locksmith.
+Ich brauche einen Schlüsseldienst.
+###_NPC
+What sort of services do you require?
+Was für einen Service benötigst du?
+###_PLAYER
+Can I tie you up?
+Kann ich dich fesseln?
+###_NPC
+I wouldn't trying it.  The slave market makes sure nothing gets in the way of business.
+Das würde ich lieber lassen. Der Sklavenmarkt stellt mit allen Mitteln sicher, dass nichts dem Geschäft in di Quere kommt.
+###_PLAYER
+I've got to go now.  (Leave her.)
+Ich muss jetzt los. (Dialog beenden.)
+Trading into slavery?
+Einkaufen in die Sklaverei?
+###_NPC
+We pay a reasnable price to anyone who wants to become one of the markets slaves.
+Wir zahlen jedem, der vom Markt versklavt werden möchte, einen vernünftigen Preis.
+###_PLAYER
+Trading out of slavery?
+Aus der Sklaverei freikaufen?
+###_NPC
+If a slave can afford my services I can end their slaver and set them free.
+Wenn sich eine Sklavin meine Dienste leisten kann, kann ich ihr Verhältnis beenden und sie freilassen.
+###_PLAYER
+What sort of goods do you sell?
+Was für Waren verkaufst du?
+###_NPC
+At the moment I don't have any stock.  I should be getting delivery of wears to sell soon.
+Momentan habe ich nichts auf Lager. Bald sollte aber eine Lieferung von Verkaufswaren eintreffen.
+###_PLAYER
+What technical services do you provide?
+Was für technische Dienste bietest du an?
+###_NPC
+I am a locksmith and Blacksmith.  They're very useful skills for dealing with the physical bonds of slavery.
+Ich bin ein Schlüsseldienst und eine Schmiede. Sehr nützliche Fähigkeiten im Umgang mit physischen Mitteln der Sklaverei.
+###_PLAYER
+Is that all?
+Ist das alles?
+###_NPC
+For the time being yes, but I am always looking to expand my business.
+Momentan schon, aber ich versuche stets, mein Geschäft auszuweiten.
+###_PLAYER
+What about the slaves owner.
+Was ist mit den Besitzern der Sklaven?
+###_NPC
+The market has deep inflencial pockets and has a vested intrest in making sure the freedom we sell is worth it.
+Der Markt hat große, einflussreiche Taschen und ein persönliches Interesse daran, dass sich die von uns erworbene Freiheit für alle lohnt.
+###_PLAYER
+What does this market need a blacksmith for?
+Wozu braucht dieser Markt eine Schmiede?
+###_NPC
+For some slaves a padlocked leather collar isn't enough.  An iron collar rivited around a slaves neck is even more imposing.
+Manchen Sklaven genügt ein Lederhalsband mit Schloss nicht. Ein um den Hals einer Sklavin vernietetes Eisenhalsband ist noch viel imponierender.
+###_PLAYER
+May I buy my freedom.
+Kann ich meine Freiheit kaufen?
+###_NPC
+Certainly if you can afford it.  I think the price for your freedom will be $9999.
+Sicher, wenn du sie dir leisten kannst. Ich würde sagen, der Preis für deine Freiheit beläuft sich auf 9999$.
+###_PLAYER
+How much will you pay me to become a slave?
+Wie viel würdest du mir zahlen, wenn ich mich versklave?
+###_NPC
+Hmmm.  You don't look like a prime slave.  I will offer you £99 to become one of this market's slaves.
+Hmmm. Du siehst nicht gerade nach einer erstklassigen Sklavin aus. Ich biete dir 99£, wenn du eine Sklavin dieses Markts wirst.
+###_PLAYER
+Can I buy a slave?
+Kann ich eine Sklavin kaufen?
+###_NPC
+I don't sell slaves.  The slave market only sells them in the auctions.  Talk to the Auctioneer about them.
+Ich verkaufe keine Sklaven. Der Sklavenmarkt versteigert sie nur in Auktionen. Sprich mit der Auktionatorin darüber.
+###_PLAYER
+I want to buy stuff.
+Ich will Zeug kaufen.
+###_NPC
+Of course you do.  Unfortunately I am still waiting on goods to be delivered.
+Natürlich willst du das. Leider warte ich noch darauf, dass mir die Waren geliefert werden.
+###_PLAYER
+I want to talk about something else.
+Ich will über etwas anderes reden.
+###_NPC
+Of course, how may I be of service?
+Natürlich, wie kann ich dir behilflich sein?
+###_PLAYER
+Can you remove this collar?
+Kannst du dieses Halsband abnehmen?
+###_NPC
+I can remove a slaves collar easily enough, but I will only do so if they buy their freedom.
+Das Halsband einer Sklavin bekomme ich sehr einfach ab, aber nur, wenn sie ihre Freiheit kaufen will.
+###_PLAYER
+Umm, I have this problem with a chastity belt.
+Ähm, ich hätte da ein Keuschheits-Problem.
+###_NPC
+Well I can help with that, the question is how frustratedly despirate are you.  I will remove it for $250.
+Nun, damit kann ich dir helfen, die Frage ist nur, wie frustriert und verzweifelt du bist. Ich entferne das für 250$.
+###_PLAYER
+Can you unlock these handcuffs?
+Kannst du diese Handschellen aufschließen?
+###_NPC
+Yes indeed, for a special customer I can do that for a bargin price of just $5.
+Aber natürlich, für eine besondere Kundin mache ich das zu einem Schnäppchenpreis von nur 5$.

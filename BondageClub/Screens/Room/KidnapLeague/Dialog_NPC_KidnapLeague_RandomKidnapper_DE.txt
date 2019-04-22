@@ -1,0 +1,562 @@
+###_NPC
+Silence is gold, and gags are better than gold.
+Schweigen ist Gold, und Knebel sind mehr als Gold wert.
+(A kidnapper crosses your path and makes a devious smile.)  I will be merciful if you surrender now.
+(Eine Kidnapperin läuft dir über den Weg und lächelt verschlagen.) Ich werde gnädig sein, wenn du gleich aufgibst.
+(A kidnapper taps on your shoulder and smile.)  A gift that's already wrapped up!  So easy.
+(Eine Kidnapperin tippt dir auf die Schulter und lächelt.) Dieses Geschenk ist ja schon verpackt! Wie einfach.
+(She surrenders to you.)  You've won a battle, but not the war.
+(Sie ergibt sich dir.) Die Schlacht hast du gewonnen, den Krieg aber nicht.
+(She crosses her arms and smiles.)  Now you're mine!
+(Sie verschränkt die Arme und lächelt.) Jetzt gehörst du mir!
+(You surrender as she grabs your arms and restrains them.)  That was easy!
+(Du ergibst dich, als sie deine Arme nimmt und sie fesselt.) Das war einfach!
+(A kidnapper runs down the hall to meet you.)  I've heard about you and I will kidnap you!
+(Eine Kidnapperin kommt dir im Gang entgegen.) Ich habe von dir gehört und ich werde dich kidnappen!
+(A kidnapper runs down the hall to meet you.)  You will be my easiest victim today.
+(Eine Kidnapperin kommt dir im Gang entgegen.) Du wirst heute meine leichteste Beute sein.
+(She surrenders to you.)  Well done, I'll think twice before facing you again.
+(Sie ergibt sich dir.) Gut gemacht, ich werde es mir zweimal überlegen, wenn ich dir erneut gegenübertrete.
+(She cheers and jumps of joy.)  Yes!  You make such a cute victim!
+(Sie jubelt und springt vor Freude.) Ja! Du bist so eine süße Beute!
+(She quickly restrains your arms as you give up without a fight.)  I was expecting more of a challenge.
+(Sie fesselt schnell deine Arme, als du dich kampflos ergibst.) Ich hatte mit einer größeren Herausforderung gerechnet.
+(A league member chases you down.)  I recognize you!  You're the famous Lady of Ropes!  The bounty will be mine.
+(Ein Mitglied der Liga rennt dir hinterher.) Ich erkenne dich! Du bist die berühmte Lady der Seile! Das Kopfgeld schnappe ich mir.
+(A league member chases you down.)  The Lady of Ropes?  Already restrained?  It must be my birthday...
+(Ein Mitglied der Liga rennt dir hinterher.) Die Lady der Seile? Und bereits in Fesseln? Heute muss mein Geburtstag sein...
+(She surrenders and bows her head.)  There's no shame in losing against the Lady of Ropes.
+(Sie ergibt sich und senkt den Kopf.) Es ist keine Schande, gegen die Lady der Seile zu verlieren.
+(She seems amazed of her victory.)  Wow!  I've kidnapped the famous Lady of Ropes!
+(Sie scheint über ihren Sieg zu staunen.) Wow! Ich habe die berühmte Lady der Seile gefangen!
+(She's surprised to see you surrender but restrains your arms anyway.)  The Lady of Ropes? Surrendering to me??
+(Sie ist überrascht, dass du dich ergibst, fesselt deine Arme aber trotzdem.) Die Lady der Seile? Unterwirft sich mir??
+(You end up face to face with another league member.)  It's been a while, but I think I'm in the mood for a fight.
+(Du begegnest einem anderen Mitglied der Liga.) Es ist eine Weile her, aber ich glaube, ich bin in Kampflaune.
+(You end up face to face with another league member.)  I see you lost your last match.  Do you need help?  Or maybe more trouble?
+(Du begegnest einem anderen Mitglied der Liga.) Wie ich sehe, hast du deinen letzten Kampf verloren. Suchst du Hilfe? Oder noch mehr Ärger?
+(She surrenders and sighs.)  I should give up on kidnappings, I'm hopeless at it.
+(Sie ergibt sich und seufzt.) Ich sollte das Kidnappen aufgeben, ich bin ein hoffnungsloser Fall.
+(She smiles seeing you struggle.)  I didn't think I would win, this is amazing.
+(Sie lächelt, als sie dich Zappeln sieht.) Ich hätte nicht erwartet, dass ich gewinnen würde, das ist fantastisch.
+(She sighs and restrains your arms.)  You should be punished extra strictly for surrendering without a fight.
+(Sie seufzt und fesselt deine Arme.) Für ein kampfloses Aufgeben solltest du besonders hart bestraft werden.
+(A kidnapper sneaks up behind you.)  Surrender now or get ready for the fight of your life!
+(Eine Kidnapperin schleicht sich von hinten an.) Ergib dich jetzt oder bereite dich auf den Kampf deines Lebens vor!
+(A kidnapper sneaks up behind you.)  Some like to fight, and some, like me, prefer easy victims.
+(Eine Kidnapperin schleicht sich von hinten an.) Manche kämpfen gern, andere, so wie ich, lauern lieber auf leichte Beute.
+(She bows her head and looks at the floor.)  Impressive.  Do what you want with me Miss.
+(Sie senkt ihren Kopf und schaut zu Boden.) Beeindruckend. Machen Sie mit mir, was Sie wollen, Miss.
+(You struggle as she does a thumbs up.)  I knew I would win.  Now you're mine girl.
+(Du zappelst und sie zeigt einen Daumen nach oben.) Wusste ich doch, dass ich gewinnen würde. Jetzt gehörst du mir, Mädchen.
+(You barely struggle as she restrains your arms securely.)  You scared?  You should be.
+(Du wehrst dich kaum, als sie deine Arme eng fesselt.) Hast du Angst? Solltest du auch.
+(A league bounty hunter stares at you.)  Someone put a bounty on you, and it will be mine.
+(Eine Kidnapperin der Liga starrt dich an.) Jemand hat ein Kopfgeld auf dich ausgesetzt, und das hole ich mir jetzt.
+(A league bounty hunter stares at you.)  Easiest bounty ever!  Come with me girl.
+(Eine Kidnapperin der Liga starrt dich an.) Einfachstes Kopfgeld aller Zeiten! Komm mit mir mit, Mädchen.
+(She seems disappointed.)  Well done Miss.  Now I know why there's a bounty on you.
+(Sie wirkt enttäuscht.) Gute Arbeit, Miss. Jetzt weiß ich auch, warum es dieses Kopfgeld gibt.
+(She gloats on her victory.)  Alright!  The bounty is mine!
+(Sie freut sich hämisch über ihren Sieg.) Alles klar! Das Kopfgeld gehört mir!
+(You surrender without a fight as she quickly restrains your arms.)  Easiest bounty ever!
+(Du ergibst dich kampflos und sie fesselt schnell deine Arme.) Einfachstes Kopfgeld aller Zeiten!
+(A club Mistress stares at you.)  So, you've became one of the club master kidnapper?  Are you ready to face me?
+(Eine Clubherrin starrt dich an.) Du bist also eine der Kidnapper-Meisterinnen des Clubs geworden? Bist du bereit, es mit mir aufzunehmen?
+(A club Mistress laughs at you.)  One of the master kidnappers got herself in trouble?  This will be fun.
+(Eine Clubherrin lacht über dich.) Eine der Kidnapper-Meisterinnen steckt in Schwierigkeiten? Das wird ein Spaß.
+(She seems stunned by her defeat.)  Congratulations, you truly are a master kidnapper.
+(Sie scheint über ihre Niederlage zu staunen.) Glückwunsch, du bist wahrlich eine Kidnapper-Meisterin.
+(She cracks her knuckles and smirks.)  Don't worry about losing, I've been a master kidnapper for way longer than you.
+(Sie knackt mit den Fäusten und grinst.) Mach dir nichts aus deiner Niederlage, ich bin schon viel länger Kidnapper-Meisterin als du.
+(You surrender without a fight as she quickly restrains your arms.)  You're disappointing for a master kidnapper.
+(Du ergibst dich kampflos und sie fesselt schnell deine Arme.) Für eine Kidnapper-Meisterin war das ziemlich enttäuschend.
+Look at me, I cannot help you now.
+Sieh mich an, ich kann dir nicht helfen.
+(She sighs and reluctantly allows you to gag her.)
+(Sie seufzt und lässt sich widerwillig von dir knebeln.)
+(You remove her gag and she seems happy.)  It's funnier when we can talk with our kidnapper.
+(Du nimmst ihren Knebel ab und sie wirkt glücklich.) Es macht mehr Spaß, wenn wir mit unserer Entführerin reden können.
+(She turns around as you restrain her arms securely.)  Most kidnappers go for the arms first.
+(Sie dreht sich um, als du ihre Arme eng fesselst.) Die meisten Kidnapper kümmern sich als Erstes um die Arme.
+(You free her arms and she gives you a thumbs up.)  Thanks a lot.  Am I allowed to leave?
+(Du befreist ihre Arme und sie zeigt dir einen Daumen nach oben.) Vielen Dank. Darf ich jetzt gehen?
+(She submits to you while you restrain her legs.)  You know your bondage, kidnapper.
+(Sie unterwirft sich, als du ihre Beine fesselst.) Du kennst dich mit Bondage aus, Kidnapperin.
+(You release her legs as she shakes her butt.)  Shake your booty!
+(Du befreist ihre Beine und sie wackelt mit dem Po.) Shake your booty!
+(She tests your feet restraints by jumping on her toes.)  Well done my kidnapper!
+(Sie testet deine Fußfesseln, indem sie auf Zehenspitzen hüfpt.) Gute Arbeit, Kidnapperin!
+(You release her feet and she wiggles them.)  Is my kidnapping over?
+(Du befreist ihre Füße und sie wackelt damit.) Ist meine Gefangenschaft vorbei?
+(She adjusts her neck to the new collar.)  You're looking for subs Miss?
+(Sie rückt sich das Halsband zurecht.) Suchen Sie nach Subs, Miss?
+(You remove the collar from her neck.)  Next time I will collar you.
+(Du nimmst ihr das Halsband ab.)  Das nächste Mal lege ich dir ein Halsband um.
+(She struggles to avoid the belt but you're able to strap it on her.)  These belts should be banned.
+(Sie versucht dem Gürtel zu entgehen, aber du schnallst ihn fest.) Diese Gürtel gehören verboten.
+(She seems happy as you unlock the belt from her waist.)  Thanks, DialogPlayerName.
+(Sie wirkt glücklich, als du den Gürtel von ihrer Taille entfernst.) Danke, DialogPlayerName.
+(You strap the device on her head as she sighs.)  Next time I won't lose against you.
+(Du schnallst ihr das Ding um den Kopf und sie seufzt.) Das nächste Mal verliere ich nicht gegen dich.
+(You release her head as she nods rapidly.)  How do you fit all these items in such a small outfit?
+(Du befreist ihren Kopf und sie nickt hastig.) Wo bewahrst du dieses ganze Zeug überhaupt auf?
+(You strap the harness on her torso as she blushes.)  You're quite a kinky kidnapper.
+(Du schnallst ihr den Harnisch um und sie wird rot.) Du bist eine ziemlich versaute Kidnapperin.
+(She stretches as you release her from the harness.)  It will be easier to breath like that.
+(Sie streckt sich, als du sie vom Harnisch befreist.) So wird mir das Atmen leichter fallen.
+(She whimpers and cries as you whip her breast.)  Revenge will be sweet!
+(Sie wimmert und heult, als du ihre Brust auspeitschst.) Die Rache wird süß sein!
+(You lash the crop on her torso, hitting her breast.)  Ow!  Careful with that crop.
+(Du schlägst mit der Gerte auf ihren Körper und triffst ihre Brust.) Au! Sei vorsichtig damit.
+(You whip her butt as she grumbles.)  I'll make sure to get a whip next time I'm facing you.
+(Du peitschst ihren Hintern aus und sie grummelt.) Für unsere nächste Begegnung hole ich mir auf alle Fälle eine Peitsche.
+(You whack the leather crop right on her butt.)  Ouch! I'll put my next bounty on you.
+(Du knallst mit der Ledergerte genau auf ihren Po.) Autsch! Mein nächstes Kopfgeld setze ich auf dich aus.
+(You restrain her feet with the long hemp rope and suspend her from the ceiling.)  Oh my... You're quite a kidnapper!
+(Du fesselst ihre Füße mit dem langen Hanfseil und lässt sie von der Decke baumeln.) Oh, wow... Das nenne ich mal Kidnapping!
+(You let her down from the ceiling and untie her feet.)  Thanks!  I was getting dizzy.
+(Du löst das Hanfseil von der Decke und befreist ihre Füße.) Danke! Mir wurde langsam schwindlig.
+###_PLAYER
+I don't want mercy and I won't show any.
+Ich will keine Gnade und ich zeige auch keine.
+Wait!  Can we make a deal?  I'll give you 10$.
+Warte! Können wir das anders regeln? Ich gebe dir 10$.
+###_NPC
+No deal!  I'm eager for a fight.
+Kein Deal! Ich bin kampflustig.
+###_PLAYER
+(Fight her.)
+(Gegen sie kämpfen.)
+(Surrender.)
+(Dich ergeben.)
+How did you hear about me?
+Wie hast du von mir erfahren?
+###_NPC
+Never mind.  We need less chatting and more fighting.
+Unwichtig. Wir sollten weniger quatschen und mehr kämpfen.
+###_PLAYER
+We'll see who kidnaps who!
+Mal sehen, wer hier wen einfängt!
+Lady of Ropes?  You're mistaking me for someone else.
+Lady der Seile? Du verwechselst mich mit jemandem.
+###_NPC
+You can't fool me Lady.  You fit her description perfectly.  I will kidnap you and I will get the bounty.
+Netter Versuch, Lady. Du passt perfekt zu ihrer Beschreibung. Ich werde dich einfangen und das Kopfgeld kassieren.
+###_PLAYER
+Yes!  The Lady of Ropes will fight you.
+Ja! Die Lady der Seile wird gegen dich kämpfen.
+A bounty hunter?  Here's 20$.  Leave me alone.
+Eine Kopfgeldjägerin? Hier sind 20$. Lass mich in Ruhe.
+Sure!  Let's fight.
+Klar! Kämpfen wir.
+You're not motivated enough.  Get lost.
+Du bist nicht motiviert genug. Hau ab.
+I'll crush you!
+Dich mach ich platt!
+I can't fight now, I'm in a hurry.
+Ich kann gerade nicht kämpfen, ich hab's eilig.
+###_NPC
+Too bad for you, because I really want to fight.
+Pech gehabt, denn ich will unbedingt kämpfen.
+###_PLAYER
+Who put a bounty on me?
+Wer hat ein Kopfgeld auf mich ausgesetzt?
+###_NPC
+Who cares?  I'm here for the money, not to chat.
+Wen juckt's? Ich bin wegen des Geldes hier, nicht zum Quatschen.
+###_PLAYER
+No bounty hunter will ever get me.
+Kein Kopfgeldjäger wird mich je schnappen.
+Take this 20$ and leave, bounty hunter.
+Nimm diese 20$ und geh, Kopfgeldjägerin.
+You've heard about me?
+Du hast von mir gehört?
+###_NPC
+I've heard you're one of the best kidnappers in the club.  So, I've came for a challenge.
+Wie ich höre, gehörst du zu den besten Kidnappern des Clubs. Mir war nach einer Herausforderung zumute.
+###_PLAYER
+Get ready for the fight of your life!
+Mach dich bereit für den Kampf deines Lebens!
+Please Mistress.  I don't want to fight you.
+Bitte, Herrin. Ich möchte nicht gegen Euch kämpfen.
+###_NPC
+Too bad, because I will fight you whether you want it or not.
+Pech gehabt, denn ich werde dich bekämpfen, ob du willst oder nicht.
+(She bows her head and submits to you.)  Well done bounty hunter, you can have me and collect your money.
+(Sie senkt ihren Kopf und unterwirft sich dir.) Gute Arbeit, Kopfgeldjägerin, du kannst mich haben und dein Geld kassieren.
+(You struggle as she looks at you with an evil grin.)  You missed your mark bounty hunter, and now you're mine.
+(Du zappelst, während sie dich boshaft angrinst.) Knapp daneben, Kopfgeldjägerin, und jetzt gehörst du mir.
+(As you enter the class, you see a girl with crossed arms that's staring at you.)  So you took the bounty?  I won't go down easily.
+(Ein Mädchen mit verschränkten Armen starrt dich an.) Bist du auf mein Kopfgeld aus? Ich gebe mich nicht einfach geschlagen.
+(A maid taps on your shoulder.)  So, bounty hunters are chasing down maids now?  Game on!
+(Ein Hausmädchen tippt dir auf die Schulter.) Jetzt gehen die Kopfgeldjäger also schon auf Hausmädchen los? Na dann!
+(A girl is hiding in a dark corner of the dojo.)  You've found me?  Let's fight then!
+(Ein Mädchen versteckt sich in einer dunklen Ecke des Dojos.) Du hast mich gefunden? Dann lass uns kämpfen!
+(Your bounty is currently shopping and seems to be annoyed by you.)  Can't a girl do some shopping?  You'll regret making me angry!
+(Dein Ziel kauft gerade ein und wirkt genervt.) Kann man nicht mal mehr in Ruhe shoppen? Du wirst es bereuen, mich verärgert zu haben!
+###_PLAYER
+Nothing personal, but I need money.
+Nichts für ungut, aber ich brauche das Geld.
+###_NPC
+(She giggles.)  Forget it bounty hunter.  You won't make any money with me.
+(Sie kichert.) Vergiss es, Kopfgeldjägerin. An mir verdienst du kein Geld.
+###_PLAYER
+You're going down girl!
+Du beißt ins Gras, Mädchen!
+###_NPC
+(She grins.)  Talk is cheap, show me your moves.
+(Sie grinst.) Das sagt sich leicht, zeig mir, was du kannst.
+###_PLAYER
+Let's do a clean fight.
+Auf einen sauberen Kampf.
+###_NPC
+(She laughs.)  I'll fight how I want, and you will submit.
+(Sie lacht.) Ich kämpfe auf meine Art, und du wirst dich mir unterwerfen.
+NOEXIT
+NOEXIT
+###_PLAYER
+That was a good fight.
+Das war ein guter Kampf.
+###_NPC
+(She nods happily.)
+(Sie nickt zufrieden.)
+###_PLAYER
+Girl, you're in big trouble.
+Du steckst richtig in Schwierigkeiten, Mädchen.
+###_NPC
+(She gulps and bows her head.)
+(Sie schluckt und senkt ihren Kopf.)
+###_PLAYER
+Either I was lucky, or you've let me win.
+Ich hatte wohl Glück, oder du hast mich gewinnen lassen.
+###_NPC
+(She shakes her head no.)
+(Sie schüttelt den Kopf.)
+###_PLAYER
+(Play with her.)
+(Mit ihr spielen.)
+###_NPC
+(You move closer, ready to play with her.)
+(Du kommst näher, um mit ihr zu spielen.)
+###_PLAYER
+(Bring her to your room.)
+(Sie in dein Zimmer bringen.)
+(Let her go.)
+(Sie gehen lassen.)
+You're in big trouble my bounty.
+Jetzt gibt es Ärger, mein Kopfgeld-Mädchen.
+More money and more fun for me.
+Mehr Geld und mehr Spaß für mich.
+###_NPC
+(She rolls her eyes up.)
+(Sie verdreht ihre Augen.)
+###_PLAYER
+I can't believe I'll get your bounty.
+Ich kann nicht glauben, dass ich dein Kopfgeld kassiere.
+###_NPC
+(She shrugs and sighs.)
+(Sie zuckt mit den Schultern und seufzt.)
+(You move closer to her, ready to play with her.)
+(Du kommst ihr näher, um mit ihr zu spielen.)
+###_PLAYER
+(Release her to go collect.)
+(Sie befreien und Geld kassieren gehen.)
+You know you're a cute captive?
+Weißt du, was für eine süße Gefangene du bist?
+###_NPC
+(She blushes and bows her head.)  Thanks Miss.
+(Sie wird rot und senkt ihren Kopf.) Danke, Miss.
+###_PLAYER
+Do you enjoy being restrained?
+Bist du gern gefesselt?
+###_NPC
+(She nods slowly.)  I wouldn't be in the Kidnappers League if I didn't like it.
+(Sie nickt langsam.) Ich wäre nicht in der Kidnapper-Liga, wenn es mir nicht gefallen würde.
+###_PLAYER
+How much do you value your freedom?
+Wie viel ist dir deine Freiheit wert?
+###_NPC
+Will you let me go if I give you some money?
+Lässt du mich gehen, wenn ich dir Geld gebe?
+###_PLAYER
+(Tickle her.)
+(Sie kitzeln.)
+###_NPC
+(You tickle her on the ribs and tummy.  She giggles, laughs, and squirms around, trying to escape.)
+(Du kitzelst ihre Rippen und ihren Bauch. Sie kichert, lacht und windet sich, um sich zu befreien.)
+###_PLAYER
+(Kiss her.)
+(Sie küssen.)
+###_NPC
+(You put both hands behind her head and pull her firmly to your lips for a passionate kinky kiss.)
+(Du legst beide Hände um ihren Kopf, ziehst sie entschlossen an deine Lippen und gibst ihr einen leidenschaftlichen Kuss.)
+###_PLAYER
+(Fondle her.)
+(Sie befummeln.)
+###_NPC
+(You playfully fondle her breasts and butt as she moans softly and blushes.)
+(Du befummelst verspielt ihre Brüste und ihren Po, während sie leise stöhnt und errötet.)
+###_PLAYER
+(Slap her.)
+(Ihr eine Ohrfeige geben.)
+###_NPC
+(You harshly slap her in the face.  She bows down her head and lets out a little moan.)
+(Du haust ihr heftig aufs Gesicht. Sie senkt ihren Kopf und ihr rutscht ein leises Stöhnen heraus.)
+###_PLAYER
+(Spank her.)
+(Ihr auf den Hintern hauen.)
+###_NPC
+(You spank her hard on the butt and she sharply inhales from the pain.)
+(Du haust ihr doll auf den Hintern und sie atmet schmerzvoll ein.)
+###_PLAYER
+(Talk with her.)
+(Mit ihr reden.)
+###_NPC
+(You move back to talk with her.)
+(Du rückst ein Stück zurück, um mit ihr zu reden.)
+###_PLAYER
+Pay me and I'll let you go.
+Wenn du zahlst, lasse ich dich laufen.
+###_NPC
+Fine, be a bully then!  I'll give you DIALOGMONEY $ if you release me and leave me alone.
+Gut, wenn du mich mobben willst! Ich gebe dir DIALOGMONEY $, wenn du mich befreist und in Ruhe lässt.
+You're a bully!  There's no way I'm paying you.
+Das ist Mobbing! Ich zahle dir gar nichts.
+###_PLAYER
+Forget it.
+Vergiss es.
+###_NPC
+Very well.  Will you let me go then?
+Na gut. Lässt du mich also frei?
+###_PLAYER
+Deal!  (Release her and take the money.)
+Deal! (Sie befreien und das Geld nehmen.)
+I was kidding.
+Ich habe nur Spaß gemacht.
+###_NPC
+Alright.  Will you let me go then?
+Na gut. Lässt du mich also gehen?
+###_PLAYER
+Congratulations!  You fought well.
+Glückwunsch! Du hast gut gekämpft.
+###_NPC
+Thanks!  Now what will I do with you?
+Danke! So, was mache ich jetzt mit dir?
+###_PLAYER
+You got lucky girl.  I'll get you next time.
+Du hattest Glück, Mädchen. Nächstes Mal bist du dran.
+###_NPC
+We'll see about that.  Now what will I do with you?
+Das werden wir sehen. So, was mache ich jetzt mit dir?
+###_PLAYER
+(Bow your head.)
+(Deinen Kopf senken.)
+###_NPC
+Such a cute victim.  What will I do with you?
+Was für eine süße Beute. Was mache ich jetzt mit dir?
+###_PLAYER
+(Struggle to get out.)
+(Zappeln, um dich zu befreien.)
+###_NPC
+You're not going anywhere.  I'm going to have some fun with you.
+Du gehst nirgendwo hin. Erst werde ich mit dir etwas Spaß haben.
+###_PLAYER
+You got lucky girl.  I'll collect next time.
+Du hattest Glück, Mädchen. Nächstes Mal kassiere ich.
+###_NPC
+We'll see about that little bounty hunter.  Now what will I do with you?
+Das werden wir sehen, Kopfgeldjägerin. So, was mache ich jetzt mit dir?
+###_PLAYER
+Congratulations!  You're a tough mark.
+Glückwunsch! Du bist ein hartnäckiges Ziel.
+###_NPC
+You're a fair bounty hunter.  Now what will I do with you?
+Du bist eine einsichtige Kopfgeldjägerin. So, was mache ich jetzt mit dir?
+Such a cute bounty hunter and victim.  What should I do with you?
+So eine Süße Kopfgeldjägerin als Beute. Was mache ich jetzt mit dir?
+You're not getting out any time soon, bounty hunter.  Now how shall I play with you, my new toy?
+So schnell wirst du dich nicht befreien, Kopfgeldjägerin. Also, sollte ich dich ausprobieren, mein neues Spielzeug?
+###_PLAYER
+You prefer easy targets, don't you?
+Du magst einfache Ziele, was?
+###_NPC
+Yep, nothing wrong with an easy bounty from time to time.  What should I do with you?
+Jepp, hin und wieder mal ein schnelles Kopfgeld schadet nicht. Was soll ich nur mit dir machen?
+###_PLAYER
+That's unfair!  Release me so we can fight.
+Das ist unfair! Lass mich frei, dann kämpfen wir.
+###_NPC
+No way!  When you get a cute wrapped gift, you don't lose it.  What should I do with you?
+Niemals! Ein so schön verpacktes Geschenk lässt man nicht einfach laufen. Was soll ich nur mit dir machen?
+###_PLAYER
+Wait!  I don't surrender anymore, I want to fight!
+Moment! Ich ergebe mich nicht mehr, ich will kämpfen!
+###_NPC
+Too late girl.  You're already mine.
+Zu spät, Mädchen. Du gehörst bereits mir.
+###_PLAYER
+I guess I should have fought.
+Ich hätte wohl kämpfen sollen.
+###_NPC
+Yes, that was pretty lame.  But I'll teach you not to give up with some punishments.
+Ja, das war ziemlich öde. Aber ich bringe dir mit ein paar Strafen bei, nicht einfach aufzugeben.
+Such a cute victim.  Now what could I do with you?
+Was für eine süße Beute. So, was mache ich jetzt mit dir.
+You can struggle all you want.  But you're going nowhere.
+Du kannst zappeln, so viel du willst. Aber du kommst nicht davon.
+###_PLAYER
+Will you let me go?
+Lässt du mich frei?
+Do as you wish.  I'm your prisoner.
+Tu, was du willst. Ich bin deine Gefangene.
+Please don't be too harsh.
+Bitte sei nicht zu grob.
+(Stay silent.)
+(Schweigen.)
+(Try to struggle out.)
+(Versuchen, dich freizukämpfen.)
+(Let her have her way.)
+(Sie einfach machen lassen.)
+###_NPC
+(She gets a gag and uses it to silence you.)  That's better.  A victim doesn't need to talk anyway.
+(Sie nimmt einen Knebel und bringt dich damit zum Schweigen.) Schon besser. Beute hat sowieso nichts zu sagen.
+###_PLAYER
+(Roll your eyes up.)
+(Die Augen verdrehen.)
+(Nod and bow your head.)
+(Nicken und den Kopf senken.)
+(Adjust your mouth to the gag.)
+(Deinen Mund an den Knebel anpassen.)
+###_NPC
+(She removes the gag and grins.)  Enjoy your chit chat while you can.
+(Sie nimmt dir grinsend den Knebel ab.) Genieße deine Redefreiheit, solange du kannst.
+###_PLAYER
+Thanks a lot.
+Vielen Dank.
+Sweet.  Will you let me go?
+Klasse. Lässt du mich frei?
+###_NPC
+(She restrains your feet and giggles.)  You won't be running away now.
+(Sie fesselt deine Füße und kichert.) Jetzt läufst du mir nicht davon.
+###_PLAYER
+I wasn't planning to run anyway.
+Ich wollte sowieso nicht weglaufen.
+(Hop and jump clumsily.)
+(Ungeschickt hopsen und springen.)
+(Try to keep your balance.)
+(Versuchen, deine Balance zu halten.)
+###_NPC
+(She releases your feet.)  You can have your feet back for now.  But I'll find a better restraint later.
+(Sie befreit deine Füße.) Deine Füße bekommst du erstmal zurück. Aber ich finde später bessere Fesseln.
+###_PLAYER
+Thanks!  You're a great kidnapper.
+Danke! Du bist eine tolle Kidnapperin.
+It will be easier to stand up like this.
+So kann ich einfacher stehen.
+(Stretch and relax your feet.)
+(Deine Füße strecken und entspannen.)
+(Stay silent and wait to be released.)
+(Still darauf warten, befreit zu werden.)
+###_NPC
+(She restrains your legs securely.)  You look so cute when you're all tied up.
+(Sie bindet deine Beine fest zusammen.) Du siehst so niedlich aus, wenn du ganz verschnürt bist.
+###_PLAYER
+You would be even cuter.
+Du wärst noch viel niedlicher.
+(Wiggle your butt playfully.)
+(Verspielt mit dem Po wackeln.)
+(Stay quiet.)
+(Still bleiben.)
+###_NPC
+(She releases your legs.)  Shake your butt for me my cute victim.
+(Sie befreit deine Beine.) Wackel für mich mit dem Po, meine süße Beute.
+###_PLAYER
+Do I look like a dancer?
+Seh ich aus wie 'ne Tänzerin?
+(Shake your butt for her.)
+(Für sie mit dem Po wackeln.)
+(Stand still.)
+(Stillstehen.)
+###_NPC
+(She gets closer and starts to tickle you without mercy.)  Tickle!  Tickle!  Tickle!
+(Sie kommt näher heran und fängt an, dich gnadenlos zu kitzeln.) Killekillekille!
+###_PLAYER
+No please! Stop!
+Nein, bitte! Aufhören!
+Eeeeeeaahahahaha!  Stop it!  Hahaahaahi.
+Iiieeeaahahahaha! Aufhören! Hahaahaahi.
+(Laugh out loud.)
+(Lauthals lachen.)
+(Trash in your bondage.)
+(Dich in deinen Fesseln winden.)
+(Pretend you're not ticklish.)
+(So tun, als wärst du nicht kitzlig.)
+###_NPC
+(She raises her hand and spanks you many times on the butt.)  Endure the pain. It's not like you have much choice.
+(Sie erhebt ihre Hand und haut dir mehrmals auf den Hintern.) Erdulde den Schmerz. Nicht, dass du eine Wahl hättest.
+###_PLAYER
+Ow!  That stings!
+Au! Das tut weh!
+You'll know true pain on our next fight.
+Beim nächsten Kampf zeige ich dir wahren Schmerz.
+(Whimper from the pain.)
+(Vor Schmerzen wimmern.)
+(Thrash around in your bondage.)
+(Dich in deinen Fesseln winden.)
+(Pretend it doesn't hurt.)
+(So tun, als täte es nicht weh.)
+###_NPC
+(She gets close to you and plants a long loving kiss on your lips.)  Mmmmmmmmh.
+(Sie kommt nach an dich heran und gibt dir einen langen, liebevollen Kuss auf die Lippen.) Mmmmmmmmh.
+###_PLAYER
+You're quite a loving kidnapper.
+Du bist eine sehr liebenswerte Kidnapperin.
+You have wonderful lips.
+Du hast wundervolle Lippen.
+(Close your eyes and kiss back.)
+(Die Augen schließen und den Kuss erwidern.)
+(Push your tongue inside.)
+(Deine Zunge hineinstecken.)
+(Moan into your gag.)
+(In deinen Knebel stöhnen.)
+(Stay silent and cold.)
+(Schweigen und kühl bleiben.)
+###_NPC
+(She caresses and gropes your body firmly.)  You know you have an amazing body, right?
+(Sie streichelt dich und packt deinen Körper fest an.) Weißt du, dass du einen fantastischen Körper hast?
+###_PLAYER
+If you release me, I'll touch you back.
+Wenn du mich freilässt, berühre ich dich auch.
+Miss!  That... That feels so good...
+Miss! Das... Das fühlt sich so gut an...
+(Moan with pleasure.)
+(Lüstern stöhnen.)
+(Shiver in your restraints.)
+(In deinen Fesseln schaudern.)
+###_NPC
+(She releases you and sighs.)  Sadly, I need to go. But I'll kidnap you again another time.
+(Sie befreit dich und seufzt.) Ich muss leider gehen. Aber ich kidnappe dich gern ein Andermal wieder.
+###_PLAYER
+Take care.
+Mach's gut.
+Thanks!  That was fun.
+Danke! Das hat Spaß gemacht.
+Would you like to visit my room?
+Möchtest du mein Zimmer sehen?
+###_NPC
+You have your own room?  I'm curious to see it.
+Du hast dein eigenes Zimmer? Das würde ich mir gern ansehen.
+Not now, I need to go.  Take care!
+Nicht jetzt, ich muss gehen. Mach's gut!
+###_PLAYER
+I'll get you next time bitch.
+Nächstes Mal gehörst du mir, Bitch.
+###_NPC
+Oh yeah?  Better leave you restrained then.  (She picks a few items to restrain you.)
+Ach ja? Dann lassen wir dich lieber gefesselt. (Sie nimmt ein paar Sachen und fesselt dich damit.)
+###_PLAYER
+(Leave her.)
+(Dialog beenden.)
+Follow me!  (Bring her to your room.)
+Mir nach! (Sie in dein Zimmer führen.)
