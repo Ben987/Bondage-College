@@ -46,13 +46,17 @@ function InformationSheetRun() {
 	DrawText(TextGet("Title") + " " + ((C.ID == 0) ? InformationSheetGetTitle() : (C.Title == null) ? TextGet("TitleNone") : TextGet("Title" + C.Title)), 550, 200, "Black", "Gray");
 	DrawText(TextGet("Owner") + " " + (((C.Owner == null) || (C.Owner == "")) ? TextGet("OwnerNone") : C.Owner.replace("NPC-", "")), 550, 275, "Black", "Gray");
 	DrawText(TextGet("Lover") + " " + (((C.Lover == null) || (C.Lover == "")) ? TextGet("LoverNone") : C.Lover.replace("NPC-", "")), 550, 350, "Black", "Gray");
-	if (C.ID == 0) DrawText(TextGet("MemberFor") + " " + (Math.floor((CurrentTime - C.Creation) / 86400000)).toString() + " " + TextGet("Days"), 550, 425, "Black", "Gray");
-	else DrawText(TextGet("FriendsFor") + " " + (Math.floor((CurrentTime - NPCEventGet(C, "PrivateRoomEntry")) / 86400000)).toString() + " " + TextGet("Days"), 550, 425, "Black", "Gray");
-	if (C.ID == 0) DrawText(TextGet("Money") + " " + C.Money.toString() + " $", 550, 500, "Black", "Gray");
-	else if (C.Love != null) DrawText(InformationSheetGetLove(C.Love), 550, 500, "Black", "Gray");
 
-	// For player character, we show the reputation and skills
-	if (C.ID == 0) {
+	// Some info are not available for online players
+	if (C.AccountName.indexOf("Online-") < 0) {
+		if (C.ID == 0) DrawText(TextGet("MemberFor") + " " + (Math.floor((CurrentTime - C.Creation) / 86400000)).toString() + " " + TextGet("Days"), 550, 425, "Black", "Gray");
+		else DrawText(TextGet("FriendsFor") + " " + (Math.floor((CurrentTime - NPCEventGet(C, "PrivateRoomEntry")) / 86400000)).toString() + " " + TextGet("Days"), 550, 425, "Black", "Gray");
+		if (C.ID == 0) DrawText(TextGet("Money") + " " + C.Money.toString() + " $", 550, 500, "Black", "Gray");
+		else if (C.Love != null) DrawText(InformationSheetGetLove(C.Love), 550, 500, "Black", "Gray");
+	}
+
+	// For player and online characters, we show the reputation and skills
+	if ((C.ID == 0) || (C.AccountName.indexOf("Online-") >= 0)) {
 
 		// Draw the reputation section
 		DrawText(TextGet("Reputation"), 1000, 125, "Black", "Gray");
@@ -66,15 +70,20 @@ function InformationSheetRun() {
 
 		// Draw the skill section
 		DrawText(TextGet("Skill"), 1450, 125, "Black", "Gray");
-		for(var S = 0; S < C.Skill.length; S++)
-			DrawText(TextGet("Skill" + C.Skill[S].Type) + " " + C.Skill[S].Level.toString() + " (" + Math.floor(C.Skill[S].Progress / 10) + "%)", 1450, 200 + S * 75, "Black", "Gray");
-		if (C.Skill.length == 0) DrawText(TextGet("SkillNone"), 1450, 200, "Black", "Gray");
+		if (C.AccountName.indexOf("Online-") >= 0) {
+			DrawText(TextGet("Unknown"), 1450, 200, "Black", "Gray");
+		}
+		else {
+			for(var S = 0; S < C.Skill.length; S++)
+				DrawText(TextGet("Skill" + C.Skill[S].Type) + " " + C.Skill[S].Level.toString() + " (" + Math.floor(C.Skill[S].Progress / 10) + "%)", 1450, 200 + S * 75, "Black", "Gray");
+			if (C.Skill.length == 0) DrawText(TextGet("SkillNone"), 1450, 200, "Black", "Gray");
+		}
 	
 	} else {
 
 		// For NPC characters, we show the traits
 		DrawText(TextGet("Trait"), 1000, 125, "Black", "Gray");
-		
+
 		// After one week we show the traits, after two weeks we show the level
 		if (CurrentTime >= NPCEventGet(C, "PrivateRoomEntry") + 604800000) {
 			var pos = 0;

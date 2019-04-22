@@ -33,6 +33,10 @@ var TranslationDictionary = [
 			"Screens/MiniGame/Kidnap/Text_Kidnap_DE.txt",
 			"Screens/MiniGame/MaidCleaning/Text_MaidCleaning_DE.txt",
 			"Screens/MiniGame/MaidDrinks/Text_MaidDrinks_DE.txt",
+			"Screens/Online/ChatCreate/Text_ChatCreate_DE.txt",
+			"Screens/Online/ChatRoom/Dialog_Online_DE.txt",
+			"Screens/Online/ChatRoom/Text_ChatRoom_DE.txt",
+			"Screens/Online/ChatSearch/Text_ChatSearch_DE.txt",
 			"Screens/Room/Gambling/Dialog_NPC_Gambling_FirstSub_DE.txt",
 			"Screens/Room/Gambling/Dialog_NPC_Gambling_SecondSub_DE.txt",
 			"Screens/Room/Introduction/Dialog_NPC_Introduction_Maid_DE.txt",
@@ -197,6 +201,42 @@ function TranslationText(Text) {
 
 	}
 
+}
+
+// Translates the asset group and asset description
+function TranslationAssetProcess(T) {
+	for (var A = 0; A < AssetGroup.length; A++)
+		AssetGroup[A].Description = TranslationString(AssetGroup[A].Description, T, "");
+	for (var A = 0; A < Asset.length; A++)
+		Asset[A].Description = TranslationString(Asset[A].Description, T, "");
+}
+
+// Translates the description of the assets and groups
+function TranslationAsset(Family) {
+	
+	// If we play in a foreign language
+	if ((TranslationLanguage != null) && (TranslationLanguage.trim() != "") && (TranslationLanguage.trim().toUpperCase() != "EN")) {
+
+		// Finds the full path of the translation file to use
+		var FullPath = "Assets/" + Family + "/" + Family + "_" + TranslationLanguage + ".txt";
+
+		// If the translation file is already loaded, we translate from it
+		if (TranslationCache[FullPath]) {
+			TranslationAssetProcess(TranslationCache[FullPath]);
+			return;
+		}
+
+		// If the translation is available, we open the txt file, parse it and returns the result to build the dialog
+		if (TranslationAvailable(FullPath))
+			CommonGet(FullPath, function() {
+				if (this.status == 200) {
+					TranslationCache[FullPath] = TranslationParseTXT(this.responseText);
+					TranslationAssetProcess(TranslationCache[FullPath]);
+				}
+			});
+	
+	}
+	
 }
 
 // Changes the current language

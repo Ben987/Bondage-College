@@ -50,11 +50,20 @@ function ReputationLoad(NewRep) {
 	
 }
 
-// Returns a specific reputation value 
+// Returns a specific reputation value for the player
 function ReputationGet(RepType) {
 	for (var R = 0; R < Player.Reputation.length; R++)
 		if (Player.Reputation[R].Type == RepType)
 			return parseInt(Player.Reputation[R].Value);
+	return 0;
+}
+
+// Returns a specific reputation value for a specific character
+function ReputationCharacterGet(C, RepType) {
+	if ((C != null) && (C.Reputation != null))
+		for (var R = 0; R < C.Reputation.length; R++)
+			if (C.Reputation[R].Type == RepType)
+				return parseInt(C.Reputation[R].Value);
 	return 0;
 }
 

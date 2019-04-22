@@ -77,20 +77,23 @@
 <script src="Screens/Cutscene/NPCCollaring/NPCCollaring.js"></script>
 <script src="Screens/Cutscene/SarahIntro/SarahIntro.js"></script>
 <script src="Screens/Online/ChatSearch/ChatSearch.js"></script>
+<script src="Screens/Online/ChatCreate/ChatCreate.js"></script>
+<script src="Screens/Online/ChatRoom/ChatRoom.js"></script>
+<script src="Screens/Inventory/ItemMouth/PumpGag/PumpGag.js"></script>
 <script>
 
 /*	
 	TO DO
-	In game chat rooms
-	Pump gag, programmed item
+	Allow Whip/Crop in chat
+	Text Proofing
+	Cheat to reveal traits after 1 day
 	Import New Patreons
-	Cheat to auto reveal traits
 */
 
 // When the code is loaded, we start the game engine
 window.onload = function() {
 	//CheatImport();
-	//ServerURL = "https://bondage-club-server.herokuapp.com/";
+	ServerURL = "https://bondage-club-server.herokuapp.com/";
 	CommonIsMobile = CommonDetectMobile();
 	TranslationLoad();
 	DrawLoad();

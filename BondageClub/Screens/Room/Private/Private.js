@@ -84,11 +84,13 @@ function PrivateDrawCharacter() {
 		if (PrivateCharacter[C].Cage != null) DrawImage("Screens/Room/Private/CageBack.png", X + (C - PrivateCharacterOffset) * 470, 0);
 		DrawCharacter(PrivateCharacter[C], X + (C - PrivateCharacterOffset) * 470, 0, 1);
 		if (PrivateCharacter[C].Cage != null) DrawImage("Screens/Room/Private/CageFront.png", X + (C - PrivateCharacterOffset) * 470, 0);
-		DrawButton(X + 145 + (C - PrivateCharacterOffset) * 470, 900, 90, 90, "", "White", "Icons/Character.png");
+		DrawButton(X + 85 + (C - PrivateCharacterOffset) * 470, 900, 90, 90, "", "White", "Icons/Character.png");
 		if (LogQuery("Cage", "PrivateRoom") && !LogQuery("BlockCage", "Rule"))
 			if ((Player.Cage == null) || (C == 0))
 				if (!PrivateCharacter[C].IsOwner())
-					DrawButton(X + 265 + (C - PrivateCharacterOffset) * 470, 900, 90, 90, "", "White", "Icons/Cage.png");
+					DrawButton(X + 205 + (C - PrivateCharacterOffset) * 470, 900, 90, 90, "", "White", "Icons/Cage.png");
+		if ((C > 0) && (C < PrivateCharacter.length - 1))
+			DrawButton(X + 325 + (C - PrivateCharacterOffset) * 470, 900, 90, 90, "", "White", "Icons/Next.png");
 	}
 	
 }
@@ -130,8 +132,12 @@ function PrivateClickCharacterButton() {
 	// For each character, we check if the player clicked on the cage or information button
 	for(var C = PrivateCharacterOffset; (C < PrivateCharacter.length && C < PrivateCharacterOffset + 4); C++) {
 		
+		// The information sheet button is always available
+		if ((MouseX >= X + 85 + (C - PrivateCharacterOffset) * 470) && (MouseX <= X + 175 + (C - PrivateCharacterOffset) * 470))
+			InformationSheetLoadCharacter(PrivateCharacter[C]);
+
 		// The cage is only available on certain conditions
-		if ((MouseX >= X + 265 + (C - PrivateCharacterOffset) * 470) && (MouseX <= X + 355 + (C - PrivateCharacterOffset) * 470))
+		if ((MouseX >= X + 205 + (C - PrivateCharacterOffset) * 470) && (MouseX <= X + 295 + (C - PrivateCharacterOffset) * 470))
 			if (LogQuery("Cage", "PrivateRoom") && !LogQuery("BlockCage", "Rule"))
 				if ((Player.Cage == null) || (C == 0))
 					if (!PrivateCharacter[C].IsOwner()) {
@@ -139,9 +145,15 @@ function PrivateClickCharacterButton() {
 						if (C > 0) ServerPrivateCharacterSync();
 					}
 
-		// The information sheet button is always available
-		if ((MouseX >= X + 145 + (C - PrivateCharacterOffset) * 470) && (MouseX <= X + 235 + (C - PrivateCharacterOffset) * 470))
-			InformationSheetLoadCharacter(PrivateCharacter[C]);
+		// Can switch girls position in the private room if there's more than one friend
+		if ((C > 0) && (C < PrivateCharacter.length - 1))
+			if ((MouseX >= X + 325 + (C - PrivateCharacterOffset) * 470) && (MouseX <= X + 415 + (C - PrivateCharacterOffset) * 470)) {
+				var P = PrivateCharacter[C];
+				PrivateCharacter[C] = PrivateCharacter[C + 1];
+				PrivateCharacter[C + 1] = P;
+				ServerPrivateCharacterSync();
+				break;
+			}
 
 	}
 

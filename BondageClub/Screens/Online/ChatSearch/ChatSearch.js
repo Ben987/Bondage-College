@@ -8,6 +8,7 @@ function ChatSearchLoad() {
 	ElementCreateInput("InputSearch", "text", "", "20");
 	ChatSearchQuery();
 	ChatSearchMessage = "";
+	ChatRoomLog = "";
 }
 
 // When the chat screens load
@@ -51,7 +52,7 @@ function ChatSearchRun() {
 function ChatSearchClick() {
 	if ((MouseX >= 25) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 875) && Array.isArray(ChatSearchResult) && (ChatSearchResult.length >= 1)) ChatSearchJoin();
 	if ((MouseX >= 1125) && (MouseX < 1475) && (MouseY >= 898) && (MouseY < 962)) ChatSearchQuery();
-	if ((MouseX >= 1505) && (MouseX < 1855) && (MouseY >= 898) && (MouseY < 962)) ChatSearchCreate();
+	if ((MouseX >= 1505) && (MouseX < 1855) && (MouseY >= 898) && (MouseY < 962)) CommonSetScreen("Online", "ChatCreate");
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 885) && (MouseY < 975)) { ElementRemove("InputSearch"); CommonSetScreen("Room", "MainHall"); }
 }
 
@@ -88,15 +89,4 @@ function ChatSearchResponse(data) {
 function ChatSearchQuery() {
 	ChatSearchResult = [];
 	ServerSend("ChatRoomSearch", { Query: ElementValue("InputSearch").toUpperCase().trim() } );
-}
-
-// When we need to create a new chat room
-function ChatSearchCreate() {
-	var NewRoom = {
-		Name: "TESTroom" + Math.floor(Math.random() * 1000).toString(),
-		Description: "this is my room", //", I'm very proud of it, stay away if you're scared",
-		Background: "Shibari",
-		Private: false
-	};
-	ServerSend("ChatRoomCreate", NewRoom);
 }

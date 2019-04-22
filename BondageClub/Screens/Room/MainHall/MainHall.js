@@ -29,27 +29,27 @@ function MainHallRun() {
 	DrawCharacter(Player, 750, 0, 1);
 	
 	// Char, Dressing & Exit
-	DrawButton(1645, 25, 90, 90, "", "White", "Icons/Character.png");
-	if (!LogQuery("BlockChange", "Rule")) DrawButton(1765, 25, 90, 90, "", "White", "Icons/Dress.png");
-	DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
+	DrawButton(1645, 25, 90, 90, "", "White", "Icons/Character.png", TextGet("Profile"));
+	if (!LogQuery("BlockChange", "Rule")) DrawButton(1765, 25, 90, 90, "", "White", "Icons/Dress.png", TextGet("Appearance"));
+	DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png", TextGet("Exit"));
 
 	// The options below are only available if the player can move
 	if (Player.CanWalk()) {
 
 		// Chat, Shop & Private Room
-		DrawButton(1645, 145, 90, 90, "", "White", "Icons/Chat.png");
-		DrawButton(1765, 145, 90, 90, "", "White", "Icons/Shop.png");
-		DrawButton(1885, 145, 90, 90, "", "White", "Icons/Private.png");
+		DrawButton(1645, 145, 90, 90, "", "White", "Icons/Chat.png", TextGet("ChatRooms"));
+		DrawButton(1765, 145, 90, 90, "", "White", "Icons/Shop.png", TextGet("Shop"));
+		DrawButton(1885, 145, 90, 90, "", "White", "Icons/Private.png", TextGet("PrivateRoom"));
 
 		// Introduction, Maid & Management
-		DrawButton(1645, 265, 90, 90, "", "White", "Icons/Introduction.png");
-		DrawButton(1765, 265, 90, 90, "", "White", "Icons/Maid.png");
-		DrawButton(1885, 265, 90, 90, "", "White", "Icons/Management.png");
+		DrawButton(1645, 265, 90, 90, "", "White", "Icons/Introduction.png", TextGet("IntroductionClass"));
+		DrawButton(1765, 265, 90, 90, "", "White", "Icons/Maid.png", TextGet("MaidQuarters"));
+		DrawButton(1885, 265, 90, 90, "", "White", "Icons/Management.png", TextGet("ClubManagement"));
 
 		// Kidnap League, Dojo, Explore/Sarah
-		DrawButton(1645, 385, 90, 90, "", "White", "Icons/Kidnap.png");
-		DrawButton(1765, 385, 90, 90, "", "White", "Icons/Dojo.png");
-		DrawButton(1885, 385, 90, 90, "", "White", "Icons/Explore.png");
+		DrawButton(1645, 385, 90, 90, "", "White", "Icons/Kidnap.png", TextGet("KidnapLeague"));
+		DrawButton(1765, 385, 90, 90, "", "White", "Icons/Dojo.png", TextGet("ShibariDojo"));
+		DrawButton(1885, 385, 90, 90, "", "White", "Icons/Explore.png", TextGet(SarahRoomLabel()));
 
 	}
 

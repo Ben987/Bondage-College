@@ -211,9 +211,9 @@ Lederharnisch
 Breast
 Brust
 Straight Piercings
-Nippelpiercings gerade
+Gerade Nippelpiercings
 Round Piercings
-Nippelpiercings rund
+Runde Nippelpiercings
 Nipple Clamps
 Nippelklemmen
 Metal Chastity Bra
@@ -253,11 +253,13 @@ Maulkorb
 Ring Gag
 Ringknebel
 Duct Tape Gag
-Klebeband
+Klebeband-Knebel
 Duster Gag
 Staubwedel-Knebel
 Bit Gag
 Trensenknebel
+Pump Gag
+Pumpknebel
 Sleeping Pill
 Schlaftablette
 Head

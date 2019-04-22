@@ -1,0 +1,10 @@
+###_NPC
+(You can use or remove items by selecting specific body regions.)
+(Wähle eine Körperregion, um Items zu benutzen oder zu entfernen.)
+(You're not dominant enough to restrain her.)
+(Du bist nicht dominant genug, um sie zu fesseln.)
+###_PLAYER
+(View her profile.)
+(Ihr Profil ansehen.)
+(Leave this menu.)
+(Dieses Menü verlassen.)

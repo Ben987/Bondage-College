@@ -61,6 +61,7 @@ function CreationResponse(CharacterData) {
 		Player.AccountName = ElementValue("InputName");
 		Player.Creation = CurrentTime;
 		Player.Money = 100;
+		Player.OnlineID = CharacterData.substring(14, 100);
 
 		// Imports logs, inventory and Sarah status from the Bondage College
 		CreationMessage = "";

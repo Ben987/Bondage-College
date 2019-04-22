@@ -54,7 +54,7 @@ function ManagementMistressCannotBePaid() { return (LogQuery("ClubMistress", "Ma
 function ManagementNoMistressInPrivateRoom() {
 	if (PrivateCharacter.length <= 1) return true;
 	for (var C = 1; C < PrivateCharacter.length; C++)
-		if ((PrivateCharacter[C].Title != null) && (PrivateCharacter[C].Title != "Mistress"))
+		if ((PrivateCharacter[C].Title != null) && (PrivateCharacter[C].Title == "Mistress"))
 			return false;
 	return true;
 }
