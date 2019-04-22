@@ -8,6 +8,7 @@ var CharacterAppearanceAssets = [];
 var CharacterAppearanceColorPicker = "";
 var CharacterAppearanceColorPickerBackup = "";
 var CharacterAppearanceReturnRoom = "MainHall";
+var CharacterAppearanceReturnModule = "Room";
 
 // Builds all the assets that can be used to dress up the character
 function CharacterAppearanceBuildAssets(C) {
@@ -308,7 +309,7 @@ function AppearanceRun() {
 	
 	// Draw the background and the character twice
 	if (CharacterAppearanceHeaderText == "") CharacterAppearanceHeaderText = TextGet("SelectAppearance");
-	DrawCharacter(Player, -550, -100, 4);
+	DrawCharacter(Player, -550, (Player.IsKneeling()) ? -1100 : -100, 4);
 	DrawCharacter(Player, 800, 0, 1);
 	DrawText(CharacterAppearanceHeaderText, 450, 40, "White", "Black");
 
@@ -324,7 +325,8 @@ function AppearanceRun() {
 		// Creates buttons for all groups	
 		for (var A = CharacterAppearanceOffset; A < AssetGroup.length && A < CharacterAppearanceOffset + CharacterAppearanceNumPerPage; A++)
 			if ((AssetGroup[A].Family == Player.AssetFamily) && (AssetGroup[A].Category == "Appearance")) {
-				DrawButton(1300, 145 + (A - CharacterAppearanceOffset) * 95, 400, 65, AssetGroup[A].Description + ": " + CharacterAppearanceGetCurrentValue(Player, AssetGroup[A].Name, "Description"), "White", "");
+				DrawButton(1300, 145 + (A - CharacterAppearanceOffset) * 95, 400, 65, "", "White", "");
+				DrawTextFit(AssetGroup[A].Description + ": " + CharacterAppearanceGetCurrentValue(Player, AssetGroup[A].Name, "Description"), 1500, 178 + (A - CharacterAppearanceOffset) * 95, 396, "Black");
 				var Color = CharacterAppearanceGetCurrentValue(Player, AssetGroup[A].Name, "Color", "");
 				DrawButton(1725, 145 + (A - CharacterAppearanceOffset) * 95, 160, 65, Color, ((Color.indexOf("#") == 0) ? Color : "White"));
 				DrawButton(1910, 145 + (A - CharacterAppearanceOffset) * 95, 65, 65, "", "White", AssetGroup[A].AllowColorize ? "Icons/Color.png" : "Icons/ColorBlocked.png");
@@ -525,9 +527,10 @@ function AppearanceClick() {
 function CharacterAppearanceExit(C) {
 	C.Appearance = CharacterAppearanceBackup;
 	CharacterLoadCanvas(C);
-	if (C.AccountName != "") CommonSetScreen("Room", CharacterAppearanceReturnRoom);
+	if (C.AccountName != "") CommonSetScreen(CharacterAppearanceReturnModule, CharacterAppearanceReturnRoom);
 	else CommonSetScreen("Character", "Login");
 	CharacterAppearanceReturnRoom = "MainHall";
+	CharacterAppearanceReturnModule = "Room";
 }
 
 // When the player is ready, we make sure she at least has an outfit
@@ -555,8 +558,9 @@ function CharacterAppearanceReady(C) {
 	// If there's no error, we continue to the login or main hall if already logged
 	if ((C.ID == 0) && (C.AccountName != "")) {
 		ServerPlayerAppearanceSync();
-		CommonSetScreen("Room", CharacterAppearanceReturnRoom);
+		CommonSetScreen(CharacterAppearanceReturnModule, CharacterAppearanceReturnRoom);
 		CharacterAppearanceReturnRoom = "MainHall";
+		CharacterAppearanceReturnModule = "Room";
 	} else CommonSetScreen("Character", "Creation");
 
 }

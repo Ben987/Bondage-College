@@ -132,9 +132,9 @@ function DrawCharacter(C, X, Y, Zoom) {
 						DrawEmptyRect(C.FocusGroup.Zone[Z][0] + X, C.FocusGroup.Zone[Z][1] + Y - C.HeightModifier, C.FocusGroup.Zone[Z][2], C.FocusGroup.Zone[Z][3], "cyan");
 			
 			// Draw the character name below herself
-			if ((C.Name != "") && (CurrentModule == "Room") && (CurrentScreen != "Private")) 
+			if ((C.Name != "") && ((CurrentModule == "Room") || (CurrentModule == "Online")) && (CurrentScreen != "Private")) 
 				if (!Player.IsBlind())
-					DrawText(C.Name, X + 255, Y + 980, "White", "Black");
+					DrawText(C.Name, X + 255 * Zoom, Y + 980 * Zoom, "White", "Black");
 
 		}
 
@@ -318,7 +318,7 @@ function DrawText(Text, X, Y, Color, BackColor) {
 }
 
 // Draw a button
-function DrawButton(Left, Top, Width, Height, Label, Color, Image) {
+function DrawButton(Left, Top, Width, Height, Label, Color, Image, HoveringText) {
 
 	// Draw the button rectangle (makes the background color cyan if the mouse is over it)
 	MainCanvas.beginPath();
@@ -331,10 +331,26 @@ function DrawButton(Left, Top, Width, Height, Label, Color, Image) {
 	MainCanvas.stroke();
 	MainCanvas.closePath();
 	
-	// Draw the text
+	// Draw the text or image
 	DrawText(Label, Left + Width / 2, Top + (Height / 2) + 1, "black");
 	if ((Image != null) && (Image != "")) DrawImage(Image, Left + 2, Top + 2);
 	
+	// Draw the hovering text
+	if ((HoveringText != null) && (MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile) {
+		Left = Left - 425;
+		Top = Top + 12;
+		MainCanvas.beginPath();
+		MainCanvas.rect(Left, Top, 400, 65);
+		MainCanvas.fillStyle = "#FFFF88"; 
+		MainCanvas.fillRect(Left, Top, 400, 65);
+		MainCanvas.fill();	
+		MainCanvas.lineWidth = '2';
+		MainCanvas.strokeStyle = 'black';
+		MainCanvas.stroke();
+		MainCanvas.closePath();
+		DrawText(HoveringText, Left + 200, Top + 33, "black");
+	}
+
 }
 
 // Draw a basic empty rectangle

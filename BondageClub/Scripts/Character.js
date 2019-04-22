@@ -35,7 +35,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		CanChange : function() { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("Block") < 0) && (this.Effect.indexOf("Prone") < 0) && !LogQuery("BlockChange", "Rule")) },
 		IsProne : function() { return (this.Effect.indexOf("Prone") >= 0) },
 		IsRestrained : function() { return ((this.Effect.indexOf("Freeze") >= 0) || (this.Effect.indexOf("Block") >= 0) || (this.Effect.indexOf("Prone") >= 0)) },
-		IsBlind : function() { return ((Player.Effect.indexOf("BlindLight") >= 0) || (Player.Effect.indexOf("BlindNormal") >= 0) || (Player.Effect.indexOf("BlindHeavy") >= 0)) },
+		IsBlind : function() { return ((this.Effect.indexOf("BlindLight") >= 0) || (this.Effect.indexOf("BlindNormal") >= 0) || (this.Effect.indexOf("BlindHeavy") >= 0)) },
 		IsChaste : function() { return ((this.Effect.indexOf("Chaste") >= 0) || (this.Effect.indexOf("BreastChaste") >= 0)) },
 		IsVulvaChaste : function() { return (this.Effect.indexOf("Chaste") >= 0) },
 		IsBreastChaste : function() { return (this.Effect.indexOf("BreastChaste") >= 0) },
@@ -79,6 +79,13 @@ function CharacterRandomName(C) {
 
 }
 
+function urlExists(FullPath, C) {
+  fetch(FullPath).then(function(status) {
+	  
+
+  });
+}
+
 // Builds the dialog objects from the CSV files
 function CharacterBuildDialog(C, CSV) {
 
@@ -100,14 +107,17 @@ function CharacterBuildDialog(C, CSV) {
 			C.Dialog.push(D);
 
 		}
+		
+	// Translate the dialog if needed
+	TranslationDialog(C);
 
 }
 
 // Loads a CSV file to build the character dialog
-function CharacterLoadCSVDialog(C) {
+function CharacterLoadCSVDialog(C, Override) {
 
     // Finds the full path of the CSV file to use cache
-    var FullPath = ((C.ID == 0) ? "Screens/Character/Player/Dialog_Player" : "Screens/" + CurrentModule + "/" + CurrentScreen + "/Dialog_" + C.AccountName) + "_" + CommonGetWorkingLanguage() + ".csv";    
+    var FullPath = ((C.ID == 0) ? "Screens/Character/Player/Dialog_Player" : "Screens/" + CurrentModule + "/" + CurrentScreen + "/Dialog_" + ((Override == null) ? C.AccountName : Override)) + ".csv";    
     if (CommonCSVCache[FullPath]) {
 		CharacterBuildDialog(C, CommonCSVCache[FullPath]);
         return;
@@ -182,6 +192,74 @@ function CharacterLoadNPC(NPCType) {
 	
 }
 
+// Sets up the online character
+function CharacterOnlineRefresh(Char, data) {
+	Char.ActivePose = data.ActivePose;
+	Char.Reputation = (data.Reputation != null) ? data.Reputation : [];
+	Char.Appearance = ServerAppearanceLoadFromBundle("Female3DCG", data.Appearance);
+	AssetReload(Char);
+	CharacterLoadEffect(Char);
+	Char.AllowItem = ((Char.ID == 0) || Char.IsRestrained() || !Char.CanTalk() || (ReputationGet("Dominant") + 25 >= ReputationCharacterGet(Char, "Dominant")));
+	CharacterRefresh(Char);
+}
+
+// Loads an online character
+function CharacterLoadOnline(data) {
+
+	// Checks if the NPC already exists and returns it if it's the case
+	var Char = null;	
+	if (data.ID.toString() == Player.OnlineID)
+		Char = Player;
+	else
+		for (var C = 0; C < Character.length; C++)
+			if (Character[C].AccountName == "Online-" + data.ID.toString())
+				Char = Character[C];
+
+	// If the character isn't found
+	if (Char == null) {
+		
+		// Creates the new character from the online template
+		CharacterReset(Character.length, "Female3DCG");
+		Char = Character[Character.length - 1];
+		Char.Name = data.Name;
+		Char.Lover = (data.Lover != null) ? data.Lover : "";
+		Char.Owner = (data.Owner != null) ? data.Owner : "";
+		Char.AccountName = "Online-" + data.ID.toString();
+		CharacterLoadCSVDialog(Char, "Online");
+		CharacterOnlineRefresh(Char, data);
+
+	} else {
+		
+		// Flags "refresh" if we need to redraw the character 
+		var Refresh = false;
+		if ((Char.ActivePose != data.ActivePose) || (ChatRoomData == null) || (ChatRoomData.Character == null))
+			Refresh = true;
+		else
+			for (var C = 0; C < ChatRoomData.Character.length; C++)
+				if (ChatRoomData.Character[C].ID == data.ID)
+					if (ChatRoomData.Character[C].Appearance.length != data.Appearance.length)
+						Refresh = true;
+					else 
+						for (var A = 0; A < data.Appearance.length; A++)
+							if ((data.Appearance[A].Name != ChatRoomData.Character[C].Appearance[A].Name) || (data.Appearance[A].Group != ChatRoomData.Character[C].Appearance[A].Group))
+								Refresh = true;
+							else
+								if ((data.Appearance[A].Property != null) && (ChatRoomData.Character[C].Appearance[A].Property != null) && (JSON.stringify(data.Appearance[A].Property) != JSON.stringify(ChatRoomData.Character[C].Appearance[A].Property)))
+									Refresh = true;
+								else 
+									if (((data.Appearance[A].Property != null) && (ChatRoomData.Character[C].Appearance[A].Property == null)) || ((data.Appearance[A].Property == null) && (ChatRoomData.Character[C].Appearance[A].Property != null)))
+										Refresh = true;
+
+		// If we must refresh
+		if (Refresh) CharacterOnlineRefresh(Char, data);
+
+	}
+
+	// Returns the character
+	return Char;
+
+}
+
 // Deletes an NPC from the buffer
 function CharacterDelete(NPCType) {
 	for (var C = 0; C < Character.length; C++)
@@ -219,14 +297,17 @@ function CharacterAddEffect(C, NewEffect) {
 }
 
 // Resets the current effect list on a character
-function CharacterLoadEffect(C) {	
+function CharacterLoadEffect(C) {
 	C.Effect = [];
 	for (var A = 0; A < C.Appearance.length; A++) {
-		if (C.Appearance[A].Asset.Effect != null)
-			CharacterAddEffect(C, C.Appearance[A].Asset.Effect);
+		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.Effect != null))
+			CharacterAddEffect(C, C.Appearance[A].Property.Effect);
 		else
-			if (C.Appearance[A].Asset.Group.Effect != null)
-				CharacterAddEffect(C, C.Appearance[A].Asset.Group.Effect);
+			if (C.Appearance[A].Asset.Effect != null)
+				CharacterAddEffect(C, C.Appearance[A].Asset.Effect);
+			else
+				if (C.Appearance[A].Asset.Group.Effect != null)
+					CharacterAddEffect(C, C.Appearance[A].Asset.Group.Effect);
 	}	
 }
 

@@ -1,0 +1,482 @@
+###_NPC
+It seems that someone got kidnapped recently.  (She giggles.)  I can't understand you though.
+Da wurde wohl jemand gekidnappt. (Sie kichert.) Aber leider kann ich dich nicht verstehen.
+(She bows her head.)  Congratulations on your victory!  I'm your victim.
+(Sie senkt ihren Kopf.) Glückwunsch zu deinem Sieg! Ich bin deine Beute.
+(She smiles.)  That was a fun fight wasn't it?
+(Sie lächelt.) Der Kampf hat Spaß gemacht, was?
+You need to find and kidnap BOUNTYNAME.  She usually kidnaps newcomers.  If you succeed, you'll get paid BOUNTYAMOUNT$.
+Du musst BOUNTYNAME finden und fangen. Sie zielt gern auf Neulinge ab. Bist du erfolgreich, erhältst du BOUNTYAMOUNT$.
+Your bounty is BOUNTYNAME.  She really likes Japanese rope bondage.  The bounty amount is BOUNTYAMOUNT$.
+Dein Ziel ist BOUNTYNAME. Sie hat eine Vorliebe für japanische Seilfesseln. Ihr Kopfgeld beträgt BOUNTYAMOUNT$.
+Find and restrain BOUNTYNAME for a bounty of BOUNTYAMOUNT$.  She's a big spender and loves to shop.
+Finde und fessele BOUNTYNAME gegen ein Kopfgeld von BOUNTYAMOUNT$. Einkaufen ist ihr größtes Hobby.
+There's a bounty of BOUNTYAMOUNT$ for BOUNTYNAME.  She's a part time maid for the club.
+Es ist ein Kopfgeld von BOUNTYAMOUNT$ für BOUNTYNAME ausgesetzt. Sie arbeitet Teilzeit als Hausmädchen für den Club.
+Very good! Here's your pay.  (She gives you BOUNTYAMOUNT$.)  Did she give you trouble?
+Sehr gut! Hier ist dein Lohn. (Sie gibt dir BOUNTYAMOUNT$.) Hat sie dir Ärger gemacht?
+(She tries to avoid the gag for a few seconds but surrenders quickly as you insist.)
+(Sie versucht einige Sekunden lang, dem Knebel zu entgehen, gibt aber auf, als du darauf bestehst.)
+(You remove her gag and she smiles.)  Thanks!  Would you like to do another practice fight?
+(Du nimmst den Knebel ab und sie lächelt.) Danke! Möchtest du noch ein Kampftraining machen?
+(She struggles for fun but allows you to restrain her.)  I can't count the number of times I've been tied up this month.
+(Sie wehrt sich spaßeshalber, lässt sich aber von dir fesseln.) Ich weiß gar nicht, wie oft ich diesen Monat schon gefesselt wurde.
+(You free her arms and she cracks her fingers.)  Ready for another round?
+(Du befreist ihre Arme und sie lässt ihre Finger knacken.) Bereit für noch eine Runde?
+(She wiggles her butt as you restrain her legs.)  A good kidnapper never forgets the legs.
+(Sie wackelt mit dem Po, als du ihre Beine fesselst.) Eine gute Kidnapperin vergisst nie die Beine.
+(You release her legs from the bondage device.)  Anything else before we can continue?
+(Du befreist ihre Beine aus ihren Fesseln.) Sonst noch etwas, bevor wir weitermachen?
+(She stands on her toes as you restrain her feet.)  Bondage is great isn't it?
+(Sie stellt sich auf Zehenspitzen, als du ihre Füße fesselst.) Bondage ist toll, was?
+(You release her feet and she wiggles them.)  Thanks a lot, it's not easy to be forced like that.
+(Du befreist ihre Füße und sie wackelt damit.) Vielen Dank, es ist nicht einfach, so bleiben zu müssen.
+(You strap the collar on her while she blushes.)  Collars are important in both BDSM and kidnappings.
+(Du legst ihr das Halsband um und sie wird rot.) Halsbänder spielen bei BDSM wie auch beim Kidnapping eine wichtige Rolle.
+(You remove the collar fastened around her neck.)  Much better!
+(Du nimmst ihr das Halsband ab.) Viel besser!
+(You lock the belt on her as she panics.)  Oh, come on!  That's not fair or funny.
+(Du schließt ihr den Gürtel um und sie gerät in Panik.) Oh, komm schon! Das ist weder fair noch lustig.
+(You unlock the device from her waist and she nods.)  That was cruel, even for a kidnapper.
+(Du entfernst das Gerät von ihrer Taille und sie nickt.) Das war grausam, selbst für Kidnapper-Verhältnisse.
+(You strap it on her head as she sighs.)  Please don't leave me like this for too long.
+(Du schnallst sie um ihern Kopf und sie seufzt.) Bitte lass mich nicht allzu lange so.
+(You remove the device as she hums a happy song.)  Thanks!  I appreciate it.
+(Du nimmst das Ding ab und sie summt ein fröhliches Lied.) Danke! Das ist nett.
+(You strap the harness on her torso as she blushes.)  This is pretty kinky Miss.
+(Du schnallst ihr den Harnisch um und sie wird rot.) Das ist ziemlich sexy, Miss.
+(She stretches as you release her from the harness.)  It will be easier to breath like that.
+(Sie streckt sich, als du sie vom Harnisch befreist.) So wird mir das Atmen leichter fallen.
+(She whimpers as you whip her breast.)  Hey!  I'm only here to help you practice!
+(Sie wimmert, als du ihre Brust auspeitschst.) Hey! Ich bin doch nur hier, um dir beim Trainieren zu helfen!
+(You swing the crop on her torso.)  Ow! I wouldn't do that to you, use it on the other kidnappers.
+(Du schwingst mit der Gerte auf ihren Körper.) Au! Ich würde dir das nicht antun, spare dir das für die anderen Kidnapper.
+(You whip her butt as she grumbles.)  Whip the kidnappers, not the teacher!
+(Du peitschst ihren Hintern aus und sie grummelt.) Peitsche die Kidnapper aus, nicht die Lehrerin!
+(You lash the leather crop pretty hard on her butt.)  Ahh! I'm glad I'm not facing you in a real match.
+(Du schlägst mit der Ledergerte ziemlich doll auf ihren Po.) Ahh! Bin ich froh, dir nicht in einem echten Kampf gegenüberzustehen.
+(You restrain her feet with the rope and suspend her from the ceiling.)  Woah!  Maybe you should go to the Dojo.
+(Du fesselst ihre Füße mit dem Seil und lässt sie von der Decke baumeln.) Woah! Vielleicht solltest du ins Dojo gehen.
+(You let her down from the ceiling and release her feet.)  Thanks a lot!  I was getting dizzy.
+(Du löst das Hanfseil von der Decke und befreist ihre Füße.) Vielen Dank! Mir wurde langsam schwindlig.
+(She grins.)  Hello naked girl.  Welcome to the Kidnappers League.
+(Sie grinst.) Hallo, nacktes Mädchen. Willkommen in der Kidnapper-Liga.
+Welcome to the Kidnappers League.  Are you here to register as a kidnapper?
+Willkommen in der Kidnapper-Liga. Möchtest du dich als Kidnapperin registrieren?
+It's wonderful to see you Miss.  It's always thrilling to see one of our best kidnappers.
+Es ist wundervoll, Sie zu sehen, Miss. Es ist immer aufregend, einer unserer Besten gegenüberzustehen.
+Hi DialogPlayerName, it's always nice to see you.  Do you want to practice with me?
+Hi, DialogPlayerName, immer schön, dich zu sehen. Möchtest du mit mir trainieren?
+Welcome to the league dear member.  Do you need any information, or do you want to practice with me?
+Willkommen in der Liga, wertes Mitglied. Brauchst du Informationen, oder möchtest du mit mir trainieren?
+###_PLAYER
+Hi, I'm DialogPlayerName.
+Hi, ich bin DialogPlayerName.
+###_NPC
+I'm DialogCharacterName, it's nice to meet you.  I register league kidnappers and do practice fights.
+Ich bin DialogCharacterName, schön dich kennenzulernen. Ich trage neue Kidnapper in die Liga ein und mache Übungskämpfe.
+###_PLAYER
+How do kidnappings work?
+Wie funktioniert das Kidnappen?
+###_NPC
+There's a lot to explain on fighting and kidnapping.  What would you like to know?
+Zum Thema Kämpfen und Kidnappen gibt es eine Menge zu erklären. Was möchtest du wissen?
+###_PLAYER
+Tell me about the league.
+Erzähl mir von der Liga.
+###_NPC
+Sure!  What would you like to know?
+Klar! Was möchtest du wissen?
+###_PLAYER
+I want to join the Kidnappers League.
+Ich will der Kidnapper-Liga beitreten.
+###_NPC
+Excellent!  We are always eager to get new members.  Do you know the league rules and accept them?
+Hervorragend! Wir freuen uns immer über Zuwachs. Kennst du schon die Regeln der Liga, und akzeptierst du sie?
+###_PLAYER
+I want to leave the league.
+Ich will die Liga verlassen.
+###_NPC
+I'm sorry to hear that, but you can come back later.  You will lose your reputation in the league though. Are you sure you want to leave?
+Das ist schade, aber du kannst jederzeit wiederkommen. Du verlierst allerdings deinen Rang in der Liga. Bist du sicher, dass du raus willst?
+###_PLAYER
+I'll take a bounty hunter job.
+Ich will auf Kopfgeldjagd gehen.
+###_NPC
+We have many kidnapping bounties available.  Are you looking for an easy target, or more of a challenge?
+Wir haben sehr viele Kopfgelder zu vergeben. Suchst du nach einem einfachen Ziel, oder eher nach einer Herausforderung?
+###_PLAYER
+Who's my bounty target again?
+Wer ist noch gleich mein Kopfgeld-Ziel?
+I've succeeded, my bounty was kidnapped.
+Ich habe mein Ziel erfolgreich gefangen.
+I've failed to kidnap my bounty.
+Ich habe mein Ziel nicht erwischt.
+###_NPC
+Maybe the challenge was too tough for you.  You can take a break, or pick up another bounty if you want.
+Vielleicht war diese Herausforderung zu schwierig für dich. Du kannst eine Pause machen, oder ein anderes Ziel wählen, wenn du willst.
+###_PLAYER
+I want to practice kidnappings with you.
+Ich möchte das Kidnappen mit dir üben.
+###_NPC
+Great!  I can go easy on you, or use all my tricks if you're confident enough.  Which will it be?
+Klasse! Ich kann es dir einfach machen, oder alle meine Tricks anwenden, wenn du dir das zutraust. Was darf es sein?
+###_PLAYER
+Let's talk later.  (Leave her.)
+Reden wir später. (Dialog beenden.)
+Please go easy on me.
+Bitte mach es mir einfach.
+A regular match please.
+Ein gewöhnlicher Kampf bitte.
+Give me a tough fight.
+Gib mir einen harten Kampf.
+I can face any challenge!
+Keine Herausforderung ist mir zu schwer!
+I've changed my mind.
+Ich hab's mir anders überlegt.
+###_NPC
+It's fine.  Would you like to talk then?
+Schon Gut. Wollen wir uns dann unterhalten?
+###_PLAYER
+Tell me of the rules.
+Erkläre mir die Regeln.
+###_NPC
+First, all league members can kidnap and be kidnapped at any time in the Bondage Club.  Do you agree to that?
+Zuallererst: Alle Mitglieder der Liga können sich im Club jederzeit gegenseitig überfallen. Bist du damit einverstanden?
+###_PLAYER
+I know the rules.
+Ich kenne die Regeln.
+###_NPC
+So, you agree that you can kidnap and be kidnapped at any time in the Bondage Club.
+Also bist du damit einverstanden, dass du im Bondage-Club jederzeit andere überfallen oder von anderen überfallen werden kannst.
+###_PLAYER
+I accept.
+Ich stimme zu.
+###_NPC
+We kidnap each other for fun but it's always consensual.  If someone panics or wants to be released, you must let her go.
+Wir kidnappen uns gegenseitig zum Spaß, aber es bleibt stets einvernehmlich. Wer in Panik gerät oder aufhören will, muss freigelassen werden.
+###_PLAYER
+I refuse.
+Ich lehne ab.
+###_NPC
+Then you cannot join the kidnappers league, sorry.
+Dann kannst du der Kidnapper-Liga nicht beitreten.
+You can fight while you kidnap, but you can't do anything that would leave permanent marks or damage on your opponents.
+Beim Kidnappen darf gekämpft werden, aber du darfst nichts tun, das bleibende Schäden oder Verletzungen hinterlässt.
+You're ready to join the league then!  Are you in?
+Dann bist du bereit, der Liga beizutreten! Bist du dabei?
+###_PLAYER
+I'm in!  (Join the league.)
+Ich bin dabei! (Der Liga beitreten.)
+###_NPC
+Welcome to the Kidnappers League!  I hope you have fun and cause lots of trouble.
+Willkommen in der Kidnapper-Liga! Ich wünsche dir viel Spaß beim Unruhe Stiften.
+Alright, let me know if you ever think about joining the league again.
+Also gut, sag Bescheid, wenn du wieder Lust bekommst, der Liga beizutreten.
+###_PLAYER
+I quit.  (Leave the league.)
+Ich steige aus. (Die Liga verlassen.)
+###_NPC
+Fine, you won't be kidnapped and cannot kidnap any longer.
+Gut, du wirst nicht mehr angegriffen und kannst auch niemanden mehr kidnappen.
+###_PLAYER
+I need to think some more. (Stay.)
+Ich muss noch etwas nachdenken. (Bleiben.)
+###_NPC
+Perfect!  I'm glad you're staying with us.
+Perfekt! Freut mich, dass du bei uns bleibst.
+###_PLAYER
+What is the Kidnappers League?
+Was ist die Kidnapper-Liga?
+###_NPC
+We are a kinky group that enjoys kidnapping and being kidnapped.  Even though we play rough, it's always consensual.
+Wir sind Leute, die sich gern gegenseitig angreifen und kidnappen. Wir gehen etwas grob miteinander um, aber es ist stets einvernehmlich.
+###_PLAYER
+The league members kidnap each other all the time?
+Können sich Mitglieder jederzeit überfallen?
+###_NPC
+Pretty much.  (She giggles.)  Members can stalk, attack, and kidnap each other everywhere and at any time in the Bondage Club.
+So ziemlich. (Sie kichert.) Mitglieder können sich im Club jederzeit und überall gegenseitig verfolgen, angreifen und kidnappen.
+###_PLAYER
+Do people get hurt?
+Werden Leute dabei verletzt?
+###_NPC
+It can happen when a fight gets too intense.  We try to never do anything that could cause permanent injuries.
+Das kann passieren, wenn ein Kampf außer Kontrolle gerät. Wir geben unser Bestes, dauerhafte Verletzungen zu vermeiden.
+###_PLAYER
+How can a kidnapping be consensual?
+Wie kann Kidnapping einvernehmlich sein?
+###_NPC
+Just like BDSM, the kidnappings are consensual.  We all agree that we can be kidnapped, and we can leave the league if we want to quit.
+Das Kidnappen ist genauso einvernehmlich wie BDSM. Wir stimmen alle zu, das wir gekidnappt werden können. Wer genug hat, kann die Liga verlassen.
+###_PLAYER
+How much does it cost?
+Wie viel kostet das?
+###_NPC
+There's no cost to join and there are bounty hunter jobs that you can take if you need some money.
+Der Beitritt kostet nichts, und wenn du Geld brauchst, kannst du auf Kopfgeldjagd nach anderen Mitgliedern gehen.
+###_PLAYER
+Can members leave the league?
+Können Mitglieder die Liga verlassen?
+###_NPC
+Of course.  Though you will lose any reputation gained in the league before.
+Selbstverständlich. Allerdings geht dabei der Rang verloren, den du dir zuvor in der Liga verdient hast.
+###_PLAYER
+That's enough.
+Das reicht.
+###_NPC
+Very good.  Can I help you with anything else?
+Sehr gut. Kann ich dir sonst noch irgendwie helfen?
+###_PLAYER
+How do I kidnap?
+Wie kidnappe ich jemanden?
+###_NPC
+To kidnap, you must fight your opponent and break her willpower.  You can use many types of moves and items to make her submit to you.
+Zum Kidnappen musst du mit deiner Gegnerin kämpfen und ihre Willenskraft brechen. Dazu kannst du verschiedene Aktionen und Gegenstände benutzen.
+###_PLAYER
+How do I win a kidnapping fight?
+Wie gewinne ich einen Kidnapper-Kampf?
+###_NPC
+To win, you must break your opponent's willpower before getting yours broken yourself.  The first to break will submit, and then their arms can be restrained.
+Zum Gewinnen musst du die gegnerische Willenskraft brechen, bevor du deine verlierst. Die Verliererin unterwirft sich und kann die Arme gefesselt bekommen.
+###_PLAYER
+How can I attack?
+Wie greife ich an?
+###_NPC
+Both kidnappers attack at the same time and can perform any one of four moves.  Each move has strengths and weaknesses against other moves.
+Beide Kidnapper greifen gleichzeitig an, indem sie eine von vier Aktionen durchführen. Jede davon hat Stärken und Schwächen gegenüber der anderen.
+###_PLAYER
+What are these different moves?
+Was für Aktionen gibt es im Kampf?
+###_NPC
+We call them the "BDSM" moves, they are: Brute force, Domination, Sneakiness, and Manipulation.
+Wir nennen sie die "BDSM"-Aktionen: Brutalität, Dominanz, Schleichangriff und Manipulation.
+###_PLAYER
+How does the strength move work?
+Wie funktioniert die Stärke der Aktionen?
+###_NPC
+The stronger the move, the more it will break your opponent's willpower.
+Je stärker die Aktion, desto mehr Willenskraft verliert dein Gegner.
+###_PLAYER
+What's an upper hand in a fight?
+Was bedeutet die Oberhand im Kampf?
+###_NPC
+You get the upper hand when you carry out a good move against your opponent.  It will allow you to restrain your opponent or get free yourself.
+Du gewinnst die Oberhand, wenn du eine gute Aktion gegen deinen Gegner anwendest. Dann kannst du deinen Gegner fesseln oder dich selbst befreien.
+###_PLAYER
+Can I use items that are not restraints?
+Kann ich Dinge benutzen, die keine Fesseln sind?
+###_NPC
+Yes, if you have items such as whips, crops, or vibrators. They will give you a starting advantage on various moves.
+Ja, wenn du Sachen wie Peitschen, Gerten oder Vibratoren hast. Sie geben dir einen Startvorteil für bestimmte Aktionen.
+###_PLAYER
+I know everything I need.
+Mehr muss ich nicht wissen.
+###_NPC
+Excellent.  Can I help you with anything else?
+Ausgezeichnet. Kann ich dir sonst noch irgendwie helfen?
+###_PLAYER
+(Listen.)
+(Zuhören.)
+###_NPC
+Brute force is about using physical strength and endurance against your opponent.  You can slap, kick, punch, and choke, but don't go too far.
+Brutalität ist der Einsatz von körperlicher Stärke und Ausdauer. Du kannst deinen Gegner hauen, treten, schlagen und würgen, aber nicht übertreiben.
+Brute force is good versus Domination, fair versus Manipulation, and bad versus Sneakiness.  Brute force is halved if clothes are removed.
+Brutalität ist gut gegen Dominanz, okay gegen Manipulation und schlecht gegen Schleichangriffe. Brutalität wird halbiert, wenn du keine Kleidung trägst.
+Domination consists of intimidating, insulting, and making your opponent feel weaker than you, which breaks their morale.
+Dominanz ist das Einschüchtern oder Beleidigen deines Gegners, damit er sich schwächer fühlt als du und seine Moral verliert.
+Domination is good versus Manipulation, fair versus Sneakiness, and bad versus Brute force.  Domination is halved when collared.
+Dominanz ist gut gegen Manipulation, okay gegen Schleichangriffe und schlecht gegen Brutalität. Dominanz wird durch Halsbänder halbiert.
+Sneakiness means to ambush, trip, surprise, sneak, tickle, or use rapid tricks to break your opponent.
+Schleichangriffe stehen für Hinterhalt, Stolperfallen, Überraschungen, Heimlichkeiten, Kitzelattacken oder flinke Tricks, die deinen Gegner schwächen.
+Sneakiness is good versus Brute force, fair versus Domination, and bad versus Manipulation.  Sneakiness is halved if the feet are restrained.
+Schleichangriffe sind gut gegen Brutalität, okay gegen Dominanz und schlecht gegen Manipulation. Mit gefesselten Füßen werden sie halbiert.
+Manipulation is all about deceiving, fooling, charming, and seducing your opponent so she will submit to you.
+Manipulation ist das Täuschen, Austricksen, Bezaubern oder Verführen deines Gegners, damit er sich deinem Willen beugt.
+Manipulation is good against Sneakiness, fair against Brute force, and bad against Domination.  Manipulation is halved if you're gagged.
+Manipulation ist gut gegen Schleichangriffe, okay gegen Brutalität und schlecht gegen Dominanz. Manipulation wird halbiert, wenn du geknebelt bist.
+Each time you use a move, it's strength will be halved, so it's good to alternate between different moves.  Each move slowly recuperates with time.
+Wenn du eine Aktion anwendest, verliert sie die Hälfte ihrer Stärke, also solltest du sie abwechseln. Alle Aktionen regenerieren sich langsam von selbst.
+###_PLAYER
+I want an easy bounty.
+Ich will ein einfaches Kopfgeld.
+Give me some challenge.
+Gib mir eine Herausforderung.
+I'll take your top bounty.
+Ich hole mir euer höchstes Kopfgeld.
+###_NPC
+Very well.  Is there something else you want?
+Also gut. Möchtest du sonst noch etwas?
+###_PLAYER
+I'll go get her.
+Ich schnappe sie mir.
+###_NPC
+Good!  Come back when you've kidnapped her for your reward.
+Gut! Komm zurück, wenn du sie gefangen hast, um deine Belohnung zu holen.
+###_PLAYER
+That girl is in deep trouble!
+Dieses Mädel steckt in Schwierigkeiten!
+###_NPC
+Perfect!  Come back when you've kidnapped her for your reward.
+Perfekt! Komm zurück, wenn du sie gefangen hast, um deine Belohnung zu holen.
+###_PLAYER
+I'll try my best.
+Ich gebe mein Bestes.
+###_NPC
+Alright, good luck.  Come back when you've kidnapped her for your reward.
+Alles klar, viel Glück. Komm zurück, wenn du sie gefangen hast, um deine Belohnung zu holen.
+###_PLAYER
+Yeah, she did put quite a fight.
+Ja, sie hat tapfer gekämpft.
+###_NPC
+That was to be expected of her.  Would you like to take another bounty?
+Das war von ihr zu erwarten. Möchtest du noch ein Kopfgeld?
+###_PLAYER
+No problem, I represent the league.
+Kein Problem, ich vertrete die Liga.
+###_NPC
+Very good, I like your attitude.  Would you like to take another bounty then?
+Sehr gut, deine Einstellung gefällt mir. Möchtest du noch ein Kopfgeld?
+###_PLAYER
+It was fair and fun fight.
+Der Kampf war fair und hat Spaß gemacht.
+###_NPC
+That's what we aim for in the league.  Would you like to take another bounty?
+Genau das ist das Ziel der Liga. Möchtest du noch ein Kopfgeld?
+###_PLAYER
+No worries, I'm happy to win or lose anyway.
+Kein Stress, ich gewinne genauso gern, wie ich verliere.
+###_NPC
+You're quite a kinky kidnapper.  Would you like to take another bounty?
+Du bist eine sehr verspielte Kidnapperin. Möchtest du noch ein Kopfgeld?
+###_PLAYER
+No trouble, I can take on anyone.
+Kein Problem, ich nehme es mit jedem auf.
+###_NPC
+You'll go far in the club Miss.  Would you like to take another bounty?
+Sie werden es im Club noch zu viel bringen, Miss. Möchten Sie noch ein Kopfgeld?
+(She struggles for fun.)  I hope you enjoyed our practice fight.
+(Sie zappelt aus Spaß.) Ich hoffe, unser Kampftraining hat dir Spaß gemacht.
+I hope you enjoyed our practice fight.
+Ich hoffe, unser Kampftraining hat dir Spaß gemacht.
+###_PLAYER
+Now you know who's boss.
+Jetzt weißt du, wer hier der Boss ist.
+###_NPC
+(She nods politely.)  Yes Miss.
+(Sie nickt höflich.) Ja, Miss.
+###_PLAYER
+It was a fun match.
+Das war ein schöner Kampf.
+###_NPC
+(She nods happily.)  Absolutely!
+(Sie nickt fröhlich.) Auf jeden Fall!
+###_PLAYER
+I got lucky I guess.
+Da hatte ich wohl Glück.
+###_NPC
+(She shakes her head no.)  It's more than simple luck.
+(Sie schüttelt den Kopf.) Das ist mehr als einfach nur Glück.
+(She struggles some more.)  If you release me, we can do another match.
+(Sie zappelt noch etwas.) Wenn du mich befreist, können wir noch einmal kämpfen.
+Would you like to talk some more?  Or do another fight?
+Sollen wir uns unterhalten? Oder möchtest du nochmal kämpfen?
+###_PLAYER
+What can I do with my victims?
+Was kann ich mit meiner Beute anstellen?
+###_NPC
+Anything you want, as long as you don't go over their limits.  You can tickle, spank, tease, or even make love with them.
+Was auch immer du willst, solange es nicht gegen ihre Limits verstößt. Du kannst sie kitzeln, spanken, ärgern oder sogar mit ihnen Liebe machen.
+###_PLAYER
+Struggle some more!
+Zappel noch ein bisschen!
+###_NPC
+(She struggles but doesn't really try to escape.)  It's all part of the fun.
+(Sie zappelt, versucht aber nicht ernsthaft, sich zu befreien.) Das gehört alles zum Spaß dazu.
+###_PLAYER
+Let's chit chat.
+Lass uns plaudern.
+###_NPC
+What would you like to talk about?
+Worüber möchtest du reden?
+###_PLAYER
+I want to try another practice fight.
+Ich will noch einen Trainingskampf.
+Congratulations!  That was fun.
+Glückwunsch! Das hat Spaß gemacht.
+###_NPC
+Yes!  I hope you've learned a few tricks.
+Ja! Ich hoffe, du konntest ein paar Tricks lernen.
+###_PLAYER
+Yes, but you're too strong for me.
+Ja, aber du bist zu stark für mich.
+###_NPC
+You'll learn new tricks and you'll get stronger.
+Du wirst neue Tricks lernen und dadurch stärker werden.
+###_PLAYER
+(Struggle to talk.)
+(Versuchen, zu reden.)
+###_NPC
+Do you need help with that gag?
+Brauchst du Hilfe mit diesem Knebel?
+###_PLAYER
+(Blush and bow your head.)
+(Rot werden und den Kopf senken.)
+###_NPC
+Poor sweetie.  Do you need help with that gag?
+Armes Kleines. Brauchst du Hilfe mit diesem Knebel?
+###_PLAYER
+(Nod in agreement.)
+(Zustimmend nicken.)
+###_NPC
+Very well.  (She removes your gag.)  But in a real kidnapping you won't be released that easily.
+Also gut. (Sie nimmt deinen Knebel ab.) Aber bei einem echten Kidnapping kommst du nicht so einfach davon.
+###_PLAYER
+(Shake your head no.)
+(Den Kopf schütteln.)
+###_NPC
+You're a good loser, I respect that.
+Du bist eine gute Verliererin, das respektiere ich.
+###_PLAYER
+I'll train to become the best kidnapper.
+Ich werde trainieren und die Beste sein.
+###_NPC
+Impressive!  I can release you now or you can struggle if you prefer.
+Alle Achtung! Ich kann dich jetzt befreien, oder du kannst noch etwas zappeln, wenn dir das lieber ist.
+###_PLAYER
+I will practice and get better.
+Ich werde üben und besser werden.
+###_NPC
+Exactly!  I can release you now or you can struggle if you prefer.
+Genau! Ich kann dich jetzt befreien, oder du kannst noch etwas zappeln, wenn dir das lieber ist.
+###_PLAYER
+Maybe I'm not fit to be a kidnapper.
+Vielleicht habe ich nicht das Zeug zur Kidnapperin.
+###_NPC
+Nonsense!  It just takes practice. I can release you now or you can struggle if you prefer.
+Unsinn! Du brauchst nur Übung. Ich kann dich jetzt befreien, oder du kannst noch etwas zappeln, wenn dir das lieber ist.
+###_PLAYER
+(Struggle in your restraints.)
+(In deinen Fesseln zappeln.)
+###_NPC
+You can struggle on your own or I can release you now if you prefer.
+Du kannst gerne zappeln, oder ich könnte dich jetzt befreien, wenn dir das lieber ist.
+I can release you for another kidnapping if you want.
+Ich kann dich für noch einen Kampf befreien, wenn du willst.
+###_PLAYER
+I'm already out!
+Ich bin schon frei!
+###_NPC
+Well done.  Would you like to talk or try again?
+Gut gemacht. Möchtest du reden oder es nochmal versuchen?
+###_PLAYER
+Can you help me out?
+Kannst du mir helfen?
+###_NPC
+(She releases you.)  Here you go.  Would you like to talk or try again?
+(Sie befreit dich.) Bitteschön. Möchtest du reden oder es nochmal versuchen?
+###_PLAYER
+(Make pleading eyes.)
+(Sie flehend ansehen.)
+(Leave her to struggle by yourself.)
+(Dialog beenden, um dich selbst zu befreien.)

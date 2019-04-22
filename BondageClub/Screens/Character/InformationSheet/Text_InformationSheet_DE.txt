@@ -1,0 +1,112 @@
+Name: 
+Name: 
+Title:
+Titel:
+Mistress
+Herrin
+Head Maid
+Hausdame
+Maid
+Hausmädchen
+Master Kidnapper
+Kidnapper-Meisterin
+Kidnapper
+Kidnapperin
+None
+---
+Foal
+Fohlen
+Farm Horse
+Ackergaul
+Cold Blood Horse
+Kaltblutpferd
+Warm Blood Horse
+Warmblutpferd
+Hot Blood Horse
+Heißblutpferd
+Wild Mustang
+Wilder Mustang
+Shining Unicorn
+Glänzendes Einhorn
+Flying Pegasus
+Fliegender Pegasus
+Lover:
+Liebhaberin:
+Owner:
+Besitzerin:
+Money:
+Geld:
+Member for
+Mitglied seit
+Friends for
+Freunde seit
+day(s)
+Tag(en)
+Unknown
+Unbekannt
+- Reputation -
+- Rang -
+Dominant:
+Dominant:
+Submissive:
+Unterwürfig:
+Maid Sorority:
+Hausmädchen:
+Gambling Hall:
+Spielhalle:
+Kidnappers League:
+Kidnapper-Liga:
+- Skills -
+- Skills -
+Bondage:
+Bondage:
+Evasion:
+Entfesselung:
+Willpower:
+Willenskraft:
+Pony Dressage:
+Pony-Dressur:
+- Traits -
+- Merkmale -
+Spend more time with her to know her traits
+Verbringe mehr Zeit mit ihr, um ihre Merkmale herauszufinden
+Violent:
+Brutal:
+Peaceful:
+Friedlich:
+Horny:
+Scharf:
+Frigid:
+Frigide:
+Rude:
+Unhöflich:
+Polite:
+Höflich:
+Wise:
+Weise:
+Dumb:
+Dumm:
+Serious:
+Ernst:
+Playful:
+Verspielt:
+Relation:
+Beziehung:
+(Perfect)
+(Perfekt)
+(Great)
+(Klasse)
+(Good)
+(Gut)
+(Fair)
+(In Ordnung)
+(Neutral)
+(Neutral)
+(Poor)
+(Dürftig)
+(Bad)
+(Schlecht)
+(Horrible)
+(Schrecklich)
+(Atrocious)
+(Entsetzlich)

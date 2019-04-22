@@ -1,0 +1,24 @@
+Enter your room information
+Raum-Informationen eingeben
+Room Name (Letters & numbers only)
+Raumname (Buchstaben & Ziffern)
+A short description or what's going on.
+Eine kurze Beschreibung oder was hier los ist.
+Private (Need exact name to find it)
+Privat (Zutritt nur mit genauem Namen)
+Select the background
+Hintergrund wählen
+Create
+Erstellen
+Cancel
+Abbrechen
+Creating your room...
+Dein Raum wird erstellt...
+This room name is already taken
+Dieser Raumname ist bereits vergeben
+Account error, try to relog
+Account-Fehler, melde dich erneut an
+Invalid room data
+Ungültige Raumdaten
+Room created, joining it...
+Raum wurde erstellt, wird beigetreten...

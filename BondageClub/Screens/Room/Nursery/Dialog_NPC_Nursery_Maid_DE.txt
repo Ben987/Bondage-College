@@ -1,0 +1,311 @@
+###_NPC
+Do you need help with that gag?  Nod if you do.
+Brauchst du Hilfe mit diesem Knebel? Nicke, wenn ja.
+Can you go check on the Introduction Class?  Sometimes new members get out of control.
+Kannst du bitte im Einstiegskurs nach dem Rechten sehen? Neulinge geraten manchmal außer Kontrolle.
+I've heard rumors of trouble going on at the Shibari Dojo.  Can you make sure everyone is fine?
+Ich habe von Ärger im Shibari-Dojo gehört. Kannst du nachsehen, ob alles in Ordnung ist?
+I think that something went wrong at the store.  Can you go there to help the vendor?
+Ich glaube, im Laden ist etwas schiefgelaufen. Könntest du hingehen und der Verkäuferin helfen?
+I think that something went wrong at the Gambling Hall.  Can you go there to help the players?
+Ich glaube, in der Spielhalle  ist etwas schiefgelaufen. Könntest du hingehen und den Spielern helfen?
+(You come back to DialogCharacterName with an empty drink platter.)  Well done!
+(Du kehrst mit einer leeren Servierplatte zu DialogCharacterName zurück.) Gute Arbeit!
+(You come back to DialogCharacterName with spilled drinks all over your uniform.)
+(Du kehrst in deiner mit Getränken befleckten Uniform zu DialogCharacterName zurück.)
+(DialogCharacterName gets you back to the maid quarters and smiles.)  You've did it!
+(DialogCharacterName holt dich lächelnd in die Dienerkammer zurück.) Du hast es geschafft!
+(DialogCharacterName gets you back to the maid quarters and frowns.)  You failed to clean up in time.
+(DialogCharacterName holt dich stirnrunzelnd in die Dienerkammer zurück.) Du hast nicht alles sauber bekommen.
+(DialogCharacterName hugs you and gropes your red butt.)  You're now a full maid my sister.
+(DialogCharacterName umarmt dich und drückt deinen roten Hintern.) Jetzt bist du ein vollwertiges Hausmädchen, Schwester.
+I'm sorry Miss.  I cannot help you.
+Tut mir leid, Miss. Ich kann nicht helfen.
+(She first shakes her head to avoid the gag, but finally surrenders as you silence her.)
+(Sie schüttelt erst den Kopf, um dem Knebel zu entgehen, lässt sich aber schließlich von dir zum Schweigen bringen.)
+(You remove her gag while she stretches her mouth.)  Thanks Miss, it's hard to dispatch maids with that gag.
+(Du nimmst den Knebel ab und sie streckt ihren Mund.) Danke, Miss, geknebelt ist es schwierig, Hausmädchen loszuschicken.
+(She sighs and turns around while you restrain her arms.)  It might be a little hard to work like that Miss.
+(Sie seufzt und dreht sich um, als du ihre Arme fesselst.) Das könnte meine Arbeit etwas erschweren, Miss.
+(You free her arms and she nods happily.)  Thanks a lot Miss.
+(Du befreist ihre Arme und sie nickt glücklich.) Vielen Dank, Miss.
+(She submits to you while you restrain her legs securely.)  I don't need to move anyway.
+(Sie lässt sich von dir ordentlich die Beine fesseln.) Ich muss sowieso nicht von hier weg.
+(You release her legs from the restraint.)  Let me know if I can help you Miss.
+(Du befreist ihre Beine.) Sagen Sie Bescheid, wenn ich behilflich sein kann, Miss.
+(She looks puzzled as you restrain her feet.)  I'll stay on guard here Miss.
+(Sie guckt verwirrt, als du ihre Füße fesselst.) Ich halte hier die Stellung, Miss.
+(You release her feet and she wiggles them.)  Thanks Miss, it was troublesome.
+(Du befreist ihre Füße und sie wackelt mit ihnen herum.) Danke, Miss, das war problematisch.
+(You strap the collar on her while she blushes.)  You're quite a Dominant Miss.
+(Du legst ihr das Halsband um und sie wird rot.) Sie sind ziemlich dominant, Miss.
+(You remove the collar around her neck.)  Thanks Miss.
+(Du nimmst ihr das Halsband ab.) Danke, Miss.
+(You snap the belt around her waist and crotch while she sighs.)  No more fun for the crew.
+(Du lässt den Gürtel um ihre Taille zuschnappen und sie seufzt.) Kein Spaß mehr für die Crew.
+(You unlock the belt from her waist and she smiles.)  Thanks a lot Miss DialogPlayerName.
+(Du öffnest den Gürtel von ihrer Taille und sie lächelt.) Vielen Dank, Miss DialogPlayerName.
+(You strap the device on her head as she nods slowly.)  This will not make my job easier Miss.
+(Du schnallst ihr das Ding um den Kopf und sie nickt langsam.) Das wird meine Arbeit nicht einfacher machen, Miss.
+(You remove the device and she nods rapidly.)  Thanks a million, this is much better.
+(Du nimmst das Ding ab und sie nickt energisch.) Tausend Dank, das ist viel besser.
+(She jumps from the searing pain on her breast.)  Ouch!  Miss Head Maid!
+(Sie zuckt vom schneidenden Schmerz auf ihrer Brust zusammen.) Autsch! Frau Hausdame!
+(You whip her breast with the leather crop as she whimpers and bows her head.)
+(Du peitschst ihr mit der Ledergerte auf die Brust und sie lässt wimmernd den Kopf hängen.)
+(You whip her butt hard as she sighs.)  I promise I'll work harder Miss Head Maid.
+(Du peitschst ihr kräftig auf den Hintern und sie seufzt.) Ich verspreche, härter zu arbeiten, Frau Hausdame.
+(She grumbles as you strike her butt with the crop.)  A maid work isn't easy.
+(Sie grummelt, als du ihren Hintern mit der Gerte triffst.) Ein Hausmädchen hat es nicht leicht.
+Welcome to the Nursery.  How can I help you?
+Willkommen in der Kinderstube. Wie kann ich dir helfen?
+###_PLAYER
+(Nod yes.)
+(Nicken.)
+###_NPC
+(She removes your gag and gives you a hug.)  It's okay sweetie.  There you go, that's better.
+(Sie nimmt deinen Knebel ab und umarmt dich.) Es ist alles gut, Süße. Siehst du, alles wieder gut.
+###_PLAYER
+Hello, I'm DialogPlayerName.  Pleased to meet you.
+Hallo, ich bin DialogPlayerName. Sehr erfreut.
+###_NPC
+Pleased to meet you too.  I'm DialogCharacterName, I'm one of the nurses.
+Schön dich kennenzulernen. Ich bin DialogCharacterName, eine der Erzieherinnen.
+###_PLAYER
+What is this place?
+Was ist das für ein Ort?
+###_NPC
+This is the nursery, setup as a safe environment for adult babies in need of some motherly compassion, fun and discipline.
+Dies ist die Kinderstube, eine sichere Umgebung für erwachsene Babys, die mütterliche Liebe, Spaß und Disziplin brauchen.
+###_PLAYER
+May I join the nursery?
+Kann ich der Kinderstube beitreten?
+###_NPC
+Of course, we are always welcoming to good little boys and girls.  The nursey does have requirements though for those in its care.
+Natürlich, brave kleine Jungs und Mädchen sind hier immer willkommen. Es gibt allerdings ein paar Bedingungen für unsere Schützlinge.
+###_PLAYER
+I'm ready to join the nursery again.
+Ich bin wieder bereit, der Kinderstube beizutreten.
+###_NPC
+Wonderful, have you rembered the $20 fee for diapers?
+Wundervoll, hast du an die 20$ für die Windeln gedacht?
+###_PLAYER
+Who runs this nursery?
+Wer leitet diese Kinderstube?
+###_NPC
+Nurses like myself look after the adult babies.  We are supervised by the nursery's matrons.
+Erzieherinnen wie ich kümmern sich um die Babys. Über uns halten die Hausmütter der Kinderstube Aufsicht.
+###_PLAYER
+I can't stay to chat.  (Leave her.)
+Ich habe keine Zeit zum Plaudern. (Dialog beenden.)
+Can I become a nurse?
+Kann ich eine Erzieherin werden?
+###_NPC
+We are not hiring nurses at the moment.  When we do we only hire club memebers with good repultations in the nursery and the maid sorority.
+Momentan stellen wir keine neuen Erzieher ein. Wenn doch, kommen nur Mitglieder mit hohen Rängen in der Kinderstube und der Diener-Schwesternschaft in Frage.
+###_PLAYER
+Can I become a matron?
+Kann ich eine Hausmutter werden?
+###_NPC
+Only the top nurses are ever granted that privilege.
+Nur die besten Erzieherinnen erhalten je dieses Privileg.
+###_PLAYER
+Ooh Matron.
+Uuh, Hausmutter.
+###_NPC
+Carry on like that and you will feel a painsy-wainsy in your botty-wotty!
+Mach weiter so, dann hast du bald ein Aua-aua an deinem Popo!
+###_PLAYER
+Would I have to wear a uniform.
+Müsste ich eine Uniform tragen?
+###_NPC
+This uniform is mandatory for the nurses working here.  The matrons have a choice of uniforms.
+Das hier ist die Pflichtuniform für Erzieherinnen. Die Hausmütter haben eine freie Wahl von Uniformen.
+###_PLAYER
+I'll bear that in mind.
+Ich behalte das im Hinterkopf.
+###_NPC
+If we do start hiring, we will put a notice up.
+Wenn wir Stellen ausschreiben, wird das bekanntgegeben.
+###_PLAYER
+Who would want that?
+Wer sollte das wollen?
+###_NPC
+You would be surprised and we don't judge our charges.  Even some of the most dominant kidnappers also like a cuddle and nap time.
+Du wärst überrascht, und wir beurteilen hier niemanden. Selbst ein paar der dominantesten Kidnapper wollen manchmal kuscheln oder Nickerchen halten.
+###_PLAYER
+I though this place was a bondage club.
+Ich dachte, das hier wäre ein Bondage-Club.
+###_NPC
+It is indeed.  We can use a variety of methods to ensure our adult babies are always on their best behaviour.
+Durchaus. Wir wenden diverse Erziehungsmethoden an, um bei unseren Babys für gutes Verhalten zu sorgen.
+###_PLAYER
+Intriguing, do tell me more.
+Interessant, erzähl mir mehr.
+###_NPC
+For a modest fee, club members can join in with our other adult babies, play in the nursery and be looked after by the nurses.
+Für einen kleinen Beitrag können Mitglieder hier mit den anderen Babys in der Kinderstube spielen, während die Erzieherinnen auf sie aufpassen.
+###_PLAYER
+Is this place just for people with that fetish?
+Ist das nur für Leute mit diesem Fetisch?
+###_NPC
+Mostly yes, but we can also provide a time out discipline service for members causing trouble elsewhere in the club.
+Hauptsächlich schon, aber wir bieten auch stille Ecken und Disziplinierung für Mitglieder, die woanders im Club Ärger machen.
+###_PLAYER
+What are the requirements?
+Was sind die Bedingungen?
+###_NPC
+The primary requirement is diapers.  They are mandatory on entry and a fresh diaper must be purchased for each visit.  They cost $20
+Das Wichtigste sind die Windeln. Sie sind beim Eintritt Pflicht und bei jedem Besuch muss eine frische Windel erworben werden. Sie kosten 20$.
+###_PLAYER
+Okay, what else is there?
+Okay, was wäre da noch?
+###_NPC
+We don't allow big girl clothes either.  You can just wear diapers, but we have a super selection lovely dresses you can wear.
+Es ist auch keine Kleidung für große Mädchen erlaubt. Du kannst einfach Windeln tragen, aber wir bieten auch eine Auswahl von niedlichen Kleidern.
+###_PLAYER
+Why the fee?
+Wozu die Gebühr?
+###_NPC
+This place is not cheap to run.  The price for the diapers covers other running cost.
+Es ist nicht billig, das hier am Laufen zu halten. Der Preis für die Windeln deckt auch die anderen Betriebskosten.
+###_PLAYER
+What do you mean by a fresh diaper every visit?
+Was meinst du mit "frische Windel bei jedem Besuch"?
+###_NPC
+It would be increadibly irresposible of us to risk putting a big babie in soiled diapers just to save a few dollars.
+Es wäre äußerst unverantwortlich von uns, ein großes Baby in dreckige Windeln zu stecken, nur um etwas Geld zu sparen.
+###_PLAYER
+Diapers? You are kidding me right?
+Windeln? Das ist ein Witz, oder?
+###_NPC
+Sorry but it is in the rules.  We wouldn't want an adult babie having a whoopsie and making a horrid mess.
+Tut mir leid, das sind die Regeln. Wir wollen ja nicht, dass einem unserer Babys ein Upsi passiert und es eine riesige Sauerei verursacht.
+###_PLAYER
+This is not the place for me.
+Dieser Ort ist nichts für mich.
+###_NPC
+That's okay.  Let me know if you change your mind.
+Kein Problem. Sag Bescheid, falls du deine Meinung änderst.
+###_PLAYER
+Is there just a dress code?
+Geht es hier nur Kleiderordnung?
+###_NPC
+No, this is peacful place.  Adult babies can talk, although many prefer pacifiers.  However we will not tolerate disruptive behaviour.
+Nein, das hier ist eine sichere Zuflucht. Große Babys dürfen reden, wobei viele lieber Schnuller tragen. Wir dulden aber keine Unruhestifter.
+###_PLAYER
+What about clothes for boys?
+Was ist mit Kleidung für Jungs?
+###_NPC
+They also wear dresses in here.  In a pre-victorian nurseries, young boys were unbreeched and wore dresses, just like the girls.
+Die tragen hier auch Kleider. In vorviktorianischen Kinderstuben trugen kleine Jungen Kleider statt Hosen, genau wie die Mädchen.
+###_PLAYER
+Why dresses?
+Warum Kleider?
+###_NPC
+To look gorgeous of course and these dresses have high hemlines so it's easier for us to check there aren't any dirty diapers.
+Natürlich um bezaubernd auszusehen, außerdem haben diese Kleider hohe Taillen, sodass wir mühelos nach schmutzigen Windeln sehen können.
+###_PLAYER
+What about shorts or T shirts?
+Was ist mit Shorts oder T-Shirts?
+###_NPC
+Goodness me, certainly not.  We take great pride in making sure the adult babies in our care always look thier best.
+Gute Güte, auf gar keinen Fall. Es ist unser Stolz, dafür zu sorgen, dass die Babys in unserer Obhut stets bestens gekleidet sind.
+###_PLAYER
+No way am I dressing like that.
+Auf keinen Fall ziehe ich mich so an.
+###_NPC
+That's a shame.  I'm sure you would have looked fabulous. 
+Das ist schade. Du hättest sicher fabelhaft ausgesehen.
+###_PLAYER
+I Understand.  Is there anything else?
+Ich verstehe. Sonst noch etwas?
+###_NPC
+Adult babies can wonder around the club, but we don't advise it so we fitted a safety gate to the door to keep helpless babies safe inside.
+Große Babys dürfen durch den Club wandern, aber wir raten davon ab. Darum ist an der Tür ein Sicherheitszaun, um hilflose Babys drin zu halten.
+###_PLAYER
+What if I want to play rough?
+Was ist, wenn ich mich beim Spielen raufen will?
+###_NPC
+We encourage you to play with each other, but play nicely or you will feel the sting of a hairbrush on your tooshie.
+Wir sehen euch gerne beim Spielen zu, aber wer dabei nicht artig bleibt, bekommt eine Haarbürste auf dem Popo zu spüren.
+###_PLAYER
+I'll cry if I want to.
+Ich werde weinen, wenn mir danach ist.
+###_NPC
+Of course and we will do our best to comfort those in distressed, but we don't allow riotous behaviour that upsets others.
+Natürlich, und wir geben unser Bestes, bekümmerte Babys zu trösten, aber wir dulden kein tobendes Verhalten, das andere stört.
+###_PLAYER
+What about bondage?
+Was ist mit Bondage?
+###_NPC
+That is fine as long you are all playing happy, although some items are hardly suitable for in here.  The nursery has some more appropriate restraints.
+Das ist erlaubt, solange alle Spaß am Spiel haben, aber viele Sachen sind hier einfach fehl am Platz. Die Kinderstube bietet ein paar passendere Fesseln an.
+###_PLAYER
+I would like to join now, pwease.
+Ich möchte jetzt büdde ein Baby sein.
+###_NPC
+Wonderful.  That will be $20 and you need to sign this form, then I will help you into your first diaper.
+Wundervoll. Das macht 20$ und du musst dieses Formular unterschreiben, dann helfe ich dir in deine erste Windel.
+###_PLAYER
+Thanks for reminding me.
+Danke für die Erinnerung.
+###_NPC
+You're welcome.  Have you rembered the $20 fee for diapers?
+Keine Ursache. Hast du die 20$ für die Windeln dabei?
+###_PLAYER
+Is there an issue with the rest of the club?
+Gibt es ein Problem mit dem Rest des Clubs?
+###_NPC
+Not really, but don't expect people to take you seriously while you are wearing a diaper or an adordorable baby dress.
+Nicht wirklich, aber erwarte nicht, dass dich die Leute ernst nehmen, wenn du eine Windel oder ein niedliches Babykleid trägst.
+###_PLAYER
+Actually I don't want to join now.
+Ich will jetzt lieber doch nicht beitreten.
+###_NPC
+I am sorry to hear that.  Do let me know if your mind.
+Es tut mir leid, das zu hören. Sag mir Bescheid, falls du es dir anders überlegst.
+###_PLAYER
+Yes here it is. (Pay $20.)
+Ja, hier. (20$ bezahlen.)
+###_NPC
+Thank you.  Now lets get you changed.
+Danke. Dann wollen wir dich mal wickeln.
+###_PLAYER
+Sorry, maybe another time.
+Tut mir leid, vielleicht ein Andermal.
+###_NPC
+Just let me know when you are ready.
+Sag mir einfach Bescheid, wenn du bereit bist.
+###_PLAYER
+What were the nursery requirements again?
+Was sind nochmal die Bedingungen zum Beitritt?
+###_NPC
+The primary requirement is diapers.  They are mandatory on entry and a fresh diaper must be purchased for each visit and cost $20
+Das Wichtigste sind die Windeln. Sie sind beim Eintritt Pflicht und bei jedem Besuch muss eine frische Windel für 20$ erworben werden.
+###_PLAYER
+(Sign the form and pay $20.)
+(Das Formular unterschreiben und 20$ bezahlen.)
+What is this form for.
+Wofür ist das Formular?
+###_NPC
+It's just a formal agreement that during your stay we will care for you and in return you will obide by the rules of the nursery.
+Es ist nur eine formelle Einverständniserklärung, dass wir bei deinem Aufenthalt für dich sorgen und du dafür die Regeln der Kinderstube befolgst.
+###_PLAYER
+Do I have to sign this.
+Muss ich das unterschreiben?
+###_NPC
+Yes, it is the backbone of the caring structure we provide.
+Ja, es ist das Rückgrat der fürsorglichen Struktur, die wir hier anbieten.
+###_PLAYER
+(Skim read the small print.)
+(Das Kleingedruckte überfliegen.)
+###_NPC
+(...right to remain silent...   ...power of attorney...   ...any methods of discipline deemed necessary...)
+(...Recht zu schweigen...   ...Bevollmächtigung...   ...jegliche als notwendig erachtete erzieherische Maßnahmen...)
+###_PLAYER
+Actually I'll pass.
+Ich muss leider passen.
+###_NPC
+Agreeing to be cared for isn't for everyone I suppose.
+Der Fürsorge durch Andere zuzustimmen behagt offenbar nicht allen.

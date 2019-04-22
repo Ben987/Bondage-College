@@ -1,0 +1,1106 @@
+###_NPC
+Don't waste your time talking, I cannot understand.
+Vergeude deine Zeit nicht mit Sprechen, ich verstehe kein Wort.
+(DialogCharacterName comes in front of you.)  What are you doing?  Don't touch my pet.
+(DialogCharacterName stellt sich vor dich.) Was machst du da? Finger weg von meinem Haustier.
+(DialogCharacterName grabs your arm.)  You're getting on my nerves.  Never touch my kitty.
+(DialogCharacterName packt dich am Arm.) Du gehst mir auf die Nerven. Fass niemals mein Kätzchen an.
+(DialogCharacterName grabs your hair.)  Touch my pet again and you'll get in a world of trouble!
+(DialogCharacterName packt dich am Haar.) Wenn du mein Haustier noch einmal berührst, kannst du was erleben!
+(She pulls you to her by the hair.)  Never touch my pet!  Now you're in trouble.
+(Sie zieht dich am Haar zu sich heran.) Finger weg von meinem Haustier! Jetzt wirst du was erleben.
+Submissive girl, what are you doing standing up in my presence?  Get on your knees if you want to speak to me.
+Unterwürfiges Mädchen, warum stehst du in meiner Gegenwart aufrecht? Geh auf die Knie, wenn du mit mir reden willst.
+We Mistresses have been speaking.  It seems you're not fit to wear the heels anymore.
+Wir Herrinnen haben uns unterhalten. Es scheint, als wärst du nicht mehr für die hohen Absätze geeignet.
+(She looks at you and grins.)  Be direct and don't waste my time naked girl.
+(Sie sieht dich grinsend an.) Sei direkt und vergeude nicht meine Zeit, nacktes Mädchen.
+My respects to you Mistress DialogPlayerName.
+Ich grüße Euch, Herrin DialogPlayerName.
+Greetings head maid DialogPlayerName.  Is there a problem that the sorority cannot handle?
+Hallo, Hausdame DialogPlayerName. Gibt es ein Problem, mit dem die Schwesternschaft nicht klarkommt?
+Greetings master kidnapper DialogPlayerName.  I trust you're having a good time hunting.
+Hallo, Kidnappermeisterin DialogPlayerName. Ich hoffe, die Jagd ist ergiebig.
+Welcome little maid.  How can I help you?
+Willkommen, kleines Hausmädchen. Wie kann ich dir helfen?
+Welcome kidnapper.  How can I help you?
+Willkommen, Kidnapperin. Wie kann ich dir helfen?
+Be direct and don't waste my time girl.
+Sei direkt und vergeude nicht meine Zeit, Mädchen.
+###_PLAYER
+Greetings Miss.  My name is DialogPlayerName.
+Ich grüße Sie, Miss. Mein Name ist DialogPlayerName.
+###_NPC
+You seem to have some manners.  I'm DialogCharacterName, I'm in charge of the club today.
+Du scheinst Manieren zu haben. Ich bin DialogCharacterName, ich leite heute den Club.
+###_PLAYER
+How come Sarah is locked down?
+Warum ist Sarah angekettet?
+###_NPC
+Sarah you say?  Oh yes, the blond college student.  Mistress Sophie reserved a room for her punishment.
+Sarah, sagst du? Ah ja, die blonde College-Schülerin. Herrin Sophie hat ein Zimmer für ihre Bestrafung reserviert.
+###_PLAYER
+I have a few questions.
+Ich habe da ein paar Fragen.
+###_NPC
+Don't be shy, but don't waste my time.
+Immer her damit, aber verschwende nicht meine Zeit.
+###_PLAYER
+Who's that bound girl?
+Wer ist dieses gefesselte Mädchen?
+###_NPC
+She's my kitty.  She stays with me while I work.
+Das ist mein Kätzchen. Sie leistet mir bei der Arbeit Gesellschaft.
+###_PLAYER
+Can we talk about chastity devices?
+Zum Thema Keuschheitsgeräte...
+###_NPC
+Absolutely, what would you like to know?
+Natürlich, was möchtest du darüber wissen?
+###_PLAYER
+About Dominant/submissive relationships...
+Zum Thema D/s-Beziehungen...
+###_NPC
+I'm listening.  How can I educate you?
+Ich bin ganz Ohr. Worüber darf ich dich aufklären?
+###_PLAYER
+About club Mistresses...
+Zum Thema Clubherrinnen...
+###_NPC
+Speak up.  What would you like to know?
+Raus damit. Was möchtest du darüber wissen?
+###_PLAYER
+About club slaves...
+Zum Thema Clubsklavinnen...
+###_NPC
+Yes, what would you like to know?
+Ja, was möchtest du darüber wissen?
+###_PLAYER
+Sorry, I need to go.  (Leave her.)
+Tut mir leid, ich muss gehen. (Dialog beenden.)
+Oops, I'm sorry Miss.  (Kneel for her.)
+Ups, Verzeihung, Miss. (Dich hinknien.)
+###_NPC
+(She smirks as you kneel down for her.)  Good girl.  What can I do for you?
+(Sie schmunzelt, als du vor ihr auf die Knie gehst.) Braves Mädchen. Was kann ich für dich tun?
+###_PLAYER
+(Bow your head and kneel.)
+(Deinen Kopf senken und dich hinknien.)
+We cannot talk then.  (Leave her.)
+Dann reden wir eben nicht. (Dialog beenden.)
+What do you do in the club?
+Was ist Ihre Aufgabe im Club?
+###_NPC
+I'm both a Mistress and a manager.  I prepare collaring ceremonies and hold keys for chastity devices.
+Ich agiere als Herrin und Managerin. Ich plane Halsband-Zeremonien und bewahre Keuschheitsschlüssel auf.
+###_PLAYER
+Who owns the club?
+Wem gehört der Club?
+###_NPC
+The club is owned by every member, but the Head Mistress is truly in charge.
+Der Club gehört all seinen Mitgliedern, aber die Hausherrin ist die wahre Eigentümerin.
+###_PLAYER
+Can I tie you up?
+Kann ich dich fesseln?
+###_NPC
+Don't make me laugh.
+Mach dich nicht lächerlich.
+Forget it girl.  Don't bug me with such stupid questions.
+Vergiss es, Mädchen. Belästige mich nicht mit solch albernen Fragen.
+I said forget it!  Ask me again and you'll be in a world of trouble.
+Ich sagte: Vergiss es! Wenn du noch einmal fragst, kannst du was erleben.
+Now you're in trouble!
+Jetzt kannst du was erleben!
+###_PLAYER
+Will you tie me up?
+Würden Sie mich fesseln?
+###_NPC
+I don't have time for that.
+Dazu habe ich keine Zeit.
+Forget it girl.  Don't bug me with these kinds of questions.
+Vergiss es, Mädchen. Belästige mich nicht mit derartigen Fragen.
+###_PLAYER
+Let's talk about something else.
+Reden wir über etwas anderes.
+###_NPC
+What's on your mind girl?  Don't waste my time.
+Was beschäftigt dich, Mädchen? Vergeude nicht meine Zeit.
+###_PLAYER
+I'm sorry Mistress.
+Entschuldigung, Herrin.
+###_NPC
+Sorry isn't enough.  Strip girl.
+Eine Entschuldigung reicht nicht. Ausziehen, Mädchen.
+###_PLAYER
+What does that mean?
+Was soll das bedeuten?
+###_NPC
+It means you're going to strip right now.
+Das bedeutet, dass du dich sofort ausziehst.
+###_PLAYER
+(Stay silent.)
+(Schweigen.)
+###_NPC
+You need to know your place.  Strip girl.
+Du musst deinen Rang begreifen. Ausziehen, Mädchen.
+###_PLAYER
+Strip here?  No way!
+Hier ausziehen? Auf keinen Fall!
+###_NPC
+(She slaps your face pretty hard.)  Oh yes you will!
+(Sie gibt dir eine heftige Ohrfeige.) Oh doch!
+###_PLAYER
+Yes Mistress.
+Ja, Herrin.
+###_NPC
+(You slowly strip for her as she smiles.)
+(Du ziehst dich langsam für sie aus, während sie lächelt.)
+###_PLAYER
+I'm not stripping!
+Ich ziehe mich nicht aus!
+###_NPC
+We'll see about that!  (She painfully locks your arm behind your back until you give up and strip.)
+Das werden wir sehen! (Sie hält deinen Arm schmerzhaft hinter deinem Rücken, bis du dich ergibst und ausziehst.)
+###_PLAYER
+(Strip slowly.)
+(Dich langsam ausziehen.)
+That's embarrassing.
+Das ist demütigend.
+###_NPC
+And it's about to get worse.  (She forces an armbinder on you and straps it tight.)
+Und es kommt noch schlimmer. (Sie zwingt dir einen Monohandschuh auf und schnallt ihn fest.)
+###_PLAYER
+Are you happy now?
+Zufrieden?
+###_NPC
+Not yet.  (She forces an armbinder on you and straps it tight.)
+Noch nicht. (Sie zwingt dir einen Monohandschuh auf und schnallt ihn fest.)
+###_PLAYER
+(Blush and bow your head.)
+(Rot werden und den Kopf senken.)
+###_NPC
+Good girl.  (She forces an armbinder on you and straps it tight.)
+Braves Mädchen. (Sie zwingt dir einen Monohandschuh auf und schnallt ihn fest.)
+###_PLAYER
+This is really tight.
+Das ist wirklich eng.
+###_NPC
+Have you learned your lesson?  Will you be good, or I need to restrict you even more?
+Hast du deine Lektion gelernt? Wirst du brav sein oder muss ich dich in noch mehr Schranken weisen?
+###_PLAYER
+(Tug on the binder.)
+(Am Handschuh rütteln.)
+Yes, I've learned my lesson.
+Ja, ich habe meine Lektion gelernt.
+###_NPC
+Alright.  (She straps your legs with a belt.)  I will release you later, you can struggle for my amusement.
+Nun gut. (Sie schnallt deine Beine mit einem Gürtel zusammen.) Ich befreie dich später, du kannst mich etwas unterhalten.
+###_PLAYER
+What lesson?
+Was für eine Lektion?
+###_NPC
+I'll show you.  (She uses many more items on you.)  I will release you later, you can struggle for my amusement.
+Das zeige ich dir. (Sie setzt viele weitere Gegenstände ein.) Ich befreie dich später, du kannst mich etwas unterhalten.
+###_PLAYER
+Fuck you!
+Fick dich!
+###_NPC
+Oh yeah?  (She uses many more items on you.)  I will release you later, you can struggle for my amusement.
+Ach ja? (Sie setzt viele weitere Gegenstände ein.) Ich befreie dich später, du kannst mich etwas unterhalten.
+###_PLAYER
+(Nod and blush.)
+(Nicken und rot werden.)
+###_NPC
+How's the bratty girl doing?
+Wie geht es unserem frechen Mädchen?
+###_PLAYER
+Can you please help me?
+Kannst du mir bitte helfen?
+###_NPC
+Struggle some more, I'm having fun.
+Zappele noch ein wenig, das ist unterhaltsam.
+###_PLAYER
+(Whimper and beg for mercy.)
+(Wimmern und um Gnade betteln.)
+###_NPC
+Very well, I will help you.  (She releases you.)  Don't annoy me anymore.
+Nun gut, ich helfe dir. (Sie befreit dich.) Geh mir nicht mehr auf die Nerven.
+###_PLAYER
+(Leave her.)
+(Dialog beenden.)
+Who's the Head Mistress?
+Wer ist die Hausherrin?
+###_NPC
+Mistress Sophie is the club current Head Mistress.  She's a strict but fair manager.
+Herrin Sophie ist die derzeitige Hausherrin des Clubs. Sie ist eine strenge aber gerechte Managerin.
+###_PLAYER
+How do you choose the Head Mistress?
+Wie wird die Hausherrin bestimmt?
+###_NPC
+There's an electoral process between Mistresses.  You'll learn more if you become a club Mistress yourself.
+Unter den Herrinnen findet ein Wahlverfahren statt. Du erfährst mehr darüber, wenn du selbst Clubherrin wirst.
+###_PLAYER
+Can I meet the Head Mistress?
+Kann ich die Hausherrin kennenlernen?
+###_NPC
+She's not available now.  Please come back later.
+Sie ist gerade nicht zu sprechen. Komm bitte später wieder.
+What's on your mind girl?  Time is money.
+Was beschäftigt dich, Mädchen? Zeit ist Geld.
+###_PLAYER
+I'm sorry.  Please forgive me Mistress.
+Es tut mir leid. Bitte verzeihen Sie, Herrin.
+###_NPC
+(She gives you a stern look.)  Don't do it again.
+(Sie schaut dich streng an.) Mach das nicht nochmal.
+###_PLAYER
+I won't do it again.
+Ich tue es nie wieder.
+###_NPC
+(She gives you a stern look.)  Fine.
+(Sie schaut dich streng an.) Na schön.
+###_PLAYER
+I'll do what I want.
+Ich mache, was ich will.
+###_NPC
+You dare to defy me?  Now you're in trouble!
+Du wagst es, dich mir zu widersetzen? Jetzt kannst du was erleben!
+###_PLAYER
+(Nod politely and look down.)
+(Höflich nicken und zu Boden schauen.)
+Why the ears and tail?
+Wozu die Katzenohren und der Schwanz?
+###_NPC
+She's a neko, a girl with cat features.  Don't judge her, she's a good kitty.
+Sie ist eine Neko, ein Mädchen mit Eigenschaften einer Katze. Werte sie nicht ab, sie ist ein gutes Kätzchen.
+###_PLAYER
+You keep her restrained all day?
+Bleibt sie den ganzen Tag gefesselt?
+###_NPC
+Yes, she's not allowed to stray or talk while I work.
+Ja, sie soll nicht herumstreunen oder reden, während ich arbeite.
+###_PLAYER
+She's enjoying herself?
+Hat sie Spaß?
+###_NPC
+Absolutely, she's my submissive and she's a bondage slut.
+Aber sicher, sie ist meine Untergebene und eine Fesselfetischistin.
+###_PLAYER
+Can I play with her?
+Darf ich mit ihr spielen?
+###_NPC
+(She ponders for a little while.)  You could, but there's a requirement.
+(Sie überlegt einen Moment lang.) Das könntest du, unter einer Bedingung.
+Forget it.  I don't let any Dominant touch my pet.
+Vergiss es. Ich lasse keine dominanten Leute an mein Haustier ran.
+###_PLAYER
+Can I release her?
+Darf ich sie befreien?
+###_NPC
+No.  Don't even dare to try.
+Nein. Wag es ja nicht, das auch nur zu versuchen.
+Forget it girl.  Don't bug me again on that subject.
+Vergiss es, Mädchen. Lass mich mit diesem Thema in Ruhe.
+Fine, and stop staring at my pet.
+Meinetwegen, und hör auf, mein Haustier anzuglotzen.
+###_PLAYER
+What requirement?
+Was für eine Bedingung?
+###_NPC
+If you want to play with her, you must join her.  Do you agree?
+Wenn du mit ihr spielen willst, musst du dich ihr anschließen. Bist du damit einverstanden?
+###_PLAYER
+Please tell me.
+Bitte sagen Sie sie mir.
+I'm not sure I understand.
+Ich verstehe nicht so recht.
+###_NPC
+I'm not going to repeat again.  If you want to play with her, you must join her.
+Ich werde mich nicht erneut wiederholen. Wenn du mit ihr spielen willst, musst du dich ihr anschließen.
+###_PLAYER
+Alright!  I'll do it!
+Alles klar! Ich tu's!
+###_NPC
+(She smirks.)  Very well, strip girl.
+(Sie schmunzelt.) Also gut, ausziehen, Mädchen.
+###_PLAYER
+I can't do that.
+Das kann ich nicht tun.
+###_NPC
+Don't waste my time then.  Is there anything else you want?
+Dann verschwende nicht meine Zeit. Willst du sonst noch etwas?
+###_PLAYER
+Yes Mistress.  (Strip for her.)
+Ja, Herrin. (Dich für sie ausziehen.)
+###_NPC
+And it will get tighter.  (She adds more items.)  You two can play now.
+Und es wird noch enger. (Sie fügt weitere Fesseln hinzu.) Jetzt könnt ihr beiden spielen.
+###_PLAYER
+You're a great Mistress.
+Sie sind eine großartige Herrin.
+###_NPC
+I try my best.  (She adds more items.)  You two can play now.
+Ich gebe mein Bestes. (Sie fügt weitere Fesseln hinzu.) Jetzt könnt ihr beiden spielen.
+Enjoy your predicament.  (She adds more items.)  You two can play now.
+Viel Spaß mit deiner Situation. (Sie fügt weitere Fesseln hinzu.) Jetzt könnt ihr beiden spielen.
+Play some more, I'm having fun.
+Spielt noch etwas, das ist unterhaltsam.
+Very well, I will help you.  (She releases you.)  I hope you had fun with my pet.
+Also gut, ich helfe dir. (Sie befreit dich.) Hoffentlich hattest du Spaß mit meinem Haustier.
+###_PLAYER
+Can you please release her?
+Könnt Ihr sie bitte freilassen?
+###_NPC
+No, Mistress Sophie already made plans.  Do not interfere.
+Nein, Herrin Sophie hat bereits Vorkehrungen getroffen. Mische dich nicht darin ein.
+###_PLAYER
+She's my property, let her go.
+Sie ist mein Eigentum, lasst sie frei.
+###_NPC
+Of course, I will send a maid to warn Mistress Sophie and free your slave.
+Gewiss, ich schicke ein Hausmädchen, um Herrin Sophie Bescheid zu geben und deine Sklavin zu befreien.
+###_PLAYER
+Very well, punish her properly then.
+Alles klar, dann bestraft sie mal gründlich.
+###_NPC
+Don't worry, Mistress Sophie will discipline her well.
+Keine Sorge, Herrin Sophie wird sie hervorragend disziplinieren.
+###_PLAYER
+Thank you.
+Danke.
+###_NPC
+It's my duty.  Is there something else you need?
+Ich tue nur meine Pflicht. Brauchst du noch etwas anderes?
+###_PLAYER
+What are the rules for chastity items?
+Was sind die Regeln für Keuschheitsgeräte?
+###_NPC
+Only the club Mistresses can unlock chastity devices.  Make sure you use your keys wisely.  (She winks at you.)
+Nur Clubherrinnen können Keuschheitsgeräte aufschließen. Setze deine Schlüssel weise ein. (Sie zwinkert dir zu.)
+Only the club Mistresses can unlock chastity devices.  If you have an owner, you need your owner permission to be unlocked.
+Nur Clubherrinnen können Keuschheitsgeräte aufschließen. Wenn du eine Besitzerin hast, brauchst du zuerst ihre Erlaubnis.
+###_PLAYER
+Can I buy a key?
+Kann ich einen Schlüssel kaufen?
+###_NPC
+No, the keys are not for sales.  They are for Mistresses only.
+Nein, die Schlüssel sind nicht zu verkaufen. Sie sind den Herrinnen vorbehalten.
+###_PLAYER
+I'm stuck, I need your help.
+Ich stecke fest, ich brauche Hilfe.
+###_NPC
+(She smirks.)  So, a subbie girl got herself locked?  What's your story?
+(Sie schmunzelt.) Ein kleines unterwürfiges Mädchen ist also unter Schloss und Riegel geraten? Wie kam es dazu?
+(She laughs.)  Better learn to enjoy it girl.  I'm not releasing you.
+(Sie lacht.) Du solltest dich daran gewöhnen, Mädchen. Ich lasse dich nicht frei.
+###_PLAYER
+A friend of mine needs your help.
+Eine Freundin von mir braucht Hilfe.
+###_NPC
+What friend?  You're alone girl.
+Welche Freundin? Du bist allein, Mädchen.
+Alright, but make it snappy.
+Na gut, aber zackig.
+###_PLAYER
+I wanted to protect myself.
+Ich wollte mich schützen.
+###_NPC
+Since you're not owned, all there is to do is pay the unlocking fee and lick my heels.  (She points to her boot.)
+Da du keinen Besitzer hast, brauchst du nur die Gebühr zu bezahlen und meine Stiefel zu lecken. (Sie zeigt auf ihren Schuh.)
+###_PLAYER
+I was inspecting the belt and it locked on me.
+Ich hab den Gürtel untersucht und er schnappte zu.
+Someone played a prank on me.
+Jemand hat mir einen Streich gespielt.
+I've played a crazy "Truth or Dare" game.
+Es war eine verrückte Runde "Wahrheit oder Pflicht".
+###_NPC
+I understand.  But since you're owned, I need your Mistress approval to unlock any chastity item from you.
+Ich verstehe. Aber da du eine Besitzerin hast, brauche ich ihre Erlaubnis, um dich aus der Keuschheit zu befreien.
+(She grins.)  Of course.  Since you're owned, I need your Mistress approval to unlock any chastity item from you.
+(Sie grinst.) Natürlich. Da du eine Besitzerin hast, brauche ich ihre Erlaubnis, um dich aus der Keuschheit zu befreien.
+###_PLAYER
+I've played a crazy game of: "Truth or Dare".
+Es war eine verrückte Runde "Wahrheit oder Pflicht".
+###_NPC
+I hope you won that game.  Since you're owned, I need your Mistress approval to unlock any chastity item from you.
+Hoffentlich hast du gewonnen. Da du eine Besitzerin hast, brauche ich ihre Erlaubnis, um dich aus der Keuschheit zu befreien.
+###_PLAYER
+My Mistress wanted to protect me.
+Meine Herrin wollte mich schützen.
+###_NPC
+Very well, but you know that I need your Mistress approval to unlock any chastity item from you.
+Nun gut, aber du weißt, dass ich die Erlaubnis deiner Herrin brauche, um dich aus der Keuschheit zu befreien.
+###_PLAYER
+My owner punished me.
+Meine Besitzerin hat mich bestraft.
+###_NPC
+I bet you deserved it.  You know that I need your Mistress approval to unlock any chastity item from you.
+Das hast du sicher verdient. Du weißt, dass ich die Erlaubnis deiner Herrin brauche, um dich aus der Keuschheit zu befreien.
+###_PLAYER
+I'm not kissing your ass or licking your heels.
+Ich küsse dir nicht den Arsch oder lecke deine Stiefel.
+###_NPC
+You can't blame me for trying.  Just pay the unlocking fee of 25$ then.
+War einen Versuch wert. Dann zahle einfach nur die Freiheitsgebühr von 25$.
+###_PLAYER
+Lick your heels?  That's the regular procedure?
+Ihre Stiefel lecken? Gehört das immer dazu?
+###_NPC
+My duty, my rules.  You lick or your leave?
+Meine Schicht, meine Regeln. Leckst du oder gehst du?
+###_PLAYER
+Fine.  (Lick her heels.)
+Na schön. (Ihre Stiefel lecken.)
+###_NPC
+(You bend down and slowly lick her heels as she laughs.)  Good girl, the unlocking fee is 25$.
+(Du bückst dich und leckst langsam ihre Stiefel, während sie lacht.) Braves Mädchen, die Freiheitsgebühr beträgt 25$.
+###_PLAYER
+I won't lick your heels!
+Ich lecke nicht deine Stiefel!
+###_NPC
+(She laughs.)  Then you stay chaste. 
+(Sie lacht.) Dann bleibst du verschlossen. 
+###_PLAYER
+That's extortion!
+Das ist Erpressung!
+###_NPC
+No, that's a lesson.  You pay or you go?
+Nein, das ist dir eine Lehre. Zahlst du oder gehst du?
+###_PLAYER
+Please unlock the bra.  (Pay her 25$.)
+Bitte öffnen Sie den BH. (25$ zahlen.)
+###_NPC
+Alright.  (You remove your clothes and she unlocks the bra.)  How does it feel?
+Also gut. (Du ziehst deine Kleidung aus und sie schließt den BH auf.) Wie fühlt sich das an?
+###_PLAYER
+Please unlock the belt.  (Pay her 25$.)
+Bitte öffnen Sie den Gürtel. (25$ zahlen.)
+###_NPC
+Alright.  (You remove your clothes and she unlocks the belt.)  How does it feel?
+Also gut. (Du ziehst deine Kleidung aus und sie schließt den Gürtel auf.) Wie fühlt sich das an?
+###_PLAYER
+I don't have enough money.
+Ich habe nicht genug Geld.
+###_NPC
+Get to work then.  I'm not doing any discount.
+Dann an die Arbeit. Bei mir gibt es keinen Rabatt.
+###_PLAYER
+I'll think about it.
+Ich denke darüber nach.
+###_NPC
+Think about ways to stop wasting my time girl.
+Denke darüber nach, wie du weniger von meiner Zeit verschwendest, Mädchen.
+###_PLAYER
+Better!  I'll never get stuck again.
+Besser! Den werde ich nie wieder tragen.
+###_NPC
+(She laughs.)  They all say that, and they all come back.
+(Sie lacht.) Das sagen sie alle, und sie kommen alle wieder.
+###_PLAYER
+This is great!
+Das ist toll!
+###_NPC
+Be careful not to get locked again.  I don't do discount for multiple release.
+Pass auf, dass du diese Freiheit nicht verlierst. Es gibt keinen Häufigkeitsrabatt.
+###_PLAYER
+(Blush.)  This is wonderful, thanks Mistress.
+(Rot werden.) Das ist wundervoll, danke, Herrin.
+###_NPC
+She pets your head.  Good girl, be careful not to get locked again.
+Sie tätschelt deinen Kopf. Braves Mädchen, pass auf, dass du diese Freiheit nicht wieder verlierst.
+###_PLAYER
+My owner isn't a club member.
+Meine Besitzerin gehört nicht zum Club.
+###_NPC
+That's not a problem girl.  We will call her to get her approval.
+Das ist kein Problem, Mädchen. Wir rufen sie an und fragen sie nach ihrer Erlaubnis.
+###_PLAYER
+My Mistress is a college student.
+Meine Herrin ist eine Schülerin im College.
+My owner is in my private room.
+Meine Besitzerin ist in meinem Privatzimmer.
+###_NPC
+Excellent.  I will send a maid to get her approval.
+Hervorragend. Ich schicke ein Hausmädchen, um ihre Erlaubnis zu erfragen.
+###_PLAYER
+Mistress is in the club right now.
+Meine Herrin ist gerade im Club.
+###_NPC
+Good.  I will send a maid to get her approval.
+Gut. Ich schicke ein Hausmädchen, um ihre Erlaubnis zu erfragen.
+###_PLAYER
+I can go get my owner.
+Ich kann meine Besitzerin holen.
+###_NPC
+You don't need to do anything.  I will send a maid to get her approval.
+Du brauchst nichts zu tun. Ich schicke ein Hausmädchen, um ihre Erlaubnis zu erfragen.
+###_PLAYER
+I'm not sure where my owner is.
+Ich weiß nicht, wo meine Besitzerin ist.
+###_NPC
+Don't worry, we will find her.  I will send a maid to get her approval.
+Keine Angst, wir finden sie. Ich schicke ein Hausmädchen, um ihre Erlaubnis zu erfragen.
+###_PLAYER
+My Mistress isn't around.
+Meine Herrin ist nicht da.
+That's easy!
+Das klingt einfach!
+###_NPC
+It's not that easy, there's a 20$ fee to contact your Mistress and a 25$ fee for any item to remove.  And you won't get any refund if she refuses.
+So einfach ist es nicht, das Kontaktieren deiner Herrin kostet 20$, zuzüglich 25$ je Gegenstand. Und das wird dir nicht erstattet, wenn sie ablehnt.
+###_PLAYER
+Thanks Mistress.
+Danke, Herrin.
+###_NPC
+Hold on girl, there's a 20$ fee to contact your Mistress and a 25$ fee for any item to remove.  And you won't get any refund if she refuses.
+Langsam, Mädchen, das Kontaktieren deiner Herrin kostet 20$, zuzüglich 25$ je Gegenstand. Und das wird dir nicht erstattet, wenn sie ablehnt.
+###_PLAYER
+Does it cost anything?
+Kostet das was?
+###_NPC
+Of course, there's a 20$ fee to contact your Mistress and a 25$ fee for any item to remove.  And you won't get any refund if she refuses.
+Natürlich, das Kontaktieren deiner Herrin kostet 20$, zuzüglich 25$ je Gegenstand. Und das wird dir nicht erstattet, wenn sie ablehnt.
+###_PLAYER
+Please contact her. (Pay her 20$.)
+Bitte kontaktieren Sie sie. (20$ zahlen.)
+###_NPC
+(She takes your money and sends a maid to contact your owner.)  Come back in a few minutes
+(Sie nimmt dein Geld und lässt ein Hausmädchen deine Besitzerin kontaktieren.) Komm in ein paar Minuten zurück.
+(She grins.)  Welcome back, chaste girl.
+(Sie grinst.) Willkommen zurück, Keuschheitsmädchen.
+###_PLAYER
+Have you contacted my owner?
+Haben Sie meine Besitzerin kontaktiert?
+###_NPC
+Not yet, don't be hasty.  Come back in a few minutes.
+Noch nicht, hab etwas Geduld. Komm in ein paar Minuten zurück.
+Yes, and your Mistress accepted to get you out.  It cost 25$ for each item to unlock.
+Ja, und deine Herrin hat deiner Freilassung zugestimmt. Das kostet 25$ je Gegenstand, den ich aufschließen soll.
+Yes, and your Mistress refused to unlock you.  You will stay chaste girl.
+Ja, und deine Herrin hat deine Freilassung verweigert. Deine Keuschheit bleibt bestehen, Mädchen.
+###_PLAYER
+I'll wait. (Leave her.)
+Ich werde warten. (Dialog beenden.)
+###_NPC
+Which chastity device should I unlock?  The fee is 25$ per item.
+Welches Keuschheitsgerät soll ich öffnen? Die Gebühr beträgt 25$ pro Gegenstand.
+Very well, undress subbie girl.  (You remove your clothes and she unlocks the bra.)
+Also gut, zieh dich aus, Kleine. (Du ziehst deine Kleidung aus und sie schließt den BH auf.)
+Very well, undress subbie girl.  (You remove your clothes and she unlocks the belt.)
+Also gut, zieh dich aus, Kleine. (Du ziehst deine Kleidung aus und sie schließt den Gürtel auf.)
+###_PLAYER
+I'm fine now.  Thanks.
+Jetzt ist alles gut. Danke.
+###_NPC
+Alright.  If you ask again, you will have to go through the same procedure.
+Also gut. Wenn du das nächste Mal fragst, wird die ganze Prozedur von vorne beginnen.
+###_PLAYER
+I'll be right back.  (Leave her.)
+Bin gleich wieder da. (Dialog beenden.)
+Yes Mistress.  (Bow your head.)
+Ja, Herrin. (Den Kopf senken.)
+###_NPC
+Good girl.  Enjoy your chaste life.  (She smirks.)
+Gutes Mädchen. Genieße dein Leben in Keuschheit. (Sie schmunzelt.)
+###_PLAYER
+What?  That's unfair!
+Was? Das ist unfair!
+###_NPC
+Life isn't fair girl.  I'm not unlocking you.  (She grins.)
+Das Leben ist unfair, Mädchen. Ich lasse dich nicht frei. (Sie grinst.)
+###_PLAYER
+Alright.
+Na gut.
+###_NPC
+Good.  Is there anything else you need?
+Gut. Brauchst du sonst noch etwas?
+###_PLAYER
+She's in my private room.
+Sie ist in meinem Privatzimmer.
+###_NPC
+I'll make a deal with you then.  I'll send a maid to your room, and she will unlock all of your friends that are not owned by someone else for 50$.
+Dann mache ich dir ein Angebot. Für 50$ schicke ich ein Hausmädchen in dein Zimmer, das all deine Freunde befreit, die nicht jemand anderem gehören.
+###_PLAYER
+In my room Mistress.
+In meinem Zimmer, Herrin.
+Deal!  (Pay her 50$.)
+Einverstanden! (50$ zahlen.)
+###_NPC
+Very good.  (She takes the money and sends a maid to your private room.)  Anything else?
+Sehr gut. (Sie nimmt das Geld und schickt ein Hausmädchen in dein Privatzimmer.) Sonst noch etwas?
+###_PLAYER
+What is a D/s family?
+Was ist eine D/s-Familie?
+###_NPC
+You can build your own D/s family or join a Dominant family.  A submissive can only have one Mistress.  A Mistress can have many collared submissives.
+Du kannst deine eigene D/s-Familie aufbauen oder der einer Dominanten beitreten. Eine Sub kann nur eine Herrin haben, eine Herrin aber viele Subs.
+###_PLAYER
+Is there a fee to collar or be collared?
+Kostet es etwas, Halsbänder anzulegen?
+###_NPC
+Yes, the Dominant must pay 100$ for each pet, we provide the locking collar.  If a slave wants freedom, she will pay 60$ on the first occurrence and 200$ on others.
+Ja, die Dominante zahlt 100$ pro Sklavin, wir geben ihr das Halsband dazu. Will eine Sklavin die Freiheit, zahlt sie beim ersten Mal 60$, jedes weitere Mal 200$.
+###_PLAYER
+Will you be my Mistress?
+Würden Sie meine Herrin sein?
+###_NPC
+I've heard about you girl, they say you're one of the best slaves around.  You would offer yourself to me?
+Ich habe von dir gehört, Mädchen, man erzählt sich, du seist eine der besten Sklavinnen hier. Bietest du dich mir an?
+Girl, my standards are high.  If I get a new slave, she would have to be the perfect submissive.
+Ich habe hohe Ansprüche, Mädchen. Wenn ich mir eine neue Sklavin zulege, müsste sie die perfekte Untergebene sein.
+###_PLAYER
+Can I collar and own anyone?
+Kann ich von jedem Besitz ergreifen?
+###_NPC
+BDSM is consensual.  As long as the person isn't already owned and consent to be your slave, you can collar her.
+Bei BDSM geht es um Einvernehmlichkeit. Solange die Person nicht schon einen Besitzer hat und einwilligt, deine Sklavin zu sein, kannst du ihr ein Halsband anlegen.
+###_PLAYER
+I want to collar a submissive.
+Ich will einer Sub ein Halsband anlegen.
+###_NPC
+Perfect!  Go get your consenting pet and bring her here.  You will need to pay 100$ for the slave collar and the ceremony.
+Perfekt! Bringe dein williges Haustier hierher. Du wirst 100$ für das Sklavenhalsband und die Zeremonie bezahlen müssen.
+###_PLAYER
+A Dominant wants to collar me.
+Eine Dom will mir ein Halsband anlegen.
+###_NPC
+You must be thrilled sub girl, but your Dominant will arrange the collaring ceremony, not you.  Ask her politely to contact us.
+Da bist du sicher begeistert, kleine Sub, aber deine Dom wird die Halsband-Zeremonie veranlassen, nicht du. Bitte sie höflich, uns darauf anzusprechen.
+###_PLAYER
+I want to be released from my owner.
+Ich will von meiner Besitzerin befreit werden.
+###_NPC
+I'm sorry to hear that.  Breaking a BDSM bond is serious.  Tell me your story, why do you want to leave?
+Es tut mir leid, das zu hören. Das Beenden einer BDSM-Beziehung ist eine ernste Sache. Erzähl, wie kam es dazu, dass du sie verlassen willst?
+Girl, I know your owner.  Speak with her about it first.
+Mädchen, ich kenne deine Besitzerin. Du solltest zuerst mit ihr darüber reden.
+As long as you don't ask anything idiotic.
+Solange du keine dummen Fragen stellst.
+###_PLAYER
+My Mistress doesn't want to join the club.
+Meine Herrin will dem Club nicht beitreten.
+###_NPC
+I understand.  BDSM is consensual, you have the right to leave your owner.  Since we don't encourage flyby slaves, there's a fee for your freedom.
+Ich verstehe. BDSM ist einvernehmlich, du hast das Recht, deine Besitzerin zu verlassen. Um Leichtsinn zu vermeiden, gibt es eine Gebühr für die Freiheit.
+###_PLAYER
+My owner is a student, she's not mature enough.
+Sie ist eine Schülerin und nicht reif genug.
+###_NPC
+That makes sense.  BDSM is consensual, you have the right to leave your owner.  Since we don't encourage flyby slaves, there's a fee for your freedom.
+Ergibt Sinn. BDSM ist einvernehmlich, du hast das Recht, deine Besitzerin zu verlassen. Um Leichtsinn zu vermeiden, gibt es eine Gebühr für die Freiheit.
+###_PLAYER
+My owner disappeared.
+Meine Besitzerin ist verschwunden.
+###_NPC
+Poor girl, I'm sure you'll find another owner someday.  Since we don't encourage flyby slaves, there's a fee for your freedom.
+Armes Mädchen, du findest sicher eines Tages eine neue Besitzerin. Um Leichtsinn zu vermeiden, gibt es eine Gebühr für die Freiheit.
+###_PLAYER
+My limits were broken too many times.
+Meine Limits wurden zu oft missachtet.
+###_NPC
+I'm sorry for you, some limits are not meant to be broken.  Since we don't encourage flyby slaves, there's a fee for your freedom.
+Das tut mir leid, einige Limits sollten nicht gebrochen werden. Um Leichtsinn zu vermeiden, gibt es eine Gebühr für die Freiheit.
+###_PLAYER
+I've found a better Mistress.
+Ich habe eine bessere Herrin gefunden.
+###_NPC
+The Bondage Club isn't a shopping mall for Dominants.  (She frowns at you.)  Since we don't encourage flyby slaves, there's a fee for your freedom.
+Der Bondage-Club ist kein Einkaufszentrum für Dominas. (Sie runzelt die Stirn.) Um Leichtsinn zu vermeiden, gibt es eine Gebühr für die Freiheit.
+###_PLAYER
+My owner doesn't want me anymore.
+Meine Besitzerin will mich nicht mehr.
+###_NPC
+Poor girl, I'm sure you'll find a good owner someday.  But since we don't encourage flyby slaves, there's a fee for your freedom.
+Armes Mädchen, du findest sicher eines Tages eine gute Besitzerin. Aber um Leichtsinn zu vermeiden, gibt es eine Gebühr für die Freiheit.
+###_PLAYER
+Mistress wants to become a slave.
+Meine Herrin will eine Sklavin werden.
+###_NPC
+People change you know, it can happen to the best of us.  Since we don't encourage flyby slaves, there's a fee for your freedom.
+Leute ändern sich, weißt du? Das kommt bei den Besten von uns vor. Um Leichtsinn zu vermeiden, gibt es eine Gebühr für die Freiheit.
+###_PLAYER
+I guess I don't have any good reason.
+Ich habe wohl keinen guten Grund.
+###_NPC
+Then that collar stays around your neck girl.  Go see your Mistress and work things out with her.
+Dann bleibt das Halsband an deinem Hals, Mädchen. Geh zu deiner Herrin und besprich die Situation mit ihr.
+###_PLAYER
+How much does it cost?
+Wie hoch ist der Preis?
+###_NPC
+The regular cost to be released from your owner bond is 200$.  But since everyone can make mistakes, it cost 60$ if it's the first time you do it.
+Die Regelkosten für die Befreiung von einer Herrin betragen 200$. Aber da jeder mal Fehler macht, kostet es beim ersten Mal nur 60$.
+###_PLAYER
+I'm kind of poor.
+Ich bin etwas arm.
+(Let her talk.)
+(Sie weiterreden lassen.)
+Why are there two different prices?
+Warum gibt es zwei verschiedene Preise?
+###_NPC
+We want to make sure that our members take their D/s relationship seriously.  You can see the higher price as a punitive measure.
+Wir wollen sicherstellen, dass unsere Mitglieder ihre D/s-Beziehungen ernst nehmen. Der höhere Preis kann als strafende Maßnahme betrachtet werden.
+###_PLAYER
+I want my freedom. (Pay her 60$)
+Ich will meine Freiheit. (60$ zahlen.)
+###_NPC
+Very well, it seems that we've lost a pet.  I will remove the slave collar from your neck.
+Nun gut, wie es scheint, haben wir ein Haustier verloren. Ich entferne das Sklavenhalsband von deinem Hals.
+###_PLAYER
+I want my freedom. (Pay her 200$)
+Ich will meine Freiheit. (200$ zahlen.)
+###_NPC
+Take your time before getting collared again.  I will remove the slave collar from your neck.
+Lass dir etwas Zeit, bevor du wieder rückfällig wirst. Ich entferne das Sklavenhalsband von deinem Hals.
+###_PLAYER
+Let me think about it.
+Lassen Sie mich darüber nachdenken.
+###_NPC
+Think girl, this is a serious decision.
+Überlege es dir gut, Mädchen, das ist eine ernste Entscheidung.
+###_PLAYER
+Alright.  (Expose your neck.)
+Also gut. (Deinen Hals freimachen.)
+###_NPC
+(She gets a special key and unlocks the collar from your neck.)  You're free girl, enjoy the club as you see fit.
+(Sie nimmt einen Spezialschlüssel und öffnet dein Halsband.) Du bist frei, Mädchen, genieße den Club, wie es dir gefällt.
+###_PLAYER
+(Bow your head and expose your neck.)
+(Deinen Kopf senken und deinen Hals freimachen.)
+I won't get collared again.  (Expose your neck.)
+Das war das letzte Mal. (Deinen Hals freimachen.)
+Thanks a lot.
+Vielen Dank.
+###_NPC
+My pleasure.  Is there anything else you need?
+War mir eine Freude. Brauchst du sonst noch etwas?
+###_PLAYER
+I will!
+Das werde ich!
+(Nod happily.)
+(Glücklich nicken.)
+###_NPC
+Is there anything else you need?
+Brauchst du sonst noch etwas?
+###_PLAYER
+Yes Miss.  Would you collar someone like me?
+Ja, Miss. Würden Sie jemanden wie mich aufnehmen?
+###_NPC
+I might be interested, but I need to know you better first.  Is there a place we could meet?
+Ich könnte Interesse haben, aber ich muss dich erst besser kennenlernen. Können wir uns irgendwo treffen?
+###_PLAYER
+I need a strong woman like you to control me.
+Ich brauche eine starke Frau, die mich lenkt.
+(Nod slowly and bow your head.)
+(Langsam nicken und deinen Kopf senken.)
+###_NPC
+Of course, think very carefully slave girl.
+Natürlich, überlege es dir gut, Sklavenmädchen.
+###_PLAYER
+I have my private room in the club.
+Ich habe ein Privatzimmer im Club.
+###_NPC
+That could certainly work.  I'll take my kitty to her cage and go see your place right after.
+Das sollte auf jeden Fall gehen. Ich bringe mein Kätzchen in ihren Käfig und komme dich gleich danach besuchen.
+###_PLAYER
+Yes, we could use my room Miss.
+Ja, wir können mein Zimmer benutzen, Miss.
+I don't know.
+Ich weiß nicht.
+###_NPC
+It's fine girl.  Let me know if you can find a good place where we could meet after my shift.
+Schon gut, Mädchen. Sag Bescheid, wenn du einen guten Ort findest, an dem wir uns nach meiner Schicht treffen können.
+###_PLAYER
+Great, I'll see you there.
+Toll, wir sehen uns dann.
+Take your time Miss.
+Lassen Sie sich Zeit, Miss.
+You're welcome any time.
+Sie sind jederzeit willkommen.
+What are club slaves?
+Was sind Clubsklaven?
+###_NPC
+Submissive girls can take slavery contracts with the club and get paid for it.  They become preys for anyone to play with while under that contract.
+Unterwürfige können Sklavenverträge mit dem Club abschließen und dafür bezahlt werden. Für die Vertragsdauer werden sie zur freien Beute für alle.
+###_PLAYER
+What are the slave contract terms?
+Was sind die Bedingungen des Sklavenvertrags?
+###_NPC
+The contract lasts for one hour and the girl gets paid 80$ at the end of it.  A special collar will be locked for the contract duration.
+Der Vertrag bleibt eine Stunde lang gültig und die Sklavin bekommt am Ende 80$ ausgezahlt. Währenddessen trägt sie ein spezielles Halsband.
+###_PLAYER
+There's a special collar?
+Ein spezielles Halsband?
+###_NPC
+Regular slaves wear the red collar, which means they are already taken.  Club slaves wear the green collar, which means they are open for anyone.
+Gewöhnliche Sklaven tragen rote Halsbänder, was bedeutet, dass sie vergeben sind. Clubsklaven tragen grüne Bänder und stehen damit jedem zur Verfügung.
+###_PLAYER
+What must club slaves do?
+Was müssen Clubsklaven tun?
+###_NPC
+Club slaves can still enjoy the club but must be naked at all times.  They can be approached by any club member to be restrained or played with.
+Clubsklaven beteiligen sich wie sonst auch im Club, müssen aber nackt sein. Jedes Clubmitglied darf sie jederzeit fesseln und mit ihnen spielen.
+###_PLAYER
+What if the sub is already owned?
+Was, wenn man schon einen Besitzer hat?
+###_NPC
+As long as the owner doesn't disapprove, a regular slave can take a club slave contract for one hour.  We will swap collars and lock the slave collar again in the end.
+Solange der Besitzer nicht widerspricht, kann eine Sklavin auch eine Stunde lang Clubsklavin sein. Wir wechseln die Halsbänder davor und danach aus.
+###_PLAYER
+Can I become a club slave?
+Kann ich eine Clubsklavin werden?
+###_NPC
+No, you're not submissive enough.
+Nein, du bist nicht Unterwürfig genug.
+You could, are you sure you understand the terms and commitments?  Do you accept the contract?
+Du könntest, hast du die Bedingungen und Verpflichtungen auch wirklich verstanden? Stimmst du dem Vertrag zu?
+Alright girl, but don't waste my time.
+Also gut, Mädchen, aber verschwende nicht meine Zeit.
+###_PLAYER
+I accept the terms.  I want to be a club slave.
+Ich stimme zu. Ich will eine Clubsklavin sein.
+###_NPC
+Very good, it's time to strip girl.
+Sehr gut, dann zieh dich aus, Mädchen.
+Since you're already naked, it's time for your collar slave.
+Da du bereits nackt bist, bekommst du nun dein Halsband, Sklavin.
+###_PLAYER
+Let's review the rules first.
+Gehen wir erst nochmal die Regeln durch.
+###_NPC
+Fine, what troubles you?
+Gut, was verunsichert dich?
+###_PLAYER
+Yes Miss.  (Strip.)
+Ja, Miss. (Dich ausziehen.)
+###_NPC
+(You strip down as she smirks.)  It's time for your collar slave.
+(Du ziehst dich aus und sie schmunzelt.) Nun bekommst du dein Halsband, Sklavin.
+###_PLAYER
+My pleasure.  (Strip.)
+Mit Vergnügen. (Dich ausziehen.)
+Very well.  (Present your neck.)
+Sehr wohl. (Deinen Hals präsentieren.)
+###_NPC
+(She removes your regular collar and straps a club slave collar around your neck.  She locks it securely with a strong padlock.)  Good girl.
+(Sie nimmt dein normales Halsband ab und legt dir ein Clubsklavenhalsband an. Sie sichert es mit einem starken Schloss.) Gutes Mädchen.
+(She straps a club slave collar around your neck.  She locks it securely with a strong padlock.)  Good girl.
+(Sie legt dir ein Clubsklavenhalsband an und sichert es mit einem starken Vorhängeschloss.) Gutes Mädchen.
+###_PLAYER
+Please don't strap it too tight.
+Bitte nicht zu fest ziehen.
+###_NPC
+(She removes your regular collar and straps a club slave collar around your neck.  She locks it securely with a strong padlock.)  Don't complain.
+(Sie nimmt dein normales Halsband ab und legt dir ein Clubsklavenhalsband an. Sie sichert es mit einem starken Schloss.) Nicht jammern.
+(She straps a club slave collar around your neck.  She locks it securely with a strong padlock.)  Don't complain.
+(Sie legt dir ein Clubsklavenhalsband an und sichert es mit einem starken Vorhängeschloss.) Nicht jammern.
+###_PLAYER
+It's an honor to serve the club.
+Es ist mir eine Ehre, dem Club zu dienen.
+###_NPC
+(She removes your regular collar and straps a club slave collar around your neck.  She locks it securely with a strong padlock.)  Slave, make us proud.
+(Sie nimmt dein normales Halsband ab und legt dir ein Clubsklavenhalsband an. Sie sichert es mit einem starken Schloss.) Sklavin, mach uns stolz.
+(She straps a club slave collar around your neck.  She locks it securely with a strong padlock.)  Slave, make us proud.
+(Sie legt dir ein Clubsklavenhalsband an und sichert es mit einem starken Vorhängeschloss.) Sklavin, mach uns stolz.
+###_PLAYER
+Am I ready Miss?
+Bin ich fertig, Miss?
+###_NPC
+You're ready slave.  Go in the club and make sure everyone see's you.  Make our customers and members happy.
+Du bist bereit, Sklavin. Laufe durch den Club und lass dich von allen sehen. Beglücke unsere Kunden und Mitglieder.
+###_PLAYER
+I should wander in the club?
+Sollte ich durch den Club wandern?
+###_NPC
+Absolutely.  Go in the club and make sure everyone see's you.  Make our customers and members happy.
+Auf jeden Fall. Laufe durch den Club und lass dich von allen sehen. Beglücke unsere Kunden und Mitglieder.
+Get going girl!  Go in the club and make sure everyone see's you.  Make our customers and members happy.
+Na los, Mädchen! Laufe durch den Club und lass dich von allen sehen. Beglücke unsere Kunden und Mitglieder.
+Don't stay here girl, you're on duty.  Go in the club and make sure everyone see's you.  Make our customers and members happy.
+Nicht trödeln, Mädchen, du bist im Dienst. Laufe durch den Club und lass dich von allen sehen. Beglücke unsere Kunden und Mitglieder.
+Your slave time is done girl.  Are you here to complete your contract?
+Deine Sklavenzeit ist um, Mädchen. Bist du hier, um deinen Vertrag abzuschließen?
+###_PLAYER
+Miss, I wish to complete my contract.
+Miss, ich möchte meinen Vertrag abschließen.
+###_NPC
+Very good, did you enjoy your experience?
+Sehr gut, hat dir dein Abenteuer gefallen?
+###_PLAYER
+(Bow your head and leave her.)
+(Deinen Kopf senken und sie verlassen.)
+It was very kinky Miss.
+Es war ziemlich geil, Miss.
+###_NPC
+(She swaps your collars and laughs.)  Very good, here's your money slave.  (She gives you 80$.)
+(Sie tauscht deine Halsbänder und lacht.) Sehr gut, hier ist dein Geld, Sklavin. (Sie gibt dir 80$.)
+(She removes your collar and laughs.)  Very good, here's your money slave.  (She gives you 80$.)
+(Sie nimmt dein Halsband ab und lacht.) Sehr gut, hier ist dein Geld, Sklavin. (Sie gibt dir 80$.)
+###_PLAYER
+I loved it.  I hope to do it again.
+Es war super. Ich würde es gern wieder tun.
+###_NPC
+(She swaps your collars and grins.)  You can come back anytime.  Here's your money slave.  (She gives you 80$.)
+(Sie tauscht deine Halsbänder und grinst.) Du kannst jederzeit wiederkommen. Hier ist dein Geld, Sklavin. (Sie gibt dir 80$.)
+(She removes your collar and grins.)  You can come back anytime.  Here's your money slave.  (She gives you 80$.)
+(Sie nimmt dein Halsband ab und grinst.) Du kannst jederzeit wiederkommen. Hier ist dein Geld, Sklavin. (Sie gibt dir 80$.)
+###_PLAYER
+Maybe I'm not fit to be a public slave.
+Vielleicht bin ich als öffentliche Sklavin nicht geeignet.
+###_NPC
+(She swaps your collars and nods.)  Going public isn't for everyone.  Here's your money girl.  (She gives you 80$.)
+(Sie tauscht deine Halsbänder und nickt.) Das ist nicht für jeden etwas. Hier ist dein Geld, Sklavin. (Sie gibt dir 80$.)
+(She removes your collar and nods.)  Going public isn't for everyone.  Here's your money girl.  (She gives you 80$.)
+(Sie nimmt dein Halsband ab und nickt.) Das ist nicht für jeden etwas. Hier ist dein Geld, Sklavin. (Sie gibt dir 80$.)
+###_PLAYER
+What are club Mistresses?
+Was sind Clubherrinnen?
+###_NPC
+We Mistresses are the final arbiters in the club.  We make the rules and enforce them.  It's hard work but it's rewarding.
+Wir Herrinnen sind die höchste Instanz im Club. Wir machen die Regeln und sorgen für ihre Einhaltung. Es ist harte Arbeit, zahlt sich aber aus.
+###_PLAYER
+What are the requirements?
+Was sind die Voraussetzungen?
+###_NPC
+To apply to be a club Mistress, someone must be a club member for at least one month and be known to be really dominant.
+Um sich als Clubherrin zu bewerben, muss man mindestens einen Monat lang Clubmitglied sein und einen sehr dominanten Ruf haben.
+###_PLAYER
+Do they get paid?
+Werden sie bezahlt?
+###_NPC
+Absolutely.  The salary is 100$ per week and they will receive the official Mistress outfit that I'm wearing right now.
+Natürlich. Das Wochengehalt beträgt 100$ und sie erhalten die offizielle Herrinnenkleidung, die ich gerade anhabe.
+###_PLAYER
+Do they have privileges?
+Haben sie Sonderrechte?
+###_NPC
+They have a special privilege that comes with responsibilities.  Every Mistress get special keys for chastity devices.
+Sie haben ein Sonderrecht, das mit Verpflichtungen verbunden ist. Jede Herrin erhält spezielle Schlüssel für Keuschheitsgeräte.
+###_PLAYER
+What if a Mistress turns submissive?
+Was, wenn eine Herrin Unterwürfig wird?
+###_NPC
+She will be kicked out of the group and her Mistress clothes will be confiscated.
+Sie wird aus der Gruppe geworfen und ihre Herrinnenkleidung wird beschlagnahmt.
+###_PLAYER
+Can I become a club Mistress?
+Kann ich eine Clubherrin werden?
+###_NPC
+You've made quite a reputation for yourself in the club.  Are you serious about becoming a Mistress?
+Du hast dir im Club einen ziemlichen Namen gemacht. Meinst du es ernst, dass du eine Herrin werden willst?
+We've noticed your good reputation but it's not enough.  Work harder to become an elite Dominant.
+Dein guter Ruf ist uns aufgefallen, aber er reicht noch nicht. Streng dich mehr an, um eine Domina der Elite zu werden.
+You?  Don't make me laugh.  Being a Mistress is for real Dominants only.
+Du? Dass ich nicht lache. Der Herrinnenstatus ist nur wahrlich dominanten Personen vorbehalten.
+Girl, you're a new member.  You must be a club member for at least one month before you can apply.
+Mädel, du bist ein neues Mitglied. Du musst mindestens einen Monat lang dabei sein, bevor du dich bewerben kannst.
+###_PLAYER
+I'm here to collect my salary.
+Ich bin wegen meines Gehalts hier.
+###_NPC
+(She checks her book and gives you 100$.)  Here you go Mistress DialogPlayerName.  Come again in seven days for your next pay.
+(Sie überprüft ihr Buch und gibt dir 100$.) Bitteschön, Herrin DialogPlayerName. Kommen Sie in sieben Tagen für die nächste Bezahlung zurück.
+(She checks her book and frowns.)  You're too early Mistress DialogPlayerName.  It takes a full week between each payment.
+(Sie überprüft ihr Buch und runzelt die Stirn.) Sie sind zu früh dran, Herrin DialogPlayerName. Vor jeder Bezahlung muss eine Woche vergehen.
+###_PLAYER
+That's all I wanted to know.
+Mehr wollte ich nicht wissen.
+###_NPC
+Good.  Now, get to the point or get going.
+Gut. Jetzt komm zum Punkt oder mach dich auf die Socken.
+###_PLAYER
+Yes, I'm serious.
+Ja, ich meine es ernst.
+###_NPC
+Excellent!  First, we need to prepare a perfect outfit for you.  Do you prefer black, red or silver?
+Ausgezeichnet! Als Erstes müssen wir ein Outfit für dich vorbereiten. Möchtest du schwarz, rot oder silber?
+###_PLAYER
+Do you think I can do it?
+Meinen Sie, ich kann das?
+###_NPC
+Not with this attitude.  You'll know when you're ready, and it's not now.
+Mit dieser Einstellung ganz sicher nicht. Du wirst wissen, wann du bereit bist, und jetzt ist das nicht der Fall.
+Sure, take your time.
+Klar, lass dir Zeit.
+###_PLAYER
+Black.
+Schwarz.
+###_NPC
+Good.  (She snaps her fingers and a submissive girl comes to dress you up.)
+Gut. (Sie schnipst mit den Fingern und ein unterwürfiges Mädchen kommt herein, um dich anzukleiden.)
+###_PLAYER
+Red.
+Rot.
+Silver.
+Silber.
+This is perfect, I love it.
+Das ist perfekt, ich liebe es.
+###_NPC
+(She smiles.)  It's time for your inauguration party Mistress DialogPlayerName.
+(Sie lächelt.) Es wird Zeit für Ihre Einweihungsfeier, Herrin DialogPlayerName.
+###_PLAYER
+Good girl.  (Spank the dressing girl.)
+Gutes Mädchen. (Der Assistentin auf den Po hauen.)
+###_NPC
+(She grins.)  It's time for your inauguration party Mistress DialogPlayerName.
+(Sie grinst.) Es wird Zeit für Ihre Einweihungsfeier, Herrin DialogPlayerName.
+###_PLAYER
+So much power!
+So viel Macht!
+###_NPC
+(She nods.)  It's time for your inauguration party Mistress DialogPlayerName.
+(Sie nickt.) Es wird Zeit für Ihre Einweihungsfeier, Herrin DialogPlayerName.
+###_PLAYER
+Excellent!  (Do the inauguration party.)
+Hervorragend! (Zur Einweihungsfeier.)
+This should be fun.  (Do the party.)
+Das klingt nach Spaß. (Zur Feier.)
+What does it mean?
+Was soll das heißen?
+###_NPC
+It means that you're not Dominant enough and you're getting kicked out of the Mistresses circle.
+Das heißt, du bist nicht dominant genug und wirst aus dem Kreis der Herrinnen verstoßen.
+###_PLAYER
+You're kicking me out?
+Ihr werft mich raus?
+###_NPC
+Correct, you're not Dominant enough, so you're getting kicked out of the Mistresses circle.
+Richtig, du bist nicht dominant genug, also wirst du aus dem Kreis der Herrinnen verstoßen.
+Girl, you've really lost your Dominant touch and you're getting kicked out of the Mistresses circle.
+Mädchen, du hast deine dominante Art wirklich verloren und wirst aus dem Kreis der Herrinnen verstoßen.
+###_PLAYER
+That's unfair!
+Das ist unfair!
+###_NPC
+Don't make it harder than it should be, you've brought this on yourself.  Now get naked for your shaming.
+Mach es nicht schwieriger, als es ist, das hast du dir selbst zu verdanken. Jetzt zieh dich für deine Bloßstellung aus.
+###_PLAYER
+I understand.
+Ich verstehe.
+###_NPC
+Very good, you did bring this on yourself.  Now get naked for your shaming.
+Sehr schön, das hast du dir ja auch selbst zu verdanken. Jetzt zieh dich für deine Bloßstellung aus.
+###_PLAYER
+My shaming?
+Meine Bloßstellung?
+###_NPC
+Yes, your shaming period will last for an hour.  You will have to wander the club naked, so everyone knows you're not a Mistress anymore.
+Ja, deine Bloßstellung hält eine Stunde lang an. Du musst nackt durch den Club laufen, damit alle erfahren, dass du keine Herrin mehr bist.
+###_PLAYER
+(Grumble and get naked.)
+(Grummeln und dich ausziehen.)
+###_NPC
+You're not allowed to wear clothes for the next hour.  Now surrender your Mistress outfit and chastity keys.
+Für die Dauer der nächsten Stunde ist dir jegliche Kleidung untersagt. Jetzt gib dein Herrinnen-Outfit und deine Keuschheitsschlüssel ab.
+###_PLAYER
+(Stay silent and get naked.)
+(Schweigen und dich ausziehen.)
+Fine, take it.  (Give your Mistress items.)
+Gut, nimm. (Deine Herrinnen-Sachen abgeben.)
+###_NPC
+(She takes your Mistress items and sighs.)  Such a pity, you had so much potential.  Carry on girl.
+(Sie nimmt deine Herrinnen-Sachen und seufzt.) Wirklich schade, du hattest so viel Potenzial. Na los, Mädchen.
+###_PLAYER
+That sucks!  (Give your Mistress items.)
+So ein Mist! (Deine Herrinnen-Sachen abgeben.)

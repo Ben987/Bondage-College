@@ -1,0 +1,533 @@
+###_NPC
+Communicating with a gag is quite hard.  You'll need to remove it to chat.
+Knebel erschweren die Kommunikation um einiges. Du solltest ihn abnehmen, um dich zu unterhalten.
+Of course, head maid DialogPlayerName.  (She releases you.)
+Natürlich, Hausdame DialogPlayerName. (Sie befreit dich.)
+(She first shakes her head to avoid the gag, but eventually surrenders as you silence her.)
+(Sie schüttelt erst den Kopf, um dem Knebel zu entgehen, lässt sich aber schließlich von dir zum Schweigen bringen.)
+(You remove her gag while she stretches her mouth.)  Thanks, it's hard to introduce newcomers with that gag.
+(Du nimmst den Knebel ab und sie streckt ihren Mund.) Danke, geknebelt ist es schwierig, Neulinge einzuweisen.
+(She sighs and turns around while you restrain her arms.)  It might be a little hard to work like that Miss.
+(Sie seufzt und dreht sich um, als du ihre Arme fesselst.) Das könnte meine Arbeit etwas erschweren, Miss.
+(You free her arms and she nods slowly.)  Thanks a lot Miss, this is much better.
+(Du befreist ihre Arme und sie nickt langsam.) Vielen Dank, Miss, das ist viel besser.
+(She submits to you while you restrain her legs.)  Do I get paid overtime if I'm stuck here?
+(Sie lässt sich von dir die Beine fesseln.) Bekomme ich Überstunden bezahlt, wenn ich hier nicht weg kann?
+(You release her legs from the restraint.)  You're quite good with restraints Miss.
+(Du befreist ihre Beine.) Sie gehen geschickt damit um, Miss.
+(She looks puzzled as you restrain her feet.)  I didn't plan on running anytime soon.
+(Sie guckt verwirrt, als du ihre Füße fesselst.) Ich hatte nicht vor, demnächst wegzulaufen.
+(You release her feet.)  Wonderful!
+(Du befreist ihre Füße.) Wundervoll!
+(You strap the collar on her while she blushes.)  I bet you're a great Mistress.
+(Du legst ihr das Halsband um und sie wird rot.) Sie wären bestimmt eine gute Herrin.
+(You remove the collar around her neck while she stares into your eyes.)
+(Du nimmst ihr das Halsband ab, während sie dir in die Augen starrt.)
+(She struggles as you lock the device on her.)  No, please don't!  I don't have a key!
+(Sie zappelt, als du ihr die Vorrichtung anlegst.) Nein, bitte nicht! Ich habe keinen Schlüssel!
+(She looks extremely relieved as you unlock the device.)  Thank you so much Miss DialogPlayerName.
+(Sie wirkt äußerst erleichtert, als du die Vorrichtung aufschließt.) Meinen größten Dank, DialogPlayerName.
+(You strap the device on her head as she sighs.)  Well this could make my shift difficult...
+(Du schnallst ihr das Ding um den Kopf und sie seufzt.) Tja, meine Schicht wurde soeben etwas schwieriger...
+(You remove the device as she shakes her head joyfully.)  Wonderful!  That'll make my day easier.
+(Du nimmst das Ding ab und sie schüttelt fröhlich den Kopf.) Wundervoll! Das macht meinen Tag gleich viel einfacher.
+(She jumps from the searing pain on her breast.)  Ouch!  Miss Head Maid!
+(Sie zuckt vom schneidenden Schmerz auf ihrer Brust zusammen.) Autsch! Frau Hausdame!
+(You whip her breast with the leather crop as she whimpers and bows her head.) Owwwwwww!
+(Du peitschst ihr mit der Ledergerte auf die Brust und sie lässt wimmernd den Kopf hängen.) Auuuuuuu!
+(You whip her butt hard as she sighs.)  Ahh! I promise I'll work harder Miss Head Maid!
+(Du peitschst ihr kräftig auf den Hintern und sie seufzt.) Ahh! Ich verspreche, härter zu arbeiten, Frau Hausdame!
+(She grumbles as you strike her butt with the crop.)  Oww! That stings Miss!.
+(Sie grummelt, als du ihren Hintern mit der Gerte triffst.) Auu! Das tut weh, Miss!
+Greetings Mistress DialogPlayerName.  Welcome to the introduction class.  (She does curtsies for you.)
+Grüßt Euch, Herrin DialogPlayerName. Willkommen beim Einstiegskurs. (Sie verneigt sich vor dir.)
+Greetings head maid DialogPlayerName.  Welcome to the introduction class.  (She does curtsies for you.)
+Grüßen Sie sich, Hausdame DialogPlayerName. Willkommen beim Einstiegskurs. (Sie verneigt sich vor dir.)
+(She stares at you.)  Hello naked girl.  Welcome to the introduction class.
+(Sie starrt dich an.) Hallo, nacktes Mädchen. Willkommen zum Einstiegskurs.
+Hi sister, welcome to the introduction class.
+Hi, Schwester, willkommen zum Einstiegskurs.
+Hello there, welcome to the introduction class.
+Hallo, willkommen zum Einstiegskurs.
+###_PLAYER
+Hi, my name is DialogPlayerName.
+Hi, ich heiße DialogPlayerName.
+###_NPC
+Pleased to meet you.  I'm DialogCharacterName, I work here as a maid.
+Sehr erfreut. Ich bin DialogCharacterName, Ich arbeite hier als Hausmädchen.
+###_PLAYER
+Thanks, little maid.  What's going on here?
+Danke, kleines Hausmädchen. Was geht hier vor sich?
+###_NPC
+In here, you can learn how to restrain someone, and how to escape by yourself.
+Hier kannst du lernen, wie du jemanden fesselst und wie du dich selbst aus Fesseln befreist.
+###_PLAYER
+Introduction class?
+Einstiegskurs?
+###_NPC
+In this class, you can learn how to restrain someone, and how to free yourself.
+In diesem Kurs kannst du lernen, wie du jemanden fesselst und wie du dich selbst aus Fesseln befreist.
+###_PLAYER
+I don't need any introduction.
+Ich brauche keine Einführung.
+###_NPC
+Very well, would you like to practice with us then?
+Sehr wohl, möchtest du dann mit uns üben?
+###_PLAYER
+I can't stay to chat.  (Leave her.)
+Ich habe keine Zeit zum Plaudern. (Dialog beenden.)
+Can I strap up anyone at any time?
+Kann ich jederzeit jeden in Fesseln legen?
+###_NPC
+Yes and no.  You need their consent and you cannot do it in the middle of a conversation.
+Ja und nein. Du brauchst ihre Zustimmung und du kannst es nicht einfach mitten im Gespräch tun.
+###_PLAYER
+This is great!
+Das ist toll!
+###_NPC
+I'm glad you like it.  Let me teach you about the body parts your can restrain.
+Freut mich, dass es dir gefällt. Lass mich dir von den Körperteilen erzählen, mit denen du interagieren kannst.
+###_PLAYER
+It sounds kinky. (Blush a little.)
+Das klingt sexy. (Rot werden.)
+###_NPC
+It's kinky and it's fun!  Let me teach you first about the body parts your can restrain.
+Es ist sexy und macht Spaß! Lass mich dir zuerst von den Körperteilen erzählen, mit denen du interagieren kannst.
+###_PLAYER
+Tell me about the club first.
+Erzähl mir erst etwas über den Club.
+###_NPC
+The Bondage Club is a place for open minded adults to share their BDSM kinks.
+Der Bondage-Club ist ein Ort für vorurteilslose Erwachsene, die ihre BDSM-Vorlieben miteinander teilen.
+###_PLAYER
+You're both a maid and a teacher?
+Du bist also ein Hausmädchen und eine Lehrerin?
+###_NPC
+We maids do a lot of work here.  You'll see this with time.
+Wir Hausmädchen übernehmen hier viele Aufgaben. Das wirst du mit der Zeit sehen.
+###_PLAYER
+I already know that.
+Das weiß ich bereits.
+Fair enough.
+Also gut.
+###_NPC
+Very well.  Let me teach you about the body parts your can restrain.
+Sehr wohl. Lass mich dir von den Körperteilen erzählen, mit denen du interagieren kannst.
+###_PLAYER
+Awesome!
+Klasse!
+I'm listening.
+Ich bin ganz Ohr.
+###_NPC
+There are eleven body parts to interact with.  To access them, select the body region I will show you.
+Es gibt elf Körperteile, mit denen man interagieren kann. Wähle dazu die Körperregionen, die ich dir zeige.
+###_PLAYER
+Please tell me Miss.
+Bitte erzählen Sie, Miss.
+###_NPC
+There are eight body parts to interact with.  To access them, select the body region I will show you.
+Es gibt acht Körperteile, mit denen man interagieren kann. Wähle dazu die Körperregionen, die ich dir zeige.
+###_PLAYER
+Alright, but make it quick.
+Na gut, aber mach schnell.
+Show me the body regions I can select.
+Welche Körperregionen kann ich auswählen?
+###_NPC
+Restraining the feet will prevent your victim from moving away.
+Das Fesseln der Füße hindert dein Opfer daran, sich vom Fleck zu bewegen.
+###_PLAYER
+(Listen.)
+(Zuhören.)
+###_NPC
+Restraining the upper legs will still allow your victim to move around but it creates a nice effect.
+Mit gefesselten Oberschenkeln kann dein Opfer noch laufen, aber es entsteht ein netter Effekt.
+On the pussy or vagina region, you can use items such as vibrators or eggs.  The perfect place to tease your victim and make them climax.
+Am Intim- oder Vaginalbreich kannst du Dinge wie Vibratoren einsetzen. Die perfekte Stelle, mit deinem Opfer zu spielen und es zum Höhepunkt zu bringen.
+On the butt or anal region, you can use regular butt plugs or fashion plugs suchs as cat tails.
+Im Gesäß- oder Analbereich kannst du Analstöpsel einsetzen, darunter auch Modestöpsel wie etwa mit Katzenschwänzen.
+On the pelvis, you can use whips, crops or chastity belts.  Know that it will restrict any access to the vagina and anus.
+Am Becken lassen sich Peitschen, Gerten oder Keuschheitsgürtel einsetzen. Beachte, dass Letzteres den Zugang zur Vagina und zum Anus verhindert.
+On the torso, you can use many kinds of harnesses, mostly for esthetics.
+Am Oberkörper lassen sich viele Arten von Harnischen anlegen, hauptsächlich aus Gründen der Ästhetik.
+The breast region can be used for more chastity devices, piercings and whips or crops.
+Der Brustbereich eignet sich für Keuschheits-BHs, Piercings und Peitschen oder Gerten.
+The arms can be restrained using many devices.  This will prevent your victim from using her hands to free herself.
+Die Arme können mit vielerlei Gegenständen gefesselt werden. Das hindert dein Opfer daran, sich mit den Händen zu befreien.
+You can use collars on your victim's neck to show everyone that they are yours, enslave them or leash them.
+Mit Halsbändern kannst du allen zu verstehen geben, dass dein Opfer dir gehört. Du kannst es versklaven oder an die Leine nehmen.
+You can use gags to silence your victim, making her unable to speak.
+Mit Knebeln kannst du dein Opfer zum Schweigen bringen und es am Sprechen hindern.
+Blindfolds, ear muffs, and hoods can also be used to restrict vision and hearing.
+Mit Augenbinden, Ohrenschützern und Hauben können die Sicht und das Gehör deines Opfers beeinträchtigt werden.
+That's about everything. Remember that your arms need to be free to restrain someone.
+Das war so ziemlich alles. Denk daran, dass deine Arme frei sein müssen, um jemanden fesseln zu können.
+###_PLAYER
+Thanks for the info.
+Danke für die Info.
+###_NPC
+My pleasure! Now we can practice.  Would you prefer to restrain someone, or be tied up yourself?
+War mir ein Vergnügen! Nun können wir üben. Würdest du lieber jemanden fesseln oder selbst gefesselt werden?
+###_PLAYER
+That makes sense.
+Das ergibt Sinn.
+###_NPC
+Of course! And now we can practice.  Would you prefer to restrain someone, or be tied up yourself?
+Natürlich! Und nun können wir üben. Würdest du lieber jemanden fesseln oder selbst gefesselt werden?
+###_PLAYER
+Can I strap you up now?
+Kann ich dich jetzt verschnüren?
+###_NPC
+Not me I'm afraid, but we have someone here who would certainly enjoy being your victim.
+Mich leider nicht, aber meine Assistentin hier würde liebend gern dein Opfer spielen.
+I'm all yours if you want me, head maid DialogPlayerName.  I will not resist you.
+Ich stehe Ihnen voll und ganz zur Verfügung, Hausdame DialogPlayerName. Wenn Sie mich wollen, wehre ich mich nicht.
+###_PLAYER
+Can we practice?
+Können wir üben?
+###_NPC
+Absolutely.  Would you prefer to restrain someone, or be tied up yourself?
+Auf jeden Fall. Würdest du lieber jemanden fesseln oder selbst gefesselt werden?
+###_PLAYER
+Can you tie me up now?
+Kannst du mich jetzt fesseln?
+###_NPC
+I can certainly tie you up.  It's a good time to practice.
+Natürlich kann ich dich fesseln. Dies ist ein guter Moment zum Üben.
+You can practice your bondage skills here.  Would you prefer to restrain someone, or be tied up yourself?
+Wir können hier deine Bondage-Fertigkeiten üben. Würdest du lieber jemanden fesseln oder selbst gefesselt werden?
+###_PLAYER
+I want to practice tying you up.
+Ich möchte üben, dich zu fesseln.
+###_NPC
+(She blushes.)  Yes, head maid DialogPlayerName.  I will not resist you.
+(Sie wird rot.) Jawohl, Hausdame DialogPlayerName. Ich werde mich nicht widersetzen.
+You can't tie me up, but we have someone here who would certainly enjoy being your subject.
+Mich kannst du nicht fesseln, aber meine Assistentin hier wäre liebend gern deine Versuchsperson.
+###_PLAYER
+Can I tie her up?
+Kann ich dieses Mädchen fesseln?
+###_NPC
+Absolutely, you have the perfect candidate here to practice on.
+Aber sicher, sie ist die perfekte Kandidatin zum Üben.
+###_PLAYER
+I want to practice freeing myself.
+Ich möchte üben, mich zu befreien.
+###_NPC
+Awesome!  If you're ready now I can get started.
+Prima! Wenn du bereit bist, kann ich gleich loslegen.
+###_PLAYER
+Who runs this club?
+Wer leitet diesen Club?
+###_NPC
+The Head Mistress is in charge.  You should go present yourself if you haven't already.
+Die Hausherrin hat hier das Sagen. Du solltest dich ihr vorstellen gehen, falls du das noch nicht getan hast.
+###_PLAYER
+Let's practice later.  (Leave her.)
+Üben wir später. (Dialog beenden.)
+I can use my favorite restraints on her?
+Kann ich meine Lieblingsfesseln an ihr benutzen?
+###_NPC
+Of course, use anything you want on her.  She's very submissive, I'm sure she'll enjoy it.
+Natürlich, benutze alles an ihr, was du willst. Sie ist sehr unterwürfig, es wird ihr sicher gefallen.
+###_PLAYER
+Can I have some items to practice with?
+Kann ich ein paar Sachen zum Üben haben?
+###_NPC
+Use these basic items. They are easy to use, but also easy to struggle out from.
+Nimm diese Basisgegenstände. Sie sind einfach zu benutzen, aber es ist auch einfach, sich daraus zu befreien.
+###_PLAYER
+Thanks!  (Take the items.)
+Danke! (Die Sachen nehmen.)
+###_NPC
+(She gives you ropes for her arms and legs,  plus a basic cloth gag.)
+(Sie gibt dir Seile für Arme und Beine und einen einfachen Stoffknebel.)
+###_PLAYER
+This is sweet.  (Take the items.)
+Ist das geil. (Die Sachen nehmen.)
+I'll make it extra tight.
+Ich mache es besonders eng.
+###_NPC
+Impressive.  Make sure to restrain her arms, her feet and to gag her.
+Beeindruckend. Du solltest auf jeden Fall ihre Arme und Beine fesseln und sie knebeln.
+###_PLAYER
+I'm ready!
+Ich bin bereit!
+###_NPC
+Wonderful.  Make sure to restrain her arms and her feet, and don't forget to gag her!
+Wundervoll. Du solltest auf jeden Fall ihre Arme und Beine fesseln, und vergiss nicht, sie zu knebeln!
+###_PLAYER
+I can do it now?
+Kann ich es jetzt gleich tun?
+###_NPC
+Absolutely.  Make sure to restrain her arms and her feet, and don't forget to gag her!
+Aber sicher. Du solltest auf jeden Fall ihre Arme und Beine fesseln, und vergiss nicht, sie zu knebeln!
+Make sure to restrain her arms and her feet, and don't forget to gag her!
+Du solltest auf jeden Fall ihre Arme und Beine fesseln, und vergiss nicht, sie zu knebeln!
+###_PLAYER
+She's restrained pretty well now.
+Sie ist jetzt ziemlich gut verschnürt.
+###_NPC
+(She looks at your victim and smiles.)  Excellent!  So how does it feel to restrain someone?
+(Sie betrachtet dein Opfer und lächelt.) Ausgezeichnet! Wie fühlt es sich an, jemanden zu fesseln?
+###_PLAYER
+Very good.  (Leave her.)
+Gut. (Dialog beenden.)
+I can tie her up at any time?
+Kann ich sie jederzeit fesseln?
+###_NPC
+Yes and no.  You cannot strap her up in the middle of a conversation.
+Ja und nein. Du kannst nicht einfach mitten im Gespräch drauflos binden.
+###_PLAYER
+Tell me about the body parts I can restrain.
+Erzähl mir von den Körperteilen, die ich fesseln kann.
+###_NPC
+That's about everything.  Remember that your arms need to be free to restrain someone.
+Das war so ziemlich alles. Denk daran, dass deine Arme frei sein müssen, um jemanden fesseln zu können.
+###_PLAYER
+It was fun to strap her up.
+Es hat Spaß gemacht, sie festzubinden.
+###_NPC
+I'm glad you feel that way.  I think you're ready to explore the club now.
+Das freut mich. Ich glaube, damit bist du nun bereit, den Club zu erkunden.
+###_PLAYER
+I would rather be restrained myself.
+Ich wäre lieber selbst gefesselt.
+###_NPC
+Don't worry, I'm sure it will happen often.  I think you're ready to explore the club now.
+Keine Sorge, das wird sicher oft genug passieren. Ich glaube, damit bist du nun bereit, den Club zu erkunden.
+###_PLAYER
+It's empowering!  I need to find a whip now...
+Ich fühle mich stark! Jetzt brauche ich eine Peitsche...
+###_NPC
+A monster is born!  (She giggles.)  You're ready to explore the club now.
+Wir haben ein Monster geschaffen! (Sie kichert.) Du bist nun bereit, den Club zu erkunden.
+###_PLAYER
+I can tie up anyone?
+Kann ich jeden fesseln?
+###_NPC
+Anyone that's into bondage, yes.  Have fun causing trouble.
+Jeden, der Bondage mag, ja. Viel Spaß beim Unruhe stiften.
+###_PLAYER
+Can I tie you up now?
+Kann ich dich jetzt fesseln?
+###_NPC
+(She giggles.)  Not now, I have work to do here.  But I'm sure you'll find victims if you wander around.
+(Sie kichert.) Nicht jetzt, ich muss noch arbeiten. Aber du findest sicher ein paar Opfer, wenn du herumwanderst.
+(She giggles.)  If you wish head maid DialogPlayerName.
+(Sie kichert.) Wenn sie wünschen, Hausdame DialogPlayerName.
+Your introduction class is done.  I hope you have fun in the club!
+Deine Einweisung ist beendet. Ich hoffe, du wirst im Club viel Spaß haben.
+###_PLAYER
+You were a great teacher.
+Du warst eine gute Lehrerin.
+###_NPC
+Well thanks a lot.  (She smiles.)  You're a good student.
+Na ja, vielen Dank. (Sie lächelt.) Du bist eine gute Schülerin.
+###_PLAYER
+Thanks!  Have a great time.  (Leave her.)
+Danke! Viel Spaß noch. (Dialog beenden.)
+Can you teach me more about rope bondage?
+Kann ich mehr über Seil-Bondage erfahren?
+###_NPC
+If you like rope bondage that much, try the Shibari Dojo.  You might learn a few new tricks.
+Wenn du Seil-Bondage so sehr magst, besuche das Shibari-Dojo. Da könntest du ein paar neue Tricks lernen.
+###_PLAYER
+Tell me about the other types of restraints.
+Erzähl mir von den anderen Arten von Fesseln.
+###_NPC
+Some items are impossible to struggle out from, so you'll need to find help.  Also, items like cuffs can be locked, and you'll need a key to unlock them.
+Bei manchen Fesseln ist das Befreien ohne Hilfe unmöglich. Dinge wie Handschellen lassen sich nur mit einem Schlüssel öffnen.
+Of course!  If you're ready for the challenge I will tie you up.
+Natürlich! Wenn du bereit für die Herausforderung bist, werde ich dich fesseln.
+Are you ready to struggle against the ropes?
+Bist du bereit, gegen die Seile anzukämpfen?
+Get your arms free first if you want to practice struggling against my ropes.  Let me know when you're ready.
+Du solltest erst deine Arme befreien, wenn du das Befreien aus meinen Seilen üben willst. Sag Bescheid, wenn du soweit bist.
+###_PLAYER
+I'm ready, you can tie me up.
+Ich bin bereit, du kannst mich fesseln.
+###_NPC
+(She wraps a white nylon rope around your feet and does two knots.)
+(Sie bindet ein weißes Nylonseil um deine Füße und macht zwei Knoten.)
+###_PLAYER
+Not yet.  Give me some time.  (Leave her.)
+Noch nicht. Ich brauche etwas Zeit (Dialog beenden.)
+I won't be running away now.
+So kann ich nicht davonlaufen.
+###_NPC
+That's for sure.  (She wraps a second rope around your legs.)
+Soviel ist sicher. (Sie bindet ein zweites Seil um deine Beine.)
+###_PLAYER
+That's all?
+Ist das alles?
+###_NPC
+Hah, of course not.  Much left to do.  (She wraps a second rope around your legs.)
+Ha, natürlich nicht. Es gibt noch viel zu tun. (Sie bindet ein zweites Seil um deine Beine.)
+###_PLAYER
+It feels good.
+Fühlt sich gut an.
+###_NPC
+(She nods and wraps a third rope around your body and arms, forcing them to stick into your back.)
+(Sie nickt und wickelt ein drittes Seil um deinen Oberkörper und deine Arme, sodass sie an deinem Rücken haften.)
+###_PLAYER
+You sure know the ropes.
+Du verstehst dein Handwerk.
+###_NPC
+(She smiles and wraps a third rope around your body and arms, forcing them to stick into your back.)
+(Sie lächelt und wickelt ein drittes Seil um deinen Oberkörper und deine Arme, sodass sie an deinem Rücken haften.)
+###_PLAYER
+It's too tight!
+Das ist zu eng!
+###_NPC
+You'll get used to it.  Now do you think you can escape?
+Du gewöhnst dich daran. Meinst du, du kannst dich befreien?
+###_PLAYER
+That's the best you can do?
+Ist das etwa schon alles, was du kannst?
+###_NPC
+You're very bold, I like it.  Now do you think you can escape?
+Du bist frech, das mag ich. Meinst du, du kannst dich befreien?
+###_PLAYER
+This is pretty kinky.
+Das ist ziemlich sexy.
+###_NPC
+Absolutely!  Now do you think you can escape?
+Na klar! Meinst du, du kannst dich befreien?
+You're still struggling to get out?  Don't give up.
+Bist du noch am rackern? Gib nicht auf.
+###_PLAYER
+How do I escape?
+Wie kann ich mich befreien?
+###_NPC
+Grab the rope on your arms and try to free yourself.  Good luck!
+Nimm das Seil an deinen Armen und versuche dich daraus zu befreien. Viel Glück!
+###_PLAYER
+Get me out now!
+Lass mich sofort frei!
+###_NPC
+You're not in control girl.  (She grabs your mouth and straps a cloth gag on you.)
+Du hast hier nicht das Sagen, Mädchen. (Sie nimmt deinen Mund und bindet ihn mit etwas Stoff zu.)
+###_PLAYER
+Don't look, I will escape by myself.  (Leave her.)
+Nicht gucken, ich befreie mich selbst. (Dialog beenden.)
+###_NPC
+Well done!  You were able to struggle out.
+Gut gemacht! Du hast es geschafft, dich zu befreien.
+###_PLAYER
+That was easy.
+Das war einfach.
+###_NPC
+I'll make it tighter next time.  Did you enjoy being tied up?
+Beim nächsten Mal ziehe ich sie enger. Hat es dir gefallen, gefesselt zu sein?
+###_PLAYER
+It took a while, but I've done it.
+Es hat etwas gedauert, aber immerhin.
+###_NPC
+That's great.  Did you enjoy being tied up?
+Das ist klasse. Hat es dir gefallen, gefesselt zu sein?
+###_PLAYER
+Sure, it was fun.
+Klar, es hat Spaß gemacht.
+###_NPC
+That's the spirit!  You're ready to explore the club then.
+Das ist die richtige Einstellung! Damit bist du bereit, den Club zu erkunden.
+###_PLAYER
+I loved it, I hope happens often.
+Ich liebe es, hoffentlich passiert das oft.
+I would rather strap you up.
+Ich würde lieber dich fesseln.
+###_NPC
+Not now, but you're ready to explore the club and do some bondage.
+Nicht jetzt, aber du bist bereit, den Club zu erkunden und etwas Bondage auszuüben.
+###_PLAYER
+I'm sure it will be fun to explore the club.
+Den Club zu erkunden wird bestimmt Spaß machen.
+###_NPC
+Oh yes, I'm sure too. Remember to be courteous and respect others.
+Oh ja, da bin ich mir sicher. Vergiss nicht, dich den anderen gegenüber höflich und respektvoll zu verhalten.
+###_PLAYER
+Can I have some items to start with?
+Kann ich für den Einstieg ein paar Sachen haben?
+###_NPC
+Sure, have these ropes and this gag.  (She gives you some ropes and a cloth gag.)
+Klar, nimm diese Seile und den Knebel. (Sie gibt dir ein paar Seile und einen Stoffknebel.)
+You're ready to explore.  Remember to be courteous and respect others.
+Du bist bereit zum Erkunden. Vergiss nicht, dich den anderen gegenüber höflich und respektvoll zu verhalten.
+Well thanks a lot.  You're a good student.
+Na ja, vielen Dank. Du bist eine gute Schülerin.
+###_PLAYER
+Thanks!  Take care.  (Leave her.)
+Danke! Mach's gut. (Dialog beenden.)
+Can I strap her up?
+Kann ich sie fesseln?
+###_NPC
+Sure, my assistant here will be happy to help you practice.
+Klar, meine Assistentin hier wird dir liebend gern beim Üben helfen.
+###_PLAYER
+Can I get better at struggling out?
+Kann ich besser im Entfesseln werden?
+###_NPC
+Yes. You might learn new skills to escape faster if you stick around.  Others might also learn skills to make your struggling harder though...
+Ja. Wenn du dranbleibst, könntest du lernen, dich schneller zu befreien. Andere können aber auch lernen, dir die Befreiung zu erschweren...
+###_PLAYER
+Can you teach me more on rope bondage?
+Kann ich mehr über Seil-Bondage erfahren?
+###_NPC
+Again?  Well of course.  Are you ready to struggle now?
+Noch einmal? Aber natürlich. Bist du bereit zu zappeln?
+(She struggles and tries to get out.)  Can you please help me?
+(Sie zappelt und versucht sich zu befreien.) Kannst du mir bitte helfen?
+(She bows her head respectfully.)  Can you also help our friend here?
+(Sie verbeugt respektvoll ihren Kopf.) Kannst du auch unserer Freundin hier helfen?
+I will spread the good word of you around the sorority.  Thanks for helping.
+Ich werde der Schwesternschaft von deinen guten Taten berichten. Danke für die Hilfe.
+###_PLAYER
+Do you need help?
+Brauchst du Hilfe?
+###_NPC
+(She eagerly nods her head.)  Yes, can you release us both?
+(Sie nickt eifrig.) Ja, kannst du uns beide befreien?
+###_PLAYER
+Should I help your friend?
+Sollte ich deiner Freundin helfen?
+###_NPC
+Yes, please release both of us.
+Ja, bitte befreie uns beide.
+###_PLAYER
+Is everything alright now?
+Ist jetzt alles in Ordnung?
+###_NPC
+Everything is great, please report to my sisters of your fine work here.
+Alles ist gut, bitte berichte meinen Schwestern von deiner sauberen Arbeit hier.
+###_PLAYER
+What happened here?
+Was ist hier passiert?
+###_NPC
+A true maid story. A silent girl in latex gear barged in and strapped us both up in armbinders and belts.  She gagged us and left.
+Eine typische Hausmädchen-Geschichte. Ein stilles Mädchen in Latex platzte herein und schnallte uns Gurte um. Sie knebelte uns und ging.
+It started with a new club member curious about armbinders and finished with her running to the maids to get help.
+Es fing mit einer Neuen an, die sich für Monohandschuhe interessierte, und endete darin, dass sie verzweifelt zu den Hausmädchen rannte.
+A rival maid of mine came in and we fought.  She got lucky and managed to restrain us in belts and armbinders.
+Eine Rivalin von mir kam herein und wir kämpften. Sie hatte Glück und konnte uns Gurte und Monohandschuhe anlegen.
+A sales rep came in with belts and armbinders and I think we got a little too carried away by her merchandise.
+Eine Handelsvertreterin kam mit Gurten und Monohandschuhen herein. Ich glaube, wir haben uns von ihren Produkten zu sehr mitreißen lassen.
+###_PLAYER
+I'll go get help.  (Leave her.)
+Ich hole Hilfe. (Dialog beenden.)
+As a maid, you owe me a favor now.
+Als Hausmädchen schuldest du mir jetzt einen Gefallen.
+###_NPC
+(She gulps.)  Yes Miss.  Is there something else you need?
+(Sie schluckt.) Ja, Miss. Kann ich sonst irgendwie behilflich sein?
+###_PLAYER
+My pleasure.  The maids protect each other.
+Gern geschehen. Die Hausmädchen schützen einander.
+###_NPC
+Well said!  Is there something else you need?
+Gut gesagt! Kann ich sonst irgendwie behilflich sein?
+###_PLAYER
+Another satisfied customer.
+Noch eine zufriedene Kundin.
+###_NPC
+A very satisfied customer.  Is there something else you need?
+Eine sehr zufriedene Kundin. Kann ich sonst irgendwie behilflich sein?

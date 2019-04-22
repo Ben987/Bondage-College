@@ -86,3 +86,14 @@ function SkillProgress(SkillType, SkillProgress) {
 	}
 
 }
+
+// Retard Skill level
+function SkillRetard(SkillType) {
+	if (SkillGetLevel(Player, SkillType) > 0 || SkillGetProgress(Player, SkillType) > 0) {
+		var L = SkillGetLevel(Player, SkillType)
+		if (SkillGetProgress(Player, SkillType) == 0) { 
+			if (SkillGetLevel(Player, SkillType) > 0) L = L - 1;
+		}
+		SkillChange(SkillType, L, 0);
+	}
+}
