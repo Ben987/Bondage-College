@@ -54,7 +54,7 @@ var AssetFemale3DCG = [
 			{ Name: "TShirt1", Require: ["ClothLower"] },
 			{ Name: "TennisShirt1", Require: ["ClothLower"] },
 			{ Name: "Sweater1", Require: ["ClothLower"] },
-			{ Name: "MistressTop", Require: ["ClothLower"], Hide: ["Bra"], Value: -1 }
+			{ Name: "MistressTop", Require: ["ClothLower"], Hide: ["Bra"], Value: -1 },
 			{ Name: "AdultBabyDress1", Hide: ["ClothLower"], Value: -1 },
 			{ Name: "AdultBabyDress2", Hide: ["ClothLower"], Value: -1 },
 			{ Name: "AdultBabyDress3", Hide: ["ClothLower"], Value: -1 },
@@ -350,7 +350,7 @@ var AssetFemale3DCG = [
 		Asset: [ 
 			{ Name: "NylonRopeHarness", Value: 25, Prerequisite: "AccessTorso", Time: 25 },
 			{ Name: "HempRopeHarness", Value: 50, Prerequisite: "AccessTorso", Time: 25, RemoveTime: 35, Difficulty: 2 },
-			{ Name: "AdultBabyHarness", Value: -1, Priority: 21, Time: 15, RemoveTime: 10 },
+			{ Name: "AdultBabyHarness", Value: -1, Priority: 24, Time: 15, RemoveTime: 10 },
 			{ Name: "LeatherHarness", Value: 100, Prerequisite: "AccessTorso", Time: 15, RemoveTime: 10 }
 		]
 	},
@@ -393,9 +393,9 @@ var AssetFemale3DCG = [
 			{ Name: "MetalCuffsKey", Wear: false, Value: 25, Effect: ["Unlock-MetalCuffs"], Time: 5 },
 			{ Name: "LeatherArmbinder", SelfBondage: false, Priority: 2, Value: 80, SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone", "Struggle"], Time: 25, RemoveTime: 10, Difficulty: 10 },
 			{ Name: "PaddedMittens", SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Struggle"], Time: 25, RemoveTime: 10, Difficulty: 4 },
-			{ Name: "PaddedMittensLocked", Random: false, SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Struggle"], Time: 12, RemoveTime: 10, Difficulty: 20 },
+			{ Name: "PaddedMittensLocked", Random: false, SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Lock"], Time: 12 },
 			{ Name: "PaddedMittensHarness", Random: false, SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Struggle"], Time: 25, RemoveTime: 10, Difficulty: 4 },
-			{ Name: "PaddedMittensHarnessLocked", Random: false, SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Struggle"], Time: 12, RemoveTime: 10, Difficulty: 20 }
+			{ Name: "PaddedMittensHarnessLocked", Random: false, SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Lock"], Time: 12 }
 		]
 	},
 
