@@ -1,0 +1,240 @@
+###_NPC
+Club slaves are so much better when they are gagged.
+Clubsklaven sind so viel besser, wenn sie geknebelt sind.
+(A maid crosses your path and stops.)  Nice!  I guess I can take a break to play with you.
+(Ein Hausmädchen läuft dir über den Weg und hält an.) Klasse! Ich gönne mir eine Pause, um mit dir zu spielen.
+(A maid crosses your path and stops.)  You're cute when you're restrained!  I guess I can take a break to play with you.
+(Ein Hausmädchen läuft dir über den Weg und hält an.) Du bist süß, wenn du gefesselt bist! Ich gönne mir eine Pause, um mit dir zu spielen.
+(A club member crosses your path and makes a devious smile.)  A slave just for me!
+(Ein Clubmitglied läuft dir über den Weg und lächelt verschlagen.) Eine Sklavin für mich allein!
+(A club member taps on your shoulder and makes a devious smile.)  A gift that's already wrapped up!
+(Ein Clubmitglied tippt dir auf die Schulter und lächelt verschlagen.) Dieses Geschenk ist ja schon verpackt!
+(A girl runs down the hall to meet you.)  You're a club slave?  This is great!
+(Ein Mädchen rennt dir den Gang entgegen.) Bist du eine Clubsklavin? Das ist super!
+(A girl runs down the hall to meet you.)  You're a club slave?  And you're already restrained?  This is great!
+(Ein Mädchen rennt dir den Gang entgegen.) Bist du eine Clubsklavin? Und gefesselt bist du auch schon? Das ist super!
+(A club member chases you down.)  Slave girl!  Please me now!
+(Ein Clubmitglied kommt dir hinterhergelaufen.) Sklavin! Mach mich glücklich!
+(A kidnap league member rushes to you.)  There's no bounty available right now, so you'll be second pick slave.
+(Ein Mitglied der Kidnapper-Liga eilt zu dir.) Gerade war kein Kopfgeld zu holen, also musst du als Sklavin herhalten.
+(A girl sneaks up behind you.)  Your cute ass is mine, slave girl.
+(Ein Mädchen schleicht sich von hinten an dich heran.) Dein süßer Arsch gehört mir, Sklavenmädchen.
+(A girl sneaks up behind you and checks your bondage.)  Your cute ass is mine, restrained girl.
+(Ein Mädchen schleicht sich von hinten an dich heran und prüft deine Fesseln.) Dein süßer Arsch gehört mir, Fesselmädchen.
+(A club member jumps of joy seeing you.)  Yes!  A club slave just for me.
+(Ein Clubmitglied hüpft bei deinem Anblick vor Freude in die Luft.) Ja! Eine Clubsklavin für mich allein.
+(A club member jumps of joy seeing you.)  Yes!  A restrained slave just for me.
+(Ein Clubmitglied hüpft bei deinem Anblick vor Freude in die Luft.) Ja! Eine gefesselte Sklavin für mich allein.
+###_PLAYER
+I'm here to serve you Miss.
+Ich bin hier, um Euch zu dienen, Miss.
+How can I please you?
+Wie darf ich Sie beglücken?
+Will you release me?
+Würdest du mich losbinden?
+Do as you wish.  I'm your slave.
+Tu, was du willst. Ich bin deine Sklavin.
+Please don't be too rough.
+Bitte sei nicht zu grob.
+(Try to struggle out.)
+(Versuchen, dich zu befreien.)
+(Let her play with you.)
+(Sie mit dir spielen lassen.)
+###_NPC
+(She restrains your arms and smiles.)  An unrestrained club slave?  That wasn't proper.
+(Sie fesselt deine Arme und lächelt.) Eine nicht gefesselte Clubsklavin? Das geht ja mal gar nicht.
+###_PLAYER
+This is tight.
+Das ist eng.
+I agree Miss.
+Ganz meine Meinung, Miss.
+(Tug on the restraint.)
+(An den Fesseln zerren.)
+(Struggle playfully.)
+(Verspielt zappeln.)
+###_NPC
+(She releases your arms and giggles.)  Enjoy your freedom while it lasts.
+(Sie befreit deine Arme und kichert.) Genieße deine Freiheit, solange du sie hast.
+###_PLAYER
+Thank you Miss.
+Danke, Miss.
+You can use another item if you want.
+Sie können etwas anderes benutzen, wenn Sie wollen.
+(Nod happily.)
+(Fröhlich nicken.)
+(Stretch your arms.)
+(Deine Arme strecken.)
+###_NPC
+(She gets a gag and uses it to silence you.)  That's better.  A slave doesn't need to talk anyway.
+(Sie nimmt einen Knebel und bringt dich damit zum Schweigen.) Schon besser. Eine Sklavin hat eh nichts zu sagen.
+###_PLAYER
+(Roll your eyes up.)
+(Die Augen verdrehen.)
+(Nod and bow your head.)
+(Nicken und den Kopf senken.)
+(Adjust your mouth to the gag.)
+(Deinen Mund an den Knebel anpassen.)
+###_NPC
+(She removes the gag and grins.)  Enjoy your chit chat while you can.
+(Sie nimmt dir grinsend den Knebel ab.) Genieße deine Redefreiheit, solange du kannst.
+###_PLAYER
+Thanks a lot.
+Vielen Dank.
+Sweet.  Will you let me go?
+Klasse. Lässt du mich frei?
+(Stay silent.)
+(Schweigen.)
+###_NPC
+(She slowly straps a harness around your body and grins.)  A kinky work of art!
+(Sie zieht langsam einen Harnisch um einen Körper und grinst.) Ein versautes Kunstwerk!
+###_PLAYER
+This is very kinky.
+Das ist wirklich versaut.
+I'm glad to be your art model.
+Ich bin gern Ihr Kunstmodell.
+(Wiggle your body.)
+(Mit deinem Körper wackeln.)
+(Nod slowly.)
+(Langsam nicken.)
+###_NPC
+(She removes the harness from your body.)  I'll find something else for you to wear.
+(Sie entfernt den Harnisch von deinem Körper.) Ich suche dir etwas anderes zum Anziehen.
+###_PLAYER
+It's easier to breath now.
+So atmet es sich leichter.
+You can use anything you want Miss.
+Sie dürfen alles Mögliche benutzen, Miss.
+(Hum a happy song.)
+(Ein fröhliches Lied summen.)
+###_NPC
+(She restrains your feet and giggles.)  You won't be running away now.
+(Sie fesselt deine Füße und kichert.) Jetzt läufst du mir nicht davon.
+###_PLAYER
+I wasn't planning to run anyway.
+Ich wollte sowieso nicht weglaufen.
+(Hop and jump clumsily.)
+(Ungeschickt hopsen und springen.)
+(Try to keep your balance.)
+(Versuchen, deine Balance zu halten.)
+###_NPC
+(She releases your feet.)  You can have your feet back for now.  But I'll find a better restraint later.
+(Sie befreit deine Füße.) Deine Füße bekommst du erstmal zurück. Aber ich finde später bessere Fesseln.
+###_PLAYER
+Thanks!  You're a lot of fun Miss.
+Danke! Das macht echt Spaß mit Ihnen, Miss.
+It will be easier to stand up like this.
+So kann ich einfacher stehen.
+(Stretch and relax your feet.)
+(Deine Füße strecken und entspannen.)
+(Stay silent and wait to be released.)
+(Still darauf warten, befreit zu werden.)
+###_NPC
+(She restrains your legs securely.)  You look so cute when you're all tied up.
+(Sie bindet deine Beine fest zusammen.) Du siehst so niedlich aus, wenn du ganz verschnürt bist.
+###_PLAYER
+You would be even cuter.
+Du wärst noch viel niedlicher.
+(Wiggle your butt playfully.)
+(Verspielt mit dem Po wackeln.)
+(Stay quiet.)
+(Still bleiben.)
+###_NPC
+(She releases your legs.)  Shake your butt for me my cute slave.
+(Sie befreit deine Beine.) Wackel für mich mit dem Po, meine süße Sklavin.
+###_PLAYER
+Do I look like a dancer?
+Seh ich aus wie 'ne Tänzerin?
+(Shake your butt for her.)
+(Für sie mit dem Po wackeln.)
+(Stand still.)
+(Stillstehen.)
+###_NPC
+(She gets closer and starts to tickle you without mercy.)  Tickle!  Tickle!  Tickle!
+(Sie kommt näher heran und fängt an, dich gnadenlos zu kitzeln.) Killekillekille!
+###_PLAYER
+No please! Stop!
+Nein, bitte! Aufhören!
+Eeeeeeaahahahaha!  Stop it!  Hahaahaahi.
+Iiieeeaahahahaha! Aufhören! Hahaahaahi.
+(Laugh out loud.)
+(Lauthals lachen.)
+(Pretend you're not ticklish.)
+(So tun, als wärst du nicht kitzlig.)
+###_NPC
+(She raises her hand and spanks you many times on the butt.)  Endure the pain. It's not like you have much choice.
+(Sie erhebt ihre Hand und haut dir mehrmals auf den Hintern.) Erdulde den Schmerz. Nicht, dass du eine Wahl hättest.
+###_PLAYER
+Ow!  That stings!
+Au! Das tut weh!
+That's the best you can do?
+Ist das alles, was du kannst?
+(Whimper from the pain.)
+(Vor Schmerzen wimmern.)
+(Pretend it doesn't hurt.)
+(So tun, als täte es nicht weh.)
+###_NPC
+(She gets close to you and plants a long loving kiss on your lips.)  Mmmmmmmmh.
+(Sie kommt nach an dich heran und gibt dir einen langen, liebevollen Kuss auf die Lippen.) Mmmmmmmmh.
+###_PLAYER
+You're quite a loving Domme.
+Sie sind sehr liebenswert dominant.
+You have wonderful lips.
+Du hast wundervolle Lippen.
+(Close your eyes and kiss back.)
+(Die Augen schließen und den Kuss erwidern.)
+(Push your tongue inside.)
+(Deine Zunge hineinstecken.)
+(Moan into your gag.)
+(In deinen Knebel stöhnen.)
+(Stay silent and cold.)
+(Schweigen und kühl bleiben.)
+###_NPC
+(She caresses and gropes your breast firmly.)  You know you have an amazing body, right?
+(Sie streichelt und packt dich fest an der Brust.) Weißt du, dass du einen fantastischen Körper hast?
+###_PLAYER
+And you have amazing hands Miss.
+Ihre Hände sind auf fantastisch, Miss.
+Miss!  That... That feels so good...
+Miss! Das... Das fühlt sich so gut an...
+(Moan with pleasure.)
+(Lüstern stöhnen.)
+###_NPC
+(She starts to masturbate you slowly to tease you.)  Being a slave makes you horny doesn't it?
+(Sie fängt langsam und quälend an, dich zu befriedigen.) Eine Sklavin zu sein macht dich an, stimmt's?
+###_PLAYER
+Yes Miss, very horny.  (Blush red.)
+Ja, Miss, und wie. (Rot werden.)
+Aaaaaaah yes, touch me Miss.
+Aaaaaaah, ja, berühren Sie mich, Miss.
+(Shiver and moan from the pleasure.)
+(Vor Wollust schaudern und stöhnen.)
+###_NPC
+(She releases you and smile.)  I need to go slave, it was fun.  I'll get you another time!
+(Sie befreit dich und lächelt.) Ich muss gehen, Sklavin, das hat Spaß gemacht. Dich schnapp ich mir nochmal!
+(She smiles.)  I need to go slave, it was fun.  I'll get you another time!
+(Sie lächelt.) Ich muss gehen, Sklavin, das hat Spaß gemacht. Dich schnapp ich mir nochmal!
+###_PLAYER
+Take care.  Enjoy the club.
+Bis dahin, viel Spaß im Club.
+I'm here to serve Miss.
+Ich bin zum Dienen hier, Miss.
+Thanks!  That was fun.
+Danke! Das hat Spaß gemacht.
+(Struggle in your restraints.)
+(In deinen Fesseln zappeln.)
+###_NPC
+Slave, you can stay like that.  Enjoy your struggling.
+Sklavin, du kannst so bleiben. Viel Spaß beim Zappeln.
+###_PLAYER
+Would you like to visit my room?
+Möchtest du mein Zimmer sehen?
+###_NPC
+You have your own room?  I'm curious to see it.
+Du hast dein eigenes Zimmer? Das würde ich mir gern ansehen.
+Not now, I need to go.  Take care!
+Nicht jetzt, ich muss gehen. Mach's gut!
+###_PLAYER
+(Leave her.)
+(Dialog beenden.)
+Follow me!  (Bring her to your room.)
+Mir nach! (Sie in dein Zimmer führen.)

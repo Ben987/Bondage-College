@@ -1,0 +1,281 @@
+###_NPC
+(Sshe nods to you.)
+(Sie nickt dir zu.)
+(She bows her head and presents her mouth so you can gag her easily.)
+(Sie senkt ihren Kopf und präsentiert ihren Mund, damit du sie mühelos knebeln kannst.)
+(You remove her gag and she looks angry.) Give it back to me.
+(Du nimmst ihren Knebel ab und sie wirkt verärgert.) Gib ihn mir zurück.
+(She tugs really hard on her restraints, almost hurting herself, and moans.)  This feels sooooo good.
+(Sie zerrt sehr doll an ihren Fesseln, verletzt sich beinahe und stöhnt.) Das ist sooooo ein gutes Gefühl.
+(You free her arms and she stretches a little.)  What will you use on me next?
+(Du befreist ihre Arme und sie streckt sich ein wenig.) Was wirst du als Nächstes benutzen?
+(She submits to you while you restrain her legs securely.)  That's how the race really gets tough.
+(Sie lässt sich von dir ordentlich die Beine fesseln.) So wird das Wettrennen richtig hart.
+(You release her legs from the restraint.)  The training finally continues.
+(Du befreist ihre Beine.) Das Training kann endlich weitergehen.
+(She looks puzzled as you restrain her feet.)  I'll stay on guard here Trainer.
+(Sie guckt verwirrt, als du ihre Füße fesselst.) Ich halte hier die Stellung, Trainerin.
+(You release her feet and she wiggles them.)  Thanks, it was troublesome.
+(Du befreist ihre Füße und sie wackelt mit ihnen herum.) Danke, das war problematisch.
+(You strap the collar on her.)  So the equipment is complete.
+(Du legst ihr das Halsband um.) Damit ist die Ausrüstung komplett.
+(You remove the collar around her neck.)  Time to return to normal.
+(Du nimmst ihr das Halsband ab.) Zeit, wieder normal zu werden.
+(You snap the belt around her waist and crotch while she sighs.)  No more fun.
+(Du lässt den Gürtel um ihre Taille zuschnappen und sie seufzt.) Mit dem Spaß ist es aus.
+(You unlock the belt from her waist and she smiles.)  Thanks a lot Miss DialogPlayerName.
+(Du öffnest den Gürtel von ihrer Taille und sie lächelt.) Vielen Dank, Miss DialogPlayerName.
+(You strap the device on her head as she nods slowly.)  I understand, no distraction.
+(Du schnallst ihr das Ding um den Kopf und sie nickt langsam.) Verstanden, keine Ablenkung.
+(You remove the device and she nods rapidly.)
+(Du nimmst das Ding ab und sie nickt energisch.)
+(She jumps from the searing pain on her breast.)  Ouch!
+(Sie zuckt vom schneidenden Schmerz auf ihrer Brust zusammen.) Autsch!
+(You whip her breast with the leather crop as she whimpers and bows her head.)
+(Du peitschst ihr mit der Ledergerte auf die Brust und sie lässt wimmernd den Kopf hängen.)
+(You whip her butt hard as she sighs.)  I promise I'll train harder Miss.
+(Du peitschst ihr kräftig auf den Hintern und sie seufzt.) Ich verspreche, härter zu trainieren, Miss.
+(She grumbles as you strike her butt with the crop.)  Next time I will try harder.
+(Sie grummelt, als du ihren Hintern mit der Gerte triffst.) Ich gebe mir beim nächsten Mal mehr Mühe.
+(She radiates with joy.) Thanks that makes life easier.
+(Sie strahlt vor Freude.) Danke, das macht mir das Leben einfacher.
+(She steps after you.) That's part of the equipment.
+(Sie kommt dir hinterher.) Das gehört doch zur Ausrüstung.
+(She nods in agreement.) That is really necessary.
+(Sie nickt zustimmend.) Das ist wirklich notwendig.
+(She lets her ears hang)
+(Sie lässt ihre Ohren hängen.)
+(She holds her breath as you use the item.)  Oh my!  What did I do to deserve that?
+(Sie hält die Luft an, als du es einsetzt.) Oh! Womit hab ich das denn verdient?
+(She wiggles her breast slowly as you remove the device.)  Do you have other items we could try?
+(Sie wackelt langsam mit den Brüsten, als du das Ding abnimmst.) Hast du noch andere Sachen zum Ausprobieren?
+(She moans softly as you massage her pussy with the wand.)  Mmmmh, this is nice.  Whinny!
+(Sie stöhnt leise, als du ihre Pussy mit dem Stab massierst.) Mmmmh, das ist schön. Wieher!
+(She moans loudly as you slide the egg inside.)  This egg is so sexy.
+(Sie stöhnt laut, als du das Ei einsetzt.) Dieses Ei ist so sexy.
+(She does one last moan as you remove the egg.)  Ooooh!  That was quite a stimulation.
+(Sie stöhnt ein letztes Mal, als du das Ei herausnimmst.) Uuuuh! Das war wirklich stimulierend.
+(You restrain her feet and suspend her from the ceiling.)  Oh my!  Careful, I don't want to fall.
+(Du fesselst ihre Füße und lässt sie von der Decke baumeln.) Oh je! Vorsicht, ich will nicht herunterfallen.
+(You let her down from the ceiling.)  Much better!  I was slowly getting dizzy.
+(Du lässt sie von der Decke herab.) Schon besser! Mir wurde langsam schwindelig.
+(She Whinny'ing)
+(Sie wiehert.)
+###_PLAYER
+Hello, I'm DialogPlayerName.  Pleased to meet you.
+Hallo, ich bin DialogPlayerName. Sehr erfreut.
+What's going on in here?
+Was geht hier vor sich?
+###_NPC
+(She stamps)
+(Sie stampft.)
+###_PLAYER
+(Try to trot to her)
+(Versuchen, zu ihr zu traben.)
+###_NPC
+(She turns away.)
+(Sie dreht sich weg.)
+###_PLAYER
+(Whinny to her)
+(Ihr zuwiehern.)
+###_NPC
+(She kick your Butt)
+(Sie tritt dir in den Hintern.)
+###_PLAYER
+(Trot to her)
+(Zu ihr traben.)
+###_NPC
+(She nudges you with her nose)
+(Sie stupst dich mit ihrer Nase an.)
+###_PLAYER
+(Start the Training.)
+(Das Training beginnen.)
+###_NPC
+(She looks expectant.)
+(Sie sieht dich erwartungsvoll an.)
+###_PLAYER
+I can't stay to chat.  (Leave her.)
+Ich habe keine Zeit zum Plaudern. (Dialog beenden.)
+(Try to talk with her.)
+(Versuchen, mit ihr zu reden.)
+###_NPC
+(You both try to mumble to each other but it makes no sense)
+(Ihr versucht euch gegenseitig etwas zuzumurmeln, aber es erschließt sich kein Sinn.)
+###_PLAYER
+(Lean on her.)
+(Dich an sie anlehnen.)
+###_NPC
+(You lean and rest on each other hips while she whinny slowly.)
+(Ihr lehnt und rastet gegenseitig auf euren Hüften, während sie leise wiehert.)
+###_PLAYER
+(Nuzzle with her.)
+(Dein Gesicht an ihres reiben.)
+###_NPC
+(You clumsily nuzzle each other in your restraints and giggle.)
+(Ihr schmust euch unbeholfen in euren Fesseln aneinander und kichert.)
+###_PLAYER
+(Rub your body against hers.)
+(Deinen Körper an ihren reiben.)
+###_NPC
+(You both rub your bodies against each other and moan slowly.)
+(Ihr reibt eure Körper aneinander und stöhnt langsam.)
+###_PLAYER
+(Try to masturbate her with your finger.)
+(Versuchen, sie mit deinem Finger zu befriedigen.)
+###_NPC
+(You rub your armband against her and hear the satisfied snort.)
+(Du reibst deinen Monohandschuh gegen sie und hörst ein zufriedenes Schnauben.)
+###_PLAYER
+(Try to masturbate her with your feet.)
+(Versuchen, sie mit deinen Füßen zu befriedigen.)
+###_NPC
+(You both rub your Feet against and hear have a lot of fun.)
+(Ihr reibt euch gegenseitig mit den Füßen und habt eine Menge Spaß.)
+###_PLAYER
+(more . . .)
+(Mehr . . .)
+(Step back.)
+(Zurücktreten.)
+###_NPC
+(You step back.)
+(Du trittst zurück.)
+###_PLAYER
+(Try to release her.)
+(Versuchen, sie zu befreien.)
+###_NPC
+(You struggle in your Armbinder and try to release her.  But you fail miserably.)
+(Du kämpfst gegen deinen Monohandschuh an, um sie zu befreien. Aber du scheiterst kläglich.)
+###_PLAYER
+(Try to kiss her)
+(Versuchen, sie zu küssen.)
+###_NPC
+(You try to kiss her, but the Gag bothers you.)
+(Du versuchst sie zu küssen, aber der Knebel stört.)
+###_PLAYER
+(Try to masturbate her with your tongue.)
+(Versuchen, sie mit deiner Zunge zu befriedigen.)
+###_NPC
+(You leak her to an orgasm.)
+(Du leckst sie zu einem Orgasmus.)
+###_PLAYER
+(Before this exercise starts check the equipment.)
+(Vor der Übung die Ausrüstung überprüfen.)
+(Send her back to the herd. End the Training)
+(Sie zurück zur Herde schicken. Das Training beenden.)
+###_NPC
+(She trots back into her box.)
+(Sie trabt zurück in ihren Kasten.)
+###_PLAYER
+(Gallop through the manege.)
+(Sie durch die Manege galoppieren lassen.)
+(Go a few steps and lift the legs properly.)
+(Sie mit erhobenen Knien laufen lassen.)
+(Dance a round through the manege.)
+(Sie durch die Manege tanzen lassen.)
+(Train walking on the treadmill.)
+(Sie auf dem Laufband trainieren lassen.)
+(Train with the carriage.)
+(Sie mit der Kutsche trainieren lassen.)
+(Get out on the pasture to collect carrots.)
+(Sie Karotten auf der Weide sammeln lassen.)
+(You have to practice jumping over the hurdles.)
+(Sie über Hürden springen lassen.)
+(Check your Whip.)
+(Deine Peitsche überprüfen.)
+(Reward her.)
+(Sie belohnen.)
+###_NPC
+(She trot to you.)
+(Sie trabt auf dich zu.)
+###_PLAYER
+(Ignore her.)
+(Sie ignorieren.)
+###_NPC
+(She waits patiently.)
+(Sie wartet geduldig.)
+###_PLAYER
+(Punish her.)
+(Sie bestrafen.)
+###_NPC
+(She ignore you.)
+(Sie ignoriert dich.)
+###_PLAYER
+(Caress her head.)
+(Ihren Kopf streicheln.)
+###_NPC
+(She whinny excitedly.)
+(Sie wiehert aufgeregt.)
+###_PLAYER
+(Scratching her back.)
+(Ihr den Rücken kratzen.)
+###_NPC
+(She moans satisfied.)
+(Sie stöhnt zufrieden.)
+###_PLAYER
+(Take a brush and Straightens her hair.)
+(Ihre Haare mit einer Bürste kämmen.)
+(Takes a sponge and cleans she.)
+(Sie mit einem Schwamm säubern.)
+(Give her an oatcake.)
+(Ihr ein Haferplätzchen geben.)
+###_NPC
+(She grabs greedy for it.)
+(Sie fasst gierig danach.)
+###_PLAYER
+(Enough Reward.)
+(Genug der Belohnung.)
+###_NPC
+(She looks to you.)
+(Sie sieht dich an.)
+###_PLAYER
+(Pop with the Whip.)
+(Mit der Peitsche knallen.)
+###_NPC
+(She jump together.)
+(Sie zuckt zusammen.)
+###_PLAYER
+(Hit with the whip her back.)
+(Ihr mit der Peitsche auf den Rücken schlagen.)
+###_NPC
+(Startled, she takes a step forward.)
+(Sie schreckt auf und macht einen Schritt vorwärts.)
+###_PLAYER
+(Hit the whip again her hip.)
+(Mit der Peitsche auf ihre Hüfte schlagen.)
+###_NPC
+(She is crying in pain.)
+(Sie heult vor Schmerz.)
+###_PLAYER
+(Hit the whip again her butt.)
+(Ihr mit der Peitsche auf den Hintern hauen.)
+###_NPC
+(She stands upright and looks carefully.)
+(Sie steht aufrecht und schaut sich unsicher um.)
+###_PLAYER
+(Hit with the whip her legs.)
+(Ihr mit der Peitsche auf die Beine schlagen.)
+###_NPC
+(Tense she looks to manage.)
+(Sie scheint es angespannt hinzunehmen.)
+###_PLAYER
+(Hit with the whip her Breast.)
+(Ihr mit der Peitsche auf die Brust schlagen.)
+###_NPC
+(She whimpers with pain.)
+(Sie wimmert vor Schmerz.)
+###_PLAYER
+(Pours a bucket of ice water over her.)
+(Ihr einen Eimer Eiswasser überschütten.)
+###_NPC
+(She stands rigid and motionless in fright.)
+(Sie bleibt vor Schreck starr und regungslos.)
+###_PLAYER
+(Enough Punish.)
+(Genug der Bestrafung.)
+###_NPC
+(She is a good match.)
+(Sie macht sich ganz gut.)
+(She fails miserably.)
+(Sie scheitert kläglich.)
+(She is kicking you.)
+(Sie tritt nach dir.)

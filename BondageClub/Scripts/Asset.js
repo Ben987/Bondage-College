@@ -61,7 +61,8 @@ function AssetAdd(NewAsset) {
 		DrawingPriority: NewAsset.Priority,
 		HeightModifier: (NewAsset.Height == null) ? 0 : NewAsset.Height,
 		Alpha: NewAsset.Alpha,
-		Prerequisite: NewAsset.Prerequisite
+		Prerequisite: NewAsset.Prerequisite,
+		Extended: (NewAsset.Extended == null) ? false : NewAsset.Extended
 	}
 	Asset.push(A);
 }
@@ -92,6 +93,9 @@ function AssetBuildDescription(Family, CSV) {
 			}
 
 		}
+		
+	// Translates the descriptions to a foreign language
+	TranslationAsset(Family);
 
 }
 
@@ -99,7 +103,7 @@ function AssetBuildDescription(Family, CSV) {
 function AssetLoadDescription(Family) {
 
     // Finds the full path of the CSV file to use cache
-    var FullPath = "Assets/" + Family + "/" + Family + "_" + CommonGetWorkingLanguage() + ".csv";    
+    var FullPath = "Assets/" + Family + "/" + Family + ".csv";    
     if (CommonCSVCache[FullPath]) {
 		AssetBuildDescription(Family, CommonCSVCache[FullPath]);
         return;

@@ -1,0 +1,78 @@
+PlayerGagged,,,"Wink if I should take pictures, nod when I should free you.",,
+ItemMouth,,,(She licks her lips seeing the gag and allows you to silence her easily.),,
+RemoveItemMouth,,,(You remove her gag and she sighs.)  I hope that was worth it.,,
+ItemArms,,,(She hums a happy song as you restrain her arms.)  I hope you come often Miss.,,
+RemoveItemArms,,,(You free her arms and she stretches a little.)  What will you use on me next?,,
+ItemLegs,,,(You restrain her legs securely while she moans of pleasure.)  This is wonderful.,,
+RemoveItemLegs,,,(You release her legs.)  What do you do not do everything for a great photo.,,
+SuspensionHempRope,,,(You restrain her legs with the long hemp rope and suspend her by the feet from the ceiling.)  Oh my god!,,
+ItemFeet,,,(She wiggles her feet playfully as you restrain them.)  This is great.,,
+RemoveSuspensionHempRope,,,(You untie the hemp rope from the ceiling.)  Wow!  That was quite a ride.,,
+RemoveItemFeet,,,(You release her feet.)  Sweet freedom?,,
+ItemNeck,,,(You strap the collar on her neck.)  That looks definitely submissive.,,
+RemoveItemNeck,,,(You remove the collar around her neck.)  Much better!,,
+ItemPelvis,,,(She rocks her hips and struggles as you lock the device on her.),,
+RemoveItemPelvis,,,"(She seems relieved as you unlock the device.)  Thanks, that was overdue.",,
+ItemTorso,,,(You prepare a full body harness on her torso as she blushes.)  This is very erotic.,,
+RemoveItemTorso,,,(You remove the body harness from her torso.)  The natural should shine.,,
+ItemHead,,,(You strap the device on her head as she hums a happy song.)  Does not that seem too anonymous?.,,
+RemoveItemHead,,,(You remove the device and she looks at you.)  That was quite an experience.,,
+ItemBreastLeatherWhip,,,(She moans as you whip her breast.)  Who wants to be beautiful must suffer.,,
+ItemBreastLeatherCrop,,,(She jumps and makes her breast wiggle with each hit.)  Everything for the art.,,
+ItemPelvisLeatherWhip,,,(She trembles and moans with each lashes.)  Only this gives real striations.,,
+ItemPelvisLeatherCrop,,,(You whip her butt with the leather crop as she wiggles it for more.),,
+ItemButt,,,Does that apply to the picture?,,
+RemoveItemButt,,,We should repeat that in the next photo session.,,
+ItemBreast,,,A nice photo is a work of art.,,
+RemoveItemBreast,,,"How, that was it?",,
+ItemVulvaVibratingWand,,,"Oh, ah, how should i focus on the work?",,
+VibratingEgg,,,(She looks satisfied) That facilitates the happy facial expression.,,
+RemoveVibratingEgg,,,"Pity, we just started.",,
+0,,,"Hello I'm DialogCharacterName,  the Club Photograph and a Model.",,
+0,,"Hello, I'm DialogPlayerName. Pleased to meet you.",Pleased to meet you. Would you like to take a picture of you or me?,DialogRemove(),
+0,100,I'd like to ask you some questions.,Don't be shy.  How can I help you?,,
+0,,Please take a Photo.,please look friendly.,ShotThePlayerPhoto(),PhotographicSubCanAskForPhoto()
+0,,(Wink for a Photo),Please look helpless.,ShotThePlayerPhoto(),PhotographicSubCanWinkForPhoto()
+0,10,I'll chance some Cloth.,"Yea, show me your wonderful Body.",,PlayerCanChangeCloth()
+0,20,Please use some toys on me.,What should it be?,,!PhotographicSubIsRestrained()
+0,,Please use some toys on me.,She points to her restraints.,,PhotographicSubIsRestrained()
+0,40,Please take off your clothes.,Where should I start?,,!PhotographicSubIsRestrained()
+0,,Please change your pose.,"All right,  how is it?",SubChangePose(),PhotographicSubCanKeel()
+0,,(Nod for help.),I'm already helping,PlayerRelease(),Player.IsRestrained()
+0,,Good By. (Leave her.),,DialogLeave(),
+10,,(Remove Hat),"Forward, only courage.","PlayerClothRemove(""Hat"")",PlayerHatAvailable()
+10,,(Remove Gloves),"Forward, only courage.","PlayerClothRemove(""Gloves"")",PlayerGlovesAvailable()
+10,,(Remove Cloth),"Forward, only courage.","PlayerClothRemove(""Cloth"")",PlayerClothAvailable()
+10,,(Remove Bra),Show me your curves.,"PlayerClothRemove(""Bra"")",PlayerBraAvailable()
+10,,(Remove lower Cloth),"Forward, only courage.","PlayerClothRemove(""ClothLower"")",PlayerClothLowerAvailable()
+10,,(Remove Panties),What an unrestrained beast.,"PlayerClothRemove(""Panties"")",PlayerPantiesAvailable()
+10,,(Remove Socks),"Forward, only courage.","PlayerClothRemove(""Socks"")",PlayerSocksAvailable()
+10,,(Remove Shoes),A first step.,"PlayerClothRemove(""Shoes"")",PlayerShoesAvailable()
+10,,I will dress back.,If you think.,PlayerDressBack(),
+10,0,that's enough for now.,All right then.,,
+20,,Use some toys for the Head.,Is it alright?,"StartInventoryPlayer(""ItemHead"")",
+20,,Use some toys for the Mounth.,Is it alright?,"StartInventoryPlayer(""ItemMouth"")",
+20,,Use some toys for the Neck.,Is it alright?,"StartInventoryPlayer(""ItemNeck"")",
+20,,Use some toys for the Arms.,what do you want.,"StartInventoryPlayer(""ItemArms"")",
+20,,Use some toys for the Torso.,Is it alright?,"StartInventoryPlayer(""ItemTorso"")",
+20,,Use some toys for the Legs.,Is it alright?,"StartInventoryPlayer(""ItemLegs"")",
+20,,Use some toys for the Feet.,Is it alright?,"StartInventoryPlayer(""ItemFeet"")",
+20,0,That's how I feel.,"All right, should i take a Photo?",,Player.CanTalk()
+20,0,(Node satisfied),"Wink if I should take pictures, nod when I should free you.",,!Player.CanTalk()
+40,,Take off your hat.,(she throws him away in a wide arc.),"SubClothRemove(""Hat"")",SubHatAvailable()
+40,,Take off your Gloves,(finger-for-finger she takes them off.),"SubClothRemove(""Gloves"")",SubGlovesAvailable()
+40,,Take off your Cloth.,(She slowly strips her off.),"SubClothRemove(""Cloth"")",SubClothAvailable()
+40,,Take off your Bra.,"(In an elegant turn, she take it off.)","SubClothRemove(""Bra"")",SubBraAvailable()
+40,,Take off your lower Cloth.,(She strips her and wiggles her butt.),"SubClothRemove(""ClothLower"")",SubClothLowerAvailable()
+40,,Take off your Panties.,(She slowly pulls them down.),"SubClothRemove(""Panties"")",SubPantiesAvailable()
+40,,Take off your Socks.,"(one by one, she takes off her Socks.)","SubClothRemove(""Socks"")",SubSocksAvailable()
+40,,Take off your Shoes.,(She steps her aside.),"SubClothRemove(""Shoes"")",SubShoesAvailable()
+40,,Please dress back.,"All right, if you think so.",SubDressBack(),
+40,0,that's enough for now,she shows a bright smile.,,
+100,,What's going on here?,In the photo studio you can make pictures and collect them.,,
+100,,What do the pictures cost?,"Nothing, this is a service of the club.",,
+100,,why is the room so barren?,this is a neutral photo background.,,
+100,,Can I tie you up?,"Of course, if necessary for the foto session.",,
+100,,Will you restrain me?,I would do much more for a good picture.,,
+100,0,I don't have any more questions.,"So then, show your best pose.",,
+PhotographicSubTied,0,,"(she shows her restraints.) I would like to, but ...",,

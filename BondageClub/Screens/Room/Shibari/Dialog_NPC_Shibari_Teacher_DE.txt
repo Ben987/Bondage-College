@@ -1,0 +1,249 @@
+﻿###_NPC
+Silence is gold, and a gagged submissive is even better.
+Schweigen ist Gold, und eine geknebelte Sub ist noch besser.
+(She releases you and looks disappointed.)  You'll need more practice if you want to become a true escape artist.
+(Sie befreit dich und wirkt enttäuscht.) Du musst mehr üben, wenn du eine wahre Entfesselungskünstlerin werden willst.
+(She frowns when you show her the gag but complies and allows you to silence her.)
+(Beim Anblick des Knebels runzelt sie die Stirn, lässt sich aber ohne Protest zum Schweigen bringen.)
+(You remove her gag and she smiles.)  Domo arigato.
+(Du nimmst ihren Knebel ab und sie lächelt.)  Domo arigato.
+(She bows her head as you restrain her arms.)  It's an honor to be restrained by you Miss.
+(Sie senkt den Kopf, als du ihre Arme fesselst.) Es ist eine Ehre, von ihnen gefesselt zu werden, Miss.
+(You free her arms as she speaks with a soft voice.)  Let me know if I can be of service.
+(Du befreist ihre Arme und sie spricht mit sanfter Stimme.) Sagen Sie Bescheid, wenn ich behilflich sein kann.
+(You restrain her legs while she looks down.)  Never forget the upper legs for a good bondage.
+(Sie schaut herab, als du ihre Beine fesselst.) Für eine gute Fesselung dürfen die Oberschenkel nicht vergessen werden.
+(You release her legs and she nods slowly.)  You take good care of all the details.
+(Du befreist ihre Beine und sie nickt langsam.) Sie haben ein gutes Auge für alle Details.
+(She complies as you restrain her feet securely.)  You can also try the suspension ropes from the Dojo if you wish.
+(Sie fügt sich, als du ihre Beine fest verbindest.) Sie können auch die Hängeseile des Dojos benutzen, wenn Sie möchten.
+(You release her feet.)  It will be a lot easier now to monitor the Dojo.
+(Du befreist ihre Füße.) So wird es viel einfacher sein, über das Dojo zu wachen.
+(You strap the collar on her neck while she frowns.)  Collars are nice, but I will never wear a permanent one.
+(Sie runzelt die Stirn, als du ihr das Halsband umlegst.) Halsbänder sind nett, aber auf Dauer möchte ich keins tragen.
+(You remove the collar around her neck.)  You should find submissives for that collar.
+(Du nimmst ihr das Halsband ab.) Für dieses Halsband sollten Sie sich willige Subs suchen.
+(She struggles and shakes her head no while you put the device on her.)  Crap!  Why did you do that?
+(Sie zappelt und schüttelt den Kopf, als du ihr das Teil anlegst.) Mist! Was sollte das denn?
+(She seems relieved as you remove the device.)  Domo arigato Miss DialogPlayerName.
+(Sie wirkt erleichtert, als du das Teil abnimmst.) Domo arigato, Miss DialogPlayerName.
+(You prepare a full body harness on her torso.)  Shibari isn't all about restraining, it's also very artistic.
+(Du legst einen Harnisch um ihren Körper.) Bei Shibari geht es nicht nur ums Fesseln, es ist auch sehr künstlerisch.
+(You remove the body harness from her torso as she nods.)  You can try different shapes and patterns.
+(Du entfernst den Harnisch von ihrem Körper und sie nickt.) Es sind auch andere Formen und Muster möglich.
+(She struggles as you slide the device inside.)  This is a Dojo!  Not a sex shop!
+(Sie zappelt, als du das Spielzeug in sie hineinsteckst.) Das hier ist ein Dojo! Kein Sexshop!
+(She catches her breath as you remove the butt plug.)  Much better, that wasn't appropriated.
+(Sie atmet durch, als du den Stöpsel herausnimmst.) Viel besser, das fand ich nicht gut.
+(She holds her breath as you use the item.)  Woah!  Careful with that.
+(Sie hält die Luft an, als du es einsetzt.) Woah! Sei vorsichtig damit.
+(She stays silent and nods as you remove the device from her breast.)
+(Sie nickt schweigend, als du es von ihrer Brust entfernst.)
+(You strap the device on her head as she grumbles.)  Can you watch over the Dojo for me?
+(Du schnallst ihr das Ding um den Kopf und sie grummelt.) Kannst du für mich das Dojo im Auge behalten?
+(You remove the device and she nods politely.)  Good, that was a little freaky.
+(Du nimmst ihr das Ding vom Kopf und sie nickt höflich.) Gut, das war etwas unheimlich.
+(She grumbles and endures the pain as you whip her breast and tummy.)
+(Sie grummelt und hält dem Schmerz stand, als du ihre Brust und ihren Bauch auspeitschst.)
+(You swing the crop on her breast and tummy.)  I've had tough sensei before Miss.
+(Du schlägst mit der Gerte auf ihre Brust und ihren Bauch.) Ich hatte schon strenge Sensei, Miss.
+(You whip her butt but she doesn't scream much from the stinging pain.)
+(Du peitschst auf ihren Hintern, aber der stechende Schmerz lässt sie kaum aufschreien.)
+(You whip her butt with the leather crop but she doesn't react much.)
+(Du schlägst ihr mit der Ledergerte auf den Hintern, aber sie reagiert kaum.)
+(She blushes as you massage her pussy with the wand.)  Wow!  I didn't expect that.
+(Sie errötet, als du ihre Vagina mit dem Stab massierst.) Wow! Damit habe ich nicht gerechnet.
+(She struggles as you slide the egg inside.)  Hey!  Are you allowed to do that?
+(Sie zappelt, als du das Ei hineinsteckst.) Hey! Ist das überhaupt zulässig?
+(She sighs as you remove the egg.)  Thanks, that was kind of embarrassing.
+(Sie seufzt, als du das Ei herausnimmst.) Danke, das war mir etwas peinlich.
+(You restrain her legs with the long hemp rope and suspend her by the feet from the ceiling.)  Well done.
+(Du fesselst ihre Beine mit dem langen Hanfseil und lässt sie an den Füßen von der Decke baumeln.) Gute Arbeit.
+(You untie the hemp rope from the ceiling and slowly get her down.)  Always be careful when you suspend someone.
+(Du löst das Hanfseil von der Decke und lässt sie langsam herab.) Sei immer vorsichtig, wenn du jemanden aufhängst.
+Konichiwa Miss.  You may restrain me however you want.  Take good care of the Dojo.
+Konichiwa, Miss. Sie können mich nach Belieben fesseln. Passen Sie gut auf das Dojo auf.
+Konichiwa, are you here to learn the fine art of Shibari?
+Konichiwa, bist du hier, um die feine Kunst des Shibari zu erlernen?
+###_PLAYER
+Hello there, I'm DialogPlayerName.
+Hallo, ich bin DialogPlayerName.
+###_NPC
+Welcome to the Dojo, I'm teacher DialogCharacterName.
+Willkommen im Dojo, ich bin DialogCharacterName, die Lehrerin.
+###_PLAYER
+What's going on here?
+Was geht hier vor sich?
+###_NPC
+I teach Shibari and Kinbaku in this Dojo.  I mostly restrain and release submissives.
+Ich lehre in diesem Dojo Shibari und Kinbaku. Hauptsächlich fessele und befreie ich die Subs.
+###_PLAYER
+What is Shibari?
+Was ist Shibari?
+###_NPC
+Shibari can roughly be translated as: "to tie".  It's an ancient form of rope bondage art coming from Japan.
+Shibari bedeutet frei übersetzt "fesseln". Es ist eine uralte Form der Seilfesselung aus Japan.
+###_PLAYER
+Can I tie you up?
+Kann ich dich fesseln?
+###_NPC
+No, as the Dominant in the room, I need my freedom to supervise.
+Nein, als die dominante Person im Raum brauche ich meine Freiheit, um auf die Sicherheit zu achten.
+Your reputation as a Domme precedes you.  Yes, you may tie me up and take control of the Dojo.
+Dein dominanter Ruf eilt dir voraus. Ja, du darfst mich fesseln und die Kontrolle über das Dojo übernehmen.
+###_PLAYER
+Get naked for your Shibari session.
+Mach dich für deine Shibari-Session frei.
+###_NPC
+Very well Miss DialogPlayerName.  (She strips down for you.)
+Sehr wohl, Miss DialogPlayerName.  (Sie zieht sich für dich aus.)
+###_PLAYER
+Will you tie me up?
+Würdest du mich fesseln?
+###_NPC
+Of course, with practice you will become a true escape artist.  Should I go easy on you or make it tight?
+Natürlich, mit etwas Übung wirst du eine echte Entfesselungskünstlerin. Soll ich es dir einfach machen oder richtig eng?
+###_PLAYER
+(Spank her on the butt.)
+(Ihrem Hintern einen Klaps geben.)
+###_NPC
+(You spank her on the butt as she dangles on the rope.)  Ow!  Miss, I'm not a masochist.
+(Du gibst ihr einen Klaps, während sie am Seil baumelt.) Au! Miss, ich bin keine Masochistin.
+###_PLAYER
+Can I have some suspension ropes of my own?
+Kann ich eigene Hängeseile haben?
+###_NPC
+Only the best bondage masters can have such ropes to use everywhere.  You're not skilled enough.
+Nur die besten Fesselmeister dürfen solche Seile überall einsetzen. Es fehlt dir an Übung.
+Yes, you're skilled enough to use these ropes everywhere.  (She gives you some ropes for suspension bondage.)
+Ja, du hast genug Erfahrung, um diese Seile überall zu benutzen. (Sie gibt dir Seile zur Hängefesselung.)
+###_PLAYER
+Let's talk later.  (Leave her.)
+Reden wir später. (Dialog beenden.)
+Please go easy on me.
+Etwas Einfaches bitte.
+###_NPC
+Sure.  (She picks a hemp rope and restrain your arms loosely.)  Try to free yourself.
+Klar. (Sie nimmt ein Hanfseil und fesselt damit locker deine Arme.) Versuche dich zu befreien.
+###_PLAYER
+A regular tie I guess.
+Eine normale Fesselung, denke ich.
+###_NPC
+Of course.  (She picks a few hemp ropes and restrain your arms and legs.)  Time to struggle.
+Natürlich. (Sie nimmt ein paar Hanfseile und fesselt deine Arme und Beine damit.) Zeit zum Zappeln.
+###_PLAYER
+Make it tight.
+Mach es eng.
+###_NPC
+Excellent.  (She gets long ropes, restrain your arms and suspend your feet from the ceiling.)  This won't be easy.
+Ausgezeichnet. (Sie holt lange Seile, fesselt deine Arme und lässt dich an den Beinen von der Decke baumeln.) Das wird nicht einfach.
+###_PLAYER
+Do your worst.
+Gib alles.
+###_NPC
+Perfect.  (She gets long ropes, restrain your arms very tightly and suspend your feet from the ceiling.  She then gags you.)  Good luck.
+Perfekt. (Sie holt lange Seile, fesselt deine Arme sehr fest und lässt dich an den Beinen von der Decke baumeln. Dann knebelt sie dich.) Viel Glück.
+###_PLAYER
+I've changed my mind.
+Ich hab's mir anders überlegt.
+###_NPC
+It's fine.  Is there anything else you need?
+Kein Problem. Brauchst du sonst noch etwas?
+Very good, you've made it.
+Sehr gut, du hast es geschafft.
+Don't give up, practice makes perfect.
+Nicht aufgeben, Übung macht den Meister.
+###_PLAYER
+I'm not sure I'll be able to escape.
+Ich weiß nicht, ob ich mich befreien kann.
+###_NPC
+There's only one way, stop chatting and start working.
+Es gibt nur eine Möglichkeit, hör auf zu quatschen und mach dich ans Werk.
+###_PLAYER
+(Struggle playfully and giggle.)
+(Verspielt zappeln und kichern.)
+###_NPC
+(She giggles.)  Well someone seems to be having fun.
+(Sie kichert.) Tja, da hat wohl jemand Spaß.
+###_PLAYER
+How do I get out?
+Wie komme ich hier raus?
+###_NPC
+Try to grab the knots and struggle.  The more energy you put, the faster you should get out.
+Versuche, die Knoten zu fassen und sie zu lockern. Je mehr du dich anstrengst, desto schneller sollte es gehen.
+###_PLAYER
+I surrender.  Please get me out.
+Ich geb's auf. Bitte hilf mir hier raus.
+###_NPC
+Struggle some more.  If you really cannot get out, I'll release you.
+Zappel noch ein wenig. Wenn du dich wirklich nicht befreien kannst, helfe ich dir.
+###_PLAYER
+(Whimper and make pleading eyes.)
+(Wimmern und flehende Augen machen.)
+I'll escape on my own.  (Leave her.)
+Ich befreie mich selbst. (Dialog beenden.)
+I've done it.  (Cheer and smile.)
+Ich hab's geschafft. (Jubeln und lächeln.)
+###_NPC
+Well done.  I hope you learned some tricks.  Would you like to try again?
+Gut gemacht. Hoffentlich hast du dir neue Tricks antrainiert. Möchtest du es noch einmal versuchen?
+###_PLAYER
+Piece of cake!  (Be cocky.)
+Kinderspiel! (Spotten.)
+###_NPC
+(She laughs.)  I hope you learned some tricks.  Would you like to try again?
+(Sie lacht.) Hoffentlich hast du dir neue Tricks antrainiert. Möchtest du es noch einmal versuchen?
+(She struggles in her restraints.)  Can you release me?
+(Sie kämpft mit ihren Fesseln.) Kannst du mich befreien?
+(She bows her head respectfully.)  Arigato to you and to the maid sorority.
+(Sie verneigt respektvoll ihren Kopf.) Arigato an dich und die Schwesternschaft der Hausmädchen.
+###_PLAYER
+Do you need help?
+Brauchst du Hilfe?
+###_NPC
+(She shakes her head yes.)  Yes please, can you release me?
+(Sie nickt.) Ja, bitte, kannst du mich befreien?
+###_PLAYER
+Should I help your student?
+Sollte ich deiner Schülerin helfen?
+###_NPC
+No, just release me and I'll take care of her.
+Nein, befreie einfach nur mich, ich kümmere mich um sie.
+###_PLAYER
+Is everything alright now?
+Ist jetzt alles in Ordnung?
+###_NPC
+Yes, Domo Arigato.  Please inform the sorority that everything is fine at the Dojo.  (She dresses back.)
+Ja, Domo Arigato. Bitte informiere die Schwesternschaft, dass im Dojo alles bestens ist. (Sie zieht sich wieder an.)
+###_PLAYER
+What happened here?
+Was ist hier passiert?
+###_NPC
+A Japanese girl started to mess with my ropes.  I've tried to stop her, but she threw me on the floor.  She stripped, restrained and left me dangling.
+Ein japanisches Mädchen spielte an meinen Seilen herum. Ich wollte eingreifen und sie warf mich zu Boden. Dann ließ sie mich gefesselt hängen.
+A student dared me to try Shibari.  I thought she couldn't do it, but she did and left to get her camera.  I couldn't escape by myself.
+Eine Schülerin forderte mich zu Shibari heraus. Sie fesselte mich überraschend gut und ging ihre Kamera holen. Ich konnte mich nicht befreien.
+(She blushes.)  I wanted to try self-suspension and I somehow put the knots out of reach.  I got stuck like that, this is embarrassing.
+(Sie errötet.) Ich wollte versuchen, mich selbst aufzuhängen und habe irgendwie die Knoten außer Reichweite platziert. Peinlich, dass ich festtecke.
+Milady Head Mistress came in with customers and they wanted to try Shibari on me.  They had to hurry so they called the sorority to get me down.
+Die Hausherrin kam mit Kunden herein und sie wollten Shibari an mir ausprobieren. Sie hatten es eilig, also riefen sie die Hausmädchen zur Rettung.
+###_PLAYER
+I'll go get help.  (Leave her.)
+Ich hole Hilfe. (Dialog beenden.)
+Great!  A chore well done.
+Klasse! Ein gut erfüllter Auftrag.
+###_NPC
+Absolutely.  Is there something I can do for you?
+Auf jeden Fall. Kann ich irgendwie behilflich sein?
+###_PLAYER
+No problem.  We are there to serve you.
+Kein Problem. Wir sind hier, um euch zu dienen.
+###_NPC
+This is great!  Is there something I can do for you?
+Das ist toll! Kann ich irgendwie behilflich sein?
+###_PLAYER
+Alright, but be more careful next time.
+Na gut, aber sei in Zukunft vorsichtiger.
+###_NPC
+I will, thanks.  Is there something I can do for you?
+Das werde ich, danke. Kann ich irgendwie behilflich sein?

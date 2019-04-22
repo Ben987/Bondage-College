@@ -49,13 +49,43 @@ function C013_BondageClub_Entrance_SarahPunished() {
 // Chapter 13 Bondage Club - Ends the Bondage College and loads the Bondage Club game engine, exports a few items
 function C013_BondageClub_Entrance_EnterClub() {
 
-	// We export a special string for Sarah to use in the Bondage Club later
+	// Save Amanda status
+	var AmandaSarah = "";
+	var Amanda = "";
+	CurrentActor = "Amanda";
+	if (GameLogQuery("C012_AfterClass", CurrentActor, "DatingSarah")) AmandaSarah = "AmandaSarahLovers";
+	if (Common_PlayerLover == "Amanda") Amanda = "AmandaLover";
+	if ((ActorGetValue(ActorOwner) == "Player") && !GameLogQuery("", "Amanda", "CurfewStay")) Amanda = "AmandaCollared";
+	if ((ActorGetValue(ActorOwner) == "Player") && GameLogQuery("", "Amanda", "CurfewStay")) Amanda = "AmandaCollaredWithCurfew";
+	if (Common_PlayerOwner == "Amanda") Amanda = "AmandaMistress";
+
+	// Save Sarah status
 	var Sarah = "";
+	CurrentActor = "Sarah";
 	if (Common_PlayerLover == "Sarah") Sarah = "SarahLover";
 	if ((ActorGetValue(ActorOwner) == "Player") && !GameLogQuery("", "Sarah", "CurfewStay")) Sarah = "SarahCollared";
 	if ((ActorGetValue(ActorOwner) == "Player") && GameLogQuery("", "Sarah", "CurfewStay")) Sarah = "SarahCollaredWithCurfew";
-	if (C013_BondageClub_Entrance_WithSarah && GameLogQuery(CurrentChapter, "", "SarahWillBePunished")) Sarah = "SarahWillBePunished";
-	if (C013_BondageClub_Entrance_WithSarah && !GameLogQuery(CurrentChapter, "", "SarahWillBePunished")) Sarah = "SarahCameWithPlayer";
+	
+	// Save Sarah intro status
+	var SarahIntro = "";
+	if (C013_BondageClub_Entrance_WithSarah && GameLogQuery(CurrentChapter, "", "SarahWillBePunished")) SarahIntro = "SarahWillBePunished";
+	if (C013_BondageClub_Entrance_WithSarah && !GameLogQuery(CurrentChapter, "", "SarahWillBePunished")) SarahIntro = "SarahCameWithPlayer";
+
+	// Save Sidney status
+	var Sidney = "";
+	CurrentActor = "Sidney";
+	if (Common_PlayerLover == "Sidney") Sidney = "SidneyLover";
+	if ((ActorGetValue(ActorOwner) == "Player") && !GameLogQuery("", "Sidney", "CurfewStay")) Sidney = "SidneyCollared";
+	if ((ActorGetValue(ActorOwner) == "Player") && GameLogQuery("", "Sidney", "CurfewStay")) Sidney = "SidneyCollaredWithCurfew";
+	if (Common_PlayerOwner == "Sidney") Sidney = "SidneyMistress";
+
+	// Save Jennifer status
+	var Jennifer = "";
+	CurrentActor = "Jennifer";
+	if (Common_PlayerLover == "Jennifer") Jennifer = "JenniferLover";
+	if ((ActorGetValue(ActorOwner) == "Player") && !GameLogQuery("", "Jennifer", "CurfewStay")) Jennifer = "JenniferCollared";
+	if ((ActorGetValue(ActorOwner) == "Player") && GameLogQuery("", "Jennifer", "CurfewStay")) Jennifer = "JenniferCollaredWithCurfew";
+	if (Common_PlayerOwner == "Jennifer") Jennifer = "JenniferMistress";
 
 	// Exports all items and Sarah's data
 	localStorage.setItem("BondageClubImportSource", "BondageCollege");
@@ -65,7 +95,12 @@ function C013_BondageClub_Entrance_EnterClub() {
 	localStorage.setItem("BondageCollegeExportLockedCollar", (PlayerHasLockedInventory("Collar")) ? "true" : "false");
 	localStorage.setItem("BondageCollegeExportLockedChastityBelt", (PlayerHasLockedInventory("ChastityBelt")) ? "true" : "false");
 	localStorage.setItem("BondageCollegeExportLockedVibratingEgg", (PlayerHasLockedInventory("VibratingEgg")) ? "true" : "false");
+	localStorage.setItem("BondageCollegeExportAmandaSarah", AmandaSarah);
+	localStorage.setItem("BondageCollegeExportSarahIntro", SarahIntro);
+	localStorage.setItem("BondageCollegeExportAmanda", Amanda);
 	localStorage.setItem("BondageCollegeExportSarah", Sarah);
+	localStorage.setItem("BondageCollegeExportSidney", Sidney);
+	localStorage.setItem("BondageCollegeExportJennifer", Jennifer);
 	localStorage.setItem("BondageCollegeExportBallGag", (PlayerHasInventory("BallGag")) ? "true" : "false");
 	localStorage.setItem("BondageCollegeExportClothGag", (PlayerHasInventory("ClothGag")) ? "true" : "false");
 	localStorage.setItem("BondageCollegeExportTapeGag", (PlayerHasInventory("TapeGag")) ? "true" : "false");
