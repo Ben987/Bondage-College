@@ -28,6 +28,7 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 0,,(Money.),,DialogChangeMoney(200),
 0,,(Freedom.),granted,"DialogRemoveItem(""ItemMouth"")",!Player.CanTalk()
 0,,Freedom.,granted,"DialogRemoveItem(""ItemArms"")",Player.CanTalk()
+0123456789,,Looses dresses,lost,PlayerLoosesAllBabydresses(),
 0,,ReduceRep,ABDL rep -1,"DialogChangeReputation(""ABDL"", -1)",
 1,,I want some mittens,Certainly.  (She slips thumbless padded mittens over your hands and buckels them snuggly secure aroud your wrists.),"DialogWearItem(""PaddedMittens"", ""ItemArms"")",Player.CanTalk()
 1,,Can you help take off now?,I suppsoe I can unbuckle them.  Don't go cause any mischief now will you.,"DialogRemoveItem(""ItemArms"")",Player.CanTalk()
@@ -69,7 +70,8 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 18,20,Thanks for reminding me.,You're welcome.  Have you rembered the $10 fee for diapers?,,"DialogReputationGreater(""ABDL"", 1)"
 18,,Is there an issue with the rest of the club?,"Not really, but don't expect people to take you seriously while you are wearing a diaper or an adordorable baby dress.",,
 18,0,Actually I don't want to join now.,I am sorry to hear that.  Do let me know if your mind.,,
-20,60,Yes here it is. (Pay $10.),Thank you.  Now lets get you changed.  (She pulls you to one side and swiftly removes all your clothes.),PlayerUndress(),
+20,60,Yes here it is. (Pay $10.),Thank you.  Now lets get you changed.  (She pulls you to one side and swiftly removes all your clothes.),PlayerUndress(),DialogMoneyGreater(10)
+20,0,I don't have enough money.,"Sorry to hear that, but we can't run this place for free. Do come back later once you have earned some more.",,!DialogMoneyGreater(10)
 20,0,"Sorry, maybe another time.",Just let me know when you are ready.,,
 20,12,What were the nursery requirements again?,The primary requirement is diapers.  They are mandatory on entry and a fresh diaper must be purchased for each visit and cost $10,,
 25,0,(Sign the form and pay $10.),Thank you.  Now lets get you changed.,,
@@ -77,10 +79,11 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 25,,Do I have to sign this.,"Yes, it is the backbone of the caring structure we provide.",,
 25,,(Skim read the small print.),(...right to remain silent...   ...power of attorney...   ...any methods of discipline deemed necessary...),,
 25,0,Actually I'll pass.,Agreeing to be cared for isn't for everyone I suppose.,,
-50,60,Here you go.  (Pay $10.),Thank you.  Now lets get you ready.  (She swiftly removes all your clothes.),PlayerUndress(),
-50,60,I can dress myself.  (Pay $10.),"I'm sure you could, but this is part of my duty of care.  (She swiftly removes all your clothes.)",,"DialogReputationGreater(""ABDL"", 10)"
+50,60,Here you go.  (Pay $10.),Thank you.  Now lets get you ready.  (She swiftly removes all your clothes.),PlayerUndress(),DialogMoneyGreater(10)
+50,,I can dress myself.,"I'm sure you could, but this is part of my duty of care. ",,"DialogReputationGreater(""ABDL"", 10)"
 50,12,What were those requirments again?,The primary requirement is diapers.  They are mandatory on entry and a fresh diaper must be purchased for each visit.  They cost $10,,
-50,0,I don't have $10 for this.,That is a shame.  Do come back when you have found some pocket money.,,
+50,0,I don't have $10 for this.,That is a shame.  Do come back when you have found some pocket money.,,!DialogMoneyGreater(10)
+50,0,I'm not paying for this.,That is a shame.  We can't run this place for free.  If you change your mind we are always very welcoming.,,
 60,70,(Blush and try to cover yourself.),"No need to feel ashamed, I am just here to help you.  (She fits a large padded diaper to you.)",PlayerGetsDiapered(-4),
 60,70,Don't get any ideas.,"I wasn't, I have to do this to help you.  (She hastily fits a large padded diaper to you.)",PlayerGetsDiapered(2),
 60,70,(Wait patiently.),I've got a comfy clean diaper for you.  (She fits a large padded diaper to you.),PlayerGetsDiapered(),
@@ -103,8 +106,7 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 100,,,(She hears you crying and rushes over.)  What's the matter Baby DialogPlayerName?,,
 100,,I woshth my binky.,"Awww never mind, here have another one.  (She puts a pacifier in your mouth.)",PlayerRePacified(),PlayerLostBinky()
 100,,I woshth my binky again.,I had better make sure you don't loose this one then.  (She straps a harness pacifier in your mouth.),PlayerRePacified(),PlayerLostBinkyAgain()
-100,,(Cry and mumble into your pacifier.),"I'm sorry, I didin't understand that.  Try again now.  (She removes the device from your mouth.)","DialogRemoveItem(""ItemMouth"")",PlayerPacified()
-100,,(Cry and mumble into your pacifier.),You've been a bad baby.  you will stay like that until I think you are ready to apologize.,,PlayerPacifiedBad()
+100,,(Cry and mumble into your pacifier.),"I'm sorry, I didin't understand that.  Try again now.  (She removes the device from your mouth.)","DialogRemoveItem(""ItemMouth"")",!Player.CanTalk()
 100,,Do I really have to wear this diaper?,Oh course you do. You are a baby in the nursery now.  (She reaches between you legs and checks the diaper.),,
 100,130,I don't want to wear this dress.,"That is a pitty, you look beautiful in it.  Do you want try another of our gorgeous dresses instead?",,PlayerWearingBabyDress()
 100,140,Can I wear a dress again?,"You certainly can, but you will need to pay for the laundry, which is  $5.  We can't have our babies wearing dirty dresses.",,!PlayerWearingBabyDress()
@@ -137,7 +139,8 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 130,136,I just want to wear my birthday suit.,I suppose you may.  Do you want me to put that dress for washing?,,
 130,,Can I chose the dress style and color please.,"Sorry, that would be a very big decision for an ickle baby to make, but I'm sure I can pick out something delightful for you to wear.",,
 130,100,I will stay wearing this dress.,That is all right and you do look very pretty in it.,,
-132,133,Okay. (Pay $5),"Great, I think you will look absolutely smashing in this dress.  (She changes your dress, fussing over you, making it sits just right.)",PlayerChangeDress(),
+132,133,Okay. (Pay $5),"Great, I think you will look absolutely smashing in this dress.  (She changes your dress, fussing over you, making it sits just right.)",PlayerChangeDress(),DialogMoneyGreater(5)
+132,100,I don't have enough money.,"Sorry honey, you will have to come back later when you have some pocket money to spend.",,!DialogMoneyGreater(5)
 132,100,I will stay like this.,You all ready look adorable as you are.,,
 133,100,"Eeeee, thish ish perfecth. Thanw you.",You are simply adorable and welcome baby DialogPlayerName.,PlayerCuteRelpy(),
 133,100,Thank you.,You're welcome.,,
@@ -145,7 +148,8 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 133,134,"I like this dress, but can I have it in another color?","Of course you may, but that dress will have to be laundered now so you will have to pay an extra $5.",,
 133,132,"Hmmm, I want to try on another dress.","Of course you may, but that dress will have to be laundered now so you will have to pay an extra $5.",,
 133,100,Actually I want to wear the previous dress instead.,"Too late now, that one has already gone to the laundry.",,
-134,135,Okay. (Pay $5),"Great, I think you will look absolutely smashing in this dress.  (She changes your dress, fussing over you, making it sits just right.)",PlayerChangeDressColor(),
+134,135,Okay. (Pay $5),"Great, I think you will look absolutely smashing in this dress.  (She changes your dress, fussing over you, making it sits just right.)",PlayerChangeDressColor(),DialogMoneyGreater(5)
+134,100,I don't have enough money.,"Sorry honey, you will have to come back later when you have some pocket money to spend.",,!DialogMoneyGreater(5)
 134,100,I will stay like this.,You all ready look adorable as you are.,,
 135,100,"Eeeee, thish ish perfecth. Thanw you.",You are simply adorable and welcome baby DialogPlayerName.,PlayerCuteRelpy(),
 135,100,Thank you.,You're welcome.,,
@@ -158,8 +162,57 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 137,100,Thank you.,You're welcome.,,
 137,100,"This will do, I suppose.",It will have to.  I have already sent that dress off for washing.  You're almost as nacked and vulnerable as the day you were born now.,,
 137,100,Actually I want to wear my dress again.,"Too late now, that one has already gone to the laundry.",,
-140,133,Okay. (Pay $5),"Great, I think you will look absolutely smashing in this dress.  (She takes a fresh dress and puts it on you, making it sit just right.)",PlayerChangeDress(),
+140,133,Okay. (Pay $5),"Great, I think you will look absolutely smashing in this dress.  (She takes a fresh dress and puts it on you, making it sit just right.)",PlayerChangeDress(),DialogMoneyGreater(5)
+140,100,I don't have enough money.,"Sorry honey, you will have to come back later when you have some pocket money to spend.",,!DialogMoneyGreater(5)
 140,100,I will stay like this.,You all look ready adorable as you are.,,
-200,,,I've been very disapointed by your recent behaviour. You will stay like that until you are ready to apologize.,,Player.IsRestrained()
-200,,,What do you think you are doing?  Bad babies like you shouldn't be free to cause more trouble.,,!Player.IsRestrained()
+200,,,I've been very disapointed by your recent behaviour. You will stay like that until you are ready to apologize.,,
+200,205,(Cry and mumble into your pacifier.),Are you ready to appologise properly little DialogPlayerName?,,!Player.CanTalk()
+200,210,Hey let me go right now.,You clearly haven't learnt your lesson yet.  (She staps a pacifier in your mouth)  That will help you learn some manners. Now for another lesson.,"DialogWearItem(""HarnessPacifierGag"", ""ItemMouth"")",
+200,210,Will you let me go now.,"Your behaviour has improved, but I think you may still need another lesson, don't you.",,PlayerReadyToAppologise()
+200,210,I'm sorry Nurse.  I've learnt my lesson.,I'm not so sure you have.  I think we need to continue your punishment.,,!PlayerReadyToAppologise()
+200,230,I'm shorry Nurshe.,"Aww, it is good to hear that.  Are you going to be a good little girl now?",,PlayerReadyToAppologise()
+200,230,I am really sorry Nurse.,I am glad to hear that.  Are you going to behave your self an play nicely now?,,PlayerReadyToAppologise()
 200,,(Leave her.),,DialogLeave(),
+205,210,(Nod your head.),"No, I don't think you are ready to appolgies yet.  What you need is more punishment.",,!PlayerReadyToAppologise()
+205,200,(Nod your head.),"I think you are ready to start appoligising.  (She removes your gag.)  Okay, what have you got to say for yourself.","DialogRemoveItem(""ItemMouth"")",PlayerReadyToAppologise()
+205,200,(Shake your head.),Well you had better keep quiet and think about your behaviour.,,
+210,215,Yes Nurse.,Good your getting the hang of this.  Now which punishment shall I give you this time.,,
+210,215,"Please no, I'll be good.",Don't try fooling me.  You are in this situation because precisely beacuse you have not been good.  Now which punishment will you get this time.,,!PlayerReadyToAppologise()
+210,200,"Please no, I'll be good.","Fine, but you still need to think long and hard about your behaviour.",,PlayerReadyToAppologise()
+210,215,(Nod your head.),"Good your getting the hang of this, now which punishment shall I give you this time.",,
+210,215,(Shake your head.),It's far too late for that. You have been a very naughty girl.  Now which punishment shall I give you this time.,,
+215,300,What are you going to to?,(She produces a hair brush)  It is time you had your bottom spank.  (she sits on a chair.)  Now lie down over my knees.,,
+215,300,(Wait quietly.),(She produces a hair brush)  It is time you had your bottom spank.  (she sits on a chair.)  Now lie down over my knees.,,
+215,,(Leave her.),Where do you think your going.  (She grabs your arm and pulls you back close to her.),,
+230,235,Yesh Nurshe.,"That is lovely to hear.  (She gives you a big hugs, then frees you hands.)  Would you like an ordinary pacifier?",PlayerForgiven(),
+230,235,Yes Nurse.,"That is good to hear.  (She gives you a hugs, then frees you hands.)  Would you like an ordinary pacifier?",PlayerForgiven(),
+230,,Maybe.,I can always give you more punishments till you are sure.  Now are you going to be a good girl?,,
+230,210,Nope.,I though not.  (She gags you with a harness pacifier.)  It's time you had another punishment.,PlayerRestrained(3),
+235,236,Yesh pweashe.,"I though you would.  (She helps your hands into mittems, slips a pacifier into your mouth and kisses you on the forehead.)  Run along now.",PlayerRestrained(1),
+235,236,No thank you.,I do know when you are not being honest.  (She slips for hands into mittens and a pacifier into your mouth.)  Run along now like a good girl.,PlayerRestrained(1),
+236,100,(Leave her.),,DialogLeave(),
+250,,,What do you think you are doing?  Bad babies like you shouldn't be free to cause more trouble.,,
+250,200,Whatever,Don't take that tone with me young lady.  (She forceably restrains you again.),PlayerRestrained(3),
+250,200,(Leave her.),Your not going anywhere like that.  (She pulls you back and forcably restrains you again.),PlayerRestrained(3),
+260,,,"What do you think your doing?  You should still be wear diapers, you've been a very bad girl.",,
+260,262,Whatever,"Don't take that tone with me, I know you have been a very naughty girl.",,
+260,262,I'm sorry Nurse.,I can tell you are not sorry.  Babies must ask to stop wearing diapers and leave the nursery.  It is part of our duty of care.,,
+260,262,(Sulk.),Its no good sulking like that.  You know you must wear diapers whe whole time while in our care.,,
+260,262,(Leave her.),Hold it right there.  (She grabs hold of your arm.)  You never saked to leave the nursery.,,
+262,264,So what now?,"You can be quiet for a start.  (She strips and inspects you, then fits fresh diapers before finally restraining you.)",PlayerReadmitted(),
+262,264,(Wait quietly.),"At least you still have some manners.  (She strips and inspects you, then fits fresh diapers before finally restraining you.)",PlayerReadmitted(),
+262,264,(Ignore the nurse.),"HEY look at me when I am talking to you.  (She strips and inspects you, then fits fresh diapers before finally restraining you.)",PlayerReadmitted(),
+264,210,This is so unfair.,It's not fair that I have to deal with unruly brats like you.  Now you need a propper punishment.,,
+264,210,(Wait quietly.),What you need now is a propper punishment to teach you how to behave in future.,,
+264,210,(Pull away from her.),(She holds you firm.)  You are not going anywhere without a propper puishment firt.,,
+270,,,Those are not appropriate clothes for an adult baby to wearing in this nursery.  How am I supposed to check your diaper?,,
+270,275,Does it matter?,Of course it matters.  That attitude will get you into deep trouble.  (She removes your clothes.),PlayerRemoveCloth(),
+270,275,I'm sorry Nurse.,It would be better if you behaved better and didn't have to be sorry.  (She removes your clothes.),PlayerRemoveCloth(),
+270,275,(Leave her.),Your not going anywhere dressed like that.  (she pulls you back and removes your clothes.),PlayerRemoveCloth(),
+275,200,Can I go now.,"Your diapers appear to be fine now, but I will make sure you hands can't cause any more mischief.  (She makes sure you are restrained.)",PlayerRestrained(4),PlayerDiapered()
+275,200,Can I have some clothes please?,"Not at the moment, you will have to earn that privalige again, along with the use of your hands.  (She makes sure you are restrained.)",PlayerRestrained(4),PlayerDiapered()
+275,200,(Wait quietly.),"Thats better, the seriousness of this seems to be sinking in, but you have not been forgiven yet.  (She makes sure you are restrained.)",PlayerRestrained(4),PlayerDiapered()
+275,260,Can I go now.,Your not even wearing your diaper!  You have been a very naughty girl.  I'm really disapointed in your behaviour DialogPlayerName.,PlayerNeedsPunishing(1),!PlayerDiapered()
+275,260,Can I have some clothes please?,Your not even wearing your diaper!  You have been a very naughty girl.  I'm really disapointed in your behaviour DialogPlayerName.,PlayerNeedsPunishing(1),!PlayerDiapered()
+275,260,(Wait quietly.),Your not even wearing your diaper!  You have been a very naughty girl.  I'm really disapointed in your behaviour DialogPlayerName.,PlayerNeedsPunishing(1),!PlayerDiapered()
+300,200,(Punishment to do),She finishes punishing you.,PlayerPunished(1),

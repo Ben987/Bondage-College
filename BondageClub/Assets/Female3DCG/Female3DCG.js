@@ -55,9 +55,9 @@ var AssetFemale3DCG = [
 			{ Name: "TennisShirt1", Require: ["ClothLower"] },
 			{ Name: "Sweater1", Require: ["ClothLower"] },
 			{ Name: "MistressTop", Require: ["ClothLower"], Hide: ["Bra"], Value: -1 },
-			{ Name: "AdultBabyDress1", Hide: ["ClothLower"], Value: -1 },
-			{ Name: "AdultBabyDress2", Hide: ["ClothLower"], Value: -1 },
-			{ Name: "AdultBabyDress3", Hide: ["ClothLower"], Value: -1 },
+			{ Name: "AdultBabyDress1", Hide: ["ClothLower"], Value: 300 },
+			{ Name: "AdultBabyDress2", Hide: ["ClothLower"], Value: 300 },
+			{ Name: "AdultBabyDress3", Hide: ["ClothLower"], Value: 300 },
 			{ Name: "NurseUniform", Hide: ["ClothLower"], Value: -1 }
 		]
 	},
