@@ -1,4 +1,4 @@
-No chat room found, you can create a new one.
+﻿No chat room found.  You can create a new one.
 Kein Chatraum gefunden, du kannst einen neuen erstellen.
 Search for a room by name:
 Raum per Name suchen:

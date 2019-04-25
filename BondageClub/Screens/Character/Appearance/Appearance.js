@@ -558,6 +558,7 @@ function CharacterAppearanceReady(C) {
 	// If there's no error, we continue to the login or main hall if already logged
 	if ((C.ID == 0) && (C.AccountName != "")) {
 		ServerPlayerAppearanceSync();
+		if (CharacterAppearanceReturnRoom == "ChatRoom") ChatRoomCharacterUpdate(Player);
 		CommonSetScreen(CharacterAppearanceReturnModule, CharacterAppearanceReturnRoom);
 		CharacterAppearanceReturnRoom = "MainHall";
 		CharacterAppearanceReturnModule = "Room";

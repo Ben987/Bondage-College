@@ -4,7 +4,7 @@ var LoginMessage = "";
 var LoginCredits = null;
 var LoginCreditsPosition = 0;
 var LoginThankYou = "";
-var LoginThankYouList = ["Alvin", "Bryce", "Christian", "Designated", "Dick", "Escurse", "EugeneTooms", "Gopanka", /*"Jdmsouls22",*/ "Jyeoh", "Karel", "Kitten", "Laioken", "Michal", "Mindtie", "MunchyCat", 
+var LoginThankYouList = ["Alvin", "Bryce", "Christian", "Designated", "Dick", "Escurse", "EugeneTooms", /*"Gopanka", "Jdmsouls22",*/ "Jyeoh", "Karel", "Kitten", "Laioken", "Michal", "Mindtie", "MunchyCat", 
 						"Nick", "Overlord", "Paradox", "Rashiash", "Ryner", "Setsu95", "Shadow", "Shaun", "Simeon", "Sky", "Terry", "William", "Winterisbest", "Xepherio"];
 var LoginThankYouNext = 0;
 

@@ -3,15 +3,17 @@ var ChatRoomBackground = "";
 var ChatRoomData = {};
 var ChatRoomCharacter = [];
 var ChatRoomLog = "";
+var ChatRoomLastMessage = "";
 
 // Creates the chat room input elements
 function ChatRoomCreateElement() {
 	if (document.getElementById("InputChat") == null) {
 		ElementCreateInput("InputChat", "text", "", "250");
+		document.getElementById("InputChat").setAttribute("autocomplete", "off");
 		ElementCreateTextArea("TextAreaChatLog");
 		ElementValue("TextAreaChatLog", ChatRoomLog);
-		document.getElementById("InputChat").focus();
-		document.getElementById("InputChat").setAttribute("autocomplete", "off");
+		ElementScrollToEnd("TextAreaChatLog");
+		ElementFocus("InputChat");
 	}
 }
 
@@ -20,6 +22,7 @@ function ChatRoomLoad() {
 	ElementRemove("InputSearch");
 	ElementRemove("InputName");
 	ElementRemove("InputDescription");
+	ElementRemove("InputSize");
 	ChatRoomCreateElement();
 }
 
@@ -96,9 +99,9 @@ function ChatRoomClick() {
 	
 	// When the player kneels
 	if ((MouseX >= 1795) && (MouseX < 1855) && (MouseY >= 935) && (MouseY < 995) && Player.CanKneel()) { 
-		ServerSend("ChatRoomChat", { Content: Player.Name + " " + TextGet((Player.ActivePose == null) ? "kneeldown": "standup"), Type: "Action" } );
+		ServerSend("ChatRoomChat", { Content: Player.Name + " " + TextGet((Player.ActivePose == null) ? "KneelDown": "StandUp"), Type: "Action" } );
 		CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
-		ChatRoomCharacterUpdate(Player); 
+		ChatRoomCharacterUpdate(Player);
 	}
 	
 	// When the user wants to change clothes
@@ -123,26 +126,80 @@ function ChatRoomClick() {
 // The ENTER key sends the chat
 function ChatRoomKeyDown() {
 	if (KeyPress == 13) ChatRoomSendChat();
+	if (KeyPress == 33) ElementValue("InputChat", ChatRoomLastMessage);
+	if (KeyPress == 34) ElementValue("InputChat", "");
 }
 
 // Sends the chat to everyone in the room
 function ChatRoomSendChat() {
-	var msg = DialogGarble(Player, ElementValue("InputChat").trim());
-	if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Chat" } );
+	
+	// Some custom functions like /dice or /coin are implemented for randomness
+	var msg = ElementValue("InputChat").trim()
+	ChatRoomLastMessage = msg;
+	if (msg.toLowerCase().indexOf("/dice") == 0) {
+		
+		// The player can roll a dice, if no size is specified, a 6 sided dice is assumed
+		var Dice = (isNaN(parseInt(msg.substring(5, 50).trim()))) ? 6 : parseInt(msg.substring(5, 50).trim());
+		if ((Dice < 4) || (Dice > 100)) Dice = 6;
+		msg = TextGet("ActionDice");
+		msg = msg.replace("SourceCharacter", Player.Name);
+		msg = msg.replace("DiceType", Dice.toString());
+		msg = msg.replace("DiceResult", (Math.floor(Math.random() * Dice) + 1).toString());
+		if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Action" } );
+
+	} else if (msg.toLowerCase().indexOf("/coin") == 0) {
+
+		// The player can flip a coin, heads or tails are 50/50
+		msg = TextGet("ActionCoin");
+		var Heads = (Math.random() >= 0.5);
+		msg = msg.replace("SourceCharacter", Player.Name);
+		msg = msg.replace("CoinResult", Heads ? TextGet("Heads") : TextGet("Tails"));
+		if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Action" } );
+
+	} else if (msg.indexOf("*") == 0) {
+
+		// The player can emote an action using *, it doesn't garble
+		msg = msg.replace(/\*/g, "");
+		if (msg != "") msg = Player.Name + " " + msg;
+		if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Emote" } );
+
+	} else {
+		
+		// Regular chat can be garbled with a gag
+		msg = DialogGarble(Player, msg);
+		if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Chat" } );
+		
+	}
+
+	// Clears the chat text message
 	ElementValue("InputChat", "");
+
 }
 
 // Publishes the player action (add, remove, swap) to the chat
 function ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, LeaveDialog) {
 	if (CurrentScreen == "ChatRoom") {
-		var msg = Player.Name;
-		var dest = (C.ID == 0) ? TextGet("herself") : C.Name;
-		if ((DialogProgressPrevItem != null) && (DialogProgressNextItem != null)) msg = msg + " " + TextGet("swaps") + " " + DialogProgressPrevItem.Asset.Description + " " + TextGet("for") + " " + DialogProgressNextItem.Asset.Description + " "  + TextGet("on") + " " + dest + ".";
-		else if (DialogProgressNextItem != null) msg = msg + " " + TextGet("uses") + " " + DialogProgressNextItem.Asset.Description + " " + TextGet("on") + " " + dest + ".";
-		else msg = msg + " " + TextGet("removes") + " " + DialogProgressPrevItem.Asset.Description + " " + TextGet("from") + " " + dest + ".";
+
+		// Prepares the message
+		var msg = "";
+		if ((DialogProgressPrevItem != null) && (DialogProgressNextItem != null)) msg = TextGet("ActionSwap");
+		else if ((DialogProgressNextItem != null) && (DialogProgressNextItem.Asset.Effect != null) && (DialogProgressNextItem.Asset.Effect.indexOf("Lock") >= 0)) msg = TextGet("ActionLock");
+		else if (DialogProgressNextItem != null) msg = TextGet("ActionUse");
+		else if ((DialogProgressPrevItem != null) && (DialogProgressPrevItem.Asset.Effect != null) && (DialogProgressPrevItem.Asset.Effect.indexOf("Lock") >= 0)) msg = TextGet("ActionUnlock");
+		else msg = TextGet("ActionRemove");
+		
+		// Replaces the action tags to build the phrase
+		msg = msg.replace("SourceCharacter", Player.Name);
+		msg = msg.replace("DestinationCharacter", (C.ID == 0) ? TextGet("Her") : C.Name + TextGet("'s"));
+		if (DialogProgressPrevItem != null) msg = msg.replace("PrevAsset", DialogProgressPrevItem.Asset.Description.toLowerCase());
+		if (DialogProgressNextItem != null) msg = msg.replace("NextAsset", DialogProgressNextItem.Asset.Description.toLowerCase());
+		if (C.FocusGroup != null) msg = msg.replace("FocusAssetGroup", C.FocusGroup.Description.toLowerCase());
+ 
+		// Sends the result to the server and leaves the dialog if we need to
 		ServerSend("ChatRoomChat", { Content: msg, Type: "Action" } );
 		ChatRoomCharacterUpdate(C);
 		if (LeaveDialog && (CurrentCharacter != null)) DialogLeave();
+
 	}
 }
 
@@ -177,12 +234,8 @@ function ChatRoomMessage(data) {
 		ChatRoomLog = ChatRoomLog + data + '\r\n';
 		if (document.getElementById("TextAreaChatLog") != null) {
 			ElementValue("TextAreaChatLog", ChatRoomLog);
-			setTimeout(function(){ 
-				var element = document.getElementById("TextAreaChatLog");
-				element.focus();
-				element.selectionStart = element.selectionEnd = element.value.length;
-				document.getElementById("InputChat").focus();
-			}, 0);
+			ElementScrollToEnd("TextAreaChatLog");
+			ElementFocus("InputChat");
 		}
 	}
 }

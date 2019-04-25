@@ -60,11 +60,21 @@ function MainHallRun() {
 		DrawButton(145, 265, 90, 90, "", "White", "Icons/Magic.png", TextGet("Magic"));
 		DrawButton(25, 265, 90, 90, "", "White", "Icons/Horse.png", TextGet("Stable"));
 
-	}
+		// Draws the custom content rooms - Gambling, Prison & Photographic
+		DrawButton(265, 25, 90, 90, "", "White", "Icons/Camera.png", TextGet("Photographic"));
+		DrawButton(145, 25, 90, 90, "", "White", "Icons/Cage.png", TextGet("Prison"));
+		DrawButton(25, 25, 90, 90, "", "White", "Icons/Random.png", TextGet("Gambling"));
 
-	if (Player.CanWalk()) DrawButton(25, 385, 450, 65, TextGet("Nursery"), "White");
-	if (Player.CanWalk()) DrawButton(25, 475, 450, 65, TextGet("SlaveMarket"), "White");
-	if (Player.CanWalk() && ((ReputationGet("Kidnap") > 0) || ManagementIsClubSlave())) DrawButton(25, 565, 450, 65, TextGet("RandomKidnap"), "White");
+		// Stable, Magic-Theater & Seek Trouble
+		if ((ReputationGet("Kidnap") > 0) || ManagementIsClubSlave()) DrawButton(265, 145, 90, 90, "", "White", "Icons/Question.png", TextGet("RandomKidnap"));
+		DrawButton(145, 145, 90, 90, "", "White", "Icons/Magic.png", TextGet("Magic"));
+		DrawButton(25, 145, 90, 90, "", "White", "Icons/Horse.png", TextGet("Stable"));
+
+		// Nursery & Slave market
+		DrawButton(145, 265, 90, 90, "", "White", "Icons/Gavel.png", TextGet("SlaveMarket"));
+		DrawButton(25, 265, 90, 90, "", "White", "Icons/Diaper.png", TextGet("Nursery"));
+
+	}
 
 	// Check if there's a new maid rescue event to trigger
 	if ((!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk())) {
@@ -129,21 +139,21 @@ function MainHallClick() {
 		if ((MouseX >= 1765) && (MouseX < 1855) && (MouseY >= 385) && (MouseY < 475)) MainHallWalk("Shibari");
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475)) MainHallWalk("Sarah");
 
-		// Custom content rooms
-		// Chat, Shop & Private Room
-		if ((MouseX >=   25) && (MouseX <  115) && (MouseY >= 145) && (MouseY < 235)) MainHallWalk("Gambling");
-		if ((MouseX >=  145) && (MouseX <  235) && (MouseY >= 145) && (MouseY < 235)) MainHallWalk("Prison");
-		if ((MouseX >=  265) && (MouseX <  355) && (MouseY >= 145) && (MouseY < 235)) MainHallWalk("Photographic");
+		// Custom content rooms - Gambling, Prison & Photographic
+		if ((MouseX >=   25) && (MouseX <  115) && (MouseY >=  25) && (MouseY < 115)) MainHallWalk("Gambling");
+		if ((MouseX >=  145) && (MouseX <  235) && (MouseY >=  25) && (MouseY < 115)) MainHallWalk("Prison");
+		if ((MouseX >=  265) && (MouseX <  355) && (MouseY >=  25) && (MouseY < 115)) MainHallWalk("Photographic");
 
-		// Introduction, Maid & Management
-		if ((MouseX >=   25) && (MouseX <  115) && (MouseY >= 265) && (MouseY < 355)) MainHallWalk("Stable");
-		if ((MouseX >=  145) && (MouseX <  235) && (MouseY >= 265) && (MouseY < 355)) MainHallWalk("Magic");
+		// Stable, Magic-Theater & Seek Trouble
+		if ((MouseX >=   25) && (MouseX <  115) && (MouseY >= 145) && (MouseY < 235)) MainHallWalk("Stable");
+		if ((MouseX >=  145) && (MouseX <  235) && (MouseY >= 145) && (MouseY < 235)) MainHallWalk("Magic");
+		if ((MouseX >=  265) && (MouseX <  355) && (MouseY >= 145) && (MouseY < 235) && ((ReputationGet("Kidnap") > 0) || ManagementIsClubSlave())) { if (ManagementIsClubSlave()) ManagementClubSlaveRandomIntro(); else KidnapLeagueRandomIntro(); }
+
+		// Nursery & Slave market
+		if ((MouseX >=   25) && (MouseX <  115) && (MouseY >= 265) && (MouseY < 355)) MainHallWalk("Nursery");
+		if ((MouseX >=  145) && (MouseX <  235) && (MouseY >= 265) && (MouseY < 355)) MainHallWalk("SlaveMarket");
+
 	}
-
-	// Custom content rooms
-	if ((MouseX >= 25) && (MouseX < 475) && (MouseY >= 385) && (MouseY < 450) && Player.CanWalk()) MainHallWalk("Nursery");
-	if ((MouseX >= 25) && (MouseX < 475) && (MouseY >= 475) && (MouseY < 540) && Player.CanWalk()) MainHallWalk("SlaveMarket");
-	if ((MouseX >= 25) && (MouseX < 475) && (MouseY >= 565) && (MouseY < 630) && Player.CanWalk() && ((ReputationGet("Kidnap") > 0) || ManagementIsClubSlave())) { if (ManagementIsClubSlave()) ManagementClubSlaveRandomIntro(); else KidnapLeagueRandomIntro(); }
 
 }
 

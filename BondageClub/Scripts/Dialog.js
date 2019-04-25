@@ -319,10 +319,14 @@ function DialogClick() {
 											if (DialogInventory[I].Asset.SelfBondage || (C.ID != 0)) DialogProgressStart(C, Item, DialogInventory[I]);
 											else DialogSetText("CannotUseOnSelf");
 										} else {
-											var D = DialogFind(C, DialogInventory[I].Asset.Group.Name + DialogInventory[I].Asset.Name, null, false);
-											if (D != "") {
-												C.CurrentDialog = D;
-												DialogLeaveItemMenu();
+											if (CurrentScreen == "ChatRoom")
+												ChatRoomPublishAction(CurrentCharacter, null, DialogInventory[I], true);
+											else {
+												var D = DialogFind(C, DialogInventory[I].Asset.Group.Name + DialogInventory[I].Asset.Name, null, false);
+												if (D != "") {
+													C.CurrentDialog = D;
+													DialogLeaveItemMenu();
+												}
 											}
 										}										
 									} else {
@@ -337,10 +341,14 @@ function DialogClick() {
 									DialogProgressStart(C, Item, null);
 								else
 									if (!DialogInventory[I].Asset.Wear) {
-										var D = DialogFind(C, DialogInventory[I].Asset.Group.Name + DialogInventory[I].Asset.Name, null, false);
-										if (D != "") {
-											C.CurrentDialog = D;
-											DialogLeaveItemMenu();
+										if (CurrentScreen == "ChatRoom")
+											ChatRoomPublishAction(CurrentCharacter, null, DialogInventory[I], true);
+										else {
+											var D = DialogFind(C, DialogInventory[I].Asset.Group.Name + DialogInventory[I].Asset.Name, null, false);
+											if (D != "") {
+												C.CurrentDialog = D;
+												DialogLeaveItemMenu();
+											}
 										}
 									}
 
@@ -486,7 +494,7 @@ function DialogDrawItemMenu(C) {
 					}
 				} else {
 					if (DialogProgressNextItem != null) SkillProgress("Bondage", DialogProgressSkill);
-					if ((DialogProgressNextItem == null) || !DialogProgressNextItem.Asset.Extended) {
+					if (((DialogProgressNextItem == null) || !DialogProgressNextItem.Asset.Extended) && (CurrentScreen != "ChatRoom")) {
 						C.CurrentDialog = DialogFind(C, ((DialogProgressNextItem == null) ? ("Remove" + DialogProgressPrevItem.Asset.Name) : DialogProgressNextItem.Asset.Name), ((DialogProgressNextItem == null) ? "Remove" : "") + C.FocusGroup.Name);
 						DialogLeaveItemMenu();
 					}

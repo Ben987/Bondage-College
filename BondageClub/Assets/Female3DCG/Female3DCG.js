@@ -107,7 +107,12 @@ var AssetFemale3DCG = [
 		AllowPose: ["Suspension"],
 		Left: 125,
 		Top: 0,
-		Asset: ["Band1", "Beret1", "Ears1", "Ears2", { Name: "MaidHairband1", Value: -1 }, { Name: "Santa1", Value: 30 }]
+		Asset: [
+			"Band1", "Beret1", "Ears1", "Ears2",
+			{ Name: "MaidHairband1", Value: -1 },
+			{ Name: "Santa1", Value: 30 },
+			{ Name: "BunnyEars1", Value: 20 }
+		]
 	},
 
 	{
