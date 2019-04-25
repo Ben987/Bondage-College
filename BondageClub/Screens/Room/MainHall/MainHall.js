@@ -50,15 +50,6 @@ function MainHallRun() {
 		DrawButton(1645, 385, 90, 90, "", "White", "Icons/Kidnap.png", TextGet("KidnapLeague"));
 		DrawButton(1765, 385, 90, 90, "", "White", "Icons/Dojo.png", TextGet("ShibariDojo"));
 		DrawButton(1885, 385, 90, 90, "", "White", "Icons/Explore.png", TextGet(SarahRoomLabel()));
-		// Draws the custom content rooms
-		// Gambling, Prison, Photographic
-		DrawButton(265, 145, 90, 90, "", "White", "Icons/Foto.png", TextGet("Photographic"));
-		DrawButton(145, 145, 90, 90, "", "White", "Icons/Cage.png", TextGet("Prison"));
-		DrawButton(25, 145, 90, 90, "", "White", "Icons/Random.png", TextGet("Gambling"));
-		
-		//Stable, Magic-Theater
-		DrawButton(145, 265, 90, 90, "", "White", "Icons/Magic.png", TextGet("Magic"));
-		DrawButton(25, 265, 90, 90, "", "White", "Icons/Horse.png", TextGet("Stable"));
 
 		// Draws the custom content rooms - Gambling, Prison & Photographic
 		DrawButton(265, 25, 90, 90, "", "White", "Icons/Camera.png", TextGet("Photographic"));
