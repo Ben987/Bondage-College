@@ -56,7 +56,9 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  Much better!  I
 103,,,go over and free my assistant.,,
 103,0,(Leave),,DialogLeave(),
 110,,,"Your task: Dance a short Time, I perform some Tricks with my Assistant.",,
-110,,(Dance sexy and wait for the next trick.),,SelectTrick(),
+110,111,(Dance forcefully),(The Performer shows some little tricks.),"DialogChangeReputation(""Dominant"", 1)",
+110,111,(Dance devot),(The Performer shows some little tricks.),"DialogChangeReputation(""Dominant"", -1)",
+111,,(Wait for your next trick.),,SelectTrick(),
 120,,,Your task: Bind my Assistant and then give me the sign to start.,,
 120,,(Show that you are done),,TrickBindAsstant(),RestrainAssistantMinItem(5)
 121,,,Now show the audience how to get out of there.,,
@@ -64,3 +66,10 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  Much better!  I
 121,0,I did it and I want to stop.,(She gives you the income of REPLACEMONEY $.),ShowPayoff(),!Player.IsRestrained()
 121,0,(Give up and beg for help),Your performance is over.,TrickEndPerformance(),
 122,,(wait),,SelectTrick(),
+130,,,Your task: Escape from a wooden Box with some light tie.,,
+130,,(Prepare the trick.),,TrickBoxTied(),
+131,,,"The question is, can she escape",,
+131,132,"Her I am, the Show goes on.",Applause for the escape.,,!Player.IsRestrained()
+131,0,I escaped happily and finish the show.,(She gives you the income of REPLACEMONEY $.),ShowPayoff(),!Player.IsRestrained()
+131,0,(knock for help.),,TrickEndPerformance(),
+132,,(wait),,SelectTrick(),

@@ -204,6 +204,7 @@ function DialogProgressStart(C, PrevItem, NextItem) {
 	if ((C.ID != 0) || ((C.ID == 0) && (PrevItem == null))) S = S + SkillGetLevel(Player, "Bondage");
 	if (Timer < 1) Timer = 1;
 	if (Player.IsBlind()) Timer = Timer * 2;
+	if (Player.IsEnclose()) S = S - 5; //Higher Difficulty for Encloseing
 
 	// Prepares the progress bar and timer
 	DialogProgress = 0;

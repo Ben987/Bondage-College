@@ -10,7 +10,7 @@ var MagicAssistantAppearance = null;
 var MagicPlayerAppearance = null;
 
 var MagicTrick = null;
-var MagicTrickList = ["ChangeBinds", "Dance", "BindAsstant"];
+var MagicTrickList = ["ChangeBinds", "Dance", "BindAsstant", "BoxTiedLight"];
 var MagicTrickCounter = 0;
 var MagicShowIncome = 0;
 var MagicShowState = 1;
@@ -64,7 +64,7 @@ function MagicRun() {
 	if (Player.CanWalk()) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 	DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
 	//todo button
-	DrawButton(1885, 265, 90, 90, "", "White", "Icons/Magic.png");
+	//DrawButton(1885, 265, 90, 90, "", "White", "Icons/Magic.png");
 }
 
 // When the user clicks in the Magic
@@ -74,7 +74,7 @@ function MagicClick() {
 	if ((MouseX >= 1250) && (MouseX < 1750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(MagicAssistant);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355)) {}
+//	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355)) {	InventoryWear(Player, "WoodenBox", "ItemMisc");}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////
@@ -115,12 +115,14 @@ function MagicShowIncomeAdd() {
 function MagicShowPayoff() {
 	MagicPerformer.CurrentDialog = MagicPerformer.CurrentDialog.replace("REPLACEMONEY", MagicShowIncome.toString());
 	CharacterChangeMoney(Player, MagicShowIncome);
+	CharacterNaked(MagicAssistant);
+	CharacterNaked(Player);
 	CharacterDress(MagicAssistant, MagicAssistantAppearance);
 	CharacterDress(Player, MagicPlayerAppearance);
 	MagicShowState = 1;
 }
 
-function MagicSelectTrick(){
+function MagicSelectTrick() {
 	//prepare tricks
 	MagicPerformer.AllowItem = false;
 	MagicAssistant.AllowItem = false;
@@ -143,6 +145,9 @@ function MagicSelectTrick(){
 		MagicPerformer.Stage = "120";
 		MagicPerformer.CurrentDialog = DialogFind(MagicPerformer, "120");
 		MagicAssistant.AllowItem = true;
+	} else if (MagicTrick == "BoxTiedLight") {
+		MagicPerformer.Stage = "130";
+		MagicPerformer.CurrentDialog = DialogFind(MagicPerformer, "130");
 	}
 }
 
@@ -166,7 +171,6 @@ function MagicTrickChangeBinds(){
 		MagicShowState = 4;
 		MagicAssistant.AllowItem = true;
 	}
-	
 }
 
 function MagicTrickBindAsstant() {
@@ -183,6 +187,17 @@ function MagicTrickBindAsstant() {
 	MagicPerformer.CurrentDialog = DialogFind(MagicPerformer, "121");
 }
 
+function MagicTrickBoxTied() {
+	InventoryWear(Player, "NylonRope", "ItemFeet");
+	InventoryWear(Player, "NylonRope", "ItemLegs");
+	InventoryWear(Player, "NylonRope", "ItemArms");
+	InventoryWear(Player, "SmallClothGag", "ItemMouth");
+	InventoryWear(Player, "ClothBlindfold", "ItemHead");
+	InventoryWear(Player, "WoodenBox", "ItemMisc");
+	MagicPerformer.Stage = "131";
+	MagicPerformer.CurrentDialog = DialogFind(MagicPerformer, "131");
+}
+
 
 function MagicAssistantRelese() {
 	MagicShowState = 5;
@@ -192,7 +207,10 @@ function MagicTrickEndPerformance() {
 	MagicPerformer.Stage = "0";
 	MagicPerformer.CurrentDialog = DialogFind(MagicPerformer, "0");
 	DialogLeave();
+	InventoryRemove(Player, "ItemMisc");
 	CharacterRelease(MagicAssistant);
+	CharacterNaked(MagicAssistant);
+	CharacterNaked(Player);
 	CharacterDress(MagicAssistant, MagicAssistantAppearance);
 	CharacterDress(Player, MagicPlayerAppearance);
 	MagicShowState = 1;

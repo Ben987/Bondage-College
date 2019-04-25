@@ -457,10 +457,13 @@ var AssetFemale3DCG = [
 		Priority: 30,
 		Default: false,
 		Color: ["Default"],
+		Top: -250,
+		Zone: [[25, 580, 75, 410], [400, 580, 75, 410]],
 		Asset: [ 
 			{ Name: "WoodenMaidTray", Enable: false, Value: -1 },
 			{ Name: "WoodenMaidTrayFull", Enable: false, Value: -1 },
 			{ Name: "WoodenPaddle", Enable: false, Value: -1 },
+			{ Name: "WoodenBox", RemoveAtLogin: true, Effect: ["BlindNormal", "Prone", "Enclose", "GagLight", "Struggle", "Freeze"], Enable: false, Value: -1 , Time: 15, RemoveTime: 5, Difficulty: 6 },
 		]
 	}
 
