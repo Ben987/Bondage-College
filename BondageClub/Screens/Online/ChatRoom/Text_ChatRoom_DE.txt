@@ -1,17 +1,25 @@
-herself
+SourceCharacter swaps a PrevAsset for a NextAsset on DestinationCharacter FocusAssetGroup.
+SourceCharacter tauscht bei DestinationCharacter PrevAsset gegen NextAsset.
+SourceCharacter uses a NextAsset on DestinationCharacter FocusAssetGroup.
+SourceCharacter setzt NextAsset an DestinationCharacter ein.
+SourceCharacter locks a NextAsset on DestinationCharacter FocusAssetGroup.
+SourceCharacter verschließt NextAsset an DestinationCharacter.
+SourceCharacter removes the PrevAsset from DestinationCharacter FocusAssetGroup.
+SourceCharacter entfernt PrevAsset von DestinationCharacter.
+SourceCharacter unlocks and removes the PrevAsset from DestinationCharacter FocusAssetGroup.
+SourceCharacter öffnet und entfernt PrevAsset von DestinationCharacter.
+SourceCharacter rolls a DiceType sided dice.  The result is: DiceResult.
+SourceCharacter rollt einen DiceType-seitigen Würfel Das Ergebnis ist: DiceResult.
+SourceCharacter flips a coin.  The result is: CoinResult.
+SourceCharacter Wirft eine Münze. Das Ergebnis ist: CoinResult.
+Heads
+Kopf
+Tails
+Zahl
+her
 sich selbst
-swaps
-tauscht
-uses
-benutzt
-removes
-entfernt
-for
-gegen
-on
-an
-from
-von
+'s
+
 kneels down
 kniet sich hin
 stands up
