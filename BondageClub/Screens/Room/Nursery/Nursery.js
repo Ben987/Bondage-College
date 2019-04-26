@@ -7,7 +7,7 @@ var NurseryABDL1 = null;
 var NurseryABDL2 = null;
 var NurseryPlayerBadBabyStatus = 0;						//	0 = Good girl	1 = ready to be forgiven	>= 2 = severity of naughtyness.
 var NurseryPlayerInappropriateCloth = null;
-//var NurseryAdultBaby = null;
+var NurseryCoolDownTime = 0;
 var NurseryPlayerAppearance = null;
 //var NurseryNurseAppearance = null;
 //var NurseryAdultBabyAppearance = null;
@@ -16,15 +16,21 @@ var RandomResult = null;
 var RandomResultB = null;
 var PreviousDress = "";
 var PreviousDressColor = "";
-var NurseryPlayerKeepsLoosingBinky = false;
+var NurseryPlayerKeepsLoosingBinky = null;
+var NurseryGateMsg = null;								// message about nursery gate
+var NurseryLeaveMsg = null;								// message abou ease of opening nursery gate
+var NurseryEscapeAttempts = null;
+var NursuryEscapeFailMsg = null;
+var NurseryRepeatOffender = null;
+
 
 				
 
 // Returns TRUE if
 function NurseryPlayerIsPacified() { return (CharacterAppearanceGetCurrentValue(Player, "ItemMouth", "Name") == "PacifierGag") }
 function NurseryPlayerIsHarnessPacified() { return (CharacterAppearanceGetCurrentValue(Player, "ItemMouth", "Name") == "HarnessPacifierGag") }
-function NurseryPlayerLostBinky() { return (Player.CanTalk() && !NurseryPlayerKeepsLoosingBinky) }
-function NurseryPlayerLostBinkyAgain() { return (Player.CanTalk() && NurseryPlayerKeepsLoosingBinky) }
+function NurseryPlayerLostBinky() { return Player.CanTalk() && !NurseryPlayerKeepsLoosingBinky }
+function NurseryPlayerLostBinkyAgain() { return Player.CanTalk() && NurseryPlayerKeepsLoosingBinky }
 function NurseryPlayerWearingBabyDress() { return (CharacterAppearanceGetCurrentValue(Player, "Cloth", "Name") == "AdultBabyDress1" || CharacterAppearanceGetCurrentValue(Player, "Cloth", "Name") == "AdultBabyDress2" || CharacterAppearanceGetCurrentValue(Player, "Cloth", "Name") == "AdultBabyDress3") }
 function NurseryPlayerReadyToAppologise() { return (NurseryPlayerBadBabyStatus <= 1) }
 function NurseryPlayerDiapered() { return (CharacterAppearanceGetCurrentValue(Player, "Panties", "Name") == "Diapers1") }
@@ -43,6 +49,7 @@ function NurseryLoad() {
 	if (NurserySituation != null) {
 		NurseryClothCheck();
 		if (NurseryPlayerInappropriateCloth) {
+			NurseryPlayerInappropriateCloth = null;
 			NurseryPlayerNeedsPunishing(1);
 			NurseryNurse.Stage = "270";
 			NurseryLoadNurse();
@@ -71,7 +78,7 @@ function NurseryRun() {
 	if (NurserySituation == "AtGate") {
 		DrawCharacter(Player, 500, 0, 1);
 		DrawImage("Screens/Room/Nursery/NurseryGate.png", 0, 0);
-		DrawButton(1500, 25, 300, 75, "Escape", "White");
+		if (Player.CanWalk()) DrawButton(1500, 25, 300, 75, "Escape", "White");
 	}
 	if (Player.CanWalk()) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 	DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
@@ -79,6 +86,8 @@ function NurseryRun() {
 		DrawButton(1885, 265, 90, 90, "", "White", "Icons/Crying.png");
 		if (CharacterAppearanceGetCurrentValue(Player, "ItemMouth", "Name") == "PacifierGag") DrawButton(1885, 385, 90, 90, "", "White", "Icons/SpitOutPacifier.png");
 	}
+	NurseryGoodBehaviour();
+	NurseryDrawText();
 }
 
 // When the user clicks in the nursery
@@ -97,6 +106,7 @@ function NurseryClick() {
 		if ((MouseX >= 1250) && (MouseX < 1750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(NurseryABDL2);
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) {
 			NurserySituation = "AtGate";
+			NurseryGateMsg = true;
 			NurseryJustClicked = true;
 		}
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 505) && (MouseY < 595) && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
@@ -104,22 +114,56 @@ function NurseryClick() {
 	if (NurserySituation == "AtGate") {
 		if ((MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk() && !NurseryJustClicked) NurserySituation = "Admitted";
-		if ((MouseX >= 1500) && (MouseX < 1800) && (MouseY >= 25) && (MouseY < 100)) NurseryEscapeGate();
+		if ((MouseX >= 1500) && (MouseX < 1800) && (MouseY >= 25) && (MouseY < 100) && Player.CanWalk()) NurseryEscapeGate();
 	}
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
-	if (NurserySituation == ("AtGate") || NurserySituation == ( "Admitted")) {
+	if (NurserySituation == "AtGate" || NurserySituation == "Admitted") {
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355)) {
 			NurseryLoadNurse();
-			NurserySituation = "Admitted";
 		}
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475)) NurseryPlayerSpitOutPacifier();
 	}
 	NurseryJustClicked = null;
 }
 
+// Hold selected text on screen
+function NurseryDrawText() {
+	if (NurserySituation != "AtGate") {
+		NurseryGateMsg = null;
+		NurseryLeaveMsg = null;
+	}
+	if (NurseryGateMsg) {
+		DrawTextWrap(TextGet("ChildGate"), 1025, 200, 840, 160, "White");
+		if (!Player.IsRestrained()) NurseryLeaveMsg = 1;
+		if (NurseryLeaveMsg == null) NurseryLeaveMsg = 2;
+	}
+	if (NurseryLeaveMsg == 1) DrawTextWrap(TextGet("EasyEscape"), 1025, 500, 840, 160, "White");
+	if (NurseryLeaveMsg == 2) DrawTextWrap(TextGet("NoEasyEscape"), 1025, 500, 840, 160, "White");
+	if (NurseryLeaveMsg == 3) DrawTextWrap(TextGet("EscapeSuccess"), 1025, 500, 840, 160, "White");
+	if (NurseryLeaveMsg == 4) DrawTextWrap(TextGet("EscapeFail0"), 1025, 500, 840, 160, "White");
+	if (NurseryLeaveMsg == 5) DrawTextWrap(TextGet("EscapeFail1"), 1025, 500, 840, 160, "White");
+	if (NurseryLeaveMsg == 6) DrawTextWrap(TextGet("EscapeFail2"), 1025, 500, 840, 160, "White");
+	if (NurseryLeaveMsg == 7) DrawTextWrap(TextGet("EscapeFail3"), 1025, 500, 840, 160, "White");
+	//if (NurseryLeaveMsg) DrawTextWrap(TextGet(RandomNumber), 200, 500, 840, 160, "White");				// for testing only
+}
+
 // Loads the nurse and correct stage for particular situations
 function NurseryLoadNurse() {
+	if (NurserySituation == "AtGate") NurserySituation = "Admitted";
 	if (NurseryPlayerBadBabyStatus > 0 && !Player.IsRestrained() && NurseryNurse.Stage == "200") NurseryNurse.Stage = "250";
+	// first offence
+	if (NurseryNurse.Stage == "250") NurseryNurse.CurrentDialog = DialogFind(NurseryNurse, "CaughtHandsFree");
+	if (NurseryNurse.Stage == "260") NurseryNurse.CurrentDialog = DialogFind(NurseryNurse, "CaughtNoDiapers");
+	if (NurseryNurse.Stage == "270") NurseryNurse.CurrentDialog = DialogFind(NurseryNurse, "CaughtWrongCloth");
+	if (NurseryNurse.Stage == "280") NurseryNurse.CurrentDialog = DialogFind(NurseryNurse, "CaughtLeaving");
+	// repeat offence
+	if (NurseryNurse.Stage >= "250" && NurseryNurse.Stage <= "299") {
+		NurseryRepeatOffender++;
+		if (NurseryRepeatOffender == 2) NurseryNurse.Stage = "290";
+		if (NurseryRepeatOffender >= 3) NurseryNurse.Stage = "295";
+	}
+	if (NurseryNurse.Stage == "290") NurseryNurse.CurrentDialog = DialogFind(NurseryNurse, "CaughtRepeat");
+	if (NurseryNurse.Stage == "295") NurseryNurse.CurrentDialog = DialogFind(NurseryNurse, "CaughtPersistent");
 	CharacterSetCurrent(NurseryNurse);
 }
 
@@ -154,28 +198,31 @@ function NurseryABDLOutfitForNPC(CurrentNPC) {
 	NurseryRandomColourSelection();
 	InventoryWear(CurrentNPC, RandomResultB, "Cloth", RandomResult);
 	InventoryWear(CurrentNPC, "Diapers1", "Panties", "Default");
-	RandomNumber = Math.floor(Math.random() * 7);
-	if (RandomNumber == 1 ) {
-		InventoryWear(CurrentNPC, "PacifierGag", "ItemMouth");
-	}
-	if (RandomNumber == 2 ) {
+	RandomNumber = Math.floor(Math.random() * 8);
+	NurseryNPCResrained(CurrentNPC, RandomNumber);
+}
+
+// Restrains changed on NPC
+function NurseryNPCResrained(CurrentNPC, RestraintSet) {
+	CharacterRelease(CurrentNPC);
+	if (RestraintSet >= 1 || RestraintSet <= 2) InventoryWear(CurrentNPC, "PacifierGag", "ItemMouth");
+	if (RestraintSet == 3) {
 		InventoryWear(CurrentNPC, "PacifierGag", "ItemMouth");
 		InventoryWear(CurrentNPC, "PaddedMittens", "ItemArms");
 	}
-	if (RandomNumber == 3 ) {
+	if (RestraintSet == 4) {
 		InventoryWear(CurrentNPC, "PacifierGag", "ItemMouth");
 		InventoryWear(CurrentNPC, "PaddedMittensHarness", "ItemArms");
 		InventoryWear(CurrentNPC, "AdultBabyHarness", "ItemTorso");
 	}
-	if (RandomNumber == 4 ) {
+	if (RestraintSet == 5) {
 		InventoryWear(CurrentNPC, "HarnessPacifierGag", "ItemMouth");
 		InventoryWear(CurrentNPC, "PaddedMittensHarnessLocked", "ItemArms");
 		InventoryWear(CurrentNPC, "AdultBabyHarness", "ItemTorso");
 	}
-	if (RandomNumber >= 5 ) {
-		InventoryWear(CurrentNPC, "PaddedMittens", "ItemArms");
-	}
+	if (RestraintSet >= 6) InventoryWear(CurrentNPC, "PaddedMittens", "ItemArms");
 }
+
 
 // Random dress selection
 function NurseryRandomDressSelection() {
@@ -259,6 +306,16 @@ function NurseryPlayerRestrained(RestraintSet) {
 			InventoryWear(Player, "PaddedMittensHarnessLocked", "ItemArms", "Default");
 		}
 	}
+	if (RestraintSet == 5) {
+		NurseryPlayerRestrained(3)
+		InventoryWear(Player, "LeatherBlindfold", "ItemHead", "#cccccc");
+	}
+	if (RestraintSet == 6) {
+		NurseryPlayerRestrained(3)
+		CharacterSetActivePose(Player, "Kneel");
+		InventoryWear(Player, "LeatherBelt", "ItemLegs", "#cccccc");
+		NurseryPlayerNeedsPunishing(2);
+	}
 }
 
 // Player can spits out regular pacifier
@@ -270,7 +327,7 @@ function NurseryPlayerSpitOutPacifier() {
 function NurseryPlayerRePacified() {
 	if (NurseryPlayerKeepsLoosingBinky) {
 		InventoryWear(Player, "HarnessPacifierGag", "ItemMouth");
-		NurseryPlayerKeepsLoosingBinky = false;
+		NurseryPlayerKeepsLoosingBinky = null;
 	} else {
 		InventoryWear(Player, "PacifierGag", "ItemMouth");
 		NurseryPlayerKeepsLoosingBinky = true;
@@ -288,6 +345,13 @@ function NurseryPlayerRedressed() {
 	NurseryPlayerUndress();
 	CharacterDress(Player, NurseryPlayerAppearance);
 	NurserySituation = null;
+}
+
+// Nurse punishes all the adult babies for misbehaving
+function NurseryBadBabies() {
+	NurseryPlayerRestrained(3);
+	NurseryNPCResrained(NurseryABDL1, 5);
+	NurseryNPCResrained(NurseryABDL2, 5);
 }
 
 // Player will loose skill progress or level from drinking special milk
@@ -324,14 +388,70 @@ function NurseryPlayerCuteRelpy() {
 
 // Player can try to escape the nursery as an ABDL 
 function NurseryEscapeGate() {
-	NurserySituation = "Admitted"
-	CommonSetScreen("Room", "MainHall");
+	if (NurseryLeaveMsg == 1 || NurseryLeaveMsg == 3) {
+		NurserySituation = "Admitted"
+		CommonSetScreen("Room", "MainHall");
+	} else {
+		// Calculate Escape score
+		// Base luck value
+		RandomNumber = Math.floor(Math.random() * 10);
+
+		// Escape attempts effect
+		RandomNumber = RandomNumber + NurseryEscapeAttempts
+
+		// Evasion skill effect
+		RandomNumber = RandomNumber - SkillGetLevel(Player, "Evasion")
+
+		// level of bondage effects
+		if (InventoryGet(Player, "ItemHead") != null) RandomNumber = RandomNumber + 6;
+		if (InventoryGet(Player, "ItemButt") != null) RandomNumber = RandomNumber + 1;
+		if (InventoryGet(Player, "ItemVulva") != null) {
+			RandomNumber = RandomNumber + 4;
+			NursuryEscapeFailMsg = 1;
+		} else {
+			NursuryEscapeFailMsg = null;
+		}
+		if (InventoryGet(Player, "ItemLegs") != null) RandomNumber = RandomNumber + 2;
+		if (InventoryGet(Player, "ItemTorso") != null) RandomNumber = RandomNumber + 2;
+		if (InventoryGet(Player, "ItemBreast") != null) RandomNumber = RandomNumber + 1;
+		if (InventoryGet(Player, "ItemMouth") != null) RandomNumber = RandomNumber + 1;
+		// base level for item arms assumes player is bound with mittens (no harness) or metal cuffs
+		if (InventoryGet(Player, "ItemArms") == "NylonRope") RandomNumber = RandomNumber + 3;
+		if (InventoryGet(Player, "ItemArms") == "HempRope") RandomNumber = RandomNumber + 3;
+		if (InventoryGet(Player, "ItemArms") == "PaddedMittensHarness") RandomNumber = RandomNumber + 2;
+		if (InventoryGet(Player, "ItemArms") == "PaddedMittensHarnessLocked") RandomNumber = RandomNumber + 2;
+		if (InventoryGet(Player, "ItemArms") == "LeatherArmbinder") RandomNumber = RandomNumber + 6;
+		
+		// Work out escape result
+		if (RandomNumber <= 2) {										// Player manages to open gate
+			NurseryLeaveMsg = 3;
+		} else {														// Player fails to escape....
+			if (RandomNumber > (14 - NurseryEscapeAttempts)) {			// and nurse noices player
+				NurseryEscapeAttempts = NurseryEscapeAttempts - 4;
+				NurseryNurse.Stage = "280";
+				NurseryLoadNurse();
+			} else {
+				if (RandomNumber > 8) {									// and makes a lot of noise
+					NurseryLeaveMsg = 6;
+					NurseryEscapeAttempts++;
+					if (NursuryEscapeFailMsg == 1) NurseryLeaveMsg = 7;	// and makes a lot of noise and vibrator
+				} else {
+					NurseryLeaveMsg = 4;								// and failed quietly
+					if (NursuryEscapeFailMsg == 1) NurseryLeaveMsg = 5;	// and failed quietly, distracted by vibrator
+				}
+			}
+		}
+		NurseryEscapeAttempts++;
+	}
 }
 
 // Player is forgiven for misbehaving
 function NurseryPlayerForgiven() {
-	InventoryRemove(Player, "ItemArms");
+	//InventoryRemove(Player, "ItemArms");
+	CharacterRelease(Player);
 	NurseryPlayerBadBabyStatus = 0;
+	NurseryEscapeAttempts = null;
+
 }
 
 // Player is a bad baby and nurse finds her unrestrained
@@ -357,4 +477,15 @@ function NurseryPlayerNeedsPunishing(Severity) {
 function NurseryPlayerPunished(Severity) {
 	NurseryPlayerBadBabyStatus = NurseryPlayerBadBabyStatus - Severity;
 	if (NurseryPlayerBadBabyStatus < 1) NurseryPlayerBadBabyStatus = 1;
+}
+
+// Player bad baby status can reduce with time until she is ready to appolgise
+function NurseryGoodBehaviour() {
+	if (NurseryPlayerBadBabyStatus > 1) {
+		if (NurseryCoolDownTime == 0) NurseryCoolDownTime = CommonTime() + 180000;
+		if (CommonTime() >= NurseryCoolDownTime) {
+			NurseryPlayerBadBabyStatus--;
+			NurseryCoolDownTime = 0;
+		}
+	} else NurseryCoolDownTime = 0;
 }
