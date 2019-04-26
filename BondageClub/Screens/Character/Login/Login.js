@@ -4,7 +4,7 @@ var LoginMessage = "";
 var LoginCredits = null;
 var LoginCreditsPosition = 0;
 var LoginThankYou = "";
-var LoginThankYouList = ["Alvin", "Bryce", "Christian", "Designated", "Dick", "Escurse", "EugeneTooms", "Gopanka", /*"Jdmsouls22",*/ "Jyeoh", "Karel", "Kitten", "Laioken", "Michal", "Mindtie", "MunchyCat", 
+var LoginThankYouList = ["Alvin", "Bryce", "Christian", "Designated", "Dick", "Escurse", "EugeneTooms", /*"Gopanka", "Jdmsouls22",*/ "Jyeoh", "Karel", "Kitten", "Laioken", "Michal", "Mindtie", "MunchyCat", 
 						"Nick", "Overlord", "Paradox", "Rashiash", "Ryner", "Setsu95", "Shadow", "Shaun", "Simeon", "Sky", "Terry", "William", "Winterisbest", "Xepherio"];
 var LoginThankYouNext = 0;
 
@@ -90,7 +90,7 @@ function LoginRun() {
 	DrawButton(1025, 500, 200, 60, TextGet("Language"), "White", "");
 	DrawText(TextGet("CreateNewCharacter"), 1000, 670, "White", "Black");
 	DrawButton(825, 740, 350, 60, TextGet("NewCharacter"), "White", "");
-	if (CheatAllow) DrawButton(850, 870, 300, 60, TextGet("Cheats"), "White", "");
+	DrawButton(825, 870, 350, 60, TextGet(CheatAllow ? "Cheats" : "PasswordReset"), "White", "");
 
 	// Draw the character and thank you bubble
 	DrawCharacter(Player, 1400, 100, 0.9);
@@ -165,12 +165,19 @@ function LoginResponse(C) {
 function LoginClick() {
 	
 	// Opens the cheat panel
-	if (CheatAllow && ((MouseX >= 850) && (MouseX <= 1150) && (MouseY >= 870) && (MouseY <= 930))) {
+	if (CheatAllow && ((MouseX >= 825) && (MouseX <= 1175) && (MouseY >= 870) && (MouseY <= 930))) {
 		ElementRemove("InputName");
 		ElementRemove("InputPassword");
 		CommonSetScreen("Character", "Cheat");
 	}
-	
+
+	// Opens the password reset screen
+	if (!CheatAllow && ((MouseX >= 825) && (MouseX <= 1175) && (MouseY >= 870) && (MouseY <= 930))) {
+		ElementRemove("InputName");
+		ElementRemove("InputPassword");
+		CommonSetScreen("Character", "PasswordReset");
+	}
+
 	// If we must create a new character
 	if ((MouseX >= 825) && (MouseX <= 1175) && (MouseY >= 740) && (MouseY <= 800)) {
 		ElementRemove("InputName");

@@ -1,13 +1,15 @@
-Enter your room information
+﻿Enter your room information
 Raum-Informationen eingeben
 Room Name (Letters & numbers only)
 Raumname (Buchstaben & Ziffern)
-A short description or what's going on.
-Eine kurze Beschreibung oder was hier los ist.
+A short description or what's going on
+Eine kurze Beschreibung oder was hier los ist
 Private (Need exact name to find it)
 Privat (Zutritt nur mit genauem Namen)
 Select the background
 Hintergrund wählen
+Room maximum size, from 2 to 10 members
+Maximale Raumgröße, 2 bis 10 Mitglieder
 Create
 Erstellen
 Cancel

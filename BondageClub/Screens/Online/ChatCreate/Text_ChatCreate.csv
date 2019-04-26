@@ -1,8 +1,9 @@
 EnterRoomInfo,Enter your room information
 RoomName,Room Name (Letters & numbers only)
-RoomDescription,A short description or what's going on.
+RoomDescription,A short description or what's going on
 RoomPrivate,Private (Need exact name to find it)
 RoomBackground,Select the background
+RoomSize,"Room maximum size, from 2 to 10 members"
 Create,Create
 Cancel,Cancel
 CreatingRoom,Creating your room...

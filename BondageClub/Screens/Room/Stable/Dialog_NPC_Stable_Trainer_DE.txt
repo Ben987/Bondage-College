@@ -719,8 +719,13 @@ Das war gut, nun zur praktischen Übung.
 (bring a pony to the hurdle course)
 (Ein Pony zur Hürdenstrecke führen.)
 ###_NPC
+Keep training and then try again.
+Trainiere weiter und versuche es dann erneut.
 Congratulations, you have passed all the exams.
 Herzlichen Glückwunsch, du hast alle Prüfungen bestanden.
 ###_PLAYER
 (Give the present trainers a Whiskey (50 $))
 (Den anderen Trainern einen Whiskey ausgeben (50 $).)
+###_NPC
+(They celebrate your success) Hip Hip Hurray!
+(Sie feiern deinen Erfolg.) Hip Hip Hurra!

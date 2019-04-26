@@ -14,6 +14,7 @@ ValidatingNamePassword,Incorrect name or password
 Error,Error:
 InvalidNamePassword,Invalid name or password
 Cheats,Select Cheats
+PasswordReset,Reset Password
 ThankYou,Thank you
 CreditTypeDevelopers,Developers
 CreditTypeTranslators,Translators

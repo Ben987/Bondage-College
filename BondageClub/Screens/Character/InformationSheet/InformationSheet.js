@@ -85,11 +85,11 @@ function InformationSheetRun() {
 		DrawText(TextGet("Trait"), 1000, 125, "Black", "Gray");
 
 		// After one week we show the traits, after two weeks we show the level
-		if (CurrentTime >= NPCEventGet(C, "PrivateRoomEntry") + 604800000) {
+		if (CurrentTime >= NPCEventGet(C, "PrivateRoomEntry") * CheatFactor("AutoShowTraits", 0) + 604800000) {
 			var pos = 0;
 			for(var T = 0; T < C.Trait.length; T++)
 				if ((C.Trait[T].Value != null) && (C.Trait[T].Value > 0)) {
-					DrawText(TextGet("Trait" + C.Trait[T].Name) + " " + ((CurrentTime >= NPCEventGet(C, "PrivateRoomEntry") + 1209600000) ? C.Trait[T].Value.toString() : "??"), 1000, 200 + pos * 75, "Black", "Gray");
+					DrawText(TextGet("Trait" + C.Trait[T].Name) + " " + ((CurrentTime >= NPCEventGet(C, "PrivateRoomEntry") * CheatFactor("AutoShowTraits", 0) + 1209600000) ? C.Trait[T].Value.toString() : "??"), 1000, 200 + pos * 75, "Black", "Gray");
 					pos++;
 				}
 		} else DrawText(TextGet("TraitUnknown"), 1000, 200, "Black", "Gray");

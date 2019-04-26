@@ -10,3 +10,5 @@ Prevent random kidnappings
 Zufalls-Kidnapper verhindern
 Skip the D/s trial periods
 D/s-Probezeiten überspringen
+Automatically show NPC traits
+NPC-Merkmale automatisch anzeigen

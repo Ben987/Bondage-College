@@ -25,13 +25,14 @@ function InventoryItemMouthPumpGagClick() {
 
 // Sets the pump gag level
 function InventoryItemMouthPumpGagSetPump(Modifier) {
+	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	DialogFocusItem.Property.PumpLevel = DialogFocusItem.Property.PumpLevel + Modifier;
 	if (DialogFocusItem.Property.PumpLevel == 0) delete DialogFocusItem.Property.Effect;
 	if (DialogFocusItem.Property.PumpLevel == 1) DialogFocusItem.Property.Effect = ["GagLight"];
 	if (DialogFocusItem.Property.PumpLevel == 2) DialogFocusItem.Property.Effect = ["GagNormal"];
 	if (DialogFocusItem.Property.PumpLevel == 3) DialogFocusItem.Property.Effect = ["GagHeavy"];
-	if (DialogFocusItem.Property.PumpLevel == 4) DialogFocusItem.Property.Effect = ["GagTotal"];
-	CharacterLoadEffect(CurrentCharacter);
-	if (CurrentCharacter.ID == 0) ServerPlayerAppearanceSync();
-	ChatRoomPublishCustomAction(Player.Name + " " + DialogFind(Player, ((Modifier > 0) ? "pumps" : "deflates")) + " " + CurrentCharacter.Name + " " + DialogFind(Player, "gag") + ".", true);
+	if (DialogFocusItem.Property.PumpLevel == 4) DialogFocusItem.Property.Effect = ["GagTotal"];	
+	CharacterLoadEffect(C);
+	if (C.ID == 0) ServerPlayerAppearanceSync();
+	ChatRoomPublishCustomAction(Player.Name + " " + DialogFind(Player, ((Modifier > 0) ? "pumps" : "deflates")) + " " + C.Name + " " + DialogFind(Player, "gag") + ".", true);
 }

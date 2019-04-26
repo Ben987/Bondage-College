@@ -36,6 +36,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsProne : function() { return (this.Effect.indexOf("Prone") >= 0) },
 		IsRestrained : function() { return ((this.Effect.indexOf("Freeze") >= 0) || (this.Effect.indexOf("Block") >= 0) || (this.Effect.indexOf("Prone") >= 0)) },
 		IsBlind : function() { return ((this.Effect.indexOf("BlindLight") >= 0) || (this.Effect.indexOf("BlindNormal") >= 0) || (this.Effect.indexOf("BlindHeavy") >= 0)) },
+		IsEnclose :  function() { return (this.Effect.indexOf("Enclose") >= 0) },
 		IsChaste : function() { return ((this.Effect.indexOf("Chaste") >= 0) || (this.Effect.indexOf("BreastChaste") >= 0)) },
 		IsVulvaChaste : function() { return (this.Effect.indexOf("Chaste") >= 0) },
 		IsBreastChaste : function() { return (this.Effect.indexOf("BreastChaste") >= 0) },
@@ -73,7 +74,14 @@ function CharacterRandomName(C) {
 	// If the name is already taken, we generate a new one
 	for (var CN = 0; CN < Character.length; CN++)
 		if ((Character[CN].Name == NewName) && (Character[CN].ID != C.ID)) {
-			CharacterRandomName(C)
+			CharacterRandomName(C);
+			return;
+		}
+
+	// If the name is already taken by a private room character
+	for (var P = 0; P < PrivateCharacter.length; P++)
+		if ((PrivateCharacter[P].Name == NewName) && ((PrivateCharacter[P].ID == null) || (PrivateCharacter[P].ID != C.ID))) {
+			CharacterRandomName(C);
 			return;
 		}
 

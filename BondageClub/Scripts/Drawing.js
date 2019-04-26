@@ -133,8 +133,11 @@ function DrawCharacter(C, X, Y, Zoom) {
 			
 			// Draw the character name below herself
 			if ((C.Name != "") && ((CurrentModule == "Room") || (CurrentModule == "Online")) && (CurrentScreen != "Private")) 
-				if (!Player.IsBlind())
+				if (!Player.IsBlind()) {
+					MainCanvas.font = "30px Arial";	
 					DrawText(C.Name, X + 255 * Zoom, Y + 980 * Zoom, "White", "Black");
+					MainCanvas.font = "36px Arial";
+				}
 
 		}
 
@@ -337,18 +340,18 @@ function DrawButton(Left, Top, Width, Height, Label, Color, Image, HoveringText)
 	
 	// Draw the hovering text
 	if ((HoveringText != null) && (MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile) {
-		Left = Left - 425;
+		Left = (MouseX > 1000) ? Left - 475 : Left + 115;
 		Top = Top + 12;
 		MainCanvas.beginPath();
-		MainCanvas.rect(Left, Top, 400, 65);
+		MainCanvas.rect(Left, Top, 450, 65);
 		MainCanvas.fillStyle = "#FFFF88"; 
-		MainCanvas.fillRect(Left, Top, 400, 65);
+		MainCanvas.fillRect(Left, Top, 450, 65);
 		MainCanvas.fill();	
 		MainCanvas.lineWidth = '2';
 		MainCanvas.strokeStyle = 'black';
 		MainCanvas.stroke();
 		MainCanvas.closePath();
-		DrawText(HoveringText, Left + 200, Top + 33, "black");
+		DrawTextFit(HoveringText, Left + 225, Top + 33, 444, "black");
 	}
 
 }

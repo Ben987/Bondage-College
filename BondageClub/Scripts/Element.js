@@ -16,7 +16,7 @@ function ElementCreateTextArea(ID) {
 		TextArea.setAttribute("ID", ID);
 		TextArea.setAttribute("name", ID);
 		TextArea.setAttribute("readonly", "readonly");
-		TextArea.addEventListener("keypress", KeyDown);
+		TextArea.addEventListener("keydown", KeyDown);
 		document.body.appendChild(TextArea);
 	}
 }
@@ -31,7 +31,7 @@ function ElementCreateInput(ID, Type, Value, MaxLength) {
 		Input.setAttribute("value", Value);
 		Input.setAttribute("maxlength", MaxLength);
 		Input.setAttribute("onfocus", "this.removeAttribute('readonly');");
-		Input.addEventListener("keypress", KeyDown);
+		Input.addEventListener("keydown", KeyDown);
 		document.body.appendChild(Input);
 	}
 }
@@ -95,4 +95,19 @@ function ElementPositionFix(ElementID, Font, X, Y, W, H) {
 	// Sets the element style
 	document.getElementById(ElementID).setAttribute("style", "font-size:" + Font + "px; font-family:Arial; position:absolute; padding-left:10px; left:" + Left + "px; top:" + Top + "px; width:" + Width + "px; height:" + Height + "px; resize: none;");
 	
+}
+
+// Scrolls to the end of a specified element
+function ElementScrollToEnd(ID) {
+	if (document.getElementById(ID) != null) {
+		var element = document.getElementById(ID);
+		element.focus();
+		element.selectionStart = element.selectionEnd = element.value.length;
+	}
+}
+
+// Sets focus to the specified element
+function ElementFocus(ID) {
+	if (document.getElementById(ID) != null)
+		document.getElementById(ID).focus();
 }

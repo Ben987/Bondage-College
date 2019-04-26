@@ -1,9 +1,13 @@
-herself,herself
-swaps,swaps
-uses,uses
-removes,removes
-for,for
-on,on
-from,from
-kneeldown,kneels down
-standup,stands up
+ActionSwap,SourceCharacter swaps a PrevAsset for a NextAsset on DestinationCharacter FocusAssetGroup.
+ActionUse,SourceCharacter uses a NextAsset on DestinationCharacter FocusAssetGroup.
+ActionLock,SourceCharacter locks a NextAsset on DestinationCharacter FocusAssetGroup.
+ActionRemove,SourceCharacter removes the PrevAsset from DestinationCharacter FocusAssetGroup.
+ActionUnlock,SourceCharacter unlocks and removes the PrevAsset from DestinationCharacter FocusAssetGroup.
+ActionDice,SourceCharacter rolls a DiceType sided dice.  The result is: DiceResult.
+ActionCoin,SourceCharacter flips a coin.  The result is: CoinResult.
+Heads,Heads
+Tails,Tails
+Her,her
+'s,'s
+KneelDown,kneels down
+StandUp,stands up

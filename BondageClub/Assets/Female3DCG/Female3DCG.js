@@ -111,7 +111,13 @@ var AssetFemale3DCG = [
 		AllowPose: ["Suspension"],
 		Left: 125,
 		Top: 0,
-		Asset: ["Band1", "Beret1", "Ears1", "Ears2", { Name: "MaidHairband1", Value: -1 }, { Name: "Santa1", Value: 30 }, { Name: "NurseCap", Value: -1 }]
+
+		Asset: [
+			"Band1", "Beret1", "Ears1", "Ears2",
+			{ Name: "MaidHairband1", Value: -1 },
+      { Name: "NurseCap", Value: -1 },
+			{ Name: "Santa1", Value: 30 },
+			{ Name: "BunnyEars1", Value: 20 }]
 	},
 
 	{
@@ -469,10 +475,13 @@ var AssetFemale3DCG = [
 		Priority: 30,
 		Default: false,
 		Color: ["Default"],
+		Top: -250,
+		Zone: [[25, 580, 75, 410], [400, 580, 75, 410]],
 		Asset: [ 
 			{ Name: "WoodenMaidTray", Enable: false, Value: -1 },
 			{ Name: "WoodenMaidTrayFull", Enable: false, Value: -1 },
 			{ Name: "WoodenPaddle", Enable: false, Value: -1 },
+			{ Name: "WoodenBox", RemoveAtLogin: true, Effect: ["BlindNormal", "Prone", "Enclose", "GagLight", "Struggle", "Freeze"], Enable: false, Value: -1 , Time: 15, RemoveTime: 5, Difficulty: 6 },
 		]
 	}
 
