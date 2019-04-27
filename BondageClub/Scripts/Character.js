@@ -74,7 +74,14 @@ function CharacterRandomName(C) {
 	// If the name is already taken, we generate a new one
 	for (var CN = 0; CN < Character.length; CN++)
 		if ((Character[CN].Name == NewName) && (Character[CN].ID != C.ID)) {
-			CharacterRandomName(C)
+			CharacterRandomName(C);
+			return;
+		}
+
+	// If the name is already taken by a private room character
+	for (var P = 0; P < PrivateCharacter.length; P++)
+		if ((PrivateCharacter[P].Name == NewName) && ((PrivateCharacter[P].ID == null) || (PrivateCharacter[P].ID != C.ID))) {
+			CharacterRandomName(C);
 			return;
 		}
 

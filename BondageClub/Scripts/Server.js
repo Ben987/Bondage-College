@@ -16,6 +16,7 @@ function ServerInit() {
 	ServerSocket.on("ChatRoomCreateResponse", function (data) { ChatCreateResponse(data); } );
 	ServerSocket.on("ChatRoomSync", function (data) { ChatRoomSync(data); } );
 	ServerSocket.on("ChatRoomMessage", function (data) { ChatRoomMessage(data); } );
+	ServerSocket.on("PasswordResetResponse", function (data) { PasswordResetResponse(data); } );
 }
 
 // When the server sends some information to the client, we keep it in variables

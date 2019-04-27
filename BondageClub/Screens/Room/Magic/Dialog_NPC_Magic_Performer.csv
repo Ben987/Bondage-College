@@ -33,6 +33,7 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  Much better!  I
 0,10,Can you answer some questions?,What do you want to know?,,
 0,20,Show me one of your magic tricks.,(She snaps her fingers) And you've already changed clothes with my assistant. ,,ShowIsState(1)
 0,30,The show can begin.,Welcome dear spectators.,ShowStart(),ShowIsState(3)
+0,,(Squirm in the shackles and seek help.),I can not work like that. Good Buy.,TrickEndPerformance(),Player.IsRestrained()
 0,,I'm ready for the next Trick.,,SelectTrick(),ShowIsState(5)
 0,,I did it and I want to stop.,(She gives you the income of REPLACEMONEY $.),ShowPayoff(),ShowIsState(5)
 0,,Goodbye (Leave),,DialogLeave(),
@@ -52,24 +53,57 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  Much better!  I
 101,102,That was easy. Let's show the next trick ,Applause for the artist.,,!Player.IsRestrained()
 101,0,I did it and I want to stop.,(She gives you the income of REPLACEMONEY $.),ShowPayoff(),!Player.IsRestrained()
 101,0,(Give up and beg for help),Your performance is over.,TrickEndPerformance(),
+101,,(Turn away.),,DialogLeave(),
 102,,(wait),,SelectTrick(),
 103,,,go over and free my assistant.,,
 103,0,(Leave),,DialogLeave(),
 110,,,"Your task: Dance a short Time, I perform some Tricks with my Assistant.",,
-110,111,(Dance forcefully),(The Performer shows some little tricks.),"DialogChangeReputation(""Dominant"", 1)",
-110,111,(Dance devot),(The Performer shows some little tricks.),"DialogChangeReputation(""Dominant"", -1)",
+110,111,(Dance forcefully.),(The Performer shows some little tricks.),"DialogChangeReputation(""Dominant"", 1)",
+110,111,(Dance devot.),(The Performer shows some little tricks.),"DialogChangeReputation(""Dominant"", -1)",
 111,,(Wait for your next trick.),,SelectTrick(),
 120,,,Your task: Bind my Assistant and then give me the sign to start.,,
 120,,(Show that you are done),,TrickBindAsstant(),RestrainAssistantMinItem(5)
 121,,,Now show the audience how to get out of there.,,
-121,122,That was easy. Let's show the next trick ,Applause for the artist.,,!Player.IsRestrained()
+121,122,That was easy. Let's show the next trick.,Applause for the artist.,,!Player.IsRestrained()
 121,0,I did it and I want to stop.,(She gives you the income of REPLACEMONEY $.),ShowPayoff(),!Player.IsRestrained()
 121,0,(Give up and beg for help),Your performance is over.,TrickEndPerformance(),
+121,,(Turn away.),,DialogLeave(),
 122,,(wait),,SelectTrick(),
 130,,,Your task: Escape from a wooden Box with some light tie.,,
-130,,(Prepare the trick.),,TrickBoxTied(),
+130,,(Prepare the trick.),,TrickBoxTiedLight(),
 131,,,"The question is, can she escape",,
 131,132,"Her I am, the Show goes on.",Applause for the escape.,,!Player.IsRestrained()
-131,0,I escaped happily and finish the show.,(She gives you the income of REPLACEMONEY $.),ShowPayoff(),!Player.IsRestrained()
+131,0,I escaped happily and finish the show.,(She gives you the income of REPLACEMONEY $.) will you come back?,ShowPayoff(),!Player.IsRestrained()
 131,0,(knock for help.),,TrickEndPerformance(),
+131,,(Turn away.),,DialogLeave(),
 132,,(wait),,SelectTrick(),
+140,,,She conjures a few coins out of nowhere and holds them out to you. ,,
+140,141,take them.,You get REPLACEMONEY $.,TrickGetCoin(),
+140,141,give her back.,She performs another card trick and the show continues.,,
+141,,(Entertain the audience),,SelectTrick(),
+150,,,Your task: Escape from a wooden Box with some heavy tie.,,
+150,,(Prepare the trick.),,TrickBoxTiedHeavy(),
+151,,,"Crooked, will we ever see her again? ",,
+151,152,"Nothing can stop me, it goes on. ",Cheers for the feat.,,!Player.IsRestrained()
+151,0,I need a break and get out of the show.,(She gives you the income of REPLACEMONEY $.) Thank you so much.,ShowPayoff(),!Player.IsRestrained()
+151,0,(knock for help.),,TrickEndPerformance(),
+151,,(Turn away.),,DialogLeave(),
+152,,(wait),,SelectTrick(),
+160,,,"Now the classic. Despite being handcuffed, she is able to escape from a water-filled milk can?",,
+160,,(Dive skillfully under the water.),,TrickBoxMilkCan(),
+161,,,(Fastens the lid with three bolts.) ,,
+161,162,I am Houdini's true heritage.,Cheers for the feat.,,!Player.IsRestrained()
+161,0,(breathe) I have enough. ,(She gives you the income of REPLACEMONEY $.) Thanks for Show.,ShowPayoff(),!Player.IsRestrained()
+161,0,(knock for help.),,TrickEndPerformance(),
+161,,(Turn away.),,DialogLeave(),
+162,,(wait),,SelectTrick(),
+170,,,Your task: Escape from the incredible Water Torture Cell.,,
+170,,(Prepare for the task.),,TrickBoxWaterCell(),
+171,,,A few piranhas for motivation? ,,
+171,172,"Here I am the shark. Go on, go on. ",Cheers for the feat.,,!Player.IsRestrained()
+171,0,The submarine has appeared. I need a break. ,(She gives you the income of REPLACEMONEY $.) Thanks for Show.,ShowPayoff(),!Player.IsRestrained()
+171,0,(Wink for help.),,TrickEndPerformance(),
+171,,(Turn away.),,DialogLeave(),
+172,,(wait and smile),,SelectTrick(),
+180,,,I have to rebuild the stage. Sing as long as a song with my assistant.,,
+180,0,(Walk away),,SongLeavePerformer(),

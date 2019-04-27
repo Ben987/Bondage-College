@@ -463,7 +463,9 @@ var AssetFemale3DCG = [
 			{ Name: "WoodenMaidTray", Enable: false, Value: -1 },
 			{ Name: "WoodenMaidTrayFull", Enable: false, Value: -1 },
 			{ Name: "WoodenPaddle", Enable: false, Value: -1 },
-			{ Name: "WoodenBox", RemoveAtLogin: true, Effect: ["BlindNormal", "Prone", "Enclose", "GagLight", "Struggle", "Freeze"], Enable: false, Value: -1 , Time: 15, RemoveTime: 5, Difficulty: 6 },
+			{ Name: "WoodenBox", RemoveAtLogin: true, Effect: ["BlindNormal", "Prone", "Enclose", "GagLight", "Struggle", "Freeze"], Enable: false, Value: -1 , Time: 15, RemoveTime: 10, Difficulty: 4 },
+			{ Name: "MilkCan", RemoveAtLogin: true, Effect: ["BlindHeavy", "Prone", "Enclose", "GagHeavy", "Struggle", "Freeze"], SetPose: ["Kneel"], Enable: false, Value: -1 , Time: 15, RemoveTime: 10, Difficulty: 5 },
+			{ Name: "WaterCell", RemoveAtLogin: true, Effect: ["Prone", "Enclose", "GagHeavy", "Struggle", "Freeze"], SetPose: ["Suspension", "LegsClosed"], Block: ["ItemFeet"], Enable: false, Value: -1, Time: 15, RemoveTime: 15, Difficulty: 5 },
 		]
 	}
 

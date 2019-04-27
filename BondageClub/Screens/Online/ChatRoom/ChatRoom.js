@@ -3,7 +3,8 @@ var ChatRoomBackground = "";
 var ChatRoomData = {};
 var ChatRoomCharacter = [];
 var ChatRoomLog = "";
-var ChatRoomLastMessage = "";
+var ChatRoomLastMessage = [""];
+var ChatRoomLastMessageIndex = 0;
 
 // Creates the chat room input elements
 function ChatRoomCreateElement() {
@@ -123,56 +124,78 @@ function ChatRoomClick() {
 
 }
 
-// The ENTER key sends the chat
+// Chat room keyboard shortcuts
 function ChatRoomKeyDown() {
+
+	// The ENTER key sends the chat
 	if (KeyPress == 13) ChatRoomSendChat();
-	if (KeyPress == 33) ElementValue("InputChat", ChatRoomLastMessage);
-	if (KeyPress == 34) ElementValue("InputChat", "");
+
+	// On page up, we show the previous chat typed
+	if (KeyPress == 33) {
+		if (ChatRoomLastMessageIndex > 0) ChatRoomLastMessageIndex--;
+		ElementValue("InputChat", ChatRoomLastMessage[ChatRoomLastMessageIndex]);
+	}
+
+	// On page down, we show the next chat typed
+	if (KeyPress == 34) {
+		ChatRoomLastMessageIndex++;
+		if (ChatRoomLastMessageIndex > ChatRoomLastMessage.length - 1) ChatRoomLastMessageIndex = ChatRoomLastMessage.length - 1;
+		ElementValue("InputChat", ChatRoomLastMessage[ChatRoomLastMessageIndex]);
+	}
+
 }
 
 // Sends the chat to everyone in the room
 function ChatRoomSendChat() {
-	
-	// Some custom functions like /dice or /coin are implemented for randomness
+
+	// If there's a message to send
 	var msg = ElementValue("InputChat").trim()
-	ChatRoomLastMessage = msg;
-	if (msg.toLowerCase().indexOf("/dice") == 0) {
+	if (msg != "") {
+
+		// Keeps the chat log in memory so it can be accessed with pageup/pagedown
+		ChatRoomLastMessage.push(msg);
+		ChatRoomLastMessageIndex = ChatRoomLastMessage.length;
 		
-		// The player can roll a dice, if no size is specified, a 6 sided dice is assumed
-		var Dice = (isNaN(parseInt(msg.substring(5, 50).trim()))) ? 6 : parseInt(msg.substring(5, 50).trim());
-		if ((Dice < 4) || (Dice > 100)) Dice = 6;
-		msg = TextGet("ActionDice");
-		msg = msg.replace("SourceCharacter", Player.Name);
-		msg = msg.replace("DiceType", Dice.toString());
-		msg = msg.replace("DiceResult", (Math.floor(Math.random() * Dice) + 1).toString());
-		if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Action" } );
+		// Some custom functions like /dice or /coin are implemented for randomness
+		if (msg.toLowerCase().indexOf("/dice") == 0) {
+			
+			// The player can roll a dice, if no size is specified, a 6 sided dice is assumed
+			var Dice = (isNaN(parseInt(msg.substring(5, 50).trim()))) ? 6 : parseInt(msg.substring(5, 50).trim());
+			if ((Dice < 4) || (Dice > 100)) Dice = 6;
+			msg = TextGet("ActionDice");
+			msg = msg.replace("SourceCharacter", Player.Name);
+			msg = msg.replace("DiceType", Dice.toString());
+			msg = msg.replace("DiceResult", (Math.floor(Math.random() * Dice) + 1).toString());
+			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Action" } );
 
-	} else if (msg.toLowerCase().indexOf("/coin") == 0) {
+		} else if (msg.toLowerCase().indexOf("/coin") == 0) {
 
-		// The player can flip a coin, heads or tails are 50/50
-		msg = TextGet("ActionCoin");
-		var Heads = (Math.random() >= 0.5);
-		msg = msg.replace("SourceCharacter", Player.Name);
-		msg = msg.replace("CoinResult", Heads ? TextGet("Heads") : TextGet("Tails"));
-		if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Action" } );
+			// The player can flip a coin, heads or tails are 50/50
+			msg = TextGet("ActionCoin");
+			var Heads = (Math.random() >= 0.5);
+			msg = msg.replace("SourceCharacter", Player.Name);
+			msg = msg.replace("CoinResult", Heads ? TextGet("Heads") : TextGet("Tails"));
+			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Action" } );
 
-	} else if (msg.indexOf("*") == 0) {
+		} else if (msg.indexOf("*") == 0) {
 
-		// The player can emote an action using *, it doesn't garble
-		msg = msg.replace(/\*/g, "");
-		if (msg != "") msg = Player.Name + " " + msg;
-		if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Emote" } );
+			// The player can emote an action using *, it doesn't garble
+			msg = msg.replace(/\*/g, "");
+			if (msg != "") msg = Player.Name + " " + msg;
+			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Emote" } );
 
-	} else {
-		
-		// Regular chat can be garbled with a gag
-		msg = DialogGarble(Player, msg);
-		if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Chat" } );
-		
+		} else {
+			
+			// Regular chat can be garbled with a gag
+			msg = DialogGarble(Player, msg);
+			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Chat" } );
+			
+		}
+
+		// Clears the chat text message
+		ElementValue("InputChat", "");
+	
 	}
-
-	// Clears the chat text message
-	ElementValue("InputChat", "");
 
 }
 

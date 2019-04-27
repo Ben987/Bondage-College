@@ -32,4 +32,7 @@ RemoveSuspensionHempRope,,,(She breathes.) Finally.  What should that be?,,
 0,,"Hello, I'm DialogPlayerName.  Niceto meet you.","Pleased to meet you too.  I'm DialogCharacterName, Would you like to assist me?",DialogRemove(),
 0,,"Please change, the show starts.",I hurry up.,AssistantDress(),ShowIsState(2)
 0,,"Take fife, You are free.",Thank you very much!,AssistantRelese(),AssistantIsReleased()
+0,,"Sing: Sweet, Sweet Gwendolyn",During the song you tie each other. The spectators are thrilled.,SongGwendoyn(),ShowIsState(6)
+0,10,Sing: Bad Girl,Some spectators are giving you money. you get REPLACEMONEY $.,SongBadGirl(),ShowIsState(6)
 0,,Goodbye  (Leave),,DialogLeave(),
+10,0,Can we continue the show? ,"(She nods in agreement.) Yes, please.",AssistantRelese(),AssistantIsReleased()
