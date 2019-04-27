@@ -36,7 +36,7 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  Much better!  I
 0,,(Squirm in the shackles and seek help.),I can not work like that. Good Buy.,TrickEndPerformance(),Player.IsRestrained()
 0,,I'm ready for the next Trick.,,SelectTrick(),ShowIsState(5)
 0,,I did it and I want to stop.,(She gives you the income of REPLACEMONEY $.),ShowPayoff(),ShowIsState(5)
-0,,Goodbye (Leave),,DialogLeave(),
+0,,Goodbye. (Leave),,DialogLeave(),
 10,,What is this room? ,The Houdini-Theater in which a magic show will be performed.,,
 10,,What brings me the participation?,"As an assistant, you can earn some money.",,
 10,,I can participate in the magic show?,I am still looking for a escape artist as assistant.,,
