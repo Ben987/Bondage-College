@@ -29,10 +29,13 @@ RemoveVibratingEgg,,,"(She doesn't react as you remove the egg.)  Maybe it doesn
 SuspensionHempRope,,,(She fights against.) look like the bridle?,,
 RemoveSuspensionHempRope,,,(She breathes.) Finally.  What should that be?,,
 0,,,Welcome to the theater ,,
-0,,"Hello, I'm DialogPlayerName.  Niceto meet you.","Pleased to meet you too.  I'm DialogCharacterName, Would you like to assist me?",DialogRemove(),
+0,,"Hello, I'm DialogPlayerName.  Nice to meet you.","Pleased to meet you too.  I'm DialogCharacterName, Would you like to assist me?",DialogRemove(),
 0,,"Please change, the show starts.",I hurry up.,AssistantDress(),ShowIsState(2)
 0,,"Take fife, You are free.",Thank you very much!,AssistantRelese(),AssistantIsReleased()
 0,,"Sing: Sweet, Sweet Gwendolyn",During the song you tie each other. The spectators are thrilled.,SongGwendoyn(),ShowIsState(6)
 0,10,Sing: Bad Girl,Some spectators are giving you money. you get REPLACEMONEY $.,SongBadGirl(),ShowIsState(6)
+0,,I should tie you up.,make it really nice.,DialogRemove(),ShowIsState(7)
+0,,"Please change, the show starts.","I can not, because I am tied up. please free me.",,AssistantIsDressRestrain()
+0,,"Please change, the show starts.",I hurry up.,AssistantDress(),AssistantIsntDressRestrain()
 0,,Goodbye.  (Leave),,DialogLeave(),
 10,0,Can we continue the show? ,"(She nods in agreement.) Yes, please.",AssistantRelese(),AssistantIsReleased()

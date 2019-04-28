@@ -10,7 +10,7 @@ var MagicAssistantAppearance = null;
 var MagicPlayerAppearance = null;
 
 var MagicTrick = null;
-var MagicTrickList = ["ChangeBinds", "Dance", "BindAsstant", "BoxTiedLight", "GetCoin", "BoxTiedHeavy", "MilkCan", "WaterCell", "Song"];
+var MagicTrickList = ["ChangeBinds", "Dance", "BindAsstant", "BoxTiedLight", "GetCoin", "BoxTiedHeavy", "MilkCan", "WaterCell", "Song", "AsstantChange"];
 var MagicTrickCounter = 0;
 var MagicShowIncome = 0;
 var MagicShowState = 1;
@@ -20,6 +20,8 @@ var MagicShowState = 1;
 // 4 Assist is bind
 // 5 Assist is release
 // 6 To Sing a Song
+// 7 to Bind for Change
+// 8 After Change
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 //General Room function
@@ -29,6 +31,8 @@ function MagicShowIsState(QState) { return ((QState == MagicShowState) ? true : 
 function MagicAssistantIsReleased() {return (MagicShowIsState(4) && !MagicAssistant.IsRestrained())}
 function MagicRestrainPerformerMinItem(MinItem) {return MagicRestrainMinItem(MagicPerformer, MinItem)}
 function MagicRestrainAssistantMinItem(MinItem) {return MagicRestrainMinItem(MagicAssistant, MinItem)}
+function MagicAssistantIsDressRestrain() {return (MagicShowIsState(8) && MagicAssistant.IsRestrained())}
+function MagicAssistantIsntDressRestrain() {return (MagicShowIsState(8) && !MagicAssistant.IsRestrained())}
 
 function MagicRestrainMinItem(C, MinItem) {
 	var CurItem = 0;
@@ -168,6 +172,10 @@ function MagicSelectTrick() {
 		MagicPerformer.Stage = "180";
 		MagicPerformer.CurrentDialog = DialogFind(MagicPerformer, "180");
 		MagicAssistant.AllowItem = true;
+	} else if (MagicTrick == "AsstantChange") {
+		MagicPerformer.Stage = "190";
+		MagicPerformer.CurrentDialog = DialogFind(MagicPerformer, "190");
+		MagicAssistant.AllowItem = true;
 	}
 }
 
@@ -281,6 +289,15 @@ function MagicSongBadGirl(){
 function MagicAssistantRelese() {
 	MagicShowState = 5;
 }
+
+function MagicTrickAsstantChange() {
+	CharacterDress(MagicAssistant, MagicPlayerAppearance);
+	CharacterRefresh(MagicAssistant);
+	MagicShowState = 8;
+	MagicPerformer.Stage = "191";
+	MagicPerformer.CurrentDialog = DialogFind(MagicPerformer, "191");
+}
+
 
 function MagicTrickEndPerformance() {
 	MagicPerformer.Stage = "0";

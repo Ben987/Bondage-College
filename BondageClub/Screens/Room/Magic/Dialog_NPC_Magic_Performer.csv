@@ -52,7 +52,7 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  Much better!  I
 101,,,Now show the audience how to get out of there.,,
 101,102,That was easy. Let's show the next trick ,Applause for the artist.,,!Player.IsRestrained()
 101,0,I did it and I want to stop.,(She gives you the income of REPLACEMONEY $.),ShowPayoff(),!Player.IsRestrained()
-101,0,(Give up and beg for help),Your performance is over.,TrickEndPerformance(),
+101,0,(Give up and beg for help),Your performance is over.,TrickEndPerformance(),Player.IsRestrained()
 101,,(Turn away.),,DialogLeave(),
 102,,(wait),,SelectTrick(),
 103,,,go over and free my assistant.,,
@@ -66,7 +66,7 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  Much better!  I
 121,,,Now show the audience how to get out of there.,,
 121,122,That was easy. Let's show the next trick.,Applause for the artist.,,!Player.IsRestrained()
 121,0,I did it and I want to stop.,(She gives you the income of REPLACEMONEY $.),ShowPayoff(),!Player.IsRestrained()
-121,0,(Give up and beg for help),Your performance is over.,TrickEndPerformance(),
+121,0,(Give up and beg for help),Your performance is over.,TrickEndPerformance(),Player.IsRestrained()
 121,,(Turn away.),,DialogLeave(),
 122,,(wait),,SelectTrick(),
 130,,,Your task: Escape from a wooden Box with some light tie.,,
@@ -74,7 +74,7 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  Much better!  I
 131,,,"The question is, can she escape",,
 131,132,"Her I am, the Show goes on.",Applause for the escape.,,!Player.IsRestrained()
 131,0,I escaped happily and finish the show.,(She gives you the income of REPLACEMONEY $.) will you come back?,ShowPayoff(),!Player.IsRestrained()
-131,0,(knock for help.),,TrickEndPerformance(),
+131,0,(knock for help.),,TrickEndPerformance(),Player.IsRestrained()
 131,,(Turn away.),,DialogLeave(),
 132,,(wait),,SelectTrick(),
 140,,,She conjures a few coins out of nowhere and holds them out to you. ,,
@@ -86,7 +86,7 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  Much better!  I
 151,,,"Crooked, will we ever see her again? ",,
 151,152,"Nothing can stop me, it goes on. ",Cheers for the feat.,,!Player.IsRestrained()
 151,0,I need a break and get out of the show.,(She gives you the income of REPLACEMONEY $.) Thank you so much.,ShowPayoff(),!Player.IsRestrained()
-151,0,(knock for help.),,TrickEndPerformance(),
+151,0,(knock for help.),,TrickEndPerformance(),Player.IsRestrained()
 151,,(Turn away.),,DialogLeave(),
 152,,(wait),,SelectTrick(),
 160,,,"Now the classic. Despite being handcuffed, she is able to escape from a water-filled milk can?",,
@@ -94,7 +94,7 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  Much better!  I
 161,,,(Fastens the lid with three bolts.) ,,
 161,162,I am Houdini's true heritage.,Cheers for the feat.,,!Player.IsRestrained()
 161,0,(breathe) I have enough. ,(She gives you the income of REPLACEMONEY $.) Thanks for Show.,ShowPayoff(),!Player.IsRestrained()
-161,0,(knock for help.),,TrickEndPerformance(),
+161,0,(knock for help.),,TrickEndPerformance(),Player.IsRestrained()
 161,,(Turn away.),,DialogLeave(),
 162,,(wait),,SelectTrick(),
 170,,,Your task: Escape from the incredible Water Torture Cell.,,
@@ -102,8 +102,13 @@ RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  Much better!  I
 171,,,A few piranhas for motivation? ,,
 171,172,"Here I am the shark. Go on, go on. ",Cheers for the feat.,,!Player.IsRestrained()
 171,0,The submarine has appeared. I need a break. ,(She gives you the income of REPLACEMONEY $.) Thanks for Show.,ShowPayoff(),!Player.IsRestrained()
-171,0,(Wink for help.),,TrickEndPerformance(),
+171,0,(Wink for help.),,TrickEndPerformance(),Player.IsRestrained()
 171,,(Turn away.),,DialogLeave(),
 172,,(wait and smile),,SelectTrick(),
 180,,,I have to rebuild the stage. Sing as long as a song with my assistant.,,
 180,0,(Walk away),,SongLeavePerformer(),
+190,,,Your task: Bind my Assistant and then give me the sign to start.,,
+190,,(Show that you are done),,TrickAsstantChange(),RestrainAssistantMinItem(5)
+191,,,How did she get dressed again? Go over and tell her to change for the show.,,
+191,,The Show must go on.,Applause for the both.,SelectTrick(),ShowIsState(3)
+191,,"God bye, I leave the Show.",(She gives you the income of REPLACEMONEY $.) will you come back?,ShowPayoff(),ShowIsState(3)
