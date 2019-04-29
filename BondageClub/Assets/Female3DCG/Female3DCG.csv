@@ -28,7 +28,6 @@ Cloth,AdultBabyDress2,Bows Baby Dress
 Cloth,AdultBabyDress3,Flower Baby dress
 Cloth,NurseUniform,Nurse Uniform
 ClothLower,,Bottom
-ClothLower,,Lower Cloth
 ClothLower,Skirt1,Skirt
 ClothLower,TennisSkirt1,Tennis
 ClothLower,Jeans1,Jeans
@@ -101,6 +100,7 @@ Bra,,Bra
 Bra,Bra1,Style 1
 Bra,Bra2,Style 2
 Bra,Bra7,Style 3
+Bra,Bustier1,Satin Bustier
 Gloves,,Gloves
 Gloves,Gloves1,Short Gloves
 Gloves,Gloves2,Long Gloves

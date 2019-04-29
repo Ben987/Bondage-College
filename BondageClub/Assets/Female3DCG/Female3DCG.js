@@ -111,13 +111,13 @@ var AssetFemale3DCG = [
 		AllowPose: ["Suspension"],
 		Left: 125,
 		Top: 0,
-
 		Asset: [
 			"Band1", "Beret1", "Ears1", "Ears2",
 			{ Name: "MaidHairband1", Value: -1 },
-      { Name: "NurseCap", Value: -1 },
+			{ Name: "NurseCap", Value: -1 },
 			{ Name: "Santa1", Value: 30 },
-			{ Name: "BunnyEars1", Value: 20 }]
+			{ Name: "BunnyEars1", Value: 20 }
+		]
 	},
 
 	{
@@ -169,10 +169,13 @@ var AssetFemale3DCG = [
 		Priority: 13,
 		ParentGroup: "BodyUpper",
 		Underwear: true,
-		Color: ["#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
+		Color: ["Default", "#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
 		Left: 150,
 		Top: 200,
-		Asset: ["Bra1", "Bra2", "Bra7"]
+		Asset: [
+			"Bra1", "Bra2", "Bra7",
+			{ Name: "Bustier1", Value: 30 }
+		]
 	},
 	
 	{
@@ -356,7 +359,7 @@ var AssetFemale3DCG = [
 		Zone: [[150, 340, 200, 80]],
 		Asset: [ 
 			{ Name: "NylonRopeHarness", Value: 25, Prerequisite: "AccessTorso", Time: 25 },
-			{ Name: "AdultBabyHarness", Value: -1, Priority: 24, Time: 15, RemoveTime: 10 },
+			{ Name: "AdultBabyHarness", Value: -1, Time: 15, RemoveTime: 10 }, // Priority: 24, 
 			{ Name: "HempRopeHarness", Value: 50, Prerequisite: "AccessTorso", Time: 25, RemoveTime: 35, Difficulty: 3 },
 			{ Name: "LeatherHarness", Value: 100, Prerequisite: "AccessTorso", Time: 15, RemoveTime: 10 }
 		]
