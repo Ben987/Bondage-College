@@ -174,7 +174,12 @@ var AssetFemale3DCG = [
 		Top: 200,
 		Asset: [
 			"Bra1", "Bra2", "Bra7",
-			{ Name: "Bustier1", Value: 30 }
+			{ Name: "Bra8", Value: 15 },
+			{ Name: "Bustier1", Value: 30 },
+			{ Name: "Corset1", Value: 30 },
+			{ Name: "Corset2", Value: 30 },
+			{ Name: "Corset3", Value: 30 },
+			{ Name: "Corset4", Value: 30 }
 		]
 	},
 	
@@ -209,7 +214,7 @@ var AssetFemale3DCG = [
 		ParentGroup: "BodyLower",
 		ParentColor: "Bra",
 		Underwear: true,
-		Color: ["#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
+		Color: ["Default", "#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
 		Left: 150,
 		Top: 425,
 		Asset: [
@@ -217,6 +222,10 @@ var AssetFemale3DCG = [
 			{ Name: "Panties7" },
 			{ Name: "Panties8" },
 			{ Name: "Panties11" },
+			{ Name: "Panties12", Value: 10 },
+			{ Name: "Panties13", Value: 10 },
+			{ Name: "Panties14", Value: 10 },
+			{ Name: "Panties15", Value: 10 },
 			{ Name: "Diapers1", Value: -1 }
 		]
 	},
@@ -228,10 +237,13 @@ var AssetFemale3DCG = [
 		ParentColor: "Bra",
 		Underwear: true,
 		AllowPose: ["LegsClosed", "Kneel"],
-		Color: ["#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
+		Color: ["Default", "#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
 		Left: 125,
 		Top: 500,
-		Asset: ["Socks1", "Socks2", "Socks3", "Socks4", "Socks5", "Stockings1", "Stockings2"]
+		Asset: [
+			"Socks1", "Socks2", "Socks3", "Socks4", "Socks5", "Stockings1", "Stockings2",
+			{ Name: "Stockings3", Value: 10 }
+		]
 	},
 
 	{

@@ -100,7 +100,12 @@ Bra,,Bra
 Bra,Bra1,Style 1
 Bra,Bra2,Style 2
 Bra,Bra7,Style 3
+Bra,Bra8,Lace and Satin
 Bra,Bustier1,Satin Bustier
+Bra,Corset1,Corset + Garters
+Bra,Corset2,Corset
+Bra,Corset3,Half Cup Corset
+Bra,Corset4,Underbust Corset
 Gloves,,Gloves
 Gloves,Gloves1,Short Gloves
 Gloves,Gloves2,Long Gloves
@@ -117,6 +122,10 @@ Panties,Panties1,Style 1
 Panties,Panties7,Style 2
 Panties,Panties8,Style 3
 Panties,Panties11,Style 4
+Panties,Panties12,String Bikini
+Panties,Panties13,Satin Bikini
+Panties,Panties14,High Cut
+Panties,Panties15,Thong
 Panties,Diapers1,Diapers
 Socks,,Socks
 Socks,Socks1,Short
@@ -126,6 +135,7 @@ Socks,Socks4,High Leg
 Socks,Socks5,Full Leg
 Socks,Stockings1,Stockings Dark
 Socks,Stockings2,Stockings Light
+Socks,Stockings3,Silky Stockings
 Shoes,,Shoes
 Shoes,Shoes1,Style 1
 Shoes,Shoes2,Style 2
