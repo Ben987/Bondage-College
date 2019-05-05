@@ -675,7 +675,9 @@ function DialogStutter(C, CD) {
 	if (CD == null) CD = "";
 
 	if (C.IsEgged()) {
-		var intensity = C.Appearance.find(function(item){ return item.Asset.Name == "VibratingEgg"; }).Property.Intensity;
+		var egg = C.Appearance.find(function(item){ return item.Asset.Name == "VibratingEgg"; });
+		var intensity = 0;
+		if (egg.Property) intensity = egg.Property.Itensity;
 
 		// If intensity is lower than 2, no stuttering occurs and we return the regular text
 		if (intensity <= 1) return CD;
