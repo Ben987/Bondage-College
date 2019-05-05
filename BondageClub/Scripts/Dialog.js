@@ -695,7 +695,7 @@ function DialogStutter(C, CD) {
 				var R = Math.sin(seed++) * 10000;
 				R = R - Math.floor(R);
 				R = Math.floor(R * 10) + 1;
-				R = R * (intensity / 2);
+				R += (intensity - 2);
 				if (CS == 1 || R >= 10) {
 					CD = CD.substring(0, L) + CD.charAt(L) + "-" + CD.substring(L, CD.length);
 					L += 2;
