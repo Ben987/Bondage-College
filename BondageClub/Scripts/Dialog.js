@@ -332,7 +332,7 @@ function DialogClick() {
 												DialogExtendItem(C.Appearance.find(function(item){ return item.Asset.Name == "VibratingEgg"; }));
 											}
 											
-											if (CurrentScreen == "ChatRoom")
+											if (CurrentScreen == "ChatRoom" && DialogInventory[I].Asset.Effect == null)
 												ChatRoomPublishAction(CurrentCharacter, null, DialogInventory[I], true);
 											else {
 												var D = DialogFind(C, DialogInventory[I].Asset.Group.Name + DialogInventory[I].Asset.Name, null, false);
