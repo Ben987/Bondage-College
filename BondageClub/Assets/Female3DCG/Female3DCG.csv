@@ -187,10 +187,12 @@ ItemArms,HempRope,Hemp Rope
 ItemArms,MetalCuffs,Metal Cuffs
 ItemArms,MetalCuffsKey,Metal Cuffs Key
 ItemArms,LeatherArmbinder,Leather Armbinder
-ItemArms,PaddedMittens,Thumbless Mittens
+ItemArms,PaddedMittens,Thumbless Padded Mittens
 ItemArms,PaddedMittensLocked,Thumbless Mittens Locked
-ItemArms,PaddedMittensHarness,Thumbless Mittens
-ItemArms,PaddedMittensHarnessLocked,Thumbless Mittens Locked
+ItemArms,PaddedMittensHarness,Thumbless Mittens Chanined
+ItemArms,PaddedMittensHarnessLocked,Thumbless Mittens Chanined Locked
+ItemArms,PadLock,Padlock
+ItemArms,PadLockKey,Padlock Key
 ItemArms,FourLimbsShackles,Four Limbs Shackles
 ItemNeck,,Neck
 ItemNeck,LeatherCollar,Leather Collar

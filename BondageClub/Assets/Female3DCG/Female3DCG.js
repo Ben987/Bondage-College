@@ -55,9 +55,9 @@ var AssetFemale3DCG = [
 			{ Name: "TennisShirt1", Require: ["ClothLower"] },
 			{ Name: "Sweater1", Require: ["ClothLower"] },
 			{ Name: "MistressTop", Require: ["ClothLower"], Hide: ["Bra"], Value: -1 },
-			{ Name: "AdultBabyDress1", Hide: ["ClothLower"], Value: 300 },
-			{ Name: "AdultBabyDress2", Hide: ["ClothLower"], Value: 300 },
-			{ Name: "AdultBabyDress3", Hide: ["ClothLower"], Value: 300 },
+			{ Name: "AdultBabyDress1", Hide: ["ClothLower"], Value: 200 },
+			{ Name: "AdultBabyDress2", Hide: ["ClothLower"], Value: 200 },
+			{ Name: "AdultBabyDress3", Hide: ["ClothLower"], Value: 200 },
 			{ Name: "NurseUniform", Hide: ["ClothLower"], Value: -1 }
 		]
 	},
@@ -226,7 +226,7 @@ var AssetFemale3DCG = [
 			{ Name: "Panties13", Value: 10 },
 			{ Name: "Panties14", Value: 10 },
 			{ Name: "Panties15", Value: 10 },
-			{ Name: "Diapers1", Value: -1 }
+			{ Name: "Diapers1", Value: 50 }
 		]
 	},
 
@@ -370,10 +370,10 @@ var AssetFemale3DCG = [
 		Top: 200,
 		Zone: [[150, 340, 200, 80]],
 		Asset: [ 
-			{ Name: "NylonRopeHarness", Value: 25, Prerequisite: "AccessTorso", Time: 25 },
-			{ Name: "AdultBabyHarness", Value: -1, Time: 15, RemoveTime: 10 }, // Priority: 24, 
+			{ Name: "NylonRopeHarness", Value: 25, Prerequisite: "AccessTorso", Time: 25 }, 
 			{ Name: "HempRopeHarness", Value: 50, Prerequisite: "AccessTorso", Time: 25, RemoveTime: 35, Difficulty: 3 },
-			{ Name: "LeatherHarness", Value: 100, Prerequisite: "AccessTorso", Time: 15, RemoveTime: 10 }
+			{ Name: "LeatherHarness", Value: 100, Prerequisite: "AccessTorso", Time: 15, RemoveTime: 10 },
+			{ Name: "AdultBabyHarness", Value: 80, Priority: 24, Time: 15, RemoveTime: 10 }
 		]
 	},
 
@@ -414,10 +414,12 @@ var AssetFemale3DCG = [
 			{ Name: "MetalCuffs", Priority: 22, Value: 50, SetPose: ["BackCuffs"], Effect: ["Block", "Prone", "Lock"], Time: 5 },
 			{ Name: "MetalCuffsKey", Wear: false, Value: 25, Effect: ["Unlock-MetalCuffs"], Time: 5 },
 			{ Name: "LeatherArmbinder", SelfBondage: false, Priority: 2, Value: 80, SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone", "Struggle"], Time: 25, RemoveTime: 10, Difficulty: 10 },
-			{ Name: "PaddedMittens", SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Struggle"], Time: 25, RemoveTime: 10, Difficulty: 4 },
-			{ Name: "PaddedMittensLocked", Random: false, SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Lock"], Time: 12 },
-			{ Name: "PaddedMittensHarness", Random: false, SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Struggle"], Time: 25, RemoveTime: 10, Difficulty: 4 },
-			{ Name: "PaddedMittensHarnessLocked", Random: false, SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Lock"], Time: 12 },
+			{ Name: "PaddedMittens", SelfBondage: false, Value: 50, Effect: ["Block", "Prone", "Struggle"], Extended: true, Time: 15, Difficulty: 4 },
+			{ Name: "PaddedMittensLocked", Random: false, SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Lock"], Extended: true, Time: 12 },
+			{ Name: "PaddedMittensHarness", Random: false, SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Struggle"], Extended: true, Time: 25, RemoveTime: 10, Difficulty: 6 },
+			{ Name: "PaddedMittensHarnessLocked", Random: false, SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Lock"], Extended: true, Time: 12 },
+			{ Name: "PadLock", Wear: false, Value: 20, Effect: [], Time: 10 },
+			{ Name: "PadlockKey", Wear: false, Value: 25, Effect: [], Time: 5 },
 			{ Name: "FourLimbsShackles", Enable: false, Value: -1, SetPose: ["BackBoxTie"], Effect: ["Block", "Prone", "Lock"], Time: 30 }
 		]
 	},

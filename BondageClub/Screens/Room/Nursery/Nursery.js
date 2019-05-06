@@ -78,7 +78,7 @@ function NurseryRun() {
 	if (NurserySituation == "AtGate") {
 		DrawCharacter(Player, 500, 0, 1);
 		DrawImage("Screens/Room/Nursery/NurseryGate.png", 0, 0);
-		if (Player.CanWalk()) DrawButton(1500, 25, 300, 75, "Escape", "White");
+		if (Player.CanWalk()) DrawButton(1500, 25, 300, 75, TextGet("Escape"), "White");
 	}
 	if (Player.CanWalk()) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 	DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
