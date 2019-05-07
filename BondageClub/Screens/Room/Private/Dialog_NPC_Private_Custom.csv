@@ -88,6 +88,12 @@ ItemBreast,,,"(She whimpers as you use the device on her breast.)  Sorry to obje
 RemoveItemBreast,,,(She wiggles her breast slowly as you remove the device.)  Thanks!  This is better.,,,RemoveItemBreast,
 RemoveItemBreast,,,(She grumbles as you use remove the item.)  Be thoughtful and don't remove anything until I'm hurt and broken.,,,RemoveItemBreast,Violent|Serious
 RemoveItemBreast,,,"(She wiggles her breast happily as you remove the item.)  Oh, hell yeah!  That shit was hurting really bad.",,,RemoveItemBreast,Peaceful|Rude
+ItemNipples,,,(She holds her breath as you use the item.)  Oh my!  What did I do to deserve that?,,,ItemNipples,
+ItemNipples,,,"(She moans as you use the device on her.)  Oh yes Miss!  My breast is yours to pierce, slap or lock.",,,ItemNipples,Violent|Submissive
+ItemNipples,,,"(She whimpers as you use the device on her breast.)  Sorry to object, but this isn't very convenient or comfortable.",,,ItemNipples,Peaceful|Polite
+RemoveItemNipples,,,(She wiggles her breast slowly as you remove the device.)  Thanks!  This is better.,,,RemoveItemNipples,
+RemoveItemNipples,,,(She grumbles as you use remove the item.)  Be thoughtful and don't remove anything until I'm hurt and broken.,,,RemoveItemNipples,Violent|Serious
+RemoveItemNipples,,,"(She wiggles her breast happily as you remove the item.)  Oh, hell yeah!  That shit was hurting really bad.",,,RemoveItemNipples,Peaceful|Rude
 ItemMetalChastityBra,,,(She holds her breath as you lock her breast away.)  I hope you don't plan on leaving me like that.,,,ItemMetalChastityBra,
 ItemMetalChastityBra,,,"(She seems to disagree as you lock her breast away.)  Miss, I really hope you hold the key for this device.",,,ItemMetalChastityBra,Submissive|Serious
 ItemMetalChastityBra,,,(You lock the chastity bra as she struggles like an animal to remove it.)  Damn it!  I won't come off.,,,ItemMetalChastityBra,Violent|Dumb

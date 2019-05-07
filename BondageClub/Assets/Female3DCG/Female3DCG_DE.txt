@@ -40,6 +40,14 @@ Sweater
 Pullover
 Mistress Top
 Herrinnen-Oberteil
+Puffy Baby Dress
+Bauschiges Babykleid
+Bows Baby Dress
+Schleifen-Babykleid
+Flower Baby dress
+Blumen-Babykleid
+Nurse Uniform
+Erzieherinnen-Uniform
 Bottom
 Kleidung unten
 Skirt
@@ -94,6 +102,8 @@ Maid Hairband
 Hausmädchen-Haarband
 Santa Hat
 Weihnachtsmütze
+Nurse's Cap
+Erzieherinnen-Kappe
 Bunny Ears
 Hasenohren
 Eyes
@@ -110,6 +120,8 @@ Nipples Style
 Nippel-Stil
 Bra
 BH
+Satin Bustier
+Satin-Bustier
 Gloves
 Handschuhe
 Short Gloves
@@ -134,6 +146,8 @@ Dark 3
 Dunkel 3
 Panties
 Slip
+Diapers
+Windeln
 Socks
 Socken
 Short
@@ -210,6 +224,8 @@ Hemp Rope Harness
 Hanfseil-Harnisch
 Leather Harness
 Lederharnisch
+Adult Baby Harness
+Erwachsenenbaby-Harnisch
 Breast
 Brust
 Straight Piercings
@@ -230,6 +246,10 @@ Metal Cuffs Key
 Handschellenschlüssel
 Leather Armbinder
 Monohandschuh
+Thumbless Mittens
+Daumenlose Fäustlinge
+Thumbless Mittens Locked
+Verriegelte daumenlose Fäustlinge
 Four Limbs Shackles
 Viererketten
 Neck
@@ -258,6 +278,10 @@ Duct Tape Gag
 Klebeband-Knebel
 Duster Gag
 Staubwedel-Knebel
+Pacifier
+Schnuller
+Harness Pacifier
+Schnuller-Harnisch
 Bit Gag
 Trensenknebel
 Pump Gag
@@ -284,3 +308,9 @@ Wooden Maid Tray Full
 Holztablett voll
 Wooden Paddle
 Holzpaddel
+Wooden Box
+Holzkiste
+Water filled milk can 
+Milchkanne mit Wasser
+Water torture Cell
+Wasserfolterzelle

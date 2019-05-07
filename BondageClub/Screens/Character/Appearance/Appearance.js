@@ -200,9 +200,12 @@ function CharacterAppearanceSort(AP) {
 }
 
 // Returns TRUE if we can show the item group
-function CharacterAppearanceVisible(C, GroupName) {
+function CharacterAppearanceVisible(C, AssetName, GroupName) {
 	for (var A = 0; A < C.Appearance.length; A++)
 		if ((C.Appearance[A].Asset.Hide != null) && (C.Appearance[A].Asset.Hide.indexOf(GroupName) >= 0))
+			return false;
+	for (var A = 0; A < C.Appearance.length; A++)
+		if ((C.Appearance[A].Asset.HideItem != null) && (C.Appearance[A].Asset.HideItem.indexOf(GroupName + AssetName) >= 0))
 			return false;
 	if (C.Pose != null)
 		for (var A = 0; A < C.Pose.length; A++)
@@ -233,7 +236,7 @@ function CharacterAppearanceBuildCanvas(C) {
 	
 	// Loops in all items worn by the character
 	for (var A = 0; A < C.Appearance.length; A++) 
-		if (CharacterAppearanceVisible(C, C.Appearance[A].Asset.Group.Name)) {
+		if (CharacterAppearanceVisible(C, C.Appearance[A].Asset.Name, C.Appearance[A].Asset.Group.Name)) {
 
 			// If there's a father group, we must add it to find the correct image
 			var CA = C.Appearance[A];
@@ -243,12 +246,17 @@ function CharacterAppearanceBuildCanvas(C) {
 					if (CA.Asset.Group.ParentGroupName == C.Appearance[FG].Asset.Group.Name)
 						G = "_" + C.Appearance[FG].Asset.Name;
 			
-			// If there's a pose style we must add
+			// If there's a pose style we must add (first by group then by item)
 			var Pose = "";
 			if ((CA.Asset.Group.AllowPose != null) && (CA.Asset.Group.AllowPose.length > 0) && (C.Pose != null) && (C.Pose.length > 0))
 				for (var AP = 0; AP < CA.Asset.Group.AllowPose.length; AP++)
 					for (var P = 0; P < C.Pose.length; P++)
 						if (C.Pose[P] == CA.Asset.Group.AllowPose[AP])
+							Pose = C.Pose[P] + "/";
+			if ((CA.Asset.AllowPose != null) && (CA.Asset.AllowPose.length > 0) && (C.Pose != null) && (C.Pose.length > 0))
+				for (var AP = 0; AP < CA.Asset.AllowPose.length; AP++)
+					for (var P = 0; P < C.Pose.length; P++)
+						if (C.Pose[P] == CA.Asset.AllowPose[AP])
 							Pose = C.Pose[P] + "/";
 
 			// If we must apply alpha masks to the current image as it is being drawn

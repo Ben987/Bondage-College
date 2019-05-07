@@ -79,10 +79,17 @@ function ChatSearchJoin() {
 
 }
 
-// When the server sends a response
+// When the server sends a response (force leave the room if the user was banned)
 function ChatSearchResponse(data) {
-	if ((data != null) && (typeof data === "string") && (data != ""))
+	if ((data != null) && (typeof data === "string") && (data != "")) {
+		if ((data == "RoomBanned") && (CurrentScreen == "ChatRoom")) {
+			if (CurrentCharacter != null) DialogLeave();
+			ElementRemove("InputChat");
+			ElementRemove("TextAreaChatLog");
+			CommonSetScreen("Online", "ChatSearch");
+		}
 		ChatSearchMessage = "Response" + data;
+	}
 }
 
 // Sends a search query to the server

@@ -9,9 +9,9 @@ SourceCharacter entfernt PrevAsset von DestinationCharacter.
 SourceCharacter unlocks and removes the PrevAsset from DestinationCharacter FocusAssetGroup.
 SourceCharacter öffnet und entfernt PrevAsset von DestinationCharacter.
 SourceCharacter rolls a DiceType sided dice.  The result is: DiceResult.
-SourceCharacter rollt einen DiceType-seitigen Würfel Das Ergebnis ist: DiceResult.
+SourceCharacter rollt einen DiceType-seitigen Würfel. Das Ergebnis ist: DiceResult.
 SourceCharacter flips a coin.  The result is: CoinResult.
-SourceCharacter Wirft eine Münze. Das Ergebnis ist: CoinResult.
+SourceCharacter wirft eine Münze. Das Ergebnis ist: CoinResult.
 Heads
 Kopf
 Tails

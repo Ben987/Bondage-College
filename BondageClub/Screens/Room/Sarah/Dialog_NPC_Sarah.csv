@@ -107,7 +107,7 @@ RemoveSuspensionHempRope,,,(You untie the hemp rope from the ceiling and slowly 
 200,,Can we stay here?,"I'm not sure, Mistress Sophie reserved the room.  We might get in trouble.",DialogRemove(),
 200,220,Do you want to visit my room?,You have your own room?  Sweet!  I'm curious to see it.,,CanInviteToRoomFriend()
 200,220,Come to my room slave.,Your own room Mistress?  This is kinky!  I'm curious to see it.,,CanInviteToRoomSlave()
-200,210,Go have fun in the club.,Thanks!  I hope to see you soon.  (She smiles.)  Take care!,,"!DialogIsRestrained(""CurrentCharacter"")"
+200,210,Go have fun in the club.,Thanks!  I hope to see you soon.  (She smiles.)  Take care!,,CanReleaseToClub()
 200,,(Leave her.),,DialogLeave(),
 210,,Take care!  (Leave her.),,LeaveRoom(),
 220,,Great!  (Bring her to your room.),,TransferToRoom(),

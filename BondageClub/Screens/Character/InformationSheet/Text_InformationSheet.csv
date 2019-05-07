@@ -1,4 +1,4 @@
-Name,Name: 
+Name,Name:
 Title,Title:
 TitleMistress,Mistress
 TitleHeadMaid,Head Maid
@@ -30,6 +30,7 @@ ReputationDominantNegative,Submissive:
 ReputationMaidPositive,Maid Sorority:
 ReputationGamblingPositive,Gambling Hall:
 ReputationKidnapPositive,Kidnappers League:
+ReputationABDLPositive,ABDL:
 Skill,- Skills -
 SkillNone,None
 SkillBondage,Bondage:

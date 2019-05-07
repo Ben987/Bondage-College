@@ -23,6 +23,10 @@ Cloth,TShirt1,T-Shirt
 Cloth,TennisShirt1,Tennis
 Cloth,Sweater1,Sweater
 Cloth,MistressTop1,Mistress Top
+Cloth,AdultBabyDress1,Puffy Baby Dress
+Cloth,AdultBabyDress2,Bows Baby Dress
+Cloth,AdultBabyDress3,Flower Baby dress
+Cloth,NurseUniform,Nurse Uniform
 ClothLower,,Bottom
 ClothLower,Skirt1,Skirt
 ClothLower,TennisSkirt1,Tennis
@@ -61,6 +65,7 @@ Hat,Ears1,Ears Small
 Hat,Ears2,Ears Large
 Hat,MaidHairband1,Maid Hairband
 Hat,Santa1,Santa Hat
+Hat,NurseCap,Nurse's Cap
 Hat,BunnyEars1,Bunny Ears
 Eyes,,Eyes
 Eyes,Eyes1,Style 1
@@ -95,6 +100,7 @@ Bra,,Bra
 Bra,Bra1,Style 1
 Bra,Bra2,Style 2
 Bra,Bra7,Style 3
+Bra,Bustier1,Satin Bustier
 Gloves,,Gloves
 Gloves,Gloves1,Short Gloves
 Gloves,Gloves2,Long Gloves
@@ -111,6 +117,7 @@ Panties,Panties1,Style 1
 Panties,Panties7,Style 2
 Panties,Panties8,Style 3
 Panties,Panties11,Style 4
+Panties,Diapers1,Diapers
 Socks,,Socks
 Socks,Socks1,Short
 Socks,Socks2,Regular
@@ -141,6 +148,7 @@ ItemLegs,LeatherBelt,Leather Belt
 ItemVulva,,Vulva
 ItemVulva,VibratingEgg,Vibrating Egg
 ItemVulva,VibratingWand,Vibrating Wand
+ItemVulva,VibratorRemote,Vibrating Egg Remote
 ItemButt,,Butt
 ItemButt,BlackButtPlug,Black Butt Plug
 ItemButt,TailButtPlug,Kitty Butt Plug
@@ -155,10 +163,12 @@ ItemTorso,,Torso
 ItemTorso,NylonRopeHarness,Nylon Rope Harness
 ItemTorso,HempRopeHarness,Hemp Rope Harness
 ItemTorso,LeatherHarness,Leather Harness
+ItemTorso,AdultBabyHarness,Adult Baby Harness
+ItemNipples,,Nipples
+ItemNipples,StraightPiercing,Straight Piercings
+ItemNipples,RoundPiercing,Round Piercings
+ItemNipples,NippleClamp,Nipple Clamps
 ItemBreast,,Breast
-ItemBreast,StraightPiercing,Straight Piercings
-ItemBreast,RoundPiercing,Round Piercings
-ItemBreast,NippleClamp,Nipple Clamps
 ItemBreast,MetalChastityBra,Metal Chastity Bra
 ItemBreast,MetalChastityBraKey,Metal Chastity Bra Key
 ItemBreast,LeatherCrop,Leather Crop
@@ -169,7 +179,13 @@ ItemArms,HempRope,Hemp Rope
 ItemArms,MetalCuffs,Metal Cuffs
 ItemArms,MetalCuffsKey,Metal Cuffs Key
 ItemArms,LeatherArmbinder,Leather Armbinder
+ItemArms,PaddedMittens,Thumbless Mittens
+ItemArms,PaddedMittensLocked,Thumbless Mittens Locked
+ItemArms,PaddedMittensHarness,Thumbless Mittens
+ItemArms,PaddedMittensHarnessLocked,Thumbless Mittens Locked
 ItemArms,FourLimbsShackles,Four Limbs Shackles
+ItemArms,LeatherCuffs,Leather Cuffs
+ItemArms,LeatherCuffsKey,Leather Cuffs Key
 ItemNeck,,Neck
 ItemNeck,LeatherCollar,Leather Collar
 ItemNeck,SlaveCollar,Slave Collar
@@ -184,6 +200,8 @@ ItemMouth,HarnessPanelGag,Harness Panel Gag
 ItemMouth,RingGag,Ring Gag
 ItemMouth,DuctTapeGag,Duct Tape Gag
 ItemMouth,DusterGag,Duster Gag
+ItemMouth,PacifierGag,Pacifier
+ItemMouth,HarnessPacifierGag,Harness Pacifier
 ItemMouth,HarnessBits,Bit Gag
 ItemMouth,PumpGag,Pump Gag
 ItemMouth,RegularSleepingPill,Sleeping Pill

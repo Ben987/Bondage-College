@@ -1,0 +1,149 @@
+PlayerGagged,,,The sound of a gagged slave is a *delicieuse musique* to my ears.,,
+ExpelPlayer,,,"Enough!  (She seems furious.)  I'm tired of you, I don't want to see you anymore.  Get out!",,
+FightVictory,,,(She bows her head.)  Unbelivable!  I was *defaite* in battle.  You truly are a great kidnapper.,,
+FightDefeat,,,"(She makes a wicked smile.)  Girl, you really thought you could defeat me?  You're mine now.",,
+PlayerPunishmentStage0,,,"First, we need to make sure everyone is prepared for the group *punition*.",,
+PlayerPunishmentStage1,,,"A memorable punishment must begin with pain, and I have the perfect tool for that.  Are you nipples sensitive girl?",,
+PlayerPunishmentStage2,,,Pain should be shared between slave sisters.  Don't you agree?,,
+2,,,(She swings her crop toward you.)  *Esclave*!  What are you doing here?,,IsClubSlave()
+0,,,It's a *plaisir* to see you Mistress DialogPlayerName.  What brings you here?,,"DialogLogQuery(""ClubMistress"", ""Management"")"
+0,,,What are you doing here maid DialogPlayerName?,,"DialogLogQuery(""JoinedSorority"", ""Maid"")"
+0,,,Who are you girl?  What are you doing here?,,
+0,10,"Mistress Sophie, it's always a pleasure.","Absolutely *Maitresse* DialogPlayerName, but I've reserved this room for the day.  What's the purpose of your visit?",,"DialogLogQuery(""ClubMistress"", ""Management"")"
+0,10,This room is mine.,(She stares at you.)  You must be confused *Maitresse* DialogPlayerName.  I've reserved this room for the day.,UpsetSophie(2),"DialogLogQuery(""ClubMistress"", ""Management"")"
+0,10,I was sent by the maid sorority.,The *sororite* sent you?  Impossible!  You're probably wrong girl.,,"DialogLogQuery(""JoinedSorority"", ""Maid"")"
+0,10,I'm here to clean the room Miss.,It's too early for room cleaning girl.  You're probably at the wrong place.,UpsetSophie(1),"DialogLogQuery(""JoinedSorority"", ""Maid"")"
+0,10,What are you doing here?,What am I doing here?  (She looks angry.)  I've reserved this room for the day!,UpsetSophie(2),
+0,10,I'm sorry.  I might be lost.,"Girl, this is a private room.  I've reserved it for the day.",,
+0,10,Are you Mistress Sophie?,"*Oui*, why are you here little club slave?",,IsClubSlave()
+0,,(Leave her.),,DialogLeave(),
+10,14,"So sorry, this maid is confused.",(She grins.)  And do you know what happens to *confuse* maids?,,"DialogLogQuery(""JoinedSorority"", ""Maid"")"
+10,11,"Actually, I've wanted to meet you.",(She looks annoyed.)  Your timing is horrible.  What do you want from me?,UpsetSophie(1),
+10,11,Can you teach me Mistress Sophie?,(She looks intrigued.)  What do you want to learn?,,
+10,20,I've came to rescue Sarah.,"(She frowns.)  She doesn't need any rescue, she's getting *punie* for her deeds.",UpsetSophie(1),SarahShackled()
+10,20,I've came to see Sarah.,"She's getting punished, you'll have to come back later.",,SarahIsInside()
+10,30,I've came to see Amanda.,The brown hair girl?  A maid got her pretty good.  (She smirks.)  What is she doing in my room?,,AmandaIsInside()
+10,40,I've came to see my friends.,It doesn't matter if you three are friends.  I've reserved that room to punish Sarah.,,SarahAndAmandaAreInside()
+10,90,Should I go?,"Yes, you should get out.",,
+11,15,I want to get some pro Domme tips.,"(She looks at the room and frowns.)  Well you're not lucky, the submissive girl isn't there.  Unless you want to be *punie* at her place.",UpsetSophie(1),!SarahOrAmandaAreInside()
+11,12,I want to get some pro Domme tips.,"(She seems a little annoyed.)  Is that so?  Very well, maybe you can learn by doing the job for me.  Are you up for the challenge?",UpsetSophie(1),SarahOrAmandaAreInside()
+11,12,I've came to assist you to punish.,"Very well, maybe you can do the job for me.  Are you up for the challenge?",,SarahOrAmandaAreInside()
+11,15,I'd like a good spanking.,(She gives you an angry.)  You have some nerves girl.  You really want to be *punie*?,UpsetSophie(2),
+11,15,I need discipline Miss.,(She swings her crop toward you.)  Is that so?  You've been bad and needs to be *punie*?,,
+11,15,Do you want to be my Mistress?,"(She swings her crop in the air.)  Girl, we barely know each other.  You sure seem to want to be *punie* though.",,!Player.IsOwned()
+11,98,I came to challenge you.,Don't make me laugh.  You really want to fight me?  (She points her crop toward you.),,Player.CanInteract()
+12,13,I'm ready!  (Smile wickedly.),*Parfait*!  Just follow my orders so she can punished properly.,"DialogChangeReputation(""Dominant"", 2)","DialogReputationGreater(""Dominant"", 30)"
+12,15,I don't know.,"You didn't convince me at all girl.  So either you also get *punie*, or you get out.",UpsetSophie(1),"DialogReputationLess(""Dominant"", 29)"
+12,15,I don't think so Miss.,"Face it girl, you're a *soumise*.  So either you also get *punie*, or you get out.",UpsetSophie(2),"DialogReputationLess(""Dominant"", -30)"
+13,100,I'm listening.,,PlayerPunishGirls(),
+13,100,Let's do it!,,PlayerPunishGirls(),
+14,16,What Miss?,The get *punie*.  Get naked little maid.,,
+14,16,They get a raise?  (Giggle.),"Don't try to be funny.  Get naked little maid, you're getting *punie*.",UpsetSophie(2),
+14,16,(Stay silent.),The get *punie*.  Get naked little maid.,,
+15,16,What the hell is *punie* ?,"Don't mock me girl, I don't like your attitude.  Get naked now.",UpsetSophie(2),
+15,16,"Yes Miss, I deserve to be punished.",(She grins.)  Excellent.  Get naked girl.,"DialogChangeReputation(""Dominant"", -3)",
+15,16,Don't be too harsh.,,UpsetSophie(1),
+15,90,"No, I don't need any punishment.","You should go then, I've heard enough.  (She points to the exit.)",,
+16,,Naked?  Is it necessary?,Do not waste my *temps*.  Get naked.,DialogRemove(),
+16,50,I'm already naked Miss.,(She nods and grins.)  *Bien*!  Now give me yours hands.,,Player.IsNaked()
+16,50,Yes Miss.  (Strip naked.),(You strip for her as she smiles.)  *Bien*!  Now give me yours hands.,DialogNaked(Player),Player.CanInteract()
+16,50,Can you help me to strip Miss?,(She strips you down and smiles.)  *Bien*!  Now give me yours hands.,DialogNaked(Player),!Player.CanInteract()
+20,,Why is she getting punished?,"Getting late to club meetings, playing on her phone in a collaring ceremony and spilling her drink on a club *Maitresse*.",DialogRemove(),
+20,25,"You cannot do that, she's my slave.","(She looks at Sarah as she nods.)  I'm sorry, I didn't knew she was your *esclave*.",,SarahIsPlayerSlave()
+20,12,Can I punish her with you?,"Very well, maybe you can do the job for me.  Are you up for the challenge?",,
+20,21,You cannot punish her.,(She seems angry.)  I can and I will.  Now get out or you'll be *punie* with her.,UpsetSophie(2),
+20,21,Can I see that?,It's not a public show.  Now get out or you'll be *punie* with her.,UpsetSophie(1),"DialogReputationGreater(""Dominant"", -29)"
+20,21,"Miss, can I please witness her punishment?",(She smirks.)  You want to join her and be punished little *soumise*?,,"DialogReputationLess(""Dominant"", -30)"
+21,16,"Yes Miss, I'll take the punishment with her.",(She grins.)  Excellent.  Get naked girl.,"DialogChangeReputation(""Dominant"", -3)",
+21,90,"No, I don't want to be punished.","You should go then, I've heard enough.  (She points to the exit.)",,
+25,26,Can you release her?,"Absolutely, I will not temper with your property.  (She releases Sarah.)",,
+26,27,Thank you Miss.,We all play by the rules.  I will leave you two alone now.  Goodbye.,"DialogChangeReputation(""Dominant"", -1)",
+26,27,Much better.,We all play by the rules.  I will leave you two alone now.  Goodbye.,"DialogChangeReputation(""Dominant"", 2)",
+27,,Goodbye.,,SophieFreeSarahAndLeave(),
+30,,Why is she here?,"I don't know, I've never seen her in the club.  She must be a new *membre*.",DialogRemove(),
+30,,What will you do to her?,"Since she came in my room uninvited, she will be *punie*.",DialogRemove(),
+30,31,Can you release her?,"(She laughs.)  She stepped in my lair, she stays.  Did you also came here to get *punie*?",,!AmandaIsPlayerSlave()
+30,35,"She's my slave, can you release her?","Absolutely, I don't want to mess with your property.  But you two will have to go.",,AmandaIsPlayerSlave()
+30,12,Can I punish her with you?,"Very well, maybe you can do the job for me.  Are you up for the challenge?",,
+30,31,You cannot punish her.,(She seems angry.)  I can and I will.  Now get out or you'll be *punie* with her.,UpsetSophie(2),
+30,31,Can I see that?,It's not a public show.  Now get out or you'll be *punie* with her.,UpsetSophie(1),"DialogReputationGreater(""Dominant"", -29)"
+30,31,"Miss, can I please witness her punishment?",(She smirks.)  You want to join her and be punished little *soumise*?,,"DialogReputationLess(""Dominant"", -30)"
+31,16,"Yes Miss, I'll take the punishment with her.",(She grins.)  Excellent.  Get naked girl.,"DialogChangeReputation(""Dominant"", -3)",
+31,90,"No, I don't want to be punished.","You should go then, I've heard enough.  (She points to the exit.)",,
+35,36,Thank you Miss.,We all play by the rules.  Now you both need to go.  I will lock the door behind you.,"DialogChangeReputation(""Dominant"", -1)",
+35,36,Much better.,We all play by the rules.  Now you both need to go.  I will lock the door behind you.,"DialogChangeReputation(""Dominant"", 2)",
+36,,Goodbye.  (Walk out with Amanda.),,SophieFreePlayerAndAmandaTheyLeave(),
+40,,Why are they here?,The *blonde* is getting punished for many reasons.  The brown hair girl is a bonus it seems.,DialogRemove(),
+40,,What will you do to them?,They will both be *punie*.  (She grins.),DialogRemove(),
+40,41,Can you release them?,"(She laughs.)  They stepped in my lair, they stay.  Did you also came here to get *punie*?",,!AmandaAndSarahArePlayerSlave()
+40,45,These girls are my slaves.,I didn't knew.  I don't want to mess with your *propriete*.  You can have the room.,,AmandaAndSarahArePlayerSlave()
+40,12,Can I punish them with you?,"Very well, maybe you can do the job for me.  Are you up for the challenge?",,
+40,41,You cannot punish them.,(She seems angry.)  I can and I will.  Now get out or you'll be *punie* with them.,UpsetSophie(2),
+40,41,Can I see that?,It's not a public show.  Now get out or you'll be *punie* with them.,UpsetSophie(1),"DialogReputationGreater(""Dominant"", -29)"
+40,41,"Miss, can I please witness this punishment?",(She smirks.)  You want to join them and be punished little *soumise*?,,"DialogReputationLess(""Dominant"", -30)"
+41,16,"Yes Miss, I'll take the punishment with them.",(She grins.)  Excellent.  Get naked girl.,"DialogChangeReputation(""Dominant"", -3)",
+41,90,"No, I don't want to be punished.","You should go then, I've heard enough.  (She points to the exit.)",,
+45,46,Thank you Miss.,I will make sure your girls are fine and leave.  Take good care of your *esclaves*.,"DialogChangeReputation(""Dominant"", -1)",
+45,46,Much better.,I will make sure your girls are fine and leave.  Take good care of your *esclaves*.,"DialogChangeReputation(""Dominant"", 2)",
+45,13,Can you show me how to punish them?,*Absolument*!  Just follow my orders and they will be punished properly.,,
+46,,Goodbye.,,SophieFreeSarahAndLeave(),
+50,51,Yes Mistress Sophie.  (Give your hands.),"(She stays silent and grabs your arms, locking leather cuffs on them.)","RestrainedBySophie(0, -2)",
+50,51,"Fine, make it quick.  (Give your hands.)","(She frowns and grabs your arms forcefully, locking leather cuffs on them.)","RestrainedBySophie(0, 2)",
+50,51,Is it really necessary?,"(She doesn't listen and grabs your arms forcefully, locking leather cuffs on them.)","RestrainedBySophie(0, 0)",
+51,,What are these cuffs?,These leather cuffs are very handy to keep *soumises* under control.  They can be locked first and chained together later in many fashion.,DialogRemove(),
+51,52,It's really tight Miss.,(She grins and restrain your legs tightly with leather belts.),"RestrainedBySophie(1, -1)",
+51,52,What the fuck?,(She frowns and restrain your legs tightly with leather belts.),"RestrainedBySophie(1, 1)",
+51,52,(Stay silent.),(She prompty restrain your your legs tightly with leather belts.),"RestrainedBySophie(1, 0)",
+52,53,You're so kinky!,(She stares at you.)  You must learn discipline girl.  (She prepares you to be punished and attaches the wrist cuffs with a chain.),"RestrainedBySophie(2, 1)",
+52,53,(Bow your head.),This punishment will help you learn and grow.  (She prepares you to be punished and attaches the wrist cuffs with a chain.),"RestrainedBySophie(2, -1)",
+52,53,(Stay silent.),This punishment will help you learn and grow.  (She prepares you to be punished and attaches the wrist cuffs with a chain.),"RestrainedBySophie(2, 0)",
+53,200,I'm ready to be punished Miss.,,SophiePunishGirls(),
+53,200,I understand Mistress Sophie.,,SophiePunishGirls(),
+60,61,That was quite a fight.,*Absolument*.  And you've won DialogPlayerName.  You've also won my respect.,"DialogChangeReputation(""Dominant"", 6)",
+60,61,Who's the queen now?,Do not be *arrogante* DialogPlayerName.  Treasure the respect that you've won.,"DialogChangeReputation(""Dominant"", 8)",
+60,61,I was lucky.,It was more than *chance* DialogPlayerName.  You're a formidable opponent and you've won my respect.,"DialogChangeReputation(""Dominant"", 4)",
+61,,,I still can't believe you won.  You're a formidable *kidnappeuse*.,,
+61,,Can you release Sarah?,"Of course, I'll have her released.  (She calls for a maid to rescue Sarah.)",Unlock(),SarahShackled()
+61,,You're my prisonner and the room is mine?,"*Oui*, enjoy your spoils of war for now DialogPlayerName.  I'll have my revenge someday.",,
+61,,(Tickle her.),(You tickle her on the tummy but she barely reacts.)  That's the best you can do?  Are you a child?,,Player.CanInteract()
+61,,(Kiss her.),(She turns away as you try to kiss her.)  These lips are not for you DialogPlayerName.,,CanKissSophie()
+61,,(Spank her.),"(You spank her butt a few times as she moans very lighty, hiding the enjoyment.)",,Player.CanInteract()
+61,,(Fondle her.),(You cup her breast and massage them lovingly as she struggles to get away from you.),,Player.CanInteract()
+61,,(Bring her to your room.),,"TransferSophieToRoom(""-50"")",CanInviteSophieToRoom()
+61,,(Leave her.),,,
+70,16,It was a good fight.,"(She nods and catches her breath.)  Enough talks, get naked loser.","DialogChangeReputation(""Dominant"", -2)",
+70,16,I'll get you next time.,"(She frowns and catches her breath.)  Enough talks, get naked loser.","DialogChangeReputation(""Dominant"", -1)",
+70,16,You're too strong for me Miss.,"(She smirks and catches her breath.)  Enough talks, get naked loser.","DialogChangeReputation(""Dominant"", -3)",
+80,,"I'm sorry, I didn't meant to annoy you.",It's too *tard* to apologize.  Now get out before I kick you out.,DialogRemove(),
+80,98,I'll stay if I want.,(She swings her crop and gives you a menacing look.)  Are you sure you want to face me girl?,,CanFightSophie()
+80,99,(Walk out of the room.),"(She stares at you as you get out, and locks the door behind you.)",,
+90,91,I'll stay if I want.,"I'm getting tired here.  Either you get out, or you're getting *punie*.",,
+90,91,I'm curious!  Why can't I stay?,Another word from your mouth and you're getting *punie*.  Now get out!,,
+90,99,(Walk out of the room.),"(She stares at you as you get out, and locks the door behind you.)",,
+91,92,"Please, please, please!","That's enough!  Strip naked girl, you're getting *punie*.",,
+91,92,You cannot punish me!,"That's enough!  Strip naked girl, you're getting *punie*.",,
+91,98,You want to fight girl?,(She swings her crop and gives you a menacing look.)  Get ready for the *combat* of your life.,,CanFightSophie()
+91,99,(Walk out of the room.),"(She stares at you as you get out, and locks the door behind you.)",,
+92,,That's unfair!,I will not repeat myself.  Get naked now!,DialogRemove(),
+92,50,Yes Miss.  (Strip naked.),(You strip for her as she smiles.)  *Bien*!  Now give me yours hands.,DialogNaked(Player),Player.CanInteract()
+92,50,Can you help me to strip Miss?,(She strips you down and smiles.)  *Bien*!  Now give me yours hands.,DialogNaked(Player),!Player.CanInteract()
+92,,Can we negotiate something?,It's too late for that.  You've got on my nerves.,DialogRemove(),
+92,98,If you touch me I'll punch you!,(She swings her crop and gives you a menacing look.)  You really want to challenge me girl?,,Player.CanInteract()
+92,99,(Run out of the room.),"(She laughs as you run out of the room, and locks the door behind you.)","DialogChangeReputation(""Dominant"", -2)",
+98,,(Fight her.),,FightSophie(),
+98,99,(Run for your life.),"(She laughs as you run out of the room, and locks the door behind you.)","DialogChangeReputation(""Dominant"", -2)",
+99,,(Back to the club.),,KickPlayerOut(),
+100,,TO DO,TO DO,,
+100,,(Leave her.),,DialogLeave(),
+200,201,Don't be too harsh with them.,(She frowns and promptly restrains the other girls like you.),"SophiePunishEvent(""RestrainOther"", 1)",SophiePunishmentStageIs(0)
+200,201,(Stay silent and watch her.),(She promptly restrains the other girls like you.),"SophiePunishEvent(""RestrainOther"", 0)",SophiePunishmentStageIs(0)
+200,210,"Yes, they are quite sensitive.","Very good, little *esclave*.  (She tightens nipple clamps on your nipples and smiles.)","SophiePunishEvent(""Clamps"", -1)",SophiePunishmentStageIs(1)
+200,210,I can take any pain.,We'll see about that.  (She tightens nipple clamps on your nipples and smiles.),"SophiePunishEvent(""Clamps"", 2)",SophiePunishmentStageIs(1)
+200,210,(Nod in fear.),"Very good, little *esclave*.  (She tightens nipple clamps on your nipples and smiles.)","SophiePunishEvent(""Clamps"", -2)",SophiePunishmentStageIs(1)
+200,210,(Shake your head no.),We'll see about that.  (She tightens nipple clamps on your nipples and smiles.),"SophiePunishEvent(""Clamps"", 1)",SophiePunishmentStageIs(1)
+200,201,(Shrug and look away.),(She turns away from you and inflicts more pain with more nipple clamps.),"SophiePunishEvent(""ClampsOther"", 1)",SophiePunishmentStageIs(2)
+200,201,(Nod slowly.),(She turns away from you and inflicts more pain with more nipple clamps.),"SophiePunishEvent(""ClampsOther"", -1)",SophiePunishmentStageIs(2)
+201,,(Check the scene.),,DialogLeave(),
+210,201,(Take a deep breath.),,SophieSetPunishmentIntro(0),
+210,201,It hurts Miss.,,SophieSetPunishmentIntro(-1),
+210,201,(Pretend it doesn't hurt.),,SophieSetPunishmentIntro(1),

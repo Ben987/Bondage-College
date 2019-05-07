@@ -1,0 +1,85 @@
+###_NPC
+Heehee   you sound funny.
+Hihi... Du klingst lustig.
+(She accepts the gag, giggles and tests its effect.)  Teehee.  This makes my voice sound funny
+(Sie akzeptiert den Knebel, kichert und probiert seinen Effekt aus.) Tihi. Meine Stimme klingt so lustig.
+(You remove her gag while she stretches her mouth.)  It seems kind of funny for a baby to be able to talk.
+(Du nimmst ihr den Knebel ab und sie streckt ihren Mund.) Es wirkt irgendwie seltsam, wenn ein Baby sprechen kann.
+(She wriggles nerviously while you restrain her arms.)  It looks like my arms won't get to play for a while.
+(Sie windet sich nervös, als du ihre Arme fesselst.) Meine Arme werden wohl eine Weile nicht mehr spielen können.
+(You free her arms and she nods happily.)  Thank you.  We could play all sorts of games now.
+(Du befreist ihre Arme und sie nickt glücklich.) Danke. Jetzt könnten wir alles mögliche zusammen spielen.
+(She submits to you while you restrain her legs securely.)  I don't need to move anyway.
+(Sie lässt sich von dir ordentlich die Beine fesseln.) Ich muss sowieso nicht von hier weg.
+(You release her legs from the restraint.)  Let me know if I can help you Miss.
+(Du befreist ihre Beine.) Sagen Sie Bescheid, wenn ich behilflich sein kann, Miss.
+(She looks puzzled as you restrain her feet.)  I'll stay on guard here Miss.
+(Sie guckt verwirrt, als du ihre Füße fesselst.) Ich halte hier die Stellung, Miss.
+(You release her feet and she wiggles them.)  Thanks Miss, it was troublesome.
+(Du befreist ihre Füße und sie wackelt mit ihnen herum.) Danke, Miss, das war problematisch.
+(You strap the collar on her while she blushes.)  You're quite a Dominant Miss.
+(Du legst ihr das Halsband um und sie wird rot.) Sie sind ziemlich dominant, Miss.
+(You remove the collar around her neck.)  Thanks Miss.
+(Du nimmst ihr das Halsband ab.) Danke, Miss.
+(You snap the belt around her waist and crotch while she sighs.)  No more fun for the crew.
+(Du lässt den Gürtel um ihre Taille zuschnappen und sie seufzt.) Kein Spaß mehr für die Crew.
+(You unlock the belt from her waist and she smiles.)  Thanks a lot Miss DialogPlayerName.
+(Du öffnest den Gürtel von ihrer Taille und sie lächelt.) Vielen Dank, Miss DialogPlayerName.
+(You strap the device on her head as she nods slowly.)  This will not make my job easier Miss.
+(Du schnallst ihr das Ding um den Kopf und sie nickt langsam.) Das wird meine Arbeit nicht einfacher machen, Miss.
+(You remove the device and she nods rapidly.)  Thanks a million, this is much better.
+(Du nimmst das Ding ab und sie nickt energisch.) Tausend Dank, das ist viel besser.
+(She jumps from the searing pain on her breast.)  Ouch!  Miss Head Maid!
+(Sie zuckt vom schneidenden Schmerz auf ihrer Brust zusammen.) Autsch! Frau Hausdame!
+(You whip her breast with the leather crop as she whimpers and bows her head.)
+(Du peitschst ihr mit der Ledergerte auf die Brust und sie lässt wimmernd den Kopf hängen.)
+(You whip her butt hard as she sighs.)  I promise I'll work harder Miss Head Maid.
+(Du peitschst ihr kräftig auf den Hintern und sie seufzt.) Ich verspreche, härter zu arbeiten, Frau Hausdame.
+(She grumbles as you strike her butt with the crop.)  A maid work isn't easy.
+(Sie grummelt, als du ihren Hintern mit der Gerte triffst.) Ein Hausmädchen hat es nicht leicht.
+Welcome to the Nursery.  How can I help you?
+Willkommen in der Kinderstube. Wie kann ich dir helfen?
+###_PLAYER
+My name's DialogPlayerName.  Whats yours?
+Ich heiße DialogPlayerName. Und du?
+###_NPC
+I'm DialogCharacterName. Would you like to play?
+Ich bin DialogCharacterName. Möchtest du spielen?
+###_PLAYER
+What is there to do here?
+Was gibt es hier zu tun?
+###_NPC
+There isn't a lot to do at the moment, but the nurse will come along later with bottles of milk.
+Im Moment gibt es hier nicht viel, aber die Schwester bringt später Milchflaschen vorbei.
+###_PLAYER
+Your dress looks pretty.
+Dein Kleid sieht hübsch aus.
+###_NPC
+(She blushes and fiddles with the herm of her dress.)  If you want to try a drifferent dress, you could try asking the nurse.
+(Sie wird rot und zupft am Saum ihres Kleids.) Wenn du ein anderes Kleid ausprobieren willst, kannst du die Schwester fragen.
+###_PLAYER
+(Show her your restraints.)
+(Ihr deine Fesseln zeigen.)
+###_NPC
+(She giggles and shakes her head.)
+(Sie kichert und schüttelt den Kopf.)
+###_PLAYER
+I can't stay to chat.  (Leave her.)
+Ich habe keine Zeit zum Plaudern. (Dialog beenden.)
+Milk, is that all?
+Milch, ist das alles?
+###_NPC
+I'm not sure its just milk either.  We tend to need these diapers sortly afterwards.
+Ich glaube auch nicht, dass es einfach nur Milch ist. Meistens haben wir diese Windeln kurz danach dringend nötig.
+###_PLAYER
+Can we play any games now?
+Können wir jetzt etwas spielen?
+###_NPC
+I'm not sure what games we could play.  The nurse will organise some fun and games for us later.
+Ich weiß nicht, was wir spielen sollen. Die Schwester bereitet später Spaß und Spiele für uns vor.
+###_PLAYER
+Is that all?
+Ist das alles?
+###_NPC
+For the time being.  The nursery is still under development.
+Fürs Erste. Die Kinderstube ist noch nicht ganz fertig.

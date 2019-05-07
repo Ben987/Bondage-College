@@ -17,6 +17,7 @@ function SarahIntroLoad() {
 	if ((SarahIntroType == "AmandaSearch") || (SarahIntroType == "AmandaExplore"))
 		if ((AmandaStatus == "Owned") || (AmandaStatus == "Curfew")) SarahIntroBackground = "AmandaCollarIntro";
 		else SarahIntroBackground = "AmandaIntro";
+	if (SarahIntroType == "Sophie") SarahIntroBackground = "SophieIntro";
 }
 
 // Runs the cutscene
@@ -28,5 +29,6 @@ function SarahIntroRun() {
 // When the user clicks in the cutscene
 function SarahIntroClick() {
 	CutsceneStage++;
+	if ((CutsceneStage > 3) && (SarahIntroType == "Sophie")) CommonSetScreen("Room", "Sarah");
 	if (CutsceneStage > 5) CommonSetScreen("Room", "Sarah");
 }

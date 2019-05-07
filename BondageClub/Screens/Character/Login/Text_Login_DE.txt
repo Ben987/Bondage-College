@@ -30,6 +30,8 @@ Invalid name or password
 Name oder Passwort ungültig
 Select Cheats
 Cheats auswählen
+Reset Password
+Passwort vergessen?
 Thank you
 Danke
 Developers

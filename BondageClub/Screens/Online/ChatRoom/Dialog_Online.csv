@@ -3,4 +3,5 @@ PlayerGagged,,,(You're not dominant enough to restrain her.),,!DialogDoAllowItem
 0,,,(You can use or remove items by selecting specific body regions.),,DialogDoAllowItem(CurrentCharacter)
 0,,,(You're not dominant enough to restrain her.),,!DialogDoAllowItem(CurrentCharacter)
 0,,(View her profile.),,ViewProfile(),
+0,,(Ban her from the room.),,BanFromRoom(),CanBanUser()
 0,,(Leave this menu.),,DialogLeave(),

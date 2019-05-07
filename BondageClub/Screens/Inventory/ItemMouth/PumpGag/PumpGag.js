@@ -26,6 +26,10 @@ function InventoryItemMouthPumpGagClick() {
 // Sets the pump gag level
 function InventoryItemMouthPumpGagSetPump(Modifier) {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	if (CurrentScreen == "ChatRoom") {
+		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
+		InventoryItemMouthPumpGagLoad();
+	}
 	DialogFocusItem.Property.PumpLevel = DialogFocusItem.Property.PumpLevel + Modifier;
 	if (DialogFocusItem.Property.PumpLevel == 0) delete DialogFocusItem.Property.Effect;
 	if (DialogFocusItem.Property.PumpLevel == 1) DialogFocusItem.Property.Effect = ["GagLight"];

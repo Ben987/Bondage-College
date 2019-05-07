@@ -289,3 +289,17 @@ function ChatRoomViewProfile() {
 		InformationSheetLoadCharacter(C);
 	}
 }
+
+// Returns TRUE if the current user is the room creator and not herself
+function ChatRoomCanBanUser() {
+	if ((CurrentCharacter != null) && (CurrentCharacter.ID != 0) && (Player.OnlineID == ChatRoomData.CreatorID))
+		return true;
+}
+
+// Sends a ban command to the server for the current character, if the player is the room creator
+function ChatRoomBanFromRoom() {
+	if ((CurrentCharacter != null) && (CurrentCharacter.ID != 0) && (Player.OnlineID == ChatRoomData.CreatorID)) {
+		ServerSend("ChatRoomBan", CurrentCharacter.AccountName.replace("Online-", ""));
+		DialogLeave();
+	}
+}

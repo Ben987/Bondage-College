@@ -126,7 +126,6 @@ function LoginResponse(C) {
 
 			// Loads the player character model and data
 			Player.Appearance = ServerAppearanceLoadFromBundle(C.AssetFamily, C.Appearance);
-			InventoryRemove(Player, "ItemMisc");
 			InventoryLoad(Player, C.Inventory, false);
 			LogLoad(C.Log);
 			ReputationLoad(C.Reputation);
@@ -146,6 +145,12 @@ function LoginResponse(C) {
 				for(var P = 0; P < C.PrivateCharacter.length; P++)
 					PrivateCharacter.push(C.PrivateCharacter[P]);
 			SarahSetStatus();
+
+			// Fixes a few items
+			InventoryRemove(Player, "ItemMisc");
+			if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "SlaveCollar") && (Player.Owner == "")) InventoryRemove(Player, "ItemNeck");
+			if ((InventoryGet(Player, "ItemNeck") == null) && (Player.Owner != "")) InventoryWear(Player, "SlaveCollar", "ItemNeck");
+			if ((InventoryGet(Player, "ItemArms") != null) && (InventoryGet(Player, "ItemArms").Asset.Name == "FourLimbsShackles")) InventoryRemove(Player, "ItemArms");
 
 			// If the player must start in her room, in her cage
 			if (LogQuery("SleepCage", "Rule") && (Player.Owner != "")) {
