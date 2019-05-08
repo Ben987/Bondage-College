@@ -255,10 +255,10 @@ function NurseryRandomColourSelection() {
 
 
 // Remove baby dresses from inventroy for testing only
-function NurseryPlayerLoosesAllBabydresses() {
-	InventoryDelete(Player, "AdultBabyDress1", "Cloth");
-	InventoryDelete(Player, "AdultBabyDress2", "Cloth");
-	InventoryDelete(Player, "AdultBabyDress3", "Cloth");
+function NurseryDeleteItem() {
+	InventoryDelete(Player, "Padlock", "ItemArms");
+	InventoryDelete(Player, "PadlockKey", "ItemArms");
+	//InventoryDelete(Player, "AdultBabyDress3", "Cloth");
 }
 
 // When the player undresses ready to join the nursery

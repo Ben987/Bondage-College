@@ -13,7 +13,7 @@ function InventoryItemArmsPaddedMittensDraw() {
 	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
 	
-	if (InventoryItemArmsPaddedMittensMsg != null) DrawTextWrap(DialogFind(Player, InventoryItemArmsPaddedMittensMsg), 1100, 600, 800, 160, "White");
+	if (InventoryItemArmsPaddedMittensMsg != null) DrawTextWrap(DialogFind(Player, InventoryItemArmsPaddedMittensMsg), 1100, 550, 800, 160, "White");
 
 	DrawButton(1100, 700, 375, 65, DialogFind(Player, "LockMittens"), "White");
 	DrawButton(1525, 700, 375, 65, DialogFind(Player, "AttachChain"), "White");
@@ -30,10 +30,8 @@ function InventoryItemArmsPaddedMittensClick() {
 // Lock/unlock function
 function InventoryItemArmsPaddedMittensLock() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if (InventoryAvailable(Player, "PadLock", "ItemArms")) {
-		delete DialogFocusItem.Property.Effect;
+	if (InventoryAvailable(Player, "Padlock", "ItemArms")) {
 		InventoryWear(C, "PaddedMittensLocked", "ItemArms");
-		//CharacterLoadEffect(C);
 		if (C.ID == 0) ServerPlayerAppearanceSync();
 		ChatRoomPublishCustomAction(Player.Name + " " + DialogFind(Player, "padlocks") + " " + C.Name + " " + DialogFind(Player, "mittens") + ".", true);
 	} else InventoryItemArmsPaddedMittensMsg = "NeedPadlock";
@@ -42,9 +40,9 @@ function InventoryItemArmsPaddedMittensLock() {
 // Chain/Unchain function
 function InventoryItemArmsPaddedMittensChain() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if (InventoryGet(C, "ItemTorso") == "AdultBabyHarness") {
+	var InventoryItemArmsPaddedMittenHarnessed = InventoryGet(C, "ItemTorso").Asset.Name == "AdultBabyHarness";
+	if (InventoryItemArmsPaddedMittenHarnessed != null) {
 		InventoryWear(C, "PaddedMittensHarness", "ItemArms");
-		//CharacterLoadEffect(C);
 		if (C.ID == 0) ServerPlayerAppearanceSync();
 		ChatRoomPublishCustomAction(Player.Name + " " + DialogFind(Player, "chains") + " " + C.Name + " " + DialogFind(Player, "mittenstoharness") + ".", true);
 	} else InventoryItemArmsPaddedMittensMsg = "NeedHarness";

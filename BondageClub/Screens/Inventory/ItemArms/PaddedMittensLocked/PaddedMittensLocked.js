@@ -13,7 +13,7 @@ function InventoryItemArmsPaddedMittensLockedDraw() {
 	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
 	
-	if (InventoryItemArmsPaddedMittensLockedMsg != null) DrawTextWrap(DialogFind(Player, InventoryItemArmsPaddedMittensLockedMsg), 1100, 600, 800, 160, "White");
+	if (InventoryItemArmsPaddedMittensLockedMsg != null) DrawTextWrap(DialogFind(Player, InventoryItemArmsPaddedMittensLockedMsg), 1100, 550, 800, 160, "White");
 
 	DrawButton(1100, 700, 375, 65, DialogFind(Player, "UnlockMittens"), "White");
 	DrawButton(1525, 700, 375, 65, DialogFind(Player, "AttachChain"), "White");
@@ -28,12 +28,10 @@ function InventoryItemArmsPaddedMittensLockedClick() {
 }
 
 // Lock/unlock function
-function InventoryItemArmsPaddedMittensHarnessLockedLock() {
+function InventoryItemArmsPaddedMittensLockedLock() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if (InventoryAvailable(Player, "PadLockKey", "ItemArms")) {
-		delete DialogFocusItem.Property.Effect;
+	if (InventoryAvailable(Player, "PadlockKey", "ItemArms")) {
 		InventoryWear(C, "PaddedMittens", "ItemArms");
-		//CharacterLoadEffect(C);
 		if (C.ID == 0) ServerPlayerAppearanceSync();
 		ChatRoomPublishCustomAction(Player.Name + " " + DialogFind(Player, "unlocks") + " " + C.Name + " " + DialogFind(Player, "mittens") + ".", true);
 	} else InventoryItemArmsPaddedMittensHarnessLockedMsg = "NeedPadlockKey";
@@ -42,9 +40,8 @@ function InventoryItemArmsPaddedMittensHarnessLockedLock() {
 // Chain/Unchain function
 function InventoryItemArmsPaddedMittensLockedChain() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if (InventoryGet(C, "ItemTorso") == "AdultBabyHarness") {
-		InventoryWear(C, "PaddedMittensLockedHarness", "ItemArms");
-		CharacterLoadEffect(C);
+	if (InventoryGet(C, "ItemTorso").Asset.Name == "AdultBabyHarness") {
+		InventoryWear(C, "PaddedMittensHarnessLocked", "ItemArms");
 		if (C.ID == 0) ServerPlayerAppearanceSync();
 		ChatRoomPublishCustomAction(Player.Name + " " + DialogFind(Player, "chains") + " " + C.Name + " " + DialogFind(Player, "mittenstoharness") + ".", true);
 	} else InventoryItemArmsPaddedMittensLockedMsg = "NeedHarness";
