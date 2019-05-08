@@ -89,8 +89,6 @@
 /*	
 	TO DO - CHAPTER 14
 	Introduce Mistress Sophie after Amanda
-	TO TEST: When asking the club mistress if she wants to be my mistress i get placed in my private room kneeling but unable to interact with anything.Closing the game and going back to my private room also shows that nobody is there
-	BUG: press A + S at the same time to struggle
 	Import New Patreons
 */
 
@@ -116,6 +114,7 @@ function MainRun() {
 
 // When the user presses a key, we send the KeyDown event to the current screen if it can accept it
 function KeyDown(event) {
+	if (event.repeat) return;
 	KeyPress = event.keyCode || event.which;
 	CommonKeyDown();
 }

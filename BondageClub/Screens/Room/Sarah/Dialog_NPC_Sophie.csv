@@ -5,7 +5,14 @@ FightDefeat,,,"(She makes a wicked smile.)  Girl, you really thought you could d
 PlayerPunishmentStage0,,,"First, we need to make sure everyone is prepared for the group *punition*.",,
 PlayerPunishmentStage1,,,"A memorable punishment must begin with pain, and I have the perfect tool for that.  Are you nipples sensitive girl?",,
 PlayerPunishmentStage2,,,Pain should be shared between slave sisters.  Don't you agree?,,
-2,,,(She swings her crop toward you.)  *Esclave*!  What are you doing here?,,IsClubSlave()
+PlayerPunishmentStage3,,,"These clamps should hold by themselves, but we can also secure them.  This *chastete* bra will prevent you from removing them.",,
+PlayerPunishmentStage4,,,It wouldn't be fair if you were the only one locked in steel.  Let's fix this situation.,,
+PlayerPunishmentStage5,,,We've taken care of your breast but the most *importante* area is still unsupervised.  Should we remedy this situation?,,
+PlayerPunishmentStage6,,,You won't be alone in this situation.  (She looks around and grins.)  Let's not forget the other private parts in here.,,
+PlayerPunishmentStage7,,,"You can *probablement"" guess what's coming up next.  (She looks in her bag.)",,
+PlayerPunishmentStage8,,,Don't worry.  All the slaves will share the same steel *destin*.  (She produces a wicked smile and looks away from you.),,
+PlayerPunishmentStage9,,,(She produces a small remote and gives a devious smile.)  Let's hear you sing!,,
+0,,,(She swings her crop toward you.)  *Esclave*!  What are you doing here?,,IsClubSlave()
 0,,,It's a *plaisir* to see you Mistress DialogPlayerName.  What brings you here?,,"DialogLogQuery(""ClubMistress"", ""Management"")"
 0,,,What are you doing here maid DialogPlayerName?,,"DialogLogQuery(""JoinedSorority"", ""Maid"")"
 0,,,Who are you girl?  What are you doing here?,,
@@ -143,7 +150,45 @@ PlayerPunishmentStage2,,,Pain should be shared between slave sisters.  Don't you
 200,210,(Shake your head no.),We'll see about that.  (She tightens nipple clamps on your nipples and smiles.),"SophiePunishEvent(""Clamps"", 1)",SophiePunishmentStageIs(1)
 200,201,(Shrug and look away.),(She turns away from you and inflicts more pain with more nipple clamps.),"SophiePunishEvent(""ClampsOther"", 1)",SophiePunishmentStageIs(2)
 200,201,(Nod slowly.),(She turns away from you and inflicts more pain with more nipple clamps.),"SophiePunishEvent(""ClampsOther"", -1)",SophiePunishmentStageIs(2)
+200,220,(Stare at the chastity bra.),(She grins and locks a metal chastity bra on your breast.),"SophiePunishEvent(""ChastityBra"", 0)",SophiePunishmentStageIs(3)
+200,220,No!  This is cruel!,You're not in control *esclave*.  (She locks a metal chastity bra on your breast.),"SophiePunishEvent(""ChastityBra"", -2)",SophiePunishmentStageIs(3)
+200,220,Yes Mistress Sophie.,Good girl.  (She smiles and locks a metal chastity bra on your breast.),"SophiePunishEvent(""ChastityBra"", 2)",SophiePunishmentStageIs(3)
+200,201,(Nod happily.),(She locks your friend breast under heavy steel and laughs.),"SophiePunishEvent(""ChastityBraOther"", 0)",SophiePunishmentStageIs(4)
+200,201,(Sigh and bow your head.),(She locks your friend breast under heavy steel and laughs.),"SophiePunishEvent(""ChastityBraOther"", -1)",SophiePunishmentStageIs(4)
+200,230,I guess so Miss.,"*Bien*!  (She forces a butt plug inside your ass, and puts a non-vibrating egg in your vagina.)  Do you enjoy that?","SophiePunishEvent(""EggAndPlug"", 0)",SophiePunishmentStageIs(5)
+200,230,(Whimper silently.),"(She smirks and forces a butt plug inside your ass, and puts a non-vibrating egg in your vagina.)  Do you enjoy that?","SophiePunishEvent(""EggAndPlug"", -2)",SophiePunishmentStageIs(5)
+200,230,Oh no!  Common!,"(She grumbles and forces a butt plug inside your ass, and puts a non-vibrating egg in your vagina.)  Do you enjoy that?","SophiePunishEvent(""EggAndPlug"", 2)",SophiePunishmentStageIs(5)
+200,230,(Look down and stay silent.),"(She smiles and forces a butt plug inside your ass, and puts a non-vibrating egg in your vagina.)  Do you enjoy that?","SophiePunishEvent(""EggAndPlug"", -1)",SophiePunishmentStageIs(5)
+200,201,(Look a the show.),(She gets more intrusive items and use them in the same fashion as she did on you.)  Such a kinky slave *groupe*.,"SophiePunishEvent(""EggAndPlugOther"", 0)",SophiePunishmentStageIs(6)
+200,201,(Look away.),(You look away but can hear the screams and moans.)  Such a kinky slave *groupe*.,"SophiePunishEvent(""EggAndPlugOther"", 0)",SophiePunishmentStageIs(6)
+200,240,A chastity belt?,"You're *correcte*.  (She locks a chastity belt around your waist, making sure you won't be able to reach inside.)","SophiePunishEvent(""ChastityBelt"", 0)",SophiePunishmentStageIs(7)
+200,240,It's easy to guess.,"(She angrily locks a chastity belt around your waist, making sure you won't be able to reach inside.)","SophiePunishEvent(""ChastityBelt"", 1)",SophiePunishmentStageIs(7)
+200,240,(Give a scared look.),"(She smiles and locks a chastity belt around your waist, making sure you won't be able to reach inside.)","SophiePunishEvent(""ChastityBelt"", -1)",SophiePunishmentStageIs(7)
+200,201,Stay strong girl.,(She seals the plugged and egged private parts under chastity and addresses the crowd.)  We are almost ready.,"SophiePunishEvent(""ChastityBeltOther"", 1)",SophiePunishmentStageIs(8)
+200,201,(Keep quiet.),(She seals the plugged and egged private parts under chastity and addresses the crowd.)  We are almost ready.,"SophiePunishEvent(""ChastityBeltOther"", 0)",SophiePunishmentStageIs(8)
+200,201,(Rock your hips.),(She seals the plugged and egged private parts under chastity and addresses the crowd.)  We are almost ready.,"SophiePunishEvent(""ChastityBeltOther"", 0)",SophiePunishmentStageIs(8)
+200,250,(Make pleading eyes.),"(She grins and pushes a button as the vibrating egg kicks in, masturbating you inside mercilessly.)","SophiePunishEvent(""Buzz"", -1)",SophiePunishmentStageIs(9)
+200,250,I don't know how to sing.,"(She pushes a button and the vibrating egg kicks in, masturbating you inside mercilessly.)","SophiePunishEvent(""Buzz"", 0)",SophiePunishmentStageIs(9)
+200,250,(Sing.)  I'm pickin' up good vibrations!,"(She looks annoyed and pushes a button as the vibrating egg kicks in, masturbating you inside mercilessly.)","SophiePunishEvent(""Buzz"", 1)",SophiePunishmentStageIs(9)
+200,250,(Stay quiet.),"(She pushes a button and the vibrating egg kicks in, masturbating you inside mercilessly.)","SophiePunishEvent(""Buzz"", 0)",SophiePunishmentStageIs(9)
 201,,(Check the scene.),,DialogLeave(),
 210,201,(Take a deep breath.),,SophieSetPunishmentIntro(0),
 210,201,It hurts Miss.,,SophieSetPunishmentIntro(-1),
 210,201,(Pretend it doesn't hurt.),,SophieSetPunishmentIntro(1),
+220,201,It feels very secure Miss.,,SophieSetPunishmentIntro(-1),
+220,201,This is too much.,,SophieSetPunishmentIntro(1),
+220,201,(Adjust to the cold steel bra.),,SophieSetPunishmentIntro(0),
+230,201,Wow!  This is quite a plug.,,SophieSetPunishmentIntro(0),
+230,201,"Damn, It hurts.",,SophieSetPunishmentIntro(1),
+230,201,It feels great Miss.,,SophieSetPunishmentIntro(-1),
+240,201,I'm under control Miss.,,SophieSetPunishmentIntro(0),
+240,201,(Shake your hips.),,SophieSetPunishmentIntro(0),
+250,260,Oh my god!  Miss!,It's fun isn't it?  Now the game can begin.,,
+250,260,(Moan slowly.),It's fun isn't it?  Now the game can begin.,,
+250,260,(Make pleading eyes.),It's fun isn't it?  Now the game can begin.,,
+260,270,A game?  What game?,"A game to test everyone's endurance, and willpower.",,SarahOrAmandaAreInside()
+260,270,(Roll your eyes up.),"A game to test everyone's endurance, and willpower.",,SarahOrAmandaAreInside()
+260,280,A game?  What game?,"A game to test your endurance, and your willpower.  Maid!  Bring the slaves!",,!SarahOrAmandaAreInside()
+260,280,(Roll your eyes up.),"A game to test your endurance, and your willpower.  Maid!  Bring the slaves!",,!SarahOrAmandaAreInside()
+270,,TO DO,TO DO,,
+280,,TO DO,TO DO,,

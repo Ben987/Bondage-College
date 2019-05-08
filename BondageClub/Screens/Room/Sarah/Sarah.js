@@ -459,7 +459,7 @@ function SarahPlayerPunishGirls() {
 function SarahSophiePunishGirls() {
 
 	// Sets the correct stage & dialog
-	if (((SophiePunishmentStage == 0) || (SophiePunishmentStage == 2)) && !SarahInside && !AmandaInside) SophiePunishmentStage++;
+	if ((SophiePunishmentStage % 2 == 0) && !SarahInside && !AmandaInside) SophiePunishmentStage++;
 	Sophie.CurrentDialog = DialogFind(Sophie, "PlayerPunishmentStage" + SophiePunishmentStage.toString());
 	
 }
@@ -552,7 +552,16 @@ function SarahSophiePunishEvent(EventType, DomRep) {
 	if (DomRep > 0) SarahUpsetSophie(DomRep);
 	if ((EventType == "RestrainOther") && (Amanda != null) && AmandaInside) SarahSophiePreparePunishCharacter(Amanda);
 	if ((EventType == "RestrainOther") && (Sarah != null) && SarahInside) { SarahUnlock(); SarahSophiePreparePunishCharacter(Sarah); }
-	if (EventType == "Clamps") { InventoryRemove(Player, "ItemBreast"); InventoryWear(Player, "NippleClamp", "ItemNipples"); }
-	if ((EventType == "ClampsOther") && (Amanda != null) && AmandaInside) { InventoryRemove(Amanda, "ItemBreast"); InventoryWear(Amanda, "NippleClamp", "ItemNipples"); }
-	if ((EventType == "ClampsOther") && (Sarah != null) && SarahInside) { InventoryRemove(Sarah, "ItemBreast"); InventoryWear(Sarah, "NippleClamp", "ItemNipples"); }
+	if (EventType == "Clamps") { InventoryRemove(Player, "ItemNipples"); InventoryWear(Player, "NippleClamp", "ItemNipples"); }
+	if ((EventType == "ClampsOther") && (Amanda != null) && AmandaInside) { InventoryRemove(Amanda, "ItemNipples"); InventoryWear(Amanda, "NippleClamp", "ItemNipples"); }
+	if ((EventType == "ClampsOther") && (Sarah != null) && SarahInside) { InventoryRemove(Sarah, "ItemNipples"); InventoryWear(Sarah, "NippleClamp", "ItemNipples"); }
+	if (EventType == "ChastityBra") { InventoryRemove(Player, "ItemBreast"); InventoryWear(Player, "MetalChastityBra", "ItemBreast"); }
+	if ((EventType == "ChastityBraOther") && (Amanda != null) && AmandaInside) { InventoryRemove(Amanda, "ItemBreast"); InventoryWear(Amanda, "MetalChastityBra", "ItemBreast"); }
+	if ((EventType == "ChastityBraOther") && (Sarah != null) && SarahInside) { InventoryRemove(Sarah, "ItemBreast"); InventoryWear(Sarah, "MetalChastityBra", "ItemBreast"); }
+	if (EventType == "EggAndPlug") { InventoryRemove(Player, "ItemVulva"); InventoryWear(Player, "VibratingEgg", "ItemVulva"); InventoryRemove(Player, "ItemButt"); InventoryWear(Player, "BlackButtPlug", "ItemButt"); }
+	if ((EventType == "EggAndPlugOther") && (Amanda != null) && AmandaInside) { InventoryRemove(Amanda, "ItemVulva"); InventoryWear(Amanda, "VibratingEgg", "ItemVulva"); InventoryRemove(Amanda, "ItemButt"); InventoryWear(Amanda, "BlackButtPlug", "ItemButt"); }
+	if ((EventType == "EggAndPlugOther") && (Sarah != null) && SarahInside) { InventoryRemove(Sarah, "ItemVulva"); InventoryWear(Sarah, "VibratingEgg", "ItemVulva"); InventoryRemove(Sarah, "ItemButt"); InventoryWear(Sarah, "BlackButtPlug", "ItemButt"); }
+	if (EventType == "ChastityBelt") { InventoryRemove(Player, "ItemPelvis"); InventoryWear(Player, "MetalChastityBelt", "ItemPelvis"); }
+	if ((EventType == "ChastityBeltOther") && (Amanda != null) && AmandaInside) { InventoryRemove(Amanda, "ItemPelvis"); InventoryWear(Amanda, "MetalChastityBelt", "ItemPelvis"); }
+	if ((EventType == "ChastityBeltOther") && (Sarah != null) && SarahInside) { InventoryRemove(Sarah, "ItemPelvis"); InventoryWear(Sarah, "MetalChastityBelt", "ItemPelvis"); }
 }
