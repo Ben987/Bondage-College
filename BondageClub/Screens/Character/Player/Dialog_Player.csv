@@ -63,3 +63,17 @@ ItemBreastLeatherCrop,,,(You swing the crop on yourself a few times.  You can fe
 ItemPelvisLeatherWhip,,,(You need a few tries but you're able to somewhat whip your own butt and feel the pain.)
 ItemPelvisLeatherCrop,,,(You lash the leather crop pretty hard on your own butt.  Jumping from each good hit.)
 ItemVulvaVibratingWand,,,(You slowly massage your pussy with the wand.  Trembling from pleasure and excitement.)
+LockMittens,,,Padlock mitten buckles
+UnlockMittens,,,Unlock mittens
+AttachChain,,,Chain mittens
+RemoveChain,,,Unchain mittens
+NeedPadlock,,,You need some padlocks to do this
+NeedPadlockKey,,,You need a padlock key to do this
+padlocks,,,padlocks
+unlocks,,,unlocks
+mittens,,,mittens
+chains,,,chains
+unchains,,,unchains
+mittenstoharness,,,mittens to baby harness
+mittensfromharness,,,mittens from baby harness
+NeedHarness,,,They must be wearign a baby harness first to chain the mittens to it.
