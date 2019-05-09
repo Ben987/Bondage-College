@@ -331,13 +331,26 @@ function DialogClick() {
 												DialogExtendItem(C.Appearance.find(function(item){ return item.Asset.Name == "VibratingEgg"; }));
 
 											// Publishes the item result
-											if (CurrentScreen == "ChatRoom" && DialogInventory[I].Asset.Effect == null)
+											if (CurrentScreen == "ChatRoom" && DialogInventory && DialogInventory[I].Asset.Effect == null)
 												ChatRoomPublishAction(CurrentCharacter, null, DialogInventory[I], true);
 											else {
 												var D = DialogFind(C, DialogInventory[I].Asset.Group.Name + DialogInventory[I].Asset.Name, null, false);
 												if (D != "") {
 													C.CurrentDialog = D;
 													DialogLeaveItemMenu();
+												}
+											}
+
+											// The shock triggers can trigger items that can shock the wearer
+											if (DialogInventory && (DialogInventory[I].Asset.Effect.indexOf("TriggerShock") >= 0) && (InventoryGet(C, C.FocusGroup.Name)) && (InventoryGet(C, C.FocusGroup.Name).Asset.Effect.indexOf("ReceiveShock") >= 0)) {
+												if (CurrentScreen == "ChatRoom")
+													ChatRoomPublishCustomAction((DialogFind(Player, InventoryGet(C, C.FocusGroup.Name).Asset.Name + "Trigger" + InventoryGet(C, C.FocusGroup.Name).Property.Intensity)).replace("DestinationCharacter",C.Name), true);
+												else {
+													var D = (DialogFind(Player, InventoryGet(C, C.FocusGroup.Name).Asset.Name + "Trigger" + InventoryGet(C, C.FocusGroup.Name).Property.Intensity)).replace("DestinationCharacter",C.Name);
+													if (D != "") {
+														C.CurrentDialog = "(" + D +")";
+														DialogLeaveItemMenu();
+													}
 												}
 											}
 
@@ -678,10 +691,10 @@ function DialogStutter(C, CD) {
 	if (C.IsEgged()) {
 		var egg = C.Appearance.find(function(item){ return item.Asset.Name == "VibratingEgg"; });
 		var intensity = 0;
-		if (egg.Property) intensity = egg.Property.Itensity;
+		if (egg.Property) intensity = egg.Property.Intensity;
 
-		// If intensity is lower than 2, no stuttering occurs and we return the regular text
-		if (intensity <= 1) return CD;
+		// If intensity is lower than 1, no stuttering occurs and we return the regular text
+		if (intensity <= 0) return CD;
 
 		var Par = false;
 		var CS = 1;
@@ -698,7 +711,7 @@ function DialogStutter(C, CD) {
 				var R = Math.sin(seed++) * 10000;
 				R = R - Math.floor(R);
 				R = Math.floor(R * 10) + 1;
-				R += (intensity - 2);
+				R += (intensity - 1);
 				if (CS == 1 || R >= 10) {
 					CD = CD.substring(0, L) + CD.charAt(L) + "-" + CD.substring(L, CD.length);
 					L += 2;
