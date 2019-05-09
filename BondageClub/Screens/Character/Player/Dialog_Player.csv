@@ -54,14 +54,14 @@ ShockCollarSet2,,,SourceCharacter sets DestinationCharacter's shock collar to hi
 ShockCollarTrigger0,,,DestinationCharacter's collar gives her a light shock.
 ShockCollarTrigger1,,,DestinationCharacter's collar lets out a sharp jolt!
 ShockCollarTrigger2,,,DestinationCharacter's collar delivers an intense shock!
-EggDecreaseTo0,,,DestinationCharacter's vibrating egg stops vibrating.
-EggDecreaseTo1,,,DestinationCharacter's vibrating egg slows down into a light tease.
-EggDecreaseTo2,,,DestinationCharacter's vibrating egg returns to a moderate pace.
-EggDecreaseTo3,,,DestinationCharacter's vibrating egg slows down a tiny bit.
-EggIncreaseTo1,,,DestinationCharacter's vibrating egg starts teasing her lightly.
-EggIncreaseTo2,,,DestinationCharacter's vibrating egg builds up to a moderate pace.
-EggIncreaseTo3,,,DestinationCharacter's vibrating egg starts buzzing strongly!
-EggIncreaseTo4,,,DestinationCharacter's vibrating egg jumps up to maximum intensity!
+EggDecreaseTo-1,,,DestinationCharacter's vibrating egg stops vibrating.
+EggDecreaseTo0,,,DestinationCharacter's vibrating egg slows down into a light tease.
+EggDecreaseTo1,,,DestinationCharacter's vibrating egg returns to a moderate pace.
+EggDecreaseTo2,,,DestinationCharacter's vibrating egg slows down a tiny bit.
+EggIncreaseTo0,,,DestinationCharacter's vibrating egg starts teasing her lightly.
+EggIncreaseTo1,,,DestinationCharacter's vibrating egg builds up to a moderate pace.
+EggIncreaseTo2,,,DestinationCharacter's vibrating egg starts buzzing strongly!
+EggIncreaseTo3,,,DestinationCharacter's vibrating egg jumps up to maximum intensity!
 UseRemote,,,Use Remote
 PlayerGagged,,,(You can use or remove items by selecting specific body regions on yourself.)
 0,,,(You can use or remove items by selecting specific body regions on yourself.)
