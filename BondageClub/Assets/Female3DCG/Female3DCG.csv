@@ -190,6 +190,8 @@ ItemNeck,,Neck
 ItemNeck,LeatherCollar,Leather Collar
 ItemNeck,SlaveCollar,Slave Collar
 ItemNeck,ClubSlaveCollar,Club Slave Collar
+ItemNeck,ShockCollar,Shock Collar
+ItemNeck,ShockCollarRemote,Shock Collar Remote
 ItemMouth,,Mouth
 ItemMouth,SmallClothGag,Small Cloth Gag
 ItemMouth,ClothCleaveGag,Cloth Cleave Gag
