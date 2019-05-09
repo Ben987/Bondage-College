@@ -40,13 +40,20 @@ LeatherCuffsRestrainNone,,,SourceCharacter detaches the chain from DestinationCh
 LeatherCuffsRestrainWrist,,,SourceCharacter attaches the leather cuffs wrist chain behind DestinationCharacter's back.
 LeatherCuffsRestrainElbow,,,SourceCharacter attaches the leather cuffs elbow chain behind DestinationCharacter's back.
 LeatherCuffsRestrainBoth,,,SourceCharacter attaches the leather cuffs wrist and elbow chains behind DestinationCharacter's back.
-Intensity0,,,Vibrating egg intensity: Disabled
-Intensity1,,,Vibrating egg intensity: Low
-Intensity2,,,Vibrating egg intensity: Medium
-Intensity3,,,Vibrating egg intensity: High
-Intensity4,,,Vibrating egg intensity: Maximum
+Intensity-1,,,Item intensity: Disabled
+Intensity0,,,Item intensity: Low
+Intensity1,,,Item intensity: Medium
+Intensity2,,,Item intensity: High
+Intensity3,,,Item intensity: Maximum
 Increase,,,Increase
 Decrease,,,Decrease
+ShockCollarShowChat,,,Show chat message
+ShockCollarSet0,,,SourceCharacter sets DestinationCharacter's shock collar to low intensity.
+ShockCollarSet1,,,SourceCharacter sets DestinationCharacter's shock collar to moderate intensity.
+ShockCollarSet2,,,SourceCharacter sets DestinationCharacter's shock collar to high intensity.
+ShockCollarTrigger0,,,DestinationCharacter's collar gives her a light shock.
+ShockCollarTrigger1,,,DestinationCharacter's collar lets out a sharp jolt!
+ShockCollarTrigger2,,,DestinationCharacter's collar delivers an intense shock!
 EggDecreaseTo0,,,DestinationCharacter's vibrating egg stops vibrating.
 EggDecreaseTo1,,,DestinationCharacter's vibrating egg slows down into a light tease.
 EggDecreaseTo2,,,DestinationCharacter's vibrating egg returns to a moderate pace.
