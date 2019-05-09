@@ -435,8 +435,8 @@ var AssetFemale3DCG = [
 			{ Name: "PaddedMittensLocked", Random: false, SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Lock"], Extended: true, Time: 12 },
 			{ Name: "PaddedMittensHarness", Random: false, SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Struggle"], Extended: true, Time: 25, RemoveTime: 10, Difficulty: 6 },
 			{ Name: "PaddedMittensHarnessLocked", Random: false, SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Lock"], Extended: true, Time: 12 },
-			{ Name: "Padlock", Wear: false, Value: 5, Effect: [], Time: 10 },
-			{ Name: "PadlockKey", Wear: false, Value: 5, Effect: [], Time: 5 },
+			{ Name: "Padlock", Wear: false, Value: 5 },
+			{ Name: "PadlockKey", Wear: false, Value: 5 },
 			{ Name: "FourLimbsShackles", Enable: false, Value: -1, SetPose: ["BackBoxTie"], Effect: ["Block", "Prone", "Lock"], Time: 30 }
 		]
 	},
@@ -476,8 +476,8 @@ var AssetFemale3DCG = [
 			{ Name: "HarnessPanelGag", Effect: ["GagHeavy"], Value: 80, Time: 20 },
 			{ Name: "RingGag", Value: 35, Time: 5 },
 			{ Name: "DuctTapeGag", Value: 20, Time: 5, RemoveTime: 2 },
-			{ Name: "PacifierGag", Random: false, Effect: ["GagLight"], Value: -1, Time: 2 },
-			{ Name: "HarnessPacifierGag", Random: false, Effect: ["GagLight"], Value: -1, Time: 20 },
+			{ Name: "PacifierGag", Random: false, Effect: ["GagLight"], Value: 15, Time: 2 },
+			{ Name: "HarnessPacifierGag", Random: false, Effect: ["GagLight"], Value: 70, Time: 20 },
 			{ Name: "DusterGag", Random: false, RemoveAtLogin: true, Value: -1, Time: 20 },
 			{ Name: "HarnessPonyBits", Random: false, Effect: ["GagHeavy"], Value: -1, Time: 20 },
 			{ Name: "PumpGag", Effect: [], Random: false, Extended: true, Value: 100, Time: 20 },

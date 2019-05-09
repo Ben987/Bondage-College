@@ -40,8 +40,7 @@ function InventoryItemArmsPaddedMittensLock() {
 // Chain/Unchain function
 function InventoryItemArmsPaddedMittensChain() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	var InventoryItemArmsPaddedMittenHarnessed = InventoryGet(C, "ItemTorso").Asset.Name == "AdultBabyHarness";
-	if (InventoryItemArmsPaddedMittenHarnessed != null) {
+	if (InventoryGet(C, "ItemTorso").Asset.Name == "AdultBabyHarness") {
 		InventoryWear(C, "PaddedMittensHarness", "ItemArms");
 		if (C.ID == 0) ServerPlayerAppearanceSync();
 		ChatRoomPublishCustomAction(Player.Name + " " + DialogFind(Player, "chains") + " " + C.Name + " " + DialogFind(Player, "mittenstoharness") + ".", true);

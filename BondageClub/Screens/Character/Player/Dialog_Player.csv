@@ -67,13 +67,13 @@ LockMittens,,,Padlock mitten buckles
 UnlockMittens,,,Unlock mittens
 AttachChain,,,Chain mittens
 RemoveChain,,,Unchain mittens
-NeedPadlock,,,You need some padlocks to do this
-NeedPadlockKey,,,You need a padlock key to do this
+NeedPadlock,,,You need some padlocks to do this.
+NeedPadlockKey,,,You need a padlock key to do this.
 padlocks,,,padlocks
 unlocks,,,unlocks
 mittens,,,mittens
 chains,,,chains
-unchains,,,unchains
-mittenstoharness,,,mittens to baby harness
-mittensfromharness,,,mittens from baby harness
+unchains,,,removes the chains
+mittenstoharness,,,mittens to the baby harness
+mittensfromharness,,,mittens
 NeedHarness,,,They must be wearing a baby harness first to chain the mittens to it.
