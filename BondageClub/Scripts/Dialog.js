@@ -689,7 +689,7 @@ function DialogStutter(C, CD) {
 	if (CD == null) CD = "";
 
 	if (C.IsEgged()) {
-		var egg = C.Appearance.find(function(item){ return item.Asset.Name == "VibratingEgg"; });
+		var egg = C.Appearance.find(function(item){ return item.Asset.Name == "VibratingEgg" || item.Asset.Name == "VibeNippleClamp"; });
 		var intensity = 0;
 		if (egg.Property) intensity = egg.Property.Intensity;
 

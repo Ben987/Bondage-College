@@ -366,6 +366,14 @@ function NurseryPlayerSkillsAmnesia() {
 	SkillRetard("Dressage")
 }
 
+// Repair Lost skills
+function NurseryReplaceSkill() {
+	//SkillProgress("Bondage", 200000);
+	//SkillProgress("Evasion", 200000);
+	//SkillProgress("Willpower", 200000);
+	//SkillProgress("Dressage", 200000);
+}
+
 // Player changes dress
 function NurseryPlayerChangeDress() {
 		CharacterChangeMoney(Player, -5);

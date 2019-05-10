@@ -175,6 +175,7 @@ var AssetFemale3DCG = [
 		Asset: [
 			"Bra1", "Bra2", "Bra7",
 			{ Name: "Bra8", Value: 15 },
+			{ Name: "Bra9", Value: 15 },
 			{ Name: "Bustier1", Value: 30 },
 			{ Name: "Corset1", Value: 30 },
 			{ Name: "Corset2", Value: 30 },
@@ -320,7 +321,7 @@ var AssetFemale3DCG = [
 		Asset: [
 			{ Name: "VibratingEgg", Effect: ["Egged"], Value: 25, Prerequisite: "AccessVulva", Time: 5 },
 			{ Name: "VibratingWand", Wear: false, Value: 60, Prerequisite: "AccessVulva", Bonus: [{Type: "KidnapManipulation", Factor: 3}] },
-			{ Name: "VibratorRemote", Effect: ["Remote"], Wear: false, Value: 80}
+			{ Name: "VibratorRemote", Effect: ["Remote"], Wear: false, Value: 80, BuyGroup: "VibratorRemote" }
 		]
 	},
 
@@ -391,7 +392,9 @@ var AssetFemale3DCG = [
 		Asset: [
 			{ Name: "StraightPiercing", Value: 10, Prerequisite: "AccessBreast", Time: 15 },
 			{ Name: "RoundPiercing", Value: 20, Prerequisite: "AccessBreast", Time: 15 },
-			{ Name: "NippleClamp", Value: 35, Prerequisite: "AccessBreast", Time: 10 }
+			{ Name: "NippleClamp", Value: 35, Prerequisite: "AccessBreast", Time: 10 },
+			{ Name: "VibeNippleClamp", Value: 50, Effect: ["Egged"], Prerequisite: "AccessBreast", Time: 10 },
+			{ Name: "VibratorRemote", Value: 80, Effect: ["Remote"], Wear: false, BuyGroup: "VibratorRemote" }
 		]
 	},
 
