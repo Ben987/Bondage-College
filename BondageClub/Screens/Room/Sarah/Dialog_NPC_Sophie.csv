@@ -12,6 +12,8 @@ PlayerPunishmentStage6,,,You won't be alone in this situation.  (She looks aroun
 PlayerPunishmentStage7,,,"You can *probablement"" guess what's coming up next.  (She looks in her bag.)",,
 PlayerPunishmentStage8,,,Don't worry.  All the slaves will share the same steel *destin*.  (She produces a wicked smile and looks away from you.),,
 PlayerPunishmentStage9,,,(She produces a small remote and gives a devious smile.)  Let's hear you sing!,,
+SophieOrgasmGameVictory,,,"(As you feel the pleasure rising, you notice that you're the only one standing.  Mistress Sophie starts to applause you.)",,
+SophieOrgasmGameDefeat,,,"(You cannot control yourself, and surrender to the pleasure of the egg.  You get a wonderful orgasm, but lose the game.)",,
 0,,,(She swings her crop toward you.)  *Esclave*!  What are you doing here?,,IsClubSlave()
 0,,,It's a *plaisir* to see you Mistress DialogPlayerName.  What brings you here?,,"DialogLogQuery(""ClubMistress"", ""Management"")"
 0,,,What are you doing here maid DialogPlayerName?,,"DialogLogQuery(""JoinedSorority"", ""Maid"")"
@@ -116,7 +118,7 @@ PlayerPunishmentStage9,,,(She produces a small remote and gives a devious smile.
 61,,(Kiss her.),(She turns away as you try to kiss her.)  These lips are not for you DialogPlayerName.,,CanKissSophie()
 61,,(Spank her.),"(You spank her butt a few times as she moans very lighty, hiding the enjoyment.)",,Player.CanInteract()
 61,,(Fondle her.),(You cup her breast and massage them lovingly as she struggles to get away from you.),,Player.CanInteract()
-61,,(Bring her to your room.),,"TransferSophieToRoom(""-50"")",CanInviteSophieToRoom()
+61,,(Bring her to your room.),,TransferSophieToRoom(-50),CanInviteSophieToRoom()
 61,,(Leave her.),,,
 70,16,It was a good fight.,"(She nods and catches her breath.)  Enough talks, get naked loser.","DialogChangeReputation(""Dominant"", -2)",
 70,16,I'll get you next time.,"(She frowns and catches her breath.)  Enough talks, get naked loser.","DialogChangeReputation(""Dominant"", -1)",
@@ -186,9 +188,72 @@ PlayerPunishmentStage9,,,(She produces a small remote and gives a devious smile.
 250,260,Oh my god!  Miss!,It's fun isn't it?  Now the game can begin.,,
 250,260,(Moan slowly.),It's fun isn't it?  Now the game can begin.,,
 250,260,(Make pleading eyes.),It's fun isn't it?  Now the game can begin.,,
-260,270,A game?  What game?,"A game to test everyone's endurance, and willpower.",,SarahOrAmandaAreInside()
-260,270,(Roll your eyes up.),"A game to test everyone's endurance, and willpower.",,SarahOrAmandaAreInside()
-260,280,A game?  What game?,"A game to test your endurance, and your willpower.  Maid!  Bring the slaves!",,!SarahOrAmandaAreInside()
-260,280,(Roll your eyes up.),"A game to test your endurance, and your willpower.  Maid!  Bring the slaves!",,!SarahOrAmandaAreInside()
-270,,TO DO,TO DO,,
-280,,TO DO,TO DO,,
+260,261,A game?  What game?,"A game to test everyone's endurance, and willpower.",,SarahOrAmandaAreInside()
+260,261,(Roll your eyes up.),"A game to test everyone's endurance, and willpower.","SophiePunishEvent("""", 1)",SarahOrAmandaAreInside()
+260,262,A game?  What game?,"A game to test your endurance, and your willpower.  (She yells.)  Maid!  Bring me two slaves!",,!SarahOrAmandaAreInside()
+260,262,(Roll your eyes up.),"A game to test your endurance, and your willpower.  (She yells.)  Maid!  Bring me two slaves!","SophiePunishEvent("""", 1)",!SarahOrAmandaAreInside()
+261,,(Look at Amanda.),(Amanda seems to worry a lot and looks very embarrassed.),DialogRemove(),AmandaIsInside()
+261,,(Look at Sarah.),(Sarah is moaning from the vibrator and seems to be having fun.),DialogRemove(),SarahIsInside()
+261,270,We will compete against each other?,"*Absolument*, it will be a slave competition.",,
+262,270,Two slaves Miss?,"Of course, you cannot compete alone, pretty *esclave*.  (Two girls come in and Mistress Sophie sets them up like you.)",,
+262,270,Please don't bring other girls.,"You cannot compete alone, silly *esclave*.  (Two girls come in and Mistress Sophie sets them up like you.)",,
+262,270,(Look worried.),"They will be your competitors, little *esclave*.  (Two girls come in and Mistress Sophie sets them up like you.)",,
+270,271,How does the game work?,"It's really *facile*, the last one to climax wins. (She speeds up the vibrator a little.)",,
+270,271,Please explain Miss.,"It's a *facile* game, the last one to climax wins. (She speeds up the vibrator a little.)",,
+270,271,I can win any challenge.,"We'll see about that, the last one to climax wins. (She speeds up the vibrator a little.)",,
+271,,What do the winner get?,My *respect*.  (She grins.)  And she will not get cropped.,DialogRemove(),
+271,,What if I lose?,You will face my little crop right here.  (She swings her crop in the air.),DialogRemove(),
+271,272,I'm ready Miss!,(She produces a devious smile and slowly rise the speed of all vibrating eggs.),,
+271,272,"Ok, let's try this game.",(She produces a devious smile and slowly rise the speed of all vibrating eggs.),,
+272,,(Stand strong.),"(You stand strong, trying to defy the egg and it's lovely massage.  It's hard to resist but it seems to work.)",SophieOrgasmGame(1),
+272,,(Try to think of something else.),"(You look away and try to think about something else, but Mistress Sophie plays with the speed and makes it a little harder to lose focus.)",SophieOrgasmGame(2),
+272,,(Bite your lips.),(You bite your lips as the pleasure rises inside of you.  Mistress Sophie notices and plays with the vibration speed.),SophieOrgasmGame(3),
+272,,(Moan slowly.),(You moan slowly from the egg pleasure.  Slowly losing control of your body and getting closer to an orgasm.),SophieOrgasmGame(4),
+272,,(Moan loudly.),(You moan loudly and quickly in front of everyone.  Losing all controls and crowd awareness.  Getting really close to an orgasm.),SophieOrgasmGame(5),
+272,,(Surrender to the pleasure.),,SophieOrgasmGame(100),
+280,281,Wow!  I've made it?,"You did girl.  You've won the game and my respect, *bravo*!  Would you like that orgasm now?",,
+280,281,That was easy!,"Slave, don't be too *arrogante*.  Yes, you did won the game.  Would you like that orgasm now?","SophiePunishEvent("""", 1)",
+280,281,(Moan and tremble.),"(She caresses you hair.)  You've won the game and my respect little girl, *bravo*!  Would you like that orgasm now?","SophiePunishEvent("""", -1)",
+281,282,Oh yes Mistress Sophie.,"I rarely do favors for *soumises*, but I kind of like you.  (She puts the egg to maximum speed, making you climax rapidly.)",,SophieLikesPlayer()
+281,282,(Whimper and beg for it.),"I rarely do favors for *soumises*, but I kind of like you.  (She puts the egg to maximum speed, making you climax rapidly.)",,SophieLikesPlayer()
+281,283,Oh yes Mistress Sophie.,"Well you're not getting it, you've gotten on my nerves today.  (She turns off the vibrating egg and gets her crop.)",,!SophieLikesPlayer()
+281,283,(Whimper and beg for it.),"Well you're not getting it, you've gotten on my nerves today.  (She turns off the vibrating egg and gets her crop.)",,!SophieLikesPlayer()
+281,283,I'm fine Miss.,You're a surprising submissive.  (She turns off the vibrating egg and gets her crop.),,
+281,283,(Shake your head no.),You're a surprising submissive.  (She turns off the vibrating egg and gets her crop.),,
+282,283,That was wonderful Miss.,I'm glad you enjoyed.  (She puts away the remote and gets her leather crop.),,
+282,283,Oh lord!  I'm still shacking.,I'm glad you enjoyed.  (She puts away the remote and gets her leather crop.),,
+282,283,(Recover slowly.),I'm glad you enjoyed.  (She puts away the remote and gets her leather crop.),,
+283,284,You're going to whip me?,"Don't be foolish, you've won the game.  (She turns away and gives a severe beating to the loser.)",,
+283,284,I'm glad I've won.,Be very glad girl.  (She turns away and gives a severe beating to the loser.),,
+283,284,(Give a scared look.),(She grins and turns away to give a severe beating to the loser.),,
+284,,(Look at Amanda.),"(Amanda gets whipped pretty bad by Mistress Sophie, she seems in a lot of pain and beg her to stop.)",DialogRemove(),AmandaIsInside()
+284,,(Look at Sarah.),"(Sarah gets whipped mercilesly by Mistress Sophie, she jumps and cry from the next but still asks for more.)",DialogRemove(),SarahIsInside()
+284,285,(Enjoy the show.),"(You watch a severe beating scene.  Mistress Sophie seems to enjoy it a lot, before stopping promptly.)  That's enough!",,
+284,285,(Look away.),"(You look away, but can hear the whipping sound and the cries for a while, then everything stops.)  That's enough!",,
+285,286,Enough Mistress Sophie?,"*Oui*!  (She removes all the restrains expect for Sarah's.)  Sarah, to end your punishment, find a way out.",SophireReleaseEveryoneButSarah(),SarahIsInside()
+285,286,(Nod slowly.),"*Oui*!  (She removes all the restrains expect for Sarah's.)  Sarah, to end your punishment, find a way out.",SophireReleaseEveryoneButSarah(),SarahIsInside()
+285,286,Enough Mistress Sophie?,*Oui*!  (She removes the restrains from everyone.),SophireReleaseEveryoneButSarah(),!SarahIsInside()
+285,286,(Nod slowly.),*Oui*!  (She removes the restrains from everyone.),SophireReleaseEveryoneButSarah(),!SarahIsInside()
+286,287,Are we free Miss?,You're free as a bird little *esclave*.  I have other appointments today.,,
+286,287,The punishment is over?,"It is, little *esclave*.  I have other appointments today.",,
+286,287,That was intense.,"It will be worse next time, little *esclave*.  But I have other appointments today.",,
+287,288,Would you like to visit me later?,"(She ponders.)  I usualy don't accept these kinds of requests but I kind of like you.  Yes, I will *visite* your room later.",,CanInviteSophieToRoomAccept()
+287,,Would you like to visit me later?,"(She shakes her head from left to right.)  I cannot *accepte*, I'm a busy woman you know.",DialogRemove(),CanInviteSophieToRoomRefuse()
+287,,Take care Miss!,,SophieLeaveRoom(),
+287,,Thanks for your time.,,SophieLeaveRoom(),
+287,,(Wave bye bye.),,SophieLeaveRoom(),
+288,,See you later Miss.,,TransferSophieToRoom(25),
+290,291,"I'm sorry, I couldn't control it.",(She stops everyone vibrator.)  You have much to learn on self-control girl.,"SophiePunishEvent("""", -2)",
+290,291,It was too hard!,(She stops everyone vibrator.)  You're *faible*.  I don't care for excuses.,"SophiePunishEvent("""", 1)",
+290,291,(Moan and tremble.),(She stops everyone vibrator.)  You have much to learn on self-control girl.,"SophiePunishEvent("""", -1)",
+291,,(Look at Amanda.),"(Amanda seems proud of having won the game, but she stays humble about it.)",DialogRemove(),AmandaIsInside()
+291,,(Look at Sarah.),(Sarah is strill trembling and moaning very fast.  She hasn't recovered from the experiment.),DialogRemove(),SarahIsInside()
+291,292,I'll do better next time.,(She whips you with her crop.)  This should motivate you.  (She raises her crop again.),"DialogChangeReputation(""Dominant"", 1)",
+291,292,(Nod slowly.),(She whips you with her crop.)  You'll remember this *punition*.  (She raises her crop again.),"DialogChangeReputation(""Dominant"", -1)",
+292,293,Ow!  It hurts!,"(She whips you with the crop twice.)  Do you enjoy being in pain, little *esclave*?",,
+292,293,(Close your eyes.),"(She whips you with the crop twice.)  Do you enjoy being in pain, little *esclave*?",,
+292,293,(Endure the pain.),"(She whips you with the crop twice.)  Do you enjoy being in pain, little *esclave*?",,
+293,285,Yes Miss.,"(She whips you again and again, enjoying each lashes.  The winner is spared.)  That's enough!","DialogChangeReputation(""Dominant"", -2)",
+293,285,(Nod in shame.),"(She whips you again and again, enjoying each lashes.  The winner is spared.)  That's enough!","DialogChangeReputation(""Dominant"", -4)",
+293,285,"No Miss, I don't.","(She whips you again and again, enjoying each lashes.  The winner is spared.)  That's enough!","DialogChangeReputation(""Dominant"", 1)",
+293,285,(Shake your head no.),"(She whips you again and again, enjoying each lashes.  The winner is spared.)  That's enough!",,

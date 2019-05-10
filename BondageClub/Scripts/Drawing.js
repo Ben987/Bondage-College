@@ -68,7 +68,7 @@ function DrawGetImage(Source) {
 			img.onload = function () {			
 				DrawCacheLoadedImages++;
 				if (DrawCacheLoadedImages == DrawCacheTotalImages)
-					CharacterLoadCanvasAll();				
+					CharacterLoadCanvasAll();
 			}			
 		}
     }
@@ -185,8 +185,9 @@ function DrawImage(Source, X, Y) {
 function DrawImageCanvasColorize(Source, Canvas, X, Y, Zoom, HexColor, FullAlpha) {
 
 	// Make sure that the starting image is loaded
-	var Img = new Image();
-	Img.src = DrawGetImage(Source).src;
+	//var Img = new Image();
+	//Img.src = DrawGetImage(Source).src;
+	var Img = DrawGetImage(Source);
 	if ((Img != null) && (Img.width > 0)) {
 
 		// Prepares a canvas to draw the colorized image

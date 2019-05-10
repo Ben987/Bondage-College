@@ -25,6 +25,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		FocusGroup: null,
 		Canvas: null,
 		CanvasBlink: null,
+		MustDraw: false,
 		BlinkFactor: Math.round(Math.random() * 10) + 10,
 		AllowItem: true,
 		HeightModifier: 0,
@@ -86,13 +87,6 @@ function CharacterRandomName(C) {
 			return;
 		}
 
-}
-
-function urlExists(FullPath, C) {
-  fetch(FullPath).then(function(status) {
-	  
-
-  });
 }
 
 // Builds the dialog objects from the CSV files
@@ -353,7 +347,10 @@ function CharacterLoadCanvas(C) {
 // Reload all characters canvas
 function CharacterLoadCanvasAll() {
 	for (var C = 0; C < Character.length; C++)
-		CharacterLoadCanvas(Character[C]);
+		if (Character[C].MustDraw) {
+			CharacterLoadCanvas(Character[C]);
+			Character[C].MustDraw = false;
+		}
 }
 
 // Sets the current character for conversation with introduction
