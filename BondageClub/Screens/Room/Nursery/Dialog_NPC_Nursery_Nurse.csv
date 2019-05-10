@@ -27,11 +27,11 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 0,,"Hello, I'm DialogPlayerName.  Pleased to meet you.","Pleased to meet you too.  I'm DialogCharacterName, I'm one of the nurses.",DialogRemove(),"DialogReputationLess(""ABDL"", 9)"
 0,5,What is this place?,"This is the nursery, setup as a safe environment for adult babies in need of some motherly compassion, fun and discipline.",,
 0,10,May I join the nursery?,"Of course, we are always welcoming to good little boys and girls.  You are aware of what the nursery's requirements of those in its care?",,"DialogReputationLess(""ABDL"", 0)"
-0,20,I'm ready to join the nursery again.,"Wonderful, have you remembered the $10 fee for diapers?",,"DialogReputationGreater(""ABDL"", 1)"
+0,20,I'm ready to join the nursery again.,"Wonderful, have you remembered the $10 fee for diapers?",ClothCheck(),"DialogReputationGreater(""ABDL"", 1)"
 0,3,Who runs this nursery?,Nurses like me look after the adult babies.  We are supervised by the nursery's matrons.,,
 0,,I can't stay to chat.  (Leave her.),,DialogLeave(),
 012345,,(Money.),,DialogChangeMoney(200),
-012345,,Looses dresses,lost,PlayerLoosesAllBabydresses(),
+012345,,Delete item,lost,DeleteItem(),
 012345,,ReduceRep,ABDL rep -1,"DialogChangeReputation(""ABDL"", -1)",
 3,,Can I become a nurse?,We are not hiring nurses at the moment.  When we do we only hire club members with good reputations in the nursery and the maid sorority.,,
 3,,Can I become a matron?,Only the top nurses are ever granted that privilege.,,
@@ -44,32 +44,33 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 5,,Is this place just for people with that fetish?,We will also provide a time out discipline service for trouble makers. We could also prep or provide full care for slaves and failed kidnappers.,,
 5,0,I want to talk about something else.,What can I help you with?,,
 10,25,Yes.,"Good.  That will be $10 and you need to sign this form, then I will help you into your first diaper.",,
-10,12,No.,The primary requirement is diapers.  They are mandatory on entry and a fresh diaper must be purchased for each visit.  They cost $10 a time.,,
+10,12,No.,The primary requirement is diapers.  Clean diapers are mandatory on entry.  We can provide a fresh diaper for each visit.  They cost $10 a time.,,
 10,0,I don't want to join.,Make up your mind or do you really need someone to care and help make those difficult decisions for you?,,
-12,14,"Okay, what else is there?","We don't allow big girl clothes either.  You can just wear diapers, but we have a super selection lovely dresses you can wear.",,
+12,14,"Okay, what else is there?","We don't allow big girl clothes hiding diapers either.  You can wear just diapers, but we have a super selection lovely dresses you can wear.",,
 12,,Why the fee?,This place is not cheap to run.  The price for the diapers covers other running cost.,,
-12,,What do you mean by a fresh diaper every visit?,It would be incredibly irresponsible of us to risk putting a big baby in soiled diapers just to save a few dollars.,,
+12,,What do you mean by a fresh diaper each visit?,It would be incredibly irresponsible of us to risk putting a big baby in soiled diapers just to save a few dollars.,,
 12,,Diapers? You are kidding me right?,Sorry but it is in the rules.  We wouldn't want an adult baby having a whoopsie and making a horrid mess.,,
 12,0,This is not the place for me.,That's okay.  Let me know if you change your mind.,,"DialogReputationLess(""ABDL"", 0)"
 14,16,Is there just a dress code?,"No, this is peaceful place.  Adult babies can talk, although many prefer pacifiers.  However we will not tolerate disruptive behaviour.",,
 14,,What about clothes for boys?,"They also wear dresses in here.  In pre-Victorian nurseries, young boys were unbreeched and wore dresses, just like the girls.",,
 14,,Why dresses?,To look gorgeous of course and these dresses have high hemlines so it's easier for us to check there aren't any dirty diapers.,,
-14,,What about shorts or T shirts?,"Goodness me, certainly not.  We take great pride in making sure the adult babies in our care always look their best.",,
+14,,What about long skirts?,"Goodness me, certainly not.  We want out adult babies to look thier best, but that must not interfere with making sure they have clean diapers.",,
 14,0,No way am I dressing like that.,That's a shame.  I'm sure you would have looked fabulous. ,,
 16,18,I Understand.  Is there anything else?,"Adult babies can wonder around the club, but we don't advise it so we fitted a safety gate to the door to keep helpless babies safe inside.",,
 16,,What if I want to play rough?,"We encourage you to play with each other, but play nicely or you will feel the sting of a hairbrush on your tooshie.",,
 16,,I'll cry if I want to.,"Of course and we will do our best to comfort those in distressed, but we don't allow riotous behaviour that upsets others.",,
-16,,What about bondage?,"That is fine as long you are all playing happy, although some items are hardly suitable for in here.  The nursery has some more appropriate restraints.",,
+16,,What about bondage?,"That is fine as long you are all playing happy, although some items are hardly suitable for use in here.  The nursery has some more appropriate restraints.",,
 18,25,"I would like to join now, pwease.","Wonderful.  That will be $10 and you need to sign this form, then I will help you into your first diaper.",,"DialogReputationLess(""ABDL"", 0)"
 18,20,Thanks for reminding me.,You're welcome.  Have you remembered the $10 fee for diapers?,,"DialogReputationGreater(""ABDL"", 1)"
 18,,Is there an issue with the rest of the club?,"Not really, but don't expect people to take you seriously while you are wearing a diaper or an adorable baby dress.",,
 18,0,Actually I don't want to join now.,I am sorry to hear that.  Do let me know if your mind.,,
 20,60,Yes here it is. (Pay $10.),Thank you.  Now let’s get you changed.  (She takes you to one side and swiftly removes all your clothes.),PlayerUndress(),DialogMoneyGreater(10)
+20,100,I am already diapered and ready to enter.,"(She checks you over and feels your diaper.)  Okay, you are nice and clean.  Welcome back to the nursery.",,PlayerReadyDiapered()
 20,0,I don't have enough money.,"Sorry to hear that, but we can't run this place for free. Do come back later once you have earned some more.",,!DialogMoneyGreater(10)
-20,,Could I provide my own diapers and outfit?,Sorry we are not setup of that at the moment and this way we make sure all the adult babies at least start out clean and fresh.,,
+20,,Could I provide my own diapers and outfit?,Yes you can come in wearing your own Diapers. But they must be clean and you can't wear clothes that prevent us from easily checking them.,,
 20,0,I'm not paying for this.,"That is a shame, but we can't run this place for free.  If you change your mind we are always very welcoming.",,
 20,0,"Sorry, maybe another time.",Just let me know when you are ready.,,
-20,12,What were the nursery requirements again?,The primary requirement is diapers.  They are mandatory on entry and a fresh diaper must be purchased for each visit and cost $10,,
+20,12,What were the nursery requirements again?,The primary requirement is diapers.  Clean diapers are mandatory on entry.  We can provide fresh diapers.  They cost $10 a time.,,
 25,60,(Sign the form and pay $10.),Thank you.  Now let’s get you changed.  (She takes you to one side and swiftly removes all your clothes.),PlayerUndress(),DialogMoneyGreater(10)
 25,0,I can't afford this right now.,That is a pity.  There are plenty of ways to make money in the club.  I'm sure you could earn $10 in no time at all.,,!DialogMoneyGreater(10)
 25,,What is the $10 charge for?,"This place is not cheap to run.  The price for a diaper also covers other running cost, such as outfit hire.",,

@@ -55,9 +55,9 @@ var AssetFemale3DCG = [
 			{ Name: "TennisShirt1", Require: ["ClothLower"] },
 			{ Name: "Sweater1", Require: ["ClothLower"], HideItem: ["ItemArmsLeatherCuffs"] },
 			{ Name: "MistressTop", Require: ["ClothLower"], Hide: ["Bra"], Value: -1 },
-			{ Name: "AdultBabyDress1", Hide: ["ClothLower"], Value: 300 },
-			{ Name: "AdultBabyDress2", Hide: ["ClothLower"], Value: 300 },
-			{ Name: "AdultBabyDress3", Hide: ["ClothLower"], Value: 300 },
+			{ Name: "AdultBabyDress1", Hide: ["ClothLower"], Value: 200 },
+			{ Name: "AdultBabyDress2", Hide: ["ClothLower"], Value: 200 },
+			{ Name: "AdultBabyDress3", Hide: ["ClothLower"], Value: 200 },
 			{ Name: "NurseUniform", Hide: ["ClothLower"], Value: -1 }
 		]
 	},
@@ -174,7 +174,12 @@ var AssetFemale3DCG = [
 		Top: 200,
 		Asset: [
 			"Bra1", "Bra2", "Bra7",
-			{ Name: "Bustier1", Value: 30 }
+			{ Name: "Bra8", Value: 15 },
+			{ Name: "Bustier1", Value: 30 },
+			{ Name: "Corset1", Value: 30 },
+			{ Name: "Corset2", Value: 30 },
+			{ Name: "Corset3", Value: 30 },
+			{ Name: "Corset4", Value: 30 }
 		]
 	},
 	
@@ -209,7 +214,7 @@ var AssetFemale3DCG = [
 		ParentGroup: "BodyLower",
 		ParentColor: "Bra",
 		Underwear: true,
-		Color: ["#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
+		Color: ["Default", "#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
 		Left: 150,
 		Top: 425,
 		Asset: [
@@ -217,7 +222,11 @@ var AssetFemale3DCG = [
 			{ Name: "Panties7" },
 			{ Name: "Panties8" },
 			{ Name: "Panties11" },
-			{ Name: "Diapers1", Value: -1 }
+			{ Name: "Panties12", Value: 10 },
+			{ Name: "Panties13", Value: 10 },
+			{ Name: "Panties14", Value: 10 },
+			{ Name: "Panties15", Value: 10 },
+			{ Name: "Diapers1", Value: 50 }
 		]
 	},
 
@@ -228,10 +237,13 @@ var AssetFemale3DCG = [
 		ParentColor: "Bra",
 		Underwear: true,
 		AllowPose: ["LegsClosed", "Kneel"],
-		Color: ["#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
+		Color: ["Default", "#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
 		Left: 125,
 		Top: 500,
-		Asset: ["Socks1", "Socks2", "Socks3", "Socks4", "Socks5", "Stockings1", "Stockings2"]
+		Asset: [
+			"Socks1", "Socks2", "Socks3", "Socks4", "Socks5", "Stockings1", "Stockings2",
+			{ Name: "Stockings3", Value: 10 }
+		]
 	},
 
 	{
@@ -359,10 +371,10 @@ var AssetFemale3DCG = [
 		Top: 200,
 		Zone: [[150, 340, 200, 80]],
 		Asset: [ 
-			{ Name: "NylonRopeHarness", Value: 25, Prerequisite: "AccessTorso", Time: 25 },
-			{ Name: "AdultBabyHarness", Value: -1, Time: 15, RemoveTime: 10 }, // Priority: 24, 
+			{ Name: "NylonRopeHarness", Value: 25, Prerequisite: "AccessTorso", Time: 25 }, 
 			{ Name: "HempRopeHarness", Value: 50, Prerequisite: "AccessTorso", Time: 25, RemoveTime: 35, Difficulty: 3 },
-			{ Name: "LeatherHarness", Value: 100, Prerequisite: "AccessTorso", Time: 15, RemoveTime: 10 }
+			{ Name: "LeatherHarness", Value: 100, Prerequisite: "AccessTorso", Time: 15, RemoveTime: 10 },
+			{ Name: "AdultBabyHarness", Value: 80, Priority: 25, Time: 15, RemoveTime: 10 }
 		]
 	},
 
@@ -417,13 +429,15 @@ var AssetFemale3DCG = [
 			{ Name: "MetalCuffs", Priority: 23, Value: 50, SetPose: ["BackCuffs"], Effect: ["Block", "Prone", "Lock"], Time: 5 },
 			{ Name: "MetalCuffsKey", Wear: false, Value: 25, Effect: ["Unlock-MetalCuffs"], Time: 5 },
 			{ Name: "LeatherArmbinder", SelfBondage: false, Priority: 2, Value: 80, SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone", "Struggle"], Time: 25, RemoveTime: 10, Difficulty: 10 },
-			{ Name: "PaddedMittens", SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Struggle"], Time: 25, RemoveTime: 10, Difficulty: 4 },
-			{ Name: "PaddedMittensLocked", Random: false, SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Lock"], Time: 12 },
-			{ Name: "PaddedMittensHarness", Random: false, SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Struggle"], Time: 25, RemoveTime: 10, Difficulty: 4 },
-			{ Name: "PaddedMittensHarnessLocked", Random: false, SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Lock"], Time: 12 },
-			{ Name: "FourLimbsShackles", Enable: false, Value: -1, SetPose: ["BackBoxTie"], Effect: ["Block", "Prone", "Lock"], Time: 30 },
 			{ Name: "LeatherCuffs", Priority: 23, Random: false, Value: 100, AllowPose: ["BackBoxTie", "BackElbowTouch"], Effect: ["Lock"], Time: 20, Extended: true },
-			{ Name: "LeatherCuffsKey", Wear: false, Value: 40, Effect: ["Unlock-LeatherCuffs"], Time: 15 }
+			{ Name: "LeatherCuffsKey", Wear: false, Value: 40, Effect: ["Unlock-LeatherCuffs"], Time: 15 },
+			{ Name: "PaddedMittens", SelfBondage: false, Value: 50, Effect: ["Block", "Prone", "Struggle"], Extended: true, Time: 15, Difficulty: 4 },
+			{ Name: "PaddedMittensLocked", Random: false, SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Lock"], Extended: true, Time: 12 },
+			{ Name: "PaddedMittensHarness", Random: false, SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Struggle"], Extended: true, Time: 25, RemoveTime: 10, Difficulty: 6 },
+			{ Name: "PaddedMittensHarnessLocked", Random: false, SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Lock"], Extended: true, Time: 12 },
+			{ Name: "Padlock", Wear: false, Value: 5 },
+			{ Name: "PadlockKey", Wear: false, Value: 5 },
+			{ Name: "FourLimbsShackles", Enable: false, Value: -1, SetPose: ["BackBoxTie"], Effect: ["Block", "Prone", "Lock"], Time: 30 }
 		]
 	},
 
@@ -464,8 +478,8 @@ var AssetFemale3DCG = [
 			{ Name: "HarnessPanelGag", Effect: ["GagHeavy"], Value: 80, Time: 20 },
 			{ Name: "RingGag", Value: 35, Time: 5 },
 			{ Name: "DuctTapeGag", Value: 20, Time: 5, RemoveTime: 2 },
-			{ Name: "PacifierGag", Random: false, Effect: ["GagLight"], Value: -1, Time: 2 },
-			{ Name: "HarnessPacifierGag", Random: false, Effect: ["GagLight"], Value: -1, Time: 20 },
+			{ Name: "PacifierGag", Random: false, Effect: ["GagLight"], Value: 15, Time: 2 },
+			{ Name: "HarnessPacifierGag", Random: false, Effect: ["GagLight"], Value: 70, Time: 20 },
 			{ Name: "DusterGag", Random: false, RemoveAtLogin: true, Value: -1, Time: 20 },
 			{ Name: "HarnessPonyBits", Random: false, Effect: ["GagHeavy"], Value: -1, Time: 20 },
 			{ Name: "PumpGag", Effect: [], Random: false, Extended: true, Value: 100, Time: 20 },

@@ -34,6 +34,7 @@ function NurseryPlayerLostBinkyAgain() { return Player.CanTalk() && NurseryPlaye
 function NurseryPlayerWearingBabyDress() { return (CharacterAppearanceGetCurrentValue(Player, "Cloth", "Name") == "AdultBabyDress1" || CharacterAppearanceGetCurrentValue(Player, "Cloth", "Name") == "AdultBabyDress2" || CharacterAppearanceGetCurrentValue(Player, "Cloth", "Name") == "AdultBabyDress3") }
 function NurseryPlayerReadyToAppologise() { return (NurseryPlayerBadBabyStatus <= 1) }
 function NurseryPlayerDiapered() { return (CharacterAppearanceGetCurrentValue(Player, "Panties", "Name") == "Diapers1") }
+function NurseryPlayerReadyDiapered() { return (NurseryPlayerDiapered() && !NurseryPlayerInappropriateCloth) }
 
 
 // Loads the nursery room
@@ -68,6 +69,7 @@ function NurseryRun() {
 	if (NurserySituation == null) {
 		DrawCharacter(Player, 500, 0, 1);
 		DrawCharacter(NurseryNurse, 1000, 0, 1);
+		if (Player.CanChange()) DrawButton(1885, 265, 90, 90, "", "White", "Icons/Dress.png");
 	}
 	if (NurserySituation == "Admitted") {
 		DrawCharacter(Player, 250, 0, 1);
@@ -78,7 +80,7 @@ function NurseryRun() {
 	if (NurserySituation == "AtGate") {
 		DrawCharacter(Player, 500, 0, 1);
 		DrawImage("Screens/Room/Nursery/NurseryGate.png", 0, 0);
-		if (Player.CanWalk()) DrawButton(1500, 25, 300, 75, "Escape", "White");
+		if (Player.CanWalk()) DrawButton(1500, 25, 300, 75, TextGet("Escape"), "White");
 	}
 	if (Player.CanWalk()) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 	DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
@@ -99,6 +101,7 @@ function NurseryClick() {
 			NurseryPlayerAppearance = null;
 			CommonSetScreen("Room", "MainHall");
 		}
+		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355) && Player.CanChange()) {CharacterAppearanceReturnRoom = "Nursery"; CommonSetScreen("Character", "Appearance");};
 	}
 	if (NurserySituation == "Admitted") {
 		if ((MouseX >= 250) && (MouseX < 750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
@@ -169,6 +172,7 @@ function NurseryLoadNurse() {
 
 // Checks players diapered is not obscured by Inappropriate cloth
 function NurseryClothCheck() {
+	NurseryPlayerInappropriateCloth = false;
 	if (CharacterAppearanceGetCurrentValue(Player, "Cloth", "Name") == "CollegeOutfit1") NurseryPlayerInappropriateCloth = true;
 	if (CharacterAppearanceGetCurrentValue(Player, "Cloth", "Name") == "MaidOutfit1") NurseryPlayerInappropriateCloth = true;
 	if (CharacterAppearanceGetCurrentValue(Player, "Cloth", "Name") == "StudentOutfit1") NurseryPlayerInappropriateCloth = true;
@@ -255,10 +259,10 @@ function NurseryRandomColourSelection() {
 
 
 // Remove baby dresses from inventroy for testing only
-function NurseryPlayerLoosesAllBabydresses() {
-	InventoryDelete(Player, "AdultBabyDress1", "Cloth");
-	InventoryDelete(Player, "AdultBabyDress2", "Cloth");
-	InventoryDelete(Player, "AdultBabyDress3", "Cloth");
+function NurseryDeleteItem() {
+	InventoryDelete(Player, "Padlock", "ItemArms");
+	InventoryDelete(Player, "PadlockKey", "ItemArms");
+	//InventoryDelete(Player, "AdultBabyDress3", "Cloth");
 }
 
 // When the player undresses ready to join the nursery
