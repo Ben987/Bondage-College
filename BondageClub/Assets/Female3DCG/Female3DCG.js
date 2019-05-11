@@ -175,6 +175,7 @@ var AssetFemale3DCG = [
 		Asset: [
 			"Bra1", "Bra2", "Bra7",
 			{ Name: "Bra8", Value: 15 },
+			{ Name: "Bra9", Value: 15 },
 			{ Name: "Bustier1", Value: 30 },
 			{ Name: "Corset1", Value: 30 },
 			{ Name: "Corset2", Value: 30 },
@@ -242,7 +243,8 @@ var AssetFemale3DCG = [
 		Top: 500,
 		Asset: [
 			"Socks1", "Socks2", "Socks3", "Socks4", "Socks5", "Stockings1", "Stockings2",
-			{ Name: "Stockings3", Value: 10 }
+			{ Name: "Stockings3", Value: 10 },
+			{ Name: "Stockings4", Value: 10 }
 		]
 	},
 
@@ -320,7 +322,7 @@ var AssetFemale3DCG = [
 		Asset: [
 			{ Name: "VibratingEgg", Effect: ["Egged"], Value: 25, Prerequisite: "AccessVulva", Time: 5 },
 			{ Name: "VibratingWand", Wear: false, Value: 60, Prerequisite: "AccessVulva", Bonus: [{Type: "KidnapManipulation", Factor: 3}] },
-			{ Name: "VibratorRemote", Effect: ["Remote"], Wear: false, Value: 80}
+			{ Name: "VibratorRemote", Effect: ["Remote"], Wear: false, Value: 80, BuyGroup: "VibratorRemote" }
 		]
 	},
 
@@ -391,7 +393,9 @@ var AssetFemale3DCG = [
 		Asset: [
 			{ Name: "StraightPiercing", Value: 10, Prerequisite: "AccessBreast", Time: 15 },
 			{ Name: "RoundPiercing", Value: 20, Prerequisite: "AccessBreast", Time: 15 },
-			{ Name: "NippleClamp", Value: 35, Prerequisite: "AccessBreast", Time: 10 }
+			{ Name: "NippleClamp", Value: 35, Prerequisite: "AccessBreast", Time: 10 },
+			{ Name: "VibeNippleClamp", Value: 50, Effect: ["Egged"], Prerequisite: "AccessBreast", Time: 10 },
+			{ Name: "VibratorRemote", Value: 80, Effect: ["Remote"], Wear: false, BuyGroup: "VibratorRemote" }
 		]
 	},
 
@@ -406,7 +410,7 @@ var AssetFemale3DCG = [
 		Top: 200,
 		Zone: [[250, 260, 100, 80]],
 		Asset: [
-			{ Name: "MetalChastityBra", Value: 75, Effect: ["Lock", "BreastChaste"], Block: ["ItemNipples"], Prerequisite: "AccessBreast", Time: 15 },
+			{ Name: "MetalChastityBra", Value: 75, Effect: ["Lock", "BreastChaste"], Block: ["ItemNipples"], Hide: ["ItemNipples"], Prerequisite: "AccessBreast", Time: 15 },
 			{ Name: "MetalChastityBraKey", Wear: false, Value: -1, Effect: ["Unlock-MetalChastityBra"], Prerequisite: "AccessBreast", Time: 5 },
 			{ Name: "LeatherCrop", Value: 40, Wear: false, BuyGroup: "LeatherCrop", Bonus: [{Type: "KidnapDomination", Factor: 3}] },
 			{ Name: "LeatherWhip", Value: 60, Wear: false, BuyGroup: "LeatherWhip", Bonus: [{Type: "KidnapBruteForce", Factor: 3}] }
@@ -437,7 +441,8 @@ var AssetFemale3DCG = [
 			{ Name: "PaddedMittensHarnessLocked", Random: false, SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Lock"], Extended: true, Time: 12 },
 			{ Name: "Padlock", Wear: false, Value: 5 },
 			{ Name: "PadlockKey", Wear: false, Value: 5 },
-			{ Name: "FourLimbsShackles", Enable: false, Value: -1, SetPose: ["BackBoxTie"], Effect: ["Block", "Prone", "Lock"], Time: 30 }
+			{ Name: "FourLimbsShackles", Enable: false, Value: -1, SetPose: ["BackBoxTie"], Effect: ["Block", "Prone", "Lock"], Time: 30 },
+			{ Name: "StraitLeotard", SelfBondage: false, Value: 200, SetPose: ["BackElbowTouch"], Hide: ["Cloth", "ClothLower"], Effect: ["Block", "Prone", "Struggle"], Time: 35, RemoveTime: 20, Difficulty: 13 }
 		]
 	},
 
