@@ -137,6 +137,7 @@ Socks,Socks5,Full Leg
 Socks,Stockings1,Stockings Dark
 Socks,Stockings2,Stockings Light
 Socks,Stockings3,Silky Stockings
+Socks,Stockings4,Fishnet Stockings
 Shoes,,Shoes
 Shoes,Shoes1,Style 1
 Shoes,Shoes2,Style 2
@@ -201,6 +202,7 @@ ItemArms,PaddedMittensHarnessLocked,Thumbless Mittens Chanined Locked
 ItemArms,PadLock,Padlock (Limited Offer)
 ItemArms,PadLockKey,Padlock Key (Limited Offer)
 ItemArms,FourLimbsShackles,Four Limbs Shackles
+ItemArms,StraitLeotard,Latex Strait Leotard
 ItemNeck,,Neck
 ItemNeck,LeatherCollar,Leather Collar
 ItemNeck,SlaveCollar,Slave Collar

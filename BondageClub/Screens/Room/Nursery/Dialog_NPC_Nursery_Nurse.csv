@@ -34,6 +34,7 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 012345,,Delete item,lost,DeleteItem(),
 012345,,Replace skill,Skill +1,ReplaceSkill()
 012345,,ReduceRep,ABDL rep -1,"DialogChangeReputation(""ABDL"", -1)",
+012345,,ReduceDom,Dom rep -1,"DialogChangeReputation(""Dominant"", -10)",
 3,,Can I become a nurse?,We are not hiring nurses at the moment.  When we do we only hire club members with good reputations in the nursery and the maid sorority.,,
 3,,Can I become a matron?,Only the top nurses are ever granted that privilege.,,
 3,,Ooh Matron.,Carry on like that and you will feel a painsy-wainsy in your botty-wotty!,,

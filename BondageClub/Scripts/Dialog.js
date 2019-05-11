@@ -327,9 +327,10 @@ function DialogClick() {
 										} else {
 
 											// The vibrating egg remote can open the vibrating egg's extended dialog
-											if (DialogInventory[I].Asset.Name == "VibratorRemote" && C.IsEgged())
-												DialogExtendItem(C.Appearance.find(function(item){ return item.Asset.Name == "VibratingEgg"; }));
-
+											if (DialogInventory[I].Asset.Name == "VibratorRemote" && (InventoryGet(C, C.FocusGroup.Name).Asset.Effect) && (InventoryGet(C, C.FocusGroup.Name).Asset.Effect.indexOf("Egged") >= 0)) {
+												DialogExtendItem(InventoryGet(C, C.FocusGroup.Name));
+											}
+											
 											// Publishes the item result
 											if (CurrentScreen == "ChatRoom" && DialogInventory && DialogInventory[I].Asset.Effect == null)
 												ChatRoomPublishAction(CurrentCharacter, null, DialogInventory[I], true);

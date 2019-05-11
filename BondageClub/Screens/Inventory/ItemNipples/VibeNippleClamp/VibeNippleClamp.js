@@ -37,5 +37,5 @@ function InventoryItemNipplesVibeNippleClampSetIntensity(Modifier) {
 	CharacterLoadEffect(C);
 	if (C.ID == 0) ServerPlayerAppearanceSync();
 
-	ChatRoomPublishCustomAction((DialogFind(Player, "Egg" + ((Modifier > 0) ? "Increase" : "Decrease") + "To" + DialogFocusItem.Property.Intensity)).replace("DestinationCharacter",C.Name), true);
+	ChatRoomPublishCustomAction((DialogFind(Player, "Nipple" + ((Modifier > 0) ? "Increase" : "Decrease") + "To" + DialogFocusItem.Property.Intensity)).replace("DestinationCharacter",C.Name), true);
 }

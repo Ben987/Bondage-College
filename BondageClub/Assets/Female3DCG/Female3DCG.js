@@ -243,7 +243,8 @@ var AssetFemale3DCG = [
 		Top: 500,
 		Asset: [
 			"Socks1", "Socks2", "Socks3", "Socks4", "Socks5", "Stockings1", "Stockings2",
-			{ Name: "Stockings3", Value: 10 }
+			{ Name: "Stockings3", Value: 10 },
+			{ Name: "Stockings4", Value: 10 }
 		]
 	},
 
@@ -409,7 +410,7 @@ var AssetFemale3DCG = [
 		Top: 200,
 		Zone: [[250, 260, 100, 80]],
 		Asset: [
-			{ Name: "MetalChastityBra", Value: 75, Effect: ["Lock", "BreastChaste"], Block: ["ItemNipples"], Prerequisite: "AccessBreast", Time: 15 },
+			{ Name: "MetalChastityBra", Value: 75, Effect: ["Lock", "BreastChaste"], Block: ["ItemNipples"], Hide: ["ItemNipples"], Prerequisite: "AccessBreast", Time: 15 },
 			{ Name: "MetalChastityBraKey", Wear: false, Value: -1, Effect: ["Unlock-MetalChastityBra"], Prerequisite: "AccessBreast", Time: 5 },
 			{ Name: "LeatherCrop", Value: 40, Wear: false, BuyGroup: "LeatherCrop", Bonus: [{Type: "KidnapDomination", Factor: 3}] },
 			{ Name: "LeatherWhip", Value: 60, Wear: false, BuyGroup: "LeatherWhip", Bonus: [{Type: "KidnapBruteForce", Factor: 3}] }
@@ -440,7 +441,8 @@ var AssetFemale3DCG = [
 			{ Name: "PaddedMittensHarnessLocked", Random: false, SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Lock"], Extended: true, Time: 12 },
 			{ Name: "Padlock", Wear: false, Value: 5 },
 			{ Name: "PadlockKey", Wear: false, Value: 5 },
-			{ Name: "FourLimbsShackles", Enable: false, Value: -1, SetPose: ["BackBoxTie"], Effect: ["Block", "Prone", "Lock"], Time: 30 }
+			{ Name: "FourLimbsShackles", Enable: false, Value: -1, SetPose: ["BackBoxTie"], Effect: ["Block", "Prone", "Lock"], Time: 30 },
+			{ Name: "StraitLeotard", SelfBondage: false, Value: 200, SetPose: ["BackElbowTouch"], Hide: ["Cloth", "ClothLower"], Effect: ["Block", "Prone", "Struggle"], Time: 35, RemoveTime: 20, Difficulty: 13 }
 		]
 	},
 
