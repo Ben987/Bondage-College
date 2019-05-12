@@ -29,7 +29,7 @@ function InventoryItemNeckShockCollarClick() {
 	if ((MouseX >= 1550) && (MouseX <= 1800) && (MouseY >= 700) && (MouseY <= 765) && (DialogFocusItem.Property.Intensity < 2)) InventoryItemNeckShockCollarSetIntensity(1);
 }
 
-// Sets the pump gag level
+// Sets the shock collar intensity
 function InventoryItemNeckShockCollarSetIntensity(Modifier) {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	DialogFocusItem.Property.Intensity = DialogFocusItem.Property.Intensity + Modifier;
