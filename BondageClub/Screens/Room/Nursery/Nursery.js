@@ -278,6 +278,11 @@ function NurseryPlayerGetsDiapered(DomChange) {
 	ReputationProgress("Dominant", DomChange)
 	ReputationProgress("ABDL", 1)
 	InventoryWear(Player, "Diapers1", "Panties", "Default");
+	NurseryPlayerAdmitted();
+}
+
+// When the player is admitted
+function NurseryPlayerAdmitted() {
 	NurserySituation = "Admitted";
 }
 
