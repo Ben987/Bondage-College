@@ -45,6 +45,7 @@ function SarahCanKissSophie() { return (Player.CanTalk() && Sophie.CanTalk()) }
 function SarahCanFightSophie() { return (!SophieFightDone && Player.CanInteract()) }
 function SarahSophiePunishmentStageIs(Stage) { return (SophiePunishmentStage == parseInt(Stage)) }
 function SarahSophieLikesPlayer() { return ((SophieUpsetCount >= 0) && (SophieUpsetCount <= 2)) }
+function SarahCanStrip() { return (!Sarah.IsRestrained() && !Sarah.IsNaked()) }
 
 // Returns TRUE to know if the girls are inside the room
 function SarahIsInside() { return (SarahInside && (Sarah != null)) }
@@ -455,11 +456,6 @@ function SarahFightSophieEnd() {
 	Sophie.CurrentDialog = DialogFind(Sophie, (KidnapVictory) ? "FightVictory" : "FightDefeat");
 }
 
-// Gets the next punishment that the player must inflict to the girls
-function SarahPlayerPunishGirls() {
-	
-}
-
 // Gets the next punishment that Sophie will inflict to the girls
 function SarahSophiePunishGirls() {
 
@@ -628,5 +624,54 @@ function SarahSophireReleaseEveryoneButSarah() {
 		InventoryRemove(Amanda, "ItemNipples");
 		InventoryRemove(Amanda, "ItemVulva");
 		InventoryRemove(Amanda, "ItemButt");
+	}
+}
+
+// When the player starts the girls punishment
+function SarahPlayerPunishGirls() {
+	SarahUnlock();
+	if (Amanda != null) Amanda.Stage = "1000";
+	if (Sarah != null) Sarah.Stage = "1000";
+}
+
+// Returns TRUE if the current slave(s) are naked and withoutrestrains
+function SarahSlaveNakedWithoutRestrains(C) { 
+	if (C == null) {
+		if (SarahAndAmandaAreInside())
+			return SarahSlaveNakedWithoutRestrains(Sarah) && SarahSlaveNakedWithoutRestrains(Amanda);
+		else
+			if (SarahIsInside())
+				SarahSlaveNakedWithoutRestrains(Sarah);
+			else
+				SarahSlaveNakedWithoutRestrains(Amanda);
+	} else return (C.IsNaked() && C.HasNoItem());
+}
+
+// Gives the restrains temporarily to Sarah and Amanda so they can be punished
+function SarahGiveFirstSlaveItem(C) {
+	if (C == null) {
+		if (SarahIsInside()) SarahGiveFirstSlaveItem(Sarah);
+		if (SarahAmandaIsInside()) SarahGiveFirstSlaveItem(Amanda);
+	} else {
+		InventoryAdd(C, "NippleClamp", "ItemNipples");
+		InventoryAdd(C, "MetalChastityBra", "ItemBreast");
+		InventoryAdd(C, "BlackButtPlug", "ItemButt");
+		InventoryAdd(C, "VibratingEgg", "ItemVulva");
+		InventoryAdd(C, "MetalChastityBelt", "ItemPelvis");
+	}
+}
+
+// Gives the second set of restrains temporarily to Sarah and Amanda so they can be punished
+function SarahGiveSecondSlaveItem(C) {
+	if (C == null) {
+		if (SarahIsInside()) SarahGiveSecondSlaveItem(Sarah);
+		if (SarahAmandaIsInside()) SarahGiveSecondSlaveItem(Amanda);
+	} else {
+		InventoryAdd(C, "LeatherCuffs", "ItemArms");
+		InventoryAdd(C, "LeatherCuffsKey", "ItemArms");
+		InventoryAdd(C, "LeatherWhip", "ItemPelvis");
+		InventoryAdd(C, "LeatherWhip", "ItemBreast");
+		InventoryAdd(C, "LeatherCrop", "ItemPelvis");
+		InventoryAdd(C, "LeatherCrop", "ItemBreast");
 	}
 }

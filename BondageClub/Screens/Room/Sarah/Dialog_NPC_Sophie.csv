@@ -44,8 +44,8 @@ SophieOrgasmGameDefeat,,,"(You cannot control yourself, and surrender to the ple
 12,13,I'm ready!  (Smile wickedly.),*Parfait*!  Just follow my orders so she can punished properly.,"DialogChangeReputation(""Dominant"", 2)","DialogReputationGreater(""Dominant"", 30)"
 12,15,I don't know.,"You didn't convince me at all girl.  So either you also get *punie*, or you get out.",UpsetSophie(1),"DialogReputationLess(""Dominant"", 29)"
 12,15,I don't think so Miss.,"Face it girl, you're a *soumise*.  So either you also get *punie*, or you get out.",UpsetSophie(2),"DialogReputationLess(""Dominant"", -30)"
-13,100,I'm listening.,,PlayerPunishGirls(),
-13,100,Let's do it!,,PlayerPunishGirls(),
+13,100,I'm listening.,Excellent!  The first step is to prepare them for their *punition*.  You need to set the ambience and get them nervous.,PlayerPunishGirls(),
+13,100,Let's do it!,Excellent!  The first step is to prepare them for their *punition*.  You need to set the ambience and get them nervous.,PlayerPunishGirls(),
 14,16,What Miss?,The get *punie*.  Get naked little maid.,,
 14,16,They get a raise?  (Giggle.),"Don't try to be funny.  Get naked little maid, you're getting *punie*.",UpsetSophie(2),
 14,16,(Stay silent.),The get *punie*.  Get naked little maid.,,
@@ -142,8 +142,28 @@ SophieOrgasmGameDefeat,,,"(You cannot control yourself, and surrender to the ple
 98,,(Fight her.),,FightSophie(),
 98,99,(Run for your life.),"(She laughs as you run out of the room, and locks the door behind you.)","DialogChangeReputation(""Dominant"", -2)",
 99,,(Back to the club.),,KickPlayerOut(),
-100,,TO DO,TO DO,,
-100,,(Leave her.),,DialogLeave(),
+100,101,It sounds too dramatic.,"(She frowns.)  No, listen!  The first step is to strip the slaves, to make sure they are humiliated.",UpsetSophie(1),SarahAndAmandaAreInside()
+100,101,What should I do?,"The first step is to strip the slaves, to make sure they are humiliated and aware or their situation.",,SarahAndAmandaAreInside()
+100,101,So it's both mental and physical?,"(She nods.)  *Absolument*.  The first step is to strip the slaves, to make sure they are humiliated.",,SarahAndAmandaAreInside()
+100,101,It sounds too dramatic.,"(She frowns.)  *Non*!  The first step is to strip the slave, to make sure she's humiliated.",UpsetSophie(1),!SarahAndAmandaAreInside()
+100,101,What should I do?,"The first step is to strip the slave, to make sure she's humiliated and aware or her situation.",,!SarahAndAmandaAreInside()
+100,101,So it's both mental and physical?,"(She nods.)  *Absolument*.  The first step is to strip the slave, to make sure she's humiliated.",,!SarahAndAmandaAreInside()
+101,102,It sounds like a good plan.,"(She nods.)  Make sure that both of them are fully naked, without restrains.",,SarahAndAmandaAreInside()
+101,102,We really need to humilate them?,"Of course we do!  Now make sure that both of them are fully naked, without restrains.",UpsetSophie(1),SarahAndAmandaAreInside()
+101,102,I'll make them strip.,"That's the spirit!  Make sure that both of them are fully naked, without restrains.","DialogChangeReputation(""Dominant"", 2)",SarahAndAmandaAreInside()
+101,102,It sounds like a good plan.,"(She nods.)  Make sure she's fully naked, without restrains.",,!SarahAndAmandaAreInside()
+101,102,We really need to humilate her?,"Of course we do!  Now make sure she's fully naked, without restrains.",,!SarahAndAmandaAreInside()
+101,102,I'll make her strip.,"That's the spirit!  Make sure she's fully naked, without restrains.",,!SarahAndAmandaAreInside()
+102,,,Are they both fully naked and without restrains?,,SarahAndAmandaAreInside()
+102,,,Is she fully naked and without restrains?,,!SarahAndAmandaAreInside()
+102,110,All set!,Excellent!  The next phase can begin.,GiveFirstSlaveItem(),SlaveNakedWithoutRestrains()
+102,102,I'll do it. (Leave her.),,DialogLeave(),
+102,198,I don't think I can do it.,"You're not a Domme, why are you wasting my time?  I'll do the *punition* myself, you need to go.",,
+110,,TO DO,TO DO,,
+198,199,"I'm sorry, I'll go.",You know where the door is.  (She points at the door.),"DialogChangeReputation(""Dominant"", -1)",
+198,199,"Fine, you can have them.","I will, now get out.  (She points at the door.)","DialogChangeReputation(""Dominant"", 1)",
+198,199,"But!  But, but, but...","You're *pathetique*, get out of my sight.  (She points at the door.)","DialogChangeReputation(""Dominant"", -3)",
+199,,(Back to the club.),,KickPlayerOut(),
 200,201,Don't be too harsh with them.,(She frowns and promptly restrains the other girls like you.),"SophiePunishEvent(""RestrainOther"", 1)",SophiePunishmentStageIs(0)
 200,201,(Stay silent and watch her.),(She promptly restrains the other girls like you.),"SophiePunishEvent(""RestrainOther"", 0)",SophiePunishmentStageIs(0)
 200,210,"Yes, they are quite sensitive.","Very good, little *esclave*.  (She tightens nipple clamps on your nipples and smiles.)","SophiePunishEvent(""Clamps"", -1)",SophiePunishmentStageIs(1)

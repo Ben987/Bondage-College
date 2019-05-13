@@ -327,9 +327,10 @@ function DialogClick() {
 										} else {
 
 											// The vibrating egg remote can open the vibrating egg's extended dialog
-											if (DialogInventory[I].Asset.Name == "VibratorRemote" && C.IsEgged())
-												DialogExtendItem(C.Appearance.find(function(item){ return item.Asset.Name == "VibratingEgg"; }));
-
+											if (DialogInventory[I].Asset.Name == "VibratorRemote" && (InventoryGet(C, C.FocusGroup.Name).Asset.Effect) && (InventoryGet(C, C.FocusGroup.Name).Asset.Effect.indexOf("Egged") >= 0)) {
+												DialogExtendItem(InventoryGet(C, C.FocusGroup.Name));
+											}
+											
 											// Publishes the item result
 											if (CurrentScreen == "ChatRoom" && DialogInventory && DialogInventory[I].Asset.Effect == null)
 												ChatRoomPublishAction(CurrentCharacter, null, DialogInventory[I], true);
@@ -343,10 +344,13 @@ function DialogClick() {
 
 											// The shock triggers can trigger items that can shock the wearer
 											if (DialogInventory && (DialogInventory[I].Asset.Effect.indexOf("TriggerShock") >= 0) && (InventoryGet(C, C.FocusGroup.Name)) && (InventoryGet(C, C.FocusGroup.Name).Asset.Effect.indexOf("ReceiveShock") >= 0)) {
-												if (CurrentScreen == "ChatRoom")
-													ChatRoomPublishCustomAction((DialogFind(Player, InventoryGet(C, C.FocusGroup.Name).Asset.Name + "Trigger" + InventoryGet(C, C.FocusGroup.Name).Property.Intensity)).replace("DestinationCharacter",C.Name), true);
+												if (CurrentScreen == "ChatRoom") {
+													var intensity = InventoryGet(C, C.FocusGroup.Name).Property ? InventoryGet(C, C.FocusGroup.Name).Property.Intensity : 0;
+													ChatRoomPublishCustomAction((DialogFind(Player, InventoryGet(C, C.FocusGroup.Name).Asset.Name + "Trigger" + intensity)).replace("DestinationCharacter",C.Name), true);
+												}
 												else {
-													var D = (DialogFind(Player, InventoryGet(C, C.FocusGroup.Name).Asset.Name + "Trigger" + InventoryGet(C, C.FocusGroup.Name).Property.Intensity)).replace("DestinationCharacter",C.Name);
+													var intensity = InventoryGet(C, C.FocusGroup.Name).Property ? InventoryGet(C, C.FocusGroup.Name).Property.Intensity : 0;
+													var D = (DialogFind(Player, InventoryGet(C, C.FocusGroup.Name).Asset.Name + "Trigger" + intensity)).replace("DestinationCharacter",C.Name);
 													if (D != "") {
 														C.CurrentDialog = "(" + D +")";
 														DialogLeaveItemMenu();
@@ -689,7 +693,7 @@ function DialogStutter(C, CD) {
 	if (CD == null) CD = "";
 
 	if (C.IsEgged()) {
-		var egg = C.Appearance.find(function(item){ return item.Asset.Name == "VibratingEgg"; });
+		var egg = C.Appearance.find(function(item){ return item.Asset.Name == "VibratingEgg" || item.Asset.Name == "VibeNippleClamp"; });
 		var intensity = 0;
 		if (egg.Property) intensity = egg.Property.Intensity;
 

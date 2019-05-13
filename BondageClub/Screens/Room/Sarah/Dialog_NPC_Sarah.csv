@@ -111,3 +111,10 @@ RemoveSuspensionHempRope,,,(You untie the hemp rope from the ceiling and slowly 
 200,,(Leave her.),,DialogLeave(),
 210,,Take care!  (Leave her.),,LeaveRoom(),
 220,,Great!  (Bring her to your room.),,TransferToRoom(),
+1000,,,Punished by my baby?  This is hot!,,"StatusIs(""Lover"")"
+1000,,,You're doing the punishment Miss DialogPlayerName?,,
+1000,,Get naked girl.,(She nods and strips down quickly.)  Of course Miss!,DialogNaked(CurrentCharacter),CanStrip()
+1000,,Are you scared?,"(She giggles.)  A little, it's very thrilling.",DialogRemove(),
+1000,,You're my bitch now.,"(She nods happily.)  Yes Miss, I'm your bitch.",DialogRemove(),
+1000,,I won't be too harsh my love.,(She sighs.)  You can play rough with me baby.,DialogRemove(),"StatusIs(""Lover"")"
+1000,,(Leave her.),,DialogLeave(),
