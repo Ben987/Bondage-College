@@ -317,7 +317,7 @@ function SarahTransferToRoom() {
 	SarahLeaveRoom();
 	CharacterRelease(Sarah);
 	InventoryWear(Sarah, "CollegeOutfit1", "Cloth");
-	InventoryWear(Sarah, "Socks4", "Socks");
+	InventoryWear(Sarah, "Socks4", "Socks", "#AAAAAA");
 	InventoryWear(Sarah, "Shoes2", "Shoes", "#222222");	
 	InventoryAdd(Player, "StuddedBlindfold", "ItemHead");
 	CommonSetScreen("Room", "Private");
@@ -369,7 +369,7 @@ function SarahTransferAmandaToRoom() {
 	CharacterRelease(Amanda);
 	if ((InventoryGet(Amanda, "ItemPelvis") != null) && (InventoryGet(Amanda, "ItemPelvis").Asset.Name == "StraponPanties")) InventoryRemove(Amanda, "ItemPelvis");
 	InventoryWear(Amanda, "CollegeOutfit1", "Cloth");
-	InventoryWear(Amanda, "Socks4", "Socks");
+	InventoryWear(Amanda, "Socks4", "Socks", "#AAAAAA");
 	InventoryWear(Amanda, "Shoes1", "Shoes", "#222222");
 	InventoryWear(Amanda, "Bra1", "Bra", "#bbbbbb");
 	InventoryWear(Amanda, "Panties1", "Panties", "#bbbbbb");
@@ -548,11 +548,12 @@ function SarahSophiePreparePunishCharacter(C) {
 }
 
 // When Sophie starts a character vibrator
-function SarahSophieStartBuzz(C) {
+function SarahSophieStartBuzz(C, Intensity) {
 	var Egg = InventoryGet(C, "ItemVulva");
 	Egg.Property = {};
-	Egg.Property.Intensity = 3;
-	Egg.Property.Effect = ["Egged", "Vibrating"];
+	Egg.Property.Intensity = Intensity;
+	if (Intensity >= 0) Egg.Property.Effect = ["Egged", "Vibrating"];
+	else Egg.Property.Effect = ["Egged"];
 	CharacterRefresh(C);
 }
 
@@ -575,9 +576,9 @@ function SarahSophiePunishEvent(EventType, DomRep) {
 	if (EventType == "ChastityBelt") { InventoryRemove(Player, "ItemPelvis"); InventoryWear(Player, "MetalChastityBelt", "ItemPelvis"); }
 	if ((EventType == "ChastityBeltOther") && (Amanda != null) && AmandaInside) { InventoryRemove(Amanda, "ItemPelvis"); InventoryWear(Amanda, "MetalChastityBelt", "ItemPelvis"); }
 	if ((EventType == "ChastityBeltOther") && (Sarah != null) && SarahInside) { InventoryRemove(Sarah, "ItemPelvis"); InventoryWear(Sarah, "MetalChastityBelt", "ItemPelvis"); }
-	if (EventType == "Buzz") SarahSophieStartBuzz(Player);
-	if ((EventType == "Buzz") && (Amanda != null) && AmandaInside) SarahSophieStartBuzz(Amanda);
-	if ((EventType == "Buzz") && (Sarah != null) && SarahInside) SarahSophieStartBuzz(Sarah);
+	if (EventType == "Buzz") SarahSophieStartBuzz(Player, 3);
+	if ((EventType == "Buzz") && (Amanda != null) && AmandaInside) SarahSophieStartBuzz(Amanda, 3);
+	if ((EventType == "Buzz") && (Sarah != null) && SarahInside) SarahSophieStartBuzz(Sarah, 3);
 }
 
 // When the player plays Sophie Orgasm Game
@@ -629,22 +630,73 @@ function SarahSophireReleaseEveryoneButSarah() {
 
 // When the player starts the girls punishment
 function SarahPlayerPunishGirls() {
-	SarahUnlock();
+	if (SarahShackled()) SarahUnlock();
 	if (Amanda != null) Amanda.Stage = "1000";
 	if (Sarah != null) Sarah.Stage = "1000";
 }
 
-// Returns TRUE if the current slave(s) are naked and withoutrestrains
+// Returns TRUE if the current slave(s) are naked and without restrains
 function SarahSlaveNakedWithoutRestrains(C) { 
 	if (C == null) {
-		if (SarahAndAmandaAreInside())
-			return SarahSlaveNakedWithoutRestrains(Sarah) && SarahSlaveNakedWithoutRestrains(Amanda);
-		else
-			if (SarahIsInside())
-				SarahSlaveNakedWithoutRestrains(Sarah);
-			else
-				SarahSlaveNakedWithoutRestrains(Amanda);
+		if (SarahAndAmandaAreInside()) return SarahSlaveNakedWithoutRestrains(Sarah) && SarahSlaveNakedWithoutRestrains(Amanda);
+		else if (SarahIsInside()) return SarahSlaveNakedWithoutRestrains(Sarah);
+		else return SarahSlaveNakedWithoutRestrains(Amanda);
 	} else return (C.IsNaked() && C.HasNoItem());
+}
+
+// Returns TRUE if the current slave(s) are wearing clamps, egg and butt plug
+function SarahSlaveWithClampEggPlug(C) {
+	if (C == null) {
+		if (SarahAndAmandaAreInside()) return SarahSlaveWithClampEggPlug(Sarah) && SarahSlaveWithClampEggPlug(Amanda);
+		else if (SarahIsInside()) return SarahSlaveWithClampEggPlug(Sarah);
+		else return SarahSlaveWithClampEggPlug(Amanda);
+	} else {
+		if ((InventoryGet(C, "ItemNipples") == null) || (InventoryGet(C, "ItemNipples").Asset.Name != "NippleClamp")) return false;
+		if ((InventoryGet(C, "ItemVulva") == null) || (InventoryGet(C, "ItemVulva").Asset.Name != "VibratingEgg")) return false;
+		if ((InventoryGet(C, "ItemButt") == null) || (InventoryGet(C, "ItemButt").Asset.Name != "BlackButtPlug")) return false;
+		return true;
+	}
+}
+
+// Returns TRUE if the current slave(s) are wearing clamps, egg, butt plug, chastity belt & bra
+function SarahSlaveChaste(C) {
+	if (C == null) {
+		if (SarahAndAmandaAreInside()) return SarahSlaveChaste(Sarah) && SarahSlaveChaste(Amanda);
+		else if (SarahIsInside()) return SarahSlaveChaste(Sarah);
+		else return SarahSlaveChaste(Amanda);
+	} else {
+		if ((InventoryGet(C, "ItemNipples") == null) || (InventoryGet(C, "ItemNipples").Asset.Name != "NippleClamp")) return false;
+		if ((InventoryGet(C, "ItemVulva") == null) || (InventoryGet(C, "ItemVulva").Asset.Name != "VibratingEgg")) return false;
+		if ((InventoryGet(C, "ItemButt") == null) || (InventoryGet(C, "ItemButt").Asset.Name != "BlackButtPlug")) return false;
+		if ((InventoryGet(C, "ItemPelvis") == null) || (InventoryGet(C, "ItemPelvis").Asset.Name != "MetalChastityBelt")) return false;
+		if ((InventoryGet(C, "ItemBreast") == null) || (InventoryGet(C, "ItemBreast").Asset.Name != "MetalChastityBra")) return false;
+		return true;
+	}
+}
+
+// Returns TRUE if the current slave(s) are wearing clamps, egg, butt plug, chastity belt, bra & locked cuffs
+function SarahSlaveLockedCuffs(C) {
+	if (C == null) {
+		if (SarahAndAmandaAreInside()) return SarahSlaveLockedCuffs(Sarah) && SarahSlaveLockedCuffs(Amanda);
+		else if (SarahIsInside()) return SarahSlaveLockedCuffs(Sarah);
+		else return SarahSlaveLockedCuffs(Amanda);
+	} else {
+		if ((InventoryGet(C, "ItemNipples") == null) || (InventoryGet(C, "ItemNipples").Asset.Name != "NippleClamp")) return false;
+		if ((InventoryGet(C, "ItemVulva") == null) || (InventoryGet(C, "ItemVulva").Asset.Name != "VibratingEgg")) return false;
+		if ((InventoryGet(C, "ItemButt") == null) || (InventoryGet(C, "ItemButt").Asset.Name != "BlackButtPlug")) return false;
+		if ((InventoryGet(C, "ItemPelvis") == null) || (InventoryGet(C, "ItemPelvis").Asset.Name != "MetalChastityBelt")) return false;
+		if ((InventoryGet(C, "ItemBreast") == null) || (InventoryGet(C, "ItemBreast").Asset.Name != "MetalChastityBra")) return false;
+		if ((InventoryGet(C, "ItemArms") == null) || (InventoryGet(C, "ItemArms").Asset.Name != "LeatherCuffs")) return false;
+		if ((InventoryGet(C, "ItemArms").Property == null) || (InventoryGet(C, "ItemArms").Property.Restrain == null)) return false;
+		return true;
+	}
+}
+
+// Returns TRUE if the current slave(s) had their orgasms
+function SarahSlaveOrgasm(C) {
+	if (SarahAndAmandaAreInside()) return Sarah.OrgasmDone && Amanda.OrgasmDone;
+	else if (SarahIsInside()) return Sarah.OrgasmDone;
+	else return Amanda.OrgasmDone;
 }
 
 // Gives the restrains temporarily to Sarah and Amanda so they can be punished
@@ -654,10 +706,8 @@ function SarahGiveFirstSlaveItem(C) {
 		if (SarahAmandaIsInside()) SarahGiveFirstSlaveItem(Amanda);
 	} else {
 		InventoryAdd(C, "NippleClamp", "ItemNipples");
-		InventoryAdd(C, "MetalChastityBra", "ItemBreast");
 		InventoryAdd(C, "BlackButtPlug", "ItemButt");
 		InventoryAdd(C, "VibratingEgg", "ItemVulva");
-		InventoryAdd(C, "MetalChastityBelt", "ItemPelvis");
 	}
 }
 
@@ -667,11 +717,57 @@ function SarahGiveSecondSlaveItem(C) {
 		if (SarahIsInside()) SarahGiveSecondSlaveItem(Sarah);
 		if (SarahAmandaIsInside()) SarahGiveSecondSlaveItem(Amanda);
 	} else {
+		InventoryAdd(C, "MetalChastityBra", "ItemBreast");
+		InventoryAdd(C, "MetalChastityBraKey", "ItemBreast");
+		InventoryAdd(C, "MetalChastityBelt", "ItemPelvis");
+		InventoryAdd(C, "MetalChastityBeltKey", "ItemPelvis");
+	}
+}
+
+// Gives the third set of restrains temporarily to Sarah and Amanda so they can be punished
+function SarahGiveThirdSlaveItem(C) {
+	if (C == null) {
+		if (SarahIsInside()) SarahGiveThirdSlaveItem(Sarah);
+		if (SarahAmandaIsInside()) SarahGiveThirdSlaveItem(Amanda);
+	} else {
 		InventoryAdd(C, "LeatherCuffs", "ItemArms");
 		InventoryAdd(C, "LeatherCuffsKey", "ItemArms");
+	}
+}
+
+// Gives the fourth set of restrains temporarily to Sarah and Amanda so they can be punished
+function SarahGiveFourthSlaveItem(C) {
+	if (C == null) {
+		if (SarahIsInside()) SarahGiveFourthSlaveItem(Sarah);
+		if (SarahAmandaIsInside()) SarahGiveFourthSlaveItem(Amanda);
+	} else {
+		InventoryAdd(C, "VibratorRemote", "ItemVulva");
 		InventoryAdd(C, "LeatherWhip", "ItemPelvis");
 		InventoryAdd(C, "LeatherWhip", "ItemBreast");
 		InventoryAdd(C, "LeatherCrop", "ItemPelvis");
 		InventoryAdd(C, "LeatherCrop", "ItemBreast");
+		C.Stage = "1010";
+		C.OrgasmMeter = 0;
+		C.OrgasmDone = false;
 	}
+}
+
+// Build the orgasm meter for the slaves
+function SarahSlaveOrgasmBuild(Pleasure, Bonus, Intensity) {
+	Pleasure = parseInt(Pleasure);
+	Bonus = parseInt(Bonus);
+	Intensity = parseInt(Intensity);
+	CurrentCharacter.OrgasmMeter = CurrentCharacter.OrgasmMeter + Pleasure + Bonus;
+	if (Intensity >= -1) SarahSophieStartBuzz(CurrentCharacter, Intensity);
+	if ((CurrentCharacter.OrgasmMeter >= 10) && (Pleasure >= 2)) {
+		CurrentCharacter.OrgasmDone = true;
+		CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "OrgasmStart");
+		CurrentCharacter.Stage = "1030";
+	}
+}
+
+// Resets the slave stage
+function SarahSlaveReset() {
+	if (SarahIsInside()) Sarah.Stage = "200";
+	if (SarahAmandaIsInside()) Amanda.Stage = "0";
 }

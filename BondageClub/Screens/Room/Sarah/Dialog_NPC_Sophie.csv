@@ -3,7 +3,7 @@ ExpelPlayer,,,"Enough!  (She seems furious.)  I'm tired of you, I don't want to 
 FightVictory,,,(She bows her head.)  Unbelivable!  I was *defaite* in battle.  You truly are a great kidnapper.,,
 FightDefeat,,,"(She makes a wicked smile.)  Girl, you really thought you could defeat me?  You're mine now.",,
 PlayerPunishmentStage0,,,"First, we need to make sure everyone is prepared for the group *punition*.",,
-PlayerPunishmentStage1,,,"A memorable punishment must begin with pain, and I have the perfect tool for that.  Are you nipples sensitive girl?",,
+PlayerPunishmentStage1,,,"A memorable punishment must begin with pain, and I have the perfect tool for that.  Are your nipples sensitive girl?",,
 PlayerPunishmentStage2,,,Pain should be shared between slave sisters.  Don't you agree?,,
 PlayerPunishmentStage3,,,"These clamps should hold by themselves, but we can also secure them.  This *chastete* bra will prevent you from removing them.",,
 PlayerPunishmentStage4,,,It wouldn't be fair if you were the only one locked in steel.  Let's fix this situation.,,
@@ -13,18 +13,19 @@ PlayerPunishmentStage7,,,"You can *probablement"" guess what's coming up next.  
 PlayerPunishmentStage8,,,Don't worry.  All the slaves will share the same steel *destin*.  (She produces a wicked smile and looks away from you.),,
 PlayerPunishmentStage9,,,(She produces a small remote and gives a devious smile.)  Let's hear you sing!,,
 SophieOrgasmGameVictory,,,"(As you feel the pleasure rising, you notice that you're the only one standing.  Mistress Sophie starts to applause you.)",,
-SophieOrgasmGameDefeat,,,"(You cannot control yourself, and surrender to the pleasure of the egg.  You get a wonderful orgasm, but lose the game.)",,
-0,,,(She swings her crop toward you.)  *Esclave*!  What are you doing here?,,IsClubSlave()
-0,,,It's a *plaisir* to see you Mistress DialogPlayerName.  What brings you here?,,"DialogLogQuery(""ClubMistress"", ""Management"")"
-0,,,What are you doing here maid DialogPlayerName?,,"DialogLogQuery(""JoinedSorority"", ""Maid"")"
-0,,,Who are you girl?  What are you doing here?,,
+SophieOrgasmGameDefeat,,,"(You cannot control yourself, and surrender to the pleasure of the egg.  You get a wonderful orgasm but lose the game.)",,
+0,,,(She swings her crop toward you and addresses you with a French accent.)  *Esclave*!  What are you doing here?,,IsClubSlave()
+0,,,(She greets you with a French accent.)  It's a *plaisir* to see you Mistress DialogPlayerName.  What brings you here?,,"DialogLogQuery(""ClubMistress"", ""Management"")"
+0,,,(She addresses you with a French accent.)  What are you doing here maid DialogPlayerName?,,"DialogLogQuery(""JoinedSorority"", ""Maid"")"
+0,,,(She addresses you with a French accent.)  Who are you girl?  What are you doing here?,,
 0,10,"Mistress Sophie, it's always a pleasure.","Absolutely *Maitresse* DialogPlayerName, but I've reserved this room for the day.  What's the purpose of your visit?",,"DialogLogQuery(""ClubMistress"", ""Management"")"
 0,10,This room is mine.,(She stares at you.)  You must be confused *Maitresse* DialogPlayerName.  I've reserved this room for the day.,UpsetSophie(2),"DialogLogQuery(""ClubMistress"", ""Management"")"
 0,10,I was sent by the maid sorority.,The *sororite* sent you?  Impossible!  You're probably wrong girl.,,"DialogLogQuery(""JoinedSorority"", ""Maid"")"
 0,10,I'm here to clean the room Miss.,It's too early for room cleaning girl.  You're probably at the wrong place.,UpsetSophie(1),"DialogLogQuery(""JoinedSorority"", ""Maid"")"
 0,10,What are you doing here?,What am I doing here?  (She looks angry.)  I've reserved this room for the day!,UpsetSophie(2),
-0,10,I'm sorry.  I might be lost.,"Girl, this is a private room.  I've reserved it for the day.",,
+0,10,I'm sorry.  I might be lost.,"Girl, this is a private room.  I've reserved it for the day.",UpsetSophie(1),
 0,10,Are you Mistress Sophie?,"*Oui*, why are you here little club slave?",,IsClubSlave()
+0,10,Are you Mistress Sophie?,"*Oui*, were you looking for me?",,!IsClubSlave()
 0,,(Leave her.),,DialogLeave(),
 10,14,"So sorry, this maid is confused.",(She grins.)  And do you know what happens to *confuse* maids?,,"DialogLogQuery(""JoinedSorority"", ""Maid"")"
 10,11,"Actually, I've wanted to meet you.",(She looks annoyed.)  Your timing is horrible.  What do you want from me?,UpsetSophie(1),
@@ -41,9 +42,9 @@ SophieOrgasmGameDefeat,,,"(You cannot control yourself, and surrender to the ple
 11,15,I need discipline Miss.,(She swings her crop toward you.)  Is that so?  You've been bad and needs to be *punie*?,,
 11,15,Do you want to be my Mistress?,"(She swings her crop in the air.)  Girl, we barely know each other.  You sure seem to want to be *punie* though.",,!Player.IsOwned()
 11,98,I came to challenge you.,Don't make me laugh.  You really want to fight me?  (She points her crop toward you.),,Player.CanInteract()
-12,13,I'm ready!  (Smile wickedly.),*Parfait*!  Just follow my orders so she can punished properly.,"DialogChangeReputation(""Dominant"", 2)","DialogReputationGreater(""Dominant"", 30)"
-12,15,I don't know.,"You didn't convince me at all girl.  So either you also get *punie*, or you get out.",UpsetSophie(1),"DialogReputationLess(""Dominant"", 29)"
-12,15,I don't think so Miss.,"Face it girl, you're a *soumise*.  So either you also get *punie*, or you get out.",UpsetSophie(2),"DialogReputationLess(""Dominant"", -30)"
+12,13,I'm ready!  (Smile wickedly.),*Parfait*!  Just follow my orders so she can be punished properly.,"DialogChangeReputation(""Dominant"", 2)","DialogReputationGreater(""Dominant"", 30)"
+12,15,I don't know.,"You didn't convince me at all girl.  So, either you also get *punie*, or you get out.",UpsetSophie(1),"DialogReputationLess(""Dominant"", 29)"
+12,15,I don't think so Miss.,"Face it girl, you're a *soumise*.  So, either you also get *punie*, or you get out.",UpsetSophie(2),"DialogReputationLess(""Dominant"", -30)"
 13,100,I'm listening.,Excellent!  The first step is to prepare them for their *punition*.  You need to set the ambience and get them nervous.,PlayerPunishGirls(),
 13,100,Let's do it!,Excellent!  The first step is to prepare them for their *punition*.  You need to set the ambience and get them nervous.,PlayerPunishGirls(),
 14,16,What Miss?,The get *punie*.  Get naked little maid.,,
@@ -58,7 +59,7 @@ SophieOrgasmGameDefeat,,,"(You cannot control yourself, and surrender to the ple
 16,50,Yes Miss.  (Strip naked.),(You strip for her as she smiles.)  *Bien*!  Now give me yours hands.,DialogNaked(Player),Player.CanInteract()
 16,50,Can you help me to strip Miss?,(She strips you down and smiles.)  *Bien*!  Now give me yours hands.,DialogNaked(Player),!Player.CanInteract()
 20,,Why is she getting punished?,"Getting late to club meetings, playing on her phone in a collaring ceremony and spilling her drink on a club *Maitresse*.",DialogRemove(),
-20,25,"You cannot do that, she's my slave.","(She looks at Sarah as she nods.)  I'm sorry, I didn't knew she was your *esclave*.",,SarahIsPlayerSlave()
+20,25,"You cannot do that, she's my slave.","(She looks at Sarah as she nods.)  I'm sorry, I didn't know she was your *esclave*.",,SarahIsPlayerSlave()
 20,12,Can I punish her with you?,"Very well, maybe you can do the job for me.  Are you up for the challenge?",,
 20,21,You cannot punish her.,(She seems angry.)  I can and I will.  Now get out or you'll be *punie* with her.,UpsetSophie(2),
 20,21,Can I see that?,It's not a public show.  Now get out or you'll be *punie* with her.,UpsetSophie(1),"DialogReputationGreater(""Dominant"", -29)"
@@ -66,12 +67,12 @@ SophieOrgasmGameDefeat,,,"(You cannot control yourself, and surrender to the ple
 21,16,"Yes Miss, I'll take the punishment with her.",(She grins.)  Excellent.  Get naked girl.,"DialogChangeReputation(""Dominant"", -3)",
 21,90,"No, I don't want to be punished.","You should go then, I've heard enough.  (She points to the exit.)",,
 25,26,Can you release her?,"Absolutely, I will not temper with your property.  (She releases Sarah.)",,
-26,27,Thank you Miss.,We all play by the rules.  I will leave you two alone now.  Goodbye.,"DialogChangeReputation(""Dominant"", -1)",
+26,27,"Thank you, Miss.",We all play by the rules.  I will leave you two alone now.  Goodbye.,"DialogChangeReputation(""Dominant"", -1)",
 26,27,Much better.,We all play by the rules.  I will leave you two alone now.  Goodbye.,"DialogChangeReputation(""Dominant"", 2)",
 27,,Goodbye.,,SophieFreeSarahAndLeave(),
 30,,Why is she here?,"I don't know, I've never seen her in the club.  She must be a new *membre*.",DialogRemove(),
 30,,What will you do to her?,"Since she came in my room uninvited, she will be *punie*.",DialogRemove(),
-30,31,Can you release her?,"(She laughs.)  She stepped in my lair, she stays.  Did you also came here to get *punie*?",,!AmandaIsPlayerSlave()
+30,31,Can you release her?,"(She laughs.)  She stepped in my lair, she stays.  Did you also come here to get *punie*?",,!AmandaIsPlayerSlave()
 30,35,"She's my slave, can you release her?","Absolutely, I don't want to mess with your property.  But you two will have to go.",,AmandaIsPlayerSlave()
 30,12,Can I punish her with you?,"Very well, maybe you can do the job for me.  Are you up for the challenge?",,
 30,31,You cannot punish her.,(She seems angry.)  I can and I will.  Now get out or you'll be *punie* with her.,UpsetSophie(2),
@@ -79,30 +80,30 @@ SophieOrgasmGameDefeat,,,"(You cannot control yourself, and surrender to the ple
 30,31,"Miss, can I please witness her punishment?",(She smirks.)  You want to join her and be punished little *soumise*?,,"DialogReputationLess(""Dominant"", -30)"
 31,16,"Yes Miss, I'll take the punishment with her.",(She grins.)  Excellent.  Get naked girl.,"DialogChangeReputation(""Dominant"", -3)",
 31,90,"No, I don't want to be punished.","You should go then, I've heard enough.  (She points to the exit.)",,
-35,36,Thank you Miss.,We all play by the rules.  Now you both need to go.  I will lock the door behind you.,"DialogChangeReputation(""Dominant"", -1)",
+35,36,"Thank you, Miss.",We all play by the rules.  Now you both need to go.  I will lock the door behind you.,"DialogChangeReputation(""Dominant"", -1)",
 35,36,Much better.,We all play by the rules.  Now you both need to go.  I will lock the door behind you.,"DialogChangeReputation(""Dominant"", 2)",
 36,,Goodbye.  (Walk out with Amanda.),,SophieFreePlayerAndAmandaTheyLeave(),
 40,,Why are they here?,The *blonde* is getting punished for many reasons.  The brown hair girl is a bonus it seems.,DialogRemove(),
 40,,What will you do to them?,They will both be *punie*.  (She grins.),DialogRemove(),
-40,41,Can you release them?,"(She laughs.)  They stepped in my lair, they stay.  Did you also came here to get *punie*?",,!AmandaAndSarahArePlayerSlave()
-40,45,These girls are my slaves.,I didn't knew.  I don't want to mess with your *propriete*.  You can have the room.,,AmandaAndSarahArePlayerSlave()
+40,41,Can you release them?,"(She laughs.)  They stepped in my lair, they stay.  Did you also come here to get *punie*?",,!AmandaAndSarahArePlayerSlave()
+40,45,These girls are my slaves.,I didn't know.  I don't want to mess with your *propriete*.  You can have the room.,,AmandaAndSarahArePlayerSlave()
 40,12,Can I punish them with you?,"Very well, maybe you can do the job for me.  Are you up for the challenge?",,
 40,41,You cannot punish them.,(She seems angry.)  I can and I will.  Now get out or you'll be *punie* with them.,UpsetSophie(2),
 40,41,Can I see that?,It's not a public show.  Now get out or you'll be *punie* with them.,UpsetSophie(1),"DialogReputationGreater(""Dominant"", -29)"
 40,41,"Miss, can I please witness this punishment?",(She smirks.)  You want to join them and be punished little *soumise*?,,"DialogReputationLess(""Dominant"", -30)"
 41,16,"Yes Miss, I'll take the punishment with them.",(She grins.)  Excellent.  Get naked girl.,"DialogChangeReputation(""Dominant"", -3)",
 41,90,"No, I don't want to be punished.","You should go then, I've heard enough.  (She points to the exit.)",,
-45,46,Thank you Miss.,I will make sure your girls are fine and leave.  Take good care of your *esclaves*.,"DialogChangeReputation(""Dominant"", -1)",
+45,46,"Thank you, Miss.",I will make sure your girls are fine and leave.  Take good care of your *esclaves*.,"DialogChangeReputation(""Dominant"", -1)",
 45,46,Much better.,I will make sure your girls are fine and leave.  Take good care of your *esclaves*.,"DialogChangeReputation(""Dominant"", 2)",
 45,13,Can you show me how to punish them?,*Absolument*!  Just follow my orders and they will be punished properly.,,
 46,,Goodbye.,,SophieFreeSarahAndLeave(),
 50,51,Yes Mistress Sophie.  (Give your hands.),"(She stays silent and grabs your arms, locking leather cuffs on them.)","RestrainedBySophie(0, -2)",
 50,51,"Fine, make it quick.  (Give your hands.)","(She frowns and grabs your arms forcefully, locking leather cuffs on them.)","RestrainedBySophie(0, 2)",
 50,51,Is it really necessary?,"(She doesn't listen and grabs your arms forcefully, locking leather cuffs on them.)","RestrainedBySophie(0, 0)",
-51,,What are these cuffs?,These leather cuffs are very handy to keep *soumises* under control.  They can be locked first and chained together later in many fashion.,DialogRemove(),
+51,,What are these cuffs?,These leather cuffs are very handy to keep *soumises* under control.  They can be locked first and chained together later in many fashions.,DialogRemove(),
 51,52,It's really tight Miss.,(She grins and restrain your legs tightly with leather belts.),"RestrainedBySophie(1, -1)",
 51,52,What the fuck?,(She frowns and restrain your legs tightly with leather belts.),"RestrainedBySophie(1, 1)",
-51,52,(Stay silent.),(She prompty restrain your your legs tightly with leather belts.),"RestrainedBySophie(1, 0)",
+51,52,(Stay silent.),(She promptly restrains your legs with leather belts.),"RestrainedBySophie(1, 0)",
 52,53,You're so kinky!,(She stares at you.)  You must learn discipline girl.  (She prepares you to be punished and attaches the wrist cuffs with a chain.),"RestrainedBySophie(2, 1)",
 52,53,(Bow your head.),This punishment will help you learn and grow.  (She prepares you to be punished and attaches the wrist cuffs with a chain.),"RestrainedBySophie(2, -1)",
 52,53,(Stay silent.),This punishment will help you learn and grow.  (She prepares you to be punished and attaches the wrist cuffs with a chain.),"RestrainedBySophie(2, 0)",
@@ -113,53 +114,113 @@ SophieOrgasmGameDefeat,,,"(You cannot control yourself, and surrender to the ple
 60,61,I was lucky.,It was more than *chance* DialogPlayerName.  You're a formidable opponent and you've won my respect.,"DialogChangeReputation(""Dominant"", 4)",
 61,,,I still can't believe you won.  You're a formidable *kidnappeuse*.,,
 61,,Can you release Sarah?,"Of course, I'll have her released.  (She calls for a maid to rescue Sarah.)",Unlock(),SarahShackled()
-61,,You're my prisonner and the room is mine?,"*Oui*, enjoy your spoils of war for now DialogPlayerName.  I'll have my revenge someday.",,
-61,,(Tickle her.),(You tickle her on the tummy but she barely reacts.)  That's the best you can do?  Are you a child?,,Player.CanInteract()
+61,,You're my prisoner and the room is mine?,"*Oui*, enjoy your spoils of war for now DialogPlayerName.  I'll have my revenge someday.",,
+61,,(Tickle her.),"(You tickle her on the tummy, but she barely reacts.)  That's the best you can do?  Are you a child?",,Player.CanInteract()
 61,,(Kiss her.),(She turns away as you try to kiss her.)  These lips are not for you DialogPlayerName.,,CanKissSophie()
-61,,(Spank her.),"(You spank her butt a few times as she moans very lighty, hiding the enjoyment.)",,Player.CanInteract()
+61,,(Spank her.),"(You spank her butt a few times as she moans very lightly, hiding the enjoyment.)",,Player.CanInteract()
 61,,(Fondle her.),(You cup her breast and massage them lovingly as she struggles to get away from you.),,Player.CanInteract()
 61,,(Bring her to your room.),,TransferSophieToRoom(-50),CanInviteSophieToRoom()
 61,,(Leave her.),,,
 70,16,It was a good fight.,"(She nods and catches her breath.)  Enough talks, get naked loser.","DialogChangeReputation(""Dominant"", -2)",
 70,16,I'll get you next time.,"(She frowns and catches her breath.)  Enough talks, get naked loser.","DialogChangeReputation(""Dominant"", -1)",
 70,16,You're too strong for me Miss.,"(She smirks and catches her breath.)  Enough talks, get naked loser.","DialogChangeReputation(""Dominant"", -3)",
-80,,"I'm sorry, I didn't meant to annoy you.",It's too *tard* to apologize.  Now get out before I kick you out.,DialogRemove(),
+80,,"I'm sorry, I didn't mean to annoy you.",It's too *tard* to apologize.  Now get out before I kick you out.,DialogRemove(),
 80,98,I'll stay if I want.,(She swings her crop and gives you a menacing look.)  Are you sure you want to face me girl?,,CanFightSophie()
-80,99,(Walk out of the room.),"(She stares at you as you get out, and locks the door behind you.)",,
+80,99,(Walk out of the room.),(She stares at you as you get out and locks the door behind you.),,
 90,91,I'll stay if I want.,"I'm getting tired here.  Either you get out, or you're getting *punie*.",,
 90,91,I'm curious!  Why can't I stay?,Another word from your mouth and you're getting *punie*.  Now get out!,,
-90,99,(Walk out of the room.),"(She stares at you as you get out, and locks the door behind you.)",,
+90,99,(Walk out of the room.),(She stares at you as you get out and locks the door behind you.),,
 91,92,"Please, please, please!","That's enough!  Strip naked girl, you're getting *punie*.",,
 91,92,You cannot punish me!,"That's enough!  Strip naked girl, you're getting *punie*.",,
 91,98,You want to fight girl?,(She swings her crop and gives you a menacing look.)  Get ready for the *combat* of your life.,,CanFightSophie()
-91,99,(Walk out of the room.),"(She stares at you as you get out, and locks the door behind you.)",,
+91,99,(Walk out of the room.),(She stares at you as you get out and locks the door behind you.),,
 92,,That's unfair!,I will not repeat myself.  Get naked now!,DialogRemove(),
 92,50,Yes Miss.  (Strip naked.),(You strip for her as she smiles.)  *Bien*!  Now give me yours hands.,DialogNaked(Player),Player.CanInteract()
 92,50,Can you help me to strip Miss?,(She strips you down and smiles.)  *Bien*!  Now give me yours hands.,DialogNaked(Player),!Player.CanInteract()
 92,,Can we negotiate something?,It's too late for that.  You've got on my nerves.,DialogRemove(),
-92,98,If you touch me I'll punch you!,(She swings her crop and gives you a menacing look.)  You really want to challenge me girl?,,Player.CanInteract()
-92,99,(Run out of the room.),"(She laughs as you run out of the room, and locks the door behind you.)","DialogChangeReputation(""Dominant"", -2)",
+92,98,"If you touch me, I'll punch you!",(She swings her crop and gives you a menacing look.)  You really want to challenge me girl?,,Player.CanInteract()
+92,99,(Run out of the room.),(She laughs as you run out of the room and locks the door behind you.),"DialogChangeReputation(""Dominant"", -2)",
 98,,(Fight her.),,FightSophie(),
-98,99,(Run for your life.),"(She laughs as you run out of the room, and locks the door behind you.)","DialogChangeReputation(""Dominant"", -2)",
+98,99,(Run for your life.),(She laughs as you run out of the room and locks the door behind you.),"DialogChangeReputation(""Dominant"", -2)",
 99,,(Back to the club.),,KickPlayerOut(),
 100,101,It sounds too dramatic.,"(She frowns.)  No, listen!  The first step is to strip the slaves, to make sure they are humiliated.",UpsetSophie(1),SarahAndAmandaAreInside()
 100,101,What should I do?,"The first step is to strip the slaves, to make sure they are humiliated and aware or their situation.",,SarahAndAmandaAreInside()
-100,101,So it's both mental and physical?,"(She nods.)  *Absolument*.  The first step is to strip the slaves, to make sure they are humiliated.",,SarahAndAmandaAreInside()
+100,101,"So, it's both mental and physical?","(She nods.)  *Absolument*.  The first step is to strip the slaves, to make sure they are humiliated.",,SarahAndAmandaAreInside()
 100,101,It sounds too dramatic.,"(She frowns.)  *Non*!  The first step is to strip the slave, to make sure she's humiliated.",UpsetSophie(1),!SarahAndAmandaAreInside()
 100,101,What should I do?,"The first step is to strip the slave, to make sure she's humiliated and aware or her situation.",,!SarahAndAmandaAreInside()
-100,101,So it's both mental and physical?,"(She nods.)  *Absolument*.  The first step is to strip the slave, to make sure she's humiliated.",,!SarahAndAmandaAreInside()
-101,102,It sounds like a good plan.,"(She nods.)  Make sure that both of them are fully naked, without restrains.",,SarahAndAmandaAreInside()
-101,102,We really need to humilate them?,"Of course we do!  Now make sure that both of them are fully naked, without restrains.",UpsetSophie(1),SarahAndAmandaAreInside()
-101,102,I'll make them strip.,"That's the spirit!  Make sure that both of them are fully naked, without restrains.","DialogChangeReputation(""Dominant"", 2)",SarahAndAmandaAreInside()
+100,101,"So, it's both mental and physical?","(She nods.)  *Absolument*.  The first step is to strip the slave, to make sure she's humiliated.",,!SarahAndAmandaAreInside()
+101,102,It sounds like a good plan.,"(She nods.)  Make sure that both are fully naked, without restrains.",,SarahAndAmandaAreInside()
+101,102,We really need to humiliate them?,"Of course we do!  Now make sure that both are fully naked, without restrains.",UpsetSophie(1),SarahAndAmandaAreInside()
+101,102,I'll make them strip.,"That's the spirit!  Make sure that both are fully naked, without restrains.","DialogChangeReputation(""Dominant"", 2)",SarahAndAmandaAreInside()
 101,102,It sounds like a good plan.,"(She nods.)  Make sure she's fully naked, without restrains.",,!SarahAndAmandaAreInside()
-101,102,We really need to humilate her?,"Of course we do!  Now make sure she's fully naked, without restrains.",,!SarahAndAmandaAreInside()
+101,102,We really need to humiliate her?,"Of course we do!  Now make sure she's fully naked, without restrains.",,!SarahAndAmandaAreInside()
 101,102,I'll make her strip.,"That's the spirit!  Make sure she's fully naked, without restrains.",,!SarahAndAmandaAreInside()
 102,,,Are they both fully naked and without restrains?,,SarahAndAmandaAreInside()
 102,,,Is she fully naked and without restrains?,,!SarahAndAmandaAreInside()
 102,110,All set!,Excellent!  The next phase can begin.,GiveFirstSlaveItem(),SlaveNakedWithoutRestrains()
-102,102,I'll do it. (Leave her.),,DialogLeave(),
+102,,I'll do it. (Leave her.),,DialogLeave(),
 102,198,I don't think I can do it.,"You're not a Domme, why are you wasting my time?  I'll do the *punition* myself, you need to go.",,
-110,,TO DO,TO DO,,
+110,111,What should I do next?,We now need to use a few devices and tease them.,,SarahAndAmandaAreInside()
+110,111,Please tell me Miss.,We now need to use a few devices and tease them.,"DialogChangeReputation(""Dominant"", -1)",SarahAndAmandaAreInside()
+110,111,How many phases are there?,(She frowns.)  Be patient girl.  We now need to use a few devices and tease them.,UpsetSophie(1),SarahAndAmandaAreInside()
+110,111,What should I do next?,We now need to use a few devices and tease her.,,!SarahAndAmandaAreInside()
+110,111,Please tell me Miss.,We now need to use a few devices and tease her.,"DialogChangeReputation(""Dominant"", -1)",!SarahAndAmandaAreInside()
+110,111,How many phases are there?,(She frowns.)  Be patient girl.  We now need to use a few devices and tease her.,UpsetSophie(1),!SarahAndAmandaAreInside()
+111,112,What devices?,"Check in my bag, there are nipple clamps, *vibrateur* eggs and butt plugs for them.",,SarahAndAmandaAreInside()
+111,112,Oh yeah!,"(She nods.)  Check in my bag, there are nipple clamps, *vibrateur* eggs and butt plugs for them.",,SarahAndAmandaAreInside()
+111,112,What devices?,"Check in my bag, there are nipple clamps, a *vibrateur* egg and a butt plug for her.",,!SarahAndAmandaAreInside()
+111,112,Oh yeah!,"(She nods.)  Check in my bag, there are nipple clamps, a *vibrateur* egg and a butt plug for her.",,!SarahAndAmandaAreInside()
+112,,,"Are they both wearing nipples clamps, *vibrateur* eggs and butt plugs?",,SarahAndAmandaAreInside()
+112,,,"Is she wearing nipples clamps, a *vibrateur* egg and a butt plug?",,!SarahAndAmandaAreInside()
+112,120,The devices are in place.,"Very good, the *punition* can continue.",GiveSecondSlaveItem(),SlaveWithClampEggPlug()
+112,,I'll do it. (Leave her.),,DialogLeave(),
+112,198,I don't think I can do it.,"You're not a Domme, why are you wasting my time?  I'll do the *punition* myself, you need to go.",,
+120,121,What's next?,Now you'll use chastity devices to lock these items in place.,,
+120,121,Should we lock these devices?,We think alike.  (She smirks.)  Now you'll use chastity devices to lock these items in place.,"DialogChangeReputation(""Dominant"", 2)",
+120,121,Isn't that enough?,(She shakes her head no.)  Now you'll use chastity devices to lock these items in place.,UpsetSophie(1),
+121,,,Are they both locked in chastity belts and bras?,,SarahAndAmandaAreInside()
+121,,,Is she locked in a chastity belt and bra?,,!SarahAndAmandaAreInside()
+121,130,The chastity items are locked.,"Excellent, it's time to restrain them.",GiveThirdSlaveItem(),SlaveChaste()
+121,,I'll do it. (Leave her.),,DialogLeave(),
+121,198,I don't think I can do it.,"You're not a Domme, why are you wasting my time?  I'll do the *punition* myself, you need to go.",,
+130,131,Restrain them how?,Use the leather cuffs from my bag and lock them on their arms.  Make sure to attach them behind their back.,,SarahAndAmandaAreInside()
+130,131,That's great!,(She grins.)  Use the leather cuffs from my bag and lock them on their arms.  Make sure to attach them behind their back.,,SarahAndAmandaAreInside()
+130,131,Restrain her how?,Use the leather cuffs from my bag and lock them on her arms.  Make sure to attach them behind her back.,,!SarahAndAmandaAreInside()
+130,131,That's great!,(She grins.)  Use the leather cuffs from my bag and lock them on her arms.  Make sure to attach them behind her back.,,!SarahAndAmandaAreInside()
+131,,,Have you locked the leather cuffs and attached them behind their backs?,,SarahAndAmandaAreInside()
+131,,,Have you locked the leather cuffs and attached them behind her back?,,!SarahAndAmandaAreInside()
+131,140,The cuffs are locked and attached.,"Fantastic, the real *plaisir* can begin.",GiveFourthSlaveItem(),SlaveLockedCuffs()
+131,,I'll do it. (Leave her.),,DialogLeave(),
+131,198,I don't think I can do it.,"You're not a Domme, why are you wasting my time?  I'll do the *punition* myself, you need to go.",,
+140,141,Finally!,"Patience DialogPlayerName.  (She gives you an angry look.)  Yes, it's time to make them climax.",UpsetSophie(1),SarahAndAmandaAreInside()
+140,141,I like the sound of that.,"Yes, it's time to make them climax.",,SarahAndAmandaAreInside()
+140,141,Finally!,"Patience DialogPlayerName.  (She gives you an angry look.)  Yes, it's time to make her climax.",UpsetSophie(1),!SarahAndAmandaAreInside()
+140,141,I like the sound of that.,"Yes, it's time to make her climax.",,!SarahAndAmandaAreInside()
+141,142,What's the best method?,"This is where you need to get creative.  Use the *vibrateur* remote from my bag, my crop, my whip or anything else you see fit.  Make them cum!",,SarahAndAmandaAreInside()
+141,142,But they are chaste.,"You sound kind of clueless.  Use the *vibrateur* remote from my bag, my crop, my whip or anything else you see fit.  Make them cum!","DialogChangeReputation(""Dominant"", -1)",SarahAndAmandaAreInside()
+141,142,We could use the eggs.,"Of course.  (She grins.)  Use the *vibrateur* remote from my bag, my crop, my whip or anything else you see fit.  Make them cum!","DialogChangeReputation(""Dominant"", 1)",SarahAndAmandaAreInside()
+141,142,What's the best method?,"This is where you need to get creative.  Use the *vibrateur* remote from my bag, my crop, my whip or anything else you see fit.  Make her cum!",,!SarahAndAmandaAreInside()
+141,142,But she's chaste.,"You sound kind of clueless.  Use the *vibrateur* remote from my bag, my crop, my whip or anything else you see fit.  Make her cum!","DialogChangeReputation(""Dominant"", -1)",!SarahAndAmandaAreInside()
+141,142,We could use the egg.,"Of course.  (She grins.)  Use the *vibrateur* remote from my bag, my crop, my whip or anything else you see fit.  Make her cum!","DialogChangeReputation(""Dominant"", 1)",!SarahAndAmandaAreInside()
+142,,,"Did they both had an orgasm?  You can use the *vibrateur* remote from my bag, my crop, my whip or anything else you see fit.",,SarahAndAmandaAreInside()
+142,,,"Did she get her orgasm?  You can use the *vibrateur* remote from my bag, my crop, my whip or anything else you see fit.",,!SarahAndAmandaAreInside()
+142,150,Heaven was reached.,"This is great, now it's time for me to have fun.  (She grabs her crop.)",SlaveReset(),SlaveOrgasm()
+142,,I'll do it. (Leave her.),,DialogLeave(),
+142,198,I don't think I can do it.,"You're not a Domme, why are you wasting my time?  I'll do the *punition* myself, you need to go.",,
+150,151,Whip them good.,"(She nods at you, grabs her crop and starts to hit both girls mercilessly, enjoying each lash.)","DialogChangeReputation(""Dominant"", 1)",SarahAndAmandaAreInside()
+150,151,Careful with that crop.,"(She frowns and you, grabs her crop and starts to hit both girls mercilessly, enjoying each lash.)",UpsetSophie(1),SarahAndAmandaAreInside()
+150,151,(Let her have fun.),"(She grabs her crop and starts to hit both girls mercilessly, enjoying each lash.)",,SarahAndAmandaAreInside()
+150,151,Whip her good.,"(She nods at you, grabs her crop and starts to hit her mercilessly, enjoying each lash.)","DialogChangeReputation(""Dominant"", 1)",!SarahAndAmandaAreInside()
+150,151,Careful with that crop.,"(She frowns and you, grabs her crop and starts to hit her mercilessly, enjoying each lash.)",UpsetSophie(1),!SarahAndAmandaAreInside()
+150,151,(Let her have fun.),"(She grabs her crop and starts to hit her mercilessly, enjoying each lash.)",,!SarahAndAmandaAreInside()
+151,,(Look at Amanda.),"(Amanda gets whipped pretty bad by Mistress Sophie, she seems in a lot of pain and beg her to stop.)",DialogRemove(),AmandaIsInside()
+151,,(Look at Sarah.),"(Sarah gets whipped mercilessly by Mistress Sophie, she jumps and cry from the pain but still asks for more.)",DialogRemove(),SarahIsInside()
+151,152,(Enjoy the show.),"(You watch a severe beating scene.  Mistress Sophie seems to enjoy it a lot, before stopping promptly.)  That's enough!","DialogChangeReputation(""Dominant"", 2)",
+151,152,(Look away.),"(You look away but can hear the whipping sound and the cries for a while, then everything stops.)  That's enough!","DialogChangeReputation(""Dominant"", -2)",
+152,287,Enough Mistress Sophie?,"*Oui*!  (She puts her stuff back in the bag.)  I need to go, but you can continue to punish them DialogPlayerName.",,SarahAndAmandaAreInside()
+152,287,(Nod slowly.),"(She puts her stuff back in the bag.)  I need to go, but you can continue to punish them DialogPlayerName.",,SarahAndAmandaAreInside()
+152,287,Enough Mistress Sophie?,"*Oui*!  (She puts her stuff back in the bag.)  I need to go, but you can continue to punish her DialogPlayerName.",,!SarahAndAmandaAreInside()
+152,287,(Nod slowly.),"(She puts her stuff back in the bag.)  I need to go, but you can continue to punish her DialogPlayerName.",,!SarahAndAmandaAreInside()
 198,199,"I'm sorry, I'll go.",You know where the door is.  (She points at the door.),"DialogChangeReputation(""Dominant"", -1)",
 198,199,"Fine, you can have them.","I will, now get out.  (She points at the door.)","DialogChangeReputation(""Dominant"", 1)",
 198,199,"But!  But, but, but...","You're *pathetique*, get out of my sight.  (She points at the door.)","DialogChangeReputation(""Dominant"", -3)",
@@ -177,11 +238,11 @@ SophieOrgasmGameDefeat,,,"(You cannot control yourself, and surrender to the ple
 200,220,Yes Mistress Sophie.,Good girl.  (She smiles and locks a metal chastity bra on your breast.),"SophiePunishEvent(""ChastityBra"", 2)",SophiePunishmentStageIs(3)
 200,201,(Nod happily.),(She locks your friend breast under heavy steel and laughs.),"SophiePunishEvent(""ChastityBraOther"", 0)",SophiePunishmentStageIs(4)
 200,201,(Sigh and bow your head.),(She locks your friend breast under heavy steel and laughs.),"SophiePunishEvent(""ChastityBraOther"", -1)",SophiePunishmentStageIs(4)
-200,230,I guess so Miss.,"*Bien*!  (She forces a butt plug inside your ass, and puts a non-vibrating egg in your vagina.)  Do you enjoy that?","SophiePunishEvent(""EggAndPlug"", 0)",SophiePunishmentStageIs(5)
-200,230,(Whimper silently.),"(She smirks and forces a butt plug inside your ass, and puts a non-vibrating egg in your vagina.)  Do you enjoy that?","SophiePunishEvent(""EggAndPlug"", -2)",SophiePunishmentStageIs(5)
-200,230,Oh no!  Common!,"(She grumbles and forces a butt plug inside your ass, and puts a non-vibrating egg in your vagina.)  Do you enjoy that?","SophiePunishEvent(""EggAndPlug"", 2)",SophiePunishmentStageIs(5)
-200,230,(Look down and stay silent.),"(She smiles and forces a butt plug inside your ass, and puts a non-vibrating egg in your vagina.)  Do you enjoy that?","SophiePunishEvent(""EggAndPlug"", -1)",SophiePunishmentStageIs(5)
-200,201,(Look a the show.),(She gets more intrusive items and use them in the same fashion as she did on you.)  Such a kinky slave *groupe*.,"SophiePunishEvent(""EggAndPlugOther"", 0)",SophiePunishmentStageIs(6)
+200,230,I guess so Miss.,*Bien*!  (She forces a butt plug inside your ass and puts a non-vibrating egg in your vagina.)  Do you enjoy that?,"SophiePunishEvent(""EggAndPlug"", 0)",SophiePunishmentStageIs(5)
+200,230,(Whimper silently.),(She smirks and forces a butt plug inside your ass and puts a non-vibrating egg in your vagina.)  Do you enjoy that?,"SophiePunishEvent(""EggAndPlug"", -2)",SophiePunishmentStageIs(5)
+200,230,Oh no!  Common!,(She grumbles and forces a butt plug inside your ass and puts a non-vibrating egg in your vagina.)  Do you enjoy that?,"SophiePunishEvent(""EggAndPlug"", 2)",SophiePunishmentStageIs(5)
+200,230,(Look down and stay silent.),(She smiles and forces a butt plug inside your ass and puts a non-vibrating egg in your vagina.)  Do you enjoy that?,"SophiePunishEvent(""EggAndPlug"", -1)",SophiePunishmentStageIs(5)
+200,201,(Look at the show.),(She gets more intrusive items and use them in the same fashion as she did on you.)  Such a kinky slave *groupe*.,"SophiePunishEvent(""EggAndPlugOther"", 0)",SophiePunishmentStageIs(6)
 200,201,(Look away.),(You look away but can hear the screams and moans.)  Such a kinky slave *groupe*.,"SophiePunishEvent(""EggAndPlugOther"", 0)",SophiePunishmentStageIs(6)
 200,240,A chastity belt?,"You're *correcte*.  (She locks a chastity belt around your waist, making sure you won't be able to reach inside.)","SophiePunishEvent(""ChastityBelt"", 0)",SophiePunishmentStageIs(7)
 200,240,It's easy to guess.,"(She angrily locks a chastity belt around your waist, making sure you won't be able to reach inside.)","SophiePunishEvent(""ChastityBelt"", 1)",SophiePunishmentStageIs(7)
@@ -201,13 +262,13 @@ SophieOrgasmGameDefeat,,,"(You cannot control yourself, and surrender to the ple
 220,201,This is too much.,,SophieSetPunishmentIntro(1),
 220,201,(Adjust to the cold steel bra.),,SophieSetPunishmentIntro(0),
 230,201,Wow!  This is quite a plug.,,SophieSetPunishmentIntro(0),
-230,201,"Damn, It hurts.",,SophieSetPunishmentIntro(1),
+230,201,Damn!  It hurts.,,SophieSetPunishmentIntro(1),
 230,201,It feels great Miss.,,SophieSetPunishmentIntro(-1),
 240,201,I'm under control Miss.,,SophieSetPunishmentIntro(0),
 240,201,(Shake your hips.),,SophieSetPunishmentIntro(0),
-250,260,Oh my god!  Miss!,It's fun isn't it?  Now the game can begin.,,
-250,260,(Moan slowly.),It's fun isn't it?  Now the game can begin.,,
-250,260,(Make pleading eyes.),It's fun isn't it?  Now the game can begin.,,
+250,260,Oh my god!  Miss!,Its fun isn't it?  Now the game can begin.,,
+250,260,(Moan slowly.),Its fun isn't it?  Now the game can begin.,,
+250,260,(Make pleading eyes.),Its fun isn't it?  Now the game can begin.,,
 260,261,A game?  What game?,"A game to test everyone's endurance, and willpower.",,SarahOrAmandaAreInside()
 260,261,(Roll your eyes up.),"A game to test everyone's endurance, and willpower.","SophiePunishEvent("""", 1)",SarahOrAmandaAreInside()
 260,262,A game?  What game?,"A game to test your endurance, and your willpower.  (She yells.)  Maid!  Bring me two slaves!",,!SarahOrAmandaAreInside()
@@ -225,19 +286,19 @@ SophieOrgasmGameDefeat,,,"(You cannot control yourself, and surrender to the ple
 271,,What if I lose?,You will face my little crop right here.  (She swings her crop in the air.),DialogRemove(),
 271,272,I'm ready Miss!,(She produces a devious smile and slowly rise the speed of all vibrating eggs.),,
 271,272,"Ok, let's try this game.",(She produces a devious smile and slowly rise the speed of all vibrating eggs.),,
-272,,(Stand strong.),"(You stand strong, trying to defy the egg and it's lovely massage.  It's hard to resist but it seems to work.)",SophieOrgasmGame(1),
+272,,(Stand strong.),"(You stand strong, trying to defy the egg and its lovely massage.  It's hard to resist but it seems to work.)",SophieOrgasmGame(1),
 272,,(Try to think of something else.),"(You look away and try to think about something else, but Mistress Sophie plays with the speed and makes it a little harder to lose focus.)",SophieOrgasmGame(2),
 272,,(Bite your lips.),(You bite your lips as the pleasure rises inside of you.  Mistress Sophie notices and plays with the vibration speed.),SophieOrgasmGame(3),
 272,,(Moan slowly.),(You moan slowly from the egg pleasure.  Slowly losing control of your body and getting closer to an orgasm.),SophieOrgasmGame(4),
 272,,(Moan loudly.),(You moan loudly and quickly in front of everyone.  Losing all controls and crowd awareness.  Getting really close to an orgasm.),SophieOrgasmGame(5),
 272,,(Surrender to the pleasure.),,SophieOrgasmGame(100),
 280,281,Wow!  I've made it?,"You did girl.  You've won the game and my respect, *bravo*!  Would you like that orgasm now?",,
-280,281,That was easy!,"Slave, don't be too *arrogante*.  Yes, you did won the game.  Would you like that orgasm now?","SophiePunishEvent("""", 1)",
-280,281,(Moan and tremble.),"(She caresses you hair.)  You've won the game and my respect little girl, *bravo*!  Would you like that orgasm now?","SophiePunishEvent("""", -1)",
+280,281,That was easy!,"Slave, don't be too *arrogante*.  Yes, you did win the game.  Would you like that orgasm now?","SophiePunishEvent("""", 1)",
+280,281,(Moan and tremble.),"(She caresses your hair.)  You've won the game and my respect little girl, *bravo*!  Would you like that orgasm now?","SophiePunishEvent("""", -1)",
 281,282,Oh yes Mistress Sophie.,"I rarely do favors for *soumises*, but I kind of like you.  (She puts the egg to maximum speed, making you climax rapidly.)",,SophieLikesPlayer()
 281,282,(Whimper and beg for it.),"I rarely do favors for *soumises*, but I kind of like you.  (She puts the egg to maximum speed, making you climax rapidly.)",,SophieLikesPlayer()
-281,283,Oh yes Mistress Sophie.,"Well you're not getting it, you've gotten on my nerves today.  (She turns off the vibrating egg and gets her crop.)",,!SophieLikesPlayer()
-281,283,(Whimper and beg for it.),"Well you're not getting it, you've gotten on my nerves today.  (She turns off the vibrating egg and gets her crop.)",,!SophieLikesPlayer()
+281,283,Oh yes Mistress Sophie.,Well you're not getting it.  You've gotten on my nerves today.  (She turns off the vibrating egg and gets her crop.),,!SophieLikesPlayer()
+281,283,(Whimper and beg for it.),Well you're not getting it.  You've gotten on my nerves today.  (She turns off the vibrating egg and gets her crop.),,!SophieLikesPlayer()
 281,283,I'm fine Miss.,You're a surprising submissive.  (She turns off the vibrating egg and gets her crop.),,
 281,283,(Shake your head no.),You're a surprising submissive.  (She turns off the vibrating egg and gets her crop.),,
 282,283,That was wonderful Miss.,I'm glad you enjoyed.  (She puts away the remote and gets her leather crop.),,
@@ -247,9 +308,9 @@ SophieOrgasmGameDefeat,,,"(You cannot control yourself, and surrender to the ple
 283,284,I'm glad I've won.,Be very glad girl.  (She turns away and gives a severe beating to the loser.),,
 283,284,(Give a scared look.),(She grins and turns away to give a severe beating to the loser.),,
 284,,(Look at Amanda.),"(Amanda gets whipped pretty bad by Mistress Sophie, she seems in a lot of pain and beg her to stop.)",DialogRemove(),AmandaIsInside()
-284,,(Look at Sarah.),"(Sarah gets whipped mercilesly by Mistress Sophie, she jumps and cry from the next but still asks for more.)",DialogRemove(),SarahIsInside()
+284,,(Look at Sarah.),"(Sarah gets whipped mercilessly by Mistress Sophie, she jumps and cry from the pain but still asks for more.)",DialogRemove(),SarahIsInside()
 284,285,(Enjoy the show.),"(You watch a severe beating scene.  Mistress Sophie seems to enjoy it a lot, before stopping promptly.)  That's enough!",,
-284,285,(Look away.),"(You look away, but can hear the whipping sound and the cries for a while, then everything stops.)  That's enough!",,
+284,285,(Look away.),"(You look away but can hear the whipping sound and the cries for a while, then everything stops.)  That's enough!",,
 285,286,Enough Mistress Sophie?,"*Oui*!  (She removes all the restrains expect for Sarah's.)  Sarah, to end your punishment, find a way out.",SophireReleaseEveryoneButSarah(),SarahIsInside()
 285,286,(Nod slowly.),"*Oui*!  (She removes all the restrains expect for Sarah's.)  Sarah, to end your punishment, find a way out.",SophireReleaseEveryoneButSarah(),SarahIsInside()
 285,286,Enough Mistress Sophie?,*Oui*!  (She removes the restrains from everyone.),SophireReleaseEveryoneButSarah(),!SarahIsInside()
@@ -257,23 +318,23 @@ SophieOrgasmGameDefeat,,,"(You cannot control yourself, and surrender to the ple
 286,287,Are we free Miss?,You're free as a bird little *esclave*.  I have other appointments today.,,
 286,287,The punishment is over?,"It is, little *esclave*.  I have other appointments today.",,
 286,287,That was intense.,"It will be worse next time, little *esclave*.  But I have other appointments today.",,
-287,288,Would you like to visit me later?,"(She ponders.)  I usualy don't accept these kinds of requests but I kind of like you.  Yes, I will *visite* your room later.",,CanInviteSophieToRoomAccept()
+287,288,Would you like to visit me later?,"(She ponders.)  I usually don't accept these kinds of requests, but I like you.  I will *visite* your room later, keep the cuffs.",,CanInviteSophieToRoomAccept()
 287,,Would you like to visit me later?,"(She shakes her head from left to right.)  I cannot *accepte*, I'm a busy woman you know.",DialogRemove(),CanInviteSophieToRoomRefuse()
 287,,Take care Miss!,,SophieLeaveRoom(),
 287,,Thanks for your time.,,SophieLeaveRoom(),
 287,,(Wave bye bye.),,SophieLeaveRoom(),
-288,,See you later Miss.,,TransferSophieToRoom(25),
+288,,Thanks!  See you later.,,TransferSophieToRoom(25),
 290,291,"I'm sorry, I couldn't control it.",(She stops everyone vibrator.)  You have much to learn on self-control girl.,"SophiePunishEvent("""", -2)",
 290,291,It was too hard!,(She stops everyone vibrator.)  You're *faible*.  I don't care for excuses.,"SophiePunishEvent("""", 1)",
 290,291,(Moan and tremble.),(She stops everyone vibrator.)  You have much to learn on self-control girl.,"SophiePunishEvent("""", -1)",
 291,,(Look at Amanda.),"(Amanda seems proud of having won the game, but she stays humble about it.)",DialogRemove(),AmandaIsInside()
-291,,(Look at Sarah.),(Sarah is strill trembling and moaning very fast.  She hasn't recovered from the experiment.),DialogRemove(),SarahIsInside()
+291,,(Look at Sarah.),(Sarah is still trembling and moaning very fast.  She hasn't recovered from the experiment.),DialogRemove(),SarahIsInside()
 291,292,I'll do better next time.,(She whips you with her crop.)  This should motivate you.  (She raises her crop again.),"DialogChangeReputation(""Dominant"", 1)",
 291,292,(Nod slowly.),(She whips you with her crop.)  You'll remember this *punition*.  (She raises her crop again.),"DialogChangeReputation(""Dominant"", -1)",
 292,293,Ow!  It hurts!,"(She whips you with the crop twice.)  Do you enjoy being in pain, little *esclave*?",,
 292,293,(Close your eyes.),"(She whips you with the crop twice.)  Do you enjoy being in pain, little *esclave*?",,
 292,293,(Endure the pain.),"(She whips you with the crop twice.)  Do you enjoy being in pain, little *esclave*?",,
-293,285,Yes Miss.,"(She whips you again and again, enjoying each lashes.  The winner is spared.)  That's enough!","DialogChangeReputation(""Dominant"", -2)",
-293,285,(Nod in shame.),"(She whips you again and again, enjoying each lashes.  The winner is spared.)  That's enough!","DialogChangeReputation(""Dominant"", -4)",
-293,285,"No Miss, I don't.","(She whips you again and again, enjoying each lashes.  The winner is spared.)  That's enough!","DialogChangeReputation(""Dominant"", 1)",
-293,285,(Shake your head no.),"(She whips you again and again, enjoying each lashes.  The winner is spared.)  That's enough!",,
+293,285,Yes Miss.,"(She whips you again and again, enjoying each lash.  The winner is spared.)  That's enough!","DialogChangeReputation(""Dominant"", -2)",
+293,285,(Nod in shame.),"(She whips you again and again, enjoying each lash.  The winner is spared.)  That's enough!","DialogChangeReputation(""Dominant"", -4)",
+293,285,"No Miss, I don't.","(She whips you again and again, enjoying each lash.  The winner is spared.)  That's enough!","DialogChangeReputation(""Dominant"", 1)",
+293,285,(Shake your head no.),"(She whips you again and again, enjoying each lash.  The winner is spared.)  That's enough!",,
