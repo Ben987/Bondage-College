@@ -25,7 +25,7 @@ function InventoryItemVulvaVibratingEggClick() {
 	if ((MouseX >= 1550) && (MouseX <= 1800) && (MouseY >= 700) && (MouseY <= 765) && (DialogFocusItem.Property.Intensity < 3)) InventoryItemVulvaVibratingEggSetIntensity(1);
 }
 
-// Sets the pump gag level
+// Sets the vibrating egg intensity
 function InventoryItemVulvaVibratingEggSetIntensity(Modifier) {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	DialogFocusItem.Property.Intensity = DialogFocusItem.Property.Intensity + Modifier;

@@ -25,7 +25,7 @@ function InventoryItemNipplesVibeNippleClampClick() {
 	if ((MouseX >= 1550) && (MouseX <= 1800) && (MouseY >= 700) && (MouseY <= 765) && (DialogFocusItem.Property.Intensity < 3)) InventoryItemNipplesVibeNippleClampSetIntensity(1);
 }
 
-// Sets the pump gag level
+// Sets the vibrating clamps intensity
 function InventoryItemNipplesVibeNippleClampSetIntensity(Modifier) {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	DialogFocusItem.Property.Intensity = DialogFocusItem.Property.Intensity + Modifier;

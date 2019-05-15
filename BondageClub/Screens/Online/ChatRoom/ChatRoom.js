@@ -253,8 +253,15 @@ function ChatRoomResponse(data) {
 
 // When the server sends a chat message
 function ChatRoomMessage(data) {
-	if ((data != null) && (typeof data === "string") && (data != "")) {
-		ChatRoomLog = ChatRoomLog + data + '\r\n';
+	
+	// The message can come as a string or an object
+	var msg = "";
+	if ((data != null) && (typeof data === "string") && (data != "")) msg = data;
+	if ((data != null) && (typeof data === "object") && (data.Content != null) && (typeof data.Content === "string") && (data.Content != "")) msg = data;
+
+	// If we have a message to add
+	if (msg != "") {
+		ChatRoomLog = ChatRoomLog + msg + '\r\n';
 		if (document.getElementById("TextAreaChatLog") != null) {
 			ElementValue("TextAreaChatLog", ChatRoomLog);
 			ElementScrollToEnd("TextAreaChatLog");

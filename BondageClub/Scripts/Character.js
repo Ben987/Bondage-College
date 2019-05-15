@@ -46,7 +46,8 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsOwnedByPlayer : function() { return (((this.Owner != null) && (this.Owner.trim() == Player.Name)) || (NPCEventGet(this, "EndDomTrial") > 0)) },
 		IsOwner : function() { return ((NPCEventGet(this, "EndSubTrial") > 0) || (this.Name == Player.Owner.replace("NPC-", ""))) },
 		IsKneeling: function () { return ((this.Pose != null) && (this.Pose.indexOf("Kneel") >= 0)) },
-		IsNaked : function () { return CharacterIsNaked(this); }
+		IsNaked : function () { return CharacterIsNaked(this); },
+		HasNoItem : function () { return CharacterHasNoItem(this); }
 	}
 
 	// If the character doesn't exist, we create it
@@ -373,6 +374,14 @@ function CharacterRefresh(C, Push) {
 	CharacterLoadPose(C);	
 	CharacterLoadCanvas(C);
 	if ((CurrentModule != "Character") && (C.ID == 0) && ((Push == null) || (Push == true))) ServerPlayerAppearanceSync();
+}
+
+// Returns TRUE if a character has no item
+function CharacterHasNoItem(C) {
+	for(var A = 0; A < C.Appearance.length; A++)
+		if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Category == "Item"))
+			return false;
+	return true;
 }
 
 // Returns TRUE if a character is naked

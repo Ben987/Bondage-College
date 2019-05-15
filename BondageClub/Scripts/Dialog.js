@@ -34,6 +34,7 @@ function DialogIsOwner() { return (CurrentCharacter.Name == Player.Owner.replace
 function DialogIsProperty() { return (CurrentCharacter.Owner == Player.Name) }
 function DialogIsRestrained(C) { return ((C.toUpperCase().trim() == "PLAYER") ? Player.IsRestrained() : CurrentCharacter.IsRestrained()) }
 function DialogIsBlind(C) { return ((C.toUpperCase().trim() == "PLAYER") ? Player.IsBlind() : CurrentCharacter.IsBlind()) }
+function DialogIsEgged(C) { return ((C.toUpperCase().trim() == "PLAYER") ? Player.IsEgged() : CurrentCharacter.IsEgged()) }
 function DialogCanInteract(C) { return ((C.toUpperCase().trim() == "PLAYER") ? Player.CanInteract() : CurrentCharacter.CanInteract()) }
 function DialogSetPose(C, NewPose) { CharacterSetActivePose((C.toUpperCase().trim() == "PLAYER") ? Player : CurrentCharacter, ((NewPose != null) && (NewPose != "")) ? NewPose : null); }
 function DialogSkillGreater(SkillType, Value) { return (parseInt(SkillGetLevel(Player, SkillType)) >= parseInt(Value)); } // Returns TRUE if a specific reputation type is less or equal than a given value
@@ -344,10 +345,13 @@ function DialogClick() {
 
 											// The shock triggers can trigger items that can shock the wearer
 											if (DialogInventory && (DialogInventory[I].Asset.Effect.indexOf("TriggerShock") >= 0) && (InventoryGet(C, C.FocusGroup.Name)) && (InventoryGet(C, C.FocusGroup.Name).Asset.Effect.indexOf("ReceiveShock") >= 0)) {
-												if (CurrentScreen == "ChatRoom")
-													ChatRoomPublishCustomAction((DialogFind(Player, InventoryGet(C, C.FocusGroup.Name).Asset.Name + "Trigger" + InventoryGet(C, C.FocusGroup.Name).Property.Intensity)).replace("DestinationCharacter",C.Name), true);
+												if (CurrentScreen == "ChatRoom") {
+													var intensity = InventoryGet(C, C.FocusGroup.Name).Property ? InventoryGet(C, C.FocusGroup.Name).Property.Intensity : 0;
+													ChatRoomPublishCustomAction((DialogFind(Player, InventoryGet(C, C.FocusGroup.Name).Asset.Name + "Trigger" + intensity)).replace("DestinationCharacter",C.Name), true);
+												}
 												else {
-													var D = (DialogFind(Player, InventoryGet(C, C.FocusGroup.Name).Asset.Name + "Trigger" + InventoryGet(C, C.FocusGroup.Name).Property.Intensity)).replace("DestinationCharacter",C.Name);
+													var intensity = InventoryGet(C, C.FocusGroup.Name).Property ? InventoryGet(C, C.FocusGroup.Name).Property.Intensity : 0;
+													var D = (DialogFind(Player, InventoryGet(C, C.FocusGroup.Name).Asset.Name + "Trigger" + intensity)).replace("DestinationCharacter",C.Name);
 													if (D != "") {
 														C.CurrentDialog = "(" + D +")";
 														DialogLeaveItemMenu();
