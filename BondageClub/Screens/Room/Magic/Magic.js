@@ -50,8 +50,12 @@ function MagicLoad() {
 	if (MagicPerformer == null) {
 		MagicPerformer = CharacterLoadNPC("NPC_Magic_Performer");
 		MagicAssistant = CharacterLoadNPC("NPC_Magic_Assistant");
-		CharacterRandomUnderwear(MagicAssistant);
+		CharacterNaked(MagicAssistant);
 		InventoryWear(MagicAssistant, "BunnyEars1", "Hat");
+		InventoryWear(MagicAssistant, "Corset2", "Bra");
+		InventoryWear(MagicAssistant, "Panties15", "Panties");
+		InventoryWear(MagicAssistant, "Stockings4", "Socks");
+		InventoryWear(MagicAssistant, "Heels2", "Shoes");
 		MagicPerformerAppearance = MagicPerformer.Appearance.slice();
 		MagicAssistantAppearance = MagicAssistant.Appearance.slice();
 		MagicPlayerAppearance = Player.Appearance.slice();
@@ -102,8 +106,13 @@ function MagicTrickChangeDressesBack(){
 }
 
 function MagicAssistantDress(){
+	CharacterNaked(MagicAssistant);
 	CharacterUnderwear(MagicAssistant, MagicPlayerAppearance);
 	InventoryWear(MagicAssistant, "BunnyEars1", "Hat");
+	InventoryWear(MagicAssistant, "Corset2", "Bra");
+	InventoryWear(MagicAssistant, "Panties15", "Panties");
+	InventoryWear(MagicAssistant, "Stockings4", "Socks");
+	InventoryWear(MagicAssistant, "Heels2", "Shoes");
 	MagicShowState = 3;
 }
 
