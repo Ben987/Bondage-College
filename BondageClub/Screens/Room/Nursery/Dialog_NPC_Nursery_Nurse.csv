@@ -67,7 +67,7 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 18,,Is there an issue with the rest of the club?,"Not really, but don't expect people to take you seriously while you are wearing a diaper or an adorable baby dress.",,
 18,0,Actually I don't want to join now.,I am sorry to hear that.  Do let me know if your mind.,,
 20,60,Yes here it is. (Pay $10.),Thank you.  Now let’s get you changed.  (She takes you to one side and swiftly removes all your clothes.),PlayerUndress(),DialogMoneyGreater(10)
-20,100,I am already diapered and ready to enter.,"(She checks you over and feels your diaper.)  Okay, you are nice and clean.  Welcome back to the nursery.",,PlayerReadyDiapered()
+20,100,I am already diapered and ready to enter.,"(She checks you over and feels your diaper.)  Okay, you are nice and clean.  Welcome back to the nursery.",PlayerAdmitted(),PlayerReadyDiapered()
 20,0,I don't have enough money.,"Sorry to hear that, but we can't run this place for free. Do come back later once you have earned some more.",,!DialogMoneyGreater(10)
 20,,Could I provide my own diapers and outfit?,Yes you can come in wearing your own Diapers. But they must be clean and you can't wear clothes that prevent us from easily checking them.,,
 20,0,I'm not paying for this.,"That is a shame, but we can't run this place for free.  If you change your mind we are always very welcoming.",,

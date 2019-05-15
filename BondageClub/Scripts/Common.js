@@ -46,6 +46,22 @@ function CommonDetectMobile() {
     return false;
 }
 
+// Gets the current browser name and version
+function CommonGetBrowser() {
+    var ua=navigator.userAgent,tem,M=ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+    if (/trident/i.test(M[1])) {
+        tem=/\brv[ :]+(\d+)/g.exec(ua) || [];
+        return {Name:"IE", Version:(tem[1]||"N/A")};
+    }
+    if (M[1]==='Chrome') {
+        tem=ua.match(/\bOPR|Edge\/(\d+)/);
+        if (tem != null) return {Name:"Opera", Version:tem[1]||"N/A"};
+    }
+    M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
+    if ((tem=ua.match(/version\/(\d+)/i))!=null) M.splice(1,1,tem[1]);
+    return {Name: M[0] || "N/A", Version: M[1] || "N/A"};
+}
+
 // Parse a CSV file
 function CommonParseCSV(str) {
 		

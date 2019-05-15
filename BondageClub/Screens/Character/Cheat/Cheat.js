@@ -6,25 +6,43 @@ var CheatBonusList = ["DoubleMoney", "DoubleSkill"];
 var CheatBonusFactor = 2;
 var CheatBonusTime = 1552967946711;
 var CheatActivated = [];
+var CheatBrowserName = "";
+var CheatBrowserVersion = "";
+var CheatBrowserTime = 0;
+
+// Checks if the cheats are valid
+function CheatValidate() {
+	var BI = CommonGetBrowser();
+	var Time = CommonTime();
+	CheatAllow = (CheatAllow && (BI.Name == CheatBrowserName) && (BI.Version == CheatBrowserVersion) && (Time >= CheatBrowserTime) && (Time <= CheatBrowserTime + 864000000));
+}
 
 // Returns TRUE if the cheat is currently active
 function CheatActive(CheatName) {
+	CheatValidate();
 	return (CheatAllow && (CheatActivated.indexOf(CheatName) >= 0));
 }
 
 // Returns the factor if the cheat is activated (also multiply the bonus factor if it's active)
 function CheatFactor(CheatName, Factor) {
+	CheatValidate();
 	Factor = (CheatAllow && (CheatActivated.indexOf(CheatName) >= 0)) ? Factor : 1;
 	if ((CheatBonusTime >= CurrentTime) && (CheatBonusList.indexOf(CheatName) >= 0)) Factor = Factor * CheatBonusFactor;
 	return Factor;
 }
 
-// Imports the cheats from the local storage
+// Imports the cheats from the local storage (only works before the game is loaded)
 function CheatImport() {
-	CheatAllow = true;
-	for(var C = 0; C < CheatList.length; C++) {
-		var AC = localStorage.getItem("BondageClubCheat" + CheatList[C]);
-		if ((AC != null) && (AC.toUpperCase() == "TRUE")) CheatActivated.push(CheatList[C]);
+	if (MainCanvas == null) {
+		CheatAllow = true;
+		var BI = CommonGetBrowser();
+		CheatBrowserName = BI.Name;
+		CheatBrowserVersion = BI.Version;
+		CheatBrowserTime = CommonTime();
+		for(var C = 0; C < CheatList.length; C++) {
+			var AC = localStorage.getItem("BondageClubCheat" + CheatList[C]);
+			if ((AC != null) && (AC.toUpperCase() == "TRUE")) CheatActivated.push(CheatList[C]);
+		}
 	}
 }
 

@@ -344,7 +344,7 @@ function DialogClick() {
 											}
 
 											// The shock triggers can trigger items that can shock the wearer
-											if (DialogInventory && (DialogInventory[I].Asset.Effect.indexOf("TriggerShock") >= 0) && (InventoryGet(C, C.FocusGroup.Name)) && (InventoryGet(C, C.FocusGroup.Name).Asset.Effect.indexOf("ReceiveShock") >= 0)) {
+											if (DialogInventory && (DialogInventory[I].Asset.Effect != null) && (DialogInventory[I].Asset.Effect.indexOf("TriggerShock") >= 0) && (InventoryGet(C, C.FocusGroup.Name)) && (InventoryGet(C, C.FocusGroup.Name).Asset.Effect.indexOf("ReceiveShock") >= 0)) {
 												if (CurrentScreen == "ChatRoom") {
 													var intensity = InventoryGet(C, C.FocusGroup.Name).Property ? InventoryGet(C, C.FocusGroup.Name).Property.Intensity : 0;
 													ChatRoomPublishCustomAction((DialogFind(Player, InventoryGet(C, C.FocusGroup.Name).Asset.Name + "Trigger" + intensity)).replace("DestinationCharacter",C.Name), true);
@@ -619,6 +619,7 @@ function DialogGarble(C, CD) {
 			if (H == ")") Par = false;
 		}
 		NS = DialogStutter(C, NS);
+		NS = DialogBabyTalk(C, NS);
 		return NS;
 	}
 
@@ -639,6 +640,7 @@ function DialogGarble(C, CD) {
 			if (H == ")") Par = false;
 		}
 		NS = DialogStutter(C, NS);
+		NS = DialogBabyTalk(C, NS);
 		return NS;
 	}
 
@@ -660,6 +662,7 @@ function DialogGarble(C, CD) {
 			if (H == ")") Par = false;
 		}
 		NS = DialogStutter(C, NS);
+		NS = DialogBabyTalk(C, NS);
 		return NS;
 	}
 		
@@ -680,11 +683,13 @@ function DialogGarble(C, CD) {
 			if (H == ")") Par = false;
 		}
 		NS = DialogStutter(C, NS);
+		NS = DialogBabyTalk(C, NS);
 		return NS;
 	}
 
 	// No gag effect, we return the regular text
 	CD = DialogStutter(C, CD);
+	CD = DialogBabyTalk(C, CD);
 	return CD;
 
 }
@@ -730,6 +735,32 @@ function DialogStutter(C, CD) {
 	}
 
 	// No stutter effect, we return the regular text
+	return CD;
+}
+
+// Makes Character talk like a Baby if the have drunk regression milk
+function DialogBabyTalk(C, CD) {
+	if (CD == null) CD = "";
+
+	var Par = false;
+	var NS = "";
+
+	if (C == Player && NurseryRegressedTalk) {
+		for (var L = 0; L < CD.length; L++) {
+			var H = CD.charAt(L).toLowerCase();
+			if (H == "(") Par = true;
+			if (!Par) {
+				if (H == "k" || H == "l") NS = NS + "w";
+				if (H == "s") NS = NS + "sh";
+				if (H == "t") NS = NS + "st";
+				if (H == "a" || H == "b" || H == "c" || H == "d" || H == "e" || H == "f" || H == "g" || H == "h" || H == "i" || H == "j" || H == "m" || H == "n" || H == "o" || H == "p" || H == "q" || H == "r" || H == "u" || H == "v" || H == "w" || H == "x" || H == "y" || H == "z" || H == " " || H == "'" || H == "?" || H == "!" || H == "." || H == ",") NS = NS + H;
+			} else NS = NS + CD.charAt(L);
+			if (H == ")") Par = false;
+		}
+		return NS;
+	}
+
+	// Not drunk the milk, we return the regular text
 	return CD;
 }
 
