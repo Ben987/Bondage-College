@@ -22,6 +22,7 @@ var NurseryLeaveMsg = null;								// message abou ease of opening nursery gate
 var NurseryEscapeAttempts = null;
 var NursuryEscapeFailMsg = null;
 var NurseryRepeatOffender = null;
+var NurseryRegressedTalk = null;
 
 
 				
@@ -365,10 +366,8 @@ function NurseryBadBabies() {
 
 // Player will loose skill progress or level from drinking special milk
 function NurseryPlayerSkillsAmnesia() {
-	SkillRetard("Bondage")
-	SkillRetard("Evasion")
-	SkillRetard("Willpower")
-	SkillRetard("Dressage")
+	SkillDebuff(-1);
+	NurseryRegressedTalk = true;
 }
 
 // Repair Lost skills

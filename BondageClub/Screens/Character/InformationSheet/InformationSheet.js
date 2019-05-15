@@ -78,6 +78,11 @@ function InformationSheetRun() {
 				DrawText(TextGet("Skill" + C.Skill[S].Type) + " " + C.Skill[S].Level.toString() + " (" + Math.floor(C.Skill[S].Progress / 10) + "%)", 1450, 200 + S * 75, "Black", "Gray");
 			if (C.Skill.length == 0) DrawText(TextGet("SkillNone"), 1450, 200, "Black", "Gray");
 		}
+
+		// Draw the Skills Debuff if active for player only.
+		if (C.ID == 0 && SkillDebuffLevel != 0) {
+			DrawText(TextGet("SkillDebuff") + " " + SkillDebuffLevel, 1450, 500, "Black", "Gray");
+		}
 	
 	} else {
 

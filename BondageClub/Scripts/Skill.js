@@ -1,5 +1,7 @@
 "use strict";
 
+var SkillDebuffLevel = 0;
+
 // Pushes the skill progression to the server
 function SkillSave(S) {
 	ServerPlayerSkillSync();
@@ -52,7 +54,7 @@ function SkillLoad(NewSkill) {
 function SkillGetLevel(C, SkillType) {
 	for (var S = 0; S < C.Skill.length; S++)
 		if (C.Skill[S].Type == SkillType)
-			return C.Skill[S].Level;
+			return (C.Skill[S].Level + SkillDebuffLevel);
 	return 0;
 }
 
@@ -68,7 +70,7 @@ function SkillGetProgress(C, SkillType) {
 function SkillProgress(SkillType, SkillProgress) {
 
 	// Makes sure there's a progress, we cannot go beyond level 10
-	var L = SkillGetLevel(Player, SkillType);
+	var L = SkillGetLevel(Player, SkillType) - SkillDebuffLevel;
 	var P = Math.round(SkillProgress * 3 / ((L * L) + 1));
 	P = P * CheatFactor("DoubleSkill", 2);
 	if ((P > 0) && (L < 10)) {
@@ -87,13 +89,14 @@ function SkillProgress(SkillType, SkillProgress) {
 
 }
 
-// Retard Skill level
-function SkillRetard(SkillType) {
-	if (SkillGetLevel(Player, SkillType) > 0 || SkillGetProgress(Player, SkillType) > 0) {
-		var L = SkillGetLevel(Player, SkillType)
-		if (SkillGetProgress(Player, SkillType) == 0) { 
-			if (SkillGetLevel(Player, SkillType) > 0) L = L - 1;
-		}
-		SkillChange(SkillType, L, 0);
-	}
+// Debuff Skill, a debuff value is negative
+function SkillDebuff(Change) {
+	SkillDebuffLevel = SkillDebuffLevel + Change;
+	if (SkillDebuffLevel < -10) SkillDebuffLevel = -10;
+	if (SkillDebuffLevel > 0) SkillDebuffLevel = 0;
+}
+
+// remove skills debuffs
+function SkillRemoveDebuff() {
+	SkillDebuffLevel = 0;
 }
