@@ -199,8 +199,8 @@ ItemArms,PaddedMittens,Thumbless Padded Mittens
 ItemArms,PaddedMittensLocked,Thumbless Mittens Locked
 ItemArms,PaddedMittensHarness,Thumbless Mittens Chanined
 ItemArms,PaddedMittensHarnessLocked,Thumbless Mittens Chanined Locked
-ItemArms,PadLock,Padlock (Limited Offer)
-ItemArms,PadLockKey,Padlock Key (Limited Offer)
+ItemArms,PadLock,Padlock
+ItemArms,PadLockKey,Padlock Key
 ItemArms,FourLimbsShackles,Four Limbs Shackles
 ItemArms,StraitLeotard,Latex Strait Leotard
 ItemNeck,,Neck
