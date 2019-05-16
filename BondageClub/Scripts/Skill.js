@@ -3,6 +3,8 @@ var SkillModifier = 0;
 var SkillLevelMaximum = 10;
 var SkillLevelMinimum = -5;
 
+var SkillDebuffLevel = 0;
+
 // Pushes the skill progression to the server
 function SkillSave(S) {
 	ServerPlayerSkillSync();
@@ -67,7 +69,7 @@ function SkillGetLevel(C, SkillType) {
 function SkillGetLevelReal(C, SkillType) {
 	for (var S = 0; S < C.Skill.length; S++)
 		if (C.Skill[S].Type == SkillType)
-			return C.Skill[S].Level;
+			return (C.Skill[S].Level + SkillDebuffLevel);
 	return 0;
 }
 
