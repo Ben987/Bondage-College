@@ -366,7 +366,7 @@ function NurseryBadBabies() {
 
 // Player will loose skill progress or level from drinking special milk
 function NurseryPlayerSkillsAmnesia() {
-	SkillDebuff(-1);
+	SkillModifierChange(-1);
 	NurseryRegressedTalk = true;
 }
 

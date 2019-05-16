@@ -218,10 +218,10 @@ ItemMouth,HarnessBallGag,Harness Ball Gag
 ItemMouth,HarnessPanelGag,Harness Panel Gag
 ItemMouth,RingGag,Ring Gag
 ItemMouth,DuctTapeGag,Duct Tape Gag
-ItemMouth,DusterGag,Duster Gag
 ItemMouth,PacifierGag,Pacifier
 ItemMouth,HarnessPacifierGag,Harness Pacifier
-ItemMouth,HarnessBits,Bit Gag
+ItemMouth,DusterGag,Duster Gag
+ItemMouth,HarnessPonyBits,Bit Gag
 ItemMouth,PumpGag,Pump Gag
 ItemMouth,RegularSleepingPill,Sleeping Pill
 ItemHead,,Head

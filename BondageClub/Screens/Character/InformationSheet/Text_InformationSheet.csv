@@ -37,7 +37,7 @@ SkillBondage,Bondage:
 SkillEvasion,Evasion:
 SkillWillpower,Willpower:
 SkillDressage,Pony Dressage:
-SkillDebuff,Debuff:
+SkillModifier,Global modifier:
 Trait,- Traits -
 TraitUnknown,Spend more time with her to know her traits
 TraitDominant,Dominant:

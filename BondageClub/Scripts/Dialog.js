@@ -344,7 +344,7 @@ function DialogClick() {
 											}
 
 											// The shock triggers can trigger items that can shock the wearer
-											if (DialogInventory && (DialogInventory[I].Asset.Effect.indexOf("TriggerShock") >= 0) && (InventoryGet(C, C.FocusGroup.Name)) && (InventoryGet(C, C.FocusGroup.Name).Asset.Effect.indexOf("ReceiveShock") >= 0)) {
+											if (DialogInventory && (DialogInventory[I].Asset.Effect != null) && (DialogInventory[I].Asset.Effect.indexOf("TriggerShock") >= 0) && (InventoryGet(C, C.FocusGroup.Name)) && (InventoryGet(C, C.FocusGroup.Name).Asset.Effect.indexOf("ReceiveShock") >= 0)) {
 												if (CurrentScreen == "ChatRoom") {
 													var intensity = InventoryGet(C, C.FocusGroup.Name).Property ? InventoryGet(C, C.FocusGroup.Name).Property.Intensity : 0;
 													ChatRoomPublishCustomAction((DialogFind(Player, InventoryGet(C, C.FocusGroup.Name).Asset.Name + "Trigger" + intensity)).replace("DestinationCharacter",C.Name), true);

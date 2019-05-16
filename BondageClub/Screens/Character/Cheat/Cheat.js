@@ -8,11 +8,13 @@ var CheatBonusTime = 1552967946711;
 var CheatActivated = [];
 var CheatBrowserName = "";
 var CheatBrowserVersion = "";
+var CheatBrowserTime = 0;
 
 // Checks if the cheats are valid
 function CheatValidate() {
 	var BI = CommonGetBrowser();
-	CheatAllow = (CheatAllow && (BI.Name == CheatBrowserName) && (BI.Version == CheatBrowserVersion));
+	var Time = CommonTime();
+	CheatAllow = (CheatAllow && (BI.Name == CheatBrowserName) && (BI.Version == CheatBrowserVersion) && (Time >= CheatBrowserTime) && (Time <= CheatBrowserTime + 864000000));
 }
 
 // Returns TRUE if the cheat is currently active
@@ -36,6 +38,7 @@ function CheatImport() {
 		var BI = CommonGetBrowser();
 		CheatBrowserName = BI.Name;
 		CheatBrowserVersion = BI.Version;
+		CheatBrowserTime = CommonTime();
 		for(var C = 0; C < CheatList.length; C++) {
 			var AC = localStorage.getItem("BondageClubCheat" + CheatList[C]);
 			if ((AC != null) && (AC.toUpperCase() == "TRUE")) CheatActivated.push(CheatList[C]);

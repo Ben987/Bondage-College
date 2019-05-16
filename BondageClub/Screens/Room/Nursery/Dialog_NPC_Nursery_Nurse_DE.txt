@@ -86,17 +86,29 @@ I can't stay to chat.  (Leave her.)
 Ich habe keine Zeit zum Plaudern. (Dialog beenden.)
 (Money.)
 (Geld.)
-Looses dresses
-Kleider verlieren
+Delete item
+Item löschen
 ###_NPC
 lost
 verloren
+###_PLAYER
+Replace skill
+Skill wiederherstellen
+###_NPC
+Skill +1
+Skill +1
 ###_PLAYER
 ReduceRep
 ReduceRep
 ###_NPC
 ABDL rep -1
 ABDL rep -1
+###_PLAYER
+ReduceDom
+ReduceDom
+###_NPC
+Dom rep -1
+Dom rep -1
 ###_PLAYER
 Can I become a nurse?
 Kann ich eine Schwester werden?
@@ -167,8 +179,8 @@ Gut. Das macht dann 10$, und du musst dieses Formular unterschreiben, dann helfe
 No.
 Nein.
 ###_NPC
-The primary requirement is diapers.  They are mandatory on entry and a fresh diaper must be purchased for each visit.  They cost $10 a time.
-Das Wichtigste sind die Windeln. Sie sind beim Eintritt Pflicht und bei jedem Besuch muss eine frische Windel erworben werden. Sie kosten jeweils 10$.
+The primary requirement is diapers.  Clean diapers are mandatory on entry.  We can provide a fresh diaper for each visit.  They cost $10 a time.
+Das Wichtigste sind die Windeln. Saubere Windeln sind beim Eintritt Pflicht. Wir können bei jedem Besuch eine frische Windel anbieten. Sie kosten jeweils 10$.
 ###_PLAYER
 I don't want to join.
 Ich möchte nicht beitreten.
@@ -179,7 +191,7 @@ Entscheide dich mal, oder brauchst du etwa wirklich jemanden, der sich um dich k
 Okay, what else is there?
 Okay, was wäre da noch?
 ###_NPC
-We don't allow big girl clothes either.  You can just wear diapers, but we have a super selection lovely dresses you can wear.
+We don't allow big girl clothes hiding diapers either.  You can wear just diapers, but we have a super selection lovely dresses you can wear.
 Es ist auch keine Kleidung für große Mädchen erlaubt. Du kannst einfach Windeln tragen, aber wir bieten auch eine Auswahl von niedlichen Kleidern.
 ###_PLAYER
 Why the fee?
@@ -188,7 +200,7 @@ Wozu die Gebühr?
 This place is not cheap to run.  The price for the diapers covers other running cost.
 Es ist nicht billig, das hier am Laufen zu halten. Der Preis für die Windeln deckt auch die anderen Betriebskosten.
 ###_PLAYER
-What do you mean by a fresh diaper every visit?
+What do you mean by a fresh diaper each visit?
 Was meinst du mit "frische Windel bei jedem Besuch"?
 ###_NPC
 It would be incredibly irresponsible of us to risk putting a big baby in soiled diapers just to save a few dollars.
@@ -224,11 +236,11 @@ Warum Kleider?
 To look gorgeous of course and these dresses have high hemlines so it's easier for us to check there aren't any dirty diapers.
 Natürlich um bezaubernd auszusehen, außerdem haben diese Kleider hohe Taillen, sodass wir mühelos nach schmutzigen Windeln sehen können.
 ###_PLAYER
-What about shorts or T shirts?
-Was ist mit Shorts oder T-Shirts?
+What about long skirts?
+Was ist mit langen Röcken?
 ###_NPC
-Goodness me, certainly not.  We take great pride in making sure the adult babies in our care always look their best.
-Gute Güte, auf gar keinen Fall. Es ist unser Stolz, dafür zu sorgen, dass die Babys in unserer Obhut stets bestens gekleidet sind.
+Goodness me, certainly not.  We want out adult babies to look thier best, but that must not interfere with making sure they have clean diapers.
+Gute Güte, auf gar keinen Fall. Unsere großen Babys sollen stets bestens gekleidet sein, aber wir müssen dennoch ihre Windeln kontrollieren können.
 ###_PLAYER
 No way am I dressing like that.
 Auf keinen Fall ziehe ich mich so an.
@@ -257,7 +269,7 @@ Natürlich, und wir geben unser Bestes, bekümmerte Babys zu trösten, aber wir 
 What about bondage?
 Was ist mit Bondage?
 ###_NPC
-That is fine as long you are all playing happy, although some items are hardly suitable for in here.  The nursery has some more appropriate restraints.
+That is fine as long you are all playing happy, although some items are hardly suitable for use in here.  The nursery has some more appropriate restraints.
 Das ist erlaubt, solange alle Spaß am Spiel haben, aber viele Sachen sind hier einfach fehl am Platz. Die Kinderstube bietet ein paar passendere Fesseln an.
 ###_PLAYER
 I would like to join now, pwease.
@@ -290,6 +302,12 @@ Ja, hier. (10$ bezahlen.)
 Thank you.  Now let’s get you changed.  (She takes you to one side and swiftly removes all your clothes.)
 Danke. Dann wollen wir dich mal umziehen. (Sie nimmt dich beiseite und zieht dir geschwind all deine Sachen aus.)
 ###_PLAYER
+I am already diapered and ready to enter.
+Ich habe schon Windeln an und möchte rein.
+###_NPC
+(She checks you over and feels your diaper.)  Okay, you are nice and clean.  Welcome back to the nursery.
+(Sie betrachtet dich und tastet deine Windel ab.) Okay, du bist schön sauber. Willkommen zurück in der Kinderstube.
+###_PLAYER
 I don't have enough money.
 Ich habe nicht genug Geld.
 ###_NPC
@@ -299,8 +317,8 @@ Das tut mir leid, aber wir können diesen Service nicht gratis anbieten. Komm bi
 Could I provide my own diapers and outfit?
 Könnte ich eigene Windeln und Kleider benutzen?
 ###_NPC
-Sorry we are not setup of that at the moment and this way we make sure all the adult babies at least start out clean and fresh.
-Tut mir leid, dafür sind wir momentan nicht eingerichtet, und so können wir sicher sein, dass alle Babys zumindest anfangs frisch und sauber sind.
+Yes you can come in wearing your own Diapers. But they must be clean and you can't wear clothes that prevent us from easily checking them.
+Ja, du darfst in einer eigenen Windel herkommen. Sie muss aber sauber sein, und du darfst nichts anhaben, das uns am Kontrollieren der Windel hindert.
 ###_PLAYER
 I'm not paying for this.
 Dafür zahle ich nicht.
@@ -317,8 +335,8 @@ Sag mir einfach Bescheid, wenn du bereit bist.
 What were the nursery requirements again?
 Was sind nochmal die Bedingungen zum Beitritt?
 ###_NPC
-The primary requirement is diapers.  They are mandatory on entry and a fresh diaper must be purchased for each visit and cost $10
-Das Wichtigste sind die Windeln. Sie sind beim Eintritt Pflicht und bei jedem Besuch muss eine frische Windel für 10$ erworben werden.
+The primary requirement is diapers.  Clean diapers are mandatory on entry.  We can provide fresh diapers.  They cost $10 a time.
+Das Wichtigste sind die Windeln. Saubere Windeln sind beim Eintritt Pflicht. Wir bieten frische Windeln an. Sie kosten jeweils 10$.
 ###_PLAYER
 (Sign the form and pay $10.)
 (Das Formular unterschreiben und 10$ bezahlen.)

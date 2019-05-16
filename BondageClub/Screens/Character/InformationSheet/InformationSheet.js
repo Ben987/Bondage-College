@@ -79,11 +79,10 @@ function InformationSheetRun() {
 			if (C.Skill.length == 0) DrawText(TextGet("SkillNone"), 1450, 200, "Black", "Gray");
 		}
 
-		// Draw the Skills Debuff if active for player only.
-		if (C.ID == 0 && SkillDebuffLevel != 0) {
-			DrawText(TextGet("SkillDebuff") + " " + SkillDebuffLevel, 1450, 500, "Black", "Gray");
-		}
-	
+		// Draw the player skill modifier if there's one
+		if ((C.ID == 0) && (SkillModifier != 0))
+			DrawText(TextGet("SkillModifier") + " " + SkillModifier, 1450, 500, "Black", "Gray");
+
 	} else {
 
 		// For NPC characters, we show the traits
