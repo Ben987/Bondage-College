@@ -107,6 +107,8 @@ Bra,Corset1,Corset + Garters
 Bra,Corset2,Corset
 Bra,Corset3,Half Cup Corset
 Bra,Corset4,Underbust Corset
+Bra,Swimsuit1,Swimsuit style 1
+Bra,Swimsuit2,Swimsuit style 2
 Gloves,,Gloves
 Gloves,Gloves1,Short Gloves
 Gloves,Gloves2,Long Gloves
@@ -199,8 +201,8 @@ ItemArms,PaddedMittens,Thumbless Padded Mittens
 ItemArms,PaddedMittensLocked,Thumbless Mittens Locked
 ItemArms,PaddedMittensHarness,Thumbless Mittens Chanined
 ItemArms,PaddedMittensHarnessLocked,Thumbless Mittens Chanined Locked
-ItemArms,PadLock,Padlock (Limited Offer)
-ItemArms,PadLockKey,Padlock Key (Limited Offer)
+ItemArms,PadLock,Padlock
+ItemArms,PadLockKey,Padlock Key
 ItemArms,FourLimbsShackles,Four Limbs Shackles
 ItemArms,StraitLeotard,Latex Strait Leotard
 ItemNeck,,Neck
@@ -218,10 +220,10 @@ ItemMouth,HarnessBallGag,Harness Ball Gag
 ItemMouth,HarnessPanelGag,Harness Panel Gag
 ItemMouth,RingGag,Ring Gag
 ItemMouth,DuctTapeGag,Duct Tape Gag
-ItemMouth,DusterGag,Duster Gag
 ItemMouth,PacifierGag,Pacifier
 ItemMouth,HarnessPacifierGag,Harness Pacifier
-ItemMouth,HarnessBits,Bit Gag
+ItemMouth,DusterGag,Duster Gag
+ItemMouth,HarnessPonyBits,Bit Gag
 ItemMouth,PumpGag,Pump Gag
 ItemMouth,RegularSleepingPill,Sleeping Pill
 ItemHead,,Head

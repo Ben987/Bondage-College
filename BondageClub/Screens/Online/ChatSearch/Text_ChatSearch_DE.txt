@@ -8,6 +8,8 @@ Create your room
 Raum erstellen
 This room is already full
 Dieser Raum ist bereits voll
+You're banned from this room
+Du wurdest aus diesem Raum verbannt
 Room doesn't exist anymore
 Raum existiert nicht mehr
 Account Error

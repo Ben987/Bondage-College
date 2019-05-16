@@ -178,9 +178,10 @@ function SarahLoad() {
 		Sophie.Name = "Mistress Sophie";
 		Sophie.AllowItem = false;
 		CharacterNaked(Sophie);
-		InventoryRemove(Sophie, "Nipples");
-		InventoryWear(Sophie, "Bra2", "Bra", "#222222");
-		InventoryWear(Sophie, "Panties11", "Panties", "#222222");
+		InventoryRemove(Sophie, "Nipples");		
+		InventoryWear(Sophie, "Stockings4", "Socks", "#222222");
+		InventoryWear(Sophie, "Corset3", "Bra", "#222222");
+		InventoryWear(Sophie, "Panties13", "Panties", "#222222");
 		InventoryWear(Sophie, "PussyLight1", "Pussy", "#555555");
 		InventoryWear(Sophie, "Eyes1", "Eyes", "#b08061");
 		InventoryWear(Sophie, "Glasses5", "Glasses", "#222222");

@@ -120,8 +120,20 @@ Nipples Style
 Nippel-Stil
 Bra
 BH
+Lace and Satin
+Spitzensatin
+Strapless
+Trägerlos
 Satin Bustier
 Satin-Bustier
+Corset + Garters
+Korsett + Strapse
+Corset
+Korsett
+Half Cup Corset
+Halbkörbchenkorsett
+Underbust Corset
+Unterbrustkorsett
 Gloves
 Handschuhe
 Short Gloves
@@ -146,6 +158,14 @@ Dark 3
 Dunkel 3
 Panties
 Slip
+String Bikini
+Stringbikini
+Satin Bikini
+Satinbikini
+High Cut
+Rio-Slip
+Thong
+Tangaslip
 Diapers
 Windeln
 Socks
@@ -164,6 +184,10 @@ Stockings Dark
 Strümpfe Dunkel
 Stockings Light
 Strümpfe Hell
+Silky Stockings
+Seidige Strümpfe
+Fishnet Stockings
+Netzstrümpfe
 Shoes
 Schuhe
 Sneakers Light
@@ -196,6 +220,8 @@ Vibrating Egg
 Vibrator-Ei
 Vibrating Wand
 Vibrator-Stab
+Vibrating Egg Remote
+Vibrator-Ei-Fernbedienung
 Butt
 Hintern
 Black Butt Plug
@@ -226,14 +252,20 @@ Leather Harness
 Lederharnisch
 Adult Baby Harness
 Erwachsenenbaby-Harnisch
-Breast
-Brust
+Nipples
+Nippel
 Straight Piercings
 Gerade Nippelpiercings
 Round Piercings
 Runde Nippelpiercings
 Nipple Clamps
 Nippelklemmen
+Vibrating Nipple Clamps
+Vibrator-Nippelklemmen
+Vibrating Clamps Remote
+Vibratorklemmen-Fernbedienung
+Breast
+Brust
 Metal Chastity Bra
 Metall-Keuschheits-BH
 Metal Chastity Bra Key
@@ -246,12 +278,26 @@ Metal Cuffs Key
 Handschellenschlüssel
 Leather Armbinder
 Monohandschuh
-Thumbless Mittens
+Leather Cuffs
+Ledermanschetten
+Leather Cuffs Key
+Ledermanschettenschlüssel
+Thumbless Padded Mittens
 Daumenlose Fäustlinge
 Thumbless Mittens Locked
 Verriegelte daumenlose Fäustlinge
+Thumbless Mittens Chanined
+Daumenlose Fäustlinge mit Ketten
+Thumbless Mittens Chanined Locked
+Verriegelte daumenlose Fäustlinge mit Ketten
+Padlock (Limited Offer)
+Vorhängeschloss (Begrenztes Angebot)
+Padlock Key (Limited Offer)
+Vorhängeschloss-Schlüssel (Begrenztes Angebot)
 Four Limbs Shackles
 Viererketten
+Latex Strait Leotard
+Latex-Zwangsjackenanzug
 Neck
 Hals
 Leather Collar
@@ -260,6 +306,10 @@ Slave Collar
 Sklavenhalsband
 Club Slave Collar
 Clubsklavenhalsband
+Shock Collar
+Elektrohalsband
+Shock Collar Remote
+Elektrohalsband-Fernbedienung
 Small Cloth Gag
 Kleiner Stoffknebel
 Cloth Cleave Gag

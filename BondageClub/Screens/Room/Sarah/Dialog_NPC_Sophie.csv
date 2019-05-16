@@ -120,7 +120,7 @@ SophieOrgasmGameDefeat,,,"(You cannot control yourself, and surrender to the ple
 61,,(Spank her.),"(You spank her butt a few times as she moans very lightly, hiding the enjoyment.)",,Player.CanInteract()
 61,,(Fondle her.),(You cup her breast and massage them lovingly as she struggles to get away from you.),,Player.CanInteract()
 61,,(Bring her to your room.),,TransferSophieToRoom(-50),CanInviteSophieToRoom()
-61,,(Leave her.),,,
+61,,(Leave her.),,DialogLeave(),
 70,16,It was a good fight.,"(She nods and catches her breath.)  Enough talks, get naked loser.","DialogChangeReputation(""Dominant"", -2)",
 70,16,I'll get you next time.,"(She frowns and catches her breath.)  Enough talks, get naked loser.","DialogChangeReputation(""Dominant"", -1)",
 70,16,You're too strong for me Miss.,"(She smirks and catches her breath.)  Enough talks, get naked loser.","DialogChangeReputation(""Dominant"", -3)",

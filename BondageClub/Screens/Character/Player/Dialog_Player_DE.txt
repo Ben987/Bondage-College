@@ -5,6 +5,14 @@ Cannot use on yourself
 Nicht an dir selbst anwendbar
 Remove some clothes first
 Erst ausziehen!
+Cancel
+Abbrechen
+Remove
+Entfernen
+Struggle
+Freikämpfen
+Unlock
+Aufschließen
 Swapping...
 Auswechseln...
 Struggling...
@@ -25,8 +33,8 @@ You'll need help to get out
 Du brauchst Hilfe zum Befreien
 You can unlock yourself
 Du kannst dich befreien
-You don't have the proper key
-Dir fehlt der richtige Schlüssel
+You cannot unlock yourself
+Du kannst dich nicht befreien
 This zone is out of reach from another item
 Diese Zone wird von einem anderen Objekt versperrt
 You cannot access your items
@@ -55,6 +63,88 @@ deflates
 reduziert
 gag
 Knebel
+Select the bondage position
+Fesselposition wählen
+A victim cannot unlock herself if her elbows are bound
+Mit gefesselten Ellbogen ist eine Selbstbefreiung unmöglich
+Detached
+Getrennt
+Bind wrists
+Handgelenke fesseln
+Bind elbows
+Ellbogen fesseln
+Bind both
+Beides fesseln
+SourceCharacter detaches the chain from DestinationCharacter's leather cuffs.
+SourceCharacter trennt die Kette von DestinationCharacters Ledermanschetten.
+SourceCharacter attaches the leather cuffs wrist chain behind DestinationCharacter's back.
+SourceCharacter verbindet die Handgelenk-Kette der Ledermanschetten hinter DestinationCharacters Rücken.
+SourceCharacter attaches the leather cuffs elbow chain behind DestinationCharacter's back.
+SourceCharacter verbindet die Ellbogen-Kette der Ledermanschetten hinter DestinationCharacters Rücken.
+SourceCharacter attaches the leather cuffs wrist and elbow chains behind DestinationCharacter's back.
+SourceCharacter verbindet die Handgelenk- und Ellbogen-Ketten der Ledermanschetten hinter DestinationCharacters Rücken.
+Item intensity: Disabled
+Intensität: Deaktiviert
+Item intensity: Low
+Intensität: Niedrig
+Item intensity: Medium
+Intensität: Mittel
+Item intensity: High
+Intensität: Hoch
+Item intensity: Maximum
+Intensität: Maximal
+Increase
+Erhöhen
+Decrease
+Verringern
+Show chat message
+Chat-Nachricht senden
+SourceCharacter sets DestinationCharacter's shock collar to low intensity.
+SourceCharacter stellt DestinationCharacters Elektrohalsband auf "niedrig".
+SourceCharacter sets DestinationCharacter's shock collar to moderate intensity.
+SourceCharacter stellt DestinationCharacters Elektrohalsband auf "mittel".
+SourceCharacter sets DestinationCharacter's shock collar to high intensity.
+SourceCharacter stellt DestinationCharacters Elektrohalsband auf "hoch".
+DestinationCharacter's collar gives her a light shock.
+Ihr Halsband gibt DestinationCharacter einen leichten Schock.
+DestinationCharacter's collar lets out a sharp jolt!
+Ihr Halsband versetzt DestinationCharacter einen scharfen Ruck!
+DestinationCharacter's collar delivers an intense shock!
+Ihr Halsband verabreicht DestinationCharacter einen heftigen Schock!
+DestinationCharacter's vibrating egg stops vibrating.
+DestinationCharacters Vibrator-Ei hört auf zu vibrieren.
+DestinationCharacter's vibrating egg slows down into a light tease.
+DestinationCharacters Vibrator-Ei fällt auf ein leichtes Surren herab.
+DestinationCharacter's vibrating egg returns to a moderate pace.
+DestinationCharacters Vibrator-Ei fällt auf eine moderate Stärke herab.
+DestinationCharacter's vibrating egg slows down a tiny bit.
+DestinationCharacters Vibrator-Ei lässt ein kleines bisschen nach.
+DestinationCharacter's vibrating egg starts teasing her lightly.
+DestinationCharacters Vibrator-Ei fängt an, sie sanft zu erregen.
+DestinationCharacter's vibrating egg builds up to a moderate pace.
+DestinationCharacters Vibrator-Ei nimmt etwas Fahrt auf.
+DestinationCharacter's vibrating egg starts buzzing strongly!
+DestinationCharacters Vibrator-Ei fängt an, stark zu vibrieren!
+DestinationCharacter's vibrating egg jumps up to maximum intensity!
+DestinationCharacters Vibrator-Ei springt auf die maximale Stufe!
+DestinationCharacter's vibrating nipple clamps stops vibrating.
+Die Vibrator-Nippelklemmen von DestinationCharacter hören auf zu vibrieren.
+DestinationCharacter's vibrating nipple clamps slows down into a light tease.
+Die Vibrator-Nippelklemmen von DestinationCharacter fallen auf ein leichtes Surren herab.
+DestinationCharacter's vibrating nipple clamps returns to a moderate pace.
+Die Vibrator-Nippelklemmen von DestinationCharacter fallen auf eine moderate Stärke herab.
+DestinationCharacter's vibrating nipple clamps slows down a tiny bit.
+Die Vibrator-Nippelklemmen von DestinationCharacter lassen ein kleines bisschen nach.
+DestinationCharacter's vibrating nipple clamps starts teasing her lightly.
+Die Vibrator-Nippelklemmen von DestinationCharacter fangen an, sie sanft zu erregen.
+DestinationCharacter's vibrating nipple clamps builds up to a moderate pace.
+Die Vibrator-Nippelklemmen von DestinationCharacter nehmen etwas Fahrt auf.
+DestinationCharacter's vibrating nipple clamps starts buzzing strongly!
+Die Vibrator-Nippelklemmen von DestinationCharacter fangen an, stark zu vibrieren!
+DestinationCharacter's vibrating nipple clamps jumps up to maximum intensity!
+Die Vibrator-Nippelklemmen von DestinationCharacter springen auf die maximale Stufe!
+Use Remote
+Fernbedienung
 (You can use or remove items by selecting specific body regions on yourself.)
 (Wähle eine Körperregion, um Items zu benutzen oder zu entfernen.)
 (You clumsily whip your own breast and tummy.  It would be more painful if someone else did it.)
@@ -67,3 +157,29 @@ Knebel
 (Du schlägst die Ledergerte ziemlich doll auf deinen Hintern. Du springst bei jedem guten Treffer auf.)
 (You slowly massage your pussy with the wand.  Trembling from pleasure and excitement.)
 (Du massierst langsam mit dem Vibrator deine Pussy. Du zitterst dabei vor Freude und Aufregung.)
+Padlock mitten buckles
+Fäustling-Riemen verriegeln
+Unlock mittens
+Fäustlinge aufschließen
+Chain mittens
+Fäustlinge anketten
+Unchain mittens
+Fäustlinge entketten
+You need some padlocks to do this.
+Dafür brauchst du Vorhängeschlösser.
+You need a padlock key to do this.
+Dafür brauchst du den passenden Schlüssel.
+padlocks
+verriegelt
+unlocks
+entriegelt
+mittens
+Fäustlinge
+chains
+kettet die Fäustlinge von
+removes the chains
+entfernt die Ketten von
+mittens to the baby harness
+an ihr Babyharnisch
+They must be wearing a baby harness first to chain the mittens to it.
+Sie muss einen Babyharnisch tragen, um die Fäustlinge daran anzuketten.

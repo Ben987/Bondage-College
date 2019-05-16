@@ -6,5 +6,7 @@
 ###_PLAYER
 (View her profile.)
 (Ihr Profil ansehen.)
+(Ban her from the room.)
+(Sie aus dem Raum verbannen.)
 (Leave this menu.)
 (Dieses Menü verlassen.)

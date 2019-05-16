@@ -149,8 +149,10 @@ On the pelvis, you can use whips, crops or chastity belts.  Know that it will re
 Am Becken lassen sich Peitschen, Gerten oder Keuschheitsgürtel einsetzen. Beachte, dass Letzteres den Zugang zur Vagina und zum Anus verhindert.
 On the torso, you can use many kinds of harnesses, mostly for esthetics.
 Am Oberkörper lassen sich viele Arten von Harnischen anlegen, hauptsächlich aus Gründen der Ästhetik.
-The breast region can be used for more chastity devices, piercings and whips or crops.
-Der Brustbereich eignet sich für Keuschheits-BHs, Piercings und Peitschen oder Gerten.
+On the nipples, you can use piercings or clamps.  Some people enjoy the pain.
+An den Nippeln kannst du Piercings oder Klammern befestigen. Einige Leute mögen die Schmerzen.
+The breast region can be used for more chastity devices, as well as whips or crops.
+Der Brustbereich eignet sich für Keuschheits-BHs, sowie für Peitschen oder Gerten.
 The arms can be restrained using many devices.  This will prevent your victim from using her hands to free herself.
 Die Arme können mit vielerlei Gegenständen gefesselt werden. Das hindert dein Opfer daran, sich mit den Händen zu befreien.
 You can use collars on your victim's neck to show everyone that they are yours, enslave them or leash them.
@@ -282,10 +284,6 @@ Ja und nein. Du kannst nicht einfach mitten im Gespräch drauflos binden.
 ###_PLAYER
 Tell me about the body parts I can restrain.
 Erzähl mir von den Körperteilen, die ich fesseln kann.
-###_NPC
-That's about everything.  Remember that your arms need to be free to restrain someone.
-Das war so ziemlich alles. Denk daran, dass deine Arme frei sein müssen, um jemanden fesseln zu können.
-###_PLAYER
 It was fun to strap her up.
 Es hat Spaß gemacht, sie festzubinden.
 ###_NPC
