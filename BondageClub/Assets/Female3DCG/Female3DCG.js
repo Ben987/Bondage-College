@@ -180,7 +180,9 @@ var AssetFemale3DCG = [
 			{ Name: "Corset1", Value: 30 },
 			{ Name: "Corset2", Value: 30 },
 			{ Name: "Corset3", Value: 30 },
-			{ Name: "Corset4", Value: 30 }
+			{ Name: "Corset4", Value: 30 },
+			{ Name: "Swimsuit1", Value: 20, Hide: ["Panties"] },
+			{ Name: "Swimsuit2", Value: 25, Hide: ["Panties"] }
 		]
 	},
 	
@@ -439,8 +441,8 @@ var AssetFemale3DCG = [
 			{ Name: "PaddedMittensLocked", Random: false, SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Lock"], Extended: true, Time: 12 },
 			{ Name: "PaddedMittensHarness", Random: false, SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Struggle"], Extended: true, Time: 25, RemoveTime: 10, Difficulty: 6 },
 			{ Name: "PaddedMittensHarnessLocked", Random: false, SelfBondage: false, Value: -1, Effect: ["Block", "Prone", "Lock"], Extended: true, Time: 12 },
-			{ Name: "Padlock", Wear: false, Value: 5 },
-			{ Name: "PadlockKey", Wear: false, Value: 5 },
+			{ Name: "Padlock", Wear: false, Value: 5, Effect: [] },
+			{ Name: "PadlockKey", Wear: false, Value: 5, Effect: [] },
 			{ Name: "FourLimbsShackles", Enable: false, Value: -1, SetPose: ["BackBoxTie"], Effect: ["Block", "Prone", "Lock"], Time: 30 },
 			{ Name: "StraitLeotard", SelfBondage: false, Value: 200, SetPose: ["BackElbowTouch"], Hide: ["Cloth", "ClothLower"], Block: ["ItemNipples", "ItemVulva", "ItemButt"], Effect: ["Block", "Prone", "Struggle"], Time: 35, RemoveTime: 20, Difficulty: 13 }
 		]
