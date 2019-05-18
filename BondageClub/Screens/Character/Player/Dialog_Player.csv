@@ -62,14 +62,14 @@ EggIncreaseTo0,,,DestinationCharacter's vibrating egg starts teasing her lightly
 EggIncreaseTo1,,,DestinationCharacter's vibrating egg builds up to a moderate pace.
 EggIncreaseTo2,,,DestinationCharacter's vibrating egg starts buzzing strongly!
 EggIncreaseTo3,,,DestinationCharacter's vibrating egg jumps up to maximum intensity!
-NippleDecreaseTo-1,,,DestinationCharacter's vibrating nipple clamps stops vibrating.
-NippleDecreaseTo0,,,DestinationCharacter's vibrating nipple clamps slows down into a light tease.
-NippleDecreaseTo1,,,DestinationCharacter's vibrating nipple clamps returns to a moderate pace.
-NippleDecreaseTo2,,,DestinationCharacter's vibrating nipple clamps slows down a tiny bit.
-NippleIncreaseTo0,,,DestinationCharacter's vibrating nipple clamps starts teasing her lightly.
-NippleIncreaseTo1,,,DestinationCharacter's vibrating nipple clamps builds up to a moderate pace.
-NippleIncreaseTo2,,,DestinationCharacter's vibrating nipple clamps starts buzzing strongly!
-NippleIncreaseTo3,,,DestinationCharacter's vibrating nipple clamps jumps up to maximum intensity!
+NippleDecreaseTo-1,,,DestinationCharacter's vibrating nipple clamps stop vibrating.
+NippleDecreaseTo0,,,DestinationCharacter's vibrating nipple clamps slow down into a light tease.
+NippleDecreaseTo1,,,DestinationCharacter's vibrating nipple clamps return to a moderate pace.
+NippleDecreaseTo2,,,DestinationCharacter's vibrating nipple clamps slow down a tiny bit.
+NippleIncreaseTo0,,,DestinationCharacter's vibrating nipple clamps start teasing her lightly.
+NippleIncreaseTo1,,,DestinationCharacter's vibrating nipple clamps build up to a moderate pace.
+NippleIncreaseTo2,,,DestinationCharacter's vibrating nipple clamps start buzzing strongly!
+NippleIncreaseTo3,,,DestinationCharacter's vibrating nipple clamps jump up to maximum intensity!
 UseRemote,,,Use Remote
 PlayerGagged,,,(You can use or remove items by selecting specific body regions on yourself.)
 0,,,(You can use or remove items by selecting specific body regions on yourself.)
