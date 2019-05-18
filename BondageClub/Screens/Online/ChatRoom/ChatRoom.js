@@ -206,9 +206,9 @@ function ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem
 		// Prepares the message
 		var msg = "";
 		if ((DialogProgressPrevItem != null) && (DialogProgressNextItem != null)) msg = TextGet("ActionSwap");
-		else if ((DialogProgressNextItem != null) && (DialogProgressNextItem.Asset.Effect != null) && (DialogProgressNextItem.Asset.Effect.indexOf("Lock") >= 0)) msg = TextGet("ActionLock");
+		else if (InventoryItemHasEffect(DialogProgressNextItem, "Lock")) msg = TextGet("ActionLock");
 		else if (DialogProgressNextItem != null) msg = TextGet("ActionUse");
-		else if ((DialogProgressPrevItem != null) && (DialogProgressPrevItem.Asset.Effect != null) && (DialogProgressPrevItem.Asset.Effect.indexOf("Lock") >= 0)) msg = TextGet("ActionUnlock");
+		else if (InventoryItemHasEffect(DialogProgressPrevItem, "Lock")) msg = TextGet("ActionUnlock");
 		else msg = TextGet("ActionRemove");
 		
 		// Replaces the action tags to build the phrase
