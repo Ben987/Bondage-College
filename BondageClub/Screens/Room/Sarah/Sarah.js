@@ -87,7 +87,7 @@ function SarahSetStatus() {
 	if (LogQuery("AmandaMistress", "NPC-Amanda") && (Player.Owner != "NPC-Amanda")) AmandaStatus = "ExOwner";
 	
 	// They are not accessible if they already are in the private room
-	for(var P = 0; P < PrivateCharacter.length; P++) {
+	for(var P = 1; P < PrivateCharacter.length; P++) {
 		if (PrivateCharacter[P].Name.trim() == "Sarah") { SarahStatus = "InPrivateRoom"; SarahInside = false; }
 		if (PrivateCharacter[P].Name.trim() == "Amanda") AmandaStatus = "InPrivateRoom";
 		if (PrivateCharacter[P].Name.trim() == "Sophie") SophieStatus = "InPrivateRoom";

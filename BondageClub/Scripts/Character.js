@@ -376,11 +376,12 @@ function CharacterRefresh(C, Push) {
 	if ((CurrentModule != "Character") && (C.ID == 0) && ((Push == null) || (Push == true))) ServerPlayerAppearanceSync();
 }
 
-// Returns TRUE if a character has no item
+// Returns TRUE if a character has no item (the slave collar doesn't count)
 function CharacterHasNoItem(C) {
 	for(var A = 0; A < C.Appearance.length; A++)
 		if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Category == "Item"))
-			return false;
+			if (C.Appearance[A].Asset.Name != "SlaveCollar")
+				return false;
 	return true;
 }
 

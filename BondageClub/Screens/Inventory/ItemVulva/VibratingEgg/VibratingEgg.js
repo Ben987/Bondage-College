@@ -8,7 +8,7 @@ function InventoryItemVulvaVibratingEggLoad() {
 // Draw the item extension screen
 function InventoryItemVulvaVibratingEggDraw() {
 	DrawRect(1387, 225, 225, 275, "white");
-	if (DialogFocusItem.Property.Intensity > 0)
+	if (DialogFocusItem.Property.Intensity >= 0)
 		DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389 + Math.floor(Math.random() * 3) - 1, 227 + Math.floor(Math.random() * 3) - 1, 221, 221);
 	else DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");

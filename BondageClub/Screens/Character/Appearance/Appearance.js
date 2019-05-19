@@ -40,7 +40,6 @@ function CharacterAppearanceValidate(C) {
 			}
 
 		// Remove items flagged as "Remove At Login"
-		var Refresh = false;
 		for(var A = 0; A < C.Appearance.length; A++)
 			if (C.Appearance[A].Asset.RemoveAtLogin) {
 				C.Appearance.splice(A, 1);

@@ -112,7 +112,7 @@ function InventorySetDifficulty(C, AssetGroup, Difficulty) {
 // Returns TRUE if there's already a locked item at a given position
 function InventoryLocked(C, AssetGroup) {
 	var I = InventoryGet(C, AssetGroup);
-	return ((I != null) && (I.Asset.Effect != null) && (I.Asset.Effect.indexOf("Lock") >= 0));
+	return ((I != null) && InventoryItemHasEffect(I, "Lock"));
 }
 
 // Makes the character wear a random item from a group
@@ -145,3 +145,19 @@ function InventoryGroupIsBlocked(C) {
 			return true;
 	return false;
 }
+
+// Returns TRUE if the item has a specific effect.
+function InventoryItemHasEffect(Item, Effect) {
+	if (!Item) return null;
+
+	// If no effect is specified, we simply check if the item has any effect
+	if (!Effect) {
+		if ((Item.Asset && Item.Asset.Effect) || (Item.Property && Item.Property.Effect)) return true;
+		else return false;
+	}
+	else {
+		if ((Item.Asset && Item.Asset.Effect && Item.Asset.Effect.indexOf(Effect) >= 0) || (Item.Property && Item.Property.Effect && Item.Property.Effect.indexOf(Effect) >= 0)) return true;
+		else return false;
+	}
+}
+
