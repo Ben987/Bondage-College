@@ -479,10 +479,7 @@ var AssetFemale3DCG = [
 		Top: 0,
 		Zone: [[150, 160, 200, 50]],
 		Asset: [ 
-			{ Name: "SmallClothGag", Effect: ["GagLight"], Value: 10, Time: 10 },
-			{ Name: "ClothCleaveGag", Effect: ["GagLight"], Value: 15, Time: 10 },
-			{ Name: "ClothOTMGag", Value: 20, Time: 10 },
-			{ Name: "ClothOTNGag", Value: 25, Time: 10 },
+			{ Name: "ClothGag", Extended: true, Value: 25, Time: 10 },
 			{ Name: "HarnessBallGag", Effect: ["GagHeavy"], Value: 60, Time: 20 },
 			{ Name: "HarnessPanelGag", Effect: ["GagHeavy"], Value: 80, Time: 20 },
 			{ Name: "RingGag", Value: 35, Time: 5 },
