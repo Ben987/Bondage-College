@@ -47,7 +47,7 @@ ClothGagTypeOTM,,,OTM
 ClothGagTypeOTN,,,OTN
 ClothGagSetSmall,,,SourceCharacter ties the cloth into a small gag over DestinationCharacter's mouth.
 ClothGagSetCleave,,,SourceCharacter ties the cloth into a cleave gag over DestinationCharacter's mouth.
-ClothGagSetOTM,,,SourceCharacter stuffs DestinationCharacter's mouth with a piece of cloth and secures the gag with another piece.
+ClothGagSetOTM,,,SourceCharacter stuffs DestinationCharacter's mouth with a piece of cloth and secures it with another piece.
 ClothGagSetOTN,,,SourceCharacter stuffs DestinationCharacter's mouth with a piece of cloth and secures the gag over her mouth and nose.
 Intensity-1,,,Item intensity: Disabled
 Intensity0,,,Item intensity: Low
