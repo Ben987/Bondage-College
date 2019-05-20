@@ -3,6 +3,7 @@ var DialogText = "";
 var DialogTextDefault = "";
 var DialogTextDefaultTimer = -1;
 var DialogProgress = -1;
+var DialogProgressColor = null;
 var DialogProgressStruggleCount = 0;
 var DialogProgressAuto = 0;
 var DialogProgressClick = 0;
@@ -118,6 +119,8 @@ function DialogLeaveItemMenu() {
 	DialogInventory = null;
 	DialogInventoryOffset = 0;
 	DialogProgress = -1;
+	DialogProgressColor = null;
+	ElementRemove("InputColor");
 }
 
 // Adds the item in the dialog list
@@ -233,7 +236,7 @@ function DialogProgressStart(C, PrevItem, NextItem) {
 
 // The player can use the space bar to speed up the dialog progress, just like clicking
 function DialogKeyDown() {
-	if (((KeyPress == 65) || (KeyPress == 83) || (KeyPress == 97) || (KeyPress == 115)) && (DialogProgress >= 0)) {
+	if (((KeyPress == 65) || (KeyPress == 83) || (KeyPress == 97) || (KeyPress == 115)) && (DialogProgress >= 0) && (DialogProgressColor == null)) {
 		DialogStruggle((DialogProgressLastKeyPress == KeyPress));
 		DialogProgressLastKeyPress = KeyPress;
 	}
@@ -298,11 +301,11 @@ function DialogClick() {
 
 				}
 
+				// If the user wants to use the remote through the "Use Remote" button
+				if ((DialogProgress < 0) && InventoryItemHasEffect(InventoryGet(C, C.FocusGroup.Name), "Egged") && (Player.Effect.indexOf("Block") < 0) && InventoryGroupIsBlocked(C) && InventoryAvailable(Player,"VibratorRemote","ItemVulva"))
+					DialogExtendItem(InventoryGet(C, C.FocusGroup.Name));
+				
 			}
-			
-			// If the user wants to use the remote through the "Use Remote" button
-			if ((MouseX >= 1500) && (MouseX <= 1725) && (MouseY >= 25) && (MouseY <= 100) && InventoryItemHasEffect(InventoryGet(C, C.FocusGroup.Name), "Egged") && (Player.Effect.indexOf("Block") < 0) && InventoryGroupIsBlocked(C) && InventoryAvailable(Player,"VibratorRemote","ItemVulva"))
-				DialogExtendItem(InventoryGet(C, C.FocusGroup.Name));
 
 			// If the user wants to get the next 12 items
 			if ((MouseX >= 1775) && (MouseX <= 1865) && (MouseY >= 15) && (MouseY <= 105)) {
@@ -312,8 +315,33 @@ function DialogClick() {
 			
 			// If the user cancels the menu
 			if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 15) && (MouseY <= 105) && (DialogProgress < 0) && Player.CanInteract()) DialogLeaveItemMenu();
-			if ((MouseX >= 1750) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 100) && ((DialogProgress >= 0) || !Player.CanInteract())) DialogLeaveItemMenu();
+			if ((MouseX >= 1750) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 100) && (((DialogProgress >= 0) && (DialogProgressColor == null)) || !Player.CanInteract())) DialogLeaveItemMenu();
+			
+			// If the user wants to change the item color
+			if ((MouseX >= 1500) && (MouseX <= 1725) && (MouseY >= 25) && (MouseY <= 100) && (DialogProgressNextItem != null) && (DialogProgressColor == null) && (DialogProgress >= 0)) {
+				ElementCreateInput("InputColor", "text", "");
+				DialogProgressColor = "";
+			}
 
+			// If the user cancels out of color picking
+			if ((MouseX >= 1768) && (MouseX <= 1858) && (MouseY >= 25) && (MouseY <= 115) && (DialogProgressNextItem != null) && (DialogProgressColor != null) && (DialogProgress >= 0)) {
+				delete DialogProgressNextItem.Color;
+				ElementRemove("InputColor");
+				DialogProgressColor = null;
+			}
+
+			// If the user picks the color
+			if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 115) && (DialogProgressNextItem != null) && (DialogProgressColor != null) && (DialogProgress >= 0))
+				if (CommonIsColor(ElementValue("InputColor"))) {
+					DialogProgressNextItem.Color = ElementValue("InputColor")
+					ElementRemove("InputColor");
+					DialogProgressColor = null;
+				}
+
+			// In color picker mode, we can pick a color from the color image
+			if ((MouseX >= 1300) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 975) && (DialogProgressNextItem != null) && (DialogProgressColor != null) && (DialogProgress >= 0))
+				ElementValue("InputColor", DrawRGBToHex(MainCanvas.getImageData(MouseX, MouseY, 1, 1).data));
+			
 			// If the user clicks on one of the items
 			if ((MouseX >= 1000) && (MouseX <= 1975) && (MouseY >= 125) && (MouseY <= 1000) && Player.CanInteract() && (DialogProgress < 0)) {
 
@@ -460,6 +488,7 @@ function DialogSetText(NewText) {
 // Extends a specific item (loads its settings and shows its own menu)
 function DialogExtendItem(I) {
 	DialogProgress = -1;
+	DialogProgressColor = null;
 	DialogFocusItem = I;
 	CommonDynamicFunction("Inventory" + I.Asset.Group.Name + I.Asset.Name + "Load()");
 }
@@ -503,59 +532,74 @@ function DialogDrawItemMenu(C) {
 		}
 	
 	} else {
-
-		// Can always cancel out
-		var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-		DrawButton(1750, 25, 225, 75, DialogFind(Player, "Cancel"), "White");
 	
 		// If the player is progressing
+		var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 		if (DialogProgress >= 0) {
 
-			// Draw one or both items
-			if ((DialogProgressPrevItem != null) && (DialogProgressNextItem != null)) {
-				DrawItemPreview(1200, 250, DialogProgressPrevItem);
-				DrawItemPreview(1575, 250, DialogProgressNextItem);
-			} else DrawItemPreview(1387, 250, (DialogProgressPrevItem != null) ? DialogProgressPrevItem : DialogProgressNextItem);
-		
-			// Add or subtract to the automatic progression
-			DialogProgress = DialogProgress + DialogProgressAuto;
-			if (DialogProgress < 0) DialogProgress = 0;
+			// In regular struggle mode
+			if (DialogProgressColor == null) {
 
-			// Draw the current operation and progress
-			DrawText(DialogProgressOperation, 1500, 650, "White", "Black");
-			DrawProgressBar(1200, 700, 600, 100, DialogProgress);
-			DrawText(DialogFind(Player, (CommonIsMobile) ? "ProgressClick" : "ProgressKeys"), 1500, 900, "White", "Black");
+				// Draw one or both items
+				if ((DialogProgressPrevItem != null) && (DialogProgressNextItem != null)) {
+					DrawItemPreview(1200, 250, DialogProgressPrevItem);
+					DrawItemPreview(1575, 250, DialogProgressNextItem);
+				} else DrawItemPreview(1387, 250, (DialogProgressPrevItem != null) ? DialogProgressPrevItem : DialogProgressNextItem);
 
-			// If the operation is completed
-			if (DialogProgress >= 100) {
+				// Add or subtract to the automatic progression, doesn't move in color picking mode
+				DialogProgress = DialogProgress + DialogProgressAuto;
+				if (DialogProgress < 0) DialogProgress = 0;
+				if (DialogProgressNextItem != null) DrawButton(1500, 25, 225, 75, DialogFind(Player, "Color"), (CommonIsColor(DialogProgressNextItem.Color)) ? DialogProgressNextItem.Color : "White");
 
-				// Add / swap / remove the item
-				if (DialogProgressNextItem == null) InventoryRemove(C, C.FocusGroup.Name);
-				else InventoryWear(C, DialogProgressNextItem.Asset.Name, DialogProgressNextItem.Asset.Group.Name, "Default", SkillGetLevel(Player, "Bondage"));
+				// Draw the current operation and progress
+				DrawText(DialogProgressOperation, 1500, 650, "White", "Black");
+				DrawButton(1750, 25, 225, 75, DialogFind(Player, "Cancel"), "White");
+				DrawProgressBar(1200, 700, 600, 100, DialogProgress);
+				DrawText(DialogFind(Player, (CommonIsMobile) ? "ProgressClick" : "ProgressKeys"), 1500, 900, "White", "Black");
 
-				// The player can use another item right away, for another character we jump back to her reaction
-				if (C.ID == 0) {
-					if (DialogProgressNextItem == null) SkillProgress("Evasion", DialogProgressSkill);
-					if ((DialogProgressNextItem == null) || !DialogProgressNextItem.Asset.Extended) {
+				// If the operation is completed
+				if (DialogProgress >= 100) {
+
+					// Add / swap / remove the item
+					if (DialogProgressNextItem == null) InventoryRemove(C, C.FocusGroup.Name);
+					else InventoryWear(C, DialogProgressNextItem.Asset.Name, DialogProgressNextItem.Asset.Group.Name, (DialogProgressNextItem.Color == null) ? "Default" : DialogProgressNextItem.Color, SkillGetLevel(Player, "Bondage"));
+
+					// The player can use another item right away, for another character we jump back to her reaction
+					if (C.ID == 0) {
+						if (DialogProgressNextItem == null) SkillProgress("Evasion", DialogProgressSkill);
+						if ((DialogProgressNextItem == null) || !DialogProgressNextItem.Asset.Extended) {
+							DialogInventoryBuild(C);
+							DialogProgress = -1;
+							DialogProgressColor = null;
+						}
+					} else {
+						if (DialogProgressNextItem != null) SkillProgress("Bondage", DialogProgressSkill);
+						if (((DialogProgressNextItem == null) || !DialogProgressNextItem.Asset.Extended) && (CurrentScreen != "ChatRoom")) {
+							C.CurrentDialog = DialogFind(C, ((DialogProgressNextItem == null) ? ("Remove" + DialogProgressPrevItem.Asset.Name) : DialogProgressNextItem.Asset.Name), ((DialogProgressNextItem == null) ? "Remove" : "") + C.FocusGroup.Name);
+							DialogLeaveItemMenu();
+						}
+					}
+
+					// Check to open the extended menu of the item.  In a chat room, we publish the result for everyone
+					if ((DialogProgressNextItem != null) && DialogProgressNextItem.Asset.Extended) {
 						DialogInventoryBuild(C);
-						DialogProgress = -1;
-					}
-				} else {
-					if (DialogProgressNextItem != null) SkillProgress("Bondage", DialogProgressSkill);
-					if (((DialogProgressNextItem == null) || !DialogProgressNextItem.Asset.Extended) && (CurrentScreen != "ChatRoom")) {
-						C.CurrentDialog = DialogFind(C, ((DialogProgressNextItem == null) ? ("Remove" + DialogProgressPrevItem.Asset.Name) : DialogProgressNextItem.Asset.Name), ((DialogProgressNextItem == null) ? "Remove" : "") + C.FocusGroup.Name);
-						DialogLeaveItemMenu();
-					}
+						ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, false);
+						DialogExtendItem(InventoryGet(C, DialogProgressNextItem.Asset.Group.Name));
+					} else ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, true);
+
 				}
 
-				// Check to open the extended menu of the item.  In a chat room, we publish the result for everyone
-				if ((DialogProgressNextItem != null) && DialogProgressNextItem.Asset.Extended) {
-					DialogInventoryBuild(C);
-					ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, false);
-					DialogExtendItem(InventoryGet(C, DialogProgressNextItem.Asset.Group.Name));
-				} else ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, true);
-				
-			}		
+			} else {
+
+				// Draws the color picker
+				ElementPosition("InputColor", 1450, 65, 300);
+				DrawButton(1610, 37, 65, 65, "", "White", "Icons/Color.png");
+				DrawButton(1768, 25, 90, 90, "", "White", "Icons/Cancel.png");
+				DrawButton(1885, 25, 90, 90, "", "White", "Icons/Accept.png");
+				if (CommonIsColor(ElementValue("InputColor"))) DrawRect(1290, 135, 695, 850, ElementValue("InputColor"));
+				DrawImage("Backgrounds/ColorPicker.png", 1300, 145);
+
+			}
 
 		} else {
 			
@@ -596,9 +640,10 @@ function DialogDrawItemMenu(C) {
 			}
 
 			// Show the no access text
+			DrawButton(1750, 25, 225, 75, DialogFind(Player, "Cancel"), "White");
 			if (InventoryGroupIsBlocked(C)) DrawText(DialogFind(Player, "ZoneBlocked"), 1500, 700, "White", "Black");
 			else DrawText(DialogFind(Player, "AccessBlocked"), 1500, 700, "White", "Black");
-			
+
 		}
 		
 	}

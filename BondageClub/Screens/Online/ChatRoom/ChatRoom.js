@@ -275,7 +275,7 @@ function ChatRoomSync(data) {
 	if ((data != null) && (typeof data === "object") && (data.Name != null)) {
 
 		// Load the room
-		if (CurrentScreen != "ChatRoom") CommonSetScreen("Online", "ChatRoom");
+		if ((CurrentScreen != "ChatRoom") && (CurrentScreen != "Appearance")) CommonSetScreen("Online", "ChatRoom");
 
 		// Load the characters
 		ChatRoomCharacter = [];		

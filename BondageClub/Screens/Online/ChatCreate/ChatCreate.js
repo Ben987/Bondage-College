@@ -4,7 +4,7 @@ var ChatCreateResult = [];
 var ChatCreateMessage = "";
 var ChatCreatePrivate = false;
 var ChatCreateBackgroundSelect = "Introduction";
-var ChatCreateBackgroundList = ["Introduction", "KidnapLeague", "MaidQuarters", "MainHall", "Management", "Private", "Shibari"];
+var ChatCreateBackgroundList = ["Introduction", "KidnapLeague", "MaidQuarters", "MainHall", "Management", "Private", "Shibari", "Bedroom", "HorseStable", "Nursery", "PrisonHall", "PaddedCell", "BDSMRoomBlue", "BDSMRoomPurple", "BDSMRoomRed"];
 
 // When the chat screens loads, we loads up to 24 public rooms
 function ChatCreateLoad() {

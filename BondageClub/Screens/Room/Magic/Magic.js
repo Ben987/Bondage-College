@@ -227,7 +227,7 @@ function MagicTrickBoxTiedLight() {
 	InventoryWear(Player, "NylonRope", "ItemFeet");
 	InventoryWear(Player, "NylonRope", "ItemLegs");
 	InventoryWear(Player, "NylonRope", "ItemArms");
-	InventoryWear(Player, "SmallClothGag", "ItemMouth");
+	InventoryWear(Player, "ClothGag", "ItemMouth");
 	InventoryWear(Player, "ClothBlindfold", "ItemHead");
 	InventoryWear(Player, "WoodenBox", "ItemMisc");
 	MagicPerformer.Stage = "131";
@@ -238,7 +238,7 @@ function MagicTrickBoxTiedHeavy() {
 	InventoryWear(Player, "HempRope", "ItemFeet");
 	InventoryWear(Player, "HempRope", "ItemLegs");
 	InventoryWear(Player, "HempRope", "ItemArms");
-	InventoryWear(Player, "ClothOTMGag", "ItemMouth");
+	InventoryWear(Player, "ClothGag", "ItemMouth");
 	InventoryWear(Player, "LeatherBlindfold", "ItemHead");
 	InventoryWear(Player, "WoodenBox", "ItemMisc");
 	MagicPerformer.Stage = "151";

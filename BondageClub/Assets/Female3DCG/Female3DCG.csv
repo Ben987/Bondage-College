@@ -212,10 +212,7 @@ ItemNeck,ClubSlaveCollar,Club Slave Collar
 ItemNeck,ShockCollar,Shock Collar
 ItemNeck,ShockCollarRemote,Shock Collar Remote
 ItemMouth,,Mouth
-ItemMouth,SmallClothGag,Small Cloth Gag
-ItemMouth,ClothCleaveGag,Cloth Cleave Gag
-ItemMouth,ClothOTMGag,Cloth OTM Gag
-ItemMouth,ClothOTNGag,Cloth OTN Gag
+ItemMouth,ClothGag,Cloth Gag
 ItemMouth,HarnessBallGag,Harness Ball Gag
 ItemMouth,HarnessPanelGag,Harness Panel Gag
 ItemMouth,RingGag,Ring Gag
