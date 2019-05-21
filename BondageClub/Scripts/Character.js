@@ -229,6 +229,7 @@ function CharacterLoadOnline(data) {
 		Char.Lover = (data.Lover != null) ? data.Lover : "";
 		Char.Owner = (data.Owner != null) ? data.Owner : "";
 		Char.AccountName = "Online-" + data.ID.toString();
+		Char.MemberNumber = data.MemberNumber;
 		CharacterLoadCSVDialog(Char, "Online");
 		CharacterOnlineRefresh(Char, data);
 

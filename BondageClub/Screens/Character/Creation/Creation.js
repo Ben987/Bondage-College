@@ -52,34 +52,37 @@ function CreationRun() {
 
 }
 
-// When the ajax response returns, we analyze it's data
-function CreationResponse(CharacterData) {
-	if ((CharacterData != null) && (CharacterData.indexOf("AccountCreated") >= 0)) {
+// When the server response returns, we analyze it's data
+function CreationResponse(data) {
+	if ((data != null) && (data.ServerAnswer != null)) {
+		if (data.ServerAnswer == "AccountCreated") {
 
-		// Keep the character data and pushes it's appearance to the server
-		Player.Name = ElementValue("InputCharacter");
-		Player.AccountName = ElementValue("InputName");
-		Player.Creation = CurrentTime;
-		Player.Money = 100;
-		Player.OnlineID = CharacterData.substring(14, 100);
+			// Keep the character data and pushes it's appearance to the server
+			Player.Name = ElementValue("InputCharacter");
+			Player.AccountName = ElementValue("InputName");
+			Player.Creation = CurrentTime;
+			Player.Money = 100;
+			Player.OnlineID = data.OnlineID;
+			Player.MemberNumber = data.MemberNumber;
 
-		// Imports logs, inventory and Sarah status from the Bondage College
-		CreationMessage = "";
-		PrivateCharacter = [];
-		PrivateCharacter.push(Player);
-		Log = [];
-		ImportBondageCollege(Player);
+			// Imports logs, inventory and Sarah status from the Bondage College
+			CreationMessage = "";
+			PrivateCharacter = [];
+			PrivateCharacter.push(Player);
+			Log = [];
+			ImportBondageCollege(Player);
 
-		// Flush the controls and enters the main hall
-		ServerPlayerAppearanceSync();
-		ElementRemove("InputCharacter");
-		ElementRemove("InputName");
-		ElementRemove("InputPassword1");
-		ElementRemove("InputPassword2");
-		ElementRemove("InputEmail");
-		CommonSetScreen("Room", "MainHall");
+			// Flush the controls and enters the main hall
+			ServerPlayerAppearanceSync();
+			ElementRemove("InputCharacter");
+			ElementRemove("InputName");
+			ElementRemove("InputPassword1");
+			ElementRemove("InputPassword2");
+			ElementRemove("InputEmail");
+			CommonSetScreen("Room", "MainHall");
 
-	} else CreationMessage = TextGet("Error") + " " + CharacterData;
+		} else CreationMessage = TextGet("Error") + " " + data.ServerAnswer;		
+	} else CreationMessage = TextGet("InvalidServerAnswer");
 }
 
 // When the user clicks on the character creation screen

@@ -122,6 +122,7 @@ function LoginResponse(C) {
 			Player.Creation = C.Creation;
 			Player.Wardrobe = C.Wardrobe;
 			Player.OnlineID = C.ID.toString();
+			Player.MemberNumber = C.MemberNumber;
 			WardrobeCharacter = [];
 
 			// Loads the player character model and data
