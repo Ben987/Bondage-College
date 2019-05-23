@@ -106,12 +106,14 @@ function InformationSheetRun() {
 	// Draw the last controls
 	MainCanvas.textAlign = "center";
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+	if (C.ID == 0) DrawButton(1815, 190, 90, 90, "", "White", "Icons/Preference.png");
 
 }
 
 // When the user clicks on the character info screen
 function InformationSheetClick() {
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) CommonSetScreen(InformationSheetPreviousModule, InformationSheetPreviousScreen);
+	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 190) && (MouseY < 280) && (InformationSheetSelection.ID == 0)) CommonSetScreen("Character", "Preference");
 }
 
 // Loads the information sheet for a character

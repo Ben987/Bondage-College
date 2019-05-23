@@ -110,12 +110,12 @@ function LoginResponse(C) {
 			// Make sure we have values
 			LoginMessage = "";
 			if (C.Appearance == null) C.Appearance = [];
-			if (C.AssetFamily == null) C.AssetFamily = "Female3DCG";			
+			if (C.AssetFamily == null) C.AssetFamily = "Female3DCG";
 
 			// Sets the player character info
 			Player.Name = C.Name;
 			Player.AccountName = C.AccountName;
-			Player.AssetFamily = C.AssetFamily;		
+			Player.AssetFamily = C.AssetFamily;
 			if (CommonIsNumeric(C.Money)) Player.Money = C.Money;
 			Player.Owner = ((C.Owner == null) || (C.Owner == "undefined")) ? "" : C.Owner;
 			Player.Lover = ((C.Lover == null) || (C.Lover == "undefined")) ? "" : C.Lover;
@@ -125,6 +125,12 @@ function LoginResponse(C) {
 			Player.MemberNumber = C.MemberNumber;
 			WardrobeCharacter = [];
 
+			// Gets the online preferences
+			Player.LabelColor = C.LabelColor;
+			Player.RestrainPermission = C.RestrainPermission;
+			Player.WhiteList = C.WhiteList;
+			Player.BlackList = C.BlackList;
+	
 			// Loads the player character model and data
 			Player.Appearance = ServerAppearanceLoadFromBundle(C.AssetFamily, C.Appearance);
 			InventoryLoad(Player, C.Inventory, false);
