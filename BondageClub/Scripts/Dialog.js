@@ -669,8 +669,11 @@ function DialogGarble(C, CD) {
 			var H = CD.charAt(L).toLowerCase();
 			if (H == "(") Par = true;
 			if (Par) NS = NS + CD.charAt(L);
-			if (!Par && (H != " ")) NS = NS + "m";
-			if (!Par && (H == " ")) NS = NS + " ";
+			else {
+				if (H == " " || H == "." || H == "?" || H == "!") NS = NS + H;
+				else NS = NS + "m";
+			}
+			
 			if (H == ")") Par = false;
 		}
 		NS = DialogStutter(C, NS);
@@ -690,7 +693,7 @@ function DialogGarble(C, CD) {
 				if (H == "s" || H == "z" || H == "h") NS = NS + "h";
 				if (H == "b" || H == "p" || H == "v") NS = NS + "f";
 				if (H == "d" || H == "f" || H == "g" || H == "n" || H == "m") NS = NS + "m";
-				if (H == " " || H == "!") NS = NS + H;
+				if (H == " " || H == "." || H == "?" || H == "!") NS = NS + H;
 			} else NS = NS + CD.charAt(L);
 			if (H == ")") Par = false;
 		}
@@ -712,7 +715,7 @@ function DialogGarble(C, CD) {
 				if (H == "d" || H == "f") NS = NS + "m";
 				if (H == "p") NS = NS + "f";
 				if (H == "g") NS = NS + "n";
-				if (H == " " || H == "!" || H == "." || H == "a" || H == "e" || H == "i" || H == "o" || H == "u" || H == "m" || H == "n" || H == "h") NS = NS + H;
+				if (H == " " || H == "!" || H == "?" || H == "." || H == "a" || H == "e" || H == "i" || H == "o" || H == "u" || H == "m" || H == "n" || H == "h") NS = NS + H;
 			} else NS = NS + CD.charAt(L);
 			if (H == ")") Par = false;
 		}
