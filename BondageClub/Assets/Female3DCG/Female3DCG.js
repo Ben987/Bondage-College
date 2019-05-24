@@ -489,6 +489,7 @@ var AssetFemale3DCG = [
 			{ Name: "DusterGag", Random: false, RemoveAtLogin: true, Value: -1, Time: 20 },
 			{ Name: "HarnessPonyBits", Random: false, Effect: ["GagHeavy"], Value: -1, Time: 20 },
 			{ Name: "PumpGag", Effect: [], Random: false, Extended: true, Value: 100, Time: 20 },
+			{ Name: "KittyGag", Effect: ["GagLight"], Value: 20, Time: 10 },
 			{ Name: "RegularSleepingPill", Enable: false, Wear: false, Value: -1, Bonus: [{Type: "KidnapSneakiness", Factor: 3}] }
 		]
 	},
