@@ -42,6 +42,12 @@ function StableLoad() {
 	StablePlayerIsTrainer = (LogQuery("JoinedStable", "Trainer") && (ReputationGet("Dominant") > 30)) && !StablePlayerDressOff;
 	StablePlayerIsExamTrainer = LogQuery("JoinedStable", "TrainerExam");
 	StablePlayerIsNewby = (!LogQuery("JoinedStable", "Pony") && !LogQuery("JoinedStable", "Trainer"));
+
+	// Give items to the player in case they completed the exam before they were added
+	if(StablePlayerIsExamTrainer || StablePlayerIsExamPony) {
+		InventoryAdd(Player, "HarnessPonyBits", "ItemMouth");
+		InventoryAdd(Player, "PonyBoots", "Shoes");
+	}
 	
 	// Default load
 	if (StableTrainer == null) {
@@ -601,7 +607,7 @@ function StableWearPonyEquipment(C) {
 	InventoryWear(C, "HarnessPonyBits", "ItemMouth");
 	InventoryWear(C, "LeatherArmbinder", "ItemArms");
 	InventoryWear(C, "HorsetailPlug", "ItemButt");
-	InventoryRemove(C, "ItemFeet");
+	InventoryWear(C, "PonyBoots", "Shoes");
 	InventoryRemove(C, "ItemLegs");
 	CharacterRefresh(C);
 }
@@ -660,6 +666,7 @@ function StablePlayerExamDressage() {
 function StablePlayerExamPass() {
 	LogAdd("JoinedStable", "PonyExam");
 	InventoryAdd(Player, "HarnessPonyBits", "ItemMouth");
+	InventoryAdd(Player, "PonyBoots", "Shoes");
 	StablePlayerExamEnd();
 	StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableExamAwardIntro");
 	StableTrainer.Stage = "StableExamAward1";
@@ -867,6 +874,7 @@ function StablePlayerTExamHurdlesEnd() {
 function StablePlayerTExamPass() {
 	LogAdd("JoinedStable", "TrainerExam");
 	InventoryAdd(Player, "HarnessPonyBits", "ItemMouth");
+	InventoryAdd(Player, "PonyBoots", "Shoes");
 	CharacterChangeMoney(Player, -50);
 	StablePlayerTExamEnd();
 }
