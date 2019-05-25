@@ -52,34 +52,41 @@ function CreationRun() {
 
 }
 
-// When the ajax response returns, we analyze it's data
-function CreationResponse(CharacterData) {
-	if ((CharacterData != null) && (CharacterData.indexOf("AccountCreated") >= 0)) {
+// When the server response returns, we analyze it's data
+function CreationResponse(data) {
+	if ((data != null) && (data.ServerAnswer != null)) {
+		if (data.ServerAnswer == "AccountCreated") {
 
-		// Keep the character data and pushes it's appearance to the server
-		Player.Name = ElementValue("InputCharacter");
-		Player.AccountName = ElementValue("InputName");
-		Player.Creation = CurrentTime;
-		Player.Money = 100;
-		Player.OnlineID = CharacterData.substring(14, 100);
+			// Keep the character data and pushes it's appearance to the server
+			Player.Name = ElementValue("InputCharacter");
+			Player.AccountName = ElementValue("InputName");
+			Player.Creation = CurrentTime;
+			Player.Money = 100;
+			Player.OnlineID = data.OnlineID;
+			Player.MemberNumber = data.MemberNumber;
+			Player.ItemPermission = 2;
+			Player.WhiteList = [];
+			Player.BlackList = [];
+			Player.FriendList = [];
 
-		// Imports logs, inventory and Sarah status from the Bondage College
-		CreationMessage = "";
-		PrivateCharacter = [];
-		PrivateCharacter.push(Player);
-		Log = [];
-		ImportBondageCollege(Player);
+			// Imports logs, inventory and Sarah status from the Bondage College
+			CreationMessage = "";
+			PrivateCharacter = [];
+			PrivateCharacter.push(Player);
+			Log = [];
+			ImportBondageCollege(Player);
 
-		// Flush the controls and enters the main hall
-		ServerPlayerAppearanceSync();
-		ElementRemove("InputCharacter");
-		ElementRemove("InputName");
-		ElementRemove("InputPassword1");
-		ElementRemove("InputPassword2");
-		ElementRemove("InputEmail");
-		CommonSetScreen("Room", "MainHall");
+			// Flush the controls and enters the main hall
+			ServerPlayerAppearanceSync();
+			ElementRemove("InputCharacter");
+			ElementRemove("InputName");
+			ElementRemove("InputPassword1");
+			ElementRemove("InputPassword2");
+			ElementRemove("InputEmail");
+			CommonSetScreen("Room", "MainHall");
 
-	} else CreationMessage = TextGet("Error") + " " + CharacterData;
+		} else CreationMessage = TextGet("Error") + " " + data.ServerAnswer;		
+	} else CreationMessage = TextGet("InvalidServerAnswer");
 }
 
 // When the user clicks on the character creation screen
@@ -115,7 +122,7 @@ function CreationClick() {
 			// Makes sure the data is valid
 			var LN = /^[a-zA-Z0-9 ]+$/;
 			var LS = /^[a-zA-Z ]+$/;
-			var E = /^[a-zA-Z0-9@.]+$/;
+			var E = /^[a-zA-Z0-9@.!#$%&'*+/=?^_`{|}~-]+$/;
 			if (CharacterName.match(LS) && Name.match(LN) && Password1.match(LN) && (Email.match(E) || Email == "") && (CharacterName.length > 0) && (CharacterName.length <= 20) && (Name.length > 0) && (Name.length <= 20) && (Password1.length > 0) && (Password1.length <= 20) && (Email.length <= 100)) {
 				CreationMessage = TextGet("CreatingCharacter");
 				ServerSend("AccountCreate", { Name: CharacterName, AccountName: Name, Password: Password1, Email: Email } );

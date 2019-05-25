@@ -217,10 +217,7 @@ ItemNeck,ClubSlaveCollar,Club Slave Collar
 ItemNeck,ShockCollar,Shock Collar
 ItemNeck,ShockCollarRemote,Shock Collar Remote
 ItemMouth,,Mouth
-ItemMouth,SmallClothGag,Small Cloth Gag
-ItemMouth,ClothCleaveGag,Cloth Cleave Gag
-ItemMouth,ClothOTMGag,Cloth OTM Gag
-ItemMouth,ClothOTNGag,Cloth OTN Gag
+ItemMouth,ClothGag,Cloth Gag
 ItemMouth,HarnessBallGag,Harness Ball Gag
 ItemMouth,HarnessPanelGag,Harness Panel Gag
 ItemMouth,RingGag,Ring Gag
@@ -230,6 +227,7 @@ ItemMouth,HarnessPacifierGag,Harness Pacifier
 ItemMouth,DusterGag,Duster Gag
 ItemMouth,HarnessPonyBits,Bit Gag
 ItemMouth,PumpGag,Pump Gag
+ItemMouth,KittyGag,Kitty Mask Gag
 ItemMouth,CarrotGag,Rubber Carrot Gag
 ItemMouth,RegularSleepingPill,Sleeping Pill
 ItemHead,,Head
@@ -238,6 +236,7 @@ ItemHead,LeatherBlindfold,Leather Blindfold
 ItemHead,LeatherHood,Leather Hood
 ItemHead,LeatherHoodOpenEyes,Leather Hood Eyes
 ItemHead,StuddedBlindfold,Studded Blindfold
+ItemHead,KittyBlindfold,Kitty Blindfold
 ItemMisc,,Misc Items
 ItemMisc,WoodenMaidTray,Wooden Maid Tray
 ItemMisc,WoodenMaidTrayFull,Wooden Maid Tray Full

@@ -87,7 +87,7 @@ function SarahSetStatus() {
 	if (LogQuery("AmandaMistress", "NPC-Amanda") && (Player.Owner != "NPC-Amanda")) AmandaStatus = "ExOwner";
 	
 	// They are not accessible if they already are in the private room
-	for(var P = 0; P < PrivateCharacter.length; P++) {
+	for(var P = 1; P < PrivateCharacter.length; P++) {
 		if (PrivateCharacter[P].Name.trim() == "Sarah") { SarahStatus = "InPrivateRoom"; SarahInside = false; }
 		if (PrivateCharacter[P].Name.trim() == "Amanda") AmandaStatus = "InPrivateRoom";
 		if (PrivateCharacter[P].Name.trim() == "Sophie") SophieStatus = "InPrivateRoom";
@@ -178,9 +178,10 @@ function SarahLoad() {
 		Sophie.Name = "Mistress Sophie";
 		Sophie.AllowItem = false;
 		CharacterNaked(Sophie);
-		InventoryRemove(Sophie, "Nipples");
-		InventoryWear(Sophie, "Bra2", "Bra", "#222222");
-		InventoryWear(Sophie, "Panties11", "Panties", "#222222");
+		InventoryRemove(Sophie, "Nipples");		
+		InventoryWear(Sophie, "Stockings4", "Socks", "#222222");
+		InventoryWear(Sophie, "Corset3", "Bra", "#222222");
+		InventoryWear(Sophie, "Panties13", "Panties", "#222222");
 		InventoryWear(Sophie, "PussyLight1", "Pussy", "#555555");
 		InventoryWear(Sophie, "Eyes1", "Eyes", "#b08061");
 		InventoryWear(Sophie, "Glasses5", "Glasses", "#222222");

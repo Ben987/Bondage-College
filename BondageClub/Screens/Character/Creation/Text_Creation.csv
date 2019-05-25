@@ -12,3 +12,4 @@ Error,Error:
 InvalidData,"Invalid character, account name, password or email"
 BothPasswordDoNotMatch,Both passwords do not match
 ImportBondageCollege,Import Bondage College data
+InvalidServerAnswer,"Invalid server answer, it could be outdated."

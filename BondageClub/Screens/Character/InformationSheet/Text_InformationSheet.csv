@@ -14,6 +14,7 @@ TitlePonyHot,Hot Blood Horse
 TitlePonyWild,Wild Mustang
 TitlePonyUnicorn,Shining Unicorn
 TitlePonyPegasus,Flying Pegasus
+MemberNumber,Member Number:
 Lover,Lover:
 Owner,Owner:
 LoverNone,None
@@ -62,3 +63,9 @@ RelationshipPoor,(Poor)
 RelationshipBad,(Bad)
 RelationshipHorrible,(Horrible)
 RelationshipAtrocious,(Atrocious)
+ItemPermission,Item permission:
+PermissionLevel0,"Everyone, no exceptions"
+PermissionLevel1,"Everyone, except blacklist"
+PermissionLevel2,"Owner, whitelist & Dominants"
+PermissionLevel3,Owner and whitelist only
+PermissionLevel4,Owner only

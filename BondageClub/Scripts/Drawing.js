@@ -135,7 +135,7 @@ function DrawCharacter(C, X, Y, Zoom) {
 			if ((C.Name != "") && ((CurrentModule == "Room") || (CurrentModule == "Online")) && (CurrentScreen != "Private")) 
 				if (!Player.IsBlind()) {
 					MainCanvas.font = "30px Arial";	
-					DrawText(C.Name, X + 255 * Zoom, Y + 980 * Zoom, "White", "Black");
+					DrawText(C.Name, X + 255 * Zoom, Y + 980 * Zoom, (CommonIsColor(C.LabelColor)) ? C.LabelColor : "White", "Black");
 					MainCanvas.font = "36px Arial";
 				}
 

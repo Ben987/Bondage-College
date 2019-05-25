@@ -30,7 +30,7 @@ function PrisonPlayerIsHandcuffed() {return PrisonCharacterAppearanceAvailable(P
 function PrisonPlayerIsPanelGag()   {return PrisonCharacterAppearanceAvailable(Player, "HarnessPanelGag", "ItemMouth");}
 function PrisonPlayerIsLegTied()    {return PrisonCharacterAppearanceAvailable(Player, "LeatherBelt", "ItemLegs");}
 function PrisonPlayerIsFeetTied()   {return PrisonCharacterAppearanceAvailable(Player, "LeatherBelt", "ItemFeet");}
-function PrisonPlayerIsOTMGag()     {return PrisonCharacterAppearanceAvailable(Player, "ClothOTMGag", "ItemMouth");}
+function PrisonPlayerIsOTMGag()     {return PrisonCharacterAppearanceAvailable(Player, "ClothGag", "ItemMouth");}
 function PrisonPlayerIsStriped()    {return !(PrisonCharacterAppearanceGroupAvailable(Player, "Cloth"));}
 function PrisonSubIsHandcuffedOut() {return (PrisonSubSelfCuffed && !PrisonSubBehindBars);}
 function PrisonSubIsBehindBars()    {return PrisonSubBehindBars;}
@@ -339,7 +339,7 @@ function PrisonDisableKey(C) {
 function PrisonCellPlayerAsk(){
 	if (PrisonMaidCharacter == "Chaotic") PrisonMaidChaotic = Math.random();
 	if (PrisonMaidCharacter == "Friendly" || (PrisonMaidCharacter == "Chaotic" && PrisonMaidChaotic < 0.33) ){
-		InventoryWear(Player, "ClothOTMGag", "ItemMouth");
+		InventoryWear(Player, "ClothGag", "ItemMouth");
 		PrisonMaid.CurrentDialog = DialogFind(PrisonMaid, "PrisonMaidLightGag");
 	} else if (PrisonMaidCharacter == "Neutral" || (PrisonMaidCharacter == "Chaotic" && PrisonMaidChaotic < 0.66) ){
 		InventoryWear(Player, "HarnessBallGag", "ItemMouth");

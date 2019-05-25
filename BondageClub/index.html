@@ -26,6 +26,30 @@
 		position: absolute;
     }
     * { -webkit-tap-highlight-color:rgba(0,0,0,0); }
+	#TextAreaChatLog {
+		background-color: white;
+		border: 1px solid black;
+		overflow: auto;
+		word-wrap: break-word;
+	}
+	.ChatMessage::before {
+		content: attr(data-time);
+		float: right;
+		color: gray;
+		font-style: italic;
+		font-size: 0.5em;
+		margin-right: 0.2em;
+	}
+	.ChatMessageName {
+		text-shadow: 1px 1px black;
+	}
+	.ChatMessageAction {
+		color: gray;
+	}
+	.ChatMessageEmote {
+		color: gray;
+		font-style: italic;
+	}
 </style>
 
 <script src="Scripts/Common.js"></script>
@@ -51,6 +75,7 @@
 <script src="Screens/Character/Appearance/Appearance.js"></script>
 <script src="Screens/Character/Creation/Creation.js"></script>
 <script src="Screens/Character/InformationSheet/InformationSheet.js"></script>
+<script src="Screens/Character/Preference/Preference.js"></script>
 <script src="Screens/Character/Wardrobe/Wardrobe.js"></script>
 <script src="Screens/Character/Cheat/Cheat.js"></script>
 <script src="Screens/Character/PasswordReset/PasswordReset.js"></script>
@@ -90,35 +115,44 @@
 <script src="Screens/Inventory/ItemArms/PaddedMittensLocked/PaddedMittensLocked.js"></script>
 <script src="Screens/Inventory/ItemArms/PaddedMittensHarness/PaddedMittensHarness.js"></script>
 <script src="Screens/Inventory/ItemArms/PaddedMittensHarnessLocked/PaddedMittensHarnessLocked.js"></script>
+<script src="Screens/Inventory/ItemMouth/ClothGag/ClothGag.js"></script>
 <script>
 
 /*
 
 	TO DO
-	Have a "next page" for item category
-	Import Patreons
+	More "Mobile Friendly" for online chat rooms and wardrobe
+	Redesign www.bondageprojects.com for club and Discord : https://discord.gg/dkWsEjf
+	Patreon import
 	
-	Explain new stuff:
-	Sophie (3 ways to bring her to your room)
-	Image optimization
-	Password reset
-	/dice
-	/coin
-	* for emotes
-	Ban from chat rooms
-	Chat room max size
+	Summary for release:
 	
-	Credit wildsj - Nursery + Lots of Lingerie + Straitleotar + Vibrating clamps
-	Credit git4nick - Magic Theater
-	Credit Lucritius - Shock Collar, New nipples region, Vibrating Egg
-	Credit Adokilume for German translation
+	New Cloth Gag system - Lucritius
+	New Colored Chat System - Adokilume
+	Many fixes in the stable and magic theater - git4nick
+
+	Allow for more than 12 items
+	New preference menu - Accessible from information sheet
+	Unique member number, recognize a specific user
+	Custom restrain color when applying	
+	More online backgrounds, thanks for the backgrounds I've received, more background (2000x1000)
+	3 new lists: BlackList, WhiteList & FriendList
+	Lots of refresh bug fixes & server crash fixes
+	
+	New Permission System for online interactions (whitelist/blacklist) - 
+		Permission level for messing with restrains: 
+		0 - Everyone, no exception (club slaves are forced like that)
+		1 - Everyone, except blacklist
+		2 - Owner, whitelist & any dominant not on blacklist (default)
+		3 - Owner and whitelist only
+		4 - Owner only
 	
 */
 
 // When the code is loaded, we start the game engine
 window.onload = function() {
 	//CheatImport();
-	ServerURL = "https://bondage-club-server.herokuapp.com/";
+	//ServerURL = "https://bondage-club-server.herokuapp.com/";
 	CommonIsMobile = CommonDetectMobile();
 	TranslationLoad();
 	DrawLoad();

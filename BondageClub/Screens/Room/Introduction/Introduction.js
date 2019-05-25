@@ -20,7 +20,7 @@ function IntroductionNoTitle() { return (!LogQuery("JoinedSorority", "Maid") && 
 function IntroductionLoad() {
 
 	// Checks if the player already has the basic items
-	IntroductionHasBasicItems = (InventoryAvailable(Player, "NylonRope", "ItemFeet") && InventoryAvailable(Player, "NylonRope", "ItemLegs") && InventoryAvailable(Player, "NylonRope", "ItemArms") && InventoryAvailable(Player, "SmallClothGag", "ItemMouth"));
+	IntroductionHasBasicItems = (InventoryAvailable(Player, "NylonRope", "ItemFeet") && InventoryAvailable(Player, "NylonRope", "ItemLegs") && InventoryAvailable(Player, "NylonRope", "ItemArms") && InventoryAvailable(Player, "ClothGag", "ItemMouth"));
 	IntroductionIsMaid = LogQuery("JoinedSorority", "Maid");
 	IntroductionIsHeadMaid = LogQuery("LeadSorority", "Maid");
 	
@@ -98,7 +98,7 @@ function IntroductionGetBasicItems() {
 	InventoryAdd(Player, "NylonRope", "ItemFeet");
 	InventoryAdd(Player, "NylonRope", "ItemLegs");
 	InventoryAdd(Player, "NylonRope", "ItemArms");
-	InventoryAdd(Player, "SmallClothGag", "ItemMouth");
+	InventoryAdd(Player, "ClothGag", "ItemMouth");
 	IntroductionHasBasicItems = true;
 }
 
@@ -121,7 +121,7 @@ function IntroductionGagPlayer() {
 		CharacterRelease(Player);
 		IntroductionMaid.CurrentDialog = DialogFind(IntroductionMaid, "ReleaseHeadMaid");
 		IntroductionMaid.Stage = "370";
-	} else DialogWearItem("SmallClothGag", "ItemMouth");
+	} else DialogWearItem("ClothGag", "ItemMouth");
 }
 
 // When the player rescue both girls and completes the mission

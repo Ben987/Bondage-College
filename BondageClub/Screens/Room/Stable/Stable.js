@@ -105,7 +105,7 @@ function StableClick() {
 		if ((MouseX >= 1250) && (MouseX < 1750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(StablePony);
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk() && (!StablePlayerTrainingActiv || StablePlayerIsExamPony)) CommonSetScreen("Room", "MainHall");
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
-		//if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355)) {LogDelete("JoinedStable", "PonyExam");}
+		//if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355)) {LogDelete("JoinedStable", "TrainerExam");}
 	}
 }
 
@@ -762,7 +762,7 @@ function StablePonyTraining(probability) {
 }
 
 //Start Traning Hurdle for Player as Trainer
-function StablePonyTrainingHurdles(){
+function StablePonyTrainingHurdles() {
 	MiniGameStart("HorseWalk", "HurdleTraining", "StablePonyTrainingHurdlesEnd");
 	StableTrainerTrainingExercises -= 2;
 }
@@ -848,7 +848,7 @@ function StablePlayerTExamWhipEnd() {
 	}
 }
 
-function StablePlayerTExamHurdles(){
+function StablePlayerTExamHurdles() {
 	MiniGameStart("HorseWalk", "HurdleTraining", "StablePlayerTExamHurdlesEnd");
 }
 

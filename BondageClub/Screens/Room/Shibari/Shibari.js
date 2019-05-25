@@ -40,18 +40,18 @@ function ShibariLoad() {
 		InventoryAdd(ShibariTeacher, "HempRope", "ItemFeet");
 		InventoryAdd(ShibariTeacher, "SuspensionHempRope", "ItemFeet");
 		InventoryAdd(ShibariTeacher, "HempRopeHarness", "ItemTorso");
-		InventoryAdd(ShibariTeacher, "ClothCleaveGag", "ItemMouth");
+		InventoryAdd(ShibariTeacher, "ClothGag", "ItemMouth");
 		InventoryAdd(ShibariStudent, "HempRope", "ItemArms");
 		InventoryAdd(ShibariStudent, "HempRope", "ItemLegs");
 		InventoryAdd(ShibariStudent, "HempRope", "ItemFeet");
 		InventoryAdd(ShibariStudent, "SuspensionHempRope", "ItemFeet");
 		InventoryAdd(ShibariStudent, "HempRopeHarness", "ItemTorso");
-		InventoryAdd(ShibariStudent, "ClothCleaveGag", "ItemMouth");
+		InventoryAdd(ShibariStudent, "ClothGag", "ItemMouth");
 		InventoryWear(ShibariStudent, "HempRope", "ItemArms");
 		InventoryWear(ShibariStudent, "HempRope", "ItemLegs");
 		InventoryWear(ShibariStudent, "SuspensionHempRope", "ItemFeet");
 		InventoryWear(ShibariStudent, "HempRopeHarness", "ItemTorso");
-		InventoryWear(ShibariStudent, "ClothCleaveGag", "ItemMouth");
+		InventoryWear(ShibariStudent, "ClothGag", "ItemMouth");
 	}
 	
 	// Rescue mission load

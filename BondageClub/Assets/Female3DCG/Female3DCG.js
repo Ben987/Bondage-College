@@ -169,24 +169,26 @@ var AssetFemale3DCG = [
 	
 	{
 		Group: "Bra",
-		Priority: 14,
+		Priority: 13,
 		ParentGroup: "BodyUpper",
 		Underwear: true,
 		Color: ["Default", "#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
 		Left: 150,
 		Top: 200,
 		Asset: [
-			"Bra1", "Bra2", "Bra7",
-			{ Name: "Bra8", Value: 15 },
-			{ Name: "Bra9", Value: 15 },
-			{ Name: "Bustier1", Value: 30 },
-			{ Name: "Corset1", Value: 30 },
-			{ Name: "Corset2", Value: 30 },
-			{ Name: "Corset3", Value: 30 },
+			{ Name: "Bra1", Hide: ["ItemNipples"] },
+			{ Name: "Bra2", Hide: ["ItemNipples"] },
+			{ Name: "Bra7", Hide: ["ItemNipples"] },
+			{ Name: "Bra8", Value: 15, Hide: ["ItemNipples"] },
+			{ Name: "Bra9", Value: 15, Hide: ["ItemNipples"] },
+			{ Name: "Bustier1", Value: 30, Hide: ["ItemNipples"] },
+			{ Name: "Corset1", Value: 30, Hide: ["ItemNipples"] },
+			{ Name: "Corset2", Value: 30, Hide: ["ItemNipples"] },
+			{ Name: "Corset3", Value: 30, Hide: ["ItemNipples"] },
 			{ Name: "Corset4", Value: 30 },
-			{ Name: "Swimsuit1", Value: 20, Hide: ["Panties"] },
-			{ Name: "Swimsuit2", Value: 25, Hide: ["Panties"] },
-			{ Name: "BunnySuit", Value: 30, Hide: ["Panties"] }
+			{ Name: "Swimsuit1", Value: 20, Hide: ["Panties", "ItemNipples"] },
+			{ Name: "Swimsuit2", Value: 25, Hide: ["Panties", "ItemNipples"] },
+			{ Name: "BunnySuit", Value: 30, Hide: ["Panties", "ItemNipples"] }
 		]
 	},
 	
@@ -206,7 +208,7 @@ var AssetFemale3DCG = [
 
 	{
 		Group: "Pussy",
-		Priority: 10,
+		Priority: 9,
 		AllowNone: false,
 		Color: ["Default", "#6a3628", "#443330", "#222222"],
 		Left: 225,
@@ -217,7 +219,7 @@ var AssetFemale3DCG = [
 	
 	{
 		Group: "Panties",
-		Priority: 13,
+		Priority: 12,
 		ParentGroup: "BodyLower",
 		ParentColor: "Bra",
 		Underwear: true,
@@ -320,7 +322,7 @@ var AssetFemale3DCG = [
 	{
 		Group: "ItemVulva",
 		Category: "Item",
-		Priority: 11,
+		Priority: 10,
 		Default: false,
 		Color: ["Default"],
 		Left: 125,
@@ -352,7 +354,7 @@ var AssetFemale3DCG = [
 	{
 		Group: "ItemPelvis",
 		Category: "Item",
-		Priority: 12,
+		Priority: 11,
 		Default: false,
 		AllowPose: ["BackBoxTie", "BackCuffs", "BackElbowTouch"],
 		Color: ["Default"],
@@ -372,7 +374,7 @@ var AssetFemale3DCG = [
 		Group: "ItemTorso",
 		ParentGroup: "BodyUpper",
 		Category: "Item",
-		Priority: 15,
+		Priority: 14,
 		Default: false,
 		AllowPose: ["BackBoxTie", "BackCuffs", "BackElbowTouch"],
 		Color: ["Default"],
@@ -391,7 +393,7 @@ var AssetFemale3DCG = [
 		Group: "ItemNipples",
 		ParentGroup: "BodyUpper",
 		Category: "Item",
-		Priority: 8,
+		Priority: 15,
 		Default: false,
 		Color: ["Default"],
 		Left: 150,
@@ -410,7 +412,7 @@ var AssetFemale3DCG = [
 		Group: "ItemBreast",
 		ParentGroup: "BodyUpper",
 		Category: "Item",
-		Priority: 9,
+		Priority: 8,
 		Default: false,
 		Color: ["Default"],
 		Left: 150,
@@ -482,10 +484,7 @@ var AssetFemale3DCG = [
 		Top: 0,
 		Zone: [[150, 160, 200, 50]],
 		Asset: [ 
-			{ Name: "SmallClothGag", Effect: ["GagLight"], Value: 10, Time: 10 },
-			{ Name: "ClothCleaveGag", Effect: ["GagLight"], Value: 15, Time: 10 },
-			{ Name: "ClothOTMGag", Value: 20, Time: 10 },
-			{ Name: "ClothOTNGag", Value: 25, Time: 10 },
+			{ Name: "ClothGag", Extended: true, Value: 25, Time: 10 },
 			{ Name: "HarnessBallGag", Effect: ["GagHeavy"], Value: 60, Time: 20 },
 			{ Name: "HarnessPanelGag", Effect: ["GagHeavy"], Value: 80, Time: 20 },
 			{ Name: "RingGag", Value: 35, Time: 5 },
@@ -495,7 +494,8 @@ var AssetFemale3DCG = [
 			{ Name: "DusterGag", Random: false, RemoveAtLogin: true, Value: -1, Time: 20 },
 			{ Name: "HarnessPonyBits", Random: false, Effect: ["GagHeavy"], Value: -1, Time: 20 },
 			{ Name: "PumpGag", Effect: [], Random: false, Extended: true, Value: 100, Time: 20 },
-			{ Name: "CarrotGag", Effect: ["GagHeavy"], Random: false, Extended: true, Value: 60, Time: 15 },
+			{ Name: "KittyGag", Effect: ["GagLight"], Value: 20, Time: 10 },
+			{ Name: "CarrotGag", Effect: ["GagHeavy"], Random: false, Extended: true, Value: 50, Time: 15 },
 			{ Name: "RegularSleepingPill", Enable: false, Wear: false, Value: -1, Bonus: [{Type: "KidnapSneakiness", Factor: 3}] }
 		]
 	},
@@ -514,7 +514,8 @@ var AssetFemale3DCG = [
 			{ Name: "LeatherBlindfold", Effect: ["BlindNormal", "Prone"], Hide: ["Glasses"], Value: 40, Time: 5 },
 			{ Name: "LeatherHood", Effect: ["BlindHeavy", "Prone", "GagLight"], Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth", "Eyes"], Block: ["ItemMouth", "ItemNeck"], Value: 90, Time: 15 },
 			{ Name: "LeatherHoodOpenEyes", Effect: ["Prone", "GagLight"], Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth"], Block: ["ItemMouth", "ItemNeck"], Value: 60, Time: 15 },
-			{ Name: "StuddedBlindfold", Effect: ["BlindNormal", "Prone"], Hide: ["Glasses"], Value: -1, Time: 5 }
+			{ Name: "StuddedBlindfold", Effect: ["BlindNormal", "Prone"], Hide: ["Glasses"], Value: -1, Time: 5 },
+			{ Name: "KittyBlindfold", Effect: ["BlindLight", "Prone"], Hide: ["Glasses"], Value: 25, Time: 5 }
 		]
 	},
 

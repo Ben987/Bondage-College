@@ -50,11 +50,15 @@ function MagicLoad() {
 	if (MagicPerformer == null) {
 		MagicPerformer = CharacterLoadNPC("NPC_Magic_Performer");
 		MagicAssistant = CharacterLoadNPC("NPC_Magic_Assistant");
-		CharacterRandomUnderwear(MagicAssistant);
+		MagicPlayerAppearance = Player.Appearance.slice();
+		CharacterNaked(MagicAssistant);
 		InventoryWear(MagicAssistant, "BunnyEars1", "Hat");
+		InventoryWear(MagicAssistant, "Corset2", "Bra");
+		InventoryWear(MagicAssistant, "Panties15", "Panties");
+		InventoryWear(MagicAssistant, "Stockings4", "Socks");
+		InventoryWear(MagicAssistant, "Heels2", "Shoes");
 		MagicPerformerAppearance = MagicPerformer.Appearance.slice();
 		MagicAssistantAppearance = MagicAssistant.Appearance.slice();
-		MagicPlayerAppearance = Player.Appearance.slice();
 		MagicPerformerAppearance.AllowItem = false;
 		MagicAssistantAppearance.AllowItem = false;
 		MagicShowState = 1;
@@ -102,8 +106,12 @@ function MagicTrickChangeDressesBack(){
 }
 
 function MagicAssistantDress(){
-	CharacterUnderwear(MagicAssistant, MagicPlayerAppearance);
+	CharacterNaked(MagicAssistant);
 	InventoryWear(MagicAssistant, "BunnyEars1", "Hat");
+	InventoryWear(MagicAssistant, "Corset2", "Bra");
+	InventoryWear(MagicAssistant, "Panties15", "Panties");
+	InventoryWear(MagicAssistant, "Stockings4", "Socks");
+	InventoryWear(MagicAssistant, "Heels2", "Shoes");
 	MagicShowState = 3;
 }
 
@@ -219,7 +227,7 @@ function MagicTrickBoxTiedLight() {
 	InventoryWear(Player, "NylonRope", "ItemFeet");
 	InventoryWear(Player, "NylonRope", "ItemLegs");
 	InventoryWear(Player, "NylonRope", "ItemArms");
-	InventoryWear(Player, "SmallClothGag", "ItemMouth");
+	InventoryWear(Player, "ClothGag", "ItemMouth");
 	InventoryWear(Player, "ClothBlindfold", "ItemHead");
 	InventoryWear(Player, "WoodenBox", "ItemMisc");
 	MagicPerformer.Stage = "131";
@@ -230,7 +238,7 @@ function MagicTrickBoxTiedHeavy() {
 	InventoryWear(Player, "HempRope", "ItemFeet");
 	InventoryWear(Player, "HempRope", "ItemLegs");
 	InventoryWear(Player, "HempRope", "ItemArms");
-	InventoryWear(Player, "ClothOTMGag", "ItemMouth");
+	InventoryWear(Player, "ClothGag", "ItemMouth");
 	InventoryWear(Player, "LeatherBlindfold", "ItemHead");
 	InventoryWear(Player, "WoodenBox", "ItemMisc");
 	MagicPerformer.Stage = "151";

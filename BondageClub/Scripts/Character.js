@@ -193,17 +193,18 @@ function CharacterLoadNPC(NPCType) {
 
 	// Returns the new character
 	return C;
-	
+
 }
 
 // Sets up the online character
 function CharacterOnlineRefresh(Char, data) {
 	Char.ActivePose = data.ActivePose;
+	Char.LabelColor = data.LabelColor;
+	Char.ItemPermission = data.ItemPermission;
 	Char.Reputation = (data.Reputation != null) ? data.Reputation : [];
 	Char.Appearance = ServerAppearanceLoadFromBundle("Female3DCG", data.Appearance);
 	AssetReload(Char);
 	CharacterLoadEffect(Char);
-	Char.AllowItem = ((Char.ID == 0) || Char.IsRestrained() || !Char.CanTalk() || (ReputationGet("Dominant") + 25 >= ReputationCharacterGet(Char, "Dominant")));
 	CharacterRefresh(Char);
 }
 
@@ -229,30 +230,40 @@ function CharacterLoadOnline(data) {
 		Char.Lover = (data.Lover != null) ? data.Lover : "";
 		Char.Owner = (data.Owner != null) ? data.Owner : "";
 		Char.AccountName = "Online-" + data.ID.toString();
+		Char.MemberNumber = data.MemberNumber;
 		CharacterLoadCSVDialog(Char, "Online");
 		CharacterOnlineRefresh(Char, data);
 
 	} else {
 		
-		// Flags "refresh" if we need to redraw the character 
-		var Refresh = false;
-		if ((Char.ActivePose != data.ActivePose) || (ChatRoomData == null) || (ChatRoomData.Character == null))
-			Refresh = true;
-		else
+		// If we must add a character, we refresh it
+		var Refresh = true;
+		if (ChatRoomData.Character != null)
 			for (var C = 0; C < ChatRoomData.Character.length; C++)
-				if (ChatRoomData.Character[C].ID == data.ID)
-					if (ChatRoomData.Character[C].Appearance.length != data.Appearance.length)
-						Refresh = true;
-					else 
-						for (var A = 0; A < data.Appearance.length; A++)
-							if ((data.Appearance[A].Name != ChatRoomData.Character[C].Appearance[A].Name) || (data.Appearance[A].Group != ChatRoomData.Character[C].Appearance[A].Group))
-								Refresh = true;
-							else
-								if ((data.Appearance[A].Property != null) && (ChatRoomData.Character[C].Appearance[A].Property != null) && (JSON.stringify(data.Appearance[A].Property) != JSON.stringify(ChatRoomData.Character[C].Appearance[A].Property)))
+				if (ChatRoomData.Character[C].ID.toString() == data.ID.toString()) {
+					Refresh = false;
+					break;
+				}
+			
+		// Flags "refresh" if we need to redraw the character
+		if (!Refresh)
+			if ((Char.ActivePose != data.ActivePose) || (Char.LabelColor != data.LabelColor) || (ChatRoomData == null) || (ChatRoomData.Character == null))
+				Refresh = true;
+			else
+				for (var C = 0; C < ChatRoomData.Character.length; C++)
+					if (ChatRoomData.Character[C].ID == data.ID)
+						if (ChatRoomData.Character[C].Appearance.length != data.Appearance.length)
+							Refresh = true;
+						else 
+							for (var A = 0; A < data.Appearance.length; A++)
+								if ((data.Appearance[A].Name != ChatRoomData.Character[C].Appearance[A].Name) || (data.Appearance[A].Group != ChatRoomData.Character[C].Appearance[A].Group))
 									Refresh = true;
-								else 
-									if (((data.Appearance[A].Property != null) && (ChatRoomData.Character[C].Appearance[A].Property == null)) || ((data.Appearance[A].Property == null) && (ChatRoomData.Character[C].Appearance[A].Property != null)))
+								else
+									if ((data.Appearance[A].Property != null) && (ChatRoomData.Character[C].Appearance[A].Property != null) && (JSON.stringify(data.Appearance[A].Property) != JSON.stringify(ChatRoomData.Character[C].Appearance[A].Property)))
 										Refresh = true;
+									else 
+										if (((data.Appearance[A].Property != null) && (ChatRoomData.Character[C].Appearance[A].Property == null)) || ((data.Appearance[A].Property == null) && (ChatRoomData.Character[C].Appearance[A].Property != null)))
+											Refresh = true;
 
 		// If we must refresh
 		if (Refresh) CharacterOnlineRefresh(Char, data);
@@ -373,14 +384,15 @@ function CharacterRefresh(C, Push) {
 	CharacterLoadEffect(C);
 	CharacterLoadPose(C);	
 	CharacterLoadCanvas(C);
-	if ((CurrentModule != "Character") && (C.ID == 0) && ((Push == null) || (Push == true))) ServerPlayerAppearanceSync();
+	if ((C.ID == 0) && (C.OnlineID != null) && ((Push == null) || (Push == true))) ServerPlayerAppearanceSync();
 }
 
-// Returns TRUE if a character has no item
+// Returns TRUE if a character has no item (the slave collar doesn't count)
 function CharacterHasNoItem(C) {
 	for(var A = 0; A < C.Appearance.length; A++)
 		if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Category == "Item"))
-			return false;
+			if (C.Appearance[A].Asset.Name != "SlaveCollar")
+				return false;
 	return true;
 }
 
