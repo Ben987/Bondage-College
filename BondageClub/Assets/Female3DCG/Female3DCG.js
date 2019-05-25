@@ -58,7 +58,8 @@ var AssetFemale3DCG = [
 			{ Name: "AdultBabyDress1", Hide: ["ClothLower"], Value: 200 },
 			{ Name: "AdultBabyDress2", Hide: ["ClothLower"], Value: 200 },
 			{ Name: "AdultBabyDress3", Hide: ["ClothLower"], Value: 200 },
-			{ Name: "NurseUniform", Hide: ["ClothLower"], Value: -1 }
+			{ Name: "NurseUniform", Hide: ["ClothLower"], Value: -1 },
+			{ Name: "BunnyCollarCuffs", Value: 10 }
 		]
 	},
 	
@@ -113,10 +114,12 @@ var AssetFemale3DCG = [
 		Top: 0,
 		Asset: [
 			"Band1", "Beret1", "Ears1", "Ears2",
+			{ Name: "Ribbons1", Priority: 1 },
 			{ Name: "MaidHairband1", Value: -1 },
 			{ Name: "NurseCap", Value: -1 },
 			{ Name: "Santa1", Value: 30 },
-			{ Name: "BunnyEars1", Value: 20 }
+			{ Name: "BunnyEars1", Value: 20 },
+			{ Name: "BunnyEars2", Value: 20 }
 		]
 	},
 
@@ -182,7 +185,8 @@ var AssetFemale3DCG = [
 			{ Name: "Corset3", Value: 30 },
 			{ Name: "Corset4", Value: 30 },
 			{ Name: "Swimsuit1", Value: 20, Hide: ["Panties"] },
-			{ Name: "Swimsuit2", Value: 25, Hide: ["Panties"] }
+			{ Name: "Swimsuit2", Value: 25, Hide: ["Panties"] },
+			{ Name: "BunnySuit", Value: 30, Hide: ["Panties"] }
 		]
 	},
 	
@@ -242,11 +246,12 @@ var AssetFemale3DCG = [
 		AllowPose: ["LegsClosed", "Kneel"],
 		Color: ["Default", "#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
 		Left: 125,
-		Top: 500,
+		Top: 400,
 		Asset: [
 			"Socks1", "Socks2", "Socks3", "Socks4", "Socks5", "Stockings1", "Stockings2",
 			{ Name: "Stockings3", Value: 10 },
-			{ Name: "Stockings4", Value: 10 }
+			{ Name: "Stockings4", Value: 10 },
+			{ Name: "Pantyhose1", Value: 10, Priority: 13 }
 		]
 	},
 
@@ -490,6 +495,7 @@ var AssetFemale3DCG = [
 			{ Name: "DusterGag", Random: false, RemoveAtLogin: true, Value: -1, Time: 20 },
 			{ Name: "HarnessPonyBits", Random: false, Effect: ["GagHeavy"], Value: -1, Time: 20 },
 			{ Name: "PumpGag", Effect: [], Random: false, Extended: true, Value: 100, Time: 20 },
+			{ Name: "CarrotGag", Effect: ["GagHeavy"], Random: false, Extended: true, Value: 60, Time: 15 },
 			{ Name: "RegularSleepingPill", Enable: false, Wear: false, Value: -1, Bonus: [{Type: "KidnapSneakiness", Factor: 3}] }
 		]
 	},
