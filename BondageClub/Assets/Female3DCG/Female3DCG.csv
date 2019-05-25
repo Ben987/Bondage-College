@@ -27,6 +27,7 @@ Cloth,AdultBabyDress1,Puffy Baby Dress
 Cloth,AdultBabyDress2,Bows Baby Dress
 Cloth,AdultBabyDress3,Flower Baby dress
 Cloth,NurseUniform,Nurse Uniform
+Cloth,BunnyCollarCuffs,Bunny Girl Accessories
 ClothLower,,Bottom
 ClothLower,Skirt1,Skirt
 ClothLower,TennisSkirt1,Tennis
@@ -63,10 +64,12 @@ Hat,Band1,Hair Band
 Hat,Beret1,Beret
 Hat,Ears1,Ears Small
 Hat,Ears2,Ears Large
+Hat,Ribbons1,Hair Ribbon 1
 Hat,MaidHairband1,Maid Hairband
+Hat,NurseCap,Nurse Cap
 Hat,Santa1,Santa Hat
-Hat,NurseCap,Nurse's Cap
 Hat,BunnyEars1,Bunny Ears
+Hat,BunnyEars2,Floppy Bunny Ears
 Eyes,,Eyes
 Eyes,Eyes1,Style 1
 Eyes,Eyes2,Style 2
@@ -109,6 +112,7 @@ Bra,Corset3,Half Cup Corset
 Bra,Corset4,Underbust Corset
 Bra,Swimsuit1,Swimsuit style 1
 Bra,Swimsuit2,Swimsuit style 2
+Bra,BunnySuit,Bunny Girl Bodysuit
 Gloves,,Gloves
 Gloves,Gloves1,Short Gloves
 Gloves,Gloves2,Long Gloves
@@ -140,6 +144,7 @@ Socks,Stockings1,Stockings Dark
 Socks,Stockings2,Stockings Light
 Socks,Stockings3,Silky Stockings
 Socks,Stockings4,Fishnet Stockings
+Socks,Pantyhose1,Pantyhose
 Shoes,,Shoes
 Shoes,Shoes1,Style 1
 Shoes,Shoes2,Style 2
@@ -223,6 +228,7 @@ ItemMouth,DusterGag,Duster Gag
 ItemMouth,HarnessPonyBits,Bit Gag
 ItemMouth,PumpGag,Pump Gag
 ItemMouth,KittyGag,Kitty Mask Gag
+ItemMouth,CarrotGag,Rubber Carrot Gag
 ItemMouth,RegularSleepingPill,Sleeping Pill
 ItemHead,,Head
 ItemHead,ClothBlindfold,Cloth Blindfold
