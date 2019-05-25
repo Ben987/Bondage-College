@@ -193,18 +193,18 @@ function CharacterLoadNPC(NPCType) {
 
 	// Returns the new character
 	return C;
-	
+
 }
 
 // Sets up the online character
 function CharacterOnlineRefresh(Char, data) {
 	Char.ActivePose = data.ActivePose;
 	Char.LabelColor = data.LabelColor;
+	Char.ItemPermission = data.ItemPermission;
 	Char.Reputation = (data.Reputation != null) ? data.Reputation : [];
 	Char.Appearance = ServerAppearanceLoadFromBundle("Female3DCG", data.Appearance);
 	AssetReload(Char);
 	CharacterLoadEffect(Char);
-	Char.AllowItem = ((Char.ID == 0) || Char.IsRestrained() || !Char.CanTalk() || (ReputationGet("Dominant") + 25 >= ReputationCharacterGet(Char, "Dominant")));
 	CharacterRefresh(Char);
 }
 
@@ -231,7 +231,6 @@ function CharacterLoadOnline(data) {
 		Char.Owner = (data.Owner != null) ? data.Owner : "";
 		Char.AccountName = "Online-" + data.ID.toString();
 		Char.MemberNumber = data.MemberNumber;
-		Char.LabelColor = data.LabelColor;
 		CharacterLoadCSVDialog(Char, "Online");
 		CharacterOnlineRefresh(Char, data);
 

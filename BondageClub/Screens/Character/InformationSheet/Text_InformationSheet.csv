@@ -63,3 +63,9 @@ RelationshipPoor,(Poor)
 RelationshipBad,(Bad)
 RelationshipHorrible,(Horrible)
 RelationshipAtrocious,(Atrocious)
+ItemPermission,Item permission:
+PermissionLevel0,"Everyone, no exceptions"
+PermissionLevel1,"Everyone, except blacklist"
+PermissionLevel2,"Owner, whitelist & Dominants"
+PermissionLevel3,Owner and whitelist only
+PermissionLevel4,Owner only

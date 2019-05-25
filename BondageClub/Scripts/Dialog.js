@@ -297,7 +297,7 @@ function DialogClick() {
 					
 					// If the player can struggle out or unlock herself
 					if ((C.ID == 0) && InventoryItemHasEffect(Item, "Struggle") && (DialogProgress == -1)) DialogProgressStart(C, Item, null);
-					if ((C.ID == 0) && InventoryItemHasEffect(Item, "Lock") && InventoryItemHasEffect(Item, "Block") && DialogCanUnlock(C, Item)) DialogProgressStart(C, Item, null);
+					if ((C.ID == 0) && InventoryItemHasEffect(Item, "Lock", true) && InventoryItemHasEffect(Item, "Block") && DialogCanUnlock(C, Item)) DialogProgressStart(C, Item, null);
 
 				}
 
@@ -356,7 +356,7 @@ function DialogClick() {
 
 						// Cannot change item if the previous one is locked or blocked by another group
 						var Item = InventoryGet(C, C.FocusGroup.Name);
-						if ((Item == null) || !InventoryItemHasEffect(Item, "Lock") ) {
+						if ((Item == null) || !InventoryItemHasEffect(Item, "Lock", true) ) {
 							if (!InventoryGroupIsBlocked(C))
 								if (InventoryAllow(C, DialogInventory[I].Asset.Prerequisite))
 									if ((Item == null) || (Item.Asset.Name != DialogInventory[I].Asset.Name)) {
@@ -520,7 +520,7 @@ function DialogDrawItemMenu(C) {
 		for(var I = DialogInventoryOffset; (I < DialogInventory.length) && (I < DialogInventoryOffset + 12); I++) {
 			var Item = DialogInventory[I];
 			DrawRect(X, Y, 225, 275, ((MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275) && !CommonIsMobile) ? "cyan" : DialogInventory[I].Worn ? "pink" : "white");
-			if (Item.Worn && InventoryItemHasEffect(InventoryGet(C, Item.Asset.Group.Name), "Vibrating")) DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.Group.Name + "/Preview/" + Item.Asset.Name + ".png", X + Math.floor(Math.random() * 3) + 1, Y + Math.floor(Math.random() * 3) + 1, 221, 221);
+			if (Item.Worn && InventoryItemHasEffect(InventoryGet(C, Item.Asset.Group.Name), "Vibrating", true)) DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.Group.Name + "/Preview/" + Item.Asset.Name + ".png", X + Math.floor(Math.random() * 3) + 1, Y + Math.floor(Math.random() * 3) + 1, 221, 221);
 			else DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.Group.Name + "/Preview/" + Item.Asset.Name + ".png", X + 2, Y + 2, 221, 221);
 			DrawTextFit(Item.Asset.Description, X + 112, Y + 250, 221, "black");
 			if (Item.Icon != "") DrawImage("Icons/" + Item.Icon + ".png", X + 2, Y + 110);
@@ -608,7 +608,7 @@ function DialogDrawItemMenu(C) {
 			if (Item != null) {
 
 				// Draw the item preview
-				if (InventoryItemHasEffect(Item, "Vibrating")) {
+				if (InventoryItemHasEffect(Item, "Vibrating", true)) {
 					DrawRect(1387, 250, 225, 275, "white");
 					DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.Group.Name + "/Preview/" + Item.Asset.Name + ".png", 1389 + Math.floor(Math.random() * 3) - 2, 252 + Math.floor(Math.random() * 3) - 2, 221, 221);
 					DrawTextFit(Item.Asset.Description, 1497, 500, 221, "black");
@@ -622,7 +622,7 @@ function DialogDrawItemMenu(C) {
 				}
 
 				// Draw the unlock option
-				if ((C.ID == 0) && InventoryItemHasEffect(Item, "Block") && InventoryItemHasEffect(Item, "Lock")) {
+				if ((C.ID == 0) && InventoryItemHasEffect(Item, "Block", true) && InventoryItemHasEffect(Item, "Lock", true)) {
 					if (DialogCanUnlock(C, Item)) {
 						DrawText(DialogFind(Player, "CanUnlock"), 1250, 62, "White", "Black");
 						DrawButton(1500, 25, 225, 75, DialogFind(Player, "Unlock"), "White");
@@ -669,8 +669,11 @@ function DialogGarble(C, CD) {
 			var H = CD.charAt(L).toLowerCase();
 			if (H == "(") Par = true;
 			if (Par) NS = NS + CD.charAt(L);
-			if (!Par && (H != " ")) NS = NS + "m";
-			if (!Par && (H == " ")) NS = NS + " ";
+			else {
+				if (H == " " || H == "." || H == "?" || H == "!") NS = NS + H;
+				else NS = NS + "m";
+			}
+			
 			if (H == ")") Par = false;
 		}
 		NS = DialogStutter(C, NS);
@@ -690,7 +693,7 @@ function DialogGarble(C, CD) {
 				if (H == "s" || H == "z" || H == "h") NS = NS + "h";
 				if (H == "b" || H == "p" || H == "v") NS = NS + "f";
 				if (H == "d" || H == "f" || H == "g" || H == "n" || H == "m") NS = NS + "m";
-				if (H == " " || H == "!") NS = NS + H;
+				if (H == " " || H == "." || H == "?" || H == "!") NS = NS + H;
 			} else NS = NS + CD.charAt(L);
 			if (H == ")") Par = false;
 		}
@@ -712,7 +715,7 @@ function DialogGarble(C, CD) {
 				if (H == "d" || H == "f") NS = NS + "m";
 				if (H == "p") NS = NS + "f";
 				if (H == "g") NS = NS + "n";
-				if (H == " " || H == "!" || H == "." || H == "a" || H == "e" || H == "i" || H == "o" || H == "u" || H == "m" || H == "n" || H == "h") NS = NS + H;
+				if (H == " " || H == "!" || H == "?" || H == "." || H == "a" || H == "e" || H == "i" || H == "o" || H == "u" || H == "m" || H == "n" || H == "h") NS = NS + H;
 			} else NS = NS + CD.charAt(L);
 			if (H == ")") Par = false;
 		}

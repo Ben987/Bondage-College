@@ -147,16 +147,16 @@ function InventoryGroupIsBlocked(C) {
 }
 
 // Returns TRUE if the item has a specific effect.
-function InventoryItemHasEffect(Item, Effect) {
+function InventoryItemHasEffect(Item, Effect, CheckProperties) {
 	if (!Item) return null;
 
 	// If no effect is specified, we simply check if the item has any effect
 	if (!Effect) {
-		if ((Item.Asset && Item.Asset.Effect) || (Item.Property && Item.Property.Effect)) return true;
+		if ((Item.Asset && Item.Asset.Effect) || (CheckProperties && Item.Property && Item.Property.Effect)) return true;
 		else return false;
 	}
 	else {
-		if ((Item.Asset && Item.Asset.Effect && Item.Asset.Effect.indexOf(Effect) >= 0) || (Item.Property && Item.Property.Effect && Item.Property.Effect.indexOf(Effect) >= 0)) return true;
+		if ((Item.Asset && Item.Asset.Effect && Item.Asset.Effect.indexOf(Effect) >= 0) || (CheckProperties && Item.Property && Item.Property.Effect && Item.Property.Effect.indexOf(Effect) >= 0)) return true;
 		else return false;
 	}
 }

@@ -127,9 +127,10 @@ function LoginResponse(C) {
 
 			// Gets the online preferences
 			Player.LabelColor = C.LabelColor;
-			Player.RestrainPermission = C.RestrainPermission;
+			Player.ItemPermission = C.ItemPermission;
 			Player.WhiteList = C.WhiteList;
 			Player.BlackList = C.BlackList;
+			Player.FriendList = C.FriendList;
 	
 			// Loads the player character model and data
 			Player.Appearance = ServerAppearanceLoadFromBundle(C.AssetFamily, C.Appearance);

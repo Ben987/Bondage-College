@@ -26,6 +26,30 @@
 		position: absolute;
     }
     * { -webkit-tap-highlight-color:rgba(0,0,0,0); }
+	#TextAreaChatLog {
+		background-color: white;
+		border: 1px solid black;
+		overflow: auto;
+		word-wrap: break-word;
+	}
+	.ChatMessage::before {
+		content: attr(data-time);
+		float: right;
+		color: gray;
+		font-style: italic;
+		font-size: 0.5em;
+		margin-right: 0.2em;
+	}
+	.ChatMessageName {
+		text-shadow: 1px 1px black;
+	}
+	.ChatMessageAction {
+		color: gray;
+	}
+	.ChatMessageEmote {
+		color: gray;
+		font-style: italic;
+	}
 </style>
 
 <script src="Scripts/Common.js"></script>
@@ -97,21 +121,31 @@
 /*
 
 	TO DO
-	Permission system for online interactions (whitelist/blacklist) - 
+	More "Mobile Friendly" for online chat rooms and wardrobe
+	Redesign www.bondageprojects.com for club and Discord : https://discord.gg/dkWsEjf
+	Patreon import
+	
+	Summary for release:
+	
+	New Cloth Gag system - Lucritius
+	New Colored Chat System - Adokilume
+	Many fixes in the stable and magic theater - git4nick
+
+	Allow for more than 12 items
+	New preference menu - Accessible from information sheet
+	Unique member number, recognize a specific user
+	Custom restrain color when applying	
+	More online backgrounds, thanks for the backgrounds I've received, more background (2000x1000)
+	3 new lists: BlackList, WhiteList & FriendList
+	Lots of refresh bug fixes & server crash fixes
+	
+	New Permission System for online interactions (whitelist/blacklist) - 
 		Permission level for messing with restrains: 
 		0 - Everyone, no exception (club slaves are forced like that)
 		1 - Everyone, except blacklist
 		2 - Owner, whitelist & any dominant not on blacklist (default)
 		3 - Owner and whitelist only
 		4 - Owner only
-		5 - Nobody
-	More "Mobile Friendly" for online chat rooms and wardrobe
-	Redesign www.bondageprojects.com for club and Discord : https://discord.gg/dkWsEjf
-	Patreon import
-	
-	MAYBE
-	Prevent connections outside of www.bondageprojects.com to enter public rooms
-	
 	
 */
 
