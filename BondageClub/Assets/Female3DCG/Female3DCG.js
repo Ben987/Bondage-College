@@ -113,7 +113,7 @@ var AssetFemale3DCG = [
 		Left: 125,
 		Top: 0,
 		Asset: [
-			"Band1", "Beret1", "Ears1", "Ears2",
+			"Band1", "Beret1", "Ears1", "Ears2", "PonyEars1",
 			{ Name: "Ribbons1", Priority: 1 },
 			{ Name: "MaidHairband1", Value: -1 },
 			{ Name: "NurseCap", Value: -1 },
