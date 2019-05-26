@@ -59,7 +59,8 @@ var AssetFemale3DCG = [
 			{ Name: "AdultBabyDress2", Hide: ["ClothLower"], Value: 200 },
 			{ Name: "AdultBabyDress3", Hide: ["ClothLower"], Value: 200 },
 			{ Name: "NurseUniform", Hide: ["ClothLower"], Value: -1 },
-			{ Name: "BunnyCollarCuffs", Value: 10 }
+			{ Name: "BunnyCollarCuffs", Value: 10 },
+			{ Name: "Robe1", Value: 50 }
 		]
 	},
 	
@@ -119,7 +120,8 @@ var AssetFemale3DCG = [
 			{ Name: "NurseCap", Value: -1 },
 			{ Name: "Santa1", Value: 30 },
 			{ Name: "BunnyEars1", Value: 20 },
-			{ Name: "BunnyEars2", Value: 20 }
+			{ Name: "BunnyEars2", Value: 20 },
+			{ Name: "CaptainHat1", Value: 20 }
 		]
 	},
 
