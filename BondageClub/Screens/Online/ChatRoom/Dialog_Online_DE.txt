@@ -7,7 +7,6 @@
 (View her profile.)
 (Ihr Profil ansehen.)
 (Ban her from the room.)
-(Whisper to her.)
 (Sie aus dem Raum verbannen.)
 (Leave this menu.)
 (Dieses Menü verlassen.)

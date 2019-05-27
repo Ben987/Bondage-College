@@ -5,6 +5,7 @@ var ChatRoomCharacter = [];
 var ChatRoomLog = "";
 var ChatRoomLastMessage = [""];
 var ChatRoomLastMessageIndex = 0;
+var ChatRoomAddressee = null;
 
 // Returns TRUE if the dialog option is available
 function ChatRoomCanAddWhiteList() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.WhiteList.indexOf(CurrentCharacter.MemberNumber) < 0) && (Player.BlackList.indexOf(CurrentCharacter.MemberNumber) < 0)) }
@@ -89,6 +90,7 @@ function ChatRoomDrawCharacter(DoClick) {
 				if (Player.WhiteList.indexOf(ChatRoomCharacter[C].MemberNumber) >= 0) DrawImage("Icons/Small/WhiteList.png", (C % 5) * Space + X + 44 * Zoom, Y + Math.floor(C / 5) * 500);
 				else if (Player.BlackList.indexOf(ChatRoomCharacter[C].MemberNumber) >= 0) DrawImage("Icons/Small/BlackList.png", (C % 5) * Space + X + 44 * Zoom, Y + Math.floor(C / 5) * 500);
 				if (Player.FriendList.indexOf(ChatRoomCharacter[C].MemberNumber) >= 0) DrawImage("Icons/Small/FriendList.png", (C % 5) * Space + X + 400 * Zoom, Y + Math.floor(C / 5) * 500);
+				if (ChatRoomCharacter[C].MemberNumber == ChatRoomAddressee) DrawEmptyRect((C % 5) * Space + X + 100 * Zoom, Y + Math.floor(C / 5) * 500, 300 * Zoom, 950 * Zoom, "Green");
 			}
 		}
 
@@ -113,7 +115,10 @@ function ChatRoomClick() {
 	
 	// When the user chats
 	if ((MouseX >= 0) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000)) ChatRoomDrawCharacter(true);
-	if ((MouseX >= 1725) && (MouseX < 1785) && (MouseY >= 935) && (MouseY < 995)) ChatRoomSendChat();
+	if ((MouseX >= 1725) && (MouseX < 1785) && (MouseY >= 935) && (MouseY < 995)) {
+		ChatRoomSendChat();
+		ChatRoomAddressee = null;
+	}
 	
 	// When the player kneels
 	if ((MouseX >= 1795) && (MouseX < 1855) && (MouseY >= 935) && (MouseY < 995) && Player.CanKneel()) { 
@@ -194,12 +199,7 @@ function ChatRoomSendChat() {
 			msg = msg.replace("CoinResult", Heads ? TextGet("Heads") : TextGet("Tails"));
 			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Action" } );
 
-		} else if (msg.toLowerCase().indexOf("/whisper") == 0) {
-			var To = msg.substring(9, 50);
-			To = To.substring(0, To.indexOf(' '));
-			msg = msg.substring(10 + To.length, 250);
-			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Whisper", Addressee: To } );
-		}	else if (msg.indexOf("*") == 0) {
+		} else if (msg.indexOf("*") == 0) {
 
 			// The player can emote an action using *, it doesn't garble
 			msg = msg.replace(/\*/g, "");
@@ -210,7 +210,10 @@ function ChatRoomSendChat() {
 			
 			// Regular chat can be garbled with a gag
 			msg = DialogGarble(Player, msg);
-			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Chat" } );
+			if (msg != "") {
+				if (ChatRoomAddressee != null) ServerSend("ChatRoomChat", { Content: msg, Type: "Whisper", Addressee: ChatRoomAddressee } );
+				else ServerSend("ChatRoomChat", { Content: msg, Type: "Chat" } );
+			} 
 			
 		}
 
@@ -223,9 +226,10 @@ function ChatRoomSendChat() {
 
 // Prepare the InputChat for sending private message
 function ChatRoomPrepareWhisper() {
-	var msg = "/whisper " + CurrentCharacter.MemberNumber + " ";
-	ElementValue("InputChat", msg);
-	DialogLeave();
+	if (CurrentCharacter != null) {
+		ChatRoomAddressee = CurrentCharacter.MemberNumber;
+		DialogLeave();
+	}
 }
 
 // Publishes the player action (add, remove, swap) to the chat
