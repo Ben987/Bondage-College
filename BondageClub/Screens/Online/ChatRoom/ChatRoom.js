@@ -90,7 +90,7 @@ function ChatRoomDrawCharacter(DoClick) {
 				if (Player.WhiteList.indexOf(ChatRoomCharacter[C].MemberNumber) >= 0) DrawImage("Icons/Small/WhiteList.png", (C % 5) * Space + X + 44 * Zoom, Y + Math.floor(C / 5) * 500);
 				else if (Player.BlackList.indexOf(ChatRoomCharacter[C].MemberNumber) >= 0) DrawImage("Icons/Small/BlackList.png", (C % 5) * Space + X + 44 * Zoom, Y + Math.floor(C / 5) * 500);
 				if (Player.FriendList.indexOf(ChatRoomCharacter[C].MemberNumber) >= 0) DrawImage("Icons/Small/FriendList.png", (C % 5) * Space + X + 400 * Zoom, Y + Math.floor(C / 5) * 500);
-				if (ChatRoomCharacter[C].MemberNumber == ChatRoomAddressee) DrawEmptyRect((C % 5) * Space + X + 100 * Zoom, Y + Math.floor(C / 5) * 500, 300 * Zoom, 950 * Zoom, "Green");
+				if (ChatRoomAddressee != null && ChatRoomCharacter[C].MemberNumber == ChatRoomAddressee) DrawEmptyRect((C % 5) * Space + X + 100 * Zoom, Y + Math.floor(C / 5) * 500, 300 * Zoom, 950 * Zoom, "Green");
 			}
 		}
 
