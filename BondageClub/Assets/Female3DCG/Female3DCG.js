@@ -58,7 +58,9 @@ var AssetFemale3DCG = [
 			{ Name: "AdultBabyDress1", Hide: ["ClothLower"], Value: 200 },
 			{ Name: "AdultBabyDress2", Hide: ["ClothLower"], Value: 200 },
 			{ Name: "AdultBabyDress3", Hide: ["ClothLower"], Value: 200 },
-			{ Name: "NurseUniform", Hide: ["ClothLower"], Value: -1 }
+			{ Name: "NurseUniform", Hide: ["ClothLower"], Value: -1 },
+			{ Name: "BunnyCollarCuffs", Value: 10 },
+			{ Name: "Robe1", Value: 50 }
 		]
 	},
 	
@@ -112,11 +114,14 @@ var AssetFemale3DCG = [
 		Left: 125,
 		Top: 0,
 		Asset: [
-			"Band1", "Beret1", "Ears1", "Ears2",
+			"Band1", "Beret1", "Ears1", "Ears2", "PonyEars1",
+			{ Name: "Ribbons1", Priority: 1 },
 			{ Name: "MaidHairband1", Value: -1 },
 			{ Name: "NurseCap", Value: -1 },
 			{ Name: "Santa1", Value: 30 },
-			{ Name: "BunnyEars1", Value: 20 }
+			{ Name: "BunnyEars1", Value: 20 },
+			{ Name: "BunnyEars2", Value: 20 },
+			{ Name: "CaptainHat1", Value: 20 }
 		]
 	},
 
@@ -184,7 +189,8 @@ var AssetFemale3DCG = [
 			{ Name: "Corset3", Value: 30, Hide: ["ItemNipples"] },
 			{ Name: "Corset4", Value: 30 },
 			{ Name: "Swimsuit1", Value: 20, Hide: ["Panties", "ItemNipples"] },
-			{ Name: "Swimsuit2", Value: 25, Hide: ["Panties", "ItemNipples"] }
+			{ Name: "Swimsuit2", Value: 25, Hide: ["Panties", "ItemNipples"] },
+			{ Name: "BunnySuit", Value: 30, Hide: ["Panties", "ItemNipples"] }
 		]
 	},
 	
@@ -244,11 +250,12 @@ var AssetFemale3DCG = [
 		AllowPose: ["LegsClosed", "Kneel"],
 		Color: ["Default", "#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
 		Left: 125,
-		Top: 500,
+		Top: 400,
 		Asset: [
 			"Socks1", "Socks2", "Socks3", "Socks4", "Socks5", "Stockings1", "Stockings2",
 			{ Name: "Stockings3", Value: 10 },
-			{ Name: "Stockings4", Value: 10 }
+			{ Name: "Stockings4", Value: 10 },
+			{ Name: "Pantyhose1", Value: 10, Priority: 12 }
 		]
 	},
 
@@ -269,7 +276,8 @@ var AssetFemale3DCG = [
 			{ Name: "Heels1", Height: 15 },
 			{ Name: "Heels2", Height: 15 },
 			{ Name: "Boots1", Height: 9 },
-			{ Name: "MistressBoots", Height: 35, Value: -1, Hide: ["Socks"], Alpha: [[125, 800, 250, 200]] }
+			{ Name: "MistressBoots", Height: 35, Value: -1, Hide: ["Socks"], Alpha: [[125, 800, 250, 200]] },
+			{ Name: "PonyBoots", Height: 35, Value: -1, Hide: ["Socks"], Alpha: [[125, 800, 250, 200]] }
 		]
 	},
 
@@ -446,7 +454,8 @@ var AssetFemale3DCG = [
 			{ Name: "Padlock", Wear: false, Value: 5, Effect: [] },
 			{ Name: "PadlockKey", Wear: false, Value: 5, Effect: [] },
 			{ Name: "FourLimbsShackles", Enable: false, Value: -1, SetPose: ["BackBoxTie"], Effect: ["Block", "Prone", "Lock"], Time: 30 },
-			{ Name: "StraitLeotard", SelfBondage: false, Value: 200, SetPose: ["BackElbowTouch"], Hide: ["Cloth", "ClothLower"], Block: ["ItemNipples", "ItemVulva", "ItemButt"], Effect: ["Block", "Prone", "Struggle"], Time: 35, RemoveTime: 20, Difficulty: 13 }
+			{ Name: "StraitLeotard", SelfBondage: false, Value: 200, SetPose: ["BackElbowTouch"], Hide: ["Cloth", "ClothLower"], Block: ["ItemNipples", "ItemVulva", "ItemButt"], Effect: ["Block", "Prone", "Struggle"], Time: 35, RemoveTime: 20, Difficulty: 13 },
+			{ Name: "PawMittens", SelfBondage: false, Value: 60, Effect: ["Block", "Prone", "Struggle"], Time: 15, Difficulty: 4 }
 		]
 	},
 
@@ -490,6 +499,7 @@ var AssetFemale3DCG = [
 			{ Name: "HarnessPonyBits", Random: false, Effect: ["GagHeavy"], Value: -1, Time: 20 },
 			{ Name: "PumpGag", Effect: [], Random: false, Extended: true, Value: 100, Time: 20 },
 			{ Name: "KittyGag", Effect: ["GagLight"], Value: 20, Time: 10 },
+			{ Name: "CarrotGag", Effect: ["GagHeavy"], Random: false, Value: 50, Time: 15 },
 			{ Name: "RegularSleepingPill", Enable: false, Wear: false, Value: -1, Bonus: [{Type: "KidnapSneakiness", Factor: 3}] }
 		]
 	},

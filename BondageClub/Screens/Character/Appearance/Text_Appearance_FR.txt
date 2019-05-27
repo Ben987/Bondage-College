@@ -1,0 +1,4 @@
+Select your appearance
+Sélectionner l'apparence
+You must pick an item of type:
+Le type d'item doit être sélectionné

@@ -83,7 +83,11 @@ var TranslationDictionary = [
 		LanguageName: "Français",
 		EnglishName: "French",
 		Files: [
-			"Screens/Character/Login/Text_Login_FR.txt"
+			"Assets/Female3DCG/Female3DCG_FR.txt",
+			"Screens/Character/Appearance/Text_Appearance_FR.txt",
+			"Screens/Character/Login/Text_Login_FR.txt",
+			"Screens/Room/MainHall/Dialog_NPC_MainHall_Maid_FR.txt",
+			"Screens/Room/MainHall/Text_MainHall_FR.txt"
 		]
 	}
 

@@ -1,0 +1,364 @@
+Upper Body
+Haut du Corps
+Small
+Petit
+Normal
+Normal
+Large
+Grand
+Xlarge
+TGrand
+Lower Body
+Bas du Corps
+Hands
+Mains
+Default
+Défaut
+Cloth
+Vtmt.
+College
+Collège
+Maid
+Servante
+Student Black
+Étudiante Noir
+Student Bow
+Étudiante Boucle
+Babydoll Dress
+Rope de Poupée
+Teacher
+Enseignante
+Chinese Dress
+Robe Chinoise
+Chinese Long
+Chinoise Longue
+T-Shirt
+T-Shirt
+Tennis
+Tennis
+Sweater
+Pull
+Mistress Top
+Maîtresse Haut
+Puffy Baby Dress
+Robe de Bébé
+Bows Baby Dress
+Robe Bouclée Bébé
+Flower Baby dress
+Robe Fleurée Bébé
+Nurse Uniform
+Infirmière
+Bottom
+Bas
+Skirt
+Jupe
+Jeans
+Jeans
+Shorts
+Short
+Mistress Bottom
+Maîtresse Bas
+Back Hair
+Chvx. Arrière
+None
+Rien
+Style 1
+Style 1
+Style 2
+Style 2
+Style 3
+Style 3
+Style 4
+Style 4
+Style 5
+Style 5
+Style 6
+Style 6
+Style 7
+Style 7
+Style 8
+Style 8
+Style 9
+Style 9
+Style 10
+Style 10
+Front Hair
+Chvx. Avant
+Style 11
+Style 11
+Style 12
+Style 12
+Hat
+Chapeau
+Hair Band
+Bande
+Beret
+Béret
+Ears Small
+Oreilles P.
+Ears Large
+Oreilles G.
+Maid Hairband
+Servante
+Santa Hat
+Père Noël
+Nurse's Cap
+Infirmière
+Bunny Ears
+Lapin
+Eyes
+Yeux
+Glasses
+Lunettes
+Sunglasses 1
+Lun. Soleil 1
+Sunglasses 2
+Lun. Soleil 2
+Mouth
+Bouche
+Nipples Style
+Mamelons
+Bra
+Brassière
+Lace and Satin
+Dentelle/Satin
+Strapless
+Sans Bretelles
+Satin Bustier
+Bustier Satin
+Corset + Garters
+Corset/Jarretière
+Corset
+Corset
+Half Cup Corset
+Demi-Corset
+Underbust Corset
+Corset Sous-buste
+Swimsuit style 1
+Maillot style 1
+Swimsuit style 2
+Maillot style 2
+Gloves
+Gants
+Short Gloves
+Gants Courts
+Long Gloves
+Gants Longs
+Mistress Gloves
+Gants Maîtresse
+Pussy
+Vagin
+Light 1
+Léger 1
+Light 2
+Léger 2
+Light 3
+Léger 3
+Dark 1
+Foncé 1
+Dark 2
+Foncé 2
+Dark 3
+Foncé 3
+Panties
+Slip
+String Bikini
+Bikini Mince
+Satin Bikini
+Bikini en Satin
+High Cut
+Coupe Haute
+Thong
+Lanière
+Diapers
+Couche
+Socks
+Chaussettes
+Short
+Petit
+Regular
+Régulier
+Middle Leg
+Aux Genoux
+High Leg
+À la Cuisse
+Full Leg
+Jambe Complète
+Stockings Dark
+Collants Foncés
+Stockings Light
+Collants Légers
+Silky Stockings
+Collants Soyeux
+Fishnet Stockings
+Collants Résille
+Shoes
+Chaussures
+Sneakers Light
+Sport Lèger
+Sneakers Dark
+Sport Foncé
+Heels
+Talons
+Heels Strap
+Talons-sangle
+Boots
+Bottes
+Mistress Boots
+Bottes Maîtresse
+Feet
+Pieds
+Nylon Rope
+Corde en Nylon
+Hemp Rope
+Corde en Chanvre
+Leather Belt
+Ceinture de Cuir
+Suspension Hemp Rope
+Corse de Suspension en Chanvre
+Legs
+Jambes
+Vulva
+Vulve
+Vibrating Egg
+Oeuf Vibrant
+Vibrating Wand
+Baguette Vibrante
+Vibrating Egg Remote
+Télécommande pour Oeuf
+Butt
+Fesses
+Black Butt Plug
+Plug Anal Noir
+Kitty Butt Plug
+Plug Anal Chat
+Horse Butt Plug
+Plug Anal Poney
+Pelvis
+Bassin
+Metal Chastity Belt
+Ceinture de Chasteté
+Metal Chastity Belt Key
+Clé pour Ceinture de Chasteté
+Leather Crop
+Cravache de Cuir
+Leather Whip
+Fouet de Cuir
+Strap-On Panties
+Godemiché avec Sangle
+Torso
+Torse
+Nylon Rope Harness
+Harnais de Corde en Nylon
+Hemp Rope Harness
+Harnais de Corde en Chanvre
+Leather Harness
+Harnais de Cuir
+Adult Baby Harness
+Harnais de Bébé Adulte
+Nipples
+Mamelons
+Straight Piercings
+Perçants Droits
+Round Piercings
+Perçants Ronds
+Nipple Clamps
+Pinces à Seins
+Vibrating Nipple Clamps
+Pinces à Seins Vibrantes
+Vibrating Clamps Remote
+Télécommande pour Pinces
+Breast
+Seins
+Metal Chastity Bra
+Brassière de Chasteté
+Metal Chastity Bra Key
+Clé pour Brassière de Chasteté
+Arms
+Bras
+Metal Cuffs
+Menottes en Métal
+Metal Cuffs Key
+Clé pour Menottes en Métal
+Leather Armbinder
+Monogant en Cuir
+Leather Cuffs
+Lanières en Cuir
+Leather Cuffs Key
+Clé pour Lanières en Cuir
+Thumbless Padded Mittens
+Mitaines Rembourrées Sans Pouce
+Thumbless Mittens Locked
+Mitaines Rembourrées Sûres
+Thumbless Mittens Chanined
+Mitaines Rembourrées Enchaînées
+Thumbless Mittens Chanined Locked
+Mitaines Rembourrées Enchaînées Sûres
+Padlock
+Cadenas
+Padlock Key
+Clé pour Cadenas
+Four Limbs Shackles
+Entraves en Fer
+Latex Strait Leotard
+Camisole de Force en Latex
+Neck
+Cou
+Leather Collar
+Collier en Cuir
+Slave Collar
+Collier d'Esclave
+Club Slave Collar
+Collier d'Esclave Publique
+Shock Collar
+Collier de Choc
+Shock Collar Remote
+Télécommande pour Collier de Choc
+Cloth Gag
+Bâillon en Tissu
+Harness Ball Gag
+Bâillon-boule avec Harnais
+Harness Panel Gag
+Bâillon-panneau avec Harnais
+Ring Gag
+Bâillon-anneau
+Duct Tape Gag
+Bâillon Adhésif
+Pacifier
+Sucette
+Harness Pacifier
+Sucette avec Harnais
+Duster Gag
+Bâillon Dépoussièreur
+Bit Gag
+Bâillon-mordant
+Pump Gag
+Bâillon Gonflable
+Sleeping Pill
+Pillule Endormante
+Head
+Tête
+Cloth Blindfold
+Bandeau en Tissu
+Leather Blindfold
+Bandeau en Cuir
+Leather Hood
+Masque en Cuir
+Leather Hood Eyes
+Masque en Cuir avec Yeux
+Studded Blindfold
+Bandeau Clouté
+Misc Items
+Items Divers
+Wooden Maid Tray
+Plateau de Service en Bois
+Wooden Maid Tray Full
+Plateau de Service en Bois Plein
+Wooden Paddle
+Pagaie en Bois
+Wooden Box
+Caisse en Bois
+Water filled milk can 
+Bidon de Lait Rempli d'Eau
+Water torture Cell
+Cellule de Torture d'Eau

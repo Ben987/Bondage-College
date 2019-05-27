@@ -30,6 +30,8 @@ Invalid name or password
 Compte ou mot de passe invalide
 Select Cheats
 Tricheurs...
+Reset Password
+Nouv. Mot de Passe
 Thank you
 Merci
 Developers
