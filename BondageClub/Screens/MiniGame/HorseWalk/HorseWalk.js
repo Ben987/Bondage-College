@@ -315,6 +315,6 @@ function HorseWalkClick() {
 			}
 		}
 	} else {
-		HorseWalkDoMove();
+		if (CommonIsMobile) HorseWalkDoMove();
 	}
 }
