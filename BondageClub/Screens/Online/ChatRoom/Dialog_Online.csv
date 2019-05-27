@@ -5,6 +5,7 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 0,,(View her profile.),,ViewProfile(),
 0,10,(Manage your relationship.),"(You can give more access to your items by putting her on your whitelist, or less control by putting her on your blacklist.)",,
 0,,(Ban her from the room.),,BanFromRoom(),CanBanUser()
+0,,(Whisper to her.),,ChatRoomPrepareWhisper(),
 0,,(Leave this menu.),,DialogLeave(),
 10,,(Add to item whitelist.),(This member is now on your item permission whitelist.  She will have higher access to restrain or free you.),"ListManage(""Add"", ""WhiteList"")",CanAddWhiteList()
 10,,(Remove from item whitelist.),(This member is no longer on your item permission whitelist.),"ListManage(""Remove"", ""WhiteList"")",CanRemoveWhiteList()

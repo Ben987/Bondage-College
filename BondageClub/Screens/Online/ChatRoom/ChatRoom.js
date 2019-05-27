@@ -194,7 +194,12 @@ function ChatRoomSendChat() {
 			msg = msg.replace("CoinResult", Heads ? TextGet("Heads") : TextGet("Tails"));
 			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Action" } );
 
-		} else if (msg.indexOf("*") == 0) {
+		} else if (msg.toLowerCase().indexOf("/whisper") == 0) {
+			var To = msg.substring(9, 50);
+			To = To.substring(0, To.indexOf(' '));
+			msg = msg.substring(10 + To.length, 250);
+			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Whisper", Addressee: To } );
+		}	else if (msg.indexOf("*") == 0) {
 
 			// The player can emote an action using *, it doesn't garble
 			msg = msg.replace(/\*/g, "");
@@ -214,6 +219,13 @@ function ChatRoomSendChat() {
 	
 	}
 
+}
+
+// Prepare the InputChat for sending private message
+function ChatRoomPrepareWhisper() {
+	var msg = "/whisper " + CurrentCharacter.MemberNumber + " ";
+	ElementValue("InputChat", msg);
+	DialogLeave();
 }
 
 // Publishes the player action (add, remove, swap) to the chat
@@ -287,6 +299,7 @@ function ChatRoomMessage(data) {
 
 			// Builds the message to add depending on the type
 			if ((data.Type != null) && (data.Type == "Chat")) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + msg;
+			if ((data.Type != null) && (data.Type == "Whisper")) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + '&num</span> ' + msg;
 			if ((data.Type != null) && (data.Type == "Emote")) msg = "*" + msg + "*";
 			if ((data.Type != null) && (data.Type == "Action")) msg = "(" + msg + ")";
 		
