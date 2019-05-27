@@ -492,7 +492,7 @@ var AssetFemale3DCG = [
 			{ Name: "HarnessBallGag", Effect: ["GagHeavy"], Value: 60, Time: 20 },
 			{ Name: "HarnessPanelGag", Effect: ["GagHeavy"], Value: 80, Time: 20 },
 			{ Name: "RingGag", Value: 35, Time: 5 },
-			{ Name: "DuctTapeGag", Value: 20, Time: 5, RemoveTime: 2 },
+			{ Name: "DuctTapeGag", Extended: true, Value: 20, Time: 5, RemoveTime: 2 },
 			{ Name: "PacifierGag", Random: false, Effect: ["GagLight"], Value: 15, Time: 2 },
 			{ Name: "HarnessPacifierGag", Random: false, Effect: ["GagLight"], Value: 70, Time: 20 },
 			{ Name: "DusterGag", Random: false, RemoveAtLogin: true, Value: -1, Time: 20 },
