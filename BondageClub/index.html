@@ -32,6 +32,9 @@
 		overflow: auto;
 		word-wrap: break-word;
 	}
+	.ChatMessage {
+		position: relative;
+	}
 	.ChatMessage::before {
 		content: attr(data-time);
 		float: right;
@@ -39,6 +42,14 @@
 		font-style: italic;
 		font-size: 0.5em;
 		margin-right: 0.2em;
+	}
+	.ChatMessage::after {
+		content: attr(data-sender);
+		position: absolute;
+		color: gray;
+		font-size: 0.3em;
+		top: 1.6em;
+		right: 0.2em;
 	}
 	.ChatMessageName {
 		text-shadow: 1px 1px black;
@@ -123,6 +134,9 @@
 	TO DO
 	More "Mobile Friendly" for online chat rooms and wardrobe
 	Redesign www.bondageprojects.com for club and Discord : https://discord.gg/dkWsEjf
+	Padlocks for most items (talk with devs first)
+	More duct tape bondage and gags
+	Private messages in chatrooms
 	Patreon import
 
 */
@@ -130,7 +144,7 @@
 // When the code is loaded, we start the game engine
 window.onload = function() {
 	//CheatImport();
-	//ServerURL = "https://bondage-club-server.herokuapp.com/";
+	ServerURL = "https://bondage-club-server.herokuapp.com/";
 	CommonIsMobile = CommonDetectMobile();
 	TranslationLoad();
 	DrawLoad();

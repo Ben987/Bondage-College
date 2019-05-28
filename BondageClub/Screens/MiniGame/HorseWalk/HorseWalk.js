@@ -75,7 +75,6 @@ function HorseWalkGenerateHurdleTrainingItems(MaxHurdle) {
 	}
 }
 
-
 // Draw the Carrots
 function HorseWalkDrawItem() {
 	if (MiniGameDifficulty == "Carrot") {
@@ -111,12 +110,12 @@ function HorseWalkLoad() {
 		HorseWalkCollectedCarrots = 0;
 		HorseWalkCollectedCrops = 0;
 	} else if (MiniGameDifficulty == "Hurdle") {
-		var MaxHurdle = 12 * Factor;
+		var MaxHurdle = 12;
 		HorseWalkGenerateHurdleItems(MaxHurdle);
 		HorseWalkHurdleWin = 0;
 		HorseWalkHurdleFail = 0;
 	} else if (MiniGameDifficulty == "HurdleTraining") {
-		var MaxHurdle = 12 * Factor;
+		var MaxHurdle = 12;
 		HorseWalkGenerateHurdleTrainingItems(MaxHurdle);
 		HorseWalkHurdleWin = 0;
 		HorseWalkHurdleFail = 0;
@@ -296,7 +295,6 @@ function HorseWalkDoMove() {
 						return;
 					}
 				}
-
 			}			
 		}
 	}
@@ -316,8 +314,6 @@ function HorseWalkClick() {
 				HorseWalkDrawTrainer = false;
 			}
 		}
-		
-
 	} else {
 		if (CommonIsMobile) HorseWalkDoMove();
 	}
