@@ -21,7 +21,6 @@ function ChatRoomCreateElement() {
 		ElementCreateInput("InputChat", "text", "", "250");
 		document.getElementById("InputChat").setAttribute("autocomplete", "off");
 		ElementCreateDiv("TextAreaChatLog");
-		ElementPositionFix("TextAreaChatLog", 36, 1005, 5, 990, 925);
 		ElementContent("TextAreaChatLog", ChatRoomLog);
 		ElementScrollToEnd("TextAreaChatLog");
 		ElementFocus("InputChat");
