@@ -135,7 +135,7 @@ function KidnapUpperHandMoveAvailable(MoveType, DoMove) {
 	// If we need to check to remove the restrain
 	if ((MoveType >= 5) && (MoveType <= 7)) {
 		var I = InventoryGet(C, KidnapUpperHandMoveType[MoveType].replace("Undo", ""));
-		if ((I != null) && ((C.ID != 0) || InventoryItemHasEffect(I, "Lock"))) {
+		if ((I != null) && ((C.ID != 0) || !InventoryItemHasEffect(I, "Lock"))) {
 			if (DoMove) InventoryRemove(C, KidnapUpperHandMoveType[MoveType].replace("Undo", ""));
 			return true;
 		}
