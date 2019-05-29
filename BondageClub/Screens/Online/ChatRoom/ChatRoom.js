@@ -20,6 +20,7 @@ function ChatRoomCreateElement() {
 		ElementCreateInput("InputChat", "text", "", "250");
 		document.getElementById("InputChat").setAttribute("autocomplete", "off");
 		ElementCreateDiv("TextAreaChatLog");
+		ElementPositionFix("TextAreaChatLog", 36, 1005, 5, 990, 925);
 		ElementContent("TextAreaChatLog", ChatRoomLog);
 		ElementScrollToEnd("TextAreaChatLog");
 		ElementFocus("InputChat");
@@ -77,7 +78,7 @@ function ChatRoomDrawCharacter(DoClick) {
 				ElementRemove("TextAreaChatLog");
 				ChatRoomBackground = ChatRoomData.Background;
 				ChatRoomCharacter[C].AllowItem = (ChatRoomCharacter[C].ID == 0);
-				ServerSend("ChatRoomAllowItem", { MemberNumber: ChatRoomCharacter[C].MemberNumber });
+				if (ChatRoomCharacter[C].ID != 0) ServerSend("ChatRoomAllowItem", { MemberNumber: ChatRoomCharacter[C].MemberNumber });
 				CharacterSetCurrent(ChatRoomCharacter[C]);
 				break;
 			}
@@ -197,7 +198,6 @@ function ChatRoomSendChat() {
 
 			// The player can emote an action using *, it doesn't garble
 			msg = msg.replace(/\*/g, "");
-			if (msg != "") msg = Player.Name + " " + msg;
 			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Emote" } );
 
 		} else {
@@ -286,12 +286,14 @@ function ChatRoomMessage(data) {
 
 			// Builds the message to add depending on the type
 			if ((data.Type != null) && (data.Type == "Chat")) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + msg;
-			if ((data.Type != null) && (data.Type == "Emote")) msg = "*" + msg + "*";
+			if ((data.Type != null) && (data.Type == "Emote")) msg = "*" + SenderCharacter.Name + " " + msg + "*";
 			if ((data.Type != null) && (data.Type == "Action")) msg = "(" + msg + ")";
 		
 			// Adds the message and scrolls down unless the user has scrolled up
 			var ShouldScrollDown = ElementIsScrolledToEnd("TextAreaChatLog");
-			ChatRoomLog = ChatRoomLog + '<div class="ChatMessage ChatMessage' + data.Type + '" data-time="' + ChatRoomCurrentTime() + '">' + msg + '</div>';
+			var DataAttributes = 'data-time="' + ChatRoomCurrentTime() + '" data-sender="' + data.Sender + '"';
+			var BackgroundColor = ((data.Type == "Emote" || data.Type == "Action") ? 'style="background-color:' + ChatRoomGetLighterColor(SenderCharacter.LabelColor) + ';"' : "");
+			ChatRoomLog = ChatRoomLog + '<div class="ChatMessage ChatMessage' + data.Type + '" ' + DataAttributes + ' ' + BackgroundColor + '>' + msg + '</div>';
 			if (document.getElementById("TextAreaChatLog") != null) {
 				ElementContent("TextAreaChatLog", ChatRoomLog);
 				if (ShouldScrollDown) ElementScrollToEnd("TextAreaChatLog");
@@ -350,6 +352,12 @@ function ChatRoomCurrentTime() {
 	return ("0" + D.getHours()).substr(-2) + ":" + ("0" + D.getMinutes()).substr(-2);
 }
 
+function ChatRoomGetLighterColor(Color) {
+	if (!Color) return "#f0f0f0";
+	var R = Color.substring(1, 3), G = Color.substring(3, 5), B = Color.substring(5, 7);
+	return "#" + (255 - Math.floor((255 - parseInt(R, 16)) * 0.1)).toString(16) + (255 - Math.floor((255 - parseInt(G, 16)) * 0.1)).toString(16) + (255 - Math.floor((255 - parseInt(B, 16)) * 0.1)).toString(16);
+}
+
 // Adds or remove an online member to/from a specific list
 function ChatRoomListManage(Operation, ListType) {
 	if (((Operation == "Add" || Operation == "Remove")) && (CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player[ListType] != null) && Array.isArray(Player[ListType])) {
@@ -365,6 +373,8 @@ function ChatRoomListManage(Operation, ListType) {
 // When the server returns if applying an item is allowed
 function ChatRoomAllowItem(data) {
 	if ((data != null) && (typeof data === "object") && (data.MemberNumber != null) && (typeof data.MemberNumber === "number") && (data.AllowItem != null) && (typeof data.AllowItem === "boolean"))
-		if ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber == data.MemberNumber))
+		if ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber == data.MemberNumber)) {
 			CurrentCharacter.AllowItem = data.AllowItem;
+			CharacterSetCurrent(CurrentCharacter);
+		}
 }

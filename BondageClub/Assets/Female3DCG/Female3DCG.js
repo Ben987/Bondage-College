@@ -276,7 +276,8 @@ var AssetFemale3DCG = [
 			{ Name: "Heels1", Height: 15 },
 			{ Name: "Heels2", Height: 15 },
 			{ Name: "Boots1", Height: 9 },
-			{ Name: "MistressBoots", Height: 35, Value: -1, Hide: ["Socks"], Alpha: [[125, 800, 250, 200]] }
+			{ Name: "MistressBoots", Height: 35, Value: -1, Hide: ["Socks"], Alpha: [[125, 800, 250, 200]] },
+			{ Name: "PonyBoots", Height: 35, Value: -1, Hide: ["Socks"], Alpha: [[125, 800, 250, 200]] }
 		]
 	},
 
@@ -453,7 +454,8 @@ var AssetFemale3DCG = [
 			{ Name: "Padlock", Wear: false, Value: 5, Effect: [] },
 			{ Name: "PadlockKey", Wear: false, Value: 5, Effect: [] },
 			{ Name: "FourLimbsShackles", Enable: false, Value: -1, SetPose: ["BackBoxTie"], Effect: ["Block", "Prone", "Lock"], Time: 30 },
-			{ Name: "StraitLeotard", SelfBondage: false, Value: 200, SetPose: ["BackElbowTouch"], Hide: ["Cloth", "ClothLower"], Block: ["ItemNipples", "ItemVulva", "ItemButt"], Effect: ["Block", "Prone", "Struggle"], Time: 35, RemoveTime: 20, Difficulty: 13 }
+			{ Name: "StraitLeotard", SelfBondage: false, Value: 200, SetPose: ["BackElbowTouch"], Hide: ["Cloth", "ClothLower"], Block: ["ItemNipples", "ItemVulva", "ItemButt"], Effect: ["Block", "Prone", "Struggle"], Time: 35, RemoveTime: 20, Difficulty: 13 },
+			{ Name: "PawMittens", SelfBondage: false, Value: 60, Effect: ["Block", "Prone", "Struggle"], Time: 15, Difficulty: 4 }
 		]
 	},
 
