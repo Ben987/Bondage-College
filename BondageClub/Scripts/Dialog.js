@@ -297,7 +297,7 @@ function DialogClick() {
 					
 					// If the player can struggle out or unlock herself
 					if ((C.ID == 0) && InventoryItemHasEffect(Item, "Struggle") && (DialogProgress == -1)) DialogProgressStart(C, Item, null);
-					if ((C.ID == 0) && InventoryItemHasEffect(Item, "Lock", true) && InventoryItemHasEffect(Item, "Block") && DialogCanUnlock(C, Item)) DialogProgressStart(C, Item, null);
+					if ((C.ID == 0) && InventoryItemHasEffect(Item, "Lock", true) && InventoryItemHasEffect(Item, "Block", true) && DialogCanUnlock(C, Item)) DialogProgressStart(C, Item, null);
 
 				}
 

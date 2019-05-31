@@ -7,7 +7,7 @@ var AssetFemale3DCG = [
 		Priority: 3,
 		AllowNone: false,
 		AllowColorize: false,
-		AllowPose: ["BackBoxTie", "BackCuffs", "BackElbowTouch"],
+		AllowPose: ["BackBoxTie", "BackCuffs", "BackElbowTouch", "TapedHands"],
 		Color: ["White", "Asian", "Black"],
 		Asset: ["Small", "Normal", "Large", "XLarge"],
 	},
@@ -31,7 +31,7 @@ var AssetFemale3DCG = [
 		AllowNone: false,
 		AllowColorize: false,
 		ParentColor: "BodyUpper",
-		AllowPose: ["BackBoxTie", "BackCuffs", "BackElbowTouch"],
+		AllowPose: ["BackBoxTie", "BackCuffs", "BackElbowTouch", "TapedHands"],
 		Color: ["White", "Asian", "Black"],
 		Asset: ["Default"]
 	},
@@ -40,7 +40,7 @@ var AssetFemale3DCG = [
 		Group: "Cloth",
 		Priority: 23,
 		ParentGroup: "BodyUpper",
-		AllowPose: ["BackBoxTie", "BackCuffs", "BackElbowTouch"],
+		AllowPose: ["BackBoxTie", "BackCuffs", "BackElbowTouch", "TapedHands"],
 		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
 		Asset: [ 
 			{ Name: "CollegeOutfit1", Hide: ["ClothLower", "ItemNeck"], Value: -1 },
@@ -455,7 +455,8 @@ var AssetFemale3DCG = [
 			{ Name: "PadlockKey", Wear: false, Value: 5, Effect: [] },
 			{ Name: "FourLimbsShackles", Enable: false, Value: -1, SetPose: ["BackBoxTie"], Effect: ["Block", "Prone", "Lock"], Time: 30 },
 			{ Name: "StraitLeotard", SelfBondage: false, Value: 200, SetPose: ["BackElbowTouch"], Hide: ["Cloth", "ClothLower"], Block: ["ItemNipples", "ItemVulva", "ItemButt"], Effect: ["Block", "Prone", "Struggle"], Time: 35, RemoveTime: 20, Difficulty: 13 },
-			{ Name: "PawMittens", SelfBondage: false, Value: 60, Effect: ["Block", "Prone", "Struggle"], Time: 15, Difficulty: 4 }
+			{ Name: "PawMittens", SelfBondage: false, Value: 60, Effect: ["Block", "Prone", "Struggle"], Time: 15, Difficulty: 4 },
+			{ Name: "DuctTape", Value: 20, AllowPose: ["TapedHands"], SetPose: ["TapedHands"], Effect: ["Block", "Prone", "Struggle"], Time: 20, RemoveTime: 10, Difficulty: 4, BuyGroup: "DuctTape" }
 		]
 	},
 
@@ -492,7 +493,7 @@ var AssetFemale3DCG = [
 			{ Name: "HarnessBallGag", Effect: ["GagHeavy"], Value: 60, Time: 20 },
 			{ Name: "HarnessPanelGag", Effect: ["GagHeavy"], Value: 80, Time: 20 },
 			{ Name: "RingGag", Value: 35, Time: 5 },
-			{ Name: "DuctTapeGag", Value: 20, Time: 5, RemoveTime: 2 },
+			{ Name: "DuctTapeGag", Extended: true, Value: 20, Time: 5, RemoveTime: 2, BuyGroup: "DuctTape" },
 			{ Name: "PacifierGag", Random: false, Effect: ["GagLight"], Value: 15, Time: 2 },
 			{ Name: "HarnessPacifierGag", Random: false, Effect: ["GagLight"], Value: 70, Time: 20 },
 			{ Name: "DusterGag", Random: false, RemoveAtLogin: true, Value: -1, Time: 20 },

@@ -67,6 +67,7 @@ var TranslationDictionary = [
 			"Screens/Room/Private/Dialog_NPC_Private_Vendor_DE.txt",
 			"Screens/Room/Sarah/Dialog_NPC_Amanda_DE.txt",
 			"Screens/Room/Sarah/Dialog_NPC_Sarah_DE.txt",
+			"Screens/Room/Sarah/Dialog_NPC_Sophie_DE.txt",
 			"Screens/Room/Shibari/Dialog_NPC_Shibari_Student_DE.txt",
 			"Screens/Room/Shibari/Dialog_NPC_Shibari_Teacher_DE.txt",
 			"Screens/Room/Shop/Dialog_NPC_Shop_Vendor_DE.txt",

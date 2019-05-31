@@ -78,16 +78,21 @@
 <script src="Screens/Inventory/ItemArms/PaddedMittensHarness/PaddedMittensHarness.js"></script>
 <script src="Screens/Inventory/ItemArms/PaddedMittensHarnessLocked/PaddedMittensHarnessLocked.js"></script>
 <script src="Screens/Inventory/ItemMouth/ClothGag/ClothGag.js"></script>
+<script src="Screens/Inventory/ItemMouth/DuctTapeGag/DuctTapeGag.js"></script>
 <script>
 
 /*
 
 	TO DO
-	BUG: if "Owner only", cannot see outfit changes from anyone in the room, and cannot see kneeling
-	More "Mobile Friendly" for online chat rooms and wardrobe
-	Redesign www.bondageprojects.com for club and Discord : https://discord.gg/dkWsEjf
-	Padlocks for most items (talk with devs first)
-	More duct tape bondage and gags
+	Padlocks for most items:
+		- I was thinking of using the new item property object to assign a lock to another item.
+		- Items that can have a lock (gags, leather belts, leather harness, mittens, etc.) could have a flag for it, something like “AllowLock”.
+		- I would use the picture variation and design a new graphic for most padlocked items.
+		- I was thinking of making a different item category for locks and keys with multiple kinds of padlocks.
+		- I’d like for the player to be able to struggle from a locked item, having it locked would raise the difficulty or start the struggle engine for new body regions like the mouth or legs.
+		- It could start with a regular padlock and a stronger one, the stronger one would cost more (same for it’s key) and would take more time to unlock.
+		- Later we could add other kinds of locks: owner-specific, club mistress, timer-based, number combo or even with mini-games.
+	More duct tape bondage
 	Private messages in chatrooms
 	Patreon import
 
