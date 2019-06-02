@@ -32,6 +32,7 @@ pumps,,,pumps
 deflates,,,deflates
 gag,,,gag
 SelectBondagePosition,,,Select the bondage position
+SelectTapeWrapping,,,Select the tape wrapping
 CannotUnlockIfElbowBound,,,A victim cannot unlock herself if her elbows are bound
 LeatherCuffsPoseNone,,,Detached
 LeatherCuffsPoseWrist,,,Bind wrists
@@ -41,6 +42,14 @@ LeatherCuffsRestrainNone,,,SourceCharacter detaches the chain from DestinationCh
 LeatherCuffsRestrainWrist,,,SourceCharacter attaches the leather cuffs wrist chain behind DestinationCharacter's back.
 LeatherCuffsRestrainElbow,,,SourceCharacter attaches the leather cuffs elbow chain behind DestinationCharacter's back.
 LeatherCuffsRestrainBoth,,,SourceCharacter attaches the leather cuffs wrist and elbow chains behind DestinationCharacter's back.
+DuctTapePoseHands,,,Hands
+DuctTapePoseBottom,,,Skirt
+DuctTapePoseTop,,,Torso
+DuctTapePoseFull,,,Mummy
+DuctTapeRestrainHands,,,SourceCharacter wraps duct tape around DestinationCharacter's hands.
+DuctTapeRestrainBottom,,,SourceCharacter creates a duct tape skirt on DestinationCharacter and traps her hands in it.
+DuctTapeRestrainTop,,,SourceCharacter creates a duct tape top on DestinationCharacter and traps her arms in it.
+DuctTapeRestrainFull,,,SourceCharacter creates a duct tape mummy on DestinationCharacter and traps her arms in it.
 SelectGagType,,,Select type of cloth gag
 ClothGagTypeSmall,,,Small
 ClothGagTypeCleave,,,Cleave
@@ -50,9 +59,14 @@ ClothGagSetSmall,,,SourceCharacter ties the cloth into a small gag over Destinat
 ClothGagSetCleave,,,SourceCharacter ties the cloth into a cleave gag over DestinationCharacter's mouth.
 ClothGagSetOTM,,,SourceCharacter stuffs DestinationCharacter's mouth with a piece of cloth and secures it with another piece.
 ClothGagSetOTN,,,SourceCharacter stuffs DestinationCharacter's mouth with a piece of cloth and secures the gag over her mouth and nose.
-DuctTapeGagTypeSmall,,,Single strip
-DuctTapeGagTypeCrossed,,,Crossed strips
-DuctTapeGagTypeFull,,,Full face
+DuctTapeMouthTypeSmall,,,Single strip
+DuctTapeMouthTypeCrossed,,,Crossed strips
+DuctTapeMouthTypeFull,,,Full face
+DuctTapeMouthTypeDouble,,,Double layer
+DuctTapeMouthSetSmall,,,SourceCharacter puts a piece of duct tape on DestinationCharacter's mouth.
+DuctTapeMouthSetCrossed,,,SourceCharacter crosses two pieces of duct tape on DestinationCharacter's mouth.
+DuctTapeMouthSetFull,,,SourceCharacter fully tapes DestinationCharacter's mouth.
+DuctTapeMouthSetDouble,,,SourceCharacter fully tapes DestinationCharacter's mouth with double layers.
 Intensity-1,,,Item intensity: Disabled
 Intensity0,,,Item intensity: Low
 Intensity1,,,Item intensity: Medium

@@ -164,10 +164,12 @@ ItemFeet,NylonRope,Nylon Rope
 ItemFeet,HempRope,Hemp Rope
 ItemFeet,LeatherBelt,Leather Belt
 ItemFeet,SuspensionHempRope,Suspension Hemp Rope
+ItemFeet,DuctTape,Duct Tape
 ItemLegs,,Legs
 ItemLegs,NylonRope,Nylon Rope
 ItemLegs,HempRope,Hemp Rope
 ItemLegs,LeatherBelt,Leather Belt
+ItemLegs,DuctTape,Duct Tape
 ItemVulva,,Vulva
 ItemVulva,VibratingEgg,Vibrating Egg
 ItemVulva,VibratingWand,Vibrating Wand
@@ -227,7 +229,7 @@ ItemMouth,ClothGag,Cloth Gag
 ItemMouth,HarnessBallGag,Harness Ball Gag
 ItemMouth,HarnessPanelGag,Harness Panel Gag
 ItemMouth,RingGag,Ring Gag
-ItemMouth,DuctTapeGag,Duct Tape Gag
+ItemMouth,DuctTape,Duct Tape
 ItemMouth,PacifierGag,Pacifier
 ItemMouth,HarnessPacifierGag,Harness Pacifier
 ItemMouth,DusterGag,Duster Gag
@@ -243,6 +245,7 @@ ItemHead,LeatherHood,Leather Hood
 ItemHead,LeatherHoodOpenEyes,Leather Hood Eyes
 ItemHead,StuddedBlindfold,Studded Blindfold
 ItemHead,KittyBlindfold,Kitty Blindfold
+ItemHead,DuctTape,Duct Tape
 ItemMisc,,Misc Items
 ItemMisc,WoodenMaidTray,Wooden Maid Tray
 ItemMisc,WoodenMaidTrayFull,Wooden Maid Tray Full

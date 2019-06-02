@@ -298,7 +298,8 @@ var AssetFemale3DCG = [
 			{ Name: "NylonRope", Value: 15, Time: 10 },
 			{ Name: "HempRope", Value: 30, Time: 10, RemoveTime: 15, Difficulty: 3 },
 			{ Name: "LeatherBelt", Value: 25, Time: 5 },
-			{ Name: "SuspensionHempRope", SelfBondage: false, Random: false, RemoveAtLogin: true, SetPose: ["Suspension", "LegsClosed"], Effect: ["Freeze", "Prone", "Struggle"], Value: -1, Height: 150, Time: 30, Difficulty: 3, Alpha: [[125, 850, 250, 150]] }
+			{ Name: "SuspensionHempRope", SelfBondage: false, Random: false, RemoveAtLogin: true, SetPose: ["Suspension", "LegsClosed"], Effect: ["Freeze", "Prone", "Struggle"], Value: -1, Height: 150, Time: 30, Difficulty: 3, Alpha: [[125, 850, 250, 150]] },
+			{ Name: "DuctTape", Value: 50, Time: 15, RemoveTime: 10, BuyGroup: "DuctTape" }
 		]
 	},
 
@@ -318,7 +319,8 @@ var AssetFemale3DCG = [
 		Asset: [ 
 			{ Name: "NylonRope", Value: 15, Time: 10 },
 			{ Name: "HempRope", Value: 30, Time: 10, RemoveTime: 15, Difficulty: 3 },
-			{ Name: "LeatherBelt", Value: 25, Time: 5 }
+			{ Name: "LeatherBelt", Value: 25, Time: 5 },
+			{ Name: "DuctTape", Value: 50, Time: 15, RemoveTime: 10, BuyGroup: "DuctTape" }
 		]
 	},
 
@@ -379,7 +381,7 @@ var AssetFemale3DCG = [
 		Category: "Item",
 		Priority: 14,
 		Default: false,
-		AllowPose: ["BackBoxTie", "BackCuffs", "BackElbowTouch"],
+		AllowPose: ["BackBoxTie", "BackCuffs", "BackElbowTouch", "TapedHands"],
 		Color: ["Default"],
 		Left: 125,
 		Top: 200,
@@ -456,7 +458,7 @@ var AssetFemale3DCG = [
 			{ Name: "FourLimbsShackles", Enable: false, Value: -1, SetPose: ["BackBoxTie"], Effect: ["Block", "Prone", "Lock"], Time: 30 },
 			{ Name: "StraitLeotard", SelfBondage: false, Value: 200, SetPose: ["BackElbowTouch"], Hide: ["Cloth", "ClothLower"], Block: ["ItemNipples", "ItemVulva", "ItemButt"], Effect: ["Block", "Prone", "Struggle"], Time: 35, RemoveTime: 20, Difficulty: 13 },
 			{ Name: "PawMittens", SelfBondage: false, Value: 60, Effect: ["Block", "Prone", "Struggle"], Time: 15, Difficulty: 4 },
-			{ Name: "DuctTape", Value: 20, AllowPose: ["TapedHands"], SetPose: ["TapedHands"], Effect: ["Block", "Prone", "Struggle"], Time: 20, RemoveTime: 10, Difficulty: 4, BuyGroup: "DuctTape" }
+			{ Name: "DuctTape", SelfBondage: false, Extended: true, Value: 50, AllowPose: ["TapedHands"], SetPose: ["TapedHands"], Effect: ["Block", "Prone", "Struggle"], Time: 20, RemoveTime: 10, Difficulty: 3, BuyGroup: "DuctTape" }
 		]
 	},
 
@@ -493,7 +495,7 @@ var AssetFemale3DCG = [
 			{ Name: "HarnessBallGag", Effect: ["GagHeavy"], Value: 60, Time: 20 },
 			{ Name: "HarnessPanelGag", Effect: ["GagHeavy"], Value: 80, Time: 20 },
 			{ Name: "RingGag", Value: 35, Time: 5 },
-			{ Name: "DuctTapeGag", Extended: true, Value: 20, Time: 5, RemoveTime: 2, BuyGroup: "DuctTape" },
+			{ Name: "DuctTape", Extended: true, Value: 50, Time: 10, RemoveTime: 5, BuyGroup: "DuctTape" },
 			{ Name: "PacifierGag", Random: false, Effect: ["GagLight"], Value: 15, Time: 2 },
 			{ Name: "HarnessPacifierGag", Random: false, Effect: ["GagLight"], Value: 70, Time: 20 },
 			{ Name: "DusterGag", Random: false, RemoveAtLogin: true, Value: -1, Time: 20 },
@@ -520,7 +522,8 @@ var AssetFemale3DCG = [
 			{ Name: "LeatherHood", Effect: ["BlindHeavy", "Prone", "GagLight"], Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth", "Eyes"], Block: ["ItemMouth", "ItemNeck"], Value: 90, Time: 15 },
 			{ Name: "LeatherHoodOpenEyes", Effect: ["Prone", "GagLight"], Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth"], Block: ["ItemMouth", "ItemNeck"], Value: 60, Time: 15 },
 			{ Name: "StuddedBlindfold", Effect: ["BlindNormal", "Prone"], Hide: ["Glasses"], Value: -1, Time: 5 },
-			{ Name: "KittyBlindfold", Effect: ["BlindLight", "Prone"], Hide: ["Glasses"], Value: 25, Time: 5 }
+			{ Name: "KittyBlindfold", Effect: ["BlindLight", "Prone"], Hide: ["Glasses"], Value: 25, Time: 5 },
+			{ Name: "DuctTape", Effect: ["BlindNormal", "Prone"], Hide: ["Glasses"], Value: 50, Time: 10, RemoveTime: 5, BuyGroup: "DuctTape" }
 		]
 	},
 

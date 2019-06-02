@@ -140,9 +140,10 @@ function InventoryRemove(C, AssetGroup) {
 
 // Returns TRUE if the currently worn item is blocked by another item (hoods blocks gags, belts blocks eggs, etc.)
 function InventoryGroupIsBlocked(C) {
-	for(var E = 0; E < C.Appearance.length; E++)
-		if ((C.Appearance[E].Asset.Block != null) && (C.Appearance[E].Asset.Block.indexOf(C.FocusGroup.Name) >= 0))
-			return true;
+	for(var E = 0; E < C.Appearance.length; E++) {
+		if ((C.Appearance[E].Asset.Block != null) && (C.Appearance[E].Asset.Block.indexOf(C.FocusGroup.Name) >= 0)) return true;
+		if ((C.Appearance[E].Property != null) && (C.Appearance[E].Property.Block != null) && (C.Appearance[E].Property.Block.indexOf(C.FocusGroup.Name) >= 0)) return true;
+	}
 	return false;
 }
 

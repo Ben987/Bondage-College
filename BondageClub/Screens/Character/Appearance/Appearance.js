@@ -107,9 +107,10 @@ function CharacterAppearanceRequired(C, GroupName) {
 
 // Returns TRUE if the item group must be hidden and not chosen
 function CharacterAppearanceMustHide(C, GroupName) {
-	for (var A = 0; A < C.Appearance.length; A++)
-		if ((C.Appearance[A].Asset.Hide != null) && (C.Appearance[A].Asset.Hide.indexOf(GroupName) >= 0))
-			return true;
+	for (var A = 0; A < C.Appearance.length; A++) {
+		if ((C.Appearance[A].Asset.Hide != null) && (C.Appearance[A].Asset.Hide.indexOf(GroupName) >= 0)) return true;
+		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.Hide != null) && (C.Appearance[A].Property.Hide.indexOf(GroupName) >= 0)) return true;
+	}
 	return false;
 }
 
@@ -200,9 +201,10 @@ function CharacterAppearanceSort(AP) {
 
 // Returns TRUE if we can show the item group
 function CharacterAppearanceVisible(C, AssetName, GroupName) {
-	for (var A = 0; A < C.Appearance.length; A++)
-		if ((C.Appearance[A].Asset.Hide != null) && (C.Appearance[A].Asset.Hide.indexOf(GroupName) >= 0))
-			return false;
+	for (var A = 0; A < C.Appearance.length; A++) {
+		if ((C.Appearance[A].Asset.Hide != null) && (C.Appearance[A].Asset.Hide.indexOf(GroupName) >= 0)) return false;
+		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.Hide != null) && (C.Appearance[A].Property.Hide.indexOf(GroupName) >= 0)) return false;
+	}
 	for (var A = 0; A < C.Appearance.length; A++)
 		if ((C.Appearance[A].Asset.HideItem != null) && (C.Appearance[A].Asset.HideItem.indexOf(GroupName + AssetName) >= 0))
 			return false;
