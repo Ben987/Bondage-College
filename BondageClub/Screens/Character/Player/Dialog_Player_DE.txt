@@ -103,6 +103,12 @@ SourceCharacter stuffs DestinationCharacter's mouth with a piece of cloth and se
 SourceCharacter stopft ein Stück Stoff in DestinationCharacters Mund und bindet es mit einem weiteren Tuch fest.
 SourceCharacter stuffs DestinationCharacter's mouth with a piece of cloth and secures the gag over her mouth and nose.
 SourceCharacter stopft ein Stück Stoff in DestinationCharacters Mund und bindet ein weiteres Tuch über ihren Mund und ihre Nase.
+Single strip
+Einzelner Streifen
+Crossed strips
+Überkreuzte Streifen
+Full face
+Vollständig
 Item intensity: Disabled
 Intensität: Deaktiviert
 Item intensity: Low
@@ -203,3 +209,5 @@ mittens to the baby harness
 an ihr Babyharnisch
 They must be wearing a baby harness first to chain the mittens to it.
 Sie muss einen Babyharnisch tragen, um die Fäustlinge daran anzuketten.
+Facial expression
+Gesichtsausdruck

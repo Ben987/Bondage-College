@@ -475,7 +475,20 @@ function DialogClick() {
 				}
 		}
 	
-	}	
+	}
+
+	// If the user clicked in the facial expression menu
+	if (MouseX >= 25 && MouseX <= 475) {
+		var Counter = 0;
+		for (var I = 0; I < Player.Appearance.length; I++) {
+			var PA = Player.Appearance[I];
+			if (!PA.Asset.Group.AllowExpression || !PA.Asset.Group.AllowExpression.length) continue;
+			if ((MouseY >= 125 + 105 * Counter) && (MouseY <= (125 + 105 * Counter) + 75)) {
+				CharacterCycleFacialExpression(Player, PA.Asset.Group.Name);
+			}
+			Counter++;
+		}
+	}
 
 }
 
@@ -840,6 +853,9 @@ function DialogDraw() {
 	// Draw both the player and the interaction character
 	if (CurrentCharacter.ID != 0) DrawCharacter(Player, 0, 0, 1);
 	DrawCharacter(CurrentCharacter, 500, 0, 1);
+
+	// Draw the menu for facial expressions if the player clicked on herself
+	if (CurrentCharacter.ID == 0) DialogDrawExpressionMenu();
 	
 	// If we must show the item/inventory menu
 	if (((Player.FocusGroup != null) || ((CurrentCharacter.FocusGroup != null) && CurrentCharacter.AllowItem)) && (DialogIntro() != "")) {
@@ -871,4 +887,17 @@ function DialogDraw() {
 
 	}
 
+}
+
+// Draw the menu for changing facial expressions
+function DialogDrawExpressionMenu() {
+	DrawText(DialogFind(Player, "FacialExpression"), 250, 62, "White", "Black");
+
+	var Counter = 0;
+	for (var I = 0; I < Player.Appearance.length; I++) {
+		var PA = Player.Appearance[I];
+		if (!PA.Asset.Group.AllowExpression || !PA.Asset.Group.AllowExpression.length) continue;
+		DrawButton(25, 125 + 105 * Counter, 450, 75, PA.Asset.Group.Description, "White");
+		Counter++;
+	}
 }

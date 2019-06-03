@@ -224,6 +224,10 @@ Mistress Boots
 Herrinnen-Stiefel
 Pony Boots
 Pony-Stiefel
+Eyebrows
+Augenbrauen
+Blush
+Röte
 Feet
 Füße
 Nylon Rope
@@ -322,6 +326,8 @@ Latex Strait Leotard
 Latex-Zwangsjackenanzug
 Kitty Paw Mittens
 Katzenpfoten
+Duct Tape
+Klebeband
 Neck
 Hals
 Leather Collar

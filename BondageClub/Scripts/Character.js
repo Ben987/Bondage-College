@@ -522,3 +522,39 @@ function CharacterSetActivePose(C, NewPose) {
 	C.ActivePose = NewPose;
 	CharacterRefresh(C, false);
 }
+
+// Sets a specific facial expression for the character's specified AssetGruo
+function CharacterSetFacialExpression(C, AssetGroup, Expression) {
+	for (var A = 0; A < C.Appearance.length; A++) {
+		if ((C.Appearance[A].Asset.Group.Name == AssetGroup) && (C.Appearance[A].Asset.Group.AllowExpression)) {
+			if ((Expression == null) || (C.Appearance[A].Asset.Group.AllowExpression.indexOf(Expression) >= 0)) {
+				if (!C.Appearance[A].Property) C.Appearance[A].Property = {};
+				C.Appearance[A].Property.Expression = Expression;
+				CharacterLoadCanvas(C);
+				ChatRoomCharacterUpdate(C);
+			}
+		}
+	}
+}
+
+// Switches to the next facial expression for the given character's AssetGroup
+function CharacterCycleFacialExpression(C, AssetGroup) {
+	for (var A = 0; A < C.Appearance.length; A++) {
+		if ((C.Appearance[A].Asset.Group.Name == AssetGroup) && (C.Appearance[A].Asset.Group.AllowExpression) && (C.Appearance[A].Asset.Group.AllowExpression.length)) {
+			if (!C.Appearance[A].Property) C.Appearance[A].Property = {};
+			var Index = C.Appearance[A].Asset.Group.AllowExpression.indexOf(C.Appearance[A].Property.Expression);
+			if (Index + 1 >= C.Appearance[A].Asset.Group.AllowExpression.length) {
+				CharacterSetFacialExpression(C, AssetGroup, null);
+			} else {
+				CharacterSetFacialExpression(C, AssetGroup, C.Appearance[A].Asset.Group.AllowExpression[Index + 1]);
+			}
+		}
+	}
+}
+
+// Resets the character's facial expression to the default
+function CharacterResetFacialExpression(C) {
+	for (var A = 0; A < C.Appearance.length; A++)
+		if (C.Appearance[A].Asset.Group.AllowExpression)
+			CharacterSetFacialExpression(C, C.Appearance[A].Asset.Group.Name, null);
+}
