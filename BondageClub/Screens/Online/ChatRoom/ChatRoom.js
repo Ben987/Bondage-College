@@ -13,6 +13,7 @@ function ChatRoomCanRemoveWhiteList() { return ((CurrentCharacter != null) && (C
 function ChatRoomCanRemoveBlackList() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.BlackList.indexOf(CurrentCharacter.MemberNumber) >= 0)) }
 function ChatRoomCanAddFriend() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.FriendList.indexOf(CurrentCharacter.MemberNumber) < 0)) }
 function ChatRoomCanRemoveFriend() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.FriendList.indexOf(CurrentCharacter.MemberNumber) >= 0)) }
+function ChatRoomCanChangeClothes() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && CurrentCharacter.AllowItem && !((InventoryGet(CurrentCharacter, "ItemNeck") != null) && (InventoryGet(CurrentCharacter, "ItemNeck").Asset.Name == "ClubSlaveCollar"))) }
 
 // Creates the chat room input elements
 function ChatRoomCreateElement() {
@@ -128,7 +129,7 @@ function ChatRoomClick() {
 		ElementRemove("TextAreaChatLog");
 		CharacterAppearanceReturnRoom = "ChatRoom"; 
 		CharacterAppearanceReturnModule = "Online";
-		CommonSetScreen("Character", "Appearance");
+		CharacterAppearanceLoadCharacter(Player);
 	}
 
 	// When the user leaves
@@ -377,4 +378,11 @@ function ChatRoomAllowItem(data) {
 			CurrentCharacter.AllowItem = data.AllowItem;
 			CharacterSetCurrent(CurrentCharacter);
 		}
+}
+
+// When the player wants to change another player's outfit
+function ChatRoomChangeClothes() {
+	var C = CurrentCharacter;
+	DialogLeave();
+	CharacterAppearanceLoadCharacter(C);
 }
