@@ -3,6 +3,194 @@ var AssetFemale3DCG = [
 
 	// Appearance specific
 	{
+		Group: "Cloth",
+		Priority: 25,
+		ParentGroup: "BodyUpper",
+		Clothing: true,
+		AllowPose: ["BackBoxTie", "BackCuffs", "BackElbowTouch", "TapedHands"],
+		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
+		Asset: [ 
+			{ Name: "CollegeOutfit1", Hide: ["ClothLower", "ItemNeck"], Value: -1 },
+			{ Name: "MaidOutfit1", Hide: ["ClothLower"], Value: -1 },
+			{ Name: "StudentOutfit1", Hide: ["ClothLower", "ItemNeck"] },
+			{ Name: "StudentOutfit2", Hide: ["ClothLower"], HideItem: ["ItemArmsLeatherCuffs"] },
+			{ Name: "BabydollDress1", Hide: ["ClothLower"] },
+			{ Name: "TeacherOutfit1", Hide: ["ClothLower", "ItemNeck"], HideItem: ["ItemArmsLeatherCuffs"] },
+			{ Name: "ChineseDress1", Hide: ["ClothLower"] },
+			{ Name: "ChineseDress2", Value: 100 },
+			{ Name: "TShirt1", Require: ["ClothLower"] },
+			{ Name: "TennisShirt1", Require: ["ClothLower"] },
+			{ Name: "Sweater1", Require: ["ClothLower"], HideItem: ["ItemArmsLeatherCuffs"] },
+			{ Name: "MistressTop", Require: ["ClothLower"], Hide: ["Bra"], Value: -1 },
+			{ Name: "AdultBabyDress1", Hide: ["ClothLower"], Value: 200 },
+			{ Name: "AdultBabyDress2", Hide: ["ClothLower"], Value: 200 },
+			{ Name: "AdultBabyDress3", Hide: ["ClothLower"], Value: 200 },
+			{ Name: "NurseUniform", Hide: ["ClothLower"], Value: -1 },
+			{ Name: "BunnyCollarCuffs", Value: 10 },
+			{ Name: "Robe1", Value: 50 }
+		]
+	},
+	
+	{
+		Group: "ClothLower",
+		Priority: 19,
+		Default: false,
+		ParentGroup: "BodyLower",
+		ParentColor: "Cloth",
+		Clothing: true,
+		AllowPose: ["LegsClosed", "Kneel"],
+		Color: ["Default", "#bbbbbb", "#808080", "#202020", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
+		Left: 125,
+		Top: 400,
+		Asset: [
+			{ Name: "Skirt1" },
+			{ Name: "TennisSkirt1", ParentItem: "TennisShirt1" },
+			{ Name: "Jeans1" },
+			{ Name: "Shorts1" },
+			{ Name: "MistressBottom", Hide: ["Panties"], Value: -1 }
+		]
+	},
+	
+	{
+		Group: "Bra",
+		Priority: 15,
+		ParentGroup: "BodyUpper",
+		Clothing: true,
+		Underwear: true,
+		Color: ["Default", "#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
+		Left: 150,
+		Top: 200,
+		Asset: [
+			{ Name: "Bra1", Hide: ["ItemNipples"] },
+			{ Name: "Bra2", Hide: ["ItemNipples"] },
+			{ Name: "Bra7", Hide: ["ItemNipples"] },
+			{ Name: "Bra8", Value: 15, Hide: ["ItemNipples"] },
+			{ Name: "Bra9", Value: 15, Hide: ["ItemNipples"] },
+			{ Name: "Bustier1", Value: 30, Hide: ["ItemNipples"] },
+			{ Name: "Corset1", Value: 30, Hide: ["ItemNipples"] },
+			{ Name: "Corset2", Value: 30, Hide: ["ItemNipples"] },
+			{ Name: "Corset3", Value: 30, Hide: ["ItemNipples"] },
+			{ Name: "Corset4", Value: 30 },
+			{ Name: "Swimsuit1", Value: 20, Hide: ["Panties", "ItemNipples"] },
+			{ Name: "Swimsuit2", Value: 25, Hide: ["Panties", "ItemNipples"] },
+			{ Name: "BunnySuit", Value: 30, Hide: ["Panties", "ItemNipples"] }
+		]
+	},
+	
+	{
+		Group: "Panties",
+		Priority: 14,
+		ParentGroup: "BodyLower",
+		ParentColor: "Bra",
+		Clothing: true,
+		Underwear: true,
+		Color: ["Default", "#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
+		Left: 150,
+		Top: 425,
+		Asset: [
+			{ Name: "Panties1" },
+			{ Name: "Panties7" },
+			{ Name: "Panties8" },
+			{ Name: "Panties11" },
+			{ Name: "Panties12", Value: 10 },
+			{ Name: "Panties13", Value: 10 },
+			{ Name: "Panties14", Value: 10 },
+			{ Name: "Panties15", Value: 10 },
+			{ Name: "Diapers1", Value: 50 }
+		]
+	},
+	
+	{
+		Group: "Socks",
+		Priority: 18,
+		ParentGroup: "BodyLower",
+		ParentColor: "Bra",
+		Clothing: true,
+		Underwear: true,
+		AllowPose: ["LegsClosed", "Kneel"],
+		Color: ["Default", "#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
+		Left: 125,
+		Top: 400,
+		Asset: [
+			"Socks1", "Socks2", "Socks3", "Socks4", "Socks5", "Stockings1", "Stockings2",
+			{ Name: "Stockings3", Value: 10 },
+			{ Name: "Stockings4", Value: 10 },
+			{ Name: "Pantyhose1", Value: 10, Priority: 12 }
+		]
+	},
+	
+	{
+		Group: "Shoes",
+		Priority: 21,
+		ParentGroup: "BodyLower",
+		Clothing: true,
+		AllowPose: ["LegsClosed", "Kneel"],
+		Color: ["Default", "#bbbbbb", "#808080", "#202020", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
+		Left: 125,
+		Top: 500,
+		Asset: [
+			{ Name: "Shoes1", Height: 6 },
+			{ Name: "Shoes2", Height: 6 },
+			{ Name: "Shoes4", Height: 6 },
+			{ Name: "Sneakers1", Height: 3 },
+			{ Name: "Sneakers2", Height: 3 },
+			{ Name: "Heels1", Height: 15 },
+			{ Name: "Heels2", Height: 15 },
+			{ Name: "Boots1", Height: 9 },
+			{ Name: "MistressBoots", Height: 35, Value: -1, Hide: ["Socks"], Alpha: [[125, 800, 250, 200]] },
+			{ Name: "PonyBoots", Height: 35, Value: -1, Hide: ["Socks"], Alpha: [[125, 800, 250, 200]] }
+		]
+	},
+	
+	{
+		Group: "Hat",
+		Priority: 32,
+		Default: false,
+		Clothing: true,
+		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
+		AllowPose: ["Suspension"],
+		Left: 125,
+		Top: 0,
+		Asset: [
+			"Band1", "Beret1", "Ears1", "Ears2", "PonyEars1",
+			{ Name: "Ribbons1", Priority: 1 },
+			{ Name: "MaidHairband1", Value: -1 },
+			{ Name: "NurseCap", Value: -1 },
+			{ Name: "Santa1", Value: 30 },
+			{ Name: "BunnyEars1", Value: 20 },
+			{ Name: "BunnyEars2", Value: 20 },
+			{ Name: "CaptainHat1", Value: 20 }
+		]
+	},
+	
+	{
+		Group: "Gloves",
+		Priority: 24,
+		ParentGroup: "BodyUpper",
+		ParentColor: "Bra",
+		Clothing: true,
+		Underwear: true,
+		Default: false,
+		AllowPose: ["BackBoxTie", "BackCuffs", "BackElbowTouch"],
+		Color: ["#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
+		Left: 75,
+		Top: 275,
+		Asset: ["Gloves1", "Gloves2", { Name: "MistressGloves", Value: -1 }]
+	},
+	
+	{
+		Group: "Glasses",
+		Priority: 28,
+		Default: false,
+		Clothing: true,
+		Underwear: true,
+		Color: ["#303030", "#808080", "#e0e0e0", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
+		Left: 200,
+		Top: 135,
+		Asset: ["Glasses1", "Glasses2", "Glasses3", "Glasses4", "Glasses5", "Glasses6", { Name: "SunGlasses1", Value: 20 }, { Name: "SunGlasses2", Value: 20 }]
+	},
+	
+	{
 		Group: "BodyUpper",
 		Priority: 3,
 		AllowNone: false,
@@ -35,53 +223,6 @@ var AssetFemale3DCG = [
 		Color: ["White", "Asian", "Black"],
 		Asset: ["Default"]
 	},
-	
-	{
-		Group: "Cloth",
-		Priority: 25,
-		ParentGroup: "BodyUpper",
-		AllowPose: ["BackBoxTie", "BackCuffs", "BackElbowTouch", "TapedHands"],
-		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
-		Asset: [ 
-			{ Name: "CollegeOutfit1", Hide: ["ClothLower", "ItemNeck"], Value: -1 },
-			{ Name: "MaidOutfit1", Hide: ["ClothLower"], Value: -1 },
-			{ Name: "StudentOutfit1", Hide: ["ClothLower", "ItemNeck"] },
-			{ Name: "StudentOutfit2", Hide: ["ClothLower"], HideItem: ["ItemArmsLeatherCuffs"] },
-			{ Name: "BabydollDress1", Hide: ["ClothLower"] },
-			{ Name: "TeacherOutfit1", Hide: ["ClothLower", "ItemNeck"], HideItem: ["ItemArmsLeatherCuffs"] },
-			{ Name: "ChineseDress1", Hide: ["ClothLower"] },
-			{ Name: "ChineseDress2", Value: 100 },
-			{ Name: "TShirt1", Require: ["ClothLower"] },
-			{ Name: "TennisShirt1", Require: ["ClothLower"] },
-			{ Name: "Sweater1", Require: ["ClothLower"], HideItem: ["ItemArmsLeatherCuffs"] },
-			{ Name: "MistressTop", Require: ["ClothLower"], Hide: ["Bra"], Value: -1 },
-			{ Name: "AdultBabyDress1", Hide: ["ClothLower"], Value: 200 },
-			{ Name: "AdultBabyDress2", Hide: ["ClothLower"], Value: 200 },
-			{ Name: "AdultBabyDress3", Hide: ["ClothLower"], Value: 200 },
-			{ Name: "NurseUniform", Hide: ["ClothLower"], Value: -1 },
-			{ Name: "BunnyCollarCuffs", Value: 10 },
-			{ Name: "Robe1", Value: 50 }
-		]
-	},
-	
-	{
-		Group: "ClothLower",
-		Priority: 19,
-		Default: false,
-		ParentGroup: "BodyLower",
-		ParentColor: "Cloth",
-		AllowPose: ["LegsClosed", "Kneel"],
-		Color: ["Default", "#bbbbbb", "#808080", "#202020", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
-		Left: 125,
-		Top: 400,
-		Asset: [
-			{ Name: "Skirt1" },
-			{ Name: "TennisSkirt1", ParentItem: "TennisShirt1" },
-			{ Name: "Jeans1" },
-			{ Name: "Shorts1" },
-			{ Name: "MistressBottom", Hide: ["Panties"], Value: -1 }
-		]
-	},
 	 
 	{
 		Group: "HairBack",
@@ -106,26 +247,6 @@ var AssetFemale3DCG = [
 	},
 
 	{
-		Group: "Hat",
-		Priority: 32,
-		Default: false,
-		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
-		AllowPose: ["Suspension"],
-		Left: 125,
-		Top: 0,
-		Asset: [
-			"Band1", "Beret1", "Ears1", "Ears2", "PonyEars1",
-			{ Name: "Ribbons1", Priority: 1 },
-			{ Name: "MaidHairband1", Value: -1 },
-			{ Name: "NurseCap", Value: -1 },
-			{ Name: "Santa1", Value: 30 },
-			{ Name: "BunnyEars1", Value: 20 },
-			{ Name: "BunnyEars2", Value: 20 },
-			{ Name: "CaptainHat1", Value: 20 }
-		]
-	},
-
-	{
 		Group: "Eyes",
 		Priority: 6,
 		AllowNone: false,
@@ -136,17 +257,6 @@ var AssetFemale3DCG = [
 		FullAlpha: false,
 		Blink: true,
 		Asset: ["Eyes1", "Eyes2", "Eyes3", "Eyes4", "Eyes5", "Eyes6", "Eyes7", "Eyes8", "Eyes9", "Eyes10", "Eyes11"]
-	},
-	
-	{
-		Group: "Glasses",
-		Priority: 28,
-		Default: false,
-		Underwear: true,
-		Color: ["#303030", "#808080", "#e0e0e0", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
-		Left: 200,
-		Top: 135,
-		Asset: ["Glasses1", "Glasses2", "Glasses3", "Glasses4", "Glasses5", "Glasses6", { Name: "SunGlasses1", Value: 20 }, { Name: "SunGlasses2", Value: 20 }]
 	},
 
 	{
@@ -170,45 +280,6 @@ var AssetFemale3DCG = [
 		Top: 285,
 		Asset: ["Nipples1", "Nipples2"]
 	},
-	
-	{
-		Group: "Bra",
-		Priority: 15,
-		ParentGroup: "BodyUpper",
-		Underwear: true,
-		Color: ["Default", "#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
-		Left: 150,
-		Top: 200,
-		Asset: [
-			{ Name: "Bra1", Hide: ["ItemNipples"] },
-			{ Name: "Bra2", Hide: ["ItemNipples"] },
-			{ Name: "Bra7", Hide: ["ItemNipples"] },
-			{ Name: "Bra8", Value: 15, Hide: ["ItemNipples"] },
-			{ Name: "Bra9", Value: 15, Hide: ["ItemNipples"] },
-			{ Name: "Bustier1", Value: 30, Hide: ["ItemNipples"] },
-			{ Name: "Corset1", Value: 30, Hide: ["ItemNipples"] },
-			{ Name: "Corset2", Value: 30, Hide: ["ItemNipples"] },
-			{ Name: "Corset3", Value: 30, Hide: ["ItemNipples"] },
-			{ Name: "Corset4", Value: 30 },
-			{ Name: "Swimsuit1", Value: 20, Hide: ["Panties", "ItemNipples"] },
-			{ Name: "Swimsuit2", Value: 25, Hide: ["Panties", "ItemNipples"] },
-			{ Name: "BunnySuit", Value: 30, Hide: ["Panties", "ItemNipples"] }
-		]
-	},
-	
-	{
-		Group: "Gloves",
-		Priority: 24,
-		ParentGroup: "BodyUpper",
-		ParentColor: "Bra",
-		Underwear: true,
-		Default: false,
-		AllowPose: ["BackBoxTie", "BackCuffs", "BackElbowTouch"],
-		Color: ["#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
-		Left: 75,
-		Top: 275,
-		Asset: ["Gloves1", "Gloves2", { Name: "MistressGloves", Value: -1 }]
-	},
 
 	{
 		Group: "Pussy",
@@ -219,68 +290,6 @@ var AssetFemale3DCG = [
 		Top: 500,
 		FullAlpha: false,
 		Asset: ["PussyLight1", "PussyLight2", "PussyLight3", "PussyDark1", "PussyDark2", "PussyDark3"]
-	},
-	
-	{
-		Group: "Panties",
-		Priority: 14,
-		ParentGroup: "BodyLower",
-		ParentColor: "Bra",
-		Underwear: true,
-		Color: ["Default", "#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
-		Left: 150,
-		Top: 425,
-		Asset: [
-			{ Name: "Panties1" },
-			{ Name: "Panties7" },
-			{ Name: "Panties8" },
-			{ Name: "Panties11" },
-			{ Name: "Panties12", Value: 10 },
-			{ Name: "Panties13", Value: 10 },
-			{ Name: "Panties14", Value: 10 },
-			{ Name: "Panties15", Value: 10 },
-			{ Name: "Diapers1", Value: 50 }
-		]
-	},
-
-	{
-		Group: "Socks",
-		Priority: 18,
-		ParentGroup: "BodyLower",
-		ParentColor: "Bra",
-		Underwear: true,
-		AllowPose: ["LegsClosed", "Kneel"],
-		Color: ["Default", "#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
-		Left: 125,
-		Top: 400,
-		Asset: [
-			"Socks1", "Socks2", "Socks3", "Socks4", "Socks5", "Stockings1", "Stockings2",
-			{ Name: "Stockings3", Value: 10 },
-			{ Name: "Stockings4", Value: 10 },
-			{ Name: "Pantyhose1", Value: 10, Priority: 12 }
-		]
-	},
-
-	{
-		Group: "Shoes",
-		Priority: 21,
-		ParentGroup: "BodyLower",
-		AllowPose: ["LegsClosed", "Kneel"],
-		Color: ["Default", "#bbbbbb", "#808080", "#202020", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
-		Left: 125,
-		Top: 500,
-		Asset: [
-			{ Name: "Shoes1", Height: 6 },
-			{ Name: "Shoes2", Height: 6 },
-			{ Name: "Shoes4", Height: 6 },
-			{ Name: "Sneakers1", Height: 3 },
-			{ Name: "Sneakers2", Height: 3 },
-			{ Name: "Heels1", Height: 15 },
-			{ Name: "Heels2", Height: 15 },
-			{ Name: "Boots1", Height: 9 },
-			{ Name: "MistressBoots", Height: 35, Value: -1, Hide: ["Socks"], Alpha: [[125, 800, 250, 200]] },
-			{ Name: "PonyBoots", Height: 35, Value: -1, Hide: ["Socks"], Alpha: [[125, 800, 250, 200]] }
-		]
 	},
 
 	// Facial Expression specific
