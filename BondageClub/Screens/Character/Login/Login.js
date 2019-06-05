@@ -199,7 +199,7 @@ function LoginClick() {
 		InventoryRemove(Player, "ItemFeet");
 		InventoryRemove(Player, "ItemLegs");
 		InventoryRemove(Player, "ItemArms");
-		CommonSetScreen("Character", "Appearance");
+		CharacterAppearanceLoadCharacter(Player);
 	}
 	
 	// If we must try to login (make sure we don't send the login query twice)
