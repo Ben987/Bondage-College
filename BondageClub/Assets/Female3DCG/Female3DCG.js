@@ -159,7 +159,11 @@ var AssetFemale3DCG = [
 			{ Name: "Santa1", Value: 30 },
 			{ Name: "BunnyEars1", Value: 20 },
 			{ Name: "BunnyEars2", Value: 20 },
-			{ Name: "CaptainHat1", Value: 20 }
+			{ Name: "CaptainHat1", Value: 20 },
+			{ Name: "SuccubusHorns", Value: 5 },
+			{ Name: "SuccubusHorns2", Value: 5 },
+			{ Name: "SuccubusHorns3", Value: 5 },
+			{ Name: "SuccubusHorns4", Value: 5 }
 		]
 	},
 	
@@ -388,7 +392,9 @@ var AssetFemale3DCG = [
 		Asset: [
 			{ Name: "BlackButtPlug", Value: 20, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
 			{ Name: "TailButtPlug", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
-			{ Name: "HorsetailPlug", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] }
+			{ Name: "HorsetailPlug", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
+			{ Name: "SuccubusButtPlug", Value: 5, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
+			{ Name: "SuccubusButtPlug2", Value: 5, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] }
 		]
 	},
 
