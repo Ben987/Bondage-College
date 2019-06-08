@@ -1,6 +1,7 @@
 ActionSwap,SourceCharacter swaps a PrevAsset for a NextAsset on DestinationCharacter FocusAssetGroup.
 ActionUse,SourceCharacter uses a NextAsset on DestinationCharacter FocusAssetGroup.
 ActionLock,SourceCharacter locks a NextAsset on DestinationCharacter FocusAssetGroup.
+ActionAddLock,SourceCharacter adds a NextAsset on DestinationCharacter FocusAssetGroup PrevAsset.
 ActionRemove,SourceCharacter removes the PrevAsset from DestinationCharacter FocusAssetGroup.
 ActionUnlock,SourceCharacter unlocks and removes the PrevAsset from DestinationCharacter FocusAssetGroup.
 ActionDice,SourceCharacter rolls a DiceType sided dice.  The result is: DiceResult.

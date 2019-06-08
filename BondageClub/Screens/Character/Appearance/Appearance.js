@@ -7,6 +7,7 @@ var CharacterAppearanceBackup = null;
 var CharacterAppearanceAssets = [];
 var CharacterAppearanceColorPicker = "";
 var CharacterAppearanceColorPickerBackup = "";
+var CharacterAppearanceSelection = null;
 var CharacterAppearanceReturnRoom = "MainHall";
 var CharacterAppearanceReturnModule = "Room";
 
@@ -320,34 +321,40 @@ function CharacterAppearanceGetCurrentValue(C, Group, Type) {
 
 // Loads the character appearance screen and keeps a backup of the previous appearance
 function AppearanceLoad() {
+	if (!CharacterAppearanceSelection) CharacterAppearanceSelection = Player;
+	var C = CharacterAppearanceSelection;
+	
 	CharacterAppearanceBuildAssets(Player);
-	CharacterAppearanceBackup = JSON.parse(JSON.stringify(Player.Appearance));
+	CharacterAppearanceBackup = JSON.parse(JSON.stringify(C.Appearance));
 }
 
 // Run the characther appearance selection screen 
 function AppearanceRun() {
+	var C = CharacterAppearanceSelection;
 	
 	// Draw the background and the character twice
 	if (CharacterAppearanceHeaderText == "") CharacterAppearanceHeaderText = TextGet("SelectAppearance");
-	DrawCharacter(Player, -550, (Player.IsKneeling()) ? -1100 : -100, 4);
-	DrawCharacter(Player, 800, 0, 1);
+	DrawCharacter(C, -550, (C.IsKneeling()) ? -1100 : -100, 4);
+	DrawCharacter(C, 800, 0, 1);
 	DrawText(CharacterAppearanceHeaderText, 450, 40, "White", "Black");
 
 	// Out of the color picker
 	if (CharacterAppearanceColorPicker == "") {
 	
 		// Draw the top buttons with images
-		DrawButton(1300, 25, 90, 90, "", "White", "Icons/Reset.png");
-		DrawButton(1417, 25, 90, 90, "", "White", "Icons/Random.png");
+		if (C.ID == 0) {
+			DrawButton(1300, 25, 90, 90, "", "White", "Icons/Reset.png");
+			DrawButton(1417, 25, 90, 90, "", "White", "Icons/Random.png");
+		}
 		DrawButton(1534, 25, 90, 90, "", "White", "Icons/Naked.png");
 		DrawButton(1651, 25, 90, 90, "", "White", "Icons/Next.png");
 		
 		// Creates buttons for all groups	
 		for (var A = CharacterAppearanceOffset; A < AssetGroup.length && A < CharacterAppearanceOffset + CharacterAppearanceNumPerPage; A++)
-			if ((AssetGroup[A].Family == Player.AssetFamily) && (AssetGroup[A].Category == "Appearance") && AssetGroup[A].AllowCustomize) {
+			if ((AssetGroup[A].Family == C.AssetFamily) && (AssetGroup[A].Category == "Appearance") && AssetGroup[A].AllowCustomize && (C.ID == 0 || AssetGroup[A].Clothing)) {
 				DrawButton(1300, 145 + (A - CharacterAppearanceOffset) * 95, 400, 65, "", "White", "");
-				DrawTextFit(AssetGroup[A].Description + ": " + CharacterAppearanceGetCurrentValue(Player, AssetGroup[A].Name, "Description"), 1500, 178 + (A - CharacterAppearanceOffset) * 95, 396, "Black");
-				var Color = CharacterAppearanceGetCurrentValue(Player, AssetGroup[A].Name, "Color", "");
+				DrawTextFit(AssetGroup[A].Description + ": " + CharacterAppearanceGetCurrentValue(C, AssetGroup[A].Name, "Description"), 1500, 178 + (A - CharacterAppearanceOffset) * 95, 396, "Black");
+				var Color = CharacterAppearanceGetCurrentValue(C, AssetGroup[A].Name, "Color", "");
 				DrawButton(1725, 145 + (A - CharacterAppearanceOffset) * 95, 160, 65, Color, ((Color.indexOf("#") == 0) ? Color : "White"));
 				DrawButton(1910, 145 + (A - CharacterAppearanceOffset) * 95, 65, 65, "", "White", AssetGroup[A].AllowColorize ? "Icons/Color.png" : "Icons/ColorBlocked.png");
 			}
@@ -475,6 +482,7 @@ function CharacterAppearanceSetColorForGroup(C, Color, Group) {
 
 // When the user clicks on the character appearance selection screen
 function AppearanceClick() {
+	var C = CharacterAppearanceSelection;
 
 	// In regular mode
 	if (CharacterAppearanceColorPicker == "") {
@@ -482,56 +490,56 @@ function AppearanceClick() {
 		// If we must switch to the next item in the assets
 		if ((MouseX >= 1300) && (MouseX < 1700) && (MouseY >= 145) && (MouseY < 975))
 			for (var A = CharacterAppearanceOffset; A < AssetGroup.length && A < CharacterAppearanceOffset + CharacterAppearanceNumPerPage; A++)
-				if ((AssetGroup[A].Family == Player.AssetFamily) && (AssetGroup[A].Category == "Appearance"))
+				if ((AssetGroup[A].Family == C.AssetFamily) && (AssetGroup[A].Category == "Appearance") && (C.ID == 0 || AssetGroup[A].Clothing))
 					if ((MouseY >= 145 + (A - CharacterAppearanceOffset) * 95) && (MouseY <= 210 + (A - CharacterAppearanceOffset) * 95))
-						CharacterAppearanceNextItem(Player, AssetGroup[A].Name);
+						CharacterAppearanceNextItem(C, AssetGroup[A].Name);
 
 		// If we must switch to the next item in the assets
 		if ((MouseX >= 1725) && (MouseX < 1885) && (MouseY >= 145) && (MouseY < 975))
 			for (var A = CharacterAppearanceOffset; A < AssetGroup.length && A < CharacterAppearanceOffset + CharacterAppearanceNumPerPage; A++)
-				if ((AssetGroup[A].Family == Player.AssetFamily) && (AssetGroup[A].Category == "Appearance"))
+				if ((AssetGroup[A].Family == C.AssetFamily) && (AssetGroup[A].Category == "Appearance") && (C.ID == 0 || AssetGroup[A].Clothing))
 					if ((MouseY >= 145 + (A - CharacterAppearanceOffset) * 95) && (MouseY <= 210 + (A - CharacterAppearanceOffset) * 95))
-						CharacterAppearanceNextColor(Player, AssetGroup[A].Name);
+						CharacterAppearanceNextColor(C, AssetGroup[A].Name);
 
 		// If we must switch to the next item in the assets
 		if ((MouseX >= 1910) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 975))
 			for (var A = CharacterAppearanceOffset; A < AssetGroup.length && A < CharacterAppearanceOffset + CharacterAppearanceNumPerPage; A++)
-				if ((AssetGroup[A].Family == Player.AssetFamily) && (AssetGroup[A].Category == "Appearance") && AssetGroup[A].AllowColorize)
+				if ((AssetGroup[A].Family == C.AssetFamily) && (AssetGroup[A].Category == "Appearance") && (C.ID == 0 || AssetGroup[A].Clothing) && AssetGroup[A].AllowColorize)
 					if ((MouseY >= 145 + (A - CharacterAppearanceOffset) * 95) && (MouseY <= 210 + (A - CharacterAppearanceOffset) * 95))						
 					{
 						
 						// Keeps the previous color in backup and creates a text box to enter the color
 						CharacterAppearanceColorPicker = AssetGroup[A].Name;
-						CharacterAppearanceColorPickerBackup = CharacterAppearanceGetCurrentValue(Player, CharacterAppearanceColorPicker, "Color");
+						CharacterAppearanceColorPickerBackup = CharacterAppearanceGetCurrentValue(C, CharacterAppearanceColorPicker, "Color");
 						ElementCreateInput("InputColor", "text", ((CharacterAppearanceColorPickerBackup == "Default") || (CharacterAppearanceColorPickerBackup == "None")) ? "#" : CharacterAppearanceColorPickerBackup, "7");
 						
 					}
 
 		// If we must set back the default outfit or set a random outfit
-		if ((MouseX >= 1300) && (MouseX < 1390) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceSetDefault(Player);
-		if ((MouseX >= 1417) && (MouseX < 1507) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceFullRandom(Player);
-		if ((MouseX >= 1534) && (MouseX < 1624) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceNaked(Player);
+		if ((MouseX >= 1300) && (MouseX < 1390) && (MouseY >= 25) && (MouseY < 115) && (C.ID == 0)) CharacterAppearanceSetDefault(C);
+		if ((MouseX >= 1417) && (MouseX < 1507) && (MouseY >= 25) && (MouseY < 115) && (C.ID == 0)) CharacterAppearanceFullRandom(C);
+		if ((MouseX >= 1534) && (MouseX < 1624) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceNaked(C);
 		if ((MouseX >= 1651) && (MouseX < 1741) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceMoveOffset(CharacterAppearanceNumPerPage);
-		if ((MouseX >= 1768) && (MouseX < 1858) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceExit(Player);
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceReady(Player);
+		if ((MouseX >= 1768) && (MouseX < 1858) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceExit(C);
+		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceReady(C);
 
 	} else {
 		
 		// Can set a color manually from the text field
 		if ((MouseX >= 1610) && (MouseX < 1675) && (MouseY >= 37) && (MouseY < 102))
 			if (CommonIsColor(ElementValue("InputColor")))
-				CharacterAppearanceSetColorForGroup(Player, ElementValue("InputColor").toLowerCase(), CharacterAppearanceColorPicker);
+				CharacterAppearanceSetColorForGroup(C, ElementValue("InputColor").toLowerCase(), CharacterAppearanceColorPicker);
 
 		// In color picker mode, we can pick a color from the color image
 		if ((MouseX >= 1300) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 975)) {
 			var Color = DrawRGBToHex(MainCanvas.getImageData(MouseX, MouseY, 1, 1).data);
-			CharacterAppearanceSetColorForGroup(Player, Color, CharacterAppearanceColorPicker);
+			CharacterAppearanceSetColorForGroup(C, Color, CharacterAppearanceColorPicker);
 			ElementValue("InputColor", Color);
 		}
 		
 		// Accepts the new color
 		if ((MouseX >= 1768) && (MouseX < 1858) && (MouseY >= 25) && (MouseY < 115)) {
-			CharacterAppearanceSetColorForGroup(Player, CharacterAppearanceColorPickerBackup, CharacterAppearanceColorPicker);
+			CharacterAppearanceSetColorForGroup(C, CharacterAppearanceColorPickerBackup, CharacterAppearanceColorPicker);
 			CharacterAppearanceColorPicker = "";
 		}
 
@@ -576,9 +584,9 @@ function CharacterAppearanceReady(C) {
 			}
 
 	// If there's no error, we continue to the login or main hall if already logged
-	if ((C.ID == 0) && (C.AccountName != "")) {
+	if (C.AccountName != "") {
 		ServerPlayerAppearanceSync();
-		if (CharacterAppearanceReturnRoom == "ChatRoom") ChatRoomCharacterUpdate(Player);
+		if (CharacterAppearanceReturnRoom == "ChatRoom") ChatRoomCharacterUpdate(C);
 		CommonSetScreen(CharacterAppearanceReturnModule, CharacterAppearanceReturnRoom);
 		CharacterAppearanceReturnRoom = "MainHall";
 		CharacterAppearanceReturnModule = "Room";
@@ -607,3 +615,14 @@ function CharacterAppearanceCopy(FromC, ToC) {
 	if (ToC.ID == 0) ServerPlayerAppearanceSync();
 
 }
+
+// Loads the appearance editing screen for a character
+function CharacterAppearanceLoadCharacter(C) {
+	CharacterAppearanceSelection = C;
+	CharacterAppearanceReturnRoom = CurrentScreen;
+	CharacterAppearanceReturnModule = CurrentModule;
+	CommonSetScreen("Character", "Appearance");
+}
+
+
+

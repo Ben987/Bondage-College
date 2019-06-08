@@ -16,12 +16,14 @@
 
 <script src="Scripts/Common.js"></script>
 <script src="Scripts/Drawing.js"></script>
+<script src="Scripts/Timer.js"></script>
 <script src="Scripts/GameLog.js"></script>
 <script src="Scripts/Reputation.js"></script>
 <script src="Scripts/Skill.js"></script>
 <script src="Scripts/Character.js"></script>
 <script src="Scripts/CharacterName.js"></script>
 <script src="Scripts/Dialog.js"></script>
+<script src="Scripts/Speech.js"></script>
 <script src="Scripts/Text.js"></script>
 <script src="Scripts/Inventory.js"></script>
 <script src="Scripts/Import.js"></script>
@@ -80,19 +82,16 @@
 <script src="Screens/Inventory/ItemArms/DuctTape/DuctTape.js"></script>
 <script src="Screens/Inventory/ItemMouth/ClothGag/ClothGag.js"></script>
 <script src="Screens/Inventory/ItemMouth/DuctTape/DuctTape.js"></script>
+<script src="Screens/Inventory/ItemMisc/MetalPadlock/MetalPadlock.js"></script>
+<script src="Screens/Inventory/ItemMisc/IntricatePadlock/IntricatePadlock.js"></script>
+<script src="Screens/Inventory/ItemMisc/TimerPadlock/TimerPadlock.js"></script>
 <script>
 
 /*
 
 	TO DO
-	Padlocks for most items:
-		- I was thinking of using the new item property object to assign a lock to another item.
-		- Items that can have a lock (gags, leather belts, leather harness, mittens, etc.) could have a flag for it, something like “AllowLock”.
-		- I would use the picture variation and design a new graphic for most padlocked items.
-		- I was thinking of making a different item category for locks and keys with multiple kinds of padlocks.
-		- I’d like for the player to be able to struggle from a locked item, having it locked would raise the difficulty or start the struggle engine for new body regions like the mouth or legs.
-		- It could start with a regular padlock and a stronger one, the stronger one would cost more (same for it’s key) and would take more time to unlock.
-		- Later we could add other kinds of locks: owner-specific, club mistress, timer-based, number combo or even with mini-games.
+	Include slave dress up from Lucritius
+	New images for all locked items
 	Private messages in chatrooms
 	Patreon import
 
@@ -114,8 +113,9 @@ window.onload = function() {
 // Main game running state, runs the drawing
 function MainRun() {
 	DrawProcess();
-	CurrentTime = CurrentTime + CommonRunInterval;
-	setTimeout(MainRun, CommonRunInterval);
+	TimerProcess();
+	CurrentTime = CurrentTime + TimerRunInterval;
+	setTimeout(MainRun, TimerRunInterval);
 }
 
 // When the user presses a key, we send the KeyDown event to the current screen if it can accept it

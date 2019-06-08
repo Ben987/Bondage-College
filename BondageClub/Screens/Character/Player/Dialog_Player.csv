@@ -2,10 +2,17 @@ SelectItem,,,Select an item to use
 CannotUseOnSelf,,,Cannot use on yourself
 RemoveClothesForItem,,,Remove some clothes first
 Cancel,,,Cancel
-Remove,,,Remove
-Struggle,,,Struggle
-Unlock,,,Unlock
-Color,,,Color
+Exit,,,Back to character
+Remove,,,Remove the item
+Struggle,,,Try to struggle out
+Lock,,,Use a lock
+Unlock,,,Unlock the item
+CheckLock,,,Check the lock
+Remote,,,Use your remote
+ColorPick,,,Color of next item
+ColorSelect,,,Use this color
+ColorCancel,,,Default color
+Challenge,,,Challenge:
 Swapping,,,Swapping...
 Struggling,,,Struggling...
 Unlocking,,,Unlocking...
@@ -31,9 +38,14 @@ PumpIt,,,Pump it
 pumps,,,pumps
 deflates,,,deflates
 gag,,,gag
+TimerLeft,,,Time left:
+TimerRestart,,,SourceCharacter restarts the five minute timer padlock on DestinationCharacter BodyPart.
 SelectBondagePosition,,,Select the bondage position
 SelectTapeWrapping,,,Select the tape wrapping
 CannotUnlockIfElbowBound,,,A victim cannot unlock herself if her elbows are bound
+ItemMiscMetalPadlock,,,"""From your friendly hardware store"""
+ItemMiscIntricatePadlock,,,"""To keep your loved one secure"""
+ItemMiscTimerPadlock,,,You can restart the timer but cannot unlock
 LeatherCuffsPoseNone,,,Detached
 LeatherCuffsPoseWrist,,,Bind wrists
 LeatherCuffsPoseElbow,,,Bind elbows

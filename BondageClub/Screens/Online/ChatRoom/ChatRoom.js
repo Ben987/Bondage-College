@@ -13,6 +13,7 @@ function ChatRoomCanRemoveWhiteList() { return ((CurrentCharacter != null) && (C
 function ChatRoomCanRemoveBlackList() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.BlackList.indexOf(CurrentCharacter.MemberNumber) >= 0)) }
 function ChatRoomCanAddFriend() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.FriendList.indexOf(CurrentCharacter.MemberNumber) < 0)) }
 function ChatRoomCanRemoveFriend() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.FriendList.indexOf(CurrentCharacter.MemberNumber) >= 0)) }
+function ChatRoomCanChangeClothes() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && CurrentCharacter.AllowItem && !((InventoryGet(CurrentCharacter, "ItemNeck") != null) && (InventoryGet(CurrentCharacter, "ItemNeck").Asset.Name == "ClubSlaveCollar"))) }
 
 // Creates the chat room input elements
 function ChatRoomCreateElement() {
@@ -128,7 +129,7 @@ function ChatRoomClick() {
 		ElementRemove("TextAreaChatLog");
 		CharacterAppearanceReturnRoom = "ChatRoom"; 
 		CharacterAppearanceReturnModule = "Online";
-		CommonSetScreen("Character", "Appearance");
+		CharacterAppearanceLoadCharacter(Player);
 	}
 
 	// When the user leaves
@@ -203,7 +204,7 @@ function ChatRoomSendChat() {
 		} else {
 			
 			// Regular chat can be garbled with a gag
-			msg = DialogGarble(Player, msg);
+			msg = SpeechGarble(Player, msg);
 			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Chat" } );
 			
 		}
@@ -221,7 +222,8 @@ function ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem
 
 		// Prepares the message
 		var msg = "";
-		if ((DialogProgressPrevItem != null) && (DialogProgressNextItem != null)) msg = TextGet("ActionSwap");
+		if ((DialogProgressPrevItem != null) && (DialogProgressNextItem != null) && !DialogProgressNextItem.Asset.IsLock) msg = TextGet("ActionSwap");
+		else if ((DialogProgressPrevItem != null) && (DialogProgressNextItem != null) && DialogProgressNextItem.Asset.IsLock) msg = TextGet("ActionAddLock");
 		else if (InventoryItemHasEffect(DialogProgressNextItem, "Lock")) msg = TextGet("ActionLock");
 		else if (DialogProgressNextItem != null) msg = TextGet("ActionUse");
 		else if (InventoryItemHasEffect(DialogProgressPrevItem, "Lock")) msg = TextGet("ActionUnlock");
@@ -377,4 +379,11 @@ function ChatRoomAllowItem(data) {
 			CurrentCharacter.AllowItem = data.AllowItem;
 			CharacterSetCurrent(CurrentCharacter);
 		}
+}
+
+// When the player wants to change another player's outfit
+function ChatRoomChangeClothes() {
+	var C = CurrentCharacter;
+	DialogLeave();
+	CharacterAppearanceLoadCharacter(C);
 }

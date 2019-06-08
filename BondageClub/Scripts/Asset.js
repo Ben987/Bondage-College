@@ -20,6 +20,7 @@ function AssetGroupAdd(NewAssetFamily, NewAsset) {
 		ColorSchema: (NewAsset.Color == null) ? ["Default"] : NewAsset.Color,
 		ParentSize: (NewAsset.ParentSize == null) ? "" : NewAsset.ParentSize,
 		ParentColor: (NewAsset.ParentColor == null) ? "" : NewAsset.ParentColor,
+		Clothing: (NewAsset.Clothing == null) ? false : NewAsset.Clothing,
 		Underwear: (NewAsset.Underwear == null) ? false : NewAsset.Underwear,
 		Zone: NewAsset.Zone,
 		SetPose: NewAsset.SetPose,
@@ -62,11 +63,15 @@ function AssetAdd(NewAsset) {
 		RemoveAtLogin: (NewAsset.RemoveAtLogin == null) ? false : NewAsset.RemoveAtLogin,
 		WearTime: (NewAsset.Time == null) ? 0 : NewAsset.Time,
 		RemoveTime: (NewAsset.RemoveTime == null) ? ((NewAsset.Time == null) ? 0 : NewAsset.Time) : NewAsset.RemoveTime,
+		RemoveTimer: (NewAsset.RemoveTimer == null) ? 0 : NewAsset.RemoveTimer,
 		DrawingPriority: NewAsset.Priority,
 		HeightModifier: (NewAsset.Height == null) ? 0 : NewAsset.Height,
 		Alpha: NewAsset.Alpha,
 		Prerequisite: NewAsset.Prerequisite,
-		Extended: (NewAsset.Extended == null) ? false : NewAsset.Extended
+		Extended: (NewAsset.Extended == null) ? false : NewAsset.Extended,
+		AllowLock: (NewAsset.AllowLock == null) ? false : NewAsset.AllowLock,
+		IsLock: (NewAsset.IsLock == null) ? false : NewAsset.IsLock,
+		ExpressionTrigger : NewAsset.ExpressionTrigger
 	}
 	Asset.push(A);
 }

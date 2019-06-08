@@ -161,8 +161,8 @@ function KidnapAIMoveUpperHand() {
 // Show the move text on the left side, show the effect on the right side
 function KidnapShowMove() {
 	DrawTextWrap(TextGet(KidnapDialog + "Action"), 10, 150, 580, 200, "white");
-	DrawTextWrap(Player.Name + ": " + DialogGarble(Player, TextGet(KidnapDialog + "Player")), 10, 350, 580, 200, "white");
-	DrawTextWrap(KidnapOpponent.Name + ": " + DialogGarble(KidnapOpponent, TextGet(KidnapDialog + "Opponent")), 10, 550, 580, 200, "white");
+	DrawTextWrap(Player.Name + ": " + SpeechGarble(Player, TextGet(KidnapDialog + "Player")), 10, 350, 580, 200, "white");
+	DrawTextWrap(KidnapOpponent.Name + ": " + SpeechGarble(KidnapOpponent, TextGet(KidnapDialog + "Opponent")), 10, 550, 580, 200, "white");
 	DrawTextWrap(KidnapResultPlayer, 1410, 150, 580, 200, "white");
 	DrawTextWrap(KidnapResultOpponent, 1410, 350, 580, 200, "white");
 	DrawTextWrap(KidnapResultUpperHand, 1410, 550, 580, 200, "white");

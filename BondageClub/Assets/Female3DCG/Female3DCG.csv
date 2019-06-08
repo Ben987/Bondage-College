@@ -208,16 +208,9 @@ ItemArms,,Arms
 ItemArms,NylonRope,Nylon Rope
 ItemArms,HempRope,Hemp Rope
 ItemArms,MetalCuffs,Metal Cuffs
-ItemArms,MetalCuffsKey,Metal Cuffs Key
 ItemArms,LeatherArmbinder,Leather Armbinder
 ItemArms,LeatherCuffs,Leather Cuffs
-ItemArms,LeatherCuffsKey,Leather Cuffs Key
 ItemArms,PaddedMittens,Thumbless Padded Mittens
-ItemArms,PaddedMittensLocked,Thumbless Mittens Locked
-ItemArms,PaddedMittensHarness,Thumbless Mittens Chanined
-ItemArms,PaddedMittensHarnessLocked,Thumbless Mittens Chanined Locked
-ItemArms,PadLock,Padlock
-ItemArms,PadLockKey,Padlock Key
 ItemArms,FourLimbsShackles,Four Limbs Shackles
 ItemArms,StraitLeotard,Latex Strait Leotard
 ItemArms,Paw Mittens,Kitty Paw Mittens
@@ -251,6 +244,12 @@ ItemHead,StuddedBlindfold,Studded Blindfold
 ItemHead,KittyBlindfold,Kitty Blindfold
 ItemHead,DuctTape,Duct Tape
 ItemMisc,,Misc Items
+ItemMisc,MetalPadlock,Metal Padlock
+ItemMisc,IntricatePadlock,Intricate Padlock
+ItemMisc,TimerPadlock,Five Minutes Padlock
+ItemMisc,MetalPadlockKey,Metal Padlock Key
+ItemMisc,IntricatePadlockKey,Intricate Padlock Key
+ItemMisc,MetalCuffsKey,Metal Cuffs Key
 ItemMisc,WoodenMaidTray,Wooden Maid Tray
 ItemMisc,WoodenMaidTrayFull,Wooden Maid Tray Full
 ItemMisc,WoodenPaddle,Wooden Paddle

@@ -109,7 +109,27 @@ function ServerAppearanceLoadFromBundle(AssetFamily, Bundle) {
 				break;
 			}
 
-	}	
+	}
+
+	// Adds any critical appearance asset that could be missing, adds the default one
+	for (var G = 0; G < AssetGroup.length; G++)
+		if ((AssetGroup[G].Category == "Appearance") && !AssetGroup[G].AllowNone) {
+
+			// Check if we already have the item
+			var Found = false;
+			for (var A = 0; A < Appearance.length; A++)
+				if (Appearance[A].Asset.Group.Name == AssetGroup[G].Name)
+					Found = true;
+
+			// Adds the missing appearance part
+			if (!Found)
+				for (var I = 0; I < Asset.length; I++)
+					if (Asset[I].Group.Name == AssetGroup[G].Name) {
+						Appearance.push({ Asset: Asset[I], Color: "Default"});
+						break;
+					}
+
+		}
 	return Appearance;
 
 }

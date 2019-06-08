@@ -318,14 +318,12 @@ function CharacterAddEffect(C, NewEffect) {
 function CharacterLoadEffect(C) {
 	C.Effect = [];
 	for (var A = 0; A < C.Appearance.length; A++) {
-		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.Effect != null))
-			CharacterAddEffect(C, C.Appearance[A].Property.Effect);
+		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.Effect != null)) CharacterAddEffect(C, C.Appearance[A].Property.Effect);
+		if (C.Appearance[A].Asset.Effect != null)
+			CharacterAddEffect(C, C.Appearance[A].Asset.Effect);
 		else
-			if (C.Appearance[A].Asset.Effect != null)
-				CharacterAddEffect(C, C.Appearance[A].Asset.Effect);
-			else
-				if (C.Appearance[A].Asset.Group.Effect != null)
-					CharacterAddEffect(C, C.Appearance[A].Asset.Group.Effect);
+			if (C.Appearance[A].Asset.Group.Effect != null)
+				CharacterAddEffect(C, C.Appearance[A].Asset.Group.Effect);
 	}	
 }
 
@@ -530,7 +528,7 @@ function CharacterSetFacialExpression(C, AssetGroup, Expression) {
 			if ((Expression == null) || (C.Appearance[A].Asset.Group.AllowExpression.indexOf(Expression) >= 0)) {
 				if (!C.Appearance[A].Property) C.Appearance[A].Property = {};
 				C.Appearance[A].Property.Expression = Expression;
-				CharacterLoadCanvas(C);
+				CharacterRefresh(C);
 				ChatRoomCharacterUpdate(C);
 			}
 		}
