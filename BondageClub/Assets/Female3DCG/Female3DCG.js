@@ -28,7 +28,8 @@ var AssetFemale3DCG = [
 			{ Name: "NurseUniform", Hide: ["ClothLower"], Value: -1 },
 			{ Name: "BunnyCollarCuffs", Value: 10 },
 			{ Name: "Robe1", Value: 50 },
-			{ Name: "SuccubusFeather", Hide: ["ClothLower"], Value: 5}
+			{ Name: "SuccubusFeather", Hide: ["ClothLower"], Priority: -1, Value: 5},
+			{ Name: "SuccubusWings", Hide: ["ClothLower"], Priority: -1, Value: 5}
 		]
 	},
 	
