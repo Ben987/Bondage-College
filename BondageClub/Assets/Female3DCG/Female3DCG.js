@@ -165,7 +165,12 @@ var AssetFemale3DCG = [
 			{ Name: "SuccubusHorns", Value: 5 },
 			{ Name: "SuccubusHorns2", Value: 5 },
 			{ Name: "SuccubusHorns3", Value: 5 },
-			{ Name: "SuccubusHorns4", Value: 5 }
+			{ Name: "SuccubusHorns4", Value: 5 },
+			{ Name: "BunnySuccubus1", Value: 5},
+			{ Name: "BunnySuccubus2", Value: 5},
+			{ Name: "KittySuccubus1", Value: 5},
+			{ Name: "KittySuccubus2", Value: 5},
+			{ Name: "PonySuccubus", Value: 5}
 		]
 	},
 	
