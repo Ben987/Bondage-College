@@ -136,8 +136,8 @@ function ElementIsScrolledToEnd(ID) {
 	else return false;
 }
 
-// Sets focus to the specified element
+// Sets focus to the specified element for regular users, not mobile
 function ElementFocus(ID) {
-	if (document.getElementById(ID) != null)
+	if ((document.getElementById(ID) != null) && !CommonIsMobile)
 		document.getElementById(ID).focus();
 }
