@@ -42,6 +42,12 @@ function StableLoad() {
 	StablePlayerIsTrainer = (LogQuery("JoinedStable", "Trainer") && (ReputationGet("Dominant") > 30)) && !StablePlayerDressOff;
 	StablePlayerIsExamTrainer = LogQuery("JoinedStable", "TrainerExam");
 	StablePlayerIsNewby = (!LogQuery("JoinedStable", "Pony") && !LogQuery("JoinedStable", "Trainer"));
+
+	// Give items to the player in case they completed the exam before they were added
+	if(StablePlayerIsExamTrainer || StablePlayerIsExamPony) {
+		InventoryAdd(Player, "HarnessPonyBits", "ItemMouth");
+		InventoryAdd(Player, "PonyBoots", "Shoes");
+	}
 	
 	// Default load
 	if (StableTrainer == null) {
@@ -97,7 +103,7 @@ function StableClick() {
 		if ((MouseX >= 750) && (MouseX < 1250) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
 	} else if (StableProgress >= 0) {
 		// If the user wants to speed up the add / swap / remove progress
-		if ((MouseX >= 0) && (MouseX < 2000) && (MouseY >= 200) && (MouseY < 1000) && (DialogProgress >= 0) && CommonIsMobile) StableGenericRun(false);
+		if ((MouseX >= 0) && (MouseX < 2000) && (MouseY >= 200) && (MouseY < 1000) && (StableProgress >= 0) && CommonIsMobile) StableGenericRun(false);
 		if ((MouseX >= 1750) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 100)) StableGenericCancel();
 	} else {
 		if ((MouseX >= 250) && (MouseX < 750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
@@ -601,7 +607,7 @@ function StableWearPonyEquipment(C) {
 	InventoryWear(C, "HarnessPonyBits", "ItemMouth");
 	InventoryWear(C, "LeatherArmbinder", "ItemArms");
 	InventoryWear(C, "HorsetailPlug", "ItemButt");
-	InventoryRemove(C, "ItemFeet");
+	InventoryWear(C, "PonyBoots", "Shoes");
 	InventoryRemove(C, "ItemLegs");
 	CharacterRefresh(C);
 }
@@ -660,6 +666,7 @@ function StablePlayerExamDressage() {
 function StablePlayerExamPass() {
 	LogAdd("JoinedStable", "PonyExam");
 	InventoryAdd(Player, "HarnessPonyBits", "ItemMouth");
+	InventoryAdd(Player, "PonyBoots", "Shoes");
 	StablePlayerExamEnd();
 	StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableExamAwardIntro");
 	StableTrainer.Stage = "StableExamAward1";
@@ -867,6 +874,7 @@ function StablePlayerTExamHurdlesEnd() {
 function StablePlayerTExamPass() {
 	LogAdd("JoinedStable", "TrainerExam");
 	InventoryAdd(Player, "HarnessPonyBits", "ItemMouth");
+	InventoryAdd(Player, "PonyBoots", "Shoes");
 	CharacterChangeMoney(Player, -50);
 	StablePlayerTExamEnd();
 }
@@ -905,12 +913,12 @@ function StableGenericProgressStart(Timer, S, S2, Item, Background, Character, S
 	DialogLeave()
 	if (Timer < 1) Timer = 1;
 	//Charakter
-	StableProgressAuto = CommonRunInterval * (0.1333 + (S * 0.1333)) / (Timer * CheatFactor("DoubleItemSpeed", 0.5));
-	StableProgressClick = CommonRunInterval * 2.5 / (Timer * CheatFactor("DoubleItemSpeed", 0.5));
+	StableProgressAuto = TimerRunInterval * (0.1333 + (S * 0.1333)) / (Timer * CheatFactor("DoubleItemSpeed", 0.5));
+	StableProgressClick = TimerRunInterval * 2.5 / (Timer * CheatFactor("DoubleItemSpeed", 0.5));
 	StableProgress = 0;
 	if (S < 0) { StableProgressAuto = StableProgressAuto / 2; StableProgressClick = StableProgressClick / 2; }
 	//Second Caracter
-	StableSecondProgressAuto = CommonRunInterval * (0.1333 + (S2 * 0.1333)) / (Timer * CheatFactor("DoubleItemSpeed", 0.5));
+	StableSecondProgressAuto = TimerRunInterval * (0.1333 + (S2 * 0.1333)) / (Timer * CheatFactor("DoubleItemSpeed", 0.5));
 	if (S2 < 0) { StableSecondProgressAuto = StableSecondProgressAuto / 2; }
 	StableSecondProgress = 0;
 	

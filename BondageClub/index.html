@@ -1,41 +1,29 @@
 <!DOCTYPE html>
 <html style="width:100%; height:100%; padding:0px; margin:0px;">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-<meta http-equiv="cache-control" content="max-age=0" />
-<meta http-equiv="cache-control" content="no-cache" />
-<meta http-equiv="expires" content="0" />
-<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
-<meta http-equiv="pragma" content="no-cache" />
-<meta charset="UTF-8">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<title>Bondage Club</title>
-<link rel="icon" type="image/png" href="Icons/Logo.png">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<meta http-equiv="cache-control" content="max-age=0" />
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta charset="UTF-8">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<title>Bondage Club</title>
+	<link rel="icon" type="image/png" href="Icons/Logo.png">
+	<link rel="stylesheet" href="CSS/Styles.css">
 </head>
-
-<style>
-    canvas {
-		padding: 0;
-        margin: auto;
-		outline: none;
-        display: block;
-		top:0;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		position: absolute;
-    }
-    * { -webkit-tap-highlight-color:rgba(0,0,0,0); }
-</style>
 
 <script src="Scripts/Common.js"></script>
 <script src="Scripts/Drawing.js"></script>
+<script src="Scripts/Timer.js"></script>
 <script src="Scripts/GameLog.js"></script>
 <script src="Scripts/Reputation.js"></script>
 <script src="Scripts/Skill.js"></script>
 <script src="Scripts/Character.js"></script>
 <script src="Scripts/CharacterName.js"></script>
 <script src="Scripts/Dialog.js"></script>
+<script src="Scripts/Speech.js"></script>
 <script src="Scripts/Text.js"></script>
 <script src="Scripts/Inventory.js"></script>
 <script src="Scripts/Import.js"></script>
@@ -91,34 +79,29 @@
 <script src="Screens/Inventory/ItemArms/PaddedMittensLocked/PaddedMittensLocked.js"></script>
 <script src="Screens/Inventory/ItemArms/PaddedMittensHarness/PaddedMittensHarness.js"></script>
 <script src="Screens/Inventory/ItemArms/PaddedMittensHarnessLocked/PaddedMittensHarnessLocked.js"></script>
+<script src="Screens/Inventory/ItemArms/DuctTape/DuctTape.js"></script>
 <script src="Screens/Inventory/ItemMouth/ClothGag/ClothGag.js"></script>
+<script src="Screens/Inventory/ItemMouth/DuctTape/DuctTape.js"></script>
+<script src="Screens/Inventory/ItemMisc/MetalPadlock/MetalPadlock.js"></script>
+<script src="Screens/Inventory/ItemMisc/IntricatePadlock/IntricatePadlock.js"></script>
+<script src="Screens/Inventory/ItemMisc/TimerPadlock/TimerPadlock.js"></script>
 <script>
 
 /*
 
 	TO DO
-	Permission system for online interactions (whitelist/blacklist) - 
-		Permission level for messing with restrains: 
-		0 - Everyone, no exception (club slaves are forced like that)
-		1 - Everyone, except blacklist
-		2 - Owner, whitelist & any dominant not on blacklist (default)
-		3 - Owner and whitelist only
-		4 - Owner only
-		5 - Nobody
-	More "Mobile Friendly" for online chat rooms and wardrobe
-	Redesign www.bondageprojects.com for club and Discord : https://discord.gg/dkWsEjf
+	Different difficulty to escape depending on the bondage type for tape & leather cuffs
+	BUG: Leather cuffs - Unlocks while changing pose
+	New images for locked mouth items
+	Private messages in chatrooms
 	Patreon import
-	
-	MAYBE
-	Prevent connections outside of www.bondageprojects.com to enter public rooms
-	
-	
+
 */
 
 // When the code is loaded, we start the game engine
 window.onload = function() {
 	//CheatImport();
-	//ServerURL = "https://bondage-club-server.herokuapp.com/";
+	ServerURL = "https://bondage-club-server.herokuapp.com/";
 	CommonIsMobile = CommonDetectMobile();
 	TranslationLoad();
 	DrawLoad();
@@ -131,8 +114,9 @@ window.onload = function() {
 // Main game running state, runs the drawing
 function MainRun() {
 	DrawProcess();
-	CurrentTime = CurrentTime + CommonRunInterval;
-	setTimeout(MainRun, CommonRunInterval);
+	TimerProcess();
+	CurrentTime = CurrentTime + TimerRunInterval;
+	setTimeout(MainRun, TimerRunInterval);
 }
 
 // When the user presses a key, we send the KeyDown event to the current screen if it can accept it

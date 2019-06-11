@@ -1,6 +1,8 @@
 ###_NPC
 Gags are so kinky, can have one?  (She giggles.)
 Knebel sind so sexy, kann ich einen haben? (Sie kichert.)
+(She trembles and screams without control, getting a huge orgasm.)
+(She trembles and screams without control, getting a huge orgasm.)
 Have you found a way to get me out?  These shackles are pretty tough.
 Hast du herausgefunden, wie du mich befreien kannst? Diese Ketten sind ziemlich fies.
 (She licks her lips seeing the gag and allows you to silence her easily.)
@@ -27,6 +29,22 @@ Hast du herausgefunden, wie du mich befreien kannst? Diese Ketten sind ziemlich 
 (Du lässt den Gürtel an ihrer Taille zuschnappen und sie schmollt.) Das ist unfair!
 (You unlock the belt from her waist and crotch.)  I can't wait to see what you'll use on me next...
 (Du nimmst den Gürtel von ihrer Taille und ihrem Schritt ab.) Ich bin schon gespannt, was du als Nächstes an mir benutzt...
+(You prepare a full body harness on her torso as she twirls.)  This is very hot!
+(You prepare a full body harness on her torso as she twirls.)  This is very hot!
+(You remove the body harness from her torso.)  It was kinky and comfy Miss.  I hope to try another one.
+(You remove the body harness from her torso.)  It was kinky and comfy Miss.  I hope to try another one.
+(She does a light moan as you slide the device inside.)  Oh my!  It certainly fills me.
+(She does a light moan as you slide the device inside.)  Oh my!  It certainly fills me.
+(She nods slowly as you remove the butt plug.)  It was fun!  Maybe another one?
+(She nods slowly as you remove the butt plug.)  It was fun!  Maybe another one?
+(She holds her breath as you use the item.)  You certainly are in control Miss.
+(She holds her breath as you use the item.)  You certainly are in control Miss.
+(She wiggles her breast slowly as you remove the device.)  Thanks a lot, this is better.
+(She wiggles her breast slowly as you remove the device.)  Thanks a lot, this is better.
+(She holds her breath as you use the item.)  Oh yes!  I can't enough of that pain.
+(She holds her breath as you use the item.)  Oh yes!  I can't enough of that pain.
+(She wiggles her breast slowly as you remove the device.)  Do you have other items we could try?
+(She wiggles her breast slowly as you remove the device.)  Do you have other items we could try?
 (You strap the device on her head as she tries to look around.)  Bondage is such a thrill.
 (Du schnallst ihr das Ding um den Kopf und sie sieht sich um.) Bondage ist so aufregend.
 (You remove the device and she looks at you.)  That was pretty intense.  What else can we try?
@@ -37,8 +55,14 @@ Hast du herausgefunden, wie du mich befreien kannst? Diese Ketten sind ziemlich 
 (Du schwingst die Gerte auf ihren Körper und sie stöhnt.) Au! Du bist sehr talentiert.
 (You whip her butt as she jumps from the pain.)  It hurts soooooo good.
 (Du peitschst ihr auf den Po und sie zuckt vor Schmerz zusammen.) Das tut soooooo schön weh.
-(She moans and shakes her butt each time the crop lands on it.) God I love pain.
+(She moans and shakes her butt each time the crop lands on it.) God, I love pain.
 (Sie stöhnt und wackelt bei jedem Treffer der Gerte mit dem Po.) Gott, ich liebe Schmerz.
+(She moans softly as you massage her pussy with the wand.)  Mmmmh, this is lovely Miss!
+(She moans softly as you massage her pussy with the wand.)  Mmmmh, this is lovely Miss!
+(She moans as you slide the egg inside.)  Is it getting hot in here?
+(She moans as you slide the egg inside.)  Is it getting hot in here?
+(She does one last moan as you remove the egg.)  Ooooh!  That was quite a stimulation.
+(She does one last moan as you remove the egg.)  Ooooh!  That was quite a stimulation.
 (You restrain her legs with the long hemp rope and suspend her by the feet from the ceiling.)  Weeeeee!
 (Du fesselst ihre Beine mit dem langen Hanfseil und lässt sie an den Füßen von der Decke baumeln.) Weeeeee!
 (You untie the hemp rope from the ceiling and slowly get her down.)  That was a fun ride.
@@ -189,8 +213,8 @@ Klar! (Ihr küsst euch flüchtig.) Ich erinnere mich an diese Lippen. (Sie kiche
 It's pure luck.  I wasn't looking for you.
 Reiner Zufall. Ich habe gar nicht nach dir gesucht.
 ###_NPC
-It's a small world I guess.  (She smiles.)  You're a club member now?
-Die Welt ist kleiner, als man denkt. (Sie lächelt.) Du bist jetzt also ein Mitglied?
+We live in a small and kinky world.  (She smiles.)  You're a club member now?
+Die Welt ist klein und pervers. (Sie lächelt.) Du bist jetzt also ein Mitglied?
 ###_PLAYER
 I'm glad to see you slave.  (Spank her butt.)
 Schön dich zu sehen, Sklavin. (Ihr auf den Po hauen.)
@@ -231,8 +255,8 @@ Das weiß ich ehrlich gesagt noch nicht. Ich warte hier auf Herrin Sophie. Kenns
 All of this for bringing a friend?
 All das nur, weil du eine Freundin mitgenommen hast?
 ###_NPC
-Yes and no, I've actually angered Mistress Sophie, one of the club owners.  Have you met her?
-Ja und nein, eigentlich habe ich Herrin Sophie verärgert, eine der Besitzerinnen des Clubs. Kennst du sie?
+Yes and no, I've angered Mistress Sophie, one of the club owners.  Have you met her?
+Ja und nein, ich habe Herrin Sophie verärgert, eine der Besitzerinnen des Clubs. Kennst du sie?
 I'm getting punished.  (She struggles and giggles.)  Don't worry, I've seen worse.  So, are you enjoying your visit?
 Ich werde bestraft. (Sie zappelt und kichert.) Keine Sorge, ich hab Schlimmeres gesehen. Also, gefällt dir dein Aufenthalt?
 ###_PLAYER
@@ -269,7 +293,7 @@ Sie ist eine der Clubleiterinnen und wird mich hier etwas später bestrafen.
 Why do you ask?
 Warum fragst du?
 ###_NPC
-She should be here soon, she reserved that room.  She's going to punish me.
+She should be here soon.  She reserved that room to punish me.
 Sie sollte bald hier sein. Sie hat dieses Zimmer reserviert, um mich zu bestrafen.
 Mistress Sophie?  DialogPlayerName?  Marco?  (She laughs.)
 Herrin Sophie? DialogPlayerName? Marco? (Sie lacht.)
@@ -416,7 +440,7 @@ Okay, Mädel, versuche, dich freizuwinden.
 (Ihr ein paar Entfesselungs-Tricks zeigen.)
 ###_NPC
 Thanks for getting me out Mistress.  You're the best!
-Danke für die Befreiung, Herrin. Ihr seid die Beste! 
+Danke für die Befreiung, Herrin. Ihr seid die Beste!
 Thanks for getting me out DialogPlayerName.  That was sweet.
 Danke für die Befreiung, DialogPlayerName. Das war lieb von dir.
 ###_PLAYER
@@ -454,3 +478,122 @@ Take care!  (Leave her.)
 Mach's gut! (Dialog beenden.)
 Great!  (Bring her to your room.)
 Toll! (Sie in dein Zimmer bringen.)
+###_NPC
+Punished by my baby?  This is hot!
+Punished by my baby?  This is hot!
+You're doing the punishment Miss DialogPlayerName?
+You're doing the punishment Miss DialogPlayerName?
+###_PLAYER
+Get naked girl.
+Get naked girl.
+###_NPC
+(She nods and strips down quickly.)  Of course, Miss!
+(She nods and strips down quickly.)  Of course, Miss!
+###_PLAYER
+Are you scared?
+Are you scared?
+###_NPC
+(She giggles.)  A little, it's very thrilling.
+(She giggles.)  A little, it's very thrilling.
+###_PLAYER
+You're my bitch now.
+You're my bitch now.
+###_NPC
+(She nods happily.)  Yes Miss, I'm your bitch.
+(She nods happily.)  Yes Miss, I'm your bitch.
+###_PLAYER
+I won't be too harsh my love.
+I won't be too harsh my love.
+###_NPC
+(She sighs.)  You can play rough with me baby.
+(She sighs.)  You can play rough with me baby.
+Vibe me baby love!  This is so hot!
+Vibe me baby love!  This is so hot!
+This is such a kinky situation!
+This is such a kinky situation!
+###_PLAYER
+It's time to cum girl.
+It's time to cum girl.
+###_NPC
+Oh yes!  I need it so bad!
+Oh yes!  I need it so bad!
+###_PLAYER
+Are you in the mood?
+Are you in the mood?
+###_NPC
+In the mood?  I will explode soon!
+In the mood?  I will explode soon!
+###_PLAYER
+(Use the crop on her.)
+(Use the crop on her.)
+###_NPC
+(You whip her with the crop as she jumps from the pain and asks for more.)
+(You whip her with the crop as she jumps from the pain and asks for more.)
+###_PLAYER
+(Use the whip on her.)
+(Use the whip on her.)
+###_NPC
+(You whip her pretty hard as she cringes from the pain, but still begs for more.)
+(You whip her pretty hard as she cringes from the pain, but still begs for more.)
+###_PLAYER
+(Use the vibrator remote.)
+(Use the vibrator remote.)
+###_NPC
+(You grab Sophie's vibrator remote.  You can change the egg vibration.)
+(You grab Sophie's vibrator remote.  You can change the egg vibration.)
+###_PLAYER
+(Turn it off.)
+(Turn it off.)
+###_NPC
+(You stop the vibrating egg.)  You can't tease me like that!  Please turn it on.
+(You stop the vibrating egg.)  You can't tease me like that!  Please turn it on.
+###_PLAYER
+(Slow speed.)
+(Slow speed.)
+###_NPC
+(The vibrating egg hums slowly.)  Are the batteries dying?
+(The vibrating egg hums slowly.)  Are the batteries dying?
+###_PLAYER
+(Regular speed.)
+(Regular speed.)
+###_NPC
+(The vibrating egg hums inside of her.)  This is nice.  Can it go faster?
+(The vibrating egg hums inside of her.)  This is nice.  Can it go faster?
+###_PLAYER
+(Fast speed.)
+(Fast speed.)
+###_NPC
+(The vibrating egg hums rapidly.)  Oh yes!  Vibe me, vibe me.  (She shakes her butt.)
+(The vibrating egg hums rapidly.)  Oh yes!  Vibe me, vibe me.  (She shakes her butt.)
+###_PLAYER
+(Maximum speed.)
+(Maximum speed.)
+###_NPC
+(The vibrating egg hums at maximum speed.)  Woah!  Th, th, this is insane!  I, I, I, I will cum!
+(The vibrating egg hums at maximum speed.)  Woah!  Th, th, this is insane!  I, I, I, I will cum!
+###_PLAYER
+(Put away the remote.)
+(Put away the remote.)
+###_NPC
+(You put away the remote.)
+(You put away the remote.)
+###_PLAYER
+Good girl.
+Good girl.
+###_NPC
+Thanks Miss!  (She giggles and slowly recovers from her orgasm.)
+Thanks Miss!  (She giggles and slowly recovers from her orgasm.)
+###_PLAYER
+You're such a slut.
+You're such a slut.
+###_NPC
+I know!  Isn't that great?  (She giggles and slowly recovers from her orgasm.)
+I know!  Isn't that great?  (She giggles and slowly recovers from her orgasm.)
+###_PLAYER
+(Pet her head.)
+(Pet her head.)
+###_NPC
+(You pet her head as she purrs and slowly recovers from her orgasm.)
+(You pet her head as she purrs and slowly recovers from her orgasm.)
+(She's still recovering from her orgasm.)
+(She's still recovering from her orgasm.)

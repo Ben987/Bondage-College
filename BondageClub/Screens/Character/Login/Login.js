@@ -27,7 +27,7 @@ function LoginDrawCredits() {
 	for(var C = 0; C < LoginCredits.length; C++) {
 
 		// Sets the Y position (it scrolls from bottom to top)
-		var Y = 800 - Math.floor(LoginCreditsPosition * CommonRunInterval / 10) + (C * 50);
+		var Y = 800 - Math.floor(LoginCreditsPosition * TimerRunInterval / 10) + (C * 50);
 
 		// Draw the text if it's in drawing range
 		if ((Y > 0) && (Y <= 999)) {
@@ -127,9 +127,10 @@ function LoginResponse(C) {
 
 			// Gets the online preferences
 			Player.LabelColor = C.LabelColor;
-			Player.RestrainPermission = C.RestrainPermission;
+			Player.ItemPermission = C.ItemPermission;
 			Player.WhiteList = C.WhiteList;
 			Player.BlackList = C.BlackList;
+			Player.FriendList = C.FriendList;
 	
 			// Loads the player character model and data
 			Player.Appearance = ServerAppearanceLoadFromBundle(C.AssetFamily, C.Appearance);
@@ -198,7 +199,7 @@ function LoginClick() {
 		InventoryRemove(Player, "ItemFeet");
 		InventoryRemove(Player, "ItemLegs");
 		InventoryRemove(Player, "ItemArms");
-		CommonSetScreen("Character", "Appearance");
+		CharacterAppearanceLoadCharacter(Player);
 	}
 	
 	// If we must try to login (make sure we don't send the login query twice)

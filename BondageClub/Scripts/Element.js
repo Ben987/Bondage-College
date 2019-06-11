@@ -9,6 +9,15 @@ function ElementValue(ID, Value) {
 			document.getElementById(ID).value = Value;
 }
 
+// Returns the current HTML content of an element
+function ElementContent(ID, Content) {
+	if (document.getElementById(ID) != null)
+		if (Content == null)
+			return document.getElementById(ID).innerHTML;
+		else 
+			document.getElementById(ID).innerHTML = Content;
+}
+
 // Creates a new text area element in the main document
 function ElementCreateTextArea(ID) {
 	if (document.getElementById(ID) == null) {
@@ -33,6 +42,17 @@ function ElementCreateInput(ID, Type, Value, MaxLength) {
 		Input.setAttribute("onfocus", "this.removeAttribute('readonly');");
 		Input.addEventListener("keydown", KeyDown);
 		document.body.appendChild(Input);
+	}
+}
+
+// Creates a new div element in the main document
+function ElementCreateDiv(ID) {
+	if (document.getElementById(ID) == null) {
+		var Div = document.createElement("div");
+		Div.setAttribute("ID", ID);
+		Div.setAttribute("name", ID);
+		Div.addEventListener("keydown", KeyDown);
+		document.body.appendChild(Div);
 	}
 }
 
@@ -102,12 +122,22 @@ function ElementScrollToEnd(ID) {
 	if (document.getElementById(ID) != null) {
 		var element = document.getElementById(ID);
 		element.focus();
-		element.selectionStart = element.selectionEnd = element.value.length;
+		if (element.value != null)
+			element.selectionStart = element.selectionEnd = element.value.length;
+		else
+			element.scrollTop = element.scrollHeight;
 	}
 }
 
-// Sets focus to the specified element
+// Returns TRUE if the specified element is currently scrolled to the very bottom
+function ElementIsScrolledToEnd(ID) {
+	var element = document.getElementById(ID);
+	if (element != null && element.scrollHeight - element.scrollTop - element.clientHeight < 1) return true;
+	else return false;
+}
+
+// Sets focus to the specified element for regular users, not mobile
 function ElementFocus(ID) {
-	if (document.getElementById(ID) != null)
+	if ((document.getElementById(ID) != null) && !CommonIsMobile)
 		document.getElementById(ID).focus();
 }

@@ -171,8 +171,8 @@ Once paid for, the buyer must take their new slave away or the market can take c
 Nach der Bezahlung müssen Käufer ihre neuen Sklaven mitnehmen, oder der Markt kann sich gegen eine Gebühr um sie kümmern.
 This is useful if a buyer is shopping for multiple new slaves.
 Das ist dann praktisch, wenn jemand mehrere Sklaven hintereinander kaufen will.
-There is a listing fee of $50 payed up front and 10% commission taken from the final bid before the seller is paid.
-Es gibt eine Eintraggebühr von 50$, die vorab gezahlt wird, und eine Provision von 10% wird vom Höchstgebot abgerechnet, bevor der Verkäufer bezahlt wird.
+There is a listing fee of ... payed up front and 10% commission taken from the final bid before the seller is paid.
+Es gibt eine Eintraggebühr von ..., die vorab gezahlt wird, und eine Provision von 10% wird vom Höchstgebot abgerechnet, bevor der Verkäufer bezahlt wird.
 Sellers can set a reserve price, but the listing fee is not refunded if the slave is not sold.
 Verkäufer können ein Mindestgebot bestimmen, aber die Eintraggebühr wird nicht erstattet, wenn niemand die Sklaven kauft.
 Sellers may prepare their slaves before the auction to get a good price, but not after the auction has started.

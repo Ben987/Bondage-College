@@ -54,7 +54,7 @@ function InventoryItemArmsLeatherCuffsSetPose(NewPose) {
 		delete DialogFocusItem.Property.SelfUnlock;
 	} else {
 		DialogFocusItem.Property.SetPose = [(NewPose == "Wrist") ? "BackBoxTie" : "BackElbowTouch"];
-		DialogFocusItem.Property.Effect = ["Block", "Prone", "Lock"];
+		DialogFocusItem.Property.Effect = ["Block", "Prone"];
 		DialogFocusItem.Property.SelfUnlock = (NewPose == "Wrist");
 	}
 	CharacterRefresh(C);
@@ -62,5 +62,8 @@ function InventoryItemArmsLeatherCuffsSetPose(NewPose) {
 	msg = msg.replace("SourceCharacter", Player.Name);
 	msg = msg.replace("DestinationCharacter", C.Name);
 	ChatRoomPublishCustomAction(msg, true);
-	if (DialogInventory != null) DialogFocusItem = null;
+	if (DialogInventory != null) {
+		DialogFocusItem = null;
+		DialogMenuButtonBuild(C);
+	}
 }
