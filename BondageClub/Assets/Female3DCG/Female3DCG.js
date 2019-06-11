@@ -28,8 +28,8 @@ var AssetFemale3DCG = [
 			{ Name: "NurseUniform", Hide: ["ClothLower"], Value: -1 },
 			{ Name: "BunnyCollarCuffs", Value: 10 },
 			{ Name: "Robe1", Value: 50 },
-			{ Name: "SuccubusFeather", Hide: ["ClothLower"], Priority: 2, Value: 5},
-			{ Name: "SuccubusWings", Hide: ["ClothLower"], Priority: 2, Value: 5}
+			{ Name: "SuccubusFeather", Hide: ["ClothLower"], Priority: 2, Value: 200 },
+			{ Name: "SuccubusWings", Hide: ["ClothLower"], Priority: 2, Value: 200 }
 		]
 	},
 	
@@ -162,15 +162,15 @@ var AssetFemale3DCG = [
 			{ Name: "BunnyEars1", Value: 20 },
 			{ Name: "BunnyEars2", Value: 20 },
 			{ Name: "CaptainHat1", Value: 20 },
-			{ Name: "SuccubusHorns", Value: 5 },
-			{ Name: "SuccubusHorns2", Value: 5 },
-			{ Name: "SuccubusHorns3", Value: 5 },
-			{ Name: "SuccubusHorns4", Value: 5 },
-			{ Name: "BunnySuccubus1", Value: 5},
-			{ Name: "BunnySuccubus2", Value: 5},
-			{ Name: "KittySuccubus1", Value: 5},
-			{ Name: "KittySuccubus2", Value: 5},
-			{ Name: "PonySuccubus", Value: 5}
+			{ Name: "SuccubusHorns", Value: 20 },
+			{ Name: "SuccubusHorns2", Value: 20 },
+			{ Name: "SuccubusHorns3", Value: 20 },
+			{ Name: "SuccubusHorns4", Value: 20 },
+			{ Name: "BunnySuccubus1", Value: 20 },
+			{ Name: "BunnySuccubus2", Value: 20 },
+			{ Name: "KittySuccubus1", Value: 20 },
+			{ Name: "KittySuccubus2", Value: 20 },
+			{ Name: "PonySuccubus", Value: 20 }
 		]
 	},
 	
@@ -400,8 +400,8 @@ var AssetFemale3DCG = [
 			{ Name: "BlackButtPlug", Value: 20, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
 			{ Name: "TailButtPlug", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
 			{ Name: "HorsetailPlug", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
-			{ Name: "SuccubusButtPlug", Value: 5, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
-			{ Name: "SuccubusButtPlug2", Value: 5, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] }
+			{ Name: "SuccubusButtPlug", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
+			{ Name: "SuccubusButtPlug2", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] }
 		]
 	},
 
