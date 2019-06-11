@@ -254,19 +254,36 @@ function ChatRoomResponse(data) {
 // When the server sends a chat message
 function ChatRoomMessage(data) {
 	
-	// The message can come as a string or an object
-	var msg = "";
-	if ((data != null) && (typeof data === "string") && (data != "")) msg = data;
-	if ((data != null) && (typeof data === "object") && (data.Content != null) && (typeof data.Content === "string") && (data.Content != "")) msg = data;
-
-	// If we have a message to add
-	if (msg != "") {
-		ChatRoomLog = ChatRoomLog + msg + '\r\n';
-		if (document.getElementById("TextAreaChatLog") != null) {
-			ElementValue("TextAreaChatLog", ChatRoomLog);
-			ElementScrollToEnd("TextAreaChatLog");
-			ElementFocus("InputChat");
+	// Make sure the message is valid (needs a Sender and Content)
+	if ((data != null) && (typeof data === "object") && (data.Content != null) && (typeof data.Content === "string") && (data.Content != "") && (data.Sender != null) && (typeof data.Sender === "number") && (data.Sender > 0)) {
+		
+		// Make sure the sender is in the room
+		var SenderCharacter = null;
+		for(var C = 0; C < ChatRoomCharacter.length; C++)
+			if (ChatRoomCharacter[C].MemberNumber == data.Sender) {
+				SenderCharacter = ChatRoomCharacter[C]
+				break;
+			}
+		
+		// If we found the sender
+		if (SenderCharacter != null) {
+	
+			// Builds the message to add depending on the type
+			var msg = data.Content;
+			if ((data.Type != null) && (data.Type == "Chat")) msg = SenderCharacter.Name + ": " + msg;
+			if ((data.Type != null) && (data.Type == "Emote")) msg = "*" + msg + "*";
+			if ((data.Type != null) && (data.Type == "Action")) msg = "(" + msg + ")";
+		
+			// Adds the message and scrolls down
+			ChatRoomLog = ChatRoomLog + msg + '\r\n';
+			if (document.getElementById("TextAreaChatLog") != null) {
+				ElementValue("TextAreaChatLog", ChatRoomLog);
+				ElementScrollToEnd("TextAreaChatLog");
+				ElementFocus("InputChat");
+			}
+			
 		}
+
 	}
 }
 
