@@ -425,7 +425,7 @@ var AssetFemale3DCG = [
 		Asset: [ 
 			{ Name: "NylonRopeHarness", Value: 25, Prerequisite: "AccessTorso", Time: 25 }, 
 			{ Name: "HempRopeHarness", Value: 50, Prerequisite: "AccessTorso", Time: 25, RemoveTime: 35, Difficulty: 3 },
-			{ Name: "LeatherHarness", Value: 100, Prerequisite: "AccessTorso", Time: 15, RemoveTime: 10, AllowLock: true },
+			{ Name: "LeatherHarness", Value: 100, Prerequisite: "AccessTorso", Time: 15, RemoveTime: 10, Difficulty: 50, AllowLock: true },
 			{ Name: "AdultBabyHarness", Value: 80, Priority: 24, Time: 15, RemoveTime: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] }
 		]
 	},
@@ -483,7 +483,7 @@ var AssetFemale3DCG = [
 			{ Name: "MetalCuffs", Priority: 24, Value: 50, SetPose: ["BackCuffs"], Effect: ["Block", "Prone", "Lock"], Difficulty: 5, Time: 5 },
 			{ Name: "LeatherArmbinder", SelfBondage: false, Priority: 2, Value: 80, SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone"], Time: 25, RemoveTime: 10, Difficulty: 10, AllowLock: true },
 			{ Name: "LeatherCuffs", Priority: 24, Random: false, Value: 100, AllowPose: ["BackBoxTie", "BackElbowTouch"], Time: 20, Difficulty: 4, Extended: true, AllowLock: true },
-			{ Name: "PaddedMittens", SelfBondage: false, Value: 50, Effect: ["Block", "Prone"], Extended: true, Time: 15, Difficulty: 4, AllowLock: true },
+			{ Name: "PaddedMittens", SelfBondage: false, Value: 50, Effect: ["Block", "Prone"], Extended: false, Time: 15, Difficulty: 4, AllowLock: true },
 			{ Name: "FourLimbsShackles", Enable: false, Value: -1, SetPose: ["BackBoxTie"], Effect: ["Block", "Prone", "Lock"], Time: 30 },
 			{ Name: "StraitLeotard", SelfBondage: false, Value: 200, SetPose: ["BackElbowTouch"], Hide: ["Cloth", "ClothLower"], Block: ["ItemNipples", "ItemVulva", "ItemButt"], Effect: ["Block", "Prone"], Time: 35, RemoveTime: 20, Difficulty: 13, AllowLock: true },
 			{ Name: "PawMittens", SelfBondage: false, Value: 60, Effect: ["Block", "Prone"], Time: 15, Difficulty: 4, AllowLock: true },

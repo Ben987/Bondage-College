@@ -7,7 +7,7 @@ Remove,,,Remove the item
 Struggle,,,Try to struggle out
 Lock,,,Use a lock
 Unlock,,,Unlock the item
-CheckLock,,,Check the lock
+InspectLock,,,Inspect the lock
 Remote,,,Use your remote
 ColorPick,,,Color of next item
 ColorSelect,,,Use this color
@@ -38,6 +38,7 @@ PumpIt,,,Pump it
 pumps,,,pumps
 deflates,,,deflates
 gag,,,gag
+LockMemberNumber,,,Member number on lock:
 TimerLeft,,,Time left:
 TimerRestart,,,SourceCharacter restarts the five minute timer padlock on DestinationCharacter BodyPart.
 SelectBondagePosition,,,Select the bondage position

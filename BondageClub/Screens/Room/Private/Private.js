@@ -97,7 +97,7 @@ function PrivateDrawCharacter() {
 
 // Run the private room
 function PrivateRun() {
-	
+
 	// The vendor is only shown if the room isn't rent
 	if (LogQuery("RentRoom", "PrivateRoom")) {
 		PrivateDrawCharacter();
@@ -109,11 +109,11 @@ function PrivateRun() {
 		DrawCharacter(Player, 500, 0, 1);
 		DrawCharacter(PrivateVendor, 1000, 0, 1);
 	}
-	
+
 	// Standard buttons
 	if (Player.CanWalk() && (Player.Cage == null)) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 	if (LogQuery("RentRoom", "PrivateRoom") && Player.CanKneel()) DrawButton(1885, 145, 90, 90, "", "White", "Icons/Kneel.png");
-	
+
 	// If we must save a character status after a dialog
 	if (PrivateCharacterToSave > 0) {
 		ServerPrivateCharacterSync();

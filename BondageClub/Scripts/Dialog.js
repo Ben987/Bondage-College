@@ -16,6 +16,7 @@ var DialogProgressChallenge = 0;
 var DialogInventory = [];
 var DialogInventoryOffset = 0;
 var DialogFocusItem = null;
+var DialogFocusSourceItem = null;
 var DialogMenuButton = [];
 var DialogItemToLock = null;
 var DialogAllowBlush = false;
@@ -185,7 +186,7 @@ function DialogMenuButtonBuild(C) {
 		if (DialogInventory >= 12) DialogMenuButton.push("Next");
 		if (InventoryItemHasEffect(Item, "Lock", true) && DialogCanUnlock(Item) && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Unlock");
 		if (InventoryItemHasEffect(Item, "Lock", true) && !DialogCanUnlock(Item) && (C.ID == 0) && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Struggle");
-		if (InventoryItemHasEffect(Item, "Lock", true) && (Item.Property != null) && (Item.Property.LockedBy != null) && (Item.Property.LockedBy != "")) DialogMenuButton.push("CheckLock");
+		if (InventoryItemHasEffect(Item, "Lock", true) && (Item.Property != null) && (Item.Property.LockedBy != null) && (Item.Property.LockedBy != "")) DialogMenuButton.push("InspectLock");
 		if ((Item != null) && Item.Asset.AllowLock && !InventoryItemHasEffect(Item, "Lock", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Lock");
 		if ((Item != null) && !InventoryItemHasEffect(Item, "Lock", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Remove");
 		if ((Item != null) && !InventoryItemHasEffect(Item, "Lock", true) && !Player.CanInteract() && (C.ID == 0) && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Struggle");
@@ -296,7 +297,7 @@ function DialogProgressStart(C, PrevItem, NextItem) {
 	
 	// Prepares the progress bar and timer
 	DialogProgress = 0;
-	DialogProgressAuto = TimerRunInterval * (0.11 + (S * 0.11)) / (Timer * CheatFactor("DoubleItemSpeed", 0.5));
+	DialogProgressAuto = TimerRunInterval * (0.11 + (((S <= -10) ? -9 : S) * 0.11)) / (Timer * CheatFactor("DoubleItemSpeed", 0.5));  // S: -9 is floor level to always give a false hope
 	DialogProgressPrevItem = PrevItem;
 	DialogProgressNextItem = NextItem;
 	DialogProgressOperation = DialogProgressGetOperation(PrevItem, NextItem);
@@ -380,9 +381,9 @@ function DialogMenuButtonClick() {
 			}
 			
 			// When the player inspects a lock
-			if (DialogMenuButton[I] == "CheckLock") {
+			if (DialogMenuButton[I] == "InspectLock") {
 				var Lock = InventoryGetLock(Item);
-				if (Lock != null) DialogExtendItem(Lock);
+				if (Lock != null) DialogExtendItem(Lock, Item);
 				return;				
 			}			
 
@@ -430,6 +431,7 @@ function DialogItemClick(ClickItem) {
 			if (CurrentItem.Property.Effect == null) CurrentItem.Property.Effect = [];
 			CurrentItem.Property.Effect.push("Lock");
 			CurrentItem.Property.LockedBy = ClickItem.Asset.Name;
+			CurrentItem.Property.LockMemberNumber = Player.MemberNumber;
 			if (ClickItem.Asset.RemoveTimer > 0) TimerInventoryRemoveSet(C, CurrentItem.Asset.Group.Name, ClickItem.Asset.RemoveTimer);
 			DialogItemToLock = null;
 			DialogInventoryBuild(C);
@@ -643,11 +645,12 @@ function DialogSetText(NewText) {
 }
 
 // Extends a specific item (loads its settings and shows its own menu)
-function DialogExtendItem(I) {
+function DialogExtendItem(Item, SourceItem) {
 	DialogProgress = -1;
 	DialogColor = null;
-	DialogFocusItem = I;
-	CommonDynamicFunction("Inventory" + I.Asset.Group.Name + I.Asset.Name + "Load()");
+	DialogFocusItem = Item;
+	DialogFocusSourceItem = SourceItem;
+	CommonDynamicFunction("Inventory" + Item.Asset.Group.Name + Item.Asset.Name + "Load()");
 }
 
 // Draw the item menu dialog
