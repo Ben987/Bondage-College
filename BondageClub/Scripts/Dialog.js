@@ -69,7 +69,7 @@ function DialogPrerequisite(D) {
 
 // Searches for an item in the player inventory to unlock a specific item
 function DialogCanUnlock(Item) {
-	if ((Item != null) && (Item.Property != null) && (Item.Property.SelfUnlock != null) && (Item.Property.SelfUnlock == false)) return false;
+	if ((Item != null) && (Item.Property != null) && (Item.Property.SelfUnlock != null) && (Item.Property.SelfUnlock == false) && !Player.CanInteract()) return false;
 	var UnlockName = "Unlock-" + Item.Asset.Name;
 	if ((Item != null) && (Item.Property != null) && (Item.Property.LockedBy != null)) UnlockName = "Unlock-" + Item.Property.LockedBy;
 	for (var I = 0; I < Player.Inventory.length; I++)
@@ -245,15 +245,15 @@ function DialogStruggle(Reverse) {
 	// Progress calculation
 	var P = TimerRunInterval * 2.5 / (DialogProgressSkill * CheatFactor("DoubleItemSpeed", 0.5)); // Regular progress, slowed by long timers, faster with cheats
 	P = P * (100 / (DialogProgress + 50));  // Faster when the dialog starts, longer when it ends	
-	if ((DialogProgressChallenge > 5) && (DialogProgress > 50) && (DialogProgressAuto < 0)) P = P * (1 - ((DialogProgress - 50) / 50)); // Beyond challenge 5, it becomes impossible after 50% progress
+	if ((DialogProgressChallenge > 6) && (DialogProgress > 50) && (DialogProgressAuto < 0)) P = P * (1 - ((DialogProgress - 50) / 50)); // Beyond challenge 6, it becomes impossible after 50% progress
 	P = P * (Reverse ? -1 : 1); // Reverses the progress if the user pushed the same key twice
 	
 	// Sets the new progress and writes the "Impossible" message if we need to
 	DialogProgress = DialogProgress + P;	
 	if (DialogProgress < 0) DialogProgress = 0;
-	if ((DialogProgress >= 100) && (DialogProgressChallenge > 5) && (DialogProgressAuto < 0)) DialogProgress = 99;
+	if ((DialogProgress >= 100) && (DialogProgressChallenge > 6) && (DialogProgressAuto < 0)) DialogProgress = 99;
 	if (!Reverse) DialogProgressStruggleCount++;
-	if ((DialogProgressStruggleCount >= 50) && (DialogProgressChallenge > 5) && (DialogProgressAuto < 0)) DialogProgressOperation = DialogFind(Player, "Impossible");
+	if ((DialogProgressStruggleCount >= 50) && (DialogProgressChallenge > 6) && (DialogProgressAuto < 0)) DialogProgressOperation = DialogFind(Player, "Impossible");
 	
 	// At 15 hit: low blush, 50: Medium and 125: High
 	if (DialogAllowBlush && !Reverse) {
@@ -270,34 +270,34 @@ function DialogStruggle(Reverse) {
 // Starts the dialog progress bar and keeps the items that needs to be added / swaped / removed
 function DialogProgressStart(C, PrevItem, NextItem) {
 	
-	// Gets the standard time to do the operation (minimum 1 second) and the player skill level associated
-	var Timer = 0;
+	// Gets the required skill / challenge level based on player/rigger skill and item difficulty (0 by default is easy to struggle out)
 	var S = 0;
-	if (PrevItem != null) {
-		if ((PrevItem.Asset != null) && (PrevItem.Asset.RemoveTime != null)) Timer = Timer + PrevItem.Asset.RemoveTime;
-		if (C.ID == 0) {
-			S = S + SkillGetLevel(Player, "Evasion");
-			if (PrevItem.Difficulty != null) S = S - PrevItem.Difficulty;
-			if (!C.CanInteract() || (C.Effect.indexOf("Suspension") >= 0)) Timer = Timer * 2;
-		}
+	if ((PrevItem != null) && (C.ID == 0)) {
+		S = S + SkillGetLevel(Player, "Evasion"); // Add the player evasion level
+		if (PrevItem.Difficulty != null) S = S - PrevItem.Difficulty; // Subtract the item difficulty (regular difficulty + player that restrained difficulty)
+		if ((PrevItem.Property != null) && (PrevItem.Property.Difficulty != null)) S = S - PrevItem.Property.Difficulty; // Subtract the additional item difficulty for expanded items only
 	}
-	if ((NextItem != null) && (NextItem.Asset != null) && (NextItem.Asset.WearTime != null)) Timer = Timer + NextItem.Asset.WearTime;
-	if ((C.ID != 0) || ((C.ID == 0) && (PrevItem == null))) S = S + SkillGetLevel(Player, "Bondage");
-	if (Timer < 1) Timer = 1;
-	if (Player.IsBlind()) Timer = Timer * 2; // Double the time if blind
-	if (Player.IsEnclose()) S = S - 5; // Higher Difficulty for Encloseing
-	if ((C.ID == 0) && !C.CanInteract() && !InventoryItemHasEffect(PrevItem, "Block", true)) S = S - 10; // Very hard to struggle from another item than the blocking one
+	if ((C.ID != 0) || ((C.ID == 0) && (PrevItem == null))) S = S + SkillGetLevel(Player, "Bondage"); // Adds the bondage skill if no previous item or playing with another player
+	if (Player.IsEnclose()) S = S - 5; // Harder if there's an enclosing item
 	if (InventoryItemHasEffect(PrevItem, "Lock", true) && !DialogCanUnlock(PrevItem)) S = S - 5; // Harder to struggle from a locked item
-	
+	if ((C.ID == 0) && !C.CanInteract() && !InventoryItemHasEffect(PrevItem, "Block", true)) S = S - 10; // Much harder to struggle from another item than the blocking one
+
+	// Gets the standard time to do the operation
+	var Timer = 0;
+	if ((PrevItem != null) && (PrevItem.Asset != null) && (PrevItem.Asset.RemoveTime != null)) Timer = Timer + PrevItem.Asset.RemoveTime; // Adds the time to remove the previous item
+	if ((NextItem != null) && (NextItem.Asset != null) && (NextItem.Asset.WearTime != null)) Timer = Timer + NextItem.Asset.WearTime; // Adds the time to add the new item
+	if (Player.IsBlind() || (Player.Effect.indexOf("Suspension") >= 0)) Timer = Timer * 2; // Double the time if suspended from the ceiling or blind
+	if (Timer < 1) Timer = 1; // Nothing shorter than 1 second
+
 	// If there's a locking item, we add the time of that lock
 	if ((PrevItem != null) && (NextItem == null) && InventoryItemHasEffect(PrevItem, "Lock", true) && DialogCanUnlock(PrevItem)) {
 		var Lock = InventoryGetLock(PrevItem);
 		if ((Lock != null) && (Lock.Asset != null) && (Lock.Asset.RemoveTime != null)) Timer = Timer + Lock.Asset.RemoveTime;
 	}
-	
+
 	// Prepares the progress bar and timer
 	DialogProgress = 0;
-	DialogProgressAuto = TimerRunInterval * (0.11 + (((S <= -10) ? -9 : S) * 0.11)) / (Timer * CheatFactor("DoubleItemSpeed", 0.5));  // S: -9 is floor level to always give a false hope
+	DialogProgressAuto = TimerRunInterval * (0.22 + (((S <= -10) ? -9 : S) * 0.11)) / (Timer * CheatFactor("DoubleItemSpeed", 0.5));  // S: -9 is floor level to always give a false hope
 	DialogProgressPrevItem = PrevItem;
 	DialogProgressNextItem = NextItem;
 	DialogProgressOperation = DialogProgressGetOperation(PrevItem, NextItem);

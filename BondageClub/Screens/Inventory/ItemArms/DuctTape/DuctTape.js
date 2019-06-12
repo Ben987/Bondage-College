@@ -55,6 +55,9 @@ function InventoryItemArmsDuctTapeSetPose(NewPose) {
 			if (NewPose == "Bottom") DialogFocusItem.Property.Block = ["ItemVulva", "ItemButt", "ItemPelvis"];
 			if (NewPose == "Top") DialogFocusItem.Property.Block = ["ItemTorso", "ItemBreast", "ItemNipples"];
 			if (NewPose == "Full") DialogFocusItem.Property.Block = ["ItemVulva", "ItemButt", "ItemPelvis", "ItemTorso", "ItemBreast", "ItemNipples"];
+			if (NewPose == "Bottom") DialogFocusItem.Property.Difficulty = 2;
+			if (NewPose == "Top") DialogFocusItem.Property.Difficulty = 4;
+			if (NewPose == "Full") DialogFocusItem.Property.Difficulty = 6;
 		}
 		CharacterRefresh(C);
 		var msg = DialogFind(Player, "DuctTapeRestrain" + ((NewPose == null) ? "Hands" : NewPose));
