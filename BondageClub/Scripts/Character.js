@@ -530,6 +530,7 @@ function CharacterSetFacialExpression(C, AssetGroup, Expression) {
 				C.Appearance[A].Property.Expression = Expression;
 				CharacterRefresh(C);
 				ChatRoomCharacterUpdate(C);
+				return;
 			}
 		}
 	}

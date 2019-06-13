@@ -16,6 +16,7 @@ var DialogProgressChallenge = 0;
 var DialogInventory = [];
 var DialogInventoryOffset = 0;
 var DialogFocusItem = null;
+var DialogFocusSourceItem = null;
 var DialogMenuButton = [];
 var DialogItemToLock = null;
 var DialogAllowBlush = false;
@@ -68,7 +69,7 @@ function DialogPrerequisite(D) {
 
 // Searches for an item in the player inventory to unlock a specific item
 function DialogCanUnlock(Item) {
-	if ((Item != null) && (Item.Property != null) && (Item.Property.SelfUnlock != null) && (Item.Property.SelfUnlock == false)) return false;
+	if ((Item != null) && (Item.Property != null) && (Item.Property.SelfUnlock != null) && (Item.Property.SelfUnlock == false) && !Player.CanInteract()) return false;
 	var UnlockName = "Unlock-" + Item.Asset.Name;
 	if ((Item != null) && (Item.Property != null) && (Item.Property.LockedBy != null)) UnlockName = "Unlock-" + Item.Property.LockedBy;
 	for (var I = 0; I < Player.Inventory.length; I++)
@@ -100,7 +101,7 @@ function DialogRemove() {
 	var pos = 0;
 	for(var D = 0; D < CurrentCharacter.Dialog.length; D++)
 		if ((CurrentCharacter.Dialog[D].Stage == CurrentCharacter.Stage) && (CurrentCharacter.Dialog[D].Option != null) && DialogPrerequisite(D)) {
-			if ((MouseX >= 1025) && (MouseX <= 1975) && (MouseY >= 160 + pos * 105) && (MouseY <= 240 + pos * 105)) {
+			if ((MouseX >= 1025) && (MouseX <= 1975) && (MouseY >= 160 + pos * 105) && (MouseY <= 250 + pos * 105)) {
 				CurrentCharacter.Dialog.splice(D, 1);
 				break;
 			}
@@ -183,12 +184,12 @@ function DialogMenuButtonBuild(C) {
 	// Main buttons
 	if (DialogProgress < 0) {
 		if (DialogInventory >= 12) DialogMenuButton.push("Next");
-		if (InventoryItemHasEffect(Item, "Lock", true) && DialogCanUnlock(Item)) DialogMenuButton.push("Unlock");
-		if (InventoryItemHasEffect(Item, "Lock", true) && !DialogCanUnlock(Item) && (C.ID == 0)) DialogMenuButton.push("Struggle");
-		if (InventoryItemHasEffect(Item, "Lock", true) && (Item.Property != null) && (Item.Property.LockedBy != null) && (Item.Property.LockedBy != "")) DialogMenuButton.push("CheckLock");
-		if ((Item != null) && Item.Asset.AllowLock && !InventoryItemHasEffect(Item, "Lock", true) && Player.CanInteract()) DialogMenuButton.push("Lock");
-		if ((Item != null) && !InventoryItemHasEffect(Item, "Lock", true) && Player.CanInteract() && !InventoryGroupIsBlocked(C) && InventoryAllow(C, Item.Asset.Prerequisite)) DialogMenuButton.push("Remove");
-		if ((Item != null) && !InventoryItemHasEffect(Item, "Lock", true) && !Player.CanInteract() && (C.ID == 0)) DialogMenuButton.push("Struggle");
+		if (InventoryItemHasEffect(Item, "Lock", true) && DialogCanUnlock(Item) && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Unlock");
+		if (InventoryItemHasEffect(Item, "Lock", true) && !DialogCanUnlock(Item) && (C.ID == 0) && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Struggle");
+		if (InventoryItemHasEffect(Item, "Lock", true) && (Item.Property != null) && (Item.Property.LockedBy != null) && (Item.Property.LockedBy != "")) DialogMenuButton.push("InspectLock");
+		if ((Item != null) && Item.Asset.AllowLock && !InventoryItemHasEffect(Item, "Lock", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Lock");
+		if ((Item != null) && !InventoryItemHasEffect(Item, "Lock", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Remove");
+		if ((Item != null) && !InventoryItemHasEffect(Item, "Lock", true) && !Player.CanInteract() && (C.ID == 0) && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Struggle");
 		if (InventoryItemHasEffect(Item, "Egged") && InventoryAvailable(Player, "VibratorRemote", "ItemVulva")) DialogMenuButton.push("Remote");
 		if (Player.CanInteract()) DialogMenuButton.push("ColorPick");
 	}
@@ -244,15 +245,15 @@ function DialogStruggle(Reverse) {
 	// Progress calculation
 	var P = TimerRunInterval * 2.5 / (DialogProgressSkill * CheatFactor("DoubleItemSpeed", 0.5)); // Regular progress, slowed by long timers, faster with cheats
 	P = P * (100 / (DialogProgress + 50));  // Faster when the dialog starts, longer when it ends	
-	if ((DialogProgressChallenge > 5) && (DialogProgress > 50) && (DialogProgressAuto < 0)) P = P * (1 - ((DialogProgress - 50) / 50)); // Beyond challenge 5, it becomes impossible after 50% progress
+	if ((DialogProgressChallenge > 6) && (DialogProgress > 50) && (DialogProgressAuto < 0)) P = P * (1 - ((DialogProgress - 50) / 50)); // Beyond challenge 6, it becomes impossible after 50% progress
 	P = P * (Reverse ? -1 : 1); // Reverses the progress if the user pushed the same key twice
 	
 	// Sets the new progress and writes the "Impossible" message if we need to
 	DialogProgress = DialogProgress + P;	
 	if (DialogProgress < 0) DialogProgress = 0;
-	if ((DialogProgress >= 100) && (DialogProgressChallenge > 5) && (DialogProgressAuto < 0)) DialogProgress = 99;
+	if ((DialogProgress >= 100) && (DialogProgressChallenge > 6) && (DialogProgressAuto < 0)) DialogProgress = 99;
 	if (!Reverse) DialogProgressStruggleCount++;
-	if ((DialogProgressStruggleCount >= 50) && (DialogProgressChallenge > 5) && (DialogProgressAuto < 0)) DialogProgressOperation = DialogFind(Player, "Impossible");
+	if ((DialogProgressStruggleCount >= 50) && (DialogProgressChallenge > 6) && (DialogProgressAuto < 0)) DialogProgressOperation = DialogFind(Player, "Impossible");
 	
 	// At 15 hit: low blush, 50: Medium and 125: High
 	if (DialogAllowBlush && !Reverse) {
@@ -269,34 +270,34 @@ function DialogStruggle(Reverse) {
 // Starts the dialog progress bar and keeps the items that needs to be added / swaped / removed
 function DialogProgressStart(C, PrevItem, NextItem) {
 	
-	// Gets the standard time to do the operation (minimum 1 second) and the player skill level associated
-	var Timer = 0;
+	// Gets the required skill / challenge level based on player/rigger skill and item difficulty (0 by default is easy to struggle out)
 	var S = 0;
-	if (PrevItem != null) {
-		if ((PrevItem.Asset != null) && (PrevItem.Asset.RemoveTime != null)) Timer = Timer + PrevItem.Asset.RemoveTime;
-		if (C.ID == 0) {
-			S = S + SkillGetLevel(Player, "Evasion");
-			if (PrevItem.Difficulty != null) S = S - PrevItem.Difficulty;
-			if (!C.CanInteract() || (C.Effect.indexOf("Suspension") >= 0)) Timer = Timer * 2;
-		}
+	if ((PrevItem != null) && (C.ID == 0)) {
+		S = S + SkillGetLevel(Player, "Evasion"); // Add the player evasion level
+		if (PrevItem.Difficulty != null) S = S - PrevItem.Difficulty; // Subtract the item difficulty (regular difficulty + player that restrained difficulty)
+		if ((PrevItem.Property != null) && (PrevItem.Property.Difficulty != null)) S = S - PrevItem.Property.Difficulty; // Subtract the additional item difficulty for expanded items only
 	}
-	if ((NextItem != null) && (NextItem.Asset != null) && (NextItem.Asset.WearTime != null)) Timer = Timer + NextItem.Asset.WearTime;
-	if ((C.ID != 0) || ((C.ID == 0) && (PrevItem == null))) S = S + SkillGetLevel(Player, "Bondage");
-	if (Timer < 1) Timer = 1;
-	if (Player.IsBlind()) Timer = Timer * 2; // Double the time if blind
-	if (Player.IsEnclose()) S = S - 5; // Higher Difficulty for Encloseing
-	if ((C.ID == 0) && !C.CanInteract() && !InventoryItemHasEffect(PrevItem, "Block", true)) S = S - 10; // Very hard to struggle from another item than the blocking one
+	if ((C.ID != 0) || ((C.ID == 0) && (PrevItem == null))) S = S + SkillGetLevel(Player, "Bondage"); // Adds the bondage skill if no previous item or playing with another player
+	if (Player.IsEnclose()) S = S - 5; // Harder if there's an enclosing item
 	if (InventoryItemHasEffect(PrevItem, "Lock", true) && !DialogCanUnlock(PrevItem)) S = S - 5; // Harder to struggle from a locked item
-	
+	if ((C.ID == 0) && !C.CanInteract() && !InventoryItemHasEffect(PrevItem, "Block", true)) S = S - 10; // Much harder to struggle from another item than the blocking one
+
+	// Gets the standard time to do the operation
+	var Timer = 0;
+	if ((PrevItem != null) && (PrevItem.Asset != null) && (PrevItem.Asset.RemoveTime != null)) Timer = Timer + PrevItem.Asset.RemoveTime; // Adds the time to remove the previous item
+	if ((NextItem != null) && (NextItem.Asset != null) && (NextItem.Asset.WearTime != null)) Timer = Timer + NextItem.Asset.WearTime; // Adds the time to add the new item
+	if (Player.IsBlind() || (Player.Effect.indexOf("Suspension") >= 0)) Timer = Timer * 2; // Double the time if suspended from the ceiling or blind
+	if (Timer < 1) Timer = 1; // Nothing shorter than 1 second
+
 	// If there's a locking item, we add the time of that lock
 	if ((PrevItem != null) && (NextItem == null) && InventoryItemHasEffect(PrevItem, "Lock", true) && DialogCanUnlock(PrevItem)) {
 		var Lock = InventoryGetLock(PrevItem);
 		if ((Lock != null) && (Lock.Asset != null) && (Lock.Asset.RemoveTime != null)) Timer = Timer + Lock.Asset.RemoveTime;
 	}
-	
+
 	// Prepares the progress bar and timer
 	DialogProgress = 0;
-	DialogProgressAuto = TimerRunInterval * (0.11 + (S * 0.11)) / (Timer * CheatFactor("DoubleItemSpeed", 0.5));
+	DialogProgressAuto = TimerRunInterval * (0.22 + (((S <= -10) ? -9 : S) * 0.11)) / (Timer * CheatFactor("DoubleItemSpeed", 0.5));  // S: -9 is floor level to always give a false hope
 	DialogProgressPrevItem = PrevItem;
 	DialogProgressNextItem = NextItem;
 	DialogProgressOperation = DialogProgressGetOperation(PrevItem, NextItem);
@@ -380,9 +381,9 @@ function DialogMenuButtonClick() {
 			}
 			
 			// When the player inspects a lock
-			if (DialogMenuButton[I] == "CheckLock") {
+			if (DialogMenuButton[I] == "InspectLock") {
 				var Lock = InventoryGetLock(Item);
-				if (Lock != null) DialogExtendItem(Lock);
+				if (Lock != null) DialogExtendItem(Lock, Item);
 				return;				
 			}			
 
@@ -430,6 +431,7 @@ function DialogItemClick(ClickItem) {
 			if (CurrentItem.Property.Effect == null) CurrentItem.Property.Effect = [];
 			CurrentItem.Property.Effect.push("Lock");
 			CurrentItem.Property.LockedBy = ClickItem.Asset.Name;
+			CurrentItem.Property.LockMemberNumber = Player.MemberNumber;
 			if (ClickItem.Asset.RemoveTimer > 0) TimerInventoryRemoveSet(C, CurrentItem.Asset.Group.Name, ClickItem.Asset.RemoveTimer);
 			DialogItemToLock = null;
 			DialogInventoryBuild(C);
@@ -595,11 +597,11 @@ function DialogClick() {
 			DialogLeave();
 
 		// If the user clicked on a text dialog option, we trigger it
-		if ((MouseX >= 1025) && (MouseX <= 1975) && (MouseY >= 100) && (MouseY <= 975) && (CurrentCharacter != null)) {
+		if ((MouseX >= 1025) && (MouseX <= 1975) && (MouseY >= 100) && (MouseY <= 990) && (CurrentCharacter != null)) {
 			var pos = 0;
 			for(var D = 0; D < CurrentCharacter.Dialog.length; D++)
 				if ((CurrentCharacter.Dialog[D].Stage == CurrentCharacter.Stage) && (CurrentCharacter.Dialog[D].Option != null) && DialogPrerequisite(D)) {
-					if ((MouseX >= 1025) && (MouseX <= 1975) && (MouseY >= 160 + pos * 105) && (MouseY <= 240 + pos * 105)) {
+					if ((MouseX >= 1025) && (MouseX <= 1975) && (MouseY >= 160 + pos * 105) && (MouseY <= 250 + pos * 105)) {
 
 						// If the player is gagged, the answer will always be the same
 						if (!Player.CanTalk()) CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "PlayerGagged");
@@ -643,11 +645,12 @@ function DialogSetText(NewText) {
 }
 
 // Extends a specific item (loads its settings and shows its own menu)
-function DialogExtendItem(I) {
+function DialogExtendItem(Item, SourceItem) {
 	DialogProgress = -1;
 	DialogColor = null;
-	DialogFocusItem = I;
-	CommonDynamicFunction("Inventory" + I.Asset.Group.Name + I.Asset.Name + "Load()");
+	DialogFocusItem = Item;
+	DialogFocusSourceItem = SourceItem;
+	CommonDynamicFunction("Inventory" + Item.Asset.Group.Name + Item.Asset.Name + "Load()");
 }
 
 // Draw the item menu dialog
@@ -805,15 +808,15 @@ function DialogDraw() {
 
 		// Draws the intro text or dialog result
 		if ((DialogIntro() != "") && (DialogIntro() != "NOEXIT")) {
-			DrawTextWrap(SpeechGarble(CurrentCharacter, CurrentCharacter.CurrentDialog), 1025, -10, 840, 160, "white");
+			DrawTextWrap(SpeechGarble(CurrentCharacter, CurrentCharacter.CurrentDialog), 1025, -10, 840, 160, "white", null, 3);
 			DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
-		} else DrawTextWrap(SpeechGarble(CurrentCharacter, CurrentCharacter.CurrentDialog), 1025, -10, 950, 160, "white");
+		} else DrawTextWrap(SpeechGarble(CurrentCharacter, CurrentCharacter.CurrentDialog), 1025, -10, 950, 160, "white", null, 3);
 
 		// Draws the possible answers
 		var pos = 0;
 		for(var D = 0; D < CurrentCharacter.Dialog.length; D++)
 			if ((CurrentCharacter.Dialog[D].Stage == CurrentCharacter.Stage) && (CurrentCharacter.Dialog[D].Option != null) && DialogPrerequisite(D)) {
-				DrawTextWrap(SpeechGarble(Player, CurrentCharacter.Dialog[D].Option), 1025, 160 + 105 * pos, 950, 80, "black", ((MouseX >= 1025) && (MouseX <= 1975) && (MouseY >= 160 + pos * 105) && (MouseY <= 240 + pos * 105) && !CommonIsMobile) ? "cyan" : "white");
+				DrawTextWrap(SpeechGarble(Player, CurrentCharacter.Dialog[D].Option), 1025, 160 + 105 * pos, 950, 90, "black", ((MouseX >= 1025) && (MouseX <= 1975) && (MouseY >= 160 + pos * 105) && (MouseY <= 250 + pos * 105) && !CommonIsMobile) ? "cyan" : "white", 2);
 				pos++;
 			}
 

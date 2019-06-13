@@ -162,23 +162,25 @@ function ServerPlayerWardrobeSync() {
 
 // Syncs the private character with the server
 function ServerPrivateCharacterSync() {
-	var D = {};
-	D.PrivateCharacter = [];
-	for(var ID = 1; ID < PrivateCharacter.length; ID++) {
-		var C = {
-			Name: PrivateCharacter[ID].Name,
-			Love: PrivateCharacter[ID].Love,
-			Title: PrivateCharacter[ID].Title,
-			Trait: PrivateCharacter[ID].Trait,
-			Cage: PrivateCharacter[ID].Cage,
-			Owner: PrivateCharacter[ID].Owner,
-			Lover: PrivateCharacter[ID].Lover,
-			AssetFamily: PrivateCharacter[ID].AssetFamily,
-			Appearance: ServerAppearanceBundle(PrivateCharacter[ID].Appearance),
-			AppearanceFull: ServerAppearanceBundle(PrivateCharacter[ID].AppearanceFull),
-			Event: PrivateCharacter[ID].Event
-		};
-		D.PrivateCharacter.push(C);
+	if (PrivateVendor != null) {
+		var D = {};
+		D.PrivateCharacter = [];
+		for(var ID = 1; ID < PrivateCharacter.length; ID++) {
+			var C = {
+				Name: PrivateCharacter[ID].Name,
+				Love: PrivateCharacter[ID].Love,
+				Title: PrivateCharacter[ID].Title,
+				Trait: PrivateCharacter[ID].Trait,
+				Cage: PrivateCharacter[ID].Cage,
+				Owner: PrivateCharacter[ID].Owner,
+				Lover: PrivateCharacter[ID].Lover,
+				AssetFamily: PrivateCharacter[ID].AssetFamily,
+				Appearance: ServerAppearanceBundle(PrivateCharacter[ID].Appearance),
+				AppearanceFull: ServerAppearanceBundle(PrivateCharacter[ID].AppearanceFull),
+				Event: PrivateCharacter[ID].Event
+			};
+			D.PrivateCharacter.push(C);
+		}
+		ServerSend("AccountUpdate", D);		
 	}
-	ServerSend("AccountUpdate", D);
 };

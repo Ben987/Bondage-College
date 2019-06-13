@@ -1,15 +1,3 @@
-BodyUpper,,Upper Body
-BodyUpper,Small,Small
-BodyUpper,Normal,Normal
-BodyUpper,Large,Large
-BodyUpper,Xlarge,Xlarge
-BodyLower,,Lower Body
-BodyLower,Small,Small
-BodyLower,Normal,Normal
-BodyLower,Large,Large
-BodyLower,Xlarge,Xlarge
-Hands,,Hands
-Hands,Default,Default
 Cloth,,Cloth
 Cloth,CollegeOutfit1,College
 Cloth,MaidOutfit1,Maid
@@ -37,6 +25,90 @@ ClothLower,TennisSkirt1,Tennis
 ClothLower,Jeans1,Jeans
 ClothLower,Shorts1,Shorts
 ClothLower,MistressBottom,Mistress Bottom
+Bra,,Bra
+Bra,Bra1,Style 1
+Bra,Bra2,Style 2
+Bra,Bra7,Style 3
+Bra,Bra8,Lace and Satin
+Bra,Bra9,Strapless
+Bra,Bustier1,Satin Bustier
+Bra,Corset1,Corset + Garters
+Bra,Corset2,Corset
+Bra,Corset3,Half Cup Corset
+Bra,Corset4,Underbust Corset
+Bra,Swimsuit1,Swimsuit style 1
+Bra,Swimsuit2,Swimsuit style 2
+Bra,BunnySuit,Bunny Girl Bodysuit
+Panties,,Panties
+Panties,Panties1,Style 1
+Panties,Panties7,Style 2
+Panties,Panties8,Style 3
+Panties,Panties11,Style 4
+Panties,Panties12,String Bikini
+Panties,Panties13,Satin Bikini
+Panties,Panties14,High Cut
+Panties,Panties15,Thong
+Panties,Diapers1,Diapers
+Socks,,Socks
+Socks,Socks1,Short
+Socks,Socks2,Regular
+Socks,Socks3,Middle Leg
+Socks,Socks4,High Leg
+Socks,Socks5,Full Leg
+Socks,Stockings1,Stockings Dark
+Socks,Stockings2,Stockings Light
+Socks,Stockings3,Silky Stockings
+Socks,Stockings4,Fishnet Stockings
+Socks,Pantyhose1,Pantyhose
+Shoes,,Shoes
+Shoes,Shoes1,Style 1
+Shoes,Shoes2,Style 2
+Shoes,Shoes4,Style 3
+Shoes,Sneakers1,Sneakers Light
+Shoes,Sneakers2,Sneakers Dark
+Shoes,Heels1,Heels
+Shoes,Heels2,Heels Strap
+Shoes,Boots1,Boots
+Shoes,MistressBoots,Mistress Boots
+Shoes,PonyBoots,Pony Boots
+Hat,,Hat
+Hat,Band1,Hair Band
+Hat,Beret1,Beret
+Hat,Ears1,Ears Small
+Hat,Ears2,Ears Large
+Hat,PonyEars1,Pony Ears
+Hat,Ribbons1,Hair Ribbon 1
+Hat,MaidHairband1,Maid Hairband
+Hat,NurseCap,Nurse Cap
+Hat,Santa1,Santa Hat
+Hat,BunnyEars1,Bunny Ears
+Hat,BunnyEars2,Floppy Bunny Ears
+Hat,CaptainHat1,Captain's Hat
+Gloves,,Gloves
+Gloves,Gloves1,Short Gloves
+Gloves,Gloves2,Long Gloves
+Gloves,MistressGloves,Mistress Gloves
+Glasses,,Glasses
+Glasses,Glasses1,Style 1
+Glasses,Glasses2,Style 2
+Glasses,Glasses3,Style 3
+Glasses,Glasses4,Style 4
+Glasses,Glasses5,Style 5
+Glasses,Glasses6,Style 6
+Glasses,SunGlasses1,Sunglasses 1
+Glasses,SunGlasses2,Sunglasses 2
+BodyUpper,,Upper Body
+BodyUpper,Small,Small
+BodyUpper,Normal,Normal
+BodyUpper,Large,Large
+BodyUpper,Xlarge,Xlarge
+BodyLower,,Lower Body
+BodyLower,Small,Small
+BodyLower,Normal,Normal
+BodyLower,Large,Large
+BodyLower,Xlarge,Xlarge
+Hands,,Hands
+Hands,Default,Default
 HairBack,,Back Hair
 HairBack,HairNone,None
 HairBack,HairBack1,Style 1
@@ -98,15 +170,6 @@ Eyes,Eyes8,Style 8
 Eyes,Eyes9,Style 9
 Eyes,Eyes10,Style 10
 Eyes,Eyes11,Style 11
-Glasses,,Glasses
-Glasses,Glasses1,Style 1
-Glasses,Glasses2,Style 2
-Glasses,Glasses3,Style 3
-Glasses,Glasses4,Style 4
-Glasses,Glasses5,Style 5
-Glasses,Glasses6,Style 6
-Glasses,SunGlasses1,Sunglasses 1
-Glasses,SunGlasses2,Sunglasses 2
 Mouth,,Mouth
 Mouth,Mouth1,Style 1
 Mouth,Mouth2,Style 2
@@ -115,24 +178,6 @@ Mouth,Mouth4,Style 4
 Nipples,,Nipples Style
 Nipples,Nipples1,Small
 Nipples,Nipples2,Large
-Bra,,Bra
-Bra,Bra1,Style 1
-Bra,Bra2,Style 2
-Bra,Bra7,Style 3
-Bra,Bra8,Lace and Satin
-Bra,Bra9,Strapless
-Bra,Bustier1,Satin Bustier
-Bra,Corset1,Corset + Garters
-Bra,Corset2,Corset
-Bra,Corset3,Half Cup Corset
-Bra,Corset4,Underbust Corset
-Bra,Swimsuit1,Swimsuit style 1
-Bra,Swimsuit2,Swimsuit style 2
-Bra,BunnySuit,Bunny Girl Bodysuit
-Gloves,,Gloves
-Gloves,Gloves1,Short Gloves
-Gloves,Gloves2,Long Gloves
-Gloves,MistressGloves,Mistress Gloves
 Pussy,,Pussy
 Pussy,PussyLight1,Light 1
 Pussy,PussyLight2,Light 2
@@ -140,38 +185,6 @@ Pussy,PussyLight3,Light 3
 Pussy,PussyDark1,Dark 1
 Pussy,PussyDark2,Dark 2
 Pussy,PussyDark3,Dark 3
-Panties,,Panties
-Panties,Panties1,Style 1
-Panties,Panties7,Style 2
-Panties,Panties8,Style 3
-Panties,Panties11,Style 4
-Panties,Panties12,String Bikini
-Panties,Panties13,Satin Bikini
-Panties,Panties14,High Cut
-Panties,Panties15,Thong
-Panties,Diapers1,Diapers
-Socks,,Socks
-Socks,Socks1,Short
-Socks,Socks2,Regular
-Socks,Socks3,Middle Leg
-Socks,Socks4,High Leg
-Socks,Socks5,Full Leg
-Socks,Stockings1,Stockings Dark
-Socks,Stockings2,Stockings Light
-Socks,Stockings3,Silky Stockings
-Socks,Stockings4,Fishnet Stockings
-Socks,Pantyhose1,Pantyhose
-Shoes,,Shoes
-Shoes,Shoes1,Style 1
-Shoes,Shoes2,Style 2
-Shoes,Shoes4,Style 3
-Shoes,Sneakers1,Sneakers Light
-Shoes,Sneakers2,Sneakers Dark
-Shoes,Heels1,Heels
-Shoes,Heels2,Heels Strap
-Shoes,Boots1,Boots
-Shoes,MistressBoots,Mistress Boots
-Shoes,PonyBoots,Pony Boots
 Eyebrows,,Eyebrows
 Eyebrows,Eyebrows1,Eyebrows
 Blush,,Blush

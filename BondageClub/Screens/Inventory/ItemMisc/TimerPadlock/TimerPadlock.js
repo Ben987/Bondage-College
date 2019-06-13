@@ -1,17 +1,14 @@
 "use strict";
-var InventoryItemMiscTimerPadlockItem = null;
 
 // Loads the item extension properties
 function InventoryItemMiscTimerPadlockLoad() {
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	InventoryItemMiscTimerPadlockItem = InventoryGet(C, C.FocusGroup.Name);
 }
 
 // Draw the extension screen
 function InventoryItemMiscTimerPadlockDraw() {
-	if ((DialogFocusItem == null) || (InventoryItemMiscTimerPadlockItem.Property.RemoveTimer < CurrentTime)) { InventoryItemMiscTimerPadlockExit(); return; }
+	if ((DialogFocusItem == null) || (DialogFocusSourceItem.Property.RemoveTimer < CurrentTime)) { InventoryItemMiscTimerPadlockExit(); return; }
 	DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
-	DrawText(DialogFind(Player, "TimerLeft") + " " + TimerToString(InventoryItemMiscTimerPadlockItem.Property.RemoveTimer - CurrentTime), 1500, 150, "white", "gray");
+	DrawText(DialogFind(Player, "TimerLeft") + " " + TimerToString(DialogFocusSourceItem.Property.RemoveTimer - CurrentTime), 1500, 150, "white", "gray");
 	DrawRect(1387, 225, 225, 275, "white");
 	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
@@ -27,7 +24,7 @@ function InventoryItemMiscTimerPadlockClick() {
 
 // When the timer resets
 function InventoryItemMiscTimerPadlockReset() {
-	if (DialogFocusItem.Asset.RemoveTimer > 0) InventoryItemMiscTimerPadlockItem.Property.RemoveTimer = CurrentTime + (DialogFocusItem.Asset.RemoveTimer * 1000);
+	if (DialogFocusItem.Asset.RemoveTimer > 0) DialogFocusSourceItem.Property.RemoveTimer = CurrentTime + (DialogFocusItem.Asset.RemoveTimer * 1000);
 	if (CurrentScreen == "ChatRoom") {
 		var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 		var msg = DialogFind(Player, "TimerRestart");

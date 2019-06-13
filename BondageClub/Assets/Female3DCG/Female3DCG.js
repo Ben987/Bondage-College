@@ -414,13 +414,13 @@ var AssetFemale3DCG = [
 		Category: "Item",
 		Priority: 13,
 		Default: false,
-		AllowPose: ["BackBoxTie", "BackCuffs", "BackElbowTouch"],
+		AllowPose: ["BackBoxTie", "BackCuffs", "BackElbowTouch", "TapedHands"],
 		Color: ["Default"],
 		Left: 125,
 		Top: 375,
 		Zone: [[150, 420, 200, 80]],
 		Asset: [
-			{ Name: "MetalChastityBelt", Effect: ["Chaste", "Lock"], Block: ["ItemVulva", "ItemButt"], Value: 100, Prerequisite: "AccessVulva", Time: 20, RemoveTime: 10, ExpressionTrigger: [{Group: "Eyebrows", Name: "Soft", Timer: 10}] },
+			{ Name: "MetalChastityBelt", Effect: ["Chaste", "Lock"], Block: ["ItemVulva", "ItemButt"], Value: 100, Prerequisite: "AccessVulva", Difficulty: 50, Time: 20, RemoveTime: 10, ExpressionTrigger: [{Group: "Eyebrows", Name: "Soft", Timer: 10}] },
 			{ Name: "MetalChastityBeltKey", Wear: false, Value: -1, Effect: ["Unlock-MetalChastityBelt"], Prerequisite: "AccessVulva", Time: 5 },
 			{ Name: "LeatherCrop", Value: 40, Wear: false, BuyGroup: "LeatherCrop", Bonus: [{Type: "KidnapDomination", Factor: 3}], ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}, {Group: "Eyebrows", Name: "Soft", Timer: 10}] },
 			{ Name: "LeatherWhip", Value: 60, Wear: false, BuyGroup: "LeatherWhip", Bonus: [{Type: "KidnapBruteForce", Factor: 3}], ExpressionTrigger: [{Group: "Blush", Name: "Medium", Timer: 10}, {Group: "Eyebrows", Name: "Soft", Timer: 10}] },
@@ -442,7 +442,7 @@ var AssetFemale3DCG = [
 		Asset: [ 
 			{ Name: "NylonRopeHarness", Value: 25, Prerequisite: "AccessTorso", Time: 25 }, 
 			{ Name: "HempRopeHarness", Value: 50, Prerequisite: "AccessTorso", Time: 25, RemoveTime: 35, Difficulty: 3 },
-			{ Name: "LeatherHarness", Value: 100, Prerequisite: "AccessTorso", Time: 15, RemoveTime: 10, AllowLock: true },
+			{ Name: "LeatherHarness", Value: 100, Prerequisite: "AccessTorso", Time: 15, RemoveTime: 10, Difficulty: 50, AllowLock: true },
 			{ Name: "AdultBabyHarness", Value: 80, Priority: 24, Time: 15, RemoveTime: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] }
 		]
 	},
@@ -477,7 +477,7 @@ var AssetFemale3DCG = [
 		Top: 200,
 		Zone: [[250, 260, 100, 80]],
 		Asset: [
-			{ Name: "MetalChastityBra", Value: 75, Effect: ["Lock", "BreastChaste"], Block: ["ItemNipples"], Hide: ["ItemNipples"], Prerequisite: "AccessBreast", Time: 15, ExpressionTrigger: [{Group: "Eyebrows", Name: "Soft", Timer: 10}] },
+			{ Name: "MetalChastityBra", Value: 75, Effect: ["Lock", "BreastChaste"], Block: ["ItemNipples"], Hide: ["ItemNipples"], Prerequisite: "AccessBreast", Time: 15, Difficulty: 50, ExpressionTrigger: [{Group: "Eyebrows", Name: "Soft", Timer: 10}] },
 			{ Name: "MetalChastityBraKey", Wear: false, Value: -1, Effect: ["Unlock-MetalChastityBra"], Prerequisite: "AccessBreast", Time: 5 },
 			{ Name: "LeatherCrop", Value: 40, Wear: false, BuyGroup: "LeatherCrop", Bonus: [{Type: "KidnapDomination", Factor: 3}], ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}, {Group: "Eyebrows", Name: "Soft", Timer: 10}] },
 			{ Name: "LeatherWhip", Value: 60, Wear: false, BuyGroup: "LeatherWhip", Bonus: [{Type: "KidnapBruteForce", Factor: 3}], ExpressionTrigger: [{Group: "Blush", Name: "Medium", Timer: 10}, {Group: "Eyebrows", Name: "Soft", Timer: 10}] }
@@ -499,12 +499,12 @@ var AssetFemale3DCG = [
 			{ Name: "HempRope", SelfBondage: false, Value: 30, SetPose: ["BackBoxTie"], Effect: ["Block", "Prone"], Time: 20, Difficulty: 3 },
 			{ Name: "MetalCuffs", Priority: 24, Value: 50, SetPose: ["BackCuffs"], Effect: ["Block", "Prone", "Lock"], Difficulty: 5, Time: 5 },
 			{ Name: "LeatherArmbinder", SelfBondage: false, Priority: 2, Value: 80, SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone"], Time: 25, RemoveTime: 10, Difficulty: 10, AllowLock: true },
-			{ Name: "LeatherCuffs", Priority: 24, Random: false, Value: 100, AllowPose: ["BackBoxTie", "BackElbowTouch"], Time: 20, Difficulty: 4, Extended: true, AllowLock: true },
-			{ Name: "PaddedMittens", SelfBondage: false, Value: 50, Effect: ["Block", "Prone"], Extended: true, Time: 15, Difficulty: 4, AllowLock: true },
+			{ Name: "LeatherCuffs", Priority: 24, Random: false, Value: 100, AllowPose: ["BackBoxTie", "BackElbowTouch"], Time: 20, Difficulty: 3, Extended: true, AllowLock: true },
+			{ Name: "PaddedMittens", SelfBondage: false, Value: 50, Effect: ["Block", "Prone"], Extended: false, Time: 15, Difficulty: 4, AllowLock: true },
 			{ Name: "FourLimbsShackles", Enable: false, Value: -1, SetPose: ["BackBoxTie"], Effect: ["Block", "Prone", "Lock"], Time: 30 },
-			{ Name: "StraitLeotard", SelfBondage: false, Value: 200, SetPose: ["BackElbowTouch"], Hide: ["Cloth", "ClothLower"], Block: ["ItemNipples", "ItemVulva", "ItemButt"], Effect: ["Block", "Prone"], Time: 35, RemoveTime: 20, Difficulty: 13, AllowLock: true },
+			{ Name: "StraitLeotard", SelfBondage: false, Value: 200, SetPose: ["BackElbowTouch"], Hide: ["Cloth", "ClothLower"], Block: ["ItemNipples", "ItemVulva", "ItemButt", "ItemPelvis", "ItemTorso", "ItemBreast"], Effect: ["Block", "Prone"], Time: 35, RemoveTime: 20, Difficulty: 13, AllowLock: true },
 			{ Name: "PawMittens", SelfBondage: false, Value: 60, Effect: ["Block", "Prone"], Time: 15, Difficulty: 4, AllowLock: true },
-			{ Name: "DuctTape", SelfBondage: false, Extended: true, Value: 50, AllowPose: ["TapedHands"], SetPose: ["TapedHands"], Effect: ["Block", "Prone"], Time: 20, RemoveTime: 10, Difficulty: 3, BuyGroup: "DuctTape" }
+			{ Name: "DuctTape", SelfBondage: false, Extended: true, Value: 50, AllowPose: ["TapedHands"], SetPose: ["TapedHands"], Effect: ["Block", "Prone"], Time: 20, RemoveTime: 10, Difficulty: 5, BuyGroup: "DuctTape" }
 		]
 	},
 
@@ -564,10 +564,10 @@ var AssetFemale3DCG = [
 		Zone: [[150, 35, 200, 125]],
 		Asset: [ 
 			{ Name: "ClothBlindfold", Effect: ["BlindLight", "Prone"], Hide: ["Glasses"], Value: 20, Time: 5 },
-			{ Name: "LeatherBlindfold", Effect: ["BlindNormal", "Prone"], Hide: ["Glasses"], Value: 40, Time: 5 },
-			{ Name: "LeatherHood", Effect: ["BlindHeavy", "Prone", "GagLight"], Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth", "Eyes"], Block: ["ItemMouth", "ItemNeck"], Value: 90, Time: 15, AllowLock: true },
-			{ Name: "LeatherHoodOpenEyes", Effect: ["Prone", "GagLight"], Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth"], Block: ["ItemMouth", "ItemNeck"], Value: 60, Time: 15, AllowLock: true },
-			{ Name: "StuddedBlindfold", Effect: ["BlindNormal", "Prone"], Hide: ["Glasses"], Value: -1, Time: 5 },
+			{ Name: "LeatherBlindfold", Effect: ["BlindNormal", "Prone"], Hide: ["Glasses"], Value: 40, Time: 5, AllowLock: true },
+			{ Name: "LeatherHood", Effect: ["BlindHeavy", "Prone", "GagLight"], Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth", "Eyes"], Block: ["ItemMouth", "ItemNeck"], Difficulty: 50, Value: 90, Time: 15, AllowLock: true },
+			{ Name: "LeatherHoodOpenEyes", Effect: ["Prone", "GagLight"], Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth"], Block: ["ItemMouth", "ItemNeck"], Difficulty: 50, Value: 60, Time: 15, AllowLock: true },
+			{ Name: "StuddedBlindfold", Effect: ["BlindNormal", "Prone"], Hide: ["Glasses"], Difficulty: 2, Value: -1, Time: 5, AllowLock: true },
 			{ Name: "KittyBlindfold", Effect: ["BlindLight", "Prone"], Hide: ["Glasses"], Value: 25, Time: 5 },
 			{ Name: "DuctTape", Effect: ["BlindNormal", "Prone"], Hide: ["Glasses"], Value: 50, Time: 10, RemoveTime: 5, BuyGroup: "DuctTape" }
 		]
