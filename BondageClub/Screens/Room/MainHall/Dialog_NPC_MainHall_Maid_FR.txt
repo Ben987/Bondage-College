@@ -1,0 +1,124 @@
+###_NPC
+Do you need help?  Nod if you do.
+Avez-vous besoin d'aide? Hocher si oui.
+(DialogCharacterName comes to check on you again.)  You're in trouble again?  Do you need help?
+(DialogCharacterName arrive pour vérifier à nouveau.)  Vous vous êtes encore mis dans le pétrin? Avez-vous besoin d'aide?
+Still in trouble, are we?  Have you learned your lesson?  Nod if you did.
+Encore dans le pétrin, sommes-nous?  Avez-vous appris votre leçon? Hocher si oui.
+It seems that you need to learn a lesson. (She grabs your arms and forces them in a armbinder.  She then gets a gag and silences you.)
+Il semble qu'il vous faut une leçon. (Elle prend vos bras et les force dans un monogant. Ensuite, elle prend un bâillon et vous tait.)
+(She gulps and bows her head.)  Yes Miss.  Sorry Miss.
+(Elle avale and rabaisse sa tête.)  Oui, Mademoiselle. Pardon, Mademoiselle.
+I'm sorry Miss.  I cannot help you now.
+Je suis désolé, Mademoiselle. Je ne peux vous aider en ce moment.
+(She gives a curious look at the gag but doesn't resist as you silence her.)
+(Elle regarde le bâillon avec curiosité mais ne résiste pas alors que vous la taisez.)
+(You remove her gag slowly.)  Thanks Miss, it will be easier to do my job.
+(Vous enlevez son bâillon lentement.)  Merci Mademoiselle, il me sera plus facile de faire mes tâches.
+(She nods and turns around as you restrain her arms securely.)  It will be a kinky work day.
+(Elle hoche et se retourne alors que vous attachez ses bras ensemble.)  Ce sera une journée perverse.
+(You free her arms and she stretches.)  Thanks head maid DialogPlayerName, this will make my work easier.
+(Vous libérez ses bras et elle s'étire.)  Merci, Maîtresse servante DialogPlayerName, il me sera plus facile de faire mes tâches.
+(She submits as you restrain her legs.)  Another kinky day in our kinky club.
+(Elle se soumet alors que vous attacher ses jambes.)  Une autre journée perverse dans notre club BDSM.
+(You release her legs while she shakes her butt.)  Thanks Miss.
+(Vous libérez ses jambes alors qu'elle remue son derrière.)  Merci, Mademoiselle.
+(You restrain her feet securely.)  I'll stay in the hall then.
+(Vous attachez ses pieds fermement.)  Je vais rester dans le hall principal dans ce cas.
+(You release her feet.)  Much better.
+(Vous libérez ses pieds.)  Beaucoup mieux.
+(You strap the collar on her while she blushes.)  Someday I'll find a wonderful Mistress like you Miss.
+(Vous ajustez un collier sur son cou alors qu'elle rougit.)  Un jour, je trouverai une bonne Maîtresse comme vous, Mademoiselle.
+(You remove the collar around her neck.)  Freedom is overrated.
+(Vous retirer le collier de son cou.)  La liberté est surestimée.
+(She frowns as you lock the device on her.)  I hope you will unlock it after my shift Miss.
+(Elle sourcille alors que vous verouillez l'objet sur elle.)  J'espère que vous le déverouillerez après mon quart, Mademoiselle.
+(She nods happily as you unlock the device.)  Yes!  That's very nice of you Miss.
+(Elle hoche heureusement lorsque vous déverouillez l'objet.)  Oui!  C'est très gentil, Mademoiselle.
+(You strap the device on her head as she mumbles.)  It will be a kinky work day it seems.
+(Vous ajustez l'objet sur sa tête pendant qu'elle murmure.)  Ce sera une journée perverse, il semble.
+(You remove the device and she nods slowly.)  You're the best head maid DialogPlayerName.
+(Vous enlevez l'objet et elle hoche lentement.)  Vous êtes la meilleure, Maîtresse servante DialogPlayerName.
+(She jumps from the searing pain on her breast.)  Ouch!  Miss Head Maid!
+(Elle sautille face à la douleur aiguë sur son sein.)  Aie!  Maîtresse servante!
+(You whip her breast with the leather crop as she whimpers and bows her head.)
+(Vous fouettez son sein avec la cravache de cuir alors qu'elle gémit et rabaisse sa tête.)
+(You whip her butt hard as she sighs.)  I promise I'll work harder Miss Head Maid.
+(Vous fouettez son derrière fortement alors qu'elle soupire.)  Je promets de travailler plus fort, Maîtresse servante.
+(She grumbles as you strike her butt with the crop.)  A maid work isn't easy.
+(Elle grogne alors que vous frappez son derrière avec la cravache.)  Le travail de servante n'est pas facile.
+(A maid walks by and greets you.)  Hi naked girl, are you trouble?  Do you need help?
+(Une servante arrive et vous salue.)  Bonjour fille nue, êtes-vous dans le pétrin? Avez-vous besoin d'aide?
+(A maid walks by and greets you.)  Greetings head maid DialogPlayerName, are you trouble?  Do you need help?
+(Une servante arrive et vous salue.)  Bonjour Maîtresse servante DialogPlayerName, êtes-vous dans le pétrin? Avez-vous besoin d'aide?
+(A maid walks by and greets you.)  Hi Sister, are you trouble?  Do you need help?
+(Une servante arrive et vous salue.)  Bonjour soeur, êtes-vous dans le pétrin? Avez-vous besoin d'aide?
+(A maid walks by and greets you.)  Are you trouble?  Do you need help?
+(Une servante arrive et vous salue.)  Êtes-vous dans le pétrin? Avez-vous besoin d'aide?
+###_PLAYER
+Who are you?
+Qui êtes-vous?
+###_NPC
+I'm DialogCharacterName, I work here as a maid to help submissives in trouble.  Do you need help?
+Je suis DialogCharacterName et je travaille comme servante afin d'aider les soumises dans le pétrin. Avez-vous besoin d'aide?
+###_PLAYER
+(Nod yes.)
+(Hocher.)
+###_NPC
+(She releases you and smiles.)  Here you go!  Everything is ok now?
+(Elle vous libère et sourit.)  Et voilà! Est-ce que tout est bien maintenant?
+###_PLAYER
+Yes, can you release me?
+Oui, pouvez-vous me libérer?
+Get lost girl!
+Vas-t'en, salope!
+###_NPC
+It seems that you need something to shut your foul mouth.  (She produces a gag and silences you.)
+Il semble qu'il vous faut quelque chose pour taire cette maudite bouche.  (Elle prend un bâillon et vous tait.)
+###_PLAYER
+I'm fine, thanks. (Leave her.)
+Je suis bien, merci. (Laissez-la.)
+###_NPC
+Pleased to meet you.  I'm DialogCharacterName, I work here as a maid.
+Enchanté. Je suis DialogCharacterName et je travaille ici comme servante.
+###_PLAYER
+(Shake your head no and leave her.)
+(Secouez la tête et laissez-la.)
+Thanks Miss.  I really appreciate.
+Merci Mademoiselle. C'est très apprécié.
+###_NPC
+My pleasure, I'll be around if you need help again.
+Avec joie. Je ne serai pas loin si vous avez encore besoin d'aide.
+###_PLAYER
+I owe you one, scream if you get in trouble.
+Je suis endetté. Criez si vous êtes dans le pétrin.
+###_NPC
+(She giggles.)  Very well, I'll be around if you need help again.
+(Elle rigole.)  Très bien. Je ne serai pas loin si vous avez encore besoin d'aide.
+###_PLAYER
+Can this slave ask you something else?
+Est-ce que cette esclave peut vous demander autre chose?
+###_NPC
+Of course little club slave.  How can I help you?
+Mais certes, petite esclave publique. Comment puis-je vous aider?
+###_PLAYER
+Take care!  (Leave her.)
+Prenez soin!  (Laissez-la.)
+A club customer reserved a bedroom to punish me.
+Un client du club a reservé une chambre pour me punir.
+###_NPC
+Good for you.  (She laughs.)  And how can I help?
+Très bien.  (Elle rit.)  Et comment puis-je vous aider?
+###_PLAYER
+Nothing, I'm good.  (Leave her.)
+Ce n'est rien, je suis bonne.  (Laissez-la.)
+There's already a girl chained on the bed.
+Il y a déjà une fille enchaînée au lit.
+###_NPC
+I understand, we can't have unhappy customers can we?  I'll go release her.
+Mais certes, nous ne pouvons pas avoir de clients mécontents, n'est-ce pas? Je vais la libérer.
+###_PLAYER
+You're the best!  (Leave her.)
+Vous êtes la meilleure!  (Laissez-la.)
+(Frown and leave her.)
+(Froncez des sourcils et laissez-la.)
