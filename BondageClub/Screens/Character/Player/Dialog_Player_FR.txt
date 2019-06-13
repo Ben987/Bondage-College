@@ -1,0 +1,265 @@
+###_NPC
+Select an item to use
+Sélectionner un objet à utiliser
+Cannot use on yourself
+Impossible à utiliser sur soi
+Remove some clothes first
+Il faut enlever des vêtements
+Cancel
+Annuler
+Back to character
+Retour au personnage
+Remove the item
+Enlever l'objet
+Try to struggle out
+Tenter d'échapper
+Use a lock
+Utiliser un cadenas
+Unlock the item
+Décadenasser l'objet
+Check the lock
+Vérifier le cadenas
+Use your remote
+Utiliser une télécommande
+Color of next item
+Couleur du prochain objet
+Use this color
+Utiliser cetter couleur
+Default color
+Default color
+Challenge:
+Difficulté:
+Swapping...
+Échange en cours...
+Struggling...
+Échappage en cours...
+Unlocking...
+Déverouillage en cours...
+Removing...
+Removing...
+Locking...
+Verouillage en cours...
+Adding...
+Fixage en cours...
+Impossible to escape!
+Impossible d'y échapper!
+Struggle to free yourself
+Tentez d'échapper pour vous libérer
+You'll need help to get out
+Vous allez avoir besoin d'aide
+You can unlock yourself
+Vous pouvez déverouiller le cadenas
+You cannot unlock yourself
+Vous ne pouvez déverouiller le cadenas
+This zone is out of reach from another item
+Cette zone est hors d'accès
+You cannot access your items
+Vous ne pouvez accéder à vos objets
+Click here to speed up the progress
+Appuyez ici pour augmenter la vitesse
+Alternate keys A and S to speed up
+Alternez entre les clés A et S pour augmenter la vitesse
+Pump gag level: Empty
+Niveau de gonflage: Vide
+Pump gag level: Light
+Niveau de gonflage: Léger
+Pump gag level: Inflated
+Niveau de gonflage: Moyen
+Pump gag level: Bloated
+Niveau de gonflage: Gonflé
+Pump gag level: Full mouth
+Niveau de gonflage: Bouche pleine
+Deflate it
+Dégonfler
+Pump it
+Gonfler
+pumps
+pompe
+deflates
+dégonfle
+gag
+baillon
+Time left:
+Temps restant:
+SourceCharacter restarts the five minute timer padlock on DestinationCharacter BodyPart.
+SourceCharacter réinitialise le minuteur du cadenas sur le(s)/la BodyPart de DestinationCharacter.
+Select the bondage position
+Sélectionner une position
+Select the tape wrapping
+Sélectionner l'emballage
+A victim cannot unlock herself if her elbows are bound
+Une victime ne peut s'échapper si ses coudes sont attachés
+"From your friendly hardware store"
+"En provenance de la quincaillerie"
+"To keep your loved one secure"
+"Pour protéger vos proches"
+You can restart the timer but cannot unlock
+Vous pouvez réinitialiser le minuteur, mais non l'enlever
+Detached
+Détaché
+Bind wrists
+Poignets attachés
+Bind elbows
+Coudes attachés
+Bind both
+Tout attaché
+SourceCharacter detaches the chain from DestinationCharacter's leather cuffs.
+SourceCharacter détache la chaîne des lanières en cuir de DestinationCharacter.
+SourceCharacter attaches the leather cuffs wrist chain behind DestinationCharacter's back.
+SourceCharacter attache la chaîne aux poignets derrière le dos de DestinationCharacter.
+SourceCharacter attaches the leather cuffs elbow chain behind DestinationCharacter's back.
+SourceCharacter attache la chaîne aux coudes derrière le dos de DestinationCharacter.
+SourceCharacter attaches the leather cuffs wrist and elbow chains behind DestinationCharacter's back.
+SourceCharacter attache la chaîne des coudes et épaules derrière le dos de DestinationCharacter.
+Hands
+Mains
+Skirt
+Jupe
+Torso
+Torse
+Mummy
+Momie
+SourceCharacter wraps duct tape around DestinationCharacter's hands.
+SourceCharacter enroule du ruban adhésif autour des mains de DestinationCharacter.
+SourceCharacter creates a duct tape skirt on DestinationCharacter and traps her hands in it.
+SourceCharacter crée une jupe avec le ruban adhésif et enroule les mains de DestinationCharacter à l'intérieur.
+SourceCharacter creates a duct tape top on DestinationCharacter and traps her arms in it.
+SourceCharacter enroule les bras de DestinationCharacter dans un chandail de ruban adhésif.
+SourceCharacter creates a duct tape mummy on DestinationCharacter and traps her arms in it.
+SourceCharacter transforme DestinationCharacter en une momie de ruban adhésif.
+Select type of cloth gag
+Selectionner le type de baillon
+Small
+Petit
+Cleave
+Fendant
+OTM
+OTM
+OTN
+OTN
+SourceCharacter ties the cloth into a small gag over DestinationCharacter's mouth.
+SourceCharacter ligote le tissu en un petit baillon couvrant la bouche de DestinationCharacter.
+SourceCharacter ties the cloth into a cleave gag over DestinationCharacter's mouth.
+SourceCharacter ligote le tissu et fend la bouche de DestinationCharacter avec le baillon.
+SourceCharacter stuffs DestinationCharacter's mouth with a piece of cloth and secures it with another piece.
+SourceCharacter rempli la bouche de DestinationCharacter avec un morceau de tissu et l'enroule avec un autre.
+SourceCharacter stuffs DestinationCharacter's mouth with a piece of cloth and secures the gag over her mouth and nose.
+SourceCharacter rempli la bouche de DestinationCharacter avec un morceau de tissu et enroule la bouche et le nez avec un autre.
+Single strip
+Bande simple
+Crossed strips
+Bandes croisées
+Full face
+Face pleine
+Double layer
+Double couche
+SourceCharacter puts a piece of duct tape on DestinationCharacter's mouth.
+SourceCharacter place un morceau de ruban sur la bouche de DestinationCharacter.
+SourceCharacter crosses two pieces of duct tape on DestinationCharacter's mouth.
+SourceCharacter croise deux morceaux de ruban sur la bouche de DestinationCharacter.
+SourceCharacter fully tapes DestinationCharacter's mouth.
+SourceCharacter enroule complètement la bouche de DestinationCharacter avec le ruban.
+SourceCharacter fully tapes DestinationCharacter's mouth with double layers.
+SourceCharacter enroule complètement la bouche de DestinationCharacter avec deux couches de ruban.
+Item intensity: Disabled
+Intensité de l'objet: Désactivée
+Item intensity: Low
+Intensité de l'objet: Faible
+Item intensity: Medium
+Intensité de l'objet: Moyenne
+Item intensity: High
+Intensité de l'objet: Forte
+Item intensity: Maximum
+Intensité de l'objet: Maximale
+Increase
+Augmenter
+Decrease
+Réduire
+Show chat message
+Message visible
+SourceCharacter sets DestinationCharacter's shock collar to low intensity.
+SourceCharacter règle le collier de choc de DestinationCharacter à intensité faible.
+SourceCharacter sets DestinationCharacter's shock collar to moderate intensity.
+SourceCharacter règle le collier de choc de DestinationCharacter à intensité moyenne.
+SourceCharacter sets DestinationCharacter's shock collar to high intensity.
+SourceCharacter règle le collier de choc de DestinationCharacter à intensité forte.
+DestinationCharacter's collar gives her a light shock.
+Le collier de DestinationCharacter lui donne un choc léger.
+DestinationCharacter's collar lets out a sharp jolt!
+Le collier de DestinationCharacter lui donne une secousse aigüe.
+DestinationCharacter's collar delivers an intense shock!
+Le collier de DestinationCharacter lui donne un choc intense.
+DestinationCharacter's vibrating egg stops vibrating.
+L'oeuf de DestinationCharacter arrête de vibrer.
+DestinationCharacter's vibrating egg slows down into a light tease.
+L'oeuf de DestinationCharacter ralenti juste assez pour être ressenti.
+DestinationCharacter's vibrating egg returns to a moderate pace.
+L'oeuf de DestinationCharacter retourne à une vitesse modérée.
+DestinationCharacter's vibrating egg slows down a tiny bit.
+L'oeuf de DestinationCharacter ralenti juste un peu.
+DestinationCharacter's vibrating egg starts teasing her lightly.
+L'oeuf de DestinationCharacter la taquine en vibrant légèrement.
+DestinationCharacter's vibrating egg builds up to a moderate pace.
+L'oeuf de DestinationCharacter augmente à une vitesse modérée.
+DestinationCharacter's vibrating egg starts buzzing strongly!
+L'oeuf de DestinationCharacter augmente de vitesse puissamment.
+DestinationCharacter's vibrating egg jumps up to maximum intensity!
+L'oeuf de DestinationCharacter saute à sa vitesse maximale.
+DestinationCharacter's vibrating nipple clamps stop vibrating.
+Les pinces vibrantes de DestinationCharacter arrêtent de vibrer.
+DestinationCharacter's vibrating nipple clamps slow down into a light tease.
+Les pinces vibrantes de DestinationCharacter ralentissent juste assez pour être ressenties.
+DestinationCharacter's vibrating nipple clamps return to a moderate pace.
+Les pinces vibrantes de DestinationCharacter retournent à une vitesse modérée.
+DestinationCharacter's vibrating nipple clamps slow down a tiny bit.
+Les pinces vibrantes de DestinationCharacter ralentissent juste un peu.
+DestinationCharacter's vibrating nipple clamps start teasing her lightly.
+Les pinces vibrantes de DestinationCharacter la taquinent en vibrant légèrement.
+DestinationCharacter's vibrating nipple clamps build up to a moderate pace.
+Les pinces vibrantes de DestinationCharacter augmentent à une vitesse modérée.
+DestinationCharacter's vibrating nipple clamps start buzzing strongly!
+Les pinces vibrantes de DestinationCharacter augmentent de vitesse puissamment.
+DestinationCharacter's vibrating nipple clamps jump up to maximum intensity!
+Les pinces vibrantes de DestinationCharacter sautent à leur vitesse maximale.
+Use Remote
+Utiliser la Télécommande
+(You can use or remove items by selecting specific body regions on yourself.)
+(Vous pouvez utiliser ou enlever des objets en sélectionnant les parties du corps.)
+(You clumsily whip your own breast and tummy.  It would be more painful if someone else did it.)
+(Vous fouettez votre sein et ventre maladroitement. Il serait plus douloureux si quelqu'un d'autre fouettait.)
+(You swing the crop on yourself a few times.  You can feel your breast and tummy becoming more sensitive.)
+(Vous vous frapper avec la cravache maintes fois. Vous ressentez votre sein et ventre devenir plus sensible.)
+(You need a few tries but you're able to somewhat whip your own butt and feel the pain.)
+(Après quelques essais, vous fouettez votre propre derrière et ressentez la douleur.)
+(You lash the leather crop pretty hard on your own butt.  Jumping from each good hit.)
+(Vous frappez votre derrière avec la cravache puissamment, sautant après chaque coup.)
+(You slowly massage your pussy with the wand.  Trembling from pleasure and excitement.)
+(Vous massagez votre vagin tranquilement avec la baguette, tremblant d'excitation et de plaisir.)
+Padlock mitten buckles
+Verouiller les mitaines
+Unlock mittens
+Déverouiller les mitaines
+Chain mittens
+Enchaîner les mitaines
+Unchain mittens
+Déchaîner les mitaines
+You need some padlocks to do this.
+Vous avez besoin d'un cadenas pour ceci.
+You need a padlock key to do this.
+Vous avez besoin d'une clé pour ceci.
+padlocks
+cadenasse
+unlocks
+décadenasse
+mittens
+mitaines
+chains
+chaînes
+removes the chains
+enlève les chaînes
+mittens to the baby harness
+les mitaines au harnais de bébé
+They must be wearing a baby harness first to chain the mittens to it.
+Elle doit porter un harnais de bébé avant de pouvoir y enchaîner les mitaines.
+Facial expression
+Expression faciale
