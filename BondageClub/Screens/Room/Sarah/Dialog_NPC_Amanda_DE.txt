@@ -1,6 +1,8 @@
-﻿###_NPC
+###_NPC
 (She looks at your gag and giggles.)  Silence is gold isn't it?
 (Sie sieht deinen Knebel an und kichert.) Schweigen ist Gold, was?
+(She moans loudly and cannot control herself anymore, getting a shattering orgasm.)
+(Sie stöhnt laut und kann sich nicht mehr beherrschen, was zu einem heftigen Orgasmus führt.)
 (She gives a curious look at the gag but doesn't resist as you silence her.)
 (Sie betrachtet den Knebel verwundert, wehrt sich aber nicht, als du sie zum Schweigen bringst.)
 (You remove her gag slowly.)  Thanks a lot, it will be easier to communicate now.
@@ -62,7 +64,7 @@
 Hello Miss, this is kind of embarrassing.  (She blushes.)
 Hallo, Miss, das ist irgendwie peinlich. (Sie wird rot.)
 Hi DialogPlayerName, this is kind of embarrassing.  (She blushes.)
-Hi, DialogPlayerName, das ist irgendwie peinlich. (Sie wird rot.)
+Hey, DialogPlayerName, das ist irgendwie peinlich. (Sie wird rot.)
 Sweetie!  This is so kinky.  (She blushes.)
 Liebling! Das ist so versaut. (Sie wird rot.)
 Hello my ex, this is kind of embarrassing.  (She blushes.)
@@ -271,3 +273,125 @@ Und du bist Clubmitglied?
 ###_NPC
 Not really.  I came here to look for and rescue my friend Sarah.  But I've got restrained by twins and a maid on the way.
 Nicht wirklich. Ich wollte meine Freundin Sarah suchen und retten. Aber unterwegs wurde ich von Zwillingen und einem Hausmädchen gefesselt.
+You can't punish me!  I'm your Mistress!  (She grumbles.)
+Du kannst mich nicht bestrafen!  Ich bin deine Herrin!  (Sie grummelt.)
+My love, please don't let her harm me.
+Bitte meine Liebste, lass nicht zu, dass sie mir etwas antut.
+You're going to punish me?  (She bows her head.)
+Wirst du mich bestrafen?  (Sie neigt den Kopf.)
+###_PLAYER
+Are you scared?
+Hast du etwa Angst?
+###_NPC
+(She nods.)  Please don't hurt me.
+(Sie nickt.) Bitte tu mir nicht weh.
+###_PLAYER
+You're my bitch now.
+Du bist jetzt meine Schlampe.
+###_NPC
+(She bows her head slowly.)  This is so humiliating.
+(Sie nickt langsam mit dem Kopf.) Das ist so demütigend.
+###_PLAYER
+I won't be too harsh my love.
+Ich werde nicht zu hart sein, meine Liebe.
+###_NPC
+(She nods happily.)  Thanks sweetheart.
+(Sie nickt glücklich.) Danke, du bist ein Schatz.
+You can't do that to me!  I'm your Mistress!  (She grumbles.)
+Das kannst du mir nicht antun!  Ich bin deine Herrin!  (Sie grummelt.)
+My love, this is really humiliating.
+Mein Liebling, das ist wirklich demütigend.
+This is really humiliating.  (She bows her head.)
+Das ist wirklich demütigend.  (Sie neigt den Kopf.)
+###_PLAYER
+It's time to cum girl.
+Es ist Zeit zum Kommen, Mädchen.
+###_NPC
+Please DialogPlayerName.  Do you really have to do that?
+Bitte, DialogPlayerName.  Musst du das wirklich tun?
+###_PLAYER
+Are you in the mood?
+Bist du in Stimmung?
+###_NPC
+(She blushes and shakes her head no.)
+(Sie wird rot und schüttelt den Kopf.)
+###_PLAYER
+Calm down Amanda.
+Entspann dich, Amanda.
+###_NPC
+(She takes a deep breath and calms down a little.)
+(Sie holt tief Luft und entspannt sich ein wenig.)
+###_PLAYER
+(Use the crop on her.)
+(Die Gerte an ihr benutzen.)
+###_NPC
+(You whip her with the crop as she whimpers and begs you to stop.)
+(Du peitschst sie mit der Gerte aus, als sie jammert und dich anfleht, damit aufzuhören.)
+###_PLAYER
+(Use the whip on her.)
+(Die Peitsche an ihr benutzen.)
+###_NPC
+(You whip her hard as she cries and begs you to stop.)
+(Du schlägst sie hart und sie weint und fleht dich an, aufzuhören.)
+###_PLAYER
+(Use the vibrator remote.)
+(Die Vibrator-Fernbedienung benutzen.)
+###_NPC
+(You grab Sophie's vibrator remote.  You can change the egg vibration.)
+(Du schnappst dir Sophies Vibrator-Fernbedienung und kannst jetzt die Vibrationen im Ei ändern.)
+###_PLAYER
+(Turn it off.)
+(Es ausschalten.)
+###_NPC
+(You stop the vibrating egg.)  Thank you DialogPlayerName.  Can you release me now?
+(Du schaltest das vibrierende Ei aus.) Danke, DialogPlayerName. Kannst du mich jetzt gehen lassen?
+###_PLAYER
+(Slow speed.)
+(Langsames Tempo.)
+###_NPC
+(The vibrating egg hums slowly.)  Please, you don't have to follow her orders.
+(Das vibrierende Ei summt langsam.) Bitte, du musst ihre Befehle nicht befolgen.
+###_PLAYER
+(Regular speed.)
+(Normales Tempo.)
+###_NPC
+(The vibrating egg hums inside of her.)  Oh my!  Can you slow it down?
+(Das vibrierende Ei summt in ihr.) Oh mein Gott!  Kannst du es langsamer machen?
+###_PLAYER
+(Fast speed.)
+(Schnelles Tempo.)
+###_NPC
+(The vibrating egg hums rapidly.)  Please!  I'll be good!  Stop the egg!
+(Das vibrierende Ei summt schnell.) Bitte!  Ich werde brav sein!  Hör auf mit dem Ei!
+###_PLAYER
+(Maximum speed.)
+(Maximales Tempo.)
+###_NPC
+(The vibrating egg hums at maximum speed as she trembles, moans and try to fight against the pleasure.)
+(Das vibrierende Ei summt mit voller Geschwindigkeit, sie zittert, stöhnt und versucht, gegen das Lustgefühl anzukämpfen.)
+###_PLAYER
+(Put away the remote.)
+(Die Fernbedienung weglegen.)
+###_NPC
+(You put away the remote.)
+(Du legst die Fernbedienung weg.)
+###_PLAYER
+Good girl.
+Gutes Mädchen.
+###_NPC
+(She blushes red and looks away.)  Thanks.  But this is so embarrassing.
+(Sie wird rot und schaut weg.)  Danke.  Aber das ist mir so peinlich.
+###_PLAYER
+You're such a slut.
+Du bist so eine Schlampe.
+###_NPC
+(She blushes red and looks away.)  Please don't say that, this is so embarrassing.
+(Sie wird rot und schaut weg.)  Bitte sag das nicht, das ist so peinlich.
+###_PLAYER
+(Pet her head.)
+(Ihren Kopf streicheln.)
+###_NPC
+(You pet her as she blushes red and looks away.)  This is so embarrassing.
+(Du streichelst sie, während sie rot wird und wegschaut..)  Das ist mir so peinlich.
+(She's still recovering from her orgasm.)
+(Sie erholt sich immer noch von ihrem Orgasmus.)

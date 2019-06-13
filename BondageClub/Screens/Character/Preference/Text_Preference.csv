@@ -1,6 +1,6 @@
 Preferences,- Preferences -
 CharacterLabelColor,Character label color:
-RestrainPermission,Restrain permission:
+ItemPermission,Item permission:
 PermissionLevel0,"Everyone, no exceptions"
 PermissionLevel1,"Everyone, except blacklist"
 PermissionLevel2,"Owner, whitelist & Dominants"
