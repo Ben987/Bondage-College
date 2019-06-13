@@ -67,6 +67,7 @@ var TranslationDictionary = [
 			"Screens/Room/Private/Dialog_NPC_Private_Vendor_DE.txt",
 			"Screens/Room/Sarah/Dialog_NPC_Amanda_DE.txt",
 			"Screens/Room/Sarah/Dialog_NPC_Sarah_DE.txt",
+			"Screens/Room/Sarah/Dialog_NPC_Sophie_DE.txt",
 			"Screens/Room/Shibari/Dialog_NPC_Shibari_Student_DE.txt",
 			"Screens/Room/Shibari/Dialog_NPC_Shibari_Teacher_DE.txt",
 			"Screens/Room/Shop/Dialog_NPC_Shop_Vendor_DE.txt",
@@ -83,7 +84,18 @@ var TranslationDictionary = [
 		LanguageName: "Français",
 		EnglishName: "French",
 		Files: [
-			"Screens/Character/Login/Text_Login_FR.txt"
+			"Assets/Female3DCG/Female3DCG_FR.txt",
+			"Screens/Character/Appearance/Text_Appearance_FR.txt",
+			"Screens/Character/Cheat/Text_Cheat_FR.txt",
+			"Screens/Character/Creation/Text_Creation_FR.txt",
+			"Screens/Character/InformationSheet/Text_InformationSheet_FR.txt",
+			"Screens/Character/Login/Text_Login_FR.txt",
+			"Screens/Character/PasswordReset/Text_PasswordReset_FR.txt",
+			"Screens/Character/Player/Dialog_Player_FR.txt",
+			"Screens/Character/Preference/Text_Preference_FR.txt",
+			"Screens/Character/Wardrobe/Text_Wardrobe_FR.txt",
+			"Screens/Room/MainHall/Dialog_NPC_MainHall_Maid_FR.txt",
+			"Screens/Room/MainHall/Text_MainHall_FR.txt"
 		]
 	}
 
