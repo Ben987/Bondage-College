@@ -283,6 +283,6 @@ ItemMisc,WoodenPaddle,Wooden Paddle
 ItemMisc,WoodenBox,Wooden Box
 ItemMisc,MilkCan,Water filled milk can 
 ItemMisc,WaterCell,Water torture Cell
-Wings,,Wings
-Wings,SuccubusFeather,Succubus Feather
-Wings,SuccubusWings,Succubus Wings
+ItemWings,,Wings 
+ItemWings,SuccubusFeather,Succubus Feather
+ItemWings,SuccubusWings,Succubus Wings
