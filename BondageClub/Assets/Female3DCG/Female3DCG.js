@@ -598,12 +598,10 @@ var AssetFemale3DCG = [
 	{
 		Group: "ItemWings",
 		ParentGroup: "BodyUpper",
-		Category: "Item",
+		Clothing: true,
 		Default: false,
 		AllowPose: ["BackBoxTie", "BackCuffs", "BackElbowTouch", "TapedHands"],
 		Color: ["Default"],
-		Left: 125,
-		Top: 200,
 		Asset: [
 			{Name: "SuccubusFeather", Value: 10 },
 			{Name: "SuccubusWings", Value: 10 }
