@@ -45,3 +45,7 @@ canvas {
 	color: gray;
 	font-style: italic;
 }
+.ChatMessageWhisper{
+	font-style: italic;
+	color: silver;
+}

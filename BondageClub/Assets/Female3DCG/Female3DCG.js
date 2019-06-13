@@ -397,7 +397,7 @@ var AssetFemale3DCG = [
 		Category: "Item",
 		Priority: 13,
 		Default: false,
-		AllowPose: ["BackBoxTie", "BackCuffs", "BackElbowTouch"],
+		AllowPose: ["BackBoxTie", "BackCuffs", "BackElbowTouch", "TapedHands"],
 		Color: ["Default"],
 		Left: 125,
 		Top: 375,
