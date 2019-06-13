@@ -17,6 +17,8 @@ Cloth,AdultBabyDress3,Flower Baby dress
 Cloth,NurseUniform,Nurse Uniform
 Cloth,BunnyCollarCuffs,Bunny Girl Accessories
 Cloth,Robe1,Robe
+Cloth,SuccubusFeather,Succubus Feather
+Cloth,SuccubusWings,Succubus Wings
 ClothLower,,Bottom
 ClothLower,Skirt1,Skirt
 ClothLower,TennisSkirt1,Tennis
@@ -132,6 +134,30 @@ HairFront,HairFront9,Style 9
 HairFront,HairFront10,Style 10
 HairFront,HairFront11,Style 11
 HairFront,HairFront12,Style 12
+Hat,,Hat
+Hat,Band1,Hair Band
+Hat,Beret1,Beret
+Hat,Ears1,Ears Small
+Hat,Ears2,Ears Large
+Hat,PonyEars1,Pony Ears
+Hat,Ribbons1,Hair Ribbon 1
+Hat,MaidHairband1,Maid Hairband
+Hat,NurseCap,Nurse Cap
+Hat,Santa1,Santa Hat
+Hat,BunnyEars1,Bunny Ears
+Hat,BunnyEars2,Floppy Bunny Ears
+Hat,CaptainHat1,Captain's Hat
+Hat,SuccubusHorns,Succubus Horns
+Hat,SuccubusHorns2,Succubus Horns 2
+Hat,SuccubusHorns3,Succubus Horns 3
+Hat,SuccubusHorns4,Succubus Horns 4
+Hat,BunnySuccubus1,Bunny Succubus 1
+Hat,BunnySuccubus2,Bunny Succubus 2
+Hat,KittySuccubus1,Kitty Succubus 1
+Hat,KittySuccubus2,Kitty Succubus 2
+Hat,PonySuccubus,Pony Succubus
+Hat,FoxEars1,Fox Ears 1
+Hat,BeretKitty,Beret Kitty
 Eyes,,Eyes
 Eyes,Eyes1,Style 1
 Eyes,Eyes2,Style 2
@@ -182,6 +208,9 @@ ItemButt,,Butt
 ItemButt,BlackButtPlug,Black Butt Plug
 ItemButt,TailButtPlug,Kitty Butt Plug
 ItemButt,HorseButtPlug,Horse Butt Plug
+ItemButt,SuccubusButtPlug,Succubus Butt Plug
+ItemButt,SuccubusButtPlug2,Succubus Butt Plug 2
+ItemButt,FoxTails,Fox Tails
 ItemPelvis,,Pelvis
 ItemPelvis,MetalChastityBelt,Metal Chastity Belt
 ItemPelvis,MetalChastityBeltKey,Metal Chastity Belt Key
