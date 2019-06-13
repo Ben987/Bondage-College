@@ -17,8 +17,6 @@ Cloth,AdultBabyDress3,Flower Baby dress
 Cloth,NurseUniform,Nurse Uniform
 Cloth,BunnyCollarCuffs,Bunny Girl Accessories
 Cloth,Robe1,Robe
-Cloth,SuccubusFeather,Succubus Feather
-Cloth,SuccubusWings,Succubus Wings
 ClothLower,,Bottom
 ClothLower,Skirt1,Skirt
 ClothLower,TennisSkirt1,Tennis
@@ -285,3 +283,6 @@ ItemMisc,WoodenPaddle,Wooden Paddle
 ItemMisc,WoodenBox,Wooden Box
 ItemMisc,MilkCan,Water filled milk can 
 ItemMisc,WaterCell,Water torture Cell
+Wings,,Wings
+Wings,SuccubusFeather,Succubus Feather
+Wings,SuccubusWings,Succubus Wings
