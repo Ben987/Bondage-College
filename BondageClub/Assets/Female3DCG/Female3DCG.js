@@ -159,6 +159,7 @@ var AssetFemale3DCG = [
 			{ Name: "Santa1", Value: 30 },
 			{ Name: "BunnyEars1", Value: 20 },
 			{ Name: "BunnyEars2", Value: 20 },
+			{ Name: "PuppyEars1", Value: 20, Priority: 28 },
 			{ Name: "CaptainHat1", Value: 20 }
 		]
 	},
@@ -388,7 +389,8 @@ var AssetFemale3DCG = [
 		Asset: [
 			{ Name: "BlackButtPlug", Value: 20, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
 			{ Name: "TailButtPlug", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
-			{ Name: "HorsetailPlug", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] }
+			{ Name: "HorsetailPlug", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
+			{ Name: "PuppyTailPlug", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] }
 		]
 	},
 
@@ -487,7 +489,8 @@ var AssetFemale3DCG = [
 			{ Name: "FourLimbsShackles", Enable: false, Value: -1, SetPose: ["BackBoxTie"], Effect: ["Block", "Prone", "Lock"], Time: 30 },
 			{ Name: "StraitLeotard", SelfBondage: false, Value: 200, SetPose: ["BackElbowTouch"], Hide: ["Cloth", "ClothLower"], Block: ["ItemNipples", "ItemVulva", "ItemButt", "ItemPelvis", "ItemTorso", "ItemBreast"], Effect: ["Block", "Prone"], Time: 35, RemoveTime: 20, Difficulty: 13, AllowLock: true },
 			{ Name: "PawMittens", SelfBondage: false, Value: 60, Effect: ["Block", "Prone"], Time: 15, Difficulty: 4, AllowLock: true },
-			{ Name: "DuctTape", SelfBondage: false, Extended: true, Value: 50, AllowPose: ["TapedHands"], SetPose: ["TapedHands"], Effect: ["Block", "Prone"], Time: 20, RemoveTime: 10, Difficulty: 5, BuyGroup: "DuctTape" }
+			{ Name: "DuctTape", SelfBondage: false, Extended: true, Value: 50, AllowPose: ["TapedHands"], SetPose: ["TapedHands"], Effect: ["Block", "Prone"], Time: 20, RemoveTime: 10, Difficulty: 5, BuyGroup: "DuctTape" },
+			{ Name: "BitchSuit", Random: false, SelfBondage: false, Value: 250, SetPose: ["BackElbowTouch", "Kneel"], Hide: ["Cloth", "ClothLower"], Block: ["ItemNipples", "ItemVulva", "ItemButt", "ItemPelvis", "ItemTorso", "ItemBreast"], Effect: ["Block", "Prone", "Freeze"], Time: 40, RemoveTime: 30, Difficulty: 15, AllowLock: true }
 		]
 	},
 
@@ -501,7 +504,9 @@ var AssetFemale3DCG = [
 		Top: 190,
 		Zone: [[150, 210, 200, 50]],
 		Asset: [ 
-			{ Name: "LeatherCollar", Value: 40, Time: 5, Difficulty: 50, AllowLock: true },
+			{ Name: "LeatherCollar", Value: 40, Time: 5, Difficulty: 50, AllowLock: true, BuyGroup: "CollarAccessories" },
+			{ Name: "LeatherCollarBell", Value: 40, Time: 5, Difficulty: 50, AllowLock: true, BuyGroup: "CollarAccessories" },
+			{ Name: "LeatherCollarBow", Value: 40, Time: 5, Difficulty: 50, AllowLock: true, BuyGroup: "CollarAccessories" },
 			{ Name: "SlaveCollar", Random: false, Effect: ["Lock"], Enable: false, Value: -1, Time: 5, Difficulty: 50 },
 			{ Name: "ClubSlaveCollar", Random: false, Effect: ["Lock"], Enable: false, Value: -1, Time: 5, Difficulty: 50, ExpressionTrigger: [{Group: "Blush", Name: "Medium", Timer: 15}] },
 			{ Name: "ShockCollar", Random: false, Extended: true, Effect:["ReceiveShock"], BuyGroup: "ShockCollar", Value: 250, Time: 15, Difficulty: 50, AllowLock: true, ExpressionTrigger: [{Group: "Eyebrows", Name: "Soft", Timer: 10}] },
