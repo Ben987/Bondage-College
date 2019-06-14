@@ -86,7 +86,14 @@ var TranslationDictionary = [
 		Files: [
 			"Assets/Female3DCG/Female3DCG_FR.txt",
 			"Screens/Character/Appearance/Text_Appearance_FR.txt",
+			"Screens/Character/Cheat/Text_Cheat_FR.txt",
+			"Screens/Character/Creation/Text_Creation_FR.txt",
+			"Screens/Character/InformationSheet/Text_InformationSheet_FR.txt",
 			"Screens/Character/Login/Text_Login_FR.txt",
+			"Screens/Character/PasswordReset/Text_PasswordReset_FR.txt",
+			"Screens/Character/Player/Dialog_Player_FR.txt",
+			"Screens/Character/Preference/Text_Preference_FR.txt",
+			"Screens/Character/Wardrobe/Text_Wardrobe_FR.txt",
 			"Screens/Room/MainHall/Dialog_NPC_MainHall_Maid_FR.txt",
 			"Screens/Room/MainHall/Text_MainHall_FR.txt"
 		]
