@@ -139,14 +139,14 @@ Manchen Sklaven genügt ein Lederhalsband mit Schloss nicht. Ein um den Hals ein
 May I buy my freedom.
 Kann ich meine Freiheit kaufen?
 ###_NPC
-Certainly if you can afford it.  I think the price for your freedom will be $9999.
-Sicher, wenn du sie dir leisten kannst. Ich würde sagen, der Preis für deine Freiheit beläuft sich auf 9999$.
+Certainly if you can afford it.  I think the price for your freedom will be .....
+Sicher, wenn du sie dir leisten kannst. Ich würde sagen, der Preis für deine Freiheit beläuft sich auf .....
 ###_PLAYER
 How much will you pay me to become a slave?
 Wie viel würdest du mir zahlen, wenn ich mich versklave?
 ###_NPC
-Hmmm.  You don't look like a prime slave.  I will offer you £99 to become one of this market's slaves.
-Hmmm. Du siehst nicht gerade nach einer erstklassigen Sklavin aus. Ich biete dir 99£, wenn du eine Sklavin dieses Markts wirst.
+Hmmm.  You don't look like a prime slave.  I will offer you .... to become one of this market's slaves.
+Hmmm. Du siehst nicht gerade nach einer erstklassigen Sklavin aus. Ich biete dir ...., wenn du eine Sklavin dieses Markts wirst.
 ###_PLAYER
 Can I buy a slave?
 Kann ich eine Sklavin kaufen?
@@ -175,11 +175,11 @@ Das Halsband einer Sklavin bekomme ich sehr einfach ab, aber nur, wenn sie ihre 
 Umm, I have this problem with a chastity belt.
 Ähm, ich hätte da ein Keuschheits-Problem.
 ###_NPC
-Well I can help with that, the question is how frustratedly despirate are you.  I will remove it for $250.
-Nun, damit kann ich dir helfen, die Frage ist nur, wie frustriert und verzweifelt du bist. Ich entferne das für 250$.
+Well I can help with that, the question is how frustratedly despirate are you.  I will remove it for .....
+Nun, damit kann ich dir helfen, die Frage ist nur, wie frustriert und verzweifelt du bist. Ich entferne das für .....
 ###_PLAYER
 Can you unlock these handcuffs?
 Kannst du diese Handschellen aufschließen?
 ###_NPC
-Yes indeed, for a special customer I can do that for a bargin price of just $5.
-Aber natürlich, für eine besondere Kundin mache ich das zu einem Schnäppchenpreis von nur 5$.
+Yes indeed, for a special customer I can do that for a bargin price of just ...
+Aber natürlich, für eine besondere Kundin mache ich das zu einem Schnäppchenpreis von nur ...

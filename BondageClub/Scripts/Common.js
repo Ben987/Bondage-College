@@ -7,10 +7,8 @@ var KeyPress = "";
 var CurrentModule;
 var CurrentScreen;
 var CurrentCharacter = null;
-var CurrentTime = 0;
 var CurrentOnlinePlayers = 0;
 var CommonIsMobile = false;
-var CommonRunInterval = 20;
 var CommonCSVCache = {};
 var CutsceneStage = 0;
 

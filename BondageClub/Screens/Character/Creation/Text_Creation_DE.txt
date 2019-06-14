@@ -26,3 +26,5 @@ Both passwords do not match
 Die Passwörter stimmen nicht überein
 Import Bondage College data
 Daten aus Bondage College importieren
+Invalid server answer, it could be outdated.
+Ungültige Server-Antwort, eventuell veraltet.

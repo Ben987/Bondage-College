@@ -1,0 +1,18 @@
+- Preferences -
+- Préférences -
+Character label color:
+Couleur du nom de personnage:
+Item permission:
+Permissions d'objets:
+Everyone, no exceptions
+Tous, sans exceptions
+Everyone, except blacklist
+Tous, sauf liste noire
+Owner, whitelist & Dominants
+Patronne, liste blanche & Maîtresses
+Owner and whitelist only
+Patronne et liste blanche seulement
+Owner only
+Patronne seulement
+Put a valid hex #red-green-blue color
+Entrez un code de couleur hex #rouge-vert-bleu valide

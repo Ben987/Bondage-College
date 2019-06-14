@@ -129,8 +129,8 @@ function MaidDrinksRun() {
 	DrawRect(1200, 0, 800, 1000, "Black");
 	
 	// Increments the timer (altered by the difficulty, the more difficult, the faster it goes)
-	if (MiniGameTimer >= 5000) MiniGameTimer = MiniGameTimer + Math.round(CommonRunInterval * MiniGameDifficultyRatio);
-	else MiniGameTimer = MiniGameTimer + Math.round(CommonRunInterval);
+	if (MiniGameTimer >= 5000) MiniGameTimer = MiniGameTimer + Math.round(TimerRunInterval * MiniGameDifficultyRatio);
+	else MiniGameTimer = MiniGameTimer + Math.round(TimerRunInterval);
 	
 	// Starts the mini game at an even level
 	if ((MiniGameProgress == -1) && (MiniGameTimer >= 5000))

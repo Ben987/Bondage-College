@@ -58,9 +58,10 @@ function InformationSheetRun() {
 	// For player and online characters, we show the reputation and skills
 	if ((C.ID == 0) || (C.AccountName.indexOf("Online-") >= 0)) {
 
-		// Shows the member number
+		// Shows the member number and online permissions for other players
 		if (C.MemberNumber != null) DrawText(TextGet("MemberNumber") + " " + C.MemberNumber.toString(), 550, (C.ID == 0) ? 575 : 425, "Black", "Gray");
-	
+		if (C.ID != 0) DrawText(TextGet("ItemPermission") + " " + TextGet("PermissionLevel" + C.ItemPermission.toString()), 550, 850, "Black", "Gray");
+
 		// Draw the reputation section
 		DrawText(TextGet("Reputation"), 1000, 125, "Black", "Gray");
 		var pos = 0;

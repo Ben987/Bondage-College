@@ -5,7 +5,6 @@ var PreferenceColorPick = "";
 
 // When the preference screens loads
 function PreferenceLoad() {
-	if (Player.RestrainPermission == null) Player.RestrainPermission = 2;
 	if (!CommonIsColor(Player.LabelColor)) Player.LabelColor = "#ffffff";
 	ElementCreateInput("InputCharacterLabelColor", "text", Player.LabelColor);
 }
@@ -23,7 +22,7 @@ function PreferenceRun() {
 	document.getElementById("InputCharacterLabelColor").style.backgroundColor = "#000000";
 	DrawButton(1140, 187, 65, 65, "", "White", "Icons/Color.png");
 	DrawButton(500, 280, 90, 90, "", "White", "Icons/Next.png");
-	DrawText(TextGet("RestrainPermission") + " " + TextGet("PermissionLevel" + Player.RestrainPermission.toString()), 615, 325, "Black", "Gray");
+	DrawText(TextGet("ItemPermission") + " " + TextGet("PermissionLevel" + Player.ItemPermission.toString()), 615, 325, "Black", "Gray");
 	if (PreferenceMessage != "") DrawText(TextGet(PreferenceMessage), 500, 550, "Red", "Black");
 	MainCanvas.textAlign = "center";
 
@@ -42,7 +41,7 @@ function PreferenceClick() {
 		if (CommonIsColor(ElementValue("InputCharacterLabelColor"))) {
 			Player.LabelColor = ElementValue("InputCharacterLabelColor");
 			var P = {
-				RestrainPermission: Player.RestrainPermission,
+				ItemPermission: Player.ItemPermission,
 				LabelColor: Player.LabelColor
 			}
 			ServerSend("AccountUpdate", P);
@@ -53,8 +52,8 @@ function PreferenceClick() {
 
 	// If we must change the restrain permission level
 	if ((MouseX >= 500) && (MouseX < 590) && (MouseY >= 280) && (MouseY < 370)) {
-		Player.RestrainPermission++;
-		if (Player.RestrainPermission > 4) Player.RestrainPermission = 0;
+		Player.ItemPermission++;
+		if (Player.ItemPermission > 4) Player.ItemPermission = 0;
 	}
 
 	// If we must show/hide/use the color picker

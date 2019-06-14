@@ -59,5 +59,8 @@ function InventoryItemMouthClothGagSetType(NewType) {
 	msg = msg.replace("SourceCharacter", Player.Name);
 	msg = msg.replace("DestinationCharacter", C.Name);
 	ChatRoomPublishCustomAction(msg, true);
-	if (DialogInventory != null) DialogFocusItem = null;
+	if (DialogInventory != null) {
+		DialogFocusItem = null;
+		DialogMenuButtonBuild(C);
+	}
 }
