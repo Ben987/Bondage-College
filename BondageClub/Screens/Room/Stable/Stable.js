@@ -602,7 +602,7 @@ function StablePlayerWearEquipment(Behavior) {
 //Dress Characker like a Pony
 function StableWearPonyEquipment(C) {
 	CharacterNaked(C);
-	InventoryWear(C, "Ears2", "Hat");
+	InventoryWear(C, "PonyEars1", "Hat");
 	InventoryWear(C, "LeatherHarness", "ItemTorso");
 	InventoryWear(C, "HarnessPonyBits", "ItemMouth");
 	InventoryWear(C, "LeatherArmbinder", "ItemArms");
