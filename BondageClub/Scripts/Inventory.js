@@ -96,8 +96,11 @@ function InventoryGet(C, AssetGroup) {
 // Makes the character wear an item, color can be undefined
 function InventoryWear(C, AssetName, AssetGroup, ItemColor, Difficulty) {
 	for (var A = 0; A < Asset.length; A++)
-		if ((Asset[A].Name == AssetName) && (Asset[A].Group.Name == AssetGroup))
+		if ((Asset[A].Name == AssetName) && (Asset[A].Group.Name == AssetGroup)) {
 			CharacterAppearanceSetItem(C, AssetGroup, Asset[A], ItemColor, Difficulty);
+			InventoryExpressionTrigger(C, InventoryGet(C, AssetGroup));
+			return;
+		}
 }
 
 // Sets the difficulty to remove an item
@@ -130,7 +133,7 @@ function InventoryWearRandom(C, AssetGroup, Difficulty) {
 
 // Removes a specific item from the player appearance
 function InventoryRemove(C, AssetGroup) {
-	for(var E = 0; E < C.Appearance.length; E++)
+	for (var E = 0; E < C.Appearance.length; E++)
 		if (C.Appearance[E].Asset.Group.Name == AssetGroup) {
 			C.Appearance.splice(E, 1);
 			E--;
@@ -140,24 +143,42 @@ function InventoryRemove(C, AssetGroup) {
 
 // Returns TRUE if the currently worn item is blocked by another item (hoods blocks gags, belts blocks eggs, etc.)
 function InventoryGroupIsBlocked(C) {
-	for(var E = 0; E < C.Appearance.length; E++)
-		if ((C.Appearance[E].Asset.Block != null) && (C.Appearance[E].Asset.Block.indexOf(C.FocusGroup.Name) >= 0))
-			return true;
+	for (var E = 0; E < C.Appearance.length; E++) {
+		if ((C.Appearance[E].Asset.Block != null) && (C.Appearance[E].Asset.Block.indexOf(C.FocusGroup.Name) >= 0)) return true;
+		if ((C.Appearance[E].Property != null) && (C.Appearance[E].Property.Block != null) && (C.Appearance[E].Property.Block.indexOf(C.FocusGroup.Name) >= 0)) return true;
+	}
 	return false;
 }
 
 // Returns TRUE if the item has a specific effect.
-function InventoryItemHasEffect(Item, Effect) {
+function InventoryItemHasEffect(Item, Effect, CheckProperties) {
 	if (!Item) return null;
 
 	// If no effect is specified, we simply check if the item has any effect
 	if (!Effect) {
-		if ((Item.Asset && Item.Asset.Effect) || (Item.Property && Item.Property.Effect)) return true;
+		if ((Item.Asset && Item.Asset.Effect) || (CheckProperties && Item.Property && Item.Property.Effect)) return true;
 		else return false;
 	}
 	else {
-		if ((Item.Asset && Item.Asset.Effect && Item.Asset.Effect.indexOf(Effect) >= 0) || (Item.Property && Item.Property.Effect && Item.Property.Effect.indexOf(Effect) >= 0)) return true;
+		if ((Item.Asset && Item.Asset.Effect && Item.Asset.Effect.indexOf(Effect) >= 0) || (CheckProperties && Item.Property && Item.Property.Effect && Item.Property.Effect.indexOf(Effect) >= 0)) return true;
 		else return false;
 	}
 }
 
+// Check if we must trigger an expression for the character after an item is used/applied
+function InventoryExpressionTrigger(C, Item) {
+	if ((Item != null) && (Item.Asset != null) && (Item.Asset.ExpressionTrigger != null))
+		for (var E = 0; E < Item.Asset.ExpressionTrigger.length; E++)
+			if ((InventoryGet(C, Item.Asset.ExpressionTrigger[E].Group) == null) || (InventoryGet(C, Item.Asset.ExpressionTrigger[E].Group).Property == null) || (InventoryGet(C, Item.Asset.ExpressionTrigger[E].Group).Property.Expression == null)) {
+				CharacterSetFacialExpression(C, Item.Asset.ExpressionTrigger[E].Group, Item.Asset.ExpressionTrigger[E].Name);
+				TimerInventoryRemoveSet(C, Item.Asset.ExpressionTrigger[E].Group, Item.Asset.ExpressionTrigger[E].Timer);
+			}
+}
+
+// Returns the item that locks another item
+function InventoryGetLock(Item) {
+	if ((Item == null) || (Item.Property == null) || (Item.Property.LockedBy == null)) return null;
+	for (var A = 0; A < Asset.length; A++)
+		if (Asset[A].IsLock && (Asset[A].Name == Item.Property.LockedBy))
+			return { Asset: Asset[A] };
+}

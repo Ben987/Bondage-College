@@ -64,6 +64,10 @@ function CreationResponse(data) {
 			Player.Money = 100;
 			Player.OnlineID = data.OnlineID;
 			Player.MemberNumber = data.MemberNumber;
+			Player.ItemPermission = 2;
+			Player.WhiteList = [];
+			Player.BlackList = [];
+			Player.FriendList = [];
 
 			// Imports logs, inventory and Sarah status from the Bondage College
 			CreationMessage = "";

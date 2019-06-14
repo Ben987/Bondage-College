@@ -1,0 +1,51 @@
+canvas {
+	padding: 0;
+	margin: auto;
+	outline: none;
+	display: block;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	position: absolute;
+}
+* { -webkit-tap-highlight-color:rgba(0,0,0,0); }
+#TextAreaChatLog {
+	background-color: white;
+	border: 1px solid black;
+	overflow: auto;
+	word-wrap: break-word;
+}
+.ChatMessage {
+	position: relative;
+}
+.ChatMessage::before {
+	content: attr(data-time);
+	float: right;
+	color: gray;
+	font-style: italic;
+	font-size: 0.5em;
+	margin-right: 0.2em;
+}
+.ChatMessage::after {
+	content: attr(data-sender);
+	position: absolute;
+	color: gray;
+	font-size: 0.3em;
+	top: 1.6em;
+	right: 0.2em;
+}
+.ChatMessageName {
+	text-shadow: 1px 1px black;
+}
+.ChatMessageAction {
+	color: gray;
+}
+.ChatMessageEmote {
+	color: gray;
+	font-style: italic;
+}
+.ChatMessageWhisper{
+	font-style: italic;
+	color: silver;
+}

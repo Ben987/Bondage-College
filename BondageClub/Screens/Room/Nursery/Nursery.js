@@ -102,7 +102,7 @@ function NurseryClick() {
 			NurseryPlayerAppearance = null;
 			CommonSetScreen("Room", "MainHall");
 		}
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355) && Player.CanChange()) {CharacterAppearanceReturnRoom = "Nursery"; CommonSetScreen("Character", "Appearance");};
+		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355) && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
 	}
 	if (NurserySituation == "Admitted") {
 		if ((MouseX >= 250) && (MouseX < 750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
@@ -267,8 +267,8 @@ function NurseryDeleteItem() {
 }
 
 // When the player undresses ready to join the nursery
-function NurseryPlayerUndress() {
-	CharacterChangeMoney(Player, -10);
+function NurseryPlayerUndress(Cost) {
+	CharacterChangeMoney(Player, Cost);
 	CharacterRelease(Player);
 	InventoryRemove(Player, "ItemTorso");
 	CharacterNaked(Player);
@@ -352,7 +352,7 @@ function NurseryPlayerDePacified() {
 
 // Player released and changed back into regular clothes
 function NurseryPlayerRedressed() {
-	NurseryPlayerUndress();
+	NurseryPlayerUndress(0);
 	CharacterDress(Player, NurseryPlayerAppearance);
 	NurserySituation = null;
 }
@@ -472,9 +472,9 @@ function NurseryPlayerForgiven() {
 
 // Player is a bad baby and nurse finds her unrestrained
 function NurseryPlayerReadmitted() {
-	NurseryPlayerUndress()
-	NurseryPlayerGetsDiapered()
-	NurseryPlayerRestrained(3)
+	NurseryPlayerUndress(0);
+	NurseryPlayerGetsDiapered();
+	NurseryPlayerRestrained(3);
 }
 
 // Nurse removes inappropriate cloth and lower cloth from player

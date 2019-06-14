@@ -193,18 +193,18 @@ function CharacterLoadNPC(NPCType) {
 
 	// Returns the new character
 	return C;
-	
+
 }
 
 // Sets up the online character
 function CharacterOnlineRefresh(Char, data) {
 	Char.ActivePose = data.ActivePose;
 	Char.LabelColor = data.LabelColor;
+	Char.ItemPermission = data.ItemPermission;
 	Char.Reputation = (data.Reputation != null) ? data.Reputation : [];
 	Char.Appearance = ServerAppearanceLoadFromBundle("Female3DCG", data.Appearance);
 	AssetReload(Char);
 	CharacterLoadEffect(Char);
-	Char.AllowItem = ((Char.ID == 0) || Char.IsRestrained() || !Char.CanTalk() || (ReputationGet("Dominant") + 25 >= ReputationCharacterGet(Char, "Dominant")));
 	CharacterRefresh(Char);
 }
 
@@ -231,7 +231,6 @@ function CharacterLoadOnline(data) {
 		Char.Owner = (data.Owner != null) ? data.Owner : "";
 		Char.AccountName = "Online-" + data.ID.toString();
 		Char.MemberNumber = data.MemberNumber;
-		Char.LabelColor = data.LabelColor;
 		CharacterLoadCSVDialog(Char, "Online");
 		CharacterOnlineRefresh(Char, data);
 
@@ -319,14 +318,12 @@ function CharacterAddEffect(C, NewEffect) {
 function CharacterLoadEffect(C) {
 	C.Effect = [];
 	for (var A = 0; A < C.Appearance.length; A++) {
-		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.Effect != null))
-			CharacterAddEffect(C, C.Appearance[A].Property.Effect);
+		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.Effect != null)) CharacterAddEffect(C, C.Appearance[A].Property.Effect);
+		if (C.Appearance[A].Asset.Effect != null)
+			CharacterAddEffect(C, C.Appearance[A].Asset.Effect);
 		else
-			if (C.Appearance[A].Asset.Effect != null)
-				CharacterAddEffect(C, C.Appearance[A].Asset.Effect);
-			else
-				if (C.Appearance[A].Asset.Group.Effect != null)
-					CharacterAddEffect(C, C.Appearance[A].Asset.Group.Effect);
+			if (C.Appearance[A].Asset.Group.Effect != null)
+				CharacterAddEffect(C, C.Appearance[A].Asset.Group.Effect);
 	}	
 }
 
@@ -522,4 +519,41 @@ function CharacterFullRandomRestrain(C, Ratio) {
 function CharacterSetActivePose(C, NewPose) {
 	C.ActivePose = NewPose;
 	CharacterRefresh(C, false);
+}
+
+// Sets a specific facial expression for the character's specified AssetGruo
+function CharacterSetFacialExpression(C, AssetGroup, Expression) {
+	for (var A = 0; A < C.Appearance.length; A++) {
+		if ((C.Appearance[A].Asset.Group.Name == AssetGroup) && (C.Appearance[A].Asset.Group.AllowExpression)) {
+			if ((Expression == null) || (C.Appearance[A].Asset.Group.AllowExpression.indexOf(Expression) >= 0)) {
+				if (!C.Appearance[A].Property) C.Appearance[A].Property = {};
+				C.Appearance[A].Property.Expression = Expression;
+				CharacterRefresh(C);
+				ChatRoomCharacterUpdate(C);
+				return;
+			}
+		}
+	}
+}
+
+// Switches to the next facial expression for the given character's AssetGroup
+function CharacterCycleFacialExpression(C, AssetGroup) {
+	for (var A = 0; A < C.Appearance.length; A++) {
+		if ((C.Appearance[A].Asset.Group.Name == AssetGroup) && (C.Appearance[A].Asset.Group.AllowExpression) && (C.Appearance[A].Asset.Group.AllowExpression.length)) {
+			if (!C.Appearance[A].Property) C.Appearance[A].Property = {};
+			var Index = C.Appearance[A].Asset.Group.AllowExpression.indexOf(C.Appearance[A].Property.Expression);
+			if (Index + 1 >= C.Appearance[A].Asset.Group.AllowExpression.length) {
+				CharacterSetFacialExpression(C, AssetGroup, null);
+			} else {
+				CharacterSetFacialExpression(C, AssetGroup, C.Appearance[A].Asset.Group.AllowExpression[Index + 1]);
+			}
+		}
+	}
+}
+
+// Resets the character's facial expression to the default
+function CharacterResetFacialExpression(C) {
+	for (var A = 0; A < C.Appearance.length; A++)
+		if (C.Appearance[A].Asset.Group.AllowExpression)
+			CharacterSetFacialExpression(C, C.Appearance[A].Asset.Group.Name, null);
 }
