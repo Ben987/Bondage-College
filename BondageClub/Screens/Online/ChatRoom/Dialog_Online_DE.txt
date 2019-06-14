@@ -1,12 +1,59 @@
 ###_NPC
 (You can use or remove items by selecting specific body regions.)
 (Wähle eine Körperregion, um Items zu benutzen oder zu entfernen.)
-(You're not dominant enough to restrain her.)
-(Du bist nicht dominant genug, um sie zu fesseln.)
+(You don't have access to use or remove items on her.)
+(Es ist dir nicht möglich, Items an ihr zu benutzen oder zu entfernen.)
 ###_PLAYER
 (View her profile.)
 (Ihr Profil ansehen.)
+(Manage your relationship.)
+(Beziehung bearbeiten.)
+###_NPC
+(You can give more access to your items by putting her on your whitelist, or less control by putting her on your blacklist.)
+(Nimm sie in deine Whitelist auf, um ihr Zugriff auf deine Fesseln zu gewähren, oder verwende die Blacklist, um Kontrolle zu entziehen.)
+###_PLAYER
 (Ban her from the room.)
 (Sie aus dem Raum verbannen.)
 (Leave this menu.)
 (Dieses Menü verlassen.)
+(Add to item whitelist.)
+(Zur Item-Whitelist hinzufügen.)
+###_NPC
+(This member is now on your item permission whitelist.  She will have higher access to restrain or free you.)
+(Dieses Mitglied ist nun auf deiner Whitelist für Item-Zugriff. Sie hat eine höhere Berechtigung, dich zu fesseln oder zu befreien.)
+###_PLAYER
+(Remove from item whitelist.)
+(Von Item-Whitelist entfernen.)
+###_NPC
+(This member is no longer on your item permission whitelist.)
+(Dieses Mitglied befindet sich nicht mehr auf deiner Item-Whitelist.)
+###_PLAYER
+(Add to item blacklist.)
+(Zur Item-Blacklist hinzufügen.)
+###_NPC
+(This member is now on your item permission blacklist.  She will have less access to restrain or free you.)
+(Dieses Mitglied ist nun auf deiner Blacklist für Item-Zugriff. Sie hat eine geringere Berechtigung, dich zu fesseln oder zu befreien.)
+###_PLAYER
+(Remove from item blacklist.)
+(Von Item-Blacklist entfernen.)
+###_NPC
+(This member is no longer on your item permission blacklist.)
+(Dieses Mitglied befindet sich nicht mehr auf deiner Item-Blacklist.)
+###_PLAYER
+(Add to friendlist.)
+(Zur Freundesliste hinzufügen.)
+###_NPC
+(This member is considered to be a friend by you.)
+(Dieses Mitglied ist nun aus deiner Sicht mit dir befreundet.)
+###_PLAYER
+(Remove from friendlist.)
+(Von Freundesliste entfernen.)
+###_NPC
+(This member is not longer considered to be a friend by you.)
+(Dieses Mitglied aus deiner Sicht nicht mehr mit dir befreundet.)
+###_PLAYER
+(Back to main menu.)
+(Zurück zum Hauptmenü.)
+###_NPC
+(Main menu.)
+(Hauptmenü.)

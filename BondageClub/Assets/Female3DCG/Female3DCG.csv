@@ -1,15 +1,3 @@
-BodyUpper,,Upper Body
-BodyUpper,Small,Small
-BodyUpper,Normal,Normal
-BodyUpper,Large,Large
-BodyUpper,Xlarge,Xlarge
-BodyLower,,Lower Body
-BodyLower,Small,Small
-BodyLower,Normal,Normal
-BodyLower,Large,Large
-BodyLower,Xlarge,Xlarge
-Hands,,Hands
-Hands,Default,Default
 Cloth,,Cloth
 Cloth,CollegeOutfit1,College
 Cloth,MaidOutfit1,Maid
@@ -35,73 +23,6 @@ ClothLower,TennisSkirt1,Tennis
 ClothLower,Jeans1,Jeans
 ClothLower,Shorts1,Shorts
 ClothLower,MistressBottom,Mistress Bottom
-HairBack,,Back Hair
-HairBack,HairNone,None
-HairBack,HairBack1,Style 1
-HairBack,HairBack2,Style 2
-HairBack,HairBack4,Style 3
-HairBack,HairBack10,Style 4
-HairBack,HairBack14,Style 5
-HairBack,HairBack15,Style 6
-HairBack,HairBack16,Style 7
-HairBack,HairBack17,Style 8
-HairBack,HairBack18,Style 9
-HairBack,HairBack19,Style 10
-HairFront,,Front Hair
-HairFront,HairFront1,Style 1
-HairFront,HairFront2,Style 2
-HairFront,HairFront3,Style 3
-HairFront,HairFront4,Style 4
-HairFront,HairFront5,Style 5
-HairFront,HairFront6,Style 6
-HairFront,HairFront7,Style 7
-HairFront,HairFront8,Style 8
-HairFront,HairFront9,Style 9
-HairFront,HairFront10,Style 10
-HairFront,HairFront11,Style 11
-HairFront,HairFront12,Style 12
-Hat,,Hat
-Hat,Band1,Hair Band
-Hat,Beret1,Beret
-Hat,Ears1,Ears Small
-Hat,Ears2,Ears Large
-Hat,PonyEars1,Pony Ears
-Hat,Ribbons1,Hair Ribbon 1
-Hat,MaidHairband1,Maid Hairband
-Hat,NurseCap,Nurse Cap
-Hat,Santa1,Santa Hat
-Hat,BunnyEars1,Bunny Ears
-Hat,BunnyEars2,Floppy Bunny Ears
-Hat,CaptainHat1,Captain's Hat
-Eyes,,Eyes
-Eyes,Eyes1,Style 1
-Eyes,Eyes2,Style 2
-Eyes,Eyes3,Style 3
-Eyes,Eyes4,Style 4
-Eyes,Eyes5,Style 5
-Eyes,Eyes6,Style 6
-Eyes,Eyes7,Style 7
-Eyes,Eyes8,Style 8
-Eyes,Eyes9,Style 9
-Eyes,Eyes10,Style 10
-Eyes,Eyes11,Style 11
-Glasses,,Glasses
-Glasses,Glasses1,Style 1
-Glasses,Glasses2,Style 2
-Glasses,Glasses3,Style 3
-Glasses,Glasses4,Style 4
-Glasses,Glasses5,Style 5
-Glasses,Glasses6,Style 6
-Glasses,SunGlasses1,Sunglasses 1
-Glasses,SunGlasses2,Sunglasses 2
-Mouth,,Mouth
-Mouth,Mouth1,Style 1
-Mouth,Mouth2,Style 2
-Mouth,Mouth3,Style 3
-Mouth,Mouth4,Style 4
-Nipples,,Nipples Style
-Nipples,Nipples1,Small
-Nipples,Nipples2,Large
 Bra,,Bra
 Bra,Bra1,Style 1
 Bra,Bra2,Style 2
@@ -116,17 +37,6 @@ Bra,Corset4,Underbust Corset
 Bra,Swimsuit1,Swimsuit style 1
 Bra,Swimsuit2,Swimsuit style 2
 Bra,BunnySuit,Bunny Girl Bodysuit
-Gloves,,Gloves
-Gloves,Gloves1,Short Gloves
-Gloves,Gloves2,Long Gloves
-Gloves,MistressGloves,Mistress Gloves
-Pussy,,Pussy
-Pussy,PussyLight1,Light 1
-Pussy,PussyLight2,Light 2
-Pussy,PussyLight3,Light 3
-Pussy,PussyDark1,Dark 1
-Pussy,PussyDark2,Dark 2
-Pussy,PussyDark3,Dark 3
 Panties,,Panties
 Panties,Panties1,Style 1
 Panties,Panties7,Style 2
@@ -159,15 +69,111 @@ Shoes,Heels2,Heels Strap
 Shoes,Boots1,Boots
 Shoes,MistressBoots,Mistress Boots
 Shoes,PonyBoots,Pony Boots
+Hat,,Hat
+Hat,Band1,Hair Band
+Hat,Beret1,Beret
+Hat,Ears1,Ears Small
+Hat,Ears2,Ears Large
+Hat,PonyEars1,Pony Ears
+Hat,Ribbons1,Hair Ribbon 1
+Hat,MaidHairband1,Maid Hairband
+Hat,NurseCap,Nurse Cap
+Hat,Santa1,Santa Hat
+Hat,BunnyEars1,Bunny Ears
+Hat,BunnyEars2,Floppy Bunny Ears
+Hat,CaptainHat1,Captain's Hat
+Gloves,,Gloves
+Gloves,Gloves1,Short Gloves
+Gloves,Gloves2,Long Gloves
+Gloves,MistressGloves,Mistress Gloves
+Glasses,,Glasses
+Glasses,Glasses1,Style 1
+Glasses,Glasses2,Style 2
+Glasses,Glasses3,Style 3
+Glasses,Glasses4,Style 4
+Glasses,Glasses5,Style 5
+Glasses,Glasses6,Style 6
+Glasses,SunGlasses1,Sunglasses 1
+Glasses,SunGlasses2,Sunglasses 2
+BodyUpper,,Upper Body
+BodyUpper,Small,Small
+BodyUpper,Normal,Normal
+BodyUpper,Large,Large
+BodyUpper,Xlarge,Xlarge
+BodyLower,,Lower Body
+BodyLower,Small,Small
+BodyLower,Normal,Normal
+BodyLower,Large,Large
+BodyLower,Xlarge,Xlarge
+Hands,,Hands
+Hands,Default,Default
+HairBack,,Back Hair
+HairBack,HairNone,None
+HairBack,HairBack1,Style 1
+HairBack,HairBack2,Style 2
+HairBack,HairBack4,Style 3
+HairBack,HairBack10,Style 4
+HairBack,HairBack14,Style 5
+HairBack,HairBack15,Style 6
+HairBack,HairBack16,Style 7
+HairBack,HairBack17,Style 8
+HairBack,HairBack18,Style 9
+HairBack,HairBack19,Style 10
+HairFront,,Front Hair
+HairFront,HairFront1,Style 1
+HairFront,HairFront2,Style 2
+HairFront,HairFront3,Style 3
+HairFront,HairFront4,Style 4
+HairFront,HairFront5,Style 5
+HairFront,HairFront6,Style 6
+HairFront,HairFront7,Style 7
+HairFront,HairFront8,Style 8
+HairFront,HairFront9,Style 9
+HairFront,HairFront10,Style 10
+HairFront,HairFront11,Style 11
+HairFront,HairFront12,Style 12
+Eyes,,Eyes
+Eyes,Eyes1,Style 1
+Eyes,Eyes2,Style 2
+Eyes,Eyes3,Style 3
+Eyes,Eyes4,Style 4
+Eyes,Eyes5,Style 5
+Eyes,Eyes6,Style 6
+Eyes,Eyes7,Style 7
+Eyes,Eyes8,Style 8
+Eyes,Eyes9,Style 9
+Eyes,Eyes10,Style 10
+Eyes,Eyes11,Style 11
+Mouth,,Mouth
+Mouth,Mouth1,Style 1
+Mouth,Mouth2,Style 2
+Mouth,Mouth3,Style 3
+Mouth,Mouth4,Style 4
+Nipples,,Nipples Style
+Nipples,Nipples1,Small
+Nipples,Nipples2,Large
+Pussy,,Pussy
+Pussy,PussyLight1,Light 1
+Pussy,PussyLight2,Light 2
+Pussy,PussyLight3,Light 3
+Pussy,PussyDark1,Dark 1
+Pussy,PussyDark2,Dark 2
+Pussy,PussyDark3,Dark 3
+Eyebrows,,Eyebrows
+Eyebrows,Eyebrows1,Eyebrows
+Blush,,Blush
+Blush,Blush,Blush
 ItemFeet,,Feet
 ItemFeet,NylonRope,Nylon Rope
 ItemFeet,HempRope,Hemp Rope
 ItemFeet,LeatherBelt,Leather Belt
 ItemFeet,SuspensionHempRope,Suspension Hemp Rope
+ItemFeet,DuctTape,Duct Tape
 ItemLegs,,Legs
 ItemLegs,NylonRope,Nylon Rope
 ItemLegs,HempRope,Hemp Rope
 ItemLegs,LeatherBelt,Leather Belt
+ItemLegs,DuctTape,Duct Tape
 ItemVulva,,Vulva
 ItemVulva,VibratingEgg,Vibrating Egg
 ItemVulva,VibratingWand,Vibrating Wand
@@ -202,19 +208,13 @@ ItemArms,,Arms
 ItemArms,NylonRope,Nylon Rope
 ItemArms,HempRope,Hemp Rope
 ItemArms,MetalCuffs,Metal Cuffs
-ItemArms,MetalCuffsKey,Metal Cuffs Key
 ItemArms,LeatherArmbinder,Leather Armbinder
 ItemArms,LeatherCuffs,Leather Cuffs
-ItemArms,LeatherCuffsKey,Leather Cuffs Key
 ItemArms,PaddedMittens,Thumbless Padded Mittens
-ItemArms,PaddedMittensLocked,Thumbless Mittens Locked
-ItemArms,PaddedMittensHarness,Thumbless Mittens Chanined
-ItemArms,PaddedMittensHarnessLocked,Thumbless Mittens Chanined Locked
-ItemArms,PadLock,Padlock
-ItemArms,PadLockKey,Padlock Key
 ItemArms,FourLimbsShackles,Four Limbs Shackles
 ItemArms,StraitLeotard,Latex Strait Leotard
 ItemArms,Paw Mittens,Kitty Paw Mittens
+ItemArms,DuctTape,Duct Tape
 ItemNeck,,Neck
 ItemNeck,LeatherCollar,Leather Collar
 ItemNeck,SlaveCollar,Slave Collar
@@ -226,7 +226,7 @@ ItemMouth,ClothGag,Cloth Gag
 ItemMouth,HarnessBallGag,Harness Ball Gag
 ItemMouth,HarnessPanelGag,Harness Panel Gag
 ItemMouth,RingGag,Ring Gag
-ItemMouth,DuctTapeGag,Duct Tape Gag
+ItemMouth,DuctTape,Duct Tape
 ItemMouth,PacifierGag,Pacifier
 ItemMouth,HarnessPacifierGag,Harness Pacifier
 ItemMouth,DusterGag,Duster Gag
@@ -242,7 +242,14 @@ ItemHead,LeatherHood,Leather Hood
 ItemHead,LeatherHoodOpenEyes,Leather Hood Eyes
 ItemHead,StuddedBlindfold,Studded Blindfold
 ItemHead,KittyBlindfold,Kitty Blindfold
+ItemHead,DuctTape,Duct Tape
 ItemMisc,,Misc Items
+ItemMisc,MetalPadlock,Metal Padlock
+ItemMisc,IntricatePadlock,Intricate Padlock
+ItemMisc,TimerPadlock,Five Minutes Padlock
+ItemMisc,MetalPadlockKey,Metal Padlock Key
+ItemMisc,IntricatePadlockKey,Intricate Padlock Key
+ItemMisc,MetalCuffsKey,Metal Cuffs Key
 ItemMisc,WoodenMaidTray,Wooden Maid Tray
 ItemMisc,WoodenMaidTrayFull,Wooden Maid Tray Full
 ItemMisc,WoodenPaddle,Wooden Paddle

@@ -1,0 +1,130 @@
+Name:
+Nom:
+Title:
+Titre:
+Mistress
+Maîtresse
+Head Maid
+Maîtresse Servante
+Maid
+Servante
+Master Kidnapper
+Ace du Kidnapping
+Kidnapper
+Kidnappeuse
+None
+Aucun
+Foal
+Poulain
+Farm Horse
+Cheval de Ferme
+Cold Blood Horse
+Cheval à Sang-froid
+Warm Blood Horse
+Cheval à Sang-tiède
+Hot Blood Horse
+Cheval à Sang-chaud
+Wild Mustang
+Mustang Sauvage
+Shining Unicorn
+Licorne Scintillante
+Flying Pegasus
+Pégase Volant
+Member Number:
+Numéro de Membre:
+Lover:
+Amante:
+Owner:
+Patronne:
+Money:
+Monnaie:
+Member for
+Membre depuis
+Friends for
+Amies depuis
+day(s)
+jour(s)
+Unknown
+Inconnu
+- Reputation -
+- Réputation -
+Dominant:
+Dominante:
+Submissive:
+Soumise:
+Maid Sorority:
+Sororité des Servantes:
+Gambling Hall:
+Jeux de Hasard:
+Kidnappers League:
+Ligue des Kidnappeurs:
+ABDL:
+ABDL:
+- Skills -
+- Compétences -
+Bondage:
+Bondage:
+Evasion:
+Évasion:
+Willpower:
+Volonté:
+Pony Dressage:
+Dressage de Poney:
+Global modifier:
+Modificateur global:
+- Traits -
+- Caractéristiques -
+Spend more time with her to know her traits
+Passez plus de temps avec elle pour connaître ses caractéristiques
+Violent:
+Violente:
+Peaceful:
+Paisible:
+Horny:
+Chaude:
+Frigid:
+Froide:
+Rude:
+Grossière:
+Polite:
+Polie:
+Wise:
+Sage:
+Dumb:
+Stupide:
+Serious:
+Serieuse:
+Playful:
+Espiègle:
+Relation:
+Relation:
+(Perfect)
+(Parfaite)
+(Great)
+(Géniale)
+(Good)
+(Bonne)
+(Fair)
+(Bien)
+(Neutral)
+(Neutre)
+(Poor)
+(Faible)
+(Bad)
+(Mauvaise)
+(Horrible)
+(Horrible)
+(Atrocious)
+(Atroce)
+Item permission:
+Permissions d'objets:
+Everyone, no exceptions
+Tous, sans exceptions
+Everyone, except blacklist
+Tous, sauf liste noire
+Owner, whitelist & Dominants
+Patronne, liste blanche & Maîtresses
+Owner and whitelist only
+Patronne et liste blanche seulement
+Owner only
+Patronne seulement

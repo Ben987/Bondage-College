@@ -109,7 +109,27 @@ function ServerAppearanceLoadFromBundle(AssetFamily, Bundle) {
 				break;
 			}
 
-	}	
+	}
+
+	// Adds any critical appearance asset that could be missing, adds the default one
+	for (var G = 0; G < AssetGroup.length; G++)
+		if ((AssetGroup[G].Category == "Appearance") && !AssetGroup[G].AllowNone) {
+
+			// Check if we already have the item
+			var Found = false;
+			for (var A = 0; A < Appearance.length; A++)
+				if (Appearance[A].Asset.Group.Name == AssetGroup[G].Name)
+					Found = true;
+
+			// Adds the missing appearance part
+			if (!Found)
+				for (var I = 0; I < Asset.length; I++)
+					if (Asset[I].Group.Name == AssetGroup[G].Name) {
+						Appearance.push({ Asset: Asset[I], Color: "Default"});
+						break;
+					}
+
+		}
 	return Appearance;
 
 }
@@ -142,23 +162,25 @@ function ServerPlayerWardrobeSync() {
 
 // Syncs the private character with the server
 function ServerPrivateCharacterSync() {
-	var D = {};
-	D.PrivateCharacter = [];
-	for(var ID = 1; ID < PrivateCharacter.length; ID++) {
-		var C = {
-			Name: PrivateCharacter[ID].Name,
-			Love: PrivateCharacter[ID].Love,
-			Title: PrivateCharacter[ID].Title,
-			Trait: PrivateCharacter[ID].Trait,
-			Cage: PrivateCharacter[ID].Cage,
-			Owner: PrivateCharacter[ID].Owner,
-			Lover: PrivateCharacter[ID].Lover,
-			AssetFamily: PrivateCharacter[ID].AssetFamily,
-			Appearance: ServerAppearanceBundle(PrivateCharacter[ID].Appearance),
-			AppearanceFull: ServerAppearanceBundle(PrivateCharacter[ID].AppearanceFull),
-			Event: PrivateCharacter[ID].Event
-		};
-		D.PrivateCharacter.push(C);
+	if (PrivateVendor != null) {
+		var D = {};
+		D.PrivateCharacter = [];
+		for(var ID = 1; ID < PrivateCharacter.length; ID++) {
+			var C = {
+				Name: PrivateCharacter[ID].Name,
+				Love: PrivateCharacter[ID].Love,
+				Title: PrivateCharacter[ID].Title,
+				Trait: PrivateCharacter[ID].Trait,
+				Cage: PrivateCharacter[ID].Cage,
+				Owner: PrivateCharacter[ID].Owner,
+				Lover: PrivateCharacter[ID].Lover,
+				AssetFamily: PrivateCharacter[ID].AssetFamily,
+				Appearance: ServerAppearanceBundle(PrivateCharacter[ID].Appearance),
+				AppearanceFull: ServerAppearanceBundle(PrivateCharacter[ID].AppearanceFull),
+				Event: PrivateCharacter[ID].Event
+			};
+			D.PrivateCharacter.push(C);
+		}
+		ServerSend("AccountUpdate", D);		
 	}
-	ServerSend("AccountUpdate", D);
 };

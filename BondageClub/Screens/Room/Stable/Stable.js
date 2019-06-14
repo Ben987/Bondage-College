@@ -602,7 +602,7 @@ function StablePlayerWearEquipment(Behavior) {
 //Dress Characker like a Pony
 function StableWearPonyEquipment(C) {
 	CharacterNaked(C);
-	InventoryWear(C, "Ears2", "Hat");
+	InventoryWear(C, "PonyEars1", "Hat");
 	InventoryWear(C, "LeatherHarness", "ItemTorso");
 	InventoryWear(C, "HarnessPonyBits", "ItemMouth");
 	InventoryWear(C, "LeatherArmbinder", "ItemArms");
@@ -913,12 +913,12 @@ function StableGenericProgressStart(Timer, S, S2, Item, Background, Character, S
 	DialogLeave()
 	if (Timer < 1) Timer = 1;
 	//Charakter
-	StableProgressAuto = CommonRunInterval * (0.1333 + (S * 0.1333)) / (Timer * CheatFactor("DoubleItemSpeed", 0.5));
-	StableProgressClick = CommonRunInterval * 2.5 / (Timer * CheatFactor("DoubleItemSpeed", 0.5));
+	StableProgressAuto = TimerRunInterval * (0.1333 + (S * 0.1333)) / (Timer * CheatFactor("DoubleItemSpeed", 0.5));
+	StableProgressClick = TimerRunInterval * 2.5 / (Timer * CheatFactor("DoubleItemSpeed", 0.5));
 	StableProgress = 0;
 	if (S < 0) { StableProgressAuto = StableProgressAuto / 2; StableProgressClick = StableProgressClick / 2; }
 	//Second Caracter
-	StableSecondProgressAuto = CommonRunInterval * (0.1333 + (S2 * 0.1333)) / (Timer * CheatFactor("DoubleItemSpeed", 0.5));
+	StableSecondProgressAuto = TimerRunInterval * (0.1333 + (S2 * 0.1333)) / (Timer * CheatFactor("DoubleItemSpeed", 0.5));
 	if (S2 < 0) { StableSecondProgressAuto = StableSecondProgressAuto / 2; }
 	StableSecondProgress = 0;
 	

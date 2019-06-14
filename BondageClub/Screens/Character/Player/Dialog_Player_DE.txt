@@ -13,6 +13,8 @@ Struggle
 Freikämpfen
 Unlock
 Aufschließen
+Color
+Farbe
 Swapping...
 Auswechseln...
 Struggling...
@@ -83,6 +85,30 @@ SourceCharacter attaches the leather cuffs elbow chain behind DestinationCharact
 SourceCharacter verbindet die Ellbogen-Kette der Ledermanschetten hinter DestinationCharacters Rücken.
 SourceCharacter attaches the leather cuffs wrist and elbow chains behind DestinationCharacter's back.
 SourceCharacter verbindet die Handgelenk- und Ellbogen-Ketten der Ledermanschetten hinter DestinationCharacters Rücken.
+Select type of cloth gag
+Stoffknebel-Typ wählen
+Small
+Klein
+Cleave
+Spalt
+OTM
+Über Mund
+OTN
+Über Nase
+SourceCharacter ties the cloth into a small gag over DestinationCharacter's mouth.
+SourceCharacter bindet das Tuch als kleinen Knebel über den Mund von DestinationCharacter.
+SourceCharacter ties the cloth into a cleave gag over DestinationCharacter's mouth.
+SourceCharacter bindet das Tuch als Spaltknebel über den Mund von DestinationCharacter.
+SourceCharacter stuffs DestinationCharacter's mouth with a piece of cloth and secures it with another piece.
+SourceCharacter stopft ein Stück Stoff in DestinationCharacters Mund und bindet es mit einem weiteren Tuch fest.
+SourceCharacter stuffs DestinationCharacter's mouth with a piece of cloth and secures the gag over her mouth and nose.
+SourceCharacter stopft ein Stück Stoff in DestinationCharacters Mund und bindet ein weiteres Tuch über ihren Mund und ihre Nase.
+Single strip
+Einzelner Streifen
+Crossed strips
+Überkreuzte Streifen
+Full face
+Vollständig
 Item intensity: Disabled
 Intensität: Deaktiviert
 Item intensity: Low
@@ -127,21 +153,21 @@ DestinationCharacter's vibrating egg starts buzzing strongly!
 DestinationCharacters Vibrator-Ei fängt an, stark zu vibrieren!
 DestinationCharacter's vibrating egg jumps up to maximum intensity!
 DestinationCharacters Vibrator-Ei springt auf die maximale Stufe!
-DestinationCharacter's vibrating nipple clamps stops vibrating.
+DestinationCharacter's vibrating nipple clamps stop vibrating.
 Die Vibrator-Nippelklemmen von DestinationCharacter hören auf zu vibrieren.
-DestinationCharacter's vibrating nipple clamps slows down into a light tease.
+DestinationCharacter's vibrating nipple clamps slow down into a light tease.
 Die Vibrator-Nippelklemmen von DestinationCharacter fallen auf ein leichtes Surren herab.
-DestinationCharacter's vibrating nipple clamps returns to a moderate pace.
+DestinationCharacter's vibrating nipple clamps return to a moderate pace.
 Die Vibrator-Nippelklemmen von DestinationCharacter fallen auf eine moderate Stärke herab.
-DestinationCharacter's vibrating nipple clamps slows down a tiny bit.
+DestinationCharacter's vibrating nipple clamps slow down a tiny bit.
 Die Vibrator-Nippelklemmen von DestinationCharacter lassen ein kleines bisschen nach.
-DestinationCharacter's vibrating nipple clamps starts teasing her lightly.
+DestinationCharacter's vibrating nipple clamps start teasing her lightly.
 Die Vibrator-Nippelklemmen von DestinationCharacter fangen an, sie sanft zu erregen.
-DestinationCharacter's vibrating nipple clamps builds up to a moderate pace.
+DestinationCharacter's vibrating nipple clamps build up to a moderate pace.
 Die Vibrator-Nippelklemmen von DestinationCharacter nehmen etwas Fahrt auf.
-DestinationCharacter's vibrating nipple clamps starts buzzing strongly!
+DestinationCharacter's vibrating nipple clamps start buzzing strongly!
 Die Vibrator-Nippelklemmen von DestinationCharacter fangen an, stark zu vibrieren!
-DestinationCharacter's vibrating nipple clamps jumps up to maximum intensity!
+DestinationCharacter's vibrating nipple clamps jump up to maximum intensity!
 Die Vibrator-Nippelklemmen von DestinationCharacter springen auf die maximale Stufe!
 Use Remote
 Fernbedienung
@@ -183,3 +209,5 @@ mittens to the baby harness
 an ihr Babyharnisch
 They must be wearing a baby harness first to chain the mittens to it.
 Sie muss einen Babyharnisch tragen, um die Fäustlinge daran anzuketten.
+Facial expression
+Gesichtsausdruck
