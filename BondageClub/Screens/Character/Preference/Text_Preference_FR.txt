@@ -1,7 +1,7 @@
 - Preferences -
 - Préférences -
 Character label color:
-Couleur du nom de personnage:
+Couleur du nom:
 Item permission:
 Permissions d'objets:
 Everyone, no exceptions
