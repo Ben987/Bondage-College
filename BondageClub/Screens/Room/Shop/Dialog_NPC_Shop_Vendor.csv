@@ -38,6 +38,7 @@ ItemPelvisLeatherCrop,,,(You lash the leather crop pretty hard on her butt.)  Da
 20,10,Check my items.  I've bought everything.,No way!  Well a deal is a deal.  You can strap me up if you want.,VendorBondage(),BoughtEverything
 20,10,I'll remember that deal.,Sure!  Do you have more questions for me?,,
 100,,Regular clothes or outfits.,,"Start(""Cloth"")",
+100,,Special outfits or accessories.,,"Start(""ItemWings"")",
 100,,Hats or head accessories.,,"Start(""Hat"")",
 100,,Do you have glasses?,,"Start(""Glasses"")",
 100,,Show me your gloves.,,"Start(""Gloves"")",
