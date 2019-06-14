@@ -81,6 +81,7 @@ Hat,NurseCap,Nurse Cap
 Hat,Santa1,Santa Hat
 Hat,BunnyEars1,Bunny Ears
 Hat,BunnyEars2,Floppy Bunny Ears
+Hat,PuppyEars1,Puppy Ears
 Hat,CaptainHat1,Captain's Hat
 Gloves,,Gloves
 Gloves,Gloves1,Short Gloves
@@ -182,6 +183,7 @@ ItemButt,,Butt
 ItemButt,BlackButtPlug,Black Butt Plug
 ItemButt,TailButtPlug,Kitty Butt Plug
 ItemButt,HorseButtPlug,Horse Butt Plug
+itemButt,PuppyTailPlug,Puppy Butt Plug
 ItemPelvis,,Pelvis
 ItemPelvis,MetalChastityBelt,Metal Chastity Belt
 ItemPelvis,MetalChastityBeltKey,Metal Chastity Belt Key
@@ -215,8 +217,11 @@ ItemArms,FourLimbsShackles,Four Limbs Shackles
 ItemArms,StraitLeotard,Latex Strait Leotard
 ItemArms,Paw Mittens,Kitty Paw Mittens
 ItemArms,DuctTape,Duct Tape
+ItemArms,BitchSuit,Bitchsuit
 ItemNeck,,Neck
 ItemNeck,LeatherCollar,Leather Collar
+ItemNeck,LeatherCollarBell,Leather Collar
+ItemNeck,LeatherCollarBow,Leather Collar
 ItemNeck,SlaveCollar,Slave Collar
 ItemNeck,ClubSlaveCollar,Club Slave Collar
 ItemNeck,ShockCollar,Shock Collar
