@@ -1,5 +1,5 @@
 "use strict";
-var ChatCreateBackground = "IntroductionDark"
+var ChatCreateBackground = "IntroductionDark";
 var ChatCreateResult = [];
 var ChatCreateMessage = "";
 var ChatCreatePrivate = false;
