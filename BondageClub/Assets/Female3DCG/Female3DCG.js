@@ -159,8 +159,6 @@ var AssetFemale3DCG = [
 			{ Name: "Santa1", Value: 30 },
 			{ Name: "BunnyEars1", Value: 20 },
 			{ Name: "BunnyEars2", Value: 20 },
-<<<<<<< HEAD
-			{ Name: "CaptainHat1", Value: 20 },
 			{ Name: "SuccubusHorns", Value: 20 },
 			{ Name: "SuccubusHorns2", Value: 20 },
 			{ Name: "SuccubusHorns3", Value: 20 },
@@ -171,11 +169,9 @@ var AssetFemale3DCG = [
 			{ Name: "KittySuccubus2", Value: 20 },
 			{ Name: "PonySuccubus", Value: 20 },
 			{ Name: "FoxEars1", Value: 20 },
-			{ Name: "BeretKitty", Value: 20 }
-=======
+			{ Name: "BeretKitty", Value: 20 },
 			{ Name: "PuppyEars1", Value: 20, Priority: 28 },
 			{ Name: "CaptainHat1", Value: 20 }
->>>>>>> pr/4
 		]
 	},
 	
