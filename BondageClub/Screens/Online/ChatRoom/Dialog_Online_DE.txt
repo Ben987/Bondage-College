@@ -6,6 +6,8 @@
 ###_PLAYER
 (View her profile.)
 (Ihr Profil ansehen.)
+(Change her clothes.)
+(Ihre Kleidung auswechseln.)
 (Manage your relationship.)
 (Beziehung bearbeiten.)
 ###_NPC
