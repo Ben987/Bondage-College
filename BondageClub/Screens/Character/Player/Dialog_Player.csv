@@ -1,6 +1,7 @@
 SelectItem,,,Select an item to use
 CannotUseOnSelf,,,Cannot use on yourself
 RemoveClothesForItem,,,Remove some clothes first
+RemoveSuspensionForItem,,,Remove the suspension first
 Cancel,,,Cancel
 Exit,,,Back to character
 Remove,,,Remove the item
@@ -63,7 +64,7 @@ DuctTapeRestrainHands,,,SourceCharacter wraps duct tape around DestinationCharac
 DuctTapeRestrainBottom,,,SourceCharacter creates a duct tape skirt on DestinationCharacter and traps her hands in it.
 DuctTapeRestrainTop,,,SourceCharacter creates a duct tape top on DestinationCharacter and traps her arms in it.
 DuctTapeRestrainFull,,,SourceCharacter creates a duct tape mummy on DestinationCharacter and traps her arms in it.
-SelectGagType,,,Select type of cloth gag
+SelectGagType,,,Select the type of gag
 ClothGagTypeSmall,,,Small
 ClothGagTypeCleave,,,Cleave
 ClothGagTypeOTM,,,OTM
