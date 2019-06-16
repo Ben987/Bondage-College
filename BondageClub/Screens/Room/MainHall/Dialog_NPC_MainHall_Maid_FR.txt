@@ -32,13 +32,13 @@ Je suis désolé, Mademoiselle. Je ne peux vous aider en ce moment.
 (You remove the collar around her neck.)  Freedom is overrated.
 (Vous retirer le collier de son cou.)  La liberté est surestimée.
 (She frowns as you lock the device on her.)  I hope you will unlock it after my shift Miss.
-(Elle sourcille alors que vous cadenasssez l'item sur elle.)  J'espère que vous le décadenasserez après mon quart, Mademoiselle.
+(Elle sourcille alors que vous verouillez l'objet sur elle.)  J'espère que vous le déverouillerez après mon quart, Mademoiselle.
 (She nods happily as you unlock the device.)  Yes!  That's very nice of you Miss.
-(Elle hoche heureusement lorsque vous décadenassez l'item.)  Oui!  C'est très gentil, Mademoiselle.
+(Elle hoche heureusement lorsque vous déverouillez l'objet.)  Oui!  C'est très gentil, Mademoiselle.
 (You strap the device on her head as she mumbles.)  It will be a kinky work day it seems.
-(Vous ajustez l'item sur sa tête pendant qu'elle murmure.)  Ce sera une journée perverse, il semble.
+(Vous ajustez l'objet sur sa tête pendant qu'elle murmure.)  Ce sera une journée perverse, il semble.
 (You remove the device and she nods slowly.)  You're the best head maid DialogPlayerName.
-(Vous enlevez l'item et elle hoche lentement.)  Vous êtes la meilleure, Maîtresse servante DialogPlayerName.
+(Vous enlevez l'objet et elle hoche lentement.)  Vous êtes la meilleure, Maîtresse servante DialogPlayerName.
 (She jumps from the searing pain on her breast.)  Ouch!  Miss Head Maid!
 (Elle sautille face à la douleur aiguë sur son sein.)  Aie!  Maîtresse servante!
 (You whip her breast with the leather crop as she whimpers and bows her head.)
