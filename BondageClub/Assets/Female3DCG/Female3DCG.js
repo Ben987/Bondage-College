@@ -157,21 +157,8 @@ var AssetFemale3DCG = [
 			{ Name: "MaidHairband1", Value: -1 },
 			{ Name: "NurseCap", Value: -1 },
 			{ Name: "Santa1", Value: 30 },
-			{ Name: "BunnyEars1", Value: 20 },
-			{ Name: "BunnyEars2", Value: 20 },
-			{ Name: "PuppyEars1", Value: 20, Priority: 29 },
 			{ Name: "CaptainHat1", Value: 20 },
-			{ Name: "SuccubusHorns", Value: 20 },
-			{ Name: "SuccubusHorns2", Value: 20 },
-			{ Name: "SuccubusHorns3", Value: 20 },
-			{ Name: "SuccubusHorns4", Value: 20 },
-			{ Name: "BunnySuccubus1", Value: 20 },
-			{ Name: "BunnySuccubus2", Value: 20 },
-			{ Name: "KittySuccubus1", Value: 20 },
-			{ Name: "KittySuccubus2", Value: 20 },
-			{ Name: "PonySuccubus", Value: 20 },
-			{ Name: "FoxEars1", Value: 20 },
-			{ Name: "BeretKitty", Value: 20 }
+			{ Name: "BunnySuccubus2", Value: 20 }
 		]
 	},
 	
