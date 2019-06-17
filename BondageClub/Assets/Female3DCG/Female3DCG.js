@@ -144,7 +144,7 @@ var AssetFemale3DCG = [
 	
 	{
 		Group: "Hat",
-		Priority: 33,
+		Priority: 34,
 		Default: false,
 		Clothing: true,
 		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
@@ -152,7 +152,7 @@ var AssetFemale3DCG = [
 		Left: 125,
 		Top: 0,
 		Asset: [
-			"Band1", "Beret1", "Ears1", "Ears2", "PonyEars1",
+			"Band1", "Beret1",
 			{ Name: "Ribbons1", Priority: 1 },
 			{ Name: "MaidHairband1", Value: -1 },
 			{ Name: "NurseCap", Value: -1 },
@@ -161,7 +161,29 @@ var AssetFemale3DCG = [
 			{ Name: "BunnySuccubus2", Value: 20 }
 		]
 	},
-	
+
+	{
+		Group: "Ears&Horns",
+		Priority: 33,
+		Defaulty: false,
+		Clothing: true,
+		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
+		AllowPose: ["Suspension"],
+		Left: 125,
+		Top: 0,
+		Asset: [
+			"Ears1", "Ears2", "PonyEars1",
+			{ Name: "BunnyEars1", Value: 20 },
+			{ Name: "BunnyEars2", Value: 20 },
+			{ Name: "PuppyEars1", Value: 20, Priority: 29 },
+			{ Name: "SuccubusHorns", Value: 20 },
+			{ Name: "Horns2", Value: 20 },
+			{ Name: "Horns3", Value: 20 },
+			{ Name: "Horns4", Value: 20 },
+			{ Name: "FoxEars1", Value: 20 }
+		]
+	},		
+	        
 	{
 		Group: "Gloves",
 		Priority: 25,
@@ -581,7 +603,7 @@ var AssetFemale3DCG = [
 	{
 		Group: "ItemMisc",
 		Category: "Item",
-		Priority: 34,
+		Priority: 35,
 		Default: false,
 		Color: ["Default"],
 		Top: -250,
