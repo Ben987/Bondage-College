@@ -177,9 +177,9 @@ var AssetFemale3DCG = [
 			{ Name: "BunnyEars2", Value: 20 },
 			{ Name: "PuppyEars1", Value: 20, Priority: 29 },
 			{ Name: "SuccubusHorns", Value: 20 },
+			{ Name: "Horns", Value: 20 },
 			{ Name: "Horns2", Value: 20 },
 			{ Name: "Horns3", Value: 20 },
-			{ Name: "Horns4", Value: 20 },
 			{ Name: "FoxEars1", Value: 20 }
 		]
 	},		
