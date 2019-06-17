@@ -4,6 +4,8 @@ SourceCharacter uses a NextAsset on DestinationCharacter FocusAssetGroup.
 SourceCharacter setzt NextAsset an DestinationCharacter ein.
 SourceCharacter locks a NextAsset on DestinationCharacter FocusAssetGroup.
 SourceCharacter verschließt NextAsset an DestinationCharacter.
+SourceCharacter adds a NextAsset on DestinationCharacter FocusAssetGroup PrevAsset.
+SourceCharacter bringt ein NextAsset an DestinationCharacters PrevAsset an.
 SourceCharacter removes the PrevAsset from DestinationCharacter FocusAssetGroup.
 SourceCharacter entfernt PrevAsset von DestinationCharacter.
 SourceCharacter unlocks and removes the PrevAsset from DestinationCharacter FocusAssetGroup.
@@ -12,6 +14,10 @@ SourceCharacter rolls a DiceType sided dice.  The result is: DiceResult.
 SourceCharacter rollt einen DiceType-seitigen Würfel. Das Ergebnis ist: DiceResult.
 SourceCharacter flips a coin.  The result is: CoinResult.
 SourceCharacter wirft eine Münze. Das Ergebnis ist: CoinResult.
+Talk to everyone
+Mit allen reden
+Whisper to
+Flüstern an
 Heads
 Kopf
 Tails

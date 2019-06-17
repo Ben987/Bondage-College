@@ -118,6 +118,7 @@ function update(fileName) {
                     while (newLines[m].indexOf('###') == 0) m++;
                     newLines[m] = oldLines[o + 1];
                     oldLines.splice(o, 2);
+                    n = m;
                     break;
                 }
             }
@@ -144,6 +145,14 @@ function update(fileName) {
     CommonGet("../../" + englishFileName, callback1);
 }
 
+function getParameter(name) {
+    var items = location.search.substring(1).split('&');
+    for (var i = 0; i < items.length; i++) {
+        var temp = items[i].split("=");
+        if (temp[0] === name) return decodeURIComponent(temp[1]);
+    }
+}
+
 window.onload = function() {
 	for (var L = 0; L < TranslationDictionary.length; L++) {
         var Language = TranslationDictionary[L];
@@ -158,6 +167,9 @@ window.onload = function() {
             optgroup.appendChild(option);
         }
     }
+
+    var fileToUpdate = getParameter('update');
+    if (fileToUpdate) update(fileToUpdate);
 };
 </script>
 </head>

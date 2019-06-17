@@ -64,8 +64,8 @@ Ausgezeichnet! Für welches Körperteil genau?
 ###_PLAYER
 I'm looking for kinky items for the body or arms.
 Ich schaue nach sexy Sachen für Körper order Arme.
-I'm looking for kinky items for the legs.
-Ich schaue nach sexy Sachen für die Beine.
+I'm looking for kinky items for private parts or legs.
+Ich suche nach Spielzeug für Intimbereich und Beine.
 I'd like to ask you some questions.
 Ich möchte dir einige Fragen stellen.
 ###_NPC
@@ -156,6 +156,8 @@ I'm looking for gags.
 Ich suche nach Knebeln.
 What about collars?
 Was ist mit Halsbändern?
+Do you have locks and keys?
+Hast du Schlüssel und Vorhängeschlösser?
 Show me your arm restraints.
 Zeig mir deine Armfesseln.
 Something for the breast.
