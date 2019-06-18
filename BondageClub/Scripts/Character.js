@@ -527,9 +527,11 @@ function CharacterSetFacialExpression(C, AssetGroup, Expression) {
 		if ((C.Appearance[A].Asset.Group.Name == AssetGroup) && (C.Appearance[A].Asset.Group.AllowExpression)) {
 			if ((Expression == null) || (C.Appearance[A].Asset.Group.AllowExpression.indexOf(Expression) >= 0)) {
 				if (!C.Appearance[A].Property) C.Appearance[A].Property = {};
-				C.Appearance[A].Property.Expression = Expression;
-				CharacterRefresh(C);
-				ChatRoomCharacterUpdate(C);
+				if (C.Appearance[A].Property.Expression != Expression) {
+					C.Appearance[A].Property.Expression = Expression;
+					CharacterRefresh(C);
+					ChatRoomCharacterUpdate(C);
+				}
 				return;
 			}
 		}
