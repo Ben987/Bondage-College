@@ -1,2 +1,4 @@
 SelectAppearance,Select your appearance
 MustPickItem,You must pick an item of type:
+WardrobeNameInfo,Set wardrobe character name:
+WardrobeNameError,Ivalid name for character.

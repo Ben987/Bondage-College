@@ -123,6 +123,7 @@ function LoginResponse(C) {
 			Player.Wardrobe = C.Wardrobe;
 			Player.OnlineID = C.ID.toString();
 			Player.MemberNumber = C.MemberNumber;
+			Player.WardrobeCharacterNames = C.WardrobeCharacterNames;
 			WardrobeCharacter = [];
 
 			// Gets the online preferences
