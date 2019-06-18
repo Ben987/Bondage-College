@@ -93,16 +93,15 @@ function DrawCharacter(C, X, Y, Zoom) {
 				var CanvasH = document.createElement("canvas");
 				CanvasH.width = Canvas.width;
 				CanvasH.height = Canvas.height;
-				CanvasH.getContext('2d').drawImage(Canvas, 0, 0);
-				var imageData = CanvasH.getContext('2d').getImageData(0, 0, CanvasH.width, CanvasH.height);
-				var pixels = imageData.data;
 				var DarkFactor = (Player.Effect.indexOf("BlindNormal") >= 0) ? 0.3 : 0.6;
-				for(var i = 0; i < pixels.length; i += 4) {
-				   pixels[i] = pixels[i] * DarkFactor;
-				   pixels[i+1] = pixels[i+1] * DarkFactor;
-				   pixels[i+2] = pixels[i+2] * DarkFactor;
-				}
-				CanvasH.getContext('2d').putImageData(imageData, 0, 0);				
+				var ctx = CanvasH.getContext('2d');
+				ctx.drawImage(Canvas, 0, 0);
+				// Overlay black rectangle.
+				ctx.fillStyle = "rgba(0,0,0," + (1.0 - DarkFactor) + ")";
+				ctx.fillRect(0, 0, CanvasH.width, CanvasH.height);
+				// Re-apply character alpha channel
+				ctx.globalCompositeOperation = 'destination-in';
+				ctx.drawImage(Canvas, 0, 0);
 				Canvas = CanvasH;
 			}
 			
