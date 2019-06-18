@@ -163,7 +163,7 @@ var AssetFemale3DCG = [
 	},
 
 	{
-		Group: "Ears&Horns",
+		Group: "HairAccessory",
 		Priority: 33,
 		Default: false,
 		Clothing: true,
