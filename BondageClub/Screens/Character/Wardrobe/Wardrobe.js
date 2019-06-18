@@ -115,13 +115,7 @@ function WardrobeClick() {
 }
 
 function WardrobeSetCharacterName(W, Name, Push) {
-	if (Player.WardrobeCharacterNames == null) Player.WardrobeCharacterNames = [];
-	if (Player.WardrobeCharacterNames.length <= W) {
-		for (var C = Player.WardrobeCharacterNames.length; C < W; C++) {
-			Player.WardrobeCharacterNames.push(WardrobeGetCharacterName(C));
-		}
-		Player.WardrobeCharacterNames.push(Name);
-	}
+	Player.WardrobeCharacterNames[W] = Name;
 	if (WardrobeCharacter != null && WardrobeCharacter[W] != null) {
 		WardrobeCharacter[W].Name = Name;
 	}
