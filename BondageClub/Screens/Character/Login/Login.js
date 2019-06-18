@@ -161,7 +161,7 @@ function LoginResponse(C) {
 			if ((InventoryGet(Player, "ItemArms") != null) && (InventoryGet(Player, "ItemArms").Asset.Name == "FourLimbsShackles")) InventoryRemove(Player, "ItemArms");
 
 			// If the player must start in her room, in her cage
-			if (LogQuery("SleepCage", "Rule") && (Player.Owner != "")) {
+			if (LogQuery("SleepCage", "Rule") && (Player.Owner != "") && PrivateOwnerInRoom()) {
 				InventoryRemove(Player, "ItemFeet");
 				InventoryRemove(Player, "ItemLegs");
 				Player.Cage = true;

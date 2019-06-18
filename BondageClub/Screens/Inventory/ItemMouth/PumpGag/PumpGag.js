@@ -25,18 +25,31 @@ function InventoryItemMouthPumpGagClick() {
 
 // Sets the pump gag level
 function InventoryItemMouthPumpGagSetPump(Modifier) {
+
+	// Loads the item
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (CurrentScreen == "ChatRoom") {
 		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
 		InventoryItemMouthPumpGagLoad();
 	}
+
+	// Sets the pump & gag level
 	DialogFocusItem.Property.PumpLevel = DialogFocusItem.Property.PumpLevel + Modifier;
 	if (DialogFocusItem.Property.PumpLevel == 0) delete DialogFocusItem.Property.Effect;
 	if (DialogFocusItem.Property.PumpLevel == 1) DialogFocusItem.Property.Effect = ["GagLight"];
 	if (DialogFocusItem.Property.PumpLevel == 2) DialogFocusItem.Property.Effect = ["GagNormal"];
 	if (DialogFocusItem.Property.PumpLevel == 3) DialogFocusItem.Property.Effect = ["GagHeavy"];
-	if (DialogFocusItem.Property.PumpLevel == 4) DialogFocusItem.Property.Effect = ["GagTotal"];	
+	if (DialogFocusItem.Property.PumpLevel == 4) DialogFocusItem.Property.Effect = ["GagTotal"];
+
+	// Adds the lock effect back if it was padlocked
+	if ((DialogFocusItem.Property.LockedBy != null) && (DialogFocusItem.Property.LockedBy != "")) {
+		if (DialogFocusItem.Property.Effect == null) DialogFocusItem.Property.Effect = [];
+		DialogFocusItem.Property.Effect.push("Lock");
+	}
+
+	// Reloads the character
 	CharacterLoadEffect(C);
 	if (C.ID == 0) ServerPlayerAppearanceSync();
 	ChatRoomPublishCustomAction(Player.Name + " " + DialogFind(Player, ((Modifier > 0) ? "pumps" : "deflates")) + " " + C.Name + " " + DialogFind(Player, "gag") + ".", true);
+
 }

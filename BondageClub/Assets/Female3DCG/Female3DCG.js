@@ -526,7 +526,12 @@ var AssetFemale3DCG = [
 		Zone: [[150, 160, 200, 50]],
 		Asset: [ 
 			{ Name: "ClothGag", Extended: true, Difficulty: -4, Value: 25, Time: 10 },
-			{ Name: "HarnessBallGag", Effect: ["GagHeavy"], Difficulty: 4, Value: 60, Time: 20, AllowLock: true },
+			{ Name: "HarnessBallGag", Effect: ["GagHeavy"], Difficulty: 4, Value: 60, Time: 20, AllowLock: true,
+				Layer: [
+					{ Name: "Harness", AllowColorize: false },
+					{ Name: "Ball", AllowColorize: true }
+				]
+			},
 			{ Name: "HarnessPanelGag", Effect: ["GagHeavy"], Difficulty: 6, Value: 80, Time: 20, AllowLock: true },
 			{ Name: "RingGag", Value: 35, Time: 5, AllowLock: true },
 			{ Name: "DuctTape", Extended: true, Difficulty: -2, Value: 50, Time: 10, RemoveTime: 5, BuyGroup: "DuctTape" },
