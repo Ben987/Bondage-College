@@ -3,6 +3,7 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 0,,,(You can use or remove items by selecting specific body regions.),,DialogDoAllowItem(CurrentCharacter)
 0,,,(You don't have access to use or remove items on her.),,!DialogDoAllowItem(CurrentCharacter)
 0,,(View her profile.),,ViewProfile(),
+0,,(Change her clothes.),,ChangeClothes(),ChatRoomCanChangeClothes()
 0,10,(Manage your relationship.),"(You can give more access to your items by putting her on your whitelist, or less control by putting her on your blacklist.)",,
 0,,(Ban her from the room.),,BanFromRoom(),CanBanUser()
 0,,(Whisper to her.),,PrepareWhisper(),

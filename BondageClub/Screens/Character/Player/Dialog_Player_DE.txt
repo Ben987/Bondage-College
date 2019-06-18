@@ -5,14 +5,32 @@ Cannot use on yourself
 Nicht an dir selbst anwendbar
 Remove some clothes first
 Erst ausziehen!
+Remove the suspension first
+Erst das Hängeseil entfernen
 Cancel
 Abbrechen
-Remove
-Entfernen
-Struggle
-Freikämpfen
-Unlock
-Aufschließen
+Back to character
+Zurück zum Charakter
+Remove the item
+Gegenstand entfernen
+Try to struggle out
+Entfesselung versuchen
+Use a lock
+Schloss anbringen
+Unlock the item
+Gegenstand aufschließen
+Inspect the lock
+Das Schloss untersuchen
+Use your remote
+Fernbedienung verwenden
+Color of next item
+Farbe des nächsten Gegenstands
+Use this color
+Diese Farbe verwenden
+Default color
+Standard-Farbe
+Challenge:
+Stufe:
 Swapping...
 Auswechseln...
 Struggling...
@@ -63,18 +81,32 @@ deflates
 reduziert
 gag
 Knebel
+Member number on lock:
+Mitglieds-ID auf dem Schloss:
+Time left:
+Übrige Zeit:
+SourceCharacter restarts the five minute timer padlock on DestinationCharacter BodyPart.
+SourceCharacter setzt das Fünf-Minuten-Schloss von DestinationCharacter zurück.
 Select the bondage position
 Fesselposition wählen
+Select the tape wrapping
+Anwendungsart wählen
 A victim cannot unlock herself if her elbows are bound
 Mit gefesselten Ellbogen ist eine Selbstbefreiung unmöglich
+"From your friendly hardware store"
+"Vom Baumarkt Ihres Vertrauens"
+"To keep your loved one secure"
+"Für die Sicherheit Ihrer Liebsten"
+You can restart the timer but cannot unlock
+Das Schloss kann zurückgesetzt, aber nicht entfernt werden.
 Detached
 Getrennt
 Bind wrists
-Handgelenke fesseln
+Handgelenke
 Bind elbows
-Ellbogen fesseln
+Ellbogen
 Bind both
-Beides fesseln
+Beides
 SourceCharacter detaches the chain from DestinationCharacter's leather cuffs.
 SourceCharacter trennt die Kette von DestinationCharacters Ledermanschetten.
 SourceCharacter attaches the leather cuffs wrist chain behind DestinationCharacter's back.
@@ -83,6 +115,56 @@ SourceCharacter attaches the leather cuffs elbow chain behind DestinationCharact
 SourceCharacter verbindet die Ellbogen-Kette der Ledermanschetten hinter DestinationCharacters Rücken.
 SourceCharacter attaches the leather cuffs wrist and elbow chains behind DestinationCharacter's back.
 SourceCharacter verbindet die Handgelenk- und Ellbogen-Ketten der Ledermanschetten hinter DestinationCharacters Rücken.
+Hands
+Hände
+Skirt
+Rock
+Torso
+Torso
+Mummy
+Mumie
+SourceCharacter wraps duct tape around DestinationCharacter's hands.
+SourceCharacter wickelt Klebeband um DestinationCharacters Hände.
+SourceCharacter creates a duct tape skirt on DestinationCharacter and traps her hands in it.
+SourceCharacter wickelt einen Klebeband-Rock um DestinationCharacter und fängt ihre Hände darin ein.
+SourceCharacter creates a duct tape top on DestinationCharacter and traps her arms in it.
+SourceCharacter wickelt ein Klebeband-Top um DestinationCharacter und fängt ihre Arme darin ein.
+SourceCharacter creates a duct tape mummy on DestinationCharacter and traps her arms in it.
+SourceCharacter mummifiziert DestinationCharacter mit Klebeband und fängt ihre Arme darin ein.
+Select the type of gag
+Knebel-Typ wählen
+Small
+Klein
+Cleave
+Spalt
+OTM
+Über Mund
+OTN
+Über Nase
+SourceCharacter ties the cloth into a small gag over DestinationCharacter's mouth.
+SourceCharacter bindet das Tuch als kleinen Knebel über den Mund von DestinationCharacter.
+SourceCharacter ties the cloth into a cleave gag over DestinationCharacter's mouth.
+SourceCharacter bindet das Tuch als Spaltknebel über den Mund von DestinationCharacter.
+SourceCharacter stuffs DestinationCharacter's mouth with a piece of cloth and secures it with another piece.
+SourceCharacter stopft ein Stück Stoff in DestinationCharacters Mund und bindet es mit einem weiteren Tuch fest.
+SourceCharacter stuffs DestinationCharacter's mouth with a piece of cloth and secures the gag over her mouth and nose.
+SourceCharacter stopft ein Stück Stoff in DestinationCharacters Mund und bindet ein weiteres Tuch über ihren Mund und ihre Nase.
+Single strip
+Einzelstreifen
+Crossed strips
+Über Kreuz
+Full face
+Vollständig
+Double layer
+Doppelschicht
+SourceCharacter puts a piece of duct tape on DestinationCharacter's mouth.
+SourceCharacter klebt einen Streifen Klebeband auf DestinationCharacters Mund.
+SourceCharacter crosses two pieces of duct tape on DestinationCharacter's mouth.
+SourceCharacter klebt zwei überkreuzte Streifen Klebeband auf DestinationCharacters Mund.
+SourceCharacter fully tapes DestinationCharacter's mouth.
+SourceCharacter klebt DestinationCharacters Mund vollständig zu.
+SourceCharacter fully tapes DestinationCharacter's mouth with double layers.
+SourceCharacter klebt DestinationCharacters Mund mit einer doppelten Schicht Klebeband zu.
 Item intensity: Disabled
 Intensität: Deaktiviert
 Item intensity: Low
@@ -127,21 +209,21 @@ DestinationCharacter's vibrating egg starts buzzing strongly!
 DestinationCharacters Vibrator-Ei fängt an, stark zu vibrieren!
 DestinationCharacter's vibrating egg jumps up to maximum intensity!
 DestinationCharacters Vibrator-Ei springt auf die maximale Stufe!
-DestinationCharacter's vibrating nipple clamps stops vibrating.
+DestinationCharacter's vibrating nipple clamps stop vibrating.
 Die Vibrator-Nippelklemmen von DestinationCharacter hören auf zu vibrieren.
-DestinationCharacter's vibrating nipple clamps slows down into a light tease.
+DestinationCharacter's vibrating nipple clamps slow down into a light tease.
 Die Vibrator-Nippelklemmen von DestinationCharacter fallen auf ein leichtes Surren herab.
-DestinationCharacter's vibrating nipple clamps returns to a moderate pace.
+DestinationCharacter's vibrating nipple clamps return to a moderate pace.
 Die Vibrator-Nippelklemmen von DestinationCharacter fallen auf eine moderate Stärke herab.
-DestinationCharacter's vibrating nipple clamps slows down a tiny bit.
+DestinationCharacter's vibrating nipple clamps slow down a tiny bit.
 Die Vibrator-Nippelklemmen von DestinationCharacter lassen ein kleines bisschen nach.
-DestinationCharacter's vibrating nipple clamps starts teasing her lightly.
+DestinationCharacter's vibrating nipple clamps start teasing her lightly.
 Die Vibrator-Nippelklemmen von DestinationCharacter fangen an, sie sanft zu erregen.
-DestinationCharacter's vibrating nipple clamps builds up to a moderate pace.
+DestinationCharacter's vibrating nipple clamps build up to a moderate pace.
 Die Vibrator-Nippelklemmen von DestinationCharacter nehmen etwas Fahrt auf.
-DestinationCharacter's vibrating nipple clamps starts buzzing strongly!
+DestinationCharacter's vibrating nipple clamps start buzzing strongly!
 Die Vibrator-Nippelklemmen von DestinationCharacter fangen an, stark zu vibrieren!
-DestinationCharacter's vibrating nipple clamps jumps up to maximum intensity!
+DestinationCharacter's vibrating nipple clamps jump up to maximum intensity!
 Die Vibrator-Nippelklemmen von DestinationCharacter springen auf die maximale Stufe!
 Use Remote
 Fernbedienung
@@ -183,3 +265,5 @@ mittens to the baby harness
 an ihr Babyharnisch
 They must be wearing a baby harness first to chain the mittens to it.
 Sie muss einen Babyharnisch tragen, um die Fäustlinge daran anzuketten.
+Facial expression
+Gesichtsausdruck

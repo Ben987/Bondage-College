@@ -42,25 +42,47 @@ function InventoryItemArmsLeatherCuffsClick() {
 
 // Sets the cuffs pose (wrist, elbow, both or none)
 function InventoryItemArmsLeatherCuffsSetPose(NewPose) {
+
+	// Gets the current item and character
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (CurrentScreen == "ChatRoom") {
 		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
 		InventoryItemArmsLeatherCuffsLoad();
 	}
+
+	// Sets the new pose with it's effects
 	DialogFocusItem.Property.Restrain = NewPose;
 	if (NewPose == null) {
 		delete DialogFocusItem.Property.SetPose;
 		delete DialogFocusItem.Property.Effect;
 		delete DialogFocusItem.Property.SelfUnlock;
+		delete DialogFocusItem.Property.Difficulty;
 	} else {
 		DialogFocusItem.Property.SetPose = [(NewPose == "Wrist") ? "BackBoxTie" : "BackElbowTouch"];
-		DialogFocusItem.Property.Effect = ["Block", "Prone", "Lock"];
+		DialogFocusItem.Property.Effect = ["Block", "Prone"];
 		DialogFocusItem.Property.SelfUnlock = (NewPose == "Wrist");
+		if (NewPose == "Wrist") DialogFocusItem.Property.Difficulty = 2;
+		if (NewPose == "Elbow") DialogFocusItem.Property.Difficulty = 4;
+		if (NewPose == "Both") DialogFocusItem.Property.Difficulty = 6;
 	}
+
+	// Adds the lock effect back if it was padlocked
+	if ((DialogFocusItem.Property.LockedBy != null) && (DialogFocusItem.Property.LockedBy != "")) {
+		if (DialogFocusItem.Property.Effect == null) DialogFocusItem.Property.Effect = [];
+		DialogFocusItem.Property.Effect.push("Lock");
+	}
+
+	// Refreshes the character and chatroom
 	CharacterRefresh(C);
 	var msg = DialogFind(Player, "LeatherCuffsRestrain" + ((NewPose == null) ? "None" : NewPose));
 	msg = msg.replace("SourceCharacter", Player.Name);
 	msg = msg.replace("DestinationCharacter", C.Name);
 	ChatRoomPublishCustomAction(msg, true);
-	if (DialogInventory != null) DialogFocusItem = null;
+
+	// Rebuilds the inventory menu
+	if (DialogInventory != null) {
+		DialogFocusItem = null;
+		DialogMenuButtonBuild(C);
+	}
+
 }

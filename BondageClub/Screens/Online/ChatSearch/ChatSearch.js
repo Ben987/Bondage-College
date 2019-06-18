@@ -1,5 +1,5 @@
 "use strict";
-var ChatSearchBackground = "IntroductionDark"
+var ChatSearchBackground = "IntroductionDark";
 var ChatSearchResult = [];
 var ChatSearchMessage = "";
 

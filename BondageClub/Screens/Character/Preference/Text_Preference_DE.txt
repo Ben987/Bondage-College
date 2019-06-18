@@ -1,0 +1,18 @@
+- Preferences -
+- Einstellungen -
+Character label color:
+Namenszug-Farbe:
+Item permission:
+Item-Berechtigung:
+Everyone, no exceptions
+Alle, ohne Ausnahme
+Everyone, except blacklist
+Alle, außer Blacklist
+Owner, whitelist & Dominants
+Besitzer, Whitelist & Dominante
+Owner and whitelist only
+Nur Besitzer und Whitelist
+Owner only
+Nur Besitzer
+Put a valid hex #red-green-blue color
+Bitte gültige #rot-grün-blau Hex-Farbe eingeben

@@ -239,8 +239,35 @@ function DrawImageMirror(Source, X, Y) {
     MainCanvas.restore();
 }
 
+// Reduces the font size progressively until it fits the wrap size
+function GetWrapTextSize(Text, Width, MaxLine) {
+
+	// Don't bother if it fits on one line
+	if (MainCanvas.measureText(Text).width > Width) {
+		var words = Text.split(' ');
+		var line = '';
+		
+		// Find the number of lines
+		var LineCount = 1;
+		for(var n = 0; n < words.length; n++) {
+		  var testLine = line + words[n] + ' ';
+		  if (MainCanvas.measureText(testLine).width > Width && n > 0) {
+			line = words[n] + ' ';			  
+  		    LineCount++;
+		  } else line = testLine;
+		}
+		
+		// If there's too many lines, we launch the function again with size minus 2
+		if (LineCount > MaxLine) {
+			MainCanvas.font = (parseInt(MainCanvas.font.substring(0, 2)) - 2).toString() + "px arial";
+			return GetWrapTextSize(Text, Width, MaxLine);
+		} else return;
+
+	} return;
+}
+
 // Draw a word wrapped text in a rectangle
-function DrawTextWrap(Text, X, Y, Width, Height, ForeColor, BackColor) {
+function DrawTextWrap(Text, X, Y, Width, Height, ForeColor, BackColor, MaxLine) {
 
 	// Draw the rectangle if we need too
 	if (BackColor != null) {
@@ -253,6 +280,13 @@ function DrawTextWrap(Text, X, Y, Width, Height, ForeColor, BackColor) {
 		MainCanvas.strokeStyle = ForeColor;
 		MainCanvas.stroke();
 		MainCanvas.closePath();		
+	}
+	
+	// Sets the text size if there's a maximum number of lines
+	var TextSize;
+	if (MaxLine != null) {
+		TextSize = MainCanvas.font
+		GetWrapTextSize(Text, Width, MaxLine);
 	}
 	
 	// Split the text if it wouldn't fit in the rectangle
@@ -289,6 +323,10 @@ function DrawTextWrap(Text, X, Y, Width, Height, ForeColor, BackColor) {
 		MainCanvas.fillText(line, X + Width / 2, Y);
 		
 	} else MainCanvas.fillText(Text, X + Width / 2, Y + Height / 2);
+	
+	// Resets the font text size
+	if ((MaxLine != null) && (TextSize != null))
+		MainCanvas.font = TextSize;
 
 }
 
@@ -303,7 +341,7 @@ function DrawTextFit(Text, X, Y, Width, Color) {
 	}
 	MainCanvas.fillStyle = Color;
 	MainCanvas.fillText(Text, X, Y);
-	MainCanvas.font = "36px Arial";	
+	MainCanvas.font = "36px Arial";
 }
 
 // Draw a text in the canvas
@@ -423,7 +461,7 @@ function DrawProcess() {
 		if (((Player.Effect.indexOf("BlindNormal") >= 0) || (Player.Effect.indexOf("BlindHeavy") >= 0)) && (CurrentModule != "Character"))
 			DrawRect(0, 0, 2000, 1000, "Black");
 		else
-			DrawImage("Backgrounds/" + B + ((((CurrentCharacter != null) || ShopStarted || (Player.Effect.indexOf("BlindLight") >= 0)) && (CurrentModule != "Character")) ? "Dark" : "") + ".jpg", 0, 0);
+			DrawImage("Backgrounds/" + B + ((((CurrentCharacter != null) || ShopStarted || (Player.Effect.indexOf("BlindLight") >= 0)) && (CurrentModule != "Character") && (B.indexOf("Dark") <= 0)) ? "Dark" : "") + ".jpg", 0, 0);
 	
 	// Draws the dialog screen or current screen if there's no loaded character
 	if (CurrentCharacter != null) DialogDraw();

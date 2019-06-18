@@ -18,6 +18,8 @@
         height: 720px;
     }
 </style>
+<script src="../../Scripts/Common.js"></script>
+<script src="../../Scripts/Translation.js"></script>
 <script>
 'use strict';
 
@@ -96,9 +98,83 @@ function convert() {
     var arr = parseCsv(ta.value);
     ta.value = csvToTranslation(arr, comments, mode);
 }
+
+function update(fileName) {
+    if (!fileName) fileName = document.getElementById('update-list').value;
+    var englishFileName = fileName.substring(0, fileName.length - 7) + ".csv";
+    var ta = document.getElementById('content');
+    var comments = document.getElementById('comments').checked;
+    var mode = document.getElementById('mode').value;
+    var newTemplateText, oldTranslationText;
+    var callback2 = function() {
+        oldTranslationText = this.responseText;
+        var oldLines = TranslationParseTXT(oldTranslationText);
+        var newLines = newTemplateText.split('\n');
+        for (var n = 0; n < newLines.length; n++){
+            if (newLines[n].indexOf('###') == 0) continue;
+            for (var o = 0; o < oldLines.length; o++) {
+                if (newLines[n].trim() == oldLines[o].trim()) {
+                    var m = n+1;
+                    while (newLines[m].indexOf('###') == 0) m++;
+                    newLines[m] = oldLines[o + 1];
+                    oldLines.splice(o, 2);
+                    n = m;
+                    break;
+                }
+            }
+        }
+        var oldLinesRemaining = false;
+        for (var o = 0; o < oldLines.length; o++) {
+            if (oldLines[o].trim()) {
+                oldLinesRemaining = true;
+                break;
+            }
+        }
+        if (oldLinesRemaining) {
+            newLines.push('########################');
+            newLines.push('### DEPRECATED LINES ###');
+            newLines.push('########################');
+            for (var o = 0; o < oldLines.length; o++) newLines.push(oldLines[o]);
+        }
+        ta.value = newLines.join('\n');
+    };
+    var callback1 = function() {
+        newTemplateText = csvToTranslation(parseCsv(this.responseText), comments, mode);
+        CommonGet("../../" + fileName, callback2);
+    };
+    CommonGet("../../" + englishFileName, callback1);
+}
+
+function getParameter(name) {
+    var items = location.search.substring(1).split('&');
+    for (var i = 0; i < items.length; i++) {
+        var temp = items[i].split("=");
+        if (temp[0] === name) return decodeURIComponent(temp[1]);
+    }
+}
+
+window.onload = function() {
+	for (var L = 0; L < TranslationDictionary.length; L++) {
+        var Language = TranslationDictionary[L];
+        if (Language.LanguageCode === "EN") continue;
+
+        var optgroup = document.createElement('optgroup');
+        optgroup.label = Language.EnglishName + ' (' + Language.LanguageName + ')';
+        document.getElementById('update-list').appendChild(optgroup);
+        for (var F = 0; F < Language.Files.length; F++) {
+            var option = document.createElement('option');
+            option.text = Language.Files[F];
+            optgroup.appendChild(option);
+        }
+    }
+
+    var fileToUpdate = getParameter('update');
+    if (fileToUpdate) update(fileToUpdate);
+};
 </script>
 </head>
 <body>
+    <h1>Translation Template Generator</h1>
     <p>Paste the content of a Bondage Club CSV file into the box below and click "Convert" to generate a translation template. Then, copy the generated text from the box into your preferred text editor and save it as a TXT file with your language code.</p>
     <textarea id="content"></textarea>
     <p>
@@ -113,5 +189,9 @@ function convert() {
         </select>
     </p>
     <p><button onclick="convert()">Convert</button></p>
+    <h2>Update translation file</h2>
+    <p><strong>Use this with caution, it has barely been tested!</strong> Select an existing translation file and click "Update!", then copy its updated version from the box above and overwrite the file with it. Any lines from the old file that aren't in the game anymore will be appended at the bottom for reference.</p>
+    <select id="update-list"></select>
+    <button onclick="update()">Update!</button>
 </body>
 </html>

@@ -5,7 +5,7 @@ var ChatRoomCharacter = [];
 var ChatRoomLog = "";
 var ChatRoomLastMessage = [""];
 var ChatRoomLastMessageIndex = 0;
-var ChatRoomAddressee = null;
+var ChatRoomTargetMemberNumber = null;
 
 // Returns TRUE if the dialog option is available
 function ChatRoomCanAddWhiteList() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.WhiteList.indexOf(CurrentCharacter.MemberNumber) < 0) && (Player.BlackList.indexOf(CurrentCharacter.MemberNumber) < 0)) }
@@ -14,6 +14,7 @@ function ChatRoomCanRemoveWhiteList() { return ((CurrentCharacter != null) && (C
 function ChatRoomCanRemoveBlackList() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.BlackList.indexOf(CurrentCharacter.MemberNumber) >= 0)) }
 function ChatRoomCanAddFriend() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.FriendList.indexOf(CurrentCharacter.MemberNumber) < 0)) }
 function ChatRoomCanRemoveFriend() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.FriendList.indexOf(CurrentCharacter.MemberNumber) >= 0)) }
+function ChatRoomCanChangeClothes() { return (Player.CanInteract() && (CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && CurrentCharacter.AllowItem && !((InventoryGet(CurrentCharacter, "ItemNeck") != null) && (InventoryGet(CurrentCharacter, "ItemNeck").Asset.Name == "ClubSlaveCollar"))) }
 
 // Creates the chat room input elements
 function ChatRoomCreateElement() {
@@ -71,34 +72,49 @@ function ChatRoomDrawCharacter(DoClick) {
 	if (ChatRoomCharacter.length == 4) Zoom = 0.7;
 	if (ChatRoomCharacter.length >= 5) Zoom = 0.5;
 
-	// Draw the characters
+	// Draw the characters (in click mode, we can open the character menu or start whispering to them)
 	for (var C = 0; C < ChatRoomCharacter.length; C++)
 		if (DoClick) {
 			if ((MouseX >= (C % 5) * Space + X) && (MouseX <= (C % 5) * Space + X + 450 * Zoom) && (MouseY >= Y + Math.floor(C / 5) * 500) && (MouseY <= Y + Math.floor(C / 5) * 500 + 1000 * Zoom)) {
-				ElementRemove("InputChat");
-				ElementRemove("TextAreaChatLog");
-				ChatRoomBackground = ChatRoomData.Background;
-				ChatRoomCharacter[C].AllowItem = (ChatRoomCharacter[C].ID == 0);
-				if (ChatRoomCharacter[C].ID != 0) ServerSend("ChatRoomAllowItem", { MemberNumber: ChatRoomCharacter[C].MemberNumber });
-				CharacterSetCurrent(ChatRoomCharacter[C]);
+				if (MouseY <= Y + Math.floor(C / 5) * 500 + 950 * Zoom) {
+					ElementRemove("InputChat");
+					ElementRemove("TextAreaChatLog");
+					ChatRoomBackground = ChatRoomData.Background;
+					ChatRoomCharacter[C].AllowItem = (ChatRoomCharacter[C].ID == 0);
+					if (ChatRoomCharacter[C].ID != 0) ServerSend("ChatRoomAllowItem", { MemberNumber: ChatRoomCharacter[C].MemberNumber });
+					CharacterSetCurrent(ChatRoomCharacter[C]);
+				} else ChatRoomTargetMemberNumber = ((ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) || (ChatRoomCharacter[C].ID == 0)) ? null : ChatRoomCharacter[C].MemberNumber;
 				break;
 			}
 		}
 		else {
 			DrawCharacter(ChatRoomCharacter[C], (C % 5) * Space + X, Y + Math.floor(C / 5) * 500, Zoom);
+			if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) DrawImage("Icons/Small/Whisper.png", (C % 5) * Space + X + 75 * Zoom, Y + Math.floor(C / 5) * 500 + 950 * Zoom);
 			if (ChatRoomCharacter[C].MemberNumber != null) {
-				if (Player.WhiteList.indexOf(ChatRoomCharacter[C].MemberNumber) >= 0) DrawImage("Icons/Small/WhiteList.png", (C % 5) * Space + X + 44 * Zoom, Y + Math.floor(C / 5) * 500);
-				else if (Player.BlackList.indexOf(ChatRoomCharacter[C].MemberNumber) >= 0) DrawImage("Icons/Small/BlackList.png", (C % 5) * Space + X + 44 * Zoom, Y + Math.floor(C / 5) * 500);
-				if (Player.FriendList.indexOf(ChatRoomCharacter[C].MemberNumber) >= 0) DrawImage("Icons/Small/FriendList.png", (C % 5) * Space + X + 400 * Zoom, Y + Math.floor(C / 5) * 500);
-				if (ChatRoomAddressee != null && ChatRoomCharacter[C].MemberNumber == ChatRoomAddressee) DrawEmptyRect((C % 5) * Space + X + 100 * Zoom, Y + Math.floor(C / 5) * 500, 300 * Zoom, 950 * Zoom, "Green");
+				if (Player.WhiteList.indexOf(ChatRoomCharacter[C].MemberNumber) >= 0) DrawImage("Icons/Small/WhiteList.png", (C % 5) * Space + X + 75 * Zoom, Y + Math.floor(C / 5) * 500);
+				else if (Player.BlackList.indexOf(ChatRoomCharacter[C].MemberNumber) >= 0) DrawImage("Icons/Small/BlackList.png", (C % 5) * Space + X + 75 * Zoom, Y + Math.floor(C / 5) * 500);
+				if (Player.FriendList.indexOf(ChatRoomCharacter[C].MemberNumber) >= 0) DrawImage("Icons/Small/FriendList.png", (C % 5) * Space + X + 375 * Zoom, Y + Math.floor(C / 5) * 500);
 			}
 		}
 
 }
 
+// Sets the whisper target
+function ChatRoomTarget() {
+	var TargetName = null;
+	if (ChatRoomTargetMemberNumber != null) {
+		for (var C = 0; C < ChatRoomCharacter.length; C++)
+			if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber)
+				TargetName = ChatRoomCharacter[C].Name;
+		if (TargetName == null) ChatRoomTargetMemberNumber = null;
+	}
+	document.getElementById("InputChat").placeholder = (ChatRoomTargetMemberNumber == null) ? TextGet("PublicChat") : TextGet("WhisperTo") + " " + TargetName;
+}
+
 // When the chat room runs
-function ChatRoomRun() {
+function ChatRoomRun() {	
 	ChatRoomCreateElement();
+	ChatRoomTarget();
 	ChatRoomBackground = "";
 	DrawRect(0, 0, 2000, 1000, "Black");
 	ChatRoomDrawCharacter(false);
@@ -133,7 +149,7 @@ function ChatRoomClick() {
 		ElementRemove("TextAreaChatLog");
 		CharacterAppearanceReturnRoom = "ChatRoom"; 
 		CharacterAppearanceReturnModule = "Online";
-		CommonSetScreen("Character", "Appearance");
+		CharacterAppearanceLoadCharacter(Player);
 	}
 
 	// When the user leaves
@@ -206,14 +222,28 @@ function ChatRoomSendChat() {
 			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Emote" } );
 
 		} else {
-			
+
 			// Regular chat can be garbled with a gag
-			msg = DialogGarble(Player, msg);
-			if (msg != "") {
-				if (ChatRoomAddressee != null) ServerSend("ChatRoomChat", { Content: msg, Type: "Whisper", Addressee: ChatRoomAddressee } );
-				else ServerSend("ChatRoomChat", { Content: msg, Type: "Chat" } );
-			} 
-			
+			msg = SpeechGarble(Player, msg);
+			if ((msg != "") && (ChatRoomTargetMemberNumber == null)) ServerSend("ChatRoomChat", { Content: msg, Type: "Chat" } );
+
+			// The whispers get sent to the server and shown on the client directly
+			if ((msg != "") && (ChatRoomTargetMemberNumber != null)) {
+				ServerSend("ChatRoomChat", { Content: msg, Type: "Whisper", Target: ChatRoomTargetMemberNumber });
+				var TargetName = "";
+				for (var C = 0; C < ChatRoomCharacter.length; C++)
+					if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber)
+						TargetName = ChatRoomCharacter[C].Name;
+				var ShouldScrollDown = ElementIsScrolledToEnd("TextAreaChatLog");
+				var DataAttributes = 'data-time="' + ChatRoomCurrentTime() + '" data-sender="' + Player.MemberNumber.toString() + '"';
+				ChatRoomLog = ChatRoomLog + '<div class="ChatMessage ChatMessageWhisper" ' + DataAttributes + '>' + TextGet("WhisperTo") + " " + TargetName + ": " + msg + '</div>';
+				if (document.getElementById("TextAreaChatLog") != null) {
+					ElementContent("TextAreaChatLog", ChatRoomLog);
+					if (ShouldScrollDown) ElementScrollToEnd("TextAreaChatLog");
+					ElementFocus("InputChat");
+				}
+			}
+
 		}
 
 		// Clears the chat text message
@@ -237,7 +267,8 @@ function ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem
 
 		// Prepares the message
 		var msg = "";
-		if ((DialogProgressPrevItem != null) && (DialogProgressNextItem != null)) msg = TextGet("ActionSwap");
+		if ((DialogProgressPrevItem != null) && (DialogProgressNextItem != null) && !DialogProgressNextItem.Asset.IsLock) msg = TextGet("ActionSwap");
+		else if ((DialogProgressPrevItem != null) && (DialogProgressNextItem != null) && DialogProgressNextItem.Asset.IsLock) msg = TextGet("ActionAddLock");
 		else if (InventoryItemHasEffect(DialogProgressNextItem, "Lock")) msg = TextGet("ActionLock");
 		else if (DialogProgressNextItem != null) msg = TextGet("ActionUse");
 		else if (InventoryItemHasEffect(DialogProgressPrevItem, "Lock")) msg = TextGet("ActionUnlock");
@@ -302,8 +333,8 @@ function ChatRoomMessage(data) {
 
 			// Builds the message to add depending on the type
 			if ((data.Type != null) && (data.Type == "Chat")) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + msg;
-			if ((data.Type != null) && (data.Type == "Whisper")) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + '&num</span> ' + msg;
-      if ((data.Type != null) && (data.Type == "Emote")) msg = "*" + SenderCharacter.Name + " " + msg + "*";
+			if ((data.Type != null) && (data.Type == "Whisper")) msg = '<span class="ChatMessageName" style="font-style: italic; color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + msg;
+			if ((data.Type != null) && (data.Type == "Emote")) msg = "*" + SenderCharacter.Name + " " + msg + "*";
 			if ((data.Type != null) && (data.Type == "Action")) msg = "(" + msg + ")";
 		
 			// Adds the message and scrolls down unless the user has scrolled up
@@ -394,4 +425,11 @@ function ChatRoomAllowItem(data) {
 			CurrentCharacter.AllowItem = data.AllowItem;
 			CharacterSetCurrent(CurrentCharacter);
 		}
+}
+
+// When the player wants to change another player's outfit
+function ChatRoomChangeClothes() {
+	var C = CurrentCharacter;
+	DialogLeave();
+	CharacterAppearanceLoadCharacter(C);
 }

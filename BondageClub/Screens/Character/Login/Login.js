@@ -27,7 +27,7 @@ function LoginDrawCredits() {
 	for(var C = 0; C < LoginCredits.length; C++) {
 
 		// Sets the Y position (it scrolls from bottom to top)
-		var Y = 800 - Math.floor(LoginCreditsPosition * CommonRunInterval / 10) + (C * 50);
+		var Y = 800 - Math.floor(LoginCreditsPosition * TimerRunInterval / 10) + (C * 50);
 
 		// Draw the text if it's in drawing range
 		if ((Y > 0) && (Y <= 999)) {
@@ -161,7 +161,7 @@ function LoginResponse(C) {
 			if ((InventoryGet(Player, "ItemArms") != null) && (InventoryGet(Player, "ItemArms").Asset.Name == "FourLimbsShackles")) InventoryRemove(Player, "ItemArms");
 
 			// If the player must start in her room, in her cage
-			if (LogQuery("SleepCage", "Rule") && (Player.Owner != "")) {
+			if (LogQuery("SleepCage", "Rule") && (Player.Owner != "") && PrivateOwnerInRoom()) {
 				InventoryRemove(Player, "ItemFeet");
 				InventoryRemove(Player, "ItemLegs");
 				Player.Cage = true;
@@ -199,7 +199,7 @@ function LoginClick() {
 		InventoryRemove(Player, "ItemFeet");
 		InventoryRemove(Player, "ItemLegs");
 		InventoryRemove(Player, "ItemArms");
-		CommonSetScreen("Character", "Appearance");
+		CharacterAppearanceLoadCharacter(Player);
 	}
 	
 	// If we must try to login (make sure we don't send the login query twice)
