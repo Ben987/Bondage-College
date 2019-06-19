@@ -18,6 +18,7 @@ function ServerInit() {
 	ServerSocket.on("ChatRoomMessage", function (data) { ChatRoomMessage(data); } );
 	ServerSocket.on("ChatRoomAllowItem", function (data) { ChatRoomAllowItem(data); } );
 	ServerSocket.on("PasswordResetResponse", function (data) { PasswordResetResponse(data); } );
+	ServerSocket.on("AccountQueryResult", function (data) { ServerAccountQueryResult(data); } );
 }
 
 // When the server sends some information to the client, we keep it in variables
@@ -184,3 +185,10 @@ function ServerPrivateCharacterSync() {
 		ServerSend("AccountUpdate", D);		
 	}
 };
+
+// Parse the query result and sends it to the right screen
+function ServerAccountQueryResult(data) {
+	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.Query != null) && (typeof data.Query === "string") && (data.Result != null)) {
+		if (data.Query == "OnlineFriends") FriendListLoadFriendList(data.Result);
+	}
+}
