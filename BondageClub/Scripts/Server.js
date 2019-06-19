@@ -147,19 +147,6 @@ function ServerPlayerAppearanceSync() {
 
 }
 
-// Syncs the player wardrobe with the server (12 wardrobe positions)
-function ServerPlayerWardrobeSync() {
-	var D = {};
-	D.Wardrobe = [];
-	for(var W = 0; W < WardrobeCharacter.length; W++) {
-		D.Wardrobe[W] = [];
-		for(var A = 0; A < WardrobeCharacter[W].Appearance.length; A++)
-			if (WardrobeCharacter[W].Appearance[A].Asset.Group.Category == "Appearance")
-				D.Wardrobe[W].push({ Name: WardrobeCharacter[W].Appearance[A].Asset.Name, Group: WardrobeCharacter[W].Appearance[A].Asset.Group.Name, Color: WardrobeCharacter[W].Appearance[A].Color });
-	}
-	ServerSend("AccountUpdate", D);
-}
-
 // Syncs the private character with the server
 function ServerPrivateCharacterSync() {
 	if (PrivateVendor != null) {

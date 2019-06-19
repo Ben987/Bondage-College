@@ -93,13 +93,11 @@ function WardrobeClick() {
 	
 	// If we must load a saved outfit
 	if ((MouseX >= 500) && (MouseX < 725) && (MouseY >= 25) && (MouseY < 90) && (WardrobeSelection >= 0))
-		CharacterAppearanceCopy(WardrobeCharacter[WardrobeSelection], Player);
+		WardrobeFastLoad(Player, WardrobeSelection);
 
 	// If we must save an outfit
-	if ((MouseX >= 750) && (MouseX < 975) && (MouseY >= 25) && (MouseY < 90) && (WardrobeSelection >= 0)) {
-		CharacterAppearanceCopy(Player, WardrobeCharacter[WardrobeSelection]);
-		ServerPlayerWardrobeSync();
-	}
+	if ((MouseX >= 750) && (MouseX < 975) && (MouseY >= 25) && (MouseY < 90) && (WardrobeSelection >= 0))
+		WardrobeSaveLoad(Player, WardrobeSelection);
 
 	// If we must select a different wardrobe
 	if ((MouseX >= 500) && (MouseX < 2000) && (MouseY >= 100) && (MouseY < 1000))
