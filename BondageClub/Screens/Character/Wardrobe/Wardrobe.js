@@ -140,6 +140,14 @@ function WardrobeFastLoad(C, W) {
 					&& (a.Value == 0 || InventoryAvailable(Player, a.Name, a.Group.Name)));
 				if (A != null) CharacterAppearanceSetItem(C, w.Group, A, w.Color);
 			});
+		// Adds any critical appearance asset that could be missing, adds the default one
+		AssetGroup
+			.filter(g => g.Category == "Appearance" && !g.AllowNone)
+			.forEach(g => {
+				if (C.Appearance.find(a => a.Asset.Group.Name == g.Name) == null) {
+					C.Appearance.push({ Asset: Asset.find(a => a.Group.Name == g.Name), Color: "Default" });
+				}
+			});
 		CharacterLoadCanvas(C);
 		if (C.ID == 0 && C.OnlineID != null) ServerPlayerAppearanceSync();
 		if (C.ID == 0 || C.AccountName.indexOf("Online-") == 0) ChatRoomCharacterUpdate(C);
