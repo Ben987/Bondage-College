@@ -128,8 +128,17 @@ function WardrobeFastLoad(C, W) {
 		var AddAll = C.ID == 0 || C.AccountName.indexOf("Wardrobe-") == 0;
 		C.Appearance = C.Appearance
 			.filter(a => a.Asset.Group.Category != "Appearance" || (!a.Asset.Group.Clothing && !AddAll))
+		if (AddAll) {
+			// load body first so the size is set for other clothes
+			Player.Wardrobe[W]
+				.filter(w => w.Name != null && w.Group != null && w.Group.indexOf("Body") == 0)
+				.forEach(w => {
+					var A = Asset.find(a => a.Group.Name == w.Group && a.Name == w.Name);
+					if (A != null) CharacterAppearanceSetItem(C, w.Group, A, w.Color);
+				});			
+		}
 		Player.Wardrobe[W]
-			.filter(w => w.Name != null && w.Group != null)
+			.filter(w => w.Name != null && w.Group != null && (!LoadAll || w.Group.indexOf("Body") != 0))
 			.filter(w => C.Appearance.find(a => a.Asset.Group.Name == w.Group) == null)
 			.forEach(w => {
 				var A = Asset.find(a =>
