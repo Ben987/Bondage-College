@@ -144,6 +144,26 @@ var AssetFemale3DCG = [
 	
 	{
 		Group: "Hat",
+		Priority: 34,
+		Default: false,
+		Clothing: true,
+		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
+		AllowPose: ["Suspension"],
+		Left: 125,
+		Top: 0,
+		Asset: [
+			"Band1", "Beret1",
+			{ Name: "Ribbons1", Priority: 1 },
+			{ Name: "MaidHairband1", Value: -1 },
+			{ Name: "NurseCap", Value: -1 },
+			{ Name: "Santa1", Value: 30 },
+			{ Name: "CaptainHat1", Value: 20 },
+			{ Name: "BunnySuccubus2", Value: 50 }
+		]
+	},
+
+	{
+		Group: "HairAccessory",
 		Priority: 33,
 		Default: false,
 		Clothing: true,
@@ -152,29 +172,18 @@ var AssetFemale3DCG = [
 		Left: 125,
 		Top: 0,
 		Asset: [
-			"Band1", "Beret1", "Ears1", "Ears2", "PonyEars1",
-			{ Name: "Ribbons1", Priority: 1 },
-			{ Name: "MaidHairband1", Value: -1 },
-			{ Name: "NurseCap", Value: -1 },
-			{ Name: "Santa1", Value: 30 },
+			"Ears1", "Ears2", "PonyEars1",
 			{ Name: "BunnyEars1", Value: 20 },
 			{ Name: "BunnyEars2", Value: 20 },
 			{ Name: "PuppyEars1", Value: 20, Priority: 29 },
-			{ Name: "CaptainHat1", Value: 20 },
 			{ Name: "SuccubusHorns", Value: 20 },
-			{ Name: "SuccubusHorns2", Value: 20 },
-			{ Name: "SuccubusHorns3", Value: 20 },
-			{ Name: "SuccubusHorns4", Value: 20 },
-			{ Name: "BunnySuccubus1", Value: 20 },
-			{ Name: "BunnySuccubus2", Value: 20 },
-			{ Name: "KittySuccubus1", Value: 20 },
-			{ Name: "KittySuccubus2", Value: 20 },
-			{ Name: "PonySuccubus", Value: 20 },
-			{ Name: "FoxEars1", Value: 20 },
-			{ Name: "BeretKitty", Value: 20 }
+			{ Name: "Horns", Value: 20 },
+			{ Name: "Horns2", Value: 20 },
+			{ Name: "Horns3", Value: 20 },
+			{ Name: "FoxEars1", Value: 20 }
 		]
-	},
-	
+	},		
+	        
 	{
 		Group: "Gloves",
 		Priority: 25,
@@ -315,8 +324,8 @@ var AssetFemale3DCG = [
 		AllowPose: ["BackBoxTie", "BackCuffs", "BackElbowTouch", "TapedHands"],
 		Color: ["Default"],
 		Asset: [
-			{ Name: "SuccubusFeather", Value: 10 },
-			{ Name: "SuccubusWings", Value: 10 }
+			{ Name: "SuccubusFeather", Value: 100 },
+			{ Name: "SuccubusWings", Value: 100 }
 		]
 	},	
 
@@ -594,7 +603,7 @@ var AssetFemale3DCG = [
 	{
 		Group: "ItemMisc",
 		Category: "Item",
-		Priority: 34,
+		Priority: 35,
 		Default: false,
 		Color: ["Default"],
 		Top: -250,
