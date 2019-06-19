@@ -142,7 +142,7 @@ function WardrobeFastLoad(C, W) {
 			});
 		CharacterLoadCanvas(C);
 		if (C.ID == 0 && C.OnlineID != null) ServerPlayerAppearanceSync();
-		if (C.ID == 0 && C.AccountName.indexOf("Online-") == 0) ChatRoomCharacterUpdate(C);
+		if (C.ID == 0 || C.AccountName.indexOf("Online-") == 0) ChatRoomCharacterUpdate(C);
 	}
 }
 
