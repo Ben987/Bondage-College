@@ -91,7 +91,7 @@ function WardrobeClick() {
 
 	// If we must save an outfit
 	if ((MouseX >= 750) && (MouseX < 975) && (MouseY >= 25) && (MouseY < 90) && (WardrobeSelection >= 0))
-		WardrobeSaveLoad(Player, WardrobeSelection);
+		WardrobeFastSave(Player, WardrobeSelection);
 
 	// If we must select a different wardrobe
 	if ((MouseX >= 500) && (MouseX < 2000) && (MouseY >= 100) && (MouseY < 1000))
