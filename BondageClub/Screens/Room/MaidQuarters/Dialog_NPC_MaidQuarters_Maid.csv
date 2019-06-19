@@ -205,3 +205,6 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 501,,AAA,,"MiniGameStart(""RhythmGame"", “A"")",,
 501,,BBB,,"MiniGameStart(""RhythmGame"", “B”)",,
 501,,CCC,,"MiniGameStart(""RhythmGame"", “C”)",,
+590,592,(Nod happily.),Here's your pay for your hard work.  (She gives you REPLACEMONEY $),MiniGamePayAdvanced(),,
+591,592,(Bow your head.),I hope you understand why I can't reward you.  You can try again though.,"DialogChangeReputation(""Maid"", 1)",,
+592,0,(Struggle in your restraints.),(She releases you and helps you to get dressed.)  All set!  Are you ready for more chores?,RemoveMaidUniform(),,
