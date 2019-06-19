@@ -33,7 +33,6 @@ function WardrobeLoadCharacters(Fast) {
 			if (Player.Wardrobe[P] != null) {
 				C.Appearance = [];
 				WardrobeFastLoad(C, P);
-				CharacterLoadCanvas(C);
 			} else {
 				CharacterAppearanceFullRandom(C);
 				WardrobeFastSave(C, P, false);
