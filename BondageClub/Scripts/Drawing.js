@@ -402,17 +402,14 @@ function DrawEmptyRect(Left, Top, Width, Height, Color) {
 	MainCanvas.lineWidth = '3';
 	MainCanvas.strokeStyle = Color;
 	MainCanvas.stroke();
-	MainCanvas.closePath();
 }
 
 // Draw a basic rectangle
 function DrawRect(Left, Top, Width, Height, Color) {
 	MainCanvas.beginPath();
-	MainCanvas.rect(Left, Top, Width, Height);
     MainCanvas.fillStyle = Color; 
     MainCanvas.fillRect(Left, Top, Width, Height);
 	MainCanvas.fill();	
-	MainCanvas.closePath();		
 }
 
 // Draw a basic circle

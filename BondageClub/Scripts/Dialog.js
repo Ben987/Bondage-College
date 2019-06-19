@@ -184,9 +184,9 @@ function DialogMenuButtonBuild(C) {
 	// Main buttons
 	if (DialogProgress < 0) {
 		if (DialogInventory >= 12) DialogMenuButton.push("Next");
-		if (InventoryItemHasEffect(Item, "Lock", true) && DialogCanUnlock(Item) && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Unlock");
+		if (InventoryItemHasEffect(Item, "Lock", true) && DialogCanUnlock(Item) && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C) && (Player.CanInteract() || ((C.ID == 0) && InventoryItemHasEffect(Item, "Block", true)))) DialogMenuButton.push("Unlock");
 		if (InventoryItemHasEffect(Item, "Lock", true) && !DialogCanUnlock(Item) && (C.ID == 0) && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Struggle");
-		if (InventoryItemHasEffect(Item, "Lock", true) && (Item.Property != null) && (Item.Property.LockedBy != null) && (Item.Property.LockedBy != "")) DialogMenuButton.push("InspectLock");
+		if (InventoryItemHasEffect(Item, "Lock", true) && !Player.IsBlind() && (Item.Property != null) && (Item.Property.LockedBy != null) && (Item.Property.LockedBy != "")) DialogMenuButton.push("InspectLock");
 		if ((Item != null) && Item.Asset.AllowLock && !InventoryItemHasEffect(Item, "Lock", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Lock");
 		if ((Item != null) && !InventoryItemHasEffect(Item, "Lock", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Remove");
 		if ((Item != null) && !InventoryItemHasEffect(Item, "Lock", true) && !Player.CanInteract() && (C.ID == 0) && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Struggle");

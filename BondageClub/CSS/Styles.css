@@ -51,3 +51,18 @@ canvas {
 	font-style: italic;
 	color: silver;
 }
+#FriendList {
+	border: 2px solid white;
+	overflow: auto;
+	word-wrap: break-word;
+	padding: 0 !important;
+	padding-bottom: 1% !important;
+	padding-left: 5% !important;
+}
+.FriendListBlock{
+	float: left;
+	width: 30%;
+	text-align: center;
+	color: white;
+	padding-top: 1% !important;
+}

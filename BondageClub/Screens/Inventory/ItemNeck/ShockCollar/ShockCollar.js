@@ -3,6 +3,8 @@
 // Loads the item extension properties
 function InventoryItemNeckShockCollarLoad() {
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Intensity: 0, ShowText: true };
+	if (DialogFocusItem.Property.Intensity == null) DialogFocusItem.Property.Intensity = 0;
+	if (DialogFocusItem.Property.ShowText == null) DialogFocusItem.Property.ShowText = true;
 }
 
 // Draw the item extension screen
