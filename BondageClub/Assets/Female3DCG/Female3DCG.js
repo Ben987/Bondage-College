@@ -158,7 +158,7 @@ var AssetFemale3DCG = [
 			{ Name: "NurseCap", Value: -1 },
 			{ Name: "Santa1", Value: 30 },
 			{ Name: "CaptainHat1", Value: 20 },
-			{ Name: "BunnySuccubus2", Value: 20 }
+			{ Name: "BunnySuccubus2", Value: 50 }
 		]
 	},
 
@@ -324,8 +324,8 @@ var AssetFemale3DCG = [
 		AllowPose: ["BackBoxTie", "BackCuffs", "BackElbowTouch", "TapedHands"],
 		Color: ["Default"],
 		Asset: [
-			{ Name: "SuccubusFeather", Value: 10 },
-			{ Name: "SuccubusWings", Value: 10 }
+			{ Name: "SuccubusFeather", Value: 100 },
+			{ Name: "SuccubusWings", Value: 100 }
 		]
 	},	
 
