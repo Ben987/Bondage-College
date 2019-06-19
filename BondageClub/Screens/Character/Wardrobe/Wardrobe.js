@@ -32,13 +32,7 @@ function WardrobeLoadCharacters(Fast) {
 			// Loads from player data or generates at full random
 			if (Player.Wardrobe[P] != null) {
 				C.Appearance = [];
-				for (var A = 0; A < Player.Wardrobe[P].length; A++)
-					if ((Player.Wardrobe[P][A].Name != null) && (Player.Wardrobe[P][A].Group != null))
-						for (var S = 0; S < Asset.length; S++)
-							if ((Asset[S].Name == Player.Wardrobe[P][A].Name) && (Asset[S].Group.Name == Player.Wardrobe[P][A].Group))
-								if (Asset[S].Group.Category == "Appearance")
-									if ((Asset[S].Value == 0) || InventoryAvailable(Player, Asset[S].Name, Asset[S].Group.Name))
-										CharacterAppearanceSetItem(C, Player.Wardrobe[P][A].Group, Asset[S], Player.Wardrobe[P][A].Color);
+				WardrobeFastLoad(C, P);
 				CharacterLoadCanvas(C);
 			} else {
 				CharacterAppearanceFullRandom(C);
@@ -46,6 +40,7 @@ function WardrobeLoadCharacters(Fast) {
 				W = P;
 			}
 		} else {
+			// randomize only one character
 			CharacterAppearanceFullRandom(WardrobeCharacter[W]);
 			WardrobeFastSave(C, P, false);
 		}
@@ -112,6 +107,7 @@ function WardrobeClick() {
 			}
 }
 
+// Set a wardrobe character name, sync it with server
 function WardrobeSetCharacterName(W, Name, Push) {
 	Player.WardrobeCharacterNames[W] = Name;
 	if (WardrobeCharacter != null && WardrobeCharacter[W] != null) {
@@ -138,7 +134,7 @@ function WardrobeFastLoad(C, W) {
 			.filter(w => C.Appearance.find(a => a.Asset.Group.Name == w.Group) == null)
 			.forEach(w => {
 				var A = Asset.find(a =>
-					a.Group.Name == w.Group
+					   a.Group.Name == w.Group
 					&& a.Group.Category == "Appearance"
 					&& (AddAll || a.Group.Clothing)
 					&& a.Name == w.Name
@@ -160,6 +156,7 @@ function WardrobeFastSave(C, W, Push) {
 			.filter(a => AddAll || a.Asset.Group.Clothing)
 			.map(WardrobeAssetBundle);
 		if (!AddAll) {
+			// Using Player's body as base
 			Player.Wardrobe[W] = Player.Wardrobe[W].concat(Player.Appearance
 				.filter(a => a.Asset.Group.Category == "Appearance")
 				.filter(a => !a.Asset.Group.Clothing)
