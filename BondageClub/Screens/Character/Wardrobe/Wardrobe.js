@@ -147,9 +147,8 @@ function WardrobeFastLoad(C, W) {
 					&& (a.Value == 0 || InventoryAvailable(Player, a.Name, a.Group.Name)));
 				if (A != null) CharacterAppearanceSetItem(C, w.Group, A, w.Color);
 			});
-		AssetReload(C);
-		CharacterRefresh(C);
-		if (C.ID == 0) ServerPlayerAppearanceSync();
+		CharacterLoadCanvas(C);
+		if (C.ID == 0 && C.OnlineID != null) ServerPlayerAppearanceSync();
 		if (C.ID == 0 && C.AccountName.indexOf("Online-") == 0) ChatRoomCharacterUpdate(C);
 	}
 }
