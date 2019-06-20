@@ -1,6 +1,7 @@
 "use strict";
 var RhythmGameBackground = 'RhythmGameLoading';
 let RhythmGameStarted = false;
+let RhythmGameEnded = false;
 let RhythmGamePreloadCompleted = false;
 
 //Rhythm game image object, load and cache the image resources
@@ -116,6 +117,7 @@ let RhythmGameChart = {
                 time : time,
                 para : para,
             });
+            if(time + para > RhythmGameChart.length) RhythmGameChart.length = time + para;
         }
 
         let timings = RhythmGameChart.chartFile.getElementsByTagName('Timings')[0].children;
@@ -240,6 +242,8 @@ let RhythmGameKernel = {
         RhythmGameKernel.deltaTime = time - RhythmGameKernel.pastTime;
         RhythmGameKernel.pastTime = time;
         RhythmGameKernel.frame++;
+
+        if(RhythmGameKernel.elapsedTime > RhythmGameChart.length + 7000) RhythmGameEnded = true;
 
         RhythmGameScript.update();
         RhythmGameRender.update();
@@ -384,10 +388,10 @@ let RhythmGameScript = {
             let judge = RhythmGameScript.judgeToVal(RhythmGameScript.result_judge[i].judge);
             switch(judge){
                 case 2:
-                    RhythmGameScript.result_score += Math.log10(RhythmGameScript.result_combo.combo+1) * 7.5;
+                    RhythmGameScript.result_score += Math.log10(RhythmGameScript.result_combo.combo+1) * 0.004;
                     break;
                 case 3:
-                    RhythmGameScript.result_score += Math.log10(RhythmGameScript.result_combo.combo+1) * 10;
+                    RhythmGameScript.result_score += Math.log10(RhythmGameScript.result_combo.combo+1) * 0.015;
                     break;
                 default:
                     break;
@@ -689,10 +693,7 @@ let RhythmGameRender = {
         MainCanvas.fillText(text,1500,150);
     },
     showScore : function(){
-        let text;
-        if(RhythmGameScript.result_score <= 1000) text = 'SCORE: ' + Math.round(RhythmGameScript.result_score);
-        else if(RhythmGameScript.result_score > 1000) text = 'SCORE: ' + (RhythmGameScript.result_score/1000).toFixed(2) + 'K';
-        else text = 'Score is too large to display';
+        let text = 'SCORE: ' + RhythmGameScript.result_score.toFixed(3);
         MainCanvas.font = '40px Courier';
         MainCanvas.fillStyle = '#FFFFFF';
         MainCanvas.globalAlpha = 1;
@@ -757,10 +758,18 @@ function RhythmGameLoadingPage(){
 
 }
 
+//Main process
 function RhythmGameRun() {
     if(!RhythmGameStarted) {
         RhythmGameLoadingPage();
         if(!RhythmGamePreloadCompleted) RhythmGamePreloadCheck();
+    }
+    else if(RhythmGameEnded){
+        console.log('GAME ENDED');
+        MainCanvas.restore();
+        MiniGameVictory = true;
+        MiniGameAdvancedPayment = Math.round(RhythmGameScript.result_score);
+        CommonDynamicFunction(MiniGameReturnFunction + "()");
     }
     else RhythmGameKernel.update();
 }
