@@ -139,7 +139,7 @@ function ChatRoomClick() {
 	
 	// When the user chats
 	if ((MouseX >= 0) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000)) ChatRoomDrawCharacter(true);
-	if ((MouseX >= 1725) && (MouseX < 1785) && (MouseY >= 935) && (MouseY < 995)) ChatRoomSendChat();
+	if ((MouseX >= 1675) && (MouseX < 1735) && (MouseY >= 935) && (MouseY < 995)) ChatRoomSendChat();
 	
 	// When the player kneels
 	if ((MouseX >= 1740) && (MouseX < 1800) && (MouseY >= 935) && (MouseY < 995) && Player.CanKneel()) { 
