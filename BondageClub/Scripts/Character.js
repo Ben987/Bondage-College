@@ -121,7 +121,7 @@ function CharacterBuildDialog(C, CSV) {
 function CharacterLoadCSVDialog(C, Override) {
 
     // Finds the full path of the CSV file to use cache
-    var FullPath = ((C.ID == 0) ? "Screens/Character/Player/Dialog_Player" : "Screens/" + CurrentModule + "/" + CurrentScreen + "/Dialog_" + ((Override == null) ? C.AccountName : Override)) + ".csv";    
+    var FullPath = ((C.ID == 0) ? "Screens/Character/Player/Dialog_Player" : ((Override == null) ? "Screens/" + CurrentModule + "/" + CurrentScreen + "/Dialog_" + C.AccountName : Override)) + ".csv";
     if (CommonCSVCache[FullPath]) {
 		CharacterBuildDialog(C, CommonCSVCache[FullPath]);
         return;
@@ -231,7 +231,7 @@ function CharacterLoadOnline(data) {
 		Char.Owner = (data.Owner != null) ? data.Owner : "";
 		Char.AccountName = "Online-" + data.ID.toString();
 		Char.MemberNumber = data.MemberNumber;
-		CharacterLoadCSVDialog(Char, "Online");
+		CharacterLoadCSVDialog(Char, "Screens/Online/ChatRoom/Dialog_Online");
 		CharacterOnlineRefresh(Char, data);
 
 	} else {
@@ -527,9 +527,11 @@ function CharacterSetFacialExpression(C, AssetGroup, Expression) {
 		if ((C.Appearance[A].Asset.Group.Name == AssetGroup) && (C.Appearance[A].Asset.Group.AllowExpression)) {
 			if ((Expression == null) || (C.Appearance[A].Asset.Group.AllowExpression.indexOf(Expression) >= 0)) {
 				if (!C.Appearance[A].Property) C.Appearance[A].Property = {};
-				C.Appearance[A].Property.Expression = Expression;
-				CharacterRefresh(C);
-				ChatRoomCharacterUpdate(C);
+				if (C.Appearance[A].Property.Expression != Expression) {
+					C.Appearance[A].Property.Expression = Expression;
+					CharacterRefresh(C);
+					ChatRoomCharacterUpdate(C);
+				}
 				return;
 			}
 		}

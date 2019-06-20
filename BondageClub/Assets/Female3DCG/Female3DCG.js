@@ -210,7 +210,23 @@ var AssetFemale3DCG = [
 		Top: 135,
 		Asset: ["Glasses1", "Glasses2", "Glasses3", "Glasses4", "Glasses5", "Glasses6", { Name: "SunGlasses1", Value: 20 }, { Name: "SunGlasses2", Value: 20 }]
 	},
-	
+
+	{
+		Group: "Wings",
+		Priority: 1,
+		ParentGroup: "BodyUpper",
+		ParentColor: "Bra",
+		Clothing: true,
+		Underwear: true,
+		Default: false,
+		AllowPose: ["BackBoxTie", "BackCuffs", "BackElbowTouch", "TapedHands"],
+		Color: ["Default"],
+		Asset: [
+			{ Name: "SuccubusFeather", Value: 100 },
+			{ Name: "SuccubusWings", Value: 100 }
+		]
+	},
+
 	{
 		Group: "BodyUpper",
 		Priority: 4,
