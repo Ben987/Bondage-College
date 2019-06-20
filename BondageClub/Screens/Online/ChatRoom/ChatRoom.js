@@ -22,7 +22,7 @@ function ChatRoomCreateElement() {
 		ElementCreateInput("InputChat", "text", "", "250");
 		document.getElementById("InputChat").setAttribute("autocomplete", "off");
 		ElementCreateDiv("TextAreaChatLog");
-		ElementPositionFix("TextAreaChatLog", 36, 1005, 5, 990, 925);
+		ElementPositionFix("TextAreaChatLog", 36, 1005, 5, 988, 923);
 		ElementContent("TextAreaChatLog", ChatRoomLog);
 		ElementScrollToEnd("TextAreaChatLog");
 		ElementFocus("InputChat");
@@ -49,7 +49,6 @@ function ChatRoomDrawCharacter(DoClick) {
 		if (ChatRoomCharacter.length == 4) DrawImageZoomCanvas("Backgrounds/" + ChatRoomData.Background + Dark + ".jpg", MainCanvas, 200, 0, 1600, 1000, 0, 150, 1000, 700);
 		if (ChatRoomCharacter.length == 5) DrawImageZoomCanvas("Backgrounds/" + ChatRoomData.Background + Dark + ".jpg", MainCanvas, 0, 0, 2000, 1000, 0, 250, 1000, 500);
 		if (ChatRoomCharacter.length >= 6) DrawImageZoomCanvas("Backgrounds/" + ChatRoomData.Background + Dark + ".jpg", MainCanvas, 0, 0, 2000, 1000, 0, 0, 1000, 500);
-		if (ChatRoomCharacter.length >= 6) DrawImageZoomCanvas("Backgrounds/" + ChatRoomData.Background + Dark + ".jpg", MainCanvas, 0, 0, 2000, 1000, 0, 500, 1000, 500);
 	}
 
 	// Sets the X position
@@ -88,13 +87,21 @@ function ChatRoomDrawCharacter(DoClick) {
 			}
 		}
 		else {
+			
+			// Draw the background a second time for characters 6 to 10 (we do it here to correct clipping errors from the first part)
+			if ((C == 5) && (Player.Effect.indexOf("BlindHeavy") < 0) && (Player.Effect.indexOf("BlindNormal") < 0)) DrawImageZoomCanvas("Backgrounds/" + ChatRoomData.Background + ((Player.Effect.indexOf("BlindLight") < 0) ? "" : "Dark") + ".jpg", MainCanvas, 0, 0, 2000, 1000, 0, 500, 1000, 500);
+
+			// Draw the character
 			DrawCharacter(ChatRoomCharacter[C], (C % 5) * Space + X, Y + Math.floor(C / 5) * 500, Zoom);
 			if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) DrawImage("Icons/Small/Whisper.png", (C % 5) * Space + X + 75 * Zoom, Y + Math.floor(C / 5) * 500 + 950 * Zoom);
+			
+			// Draw the friendlist / blacklist / whitelist icons
 			if (ChatRoomCharacter[C].MemberNumber != null) {
 				if (Player.WhiteList.indexOf(ChatRoomCharacter[C].MemberNumber) >= 0) DrawImage("Icons/Small/WhiteList.png", (C % 5) * Space + X + 75 * Zoom, Y + Math.floor(C / 5) * 500);
 				else if (Player.BlackList.indexOf(ChatRoomCharacter[C].MemberNumber) >= 0) DrawImage("Icons/Small/BlackList.png", (C % 5) * Space + X + 75 * Zoom, Y + Math.floor(C / 5) * 500);
 				if (Player.FriendList.indexOf(ChatRoomCharacter[C].MemberNumber) >= 0) DrawImage("Icons/Small/FriendList.png", (C % 5) * Space + X + 375 * Zoom, Y + Math.floor(C / 5) * 500);
 			}
+
 		}
 
 }
@@ -118,11 +125,12 @@ function ChatRoomRun() {
 	ChatRoomBackground = "";
 	DrawRect(0, 0, 2000, 1000, "Black");
 	ChatRoomDrawCharacter(false);
-	ElementPosition("InputChat", 1365, 959, 720);
-	ElementPositionFix("TextAreaChatLog", 36, 1005, 5, 990, 925);
-	DrawButton(1725, 935, 60, 60, "", "White", "Icons/Small/Chat.png");
-	if (Player.CanKneel()) DrawButton(1795, 935, 60, 60, "", "White", "Icons/Small/Kneel.png");
-	if (Player.CanInteract() && !LogQuery("BlockChange", "Rule")) DrawButton(1865, 935, 60, 60, "", "White", "Icons/Small/Dress.png");
+	ElementPosition("InputChat", 1339, 959, 668);
+	ElementPositionFix("TextAreaChatLog", 36, 1005, 5, 988, 923);
+	DrawButton(1675, 935, 60, 60, "", "White", "Icons/Small/Chat.png");
+	if (Player.CanKneel()) DrawButton(1740, 935, 60, 60, "", "White", "Icons/Small/Kneel.png");
+	if (Player.CanInteract() && !LogQuery("BlockChange", "Rule")) DrawButton(1805, 935, 60, 60, "", "White", "Icons/Small/Dress.png");
+	DrawButton(1870, 935, 60, 60, "", "White", "Icons/Small/Character.png");
 	if (Player.CanWalk()) DrawButton(1935, 935, 60, 60, "", "White", "Icons/Small/Exit.png");
 }
 
@@ -131,25 +139,30 @@ function ChatRoomClick() {
 	
 	// When the user chats
 	if ((MouseX >= 0) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000)) ChatRoomDrawCharacter(true);
-	if ((MouseX >= 1725) && (MouseX < 1785) && (MouseY >= 935) && (MouseY < 995)) {
-		ChatRoomSendChat();
-		ChatRoomAddressee = null;
-	}
+
+	if ((MouseX >= 1675) && (MouseX < 1735) && (MouseY >= 935) && (MouseY < 995)) ChatRoomSendChat();
 	
 	// When the player kneels
-	if ((MouseX >= 1795) && (MouseX < 1855) && (MouseY >= 935) && (MouseY < 995) && Player.CanKneel()) { 
+	if ((MouseX >= 1740) && (MouseX < 1800) && (MouseY >= 935) && (MouseY < 995) && Player.CanKneel()) { 
 		ServerSend("ChatRoomChat", { Content: Player.Name + " " + TextGet((Player.ActivePose == null) ? "KneelDown": "StandUp"), Type: "Action" } );
 		CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
 		ChatRoomCharacterUpdate(Player);
 	}
 	
 	// When the user wants to change clothes
-	if ((MouseX >= 1865) && (MouseX < 1925) && (MouseY >= 935) && (MouseY < 995) && Player.CanInteract() && !LogQuery("BlockChange", "Rule")) { 
+	if ((MouseX >= 1805) && (MouseX < 1865) && (MouseY >= 935) && (MouseY < 995) && Player.CanInteract() && !LogQuery("BlockChange", "Rule")) { 
 		ElementRemove("InputChat");
 		ElementRemove("TextAreaChatLog");
 		CharacterAppearanceReturnRoom = "ChatRoom"; 
 		CharacterAppearanceReturnModule = "Online";
 		CharacterAppearanceLoadCharacter(Player);
+	}
+
+	// When the user checks her profile
+	if ((MouseX >= 1870) && (MouseX < 1930) && (MouseY >= 935) && (MouseY < 995)) {
+		ElementRemove("InputChat");
+		ElementRemove("TextAreaChatLog");
+		InformationSheetLoadCharacter(Player);
 	}
 
 	// When the user leaves
@@ -253,14 +266,6 @@ function ChatRoomSendChat() {
 
 }
 
-// Prepare the InputChat for sending private message
-function ChatRoomPrepareWhisper() {
-	if (CurrentCharacter != null) {
-		ChatRoomAddressee = CurrentCharacter.MemberNumber;
-		DialogLeave();
-	}
-}
-
 // Publishes the player action (add, remove, swap) to the chat
 function ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, LeaveDialog) {
 	if (CurrentScreen == "ChatRoom") {
@@ -358,7 +363,7 @@ function ChatRoomSync(data) {
 	if ((data != null) && (typeof data === "object") && (data.Name != null)) {
 
 		// Load the room
-		if ((CurrentScreen != "ChatRoom") && (CurrentScreen != "Appearance")) CommonSetScreen("Online", "ChatRoom");
+		if ((CurrentScreen != "ChatRoom") && (CurrentScreen != "Appearance") && (CurrentModule != "Character")) CommonSetScreen("Online", "ChatRoom");
 
 		// Load the characters
 		ChatRoomCharacter = [];		

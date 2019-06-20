@@ -3,6 +3,7 @@
 // Loads the item extension properties
 function InventoryItemMouthPumpGagLoad() {
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { PumpLevel: 0 };
+	if (DialogFocusItem.Property.PumpLevel == null) DialogFocusItem.Property.PumpLevel = 0;
 }
 
 // Draw the item extension screen
@@ -11,8 +12,8 @@ function InventoryItemMouthPumpGagDraw() {
 	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
 	DrawText(DialogFind(Player, "PumpLevel" + DialogFocusItem.Property.PumpLevel.toString()), 1500, 600, "White", "Gray");
-	DrawButton(1200, 700, 250, 65, DialogFind(Player, "DeflateIt"), "White");
-	DrawButton(1550, 700, 250, 65, DialogFind(Player, "PumpIt"), "White");
+	if (DialogFocusItem.Property.PumpLevel > 0) DrawButton(1200, 700, 250, 65, DialogFind(Player, "DeflateIt"), "White");
+	if (DialogFocusItem.Property.PumpLevel < 4) DrawButton(1550, 700, 250, 65, DialogFind(Player, "PumpIt"), "White");
 	DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 }
 
