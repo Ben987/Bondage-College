@@ -132,7 +132,7 @@ function DrawCharacter(C, X, Y, Zoom) {
 						DrawEmptyRect(C.FocusGroup.Zone[Z][0] + X, C.FocusGroup.Zone[Z][1] + Y - C.HeightModifier, C.FocusGroup.Zone[Z][2], C.FocusGroup.Zone[Z][3], "cyan");
 			
 			// Draw the character name below herself
-			if ((C.Name != "") && ((CurrentModule == "Room") || (CurrentModule == "Online")) && (CurrentScreen != "Private")) 
+			if ((C.Name != "") && ((CurrentModule == "Room") || (CurrentModule == "Online") || ((CurrentScreen == "Wardrobe") && (C.ID != 0))) && (CurrentScreen != "Private")) 
 				if (!Player.IsBlind()) {
 					MainCanvas.font = "30px Arial";	
 					DrawText(C.Name, X + 255 * Zoom, Y + 980 * Zoom, (CommonIsColor(C.LabelColor)) ? C.LabelColor : "White", "Black");

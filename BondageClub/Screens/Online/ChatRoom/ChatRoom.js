@@ -131,10 +131,7 @@ function ChatRoomClick() {
 	
 	// When the user chats
 	if ((MouseX >= 0) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000)) ChatRoomDrawCharacter(true);
-	if ((MouseX >= 1725) && (MouseX < 1785) && (MouseY >= 935) && (MouseY < 995)) {
-		ChatRoomSendChat();
-		ChatRoomAddressee = null;
-	}
+	if ((MouseX >= 1725) && (MouseX < 1785) && (MouseY >= 935) && (MouseY < 995)) ChatRoomSendChat();
 	
 	// When the player kneels
 	if ((MouseX >= 1795) && (MouseX < 1855) && (MouseY >= 935) && (MouseY < 995) && Player.CanKneel()) { 
@@ -251,14 +248,6 @@ function ChatRoomSendChat() {
 	
 	}
 
-}
-
-// Prepare the InputChat for sending private message
-function ChatRoomPrepareWhisper() {
-	if (CurrentCharacter != null) {
-		ChatRoomAddressee = CurrentCharacter.MemberNumber;
-		DialogLeave();
-	}
 }
 
 // Publishes the player action (add, remove, swap) to the chat
