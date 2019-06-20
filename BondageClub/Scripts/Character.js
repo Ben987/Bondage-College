@@ -30,8 +30,8 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		AllowItem: true,
 		HeightModifier: 0,
 		CanTalk : function() { return ((this.Effect.indexOf("GagLight") < 0) && (this.Effect.indexOf("GagNormal") < 0) && (this.Effect.indexOf("GagHeavy") < 0) && (this.Effect.indexOf("GagTotal") < 0)) },
-		CanWalk : function() { return ((this.Effect.indexOf("Freeze") < 0) && ((this.Pose == null) || (this.Pose.indexOf("Kneel") < 0))) },
-		CanKneel : function() { return ((this.Effect.indexOf("Freeze") < 0) && ((this.Pose == null) || (this.Pose.indexOf("LegsClosed") < 0))) },
+		CanWalk : function() { return ((this.Effect.indexOf("Freeze") < 0) && ((this.Pose == null) || (this.Pose.indexOf("Kneel") < 0) || (this.Effect.indexOf("KneelFreeze") < 0))) },
+		CanKneel : function() { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("ForceKneel") < 0) && ((this.Pose == null) || (this.Pose.indexOf("LegsClosed") < 0))) },
 		CanInteract : function() { return (this.Effect.indexOf("Block") < 0) },
 		CanChange : function() { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("Block") < 0) && (this.Effect.indexOf("Prone") < 0) && !LogQuery("BlockChange", "Rule")) },
 		IsProne : function() { return (this.Effect.indexOf("Prone") >= 0) },
@@ -121,7 +121,7 @@ function CharacterBuildDialog(C, CSV) {
 function CharacterLoadCSVDialog(C, Override) {
 
     // Finds the full path of the CSV file to use cache
-    var FullPath = ((C.ID == 0) ? "Screens/Character/Player/Dialog_Player" : "Screens/" + CurrentModule + "/" + CurrentScreen + "/Dialog_" + ((Override == null) ? C.AccountName : Override)) + ".csv";    
+    var FullPath = ((C.ID == 0) ? "Screens/Character/Player/Dialog_Player" : ((Override == null) ? "Screens/" + CurrentModule + "/" + CurrentScreen + "/Dialog_" + C.AccountName : Override)) + ".csv";
     if (CommonCSVCache[FullPath]) {
 		CharacterBuildDialog(C, CommonCSVCache[FullPath]);
         return;
@@ -231,7 +231,7 @@ function CharacterLoadOnline(data) {
 		Char.Owner = (data.Owner != null) ? data.Owner : "";
 		Char.AccountName = "Online-" + data.ID.toString();
 		Char.MemberNumber = data.MemberNumber;
-		CharacterLoadCSVDialog(Char, "Online");
+		CharacterLoadCSVDialog(Char, "Screens/Online/ChatRoom/Dialog_Online");
 		CharacterOnlineRefresh(Char, data);
 
 	} else {
@@ -527,9 +527,11 @@ function CharacterSetFacialExpression(C, AssetGroup, Expression) {
 		if ((C.Appearance[A].Asset.Group.Name == AssetGroup) && (C.Appearance[A].Asset.Group.AllowExpression)) {
 			if ((Expression == null) || (C.Appearance[A].Asset.Group.AllowExpression.indexOf(Expression) >= 0)) {
 				if (!C.Appearance[A].Property) C.Appearance[A].Property = {};
-				C.Appearance[A].Property.Expression = Expression;
-				CharacterRefresh(C);
-				ChatRoomCharacterUpdate(C);
+				if (C.Appearance[A].Property.Expression != Expression) {
+					C.Appearance[A].Property.Expression = Expression;
+					CharacterRefresh(C);
+					ChatRoomCharacterUpdate(C);
+				}
 				return;
 			}
 		}
