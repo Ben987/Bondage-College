@@ -755,14 +755,41 @@ function RhythmGamePostLoad(){
 }
 
 function RhythmGameLoadingPage(){
+    if(!RhythmGamePreloadCompleted){
+        let text = 'Downloading resources';
+        MainCanvas.font = '70px Courier';
+        MainCanvas.fillStyle = '#FFFFFF';
+        MainCanvas.globalAlpha = 1;
+        MainCanvas.textAlign = 'center';
+        MainCanvas.fillText(text,1000,150);
+        text = 'If it takes too long, your browser may not be supported';
+        MainCanvas.font = '40px Courier';
+        MainCanvas.fillText(text,1000,250);
+        text = 'Try latest Chrome, FireFox or Safari';
+        MainCanvas.fillText(text,1000,300);
+    }
+    else{
+        let text = 'Press SPACE to begin';
+        MainCanvas.font = '70px Courier';
+        MainCanvas.fillStyle = '#FFFFFF';
+        MainCanvas.globalAlpha = 1;
+        MainCanvas.textAlign = 'center';
+        MainCanvas.fillText(text,1000,150);
+    }
 
+    let text = 'Use S D K L to hit notes';
+    MainCanvas.font = '70px Courier';
+    MainCanvas.fillStyle = '#FFFFFF';
+    MainCanvas.globalAlpha = 1;
+    MainCanvas.textAlign = 'center';
+    MainCanvas.fillText(text,1000,750);
 }
 
 //Main process
 function RhythmGameRun() {
     if(!RhythmGameStarted) {
-        RhythmGameLoadingPage();
         if(!RhythmGamePreloadCompleted) RhythmGamePreloadCheck();
+        RhythmGameLoadingPage();
     }
     else if(RhythmGameEnded){
         console.log('GAME ENDED');
