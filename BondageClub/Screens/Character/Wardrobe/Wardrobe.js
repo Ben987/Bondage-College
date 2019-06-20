@@ -3,10 +3,8 @@ var WardrobeBackground = "PrivateDark";
 var WardrobeCharacter = [];
 var WardrobeSelection = -1;
 
-// Loads all wardrobe characters 
-function WardrobeLoadCharacters(Fast) {
-	
-	// Load the wardrobe character names
+// Load the wardrobe character names
+function WardrobeLoadCharacterNames() {
 	if (Player.WardrobeCharacterNames == null) Player.WardrobeCharacterNames = [];
 	var Push = false;
 	while (Player.WardrobeCharacterNames.length <= 12) {
@@ -16,7 +14,10 @@ function WardrobeLoadCharacters(Fast) {
 	if (Push) {
 		ServerSend("AccountUpdate", { WardrobeCharacterNames: Player.WardrobeCharacterNames });
 	}
+}
 
+// Loads all wardrobe characters 
+function WardrobeLoadCharacters(Fast) {
 	Fast = Fast == null ? false : Fast;
 	var W = null;
 	if (Player.Wardrobe == null) Player.Wardrobe = [];
