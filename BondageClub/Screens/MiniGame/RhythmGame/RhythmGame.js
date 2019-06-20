@@ -1,8 +1,31 @@
 "use strict";
 var RhythmGameBackground = 'RhythmGameLoading';
-let RhythmGameImgPath = 'Screens/MiniGame/RhythmGame/res/img';
 let RhythmGameStarted = false;
 let RhythmGamePreloadCompleted = false;
+
+//Rhythm game image object, load and cache the image resources
+let RhythmGameImage = {
+    preload : function () {
+        RhythmGameImage.preloadTotal = 5;
+        RhythmGameImage.preloadLoaded = 0;
+        RhythmGameImage.preloadComplted = false;
+        let loadImageComplete = function(){
+            RhythmGameImage.preloadLoaded++;
+            if(RhythmGameImage.preloadLoaded === RhythmGameImage.preloadTotal) RhythmGameImage.preloadComplted = true;
+        };
+        let loadImage = function(src){
+            let img = new Image();
+            img.src = src;
+            img.onload = loadImageComplete;
+            return img;
+        };
+        RhythmGameImage.stage_light = loadImage('Screens/MiniGame/RhythmGame/res/img/stage/stage-light.png');
+        RhythmGameImage.key_black_up = loadImage('Screens/MiniGame/RhythmGame/res/img/key/Black.png');
+        RhythmGameImage.key_black_down = loadImage('Screens/MiniGame/RhythmGame/res/img/key/Black-D.png');
+        RhythmGameImage.key_white_up = loadImage('Screens/MiniGame/RhythmGame/res/img/key/White.png');
+        RhythmGameImage.key_white_down = loadImage('Screens/MiniGame/RhythmGame/res/img/key/White-D.png');
+    },
+};
 
 //Rhythm game audio object, handles loading audio and starts the music
 let RhythmGameAudio =  {
@@ -137,7 +160,6 @@ let RhythmGameKey = {
     addKeyListener : function () {
         window.addEventListener('keydown', function (event) {
             let time = performance.now() - RhythmGameKernel.initTime;
-            console.log(time);
             switch(event.code){
                 case RhythmGameKey.KEY_0:
                     if(!RhythmGameKey.keyPressed[0]){
@@ -226,30 +248,491 @@ let RhythmGameKernel = {
 
 //Rhythm game script object, contains functions related to game mechanics
 let RhythmGameScript = {
-    update : function(){
+    judge_perfect : 50,
+    judge_great   : 100,
+    judge_miss    : 200,
+    judge_end     : 100,
 
-    }
+    result_score : 0,
+    result_acc   : {acc : 0, perfect : 0, great : 0, miss : 0, endMiss : 0},
+    result_combo : {combo : 0, rendered : false, max : 0},
+    result_judge : [],
+
+    update : function(){
+        RhythmGameScript.judge();
+        RhythmGameScript.combo();
+        RhythmGameScript.accuracy();
+        RhythmGameScript.score();
+    },
+
+    judge : function () {
+        RhythmGameScript.result_judge = [];
+        for(let k=0; k<4; k++){
+            let collectionPoint = RhythmGameKernel.elapsedTime;
+            while(RhythmGameChart.notes_judge[k].length !== 0){
+                let note = RhythmGameChart.notes_judge[k][0];
+                if(note.time + RhythmGameScript.judge_miss > collectionPoint) break;
+                else {
+                    if(RhythmGameChart.notes_state[note.id].judge === 'unhandled') RhythmGameScript.setJudge(note.id, 'late miss');
+                    else break;
+                }
+                RhythmGameChart.notes_judge[k].shift();
+            }
+        }
+        while(RhythmGameKey.key_log.length !== 0){
+            let keyEvent = RhythmGameKey.key_log[0];
+            if(RhythmGameChart.notes_judge[keyEvent.key].length === 0) {
+                RhythmGameKey.key_log.shift();
+                continue;
+            }
+            let note = RhythmGameChart.notes_judge[keyEvent.key][0];
+            let timeDiff = note.time - keyEvent.time;
+
+            if(timeDiff <= RhythmGameScript.judge_miss){
+                if(note.para === 0){//Single Note
+                    if(keyEvent.type === 'down'){
+                        RhythmGameScript.setJudge(note.id, RhythmGameScript.judgeType(timeDiff));
+                    }
+                    else if(keyEvent.type === 'up'){
+                        RhythmGameChart.notes_judge[keyEvent.key].shift();
+                    }
+                }
+                else{//Long Note
+                    if(keyEvent.type === 'down') {
+                        RhythmGameScript.setJudge(note.id, RhythmGameScript.judgeType(timeDiff));
+                    }
+                    else if(keyEvent.type === 'up'){
+                        if(timeDiff + note.para > RhythmGameScript.judge_end) {
+                            RhythmGameScript.setJudge(note.id, 'end miss');
+                        }
+                        //else setJudge(note.id, GameChart.notes_state[note.id].judge);
+                        RhythmGameChart.notes_judge[keyEvent.key].shift();
+                    }
+                }
+            }
+
+            RhythmGameKey.key_log.shift();
+        }
+    },
+    setJudge : function(noteID, judge){
+        RhythmGameChart.notes_state[noteID].judge = judge;
+        RhythmGameScript.result_judge.push({
+            judge : judge,
+            key : RhythmGameChart.notes[noteID].key,
+            para : RhythmGameChart.notes[noteID].para,
+        });
+    },
+    judgeType : function (timeDiff) {
+        if(       RhythmGameScript.judge_great   <= timeDiff && timeDiff <=  RhythmGameScript.judge_miss    ) return 'early miss';
+        else if(  RhythmGameScript.judge_perfect <= timeDiff && timeDiff <=  RhythmGameScript.judge_great   ) return 'early great';
+        else if(  0                              <= timeDiff && timeDiff <=  RhythmGameScript.judge_perfect ) return 'early perfect';
+        else if( -RhythmGameScript.judge_perfect <= timeDiff && timeDiff <=  0                              ) return 'late perfect';
+        else if( -RhythmGameScript.judge_great   <= timeDiff && timeDiff <= -RhythmGameScript.judge_perfect ) return 'late great';
+        else if(                                                timeDiff <= -RhythmGameScript.judge_great   ) return 'late miss';
+        // else return 'unhandled';
+    },
+    judgeToVal : function(judge){
+        if(judge === 'early miss' || judge === 'late miss') return 0;
+        else if(judge === 'end miss') return 1;
+        else if(judge === 'early great' || judge === 'late great') return 2;
+        else if(judge === 'early perfect' || judge === 'late perfect') return 3;
+        else return -1;
+    },
+
+
+    combo : function () {
+        for(let i=0; i<RhythmGameScript.result_judge.length; i++){
+            let judge = RhythmGameScript.judgeToVal(RhythmGameScript.result_judge[i].judge);
+            if(judge === 2 || judge === 3) {
+                RhythmGameScript.result_combo.combo++;
+                if(RhythmGameScript.result_combo.combo > RhythmGameScript.result_combo.max)
+                    RhythmGameScript.result_combo.max = RhythmGameScript.result_combo.combo;
+            }
+            else RhythmGameScript.result_combo.combo = 0;
+            RhythmGameScript.result_combo.rendered = false;
+        }
+    },
+
+    accuracy : function (){
+        for(let i=0; i<RhythmGameScript.result_judge.length; i++){
+            let judge = RhythmGameScript.judgeToVal(RhythmGameScript.result_judge[i].judge);
+            switch(judge){
+                case 0:
+                    RhythmGameScript.result_acc.miss++;
+                    break;
+                case 1:
+                    RhythmGameScript.result_acc.endMiss++;
+                    break;
+                case 2:
+                    RhythmGameScript.result_acc.great++;
+                    break;
+                case 3:
+                    RhythmGameScript.result_acc.perfect++;
+                    break;
+                default:
+                    break;
+            }
+        }
+        let count = RhythmGameScript.result_acc.perfect + RhythmGameScript.result_acc.great + RhythmGameScript.result_acc.miss;
+        let total = RhythmGameScript.result_acc.perfect + 0.75 * RhythmGameScript.result_acc.great;
+        if(count !== 0) RhythmGameScript.result_acc.acc = total/count;
+        else RhythmGameScript.result_acc.acc = 0;
+    },
+
+    score : function(){
+        for(let i=0; i<RhythmGameScript.result_judge.length; i++){
+            let judge = RhythmGameScript.judgeToVal(RhythmGameScript.result_judge[i].judge);
+            switch(judge){
+                case 2:
+                    RhythmGameScript.result_score += Math.log10(RhythmGameScript.result_combo.combo+1) * 7.5;
+                    break;
+                case 3:
+                    RhythmGameScript.result_score += Math.log10(RhythmGameScript.result_combo.combo+1) * 10;
+                    break;
+                default:
+                    break;
+            }
+        }
+    },
 };
 
 //Rhythm game render object, contains functions related to game rendering
 let RhythmGameRender = {
-    update : function(){
+    scrollSpeed : 2.1,
 
-    }
+    cache_judge : {val : 4},
+    cache_hitEffect : [{judge :0},{judge :0},{judge :0},{judge :0}],
+    cache_sv : {startFrame : 0, endFrame : 0, startSpeed : 0, endSpeed : 0},
+
+    update : function(){
+        RhythmGameRender.keyPressEffectStageLight();
+        RhythmGameRender.noteDrop();
+        RhythmGameRender.keyPressEffectKeyLight();
+        //RhythmGameRender.hitEffect();
+        RhythmGameRender.showResult();
+    },
+
+    keyPressEffectStageLight : function () {
+        MainCanvas.globalAlpha = 1;
+        if(RhythmGameKey.keyPressed[0]) MainCanvas.drawImage(RhythmGameImage.stage_light, 750, 0);
+        if(RhythmGameKey.keyPressed[1]) MainCanvas.drawImage(RhythmGameImage.stage_light, 875, 0);
+        if(RhythmGameKey.keyPressed[2]) MainCanvas.drawImage(RhythmGameImage.stage_light, 1000, 0);
+        if(RhythmGameKey.keyPressed[3]) MainCanvas.drawImage(RhythmGameImage.stage_light, 1125, 0);
+    },
+
+    keyPressEffectKeyLight : function () {
+        MainCanvas.globalAlpha = 1;
+        if(RhythmGameKey.keyPressed[0]) MainCanvas.drawImage(RhythmGameImage.key_black_down, 750, 949);
+        else                            MainCanvas.drawImage(RhythmGameImage.key_black_up,750,949);
+        if(RhythmGameKey.keyPressed[1]) MainCanvas.drawImage(RhythmGameImage.key_white_down, 875, 949);
+        else                            MainCanvas.drawImage(RhythmGameImage.key_white_up,875,949);
+        if(RhythmGameKey.keyPressed[2]) MainCanvas.drawImage(RhythmGameImage.key_white_down, 1000, 949);
+        else                            MainCanvas.drawImage(RhythmGameImage.key_white_up,1000,949);
+        if(RhythmGameKey.keyPressed[3]) MainCanvas.drawImage(RhythmGameImage.key_black_down, 1125, 949);
+        else                            MainCanvas.drawImage(RhythmGameImage.key_black_up,1125,949);
+    },
+
+    hitEffect : function(){
+        for(let i=0; i<RhythmGameScript.result_judge.length; i++){
+            let judge = RhythmGameScript.result_judge[i];
+            if(RhythmGameScript.judgeToVal(judge.judge) === 2 || RhythmGameScript.judgeToVal(judge.judge) === 3){
+                RhythmGameRender.cache_hitEffect[judge.key].judge = RhythmGameScript.judgeToVal(judge.judge);
+                RhythmGameRender.cache_hitEffect[judge.key].para = judge.para;
+                RhythmGameRender.cache_hitEffect[judge.key].startFrame = RhythmGameKernel.frame;
+            }
+        }
+
+        for(let k=0; k<4; k++){
+            let obj = RhythmGameRender.cache_hitEffect[k];
+            if(obj.judge === 0) continue;
+
+            if(obj.para === 0){
+                let maxFrame = 10;
+                obj.frame = RhythmGameKernel.frame - obj.startFrame;
+                if(obj.frame > maxFrame) continue;
+
+                let frame = maxFrame - obj.frame;
+                let step = 10 * frame / maxFrame;
+
+                let fill;
+                if(obj.judge === 3) fill = '#CBC611';
+                else if(obj.judge === 2) fill = '#449610';
+                else continue;
+                MainCanvas.fillStyle = fill;
+                MainCanvas.globalAlpha = 0.1-0.01*step;
+                MainCanvas.beginPath();
+                MainCanvas.arc(650+100*k, 880, 50-5*step, 0, 2 * Math.PI);
+                MainCanvas.fill();
+                MainCanvas.closePath();
+            }
+            else{
+                let totalFrame = Math.round(obj.para/TimerRunInterval);
+                obj.frame = RhythmGameKernel.frame - obj.startFrame;
+                if(obj.frame > totalFrame) continue;
+
+                let maxFrame = 10;
+                let frame = maxFrame - obj.frame % (maxFrame + 1);
+                let step = 10 * frame / maxFrame;
+
+                let fill;
+                if(obj.judge === 3) fill = '#CBC611';
+                else if(obj.judge === 2) fill = '#449610';
+                else continue;
+                MainCanvas.fillStyle = fill;
+                MainCanvas.globalAlpha = 0.1-0.01*step;
+                MainCanvas.beginPath();
+                MainCanvas.arc(650+100*k, 880, 100-10*step, 0, 2 * Math.PI);
+                MainCanvas.fill();
+                MainCanvas.closePath();
+            }
+        }
+    },
+
+    noteDrop : function () {
+        let renderTimeBot = RhythmGameKernel.elapsedTime;
+        let renderTimeTop = renderTimeBot + 1000/RhythmGameRender.scrollSpeed;
+
+        for(let k=0; k<4 ;k++){
+            for(let i = 0; i < RhythmGameChart.notes_render[k].length;){
+                let note = RhythmGameChart.notes_render[k][i];
+                if(note.time > renderTimeTop) break;
+                if(note.time > renderTimeBot){
+                    if(note.para === 0){//Single Note
+                        let y0 = 950 - (note.time - renderTimeBot) * RhythmGameRender.scrollSpeed;
+                        RhythmGameRender.drawSingleNote(k, y0, RhythmGameChart.notes_state[note.id].judge);
+                    }
+                    else{//Long Note
+                        let y0 = 950 - (note.time - renderTimeBot) * RhythmGameRender.scrollSpeed + 50;
+                        let y1 = 950 - (note.time + note.para - renderTimeBot) * RhythmGameRender.scrollSpeed;
+                        RhythmGameRender.drawLongNote(k, y1, y0-y1, RhythmGameChart.notes_state[note.id].judge);
+                    }
+                    i++;
+                }
+                else{
+                    if(note.para === 0){//Single Note
+                        RhythmGameChart.notes_render[k].shift();
+                    }
+                    else{//Long Note
+                        if(note.time + note.para < renderTimeBot) RhythmGameChart.notes_render[k].shift();
+                        else{
+                            let y0 = 950 - (note.time - renderTimeBot) * RhythmGameRender.scrollSpeed + 50;
+                            let y1 = 950 - (note.time + note.para - renderTimeBot) * RhythmGameRender.scrollSpeed;
+                            RhythmGameRender.drawLongNote(k, y1, y0-y1, RhythmGameChart.notes_state[note.id].judge);
+                            i++;
+                        }
+                    }
+                }
+            }
+        }
+    },
+    drawSingleNote : function(key, y, judge){
+        if(RhythmGameScript.judgeToVal(judge) !== 0){
+            switch(key){
+                case 0:
+                    MainCanvas.fillStyle = '#2EC1FF';
+                    MainCanvas.fillRect(750, y, 125, 50);
+                    break;
+                case 1:
+                    MainCanvas.fillStyle = '#FFFFFF';
+                    MainCanvas.fillRect(875, y, 125, 50);
+                    break;
+                case 2:
+                    MainCanvas.fillStyle = '#FFFFFF';
+                    MainCanvas.fillRect(1000, y, 125, 50);
+                    break;
+                case 3:
+                    MainCanvas.fillStyle = '#2EC1FF';
+                    MainCanvas.fillRect(1125, y, 125, 50);
+                    break;
+            }
+        }
+    },
+    drawLongNote : function(key, y, h, judge){
+        let c_green = '';
+        let c_purple = '';
+        switch(RhythmGameScript.judgeToVal(judge)){
+            case 0:
+                c_green = '#2A2A2A';
+                c_purple = '#2A2A2A';
+                break;
+            case 1:
+                c_green = '#2A2A2A';
+                c_purple = '#2A2A2A';
+                break;
+            case 2:
+                c_green = '#9AFFA5';
+                c_purple = '#DE9AFF';
+                break;
+            case 3:
+                c_green = '#9AFFA5';
+                c_purple = '#DE9AFF';
+                break;
+            case -1:
+                c_green = '#61FF49';
+                c_purple = '#A93DFF';
+                break;
+        }
+        switch(key){
+            case 0:
+                MainCanvas.fillStyle = c_green;
+                MainCanvas.fillRect(750, y, 125, h);
+                break;
+            case 1:
+                MainCanvas.fillStyle = c_purple;
+                MainCanvas.fillRect(875, y, 125, h);
+                break;
+            case 2:
+                MainCanvas.fillStyle = c_purple;
+                MainCanvas.fillRect(1000, y, 125, h);
+                break;
+            case 3:
+                MainCanvas.fillStyle = c_green;
+                MainCanvas.fillRect(1125, y, 125, h);
+                break;
+        }
+    },
+
+    showResult : function(){
+        RhythmGameRender.showJudge();
+        RhythmGameRender.showCombo();
+        RhythmGameRender.showAcc();
+        RhythmGameRender.showScore();
+        RhythmGameRender.showJudgeCount();
+    },
+    showJudge : function(){
+        if(RhythmGameScript.result_judge.length > 0){
+            RhythmGameRender.cache_judge = {val : 4};
+            for(let i=0; i<RhythmGameScript.result_judge.length; i++){
+                let val = RhythmGameScript.judgeToVal(RhythmGameScript.result_judge[i].judge);
+                if(val < RhythmGameRender.cache_judge.val) RhythmGameRender.cache_judge.val = val;
+            }
+            RhythmGameRender.cache_judge.startFrame = RhythmGameKernel.frame;
+        }
+        RhythmGameRender.judgeRender(RhythmGameRender.cache_judge);
+    
+    },
+    judgeRender : function(obj){
+        let maxFrame = 15;
+        obj.frame = RhythmGameKernel.frame - obj.startFrame;
+        if(obj.frame > maxFrame) return;
+    
+        let text, font, fill, opacity, x, y;
+        let frame = maxFrame - obj.frame;
+        let step = 10 * frame / maxFrame;
+        switch(obj.val){
+            case 0:
+                text = 'MISS';
+                font = '70px Courier';
+                fill = '#5F5E56';
+                opacity = 1 - 0.05 * step;
+                x = 1000;
+                y = 800 - 1.5 * step;
+                break;
+            case 1:
+                text = 'END MISS';
+                font = '70px Courier';
+                fill = '#5F5E56';
+                opacity = 1 - 0.05 * step;
+                x = 1000;
+                y = 800 - 1.5 * step;
+                break;
+            case 2:
+                text = 'GREAT';
+                font = '70px Courier';
+                fill = '#449610';
+                opacity = 1 - 0.05 * step;
+                x = 1000;
+                y = 800 - 1.5 * step;
+                break;
+            case 3:
+                text = 'PERFECT';
+                font = '70px Courier';
+                fill = '#CBC611';
+                opacity = 1 - 0.05 * step;
+                x = 1000;
+                y = 800 - 1.5 * step;
+                break;
+            default:
+                return;
+        }
+        MainCanvas.font = font;
+        MainCanvas.fillStyle = fill;
+        MainCanvas.globalAlpha = opacity;
+        MainCanvas.textAlign = 'center';
+        MainCanvas.fillText(text,x,y);
+    },
+    showCombo : function(){
+        if(!RhythmGameScript.result_combo.rendered){
+            RhythmGameScript.result_combo.startFrame = RhythmGameKernel.frame;
+            RhythmGameScript.result_combo.rendered = true;
+        }
+    
+        let maxFrame = 15;
+        RhythmGameScript.result_combo.frame = RhythmGameKernel.frame - RhythmGameScript.result_combo.startFrame;
+        let frame = maxFrame - RhythmGameScript.result_combo.frame >= 0 ? maxFrame - RhythmGameScript.result_combo.frame : 0;
+        let step = 10 * frame / maxFrame;
+    
+        let text = RhythmGameScript.result_combo.combo;
+    
+        MainCanvas.font = '80px Courier';
+        MainCanvas.fillStyle = '#9F9F9F';
+        MainCanvas.globalAlpha = 1 - 0.09 * step;
+        MainCanvas.textAlign = 'center';
+        MainCanvas.fillText(text,1000,200);
+    },
+    showAcc : function(){
+        let text = 'ACC: ' + (RhythmGameScript.result_acc.acc * 100).toFixed(2) + '%';
+        MainCanvas.font = '40px Courier';
+        MainCanvas.fillStyle = '#FFFFFF';
+        MainCanvas.globalAlpha = 1;
+        MainCanvas.textAlign = 'left';
+        MainCanvas.fillText(text,1500,150);
+    },
+    showScore : function(){
+        let text;
+        if(RhythmGameScript.result_score <= 1000) text = 'SCORE: ' + Math.round(RhythmGameScript.result_score);
+        else if(RhythmGameScript.result_score > 1000) text = 'SCORE: ' + (RhythmGameScript.result_score/1000).toFixed(2) + 'K';
+        else text = 'Score is too large to display';
+        MainCanvas.font = '40px Courier';
+        MainCanvas.fillStyle = '#FFFFFF';
+        MainCanvas.globalAlpha = 1;
+        MainCanvas.textAlign = 'left';
+        MainCanvas.fillText(text,1500,100);
+    },
+    showJudgeCount : function(){
+        let text_p = 'PERFECT   : ' + RhythmGameScript.result_acc.perfect;
+        let text_g = 'GREAT     : ' + RhythmGameScript.result_acc.great;
+        let text_m = 'MISS      : ' + RhythmGameScript.result_acc.miss;
+        let text_e = 'END MISS  : ' + RhythmGameScript.result_acc.endMiss;
+        let text_c = 'MAX COMBO : ' + RhythmGameScript.result_combo.max;
+        MainCanvas.font = '30px Courier';
+        MainCanvas.fillStyle = '#FFFFFF';
+        MainCanvas.globalAlpha = 1;
+        MainCanvas.textAlign = 'left';
+        MainCanvas.fillText(text_p,1500,300);
+        MainCanvas.fillText(text_g,1500,340);
+        MainCanvas.fillText(text_m,1500,380);
+        MainCanvas.fillText(text_e,1500,420);
+        MainCanvas.fillText(text_c,1500,460);
+    },
 };
 
 //Loading the game resources
 function RhythmGameLoad(){
+    MainCanvas.save();
     RhythmGamePreload();
 }
 
 function RhythmGamePreload(){
+    RhythmGameImage.preload();
     RhythmGameAudio.preload();
     RhythmGameChart.preload();
 }
 
 function RhythmGamePreloadCheck(){
-    RhythmGamePreloadCompleted = RhythmGameAudio.preloadComplted && RhythmGameChart.preloadComplted;
+    RhythmGamePreloadCompleted = RhythmGameAudio.preloadComplted
+                              && RhythmGameChart.preloadComplted
+                              && RhythmGameImage.preloadComplted;
     if(RhythmGamePreloadCompleted) RhythmGamePostLoad();
 }
 
@@ -279,8 +762,5 @@ function RhythmGameRun() {
         RhythmGameLoadingPage();
         if(!RhythmGamePreloadCompleted) RhythmGamePreloadCheck();
     }
-    else {
-        RhythmGameKernel.update();
-        console.log('RHYTHM GAME RUNNING');
-    }
+    else RhythmGameKernel.update();
 }
