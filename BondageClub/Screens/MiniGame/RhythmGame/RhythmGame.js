@@ -339,6 +339,7 @@ let RhythmGameKernel = {
 
         RhythmGameScript.update();
         RhythmGameRender.update();
+        RhythmGameIntegration.update();
     },
 };
 
@@ -743,6 +744,7 @@ let RhythmGameRender = {
         RhythmGameRender.showScore();
         RhythmGameRender.showJudgeCount();
     },
+
     showJudge : function(){
         if(RhythmGameScript.judge.length > 0){
             RhythmGameRender.cache_judge = {val : 4};
@@ -805,6 +807,7 @@ let RhythmGameRender = {
         MainCanvas.textAlign = 'center';
         MainCanvas.fillText(text,x,y);
     },
+
     showCombo : function(){
         if(!RhythmGameScript.combo.rendered){
             RhythmGameScript.combo.startFrame = RhythmGameKernel.frame;
@@ -824,22 +827,25 @@ let RhythmGameRender = {
         MainCanvas.textAlign = 'center';
         MainCanvas.fillText(text,1000,200);
     },
+
     showAcc : function(){
         let text = 'ACC: ' + (RhythmGameScript.acc.value * 100).toFixed(2) + '%';
         MainCanvas.font = '40px Courier';
         MainCanvas.fillStyle = '#FFFFFF';
         MainCanvas.globalAlpha = 1;
         MainCanvas.textAlign = 'left';
-        MainCanvas.fillText(text,1500,150);
+        MainCanvas.fillText(text,1350,150);
     },
+
     showScore : function(){
-        let text = 'SCORE: ' + RhythmGameScript.score.toFixed(3);
+        let text = 'BONUS: ' + RhythmGameScript.score.toFixed(3);
         MainCanvas.font = '40px Courier';
         MainCanvas.fillStyle = '#FFFFFF';
         MainCanvas.globalAlpha = 1;
         MainCanvas.textAlign = 'left';
-        MainCanvas.fillText(text,1500,100);
+        MainCanvas.fillText(text,1350,100);
     },
+
     showJudgeCount : function(){
         let text_p = 'PERFECT   : ' + RhythmGameScript.acc.perfect;
         let text_g = 'GREAT     : ' + RhythmGameScript.acc.great;
@@ -850,11 +856,11 @@ let RhythmGameRender = {
         MainCanvas.fillStyle = '#FFFFFF';
         MainCanvas.globalAlpha = 1;
         MainCanvas.textAlign = 'left';
-        MainCanvas.fillText(text_p,1500,300);
-        MainCanvas.fillText(text_g,1500,340);
-        MainCanvas.fillText(text_m,1500,380);
-        MainCanvas.fillText(text_e,1500,420);
-        MainCanvas.fillText(text_c,1500,460);
+        MainCanvas.fillText(text_p,1350,300);
+        MainCanvas.fillText(text_g,1350,340);
+        MainCanvas.fillText(text_m,1350,380);
+        MainCanvas.fillText(text_e,1350,420);
+        MainCanvas.fillText(text_c,1350,460);
     },
 
     showHealth : function () {
@@ -865,6 +871,14 @@ let RhythmGameRender = {
         let top_y = bot_y - h;
         MainCanvas.fillStyle = '#FFFFFF';
         MainCanvas.fillRect(x, top_y, w, h);
+
+        MainCanvas.font = '70px Courier';
+        MainCanvas.fillStyle = '#FFFFFF';
+        MainCanvas.globalAlpha = 1;
+        MainCanvas.textAlign = 'left';
+        MainCanvas.fillText('Audience',1350,700);
+        MainCanvas.fillText('Patience',1350,800);
+        MainCanvas.fillText('Level',1350,900);
     },
 };
 
@@ -876,20 +890,27 @@ let RhythmGameIntegration = {
         RhythmGameIntegration.punishment_level = 0;
     },
 
+    update : function(){
+        DrawCharacter(Player, 300, 0, 1);
+    },
+
     setPunishment : function () {
         RhythmGameIntegration.punishment_level ++;
         switch(RhythmGameIntegration.punishment_level){
             case 0:
                 break;
             case 1:
+                InventoryWearRandom(Player, 'ItemFeet', 7);
                 break;
             case 2:
+                InventoryWearRandom(Player, 'ItemLegs', 7);
                 break;
             case 3:
+                InventoryWearRandom(Player, 'ItemMouth', 7);
                 break;
             case 4:
-                break;
-            case 5:
+                InventoryWearRandom(Player, "ItemHead", 7);
+                InventoryWearRandom(Player, 'ItemArms', 7);
                 RhythmGamePassed = false;
                 RhythmGameEnded = true;
                 break;
