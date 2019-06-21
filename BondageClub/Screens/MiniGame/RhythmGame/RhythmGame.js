@@ -9,6 +9,11 @@ let RhythmGamePreloadCompleted = false;
 let RhythmGameInit = {
 
     RhythmGamePreload : function(){
+        RhythmGameBackground = 'RhythmGameLoading';
+        RhythmGameStarted = false;
+        RhythmGameEnded = false;
+        RhythmGamePassed = true;
+        RhythmGamePreloadCompleted = false;
         RhythmGameImage.preload();
         RhythmGameAudio.preload();
         RhythmGameChart.preload();
@@ -25,6 +30,9 @@ let RhythmGameInit = {
         RhythmGameChart.load();
         RhythmGameKey.load();
         RhythmGameKernel.load();
+        RhythmGameScript.load();
+        RhythmGameRender.load();
+        RhythmGameIntegration.load();
 
         let pressToStart = function(event){
             if(event.code === 'Space'){
@@ -122,6 +130,9 @@ let RhythmGameAudio =  {
     },
     play : function (offset) {
         RhythmGameAudio.bufferSource.start(RhythmGameAudio.audioCtx.currentTime + offset);
+    },
+    stop : function (){
+        RhythmGameAudio.bufferSource.stop();
     }
 };
 
@@ -222,10 +233,23 @@ let RhythmGameKey = {
     KEY_3 : 'KeyL',
 
     load : function(){
+        RhythmGameKey.keyPressed = [false, false, false, false];
+        RhythmGameKey.key_log = [];
+        RhythmGameKey.key_log_ref = [];
+
         RhythmGameKey.addKeyListener();
     },
+
     addKeyListener : function () {
-        window.addEventListener('keydown', function (event) {
+        window.addEventListener('keydown', RhythmGameKey.keyDownEvent);
+        window.addEventListener('keyup', RhythmGameKey.keyUpEvent);
+    },
+    removeKeyListener : function () {
+        window.removeEventListener('keydown', RhythmGameKey.keyDownEvent);
+        window.removeEventListener('keyup', RhythmGameKey.keyUpEvent);
+    },
+    keyDownEvent : {
+        handleEvent : function (event) {
             let time = performance.now() - RhythmGameKernel.initTime;
             switch(event.code){
                 case RhythmGameKey.KEY_0:
@@ -253,8 +277,10 @@ let RhythmGameKey = {
                     }
                     break;
             }
-        });
-        window.addEventListener('keyup', function (event) {
+        }
+    },
+    keyUpEvent : {
+        handleEvent : function (event) {
             let time = performance.now() - RhythmGameKernel.initTime;
             switch(event.code){
                 case RhythmGameKey.KEY_0:
@@ -274,8 +300,9 @@ let RhythmGameKey = {
                     RhythmGameKey.keyPressed[3] = false;
                     break;
             }
-        });
-    }
+
+        }
+    },
 };
 
 //Rhythm game kernel object, handles the game timing
@@ -328,11 +355,25 @@ let RhythmGameScript = {
     judge  : [],
     health : 1,
 
+    load : function(){
+        RhythmGameScript.judge_perfect = 50;
+        RhythmGameScript.judge_great   = 100;
+        RhythmGameScript.judge_miss    = 200;
+        RhythmGameScript.judge_end     = 100;
+
+        RhythmGameScript.score  = 0;
+        RhythmGameScript.acc    = {value : 0, perfect : 0, great : 0, miss : 0, endMiss : 0};
+        RhythmGameScript.combo  = {value : 0, rendered : false, max : 0};
+        RhythmGameScript.judge  = [];
+        RhythmGameScript.health = 1;
+    },
+
     update : function(){
         RhythmGameScript.map_judge();
         RhythmGameScript.update_combo();
         RhythmGameScript.update_accuracy();
         RhythmGameScript.update_score();
+        RhythmGameScript.update_health();
     },
 
     map_judge : function () {
@@ -470,23 +511,22 @@ let RhythmGameScript = {
             let judge = RhythmGameScript.judgeToVal(RhythmGameScript.judge[i].judge);
             switch(judge){
                 case 0:
+                    RhythmGameScript.health = RhythmGameScript.health - 0.1 < 0 ? 0 : RhythmGameScript.health - 0.1;
                     break;
                 case 1:
+                    RhythmGameScript.health = RhythmGameScript.health - 0.1 < 0 ? 0 : RhythmGameScript.health - 0.1;
                     break;
                 case 2:
+                    RhythmGameScript.health = RhythmGameScript.health + 0.001 > 1 ? 1 : RhythmGameScript.health + 0.001;
                     break;
                 case 3:
+                    RhythmGameScript.health = RhythmGameScript.health + 0.004 > 1 ? 1 : RhythmGameScript.health + 0.004;
                     break;
             }
-            
-
-
-            if(judge === 0 || judge === 1) {
-                RhythmGameScript.combo.value++;
-                if(RhythmGameScript.combo.value > RhythmGameScript.combo.max)
-                    RhythmGameScript.combo.max = RhythmGameScript.combo.value;
+            if(RhythmGameScript.health === 0) {
+                RhythmGameScript.health = 1;
+                RhythmGameIntegration.setPunishment();
             }
-            else RhythmGameScript.health = RhythmGameScript.health + 1 > 1 ? 1 : 0;
         }
     },
 };
@@ -495,16 +535,25 @@ let RhythmGameScript = {
 let RhythmGameRender = {
     scrollSpeed : 2.1,
 
-    cache_judge : {val : 4},
+    cache_judge     : {val : 4},
     cache_hitEffect : [{judge :0},{judge :0},{judge :0},{judge :0}],
-    cache_sv : {startFrame : 0, endFrame : 0, startSpeed : 0, endSpeed : 0},
+    cache_sv        : {startFrame : 0, endFrame : 0, startSpeed : 0, endSpeed : 0},
+
+    load : function(){
+        RhythmGameRender.scrollSpeed = 2.1;
+
+        RhythmGameRender.cache_judge     = {val : 4};
+        RhythmGameRender.cache_hitEffect = [{judge :0},{judge :0},{judge :0},{judge :0}];
+        RhythmGameRender.cache_sv        = {startFrame : 0, endFrame : 0, startSpeed : 0, endSpeed : 0};
+    },
 
     update : function(){
         RhythmGameRender.keyPressEffectStageLight();
         RhythmGameRender.noteDrop();
         RhythmGameRender.keyPressEffectKeyLight();
-        //RhythmGameRender.hitEffect();
+        RhythmGameRender.hitEffect();
         RhythmGameRender.showResult();
+        RhythmGameRender.showHealth();
     },
 
     keyPressEffectStageLight : function () {
@@ -554,9 +603,9 @@ let RhythmGameRender = {
                 else if(obj.judge === 2) fill = '#449610';
                 else continue;
                 MainCanvas.fillStyle = fill;
-                MainCanvas.globalAlpha = 0.1-0.01*step;
+                MainCanvas.globalAlpha = 0.3-0.03*step;
                 MainCanvas.beginPath();
-                MainCanvas.arc(650+100*k, 880, 50-5*step, 0, 2 * Math.PI);
+                MainCanvas.arc(812.5+125*k, 975, 75-5*step, 0, 2 * Math.PI);
                 MainCanvas.fill();
                 MainCanvas.closePath();
             }
@@ -574,9 +623,9 @@ let RhythmGameRender = {
                 else if(obj.judge === 2) fill = '#449610';
                 else continue;
                 MainCanvas.fillStyle = fill;
-                MainCanvas.globalAlpha = 0.1-0.01*step;
+                MainCanvas.globalAlpha = 0.3-0.03*step;
                 MainCanvas.beginPath();
-                MainCanvas.arc(650+100*k, 880, 100-10*step, 0, 2 * Math.PI);
+                MainCanvas.arc(812.5+125*k, 975, 100-10*step, 0, 2 * Math.PI);
                 MainCanvas.fill();
                 MainCanvas.closePath();
             }
@@ -807,11 +856,46 @@ let RhythmGameRender = {
         MainCanvas.fillText(text_e,1500,420);
         MainCanvas.fillText(text_c,1500,460);
     },
+
+    showHealth : function () {
+        let h = 400 * RhythmGameScript.health;
+        let w = 40;
+        let x = 1290;
+        let bot_y = 970;
+        let top_y = bot_y - h;
+        MainCanvas.fillStyle = '#FFFFFF';
+        MainCanvas.fillRect(x, top_y, w, h);
+    },
 };
 
 //Rhythm game integration object, contains bondage club specific functions
 let RhythmGameIntegration = {
+    punishment_level : 0,
 
+    load : function(){
+        RhythmGameIntegration.punishment_level = 0;
+    },
+
+    setPunishment : function () {
+        RhythmGameIntegration.punishment_level ++;
+        switch(RhythmGameIntegration.punishment_level){
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                RhythmGamePassed = false;
+                RhythmGameEnded = true;
+                break;
+        }
+        console.log('punishment level:' + this.punishment_level);
+    },
 };
 
 //Loading the game resources
@@ -830,6 +914,8 @@ function RhythmGameRun() {
         MainCanvas.restore();
         MiniGameVictory = RhythmGamePassed;
         MiniGameAdvancedPayment = RhythmGamePassed ? Math.round(RhythmGameScript.score) : 0;
+        RhythmGameAudio.stop();
+        RhythmGameKey.removeKeyListener();
         CommonDynamicFunction(MiniGameReturnFunction + "()");
     }
     else RhythmGameKernel.update();
