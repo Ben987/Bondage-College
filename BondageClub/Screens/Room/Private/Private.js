@@ -13,6 +13,7 @@ var PrivateActivityAffectLove = true;
 var PrivateActivityList = ["Gag", "Ungag", "Restrain", "FullRestrain", "Release", "Tickle", "Spank", "Pet", "Slap", "Kiss", "Fondle", "Naked", "Underwear", "RandomClothes", "Shibari", "Gift"];
 var PrivatePunishment = "";
 var PrivatePunishmentList = ["Cage", "Bound", "BoundPet", "ChastityBelt", "ChastityBra", "ForceNaked", "ConfiscateKey", "ConfiscateCrop", "ConfiscateWhip", "SleepCage"];
+var PrivateCharacterNewClothes = null;
 
 // Returns TRUE if a specific dialog option is allowed
 function PrivateIsCaged() { return (CurrentCharacter.Cage == null) ? false : true }
@@ -61,6 +62,13 @@ function PrivateSubTrialOverUnwilling() { return ((NPCEventGet(CurrentCharacter,
 
 // Loads the private room vendor NPC
 function PrivateLoad() {
+
+	// Saves the private character new clothes
+	if (PrivateCharacterNewClothes != null) {
+		PrivateCharacterNewClothes.AppearanceFull = PrivateCharacterNewClothes.Appearance;
+		ServerPrivateCharacterSync();
+		PrivateCharacterNewClothes = null;
+	}
 
 	// Loads the vendor and NPCs, also check for relationship decay
 	PrivateVendor = CharacterLoadNPC("NPC_Private_Vendor");
@@ -302,9 +310,11 @@ function PrivateChange(NewCloth) {
 	if (NewCloth == "Underwear") CharacterUnderwear(CurrentCharacter, CurrentCharacter.AppearanceFull);
 	if (NewCloth == "Naked") CharacterNaked(CurrentCharacter);
 	if (NewCloth == "Custom") {
-		var C = CurrentCharacter;
+		PrivateNPCInteraction(10);
+		CharacterChangeMoney(Player, -100);
+		PrivateCharacterNewClothes = CurrentCharacter;
 		DialogLeave();
-		CharacterAppearanceLoadCharacter(C);
+		CharacterAppearanceLoadCharacter(PrivateCharacterNewClothes);
 	}
 }
 

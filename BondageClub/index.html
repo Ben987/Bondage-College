@@ -90,7 +90,8 @@
 
 /*
 	TO DO:
-	Private room slave clothes change cost 100$ and is permanent
+	BUG: Wardrobe for new characters - Sekkner is working on it
+	TEST: requestAnimationFrame instead of setTimeout
 	Remove friends from friend list screen
 	Beep other online player from friend list screen
 	Multi-player ownership
@@ -114,8 +115,7 @@ window.onload = function() {
 function MainRun() {
 	DrawProcess();
 	TimerProcess();
-	CurrentTime = CurrentTime + TimerRunInterval;
-	setTimeout(MainRun, TimerRunInterval);
+	requestAnimationFrame(MainRun);
 }
 
 // When the user presses a key, we send the KeyDown event to the current screen if it can accept it
