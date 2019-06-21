@@ -813,6 +813,8 @@ Zieh alles aus.
 (She blushes and gets fully naked.)  Something kinky is brewing!
 (Sie wird rot und entkleidet sich vollständig.) Hier braut sich was Versautes zusammen!
 ###_PLAYER
+I'll pick out new clothes for you.
+Ich suche neue Kleidung für dich aus.
 Stay like that.
 Bleib so.
 ###_NPC
@@ -2528,7 +2530,7 @@ Very good, I will enforce the rule myself.  I hope you will learn a lesson.
 Sehr gut, ich werde dich persönlich überwachen. Hoffentlich ist dir das eine Lehre.
 ###_PLAYER
 This is too long!
-Das ist zu lange! 
+Das ist zu lange!
 ###_NPC
 My decision stands, and I will enforce the rule myself.  I hope you will learn a lesson.
 Mein Entschluss steht fest und ich werde dich persönlich überwachen. Hoffentlich ist dir das eine Lehre.
@@ -2538,26 +2540,32 @@ Mein Entschluss steht fest und ich werde dich persönlich überwachen. Hoffentli
 ###_NPC
 Excellent, I will enforce the rule myself.  I hope you will learn a lesson.
 Hervorragend, ich werde dich persönlich überwachen. Hoffentlich ist dir das eine Lehre.
-Girl, you're getting punished for taking too many liberties.  This key isn't suitable for you, I will confiscate it.
-Mädchen, du wirst bestraft, weil du dir zu viele Freiheiten erlaubst. Dieser Schlüssel ist nicht für dich gedacht, ich beschlagnahme ihn.
+Girl, you're getting punished for taking too many liberties.  You shouldn't possess any restraints keys, I will confiscate them.
+Mädchen, du wirst bestraft, weil du dir zu viele Freiheiten erlaubst. Du solltest gar keine Schlüssel besitzen, ich beschlagnahme sie.
 ###_PLAYER
-Yes Mistress. (Give your key.)
-Ja, Herrin. (Deinen Schlüssel abgeben.)
+Yes Mistress. (Give your keys.)
+Ja, Herrin. (Deine Schlüssel abgeben.)
 ###_NPC
-(She grabs the key and keeps it in her purse.)  Good girl.  Submissives don't need keys anyway.
-(Sie nimmt den Schlüssel und steckt ihn in ihre Tasche.) Braves Mädchen. Subs haben sowieso keine Verwendung für Schlüssel.
+(She grabs your keys and puts them in her purse.)  Good girl.  Submissives don't need keys anyway.
+(Sie nimmt deine Schlüssel und steckt sie in ihre Tasche.) Braves Mädchen. Subs haben sowieso keine Verwendung für Schlüssel.
 ###_PLAYER
-You're stealing my key?
-Ihr stehlt meinen Schlüssel?
+You're stealing my keys?
+Ihr stehlt meine Schlüssel?
 ###_NPC
-Absolutely.  (She grabs the key and keeps it in her purse.)  Submissives don't need keys anyway.
-So ist es. (Sie nimmt den Schlüssel und steckt ihn in ihre Tasche.) Subs haben sowieso keine Verwendung für Schlüssel.
+Absolutely.  (She grabs your keys and puts them in her purse.)  Submissives don't need keys anyway.
+So ist es. (Sie nimmt deine Schlüssel und steckt sie in ihre Tasche.) Subs haben sowieso keine Verwendung für Schlüssel.
 ###_PLAYER
-Fine, you can have it.
+Can I have them back later?
+Bekomme ich die später zurück?
+###_NPC
+Forget it my girl.  (She grabs your keys and puts them in her purse.)  Submissives don't need keys anyway.
+Vergiss es, Mädchen. (Sie nimmt deine Schlüssel und steckt sie in ihre Tasche.) Subs haben sowieso keine Verwendung für Schlüssel.
+###_PLAYER
+Fine, you can have them.
 Na gut, meinetwegen.
 ###_NPC
-Good.  (She grabs the key and keeps it in her purse.)  Submissives don't need keys anyway.
-Gut. (Sie nimmt den Schlüssel und steckt ihn in ihre Tasche.) Subs haben sowieso keine Verwendung für Schlüssel.
+Good.  (She grabs your keys and puts them in her purse.)  Submissives don't need keys anyway.
+Gut. (Sie nimmt deine Schlüssel und steckt sie in ihre Tasche.) Subs haben sowieso keine Verwendung für Schlüssel.
 Sub, you're getting punished for taking too many liberties.  This crop doesn't isn't proper for you, I will take it.
 Sub, du wirst dafür bestraft, dass du dir zu viele Freiheiten erlaubst. Diese Gerte ist nichts für dich, ich nehme sie jetzt.
 ###_PLAYER
@@ -2572,6 +2580,10 @@ Ihr stehlt meine Gerte?
 ###_NPC
 (She grabs the crop and swings it a few times on your tummy.)  I'm not stealing, this item simply doesn't belong to you.
 (Sie nimmt die Gerte und schlägt damit ein paar Mal auf deinen Bauch.) Ich stehle nicht, so etwas gehört einfach nur nicht zu dir.
+###_PLAYER
+Fine, you can have it.
+Na gut, meinetwegen.
+###_NPC
 (She grabs the crop and swings it a few times on your tummy.)  This item might come handy later anyway.
 (Sie nimmt die Gerte und schlägt damit ein paar Mal auf deinen Bauch.) Das könnte mir später sogar noch nützlich werden.
 Slave, you're getting punished for taking too many liberties.  This whip isn't for subs, I will confiscate it.

@@ -108,6 +108,7 @@ function InformationSheetRun() {
 	MainCanvas.textAlign = "center";
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
 	if (C.ID == 0) DrawButton(1815, 190, 90, 90, "", "White", "Icons/Preference.png");
+	if (C.ID == 0) DrawButton(1815, 305, 90, 90, "", "White", "Icons/FriendList.png");
 
 }
 
@@ -115,6 +116,7 @@ function InformationSheetRun() {
 function InformationSheetClick() {
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) CommonSetScreen(InformationSheetPreviousModule, InformationSheetPreviousScreen);
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 190) && (MouseY < 280) && (InformationSheetSelection.ID == 0)) CommonSetScreen("Character", "Preference");
+	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 305) && (MouseY < 395) && (InformationSheetSelection.ID == 0)) CommonSetScreen("Character", "FriendList");
 }
 
 // Loads the information sheet for a character

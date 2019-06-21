@@ -18,6 +18,7 @@ function ServerInit() {
 	ServerSocket.on("ChatRoomMessage", function (data) { ChatRoomMessage(data); } );
 	ServerSocket.on("ChatRoomAllowItem", function (data) { ChatRoomAllowItem(data); } );
 	ServerSocket.on("PasswordResetResponse", function (data) { PasswordResetResponse(data); } );
+	ServerSocket.on("AccountQueryResult", function (data) { ServerAccountQueryResult(data); } );
 }
 
 // When the server sends some information to the client, we keep it in variables
@@ -147,19 +148,6 @@ function ServerPlayerAppearanceSync() {
 
 }
 
-// Syncs the player wardrobe with the server (12 wardrobe positions)
-function ServerPlayerWardrobeSync() {
-	var D = {};
-	D.Wardrobe = [];
-	for(var W = 0; W < WardrobeCharacter.length; W++) {
-		D.Wardrobe[W] = [];
-		for(var A = 0; A < WardrobeCharacter[W].Appearance.length; A++)
-			if (WardrobeCharacter[W].Appearance[A].Asset.Group.Category == "Appearance")
-				D.Wardrobe[W].push({ Name: WardrobeCharacter[W].Appearance[A].Asset.Name, Group: WardrobeCharacter[W].Appearance[A].Asset.Group.Name, Color: WardrobeCharacter[W].Appearance[A].Color });
-	}
-	ServerSend("AccountUpdate", D);
-}
-
 // Syncs the private character with the server
 function ServerPrivateCharacterSync() {
 	if (PrivateVendor != null) {
@@ -184,3 +172,10 @@ function ServerPrivateCharacterSync() {
 		ServerSend("AccountUpdate", D);		
 	}
 };
+
+// Parse the query result and sends it to the right screen
+function ServerAccountQueryResult(data) {
+	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.Query != null) && (typeof data.Query === "string") && (data.Result != null)) {
+		if (data.Query == "OnlineFriends") FriendListLoadFriendList(data.Result);
+	}
+}

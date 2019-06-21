@@ -71,7 +71,8 @@ function AssetAdd(NewAsset) {
 		Extended: (NewAsset.Extended == null) ? false : NewAsset.Extended,
 		AllowLock: (NewAsset.AllowLock == null) ? false : NewAsset.AllowLock,
 		IsLock: (NewAsset.IsLock == null) ? false : NewAsset.IsLock,
-		ExpressionTrigger : NewAsset.ExpressionTrigger
+		ExpressionTrigger : NewAsset.ExpressionTrigger,
+		Layer: NewAsset.Layer
 	}
 	Asset.push(A);
 }

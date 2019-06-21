@@ -2,6 +2,7 @@
 var CurrentTime = 0;
 var TimerRunInterval = 20;
 var TimerCycle = 0;
+var TimerLastTime = CommonTime();
 
 // Returns a string of the current remaining timer
 function TimerToString(T) {
@@ -54,10 +55,17 @@ function TimerInventoryRemoveSet(C, AssetGroup, Timer) {
 	ChatRoomCharacterUpdate(C);
 }
 
-// Main timer process, calls the other functions, only used once per 2 seconds
+// Main timer process
 function TimerProcess() {
+
+	// Increments the time from the last frame
+	var TimeCurrent = CommonTime();
+	TimerRunInterval = TimeCurrent - TimerLastTime;
+	TimerLastTime = TimeCurrent;
+	CurrentTime = CurrentTime + TimerRunInterval;
+
+	// At each 100 cycles, we check to automatically remove inventory
 	TimerCycle++;
-	if (TimerCycle % (2000 / TimerRunInterval) == 0) {
-		TimerInventoryRemove();
-	}
+	if (TimerCycle % 100 == 0) TimerInventoryRemove();
+
 }

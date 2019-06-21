@@ -25,6 +25,7 @@ var TranslationDictionary = [
 			"Screens/Character/Login/Text_Login_DE.txt",
 			"Screens/Character/PasswordReset/Text_PasswordReset_DE.txt",
 			"Screens/Character/Player/Dialog_Player_DE.txt",
+			"Screens/Character/Preference/Text_Preference_DE.txt",
 			"Screens/Character/Wardrobe/Text_Wardrobe_DE.txt",
 			"Screens/Cutscene/NPCCollaring/Text_NPCCollaring_DE.txt",
 			"Screens/Cutscene/PlayerCollaring/Text_PlayerCollaring_DE.txt",
@@ -86,7 +87,14 @@ var TranslationDictionary = [
 		Files: [
 			"Assets/Female3DCG/Female3DCG_FR.txt",
 			"Screens/Character/Appearance/Text_Appearance_FR.txt",
+			"Screens/Character/Cheat/Text_Cheat_FR.txt",
+			"Screens/Character/Creation/Text_Creation_FR.txt",
+			"Screens/Character/InformationSheet/Text_InformationSheet_FR.txt",
 			"Screens/Character/Login/Text_Login_FR.txt",
+			"Screens/Character/PasswordReset/Text_PasswordReset_FR.txt",
+			"Screens/Character/Player/Dialog_Player_FR.txt",
+			"Screens/Character/Preference/Text_Preference_FR.txt",
+			"Screens/Character/Wardrobe/Text_Wardrobe_FR.txt",
 			"Screens/Room/MainHall/Dialog_NPC_MainHall_Maid_FR.txt",
 			"Screens/Room/MainHall/Text_MainHall_FR.txt"
 		]

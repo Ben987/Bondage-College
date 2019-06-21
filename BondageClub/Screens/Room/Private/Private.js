@@ -13,6 +13,7 @@ var PrivateActivityAffectLove = true;
 var PrivateActivityList = ["Gag", "Ungag", "Restrain", "FullRestrain", "Release", "Tickle", "Spank", "Pet", "Slap", "Kiss", "Fondle", "Naked", "Underwear", "RandomClothes", "Shibari", "Gift"];
 var PrivatePunishment = "";
 var PrivatePunishmentList = ["Cage", "Bound", "BoundPet", "ChastityBelt", "ChastityBra", "ForceNaked", "ConfiscateKey", "ConfiscateCrop", "ConfiscateWhip", "SleepCage"];
+var PrivateCharacterNewClothes = null;
 
 // Returns TRUE if a specific dialog option is allowed
 function PrivateIsCaged() { return (CurrentCharacter.Cage == null) ? false : true }
@@ -61,6 +62,13 @@ function PrivateSubTrialOverUnwilling() { return ((NPCEventGet(CurrentCharacter,
 
 // Loads the private room vendor NPC
 function PrivateLoad() {
+
+	// Saves the private character new clothes
+	if (PrivateCharacterNewClothes != null) {
+		PrivateCharacterNewClothes.AppearanceFull = PrivateCharacterNewClothes.Appearance;
+		ServerPrivateCharacterSync();
+		PrivateCharacterNewClothes = null;
+	}
 
 	// Loads the vendor and NPCs, also check for relationship decay
 	PrivateVendor = CharacterLoadNPC("NPC_Private_Vendor");
@@ -302,17 +310,21 @@ function PrivateChange(NewCloth) {
 	if (NewCloth == "Underwear") CharacterUnderwear(CurrentCharacter, CurrentCharacter.AppearanceFull);
 	if (NewCloth == "Naked") CharacterNaked(CurrentCharacter);
 	if (NewCloth == "Custom") {
-		var C = CurrentCharacter;
+		PrivateNPCInteraction(10);
+		CharacterChangeMoney(Player, -100);
+		PrivateCharacterNewClothes = CurrentCharacter;
 		DialogLeave();
-		CharacterAppearanceLoadCharacter(C);
+		CharacterAppearanceLoadCharacter(PrivateCharacterNewClothes);
 	}
 }
 
 // Returns TRUE if the player owner is already in the room
 function PrivateOwnerInRoom() {
-	for(var C = 1; C < PrivateCharacter.length; C++)
-		if (PrivateCharacter[C].IsOwner() && (PrivateCharacter[C].ID != CurrentCharacter.ID))
-			return true;
+	for (var C = 1; C < PrivateCharacter.length; C++) {
+		if ((PrivateCharacter[C].AccountName == null) && (PrivateCharacter[C].Name != null) && (PrivateCharacter[C].Name == Player.Owner.replace("NPC-", ""))) return true;
+		if ((PrivateCharacter[C].AccountName != null) && PrivateCharacter[C].IsOwner() && (CurrentCharacter != null) && (PrivateCharacter[C].ID != CurrentCharacter.ID)) return true;
+		if ((PrivateCharacter[C].AccountName != null) && PrivateCharacter[C].IsOwner() && (CurrentCharacter == null)) return true;
+	}
 	return false;
 }
 
@@ -539,9 +551,9 @@ function PrivateSelectPunishment() {
 		if ((PrivatePunishment == "ChastityBelt") && !Player.IsVulvaChaste() && (NPCTraitGet(CurrentCharacter, "Frigid") >= 0)) break;
 		if ((PrivatePunishment == "ChastityBra") && !Player.IsBreastChaste() && (NPCTraitGet(CurrentCharacter, "Frigid") >= 0)) break;
 		if ((PrivatePunishment == "ForceNaked") && !LogQuery("BlockChange", "Rule") && (NPCTraitGet(CurrentCharacter, "Horny") >= 0)) break;
-		if ((PrivatePunishment == "ConfiscateKey") && InventoryAvailable(Player, "MetalCuffsKey", "ItemArms")) break;
-		if ((PrivatePunishment == "ConfiscateCrop") && InventoryAvailable(Player, "LeatherCrop", "ItemPelvis")) break;
-		if ((PrivatePunishment == "ConfiscateWhip") && InventoryAvailable(Player, "LeatherWhip", "ItemPelvis")) break;
+		if ((PrivatePunishment == "ConfiscateKey") && (InventoryAvailable(Player, "MetalCuffsKey", "ItemMisc") || InventoryAvailable(Player, "MetalPadlockKey", "ItemMisc") || InventoryAvailable(Player, "IntricatePadlockKey", "ItemMisc"))) break;
+		if ((PrivatePunishment == "ConfiscateCrop") && (InventoryAvailable(Player, "LeatherCrop", "ItemPelvis") || InventoryAvailable(Player, "LeatherCrop", "ItemBreast"))) break;
+		if ((PrivatePunishment == "ConfiscateWhip") && (InventoryAvailable(Player, "LeatherWhip", "ItemPelvis") || InventoryAvailable(Player, "LeatherWhip", "ItemBreast"))) break;
 		if ((PrivatePunishment == "SleepCage") && LogQuery("Cage", "PrivateRoom") && !LogQuery("SleepCage", "Rule")) break;
 
 	}
@@ -564,7 +576,7 @@ function PrivateRunPunishment(LoveFactor) {
 	if (PrivatePunishment == "ChastityBelt") InventoryWear(Player, "MetalChastityBelt", "ItemPelvis");
 	if (PrivatePunishment == "ChastityBra") InventoryWear(Player, "MetalChastityBra", "ItemBreast");
 	if (PrivatePunishment == "ForceNaked") LogAdd("BlockChange", "Rule", CurrentTime + 1800000);
-	if (PrivatePunishment == "ConfiscateKey") InventoryDelete(Player, "MetalCuffsKey", "ItemArms");
+	if (PrivatePunishment == "ConfiscateKey") { InventoryDelete(Player, "MetalCuffsKey", "ItemMisc"); InventoryDelete(Player, "MetalPadlockKey", "ItemMisc"); InventoryDelete(Player, "IntricatePadlockKey", "ItemMisc"); }
 	if (PrivatePunishment == "ConfiscateCrop") { InventoryDelete(Player, "LeatherCrop", "ItemPelvis"); InventoryDelete(Player, "LeatherCrop", "ItemBreast"); }
 	if (PrivatePunishment == "ConfiscateWhip") { InventoryDelete(Player, "LeatherWhip", "ItemPelvis"); InventoryDelete(Player, "LeatherWhip", "ItemBreast"); }
 	if (PrivatePunishment == "SleepCage") LogAdd("SleepCage", "Rule", CurrentTime + 604800000);

@@ -11,6 +11,7 @@ function MainHallCanTrickMaid() { return (ManagementIsClubSlave() && SarahUnlock
 
 // Main hall loading
 function MainHallLoad() {
+	CharacterSetActivePose(Player, null);
 	MainHallBackground = "MainHall";
 	MainHallStartEventTimer = null;
 	MainHallNextEventTimer = null;

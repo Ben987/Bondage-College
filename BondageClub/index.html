@@ -43,6 +43,7 @@
 <script src="Screens/Character/Wardrobe/Wardrobe.js"></script>
 <script src="Screens/Character/Cheat/Cheat.js"></script>
 <script src="Screens/Character/PasswordReset/PasswordReset.js"></script>
+<script src="Screens/Character/FriendList/FriendList.js"></script>
 <script src="Screens/Room/MainHall/MainHall.js"></script>
 <script src="Screens/Room/Shop/Shop.js"></script>
 <script src="Screens/Room/Introduction/Introduction.js"></script>
@@ -89,14 +90,12 @@
 <script>
 
 /*
-
-	TO DO
-	Different difficulty to escape depending on the bondage type for tape & leather cuffs
-	BUG: Leather cuffs - Unlocks while changing pose
-	New images for locked mouth items
-	Private messages in chatrooms
-	Patreon import
-
+	TO DO:
+	BUG: Wardrobe for new characters - Sekkner is working on it
+	Remove friends from friend list screen
+	Beep other online player from friend list screen
+	Multi-player ownership
+	Patreon Import
 */
 
 // When the code is loaded, we start the game engine
@@ -116,8 +115,7 @@ window.onload = function() {
 function MainRun() {
 	DrawProcess();
 	TimerProcess();
-	CurrentTime = CurrentTime + TimerRunInterval;
-	setTimeout(MainRun, TimerRunInterval);
+	requestAnimationFrame(MainRun);
 }
 
 // When the user presses a key, we send the KeyDown event to the current screen if it can accept it

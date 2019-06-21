@@ -1,8 +1,10 @@
 SelectItem,,,Select an item to use
 CannotUseOnSelf,,,Cannot use on yourself
 RemoveClothesForItem,,,Remove some clothes first
+RemoveSuspensionForItem,,,Remove the suspension first
 Cancel,,,Cancel
 Exit,,,Back to character
+Next,,,View next items
 Remove,,,Remove the item
 Struggle,,,Try to struggle out
 Lock,,,Use a lock
@@ -38,6 +40,8 @@ PumpIt,,,Pump it
 pumps,,,pumps
 deflates,,,deflates
 gag,,,gag
+Delete,,,Delete
+Beep,,,Beep
 LockMemberNumber,,,Member number on lock:
 TimerLeft,,,Time left:
 TimerRestart,,,SourceCharacter restarts the five minute timer padlock on DestinationCharacter BodyPart.
@@ -63,7 +67,7 @@ DuctTapeRestrainHands,,,SourceCharacter wraps duct tape around DestinationCharac
 DuctTapeRestrainBottom,,,SourceCharacter creates a duct tape skirt on DestinationCharacter and traps her hands in it.
 DuctTapeRestrainTop,,,SourceCharacter creates a duct tape top on DestinationCharacter and traps her arms in it.
 DuctTapeRestrainFull,,,SourceCharacter creates a duct tape mummy on DestinationCharacter and traps her arms in it.
-SelectGagType,,,Select type of cloth gag
+SelectGagType,,,Select the type of gag
 ClothGagTypeSmall,,,Small
 ClothGagTypeCleave,,,Cleave
 ClothGagTypeOTM,,,OTM
