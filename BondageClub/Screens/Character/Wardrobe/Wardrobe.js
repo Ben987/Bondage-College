@@ -20,6 +20,7 @@ function WardrobeLoadCharacterNames() {
 function WardrobeLoadCharacters(Fast) {
 	Fast = Fast == null ? false : Fast;
 	var W = null;
+	WardrobeLoadCharacterNames();
 	if (Player.Wardrobe == null) Player.Wardrobe = [];
 	for (var P = 0; P < 12; P++) {
 		if (WardrobeCharacter.length <= P && ((W == null) || !Fast)) {
