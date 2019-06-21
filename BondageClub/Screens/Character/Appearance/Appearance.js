@@ -694,9 +694,10 @@ function CharacterAppearanceLoadCharacter(C) {
 // Load wardrobe menu in appearance selection
 function CharacterAppearanceWardrobeLoad(C) {
 	if (Player.Wardrobe == null || Player.Wardrobe.length < 12) {
-		WardrobeLoadCharacter(true); 
+		WardrobeLoadCharacters(true); 
+	} else {
+		WardrobeLoadCharacterNames();
 	}
-	WardrobeLoadCharacterNames();
 	ElementCreateInput("InputWardrobeName", "text", C.Name, "20");
 	CharacterAppearanceWardrobeMode = true;
 	CharacterAppearanceWardrobeText = TextGet("WardrobeNameInfo");
