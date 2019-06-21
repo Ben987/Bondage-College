@@ -40,13 +40,13 @@ function WardrobeLoadCharacters(Fast) {
 				WardrobeFastSave(C, P, false);
 				W = P;
 			}
-		} else {
+			// Keep the character
+			WardrobeCharacter.push(C);
+		} else if (W != null) {
 			// randomize only one character
 			CharacterAppearanceFullRandom(WardrobeCharacter[W]);
-			WardrobeFastSave(C, P, false);
-		}
-		// Keep the character
-		WardrobeCharacter.push(C);
+			WardrobeFastSave(WardrobeCharacter[W], P, false);
+		}		
 	}
 	if (W != null) {
 		if (Fast) {
@@ -158,7 +158,7 @@ function WardrobeFastLoad(C, W) {
 
 // Saves character appearance in Player's wardrobe, use Player's body as base for others
 function WardrobeFastSave(C, W, Push) {
-	if (Player.Wardrobe != null && Player.Wardrobe[W] != null) {
+	if (Player.Wardrobe != null) {
 		var AddAll = C.ID == 0 || C.AccountName.indexOf("Wardrobe-") == 0;
 		Player.Wardrobe[W] = C.Appearance
 			.filter(a => a.Asset.Group.Category == "Appearance")
