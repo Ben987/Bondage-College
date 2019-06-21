@@ -467,7 +467,26 @@ let RhythmGameScript = {
 
     update_health : function () {
         for(let i=0; i<RhythmGameScript.judge.length; i++){
+            let judge = RhythmGameScript.judgeToVal(RhythmGameScript.judge[i].judge);
+            switch(judge){
+                case 0:
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+            }
             
+
+
+            if(judge === 0 || judge === 1) {
+                RhythmGameScript.combo.value++;
+                if(RhythmGameScript.combo.value > RhythmGameScript.combo.max)
+                    RhythmGameScript.combo.max = RhythmGameScript.combo.value;
+            }
+            else RhythmGameScript.health = RhythmGameScript.health + 1 > 1 ? 1 : 0;
         }
     },
 };
@@ -790,7 +809,7 @@ let RhythmGameRender = {
     },
 };
 
-//Rhythm game integration object, contains functions related to bondage club
+//Rhythm game integration object, contains bondage club specific functions
 let RhythmGameIntegration = {
 
 };
