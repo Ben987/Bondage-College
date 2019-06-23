@@ -12,9 +12,10 @@ function FriendListLoad() {
 
 // Run the friend list screen - Draw the controls
 function FriendListRun() {
-	DrawText(TextGet("OnlineFriend"), 380, 35, "White", "Gray");
-	DrawText(TextGet("MemberNumber"), 940, 35, "White", "Gray");
-	DrawText(TextGet("ChatRoomName"), 1500, 35, "White", "Gray");
+	DrawText(TextGet("OnlineFriend"), 340, 35, "White", "Gray");
+	DrawText(TextGet("MemberNumber"), 800, 35, "White", "Gray");
+	DrawText(TextGet("ChatRoomName"), 1270, 35, "White", "Gray");
+	DrawText(TextGet("Action"), 1685, 35, "White", "Gray");
 	ElementPositionFix("FriendList", 36, 5, 75, 1885, 890);
 	DrawButton(1935, 5, 60, 60, "", "White", "Icons/Small/Exit.png");
 }
@@ -29,11 +30,30 @@ function FriendListClick() {
 
 // Loads the friend list data in the div
 function FriendListLoadFriendList(data) {
+	var BeepCaption = DialogFind(Player, "Beep");
+	var DeleteCaption = DialogFind(Player, "Delete");
+	var PrivateRoomCaption = DialogFind(Player, "PrivateRoom");
 	FriendListContent = "";
 	for (var F = 0; F < data.length; F++) {
-		FriendListContent = FriendListContent + "<div class='FriendListBlock'>" + data[F].MemberName + "</div>";
-		FriendListContent = FriendListContent + "<div class='FriendListBlock'>" + data[F].MemberNumber.toString() + "</div>";
-		FriendListContent = FriendListContent + "<div class='FriendListBlock'>" + ((data[F].ChatRoomName == null) ? "-" : data[F].ChatRoomName) + "</div>";
+		FriendListContent = FriendListContent + "<div class='FriendListRow'>";
+		FriendListContent = FriendListContent + "<div class='FriendListTextColumn FriendListFirstColumn'>" + data[F].MemberName + "</div>";
+		FriendListContent = FriendListContent + "<div class='FriendListTextColumn'>" + data[F].MemberNumber.toString() + "</div>";
+		FriendListContent = FriendListContent + "<div class='FriendListTextColumn'>" + ((data[F].ChatRoomName == null) ? "-" : data[F].ChatRoomName.replace("-Private-", PrivateRoomCaption)) + "</div>";
+		FriendListContent = FriendListContent + "<div class='FriendListLinkColumn' onClick='FriendListBeep(" + data[F].MemberNumber.toString() + ")'>" + BeepCaption + "</div>";
+		FriendListContent = FriendListContent + "<div class='FriendListLinkColumn' onClick='FriendListDelete(" + data[F].MemberNumber.toString() + ")'>" + DeleteCaption + "</div>";
+		FriendListContent = FriendListContent + "</div>";
 	}
 	ElementContent("FriendList", FriendListContent);
+}
+
+// When the user wants to delete someone from her friend list
+function FriendListDelete(MemberNumber) {
+	Player.FriendList.splice(Player.FriendList.indexOf(MemberNumber), 1);
+	ServerSend("AccountUpdate", {FriendList: Player.FriendList});
+	ServerSend("AccountQuery", {Query: "OnlineFriends"});
+}
+
+// When the user wants to beep someone
+function FriendListBeep(MemberNumber) {
+	ServerSend("AccountBeep", {MemberNumber: MemberNumber});
 }

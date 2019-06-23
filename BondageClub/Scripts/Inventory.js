@@ -182,4 +182,5 @@ function InventoryGetLock(Item) {
 	for (var A = 0; A < Asset.length; A++)
 		if (Asset[A].IsLock && (Asset[A].Name == Item.Property.LockedBy))
 			return { Asset: Asset[A] };
+	return null;
 }

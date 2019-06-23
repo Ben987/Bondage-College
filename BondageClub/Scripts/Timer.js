@@ -56,16 +56,18 @@ function TimerInventoryRemoveSet(C, AssetGroup, Timer) {
 }
 
 // Main timer process
-function TimerProcess() {
+function TimerProcess(Timestamp) {
 
 	// Increments the time from the last frame
-	var TimeCurrent = CommonTime();
-	TimerRunInterval = TimeCurrent - TimerLastTime;
-	TimerLastTime = TimeCurrent;
+	TimerRunInterval = Timestamp - TimerLastTime;
+	TimerLastTime = Timestamp;
 	CurrentTime = CurrentTime + TimerRunInterval;
 
 	// At each 100 cycles, we check to automatically remove inventory
 	TimerCycle++;
 	if (TimerCycle % 100 == 0) TimerInventoryRemove();
+
+	// Launches the main again for the next frame
+	requestAnimationFrame(MainRun);
 
 }

@@ -72,7 +72,9 @@ function AssetAdd(NewAsset) {
 		AllowLock: (NewAsset.AllowLock == null) ? false : NewAsset.AllowLock,
 		IsLock: (NewAsset.IsLock == null) ? false : NewAsset.IsLock,
 		ExpressionTrigger : NewAsset.ExpressionTrigger,
-		Layer: NewAsset.Layer
+		Layer: NewAsset.Layer,
+		AllowEffect: NewAsset.AllowEffect,
+		AllowBlock: NewAsset.AllowBlock
 	}
 	Asset.push(A);
 }

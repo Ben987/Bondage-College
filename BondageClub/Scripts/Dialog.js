@@ -183,7 +183,7 @@ function DialogMenuButtonBuild(C) {
 
 	// Main buttons
 	if (DialogProgress < 0) {
-		if (DialogInventory >= 12) DialogMenuButton.push("Next");
+		if (DialogInventory.length >= 12) DialogMenuButton.push("Next");
 		if (InventoryItemHasEffect(Item, "Lock", true) && DialogCanUnlock(Item) && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C) && (Player.CanInteract() || ((C.ID == 0) && InventoryItemHasEffect(Item, "Block", true)))) DialogMenuButton.push("Unlock");
 		if ((Item != null) && (C.ID == 0) && !Player.CanInteract() && (DialogMenuButton.indexOf("Unlock") < 0) && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Struggle");
 		if (InventoryItemHasEffect(Item, "Lock", true) && !Player.IsBlind() && (Item.Property != null) && (Item.Property.LockedBy != null) && (Item.Property.LockedBy != "")) DialogMenuButton.push("InspectLock");
@@ -416,6 +416,47 @@ function DialogMenuButtonClick() {
 
 }
 
+// Publishes the item action to the local chat room or the dialog screen
+function DialogPublishAction(C, ClickItem) {
+	
+	// The shock triggers can trigger items that can shock the wearer
+	if (C.FocusGroup != null) {
+		var TargetItem = (InventoryGet(C, C.FocusGroup.Name));
+		if (InventoryItemHasEffect(ClickItem, "TriggerShock") && InventoryItemHasEffect(TargetItem, "ReceiveShock")) {
+			if (CurrentScreen == "ChatRoom") {
+				var intensity = TargetItem.Property ? TargetItem.Property.Intensity : 0;
+				InventoryExpressionTrigger(C, ClickItem);
+				ChatRoomPublishCustomAction((DialogFind(Player, TargetItem.Asset.Name + "Trigger" + intensity)).replace("DestinationCharacter",C.Name), true);
+			}
+			else {
+				var intensity = TargetItem.Property ? TargetItem.Property.Intensity : 0;
+				var D = (DialogFind(Player, TargetItem.Asset.Name + "Trigger" + intensity)).replace("DestinationCharacter", C.Name);
+				if (D != "") {
+					InventoryExpressionTrigger(C, ClickItem);
+					C.CurrentDialog = "(" + D + ")";
+					DialogLeaveItemMenu();
+				}
+			}
+			return;
+		}
+	}
+	
+	// Publishes the item result
+	if (CurrentScreen == "ChatRoom" && !InventoryItemHasEffect(ClickItem)) {
+		InventoryExpressionTrigger(C, ClickItem);
+		ChatRoomPublishAction(CurrentCharacter, null, ClickItem, true);
+	}
+	else {
+		var D = DialogFind(C, ClickItem.Asset.Group.Name + ClickItem.Asset.Name, null, false);
+		if (D != "") {
+			InventoryExpressionTrigger(C, ClickItem);
+			C.CurrentDialog = D;
+			DialogLeaveItemMenu();
+		}
+	}
+
+}
+
 // When the player clicks on an item
 function DialogItemClick(ClickItem) {
 
@@ -454,41 +495,9 @@ function DialogItemClick(ClickItem) {
 						if (ClickItem.Asset.Name == "VibratorRemote" && InventoryItemHasEffect(InventoryGet(C, C.FocusGroup.Name), "Egged"))
 							DialogExtendItem(InventoryGet(C, C.FocusGroup.Name));
 						
-						// Publishes the item result
-						if (CurrentScreen == "ChatRoom" && !InventoryItemHasEffect(ClickItem)) {
-							InventoryExpressionTrigger(C, ClickItem);
-							ChatRoomPublishAction(CurrentCharacter, null, ClickItem, true);
-						}
-						else {
-							var D = DialogFind(C, ClickItem.Asset.Group.Name + ClickItem.Asset.Name, null, false);
-							if (D != "") {
-								InventoryExpressionTrigger(C, ClickItem);
-								C.CurrentDialog = D;
-								DialogLeaveItemMenu();
-							}
-						}
+						// Publishes the item action text
+						DialogPublishAction(C, ClickItem);
 						
-						// The shock triggers can trigger items that can shock the wearer
-						if (C.FocusGroup != null) {
-							var TargetItem = (InventoryGet(C, C.FocusGroup.Name));
-							if (InventoryItemHasEffect(ClickItem, "TriggerShock") && InventoryItemHasEffect(TargetItem, "ReceiveShock")) {
-								if (CurrentScreen == "ChatRoom") {
-									var intensity = TargetItem.Property ? TargetItem.Property.Intensity : 0;
-									InventoryExpressionTrigger(C, ClickItem);
-									ChatRoomPublishCustomAction((DialogFind(Player, TargetItem.Asset.Name + "Trigger" + intensity)).replace("DestinationCharacter",C.Name), true);
-								}
-								else {
-									var intensity = TargetItem.Property ? TargetItem.Property.Intensity : 0;
-									var D = (DialogFind(Player, TargetItem.Asset.Name + "Trigger" + intensity)).replace("DestinationCharacter", C.Name);
-									if (D != "") {
-										InventoryExpressionTrigger(C, ClickItem);
-										C.CurrentDialog = "(" + D + ")";
-										DialogLeaveItemMenu();
-									}
-								}
-							}
-						}
-
 					}
 				} 
 				else
@@ -505,20 +514,8 @@ function DialogItemClick(ClickItem) {
 			if ((CurrentItem.Asset.Name == ClickItem.Asset.Name) && CurrentItem.Asset.Extended)
 				DialogExtendItem(CurrentItem);
 			else
-				if (!ClickItem.Asset.Wear) {
-					if (CurrentScreen == "ChatRoom") {
-						InventoryExpressionTrigger(C, ClickItem);
-						ChatRoomPublishAction(CurrentCharacter, null, ClickItem, true);
-					}
-					else {
-						var D = DialogFind(C, ClickItem.Asset.Group.Name + ClickItem.Asset.Name, null, false);
-						if (D != "") {
-							InventoryExpressionTrigger(C, ClickItem);
-							C.CurrentDialog = D;
-							DialogLeaveItemMenu();
-						}
-					}
-				}
+				if (!ClickItem.Asset.Wear)
+					DialogPublishAction(C, ClickItem);
 
 }
 

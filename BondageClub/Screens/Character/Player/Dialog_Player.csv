@@ -4,6 +4,7 @@ RemoveClothesForItem,,,Remove some clothes first
 RemoveSuspensionForItem,,,Remove the suspension first
 Cancel,,,Cancel
 Exit,,,Back to character
+Next,,,View next items
 Remove,,,Remove the item
 Struggle,,,Try to struggle out
 Lock,,,Use a lock
@@ -39,6 +40,11 @@ PumpIt,,,Pump it
 pumps,,,pumps
 deflates,,,deflates
 gag,,,gag
+Delete,,,Delete
+Beep,,,Beep
+BeepFrom,,,Beep from
+InRoom,,,in room
+PrivateRoom,,,<i>Private room</i>
 LockMemberNumber,,,Member number on lock:
 TimerLeft,,,Time left:
 TimerRestart,,,SourceCharacter restarts the five minute timer padlock on DestinationCharacter BodyPart.

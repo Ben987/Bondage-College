@@ -6,11 +6,11 @@ var MaidQuartersPreviousCloth = null;
 var MaidQuartersPreviousHat = null;
 var MaidQuartersMaidReleasedPlayer = false;
 var MaidQuartersCanBecomeMaid = false;
-var MaidQuartersCannotBecomeMaidYet = false
+var MaidQuartersCannotBecomeMaidYet = false;
 var MaidQuartersCanBecomeHeadMaid = false;
-var MaidQuartersCannotBecomeHeadMaidYet = false
+var MaidQuartersCannotBecomeHeadMaidYet = false;
 var MaidQuartersIsMaid = false;
-var MaidQuartersIsHeadMaid = false
+var MaidQuartersIsHeadMaid = false;
 var MaidQuartersDominantRep = 0;
 var MaidQuartersCurrentRescue = "";
 var MaidQuartersRescueList = ["IntroductionClass", "ShibariDojo", "Shop", "Gambling", "Prison"];
@@ -22,6 +22,7 @@ var MaidQuartersCurrentRescueCompleted = false;
 function MaidQuartersPlayerInMaidUniform() { return ((CharacterAppearanceGetCurrentValue(Player, "Cloth", "Name") == "MaidOutfit1") && (CharacterAppearanceGetCurrentValue(Player, "Hat", "Name") == "MaidHairband1")) }
 function MaidQuartersAllowMaidDrinks() { return (!Player.IsRestrained() && !MaidQuartersMaid.IsRestrained() && !LogQuery("ClubMistress", "Management")); }
 function MaidQuartersAllowMaidCleaning() { return (!Player.IsRestrained() && !MaidQuartersMaid.IsRestrained() && !LogQuery("ClubMistress", "Management")); }
+function MaidQuartersAllowMaidPlayMusic() { return (!Player.IsRestrained() && !MaidQuartersMaid.IsRestrained() && !LogQuery("ClubMistress", "Management")); }
 function MaidQuartersAllowRescue() { return (!Player.IsRestrained()); }
 function MaidQuartersAllowCancelRescue() { return (MaidQuartersCurrentRescueStarted && !MaidQuartersCurrentRescueCompleted); }
 function MaidQuartersCanFreeSarah() { return (SarahUnlockQuest && LogQuery("LeadSorority", "Maid")) }
@@ -101,6 +102,8 @@ function MaidQuartersMiniGameEnd() {
 	if (!MiniGameVictory && (MiniGameType == "MaidDrinks")) MaidQuartersMaid.Stage = "282";
 	if (MiniGameVictory && (MiniGameType == "MaidCleaning")) MaidQuartersMaid.Stage = "481";
 	if (!MiniGameVictory && (MiniGameType == "MaidCleaning")) MaidQuartersMaid.Stage = "482";
+	if (MiniGameVictory && (MiniGameType == "RhythmGame")) MaidQuartersMaid.Stage = "590";
+	if (!MiniGameVictory && (MiniGameType == "RhythmGame")) MaidQuartersMaid.Stage = "591";
 	MaidQuartersMaid.CurrentDialog = DialogFind(MaidQuartersMaid, MiniGameType + (MiniGameVictory ? "Victory" : "Defeat"));
 }
 
@@ -112,6 +115,12 @@ function MaidQuartersMiniGamePay() {
 	if (MiniGameDifficulty == "Hard") M = M * 2;
 	MaidQuartersMaid.CurrentDialog = MaidQuartersMaid.CurrentDialog.replace("REPLACEMONEY", M.toString());
 	CharacterChangeMoney(Player, M);
+}
+
+function MaidQuartersMiniGamePayAdvanced(){
+	ReputationProgress("Maid", 4);
+	MaidQuartersMaid.CurrentDialog = MaidQuartersMaid.CurrentDialog.replace("REPLACEMONEY", MiniGameAdvancedPayment.toString());
+	CharacterChangeMoney(Player, MiniGameAdvancedPayment);
 }
 
 // When the rescue is successful, the player gets paid
