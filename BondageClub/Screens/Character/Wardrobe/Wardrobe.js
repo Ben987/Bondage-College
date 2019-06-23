@@ -140,14 +140,14 @@ function WardrobeFastLoad(C, W) {
 					&& (AddAll || a.Group.Clothing)
 					&& a.Name == w.Name
 					&& (a.Value == 0 || InventoryAvailable(Player, a.Name, a.Group.Name)));
-				if (A != null) CharacterAppearanceSetItem(C, w.Group, A, w.Color);
+				if (A != null) CharacterAppearanceSetItem(C, w.Group, A, w.Color, 0, false);
 			});
 		// Adds any critical appearance asset that could be missing, adds the default one
 		AssetGroup
 			.filter(g => g.Category == "Appearance" && !g.AllowNone)
 			.forEach(g => {
 				if (C.Appearance.find(a => a.Asset.Group.Name == g.Name) == null) {
-					C.Appearance.push({ Asset: Asset.find(a => a.Group.Name == g.Name), Color: "Default" });
+					C.Appearance.push({ Asset: Asset.find(a => a.Group.Name == g.Name), Difficulty: 0, Color: "Default" });
 				}
 			});
 		CharacterLoadCanvas(C);

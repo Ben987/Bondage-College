@@ -407,7 +407,7 @@ function AppearanceRun() {
 }
 
 // Sets an item in the character appearance
-function CharacterAppearanceSetItem(C, Group, ItemAsset, NewColor, DifficultyFactor) {
+function CharacterAppearanceSetItem(C, Group, ItemAsset, NewColor, DifficultyFactor, Refresh) {
 	
 	// Sets the difficulty factor
 	if (DifficultyFactor == null) DifficultyFactor = 0;
@@ -431,7 +431,7 @@ function CharacterAppearanceSetItem(C, Group, ItemAsset, NewColor, DifficultyFac
 	}
 
 	// Draw the character canvas and calculate the effects on the character
-	CharacterRefresh(C);
+	if (Refresh == null || Refresh) CharacterRefresh(C);
 
 }
 
