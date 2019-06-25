@@ -359,12 +359,9 @@ function AppearanceRun() {
 	
 		// Draw the top buttons with images
 		if (C.ID == 0) {
-			if (LogQuery("Wardrobe", "PrivateRoom")) DrawButton(1183, 25, 90, 90, "", "White", "Icons/Wardrobe.png");
-			DrawButton(1300, 25, 90, 90, "", "White", "Icons/Reset.png");
+			DrawButton(1300, 25, 90, 90, "", "White", "Icons/" + ((LogQuery("Wardrobe", "PrivateRoom")) ? "Wardrobe" : "Reset") + ".png");
 			DrawButton(1417, 25, 90, 90, "", "White", "Icons/Random.png");
-		} else if (LogQuery("Wardrobe", "PrivateRoom")) {
-			DrawButton(1417, 25, 90, 90, "", "White", "Icons/Wardrobe.png");
-		}
+		} else if (LogQuery("Wardrobe", "PrivateRoom")) DrawButton(1417, 25, 90, 90, "", "White", "Icons/Wardrobe.png");
 		DrawButton(1534, 25, 90, 90, "", "White", "Icons/Naked.png");
 		DrawButton(1651, 25, 90, 90, "", "White", "Icons/Next.png");
 		
@@ -379,21 +376,24 @@ function AppearanceRun() {
 			}
 
 	} else if (CharacterAppearanceWardrobeMode) {
+		
+		// Draw the wardrobe top controls & buttons
 		DrawButton(1417, 25, 90, 90, "", "White", "Icons/Dress.png");
 		DrawButton(1534, 25, 90, 90, "", "White", "Icons/Naked.png");
 		DrawButton(1651, 25, 90, 90, "", "White", "Icons/Next.png");
-
 		DrawText(CharacterAppearanceWardrobeText, 1645, 220, "White", "Gray");
 		ElementPosition("InputWardrobeName", 1645, 315, 690);
 
+		// Draw 6 wardrobe options
 		for (var W = CharacterAppearanceWardrobeOffset; W < Player.Wardrobe.length && W < CharacterAppearanceWardrobeOffset + 6; W++) {
 			DrawButton(1300, 430 + (W - CharacterAppearanceWardrobeOffset) * 95, 500, 65, "", "White", "");
-			DrawTextFit((W + 1).toString() + (W < 9 ? ":  " : ": ") + Player.WardrobeCharacterNames[W], 1500, 463 + (W - CharacterAppearanceWardrobeOffset) * 95, 396, "Black");
+			DrawTextFit((W + 1).toString() + (W < 9 ? ":  " : ": ") + Player.WardrobeCharacterNames[W], 1550, 463 + (W - CharacterAppearanceWardrobeOffset) * 95, 496, "Black");
 			DrawButton(1820, 430 + (W - CharacterAppearanceWardrobeOffset) * 95, 160, 65, "Save", "White", "");
 		}
+
 	} else {
 
-		// Draws the color picker
+		// Draw the color picker
 		ElementPosition("InputColor", 1450, 65, 300);
 		DrawButton(1610, 37, 65, 65, "", "White", "Icons/Color.png");
 		DrawImage("Backgrounds/ColorPicker.png", 1300, 145);
@@ -407,7 +407,7 @@ function AppearanceRun() {
 }
 
 // Sets an item in the character appearance
-function CharacterAppearanceSetItem(C, Group, ItemAsset, NewColor, DifficultyFactor) {
+function CharacterAppearanceSetItem(C, Group, ItemAsset, NewColor, DifficultyFactor, Refresh) {
 	
 	// Sets the difficulty factor
 	if (DifficultyFactor == null) DifficultyFactor = 0;
@@ -431,7 +431,7 @@ function CharacterAppearanceSetItem(C, Group, ItemAsset, NewColor, DifficultyFac
 	}
 
 	// Draw the character canvas and calculate the effects on the character
-	CharacterRefresh(C);
+	if (Refresh == null || Refresh) CharacterRefresh(C);
 
 }
 
@@ -548,15 +548,15 @@ function AppearanceClick() {
 					}
 
 		// If we must set back the default outfit or set a random outfit
-		if ((MouseX >= 1300) && (MouseX < 1390) && (MouseY >= 25) && (MouseY < 115) && (C.ID == 0)) CharacterAppearanceSetDefault(C);
+		if ((MouseX >= 1300) && (MouseX < 1390) && (MouseY >= 25) && (MouseY < 115) && (C.ID == 0) && !LogQuery("Wardrobe", "PrivateRoom")) CharacterAppearanceSetDefault(C);
+		if ((MouseX >= 1300) && (MouseX < 1390) && (MouseY >= 25) && (MouseY < 115) && (C.ID == 0) && LogQuery("Wardrobe", "PrivateRoom")) CharacterAppearanceWardrobeLoad(C);
 		if ((MouseX >= 1417) && (MouseX < 1507) && (MouseY >= 25) && (MouseY < 115) && (C.ID == 0)) CharacterAppearanceFullRandom(C);
+		if ((MouseX >= 1417) && (MouseX < 1507) && (MouseY >= 25) && (MouseY < 115) && (C.ID != 0) && LogQuery("Wardrobe", "PrivateRoom")) CharacterAppearanceWardrobeLoad(C);
 		if ((MouseX >= 1534) && (MouseX < 1624) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceNaked(C);
 		if ((MouseX >= 1651) && (MouseX < 1741) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceMoveOffset(CharacterAppearanceNumPerPage);
 		if ((MouseX >= 1768) && (MouseX < 1858) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceExit(C);
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceReady(C);
-
-		if ((MouseX >= 1183) && (MouseX < 1273) && (MouseY >= 25) && (MouseY < 115) && (C.ID == 0) && LogQuery("Wardrobe", "PrivateRoom")) CharacterAppearanceWardrobeLoad(C);
-		if ((MouseX >= 1417) && (MouseX < 1507) && (MouseY >= 25) && (MouseY < 115) && (C.ID != 0) && LogQuery("Wardrobe", "PrivateRoom")) CharacterAppearanceWardrobeLoad(C);
+		
 	} else if (CharacterAppearanceWardrobeMode) {
 		if ((MouseX >= 1651) && (MouseX < 1741) && (MouseY >= 25) && (MouseY < 115)) {
 			CharacterAppearanceWardrobeOffset += 6;
@@ -693,8 +693,10 @@ function CharacterAppearanceLoadCharacter(C) {
 
 // Load wardrobe menu in appearance selection
 function CharacterAppearanceWardrobeLoad(C) {
-	if (Player.Wardrobe == null) {
-		WardrobeLoadCharacter(true); 
+	if (Player.Wardrobe == null || Player.Wardrobe.length < 12) {
+		WardrobeLoadCharacters(true); 
+	} else {
+		WardrobeLoadCharacterNames();
 	}
 	ElementCreateInput("InputWardrobeName", "text", C.Name, "20");
 	CharacterAppearanceWardrobeMode = true;

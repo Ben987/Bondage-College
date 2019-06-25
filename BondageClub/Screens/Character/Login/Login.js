@@ -27,7 +27,7 @@ function LoginDrawCredits() {
 	for(var C = 0; C < LoginCredits.length; C++) {
 
 		// Sets the Y position (it scrolls from bottom to top)
-		var Y = 800 - Math.floor(LoginCreditsPosition * TimerRunInterval / 10) + (C * 50);
+		var Y = 800 - Math.floor(LoginCreditsPosition * 2) + (C * 50);
 
 		// Draw the text if it's in drawing range
 		if ((Y > 0) && (Y <= 999)) {

@@ -86,7 +86,10 @@ function CreationResponse(data) {
 			CommonSetScreen("Room", "MainHall");
 
 		} else CreationMessage = TextGet("Error") + " " + data.ServerAnswer;		
-	} else CreationMessage = TextGet("InvalidServerAnswer");
+	} else {
+		if ((data != null) && (typeof data === "string")) CreationMessage = data;
+		else CreationMessage = TextGet("InvalidServerAnswer");
+	}
 }
 
 // When the user clicks on the character creation screen
