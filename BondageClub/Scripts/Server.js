@@ -21,6 +21,7 @@ function ServerInit() {
 	ServerSocket.on("PasswordResetResponse", function (data) { PasswordResetResponse(data); } );
 	ServerSocket.on("AccountQueryResult", function (data) { ServerAccountQueryResult(data); } );
 	ServerSocket.on("AccountBeep", function (data) { ServerAccountBeep(data); } );
+	ServerSocket.on("AccountOwnership", function (data) { ServerAccountOwnership(data); } );
 }
 
 // When the server sends some information to the client, we keep it in variables
@@ -267,5 +268,29 @@ function ServerAccountBeep(data) {
 
 // Draws the beep sent by the server
 function ServerDrawBeep() {
-	if ((ServerBeep.Timer != null) && (ServerBeep.Timer > CurrentTime)) DrawButton(0, 0, 1000, 50, ServerBeep.Message, "Pink", "");
+	if ((ServerBeep.Timer != null) && (ServerBeep.Timer > CurrentTime)) DrawButton((CurrentScreen == "ChatRoom") ? 0 : 500, 0, 1000, 50, ServerBeep.Message, "Pink", "");
+}
+
+// Gets the account ownership result from the query sent to the server
+function ServerAccountOwnership(data) {
+	
+	// If we get a result for a specific member number, we show that option in the online dialog
+	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.MemberNumber != null) && (typeof data.MemberNumber === "number") && (data.Result != null) && (typeof data.Result === "string"))
+		if ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber == data.MemberNumber))
+			ChatRoomOwnershipOption = data.Result;
+
+	// If we must update the character ownership data
+	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.Owner != null) && (typeof data.Owner === "string") && (data.Ownership != null) && (typeof data.Ownership === "object")) {
+		Player.Owner = data.Owner;
+		Player.Ownership = data.Ownership;
+		LoginValidCollar();
+	}
+
+	// If we must clear the character ownership data
+	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.ClearOwnership != null) && (typeof data.ClearOwnership === "boolean") && (data.ClearOwnership == true)) {
+		Player.Owner = "";
+		Player.Ownership = null;
+		LoginValidCollar();
+	}
+
 }

@@ -40,7 +40,7 @@ function FriendListLoadFriendList(data) {
 		FriendListContent = FriendListContent + "<div class='FriendListTextColumn'>" + data[F].MemberNumber.toString() + "</div>";
 		FriendListContent = FriendListContent + "<div class='FriendListTextColumn'>" + ((data[F].ChatRoomName == null) ? "-" : data[F].ChatRoomName.replace("-Private-", PrivateRoomCaption)) + "</div>";
 		FriendListContent = FriendListContent + "<div class='FriendListLinkColumn' onClick='FriendListBeep(" + data[F].MemberNumber.toString() + ")'>" + BeepCaption + "</div>";
-		FriendListContent = FriendListContent + "<div class='FriendListLinkColumn' onClick='FriendListDelete(" + data[F].MemberNumber.toString() + ")'>" + DeleteCaption + "</div>";
+		if ((data[F].Type != null) && (data[F].Type != "Submissive")) FriendListContent = FriendListContent + "<div class='FriendListLinkColumn' onClick='FriendListDelete(" + data[F].MemberNumber.toString() + ")'>" + DeleteCaption + "</div>";
 		FriendListContent = FriendListContent + "</div>";
 	}
 	ElementContent("FriendList", FriendListContent);
