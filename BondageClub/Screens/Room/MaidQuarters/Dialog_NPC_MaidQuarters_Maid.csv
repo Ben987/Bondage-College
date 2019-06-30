@@ -212,7 +212,7 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 506,507,(Nod.),"That’s basically everything, and you will find out more during the play.",,,
 507,509,Thank you for the instruction.,Perfect! Now go ahead and select the song you are good at.,,,
 509,510,Select song.,(List of songs),,,
-510,,見えない何かに怯える夜,,"MiniGameStart(""RhythmGame"", ""mienaiinaniganiobieruyoru hd"")",,
+510,,見えない何かに怯える夜 (LV 7),,"MiniGameStart(""RhythmGame"", ""mienaiinaniganiobieruyoru hd"")",,
 510,,(Want more Songs),"We are adding more contents to this minigame. If you have royalty free songs or wish to create charts, you are welcomed to contact the dev for more information.",,,
 590,592,(Nod happily.),Here's your pay for your hard work.  (She gives you REPLACEMONEY $),MiniGamePayAdvanced(),,
 591,592,(Bow your head.),I hope you understand why I can't reward you.  You can try again though.,"DialogChangeReputation(""Maid"", 1)",,
