@@ -3,6 +3,7 @@
 // Loads the item extension properties
 function InventoryItemNipplesVibeNippleClampLoad() {
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Intensity: -1 };
+	if (DialogFocusItem.Property.Intensity == null) DialogFocusItem.Property.Intensity = -1;
 }
 
 // Draw the item extension screen
@@ -36,6 +37,5 @@ function InventoryItemNipplesVibeNippleClampSetIntensity(Modifier) {
 	if (DialogFocusItem.Property.Intensity == 3) DialogFocusItem.Property.Effect = ["Egged", "Vibrating"];	
 	CharacterLoadEffect(C);
 	if (C.ID == 0) ServerPlayerAppearanceSync();
-
 	ChatRoomPublishCustomAction((DialogFind(Player, "Nipple" + ((Modifier > 0) ? "Increase" : "Decrease") + "To" + DialogFocusItem.Property.Intensity)).replace("DestinationCharacter",C.Name), true);
 }

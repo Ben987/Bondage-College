@@ -100,6 +100,12 @@ function LoginRun() {
 
 }
 
+// Make sure the slave collar is equipped or unequipped based on the owner
+function LoginValidCollar() {
+ 	if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "SlaveCollar") && (Player.Owner == "")) InventoryRemove(Player, "ItemNeck");
+	if ((InventoryGet(Player, "ItemNeck") == null) && (Player.Owner != "")) InventoryWear(Player, "SlaveCollar", "ItemNeck");
+}
+
 // When the character logs, we analyze the data
 function LoginResponse(C) {
 
@@ -125,6 +131,11 @@ function LoginResponse(C) {
 			Player.MemberNumber = C.MemberNumber;
 			Player.WardrobeCharacterNames = C.WardrobeCharacterNames;
 			WardrobeCharacter = [];
+
+			// Loads the ownership data
+			Player.Ownership = C.Ownership;
+			if ((Player.Ownership != null) && (Player.Ownership.Name != null))
+				Player.Owner = (Player.Ownership.Stage == 1) ? Player.Ownership.Name : "";
 
 			// Gets the online preferences
 			Player.LabelColor = C.LabelColor;
@@ -157,9 +168,8 @@ function LoginResponse(C) {
 
 			// Fixes a few items
 			InventoryRemove(Player, "ItemMisc");
-			if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "SlaveCollar") && (Player.Owner == "")) InventoryRemove(Player, "ItemNeck");
-			if ((InventoryGet(Player, "ItemNeck") == null) && (Player.Owner != "")) InventoryWear(Player, "SlaveCollar", "ItemNeck");
 			if ((InventoryGet(Player, "ItemArms") != null) && (InventoryGet(Player, "ItemArms").Asset.Name == "FourLimbsShackles")) InventoryRemove(Player, "ItemArms");
+			LoginValidCollar();
 
 			// If the player must start in her room, in her cage
 			if (LogQuery("SleepCage", "Rule") && (Player.Owner != "") && PrivateOwnerInRoom()) {

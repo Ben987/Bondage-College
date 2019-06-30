@@ -42,6 +42,9 @@ deflates,,,deflates
 gag,,,gag
 Delete,,,Delete
 Beep,,,Beep
+BeepFrom,,,Beep from
+InRoom,,,in room
+PrivateRoom,,,<i>Private room</i>
 LockMemberNumber,,,Member number on lock:
 TimerLeft,,,Time left:
 TimerRestart,,,SourceCharacter restarts the five minute timer padlock on DestinationCharacter BodyPart.

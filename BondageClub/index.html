@@ -91,10 +91,8 @@
 
 /*
 	TO DO:
-	BUG: Wardrobe for new characters - Sekkner is working on it
-	Remove friends from friend list screen
-	Beep other online player from friend list screen
-	Multi-player ownership
+	See collaring number of days
+	See owner member number ()
 	Patreon Import
 */
 
@@ -108,14 +106,13 @@ window.onload = function() {
 	AssetLoadAll();
 	CommonSetScreen("Character", "Login");
 	ServerInit();
-	MainRun();
+	MainRun(0);
 };
 
 // Main game running state, runs the drawing
-function MainRun() {
+function MainRun(Timestamp) {
 	DrawProcess();
-	TimerProcess();
-	requestAnimationFrame(MainRun);
+	TimerProcess(Timestamp);
 }
 
 // When the user presses a key, we send the KeyDown event to the current screen if it can accept it
