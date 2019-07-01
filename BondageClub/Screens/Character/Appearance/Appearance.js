@@ -629,8 +629,8 @@ function CharacterAppearanceExit(C) {
 // When the player is ready, we make sure she at least has an outfit
 function CharacterAppearanceReady(C) {
 	
-	// Make sure the character has one item of each default type
-	if (CharacterAppearanceReturnRoom == "MainHall")
+	// Make sure the character has one item of each default type (not used for now)
+	if (CharacterAppearanceReturnRoom == "DO NOT USE")
 		for (var A = 0; A < AssetGroup.length; A++)
 			if ((AssetGroup[A].IsDefault) || CharacterAppearanceRequired(C, AssetGroup[A].Name)) {
 
@@ -648,8 +648,10 @@ function CharacterAppearanceReady(C) {
 
 			}
 
+	// Exits wardrobe mode
 	ElementRemove("InputWardrobeName");
 	CharacterAppearanceWardrobeMode = false;
+
 	// If there's no error, we continue to the login or main hall if already logged
 	if (C.AccountName != "") {
 		ServerPlayerAppearanceSync();

@@ -151,7 +151,6 @@ function LoginResponse(C) {
 			ReputationLoad(C.Reputation);
 			SkillLoad(C.Skill);
 			CharacterLoadCSVDialog(Player);
-			if (!LogQuery("SleepCage", "Rule") || (Player.Owner == "")) CharacterAppearanceValidate(Player);
 			PrivateCharacterMax = (LogQuery("Expansion", "PrivateRoom")) ? 8 : 4;
 			CharacterRefresh(Player, false);
 			ElementRemove("InputName");

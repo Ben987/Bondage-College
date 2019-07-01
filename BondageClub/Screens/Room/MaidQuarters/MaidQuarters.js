@@ -172,7 +172,6 @@ function MaidQuartersBecomMaid() {
 	InventoryAdd(Player, "MaidHairband1", "Hat");
 	InventoryWear(Player, "MaidOutfit1", "Cloth", "Default");
 	InventoryWear(Player, "MaidHairband1", "Hat", "Default");
-	CharacterAppearanceValidate(Player);
 	LogAdd("JoinedSorority", "Maid");
 	ReputationProgress("Dominant", MaidQuartersDominantRep);
 	MaidQuartersCanBecomeMaid = false;

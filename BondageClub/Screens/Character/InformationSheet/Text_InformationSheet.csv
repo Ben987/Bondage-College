@@ -15,6 +15,7 @@ TitlePonyWild,Wild Mustang
 TitlePonyUnicorn,Shining Unicorn
 TitlePonyPegasus,Flying Pegasus
 MemberNumber,Member Number:
+NoMemberNumber,-
 Lover,Lover:
 Owner,Owner:
 LoverNone,None
@@ -22,6 +23,8 @@ OwnerNone,None
 Money,Money:
 MemberFor,Member for
 FriendsFor,Friends for
+TrialFor,On trial for
+CollaredFor,Collared for
 Days,day(s)
 Unknown,Unknown
 Reputation,- Reputation -
