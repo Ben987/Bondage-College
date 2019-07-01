@@ -13,8 +13,6 @@ let RhythmGameInit = {
         RhythmGameBackground = 'RhythmGameLoading';
         RhythmGameBeatmap = MiniGameDifficulty.substring(0, MiniGameDifficulty.lastIndexOf(' '));
         RhythmGameDifficulty = MiniGameDifficulty.substr(MiniGameDifficulty.lastIndexOf(' ')+1, 2);
-        console.log(RhythmGameBeatmap);
-        console.log(RhythmGameDifficulty);
         RhythmGameStarted = false;
         RhythmGameEnded = false;
         RhythmGamePassed = true;
@@ -916,7 +914,8 @@ let RhythmGameIntegration = {
                 break;
             case 3:
                 InventoryWearRandom(Player, 'ItemMouth', 7);
-                InventoryWearRandom(Player, "ItemHead", 7);
+                InventoryWear(Player,'KittyBlindfold', 'ItemHead', null, 7);
+                //InventoryWearRandom(Player, 'ItemHead', 7);
                 RhythmGameScript.judge_perfect = 35;
                 RhythmGameScript.judge_great = 90;
                 break;
@@ -928,7 +927,6 @@ let RhythmGameIntegration = {
                 RhythmGameEnded = true;
                 break;
         }
-        console.log('punishment level:' + this.punishment_level);
     },
 };
 
