@@ -914,8 +914,7 @@ let RhythmGameIntegration = {
                 break;
             case 3:
                 InventoryWearRandom(Player, 'ItemMouth', 7);
-                InventoryWear(Player,'KittyBlindfold', 'ItemHead', null, 7);
-                //InventoryWearRandom(Player, 'ItemHead', 7);
+                InventoryWearRandom(Player, 'ItemHead', 7);
                 RhythmGameScript.judge_perfect = 35;
                 RhythmGameScript.judge_great = 90;
                 break;
