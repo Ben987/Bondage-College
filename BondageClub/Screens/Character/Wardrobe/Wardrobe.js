@@ -125,7 +125,7 @@ function WardrobeAssetBundle(A) {
 }
 
 // Load character appearance from wardrobe, only load clothes on others
-function WardrobeFastLoad(C, W) {
+function WardrobeFastLoad(C, W, Update) {
 	if (Player.Wardrobe != null && Player.Wardrobe[W] != null) {
 		var AddAll = C.ID == 0 || C.AccountName.indexOf("Wardrobe-") == 0;
 		C.Appearance = C.Appearance
@@ -151,8 +151,10 @@ function WardrobeFastLoad(C, W) {
 				}
 			});
 		CharacterLoadCanvas(C);
-		if (C.ID == 0 && C.OnlineID != null) ServerPlayerAppearanceSync();
-		if (C.ID == 0 || C.AccountName.indexOf("Online-") == 0) ChatRoomCharacterUpdate(C);
+		if (Update == null || Update) {
+			if (C.ID == 0 && C.OnlineID != null) ServerPlayerAppearanceSync();
+			if (C.ID == 0 || C.AccountName.indexOf("Online-") == 0) ChatRoomCharacterUpdate(C);
+		}
 	}
 }
 
