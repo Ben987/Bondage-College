@@ -43,7 +43,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsBreastChaste : function() { return (this.Effect.indexOf("BreastChaste") >= 0) },
 		IsEgged : function() { return (this.Effect.indexOf("Egged") >= 0) },
 		IsOwned : function() { return ((this.Owner != null) && (this.Owner.trim() != "")) },
-		IsOwnedByPlayer : function() { return (((this.Owner != null) && (this.Owner.trim() == Player.Name)) || (NPCEventGet(this, "EndDomTrial") > 0)) },
+		IsOwnedByPlayer : function() { return (((((this.Owner != null) && (this.Owner.trim() == Player.Name)) || (NPCEventGet(this, "EndDomTrial") > 0)) && (this.Ownership == null)) || ((this.Ownership != null) && (this.Ownership.MemberNumber != null) && (this.Ownership.MemberNumber == Player.MemberNumber))) },
 		IsOwner : function() { return ((NPCEventGet(this, "EndSubTrial") > 0) || (this.Name == Player.Owner.replace("NPC-", ""))) },
 		IsKneeling: function () { return ((this.Pose != null) && (this.Pose.indexOf("Kneel") >= 0)) },
 		IsNaked : function () { return CharacterIsNaked(this); },
@@ -200,9 +200,11 @@ function CharacterLoadNPC(NPCType) {
 function CharacterOnlineRefresh(Char, data) {
 	Char.ActivePose = data.ActivePose;
 	Char.LabelColor = data.LabelColor;
+	Char.Creation = data.Creation;
 	Char.ItemPermission = data.ItemPermission;
+	Char.Ownership = data.Ownership;	
 	Char.Reputation = (data.Reputation != null) ? data.Reputation : [];
-	Char.Appearance = ServerAppearanceLoadFromBundle("Female3DCG", data.Appearance);
+	Char.Appearance = ServerAppearanceLoadFromBundle(Char, "Female3DCG", data.Appearance);
 	AssetReload(Char);
 	CharacterLoadEffect(Char);
 	CharacterRefresh(Char);
@@ -231,8 +233,11 @@ function CharacterLoadOnline(data) {
 		Char.Owner = (data.Owner != null) ? data.Owner : "";
 		Char.AccountName = "Online-" + data.ID.toString();
 		Char.MemberNumber = data.MemberNumber;
+		var BackupCurrentScreen = CurrentScreen;
+		CurrentScreen = "ChatRoom";
 		CharacterLoadCSVDialog(Char, "Screens/Online/ChatRoom/Dialog_Online");
 		CharacterOnlineRefresh(Char, data);
+		CurrentScreen = BackupCurrentScreen;
 
 	} else {
 		
@@ -264,6 +269,11 @@ function CharacterLoadOnline(data) {
 									else 
 										if (((data.Appearance[A].Property != null) && (ChatRoomData.Character[C].Appearance[A].Property == null)) || ((data.Appearance[A].Property == null) && (ChatRoomData.Character[C].Appearance[A].Property != null)))
 											Refresh = true;
+										
+		// Flags "refresh" if the ownership changed
+		if (!Refresh)
+			if (JSON.stringify(Char.Ownership) !== JSON.stringify(data.Ownership))
+				Refresh = true;
 
 		// If we must refresh
 		if (Refresh) CharacterOnlineRefresh(Char, data);

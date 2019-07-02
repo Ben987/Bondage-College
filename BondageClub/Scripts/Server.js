@@ -21,6 +21,7 @@ function ServerInit() {
 	ServerSocket.on("PasswordResetResponse", function (data) { PasswordResetResponse(data); } );
 	ServerSocket.on("AccountQueryResult", function (data) { ServerAccountQueryResult(data); } );
 	ServerSocket.on("AccountBeep", function (data) { ServerAccountBeep(data); } );
+	ServerSocket.on("AccountOwnership", function (data) { ServerAccountOwnership(data); } );
 }
 
 // When the server sends some information to the client, we keep it in variables
@@ -92,7 +93,7 @@ function ServerAppearanceBundle(Appearance) {
 }
 
 // Make sure the properties are valid for the item (to prevent griefing in multi-player)
-function ServerValidateProperties(Item) {
+function ServerValidateProperties(C, Item) {
 
 	// For each effect on the item
 	if ((Item.Property != null) && (Item.Property.Effect != null))
@@ -107,16 +108,26 @@ function ServerValidateProperties(Item) {
 				Item.Property.Effect.splice(E, 1);
 				E--;
 			}
-
-			// Make sure the remove timer on the lock is valid
-			if (Effect == "Lock") {
-				if (InventoryGetLock(Item) != null) {
-					var StandardTimer = InventoryGetLock(Item).Asset.RemoveTimer;
-					if (StandardTimer != null) {
-						if ((typeof Item.Property.RemoveTimer !== "number") || (Item.Property.RemoveTimer > CurrentTime + StandardTimer * 1000))
-							Item.Property.RemoveTimer = CurrentTime + StandardTimer * 1000;
-					} else delete Item.Property.RemoveTimer;
+			
+			// If the item is locked by a lock
+			if ((Effect == "Lock") && (InventoryGetLock(Item) != null)) {
+				
+				// Make sure the remove timer on the lock is valid
+				var Lock = InventoryGetLock(Item);
+				if ((Lock.Asset.RemoveTimer != null) && (Lock.Asset.RemoveTimer != 0)) {
+					if ((typeof Item.Property.RemoveTimer !== "number") || (Item.Property.RemoveTimer > CurrentTime + Lock.Asset.RemoveTimer * 1000))
+						Item.Property.RemoveTimer = CurrentTime + Lock.Asset.RemoveTimer * 1000;
+				} else delete Item.Property.RemoveTimer;
+					
+				// Make sure the remove timer on the lock is valid
+				if (Lock.Asset.OwnerOnly && ((C.Ownership == null) || (C.Ownership.MemberNumber == null) || (Item.Property.LockMemberNumber == null) || (C.Ownership.MemberNumber != Item.Property.LockMemberNumber))) {
+					delete Item.Property.LockedBy;
+					delete Item.Property.LockMemberNumber;
+					delete Item.Property.RemoveTimer;
+					Item.Property.Effect.splice(E, 1);
+					E--;
 				}
+
 			}
 
 			// Other effects can be removed
@@ -161,7 +172,7 @@ function ServerValidateProperties(Item) {
 }
 
 // Loads the appearance assets from a server bundle that only contains the main info (no assets)
-function ServerAppearanceLoadFromBundle(AssetFamily, Bundle) {
+function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle) {
 
 	// For each appearance item to load
 	var Appearance = [];
@@ -177,7 +188,7 @@ function ServerAppearanceLoadFromBundle(AssetFamily, Bundle) {
 				}
 				if (Bundle[A].Property != null) {
 					NA.Property = Bundle[A].Property;
-					ServerValidateProperties(NA);
+					ServerValidateProperties(C, NA);
 				}				
 				Appearance.push(NA);
 				break;
@@ -267,5 +278,29 @@ function ServerAccountBeep(data) {
 
 // Draws the beep sent by the server
 function ServerDrawBeep() {
-	if ((ServerBeep.Timer != null) && (ServerBeep.Timer > CurrentTime)) DrawButton(0, 0, 1000, 50, ServerBeep.Message, "Pink", "");
+	if ((ServerBeep.Timer != null) && (ServerBeep.Timer > CurrentTime)) DrawButton((CurrentScreen == "ChatRoom") ? 0 : 500, 0, 1000, 50, ServerBeep.Message, "Pink", "");
+}
+
+// Gets the account ownership result from the query sent to the server
+function ServerAccountOwnership(data) {
+	
+	// If we get a result for a specific member number, we show that option in the online dialog
+	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.MemberNumber != null) && (typeof data.MemberNumber === "number") && (data.Result != null) && (typeof data.Result === "string"))
+		if ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber == data.MemberNumber))
+			ChatRoomOwnershipOption = data.Result;
+
+	// If we must update the character ownership data
+	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.Owner != null) && (typeof data.Owner === "string") && (data.Ownership != null) && (typeof data.Ownership === "object")) {
+		Player.Owner = data.Owner;
+		Player.Ownership = data.Ownership;
+		LoginValidCollar();
+	}
+
+	// If we must clear the character ownership data
+	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.ClearOwnership != null) && (typeof data.ClearOwnership === "boolean") && (data.ClearOwnership == true)) {
+		Player.Owner = "";
+		Player.Ownership = null;
+		LoginValidCollar();
+	}
+
 }
