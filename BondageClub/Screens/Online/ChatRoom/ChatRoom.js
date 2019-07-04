@@ -6,6 +6,7 @@ var ChatRoomLog = "";
 var ChatRoomLastMessage = [""];
 var ChatRoomLastMessageIndex = 0;
 var ChatRoomTargetMemberNumber = null;
+var ChatRoomOwnershipOption = "";
 
 // Returns TRUE if the dialog option is available
 function ChatRoomCanAddWhiteList() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.WhiteList.indexOf(CurrentCharacter.MemberNumber) < 0) && (Player.BlackList.indexOf(CurrentCharacter.MemberNumber) < 0)) }
@@ -15,6 +16,7 @@ function ChatRoomCanRemoveBlackList() { return ((CurrentCharacter != null) && (C
 function ChatRoomCanAddFriend() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.FriendList.indexOf(CurrentCharacter.MemberNumber) < 0)) }
 function ChatRoomCanRemoveFriend() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.FriendList.indexOf(CurrentCharacter.MemberNumber) >= 0)) }
 function ChatRoomCanChangeClothes() { return (Player.CanInteract() && (CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && CurrentCharacter.AllowItem && !((InventoryGet(CurrentCharacter, "ItemNeck") != null) && (InventoryGet(CurrentCharacter, "ItemNeck").Asset.Name == "ClubSlaveCollar"))) }
+function ChatRoomOwnershipOptionIs(Option) { return (Option == ChatRoomOwnershipOption) }
 
 // Creates the chat room input elements
 function ChatRoomCreateElement() {
@@ -80,7 +82,9 @@ function ChatRoomDrawCharacter(DoClick) {
 					ElementRemove("TextAreaChatLog");
 					ChatRoomBackground = ChatRoomData.Background;
 					ChatRoomCharacter[C].AllowItem = (ChatRoomCharacter[C].ID == 0);
+					ChatRoomOwnershipOption = "";
 					if (ChatRoomCharacter[C].ID != 0) ServerSend("ChatRoomAllowItem", { MemberNumber: ChatRoomCharacter[C].MemberNumber });
+					if (ChatRoomCharacter[C].ID != 0) ServerSend("AccountOwnership", { MemberNumber: ChatRoomCharacter[C].MemberNumber });
 					CharacterSetCurrent(ChatRoomCharacter[C]);
 				} else ChatRoomTargetMemberNumber = ((ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) || (ChatRoomCharacter[C].ID == 0)) ? null : ChatRoomCharacter[C].MemberNumber;
 				break;
@@ -340,6 +344,7 @@ function ChatRoomMessage(data) {
 			if ((data.Type != null) && (data.Type == "Whisper")) msg = '<span class="ChatMessageName" style="font-style: italic; color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + msg;
 			if ((data.Type != null) && (data.Type == "Emote")) msg = "*" + SenderCharacter.Name + " " + msg + "*";
 			if ((data.Type != null) && (data.Type == "Action")) msg = "(" + msg + ")";
+			if ((data.Type != null) && (data.Type == "ServerMessage")) msg = "<b>" + DialogFind(Player, "ServerMessage" + msg).replace("SourceCharacter", SenderCharacter.Name) + "</b>";
 		
 			// Adds the message and scrolls down unless the user has scrolled up
 			var ShouldScrollDown = ElementIsScrolledToEnd("TextAreaChatLog");
@@ -367,7 +372,7 @@ function ChatRoomSync(data) {
 		// Load the characters
 		ChatRoomCharacter = [];		
 		for (var C = 0; C < data.Character.length; C++)
-			ChatRoomCharacter.push(CharacterLoadOnline(data.Character[C]));
+			ChatRoomCharacter.push(CharacterLoadOnline(data.Character[C], data.SourceMemberNumber));
 
 		// Keeps a copy of the previous version
 		ChatRoomData = data;
@@ -419,7 +424,6 @@ function ChatRoomListManage(Operation, ListType) {
 		data[ListType] = Player[ListType];
 		ServerSend("AccountUpdate", data);
 	}
-
 }
 
 // When the server returns if applying an item is allowed
@@ -436,4 +440,13 @@ function ChatRoomChangeClothes() {
 	var C = CurrentCharacter;
 	DialogLeave();
 	CharacterAppearanceLoadCharacter(C);
+}
+
+// When the player selects an ownership dialog option (can change money and reputation)
+function ChatRoomSendOwnershipRequest(RequestType) {
+	if ((ChatRoomOwnershipOption == "CanOfferEndTrial") && (RequestType == "Propose")) { CharacterChangeMoney(Player, -100); DialogChangeReputation("Dominant", 10); }
+	if ((ChatRoomOwnershipOption == "CanEndTrial") && (RequestType == "Accept")) DialogChangeReputation("Dominant", -20);
+	ChatRoomOwnershipOption = "";
+	ServerSend("AccountOwnership", { MemberNumber: CurrentCharacter.MemberNumber, Action: RequestType });
+	if (RequestType == "Accept") DialogLeave();
 }

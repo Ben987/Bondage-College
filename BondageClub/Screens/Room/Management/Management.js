@@ -36,8 +36,11 @@ function ManagementCanUnlockBelt() { return ((Player.Money >= 25) && Player.IsVu
 function ManagementEndChastityRelease() { ManagementMistressReleaseTimer = 0 }
 function ManagementCanReleaseFromOwnerFirst() { return ((Player.Money >= 60) && !LogQuery("ReleasedFromOwner", "Management")) }
 function ManagementCanReleaseFromOwner() { return ((Player.Money >= 200) && LogQuery("ReleasedFromOwner", "Management")) }
-function ManagementCanBeReleased() { return ((Player.Owner != "") && !PrivateOwnerInRoom()) }
-function ManagementCannotBeReleased() { return ((Player.Owner != "") && PrivateOwnerInRoom()) }
+function ManagementCanBreakTrialOnline() { return ((Player.Owner == "") && (Player.Ownership != null) && (Player.Ownership.Stage != null) && (Player.Ownership.Stage == 0)) }
+function ManagementCanBeReleasedOnline() { return ((Player.Owner != "") && (Player.Ownership != null) && (Player.Ownership.Start != null) && (Player.Ownership.Start + 259200000 <= CurrentTime)) }
+function ManagementCannotBeReleasedOnline() { return ((Player.Owner != "") && (Player.Ownership != null) && (Player.Ownership.Start != null) && (Player.Ownership.Start + 259200000 > CurrentTime)) }
+function ManagementCanBeReleased() { return ((Player.Owner != "") && (Player.Ownership == null) && !PrivateOwnerInRoom()) }
+function ManagementCannotBeReleased() { return ((Player.Owner != "") && (Player.Ownership == null) && PrivateOwnerInRoom()) }
 function ManagementWillOwnPlayer() { return ((Player.Owner == "") && (ReputationGet("Dominant") <= -100) && (ManagementMistressAngryCount == 0) && (PrivateCharacter.length <= PrivateCharacterMax) && !PrivatePlayerIsOwned() && ManagementNoMistressInPrivateRoom()) }
 function ManagementWontOwnPlayer() { return ((Player.Owner == "") && (ReputationGet("Dominant") <= -1) && (ReputationGet("Dominant") >= -99) && (PrivateCharacter.length <= PrivateCharacterMax) && !PrivatePlayerIsOwned() && ManagementNoMistressInPrivateRoom()) }
 function ManagementIsClubSlave() { return ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "ClubSlaveCollar")) }
@@ -205,6 +208,12 @@ function ManagementReleaseFromOwner(RepChange) {
 	InventoryRemove(Player, "ItemNeck");
 	ReputationProgress("Dominant", RepChange);
 	LogAdd("ReleasedFromOwner", "Management");
+	if ((Player.Ownership != null) && (Player.Ownership.MemberNumber != null)) ServerSend("AccountOwnership", { MemberNumber: Player.Ownership.MemberNumber, Action: "Break" });
+}
+
+// Breaks the online trial period
+function ManagementBreakTrialOnline() {
+	if ((Player.Ownership != null) && (Player.Ownership.MemberNumber != null)) ServerSend("AccountOwnership", { MemberNumber: Player.Ownership.MemberNumber, Action: "Break" });
 }
 
 // When the Mistress leaves her job to go see the player

@@ -463,6 +463,9 @@ function DrawProcess() {
 	if (CurrentCharacter != null) DialogDraw();
 	else CommonDynamicFunction(CurrentScreen + "Run()");
 
+	// Draws beep from online player sent by the server
+	ServerDrawBeep();
+
 }
 
 // Draw the item preview box

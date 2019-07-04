@@ -3,10 +3,8 @@ var WardrobeBackground = "PrivateDark";
 var WardrobeCharacter = [];
 var WardrobeSelection = -1;
 
-// Loads all wardrobe characters 
-function WardrobeLoadCharacters(Fast) {
-	
-	// Load the wardrobe character names
+// Load the wardrobe character names
+function WardrobeLoadCharacterNames() {
 	if (Player.WardrobeCharacterNames == null) Player.WardrobeCharacterNames = [];
 	var Push = false;
 	while (Player.WardrobeCharacterNames.length <= 12) {
@@ -16,9 +14,13 @@ function WardrobeLoadCharacters(Fast) {
 	if (Push) {
 		ServerSend("AccountUpdate", { WardrobeCharacterNames: Player.WardrobeCharacterNames });
 	}
+}
 
+// Loads all wardrobe characters 
+function WardrobeLoadCharacters(Fast) {
 	Fast = Fast == null ? false : Fast;
 	var W = null;
+	WardrobeLoadCharacterNames();
 	if (Player.Wardrobe == null) Player.Wardrobe = [];
 	for (var P = 0; P < 12; P++) {
 		if (WardrobeCharacter.length <= P && ((W == null) || !Fast)) {
@@ -38,13 +40,13 @@ function WardrobeLoadCharacters(Fast) {
 				WardrobeFastSave(C, P, false);
 				W = P;
 			}
-		} else {
+			// Keep the character
+			WardrobeCharacter.push(C);
+		} else if (W != null) {
 			// randomize only one character
 			CharacterAppearanceFullRandom(WardrobeCharacter[W]);
-			WardrobeFastSave(C, P, false);
-		}
-		// Keep the character
-		WardrobeCharacter.push(C);
+			WardrobeFastSave(WardrobeCharacter[W], P, false);
+		}		
 	}
 	if (W != null) {
 		if (Fast) {
@@ -123,7 +125,7 @@ function WardrobeAssetBundle(A) {
 }
 
 // Load character appearance from wardrobe, only load clothes on others
-function WardrobeFastLoad(C, W) {
+function WardrobeFastLoad(C, W, Update) {
 	if (Player.Wardrobe != null && Player.Wardrobe[W] != null) {
 		var AddAll = C.ID == 0 || C.AccountName.indexOf("Wardrobe-") == 0;
 		C.Appearance = C.Appearance
@@ -138,25 +140,27 @@ function WardrobeFastLoad(C, W) {
 					&& (AddAll || a.Group.Clothing)
 					&& a.Name == w.Name
 					&& (a.Value == 0 || InventoryAvailable(Player, a.Name, a.Group.Name)));
-				if (A != null) CharacterAppearanceSetItem(C, w.Group, A, w.Color);
+				if (A != null) CharacterAppearanceSetItem(C, w.Group, A, w.Color, 0, false);
 			});
 		// Adds any critical appearance asset that could be missing, adds the default one
 		AssetGroup
 			.filter(g => g.Category == "Appearance" && !g.AllowNone)
 			.forEach(g => {
 				if (C.Appearance.find(a => a.Asset.Group.Name == g.Name) == null) {
-					C.Appearance.push({ Asset: Asset.find(a => a.Group.Name == g.Name), Color: "Default" });
+					C.Appearance.push({ Asset: Asset.find(a => a.Group.Name == g.Name), Difficulty: 0, Color: "Default" });
 				}
 			});
 		CharacterLoadCanvas(C);
-		if (C.ID == 0 && C.OnlineID != null) ServerPlayerAppearanceSync();
-		if (C.ID == 0 || C.AccountName.indexOf("Online-") == 0) ChatRoomCharacterUpdate(C);
+		if (Update == null || Update) {
+			if (C.ID == 0 && C.OnlineID != null) ServerPlayerAppearanceSync();
+			if (C.ID == 0 || C.AccountName.indexOf("Online-") == 0) ChatRoomCharacterUpdate(C);
+		}
 	}
 }
 
 // Saves character appearance in Player's wardrobe, use Player's body as base for others
 function WardrobeFastSave(C, W, Push) {
-	if (Player.Wardrobe != null && Player.Wardrobe[W] != null) {
+	if (Player.Wardrobe != null) {
 		var AddAll = C.ID == 0 || C.AccountName.indexOf("Wardrobe-") == 0;
 		Player.Wardrobe[W] = C.Appearance
 			.filter(a => a.Asset.Group.Category == "Appearance")

@@ -59,10 +59,29 @@ canvas {
 	padding-bottom: 1% !important;
 	padding-left: 5% !important;
 }
-.FriendListBlock{
-	float: left;
-	width: 30%;
-	text-align: center;
+.FriendListRow{
 	color: white;
+}
+.FriendListRow:Hover{
+	color: yellow;
+}
+.FriendListFirstColumn{
+	clear: left;
+}
+.FriendListTextColumn{
+	float: left;
+	width: 25%;
+	text-align: center;
 	padding-top: 1% !important;
+}
+.FriendListLinkColumn{
+	float: left;
+	width: 10%;
+	text-align: center;
+	padding-top: 1% !important;
+	text-decoration: underline;
+	cursor: pointer;
+}
+.FriendListLinkColumn:Hover{
+	color: cyan !important;
 }

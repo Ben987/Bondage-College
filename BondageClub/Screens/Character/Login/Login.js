@@ -27,7 +27,7 @@ function LoginDrawCredits() {
 	for(var C = 0; C < LoginCredits.length; C++) {
 
 		// Sets the Y position (it scrolls from bottom to top)
-		var Y = 800 - Math.floor(LoginCreditsPosition * TimerRunInterval / 10) + (C * 50);
+		var Y = 800 - Math.floor(LoginCreditsPosition * 2) + (C * 50);
 
 		// Draw the text if it's in drawing range
 		if ((Y > 0) && (Y <= 999)) {
@@ -100,6 +100,12 @@ function LoginRun() {
 
 }
 
+// Make sure the slave collar is equipped or unequipped based on the owner
+function LoginValidCollar() {
+ 	if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "SlaveCollar") && (Player.Owner == "")) InventoryRemove(Player, "ItemNeck");
+	if ((InventoryGet(Player, "ItemNeck") == null) && (Player.Owner != "")) InventoryWear(Player, "SlaveCollar", "ItemNeck");
+}
+
 // When the character logs, we analyze the data
 function LoginResponse(C) {
 
@@ -126,6 +132,11 @@ function LoginResponse(C) {
 			Player.WardrobeCharacterNames = C.WardrobeCharacterNames;
 			WardrobeCharacter = [];
 
+			// Loads the ownership data
+			Player.Ownership = C.Ownership;
+			if ((Player.Ownership != null) && (Player.Ownership.Name != null))
+				Player.Owner = (Player.Ownership.Stage == 1) ? Player.Ownership.Name : "";
+
 			// Gets the online preferences
 			Player.LabelColor = C.LabelColor;
 			Player.ItemPermission = C.ItemPermission;
@@ -134,13 +145,12 @@ function LoginResponse(C) {
 			Player.FriendList = C.FriendList;
 	
 			// Loads the player character model and data
-			Player.Appearance = ServerAppearanceLoadFromBundle(C.AssetFamily, C.Appearance);
+			Player.Appearance = ServerAppearanceLoadFromBundle(Player, C.AssetFamily, C.Appearance);
 			InventoryLoad(Player, C.Inventory, false);
 			LogLoad(C.Log);
 			ReputationLoad(C.Reputation);
 			SkillLoad(C.Skill);
 			CharacterLoadCSVDialog(Player);
-			if (!LogQuery("SleepCage", "Rule") || (Player.Owner == "")) CharacterAppearanceValidate(Player);
 			PrivateCharacterMax = (LogQuery("Expansion", "PrivateRoom")) ? 8 : 4;
 			CharacterRefresh(Player, false);
 			ElementRemove("InputName");
@@ -157,9 +167,8 @@ function LoginResponse(C) {
 
 			// Fixes a few items
 			InventoryRemove(Player, "ItemMisc");
-			if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "SlaveCollar") && (Player.Owner == "")) InventoryRemove(Player, "ItemNeck");
-			if ((InventoryGet(Player, "ItemNeck") == null) && (Player.Owner != "")) InventoryWear(Player, "SlaveCollar", "ItemNeck");
 			if ((InventoryGet(Player, "ItemArms") != null) && (InventoryGet(Player, "ItemArms").Asset.Name == "FourLimbsShackles")) InventoryRemove(Player, "ItemArms");
+			LoginValidCollar();
 
 			// If the player must start in her room, in her cage
 			if (LogQuery("SleepCage", "Rule") && (Player.Owner != "") && PrivateOwnerInRoom()) {
