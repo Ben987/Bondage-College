@@ -344,7 +344,7 @@ function ChatRoomMessage(data) {
 			if ((data.Type != null) && (data.Type == "Whisper")) msg = '<span class="ChatMessageName" style="font-style: italic; color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + msg;
 			if ((data.Type != null) && (data.Type == "Emote")) msg = "*" + SenderCharacter.Name + " " + msg + "*";
 			if ((data.Type != null) && (data.Type == "Action")) msg = "(" + msg + ")";
-			if ((data.Type != null) && (data.Type == "ServerMessage")) msg = "<b>" + TextGet("ServerMessage" + msg).replace("SourceCharacter", SenderCharacter.Name) + "</b>";
+			if ((data.Type != null) && (data.Type == "ServerMessage")) msg = "<b>" + DialogFind(Player, "ServerMessage" + msg).replace("SourceCharacter", SenderCharacter.Name) + "</b>";
 		
 			// Adds the message and scrolls down unless the user has scrolled up
 			var ShouldScrollDown = ElementIsScrolledToEnd("TextAreaChatLog");
@@ -372,7 +372,7 @@ function ChatRoomSync(data) {
 		// Load the characters
 		ChatRoomCharacter = [];		
 		for (var C = 0; C < data.Character.length; C++)
-			ChatRoomCharacter.push(CharacterLoadOnline(data.Character[C]));
+			ChatRoomCharacter.push(CharacterLoadOnline(data.Character[C], data.SourceMemberNumber));
 
 		// Keeps a copy of the previous version
 		ChatRoomData = data;

@@ -145,13 +145,12 @@ function LoginResponse(C) {
 			Player.FriendList = C.FriendList;
 	
 			// Loads the player character model and data
-			Player.Appearance = ServerAppearanceLoadFromBundle(C.AssetFamily, C.Appearance);
+			Player.Appearance = ServerAppearanceLoadFromBundle(Player, C.AssetFamily, C.Appearance);
 			InventoryLoad(Player, C.Inventory, false);
 			LogLoad(C.Log);
 			ReputationLoad(C.Reputation);
 			SkillLoad(C.Skill);
 			CharacterLoadCSVDialog(Player);
-			if (!LogQuery("SleepCage", "Rule") || (Player.Owner == "")) CharacterAppearanceValidate(Player);
 			PrivateCharacterMax = (LogQuery("Expansion", "PrivateRoom")) ? 8 : 4;
 			CharacterRefresh(Player, false);
 			ElementRemove("InputName");

@@ -1,5 +1,7 @@
 "use strict";
 var RhythmGameBackground = 'RhythmGameLoading';
+let RhythmGameBeatmap = '';
+let RhythmGameDifficulty = '';
 let RhythmGameStarted = false;
 let RhythmGameEnded = false;
 let RhythmGamePassed = true;
@@ -7,9 +9,10 @@ let RhythmGamePreloadCompleted = false;
 
 //Rhythm game initialization object, handling pre and post loading, invoking initialization of other objects
 let RhythmGameInit = {
-
     RhythmGamePreload : function(){
         RhythmGameBackground = 'RhythmGameLoading';
+        RhythmGameBeatmap = MiniGameDifficulty.substring(0, MiniGameDifficulty.lastIndexOf(' '));
+        RhythmGameDifficulty = MiniGameDifficulty.substr(MiniGameDifficulty.lastIndexOf(' ')+1, 2);
         RhythmGameStarted = false;
         RhythmGameEnded = false;
         RhythmGamePassed = true;
@@ -107,7 +110,7 @@ let RhythmGameAudio =  {
         RhythmGameAudio.preloadComplted = false;
         RhythmGameAudio.audioCtx = null;
         RhythmGameAudio.bufferSource = null;
-        let url = 'Screens/MiniGame/RhythmGame/res/beatmap/' + MiniGameDifficulty + '/' + MiniGameDifficulty + '.mp3';
+        let url = 'Screens/MiniGame/RhythmGame/res/beatmap/audio/' + RhythmGameBeatmap + '.mp3';
         let mp3 = new XMLHttpRequest();
         mp3.onreadystatechange = function() {
             if (mp3.readyState === 4 && mp3.status === 200) {
@@ -141,7 +144,7 @@ let RhythmGameChart = {
     preload : function () {
         RhythmGameChart.preloadComplted = false;
         RhythmGameChart.chartFile = null;
-        let url = 'Screens/MiniGame/RhythmGame/res/beatmap/' + MiniGameDifficulty + '/' + MiniGameDifficulty + '.xml';
+        let url = 'Screens/MiniGame/RhythmGame/res/beatmap/chart/' + RhythmGameBeatmap + '-' + RhythmGameDifficulty + '.xml';
 
         let xml = new XMLHttpRequest();
         xml.onreadystatechange = function() {
@@ -346,7 +349,7 @@ let RhythmGameKernel = {
 //Rhythm game script object, contains functions related to game mechanics
 let RhythmGameScript = {
     judge_perfect : 50,
-    judge_great   : 100,
+    judge_great   : 120,
     judge_miss    : 200,
     judge_end     : 100,
 
@@ -496,10 +499,10 @@ let RhythmGameScript = {
             let judge = RhythmGameScript.judgeToVal(RhythmGameScript.judge[i].judge);
             switch(judge){
                 case 2:
-                    RhythmGameScript.score += Math.log10(RhythmGameScript.combo.value+1) * 0.004;
+                    RhythmGameScript.score += Math.log10(RhythmGameScript.combo.value+1) * 0.01;
                     break;
                 case 3:
-                    RhythmGameScript.score += Math.log10(RhythmGameScript.combo.value+1) * 0.015;
+                    RhythmGameScript.score += Math.log10(RhythmGameScript.combo.value+1) * 0.02;
                     break;
                 default:
                     break;
@@ -901,21 +904,28 @@ let RhythmGameIntegration = {
                 break;
             case 1:
                 InventoryWearRandom(Player, 'ItemFeet', 7);
+                RhythmGameScript.judge_perfect = 45;
+                RhythmGameScript.judge_great = 110;
                 break;
             case 2:
                 InventoryWearRandom(Player, 'ItemLegs', 7);
+                RhythmGameScript.judge_perfect = 40;
+                RhythmGameScript.judge_great = 100;
                 break;
             case 3:
                 InventoryWearRandom(Player, 'ItemMouth', 7);
+                InventoryWearRandom(Player, 'ItemHead', 7);
+                RhythmGameScript.judge_perfect = 35;
+                RhythmGameScript.judge_great = 90;
                 break;
             case 4:
-                InventoryWearRandom(Player, "ItemHead", 7);
                 InventoryWearRandom(Player, 'ItemArms', 7);
+                RhythmGameScript.judge_perfect = 30;
+                RhythmGameScript.judge_great = 80;
                 RhythmGamePassed = false;
                 RhythmGameEnded = true;
                 break;
         }
-        console.log('punishment level:' + this.punishment_level);
     },
 };
 

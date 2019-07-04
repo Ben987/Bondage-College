@@ -184,3 +184,24 @@ function InventoryGetLock(Item) {
 			return { Asset: Asset[A] };
 	return null;
 }
+
+// Returns TRUE if the item has an OwnerOnly flag, such as the owner padlock
+function InventoryOwnerOnlyItem(Item) {
+	if (Item == null) return false;
+	if (Item.Asset.OwnerOnly) return true;
+	if (Item.Asset.Group.Category == "Item") {
+		var Lock = InventoryGetLock(Item);
+		if ((Lock != null) && (Lock.Asset.OwnerOnly != null) && Lock.Asset.OwnerOnly) return true;
+	}
+	return false;
+}
+
+// Returns TRUE if the character is wearing at least one item with a OwnerOnly flag, such as the owner padlock
+function InventoryCharacterHasOwnerOnlyItem(C) {
+	if ((C.Ownership == null) || (C.Ownership.MemberNumber == null) || (C.Ownership.MemberNumber == "")) return false;
+	if (C.Appearance != null)
+		for (var A = 0; A < C.Appearance.length; A++)
+			if (InventoryOwnerOnlyItem(C.Appearance[A]))
+				return true;
+	return false;
+}
