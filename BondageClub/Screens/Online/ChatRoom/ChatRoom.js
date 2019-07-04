@@ -231,10 +231,11 @@ function ChatRoomSendChat() {
 			msg = msg.replace("CoinResult", Heads ? TextGet("Heads") : TextGet("Tails"));
 			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Action" } );
 
-		} else if (msg.indexOf("*") == 0) {
+		} else if (msg.indexOf("*") == 0 || msg.indexOf("/me ") == 0) {
 
-			// The player can emote an action using *, it doesn't garble
+			// The player can emote an action using * or /me (for those IRC or Skype users), it doesn't garble
 			msg = msg.replace(/\*/g, "");
+			msg = msg.replace(/\/me /g, "");
 			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Emote" } );
 
 		} else {
