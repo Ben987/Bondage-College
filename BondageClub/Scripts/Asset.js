@@ -77,6 +77,8 @@ function AssetAdd(NewAsset) {
 		AllowEffect: NewAsset.AllowEffect,
 		AllowBlock: NewAsset.AllowBlock
 	}
+	// Non wearable assets are not visible
+	if (!A.Wear) A.Visible = false;
 	Asset.push(A);
 }
 

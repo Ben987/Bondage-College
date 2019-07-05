@@ -407,7 +407,7 @@ var AssetFemale3DCG = [
 		Top: 400,
 		Zone: [[100, 500, 150, 80]],
 		Asset: [
-			{ Name: "VibratingEgg", Effect: ["Egged"], Value: 25, Prerequisite: "AccessVulva", Time: 5, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}], AllowEffect: ["Egged", "Vibrating"] },
+			{ Name: "VibratingEgg", Effect: ["Egged"], Value: 25, Prerequisite: "AccessVulva", Time: 5, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}], AllowEffect: ["Egged", "Vibrating"], Visible: false },
 			{ Name: "VibratingWand", Wear: false, Value: 60, Prerequisite: "AccessVulva", Bonus: [{Type: "KidnapManipulation", Factor: 3}], ExpressionTrigger: [{Group: "Blush", Name: "Medium", Timer: 10}, {Group: "Eyes", Name: "Closed", Timer: 5}] },
 			{ Name: "VibratorRemote", Effect: ["Remote"], Wear: false, Value: 80, BuyGroup: "VibratorRemote" }
 		]
@@ -423,7 +423,7 @@ var AssetFemale3DCG = [
 		Top: 150,
 		Zone: [[250, 500, 150, 80]],
 		Asset: [
-			{ Name: "BlackButtPlug", Value: 20, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
+			{ Name: "BlackButtPlug", Value: 20, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}], Visible: false },
 			{ Name: "TailButtPlug", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
 			{ Name: "HorsetailPlug", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
 			{ Name: "PuppyTailPlug", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
