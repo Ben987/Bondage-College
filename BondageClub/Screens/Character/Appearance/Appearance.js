@@ -241,7 +241,7 @@ function CharacterAppearanceBuildCanvas(C) {
 	// Loops in all items worn by the character
 	for (var A = 0; A < C.Appearance.length; A++) 
 	  // Only draw if the asset is visible
-		if (C.Appearance[A].Visible && CharacterAppearanceVisible(C, C.Appearance[A].Asset.Name, C.Appearance[A].Asset.Group.Name)) {
+		if (C.Appearance[A].Asset.Visible && CharacterAppearanceVisible(C, C.Appearance[A].Asset.Name, C.Appearance[A].Asset.Group.Name)) {
 
 			// If there's a father group, we must add it to find the correct image
 			var CA = C.Appearance[A];
