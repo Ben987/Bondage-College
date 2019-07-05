@@ -77,8 +77,8 @@ function AssetAdd(NewAsset) {
 		AllowEffect: NewAsset.AllowEffect,
 		AllowBlock: NewAsset.AllowBlock
 	}
-	// Non wearable assets are not visible
-	if (!A.Wear) A.Visible = false;
+	// Unwearable assets are not visible but can be overwritten
+	if (!A.Wear && NewAsset.Visible != true) A.Visible = false;
 	Asset.push(A);
 }
 
