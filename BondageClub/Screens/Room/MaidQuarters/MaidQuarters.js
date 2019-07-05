@@ -26,6 +26,8 @@ function MaidQuartersAllowMaidPlayMusic() { return (!Player.IsRestrained() && !M
 function MaidQuartersAllowRescue() { return (!Player.IsRestrained()); }
 function MaidQuartersAllowCancelRescue() { return (MaidQuartersCurrentRescueStarted && !MaidQuartersCurrentRescueCompleted); }
 function MaidQuartersCanFreeSarah() { return (SarahUnlockQuest && LogQuery("LeadSorority", "Maid")) }
+function MaidQuartersCanReleasePlayer() { return (Player.IsRestrained() && !InventoryCharacterHasOwnerOnlyItem(Player) && CurrentCharacter.CanTalk() && CurrentCharacter.CanInteract()) }
+function MaidQuartersCannotReleasePlayer() { return (Player.IsRestrained() && (InventoryCharacterHasOwnerOnlyItem(Player) || !CurrentCharacter.CanTalk() || !CurrentCharacter.CanInteract())) }
 
 // Loads the maid quarters room
 function MaidQuartersLoad() {

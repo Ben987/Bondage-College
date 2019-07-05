@@ -197,21 +197,21 @@ function CharacterLoadNPC(NPCType) {
 }
 
 // Sets up the online character
-function CharacterOnlineRefresh(Char, data) {
+function CharacterOnlineRefresh(Char, data, SourceMemberNumber) {
 	Char.ActivePose = data.ActivePose;
 	Char.LabelColor = data.LabelColor;
 	Char.Creation = data.Creation;
 	Char.ItemPermission = data.ItemPermission;
 	Char.Ownership = data.Ownership;	
 	Char.Reputation = (data.Reputation != null) ? data.Reputation : [];
-	Char.Appearance = ServerAppearanceLoadFromBundle(Char, "Female3DCG", data.Appearance);
+	Char.Appearance = ServerAppearanceLoadFromBundle(Char, "Female3DCG", data.Appearance, SourceMemberNumber);
 	AssetReload(Char);
 	CharacterLoadEffect(Char);
 	CharacterRefresh(Char);
 }
 
 // Loads an online character
-function CharacterLoadOnline(data) {
+function CharacterLoadOnline(data, SourceMemberNumber) {
 
 	// Checks if the NPC already exists and returns it if it's the case
 	var Char = null;	
@@ -236,7 +236,7 @@ function CharacterLoadOnline(data) {
 		var BackupCurrentScreen = CurrentScreen;
 		CurrentScreen = "ChatRoom";
 		CharacterLoadCSVDialog(Char, "Screens/Online/ChatRoom/Dialog_Online");
-		CharacterOnlineRefresh(Char, data);
+		CharacterOnlineRefresh(Char, data, SourceMemberNumber);
 		CurrentScreen = BackupCurrentScreen;
 
 	} else {
@@ -276,7 +276,7 @@ function CharacterLoadOnline(data) {
 				Refresh = true;
 
 		// If we must refresh
-		if (Refresh) CharacterOnlineRefresh(Char, data);
+		if (Refresh) CharacterOnlineRefresh(Char, data, SourceMemberNumber);
 
 	}
 

@@ -372,7 +372,7 @@ function ChatRoomSync(data) {
 		// Load the characters
 		ChatRoomCharacter = [];		
 		for (var C = 0; C < data.Character.length; C++)
-			ChatRoomCharacter.push(CharacterLoadOnline(data.Character[C]));
+			ChatRoomCharacter.push(CharacterLoadOnline(data.Character[C], data.SourceMemberNumber));
 
 		// Keeps a copy of the previous version
 		ChatRoomData = data;

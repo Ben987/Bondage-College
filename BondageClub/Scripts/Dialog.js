@@ -228,9 +228,9 @@ function DialogInventoryBuild(C) {
 }
 
 // Gets the correct label for the current operation (struggling, removing, swaping, adding, etc.)
-function DialogProgressGetOperation(PrevItem, NextItem) {
+function DialogProgressGetOperation(C, PrevItem, NextItem) {
 	if ((PrevItem != null) && (NextItem != null)) return DialogFind(Player, "Swapping");
-	if (InventoryItemHasEffect(PrevItem, "Lock", true) && !DialogCanUnlock(Player, PrevItem)) return DialogFind(Player, "Struggling");
+	if (InventoryItemHasEffect(PrevItem, "Lock", true) && !DialogCanUnlock(C, PrevItem)) return DialogFind(Player, "Struggling");
 	if (InventoryItemHasEffect(PrevItem, "Lock", true)) return DialogFind(Player, "Unlocking");
 	if ((PrevItem != null) && !Player.CanInteract()) return DialogFind(Player, "Struggling");
 	if (PrevItem != null) return DialogFind(Player, "Removing");
@@ -300,7 +300,7 @@ function DialogProgressStart(C, PrevItem, NextItem) {
 	DialogProgressAuto = TimerRunInterval * (0.22 + (((S <= -10) ? -9 : S) * 0.11)) / (Timer * CheatFactor("DoubleItemSpeed", 0.5));  // S: -9 is floor level to always give a false hope
 	DialogProgressPrevItem = PrevItem;
 	DialogProgressNextItem = NextItem;
-	DialogProgressOperation = DialogProgressGetOperation(PrevItem, NextItem);
+	DialogProgressOperation = DialogProgressGetOperation(C, PrevItem, NextItem);
 	DialogProgressSkill = Timer;
 	DialogProgressChallenge = S * -1;
 	DialogProgressLastKeyPress = 0;
