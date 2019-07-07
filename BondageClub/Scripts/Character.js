@@ -43,7 +43,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsBreastChaste : function() { return (this.Effect.indexOf("BreastChaste") >= 0) },
 		IsEgged : function() { return (this.Effect.indexOf("Egged") >= 0) },
 		IsOwned : function() { return ((this.Owner != null) && (this.Owner.trim() != "")) },
-		IsOwnedByPlayer : function() { return (((this.Owner != null) && (this.Owner.trim() == Player.Name)) || (NPCEventGet(this, "EndDomTrial") > 0)) },
+		IsOwnedByPlayer : function() { return (((((this.Owner != null) && (this.Owner.trim() == Player.Name)) || (NPCEventGet(this, "EndDomTrial") > 0)) && (this.Ownership == null)) || ((this.Ownership != null) && (this.Ownership.MemberNumber != null) && (this.Ownership.MemberNumber == Player.MemberNumber))) },
 		IsOwner : function() { return ((NPCEventGet(this, "EndSubTrial") > 0) || (this.Name == Player.Owner.replace("NPC-", ""))) },
 		IsKneeling: function () { return ((this.Pose != null) && (this.Pose.indexOf("Kneel") >= 0)) },
 		IsNaked : function () { return CharacterIsNaked(this); },
@@ -197,21 +197,21 @@ function CharacterLoadNPC(NPCType) {
 }
 
 // Sets up the online character
-function CharacterOnlineRefresh(Char, data) {
+function CharacterOnlineRefresh(Char, data, SourceMemberNumber) {
 	Char.ActivePose = data.ActivePose;
 	Char.LabelColor = data.LabelColor;
 	Char.Creation = data.Creation;
 	Char.ItemPermission = data.ItemPermission;
 	Char.Ownership = data.Ownership;	
 	Char.Reputation = (data.Reputation != null) ? data.Reputation : [];
-	Char.Appearance = ServerAppearanceLoadFromBundle("Female3DCG", data.Appearance);
+	Char.Appearance = ServerAppearanceLoadFromBundle(Char, "Female3DCG", data.Appearance, SourceMemberNumber);
 	AssetReload(Char);
 	CharacterLoadEffect(Char);
 	CharacterRefresh(Char);
 }
 
 // Loads an online character
-function CharacterLoadOnline(data) {
+function CharacterLoadOnline(data, SourceMemberNumber) {
 
 	// Checks if the NPC already exists and returns it if it's the case
 	var Char = null;	
@@ -236,7 +236,7 @@ function CharacterLoadOnline(data) {
 		var BackupCurrentScreen = CurrentScreen;
 		CurrentScreen = "ChatRoom";
 		CharacterLoadCSVDialog(Char, "Screens/Online/ChatRoom/Dialog_Online");
-		CharacterOnlineRefresh(Char, data);
+		CharacterOnlineRefresh(Char, data, SourceMemberNumber);
 		CurrentScreen = BackupCurrentScreen;
 
 	} else {
@@ -276,7 +276,7 @@ function CharacterLoadOnline(data) {
 				Refresh = true;
 
 		// If we must refresh
-		if (Refresh) CharacterOnlineRefresh(Char, data);
+		if (Refresh) CharacterOnlineRefresh(Char, data, SourceMemberNumber);
 
 	}
 

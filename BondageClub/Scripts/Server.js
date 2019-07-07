@@ -93,7 +93,7 @@ function ServerAppearanceBundle(Appearance) {
 }
 
 // Make sure the properties are valid for the item (to prevent griefing in multi-player)
-function ServerValidateProperties(Item) {
+function ServerValidateProperties(C, Item) {
 
 	// For each effect on the item
 	if ((Item.Property != null) && (Item.Property.Effect != null))
@@ -108,16 +108,26 @@ function ServerValidateProperties(Item) {
 				Item.Property.Effect.splice(E, 1);
 				E--;
 			}
-
-			// Make sure the remove timer on the lock is valid
-			if (Effect == "Lock") {
-				if (InventoryGetLock(Item) != null) {
-					var StandardTimer = InventoryGetLock(Item).Asset.RemoveTimer;
-					if (StandardTimer != null) {
-						if ((typeof Item.Property.RemoveTimer !== "number") || (Item.Property.RemoveTimer > CurrentTime + StandardTimer * 1000))
-							Item.Property.RemoveTimer = CurrentTime + StandardTimer * 1000;
-					} else delete Item.Property.RemoveTimer;
+			
+			// If the item is locked by a lock
+			if ((Effect == "Lock") && (InventoryGetLock(Item) != null)) {
+				
+				// Make sure the remove timer on the lock is valid
+				var Lock = InventoryGetLock(Item);
+				if ((Lock.Asset.RemoveTimer != null) && (Lock.Asset.RemoveTimer != 0)) {
+					if ((typeof Item.Property.RemoveTimer !== "number") || (Item.Property.RemoveTimer > CurrentTime + Lock.Asset.RemoveTimer * 1000))
+						Item.Property.RemoveTimer = CurrentTime + Lock.Asset.RemoveTimer * 1000;
+				} else delete Item.Property.RemoveTimer;
+					
+				// Make sure the remove timer on the lock is valid
+				if (Lock.Asset.OwnerOnly && ((C.Ownership == null) || (C.Ownership.MemberNumber == null) || (Item.Property.LockMemberNumber == null) || (C.Ownership.MemberNumber != Item.Property.LockMemberNumber))) {
+					delete Item.Property.LockedBy;
+					delete Item.Property.LockMemberNumber;
+					delete Item.Property.RemoveTimer;
+					Item.Property.Effect.splice(E, 1);
+					E--;
 				}
+
 			}
 
 			// Other effects can be removed
@@ -162,26 +172,45 @@ function ServerValidateProperties(Item) {
 }
 
 // Loads the appearance assets from a server bundle that only contains the main info (no assets)
-function ServerAppearanceLoadFromBundle(AssetFamily, Bundle) {
+function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumber) {
 
-	// For each appearance item to load
+	// Keep the owner only items if the source isn't the owner
 	var Appearance = [];
+	if ((C.Ownership != null) && (C.Ownership.MemberNumber != null) && (SourceMemberNumber != null) && (C.Ownership.MemberNumber != SourceMemberNumber) && (C.MemberNumber != SourceMemberNumber))
+		for (var A = 0; A < C.Appearance.length; A++)
+			if (InventoryOwnerOnlyItem(C.Appearance[A]))
+				Appearance.push(C.Appearance[A]);
+
+	// For each appearance item to load	
 	for (var A = 0; A < Bundle.length; A++) {
 
-		// Cycles in all the assets to find the correct item to add and colorize it
+		// Cycles in all assets to find the correct item to add (do not add )
 		for (var I = 0; I < Asset.length; I++)
 			if ((Asset[I].Name == Bundle[A].Name) && (Asset[I].Group.Name == Bundle[A].Group) && (Asset[I].Group.Family == AssetFamily)) {
+
+				// Creates the item and colorize it
 				var NA = {
 					Asset: Asset[I],
 					Difficulty: parseInt((Bundle[A].Difficulty == null) ? 0 : Bundle[A].Difficulty),
 					Color: (Bundle[A].Color == null) ? "Default" : Bundle[A].Color
 				}
+
+				// Sets the item properties
 				if (Bundle[A].Property != null) {
 					NA.Property = Bundle[A].Property;
-					ServerValidateProperties(NA);
-				}				
-				Appearance.push(NA);
+					ServerValidateProperties(C, NA);
+				}
+
+				// Make sure we don't push an item if there's already an item in that slot
+				var CanPush = true;
+				for (var P = 0; P < Appearance.length; P++)
+					if (Appearance[P].Asset.Group.Name == NA.Asset.Group.Name) {
+						CanPush = false;
+						break;
+					}
+				if (CanPush) Appearance.push(NA);
 				break;
+
 			}
 
 	}

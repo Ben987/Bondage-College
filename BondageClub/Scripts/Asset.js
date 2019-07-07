@@ -71,6 +71,7 @@ function AssetAdd(NewAsset) {
 		Extended: (NewAsset.Extended == null) ? false : NewAsset.Extended,
 		AllowLock: (NewAsset.AllowLock == null) ? false : NewAsset.AllowLock,
 		IsLock: (NewAsset.IsLock == null) ? false : NewAsset.IsLock,
+		OwnerOnly: (NewAsset.OwnerOnly == null) ? false : NewAsset.OwnerOnly,
 		ExpressionTrigger : NewAsset.ExpressionTrigger,
 		Layer: NewAsset.Layer,
 		AllowEffect: NewAsset.AllowEffect,

@@ -41,6 +41,7 @@ pumps,,,pumps
 deflates,,,deflates
 gag,,,gag
 Delete,,,Delete
+ConfirmDelete,,,Confirm
 Beep,,,Beep
 BeepFrom,,,Beep from
 InRoom,,,in room
@@ -55,9 +56,11 @@ TimerRestart,,,SourceCharacter restarts the five minute timer padlock on Destina
 SelectBondagePosition,,,Select the bondage position
 SelectTapeWrapping,,,Select the tape wrapping
 CannotUnlockIfElbowBound,,,A victim cannot unlock herself if her elbows are bound
-ItemMiscMetalPadlock,,,"""From your friendly hardware store"""
-ItemMiscIntricatePadlock,,,"""To keep your loved one secure"""
-ItemMiscTimerPadlock,,,You can restart the timer but cannot unlock
+ItemMiscMetalPadlockIntro,,,"""From your friendly hardware store"""
+ItemMiscIntricatePadlockIntro,,,"""To keep your loved one secure"""
+ItemMiscTimerPadlockIntro,,,You can restart the timer but cannot unlock
+ItemMiscOwnerPadlockIntro,,,"""Never forget who you belong too"""
+ItemMiscOwnerPadlockDetail,,,Can only be locked or unlocked by her owner
 LeatherCuffsPoseNone,,,Detached
 LeatherCuffsPoseWrist,,,Bind wrists
 LeatherCuffsPoseElbow,,,Bind elbows
