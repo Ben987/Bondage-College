@@ -1,8 +1,10 @@
 SelectItem,,,Select an item to use
 CannotUseOnSelf,,,Cannot use on yourself
 RemoveClothesForItem,,,Remove some clothes first
+RemoveSuspensionForItem,,,Remove the suspension first
 Cancel,,,Cancel
 Exit,,,Back to character
+Next,,,View next items
 Remove,,,Remove the item
 Struggle,,,Try to struggle out
 Lock,,,Use a lock
@@ -38,15 +40,27 @@ PumpIt,,,Pump it
 pumps,,,pumps
 deflates,,,deflates
 gag,,,gag
+Delete,,,Delete
+ConfirmDelete,,,Confirm
+Beep,,,Beep
+BeepFrom,,,Beep from
+InRoom,,,in room
+PrivateRoom,,,<i>Private room</i>
+ServerMessageOfferStartTrial,,,"SourceCharacter is offering you to start a trial period as her submissive.  Click on her and manage your relationship to accept, don't do anything to refuse."
+ServerMessageStartTrial,,,The Bondage Club is pleased to announce that SourceCharacter is starting a 3 days minimum trial period as a submissive.
+ServerMessageOfferEndTrial,,,"SourceCharacter has prepared a great collaring ceremony.  A maid brings a slave collar, which her submissive must consent to wear."
+ServerMessageEndTrial,,,The Bondage Club is proud to announce that SourceCharacter is now fully collared.  Her fate is in her Mistress hands.
 LockMemberNumber,,,Member number on lock:
 TimerLeft,,,Time left:
 TimerRestart,,,SourceCharacter restarts the five minute timer padlock on DestinationCharacter BodyPart.
 SelectBondagePosition,,,Select the bondage position
 SelectTapeWrapping,,,Select the tape wrapping
 CannotUnlockIfElbowBound,,,A victim cannot unlock herself if her elbows are bound
-ItemMiscMetalPadlock,,,"""From your friendly hardware store"""
-ItemMiscIntricatePadlock,,,"""To keep your loved one secure"""
-ItemMiscTimerPadlock,,,You can restart the timer but cannot unlock
+ItemMiscMetalPadlockIntro,,,"""From your friendly hardware store"""
+ItemMiscIntricatePadlockIntro,,,"""To keep your loved one secure"""
+ItemMiscTimerPadlockIntro,,,You can restart the timer but cannot unlock
+ItemMiscOwnerPadlockIntro,,,"""Never forget who you belong too"""
+ItemMiscOwnerPadlockDetail,,,Can only be locked or unlocked by her owner
 LeatherCuffsPoseNone,,,Detached
 LeatherCuffsPoseWrist,,,Bind wrists
 LeatherCuffsPoseElbow,,,Bind elbows

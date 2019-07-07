@@ -5,18 +5,21 @@ var MainHallNextEventTimer = null;
 var MainHallMaid = null;
 var MainHallIsMaid = false;
 var MainHallIsHeadMaid = false;
+var MainHallHasOwnerLock = false;
 
 // Returns TRUE if a dialog option is available
 function MainHallCanTrickMaid() { return (ManagementIsClubSlave() && SarahUnlockQuest) }
 
 // Main hall loading
 function MainHallLoad() {
+	CharacterSetActivePose(Player, null);
 	MainHallBackground = "MainHall";
 	MainHallStartEventTimer = null;
 	MainHallNextEventTimer = null;
 	MainHallMaid = CharacterLoadNPC("NPC_MainHall_Maid");
 	MainHallIsMaid = LogQuery("JoinedSorority", "Maid");
 	MainHallIsHeadMaid = LogQuery("LeadSorority", "Maid");
+	MainHallHasOwnerLock = InventoryCharacterHasOwnerOnlyItem(Player);
 	CommonReadCSV("NoArravVar", "Room", "Management", "Dialog_NPC_Management_RandomGirl");
 	CommonReadCSV("NoArravVar", "Room", "KidnapLeague", "Dialog_NPC_KidnapLeague_RandomKidnapper");
 	CommonReadCSV("NoArravVar", "Room", "Private", "Dialog_NPC_Private_Custom");
@@ -179,4 +182,13 @@ function MainHallFreeSarah() {
 	ReputationProgress("Dominant", -4);
 	SarahUnlock();
 	DialogLeave();
+}
+
+// When the maid unlocks the player from an owner, she get forced naked for an hour and loses reputation
+function MainHallMaidShamePlayer() {
+	CharacterRelease(Player);
+	CharacterNaked(Player);
+	LogAdd("BlockChange", "Rule", CurrentTime + 3600000);
+	if (ReputationGet("Dominant") > 10) ReputationProgress("Dominant", -10);
+	if (ReputationGet("Dominant") < -10) ReputationProgress("Dominant", 10);
 }

@@ -15,9 +15,11 @@ canvas {
 	border: 1px solid black;
 	overflow: auto;
 	word-wrap: break-word;
+	padding: 0 !important;
 }
 .ChatMessage {
 	position: relative;
+	padding-left: 0.4em;
 }
 .ChatMessage::before {
 	content: attr(data-time);
@@ -36,7 +38,7 @@ canvas {
 	right: 0.2em;
 }
 .ChatMessageName {
-	text-shadow: 1px 1px black;
+	text-shadow: 0.05em 0.05em black;
 }
 .ChatMessageAction {
 	color: gray;
@@ -45,7 +47,41 @@ canvas {
 	color: gray;
 	font-style: italic;
 }
-.ChatMessageWhisper{
+.ChatMessageWhisper {
 	font-style: italic;
 	color: silver;
+}
+#FriendList {
+	border: 2px solid white;
+	overflow: auto;
+	word-wrap: break-word;
+	padding: 0 !important;
+	padding-bottom: 1% !important;
+	padding-left: 5% !important;
+}
+.FriendListRow{
+	color: white;
+}
+.FriendListRow:Hover{
+	color: yellow;
+}
+.FriendListFirstColumn{
+	clear: left;
+}
+.FriendListTextColumn{
+	float: left;
+	width: 25%;
+	text-align: center;
+	padding-top: 1% !important;
+}
+.FriendListLinkColumn{
+	float: left;
+	width: 10%;
+	text-align: center;
+	padding-top: 1% !important;
+	text-decoration: underline;
+	cursor: pointer;
+}
+.FriendListLinkColumn:Hover{
+	color: cyan !important;
 }

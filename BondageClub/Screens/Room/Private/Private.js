@@ -13,6 +13,7 @@ var PrivateActivityAffectLove = true;
 var PrivateActivityList = ["Gag", "Ungag", "Restrain", "FullRestrain", "Release", "Tickle", "Spank", "Pet", "Slap", "Kiss", "Fondle", "Naked", "Underwear", "RandomClothes", "Shibari", "Gift"];
 var PrivatePunishment = "";
 var PrivatePunishmentList = ["Cage", "Bound", "BoundPet", "ChastityBelt", "ChastityBra", "ForceNaked", "ConfiscateKey", "ConfiscateCrop", "ConfiscateWhip", "SleepCage"];
+var PrivateCharacterNewClothes = null;
 
 // Returns TRUE if a specific dialog option is allowed
 function PrivateIsCaged() { return (CurrentCharacter.Cage == null) ? false : true }
@@ -26,9 +27,10 @@ function PrivateCanMasturbate() { return (CharacterIsNaked(CurrentCharacter) && 
 function PrivateCanFondle() { return (!CurrentCharacter.IsBreastChaste() && !Player.IsRestrained()) }
 function PrivateAllowRestainPlayer() { return (!Player.IsRestrained() && !CurrentCharacter.IsRestrained() && (ReputationGet("Dominant") - 25 <= NPCTraitGet(CurrentCharacter, "Dominant"))) }
 function PrivateWontRestainPlayer() { return (!Player.IsRestrained() && !CurrentCharacter.IsRestrained() && (ReputationGet("Dominant") - 25 > NPCTraitGet(CurrentCharacter, "Dominant"))) }
-function PrivateAllowReleasePlayer() { return (Player.IsRestrained() && CurrentCharacter.CanTalk() && CurrentCharacter.CanInteract() && ((CommonTime() > PrivateReleaseTimer) || CurrentCharacter.IsOwnedByPlayer()) && !PrivateOwnerInRoom()) }
-function PrivateWontReleasePlayer() { return (Player.IsRestrained() && CurrentCharacter.CanTalk() && CurrentCharacter.CanInteract() && !((CommonTime() > PrivateReleaseTimer) || CurrentCharacter.IsOwnedByPlayer()) && !PrivateOwnerInRoom()) }
-function PrivateWontReleasePlayerOwner() { return (Player.IsRestrained() && CurrentCharacter.CanTalk() && CurrentCharacter.CanInteract() && PrivateOwnerInRoom()) }
+function PrivateAllowReleasePlayer() { return (Player.IsRestrained() && !InventoryCharacterHasOwnerOnlyItem(Player) && CurrentCharacter.CanTalk() && CurrentCharacter.CanInteract() && ((CommonTime() > PrivateReleaseTimer) || CurrentCharacter.IsOwnedByPlayer()) && !PrivateOwnerInRoom()) }
+function PrivateWontReleasePlayer() { return (Player.IsRestrained() && !InventoryCharacterHasOwnerOnlyItem(Player) && CurrentCharacter.CanTalk() && CurrentCharacter.CanInteract() && !((CommonTime() > PrivateReleaseTimer) || CurrentCharacter.IsOwnedByPlayer()) && !PrivateOwnerInRoom()) }
+function PrivateWontReleasePlayerOwner() { return (Player.IsRestrained() && !InventoryCharacterHasOwnerOnlyItem(Player) && CurrentCharacter.CanTalk() && CurrentCharacter.CanInteract() && PrivateOwnerInRoom()) }
+function PrivateWontReleasePlayerOwnerOnly() { return (Player.IsRestrained() && InventoryCharacterHasOwnerOnlyItem(Player) && CurrentCharacter.CanTalk() && CurrentCharacter.CanInteract()) }
 function PrivateWillKneel() { return (CurrentCharacter.CanKneel() && CurrentCharacter.CanTalk() && !CurrentCharacter.IsKneeling() && ((ReputationGet("Dominant") > NPCTraitGet(CurrentCharacter, "Dominant")) || CurrentCharacter.IsOwnedByPlayer())) }
 function PrivateWillKneelGagged() { return (CurrentCharacter.CanKneel() && !CurrentCharacter.CanTalk() && !CurrentCharacter.IsKneeling() && ((ReputationGet("Dominant") > NPCTraitGet(CurrentCharacter, "Dominant")) || CurrentCharacter.IsOwnedByPlayer())) }
 function PrivateWontKneel() { return (CurrentCharacter.CanKneel() && !CurrentCharacter.IsKneeling() && (ReputationGet("Dominant") <= NPCTraitGet(CurrentCharacter, "Dominant")) && !CurrentCharacter.IsOwnedByPlayer()) }
@@ -61,6 +63,13 @@ function PrivateSubTrialOverUnwilling() { return ((NPCEventGet(CurrentCharacter,
 
 // Loads the private room vendor NPC
 function PrivateLoad() {
+
+	// Saves the private character new clothes
+	if (PrivateCharacterNewClothes != null) {
+		PrivateCharacterNewClothes.AppearanceFull = PrivateCharacterNewClothes.Appearance;
+		ServerPrivateCharacterSync();
+		PrivateCharacterNewClothes = null;
+	}
 
 	// Loads the vendor and NPCs, also check for relationship decay
 	PrivateVendor = CharacterLoadNPC("NPC_Private_Vendor");
@@ -192,7 +201,7 @@ function PrivateClickCharacter() {
 function PrivateClick() {
 	if ((MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000) && !LogQuery("RentRoom", "PrivateRoom")) CharacterSetCurrent(Player);
 	if ((MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000) && !LogQuery("RentRoom", "PrivateRoom")) { NPCTraitDialog(PrivateVendor); CharacterSetCurrent(PrivateVendor); }
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk() && (Player.Cage == null)) { CharacterAppearanceValidate(Player); CommonSetScreen("Room", "MainHall"); }
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk() && (Player.Cage == null)) CommonSetScreen("Room", "MainHall");
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235) && LogQuery("RentRoom", "PrivateRoom") && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355) && LogQuery("RentRoom", "PrivateRoom") && Player.CanWalk() && (Player.Cage == null)) CharacterSetCurrent(PrivateVendor);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475) && LogQuery("RentRoom", "PrivateRoom") && !LogQuery("BlockChange", "Rule")) CharacterAppearanceLoadCharacter(Player);
@@ -237,8 +246,8 @@ function PrivateLoadCharacter(C) {
 		N.AccountName = "NPC_Private_Custom" + N.ID.toString();
 		if (PrivateCharacter[C].Title != null) N.Title = PrivateCharacter[C].Title;
 		if (PrivateCharacter[C].AssetFamily != null) N.AssetFamily = PrivateCharacter[C].AssetFamily;
-		if (PrivateCharacter[C].Appearance != null) N.Appearance = ServerAppearanceLoadFromBundle(PrivateCharacter[C].AssetFamily, PrivateCharacter[C].Appearance);
-		if (PrivateCharacter[C].AppearanceFull != null) N.AppearanceFull = ServerAppearanceLoadFromBundle(PrivateCharacter[C].AssetFamily, PrivateCharacter[C].AppearanceFull);
+		if (PrivateCharacter[C].Appearance != null) N.Appearance = ServerAppearanceLoadFromBundle(PrivateCharacter[C], PrivateCharacter[C].AssetFamily, PrivateCharacter[C].Appearance);
+		if (PrivateCharacter[C].AppearanceFull != null) N.AppearanceFull = ServerAppearanceLoadFromBundle(PrivateCharacter[C], PrivateCharacter[C].AssetFamily, PrivateCharacter[C].AppearanceFull);
 		if (PrivateCharacter[C].Trait != null) N.Trait = PrivateCharacter[C].Trait.slice();
 		if (PrivateCharacter[C].Cage != null) N.Cage = PrivateCharacter[C].Cage;
 		if (PrivateCharacter[C].Event != null) N.Event = PrivateCharacter[C].Event;
@@ -302,17 +311,21 @@ function PrivateChange(NewCloth) {
 	if (NewCloth == "Underwear") CharacterUnderwear(CurrentCharacter, CurrentCharacter.AppearanceFull);
 	if (NewCloth == "Naked") CharacterNaked(CurrentCharacter);
 	if (NewCloth == "Custom") {
-		var C = CurrentCharacter;
+		PrivateNPCInteraction(10);
+		CharacterChangeMoney(Player, -100);
+		PrivateCharacterNewClothes = CurrentCharacter;
 		DialogLeave();
-		CharacterAppearanceLoadCharacter(C);
+		CharacterAppearanceLoadCharacter(PrivateCharacterNewClothes);
 	}
 }
 
 // Returns TRUE if the player owner is already in the room
 function PrivateOwnerInRoom() {
-	for(var C = 1; C < PrivateCharacter.length; C++)
-		if (PrivateCharacter[C].IsOwner() && (PrivateCharacter[C].ID != CurrentCharacter.ID))
-			return true;
+	for (var C = 1; C < PrivateCharacter.length; C++) {
+		if ((PrivateCharacter[C].AccountName == null) && (PrivateCharacter[C].Name != null) && (PrivateCharacter[C].Name == Player.Owner.replace("NPC-", ""))) return true;
+		if ((PrivateCharacter[C].AccountName != null) && PrivateCharacter[C].IsOwner() && (CurrentCharacter != null) && (PrivateCharacter[C].ID != CurrentCharacter.ID)) return true;
+		if ((PrivateCharacter[C].AccountName != null) && PrivateCharacter[C].IsOwner() && (CurrentCharacter == null)) return true;
+	}
 	return false;
 }
 

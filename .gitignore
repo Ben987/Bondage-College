@@ -1,2 +1,5 @@
 # JetBrains
 .idea/
+
+#system temp file
+.DS_Store

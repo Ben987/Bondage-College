@@ -1,5 +1,5 @@
 "use strict";
-var ChatSearchBackground = "IntroductionDark"
+var ChatSearchBackground = "IntroductionDark";
 var ChatSearchResult = [];
 var ChatSearchMessage = "";
 
@@ -54,6 +54,11 @@ function ChatSearchClick() {
 	if ((MouseX >= 1125) && (MouseX < 1475) && (MouseY >= 898) && (MouseY < 962)) ChatSearchQuery();
 	if ((MouseX >= 1505) && (MouseX < 1855) && (MouseY >= 898) && (MouseY < 962)) CommonSetScreen("Online", "ChatCreate");
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 885) && (MouseY < 975)) { ElementRemove("InputSearch"); CommonSetScreen("Room", "MainHall"); }
+}
+
+// When the user press "enter" in the search box, we launch a search query
+function ChatSearchKeyDown() {
+    if (KeyPress == 13) ChatSearchQuery();
 }
 
 // When the player wants to join a chat room

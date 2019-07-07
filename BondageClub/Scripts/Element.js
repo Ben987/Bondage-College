@@ -101,15 +101,15 @@ function ElementPositionFix(ElementID, Font, X, Y, W, H) {
 	if (DrawScreenWidth <= DrawScreenHeight * 2) {
 		Font = Font * DrawScreenWidth / 2000;
 		Left = X * DrawScreenWidth / 2000;
-		Width = W * DrawScreenWidth / 2000 - 13;
+		Width = W * DrawScreenWidth / 2000;
 		Top = (Y * DrawScreenWidth / 2000) + ((DrawScreenHeight * 2 - DrawScreenWidth) / 4);
-		Height = H * DrawScreenWidth / 2000 - 8;
+		Height = H * DrawScreenWidth / 2000;
 	} else {
 		Font = Font * DrawScreenHeight / 1000;
 		Left = (X * DrawScreenHeight / 1000) + (DrawScreenWidth - DrawScreenHeight * 2) / 2;
-		Width = W * DrawScreenHeight / 1000 - 13;
+		Width = W * DrawScreenHeight / 1000;
 		Top = Y * DrawScreenHeight / 1000;
-		Height = H * DrawScreenHeight / 1000 - 8;
+		Height = H * DrawScreenHeight / 1000;
 	}
 
 	// Sets the element style
