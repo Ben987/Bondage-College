@@ -41,6 +41,7 @@ pumps,,,pumps
 deflates,,,deflates
 gag,,,gag
 Delete,,,Delete
+ConfirmDelete,,,Confirm
 Beep,,,Beep
 BeepFrom,,,Beep from
 InRoom,,,in room
