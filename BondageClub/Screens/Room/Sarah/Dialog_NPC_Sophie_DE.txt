@@ -263,7 +263,7 @@ Getting late to club meetings, playing on her phone in a collaring ceremony and 
 Sie kam verspätet zu Clubtreffen, hat bei einer Zeremonie mit ihrem Handy gespielt und ihr Getränk über eine Club-*Maitresse* verschüttet.
 ###_PLAYER
 You cannot do that, she's my slave.
-Das könnt Ihr nocht tun, sie ist meine Sklavin.
+Das könnt Ihr nicht tun, sie ist meine Sklavin.
 ###_NPC
 (She looks at Sarah as she nods.)  I'm sorry, I didn't know she was your *esclave*.
 (Sie schaut zu Sarah und nickt.) Verzeihung, ich wusste nicht, dass sie deine *esclave* ist.
@@ -740,7 +740,7 @@ That's great!
 Das ist großartig!
 ###_NPC
 (She grins.)  Use the leather cuffs from my bag and lock them on their arms.  Make sure to attach them behind their back.
-(Sie grinst.) Benutze die Lederfesseln aus meiner Tasche und befestige sie an ihren Armen.  Achte darauf, dass du sie hinter Ihrem Rücken verbindest.
+(Sie grinst.) Benutze die Lederfesseln aus meiner Tasche und befestige sie an ihren Armen.  Achte darauf, dass du sie hinter ihrem Rücken verbindest.
 ###_PLAYER
 Restrain her how?
 Wie sollen wir sie fesseln?
@@ -1123,7 +1123,7 @@ It's really *facile*, the last one to climax wins. (She speeds up the vibrator a
 Es ist wirklich *facile*, die Letzte, die einen Orgasmus erreicht, gewinnt. (Sie beschleunigt den Vibrator ein wenig.)
 ###_PLAYER
 Please explain Miss.
-Bitte erklären sie es, Miss.
+Bitte erklären Sie es, Miss.
 ###_NPC
 It's a *facile* game, the last one to climax wins. (She speeds up the vibrator a little.)
 Es ist ein *facile* Spiel, die Letzte, die einen Orgasmus erreicht, gewinnt. (Sie beschleunigt den Vibrator ein wenig.)

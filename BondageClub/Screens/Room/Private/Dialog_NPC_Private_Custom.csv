@@ -196,6 +196,10 @@ PlayerMustKneel,,,"(She licks her lips.)  Hey sexy sub, you know what would turn
 0,,Can you release me?,"(She laughs at your predicament.)  You're a cute slave girl, but I'm not responsible for you.  Ask your Mistress.",,WontReleasePlayerOwner(),WontReleasePlayerOwner,Dominant|Serious
 0,,Can you release me?,I must decline Miss.  Your Mistress is responsible for your well being and to release you.,,WontReleasePlayerOwner(),WontReleasePlayerOwner,Submissive|Wise
 0,,Can you release me?,"Yo girl, if your owner is leaving your ass like that, I'm not letting you go.",,WontReleasePlayerOwner(),WontReleasePlayerOwner,Horny|Rude
+0,,Can you release me?,(She inspects your locks.)  I don't have the proper key.  Check with your owner.,,WontReleasePlayerOwnerOnly(),WontReleasePlayerOwnerOnly,
+0,,Can you release me?,"(She checks your locks.)  Your owner locked your fucking ass, you stay that way girl.",,WontReleasePlayerOwnerOnly(),WontReleasePlayerOwnerOnly,Dominant|Rude
+0,,Can you release me?,Of course Miss.  (She tries to pick your owner lock but fail miserably.)  I don't understand why it doesn't unlock.,,WontReleasePlayerOwnerOnly(),WontReleasePlayerOwnerOnly,Submissive|Dumb
+0,,Can you release me?,"(She checks your locks and giggles.)  Oh no, you look way too sexy with these locks on.",,WontReleasePlayerOwnerOnly(),WontReleasePlayerOwnerOnly,Horny|Playful
 0,,(Struggle and whimper for help.),(She nods and slowly releases you.)  I guess I can help you out now.,DialogRelease(Player),AllowReleasePlayer(),StruggleWillReleasePlayer,
 0,,(Struggle and whimper for help.),Are you in pain girl?  Let me see these limbs.  (She releases you and checks on your health.),DialogRelease(Player),AllowReleasePlayer(),StruggleWillReleasePlayer,Dominant|Peaceful
 0,,(Struggle and whimper for help.),"I'm not sure how Miss, let me try.  (She fumbles a little but finally releases you.)",DialogRelease(Player),AllowReleasePlayer(),StruggleWillReleasePlayer,Submissive|Dumb
@@ -208,6 +212,10 @@ PlayerMustKneel,,,"(She licks her lips.)  Hey sexy sub, you know what would turn
 0,,(Struggle and whimper for help.),"(She laughs at your predicament.)  You're a cute slave girl, but I'm not responsible for you.  Ask your Mistress.",,WontReleasePlayerOwner(),StruggleWontReleasePlayerOwner,Dominant|Serious
 0,,(Struggle and whimper for help.),I must decline Miss.  Your Mistress is responsible for your well being and to release you.,,WontReleasePlayerOwner(),StruggleWontReleasePlayerOwner,Submissive|Wise
 0,,(Struggle and whimper for help.),"Yo girl, if your owner is leaving your ass like that, I'm not letting you go.",,WontReleasePlayerOwner(),StruggleWontReleasePlayerOwner,Horny|Rude
+0,,(Struggle and whimper for help.),(She inspects your locks.)  I don't have the proper key.  Check with your owner.,,WontReleasePlayerOwnerOnly(),StruggleWontReleasePlayerOwnerOnly,
+0,,(Struggle and whimper for help.),"(She checks your locks.)  Your owner locked your fucking ass, you stay that way girl.",,WontReleasePlayerOwnerOnly(),StruggleWontReleasePlayerOwnerOnly,Dominant|Rude
+0,,(Struggle and whimper for help.),Of course Miss.  (She tries to pick your owner lock but fail miserably.)  I don't understand why it doesn't unlock.,,WontReleasePlayerOwnerOnly(),StruggleWontReleasePlayerOwnerOnly,Submissive|Dumb
+0,,(Struggle and whimper for help.),"(She checks your locks and giggles.)  Oh no, you look way too sexy with these locks on.",,WontReleasePlayerOwnerOnly(),StruggleWontReleasePlayerOwnerOnly,Horny|Playful
 0,100,(Play with her.),"(You move closer, ready to play with her.)",,AllowRestain(),,
 0,,(Play with her.),(She stops you from doing anything.)  What do you think you're doing?,,!AllowRestain(),WontPlay,
 0,,(Play with her.),(She pushes you back.)  Hold on girl.  I'm not in the mood for that.,,!AllowRestain(),WontPlay,Dominant|Frigid
@@ -822,6 +830,10 @@ PunishSleepCage,1001,Very well Mistress.,"Good, you will wake up everyday in you
 2000,,Can you release me?,"I'm sorry Mistress, but your own Mistress is watching, and I don't want to get us both in trouble.",,WontReleasePlayerOwner(),SubWontReleasePlayerOwner,
 2000,,Can you release me?,Sure thing!  (She starts to release you but stops when she sees your Mistress staring at her.)  Oops!,,WontReleasePlayerOwner(),SubWontReleasePlayerOwner,Playful|Dumb
 2000,,Can you release me?,It wouldn't be wise Mistress.  Your owner is the final arbiter on your of freedom.,,WontReleasePlayerOwner(),SubWontReleasePlayerOwner,Serious|Wise
+2000,,Can you release me?,"(She inspects your locks.)  Sorry Mistress, I don't have the proper key.  Check with your owner.",,WontReleasePlayerOwnerOnly(),SubWontReleasePlayerOwnerOnly,
+2000,,Can you release me?,(She checks your locks.)  Your owner locked your ass Mistress?  I can't do much.,,WontReleasePlayerOwnerOnly(),SubWontReleasePlayerOwnerOnly,Dominant|Rude
+2000,,Can you release me?,Of course Mistress.  (She tries to pick your owner lock but fail miserably.)  I don't understand why it doesn't unlock.,,WontReleasePlayerOwnerOnly(),SubWontReleasePlayerOwnerOnly,Submissive|Dumb
+2000,,Can you release me?,(She checks your locks and giggles.)  You look so sexy with these locks Mistress.  I can't remove them though.,,WontReleasePlayerOwnerOnly(),SubWontReleasePlayerOwnerOnly,Horny|Playful
 2000,,(Struggle and plead for help.),Of course Mistress.  (She releases you.),DialogRelease(Player),AllowReleasePlayer(),SubStruggleWillReleasePlayer,
 2000,,(Struggle and plead for help.),"Yes, were you naughty Mistress?  (She releases you.)",DialogRelease(Player),AllowReleasePlayer(),SubStruggleWillReleasePlayer,Playful
 2000,,(Struggle and plead for help.),"Of course, seeing you restrained doesn't feel right.  (She releases you.)",DialogRelease(Player),AllowReleasePlayer(),SubStruggleWillReleasePlayer,Serious
@@ -830,6 +842,10 @@ PunishSleepCage,1001,Very well Mistress.,"Good, you will wake up everyday in you
 2000,,(Struggle and plead for help.),"I'm sorry Mistress, but your own Mistress is watching, and I don't want to get us both in trouble.",,WontReleasePlayerOwner(),SubStruggleWontReleasePlayerOwner,
 2000,,(Struggle and plead for help.),Sure thing!  (She starts to release you but stops when she sees your Mistress staring at her.)  Oops!,,WontReleasePlayerOwner(),SubStruggleWontReleasePlayerOwner,Playful|Dumb
 2000,,(Struggle and plead for help.),It wouldn't be wise Mistress.  Your owner is the final arbiter on your of freedom.,,WontReleasePlayerOwner(),SubStruggleWontReleasePlayerOwner,Serious|Wise
+2000,,(Struggle and plead for help.),"(She inspects your locks.)  Sorry Mistress, I don't have the proper key.  Check with your owner.",,WontReleasePlayerOwnerOnly(),SubStruggleWontReleasePlayerOwnerOnly,
+2000,,(Struggle and plead for help.),(She checks your locks.)  Your owner locked your ass Mistress?  I can't do much.,,WontReleasePlayerOwnerOnly(),SubStruggleWontReleasePlayerOwnerOnly,Dominant|Rude
+2000,,(Struggle and plead for help.),Of course Mistress.  (She tries to pick your owner lock but fail miserably.)  I don't understand why it doesn't unlock.,,WontReleasePlayerOwnerOnly(),SubStruggleWontReleasePlayerOwnerOnly,Submissive|Dumb
+2000,,(Struggle and plead for help.),(She checks your locks and giggles.)  You look so sexy with these locks Mistress.  I can't remove them though.,,WontReleasePlayerOwnerOnly(),SubStruggleWontReleasePlayerOwnerOnly,Horny|Playful
 2000,,Get on your knees.,(She nods and gets on her knees.),"DialogSetPose(CurrentCharacter, ""Kneel"")",WillKneel(),SubWillKneel,
 2000,,Get on your knees.,Absolutely Miss.  I will find a comfy kneeling position for your pleasure.  (She comfortably sits on knees.),"DialogSetPose(CurrentCharacter, ""Kneel"")",WillKneel(),SubWillKneel,Submissive|Peaceful
 2000,,Get on your knees.,"Consider yourself Mistress, I don't kneel for many girls.  (She reluctantly kneels for you.)","DialogSetPose(CurrentCharacter, ""Kneel"")",WillKneel(),SubWillKneel,Dominant|Serious
@@ -922,8 +938,10 @@ PunishSleepCage,1001,Very well Mistress.,"Good, you will wake up everyday in you
 2040,2000,Get fully dressed.,(She nods and makes sure she's wearing all her clothes.)  I hope it looks fine.,"Change(""Cloth"")",,,
 2040,2000,Get in your underwear.,(She nods and makes sure she's wearing only her underwear.)  I'm not sure where this is going.,"Change(""Underwear"")",,,
 2040,2000,Get naked.,(She blushes and gets fully naked.)  Something kinky is brewing.,"Change(""Naked"")",,,
-2040,2000,I'll pick out new clothes for you.,,"Change(""Custom"")",,,
+2040,2041,Let's go shop for new clothes.,(She smiles.)  That's a great idea Mistress.  Do you have at least 100$ to pay for my new clothes?,,,,
 2040,2000,Stay like that.,Yes Mistress.  What would you like to do then?,,,,
+2041,,"Yes, here's the money.  (Pay 100$ to shop.)",,"Change(""Custom"")",DialogMoneyGreater(100),,
+2041,2000,Forget it.  It's too expensive.,Yes Mistress.  What would you like to do then?,,,,
 2100,,,What would you like to do Mistress?,,,,
 2100,,(Tickle her.),"(You tickle her on the ribs and tummy.  She seems to enjoy it and cannot resist laughing.)  Hehehe, it tickles!",,Player.CanInteract(),SubPlayTickle,
 2100,,(Tickle her.),(You tickle her on the ribs and tummy.  She laughs out loud and almost cries.)  Eeeeeaaahahaha!  You're so funnyyyyahaha!,NPCInteraction(1),Player.CanInteract(),SubPlayTickle,Playful|Peaceful

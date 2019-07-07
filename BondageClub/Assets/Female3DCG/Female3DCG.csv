@@ -72,16 +72,24 @@ Shoes,PonyBoots,Pony Boots
 Hat,,Hat
 Hat,Band1,Hair Band
 Hat,Beret1,Beret
-Hat,Ears1,Ears Small
-Hat,Ears2,Ears Large
-Hat,PonyEars1,Pony Ears
 Hat,Ribbons1,Hair Ribbon 1
 Hat,MaidHairband1,Maid Hairband
 Hat,NurseCap,Nurse Cap
 Hat,Santa1,Santa Hat
-Hat,BunnyEars1,Bunny Ears
-Hat,BunnyEars2,Floppy Bunny Ears
 Hat,CaptainHat1,Captain's Hat
+Hat,BunnySuccubus2,Bunny Succubus 
+HairAccessory,,Hair Accessory
+HairAccessory,Ears1,Ears Small
+HairAccessory,Ears2,Ears Large
+HairAccessory,PonyEars1,Pony Ears
+HairAccessory,BunnyEars1,Bunny Ears
+HairAccessory,BunnyEars2,Floppy Bunny Ears
+HairAccessory,PuppyEars1,Puppy Ears
+HairAccessory,SuccubusHorns,Succubus Horns
+HairAccessory,Horns,Horns
+HairAccessory,Horns2,Horns 2
+HairAccessory,Horns3,Horns 3
+HairAccessory,FoxEars1,Fox Ears Small
 Gloves,,Gloves
 Gloves,Gloves1,Short Gloves
 Gloves,Gloves2,Long Gloves
@@ -95,6 +103,9 @@ Glasses,Glasses5,Style 5
 Glasses,Glasses6,Style 6
 Glasses,SunGlasses1,Sunglasses 1
 Glasses,SunGlasses2,Sunglasses 2
+Wings,,Wings
+Wings,SuccubusFeather,Succubus Feather 
+Wings,SuccubusWings,Succubus Wings
 BodyUpper,,Upper Body
 BodyUpper,Small,Small
 BodyUpper,Normal,Normal
@@ -182,6 +193,10 @@ ItemButt,,Butt
 ItemButt,BlackButtPlug,Black Butt Plug
 ItemButt,TailButtPlug,Kitty Butt Plug
 ItemButt,HorseButtPlug,Horse Butt Plug
+ItemButt,PuppyTailPlug,Puppy Butt Plug
+ItemButt,SuccubusButtPlug,Succubus Butt Plug
+ItemButt,SuccubusButtPlug2,Succubus Tail
+ItemButt,FoxTails,Fox Tails
 ItemPelvis,,Pelvis
 ItemPelvis,MetalChastityBelt,Metal Chastity Belt
 ItemPelvis,MetalChastityBeltKey,Metal Chastity Belt Key
@@ -215,8 +230,11 @@ ItemArms,FourLimbsShackles,Four Limbs Shackles
 ItemArms,StraitLeotard,Latex Strait Leotard
 ItemArms,Paw Mittens,Kitty Paw Mittens
 ItemArms,DuctTape,Duct Tape
+ItemArms,BitchSuit,Bitchsuit
 ItemNeck,,Neck
 ItemNeck,LeatherCollar,Leather Collar
+ItemNeck,LeatherCollarBell,Leather Collar
+ItemNeck,LeatherCollarBow,Leather Collar
 ItemNeck,SlaveCollar,Slave Collar
 ItemNeck,ClubSlaveCollar,Club Slave Collar
 ItemNeck,ShockCollar,Shock Collar
@@ -247,8 +265,10 @@ ItemMisc,,Misc Items
 ItemMisc,MetalPadlock,Metal Padlock
 ItemMisc,IntricatePadlock,Intricate Padlock
 ItemMisc,TimerPadlock,Five Minutes Padlock
+ItemMisc,OwnerPadlock,Owner Padlock
 ItemMisc,MetalPadlockKey,Metal Padlock Key
 ItemMisc,IntricatePadlockKey,Intricate Padlock Key
+ItemMisc,OwnerPadlockKey,Owner Padlock Key
 ItemMisc,MetalCuffsKey,Metal Cuffs Key
 ItemMisc,WoodenMaidTray,Wooden Maid Tray
 ItemMisc,WoodenMaidTrayFull,Wooden Maid Tray Full

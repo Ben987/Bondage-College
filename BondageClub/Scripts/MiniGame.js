@@ -4,6 +4,7 @@ var MiniGameVictory = false;
 var MiniGamePerfect = true;
 var MiniGameDifficulty = "";
 var MiniGameDifficultyRatio = 1;
+var MiniGameAdvancedPayment = 0;
 var MiniGameReturnFunction = "";
 var MiniGameProgress = -1;
 var MiniGameTimer = 0;

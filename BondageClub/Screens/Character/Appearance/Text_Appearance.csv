@@ -1,2 +1,5 @@
-SelectAppearance,Select your appearance
+SelectYourAppearance,Select your appearance
+SelectSomeoneAppearance, Select TargetCharacterName's appearance
 MustPickItem,You must pick an item of type:
+WardrobeNameInfo,Set wardrobe character name:
+WardrobeNameError,Ivalid name for character.

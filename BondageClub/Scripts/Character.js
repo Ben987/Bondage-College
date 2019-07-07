@@ -30,8 +30,8 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		AllowItem: true,
 		HeightModifier: 0,
 		CanTalk : function() { return ((this.Effect.indexOf("GagLight") < 0) && (this.Effect.indexOf("GagNormal") < 0) && (this.Effect.indexOf("GagHeavy") < 0) && (this.Effect.indexOf("GagTotal") < 0)) },
-		CanWalk : function() { return ((this.Effect.indexOf("Freeze") < 0) && ((this.Pose == null) || (this.Pose.indexOf("Kneel") < 0))) },
-		CanKneel : function() { return ((this.Effect.indexOf("Freeze") < 0) && ((this.Pose == null) || (this.Pose.indexOf("LegsClosed") < 0))) },
+		CanWalk : function() { return ((this.Effect.indexOf("Freeze") < 0) && ((this.Pose == null) || (this.Pose.indexOf("Kneel") < 0) || (this.Effect.indexOf("KneelFreeze") < 0))) },
+		CanKneel : function() { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("ForceKneel") < 0) && ((this.Pose == null) || (this.Pose.indexOf("LegsClosed") < 0))) },
 		CanInteract : function() { return (this.Effect.indexOf("Block") < 0) },
 		CanChange : function() { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("Block") < 0) && (this.Effect.indexOf("Prone") < 0) && !LogQuery("BlockChange", "Rule")) },
 		IsProne : function() { return (this.Effect.indexOf("Prone") >= 0) },
@@ -43,7 +43,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsBreastChaste : function() { return (this.Effect.indexOf("BreastChaste") >= 0) },
 		IsEgged : function() { return (this.Effect.indexOf("Egged") >= 0) },
 		IsOwned : function() { return ((this.Owner != null) && (this.Owner.trim() != "")) },
-		IsOwnedByPlayer : function() { return (((this.Owner != null) && (this.Owner.trim() == Player.Name)) || (NPCEventGet(this, "EndDomTrial") > 0)) },
+		IsOwnedByPlayer : function() { return (((((this.Owner != null) && (this.Owner.trim() == Player.Name)) || (NPCEventGet(this, "EndDomTrial") > 0)) && (this.Ownership == null)) || ((this.Ownership != null) && (this.Ownership.MemberNumber != null) && (this.Ownership.MemberNumber == Player.MemberNumber))) },
 		IsOwner : function() { return ((NPCEventGet(this, "EndSubTrial") > 0) || (this.Name == Player.Owner.replace("NPC-", ""))) },
 		IsKneeling: function () { return ((this.Pose != null) && (this.Pose.indexOf("Kneel") >= 0)) },
 		IsNaked : function () { return CharacterIsNaked(this); },
@@ -121,7 +121,7 @@ function CharacterBuildDialog(C, CSV) {
 function CharacterLoadCSVDialog(C, Override) {
 
     // Finds the full path of the CSV file to use cache
-    var FullPath = ((C.ID == 0) ? "Screens/Character/Player/Dialog_Player" : "Screens/" + CurrentModule + "/" + CurrentScreen + "/Dialog_" + ((Override == null) ? C.AccountName : Override)) + ".csv";    
+    var FullPath = ((C.ID == 0) ? "Screens/Character/Player/Dialog_Player" : ((Override == null) ? "Screens/" + CurrentModule + "/" + CurrentScreen + "/Dialog_" + C.AccountName : Override)) + ".csv";
     if (CommonCSVCache[FullPath]) {
 		CharacterBuildDialog(C, CommonCSVCache[FullPath]);
         return;
@@ -197,19 +197,21 @@ function CharacterLoadNPC(NPCType) {
 }
 
 // Sets up the online character
-function CharacterOnlineRefresh(Char, data) {
+function CharacterOnlineRefresh(Char, data, SourceMemberNumber) {
 	Char.ActivePose = data.ActivePose;
 	Char.LabelColor = data.LabelColor;
+	Char.Creation = data.Creation;
 	Char.ItemPermission = data.ItemPermission;
+	Char.Ownership = data.Ownership;	
 	Char.Reputation = (data.Reputation != null) ? data.Reputation : [];
-	Char.Appearance = ServerAppearanceLoadFromBundle("Female3DCG", data.Appearance);
+	Char.Appearance = ServerAppearanceLoadFromBundle(Char, "Female3DCG", data.Appearance, SourceMemberNumber);
 	AssetReload(Char);
 	CharacterLoadEffect(Char);
 	CharacterRefresh(Char);
 }
 
 // Loads an online character
-function CharacterLoadOnline(data) {
+function CharacterLoadOnline(data, SourceMemberNumber) {
 
 	// Checks if the NPC already exists and returns it if it's the case
 	var Char = null;	
@@ -231,8 +233,11 @@ function CharacterLoadOnline(data) {
 		Char.Owner = (data.Owner != null) ? data.Owner : "";
 		Char.AccountName = "Online-" + data.ID.toString();
 		Char.MemberNumber = data.MemberNumber;
-		CharacterLoadCSVDialog(Char, "Online");
-		CharacterOnlineRefresh(Char, data);
+		var BackupCurrentScreen = CurrentScreen;
+		CurrentScreen = "ChatRoom";
+		CharacterLoadCSVDialog(Char, "Screens/Online/ChatRoom/Dialog_Online");
+		CharacterOnlineRefresh(Char, data, SourceMemberNumber);
+		CurrentScreen = BackupCurrentScreen;
 
 	} else {
 		
@@ -264,9 +269,14 @@ function CharacterLoadOnline(data) {
 									else 
 										if (((data.Appearance[A].Property != null) && (ChatRoomData.Character[C].Appearance[A].Property == null)) || ((data.Appearance[A].Property == null) && (ChatRoomData.Character[C].Appearance[A].Property != null)))
 											Refresh = true;
+										
+		// Flags "refresh" if the ownership changed
+		if (!Refresh)
+			if (JSON.stringify(Char.Ownership) !== JSON.stringify(data.Ownership))
+				Refresh = true;
 
 		// If we must refresh
-		if (Refresh) CharacterOnlineRefresh(Char, data);
+		if (Refresh) CharacterOnlineRefresh(Char, data, SourceMemberNumber);
 
 	}
 
@@ -527,9 +537,11 @@ function CharacterSetFacialExpression(C, AssetGroup, Expression) {
 		if ((C.Appearance[A].Asset.Group.Name == AssetGroup) && (C.Appearance[A].Asset.Group.AllowExpression)) {
 			if ((Expression == null) || (C.Appearance[A].Asset.Group.AllowExpression.indexOf(Expression) >= 0)) {
 				if (!C.Appearance[A].Property) C.Appearance[A].Property = {};
-				C.Appearance[A].Property.Expression = Expression;
-				CharacterRefresh(C);
-				ChatRoomCharacterUpdate(C);
+				if (C.Appearance[A].Property.Expression != Expression) {
+					C.Appearance[A].Property.Expression = Expression;
+					CharacterRefresh(C);
+					ChatRoomCharacterUpdate(C);
+				}
 				return;
 			}
 		}

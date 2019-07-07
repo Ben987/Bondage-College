@@ -43,6 +43,7 @@
 <script src="Screens/Character/Wardrobe/Wardrobe.js"></script>
 <script src="Screens/Character/Cheat/Cheat.js"></script>
 <script src="Screens/Character/PasswordReset/PasswordReset.js"></script>
+<script src="Screens/Character/FriendList/FriendList.js"></script>
 <script src="Screens/Room/MainHall/MainHall.js"></script>
 <script src="Screens/Room/Shop/Shop.js"></script>
 <script src="Screens/Room/Introduction/Introduction.js"></script>
@@ -63,6 +64,7 @@
 <script src="Screens/MiniGame/Kidnap/Kidnap.js"></script>
 <script src="Screens/MiniGame/MaidDrinks/MaidDrinks.js"></script>
 <script src="Screens/MiniGame/MaidCleaning/MaidCleaning.js"></script>
+<script src="Screens/MiniGame/RhythmGame/RhythmGame.js"></script>
 <script src="Screens/Cutscene/PlayerCollaring/PlayerCollaring.js"></script>
 <script src="Screens/Cutscene/PlayerMistress/PlayerMistress.js"></script>
 <script src="Screens/Cutscene/NPCCollaring/NPCCollaring.js"></script>
@@ -85,13 +87,36 @@
 <script src="Screens/Inventory/ItemMisc/MetalPadlock/MetalPadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/IntricatePadlock/IntricatePadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/TimerPadlock/TimerPadlock.js"></script>
+<script src="Screens/Inventory/ItemMisc/OwnerPadlock/OwnerPadlock.js"></script>
 <script>
 
 /*
 
-	TO DO
-	Patreon import
+	Patreon Import
 
+	NEXT VERSION:
+	
+	MediaWiki ???
+	
+	Allow Dommes to use online sub restrains
+		
+	Maid chores:
+	- Online serving drinks: maid need to serve 5 drinks, other players need to click on her and take a free drink / 5$ drink / 10$ drink.  The pay is better if paid drinks were taken. 10$ + 40% of money paid.
+	- Go help shop vendor to demonstrate items
+
+	New random encounters for club slaves: 
+	- Violent Dommes with paddles.  
+	- Dommes that use locks with timers and run.  
+	- Dommes that asks riddles, if the player fails, she gets put in chastity.
+
+	Owner in private room:
+	- can "beep" player if player isn't in chatroom or in private room.  If player doesn't come back to check on her within X minutes, she gets punished.
+	- activity: can lock player in the bitchsuit and puppy play with her.
+	- activity: can restrain everyone in the room that's less dominant + player.
+	- punishment: can lock the player out of the private room for a little while (icon disappear).
+	- punishment: use owner locks on player.
+
+	Patreon Import
 */
 
 // When the code is loaded, we start the game engine
@@ -104,15 +129,13 @@ window.onload = function() {
 	AssetLoadAll();
 	CommonSetScreen("Character", "Login");
 	ServerInit();
-	MainRun();
+	MainRun(0);
 };
 
 // Main game running state, runs the drawing
-function MainRun() {
+function MainRun(Timestamp) {
 	DrawProcess();
-	TimerProcess();
-	CurrentTime = CurrentTime + TimerRunInterval;
-	setTimeout(MainRun, TimerRunInterval);
+	TimerProcess(Timestamp);
 }
 
 // When the user presses a key, we send the KeyDown event to the current screen if it can accept it

@@ -266,7 +266,8 @@ function CreateStatusSummary(Status) {
     var Ok = true;
     if (Status.MissingTranslations.length > 0) {
         Ok = false;
-        AddStatusReport(Status, "Error", Status.MissingTranslations.length + " lines missing");
+        var Element = AddStatusReport(Status, "Error", Status.MissingTranslations.length + " lines missing");
+        Element.innerHTML = Element.innerHTML + ' (<a target="_blank" href="GenerateTranslationTemplate.html?update=' + encodeURIComponent(Status.Path) + '">Update File</a>)';
     }
     if (Status.ObsoleteTranslations.length > 0) {
         Ok = false;
@@ -339,6 +340,7 @@ function AddStatusReport(Status, Type, Text) {
     Element.textContent = Text;
     Element.className = "Status " + Type;
     Status.Summary.appendChild(Element);
+    return Element;
 }
 
 function AddNodeWithText(Parent, Tag, Text, AllowHTML) {
