@@ -18,7 +18,7 @@ function ChatCreateLoad() {
 
 // When the chat creation screen runs
 function ChatCreateRun() {
-	
+
 	// Draw the controls
 	if (ChatCreateMessage == "") ChatCreateMessage = "EnterRoomInfo";
 	DrawText(TextGet(ChatCreateMessage), 1000, 60, "White", "Gray");
@@ -27,7 +27,7 @@ function ChatCreateRun() {
 	DrawText(TextGet("RoomDescription"), 1000, 300, "White", "Gray");
 	ElementPosition("InputDescription", 1000, 350, 1500);
 	DrawText(TextGet("RoomPrivate"), 970, 460, "White", "Gray");
-	DrawButton(1300, 428, 64, 64, "", "White", ChatCreatePrivate ? "Icons/Checked.png" : "");	
+	DrawButton(1300, 428, 64, 64, "", "White", ChatCreatePrivate ? "Icons/Checked.png" : "");
 	DrawText(TextGet("RoomSize"), 930, 568, "White", "Gray");
 	ElementPosition("InputSize", 1400, 560, 150);
 	DrawText(TextGet("RoomBackground"), 850, 672, "White", "Gray");
@@ -45,8 +45,9 @@ function ChatCreateClick() {
 
 	// When we select a new background
 	if ((MouseX >= 1100) && (MouseX < 1450) && (MouseY >= 640) && (MouseY < 705)) {
-		var I = ChatCreateBackgroundList.indexOf(ChatCreateBackgroundSelect) + 1;
+		var I = ChatCreateBackgroundList.indexOf(ChatCreateBackgroundSelect) + (MouseX < 1275 ? -1 : 1);
 		if (I >= ChatCreateBackgroundList.length) I = 0;
+		if (I < 0) I = ChatCreateBackgroundList.length - 1;
 		ChatCreateBackgroundSelect = ChatCreateBackgroundList[I];
 		ChatCreateBackground = ChatCreateBackgroundSelect + "Dark";
 	}
