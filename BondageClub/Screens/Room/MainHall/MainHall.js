@@ -42,7 +42,7 @@ function MainHallRun() {
 
 		// Shop & Private Room
 		DrawButton(1765, 145, 90, 90, "", "White", "Icons/Shop.png", TextGet("Shop"));
-		DrawButton(1885, 145, 90, 90, "", "White", "Icons/Private.png", TextGet("PrivateRoom"));
+		if (!LogQuery("LockOutOfPrivateRoom", "Rule")) DrawButton(1885, 145, 90, 90, "", "White", "Icons/Private.png", TextGet("PrivateRoom"));
 
 		// Introduction, Maid & Management
 		DrawButton(1645, 265, 90, 90, "", "White", "Icons/Introduction.png", TextGet("IntroductionClass"));
@@ -121,7 +121,7 @@ function MainHallClick() {
 
 		// Chat, Shop & Private Room
 		if ((MouseX >= 1765) && (MouseX < 1855) && (MouseY >= 145) && (MouseY < 235)) MainHallWalk("Shop");
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) MainHallWalk("Private");
+		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235) && !LogQuery("LockOutOfPrivateRoom", "Rule")) MainHallWalk("Private");
 
 		// Introduction, Maid & Management
 		if ((MouseX >= 1645) && (MouseX < 1735) && (MouseY >= 265) && (MouseY < 355)) MainHallWalk("Introduction");
@@ -188,6 +188,7 @@ function MainHallFreeSarah() {
 function MainHallMaidShamePlayer() {
 	CharacterRelease(Player);
 	CharacterNaked(Player);
+	MainHallHasOwnerLock = false;
 	LogAdd("BlockChange", "Rule", CurrentTime + 3600000);
 	if (ReputationGet("Dominant") > 10) ReputationProgress("Dominant", -10);
 	if (ReputationGet("Dominant") < -10) ReputationProgress("Dominant", 10);

@@ -460,7 +460,7 @@ I won't lick your heels!
 Ich lecke nicht deine Stiefel!
 ###_NPC
 (She laughs.)  Then you stay chaste. 
-(Sie lacht.) Dann bleibst du verschlossen. 
+(Sie lacht.) Dann bleibst du verschlossen.
 ###_PLAYER
 That's extortion!
 Das ist Erpressung!
@@ -668,11 +668,19 @@ Eine Dom will mir ein Halsband anlegen.
 You must be thrilled sub girl, but your Dominant will arrange the collaring ceremony, not you.  Ask her politely to contact us.
 Da bist du sicher begeistert, kleine Sub, aber deine Dom wird die Halsband-Zeremonie veranlassen, nicht du. Bitte sie höflich, uns darauf anzusprechen.
 ###_PLAYER
+I want to break my trial period.
+Ich möchte meine Probezeit abbrechen.
+###_NPC
+Breaking a trial period is alright, it happens everyday.  But are you totally sure?  You really thought about it?
+Das Abbrechen einer Probezeit ist kein Problem, es kommt immer wieder vor. Aber bist du dir wirklich sicher? Hast du gut darüber nachgedacht?
+###_PLAYER
 I want to be released from my owner.
 Ich will von meiner Besitzerin befreit werden.
 ###_NPC
 I'm sorry to hear that.  Breaking a BDSM bond is serious.  Tell me your story, why do you want to leave?
 Es tut mir leid, das zu hören. Das Beenden einer BDSM-Beziehung ist eine ernste Sache. Erzähl, wie kam es dazu, dass du sie verlassen willst?
+Girl, it's too soon for that.  There's a three days delay before we will uncollar anyone.
+Dafür ist es zu früh, Mädchen. Es gibt eine Frst von drei Tagen, bevor wir jemandem ein Halsband abnehmen.
 Girl, I know your owner.  Speak with her about it first.
 Mädchen, ich kenne deine Besitzerin. Du solltest zuerst mit ihr darüber reden.
 As long as you don't ask anything idiotic.
@@ -818,6 +826,14 @@ Take your time Miss.
 Lassen Sie sich Zeit, Miss.
 You're welcome any time.
 Sie sind jederzeit willkommen.
+Yes, I want to break my trial.
+Ja, ich will meine Probezeit abbrechen.
+###_NPC
+(She announce the end of your trial period and makes it official.)  You're free girl, enjoy the club.
+(Sie verkündet offiziell das Ende deiner Probezeit.) Du bist frei, Mädchen, viel Spaß im Club.
+###_PLAYER
+Let me think some more.
+Ich denke noch etwas darüber nach.
 What are club slaves?
 Was sind Clubsklaven?
 ###_NPC

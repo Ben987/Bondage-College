@@ -45,8 +45,8 @@
 (Add to friendlist.)
 (Zur Freundesliste hinzufügen.)
 ###_NPC
-(This member is considered to be a friend by you.)
-(Dieses Mitglied ist nun aus deiner Sicht mit dir befreundet.)
+(This member is considered to be a friend by you.  She must also add you on her friendlist to be able to find each other.)
+(Du hast dieses Mitglied deiner Freundesliste hinzugefügt. Sie muss dich auch hinzufügen, damit ihr euch finden könnt.)
 ###_PLAYER
 (Remove from friendlist.)
 (Von Freundesliste entfernen.)
@@ -54,8 +54,33 @@
 (This member is not longer considered to be a friend by you.)
 (Dieses Mitglied aus deiner Sicht nicht mehr mit dir befreundet.)
 ###_PLAYER
-(Back to main menu.)
-(Zurück zum Hauptmenü.)
+(Offer her a trial period to become your submissive.)
+(Ihr eine Probezeit als deine Untergebene anbieten.)
+###_NPC
+(The request was sent, she must accept for the trial period to start.)
+(Die Anfrage wurde gesendet, sie muss akzeptiert werden, bevor die Probezeit beginnt.)
+###_PLAYER
+(Accept a trial period to become her submissive.)
+(Anfrage zur Probezeit als ihre Untergebene abkeptieren.)
+(Offer her to end the trial and be fully collared.)
+(Anbieten, die Probezeit zu beenden und dir ein Halsband anlegen zu lassen.)
+###_NPC
+(There's a 100$ fee to prepare the ceremony and get her a slave collar.  Will you pay now?)
+(Die Gebühr für die Zeremonie und ihr Sklavinnen-Halsband beträgt 100$. Möchtest du jetzt zahlen?)
+###_PLAYER
+(Accept her collar and begin the ceremony.)
+(Ihr Halsband annehmen und die Zeremonie beginnen.)
+(Pay 100$ for the collaring ceremony.)
+(100$ für die Halsband-Zeremonie zahlen.)
+###_NPC
+(You pay and prepare the ceremony.  A maid brings a slave collar, she must accept it to complete the collaring.)
+(Du zahlst und bereitest die Zeremonie vor. Ein Hausmädchen bringt ein Sklavinnen-Halsband, deine Untergebene muss es annehmen, um den Vorgang zu vollenden.)
+###_PLAYER
+(Refuse to pay.)
+(Nicht zahlen.)
 ###_NPC
 (Main menu.)
 (Hauptmenü.)
+###_PLAYER
+(Back to main menu.)
+(Zurück zum Hauptmenü.)

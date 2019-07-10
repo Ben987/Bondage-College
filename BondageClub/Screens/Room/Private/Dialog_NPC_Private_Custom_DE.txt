@@ -586,6 +586,18 @@ Das muss ich ablehnen, Miss. Ihre Herrin ist für Ihr Wohlergehen sowie auch fü
 ###_NPC [Horny|Rude]
 Yo girl, if your owner is leaving your ass like that, I'm not letting you go.
 Yo, Mädel, wenn dein Frauchen deinen Arsch so verpackt hat, lasse ich dich nicht frei.
+###_NPC
+(She inspects your locks.)  I don't have the proper key.  Check with your owner.
+(Sie betrachtet deine Schlösser.) Ich habe nicht den richtigen Schlüssel. Frag deine Besitzerin.
+###_NPC [Dominant|Rude]
+(She checks your locks.)  Your owner locked your fucking ass, you stay that way girl.
+(Sie betrachtet deine Schlösser.) Wenn deine Besitzerin deinen Arsch hinter Schloss und Riegel hat, dann ist das verdammt nochmal so, Mädel.
+###_NPC [Submissive|Dumb]
+Of course Miss.  (She tries to pick your owner lock but fail miserably.)  I don't understand why it doesn't unlock.
+Natürlich, Miss. (Sie versucht dein Besitzer-Schloss zu knacken, scheitert aber kläglich.) Keine Ahnung, warum das nicht aufgeht.
+###_NPC [Horny|Playful]
+(She checks your locks and giggles.)  Oh no, you look way too sexy with these locks on.
+(Sie betrachtet deine Schlösser und kichert.) Oh nein, mit diesen Schlössern siehst du viel zu sexy aus.
 ###_PLAYER
 (Struggle and whimper for help.)
 (Zappeln und um Hilfe wimmern.)
@@ -2718,6 +2730,18 @@ Klar doch! (Sie fängt an, dich zu befreien, bis sie den strengen Blick deiner H
 ###_NPC [Serious|Wise]
 It wouldn't be wise Mistress.  Your owner is the final arbiter on your of freedom.
 Das wäre unklug, Herrin. Eure Besitzerin hat das letzte Wort, was Eure Freiheit angeht.
+###_NPC
+(She inspects your locks.)  Sorry Mistress, I don't have the proper key.  Check with your owner.
+(Sie betrachtet deine Schlösser.) Tut mir leid, Herrin, ich habe nicht den richtigen Schlüssel. Fragt Eure Besitzerin.
+###_NPC [Dominant|Rude]
+(She checks your locks.)  Your owner locked your ass Mistress?  I can't do much.
+(Sie betrachtet deine Schlösser.) Eure Besitzerin hat Euren Arsch verriegelt, Herrin? Da kann ich nix machen.
+###_NPC [Submissive|Dumb]
+Of course Mistress.  (She tries to pick your owner lock but fail miserably.)  I don't understand why it doesn't unlock.
+Natürlich, Herrin. (Sie versucht dein Besitzer-Schloss zu knacken, scheitert aber kläglich.) Keine Ahnung, warum das nicht aufgeht.
+###_NPC [Horny|Playful]
+(She checks your locks and giggles.)  You look so sexy with these locks Mistress.  I can't remove them though.
+(Sie betrachtet deine Schlösser und kichert.) Ihr seht mit diesen Schlössern so sexy aus, Herrin. Aber leider bekomme ich die nicht auf.
 ###_PLAYER
 (Struggle and plead for help.)
 (Zappeln und um Hilfe flehen.)
@@ -2938,8 +2962,19 @@ Sorry, I'm kind of confused Mistress.  What would you like to do?
 ###_NPC
 (She blushes and gets fully naked.)  Something kinky is brewing.
 (Sie wird rot und entkleidet sich vollständig.) Hier braut sich was Versautes zusammen.
+###_PLAYER
+Let's go shop for new clothes.
+Lass uns neue Kleidung kaufen.
+###_NPC
+(She smiles.)  That's a great idea Mistress.  Do you have at least 100$ to pay for my new clothes?
+(Sie lächelt.) Das ist eine tolle Idee, Herrin. Habt Ihr 100$, um meine neuen Sachen zu bezahlen?
 Yes Mistress.  What would you like to do then?
 Ja, Herrin. Was möchtet Ihr also machen?
+###_PLAYER
+Yes, here's the money.  (Pay 100$ to shop.)
+Ja, hier ist das Geld. (100$ zum Einkaufen ausgeben.)
+Forget it.  It's too expensive.
+Vergiss es. Das ist zu teuer.
 ###_NPC [Serious|Violent]
 (You tickle her on the ribs and tummy.  She barely laughs and doesn't seem to enjoy it.)  Mistress, you can do better than that.
 (Du kitzelst ihre Rippen und ihren Bauch. Sie lacht kaum und scheint keinen Spaß daran zu haben.) Das könnt Ihr doch besser, Herrin.

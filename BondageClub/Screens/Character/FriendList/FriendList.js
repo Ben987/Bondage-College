@@ -1,9 +1,11 @@
 "use strict";
 var FriendListBackground = "BrickWall";
 var FriendListContent = "";
+var FriendListConfirmDelete = [];
 
 // Loads the online friend list from the server
 function FriendListLoad() {
+	FriendListConfirmDelete = [];
 	ElementCreateDiv("FriendList");
 	ElementPositionFix("FriendList", 36, 0, 70, 2000, 930);
 	ElementContent("FriendList", FriendListContent);
@@ -32,6 +34,7 @@ function FriendListClick() {
 function FriendListLoadFriendList(data) {
 	var BeepCaption = DialogFind(Player, "Beep");
 	var DeleteCaption = DialogFind(Player, "Delete");
+	var ConfirmDeleteCaption = DialogFind(Player, "ConfirmDelete");
 	var PrivateRoomCaption = DialogFind(Player, "PrivateRoom");
 	FriendListContent = "";
 	for (var F = 0; F < data.length; F++) {
@@ -40,16 +43,18 @@ function FriendListLoadFriendList(data) {
 		FriendListContent = FriendListContent + "<div class='FriendListTextColumn'>" + data[F].MemberNumber.toString() + "</div>";
 		FriendListContent = FriendListContent + "<div class='FriendListTextColumn'>" + ((data[F].ChatRoomName == null) ? "-" : data[F].ChatRoomName.replace("-Private-", PrivateRoomCaption)) + "</div>";
 		FriendListContent = FriendListContent + "<div class='FriendListLinkColumn' onClick='FriendListBeep(" + data[F].MemberNumber.toString() + ")'>" + BeepCaption + "</div>";
-		if ((data[F].Type != null) && (data[F].Type != "Submissive")) FriendListContent = FriendListContent + "<div class='FriendListLinkColumn' onClick='FriendListDelete(" + data[F].MemberNumber.toString() + ")'>" + DeleteCaption + "</div>";
+		if ((data[F].Type != null) && (data[F].Type != "Submissive")) FriendListContent = FriendListContent + "<div class='FriendListLinkColumn' onClick='FriendListDelete(" + data[F].MemberNumber.toString() + ")'>" + ((FriendListConfirmDelete.indexOf(data[F].MemberNumber) >= 0) ? ConfirmDeleteCaption : DeleteCaption) + "</div>";
 		FriendListContent = FriendListContent + "</div>";
 	}
 	ElementContent("FriendList", FriendListContent);
 }
 
-// When the user wants to delete someone from her friend list
+// When the user wants to delete someone from her friend list (must click twice to confirm deletion)
 function FriendListDelete(MemberNumber) {
-	Player.FriendList.splice(Player.FriendList.indexOf(MemberNumber), 1);
-	ServerSend("AccountUpdate", {FriendList: Player.FriendList});
+	if (FriendListConfirmDelete.indexOf(MemberNumber) >= 0) {
+		Player.FriendList.splice(Player.FriendList.indexOf(MemberNumber), 1);
+		ServerSend("AccountUpdate", {FriendList: Player.FriendList});
+	} else FriendListConfirmDelete.push(MemberNumber);
 	ServerSend("AccountQuery", {Query: "OnlineFriends"});
 }
 

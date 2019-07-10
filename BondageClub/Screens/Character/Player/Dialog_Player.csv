@@ -41,8 +41,10 @@ pumps,,,pumps
 deflates,,,deflates
 gag,,,gag
 Delete,,,Delete
+ConfirmDelete,,,Confirm
 Beep,,,Beep
 BeepFrom,,,Beep from
+BeepFromOwner,,,Beep from your owner in your private room
 InRoom,,,in room
 PrivateRoom,,,<i>Private room</i>
 ServerMessageOfferStartTrial,,,"SourceCharacter is offering you to start a trial period as her submissive.  Click on her and manage your relationship to accept, don't do anything to refuse."
@@ -58,7 +60,7 @@ CannotUnlockIfElbowBound,,,A victim cannot unlock herself if her elbows are boun
 ItemMiscMetalPadlockIntro,,,"""From your friendly hardware store"""
 ItemMiscIntricatePadlockIntro,,,"""To keep your loved one secure"""
 ItemMiscTimerPadlockIntro,,,You can restart the timer but cannot unlock
-ItemMiscOwnerPadlockIntro,,,"""Never forget who you belong too"""
+ItemMiscOwnerPadlockIntro,,,"""Never forget who you belong to"""
 ItemMiscOwnerPadlockDetail,,,Can only be locked or unlocked by her owner
 LeatherCuffsPoseNone,,,Detached
 LeatherCuffsPoseWrist,,,Bind wrists

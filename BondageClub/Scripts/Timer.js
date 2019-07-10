@@ -55,6 +55,17 @@ function TimerInventoryRemoveSet(C, AssetGroup, Timer) {
 	ChatRoomCharacterUpdate(C);
 }
 
+// On a random chance, the private room owner can beep the player anywhere in the club, she has 2 minutes to get back to her
+function TimerPrivateOwnerBeep() {
+	if ((Player.Owner != "") && (Player.Ownership == null) && (CurrentScreen != "Private") && (CurrentScreen != "ChatRoom") && (CurrentScreen != "InformationSheet") && (CurrentScreen != "FriendList") && PrivateOwnerInRoom())
+		if (!LogQuery("OwnerBeepActive", "PrivateRoom") && !LogQuery("OwnerBeepTimer", "PrivateRoom") && !LogQuery("LockOutOfPrivateRoom", "Rule") && (Math.floor(Math.random() * 10) == 1)) {
+			ServerBeep.Timer = CurrentTime + 15000;
+			ServerBeep.Message = DialogFind(Player, "BeepFromOwner");
+			LogAdd("OwnerBeepActive", "PrivateRoom");
+			LogAdd("OwnerBeepTimer", "PrivateRoom", CurrentTime + 120000);
+		}
+}
+
 // Main timer process
 function TimerProcess(Timestamp) {
 
@@ -63,9 +74,12 @@ function TimerProcess(Timestamp) {
 	TimerLastTime = Timestamp;
 	CurrentTime = CurrentTime + TimerRunInterval;
 
-	// At each 100 cycles, we check to automatically remove inventory
+	// At each 100 cycles, we check for timed events
 	TimerCycle++;
-	if (TimerCycle % 100 == 0) TimerInventoryRemove();
+	if (TimerCycle % 100 == 0) {
+		TimerInventoryRemove();
+		TimerPrivateOwnerBeep();
+	}
 
 	// Launches the main again for the next frame
 	requestAnimationFrame(MainRun);

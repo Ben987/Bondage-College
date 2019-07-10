@@ -51,20 +51,13 @@ function InventoryDelete(C, DelItemName, DelItemGroup, Push) {
 
 }
 
-// Loads the inventory from the account
-function InventoryLoad(C, Inventory, Import) {
-	
-	// Flush the current inventory and import items from the Bondage College
-	C.Inventory = [];
+// Loads the current inventory for a character
+function InventoryLoad(C, Inventory) {
 
-	// Make sure we have something to load
-	if (Inventory != null) {
-
-		// Add each items one by one
+	// Add each items one by one from the server by name/group
+	if (Inventory != null)
 		for (var I = 0; I < Inventory.length; I++)
 			InventoryAdd(C, Inventory[I].Name, Inventory[I].Group, false);
-
-	}
 
 }
 

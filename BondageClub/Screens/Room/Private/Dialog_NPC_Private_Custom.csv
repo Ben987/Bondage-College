@@ -142,6 +142,14 @@ PlayerMustKneel,,,"Girl, what are you doing standing up?  Get on your knees.",,,
 PlayerMustKneel,,,"(She looks at you and grins.)  My precious slave, you should know better than standing up in front of me.  Get on your knees.",,,PlayerMustKneel,Serious|Peaceful
 PlayerMustKneel,,,Foolish slave girl!  Don't you know your social status and fucking etiquette?  On your knees!,,,PlayerMustKneel,Rude|Wise
 PlayerMustKneel,,,"(She licks her lips.)  Hey sexy sub, you know what would turn me on?  To see you on your knees.",,,PlayerMustKneel,Playful|Horny
+OwnerBeepSuccess,,,"(She looks pleased.)  Well done my submissive, I've called you and you've came right on time.",,,OwnerBeepSuccess,
+OwnerBeepSuccess,,,"(She crosses her arms and nods her head slowly in approval.)  Well done slave, you're on time.",,,OwnerBeepSuccess,Serious|Peaceful
+OwnerBeepSuccess,,,(She checks the clock and nods.)  Right on time bitch.  I knew you would make it.,,,OwnerBeepSuccess,Rude|Wise
+OwnerBeepSuccess,,,"(She claps her hands happily.)  Subbie, subbie, subbie, you're right on time my sexy subbie!",,,OwnerBeepSuccess,Playful|Horny
+OwnerBeepFail,,,"(She looks angry.)  Little submissive, when I call you, you need to come quicker.",,,OwnerBeepFail,
+OwnerBeepFail,,,"(She slaps your face.)  Slave!  When I beep you, you need to come here quicker.",,,OwnerBeepFail,Serious|Violent
+OwnerBeepFail,,,"Slut!  When I'm wet and I fucking beep your cunt, you better come faster.",,,OwnerBeepFail,Rude|Horny
+OwnerBeepFail,,,"(She shakes her head from left to right.)  My girl, it's very disapointing when I summon you and you don't come in a timely manner.",,,OwnerBeepFail,Wise|Peaceful
 0,,,Will you let me out of the cage?,,IsCaged(),IntroCage,
 0,,,I love this cage you've found for me.  Too bad there's not enough room for two.,,IsCaged(),IntroCage,Submissive|Horny
 0,,,Enough!  Get me out of that fucking cage!,,IsCaged(),IntroCage,Dominant|Rude
@@ -281,7 +289,6 @@ PlayerMustKneel,,,"(She licks her lips.)  Hey sexy sub, you know what would turn
 11,0,Get fully dressed.,(She nods and makes sure she's wearing all her clothes.)  I hope it looks fine.,"Change(""Cloth"")",,,
 11,0,Get in your underwear.,(She nods and makes sure she's wearing only her underwear.)  I'm not sure where this is going.,"Change(""Underwear"")",,,
 11,0,Get naked.,(She blushes and gets fully naked.)  Something kinky is brewing!,"Change(""Naked"")",,,
-11,0,I'll pick out new clothes for you.,,"Change(""Custom"")",,,
 11,0,Stay like that.,Alright.  What would you like to do then?,,,,
 12,0,"Yes, get out.  (Kick her out.)",,KickOut(),,,
 12,0,"No, you can stay.",(She seems confused.)  Alright.  What would you like to do?,NPCInteraction(-5),,CancelKickOut,
@@ -528,6 +535,18 @@ PlayerMustKneel,,,"(She licks her lips.)  Hey sexy sub, you know what would turn
 1019,1010,Let's continue the trial Mistress.,You've got me scared for a while.  I'm happy you've changed your mind my sub.,NPCInteraction(-5),,DomDontStopTrial,
 1019,1010,Let's continue the trial Mistress.,"Very good my submissive.  If you're scared or unsure, we can always talk about it.",NPCInteraction(-5),,DomDontStopTrial,Serious
 1019,1010,Let's continue the trial Mistress.,Great!  I can't wait to collar you my subbie.,NPCInteraction(-5),,DomDontStopTrial,Playful
+1020,1021,Greetings.  Do you need anything Mistress?,"Yes, I wanted to see you and spend some time with you.","DialogChangeReputation(""Dominant"", -1)",,,
+1020,1021,I was about to come inside anyway.,"Very well, I wanted to see you and spend some time with you.","DialogChangeReputation(""Dominant"", 1)",,,
+1020,1021,What's going on Mistress?,I wanted to see you and spend some time with you.,,,,
+1020,1021,Of course Mistress.  There's nothing more important than you.,"Good girl, I wanted to see you and spend some time with you.","DialogChangeReputation(""Dominant"", -3)",,,
+1020,1021,(Nod happily.),I wanted to see you and spend some time with you.,,,,
+1021,,What would you like to do?,,StartActivity(),Player.CanTalk(),,
+1021,,(Nod slowly.),,StartActivity(),!Player.CanTalk(),,
+1030,Punish,"Sorry Mistress, I was kind of tied up.","Sorry or not, you're late and you must be punished.",,,,
+1030,Punish,I had something more important to do.,Nothing should be more important than your Mistress.  You must be punished.,"DialogChangeReputation(""Dominant"", 3)",,,
+1030,Punish,Oh my.  What's going on Mistress?,"Never mind what's going on, you must be punished.","DialogChangeReputation(""Dominant"", 1)",,,
+1030,Punish,I'm so sorry Mistress.  I've tried very hard to be on time.,"Sorry or not, you're late and you must be punished.","DialogChangeReputation(""Dominant"", -1)",,,
+1030,Punish,(Bow your head.),You're late and you must be punished.,,,,
 ActivityStop,,,Fine!  (She pushes you back.)  You can play without me girl.,,,DomActivityStop,
 ActivityStop,,,(She pushes you back.)  If you cannot obey then you're not worth my time.,,,DomActivityStop,Wise
 ActivityStop,,,(She pushes you back.)  Back off!,,,DomActivityStop,Dumb
@@ -797,6 +816,11 @@ PunishSleepCage,1001,Mistress!  This is torture!,"Nonsense.  You will wake up ev
 PunishSleepCage,1001,It might be hard to sleep in there.,"You'll get used to it.  You will wake up everyday in your cage, remembering who's your owner.",RunPunishment(0),,,
 PunishSleepCage,1001,I'm not sure I understand.,"It's easy, you will wake up everyday in your cage, remembering who's your owner.",RunPunishment(0),,,
 PunishSleepCage,1001,Very well Mistress.,"Good, you will wake up everyday in your cage, remembering who's your owner.",RunPunishment(1),,,
+PunishLockOutIntro,,,I'm locking you out of your room for an hour girl.  I hope it teaches you a lesson.  Get out!,,,,
+PunishLockOut,1000,(Leave the room in tears.),"Nonsense.  You will wake up everyday in your cage, remembering who's your owner.",RunPunishment(0),,,
+PunishLockOut,1000,(Grumble and leave the room.),,RunPunishment(-1),,,
+PunishLockOut,1000,I understand Mistress.  (Leave the room.),"It's easy, you will wake up everyday in your cage, remembering who's your owner.",RunPunishment(1),,,
+PunishLockOut,1000,Fine!  I'm leaving!  (Leave the room.),,RunPunishment(-3),,,
 2000,,,(She seems confused seeing you on your knees.)  Yes Mistress?,,DialogIsKneeling(Player),SubIntroPlayerKneeling,
 2000,,,(She seems confused seeing you on your knees.)  What the fuck?,,DialogIsKneeling(Player),SubIntroPlayerKneeling,Dominant|Rude
 2000,,,(She seems confused seeing you on your knees.)  Is everything alright Mistress?,,DialogIsKneeling(Player),SubIntroPlayerKneeling,Peaceful|Wise

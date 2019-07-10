@@ -132,12 +132,6 @@ Hair Band
 Haarband
 Beret
 Baskenmütze
-Ears Small
-Tierohren klein
-Ears Large
-Tierohren groß
-Pony Ears
-Pony-Ohren
 Hair Ribbon 1
 Haarschleife 1
 Maid Hairband
@@ -146,14 +140,34 @@ Nurse Cap
 Schwestern-Kappe
 Santa Hat
 Weihnachtsmütze
+Captain's Hat
+Kapitänsmütze
+Bunny Succubus 
+Hasen-Succubus
+Hair Accessory
+Haar-Accessoire
+Ears Small
+Tierohren klein
+Ears Large
+Tierohren groß
+Pony Ears
+Pony-Ohren
 Bunny Ears
 Hasenohren
 Floppy Bunny Ears
 Hängende Hasenohren
 Puppy Ears
 Hundeohren
-Captain's Hat
-Kapitänsmütze
+Succubus Horns
+Succubus-Hörner
+Horns
+Hörner
+Horns 2
+Hörner 2
+Horns 3
+Hörner 3
+Fox Ears Small
+Fuchsohren klein
 Gloves
 Handschuhe
 Short Gloves
@@ -172,6 +186,12 @@ Sunglasses 1
 Sonnenbrille 1
 Sunglasses 2
 Sonnenbrille 2
+Wings
+Flügel
+Succubus Feather 
+Succubus gefiedert
+Succubus Wings
+Succubus-Flügel
 Upper Body
 Oberkörper
 Small
@@ -262,6 +282,12 @@ Horse Butt Plug
 Pferdeschweif
 Puppy Butt Plug
 Hundeschwanz
+Succubus Butt Plug
+Succubus-Stöpsel
+Succubus Tail
+Succubus-Schwanz
+Fox Tails
+Fuchsschweife
 Pelvis
 Becken
 Metal Chastity Belt
@@ -378,10 +404,14 @@ Intricate Padlock
 Komplexes Vorhängeschloss
 Five Minutes Padlock
 Fünf-Minuten-Schloss
+Owner Padlock
+Besitzer-Schloss
 Metal Padlock Key
 Vorhängeschloss-Schlüssel
 Intricate Padlock Key
 Komplex-Schloss-Schlüssel
+Owner Padlock Key
+Besitzer-Schloss-Schlüssel
 Metal Cuffs Key
 Handschellenschlüssel
 Wooden Maid Tray
