@@ -11,6 +11,8 @@ Cancel
 Abbrechen
 Back to character
 Zurück zum Charakter
+View next items
+Weitere Items
 Remove the item
 Gegenstand entfernen
 Try to struggle out
@@ -81,6 +83,26 @@ deflates
 reduziert
 gag
 Knebel
+Delete
+Löschen
+Confirm
+Bestätigen
+Beep
+Biep
+Beep from
+Biep von
+in room
+im Raum
+<i>Private room</i>
+<i>Privater Raum</i>
+SourceCharacter is offering you to start a trial period as her submissive.  Click on her and manage your relationship to accept, don't do anything to refuse.
+SourceCharacter bietet dir eine Probezeit als ihre Sklavin an. Um dies zu akzeptieren, klicke sie an und bearbeite eure Beziehung. Zum Ablehnen musst du nichts tun.
+The Bondage Club is pleased to announce that SourceCharacter is starting a 3 days minimum trial period as a submissive.
+Es ist dem Bondage-Club eine Freude, die mindestens dreitägige Probezeit von SourceCharacter als Untergebene zu verkünden.
+SourceCharacter has prepared a great collaring ceremony.  A maid brings a slave collar, which her submissive must consent to wear.
+SourceCharacter hat eine fabelhafte Halsband-Zeremonie vorbereitet. Ein Hausmädchen bringt ein Sklavinnen-Halsband, das die Untergebene freien Willens annehmen muss.
+The Bondage Club is proud to announce that SourceCharacter is now fully collared.  Her fate is in her Mistress hands.
+Der Bondage-Club verkündet stolz, dass SourceCharacter nun ein ordnungsgemäßes Halsband trägt. Ihr Schicksal liegt in den Händen ihrer Herrin.
 Member number on lock:
 Mitglieds-ID auf dem Schloss:
 Time left:
@@ -99,6 +121,10 @@ Mit gefesselten Ellbogen ist eine Selbstbefreiung unmöglich
 "Für die Sicherheit Ihrer Liebsten"
 You can restart the timer but cannot unlock
 Das Schloss kann zurückgesetzt, aber nicht entfernt werden.
+"Never forget who you belong to"
+"Vergiss nie, wem du gehörst"
+Can only be locked or unlocked by her owner
+Kann nur von ihrer Besitzerin verwendet werden
 Detached
 Getrennt
 Bind wrists

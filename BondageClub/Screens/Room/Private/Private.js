@@ -12,7 +12,7 @@ var PrivateActivityCount = 0;
 var PrivateActivityAffectLove = true;
 var PrivateActivityList = ["Gag", "Ungag", "Restrain", "FullRestrain", "Release", "Tickle", "Spank", "Pet", "Slap", "Kiss", "Fondle", "Naked", "Underwear", "RandomClothes", "Shibari", "Gift"];
 var PrivatePunishment = "";
-var PrivatePunishmentList = ["Cage", "Bound", "BoundPet", "ChastityBelt", "ChastityBra", "ForceNaked", "ConfiscateKey", "ConfiscateCrop", "ConfiscateWhip", "SleepCage"];
+var PrivatePunishmentList = ["Cage", "Bound", "BoundPet", "ChastityBelt", "ChastityBra", "ForceNaked", "ConfiscateKey", "ConfiscateCrop", "ConfiscateWhip", "SleepCage", "LockOut"];
 var PrivateCharacterNewClothes = null;
 
 // Returns TRUE if a specific dialog option is allowed
@@ -186,6 +186,21 @@ function PrivateClickCharacter() {
 			NPCTraitDialog(PrivateCharacter[C]);
 			CharacterSetCurrent(PrivateCharacter[C]);
 
+			// If the owner has beeped the player
+			if ((CurrentCharacter.Stage == "1000") && (CurrentCharacter.Name == Player.Owner.replace("NPC-", "")) && LogQuery("OwnerBeepActive", "PrivateRoom")) {
+				if (LogQuery("OwnerBeepTimer", "PrivateRoom")) {
+					CurrentCharacter.Stage = "1020";
+					CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "OwnerBeepSuccess");
+					NPCLoveChange(CurrentCharacter, 8);
+				} else {
+					CurrentCharacter.Stage = "1030";
+					CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "OwnerBeepFail");
+					NPCLoveChange(CurrentCharacter, -10);
+				}
+				LogDelete("OwnerBeepActive", "PrivateRoom");
+				LogAdd("OwnerBeepTimer", "PrivateRoom", CurrentTime + 1800000);
+			}
+
 			// If the owner is serious, she might force the player to kneel
 			if ((CurrentCharacter.Stage == "1000") && (CurrentCharacter.Name == Player.Owner.replace("NPC-", "")) && !Player.IsKneeling() && Player.CanKneel() && (NPCTraitGet(CurrentCharacter, "Serious") >= Math.random() * 100 - 25)) {
 				CurrentCharacter.Stage = "1005";
@@ -314,6 +329,7 @@ function PrivateChange(NewCloth) {
 		PrivateNPCInteraction(10);
 		CharacterChangeMoney(Player, -100);
 		PrivateCharacterNewClothes = CurrentCharacter;
+		CurrentCharacter.Stage = "2000";
 		DialogLeave();
 		CharacterAppearanceLoadCharacter(PrivateCharacterNewClothes);
 	}
@@ -556,6 +572,7 @@ function PrivateSelectPunishment() {
 		if ((PrivatePunishment == "ConfiscateCrop") && (InventoryAvailable(Player, "LeatherCrop", "ItemPelvis") || InventoryAvailable(Player, "LeatherCrop", "ItemBreast"))) break;
 		if ((PrivatePunishment == "ConfiscateWhip") && (InventoryAvailable(Player, "LeatherWhip", "ItemPelvis") || InventoryAvailable(Player, "LeatherWhip", "ItemBreast"))) break;
 		if ((PrivatePunishment == "SleepCage") && LogQuery("Cage", "PrivateRoom") && !LogQuery("SleepCage", "Rule")) break;
+		if ((PrivatePunishment == "LockOut") && (NPCTraitGet(CurrentCharacter, "Serious") >= 0)) break;
 
 	}
 
@@ -581,6 +598,7 @@ function PrivateRunPunishment(LoveFactor) {
 	if (PrivatePunishment == "ConfiscateCrop") { InventoryDelete(Player, "LeatherCrop", "ItemPelvis"); InventoryDelete(Player, "LeatherCrop", "ItemBreast"); }
 	if (PrivatePunishment == "ConfiscateWhip") { InventoryDelete(Player, "LeatherWhip", "ItemPelvis"); InventoryDelete(Player, "LeatherWhip", "ItemBreast"); }
 	if (PrivatePunishment == "SleepCage") LogAdd("SleepCage", "Rule", CurrentTime + 604800000);
+	if (PrivatePunishment == "LockOut") { LogAdd("LockOutOfPrivateRoom", "Rule", CurrentTime + 3600000); CommonSetScreen("Room", "MainHall"); }
 }
 
 // Sets up the player collaring ceremony cutscene

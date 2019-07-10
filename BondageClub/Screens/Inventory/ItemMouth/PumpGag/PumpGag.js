@@ -42,6 +42,10 @@ function InventoryItemMouthPumpGagSetPump(Modifier) {
 	if (DialogFocusItem.Property.PumpLevel == 3) DialogFocusItem.Property.Effect = ["GagHeavy"];
 	if (DialogFocusItem.Property.PumpLevel == 4) DialogFocusItem.Property.Effect = ["GagTotal"];
 
+	// The more it's pumped, the harder it becomes to struggle out of it
+	if (DialogFocusItem.Property.PumpLevel == 0) delete DialogFocusItem.Property.Difficulty;
+	if (DialogFocusItem.Property.PumpLevel >= 1) DialogFocusItem.Property.Difficulty = DialogFocusItem.Property.PumpLevel * 2;
+
 	// Adds the lock effect back if it was padlocked
 	if ((DialogFocusItem.Property.LockedBy != null) && (DialogFocusItem.Property.LockedBy != "")) {
 		if (DialogFocusItem.Property.Effect == null) DialogFocusItem.Property.Effect = [];
