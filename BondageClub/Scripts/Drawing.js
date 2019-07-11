@@ -394,6 +394,54 @@ function DrawButton(Left, Top, Width, Height, Label, Color, Image, HoveringText)
 
 }
 
+// Draw a back & next button
+function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackText, NextText) {
+	var Split = Left + Width / 2;
+	// Draw the button rectangle (makes half of the background cyan colored if the mouse is over it)
+	MainCanvas.beginPath();
+	MainCanvas.rect(Left, Top, Width, Height);
+	MainCanvas.fillStyle = Color; 
+	MainCanvas.fillRect(Left, Top, Width, Height);
+	if((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile) {
+		MainCanvas.fillStyle = "Cyan";
+		if (MouseX > Split) {
+			MainCanvas.fillRect(Split, Top, Width / 2, Height);
+		} else {
+			MainCanvas.fillRect(Left, Top, Width / 2, Height);
+		}
+	}
+	//MainCanvas.fill();	
+	MainCanvas.lineWidth = '2';
+	MainCanvas.strokeStyle = 'black';
+	MainCanvas.stroke();
+	MainCanvas.closePath();
+
+	// Draw the text or image
+	DrawText(Label, Left + Width / 2, Top + (Height / 2) + 1, "black");
+	if ((Image != null) && (Image != "")) DrawImage(Image, Left + 2, Top + 2);
+
+	if (CommonIsMobile) return;
+
+	if (BackText == null) BackText = () => "MISSING VALUE FOR: BACK TEXT";
+	if (NextText == null) NextText = () => "MISSING VALUE FOR: NEXT TEXT";
+
+	// Draw the hovering text
+	if ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height)) {
+		Left = (MouseX > 1000) ? Left - 475 : Left + 115;
+		Top = Top + 12;
+		MainCanvas.beginPath();
+		MainCanvas.rect(Left, Top, 450, 65);
+		MainCanvas.fillStyle = "#FFFF88"; 
+		MainCanvas.fillRect(Left, Top, 450, 65);
+		MainCanvas.fill();	
+		MainCanvas.lineWidth = '2';
+		MainCanvas.strokeStyle = 'black';
+		MainCanvas.stroke();
+		MainCanvas.closePath();
+		DrawTextFit((MouseX > Split) ? NextText(): BackText(), Left + 225, Top + 33, 444, "black");
+	}
+}
+
 // Draw a basic empty rectangle
 function DrawEmptyRect(Left, Top, Width, Height, Color) {
 	MainCanvas.beginPath();

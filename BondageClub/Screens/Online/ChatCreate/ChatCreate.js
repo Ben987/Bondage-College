@@ -3,6 +3,7 @@ var ChatCreateBackground = "IntroductionDark";
 var ChatCreateResult = [];
 var ChatCreateMessage = "";
 var ChatCreatePrivate = false;
+var ChatCreateBackgroundIndex = 0;
 var ChatCreateBackgroundSelect = "Introduction";
 var ChatCreateBackgroundList = ["Introduction", "KidnapLeague", "MaidQuarters", "MainHall", "Management", "Private", "Shibari", "Bedroom", "HorseStable", "Nursery", "PrisonHall", "PaddedCell", "BDSMRoomBlue", "BDSMRoomPurple", "BDSMRoomRed"];
 
@@ -31,7 +32,9 @@ function ChatCreateRun() {
 	DrawText(TextGet("RoomSize"), 930, 568, "White", "Gray");
 	ElementPosition("InputSize", 1400, 560, 150);
 	DrawText(TextGet("RoomBackground"), 850, 672, "White", "Gray");
-	DrawButton(1100, 640, 350, 65, ChatCreateBackgroundSelect, "White");
+	DrawBackNextButton(1100, 640, 350, 65, ChatCreateBackgroundSelect, "White", null, 
+		() => ChatCreateBackgroundIndex == 0 ? ChatCreateBackgroundList[ChatCreateBackgroundList.length - 1] : ChatCreateBackgroundList[ChatCreateBackgroundIndex - 1],
+		() => ChatCreateBackgroundIndex >= ChatCreateBackgroundList.length ? ChatCreateBackgroundList[0] : ChatCreateBackgroundList[ChatCreateBackgroundIndex + 1]);
 	DrawButton(600, 800, 300, 65, TextGet("Create"), "White");
 	DrawButton(1100, 800, 300, 65, TextGet("Cancel"), "White");
 
@@ -45,10 +48,10 @@ function ChatCreateClick() {
 
 	// When we select a new background
 	if ((MouseX >= 1100) && (MouseX < 1450) && (MouseY >= 640) && (MouseY < 705)) {
-		var I = ChatCreateBackgroundList.indexOf(ChatCreateBackgroundSelect) + (MouseX < 1275 ? -1 : 1);
-		if (I >= ChatCreateBackgroundList.length) I = 0;
-		if (I < 0) I = ChatCreateBackgroundList.length - 1;
-		ChatCreateBackgroundSelect = ChatCreateBackgroundList[I];
+		ChatCreateBackgroundIndex += ((MouseX < 1275 && !CommonIsMobile) ? -1 : 1);
+		if (ChatCreateBackgroundIndex >= ChatCreateBackgroundList.length) ChatCreateBackgroundIndex = 0;
+		if (ChatCreateBackgroundIndex < 0) ChatCreateBackgroundIndex = ChatCreateBackgroundList.length - 1;
+		ChatCreateBackgroundSelect = ChatCreateBackgroundList[ChatCreateBackgroundIndex];
 		ChatCreateBackground = ChatCreateBackgroundSelect + "Dark";
 	}
 
