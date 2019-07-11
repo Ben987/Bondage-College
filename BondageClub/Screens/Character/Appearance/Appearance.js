@@ -434,6 +434,7 @@ function CharacterAppearanceSetItem(C, Group, ItemAsset, NewColor, DifficultyFac
 function CharacterAppearanceNextItem(C, Group, Forward, Description) {	
 	var Current = CharacterAppearanceGetCurrentValue(C, Group, "Name");
 	var CAA = CharacterAppearanceAssets.filter(a => a.Group.Name == Group);
+	if (Description == true && CAA.length == 0) return "None";
 	if (Current != "None") {
 		// If we found the item we move forward or backward if possible
 		var I = CAA.findIndex(a => a.Name == Current);
@@ -453,7 +454,6 @@ function CharacterAppearanceNextItem(C, Group, Forward, Description) {
 			}
 		}
 	}
-	if (Description == true && CAA.length == 0) return "None";
 	// Since we didn't found any item, we pick "None" if we had an item or the first or last item
 	var AG = AssetGroup.find(g => g.Name == Group);
 	if (Current != "None" && AG != null && AG.AllowNone) {

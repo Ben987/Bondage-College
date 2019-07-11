@@ -410,7 +410,6 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 			MainCanvas.fillRect(Left, Top, Width / 2, Height);
 		}
 	}
-	//MainCanvas.fill();	
 	MainCanvas.lineWidth = '2';
 	MainCanvas.strokeStyle = 'black';
 	MainCanvas.stroke();
