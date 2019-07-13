@@ -568,6 +568,12 @@ var AssetFemale3DCG = [
 		Zone: [[150, 160, 200, 50]],
 		Asset: [ 
 			{ Name: "ClothGag", Extended: true, Difficulty: -4, Value: 25, Time: 10, AllowEffect: ["GagLight"] },
+			{ Name: "WiffleGag", Effect: ["GagHeavy"], Difficulty: 1, Value: 35, Time: 10, AllowLock: false, 
+				Layer: [
+					{ Name: "Strap", AllowColorize: false },
+					{ Name: "Ball", AllowColorize: true }
+				]
+			},
 			{ Name: "HarnessBallGag", Effect: ["GagHeavy"], Difficulty: 4, Value: 60, Time: 20, AllowLock: true,
 				Layer: [
 					{ Name: "Harness", AllowColorize: false },
