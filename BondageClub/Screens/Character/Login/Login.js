@@ -180,7 +180,7 @@ function LoginResponse(C) {
 				CommonSetScreen("Room", "Private");
 			} else CommonSetScreen("Room", "MainHall");
 			
-			if(LogQuery("JoinedSorority", "Maid") && !InventoryContains(Player, "MaidOutfit2")){
+			if(LogQuery("JoinedSorority", "Maid") && !InventoryAvailable(Player, "MaidOutfit2", "Cloth")){
 				InventoryAdd(Player, "MaidOutfit2", "Cloth");
 			}
 		} else LoginMessage = TextGet("ErrorLoadingCharacterData");

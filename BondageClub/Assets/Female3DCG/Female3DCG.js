@@ -27,7 +27,7 @@ var AssetFemale3DCG = [
 			{ Name: "AdultBabyDress2", Hide: ["ClothLower"], Value: 200 },
 			{ Name: "AdultBabyDress3", Hide: ["ClothLower"], Value: 200 },
 			{ Name: "NurseUniform", Hide: ["ClothLower"], Value: -1 },
-			{ Name: "BunnyCollarCuffs", Value: 10 , Effect: ["ExposedBreasts"]},
+			{ Name: "BunnyCollarCuffs", Value: 10 , Effect: ["ExposedBreasts", "ExposedTorso"]},
 			{ Name: "Robe1", Value: 50 }
 		]
 	},
@@ -44,8 +44,8 @@ var AssetFemale3DCG = [
 		Left: 125,
 		Top: 400,
 		Asset: [
-			{ Name: "Skirt1" },
-			{ Name: "TennisSkirt1", ParentItem: "TennisShirt1" },
+			{ Name: "Skirt1", Effect: ["ExposedVulva"] },
+			{ Name: "TennisSkirt1", ParentItem: "TennisShirt1", Effect: ["ExposedVulva"] },
 			{ Name: "Jeans1" },
 			{ Name: "Shorts1" },
 			{ Name: "MistressBottom", Hide: ["Panties"], Value: -1 }
@@ -71,7 +71,7 @@ var AssetFemale3DCG = [
 			{ Name: "Corset1", Value: 30, Hide: ["ItemNipples"] },
 			{ Name: "Corset2", Value: 30, Hide: ["ItemNipples"] },
 			{ Name: "Corset3", Value: 30, Hide: ["ItemNipples"] },
-			{ Name: "Corset4", Value: 30 },
+			{ Name: "Corset4", Value: 30, Effect: ["ExposedBreasts"]},
 			{ Name: "Swimsuit1", Value: 20, Hide: ["Panties", "ItemNipples"] },
 			{ Name: "Swimsuit2", Value: 25, Hide: ["Panties", "ItemNipples"] },
 			{ Name: "BunnySuit", Value: 30, Hide: ["Panties", "ItemNipples"] }
@@ -116,7 +116,7 @@ var AssetFemale3DCG = [
 			"Socks1", "Socks2", "Socks3", "Socks4", "Socks5", "Stockings1", "Stockings2",
 			{ Name: "Stockings3", Value: 10 },
 			{ Name: "Stockings4", Value: 10 },
-			{ Name: "Pantyhose1", Value: 10, Priority: 13 }
+			{ Name: "Pantyhose1", Value: 10, Priority: 13 , Effect: ["BlockedVulva"]}
 		]
 	},
 	

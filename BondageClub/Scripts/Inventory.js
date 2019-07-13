@@ -73,9 +73,16 @@ function InventoryAvailable(C, InventoryName, InventoryGroup) {
 function InventoryAllow(C, Prerequisite) {
 	if (Prerequisite == null) return true;
 	var curCloth = InventoryGet(C, "Cloth");
-	if ((Prerequisite == "AccessTorso") && (curCloth != null)) { DialogSetText("RemoveClothesForItem"); return false; }
-	if ((Prerequisite == "AccessBreast") && ((curCloth != null) &&!(InventoryItemHasEffect(curCloth,"ExposedBreasts")) || (InventoryGet(C, "Bra") != null))) { DialogSetText("RemoveClothesForItem"); return false; }
-	if ((Prerequisite == "AccessVulva") && ((InventoryGet(C, "Cloth") != null) || (InventoryGet(C, "ClothLower") != null) || (InventoryGet(C, "Panties") != null))) { DialogSetText("RemoveClothesForItem"); return false; }
+	if ((Prerequisite == "AccessTorso") && //if items have ExposedBreasts, they do no trigger the error text
+			(curCloth != null && !InventoryItemHasEffect(curCloth,"ExposedTorso"))) { DialogSetText("RemoveClothesForItem"); return false; }
+	if ((Prerequisite == "AccessBreast") && //if items have ExposedBreasts, they do no trigger the error text
+			((curCloth != null && !InventoryItemHasEffect(curCloth,"ExposedBreasts")) 
+			|| (InventoryGet(C, "Bra") != null && !InventoryItemHasEffect(InventoryGet(C, "Bra"), "ExposedBreasts")))) { DialogSetText("RemoveClothesForItem"); return false; }
+	if ((Prerequisite == "AccessVulva") && //Clothes and Socks only block if they have BlockedVulva. if lower and patnies have ExposedVulva, they do no trigger the error text
+			((curCloth != null && InventoryItemHasEffect(curCloth,"BlockedVulva")) 
+			|| (InventoryGet(C, "ClothLower") != null && !InventoryItemHasEffect(InventoryGet(C, "ClothLower"),"ExposedVulva")) 
+			|| (InventoryGet(C, "Panties") != null && !InventoryItemHasEffect(InventoryGet(C, "Panties"),"ExposedVulva")))
+			|| (InventoryGet(C, "Socks") != null && InventoryItemHasEffect(InventoryGet(C, "Socks"),"BlockedVulva"))) { DialogSetText("RemoveClothesForItem"); return false; }
 	if (Prerequisite == "NotSuspended" && C.Pose.indexOf("Suspension") >= 0) { DialogSetText("RemoveSuspensionForItem"); return false; }
 	return true;
 }
@@ -240,15 +247,4 @@ function InventoryFullLockRandom(C, FromOwner) {
 	for (var I = 0; I < C.Appearance.length; I++)
 		if (C.Appearance[I].Asset.AllowLock && (InventoryGetLock(C.Appearance[I]) == null))
 			InventoryLockRandom(C, C.Appearance[I], FromOwner);
-}
-
-
-// Checks if a character inventory contains a specific named item
-function InventoryContains(C, ItemName){
-	for(var I = 0; I < C.Inventory.length; I++){
-		if(C.Inventory[I].Name == ItemName){
-			return true;
-		}
-	}
-	return false;
 }
