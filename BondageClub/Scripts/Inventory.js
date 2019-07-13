@@ -74,15 +74,15 @@ function InventoryAllow(C, Prerequisite) {
 	if (Prerequisite == null) return true;
 	var curCloth = InventoryGet(C, "Cloth");
 	if ((Prerequisite == "AccessTorso") && //if items have ExposedBreasts, they do no trigger the error text
-			(curCloth != null && !InventoryItemHasEffect(curCloth,"ExposedTorso"))) { DialogSetText("RemoveClothesForItem"); return false; }
+			(curCloth != null && !curCloth.Asset.Expose.includes("ItemTorso"))) { DialogSetText("RemoveClothesForItem"); return false; }
 	if ((Prerequisite == "AccessBreast") && //if items have ExposedBreasts, they do no trigger the error text
-			((curCloth != null && !InventoryItemHasEffect(curCloth,"ExposedBreasts")) 
-			|| (InventoryGet(C, "Bra") != null && !InventoryItemHasEffect(InventoryGet(C, "Bra"), "ExposedBreasts")))) { DialogSetText("RemoveClothesForItem"); return false; }
+			((curCloth != null && !curCloth.Asset.Expose.includes("ItemBreast"))
+			|| (InventoryGet(C, "Bra") != null && !InventoryGet(C, "Bra").Asset.Expose.includes("ItemBreast")))) { DialogSetText("RemoveClothesForItem"); return false; }
 	if ((Prerequisite == "AccessVulva") && //Clothes and Socks only block if they have BlockedVulva. if lower and patnies have ExposedVulva, they do no trigger the error text
-			((curCloth != null && InventoryItemHasEffect(curCloth,"BlockedVulva")) 
-			|| (InventoryGet(C, "ClothLower") != null && !InventoryItemHasEffect(InventoryGet(C, "ClothLower"),"ExposedVulva")) 
-			|| (InventoryGet(C, "Panties") != null && !InventoryItemHasEffect(InventoryGet(C, "Panties"),"ExposedVulva")))
-			|| (InventoryGet(C, "Socks") != null && InventoryItemHasEffect(InventoryGet(C, "Socks"),"BlockedVulva"))) { DialogSetText("RemoveClothesForItem"); return false; }
+			((curCloth != null && curCloth.Asset.Block.includes("ItemVulva")) 
+			|| (InventoryGet(C, "ClothLower") != null && !InventoryGet(C, "ClothLower").Asset.Expose.includes("ItemVulva")) 
+			|| (InventoryGet(C, "Panties") != null && !InventoryGet(C, "Panties").Asset.Expose.includes("ItemVulva"))
+			|| (InventoryGet(C, "Socks") != null && InventoryGet(C, "Socks").Asset.Block.includes("ItemVulva")))) { DialogSetText("RemoveClothesForItem"); return false; }
 	if (Prerequisite == "NotSuspended" && C.Pose.indexOf("Suspension") >= 0) { DialogSetText("RemoveSuspensionForItem"); return false; }
 	return true;
 }
@@ -146,8 +146,8 @@ function InventoryRemove(C, AssetGroup) {
 // Returns TRUE if the currently worn item is blocked by another item (hoods blocks gags, belts blocks eggs, etc.)
 function InventoryGroupIsBlocked(C) {
 	for (var E = 0; E < C.Appearance.length; E++) {
-		if ((C.Appearance[E].Asset.Block != null) && (C.Appearance[E].Asset.Block.indexOf(C.FocusGroup.Name) >= 0)) return true;
-		if ((C.Appearance[E].Property != null) && (C.Appearance[E].Property.Block != null) && (C.Appearance[E].Property.Block.indexOf(C.FocusGroup.Name) >= 0)) return true;
+		if (!(C.Appearance[E].Asset.Group.Clothing) && (C.Appearance[E].Asset.Block != null) && (C.Appearance[E].Asset.Block.includes(C.FocusGroup.Name))) return true;
+		if (!(C.Appearance[E].Asset.Group.Clothing) && (C.Appearance[E].Property != null) && (C.Appearance[E].Property.Block != null) && (C.Appearance[E].Property.Block.indexOf(C.FocusGroup.Name) >= 0)) return true;
 	}
 	return false;
 }
