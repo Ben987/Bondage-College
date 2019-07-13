@@ -72,8 +72,9 @@ function InventoryAvailable(C, InventoryName, InventoryGroup) {
 // Returns TRUE if we can equip the item
 function InventoryAllow(C, Prerequisite) {
 	if (Prerequisite == null) return true;
-	if ((Prerequisite == "AccessTorso") && (InventoryGet(C, "Cloth") != null)) { DialogSetText("RemoveClothesForItem"); return false; }
-	if ((Prerequisite == "AccessBreast") && ((InventoryGet(C, "Cloth") != null) || (InventoryGet(C, "Bra") != null))) { DialogSetText("RemoveClothesForItem"); return false; }
+	var curCloth = InventoryGet(C, "Cloth");
+	if ((Prerequisite == "AccessTorso") && (curCloth != null)) { DialogSetText("RemoveClothesForItem"); return false; }
+	if ((Prerequisite == "AccessBreast") && ((curCloth != null) &&!(InventoryItemHasEffect(curCloth,"ExposedBreasts")) || (InventoryGet(C, "Bra") != null))) { DialogSetText("RemoveClothesForItem"); return false; }
 	if ((Prerequisite == "AccessVulva") && ((InventoryGet(C, "Cloth") != null) || (InventoryGet(C, "ClothLower") != null) || (InventoryGet(C, "Panties") != null))) { DialogSetText("RemoveClothesForItem"); return false; }
 	if (Prerequisite == "NotSuspended" && C.Pose.indexOf("Suspension") >= 0) { DialogSetText("RemoveSuspensionForItem"); return false; }
 	return true;
@@ -239,4 +240,15 @@ function InventoryFullLockRandom(C, FromOwner) {
 	for (var I = 0; I < C.Appearance.length; I++)
 		if (C.Appearance[I].Asset.AllowLock && (InventoryGetLock(C.Appearance[I]) == null))
 			InventoryLockRandom(C, C.Appearance[I], FromOwner);
+}
+
+
+// Checks if a character inventory contains a specific named item
+function InventoryContains(C, ItemName){
+	for(var I = 0; I < C.Inventory.length; I++){
+		if(C.Inventory[I].Name == ItemName){
+			return true;
+		}
+	}
+	return false;
 }

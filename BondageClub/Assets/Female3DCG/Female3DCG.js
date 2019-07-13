@@ -12,6 +12,7 @@ var AssetFemale3DCG = [
 		Asset: [ 
 			{ Name: "CollegeOutfit1", Hide: ["ClothLower", "ItemNeck"], Value: -1 },
 			{ Name: "MaidOutfit1", Hide: ["ClothLower"], Value: -1 },
+			{ Name: "MaidOutfit2", Hide: ["ClothLower"], Value: -1, Effect: ["ExposedBreasts"] },
 			{ Name: "StudentOutfit1", Hide: ["ClothLower", "ItemNeck"] },
 			{ Name: "StudentOutfit2", Hide: ["ClothLower"], HideItem: ["ItemArmsLeatherCuffs"] },
 			{ Name: "BabydollDress1", Hide: ["ClothLower"] },
@@ -26,7 +27,7 @@ var AssetFemale3DCG = [
 			{ Name: "AdultBabyDress2", Hide: ["ClothLower"], Value: 200 },
 			{ Name: "AdultBabyDress3", Hide: ["ClothLower"], Value: 200 },
 			{ Name: "NurseUniform", Hide: ["ClothLower"], Value: -1 },
-			{ Name: "BunnyCollarCuffs", Value: 10 },
+			{ Name: "BunnyCollarCuffs", Value: 10 , Effect: ["ExposedBreasts"]},
 			{ Name: "Robe1", Value: 50 }
 		]
 	},
