@@ -378,8 +378,8 @@ function DrawButton(Left, Top, Width, Height, Label, Color, Image, HoveringText)
 	
 	// Draw the hovering text
 	if ((HoveringText != null) && (MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile) {
-		Left = (MouseX > 1000) ? Left - 475 : Left + 115;
-		Top = Top + 12;
+		Left = (MouseX > 1000) ? Left - 475 : Left + Width + 25;
+		Top = Top + (Height - 65) / 2;
 		MainCanvas.beginPath();
 		MainCanvas.rect(Left, Top, 450, 65);
 		MainCanvas.fillStyle = "#FFFF88"; 
@@ -396,8 +396,9 @@ function DrawButton(Left, Top, Width, Height, Label, Color, Image, HoveringText)
 
 // Draw a back & next button
 function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackText, NextText) {
-	var Split = Left + Width / 2;
+
 	// Draw the button rectangle (makes half of the background cyan colored if the mouse is over it)
+	var Split = Left + Width / 2;
 	MainCanvas.beginPath();
 	MainCanvas.rect(Left, Top, Width, Height);
 	MainCanvas.fillStyle = Color; 
@@ -414,20 +415,39 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 	MainCanvas.strokeStyle = 'black';
 	MainCanvas.stroke();
 	MainCanvas.closePath();
-
+	
 	// Draw the text or image
-	DrawText(Label, Left + Width / 2, Top + (Height / 2) + 1, "black");
+	DrawTextFit(Label, Left + Width / 2, Top + (Height / 2) + 1, (CommonIsMobile) ? Width - 6 : Width - 36, "Black");	
 	if ((Image != null) && (Image != "")) DrawImage(Image, Left + 2, Top + 2);
 
+	// PC only section
 	if (CommonIsMobile) return;
+
+	// Draw the back arrow 
+	MainCanvas.beginPath();
+	MainCanvas.fillStyle = "black"; 
+	MainCanvas.moveTo(Left + 15, Top + Height / 5);
+	MainCanvas.lineTo(Left + 5, Top + Height / 2);
+	MainCanvas.lineTo(Left + 15, Top + Height - Height / 5);
+	MainCanvas.stroke();
+	MainCanvas.closePath();	
+
+	// Draw the next arrow 
+	MainCanvas.beginPath();
+	MainCanvas.fillStyle = "black"; 
+	MainCanvas.moveTo(Left + Width - 15, Top + Height / 5);
+	MainCanvas.lineTo(Left + Width - 5, Top + Height / 2);
+	MainCanvas.lineTo(Left + Width - 15, Top + Height - Height / 5);
+	MainCanvas.stroke();
+	MainCanvas.closePath();	
 
 	if (BackText == null) BackText = () => "MISSING VALUE FOR: BACK TEXT";
 	if (NextText == null) NextText = () => "MISSING VALUE FOR: NEXT TEXT";
 
 	// Draw the hovering text
 	if ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height)) {
-		Left = (MouseX > 1000) ? Left - 475 : Left + 115;
-		Top = Top + 12;
+		Left = (MouseX > 1000) ? Left - 475 : Left + Width + 25;
+		Top = Top + (Height - 65) / 2;
 		MainCanvas.beginPath();
 		MainCanvas.rect(Left, Top, 450, 65);
 		MainCanvas.fillStyle = "#FFFF88"; 

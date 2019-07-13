@@ -216,17 +216,9 @@ function LoginClick() {
 		CharacterAppearanceLoadCharacter(Player);
 	}
 	
-	// If we must try to login (make sure we don't send the login query twice)
-	if ((MouseX >= 775) && (MouseX <= 975) && (MouseY >= 500) && (MouseY <= 560) && (LoginMessage != TextGet("ValidatingNamePassword"))) {
-		var Name = ElementValue("InputName");
-		var Password = ElementValue("InputPassword");
-		var letters = /^[a-zA-Z0-9]+$/;
-		if (Name.match(letters) && Password.match(letters) && (Name.length > 0) && (Name.length <= 20) && (Password.length > 0) && (Password.length <= 20)) {
-			LoginMessage = TextGet("ValidatingNamePassword");
-			ServerSend("AccountLogin", { AccountName: Name, Password: Password } );
-		}
-		else
-			LoginMessage = TextGet("InvalidNamePassword");
+	// Try to login
+	if ((MouseX >= 775) && (MouseX <= 975) && (MouseY >= 500) && (MouseY <= 560)) {
+		LoginDoLogin();
 	}
 
 	// If we must change the language
@@ -237,4 +229,26 @@ function LoginClick() {
 		LoginMessage = "";
 	}
 	
+}
+
+// When the user press "enter" we try to login
+function LoginKeyDown() {
+	if (KeyPress == 13) {
+		LoginDoLogin();
+	}
+}
+
+// If we must try to login (make sure we don't send the login query twice)
+function LoginDoLogin() {
+	if (LoginMessage != TextGet("ValidatingNamePassword")) {
+		var Name = ElementValue("InputName");
+		var Password = ElementValue("InputPassword");
+		var letters = /^[a-zA-Z0-9]+$/;
+		if (Name.match(letters) && Password.match(letters) && (Name.length > 0) && (Name.length <= 20) && (Password.length > 0) && (Password.length <= 20)) {
+			LoginMessage = TextGet("ValidatingNamePassword");
+			ServerSend("AccountLogin", { AccountName: Name, Password: Password });
+		} else {
+			LoginMessage = TextGet("InvalidNamePassword");
+		}
+	}
 }

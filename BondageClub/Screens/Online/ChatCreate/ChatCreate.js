@@ -57,6 +57,7 @@ function ChatCreateClick() {
 
 	// If the user wants to create a room
 	if ((MouseX >= 600) && (MouseX < 900) && (MouseY >= 800) && (MouseY < 865)) {
+		ChatRoomPlayerCanJoin = true;
 		var NewRoom = {
 			Name: ElementValue("InputName").trim(),
 			Description: ElementValue("InputDescription").trim(),

@@ -550,17 +550,22 @@ function CharacterSetFacialExpression(C, AssetGroup, Expression) {
 }
 
 // Switches to the next facial expression for the given character's AssetGroup
-function CharacterCycleFacialExpression(C, AssetGroup) {
-	for (var A = 0; A < C.Appearance.length; A++) {
-		if ((C.Appearance[A].Asset.Group.Name == AssetGroup) && (C.Appearance[A].Asset.Group.AllowExpression) && (C.Appearance[A].Asset.Group.AllowExpression.length)) {
-			if (!C.Appearance[A].Property) C.Appearance[A].Property = {};
-			var Index = C.Appearance[A].Asset.Group.AllowExpression.indexOf(C.Appearance[A].Property.Expression);
-			if (Index + 1 >= C.Appearance[A].Asset.Group.AllowExpression.length) {
-				CharacterSetFacialExpression(C, AssetGroup, null);
-			} else {
-				CharacterSetFacialExpression(C, AssetGroup, C.Appearance[A].Asset.Group.AllowExpression[Index + 1]);
-			}
-		}
+function CharacterCycleFacialExpression(C, AssetGroup, Forward, Description) {
+	var A = C.Appearance.find(a => a.Asset.Group.Name == AssetGroup && a.Asset.Group.AllowExpression && a.Asset.Group.AllowExpression.length);
+	if (A == null) return;
+	if (!A.Property) A.Property = {};
+	var I = A.Asset.Group.AllowExpression.indexOf(A.Property.Expression);
+	let DoNext = expression => {
+		if (Description == true) return expression == null ? DialogFind(Player, "FacialExpressionNone") : DialogFind(Player, "FacialExpression" + expression);
+		CharacterSetFacialExpression(C, AssetGroup, expression);
+	}
+	if (Forward == null || Forward) {
+		if (I + 1 >= A.Asset.Group.AllowExpression.length) return DoNext(null);
+		return DoNext(A.Asset.Group.AllowExpression[I + 1]);
+	} else {
+		if (I == 0) return DoNext(null);
+		if (I < 0) return DoNext(A.Asset.Group.AllowExpression[A.Asset.Group.AllowExpression.length - 1]);
+		return DoNext(A.Asset.Group.AllowExpression[I - 1]);
 	}
 }
 

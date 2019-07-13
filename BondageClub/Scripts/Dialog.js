@@ -623,7 +623,7 @@ function DialogClick() {
 			var PA = Player.Appearance[I];
 			if (!PA.Asset.Group.AllowExpression || !PA.Asset.Group.AllowExpression.length) continue;
 			if ((MouseY >= 125 + 105 * Counter) && (MouseY <= (125 + 105 * Counter) + 75))
-				CharacterCycleFacialExpression(Player, PA.Asset.Group.Name);
+				CharacterCycleFacialExpression(Player, PA.Asset.Group.Name, (MouseX > 250 || CommonIsMobile));
 			Counter++;
 		}
 	}
@@ -826,7 +826,16 @@ function DialogDrawExpressionMenu() {
 	for (var I = 0; I < Player.Appearance.length; I++) {
 		var PA = Player.Appearance[I];
 		if (!PA.Asset.Group.AllowExpression || !PA.Asset.Group.AllowExpression.length) continue;
-		DrawButton(25, 125 + 105 * Counter, 450, 75, PA.Asset.Group.Description, "White");
+		var expr = (PA.Property != null && PA.Property.Expression != null) ? PA.Property.Expression : "None"
+		var expr = DialogFind(Player, "FacialExpression" + expr);
+		if (PA.Asset.Group.AllowExpression.length > 1) {
+			DrawBackNextButton(25, 125 + 105 * Counter, 450, 75, PA.Asset.Group.Description + ": " + expr, "White", null, 
+				() => CharacterCycleFacialExpression(Player, PA.Asset.Group.Name, false, true),
+				() => CharacterCycleFacialExpression(Player, PA.Asset.Group.Name, true, true));
+		} else {
+			var next = (PA.Property != null && PA.Property.Expression != null) ? DialogFind(Player, "FacialExpressionNone") : DialogFind(Player, "FacialExpression" + PA.Asset.Group.AllowExpression[0]); 
+			DrawButton(25, 125 + 105 * Counter, 450, 75, PA.Asset.Group.Description + ": " + expr, "White", null, next);
+		}
 		Counter++;
 	}
 }
