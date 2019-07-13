@@ -184,7 +184,7 @@ function DialogMenuButtonBuild(C) {
 
 	// Main buttons
 	if (DialogProgress < 0) {
-		if (DialogInventory.length >= 12) DialogMenuButton.push("Next");
+		if (DialogInventory.length > 12) DialogMenuButton.push("Next");
 		if (InventoryItemHasEffect(Item, "Lock", true) && DialogCanUnlock(C, Item) && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C) && (Player.CanInteract() || ((C.ID == 0) && InventoryItemHasEffect(Item, "Block", true)))) DialogMenuButton.push("Unlock");
 		if ((Item != null) && (C.ID == 0) && (!Player.CanInteract() || (InventoryItemHasEffect(Item, "Lock", true) && !DialogCanUnlock(C, Item))) && (DialogMenuButton.indexOf("Unlock") < 0) && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Struggle");
 		if (InventoryItemHasEffect(Item, "Lock", true) && !Player.IsBlind() && (Item.Property != null) && (Item.Property.LockedBy != null) && (Item.Property.LockedBy != "")) DialogMenuButton.push("InspectLock");
@@ -231,8 +231,8 @@ function DialogInventoryBuild(C) {
 function DialogProgressGetOperation(C, PrevItem, NextItem) {
 	if ((PrevItem != null) && (NextItem != null)) return DialogFind(Player, "Swapping");
 	if (InventoryItemHasEffect(PrevItem, "Lock", true) && !DialogCanUnlock(C, PrevItem)) return DialogFind(Player, "Struggling");
+	if ((PrevItem != null) && !Player.CanInteract() && !InventoryItemHasEffect(PrevItem, "Block", true)) return DialogFind(Player, "Struggling");
 	if (InventoryItemHasEffect(PrevItem, "Lock", true)) return DialogFind(Player, "Unlocking");
-	if ((PrevItem != null) && !Player.CanInteract()) return DialogFind(Player, "Struggling");
 	if (PrevItem != null) return DialogFind(Player, "Removing");
 	if (InventoryItemHasEffect(NextItem, "Lock", true)) return DialogFind(Player, "Locking");
 	if ((PrevItem == null) && (NextItem != null)) return DialogFind(Player, "Adding");
@@ -469,15 +469,9 @@ function DialogItemClick(ClickItem) {
 	// If we must apply a lock to an item
 	if (DialogItemToLock != null) {
 		if ((CurrentItem != null) && CurrentItem.Asset.AllowLock) {
-			if (CurrentItem.Property == null) CurrentItem.Property = {};
-			if (CurrentItem.Property.Effect == null) CurrentItem.Property.Effect = [];
-			CurrentItem.Property.Effect.push("Lock");
-			CurrentItem.Property.LockedBy = ClickItem.Asset.Name;
-			CurrentItem.Property.LockMemberNumber = Player.MemberNumber;
-			if (ClickItem.Asset.RemoveTimer > 0) TimerInventoryRemoveSet(C, CurrentItem.Asset.Group.Name, ClickItem.Asset.RemoveTimer);
+			InventoryLock(C, CurrentItem, ClickItem, Player.MemberNumber);
 			DialogItemToLock = null;
 			DialogInventoryBuild(C);
-			CharacterRefresh(C);
 			ChatRoomPublishAction(C, CurrentItem, ClickItem, true);
 		}
 		return;

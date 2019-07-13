@@ -198,3 +198,45 @@ function InventoryCharacterHasOwnerOnlyItem(C) {
 				return true;
 	return false;
 }
+
+// Returns TRUE if at least one item on the character can be locked
+function InventoryHasLockableItems(C) {
+	for (var I = 0; I < C.Appearance.length; I++)
+		if (C.Appearance[I].Asset.AllowLock && (InventoryGetLock(C.Appearance[I]) == null))
+			return true;
+	return false;
+}
+
+// Applies a lock to an inventory item
+function InventoryLock(C, Item, Lock, MemberNumber) {
+	if (Item.Asset.AllowLock) {
+		if (Item.Property == null) Item.Property = {};
+		if (Item.Property.Effect == null) Item.Property.Effect = [];
+		Item.Property.Effect.push("Lock");
+		Item.Property.LockedBy = Lock.Asset.Name;
+		if (MemberNumber != null) Item.Property.LockMemberNumber = MemberNumber;
+		if (Lock.Asset.RemoveTimer > 0) TimerInventoryRemoveSet(C, Item.Asset.Group.Name, Lock.Asset.RemoveTimer);
+		CharacterRefresh(C);
+	}
+}
+
+// Applies a random lock on an item
+function InventoryLockRandom(C, Item, FromOwner) {
+	if (Item.Asset.AllowLock) {
+		var List = [];
+		for (var A = 0; A < Asset.length; A++)
+			if (Asset[A].IsLock && (FromOwner || !Asset[A].OwnerOnly))
+				List.push(Asset[A]);
+		if (List.length > 0) {
+			var Lock = { Asset: List[Math.floor(Math.random() * List.length)] };
+			InventoryLock(C, Item, Lock);
+		}
+	}
+}
+
+// Applies random locks on each character items that can be locked
+function InventoryFullLockRandom(C, FromOwner) {
+	for (var I = 0; I < C.Appearance.length; I++)
+		if (C.Appearance[I].Asset.AllowLock && (InventoryGetLock(C.Appearance[I]) == null))
+			InventoryLockRandom(C, C.Appearance[I], FromOwner);
+}

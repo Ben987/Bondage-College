@@ -4,6 +4,7 @@ LearnedLesson,,,"Still in trouble, are we?  Have you learned your lesson?  Nod i
 TeachLesson,,,It seems that you need to learn a lesson. (She grabs your arms and forces them in a armbinder.  She then gets a gag and silences you.),,
 Cower,,,(She gulps and bows her head.)  Yes Miss.  Sorry Miss.,,
 CannotRelease,,,I'm sorry Miss.  I cannot help you now.,,
+ClubSlaveMustBeNaked,,,"(A maid taps on your shoulder.)  Slave girl, why aren't you naked?",,
 ItemMouth,,,(She gives a curious look at the gag but doesn't resist as you silence her.),,
 RemoveItemMouth,,,"(You remove her gag slowly.)  Thanks Miss, it will be easier to do my job.",,
 ItemArms,,,(She nods and turns around as you restrain her arms securely.)  It will be a kinky work day.,,
@@ -56,4 +57,22 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 43,,"Very well, thank you.  (Leave her.)",,DialogLeave(),
 43,,"Fine, I'm going then.  (Leave her.)",,DialogLeave(),
 43,,(Grumble and leave.),,DialogLeave(),
+50,51,Why do you care?,"I'm doing my job.  Club slaves must stay naked, let me help you to strip.","DialogChangeReputation(""Dominant"", 2)",Player.CanTalk()
+50,51,Oops!  I forgot the rule.,"Rules are important.  Club slaves must stay naked, let me help you to strip.",,Player.CanTalk()
+50,51,Sorry.  I was tricked by someone.,"Make sure to remember the rules.  Club slaves must stay naked, let me help you to strip.","DialogChangeReputation(""Dominant"", -2)",Player.CanTalk()
+50,51,(Look surprised.),"Rules are important.  Club slaves must stay naked, let me help you to strip.",,!Player.CanTalk()
+50,51,(Look ashamed.),"Make sure to remember the rules.  Club slaves must stay naked, let me help you to strip.","DialogChangeReputation(""Dominant"", -2)",!Player.CanTalk()
+50,51,(Shake your head no.),"I'm doing my job.  Club slaves must stay naked, let me help you to strip.","DialogChangeReputation(""Dominant"", 2)",!Player.CanTalk()
+51,52,Alright then.,"(She nods and slowly strips you down.)  Since you broke the rule, I will reset your hour of duty.  You must redo it fully.",ResetClubSlave(),Player.CanTalk()
+51,52,That sucks.,"(She sighs and slowly strips you down.)  Since you broke the rule, I will reset your hour of duty.  You must redo it fully.",ResetClubSlave(),Player.CanTalk()
+51,52,(Grumble a little.),"(She sighs and slowly strips you down.)  Since you broke the rule, I will reset your hour of duty.  You must redo it fully.",ResetClubSlave(),!Player.CanTalk()
+51,52,(Comply and help her.),"(She nods and slowly strips you down.)  Since you broke the rule, I will reset your hour of duty.  You must redo it fully.",ResetClubSlave(),!Player.CanTalk()
+52,53,This is unfair!,You should have read your contract girl.  I need to go now.,"DialogChangeReputation(""Dominant"", 2)",Player.CanTalk()
+52,53,I understand.,Very well.  I need to go now.,,Player.CanTalk()
+52,53,(Nod slowly.),Very well.  I need to go now.,,!Player.CanTalk()
+52,53,(Grumble in disagreement.),You should have read your contract girl.  I need to go now.,"DialogChangeReputation(""Dominant"", 2)",!Player.CanTalk()
+53,,Wait!  Can you release me first?,"No!  Struggle some more, I'll be back later.",DialogRemove(),!Player.CanInteract()
+53,,(Struggle and beg for help.),"Keep on struggling girl, I might help you later.",DialogRemove(),!Player.CanInteract()
+53,,Thank you for your time.,Don't mention it.  I'm simply doing my job.,DialogRemove(),
+53,,(Leave her.),,DialogLeave(),
 100,,(Frown and leave her.),,DialogLeave(),

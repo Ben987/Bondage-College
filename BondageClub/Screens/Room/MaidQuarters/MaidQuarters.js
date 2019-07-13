@@ -28,6 +28,7 @@ function MaidQuartersAllowCancelRescue() { return (MaidQuartersCurrentRescueStar
 function MaidQuartersCanFreeSarah() { return (SarahUnlockQuest && LogQuery("LeadSorority", "Maid")) }
 function MaidQuartersCanReleasePlayer() { return (Player.IsRestrained() && !InventoryCharacterHasOwnerOnlyItem(Player) && CurrentCharacter.CanTalk() && CurrentCharacter.CanInteract()) }
 function MaidQuartersCannotReleasePlayer() { return (Player.IsRestrained() && (InventoryCharacterHasOwnerOnlyItem(Player) || !CurrentCharacter.CanTalk() || !CurrentCharacter.CanInteract())) }
+function MaidQuartersCanGetDusterGag() { return (!SarahUnlockQuest && LogQuery("JoinedSorority", "Maid") && Player.CanTalk() && CurrentCharacter.CanTalk() && CurrentCharacter.CanInteract() && !InventoryAvailable(Player, "DusterGag", "ItemMouth")) }
 
 // Loads the maid quarters room
 function MaidQuartersLoad() {
@@ -213,4 +214,9 @@ function MaidQuartersCancelRescue() {
 // The player as head maid can trick the maids into freeing Sarah
 function MaidQuartersFreeSarah() {
 	SarahUnlock();
+}
+
+// The maid can give a duster gag to the player if she's in the sorority
+function MaidQuartersGetDusterGag() {
+	InventoryAdd(Player, "DusterGag", "ItemMouth");
 }

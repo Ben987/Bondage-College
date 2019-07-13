@@ -270,11 +270,10 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 									else 
 										if (((data.Appearance[A].Property != null) && (ChatRoomData.Character[C].Appearance[A].Property == null)) || ((data.Appearance[A].Property == null) && (ChatRoomData.Character[C].Appearance[A].Property != null)))
 											Refresh = true;
-										
-		// Flags "refresh" if the ownership changed
-		if (!Refresh)
-			if (JSON.stringify(Char.Ownership) !== JSON.stringify(data.Ownership))
-				Refresh = true;
+
+		// Flags "refresh" if the ownership or inventory has changed
+		if (!Refresh && (JSON.stringify(Char.Ownership) !== JSON.stringify(data.Ownership))) Refresh = true;
+		if (!Refresh && (data.Inventory != null) && (Char.Inventory.length != data.Inventory.length)) Refresh = true;
 
 		// If we must refresh
 		if (Refresh) CharacterOnlineRefresh(Char, data, SourceMemberNumber);
