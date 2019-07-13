@@ -74,7 +74,6 @@ function InventoryAllow(C, Prerequisite) {
 	if (Prerequisite == null) return true;
 	var curCloth = InventoryGet(C, "Cloth");
 	if ((Prerequisite == "AccessTorso") && //if items have ExposedBreasts, they do no trigger the error text
-<<<<<<< HEAD
 			(curCloth != null && !curCloth.Asset.Expose.includes("ItemTorso"))) { DialogSetText("RemoveClothesForItem"); return false; }
 	if ((Prerequisite == "AccessBreast") && //if items have ExposedBreasts, they do no trigger the error text
 			((curCloth != null && !curCloth.Asset.Expose.includes("ItemBreast"))
@@ -84,17 +83,6 @@ function InventoryAllow(C, Prerequisite) {
 			|| (InventoryGet(C, "ClothLower") != null && !InventoryGet(C, "ClothLower").Asset.Expose.includes("ItemVulva")) 
 			|| (InventoryGet(C, "Panties") != null && !InventoryGet(C, "Panties").Asset.Expose.includes("ItemVulva"))
 			|| (InventoryGet(C, "Socks") != null && InventoryGet(C, "Socks").Asset.Block.includes("ItemVulva")))) { DialogSetText("RemoveClothesForItem"); return false; }
-=======
-			(curCloth != null && !InventoryItemHasEffect(curCloth,"ExposedTorso"))) { DialogSetText("RemoveClothesForItem"); return false; }
-	if ((Prerequisite == "AccessBreast") && //if items have ExposedBreasts, they do no trigger the error text
-			((curCloth != null && !InventoryItemHasEffect(curCloth,"ExposedBreasts")) 
-			|| (InventoryGet(C, "Bra") != null && !InventoryItemHasEffect(InventoryGet(C, "Bra"), "ExposedBreasts")))) { DialogSetText("RemoveClothesForItem"); return false; }
-	if ((Prerequisite == "AccessVulva") && //Clothes and Socks only block if they have BlockedVulva. if lower and patnies have ExposedVulva, they do no trigger the error text
-			((curCloth != null && InventoryItemHasEffect(curCloth,"BlockedVulva")) 
-			|| (InventoryGet(C, "ClothLower") != null && !InventoryItemHasEffect(InventoryGet(C, "ClothLower"),"ExposedVulva")) 
-			|| (InventoryGet(C, "Panties") != null && !InventoryItemHasEffect(InventoryGet(C, "Panties"),"ExposedVulva")))
-			|| (InventoryGet(C, "Socks") != null && InventoryItemHasEffect(InventoryGet(C, "Socks"),"BlockedVulva"))) { DialogSetText("RemoveClothesForItem"); return false; }
->>>>>>> upstream/master
 	if (Prerequisite == "NotSuspended" && C.Pose.indexOf("Suspension") >= 0) { DialogSetText("RemoveSuspensionForItem"); return false; }
 	return true;
 }
