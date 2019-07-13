@@ -378,7 +378,7 @@ function DrawButton(Left, Top, Width, Height, Label, Color, Image, HoveringText)
 	
 	// Draw the hovering text
 	if ((HoveringText != null) && (MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile) {
-		Left = (MouseX > 1000) ? Left - 475 : Left + 115;
+		Left = (MouseX > 1000) ? Left - 475 : Left + Width + 25;
 		Top = Top + 12;
 		MainCanvas.beginPath();
 		MainCanvas.rect(Left, Top, 450, 65);
@@ -426,7 +426,7 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 
 	// Draw the hovering text
 	if ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height)) {
-		Left = (MouseX > 1000) ? Left - 475 : Left + 115;
+		Left = (MouseX > 1000) ? Left - 475 : Left + Width + 25;
 		Top = Top + 12;
 		MainCanvas.beginPath();
 		MainCanvas.rect(Left, Top, 450, 65);
