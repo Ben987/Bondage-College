@@ -359,8 +359,11 @@ function AppearanceRun() {
 		// Creates buttons for all groups	
 		for (var A = CharacterAppearanceOffset; A < AssetGroup.length && A < CharacterAppearanceOffset + CharacterAppearanceNumPerPage; A++)
 			if ((AssetGroup[A].Family == C.AssetFamily) && (AssetGroup[A].Category == "Appearance") && AssetGroup[A].AllowCustomize && (C.ID == 0 || AssetGroup[A].Clothing)) {
-				DrawButton(1300, 145 + (A - CharacterAppearanceOffset) * 95, 400, 65, "", "White", "");
-				DrawTextFit(AssetGroup[A].Description + ": " + CharacterAppearanceGetCurrentValue(C, AssetGroup[A].Name, "Description"), 1500, 178 + (A - CharacterAppearanceOffset) * 95, 396, "Black");
+				
+				// CharacterAppearanceNextItem(C, AssetGroup[A].Name, (MouseX > 1500 || CommonIsMobile));
+				DrawBackNextButton(1300, 145 + (A - CharacterAppearanceOffset) * 95, 400, 65, AssetGroup[A].Description + ": " + CharacterAppearanceGetCurrentValue(C, AssetGroup[A].Name, "Description"), "White", "", 
+					() => CharacterAppearanceNextItem(C, AssetGroup[A].Name, false, true), 
+					() => CharacterAppearanceNextItem(C, AssetGroup[A].Name, true, true));
 				var Color = CharacterAppearanceGetCurrentValue(C, AssetGroup[A].Name, "Color", "");
 				DrawButton(1725, 145 + (A - CharacterAppearanceOffset) * 95, 160, 65, Color, ((Color.indexOf("#") == 0) ? Color : "White"));
 				DrawButton(1910, 145 + (A - CharacterAppearanceOffset) * 95, 65, 65, "", "White", AssetGroup[A].AllowColorize ? "Icons/Color.png" : "Icons/ColorBlocked.png");
@@ -427,38 +430,42 @@ function CharacterAppearanceSetItem(C, Group, ItemAsset, NewColor, DifficultyFac
 }
 
 // Cycle in the appearance assets to find the next item in a group and wear it
-function CharacterAppearanceNextItem(C, Group) {
-	
-	// For each item, we first find the item and pick the next one
+function CharacterAppearanceNextItem(C, Group, Forward, Description) {	
 	var Current = CharacterAppearanceGetCurrentValue(C, Group, "Name");
-	var Found = (Current == "None");
-	for (var I = 0; I < CharacterAppearanceAssets.length; I++)
-		if (CharacterAppearanceAssets[I].Group.Name == Group) {
-			if (Found) {
-				CharacterAppearanceSetItem(C, Group, CharacterAppearanceAssets[I]);
-				return;				
-			}
-			else {
-				if (CharacterAppearanceAssets[I].Name == Current)
-					Found = true;
+	var CAA = CharacterAppearanceAssets.filter(a => a.Group.Name == Group);
+	if (Description == true && CAA.length == 0) return "None";
+	if (Current != "None") {
+		// If we found the item we move forward or backward if possible
+		var I = CAA.findIndex(a => a.Name == Current);
+		if (I >= 0) {
+			if (Forward == null || Forward) {
+				if (I + 1 < CAA.length) {
+					if (Description == true) return CAA[I + 1].Description;
+					CharacterAppearanceSetItem(C, Group, CAA[I + 1]);
+					return;
+				}
+			} else {
+				if (I - 1 >= 0) {
+					if (Description == true) return CAA[I - 1].Description;
+					CharacterAppearanceSetItem(C, Group, CAA[I - 1]);
+					return;
+				}
 			}
 		}
-				
-	// Since we didn't found any item, we pick "None" or the first item if we can't
-	for (var A = 0; A < AssetGroup.length; A++)
-		if (AssetGroup[A].Name == Group) {
-			if (AssetGroup[A].AllowNone) {
-				CharacterAppearanceSetItem(C, Group, null);
-				return;				
-			}
-			else
-				for (I = 0; I < CharacterAppearanceAssets.length; I++)
-					if (CharacterAppearanceAssets[I].Group.Name == Group) {
-						CharacterAppearanceSetItem(C, Group, CharacterAppearanceAssets[I]);
-						return;						
-					}			
-		}
-
+	}
+	// Since we didn't found any item, we pick "None" if we had an item or the first or last item
+	var AG = AssetGroup.find(g => g.Name == Group);
+	if (Current != "None" && AG != null && AG.AllowNone) {
+		if (Description == true) return "None";
+		CharacterAppearanceSetItem(C, Group, null);
+	} else if (Forward == null || Forward) {
+		if (Description == true) return CAA[0].Description;
+		CharacterAppearanceSetItem(C, Group, CAA[0]);
+	} else {
+		if (Description == true) return CAA[CAA.length - 1].Description;
+		CharacterAppearanceSetItem(C, Group, CAA[CAA.length - 1]);
+	}	
+	if (Description == true) return "None";
 }
 
 // Find the next color for the item
@@ -515,7 +522,7 @@ function AppearanceClick() {
 			for (var A = CharacterAppearanceOffset; A < AssetGroup.length && A < CharacterAppearanceOffset + CharacterAppearanceNumPerPage; A++)
 				if ((AssetGroup[A].Family == C.AssetFamily) && (AssetGroup[A].Category == "Appearance") && (C.ID == 0 || AssetGroup[A].Clothing))
 					if ((MouseY >= 145 + (A - CharacterAppearanceOffset) * 95) && (MouseY <= 210 + (A - CharacterAppearanceOffset) * 95))
-						CharacterAppearanceNextItem(C, AssetGroup[A].Name);
+						CharacterAppearanceNextItem(C, AssetGroup[A].Name, (MouseX > 1500 || CommonIsMobile));
 
 		// If we must switch to the next item in the assets
 		if ((MouseX >= 1725) && (MouseX < 1885) && (MouseY >= 145) && (MouseY < 975))

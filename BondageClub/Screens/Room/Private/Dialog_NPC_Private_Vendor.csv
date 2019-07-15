@@ -31,7 +31,7 @@ RemoveSuspensionHempRope,,,(You release her from the ceiling and release her fee
 0,,Let's talk later.  (Leave her.),,DialogLeave(),
 10,,How much is a room?,The price for a regular room is 250$.,,
 10,,For how long I have the room?,For as long as you're a club member.,,
-10,,Can I invite friends over?,"Of course.  The room isn't huge though, it will not fit more than 4 people.",,
+10,,Can I invite friends over?,"Of course.  The room isn't huge though, it can accommodate four persons, or eight if you get an extension.",,
 10,,Can I get naked in my room?,"Absolutely, it's your room after all.  You can get naked or have sex.",,
 10,,What are the improvements I can get?,"Wardrobe, cages and a room expansion for now.  But the club is always improving, you can check later.",,
 10,0,Enough questions.,Alright.  What can I do for you then?,,

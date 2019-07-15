@@ -12,6 +12,8 @@ function MainHallCanTrickMaid() { return (ManagementIsClubSlave() && SarahUnlock
 
 // Main hall loading
 function MainHallLoad() {
+	
+	// Loads the variables and dialog
 	CharacterSetActivePose(Player, null);
 	MainHallBackground = "MainHall";
 	MainHallStartEventTimer = null;
@@ -23,6 +25,17 @@ function MainHallLoad() {
 	CommonReadCSV("NoArravVar", "Room", "Management", "Dialog_NPC_Management_RandomGirl");
 	CommonReadCSV("NoArravVar", "Room", "KidnapLeague", "Dialog_NPC_KidnapLeague_RandomKidnapper");
 	CommonReadCSV("NoArravVar", "Room", "Private", "Dialog_NPC_Private_Custom");
+	
+	// If the player is dressed up while being a club slave, the maid intercepts her
+	if (ManagementIsClubSlave() && LogQuery("BlockChange", "Rule") && !Player.IsNaked() && (MainHallMaid.Dialog != null) && (MainHallMaid.Dialog.length > 0)) {
+		MainHallMaid.Stage = "50";
+		MainHallMaid.CurrentDialog = DialogFind(MainHallMaid, "ClubSlaveMustBeNaked");
+		CharacterRelease(MainHallMaid);
+		CharacterSetCurrent(MainHallMaid);
+		MainHallStartEventTimer = null;
+		MainHallNextEventTimer = null;
+	}
+
 }
 
 // Run the main hall screen
@@ -192,4 +205,11 @@ function MainHallMaidShamePlayer() {
 	LogAdd("BlockChange", "Rule", CurrentTime + 3600000);
 	if (ReputationGet("Dominant") > 10) ReputationProgress("Dominant", -10);
 	if (ReputationGet("Dominant") < -10) ReputationProgress("Dominant", 10);
+}
+
+// When the maid catches the club slave player with clothes, she strips her and starts the timer back
+function MainHallResetClubSlave() {
+	CharacterNaked(Player);
+	LogAdd("ClubSlave", "Management", CurrentTime + 3600000);
+	LogAdd("BlockChange", "Rule", CurrentTime + 3600000);
 }

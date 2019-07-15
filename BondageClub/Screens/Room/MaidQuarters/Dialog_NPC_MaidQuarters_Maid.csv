@@ -46,6 +46,7 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 0,90,Who are the leaders in the sorority?,"The leaders are the head maids, they are dominant and experienced maids.  Maybe someday you could be head maid if you work hard enough.",,CannotBecomeHeadMaidYet,
 0,,Tell me about the club.,The Bondage Club has a long history.  It was a secret club back then when BDSM was taboo and forbidden.,DialogRemove(),,
 0,5,"As head maid, I have a task for you.",Of course Miss.  What can I do for you?,"DialogRemoveGroup(""SarahQuest"")",CanFreeSarah(),SarahQuest
+0,,Can I have a duster gag?,"You have lots of cleaning to do sister?  (She giggles.)  Of course, you can have one.  (She gives you a duster gag.)",GetDusterGag(),CanGetDusterGag(),
 0,,I can't stay to chat.  (Leave her.),,DialogLeave(),,
 5,6,There's a blond girl stuck in a reserved bedroom.,Is that true?  I can send a maid to rescue her right away.  Who reserved the room?,,,
 5,0,Forget it.,Very well.  Is there anything else I can do head maid DialogPlayerName?,,,

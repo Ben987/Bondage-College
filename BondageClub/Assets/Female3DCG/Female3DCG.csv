@@ -1,6 +1,7 @@
-Cloth,,Cloth
+﻿Cloth,,Cloth
 Cloth,CollegeOutfit1,College
 Cloth,MaidOutfit1,Maid
+Cloth,MaidOutfit2,Maid Exposed
 Cloth,StudentOutfit1,Student Black
 Cloth,StudentOutfit2,Student Bow
 Cloth,BabydollDress1,Babydoll Dress
@@ -106,6 +107,9 @@ Glasses,SunGlasses2,Sunglasses 2
 Wings,,Wings
 Wings,SuccubusFeather,Succubus Feather 
 Wings,SuccubusWings,Succubus Wings
+Wings,AngelFeather,Angel Feather
+Wings,DevilWings,Devil Wings
+Wings,FallenAngelWings,Fallen Angel Wings
 BodyUpper,,Upper Body
 BodyUpper,Small,Small
 BodyUpper,Normal,Normal
@@ -197,6 +201,8 @@ ItemButt,PuppyTailPlug,Puppy Butt Plug
 ItemButt,SuccubusButtPlug,Succubus Butt Plug
 ItemButt,SuccubusButtPlug2,Succubus Tail
 ItemButt,FoxTails,Fox Tails
+ItemButt,Raccoon Butt Plug,Raccoon Butt Plug
+ItemButt,RaccoonTailPlug,Raccoon Tail Plug
 ItemPelvis,,Pelvis
 ItemPelvis,MetalChastityBelt,Metal Chastity Belt
 ItemPelvis,MetalChastityBeltKey,Metal Chastity Belt Key
@@ -241,6 +247,7 @@ ItemNeck,ShockCollar,Shock Collar
 ItemNeck,ShockCollarRemote,Shock Collar Remote
 ItemMouth,,Mouth
 ItemMouth,ClothGag,Cloth Gag
+ItemMouth,WiffleGag,Wiffle Ball Gag
 ItemMouth,HarnessBallGag,Harness Ball Gag
 ItemMouth,HarnessPanelGag,Harness Panel Gag
 ItemMouth,RingGag,Ring Gag
@@ -251,6 +258,7 @@ ItemMouth,DusterGag,Duster Gag
 ItemMouth,HarnessPonyBits,Bit Gag
 ItemMouth,PumpGag,Pump Gag
 ItemMouth,KittyGag,Kitty Mask Gag
+ItemMouth,KittenHarnessPanelGag,Kitty Harness Gag
 ItemMouth,CarrotGag,Rubber Carrot Gag
 ItemMouth,RegularSleepingPill,Sleeping Pill
 ItemHead,,Head
