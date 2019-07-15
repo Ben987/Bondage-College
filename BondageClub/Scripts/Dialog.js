@@ -390,7 +390,7 @@ function DialogMenuButtonClick() {
 
 			// Color picker Icon - Starts the color picking
 			if (DialogMenuButton[I] == "ColorPick") { 
-				ElementCreateInput("InputColor", "text", ""); 
+				ElementCreateInput("InputColor", "text", (DialogColorSelect!=null) ? DialogColorSelect.toString() : ""); 
 				DialogColor = "";
 				DialogMenuButtonBuild(C);
 				return;

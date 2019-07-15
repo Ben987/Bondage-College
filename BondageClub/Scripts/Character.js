@@ -148,6 +148,7 @@ function CharacterArchetypeClothes(C, Archetype, ForceColor) {
 		InventoryAdd(C, "MaidHairband1", "Hat", false);
 		CharacterAppearanceSetItem(C, "Hat", C.Inventory[C.Inventory.length - 1].Asset);
 		CharacterAppearanceSetColorForGroup(C, "Default", "Hat");
+		InventoryAdd(C, "MaidOutfit2", "Cloth", false);
 		C.AllowItem = (LogQuery("LeadSorority", "Maid"));
 	}
 
