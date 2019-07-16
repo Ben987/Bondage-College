@@ -155,11 +155,13 @@ var AssetFemale3DCG = [
 		Asset: [
 			"Band1", "Beret1",
 			{ Name: "Ribbons1", Priority: 2 },
+			{ Name: "GiantBow1", Priority: 2 },
 			{ Name: "MaidHairband1", Value: -1 },
 			{ Name: "NurseCap", Value: -1 },
 			{ Name: "Santa1", Value: 30 },
 			{ Name: "CaptainHat1", Value: 20 },
-			{ Name: "BunnySuccubus2", Value: 50 }
+			{ Name: "BunnySuccubus2", Value: 50 },
+			{ Name: "HairFlower1",  Value: 10 }
 		]
 	},
 
@@ -170,7 +172,7 @@ var AssetFemale3DCG = [
 		Clothing: true,
 		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
 		AllowPose: ["Suspension"],
-		Left: 125,
+		Left: 90,
 		Top: 0,
 		Asset: [
 			"Ears1", "Ears2", "PonyEars1",
@@ -181,7 +183,8 @@ var AssetFemale3DCG = [
 			{ Name: "Horns", Value: 20 },
 			{ Name: "Horns2", Value: 20 },
 			{ Name: "Horns3", Value: 20 },
-			{ Name: "FoxEars1", Value: 20 }
+			{ Name: "FoxEars1", Value: 20 },
+			{ Name: "BatWings", Value: 20 }
 		]
 	},		
 
@@ -225,7 +228,8 @@ var AssetFemale3DCG = [
 			{ Name: "SuccubusWings", Value: 100 },
 			{ Name: "AngelFeather", Value: 100 },
 			{ Name: "DevilWings", Value: 100 },
-			{ Name: "FallenAngelWings", Value: 100 }
+			{ Name: "FallenAngelWings", Value: 100 },
+			{ Name: "BatWings", Value: 100 }
 		]
 	},
 

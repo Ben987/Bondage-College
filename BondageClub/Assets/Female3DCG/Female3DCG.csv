@@ -74,11 +74,13 @@ Hat,,Hat
 Hat,Band1,Hair Band
 Hat,Beret1,Beret
 Hat,Ribbons1,Hair Ribbon 1
+Hat,GiantBow1, Giant Bow 1
 Hat,MaidHairband1,Maid Hairband
 Hat,NurseCap,Nurse Cap
 Hat,Santa1,Santa Hat
 Hat,CaptainHat1,Captain's Hat
 Hat,BunnySuccubus2,Bunny Succubus 
+Hat,HairFlower1, Flower
 HairAccessory,,Hair Accessory
 HairAccessory,Ears1,Ears Small
 HairAccessory,Ears2,Ears Large
@@ -91,6 +93,7 @@ HairAccessory,Horns,Horns
 HairAccessory,Horns2,Horns 2
 HairAccessory,Horns3,Horns 3
 HairAccessory,FoxEars1,Fox Ears Small
+HairAccessory,BatWings,Small Bat Wings
 Gloves,,Gloves
 Gloves,Gloves1,Short Gloves
 Gloves,Gloves2,Long Gloves
@@ -110,6 +113,7 @@ Wings,SuccubusWings,Succubus Wings
 Wings,AngelFeather,Angel Feather
 Wings,DevilWings,Devil Wings
 Wings,FallenAngelWings,Fallen Angel Wings
+Wings,BatWings,Bat Wings
 BodyUpper,,Upper Body
 BodyUpper,Small,Small
 BodyUpper,Normal,Normal
