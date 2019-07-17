@@ -379,7 +379,8 @@ var AssetFemale3DCG = [
 			{ Name: "HempRope", Value: 30, Time: 15, Difficulty: 3 },
 			{ Name: "LeatherBelt", Value: 25, Time: 10, RemoveTime: 5, AllowLock: true },
 			{ Name: "SuspensionHempRope", SelfBondage: false, Random: false, RemoveAtLogin: true, SetPose: ["Suspension", "LegsClosed"], Effect: ["Freeze", "Prone"], Value: -1, Height: 150, Time: 30, Difficulty: 3, Alpha: [[125, 850, 250, 150]], ExpressionTrigger: [{Group: "Blush", Name: "High", Timer: 30}, {Group: "Eyebrows", Name: "Raised", Timer: 10}] },
-			{ Name: "DuctTape", Value: 50, Time: 15, RemoveTime: 10, BuyGroup: "DuctTape" }
+			{ Name: "DuctTape", Value: 50, Time: 15, RemoveTime: 10, BuyGroup: "DuctTape" },
+			{ Name: "MermaidRopeTie", Value: 30, Time: 15, Difficulty: 3 }
 		]
 	},
 
@@ -438,7 +439,8 @@ var AssetFemale3DCG = [
 			{ Name: "SuccubusButtPlug2", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
 			{ Name: "FoxTails", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
 			{ Name: "RaccoonButtPlug", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
-			{ Name: "RaccoonTailPlug", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] }
+			{ Name: "RaccoonTailPlug", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
+			{ Name: "AnalBeads", Value: 20, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}], Visible: false }
 		]
 	},
 
@@ -495,7 +497,9 @@ var AssetFemale3DCG = [
 			{ Name: "RoundPiercing", Value: 20, Prerequisite: "AccessBreast", Time: 15, ExpressionTrigger: [{Group: "Eyes", Name: "Closed", Timer: 5}, {Group: "Eyebrows", Name: "Angry", Timer: 5}] },
 			{ Name: "NippleClamp", Value: 35, Prerequisite: "AccessBreast", Time: 10, ExpressionTrigger: [{Group: "Eyes", Name: "Closed", Timer: 5}, {Group: "Eyebrows", Name: "Angry", Timer: 5}] },
 			{ Name: "VibeNippleClamp", Value: 50, Effect: ["Egged"], Prerequisite: "AccessBreast", Time: 10, ExpressionTrigger: [{Group: "Eyes", Name: "Closed", Timer: 5}, {Group: "Eyebrows", Name: "Angry", Timer: 5}], AllowEffect: ["Egged", "Vibrating"] },
-			{ Name: "VibratorRemote", Value: 80, Effect: ["Remote"], Wear: false, BuyGroup: "VibratorRemote" }
+			{ Name: "VibratorRemote", Value: 80, Effect: ["Remote"], Wear: false, BuyGroup: "VibratorRemote" },
+			{ Name: "WeightedPiercing", Value: 35, Prerequisite: "AccessBreast", Time: 10, ExpressionTrigger: [{Group: "Eyes", Name: "Closed", Timer: 5}, {Group: "Eyebrows", Name: "Soft", Timer: 5}] },
+			{ Name: "ChainClamp", Value: 35, Prerequisite: "AccessBreast", Time: 10, ExpressionTrigger: [{Group: "Eyes", Name: "Closed", Timer: 5}, {Group: "Eyebrows", Name: "Soft", Timer: 5}] }
 		]
 	},
 

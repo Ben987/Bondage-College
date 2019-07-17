@@ -57,6 +57,14 @@ function LogQuery(QueryLogName, QueryLogGroup) {
 	return false;
 }
 
+// Returns the value associated to the log
+function LogValue(QueryLogName, QueryLogGroup) {
+	for (var L = 0; L < Log.length; L++)
+		if ((Log[L].Name == QueryLogName) && (Log[L].Group == QueryLogGroup))
+			return Log[L].Value;
+	return null;
+}
+
 // Loads the account log
 function LogLoad(NewLog) {
 

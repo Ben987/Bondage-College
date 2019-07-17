@@ -886,10 +886,14 @@ PunishSleepCage,1001,It might be hard to sleep in there.,"You'll get used to it.
 PunishSleepCage,1001,I'm not sure I understand.,"It's easy, you will wake up everyday in your cage, remembering who's your owner.",RunPunishment(0),,,
 PunishSleepCage,1001,Very well Mistress.,"Good, you will wake up everyday in your cage, remembering who's your owner.",RunPunishment(1),,,
 PunishLockOutIntro,,,I'm locking you out of your room for an hour girl.  I hope it teaches you a lesson.  Get out!,,,,
-PunishLockOut,1000,(Leave the room in tears.),"Nonsense.  You will wake up everyday in your cage, remembering who's your owner.",RunPunishment(0),,,
+PunishLockOut,1000,(Leave the room in tears.),,RunPunishment(0),,,
 PunishLockOut,1000,(Grumble and leave the room.),,RunPunishment(-1),,,
-PunishLockOut,1000,I understand Mistress.  (Leave the room.),"It's easy, you will wake up everyday in your cage, remembering who's your owner.",RunPunishment(1),,,
+PunishLockOut,1000,I understand Mistress.  (Leave the room.),,RunPunishment(1),,,
 PunishLockOut,1000,Fine!  I'm leaving!  (Leave the room.),,RunPunishment(-3),,,
+PunishCellIntro,,,Some time alone in a cell will help you to think about what you did wrong.  I'll lock you up for five minutes.,,,,
+PunishCell,1000,Very well.  (Go to the cell.),,RunPunishment(0),,,
+PunishCell,1000,This is bullshit!  (Go to the cell.),,RunPunishment(-2),,,
+PunishCell,1000,It's fair Mistress.  (Go to the cell.),,RunPunishment(1),,,
 2000,,,(She seems confused seeing you on your knees.)  Yes Mistress?,,DialogIsKneeling(Player),SubIntroPlayerKneeling,
 2000,,,(She seems confused seeing you on your knees.)  What the fuck?,,DialogIsKneeling(Player),SubIntroPlayerKneeling,Dominant|Rude
 2000,,,(She seems confused seeing you on your knees.)  Is everything alright Mistress?,,DialogIsKneeling(Player),SubIntroPlayerKneeling,Peaceful|Wise
