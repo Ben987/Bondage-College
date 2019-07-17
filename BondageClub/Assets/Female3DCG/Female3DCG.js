@@ -155,11 +155,13 @@ var AssetFemale3DCG = [
 		Asset: [
 			"Band1", "Beret1",
 			{ Name: "Ribbons1", Priority: 2 },
+			{ Name: "GiantBow1", Priority: 2 },
 			{ Name: "MaidHairband1", Value: -1 },
 			{ Name: "NurseCap", Value: -1 },
 			{ Name: "Santa1", Value: 30 },
 			{ Name: "CaptainHat1", Value: 20 },
-			{ Name: "BunnySuccubus2", Value: 50 }
+			{ Name: "BunnySuccubus2", Value: 50 },
+			{ Name: "HairFlower1",  Value: 10 }
 		]
 	},
 
@@ -170,7 +172,7 @@ var AssetFemale3DCG = [
 		Clothing: true,
 		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
 		AllowPose: ["Suspension"],
-		Left: 125,
+		Left: 90,
 		Top: 0,
 		Asset: [
 			"Ears1", "Ears2", "PonyEars1",
@@ -181,7 +183,8 @@ var AssetFemale3DCG = [
 			{ Name: "Horns", Value: 20 },
 			{ Name: "Horns2", Value: 20 },
 			{ Name: "Horns3", Value: 20 },
-			{ Name: "FoxEars1", Value: 20 }
+			{ Name: "FoxEars1", Value: 20 },
+			{ Name: "BatWings", Value: 20 }
 		]
 	},		
 
@@ -225,7 +228,9 @@ var AssetFemale3DCG = [
 			{ Name: "SuccubusWings", Value: 100 },
 			{ Name: "AngelFeather", Value: 100 },
 			{ Name: "DevilWings", Value: 100 },
-			{ Name: "FallenAngelWings", Value: 100 }
+			{ Name: "FallenAngelWings", Value: 100 },
+			{ Name: "AngelWings", Value: 100 },
+			{ Name: "BatWings", Value: 100 }
 		]
 	},
 
@@ -390,7 +395,8 @@ var AssetFemale3DCG = [
 			{ Name: "HempRope", Value: 30, Time: 15, Difficulty: 3 },
 			{ Name: "LeatherBelt", Value: 25, Time: 10, RemoveTime: 5, AllowLock: true },
 			{ Name: "SuspensionHempRope", SelfBondage: false, Random: false, RemoveAtLogin: true, SetPose: ["Suspension", "LegsClosed"], Effect: ["Freeze", "Prone"], Value: -1, Height: 150, Time: 30, Difficulty: 3, Alpha: [[125, 850, 250, 150]], ExpressionTrigger: [{Group: "Blush", Name: "High", Timer: 30}, {Group: "Eyebrows", Name: "Raised", Timer: 10}] },
-			{ Name: "DuctTape", Value: 50, Time: 15, RemoveTime: 10, BuyGroup: "DuctTape" }
+			{ Name: "DuctTape", Value: 50, Time: 15, RemoveTime: 10, BuyGroup: "DuctTape" },
+			{ Name: "MermaidRopeTie", Value: 30, Time: 15, Difficulty: 3 }
 		]
 	},
 
@@ -449,7 +455,8 @@ var AssetFemale3DCG = [
 			{ Name: "SuccubusButtPlug2", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
 			{ Name: "FoxTails", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
 			{ Name: "RaccoonButtPlug", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
-			{ Name: "RaccoonTailPlug", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] }
+			{ Name: "RaccoonTailPlug", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
+			{ Name: "AnalBeads", Value: 20, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}], Visible: false }
 		]
 	},
 
@@ -506,7 +513,9 @@ var AssetFemale3DCG = [
 			{ Name: "RoundPiercing", Value: 20, Prerequisite: "AccessBreast", Time: 15, ExpressionTrigger: [{Group: "Eyes", Name: "Closed", Timer: 5}, {Group: "Eyebrows", Name: "Angry", Timer: 5}] },
 			{ Name: "NippleClamp", Value: 35, Prerequisite: "AccessBreast", Time: 10, ExpressionTrigger: [{Group: "Eyes", Name: "Closed", Timer: 5}, {Group: "Eyebrows", Name: "Angry", Timer: 5}] },
 			{ Name: "VibeNippleClamp", Value: 50, Effect: ["Egged"], Prerequisite: "AccessBreast", Time: 10, ExpressionTrigger: [{Group: "Eyes", Name: "Closed", Timer: 5}, {Group: "Eyebrows", Name: "Angry", Timer: 5}], AllowEffect: ["Egged", "Vibrating"] },
-			{ Name: "VibratorRemote", Value: 80, Effect: ["Remote"], Wear: false, BuyGroup: "VibratorRemote" }
+			{ Name: "VibratorRemote", Value: 80, Effect: ["Remote"], Wear: false, BuyGroup: "VibratorRemote" },
+			{ Name: "WeightedPiercing", Value: 35, Prerequisite: "AccessBreast", Time: 10, ExpressionTrigger: [{Group: "Eyes", Name: "Closed", Timer: 5}, {Group: "Eyebrows", Name: "Soft", Timer: 5}] },
+			{ Name: "ChainClamp", Value: 35, Prerequisite: "AccessBreast", Time: 10, ExpressionTrigger: [{Group: "Eyes", Name: "Closed", Timer: 5}, {Group: "Eyebrows", Name: "Soft", Timer: 5}] }
 		]
 	},
 
