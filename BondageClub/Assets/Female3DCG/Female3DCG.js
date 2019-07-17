@@ -295,7 +295,7 @@ var AssetFemale3DCG = [
 		Priority: 7,
 		AllowNone: false,
 		Color: ["#6a3628", "#5e481e", "#666666", "#555588", "#558855", "#885555", "#202020", "#aa3333", "#33aa33", "#3333aa", "#aaaa33", "#33aaaa", "#aa33aa"],
-		AllowExpression: ["Closed", "Wink"],
+		AllowExpression: ["Closed", "Wink", "Dazed"],
 		Left: 200,
 		Top: 150,
 		FullAlpha: false,
@@ -311,7 +311,7 @@ var AssetFemale3DCG = [
 		AllowExpression: ["Frown"],
 		Left: 240,
 		Top: 190,
-		Asset: ["Mouth1", "Mouth2", "Mouth3", "Mouth4"]
+		Asset: ["Mouth1", "Mouth2", "Mouth3", "Mouth4", "Mouth5"]
 	},
 	
 	{
@@ -591,7 +591,12 @@ var AssetFemale3DCG = [
 				]
 			},
 			{ Name: "HarnessPanelGag", Effect: ["GagHeavy"], Difficulty: 6, Value: 80, Time: 20, AllowLock: true },
-			{ Name: "RingGag", Value: 35, Time: 5, AllowLock: true },
+			{ Name: "RingGag", Value: 35, Time: 5, AllowLock: true,
+				Layer: [
+					{ Name: "Mouth", AllowColorize: false },
+					{ Name: "Gag", AllowColorize: true }
+				] 
+			},
 			{ Name: "DuctTape", Extended: true, Difficulty: -2, Value: 50, Time: 10, RemoveTime: 5, BuyGroup: "DuctTape", AllowEffect: ["GagLight", "GagNormal"] },
 			{ Name: "PacifierGag", Random: false, Difficulty: -50, Effect: ["GagLight"], Value: 15, Time: 2, ExpressionTrigger: [{Group: "Blush", Name: "Light", Timer: 5}, {Group: "Eyes", Name: "Closed", Timer: 5}] },
 			{ Name: "HarnessPacifierGag", Random: false, Difficulty: 2, Effect: ["GagLight"], Value: 70, Time: 20, AllowLock: true, ExpressionTrigger: [{Group: "Blush", Name: "Light", Timer: 5}, {Group: "Eyes", Name: "Closed", Timer: 5}] },
