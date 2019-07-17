@@ -95,6 +95,9 @@ function ServerAppearanceBundle(Appearance) {
 // Make sure the properties are valid for the item (to prevent griefing in multi-player)
 function ServerValidateProperties(C, Item) {
 
+	// No validations for NPCs
+	if ((C.AccountName.substring(0, 4) == "NPC_") || (C.AccountName.substring(0, 4) == "NPC-")) return;
+
 	// For each effect on the item
 	if ((Item.Property != null) && (Item.Property.Effect != null))
 		for (var E = 0; E < Item.Property.Effect.length; E++) {
@@ -108,18 +111,18 @@ function ServerValidateProperties(C, Item) {
 				Item.Property.Effect.splice(E, 1);
 				E--;
 			}
-			
+
 			// If the item is locked by a lock
 			if ((Effect == "Lock") && (InventoryGetLock(Item) != null)) {
-				
+
 				// Make sure the remove timer on the lock is valid
 				var Lock = InventoryGetLock(Item);
 				if ((Lock.Asset.RemoveTimer != null) && (Lock.Asset.RemoveTimer != 0)) {
 					if ((typeof Item.Property.RemoveTimer !== "number") || (Item.Property.RemoveTimer > CurrentTime + Lock.Asset.RemoveTimer * 1000))
 						Item.Property.RemoveTimer = CurrentTime + Lock.Asset.RemoveTimer * 1000;
 				} else delete Item.Property.RemoveTimer;
-					
-				// Make sure the remove timer on the lock is valid
+
+				// Make sure the owner lock is valid
 				if (Lock.Asset.OwnerOnly && ((C.Ownership == null) || (C.Ownership.MemberNumber == null) || (Item.Property.LockMemberNumber == null) || (C.Ownership.MemberNumber != Item.Property.LockMemberNumber))) {
 					delete Item.Property.LockedBy;
 					delete Item.Property.LockMemberNumber;

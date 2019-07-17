@@ -51,6 +51,7 @@ function AssetAdd(NewAsset) {
 		Effect: NewAsset.Effect,
 		Bonus: NewAsset.Bonus,
 		Block: NewAsset.Block,
+		Expose: (NewAsset.Expose==null)?[]:NewAsset.Expose,
 		Hide: NewAsset.Hide,
 		HideItem: NewAsset.HideItem,
 		Require: NewAsset.Require,
@@ -77,6 +78,8 @@ function AssetAdd(NewAsset) {
 		AllowEffect: NewAsset.AllowEffect,
 		AllowBlock: NewAsset.AllowBlock
 	}
+	// Unwearable assets are not visible but can be overwritten
+	if (!A.Wear && NewAsset.Visible != true) A.Visible = false;
 	Asset.push(A);
 }
 

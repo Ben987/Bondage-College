@@ -70,8 +70,10 @@ function ChatSearchJoin() {
 	for (var C = 0; C < ChatSearchResult.length && C < 24; C++) {
 
 		// If the player clicked on a valid room
-		if ((MouseX >= X) && (MouseX <= X + 630) && (MouseY >= Y) && (MouseY <= Y + 85))
+		if ((MouseX >= X) && (MouseX <= X + 630) && (MouseY >= Y) && (MouseY <= Y + 85)) {
+			ChatRoomPlayerCanJoin = true;
 			ServerSend("ChatRoomJoin", { Name: ChatSearchResult[C].Name } );
+		}
 
 		// Moves the next window position
 		X = X + 660;

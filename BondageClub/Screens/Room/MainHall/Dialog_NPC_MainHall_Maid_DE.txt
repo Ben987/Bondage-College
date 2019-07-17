@@ -70,6 +70,10 @@ Ich bin DialogCharacterName, Ich arbeite hier als Hausmädchen, um Subs aus der 
 ###_PLAYER
 Yes, can you release me?
 Ja, kannst du mich befreien?
+###_NPC
+(She checks your locks and frowns.)  Is that an owner lock?  Your Mistress might not be pleased if I release you.
+(Sie betrachtet deine Schlösser und runzelt die Stirn.) Ist das ein Besitzer-Schloss? Deiner Herrin könnte es nicht gefallen, wenn ich dich befreie.
+###_PLAYER
 Get lost girl!
 Hau ab, Mädchen!
 ###_NPC
@@ -120,5 +124,51 @@ Ich verstehe, wir wollen ja nicht, dass ein Kunde unzufrieden ist, oder? Ich geh
 ###_PLAYER
 You're the best!  (Leave her.)
 Vielen Dank! (Dialog beenden.)
+(Nod and whimper for help.)
+(Nicken und um Hilfe wimmern.)
+###_NPC
+I can help you girl, but you will be shamed for that.  Your reputation will be hurt.
+Ich kann dir helfen, Mädchen, aber dafür wirst du gedemütigt. Dein Ruf wird darunter leiden.
+###_PLAYER
+I know, but can you still help me?
+Ich weiß, aber hilfst du mir trotzdem?
+You're right.  Forget it then. (Leave her.)
+Stimmt. Dann vergiss es. (Dialog beenden.)
+(Sigh and leave her.)
+(Seufzen und Dialog beenden.)
+(Nod and bow your head.)
+(Nicken und deinen Kopf neigen.)
+###_NPC
+Very well.  (She releases you, strips you and confiscate your clothes.)
+Sehr wohl. (Sie befreit dich, zieht dich aus und beschlagnahmt deine Kleidung.)
+###_PLAYER
+I will endure my punishment.
+Ich lasse meine Strafe über mich ergehen.
+Forget it then. (Leave her.)
+Dann vergiss es. (Dialog beenden.)
+Why are you taking my clothes?
+Warum nimmst du mir meine Kleidung weg?
+###_NPC
+(She frowns.)  Your clothes are confiscated for the next hour.  This humiliation might teach you to respect your owner will.
+(Sie runzelt die Stirn.) Deine Kleidung wird eine Stunde lang beschlagnahmt. Diese Demütigung sollte dir beibringen, dem Willen deiner Besitzerin zu folgen.
+###_PLAYER
+When can I dress back?
+Wann darf ich mich wieder anziehen?
+###_NPC
+Your clothes are confiscated for the next hour.  This humiliation might teach you to respect your owner will.
+Deine Kleidung wird eine Stunde lang beschlagnahmt. Diese Demütigung sollte dir beibringen, dem Willen deiner Besitzerin zu folgen.
+###_PLAYER
+I know I'm a bad submissive.
+Ich weiß, ich bin eine schlechte Sklavin.
+###_NPC
+(She sighs.)  Your clothes are confiscated for the next hour.  This humiliation might teach you to respect your owner will.
+(Sie seufzt.) Deine Kleidung wird eine Stunde lang beschlagnahmt. Diese Demütigung sollte dir beibringen, dem Willen deiner Besitzerin zu folgen.
+###_PLAYER
+Very well, thank you.  (Leave her.)
+Sehr wohl, danke. (Dialog beenden.)
+Fine, I'm going then.  (Leave her.)
+Gut, ich geh dann mal. (Dialog beenden.)
+(Grumble and leave.)
+(Grummeln und gehen.)
 (Frown and leave her.)
 (Die Stirn runzeln und sie verlassen.)
