@@ -336,22 +336,6 @@ var AssetFemale3DCG = [
 		Asset: ["PussyLight1", "PussyLight2", "PussyLight3", "PussyDark1", "PussyDark2", "PussyDark3"]
 	},
 
-	{
-		Group: "Wings",
-		Priority: 1,
-		ParentGroup: "BodyUpper",
-		ParentColor: "Bra",
-		Clothing: true,
-		Underwear: true,
-		Default: false,
-		AllowPose: ["BackBoxTie", "BackCuffs", "BackElbowTouch", "TapedHands"],
-		Color: ["Default"],
-		Asset: [
-			{ Name: "SuccubusFeather", Value: 100 },
-			{ Name: "SuccubusWings", Value: 100 }
-		]
-	},	
-
 	// Facial Expression specific
 	{
 		Group: "Eyebrows",
