@@ -832,7 +832,7 @@ let RhythmGameRender = {
     },
 
     showAcc : function(){
-        let text = 'ACC: ' + (RhythmGameScript.acc.value * 100).toFixed(2) + '%';
+        let text = TextGet('Acc') + ': ' + (RhythmGameScript.acc.value * 100).toFixed(2) + '%';
         MainCanvas.font = '40px Courier';
         MainCanvas.fillStyle = '#FFFFFF';
         MainCanvas.globalAlpha = 1;
@@ -841,7 +841,7 @@ let RhythmGameRender = {
     },
 
     showScore : function(){
-        let text = 'BONUS: ' + RhythmGameScript.score.toFixed(3);
+        let text = TextGet('Score') + ': ' + RhythmGameScript.score.toFixed(3);
         MainCanvas.font = '40px Courier';
         MainCanvas.fillStyle = '#FFFFFF';
         MainCanvas.globalAlpha = 1;
@@ -875,13 +875,13 @@ let RhythmGameRender = {
         MainCanvas.fillStyle = '#FFFFFF';
         MainCanvas.fillRect(x, top_y, w, h);
 
-        MainCanvas.font = '70px Courier';
+        MainCanvas.font = '40px Courier';
         MainCanvas.fillStyle = '#FFFFFF';
         MainCanvas.globalAlpha = 1;
         MainCanvas.textAlign = 'left';
-        MainCanvas.fillText('Audience',1350,700);
-        MainCanvas.fillText('Patience',1350,800);
-        MainCanvas.fillText('Level',1350,900);
+        MainCanvas.fillText(TextGet('AudiencePatienceLevel'),1350,700);
+        // MainCanvas.fillText('Patience',1350,800);
+        // MainCanvas.fillText('Level',1350,900);
     },
 };
 
