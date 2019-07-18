@@ -110,7 +110,7 @@ let RhythmGameAudio =  {
         RhythmGameAudio.preloadComplted = false;
         RhythmGameAudio.audioCtx = null;
         RhythmGameAudio.bufferSource = null;
-        let url = 'Screens/MiniGame/RhythmGame/res/beatmap/audio/' + RhythmGameBeatmap + '.mp3';
+        let url = 'Screens/MiniGame/RhythmGame/res/beatmap/' + RhythmGameBeatmap + '/' + RhythmGameBeatmap + '.mp3';
         let mp3 = new XMLHttpRequest();
         mp3.onreadystatechange = function() {
             if (mp3.readyState === 4 && mp3.status === 200) {
@@ -144,7 +144,7 @@ let RhythmGameChart = {
     preload : function () {
         RhythmGameChart.preloadComplted = false;
         RhythmGameChart.chartFile = null;
-        let url = 'Screens/MiniGame/RhythmGame/res/beatmap/chart/' + RhythmGameBeatmap + '-' + RhythmGameDifficulty + '.xml';
+        let url = 'Screens/MiniGame/RhythmGame/res/beatmap/' + RhythmGameBeatmap + '/' + RhythmGameBeatmap + '-' + RhythmGameDifficulty + '.xml';
 
         let xml = new XMLHttpRequest();
         xml.onreadystatechange = function() {
