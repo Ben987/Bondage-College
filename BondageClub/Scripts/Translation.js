@@ -21,6 +21,7 @@ var TranslationDictionary = [
 			"Screens/Character/Appearance/Text_Appearance_DE.txt",
 			"Screens/Character/Cheat/Text_Cheat_DE.txt",
 			"Screens/Character/Creation/Text_Creation_DE.txt",
+			"Screens/Character/FriendList/Text_FriendList_DE.txt",
 			"Screens/Character/InformationSheet/Text_InformationSheet_DE.txt",
 			"Screens/Character/Login/Text_Login_DE.txt",
 			"Screens/Character/PasswordReset/Text_PasswordReset_DE.txt",

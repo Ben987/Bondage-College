@@ -1,5 +1,5 @@
-Name: 
-Name: 
+Name:
+Name:
 Title:
 Titel:
 Mistress
@@ -32,6 +32,8 @@ Flying Pegasus
 Fliegender Pegasus
 Member Number:
 Mitgliedsnummer:
+-
+-
 Lover:
 Liebhaberin:
 Owner:
@@ -42,6 +44,10 @@ Member for
 Mitglied seit
 Friends for
 Freunde seit
+On trial for
+Auf Probezeit seit
+Collared for
+Trägt Halsband seit
 day(s)
 Tag(en)
 Unknown

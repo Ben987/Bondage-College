@@ -148,6 +148,8 @@ function CharacterArchetypeClothes(C, Archetype, ForceColor) {
 		InventoryAdd(C, "MaidHairband1", "Hat", false);
 		CharacterAppearanceSetItem(C, "Hat", C.Inventory[C.Inventory.length - 1].Asset);
 		CharacterAppearanceSetColorForGroup(C, "Default", "Hat");
+		InventoryAdd(C, "MaidOutfit2", "Cloth", false);
+		InventoryRemove(C, "HairAccessory");
 		C.AllowItem = (LogQuery("LeadSorority", "Maid"));
 	}
 
@@ -166,6 +168,7 @@ function CharacterArchetypeClothes(C, Archetype, ForceColor) {
 		InventoryWear(C, "MistressBottom", "ClothLower", Color);
 		InventoryAdd(C, "MetalChastityBeltKey", "ItemPelvis", false);
 		InventoryAdd(C, "MetalChastityBraKey", "ItemBreast", false);
+		InventoryRemove(C, "HairAccessory");
 	}
 
 }
@@ -205,6 +208,7 @@ function CharacterOnlineRefresh(Char, data, SourceMemberNumber) {
 	Char.Ownership = data.Ownership;	
 	Char.Reputation = (data.Reputation != null) ? data.Reputation : [];
 	Char.Appearance = ServerAppearanceLoadFromBundle(Char, "Female3DCG", data.Appearance, SourceMemberNumber);
+	if (Char.ID != 0) InventoryLoad(Char, data.Inventory);
 	AssetReload(Char);
 	CharacterLoadEffect(Char);
 	CharacterRefresh(Char);
@@ -269,11 +273,10 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 									else 
 										if (((data.Appearance[A].Property != null) && (ChatRoomData.Character[C].Appearance[A].Property == null)) || ((data.Appearance[A].Property == null) && (ChatRoomData.Character[C].Appearance[A].Property != null)))
 											Refresh = true;
-										
-		// Flags "refresh" if the ownership changed
-		if (!Refresh)
-			if (JSON.stringify(Char.Ownership) !== JSON.stringify(data.Ownership))
-				Refresh = true;
+
+		// Flags "refresh" if the ownership or inventory has changed
+		if (!Refresh && (JSON.stringify(Char.Ownership) !== JSON.stringify(data.Ownership))) Refresh = true;
+		if (!Refresh && (data.Inventory != null) && (Char.Inventory.length != data.Inventory.length)) Refresh = true;
 
 		// If we must refresh
 		if (Refresh) CharacterOnlineRefresh(Char, data, SourceMemberNumber);
@@ -549,17 +552,22 @@ function CharacterSetFacialExpression(C, AssetGroup, Expression) {
 }
 
 // Switches to the next facial expression for the given character's AssetGroup
-function CharacterCycleFacialExpression(C, AssetGroup) {
-	for (var A = 0; A < C.Appearance.length; A++) {
-		if ((C.Appearance[A].Asset.Group.Name == AssetGroup) && (C.Appearance[A].Asset.Group.AllowExpression) && (C.Appearance[A].Asset.Group.AllowExpression.length)) {
-			if (!C.Appearance[A].Property) C.Appearance[A].Property = {};
-			var Index = C.Appearance[A].Asset.Group.AllowExpression.indexOf(C.Appearance[A].Property.Expression);
-			if (Index + 1 >= C.Appearance[A].Asset.Group.AllowExpression.length) {
-				CharacterSetFacialExpression(C, AssetGroup, null);
-			} else {
-				CharacterSetFacialExpression(C, AssetGroup, C.Appearance[A].Asset.Group.AllowExpression[Index + 1]);
-			}
-		}
+function CharacterCycleFacialExpression(C, AssetGroup, Forward, Description) {
+	var A = C.Appearance.find(a => a.Asset.Group.Name == AssetGroup && a.Asset.Group.AllowExpression && a.Asset.Group.AllowExpression.length);
+	if (A == null) return;
+	if (!A.Property) A.Property = {};
+	var I = A.Asset.Group.AllowExpression.indexOf(A.Property.Expression);
+	let DoNext = expression => {
+		if (Description == true) return expression == null ? DialogFind(Player, "FacialExpressionNone") : DialogFind(Player, "FacialExpression" + expression);
+		CharacterSetFacialExpression(C, AssetGroup, expression);
+	}
+	if (Forward == null || Forward) {
+		if (I + 1 >= A.Asset.Group.AllowExpression.length) return DoNext(null);
+		return DoNext(A.Asset.Group.AllowExpression[I + 1]);
+	} else {
+		if (I == 0) return DoNext(null);
+		if (I < 0) return DoNext(A.Asset.Group.AllowExpression[A.Asset.Group.AllowExpression.length - 1]);
+		return DoNext(A.Asset.Group.AllowExpression[I - 1]);
 	}
 }
 

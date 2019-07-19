@@ -26,10 +26,10 @@ function SarahCanKissNotLover() { return (Player.CanTalk() && Sarah.CanTalk() &&
 function SarahCanSpankOwner() { return (Player.CanInteract() && (Sarah.Owner == Player.Name)) }
 function SarahCanSpankNotOwner() { return (Player.CanInteract() && (Sarah.Owner != Player.Name)) }
 function SarahCanReleaseToClub() { return (!SophieInside && !DialogIsRestrained("CurrentCharacter")) }
-function SarahCanInviteToRoomFriend() { return (Player.CanWalk() && Sarah.CanWalk() && !SophieInside && (Sarah.Owner != Player.Name) && (PrivateCharacter.length < PrivateCharacterMax) && LogQuery("RentRoom", "PrivateRoom")) }
-function SarahCanInviteToRoomSlave() { return (Player.CanWalk() && Sarah.CanWalk() && !SophieInside && (Sarah.Owner == Player.Name) && (PrivateCharacter.length < PrivateCharacterMax) && LogQuery("RentRoom", "PrivateRoom")) }
-function SarahCanInviteAmandaToRoom() { return (Player.CanWalk() && Amanda.CanWalk() && !SophieInside && (PrivateCharacter.length < PrivateCharacterMax) && (!SarahInside || (Amanda.Owner == Player.Name)) && LogQuery("RentRoom", "PrivateRoom")) }
-function SarahCanInviteAmandaToRoomRefuse() { return (Player.CanWalk() && Amanda.CanWalk() && !SophieInside && (PrivateCharacter.length < PrivateCharacterMax) && SarahInside && (Amanda.Owner != Player.Name) && LogQuery("RentRoom", "PrivateRoom")) }
+function SarahCanInviteToRoomFriend() { return (Player.CanWalk() && Sarah.CanWalk() && !SophieInside && (Sarah.Owner != Player.Name) && (PrivateCharacter.length < PrivateCharacterMax) && LogQuery("RentRoom", "PrivateRoom") && !LogQuery("LockOutOfPrivateRoom", "Rule")) }
+function SarahCanInviteToRoomSlave() { return (Player.CanWalk() && Sarah.CanWalk() && !SophieInside && (Sarah.Owner == Player.Name) && (PrivateCharacter.length < PrivateCharacterMax) && LogQuery("RentRoom", "PrivateRoom") && !LogQuery("LockOutOfPrivateRoom", "Rule")) }
+function SarahCanInviteAmandaToRoom() { return (Player.CanWalk() && Amanda.CanWalk() && !SophieInside && (PrivateCharacter.length < PrivateCharacterMax) && (!SarahInside || (Amanda.Owner == Player.Name)) && LogQuery("RentRoom", "PrivateRoom") && !LogQuery("LockOutOfPrivateRoom", "Rule")) }
+function SarahCanInviteAmandaToRoomRefuse() { return (Player.CanWalk() && Amanda.CanWalk() && !SophieInside && (PrivateCharacter.length < PrivateCharacterMax) && SarahInside && (Amanda.Owner != Player.Name) && LogQuery("RentRoom", "PrivateRoom") && !LogQuery("LockOutOfPrivateRoom", "Rule")) }
 function SarahCanInviteSophieToRoom() { return (Player.CanWalk() && Sophie.CanWalk() && (PrivateCharacter.length < PrivateCharacterMax)) }
 function SarahCanInviteSophieToRoomAccept() { return (Player.CanWalk() && Sophie.CanWalk() && (PrivateCharacter.length < PrivateCharacterMax) && (SophieUpsetCount >= 0) && (SophieUpsetCount <= 2)) }
 function SarahCanInviteSophieToRoomRefuse() { return (Player.CanWalk() && Sophie.CanWalk() && (PrivateCharacter.length < PrivateCharacterMax) && ((SophieUpsetCount < 0) || (SophieUpsetCount > 2))) }
@@ -474,7 +474,7 @@ function SarahSophieFreeSarahAndLeave() {
 
 // When Sophie frees Amanda and kicks both her and the player out
 function SarahSophieFreePlayerAndAmandaTheyLeave() {
-	if (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax)) {
+	if (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax) && !LogQuery("LockOutOfPrivateRoom", "Rule")) {
 		SarahTransferAmandaToRoom();
 		CommonSetScreen("Room", "Private");
 	}

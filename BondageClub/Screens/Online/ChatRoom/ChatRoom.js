@@ -7,6 +7,7 @@ var ChatRoomLastMessage = [""];
 var ChatRoomLastMessageIndex = 0;
 var ChatRoomTargetMemberNumber = null;
 var ChatRoomOwnershipOption = "";
+var ChatRoomPlayerCanJoin = false;
 
 // Returns TRUE if the dialog option is available
 function ChatRoomCanAddWhiteList() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.WhiteList.indexOf(CurrentCharacter.MemberNumber) < 0) && (Player.BlackList.indexOf(CurrentCharacter.MemberNumber) < 0)) }
@@ -77,7 +78,7 @@ function ChatRoomDrawCharacter(DoClick) {
 	for (var C = 0; C < ChatRoomCharacter.length; C++)
 		if (DoClick) {
 			if ((MouseX >= (C % 5) * Space + X) && (MouseX <= (C % 5) * Space + X + 450 * Zoom) && (MouseY >= Y + Math.floor(C / 5) * 500) && (MouseY <= Y + Math.floor(C / 5) * 500 + 1000 * Zoom)) {
-				if (MouseY <= Y + Math.floor(C / 5) * 500 + 950 * Zoom) {
+				if (MouseY <= Y + Math.floor(C / 5) * 500 + 900 * Zoom) {
 					ElementRemove("InputChat");
 					ElementRemove("TextAreaChatLog");
 					ChatRoomBackground = ChatRoomData.Background;
@@ -231,10 +232,11 @@ function ChatRoomSendChat() {
 			msg = msg.replace("CoinResult", Heads ? TextGet("Heads") : TextGet("Tails"));
 			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Action" } );
 
-		} else if (msg.indexOf("*") == 0) {
+		} else if (msg.indexOf("*") == 0 || msg.indexOf("/me ") == 0) {
 
-			// The player can emote an action using *, it doesn't garble
+			// The player can emote an action using * or /me (for those IRC or Skype users), it doesn't garble
 			msg = msg.replace(/\*/g, "");
+			msg = msg.replace(/\/me /g, "");
 			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Emote" } );
 
 		} else {
@@ -367,7 +369,14 @@ function ChatRoomSync(data) {
 	if ((data != null) && (typeof data === "object") && (data.Name != null)) {
 
 		// Load the room
-		if ((CurrentScreen != "ChatRoom") && (CurrentScreen != "Appearance") && (CurrentModule != "Character")) CommonSetScreen("Online", "ChatRoom");
+		if ((CurrentScreen != "ChatRoom") && (CurrentScreen != "Appearance") && (CurrentModule != "Character")) {
+			if (ChatRoomPlayerCanJoin) {
+				ChatRoomPlayerCanJoin = false;
+				CommonSetScreen("Online", "ChatRoom");
+			} else {
+				return;
+			}
+		} 
 
 		// Load the characters
 		ChatRoomCharacter = [];		

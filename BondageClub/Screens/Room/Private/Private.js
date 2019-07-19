@@ -10,9 +10,10 @@ var PrivateReleaseTimer = 0;
 var PrivateActivity = "";
 var PrivateActivityCount = 0;
 var PrivateActivityAffectLove = true;
-var PrivateActivityList = ["Gag", "Ungag", "Restrain", "FullRestrain", "Release", "Tickle", "Spank", "Pet", "Slap", "Kiss", "Fondle", "Naked", "Underwear", "RandomClothes", "Shibari", "Gift"];
+var PrivateActivityList = ["Gag", "Ungag", "Restrain", "RestrainOther", "FullRestrain", "FullRestrainOther", "Release", "Tickle", "Spank", "Pet", "Slap", "Kiss", "Fondle", "Naked", "Underwear", "RandomClothes", "Shibari", "Gift", "PetGirl", "Locks"];
+var PrivateActivityTarget = null;
 var PrivatePunishment = "";
-var PrivatePunishmentList = ["Cage", "Bound", "BoundPet", "ChastityBelt", "ChastityBra", "ForceNaked", "ConfiscateKey", "ConfiscateCrop", "ConfiscateWhip", "SleepCage"];
+var PrivatePunishmentList = ["Cage", "Bound", "BoundPet", "ChastityBelt", "ChastityBra", "ForceNaked", "ConfiscateKey", "ConfiscateCrop", "ConfiscateWhip", "SleepCage", "LockOut", "Cell"];
 var PrivateCharacterNewClothes = null;
 
 // Returns TRUE if a specific dialog option is allowed
@@ -60,6 +61,7 @@ function PrivateIsNeutral() { return ((CurrentCharacter.Love >= -30) && (Current
 function PrivateSubTrialInProgress() { return ((NPCEventGet(CurrentCharacter, "EndDomTrial") > 0) && (CurrentTime < CheatFactor("SkipTrialPeriod", 0) * NPCEventGet(CurrentCharacter, "EndDomTrial"))) }
 function PrivateSubTrialOverWilling() { return ((NPCEventGet(CurrentCharacter, "EndDomTrial") > 0) && (CurrentTime >= CheatFactor("SkipTrialPeriod", 0) * NPCEventGet(CurrentCharacter, "EndDomTrial")) && (CurrentCharacter.Love >= 90)) }
 function PrivateSubTrialOverUnwilling() { return ((NPCEventGet(CurrentCharacter, "EndDomTrial") > 0) && (CurrentTime >= CheatFactor("SkipTrialPeriod", 0) * NPCEventGet(CurrentCharacter, "EndDomTrial")) && (CurrentCharacter.Love < 90)) }
+function PrivateCanPet() { return ((CurrentCharacter.Love >= 0) && !CurrentCharacter.IsRestrained() && (InventoryGet(Player, "ItemArms") != null) && (InventoryGet(Player, "ItemArms").Asset.Name == "BitchSuit")) }
 
 // Loads the private room vendor NPC
 function PrivateLoad() {
@@ -75,7 +77,7 @@ function PrivateLoad() {
 	PrivateVendor = CharacterLoadNPC("NPC_Private_Vendor");
 	PrivateVendor.AllowItem = false;
 	NPCTraitDialog(PrivateVendor);
-	for(var C = 1; C < PrivateCharacter.length; C++)
+	for (var C = 1; C < PrivateCharacter.length; C++)
 		PrivateLoadCharacter(C);
 	PrivateRelationDecay();
 
@@ -89,7 +91,7 @@ function PrivateDrawCharacter() {
 	if (X < 0) X = 0;
 
 	// For each character to draw (maximum 4 at a time)
-	for(var C = PrivateCharacterOffset; (C < PrivateCharacter.length && C < PrivateCharacterOffset + 4); C++) {
+	for (var C = PrivateCharacterOffset; (C < PrivateCharacter.length && C < PrivateCharacterOffset + 4); C++) {
 		if (PrivateCharacter[C].Cage != null) DrawImage("Screens/Room/Private/CageBack.png", X + (C - PrivateCharacterOffset) * 470, 0);
 		DrawCharacter(PrivateCharacter[C], X + (C - PrivateCharacterOffset) * 470, 0, 1);
 		if (PrivateCharacter[C].Cage != null) DrawImage("Screens/Room/Private/CageFront.png", X + (C - PrivateCharacterOffset) * 470, 0);
@@ -139,7 +141,7 @@ function PrivateClickCharacterButton() {
 	if (X < 0) X = 0;
 
 	// For each character, we check if the player clicked on the cage or information button
-	for(var C = PrivateCharacterOffset; (C < PrivateCharacter.length && C < PrivateCharacterOffset + 4); C++) {
+	for (var C = PrivateCharacterOffset; (C < PrivateCharacter.length && C < PrivateCharacterOffset + 4); C++) {
 		
 		// The information sheet button is always available
 		if ((MouseX >= X + 85 + (C - PrivateCharacterOffset) * 470) && (MouseX <= X + 175 + (C - PrivateCharacterOffset) * 470))
@@ -176,7 +178,7 @@ function PrivateClickCharacter() {
 	if (X < 0) X = 0;
 
 	// For each character, we find the one that was clicked and open it's dialog
-	for(var C = PrivateCharacterOffset; (C < PrivateCharacter.length && C < PrivateCharacterOffset + 4); C++)
+	for (var C = PrivateCharacterOffset; (C < PrivateCharacter.length && C < PrivateCharacterOffset + 4); C++)
 		if ((MouseX >= X + (C - PrivateCharacterOffset) * 470) && (MouseX <= X + 470 + (C - PrivateCharacterOffset) * 470)) {
 			
 			// Sets the new character (1000 if she's owner, 2000 if she's owned)
@@ -185,6 +187,21 @@ function PrivateClickCharacter() {
 			if ((PrivateCharacter[C].Stage == "0") && PrivateCharacter[C].IsOwnedByPlayer()) PrivateCharacter[C].Stage = "2000";
 			NPCTraitDialog(PrivateCharacter[C]);
 			CharacterSetCurrent(PrivateCharacter[C]);
+
+			// If the owner has beeped the player
+			if ((CurrentCharacter.Stage == "1000") && (CurrentCharacter.Name == Player.Owner.replace("NPC-", "")) && LogQuery("OwnerBeepActive", "PrivateRoom")) {
+				if (LogQuery("OwnerBeepTimer", "PrivateRoom")) {
+					CurrentCharacter.Stage = "1020";
+					CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "OwnerBeepSuccess");
+					NPCLoveChange(CurrentCharacter, 8);
+				} else {
+					CurrentCharacter.Stage = "1030";
+					CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "OwnerBeepFail");
+					NPCLoveChange(CurrentCharacter, -10);
+				}
+				LogDelete("OwnerBeepActive", "PrivateRoom");
+				LogAdd("OwnerBeepTimer", "PrivateRoom", CurrentTime + 1800000);
+			}
 
 			// If the owner is serious, she might force the player to kneel
 			if ((CurrentCharacter.Stage == "1000") && (CurrentCharacter.Name == Player.Owner.replace("NPC-", "")) && !Player.IsKneeling() && Player.CanKneel() && (NPCTraitGet(CurrentCharacter, "Serious") >= Math.random() * 100 - 25)) {
@@ -243,6 +260,7 @@ function PrivateLoadCharacter(C) {
 	if ((PrivateCharacter[C].AccountName == null) && (PrivateCharacter[C].Name != null)) {
 		var N = CharacterLoadNPC("NPC_Private_Custom");
 		N.Name = PrivateCharacter[C].Name;
+		PrivateCharacter[C].AccountName = "NPC_Private_Custom" + N.ID.toString();
 		N.AccountName = "NPC_Private_Custom" + N.ID.toString();
 		if (PrivateCharacter[C].Title != null) N.Title = PrivateCharacter[C].Title;
 		if (PrivateCharacter[C].AssetFamily != null) N.AssetFamily = PrivateCharacter[C].AssetFamily;
@@ -288,7 +306,7 @@ function PrivateAddCharacter(Template, Archetype, CustomData) {
 
 // Returns the ID of the private room current character
 function PrivateGetCurrentID() {
-	for(var P = 1; P < PrivateCharacter.length; P++)
+	for (var P = 1; P < PrivateCharacter.length; P++)
 		if (CurrentCharacter.Name == PrivateCharacter[P].Name)
 			return P;
 }
@@ -299,7 +317,7 @@ function PrivateKickOut() {
 	PrivateCharacter[ID] = null;
 	PrivateCharacter.splice(ID, 1);
 	ServerPrivateCharacterSync();
-	for(var P = 1; P < PrivateCharacter.length; P++)
+	for (var P = 1; P < PrivateCharacter.length; P++)
 		if (PrivateCharacter[P] != null) 
 			PrivateCharacter[P].AccountName = "NPC_Private_Custom" + P.toString();
 	DialogLeave();
@@ -312,7 +330,7 @@ function PrivateChange(NewCloth) {
 	if (NewCloth == "Naked") CharacterNaked(CurrentCharacter);
 	if (NewCloth == "Custom") {
 		PrivateNPCInteraction(10);
-		CharacterChangeMoney(Player, -100);
+		CharacterChangeMoney(Player, -50);
 		PrivateCharacterNewClothes = CurrentCharacter;
 		DialogLeave();
 		CharacterAppearanceLoadCharacter(PrivateCharacterNewClothes);
@@ -339,7 +357,7 @@ function PrivateRestrainPlayer() {
 // Relationship with any NPC will decay with time, below -100, the NPC leaves if she's not caged
 function PrivateRelationDecay() {
 	var MustSave = false;
-	for(var C = 1; C < PrivateCharacter.length; C++) {
+	for (var C = 1; C < PrivateCharacter.length; C++) {
 		var LastDecay = NPCEventGet(PrivateCharacter[C], "LastDecay");
 		if (LastDecay == 0) 
 			NPCEventAdd(PrivateCharacter[C], "LastDecay", CurrentTime);
@@ -383,11 +401,23 @@ function PrivateShowTrialHours() {
 // Returns TRUE if the player is owned (from the room or not)
 function PrivatePlayerIsOwned() {
 	if (Player.Owner != "") return true;
-	for(var C = 0; C < PrivateCharacter.length; C++)
+	for (var C = 0; C < PrivateCharacter.length; C++)
 		if (typeof PrivateCharacter[C].IsOwner === 'function') 
 			if (PrivateCharacter[C].IsOwner())
 				return true;
 	return false;
+}
+
+// Returns TRUE if someone else in the room can be restrained by the player owner, keep that target in a variable to be used later
+function PrivateCanRestrainOther() {
+	PrivateActivityTarget = null;
+	var List = [];
+	for (var C = 0; C < PrivateCharacter.length; C++)
+		if ((PrivateCharacter[C].ID != 0) && (PrivateCharacter[C].ID != CurrentCharacter.ID) && (NPCTraitGet(CurrentCharacter, "Dominant") > NPCTraitGet(PrivateCharacter[C], "Dominant")) && (InventoryGet(PrivateCharacter[C], "ItemArms") == null))
+			List.push(PrivateCharacter[C]);
+	if (List.length > 0)
+		PrivateActivityTarget = List[Math.floor(Math.random() * List.length)];
+	return (PrivateActivityTarget != null);
 }
 
 // Starts a random activity for the player as submissive
@@ -405,7 +435,9 @@ function PrivateStartActivity() {
 		if ((Act == "Gag") && Player.CanTalk()) break;
 		if ((Act == "Ungag") && !Player.CanTalk() && (CommonTime() > PrivateReleaseTimer)) break;
 		if ((Act == "Restrain") && (InventoryGet(Player, "ItemArms") == null)) break;
+		if ((Act == "RestrainOther") && PrivateCanRestrainOther()) break;
 		if ((Act == "FullRestrain") && (InventoryGet(Player, "ItemArms") == null)) break;
+		if ((Act == "FullRestrainOther") && PrivateCanRestrainOther()) break;
 		if ((Act == "Release") && Player.IsRestrained() && (CommonTime() > PrivateReleaseTimer)) break;
 		if ((Act == "Tickle") && (NPCTraitGet(CurrentCharacter, "Playful") >= 0)) break;
 		if ((Act == "Spank") && (NPCTraitGet(CurrentCharacter, "Violent") >= 0)) break;
@@ -418,7 +450,9 @@ function PrivateStartActivity() {
 		if ((Act == "RandomClothes") && Player.CanChange()) break;
 		if ((Act == "Shibari") && Player.CanChange() && (NPCTraitGet(CurrentCharacter, "Wise") >= 0)) break;
 		if ((Act == "Gift") && (Player.Owner != "") && (CurrentCharacter.Love >= 90) && (CurrentTime >= NPCEventGet(CurrentCharacter, "LastGift") + 86400000)) break;
-		
+		if ((Act == "PetGirl") && (InventoryGet(Player, "ItemArms") == null) && (NPCTraitGet(CurrentCharacter, "Peaceful") >= 0)) break;
+		if ((Act == "Locks") && InventoryHasLockableItems(Player)) break;
+
 		// After 100 tries, we give up on picking an activity and the owner ignore the player
 		Count++;
 		if (Count >= 100) {
@@ -435,6 +469,7 @@ function PrivateStartActivity() {
 	PrivateActivityCount = 0;
 	CurrentCharacter.Stage = "Activity" + PrivateActivity;
 	CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "Activity" + PrivateActivity + "Intro");
+	if (PrivateActivityTarget != null) CurrentCharacter.CurrentDialog = CurrentCharacter.CurrentDialog.replace("ActivityTarget", PrivateActivityTarget.Name);
 
 }
 
@@ -477,22 +512,27 @@ function PrivateActivityRun(LoveFactor) {
 	// The restraining activities are harsher for serious NPCs
 	if (PrivateActivity == "Gag") InventoryWearRandom(Player, "ItemMouth");
 	if (PrivateActivity == "Restrain") InventoryWearRandom(Player, "ItemArms");
+	if (PrivateActivity == "RestrainOther") InventoryWearRandom(PrivateActivityTarget, "ItemArms");
 	if ((PrivateActivity == "FullRestrain") && (NPCTraitGet(CurrentCharacter, "Playful") > 0)) CharacterFullRandomRestrain(Player, "Few");
 	if ((PrivateActivity == "FullRestrain") && (NPCTraitGet(CurrentCharacter, "Playful") == 0)) CharacterFullRandomRestrain(Player);
 	if ((PrivateActivity == "FullRestrain") && (NPCTraitGet(CurrentCharacter, "Serious") > 0)) CharacterFullRandomRestrain(Player, "Lot");
+	if (PrivateActivity == "FullRestrainOther") CharacterFullRandomRestrain(PrivateActivityTarget);
 	if (PrivateActivity == "Release") CharacterRelease(Player);
 	if (PrivateActivity == "Ungag") { InventoryRemove(Player, "ItemMouth"); InventoryRemove(Player, "ItemHead"); }
-	if ((PrivateActivity == "Gag") || (PrivateActivity == "Restrain") || (PrivateActivity == "FullRestrain")) PrivateReleaseTimer = CommonTime() + (Math.random() * 60000) + 60000;
 	if (PrivateActivity == "Naked") CharacterNaked(Player);
 	if (PrivateActivity == "Underwear") CharacterRandomUnderwear(Player);
 	if (PrivateActivity == "RandomClothes") CharacterAppearanceFullRandom(Player, true);
+	if (PrivateActivity == "Locks") InventoryFullLockRandom(Player, true);
+
+	// Some activities creates a release timer
+	if ((PrivateActivity == "Gag") || (PrivateActivity == "Restrain") || (PrivateActivity == "FullRestrain") || (PrivateActivity == "Locks")) PrivateReleaseTimer = CommonTime() + (Math.random() * 60000) + 60000;
 
 	// The gift can only happen once a day if the player is fully collared
 	if (PrivateActivity == "Gift") {
 		CharacterChangeMoney(Player, 50);
 		NPCEventAdd(CurrentCharacter, "LastGift", CurrentTime);
 	}
-	
+
 	// In Shibari, the player gets naked and fully roped in hemp
 	if (PrivateActivity == "Shibari") {
 		CharacterNaked(Player);
@@ -503,6 +543,18 @@ function PrivateActivityRun(LoveFactor) {
 		InventoryWear(Player, "HempRopeHarness", "ItemTorso", "Default", Math.floor(Math.random() * 10) + 1);
 		InventoryWearRandom(Player, "ItemMouth");
 		PrivateReleaseTimer = CommonTime() + (Math.random() * 60000) + 60000;
+	}
+
+	// In PetGirl, the player gets gagged, bound & dressed as a puppy
+	if (PrivateActivity == "PetGirl") {
+		InventoryRemove(Player, "ItemLegs");
+		InventoryRemove(Player, "ItemFeet");
+		InventoryRemove(Player, "Hat");
+		InventoryWearRandom(Player, "ItemMouth");
+		InventoryWear(Player, "BitchSuit", "ItemArms", "Default", Math.floor(Math.random() * 10) + 1);
+		InventoryWear(Player, "PuppyEars1", "HairAccessory");
+		InventoryWear(Player, "PuppyTailPlug", "ItemButt");
+		PrivateReleaseTimer = CommonTime() + (Math.random() * 120000) + 120000;
 	}
 
 	// After running the activity a few times, we stop
@@ -543,7 +595,7 @@ function PrivateSelectPunishment() {
 	while (true) {
 
 		// Picks an punishment at random
-		PrivatePunishment = CommonRandomItemFromList("", PrivatePunishmentList);
+		PrivatePunishment = CommonRandomItemFromList(PrivatePunishment, PrivatePunishmentList);
 
 		// If the punishment is valid
 		if ((PrivatePunishment == "Cage") && LogQuery("Cage", "PrivateRoom")) break;
@@ -556,6 +608,8 @@ function PrivateSelectPunishment() {
 		if ((PrivatePunishment == "ConfiscateCrop") && (InventoryAvailable(Player, "LeatherCrop", "ItemPelvis") || InventoryAvailable(Player, "LeatherCrop", "ItemBreast"))) break;
 		if ((PrivatePunishment == "ConfiscateWhip") && (InventoryAvailable(Player, "LeatherWhip", "ItemPelvis") || InventoryAvailable(Player, "LeatherWhip", "ItemBreast"))) break;
 		if ((PrivatePunishment == "SleepCage") && LogQuery("Cage", "PrivateRoom") && !LogQuery("SleepCage", "Rule")) break;
+		if ((PrivatePunishment == "LockOut") && (NPCTraitGet(CurrentCharacter, "Serious") >= 0)) break;
+		if (PrivatePunishment == "Cell") break;
 
 	}
 
@@ -581,6 +635,8 @@ function PrivateRunPunishment(LoveFactor) {
 	if (PrivatePunishment == "ConfiscateCrop") { InventoryDelete(Player, "LeatherCrop", "ItemPelvis"); InventoryDelete(Player, "LeatherCrop", "ItemBreast"); }
 	if (PrivatePunishment == "ConfiscateWhip") { InventoryDelete(Player, "LeatherWhip", "ItemPelvis"); InventoryDelete(Player, "LeatherWhip", "ItemBreast"); }
 	if (PrivatePunishment == "SleepCage") LogAdd("SleepCage", "Rule", CurrentTime + 604800000);
+	if (PrivatePunishment == "LockOut") { LogAdd("LockOutOfPrivateRoom", "Rule", CurrentTime + 3600000); DialogLeave(); CommonSetScreen("Room", "MainHall"); }
+	if (PrivatePunishment == "Cell") { DialogLeave(); CharacterFullRandomRestrain(Player, "ALL"); CellLock(5); }
 }
 
 // Sets up the player collaring ceremony cutscene
@@ -611,7 +667,7 @@ function PrivateNPCCollaring() {
 	CharacterChangeMoney(Player, -100);
 	NPCEventDelete(CurrentCharacter, "EndDomTrial");
 	NPCEventAdd(CurrentCharacter, "NPCCollaring", CurrentTime);
-	InventoryRemove(Player, "ItemNeck");
+	InventoryRemove(CurrentCharacter, "ItemNeck");
 	CharacterRelease(Player);
 	CharacterRelease(CurrentCharacter);
 	CharacterSetActivePose(Player, null);

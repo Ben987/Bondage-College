@@ -208,10 +208,8 @@ function CharacterAppearanceVisible(C, AssetName, GroupName) {
 	for (var A = 0; A < C.Appearance.length; A++) {
 		if ((C.Appearance[A].Asset.Hide != null) && (C.Appearance[A].Asset.Hide.indexOf(GroupName) >= 0)) return false;
 		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.Hide != null) && (C.Appearance[A].Property.Hide.indexOf(GroupName) >= 0)) return false;
+		if ((C.Appearance[A].Asset.HideItem != null) && (C.Appearance[A].Asset.HideItem.indexOf(GroupName + AssetName) >= 0)) return false;
 	}
-	for (var A = 0; A < C.Appearance.length; A++)
-		if ((C.Appearance[A].Asset.HideItem != null) && (C.Appearance[A].Asset.HideItem.indexOf(GroupName + AssetName) >= 0))
-			return false;
 	if (C.Pose != null)
 		for (var A = 0; A < C.Pose.length; A++)
 			for (var P = 0; P < Pose.length; P++)
@@ -242,7 +240,8 @@ function CharacterAppearanceBuildCanvas(C) {
 	
 	// Loops in all items worn by the character
 	for (var A = 0; A < C.Appearance.length; A++) 
-		if (CharacterAppearanceVisible(C, C.Appearance[A].Asset.Name, C.Appearance[A].Asset.Group.Name)) {
+	  // Only draw if the asset is visible
+		if (C.Appearance[A].Asset.Visible && CharacterAppearanceVisible(C, C.Appearance[A].Asset.Name, C.Appearance[A].Asset.Group.Name)) {
 
 			// If there's a father group, we must add it to find the correct image
 			var CA = C.Appearance[A];
@@ -272,46 +271,38 @@ function CharacterAppearanceBuildCanvas(C) {
 					C.CanvasBlink.getContext("2d").clearRect(CA.Asset.Alpha[AL][0], CA.Asset.Alpha[AL][1], CA.Asset.Alpha[AL][2], CA.Asset.Alpha[AL][3]);
 				}
 			
-			// If invisible, we don't draw anything
-			if (CA.Asset.Visible) {
+			// Check if we need to draw a different expression (for facial features)
+			var Expression = "";
+			if ((CA.Asset.Group.AllowExpression != null) && (CA.Asset.Group.AllowExpression.length > 0))
+				if ((CA.Property && CA.Property.Expression && CA.Asset.Group.AllowExpression.indexOf(CA.Property.Expression) >= 0))
+					Expression = CA.Property.Expression + "/";
 
-				// Check if we need to draw a different expression (for facial features)
-				var Expression = "";
-				if ((CA.Asset.Group.AllowExpression != null) && (CA.Asset.Group.AllowExpression.length > 0))
-					if ((CA.Property && CA.Property.Expression && CA.Asset.Group.AllowExpression.indexOf(CA.Property.Expression) >= 0))
-						Expression = CA.Property.Expression + "/";
+			// Check if we need to draw a different variation (from type property)
+			var Variation = "";
+			if ((CA.Property != null) && (CA.Property.Type != null)) Variation = CA.Property.Type;
+			
+			// Cycle through all layers of the image
+			var MaxLayer = (CA.Asset.Layer == null) ? 1 : CA.Asset.Layer.length;
+			for (var L = 0; L < MaxLayer; L++) {
 
-				// Check if we need to draw a different variation (from type property)
-				var Variation = "";
-				if ((CA.Property != null) && (CA.Property.Type != null)) Variation = CA.Property.Type;
-				
-				// Cycle through all layers of the image
-				var MaxLayer = (CA.Asset.Layer == null) ? 1 : CA.Asset.Layer.length;
-				for (var L = 0; L < MaxLayer; L++) {
-
-					// Draw the item on the canvas (default or empty means no special color, # means apply a color, regular text means we apply that text)
-					var Layer = (CA.Asset.Layer == null) ? "" : "_" + CA.Asset.Layer[L].Name;
-					if ((CA.Color != null) && (CA.Color.indexOf("#") == 0) && ((CA.Asset.Layer == null) || CA.Asset.Layer[L].AllowColorize)) {
-						DrawImageCanvasColorize("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + G + Variation + Layer + ".png", C.Canvas.getContext("2d"), CA.Asset.Group.DrawingLeft, CA.Asset.Group.DrawingTop, 1, CA.Color, CA.Asset.Group.DrawingFullAlpha);
-						if (!CA.Asset.Group.DrawingBlink) DrawImageCanvasColorize("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + G + Variation + Layer + ".png", C.CanvasBlink.getContext("2d"), CA.Asset.Group.DrawingLeft, CA.Asset.Group.DrawingTop, 1, CA.Color, CA.Asset.Group.DrawingFullAlpha);
-					} else {
-						var Color = ((CA.Color == null) || (CA.Color == "Default") || (CA.Color == "") || (CA.Color.indexOf("#") == 0)) ? "" : "_" + CA.Color;
-						DrawImageCanvas("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + G + Variation + Color + Layer + ".png", C.Canvas.getContext("2d"), CA.Asset.Group.DrawingLeft, CA.Asset.Group.DrawingTop);
-						if (!CA.Asset.Group.DrawingBlink) DrawImageCanvas("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + G + Variation + Color + Layer + ".png", C.CanvasBlink.getContext("2d"), CA.Asset.Group.DrawingLeft, CA.Asset.Group.DrawingTop);
-					}
-
+				// Draw the item on the canvas (default or empty means no special color, # means apply a color, regular text means we apply that text)
+				var Layer = (CA.Asset.Layer == null) ? "" : "_" + CA.Asset.Layer[L].Name;
+				if ((CA.Color != null) && (CA.Color.indexOf("#") == 0) && ((CA.Asset.Layer == null) || CA.Asset.Layer[L].AllowColorize)) {
+					DrawImageCanvasColorize("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + G + Variation + Layer + ".png", C.Canvas.getContext("2d"), CA.Asset.Group.DrawingLeft, CA.Asset.Group.DrawingTop, 1, CA.Color, CA.Asset.Group.DrawingFullAlpha);
+					if (!CA.Asset.Group.DrawingBlink) DrawImageCanvasColorize("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + G + Variation + Layer + ".png", C.CanvasBlink.getContext("2d"), CA.Asset.Group.DrawingLeft, CA.Asset.Group.DrawingTop, 1, CA.Color, CA.Asset.Group.DrawingFullAlpha);
+				} else {
+					var Color = ((CA.Color == null) || (CA.Color == "Default") || (CA.Color == "") || (CA.Color.indexOf("#") == 0)) ? "" : "_" + CA.Color;
+					DrawImageCanvas("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + G + Variation + Color + Layer + ".png", C.Canvas.getContext("2d"), CA.Asset.Group.DrawingLeft, CA.Asset.Group.DrawingTop);
+					if (!CA.Asset.Group.DrawingBlink) DrawImageCanvas("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + G + Variation + Color + Layer + ".png", C.CanvasBlink.getContext("2d"), CA.Asset.Group.DrawingLeft, CA.Asset.Group.DrawingTop);
 				}
-
-				// If we must draw the lock (never colorized)
-				if ((CA.Property != null) && (CA.Property.LockedBy != null) && (CA.Property.LockedBy != "")) {
-					DrawImageCanvas("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + Variation + "_Lock.png", C.Canvas.getContext("2d"), CA.Asset.Group.DrawingLeft, CA.Asset.Group.DrawingTop);
-					if (!CA.Asset.Group.DrawingBlink) DrawImageCanvas("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + Variation + "_Lock.png", C.CanvasBlink.getContext("2d"), CA.Asset.Group.DrawingLeft, CA.Asset.Group.DrawingTop);
-				}
-
 			}
 
+			// If we must draw the lock (never colorized)
+			if ((CA.Property != null) && (CA.Property.LockedBy != null) && (CA.Property.LockedBy != "")) {
+				DrawImageCanvas("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + Variation + "_Lock.png", C.Canvas.getContext("2d"), CA.Asset.Group.DrawingLeft, CA.Asset.Group.DrawingTop);
+				if (!CA.Asset.Group.DrawingBlink) DrawImageCanvas("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + Variation + "_Lock.png", C.CanvasBlink.getContext("2d"), CA.Asset.Group.DrawingLeft, CA.Asset.Group.DrawingTop);
+			}
 		}
-
 }
 
 // Returns a value from the character current appearance
@@ -368,8 +359,11 @@ function AppearanceRun() {
 		// Creates buttons for all groups	
 		for (var A = CharacterAppearanceOffset; A < AssetGroup.length && A < CharacterAppearanceOffset + CharacterAppearanceNumPerPage; A++)
 			if ((AssetGroup[A].Family == C.AssetFamily) && (AssetGroup[A].Category == "Appearance") && AssetGroup[A].AllowCustomize && (C.ID == 0 || AssetGroup[A].Clothing)) {
-				DrawButton(1300, 145 + (A - CharacterAppearanceOffset) * 95, 400, 65, "", "White", "");
-				DrawTextFit(AssetGroup[A].Description + ": " + CharacterAppearanceGetCurrentValue(C, AssetGroup[A].Name, "Description"), 1500, 178 + (A - CharacterAppearanceOffset) * 95, 396, "Black");
+				
+				// CharacterAppearanceNextItem(C, AssetGroup[A].Name, (MouseX > 1500 || CommonIsMobile));
+				DrawBackNextButton(1300, 145 + (A - CharacterAppearanceOffset) * 95, 400, 65, AssetGroup[A].Description + ": " + CharacterAppearanceGetCurrentValue(C, AssetGroup[A].Name, "Description"), "White", "", 
+					() => CharacterAppearanceNextItem(C, AssetGroup[A].Name, false, true), 
+					() => CharacterAppearanceNextItem(C, AssetGroup[A].Name, true, true));
 				var Color = CharacterAppearanceGetCurrentValue(C, AssetGroup[A].Name, "Color", "");
 				DrawButton(1725, 145 + (A - CharacterAppearanceOffset) * 95, 160, 65, Color, ((Color.indexOf("#") == 0) ? Color : "White"));
 				DrawButton(1910, 145 + (A - CharacterAppearanceOffset) * 95, 65, 65, "", "White", AssetGroup[A].AllowColorize ? "Icons/Color.png" : "Icons/ColorBlocked.png");
@@ -436,38 +430,42 @@ function CharacterAppearanceSetItem(C, Group, ItemAsset, NewColor, DifficultyFac
 }
 
 // Cycle in the appearance assets to find the next item in a group and wear it
-function CharacterAppearanceNextItem(C, Group) {
-	
-	// For each item, we first find the item and pick the next one
+function CharacterAppearanceNextItem(C, Group, Forward, Description) {	
 	var Current = CharacterAppearanceGetCurrentValue(C, Group, "Name");
-	var Found = (Current == "None");
-	for (var I = 0; I < CharacterAppearanceAssets.length; I++)
-		if (CharacterAppearanceAssets[I].Group.Name == Group) {
-			if (Found) {
-				CharacterAppearanceSetItem(C, Group, CharacterAppearanceAssets[I]);
-				return;				
-			}
-			else {
-				if (CharacterAppearanceAssets[I].Name == Current)
-					Found = true;
+	var CAA = CharacterAppearanceAssets.filter(a => a.Group.Name == Group);
+	if (Description == true && CAA.length == 0) return "None";
+	if (Current != "None") {
+		// If we found the item we move forward or backward if possible
+		var I = CAA.findIndex(a => a.Name == Current);
+		if (I >= 0) {
+			if (Forward == null || Forward) {
+				if (I + 1 < CAA.length) {
+					if (Description == true) return CAA[I + 1].Description;
+					CharacterAppearanceSetItem(C, Group, CAA[I + 1]);
+					return;
+				}
+			} else {
+				if (I - 1 >= 0) {
+					if (Description == true) return CAA[I - 1].Description;
+					CharacterAppearanceSetItem(C, Group, CAA[I - 1]);
+					return;
+				}
 			}
 		}
-				
-	// Since we didn't found any item, we pick "None" or the first item if we can't
-	for (var A = 0; A < AssetGroup.length; A++)
-		if (AssetGroup[A].Name == Group) {
-			if (AssetGroup[A].AllowNone) {
-				CharacterAppearanceSetItem(C, Group, null);
-				return;				
-			}
-			else
-				for (I = 0; I < CharacterAppearanceAssets.length; I++)
-					if (CharacterAppearanceAssets[I].Group.Name == Group) {
-						CharacterAppearanceSetItem(C, Group, CharacterAppearanceAssets[I]);
-						return;						
-					}			
-		}
-
+	}
+	// Since we didn't found any item, we pick "None" if we had an item or the first or last item
+	var AG = AssetGroup.find(g => g.Name == Group);
+	if (Current != "None" && AG != null && AG.AllowNone) {
+		if (Description == true) return "None";
+		CharacterAppearanceSetItem(C, Group, null);
+	} else if (Forward == null || Forward) {
+		if (Description == true) return CAA[0].Description;
+		CharacterAppearanceSetItem(C, Group, CAA[0]);
+	} else {
+		if (Description == true) return CAA[CAA.length - 1].Description;
+		CharacterAppearanceSetItem(C, Group, CAA[CAA.length - 1]);
+	}	
+	if (Description == true) return "None";
 }
 
 // Find the next color for the item
@@ -524,7 +522,7 @@ function AppearanceClick() {
 			for (var A = CharacterAppearanceOffset; A < AssetGroup.length && A < CharacterAppearanceOffset + CharacterAppearanceNumPerPage; A++)
 				if ((AssetGroup[A].Family == C.AssetFamily) && (AssetGroup[A].Category == "Appearance") && (C.ID == 0 || AssetGroup[A].Clothing))
 					if ((MouseY >= 145 + (A - CharacterAppearanceOffset) * 95) && (MouseY <= 210 + (A - CharacterAppearanceOffset) * 95))
-						CharacterAppearanceNextItem(C, AssetGroup[A].Name);
+						CharacterAppearanceNextItem(C, AssetGroup[A].Name, (MouseX > 1500 || CommonIsMobile));
 
 		// If we must switch to the next item in the assets
 		if ((MouseX >= 1725) && (MouseX < 1885) && (MouseY >= 145) && (MouseY < 975))

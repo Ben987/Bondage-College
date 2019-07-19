@@ -136,6 +136,12 @@ Als Hausdame habe ich eine Aufgabe für dich.
 Of course Miss.  What can I do for you?
 Natürlich, Miss. Was kann ich für Sie tun?
 ###_PLAYER
+Can I have a duster gag?
+Kann ich einen Staubwedel-Knebel haben?
+###_NPC
+You have lots of cleaning to do sister?  (She giggles.)  Of course, you can have one.  (She gives you a duster gag.)
+Du hast wohl viel sauberzumachen, Schwester? (Sie kichert.) Natürlich kannst du einen haben. (Sie gibt dir einen Staubwedel-Knebel.)
+###_PLAYER
 I can't stay to chat.  (Leave her.)
 Keine Zeit zum Plaudern. (Dialog beenden.)
 There's a blond girl stuck in a reserved bedroom.
@@ -465,6 +471,8 @@ Kannst du mich bitte befreien, damit ich arbeiten kann?
 ###_NPC
 Poor thing, of course I can help you.  (She releases you and shows you the chores list again.)  
 Armes Ding, natürlich kann ich dir helfen. (Sie befreit dich und zeigt dir die Liste erneut.)
+(She shakes her head no.)
+(Sie schüttelt den Kopf.)
 ###_PLAYER
 I'll take a rescue mission.
 Ich nehme eine Rettungsmission.
@@ -483,6 +491,12 @@ Ich übernehme die Reinigung.
 ###_NPC
 Awesome!  There's a lot of cleaning to do.
 Super! Es gibt viel sauberzumachen.
+###_PLAYER
+I’ll play music.
+Ich spiele Musik.
+###_NPC
+Great! We always want some musician to play nice musics.
+Super! Wir suchen dauernd nach Musikern, die gut spielen.
 ###_PLAYER
 Let's talk some more first.
 Reden wir erst noch ein wenig.
@@ -795,3 +809,51 @@ Here's your pay for your hard work.  (She gives you REPLACEMONEY $)
 Hier ist der Lohn für deine harte Arbeit. (Sie gibt dir REPLACEMONEY $)
 I hope you understand why I can't reward you.  You can try again though.
 Du verstehst hoffentlich, warum ich dich nicht belohnen kann. Du kannst es aber gern nochmal versuchen.
+###_PLAYER
+Let me change first.
+Ich ziehe mich erst um. (Die Uniform anziehen.)
+###_NPC
+Sure. Do you want me to explain the work?
+Sicher. Soll ich dir deine Arbeit erklären?
+###_PLAYER
+I prefer in my own dress as it feels comfortable.
+Meine eigene Kleidung ist mir lieber.
+No thank you, I’m familiar with it already.
+Nein, danke, ich kenne mich aus.
+###_NPC
+Perfect! Now go ahead and select the song you are good at.
+Perfekt! Dann wähle einen Song, den du gut kannst.
+You should hit “S D K L” on your keyboard when the musical notes drop from the top to the bottom. Press and hold the key if it is a long-note.
+Drücke “S D K L” auf deiner Tastatur, wenn die Noten von oben herabfallen. Halte die Taste bei langen Noten gedrückt.
+###_PLAYER
+(Nod.)
+(Nicken.)
+###_NPC
+Each hit is judged with “PERFECT”, “GREAT”, or “MISS”; if you release your key early in case of a long-note, you get an “END MISS”.
+Jeder Treffer wird mit “PERFECT”, “GREAT”, oder “MISS” bewertet; lässt du die Taste bei einer langen Note zu früh los, ist das ein “END MISS”.
+You break your combo if you get a “MISS” or “END MISS”, and audience will eventually become unhappy.
+Bei einem “MISS” oder “END MISS” unterbrichst du deine Kombo, und das Publikum wird langsam unzufrieden.
+Audience will tie you up when they couldn’t enjoy the music, because that’s part of the entertainment for them.
+Das Publikum wird dich fesseln, wenn ihnen deine Musik nicht gefällt. Das ist Teil ihrer Unterhaltung.
+If you finished the play, you will be awarded based on your performance.
+Dein Lohn am Ende hängt davon ab, wie gut du gespielt hast.
+That’s basically everything, and you will find out more during the play.
+Das ist im Grunde schon alles, den Rest findest du beim Spielen heraus.
+###_PLAYER
+Thank you for the instruction.
+Danke für die Erklärung.
+Select song.
+(Song wählen.)
+###_NPC
+(List of songs)
+(Song-Liste)
+###_PLAYER
+見えない何かに怯える夜 (LV 7)
+見えない何かに怯える夜 (LV 7)
+(Want more Songs)
+(Ich will mehr Songs)
+###_NPC
+We are adding more contents to this minigame. If you have royalty free songs or wish to create charts, you are welcomed to contact the dev for more information.
+Wir arbeiten an weiteren Inhalten für dieses Minispiel. Wenn du lizenzfreie Musik hast oder Levels erstellen willst, kannst du gern den Entwickler kontaktieren.
+(She releases you.)  All set!  Are you ready for more chores?
+(Sie befreit dich.) Alles klar! Bist du bereit für mehr Aufgaben?

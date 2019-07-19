@@ -13,7 +13,10 @@ var ManagementRandomGirlArchetype = "";
 var ManagementRandomActivityCount = 0;
 var ManagementRandomActivity = "";
 var ManagementRandomActivityList = ["AddArms", "RemoveArms", "AddGag", "RemoveGag", "AddTorso", "RemoveTorso", "AddFeet", "RemoveFeet", "AddLegs", "RemoveLegs", "Tickle", "Spank", "Kiss", "Fondle", "Masturbate"];
+var ManagementRandomActivityCategory = "";
+var ManagementRandomActivityCategoryList = ["Activity", "Quiz", "Struggle"];
 var ManagementVisitRoom = false;
+var ManagementTimer = 0;
 
 // Returns TRUE if the dialog situation is allowed
 function ManagementNoTitle() { return (!LogQuery("JoinedSorority", "Maid") && !LogQuery("ClubMistress", "Management") && (ReputationGet("Kidnap") < 50) && !SarahUnlockQuest) }
@@ -44,7 +47,7 @@ function ManagementCannotBeReleased() { return ((Player.Owner != "") && (Player.
 function ManagementWillOwnPlayer() { return ((Player.Owner == "") && (ReputationGet("Dominant") <= -100) && (ManagementMistressAngryCount == 0) && (PrivateCharacter.length <= PrivateCharacterMax) && !PrivatePlayerIsOwned() && ManagementNoMistressInPrivateRoom()) }
 function ManagementWontOwnPlayer() { return ((Player.Owner == "") && (ReputationGet("Dominant") <= -1) && (ReputationGet("Dominant") >= -99) && (PrivateCharacter.length <= PrivateCharacterMax) && !PrivatePlayerIsOwned() && ManagementNoMistressInPrivateRoom()) }
 function ManagementIsClubSlave() { return ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "ClubSlaveCollar")) }
-function ManagementCanTransferToRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax)) }
+function ManagementCanTransferToRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax) && !LogQuery("LockOutOfPrivateRoom", "Rule")) }
 function ManagementWontVisitRoom() { return (!ManagementVisitRoom && ManagementCanTransferToRoom()) }
 function ManagementCanBeClubMistress() { return ((ReputationGet("Dominant") >= 100) && ((Math.floor((CurrentTime - Player.Creation) / 86400000)) >= 30) && !LogQuery("ClubMistress", "Management") && !Player.IsRestrained() && !Player.IsKneeling() && !LogQuery("BlockChange", "Rule")) }
 function ManagementCannotBeClubMistress() { return ((ReputationGet("Dominant") < 100) && (ReputationGet("Dominant") >= 50) && ((Math.floor((CurrentTime - Player.Creation) / 86400000)) >= 30) && !LogQuery("ClubMistress", "Management") && !Player.IsRestrained() && !Player.IsKneeling() && !LogQuery("BlockChange", "Rule")) }
@@ -52,6 +55,9 @@ function ManagementCannotBeClubMistressLaugh() { return ((ReputationGet("Dominan
 function ManagementCannotBeClubMistressTime() { return (((Math.floor((CurrentTime - Player.Creation) / 86400000)) < 30) && !LogQuery("ClubMistress", "Management") && !Player.IsRestrained() && !Player.IsKneeling() && !LogQuery("BlockChange", "Rule")) }
 function ManagementMistressCanBePaid() { return (LogQuery("ClubMistress", "Management") && !LogQuery("MistressWasPaid", "Management")) }
 function ManagementMistressCannotBePaid() { return (LogQuery("ClubMistress", "Management") && LogQuery("MistressWasPaid", "Management")) }
+function ManagementCanBeClubSlave() { return (!InventoryCharacterHasOwnerOnlyItem(Player) && DialogReputationLess("Dominant", -50)) }
+function ManagementCannotBeClubSlaveDominant() { return (!InventoryCharacterHasOwnerOnlyItem(Player) && DialogReputationGreater("Dominant", -49)) }
+function ManagementCannotBeClubSlaveOwnerLock() { return InventoryCharacterHasOwnerOnlyItem(Player) }
 
 // Returns TRUE if there's no other Mistress in the player private room
 function ManagementNoMistressInPrivateRoom() {
@@ -82,7 +88,7 @@ function ManagementLoad() {
 		CharacterNaked(ManagementSub);
 		InventoryWear(ManagementSub, "SlaveCollar", "ItemNeck");
 		CharacterFullRandomRestrain(ManagementSub, "Lot");
-		InventoryWear(ManagementSub, "Ears" + (Math.floor(Math.random() * 2) + 1).toString(), "Hat", "#BBBBBB");
+		InventoryWear(ManagementSub, "Ears" + (Math.floor(Math.random() * 2) + 1).toString(), "HairAccessory", "#BBBBBB");
 		InventoryWear(ManagementSub, "TailButtPlug", "ItemButt");
 		InventoryWear(ManagementSub, "MetalChastityBelt", "ItemPelvis");
 		InventoryWear(ManagementSub, "MetalChastityBra", "ItemBreast");
@@ -255,10 +261,13 @@ function ManagementClubSlaveRandomIntro() {
 	CharacterDelete("NPC_Management_RandomGirl");	
 	ManagementRandomGirl = CharacterLoadNPC("NPC_Management_RandomGirl");	
 	CharacterSetCurrent(ManagementRandomGirl);
-	ManagementRandomGirl.Stage = "0";
 	ManagementRandomGirl.AllowItem = false;
 	ManagementRandomActivityCount = 0;
-	
+
+	// Picks a random category of activities from the list
+	ManagementRandomActivityCategory = CommonRandomItemFromList(ManagementRandomActivityCategory, ManagementRandomActivityCategoryList);
+	ManagementRandomGirl.Stage = ManagementRandomActivityCategory + "Intro";
+
 	// 1 out of 7 girls will be a maid
 	var Intro = (Math.floor(Math.random() * 7)).toString();
 	if (Intro == "0") {
@@ -376,4 +385,45 @@ function ManagementMistressKicked() {
 function ManagementFreeSarah() {
 	ReputationProgress("Dominant", 4);
 	SarahUnlock();
+}
+
+// Fully restrains the player for the struggle activity
+function ManagementActivityStruggleRestrain() {
+	CharacterFullRandomRestrain(Player, "ALL");
+}
+
+// Starts the struggle game
+function ManagementActivityStruggleStart() {
+	ManagementTimer = CurrentTime + 60000;
+	DialogLeave();
+	EmptyCharacter = [];
+	EmptyCharacter.push(Player);
+	EmptyCharacter.push(ManagementRandomGirl);
+	CommonSetScreen("Room", "Empty");
+}
+
+// Starts the quiz game (picks a question at random)
+function ManagementStartQuiz() {
+	var Q = (Math.floor(Math.random() * 20)).toString();
+	CurrentCharacter.Stage = "QuizAnswer" + Q;
+	CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "QuizQuestion" + Q);
+}
+
+// Locks the player in a cell for 5 minutes
+function ManagementRemoveGag() {
+	InventoryRemove(Player, "ItemMouth");
+	InventoryRemove(Player, "ItemHead");
+}
+
+// Locks the player in a cell for 5 minutes
+function ManagementCell() {
+	DialogLeave();
+	CharacterFullRandomRestrain(Player, "ALL");
+	CellLock(5);
+}
+
+// Returns to the main hall
+function ManagementMainHall() {
+	DialogLeave();
+	CommonSetScreen("Room", "MainHall");
 }
