@@ -4,6 +4,8 @@ College
 College
 Maid
 Hausmädchen
+Maid Exposed
+Hausmädchen entblößt
 Student Black
 Schuluniform Schwarz
 Student Bow
@@ -192,6 +194,12 @@ Succubus Feather
 Succubus gefiedert
 Succubus Wings
 Succubus-Flügel
+Angel Feather
+Engelsflügel
+Devil Wings
+Dämonenflügel
+Fallen Angel Wings
+Dunkelengelsflügel
 Upper Body
 Oberkörper
 Small
@@ -288,6 +296,10 @@ Succubus Tail
 Succubus-Schwanz
 Fox Tails
 Fuchsschweife
+Raccoon Butt Plug
+Waschbär-Analstöpsel
+Raccoon Tail Plug
+Waschbärschweif-Stöpsel
 Pelvis
 Becken
 Metal Chastity Belt
@@ -360,6 +372,8 @@ Shock Collar Remote
 Elektrohalsband-Fernbedienung
 Cloth Gag
 Stoffknebel
+Wiffle Ball Gag
+Loch-Ballknebel
 Harness Ball Gag
 Ballknebel
 Harness Panel Gag

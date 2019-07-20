@@ -13,8 +13,7 @@ var PrivateActivityAffectLove = true;
 var PrivateActivityList = ["Gag", "Ungag", "Restrain", "RestrainOther", "FullRestrain", "FullRestrainOther", "Release", "Tickle", "Spank", "Pet", "Slap", "Kiss", "Fondle", "Naked", "Underwear", "RandomClothes", "Shibari", "Gift", "PetGirl", "Locks"];
 var PrivateActivityTarget = null;
 var PrivatePunishment = "";
-//var PrivatePunishmentList = ["Cage", "Bound", "BoundPet", "ChastityBelt", "ChastityBra", "ForceNaked", "ConfiscateKey", "ConfiscateCrop", "ConfiscateWhip", "SleepCage", "LockOut"];
-var PrivatePunishmentList = ["LockOut"];
+var PrivatePunishmentList = ["Cage", "Bound", "BoundPet", "ChastityBelt", "ChastityBra", "ForceNaked", "ConfiscateKey", "ConfiscateCrop", "ConfiscateWhip", "SleepCage", "LockOut", "Cell"];
 var PrivateCharacterNewClothes = null;
 
 // Returns TRUE if a specific dialog option is allowed
@@ -596,7 +595,7 @@ function PrivateSelectPunishment() {
 	while (true) {
 
 		// Picks an punishment at random
-		PrivatePunishment = CommonRandomItemFromList("", PrivatePunishmentList);
+		PrivatePunishment = CommonRandomItemFromList(PrivatePunishment, PrivatePunishmentList);
 
 		// If the punishment is valid
 		if ((PrivatePunishment == "Cage") && LogQuery("Cage", "PrivateRoom")) break;
@@ -610,6 +609,7 @@ function PrivateSelectPunishment() {
 		if ((PrivatePunishment == "ConfiscateWhip") && (InventoryAvailable(Player, "LeatherWhip", "ItemPelvis") || InventoryAvailable(Player, "LeatherWhip", "ItemBreast"))) break;
 		if ((PrivatePunishment == "SleepCage") && LogQuery("Cage", "PrivateRoom") && !LogQuery("SleepCage", "Rule")) break;
 		if ((PrivatePunishment == "LockOut") && (NPCTraitGet(CurrentCharacter, "Serious") >= 0)) break;
+		if (PrivatePunishment == "Cell") break;
 
 	}
 
@@ -636,6 +636,7 @@ function PrivateRunPunishment(LoveFactor) {
 	if (PrivatePunishment == "ConfiscateWhip") { InventoryDelete(Player, "LeatherWhip", "ItemPelvis"); InventoryDelete(Player, "LeatherWhip", "ItemBreast"); }
 	if (PrivatePunishment == "SleepCage") LogAdd("SleepCage", "Rule", CurrentTime + 604800000);
 	if (PrivatePunishment == "LockOut") { LogAdd("LockOutOfPrivateRoom", "Rule", CurrentTime + 3600000); DialogLeave(); CommonSetScreen("Room", "MainHall"); }
+	if (PrivatePunishment == "Cell") { DialogLeave(); CharacterFullRandomRestrain(Player, "ALL"); CellLock(5); }
 }
 
 // Sets up the player collaring ceremony cutscene
@@ -666,7 +667,7 @@ function PrivateNPCCollaring() {
 	CharacterChangeMoney(Player, -100);
 	NPCEventDelete(CurrentCharacter, "EndDomTrial");
 	NPCEventAdd(CurrentCharacter, "NPCCollaring", CurrentTime);
-	InventoryRemove(Player, "ItemNeck");
+	InventoryRemove(CurrentCharacter, "ItemNeck");
 	CharacterRelease(Player);
 	CharacterRelease(CurrentCharacter);
 	CharacterSetActivePose(Player, null);

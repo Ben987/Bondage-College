@@ -25,21 +25,32 @@ function MainHallLoad() {
 	CommonReadCSV("NoArravVar", "Room", "Management", "Dialog_NPC_Management_RandomGirl");
 	CommonReadCSV("NoArravVar", "Room", "KidnapLeague", "Dialog_NPC_KidnapLeague_RandomKidnapper");
 	CommonReadCSV("NoArravVar", "Room", "Private", "Dialog_NPC_Private_Custom");
-	
+
+}
+
+// Run the main hall screen
+function MainHallRun() {
+
 	// If the player is dressed up while being a club slave, the maid intercepts her
-	if (ManagementIsClubSlave() && LogQuery("BlockChange", "Rule") && !Player.IsNaked() && (MainHallMaid.Dialog != null) && (MainHallMaid.Dialog.length > 0)) {
+	if ((CurrentCharacter == null) && ManagementIsClubSlave() && LogQuery("BlockChange", "Rule") && !Player.IsNaked() && (MainHallMaid.Dialog != null) && (MainHallMaid.Dialog.length > 0)) {
 		MainHallMaid.Stage = "50";
 		MainHallMaid.CurrentDialog = DialogFind(MainHallMaid, "ClubSlaveMustBeNaked");
 		CharacterRelease(MainHallMaid);
 		CharacterSetCurrent(MainHallMaid);
 		MainHallStartEventTimer = null;
 		MainHallNextEventTimer = null;
+		return;
 	}
 
-}
-
-// Run the main hall screen
-function MainHallRun() {
+	// If the player is a Mistress but her Dominant reputation has fallen
+	if ((CurrentCharacter == null) && LogQuery("ClubMistress", "Management") && (ReputationGet("Dominant") < 50) && Player.CanTalk() && (MainHallMaid.Dialog != null) && (MainHallMaid.Dialog.length > 0)) {
+		CommonSetScreen("Room", "Management");
+		CharacterSetCurrent(MainHallMaid);
+		CurrentScreen = "MainHall";
+		MainHallMaid.Stage = "60";
+		MainHallMaid.CurrentDialog = DialogFind(MainHallMaid, "MistressExpulsionIntro");
+		return;
+	}
 
 	// Draws the character and main hall buttons
 	DrawCharacter(Player, 750, 0, 1);
@@ -66,6 +77,9 @@ function MainHallRun() {
 		DrawButton(1645, 385, 90, 90, "", "White", "Icons/Kidnap.png", TextGet("KidnapLeague"));
 		DrawButton(1765, 385, 90, 90, "", "White", "Icons/Dojo.png", TextGet("ShibariDojo"));
 		if (SarahRoomAvailable) DrawButton(1885, 385, 90, 90, "", "White", "Icons/Explore.png", TextGet(SarahRoomLabel()));
+
+		// Cell
+		DrawButton(1885, 505, 90, 90, "", "White", "Icons/Cell.png", TextGet("Cell"));
 
 		// Draws the custom content rooms - Gambling, Prison & Photographic
 		DrawButton(265, 25, 90, 90, "", "White", "Icons/Camera.png", TextGet("Photographic"));
@@ -146,6 +160,9 @@ function MainHallClick() {
 		if ((MouseX >= 1765) && (MouseX < 1855) && (MouseY >= 385) && (MouseY < 475)) MainHallWalk("Shibari");
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475) && SarahRoomAvailable) MainHallWalk("Sarah");
 
+		// Cell
+		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 505) && (MouseY < 595)) MainHallWalk("Cell");
+
 		// Custom content rooms - Gambling, Prison & Photographic
 		if ((MouseX >=   25) && (MouseX <  115) && (MouseY >=  25) && (MouseY < 115)) MainHallWalk("Gambling");
 		if ((MouseX >=  145) && (MouseX <  235) && (MouseY >=  25) && (MouseY < 115)) MainHallWalk("Prison");
@@ -212,4 +229,12 @@ function MainHallResetClubSlave() {
 	CharacterNaked(Player);
 	LogAdd("ClubSlave", "Management", CurrentTime + 3600000);
 	LogAdd("BlockChange", "Rule", CurrentTime + 3600000);
+}
+
+// The maid can lead the player to the club management to be expelled
+function MainHallMistressExpulsion() {
+	CommonSetScreen("Room", "Management");
+	ManagementMistress.Stage = "500";
+	ManagementMistress.CurrentDialog = DialogFind(MainHallMaid, "MistressExpulsion");
+	CharacterSetCurrent(ManagementMistress);
 }

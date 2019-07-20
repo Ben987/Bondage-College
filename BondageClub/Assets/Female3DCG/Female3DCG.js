@@ -12,7 +12,7 @@ var AssetFemale3DCG = [
 		Asset: [ 
 			{ Name: "CollegeOutfit1", Hide: ["ClothLower", "ItemNeck"], Value: -1 },
 			{ Name: "MaidOutfit1", Hide: ["ClothLower"], Value: -1 },
-			{ Name: "MaidOutfit2", Hide: ["ClothLower"], Value: -1, Effect: ["ExposedBreasts"] },
+			{ Name: "MaidOutfit2", Hide: ["ClothLower"], Value: -1, Expose: ["ItemNipples", "ItemBreast"] },
 			{ Name: "StudentOutfit1", Hide: ["ClothLower", "ItemNeck"] },
 			{ Name: "StudentOutfit2", Hide: ["ClothLower"], HideItem: ["ItemArmsLeatherCuffs"] },
 			{ Name: "BabydollDress1", Hide: ["ClothLower"] },
@@ -27,7 +27,7 @@ var AssetFemale3DCG = [
 			{ Name: "AdultBabyDress2", Hide: ["ClothLower"], Value: 200 },
 			{ Name: "AdultBabyDress3", Hide: ["ClothLower"], Value: 200 },
 			{ Name: "NurseUniform", Hide: ["ClothLower"], Value: -1 },
-			{ Name: "BunnyCollarCuffs", Value: 10 , Effect: ["ExposedBreasts", "ExposedTorso"]},
+			{ Name: "BunnyCollarCuffs", Value: 10 , Expose: ["ItemNipples", "ItemBreast", "ItemTorso"]},
 			{ Name: "Robe1", Value: 50 }
 		]
 	},
@@ -44,8 +44,8 @@ var AssetFemale3DCG = [
 		Left: 125,
 		Top: 400,
 		Asset: [
-			{ Name: "Skirt1", Effect: ["ExposedVulva"] },
-			{ Name: "TennisSkirt1", ParentItem: "TennisShirt1", Effect: ["ExposedVulva"] },
+			{ Name: "Skirt1", Expose: ["ItemVulva", "ItemButt"] },
+			{ Name: "TennisSkirt1", ParentItem: "TennisShirt1", Expose: ["ItemVulva", "ItemButt"] },
 			{ Name: "Jeans1" },
 			{ Name: "Shorts1" },
 			{ Name: "MistressBottom", Hide: ["Panties"], Value: -1 }
@@ -71,7 +71,7 @@ var AssetFemale3DCG = [
 			{ Name: "Corset1", Value: 30, Hide: ["ItemNipples"] },
 			{ Name: "Corset2", Value: 30, Hide: ["ItemNipples"] },
 			{ Name: "Corset3", Value: 30, Hide: ["ItemNipples"] },
-			{ Name: "Corset4", Value: 30, Effect: ["ExposedBreasts"]},
+			{ Name: "Corset4", Value: 30, Expose: ["ItemNipples", "ItemBreast"]},
 			{ Name: "Swimsuit1", Value: 20, Hide: ["Panties", "ItemNipples"] },
 			{ Name: "Swimsuit2", Value: 25, Hide: ["Panties", "ItemNipples"] },
 			{ Name: "BunnySuit", Value: 30, Hide: ["Panties", "ItemNipples"] }
@@ -116,7 +116,7 @@ var AssetFemale3DCG = [
 			"Socks1", "Socks2", "Socks3", "Socks4", "Socks5", "Stockings1", "Stockings2",
 			{ Name: "Stockings3", Value: 10 },
 			{ Name: "Stockings4", Value: 10 },
-			{ Name: "Pantyhose1", Value: 10, Priority: 13 , Effect: ["BlockedVulva"]}
+			{ Name: "Pantyhose1", Value: 10, Priority: 13 , Block: ["ItemVulva", "ItemButt"]}
 		]
 	},
 	
@@ -155,11 +155,13 @@ var AssetFemale3DCG = [
 		Asset: [
 			"Band1", "Beret1",
 			{ Name: "Ribbons1", Priority: 2 },
+			{ Name: "GiantBow1", Priority: 2 },
 			{ Name: "MaidHairband1", Value: -1 },
 			{ Name: "NurseCap", Value: -1 },
 			{ Name: "Santa1", Value: 30 },
 			{ Name: "CaptainHat1", Value: 20 },
-			{ Name: "BunnySuccubus2", Value: 50 }
+			{ Name: "BunnySuccubus2", Value: 50 },
+			{ Name: "HairFlower1",  Value: 10 }
 		]
 	},
 
@@ -170,7 +172,7 @@ var AssetFemale3DCG = [
 		Clothing: true,
 		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
 		AllowPose: ["Suspension"],
-		Left: 125,
+		Left: 90,
 		Top: 0,
 		Asset: [
 			"Ears1", "Ears2", "PonyEars1",
@@ -182,6 +184,7 @@ var AssetFemale3DCG = [
 			{ Name: "Horns2", Value: 20 },
 			{ Name: "Horns3", Value: 20 },
 			{ Name: "FoxEars1", Value: 20 },
+			{ Name: "BatWings", Value: 20 },
 			{ Name: "KittyMask1", Hide: ["HairFront", "Glasses"], Value: 20 }
 		]
 	},		
@@ -226,7 +229,9 @@ var AssetFemale3DCG = [
 			{ Name: "SuccubusWings", Value: 100 },
 			{ Name: "AngelFeather", Value: 100 },
 			{ Name: "DevilWings", Value: 100 },
-			{ Name: "FallenAngelWings", Value: 100 }
+			{ Name: "FallenAngelWings", Value: 100 },
+			{ Name: "AngelWings", Value: 100 },
+			{ Name: "BatWings", Value: 100 }
 		]
 	},
 
@@ -291,7 +296,7 @@ var AssetFemale3DCG = [
 		Priority: 7,
 		AllowNone: false,
 		Color: ["#6a3628", "#5e481e", "#666666", "#555588", "#558855", "#885555", "#202020", "#aa3333", "#33aa33", "#3333aa", "#aaaa33", "#33aaaa", "#aa33aa"],
-		AllowExpression: ["Closed", "Wink"],
+		AllowExpression: ["Closed", "Wink", "Dazed"],
 		Left: 200,
 		Top: 150,
 		FullAlpha: false,
@@ -307,7 +312,7 @@ var AssetFemale3DCG = [
 		AllowExpression: ["Frown"],
 		Left: 240,
 		Top: 190,
-		Asset: ["Mouth1", "Mouth2", "Mouth3", "Mouth4"]
+		Asset: ["Mouth1", "Mouth2", "Mouth3", "Mouth4", "Mouth5"]
 	},
 	
 	{
@@ -375,7 +380,8 @@ var AssetFemale3DCG = [
 			{ Name: "HempRope", Value: 30, Time: 15, Difficulty: 3 },
 			{ Name: "LeatherBelt", Value: 25, Time: 10, RemoveTime: 5, AllowLock: true },
 			{ Name: "SuspensionHempRope", SelfBondage: false, Random: false, RemoveAtLogin: true, SetPose: ["Suspension", "LegsClosed"], Effect: ["Freeze", "Prone"], Value: -1, Height: 150, Time: 30, Difficulty: 3, Alpha: [[125, 850, 250, 150]], ExpressionTrigger: [{Group: "Blush", Name: "High", Timer: 30}, {Group: "Eyebrows", Name: "Raised", Timer: 10}] },
-			{ Name: "DuctTape", Value: 50, Time: 15, RemoveTime: 10, BuyGroup: "DuctTape" }
+			{ Name: "DuctTape", Value: 50, Time: 15, RemoveTime: 10, BuyGroup: "DuctTape" },
+			{ Name: "MermaidRopeTie", Value: 30, Time: 15, Difficulty: 3 }
 		]
 	},
 
@@ -412,7 +418,8 @@ var AssetFemale3DCG = [
 		Asset: [
 			{ Name: "VibratingEgg", Effect: ["Egged"], Value: 25, Prerequisite: "AccessVulva", Time: 5, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}], AllowEffect: ["Egged", "Vibrating"], Visible: false },
 			{ Name: "VibratingWand", Wear: false, Value: 60, Prerequisite: "AccessVulva", Bonus: [{Type: "KidnapManipulation", Factor: 3}], ExpressionTrigger: [{Group: "Blush", Name: "Medium", Timer: 10}, {Group: "Eyes", Name: "Closed", Timer: 5}], Visible: false },
-			{ Name: "VibratorRemote", Effect: ["Remote"], Wear: false, Value: 80, BuyGroup: "VibratorRemote", Visible: false }
+			{ Name: "VibratorRemote", Effect: ["Remote"], Wear: false, Value: 80, BuyGroup: "VibratorRemote", Visible: false },
+			{ Name: "VibratingLatexPanties", Effect: ["Egged", "Chaste"], Block: ["ItemButt", "ItemPelvis"], Value: 65, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}], AllowEffect: ["Egged", "Vibrating"]}
 		]
 	},
 
@@ -434,7 +441,8 @@ var AssetFemale3DCG = [
 			{ Name: "SuccubusButtPlug2", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
 			{ Name: "FoxTails", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
 			{ Name: "RaccoonButtPlug", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
-			{ Name: "RaccoonTailPlug", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] }
+			{ Name: "RaccoonTailPlug", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
+			{ Name: "AnalBeads", Value: 20, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}], Visible: false }
 		]
 	},
 
@@ -491,7 +499,9 @@ var AssetFemale3DCG = [
 			{ Name: "RoundPiercing", Value: 20, Prerequisite: "AccessBreast", Time: 15, ExpressionTrigger: [{Group: "Eyes", Name: "Closed", Timer: 5}, {Group: "Eyebrows", Name: "Angry", Timer: 5}] },
 			{ Name: "NippleClamp", Value: 35, Prerequisite: "AccessBreast", Time: 10, ExpressionTrigger: [{Group: "Eyes", Name: "Closed", Timer: 5}, {Group: "Eyebrows", Name: "Angry", Timer: 5}] },
 			{ Name: "VibeNippleClamp", Value: 50, Effect: ["Egged"], Prerequisite: "AccessBreast", Time: 10, ExpressionTrigger: [{Group: "Eyes", Name: "Closed", Timer: 5}, {Group: "Eyebrows", Name: "Angry", Timer: 5}], AllowEffect: ["Egged", "Vibrating"] },
-			{ Name: "VibratorRemote", Value: 80, Effect: ["Remote"], Wear: false, BuyGroup: "VibratorRemote" }
+			{ Name: "VibratorRemote", Value: 80, Effect: ["Remote"], Wear: false, BuyGroup: "VibratorRemote" },
+			{ Name: "WeightedPiercing", Value: 35, Prerequisite: "AccessBreast", Time: 10, ExpressionTrigger: [{Group: "Eyes", Name: "Closed", Timer: 5}, {Group: "Eyebrows", Name: "Soft", Timer: 5}] },
+			{ Name: "ChainClamp", Value: 35, Prerequisite: "AccessBreast", Time: 10, ExpressionTrigger: [{Group: "Eyes", Name: "Closed", Timer: 5}, {Group: "Eyebrows", Name: "Soft", Timer: 5}] }
 		]
 	},
 
@@ -583,7 +593,12 @@ var AssetFemale3DCG = [
 				]
 			},
 			{ Name: "HarnessPanelGag", Effect: ["GagHeavy"], Difficulty: 6, Value: 80, Time: 20, AllowLock: true },
-			{ Name: "RingGag", Value: 35, Time: 5, AllowLock: true },
+			{ Name: "RingGag", Value: 35, Time: 5, AllowLock: true,
+				Layer: [
+					{ Name: "Mouth", AllowColorize: false },
+					{ Name: "Gag", AllowColorize: true }
+				] 
+			},
 			{ Name: "DuctTape", Extended: true, Difficulty: -2, Value: 50, Time: 10, RemoveTime: 5, BuyGroup: "DuctTape", AllowEffect: ["GagLight", "GagNormal"] },
 			{ Name: "PacifierGag", Random: false, Difficulty: -50, Effect: ["GagLight"], Value: 15, Time: 2, ExpressionTrigger: [{Group: "Blush", Name: "Light", Timer: 5}, {Group: "Eyes", Name: "Closed", Timer: 5}] },
 			{ Name: "HarnessPacifierGag", Random: false, Difficulty: 2, Effect: ["GagLight"], Value: 70, Time: 20, AllowLock: true, ExpressionTrigger: [{Group: "Blush", Name: "Light", Timer: 5}, {Group: "Eyes", Name: "Closed", Timer: 5}] },
@@ -591,6 +606,7 @@ var AssetFemale3DCG = [
 			{ Name: "HarnessPonyBits", Random: false, Difficulty: 4, Effect: ["GagHeavy"], Value: -1, Time: 20, AllowLock: true },
 			{ Name: "PumpGag", Effect: [], Random: false, Extended: true, Value: 100, Time: 20, AllowLock: true, ExpressionTrigger: [{Group: "Eyebrows", Name: "Soft", Timer: 10}], AllowEffect: ["GagLight", "GagNormal", "GagHeavy", "GagTotal"] },
 			{ Name: "KittyGag", Effect: ["GagLight"], Difficulty: -4, Value: 20, Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Light", Timer: 5}, {Group: "Eyes", Name: "Closed", Timer: 5}] },
+			{ Name: "KittenHarnessPanelGag", Effect: ["GagHeavy"], Difficulty: 6, Value: 80, Time: 20, AllowLock: true },
 			{ Name: "CarrotGag", Effect: ["GagHeavy"], Random: false, Value: 50, Time: 15 },
 			{ Name: "RegularSleepingPill", Enable: false, Wear: false, Value: -1, Bonus: [{Type: "KidnapSneakiness", Factor: 3}] }
 		]
@@ -611,7 +627,7 @@ var AssetFemale3DCG = [
 			{ Name: "LeatherHood", Effect: ["BlindHeavy", "Prone", "GagLight"], Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth", "Eyes"], Block: ["ItemMouth", "ItemNeck"], Difficulty: 50, Value: 90, Time: 15, AllowLock: true },
 			{ Name: "LeatherHoodOpenEyes", Effect: ["Prone", "GagLight"], Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth"], Block: ["ItemMouth", "ItemNeck"], Difficulty: 50, Value: 60, Time: 15, AllowLock: true },
 			{ Name: "StuddedBlindfold", Effect: ["BlindNormal", "Prone"], Hide: ["Glasses"], Difficulty: 2, Value: -1, Time: 5, AllowLock: true },
-			{ Name: "KittyBlindfold", Effect: ["BlindLight", "Prone"], Hide: ["Glasses"], Value: 25, Time: 5 },
+			{ Name: "KittyBlindfold", Effect: ["BlindLight", "Prone"], Hide: ["Glasses"], Value: 25, Time: 5, AllowLock: true },
 			{ Name: "DuctTape", Effect: ["BlindNormal", "Prone"], Hide: ["Glasses"], Value: 50, Time: 10, RemoveTime: 5, BuyGroup: "DuctTape" }
 		]
 	},
