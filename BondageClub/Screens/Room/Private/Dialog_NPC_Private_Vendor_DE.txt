@@ -101,8 +101,8 @@ Solange du ein Mitglied des Clubs bist.
 Can I invite friends over?
 Darf ich Freunde einladen?
 ###_NPC
-Of course.  The room isn't huge though, it will not fit more than 4 people.
-Selbstverständlich. Die Zimmer sind aber nicht gerade riesig, es passen höchstens vier Leute hinein.
+Of course.  The room isn't huge though, it can accommodate four persons, or eight if you get an extension.
+Selbstverständlich. Das Zimmer ist aber nicht gerade riesig, es passen vier Leute hinein, oder acht, wenn du eine Erweiterung kaufst.
 ###_PLAYER
 Can I get naked in my room?
 Darf ich mich in meinem Zimmer ausziehen?

@@ -91,6 +91,8 @@ Beep
 Biep
 Beep from
 Biep von
+Beep from your owner in your private room
+Beip von deiner Besitzerin im Privatzimmer
 in room
 im Raum
 <i>Private room</i>
@@ -293,3 +295,29 @@ They must be wearing a baby harness first to chain the mittens to it.
 Sie muss einen Babyharnisch tragen, um die Fäustlinge daran anzuketten.
 Facial expression
 Gesichtsausdruck
+None
+Normal
+Raised
+Erhöht
+Lowered
+Gesenkt
+One Raised
+Eine erhöht
+Harsh
+Streng
+Angry
+Wütend
+Soft
+Sanft
+Low
+Niedrig
+Medium
+Mittel
+High
+Hoch
+Frown
+Unglücklich
+Closed
+Geschlossen
+Wink
+Zwinkern

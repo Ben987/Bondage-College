@@ -11,6 +11,8 @@ Du solltest wohl eine Lektion lernen. (Sie zwängt deine Arme in einen Monohands
 (Sie schluckt und senkt ihren Blick.) Ja, Miss. Verzeihung, Miss.
 I'm sorry Miss.  I cannot help you now.
 Es tut mir leid, Miss. Ich kann gerade nicht helfen.
+(A maid taps on your shoulder.)  Slave girl, why aren't you naked?
+(Ein Hausmädchen tippt dir auf die Schulter.) Sklavenmädchen, warum bist du nicht nackt?
 (She gives a curious look at the gag but doesn't resist as you silence her.)
 (Sie betrachtet den Knebel verwundert, wehrt sich aber nicht, als du sie zum Schweigen bringst.)
 (You remove her gag slowly.)  Thanks Miss, it will be easier to do my job.
@@ -170,5 +172,81 @@ Fine, I'm going then.  (Leave her.)
 Gut, ich geh dann mal. (Dialog beenden.)
 (Grumble and leave.)
 (Grummeln und gehen.)
+Why do you care?
+Was geht dich das an?
+###_NPC
+I'm doing my job.  Club slaves must stay naked, let me help you to strip.
+Ich mache nur meine Arbeit. Club-Sklavinnen müssen stets nackt sein, lass mich dir beim Ausziehen helfen.
+###_PLAYER
+Oops!  I forgot the rule.
+Ups! Die Regel hab ich vergessen.
+###_NPC
+Rules are important.  Club slaves must stay naked, let me help you to strip.
+Regeln sind wichtig. Club-Sklavinnen müssen stets nackt sein, lass mich dir beim Ausziehen helfen.
+###_PLAYER
+Sorry.  I was tricked by someone.
+Tut mir leid. Jemand hat mir einen Streich gespielt.
+###_NPC
+Make sure to remember the rules.  Club slaves must stay naked, let me help you to strip.
+Denke immer an die Regeln. Club-Sklavinnen müssen stets nackt sein, lass mich dir beim Ausziehen helfen.
+###_PLAYER
+(Look surprised.)
+(Überrascht gucken.)
+(Look ashamed.)
+(Beschämt gucken.)
+(Shake your head no.)
+(Deinen Kopf schütteln.)
+Alright then.
+Na gut.
+###_NPC
+(She nods and slowly strips you down.)  Since you broke the rule, I will reset your hour of duty.  You must redo it fully.
+(Sie nickt und zieht dich langsam aus.) Da du die Regel gebrochen hast, setze ich deine Pflichtzeit zurück. Du musst die gesamte Stunde nachholen.
+###_PLAYER
+That sucks.
+So ein Dreck.
+###_NPC
+(She sighs and slowly strips you down.)  Since you broke the rule, I will reset your hour of duty.  You must redo it fully.
+(Sie seufzt und zieht dich langsam aus.) Da du die Regel gebrochen hast, setze ich deine Pflichtzeit zurück. Du musst die gesamte Stunde nachholen.
+###_PLAYER
+(Grumble a little.)
+(Etwas grummeln.)
+(Comply and help her.)
+(Dich fügen und ihr helfen.)
+This is unfair!
+Das ist unfair!
+###_NPC
+You should have read your contract girl.  I need to go now.
+Du hättest dir den Vertrag durchlesen sollen, Mädchen. Ich muss jetzt gehen.
+###_PLAYER
+I understand.
+Ich verstehe.
+###_NPC
+Very well.  I need to go now.
+Sehr schön. Ich muss jetzt gehen.
+###_PLAYER
+(Nod slowly.)
+(Langsam nicken.)
+(Grumble in disagreement.)
+(Unzufrieden grummeln.)
+Wait!  Can you release me first?
+Moment! Kannst du mich vorher befreien?
+###_NPC
+No!  Struggle some more, I'll be back later.
+Nein! Du darfst noch etwas zappeln, ich komme später zurück.
+###_PLAYER
+(Struggle and beg for help.)
+(Zappeln und um Hilfe betteln.)
+###_NPC
+Keep on struggling girl, I might help you later.
+Mach weiter so, Mädchen, vielleicht helfe ich dir dann später.
+###_PLAYER
+Thank you for your time.
+Danke für deine Zeit.
+###_NPC
+Don't mention it.  I'm simply doing my job.
+Nicht der Rede wert. Ich mache nur meine Arbeit.
+###_PLAYER
+(Leave her.)
+(Dialog beenden.)
 (Frown and leave her.)
-(Die Stirn runzeln und sie verlassen.)
+(Die Stirn runzeln und Dialog beenden.)

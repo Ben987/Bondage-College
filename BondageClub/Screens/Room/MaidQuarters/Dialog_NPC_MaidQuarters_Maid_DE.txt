@@ -136,6 +136,12 @@ Als Hausdame habe ich eine Aufgabe für dich.
 Of course Miss.  What can I do for you?
 Natürlich, Miss. Was kann ich für Sie tun?
 ###_PLAYER
+Can I have a duster gag?
+Kann ich einen Staubwedel-Knebel haben?
+###_NPC
+You have lots of cleaning to do sister?  (She giggles.)  Of course, you can have one.  (She gives you a duster gag.)
+Du hast wohl viel sauberzumachen, Schwester? (Sie kichert.) Natürlich kannst du einen haben. (Sie gibt dir einen Staubwedel-Knebel.)
+###_PLAYER
 I can't stay to chat.  (Leave her.)
 Keine Zeit zum Plaudern. (Dialog beenden.)
 There's a blond girl stuck in a reserved bedroom.
