@@ -502,7 +502,7 @@ let RhythmGameScript = {
                     RhythmGameScript.score += Math.log10(RhythmGameScript.combo.value+1) * 0.01;
                     break;
                 case 3:
-                    RhythmGameScript.score += Math.log10(RhythmGameScript.combo.value+1) * 0.02;
+                    RhythmGameScript.score += Math.log10(RhythmGameScript.combo.value+1) * 0.03;
                     break;
                 default:
                     break;
