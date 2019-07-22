@@ -184,7 +184,8 @@ var AssetFemale3DCG = [
 			{ Name: "Horns2", Value: 20 },
 			{ Name: "Horns3", Value: 20 },
 			{ Name: "FoxEars1", Value: 20 },
-			{ Name: "BatWings", Value: 20 }
+			{ Name: "BatWings", Value: 20 },
+			{ Name: "KittyMask1", Hide: ["HairFront", "Glasses"], Value: 20 }
 		]
 	},		
 
@@ -212,7 +213,7 @@ var AssetFemale3DCG = [
 		Color: ["#303030", "#808080", "#e0e0e0", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
 		Left: 200,
 		Top: 135,
-		Asset: ["Glasses1", "Glasses2", "Glasses3", "Glasses4", "Glasses5", "Glasses6", { Name: "SunGlasses1", Value: 20 }, { Name: "SunGlasses2", Value: 20 }],
+		Asset: ["Glasses1", "Glasses2", "Glasses3", "Glasses4", "Glasses5", "Glasses6", { Name: "SunGlasses1", Value: 20 }, { Name: "SunGlasses2", Value: 20 },{ Name: "Mask1", Value: 20 }, { Name: "Mask2", Value: 20 }],
 	},
 
 	{
@@ -295,7 +296,7 @@ var AssetFemale3DCG = [
 		Priority: 7,
 		AllowNone: false,
 		Color: ["#6a3628", "#5e481e", "#666666", "#555588", "#558855", "#885555", "#202020", "#aa3333", "#33aa33", "#3333aa", "#aaaa33", "#33aaaa", "#aa33aa"],
-		AllowExpression: ["Closed", "Wink"],
+		AllowExpression: ["Closed", "Wink", "Dazed"],
 		Left: 200,
 		Top: 150,
 		FullAlpha: false,
@@ -311,7 +312,7 @@ var AssetFemale3DCG = [
 		AllowExpression: ["Frown"],
 		Left: 240,
 		Top: 190,
-		Asset: ["Mouth1", "Mouth2", "Mouth3", "Mouth4"]
+		Asset: ["Mouth1", "Mouth2", "Mouth3", "Mouth4", "Mouth5"]
 	},
 	
 	{
@@ -417,7 +418,8 @@ var AssetFemale3DCG = [
 		Asset: [
 			{ Name: "VibratingEgg", Effect: ["Egged"], Value: 25, Prerequisite: "AccessVulva", Time: 5, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}], AllowEffect: ["Egged", "Vibrating"], Visible: false },
 			{ Name: "VibratingWand", Wear: false, Value: 60, Prerequisite: "AccessVulva", Bonus: [{Type: "KidnapManipulation", Factor: 3}], ExpressionTrigger: [{Group: "Blush", Name: "Medium", Timer: 10}, {Group: "Eyes", Name: "Closed", Timer: 5}], Visible: false },
-			{ Name: "VibratorRemote", Effect: ["Remote"], Wear: false, Value: 80, BuyGroup: "VibratorRemote", Visible: false }
+			{ Name: "VibratorRemote", Effect: ["Remote"], Wear: false, Value: 80, BuyGroup: "VibratorRemote", Visible: false },
+			{ Name: "VibratingLatexPanties", Effect: ["Egged", "Chaste"], Block: ["ItemButt"], Value: 65, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}], AllowLock: true, AllowEffect: ["Egged", "Vibrating"]}
 		]
 	},
 
@@ -591,7 +593,12 @@ var AssetFemale3DCG = [
 				]
 			},
 			{ Name: "HarnessPanelGag", Effect: ["GagHeavy"], Difficulty: 6, Value: 80, Time: 20, AllowLock: true },
-			{ Name: "RingGag", Value: 35, Time: 5, AllowLock: true },
+			{ Name: "RingGag", Value: 35, Time: 5, AllowLock: true,
+				Layer: [
+					{ Name: "Mouth", AllowColorize: false },
+					{ Name: "Gag", AllowColorize: true }
+				] 
+			},
 			{ Name: "DuctTape", Extended: true, Difficulty: -2, Value: 50, Time: 10, RemoveTime: 5, BuyGroup: "DuctTape", AllowEffect: ["GagLight", "GagNormal"] },
 			{ Name: "PacifierGag", Random: false, Difficulty: -50, Effect: ["GagLight"], Value: 15, Time: 2, ExpressionTrigger: [{Group: "Blush", Name: "Light", Timer: 5}, {Group: "Eyes", Name: "Closed", Timer: 5}] },
 			{ Name: "HarnessPacifierGag", Random: false, Difficulty: 2, Effect: ["GagLight"], Value: 70, Time: 20, AllowLock: true, ExpressionTrigger: [{Group: "Blush", Name: "Light", Timer: 5}, {Group: "Eyes", Name: "Closed", Timer: 5}] },

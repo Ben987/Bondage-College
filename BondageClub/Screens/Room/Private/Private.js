@@ -667,7 +667,7 @@ function PrivateNPCCollaring() {
 	CharacterChangeMoney(Player, -100);
 	NPCEventDelete(CurrentCharacter, "EndDomTrial");
 	NPCEventAdd(CurrentCharacter, "NPCCollaring", CurrentTime);
-	InventoryRemove(Player, "ItemNeck");
+	InventoryRemove(CurrentCharacter, "ItemNeck");
 	CharacterRelease(Player);
 	CharacterRelease(CurrentCharacter);
 	CharacterSetActivePose(Player, null);

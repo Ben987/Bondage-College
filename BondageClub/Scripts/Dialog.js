@@ -54,17 +54,23 @@ function DialogPrerequisite(D) {
 	else
 		if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("Player.") == 0)
 			return Player[CurrentCharacter.Dialog[D].Prerequisite.substring(7, 250).replace("()", "").trim()]();
-		else 
+		else
 			if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("!Player.") == 0)
 				return !Player[CurrentCharacter.Dialog[D].Prerequisite.substring(8, 250).replace("()", "").trim()]();
 			else
-				if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("(") >= 0)
-					return CommonDynamicFunctionParams(CurrentCharacter.Dialog[D].Prerequisite);
+				if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("CurrentCharacter.") == 0)
+					return CurrentCharacter[CurrentCharacter.Dialog[D].Prerequisite.substring(17, 250).replace("()", "").trim()]();
 				else
-					if (CurrentCharacter.Dialog[D].Prerequisite.substring(0, 1) != "!")
-						return window[CurrentScreen + CurrentCharacter.Dialog[D].Prerequisite.trim()];
+					if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("!CurrentCharacter.") == 0)
+						return !CurrentCharacter[CurrentCharacter.Dialog[D].Prerequisite.substring(18, 250).replace("()", "").trim()]();
 					else
-						return !window[CurrentScreen + CurrentCharacter.Dialog[D].Prerequisite.substr(1, 250).trim()];
+						if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("(") >= 0)
+							return CommonDynamicFunctionParams(CurrentCharacter.Dialog[D].Prerequisite);
+						else
+							if (CurrentCharacter.Dialog[D].Prerequisite.substring(0, 1) != "!")
+								return window[CurrentScreen + CurrentCharacter.Dialog[D].Prerequisite.trim()];
+							else
+								return !window[CurrentScreen + CurrentCharacter.Dialog[D].Prerequisite.substr(1, 250).trim()];
 }
 
 // Searches for an item in the player inventory to unlock a specific item
@@ -93,7 +99,6 @@ function DialogLeave() {
 	Player.FocusGroup = null;
 	CurrentCharacter.FocusGroup = null;
 	DialogInventory = null;
-	DialogInventoryOffset = 0;
 	CurrentCharacter = null;
 }
 
@@ -139,7 +144,6 @@ function DialogLeaveItemMenu() {
 	Player.FocusGroup = null;
 	CurrentCharacter.FocusGroup = null;
 	DialogInventory = null;
-	DialogInventoryOffset = 0;
 	DialogProgress = -1;
 	DialogColor = null;
 	ElementRemove("InputColor");
@@ -200,6 +204,7 @@ function DialogMenuButtonBuild(C) {
 function DialogInventoryBuild(C) {
 
 	// Make sure there's a focused group
+	DialogInventoryOffset = 0;
 	DialogInventory = [];
 	if (C.FocusGroup != null) {
 
@@ -361,6 +366,7 @@ function DialogMenuButtonClick() {
 			if (DialogMenuButton[I] == "Lock") {
 				if (DialogItemToLock == null) {
 					if ((Item != null) && (Item.Asset.AllowLock != null)) {
+						DialogInventoryOffset = 0;
 						DialogInventory = [];
 						DialogItemToLock = Item;
 						for (var A = 0; A < Player.Inventory.length; A++)
@@ -534,7 +540,6 @@ function DialogClick() {
 						DialogFocusItem = null;
 						DialogInventoryBuild(C);
 						DialogText = DialogTextDefault;
-						DialogInventoryOffset = 0;
 						break;
 					}
 	}

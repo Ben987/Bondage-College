@@ -79,10 +79,11 @@ function InventoryAllow(C, Prerequisite) {
 			((curCloth != null && !curCloth.Asset.Expose.includes("ItemBreast"))
 			|| (InventoryGet(C, "Bra") != null && !InventoryGet(C, "Bra").Asset.Expose.includes("ItemBreast")))) { DialogSetText("RemoveClothesForItem"); return false; }
 	if ((Prerequisite == "AccessVulva") && //Clothes and Socks only block if they have BlockedVulva. if lower and patnies have ExposedVulva, they do no trigger the error text
-			((curCloth != null && curCloth.Asset.Block.includes("ItemVulva")) 
+			((curCloth != null && curCloth.Asset.Block != null && curCloth.Asset.Block.includes("ItemVulva")) 
 			|| (InventoryGet(C, "ClothLower") != null && !InventoryGet(C, "ClothLower").Asset.Expose.includes("ItemVulva")) 
 			|| (InventoryGet(C, "Panties") != null && !InventoryGet(C, "Panties").Asset.Expose.includes("ItemVulva"))
-			|| (InventoryGet(C, "Socks") != null && InventoryGet(C, "Socks").Asset.Block.includes("ItemVulva")))) { DialogSetText("RemoveClothesForItem"); return false; }
+			|| (InventoryGet(C, "Socks") != null && InventoryGet(C, "Socks").Asset.Block!=null && InventoryGet(C, "Socks").Asset.Block.includes("ItemVulva")))) 
+					{ DialogSetText("RemoveClothesForItem"); return false; }
 	if (Prerequisite == "NotSuspended" && C.Pose.indexOf("Suspension") >= 0) { DialogSetText("RemoveSuspensionForItem"); return false; }
 	return true;
 }

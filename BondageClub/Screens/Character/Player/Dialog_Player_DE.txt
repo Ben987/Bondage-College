@@ -83,6 +83,8 @@ deflates
 reduziert
 gag
 Knebel
+'s
+s
 Delete
 Löschen
 Confirm
@@ -91,6 +93,8 @@ Beep
 Biep
 Beep from
 Biep von
+Beep from your owner in your private room
+Beip von deiner Besitzerin im Privatzimmer
 in room
 im Raum
 <i>Private room</i>
@@ -109,6 +113,14 @@ Time left:
 Übrige Zeit:
 SourceCharacter restarts the five minute timer padlock on DestinationCharacter BodyPart.
 SourceCharacter setzt das Fünf-Minuten-Schloss von DestinationCharacter zurück.
+Restart Timer
+Timer zurücksetzen
+Remove item when the lock timer runs out
+Item entfernen, sobald die Zeit um ist
+The item will be removed when the lock timer runs out
+Der Gegenstand wird entfernt, sobald die Zeit um ist
+The item will stay when the lock timer runs out
+Der Gegenstand bleibt, wenn die Zeit um ist
 Select the bondage position
 Fesselposition wählen
 Select the tape wrapping
@@ -251,6 +263,22 @@ DestinationCharacter's vibrating nipple clamps start buzzing strongly!
 Die Vibrator-Nippelklemmen von DestinationCharacter fangen an, stark zu vibrieren!
 DestinationCharacter's vibrating nipple clamps jump up to maximum intensity!
 Die Vibrator-Nippelklemmen von DestinationCharacter springen auf die maximale Stufe!
+DestinationCharacter's vibrating latex panties stops vibrating.
+DestinationCharacters vibrierendes Latexhöschen hört auf zu vibrieren.
+DestinationCharacter's vibrating latex panties slows down into a light tease.
+DestinationCharacters vibrierendes Latexhöschen fällt auf ein leichtes Surren herab.
+DestinationCharacter's vibrating latex panties returns to a moderate pace.
+DestinationCharacters vibrierendes Latexhöschen fällt auf eine moderate Stärke herab.
+DestinationCharacter's vibrating latex panties slows down a tiny bit.
+DestinationCharacters vibrierendes Latexhöschen lässt ein kleines bisschen nach.
+DestinationCharacter's vibrating latex panties starts teasing her lightly.
+DestinationCharacters vibrierendes Latexhöschen fängt an, sie sanft zu erregen.
+DestinationCharacter's vibrating latex panties builds up to a moderate pace.
+DestinationCharacters vibrierendes Latexhöschen nimmt etwas Fahrt auf.
+DestinationCharacter's vibrating latex panties starts buzzing strongly!
+DestinationCharacters vibrierendes Latexhöschen fängt an, stark zu vibrieren!
+DestinationCharacter's vibrating latex panties jumps up to maximum intensity!
+DestinationCharacters vibrierendes Latexhöschen springt auf die maximale Stufe!
 Use Remote
 Fernbedienung
 (You can use or remove items by selecting specific body regions on yourself.)
@@ -293,3 +321,31 @@ They must be wearing a baby harness first to chain the mittens to it.
 Sie muss einen Babyharnisch tragen, um die Fäustlinge daran anzuketten.
 Facial expression
 Gesichtsausdruck
+None
+Normal
+Raised
+Erhöht
+Lowered
+Gesenkt
+One Raised
+Eine erhöht
+Harsh
+Streng
+Angry
+Wütend
+Soft
+Sanft
+Low
+Niedrig
+Medium
+Mittel
+High
+Hoch
+Frown
+Unglücklich
+Closed
+Geschlossen
+Wink
+Zwinkern
+Dazed
+Benommen
