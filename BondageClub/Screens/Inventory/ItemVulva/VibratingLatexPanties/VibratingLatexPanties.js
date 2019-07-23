@@ -25,7 +25,7 @@ function InventoryItemVulvaVibratingLatexPantiesClick() {
 	if ((MouseX >= 1200) && (MouseX <= 1450) && (MouseY >= 700) && (MouseY <= 765) && (DialogFocusItem.Property.Intensity > -1)) InventoryItemVulvaVibratingLatexPantiesSetIntensity(-1);
 	if ((MouseX >= 1550) && (MouseX <= 1800) && (MouseY >= 700) && (MouseY <= 765) && (DialogFocusItem.Property.Intensity < 3)) InventoryItemVulvaVibratingLatexPantiesSetIntensity(1);
 }
-
+	
 // Sets the Vibrating Latex Panties intensity
 function InventoryItemVulvaVibratingLatexPantiesSetIntensity(Modifier) {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
@@ -35,8 +35,14 @@ function InventoryItemVulvaVibratingLatexPantiesSetIntensity(Modifier) {
 	if (DialogFocusItem.Property.Intensity == 1) DialogFocusItem.Property.Effect = ["Egged", "Vibrating"];
 	if (DialogFocusItem.Property.Intensity == 2) DialogFocusItem.Property.Effect = ["Egged", "Vibrating"];
 	if (DialogFocusItem.Property.Intensity == 3) DialogFocusItem.Property.Effect = ["Egged", "Vibrating"];	
+	
+		// Adds the lock effect back if it was padlocked
+	if ((DialogFocusItem.Property.LockedBy != null) && (DialogFocusItem.Property.LockedBy != "")) {
+		if (DialogFocusItem.Property.Effect == null) DialogFocusItem.Property.Effect = [];
+		DialogFocusItem.Property.Effect.push("Lock");
+	}
+	
 	CharacterLoadEffect(C);
 	if (C.ID == 0) ServerPlayerAppearanceSync();
-
-	ChatRoomPublishCustomAction((DialogFind(Player, "Panties" + ((Modifier > 0) ? "Increase" : "Decrease") + "To" + DialogFocusItem.Property.Intensity)).replace("DestinationCharacter",C.Name), true);
+    ChatRoomPublishCustomAction((DialogFind(Player, "Panties" + ((Modifier > 0) ? "Increase" : "Decrease") + "To" + DialogFocusItem.Property.Intensity)).replace("DestinationCharacter",C.Name), true);
 }
