@@ -5,17 +5,23 @@ Brauchst du Hilfe? Nicke, wenn ja.
 (DialogCharacterName kommt, um erneut nach dir zu sehen.) Schon wieder in Schwierigkeiten? Brauchst du Hilfe?
 Still in trouble, are we?  Have you learned your lesson?  Nod if you did.
 Immer noch in der Klemme, was? Hast du deine Lektion gelernt? Nicke, wenn ja.
-It seems that you need to learn a lesson. (She grabs your arms and forces them in a armbinder.  She then gets a gag and silences you.)
+It seems that you need to learn a lesson. (She grabs your arms and forces them in an armbinder.  She then gets a gag and silences you.)
 Du solltest wohl eine Lektion lernen. (Sie zwängt deine Arme in einen Monohandschuh und bringt dich mit einem Knebel zum Schweigen.)
 (She gulps and bows her head.)  Yes Miss.  Sorry Miss.
 (Sie schluckt und senkt ihren Blick.) Ja, Miss. Verzeihung, Miss.
 I'm sorry Miss.  I cannot help you now.
 Es tut mir leid, Miss. Ich kann gerade nicht helfen.
+(A maid taps on your shoulder.)  Slave girl, why aren't you naked?
+(Ein Hausmädchen tippt dir auf die Schulter.) Sklavenmädchen, warum bist du nicht nackt?
+(A maid greets you as you enter the hall.)  Can I have a word with you Miss DialogPlayerName?
+(Ein Hausmädchen begrüßt dich, als du den Raum betrittst.) Dürfte ich Sie kurz sprechen, Miss DialogPlayerName?
+(The maid leaves you with Club Mistress.)  We Mistresses have been speaking.  It seems you're not fit to wear the heels anymore.
+(Das Hausmädchen lässt dich mit der Club-Herrin allein.) Wir Herrinnen haben uns unterhalten. Es scheint, als wärst du nicht mehr für die hohen Absätze geeignet.
 (She gives a curious look at the gag but doesn't resist as you silence her.)
 (Sie betrachtet den Knebel verwundert, wehrt sich aber nicht, als du sie zum Schweigen bringst.)
 (You remove her gag slowly.)  Thanks Miss, it will be easier to do my job.
 (Du nimmst den Knebel langsam ab.) Danke, Miss, so wird mir meine Arbeit leichter fallen.
-(She nods and turns around as you restrain her arms securely.)  It will be a kinky work day.
+(She nods and turns around as you restrain her arms securely.)  It will be a kinky workday.
 (Sie nickt und dreht sich um, damit du ihre Arme festmachen kannst.) Das wird ein lustiger Arbeitstag.
 (You free her arms and she stretches.)  Thanks head maid DialogPlayerName, this will make my work easier.
 (Du befreist ihre Arme und sie streckt sich.) Danke, Hausdame DialogPlayerName, das erleichtert meine Arbeit.
@@ -35,7 +41,7 @@ Es tut mir leid, Miss. Ich kann gerade nicht helfen.
 (Sie runzelt die Stirn, als du das Teil verschließt.) Hoffentlich nehmen Sie das nach meiner Schicht wieder ab, Miss.
 (She nods happily as you unlock the device.)  Yes!  That's very nice of you Miss.
 (Sie nickt fröhlich, als du das Teil aufschließt.) Ja! Das ist sehr nett von Ihnen, Miss.
-(You strap the device on her head as she mumbles.)  It will be a kinky work day it seems.
+(You strap the device on her head as she mumbles.)  It will be a kinky workday it seems.
 (Du schnallst ihr das Ding um den Kopf und sie murmelt.) Das wird wohl ein lustiger Arbeitstag.
 (You remove the device and she nods slowly.)  You're the best head maid DialogPlayerName.
 (Du nimmst das Ding ab und sie nickt langsam.) Sie sind die Beste, Hausdame DialogPlayerName.
@@ -70,6 +76,10 @@ Ich bin DialogCharacterName, Ich arbeite hier als Hausmädchen, um Subs aus der 
 ###_PLAYER
 Yes, can you release me?
 Ja, kannst du mich befreien?
+###_NPC
+(She checks your locks and frowns.)  Is that an owner lock?  Your Mistress might not be pleased if I release you.
+(Sie betrachtet deine Schlösser und runzelt die Stirn.) Ist das ein Besitzer-Schloss? Deiner Herrin könnte es nicht gefallen, wenn ich dich befreie.
+###_PLAYER
 Get lost girl!
 Hau ab, Mädchen!
 ###_NPC
@@ -115,10 +125,172 @@ Nichts, es geht schon. (Dialog beenden.)
 There's already a girl chained on the bed.
 Da ist schon ein Mädchen ans Bett gekettet.
 ###_NPC
-I understand, we can't have unhappy customers can we?  I'll go release her.
+I understand, we can't have unhappy customers, can we?  I'll go release her.
 Ich verstehe, wir wollen ja nicht, dass ein Kunde unzufrieden ist, oder? Ich gehe sie befreien.
 ###_PLAYER
 You're the best!  (Leave her.)
 Vielen Dank! (Dialog beenden.)
+(Nod and whimper for help.)
+(Nicken und um Hilfe wimmern.)
+###_NPC
+I can help you girl, but you will be shamed for that.  Your reputation will be hurt.
+Ich kann dir helfen, Mädchen, aber dafür wirst du gedemütigt. Dein Ruf wird darunter leiden.
+###_PLAYER
+I know, but can you still help me?
+Ich weiß, aber hilfst du mir trotzdem?
+You're right.  Forget it then. (Leave her.)
+Stimmt. Dann vergiss es. (Dialog beenden.)
+(Sigh and leave her.)
+(Seufzen und Dialog beenden.)
+(Nod and bow your head.)
+(Nicken und deinen Kopf neigen.)
+###_NPC
+Very well.  (She releases you, strips you and confiscate your clothes.)
+Sehr wohl. (Sie befreit dich, zieht dich aus und beschlagnahmt deine Kleidung.)
+###_PLAYER
+I will endure my punishment.
+Ich lasse meine Strafe über mich ergehen.
+Forget it then. (Leave her.)
+Dann vergiss es. (Dialog beenden.)
+Why are you taking my clothes?
+Warum nimmst du mir meine Kleidung weg?
+###_NPC
+(She frowns.)  Your clothes are confiscated for the next hour.  This humiliation might teach you to respect your owner will.
+(Sie runzelt die Stirn.) Deine Kleidung wird eine Stunde lang beschlagnahmt. Diese Demütigung sollte dir beibringen, dem Willen deiner Besitzerin zu folgen.
+###_PLAYER
+When can I dress back?
+Wann darf ich mich wieder anziehen?
+###_NPC
+Your clothes are confiscated for the next hour.  This humiliation might teach you to respect your owner will.
+Deine Kleidung wird eine Stunde lang beschlagnahmt. Diese Demütigung sollte dir beibringen, dem Willen deiner Besitzerin zu folgen.
+###_PLAYER
+I know I'm a bad submissive.
+Ich weiß, ich bin eine schlechte Sklavin.
+###_NPC
+(She sighs.)  Your clothes are confiscated for the next hour.  This humiliation might teach you to respect your owner will.
+(Sie seufzt.) Deine Kleidung wird eine Stunde lang beschlagnahmt. Diese Demütigung sollte dir beibringen, dem Willen deiner Besitzerin zu folgen.
+###_PLAYER
+Very well, thank you.  (Leave her.)
+Sehr wohl, danke. (Dialog beenden.)
+Fine, I'm going then.  (Leave her.)
+Gut, ich geh dann mal. (Dialog beenden.)
+(Grumble and leave.)
+(Grummeln und gehen.)
+Why do you care?
+Was geht dich das an?
+###_NPC
+I'm doing my job.  Club slaves must stay naked, let me help you to strip.
+Ich mache nur meine Arbeit. Club-Sklavinnen müssen stets nackt sein, lass mich dir beim Ausziehen helfen.
+###_PLAYER
+Oops!  I forgot the rule.
+Ups! Die Regel hab ich vergessen.
+###_NPC
+Rules are important.  Club slaves must stay naked, let me help you to strip.
+Regeln sind wichtig. Club-Sklavinnen müssen stets nackt sein, lass mich dir beim Ausziehen helfen.
+###_PLAYER
+Sorry.  I was tricked by someone.
+Tut mir leid. Jemand hat mir einen Streich gespielt.
+###_NPC
+Make sure to remember the rules.  Club slaves must stay naked, let me help you to strip.
+Denke immer an die Regeln. Club-Sklavinnen müssen stets nackt sein, lass mich dir beim Ausziehen helfen.
+###_PLAYER
+(Look surprised.)
+(Überrascht gucken.)
+(Look ashamed.)
+(Beschämt gucken.)
+(Shake your head no.)
+(Deinen Kopf schütteln.)
+Alright then.
+Na gut.
+###_NPC
+(She nods and slowly strips you down.)  Since you broke the rule, I will reset your hour of duty.  You must redo it fully.
+(Sie nickt und zieht dich langsam aus.) Da du die Regel gebrochen hast, setze ich deine Pflichtzeit zurück. Du musst die gesamte Stunde nachholen.
+###_PLAYER
+That sucks.
+So ein Dreck.
+###_NPC
+(She sighs and slowly strips you down.)  Since you broke the rule, I will reset your hour of duty.  You must redo it fully.
+(Sie seufzt und zieht dich langsam aus.) Da du die Regel gebrochen hast, setze ich deine Pflichtzeit zurück. Du musst die gesamte Stunde nachholen.
+###_PLAYER
+(Grumble a little.)
+(Etwas grummeln.)
+(Comply and help her.)
+(Dich fügen und ihr helfen.)
+This is unfair!
+Das ist unfair!
+###_NPC
+You should have read your contract girl.  I need to go now.
+Du hättest dir den Vertrag durchlesen sollen, Mädchen. Ich muss jetzt gehen.
+###_PLAYER
+I understand.
+Ich verstehe.
+###_NPC
+Very well.  I need to go now.
+Sehr schön. Ich muss jetzt gehen.
+###_PLAYER
+(Nod slowly.)
+(Langsam nicken.)
+(Grumble in disagreement.)
+(Unzufrieden grummeln.)
+Wait!  Can you release me first?
+Moment! Kannst du mich vorher befreien?
+###_NPC
+No!  Struggle some more, I'll be back later.
+Nein! Du darfst noch etwas zappeln, ich komme später zurück.
+###_PLAYER
+(Struggle and beg for help.)
+(Zappeln und um Hilfe betteln.)
+###_NPC
+Keep on struggling girl, I might help you later.
+Mach weiter so, Mädchen, vielleicht helfe ich dir dann später.
+###_PLAYER
+Thank you for your time.
+Danke für deine Zeit.
+###_NPC
+Don't mention it.  I'm simply doing my job.
+Nicht der Rede wert. Ich mache nur meine Arbeit.
+###_PLAYER
+(Leave her.)
+(Dialog beenden.)
+What do you want?
+Was willst du?
+###_NPC
+I was informed that the club management Mistresses want to meet you.
+Mir wurde mitgeteilt, dass die Herrinnen im Club-Management nach Ihnen suchen.
+###_PLAYER
+Make it quick.
+Fass dich kurz.
+###_NPC
+Yes Miss.  (She gulps.)  I was informed that the club management Mistresses want to meet you.
+Jawohl, Miss. (Sie schluckt.) Mir wurde mitgeteilt, dass die Herrinnen im Club-Management nach Ihnen suchen.
+###_PLAYER
+(Stay silent.)
+(Schweigen.)
+###_NPC
+Miss, I was informed that the club management Mistresses want to meet you.
+Miss, mir wurde mitgeteilt, dass die Herrinnen im Club-Management nach Ihnen suchen.
+###_PLAYER
+Why is that?
+Warum das denn?
+###_NPC
+I don't know Miss, but I was told to bring you there right away.
+Ich weiß es nicht, Miss, aber mir wurde aufgetragen, Sie sofort dorthin zu begleiten.
+###_PLAYER
+I don't have time for that.
+Dafür habe ich keine Zeit.
+###_NPC
+Miss, it's very important.  They told me to bring you there right away.
+Miss, es ist von äußerster Dringlichkeit. Mir wurde aufgetragn, Sie sofort dorthin zu begleiten.
+###_PLAYER
+Let's go see them.
+Dann besuchen wir sie mal.
+###_NPC
+Absolutely, please come with me.
+Selbstverständlich, bitte folgen Sie mir.
+###_PLAYER
+Fine, let's go.  (Meet a Club Mistress.)
+Na gut, gehen wir. (Mit einer Club-Herrin sprechen.)
+(Walk with her to a Club Mistress.)
+(Ihr zu einer Club-Herrin folgen.)
 (Frown and leave her.)
-(Die Stirn runzeln und sie verlassen.)
+(Die Stirn runzeln und Dialog beenden.)

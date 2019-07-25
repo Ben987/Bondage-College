@@ -13,6 +13,7 @@ function AssetGroupAdd(NewAssetFamily, NewAsset) {
 		ParentGroupName: (NewAsset.ParentGroup == null) ? "" : NewAsset.ParentGroup,
 		Category: (NewAsset.Category == null) ? "Appearance" : NewAsset.Category,
 		IsDefault: (NewAsset.Default == null) ? true : NewAsset.Default,
+		IsRestraint: (NewAsset.IsRestraint == null) ? false : NewAsset.IsRestraint,
 		AllowNone: (NewAsset.AllowNone == null) ? true : NewAsset.AllowNone,
 		AllowColorize: (NewAsset.AllowColorize == null) ? true : NewAsset.AllowColorize,
 		AllowCustomize: (NewAsset.AllowCustomize == null) ? true : NewAsset.AllowCustomize,
@@ -51,6 +52,7 @@ function AssetAdd(NewAsset) {
 		Effect: NewAsset.Effect,
 		Bonus: NewAsset.Bonus,
 		Block: NewAsset.Block,
+		Expose: (NewAsset.Expose==null)?[]:NewAsset.Expose,
 		Hide: NewAsset.Hide,
 		HideItem: NewAsset.HideItem,
 		Require: NewAsset.Require,
@@ -71,9 +73,14 @@ function AssetAdd(NewAsset) {
 		Extended: (NewAsset.Extended == null) ? false : NewAsset.Extended,
 		AllowLock: (NewAsset.AllowLock == null) ? false : NewAsset.AllowLock,
 		IsLock: (NewAsset.IsLock == null) ? false : NewAsset.IsLock,
+		OwnerOnly: (NewAsset.OwnerOnly == null) ? false : NewAsset.OwnerOnly,
 		ExpressionTrigger : NewAsset.ExpressionTrigger,
-		Layer: NewAsset.Layer
+		Layer: NewAsset.Layer,
+		AllowEffect: NewAsset.AllowEffect,
+		AllowBlock: NewAsset.AllowBlock
 	}
+	// Unwearable assets are not visible but can be overwritten
+	if (!A.Wear && NewAsset.Visible != true) A.Visible = false;
 	Asset.push(A);
 }
 
@@ -169,4 +176,12 @@ function AssetReload(C) {
 			for(var S = 0; S < Asset.length; S++)
 				if ((Asset[S].Name == C.Appearance[A].Asset.Name) && (Asset[S].Group.Name == C.Appearance[A].Asset.Group.Name))
 					C.Appearance[A].Asset = Asset[S];
+}
+
+// Gets a specific asset by family/group/name
+function AssetGet(Family, Group, Name) {
+	for (var A = 0; A < Asset.length; A++)
+		if ((Asset[A].Name == Name) && (Asset[A].Group.Name == Group) && (Asset[A].Group.Family == Family))
+			return Asset[A];
+	return null;
 }

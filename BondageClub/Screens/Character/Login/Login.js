@@ -27,7 +27,7 @@ function LoginDrawCredits() {
 	for(var C = 0; C < LoginCredits.length; C++) {
 
 		// Sets the Y position (it scrolls from bottom to top)
-		var Y = 800 - Math.floor(LoginCreditsPosition * TimerRunInterval / 10) + (C * 50);
+		var Y = 800 - Math.floor(LoginCreditsPosition * 2) + (C * 50);
 
 		// Draw the text if it's in drawing range
 		if ((Y > 0) && (Y <= 999)) {
@@ -100,6 +100,13 @@ function LoginRun() {
 
 }
 
+// Make sure the slave collar is equipped or unequipped based on the owner
+function LoginValidCollar() {
+ 	if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "SlaveCollar") && (Player.Owner == "")) InventoryRemove(Player, "ItemNeck");
+ 	if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name != "SlaveCollar") && (InventoryGet(Player, "ItemNeck").Asset.Name != "ClubSlaveCollar") && (Player.Owner != "")) InventoryRemove(Player, "ItemNeck");
+	if ((InventoryGet(Player, "ItemNeck") == null) && (Player.Owner != "")) InventoryWear(Player, "SlaveCollar", "ItemNeck");
+}
+
 // When the character logs, we analyze the data
 function LoginResponse(C) {
 
@@ -123,7 +130,13 @@ function LoginResponse(C) {
 			Player.Wardrobe = C.Wardrobe;
 			Player.OnlineID = C.ID.toString();
 			Player.MemberNumber = C.MemberNumber;
+			Player.WardrobeCharacterNames = C.WardrobeCharacterNames;
 			WardrobeCharacter = [];
+
+			// Loads the ownership data
+			Player.Ownership = C.Ownership;
+			if ((Player.Ownership != null) && (Player.Ownership.Name != null))
+				Player.Owner = (Player.Ownership.Stage == 1) ? Player.Ownership.Name : "";
 
 			// Gets the online preferences
 			Player.LabelColor = C.LabelColor;
@@ -133,13 +146,12 @@ function LoginResponse(C) {
 			Player.FriendList = C.FriendList;
 	
 			// Loads the player character model and data
-			Player.Appearance = ServerAppearanceLoadFromBundle(C.AssetFamily, C.Appearance);
-			InventoryLoad(Player, C.Inventory, false);
+			Player.Appearance = ServerAppearanceLoadFromBundle(Player, C.AssetFamily, C.Appearance);
+			InventoryLoad(Player, C.Inventory);
 			LogLoad(C.Log);
 			ReputationLoad(C.Reputation);
 			SkillLoad(C.Skill);
 			CharacterLoadCSVDialog(Player);
-			if (!LogQuery("SleepCage", "Rule") || (Player.Owner == "")) CharacterAppearanceValidate(Player);
 			PrivateCharacterMax = (LogQuery("Expansion", "PrivateRoom")) ? 8 : 4;
 			CharacterRefresh(Player, false);
 			ElementRemove("InputName");
@@ -156,19 +168,26 @@ function LoginResponse(C) {
 
 			// Fixes a few items
 			InventoryRemove(Player, "ItemMisc");
-			if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "SlaveCollar") && (Player.Owner == "")) InventoryRemove(Player, "ItemNeck");
-			if ((InventoryGet(Player, "ItemNeck") == null) && (Player.Owner != "")) InventoryWear(Player, "SlaveCollar", "ItemNeck");
+			if (LogQuery("JoinedSorority", "Maid") && !InventoryAvailable(Player, "MaidOutfit2", "Cloth")) InventoryAdd(Player, "MaidOutfit2", "Cloth");
 			if ((InventoryGet(Player, "ItemArms") != null) && (InventoryGet(Player, "ItemArms").Asset.Name == "FourLimbsShackles")) InventoryRemove(Player, "ItemArms");
+			LoginValidCollar();
 
-			// If the player must start in her room, in her cage
-			if (LogQuery("SleepCage", "Rule") && (Player.Owner != "") && PrivateOwnerInRoom()) {
-				InventoryRemove(Player, "ItemFeet");
-				InventoryRemove(Player, "ItemLegs");
-				Player.Cage = true;
-				CharacterSetActivePose(Player, "Kneel");
-				CommonSetScreen("Room", "Private");
-			} else CommonSetScreen("Room", "MainHall");
+			// If the player must log back in the cell
+			if (LogQuery("Locked", "Cell")) {
+				CommonSetScreen("Room", "Cell");
+			} else {
+
+				// If the player must start in her room, in her cage
+				if (LogQuery("SleepCage", "Rule") && (Player.Owner != "") && PrivateOwnerInRoom()) {
+					InventoryRemove(Player, "ItemFeet");
+					InventoryRemove(Player, "ItemLegs");
+					Player.Cage = true;
+					CharacterSetActivePose(Player, "Kneel");
+					CommonSetScreen("Room", "Private");
+				} else CommonSetScreen("Room", "MainHall");
 			
+			}
+
 		} else LoginMessage = TextGet("ErrorLoadingCharacterData");
 	} else LoginMessage = TextGet(C);
 
@@ -202,17 +221,9 @@ function LoginClick() {
 		CharacterAppearanceLoadCharacter(Player);
 	}
 	
-	// If we must try to login (make sure we don't send the login query twice)
-	if ((MouseX >= 775) && (MouseX <= 975) && (MouseY >= 500) && (MouseY <= 560) && (LoginMessage != TextGet("ValidatingNamePassword"))) {
-		var Name = ElementValue("InputName");
-		var Password = ElementValue("InputPassword");
-		var letters = /^[a-zA-Z0-9]+$/;
-		if (Name.match(letters) && Password.match(letters) && (Name.length > 0) && (Name.length <= 20) && (Password.length > 0) && (Password.length <= 20)) {
-			LoginMessage = TextGet("ValidatingNamePassword");
-			ServerSend("AccountLogin", { AccountName: Name, Password: Password } );
-		}
-		else
-			LoginMessage = TextGet("InvalidNamePassword");
+	// Try to login
+	if ((MouseX >= 775) && (MouseX <= 975) && (MouseY >= 500) && (MouseY <= 560)) {
+		LoginDoLogin();
 	}
 
 	// If we must change the language
@@ -223,4 +234,26 @@ function LoginClick() {
 		LoginMessage = "";
 	}
 	
+}
+
+// When the user press "enter" we try to login
+function LoginKeyDown() {
+	if (KeyPress == 13) {
+		LoginDoLogin();
+	}
+}
+
+// If we must try to login (make sure we don't send the login query twice)
+function LoginDoLogin() {
+	if (LoginMessage != TextGet("ValidatingNamePassword")) {
+		var Name = ElementValue("InputName");
+		var Password = ElementValue("InputPassword");
+		var letters = /^[a-zA-Z0-9]+$/;
+		if (Name.match(letters) && Password.match(letters) && (Name.length > 0) && (Name.length <= 20) && (Password.length > 0) && (Password.length <= 20)) {
+			LoginMessage = TextGet("ValidatingNamePassword");
+			ServerSend("AccountLogin", { AccountName: Name, Password: Password });
+		} else {
+			LoginMessage = TextGet("InvalidNamePassword");
+		}
+	}
 }

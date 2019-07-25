@@ -1,6 +1,7 @@
 "use strict";
 var ServerSocket = null;
 var ServerURL = "http://localhost:4288";
+var ServerBeep = {};
 
 // Loads the server events
 function ServerInit() {
@@ -18,6 +19,9 @@ function ServerInit() {
 	ServerSocket.on("ChatRoomMessage", function (data) { ChatRoomMessage(data); } );
 	ServerSocket.on("ChatRoomAllowItem", function (data) { ChatRoomAllowItem(data); } );
 	ServerSocket.on("PasswordResetResponse", function (data) { PasswordResetResponse(data); } );
+	ServerSocket.on("AccountQueryResult", function (data) { ServerAccountQueryResult(data); } );
+	ServerSocket.on("AccountBeep", function (data) { ServerAccountBeep(data); } );
+	ServerSocket.on("AccountOwnership", function (data) { ServerAccountOwnership(data); } );
 }
 
 // When the server sends some information to the client, we keep it in variables
@@ -88,25 +92,128 @@ function ServerAppearanceBundle(Appearance) {
 	return Bundle;
 }
 
-// Loads the appearance assets from a server bundle that only contains the main info (no assets)
-function ServerAppearanceLoadFromBundle(AssetFamily, Bundle) {
+// Make sure the properties are valid for the item (to prevent griefing in multi-player)
+function ServerValidateProperties(C, Item) {
 
-	// For each appearance item to load
+	// No validations for NPCs
+	if ((C.AccountName.substring(0, 4) == "NPC_") || (C.AccountName.substring(0, 4) == "NPC-")) return;
+
+	// For each effect on the item
+	if ((Item.Property != null) && (Item.Property.Effect != null))
+		for (var E = 0; E < Item.Property.Effect.length; E++) {
+
+			// Make sure the item can be locked, remove any lock that's invalid
+			var Effect = Item.Property.Effect[E];
+			if ((Effect == "Lock") && ((Item.Asset.AllowLock == null) || (Item.Asset.AllowLock == false) || (InventoryGetLock(Item) == null))) {
+				delete Item.Property.LockedBy;
+				delete Item.Property.LockMemberNumber;
+				delete Item.Property.RemoveTimer;
+				Item.Property.Effect.splice(E, 1);
+				E--;
+			}
+
+			// If the item is locked by a lock
+			if ((Effect == "Lock") && (InventoryGetLock(Item) != null)) {
+
+				// Make sure the remove timer on the lock is valid
+				var Lock = InventoryGetLock(Item);
+				if ((Lock.Asset.RemoveTimer != null) && (Lock.Asset.RemoveTimer != 0)) {
+					if ((typeof Item.Property.RemoveTimer !== "number") || (Item.Property.RemoveTimer > CurrentTime + Lock.Asset.RemoveTimer * 1000))
+						Item.Property.RemoveTimer = CurrentTime + Lock.Asset.RemoveTimer * 1000;
+				} else delete Item.Property.RemoveTimer;
+
+				// Make sure the owner lock is valid
+				if (Lock.Asset.OwnerOnly && ((C.Ownership == null) || (C.Ownership.MemberNumber == null) || (Item.Property.LockMemberNumber == null) || (C.Ownership.MemberNumber != Item.Property.LockMemberNumber))) {
+					delete Item.Property.LockedBy;
+					delete Item.Property.LockMemberNumber;
+					delete Item.Property.RemoveTimer;
+					Item.Property.Effect.splice(E, 1);
+					E--;
+				}
+
+			}
+
+			// Other effects can be removed
+			if (Effect != "Lock") {
+
+				// Check if the effect is allowed for the item
+				var MustRemove = true;
+				if (Item.Asset.AllowEffect != null)
+					for (var A = 0; A < Item.Asset.AllowEffect.length; A++)
+						if (Item.Asset.AllowEffect[A] == Effect)
+							MustRemove = false;
+
+				// Remove the effect if it's not allowed
+				if (MustRemove) {
+					Item.Property.Effect.splice(E, 1);
+					E--;
+				}
+
+			}
+
+		}
+
+	// For each block on the item
+	if ((Item.Property != null) && (Item.Property.Block != null))
+		for (var B = 0; B < Item.Property.Block.length; B++) {
+
+			// Check if the effect is allowed for the item
+			var MustRemove = true;
+			if (Item.Asset.AllowBlock != null)
+				for (var A = 0; A < Item.Asset.AllowBlock.length; A++)
+					if (Item.Asset.AllowBlock[A] == Item.Property.Block[B])
+						MustRemove = false;
+
+			// Remove the effect if it's not allowed
+			if (MustRemove) {
+				Item.Property.Block.splice(B, 1);
+				B--;
+			}
+
+		}
+		
+}
+
+// Loads the appearance assets from a server bundle that only contains the main info (no assets)
+function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumber) {
+
+	// For each appearance item to load	
 	var Appearance = [];
 	for (var A = 0; A < Bundle.length; A++) {
 
-		// Cycles in all the assets to find the correct item to add and colorize it
-		var I;
-		for (I = 0; I < Asset.length; I++)
+		// Cycles in all assets to find the correct item to add (do not add )
+		for (var I = 0; I < Asset.length; I++)
 			if ((Asset[I].Name == Bundle[A].Name) && (Asset[I].Group.Name == Bundle[A].Group) && (Asset[I].Group.Family == AssetFamily)) {
+
+				// Creates the item and colorize it
 				var NA = {
 					Asset: Asset[I],
 					Difficulty: parseInt((Bundle[A].Difficulty == null) ? 0 : Bundle[A].Difficulty),
 					Color: (Bundle[A].Color == null) ? "Default" : Bundle[A].Color
 				}
-				if (Bundle[A].Property != null) NA.Property = Bundle[A].Property;
-				Appearance.push(NA);
+
+				// Sets the item properties
+				if (Bundle[A].Property != null) {
+					NA.Property = Bundle[A].Property;
+					ServerValidateProperties(C, NA);
+				}
+
+				// Reapply the owner lock if needed
+				if ((C.Ownership != null) && (C.Ownership.MemberNumber != null) && (SourceMemberNumber != null) && (C.Ownership.MemberNumber != SourceMemberNumber) && (C.MemberNumber != SourceMemberNumber))
+					for (var L = 0; L < C.Appearance.length; L++)
+						if ((C.Appearance[L].Asset.Group.Name == NA.Asset.Group.Name) && InventoryOwnerOnlyItem(C.Appearance[A]))
+							InventoryLock(C, NA, { Asset: AssetGet(C.AssetFamily, "ItemMisc", "OwnerPadlock")}, C.Ownership.MemberNumber);
+
+				// Make sure we don't push an item if there's already an item in that slot
+				var CanPush = true;
+				for (var P = 0; P < Appearance.length; P++)
+					if (Appearance[P].Asset.Group.Name == NA.Asset.Group.Name) {
+						CanPush = false;
+						break;
+					}
+				if (CanPush) Appearance.push(NA);
 				break;
+
 			}
 
 	}
@@ -147,19 +254,6 @@ function ServerPlayerAppearanceSync() {
 
 }
 
-// Syncs the player wardrobe with the server (12 wardrobe positions)
-function ServerPlayerWardrobeSync() {
-	var D = {};
-	D.Wardrobe = [];
-	for(var W = 0; W < WardrobeCharacter.length; W++) {
-		D.Wardrobe[W] = [];
-		for(var A = 0; A < WardrobeCharacter[W].Appearance.length; A++)
-			if (WardrobeCharacter[W].Appearance[A].Asset.Group.Category == "Appearance")
-				D.Wardrobe[W].push({ Name: WardrobeCharacter[W].Appearance[A].Asset.Name, Group: WardrobeCharacter[W].Appearance[A].Asset.Group.Name, Color: WardrobeCharacter[W].Appearance[A].Color });
-	}
-	ServerSend("AccountUpdate", D);
-}
-
 // Syncs the private character with the server
 function ServerPrivateCharacterSync() {
 	if (PrivateVendor != null) {
@@ -184,3 +278,51 @@ function ServerPrivateCharacterSync() {
 		ServerSend("AccountUpdate", D);		
 	}
 };
+
+// Parse the query result and sends it to the right screen
+function ServerAccountQueryResult(data) {
+	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.Query != null) && (typeof data.Query === "string") && (data.Result != null)) {
+		if (data.Query == "OnlineFriends") FriendListLoadFriendList(data.Result);
+	}
+}
+
+// When the server sends a beep from another account
+function ServerAccountBeep(data) {
+	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.MemberNumber != null) && (typeof data.MemberNumber === "number") && (data.MemberName != null) && (typeof data.MemberName === "string")) {
+		ServerBeep.MemberNumber = data.MemberNumber;
+		ServerBeep.MemberName = data.MemberName;
+		ServerBeep.ChatRoomName = data.ChatRoomName;
+		ServerBeep.Timer = CurrentTime + 10000;
+		ServerBeep.Message = DialogFind(Player, "BeepFrom") + " " + ServerBeep.MemberName + " (" + ServerBeep.MemberNumber.toString() + ")";
+		if (ServerBeep.ChatRoomName != null) ServerBeep.Message = ServerBeep.Message + " " + DialogFind(Player, "InRoom") + " \"" + ServerBeep.ChatRoomName + "\"";
+	}
+}
+
+// Draws the beep sent by the server
+function ServerDrawBeep() {
+	if ((ServerBeep.Timer != null) && (ServerBeep.Timer > CurrentTime)) DrawButton((CurrentScreen == "ChatRoom") ? 0 : 500, 0, 1000, 50, ServerBeep.Message, "Pink", "");
+}
+
+// Gets the account ownership result from the query sent to the server
+function ServerAccountOwnership(data) {
+	
+	// If we get a result for a specific member number, we show that option in the online dialog
+	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.MemberNumber != null) && (typeof data.MemberNumber === "number") && (data.Result != null) && (typeof data.Result === "string"))
+		if ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber == data.MemberNumber))
+			ChatRoomOwnershipOption = data.Result;
+
+	// If we must update the character ownership data
+	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.Owner != null) && (typeof data.Owner === "string") && (data.Ownership != null) && (typeof data.Ownership === "object")) {
+		Player.Owner = data.Owner;
+		Player.Ownership = data.Ownership;
+		LoginValidCollar();
+	}
+
+	// If we must clear the character ownership data
+	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.ClearOwnership != null) && (typeof data.ClearOwnership === "boolean") && (data.ClearOwnership == true)) {
+		Player.Owner = "";
+		Player.Ownership = null;
+		LoginValidCollar();
+	}
+
+}

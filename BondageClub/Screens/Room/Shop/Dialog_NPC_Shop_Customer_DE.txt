@@ -1,0 +1,330 @@
+###_NPC
+Can you mime what you're trying to say?
+Kannst du pantomimisch darstellen, was du sagen willst?
+Hello, I want to get a device like the one you're wearing, for my slave.
+Hallo, ich hätte gern genau so etwas, was du da hast, für meine Sklavin.
+###_PLAYER
+Hello, welcome to the store.
+Hallo, willkommen im Laden.
+###_NPC
+Thanks, do you have it in multiple colors?
+Danke, habt ihr das in verschiedenen Farben?
+###_PLAYER
+(Nod happily.)
+(Glücklich nicken.)
+###_NPC
+Do you have it in multiple colors?
+Habt ihr das in verschiedenen Farben?
+###_PLAYER
+(Nod politely.)
+(Höflich nicken.)
+In every possible color.
+In allen möglichen Farben.
+###_NPC
+Very good, and do you have a larger size?  My girl has a big head.
+Sehr gut, und habt ihr auch andere Größen? Mein Mädchen hat einen eher großen Kopf.
+###_PLAYER
+(Nod slowly.)
+(Langsam nicken.)
+(Shake your head no.)
+(Den Kopf schütteln.)
+###_NPC
+That's disappointing.  I might be back later then.  Take care.
+Wie schade. Dann komme ich vielleicht später wieder. Mach's gut.
+###_PLAYER
+(Shrug with your shoulders.)
+(Mit den Schultern zucken.)
+###_NPC
+You don't know?  I'll go check with the manager then.  Take care.
+Weißt du nicht? Dann frage ich mal die Geschäftsführung. Mach's gut.
+###_PLAYER
+(Nod affirmatively.)
+(Bestätigend nicken.)
+###_NPC
+Perfect!  And what about the fabric?  It's good quality?
+Perfekt! Und was ist mit dem Material? Hat es eine gute Qualität?
+###_PLAYER
+I don't know.
+Das weiß ich nicht.
+It's very well made.
+Es ist eine sehr gute Ausfertigung.
+###_NPC
+Sold!  I'll go pay the manager.  Thanks girl.
+Nehme ich! Ich gehe bei der Geschäftsführung bezahlen. Danke, Mädchen.
+###_PLAYER
+It's kind of cheap to be honest.
+Um ehrlich zu sein, ist es eher billig.
+###_NPC
+Really?  I'll buy it from somewhere else then.  Take care.
+Wirklich? Dann schaue ich mich lieber woanders um. Mach's gut.
+###_PLAYER
+(Nod your head yes.)
+(Nicken.)
+###_NPC
+Cute gag, I'm thinking of getting the same model for my girlfriend.
+Süßer Knebel, ich denke darüber nach, meiner Freundin das gleiche Modell zu besorgen.
+Is it comfy?  I don't want to hurt my lover.
+Ist er bequem? Ich will meiner Liebsten nicht wehtun.
+###_PLAYER
+(Do mumbled noises.)
+(Murmelnde Laute machen.)
+###_NPC
+(She giggles.)  Is it comfy?  I don't want to hurt my lover.
+(Sie kichert.) Ist er bequem? Ich will meiner Liebsten nicht wehtun.
+###_PLAYER
+(Hum a song and rock your head.)
+(Ein Lied summen und dazu mit dem Kopf wackeln.)
+###_NPC
+(She sings a little.)  Is it comfy?  I don't want to hurt my lover.
+(Sie singt etwas mit.) Ist er bequem? Ich will meiner Liebsten nicht wehtun.
+###_PLAYER
+(Pretend you're in pain.)
+(So tun, als hättest du Schmerzen.)
+###_NPC
+Forget it then, I don't want to hurt my sweetie.  Bye bye.
+Dann vergiss es, ich will meine Süße nicht leiden sehen. Tschüssi.
+###_PLAYER
+(Show that you're not in pain.)
+(Zeigen, dass du keine Schmerzen hast.)
+###_NPC
+Very nice, and is it effective?  I don't want to be able to understand her.
+Sehr schön, und ist er auch effektiv? Ich möchte kein Wort von ihr verstehen können.
+###_PLAYER
+(Try to talk normally.)
+(Versuchen, normal zu sprechen.)
+###_NPC
+Fair enough.  I like the sound of gagged girls.  Will you wrap it up?  It's a present.
+Nicht schlecht. Ich mag den Klang von geknebelten Mädchen. Könnt ihr ihn verpacken? Es soll ein Geschenk sein.
+###_PLAYER
+(Mumble incomprehensibly on purpose.)
+(Absichtlich undeutlich murmeln.)
+###_NPC
+Very nice.  I like the sound of gagged girls.  Will you wrap it up?  It's a present.
+Sehr schön. Ich mag den Klang von geknebelten Mädchen. Könnt ihr ihn verpacken? Es soll ein Geschenk sein.
+###_PLAYER
+(Try to talk as best as you can.)
+(Versuchen, so deutlich zu sprechen wie möglich.)
+###_NPC
+That's not good, I think I can still understand you.  Forget it, bye bye.
+Das ist nicht gut, ich glaube, ich kann dich noch verstehen. Vergiss es, tschüssi.
+###_PLAYER
+(Nod yes.)
+(Nicken.)
+###_NPC
+(She smiles.)  You've just sold a gag, thanks for the demonstration.  I'll go pay now.
+(Sie lächelt.) Du hast gerade einen Knebel verkauft, danke für die Vorführung. Ich gehe ihn bezahlen.
+Too bad, I'll go buy elsewhere then.  Bye bye.
+Schade, dann schaue ich mich woanders um. Tschüssi.
+A restrained demonstration?  I'm actually looking to get restraints like that.
+Eine gefesslte Vorführung? Ich wollte mir zufällig genau solche Fesseln holen.
+###_PLAYER
+It's for your slave?
+Für deine Sklavin?
+###_NPC
+(She blushes.)  No, it's for myself.  Do you think it would look good on me?
+(Sie wird rot.) Nein, für mich selbst. Meinst du, das würde mir gut stehen?
+###_PLAYER
+It's for yourself?
+Für dich selbst?
+###_NPC
+(She blushes.)  Yes, it's for myself.  Do you think it would look good on me?
+(Sie wird rot.) Ja, für mich selbst. Meinst du, das würde mir gut stehen?
+###_PLAYER
+It's for your lover?
+Für deine Geliebte?
+It will look great on you.
+Das wird dir hervorragend stehen.
+###_NPC
+(She looks at herself and nods.)  And it really secure?  Can you escape now?
+(Sie schaut an sich herab und nickt.) Ist das auch ausbruchssicher? Kannst du dich jetzt befreien?
+###_PLAYER
+Frankly, I'm not sure.
+Um ehrlich zu sein, bin ich mir da nicht sicher.
+###_NPC
+Thanks for your honesty, I'll find something else to buy.  Ciao!
+Danke für deine Ehrlichkeit, ich suche mir etwas Anderes. Ciao!
+###_PLAYER
+You have the perfect shape for it.
+Du hast die perfekte Figur dafür.
+Maybe I could show you something else.
+Vielleicht könnte ich dir etwas Anderes zeigen.
+I could, but I'm an escape artist.
+Ja, aber ich bin eine Entfesselungskünstlerin.
+###_NPC
+It's not what I'm looking for then.  Thanks for your help anyway.
+Dann ist es nicht das Richtige für mich. Trotzdem danke für deine Hilfe.
+###_PLAYER
+After some struggling you could escape.
+Mit etwas Mühe kommt man da schon raus.
+Trust me, it's impossible to escape.
+Glaub mir, es ist unmöglich, hier rauszukommen.
+###_NPC
+Wonderful!  (She blushes again.)  Would you like to use it on me later?
+Wundervoll! (Sie wird erneut rot.) Möchtest du es später an mir ausprobieren?
+###_PLAYER
+(Pretend to struggle in vain.)
+(So tun, als würdest du vergeblich damit ringen.)
+Sure!  If I see you later.
+Klar! Wenn wir uns über den Weg laufen.
+###_NPC
+It's a deal then!  I'll buy it.  Thanks for your help.
+Abgemacht! Ich kaufe es. Danke für deine Hilfe.
+###_PLAYER
+Sounds good, we could restrain each other.
+Klingt gut, wir könnten uns gegenseitig fesseln.
+I can't.  There's a store policy.
+Geht leider nicht. Ladenvorschrift.
+###_NPC
+Alright.  I need to think some more.  I'll be back later.
+Na gut. Ich muss noch etwas darüber nachdenken. Ich komme später wieder.
+###_PLAYER
+No, I'm too submissive Miss.
+Nein, ich bin zu unterwürfig, Miss.
+Girl, you're in trouble when I finish my shift.
+Mädel, du erlebst was, wenn meine Schicht um ist.
+###_NPC
+(She shivers.)  It's a deal Miss, I'll buy it.  Thanks for your help.
+(Sie schaudert.) Abgemacht, Miss, ich kaufe es. Danke für Ihre Hilfe.
+You have lovely legs you know, and this item fits perfectly on you.
+Du hast schöne Beine, weißt du? Und diese Fesseln stehen dir ausgezeichnet.
+###_PLAYER
+You have great legs also.
+Deine Beine sind auch super.
+###_NPC
+Thanks sweetie.  (She winks.)  Does it leave marks on the skin?  Little marks are sexy.
+Danke, Süße. (Sie zwinkert.) Hinterlässt das Abdrücke auf der Haut? Leichte Abdrücke sind sexy.
+###_PLAYER
+(Blush a little.)  Thanks a lot.
+(Etwas rot werden.) Vielen Dank.
+###_NPC
+You're cute when you blush.  (She winks.)  Does it leave marks on the skin?  Little marks are sexy.
+Du bist süß, wenn du rot wirst. (Sie zwinkert.) Hinterlässt das Abdrücke auf der Haut? Leichte Abdrücke sind sexy.
+###_PLAYER
+Are you flirting with me girl?
+Flirtest du mit mir, Mädchen?
+###_NPC
+Maybe, you're cute.  (She winks.)  Does it leave marks on the skin?  Little marks are sexy.
+Kann sein, du bist süß. (Sie zwinkert.) Hinterlässt das Abdrücke auf der Haut? Leichte Abdrücke sind sexy.
+###_PLAYER
+No marks at all
+Überhaupt keine Abdrücke.
+###_NPC
+(She ponders.)  It's not what I'm look for then.  Thanks anyway pretty lady.
+(Sie denkt nach.) Dann ist es nicht das, wonach ich suche. Trotzdem danke, schöne Frau.
+###_PLAYER
+Yes, little sexy marks.
+Ja, kleine sexy Abdrücke.
+###_NPC
+Nice.  And what about the price?  The quality is good for the price?
+Klasse. Und wie sieht es mit dem Preis aus? Lohnt er sich für die Qualität?
+###_PLAYER
+Yes, pretty good marks.
+Ja, ziemlich gute Abdrücke.
+Yes, huge marks.
+Ja, enorme Abdrücke.
+At this price, there's no better.
+Zu diesem Preis gibt es nichts Besseres.
+###_NPC
+(She nods.)  You're an angel.  Can I kiss you, sexy angel?
+(Sie nickt.) Du bist ein Engel. Kann ich dich küssen, sexy Engel?
+###_PLAYER
+The price is fair for this quality.
+Es ist ein vernünftiger Preis für die Qualität.
+It could be a little cheaper.
+Es könnte etwas günstiger sein.
+You're not my type.
+Du bist nicht mein Typ.
+###_NPC
+(She snobs you.)  Fine!  I'll go shop elsewhere.
+(Sie rümpft die Nase.) Schön! Dann kaufe ich eben woanders ein.
+###_PLAYER
+Sorry, I can't flirt with customers.
+Tut mir leid, ich soll nicht mit Kunden flirten.
+A kiss?  Sure, why not.
+Ein Kuss? Klar, warum nicht.
+###_NPC
+(You share a lovely kiss.)  You've sold me with your lips, sexy angel.  I'll go pay.  Thanks.
+(Ihr gebt euch einen lieblichen Kuss.) Du hast mich mit deinen Lippen überzeugt, sexy Engel. Ich gehe zur Kasse. Danke.
+###_PLAYER
+Oh yes!  Absolutely.
+Oh, ja! Mit Vergnügen.
+###_NPC
+Girl.  The vendor told me you're demonstrating some feet restraints?
+Mädel. Die Verkäuferin sagte, du demonstrierst irgendwelche Fußfesseln?
+###_PLAYER
+Yes, would you like to try it?
+Ja, wie wärs mit einer Anprobe?
+###_NPC
+(She laughs.)  No girl, it's not for me.  Do you enjoy being restrained?
+(Sie lacht.) Nein, Mädchen, es ist nicht für mich gedacht. Bist du gerne gefesselt?
+###_PLAYER
+Yes, it's a nice item.
+Ja, es ist ein gutes Produkt.
+###_NPC
+It looks good on you.  Do you enjoy being restrained?
+Es steht dir. Bist du gerne gefesselt?
+###_PLAYER
+Yes Miss.  (Wiggle your feet.)
+Ja, Miss. (Mit den Füßen wackeln.)
+I love it Miss.
+Ich liebe es, Miss.
+###_NPC
+(She spanks your butt lightly.)  Good girl.  How tight can it get?
+(Sie gibt dir einen sanften Klaps auf den Po.) Braves Mädchen. Wie eng kann das denn werden?
+###_PLAYER
+Yes, it's fun.
+Ja, es macht Spaß.
+Not really, but it's my job.
+Nicht wirklich, aber es ist nun mal mein Job.
+###_NPC
+(She frowns and looks away.)  Actually, I'm looking for something else.  Have a good day.
+(Sie runzelt die Stirn und schaut woanders hin.) Eigentlich suche ich etwas ganz Anderes. Schönen Tag noch.
+###_PLAYER
+It's kind of loose.
+Es ist relativ locker.
+###_NPC
+That's not good enough for me then.  I'll get something else.  Have a good day.
+Dann reicht das für meine Bedürfnisse nicht aus. Ich suche mir etwas Anderes. Schönen Tag noch.
+###_PLAYER
+Not too tight.
+Nicht besonders eng.
+It can be tight.
+Es kann ganz schön eng sein.
+###_NPC
+That's awesome.  Struggle and hop around for me girl.
+Super. Lass mich dich etwas zappeln und herumhüpfen sehen, Mädchen.
+###_PLAYER
+Very, very tight.
+Sehr, sehr eng.
+(Struggle for her.)
+(Für sie zappeln.)
+###_NPC
+Great.  You've did a good demonstration.  I'll buy it.  Thanks girl.
+Toll. Das war eine gute Vorführung. Ich kaufe es. Danke, Mädchen.
+###_PLAYER
+(Wiggle your feet.)
+(Mit den Füßen wackeln.)
+###_NPC
+Alright.  You've did a fair demonstration.  I'll buy it.  Thanks girl.
+Okay. Das war eine nette Vorführung. Ich kaufe es. Danke, Mädchen.
+###_PLAYER
+(Don't move.)
+(Dich nicht bewegen.)
+###_NPC
+(She yawns.)  Is that the best you can do?  You've lost your sale girl.  Have a good day.
+(Sie gähnt.) Ist das etwa alles? Dir ist ein Geschäft durch die Lappen gegangen, Mädchen. Schönen Tag noch.
+###_PLAYER
+Great!  Can you help me before you pay?
+Toll! Hilfst du mir, bevor du bezahlst?
+###_NPC
+Fine, I will help you.  (She releases you from the item.)  Take care!
+Na gut, ich helfe dir. (Sie befreit dich von dem Gegenstand.) Mach's gut!
+Stay like that, you're a poor saleswoman anyway.
+Bleib so, du bist eh eine miserable Verkäuferin.
+###_PLAYER
+(Struggle in the device.)
+(In deinen Fesseln zappeln.)
+(Go back to the store vendor.)
+(Zurück zur Verkäuferin.)
+Can you help me before you go?
+Kannst du mir helfen, bevor du gehst?

@@ -11,6 +11,8 @@ Cancel
 Abbrechen
 Back to character
 Zurück zum Charakter
+View next items
+Weitere Items
 Remove the item
 Gegenstand entfernen
 Try to struggle out
@@ -81,12 +83,44 @@ deflates
 reduziert
 gag
 Knebel
+'s
+s
+Delete
+Löschen
+Confirm
+Bestätigen
+Beep
+Biep
+Beep from
+Biep von
+Beep from your owner in your private room
+Beip von deiner Besitzerin im Privatzimmer
+in room
+im Raum
+<i>Private room</i>
+<i>Privater Raum</i>
+SourceCharacter is offering you to start a trial period as her submissive.  Click on her and manage your relationship to accept, don't do anything to refuse.
+SourceCharacter bietet dir eine Probezeit als ihre Sklavin an. Um dies zu akzeptieren, klicke sie an und bearbeite eure Beziehung. Zum Ablehnen musst du nichts tun.
+The Bondage Club is pleased to announce that SourceCharacter is starting a 3 days minimum trial period as a submissive.
+Es ist dem Bondage-Club eine Freude, die mindestens dreitägige Probezeit von SourceCharacter als Untergebene zu verkünden.
+SourceCharacter has prepared a great collaring ceremony.  A maid brings a slave collar, which her submissive must consent to wear.
+SourceCharacter hat eine fabelhafte Halsband-Zeremonie vorbereitet. Ein Hausmädchen bringt ein Sklavinnen-Halsband, das die Untergebene freien Willens annehmen muss.
+The Bondage Club is proud to announce that SourceCharacter is now fully collared.  Her fate is in her Mistress hands.
+Der Bondage-Club verkündet stolz, dass SourceCharacter nun ein ordnungsgemäßes Halsband trägt. Ihr Schicksal liegt in den Händen ihrer Herrin.
 Member number on lock:
 Mitglieds-ID auf dem Schloss:
 Time left:
 Übrige Zeit:
 SourceCharacter restarts the five minute timer padlock on DestinationCharacter BodyPart.
 SourceCharacter setzt das Fünf-Minuten-Schloss von DestinationCharacter zurück.
+Restart Timer
+Timer zurücksetzen
+Remove item when the lock timer runs out
+Item entfernen, sobald die Zeit um ist
+The item will be removed when the lock timer runs out
+Der Gegenstand wird entfernt, sobald die Zeit um ist
+The item will stay when the lock timer runs out
+Der Gegenstand bleibt, wenn die Zeit um ist
 Select the bondage position
 Fesselposition wählen
 Select the tape wrapping
@@ -99,6 +133,10 @@ Mit gefesselten Ellbogen ist eine Selbstbefreiung unmöglich
 "Für die Sicherheit Ihrer Liebsten"
 You can restart the timer but cannot unlock
 Das Schloss kann zurückgesetzt, aber nicht entfernt werden.
+"Never forget who you belong to"
+"Vergiss nie, wem du gehörst"
+Can only be locked or unlocked by her owner
+Kann nur von ihrer Besitzerin verwendet werden
 Detached
 Getrennt
 Bind wrists
@@ -225,6 +263,22 @@ DestinationCharacter's vibrating nipple clamps start buzzing strongly!
 Die Vibrator-Nippelklemmen von DestinationCharacter fangen an, stark zu vibrieren!
 DestinationCharacter's vibrating nipple clamps jump up to maximum intensity!
 Die Vibrator-Nippelklemmen von DestinationCharacter springen auf die maximale Stufe!
+DestinationCharacter's vibrating latex panties stops vibrating.
+DestinationCharacters vibrierendes Latexhöschen hört auf zu vibrieren.
+DestinationCharacter's vibrating latex panties slows down into a light tease.
+DestinationCharacters vibrierendes Latexhöschen fällt auf ein leichtes Surren herab.
+DestinationCharacter's vibrating latex panties returns to a moderate pace.
+DestinationCharacters vibrierendes Latexhöschen fällt auf eine moderate Stärke herab.
+DestinationCharacter's vibrating latex panties slows down a tiny bit.
+DestinationCharacters vibrierendes Latexhöschen lässt ein kleines bisschen nach.
+DestinationCharacter's vibrating latex panties starts teasing her lightly.
+DestinationCharacters vibrierendes Latexhöschen fängt an, sie sanft zu erregen.
+DestinationCharacter's vibrating latex panties builds up to a moderate pace.
+DestinationCharacters vibrierendes Latexhöschen nimmt etwas Fahrt auf.
+DestinationCharacter's vibrating latex panties starts buzzing strongly!
+DestinationCharacters vibrierendes Latexhöschen fängt an, stark zu vibrieren!
+DestinationCharacter's vibrating latex panties jumps up to maximum intensity!
+DestinationCharacters vibrierendes Latexhöschen springt auf die maximale Stufe!
 Use Remote
 Fernbedienung
 (You can use or remove items by selecting specific body regions on yourself.)
@@ -267,3 +321,31 @@ They must be wearing a baby harness first to chain the mittens to it.
 Sie muss einen Babyharnisch tragen, um die Fäustlinge daran anzuketten.
 Facial expression
 Gesichtsausdruck
+None
+Normal
+Raised
+Erhöht
+Lowered
+Gesenkt
+One Raised
+Eine erhöht
+Harsh
+Streng
+Angry
+Wütend
+Soft
+Sanft
+Low
+Niedrig
+Medium
+Mittel
+High
+Hoch
+Frown
+Unglücklich
+Closed
+Geschlossen
+Wink
+Zwinkern
+Dazed
+Benommen

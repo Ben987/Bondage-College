@@ -46,7 +46,7 @@ function parseCsv(str) {
 
         // If it's a newline and we're not in a quoted field, move on to the next
         // row and move to column 0 of that new row
-        if (cc == '\n' && !quote) { ++row; col = 0; continue; }
+        if (cc == '\n' || cc == '\r' && !quote) { ++row; col = 0; continue; }
 
         // Otherwise, append the current character to the current column
         arr[row][col] += cc;

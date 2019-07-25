@@ -2,6 +2,7 @@
 var CurrentTime = 0;
 var TimerRunInterval = 20;
 var TimerCycle = 0;
+var TimerLastTime = CommonTime();
 
 // Returns a string of the current remaining timer
 function TimerToString(T) {
@@ -21,22 +22,28 @@ function TimerInventoryRemove() {
 				if ((Character[C].Appearance[A].Property != null) && (Character[C].Appearance[A].Property.RemoveTimer != null))
 					if ((typeof Character[C].Appearance[A].Property.RemoveTimer == "number") && (Character[C].Appearance[A].Property.RemoveTimer <= CurrentTime)) {
 
-						// Remove an item from the character
-						if ((Character[C].Appearance[A].Asset.Group.Category != null) && (Character[C].Appearance[A].Asset.Group.Category == "Item")) {
-							InventoryRemove(Character[C], Character[C].Appearance[A].Asset.Group.Name);
-							if (Character[C].ID == 0) ChatRoomCharacterUpdate(Character[C]);
-							else ServerPrivateCharacterSync();
-							return;
-						}
+						// Remove any lock or timer
+						delete Character[C].Appearance[A].Property.LockedBy;
+						delete Character[C].Appearance[A].Property.RemoveTimer;
+						delete Character[C].Appearance[A].Property.LockMemberNumber;
+						if (Character[C].Appearance[A].Property.Effect != null)
+							for (var E = 0; E < Character[C].Appearance[A].Property.Effect.length; E++)
+								if (Character[C].Appearance[A].Property.Effect[E] == "Lock")
+									Character[C].Appearance[A].Property.Effect.splice(E, 1);
 
-						// Remove an expression (ex: blush)
-						if (Character[C].Appearance[A].Asset.Group.AllowExpression != null) {
-							CharacterSetFacialExpression(Character[C], Character[C].Appearance[A].Asset.Group.Name, null);
-							delete Character[C].Appearance[A].Property.RemoveTimer;
-							if (Character[C].ID == 0) ChatRoomCharacterUpdate(Character[C]);
-							else ServerPrivateCharacterSync();
-							return;
-						}
+						// If we must remove the linked item from the character or the facial expression
+						if ((Character[C].Appearance[A].Property.RemoveItem != null) && Character[C].Appearance[A].Property.RemoveItem && (Character[C].Appearance[A].Asset.Group.Category != null) && (Character[C].Appearance[A].Asset.Group.Category == "Item"))
+							InventoryRemove(Character[C], Character[C].Appearance[A].Asset.Group.Name);
+						else
+							if (Character[C].Appearance[A].Asset.Group.AllowExpression != null)
+								CharacterSetFacialExpression(Character[C], Character[C].Appearance[A].Asset.Group.Name, null);
+							else
+								CharacterRefresh(Character[C]);
+
+						// Sync with the server and exit
+						if (Character[C].ID == 0) ChatRoomCharacterUpdate(Character[C]);
+						else ServerPrivateCharacterSync();
+						return;
 
 					}
 
@@ -54,10 +61,33 @@ function TimerInventoryRemoveSet(C, AssetGroup, Timer) {
 	ChatRoomCharacterUpdate(C);
 }
 
-// Main timer process, calls the other functions, only used once per 2 seconds
-function TimerProcess() {
+// On a random chance, the private room owner can beep the player anywhere in the club, she has 2 minutes to get back to her
+function TimerPrivateOwnerBeep() {
+	if ((Player.Owner != "") && (Player.Ownership == null) && (CurrentScreen != "Private") && (CurrentScreen != "ChatRoom") && (CurrentScreen != "InformationSheet") && (CurrentScreen != "FriendList") && (CurrentScreen != "Cell") && PrivateOwnerInRoom())
+		if (!LogQuery("OwnerBeepActive", "PrivateRoom") && !LogQuery("OwnerBeepTimer", "PrivateRoom") && !LogQuery("LockOutOfPrivateRoom", "Rule") && (Math.floor(Math.random() * 500) == 1)) {
+			ServerBeep.Timer = CurrentTime + 15000;
+			ServerBeep.Message = DialogFind(Player, "BeepFromOwner");
+			LogAdd("OwnerBeepActive", "PrivateRoom");
+			LogAdd("OwnerBeepTimer", "PrivateRoom", CurrentTime + 120000);
+		}
+}
+
+// Main timer process
+function TimerProcess(Timestamp) {
+
+	// Increments the time from the last frame
+	TimerRunInterval = Timestamp - TimerLastTime;
+	TimerLastTime = Timestamp;
+	CurrentTime = CurrentTime + TimerRunInterval;
+
+	// At each 100 cycles, we check for timed events
 	TimerCycle++;
-	if (TimerCycle % (2000 / TimerRunInterval) == 0) {
+	if (TimerCycle % 100 == 0) {
 		TimerInventoryRemove();
+		TimerPrivateOwnerBeep();
 	}
+
+	// Launches the main again for the next frame
+	requestAnimationFrame(MainRun);
+
 }

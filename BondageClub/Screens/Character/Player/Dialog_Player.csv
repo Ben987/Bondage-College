@@ -4,6 +4,7 @@ RemoveClothesForItem,,,Remove some clothes first
 RemoveSuspensionForItem,,,Remove the suspension first
 Cancel,,,Cancel
 Exit,,,Back to character
+Next,,,View next items
 Remove,,,Remove the item
 Struggle,,,Try to struggle out
 Lock,,,Use a lock
@@ -39,15 +40,33 @@ PumpIt,,,Pump it
 pumps,,,pumps
 deflates,,,deflates
 gag,,,gag
+'s,,,'s
+Delete,,,Delete
+ConfirmDelete,,,Confirm
+Beep,,,Beep
+BeepFrom,,,Beep from
+BeepFromOwner,,,Beep from your owner in your private room
+InRoom,,,in room
+PrivateRoom,,,<i>Private room</i>
+ServerMessageOfferStartTrial,,,"SourceCharacter is offering you to start a trial period as her submissive.  Click on her and manage your relationship to accept, don't do anything to refuse."
+ServerMessageStartTrial,,,The Bondage Club is pleased to announce that SourceCharacter is starting a 3 days minimum trial period as a submissive.
+ServerMessageOfferEndTrial,,,"SourceCharacter has prepared a great collaring ceremony.  A maid brings a slave collar, which her submissive must consent to wear."
+ServerMessageEndTrial,,,The Bondage Club is proud to announce that SourceCharacter is now fully collared.  Her fate is in her Mistress hands.
 LockMemberNumber,,,Member number on lock:
 TimerLeft,,,Time left:
 TimerRestart,,,SourceCharacter restarts the five minute timer padlock on DestinationCharacter BodyPart.
+RestartTimer,,,Restart Timer
+RemoveItemWithTimer,,,Remove item when the lock timer runs out
+WillRemoveItemWithTimer,,,The item will be removed when the lock timer runs out
+WontRemoveItemWithTimer,,,The item will stay when the lock timer runs out
 SelectBondagePosition,,,Select the bondage position
 SelectTapeWrapping,,,Select the tape wrapping
 CannotUnlockIfElbowBound,,,A victim cannot unlock herself if her elbows are bound
-ItemMiscMetalPadlock,,,"""From your friendly hardware store"""
-ItemMiscIntricatePadlock,,,"""To keep your loved one secure"""
-ItemMiscTimerPadlock,,,You can restart the timer but cannot unlock
+ItemMiscMetalPadlockIntro,,,"""From your friendly hardware store"""
+ItemMiscIntricatePadlockIntro,,,"""To keep your loved one secure"""
+ItemMiscTimerPadlockIntro,,,You can restart the timer but cannot unlock
+ItemMiscOwnerPadlockIntro,,,"""Never forget who you belong to"""
+ItemMiscOwnerPadlockDetail,,,Can only be locked or unlocked by her owner
 LeatherCuffsPoseNone,,,Detached
 LeatherCuffsPoseWrist,,,Bind wrists
 LeatherCuffsPoseElbow,,,Bind elbows
@@ -111,6 +130,14 @@ NippleIncreaseTo0,,,DestinationCharacter's vibrating nipple clamps start teasing
 NippleIncreaseTo1,,,DestinationCharacter's vibrating nipple clamps build up to a moderate pace.
 NippleIncreaseTo2,,,DestinationCharacter's vibrating nipple clamps start buzzing strongly!
 NippleIncreaseTo3,,,DestinationCharacter's vibrating nipple clamps jump up to maximum intensity!
+PantiesDecreaseTo-1,,,DestinationCharacter's vibrating latex panties stops vibrating.
+PantiesDecreaseTo0,,,DestinationCharacter's vibrating latex panties slows down into a light tease.
+PantiesDecreaseTo1,,,DestinationCharacter's vibrating latex panties returns to a moderate pace.
+PantiesDecreaseTo2,,,DestinationCharacter's vibrating latex panties slows down a tiny bit.
+PantiesIncreaseTo0,,,DestinationCharacter's vibrating latex panties starts teasing her lightly.
+PantiesIncreaseTo1,,,DestinationCharacter's vibrating latex panties builds up to a moderate pace.
+PantiesIncreaseTo2,,,DestinationCharacter's vibrating latex panties starts buzzing strongly!
+PantiesIncreaseTo3,,,DestinationCharacter's vibrating latex panties jumps up to maximum intensity!
 UseRemote,,,Use Remote
 PlayerGagged,,,(You can use or remove items by selecting specific body regions on yourself.)
 0,,,(You can use or remove items by selecting specific body regions on yourself.)
@@ -134,3 +161,17 @@ mittenstoharness,,,mittens to the baby harness
 mittensfromharness,,,mittens
 NeedHarness,,,They must be wearing a baby harness first to chain the mittens to it.
 FacialExpression,,,Facial expression
+FacialExpressionNone,,,None
+FacialExpressionRaised,,,Raised
+FacialExpressionLowered,,,Lowered
+FacialExpressionOneRaised,,,One Raised
+FacialExpressionHarsh,,,Harsh
+FacialExpressionAngry,,,Angry
+FacialExpressionSoft,,,Soft
+FacialExpressionLow,,,Low
+FacialExpressionMedium,,,Medium
+FacialExpressionHigh,,,High
+FacialExpressionFrown,,,Frown
+FacialExpressionClosed,,,Closed
+FacialExpressionWink,,,Wink
+FacialExpressionDazed,,,Dazed

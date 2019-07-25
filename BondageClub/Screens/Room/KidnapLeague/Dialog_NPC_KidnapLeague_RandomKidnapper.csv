@@ -214,3 +214,7 @@ ActivityEnd,ActivityEnd2,I'll get you next time bitch.,Oh yeah?  Better leave yo
 ActivityEnd,,(Leave her.),,RandomEnd(),
 ActivityEnd2,,(Leave her.),,RandomEnd(),
 ActivityEnd3,,Follow me!  (Bring her to your room.),,TransferToRoom(),
+ActivityEndNoReleaseIntro,,,"(She lets you go and sighs.)  Sadly, I need to go.  Find your owner to get out.",,
+ActivityEndNoRelease,,Take care.,,RandomEnd(),
+ActivityEndNoRelease,,Thanks!  That was fun.,,RandomEnd(),
+ActivityEndNoRelease,,(Leave her.),,RandomEnd(),

@@ -93,16 +93,15 @@ function DrawCharacter(C, X, Y, Zoom) {
 				var CanvasH = document.createElement("canvas");
 				CanvasH.width = Canvas.width;
 				CanvasH.height = Canvas.height;
-				CanvasH.getContext('2d').drawImage(Canvas, 0, 0);
-				var imageData = CanvasH.getContext('2d').getImageData(0, 0, CanvasH.width, CanvasH.height);
-				var pixels = imageData.data;
 				var DarkFactor = (Player.Effect.indexOf("BlindNormal") >= 0) ? 0.3 : 0.6;
-				for(var i = 0; i < pixels.length; i += 4) {
-				   pixels[i] = pixels[i] * DarkFactor;
-				   pixels[i+1] = pixels[i+1] * DarkFactor;
-				   pixels[i+2] = pixels[i+2] * DarkFactor;
-				}
-				CanvasH.getContext('2d').putImageData(imageData, 0, 0);				
+				var ctx = CanvasH.getContext('2d');
+				ctx.drawImage(Canvas, 0, 0);
+				// Overlay black rectangle.
+				ctx.fillStyle = "rgba(0,0,0," + (1.0 - DarkFactor) + ")";
+				ctx.fillRect(0, 0, CanvasH.width, CanvasH.height);
+				// Re-apply character alpha channel
+				ctx.globalCompositeOperation = 'destination-in';
+				ctx.drawImage(Canvas, 0, 0);
 				Canvas = CanvasH;
 			}
 			
@@ -132,7 +131,7 @@ function DrawCharacter(C, X, Y, Zoom) {
 						DrawEmptyRect(C.FocusGroup.Zone[Z][0] + X, C.FocusGroup.Zone[Z][1] + Y - C.HeightModifier, C.FocusGroup.Zone[Z][2], C.FocusGroup.Zone[Z][3], "cyan");
 			
 			// Draw the character name below herself
-			if ((C.Name != "") && ((CurrentModule == "Room") || (CurrentModule == "Online")) && (CurrentScreen != "Private")) 
+			if ((C.Name != "") && ((CurrentModule == "Room") || (CurrentModule == "Online") || ((CurrentScreen == "Wardrobe") && (C.ID != 0))) && (CurrentScreen != "Private")) 
 				if (!Player.IsBlind()) {
 					MainCanvas.font = "30px Arial";	
 					DrawText(C.Name, X + 255 * Zoom, Y + 980 * Zoom, (CommonIsColor(C.LabelColor)) ? C.LabelColor : "White", "Black");
@@ -379,8 +378,8 @@ function DrawButton(Left, Top, Width, Height, Label, Color, Image, HoveringText)
 	
 	// Draw the hovering text
 	if ((HoveringText != null) && (MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile) {
-		Left = (MouseX > 1000) ? Left - 475 : Left + 115;
-		Top = Top + 12;
+		Left = (MouseX > 1000) ? Left - 475 : Left + Width + 25;
+		Top = Top + (Height - 65) / 2;
 		MainCanvas.beginPath();
 		MainCanvas.rect(Left, Top, 450, 65);
 		MainCanvas.fillStyle = "#FFFF88"; 
@@ -395,6 +394,73 @@ function DrawButton(Left, Top, Width, Height, Label, Color, Image, HoveringText)
 
 }
 
+// Draw a back & next button
+function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackText, NextText) {
+
+	// Draw the button rectangle (makes half of the background cyan colored if the mouse is over it)
+	var Split = Left + Width / 2;
+	MainCanvas.beginPath();
+	MainCanvas.rect(Left, Top, Width, Height);
+	MainCanvas.fillStyle = Color; 
+	MainCanvas.fillRect(Left, Top, Width, Height);
+	if((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile) {
+		MainCanvas.fillStyle = "Cyan";
+		if (MouseX > Split) {
+			MainCanvas.fillRect(Split, Top, Width / 2, Height);
+		} else {
+			MainCanvas.fillRect(Left, Top, Width / 2, Height);
+		}
+	}
+	MainCanvas.lineWidth = '2';
+	MainCanvas.strokeStyle = 'black';
+	MainCanvas.stroke();
+	MainCanvas.closePath();
+	
+	// Draw the text or image
+	DrawTextFit(Label, Left + Width / 2, Top + (Height / 2) + 1, (CommonIsMobile) ? Width - 6 : Width - 36, "Black");	
+	if ((Image != null) && (Image != "")) DrawImage(Image, Left + 2, Top + 2);
+
+	// PC only section
+	if (CommonIsMobile) return;
+
+	// Draw the back arrow 
+	MainCanvas.beginPath();
+	MainCanvas.fillStyle = "black"; 
+	MainCanvas.moveTo(Left + 15, Top + Height / 5);
+	MainCanvas.lineTo(Left + 5, Top + Height / 2);
+	MainCanvas.lineTo(Left + 15, Top + Height - Height / 5);
+	MainCanvas.stroke();
+	MainCanvas.closePath();	
+
+	// Draw the next arrow 
+	MainCanvas.beginPath();
+	MainCanvas.fillStyle = "black"; 
+	MainCanvas.moveTo(Left + Width - 15, Top + Height / 5);
+	MainCanvas.lineTo(Left + Width - 5, Top + Height / 2);
+	MainCanvas.lineTo(Left + Width - 15, Top + Height - Height / 5);
+	MainCanvas.stroke();
+	MainCanvas.closePath();	
+
+	if (BackText == null) BackText = () => "MISSING VALUE FOR: BACK TEXT";
+	if (NextText == null) NextText = () => "MISSING VALUE FOR: NEXT TEXT";
+
+	// Draw the hovering text
+	if ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height)) {
+		Left = (MouseX > 1000) ? Left - 475 : Left + Width + 25;
+		Top = Top + (Height - 65) / 2;
+		MainCanvas.beginPath();
+		MainCanvas.rect(Left, Top, 450, 65);
+		MainCanvas.fillStyle = "#FFFF88"; 
+		MainCanvas.fillRect(Left, Top, 450, 65);
+		MainCanvas.fill();	
+		MainCanvas.lineWidth = '2';
+		MainCanvas.strokeStyle = 'black';
+		MainCanvas.stroke();
+		MainCanvas.closePath();
+		DrawTextFit((MouseX > Split) ? NextText(): BackText(), Left + 225, Top + 33, 444, "black");
+	}
+}
+
 // Draw a basic empty rectangle
 function DrawEmptyRect(Left, Top, Width, Height, Color) {
 	MainCanvas.beginPath();
@@ -402,17 +468,14 @@ function DrawEmptyRect(Left, Top, Width, Height, Color) {
 	MainCanvas.lineWidth = '3';
 	MainCanvas.strokeStyle = Color;
 	MainCanvas.stroke();
-	MainCanvas.closePath();
 }
 
 // Draw a basic rectangle
 function DrawRect(Left, Top, Width, Height, Color) {
 	MainCanvas.beginPath();
-	MainCanvas.rect(Left, Top, Width, Height);
     MainCanvas.fillStyle = Color; 
     MainCanvas.fillRect(Left, Top, Width, Height);
 	MainCanvas.fill();	
-	MainCanvas.closePath();		
 }
 
 // Draw a basic circle
@@ -466,6 +529,9 @@ function DrawProcess() {
 	// Draws the dialog screen or current screen if there's no loaded character
 	if (CurrentCharacter != null) DialogDraw();
 	else CommonDynamicFunction(CurrentScreen + "Run()");
+
+	// Draws beep from online player sent by the server
+	ServerDrawBeep();
 
 }
 
