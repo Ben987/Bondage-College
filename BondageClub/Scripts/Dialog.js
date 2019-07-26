@@ -196,6 +196,7 @@ function DialogMenuButtonBuild(C) {
 		if ((Item != null) && !InventoryItemHasEffect(Item, "Lock", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Remove");
 		if (InventoryItemHasEffect(Item, "Egged") && InventoryAvailable(Player, "VibratorRemote", "ItemVulva") && Player.CanInteract()) DialogMenuButton.push("Remote");
 		if (Player.CanInteract()) DialogMenuButton.push("ColorPick");
+		if (InventoryGet(Player,"ItemButt").Asset.Name == "ButtPump") DialogMenuButton.push("ButtPump");
 	}
 
 }
@@ -362,6 +363,11 @@ function DialogMenuButtonClick() {
 				return;
 			}
 
+			//ButtPump Icon - plops the pump extension
+			if(DialogMenuButton[I] == "ButtPump"){
+				DialogExtendItem(Item);
+			}
+			
 			// Lock Icon - Rebuilds the inventory list with locking items
 			if (DialogMenuButton[I] == "Lock") {
 				if (DialogItemToLock == null) {

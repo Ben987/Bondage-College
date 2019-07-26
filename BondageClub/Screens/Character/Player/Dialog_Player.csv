@@ -11,6 +11,7 @@ Lock,,,Use a lock
 Unlock,,,Unlock the item
 InspectLock,,,Inspect the lock
 Remote,,,Use your remote
+ButtPump,,,Use the Butt Plug's pump
 ColorPick,,,Color of next item
 ColorSelect,,,Use this color
 ColorCancel,,,Default color
@@ -35,10 +36,16 @@ PumpLevel1,,,Pump gag level: Light
 PumpLevel2,,,Pump gag level: Inflated
 PumpLevel3,,,Pump gag level: Bloated
 PumpLevel4,,,Pump gag level: Full mouth
+InflateLevel0,,,Pump plug level: Empty
+InflateLevel1,,,Pump plug level: Light
+InflateLevel2,,,Pump plug level: Inflated
+InflateLevel3,,,Pump plug level: Bloated
+InflateLevel4,,,Pump plug level: Max
 DeflateIt,,,Deflate it
 PumpIt,,,Pump it
 pumps,,,pumps
 deflates,,,deflates
+plug,,,plug
 gag,,,gag
 's,,,'s
 Delete,,,Delete
