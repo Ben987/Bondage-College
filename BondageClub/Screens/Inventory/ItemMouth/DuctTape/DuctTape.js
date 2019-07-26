@@ -28,6 +28,9 @@ function InventoryItemMouthDuctTapeDraw() {
 	DrawButton(1750, 550, 225, 225, "", ((DialogFocusItem.Property.Type != null) && (DialogFocusItem.Property.Type == "Double")) ? "#888888" : "White");
 	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Double.png", 1750, 550);
 	DrawText(DialogFind(Player, "DuctTapeMouthTypeDouble"), 1865, 800, "white", "gray");
+	DrawButton(1750, 250, 225, 225, "", ((DialogFocusItem.Property.Type != null) && (DialogFocusItem.Property.Type == "Cover")) ? "#888888" : "White");
+	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Cover.png", 1750, 250);
+	DrawText(DialogFind(Player, "DuctTapeMouthTypeCover"), 1865, 500, "white", "gray");
 }
 
 // Catches the item extension clicks
@@ -37,6 +40,7 @@ function InventoryItemMouthDuctTapeClick() {
 	if ((MouseX >= 1250) && (MouseX <= 1475) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Crossed"))) InventoryItemMouthDuctTapeSetType("Crossed");
 	if ((MouseX >= 1500) && (MouseX <= 1725) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Full"))) InventoryItemMouthDuctTapeSetType("Full");
 	if ((MouseX >= 1750) && (MouseX <= 1975) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Double"))) InventoryItemMouthDuctTapeSetType("Double");
+	if ((MouseX >= 1750) && (MouseX <= 1975) && (MouseY >= 250) && (MouseY <= 775) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Cover"))) InventoryItemMouthDuctTapeSetType("Cover");
 }
 
 // Sets the gag type (small, cleave, otm, otn)
@@ -51,6 +55,7 @@ function InventoryItemMouthDuctTapeSetType(NewType) {
 	else if (NewType == "Crossed") DialogFocusItem.Property.Effect = ["GagLight"];
 	else if (NewType == "Full") DialogFocusItem.Property.Effect = ["GagNormal"];
 	else if (NewType == "Double") DialogFocusItem.Property.Effect = ["GagNormal"];
+	else if (NewType == "Cover") DialogFocusItem.Property.Effect = ["GagNormal"];
 	CharacterRefresh(C);
 	var msg = DialogFind(Player, "DuctTapeMouthSet" + ((NewType) ? NewType : "Small"));
 	msg = msg.replace("SourceCharacter", Player.Name);
