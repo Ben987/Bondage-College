@@ -20,20 +20,15 @@ function InventoryItemButtButtPumpDraw() {
 // Catches the item extension clicks
 function InventoryItemButtButtPumpClick() {
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1200) && (MouseX <= 1450) && (MouseY >= 700) && (MouseY <= 765) && (DialogFocusItem.Property.InflateLevel > 0)) InventoryItemButtButtPump(-1);
-	if ((MouseX >= 1550) && (MouseX <= 1800) && (MouseY >= 700) && (MouseY <= 765) && (DialogFocusItem.Property.InflateLevel < 4)) InventoryItemButtButtPump(1);
+	if ((MouseX >= 1200) && (MouseX <= 1450) && (MouseY >= 700) && (MouseY <= 765) && (DialogFocusItem.Property.InflateLevel > 0)) InventoryItemButtButtPumpIntensity(-1);
+	if ((MouseX >= 1550) && (MouseX <= 1800) && (MouseY >= 700) && (MouseY <= 765) && (DialogFocusItem.Property.InflateLevel < 4)) InventoryItemButtButtPumpIntensity(1);
 }
 
 // Sets the Butt Pump Level
-function InventoryItemItemButtButtPumpIntensity(Modifier) {
+function InventoryItemButtButtPumpIntensity(Modifier) {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	DialogFocusItem.Property.InflateLevel = DialogFocusItem.Property.InflateLevel + Modifier;
-	if (DialogFocusItem.Property.InflateLevel == 0) delete DialogFocusItem.Property.Effect;
-	if (DialogFocusItem.Property.InflateLevel == 1) DialogFocusItem.Property.Effect = ["Egged"];
-	if (DialogFocusItem.Property.InflateLevel == 2) DialogFocusItem.Property.Effect = ["Egged"];
-	if (DialogFocusItem.Property.InflateLevel == 3) DialogFocusItem.Property.Effect = ["Egged"];
-	if (DialogFocusItem.Property.InflateLevel == 4) DialogFocusItem.Property.Effect = ["Egged"];	
-	CharacterLoadEffect(C);
 	if (C.ID == 0) ServerPlayerAppearanceSync();
-    ChatRoomPublishCustomAction(Player.Name + " " + DialogFind(Player, ((Modifier > 0) ? "pumps" : "deflates")) + " " + C.Name + DialogFind(Player, "'s") + " " + DialogFind(Player, "gag") + ".", true);
+	ChatRoomCharacterUpdate(C);
+    ChatRoomPublishCustomAction(Player.Name + " " + DialogFind(Player, ((Modifier > 0) ? "pumps" : "deflates")) + " " + C.Name + DialogFind(Player, "'s") + " " + "Butt Plug" + ".", true);
 }
