@@ -40,7 +40,7 @@ InflateLevel0,,,Pump plug level: Empty
 InflateLevel1,,,Pump plug level: Light
 InflateLevel2,,,Pump plug level: Inflated
 InflateLevel3,,,Pump plug level: Bloated
-InflateLevel4,,,Pump plug level: Full mouth
+InflateLevel4,,,Pump plug level: Max
 DeflateIt,,,Deflate it
 PumpIt,,,Pump it
 pumps,,,pumps
