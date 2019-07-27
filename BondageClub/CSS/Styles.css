@@ -17,6 +17,19 @@ canvas {
 	word-wrap: break-word;
 	padding: 0 !important;
 }
+
+.TextAreaChatLogDeaf {
+	background-color: black !important;
+	color: white !important;
+}
+.TextAreaChatLogDeaf div {
+	background-color: black !important;
+	color: black !important;
+}
+.TextAreaChatLogDeaf div span {
+	color: black !important;
+}
+
 .ChatMessage {
 	position: relative;
 	padding-left: 0.4em;

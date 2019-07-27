@@ -47,7 +47,8 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsOwner : function() { return ((NPCEventGet(this, "EndSubTrial") > 0) || (this.Name == Player.Owner.replace("NPC-", ""))) },
 		IsKneeling: function () { return ((this.Pose != null) && (this.Pose.indexOf("Kneel") >= 0)) },
 		IsNaked : function () { return CharacterIsNaked(this); },
-		HasNoItem : function () { return CharacterHasNoItem(this); }
+		HasNoItem : function () { return CharacterHasNoItem(this); },
+		IsDeaf: function() { return this.Effect.indexOf("DeafenHeavy") >= 0 },
 	}
 
 	// If the character doesn't exist, we create it

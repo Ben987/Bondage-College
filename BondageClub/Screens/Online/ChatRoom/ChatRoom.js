@@ -45,6 +45,13 @@ function ChatRoomLoad() {
 // Draw the characters in the room
 function ChatRoomDrawCharacter(DoClick) {
 
+	// If the player character is deaf, the TextAreaChatLogDeaf is added to the TextAreaChatLog
+	if(Player.IsDeaf()) {
+		document.getElementById("TextAreaChatLog").className = "TextAreaChatLogDeaf";
+	} else {
+		document.getElementById("TextAreaChatLog").className = "";
+	}
+
 	// If there's 2 characters, it's zoomed in
 	if (!DoClick && (Player.Effect.indexOf("BlindHeavy") < 0) && (Player.Effect.indexOf("BlindNormal") < 0)) {
 		var Dark = (Player.Effect.indexOf("BlindLight") < 0) ? "" : "Dark";
@@ -335,6 +342,10 @@ function ChatRoomMessage(data) {
 		
 		// If we found the sender
 		if (SenderCharacter != null) {
+
+			if(Player.IsDeaf()) {
+				return;
+			}
 
 			// Replace < and > characters to prevent HTML injections
 			var msg = data.Content;
