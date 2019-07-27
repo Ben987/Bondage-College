@@ -69,23 +69,26 @@ function InventoryAvailable(C, InventoryName, InventoryGroup) {
 	return false;
 }
 
-// Returns TRUE if we can equip the item
+// Returns TRUE if we can add the item, no other items must block that prerequisite
 function InventoryAllow(C, Prerequisite) {
+
+	// Torso items can only be blocked by clothes
 	if (Prerequisite == null) return true;
 	var curCloth = InventoryGet(C, "Cloth");
-	if ((Prerequisite == "AccessTorso") && //if items have ExposedBreasts, they do no trigger the error text
-			(curCloth != null && !curCloth.Asset.Expose.includes("ItemTorso"))) { DialogSetText("RemoveClothesForItem"); return false; }
-	if ((Prerequisite == "AccessBreast") && //if items have ExposedBreasts, they do no trigger the error text
-			((curCloth != null && !curCloth.Asset.Expose.includes("ItemBreast"))
+	if ((Prerequisite == "AccessTorso") && (curCloth != null) && !curCloth.Asset.Expose.includes("ItemTorso")) { DialogSetText("RemoveClothesForItem"); return false; }
+
+	// Breast items can be blocked by clothes
+	if ((Prerequisite == "AccessBreast") && (((curCloth != null) && !curCloth.Asset.Expose.includes("ItemBreast"))
 			|| (InventoryGet(C, "Bra") != null && !InventoryGet(C, "Bra").Asset.Expose.includes("ItemBreast")))) { DialogSetText("RemoveClothesForItem"); return false; }
-	if ((Prerequisite == "AccessVulva") && //Clothes and Socks only block if they have BlockedVulva. if lower and patnies have ExposedVulva, they do no trigger the error text
-			((curCloth != null && curCloth.Asset.Block != null && curCloth.Asset.Block.includes("ItemVulva")) 
-			|| (InventoryGet(C, "ClothLower") != null && !InventoryGet(C, "ClothLower").Asset.Expose.includes("ItemVulva")) 
+
+	// Vulva/Butt items can be blocked by clothes, panties and some socks
+	if ((Prerequisite == "AccessVulva") && (((curCloth != null) && curCloth.Asset.Block != null && curCloth.Asset.Block.includes("ItemVulva"))
+			|| (InventoryGet(C, "ClothLower") != null && !InventoryGet(C, "ClothLower").Asset.Expose.includes("ItemVulva"))
 			|| (InventoryGet(C, "Panties") != null && !InventoryGet(C, "Panties").Asset.Expose.includes("ItemVulva"))
-			|| (InventoryGet(C, "Socks") != null && InventoryGet(C, "Socks").Asset.Block!=null && InventoryGet(C, "Socks").Asset.Block.includes("ItemVulva")))) 
-					{ DialogSetText("RemoveClothesForItem"); return false; }
+			|| (InventoryGet(C, "Socks") != null && (InventoryGet(C, "Socks").Asset.Block != null) && InventoryGet(C, "Socks").Asset.Block.includes("ItemVulva")))) { DialogSetText("RemoveClothesForItem"); return false; }
 	if (Prerequisite == "NotSuspended" && C.Pose.indexOf("Suspension") >= 0) { DialogSetText("RemoveSuspensionForItem"); return false; }
 	return true;
+
 }
 
 // Gets the current item worn a specific spot
@@ -198,12 +201,12 @@ function InventoryOwnerOnlyItem(Item) {
 	return false;
 }
 
-// Returns TRUE if the character is wearing at least one item with a OwnerOnly flag, such as the owner padlock
-function InventoryCharacterHasOwnerOnlyItem(C) {
+// Returns TRUE if the character is wearing at least one item that's a restraint with a OwnerOnly flag, such as the owner padlock
+function InventoryCharacterHasOwnerOnlyRestraint(C) {
 	if ((C.Ownership == null) || (C.Ownership.MemberNumber == null) || (C.Ownership.MemberNumber == "")) return false;
 	if (C.Appearance != null)
 		for (var A = 0; A < C.Appearance.length; A++)
-			if (InventoryOwnerOnlyItem(C.Appearance[A]))
+			if (C.Appearance[A].Asset.Group.IsRestraint && InventoryOwnerOnlyItem(C.Appearance[A]))
 				return true;
 	return false;
 }

@@ -177,14 +177,8 @@ function ServerValidateProperties(C, Item) {
 // Loads the appearance assets from a server bundle that only contains the main info (no assets)
 function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumber) {
 
-	// Keep the owner only items if the source isn't the owner
-	var Appearance = [];
-	if ((C.Ownership != null) && (C.Ownership.MemberNumber != null) && (SourceMemberNumber != null) && (C.Ownership.MemberNumber != SourceMemberNumber) && (C.MemberNumber != SourceMemberNumber))
-		for (var A = 0; A < C.Appearance.length; A++)
-			if (InventoryOwnerOnlyItem(C.Appearance[A]))
-				Appearance.push(C.Appearance[A]);
-
 	// For each appearance item to load	
+	var Appearance = [];
 	for (var A = 0; A < Bundle.length; A++) {
 
 		// Cycles in all assets to find the correct item to add (do not add )
@@ -203,6 +197,12 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 					NA.Property = Bundle[A].Property;
 					ServerValidateProperties(C, NA);
 				}
+
+				// Reapply the owner lock if needed
+				if ((C.Ownership != null) && (C.Ownership.MemberNumber != null) && (SourceMemberNumber != null) && (C.Ownership.MemberNumber != SourceMemberNumber) && (C.MemberNumber != SourceMemberNumber))
+					for (var L = 0; L < C.Appearance.length; L++)
+						if ((C.Appearance[L].Asset.Group.Name == NA.Asset.Group.Name) && InventoryOwnerOnlyItem(C.Appearance[A]))
+							InventoryLock(C, NA, { Asset: AssetGet(C.AssetFamily, "ItemMisc", "OwnerPadlock")}, C.Ownership.MemberNumber);
 
 				// Make sure we don't push an item if there's already an item in that slot
 				var CanPush = true;

@@ -55,9 +55,9 @@ function ManagementCannotBeClubMistressLaugh() { return ((ReputationGet("Dominan
 function ManagementCannotBeClubMistressTime() { return (((Math.floor((CurrentTime - Player.Creation) / 86400000)) < 30) && !LogQuery("ClubMistress", "Management") && !Player.IsRestrained() && !Player.IsKneeling() && !LogQuery("BlockChange", "Rule")) }
 function ManagementMistressCanBePaid() { return (LogQuery("ClubMistress", "Management") && !LogQuery("MistressWasPaid", "Management")) }
 function ManagementMistressCannotBePaid() { return (LogQuery("ClubMistress", "Management") && LogQuery("MistressWasPaid", "Management")) }
-function ManagementCanBeClubSlave() { return (!InventoryCharacterHasOwnerOnlyItem(Player) && DialogReputationLess("Dominant", -50)) }
-function ManagementCannotBeClubSlaveDominant() { return (!InventoryCharacterHasOwnerOnlyItem(Player) && DialogReputationGreater("Dominant", -49)) }
-function ManagementCannotBeClubSlaveOwnerLock() { return InventoryCharacterHasOwnerOnlyItem(Player) }
+function ManagementCanBeClubSlave() { return (!InventoryCharacterHasOwnerOnlyRestraint(Player) && DialogReputationLess("Dominant", -50)) }
+function ManagementCannotBeClubSlaveDominant() { return (!InventoryCharacterHasOwnerOnlyRestraint(Player) && DialogReputationGreater("Dominant", -49)) }
+function ManagementCannotBeClubSlaveOwnerLock() { return InventoryCharacterHasOwnerOnlyRestraint(Player) }
 
 // Returns TRUE if there's no other Mistress in the player private room
 function ManagementNoMistressInPrivateRoom() {

@@ -269,7 +269,7 @@ function KidnapLeagueRandomActivityLaunch() {
 			InventoryWear(Player, KidnapPlayerCloth.Asset.Name, "Cloth", KidnapPlayerCloth.Color);		
 			if (KidnapPlayerClothLower != null) InventoryWear(Player, KidnapPlayerClothLower.Asset.Name, "ClothLower", KidnapPlayerClothLower.Color);
 		}
-		if (!InventoryCharacterHasOwnerOnlyItem(Player)) {
+		if (!InventoryCharacterHasOwnerOnlyRestraint(Player)) {
 			CharacterRelease(Player);		
 			KidnapLeagueRandomActivityStart("End");
 			KidnapLeagueVisitRoom = ((Math.random() >= 0.5) && KidnapLeagueCanTransferToRoom());

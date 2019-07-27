@@ -195,6 +195,7 @@ function DialogMenuButtonBuild(C) {
 		if ((Item != null) && Item.Asset.AllowLock && !InventoryItemHasEffect(Item, "Lock", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Lock");
 		if ((Item != null) && !InventoryItemHasEffect(Item, "Lock", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Remove");
 		if (InventoryItemHasEffect(Item, "Egged") && InventoryAvailable(Player, "VibratorRemote", "ItemVulva") && Player.CanInteract()) DialogMenuButton.push("Remote");
+		if ((Item != null) && Item.Asset.Extended && Player.CanInteract()) DialogMenuButton.push("Use");
 		if (Player.CanInteract()) DialogMenuButton.push("ColorPick");
 	}
 
@@ -347,14 +348,20 @@ function DialogMenuButtonClick() {
 				DialogLeaveItemMenu();
 				return;
 			}
-			
+
 			// Next Icon - Shows the next 12 items
 			if (DialogMenuButton[I] == "Next") {
 				DialogInventoryOffset = DialogInventoryOffset + 12;
 				if (DialogInventoryOffset >= DialogInventory.length) DialogInventoryOffset = 0;
 				return;
 			}
-			
+
+			// Use Icon - Pops the item extension for the focused item
+			if (DialogMenuButton[I] == "Use") {
+				DialogExtendItem(Item);
+				return;
+			}
+
 			// Remote Icon - Pops the item extension
 			if (DialogMenuButton[I] == "Remote") {
 				if (InventoryItemHasEffect(Item, "Egged") && InventoryAvailable(Player, "VibratorRemote", "ItemVulva"))
@@ -373,7 +380,7 @@ function DialogMenuButtonClick() {
 							if ((Player.Inventory[A].Asset != null) && Player.Inventory[A].Asset.IsLock)
 								if ((Player.Inventory[A].Asset.OwnerOnly == false) || C.IsOwnedByPlayer())
 									DialogInventoryAdd(Player.Inventory[A], false);
-					}					
+					}
 				} else {
 					DialogItemToLock = null;
 					DialogInventoryBuild(C);
@@ -386,22 +393,22 @@ function DialogMenuButtonClick() {
 				DialogProgressStart(C, Item, null);
 				return;
 			}
-			
+
 			// When the player inspects a lock
 			if (DialogMenuButton[I] == "InspectLock") {
 				var Lock = InventoryGetLock(Item);
 				if (Lock != null) DialogExtendItem(Lock, Item);
-				return;				
-			}			
+				return;
+			}
 
 			// Color picker Icon - Starts the color picking
-			if (DialogMenuButton[I] == "ColorPick") { 
-				ElementCreateInput("InputColor", "text", (DialogColorSelect!=null) ? DialogColorSelect.toString() : ""); 
+			if (DialogMenuButton[I] == "ColorPick") {
+				ElementCreateInput("InputColor", "text", (DialogColorSelect!=null) ? DialogColorSelect.toString() : "");
 				DialogColor = "";
 				DialogMenuButtonBuild(C);
 				return;
 			}
-			
+
 			// When the user selects a color
 			if ((DialogMenuButton[I] == "ColorSelect") && CommonIsColor(ElementValue("InputColor"))) {
 				DialogColor = null;
@@ -831,14 +838,14 @@ function DialogDrawExpressionMenu() {
 	for (var I = 0; I < Player.Appearance.length; I++) {
 		var PA = Player.Appearance[I];
 		if (!PA.Asset.Group.AllowExpression || !PA.Asset.Group.AllowExpression.length) continue;
-		var expr = (PA.Property != null && PA.Property.Expression != null) ? PA.Property.Expression : "None"
-		var expr = DialogFind(Player, "FacialExpression" + expr);
+		var expr = (PA.Property != null && PA.Property.Expression != null) ? PA.Property.Expression : "None";
+		expr = DialogFind(Player, "FacialExpression" + expr);
 		if (PA.Asset.Group.AllowExpression.length > 1) {
 			DrawBackNextButton(25, 125 + 105 * Counter, 450, 75, PA.Asset.Group.Description + ": " + expr, "White", null, 
 				() => CharacterCycleFacialExpression(Player, PA.Asset.Group.Name, false, true),
 				() => CharacterCycleFacialExpression(Player, PA.Asset.Group.Name, true, true));
 		} else {
-			var next = (PA.Property != null && PA.Property.Expression != null) ? DialogFind(Player, "FacialExpressionNone") : DialogFind(Player, "FacialExpression" + PA.Asset.Group.AllowExpression[0]); 
+			var next = (PA.Property != null && PA.Property.Expression != null) ? DialogFind(Player, "FacialExpressionNone") : DialogFind(Player, "FacialExpression" + PA.Asset.Group.AllowExpression[0]);
 			DrawButton(25, 125 + 105 * Counter, 450, 75, PA.Asset.Group.Description + ": " + expr, "White", null, next);
 		}
 		Counter++;

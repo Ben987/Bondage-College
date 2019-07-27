@@ -116,7 +116,7 @@ var AssetFemale3DCG = [
 			"Socks1", "Socks2", "Socks3", "Socks4", "Socks5", "Stockings1", "Stockings2",
 			{ Name: "Stockings3", Value: 10 },
 			{ Name: "Stockings4", Value: 10 },
-			{ Name: "Pantyhose1", Value: 10, Priority: 13 , Block: ["ItemVulva", "ItemButt"]}
+			{ Name: "Pantyhose1", Value: 10, Priority: 13, Block: ["ItemVulva", "ItemButt"]}
 		]
 	},
 	
@@ -369,6 +369,7 @@ var AssetFemale3DCG = [
 		Priority: 24,
 		ParentGroup: "BodyLower",
 		Default: false,
+		IsRestraint: true,
 		Effect: ["Freeze", "Prone"],
 		Color: ["Default"],
 		SetPose: ["LegsClosed"],
@@ -391,6 +392,7 @@ var AssetFemale3DCG = [
 		Priority: 23,
 		ParentGroup: "BodyLower",
 		Default: false,
+		IsRestraint: true,
 		Effect: ["Prone", "KneelFreeze"],
 		Color: ["Default"],
 		SetPose: ["LegsClosed"],
@@ -442,7 +444,8 @@ var AssetFemale3DCG = [
 			{ Name: "FoxTails", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
 			{ Name: "RaccoonButtPlug", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
 			{ Name: "RaccoonTailPlug", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
-			{ Name: "AnalBeads", Value: 20, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}], Visible: false }
+			{ Name: "AnalBeads", Value: 20, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}], Visible: false },
+			{ Name: "ButtPump", Effect: [], Value: 35, Extended: true, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}], Visible: false }
 		]
 	},
 
@@ -529,6 +532,7 @@ var AssetFemale3DCG = [
 		Category: "Item",
 		Priority: 27,
 		Default: false,
+		IsRestraint: true,
 		Color: ["Default"],
 		Left: 125,		
 		Top: 200,
@@ -573,6 +577,7 @@ var AssetFemale3DCG = [
 		Category: "Item",
 		Priority: 30,
 		Default: false,
+		IsRestraint: true,
 		Effect: ["GagNormal"],
 		Color: ["Default"],
 		Left: 150,
@@ -608,7 +613,9 @@ var AssetFemale3DCG = [
 			{ Name: "KittyGag", Effect: ["GagLight"], Difficulty: -4, Value: 20, Time: 10, ExpressionTrigger: [{Group: "Blush", Name: "Light", Timer: 5}, {Group: "Eyes", Name: "Closed", Timer: 5}] },
 			{ Name: "KittenHarnessPanelGag", Effect: ["GagHeavy"], Difficulty: 6, Value: 80, Time: 20, AllowLock: true },
 			{ Name: "CarrotGag", Effect: ["GagHeavy"], Random: false, Value: 50, Time: 15 },
-			{ Name: "RegularSleepingPill", Enable: false, Wear: false, Value: -1, Bonus: [{Type: "KidnapSneakiness", Factor: 3}] }
+			{ Name: "MuzzleGag", Difficulty: 6, Value: 70, Time: 20, AllowLock: true },
+			{ Name: "RegularSleepingPill", Enable: false, Wear: false, Value: -1, Bonus: [{Type: "KidnapSneakiness", Factor: 3}] },
+			{ Name: "PantiesMask", Effect: [], Random: false, Value: 20, Time: 15 }
 		]
 	},
 
@@ -617,6 +624,7 @@ var AssetFemale3DCG = [
 		Category: "Item",
 		Priority: 31,
 		Default: false,
+		IsRestraint: true,
 		Color: ["Default"],
 		Left: 150,
 		Top: 50,
@@ -628,7 +636,8 @@ var AssetFemale3DCG = [
 			{ Name: "LeatherHoodOpenEyes", Effect: ["Prone", "GagLight"], Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth"], Block: ["ItemMouth", "ItemNeck"], Difficulty: 50, Value: 60, Time: 15, AllowLock: true },
 			{ Name: "StuddedBlindfold", Effect: ["BlindNormal", "Prone"], Hide: ["Glasses"], Difficulty: 2, Value: -1, Time: 5, AllowLock: true },
 			{ Name: "KittyBlindfold", Effect: ["BlindLight", "Prone"], Hide: ["Glasses"], Value: 25, Time: 5, AllowLock: true },
-			{ Name: "DuctTape", Effect: ["BlindNormal", "Prone"], Hide: ["Glasses"], Value: 50, Time: 10, RemoveTime: 5, BuyGroup: "DuctTape" }
+			{ Name: "DuctTape", Effect: ["BlindNormal", "Prone"], Hide: ["Glasses"], Value: 50, Time: 10, RemoveTime: 5, BuyGroup: "DuctTape" },
+			{ Name: "SmallBlindfold", Effect: ["BlindLight", "Prone"], Hide: ["Glasses"], Value: 40, Time: 5, AllowLock: true}
 		]
 	},
 

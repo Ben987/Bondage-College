@@ -6,11 +6,13 @@ Cancel,,,Cancel
 Exit,,,Back to character
 Next,,,View next items
 Remove,,,Remove the item
+Use,,,Use this item
 Struggle,,,Try to struggle out
 Lock,,,Use a lock
 Unlock,,,Unlock the item
 InspectLock,,,Inspect the lock
 Remote,,,Use your remote
+ButtPump,,,Use the Butt Plug's pump
 ColorPick,,,Color of next item
 ColorSelect,,,Use this color
 ColorCancel,,,Default color
@@ -35,10 +37,16 @@ PumpLevel1,,,Pump gag level: Light
 PumpLevel2,,,Pump gag level: Inflated
 PumpLevel3,,,Pump gag level: Bloated
 PumpLevel4,,,Pump gag level: Full mouth
+InflateLevel0,,,Pump plug level: Empty
+InflateLevel1,,,Pump plug level: Light
+InflateLevel2,,,Pump plug level: Inflated
+InflateLevel3,,,Pump plug level: Bloated
+InflateLevel4,,,Pump plug level: Max
 DeflateIt,,,Deflate it
 PumpIt,,,Pump it
 pumps,,,pumps
 deflates,,,deflates
+plug,,,plug
 gag,,,gag
 's,,,'s
 Delete,,,Delete
@@ -48,6 +56,7 @@ BeepFrom,,,Beep from
 BeepFromOwner,,,Beep from your owner in your private room
 InRoom,,,in room
 PrivateRoom,,,<i>Private room</i>
+IntroductionMaidGreetings,,,"(As you enter the luxurious hallway, a maid comes to greet you.)  Welcome to the Bondage Club, is this your first visit?"
 ServerMessageOfferStartTrial,,,"SourceCharacter is offering you to start a trial period as her submissive.  Click on her and manage your relationship to accept, don't do anything to refuse."
 ServerMessageStartTrial,,,The Bondage Club is pleased to announce that SourceCharacter is starting a 3 days minimum trial period as a submissive.
 ServerMessageOfferEndTrial,,,"SourceCharacter has prepared a great collaring ceremony.  A maid brings a slave collar, which her submissive must consent to wear."
