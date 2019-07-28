@@ -2,6 +2,8 @@ SelectItem,,,Select an item to use
 CannotUseOnSelf,,,Cannot use on yourself
 RemoveClothesForItem,,,Remove some clothes first
 RemoveSuspensionForItem,,,Remove the suspension first
+RemoveChainForItem,,,Remove the chain to the floor first
+MustCollaredFirst,,,A collar must be fitted first to attach accessories to.
 Cancel,,,Cancel
 Exit,,,Back to character
 Next,,,View next items

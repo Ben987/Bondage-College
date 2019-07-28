@@ -259,6 +259,11 @@ ItemNeck,SlaveCollar,Slave Collar
 ItemNeck,ClubSlaveCollar,Club Slave Collar
 ItemNeck,ShockCollar,Shock Collar
 ItemNeck,ShockCollarRemote,Shock Collar Remote
+ItemNeckAccessories,CollarBell,Bell
+ItemNeckAccessories,CollarBow,Bow
+ItemNeckAccessories,CollarShockUnit,Shock Unit
+ItemNeckAccessories,CollarChain,Chain
+ItemNeckAccessories,CollarLeash,Leash
 ItemMouth,,Mouth
 ItemMouth,ClothGag,Cloth Gag
 ItemMouth,WiffleGag,Wiffle Ball Gag
