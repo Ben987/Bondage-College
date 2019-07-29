@@ -5,7 +5,7 @@ Brauchst du Hilfe? Nicke, wenn ja.
 (DialogCharacterName kommt, um erneut nach dir zu sehen.) Schon wieder in Schwierigkeiten? Brauchst du Hilfe?
 Still in trouble, are we?  Have you learned your lesson?  Nod if you did.
 Immer noch in der Klemme, was? Hast du deine Lektion gelernt? Nicke, wenn ja.
-It seems that you need to learn a lesson. (She grabs your arms and forces them in a armbinder.  She then gets a gag and silences you.)
+It seems that you need to learn a lesson. (She grabs your arms and forces them in an armbinder.  She then gets a gag and silences you.)
 Du solltest wohl eine Lektion lernen. (Sie zwängt deine Arme in einen Monohandschuh und bringt dich mit einem Knebel zum Schweigen.)
 (She gulps and bows her head.)  Yes Miss.  Sorry Miss.
 (Sie schluckt und senkt ihren Blick.) Ja, Miss. Verzeihung, Miss.
@@ -13,11 +13,15 @@ I'm sorry Miss.  I cannot help you now.
 Es tut mir leid, Miss. Ich kann gerade nicht helfen.
 (A maid taps on your shoulder.)  Slave girl, why aren't you naked?
 (Ein Hausmädchen tippt dir auf die Schulter.) Sklavenmädchen, warum bist du nicht nackt?
+(A maid greets you as you enter the hall.)  Can I have a word with you Miss DialogPlayerName?
+(Ein Hausmädchen begrüßt dich, als du den Raum betrittst.) Dürfte ich Sie kurz sprechen, Miss DialogPlayerName?
+(The maid leaves you with Club Mistress.)  We Mistresses have been speaking.  It seems you're not fit to wear the heels anymore.
+(Das Hausmädchen lässt dich mit der Club-Herrin allein.) Wir Herrinnen haben uns unterhalten. Es scheint, als wärst du nicht mehr für die hohen Absätze geeignet.
 (She gives a curious look at the gag but doesn't resist as you silence her.)
 (Sie betrachtet den Knebel verwundert, wehrt sich aber nicht, als du sie zum Schweigen bringst.)
 (You remove her gag slowly.)  Thanks Miss, it will be easier to do my job.
 (Du nimmst den Knebel langsam ab.) Danke, Miss, so wird mir meine Arbeit leichter fallen.
-(She nods and turns around as you restrain her arms securely.)  It will be a kinky work day.
+(She nods and turns around as you restrain her arms securely.)  It will be a kinky workday.
 (Sie nickt und dreht sich um, damit du ihre Arme festmachen kannst.) Das wird ein lustiger Arbeitstag.
 (You free her arms and she stretches.)  Thanks head maid DialogPlayerName, this will make my work easier.
 (Du befreist ihre Arme und sie streckt sich.) Danke, Hausdame DialogPlayerName, das erleichtert meine Arbeit.
@@ -37,7 +41,7 @@ Es tut mir leid, Miss. Ich kann gerade nicht helfen.
 (Sie runzelt die Stirn, als du das Teil verschließt.) Hoffentlich nehmen Sie das nach meiner Schicht wieder ab, Miss.
 (She nods happily as you unlock the device.)  Yes!  That's very nice of you Miss.
 (Sie nickt fröhlich, als du das Teil aufschließt.) Ja! Das ist sehr nett von Ihnen, Miss.
-(You strap the device on her head as she mumbles.)  It will be a kinky work day it seems.
+(You strap the device on her head as she mumbles.)  It will be a kinky workday it seems.
 (Du schnallst ihr das Ding um den Kopf und sie murmelt.) Das wird wohl ein lustiger Arbeitstag.
 (You remove the device and she nods slowly.)  You're the best head maid DialogPlayerName.
 (Du nimmst das Ding ab und sie nickt langsam.) Sie sind die Beste, Hausdame DialogPlayerName.
@@ -121,7 +125,7 @@ Nichts, es geht schon. (Dialog beenden.)
 There's already a girl chained on the bed.
 Da ist schon ein Mädchen ans Bett gekettet.
 ###_NPC
-I understand, we can't have unhappy customers can we?  I'll go release her.
+I understand, we can't have unhappy customers, can we?  I'll go release her.
 Ich verstehe, wir wollen ja nicht, dass ein Kunde unzufrieden ist, oder? Ich gehe sie befreien.
 ###_PLAYER
 You're the best!  (Leave her.)
@@ -248,5 +252,45 @@ Nicht der Rede wert. Ich mache nur meine Arbeit.
 ###_PLAYER
 (Leave her.)
 (Dialog beenden.)
+What do you want?
+Was willst du?
+###_NPC
+I was informed that the club management Mistresses want to meet you.
+Mir wurde mitgeteilt, dass die Herrinnen im Club-Management nach Ihnen suchen.
+###_PLAYER
+Make it quick.
+Fass dich kurz.
+###_NPC
+Yes Miss.  (She gulps.)  I was informed that the club management Mistresses want to meet you.
+Jawohl, Miss. (Sie schluckt.) Mir wurde mitgeteilt, dass die Herrinnen im Club-Management nach Ihnen suchen.
+###_PLAYER
+(Stay silent.)
+(Schweigen.)
+###_NPC
+Miss, I was informed that the club management Mistresses want to meet you.
+Miss, mir wurde mitgeteilt, dass die Herrinnen im Club-Management nach Ihnen suchen.
+###_PLAYER
+Why is that?
+Warum das denn?
+###_NPC
+I don't know Miss, but I was told to bring you there right away.
+Ich weiß es nicht, Miss, aber mir wurde aufgetragen, Sie sofort dorthin zu begleiten.
+###_PLAYER
+I don't have time for that.
+Dafür habe ich keine Zeit.
+###_NPC
+Miss, it's very important.  They told me to bring you there right away.
+Miss, es ist von äußerster Dringlichkeit. Mir wurde aufgetragn, Sie sofort dorthin zu begleiten.
+###_PLAYER
+Let's go see them.
+Dann besuchen wir sie mal.
+###_NPC
+Absolutely, please come with me.
+Selbstverständlich, bitte folgen Sie mir.
+###_PLAYER
+Fine, let's go.  (Meet a Club Mistress.)
+Na gut, gehen wir. (Mit einer Club-Herrin sprechen.)
+(Walk with her to a Club Mistress.)
+(Ihr zu einer Club-Herrin folgen.)
 (Frown and leave her.)
 (Die Stirn runzeln und Dialog beenden.)

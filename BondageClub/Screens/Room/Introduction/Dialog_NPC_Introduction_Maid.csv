@@ -104,6 +104,7 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  Ow
 270,,Thanks!  Have a great time.  (Leave her.),,DialogLeave(),
 270,,Can you teach me more about rope bondage?,"If you like rope bondage that much, try the Shibari Dojo.  You might learn a few new tricks.",,
 270,,Tell me about the other types of restraints.,"Some items are impossible to struggle out from, so you'll need to find help.  Also, items like cuffs can be locked, and you'll need a key to unlock them.",,
+270,,Tell me about item permissions.,"In your profile, there's an item permission level you can set.  It only affects online players and will block them from restraining you, depending on the level.",,
 270,300,I want to practice freeing myself.,Of course!  If you're ready for the challenge I will tie you up.,,
 300,,,Are you ready to struggle against the ropes?,,Player.CanInteract()
 300,,,Get your arms free first if you want to practice struggling against my ropes.  Let me know when you're ready.,,!Player.CanInteract()
@@ -135,6 +136,7 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  Ow
 370,,Can I get better at struggling out?,Yes. You might learn new skills to escape faster if you stick around.  Others might also learn skills to make your struggling harder though...,,
 370,,Can you teach me more on rope bondage?,"If you like rope bondage that much, try the Shibari Dojo.  You might learn a few new tricks.",,
 370,,Tell me about the other types of restraints.,"Some items are impossible to struggle out from, so you'll need to find help.  Also, items like cuffs can be locked, and you'll need a key to unlock them.",,
+370,,Tell me about item permissions.,"In your profile, there's an item permission level you can set.  It only affects online players and will block them from restraining you, depending on the level.",,
 370,300,I want to practice freeing myself.,Again?  Well of course.  Are you ready to struggle now?,,
 MaidRescue,,,(She struggles and tries to get out.)  Can you please help me?,,IsMaidRestrained()
 MaidRescue,,,(She bows her head respectfully.)  Can you also help our friend here?,,!IsBothFree()

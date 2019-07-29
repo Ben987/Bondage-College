@@ -1,3 +1,10 @@
+MaidDrinkPickFreeBeer,,,picks a beer from DialogCharacterName tray.,,
+MaidDrinkPickFreeWine,,,picks a glass of wine from DialogCharacterName tray.,,
+MaidDrinkPickFreeMargarita,,,picks a Margarita from DialogCharacterName tray.,,
+MaidDrinkPickWhiskey,,,buys a glass of Whiskey from DialogCharacterName.,,
+MaidDrinkPickChampagne,,,buys a glass of champagne from DialogCharacterName.,,
+MaidDrinkPickRoundShooters,,,"buys a round of shooters for everyone, from DialogCharacterName.",,
+MaidDrinkPickBeerPitcher,,,"buys a beer pitcher for everyone, from DialogCharacterName.",,
 PlayerGagged,,,(You can use or remove items by selecting specific body regions.),,DialogDoAllowItem(CurrentCharacter)
 PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDoAllowItem(CurrentCharacter)
 0,,,(You can use or remove items by selecting specific body regions.),,DialogDoAllowItem(CurrentCharacter)
@@ -5,7 +12,9 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 0,,(View her profile.),,ViewProfile(),
 0,,(Change her clothes.),,ChangeClothes(),ChatRoomCanChangeClothes()
 0,10,(Manage your relationship.),"(You can give more access to your items by putting her on your whitelist, or less control by putting her on your blacklist.)",,
-0,,(Ban her from the room.),,BanFromRoom(),CanBanUser()
+0,,(Kick her out of the room.),,"BanFromRoom(""Kick"")",CanBanUser()
+0,,(Ban her from the room.),,"BanFromRoom(""Ban"")",CanBanUser()
+0,20,(Check her drink tray.),(There's a variety of drinks.  Some are offered by the club and some are more expensive.),,CanTakeDrink()
 0,,(Leave this menu.),,DialogLeave(),
 10,,(Add to item whitelist.),(This member is now on your item permission whitelist.  She will have higher access to restrain or free you.),"ListManage(""Add"", ""WhiteList"")",CanAddWhiteList()
 10,,(Remove from item whitelist.),(This member is no longer on your item permission whitelist.),"ListManage(""Remove"", ""WhiteList"")",CanRemoveWhiteList()
@@ -13,10 +22,18 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 10,,(Remove from item blacklist.),(This member is no longer on your item permission blacklist.),"ListManage(""Remove"", ""BlackList"")",CanRemoveBlackList()
 10,,(Add to friendlist.),(This member is considered to be a friend by you.  She must also add you on her friendlist to be able to find each other.),"ListManage(""Add"", ""FriendList"")",CanAddFriend()
 10,,(Remove from friendlist.),(This member is not longer considered to be a friend by you.),"ListManage(""Remove"", ""FriendList"")",CanRemoveFriend()
-10,0,(Offer her a trial period to become your submissive.),"(The request was sent, she must accept for the trial period to start.)","SendOwnershipRequest(""Propose"")","OwnershipOptionIs(""CanOfferStartTrial"")"
+10,0,(Offer her a trial period to become your submissive.),(The request was sent.  She must accept for the trial period to start.),"SendOwnershipRequest(""Propose"")","OwnershipOptionIs(""CanOfferStartTrial"")"
 10,0,(Accept a trial period to become her submissive.),,"SendOwnershipRequest(""Accept"")","OwnershipOptionIs(""CanStartTrial"")"
 10,11,(Offer her to end the trial and be fully collared.),(There's a 100$ fee to prepare the ceremony and get her a slave collar.  Will you pay now?),,"OwnershipOptionIs(""CanOfferEndTrial"")"
 10,0,(Accept her collar and begin the ceremony.),,"SendOwnershipRequest(""Accept"")","OwnershipOptionIs(""CanEndTrial"")"
 11,0,(Pay 100$ for the collaring ceremony.),"(You pay and prepare the ceremony.  A maid brings a slave collar, she must accept it to complete the collaring.)","SendOwnershipRequest(""Propose"")",DialogMoneyGreater(100)
 11,0,(Refuse to pay.),(Main menu.),,
 10,0,(Back to main menu.),(Main menu.),,
+20,0,(Get a free beer.),,"DrinkPick(""FreeBeer"", 0)",
+20,0,(Get a free glass of wine.),,"DrinkPick(""FreeWine"", 0)",
+20,0,(Get a free Margarita.),,"DrinkPick(""FreeMargarita"", 0)",
+20,0,(Get a 5$ glass of Whiskey.),,"DrinkPick(""Whiskey"", 5)",DialogMoneyGreater(5)
+20,0,(Get a 5$ glass of Champagne.),,"DrinkPick(""Champagne"", 5)",DialogMoneyGreater(5)
+20,0,(Get a 10$ round of shooters for everyone.),,"DrinkPick(""RoundShooters"", 10)",DialogMoneyGreater(10)
+20,0,(Get a 10$ beer pitcher for everyone.),,"DrinkPick(""BeerPitcher"", 10)",DialogMoneyGreater(10)
+20,0,(Back to main menu.),(Main menu.),,

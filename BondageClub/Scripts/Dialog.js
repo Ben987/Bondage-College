@@ -54,17 +54,23 @@ function DialogPrerequisite(D) {
 	else
 		if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("Player.") == 0)
 			return Player[CurrentCharacter.Dialog[D].Prerequisite.substring(7, 250).replace("()", "").trim()]();
-		else 
+		else
 			if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("!Player.") == 0)
 				return !Player[CurrentCharacter.Dialog[D].Prerequisite.substring(8, 250).replace("()", "").trim()]();
 			else
-				if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("(") >= 0)
-					return CommonDynamicFunctionParams(CurrentCharacter.Dialog[D].Prerequisite);
+				if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("CurrentCharacter.") == 0)
+					return CurrentCharacter[CurrentCharacter.Dialog[D].Prerequisite.substring(17, 250).replace("()", "").trim()]();
 				else
-					if (CurrentCharacter.Dialog[D].Prerequisite.substring(0, 1) != "!")
-						return window[CurrentScreen + CurrentCharacter.Dialog[D].Prerequisite.trim()];
+					if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("!CurrentCharacter.") == 0)
+						return !CurrentCharacter[CurrentCharacter.Dialog[D].Prerequisite.substring(18, 250).replace("()", "").trim()]();
 					else
-						return !window[CurrentScreen + CurrentCharacter.Dialog[D].Prerequisite.substr(1, 250).trim()];
+						if (CurrentCharacter.Dialog[D].Prerequisite.indexOf("(") >= 0)
+							return CommonDynamicFunctionParams(CurrentCharacter.Dialog[D].Prerequisite);
+						else
+							if (CurrentCharacter.Dialog[D].Prerequisite.substring(0, 1) != "!")
+								return window[CurrentScreen + CurrentCharacter.Dialog[D].Prerequisite.trim()];
+							else
+								return !window[CurrentScreen + CurrentCharacter.Dialog[D].Prerequisite.substr(1, 250).trim()];
 }
 
 // Searches for an item in the player inventory to unlock a specific item
@@ -93,7 +99,6 @@ function DialogLeave() {
 	Player.FocusGroup = null;
 	CurrentCharacter.FocusGroup = null;
 	DialogInventory = null;
-	DialogInventoryOffset = 0;
 	CurrentCharacter = null;
 }
 
@@ -139,7 +144,6 @@ function DialogLeaveItemMenu() {
 	Player.FocusGroup = null;
 	CurrentCharacter.FocusGroup = null;
 	DialogInventory = null;
-	DialogInventoryOffset = 0;
 	DialogProgress = -1;
 	DialogColor = null;
 	ElementRemove("InputColor");
@@ -191,6 +195,7 @@ function DialogMenuButtonBuild(C) {
 		if ((Item != null) && Item.Asset.AllowLock && !InventoryItemHasEffect(Item, "Lock", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Lock");
 		if ((Item != null) && !InventoryItemHasEffect(Item, "Lock", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Remove");
 		if (InventoryItemHasEffect(Item, "Egged") && InventoryAvailable(Player, "VibratorRemote", "ItemVulva") && Player.CanInteract()) DialogMenuButton.push("Remote");
+		if ((Item != null) && Item.Asset.Extended && Player.CanInteract()) DialogMenuButton.push("Use");
 		if (Player.CanInteract()) DialogMenuButton.push("ColorPick");
 	}
 
@@ -200,6 +205,7 @@ function DialogMenuButtonBuild(C) {
 function DialogInventoryBuild(C) {
 
 	// Make sure there's a focused group
+	DialogInventoryOffset = 0;
 	DialogInventory = [];
 	if (C.FocusGroup != null) {
 
@@ -342,14 +348,20 @@ function DialogMenuButtonClick() {
 				DialogLeaveItemMenu();
 				return;
 			}
-			
+
 			// Next Icon - Shows the next 12 items
 			if (DialogMenuButton[I] == "Next") {
 				DialogInventoryOffset = DialogInventoryOffset + 12;
 				if (DialogInventoryOffset >= DialogInventory.length) DialogInventoryOffset = 0;
 				return;
 			}
-			
+
+			// Use Icon - Pops the item extension for the focused item
+			if (DialogMenuButton[I] == "Use") {
+				DialogExtendItem(Item);
+				return;
+			}
+
 			// Remote Icon - Pops the item extension
 			if (DialogMenuButton[I] == "Remote") {
 				if (InventoryItemHasEffect(Item, "Egged") && InventoryAvailable(Player, "VibratorRemote", "ItemVulva"))
@@ -361,13 +373,14 @@ function DialogMenuButtonClick() {
 			if (DialogMenuButton[I] == "Lock") {
 				if (DialogItemToLock == null) {
 					if ((Item != null) && (Item.Asset.AllowLock != null)) {
+						DialogInventoryOffset = 0;
 						DialogInventory = [];
 						DialogItemToLock = Item;
 						for (var A = 0; A < Player.Inventory.length; A++)
 							if ((Player.Inventory[A].Asset != null) && Player.Inventory[A].Asset.IsLock)
 								if ((Player.Inventory[A].Asset.OwnerOnly == false) || C.IsOwnedByPlayer())
 									DialogInventoryAdd(Player.Inventory[A], false);
-					}					
+					}
 				} else {
 					DialogItemToLock = null;
 					DialogInventoryBuild(C);
@@ -380,22 +393,22 @@ function DialogMenuButtonClick() {
 				DialogProgressStart(C, Item, null);
 				return;
 			}
-			
+
 			// When the player inspects a lock
 			if (DialogMenuButton[I] == "InspectLock") {
 				var Lock = InventoryGetLock(Item);
 				if (Lock != null) DialogExtendItem(Lock, Item);
-				return;				
-			}			
+				return;
+			}
 
 			// Color picker Icon - Starts the color picking
-			if (DialogMenuButton[I] == "ColorPick") { 
-				ElementCreateInput("InputColor", "text", (DialogColorSelect!=null) ? DialogColorSelect.toString() : ""); 
+			if (DialogMenuButton[I] == "ColorPick") {
+				ElementCreateInput("InputColor", "text", (DialogColorSelect!=null) ? DialogColorSelect.toString() : "");
 				DialogColor = "";
 				DialogMenuButtonBuild(C);
 				return;
 			}
-			
+
 			// When the user selects a color
 			if ((DialogMenuButton[I] == "ColorSelect") && CommonIsColor(ElementValue("InputColor"))) {
 				DialogColor = null;
@@ -534,7 +547,6 @@ function DialogClick() {
 						DialogFocusItem = null;
 						DialogInventoryBuild(C);
 						DialogText = DialogTextDefault;
-						DialogInventoryOffset = 0;
 						break;
 					}
 	}
@@ -800,9 +812,9 @@ function DialogDraw() {
 
 		// Draws the intro text or dialog result
 		if ((DialogIntro() != "") && (DialogIntro() != "NOEXIT")) {
-			DrawTextWrap(SpeechGarble(CurrentCharacter, CurrentCharacter.CurrentDialog), 1025, -10, 840, 160, "white", null, 3);
+			DrawTextWrap(SpeechGarble(CurrentCharacter, CurrentCharacter.CurrentDialog), 1025, -5, 840, 165, "white", null, 3);
 			DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
-		} else DrawTextWrap(SpeechGarble(CurrentCharacter, CurrentCharacter.CurrentDialog), 1025, -10, 950, 160, "white", null, 3);
+		} else DrawTextWrap(SpeechGarble(CurrentCharacter, CurrentCharacter.CurrentDialog), 1025, -5, 950, 165, "white", null, 3);
 
 		// Draws the possible answers
 		var pos = 0;
@@ -826,14 +838,14 @@ function DialogDrawExpressionMenu() {
 	for (var I = 0; I < Player.Appearance.length; I++) {
 		var PA = Player.Appearance[I];
 		if (!PA.Asset.Group.AllowExpression || !PA.Asset.Group.AllowExpression.length) continue;
-		var expr = (PA.Property != null && PA.Property.Expression != null) ? PA.Property.Expression : "None"
-		var expr = DialogFind(Player, "FacialExpression" + expr);
+		var expr = (PA.Property != null && PA.Property.Expression != null) ? PA.Property.Expression : "None";
+		expr = DialogFind(Player, "FacialExpression" + expr);
 		if (PA.Asset.Group.AllowExpression.length > 1) {
 			DrawBackNextButton(25, 125 + 105 * Counter, 450, 75, PA.Asset.Group.Description + ": " + expr, "White", null, 
 				() => CharacterCycleFacialExpression(Player, PA.Asset.Group.Name, false, true),
 				() => CharacterCycleFacialExpression(Player, PA.Asset.Group.Name, true, true));
 		} else {
-			var next = (PA.Property != null && PA.Property.Expression != null) ? DialogFind(Player, "FacialExpressionNone") : DialogFind(Player, "FacialExpression" + PA.Asset.Group.AllowExpression[0]); 
+			var next = (PA.Property != null && PA.Property.Expression != null) ? DialogFind(Player, "FacialExpressionNone") : DialogFind(Player, "FacialExpression" + PA.Asset.Group.AllowExpression[0]);
 			DrawButton(25, 125 + 105 * Counter, 450, 75, PA.Asset.Group.Description + ": " + expr, "White", null, next);
 		}
 		Counter++;

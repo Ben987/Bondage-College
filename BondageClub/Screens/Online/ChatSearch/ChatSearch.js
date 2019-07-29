@@ -89,7 +89,7 @@ function ChatSearchJoin() {
 // When the server sends a response (force leave the room if the user was banned)
 function ChatSearchResponse(data) {
 	if ((data != null) && (typeof data === "string") && (data != "")) {
-		if ((data == "RoomBanned") && (CurrentScreen == "ChatRoom")) {
+		if (((data == "RoomBanned") || (data == "RoomKicked")) && (CurrentScreen == "ChatRoom")) {
 			if (CurrentCharacter != null) DialogLeave();
 			ElementRemove("InputChat");
 			ElementRemove("TextAreaChatLog");

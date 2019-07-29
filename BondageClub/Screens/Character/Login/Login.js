@@ -184,8 +184,11 @@ function LoginResponse(C) {
 					Player.Cage = true;
 					CharacterSetActivePose(Player, "Kneel");
 					CommonSetScreen("Room", "Private");
-				} else CommonSetScreen("Room", "MainHall");
-			
+				} else {
+					CommonSetScreen("Room", "MainHall");
+					MainHallMaidIntroduction();
+				}
+
 			}
 
 		} else LoginMessage = TextGet("ErrorLoadingCharacterData");

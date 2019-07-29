@@ -107,8 +107,8 @@ Moment! Das musst... (Du bringst sie mit einem Knebel zum Schweigen, als sie etw
 (She gains a firm balance as you release her feet.)  Much better!  It's a good thing that we women have a lower center of gravity.
 (Sie wird sofort standfest, als du ihre Füße befreist.) Viel besser! Gut, dass der Körperschwerpunkt bei uns Frauen tiefer liegt.
 ###_NPC [Submissive|Violent]
-(You release her feet and she wiggles them.)  I love feet bondage, you can also whip and tickle them if you want.
-(Sie wackelt mit den Füßen, als du sie befreist.) Ich liebe gefesselte Füße, du kannst sie auch auspeitschen und kitzeln, wenn du willst.
+(You release her feet and she wiggles them.)  I love feet bondage.  You can also whip and tickle them if you want.
+(Sie wackelt mit den Füßen, als du sie befreist.) Ich liebe gefesselte Füße. Du kannst sie auch auspeitschen und kitzeln, wenn du willst.
 ###_NPC [Serious|Peaceful]
 (You release her feet as she nods slowly.)  Thanks, it was awkward and uncomfortable to be forced like that.
 (Du befreist ihre Füße und sie nickt langsam.) Danke, es war ungewohnt und unangenehm, diese Pose halten zu müssen.
@@ -434,7 +434,7 @@ Dumme Sklavin! Hast du deinen sozialen Status und deine verdammten Manieren verg
 Slut!  When I'm wet and I fucking beep your cunt, you better come faster.
 Schlampe! Wenn ich feucht bin und nach deiner verdammten Muschi biepe, kommst du besser sofort angerannt.
 ###_NPC [Wise|Peaceful]
-(She shakes her head from left to right.)  My girl, it's very disapointing when I summon you and you don't come in a timely manner.
+(She shakes her head from left to right.)  My girl, it's very disappointing when I summon you and you don't come in a timely manner.
 (Sie schüttelt den Kopf.) Es ist äußerst ärgerlich, wenn ich dich herbeirufe und du nicht zeitnah erscheinst, mein Mädchen.
 ###_NPC
 (She pets your head and smiles.)  You're a cute pet.
@@ -643,10 +643,10 @@ Natürlich, Miss. (Sie versucht dein Besitzer-Schloss zu knacken, scheitert aber
 (You slowly cuddle against her legs as she pets you.)  You could make a good pet you know?
 (Du schmiegst dich langsam an ihre Beine, während sie dich streichelt.) Du würdest ein gutes Haustier abgeben, weißt du?
 ###_NPC [Submissive|Playful]
-(You start to cuddle and she gets at your level to cuddle as a pet with you.)  Pet cuddles are so much fun!
+(You start to cuddle, and she gets at your level to cuddle as a pet with you.)  Pet cuddles are so much fun!
 (Du schmiegst dich an sie und sie lässt sich zu dir herab und schmust wie ein Haustier mit dir.) Knuddeln macht so viel Spaß!
 ###_NPC [Dumb|Rude]
-(You cuddle against her legs as she pets you roughly.)  This bitch need a bone?
+(You cuddle against her legs as she pets you roughly.)  This bitch needs a bone?
 (Du schmiegst dich an ihre beine, während sie dich grob streichelt.) Hat die Bitch etwa Bock?
 ###_NPC [Peaceful|Polite]
 (You cuddle against her legs as she pets you tenderly and carefully.)  A good pet deserves to be nourished and cherished.
@@ -746,7 +746,7 @@ Na gut. Was sollte ich denn anziehen?
 (She twirls on herself and giggles.)  Of course!  What would be appealing for your eyes?
 (Sie dreht sich im Kreis und kichert.) Na klar! Was würde denn deinem Blick schmeicheln?
 ###_NPC [Horny|Rude]
-Oh yeah!  You're feelin' horny babe?
+Oh yeah!  Ya feelin' horny babe?
 Oh yeah! Bist du geil drauf, Baby?
 ###_NPC [Serious|Wise]
 I don't mind.  We are in a private room after all.  What would you like to see?
@@ -828,8 +828,8 @@ Sollte ich Sie alleinlassen, Miss?
 (She seems angry.)  You're fucking kicking me out?
 (Sie wirkt sauer.) Du wirfst mich verdammt nochmal raus?
 ###_NPC [Wise|Serious]
-Friends are like fish, they start to stink when you keep them for too long.  Do you want me to leave now?
-Freunde sind wie Fische, sie fangen an zu stinken, wenn sie zu lange dableiben. Sollte ich jetzt gehen?
+Friends are like fishes.  They start to stink when you keep them for too long.  Do you want me to leave now?
+Freunde sind wie Fische. Sie fangen an zu stinken, wenn sie zu lange dableiben. Sollte ich jetzt gehen?
 ###_PLAYER
 Let's chat.  (Spend time to chat with her.)
 Lass uns plaudern. (Eine Weile mit ihr plaudern.)
@@ -1247,7 +1247,7 @@ Was sollen wir tun?
 (You fondle her breast as she moans loudly.)  Your loving hands are such a pleasure on my tender skin.
 (Du streichelst ihre Brüste und sie stöhnt laut.) Deine liebevollen Hände fühlen sich auf meiner zarten Haut so gut an.
 ###_NPC [Violent|Playful]
-(You fondle her breast, but she doesn't react much.)  That's the best you can do?  Smack them, pinch them, whip them!
+(You fondle her breast, but she doesn't react much.)  Is that the best you can do?  Smack them, pinch them, whip them!
 (Du streichelst ihre Brüste, aber sie reagiert kaum.) War das etwa schon alles? Schlag sie, kneif sie, peitsche sie aus!
 ###_NPC [Serious|Dominant]
 (You fondle her breast as she moans lightly.)  You're good girl.  If I ever need a masseuse, I'll call you for sure.
@@ -1259,8 +1259,8 @@ Was sollen wir tun?
 (She's stunned as you slap her on the face.)  What was that for?
 (Sie ist sprachlos, als du ihr ins Gesicht schlägst.) Wofür war das denn?
 ###_NPC [Violent|Dumb]
-(You slap her hard on the face, but she stands her ground.)  I've been slapped all my life, I can take it.
-(Du haust ihr doll ins Gesicht, aber sie bleibt standfest.) Das kenne ich schon mein ganzes Leben, ich kann das ab.
+(You slap her hard on the face, but she stands her ground.)  I've been slapped all my life.  I can take it.
+(Du haust ihr doll ins Gesicht, aber sie bleibt standfest.) Das kenne ich schon mein ganzes Leben. Ich kann das ab.
 ###_NPC [Polite|Peaceful]
 (She whimpers and bows her head as you slap her hard.)  Miss, what did I do to deserve such a harsh treatment?
 (Sie wimmert und lässt den Kopf hängen, als du sie schlägst.) Miss, womit habe ich so eine grobe Behandlung verdient?
@@ -1392,11 +1392,8 @@ Du spinnst wohl! Meiner Schlampe so beim Abrackern zuzusehen macht mich sowas vo
 (You slowly cuddle against her legs as she pets you.)  I'm glad I've found you my pet.
 (Du schmiegst dich langsam an ihre Beine, während sie dich streichelt.) Bin ich froh, dich gefunden zu haben, mein Haustier.
 ###_NPC [Submissive|Playful]
-(You start to cuddle and she gets at your level to cuddle as a pet with you.)  Pet cuddles are so much fun my girl!
+(You start to cuddle, and she gets at your level to cuddle as a pet with you.)  Pet cuddles are so much fun my girl!
 (Du schmiegst dich an sie und sie lässt sich zu dir herab und schmust wie ein Haustier mit dir.) Knuddeln macht so viel Spaß, mein Mädchen!
-###_NPC [Dumb|Rude]
-(You cuddle against her legs as she pets you roughly.)  This bitch needs a bone?
-(Du schmiegst dich an ihre beine, während sie dich grob streichelt.) Hat die Bitch etwa Bock?
 ###_NPC [Wise|Serious]
 (You cuddle against her legs as she pets you.)  My girl, someday I'll find a proper pet trainer for you.
 (Du schmiegst dich an ihre Beine, während sie dich streichelt.) Eines Tages finde ich eine richtige haustier-Trainerin für dich, mein Mädchen.
@@ -1518,7 +1515,7 @@ Ja und nein. Wir haben gute und nicht ganz so gute Momente.
 (She slaps your butt.)  Please me better and I'll be happy.
 (Sie haut dir auf den Hintern.) Streng dich mehr an, wenn ich mit dir zufrieden sein soll.
 ###_NPC [Peaceful|Polite]
-(She caresses your hair.)  I'll be honest with you, I'm concerned about our relationship.  I hope it gets better with time.
+(She caresses your hair.)  I'll be honest with you.  I'm concerned about our relationship.  I hope it gets better with time.
 (Sie streichelt dein Haar.) Um ehrlich zu sein, mache ich mir Sorgen um unsere Beziehung. Hoffentlich bessert sich das mit der Zeit.
 ###_NPC [Horny|Rude]
 Yes and no slut.  You need to work harder to get me wet.
@@ -1533,8 +1530,8 @@ Ich bereue es schon ein wenig, vielleicht war das keine so gute Idee.
 (She slaps your face and gives you a stern look.)  No!  You need to please me better slave.
 (Sie gibt dir eine Ohrfeige und schaut dich streng an.) Nein! Gib dir mehr Mühe, mir zu gefallen, Sklavin!
 ###_NPC [Peaceful|Polite]
-(She caresses your hair.)  I'll be honest with you, I'm not pleased of our relationship.  I hope it gets better soon.
-(Sie streichelt dein Haar.) Ich will ehrlich sein, ich bin unzufrieden mit unserer Beziehung. Hoffentlich wird es bald besser.
+(She caresses your hair.)  I'll be honest with you.  I'm not pleased of our relationship.  I hope it gets better soon.
+(Sie streichelt dein Haar.) Ich will ehrlich sein. Ich bin unzufrieden mit unserer Beziehung. Hoffentlich wird es bald besser.
 ###_NPC [Horny|Rude]
 No slut!  If you can't get me wet, you're not worth much.
 Nein, Schlampe! Wenn du mich nicht feucht bekommst, hast du keinen großen Wert.
@@ -1844,8 +1841,8 @@ Nein! Bitte, Herrin! Ich werde leise sein.
 ###_NPC
 (She uses a gag to silence you and smiles.)  You're a good submissive.
 (Sie bringt dich mit einem Knebel zum Schweigen und lächelt.) Du bist eine gute Sub.
-You've been gagged for long enough, you can talk now.
-Du warst lange genug geknebelt, du darfst wieder reden.
+You've been gagged for long enough.  You can talk now.
+Du warst lange genug geknebelt. Du darfst wieder reden.
 ###_NPC [Peaceful]
 You must be dry or thirsty from the gag, let me help you my submissive.
 Der Knebel hat dich sicher durstig gemacht, lass mich dir helfen, meine Kleine.
@@ -1882,8 +1879,8 @@ Du wurdest lange genug am Reden gehindert, mein Kleines. Ich befreie dich von di
 ###_NPC
 (She removes the item and allows you to talk.)  Good girl.
 (Sie nimmt den Knebel ab und erlaubt dir zu sprechen.) Braves Mädchen.
-We are in the Bondage Club my sub, you know you should be tied up.
-Wir sind hier im Bondage-Club, meine Kleine, also solltest du gefesselt sein.
+We are in the Bondage Club my sub.  You know you should be tied up.
+Wir sind hier im Bondage-Club, meine Kleine. Du weißt genau, dass du gefesselt sein solltest.
 ###_NPC [Horny]
 My girl, it would be really sexy to get you in restraints.
 Es wäre wirklich sexy, dich in Fesseln zu legen, mein Mädchen.
@@ -1962,8 +1959,8 @@ Tolle Idee, Herrin!
 (Stay silent.)
 (Schweigen.)
 ###_NPC
-We are in the Bondage Club my sub, you should be fully restrained.
-Wir sind hier im Bondage-Club, meine Kleine, also solltest du vollständig gefesselt sein.
+We are in the Bondage Club my sub.  You should be fully restrained.
+Wir sind hier im Bondage-Club, meine Kleine. Du solltest vollständig gefesselt sein.
 ###_NPC [Horny]
 My girl, it would be really sexy to get you fully restrained.
 Es wäre wirklich sexy, dich komplett in Fesseln zu legen, mein Mädchen.
@@ -2064,7 +2061,7 @@ Hihihi. Das kitzelt!
 And it will tickle even more!  (She tickles you a little faster.)
 Und es wird noch viel mehr kitzeln! (Sie kitzelt dich etwas schneller.)
 ###_PLAYER
-That's the best you can do?
+Is that the best you can do?
 Ist das etwa schon das Schlimmste?
 ###_NPC
 No!  That's the best!  (She tickles you faster and faster.)
@@ -2616,10 +2613,10 @@ Ein Haustier? Na gut. (Ihr deine Hände geben.)
 (She checks your restraints.)  My girl, what if we added some locks to make it more secure?
 (Sie überprüft deine Fesseln.) Was hältst du davon, wenn wir das mit ein paar Schlössern sichern, Mädchen?
 ###_NPC [Serious]
-(She checks your restraints and frowns.)  Slave, this isn't secure enough, lets add some locks.
+(She checks your restraints and frowns.)  Slave, this isn't secure enough, let's add some locks.
 (Sie überprüft deine Fesseln und runzelt die Stirn.) Sklavin, diese Fesseln sind nicht sicher genug, da gehören ein paar Schlösser dran.
 ###_NPC [Wise]
-It's easier for a submissive to reach her safe space while in inescapable bondage.  Lets add some locks on your devices.
+It's easier for a submissive to reach her safe space while in inescapable bondage.  Let's add some locks on your devices.
 Es ist einfacher, sich in eine unterwürfige Mentalität zu versetzen, wenn man sich unmöglich aus seinen Fesseln befreien kann. Hängen wir ein paar Schlösser daran.
 ###_NPC [Polite]
 Protecting you from yourself and the outside world is my responsibility.  Let me add some padlocks on your restraints.
@@ -2817,8 +2814,8 @@ Mein Entschluss steht fest und ich werde dich persönlich überwachen. Hoffentli
 ###_NPC
 Excellent, I will enforce the rule myself.  I hope you will learn a lesson.
 Hervorragend, ich werde dich persönlich überwachen. Hoffentlich ist dir das eine Lehre.
-Girl, you're getting punished for taking too many liberties.  You shouldn't possess any restraints keys, I will confiscate them.
-Mädchen, du wirst bestraft, weil du dir zu viele Freiheiten erlaubst. Du solltest gar keine Schlüssel besitzen, ich beschlagnahme sie.
+Girl, you're getting punished for taking too many liberties.  You shouldn't possess any restraints keys.  I will confiscate them.
+Mädchen, du wirst bestraft, weil du dir zu viele Freiheiten erlaubst. Du solltest gar keine Schlüssel besitzen. Ich beschlagnahme sie.
 ###_PLAYER
 Yes Mistress. (Give your keys.)
 Ja, Herrin. (Deine Schlüssel abgeben.)
@@ -2913,6 +2910,16 @@ Ich verstehe, Herrin. (Das Zimmer verlassen.)
 Fine!  I'm leaving!  (Leave the room.)
 Na schön! Ich geh' ja schon! (Das Zimmer verlassen.)
 ###_NPC
+Some time alone in a cell will help you to think about what you did wrong.  I'll lock you up for five minutes.
+Du kannst in Ruhe über deine Fehler nachdenken, wenn du etwas Zeit allein in einer Zelle verbringst. Ich sperre dich fünf Minuten lang ein.
+###_PLAYER
+Very well.  (Go to the cell.)
+Sehr wohl. (In die Zelle gehen.)
+This is bullshit!  (Go to the cell.)
+Das ist Bullshit! (In die Zelle gehen.)
+It's fair Mistress.  (Go to the cell.)
+Das klingt fair, Herrin. (In die Zelle gehen.)
+###_NPC
 (She seems confused seeing you on your knees.)  Yes Mistress?
 (Es scheint sie zu verwirren, dich auf Knien zu sehen.) Ja, Herrin?
 ###_NPC [Dominant|Rude]
@@ -2976,7 +2983,7 @@ Du solltest etwas anderes anziehen.
 Alright Mistress.  And what should I wear?
 Also gut, Herrin. Was sollte ich denn anziehen?
 ###_NPC [Horny|Rude]
-Oh yeah!  You're feelin' horny Mistress?
+Oh yeah!  Ya feelin' horny Mistress?
 Oh yeah! Seid Ihr geil drauf, Herrin?
 ###_NPC [Serious|Wise]
 I don't mind Mistress.  We are in you room after all.  What would you like to see?
@@ -3005,8 +3012,8 @@ Tut mir leid, Herrin, aber Eure eigene Herrin guckt zu und ich will nicht, dass 
 Sure thing!  (She starts to release you but stops when she sees your Mistress staring at her.)  Oops!
 Klar doch! (Sie fängt an, dich zu befreien, bis sie den strengen Blick deiner Herrin bemerkt.) Ups!
 ###_NPC [Serious|Wise]
-It wouldn't be wise Mistress.  Your owner is the final arbiter on your of freedom.
-Das wäre unklug, Herrin. Eure Besitzerin hat das letzte Wort, was Eure Freiheit angeht.
+It wouldn't be wise Mistress.  Your owner is the final arbiter on your freedom.
+Das wäre unklug, Herrin. Eure Besitzerin hat das letzte Wort, wenn es um Eure Freiheit geht.
 ###_NPC
 (She inspects your locks.)  Sorry Mistress, I don't have the proper key.  Check with your owner.
 (Sie betrachtet deine Schlösser.) Tut mir leid, Herrin, ich habe nicht den richtigen Schlüssel. Fragt Eure Besitzerin.
@@ -3041,8 +3048,8 @@ Hey, Herrin, sollten wir noch etwas plaudern?
 Anything else you would like to entertain Mistress?  We could lecture on philosophy or literature if you prefer.
 Möchtet Ihr noch etwas anderes erwägen, Herrin? Wir könnten über Philosophie oder Literatur referieren, wenn Ihr wollt.
 ###_NPC [Dominant]
-I usually don't surrender to other girls, I'm mostly known as a Domme.  You're the exception Mistress.
-Ich unterwerfe mich normalerweise nicht anderen Mädchen, ich bin hauptsächlich als Domina bekannt. Ihr seid die Ausnahme, Herrin.
+I usually don't surrender to other girls.  I'm mostly known as a Domme.  You're the exception Mistress.
+Ich unterwerfe mich normalerweise nicht anderen Mädchen. Ich bin hauptsächlich als Domina bekannt. Ihr seid die Ausnahme, Herrin.
 ###_NPC [Violent]
 Everyone has its fetishes, one of mine is pain.  I get pleasure from physical pain and harsh bondage positions.
 Jeder hat sein Fetisch, bei mir ist es Schmerz. Körperlicher Schmerz und strenge Fessel-Positionen erregen mich sehr.
@@ -3080,7 +3087,7 @@ Oh, absolut, Eure Schlampe zu sein macht mich ganz feucht.
 (She seems uncertain.)  I guess our relationship lost some intensity, but we can kick it up.
 (Sie wirkt unsicher.) Vielleicht hat unsere Beziehung etwas an Intensität verloren, aber das kriegen wir wieder hin.
 ###_NPC [Peaceful|Polite]
-(She shrugs.)  I'll be honest with you, I'm concerned about our relationship.  I hope it gets better with time.
+(She shrugs.)  I'll be honest with you.  I'm concerned about our relationship.  I hope it gets better with time.
 (Sie zuckt mit den Schultern.) Um ehrlich zu sein, mache ich mir Sorgen um unsere Beziehung. Hoffentlich bessert sich das mit der Zeit.
 ###_NPC [Horny|Rude]
 Yes and no Mistress.  Your cunt isn't as wet as she used to be.
@@ -3092,8 +3099,8 @@ Ich weiß nicht, meine liebe Herrin. Wir scheinen die starke Bindung zu verliere
 (She grumbles.)  No!  Our relationship isn't intense enough.
 (Sie grummelt.) Nein! Unsere Beziehung ist nicht heftig genug.
 ###_NPC [Peaceful|Polite]
-(She sighs.)  I'll be honest with you, I'm not happy about our relationship.  I hope it gets better soon.
-(Sie seufzt.) Ich will ehrlich sein, ich bin unzufrieden mit unserer Beziehung. Hoffentlich wird es bald besser.
+(She sighs.)  I'll be honest with you.  I'm not happy about our relationship.  I hope it gets better soon.
+(Sie seufzt.) Ich will ehrlich sein. Ich bin unzufrieden mit unserer Beziehung. Hoffentlich wird es bald besser.
 ###_NPC [Horny|Rude]
 Shit no!  I think I'm frustrated sexually.
 Scheiße, nein! Ich glaube, ich bin sexuell frustriert.
@@ -3128,8 +3135,8 @@ Au ja! Wollen Sie mich immer noch, Miss? Ähh... Herrin?
 Already?  I haven't made my mind yet.  Please, lets spend more time together first.
 Jetzt schon? Ich habe mich noch nicht entschieden. Bitte lasst uns erst noch etwas Zeit miteinander verbringen.
 ###_NPC [Serious|Wise]
-It was too fast Mistress, I need more time to make sure we are the perfect match.
-Das ging zu schnell, Herrin, ich brauche mehr Zeit, um festzustellen, ob wir zueinander passen.
+It was too fast Mistress.  I need more time to make sure we are the perfect match.
+Das ging zu schnell, Herrin. Ich brauche mehr Zeit, um festzustellen, ob wir zueinander passen.
 ###_NPC [Playful|Dumb]
 Really?  Already?  I know!  I want a collar!  But I'm not certain.  Can we play some more?
 Echt? Jetzt schon? Ich weiß! Ich will ein Halsband! Aber ich bin mir nicht sicher. Können wir noch etwas weiterspielen?
