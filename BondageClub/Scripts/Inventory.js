@@ -86,8 +86,14 @@ function InventoryAllow(C, Prerequisite) {
 			|| (InventoryGet(C, "ClothLower") != null && !InventoryGet(C, "ClothLower").Asset.Expose.includes("ItemVulva"))
 			|| (InventoryGet(C, "Panties") != null && !InventoryGet(C, "Panties").Asset.Expose.includes("ItemVulva"))
 			|| (InventoryGet(C, "Socks") != null && (InventoryGet(C, "Socks").Asset.Block != null) && InventoryGet(C, "Socks").Asset.Block.includes("ItemVulva")))) { DialogSetText("RemoveClothesForItem"); return false; }
+	
+	// Prevent incompatible item combinations
 	if (Prerequisite == "NotSuspended" && C.Pose.indexOf("Suspension") >= 0) { DialogSetText("RemoveSuspensionForItem"); return false; }
-	if (Prerequisite == "NotChained" && InventoryGet(C, "ItemNeckAccessories") == "CollarChainLong") { DialogSetText("RemoveChainForItem"); return false; }
+	if (Prerequisite == "NotChained") {
+		if (InventoryGet(C, "ItemNeckAccessories") != null) {
+			if (InventoryGet(C, "ItemNeckAccessories").Asset.Name == "CollarChainLong") { DialogSetText("RemoveChainForItem"); return false; }
+		} else return true;
+	}
 	if (Prerequisite == "Collared" && InventoryGet(C, "ItemNeck") == null) { DialogSetText("MustCollaredFirst"); return false; }
 	return true;
 

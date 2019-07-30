@@ -116,6 +116,9 @@ ShockCollarSet2,,,SourceCharacter sets DestinationCharacter's shock collar to hi
 ShockCollarTrigger0,,,DestinationCharacter's collar gives her a light shock.
 ShockCollarTrigger1,,,DestinationCharacter's collar lets out a sharp jolt!
 ShockCollarTrigger2,,,DestinationCharacter's collar delivers an intense shock!
+CollarShockUnitTrigger0,,,DestinationCharacter's collar gives her a light shock.
+CollarShockUnitTrigger1,,,DestinationCharacter's collar lets out a sharp jolt!
+CollarShockUnitTrigger2,,,DestinationCharacter's collar delivers an intense shock!
 EggDecreaseTo-1,,,DestinationCharacter's vibrating egg stops vibrating.
 EggDecreaseTo0,,,DestinationCharacter's vibrating egg slows down into a light tease.
 EggDecreaseTo1,,,DestinationCharacter's vibrating egg returns to a moderate pace.

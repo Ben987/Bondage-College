@@ -547,7 +547,8 @@ var AssetFemale3DCG = [
 			{ Name: "StraitLeotard", SelfBondage: false, Value: 200, SetPose: ["BackElbowTouch"], Hide: ["Cloth", "ClothLower"], Block: ["ItemNipples", "ItemVulva", "ItemButt", "ItemPelvis", "ItemTorso", "ItemBreast"], Effect: ["Block", "Prone"], Time: 35, RemoveTime: 20, Difficulty: 13, AllowLock: true },
 			{ Name: "PawMittens", SelfBondage: false, Value: 60, Effect: ["Block", "Prone"], Time: 15, Difficulty: 4, AllowLock: true },
 			{ Name: "DuctTape", SelfBondage: false, Extended: true, Value: 50, AllowPose: ["TapedHands"], Hide: ["Gloves"], SetPose: ["TapedHands"], Effect: ["Block", "Prone"], Time: 20, RemoveTime: 10, Difficulty: 5, BuyGroup: "DuctTape", AllowBlock: ["ItemVulva", "ItemButt", "ItemPelvis", "ItemTorso", "ItemBreast", "ItemNipples"] },
-			{ Name: "BitchSuit", Random: false, SelfBondage: false, Value: 250, SetPose: ["BackElbowTouch", "Kneel"], Hide: ["Cloth", "ClothLower"], Block: ["ItemNipples", "ItemVulva", "ItemButt", "ItemPelvis", "ItemTorso", "ItemBreast"], Effect: ["Block", "Prone", "ForceKneel"], Time: 40, RemoveTime: 30, Difficulty: 15, AllowLock: true, Prerequisite: "NotSuspended" }
+			{ Name: "BitchSuit", Random: false, SelfBondage: false, Value: 250, SetPose: ["BackElbowTouch", "Kneel"], Hide: ["Cloth", "ClothLower"], Block: ["ItemNipples", "ItemVulva", "ItemButt", "ItemPelvis", "ItemTorso", "ItemBreast"], Effect: ["Block", "Prone", "ForceKneel"], Time: 40, RemoveTime: 30, Difficulty: 15, AllowLock: true, Prerequisite: "NotSuspended" },
+			{ Name: "CollarLeashHolding", Random: false, SelfBondage: false, Priority: 33, Value: -1, Time: 3, RemoveTime: 3, Difficulty: 1, Prerequisite: "NotSuspended" }
 		]
 	},
 
@@ -572,7 +573,7 @@ var AssetFemale3DCG = [
 	{
 		Group: "ItemNeckAccessories",
 		Category: "Item",
-		Priority: 33,
+		Priority: 29,
 		Default: false,
 		Color: ["Default"],
 		Left: 0,
@@ -581,10 +582,12 @@ var AssetFemale3DCG = [
 		Asset: [ 
 			{ Name: "CollarBell", Value: 3, Random: false, Prerequisite: "Collared", Time: 5, Difficulty: 3, AllowLock: true },
 			{ Name: "CollarBow", Value: 3, Random: false, Prerequisite: "Collared", Time: 5, Difficulty: 1 },
-			{ Name: "CollarShockUnit", Value: 250, Random: false, Prerequisite: "Collared", Time: 5, Difficulty: 6, AllowLock: true, BuyGroup: "ShockCollar", ExpressionTrigger: [{Group: "Blush", Name: "Medium", Timer: 15}] },
+			{ Name: "CollarShockUnit", Value: 250, Random: false, Extended: true, Effect:["ReceiveShock"], Prerequisite: "Collared", Time: 5, Difficulty: 6, AllowLock: true, BuyGroup: "ShockCollar", ExpressionTrigger: [{Group: "Blush", Name: "Medium", Timer: 15}] },
 			{ Name: "ShockCollarRemote", Random: false, Wear: false, Effect:["TriggerShock"], BuyGroup: "ShockCollar", Value: -1, ExpressionTrigger: [{Group: "Eyebrows", Name: "Soft", Timer: 10}, {Group: "Blush", Name: "Soft", Timer: 15}, {Group: "Eyes", Name: "Closed", Timer: 5}] },
-			{ Name: "CollarChainLong", Value: 30, Random: false, Prerequisite: "Collared", Time: 5, Difficulty: 6, AllowLock: true, AllowPose: ["Kneel"], Effect: ["Tethered"], ExpressionTrigger: [{Group: "Blush", Name: "Medium", Timer: 15}], Prerequisite: "NotSuspended" },
-			{ Name: "CollarLeash", Value: 30, Random: false, Prerequisite: "Collared", Time: 5, Difficulty: 6, AllowLock: true, ExpressionTrigger: [{Group: "Blush", Name: "Medium", Timer: 15}] }
+			{ Name: "CollarChainLong", Value: 30, Random: false, Prerequisite: "Collared", Time: 5, Difficulty: 6, AllowLock: true, BuyGroup: "CollarChain", AllowPose: ["Kneel"], Effect: ["Tethered"], ExpressionTrigger: [{Group: "Blush", Name: "Medium", Timer: 15}], Prerequisite: "NotSuspended" },
+			{ Name: "CollarChainShort", Value: -1, Random: false, Prerequisite: "Collared", Time: 5, Difficulty: 6, AllowLock: true, BuyGroup: "CollarChain", SetPose: ["Kneel"], Effect: ["Freeze", "ForceKneel"], ExpressionTrigger: [{Group: "Blush", Name: "Medium", Timer: 15}, {Group: "Eyebrows", Name: "Soft", Timer: 5}], Prerequisite: "NotSuspended" },
+			{ Name: "CollarLeash", Value: 30, Random: false, Prerequisite: "Collared", Time: 5, Difficulty: 6, AllowLock: true, ExpressionTrigger: [{Group: "Blush", Name: "Medium", Timer: 15}] },
+			{ Name: "CollarLeashTaken", Value: -1, Random: false, Prerequisite: "Collared", Time: 5, Difficulty: 6, AllowLock: true, Effect: ["Tethered"], ExpressionTrigger: [{Group: "Blush", Name: "Medium", Timer: 15}] }
 		]
 	},
 	
