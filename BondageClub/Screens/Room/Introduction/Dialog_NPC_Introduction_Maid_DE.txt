@@ -337,6 +337,12 @@ Erzähl mir von den anderen Arten von Fesseln.
 ###_NPC
 Some items are impossible to struggle out from, so you'll need to find help.  Also, items like cuffs can be locked, and you'll need a key to unlock them.
 Bei manchen Fesseln ist das Befreien ohne Hilfe unmöglich. Dinge wie Handschellen lassen sich nur mit einem Schlüssel öffnen.
+###_PLAYER
+Tell me about item permissions.
+Erzähl mir von Item-Berechtigungen.
+###_NPC
+In your profile, there's an item permission level you can set.  It only affects online players and will block them from restraining you, depending on the level.
+In deinem Profil kannst du die Berechtigungsstufe für Gegenstände einstellen. Das bezieht sich nur auf Online-Spieler und hält sie je nach Stufe davon ab, dich zu fesseln.
 Of course!  If you're ready for the challenge I will tie you up.
 Natürlich! Wenn du bereit für die Herausforderung bist, werde ich dich fesseln.
 Are you ready to struggle against the ropes?

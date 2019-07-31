@@ -281,6 +281,34 @@ function ManagementClubSlaveRandomIntro() {
 
 }
 
+// When the player meets a random club slave
+function ManagementFindClubSlaveRandomIntro() {
+
+	// Sets the girl that greets the club slave player
+	CommonSetScreen("Room", "Management");
+	ManagementBackground = "MainHall";
+	ManagementRandomGirl = null;
+	CharacterDelete("NPC_Management_RandomGirl");
+	ManagementRandomGirl = CharacterLoadNPC("NPC_Management_RandomGirl");
+	ManagementRandomGirl.AllowItem = !ManagementIsClubSlave();
+	CharacterNaked(ManagementRandomGirl);
+
+	// At 0, the club slave player meets another slave.  At 1, 2 & 3, the club slave isn't restrained.  At 4 and more, the club slave is restrained.
+	var Intro = (Math.floor(Math.random() * 6) + 1).toString();
+	if (ManagementIsClubSlave()) Intro = "0";
+	ManagementRandomGirl.Stage = "ClubSlaveIntro" + Intro;
+	if (Intro == "4") CharacterFullRandomRestrain(ManagementRandomGirl, "FEW");
+	if (Intro == "5") CharacterFullRandomRestrain(ManagementRandomGirl, "LOT");
+	if (Intro == "6") CharacterFullRandomRestrain(ManagementRandomGirl, "ALL");
+	if (Intro != "6") {
+		InventoryRemove(ManagementRandomGirl, "ItemMouth");
+		InventoryRemove(ManagementRandomGirl, "ItemHead");
+	}
+	InventoryWear(ManagementRandomGirl, "ClubSlaveCollar", "ItemNeck");
+	CharacterSetCurrent(ManagementRandomGirl);
+
+}
+
 // When a random activity starts
 function ManagementRandomActivityStart(A) {
 	ManagementRandomActivity = A;

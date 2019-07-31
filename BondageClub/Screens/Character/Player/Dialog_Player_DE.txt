@@ -15,6 +15,8 @@ View next items
 Weitere Items
 Remove the item
 Gegenstand entfernen
+Use this item
+Gegenstand benutzen
 Try to struggle out
 Entfesselung versuchen
 Use a lock
@@ -25,6 +27,8 @@ Inspect the lock
 Das Schloss untersuchen
 Use your remote
 Fernbedienung verwenden
+Use the Butt Plug's pump
+Analpumpe benutzen
 Color of next item
 Farbe des nächsten Gegenstands
 Use this color
@@ -73,6 +77,16 @@ Pump gag level: Bloated
 Pumpknebel: Aufgebläht
 Pump gag level: Full mouth
 Pumpknebel: Mund ausfüllend
+Pump plug level: Empty
+Analpumpe: Leer
+Pump plug level: Light
+Analpumpe: Leicht gefüllt
+Pump plug level: Inflated
+Analpumpe: Aufgeblasen
+Pump plug level: Bloated
+Analpumpe: Aufgebläht
+Pump plug level: Max
+Analpumpe: Maximal
 Deflate it
 Luft ablassen
 Pump it
@@ -81,6 +95,8 @@ pumps
 pumpt
 deflates
 reduziert
+plug
+Stöpsel
 gag
 Knebel
 's
@@ -99,6 +115,8 @@ in room
 im Raum
 <i>Private room</i>
 <i>Privater Raum</i>
+(As you enter the luxurious hallway, a maid comes to greet you.)  Welcome to the Bondage Club, is this your first visit?
+(Als du die luxoriöse Eingangshalle betrittst, wirst du von einem Hausmädchen begrüßt.) Willkommen im Bondage-Club, bist du zum ersten Mal hier?
 SourceCharacter is offering you to start a trial period as her submissive.  Click on her and manage your relationship to accept, don't do anything to refuse.
 SourceCharacter bietet dir eine Probezeit als ihre Sklavin an. Um dies zu akzeptieren, klicke sie an und bearbeite eure Beziehung. Zum Ablehnen musst du nichts tun.
 The Bondage Club is pleased to announce that SourceCharacter is starting a 3 days minimum trial period as a submissive.
@@ -321,31 +339,3 @@ They must be wearing a baby harness first to chain the mittens to it.
 Sie muss einen Babyharnisch tragen, um die Fäustlinge daran anzuketten.
 Facial expression
 Gesichtsausdruck
-None
-Normal
-Raised
-Erhöht
-Lowered
-Gesenkt
-One Raised
-Eine erhöht
-Harsh
-Streng
-Angry
-Wütend
-Soft
-Sanft
-Low
-Niedrig
-Medium
-Mittel
-High
-Hoch
-Frown
-Unglücklich
-Closed
-Geschlossen
-Wink
-Zwinkern
-Dazed
-Benommen

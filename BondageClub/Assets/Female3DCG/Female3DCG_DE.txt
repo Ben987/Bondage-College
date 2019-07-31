@@ -176,6 +176,8 @@ Fox Ears Small
 Fuchsohren klein
 Small Bat Wings
 Mini-Fledermausflügel
+Full Kitty Mask
+Kätzchen-Vollmaske
 Gloves
 Handschuhe
 Short Gloves
@@ -294,8 +296,8 @@ Vibrating Egg
 Vibrator-Ei
 Vibrating Wand
 Vibrator-Stab
-Vibrating Egg Remote
-Vibrator-Ei-Fernbedienung
+Vibrating Egg|Panties Remote
+Vibrator-Fernbedienung
 Vibrating Latex Panties
 Latex-Vibratorhöschen
 Butt
@@ -320,6 +322,8 @@ Raccoon Tail Plug
 Waschbärschweif-Stöpsel
 Anal Beads
 Analperlenkette
+Butt Pump
+Analpumpe
 Pelvis
 Becken
 Metal Chastity Belt
@@ -420,8 +424,12 @@ Kitty Harness Gag
 Harnisch-Katzenknebel
 Rubber Carrot Gag
 Gummikarotten-Knebel
+Muzzle Gag
+Kiefer-Maulkorb
 Sleeping Pill
 Schlaftablette
+Panties Mask
+Höschen-Maske
 Head
 Kopf
 Cloth Blindfold
@@ -436,6 +444,8 @@ Studded Blindfold
 Nieten-Augenbinde
 Kitty Blindfold
 Katzen-Augenbinde
+Small Blindfold
+Kleine Augenbinde
 Misc Items
 Sonstiges
 Metal Padlock
