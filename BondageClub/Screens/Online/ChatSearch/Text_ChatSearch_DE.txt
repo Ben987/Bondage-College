@@ -10,6 +10,8 @@ This room is already full
 Dieser Raum ist bereits voll
 You're banned from this room
 Du wurdest aus diesem Raum verbannt
+You've been kicked out
+Du wurdest rausgeworfen
 Room doesn't exist anymore
 Raum existiert nicht mehr
 Account Error

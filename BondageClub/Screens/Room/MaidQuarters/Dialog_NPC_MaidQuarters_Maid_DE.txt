@@ -15,6 +15,10 @@ Bewache die Gefängniszelle, damit dort nichts passiert.
 (Du kehrst mit einer leeren Servierplatte zu DialogCharacterName zurück.) Gute Arbeit!
 (You come back to DialogCharacterName with spilled drinks all over your uniform.)
 (Du kehrst in deiner mit Getränken befleckten Uniform zu DialogCharacterName zurück.)
+Hurry to the chat rooms girl!  The club members are thirsty.  (You need to serve drinks to 5 unique online players.)
+Mach, dass du zu den Chaträumen kommst, Mädchen! Die Clubmitglieder haben Durst. (Du musst 5 verschiedenen Online-Spielern Getränke servieren.)
+(She checks your empty tray.)  Well done!  Our members were satisfied?
+(Sie betrachtet dein leeres Serviertablett.) Gut gemacht! Waren unsere Mitglieder zufrieden?
 (DialogCharacterName gets you back to the maid quarters and smiles.)  You've did it!
 (DialogCharacterName holt dich lächelnd in die Dienerkammer zurück.) Du hast es geschafft!
 (DialogCharacterName gets you back to the maid quarters and frowns.)  You failed to clean up in time.
@@ -492,10 +496,10 @@ Ich übernehme die Reinigung.
 Awesome!  There's a lot of cleaning to do.
 Super! Es gibt viel sauberzumachen.
 ###_PLAYER
-I’ll play music.
+I'll play music.
 Ich spiele Musik.
 ###_NPC
-Great! We always want some musician to play nice musics.
+Great! We always want some musician to play nice music.
 Super! Wir suchen dauernd nach Musikern, die gut spielen.
 ###_PLAYER
 Let's talk some more first.
@@ -581,8 +585,8 @@ Natürlich wird es das. Jetzt mach den Mund weit auf!
 I'm afraid I won't be able to do it Miss.
 Ich fürchte, das schaffe ich nicht, Miss.
 ###_NPC
-You will be fine, you worry too much.  Now open wide!
-Das wird schon, du machst dir zu viele Gedanken. Jetzt mach den Mund weit auf!
+You will be fine.  You worry too much.  Now open wide!
+Das wird schon. Du machst dir zu viele Gedanken. Jetzt mach den Mund weit auf!
 ###_PLAYER
 Open wide?  Why?
 Weit aufmachen? Warum?
@@ -616,17 +620,31 @@ Komm, Süße! Unsere Gäste wollen etwas trinken.
 (Getränke normal servieren.)
 (Serve drinks quickly for more tips.)
 (Getränke schnell für mehr Trinkgeld servieren.)
+(Serve drinks in online chat rooms.)
+(Getränke in den Online-Räumen servieren.)
 ###_NPC
-Here's your share of the tips.  (She gives you REPLACEMONEY $)
-Hier ist dein Anteil am Trinkgeld. (Sie gibt dir REPLACEMONEY $)
+Here's your share of the tips.  (She gives you REPLACEMONEY $.)
+Hier ist dein Anteil am Trinkgeld. (Sie gibt dir REPLACEMONEY $.)
 ###_PLAYER
 (Bow your head.)
 (Deinen Kopf senken.)
 ###_NPC
 Nice try, but maybe you're not fit for that job.  I can't pay you.
 Guter Versuch, aber vielleicht bist du dieser Aufgabe nicht gewachsen. Ich kann dich nicht bezahlen.
+###_PLAYER
+(Leave her.)
+(Dialog beenden.)
+###_NPC
+Excellent!  Here's your salary.  (She gives you REPLACEMONEY $.)
+Ausgezeichnet! Hier ist dein Lohn. (Sie gibt dir REPLACEMONEY $.)
 (She releases you and helps you to get dressed.)  All set!  Are you ready for more chores?
 (Sie befreit dich und hilft dir beim Anziehen.) Alles klar! Bist du bereit für weitere Aufgaben?
+###_PLAYER
+Thanks a lot!
+Vielen Dank!
+###_NPC
+(She nods.)  Are you ready for more chores?
+(Sie nickt.) Bist du bereit für weitere Aufgaben?
 You'll have to patrol around the club and release members that are stuck.  I'll give you a specific location to monitor.
 Du musst durch den Club gehen und Mitglieder befreien, die in der Klemme stecken. Ich weise dich einem bestimmten Raum zu.
 ###_PLAYER
@@ -639,8 +657,8 @@ Warst du schon beim Einstiegskurs? Gibt es da etwas zu berichten?
 Everything is under control.
 Alles ist unter Kontrolle.
 ###_NPC
-Perfect!  Let me pay you for your efforts then.  (She gives you REPLACEMONEY $)
-Perfekt! Hier ist der Lohn für deine Mühe. (Sie gibt dir REPLACEMONEY $)
+Perfect!  Let me pay you for your efforts then.  (She gives you REPLACEMONEY $.)
+Perfekt! Hier ist der Lohn für deine Mühe. (Sie gibt dir REPLACEMONEY $.)
 (You change into the maid uniform.)  Wonderful!  Make the sorority proud.
 (Du ziehst dir die Hausmädchen-Uniform an.) Wunderbar! Erfülle die Schwesternschaft mit Stolz.
 ###_PLAYER
@@ -692,7 +710,7 @@ Nicht der Rede wert.
 Excellent!  Are you ready for more chores?
 Fabelhaft! Bist du bereit für weitere Aufgaben?
 ###_PLAYER
-I didn't had the proper tools or techniques.
+I didn't have the proper tools or techniques.
 Mir fehlten die richtigen Hilfsmittel oder Fertigkeiten.
 ###_NPC
 You still have a lot to learn, don't you?  I can give you another chore if you're up for it.
@@ -742,7 +760,7 @@ Hätte ich mir denken sollen.
 (She giggles and restrains your legs.)  Next is your arms, you won't need either.
 (Sie kichert und fesselt deine Beine.) Jetzt deine Arme, die brauchst du auch nicht.
 ###_PLAYER
-You really enjoy your job don't you?
+You really enjoy your job, don't you?
 Du liebst deinen Job, oder?
 This is ridiculous!  How will I be able to clean?
 Das ist doch lächerlich! Wie soll ich putzen?
@@ -793,9 +811,9 @@ Also gut, du kannst mich knebeln.
 ###_NPC
 (She looks at you and laughs.)  You're learning the job pretty fast.  Are you ready now?
 (Sie sieht dich an und lacht.) Du lernst schnell. Bist du jetzt bereit?
-Come sweetie!  I'll drag you to your work space.  You need to clean the room before I come to get your back.
+Come sweetie!  I'll drag you to your workspace.  You need to clean the room before I come to get your back.
 Komm, Süße! Ich bringe dich zu deinem Arbeitsplatz. Der Raum muss sauber sein, bevor ich dich abholen komme.
-Come sweetie!  I'll drag you to your work space.  You need to clean your area before I come to get your back.
+Come sweetie!  I'll drag you to your workspace.  You need to clean your area before I come to get your back.
 Komm, Süße! Ich bringe dich zu deinem Arbeitsplatz. Der Bereich muss sauber sein, bevor ich dich abholen komme.
 ###_PLAYER
 (Pick an easy place to clean.)
@@ -805,8 +823,8 @@ Komm, Süße! Ich bringe dich zu deinem Arbeitsplatz. Der Bereich muss sauber se
 (Pick the dirtiest place to impress her.)
 (Sie mit dem schmutzigsten Ort beeindrucken.)
 ###_NPC
-Here's your pay for your hard work.  (She gives you REPLACEMONEY $)
-Hier ist der Lohn für deine harte Arbeit. (Sie gibt dir REPLACEMONEY $)
+Here's your pay for your hard work.  (She gives you REPLACEMONEY $.)
+Hier ist der Lohn für deine harte Arbeit. (Sie gibt dir REPLACEMONEY $.)
 I hope you understand why I can't reward you.  You can try again though.
 Du verstehst hoffentlich, warum ich dich nicht belohnen kann. Du kannst es aber gern nochmal versuchen.
 ###_PLAYER
@@ -818,26 +836,26 @@ Sicher. Soll ich dir deine Arbeit erklären?
 ###_PLAYER
 I prefer in my own dress as it feels comfortable.
 Meine eigene Kleidung ist mir lieber.
-No thank you, I’m familiar with it already.
+No thank you, I'm familiar with it already.
 Nein, danke, ich kenne mich aus.
 ###_NPC
 Perfect! Now go ahead and select the song you are good at.
 Perfekt! Dann wähle einen Song, den du gut kannst.
-You should hit “S D K L” on your keyboard when the musical notes drop from the top to the bottom. Press and hold the key if it is a long-note.
-Drücke “S D K L” auf deiner Tastatur, wenn die Noten von oben herabfallen. Halte die Taste bei langen Noten gedrückt.
+You should hit " S D K L " on your keyboard when the musical notes drop from the top to the bottom. Press and hold the key if it is a long note.
+Drücke " S D K L " auf deiner Tastatur, wenn die Noten von oben herabfallen. Halte die Taste bei langen Noten gedrückt.
 ###_PLAYER
 (Nod.)
 (Nicken.)
 ###_NPC
-Each hit is judged with “PERFECT”, “GREAT”, or “MISS”; if you release your key early in case of a long-note, you get an “END MISS”.
-Jeder Treffer wird mit “PERFECT”, “GREAT”, oder “MISS” bewertet; lässt du die Taste bei einer langen Note zu früh los, ist das ein “END MISS”.
-You break your combo if you get a “MISS” or “END MISS”, and audience will eventually become unhappy.
-Bei einem “MISS” oder “END MISS” unterbrichst du deine Kombo, und das Publikum wird langsam unzufrieden.
-Audience will tie you up when they couldn’t enjoy the music, because that’s part of the entertainment for them.
+Each hit is judged with "PERFECT", "GREAT", or "MISS"; if you release your key early in case of a long note, you get an "END MISS".
+Jeder Treffer wird mit "PERFECT", "GREAT", oder "MISS" bewertet; lässt du die Taste bei einer langen Note zu früh los, ist das ein "END MISS".
+You break your combo if you get a "MISS" or "END MISS", and audience will eventually become unhappy.
+Bei einem "MISS" oder "END MISS" unterbrichst du deine Kombo, und das Publikum wird langsam unzufrieden.
+Audience will tie you up when they couldn't enjoy the music, because that's part of the entertainment for them.
 Das Publikum wird dich fesseln, wenn ihnen deine Musik nicht gefällt. Das ist Teil ihrer Unterhaltung.
 If you finished the play, you will be awarded based on your performance.
 Dein Lohn am Ende hängt davon ab, wie gut du gespielt hast.
-That’s basically everything, and you will find out more during the play.
+That's basically everything, and you will find out more during the play.
 Das ist im Grunde schon alles, den Rest findest du beim Spielen heraus.
 ###_PLAYER
 Thank you for the instruction.
@@ -848,6 +866,10 @@ Select song.
 (List of songs)
 (Song-Liste)
 ###_PLAYER
+見えない何かに怯える夜 (LV 2)
+見えない何かに怯える夜 (LV 2)
+見えない何かに怯える夜 (LV 5)
+見えない何かに怯える夜 (LV 5)
 見えない何かに怯える夜 (LV 7)
 見えない何かに怯える夜 (LV 7)
 (Want more Songs)

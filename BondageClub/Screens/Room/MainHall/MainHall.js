@@ -78,7 +78,9 @@ function MainHallRun() {
 		DrawButton(1765, 385, 90, 90, "", "White", "Icons/Dojo.png", TextGet("ShibariDojo"));
 		if (SarahRoomAvailable) DrawButton(1885, 385, 90, 90, "", "White", "Icons/Explore.png", TextGet(SarahRoomLabel()));
 
-		// Cell
+		// Cell, Slave Market & Look for trouble
+		DrawButton(1645, 505, 90, 90, "", "White", "Icons/Question.png", TextGet("LookForTrouble"));
+		DrawButton(1765, 505, 90, 90, "", "White", "Icons/Gavel.png", TextGet("SlaveMarket"));
 		DrawButton(1885, 505, 90, 90, "", "White", "Icons/Cell.png", TextGet("Cell"));
 
 		// Draws the custom content rooms - Gambling, Prison & Photographic
@@ -86,14 +88,10 @@ function MainHallRun() {
 		DrawButton(145, 25, 90, 90, "", "White", "Icons/Cage.png", TextGet("Prison"));
 		DrawButton(25, 25, 90, 90, "", "White", "Icons/Random.png", TextGet("Gambling"));
 
-		// Stable, Magic-Theater & Seek Trouble
-		if ((ReputationGet("Kidnap") > 0) || ManagementIsClubSlave()) DrawButton(265, 145, 90, 90, "", "White", "Icons/Question.png", TextGet("RandomKidnap"));
+		// Stable, Magic-Theater & Nursery
+		DrawButton(265, 145, 90, 90, "", "White", "Icons/Diaper.png", TextGet("Nursery"));
 		DrawButton(145, 145, 90, 90, "", "White", "Icons/Magic.png", TextGet("Magic"));
 		DrawButton(25, 145, 90, 90, "", "White", "Icons/Horse.png", TextGet("Stable"));
-
-		// Nursery & Slave market
-		//DrawButton(145, 265, 90, 90, "", "White", "Icons/Gavel.png", TextGet("SlaveMarket"));
-		DrawButton(25, 265, 90, 90, "", "White", "Icons/Diaper.png", TextGet("Nursery"));
 
 	}
 
@@ -127,9 +125,10 @@ function MainHallRun() {
 
 // When the player walks to another room, she can be attacked by a random kidnapper
 function MainHallWalk(RoomName) {
-	if ((Math.random() > 0.8) && ManagementIsClubSlave()) ManagementClubSlaveRandomIntro();
-	else if ((Math.random() > 0.95) && (KidnapLeagueRandomKidnapperTimer < CommonTime()) && (ReputationGet("Kidnap") > 0) && (CheatFactor("BlockRandomKidnap", 0) == 1)) KidnapLeagueRandomIntro();
+	if ((Math.random() > 0.85) && ManagementIsClubSlave()) ManagementClubSlaveRandomIntro();
+	else if ((Math.random() > 0.96) && (KidnapLeagueRandomKidnapperTimer < CommonTime()) && (ReputationGet("Kidnap") > 0) && (CheatFactor("BlockRandomKidnap", 0) == 1)) KidnapLeagueRandomIntro();
 	else if ((KidnapLeagueBountyLocation == RoomName) && (KidnapLeagueBounty != null) && (KidnapLeagueBountyVictory == null) && Player.CanInteract() && (ReputationGet("Kidnap") > 0)) KidnapLeagueBountyStart();
+	else if (Math.random() > 0.96) ManagementFindClubSlaveRandomIntro();
 	else CommonSetScreen("Room", RoomName);
 }
 
@@ -155,12 +154,18 @@ function MainHallClick() {
 		if ((MouseX >= 1765) && (MouseX < 1855) && (MouseY >= 265) && (MouseY < 355)) MainHallWalk("MaidQuarters");
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355)) MainHallWalk("Management");
 
-		// Kidnap League, Dojo, Explore/Sarah
+		// Kidnap League, Dojo & Explore/Sarah
 		if ((MouseX >= 1645) && (MouseX < 1735) && (MouseY >= 385) && (MouseY < 475)) MainHallWalk("KidnapLeague");
 		if ((MouseX >= 1765) && (MouseX < 1855) && (MouseY >= 385) && (MouseY < 475)) MainHallWalk("Shibari");
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475) && SarahRoomAvailable) MainHallWalk("Sarah");
 
-		// Cell
+		// Cell, Slave Market & Look for trouble
+		if ((MouseX >= 1645) && (MouseX < 1735) && (MouseY >= 505) && (MouseY < 595)) {
+			if (ManagementIsClubSlave() && (Math.random() >= 0.1)) ManagementClubSlaveRandomIntro();
+			else if ((ReputationGet("Kidnap") > 0) && (Math.random() >= 0.5) && !ManagementIsClubSlave()) KidnapLeagueRandomIntro();
+			else ManagementFindClubSlaveRandomIntro();
+		}
+		if ((MouseX >= 1765) && (MouseX < 1855) && (MouseY >= 505) && (MouseY < 595)) MainHallWalk("SlaveMarket");
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 505) && (MouseY < 595)) MainHallWalk("Cell");
 
 		// Custom content rooms - Gambling, Prison & Photographic
@@ -168,14 +173,10 @@ function MainHallClick() {
 		if ((MouseX >=  145) && (MouseX <  235) && (MouseY >=  25) && (MouseY < 115)) MainHallWalk("Prison");
 		if ((MouseX >=  265) && (MouseX <  355) && (MouseY >=  25) && (MouseY < 115)) MainHallWalk("Photographic");
 
-		// Stable, Magic-Theater & Seek Trouble
+		// Stable, Magic-Theater & Nursery
 		if ((MouseX >=   25) && (MouseX <  115) && (MouseY >= 145) && (MouseY < 235)) MainHallWalk("Stable");
 		if ((MouseX >=  145) && (MouseX <  235) && (MouseY >= 145) && (MouseY < 235)) MainHallWalk("Magic");
-		if ((MouseX >=  265) && (MouseX <  355) && (MouseY >= 145) && (MouseY < 235) && ((ReputationGet("Kidnap") > 0) || ManagementIsClubSlave())) { if (ManagementIsClubSlave()) ManagementClubSlaveRandomIntro(); else KidnapLeagueRandomIntro(); }
-
-		// Nursery & Slave market
-		if ((MouseX >=   25) && (MouseX <  115) && (MouseY >= 265) && (MouseY < 355)) MainHallWalk("Nursery");
-		//if ((MouseX >=  145) && (MouseX <  235) && (MouseY >= 265) && (MouseY < 355)) MainHallWalk("SlaveMarket");
+		if ((MouseX >=  265) && (MouseX <  355) && (MouseY >= 145) && (MouseY < 235)) MainHallWalk("Nursery");
 
 	}
 

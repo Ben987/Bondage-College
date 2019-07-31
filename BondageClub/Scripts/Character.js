@@ -551,26 +551,6 @@ function CharacterSetFacialExpression(C, AssetGroup, Expression) {
 	}
 }
 
-// Switches to the next facial expression for the given character's AssetGroup
-function CharacterCycleFacialExpression(C, AssetGroup, Forward, Description) {
-	var A = C.Appearance.find(a => a.Asset.Group.Name == AssetGroup && a.Asset.Group.AllowExpression && a.Asset.Group.AllowExpression.length);
-	if (A == null) return;
-	if (!A.Property) A.Property = {};
-	var I = A.Asset.Group.AllowExpression.indexOf(A.Property.Expression);
-	let DoNext = expression => {
-		if (Description == true) return expression == null ? DialogFind(Player, "FacialExpressionNone") : DialogFind(Player, "FacialExpression" + expression);
-		CharacterSetFacialExpression(C, AssetGroup, expression);
-	}
-	if (Forward == null || Forward) {
-		if (I + 1 >= A.Asset.Group.AllowExpression.length) return DoNext(null);
-		return DoNext(A.Asset.Group.AllowExpression[I + 1]);
-	} else {
-		if (I == 0) return DoNext(null);
-		if (I < 0) return DoNext(A.Asset.Group.AllowExpression[A.Asset.Group.AllowExpression.length - 1]);
-		return DoNext(A.Asset.Group.AllowExpression[I - 1]);
-	}
-}
-
 // Resets the character's facial expression to the default
 function CharacterResetFacialExpression(C) {
 	for (var A = 0; A < C.Appearance.length; A++)

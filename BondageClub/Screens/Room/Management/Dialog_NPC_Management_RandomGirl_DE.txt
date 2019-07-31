@@ -613,10 +613,10 @@ Very good subbie girl.  Do not let anyone mess with your hard limits and explain
 Sehr gut, kleines Mädchen. Lass niemanden an deinen harten Limits herumspielen, und erkläre sie ausführlich.
 They are called hard limits.  Do not let anyone mess with your hard limits and explain them clearly.
 Man nennt sie harte Limits. Lass niemanden an deinen harten Limits herumspielen und erkläre sie ausführlich.
-In online chat rooms, if your owner asks you for personal or real-life information.  Do you have to provide it?
-Wenn dich deine Besitzerin in einem Online-Chatraum nach persönlichen oder realen informationen fragt, musst du diese herausgeben?
+If an online player or owner asks you for real-life information such as your name, address or phone number.  Do you provide it?
+Angenommen, ein Online-Spieler oder -Besitzer fragt dich nach realen Informationen, wie etwa nach deinem Namen, deiner Adresse oder deiner Telefonnummer. Antwortest du?
 ###_PLAYER
-No, my real life is personal.
+No, my real-life is personal.
 Nein, mein echtes Leben ist Privatsache.
 ###_NPC
 Correct, if you don't want to give any personal information, no owner can make you do it.

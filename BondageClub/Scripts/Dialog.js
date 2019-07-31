@@ -21,6 +21,7 @@ var DialogMenuButton = [];
 var DialogItemToLock = null;
 var DialogAllowBlush = false;
 var DialogAllowEyebrows = false;
+var DialogFacialExpressions = [];
 
 function DialogReputationLess(RepType, Value) { return (ReputationGet(RepType) <= Value); } // Returns TRUE if a specific reputation type is less or equal than a given value
 function DialogReputationGreater(RepType, Value) { return (ReputationGet(RepType) >= Value); } // Returns FALSE if a specific reputation type is greater or equal than a given value
@@ -231,6 +232,28 @@ function DialogInventoryBuild(C) {
 
 	}
 
+}
+
+// Build the initial state of the selection available in the facial expressions menu
+function DialogFacialExpressionsBuild() {
+	DialogFacialExpressions = [];
+	for (var I = 0; I < Player.Appearance.length; I++) {
+		var PA = Player.Appearance[I];
+		var ExpressionList = PA.Asset.Group.AllowExpression;
+		if (!ExpressionList || !ExpressionList.length) continue;
+		var Item = {};
+		Item.Appearance = PA;
+		Item.CurrentExpression = (PA.Property == null) ? null : PA.Property.Expression;
+		var Index = ExpressionList.indexOf(Item.CurrentExpression);
+		Item.MenuExpression1 = (Index < 0) ? ExpressionList[ExpressionList.length - 1] : (Index == 0) ? null : ExpressionList[Index - 1];
+		Item.MenuExpression2 = Item.CurrentExpression;
+		Item.MenuExpression3 = (Index < 0) ? ExpressionList[0] : (Index == ExpressionList.length - 1) ? null : ExpressionList[Index + 1];
+		DialogFacialExpressions.push(Item);
+	}
+	// Temporary (?) solution to make the facial elements appear in a more logical order, as their alphabetical order currently happens to match up
+	DialogFacialExpressions = DialogFacialExpressions.sort(function(a, b) {
+		return a.Appearance.Asset.Group.Name < b.Appearance.Asset.Group.Name ? -1 : a.Appearance.Asset.Group.Name > b.Appearance.Asset.Group.Name ? 1 : 0;
+	});
 }
 
 // Gets the correct label for the current operation (struggling, removing, swaping, adding, etc.)
@@ -629,14 +652,41 @@ function DialogClick() {
 	}
 
 	// If the user clicked in the facial expression menu
-	if ((CurrentCharacter != null) && (CurrentCharacter.ID == 0) && (MouseX >= 25) && (MouseX <= 475)) {
-		var Counter = 0;
-		for (var I = 0; I < Player.Appearance.length; I++) {
-			var PA = Player.Appearance[I];
-			if (!PA.Asset.Group.AllowExpression || !PA.Asset.Group.AllowExpression.length) continue;
-			if ((MouseY >= 125 + 105 * Counter) && (MouseY <= (125 + 105 * Counter) + 75))
-				CharacterCycleFacialExpression(Player, PA.Asset.Group.Name, (MouseX > 250 || CommonIsMobile));
-			Counter++;
+	if ((CurrentCharacter != null) && (CurrentCharacter.ID == 0) && (MouseX >= 25) && (MouseX <= 505)) {
+		for (var I = 0; I < DialogFacialExpressions.length; I++) {
+			var FE = DialogFacialExpressions[I];
+			if ((MouseY >= 125 + 120 * I) && (MouseY <= (125 + 120 * I) + 75)) {
+				// CharacterCycleFacialExpression(Player, PA.Asset.Group.Name, (MouseX > 250 || CommonIsMobile));
+				// Left arrow button
+				if (MouseX >= 25 && MouseX <= 70) {
+					FE.MenuExpression3 = FE.MenuExpression2;
+					FE.MenuExpression2 = FE.MenuExpression1;
+					var ExpressionList = FE.Appearance.Asset.Group.AllowExpression;
+					var Index = ExpressionList.indexOf(FE.MenuExpression1);
+					FE.MenuExpression1 = (Index < 0) ? ExpressionList[ExpressionList.length - 1] : (Index == 0) ? null : ExpressionList[Index - 1];
+				}
+				// Right arrow button
+				if (MouseX >= 460 && MouseX <= 505) {
+					FE.MenuExpression1 = FE.MenuExpression2;
+					FE.MenuExpression2 = FE.MenuExpression3;
+					var ExpressionList = FE.Appearance.Asset.Group.AllowExpression;
+					var Index = ExpressionList.indexOf(FE.MenuExpression3);
+					FE.MenuExpression3 = (Index < 0) ? ExpressionList[0] : (Index == ExpressionList.length - 1) ? null : ExpressionList[Index + 1];
+				}
+				// Expression choice
+				if (MouseX >= 100 && MouseX <= 190) {
+					CharacterSetFacialExpression(Player, FE.Appearance.Asset.Group.Name, FE.MenuExpression1);
+					FE.CurrentExpression = FE.MenuExpression1;
+				}
+				if (MouseX >= 220 && MouseX <= 310) {
+					CharacterSetFacialExpression(Player, FE.Appearance.Asset.Group.Name, FE.MenuExpression2);
+					FE.CurrentExpression = FE.MenuExpression2;
+				}
+				if (MouseX >= 340 && MouseX <= 430) {
+					CharacterSetFacialExpression(Player, FE.Appearance.Asset.Group.Name, FE.MenuExpression3);
+					FE.CurrentExpression = FE.MenuExpression3;
+				}
+			}
 		}
 	}
 
@@ -812,9 +862,9 @@ function DialogDraw() {
 
 		// Draws the intro text or dialog result
 		if ((DialogIntro() != "") && (DialogIntro() != "NOEXIT")) {
-			DrawTextWrap(SpeechGarble(CurrentCharacter, CurrentCharacter.CurrentDialog), 1025, -10, 840, 160, "white", null, 3);
+			DrawTextWrap(SpeechGarble(CurrentCharacter, CurrentCharacter.CurrentDialog), 1025, -5, 840, 165, "white", null, 3);
 			DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
-		} else DrawTextWrap(SpeechGarble(CurrentCharacter, CurrentCharacter.CurrentDialog), 1025, -10, 950, 160, "white", null, 3);
+		} else DrawTextWrap(SpeechGarble(CurrentCharacter, CurrentCharacter.CurrentDialog), 1025, -5, 950, 165, "white", null, 3);
 
 		// Draws the possible answers
 		var pos = 0;
@@ -833,21 +883,27 @@ function DialogDraw() {
 
 // Draw the menu for changing facial expressions
 function DialogDrawExpressionMenu() {
-	DrawText(DialogFind(Player, "FacialExpression"), 250, 62, "White", "Black");
-	var Counter = 0;
-	for (var I = 0; I < Player.Appearance.length; I++) {
-		var PA = Player.Appearance[I];
-		if (!PA.Asset.Group.AllowExpression || !PA.Asset.Group.AllowExpression.length) continue;
-		var expr = (PA.Property != null && PA.Property.Expression != null) ? PA.Property.Expression : "None";
-		expr = DialogFind(Player, "FacialExpression" + expr);
-		if (PA.Asset.Group.AllowExpression.length > 1) {
-			DrawBackNextButton(25, 125 + 105 * Counter, 450, 75, PA.Asset.Group.Description + ": " + expr, "White", null, 
-				() => CharacterCycleFacialExpression(Player, PA.Asset.Group.Name, false, true),
-				() => CharacterCycleFacialExpression(Player, PA.Asset.Group.Name, true, true));
-		} else {
-			var next = (PA.Property != null && PA.Property.Expression != null) ? DialogFind(Player, "FacialExpressionNone") : DialogFind(Player, "FacialExpression" + PA.Asset.Group.AllowExpression[0]);
-			DrawButton(25, 125 + 105 * Counter, 450, 75, PA.Asset.Group.Description + ": " + expr, "White", null, next);
-		}
-		Counter++;
+	DrawText(DialogFind(Player, "FacialExpression"), 265, 62, "White", "Black");
+	if (!DialogFacialExpressions || !DialogFacialExpressions.length) DialogFacialExpressionsBuild();
+	for (var I = 0; I < DialogFacialExpressions.length; I++) {
+		var FE = DialogFacialExpressions[I];
+		var OffsetY = 125 + 120 * I;
+		// Draw the back and forth arrow buttons
+		DrawButton(25, OffsetY, 45, 90, "", "White");
+		MainCanvas.beginPath();
+		MainCanvas.moveTo(55, OffsetY + 15);
+		MainCanvas.lineTo(40, OffsetY + 45);
+		MainCanvas.lineTo(55, OffsetY + 75);
+		MainCanvas.stroke();
+		DrawButton(460, OffsetY, 45, 90, "", "White");
+		MainCanvas.beginPath();
+		MainCanvas.moveTo(475, OffsetY + 15);
+		MainCanvas.lineTo(490, OffsetY + 45);
+		MainCanvas.lineTo(475, OffsetY + 75);
+		MainCanvas.stroke();
+		// Draw the selection of facial expressions at current scroll position
+		DrawButton(100, OffsetY, 90, 90, "", (FE.MenuExpression1 == FE.CurrentExpression ? "Pink" : "White"), "Assets/Female3DCG/" + FE.Appearance.Asset.Group.Name + (FE.MenuExpression1 ? "/" + FE.MenuExpression1 : "") + "/Icon.png");
+		DrawButton(220, OffsetY, 90, 90, "", (FE.MenuExpression2 == FE.CurrentExpression ? "Pink" : "White"), "Assets/Female3DCG/" + FE.Appearance.Asset.Group.Name + (FE.MenuExpression2 ? "/" + FE.MenuExpression2 : "") + "/Icon.png");
+		DrawButton(340, OffsetY, 90, 90, "", (FE.MenuExpression3 == FE.CurrentExpression ? "Pink" : "White"), "Assets/Female3DCG/" + FE.Appearance.Asset.Group.Name + (FE.MenuExpression3 ? "/" + FE.MenuExpression3 : "") + "/Icon.png");
 	}
 }
