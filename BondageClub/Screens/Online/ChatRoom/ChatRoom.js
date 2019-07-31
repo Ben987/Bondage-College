@@ -354,7 +354,7 @@ function ChatRoomMessage(data) {
 			if ((data.Type != null) && (data.Type == "Chat")) {
         // If the Player is deaf, speech garbling is applied to incoming messages.
 				if(Player.IsDeaf) {
-					msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + DeafSpeechGarble(Player, msg);
+					msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + SpeechGarble(Player, msg);
 				} else {
 					msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + msg;
 				}
