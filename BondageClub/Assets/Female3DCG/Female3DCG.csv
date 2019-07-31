@@ -251,6 +251,7 @@ ItemArms,StraitLeotard,Latex Strait Leotard
 ItemArms,Paw Mittens,Kitty Paw Mittens
 ItemArms,DuctTape,Duct Tape
 ItemArms,BitchSuit,Bitchsuit
+ItemArms,CollarLeashHolding,Holding Leash
 ItemNeck,,Neck
 ItemNeck,LeatherCollar,Leather Collar
 ItemNeck,LeatherCollarBell,Leather Collar
@@ -259,11 +260,15 @@ ItemNeck,SlaveCollar,Slave Collar
 ItemNeck,ClubSlaveCollar,Club Slave Collar
 ItemNeck,ShockCollar,Shock Collar
 ItemNeck,ShockCollarRemote,Shock Collar Remote
+ItemNeckAccessories,,Neck
 ItemNeckAccessories,CollarBell,Bell
 ItemNeckAccessories,CollarBow,Bow
 ItemNeckAccessories,CollarShockUnit,Shock Unit
-ItemNeckAccessories,CollarChain,Chain
+ItemNeckAccessories,ShockCollarRemote,Shock Collar Remote
+ItemNeckAccessories,CollarChainLong,Long Chain
+ItemNeckAccessories,CollarChainShort,Short Chain
 ItemNeckAccessories,CollarLeash,Leash
+ItemNeckAccessories,CollarLeashTaken,Pulled Leash
 ItemMouth,,Mouth
 ItemMouth,ClothGag,Cloth Gag
 ItemMouth,WiffleGag,Wiffle Ball Gag
