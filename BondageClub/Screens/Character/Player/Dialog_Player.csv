@@ -115,7 +115,7 @@ PlugGagMouthTypePlug,,,Plugged
 PlugGagMouthTypeOpen,,,Open
 PlugGagMouthSetPlug,,,SourceCharacter plugs up DestinationCharacter's mouth.
 PlugGagMouthSetOpen,,,SourceCharacter pulls out DestinationCharacter's plug from her gag.
-SelectBlindType,,,Select the type of Blindfold
+SelectBlindType,,,Select the type of blindfold
 DuctTapeHeadTypeDouble,,,Double
 DuctTapeHeadTypeWrap,,,Wrap
 DuctTapeHeadSetDouble,,,SourceCharacter takes a piece of duct tape for DestinationCharacter's and place on her face.
