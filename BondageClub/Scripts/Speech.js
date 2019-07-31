@@ -172,3 +172,52 @@ function SpeechBabyTalk(C, CD) {
 	// Not drunk the milk, we return the regular text
 	return CD;
 }
+
+// Garbles messages if the Character is deaf
+function DeafSpeechGarble(C, CD) {
+	if (CD == null) CD = "";
+
+	var Par = false;
+	var NS = "";
+
+	// Normal garble, keep vowels and a few letters the same
+	if(C.Effect.indexOf("DeafLight") >= 0) {
+		for (var L = 0; L < CD.length; L++) {
+			var H = CD.charAt(L).toLowerCase();
+			if (H == "(") Par = true;
+			if (!Par) {
+				if (H == "v" || H == "b" || H == "c" || H == "t") NS = NS + "e";
+				if (H == "q" || H == "k" || H == "x") NS = NS + "k";
+				if (H == "w" || H == "y" || H == "j" || H == "l" || H == "r") NS = NS + "a";
+				if (H == "s" || H == "z") NS = NS + "h";
+				if (H == "d" || H == "f") NS = NS + "m";
+				if (H == "p") NS = NS + "f";
+				if (H == "g") NS = NS + "n";
+				if (H == " " || H == "!" || H == "?" || H == "." || H == "a" || H == "e" || H == "i" || H == "o" || H == "u" || H == "m" || H == "n" || H == "h") NS = NS + H;
+			} else NS = NS + CD.charAt(L);
+			if (H == ")") Par = false;
+		}
+		return NS;
+	}
+
+	// Heavy garble - Almost no letter stays the same
+	if (C.Effect.indexOf("DeafHeavy") >= 0) {
+		for (var L = 0; L < CD.length; L++) {
+			var H = CD.charAt(L).toLowerCase();
+			if (H == "(") Par = true;
+			if (!Par) {
+				if (H == "a" || H == "e" || H == "i" || H == "o" || H == "u" || H == "y" || H == "t") NS = NS + "e";
+				if (H == "c" || H == "q" || H == "x") NS = NS + "k";
+				if (H == "j" || H == "k" || H == "l" || H == "r" || H == "w") NS = NS + "a";
+				if (H == "s" || H == "z" || H == "h") NS = NS + "h";
+				if (H == "b" || H == "p" || H == "v") NS = NS + "f";
+				if (H == "d" || H == "f" || H == "g" || H == "n" || H == "m") NS = NS + "m";
+				if (H == " " || H == "." || H == "?" || H == "!") NS = NS + H;
+			} else NS = NS + CD.charAt(L);
+			if (H == ")") Par = false;
+		}
+		return NS;
+	}
+
+	return CD;
+}
