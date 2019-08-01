@@ -1002,6 +1002,10 @@ PunishCell,1000,It's fair Mistress.  (Go to the cell.),,RunPunishment(1),,,
 2010,,Let's chat.  (Spend time to chat with her.),(You spend some time chit-chatting together.  It's fun but she politely lets you know that you could be more productive.),,,SubTimeChitChat,Serious|Polite
 2010,,Let's chat.  (Spend time to chat with her.),"(You two talk about politic, science and human nature.  It's different from the club kinks but still very interesting.)",NPCInteraction(1),,SubTimeChitChat,Frigid|Wise
 2010,,Let's chat.  (Spend time to chat with her.),"(You try to have a meaningful conversation, but it doesn't go anywhere.  All she seems to focus on is sex.)",NPCInteraction(-1),,SubTimeChitChat,Horny|Dumb
+2010,2050,Have you visited the slave market?,(She seems worried.)  I've went there a few times Mistress.  Why are you asking?,NPCInteraction(-2),CanSellSlave(),SubSlaveMarket,
+2010,2050,Have you visited the slave market?,"(She frowns.)  I know that some owner sells their slaves on the market.  But our relationship is stronger than that, isn't it?",NPCInteraction(-4),CanSellSlave(),SubSlaveMarket,Serious
+2010,2050,Have you visited the slave market?,(She nods.)  Yes!  I've seen some slaves on display there.  It must be quite a thrill.,,CanSellSlave(),SubSlaveMarket,Playful
+2010,,Have you visited the slave market?,"(She pouts.)  Don't you dare try to sell me!  Kick me out instead, I'm not happy in here anyway.",NPCInteraction(-5),CannotSellSlave(),,
 2010,2030,You should go.,Mistress?  You want me to leave now?  This is the end between us?,,,SubKickOut,
 2010,2030,You should go.,Is the bell tolling on our relationship Mistress?  Is this the end of the epic tale that we've shared?,,,SubKickOut,Wise|Polite
 2010,2030,You should go.,What the fuck?  You're kicking me out?  It's the end?,,,SubKickOut,Rude|Dumb
@@ -1039,6 +1043,26 @@ PunishCell,1000,It's fair Mistress.  (Go to the cell.),,RunPunishment(1),,,
 2040,2000,Stay like that.,Yes Mistress.  What would you like to do then?,,,,
 2041,2000,"Yes, here's the money.  (Pay 50$ to shop.)",,"Change(""Custom"")",DialogMoneyGreater(50),,
 2041,2000,Forget it.  It's too expensive.,Yes Mistress.  What would you like to do then?,,,,
+2050,,Would you like to be auctioned?,I'm not sure I would like it.  Are you sure this is a good idea Mistress?,,,SubSlaveMarketLikeAuction,
+2050,,Would you like to be auctioned?,I've made vows to remain loyal to you Mistress.  I wouldn't want to break them.,,,SubSlaveMarketLikeAuction,Serious
+2050,,Would you like to be auctioned?,I love kinky adventures and being sold must be quite a thrill.,,,SubSlaveMarketLikeAuction,Playful
+2050,2051,I'm thinking about renting you for a day.,(She seems unsure about the idea.)  Really?  You will rent me at the auction house?,,,SubSlaveMarketRent,
+2050,2051,I'm thinking about renting you for a day.,"(She looks preoccupied.)  Mistress, do you know the proverb: ""out of sight, out of mind""?  Are you sure it won't damage our relationship?",,,SubSlaveMarketRent,Wise
+2050,2051,I'm thinking about renting you for a day.,(She seems confused.)  Renting?  Like a car?  Are you sure this is ok?,,,SubSlaveMarketRent,Dumb
+2050,2055,I will sell you permanantly.,(She seems really sad.)  I'm sorry to hear that.  This is how we break up Mistress?,,,SubSlaveMarketSell,
+2050,2055,I will sell you permanantly.,(She looks furious.)  So that's how it ends?  Money is more important than me?,,,SubSlaveMarketSell,Violent
+2050,2055,I will sell you permanantly.,(She starts crying.)  Really Mistress?  This is the end between us?  You don't want me anymore?,,,SubSlaveMarketSell,Peaceful
+2050,2010,Let's talk about something else.,Yes Mistress.  What's on your mind?,,,,
+2051,2052,Yes.  I will rent you for a day.,"(She sighs.)  Yes Mistress, I'm not very happy about it but it's your decision.",NPCInteraction(-20),,SubSlaveMarketRentStart,
+2051,2052,Yes.  I will rent you for a day.,,NPCInteraction(-30),,SubSlaveMarketRentStart,Serious
+2051,2052,Yes.  I will rent you for a day.,,NPCInteraction(-10),,SubSlaveMarketRentStart,Playful
+2051,2010,No.  Let's forget it.,Alright!  Is there anything else you'd like to talk about?,,,,
+2052,2000,(Rent her at the slave market.),,"SlaveMarketStart(""Rent"")",,,
+2055,2056,Yes.  I will sell and release you.,(She sighs.)  This is devastating.  At least now I might find a better BDSM match.,,,SubSlaveMarketSellStart,
+2055,2056,Yes.  I will sell and release you.,(She shakes her head.)  Fine!  If you don't want me then you don't deserve me.  I'm sure I'll find a better owner.,,,SubSlaveMarketSellStart,Serious
+2055,2056,Yes.  I will sell and release you.,(She shrugs.)  I guess it was a fun ride while it lasted.  I'm sure I'll find a good owner.,,,SubSlaveMarketSellStart,Playful
+2055,2010,No.  Let's forget it.,You had me really worried Mistress.  Is there anything else you'd like to talk about?,NPCInteraction(-10),,,
+2056,2000,(Sell her at the slave market.),,"SlaveMarketStart(""Sell"")",,,
 2100,,,What would you like to do Mistress?,,,,
 2100,,(Tickle her.),"(You tickle her on the ribs and tummy.  She seems to enjoy it and cannot resist laughing.)  Hehehe, it tickles!",,Player.CanInteract(),SubPlayTickle,
 2100,,(Tickle her.),(You tickle her on the ribs and tummy.  She laughs out loud and almost cries.)  Eeeeeaaahahaha!  You're so funnyyyyahaha!,NPCInteraction(1),Player.CanInteract(),SubPlayTickle,Playful|Peaceful

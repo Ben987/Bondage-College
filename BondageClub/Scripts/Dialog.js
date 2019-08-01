@@ -779,6 +779,9 @@ function DialogDrawItemMenu(C) {
 			if (DialogProgressNextItem == null) InventoryRemove(C, C.FocusGroup.Name);
 			else InventoryWear(C, DialogProgressNextItem.Asset.Name, DialogProgressNextItem.Asset.Group.Name, (DialogColorSelect == null) ? "Default" : DialogColorSelect, SkillGetLevel(Player, "Bondage"));
 
+			// remove associated items at the same time
+			if (InventoryGet(C, "ItemNeck") == null) InventoryRemove(C, "ItemNeckAccessories")
+
 			// The player can use another item right away, for another character we jump back to her reaction
 			if (C.ID == 0) {
 				if (DialogProgressNextItem == null) SkillProgress("Evasion", DialogProgressSkill);
