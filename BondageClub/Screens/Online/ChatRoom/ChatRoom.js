@@ -18,6 +18,7 @@ function ChatRoomCanAddFriend() { return ((CurrentCharacter != null) && (Current
 function ChatRoomCanRemoveFriend() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.FriendList.indexOf(CurrentCharacter.MemberNumber) >= 0)) }
 function ChatRoomCanChangeClothes() { return (Player.CanInteract() && (CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && CurrentCharacter.AllowItem && !((InventoryGet(CurrentCharacter, "ItemNeck") != null) && (InventoryGet(CurrentCharacter, "ItemNeck").Asset.Name == "ClubSlaveCollar"))) }
 function ChatRoomOwnershipOptionIs(Option) { return (Option == ChatRoomOwnershipOption) }
+function ChatRoomCanTakeDrink() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (CurrentCharacter.ID != 0) && Player.CanInteract() && (InventoryGet(CurrentCharacter, "ItemMisc") != null) && (InventoryGet(CurrentCharacter, "ItemMisc").Asset.Name == "WoodenMaidTrayFull")) }
 
 // Creates the chat room input elements
 function ChatRoomCreateElement() {
@@ -78,7 +79,7 @@ function ChatRoomDrawCharacter(DoClick) {
 	for (var C = 0; C < ChatRoomCharacter.length; C++)
 		if (DoClick) {
 			if ((MouseX >= (C % 5) * Space + X) && (MouseX <= (C % 5) * Space + X + 450 * Zoom) && (MouseY >= Y + Math.floor(C / 5) * 500) && (MouseY <= Y + Math.floor(C / 5) * 500 + 1000 * Zoom)) {
-				if (MouseY <= Y + Math.floor(C / 5) * 500 + 950 * Zoom) {
+				if (MouseY <= Y + Math.floor(C / 5) * 500 + 900 * Zoom) {
 					ElementRemove("InputChat");
 					ElementRemove("TextAreaChatLog");
 					ChatRoomBackground = ChatRoomData.Background;
@@ -334,12 +335,19 @@ function ChatRoomMessage(data) {
 		
 		// If we found the sender
 		if (SenderCharacter != null) {
-	
-			var msg = data.Content;
 
 			// Replace < and > characters to prevent HTML injections
+			var msg = data.Content;
 			while (msg.indexOf("<") > -1) msg = msg.replace("<", "&lt;");
 			while (msg.indexOf(">") > -1) msg = msg.replace(">", "&gt;");
+
+			// Hidden messages are processed separately, they are used by chat room mini-games
+			if ((data.Type != null) && (data.Type == "Hidden")) {
+				if (msg == "MaidDrinkPick0") MaidQuartersOnlineDrinkPick(data.Sender, 0);
+				if (msg == "MaidDrinkPick5") MaidQuartersOnlineDrinkPick(data.Sender, 5);
+				if (msg == "MaidDrinkPick10") MaidQuartersOnlineDrinkPick(data.Sender, 10);
+				return;
+			}
 
 			// Builds the message to add depending on the type
 			if ((data.Type != null) && (data.Type == "Chat")) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + msg;
@@ -405,9 +413,9 @@ function ChatRoomCanBanUser() {
 }
 
 // Sends a ban command to the server for the current character, if the player is the room creator
-function ChatRoomBanFromRoom() {
+function ChatRoomBanFromRoom(Action) {
 	if ((CurrentCharacter != null) && (CurrentCharacter.ID != 0) && (Player.OnlineID == ChatRoomData.CreatorID)) {
-		ServerSend("ChatRoomBan", CurrentCharacter.AccountName.replace("Online-", ""));
+		ServerSend("ChatRoom" + Action, CurrentCharacter.AccountName.replace("Online-", ""));
 		DialogLeave();
 	}
 }
@@ -458,4 +466,14 @@ function ChatRoomSendOwnershipRequest(RequestType) {
 	ChatRoomOwnershipOption = "";
 	ServerSend("AccountOwnership", { MemberNumber: CurrentCharacter.MemberNumber, Action: RequestType });
 	if (RequestType == "Accept") DialogLeave();
+}
+
+// When the player picks a drink from a maid platter
+function ChatRoomDrinkPick(DrinkType, Money) {
+	if (ChatRoomCanTakeDrink()) {
+		ServerSend("ChatRoomChat", { Content: Player.Name + " " + DialogFind(CurrentCharacter, "MaidDrinkPick" + DrinkType), Type: "Action" } );
+		ServerSend("ChatRoomChat", { Content: "MaidDrinkPick" + Money.toString(), Type: "Hidden", Target: CurrentCharacter.MemberNumber } );
+		CharacterChangeMoney(Player, Money * -1);
+		DialogLeave();
+	}
 }

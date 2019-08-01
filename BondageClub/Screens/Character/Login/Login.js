@@ -4,7 +4,7 @@ var LoginMessage = "";
 var LoginCredits = null;
 var LoginCreditsPosition = 0;
 var LoginThankYou = "";
-var LoginThankYouList = ["Alvin", "Bryce", "Christian", "Designated", "Dick", "Escurse", "EugeneTooms", "James", "Jenni", "Jyeoh", "Karel", "Kitten", "Laioken", "Michal", "Mindtie", 
+var LoginThankYouList = ["Alvin", "Bryce", "Christian", "Desch", "Designated", "Escurse", "EugeneTooms", "Jenni", "Karel", "Kitten", "Laioken", "Michal", "Mindtie", 
 						"MunchyCat", "Nick", "Overlord", "Rashiash", "Ryner", "Setsu95", "Shadow", "Shaun", "Simeon", "Sky", "Terry", "William", "Winterisbest", "Xepherio"];
 var LoginThankYouNext = 0;
 
@@ -168,21 +168,29 @@ function LoginResponse(C) {
 
 			// Fixes a few items
 			InventoryRemove(Player, "ItemMisc");
+			if (LogQuery("JoinedSorority", "Maid") && !InventoryAvailable(Player, "MaidOutfit2", "Cloth")) InventoryAdd(Player, "MaidOutfit2", "Cloth");
 			if ((InventoryGet(Player, "ItemArms") != null) && (InventoryGet(Player, "ItemArms").Asset.Name == "FourLimbsShackles")) InventoryRemove(Player, "ItemArms");
 			LoginValidCollar();
 
-			// If the player must start in her room, in her cage
-			if (LogQuery("SleepCage", "Rule") && (Player.Owner != "") && PrivateOwnerInRoom()) {
-				InventoryRemove(Player, "ItemFeet");
-				InventoryRemove(Player, "ItemLegs");
-				Player.Cage = true;
-				CharacterSetActivePose(Player, "Kneel");
-				CommonSetScreen("Room", "Private");
-			} else CommonSetScreen("Room", "MainHall");
-			
-			if(LogQuery("JoinedSorority", "Maid") && !InventoryAvailable(Player, "MaidOutfit2", "Cloth")){
-				InventoryAdd(Player, "MaidOutfit2", "Cloth");
+			// If the player must log back in the cell
+			if (LogQuery("Locked", "Cell")) {
+				CommonSetScreen("Room", "Cell");
+			} else {
+
+				// If the player must start in her room, in her cage
+				if (LogQuery("SleepCage", "Rule") && (Player.Owner != "") && PrivateOwnerInRoom()) {
+					InventoryRemove(Player, "ItemFeet");
+					InventoryRemove(Player, "ItemLegs");
+					Player.Cage = true;
+					CharacterSetActivePose(Player, "Kneel");
+					CommonSetScreen("Room", "Private");
+				} else {
+					CommonSetScreen("Room", "MainHall");
+					MainHallMaidIntroduction();
+				}
+
 			}
+
 		} else LoginMessage = TextGet("ErrorLoadingCharacterData");
 	} else LoginMessage = TextGet(C);
 

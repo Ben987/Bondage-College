@@ -5,17 +5,23 @@ Brauchst du Hilfe? Nicke, wenn ja.
 (DialogCharacterName kommt, um erneut nach dir zu sehen.) Schon wieder in Schwierigkeiten? Brauchst du Hilfe?
 Still in trouble, are we?  Have you learned your lesson?  Nod if you did.
 Immer noch in der Klemme, was? Hast du deine Lektion gelernt? Nicke, wenn ja.
-It seems that you need to learn a lesson. (She grabs your arms and forces them in a armbinder.  She then gets a gag and silences you.)
+It seems that you need to learn a lesson. (She grabs your arms and forces them in an armbinder.  She then gets a gag and silences you.)
 Du solltest wohl eine Lektion lernen. (Sie zwängt deine Arme in einen Monohandschuh und bringt dich mit einem Knebel zum Schweigen.)
 (She gulps and bows her head.)  Yes Miss.  Sorry Miss.
 (Sie schluckt und senkt ihren Blick.) Ja, Miss. Verzeihung, Miss.
 I'm sorry Miss.  I cannot help you now.
 Es tut mir leid, Miss. Ich kann gerade nicht helfen.
+(A maid taps on your shoulder.)  Slave girl, why aren't you naked?
+(Ein Hausmädchen tippt dir auf die Schulter.) Sklavenmädchen, warum bist du nicht nackt?
+(A maid greets you as you enter the hall.)  Can I have a word with you Miss DialogPlayerName?
+(Ein Hausmädchen begrüßt dich, als du den Raum betrittst.) Dürfte ich Sie kurz sprechen, Miss DialogPlayerName?
+(The maid leaves you with Club Mistress.)  We Mistresses have been speaking.  It seems you're not fit to wear the heels anymore.
+(Das Hausmädchen lässt dich mit der Club-Herrin allein.) Wir Herrinnen haben uns unterhalten. Es scheint, als wärst du nicht mehr für die hohen Absätze geeignet.
 (She gives a curious look at the gag but doesn't resist as you silence her.)
 (Sie betrachtet den Knebel verwundert, wehrt sich aber nicht, als du sie zum Schweigen bringst.)
 (You remove her gag slowly.)  Thanks Miss, it will be easier to do my job.
 (Du nimmst den Knebel langsam ab.) Danke, Miss, so wird mir meine Arbeit leichter fallen.
-(She nods and turns around as you restrain her arms securely.)  It will be a kinky work day.
+(She nods and turns around as you restrain her arms securely.)  It will be a kinky workday.
 (Sie nickt und dreht sich um, damit du ihre Arme festmachen kannst.) Das wird ein lustiger Arbeitstag.
 (You free her arms and she stretches.)  Thanks head maid DialogPlayerName, this will make my work easier.
 (Du befreist ihre Arme und sie streckt sich.) Danke, Hausdame DialogPlayerName, das erleichtert meine Arbeit.
@@ -35,7 +41,7 @@ Es tut mir leid, Miss. Ich kann gerade nicht helfen.
 (Sie runzelt die Stirn, als du das Teil verschließt.) Hoffentlich nehmen Sie das nach meiner Schicht wieder ab, Miss.
 (She nods happily as you unlock the device.)  Yes!  That's very nice of you Miss.
 (Sie nickt fröhlich, als du das Teil aufschließt.) Ja! Das ist sehr nett von Ihnen, Miss.
-(You strap the device on her head as she mumbles.)  It will be a kinky work day it seems.
+(You strap the device on her head as she mumbles.)  It will be a kinky workday it seems.
 (Du schnallst ihr das Ding um den Kopf und sie murmelt.) Das wird wohl ein lustiger Arbeitstag.
 (You remove the device and she nods slowly.)  You're the best head maid DialogPlayerName.
 (Du nimmst das Ding ab und sie nickt langsam.) Sie sind die Beste, Hausdame DialogPlayerName.
@@ -74,6 +80,12 @@ Ja, kannst du mich befreien?
 (She checks your locks and frowns.)  Is that an owner lock?  Your Mistress might not be pleased if I release you.
 (Sie betrachtet deine Schlösser und runzelt die Stirn.) Ist das ein Besitzer-Schloss? Deiner Herrin könnte es nicht gefallen, wenn ich dich befreie.
 ###_PLAYER
+I'm fine.  But I have questions on the club.
+Alles in Ordnung. Aber ich habe Fragen zum Club.
+###_NPC
+Sure.  What would you like to know?
+Sicher. Was möchtest du wissen?
+###_PLAYER
 Get lost girl!
 Hau ab, Mädchen!
 ###_NPC
@@ -100,14 +112,16 @@ Ich schulde dir was, ruf mich, wenn du ein Problem hast.
 (She giggles.)  Very well, I'll be around if you need help again.
 (Sie kichert.) Sehr wohl, ich bin in der Nähe, falls du wieder Hilfe brauchst.
 ###_PLAYER
+Take care!  (Leave her.)
+Mach's gut! (Dialog beenden.)
+I have some questions on the club.
+Ich habe ein paar Fragen über den Club.
 Can this slave ask you something else?
 Darf diese Sklavin noch eine Frage stellen?
 ###_NPC
 Of course little club slave.  How can I help you?
 Natürlich, kleine Clubsklavin. Was kann ich für dich tun?
 ###_PLAYER
-Take care!  (Leave her.)
-Mach's gut! (Dialog beenden.)
 A club customer reserved a bedroom to punish me.
 Jemand hat ein Zimmer reserviert, um mich zu bestrafen.
 ###_NPC
@@ -119,7 +133,7 @@ Nichts, es geht schon. (Dialog beenden.)
 There's already a girl chained on the bed.
 Da ist schon ein Mädchen ans Bett gekettet.
 ###_NPC
-I understand, we can't have unhappy customers can we?  I'll go release her.
+I understand, we can't have unhappy customers, can we?  I'll go release her.
 Ich verstehe, wir wollen ja nicht, dass ein Kunde unzufrieden ist, oder? Ich gehe sie befreien.
 ###_PLAYER
 You're the best!  (Leave her.)
@@ -170,5 +184,247 @@ Fine, I'm going then.  (Leave her.)
 Gut, ich geh dann mal. (Dialog beenden.)
 (Grumble and leave.)
 (Grummeln und gehen.)
+Why do you care?
+Was geht dich das an?
+###_NPC
+I'm doing my job.  Club slaves must stay naked, let me help you to strip.
+Ich mache nur meine Arbeit. Club-Sklavinnen müssen stets nackt sein, lass mich dir beim Ausziehen helfen.
+###_PLAYER
+Oops!  I forgot the rule.
+Ups! Die Regel hab ich vergessen.
+###_NPC
+Rules are important.  Club slaves must stay naked, let me help you to strip.
+Regeln sind wichtig. Club-Sklavinnen müssen stets nackt sein, lass mich dir beim Ausziehen helfen.
+###_PLAYER
+Sorry.  I was tricked by someone.
+Tut mir leid. Jemand hat mir einen Streich gespielt.
+###_NPC
+Make sure to remember the rules.  Club slaves must stay naked, let me help you to strip.
+Denke immer an die Regeln. Club-Sklavinnen müssen stets nackt sein, lass mich dir beim Ausziehen helfen.
+###_PLAYER
+(Look surprised.)
+(Überrascht gucken.)
+(Look ashamed.)
+(Beschämt gucken.)
+(Shake your head no.)
+(Deinen Kopf schütteln.)
+Alright then.
+Na gut.
+###_NPC
+(She nods and slowly strips you down.)  Since you broke the rule, I will reset your hour of duty.  You must redo it fully.
+(Sie nickt und zieht dich langsam aus.) Da du die Regel gebrochen hast, setze ich deine Pflichtzeit zurück. Du musst die gesamte Stunde nachholen.
+###_PLAYER
+That sucks.
+So ein Dreck.
+###_NPC
+(She sighs and slowly strips you down.)  Since you broke the rule, I will reset your hour of duty.  You must redo it fully.
+(Sie seufzt und zieht dich langsam aus.) Da du die Regel gebrochen hast, setze ich deine Pflichtzeit zurück. Du musst die gesamte Stunde nachholen.
+###_PLAYER
+(Grumble a little.)
+(Etwas grummeln.)
+(Comply and help her.)
+(Dich fügen und ihr helfen.)
+This is unfair!
+Das ist unfair!
+###_NPC
+You should have read your contract girl.  I need to go now.
+Du hättest dir den Vertrag durchlesen sollen, Mädchen. Ich muss jetzt gehen.
+###_PLAYER
+I understand.
+Ich verstehe.
+###_NPC
+Very well.  I need to go now.
+Sehr schön. Ich muss jetzt gehen.
+###_PLAYER
+(Nod slowly.)
+(Langsam nicken.)
+(Grumble in disagreement.)
+(Unzufrieden grummeln.)
+Wait!  Can you release me first?
+Moment! Kannst du mich vorher befreien?
+###_NPC
+No!  Struggle some more, I'll be back later.
+Nein! Du darfst noch etwas zappeln, ich komme später zurück.
+###_PLAYER
+(Struggle and beg for help.)
+(Zappeln und um Hilfe betteln.)
+###_NPC
+Keep on struggling girl, I might help you later.
+Mach weiter so, Mädchen, vielleicht helfe ich dir dann später.
+###_PLAYER
+Thank you for your time.
+Danke für deine Zeit.
+###_NPC
+Don't mention it.  I'm simply doing my job.
+Nicht der Rede wert. Ich mache nur meine Arbeit.
+###_PLAYER
+(Leave her.)
+(Dialog beenden.)
+What do you want?
+Was willst du?
+###_NPC
+I was informed that the club management Mistresses want to meet you.
+Mir wurde mitgeteilt, dass die Herrinnen im Club-Management nach Ihnen suchen.
+###_PLAYER
+Make it quick.
+Fass dich kurz.
+###_NPC
+Yes Miss.  (She gulps.)  I was informed that the club management Mistresses want to meet you.
+Jawohl, Miss. (Sie schluckt.) Mir wurde mitgeteilt, dass die Herrinnen im Club-Management nach Ihnen suchen.
+###_PLAYER
+(Stay silent.)
+(Schweigen.)
+###_NPC
+Miss, I was informed that the club management Mistresses want to meet you.
+Miss, mir wurde mitgeteilt, dass die Herrinnen im Club-Management nach Ihnen suchen.
+###_PLAYER
+Why is that?
+Warum das denn?
+###_NPC
+I don't know Miss, but I was told to bring you there right away.
+Ich weiß es nicht, Miss, aber mir wurde aufgetragen, Sie sofort dorthin zu begleiten.
+###_PLAYER
+I don't have time for that.
+Dafür habe ich keine Zeit.
+###_NPC
+Miss, it's very important.  They told me to bring you there right away.
+Miss, es ist von äußerster Dringlichkeit. Mir wurde aufgetragn, Sie sofort dorthin zu begleiten.
+###_PLAYER
+Let's go see them.
+Dann besuchen wir sie mal.
+###_NPC
+Absolutely, please come with me.
+Selbstverständlich, bitte folgen Sie mir.
+###_PLAYER
+Fine, let's go.  (Meet a Club Mistress.)
+Na gut, gehen wir. (Mit einer Club-Herrin sprechen.)
+(Walk with her to a Club Mistress.)
+(Ihr zu einer Club-Herrin folgen.)
 (Frown and leave her.)
-(Die Stirn runzeln und sie verlassen.)
+(Die Stirn runzeln und Dialog beenden.)
+Yes, it's my very first time.
+Ja, das ist mein erster Besuch.
+###_NPC
+It's fine.  I have a few important questions before I let you in, and I need honest answers.
+Kein Problem. Bevor ich dich hereinlasse, habe ich ein paar wichtige Fragen an dich, und erwarte ehrliche Antworten.
+###_PLAYER
+No, I've been here before.
+Nein, ich war schon mal hier.
+###_NPC
+Very well.  Before I let you in, we need to review the most important rules.  Will you give me honest answers?
+Nun gut. Bevor ich dich hereinlasse, müssen wir die wichtigsten Regeln durchgehen. Wirst du mir ehrliche Antworten geben?
+###_PLAYER
+Yes.  I will be honest.
+Ja, ich werde ehrlich sein.
+###_NPC
+First, I need to make sure that you're an adult.  This place isn't for minors.  Are you an adult in your country?
+Zunächst muss ich mich vergewissern, dass du erwachsen bist. Dies ist kein Ort für Minderjährige. Bist du in deinem Land volljährig?
+###_PLAYER
+No.  I lie all the time.
+Nein. Ich lüge andauernd.
+###_NPC
+I'm sorry, but I must kick you out of the club.  Look around, the exit is marked with an "x".  (Please close the game.)
+Es tut mir leid, aber ich muss dich leider vom Gelände weisen. Sieh dich um, der Ausgang ist mit einem "X" markiert. (Bitte schließe das Spiel.)
+###_PLAYER
+I'm an adult.
+Ich bin erwachsen.
+###_NPC
+(She nods.)  You understand that this is a BDSM club?  People from everywhere come to experience bondage, domination, discipline and more.
+(Sie nickt.) Du bist dir darüber im Klaren, dass das hier ein BDSM-Club ist? Menschen aus aller Welt kommen her wegen Bondage, Dominanz, Disziplin und mehr.
+###_PLAYER
+I'm a minor.
+Ich bin minderjährig.
+I'm fine with BDSM.
+BDSM geht für mich in Ordnung.
+###_NPC
+(She smiles.)  Not everyone has the same kinks, but you must respect everyone fetishes and be open-minded.
+(Sie lächelt.) Nicht alle stehen auf dasselbe, aber du musst die Fetische aller Mitglieder respektieren und ihnen gegenüber aufgeschlossen sein.
+###_PLAYER
+BDSM isn't for me.
+BDSM ist nichts für mich.
+I will be respectful and open-minded.
+Ich werde respektvoll und offen sein.
+###_NPC
+BDSM is and must remain consensual.  When you meet other members, you must always respect them and their limits.  Don't restrain them randomly.
+BDSM ist und muss einvernehmlich bleiben. Wenn du anderen Mitgliedern begegnest, musst du sie und ihre Limits stets respektieren. Fessele nicht einfach drauflos.
+###_PLAYER
+I don't respect other people fetishes.
+Ich habe keinen Respekt für die Fetische Anderer.
+Everything will be consensual, and I will respect limits.
+Alles bleibt einvernehmlich, ich respektiere alle Limits.
+###_NPC
+(She nods.)  Your real-life well being is what matters most.  Never do anything that could harm you such as real-life asphyxiation or self-bondage.
+(Sie nickt.) Dein Wohlergehen in der Realität ist wichtiger als alles andere. Tue nie etwas, das dir im echten Leben schaden könnte, wie etwa dich selbst ersticken oder fesseln.
+###_PLAYER
+I don't care about limits.
+Limits sind mir egal.
+I will stay safe when I play.
+Ich achte beim Spielen auf meine Sicherheit.
+###_NPC
+Great!  Your online security is also important.  Never give your account name, password, real name, phone number or any personal information to anyone.
+Super! Deine Online-Sicherheit ist ebenfalls wichtig. Verrate nie jemandem deinen Account-Namen, dein Passwort, deinen echten Namen, deine Telefonnummer, oder andere persönliche Daten.
+###_PLAYER
+I like danger too much.
+Ich liebe die Gefahr viel zu sehr.
+My personal information will stay personal.
+Meine privaten Daten bleiben privat.
+###_NPC
+Some people cheat and take shortcuts.  If you do cheat, promise me you will only do it for yourself and not ruin the experience of other members.
+Einige Leute benutzen Cheats oder Hintertüren. Falls du schummelst, versprich mir, dass es nur dich betrifft und den anderen Mitgliedern nicht den Spaß verdirbt.
+###_PLAYER
+I prefer sharing my information.
+Ich gebe meine Daten gern weiter.
+I will never cheat.
+Ich werde niemals Cheats benutzen.
+###_NPC
+Excellent!  You're free to explore the club now.  Do you have any more questions?
+Ausgezeichnet! Du darfst dich nun frei im Club umschauen. Hast du noch weitere Fragen?
+###_PLAYER
+I won't use exploits against others.
+Ich werde Cheats nicht gegen Andere einsetzen.
+I'll do what I want.
+Ich mache, was ich will.
+Where should I begin?
+Wo sollte ich anfangen?
+###_NPC
+You should go to the introduction class first, to learn about bondage.  Follow the sign with an "i".
+Gehe als erstes zum Einstiegskurs, um etwas über die Bondage-Grundlagen zu erfahren. Folge dem "i"-Symbol.
+###_PLAYER
+How can I get items?
+Wie komme ich an Gegenstände?
+###_NPC
+Try the shop first, you can buy lots of items from there.  Follow the sign with the shopping bag.  You can also get special items and clothes by completing tasks.
+Schau dich im Laden um, dort ist einiges im Angebot. Folge dem Symbol mit der Einkaufstüte. Manchmal bekommst du auch besondere Gegenstände oder Kleidung für das Erledigen von Aufgaben.
+###_PLAYER
+How can I make money?
+Wie verdiene ich Geld?
+###_NPC
+You can join the maid sorority and work for them, follow the maid sign.  Or join the kidnapper's league and take bounties, follow the tied hands sign.
+Du kannst dich den Hausmädchen anschließen und für sie arbeiten, folge dem Hausmädchen-Symbol. Oder sammle Kopfgelder für die Kidnapper-Liga, folge dem Symbol mit den gefesselten Händen.
+###_PLAYER
+Where can I meet online players?
+Wo finde ich andere Online-Spieler?
+###_NPC
+In the online chat rooms.  From the main hall, follow the chat bubble sign.  Just enter a room and you're good to go.  Remember to be courteous and respectful.
+In den Online-Chaträumen. Von der Eingangshalle aus brauchst du nur dem Sprechblasen-Symbol zu folgen. Betritt einfach einen Raum und leg los. Nicht vergessen, sei höflich und respektvoll.
+###_PLAYER
+Tell me about the reputation system.
+Erkläre mir das Rangsystem.
+###_NPC
+Your reputations will increase or decrease based on your actions and answers.  It affects your ranking, the activities you can do and how others perceive you.
+Dein Ruf wird in Abhängigkeit von deinen Handlungen und Antworten steigen oder fallen. Das beeinflusst deinen Rang, deine verfügbaren Aktivitäten, und wie Andere dich wahrnehmen.
+###_PLAYER
+I want to learn about skills.
+Ich möchte etwas übe Fähigkeiten erfahren.
+###_NPC
+There are different skills you can learn and get better with time and practice.  The maximum level is 10, the percentage is your current progress toward the next level.
+Es gibt mehrere Fähigkeiten, die du erlernen und mit etwas Zeit und Übung verbessern kannst. Die höchste Stufe ist 10, der Prozentsatz ist dein momentaner Fortschritt zur nächsten Stufe.
+###_PLAYER
+What are the most important rules again?
+Was sind nochmal die wichtigsten Regeln?
+###_NPC
+The first rule is that the club is only for adults.  This place isn't for minors.  Are you an adult in your country?
+Die erste Regel ist, dass in diesem Club nur Erwachsene Zutritt haben. Dies ist kein Ort für Minderjährige. Bist du in deinem Land volljährig?
+###_PLAYER
+(Thank her and leave her.)
+(Dich bedanken und Dialog beenden.)

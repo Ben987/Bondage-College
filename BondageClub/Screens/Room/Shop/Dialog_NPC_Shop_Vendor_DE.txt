@@ -1,4 +1,8 @@
 ###_NPC
+Well done, another satisfied customer.  Here's your commission.  (She gives you MoneyAmount$.)
+Gut gemacht, eine weitere zufriedene Kundin. Hier ist deine Provision. (Sie gibt dir MoneyAmount$.)
+Too bad, the customer left.
+Schade, die Kundin ist weg.
 This is the only store in town that receives gagged customers.
 Das hier ist der einzige Laden der Stadt, der geknebelte Kundschaft empfängt.
 (She shakes her head no but you're able to gag and silence her.)
@@ -33,7 +37,7 @@ Das hier ist der einzige Laden der Stadt, der geknebelte Kundschaft empfängt.
 (Sie wimmert, als du ihr auf die Brust peitschst.) Autsch! Du peitschst zu kräftig.
 (You swing the crop on her torso as she grumbles.)  That's what they call trying the merchandise.
 (Du schwingst die Gerte auf ihren Körper und sie grummelt.) Das ist also mit Warentest gemeint.
-(You whip her butt as she whimpers.)  Oooww.  Are you a satified customer?
+(You whip her butt as she whimpers.)  Oooww.  Are you a satisfied customer?
 (Du peitschst ihr auf den Hintern und sie wimmert.) Aaauu. Bist du eine zufriedene Kundin?
 (You lash the leather crop pretty hard on her butt.)  Damn it!  I need a better job.
 (Du drischst mit der Ledergerte ziemlich doll auf ihren Hintern ein.) Verdammt! Ich brauche einen besseren Job.
@@ -84,6 +88,12 @@ Kannst du mir helfen?
 I'm not allowed to release you.  But I can help you to shop and pay.  I will be honest.
 Ich darf dich nicht gehen lassen. Ich kann dir beim Einkaufen und Bezahlen helfen. Ich werde dabei ehrlich sein.
 ###_PLAYER
+Do you have work for me?
+Hast du Arbeit für mich?
+###_NPC
+Sure, I can give you a salary if you're willing to demonstrate the items we are selling.  Are you ready for that?
+Klar, ich kann dir einen Lohn geben, wenn du dich bereiterklärst, unsere Waren zu demonstrieren. Wie sieht's aus?
+###_PLAYER
 I need to run.  (Leave her.)
 Ich muss gehen. (Dialog beenden.)
 ###_NPC
@@ -133,6 +143,70 @@ Den Deal behalte ich im Kopf.
 ###_NPC
 Sure!  Do you have more questions for me?
 Sicher! Hast du noch mehr Fragen an mich?
+###_PLAYER
+What's the job?
+Was ist meine Aufgabe?
+###_NPC
+Selling gears.  Customers wants to know if the items are secure and good looking.  You could demonstrate for them.
+Güter verkaufen. Die Kunden möchten wissen, ob unsere Ware sicher ist und gut aussieht. Das könntest du für sie demonstrieren.
+###_PLAYER
+How much does it pay?
+Wie hoch ist die Bezahlung?
+###_NPC
+I can give you 10% of the selling price, minimum 5$, for each item you help me to sell.  It's a good commission.
+Ich kann dir 10% des Verkaufspreises anbieten, aber mindestens 5$, pro Gegenstand, den ich dank dir verkaufe. Das ist eine gute Provision.
+###_PLAYER
+I'm ready!
+Ich bin bereit!
+###_NPC
+Very well, let me find an item to promote.  (She checks on the shelves for an item to use on you.)
+Sehr schön, ich suche dir etwas aus, womit du werben kannst. (Sie durchstöbert die Regale nach etwas, das sie an dir benutzen kann.)
+###_PLAYER
+Not right now.
+Nicht jetzt.
+###_NPC
+Alright, let me know when you're ready.  Is there anything else you need?
+Alles klar, sag Bescheid, wenn du bereit bist. Brauchst du sonst noch etwas?
+###_PLAYER
+(Let her restrain you.)
+(Dich von ihr fesseln lassen.)
+###_NPC
+(She uses an item on you and smiles.)  You can wait for a customer right there.
+(Sie legt dir einen Gegenstand an und lächelt.) Warte einfach hier, bis eine Kundin kommt.
+###_PLAYER
+Wait!  I've changed my mind.
+Moment! Ich hab's mir anders überlegt.
+(Wait for a customer.)
+(Auf Kundschaft warten.)
+Thanks a lot!
+Vielen Dank!
+###_NPC
+My pleasure.  Is there anything else you need?
+War mir ein Vergnügen. Brauchst du sonst noch etwas?
+###_PLAYER
+(Nod happily.)
+(Fröhlich nicken.)
+Can I do it again?
+Kann ich das nochmal machen?
+###_NPC
+Sure!  Let me find an item to promote.  (She checks on the shelves for an item to use on you.)
+Klar! Lass mich einen Werbegegenstand für dich aussuchen. (Sie durchstöbert die Regale nach etwas, das sie an dir benutzen kann.)
+I don't have time, there's too many customers.  Go find a maid if you can't struggle out.
+Dazu fehlt mir die Zeit, es sind zu viele Kunden da. Suche ein Hausmädchen auf, wenn du dich nicht selbst befreien kannst.
+###_PLAYER
+I'm not a great saleswoman.
+Ich bin keine gute Verkäuferin.
+###_NPC
+Don't worry about it.  Is there anything else you need?
+Mach dir nichts draus. Brauchst du sonst noch etwas?
+###_PLAYER
+(Nod very slowly.)
+(Ganz langsam nicken.)
+Can I try again?
+Kann ich es nochmal versuchen?
+###_NPC
+Alright.  Let me find an item to promote.  (She checks on the shelves for an item to use on you.)
+Na gut. Lass mich einen Werbegegenstand für dich aussuchen. (Sie durchstöbert die Regale nach etwas, das sie an dir benutzen kann.)
 ###_PLAYER
 Regular clothes or outfits.
 Gewöhnliche Kleidung oder Outfits.

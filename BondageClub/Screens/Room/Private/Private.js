@@ -13,8 +13,7 @@ var PrivateActivityAffectLove = true;
 var PrivateActivityList = ["Gag", "Ungag", "Restrain", "RestrainOther", "FullRestrain", "FullRestrainOther", "Release", "Tickle", "Spank", "Pet", "Slap", "Kiss", "Fondle", "Naked", "Underwear", "RandomClothes", "Shibari", "Gift", "PetGirl", "Locks"];
 var PrivateActivityTarget = null;
 var PrivatePunishment = "";
-//var PrivatePunishmentList = ["Cage", "Bound", "BoundPet", "ChastityBelt", "ChastityBra", "ForceNaked", "ConfiscateKey", "ConfiscateCrop", "ConfiscateWhip", "SleepCage", "LockOut"];
-var PrivatePunishmentList = ["LockOut"];
+var PrivatePunishmentList = ["Cage", "Bound", "BoundPet", "ChastityBelt", "ChastityBra", "ForceNaked", "ConfiscateKey", "ConfiscateCrop", "ConfiscateWhip", "SleepCage", "LockOut", "Cell"];
 var PrivateCharacterNewClothes = null;
 
 // Returns TRUE if a specific dialog option is allowed
@@ -29,10 +28,10 @@ function PrivateCanMasturbate() { return (CharacterIsNaked(CurrentCharacter) && 
 function PrivateCanFondle() { return (!CurrentCharacter.IsBreastChaste() && !Player.IsRestrained()) }
 function PrivateAllowRestainPlayer() { return (!Player.IsRestrained() && !CurrentCharacter.IsRestrained() && (ReputationGet("Dominant") - 25 <= NPCTraitGet(CurrentCharacter, "Dominant"))) }
 function PrivateWontRestainPlayer() { return (!Player.IsRestrained() && !CurrentCharacter.IsRestrained() && (ReputationGet("Dominant") - 25 > NPCTraitGet(CurrentCharacter, "Dominant"))) }
-function PrivateAllowReleasePlayer() { return (Player.IsRestrained() && !InventoryCharacterHasOwnerOnlyItem(Player) && CurrentCharacter.CanTalk() && CurrentCharacter.CanInteract() && ((CommonTime() > PrivateReleaseTimer) || CurrentCharacter.IsOwnedByPlayer()) && !PrivateOwnerInRoom()) }
-function PrivateWontReleasePlayer() { return (Player.IsRestrained() && !InventoryCharacterHasOwnerOnlyItem(Player) && CurrentCharacter.CanTalk() && CurrentCharacter.CanInteract() && !((CommonTime() > PrivateReleaseTimer) || CurrentCharacter.IsOwnedByPlayer()) && !PrivateOwnerInRoom()) }
-function PrivateWontReleasePlayerOwner() { return (Player.IsRestrained() && !InventoryCharacterHasOwnerOnlyItem(Player) && CurrentCharacter.CanTalk() && CurrentCharacter.CanInteract() && PrivateOwnerInRoom()) }
-function PrivateWontReleasePlayerOwnerOnly() { return (Player.IsRestrained() && InventoryCharacterHasOwnerOnlyItem(Player) && CurrentCharacter.CanTalk() && CurrentCharacter.CanInteract()) }
+function PrivateAllowReleasePlayer() { return (Player.IsRestrained() && !InventoryCharacterHasOwnerOnlyRestraint(Player) && CurrentCharacter.CanTalk() && CurrentCharacter.CanInteract() && ((CommonTime() > PrivateReleaseTimer) || CurrentCharacter.IsOwnedByPlayer()) && !PrivateOwnerInRoom()) }
+function PrivateWontReleasePlayer() { return (Player.IsRestrained() && !InventoryCharacterHasOwnerOnlyRestraint(Player) && CurrentCharacter.CanTalk() && CurrentCharacter.CanInteract() && !((CommonTime() > PrivateReleaseTimer) || CurrentCharacter.IsOwnedByPlayer()) && !PrivateOwnerInRoom()) }
+function PrivateWontReleasePlayerOwner() { return (Player.IsRestrained() && !InventoryCharacterHasOwnerOnlyRestraint(Player) && CurrentCharacter.CanTalk() && CurrentCharacter.CanInteract() && PrivateOwnerInRoom()) }
+function PrivateWontReleasePlayerOwnerOnly() { return (Player.IsRestrained() && InventoryCharacterHasOwnerOnlyRestraint(Player) && CurrentCharacter.CanTalk() && CurrentCharacter.CanInteract()) }
 function PrivateWillKneel() { return (CurrentCharacter.CanKneel() && CurrentCharacter.CanTalk() && !CurrentCharacter.IsKneeling() && ((ReputationGet("Dominant") > NPCTraitGet(CurrentCharacter, "Dominant")) || CurrentCharacter.IsOwnedByPlayer())) }
 function PrivateWillKneelGagged() { return (CurrentCharacter.CanKneel() && !CurrentCharacter.CanTalk() && !CurrentCharacter.IsKneeling() && ((ReputationGet("Dominant") > NPCTraitGet(CurrentCharacter, "Dominant")) || CurrentCharacter.IsOwnedByPlayer())) }
 function PrivateWontKneel() { return (CurrentCharacter.CanKneel() && !CurrentCharacter.IsKneeling() && (ReputationGet("Dominant") <= NPCTraitGet(CurrentCharacter, "Dominant")) && !CurrentCharacter.IsOwnedByPlayer()) }
@@ -294,15 +293,17 @@ function PrivateAddCharacter(Template, Archetype, CustomData) {
 	C.Appearance = Template.Appearance.slice();
 	C.AppearanceFull = Template.Appearance.slice();
 	C.Love = 0;
-	if ((Archetype != null) && (Archetype != "")) C.Title = Archetype;
+	if ((Archetype != null) && (Archetype != "") && (Archetype != "Submissive")) C.Title = Archetype;
 	NPCTraitGenerate(C);
 	if ((Archetype != null) && (Archetype == "Mistress")) NPCTraitSet(C, "Dominant", 60 + Math.floor(Math.random() * 41));
+	if ((Archetype != null) && (Archetype == "Submissive")) NPCTraitSet(C, "Dominant", -50 - Math.floor(Math.random() * 51));
 	if ((CustomData == null) || (CustomData == false)) NPCTraitDialog(C);
 	CharacterRefresh(C);
 	PrivateCharacter.push(C);
 	NPCEventAdd(C, "PrivateRoomEntry", CurrentTime);
 	if ((CustomData == null) || (CustomData == false)) ServerPrivateCharacterSync();
 	C.AllowItem = (((ReputationGet("Dominant") + 25 >= NPCTraitGet(C, "Dominant")) && !C.IsOwner()) || C.IsRestrained() || !C.CanTalk());
+	if ((InventoryGet(C, "ItemNeck") != null) && (InventoryGet(C, "ItemNeck").Asset.Name == "ClubSlaveCollar")) InventoryRemove(C, "ItemNeck");
 }
 
 // Returns the ID of the private room current character
@@ -596,7 +597,7 @@ function PrivateSelectPunishment() {
 	while (true) {
 
 		// Picks an punishment at random
-		PrivatePunishment = CommonRandomItemFromList("", PrivatePunishmentList);
+		PrivatePunishment = CommonRandomItemFromList(PrivatePunishment, PrivatePunishmentList);
 
 		// If the punishment is valid
 		if ((PrivatePunishment == "Cage") && LogQuery("Cage", "PrivateRoom")) break;
@@ -610,6 +611,7 @@ function PrivateSelectPunishment() {
 		if ((PrivatePunishment == "ConfiscateWhip") && (InventoryAvailable(Player, "LeatherWhip", "ItemPelvis") || InventoryAvailable(Player, "LeatherWhip", "ItemBreast"))) break;
 		if ((PrivatePunishment == "SleepCage") && LogQuery("Cage", "PrivateRoom") && !LogQuery("SleepCage", "Rule")) break;
 		if ((PrivatePunishment == "LockOut") && (NPCTraitGet(CurrentCharacter, "Serious") >= 0)) break;
+		if (PrivatePunishment == "Cell") break;
 
 	}
 
@@ -636,6 +638,7 @@ function PrivateRunPunishment(LoveFactor) {
 	if (PrivatePunishment == "ConfiscateWhip") { InventoryDelete(Player, "LeatherWhip", "ItemPelvis"); InventoryDelete(Player, "LeatherWhip", "ItemBreast"); }
 	if (PrivatePunishment == "SleepCage") LogAdd("SleepCage", "Rule", CurrentTime + 604800000);
 	if (PrivatePunishment == "LockOut") { LogAdd("LockOutOfPrivateRoom", "Rule", CurrentTime + 3600000); DialogLeave(); CommonSetScreen("Room", "MainHall"); }
+	if (PrivatePunishment == "Cell") { DialogLeave(); CharacterFullRandomRestrain(Player, "ALL"); CellLock(5); }
 }
 
 // Sets up the player collaring ceremony cutscene
@@ -666,7 +669,7 @@ function PrivateNPCCollaring() {
 	CharacterChangeMoney(Player, -100);
 	NPCEventDelete(CurrentCharacter, "EndDomTrial");
 	NPCEventAdd(CurrentCharacter, "NPCCollaring", CurrentTime);
-	InventoryRemove(Player, "ItemNeck");
+	InventoryRemove(CurrentCharacter, "ItemNeck");
 	CharacterRelease(Player);
 	CharacterRelease(CurrentCharacter);
 	CharacterSetActivePose(Player, null);

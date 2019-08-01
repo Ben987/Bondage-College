@@ -4,6 +4,8 @@ College
 College
 Maid
 Hausmädchen
+Maid Exposed
+Hausmädchen entblößt
 Student Black
 Schuluniform Schwarz
 Student Bow
@@ -134,6 +136,8 @@ Beret
 Baskenmütze
 Hair Ribbon 1
 Haarschleife 1
+ Giant Bow 1
+Große Schleife 1
 Maid Hairband
 Hausmädchen-Haarband
 Nurse Cap
@@ -144,6 +148,8 @@ Captain's Hat
 Kapitänsmütze
 Bunny Succubus 
 Hasen-Succubus
+ Flower
+Blüte
 Hair Accessory
 Haar-Accessoire
 Ears Small
@@ -168,6 +174,10 @@ Horns 3
 Hörner 3
 Fox Ears Small
 Fuchsohren klein
+Small Bat Wings
+Mini-Fledermausflügel
+Full Kitty Mask
+Kätzchen-Vollmaske
 Gloves
 Handschuhe
 Short Gloves
@@ -186,12 +196,26 @@ Sunglasses 1
 Sonnenbrille 1
 Sunglasses 2
 Sonnenbrille 2
+Venitian Mask
+Venezianische Maske
+Domino Mask
+Domino-Maske
 Wings
 Flügel
 Succubus Feather 
 Succubus gefiedert
 Succubus Wings
 Succubus-Flügel
+Angel Feather
+Engelsflügel
+Devil Wings
+Dämonenflügel
+Fallen Angel Wings
+Dunkelengelsflügel
+Angel Wings
+Engelsflügel
+Bat Wings
+Fledermausflügel
 Upper Body
 Oberkörper
 Small
@@ -262,6 +286,8 @@ Suspension Hemp Rope
 Hänge-Hanfseil
 Duct Tape
 Klebeband
+Mermaid Rope Tie
+Meerjungfrau-Fessel
 Legs
 Beine
 Vulva
@@ -270,8 +296,10 @@ Vibrating Egg
 Vibrator-Ei
 Vibrating Wand
 Vibrator-Stab
-Vibrating Egg Remote
-Vibrator-Ei-Fernbedienung
+Vibrating Egg|Panties Remote
+Vibrator-Fernbedienung
+Vibrating Latex Panties
+Latex-Vibratorhöschen
 Butt
 Hintern
 Black Butt Plug
@@ -288,6 +316,14 @@ Succubus Tail
 Succubus-Schwanz
 Fox Tails
 Fuchsschweife
+Raccoon Butt Plug
+Waschbär-Analstöpsel
+Raccoon Tail Plug
+Waschbärschweif-Stöpsel
+Anal Beads
+Analperlenkette
+Butt Pump
+Analpumpe
 Pelvis
 Becken
 Metal Chastity Belt
@@ -322,6 +358,10 @@ Vibrating Nipple Clamps
 Vibrator-Nippelklemmen
 Vibrating Clamps Remote
 Vibratorklemmen-Fernbedienung
+Weighted Piercing
+Gewichtetes Piercing
+Chain Clamp
+Kettenklemme
 Breast
 Brust
 Metal Chastity Bra
@@ -360,6 +400,8 @@ Shock Collar Remote
 Elektrohalsband-Fernbedienung
 Cloth Gag
 Stoffknebel
+Wiffle Ball Gag
+Loch-Ballknebel
 Harness Ball Gag
 Ballknebel
 Harness Panel Gag
@@ -378,10 +420,16 @@ Pump Gag
 Pumpknebel
 Kitty Mask Gag
 Katzenmasken-Knebel
+Kitty Harness Gag
+Harnisch-Katzenknebel
 Rubber Carrot Gag
 Gummikarotten-Knebel
+Muzzle Gag
+Kiefer-Maulkorb
 Sleeping Pill
 Schlaftablette
+Panties Mask
+Höschen-Maske
 Head
 Kopf
 Cloth Blindfold
@@ -396,6 +444,8 @@ Studded Blindfold
 Nieten-Augenbinde
 Kitty Blindfold
 Katzen-Augenbinde
+Small Blindfold
+Kleine Augenbinde
 Misc Items
 Sonstiges
 Metal Padlock

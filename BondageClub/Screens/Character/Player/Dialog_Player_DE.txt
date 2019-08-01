@@ -15,6 +15,8 @@ View next items
 Weitere Items
 Remove the item
 Gegenstand entfernen
+Use this item
+Gegenstand benutzen
 Try to struggle out
 Entfesselung versuchen
 Use a lock
@@ -25,6 +27,8 @@ Inspect the lock
 Das Schloss untersuchen
 Use your remote
 Fernbedienung verwenden
+Use the Butt Plug's pump
+Analpumpe benutzen
 Color of next item
 Farbe des nächsten Gegenstands
 Use this color
@@ -73,6 +77,16 @@ Pump gag level: Bloated
 Pumpknebel: Aufgebläht
 Pump gag level: Full mouth
 Pumpknebel: Mund ausfüllend
+Pump plug level: Empty
+Analpumpe: Leer
+Pump plug level: Light
+Analpumpe: Leicht gefüllt
+Pump plug level: Inflated
+Analpumpe: Aufgeblasen
+Pump plug level: Bloated
+Analpumpe: Aufgebläht
+Pump plug level: Max
+Analpumpe: Maximal
 Deflate it
 Luft ablassen
 Pump it
@@ -81,8 +95,12 @@ pumps
 pumpt
 deflates
 reduziert
+plug
+Stöpsel
 gag
 Knebel
+'s
+s
 Delete
 Löschen
 Confirm
@@ -91,10 +109,14 @@ Beep
 Biep
 Beep from
 Biep von
+Beep from your owner in your private room
+Beip von deiner Besitzerin im Privatzimmer
 in room
 im Raum
 <i>Private room</i>
 <i>Privater Raum</i>
+(As you enter the luxurious hallway, a maid comes to greet you.)  Welcome to the Bondage Club, is this your first visit?
+(Als du die luxoriöse Eingangshalle betrittst, wirst du von einem Hausmädchen begrüßt.) Willkommen im Bondage-Club, bist du zum ersten Mal hier?
 SourceCharacter is offering you to start a trial period as her submissive.  Click on her and manage your relationship to accept, don't do anything to refuse.
 SourceCharacter bietet dir eine Probezeit als ihre Sklavin an. Um dies zu akzeptieren, klicke sie an und bearbeite eure Beziehung. Zum Ablehnen musst du nichts tun.
 The Bondage Club is pleased to announce that SourceCharacter is starting a 3 days minimum trial period as a submissive.
@@ -109,6 +131,14 @@ Time left:
 Übrige Zeit:
 SourceCharacter restarts the five minute timer padlock on DestinationCharacter BodyPart.
 SourceCharacter setzt das Fünf-Minuten-Schloss von DestinationCharacter zurück.
+Restart Timer
+Timer zurücksetzen
+Remove item when the lock timer runs out
+Item entfernen, sobald die Zeit um ist
+The item will be removed when the lock timer runs out
+Der Gegenstand wird entfernt, sobald die Zeit um ist
+The item will stay when the lock timer runs out
+Der Gegenstand bleibt, wenn die Zeit um ist
 Select the bondage position
 Fesselposition wählen
 Select the tape wrapping
@@ -251,6 +281,22 @@ DestinationCharacter's vibrating nipple clamps start buzzing strongly!
 Die Vibrator-Nippelklemmen von DestinationCharacter fangen an, stark zu vibrieren!
 DestinationCharacter's vibrating nipple clamps jump up to maximum intensity!
 Die Vibrator-Nippelklemmen von DestinationCharacter springen auf die maximale Stufe!
+DestinationCharacter's vibrating latex panties stops vibrating.
+DestinationCharacters vibrierendes Latexhöschen hört auf zu vibrieren.
+DestinationCharacter's vibrating latex panties slows down into a light tease.
+DestinationCharacters vibrierendes Latexhöschen fällt auf ein leichtes Surren herab.
+DestinationCharacter's vibrating latex panties returns to a moderate pace.
+DestinationCharacters vibrierendes Latexhöschen fällt auf eine moderate Stärke herab.
+DestinationCharacter's vibrating latex panties slows down a tiny bit.
+DestinationCharacters vibrierendes Latexhöschen lässt ein kleines bisschen nach.
+DestinationCharacter's vibrating latex panties starts teasing her lightly.
+DestinationCharacters vibrierendes Latexhöschen fängt an, sie sanft zu erregen.
+DestinationCharacter's vibrating latex panties builds up to a moderate pace.
+DestinationCharacters vibrierendes Latexhöschen nimmt etwas Fahrt auf.
+DestinationCharacter's vibrating latex panties starts buzzing strongly!
+DestinationCharacters vibrierendes Latexhöschen fängt an, stark zu vibrieren!
+DestinationCharacter's vibrating latex panties jumps up to maximum intensity!
+DestinationCharacters vibrierendes Latexhöschen springt auf die maximale Stufe!
 Use Remote
 Fernbedienung
 (You can use or remove items by selecting specific body regions on yourself.)

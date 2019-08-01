@@ -149,6 +149,7 @@ function CharacterArchetypeClothes(C, Archetype, ForceColor) {
 		CharacterAppearanceSetItem(C, "Hat", C.Inventory[C.Inventory.length - 1].Asset);
 		CharacterAppearanceSetColorForGroup(C, "Default", "Hat");
 		InventoryAdd(C, "MaidOutfit2", "Cloth", false);
+		InventoryRemove(C, "HairAccessory");
 		C.AllowItem = (LogQuery("LeadSorority", "Maid"));
 	}
 
@@ -167,6 +168,7 @@ function CharacterArchetypeClothes(C, Archetype, ForceColor) {
 		InventoryWear(C, "MistressBottom", "ClothLower", Color);
 		InventoryAdd(C, "MetalChastityBeltKey", "ItemPelvis", false);
 		InventoryAdd(C, "MetalChastityBraKey", "ItemBreast", false);
+		InventoryRemove(C, "HairAccessory");
 	}
 
 }
@@ -486,7 +488,7 @@ function CharacterDress(C, Appearance) {
 // Removes any binding item from the character
 function CharacterRelease(C) {
 	for(var E = 0; E < C.Appearance.length; E++)
-		if ((C.Appearance[E].Asset.Group.Name == "ItemMouth") || (C.Appearance[E].Asset.Group.Name == "ItemArms") || (C.Appearance[E].Asset.Group.Name == "ItemFeet") || (C.Appearance[E].Asset.Group.Name == "ItemLegs") || (C.Appearance[E].Asset.Group.Name == "ItemHead") || (C.Appearance[E].Asset.Group.Name == "ItemMisc")) {
+		if (C.Appearance[E].Asset.Group.IsRestraint) {
 			C.Appearance.splice(E, 1);
 			E--;
 		}
@@ -546,26 +548,6 @@ function CharacterSetFacialExpression(C, AssetGroup, Expression) {
 				return;
 			}
 		}
-	}
-}
-
-// Switches to the next facial expression for the given character's AssetGroup
-function CharacterCycleFacialExpression(C, AssetGroup, Forward, Description) {
-	var A = C.Appearance.find(a => a.Asset.Group.Name == AssetGroup && a.Asset.Group.AllowExpression && a.Asset.Group.AllowExpression.length);
-	if (A == null) return;
-	if (!A.Property) A.Property = {};
-	var I = A.Asset.Group.AllowExpression.indexOf(A.Property.Expression);
-	let DoNext = expression => {
-		if (Description == true) return expression == null ? DialogFind(Player, "FacialExpressionNone") : DialogFind(Player, "FacialExpression" + expression);
-		CharacterSetFacialExpression(C, AssetGroup, expression);
-	}
-	if (Forward == null || Forward) {
-		if (I + 1 >= A.Asset.Group.AllowExpression.length) return DoNext(null);
-		return DoNext(A.Asset.Group.AllowExpression[I + 1]);
-	} else {
-		if (I == 0) return DoNext(null);
-		if (I < 0) return DoNext(A.Asset.Group.AllowExpression[A.Asset.Group.AllowExpression.length - 1]);
-		return DoNext(A.Asset.Group.AllowExpression[I - 1]);
 	}
 }
 

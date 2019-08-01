@@ -645,8 +645,8 @@ Ja, die Dominante zahlt 100$ pro Sklavin, wir geben ihr das Halsband dazu. Will 
 Will you be my Mistress?
 Würden Sie meine Herrin sein?
 ###_NPC
-I've heard about you girl, they say you're one of the best slaves around.  You would offer yourself to me?
-Ich habe von dir gehört, Mädchen, man erzählt sich, du seist eine der besten Sklavinnen hier. Bietest du dich mir an?
+I've heard about you girl.  They say you're one of the best slaves around.  You would offer yourself to me?
+Ich habe von dir gehört, Mädchen. Man erzählt sich, du seist eine der besten Sklavinnen hier. Bietest du dich mir an?
 Girl, my standards are high.  If I get a new slave, she would have to be the perfect submissive.
 Ich habe hohe Ansprüche, Mädchen. Wenn ich mir eine neue Sklavin zulege, müsste sie die perfekte Untergebene sein.
 ###_PLAYER
@@ -725,7 +725,7 @@ Armes Mädchen, du findest sicher eines Tages eine gute Besitzerin. Aber um Leic
 Mistress wants to become a slave.
 Meine Herrin will eine Sklavin werden.
 ###_NPC
-People change you know, it can happen to the best of us.  Since we don't encourage flyby slaves, there's a fee for your freedom.
+People change you know.  It can happen to the best of us.  Since we don't encourage flyby slaves, there's a fee for your freedom.
 Leute ändern sich, weißt du? Das kommt bei den Besten von uns vor. Um Leichtsinn zu vermeiden, gibt es eine Gebühr für die Freiheit.
 ###_PLAYER
 I guess I don't have any good reason.
@@ -829,7 +829,7 @@ Sie sind jederzeit willkommen.
 Yes, I want to break my trial.
 Ja, ich will meine Probezeit abbrechen.
 ###_NPC
-(She announce the end of your trial period and makes it official.)  You're free girl, enjoy the club.
+(She announces the end of your trial period and makes it official.)  You're free girl, enjoy the club.
 (Sie verkündet offiziell das Ende deiner Probezeit.) Du bist frei, Mädchen, viel Spaß im Club.
 ###_PLAYER
 Let me think some more.
@@ -869,6 +869,8 @@ Kann ich eine Clubsklavin werden?
 ###_NPC
 No, you're not submissive enough.
 Nein, du bist nicht Unterwürfig genug.
+(She checks your locks.)  No, your Mistress has put an owner lock on you, get released first.
+(Sie überprüft deine Schlösser.) Nein, deine Herrin hat dir ein Besitzer-Schloss angelegt, lass dir das vorher abnehmen.
 You could, are you sure you understand the terms and commitments?  Do you accept the contract?
 Du könntest, hast du die Bedingungen und Verpflichtungen auch wirklich verstanden? Stimmst du dem Vertrag zu?
 Alright girl, but don't waste my time.

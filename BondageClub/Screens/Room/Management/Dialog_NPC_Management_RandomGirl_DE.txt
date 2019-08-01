@@ -238,3 +238,655 @@ Nicht jetzt, ich muss gehen. Mach's gut!
 (Dialog beenden.)
 Follow me!  (Bring her to your room.)
 Mir nach! (Sie in dein Zimmer führen.)
+###_NPC
+Good.  I hope you like to be tied up girl, because I have a devious plan for you.
+Gut. Hoffentlich bist du gern gefesselt, Mädchen, ich habe nämlich einen fiesen Plan für dich.
+(She ponders.)  I hope you like to be tied up girl, because I have a devious plan for you.
+(Sie überlegt.) Hoffentlich bist du gern gefesselt, Mädchen, ich habe nämlich einen fiesen Plan für dich.
+(She laughs.)  Absolutely not.  I hope you like to be tied up girl, because I have a devious plan for you.
+(Sie lacht.) Auf gar keinen Fall. Hoffentlich bist du gern gefesselt, Mädchen, ich habe nämlich einen fiesen Plan für dich.
+(She laughs.)  I hope you like to be tied up girl, because I have a devious plan for you.
+(Sie lacht.) Hoffentlich bist du gern gefesselt, Mädchen, ich habe nämlich einen fiesen Plan für dich.
+(She smiles.)  I hope you like to be tied up girl, because I have a devious plan for you.
+(Sie lächelt.) Hoffentlich bist du gern gefesselt, Mädchen, ich habe nämlich einen fiesen Plan für dich.
+I hope you like to be tied up girl, because I have a devious plan for you.
+Hoffentlich bist du gern gefesselt, Mädchen, ich habe nämlich einen fiesen Plan für dich.
+###_PLAYER
+What plan Miss?
+Was für einen Plan, Miss?
+###_NPC
+I will restrain you and give you one minute to struggle out.
+Ich werde dich fesseln und gebe dir eine Minute, um dich zu befreien.
+###_PLAYER
+Something devious?  Nice.
+Etwas fieses? Spitze.
+###_NPC
+Yes, I will restrain you and give you one minute to struggle out.
+Ja, ich werde dich fesseln und gebe dir eine Minute, um dich zu befreien.
+###_PLAYER
+(Look worried.)
+(Besorgt gucken.)
+###_NPC
+(She smirks.)  I will restrain you and give you one minute to struggle out.
+(Sie schmunzelt.) Ich werde dich fesseln und gebe dir eine Minute, um dich zu befreien.
+###_PLAYER
+What if I fail?
+Und wenn ich es nicht schaffe?
+###_NPC
+If you fail, I will leave you locked alone in a cell for five minutes.  You'll get plenty of time to get better at struggling.
+Wenn du es nicht schaffst, sperre ich dich für fünf Minuten allein in eine Zelle. Da hast du genug Zeit, deine Entfesselungskünste zu üben.
+###_PLAYER
+I understand.
+Ich verstehe.
+###_NPC
+(She straps you up pretty tight.)  You only have one minute to get free.  Are you ready girl?
+(Sie bindet dich ziemlich fest.) Du hast nur eine Minute Zeit, dich zu befreien. Bist du bereit, Mädchen?
+###_PLAYER
+This is kinky!
+Das ist aufregend!
+###_NPC
+(She straps you up pretty tight and smiles.)  You only have one minute to get free.  Are you ready girl?
+(Sie bindet dich ziemlich fest und lächelt.) Du hast nur eine Minute Zeit, dich zu befreien. Bist du bereit, Mädchen?
+###_PLAYER
+(Grumble a little.)
+(Etwas grummeln.)
+###_NPC
+(She frowns and straps you up pretty tight.)  You only have one minute to get free.  Are you ready girl?
+(Sie runzelt die Stirn und bindet dich ziemlich fest.) Du hast nur eine Minute Zeit, dich zu befreien. Bist du bereit, Mädchen?
+###_PLAYER
+(Nod politely.)
+(Höflich nicken.)
+(Nod happily and start struggling.)
+(Fröhlich nicken und loszappeln.)
+(Nod reluctantly and start struggling.)
+(Widerwillig nicken und loszappeln.)
+###_NPC
+Did you make it?  Are you fully free?
+Hast du es gechafft? Hast du dich vollständig befreit?
+You've failed girl.  The time is up.
+Das war wohl nichts, Mädchen. Die Zeit ist um.
+Don't look at me.  Struggle girl!
+Beachte mich nicht. Du solltest dich befreien, Mädchen!
+###_PLAYER
+I've did it!
+Geschafft!
+###_NPC
+Well done slave girl, you're free to go.
+Gut gemacht, Sklavenmädchen, du darfst gehen.
+###_PLAYER
+Miss, it was an honor to complete your challenge.
+Miss, es war mir eine Ehre, Ihre Aufgabe zu erfüllen.
+(Do a victory dance.)
+(Einen Siegestanz machen.)
+I've failed Miss.  Sorry.
+Ich habe versagt, Miss. Tut mir leid.
+###_NPC
+Don't be sorry, you'll have plenty of time to practice struggling in one of the club cells.
+Es muss dir nicht leidtun, du hast gleich genug Zeit, deine Entfesselungskünste in einer der Clubzellen zu üben.
+###_PLAYER
+(Bow your head in shame.)
+(Beschämt zu Boden gucken.)
+Is there still time?
+Habe ich noch Zeit?
+###_NPC
+Yes!  Now stop talking and struggle.
+Ja! Jetzt hör auf zu reden und zappel weiter.
+###_PLAYER
+Am I doing good?
+Mache ich das gut so?
+###_NPC
+Stop talking and struggle!
+Hör auf zu reden und zappel weiter!
+###_PLAYER
+(Beg for help.)
+(Um Hilfe betteln.)
+###_NPC
+I'm not helping you, struggle girl!
+Ich helfe dir nicht, zappel weiter, Mädchen!
+###_PLAYER
+(Leave her to struggle.)
+(Dialog beenden und zappeln.)
+Thanks Miss!  (Leave her.)
+Danke, Miss! (Dialog beenden.)
+(Bow your head and leave.)
+(Deinen Kopf senken und gehen.)
+Very well.
+Sehr wohl.
+###_NPC
+Come with me girl, you'll spend five minutes all bundled up in a little cell.
+Komm mit, Mädchen, die nächsten fünf Minuten verbringst du schön verpackt in einer kleinen Zelle.
+###_PLAYER
+You can't lock me up!
+Du kannst mich nicht einsperren!
+###_NPC
+Don't complain and come with me girl, you'll spend five minutes all bundled up in a little cell.
+Hör auf zu meckern und komm mit, Mädchen, die nächsten fünf Minuten verbringst du schön verpackt in einer kleinen Zelle.
+###_PLAYER
+Please Miss!  I've tried my best.
+Bitte, Miss! Ich habe mein Bestes gegeben.
+###_NPC
+Don't beg and come with me girl, you'll spend five minutes all bundled up in a little cell.
+Hör auf zu betteln und komm mit, Mädchen, die nächsten fünf Minuten verbringst du schön verpackt in einer kleinen Zelle.
+###_PLAYER
+(Shake your head no and grumble.)
+(Den Kopf schütteln und grummeln.)
+(Cry and beg for mercy.)
+(Jammern und um Gnade betteln.)
+(Bow your head.)
+(Deinen Kopf senken.)
+(Let her put you in a cell.)
+(Dich von ihr in eine Zelle sperren lassen.)
+###_NPC
+Good.  Are you ready for a quiz question slave girl?
+Gut. Bist du bereit für eine Quizfrage, Sklavenmädchen?
+(She ponders.)  Are you ready for a quiz question slave girl?
+(Sie überlegt.) Bist du bereit für eine Quizfrage, Sklavenmädchen?
+(She laughs.)  Absolutely not.  Are you ready for a quiz question slave girl?
+(Sie lacht.) Auf gar keinen Fall. Bist du bereit für eine Quizfrage, Sklavenmädchen?
+(She laughs.)  Are you ready for a quiz question slave girl?
+(Sie lacht.) Bist du bereit für eine Quizfrage, Sklavenmädchen?
+(She smiles.)  You're cute when you struggle.  Are you ready for a quiz question slave girl?
+(Sie lächelt.) Du bist süß, wenn du so hilflos zappelst. Bist du bereit für eine Quizfrage, Sklavenmädchen?
+Are you ready for a quiz question slave girl?
+Bist du bereit für eine Quizfrage, Sklavenmädchen?
+###_PLAYER
+(Mumble in the gag.)
+(In deinen Knebel murmeln.)
+###_NPC
+(She laughs and removes your gag.)  It will be easier like that.  Ready for a quiz question?
+(Sie lacht und nimmt dir den Knebel ab.) So sollte es einfache sein. Bereit für eine Quizfrage?
+###_PLAYER
+What if I give the correct answer?
+Was passiert, wenn ich richtig antworte?
+###_NPC
+You won't be punished, and you will be free to go.
+Dann wirst du nicht bestraft und darfst gehen.
+###_PLAYER
+What if I give the wrong answer?
+Was passiert, wenn ich falsch antworte?
+###_NPC
+(She smirks.)  I will strap you up tight and lock you up in a cell for a few minutes.
+(Sie feixt.) Dann schnüre ich dich richtig fest zusammen und sperre dich ein paar Minuten lang in eine Zelle.
+###_PLAYER
+Why are you doing a quiz?
+Warum stellst du Quizfragen?
+###_NPC
+Club slaves must know and understand BDSM rules and safety.  I will make sure you do.
+Clubsklavinnen müssen die BDSM-Regeln und die Sicherheitsrichtlinien kennen und verstehen. Dafür werde ich bei dir sorgen.
+###_PLAYER
+I'm ready Miss!
+Ich bin bereit, Miss!
+Go ahead with the quiz.
+Schieß los.
+###_NPC
+In the "BDSM" acronym, what does the "DS" stands for?
+Wofür steht das "DS" in der Abkürzung "BDSM"?
+###_PLAYER
+Domination and Sadism.
+Domination & Sadism.
+###_NPC
+Close but not perfect.  The correct answer is: "Dominance and Submission".
+Nah dran, aber nicht ganz. Die richtige Antwort lautet: "Dominance & Submission".
+###_PLAYER
+Dominance and Submission.
+Dominance & Submission.
+###_NPC
+Very good little slave.
+Sehr gut, kleine Sklavin.
+###_PLAYER
+Dommes and Switches.
+Dommes & Switches.
+###_NPC
+Absolutely not.  The correct answer is: "Dominance and Submission".
+Ganz und gar nicht. Die richtige Antwort lautet: "Dominance & Submission".
+###_PLAYER
+I don't know.
+Ich weiß es nicht.
+###_NPC
+This is disappointing.  The correct answer is: "Dominance and Submission".
+Wie enttäuschend. Die richtige Antwort lautet: "Dominance & Submission".
+As a submissive, when do you have the right to stop a scene that's too intense, break your hard limits or make your uncomfortable?
+Wann hast du als Unterwürfiges Mitglied das Recht, eine Szene zu unterbrechen, die dir zu weit geht, deine Grenzen überschreitet, oder bei der du dich unwohl fühlst?
+###_PLAYER
+I can always stop a scene.
+Ich kann eine Szene jederzeit unterbrechen.
+###_NPC
+Very good.  You can always stop a scene if there's something wrong with it, this is your right.
+Sehr gut. Du kannst eine Szene jederzeit unterbrechen, wenn etwas nicht in Ordnung ist, das ist dein Recht.
+###_PLAYER
+Only if the Dominant allows it.
+Nur, wenn die dominante Partnerin es erlaubt.
+###_NPC
+Incorrect.  You can always stop a scene if there's something wrong with it, this is your right.
+Falsch. Du kannst eine Szene jederzeit unterbrechen, wenn etwas nicht in Ordnung ist, das ist dein Recht.
+###_PLAYER
+I can never stop a scene.
+Ich kann eine Szene nie unterbrechen.
+###_NPC
+Absolutely not.  You can always stop a scene if there's something wrong with it, this is your right.
+Völlig falsch. Du kannst eine Szene jederzeit unterbrechen, wenn etwas nicht in Ordnung ist, das ist dein Recht.
+Slave girl, you need to know this.  You can always stop a scene if there's something wrong with it, this is your right.
+Das musst du unbedingt wissen, Sklavenmädchen. Du kannst eine Szene jederzeit unterbrechen, wenn etwas nicht in Ordnung ist, das ist dein Recht.
+In online chat rooms, what's the minimum number of days for a submissive trial period before collaring?
+Wie viele Tage beträgt die minimale Dauer einer Probezeit in einem Online-Chatraum, bevor ein Halsband angelegt wird?
+###_PLAYER
+One day.
+Einen Tag.
+###_NPC
+Wrong.  It's three days slave girl.
+Falsch. Es sind drei Tage, Sklavenmädchen.
+###_PLAYER
+Three days.
+Drei Tage.
+###_NPC
+Correct!  (She pets your head.)
+Richtig! (SSie streichelt deinen Kopf.)
+###_PLAYER
+One week.
+Eine Woche.
+###_NPC
+You should know the delay.  It's three days slave girl.
+Die Dauer sollte dir bekannt sein. Es sind drei Tage, Sklavenmädchen.
+What is highest ranking you can reach in the maid sorority?
+Wie lautet der oberste Titel, den du in der Hausmädchen-Schwesternschaft erreichen kannst?
+###_PLAYER
+Top Maid.
+Obermädchen.
+###_NPC
+No, the proper title name is Head Maid.
+Nein, die richtige Bezeichnung lautet Hausdame.
+###_PLAYER
+First Maid.
+Erste Dame.
+Head Maid.
+Hausdame.
+###_NPC
+Correct!  (She gives you a thumbs up.)
+Korrekt! (Sie gibt dir einen Daumen nach oben.)
+###_PLAYER
+Super Maid.
+Super-Hausmädchen.
+###_NPC
+You should know the title.  It's Head Maid.
+Der Titel sollte dir bekannt sein. Er lautet Hausdame.
+In online chat rooms, what text command would you use to roll a dice?
+Mit welchem Textbefehl würdest du in einem Online-Chatraum einen Würfel rollen?
+###_PLAYER
+/coin
+/coin
+###_NPC
+No!  Use /dice X to roll a X sided dice and /coin to flip a coin.
+Nein! Benutze "/dice X", um einen X-seitigen Würfel zu rollen und "/coin", um eine Münze zu werfen.
+###_PLAYER
+/die
+/die
+/roll
+/roll
+/dice
+/dice
+###_NPC
+Yes.  Use /dice X to roll a X sided dice and /coin to flip a coin.
+Ja. Benutze "/dice X", um einen X-seitigen Würfel zu rollen und "/coin", um eine Münze zu werfen.
+Use /dice X to roll a X sided dice and /coin to flip a coin.
+Benutze "/dice X", um einen X-seitigen Würfel zu rollen und "/coin", um eine Münze zu werfen.
+In the timer cell, what's the maximum number of minutes in which you can lock yourself?
+Wie viele Minuten lang kannst du dich maximal in der Auszeit-Zelle einsperren?
+###_PLAYER
+30 minutes.
+30 Minuten.
+###_NPC
+Wrong.  It's 60 minutes.  I guess you're going to spend some time in the cell to know it better.
+Falsch. Es sind 60 Minuten. Du wirst wohl etwas Zeit in der Zelle verbringen müssen, um sie besser kennenzulernen.
+###_PLAYER
+60 minutes or 1 hour.
+60 Minuten oder 1 Stunde.
+###_NPC
+Correct!  I guess you've tried the cell before.  (She winks.)
+Richtig! Du hast die Zelle wohl schon ausprobiert. (Sie zwinkert.)
+###_PLAYER
+120 minutes or 2 hours.
+120 Minuten oder 2 Stunden.
+480 minutes or 8 hours.
+480 Minuten oder 8 Stunden.
+###_NPC
+It's 60 minutes.  I guess you're going to spend some time in the cell to know it better.
+Es sind 60 Minuten. Du wirst wohl etwas Zeit in der Zelle verbringen müssen, um sie besser kennenzulernen.
+In online chat rooms, what can you do to protect yourself from griefers and trolls?
+Wie kannst du dich in einem Online-Chatraum vor Spaßverderbern und Trollen schützen?
+###_PLAYER
+Blacklist them.
+Sie meiner Blacklist hinzufügen.
+###_NPC
+Absolutely.  Focus on them and add them to your blacklist in your relationship management.
+Durchaus. Wähle sie an und füge sie in deinem Beziehungsmenü deiner Blscklist hinzu.
+###_PLAYER
+Yell at them until they stop.
+Sie anschreien, bis sie aufhören.
+###_NPC
+No.  Just focus on them and add them to your blacklist in your relationship management.
+Nein. Wähle sie einfach an und füge sie in deinem Beziehungsmenü deiner Blscklist hinzu.
+###_PLAYER
+Beg them to stop.
+Sie anbetteln, aufzuhören.
+###_NPC
+It probably won't work.  Instead, focus on them and add them to your blacklist in your relationship management.
+Das wird wohl eher nicht klappen. Wähle sie lieber an und füge sie in deinem Beziehungsmenü deiner Blscklist hinzu.
+Focus on them and add them to your blacklist in your relationship management.
+Wähle sie an und füge sie in deinem Beziehungsmenü deiner Blscklist hinzu.
+Which one of these gags is the most effective: ring gag, panel gag, duct tape or cloth gag?
+Welcher dieser Knebel ist am effektivsten: Ringknebel, Maulkorb, Klebeband oder Stoffknebel?
+###_PLAYER
+Ring gag.
+Ringknebel.
+###_NPC
+Incorrect, it's the panel gag.  I guess some time with a gag will teach you a lesson.
+Falsch, es ist der Maulkorb. Etwas Zeit mit einem Knebel dürfte dir wohl eine Lehre sein.
+###_PLAYER
+Panel gag.
+Maulkorb.
+###_NPC
+Correct!  I see that you've been gagged a lot.  (She giggles.)
+Richtig! Wie ich sehe, bist du des Öfteren geknebelt. (Sie kichert.)
+###_PLAYER
+Duct tape.
+Klebeband.
+Cloth gag.
+Stoffknebel.
+###_NPC
+It's the panel gag.  I guess some time with a gag will teach you a lesson.
+Es ist der Maulkorb. Etwas Zeit mit einem Knebel dürfte dir wohl eine Lehre sein.
+Some of your limits can be pushed and others cannot.  How do you call a limit that cannot be pushed or broken?
+Ein paar deiner Limits dürfen leicht überschritten werden, andere nicht. Wie nennt man Limits, die nicht überschritten oder gebrochen werden dürfen?
+###_PLAYER
+All limits.
+Alle Limits.
+###_NPC
+No, they are called hard limits.  Do not let anyone mess with your hard limits and explain them clearly.
+Nein, man nennt sie harte Limits. Lass niemanden an deinen harten Limits herumspielen und erkläre sie ausführlich.
+###_PLAYER
+Soft limits.
+Weiche Limits.
+Hard limits.
+Harte Limits.
+###_NPC
+Very good subbie girl.  Do not let anyone mess with your hard limits and explain them clearly.
+Sehr gut, kleines Mädchen. Lass niemanden an deinen harten Limits herumspielen, und erkläre sie ausführlich.
+They are called hard limits.  Do not let anyone mess with your hard limits and explain them clearly.
+Man nennt sie harte Limits. Lass niemanden an deinen harten Limits herumspielen und erkläre sie ausführlich.
+If an online player or owner asks you for real-life information such as your name, address or phone number.  Do you provide it?
+Angenommen, ein Online-Spieler oder -Besitzer fragt dich nach realen Informationen, wie etwa nach deinem Namen, deiner Adresse oder deiner Telefonnummer. Antwortest du?
+###_PLAYER
+No, my real-life is personal.
+Nein, mein echtes Leben ist Privatsache.
+###_NPC
+Correct, if you don't want to give any personal information, no owner can make you do it.
+Richtig, wenn du keine persönlichen Informationen herausgeben willst, kann dich kein Besitzer dazu zwingen.
+###_PLAYER
+It depends entirely on me.
+Das hängt allein von mir ab.
+###_NPC
+Correct, if you want to give personal information, you can, but be careful if you do so.
+Richtig, wenn du persönliche Informationen herausgeben willst, darfst du das tun, aber gehe vorsichtig damit um.
+###_PLAYER
+I must obey and provide it.
+Ich muss gehorchen und antworten.
+###_NPC
+No!  You can always choose if you want to give personal information or not.  Be very careful if you do so.
+Nein! Du kannst stets selbst entscheiden, ob du persönliche Informationen herausgeben willst oder nicht. Gehe vorsichtig damit um.
+You can always choose if you want to give personal information or not.  Be very careful if you do so.
+Du kannst stets selbst entscheiden, ob du persönliche Informationen herausgeben willst oder nicht. Gehe vorsichtig damit um.
+When can you give your account name and password to someone else?
+Wann kannst du jemand Anderem deinen Account-Namen und dein Passwort verraten?
+###_PLAYER
+When I trust her.
+Wenn ich ihr vertraue.
+###_NPC
+No girl!  Never give your account name and password to anyone.
+Nein, Mädchen! Verrate niemandem jemals deinen Account-Namen und dein Passwort.
+###_PLAYER
+When she's my owner.
+Wenn sie meine Besitzerin ist.
+Never.
+Niemals.
+###_NPC
+Good girl!  Never give your account name and password to anyone.
+Gutes Mädchen! Verrate niemandem jemals deinen Account-Namen und dein Passwort.
+Never give your account name and password to anyone.
+Verrate niemandem jemals deinen Account-Namen und dein Passwort.
+In which situation can a Club Mistress be stripped of her title?
+Unter welchen Umständen kann einer Club-Herrin ihr Titel entzogen werden?
+###_PLAYER
+When her Dominant reputation falls.
+Wenn ihr Ruf als dominante Person schwindet.
+###_NPC
+Correct, good girl.  (She gives you a fist bump on the shoulder.)
+Richtig, gutes Mädchen. (Sie stößt deine Schulter mit ihrer Faust an.)
+###_PLAYER
+When she gets collared.
+Wenn sie ein Halsband angelegt bekommt.
+###_NPC
+Incorrect.  It's when her Dominant reputation falls to low.
+Falsch. Es passiert, wenn ihr dominanter Ruf einen gewissen Wert unterschreitet.
+###_PLAYER
+When she's inactive for too long.
+Wenn sie zu lange untätig ist.
+When she gets kidnapped.
+Wenn sie von einer Kidnapperin gefangen wird.
+###_NPC
+It's when her Dominant reputation falls to low.
+Es passiert, wenn ihr dominanter Ruf einen gewissen Wert unterschreitet.
+Where should you go if you get stuck in a chastity device and want to get out?
+Wo solltest du hin, wenn du aus einem Keuschheitsgerät befreit werden willst?
+###_PLAYER
+The introduction class.
+Zum Einstiegskurs.
+###_NPC
+Wrong.  You need to go to the club management and speak with the Mistress on duty.
+Falsch. Du musst das Club-Management aufsuchen und mit der Herrin im Dienst sprechen.
+###_PLAYER
+The maid quarters.
+Zur Dienerkammer.
+The club management.
+Zum Club-Management.
+###_NPC
+Absolutely.  Go to the club management and speak with the Mistress on duty.
+Genau. Du musst das Club-Management aufsuchen und mit der Herrin im Dienst sprechen.
+###_PLAYER
+The club shop.
+Zum Clubladen.
+###_NPC
+You need to go to the club management and speak with the Mistress on duty.
+Du musst das Club-Management aufsuchen und mit der Herrin im Dienst sprechen.
+If you find a something strange like a bug, an exploit or a typo, what should you do?
+Was solltest du tun, wenn dir etwas Merkwürdiges wie ein Spielfehler, ein unfairer Trick oder ein Schreibfehler auffällt?
+###_PLAYER
+Ignore it.
+Es ignorieren.
+###_NPC
+No.  Gather as much information as you can and report the anomaly to the developers.  Screenshots are very useful.
+Nein. Sammle so viele Informationen wie möglich und berichte den Entwicklern von der Anomalie. Screenshots sind äußerst hilfreich.
+###_PLAYER
+Restart.
+Neustarten.
+###_NPC
+No.  Gather as much information as you can and report the anomaly to the developers.  Screenshots are very useful.  Restart after if you need.
+Nein. Sammle so viele Informationen wie möglich und berichte den Entwicklern von der Anomalie. Screenshots sind äußerst hilfreich. Neustarten kannst tu hinterher, wenn nötig.
+###_PLAYER
+Complain.
+Mich beschweren.
+Document and report it.
+Es dokumentieren und melden.
+###_NPC
+Yes.  Gather as much information as you can and report the anomaly to the developers.  Screenshots are very useful.
+Ja. Sammle so viele Informationen wie möglich und berichte den Entwicklern von der Anomalie. Screenshots sind äußerst hilfreich.
+Gather as much information as you can and report the anomaly to the developers.  Screenshots are very useful.
+Sammle so viele Informationen wie möglich und berichte den Entwicklern von der Anomalie. Screenshots sind äußerst hilfreich.
+What kind of rope is easiest to struggle out from?
+Aus welcher Art von Seil kann man sich am einfachsten befreien?
+###_PLAYER
+Hemp rope.
+Hanfseil.
+###_NPC
+You've failed girl.  The correct answer is nylon rope.
+Das war wohl nichsts, Mädchen. Die richtige Antwort wäre Nylonseil.
+###_PLAYER
+Nylon rope.
+Nylonseil.
+###_NPC
+Yes!  You've been tied up a lot, haven't you?
+Ja! Du warst wohl schon öfter gefesselt, was?
+###_PLAYER
+Suspension rope.
+Hängeseil.
+###_NPC
+The answer is nylon rope.
+Die Antwort lautet Nylonseil.
+What is forniphilia?
+Was ist Forniphilie?
+###_PLAYER
+Human-furniture practice or fetish.
+Ein Fetisch für menschliche Möbel.
+###_NPC
+Very good, that wasn't an easy question.
+Sehr gut, das war keine einfache Frage.
+###_PLAYER
+Human-pig practice or fetish.
+Ein Fetisch für menschliche Schweine.
+###_NPC
+Incorrect.  Forniphilia is the practice of creating human furniture.  Like a human chair or stool.
+Falsch. Bei Forniphilie handelt es sich um die Praxis, Menschen als Möbel zu benutzen. Wie etwa einen menschlichen Stuhl oder Hocker.
+###_PLAYER
+Fornication practice or fetish.
+Ein Fetisch für Unzucht.
+###_NPC
+Forniphilia is the practice of creating human furniture.  Like a human chair or stool.
+Bei Forniphilie handelt es sich um die Praxis, Menschen als Möbel zu benutzen. Wie etwa einen menschlichen Stuhl oder Hocker.
+How would you label someone that's both a Dominant and a submissive?
+Wie würdest du eine Person bezeichnen, die sowohl dominant als auch unterwürfig ist?
+###_PLAYER
+A switch.
+Eine Switch.
+###_NPC
+Indeed!  (She nods happily.)
+Durchaus! (Sie nickt glücklich.)
+###_PLAYER
+An undecided.
+Eine Unentschlossene.
+###_NPC
+No girl, the proper label is switch.
+Nein, Mädchen, die korrekte Bezeichnung lautet Switch.
+###_PLAYER
+A double-sided.
+Eine Zweiseitige.
+A confused.
+Eine Verwirrte.
+###_NPC
+The proper label is switch.
+Die korrekte Bezeichnung lautet Switch.
+What is the name of the shape in the most common BDSM symbol?
+Wie nennt sich die Form, die im gängigsten BDSM-Symbol zu finden ist?
+###_PLAYER
+The centipede.
+Hundertfüßler.
+###_NPC
+That one was hard wasn't it?  The correct answer is the triskelion.  It's a common symbol for BDSM.
+Die Frage hatte es in sich, was? Die richtige Antwort lautet Triskel. Es ist ein gängiges Symbol für BDSM.
+###_PLAYER
+The triskelion.
+Triskel.
+###_NPC
+Impressive!  The triskelion is indeed a common symbol for BDSM.
+Alle Achtung! Das Triskel ist in der Tat ein gängiges Symbol für BDSM.
+###_PLAYER
+The spiral.
+Spirale.
+The ingushetia.
+Inguschetien.
+###_NPC
+Complete this sentence:  safe, sane and ...
+Vervollständige dieses englische BDSM-Motto: "Safe, sane and..."
+###_PLAYER
+Secure.
+Secure.
+###_NPC
+Better luck next time.  The answer is: consensual.
+Vielleicht hast du beim nächsten Mal mehr Glück. Die Antwort lautet: Consensual.
+###_PLAYER
+Sensual.
+Sensual.
+Submissive.
+Submissive.
+Consensual.
+Consensual.
+###_NPC
+Good girl!  Remember this one.
+Gutes Mädchen! Merk dir das.
+Which free restraint can you get when you've joined the maid sorority?
+Welches Fesselspielzeug kannst du kostenlos erhalten, wenn du Mitglied der Hausmädchen-Schwesternschaft bist?
+###_PLAYER
+The leg irons.
+Fußfesseln.
+###_NPC
+No girl, it's the duster gag.
+Nein, es ist der Staubwedel-Knebel.
+###_PLAYER
+The wooden paddle.
+Ein Holzpaddel.
+###_NPC
+No girl, that's not a restraint.  It's the duster gag.
+Nein, das ist kein Fesselspielzeug. Es ist der Staubwedel-Knebel.
+###_PLAYER
+The duster gag.
+Einen Staubwedel-Knebel.
+###_NPC
+Very good, maybe I'll strap one on you someday.
+Sehr gut, vielleicht schnalle ich dir eines Tages einen um.
+It's the duster gag.
+Es ist der Staubwedel-Knebel.
+###_PLAYER
+Thanks a lot!
+Vielen Dank!
+###_NPC
+(She smiles and nods.)  I must go now, enjoy the club little slave.
+(Sie lächelt und nickt.) Ich muss jetzt gehen, viel Spaß im Club, kleine Sklavin.
+###_PLAYER
+It was pure luck.
+Es war reines Glück.
+###_NPC
+You're a lucky slave then.  I must go now, enjoy your visit in the club.
+Dann bist du ein ziemlicher Glückspilz, Sklavin. Ich muss jetzt gehen, viel Spaß bei deinem Aufenthalt im Club.
+###_PLAYER
+I've studied very hard Miss.
+Ich habe fleißig gelernt, Miss.
+###_NPC
+(She pets your head.)  Good girl!  I must go now, enjoy the club little slave.
+(Sie streichelt deinen Kopf.) Braves Mädchen! Ich muss jetzt gehen, viel Spaß im Club, kleine Sklavin.
+###_PLAYER
+That was too easy.
+Das war zu einfach.
+###_NPC
+(She frowns.)  Maybe it was a little easy.  Oh well, I must go now, enjoy the club slave girl.
+(Sie runzelt die Stirn.) Kann schon sein. Na ja, ich muss jetzt gehen, viel Spaß im Club, kleine Sklavin.
+###_PLAYER
+I've learned something today.
+Ich habe heute etwas Neues gelernt.
+###_NPC
+Next time you will know it.  But for now, you'll spend some time strapped up in a cell.
+Fürs nächste Mal weißt du Bescheid. Aber vorerst verbringst du etwas Zeit in einer Zelle.
+###_PLAYER
+Damn it!  I knew it!
+Verdammt! Wusste ich's doch!
+That question was very hard Miss.  (Blush.)
+Das war eine sehr schwierige Frage, Miss. (Rot werden.)
+I didn't know that.
+Das wusste ich nicht.
+Do I really have to?
+Muss das wirklich sein?
+###_NPC
+Don't complain girl.  You're going to a cell for five minutes for your lack of knowledge.
+Nicht meckern, Mädchen. Für dein mangelndes Wissen kommst du fünf Minuten lang in eine Zelle.
+###_PLAYER
+Very well.  (Let her put you in a cell.)
+Sehr wohl. (Dich von ihr in eine Zelle sperren lassen.)
+(Stay silent and let her put you in a cell.)
+(Schweigen und dich von ihr in eine Zelle sperren lassen.)

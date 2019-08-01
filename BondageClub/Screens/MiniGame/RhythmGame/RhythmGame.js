@@ -110,7 +110,7 @@ let RhythmGameAudio =  {
         RhythmGameAudio.preloadComplted = false;
         RhythmGameAudio.audioCtx = null;
         RhythmGameAudio.bufferSource = null;
-        let url = 'Screens/MiniGame/RhythmGame/res/beatmap/audio/' + RhythmGameBeatmap + '.mp3';
+        let url = 'Screens/MiniGame/RhythmGame/res/beatmap/' + RhythmGameBeatmap + '/' + RhythmGameBeatmap + '.mp3';
         let mp3 = new XMLHttpRequest();
         mp3.onreadystatechange = function() {
             if (mp3.readyState === 4 && mp3.status === 200) {
@@ -144,7 +144,7 @@ let RhythmGameChart = {
     preload : function () {
         RhythmGameChart.preloadComplted = false;
         RhythmGameChart.chartFile = null;
-        let url = 'Screens/MiniGame/RhythmGame/res/beatmap/chart/' + RhythmGameBeatmap + '-' + RhythmGameDifficulty + '.xml';
+        let url = 'Screens/MiniGame/RhythmGame/res/beatmap/' + RhythmGameBeatmap + '/' + RhythmGameBeatmap + '-' + RhythmGameDifficulty + '.xml';
 
         let xml = new XMLHttpRequest();
         xml.onreadystatechange = function() {
@@ -502,7 +502,7 @@ let RhythmGameScript = {
                     RhythmGameScript.score += Math.log10(RhythmGameScript.combo.value+1) * 0.01;
                     break;
                 case 3:
-                    RhythmGameScript.score += Math.log10(RhythmGameScript.combo.value+1) * 0.02;
+                    RhythmGameScript.score += Math.log10(RhythmGameScript.combo.value+1) * 0.03;
                     break;
                 default:
                     break;
@@ -832,7 +832,7 @@ let RhythmGameRender = {
     },
 
     showAcc : function(){
-        let text = 'ACC: ' + (RhythmGameScript.acc.value * 100).toFixed(2) + '%';
+        let text = TextGet('Acc') + ': ' + (RhythmGameScript.acc.value * 100).toFixed(2) + '%';
         MainCanvas.font = '40px Courier';
         MainCanvas.fillStyle = '#FFFFFF';
         MainCanvas.globalAlpha = 1;
@@ -841,7 +841,7 @@ let RhythmGameRender = {
     },
 
     showScore : function(){
-        let text = 'BONUS: ' + RhythmGameScript.score.toFixed(3);
+        let text = TextGet('Score') + ': ' + RhythmGameScript.score.toFixed(3);
         MainCanvas.font = '40px Courier';
         MainCanvas.fillStyle = '#FFFFFF';
         MainCanvas.globalAlpha = 1;
@@ -875,13 +875,13 @@ let RhythmGameRender = {
         MainCanvas.fillStyle = '#FFFFFF';
         MainCanvas.fillRect(x, top_y, w, h);
 
-        MainCanvas.font = '70px Courier';
+        MainCanvas.font = '40px Courier';
         MainCanvas.fillStyle = '#FFFFFF';
         MainCanvas.globalAlpha = 1;
         MainCanvas.textAlign = 'left';
-        MainCanvas.fillText('Audience',1350,700);
-        MainCanvas.fillText('Patience',1350,800);
-        MainCanvas.fillText('Level',1350,900);
+        MainCanvas.fillText(TextGet('AudiencePatienceLevel'),1350,700);
+        // MainCanvas.fillText('Patience',1350,800);
+        // MainCanvas.fillText('Level',1350,900);
     },
 };
 

@@ -1,4 +1,18 @@
 ###_NPC
+picks a beer from DialogCharacterName tray.
+nimmt sich ein Bier von DialogCharacterName Servierplatte.
+picks a glass of wine from DialogCharacterName tray.
+nimmt sich ein Glas Wein von DialogCharacterName Servierplatte.
+picks a Margarita from DialogCharacterName tray.
+nimmt sich einen Margarita von DialogCharacterName Servierplatte.
+buys a glass of Whiskey from DialogCharacterName.
+kauft ein Glas Whiskey von DialogCharacterName.
+buys a glass of champagne from DialogCharacterName.
+kauft ein Glas Champagner von DialogCharacterName.
+buys a round of shooters for everyone, from DialogCharacterName.
+gibt bei DialogCharacterName allen eine Runde aus.
+buys a beer pitcher for everyone, from DialogCharacterName.
+kauft von DialogCharacterName einen Krug Bier für alle.
 (You can use or remove items by selecting specific body regions.)
 (Wähle eine Körperregion, um Items zu benutzen oder zu entfernen.)
 (You don't have access to use or remove items on her.)
@@ -14,8 +28,16 @@
 (You can give more access to your items by putting her on your whitelist, or less control by putting her on your blacklist.)
 (Nimm sie in deine Whitelist auf, um ihr Zugriff auf deine Fesseln zu gewähren, oder verwende die Blacklist, um Kontrolle zu entziehen.)
 ###_PLAYER
+(Kick her out of the room.)
+(Sie aus dem Raum werfen.)
 (Ban her from the room.)
 (Sie aus dem Raum verbannen.)
+(Check her drink tray.)
+(Ihr Getränketablett ansehen.)
+###_NPC
+(There's a variety of drinks.  Some are offered by the club and some are more expensive.)
+(Es gibt mehrere verschiedene Getränke. Einige werden vom Club angeboten, andere sind etwas teurer.)
+###_PLAYER
 (Leave this menu.)
 (Dieses Menü verlassen.)
 (Add to item whitelist.)
@@ -57,8 +79,8 @@
 (Offer her a trial period to become your submissive.)
 (Ihr eine Probezeit als deine Untergebene anbieten.)
 ###_NPC
-(The request was sent, she must accept for the trial period to start.)
-(Die Anfrage wurde gesendet, sie muss akzeptiert werden, bevor die Probezeit beginnt.)
+(The request was sent.  She must accept for the trial period to start.)
+(Die Anfrage wurde gesendet. Sie muss akzeptiert werden, bevor die Probezeit beginnt.)
 ###_PLAYER
 (Accept a trial period to become her submissive.)
 (Anfrage zur Probezeit als ihre Untergebene abkeptieren.)
@@ -84,3 +106,17 @@
 ###_PLAYER
 (Back to main menu.)
 (Zurück zum Hauptmenü.)
+(Get a free beer.)
+(Ein kostenloses Bier nehmen.)
+(Get a free glass of wine.)
+(Ein kostenloses Glas Wein nehmen.)
+(Get a free Margarita.)
+(Einen kostenlosen Margarita nehmen.)
+(Get a 5$ glass of Whiskey.)
+(Ein Glas Whiskey für 5$ kaufen.)
+(Get a 5$ glass of Champagne.)
+(Ein Glas Champagner für 5$ kaufen.)
+(Get a 10$ round of shooters for everyone.)
+(Allen für 10$ eine Runde ausgeben.)
+(Get a 10$ beer pitcher for everyone.)
+(Allen für 10$ einen Krug Bier ausgeben.)

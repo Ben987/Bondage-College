@@ -1,4 +1,33 @@
 PlayerGagged,,,Club slaves are so much better when they are gagged.,,
+ItemMouth,,,(She licks her lips seeing the gag and allows you to silence her easily.),,
+RemoveItemMouth,,,(You remove her gag and she sighs.)  I hope you have another gag for me Miss.,,
+ItemArms,,,(She moans of pleasure as you restrain her arms.)  I'm glad you've found me Miss.,,
+RemoveItemArms,,,(You free her arms and she stretches a little.)  This slave is here to server you Miss.,,
+ItemLegs,,,(You restrain her legs securely while she moans silently.)  This is sweet.,,
+RemoveItemLegs,,,(You release her legs.)  You can use any item you want on this slave Miss.,,
+ItemFeet,,,(She wiggles her feet playfully as you restrain them.)  This feels very nice.,,
+RemoveItemFeet,,,(You release her feet and she jumps playfully.)  More bondage Miss?,,
+ItemPelvis,,,(She rocks her hips and struggles as you put the device on her.),,
+RemoveItemPelvis,,,(She seems relieved as you remove the device.)  Thank you very much Miss DialogPlayerName.,,
+ItemTorso,,,(You prepare a full body harness on her torso as she blushes.)  This is very erotic.,,
+RemoveItemTorso,,,(You remove the body harness from her torso.)  Harnesses are wonderful.,,
+ItemButt,,,(She does a light moan as you slide the device inside.)  Woah!  Thank you Miss.,,
+RemoveItemButt,,,(She shivers as you remove the butt plug.)  This slave butt is yours Miss.,,
+ItemBreast,,,(She holds her breath as you use the item.)  You're very kinky Miss.,,
+RemoveItemBreast,,,(She wiggles her breast slowly as you remove the device.)  It's nice to let the jugs out.,,
+ItemNipples,,,(She holds her breath as you use the item.)  Ow!  I'm your pain slut Miss.,,
+RemoveItemNipples,,,(She catches her breath as you remove the device.)  That's quite a feeling.,,
+ItemHead,,,(You strap the device on her head as she adjusts to it.)  This will enhance my helplessness.,,
+RemoveItemHead,,,(You remove the device and she looks at you.)  You're quite a Dominant Miss.,,
+ItemBreastLeatherWhip,,,"(She moans as you whip her breast and torso, enjoying the pain.)",,
+ItemBreastLeatherCrop,,,(She jumps and makes her breast wiggle with each hit.)  You're very strong Miss.,,
+ItemPelvisLeatherWhip,,,(She trembles and moans with each lashes.)  This slave can take it Miss.,,
+ItemPelvisLeatherCrop,,,(You whip her butt with the leather crop as she wiggles it for more.),,
+ItemVulvaVibratingWand,,,(She moans softly as you massage her pussy with the wand.)  Oh Miss!  I'm glad we've found each other.,,
+VibratingEgg,,,(She moans as you slide the egg inside.)  Best slave contract in weeks.,,
+RemoveVibratingEgg,,,"(She does one last moan as you remove the egg.)  Thanks, that was very stimulating.",,
+SuspensionHempRope,,,(You restrain her legs with the long hemp rope and suspend her by the feet from the ceiling.)  Oh my!,,
+RemoveSuspensionHempRope,,,(You untie the hemp rope from the ceiling and slowly get her down.)  Thanks for the ride Miss.,,
 Intro0,,,(A maid crosses your path and stops.)  Nice!  I guess I can take a break to play with you.,,
 IntroRestrained0,,,(A maid crosses your path and stops.)  You're cute when you're restrained!  I guess I can take a break to play with you.,,
 Intro1,,,(A club member crosses your path and makes a devious smile.)  A slave just for me!,,
@@ -13,13 +42,13 @@ Intro5,,,"(A girl sneaks up behind you.)  Your cute ass is mine, slave girl.",,
 IntroRestrained5,,,"(A girl sneaks up behind you and checks your bondage.)  Your cute ass is mine, restrained girl.",,
 Intro6,,,(A club member jumps of joy seeing you.)  Yes!  A club slave just for me.,,
 IntroRestrained6,,,(A club member jumps of joy seeing you.)  Yes!  A restrained slave just for me.,,
-0,,I'm here to serve you Miss.,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
-0,,How can I please you?,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
-0,,Will you release me?,,ClubSlaveRandomActivityLaunch(),Player.IsRestrained()
-0,,Do as you wish.  I'm your slave.,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
-0,,Please don't be too rough.,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
-0,,(Try to struggle out.),,ClubSlaveRandomActivityLaunch(),Player.IsRestrained()
-0,,(Let her play with you.),,ClubSlaveRandomActivityLaunch(),
+ActivityIntro,,I'm here to serve you Miss.,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
+ActivityIntro,,How can I please you?,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
+ActivityIntro,,Will you release me?,,ClubSlaveRandomActivityLaunch(),Player.IsRestrained()
+ActivityIntro,,Do as you wish.  I'm your slave.,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
+ActivityIntro,,Please don't be too rough.,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
+ActivityIntro,,(Try to struggle out.),,ClubSlaveRandomActivityLaunch(),Player.IsRestrained()
+ActivityIntro,,(Let her play with you.),,ClubSlaveRandomActivityLaunch(),
 ActivityAddArmsIntro,,,(She restrains your arms and smiles.)  An unrestrained club slave?  That wasn't proper.,,
 ActivityAddArms,,This is tight.,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
 ActivityAddArms,,I agree Miss.,,ClubSlaveRandomActivityLaunch(),Player.CanTalk()
@@ -103,3 +132,247 @@ ActivityEnd,ActivityEnd2,Would you like to visit my room?,"Not now, I need to go
 ActivityEnd,,(Leave her.),,ClubSlaveRandomActivityEnd(0),
 ActivityEnd2,,(Leave her.),,ClubSlaveRandomActivityEnd(0),
 ActivityEnd3,,Follow me!  (Bring her to your room.),,ClubSlaveTransferToRoom(),
+StruggleIntro,StrugglePlan,I'm here to serve you Miss.,"Good.  I hope you like to be tied up girl, because I have a devious plan for you.",,Player.CanTalk()
+StruggleIntro,StrugglePlan,How can I please you?,"(She ponders.)  I hope you like to be tied up girl, because I have a devious plan for you.",,Player.CanTalk()
+StruggleIntro,StrugglePlan,Will you release me?,"(She laughs.)  Absolutely not.  I hope you like to be tied up girl, because I have a devious plan for you.",,Player.IsRestrained()
+StruggleIntro,StrugglePlan,Do as you wish.  I'm your slave.,"Good.  I hope you like to be tied up girl, because I have a devious plan for you.",,Player.CanTalk()
+StruggleIntro,StrugglePlan,Please don't be too rough.,"(She laughs.)  I hope you like to be tied up girl, because I have a devious plan for you.",,Player.CanTalk()
+StruggleIntro,StrugglePlan,(Try to struggle out.),"(She smiles.)  I hope you like to be tied up girl, because I have a devious plan for you.",,Player.IsRestrained()
+StruggleIntro,StrugglePlan,(Let her play with you.),"I hope you like to be tied up girl, because I have a devious plan for you.",,
+StrugglePlan,StruggleConsequence,What plan Miss?,I will restrain you and give you one minute to struggle out.,,Player.CanTalk()
+StrugglePlan,StruggleConsequence,Something devious?  Nice.,"Yes, I will restrain you and give you one minute to struggle out.",,Player.CanTalk()
+StrugglePlan,StruggleConsequence,(Look worried.),(She smirks.)  I will restrain you and give you one minute to struggle out.,,
+StrugglePlan,StruggleConsequence,(Stay silent.),I will restrain you and give you one minute to struggle out.,,
+StruggleConsequence,StruggleRestrain,What if I fail?,"If you fail, I will leave you locked alone in a cell for five minutes.  You'll get plenty of time to get better at struggling.",,Player.CanTalk()
+StruggleConsequence,StruggleRestrain,(Nod slowly.),"If you fail, I will leave you locked alone in a cell for five minutes.  You'll get plenty of time to get better at struggling.",,
+StruggleRestrain,StruggleReady,I understand.,(She straps you up pretty tight.)  You only have one minute to get free.  Are you ready girl?,ActivityStruggleRestrain(),Player.CanTalk()
+StruggleRestrain,StruggleReady,This is kinky!,(She straps you up pretty tight and smiles.)  You only have one minute to get free.  Are you ready girl?,ActivityStruggleRestrain(),Player.CanTalk()
+StruggleRestrain,StruggleReady,(Grumble a little.),(She frowns and straps you up pretty tight.)  You only have one minute to get free.  Are you ready girl?,ActivityStruggleRestrain(),
+StruggleRestrain,StruggleReady,(Nod politely.),(She straps you up pretty tight.)  You only have one minute to get free.  Are you ready girl?,ActivityStruggleRestrain(),
+StruggleReady,StruggleProgress,(Nod happily and start struggling.),,ActivityStruggleStart(),
+StruggleReady,StruggleProgress,(Nod reluctantly and start struggling.),,ActivityStruggleStart(),
+StruggleProgress,,,Did you make it?  Are you fully free?,,StruggleSuccess()
+StruggleProgress,,,You've failed girl.  The time is up.,,StruggleFail()
+StruggleProgress,,,Don't look at me.  Struggle girl!,,StruggleProgress()
+StruggleProgress,StruggleSuccess,I've did it!,"Well done slave girl, you're free to go.",,StruggleSuccess()
+StruggleProgress,StruggleSuccess,"Miss, it was an honor to complete your challenge.","Well done slave girl, you're free to go.","DialogChangeReputation(""Dominant"", -3)",StruggleSuccess()
+StruggleProgress,StruggleSuccess,(Do a victory dance.),"Well done slave girl, you're free to go.","DialogChangeReputation(""Dominant"", 3)",StruggleSuccess()
+StruggleProgress,StruggleFail,I've failed Miss.  Sorry.,"Don't be sorry, you'll have plenty of time to practice struggling in one of the club cells.",,StruggleFail()
+StruggleProgress,StruggleFail,(Bow your head in shame.),"Don't be sorry, you'll have plenty of time to practice struggling in one of the club cells.",,StruggleFail()
+StruggleProgress,,Is there still time?,Yes!  Now stop talking and struggle.,,StruggleProgress()
+StruggleProgress,,Am I doing good?,Stop talking and struggle!,,StruggleProgress()
+StruggleProgress,,(Beg for help.),"I'm not helping you, struggle girl!",,StruggleProgress()
+StruggleProgress,,(Leave her to struggle.),,DialogLeave(),StruggleProgress()
+StruggleSuccess,,Thanks Miss!  (Leave her.),,MainHall(),
+StruggleSuccess,,(Bow your head and leave.),,MainHall(),
+StruggleFail,StruggleCell,Very well.,"Come with me girl, you'll spend five minutes all bundled up in a little cell.",,Player.CanTalk()
+StruggleFail,StruggleCell,You can't lock me up!,"Don't complain and come with me girl, you'll spend five minutes all bundled up in a little cell.","DialogChangeReputation(""Dominant"", 2)",Player.CanTalk()
+StruggleFail,StruggleCell,Please Miss!  I've tried my best.,"Don't beg and come with me girl, you'll spend five minutes all bundled up in a little cell.","DialogChangeReputation(""Dominant"", -3)",Player.CanTalk()
+StruggleFail,StruggleCell,(Shake your head no and grumble.),"Don't complain and come with me girl, you'll spend five minutes all bundled up in a little cell.","DialogChangeReputation(""Dominant"", 2)",!Player.CanTalk()
+StruggleFail,StruggleCell,(Cry and beg for mercy.),"Don't beg and come with me girl, you'll spend five minutes all bundled up in a little cell.","DialogChangeReputation(""Dominant"", -3)",!Player.CanTalk()
+StruggleFail,StruggleCell,(Bow your head.),"Come with me girl, you'll spend five minutes all bundled up in a little cell.",,!Player.CanTalk()
+StruggleCell,,(Let her put you in a cell.),,Cell(),
+QuizIntro,QuizExplain,I'm here to serve you Miss.,Good.  Are you ready for a quiz question slave girl?,,Player.CanTalk()
+QuizIntro,QuizExplain,How can I please you?,(She ponders.)  Are you ready for a quiz question slave girl?,,Player.CanTalk()
+QuizIntro,QuizExplain,Will you release me?,(She laughs.)  Absolutely not.  Are you ready for a quiz question slave girl?,,Player.IsRestrained()
+QuizIntro,QuizExplain,Do as you wish.  I'm your slave.,Good.  Are you ready for a quiz question slave girl?,,Player.CanTalk()
+QuizIntro,QuizExplain,Please don't be too rough.,(She laughs.)  Are you ready for a quiz question slave girl?,,Player.CanTalk()
+QuizIntro,QuizExplain,(Try to struggle out.),(She smiles.)  You're cute when you struggle.  Are you ready for a quiz question slave girl?,,Player.IsRestrained()
+QuizIntro,QuizExplain,(Let her play with you.),Are you ready for a quiz question slave girl?,,
+QuizExplain,,(Mumble in the gag.),(She laughs and removes your gag.)  It will be easier like that.  Ready for a quiz question?,RemoveGag(),!Player.CanTalk()
+QuizExplain,,What if I give the correct answer?,"You won't be punished, and you will be free to go.",DialogRemove(),Player.CanTalk()
+QuizExplain,,What if I give the wrong answer?,(She smirks.)  I will strap you up tight and lock you up in a cell for a few minutes.,DialogRemove(),Player.CanTalk()
+QuizExplain,,Why are you doing a quiz?,Club slaves must know and understand BDSM rules and safety.  I will make sure you do.,DialogRemove(),Player.CanTalk()
+QuizExplain,,I'm ready Miss!,,StartQuiz(),Player.CanTalk()
+QuizExplain,,Go ahead with the quiz.,,StartQuiz(),Player.CanTalk()
+QuizQuestion0,,,"In the ""BDSM"" acronym, what does the ""DS"" stands for?",,
+QuizAnswer0,QuizFail,Domination and Sadism.,"Close but not perfect.  The correct answer is: ""Dominance and Submission"".",,
+QuizAnswer0,QuizSuccess,Dominance and Submission.,Very good little slave.,,
+QuizAnswer0,QuizFail,Dommes and Switches.,"Absolutely not.  The correct answer is: ""Dominance and Submission"".",,
+QuizAnswer0,QuizFail,I don't know.,"This is disappointing.  The correct answer is: ""Dominance and Submission"".",,
+QuizQuestion1,,,"As a submissive, when do you have the right to stop a scene that's too intense, break your hard limits or make your uncomfortable?",,
+QuizAnswer1,QuizSuccess,I can always stop a scene.,"Very good.  You can always stop a scene if there's something wrong with it, this is your right.",,
+QuizAnswer1,QuizFail,Only if the Dominant allows it.,"Incorrect.  You can always stop a scene if there's something wrong with it, this is your right.",,
+QuizAnswer1,QuizFail,I can never stop a scene.,"Absolutely not.  You can always stop a scene if there's something wrong with it, this is your right.",,
+QuizAnswer1,QuizFail,I don't know.,"Slave girl, you need to know this.  You can always stop a scene if there's something wrong with it, this is your right.",,
+QuizQuestion2,,,"In online chat rooms, what's the minimum number of days for a submissive trial period before collaring?",,
+QuizAnswer2,QuizFail,One day.,Wrong.  It's three days slave girl.,,
+QuizAnswer2,QuizSuccess,Three days.,Correct!  (She pets your head.),,
+QuizAnswer2,QuizFail,One week.,Wrong.  It's three days slave girl.,,
+QuizAnswer2,QuizFail,I don't know.,You should know the delay.  It's three days slave girl.,,
+QuizQuestion3,,,What is highest ranking you can reach in the maid sorority?,,
+QuizAnswer3,QuizFail,Top Maid.,"No, the proper title name is Head Maid.",,
+QuizAnswer3,QuizFail,First Maid.,"No, the proper title name is Head Maid.",,
+QuizAnswer3,QuizSuccess,Head Maid.,Correct!  (She gives you a thumbs up.),,
+QuizAnswer3,QuizFail,Super Maid.,"No, the proper title name is Head Maid.",,
+QuizAnswer3,QuizFail,I don't know.,You should know the title.  It's Head Maid.,,
+QuizQuestion4,,,"In online chat rooms, what text command would you use to roll a dice?",,
+QuizAnswer4,QuizFail,/coin,No!  Use /dice X to roll a X sided dice and /coin to flip a coin.,,
+QuizAnswer4,QuizFail,/die,No!  Use /dice X to roll a X sided dice and /coin to flip a coin.,,
+QuizAnswer4,QuizFail,/roll,No!  Use /dice X to roll a X sided dice and /coin to flip a coin.,,
+QuizAnswer4,QuizSuccess,/dice,Yes.  Use /dice X to roll a X sided dice and /coin to flip a coin.,,
+QuizAnswer4,QuizFail,I don't know.,Use /dice X to roll a X sided dice and /coin to flip a coin.,,
+QuizQuestion5,,,"In the timer cell, what's the maximum number of minutes in which you can lock yourself?",,
+QuizAnswer5,QuizFail,30 minutes.,Wrong.  It's 60 minutes.  I guess you're going to spend some time in the cell to know it better.,,
+QuizAnswer5,QuizSuccess,60 minutes or 1 hour.,Correct!  I guess you've tried the cell before.  (She winks.),,
+QuizAnswer5,QuizFail,120 minutes or 2 hours.,Wrong.  It's 60 minutes.  I guess you're going to spend some time in the cell to know it better.,,
+QuizAnswer5,QuizFail,480 minutes or 8 hours.,Wrong.  It's 60 minutes.  I guess you're going to spend some time in the cell to know it better.,,
+QuizAnswer5,QuizFail,I don't know.,It's 60 minutes.  I guess you're going to spend some time in the cell to know it better.,,
+QuizQuestion6,,,"In online chat rooms, what can you do to protect yourself from griefers and trolls?",,
+QuizAnswer6,QuizSuccess,Blacklist them.,Absolutely.  Focus on them and add them to your blacklist in your relationship management.,,
+QuizAnswer6,QuizFail,Yell at them until they stop.,No.  Just focus on them and add them to your blacklist in your relationship management.,,
+QuizAnswer6,QuizFail,Beg them to stop.,"It probably won't work.  Instead, focus on them and add them to your blacklist in your relationship management.",,
+QuizAnswer6,QuizFail,I don't know.,Focus on them and add them to your blacklist in your relationship management.,,
+QuizQuestion7,,,"Which one of these gags is the most effective: ring gag, panel gag, duct tape or cloth gag?",,
+QuizAnswer7,QuizFail,Ring gag.,"Incorrect, it's the panel gag.  I guess some time with a gag will teach you a lesson.",,
+QuizAnswer7,QuizSuccess,Panel gag.,Correct!  I see that you've been gagged a lot.  (She giggles.),,
+QuizAnswer7,QuizFail,Duct tape.,"Incorrect, it's the panel gag.  I guess some time with a gag will teach you a lesson.",,
+QuizAnswer7,QuizFail,Cloth gag.,"Incorrect, it's the panel gag.  I guess some time with a gag will teach you a lesson.",,
+QuizAnswer7,QuizFail,I don't know.,It's the panel gag.  I guess some time with a gag will teach you a lesson.,,
+QuizQuestion8,,,Some of your limits can be pushed and others cannot.  How do you call a limit that cannot be pushed or broken?,,
+QuizAnswer8,QuizFail,All limits.,"No, they are called hard limits.  Do not let anyone mess with your hard limits and explain them clearly.",,
+QuizAnswer8,QuizFail,Soft limits.,"No, they are called hard limits.  Do not let anyone mess with your hard limits and explain them clearly.",,
+QuizAnswer8,QuizSuccess,Hard limits.,Very good subbie girl.  Do not let anyone mess with your hard limits and explain them clearly.,,
+QuizAnswer8,QuizFail,I don't know.,They are called hard limits.  Do not let anyone mess with your hard limits and explain them clearly.,,
+QuizQuestion9,,,"If an online player or owner asks you for real-life information such as your name, address or phone number.  Do you provide it?",,
+QuizAnswer9,QuizSuccess,"No, my real-life is personal.","Correct, if you don't want to give any personal information, no owner can make you do it.",,
+QuizAnswer9,QuizSuccess,It depends entirely on me.,"Correct, if you want to give personal information, you can, but be careful if you do so.",,
+QuizAnswer9,QuizFail,I must obey and provide it.,No!  You can always choose if you want to give personal information or not.  Be very careful if you do so.,,
+QuizAnswer9,QuizFail,I don't know.,You can always choose if you want to give personal information or not.  Be very careful if you do so.,,
+QuizQuestion10,,,When can you give your account name and password to someone else?,,
+QuizAnswer10,QuizFail,When I trust her.,No girl!  Never give your account name and password to anyone.,,
+QuizAnswer10,QuizFail,When she's my owner.,No girl!  Never give your account name and password to anyone.,,
+QuizAnswer10,QuizSuccess,Never.,Good girl!  Never give your account name and password to anyone.,,
+QuizAnswer10,QuizFail,I don't know.,Never give your account name and password to anyone.,,
+QuizQuestion11,,,In which situation can a Club Mistress be stripped of her title?,,
+QuizAnswer11,QuizSuccess,When her Dominant reputation falls.,"Correct, good girl.  (She gives you a fist bump on the shoulder.)",,
+QuizAnswer11,QuizFail,When she gets collared.,Incorrect.  It's when her Dominant reputation falls to low.,,
+QuizAnswer11,QuizFail,When she's inactive for too long.,Incorrect.  It's when her Dominant reputation falls to low.,,
+QuizAnswer11,QuizFail,When she gets kidnapped.,Incorrect.  It's when her Dominant reputation falls to low.,,
+QuizAnswer11,QuizFail,I don't know.,It's when her Dominant reputation falls to low.,,
+QuizQuestion12,,,Where should you go if you get stuck in a chastity device and want to get out?,,
+QuizAnswer12,QuizFail,The introduction class.,Wrong.  You need to go to the club management and speak with the Mistress on duty.,,
+QuizAnswer12,QuizFail,The maid quarters.,Wrong.  You need to go to the club management and speak with the Mistress on duty.,,
+QuizAnswer12,QuizSuccess,The club management.,Absolutely.  Go to the club management and speak with the Mistress on duty.,,
+QuizAnswer12,QuizFail,The club shop.,Wrong.  You need to go to the club management and speak with the Mistress on duty.,,
+QuizAnswer12,QuizFail,I don't know.,You need to go to the club management and speak with the Mistress on duty.,,
+QuizQuestion13,,,"If you find a something strange like a bug, an exploit or a typo, what should you do?",,
+QuizAnswer13,QuizFail,Ignore it.,No.  Gather as much information as you can and report the anomaly to the developers.  Screenshots are very useful.,,
+QuizAnswer13,QuizFail,Restart.,No.  Gather as much information as you can and report the anomaly to the developers.  Screenshots are very useful.  Restart after if you need.,,
+QuizAnswer13,QuizFail,Complain.,No.  Gather as much information as you can and report the anomaly to the developers.  Screenshots are very useful.,,
+QuizAnswer13,QuizSuccess,Document and report it.,Yes.  Gather as much information as you can and report the anomaly to the developers.  Screenshots are very useful.,,
+QuizAnswer13,QuizFail,I don't know.,Gather as much information as you can and report the anomaly to the developers.  Screenshots are very useful.,,
+QuizQuestion14,,,What kind of rope is easiest to struggle out from?,,
+QuizAnswer14,QuizFail,Hemp rope.,You've failed girl.  The correct answer is nylon rope.,,
+QuizAnswer14,QuizSuccess,Nylon rope.,"Yes!  You've been tied up a lot, haven't you?",,
+QuizAnswer14,QuizFail,Suspension rope.,You've failed girl.  The correct answer is nylon rope.,,
+QuizAnswer14,QuizFail,I don't know.,The answer is nylon rope.,,
+QuizQuestion15,,,What is forniphilia?,,
+QuizAnswer15,QuizSuccess,Human-furniture practice or fetish.,"Very good, that wasn't an easy question.",,
+QuizAnswer15,QuizFail,Human-pig practice or fetish.,Incorrect.  Forniphilia is the practice of creating human furniture.  Like a human chair or stool.,,
+QuizAnswer15,QuizFail,Fornication practice or fetish.,Incorrect.  Forniphilia is the practice of creating human furniture.  Like a human chair or stool.,,
+QuizAnswer15,QuizFail,I don't know.,Forniphilia is the practice of creating human furniture.  Like a human chair or stool.,,
+QuizQuestion16,,,How would you label someone that's both a Dominant and a submissive?,,
+QuizAnswer16,QuizSuccess,A switch.,Indeed!  (She nods happily.),,
+QuizAnswer16,QuizFail,An undecided.,"No girl, the proper label is switch.",,
+QuizAnswer16,QuizFail,A double-sided.,"No girl, the proper label is switch.",,
+QuizAnswer16,QuizFail,A confused.,"No girl, the proper label is switch.",,
+QuizAnswer16,QuizFail,I don't know.,The proper label is switch.,,
+QuizQuestion17,,,What is the name of the shape in the most common BDSM symbol?,,
+QuizAnswer17,QuizFail,The centipede.,That one was hard wasn't it?  The correct answer is the triskelion.  It's a common symbol for BDSM.,,
+QuizAnswer17,QuizSuccess,The triskelion.,Impressive!  The triskelion is indeed a common symbol for BDSM.,,
+QuizAnswer17,QuizFail,The spiral.,That one was hard wasn't it?  The correct answer is the triskelion.  It's a common symbol for BDSM.,,
+QuizAnswer17,QuizFail,The ingushetia.,That one was hard wasn't it?  The correct answer is the triskelion.  It's a common symbol for BDSM.,,
+QuizAnswer17,QuizFail,I don't know.,That one was hard wasn't it?  The correct answer is the triskelion.  It's a common symbol for BDSM.,,
+QuizQuestion18,,,"Complete this sentence:  safe, sane and ...",,
+QuizAnswer18,QuizFail,Secure.,Better luck next time.  The answer is: consensual.,,
+QuizAnswer18,QuizFail,Sensual.,Better luck next time.  The answer is: consensual.,,
+QuizAnswer18,QuizFail,Submissive.,Better luck next time.  The answer is: consensual.,,
+QuizAnswer18,QuizSuccess,Consensual.,Good girl!  Remember this one.,,
+QuizAnswer18,QuizFail,I don't know.,Better luck next time.  The answer is: consensual.,,
+QuizQuestion19,,,Which free restraint can you get when you've joined the maid sorority?,,
+QuizAnswer19,QuizFail,The leg irons.,"No girl, it's the duster gag.",,
+QuizAnswer19,QuizFail,The wooden paddle.,"No girl, that's not a restraint.  It's the duster gag.",,
+QuizAnswer19,QuizSuccess,The duster gag.,"Very good, maybe I'll strap one on you someday.",,
+QuizAnswer19,QuizFail,I don't know.,It's the duster gag.,,
+QuizSuccess,QuizSuccessEnd,Thanks a lot!,"(She smiles and nods.)  I must go now, enjoy the club little slave.",,
+QuizSuccess,QuizSuccessEnd,It was pure luck.,"You're a lucky slave then.  I must go now, enjoy your visit in the club.",,
+QuizSuccess,QuizSuccessEnd,I've studied very hard Miss.,"(She pets your head.)  Good girl!  I must go now, enjoy the club little slave.","DialogChangeReputation(""Dominant"", -3)",
+QuizSuccess,QuizSuccessEnd,That was too easy.,"(She frowns.)  Maybe it was a little easy.  Oh well, I must go now, enjoy the club slave girl.","DialogChangeReputation(""Dominant"", 2)",
+QuizSuccessEnd,,(Leave her.),,MainHall(),
+QuizFail,QuizFailEnd,I've learned something today.,"Next time you will know it.  But for now, you'll spend some time strapped up in a cell.",,
+QuizFail,QuizFailEnd,Damn it!  I knew it!,"Next time you will know it.  But for now, you'll spend some time strapped up in a cell.","DialogChangeReputation(""Dominant"", 2)",
+QuizFail,QuizFailEnd,That question was very hard Miss.  (Blush.),"Next time you will know it.  But for now, you'll spend some time strapped up in a cell.","DialogChangeReputation(""Dominant"", -3)",
+QuizFail,QuizFailEnd,I didn't know that.,"Next time you will know it.  But for now, you'll spend some time strapped up in a cell.",,
+QuizFailEnd,,Do I really have to?,Don't complain girl.  You're going to a cell for five minutes for your lack of knowledge.,DialogRemove(),
+QuizFailEnd,,Very well.  (Let her put you in a cell.),,Cell(),
+QuizFailEnd,,(Stay silent and let her put you in a cell.),,Cell(),
+ClubSlaveIntroText0,,,(Another club slave crosses your path.  She sees you and giggles.)  Hello sister.,,
+ClubSlaveIntro0,ClubSlave,Nice to meet you sister.,(She gives you a thumbs up.)  I hope you're having fun doing the contract.,,Player.CanTalk()
+ClubSlaveIntro0,ClubSlave,How's the slave life?,"It's fun, kind of quiet though.  I hope you're having fun on your side also.",,Player.CanTalk()
+ClubSlaveIntro0,ClubSlave,(Give her a hug.),"(You exhange a close hug.)  If we can't wear clothes, at least we can warm ourselves like that.  (She giggles.)","DialogChangeReputation(""Dominant"", -2)",!Player.IsRestrained()
+ClubSlaveIntro0,ClubSlave,(Mumble in your gag.),You got in trouble before me?  (She giggles.)  I hope you're having fun doing the contract.,"DialogChangeReputation(""Dominant"", -1)",!Player.CanTalk()
+ClubSlaveIntro0,,"Sorry, I need to work.  (Leave her.)",,MainHall(),Player.CanTalk()
+ClubSlaveIntro0,,(Ignore her.),,MainHall(),
+ClubSlaveIntroText1,,,(A naked club slave passes next to you in the main hall.  She sees you and slowly bows her head.),,
+ClubSlaveIntro1,ClubSlave,Hello there.,Hello Miss.  Do you require my services?,,Player.CanTalk()
+ClubSlaveIntro1,ClubSlave,Stop right there slave.,(She gulps and stops walking.)  Yes Miss!  How can I help you?,"DialogChangeReputation(""Dominant"", 2)",Player.CanTalk()
+ClubSlaveIntro1,ClubSlave,Aren't you cold?,"The stone floor is a little chilly but it's fine, I try to stay on carpets.",,Player.CanTalk()
+ClubSlaveIntro1,ClubSlave,(Mumble in your gag.),How come you're in trouble and not me?  This is unfair.  (She giggles.),"DialogChangeReputation(""Dominant"", -1)",!Player.CanTalk()
+ClubSlaveIntro1,,Have fun girl.  (Leave her.),,MainHall(),Player.CanTalk()
+ClubSlaveIntro1,,(Ignore her.),,MainHall(),
+ClubSlaveIntroText2,,,(A naked girl sees you in the hall and comes to greet you.)  Greetings Miss.  Welcome to the Bondage Club.,,
+ClubSlaveIntro2,ClubSlave,Hello there.,(She bows her head.)  Do you require my services Miss?,,Player.CanTalk()
+ClubSlaveIntro2,ClubSlave,Who are you girl?,(She bows her head.)  I'm slave DialogCharacterName Miss.  Do you need my services?,,Player.CanTalk()
+ClubSlaveIntro2,ClubSlave,You seem well trained slave.,"(She smiles and nods.)  Thank you Miss, do you require my services?","DialogChangeReputation(""Dominant"", 1)",Player.CanTalk()
+ClubSlaveIntro2,ClubSlave,(Mumble in your gag.),Are you also a submissive Miss?  Do you require my services?,"DialogChangeReputation(""Dominant"", -1)",!Player.CanTalk()
+ClubSlaveIntro2,,I don't have time for you.  (Leave her.),,MainHall(),Player.CanTalk()
+ClubSlaveIntro2,,(Ignore her.),,MainHall(),
+ClubSlaveIntroText3,,,(A naked club slave is hiding behind one of the main hall columns.),,
+ClubSlaveIntro3,ClubSlave,Slave!  Get out of there.,(She jumps out and quickly gets to you.)  I'm sorry Miss.  Please don't punish me.,"DialogChangeReputation(""Dominant"", 2)",Player.CanTalk()
+ClubSlaveIntro3,ClubSlave,I can see you.,(She slowly walks to you.)  I'm sorry Miss.  I didn't meant to hide from you.,,Player.CanTalk()
+ClubSlaveIntro3,ClubSlave,Why are you hiding?,(She slowly walks to you.)  I'm sorry Miss.  I wanted a little break.,,Player.CanTalk()
+ClubSlaveIntro3,ClubSlave,(Mumble and point at her.),How come you're in trouble and not me?  This is unfair.  (She giggles.),"DialogChangeReputation(""Dominant"", -1)",!Player.CanTalk()
+ClubSlaveIntro3,,(Ignore her.),,MainHall(),
+ClubSlaveIntroText4,,,"(You notice a naked girl, struggling against her restraints in the club halls.  She doesn't seem to see you.)",,
+ClubSlaveIntro4,ClubSlave,Hello there.,(She turns around and nods.)  Hello Miss.  Are you here to help me?,,Player.CanTalk()
+ClubSlaveIntro4,ClubSlave,You're having fun?,"(She struggles some more and shakes her head no.)  I've been restrained for a while now, can you help me Miss?",,Player.CanTalk()
+ClubSlaveIntro4,ClubSlave,Do you need help?,"(She turns around and nods rapidly, showing her restraints.)  Yes Miss, I'm stuck.","DialogChangeReputation(""Dominant"", 1)",Player.CanTalk()
+ClubSlaveIntro4,ClubSlave,(Mumble in your gag.),"(She turns toward you and giggles, continuing her struggling.)","DialogChangeReputation(""Dominant"", -1)",!Player.CanTalk()
+ClubSlaveIntro4,,(Ignore her.),,MainHall(),
+ClubSlaveIntroText5,,,(A restrained girl is wandering naked in the halls.  She comes to greet you.)  Greetings Miss.  Welcome to the Bondage Club.,,
+ClubSlaveIntro5,ClubSlave,Hello there.,(She bows her head politely.)  Hello Miss.  Do you require my services?,,Player.CanTalk()
+ClubSlaveIntro5,ClubSlave,Cute restraints.,(She struggles a little for your amusement.)  Do you require my services Miss?,,Player.CanTalk()
+ClubSlaveIntro5,ClubSlave,You seem well trained slave.,(She nods slowly and bows politely.)  Thank you very much.  Do you require my services Miss?,"DialogChangeReputation(""Dominant"", 1)",Player.CanTalk()
+ClubSlaveIntro5,ClubSlave,(Mumble in your gag.),(She giggles hearing your mumbles and nods politely.)  Do you require my services Miss?,"DialogChangeReputation(""Dominant"", -1)",!Player.CanTalk()
+ClubSlaveIntro5,,I don't have time for you.  (Leave her.),,DialogLeave(),Player.CanTalk()
+ClubSlaveIntro5,,(Ignore her.),,MainHall(),
+ClubSlaveIntroText6,,,"(As you walk in the halls, you notice a fully restrained club slave begging for help.)  Can anyone help me?",,
+ClubSlaveIntro6,ClubSlave,(Try to get her attention.),(She struggles in vain and turns around slowly.),"DialogChangeReputation(""Dominant"", 1)",Player.CanTalk()
+ClubSlaveIntro6,ClubSlave,(Tap on her shoulder.),(She struggles a little but fails to make any progress.  She turns to you.),,Player.CanInteract()
+ClubSlaveIntro6,ClubSlave,(Mumble in your gag.),(She giggles hearing your mumbles and nods politely.),"DialogChangeReputation(""Dominant"", -1)",!Player.CanTalk()
+ClubSlaveIntro6,,(Ignore her.),,MainHall(),
+ClubSlave,,,NOEXIT,,
+ClubSlave,ClubSlaveTalk,Let's talk.,Of course Miss.  What would you like to talk about?,,!IsClubSlave()
+ClubSlave,,(Hug her.),(You hug each other and warm yourself.  Your slave sister seems to appreciate.),,IsClubSlave()
+ClubSlave,,(Struggle and beg for help.),"(She shakes her head no.)  I'm sorry Miss, I'm not allowed to do that.  Please ask a maid.",,!Player.CanInteract()
+ClubSlave,ClubSlavePlay,(Play with her.),(You start to play with her.),,
+ClubSlave,,Will you visit my room after your contract?,"I'm sorry Miss, I'm too busy today.  Maybe another time.",ClubSlaveVisitRoom(),
+ClubSlave,,(Leave her.),,MainHall(),
+ClubSlaveTalk,,Who are you?,I'm slave DialogCharacterName Miss.  It's a pleasure to meet you.,"ClubSlaveActiviy(""Talk"", 0)",
+ClubSlaveTalk,,Why are you naked?,"It's the rule Miss, all club slaves under contract must be naked.","ClubSlaveActiviy(""Talk"", 0)",
+ClubSlaveTalk,,What's a club slave?,We take a one hour contract with management and get paid to please club members.,"ClubSlaveActiviy(""Talk"", 0)",
+ClubSlaveTalk,,Can I become a club slave?,"It's only for true submissives, go to the club management and ask if you're eligible.","ClubSlaveActiviy(""Talk"", -3)",
+ClubSlaveTalk,,What's the limit with you?,The usual limits Miss.  No blood or any permanent harm.  You can restrain me or have sex with me.,"ClubSlaveActiviy(""Talk"", 1)",
+ClubSlaveTalk,,Who's slut are you?,(She blushes and bows her head in shame.)  I'm your slut Miss.,"ClubSlaveActiviy(""Talk"", 3)",
+ClubSlaveTalk,ClubSlave,Enough chit-chat.,Very well.  Is there anything else I can do for you Miss?,,
+ClubSlavePlay,,,NOEXIT,,
+ClubSlavePlay,,(Tickle her.),(You tickle her on the ribs and tummy.  She laughs and squirms a little.),"ClubSlaveActiviy(""Activity"", 0)",Player.CanInteract()
+ClubSlavePlay,,(Kiss her.),(You share a slow and loving kiss.)  You have wonderful lips.  (She giggles.),"ClubSlaveActiviy(""Activity"", -1)",CanKiss()
+ClubSlavePlay,,(Fondle her.),(You playfully fondle her breasts and butt as she moans softly and blushes.),"ClubSlaveActiviy(""Activity"", 0)",Player.CanTalk()
+ClubSlavePlay,,(Slap her.),(You harshly slap her in the face and she bows her head in shame.),"ClubSlaveActiviy(""Activity"", 2)",Player.CanInteract()
+ClubSlavePlay,,(Spank her.),(You spank her hard on the butt and she sharply inhales from the pain.),"ClubSlaveActiviy(""Activity"", 1)",Player.CanInteract()
+ClubSlavePlay,,(Masturbate her.),(You grab her pussy and slowly masturbate her as she focuses on resisting the pleasure.),"ClubSlaveActiviy(""Activity"", 0)",CanMasturbate()
+ClubSlavePlay,ClubSlave,(Stop playing with her.),(You take a step back.),,
+ClubSlaveWillVisit,,,(She ponders.)  Alright!  My slave contract ends pretty soon.  I'll go visit you Miss.,,
+ClubSlaveVisit,,See you later!  (Leave her.),,MainHall(),
