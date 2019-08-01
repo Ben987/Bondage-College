@@ -67,6 +67,7 @@ ItemPelvisLeatherCrop,,,(You lash the leather crop pretty hard on her butt.)  Da
 110,,Do you sell socks?,,"Start(""Socks"")",
 110,0,I've changed my mind.,Can I help you with something else?,,
 120,,Do you sell outfits or accessories for body?,,"Start(""Wings"")",
+120,,Do you by chance have any tail straps?,,"Start(""TailStraps"")",
 120,,Do you have any hair accessories?,,"Start(""HairAccessory"")",
 120,0,I've changed my mind.,Can I help you with something else?,,
 200,,Can I see your hoods and blindfolds?,,"Start(""ItemHead"")",
