@@ -62,6 +62,8 @@ function PrivateSubTrialInProgress() { return ((NPCEventGet(CurrentCharacter, "E
 function PrivateSubTrialOverWilling() { return ((NPCEventGet(CurrentCharacter, "EndDomTrial") > 0) && (CurrentTime >= CheatFactor("SkipTrialPeriod", 0) * NPCEventGet(CurrentCharacter, "EndDomTrial")) && (CurrentCharacter.Love >= 90)) }
 function PrivateSubTrialOverUnwilling() { return ((NPCEventGet(CurrentCharacter, "EndDomTrial") > 0) && (CurrentTime >= CheatFactor("SkipTrialPeriod", 0) * NPCEventGet(CurrentCharacter, "EndDomTrial")) && (CurrentCharacter.Love < 90)) }
 function PrivateCanPet() { return ((CurrentCharacter.Love >= 0) && !CurrentCharacter.IsRestrained() && (InventoryGet(Player, "ItemArms") != null) && (InventoryGet(Player, "ItemArms").Asset.Name == "BitchSuit")) }
+function PrivateCanSellSlave() { return (!Player.IsRestrained() && (CurrentCharacter.Love >= 0) && (NPCEventGet(CurrentCharacter, "NPCCollaring") > 0)) }
+function PrivateCannotSellSlave() { return (!Player.IsRestrained() && (CurrentCharacter.Love < 0) && (NPCEventGet(CurrentCharacter, "NPCCollaring") > 0)) }
 
 // Loads the private room vendor NPC
 function PrivateLoad() {
@@ -293,15 +295,17 @@ function PrivateAddCharacter(Template, Archetype, CustomData) {
 	C.Appearance = Template.Appearance.slice();
 	C.AppearanceFull = Template.Appearance.slice();
 	C.Love = 0;
-	if ((Archetype != null) && (Archetype != "")) C.Title = Archetype;
+	if ((Archetype != null) && (Archetype != "") && (Archetype != "Submissive")) C.Title = Archetype;
 	NPCTraitGenerate(C);
 	if ((Archetype != null) && (Archetype == "Mistress")) NPCTraitSet(C, "Dominant", 60 + Math.floor(Math.random() * 41));
+	if ((Archetype != null) && (Archetype == "Submissive")) NPCTraitSet(C, "Dominant", -50 - Math.floor(Math.random() * 51));
 	if ((CustomData == null) || (CustomData == false)) NPCTraitDialog(C);
 	CharacterRefresh(C);
 	PrivateCharacter.push(C);
 	NPCEventAdd(C, "PrivateRoomEntry", CurrentTime);
 	if ((CustomData == null) || (CustomData == false)) ServerPrivateCharacterSync();
 	C.AllowItem = (((ReputationGet("Dominant") + 25 >= NPCTraitGet(C, "Dominant")) && !C.IsOwner()) || C.IsRestrained() || !C.CanTalk());
+	if ((InventoryGet(C, "ItemNeck") != null) && (InventoryGet(C, "ItemNeck").Asset.Name == "ClubSlaveCollar")) InventoryRemove(C, "ItemNeck");
 }
 
 // Returns the ID of the private room current character
@@ -685,4 +689,24 @@ function PrivateNPCInteraction(LoveFactor) {
 	if (CurrentCharacter.Love == null) CurrentCharacter.Love = 0;
 	if ((CurrentCharacter.Love < 60) || (CurrentCharacter.IsOwner()) || (CurrentCharacter.IsOwnedByPlayer()) || (parseInt(LoveFactor) < 0))
 		NPCLoveChange(CurrentCharacter, LoveFactor);
+}
+
+// When the slave market transation starts (10$ + 1$ per day for sold slave + 0% to 100% from the random auction, divide in 5 for rentals)
+function PrivateSlaveMarketStart(AuctionType) {
+	if (AuctionType == "Rent") NPCEventAdd(CurrentCharacter, "SlaveMarketRent", CurrentTime + 86400000);
+	InventoryRemove(CurrentCharacter, "ItemNeck");
+	CharacterRelease(CurrentCharacter);
+	CharacterNaked(CurrentCharacter);
+	CharacterSetActivePose(CurrentCharacter, null);
+	SlaveAuctionVendor = Player;
+	SlaveAuctionSlave = CurrentCharacter;
+	SlaveAuctionAmount = Math.floor((NPCEventGet(CurrentCharacter, "NPCCollaring") - CurrentTime) / 86400000);
+	if (SlaveAuctionAmount > 90) SlaveAuctionAmount = 90;
+	if (SlaveAuctionAmount < 0) SlaveAuctionAmount = 0;
+	SlaveAuctionAmount = (10 + SlaveAuctionAmount) * (1 + Math.random());
+	if (AuctionType == "Rent") SlaveAuctionAmount = Math.round(SlaveAuctionAmount / 5);
+	CharacterChangeMoney(Player, SlaveAuctionAmount);
+	CommonSetScreen("Cutscene", "SlaveAuction");
+	if (AuctionType == "Sell") PrivateKickOut();
+	else DialogLeave();
 }
