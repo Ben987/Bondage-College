@@ -118,6 +118,15 @@ Wings,DevilWings,Devil Wings
 Wings,FallenAngelWings,Fallen Angel Wings
 Wings,AngelWings,Angel Wings
 Wings,BatWings,Bat Wings
+TailStraps,,TrailStraps
+TailStraps,TailStrap,Kitty Tail Strap
+TailStraps,,HorseTailStrap,Horse Tail Strap
+TailStraps,,FoxTailsStrap,Fox Tails Strap
+TailStraps,PuppyTailStrap,Puppy Tail Strap
+TailStraps,SuccubusStrap,Succubus Tail Strap
+TailStraps,SuccubusStrap2,Succubus2 Tail Strap
+TailStraps,RaccoonStrap,Raccoon Tail Strap
+TailStraps,RaccoonTailStrap,Raccoon2 Tail Strap
 BodyUpper,,Upper Body
 BodyUpper,Small,Small
 BodyUpper,Normal,Normal
@@ -251,15 +260,25 @@ ItemArms,FourLimbsShackles,Four Limbs Shackles
 ItemArms,StraitLeotard,Latex Strait Leotard
 ItemArms,Paw Mittens,Kitty Paw Mittens
 ItemArms,DuctTape,Duct Tape
-ItemArms,BitchSuit,Bitchsuit
+ItemArms,BitchSuit,Pet Suit
+ItemArms,CollarLeashHolding,Holding Leash
 ItemNeck,,Neck
 ItemNeck,LeatherCollar,Leather Collar
-ItemNeck,LeatherCollarBell,Leather Collar
-ItemNeck,LeatherCollarBow,Leather Collar
+ItemNeck,LeatherCollarBell,Bell Collar
+ItemNeck,LeatherCollarBow,Bow Collar
 ItemNeck,SlaveCollar,Slave Collar
 ItemNeck,ClubSlaveCollar,Club Slave Collar
 ItemNeck,ShockCollar,Shock Collar
 ItemNeck,ShockCollarRemote,Shock Collar Remote
+ItemNeckAccessories,,Collar
+ItemNeckAccessories,CollarBell,Bell
+ItemNeckAccessories,CollarBow,Bow
+ItemNeckAccessories,CollarShockUnit,Shock Unit
+ItemNeckAccessories,ShockCollarRemote,Shock Collar Remote
+ItemNeckAccessories,CollarChainLong,Long Chain
+ItemNeckAccessories,CollarChainShort,Short Chain
+ItemNeckAccessories,CollarLeash,Leash
+ItemNeckAccessories,CollarLeashTaken,Pulled Leash
 ItemMouth,,Mouth
 ItemMouth,ClothGag,Cloth Gag
 ItemMouth,WiffleGag,Wiffle Ball Gag

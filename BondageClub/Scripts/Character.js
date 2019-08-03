@@ -30,7 +30,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		AllowItem: true,
 		HeightModifier: 0,
 		CanTalk : function() { return ((this.Effect.indexOf("GagLight") < 0) && (this.Effect.indexOf("GagNormal") < 0) && (this.Effect.indexOf("GagHeavy") < 0) && (this.Effect.indexOf("GagTotal") < 0)) },
-		CanWalk : function() { return ((this.Effect.indexOf("Freeze") < 0) && ((this.Pose == null) || (this.Pose.indexOf("Kneel") < 0) || (this.Effect.indexOf("KneelFreeze") < 0))) },
+		CanWalk : function() { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("Tethered") < 0) && ((this.Pose == null) || (this.Pose.indexOf("Kneel") < 0) || (this.Effect.indexOf("KneelFreeze") < 0))) },
 		CanKneel : function() { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("ForceKneel") < 0) && ((this.Pose == null) || (this.Pose.indexOf("LegsClosed") < 0))) },
 		CanInteract : function() { return (this.Effect.indexOf("Block") < 0) },
 		CanChange : function() { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("Block") < 0) && (this.Effect.indexOf("Prone") < 0) && !LogQuery("BlockChange", "Rule")) },
@@ -47,6 +47,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsOwner : function() { return ((NPCEventGet(this, "EndSubTrial") > 0) || (this.Name == Player.Owner.replace("NPC-", ""))) },
 		IsKneeling: function () { return ((this.Pose != null) && (this.Pose.indexOf("Kneel") >= 0)) },
 		IsNaked : function () { return CharacterIsNaked(this); },
+		IsDeaf : function() { return this.Effect.indexOf("DeafLight") >= 0 || this.Effect.indexOf("DeafHeavy") >= 0 },
 		HasNoItem : function () { return CharacterHasNoItem(this); }
 	}
 
