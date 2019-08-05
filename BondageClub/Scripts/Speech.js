@@ -3,7 +3,7 @@
 // Returns TRUE if the current speech phrase is a full emote (all between parentheses)
 function SpeechFullEmote(D) {
 	return ((D.indexOf("(") == 0) && (D.indexOf(")") == D.length - 1));
-}	
+}
 
 // Garbles the speech if the character is gagged, anything between parentheses isn't touched
 function SpeechGarble(C, CD) {
@@ -12,10 +12,10 @@ function SpeechGarble(C, CD) {
 	var NS = "";
 	var Par = false;
 	if (CD == null) CD = "";
-		
+
 	// Total gags always returns mmmmm
 	if (C.Effect.indexOf("GagTotal") >= 0) {
-		for (var L = 0; L < CD.length; L++) {			
+		for (var L = 0; L < CD.length; L++) {
 			var H = CD.charAt(L).toLowerCase();
 			if (H == "(") Par = true;
 			if (Par) NS = NS + CD.charAt(L);
@@ -23,7 +23,7 @@ function SpeechGarble(C, CD) {
 				if (H == " " || H == "." || H == "?" || H == "!") NS = NS + H;
 				else NS = NS + "m";
 			}
-			
+
 			if (H == ")") Par = false;
 		}
 		NS = SpeechStutter(C, NS);
@@ -32,7 +32,7 @@ function SpeechGarble(C, CD) {
 	}
 
 	// Heavy garble - Almost no letter stays the same
-	if (C.Effect.indexOf("GagHeavy") >= 0) {
+	if (C.Effect.indexOf("GagHeavy") >= 0 || Player.Effect.indexOf("DeafHeavy") >= 0) {
 		for (var L = 0; L < CD.length; L++) {
 			var H = CD.charAt(L).toLowerCase();
 			if (H == "(") Par = true;
@@ -73,9 +73,9 @@ function SpeechGarble(C, CD) {
 		NS = SpeechBabyTalk(C, NS);
 		return NS;
 	}
-		
+
 	// Light garble, half of the letters stay the same
-	if (C.Effect.indexOf("GagLight") >= 0) {
+	if (C.Effect.indexOf("GagLight") >= 0 || Player.Effect.indexOf("DeafLight") >= 0) {
 		for (var L = 0; L < CD.length; L++) {
 			var H = CD.charAt(L).toLowerCase();
 			if (H == "(") Par = true;
@@ -122,7 +122,7 @@ function SpeechStutter(C, CD) {
 
 			var H = CD.charAt(L).toLowerCase();
 			if (H == "(") Par = true;
-			
+
 			// If we are not between brackets and at the start of a word, there's a chance to stutter that word
 			if (!Par && CS >= 0 && (H.match(/[a-z]/i))) {
 

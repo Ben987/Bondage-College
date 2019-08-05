@@ -321,10 +321,10 @@ function ChatRoomCharacterUpdate(C) {
 
 // When the server sends a chat message
 function ChatRoomMessage(data) {
-	
+
 	// Make sure the message is valid (needs a Sender and Content)
 	if ((data != null) && (typeof data === "object") && (data.Content != null) && (typeof data.Content === "string") && (data.Content != "") && (data.Sender != null) && (typeof data.Sender === "number") && (data.Sender > 0)) {
-		
+
 		// Make sure the sender is in the room
 		var SenderCharacter = null;
 		for(var C = 0; C < ChatRoomCharacter.length; C++)
@@ -332,7 +332,7 @@ function ChatRoomMessage(data) {
 				SenderCharacter = ChatRoomCharacter[C]
 				break;
 			}
-		
+
 		// If we found the sender
 		if (SenderCharacter != null) {
 
@@ -350,12 +350,13 @@ function ChatRoomMessage(data) {
 			}
 
 			// Builds the message to add depending on the type
-			if ((data.Type != null) && (data.Type == "Chat")) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + msg;
+			if ((data.Type != null) && (data.Type == "Chat") && Player.IsDeaf()) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + SpeechGarble(Player, msg);
+			if ((data.Type != null) && (data.Type == "Chat") && !Player.IsDeaf()) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + msg;
 			if ((data.Type != null) && (data.Type == "Whisper")) msg = '<span class="ChatMessageName" style="font-style: italic; color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + msg;
 			if ((data.Type != null) && (data.Type == "Emote")) msg = "*" + SenderCharacter.Name + " " + msg + "*";
 			if ((data.Type != null) && (data.Type == "Action")) msg = "(" + msg + ")";
 			if ((data.Type != null) && (data.Type == "ServerMessage")) msg = "<b>" + DialogFind(Player, "ServerMessage" + msg).replace("SourceCharacter", SenderCharacter.Name) + "</b>";
-		
+
 			// Adds the message and scrolls down unless the user has scrolled up
 			var ShouldScrollDown = ElementIsScrolledToEnd("TextAreaChatLog");
 			var DataAttributes = 'data-time="' + ChatRoomCurrentTime() + '" data-sender="' + data.Sender + '"';
@@ -366,10 +367,11 @@ function ChatRoomMessage(data) {
 				if (ShouldScrollDown) ElementScrollToEnd("TextAreaChatLog");
 				ElementFocus("InputChat");
 			}
-			
+
 		}
 
 	}
+
 }
 
 // Gets the new room data from the server
@@ -381,13 +383,11 @@ function ChatRoomSync(data) {
 			if (ChatRoomPlayerCanJoin) {
 				ChatRoomPlayerCanJoin = false;
 				CommonSetScreen("Online", "ChatRoom");
-			} else {
-				return;
-			}
-		} 
+			} else return;
+		}
 
 		// Load the characters
-		ChatRoomCharacter = [];		
+		ChatRoomCharacter = [];
 		for (var C = 0; C < data.Character.length; C++)
 			ChatRoomCharacter.push(CharacterLoadOnline(data.Character[C], data.SourceMemberNumber));
 
@@ -426,6 +426,7 @@ function ChatRoomCurrentTime() {
 	return ("0" + D.getHours()).substr(-2) + ":" + ("0" + D.getMinutes()).substr(-2);
 }
 
+// Returns a lighter color for the current HexCode
 function ChatRoomGetLighterColor(Color) {
 	if (!Color) return "#f0f0f0";
 	var R = Color.substring(1, 3), G = Color.substring(3, 5), B = Color.substring(5, 7);

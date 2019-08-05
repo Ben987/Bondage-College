@@ -47,6 +47,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsOwner : function() { return ((NPCEventGet(this, "EndSubTrial") > 0) || (this.Name == Player.Owner.replace("NPC-", ""))) },
 		IsKneeling: function () { return ((this.Pose != null) && (this.Pose.indexOf("Kneel") >= 0)) },
 		IsNaked : function () { return CharacterIsNaked(this); },
+		IsDeaf : function() { return this.Effect.indexOf("DeafLight") >= 0 || this.Effect.indexOf("DeafHeavy") >= 0 },
 		HasNoItem : function () { return CharacterHasNoItem(this); }
 	}
 
