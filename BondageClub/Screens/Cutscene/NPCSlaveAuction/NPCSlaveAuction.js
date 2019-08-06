@@ -20,8 +20,8 @@ function NPCSlaveAuctionRun() {
 	DrawCharacter(NPCSlaveAuctionVendor, 400, 0, 1);
 	if (CutsceneStage <= 6) DrawCharacter(NPCSlaveAuctionSlave, 800, 0, 1);
 	DrawCharacter(NPCSlaveAuctionMistress, 1200, 0, 1);
-	if ((CutsceneStage >= 2) && (CutsceneStage <= 6)) DrawCharacter(NPCSlaveAuctionGirlLeft, 0, 100, 1);
-	if ((CutsceneStage >= 2) && (CutsceneStage <= 6)) DrawCharacter(NPCSlaveAuctionGirlRight, 1600, 100, 1);
+	if ((CutsceneStage >= 2) && (CutsceneStage <= 6)) DrawCharacter(NPCSlaveAuctionGirlLeft, 0, 0, 1);
+	if ((CutsceneStage >= 2) && (CutsceneStage <= 6)) DrawCharacter(NPCSlaveAuctionGirlRight, 1600, 0, 1);
 	var Text = TextGet("NPCSlaveAuction" + CutsceneStage.toString());
 	Text = Text.replace("AuctionAmount", NPCSlaveAuctionAmount.toString());
 	Text = Text.replace("DoubleAmount", (NPCSlaveAuctionAmount * 2).toString());
