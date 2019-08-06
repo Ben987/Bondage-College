@@ -15,6 +15,7 @@ var ManagementRandomActivity = "";
 var ManagementRandomActivityList = ["AddArms", "RemoveArms", "AddGag", "RemoveGag", "AddTorso", "RemoveTorso", "AddFeet", "RemoveFeet", "AddLegs", "RemoveLegs", "Tickle", "Spank", "Kiss", "Fondle", "Masturbate"];
 var ManagementRandomActivityCategory = "";
 var ManagementRandomActivityCategoryList = ["Activity", "Quiz", "Struggle"];
+var ManagementRandomTalkCount = 0;
 var ManagementVisitRoom = false;
 var ManagementTimer = 0;
 
@@ -58,6 +59,8 @@ function ManagementMistressCannotBePaid() { return (LogQuery("ClubMistress", "Ma
 function ManagementCanBeClubSlave() { return (!InventoryCharacterHasOwnerOnlyRestraint(Player) && DialogReputationLess("Dominant", -50)) }
 function ManagementCannotBeClubSlaveDominant() { return (!InventoryCharacterHasOwnerOnlyRestraint(Player) && DialogReputationGreater("Dominant", -49)) }
 function ManagementCannotBeClubSlaveOwnerLock() { return InventoryCharacterHasOwnerOnlyRestraint(Player) }
+function ManagementCanKiss() { return (Player.CanTalk() && CurrentCharacter.CanTalk()) }
+function ManagementCanMasturbate() { return (Player.CanInteract() && !CurrentCharacter.IsVulvaChaste()) }
 
 // Returns TRUE if there's no other Mistress in the player private room
 function ManagementNoMistressInPrivateRoom() {
@@ -281,6 +284,38 @@ function ManagementClubSlaveRandomIntro() {
 
 }
 
+// When the player meets a random club slave
+function ManagementFindClubSlaveRandomIntro() {
+
+	// Sets the girl that greets the club slave player
+	CommonSetScreen("Room", "Management");
+	ManagementBackground = "MainHall";
+	ManagementRandomGirl = null;
+	CharacterDelete("NPC_Management_RandomGirl");
+	ManagementRandomGirl = CharacterLoadNPC("NPC_Management_RandomGirl");
+	ManagementRandomGirl.AllowItem = !ManagementIsClubSlave();
+	CharacterNaked(ManagementRandomGirl);
+	ManagementRandomActivityCount = 0;
+	ManagementRandomTalkCount = 0;
+	ManagementVisitRoom = ((Math.random() >= 0.5) && ManagementCanTransferToRoom());
+
+	// At 0, the club slave player meets another slave.  At 1, 2 & 3, the club slave isn't restrained.  At 4 and more, the club slave is restrained.
+	var Intro = (Math.floor(Math.random() * 6) + 1).toString();
+	if (ManagementIsClubSlave()) Intro = "0";
+	ManagementRandomGirl.Stage = "ClubSlaveIntro" + Intro;
+	if (Intro == "4") CharacterFullRandomRestrain(ManagementRandomGirl, "FEW");
+	if (Intro == "5") CharacterFullRandomRestrain(ManagementRandomGirl, "LOT");
+	if (Intro == "6") CharacterFullRandomRestrain(ManagementRandomGirl, "ALL");
+	if (Intro != "6") {
+		InventoryRemove(ManagementRandomGirl, "ItemMouth");
+		InventoryRemove(ManagementRandomGirl, "ItemHead");
+	}
+	InventoryWear(ManagementRandomGirl, "ClubSlaveCollar", "ItemNeck");
+	CharacterSetCurrent(ManagementRandomGirl);
+	ManagementRandomGirl.CurrentDialog = DialogFind(ManagementRandomGirl, "ClubSlaveIntroText" + Intro);
+
+}
+
 // When a random activity starts
 function ManagementRandomActivityStart(A) {
 	ManagementRandomActivity = A;
@@ -428,4 +463,28 @@ function ManagementCell() {
 function ManagementMainHall() {
 	DialogLeave();
 	CommonSetScreen("Room", "MainHall");
+}
+
+// Runs an activity with a random club slave
+function ManagementClubSlaveActiviy(ActivityType, RepChange) {
+	if (ActivityType == "Talk") {
+		ManagementRandomTalkCount++;
+		ReputationProgress("Dominant", RepChange);
+		DialogRemove();
+	} else {
+		ManagementRandomActivityCount++;
+		if (ManagementRandomActivityCount <= 3) ReputationProgress("Dominant", RepChange);
+	}
+}
+
+// If the player talked and played with the club slave, there's a 50% chance she will go to the player's room
+function ManagementClubSlaveVisitRoom() {
+	if ((ManagementRandomTalkCount >= 2) && (ManagementRandomActivityCount >= 2) && ManagementVisitRoom && ManagementRandomGirl.CanTalk()) {
+		CommonSetScreen("Room", "Private");
+		PrivateAddCharacter(ManagementRandomGirl, "Submissive");
+		CommonSetScreen("Room", "Management");
+		ManagementBackground = "MainHall";
+		ManagementRandomGirl.Stage = "ClubSlaveVisit";
+		ManagementRandomGirl.CurrentDialog = DialogFind(ManagementRandomGirl, "ClubSlaveWillVisit");
+	}
 }

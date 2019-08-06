@@ -4,7 +4,7 @@ var LoginMessage = "";
 var LoginCredits = null;
 var LoginCreditsPosition = 0;
 var LoginThankYou = "";
-var LoginThankYouList = ["Alvin", "Bryce", "Christian", "Designated", "Dick", "Escurse", "EugeneTooms", "James", "Jenni", "Jyeoh", "Karel", "Kitten", "Laioken", "Michal", "Mindtie", 
+var LoginThankYouList = ["Alvin", "Bryce", "Christian", "Desch", "Designated", "Escurse", "EugeneTooms", "Jenni", "Karel", "Kitten", "Laioken", "Michal", "Mindtie", 
 						"MunchyCat", "Nick", "Overlord", "Rashiash", "Ryner", "Setsu95", "Shadow", "Shaun", "Simeon", "Sky", "Terry", "William", "Winterisbest", "Xepherio"];
 var LoginThankYouNext = 0;
 
@@ -184,8 +184,11 @@ function LoginResponse(C) {
 					Player.Cage = true;
 					CharacterSetActivePose(Player, "Kneel");
 					CommonSetScreen("Room", "Private");
-				} else CommonSetScreen("Room", "MainHall");
-			
+				} else {
+					CommonSetScreen("Room", "MainHall");
+					MainHallMaidIntroduction();
+				}
+
 			}
 
 		} else LoginMessage = TextGet("ErrorLoadingCharacterData");

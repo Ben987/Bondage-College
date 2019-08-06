@@ -1,4 +1,33 @@
 PlayerGagged,,,Club slaves are so much better when they are gagged.,,
+ItemMouth,,,(She licks her lips seeing the gag and allows you to silence her easily.),,
+RemoveItemMouth,,,(You remove her gag and she sighs.)  I hope you have another gag for me Miss.,,
+ItemArms,,,(She moans of pleasure as you restrain her arms.)  I'm glad you've found me Miss.,,
+RemoveItemArms,,,(You free her arms and she stretches a little.)  This slave is here to server you Miss.,,
+ItemLegs,,,(You restrain her legs securely while she moans silently.)  This is sweet.,,
+RemoveItemLegs,,,(You release her legs.)  You can use any item you want on this slave Miss.,,
+ItemFeet,,,(She wiggles her feet playfully as you restrain them.)  This feels very nice.,,
+RemoveItemFeet,,,(You release her feet and she jumps playfully.)  More bondage Miss?,,
+ItemPelvis,,,(She rocks her hips and struggles as you put the device on her.),,
+RemoveItemPelvis,,,(She seems relieved as you remove the device.)  Thank you very much Miss DialogPlayerName.,,
+ItemTorso,,,(You prepare a full body harness on her torso as she blushes.)  This is very erotic.,,
+RemoveItemTorso,,,(You remove the body harness from her torso.)  Harnesses are wonderful.,,
+ItemButt,,,(She does a light moan as you slide the device inside.)  Woah!  Thank you Miss.,,
+RemoveItemButt,,,(She shivers as you remove the butt plug.)  This slave butt is yours Miss.,,
+ItemBreast,,,(She holds her breath as you use the item.)  You're very kinky Miss.,,
+RemoveItemBreast,,,(She wiggles her breast slowly as you remove the device.)  It's nice to let the jugs out.,,
+ItemNipples,,,(She holds her breath as you use the item.)  Ow!  I'm your pain slut Miss.,,
+RemoveItemNipples,,,(She catches her breath as you remove the device.)  That's quite a feeling.,,
+ItemHead,,,(You strap the device on her head as she adjusts to it.)  This will enhance my helplessness.,,
+RemoveItemHead,,,(You remove the device and she looks at you.)  You're quite a Dominant Miss.,,
+ItemBreastLeatherWhip,,,"(She moans as you whip her breast and torso, enjoying the pain.)",,
+ItemBreastLeatherCrop,,,(She jumps and makes her breast wiggle with each hit.)  You're very strong Miss.,,
+ItemPelvisLeatherWhip,,,(She trembles and moans with each lashes.)  This slave can take it Miss.,,
+ItemPelvisLeatherCrop,,,(You whip her butt with the leather crop as she wiggles it for more.),,
+ItemVulvaVibratingWand,,,(She moans softly as you massage her pussy with the wand.)  Oh Miss!  I'm glad we've found each other.,,
+VibratingEgg,,,(She moans as you slide the egg inside.)  Best slave contract in weeks.,,
+RemoveVibratingEgg,,,"(She does one last moan as you remove the egg.)  Thanks, that was very stimulating.",,
+SuspensionHempRope,,,(You restrain her legs with the long hemp rope and suspend her by the feet from the ceiling.)  Oh my!,,
+RemoveSuspensionHempRope,,,(You untie the hemp rope from the ceiling and slowly get her down.)  Thanks for the ride Miss.,,
 Intro0,,,(A maid crosses your path and stops.)  Nice!  I guess I can take a break to play with you.,,
 IntroRestrained0,,,(A maid crosses your path and stops.)  You're cute when you're restrained!  I guess I can take a break to play with you.,,
 Intro1,,,(A club member crosses your path and makes a devious smile.)  A slave just for me!,,
@@ -278,3 +307,72 @@ QuizFail,QuizFailEnd,I didn't know that.,"Next time you will know it.  But for n
 QuizFailEnd,,Do I really have to?,Don't complain girl.  You're going to a cell for five minutes for your lack of knowledge.,DialogRemove(),
 QuizFailEnd,,Very well.  (Let her put you in a cell.),,Cell(),
 QuizFailEnd,,(Stay silent and let her put you in a cell.),,Cell(),
+ClubSlaveIntroText0,,,(Another club slave crosses your path.  She sees you and giggles.)  Hello sister.,,
+ClubSlaveIntro0,ClubSlave,Nice to meet you sister.,(She gives you a thumbs up.)  I hope you're having fun doing the contract.,,Player.CanTalk()
+ClubSlaveIntro0,ClubSlave,How's the slave life?,"It's fun, kind of quiet though.  I hope you're having fun on your side also.",,Player.CanTalk()
+ClubSlaveIntro0,ClubSlave,(Give her a hug.),"(You exhange a close hug.)  If we can't wear clothes, at least we can warm ourselves like that.  (She giggles.)","DialogChangeReputation(""Dominant"", -2)",!Player.IsRestrained()
+ClubSlaveIntro0,ClubSlave,(Mumble in your gag.),You got in trouble before me?  (She giggles.)  I hope you're having fun doing the contract.,"DialogChangeReputation(""Dominant"", -1)",!Player.CanTalk()
+ClubSlaveIntro0,,"Sorry, I need to work.  (Leave her.)",,MainHall(),Player.CanTalk()
+ClubSlaveIntro0,,(Ignore her.),,MainHall(),
+ClubSlaveIntroText1,,,(A naked club slave passes next to you in the main hall.  She sees you and slowly bows her head.),,
+ClubSlaveIntro1,ClubSlave,Hello there.,Hello Miss.  Do you require my services?,,Player.CanTalk()
+ClubSlaveIntro1,ClubSlave,Stop right there slave.,(She gulps and stops walking.)  Yes Miss!  How can I help you?,"DialogChangeReputation(""Dominant"", 2)",Player.CanTalk()
+ClubSlaveIntro1,ClubSlave,Aren't you cold?,"The stone floor is a little chilly but it's fine, I try to stay on carpets.",,Player.CanTalk()
+ClubSlaveIntro1,ClubSlave,(Mumble in your gag.),How come you're in trouble and not me?  This is unfair.  (She giggles.),"DialogChangeReputation(""Dominant"", -1)",!Player.CanTalk()
+ClubSlaveIntro1,,Have fun girl.  (Leave her.),,MainHall(),Player.CanTalk()
+ClubSlaveIntro1,,(Ignore her.),,MainHall(),
+ClubSlaveIntroText2,,,(A naked girl sees you in the hall and comes to greet you.)  Greetings Miss.  Welcome to the Bondage Club.,,
+ClubSlaveIntro2,ClubSlave,Hello there.,(She bows her head.)  Do you require my services Miss?,,Player.CanTalk()
+ClubSlaveIntro2,ClubSlave,Who are you girl?,(She bows her head.)  I'm slave DialogCharacterName Miss.  Do you need my services?,,Player.CanTalk()
+ClubSlaveIntro2,ClubSlave,You seem well trained slave.,"(She smiles and nods.)  Thank you Miss, do you require my services?","DialogChangeReputation(""Dominant"", 1)",Player.CanTalk()
+ClubSlaveIntro2,ClubSlave,(Mumble in your gag.),Are you also a submissive Miss?  Do you require my services?,"DialogChangeReputation(""Dominant"", -1)",!Player.CanTalk()
+ClubSlaveIntro2,,I don't have time for you.  (Leave her.),,MainHall(),Player.CanTalk()
+ClubSlaveIntro2,,(Ignore her.),,MainHall(),
+ClubSlaveIntroText3,,,(A naked club slave is hiding behind one of the main hall columns.),,
+ClubSlaveIntro3,ClubSlave,Slave!  Get out of there.,(She jumps out and quickly gets to you.)  I'm sorry Miss.  Please don't punish me.,"DialogChangeReputation(""Dominant"", 2)",Player.CanTalk()
+ClubSlaveIntro3,ClubSlave,I can see you.,(She slowly walks to you.)  I'm sorry Miss.  I didn't meant to hide from you.,,Player.CanTalk()
+ClubSlaveIntro3,ClubSlave,Why are you hiding?,(She slowly walks to you.)  I'm sorry Miss.  I wanted a little break.,,Player.CanTalk()
+ClubSlaveIntro3,ClubSlave,(Mumble and point at her.),How come you're in trouble and not me?  This is unfair.  (She giggles.),"DialogChangeReputation(""Dominant"", -1)",!Player.CanTalk()
+ClubSlaveIntro3,,(Ignore her.),,MainHall(),
+ClubSlaveIntroText4,,,"(You notice a naked girl, struggling against her restraints in the club halls.  She doesn't seem to see you.)",,
+ClubSlaveIntro4,ClubSlave,Hello there.,(She turns around and nods.)  Hello Miss.  Are you here to help me?,,Player.CanTalk()
+ClubSlaveIntro4,ClubSlave,You're having fun?,"(She struggles some more and shakes her head no.)  I've been restrained for a while now, can you help me Miss?",,Player.CanTalk()
+ClubSlaveIntro4,ClubSlave,Do you need help?,"(She turns around and nods rapidly, showing her restraints.)  Yes Miss, I'm stuck.","DialogChangeReputation(""Dominant"", 1)",Player.CanTalk()
+ClubSlaveIntro4,ClubSlave,(Mumble in your gag.),"(She turns toward you and giggles, continuing her struggling.)","DialogChangeReputation(""Dominant"", -1)",!Player.CanTalk()
+ClubSlaveIntro4,,(Ignore her.),,MainHall(),
+ClubSlaveIntroText5,,,(A restrained girl is wandering naked in the halls.  She comes to greet you.)  Greetings Miss.  Welcome to the Bondage Club.,,
+ClubSlaveIntro5,ClubSlave,Hello there.,(She bows her head politely.)  Hello Miss.  Do you require my services?,,Player.CanTalk()
+ClubSlaveIntro5,ClubSlave,Cute restraints.,(She struggles a little for your amusement.)  Do you require my services Miss?,,Player.CanTalk()
+ClubSlaveIntro5,ClubSlave,You seem well trained slave.,(She nods slowly and bows politely.)  Thank you very much.  Do you require my services Miss?,"DialogChangeReputation(""Dominant"", 1)",Player.CanTalk()
+ClubSlaveIntro5,ClubSlave,(Mumble in your gag.),(She giggles hearing your mumbles and nods politely.)  Do you require my services Miss?,"DialogChangeReputation(""Dominant"", -1)",!Player.CanTalk()
+ClubSlaveIntro5,,I don't have time for you.  (Leave her.),,DialogLeave(),Player.CanTalk()
+ClubSlaveIntro5,,(Ignore her.),,MainHall(),
+ClubSlaveIntroText6,,,"(As you walk in the halls, you notice a fully restrained club slave begging for help.)  Can anyone help me?",,
+ClubSlaveIntro6,ClubSlave,(Try to get her attention.),(She struggles in vain and turns around slowly.),"DialogChangeReputation(""Dominant"", 1)",Player.CanTalk()
+ClubSlaveIntro6,ClubSlave,(Tap on her shoulder.),(She struggles a little but fails to make any progress.  She turns to you.),,Player.CanInteract()
+ClubSlaveIntro6,ClubSlave,(Mumble in your gag.),(She giggles hearing your mumbles and nods politely.),"DialogChangeReputation(""Dominant"", -1)",!Player.CanTalk()
+ClubSlaveIntro6,,(Ignore her.),,MainHall(),
+ClubSlave,,,NOEXIT,,
+ClubSlave,ClubSlaveTalk,Let's talk.,Of course Miss.  What would you like to talk about?,,!IsClubSlave()
+ClubSlave,,(Hug her.),(You hug each other and warm yourself.  Your slave sister seems to appreciate.),,IsClubSlave()
+ClubSlave,,(Struggle and beg for help.),"(She shakes her head no.)  I'm sorry Miss, I'm not allowed to do that.  Please ask a maid.",,!Player.CanInteract()
+ClubSlave,ClubSlavePlay,(Play with her.),(You start to play with her.),,
+ClubSlave,,Will you visit my room after your contract?,"I'm sorry Miss, I'm too busy today.  Maybe another time.",ClubSlaveVisitRoom(),
+ClubSlave,,(Leave her.),,MainHall(),
+ClubSlaveTalk,,Who are you?,I'm slave DialogCharacterName Miss.  It's a pleasure to meet you.,"ClubSlaveActiviy(""Talk"", 0)",
+ClubSlaveTalk,,Why are you naked?,"It's the rule Miss, all club slaves under contract must be naked.","ClubSlaveActiviy(""Talk"", 0)",
+ClubSlaveTalk,,What's a club slave?,We take a one hour contract with management and get paid to please club members.,"ClubSlaveActiviy(""Talk"", 0)",
+ClubSlaveTalk,,Can I become a club slave?,"It's only for true submissives, go to the club management and ask if you're eligible.","ClubSlaveActiviy(""Talk"", -3)",
+ClubSlaveTalk,,What's the limit with you?,The usual limits Miss.  No blood or any permanent harm.  You can restrain me or have sex with me.,"ClubSlaveActiviy(""Talk"", 1)",
+ClubSlaveTalk,,Who's slut are you?,(She blushes and bows her head in shame.)  I'm your slut Miss.,"ClubSlaveActiviy(""Talk"", 3)",
+ClubSlaveTalk,ClubSlave,Enough chit-chat.,Very well.  Is there anything else I can do for you Miss?,,
+ClubSlavePlay,,,NOEXIT,,
+ClubSlavePlay,,(Tickle her.),(You tickle her on the ribs and tummy.  She laughs and squirms a little.),"ClubSlaveActiviy(""Activity"", 0)",Player.CanInteract()
+ClubSlavePlay,,(Kiss her.),(You share a slow and loving kiss.)  You have wonderful lips.  (She giggles.),"ClubSlaveActiviy(""Activity"", -1)",CanKiss()
+ClubSlavePlay,,(Fondle her.),(You playfully fondle her breasts and butt as she moans softly and blushes.),"ClubSlaveActiviy(""Activity"", 0)",Player.CanTalk()
+ClubSlavePlay,,(Slap her.),(You harshly slap her in the face and she bows her head in shame.),"ClubSlaveActiviy(""Activity"", 2)",Player.CanInteract()
+ClubSlavePlay,,(Spank her.),(You spank her hard on the butt and she sharply inhales from the pain.),"ClubSlaveActiviy(""Activity"", 1)",Player.CanInteract()
+ClubSlavePlay,,(Masturbate her.),(You grab her pussy and slowly masturbate her as she focuses on resisting the pleasure.),"ClubSlaveActiviy(""Activity"", 0)",CanMasturbate()
+ClubSlavePlay,ClubSlave,(Stop playing with her.),(You take a step back.),,
+ClubSlaveWillVisit,,,(She ponders.)  Alright!  My slave contract ends pretty soon.  I'll go visit you Miss.,,
+ClubSlaveVisit,,See you later!  (Leave her.),,MainHall(),

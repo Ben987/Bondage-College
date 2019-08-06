@@ -317,10 +317,10 @@ Okay. Das war eine nette Vorführung. Ich kaufe es. Danke, Mädchen.
 Great!  Can you help me before you pay?
 Toll! Hilfst du mir, bevor du bezahlst?
 ###_NPC
-Fine, I will help you.  (She releases you from the item.)  Take care!
-Na gut, ich helfe dir. (Sie befreit dich von dem Gegenstand.) Mach's gut!
-Stay like that, you're a poor saleswoman anyway.
-Bleib so, du bist eh eine miserable Verkäuferin.
+Fine, I will help you.  (She releases you from the item.)  I'll go pay now.
+Na gut, ich helfe dir. (Sie befreit dich von dem Gegenstand.) Dann gehe ich mal zur Kasse.
+Stay like that, you can sell it again to another customer.
+Bleib so, dann kannst du das Gleiche noch anderen Kunden verkaufen.
 ###_PLAYER
 (Struggle in the device.)
 (In deinen Fesseln zappeln.)
@@ -328,3 +328,8 @@ Bleib so, du bist eh eine miserable Verkäuferin.
 (Zurück zur Verkäuferin.)
 Can you help me before you go?
 Kannst du mir helfen, bevor du gehst?
+###_NPC
+Fine, I will help you.  (She releases you from the item.)  Take care!
+Na gut, ich helfe dir. (Sie befreit dich von dem Gegenstand.) Mach's gut!
+Stay like that, you're a poor saleswoman anyway.
+Bleib so, du bist eh eine miserable Verkäuferin.

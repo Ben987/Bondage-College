@@ -201,7 +201,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 				// Reapply the owner lock if needed
 				if ((C.Ownership != null) && (C.Ownership.MemberNumber != null) && (SourceMemberNumber != null) && (C.Ownership.MemberNumber != SourceMemberNumber) && (C.MemberNumber != SourceMemberNumber))
 					for (var L = 0; L < C.Appearance.length; L++)
-						if ((C.Appearance[L].Asset.Group.Name == NA.Asset.Group.Name) && InventoryOwnerOnlyItem(C.Appearance[A]))
+						if ((C.Appearance[L].Asset.Group.Name == NA.Asset.Group.Name) && InventoryOwnerOnlyItem(C.Appearance[L]))
 							InventoryLock(C, NA, { Asset: AssetGet(C.AssetFamily, "ItemMisc", "OwnerPadlock")}, C.Ownership.MemberNumber);
 
 				// Make sure we don't push an item if there's already an item in that slot

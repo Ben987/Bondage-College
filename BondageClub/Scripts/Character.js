@@ -30,7 +30,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		AllowItem: true,
 		HeightModifier: 0,
 		CanTalk : function() { return ((this.Effect.indexOf("GagLight") < 0) && (this.Effect.indexOf("GagNormal") < 0) && (this.Effect.indexOf("GagHeavy") < 0) && (this.Effect.indexOf("GagTotal") < 0)) },
-		CanWalk : function() { return ((this.Effect.indexOf("Freeze") < 0) && ((this.Pose == null) || (this.Pose.indexOf("Kneel") < 0) || (this.Effect.indexOf("KneelFreeze") < 0))) },
+		CanWalk : function() { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("Tethered") < 0) && ((this.Pose == null) || (this.Pose.indexOf("Kneel") < 0) || (this.Effect.indexOf("KneelFreeze") < 0))) },
 		CanKneel : function() { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("ForceKneel") < 0) && ((this.Pose == null) || (this.Pose.indexOf("LegsClosed") < 0))) },
 		CanInteract : function() { return (this.Effect.indexOf("Block") < 0) },
 		CanChange : function() { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("Block") < 0) && (this.Effect.indexOf("Prone") < 0) && !LogQuery("BlockChange", "Rule")) },
@@ -47,6 +47,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsOwner : function() { return ((NPCEventGet(this, "EndSubTrial") > 0) || (this.Name == Player.Owner.replace("NPC-", ""))) },
 		IsKneeling: function () { return ((this.Pose != null) && (this.Pose.indexOf("Kneel") >= 0)) },
 		IsNaked : function () { return CharacterIsNaked(this); },
+		IsDeaf : function() { return ((this.Effect.indexOf("DeafLight") >= 0) || (this.Effect.indexOf("DeafNormal") >= 0) || (this.Effect.indexOf("DeafHeavy") >= 0)) },
 		HasNoItem : function () { return CharacterHasNoItem(this); }
 	}
 
@@ -548,26 +549,6 @@ function CharacterSetFacialExpression(C, AssetGroup, Expression) {
 				return;
 			}
 		}
-	}
-}
-
-// Switches to the next facial expression for the given character's AssetGroup
-function CharacterCycleFacialExpression(C, AssetGroup, Forward, Description) {
-	var A = C.Appearance.find(a => a.Asset.Group.Name == AssetGroup && a.Asset.Group.AllowExpression && a.Asset.Group.AllowExpression.length);
-	if (A == null) return;
-	if (!A.Property) A.Property = {};
-	var I = A.Asset.Group.AllowExpression.indexOf(A.Property.Expression);
-	let DoNext = expression => {
-		if (Description == true) return expression == null ? DialogFind(Player, "FacialExpressionNone") : DialogFind(Player, "FacialExpression" + expression);
-		CharacterSetFacialExpression(C, AssetGroup, expression);
-	}
-	if (Forward == null || Forward) {
-		if (I + 1 >= A.Asset.Group.AllowExpression.length) return DoNext(null);
-		return DoNext(A.Asset.Group.AllowExpression[I + 1]);
-	} else {
-		if (I == 0) return DoNext(null);
-		if (I < 0) return DoNext(A.Asset.Group.AllowExpression[A.Asset.Group.AllowExpression.length - 1]);
-		return DoNext(A.Asset.Group.AllowExpression[I - 1]);
 	}
 }
 

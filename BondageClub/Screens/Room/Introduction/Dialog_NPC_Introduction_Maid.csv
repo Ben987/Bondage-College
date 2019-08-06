@@ -52,8 +52,9 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  Ow
 30I,30J,(Listen.),"You can use collars on your victim's neck to show everyone that they are yours, enslave them or leash them.","SetZone(""ItemNeck"")",
 30J,30K,(Listen.),"You can use gags to silence your victim, making her unable to speak.","SetZone(""ItemMouth"")",
 30K,30L,(Listen.),"Blindfolds, ear muffs, and hoods can also be used to restrict vision and hearing.","SetZone(""ItemHead"")",
-30L,30M,(Listen.),"Your pockets can be used to store more advanced devices, or your padlocks and keys. ","SetZone(""ItemMisc"")",
-30M,40,(Listen.),That's about everything. Remember that your arms need to be free to restrain someone.,ClearZone(),
+30L,30M,(Listen.),Your pockets can be used to store your padlocks and keys. ,"SetZone(""ItemMisc"")",
+30M,30N,(Listen.),Your pockets can be used to store more advanced devices. ,"SetZone(""ItemFrontDevices"")",
+30N,40,(Listen.),That's about everything. Remember that your arms need to be free to restrain someone.,ClearZone(),
 40,100,Thanks for the info.,"My pleasure! Now we can practice.  Would you prefer to restrain someone, or be tied up yourself?",,
 40,100,That makes sense.,"Of course! And now we can practice.  Would you prefer to restrain someone, or be tied up yourself?",,
 40,200,Can I strap you up now?,"Not me I'm afraid, but we have someone here who would certainly enjoy being your victim.",ChangeMaidOpinion(1),!IsHeadMaid
@@ -91,8 +92,9 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  Ow
 240I,240J,(Listen.),"You can use collars on your victim's neck to show everyone that they are yours, enslave them or leash them.","SetZone(""ItemNeck"")",
 240J,240K,(Listen.),"You can use gags to silence your victim, making her unable to speak.","SetZone(""ItemMouth"")",
 240K,240L,(Listen.),"Blindfolds, ear muffs, and hoods can also be used to restrict vision and hearing.","SetZone(""ItemHead"")",
-240L,240M,(Listen.),"Your pockets can be used to store more advanced devices, or your padlocks and keys. ","SetZone(""ItemMisc"")",
-240M,230,(Listen.),That's about everything. Remember that your arms need to be free to restrain someone.,ClearZone(),
+240L,240M,(Listen.),Your pockets can be used to store your padlocks and keys. ,"SetZone(""ItemMisc"")",
+240M,240N,(Listen.),Your pockets can be used to store more advanced devices. ,"SetZone(""ItemFrontDevices"")",
+240N,230,(Listen.),That's about everything. Remember that your arms need to be free to restrain someone.,ClearZone(),
 250,260,It was fun to strap her up.,I'm glad you feel that way.  I think you're ready to explore the club now.,,
 250,260,I would rather be restrained myself.,"Don't worry, I'm sure it will happen often.  I think you're ready to explore the club now.",ChangeMaidOpinion(-1),
 250,260,It's empowering!  I need to find a whip now...,A monster is born!  (She giggles.)  You're ready to explore the club now.,ChangeMaidOpinion(1),
@@ -104,6 +106,7 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  Ow
 270,,Thanks!  Have a great time.  (Leave her.),,DialogLeave(),
 270,,Can you teach me more about rope bondage?,"If you like rope bondage that much, try the Shibari Dojo.  You might learn a few new tricks.",,
 270,,Tell me about the other types of restraints.,"Some items are impossible to struggle out from, so you'll need to find help.  Also, items like cuffs can be locked, and you'll need a key to unlock them.",,
+270,,Tell me about item permissions.,"In your profile, there's an item permission level you can set.  It only affects online players and will block them from restraining you, depending on the level.",,
 270,300,I want to practice freeing myself.,Of course!  If you're ready for the challenge I will tie you up.,,
 300,,,Are you ready to struggle against the ropes?,,Player.CanInteract()
 300,,,Get your arms free first if you want to practice struggling against my ropes.  Let me know when you're ready.,,!Player.CanInteract()
@@ -135,6 +138,7 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  Ow
 370,,Can I get better at struggling out?,Yes. You might learn new skills to escape faster if you stick around.  Others might also learn skills to make your struggling harder though...,,
 370,,Can you teach me more on rope bondage?,"If you like rope bondage that much, try the Shibari Dojo.  You might learn a few new tricks.",,
 370,,Tell me about the other types of restraints.,"Some items are impossible to struggle out from, so you'll need to find help.  Also, items like cuffs can be locked, and you'll need a key to unlock them.",,
+370,,Tell me about item permissions.,"In your profile, there's an item permission level you can set.  It only affects online players and will block them from restraining you, depending on the level.",,
 370,300,I want to practice freeing myself.,Again?  Well of course.  Are you ready to struggle now?,,
 MaidRescue,,,(She struggles and tries to get out.)  Can you please help me?,,IsMaidRestrained()
 MaidRescue,,,(She bows her head respectfully.)  Can you also help our friend here?,,!IsBothFree()
