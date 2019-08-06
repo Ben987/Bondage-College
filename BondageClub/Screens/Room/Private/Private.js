@@ -95,10 +95,6 @@ function PrivateDrawCharacter() {
 	// For each character to draw (maximum 4 at a time)
 	for (var C = PrivateCharacterOffset; (C < PrivateCharacter.length && C < PrivateCharacterOffset + 4); C++) {
 
-		// Draw the profile and switch position buttons
-		DrawButton(X + 85 + (C - PrivateCharacterOffset) * 470, 900, 90, 90, "", "White", "Icons/Character.png");
-		if ((C > 0) && (C < PrivateCharacter.length - 1)) DrawButton(X + 325 + (C - PrivateCharacterOffset) * 470, 900, 90, 90, "", "White", "Icons/Next.png");
-
 		// If the character is rent, she won't show in the room but her slot is still taken
 		if (NPCEventGet(PrivateCharacter[C], "SlaveMarketRent") <= CurrentTime) {
 
@@ -114,10 +110,14 @@ function PrivateDrawCharacter() {
 		} else {
 
 			// Draw the "X on rental for a day" text
-			DrawText(PrivateCharacter[C].Name, X + 235 + (C - PrivateCharacterOffset) * 470, 450, "White", "Black");
-			DrawText(TextGet("RentalDay"), X + 235 + (C - PrivateCharacterOffset) * 470, 450, "White", "Black");
+			DrawText(PrivateCharacter[C].Name, X + 235 + (C - PrivateCharacterOffset) * 470, 420, "White", "Black");
+			DrawText(TextGet("RentalDay"), X + 235 + (C - PrivateCharacterOffset) * 470, 500, "White", "Black");
 
 		}
+
+		// Draw the profile and switch position buttons
+		DrawButton(X + 85 + (C - PrivateCharacterOffset) * 470, 900, 90, 90, "", "White", "Icons/Character.png");
+		if ((C > 0) && (C < PrivateCharacter.length - 1)) DrawButton(X + 325 + (C - PrivateCharacterOffset) * 470, 900, 90, 90, "", "White", "Icons/Next.png");
 
 	}
 
@@ -711,16 +711,16 @@ function PrivateNPCInteraction(LoveFactor) {
 // When the slave market transation starts (10$ + 1$ per day for sold slave + 0% to 100% from the random auction, divide in 5 for rentals)
 function PrivateSlaveMarketStart(AuctionType) {
 	if (AuctionType == "Rent") NPCEventAdd(CurrentCharacter, "SlaveMarketRent", CurrentTime + 86400000);
-	InventoryRemove(CurrentCharacter, "ItemNeck");
+	else InventoryRemove(CurrentCharacter, "ItemNeck");
 	CharacterRelease(CurrentCharacter);
 	CharacterNaked(CurrentCharacter);
 	CharacterSetActivePose(CurrentCharacter, "Kneel");
 	NPCSlaveAuctionVendor = Player;
 	NPCSlaveAuctionSlave = CurrentCharacter;
-	NPCSlaveAuctionAmount = Math.floor((NPCEventGet(CurrentCharacter, "NPCCollaring") - CurrentTime) / 86400000);
+	NPCSlaveAuctionAmount = Math.floor((CurrentTime - NPCEventGet(CurrentCharacter, "NPCCollaring")) / 86400000);
 	if (NPCSlaveAuctionAmount > 90) NPCSlaveAuctionAmount = 90;
 	if (NPCSlaveAuctionAmount < 0) NPCSlaveAuctionAmount = 0;
-	NPCSlaveAuctionAmount = (10 + NPCSlaveAuctionAmount) * (1 + Math.random());
+	NPCSlaveAuctionAmount = Math.round((10 + NPCSlaveAuctionAmount) * (1 + Math.random()));
 	if (AuctionType == "Rent") NPCSlaveAuctionAmount = Math.round(NPCSlaveAuctionAmount / 5);
 	CharacterChangeMoney(Player, NPCSlaveAuctionAmount);
 	CommonSetScreen("Cutscene", "NPCSlaveAuction");

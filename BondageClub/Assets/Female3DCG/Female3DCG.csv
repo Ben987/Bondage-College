@@ -1,4 +1,4 @@
-Cloth,,Cloth
+﻿Cloth,,Cloth
 Cloth,CollegeOutfit1,College
 Cloth,MaidOutfit1,Maid
 Cloth,MaidOutfit2,Maid Exposed
@@ -110,6 +110,15 @@ Glasses,SunGlasses1,Sunglasses 1
 Glasses,SunGlasses2,Sunglasses 2
 Glasses,Mask1,Venitian Mask
 Glasses,Mask2,Domino Mask
+TailStraps,,Tail Strap
+TailStraps,TailStrap,Kitty Tail Strap
+TailStraps,HorseTailStrap,Horse Tail Strap
+TailStraps,FoxTailsStrap,Fox Tails Strap
+TailStraps,PuppyTailStrap,Puppy Tail Strap
+TailStraps,SuccubusStrap,Succubus Tail Strap
+TailStraps,SuccubusStrap2,Succubus2 Tail Strap
+TailStraps,RaccoonStrap,Raccoon Tail Strap
+TailStraps,RaccoonTailStrap,Raccoon2 Tail Strap
 Wings,,Wings
 Wings,SuccubusFeather,Succubus Feather 
 Wings,SuccubusWings,Succubus Wings
@@ -118,15 +127,6 @@ Wings,DevilWings,Devil Wings
 Wings,FallenAngelWings,Fallen Angel Wings
 Wings,AngelWings,Angel Wings
 Wings,BatWings,Bat Wings
-TailStraps,,TrailStraps
-TailStraps,TailStrap,Kitty Tail Strap
-TailStraps,,HorseTailStrap,Horse Tail Strap
-TailStraps,,FoxTailsStrap,Fox Tails Strap
-TailStraps,PuppyTailStrap,Puppy Tail Strap
-TailStraps,SuccubusStrap,Succubus Tail Strap
-TailStraps,SuccubusStrap2,Succubus2 Tail Strap
-TailStraps,RaccoonStrap,Raccoon Tail Strap
-TailStraps,RaccoonTailStrap,Raccoon2 Tail Strap
 BodyUpper,,Upper Body
 BodyUpper,Small,Small
 BodyUpper,Normal,Normal
@@ -270,6 +270,7 @@ ItemNeck,SlaveCollar,Slave Collar
 ItemNeck,ClubSlaveCollar,Club Slave Collar
 ItemNeck,ShockCollar,Shock Collar
 ItemNeck,ShockCollarRemote,Shock Collar Remote
+ItemNeck,BatCollar,Bat Collar
 ItemNeck,PostureCollar,Posture Collar
 ItemNeck,SteelPostureCollar,Steel Posture Collar
 ItemNeckAccessories,,Collar
@@ -310,6 +311,8 @@ ItemHead,StuddedBlindfold,Studded Blindfold
 ItemHead,KittyBlindfold,Kitty Blindfold
 ItemHead,DuctTape,Duct Tape
 ItemHead,SmallBlindfold,Small Blindfold
+ItemHead,LightDutyEarPlugs,Light Duty EarPlugs
+ItemHead,HeavyDutyEarPlugs,Heavy Duty EarPlugs
 ItemHead,LeatherHoodOpenMouth,Leather Hood Mouth
 ItemMisc,,Misc Items
 ItemMisc,MetalPadlock,Metal Padlock
@@ -323,6 +326,7 @@ ItemMisc,MetalCuffsKey,Metal Cuffs Key
 ItemMisc,WoodenMaidTray,Wooden Maid Tray
 ItemMisc,WoodenMaidTrayFull,Wooden Maid Tray Full
 ItemMisc,WoodenPaddle,Wooden Paddle
-ItemMisc,WoodenBox,Wooden Box
-ItemMisc,MilkCan,Water filled milk can 
-ItemMisc,WaterCell,Water torture Cell
+ItemFrontDevices,,Front Devices
+ItemFrontDevices,WoodenBox,Wooden Box
+ItemFrontDevices,MilkCan,Water filled milk can 
+ItemFrontDevices,WaterCell,Water torture Cell

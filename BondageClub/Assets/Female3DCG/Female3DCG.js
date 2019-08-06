@@ -116,7 +116,7 @@ var AssetFemale3DCG = [
 			"Socks1", "Socks2", "Socks3", "Socks4", "Socks5", "Stockings1", "Stockings2",
 			{ Name: "Stockings3", Value: 10 },
 			{ Name: "Stockings4", Value: 10 },
-			{ Name: "Pantyhose1", Value: 10, Priority: 17, Block: ["ItemVulva", "ItemButt"]}
+			{ Name: "Pantyhose1", Value: 10, Priority: 16, Block: ["ItemVulva", "ItemButt"]}
 		]
 	},
 
@@ -589,9 +589,10 @@ var AssetFemale3DCG = [
 			{ Name: "LeatherCollarBell", Value: 40, Time: 5, Difficulty: 50, AllowLock: true },
 			{ Name: "LeatherCollarBow", Value: 40, Time: 5, Difficulty: 50, AllowLock: true },
 			{ Name: "SlaveCollar", Random: false, Effect: ["Lock"], Enable: false, Value: -1, Time: 5, Difficulty: 50 },
-			{ Name: "ClubSlaveCollar", Random: false, Effect: ["Lock"], Enable: false, Value: -1, Time: 5, Difficulty: 50, ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 15 }] },
-			{ Name: "ShockCollar", Random: false, Extended: true, Effect: ["ReceiveShock"], BuyGroup: "ShockCollar", Value: 250, Time: 15, Difficulty: 50, AllowLock: true, ExpressionTrigger: [{ Group: "Eyebrows", Name: "Soft", Timer: 10 }] },
-			{ Name: "ShockCollarRemote", Random: false, Wear: false, Effect: ["TriggerShock"], BuyGroup: "ShockCollar", Value: -1, ExpressionTrigger: [{ Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Blush", Name: "Soft", Timer: 15 }, { Group: "Eyes", Name: "Closed", Timer: 5 }] },
+			{ Name: "ClubSlaveCollar", Random: false, Effect: ["Lock"], Enable: false, Value: -1, Time: 5, Difficulty: 50, ExpressionTrigger: [{Group: "Blush", Name: "Medium", Timer: 15}] },
+			{ Name: "ShockCollar", Random: false, Extended: true, Effect:["ReceiveShock"], BuyGroup: "ShockCollar", Value: 250, Time: 15, Difficulty: 50, AllowLock: true, ExpressionTrigger: [{Group: "Eyebrows", Name: "Soft", Timer: 10}] },
+			{ Name: "ShockCollarRemote", Random: false, Wear: false, Effect:["TriggerShock"], BuyGroup: "ShockCollar", Value: -1, ExpressionTrigger: [{Group: "Eyebrows", Name: "Soft", Timer: 10}, {Group: "Blush", Name: "Soft", Timer: 15}, {Group: "Eyes", Name: "Closed", Timer: 5}] },
+			{ Name: "BatCollar", Value: 40, Time: 5, Difficulty: 50, AllowLock: true },
 			{ Name: "PostureCollar", Value: 40, Time: 5, Difficulty: 50, AllowLock: true },
 			{ Name: "SteelPostureCollar", Value: 40, Time: 5, Difficulty: 50, AllowLock: true }
 		]
@@ -694,8 +695,10 @@ var AssetFemale3DCG = [
 			{ Name: "LeatherHoodOpenEyes", Effect: ["Prone", "DeafLight", "GagLight"], Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth"], Block: ["ItemMouth", "ItemNeck"], Difficulty: 50, Value: 60, Time: 15, AllowLock: true },
 			{ Name: "StuddedBlindfold", Effect: ["BlindNormal", "Prone"], Hide: ["Glasses"], Difficulty: 2, Value: -1, Time: 5, AllowLock: true },
 			{ Name: "KittyBlindfold", Effect: ["BlindLight", "Prone"], Hide: ["Glasses"], Value: 25, Time: 5, AllowLock: true },
-			{ Name: "DuctTape", Extended: true, Effect: ["BlindNormal", "Prone"], Hide: ["Glasses"], Value: 50, Time: 10, RemoveTime: 5, BuyGroup: "DuctTape" },
+			{ Name: "DuctTape", Extended: true, AllowEffect: ["BlindNormal", "Prone", "GagNormal"], Hide: ["Glasses"], Value: 50, Time: 10, RemoveTime: 5, BuyGroup: "DuctTape" },
 			{ Name: "SmallBlindfold", Effect: ["BlindLight", "Prone"], Hide: ["Glasses"], Value: 40, Time: 5, AllowLock: true },
+			{ Name: "LightDutyEarPlugs", Visible: false, Effect: ["Prone", "DeafLight"], Difficulty: 50, Value: 30, Time: 5 },
+			{ Name: "HeavyDutyEarPlugs", Visible: false, Effect: ["DeafHeavy", "Prone"], Difficulty: 50, Value: 40, Time: 5 },
 			{ Name: "LeatherHoodOpenMouth", Effect: ["Prone", "BlindHeavy"], Hide: ["HairFront", "HairBack", "Glasses"], Difficulty: 50, Value: 60, Time: 15, AllowLock: true }
 		]
 	},
@@ -707,7 +710,7 @@ var AssetFemale3DCG = [
 		Default: false,
 		Color: ["Default"],
 		Top: -250,
-		Zone: [[25, 580, 75, 410], [400, 580, 75, 410]],
+		Zone: [[25, 35, 75, 210], [400, 35, 75, 210]],
 		Asset: [
 			{ Name: "MetalPadlock", Wear: false, Value: 15, Time: 10, IsLock: true, Effect: [] },
 			{ Name: "IntricatePadlock", Wear: false, Value: 60, Time: 30, IsLock: true, Effect: [] },
@@ -719,10 +722,22 @@ var AssetFemale3DCG = [
 			{ Name: "MetalCuffsKey", Wear: false, Value: 25, Effect: ["Unlock-MetalCuffs"], Time: 5 },
 			{ Name: "WoodenMaidTray", Enable: false, Value: -1 },
 			{ Name: "WoodenMaidTrayFull", Enable: false, Value: -1 },
-			{ Name: "WoodenPaddle", Enable: false, Value: -1 },
-			{ Name: "WoodenBox", RemoveAtLogin: true, Effect: ["BlindNormal", "Prone", "Enclose", "GagLight", "Freeze"], Enable: false, Value: -1, Time: 15, RemoveTime: 10, Difficulty: 4 },
-			{ Name: "MilkCan", RemoveAtLogin: true, Effect: ["BlindHeavy", "Prone", "Enclose", "GagHeavy", "Freeze"], SetPose: ["Kneel"], Enable: false, Value: -1, Time: 15, RemoveTime: 10, Difficulty: 5 },
-			{ Name: "WaterCell", RemoveAtLogin: true, Effect: ["Prone", "Enclose", "GagHeavy", "Freeze"], SetPose: ["Suspension", "LegsClosed"], Block: ["ItemFeet"], Enable: false, Value: -1, Time: 15, RemoveTime: 15, Difficulty: 5 },
+			{ Name: "WoodenPaddle", Enable: false, Value: -1 }
+		]
+	},
+
+	{
+		Group: "ItemFrontDevices",
+		Category: "Item",
+		Priority: 37,
+		Default: false,
+		Color: ["Default"],
+		Top: -250,
+		Zone: [[25, 580, 75, 410], [400, 580, 75, 410]],
+		Asset: [
+			{ Name: "WoodenBox", RemoveAtLogin: true, Effect: ["BlindNormal", "Prone", "Enclose", "GagLight", "Freeze"], Enable: false, Value: 225 , Time: 15, RemoveTime: 10, Difficulty: 4 },
+			{ Name: "MilkCan", RemoveAtLogin: true, Effect: ["BlindHeavy", "Prone", "Enclose", "GagHeavy", "Freeze"], SetPose: ["Kneel"], Enable: false, Value: -1 , Time: 15, RemoveTime: 10, Difficulty: 5 },
+			{ Name: "WaterCell", RemoveAtLogin: true, Effect: ["Prone", "Enclose", "GagHeavy", "Freeze"], SetPose: ["Suspension", "LegsClosed"], Block: ["ItemFeet"], Enable: false, Value: -1, Time: 15, RemoveTime: 15, Difficulty: 5 }
 		]
 	}
 
