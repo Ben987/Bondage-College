@@ -1,4 +1,4 @@
-﻿Cloth,,Cloth
+Cloth,,Cloth
 Cloth,CollegeOutfit1,College
 Cloth,MaidOutfit1,Maid
 Cloth,MaidOutfit2,Maid Exposed
@@ -322,7 +322,7 @@ ItemMisc,MetalCuffsKey,Metal Cuffs Key
 ItemMisc,WoodenMaidTray,Wooden Maid Tray
 ItemMisc,WoodenMaidTrayFull,Wooden Maid Tray Full
 ItemMisc,WoodenPaddle,Wooden Paddle
-ItemFrontDevices,,Front Devices
-ItemFrontDevices,WoodenBox,Wooden Box
-ItemFrontDevices,MilkCan,Water filled milk can 
-ItemFrontDevices,WaterCell,Water torture Cell
+ItemDevices,,Devices
+ItemDevices,WoodenBox,Wooden Box
+ItemDevices,MilkCan,Water filled milk can 
+ItemDevices,WaterCell,Water torture Cell
