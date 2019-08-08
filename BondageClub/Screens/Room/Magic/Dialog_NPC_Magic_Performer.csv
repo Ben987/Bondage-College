@@ -50,6 +50,8 @@ RemoveSuspensionHempRope,,,(She breathes.) Finally.  What should that be?,,
 21,0,"No, it's enough for me.","Pity, goodbye. Here is your Dress back.",TrickChangeDressesBack(),
 30,,(Wait),,SelectTrick(),
 100,,,Your task: Bind me and then give me the sign to start.,,
+100,,Who should I tie up?,"Me, I want to show a trick.",,
+100,,How should I tie up?,"With five objects for eye, mouth, arms, legs and feet.",,
 100,,(Show that you are done),,TrickChangeBinds(),RestrainPerformerMinItem(5)
 101,,,Now show the audience how to get out of there.,,
 101,102,That was easy. Let's show the next trick ,Applause for the artist.,,!Player.IsRestrained()
@@ -64,6 +66,9 @@ RemoveSuspensionHempRope,,,(She breathes.) Finally.  What should that be?,,
 110,111,(Dance devot.),(The Performer shows some little tricks.),"DialogChangeReputation(""Dominant"", -1)",
 111,,(Wait for your next trick.),,SelectTrick(),
 120,,,Your task: Bind my Assistant and then give me the sign to start.,,
+120,,Who should I tie up?,Please tie my Assistant.,,
+120,,How should I tie up?,"With five objects for eye, mouth, arms, legs and feet.",,
+120,,(Leave),,DialogLeave(),
 120,,(Show that you are done),,TrickBindAsstant(),RestrainAssistantMinItem(5)
 121,,,Now show the audience how to get out of there.,,
 121,122,That was easy. Let's show the next trick.,Applause for the artist.,,!Player.IsRestrained()
@@ -110,6 +115,9 @@ RemoveSuspensionHempRope,,,(She breathes.) Finally.  What should that be?,,
 180,,,I have to rebuild the stage. Sing as long as a song with my assistant.,,
 180,0,(Walk away),,SongLeavePerformer(),
 190,,,Your task: Bind my Assistant and then give me the sign to start.,,
+190,,Who should I tie up?,Please tie my Assistant.,,
+190,,How should I tie up?,"With five objects for eye, mouth, arms, legs and feet.",,
+190,,(Leave),,DialogLeave(),
 190,,(Show that you are done),,TrickAsstantChange(),RestrainAssistantMinItem(5)
 191,,,How did she get dressed again? Go over and tell her to change for the show.,,
 191,,The Show must go on.,Applause for the both.,SelectTrick(),ShowIsState(3)

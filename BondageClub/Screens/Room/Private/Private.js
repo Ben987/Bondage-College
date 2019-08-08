@@ -62,8 +62,8 @@ function PrivateSubTrialInProgress() { return ((NPCEventGet(CurrentCharacter, "E
 function PrivateSubTrialOverWilling() { return ((NPCEventGet(CurrentCharacter, "EndDomTrial") > 0) && (CurrentTime >= CheatFactor("SkipTrialPeriod", 0) * NPCEventGet(CurrentCharacter, "EndDomTrial")) && (CurrentCharacter.Love >= 90)) }
 function PrivateSubTrialOverUnwilling() { return ((NPCEventGet(CurrentCharacter, "EndDomTrial") > 0) && (CurrentTime >= CheatFactor("SkipTrialPeriod", 0) * NPCEventGet(CurrentCharacter, "EndDomTrial")) && (CurrentCharacter.Love < 90)) }
 function PrivateCanPet() { return ((CurrentCharacter.Love >= 0) && !CurrentCharacter.IsRestrained() && (InventoryGet(Player, "ItemArms") != null) && (InventoryGet(Player, "ItemArms").Asset.Name == "BitchSuit")) }
-function PrivateCanSellSlave() { return (!Player.IsRestrained() && (CurrentCharacter.Love >= 0) && (NPCEventGet(CurrentCharacter, "NPCCollaring") > 0)) }
-function PrivateCannotSellSlave() { return (!Player.IsRestrained() && (CurrentCharacter.Love < 0) && (NPCEventGet(CurrentCharacter, "NPCCollaring") > 0)) }
+function PrivateCanSellSlave() { return (!Player.IsRestrained() && (CurrentCharacter.Love >= 0) && (CurrentCharacter.Name != "Amanda") && (CurrentCharacter.Name != "Sarah") && (CurrentCharacter.Name != "Sophie") && (NPCEventGet(CurrentCharacter, "NPCCollaring") > 0)) }
+function PrivateCannotSellSlave() { return (!Player.IsRestrained() && (CurrentCharacter.Love < 0) && (CurrentCharacter.Name != "Amanda") && (CurrentCharacter.Name != "Sarah") && (CurrentCharacter.Name != "Sophie") && (NPCEventGet(CurrentCharacter, "NPCCollaring") > 0)) }
 
 // Loads the private room vendor NPC
 function PrivateLoad() {
@@ -94,18 +94,33 @@ function PrivateDrawCharacter() {
 
 	// For each character to draw (maximum 4 at a time)
 	for (var C = PrivateCharacterOffset; (C < PrivateCharacter.length && C < PrivateCharacterOffset + 4); C++) {
-		if (PrivateCharacter[C].Cage != null) DrawImage("Screens/Room/Private/CageBack.png", X + (C - PrivateCharacterOffset) * 470, 0);
-		DrawCharacter(PrivateCharacter[C], X + (C - PrivateCharacterOffset) * 470, 0, 1);
-		if (PrivateCharacter[C].Cage != null) DrawImage("Screens/Room/Private/CageFront.png", X + (C - PrivateCharacterOffset) * 470, 0);
+
+		// If the character is rent, she won't show in the room but her slot is still taken
+		if (NPCEventGet(PrivateCharacter[C], "SlaveMarketRent") <= CurrentTime) {
+
+			// Draw the NPC and the cage if needed
+			if (PrivateCharacter[C].Cage != null) DrawImage("Screens/Room/Private/CageBack.png", X + (C - PrivateCharacterOffset) * 470, 0);
+			DrawCharacter(PrivateCharacter[C], X + (C - PrivateCharacterOffset) * 470, 0, 1);
+			if (PrivateCharacter[C].Cage != null) DrawImage("Screens/Room/Private/CageFront.png", X + (C - PrivateCharacterOffset) * 470, 0);
+			if (LogQuery("Cage", "PrivateRoom") && !LogQuery("BlockCage", "Rule"))
+				if ((Player.Cage == null) || (C == 0))
+					if (!PrivateCharacter[C].IsOwner())
+						DrawButton(X + 205 + (C - PrivateCharacterOffset) * 470, 900, 90, 90, "", "White", "Icons/Cage.png");
+
+		} else {
+
+			// Draw the "X on rental for a day" text
+			DrawText(PrivateCharacter[C].Name, X + 235 + (C - PrivateCharacterOffset) * 470, 420, "White", "Black");
+			DrawText(TextGet("RentalDay"), X + 235 + (C - PrivateCharacterOffset) * 470, 500, "White", "Black");
+
+		}
+
+		// Draw the profile and switch position buttons
 		DrawButton(X + 85 + (C - PrivateCharacterOffset) * 470, 900, 90, 90, "", "White", "Icons/Character.png");
-		if (LogQuery("Cage", "PrivateRoom") && !LogQuery("BlockCage", "Rule"))
-			if ((Player.Cage == null) || (C == 0))
-				if (!PrivateCharacter[C].IsOwner())
-					DrawButton(X + 205 + (C - PrivateCharacterOffset) * 470, 900, 90, 90, "", "White", "Icons/Cage.png");
-		if ((C > 0) && (C < PrivateCharacter.length - 1))
-			DrawButton(X + 325 + (C - PrivateCharacterOffset) * 470, 900, 90, 90, "", "White", "Icons/Next.png");
+		if ((C > 0) && (C < PrivateCharacter.length - 1)) DrawButton(X + 325 + (C - PrivateCharacterOffset) * 470, 900, 90, 90, "", "White", "Icons/Next.png");
+
 	}
-	
+
 }
 
 // Run the private room
@@ -135,7 +150,7 @@ function PrivateRun() {
 
 }
 
-// Checks if the user clicked on a cage button
+// Checks if the user clicked on a button below a character
 function PrivateClickCharacterButton() {
 	
 	// Defines the character position in the private screen
@@ -151,12 +166,13 @@ function PrivateClickCharacterButton() {
 
 		// The cage is only available on certain conditions
 		if ((MouseX >= X + 205 + (C - PrivateCharacterOffset) * 470) && (MouseX <= X + 295 + (C - PrivateCharacterOffset) * 470))
-			if (LogQuery("Cage", "PrivateRoom") && !LogQuery("BlockCage", "Rule"))
-				if ((Player.Cage == null) || (C == 0))
-					if (!PrivateCharacter[C].IsOwner()) {
-						PrivateCharacter[C].Cage = (PrivateCharacter[C].Cage == null) ? true : null;
-						if (C > 0) ServerPrivateCharacterSync();
-					}
+			if (NPCEventGet(PrivateCharacter[C], "SlaveMarketRent") <= CurrentTime)
+				if (LogQuery("Cage", "PrivateRoom") && !LogQuery("BlockCage", "Rule"))
+					if ((Player.Cage == null) || (C == 0))
+						if (!PrivateCharacter[C].IsOwner()) {
+							PrivateCharacter[C].Cage = (PrivateCharacter[C].Cage == null) ? true : null;
+							if (C > 0) ServerPrivateCharacterSync();
+						}
 
 		// Can switch girls position in the private room if there's more than one friend
 		if ((C > 0) && (C < PrivateCharacter.length - 1))
@@ -181,38 +197,39 @@ function PrivateClickCharacter() {
 
 	// For each character, we find the one that was clicked and open it's dialog
 	for (var C = PrivateCharacterOffset; (C < PrivateCharacter.length && C < PrivateCharacterOffset + 4); C++)
-		if ((MouseX >= X + (C - PrivateCharacterOffset) * 470) && (MouseX <= X + 470 + (C - PrivateCharacterOffset) * 470)) {
-			
-			// Sets the new character (1000 if she's owner, 2000 if she's owned)
-			PrivateCharacterToSave = C;
-			if ((PrivateCharacter[C].Stage == "0") && PrivateCharacter[C].IsOwner()) PrivateCharacter[C].Stage = "1000";
-			if ((PrivateCharacter[C].Stage == "0") && PrivateCharacter[C].IsOwnedByPlayer()) PrivateCharacter[C].Stage = "2000";
-			NPCTraitDialog(PrivateCharacter[C]);
-			CharacterSetCurrent(PrivateCharacter[C]);
+		if ((MouseX >= X + (C - PrivateCharacterOffset) * 470) && (MouseX <= X + 470 + (C - PrivateCharacterOffset) * 470))
+			if (NPCEventGet(PrivateCharacter[C], "SlaveMarketRent") <= CurrentTime) {
 
-			// If the owner has beeped the player
-			if ((CurrentCharacter.Stage == "1000") && (CurrentCharacter.Name == Player.Owner.replace("NPC-", "")) && LogQuery("OwnerBeepActive", "PrivateRoom")) {
-				if (LogQuery("OwnerBeepTimer", "PrivateRoom")) {
-					CurrentCharacter.Stage = "1020";
-					CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "OwnerBeepSuccess");
-					NPCLoveChange(CurrentCharacter, 8);
-				} else {
-					CurrentCharacter.Stage = "1030";
-					CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "OwnerBeepFail");
-					NPCLoveChange(CurrentCharacter, -10);
+				// Sets the new character (1000 if she's owner, 2000 if she's owned)
+				PrivateCharacterToSave = C;
+				if ((PrivateCharacter[C].Stage == "0") && PrivateCharacter[C].IsOwner()) PrivateCharacter[C].Stage = "1000";
+				if ((PrivateCharacter[C].Stage == "0") && PrivateCharacter[C].IsOwnedByPlayer()) PrivateCharacter[C].Stage = "2000";
+				NPCTraitDialog(PrivateCharacter[C]);
+				CharacterSetCurrent(PrivateCharacter[C]);
+
+				// If the owner has beeped the player
+				if ((CurrentCharacter.Stage == "1000") && (CurrentCharacter.Name == Player.Owner.replace("NPC-", "")) && LogQuery("OwnerBeepActive", "PrivateRoom")) {
+					if (LogQuery("OwnerBeepTimer", "PrivateRoom")) {
+						CurrentCharacter.Stage = "1020";
+						CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "OwnerBeepSuccess");
+						NPCLoveChange(CurrentCharacter, 8);
+					} else {
+						CurrentCharacter.Stage = "1030";
+						CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "OwnerBeepFail");
+						NPCLoveChange(CurrentCharacter, -10);
+					}
+					LogDelete("OwnerBeepActive", "PrivateRoom");
+					LogAdd("OwnerBeepTimer", "PrivateRoom", CurrentTime + 1800000);
 				}
-				LogDelete("OwnerBeepActive", "PrivateRoom");
-				LogAdd("OwnerBeepTimer", "PrivateRoom", CurrentTime + 1800000);
-			}
 
-			// If the owner is serious, she might force the player to kneel
-			if ((CurrentCharacter.Stage == "1000") && (CurrentCharacter.Name == Player.Owner.replace("NPC-", "")) && !Player.IsKneeling() && Player.CanKneel() && (NPCTraitGet(CurrentCharacter, "Serious") >= Math.random() * 100 - 25)) {
-				CurrentCharacter.Stage = "1005";
-				NPCLoveChange(CurrentCharacter, -3);
-				CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "PlayerMustKneel");
+				// If the owner is serious, she might force the player to kneel
+				if ((CurrentCharacter.Stage == "1000") && (CurrentCharacter.Name == Player.Owner.replace("NPC-", "")) && !Player.IsKneeling() && Player.CanKneel() && (NPCTraitGet(CurrentCharacter, "Serious") >= Math.random() * 100 - 25)) {
+					CurrentCharacter.Stage = "1005";
+					NPCLoveChange(CurrentCharacter, -3);
+					CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "PlayerMustKneel");
+				}
+
 			}
-			
-		}
 
 }
 
@@ -694,19 +711,19 @@ function PrivateNPCInteraction(LoveFactor) {
 // When the slave market transation starts (10$ + 1$ per day for sold slave + 0% to 100% from the random auction, divide in 5 for rentals)
 function PrivateSlaveMarketStart(AuctionType) {
 	if (AuctionType == "Rent") NPCEventAdd(CurrentCharacter, "SlaveMarketRent", CurrentTime + 86400000);
-	InventoryRemove(CurrentCharacter, "ItemNeck");
+	else InventoryRemove(CurrentCharacter, "ItemNeck");
 	CharacterRelease(CurrentCharacter);
 	CharacterNaked(CurrentCharacter);
-	CharacterSetActivePose(CurrentCharacter, null);
-	SlaveAuctionVendor = Player;
-	SlaveAuctionSlave = CurrentCharacter;
-	SlaveAuctionAmount = Math.floor((NPCEventGet(CurrentCharacter, "NPCCollaring") - CurrentTime) / 86400000);
-	if (SlaveAuctionAmount > 90) SlaveAuctionAmount = 90;
-	if (SlaveAuctionAmount < 0) SlaveAuctionAmount = 0;
-	SlaveAuctionAmount = (10 + SlaveAuctionAmount) * (1 + Math.random());
-	if (AuctionType == "Rent") SlaveAuctionAmount = Math.round(SlaveAuctionAmount / 5);
-	CharacterChangeMoney(Player, SlaveAuctionAmount);
-	CommonSetScreen("Cutscene", "SlaveAuction");
+	CharacterSetActivePose(CurrentCharacter, "Kneel");
+	NPCSlaveAuctionVendor = Player;
+	NPCSlaveAuctionSlave = CurrentCharacter;
+	NPCSlaveAuctionAmount = Math.floor((CurrentTime - NPCEventGet(CurrentCharacter, "NPCCollaring")) / 86400000);
+	if (NPCSlaveAuctionAmount > 90) NPCSlaveAuctionAmount = 90;
+	if (NPCSlaveAuctionAmount < 0) NPCSlaveAuctionAmount = 0;
+	NPCSlaveAuctionAmount = Math.round((10 + NPCSlaveAuctionAmount) * (1 + Math.random()));
+	if (AuctionType == "Rent") NPCSlaveAuctionAmount = Math.round(NPCSlaveAuctionAmount / 5);
+	CharacterChangeMoney(Player, NPCSlaveAuctionAmount);
+	CommonSetScreen("Cutscene", "NPCSlaveAuction");
 	if (AuctionType == "Sell") PrivateKickOut();
 	else DialogLeave();
 }
