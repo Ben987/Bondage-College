@@ -208,6 +208,7 @@ ItemLegs,NylonRope,Nylon Rope
 ItemLegs,HempRope,Hemp Rope
 ItemLegs,LeatherBelt,Leather Belt
 ItemLegs,DuctTape,Duct Tape
+ItemLegs,MermaidRopeTie,Upper Mermaid Tie
 ItemVulva,,Vulva
 ItemVulva,VibratingEgg,Vibrating Egg
 ItemVulva,VibratingWand,Vibrating Wand
@@ -308,8 +309,9 @@ ItemHead,StuddedBlindfold,Studded Blindfold
 ItemHead,KittyBlindfold,Kitty Blindfold
 ItemHead,DuctTape,Duct Tape
 ItemHead,SmallBlindfold,Small Blindfold
-ItemHead,LightDutyEarPlugs,Light Duty EarPlugs
-ItemHead,HeavyDutyEarPlugs,Heavy Duty EarPlugs
+ItemEars,,Ears
+ItemEars,LightDutyEarPlugs,Light Duty EarPlugs
+ItemEars,HeavyDutyEarPlugs,Heavy Duty EarPlugs
 ItemMisc,,Misc Items
 ItemMisc,MetalPadlock,Metal Padlock
 ItemMisc,IntricatePadlock,Intricate Padlock
