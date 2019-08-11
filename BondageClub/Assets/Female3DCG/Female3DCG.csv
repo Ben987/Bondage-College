@@ -273,6 +273,8 @@ ItemNeck,ClubSlaveCollar,Club Slave Collar
 ItemNeck,ShockCollar,Shock Collar
 ItemNeck,ShockCollarRemote,Shock Collar Remote
 ItemNeck,BatCollar,Bat Collar
+ItemNeck,PostureCollar,Posture Collar
+ItemNeck,SteelPostureCollar,Steel Posture Collar
 ItemNeckAccessories,,Collar
 ItemNeckAccessories,CollarBell,Bell
 ItemNeckAccessories,CollarBow,Bow
@@ -301,6 +303,7 @@ ItemMouth,MuzzleGag,Muzzle Gag
 ItemMouth,RegularSleepingPill,Sleeping Pill
 ItemMouth,PantiesMask,Panties Mask
 ItemMouth,PlugGag,Plug Gag
+ItemMouth,DildoGag,Dildo Gag
 ItemHead,,Head
 ItemHead,ClothBlindfold,Cloth Blindfold
 ItemHead,LeatherBlindfold,Leather Blindfold
@@ -310,6 +313,7 @@ ItemHead,StuddedBlindfold,Studded Blindfold
 ItemHead,KittyBlindfold,Kitty Blindfold
 ItemHead,DuctTape,Duct Tape
 ItemHead,SmallBlindfold,Small Blindfold
+ItemHead,LeatherHoodOpenMouth,Leather Hood Mouth
 ItemEars,,Ears
 ItemEars,LightDutyEarPlugs,Light Duty EarPlugs
 ItemEars,HeavyDutyEarPlugs,Heavy Duty EarPlugs
