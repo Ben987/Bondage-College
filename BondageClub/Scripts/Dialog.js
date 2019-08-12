@@ -76,6 +76,7 @@ function DialogPrerequisite(D) {
 
 // Searches for an item in the player inventory to unlock a specific item
 function DialogCanUnlock(C, Item) {
+	if ((Item != null) && (Item.Asset.OwnerOnly == true) && C.IsOwnedByPlayer()) return C.ID != 0;
 	if ((Item != null) && (Item.Property != null) && (Item.Property.SelfUnlock != null) && (Item.Property.SelfUnlock == false) && !Player.CanInteract()) return false;
 	var UnlockName = "Unlock-" + Item.Asset.Name;
 	if ((Item != null) && (Item.Property != null) && (Item.Property.LockedBy != null)) UnlockName = "Unlock-" + Item.Property.LockedBy;
@@ -151,7 +152,10 @@ function DialogLeaveItemMenu() {
 }
 
 // Adds the item in the dialog list
-function DialogInventoryAdd(NewInv, NewInvWorn) {
+function DialogInventoryAdd(C, NewInv, NewInvWorn) {
+
+	// Make sure we do not add owneronly items in case of not owned characters
+	if (NewInv.Asset.OwnerOnly && !C.IsOwnedByPlayer()) return;
 
 	// Make sure we do not duplicate the item
 	for(var I = 0; I < DialogInventory.length; I++)
@@ -191,7 +195,7 @@ function DialogMenuButtonBuild(C) {
 	if (DialogProgress < 0) {
 		if (DialogInventory.length > 12) DialogMenuButton.push("Next");
 		if (InventoryItemHasEffect(Item, "Lock", true) && DialogCanUnlock(C, Item) && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C) && (Player.CanInteract() || ((C.ID == 0) && InventoryItemHasEffect(Item, "Block", true)))) DialogMenuButton.push("Unlock");
-		if ((Item != null) && (C.ID == 0) && (!Player.CanInteract() || (InventoryItemHasEffect(Item, "Lock", true) && !DialogCanUnlock(C, Item))) && (DialogMenuButton.indexOf("Unlock") < 0) && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Struggle");
+		if ((Item != null) && (C.ID == 0) && (!InventoryOwnerOnlyItem(Item)) && (!Player.CanInteract() || (InventoryItemHasEffect(Item, "Lock", true) && !DialogCanUnlock(C, Item))) && (DialogMenuButton.indexOf("Unlock") < 0) && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Struggle");
 		if (InventoryItemHasEffect(Item, "Lock", true) && !Player.IsBlind() && (Item.Property != null) && (Item.Property.LockedBy != null) && (Item.Property.LockedBy != "")) DialogMenuButton.push("InspectLock");
 		if ((Item != null) && Item.Asset.AllowLock && !InventoryItemHasEffect(Item, "Lock", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Lock");
 		if ((Item != null) && !InventoryItemHasEffect(Item, "Lock", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Remove");
@@ -214,20 +218,20 @@ function DialogInventoryBuild(C) {
 		var Item = null;
 		for(var A = 0; A < C.Appearance.length; A++)
 			if (C.Appearance[A].Asset.Group.Name == C.FocusGroup.Name) {
-				DialogInventoryAdd(C.Appearance[A], true);
+				DialogInventoryAdd(C, C.Appearance[A], true);
 				break;
 			}
 
 		// Second, we add everything from the victim inventory
 		for(var A = 0; A < C.Inventory.length; A++)
 			if ((C.Inventory[A].Asset != null) && (C.Inventory[A].Asset.Group.Name == C.FocusGroup.Name))
-				DialogInventoryAdd(C.Inventory[A], false);
+				DialogInventoryAdd(C, C.Inventory[A], false);
 			
 		// Third, we add everything from the player inventory if the player isn't the victim
 		if (C.ID != 0)
 			for(var A = 0; A < Player.Inventory.length; A++)
 				if ((Player.Inventory[A].Asset != null) && (Player.Inventory[A].Asset.Group.Name == C.FocusGroup.Name))
-					DialogInventoryAdd(Player.Inventory[A], false);
+					DialogInventoryAdd(C, Player.Inventory[A], false);
 		DialogMenuButtonBuild(C);
 
 	}
@@ -400,9 +404,8 @@ function DialogMenuButtonClick() {
 						DialogInventory = [];
 						DialogItemToLock = Item;
 						for (var A = 0; A < Player.Inventory.length; A++)
-							if ((Player.Inventory[A].Asset != null) && Player.Inventory[A].Asset.IsLock)
-								if ((Player.Inventory[A].Asset.OwnerOnly == false) || C.IsOwnedByPlayer())
-									DialogInventoryAdd(Player.Inventory[A], false);
+							if ((Player.Inventory[A].Asset != null) && Player.Inventory[A].Asset.IsLock)								
+								DialogInventoryAdd(C, Player.Inventory[A], false);
 					}
 				} else {
 					DialogItemToLock = null;

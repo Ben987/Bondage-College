@@ -4,8 +4,8 @@ var LoginMessage = "";
 var LoginCredits = null;
 var LoginCreditsPosition = 0;
 var LoginThankYou = "";
-var LoginThankYouList = ["Alvin", "Bryce", "Christian", "Desch", "Designated", "Escurse", "EugeneTooms", "Jenni", "Karel", "Kitten", "Laioken", "Michal", "Mindtie", 
-						"MunchyCat", "Nick", "Overlord", "Rashiash", "Ryner", "Setsu95", "Shadow", "Shaun", "Simeon", "Sky", "Terry", "William", "Winterisbest", "Xepherio"];
+var LoginThankYouList = ["Alvin", "Bryce", "Christian", "Desch", "Designated", "Escurse", "EugeneTooms", "Jenni", "Karel", "Kitten", "Laioken", "Michal", "Mindtie",
+	"MunchyCat", "Nick", "Overlord", "Rashiash", "Ryner", "Setsu95", "Shadow", "Shaun", "Simeon", "Sky", "Terry", "William", "Winterisbest", "Xepherio"];
 var LoginThankYouNext = 0;
 
 // Loads the next thank you bubble
@@ -24,7 +24,7 @@ function LoginDrawCredits() {
 	// For each credits in the list
 	LoginCreditsPosition++;
 	MainCanvas.font = "30px Arial";
-	for(var C = 0; C < LoginCredits.length; C++) {
+	for (var C = 0; C < LoginCredits.length; C++) {
 
 		// Sets the Y position (it scrolls from bottom to top)
 		var Y = 800 - Math.floor(LoginCreditsPosition * 2) + (C * 50);
@@ -54,7 +54,7 @@ function LoginDrawCredits() {
 
 	// Restore the canvas font
 	MainCanvas.font = "36px Arial";
-	
+
 }
 
 // Loads the character login screen
@@ -77,7 +77,7 @@ function LoginRun() {
 
 	// Draw the credits
 	if (LoginCredits != null) LoginDrawCredits();
-	
+
 	// Draw the login controls
 	if (LoginMessage == "") LoginMessage = TextGet("EnterNamePassword");
 	DrawText(TextGet("Welcome"), 1000, 50, "White", "Black");
@@ -102,8 +102,11 @@ function LoginRun() {
 
 // Make sure the slave collar is equipped or unequipped based on the owner
 function LoginValidCollar() {
- 	if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "SlaveCollar") && (Player.Owner == "")) InventoryRemove(Player, "ItemNeck");
- 	if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name != "SlaveCollar") && (InventoryGet(Player, "ItemNeck").Asset.Name != "ClubSlaveCollar") && (Player.Owner != "")) InventoryRemove(Player, "ItemNeck");
+	if (Player.Owner != "") InventoryAdd(Player, "SlaveCollar", "ItemNeck");
+	else InventoryDelete(Player, "SlaveCollar", "ItemNeck");
+	var Collar = InventoryGet(Player, "ItemNeck");
+	if ((Collar != null) && (Collar.Asset.Name == "SlaveCollar") && (Player.Owner == "")) InventoryRemove(Player, "ItemNeck");
+	else if ((Collar != null) && (Collar.Asset.Name != "SlaveCollar") && (Collar.Asset.Name != "ClubSlaveCollar") && (Player.Owner != "") && ((InventoryGetLock(Collar) == null) || (InventoryGetLock(Collar).Asset.OwnerOnly == false))) InventoryRemove(Player, "ItemNeck");
 	if ((InventoryGet(Player, "ItemNeck") == null) && (Player.Owner != "")) InventoryWear(Player, "SlaveCollar", "ItemNeck");
 }
 
@@ -144,7 +147,7 @@ function LoginResponse(C) {
 			Player.WhiteList = C.WhiteList;
 			Player.BlackList = C.BlackList;
 			Player.FriendList = C.FriendList;
-	
+
 			// Loads the player character model and data
 			Player.Appearance = ServerAppearanceLoadFromBundle(Player, C.AssetFamily, C.Appearance);
 			InventoryLoad(Player, C.Inventory);
@@ -162,7 +165,7 @@ function LoginResponse(C) {
 			PrivateCharacter = [];
 			PrivateCharacter.push(Player);
 			if (C.PrivateCharacter != null)
-				for(var P = 0; P < C.PrivateCharacter.length; P++)
+				for (var P = 0; P < C.PrivateCharacter.length; P++)
 					PrivateCharacter.push(C.PrivateCharacter[P]);
 			SarahSetStatus();
 
@@ -198,7 +201,7 @@ function LoginResponse(C) {
 
 // When the user clicks on the character login screen
 function LoginClick() {
-	
+
 	// Opens the cheat panel
 	if (CheatAllow && ((MouseX >= 825) && (MouseX <= 1175) && (MouseY >= 870) && (MouseY <= 930))) {
 		ElementRemove("InputName");
@@ -223,7 +226,7 @@ function LoginClick() {
 		InventoryRemove(Player, "ItemArms");
 		CharacterAppearanceLoadCharacter(Player);
 	}
-	
+
 	// Try to login
 	if ((MouseX >= 775) && (MouseX <= 975) && (MouseY >= 500) && (MouseY <= 560)) {
 		LoginDoLogin();
@@ -236,7 +239,7 @@ function LoginClick() {
 		AssetLoadDescription("Female3DCG");
 		LoginMessage = "";
 	}
-	
+
 }
 
 // When the user press "enter" we try to login

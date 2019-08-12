@@ -177,8 +177,18 @@ function ServerValidateProperties(C, Item) {
 // Loads the appearance assets from a server bundle that only contains the main info (no assets)
 function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumber) {
 
-	// For each appearance item to load	
 	var Appearance = [];
+
+	// Add OwnerOnly items
+	if (C.Appearance != null && (C.Ownership != null) && (C.Ownership.MemberNumber != null) && (SourceMemberNumber != null) && (C.Ownership.MemberNumber != SourceMemberNumber) && (C.MemberNumber != SourceMemberNumber)) {
+		for (var A = 0; A < C.Appearance.length; A++) {
+			if (C.Appearance[A].Asset.OwnerOnly) {
+				Appearance.push(C.Appearance[A]);
+			}
+		}
+	}
+
+	// For each appearance item to load	
 	for (var A = 0; A < Bundle.length; A++) {
 
 		// Cycles in all assets to find the correct item to add (do not add )
