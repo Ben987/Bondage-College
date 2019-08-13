@@ -102,11 +102,8 @@ function LoginRun() {
 
 // Make sure the slave collar is equipped or unequipped based on the owner
 function LoginValidCollar() {
-	if (Player.Owner != "") InventoryAdd(Player, "SlaveCollar", "ItemNeck");
-	else InventoryDelete(Player, "SlaveCollar", "ItemNeck");
-	var Collar = InventoryGet(Player, "ItemNeck");
-	if ((Collar != null) && (Collar.Asset.Name == "SlaveCollar") && (Player.Owner == "")) InventoryRemove(Player, "ItemNeck");
-	else if ((Collar != null) && (Collar.Asset.Name != "SlaveCollar") && (Collar.Asset.Name != "ClubSlaveCollar") && (Player.Owner != "") && ((InventoryGetLock(Collar) == null) || (InventoryGetLock(Collar).Asset.OwnerOnly == false))) InventoryRemove(Player, "ItemNeck");
+	if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "SlaveCollar") && (Player.Owner == "")) InventoryRemove(Player, "ItemNeck");
+ 	if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name != "SlaveCollar") && (InventoryGet(Player, "ItemNeck").Asset.Name != "ClubSlaveCollar") && (Player.Owner != "")) InventoryRemove(Player, "ItemNeck");
 	if ((InventoryGet(Player, "ItemNeck") == null) && (Player.Owner != "")) InventoryWear(Player, "SlaveCollar", "ItemNeck");
 }
 
