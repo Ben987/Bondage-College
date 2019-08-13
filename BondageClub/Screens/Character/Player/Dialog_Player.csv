@@ -87,6 +87,7 @@ LeatherCuffsRestrainWrist,,,SourceCharacter attaches the leather cuffs wrist cha
 LeatherCuffsRestrainElbow,,,SourceCharacter attaches the leather cuffs elbow chain behind DestinationCharacter's back.
 LeatherCuffsRestrainBoth,,,SourceCharacter attaches the leather cuffs wrist and elbow chains behind DestinationCharacter's back.
 DuctTapePoseHands,,,Hands
+DuctTapePoseArms,,,Arms
 DuctTapePoseBottom,,,Skirt
 DuctTapePoseTop,,,Torso
 DuctTapePoseFull,,,Mummy
@@ -187,4 +188,5 @@ unchains,,,removes the chains
 mittenstoharness,,,mittens to the baby harness
 mittensfromharness,,,mittens
 NeedHarness,,,They must be wearing a baby harness first to chain the mittens to it.
+FreeArms,,,Free arms first before attaching a mitten chains.
 FacialExpression,,,Facial expression
