@@ -39,7 +39,7 @@ AuctionFail,,,"Too bad it didn't work for you, but a new girl is coming up right
 30,,Who gets trained?,It depends.  Some owners send their slaves here for education and some girls come willingly to raise their market value.,,
 30,,Do I get paid?,"Yes, you'll get paid for every succesful training session.  The higher we can sell them the better.",,
 30,,Can I train her?,"Not her, she's getting sold today.  We have many other slaves to train though.",,
-30,,I'm ready to train!,"Very well, let me get a slave girl for you.  Make sure to break her.",,
+30,31,I'm ready to train!,"Very well, let me get a slave girl for you.  Make sure to break her.",,
 30,0,Let's talk some more first.,Fine.  What would you like know?,,
 31,,(Wait for a slave.),,TrainingStart(),
 31,0,I've changed my mind.,(She frowns.)  Make up your mind girl.  What do you want?,"DialogChangeReputation(""Dominant"", -1)",

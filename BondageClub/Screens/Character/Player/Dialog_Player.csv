@@ -4,6 +4,7 @@ RemoveClothesForItem,,,Remove some clothes first
 RemoveSuspensionForItem,,,Remove the suspension first
 RemoveChainForItem,,,Remove the chain to the floor first
 MustCollaredFirst,,,A collar must be fitted first to attach accessories to.
+MustCollaredFirstAndRemoveSuspension,,,Must be collared and not suspended first.
 Cancel,,,Cancel
 Exit,,,Back to character
 Next,,,View next items
@@ -108,7 +109,7 @@ DuctTapeMouthTypeSmall,,,Single strip
 DuctTapeMouthTypeCrossed,,,Crossed strips
 DuctTapeMouthTypeFull,,,Full face
 DuctTapeMouthTypeDouble,,,Double layer
-DuctTapeMouthTypeCover,,,ONT
+DuctTapeMouthTypeCover,,,OTN
 DuctTapeMouthSetSmall,,,SourceCharacter puts a piece of duct tape on DestinationCharacter's mouth.
 DuctTapeMouthSetCrossed,,,SourceCharacter crosses two pieces of duct tape on DestinationCharacter's mouth.
 DuctTapeMouthSetFull,,,SourceCharacter fully tapes DestinationCharacter's mouth.

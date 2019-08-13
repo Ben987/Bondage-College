@@ -1,0 +1,60 @@
+###_NPC
+(She looks at your gag and giggles silently.)
+(Sie schaut auf deinen Knebel und kichert leise.)
+(She looks at you with bright eyes.)  Thank you so much Miss, you're very generous.
+(Sie schaut dich mit funkelnden Augen an.) Vielen Dank Miss, Sie sind sehr großzügig.
+(She bows her head to greet you.)
+(Sie verneigt ihren Kopf, um dich zu begrüßen.)
+###_PLAYER
+Who are you?
+Wer bist du?
+###_NPC
+(She stays silent.)
+(Sie schweigt.)
+###_PLAYER
+Are you getting sold?
+Wirst du hier verkauft?
+###_NPC
+(She nods her head yes.)
+(Sie nickt.)
+###_PLAYER
+Are you mute?
+Bist du stumm?
+###_NPC
+(She shakes her head no.)
+(Sie schüttelt den Kopf.)
+###_PLAYER
+Can I tie you up?
+Kann ich dich fesseln?
+###_NPC
+(She blushes and looks at the Mistress.)
+(Sie wird rot und schaut zur Herrin.)
+###_PLAYER
+(Spank her butt.)
+(Ihr auf den Hintern hauen.)
+###_NPC
+(She jumps from the pain but doesn't make a sound.)
+(Sie zuckt vor Schmerz, gibt aber keinen Laut von sich.)
+###_PLAYER
+Take care.  (Leave her.)
+Mach's gut. (Dialog beenden.)
+I'll take good care of you.
+Ich werde mich gut um dich kümmern.
+###_NPC
+Thank you so much, I appreciate.  Can you help me so we can visit your room?
+Vielen Dank, das ist sehr lieb. Können Sie mir helfen, damit wir zu Ihrem Zimmer können?
+###_PLAYER
+It's my pleasure girl.
+Gerne doch, Mädchen.
+###_NPC
+(She smiles.)  This is wonderful.  Can you help me so we can visit your room?
+(Sie lächelt.) Das ist wundervoll. Können Sie mir helfen, damit wir zu Ihrem Zimmer können?
+###_PLAYER
+You better be a good investment.
+Ich hoffe, du bist das Geld wert.
+###_NPC
+(She gulps and nods quickly.)  Yes Miss.  Can you help me so we can visit your room?
+(Sie schluckt und nickt hastig.) Ja, Miss. Können Sie mir helfen, damit wir zu Ihrem Zimmer können?
+###_PLAYER
+(Bring her to your room.)
+(Sie zu deinem Zimmer bringen.)

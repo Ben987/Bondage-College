@@ -2,6 +2,8 @@
 var SlaveMarketBackground = "SlaveMarket";
 var SlaveMarketMistress = null;
 var SlaveMarketSlave = null;
+var SlaveMarketSlaveToPunish = null;
+var SlaveMarketPunishmentBackgroundList = ["BDSMRoomBlue", "BDSMRoomPurple", "BDSMRoomRed"];
 
 function SlaveMarketCanStartAuction() { return ((ReputationGet("Dominant") >= -50) && ManagementCanTransferToRoom()) }
 function SlaveMarketCannotStartAuctionSubmissive() { return (ReputationGet("Dominant") < -50) }
@@ -82,4 +84,16 @@ function SlaveMarketVisitRoom() {
 
 // When the training starts, launch the custom dialog
 function SlaveMarketTrainingStart() {
+	var Intro = Math.floor(Math.random() * 6);
+	SlaveMarketSlaveToPunish = CharacterLoadNPC("NPC_SlaveMarket_SlaveToPunish");
+	SlaveMarketSlaveToPunish.Stage = (Intro * 100).toString();
+	if (Intro >= 3) InventoryWear(SlaveMarketSlaveToPunish, "SlaveCollar", "ItemNeck");
+	CharacterNaked(SlaveMarketSlaveToPunish);
+	DialogLeave();
+	EmptyBackground = CommonRandomItemFromList("", SlaveMarketPunishmentBackgroundList);
+	EmptyCharacterOffset = 0;
+	EmptyCharacter = [];
+	EmptyCharacter.push(Player);
+	EmptyCharacter.push(SlaveMarketSlaveToPunish);
+	CommonSetScreen("Room", "Empty");
 }

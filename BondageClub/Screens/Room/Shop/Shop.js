@@ -222,6 +222,7 @@ function ShopJobRestrain() {
 	ShopCustomer.Stage = ShopDemoItemGroup + "0";
 	if (Math.random() >= 0.5) ShopCustomer.WillRelease = function () { return true };
 	else ShopCustomer.WillRelease = function () { return false };
+
 }
 
 // When the shop demo job starts, the customer is sent in an empty room with a customer
