@@ -13,10 +13,10 @@ var SlaveAuctionEnd = false;
 // The next bid will occur between 5 and 15 seconds, the auction gets slower and there's less biddings when the price is high
 function SlaveAuctionSetNextBidTime() {
 	if (SlaveAuctionBidAmount == 0) SlaveAuctionBidNextTime = CurrentTime + 3000 + (Math.random() * 3000);
-	if ((SlaveAuctionBidAmount > 0) && (SlaveAuctionBidAmount < 50)) SlaveAuctionBidNextTime = (Math.random() >= 0.05) ? CurrentTime + 3000 + (Math.random() * 5000) : -1;
-	if ((SlaveAuctionBidAmount >= 50) && (SlaveAuctionBidAmount < 100)) SlaveAuctionBidNextTime = (Math.random() >= 0.1) ? CurrentTime + 5000 + (Math.random() * 8000) : -1;
-	if ((SlaveAuctionBidAmount >= 100) && (SlaveAuctionBidAmount < 200)) SlaveAuctionBidNextTime = (Math.random() >= 0.15) ? CurrentTime + 5000 + (Math.random() * 10000) : -1;
-	if (SlaveAuctionBidAmount >= 200) SlaveAuctionBidNextTime = (Math.random() >= 0.2) ? CurrentTime + 8000 + (Math.random() * 7000) : -1;
+	if ((SlaveAuctionBidAmount > 0) && (SlaveAuctionBidAmount < 50)) SlaveAuctionBidNextTime = (Math.random() >= 0.04) ? CurrentTime + 3000 + (Math.random() * 5000) : -1;
+	if ((SlaveAuctionBidAmount >= 50) && (SlaveAuctionBidAmount < 100)) SlaveAuctionBidNextTime = (Math.random() >= 0.08) ? CurrentTime + 5000 + (Math.random() * 8000) : -1;
+	if ((SlaveAuctionBidAmount >= 100) && (SlaveAuctionBidAmount < 200)) SlaveAuctionBidNextTime = (Math.random() >= 0.12) ? CurrentTime + 5000 + (Math.random() * 10000) : -1;
+	if (SlaveAuctionBidAmount >= 200) SlaveAuctionBidNextTime = (Math.random() >= 0.16) ? CurrentTime + 8000 + (Math.random() * 7000) : -1;
 }
 
 // Loads the slave auction mini game

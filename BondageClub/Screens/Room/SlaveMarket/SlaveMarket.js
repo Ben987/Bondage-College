@@ -2,8 +2,8 @@
 var SlaveMarketBackground = "SlaveMarket";
 var SlaveMarketMistress = null;
 var SlaveMarketSlave = null;
-var SlaveMarketSlaveToPunish = null;
-var SlaveMarketPunishmentBackgroundList = ["BDSMRoomBlue", "BDSMRoomPurple", "BDSMRoomRed"];
+var SlaveMarketSlaveToTrain = null;
+var SlaveMarketTrainingBackgroundList = ["BDSMRoomBlue", "BDSMRoomPurple", "BDSMRoomRed"];
 
 function SlaveMarketCanStartAuction() { return ((ReputationGet("Dominant") >= -50) && ManagementCanTransferToRoom()) }
 function SlaveMarketCannotStartAuctionSubmissive() { return (ReputationGet("Dominant") < -50) }
@@ -85,15 +85,22 @@ function SlaveMarketVisitRoom() {
 // When the training starts, launch the custom dialog
 function SlaveMarketTrainingStart() {
 	var Intro = Math.floor(Math.random() * 6);
-	SlaveMarketSlaveToPunish = CharacterLoadNPC("NPC_SlaveMarket_SlaveToPunish");
-	SlaveMarketSlaveToPunish.Stage = (Intro * 100).toString();
-	if (Intro >= 3) InventoryWear(SlaveMarketSlaveToPunish, "SlaveCollar", "ItemNeck");
-	CharacterNaked(SlaveMarketSlaveToPunish);
+	SlaveMarketSlaveToTrain = CharacterLoadNPC("NPC_SlaveMarket_SlaveToTrain");
+	SlaveMarketSlaveToTrain.Stage = (Intro * 100).toString();
+	SlaveMarketSlaveToTrain.ExpectedTraining = Intro % 3;
+	SlaveMarketSlaveToTrain.CurrentTraining = -1;
+	SlaveMarketSlaveToTrain.TrainingIntensity = 0;
+	SlaveMarketSlaveToTrain.TrainingCount = 0;
+	SlaveMarketSlaveToTrain.TrainingCountLow = 0;
+	SlaveMarketSlaveToTrain.TrainingCountPerfect = 0;
+	SlaveMarketSlaveToTrain.TrainingCountHigh = 0;
+	if (Intro >= 3) InventoryWear(SlaveMarketSlaveToTrain, "SlaveCollar", "ItemNeck");
+	CharacterNaked(SlaveMarketSlaveToTrain);
 	DialogLeave();
-	EmptyBackground = CommonRandomItemFromList("", SlaveMarketPunishmentBackgroundList);
+	EmptyBackground = CommonRandomItemFromList("", SlaveMarketTrainingBackgroundList);
 	EmptyCharacterOffset = 0;
 	EmptyCharacter = [];
 	EmptyCharacter.push(Player);
-	EmptyCharacter.push(SlaveMarketSlaveToPunish);
+	EmptyCharacter.push(SlaveMarketSlaveToTrain);
 	CommonSetScreen("Room", "Empty");
 }
