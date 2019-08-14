@@ -1,4 +1,4 @@
-﻿Cloth,,Cloth
+Cloth,,Cloth
 Cloth,CollegeOutfit1,College
 Cloth,MaidOutfit1,Maid
 Cloth,MaidOutfit2,Maid Exposed
@@ -200,6 +200,7 @@ ItemFeet,,Feet
 ItemFeet,NylonRope,Nylon Rope
 ItemFeet,HempRope,Hemp Rope
 ItemFeet,LeatherBelt,Leather Belt
+ItemFeet,Irish8Cuffs,Irish 8 Feet Cuffs
 ItemFeet,SuspensionHempRope,Suspension Hemp Rope
 ItemFeet,DuctTape,Duct Tape
 ItemFeet,MermaidRopeTie,Mermaid Rope Tie
@@ -208,6 +209,7 @@ ItemLegs,NylonRope,Nylon Rope
 ItemLegs,HempRope,Hemp Rope
 ItemLegs,LeatherBelt,Leather Belt
 ItemLegs,DuctTape,Duct Tape
+ItemLegs,MermaidRopeTie,Upper Mermaid Tie
 ItemVulva,,Vulva
 ItemVulva,VibratingEgg,Vibrating Egg
 ItemVulva,VibratingWand,Vibrating Wand
@@ -255,13 +257,15 @@ ItemArms,HempRope,Hemp Rope
 ItemArms,MetalCuffs,Metal Cuffs
 ItemArms,LeatherArmbinder,Leather Armbinder
 ItemArms,LeatherCuffs,Leather Cuffs
-ItemArms,PaddedMittens,Thumbless Padded Mittens
+ItemArms,MittenChain1,Mittens Chain
 ItemArms,FourLimbsShackles,Four Limbs Shackles
 ItemArms,StraitLeotard,Latex Strait Leotard
-ItemArms,Paw Mittens,Kitty Paw Mittens
 ItemArms,DuctTape,Duct Tape
 ItemArms,BitchSuit,Pet Suit
 ItemArms,CollarLeashHolding,Holding Leash
+ItemHands,,Hands
+ItemHands,PaddedMittens,Padded Mittens
+ItemHands,PawMittens,Paw Mittens
 ItemNeck,,Neck
 ItemNeck,LeatherCollar,Leather Collar
 ItemNeck,LeatherCollarBell,Bell Collar
@@ -271,6 +275,8 @@ ItemNeck,ClubSlaveCollar,Club Slave Collar
 ItemNeck,ShockCollar,Shock Collar
 ItemNeck,ShockCollarRemote,Shock Collar Remote
 ItemNeck,BatCollar,Bat Collar
+ItemNeck,PostureCollar,Posture Collar
+ItemNeck,SteelPostureCollar,Steel Posture Collar
 ItemNeckAccessories,,Collar
 ItemNeckAccessories,CollarBell,Bell
 ItemNeckAccessories,CollarBow,Bow
@@ -299,6 +305,7 @@ ItemMouth,MuzzleGag,Muzzle Gag
 ItemMouth,RegularSleepingPill,Sleeping Pill
 ItemMouth,PantiesMask,Panties Mask
 ItemMouth,PlugGag,Plug Gag
+ItemMouth,DildoGag,Dildo Gag
 ItemHead,,Head
 ItemHead,ClothBlindfold,Cloth Blindfold
 ItemHead,LeatherBlindfold,Leather Blindfold
@@ -308,8 +315,10 @@ ItemHead,StuddedBlindfold,Studded Blindfold
 ItemHead,KittyBlindfold,Kitty Blindfold
 ItemHead,DuctTape,Duct Tape
 ItemHead,SmallBlindfold,Small Blindfold
-ItemHead,LightDutyEarPlugs,Light Duty EarPlugs
-ItemHead,HeavyDutyEarPlugs,Heavy Duty EarPlugs
+ItemHead,LeatherHoodOpenMouth,Leather Hood Mouth
+ItemEars,,Ears
+ItemEars,LightDutyEarPlugs,Light Duty EarPlugs
+ItemEars,HeavyDutyEarPlugs,Heavy Duty EarPlugs
 ItemMisc,,Misc Items
 ItemMisc,MetalPadlock,Metal Padlock
 ItemMisc,IntricatePadlock,Intricate Padlock
@@ -322,7 +331,7 @@ ItemMisc,MetalCuffsKey,Metal Cuffs Key
 ItemMisc,WoodenMaidTray,Wooden Maid Tray
 ItemMisc,WoodenMaidTrayFull,Wooden Maid Tray Full
 ItemMisc,WoodenPaddle,Wooden Paddle
-ItemFrontDevices,,Front Devices
-ItemFrontDevices,WoodenBox,Wooden Box
-ItemFrontDevices,MilkCan,Water filled milk can 
-ItemFrontDevices,WaterCell,Water torture Cell
+ItemDevices,,Devices
+ItemDevices,WoodenBox,Wooden Box
+ItemDevices,MilkCan,Water filled milk can 
+ItemDevices,WaterCell,Water torture Cell

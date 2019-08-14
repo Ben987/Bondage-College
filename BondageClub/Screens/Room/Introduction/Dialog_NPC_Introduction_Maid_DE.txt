@@ -161,8 +161,10 @@ You can use gags to silence your victim, making her unable to speak.
 Mit Knebeln kannst du dein Opfer zum Schweigen bringen und es am Sprechen hindern.
 Blindfolds, ear muffs, and hoods can also be used to restrict vision and hearing.
 Mit Augenbinden, Ohrenschützern und Hauben können die Sicht und das Gehör deines Opfers beeinträchtigt werden.
-Your pockets can be used to store more advanced devices, or your padlocks and keys. 
-In deinen Taschen kannst du weitere Gegenstände wie Schlösser und Schlüssel verstauen.
+Your pockets can be used to store your padlocks and keys. 
+In deinen Taschen kannst du Schlösser und Schlüssel verstauen.
+Your pockets can be used to store more advanced devices. 
+In deinen Taschein kannst du fortgeschrittene Geräte verstauen.
 That's about everything. Remember that your arms need to be free to restrain someone.
 Das war so ziemlich alles. Denk daran, dass deine Arme frei sein müssen, um jemanden fesseln zu können.
 ###_PLAYER

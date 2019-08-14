@@ -177,8 +177,19 @@ function ServerValidateProperties(C, Item) {
 // Loads the appearance assets from a server bundle that only contains the main info (no assets)
 function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumber) {
 
-	// For each appearance item to load	
+	// Clears the appearance to begin
 	var Appearance = [];
+
+	// Reapply any item that was equipped and isn't enable, same for owner locked items if the source member isn't the owner
+	if ((SourceMemberNumber != null) && (C.ID == 0))
+		for (var A = 0; A < C.Appearance.length; A++)
+			if (!C.Appearance[A].Asset.Enable)
+				Appearance.push(C.Appearance[A]);
+			else
+				if ((C.Ownership != null) && (C.Ownership.MemberNumber != null) && (C.Ownership.MemberNumber != SourceMemberNumber) && InventoryOwnerOnlyItem(C.Appearance[A]))
+					Appearance.push(C.Appearance[A]);
+
+	// For each appearance item to load
 	for (var A = 0; A < Bundle.length; A++) {
 
 		// Cycles in all assets to find the correct item to add (do not add )
@@ -192,17 +203,21 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 					Color: (Bundle[A].Color == null) ? "Default" : Bundle[A].Color
 				}
 
-				// Sets the item properties
+				// Sets the item properties and make sure a non-owner cannot add an owner lock
 				if (Bundle[A].Property != null) {
 					NA.Property = Bundle[A].Property;
+					if ((SourceMemberNumber != null) && (C.ID == 0) && (C.Ownership != null) && (C.Ownership.MemberNumber != null) && (C.Ownership.MemberNumber != SourceMemberNumber) && InventoryOwnerOnlyItem(NA)) {
+						var Lock = InventoryGetLock(NA);
+						if ((Lock != null) && (Lock.Property != null)) delete Item.Property.LockMemberNumber;
+					}
 					ServerValidateProperties(C, NA);
 				}
 
 				// Reapply the owner lock if needed
-				if ((C.Ownership != null) && (C.Ownership.MemberNumber != null) && (SourceMemberNumber != null) && (C.Ownership.MemberNumber != SourceMemberNumber) && (C.MemberNumber != SourceMemberNumber))
+				/*if ((C.Ownership != null) && (C.Ownership.MemberNumber != null) && (SourceMemberNumber != null) && (C.Ownership.MemberNumber != SourceMemberNumber) && (C.MemberNumber != SourceMemberNumber))
 					for (var L = 0; L < C.Appearance.length; L++)
 						if ((C.Appearance[L].Asset.Group.Name == NA.Asset.Group.Name) && InventoryOwnerOnlyItem(C.Appearance[L]))
-							InventoryLock(C, NA, { Asset: AssetGet(C.AssetFamily, "ItemMisc", "OwnerPadlock")}, C.Ownership.MemberNumber);
+							InventoryLock(C, NA, { Asset: AssetGet(C.AssetFamily, "ItemMisc", "OwnerPadlock")}, C.Ownership.MemberNumber);*/
 
 				// Make sure we don't push an item if there's already an item in that slot
 				var CanPush = true;
@@ -211,6 +226,9 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 						CanPush = false;
 						break;
 					}
+
+				// Make sure we don't push an item that's disabled, coming from another player	
+				if (CanPush && !NA.Asset.Enable && (SourceMemberNumber != null) && (C.ID == 0)) CanPush = false;
 				if (CanPush) Appearance.push(NA);
 				break;
 

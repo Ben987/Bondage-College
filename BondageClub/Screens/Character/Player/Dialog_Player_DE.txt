@@ -4,9 +4,13 @@ Wähle einen Gegenstand aus
 Cannot use on yourself
 Nicht an dir selbst anwendbar
 Remove some clothes first
-Erst ausziehen!
+Vorher etwas Kleidung entfernen
 Remove the suspension first
-Erst das Hängeseil entfernen
+Vorher das Hängeseil entfernen
+Remove the chain to the floor first
+Vorher die Kette zum Boden entfernen
+A collar must be fitted first to attach accessories to.
+Für Zubehör muss zunächst ein Halsband angelegt werden.
 Cancel
 Abbrechen
 Back to character
@@ -213,6 +217,8 @@ Full face
 Vollständig
 Double layer
 Doppelschicht
+OTN
+Mund und Nase
 SourceCharacter puts a piece of duct tape on DestinationCharacter's mouth.
 SourceCharacter klebt einen Streifen Klebeband auf DestinationCharacters Mund.
 SourceCharacter crosses two pieces of duct tape on DestinationCharacter's mouth.
@@ -221,6 +227,28 @@ SourceCharacter fully tapes DestinationCharacter's mouth.
 SourceCharacter klebt DestinationCharacters Mund vollständig zu.
 SourceCharacter fully tapes DestinationCharacter's mouth with double layers.
 SourceCharacter klebt DestinationCharacters Mund mit einer doppelten Schicht Klebeband zu.
+SourceCharacter wraps many layers on DestinationCharacter's mouth.
+SourceCharacter klebt viele Schichten über DestinationCharacters Mund.
+Plugged
+Gestöpselt
+Open
+Offen
+SourceCharacter plugs up DestinationCharacter's mouth.
+SourceCharacter stöpselt DestinationCharacters Mund zu.
+SourceCharacter pulls out DestinationCharacter's plug from her gag.
+SourceCharacter zieht den Stöpsel aus DestinationCharacters Knebel heraus.
+Select the type of blindfold
+Augenbinden-Typ wählen
+Double
+Doppelt
+Wrap
+Binde
+SourceCharacter takes a piece of duct tape for DestinationCharacter's and place on her face.
+SourceCharacter nimmt ein Stück Klebeband und klebt es auf DestinationCharacters Gesicht.
+SourceCharacter wraps some duct tape onto DestinationCharacter's face.
+SourceCharacter wickelt etwas Klebeband um DestinationCharacters Gesicht.
+SourceCharacter wraps DestinationCharacter's  head in tape with multiple layers. 
+SourceCharacter wickelt viele Schichten Klebeband um DestinationCharacters Kopf. 
 Item intensity: Disabled
 Intensität: Deaktiviert
 Item intensity: Low

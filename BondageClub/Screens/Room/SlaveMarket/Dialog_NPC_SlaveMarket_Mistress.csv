@@ -1,5 +1,7 @@
 PlayerGagged,,,Remove that gag or get lost.  I run the market and I don't have time for mumblings.,,
 AuctionFail,,,"Too bad it didn't work for you, but a new girl is coming up right now if you want to check her.",,
+TrainingSuccess,,,Well done!  I think this slave has learned a lot in your hands.  Here's your salary.  (She gives you MoneyAmount$),,
+TrainingFail,,,You've failed your training.  Thanks for your time but I cannot pay you.,,
 0,,,Greetings Mistress DialogPlayerName.  It's always a pleasure to see you at the market.  Are you here to train our slaves?,,"DialogLogQuery(""ClubMistress"", ""Management"")"
 0,,,Greetings head maid DialogPlayerName.  What do you need from the slave market?,,"DialogLogQuery(""LeadSorority"", ""Maid"")"
 0,,,Greetings master kidnapper DialogPlayerName.  Do you have some merchandize for us?,,"DialogReputationGreater(""Kidnap"", 100)"
@@ -39,10 +41,15 @@ AuctionFail,,,"Too bad it didn't work for you, but a new girl is coming up right
 30,,Who gets trained?,It depends.  Some owners send their slaves here for education and some girls come willingly to raise their market value.,,
 30,,Do I get paid?,"Yes, you'll get paid for every succesful training session.  The higher we can sell them the better.",,
 30,,Can I train her?,"Not her, she's getting sold today.  We have many other slaves to train though.",,
-30,,I'm ready to train!,"Very well, let me get a slave girl for you.  Make sure to break her.",,
+30,31,I'm ready to train!,"Very well, a maid will lead you to the training room.  The slave to train will be waiting there for you.",,
 30,0,Let's talk some more first.,Fine.  What would you like know?,,
-31,,(Wait for a slave.),,TrainingStart(),
+31,,(Go train a slave.),,TrainingStart(),
 31,0,I've changed my mind.,(She frowns.)  Make up your mind girl.  What do you want?,"DialogChangeReputation(""Dominant"", -1)",
 40,41,(Wait for the next slave.),"(The auction goes on, the slave is sold and replaced by a new one.)  Here's the new product!",,
 40,0,I'll check that one again.,"Sure, check the curves on that fine product.  (She smirks.)",,
 41,0,Thanks!  (Check on her.),,NewSlave(),
+42,0,Thanks a lot!,My pleasure.  Let me know if there's something else you need from me.,,
+42,0,There's no slave that I cannot train.,That's the spirit!  Let me know if there's something else you need from me.,"DialogChangeReputation(""Dominant"", 2)",
+43,0,I'll do better next time.,I hope you're right.  Do you need anything else?,,
+43,0,I'm sorry.,"Being sorry won't help, you need to be stronger and focus on your slave needs.  Do you want anything else?","DialogChangeReputation(""Dominant"", -1)",
+43,0,That slave was a wimp.,"Maybe, but you still need to focus on your wimp needs.  Do you want anything else?","DialogChangeReputation(""Dominant"", 2)",

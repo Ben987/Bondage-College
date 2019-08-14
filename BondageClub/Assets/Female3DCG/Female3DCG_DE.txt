@@ -200,6 +200,24 @@ Venitian Mask
 Venezianische Maske
 Domino Mask
 Domino-Maske
+Tail Strap
+Schwanzgürtel
+Kitty Tail Strap
+Katzenschwanzgürtel
+Horse Tail Strap
+Pferdeschweifgürtel
+Fox Tails Strap
+Fuchsschweifgürtel
+Puppy Tail Strap
+Hundeschwanzgürtel
+Succubus Tail Strap
+Succubusschwanzgürtel
+Succubus2 Tail Strap
+Succubusschwanzgürtel 2
+Raccoon Tail Strap
+Waschbärschweifgürtel
+Raccoon2 Tail Strap
+Waschbärschweifgürtel 2
 Wings
 Flügel
 Succubus Feather 
@@ -384,12 +402,18 @@ Latex Strait Leotard
 Latex-Zwangsjackenanzug
 Kitty Paw Mittens
 Katzenpfoten
-Bitchsuit
-Bitchsuit
+Pet Suit
+Tieranzug
+Holding Leash
+Leine
 Neck
 Hals
 Leather Collar
 Lederhalsband
+Bell Collar
+Glockenhalsband
+Bow Collar
+Schleifenhalsband
 Slave Collar
 Sklavenhalsband
 Club Slave Collar
@@ -398,6 +422,24 @@ Shock Collar
 Elektrohalsband
 Shock Collar Remote
 Elektrohalsband-Fernbedienung
+Bat Collar
+Fledermaus-Halsband
+Collar
+Halsband
+Bell
+Glöckchen
+Bow
+Schleife
+Shock Unit
+Schock-Einheit
+Long Chain
+Lange Kette
+Short Chain
+Kurze Kette
+Leash
+Leine
+Pulled Leash
+Gehaltene Leine
 Cloth Gag
 Stoffknebel
 Wiffle Ball Gag
@@ -430,6 +472,8 @@ Sleeping Pill
 Schlaftablette
 Panties Mask
 Höschen-Maske
+Plug Gag
+Plug-Knebel
 Head
 Kopf
 Cloth Blindfold
@@ -446,6 +490,10 @@ Kitty Blindfold
 Katzen-Augenbinde
 Small Blindfold
 Kleine Augenbinde
+Light Duty EarPlugs
+Herkömmliche Ohrenstöpsel
+Heavy Duty EarPlugs
+Hochleistungs-Ohrenstöpsel
 Misc Items
 Sonstiges
 Metal Padlock
@@ -470,6 +518,8 @@ Wooden Maid Tray Full
 Holztablett voll
 Wooden Paddle
 Holzpaddel
+Front Devices
+Frontalgeräte
 Wooden Box
 Holzkiste
 Water filled milk can 

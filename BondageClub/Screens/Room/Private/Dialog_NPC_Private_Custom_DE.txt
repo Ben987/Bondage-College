@@ -3140,7 +3140,21 @@ Das ging zu schnell, Herrin. Ich brauche mehr Zeit, um festzustellen, ob wir zue
 ###_NPC [Playful|Dumb]
 Really?  Already?  I know!  I want a collar!  But I'm not certain.  Can we play some more?
 Echt? Jetzt schon? Ich weiß! Ich will ein Halsband! Aber ich bin mir nicht sicher. Können wir noch etwas weiterspielen?
+###_PLAYER
+Have you visited the slave market?
+Warst du schonmal beim Sklavenmarkt?
 ###_NPC
+(She seems worried.)  I've went there a few times Mistress.  Why are you asking?
+(Sie wirkt besorgt.) Ich war ein paar mal dort, Herrin. Warum fragt Ihr?
+###_NPC [Serious]
+(She frowns.)  I know that some owner sells their slaves on the market.  But our relationship is stronger than that, isn't it?
+(Sie runzelt die Stirn.) Ich weiß, dass manche Besitzer dort ihre Sklaven verkaufen. Aber unsere Beziehung ist stärker, oder?
+###_NPC [Playful]
+(She nods.)  Yes!  I've seen some slaves on display there.  It must be quite a thrill.
+(Sie nickt.) Ja! Ich hab gesehen, wie Sklavinnen da zur Schau gestellt werden. Muss ein ziemlicher Nervenkitzel sein.
+###_NPC
+(She pouts.)  Don't you dare try to sell me!  Kick me out instead, I'm not happy in here anyway.
+(Sie schmollt.) Wag es ja nicht, mich zu verkaufen! Wirf mich lieber raus, ich bin hier sowieso nicht glücklich.
 Mistress?  You want me to leave now?  This is the end between us?
 Herrin? Ihr wollt, dass ich gehe? Ist das das Ende zwischen uns?
 ###_NPC [Wise|Polite]
@@ -3250,6 +3264,83 @@ Sorry, I'm kind of confused Mistress.  What would you like to do?
 (Sie lächelt.) Das ist eine tolle Idee, Herrin. Habt Ihr mindestens 50$, um meine neuen Sachen zu bezahlen?
 Yes Mistress.  What would you like to do then?
 Ja, Herrin. Was möchtet Ihr also machen?
+###_PLAYER
+Would you like to be auctioned?
+Würdest du gern versteigert werden?
+###_NPC
+I'm not sure I would like it.  Are you sure this is a good idea Mistress?
+Ich weiß nicht, ob mir das gefallen würde. Seid Ihr sicher, dass das eine gute Idee ist, Herrin?
+###_NPC [Serious]
+I've made vows to remain loyal to you Mistress.  I wouldn't want to break them.
+Ich habe geschworen, Euch treu zu bleiben, Herrin. Diesen Schwur würde ich nur ungern brechen.
+###_NPC [Playful]
+I love kinky adventures and being sold must be quite a thrill.
+Ich liebe perverse Abenteuer, und verkauft zu werden ist bestimmt aufregend.
+###_PLAYER
+I'm thinking about renting you for a day.
+Ich überlege, dich einen Tag lang zu verleihen.
+###_NPC
+(She seems unsure about the idea.)  Really?  You will rent me at the auction house?
+(Die Idee scheint sie unsicher zu machen.) Wirklich? Ihr wollt mich bei der Auktion verleihen?
+###_NPC [Wise]
+(She looks preoccupied.)  Mistress, do you know the proverb: "out of sight, out of mind"?  Are you sure it won't damage our relationship?
+(Sie wirkt nachdenklich.) Herrin, kennt Ihr die Redewendung "Aus den Augen, aus dem Sinn"? Könnte das nicht unserer Beziehung schaden?
+###_NPC [Dumb]
+(She seems confused.)  Renting?  Like a car?  Are you sure this is ok?
+(Sie scheint verwirrt.) Verleihen? Wie bei einem Autoverleih? Geht das auch wirklich in Ordnung?
+###_PLAYER
+I will sell you permanantly.
+Ich verkaufe dich endgültig.
+###_NPC
+(She seems really sad.)  I'm sorry to hear that.  This is how we break up Mistress?
+(Sie wirkt äußerst traurig.) Das ist schade. Machen wir also auf diese Weise Schluss, Herrin?
+###_NPC [Violent]
+(She looks furious.)  So that's how it ends?  Money is more important than me?
+(Sie ist rasend.) So endet das also? Ist Geld etwa wichtiger als ich?
+###_NPC [Peaceful]
+(She starts crying.)  Really Mistress?  This is the end between us?  You don't want me anymore?
+(Sie fängt an zu weinen.) Wirklich, Herrin? Ist es aus mit uns? Ihr wollt mich nicht mehr?
+###_NPC
+Yes Mistress.  What's on your mind?
+Ja, Herrin. Was geht Euch durch den Kopf?
+###_PLAYER
+Yes.  I will rent you, but only for a day.
+Ja. Ich verleihe dich, aber nur einen Tag lang.
+###_NPC
+(She sighs.)  Yes Mistress, but know that I'm not very happy about your decision.
+(Sie seufzt.) Ja, Herrin, aber Ihr solltet wissen, dass mich Eure Entscheidung nicht besonders glücklich macht.
+###_NPC [Serious]
+(She looks disappointed.)  Fine.  I still think it's a bad idea but I'll do it for you Mistress.
+(Sie wirkt enttäuscht.) Na schön. Ich halte es noch immer für eine schlechte Idee, aber ich tue es für Euch, Herrin.
+###_NPC [Playful]
+(She shrugs.)  Alright!  I hope the other Dominant will be just as fun as you.
+(Sie zuckt mit den Schultern.) Okay! Hoffentlich habe ich mit der anderen Herrin ganauso viel Spaß wie mit Euch.
+###_PLAYER
+No.  Let's forget it.
+Nein. Vergessen wir das.
+###_NPC
+Alright!  Is there anything else you'd like to talk about?
+Alles klar! Gibt es noch etwas, worüber wir reden sollten?
+###_PLAYER
+(Rent her at the slave market.)
+(Sie auf dem Sklavenmarkt verleihen.)
+Yes.  I will sell and release you.
+Ja. Ich werde dich verkaufen und entlassen.
+###_NPC
+(She sighs.)  This is devastating.  At least now I might find a better BDSM match.
+(Sie seufzt.) Das ist niederschmetternd. Vielleicht finde ich so wenigstens eine BDSM-Partnerin, die besser zu mir passt.
+###_NPC [Serious]
+(She shakes her head.)  Fine!  If you don't want me then you don't deserve me.  I'm sure I'll find a better owner.
+(Sie schüttelr den Kopf.) Na schön! Wenn du mich nicht mehr willst, verdienst du mich auch nicht. Ich finde garantiert eine bessere Besitzerin.
+###_NPC [Playful]
+(She shrugs.)  I guess it was a fun ride while it lasted.  I'm sure I'll find a good owner.
+(Sie zuckt mit den Schultern.) Hat Spaß gemacht, solange es anhielt, würde ich sagen. Ich finde bestimmt eine gute Besitzerin.
+###_NPC
+You had me really worried Mistress.  Is there anything else you'd like to talk about?
+Ihr habt mir wirklich Angst eingejagt, Herrin. Gibt es noch etwas, worüber Ihr reden wollt?
+###_PLAYER
+(Sell her at the slave market.)
+(Sie auf dem Sklavenmarkt verkaufen.)
 ###_NPC [Serious|Violent]
 (You tickle her on the ribs and tummy.  She barely laughs and doesn't seem to enjoy it.)  Mistress, you can do better than that.
 (Du kitzelst ihre Rippen und ihren Bauch. Sie lacht kaum und scheint keinen Spaß daran zu haben.) Das könnt Ihr doch besser, Herrin.
