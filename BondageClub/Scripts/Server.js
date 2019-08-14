@@ -189,7 +189,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 				if ((C.Ownership != null) && (C.Ownership.MemberNumber != null) && (C.Ownership.MemberNumber != SourceMemberNumber) && InventoryOwnerOnlyItem(C.Appearance[A]))
 					Appearance.push(C.Appearance[A]);
 
-	// For each appearance item to load	
+	// For each appearance item to load
 	for (var A = 0; A < Bundle.length; A++) {
 
 		// Cycles in all assets to find the correct item to add (do not add )
