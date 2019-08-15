@@ -2,6 +2,7 @@
 var FriendListBackground = "BrickWall";
 var FriendListContent = "";
 var FriendListConfirmDelete = [];
+var FriendListReturn = null;
 
 // Loads the online friend list from the server
 function FriendListLoad() {
@@ -26,7 +27,10 @@ function FriendListRun() {
 function FriendListClick() {
 	if ((MouseX >= 1935) && (MouseX < 1995) && (MouseY >= 5) && (MouseY < 65)) {
 		ElementRemove("FriendList");
-		CommonSetScreen("Character", "InformationSheet");
+		if (FriendListReturn != null) {
+			if (FriendListReturn == "ChatSearch") CommonSetScreen("Online", "ChatSearch");
+			FriendListReturn = null;
+		} else CommonSetScreen("Character", "InformationSheet");
 	}
 }
 
