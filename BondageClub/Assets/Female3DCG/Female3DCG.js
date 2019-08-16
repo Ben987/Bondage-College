@@ -67,6 +67,7 @@ var AssetFemale3DCG = [
 			{ Name: "Bra7", Hide: ["ItemNipples"] },
 			{ Name: "Bra8", Value: 15, Hide: ["ItemNipples"] },
 			{ Name: "Bra9", Value: 15, Hide: ["ItemNipples"] },
+			{ Name: "Bandeau1", Value: 25, Hide: ["ItemNipples"] },
 			{ Name: "Bustier1", Value: 30, Hide: ["ItemNipples"] },
 			{ Name: "Corset1", Value: 30, Hide: ["ItemNipples"] },
 			{ Name: "Corset2", Value: 30, Hide: ["ItemNipples"] },
@@ -567,7 +568,7 @@ var AssetFemale3DCG = [
 			{ Name: "MetalCuffs", Priority: 26, Value: 50, SetPose: ["BackCuffs"], Effect: ["Block", "Prone", "Lock"], Difficulty: 5, Time: 5 },
 			{ Name: "LeatherArmbinder", SelfBondage: false, Priority: 4, Value: 80, SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone"], Block: ["ItemHands"], Time: 25, RemoveTime: 10, Difficulty: 10, AllowLock: true },
 			{ Name: "LeatherCuffs", Priority: 26, Random: false, Value: 100, AllowPose: ["BackBoxTie", "BackElbowTouch"], Time: 20, Difficulty: 3, Extended: true, AllowLock: true, AllowEffect: ["Block", "Prone"] },
-			{ Name: "MittenChain1", SelfBondage: false, Value: -1, Block: ["ItemHands", "ItemTorso"], Time: 15, Difficulty: 5, AllowLock: true },
+			{ Name: "MittenChain1", Random: false, SelfBondage: false, Value: -1, Block: ["ItemHands", "ItemTorso"], Time: 15, Difficulty: 5, AllowLock: true },
 			{ Name: "FourLimbsShackles", Enable: false, Value: -1, SetPose: ["BackBoxTie"], Effect: ["Block", "Prone", "Lock"], Time: 30 },
 			{ Name: "StraitLeotard", SelfBondage: false, Value: 200, SetPose: ["BackElbowTouch"], Hide: ["Cloth", "ClothLower"], Block: ["ItemNipples", "ItemVulva", "ItemButt", "ItemPelvis", "ItemTorso", "ItemBreast", "ItemHands"], Effect: ["Block", "Prone"], Time: 35, RemoveTime: 20, Difficulty: 13, AllowLock: true },
 			{ Name: "DuctTape", SelfBondage: false, Extended: true, Value: 50, SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone"], Time: 20, RemoveTime: 10, Difficulty: 5, BuyGroup: "DuctTape", AllowBlock: ["ItemVulva", "ItemButt", "ItemPelvis", "ItemTorso", "ItemBreast", "ItemNipples"] },
@@ -686,7 +687,15 @@ var AssetFemale3DCG = [
 			{ Name: "MuzzleGag", Difficulty: 6, Value: 70, Time: 20, AllowLock: true },
 			{ Name: "RegularSleepingPill", Enable: false, Wear: false, Value: -1, Bonus: [{ Type: "KidnapSneakiness", Factor: 3 }] },
 			{ Name: "PantiesMask", Effect: [], Random: false, Value: 20, Time: 15 },
-			{ Name: "PlugGag", Random: false, Extended: true, Value: 100, Time: 20, AllowLock: true, ExpressionTrigger: [{ Group: "Eyebrows", Name: "Soft", Timer: 10 }], AllowEffect: ["GagHeavy", "GagTotal"] },
+			{ 
+			    Name: "PlugGag", Random: false, Extended: true, Value: 100, Time: 20, AllowLock: true, ExpressionTrigger: [{ Group: "Eyebrows", Name: "Soft", Timer: 10 }], AllowEffect: ["GagHeavy", "GagTotal"],
+				Layer: [
+				    { Name: "Plug", AllowColorize: true },
+					{ Name: "Tongue", AllowColorize: false },
+					{ Name: "Closed", AllowColorize: true },
+					{ Name: "Seal", AllowColorize: false }
+			    ]
+	        },	
 			{
 				Name: "DildoGag", Effect: ["GagHeavy"], Difficulty: 4, Value: 60, Time: 20, AllowLock: true,
 				Layer: [
