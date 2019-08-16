@@ -1,4 +1,4 @@
-(You under lock and key)
+(You are under lock and key)
 (Du sitzt hinter Schloss und Riegel.)
 (You have to guard the room)
 (Du musst den Raum bewachen.)

@@ -4,7 +4,7 @@ var LoginMessage = "";
 var LoginCredits = null;
 var LoginCreditsPosition = 0;
 var LoginThankYou = "";
-var LoginThankYouList = ["Alvin", "Bryce", "Christian", "Designated", "Dick", "Escurse", "EugeneTooms", "James", "Jenni", "Jyeoh", "Karel", "Kitten", "Laioken", "Michal", "Mindtie", 
+var LoginThankYouList = ["Alvin", "Bryce", "Christian", "Desch", "Designated", "Escurse", "EugeneTooms", "Jenni", "Karel", "Kitten", "Laioken", "Michal", "Mindtie", 
 						"MunchyCat", "Nick", "Overlord", "Rashiash", "Ryner", "Setsu95", "Shadow", "Shaun", "Simeon", "Sky", "Terry", "William", "Winterisbest", "Xepherio"];
 var LoginThankYouNext = 0;
 
@@ -103,7 +103,7 @@ function LoginRun() {
 // Make sure the slave collar is equipped or unequipped based on the owner
 function LoginValidCollar() {
  	if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "SlaveCollar") && (Player.Owner == "")) InventoryRemove(Player, "ItemNeck");
- 	if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name != "SlaveCollar") && (Player.Owner != "")) InventoryRemove(Player, "ItemNeck");
+ 	if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name != "SlaveCollar") && (InventoryGet(Player, "ItemNeck").Asset.Name != "ClubSlaveCollar") && (Player.Owner != "")) InventoryRemove(Player, "ItemNeck");
 	if ((InventoryGet(Player, "ItemNeck") == null) && (Player.Owner != "")) InventoryWear(Player, "SlaveCollar", "ItemNeck");
 }
 
@@ -147,7 +147,7 @@ function LoginResponse(C) {
 	
 			// Loads the player character model and data
 			Player.Appearance = ServerAppearanceLoadFromBundle(Player, C.AssetFamily, C.Appearance);
-			InventoryLoad(Player, C.Inventory, false);
+			InventoryLoad(Player, C.Inventory);
 			LogLoad(C.Log);
 			ReputationLoad(C.Reputation);
 			SkillLoad(C.Skill);
@@ -168,18 +168,29 @@ function LoginResponse(C) {
 
 			// Fixes a few items
 			InventoryRemove(Player, "ItemMisc");
+			if (LogQuery("JoinedSorority", "Maid") && !InventoryAvailable(Player, "MaidOutfit2", "Cloth")) InventoryAdd(Player, "MaidOutfit2", "Cloth");
 			if ((InventoryGet(Player, "ItemArms") != null) && (InventoryGet(Player, "ItemArms").Asset.Name == "FourLimbsShackles")) InventoryRemove(Player, "ItemArms");
 			LoginValidCollar();
 
-			// If the player must start in her room, in her cage
-			if (LogQuery("SleepCage", "Rule") && (Player.Owner != "") && PrivateOwnerInRoom()) {
-				InventoryRemove(Player, "ItemFeet");
-				InventoryRemove(Player, "ItemLegs");
-				Player.Cage = true;
-				CharacterSetActivePose(Player, "Kneel");
-				CommonSetScreen("Room", "Private");
-			} else CommonSetScreen("Room", "MainHall");
-			
+			// If the player must log back in the cell
+			if (LogQuery("Locked", "Cell")) {
+				CommonSetScreen("Room", "Cell");
+			} else {
+
+				// If the player must start in her room, in her cage
+				if (LogQuery("SleepCage", "Rule") && (Player.Owner != "") && PrivateOwnerInRoom()) {
+					InventoryRemove(Player, "ItemFeet");
+					InventoryRemove(Player, "ItemLegs");
+					Player.Cage = true;
+					CharacterSetActivePose(Player, "Kneel");
+					CommonSetScreen("Room", "Private");
+				} else {
+					CommonSetScreen("Room", "MainHall");
+					MainHallMaidIntroduction();
+				}
+
+			}
+
 		} else LoginMessage = TextGet("ErrorLoadingCharacterData");
 	} else LoginMessage = TextGet(C);
 
@@ -213,17 +224,9 @@ function LoginClick() {
 		CharacterAppearanceLoadCharacter(Player);
 	}
 	
-	// If we must try to login (make sure we don't send the login query twice)
-	if ((MouseX >= 775) && (MouseX <= 975) && (MouseY >= 500) && (MouseY <= 560) && (LoginMessage != TextGet("ValidatingNamePassword"))) {
-		var Name = ElementValue("InputName");
-		var Password = ElementValue("InputPassword");
-		var letters = /^[a-zA-Z0-9]+$/;
-		if (Name.match(letters) && Password.match(letters) && (Name.length > 0) && (Name.length <= 20) && (Password.length > 0) && (Password.length <= 20)) {
-			LoginMessage = TextGet("ValidatingNamePassword");
-			ServerSend("AccountLogin", { AccountName: Name, Password: Password } );
-		}
-		else
-			LoginMessage = TextGet("InvalidNamePassword");
+	// Try to login
+	if ((MouseX >= 775) && (MouseX <= 975) && (MouseY >= 500) && (MouseY <= 560)) {
+		LoginDoLogin();
 	}
 
 	// If we must change the language
@@ -234,4 +237,26 @@ function LoginClick() {
 		LoginMessage = "";
 	}
 	
+}
+
+// When the user press "enter" we try to login
+function LoginKeyDown() {
+	if (KeyPress == 13) {
+		LoginDoLogin();
+	}
+}
+
+// If we must try to login (make sure we don't send the login query twice)
+function LoginDoLogin() {
+	if (LoginMessage != TextGet("ValidatingNamePassword")) {
+		var Name = ElementValue("InputName");
+		var Password = ElementValue("InputPassword");
+		var letters = /^[a-zA-Z0-9]+$/;
+		if (Name.match(letters) && Password.match(letters) && (Name.length > 0) && (Name.length <= 20) && (Password.length > 0) && (Password.length <= 20)) {
+			LoginMessage = TextGet("ValidatingNamePassword");
+			ServerSend("AccountLogin", { AccountName: Name, Password: Password });
+		} else {
+			LoginMessage = TextGet("InvalidNamePassword");
+		}
+	}
 }

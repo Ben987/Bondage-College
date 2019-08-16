@@ -28,6 +28,12 @@ Your Profile
 Dein Profil
 Change Appearance
 Aussehen ändern
+Timer Cell
+Auszeit-Zelle
+Slave Market
+Sklavenmarkt
+Look for Trouble
+Ärger suchen
 Leave the Club
 Club verlassen
 Sarah's Bedroom
@@ -40,11 +46,7 @@ Photographic by git4nick
 Fotografie (git4nick)
 Stable by git4nick
 Stall (git4nick)
-Houdini's Theater by git4nick
-Houdinis Theater (git4nick)
 The Nursery by wildsj
 Kinderstube (wildsj)
-Slave Market by wildsj
-Sklavenmarkt (wildsj)
-Seek Trouble by fleisch11
-Ärger suchen (fleisch11)
+Houdini's Theater by git4nick
+Houdinis Theater (git4nick)

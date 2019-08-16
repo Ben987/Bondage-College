@@ -239,7 +239,7 @@ function CheckLineLengths(Status) {
     for (var D = 0; D < Status.Data.length; D++) {
         var DataSet = Status.Data[D];
         var MetaData = Status.EnglishFile.UniqueLineData[DataSet.English];
-        if (!MetaData) continue;
+        if (!MetaData || MetaData.Speaker === "NPC") continue;
         var MaxWidth = (MetaData.HasExitButton ? 840 : 950);
         var Words = DataSet.Translation.split(" ");
         var Lines = [];
@@ -254,7 +254,7 @@ function CheckLineLengths(Status) {
             }
         }
         Lines.push(CurrentLine);
-        if ((MetaData.Speaker === "NPC" && Lines.length > 3) || (MetaData.Speaker === "Player" && Lines.length > 1)) {
+        if (MetaData.Speaker === "Player" && Lines.length > 1) {
             DataSet.PreviewLines = Lines;
             Status.LinesTooLong.push(DataSet);
         }

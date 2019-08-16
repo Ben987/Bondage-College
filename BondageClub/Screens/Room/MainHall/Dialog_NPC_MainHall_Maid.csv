@@ -1,12 +1,15 @@
 PlayerGagged,,,Do you need help?  Nod if you do.,,
 AlreadyReleased,,,(DialogCharacterName comes to check on you again.)  You're in trouble again?  Do you need help?,,
 LearnedLesson,,,"Still in trouble, are we?  Have you learned your lesson?  Nod if you did.",,
-TeachLesson,,,It seems that you need to learn a lesson. (She grabs your arms and forces them in a armbinder.  She then gets a gag and silences you.),,
+TeachLesson,,,It seems that you need to learn a lesson. (She grabs your arms and forces them in an armbinder.  She then gets a gag and silences you.),,
 Cower,,,(She gulps and bows her head.)  Yes Miss.  Sorry Miss.,,
 CannotRelease,,,I'm sorry Miss.  I cannot help you now.,,
+ClubSlaveMustBeNaked,,,"(A maid taps on your shoulder.)  Slave girl, why aren't you naked?",,
+MistressExpulsionIntro,,,(A maid greets you as you enter the hall.)  Can I have a word with you Miss DialogPlayerName?,,
+MistressExpulsion,,,(The maid leaves you with Club Mistress.)  We Mistresses have been speaking.  It seems you're not fit to wear the heels anymore.,,
 ItemMouth,,,(She gives a curious look at the gag but doesn't resist as you silence her.),,
 RemoveItemMouth,,,"(You remove her gag slowly.)  Thanks Miss, it will be easier to do my job.",,
-ItemArms,,,(She nods and turns around as you restrain her arms securely.)  It will be a kinky work day.,,
+ItemArms,,,(She nods and turns around as you restrain her arms securely.)  It will be a kinky workday.,,
 RemoveItemArms,,,"(You free her arms and she stretches.)  Thanks head maid DialogPlayerName, this will make my work easier.",,
 ItemLegs,,,(She submits as you restrain her legs.)  Another kinky day in our kinky club.,,
 RemoveItemLegs,,,(You release her legs while she shakes her butt.)  Thanks Miss.,,
@@ -16,7 +19,7 @@ ItemNeck,,,(You strap the collar on her while she blushes.)  Someday I'll find a
 RemoveItemNeck,,,(You remove the collar around her neck.)  Freedom is overrated.,,
 ItemPelvis,,,(She frowns as you lock the device on her.)  I hope you will unlock it after my shift Miss.,,
 RemoveItemPelvis,,,(She nods happily as you unlock the device.)  Yes!  That's very nice of you Miss.,,
-ItemHead,,,(You strap the device on her head as she mumbles.)  It will be a kinky work day it seems.,,
+ItemHead,,,(You strap the device on her head as she mumbles.)  It will be a kinky workday it seems.,,
 RemoveItemHead,,,(You remove the device and she nods slowly.)  You're the best head maid DialogPlayerName.,,
 ItemBreastLeatherWhip,,,(She jumps from the searing pain on her breast.)  Ouch!  Miss Head Maid!,,
 ItemBreastLeatherCrop,,,(You whip her breast with the leather crop as she whimpers and bows her head.),,
@@ -31,16 +34,18 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 0,,"Yes, can you release me?",(She releases you and smiles.)  Here you go!  Everything is ok now?,MaidReleasePlayer(),!HasOwnerLock
 0,40,(Nod yes.),(She checks your locks and frowns.)  Is that an owner lock?  Your Mistress might not be pleased if I release you.,,HasOwnerLock
 0,40,"Yes, can you release me?",(She checks your locks and frowns.)  Is that an owner lock?  Your Mistress might not be pleased if I release you.,,HasOwnerLock
+0,1010,I'm fine.  But I have questions on the club.,Sure.  What would you like to know?,,
 0,100,Get lost girl!,It seems that you need something to shut your foul mouth.  (She produces a gag and silences you.),MaidAngry(),
 0,,"I'm fine, thanks. (Leave her.)","Pleased to meet you.  I'm DialogCharacterName, I work here as a maid.",DialogLeave(),
 0,,(Shake your head no and leave her.),,DialogLeave(),
 10,20,Thanks Miss.  I really appreciate.,"My pleasure, I'll be around if you need help again.","DialogChangeReputation(""Dominant"", -3)",
 10,20,"I owe you one, scream if you get in trouble.","(She giggles.)  Very well, I'll be around if you need help again.","DialogChangeReputation(""Dominant"", -1)",
-20,30,Can this slave ask you something else?,Of course little club slave.  How can I help you?,,MainHallCanTrickMaid()
 20,,Take care!  (Leave her.),,DialogLeave(),
+20,1010,I have some questions on the club.,Sure.  What would you like to know?,,
+20,30,Can this slave ask you something else?,Of course little club slave.  How can I help you?,,MainHallCanTrickMaid()
 30,31,A club customer reserved a bedroom to punish me.,Good for you.  (She laughs.)  And how can I help?,,
 30,,"Nothing, I'm good.  (Leave her.)",,DialogLeave(),
-31,32,There's already a girl chained on the bed.,"I understand, we can't have unhappy customers can we?  I'll go release her.",,
+31,32,There's already a girl chained on the bed.,"I understand, we can't have unhappy customers, can we?  I'll go release her.",,
 32,,You're the best!  (Leave her.),,FreeSarah(),
 40,41,(Nod and whimper for help.),"I can help you girl, but you will be shamed for that.  Your reputation will be hurt.",,
 40,41,"I know, but can you still help me?","I can help you girl, but you will be shamed for that.  Your reputation will be hurt.",,
@@ -56,4 +61,58 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  A 
 43,,"Very well, thank you.  (Leave her.)",,DialogLeave(),
 43,,"Fine, I'm going then.  (Leave her.)",,DialogLeave(),
 43,,(Grumble and leave.),,DialogLeave(),
+43,1010,I have some questions on the club.,Sure.  What would you like to know?,,
+50,51,Why do you care?,"I'm doing my job.  Club slaves must stay naked, let me help you to strip.","DialogChangeReputation(""Dominant"", 2)",Player.CanTalk()
+50,51,Oops!  I forgot the rule.,"Rules are important.  Club slaves must stay naked, let me help you to strip.",,Player.CanTalk()
+50,51,Sorry.  I was tricked by someone.,"Make sure to remember the rules.  Club slaves must stay naked, let me help you to strip.","DialogChangeReputation(""Dominant"", -2)",Player.CanTalk()
+50,51,(Look surprised.),"Rules are important.  Club slaves must stay naked, let me help you to strip.",,!Player.CanTalk()
+50,51,(Look ashamed.),"Make sure to remember the rules.  Club slaves must stay naked, let me help you to strip.","DialogChangeReputation(""Dominant"", -2)",!Player.CanTalk()
+50,51,(Shake your head no.),"I'm doing my job.  Club slaves must stay naked, let me help you to strip.","DialogChangeReputation(""Dominant"", 2)",!Player.CanTalk()
+51,52,Alright then.,"(She nods and slowly strips you down.)  Since you broke the rule, I will reset your hour of duty.  You must redo it fully.",ResetClubSlave(),Player.CanTalk()
+51,52,That sucks.,"(She sighs and slowly strips you down.)  Since you broke the rule, I will reset your hour of duty.  You must redo it fully.",ResetClubSlave(),Player.CanTalk()
+51,52,(Grumble a little.),"(She sighs and slowly strips you down.)  Since you broke the rule, I will reset your hour of duty.  You must redo it fully.",ResetClubSlave(),!Player.CanTalk()
+51,52,(Comply and help her.),"(She nods and slowly strips you down.)  Since you broke the rule, I will reset your hour of duty.  You must redo it fully.",ResetClubSlave(),!Player.CanTalk()
+52,53,This is unfair!,You should have read your contract girl.  I need to go now.,"DialogChangeReputation(""Dominant"", 2)",Player.CanTalk()
+52,53,I understand.,Very well.  I need to go now.,,Player.CanTalk()
+52,53,(Nod slowly.),Very well.  I need to go now.,,!Player.CanTalk()
+52,53,(Grumble in disagreement.),You should have read your contract girl.  I need to go now.,"DialogChangeReputation(""Dominant"", 2)",!Player.CanTalk()
+53,,Wait!  Can you release me first?,"No!  Struggle some more, I'll be back later.",DialogRemove(),!Player.CanInteract()
+53,,(Struggle and beg for help.),"Keep on struggling girl, I might help you later.",DialogRemove(),!Player.CanInteract()
+53,,Thank you for your time.,Don't mention it.  I'm simply doing my job.,DialogRemove(),
+53,,(Leave her.),,DialogLeave(),
+60,61,What do you want?,I was informed that the club management Mistresses want to meet you.,,
+60,61,Make it quick.,Yes Miss.  (She gulps.)  I was informed that the club management Mistresses want to meet you.,,
+60,61,(Stay silent.),"Miss, I was informed that the club management Mistresses want to meet you.",,
+61,62,Why is that?,"I don't know Miss, but I was told to bring you there right away.",,
+61,62,I don't have time for that.,"Miss, it's very important.  They told me to bring you there right away.",,
+61,62,Let's go see them.,"Absolutely, please come with me.",,
+62,,"Fine, let's go.  (Meet a Club Mistress.)",,MistressExpulsion(),
+62,,(Walk with her to a Club Mistress.),,MistressExpulsion(),
 100,,(Frown and leave her.),,DialogLeave(),
+1000,1001,"Yes, it's my very first time.","It's fine.  I have a few important questions before I let you in, and I need honest answers.",,
+1000,1001,"No, I've been here before.","Very well.  Before I let you in, we need to review the most important rules.  Will you give me honest answers?",,
+1001,1002,Yes.  I will be honest.,"First, I need to make sure that you're an adult.  This place isn't for minors.  Are you an adult in your country?",,
+1001,1099,No.  I lie all the time.,"I'm sorry, but I must kick you out of the club.  Look around, the exit is marked with an ""x"".  (Please close the game.)",,
+1002,1003,I'm an adult.,"(She nods.)  You understand that this is a BDSM club?  People from everywhere come to experience bondage, domination, discipline and more.",,
+1002,1099,I'm a minor.,"I'm sorry, but I must kick you out of the club.  Look around, the exit is marked with an ""x"".  (Please close the game.)",,
+1003,1004,I'm fine with BDSM.,"(She smiles.)  Not everyone has the same kinks, but you must respect everyone fetishes and be open-minded.",,
+1003,1099,BDSM isn't for me.,"I'm sorry, but I must kick you out of the club.  Look around, the exit is marked with an ""x"".  (Please close the game.)",,
+1004,1005,I will be respectful and open-minded.,"BDSM is and must remain consensual.  When you meet other members, you must always respect them and their limits.  Don't restrain them randomly.",,
+1004,1099,I don't respect other people fetishes.,"I'm sorry, but I must kick you out of the club.  Look around, the exit is marked with an ""x"".  (Please close the game.)",,
+1005,1006,"Everything will be consensual, and I will respect limits.",(She nods.)  Your real-life well being is what matters most.  Never do anything that could harm you such as real-life asphyxiation or self-bondage.,,
+1005,1099,I don't care about limits.,"I'm sorry, but I must kick you out of the club.  Look around, the exit is marked with an ""x"".  (Please close the game.)",,
+1006,1007,I will stay safe when I play.,"Great!  Your online security is also important.  Never give your account name, password, real name, phone number or any personal information to anyone.",,
+1006,1099,I like danger too much.,"I'm sorry, but I must kick you out of the club.  Look around, the exit is marked with an ""x"".  (Please close the game.)",,
+1007,1008,My personal information will stay personal.,"Some people cheat and take shortcuts.  If you do cheat, promise me you will only do it for yourself and not ruin the experience of other members.",,
+1007,1099,I prefer sharing my information.,"I'm sorry, but I must kick you out of the club.  Look around, the exit is marked with an ""x"".  (Please close the game.)",,
+1008,1010,I will never cheat.,Excellent!  You're free to explore the club now.  Do you have any more questions?,MaidIntroductionDone(),
+1008,1010,I won't use exploits against others.,Excellent!  You're free to explore the club now.  Do you have any more questions?,MaidIntroductionDone(),
+1008,1099,I'll do what I want.,"I'm sorry, but I must kick you out of the club.  Look around, the exit is marked with an ""x"".  (Please close the game.)",,
+1010,,Where should I begin?,"You should go to the introduction class first, to learn about bondage.  Follow the sign with an ""i"".",,
+1010,,How can I get items?,"Try the shop first, you can buy lots of items from there.  Follow the sign with the shopping bag.  You can also get special items and clothes by completing tasks.",,
+1010,,How can I make money?,"You can join the maid sorority and work for them, follow the maid sign.  Or join the kidnapper's league and take bounties, follow the tied hands sign.",,
+1010,,Where can I meet online players?,"In the online chat rooms.  From the main hall, follow the chat bubble sign.  Just enter a room and you're good to go.  Remember to be courteous and respectful.",,
+1010,,Tell me about the reputation system.,"Your reputations will increase or decrease based on your actions and answers.  It affects your ranking, the activities you can do and how others perceive you.",,
+1010,,I want to learn about skills.,"There are different skills you can learn and get better with time and practice.  The maximum level is 10, the percentage is your current progress toward the next level.",,
+1010,1002,What are the most important rules again?,The first rule is that the club is only for adults.  This place isn't for minors.  Are you an adult in your country?,,
+1010,,(Thank her and leave her.),,DialogLeave(),

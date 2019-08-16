@@ -7,6 +7,7 @@ var ChatRoomLastMessage = [""];
 var ChatRoomLastMessageIndex = 0;
 var ChatRoomTargetMemberNumber = null;
 var ChatRoomOwnershipOption = "";
+var ChatRoomPlayerCanJoin = false;
 
 // Returns TRUE if the dialog option is available
 function ChatRoomCanAddWhiteList() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.WhiteList.indexOf(CurrentCharacter.MemberNumber) < 0) && (Player.BlackList.indexOf(CurrentCharacter.MemberNumber) < 0)) }
@@ -17,6 +18,9 @@ function ChatRoomCanAddFriend() { return ((CurrentCharacter != null) && (Current
 function ChatRoomCanRemoveFriend() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.FriendList.indexOf(CurrentCharacter.MemberNumber) >= 0)) }
 function ChatRoomCanChangeClothes() { return (Player.CanInteract() && (CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && CurrentCharacter.AllowItem && !((InventoryGet(CurrentCharacter, "ItemNeck") != null) && (InventoryGet(CurrentCharacter, "ItemNeck").Asset.Name == "ClubSlaveCollar"))) }
 function ChatRoomOwnershipOptionIs(Option) { return (Option == ChatRoomOwnershipOption) }
+function ChatRoomCanTakeDrink() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (CurrentCharacter.ID != 0) && Player.CanInteract() && (InventoryGet(CurrentCharacter, "ItemMisc") != null) && (InventoryGet(CurrentCharacter, "ItemMisc").Asset.Name == "WoodenMaidTrayFull")) }
+function ChatRoomIsCollaredByPlayer() { return ((CurrentCharacter != null) && (CurrentCharacter.Ownership != null) && (CurrentCharacter.Ownership.Stage == 1) && (CurrentCharacter.Ownership.MemberNumber == Player.MemberNumber)) }
+function ChatRoomCanServerDrink() { return ((CurrentCharacter != null) && CurrentCharacter.CanWalk() && (ReputationCharacterGet(CurrentCharacter, "Maid") > 0)) }
 
 // Creates the chat room input elements
 function ChatRoomCreateElement() {
@@ -77,7 +81,7 @@ function ChatRoomDrawCharacter(DoClick) {
 	for (var C = 0; C < ChatRoomCharacter.length; C++)
 		if (DoClick) {
 			if ((MouseX >= (C % 5) * Space + X) && (MouseX <= (C % 5) * Space + X + 450 * Zoom) && (MouseY >= Y + Math.floor(C / 5) * 500) && (MouseY <= Y + Math.floor(C / 5) * 500 + 1000 * Zoom)) {
-				if (MouseY <= Y + Math.floor(C / 5) * 500 + 950 * Zoom) {
+				if (MouseY <= Y + Math.floor(C / 5) * 500 + 900 * Zoom) {
 					ElementRemove("InputChat");
 					ElementRemove("TextAreaChatLog");
 					ChatRoomBackground = ChatRoomData.Background;
@@ -319,10 +323,10 @@ function ChatRoomCharacterUpdate(C) {
 
 // When the server sends a chat message
 function ChatRoomMessage(data) {
-	
+
 	// Make sure the message is valid (needs a Sender and Content)
 	if ((data != null) && (typeof data === "object") && (data.Content != null) && (typeof data.Content === "string") && (data.Content != "") && (data.Sender != null) && (typeof data.Sender === "number") && (data.Sender > 0)) {
-		
+
 		// Make sure the sender is in the room
 		var SenderCharacter = null;
 		for(var C = 0; C < ChatRoomCharacter.length; C++)
@@ -330,23 +334,31 @@ function ChatRoomMessage(data) {
 				SenderCharacter = ChatRoomCharacter[C]
 				break;
 			}
-		
+
 		// If we found the sender
 		if (SenderCharacter != null) {
-	
-			var msg = data.Content;
 
 			// Replace < and > characters to prevent HTML injections
+			var msg = data.Content;
 			while (msg.indexOf("<") > -1) msg = msg.replace("<", "&lt;");
 			while (msg.indexOf(">") > -1) msg = msg.replace(">", "&gt;");
 
+			// Hidden messages are processed separately, they are used by chat room mini-games
+			if ((data.Type != null) && (data.Type == "Hidden")) {
+				if (msg == "MaidDrinkPick0") MaidQuartersOnlineDrinkPick(data.Sender, 0);
+				if (msg == "MaidDrinkPick5") MaidQuartersOnlineDrinkPick(data.Sender, 5);
+				if (msg == "MaidDrinkPick10") MaidQuartersOnlineDrinkPick(data.Sender, 10);
+				return;
+			}
+
 			// Builds the message to add depending on the type
-			if ((data.Type != null) && (data.Type == "Chat")) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + msg;
+			if ((data.Type != null) && (data.Type == "Chat") && Player.IsDeaf()) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + SpeechGarble(SenderCharacter, msg);
+			if ((data.Type != null) && (data.Type == "Chat") && !Player.IsDeaf()) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + msg;
 			if ((data.Type != null) && (data.Type == "Whisper")) msg = '<span class="ChatMessageName" style="font-style: italic; color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + msg;
 			if ((data.Type != null) && (data.Type == "Emote")) msg = "*" + SenderCharacter.Name + " " + msg + "*";
 			if ((data.Type != null) && (data.Type == "Action")) msg = "(" + msg + ")";
 			if ((data.Type != null) && (data.Type == "ServerMessage")) msg = "<b>" + DialogFind(Player, "ServerMessage" + msg).replace("SourceCharacter", SenderCharacter.Name) + "</b>";
-		
+
 			// Adds the message and scrolls down unless the user has scrolled up
 			var ShouldScrollDown = ElementIsScrolledToEnd("TextAreaChatLog");
 			var DataAttributes = 'data-time="' + ChatRoomCurrentTime() + '" data-sender="' + data.Sender + '"';
@@ -357,10 +369,11 @@ function ChatRoomMessage(data) {
 				if (ShouldScrollDown) ElementScrollToEnd("TextAreaChatLog");
 				ElementFocus("InputChat");
 			}
-			
+
 		}
 
 	}
+
 }
 
 // Gets the new room data from the server
@@ -368,10 +381,15 @@ function ChatRoomSync(data) {
 	if ((data != null) && (typeof data === "object") && (data.Name != null)) {
 
 		// Load the room
-		if ((CurrentScreen != "ChatRoom") && (CurrentScreen != "Appearance") && (CurrentModule != "Character")) CommonSetScreen("Online", "ChatRoom");
+		if ((CurrentScreen != "ChatRoom") && (CurrentScreen != "Appearance") && (CurrentModule != "Character")) {
+			if (ChatRoomPlayerCanJoin) {
+				ChatRoomPlayerCanJoin = false;
+				CommonSetScreen("Online", "ChatRoom");
+			} else return;
+		}
 
 		// Load the characters
-		ChatRoomCharacter = [];		
+		ChatRoomCharacter = [];
 		for (var C = 0; C < data.Character.length; C++)
 			ChatRoomCharacter.push(CharacterLoadOnline(data.Character[C], data.SourceMemberNumber));
 
@@ -397,9 +415,9 @@ function ChatRoomCanBanUser() {
 }
 
 // Sends a ban command to the server for the current character, if the player is the room creator
-function ChatRoomBanFromRoom() {
+function ChatRoomBanFromRoom(Action) {
 	if ((CurrentCharacter != null) && (CurrentCharacter.ID != 0) && (Player.OnlineID == ChatRoomData.CreatorID)) {
-		ServerSend("ChatRoomBan", CurrentCharacter.AccountName.replace("Online-", ""));
+		ServerSend("ChatRoom" + Action, CurrentCharacter.AccountName.replace("Online-", ""));
 		DialogLeave();
 	}
 }
@@ -410,6 +428,7 @@ function ChatRoomCurrentTime() {
 	return ("0" + D.getHours()).substr(-2) + ":" + ("0" + D.getMinutes()).substr(-2);
 }
 
+// Returns a lighter color for the current HexCode
 function ChatRoomGetLighterColor(Color) {
 	if (!Color) return "#f0f0f0";
 	var R = Color.substring(1, 3), G = Color.substring(3, 5), B = Color.substring(5, 7);
@@ -450,4 +469,19 @@ function ChatRoomSendOwnershipRequest(RequestType) {
 	ChatRoomOwnershipOption = "";
 	ServerSend("AccountOwnership", { MemberNumber: CurrentCharacter.MemberNumber, Action: RequestType });
 	if (RequestType == "Accept") DialogLeave();
+}
+
+// When the player picks a drink from a maid platter
+function ChatRoomDrinkPick(DrinkType, Money) {
+	if (ChatRoomCanTakeDrink()) {
+		ServerSend("ChatRoomChat", { Content: Player.Name + " " + DialogFind(CurrentCharacter, "MaidDrinkPick" + DrinkType), Type: "Action" } );
+		ServerSend("ChatRoomChat", { Content: "MaidDrinkPick" + Money.toString(), Type: "Hidden", Target: CurrentCharacter.MemberNumber } );
+		CharacterChangeMoney(Player, Money * -1);
+		DialogLeave();
+	}
+}
+
+// Sends a rule / restriction / punishment to the slave character client, it will be handled from there
+function ChatRoomSendRule(RuleType) {
+	ServerSend("ChatRoomChat", { Content: "Rule" + RuleType, Type: "Hidden", Target: CurrentCharacter.MemberNumber } );
 }

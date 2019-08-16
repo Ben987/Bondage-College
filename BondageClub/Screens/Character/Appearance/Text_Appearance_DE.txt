@@ -1,4 +1,10 @@
 Select your appearance
 Wähle dein Aussehen
+ Select TargetCharacterName's appearance
+Wähle ein Aussehen für TargetCharacterName
 You must pick an item of type:
 Folgende Auswahl muss getroffen werden:
+Set wardrobe character name:
+Name für Kleiderschrank-Charakter:
+Ivalid name for character.
+Ungültiger Charaktername.

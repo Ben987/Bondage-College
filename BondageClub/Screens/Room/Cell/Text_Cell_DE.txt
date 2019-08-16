@@ -1,0 +1,18 @@
+Lock timer: 
+Timer: 
+minutes
+Minuten
+Leave the cell
+Zelle verlassen
+Character profile
+Charakter-Profil
+Add 5 minutes
+5 Minuten hinzufügen
+Remove 5 minutes
+5 Minuten abziehen
+Lock yourself
+Dich einschließen
+Opens in
+Öffnet in
+Kneel / Stand
+Hinknien / Aufstehen

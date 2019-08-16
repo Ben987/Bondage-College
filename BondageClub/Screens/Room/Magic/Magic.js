@@ -102,12 +102,14 @@ function MagicTrickChangeDressesBack(){
 
 function MagicAssistantDress(){
 	CharacterNaked(MagicAssistant);
-	InventoryWear(MagicAssistant, "BunnyEars1", "Hat");
+	var ColorList = ["Default", "#aa8080", "#8080aa", "#aaaa80", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"];
+	var Color = CommonRandomItemFromList("", ColorList);
+	InventoryWear(MagicAssistant, "BunnyEars1", "HairAccessory");
 	InventoryWear(MagicAssistant, "BunnyCollarCuffs", "Cloth");
-	InventoryWear(MagicAssistant, "BunnySuit", "Bra");
+	InventoryWear(MagicAssistant, "BunnySuit", "Bra", Color);
 	InventoryWear(MagicAssistant, "Panties15", "Panties");
 	InventoryWear(MagicAssistant, "Pantyhose1", "Socks");
-	InventoryWear(MagicAssistant, "Heels2", "Shoes");
+	InventoryWear(MagicAssistant, "Heels2", "Shoes", Color);
 	MagicShowState = 3;
 }
 
@@ -210,7 +212,7 @@ function MagicTrickBoxTiedLight() {
 	InventoryWear(Player, "NylonRope", "ItemArms");
 	InventoryWear(Player, "ClothGag", "ItemMouth");
 	InventoryWear(Player, "ClothBlindfold", "ItemHead");
-	InventoryWear(Player, "WoodenBox", "ItemMisc");
+	InventoryWear(Player, "WoodenBox", "ItemDevices");
 	MagicPerformer.Stage = "131";
 	MagicPerformer.CurrentDialog = DialogFind(MagicPerformer, "131");
 }
@@ -221,7 +223,7 @@ function MagicTrickBoxTiedHeavy() {
 	InventoryWear(Player, "HempRope", "ItemArms");
 	InventoryWear(Player, "ClothGag", "ItemMouth");
 	InventoryWear(Player, "LeatherBlindfold", "ItemHead");
-	InventoryWear(Player, "WoodenBox", "ItemMisc");
+	InventoryWear(Player, "WoodenBox", "ItemDevices");
 	MagicPerformer.Stage = "151";
 	MagicPerformer.CurrentDialog = DialogFind(MagicPerformer, "151");
 }
@@ -230,7 +232,7 @@ function MagicTrickBoxMilkCan() {
 	InventoryWear(Player, "HempRope", "ItemLegs");
 	InventoryWear(Player, "MetalCuffs", "ItemArms");
 	InventoryWear(Player, "HarnessBallGag", "ItemMouth");
-	InventoryWear(Player, "MilkCan", "ItemMisc");
+	InventoryWear(Player, "MilkCan", "ItemDevices");
 	MagicPerformer.Stage = "161";
 	MagicPerformer.CurrentDialog = DialogFind(MagicPerformer, "161");
 }
@@ -239,7 +241,7 @@ function MagicTrickBoxWaterCell() {
 	InventoryWear(Player, "SuspensionHempRope", "ItemFeet");
 	InventoryWear(Player, "HempRope", "ItemLegs");
 	InventoryWear(Player, "HempRope", "ItemArms");
-	InventoryWear(Player, "WaterCell", "ItemMisc");
+	InventoryWear(Player, "WaterCell", "ItemDevices");
 	MagicPerformer.Stage = "171";
 	MagicPerformer.CurrentDialog = DialogFind(MagicPerformer, "171");
 }
@@ -290,7 +292,7 @@ function MagicTrickEndPerformance() {
 	MagicPerformer.Stage = "0";
 	MagicPerformer.CurrentDialog = DialogFind(MagicPerformer, "0");
 	DialogLeave();
-	InventoryRemove(Player, "ItemMisc");
+	InventoryRemove(Player, "ItemDevices");
 	CharacterRelease(MagicAssistant);
 	CharacterNaked(MagicAssistant);
 	CharacterNaked(Player);
@@ -303,17 +305,17 @@ function MagicTrickEndPerformance() {
 function MagicRestrainCopyTransfer(FromC, ToC) {
 	// Removes any previous appearance asset From second
 	for(var A = 0; A < ToC.Appearance.length; A++)
-		if ((ToC.Appearance[A].Asset != null) && ((ToC.Appearance[A].Asset.Group.Name == "ItemMouth") || (ToC.Appearance[A].Asset.Group.Name == "ItemArms") || (ToC.Appearance[A].Asset.Group.Name == "ItemFeet") || (ToC.Appearance[A].Asset.Group.Name == "ItemLegs") || (ToC.Appearance[A].Asset.Group.Name == "ItemHead") || (ToC.Appearance[A].Asset.Group.Name == "ItemMisc"))) {
+		if ((ToC.Appearance[A].Asset != null) && ((ToC.Appearance[A].Asset.Group.Name == "ItemMouth") || (ToC.Appearance[A].Asset.Group.Name == "ItemArms") || (ToC.Appearance[A].Asset.Group.Name == "ItemFeet") || (ToC.Appearance[A].Asset.Group.Name == "ItemLegs") || (ToC.Appearance[A].Asset.Group.Name == "ItemHead") || (ToC.Appearance[A].Asset.Group.Name == "ItemMisc") || (ToC.Appearance[A].Asset.Group.Name == "ItemDevices"))) {
 			ToC.Appearance.splice(A, 1);
 			A--;
 		}
 	// Adds all appearance assets from the first character to the second
 	for(var A = 0; A < FromC.Appearance.length; A++)
-		if ((FromC.Appearance[A].Asset != null) && ((FromC.Appearance[A].Asset.Group.Name == "ItemMouth") || (FromC.Appearance[A].Asset.Group.Name == "ItemArms") || (FromC.Appearance[A].Asset.Group.Name == "ItemFeet") || (FromC.Appearance[A].Asset.Group.Name == "ItemLegs") || (FromC.Appearance[A].Asset.Group.Name == "ItemHead") || (FromC.Appearance[A].Asset.Group.Name == "ItemMisc")))
+		if ((FromC.Appearance[A].Asset != null) && ((FromC.Appearance[A].Asset.Group.Name == "ItemMouth") || (FromC.Appearance[A].Asset.Group.Name == "ItemArms") || (FromC.Appearance[A].Asset.Group.Name == "ItemFeet") || (FromC.Appearance[A].Asset.Group.Name == "ItemLegs") || (FromC.Appearance[A].Asset.Group.Name == "ItemHead") || (FromC.Appearance[A].Asset.Group.Name == "ItemMisc") || (ToC.Appearance[A].Asset.Group.Name == "ItemDevices")))
 			ToC.Appearance.push(FromC.Appearance[A]);
 	// Removes any previous appearance asset From first
 	for(var A = 0; A < FromC.Appearance.length; A++)
-		if ((FromC.Appearance[A].Asset != null) && ((FromC.Appearance[A].Asset.Group.Name == "ItemMouth") || (FromC.Appearance[A].Asset.Group.Name == "ItemArms") || (FromC.Appearance[A].Asset.Group.Name == "ItemFeet") || (FromC.Appearance[A].Asset.Group.Name == "ItemLegs") || (FromC.Appearance[A].Asset.Group.Name == "ItemHead") || (FromC.Appearance[A].Asset.Group.Name == "ItemMisc"))) {
+		if ((FromC.Appearance[A].Asset != null) && ((FromC.Appearance[A].Asset.Group.Name == "ItemMouth") || (FromC.Appearance[A].Asset.Group.Name == "ItemArms") || (FromC.Appearance[A].Asset.Group.Name == "ItemFeet") || (FromC.Appearance[A].Asset.Group.Name == "ItemLegs") || (FromC.Appearance[A].Asset.Group.Name == "ItemHead") || (FromC.Appearance[A].Asset.Group.Name == "ItemMisc") || (ToC.Appearance[A].Asset.Group.Name == "ItemDevices"))) {
 			FromC.Appearance.splice(A, 1);
 			A--;
 		}
