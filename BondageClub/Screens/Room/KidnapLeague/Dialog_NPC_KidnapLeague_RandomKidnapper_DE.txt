@@ -560,3 +560,6 @@ Ach ja? Dann lassen wir dich lieber gefesselt. (Sie nimmt ein paar Sachen und fe
 (Dialog beenden.)
 Follow me!  (Bring her to your room.)
 Mir nach! (Sie in dein Zimmer führen.)
+###_NPC
+(She lets you go and sighs.)  Sadly, I need to go.  Find your owner to get out.
+(Sie lässt dich los und seufzt.) Ich muss leider weg. Lass dich von deiner Besitzerin befreien.

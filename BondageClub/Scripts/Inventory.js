@@ -51,20 +51,13 @@ function InventoryDelete(C, DelItemName, DelItemGroup, Push) {
 
 }
 
-// Loads the inventory from the account
-function InventoryLoad(C, Inventory, Import) {
-	
-	// Flush the current inventory and import items from the Bondage College
-	C.Inventory = [];
+// Loads the current inventory for a character
+function InventoryLoad(C, Inventory) {
 
-	// Make sure we have something to load
-	if (Inventory != null) {
-
-		// Add each items one by one
+	// Add each items one by one from the server by name/group
+	if (Inventory != null)
 		for (var I = 0; I < Inventory.length; I++)
 			InventoryAdd(C, Inventory[I].Name, Inventory[I].Group, false);
-
-	}
 
 }
 
@@ -76,14 +69,35 @@ function InventoryAvailable(C, InventoryName, InventoryGroup) {
 	return false;
 }
 
-// Returns TRUE if we can equip the item
+// Returns TRUE if we can add the item, no other items must block that prerequisite
 function InventoryAllow(C, Prerequisite) {
+
+	// Torso items can only be blocked by clothes
 	if (Prerequisite == null) return true;
-	if ((Prerequisite == "AccessTorso") && (InventoryGet(C, "Cloth") != null)) { DialogSetText("RemoveClothesForItem"); return false; }
-	if ((Prerequisite == "AccessBreast") && ((InventoryGet(C, "Cloth") != null) || (InventoryGet(C, "Bra") != null))) { DialogSetText("RemoveClothesForItem"); return false; }
-	if ((Prerequisite == "AccessVulva") && ((InventoryGet(C, "Cloth") != null) || (InventoryGet(C, "ClothLower") != null) || (InventoryGet(C, "Panties") != null))) { DialogSetText("RemoveClothesForItem"); return false; }
+	var curCloth = InventoryGet(C, "Cloth");
+	if ((Prerequisite == "AccessTorso") && (curCloth != null) && !curCloth.Asset.Expose.includes("ItemTorso")) { DialogSetText("RemoveClothesForItem"); return false; }
+
+	// Breast items can be blocked by clothes
+	if ((Prerequisite == "AccessBreast") && (((curCloth != null) && !curCloth.Asset.Expose.includes("ItemBreast"))
+			|| (InventoryGet(C, "Bra") != null && !InventoryGet(C, "Bra").Asset.Expose.includes("ItemBreast")))) { DialogSetText("RemoveClothesForItem"); return false; }
+
+	// Vulva/Butt items can be blocked by clothes, panties and some socks
+	if ((Prerequisite == "AccessVulva") && (((curCloth != null) && curCloth.Asset.Block != null && curCloth.Asset.Block.includes("ItemVulva"))
+			|| (InventoryGet(C, "ClothLower") != null && !InventoryGet(C, "ClothLower").Asset.Expose.includes("ItemVulva"))
+			|| (InventoryGet(C, "Panties") != null && !InventoryGet(C, "Panties").Asset.Expose.includes("ItemVulva"))
+			|| (InventoryGet(C, "Socks") != null && (InventoryGet(C, "Socks").Asset.Block != null) && InventoryGet(C, "Socks").Asset.Block.includes("ItemVulva")))) { DialogSetText("RemoveClothesForItem"); return false; }
+	
+	// Prevent incompatible item combinations
 	if (Prerequisite == "NotSuspended" && C.Pose.indexOf("Suspension") >= 0) { DialogSetText("RemoveSuspensionForItem"); return false; }
+	if (Prerequisite == "NotChained") {
+		if (InventoryGet(C, "ItemNeckAccessories") != null) {
+			if (InventoryGet(C, "ItemNeckAccessories").Asset.Name == "CollarChainLong") { DialogSetText("RemoveChainForItem"); return false; }
+		} else return true;
+	}
+	if (Prerequisite == "Collared" && InventoryGet(C, "ItemNeck") == null) { DialogSetText("MustCollaredFirst"); return false; }
+	if (Prerequisite == "CollaredNotSuspended" && (InventoryGet(C, "ItemNeck") == null || C.Pose.indexOf("Suspension") >= 0)) { DialogSetText("MustCollaredFirstAndRemoveSuspension"); return false; }
 	return true;
+
 }
 
 // Gets the current item worn a specific spot
@@ -145,8 +159,8 @@ function InventoryRemove(C, AssetGroup) {
 // Returns TRUE if the currently worn item is blocked by another item (hoods blocks gags, belts blocks eggs, etc.)
 function InventoryGroupIsBlocked(C) {
 	for (var E = 0; E < C.Appearance.length; E++) {
-		if ((C.Appearance[E].Asset.Block != null) && (C.Appearance[E].Asset.Block.indexOf(C.FocusGroup.Name) >= 0)) return true;
-		if ((C.Appearance[E].Property != null) && (C.Appearance[E].Property.Block != null) && (C.Appearance[E].Property.Block.indexOf(C.FocusGroup.Name) >= 0)) return true;
+		if (!(C.Appearance[E].Asset.Group.Clothing) && (C.Appearance[E].Asset.Block != null) && (C.Appearance[E].Asset.Block.includes(C.FocusGroup.Name))) return true;
+		if (!(C.Appearance[E].Asset.Group.Clothing) && (C.Appearance[E].Property != null) && (C.Appearance[E].Property.Block != null) && (C.Appearance[E].Property.Block.indexOf(C.FocusGroup.Name) >= 0)) return true;
 	}
 	return false;
 }
@@ -196,12 +210,54 @@ function InventoryOwnerOnlyItem(Item) {
 	return false;
 }
 
-// Returns TRUE if the character is wearing at least one item with a OwnerOnly flag, such as the owner padlock
-function InventoryCharacterHasOwnerOnlyItem(C) {
+// Returns TRUE if the character is wearing at least one item that's a restraint with a OwnerOnly flag, such as the owner padlock
+function InventoryCharacterHasOwnerOnlyRestraint(C) {
 	if ((C.Ownership == null) || (C.Ownership.MemberNumber == null) || (C.Ownership.MemberNumber == "")) return false;
 	if (C.Appearance != null)
 		for (var A = 0; A < C.Appearance.length; A++)
-			if (InventoryOwnerOnlyItem(C.Appearance[A]))
+			if (C.Appearance[A].Asset.Group.IsRestraint && InventoryOwnerOnlyItem(C.Appearance[A]))
 				return true;
 	return false;
+}
+
+// Returns TRUE if at least one item on the character can be locked
+function InventoryHasLockableItems(C) {
+	for (var I = 0; I < C.Appearance.length; I++)
+		if (C.Appearance[I].Asset.AllowLock && (InventoryGetLock(C.Appearance[I]) == null))
+			return true;
+	return false;
+}
+
+// Applies a lock to an inventory item
+function InventoryLock(C, Item, Lock, MemberNumber) {
+	if (Item.Asset.AllowLock) {
+		if (Item.Property == null) Item.Property = {};
+		if (Item.Property.Effect == null) Item.Property.Effect = [];
+		Item.Property.Effect.push("Lock");
+		Item.Property.LockedBy = Lock.Asset.Name;
+		if (MemberNumber != null) Item.Property.LockMemberNumber = MemberNumber;
+		if (Lock.Asset.RemoveTimer > 0) TimerInventoryRemoveSet(C, Item.Asset.Group.Name, Lock.Asset.RemoveTimer);
+		CharacterRefresh(C);
+	}
+}
+
+// Applies a random lock on an item
+function InventoryLockRandom(C, Item, FromOwner) {
+	if (Item.Asset.AllowLock) {
+		var List = [];
+		for (var A = 0; A < Asset.length; A++)
+			if (Asset[A].IsLock && (FromOwner || !Asset[A].OwnerOnly))
+				List.push(Asset[A]);
+		if (List.length > 0) {
+			var Lock = { Asset: List[Math.floor(Math.random() * List.length)] };
+			InventoryLock(C, Item, Lock);
+		}
+	}
+}
+
+// Applies random locks on each character items that can be locked
+function InventoryFullLockRandom(C, FromOwner) {
+	for (var I = 0; I < C.Appearance.length; I++)
+		if (C.Appearance[I].Asset.AllowLock && (InventoryGetLock(C.Appearance[I]) == null))
+			InventoryLockRandom(C, C.Appearance[I], FromOwner);
 }

@@ -161,8 +161,10 @@ You can use gags to silence your victim, making her unable to speak.
 Mit Knebeln kannst du dein Opfer zum Schweigen bringen und es am Sprechen hindern.
 Blindfolds, ear muffs, and hoods can also be used to restrict vision and hearing.
 Mit Augenbinden, Ohrenschützern und Hauben können die Sicht und das Gehör deines Opfers beeinträchtigt werden.
-Your pockets can be used to store more advanced devices, or your padlocks and keys. 
-In deinen Taschen kannst du weitere Gegenstände wie Schlösser und Schlüssel verstauen.
+Your pockets can be used to store your padlocks and keys. 
+In deinen Taschen kannst du Schlösser und Schlüssel verstauen.
+Your pockets can be used to store more advanced devices. 
+In deinen Taschein kannst du fortgeschrittene Geräte verstauen.
 That's about everything. Remember that your arms need to be free to restrain someone.
 Das war so ziemlich alles. Denk daran, dass deine Arme frei sein müssen, um jemanden fesseln zu können.
 ###_PLAYER
@@ -337,6 +339,12 @@ Erzähl mir von den anderen Arten von Fesseln.
 ###_NPC
 Some items are impossible to struggle out from, so you'll need to find help.  Also, items like cuffs can be locked, and you'll need a key to unlock them.
 Bei manchen Fesseln ist das Befreien ohne Hilfe unmöglich. Dinge wie Handschellen lassen sich nur mit einem Schlüssel öffnen.
+###_PLAYER
+Tell me about item permissions.
+Erzähl mir von Item-Berechtigungen.
+###_NPC
+In your profile, there's an item permission level you can set.  It only affects online players and will block them from restraining you, depending on the level.
+In deinem Profil kannst du die Berechtigungsstufe für Gegenstände einstellen. Das bezieht sich nur auf Online-Spieler und hält sie je nach Stufe davon ab, dich zu fesseln.
 Of course!  If you're ready for the challenge I will tie you up.
 Natürlich! Wenn du bereit für die Herausforderung bist, werde ich dich fesseln.
 Are you ready to struggle against the ropes?

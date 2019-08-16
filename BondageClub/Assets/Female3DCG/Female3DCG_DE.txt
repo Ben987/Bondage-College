@@ -4,6 +4,8 @@ College
 College
 Maid
 Hausmädchen
+Maid Exposed
+Hausmädchen entblößt
 Student Black
 Schuluniform Schwarz
 Student Bow
@@ -132,28 +134,50 @@ Hair Band
 Haarband
 Beret
 Baskenmütze
-Ears Small
-Tierohren klein
-Ears Large
-Tierohren groß
-Pony Ears
-Pony-Ohren
 Hair Ribbon 1
 Haarschleife 1
+ Giant Bow 1
+Große Schleife 1
 Maid Hairband
 Hausmädchen-Haarband
 Nurse Cap
 Schwestern-Kappe
 Santa Hat
 Weihnachtsmütze
+Captain's Hat
+Kapitänsmütze
+Bunny Succubus 
+Hasen-Succubus
+ Flower
+Blüte
+Hair Accessory
+Haar-Accessoire
+Ears Small
+Tierohren klein
+Ears Large
+Tierohren groß
+Pony Ears
+Pony-Ohren
 Bunny Ears
 Hasenohren
 Floppy Bunny Ears
 Hängende Hasenohren
 Puppy Ears
 Hundeohren
-Captain's Hat
-Kapitänsmütze
+Succubus Horns
+Succubus-Hörner
+Horns
+Hörner
+Horns 2
+Hörner 2
+Horns 3
+Hörner 3
+Fox Ears Small
+Fuchsohren klein
+Small Bat Wings
+Mini-Fledermausflügel
+Full Kitty Mask
+Kätzchen-Vollmaske
 Gloves
 Handschuhe
 Short Gloves
@@ -172,6 +196,44 @@ Sunglasses 1
 Sonnenbrille 1
 Sunglasses 2
 Sonnenbrille 2
+Venitian Mask
+Venezianische Maske
+Domino Mask
+Domino-Maske
+Tail Strap
+Schwanzgürtel
+Kitty Tail Strap
+Katzenschwanzgürtel
+Horse Tail Strap
+Pferdeschweifgürtel
+Fox Tails Strap
+Fuchsschweifgürtel
+Puppy Tail Strap
+Hundeschwanzgürtel
+Succubus Tail Strap
+Succubusschwanzgürtel
+Succubus2 Tail Strap
+Succubusschwanzgürtel 2
+Raccoon Tail Strap
+Waschbärschweifgürtel
+Raccoon2 Tail Strap
+Waschbärschweifgürtel 2
+Wings
+Flügel
+Succubus Feather 
+Succubus gefiedert
+Succubus Wings
+Succubus-Flügel
+Angel Feather
+Engelsflügel
+Devil Wings
+Dämonenflügel
+Fallen Angel Wings
+Dunkelengelsflügel
+Angel Wings
+Engelsflügel
+Bat Wings
+Fledermausflügel
 Upper Body
 Oberkörper
 Small
@@ -242,6 +304,8 @@ Suspension Hemp Rope
 Hänge-Hanfseil
 Duct Tape
 Klebeband
+Mermaid Rope Tie
+Meerjungfrau-Fessel
 Legs
 Beine
 Vulva
@@ -250,8 +314,10 @@ Vibrating Egg
 Vibrator-Ei
 Vibrating Wand
 Vibrator-Stab
-Vibrating Egg Remote
-Vibrator-Ei-Fernbedienung
+Vibrating Egg|Panties Remote
+Vibrator-Fernbedienung
+Vibrating Latex Panties
+Latex-Vibratorhöschen
 Butt
 Hintern
 Black Butt Plug
@@ -262,6 +328,20 @@ Horse Butt Plug
 Pferdeschweif
 Puppy Butt Plug
 Hundeschwanz
+Succubus Butt Plug
+Succubus-Stöpsel
+Succubus Tail
+Succubus-Schwanz
+Fox Tails
+Fuchsschweife
+Raccoon Butt Plug
+Waschbär-Analstöpsel
+Raccoon Tail Plug
+Waschbärschweif-Stöpsel
+Anal Beads
+Analperlenkette
+Butt Pump
+Analpumpe
 Pelvis
 Becken
 Metal Chastity Belt
@@ -296,6 +376,10 @@ Vibrating Nipple Clamps
 Vibrator-Nippelklemmen
 Vibrating Clamps Remote
 Vibratorklemmen-Fernbedienung
+Weighted Piercing
+Gewichtetes Piercing
+Chain Clamp
+Kettenklemme
 Breast
 Brust
 Metal Chastity Bra
@@ -318,12 +402,18 @@ Latex Strait Leotard
 Latex-Zwangsjackenanzug
 Kitty Paw Mittens
 Katzenpfoten
-Bitchsuit
-Bitchsuit
+Pet Suit
+Tieranzug
+Holding Leash
+Leine
 Neck
 Hals
 Leather Collar
 Lederhalsband
+Bell Collar
+Glockenhalsband
+Bow Collar
+Schleifenhalsband
 Slave Collar
 Sklavenhalsband
 Club Slave Collar
@@ -332,8 +422,28 @@ Shock Collar
 Elektrohalsband
 Shock Collar Remote
 Elektrohalsband-Fernbedienung
+Bat Collar
+Fledermaus-Halsband
+Collar
+Halsband
+Bell
+Glöckchen
+Bow
+Schleife
+Shock Unit
+Schock-Einheit
+Long Chain
+Lange Kette
+Short Chain
+Kurze Kette
+Leash
+Leine
+Pulled Leash
+Gehaltene Leine
 Cloth Gag
 Stoffknebel
+Wiffle Ball Gag
+Loch-Ballknebel
 Harness Ball Gag
 Ballknebel
 Harness Panel Gag
@@ -352,10 +462,18 @@ Pump Gag
 Pumpknebel
 Kitty Mask Gag
 Katzenmasken-Knebel
+Kitty Harness Gag
+Harnisch-Katzenknebel
 Rubber Carrot Gag
 Gummikarotten-Knebel
+Muzzle Gag
+Kiefer-Maulkorb
 Sleeping Pill
 Schlaftablette
+Panties Mask
+Höschen-Maske
+Plug Gag
+Plug-Knebel
 Head
 Kopf
 Cloth Blindfold
@@ -370,6 +488,12 @@ Studded Blindfold
 Nieten-Augenbinde
 Kitty Blindfold
 Katzen-Augenbinde
+Small Blindfold
+Kleine Augenbinde
+Light Duty EarPlugs
+Herkömmliche Ohrenstöpsel
+Heavy Duty EarPlugs
+Hochleistungs-Ohrenstöpsel
 Misc Items
 Sonstiges
 Metal Padlock
@@ -378,10 +502,14 @@ Intricate Padlock
 Komplexes Vorhängeschloss
 Five Minutes Padlock
 Fünf-Minuten-Schloss
+Owner Padlock
+Besitzer-Schloss
 Metal Padlock Key
 Vorhängeschloss-Schlüssel
 Intricate Padlock Key
 Komplex-Schloss-Schlüssel
+Owner Padlock Key
+Besitzer-Schloss-Schlüssel
 Metal Cuffs Key
 Handschellenschlüssel
 Wooden Maid Tray
@@ -390,6 +518,8 @@ Wooden Maid Tray Full
 Holztablett voll
 Wooden Paddle
 Holzpaddel
+Front Devices
+Frontalgeräte
 Wooden Box
 Holzkiste
 Water filled milk can 

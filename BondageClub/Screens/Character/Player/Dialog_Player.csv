@@ -2,15 +2,20 @@ SelectItem,,,Select an item to use
 CannotUseOnSelf,,,Cannot use on yourself
 RemoveClothesForItem,,,Remove some clothes first
 RemoveSuspensionForItem,,,Remove the suspension first
+RemoveChainForItem,,,Remove the chain to the floor first
+MustCollaredFirst,,,A collar must be fitted first to attach accessories to.
+MustCollaredFirstAndRemoveSuspension,,,Must be collared and not suspended first.
 Cancel,,,Cancel
 Exit,,,Back to character
 Next,,,View next items
 Remove,,,Remove the item
+Use,,,Use this item
 Struggle,,,Try to struggle out
 Lock,,,Use a lock
 Unlock,,,Unlock the item
 InspectLock,,,Inspect the lock
 Remote,,,Use your remote
+ButtPump,,,Use the Butt Plug's pump
 ColorPick,,,Color of next item
 ColorSelect,,,Use this color
 ColorCancel,,,Default color
@@ -35,17 +40,26 @@ PumpLevel1,,,Pump gag level: Light
 PumpLevel2,,,Pump gag level: Inflated
 PumpLevel3,,,Pump gag level: Bloated
 PumpLevel4,,,Pump gag level: Full mouth
+InflateLevel0,,,Pump plug level: Empty
+InflateLevel1,,,Pump plug level: Light
+InflateLevel2,,,Pump plug level: Inflated
+InflateLevel3,,,Pump plug level: Bloated
+InflateLevel4,,,Pump plug level: Max
 DeflateIt,,,Deflate it
 PumpIt,,,Pump it
 pumps,,,pumps
 deflates,,,deflates
+plug,,,plug
 gag,,,gag
+'s,,,'s
 Delete,,,Delete
 ConfirmDelete,,,Confirm
 Beep,,,Beep
 BeepFrom,,,Beep from
+BeepFromOwner,,,Beep from your owner in your private room
 InRoom,,,in room
 PrivateRoom,,,<i>Private room</i>
+IntroductionMaidGreetings,,,"(As you enter the luxurious hallway, a maid comes to greet you.)  Welcome to the Bondage Club, is this your first visit?"
 ServerMessageOfferStartTrial,,,"SourceCharacter is offering you to start a trial period as her submissive.  Click on her and manage your relationship to accept, don't do anything to refuse."
 ServerMessageStartTrial,,,The Bondage Club is pleased to announce that SourceCharacter is starting a 3 days minimum trial period as a submissive.
 ServerMessageOfferEndTrial,,,"SourceCharacter has prepared a great collaring ceremony.  A maid brings a slave collar, which her submissive must consent to wear."
@@ -53,13 +67,17 @@ ServerMessageEndTrial,,,The Bondage Club is proud to announce that SourceCharact
 LockMemberNumber,,,Member number on lock:
 TimerLeft,,,Time left:
 TimerRestart,,,SourceCharacter restarts the five minute timer padlock on DestinationCharacter BodyPart.
+RestartTimer,,,Restart Timer
+RemoveItemWithTimer,,,Remove item when the lock timer runs out
+WillRemoveItemWithTimer,,,The item will be removed when the lock timer runs out
+WontRemoveItemWithTimer,,,The item will stay when the lock timer runs out
 SelectBondagePosition,,,Select the bondage position
 SelectTapeWrapping,,,Select the tape wrapping
 CannotUnlockIfElbowBound,,,A victim cannot unlock herself if her elbows are bound
 ItemMiscMetalPadlockIntro,,,"""From your friendly hardware store"""
 ItemMiscIntricatePadlockIntro,,,"""To keep your loved one secure"""
 ItemMiscTimerPadlockIntro,,,You can restart the timer but cannot unlock
-ItemMiscOwnerPadlockIntro,,,"""Never forget who you belong too"""
+ItemMiscOwnerPadlockIntro,,,"""Never forget who you belong to"""
 ItemMiscOwnerPadlockDetail,,,Can only be locked or unlocked by her owner
 LeatherCuffsPoseNone,,,Detached
 LeatherCuffsPoseWrist,,,Bind wrists
@@ -70,6 +88,7 @@ LeatherCuffsRestrainWrist,,,SourceCharacter attaches the leather cuffs wrist cha
 LeatherCuffsRestrainElbow,,,SourceCharacter attaches the leather cuffs elbow chain behind DestinationCharacter's back.
 LeatherCuffsRestrainBoth,,,SourceCharacter attaches the leather cuffs wrist and elbow chains behind DestinationCharacter's back.
 DuctTapePoseHands,,,Hands
+DuctTapePoseArms,,,Arms
 DuctTapePoseBottom,,,Skirt
 DuctTapePoseTop,,,Torso
 DuctTapePoseFull,,,Mummy
@@ -90,10 +109,23 @@ DuctTapeMouthTypeSmall,,,Single strip
 DuctTapeMouthTypeCrossed,,,Crossed strips
 DuctTapeMouthTypeFull,,,Full face
 DuctTapeMouthTypeDouble,,,Double layer
+DuctTapeMouthTypeCover,,,OTN
 DuctTapeMouthSetSmall,,,SourceCharacter puts a piece of duct tape on DestinationCharacter's mouth.
 DuctTapeMouthSetCrossed,,,SourceCharacter crosses two pieces of duct tape on DestinationCharacter's mouth.
 DuctTapeMouthSetFull,,,SourceCharacter fully tapes DestinationCharacter's mouth.
 DuctTapeMouthSetDouble,,,SourceCharacter fully tapes DestinationCharacter's mouth with double layers.
+DuctTapeMouthSetCover,,,SourceCharacter wraps many layers on DestinationCharacter's mouth.
+PlugGagMouthTypePlug,,,Plugged
+PlugGagMouthTypeOpen,,,Open
+PlugGagMouthSetPlug,,,SourceCharacter plugs up DestinationCharacter's mouth.
+PlugGagMouthSetOpen,,,SourceCharacter pulls out DestinationCharacter's plug from her gag.
+SelectBlindType,,,Select the type of blindfold
+DuctTapeHeadTypeDouble,,,Double
+DuctTapeHeadTypeWrap,,,Wrap
+DuctTapeHeadSetDouble,,,SourceCharacter takes a piece of duct tape for DestinationCharacter's and place on her face.
+DuctTapeHeadSetWrap,,,SourceCharacter wraps some duct tape onto DestinationCharacter's face.
+DuctTapeHeadTypeMummy,,,Mummy
+DuctTapeHeadSetMummy,,,SourceCharacter wraps DestinationCharacter's  head in tape with multiple layers. 
 Intensity-1,,,Item intensity: Disabled
 Intensity0,,,Item intensity: Low
 Intensity1,,,Item intensity: Medium
@@ -108,6 +140,9 @@ ShockCollarSet2,,,SourceCharacter sets DestinationCharacter's shock collar to hi
 ShockCollarTrigger0,,,DestinationCharacter's collar gives her a light shock.
 ShockCollarTrigger1,,,DestinationCharacter's collar lets out a sharp jolt!
 ShockCollarTrigger2,,,DestinationCharacter's collar delivers an intense shock!
+CollarShockUnitTrigger0,,,DestinationCharacter's collar gives her a light shock.
+CollarShockUnitTrigger1,,,DestinationCharacter's collar lets out a sharp jolt!
+CollarShockUnitTrigger2,,,DestinationCharacter's collar delivers an intense shock!
 EggDecreaseTo-1,,,DestinationCharacter's vibrating egg stops vibrating.
 EggDecreaseTo0,,,DestinationCharacter's vibrating egg slows down into a light tease.
 EggDecreaseTo1,,,DestinationCharacter's vibrating egg returns to a moderate pace.
@@ -124,6 +159,14 @@ NippleIncreaseTo0,,,DestinationCharacter's vibrating nipple clamps start teasing
 NippleIncreaseTo1,,,DestinationCharacter's vibrating nipple clamps build up to a moderate pace.
 NippleIncreaseTo2,,,DestinationCharacter's vibrating nipple clamps start buzzing strongly!
 NippleIncreaseTo3,,,DestinationCharacter's vibrating nipple clamps jump up to maximum intensity!
+PantiesDecreaseTo-1,,,DestinationCharacter's vibrating latex panties stops vibrating.
+PantiesDecreaseTo0,,,DestinationCharacter's vibrating latex panties slows down into a light tease.
+PantiesDecreaseTo1,,,DestinationCharacter's vibrating latex panties returns to a moderate pace.
+PantiesDecreaseTo2,,,DestinationCharacter's vibrating latex panties slows down a tiny bit.
+PantiesIncreaseTo0,,,DestinationCharacter's vibrating latex panties starts teasing her lightly.
+PantiesIncreaseTo1,,,DestinationCharacter's vibrating latex panties builds up to a moderate pace.
+PantiesIncreaseTo2,,,DestinationCharacter's vibrating latex panties starts buzzing strongly!
+PantiesIncreaseTo3,,,DestinationCharacter's vibrating latex panties jumps up to maximum intensity!
 UseRemote,,,Use Remote
 PlayerGagged,,,(You can use or remove items by selecting specific body regions on yourself.)
 0,,,(You can use or remove items by selecting specific body regions on yourself.)
@@ -146,4 +189,5 @@ unchains,,,removes the chains
 mittenstoharness,,,mittens to the baby harness
 mittensfromharness,,,mittens
 NeedHarness,,,They must be wearing a baby harness first to chain the mittens to it.
+FreeArms,,,Free arms first before attaching a mitten chains.
 FacialExpression,,,Facial expression

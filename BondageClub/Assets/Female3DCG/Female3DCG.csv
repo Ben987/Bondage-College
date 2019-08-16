@@ -1,6 +1,7 @@
 Cloth,,Cloth
 Cloth,CollegeOutfit1,College
 Cloth,MaidOutfit1,Maid
+Cloth,MaidOutfit2,Maid Exposed
 Cloth,StudentOutfit1,Student Black
 Cloth,StudentOutfit2,Student Bow
 Cloth,BabydollDress1,Babydoll Dress
@@ -73,11 +74,13 @@ Hat,,Hat
 Hat,Band1,Hair Band
 Hat,Beret1,Beret
 Hat,Ribbons1,Hair Ribbon 1
+Hat,GiantBow1, Giant Bow 1
 Hat,MaidHairband1,Maid Hairband
 Hat,NurseCap,Nurse Cap
 Hat,Santa1,Santa Hat
 Hat,CaptainHat1,Captain's Hat
 Hat,BunnySuccubus2,Bunny Succubus 
+Hat,HairFlower1, Flower
 HairAccessory,,Hair Accessory
 HairAccessory,Ears1,Ears Small
 HairAccessory,Ears2,Ears Large
@@ -90,6 +93,8 @@ HairAccessory,Horns,Horns
 HairAccessory,Horns2,Horns 2
 HairAccessory,Horns3,Horns 3
 HairAccessory,FoxEars1,Fox Ears Small
+HairAccessory,BatWings,Small Bat Wings
+HairAccessory,KittyMask1,Full Kitty Mask
 Gloves,,Gloves
 Gloves,Gloves1,Short Gloves
 Gloves,Gloves2,Long Gloves
@@ -103,9 +108,25 @@ Glasses,Glasses5,Style 5
 Glasses,Glasses6,Style 6
 Glasses,SunGlasses1,Sunglasses 1
 Glasses,SunGlasses2,Sunglasses 2
+Glasses,Mask1,Venitian Mask
+Glasses,Mask2,Domino Mask
+TailStraps,,Tail Strap
+TailStraps,TailStrap,Kitty Tail Strap
+TailStraps,HorseTailStrap,Horse Tail Strap
+TailStraps,FoxTailsStrap,Fox Tails Strap
+TailStraps,PuppyTailStrap,Puppy Tail Strap
+TailStraps,SuccubusStrap,Succubus Tail Strap
+TailStraps,SuccubusStrap2,Succubus2 Tail Strap
+TailStraps,RaccoonStrap,Raccoon Tail Strap
+TailStraps,RaccoonTailStrap,Raccoon2 Tail Strap
 Wings,,Wings
 Wings,SuccubusFeather,Succubus Feather 
 Wings,SuccubusWings,Succubus Wings
+Wings,AngelFeather,Angel Feather
+Wings,DevilWings,Devil Wings
+Wings,FallenAngelWings,Fallen Angel Wings
+Wings,AngelWings,Angel Wings
+Wings,BatWings,Bat Wings
 BodyUpper,,Upper Body
 BodyUpper,Small,Small
 BodyUpper,Normal,Normal
@@ -160,6 +181,7 @@ Mouth,Mouth1,Style 1
 Mouth,Mouth2,Style 2
 Mouth,Mouth3,Style 3
 Mouth,Mouth4,Style 4
+Mouth,Mouth5,Style 5
 Nipples,,Nipples Style
 Nipples,Nipples1,Small
 Nipples,Nipples2,Large
@@ -178,17 +200,21 @@ ItemFeet,,Feet
 ItemFeet,NylonRope,Nylon Rope
 ItemFeet,HempRope,Hemp Rope
 ItemFeet,LeatherBelt,Leather Belt
+ItemFeet,Irish8Cuffs,Irish 8 Feet Cuffs
 ItemFeet,SuspensionHempRope,Suspension Hemp Rope
 ItemFeet,DuctTape,Duct Tape
+ItemFeet,MermaidRopeTie,Mermaid Rope Tie
 ItemLegs,,Legs
 ItemLegs,NylonRope,Nylon Rope
 ItemLegs,HempRope,Hemp Rope
 ItemLegs,LeatherBelt,Leather Belt
 ItemLegs,DuctTape,Duct Tape
+ItemLegs,MermaidRopeTie,Upper Mermaid Tie
 ItemVulva,,Vulva
 ItemVulva,VibratingEgg,Vibrating Egg
 ItemVulva,VibratingWand,Vibrating Wand
-ItemVulva,VibratorRemote,Vibrating Egg Remote
+ItemVulva,VibratorRemote,Vibrating Egg|Panties Remote
+ItemVulva,VibratingLatexPanties,Vibrating Latex Panties
 ItemButt,,Butt
 ItemButt,BlackButtPlug,Black Butt Plug
 ItemButt,TailButtPlug,Kitty Butt Plug
@@ -197,6 +223,10 @@ ItemButt,PuppyTailPlug,Puppy Butt Plug
 ItemButt,SuccubusButtPlug,Succubus Butt Plug
 ItemButt,SuccubusButtPlug2,Succubus Tail
 ItemButt,FoxTails,Fox Tails
+ItemButt,Raccoon Butt Plug,Raccoon Butt Plug
+ItemButt,RaccoonTailPlug,Raccoon Tail Plug
+ItemButt,AnalBeads,Anal Beads
+ItemButt,ButtPump,Butt Pump
 ItemPelvis,,Pelvis
 ItemPelvis,MetalChastityBelt,Metal Chastity Belt
 ItemPelvis,MetalChastityBeltKey,Metal Chastity Belt Key
@@ -214,6 +244,8 @@ ItemNipples,RoundPiercing,Round Piercings
 ItemNipples,NippleClamp,Nipple Clamps
 ItemNipples,VibeNippleClamp,Vibrating Nipple Clamps
 ItemNipples,VibratorRemote,Vibrating Clamps Remote
+ItemNipples,WeightedPiercing,Weighted Piercing
+ItemNipples,ChainClamp,Chain Clamp
 ItemBreast,,Breast
 ItemBreast,MetalChastityBra,Metal Chastity Bra
 ItemBreast,MetalChastityBraKey,Metal Chastity Bra Key
@@ -225,22 +257,39 @@ ItemArms,HempRope,Hemp Rope
 ItemArms,MetalCuffs,Metal Cuffs
 ItemArms,LeatherArmbinder,Leather Armbinder
 ItemArms,LeatherCuffs,Leather Cuffs
-ItemArms,PaddedMittens,Thumbless Padded Mittens
+ItemArms,MittenChain1,Mittens Chain
 ItemArms,FourLimbsShackles,Four Limbs Shackles
 ItemArms,StraitLeotard,Latex Strait Leotard
-ItemArms,Paw Mittens,Kitty Paw Mittens
 ItemArms,DuctTape,Duct Tape
-ItemArms,BitchSuit,Bitchsuit
+ItemArms,BitchSuit,Pet Suit
+ItemArms,CollarLeashHolding,Holding Leash
+ItemHands,,Hands
+ItemHands,PaddedMittens,Padded Mittens
+ItemHands,PawMittens,Paw Mittens
+ItemHands,DuctTape,Duct Tape
 ItemNeck,,Neck
 ItemNeck,LeatherCollar,Leather Collar
-ItemNeck,LeatherCollarBell,Leather Collar
-ItemNeck,LeatherCollarBow,Leather Collar
+ItemNeck,LeatherCollarBell,Bell Collar
+ItemNeck,LeatherCollarBow,Bow Collar
 ItemNeck,SlaveCollar,Slave Collar
 ItemNeck,ClubSlaveCollar,Club Slave Collar
 ItemNeck,ShockCollar,Shock Collar
 ItemNeck,ShockCollarRemote,Shock Collar Remote
+ItemNeck,BatCollar,Bat Collar
+ItemNeck,PostureCollar,Posture Collar
+ItemNeck,SteelPostureCollar,Steel Posture Collar
+ItemNeckAccessories,,Collar
+ItemNeckAccessories,CollarBell,Bell
+ItemNeckAccessories,CollarBow,Bow
+ItemNeckAccessories,CollarShockUnit,Shock Unit
+ItemNeckAccessories,ShockCollarRemote,Shock Collar Remote
+ItemNeckAccessories,CollarChainLong,Long Chain
+ItemNeckAccessories,CollarChainShort,Short Chain
+ItemNeckAccessories,CollarLeash,Leash
+ItemNeckAccessories,CollarLeashTaken,Pulled Leash
 ItemMouth,,Mouth
 ItemMouth,ClothGag,Cloth Gag
+ItemMouth,WiffleGag,Wiffle Ball Gag
 ItemMouth,HarnessBallGag,Harness Ball Gag
 ItemMouth,HarnessPanelGag,Harness Panel Gag
 ItemMouth,RingGag,Ring Gag
@@ -251,8 +300,13 @@ ItemMouth,DusterGag,Duster Gag
 ItemMouth,HarnessPonyBits,Bit Gag
 ItemMouth,PumpGag,Pump Gag
 ItemMouth,KittyGag,Kitty Mask Gag
+ItemMouth,KittenHarnessPanelGag,Kitty Harness Gag
 ItemMouth,CarrotGag,Rubber Carrot Gag
+ItemMouth,MuzzleGag,Muzzle Gag
 ItemMouth,RegularSleepingPill,Sleeping Pill
+ItemMouth,PantiesMask,Panties Mask
+ItemMouth,PlugGag,Plug Gag
+ItemMouth,DildoGag,Dildo Gag
 ItemHead,,Head
 ItemHead,ClothBlindfold,Cloth Blindfold
 ItemHead,LeatherBlindfold,Leather Blindfold
@@ -261,6 +315,11 @@ ItemHead,LeatherHoodOpenEyes,Leather Hood Eyes
 ItemHead,StuddedBlindfold,Studded Blindfold
 ItemHead,KittyBlindfold,Kitty Blindfold
 ItemHead,DuctTape,Duct Tape
+ItemHead,SmallBlindfold,Small Blindfold
+ItemHead,LeatherHoodOpenMouth,Leather Hood Mouth
+ItemEars,,Ears
+ItemEars,LightDutyEarPlugs,Light Duty EarPlugs
+ItemEars,HeavyDutyEarPlugs,Heavy Duty EarPlugs
 ItemMisc,,Misc Items
 ItemMisc,MetalPadlock,Metal Padlock
 ItemMisc,IntricatePadlock,Intricate Padlock
@@ -273,6 +332,7 @@ ItemMisc,MetalCuffsKey,Metal Cuffs Key
 ItemMisc,WoodenMaidTray,Wooden Maid Tray
 ItemMisc,WoodenMaidTrayFull,Wooden Maid Tray Full
 ItemMisc,WoodenPaddle,Wooden Paddle
-ItemMisc,WoodenBox,Wooden Box
-ItemMisc,MilkCan,Water filled milk can 
-ItemMisc,WaterCell,Water torture Cell
+ItemDevices,,Devices
+ItemDevices,WoodenBox,Wooden Box
+ItemDevices,MilkCan,Water filled milk can 
+ItemDevices,WaterCell,Water torture Cell

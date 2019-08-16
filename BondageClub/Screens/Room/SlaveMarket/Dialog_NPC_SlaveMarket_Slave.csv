@@ -1,0 +1,13 @@
+PlayerGagged,,,(She looks at your gag and giggles silently.),,
+AuctionBuy,,,"(She looks at you with bright eyes.)  Thank you so much Miss, you're very generous.",,
+0,,,(She bows her head to greet you.),,
+0,,Who are you?,(She stays silent.),,
+0,,Are you getting sold?,(She nods her head yes.),,
+0,,Are you mute?,(She shakes her head no.),,
+0,,Can I tie you up?,(She blushes and looks at the Mistress.),,
+0,,(Spank her butt.),(She jumps from the pain but doesn't make a sound.),,Player.CanInteract()
+0,,Take care.  (Leave her.),,DialogLeave(),
+10,11,I'll take good care of you.,"Thank you so much, I appreciate.  Can you help me so we can visit your room?","DialogChangeReputation(""Dominant"", 6)",
+10,11,It's my pleasure girl.,(She smiles.)  This is wonderful.  Can you help me so we can visit your room?,"DialogChangeReputation(""Dominant"", 3)",
+10,11,You better be a good investment.,(She gulps and nods quickly.)  Yes Miss.  Can you help me so we can visit your room?,"DialogChangeReputation(""Dominant"", 9)",
+11,,(Bring her to your room.),,VisitRoom(),

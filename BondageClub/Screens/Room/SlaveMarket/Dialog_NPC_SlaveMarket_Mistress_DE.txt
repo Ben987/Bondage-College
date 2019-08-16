@@ -1,0 +1,202 @@
+###_NPC
+Remove that gag or get lost.  I run the market and I don't have time for mumblings.
+Nimm den Knebel ab oder verschwinde. Ich leite diesen Markt und habe keine Zeit für Gemurmel.
+Too bad it didn't work for you, but a new girl is coming up right now if you want to check her.
+Schade, dass es für dich nichts geworden ist, aber gleich kommt das nächste Mädchen, falls du Interesse hast.
+Greetings Mistress DialogPlayerName.  It's always a pleasure to see you at the market.  Are you here to train our slaves?
+Guten Tag, Herrin DialogPlayerName. Es ist stets eine Freude, Euch auf dem Markt zu sehen. Seid Ihr hier, um Eure Sklaven zu trainieren?
+Greetings head maid DialogPlayerName.  What do you need from the slave market?
+Guten Tag, Hausdame DialogPlayerName. Was führt Sie zum Sklavenmarkt?
+Greetings master kidnapper DialogPlayerName.  Do you have some merchandize for us?
+Guten Tag, Meisterkidnapperin DialogPlayerName. Haben Sie neue Ware für uns?
+Welcome little maid.  What are you doing in the slave market?
+Willkommen, kleines Dienstmädchen. Was suchst du denn auf dem Sklavenmarkt?
+Welcome kidnapper.  Do you have some merchandize for us?
+Willkommen, Kidnapperin. Hast du neue Ware für uns?
+Welcome to the slave market.  Are you looking for a submissive?
+Willkommen auf dem Sklavenmarkt. Bist du auf der Suche nach einer Untergebenen?
+###_PLAYER
+Hi, I'm DialogPlayerName.
+Hi, ich bin DialogPlayerName.
+###_NPC
+Hello, I'm Mistress DialogCharacterName.  I run the market auctions today and sell the slaves.
+Hallo, ich bin Herrin DialogCharacterName. Ich leite heute die Auktionen und verkaufe die Sklavinnen.
+###_PLAYER
+Tell me about the slave market.
+Erzählt mir vom Sklavenmarkt.
+###_NPC
+What would you like to know?
+Was möchtest du denn wissen?
+###_PLAYER
+Tell me about this slave girl.
+Erzählt mir etwas über diese Sklavin.
+###_NPC
+Sure.  Are you interested in buying her?
+Sicherlich. Interessiert, sie zu kaufen?
+###_PLAYER
+Can I help with slave training?
+Kann ich beim Sklaventraining helfen?
+###_NPC
+You could, a well trained slave has higher market value.
+Durchaus, eine wohlerzogene Sklavin hat einen höheren Marktwert.
+Forget it girl, you're not Dominant enough.
+Vergiss es, Mädchen, du bist nicht dominant genug.
+###_PLAYER
+When is the next slave coming up?
+Wann ist die nächste Sklavin dran?
+###_NPC
+We need to sell this one first.  You can wait a little while for the next girl.
+Wir müssen erst diese hier verkaufen. Du kannst gerne abwarten, bis die nächste an der Reihe ist.
+###_PLAYER
+I need to go.  (Leave her.)
+Ich muss weg. (Dialog beenden.)
+How does the market works?
+Wie funktioniert der Markt?
+###_NPC
+Owners can sell their own slaves or free submissives can sell themselves for profit.  They get sold through an auction.
+Besitzer können ihre eigenen Sklavinnen verkaufen, und freie Subs können sich selbst für Eigengewinn anbieten. Dann werden sie versteigert.
+###_PLAYER
+Can I sell my slaves here?
+Kann ich meine Sklavinnen hier verkaufen?
+###_NPC
+Yes, but only if your slave is fully collared.  You can sell her permantly or rent her for a day.  Go get her first.
+Ja, aber nur, wenn deine Sklavin ihr Halsband endgültig akzeotiert hat. Du kannst sie dauerhaft verkaufen oder einen Tag lang verleihen. Sprich vorher mit ihr.
+###_PLAYER
+Can I sell myself?
+Kann ich mich selbt verkaufen?
+###_NPC
+Not yet, we cannot take you at the moment.  (This feature will be available in a future version.)
+Noch nicht, wir können dich im Moment nicht aufnehmen. (Diese Option wird in einer zukünftigen Version verfügbar sein.)
+###_PLAYER
+Can my owner sell me?
+Kann meine Besitzerin mich verkaufen?
+It's consensual?
+Ist das einvernehmlich?
+###_NPC
+Always.  Even if we call it the slave market, it remains consensual.  If the slave chickens out, we let her go.
+Ausnahmslos. Wir nennen es zwar den Sklavenmarkt, aber es bleibt stets einvernehmlich. Wenn die Sklavin kalte Füße bekommt, lassen wir sie laufen.
+###_PLAYER
+Who gets the profits?
+Wer bekommt die Einnahmen?
+###_NPC
+If the slave is owned, the owner gets the profit.  If not, she gets it.  The Bondage Club takes half the amount of every transaction.
+Wenn die Sklavin eine Besitzerin hat, bekommt diese den Erlös. Wenn nicht, bekommt ihn die Sklavin selbst. Der Bondage-Club behält bei jeder Transaktion die Hälfte des Betrags.
+###_PLAYER
+The prices are variable?
+Sind die Preise unterschiedlich?
+###_NPC
+Yes, since it's an auction and all slaves are different, some go at a higher price than others.  The better trained, the higher the auction goes.
+Ja, da es sich um eine Auktion handelt und jede Sklavin anders ist, werden manche zu höheren Preisen verkauft als andere. Je besser erzogen, desto höher die Gebote.
+###_PLAYER
+How do you measure a slave training?
+Wie wird die Erziehung einer Sklavin gemessen?
+###_NPC
+It's hard to measure the training quality since every slave is different.  The longer the slave was with someone, the higher the training and market value.
+Die Qualität der Erziehung zu messen ist schwierig, da jede Sklavin anders ist. Je länger die Sklavin bei jemandem war, desto höher der Markt- und Erziehungswert.
+###_PLAYER
+Let's talk about something else.
+Reden wir über etwas Anderes.
+###_NPC
+Fine.  What would you like know?
+Gut. Was möchtest du wissen?
+###_PLAYER
+She's getting sold?
+Wird sie verkauft?
+###_NPC
+Yes, she will be auctioned today.  You will be able to bet on her if you like, as long as you have some room to accomodate her.
+Ja, sie wird heute versteigert. Du kannst für sie bieten, wenn du willst, solange du ausreichend Platz hast, um sie unterzubringen.
+###_PLAYER
+Why doesn't she talk with me?
+Warum spricht sie nicht mit mir?
+###_NPC
+I run the auction, not her.  Don't speak with the merchandize.
+Ich leite die Auktion, nicht sie. Unterhalte dich nicht mit der Ware.
+###_PLAYER
+What if I buy her?
+Was passiert, wenn ich sie kaufe?
+###_NPC
+She will move in with you and you two will be able to start a regular BDSM trial together.
+Sie zieht bei dir ein und ihr könnt eine reguläre BDSM-Probezeit beginnen.
+###_PLAYER
+What's the price?
+Wie viel kostet sie?
+###_NPC
+It's an auction.  You bet against other Dominants and the highest bet gets the girl.  Bring lots of money, you never know.
+Es ist eine Auktion. Du wettest gegen andere Dominante, und die Höchstbietende bekommt das Mädchen. Bring genug Geld mit, man weiß nie.
+###_PLAYER
+I want to participate in the auction.
+Ich will an der Auktion teilnehmen.
+###_NPC
+Excellent.  Just wait here for the other Dominants to come in and we'll be ready.
+Hervorragend. Warte einfach hier, bis die anderen Dominanten eintreffen, dann legen wir los.
+No girl.  You're way too submissive to take care of a slave.  You can watch but you cannot bet.
+Nein, Mädchen. Du bist viel zu unterwürfig, um dich um eine Sklavin zu kümmern. Du darfst zugucken, aber nicht bieten.
+No.  You need to have some room for her first.  If you buy the merchandize you need to store it.
+Nein. Du brauchst erst ein Zimmer mit ausreichendem Platz für sie. Wenn du die Ware kaufst, musst du sie auch irgendwo unterbringen.
+###_PLAYER
+(Start the auction.)
+(Die Auktion starten.)
+I've changed my mind.
+Ich hab's mir anders überlegt.
+###_NPC
+(She frowns.)  Make up your mind girl.  What do you want?
+(Sie runzelt die Stirn.) Entscheide dich, Mädchen. Was willst du?
+Congratulations on your purchase!  I hope you two share a wonderful time.
+Herzlichen Glückwunsch zu deinem Kauf! Ich hoffe, ihr zwei verbringt eine wundervolle Zeit miteinander.
+###_PLAYER
+Thanks a lot!
+Vielen Dank!
+###_NPC
+We have brand new girl for sale.  Unless you want to talk about something else.
+Wir haben ein brandneues Mädchen im Angebot. Es sei denn, du möchtest über etwas Anderes reden.
+###_PLAYER
+Very well.  (Check the new slave.)
+Alles klar. (Dir die neue Sklavin ansehen.)
+How does training work?
+Wie funktioniert das Training?
+###_NPC
+You'll get a slave to train, but they are all different: some need discipline, other need control and some even need corporal punishment.
+Du bekommst eine Sklavin mit Trainingsbedarf, aber sie sind alle unterschiedlich: Manche brauchen Disziplin, andere brauchen Kontrolle und manche sogar körperliche Strafen.
+###_PLAYER
+Who gets trained?
+Wer wird trainiert?
+###_NPC
+It depends.  Some owners send their slaves here for education and some girls come willingly to raise their market value.
+Kommt darauf an. Manche Besitzerinnen schicken ihre Sklavinnen her, um sie erziehen zu lassen, und manche Mädchen kommen freiwillig, um ihren Marktwert zu erhöhen.
+###_PLAYER
+Do I get paid?
+Werde ich dafür bezahlt?
+###_NPC
+Yes, you'll get paid for every succesful training session.  The higher we can sell them the better.
+Ja, für jede erfolgreiche Trainingsrunde wirst du bezahlt. Je teurer wir sie verkaufen können, desto besser.
+###_PLAYER
+Can I train her?
+Kann ich sie trainieren?
+###_NPC
+Not her, she's getting sold today.  We have many other slaves to train though.
+Nicht diese hier, sie wird heute verkauft. Wir haben aber viele andere Sklavinnen zu trainieren.
+###_PLAYER
+I'm ready to train!
+Ich bin bereit, sie zu trainieren!
+###_NPC
+Very well, let me get a slave girl for you.  Make sure to break her.
+Sehr wohl, ich suche eine Sklavin für dich aus. Sieh zu, dass du sie kleinkriegst.
+###_PLAYER
+Let's talk some more first.
+Reden wir vorher noch ein wenig.
+(Wait for a slave.)
+(Auf eine Sklavin warten.)
+(Wait for the next slave.)
+(Auf die nächste Sklavin warten.)
+###_NPC
+(The auction goes on, the slave is sold and replaced by a new one.)  Here's the new product!
+(Die Auktion wird durchgeführt, die Sklavin wird verkauft und eine weitere nimmt ihren Platz ein.) Hier ist das neue Produkt!
+###_PLAYER
+I'll check that one again.
+Ich sehe sie mir nochmal an.
+###_NPC
+Sure, check the curves on that fine product.  (She smirks.)
+Sicher, schau dir die Kurven dieser tadellosen Ware an. (Sie feixt.)
+###_PLAYER
+Thanks!  (Check on her.)
+Danke! (Sie dir ansehen.)

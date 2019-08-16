@@ -1,6 +1,7 @@
 "use strict";
 var ShopBackground = "Shop";
 var ShopVendor = null;
+var ShopCustomer = null;
 var ShopVendorAllowItem = false;
 var ShopBoughtEverything = false;
 var ShopStarted = false;
@@ -9,6 +10,9 @@ var ShopRescueScenario = "";
 var ShopRescueScenarioList = ["BoughtEverything", "CatBurglar", "BoredVendor", "SleepingAtWork"];
 var ShopItemOffset = 0;
 var ShopItemCount = 0;
+var ShopDemoItemPayment = 0;
+var ShopDemoItemGroup = "";
+var ShopDemoItemGroupList = ["ItemHead", "ItemMouth", "ItemArms", "ItemLegs", "ItemFeet"];
 
 // Returns TRUE if a dialog is permitted
 function ShopIsVendorRestrained() { return (ShopVendor.IsRestrained() || !ShopVendor.CanTalk()) }
@@ -46,7 +50,7 @@ function ShopRun() {
 	DrawCharacter(Player, 0, 0, 1);
 	DrawCharacter(ShopVendor, 500, 0, 1);
 	if (ShopStarted && (ShopItemCount > 12)) DrawButton(1770, 25, 90, 90, "", "White", "Icons/Next.png");
-	if (Player.CanWalk() || ShopStarted) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
+	DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 	if (!ShopStarted) DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
 
 	// In shopping mode
@@ -87,7 +91,7 @@ function ShopClick() {
 	if (!ShopStarted) {
 		if ((MouseX >= 0) && (MouseX < 500) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
 		if ((MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(ShopVendor);
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
+		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) CommonSetScreen("Room", "MainHall");
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
 	} else {
 
@@ -197,4 +201,37 @@ function ShopCheckBoughtEverything() {
 function ShopVendorBondage() {
 	ShopVendorAllowItem = true;
 	ShopVendor.AllowItem = true;
+}
+
+// Before the shop demo job starts, the player gets a random restrain on her
+function ShopJobRestrain() {
+
+	// First, we find a body part where we can use the item
+	DialogChangeReputation("Dominant", -1);
+	while (true) {
+		ShopDemoItemGroup = CommonRandomItemFromList("", ShopDemoItemGroupList);
+		if (InventoryGet(Player, ShopDemoItemGroup) == null) break;
+	}
+
+	// Add a random item on that body part and creates a customer
+	InventoryWearRandom(Player, ShopDemoItemGroup, 3);
+	ShopDemoItemPayment = Math.round(InventoryGet(Player, ShopDemoItemGroup).Asset.Value / 10);
+	if ((ShopDemoItemPayment == null) || (ShopDemoItemPayment < 5)) ShopDemoItemPayment = 5;
+	ShopCustomer = CharacterLoadNPC("NPC_Shop_Customer");
+	ShopCustomer.AllowItem = false;
+	ShopCustomer.Stage = ShopDemoItemGroup + "0";
+	if (Math.random() >= 0.5) ShopCustomer.WillRelease = function () { return true };
+	else ShopCustomer.WillRelease = function () { return false };
+
+}
+
+// When the shop demo job starts, the customer is sent in an empty room with a customer
+function ShopJobStart() {
+	DialogLeave();
+	EmptyBackground = "Shop";
+	EmptyCharacterOffset = -500;
+	EmptyCharacter = [];
+	EmptyCharacter.push(Player);
+	EmptyCharacter.push(ShopCustomer);
+	CommonSetScreen("Room", "Empty");
 }

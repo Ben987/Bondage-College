@@ -33,7 +33,7 @@ RemoveSuspensionHempRope,,,(She breathes.) Finally.  What should that be?,,
 0,,,Welcome to the Horse Stable.  How can I help you?,,
 0,,"Hello, I'm DialogPlayerName.  Pleased to meet you.","Pleased to meet you too.  I'm DialogCharacterName, I'm a Trainer for our Horse Club.",DialogRemove(),
 0,40,Can you answer some questions?,"Yes sure, but hurry up the ponies are waiting.",,
-0,,Can I get a pony training? ,,CanBecomePony(),PlayerIsNewby
+0,,Can I get a pony training? ,,CanBecomePony(),!PlayerIsPony
 0,,I want to become a Trainer.,,CanBecomeTrainer(),!PlayerIsTrainer
 0,,I want a trial pony training.,"Ok, let us start.",TrialPonyTraining(),PlayerIsNewby
 0,,I want a trial trainer training.,"Ok, let us start.",TrialTrainerTraining(),PlayerIsNewby
@@ -103,7 +103,7 @@ RemoveSuspensionHempRope,,,(She breathes.) Finally.  What should that be?,,
 100,0,(Waiting for instructions),,PlayerGetTrainingLesson(),
 200,0,(Do it quickly.),(She grins.)  You are not really dominant.,"DialogChangeReputation(""Dominant"", -3)",
 200,0,"I want to become a trainer, not a stableboy!",she winks. that is the dominant nature. give your money. Welcome to the guild her is your Dress.,BecomeTrainer(),
-210,0,Here is the money.  Hurry up.,(She will give you the clean clothes.) have a lot of fun.,TrainerStart(),
+210,0,Here is the money.  Hurry up.,(She will give you the clean clothes.) have a lot of fun.,TrainerStart(),DialogMoneyGreater(10)
 210,0,I forgot my wallet.,"Then it will not work, you loser.","DialogChangeReputation(""Dominant"", -1)",
 StableTrainerToyHorseFin,,,"That was great, right?",,
 StableTrainerToyHorseCancel,,,With exercise that will certainly better.,,

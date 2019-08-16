@@ -162,6 +162,18 @@ Schade, auf Wiedersehen. Hier hast du deine Kleidung zurück.
 Your task: Bind me and then give me the sign to start.
 Deine Aufgabe: Fessele mich und gib mir das Zeichen zum Anfangen.
 ###_PLAYER
+Who should I tie up?
+Wen sollte ich fesseln?
+###_NPC
+Me, I want to show a trick.
+Mich, ich will einen Trick vorführen.
+###_PLAYER
+How should I tie up?
+Wie sollte ich fesseln?
+###_NPC
+With five objects for eye, mouth, arms, legs and feet.
+Benutze fünf Gegenstände für Augen, Mund, Arme, Beine und Füße.
+###_PLAYER
 (Show that you are done)
 (Zeigen, dass du fertig bist.)
 ###_NPC
@@ -205,6 +217,8 @@ Deine Aufgabe: Tanze eine Weile, während ich mit meiner Assistentin ein paar Tr
 ###_NPC
 Your task: Bind my Assistant and then give me the sign to start.
 Deine Aufgabe: Fessele meine Assistentin und gib mir das Zeichen zum Anfangen.
+Please tie my Assistant.
+Bitte fessele meine Assistentin.
 ###_PLAYER
 That was easy. Let's show the next trick.
 Das war einfach. Lass den nächsten Trick sehen.

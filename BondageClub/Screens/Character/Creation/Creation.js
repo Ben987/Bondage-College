@@ -85,6 +85,9 @@ function CreationResponse(data) {
 			ElementRemove("InputEmail");
 			CommonSetScreen("Room", "MainHall");
 
+			// A maid will introduce the player to the club and explain the basic rules
+			MainHallMaidIntroduction();
+
 		} else CreationMessage = TextGet("Error") + " " + data.ServerAnswer;		
 	} else {
 		if ((data != null) && (typeof data === "string")) CreationMessage = data;

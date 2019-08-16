@@ -17,17 +17,22 @@ var MaidQuartersRescueList = ["IntroductionClass", "ShibariDojo", "Shop", "Gambl
 var MaidQuartersRescueStage = ["310", "320", "330", "340", "350"];
 var MaidQuartersCurrentRescueStarted = false;
 var MaidQuartersCurrentRescueCompleted = false;
+var MaidQuartersOnlineDrinkCount = 0;
+var MaidQuartersOnlineDrinkValue = 0;
+var MaidQuartersOnlineDrinkCustomer = [];
 
 // Returns TRUE if the player is dressed in a maid uniform or can take a specific chore
 function MaidQuartersPlayerInMaidUniform() { return ((CharacterAppearanceGetCurrentValue(Player, "Cloth", "Name") == "MaidOutfit1") && (CharacterAppearanceGetCurrentValue(Player, "Hat", "Name") == "MaidHairband1")) }
 function MaidQuartersAllowMaidDrinks() { return (!Player.IsRestrained() && !MaidQuartersMaid.IsRestrained() && !LogQuery("ClubMistress", "Management")); }
 function MaidQuartersAllowMaidCleaning() { return (!Player.IsRestrained() && !MaidQuartersMaid.IsRestrained() && !LogQuery("ClubMistress", "Management")); }
-function MaidQuartersAllowMaidPlayMusic() { return (!Player.IsRestrained() && !MaidQuartersMaid.IsRestrained() && !LogQuery("ClubMistress", "Management")); }
+function MaidQuartersAllowMaidPlayMusic() { return (!Player.IsRestrained()) }
 function MaidQuartersAllowRescue() { return (!Player.IsRestrained()); }
 function MaidQuartersAllowCancelRescue() { return (MaidQuartersCurrentRescueStarted && !MaidQuartersCurrentRescueCompleted); }
 function MaidQuartersCanFreeSarah() { return (SarahUnlockQuest && LogQuery("LeadSorority", "Maid")) }
-function MaidQuartersCanReleasePlayer() { return (Player.IsRestrained() && !InventoryCharacterHasOwnerOnlyItem(Player) && CurrentCharacter.CanTalk() && CurrentCharacter.CanInteract()) }
-function MaidQuartersCannotReleasePlayer() { return (Player.IsRestrained() && (InventoryCharacterHasOwnerOnlyItem(Player) || !CurrentCharacter.CanTalk() || !CurrentCharacter.CanInteract())) }
+function MaidQuartersCanReleasePlayer() { return (Player.IsRestrained() && !InventoryCharacterHasOwnerOnlyRestraint(Player) && CurrentCharacter.CanTalk() && CurrentCharacter.CanInteract()) }
+function MaidQuartersCannotReleasePlayer() { return (Player.IsRestrained() && (InventoryCharacterHasOwnerOnlyRestraint(Player) || !CurrentCharacter.CanTalk() || !CurrentCharacter.CanInteract())) }
+function MaidQuartersCanGetDusterGag() { return (!SarahUnlockQuest && LogQuery("JoinedSorority", "Maid") && Player.CanTalk() && CurrentCharacter.CanTalk() && CurrentCharacter.CanInteract() && !InventoryAvailable(Player, "DusterGag", "ItemMouth")) }
+function MaidQuartersOnlineDrinkCompleted() { return (MaidQuartersOnlineDrinkCount >= 5); }
 
 // Loads the maid quarters room
 function MaidQuartersLoad() {
@@ -56,7 +61,10 @@ function MaidQuartersRun() {
 // When the user clicks in the maid quarters
 function MaidQuartersClick() {
 	if ((MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-	if ((MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(MaidQuartersMaid);
+	if ((MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000)) {
+		CharacterSetCurrent(MaidQuartersMaid);
+		if (MaidQuartersMaid.Stage == "285") MaidQuartersMaid.CurrentDialog = DialogFind(MaidQuartersMaid, (MaidQuartersOnlineDrinkCompleted()) ? "MaidDrinkOnlineComplete" : "MaidDrinkOnlineIncomplete");
+	}
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) CommonSetScreen("Room", "MainHall");
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
 }
@@ -171,6 +179,7 @@ function MaidQuartersChangeInitiationMaid() {
 // When the player becomes a maid
 function MaidQuartersBecomMaid() {
 	InventoryAdd(Player, "MaidOutfit1", "Cloth");
+	InventoryAdd(Player, "MaidOutfit2", "Cloth");
 	InventoryAdd(Player, "MaidHairband1", "Hat");
 	InventoryWear(Player, "MaidOutfit1", "Cloth", "Default");
 	InventoryWear(Player, "MaidHairband1", "Hat", "Default");
@@ -213,4 +222,39 @@ function MaidQuartersCancelRescue() {
 // The player as head maid can trick the maids into freeing Sarah
 function MaidQuartersFreeSarah() {
 	SarahUnlock();
+}
+
+// The maid can give a duster gag to the player if she's in the sorority
+function MaidQuartersGetDusterGag() {
+	InventoryAdd(Player, "DusterGag", "ItemMouth");
+}
+
+// When the online drink mini game starts
+function MaidQuartersOnlineDrinkStart() {
+	InventoryWear(Player, "WoodenMaidTrayFull", "ItemMisc");
+	MaidQuartersOnlineDrinkCount = 0;
+	MaidQuartersOnlineDrinkValue = 0;
+	MaidQuartersOnlineDrinkCustomer = [];
+}
+
+// If an online player picked a drink from the maid tray, the same player/customer cannot pick twice
+function MaidQuartersOnlineDrinkPick(MemberNumber, DrinkValue) {
+	if ((MaidQuartersOnlineDrinkCount < 5) && (MaidQuartersOnlineDrinkCustomer.indexOf(MemberNumber) < 0)) {
+		MaidQuartersOnlineDrinkCount++;
+		MaidQuartersOnlineDrinkValue = MaidQuartersOnlineDrinkValue + DrinkValue;
+		MaidQuartersOnlineDrinkCustomer.push(MemberNumber);
+		if (MaidQuartersOnlineDrinkCount >= 5) {
+			InventoryWear(Player, "WoodenMaidTray", "ItemMisc");
+			CharacterRefresh(Player);
+			ChatRoomCharacterUpdate(Player);
+		}
+	}
+}
+
+// When the maid tray is empty, the player can get paid (40% of drink value + 10$)
+function MaidQuartersOnlineDrinkPay() {
+	var M = 10 + Math.floor(MaidQuartersOnlineDrinkValue * 0.4);
+	MaidQuartersMaid.CurrentDialog = MaidQuartersMaid.CurrentDialog.replace("REPLACEMONEY", M.toString());
+	CharacterChangeMoney(Player, M);
+	ReputationProgress("Maid", 4);
 }

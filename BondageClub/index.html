@@ -49,6 +49,8 @@
 <script src="Screens/Room/Introduction/Introduction.js"></script>
 <script src="Screens/Room/MaidQuarters/MaidQuarters.js"></script>
 <script src="Screens/Room/Shibari/Shibari.js"></script>
+<script src="Screens/Room/Cell/Cell.js"></script>
+<script src="Screens/Room/Empty/Empty.js"></script>
 <script src="Screens/Room/KidnapLeague/KidnapLeague.js"></script>
 <script src="Screens/Room/Private/Private.js"></script>
 <script src="Screens/Room/Management/Management.js"></script>
@@ -64,10 +66,12 @@
 <script src="Screens/MiniGame/Kidnap/Kidnap.js"></script>
 <script src="Screens/MiniGame/MaidDrinks/MaidDrinks.js"></script>
 <script src="Screens/MiniGame/MaidCleaning/MaidCleaning.js"></script>
+<script src="Screens/MiniGame/SlaveAuction/SlaveAuction.js"></script>
 <script src="Screens/MiniGame/RhythmGame/RhythmGame.js"></script>
 <script src="Screens/Cutscene/PlayerCollaring/PlayerCollaring.js"></script>
 <script src="Screens/Cutscene/PlayerMistress/PlayerMistress.js"></script>
 <script src="Screens/Cutscene/NPCCollaring/NPCCollaring.js"></script>
+<script src="Screens/Cutscene/NPCSlaveAuction/NPCSlaveAuction.js"></script>
 <script src="Screens/Cutscene/SarahIntro/SarahIntro.js"></script>
 <script src="Screens/Online/ChatSearch/ChatSearch.js"></script>
 <script src="Screens/Online/ChatCreate/ChatCreate.js"></script>
@@ -75,48 +79,65 @@
 <script src="Screens/Inventory/ItemMouth/PumpGag/PumpGag.js"></script>
 <script src="Screens/Inventory/ItemArms/LeatherCuffs/LeatherCuffs.js"></script>
 <script src="Screens/Inventory/ItemVulva/VibratingEgg/VibratingEgg.js"></script>
+<script src="Screens/Inventory/ItemVulva/VibratingLatexPanties/VibratingLatexPanties.js"></script>
 <script src="Screens/Inventory/ItemNipples/VibeNippleClamp/VibeNippleClamp.js"></script>
+<script src="Screens/Inventory/ItemButt/ButtPump/ButtPump.js"></script>
 <script src="Screens/Inventory/ItemNeck/ShockCollar/ShockCollar.js"></script>
+<script src="Screens/Inventory/ItemNeckAccessories/CollarShockUnit/CollarShockUnit.js"></script>
 <script src="Screens/Inventory/ItemArms/PaddedMittens/PaddedMittens.js"></script>
 <script src="Screens/Inventory/ItemArms/PaddedMittensLocked/PaddedMittensLocked.js"></script>
 <script src="Screens/Inventory/ItemArms/PaddedMittensHarness/PaddedMittensHarness.js"></script>
 <script src="Screens/Inventory/ItemArms/PaddedMittensHarnessLocked/PaddedMittensHarnessLocked.js"></script>
 <script src="Screens/Inventory/ItemArms/DuctTape/DuctTape.js"></script>
+<script src="Screens/Inventory/ItemHands/PaddedMittens/PaddedMittens.js"></script>
+<script src="Screens/Inventory/ItemHands/PawMittens/PawMittens.js"></script>
 <script src="Screens/Inventory/ItemMouth/ClothGag/ClothGag.js"></script>
 <script src="Screens/Inventory/ItemMouth/DuctTape/DuctTape.js"></script>
 <script src="Screens/Inventory/ItemMisc/MetalPadlock/MetalPadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/IntricatePadlock/IntricatePadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/TimerPadlock/TimerPadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/OwnerPadlock/OwnerPadlock.js"></script>
+<script src="Screens/Inventory/ItemHead/DuctTape/DuctTape.js"></script>
+<script src="Screens/Inventory/ItemMouth/PlugGag/PlugGag.js"></script>
 <script>
 
 /*
-
-	Patreon Import
-
 	NEXT VERSION:
 	
-	MediaWiki ???
+	OK - ItemHands (wildsj)
+	OK - New collar slot + accessories (wildsj)
+	OK - New facial expression with icons (Adokilume)
+	OK - German translation (Adokilume)
+	OK - New tape for mouth + head (Gatetrek + Akita)
+	OK - New plug gag (Gatetrek)
+	OK - New tail straps (Gatetrek)
+	OK - Mermaid tie for legs (Gatetrek)
+	OK - New ear plugs + Bat Collar (Gatetrek & Kirsty)
+	OK - New backgrounds (Kirsty)
+	OK - New deaf effect for hoods (GermanPerson)
+	OK - Magic items in shop, pony fixes (git4nick)	
+	OK - New Irish 8 Feet Cuffs (AshKitty)
+	OK - New posture collars + dildo gag (Sekkmer + Slave)
 	
-	Allow Dommes to use online sub restrains
-		
-	Maid chores:
-	- Online serving drinks: maid need to serve 5 drinks, other players need to click on her and take a free drink / 5$ drink / 10$ drink.  The pay is better if paid drinks were taken. 10$ + 40% of money paid.
-	- Go help shop vendor to demonstrate items
+	OK - New slave market - Buy slaves for your private room
+	OK - In slave market, get hired to break or punish subs, only if you're dominant
+	OK - Sell your private room slaves to the market - The longer the time with her, the higher the $$$
+	OK - Rent your slave to the market - Drop love factor but earns some $$$, the slave still occupy an empty slot in the room
+	OK - Meet random club slaves in the hall, bring them to your room, automatically submissive
+	OK - The "seek trouble" button could bring you club slaves randomly instead of kidnappers
 
-	New random encounters for club slaves: 
-	- Violent Dommes with paddles.  
-	- Dommes that use locks with timers and run.  
-	- Dommes that asks riddles, if the player fails, she gets put in chastity.
-
-	Owner in private room:
-	- can "beep" player if player isn't in chatroom or in private room.  If player doesn't come back to check on her within X minutes, she gets punished.
-	- activity: can lock player in the bitchsuit and puppy play with her.
-	- activity: can restrain everyone in the room that's less dominant + player.
-	- punishment: can lock the player out of the private room for a little while (icon disappear).
-	- punishment: use owner locks on player.
-
-	Patreon Import
+	IN PROGRESS - Online slave: rule to block wardrobe for 1 / 8 / 24 hours or permanently (can be revoked)
+	IN PROGRESS - Online slave: rule to prevent whispering to anyone but your owner, if your owner is in the room
+	IN PROGRESS - Online slave: steal keys and block buying keys from the store
+	IN PROGRESS - Online slave: send to isolation/timer cell for 5 / 15 / 30 / 60 minutes
+	IN PROGRESS - Online slave: force her slave to be a maid and go serve drinks, and then get the profits
+	TO DO - /ban X for room owner
+	TO DO - /whitelist /blacklist /friendlist X
+	
+	TO DO - Proof reading (Management random girl - club slave, Slave Market all girls, Private room custom girl)
+	
+	TO DO - Patreon Import/Update
+	
 */
 
 // When the code is loaded, we start the game engine
