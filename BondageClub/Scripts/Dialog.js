@@ -785,11 +785,7 @@ function DialogDrawItemMenu(C) {
 
 			// remove associated items at the same time
 			if (InventoryGet(C, "ItemNeck") == null) InventoryRemove(C, "ItemNeckAccessories");
-			//if (InventoryGet(C, "ItemHands").Asset.Name == null) {
-			//	if (InventoryGet(C, "ItemArms").Asset.Name == "MittenChain1") InventoryRemove(C, "ItemArms");
-			//	else InventoryWear(C, "MittenChain1", "ItemArms");
-			//}
-//
+
 			// The player can use another item right away, for another character we jump back to her reaction
 			if (C.ID == 0) {
 				if (DialogProgressNextItem == null) SkillProgress("Evasion", DialogProgressSkill);
