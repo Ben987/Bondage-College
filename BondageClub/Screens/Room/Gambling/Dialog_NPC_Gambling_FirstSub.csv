@@ -37,6 +37,7 @@ RemoveSuspensionHempRope,,,finally floor again under the feet.,,
 0,70,(Struggle in your restraints.),Are you having fun?,,Player.IsRestrained()
 0,30,(Play with your own rules.),(She looks expectant),,FirstSubRestrained()
 0,,Let's play fifteen and six.,(she gives you three dice),"TwentyOneController(""new"")",CanPlayTwentyOne()
+0,,Let's play Toothpick.,(she lays out 15 toothpicks)|Your turn,"ToothpickController(""new"")",CanPlayToothpick()
 0,10,I'd like to ask you some questions.,Don't be shy.  How can I help you?,,
 10,11,Which games can I play here? ,That depends on your reputation. Only a simple dice game at first. ,,
 10,20,Can you explain the rules to me?,"Of course, which game interests you?",,
@@ -127,6 +128,16 @@ RemoveSuspensionHempRope,,,finally floor again under the feet.,,
 174,,"Oh, I lost. (Let her tie your legs)",Looks like you're not going anywhere. ,"TwentyOneController(""lost_next"")",ShowDiceStack()
 175,,"Oh, I lost. (Let her tie your arms)",Not much before you can't move at all... ,"TwentyOneController(""lost_next"")",ShowDiceStack()
 176,,"Oh, I lost. (Open your mouth and let her gag you)","You lose! Open up, it's time for a gag...","TwentyOneController(""lost_next"")",ShowDiceStack()
+200,,I take one.,(nods),"ToothpickController("1")",ToothpickCanPickOne()
+200,,I take two.,(nods),"ToothpickController("2")",ToothpickCanPickTwo()
+200,,I take three.,(nods),"ToothpickController("3")",ToothpickCanPickThree()
+200,,I give up. (Let her tie you),(smiles),"ToothpickController(""give_up"")",ShowToothpickStack()
+201,0,"Yeah, I won!",You were lucky. I guess you get to tie me up.,"ToothpickController(""win"")",
+202,0,Dammit! You win.,I want to test some items...,"ToothpickController(""lost"")",
+ToothpickLost,,,(She smiles),,
+Toothpick1,,,(She nods) I take 1,,
+Toothpick2,,,(She nods) I take 2,,
+Toothpick3,,,(She nods) I take 3,,
 MaidRescue,,,(She struggles in her restraints.)  Can you release me?,,IsSubsRestrained()
 MaidRescue,,I'll go find some help.  (Leave her.),,DialogLeave(),
 MaidRescue,,What happened here?,I lost a game and the winner left me!,,
