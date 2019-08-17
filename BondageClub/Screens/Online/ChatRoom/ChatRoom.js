@@ -19,6 +19,8 @@ function ChatRoomCanRemoveFriend() { return ((CurrentCharacter != null) && (Curr
 function ChatRoomCanChangeClothes() { return (Player.CanInteract() && (CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && CurrentCharacter.AllowItem && !((InventoryGet(CurrentCharacter, "ItemNeck") != null) && (InventoryGet(CurrentCharacter, "ItemNeck").Asset.Name == "ClubSlaveCollar"))) }
 function ChatRoomOwnershipOptionIs(Option) { return (Option == ChatRoomOwnershipOption) }
 function ChatRoomCanTakeDrink() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (CurrentCharacter.ID != 0) && Player.CanInteract() && (InventoryGet(CurrentCharacter, "ItemMisc") != null) && (InventoryGet(CurrentCharacter, "ItemMisc").Asset.Name == "WoodenMaidTrayFull")) }
+function ChatRoomIsCollaredByPlayer() { return ((CurrentCharacter != null) && (CurrentCharacter.Ownership != null) && (CurrentCharacter.Ownership.Stage == 1) && (CurrentCharacter.Ownership.MemberNumber == Player.MemberNumber)) }
+function ChatRoomCanServerDrink() { return ((CurrentCharacter != null) && CurrentCharacter.CanWalk() && (ReputationCharacterGet(CurrentCharacter, "Maid") > 0)) }
 
 // Creates the chat room input elements
 function ChatRoomCreateElement() {
@@ -477,4 +479,9 @@ function ChatRoomDrinkPick(DrinkType, Money) {
 		CharacterChangeMoney(Player, Money * -1);
 		DialogLeave();
 	}
+}
+
+// Sends a rule / restriction / punishment to the slave character client, it will be handled from there
+function ChatRoomSendRule(RuleType) {
+	ServerSend("ChatRoomChat", { Content: "Rule" + RuleType, Type: "Hidden", Target: CurrentCharacter.MemberNumber } );
 }

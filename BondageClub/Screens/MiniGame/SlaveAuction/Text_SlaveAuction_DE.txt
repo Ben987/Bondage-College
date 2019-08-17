@@ -1,0 +1,28 @@
+Current bid:
+Aktuelles Gebot:
+Highest bidder:
+Höchstbieter:
+I bid
+Ich biete
+Bid
+Bieten
+You
+Du
+Someone else
+Jemand Anderes
+Nobody
+Niemand
+Your money:
+Dein Geld:
+Give up
+Aufgeben
+Return
+Zurück
+Do I hear
+Bietet jemand
+Going once!
+Zum Ersten!
+Going twice!
+Zum Zweiten!
+Sold!
+Verkauft!

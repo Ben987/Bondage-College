@@ -4,6 +4,7 @@ RemoveClothesForItem,,,Remove some clothes first
 RemoveSuspensionForItem,,,Remove the suspension first
 RemoveChainForItem,,,Remove the chain to the floor first
 MustCollaredFirst,,,A collar must be fitted first to attach accessories to.
+MustCollaredFirstAndRemoveSuspension,,,Must be collared and not suspended first.
 Cancel,,,Cancel
 Exit,,,Back to character
 Next,,,View next items
@@ -87,6 +88,7 @@ LeatherCuffsRestrainWrist,,,SourceCharacter attaches the leather cuffs wrist cha
 LeatherCuffsRestrainElbow,,,SourceCharacter attaches the leather cuffs elbow chain behind DestinationCharacter's back.
 LeatherCuffsRestrainBoth,,,SourceCharacter attaches the leather cuffs wrist and elbow chains behind DestinationCharacter's back.
 DuctTapePoseHands,,,Hands
+DuctTapePoseArms,,,Arms
 DuctTapePoseBottom,,,Skirt
 DuctTapePoseTop,,,Torso
 DuctTapePoseFull,,,Mummy
@@ -107,7 +109,7 @@ DuctTapeMouthTypeSmall,,,Single strip
 DuctTapeMouthTypeCrossed,,,Crossed strips
 DuctTapeMouthTypeFull,,,Full face
 DuctTapeMouthTypeDouble,,,Double layer
-DuctTapeMouthTypeCover,,,ONT
+DuctTapeMouthTypeCover,,,OTN
 DuctTapeMouthSetSmall,,,SourceCharacter puts a piece of duct tape on DestinationCharacter's mouth.
 DuctTapeMouthSetCrossed,,,SourceCharacter crosses two pieces of duct tape on DestinationCharacter's mouth.
 DuctTapeMouthSetFull,,,SourceCharacter fully tapes DestinationCharacter's mouth.
@@ -187,4 +189,5 @@ unchains,,,removes the chains
 mittenstoharness,,,mittens to the baby harness
 mittensfromharness,,,mittens
 NeedHarness,,,They must be wearing a baby harness first to chain the mittens to it.
+FreeArms,,,Free arms first before attaching a mitten chains.
 FacialExpression,,,Facial expression

@@ -18,8 +18,8 @@ function InventoryItemArmsDuctTapeDraw() {
 	// Draw the possible poses
 	DrawText(DialogFind(Player, InventoryItemArmsDuctTapeMessage), 1500, 500, "white", "gray");
 	DrawButton(1000, 550, 225, 225, "", (DialogFocusItem.Property == null) ? "#888888" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Hands.png", 1000, 550);
-	DrawText(DialogFind(Player, "DuctTapePoseHands"), 1125, 800, "white", "gray");
+	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Arms.png", 1000, 550);
+	DrawText(DialogFind(Player, "DuctTapePoseArms"), 1125, 800, "white", "gray");
 	DrawButton(1250, 550, 225, 225, "", ((DialogFocusItem.Property != null) && (DialogFocusItem.Property.Restrain == "Bottom")) ? "#888888" : "White");
 	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Bottom.png", 1250, 550);
 	DrawText(DialogFind(Player, "DuctTapePoseBottom"), 1375, 800, "white", "gray");
