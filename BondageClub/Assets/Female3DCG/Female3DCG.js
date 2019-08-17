@@ -488,7 +488,8 @@ var AssetFemale3DCG = [
 			{ Name: "MetalChastityBeltKey", Wear: false, Value: -1, Effect: ["Unlock-MetalChastityBelt"], Prerequisite: "AccessVulva", Time: 5 },
 			{ Name: "LeatherCrop", Value: 40, Wear: false, BuyGroup: "LeatherCrop", Bonus: [{ Type: "KidnapDomination", Factor: 3 }], ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }] },
 			{ Name: "LeatherWhip", Value: 60, Wear: false, BuyGroup: "LeatherWhip", Bonus: [{ Type: "KidnapBruteForce", Factor: 3 }], ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }] },
-			{ Name: "StraponPanties", Effect: ["Chaste"], Block: ["ItemVulva", "ItemButt"], Value: 50, Prerequisite: "AccessVulva", Time: 15 }
+			{ Name: "StraponPanties", Effect: ["Chaste"], Block: ["ItemVulva", "ItemButt"], Value: 50, Prerequisite: "AccessVulva", Time: 15 },
+			{ Name: "AdvancedChastityBelt", /* Effect: ["Lock"], OwnerOnly: true, */ Extended: true, AllowBlock: ["ItemVulva", "ItemButt"], AllowEffect: ["Chaste", "ReceiveShock", "Egged", "Vibrating"], Prerequisite: "AccessVulva", Value: 300, Difficulty: 50, Time: 20, RemoveTime: 10 }
 		]
 	},
 
