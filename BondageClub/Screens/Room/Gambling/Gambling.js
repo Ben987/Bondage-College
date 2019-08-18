@@ -172,63 +172,49 @@ function GamblingSimpleDiceController(SimpleDiceState) {
 }
 
 
-
+// Draws the Toothpicks
 function GamblingShowToothpickStack () {
 	for (var i = 0; i < ToothpickCount; i++) {
-		DrawImageResize("Screens/Room/Gambling/toothpick.png", 400, 25 + 30 * i, 180, 8);
+		DrawImageResize("Screens/Room/Gambling/toothpick.png", 400, 45 + 30 * i, 180, 8);
 	}
+	DrawText(ToothpickCount, 490, 25, "white", "black")
 	return true;
-}
-
-function sleep( millisecondsToWait ) {
-	var now = new Date().getTime();
-	while (new Date().getTime() < now + millisecondsToWait) {}
 }
 
 //Controller for Toothpick
 function GamblingToothpickController (ToothpickState) {
 	if (ToothpickState == "new") {
-		
-		// Player.Appearance = GamblingAppearancePlayer.slice();
-		// GamblingFirstSub.Appearance = GamblingAppearanceFirst.slice();
-		// console.log(Player.Appearance);
-		// console.log(GamblingFirstSub.Appearance);
-		
 		console.log("new");
 		ToothpickCount = 15;
-		
 		GamblingFirstSub.Stage = 200
-		// return
 	}
+
 	else if (ToothpickState == "give_up") {
 		console.log("give up");
-		//InventoryWearRandom(Player, "ItemArms");
-		//GamblingFirstSub.Stage = 0; 
-		// return
-		GamblingFirstSub.Stage = 202;
-		GamblingFirstSub.CurrentDialog = DialogFind(GamblingFirstSub, "ToothpickLost");
+		GamblingFirstSub.Stage = 203;
 	}
 	
 	else if (ToothpickState == "win") {
 		console.log("controller win");
+		ReputationProgress("Gambling", 1);
 		GamblingFirstSub.AllowItem = true;
 	}
+	
 	else if (ToothpickState == "lost") {
 		console.log("controller lost");
-		var color = getRandomColor()
-		InventoryWearRandom(Player, "ItemArms");
-		InventoryWearRandom(Player, "ItemMouth"); 
-		InventoryWear(Player, "HempRopeHarness", "ItemTorso", color);
-		// InventoryWearRandom(Player, "ItemLegs"); 
-		// InventoryWearRandom(Player, "ItemFeet"); 
-		//InventoryWear(Player, "LeatherArmbinder", "ItemArms");
-		
+		var difficulty = Math.floor(Math.random() * 5) + 2
+		InventoryWearRandom(Player, "ItemArms", difficulty);
+		InventoryWearRandom(Player, "ItemMouth", difficulty); 
+		InventoryWearRandom(Player, "ItemLegs", difficulty); 
+		InventoryWearRandom(Player, "ItemFeet", difficulty); 
 	}
 
 	else {
+		console.log("take " + ToothpickState);
 		ToothpickCount -= ToothpickState
 		console.log("Count Player: " + ToothpickCount);
 
+		// has player lost?
 		if (ToothpickCount <= 0) {
 			console.log("Player lost");
 			GamblingFirstSub.Stage = 202;
@@ -237,92 +223,32 @@ function GamblingToothpickController (ToothpickState) {
 
 		// NPC
 		if (ToothpickCount > 0) {
-			var max_pick = (ToothpickCount >= 3) ? 3 : ToothpickCount
-			var pick_count = Math.floor(Math.random() * max_pick) + 1;
+			// var max_pick = (ToothpickCount >= 3) ? 3 : ToothpickCount
+			// var pick_count = Math.floor(Math.random() * max_pick) + 1;
+			var npc_choice = GamblingToothpickNPCChoice()
 			GamblingFirstSub.Stage = 201
-			console.log(DialogFind(GamblingFirstSub, "Toothpick" + pick_count.toString()));
-			GamblingFirstSub.CurrentDialog = DialogFind(GamblingFirstSub, "Toothpick" + pick_count.toString());
-			ToothpickCount -= pick_count
-			// sleep(500)
+			console.log(DialogFind(GamblingFirstSub, "Toothpick" + npc_choice.toString()));
+			GamblingFirstSub.CurrentDialog = DialogFind(GamblingFirstSub, "Toothpick" + npc_choice.toString());
+			ToothpickCount -= npc_choice
 			GamblingFirstSub.Stage = 200
 			console.log("Count Miss: " + ToothpickCount);	
 		
+			// has NPC lost?
 			if (ToothpickCount <= 0) {
 				GamblingFirstSub.Stage = 201;
 			}
 		}
 	}
+}
 
-	
-	
-
-
-	// NPC round
-	// else if (GamblingFirstSub.Stage >= 201 && GamblingFirstSub.Stage <= 203) {
-	// 	var max_pick = (ToothpickCount >= 3) ? 3 : ToothpickCount
-	// 	var pick_count = Math.floor(Math.random() * max_pick) + 1;
-	// 	GamblingFirstSub.Stage = 200 + pick_count; 
-	// 	console.log("Count Miss: " + ToothpickCount);
-	// }
-
-	//GamblingFirstSub.CurrentDialog = DialogFind(GamblingFirstSub, "ActivityKissIntro");
-	//GamblingSecondSub.CurrentDialog = GamblingSecondSub.CurrentDialog.replace("REPLACEMONEY", GamblingMoneyBet.toString());
-
-/*	
-0,,Let's play Toothpick.,(she lays out 15 toothpicks),"ToothpickController(""new"")",CanPlayToothpick()
-
-200,,I take one.,(nods),"ToothpickController("1")",ToothpickCanPickOne()
-200,,I take two.,(nods),"ToothpickController("2")",ToothpickCanPickTwo()
-200,,I take three.,(nods),"ToothpickController("3")",ToothpickCanPickThree()
-200,,I give up. (Let her tie you),(smiles),"ToothpickController(""give_up"")",ShowToothpickStack()
-
-201,200,Your turn,(She nods) I take 1,"ToothpickController("1")",ShowToothpickStack()
-202,200,Your turn,(She nods) I take 2,"ToothpickController("2")",ShowToothpickStack()
-203,200,Your turn,(She nods) I take 3,"ToothpickController("3")",ShowToothpickStack()
-*/	
-	
-	
-
-
-	// if (GamblingFirstSub.Stage >= 201 && GamblingFirstSub.Stage <= 203) {
-	// 	ToothpickCount -= ToothpickState
-	// 	ToothpickPlayerOnRow = false
-	// 	console.log("Count Player: " + ToothpickCount);
-	// }
-
-
-	// // NPC round
-	// if (GamblingFirstSub.Stage == 200) {
-	// 	var max_pick = (ToothpickCount >= 3) ? 3 : ToothpickCount
-	// 	var pick_count = Math.floor(Math.random() * max_pick) + 1;
-	// 	ToothpickCount -= pick_count
-	// 	GamblingFirstSub.Stage = 200 + pick_count; 
-
-	// 	console.log("Count Miss: " + ToothpickCount);
-	// }
-	
-
-	//if (GamblingFirstSub.Stage >= 201 && GamblingFirstSub.Stage <= 203) {
-	
-
-
-	// else if (ToothpickState == "one") {
-	// 	console.log("-1");
-	// 	ToothpickCount -= 1;
-	// }
-	// else if (ToothpickState == "two") {
-	// 	console.log("-2");
-	// 	ToothpickCount -= 2;
-	// }
-	// else if (ToothpickState == "three") {
-	// 	console.log("-3");
-	// 	ToothpickCount -= 3;
-	// }
-	
-	
-	
-
-
+function GamblingToothpickNPCChoice() {
+	var max_pick = (ToothpickCount >= 3) ? 3 : ToothpickCount
+	var choice = Math.floor(Math.random() * max_pick) + 1;
+	if (ToothpickCount == 6) {choice = 1}
+	else if (ToothpickCount == 4) {choice = 3}
+	else if (ToothpickCount == 3) {choice = 2}
+	else if (ToothpickCount == 2) {choice = 1}
+	return choice
 }
 
 
