@@ -175,7 +175,7 @@ function GamblingSimpleDiceController(SimpleDiceState) {
 // Draws the Toothpicks
 function GamblingShowToothpickStack () {
 	for (var i = 0; i < ToothpickCount; i++) {
-		DrawImageResize("Screens/Room/Gambling/toothpick.png", 400, 45 + 30 * i, 180, 8);
+		DrawImageResize("Screens/Room/Gambling/toothpick.png", 410, 45 + 26 * i, 160, 7);
 	}
 	DrawText(ToothpickCount, 490, 25, "white", "black")
 	return true;
