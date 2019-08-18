@@ -184,24 +184,20 @@ function GamblingShowToothpickStack () {
 //Controller for Toothpick
 function GamblingToothpickController (ToothpickState) {
 	if (ToothpickState == "new") {
-		console.log("new");
 		ToothpickCount = 15;
 		GamblingFirstSub.Stage = 200
 	}
 
 	else if (ToothpickState == "give_up") {
-		console.log("give up");
 		GamblingFirstSub.Stage = 203;
 	}
 	
 	else if (ToothpickState == "win") {
-		console.log("controller win");
 		ReputationProgress("Gambling", 1);
 		GamblingFirstSub.AllowItem = true;
 	}
 	
 	else if (ToothpickState == "lost") {
-		console.log("controller lost");
 		var difficulty = Math.floor(Math.random() * 5) + 2
 		InventoryWearRandom(Player, "ItemArms", difficulty);
 		InventoryWearRandom(Player, "ItemMouth", difficulty); 
@@ -210,28 +206,21 @@ function GamblingToothpickController (ToothpickState) {
 	}
 
 	else {
-		console.log("take " + ToothpickState);
 		ToothpickCount -= ToothpickState
-		console.log("Count Player: " + ToothpickCount);
 
 		// has player lost?
 		if (ToothpickCount <= 0) {
-			console.log("Player lost");
 			GamblingFirstSub.Stage = 202;
 			GamblingFirstSub.CurrentDialog = DialogFind(GamblingFirstSub, "ToothpickLost");
 		}
 
 		// NPC
 		if (ToothpickCount > 0) {
-			// var max_pick = (ToothpickCount >= 3) ? 3 : ToothpickCount
-			// var pick_count = Math.floor(Math.random() * max_pick) + 1;
 			var npc_choice = GamblingToothpickNPCChoice()
 			GamblingFirstSub.Stage = 201
-			console.log(DialogFind(GamblingFirstSub, "Toothpick" + npc_choice.toString()));
 			GamblingFirstSub.CurrentDialog = DialogFind(GamblingFirstSub, "Toothpick" + npc_choice.toString());
 			ToothpickCount -= npc_choice
 			GamblingFirstSub.Stage = 200
-			console.log("Count Miss: " + ToothpickCount);	
 		
 			// has NPC lost?
 			if (ToothpickCount <= 0) {
