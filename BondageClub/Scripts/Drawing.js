@@ -55,26 +55,49 @@ function DrawLoad() {
 
 // Returns the image file or build it from the source
 function DrawGetImage(Source) {
-
-    // Search in the cache to find the image and make sure this image is valid
-    if (!DrawCacheImage[Source] || !DrawCacheImage[Source].complete || (typeof(DrawCacheImage[Source].naturalWidth) == "undefined") || (DrawCacheImage[Source].naturalWidth == 0)) {
-        var img = new Image;
-        img.src = Source;
-        DrawCacheImage[Source] = img;
-		
-		// Reloads all character canvas once everything is loaded
-		if (Source.indexOf("Assets") >= 0) {
-			DrawCacheTotalImages++;
-			img.onload = function () {			
-				DrawCacheLoadedImages++;
-				if (DrawCacheLoadedImages == DrawCacheTotalImages)
-					CharacterLoadCanvasAll();
-			}			
+	// Search in the cache to find the image and make sure this image is valid
+	var Img = DrawCacheImage[Source];
+	if (!Img) {
+		Img = new Image;
+		DrawCacheImage[Source] = Img;
+		// Keep track of image load state
+		var IsAsset = (Source.indexOf("Assets") >= 0);
+		if (IsAsset) {
+			++DrawCacheTotalImages;
+			Img.addEventListener("load", function () {
+				DrawGetImageOnLoad(Img);
+			});
 		}
-    }
 
-    // returns the final image
-    return DrawCacheImage[Source];
+		Img.addEventListener("error", function () {
+			DrawGetImageOnError(Img, IsAsset);
+		});
+
+		// Start loading
+		Img.src = Source;
+	}
+
+	// returns the final image
+	return Img;
+}
+
+// Reloads all character canvas once everything is loaded
+function DrawGetImageOnLoad(Img) {
+	++DrawCacheLoadedImages;
+	if (DrawCacheLoadedImages == DrawCacheTotalImages) CharacterLoadCanvasAll();
+}
+
+// Attempt to redownload an image if it fails to load
+function DrawGetImageOnError(Img, IsAsset) {
+	if (Img.errorcount == null) Img.errorcount = 0;
+	Img.errorcount += 1;
+	if (Img.errorcount < 3) {
+		Img.src = Img.src;
+	} else {
+		// Load failed. Display the error in the console and mark it as done.
+		console.log("Error loading image " + Img.src);
+		if (IsAsset) DrawGetImageOnLoad(Img);
+	}
 }
 
 // Refreshes the character if not all images are loaded and draw the character canvas on the main game screen
@@ -144,17 +167,28 @@ function DrawCharacter(C, X, Y, Zoom) {
 
 // Draw a zoomed image from a source to a specific canvas
 function DrawImageZoomCanvas(Source, Canvas, SX, SY, SWidth, SHeight, X, Y, Width, Height) {
-	Canvas.drawImage(DrawGetImage(Source), SX, SY, Math.round(SWidth), Math.round(SHeight), X, Y, Width, Height);
+	var Img = DrawGetImage(Source);
+	if (!Img.complete) return false;
+	if (!Img.naturalWidth) return true;
+	Canvas.drawImage(Img, SX, SY, Math.round(SWidth), Math.round(SHeight), X, Y, Width, Height);
+	return true;
 }
 
 function DrawImageResize(Source, X, Y, Width, Height) {
-	var img = DrawGetImage(Source);
-	MainCanvas.drawImage(img, 0, 0, img.width, img.height, X, Y, Width, Height);
+	var Img = DrawGetImage(Source);
+	if (!Img.complete) return false;
+	if (!Img.naturalWidth) return true;
+	MainCanvas.drawImage(Img, 0, 0, Img.width, Img.height, X, Y, Width, Height);
+	return true;
 }
 
 // Draw a zoomed image from a source to a specific canvas
 function DrawImageCanvas(Source, Canvas, X, Y) {
-	Canvas.drawImage(DrawGetImage(Source), X, Y);
+	var Img = DrawGetImage(Source);
+	if (!Img.complete) return false;
+	if (!Img.naturalWidth) return true;
+	Canvas.drawImage(Img, X, Y);
+	return true;
 }
 
 // Draw a specific canvas on the main canvas
@@ -169,73 +203,83 @@ function DrawCanvasZoom(Canvas, X, Y, Zoom) {
 
 // Draw a zoomed image from a source to the canvas and mirrors it from left to right
 function DrawImageZoomMirror(Source, SX, SY, SWidth, SHeight, X, Y, Width, Height) {
+	var Img = DrawGetImage(Source);
+	if (!Img.complete) return false;
+	if (!Img.naturalWidth) return true;
 	MainCanvas.save();
-    MainCanvas.scale(-1, 1);
-	MainCanvas.drawImage(DrawGetImage(Source), X * -1, Y, Width * -1, Height);
-    MainCanvas.restore();
+	MainCanvas.scale(-1, 1);
+	MainCanvas.drawImage(Img, X * -1, Y, Width * -1, Height);
+	MainCanvas.restore();
+	return true;
 }
 
 // Draw an image from a source to the canvas
 function DrawImage(Source, X, Y) {
-	MainCanvas.drawImage(DrawGetImage(Source), X, Y);
+	var Img = DrawGetImage(Source);
+	if (!Img.complete) return false;
+	if (!Img.naturalWidth) return true;
+	MainCanvas.drawImage(Img, X, Y);
+	return true;
 }
 
 // Draw an image from a source to the canvas
 function DrawImageCanvasColorize(Source, Canvas, X, Y, Zoom, HexColor, FullAlpha) {
 
 	// Make sure that the starting image is loaded
-	//var Img = new Image();
-	//Img.src = DrawGetImage(Source).src;
 	var Img = DrawGetImage(Source);
-	if ((Img != null) && (Img.width > 0)) {
+	if (!Img.complete) return false;
+	if (!Img.naturalWidth) return true;
 
-		// Prepares a canvas to draw the colorized image
-		ColorCanvas.width = Img.width;
-		ColorCanvas.height = Img.height;
-		var ctx = ColorCanvas.getContext("2d");
-		ctx.drawImage(Img,0,0);
-		var imageData = ctx.getImageData(0,0,ColorCanvas.width,ColorCanvas.height);
-		var data = imageData.data;
+	// Prepares a canvas to draw the colorized image
+	ColorCanvas.width = Img.width;
+	ColorCanvas.height = Img.height;
+	var ctx = ColorCanvas.getContext("2d");
+	ctx.drawImage(Img, 0, 0);
+	var imageData = ctx.getImageData(0, 0, ColorCanvas.width, ColorCanvas.height);
+	var data = imageData.data;
 
-		// Get the RGB color used to transform
-		var rgbColor = DrawHexToRGB(HexColor);
-		var trans;
+	// Get the RGB color used to transform
+	var rgbColor = DrawHexToRGB(HexColor);
+	var trans;
 
-		// We transform each non transparent pixel based on the RGG value
-		if (FullAlpha) {
-			for(var p = 0, len = data.length; p < len; p+=4) {
-				if (data[p+3] == 0)
-				   continue;
-				trans = ((data[p] + data[p + 1] + data[p + 2]) / 383);
-				data[p + 0] = rgbColor.r * trans;
-				data[p + 1] = rgbColor.g * trans;
-				data[p + 2] = rgbColor.b * trans;
-			}
-		} else {
-			for(var p = 0, len = data.length; p < len; p+=4) {
-				trans = ((data[p] + data[p + 1] + data[p + 2]) / 383);
-				if ((data[p+3] == 0) || (trans < 0.8) || (trans > 1.2))
-				   continue;
-				data[p + 0] = rgbColor.r * trans;
-				data[p + 1] = rgbColor.g * trans;
-				data[p + 2] = rgbColor.b * trans;
-			}
+	// We transform each non transparent pixel based on the RGG value
+	if (FullAlpha) {
+		for (var p = 0, len = data.length; p < len; p += 4) {
+			if (data[p + 3] == 0)
+				continue;
+			trans = ((data[p] + data[p + 1] + data[p + 2]) / 383);
+			data[p + 0] = rgbColor.r * trans;
+			data[p + 1] = rgbColor.g * trans;
+			data[p + 2] = rgbColor.b * trans;
 		}
-
-		// Replace the source image with the modified canvas
-		ctx.putImageData(imageData, 0, 0);
-		Canvas.drawImage(ctx.canvas, 0, 0, Img.width, Img.height, X, Y, Img.width * Zoom, Img.height * Zoom);
-	
+	} else {
+		for (var p = 0, len = data.length; p < len; p += 4) {
+			trans = ((data[p] + data[p + 1] + data[p + 2]) / 383);
+			if ((data[p + 3] == 0) || (trans < 0.8) || (trans > 1.2))
+				continue;
+			data[p + 0] = rgbColor.r * trans;
+			data[p + 1] = rgbColor.g * trans;
+			data[p + 2] = rgbColor.b * trans;
+		}
 	}
-	
+
+	// Replace the source image with the modified canvas
+	ctx.putImageData(imageData, 0, 0);
+	Canvas.drawImage(ctx.canvas, 0, 0, Img.width, Img.height, X, Y, Img.width * Zoom, Img.height * Zoom);
+
+	return true;
 }
 
 // Draw an image from a source to the canvas
 function DrawImageMirror(Source, X, Y) {
+	var Img = DrawGetImage(Source)
+	if (!Img.complete) return false;
+	if (!Img.naturalWidth) return true;
 	MainCanvas.save();
-    MainCanvas.scale(-1, 1);
-	MainCanvas.drawImage(DrawGetImage(Source), X * -1, Y);
-    MainCanvas.restore();
+	MainCanvas.scale(-1, 1);
+	MainCanvas.drawImage(Img, X * -1, Y);
+	MainCanvas.restore();
+	return true;
 }
 
 // Reduces the font size progressively until it fits the wrap size
