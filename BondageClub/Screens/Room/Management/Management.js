@@ -297,7 +297,7 @@ function ManagementFindClubSlaveRandomIntro() {
 	CharacterNaked(ManagementRandomGirl);
 	ManagementRandomActivityCount = 0;
 	ManagementRandomTalkCount = 0;
-	ManagementVisitRoom = ((Math.random() >= 0.5) && ManagementCanTransferToRoom());
+	ManagementVisitRoom = ((Math.random() >= 0.67) && ManagementCanTransferToRoom());
 
 	// At 0, the club slave player meets another slave.  At 1, 2 & 3, the club slave isn't restrained.  At 4 and more, the club slave is restrained.
 	var Intro = (Math.floor(Math.random() * 6) + 1).toString();

@@ -30,6 +30,7 @@ Bra,Bra2,Style 2
 Bra,Bra7,Style 3
 Bra,Bra8,Lace and Satin
 Bra,Bra9,Strapless
+Bra,Bandeau1,Bandeau
 Bra,Bustier1,Satin Bustier
 Bra,Corset1,Corset + Garters
 Bra,Corset2,Corset
@@ -266,6 +267,7 @@ ItemArms,CollarLeashHolding,Holding Leash
 ItemHands,,Hands
 ItemHands,PaddedMittens,Padded Mittens
 ItemHands,PawMittens,Paw Mittens
+ItemHands,DuctTape,Duct Tape
 ItemNeck,,Neck
 ItemNeck,LeatherCollar,Leather Collar
 ItemNeck,LeatherCollarBell,Bell Collar
