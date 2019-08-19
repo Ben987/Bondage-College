@@ -214,7 +214,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 
 				// OwnerOnly items can only get update if it comes from owner
 				if (Asset[I].OwnerOnly && (C.ID == 0)) {
-					if ((C.Ownership == null) || (C.Ownership.MemberNumber == null) || (C.Ownership.MemberNumber != SourceMemberNumber)) break;
+					if ((C.Ownership == null) || (C.Ownership.MemberNumber == null) || (C.Ownership.MemberNumber != SourceMemberNumber)) continue;
 				}
 
 				// Creates the item and colorize it
