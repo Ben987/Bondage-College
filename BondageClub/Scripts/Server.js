@@ -99,7 +99,7 @@ function ServerValidateProperties(C, Item) {
 	if ((C.AccountName.substring(0, 4) == "NPC_") || (C.AccountName.substring(0, 4) == "NPC-")) return;
 
 	// For each effect on the item
-	if ((Item.Property != null) && (Item.Property.Effect != null))
+	if ((Item.Property != null) && (Item.Property.Effect != null)) {
 		for (var E = 0; E < Item.Property.Effect.length; E++) {
 
 			// Make sure the item can be locked, remove any lock that's invalid
@@ -150,11 +150,11 @@ function ServerValidateProperties(C, Item) {
 				}
 
 			}
-
 		}
+	}
 
 	// For each block on the item
-	if ((Item.Property != null) && (Item.Property.Block != null))
+	if ((Item.Property != null) && (Item.Property.Block != null)) {
 		for (var B = 0; B < Item.Property.Block.length; B++) {
 
 			// Check if the effect is allowed for the item
@@ -169,9 +169,12 @@ function ServerValidateProperties(C, Item) {
 				Item.Property.Block.splice(B, 1);
 				B--;
 			}
-
 		}
+	}
 		
+	if ((Item.Property != null) && (Item.Property.VisibleLayers != null) && !Array.isArray(Item.Property.VisibleLayers)) {
+		delete Item.Property.VisibleLayers;
+	} 
 }
 
 // Loads the appearance assets from a server bundle that only contains the main info (no assets)
@@ -188,13 +191,15 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 			else
 				if ((C.Ownership != null) && (C.Ownership.MemberNumber != null) && (C.Ownership.MemberNumber != SourceMemberNumber) && InventoryOwnerOnlyItem(C.Appearance[A])) {
 
-					// If the owner-locked item is sent back from a non-owner, we allow to change some properties and lock it back with the owner lock
-					var NA = C.Appearance[A];
-					for (var B = 0; B < Bundle.length; B++)
-						if ((C.Appearance[A].Asset.Name == Bundle[B].Name) && (C.Appearance[A].Asset.Group.Name == Bundle[B].Group) && (C.Appearance[A].Asset.Group.Family == AssetFamily))
-							NA.Property = Bundle[B].Property;
-					ServerValidateProperties(C, NA);
-					InventoryLock(C, NA, { Asset: AssetGet(AssetFamily, "ItemMisc", "OwnerPadlock")}, C.Ownership.MemberNumber);
+					if (!C.Appearance[A].Asset.OwnerOnly) {
+						// If the owner-locked item is sent back from a non-owner, we allow to change some properties and lock it back with the owner lock
+						var NA = C.Appearance[A];
+						for (var B = 0; B < Bundle.length; B++)
+							if ((C.Appearance[A].Asset.Name == Bundle[B].Name) && (C.Appearance[A].Asset.Group.Name == Bundle[B].Group) && (C.Appearance[A].Asset.Group.Family == AssetFamily))
+								NA.Property = Bundle[B].Property;
+						ServerValidateProperties(C, NA);
+						InventoryLock(C, NA, { Asset: AssetGet(AssetFamily, "ItemMisc", "OwnerPadlock")}, C.Ownership.MemberNumber);
+					}
 					Appearance.push(NA);
 
 				}
@@ -206,6 +211,11 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 		// Cycles in all assets to find the correct item to add (do not add )
 		for (var I = 0; I < Asset.length; I++)
 			if ((Asset[I].Name == Bundle[A].Name) && (Asset[I].Group.Name == Bundle[A].Group) && (Asset[I].Group.Family == AssetFamily)) {
+
+				// OwnerOnly items can only get update if it comes from owner
+				if (Asset[I].OwnerOnly && (C.ID == 0)) {
+					if ((C.Ownership == null) || (C.Ownership.MemberNumber == null) || (C.Ownership.MemberNumber != SourceMemberNumber)) break;
+				}
 
 				// Creates the item and colorize it
 				var NA = {

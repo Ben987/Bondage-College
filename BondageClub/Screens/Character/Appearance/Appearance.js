@@ -283,9 +283,29 @@ function CharacterAppearanceBuildCanvas(C) {
 			// Cycle through all layers of the image
 			var MaxLayer = (CA.Asset.Layer == null) ? 1 : CA.Asset.Layer.length;
 			for (var L = 0; L < MaxLayer; L++) {
+				var Layer =  "";
+
+				if (CA.Asset.Layer != null) {
+					Layer = "_" + CA.Asset.Layer[L].Name;
+					if (CA.Asset.Layer[L].AllowTypes.indexOf(Variation) < 0) continue;
+					if (CA.Asset.Layer[L].AllowPropertyVisibility) {
+						if (CA.Property == null || CA.Property.VisibleLayers == null) {
+							if (!CA.Asset.Layer[L].DefaultPropertyVisible) continue;
+						} else if (CA.Property.VisibleLayers.indexOf(CA.Asset.Layer[L].Name) < 0) continue;
+					}
+					if (!CA.Asset.Layer[L].HasPose) Pose = "";
+					if (!CA.Asset.Layer[L].HasExpression) Expression = "";
+					if (!CA.Asset.Layer[L].HasType) Variation = "";
+					if (CA.Asset.Layer[L].NewParentGroupName != null && CA.Asset.Layer[L].NewParentGroupName != CA.Asset.Group.ParentGroupName) {
+						if (CA.Asset.Layer[L].NewParentGroupName == "") G = "";
+						else
+							for (var FG = 0; FG < C.Appearance.length; FG++)
+								if (CA.Asset.Layer[L].NewParentGroupName == C.Appearance[FG].Asset.Group.Name)
+									G = "_" + C.Appearance[FG].Asset.Name;
+					}
+				}
 
 				// Draw the item on the canvas (default or empty means no special color, # means apply a color, regular text means we apply that text)
-				var Layer = (CA.Asset.Layer == null) ? "" : "_" + CA.Asset.Layer[L].Name;
 				if ((CA.Color != null) && (CA.Color.indexOf("#") == 0) && ((CA.Asset.Layer == null) || CA.Asset.Layer[L].AllowColorize)) {
 					DrawImageCanvasColorize("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + G + Variation + Layer + ".png", C.Canvas.getContext("2d"), CA.Asset.Group.DrawingLeft, CA.Asset.Group.DrawingTop, 1, CA.Color, CA.Asset.Group.DrawingFullAlpha);
 					if (!CA.Asset.Group.DrawingBlink) DrawImageCanvasColorize("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + G + Variation + Layer + ".png", C.CanvasBlink.getContext("2d"), CA.Asset.Group.DrawingLeft, CA.Asset.Group.DrawingTop, 1, CA.Color, CA.Asset.Group.DrawingFullAlpha);

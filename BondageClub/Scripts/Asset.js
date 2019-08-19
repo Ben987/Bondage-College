@@ -75,13 +75,33 @@ function AssetAdd(NewAsset) {
 		IsLock: (NewAsset.IsLock == null) ? false : NewAsset.IsLock,
 		OwnerOnly: (NewAsset.OwnerOnly == null) ? false : NewAsset.OwnerOnly,
 		ExpressionTrigger : NewAsset.ExpressionTrigger,
-		Layer: NewAsset.Layer,
+		Layer: BuildLayer(NewAsset.Layer),
 		AllowEffect: NewAsset.AllowEffect,
 		AllowBlock: NewAsset.AllowBlock
 	}
 	// Unwearable assets are not visible but can be overwritten
 	if (!A.Wear && NewAsset.Visible != true) A.Visible = false;
 	Asset.push(A);
+}
+
+function BuildLayer(NewLayers) {
+	if (NewLayers == null || !Array.isArray(NewLayers)) return null;
+	var Layers = [];
+	for (var L = 0; L < NewLayers.length; L++) {
+		var Layer = NewLayers[L];
+		Layers.push({
+			Name: Layer.Name,
+			AllowColorize: (Layer.AllowColorize == null) ? true : Layer.AllowColorize,
+			AllowTypes: (Layer.AllowTypes == null || !Array.isArray(Layer.AllowTypes)) ? [""] : Layer.AllowTypes,
+			HasPose: (Layer.HasPose == null) ? true : Layer.HasPose,
+			HasExpression: (Layer.HasExpression == null) ? true : Layer.HasExpression,
+			NewParentGroupName: Layer.NewParentGroupName,
+			HasType: (Layer.HasType == null) ? true : Layer.HasType,
+			AllowPropertyVisibility: (Layer.AllowPropertyVisibility == null) ? false : Layer.AllowPropertyVisibility,
+			DefaultPropertyVisible: (Layer.DefaultPropertyVisible == null) ? true : Layer.DefaultPropertyVisible
+		});
+	} 
+	return Layers;
 }
 
 // Builds the asset description from the CSV file
