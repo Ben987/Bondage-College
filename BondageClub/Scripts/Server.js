@@ -173,7 +173,7 @@ function ServerValidateProperties(C, Item) {
 	}
 
 	if ((Item.Property != null) && (Item.Property.Type != null)) {
-		if ((Item.Asset.AllowType != null) && (Item.Asset.AllowType.indexOf(Item.Property.Type) < 0)) {
+		if ((Item.Asset.AllowType == null) || (Item.Asset.AllowType.indexOf(Item.Property.Type) < 0)) {
 			delete Item.Property.Type;
 		}
 	} 
