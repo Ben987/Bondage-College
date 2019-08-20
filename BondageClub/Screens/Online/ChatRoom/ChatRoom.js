@@ -220,27 +220,40 @@ function ChatRoomSendChat() {
 		ChatRoomLastMessage.push(msg);
 		ChatRoomLastMessageIndex = ChatRoomLastMessage.length;
 		
-		// Some custom functions like /dice or /coin are implemented for randomness
-		if (msg.toLowerCase().indexOf("/dice") == 0) {
+		if (msg[0] == "/") {
+			var low = msg.toLowerCase();
+			// Some custom functions like /dice or /coin are implemented for randomness
+			if (low.indexOf("/dice") == 0) {
 			
-			// The player can roll a dice, if no size is specified, a 6 sided dice is assumed
-			var Dice = (isNaN(parseInt(msg.substring(5, 50).trim()))) ? 6 : parseInt(msg.substring(5, 50).trim());
-			if ((Dice < 4) || (Dice > 100)) Dice = 6;
-			msg = TextGet("ActionDice");
-			msg = msg.replace("SourceCharacter", Player.Name);
-			msg = msg.replace("DiceType", Dice.toString());
-			msg = msg.replace("DiceResult", (Math.floor(Math.random() * Dice) + 1).toString());
-			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Action" } );
-
-		} else if (msg.toLowerCase().indexOf("/coin") == 0) {
-
-			// The player can flip a coin, heads or tails are 50/50
-			msg = TextGet("ActionCoin");
-			var Heads = (Math.random() >= 0.5);
-			msg = msg.replace("SourceCharacter", Player.Name);
-			msg = msg.replace("CoinResult", Heads ? TextGet("Heads") : TextGet("Tails"));
-			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Action" } );
-
+				// The player can roll a dice, if no size is specified, a 6 sided dice is assumed
+				var Dice = (isNaN(parseInt(msg.substring(5, 50).trim()))) ? 6 : parseInt(msg.substring(5, 50).trim());
+				if ((Dice < 4) || (Dice > 100)) Dice = 6;
+				msg = TextGet("ActionDice");
+				msg = msg.replace("SourceCharacter", Player.Name);
+				msg = msg.replace("DiceType", Dice.toString());
+				msg = msg.replace("DiceResult", (Math.floor(Math.random() * Dice) + 1).toString());
+				if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Action" } );
+	
+			} else if (low.indexOf("/coin") == 0) {
+	
+				// The player can flip a coin, heads or tails are 50/50
+				msg = TextGet("ActionCoin");
+				var Heads = (Math.random() >= 0.5);
+				msg = msg.replace("SourceCharacter", Player.Name);
+				msg = msg.replace("CoinResult", Heads ? TextGet("Heads") : TextGet("Tails"));
+				if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Action" } );
+	
+			} else if ((Player.MemberNumber == ChatRoomData.CreatorMemberNumber) || (Player.MemberNumber == ChatRoomData.PromotedMemberNumber)) {
+				if (low.indexOf("/ban") == 0) {
+					ChatRoomCommandAction("Ban", low);
+				} else if (low.indexOf("/unban") == 0) {
+					ChatRoomCommandAction("Unban", low);
+				} else if (low.indexOf("/kick") == 0) {
+					ChatRoomCommandAction("Kick", low);
+				} else if (low.indexOf("/promote") == 0) {
+					ChatRoomCommandAction("Promote", low);
+				}  
+			}
 		} else if (msg.indexOf("*") == 0 || msg.indexOf("/me ") == 0) {
 
 			// The player can emote an action using * or /me (for those IRC or Skype users), it doesn't garble
@@ -278,6 +291,13 @@ function ChatRoomSendChat() {
 	
 	}
 
+}
+
+function ChatRoomCommandAction(Action, Message) {
+	var C = parseInt(Message.substring(Message.indexOf(" ") + 1));
+	if ((C > 0) && ((C != Player.MemberNumber) || (Action == "Promote"))) {
+		ServerSend("ChatRoomAction", { MemberNumber: C, Action: Action });
+	}
 }
 
 // Publishes the player action (add, remove, swap) to the chat
@@ -418,14 +438,14 @@ function ChatRoomViewProfile() {
 
 // Returns TRUE if the current user is the room creator and not herself
 function ChatRoomCanBanUser() {
-	if ((CurrentCharacter != null) && (CurrentCharacter.ID != 0) && (Player.OnlineID == ChatRoomData.CreatorID))
+	if ((CurrentCharacter != null) && (CurrentCharacter.ID != 0) && ((Player.MemberNumber == ChatRoomData.CreatorMemberNumber) || (Player.MemberNumber == ChatRoomData.PromotedMemberNumber)))
 		return true;
 }
 
 // Sends a ban command to the server for the current character, if the player is the room creator
 function ChatRoomBanFromRoom(Action) {
-	if ((CurrentCharacter != null) && (CurrentCharacter.ID != 0) && (Player.OnlineID == ChatRoomData.CreatorID)) {
-		ServerSend("ChatRoom" + Action, CurrentCharacter.AccountName.replace("Online-", ""));
+	if ((CurrentCharacter != null) && (CurrentCharacter.ID != 0) && ((Player.MemberNumber == ChatRoomData.CreatorMemberNumber) || (Player.MemberNumber == ChatRoomData.PromotedMemberNumber))) {
+		ServerSend("ChatRoomAction", { MemberNumber: CurrentCharacter, Action: Action });
 		DialogLeave();
 	}
 }
