@@ -378,18 +378,7 @@ function DrawButton(Left, Top, Width, Height, Label, Color, Image, HoveringText)
 	
 	// Draw the hovering text
 	if ((HoveringText != null) && (MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile) {
-		Left = (MouseX > 1000) ? Left - 475 : Left + Width + 25;
-		Top = Top + (Height - 65) / 2;
-		MainCanvas.beginPath();
-		MainCanvas.rect(Left, Top, 450, 65);
-		MainCanvas.fillStyle = "#FFFF88"; 
-		MainCanvas.fillRect(Left, Top, 450, 65);
-		MainCanvas.fill();	
-		MainCanvas.lineWidth = '2';
-		MainCanvas.strokeStyle = 'black';
-		MainCanvas.stroke();
-		MainCanvas.closePath();
-		DrawTextFit(HoveringText, Left + 225, Top + 33, 444, "black");
+		DrawButtonHover(Left, Top, Width, Height, HoveringText);
 	}
 
 }
@@ -446,19 +435,24 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 
 	// Draw the hovering text
 	if ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height)) {
-		Left = (MouseX > 1000) ? Left - 475 : Left + Width + 25;
-		Top = Top + (Height - 65) / 2;
-		MainCanvas.beginPath();
-		MainCanvas.rect(Left, Top, 450, 65);
-		MainCanvas.fillStyle = "#FFFF88"; 
-		MainCanvas.fillRect(Left, Top, 450, 65);
-		MainCanvas.fill();	
-		MainCanvas.lineWidth = '2';
-		MainCanvas.strokeStyle = 'black';
-		MainCanvas.stroke();
-		MainCanvas.closePath();
-		DrawTextFit((MouseX > Split) ? NextText(): BackText(), Left + 225, Top + 33, 444, "black");
+		DrawButtonHover(Left, Top, Width, Height, (MouseX > Split) ? NextText(): BackText());
 	}
+}
+
+// Draw the hovering text
+function DrawButtonHover(Left, Top, Width, Height, HoveringText) {
+	Left = (MouseX > 1000) ? Left - 475 : Left + Width + 25;
+	Top = Top + (Height - 65) / 2;
+	MainCanvas.beginPath();
+	MainCanvas.rect(Left, Top, 450, 65);
+	MainCanvas.fillStyle = "#FFFF88";
+	MainCanvas.fillRect(Left, Top, 450, 65);
+	MainCanvas.fill();
+	MainCanvas.lineWidth = '2';
+	MainCanvas.strokeStyle = 'black';
+	MainCanvas.stroke();
+	MainCanvas.closePath();
+	DrawTextFit(HoveringText, Left + 225, Top + 33, 444, "black");
 }
 
 // Draw a basic empty rectangle
