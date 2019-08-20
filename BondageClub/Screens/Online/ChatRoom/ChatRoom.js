@@ -220,7 +220,7 @@ function ChatRoomSendChat() {
 		ChatRoomLastMessage.push(msg);
 		ChatRoomLastMessageIndex = ChatRoomLastMessage.length;
 		
-		if (msg[0] == "/") {
+		if ((msg[0] == "/") && (msg.indexOf("/me ") != 0)) {
 			var low = msg.toLowerCase();
 			// Some custom functions like /dice or /coin are implemented for randomness
 			if (low.indexOf("/dice") == 0) {
