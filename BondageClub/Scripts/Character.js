@@ -264,16 +264,14 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 					if (ChatRoomData.Character[C].ID == data.ID)
 						if (ChatRoomData.Character[C].Appearance.length != data.Appearance.length)
 							Refresh = true;
-						else 
-							for (var A = 0; A < data.Appearance.length; A++)
-								if ((data.Appearance[A].Name != ChatRoomData.Character[C].Appearance[A].Name) || (data.Appearance[A].Group != ChatRoomData.Character[C].Appearance[A].Group))
-									Refresh = true;
-								else
-									if ((data.Appearance[A].Property != null) && (ChatRoomData.Character[C].Appearance[A].Property != null) && (JSON.stringify(data.Appearance[A].Property) != JSON.stringify(ChatRoomData.Character[C].Appearance[A].Property)))
-										Refresh = true;
-									else 
-										if (((data.Appearance[A].Property != null) && (ChatRoomData.Character[C].Appearance[A].Property == null)) || ((data.Appearance[A].Property == null) && (ChatRoomData.Character[C].Appearance[A].Property != null)))
-											Refresh = true;
+						else
+							for (var A = 0; A < data.Appearance.length && !Refresh; A++) {
+								var Old = ChatRoomData.Character[C].Appearance[A];
+								var New = data.Appearance[A];
+								if ((New.Name != Old.Name) || (New.Group != Old.Group) || (New.Color != Old.Color)) Refresh = true;
+								else if ((New.Property != null) && (Old.Property != null) && (JSON.stringify(New.Property) != JSON.stringify(Old.Property))) Refresh = true;
+								else if (((New.Property != null) && (Old.Property == null)) || ((New.Property == null) && (Old.Property != null))) Refresh = true;
+							}
 
 		// Flags "refresh" if the ownership or inventory has changed
 		if (!Refresh && (JSON.stringify(Char.Ownership) !== JSON.stringify(data.Ownership))) Refresh = true;
