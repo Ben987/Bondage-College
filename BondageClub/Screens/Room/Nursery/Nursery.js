@@ -5,7 +5,7 @@ var NurseryJustClicked = null;
 var NurseryNurse = null;
 var NurseryABDL1 = null;
 var NurseryABDL2 = null;
-var NurseryPlayerBadBabyStatus = 0;						//	0 = Good girl	1 = ready to be forgiven	>= 2 = severity of naughtyness.
+var NurseryPlayerBadBabyStatus = 0;						//	0 = Good girl	1 = ready to be forgiven	>= 2 = severity of naughtiness.
 var NurseryPlayerInappropriateCloth = null;
 var NurseryCoolDownTime = 0;
 var NurseryPlayerAppearance = null;
@@ -18,7 +18,7 @@ var PreviousDress = "";
 var PreviousDressColor = "";
 var NurseryPlayerKeepsLoosingBinky = null;
 var NurseryGateMsg = null;								// message about nursery gate
-var NurseryLeaveMsg = null;								// message abou ease of opening nursery gate
+var NurseryLeaveMsg = null;								// message about ease of opening nursery gate
 var NurseryEscapeAttempts = null;
 var NursuryEscapeFailMsg = null;
 var NurseryRepeatOffender = null;
@@ -259,7 +259,7 @@ function NurseryRandomColourSelection() {
 }
 
 
-// Remove baby dresses from inventroy for testing only
+// Remove baby dresses from inventory for testing only
 function NurseryDeleteItem() {
 	InventoryDelete(Player, "Padlock", "ItemArms");
 	InventoryDelete(Player, "PadlockKey", "ItemArms");
@@ -442,7 +442,7 @@ function NurseryEscapeGate() {
 		if (RandomNumber <= 2) {										// Player manages to open gate
 			NurseryLeaveMsg = 3;
 		} else {														// Player fails to escape....
-			if (RandomNumber > (14 - NurseryEscapeAttempts)) {			// and nurse noices player
+			if (RandomNumber > (14 - NurseryEscapeAttempts)) {			// and nurse notices player
 				NurseryEscapeAttempts = NurseryEscapeAttempts - 4;
 				NurseryNurse.Stage = "280";
 				NurseryLoadNurse();
@@ -495,7 +495,7 @@ function NurseryPlayerPunished(Severity) {
 	if (NurseryPlayerBadBabyStatus < 1) NurseryPlayerBadBabyStatus = 1;
 }
 
-// Player bad baby status can reduce with time until she is ready to appolgise
+// Player bad baby status can reduce with time until she is ready to apologise
 function NurseryGoodBehaviour() {
 	if (NurseryPlayerBadBabyStatus > 1) {
 		if (NurseryCoolDownTime == 0) NurseryCoolDownTime = CommonTime() + 180000;

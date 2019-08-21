@@ -118,6 +118,7 @@ function ShopClick() {
 						// If the item isn't already owned and the player has enough money, we buy it
 						if (InventoryAvailable(Player, Asset[A].Name, Asset[A].Group.Name)) ShopText = TextGet("AlreadyOwned");
 						else if (Asset[A].Value > Player.Money) ShopText = TextGet("NotEnoughMoney");
+						else if (LogQuery("BlockKey", "OwnerRule") && ((Asset[A].Name == "MetalCuffsKey") || (Asset[A].Name == "MetalPadlockKey") || (Asset[A].Name == "IntricatePadlockKey"))) ShopText = TextGet("CannotSellKey");
 						else {
 
 							// Add the item and removes the money

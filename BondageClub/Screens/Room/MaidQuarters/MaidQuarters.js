@@ -20,6 +20,7 @@ var MaidQuartersCurrentRescueCompleted = false;
 var MaidQuartersOnlineDrinkCount = 0;
 var MaidQuartersOnlineDrinkValue = 0;
 var MaidQuartersOnlineDrinkCustomer = [];
+var MaidQuartersOnlineDrinkFromOwner = false;
 
 // Returns TRUE if the player is dressed in a maid uniform or can take a specific chore
 function MaidQuartersPlayerInMaidUniform() { return ((CharacterAppearanceGetCurrentValue(Player, "Cloth", "Name") == "MaidOutfit1") && (CharacterAppearanceGetCurrentValue(Player, "Hat", "Name") == "MaidHairband1")) }
@@ -32,7 +33,7 @@ function MaidQuartersCanFreeSarah() { return (SarahUnlockQuest && LogQuery("Lead
 function MaidQuartersCanReleasePlayer() { return (Player.IsRestrained() && !InventoryCharacterHasOwnerOnlyRestraint(Player) && CurrentCharacter.CanTalk() && CurrentCharacter.CanInteract()) }
 function MaidQuartersCannotReleasePlayer() { return (Player.IsRestrained() && (InventoryCharacterHasOwnerOnlyRestraint(Player) || !CurrentCharacter.CanTalk() || !CurrentCharacter.CanInteract())) }
 function MaidQuartersCanGetDusterGag() { return (!SarahUnlockQuest && LogQuery("JoinedSorority", "Maid") && Player.CanTalk() && CurrentCharacter.CanTalk() && CurrentCharacter.CanInteract() && !InventoryAvailable(Player, "DusterGag", "ItemMouth")) }
-function MaidQuartersOnlineDrinkCompleted() { return (MaidQuartersOnlineDrinkCount >= 5); }
+function MaidQuartersOnlineDrinkCompleted() { return (MaidQuartersOnlineDrinkCount >= 5) }
 
 // Loads the maid quarters room
 function MaidQuartersLoad() {
@@ -234,6 +235,7 @@ function MaidQuartersOnlineDrinkStart() {
 	InventoryWear(Player, "WoodenMaidTrayFull", "ItemMisc");
 	MaidQuartersOnlineDrinkCount = 0;
 	MaidQuartersOnlineDrinkValue = 0;
+	ChatRoomMoneyForOwner = 0;
 	MaidQuartersOnlineDrinkCustomer = [];
 }
 
@@ -255,6 +257,12 @@ function MaidQuartersOnlineDrinkPick(MemberNumber, DrinkValue) {
 function MaidQuartersOnlineDrinkPay() {
 	var M = 10 + Math.floor(MaidQuartersOnlineDrinkValue * 0.4);
 	MaidQuartersMaid.CurrentDialog = MaidQuartersMaid.CurrentDialog.replace("REPLACEMONEY", M.toString());
-	CharacterChangeMoney(Player, M);
+	if (!MaidQuartersOnlineDrinkFromOwner) CharacterChangeMoney(Player, M);
+	else ChatRoomMoneyForOwner = M;
 	ReputationProgress("Maid", 4);
+}
+
+// Flags the maid drink as not from the player owner
+function MaidQuartersNotFromOwner() {
+	MaidQuartersOnlineDrinkFromOwner = false;
 }

@@ -261,3 +261,10 @@ function InventoryFullLockRandom(C, FromOwner) {
 		if (C.Appearance[I].Asset.AllowLock && (InventoryGetLock(C.Appearance[I]) == null))
 			InventoryLockRandom(C, C.Appearance[I], FromOwner);
 }
+
+// Removes all common keys from the player inventory
+function InventoryConfiscateKey() {
+	InventoryDelete(Player, "MetalCuffsKey", "ItemMisc");
+	InventoryDelete(Player, "MetalPadlockKey", "ItemMisc");
+	InventoryDelete(Player, "IntricatePadlockKey", "ItemMisc");
+}

@@ -1,13 +1,13 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
-0,0,0,,(Inspect it.)ADD_MINUTES:1,"Despite the reasuring soft silicone and large base,|this butt plug will be a stretch and won't just slip out.",0,0,0,
+0,0,0,,(Inspect it.)ADD_MINUTES:1,"Despite the reassuring soft silicone and large base,|this butt plug will be a stretch and won't just slip out.",0,0,0,
 0,0,0,Common_PlayerNotRestrained,(Insert it.)ADD_MINUTES:1,You relax and slip the plug in.  It stretches and fills|your ass.  It's stem doesn't feel so small now.,0,0,0,Insert()
 10,0,0,HasLoosePlug,(Inspect the loose plug.)ADD_MINUTES:1,"Despite the soft silicone and large base, this butt plug|will be a stretch and won't just slip out.",10,0,0,ShowImage()
 10,0,0,!Common_PlayerChaste,(Remove it with a hand.)ADD_MINUTES:1,"You relax your ass and slowly pulling on the|plug's base.  It stretches your ass again, as it pops out.",0,0,0,HandOut()
 10,0,0,Common_PlayerChaste,(Remove it with a hand.)ADD_MINUTES:1,"The chastity belt covers over the butt plug,|preventing you from removing it.",10,0,0,
-10,0,0,,(Clench your ass.)ADD_MINUTES:1,"The plug feels mecislessly hard and your|ass painfully tight, until you relax again.",10,0,0,
+10,0,0,,(Clench your ass.)ADD_MINUTES:1,"The plug feels mercilessly hard and your|ass painfully tight, until you relax again.",10,0,0,
 10,0,0,!Common_PlayerChaste,(Remove it by contracting.)ADD_MINUTES:1,"You relax, squirm and try to push, but the plug|doesn't budge.  It needs to be pulled as well.",10,0,0,
-10,0,0,Common_PlayerChaste,(Remove it by contracting.)ADD_MINUTES:1,"You relax, squirm and try to push, but the|chasity belt makes sure the plug can't come out.",10,0,0,
+10,0,0,Common_PlayerChaste,(Remove it by contracting.)ADD_MINUTES:1,"You relax, squirm and try to push, but the|chastity belt makes sure the plug can't come out.",10,0,0,
 20,0,0,HasLoosePlug,(Inspect the loose egg.)ADD_MINUTES:1,"Despite the soft silicone and large flange, this butt plug|will be a stretch and won't just slip out.",20,0,0,ShowImage()
 20,0,0,!Common_PlayerChaste,(Remove it by contracting.)ADD_MINUTES:1,"You relax, squirm and try to push, but the plug|doesn't budge.  You need a free had to pull it out.",20,0,0,
-20,0,0,Common_PlayerChaste,(Remove it by contracting.)ADD_MINUTES:1,"You relax, squirm and try to push, but the chasity belt makes sure the plug can't come out.",20,0,0,
-20,0,0,,(Clench your ass.)ADD_MINUTES:1,"The plug feels mecislessly hard and your|ass painfully tight, until you relax again.",20,0,0,
+20,0,0,Common_PlayerChaste,(Remove it by contracting.)ADD_MINUTES:1,"You relax, squirm and try to push, but the chastity belt makes sure the plug can't come out.",20,0,0,
+20,0,0,,(Clench your ass.)ADD_MINUTES:1,"The plug feels mercilessly hard and your|ass painfully tight, until you relax again.",20,0,0,

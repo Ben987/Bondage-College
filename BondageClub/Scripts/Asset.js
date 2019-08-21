@@ -75,13 +75,33 @@ function AssetAdd(NewAsset) {
 		IsLock: (NewAsset.IsLock == null) ? false : NewAsset.IsLock,
 		OwnerOnly: (NewAsset.OwnerOnly == null) ? false : NewAsset.OwnerOnly,
 		ExpressionTrigger : NewAsset.ExpressionTrigger,
-		Layer: NewAsset.Layer,
+		Layer: AssetBuildLayer(NewAsset.Layer),
 		AllowEffect: NewAsset.AllowEffect,
-		AllowBlock: NewAsset.AllowBlock
+		AllowBlock: NewAsset.AllowBlock,
+		AllowType: NewAsset.AllowType
 	}
 	// Unwearable assets are not visible but can be overwritten
 	if (!A.Wear && NewAsset.Visible != true) A.Visible = false;
 	Asset.push(A);
+}
+
+// Builds layers for an asset
+function AssetBuildLayer(NewLayers) {
+	if (NewLayers == null || !Array.isArray(NewLayers)) return null;
+	var Layers = [];
+	for (var L = 0; L < NewLayers.length; L++) {
+		var Layer = NewLayers[L];
+		Layers.push({
+			Name: Layer.Name,
+			AllowColorize: (Layer.AllowColorize == null) ? true : Layer.AllowColorize,
+			AllowTypes: (Layer.AllowTypes == null || !Array.isArray(Layer.AllowTypes)) ? [""] : Layer.AllowTypes,
+			HasExpression: (Layer.HasExpression == null) ? true : Layer.HasExpression,
+			HasType: (Layer.HasType == null) ? true : Layer.HasType,
+			NewParentGroupName: Layer.NewParentGroupName,
+			NewAllowPose: (Layer.ANewAllowPose == null || !Array.isArray(Layer.ANewAllowPose)) ? null : Layer.ANewAllowPose
+		});
+	} 
+	return Layers;
 }
 
 // Builds the asset description from the CSV file

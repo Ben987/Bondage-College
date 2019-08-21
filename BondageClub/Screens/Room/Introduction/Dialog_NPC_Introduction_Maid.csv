@@ -17,7 +17,7 @@ RemoveItemHead,,,(You remove the device as she shakes her head joyfully.)  Wonde
 ItemBreastLeatherWhip,,,(She jumps from the searing pain on her breast.)  Ouch!  Miss Head Maid!,,
 ItemBreastLeatherCrop,,,(You whip her breast with the leather crop as she whimpers and bows her head.) Owwwwwww!,,
 ItemPelvisLeatherWhip,,,(You whip her butt hard as she sighs.)  Ahh! I promise I'll work harder Miss Head Maid!,,
-ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  Oww! That stings Miss!.,,
+ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  Oww! That stings Miss.,,
 0,,,Greetings Mistress DialogPlayerName.  Welcome to the introduction class.  (She does curtsies for you.),,"DialogLogQuery(""ClubMistress"", ""Management"")"
 0,,,Greetings head maid DialogPlayerName.  Welcome to the introduction class.  (She does curtsies for you.),,IsHeadMaid
 0,,,(She stares at you.)  Hello naked girl.  Welcome to the introduction class.,,Player.IsNaked()
@@ -43,7 +43,7 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  Ow
 30,30A,Show me the body regions I can select.,Restraining the feet will prevent your victim from moving away.,"SetZone(""ItemFeet"")",
 30A,30B,(Listen.),Restraining the upper legs will still allow your victim to move around but it creates a nice effect.,"SetZone(""ItemLegs"")",
 30B,30C,(Listen.),"On the pussy or vagina region, you can use items such as vibrators or eggs.  The perfect place to tease your victim and make them climax.","SetZone(""ItemVulva"")",
-30C,30D,(Listen.),"On the butt or anal region, you can use regular butt plugs or fashion plugs suchs as cat tails.","SetZone(""ItemButt"")",
+30C,30D,(Listen.),"On the butt or anal region, you can use regular butt plugs or fashion plugs such as cat tails.","SetZone(""ItemButt"")",
 30D,30E,(Listen.),"On the pelvis, you can use whips, crops or chastity belts.  Know that it will restrict any access to the vagina and anus.","SetZone(""ItemPelvis"")",
 30E,30F,(Listen.),"On the torso, you can use many kinds of harnesses, mostly for esthetics.","SetZone(""ItemTorso"")",
 30F,30G,(Listen.),"On the nipples, you can use piercings or clamps.  Some people enjoy the pain.","SetZone(""ItemNipples"")",
@@ -72,8 +72,8 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  Ow
 100,,Let's practice later.  (Leave her.),,DialogLeave(),
 200,220,I can use my favorite restraints on her?,"Of course, use anything you want on her.  She's very submissive, I'm sure she'll enjoy it.",,HasBasicItems
 200,210,Can I have some items to practice with?,"Use these basic items. They are easy to use, but also easy to struggle out from.",,!HasBasicItems
-210,220,Thanks!  (Take the items.),"(She gives you ropes for her arms and legs,  plus a basic cloth gag.)",GetBasicItems(),
-210,220,This is sweet.  (Take the items.),"(She gives you ropes for her arms and legs,  plus a basic cloth gag.)",GetBasicItems(),
+210,220,Thanks!  (Take the items.),"(She gives you ropes for her arms and legs, plus a basic cloth gag.)",GetBasicItems(),
+210,220,This is sweet.  (Take the items.),"(She gives you ropes for her arms and legs, plus a basic cloth gag.)",GetBasicItems(),
 220,230,I'll make it extra tight.,"Impressive.  Make sure to restrain her arms, her feet and to gag her.",ChangeMaidOpinion(1),
 220,230,I'm ready!,"Wonderful.  Make sure to restrain her arms and her feet, and don't forget to gag her!",,
 220,230,I can do it now?,"Absolutely.  Make sure to restrain her arms and her feet, and don't forget to gag her!",ChangeMaidOpinion(-1),
@@ -85,7 +85,7 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  Ow
 240,240A,Show me the body regions I can select.,Restraining the feet will prevent your victim from moving away.,"SetZone(""ItemFeet"")",
 240A,240B,(Listen.),Restraining the upper legs will still allow your victim to move around but it creates a nice effect.,"SetZone(""ItemLegs"")",
 240B,240C,(Listen.),"On the pussy or vagina region, you can use items such as vibrators or eggs.  The perfect place to tease your victim and make them climax.","SetZone(""ItemVulva"")",
-240C,240D,(Listen.),"On the butt or anal region, you can use regular butt plugs or fashion plugs suchs as cat tails.","SetZone(""ItemButt"")",
+240C,240D,(Listen.),"On the butt or anal region, you can use regular butt plugs or fashion plugs such as cat tails.","SetZone(""ItemButt"")",
 240D,240E,(Listen.),"On the pelvis, you can use whips, crops or chastity belts.  Know that it will restrict any access to the vagina and anus.","SetZone(""ItemPelvis"")",
 240E,240F,(Listen.),"On the torso, you can use many kinds of harnesses, mostly for esthetics.","SetZone(""ItemTorso"")",
 240F,240G,(Listen.),"On the nipples, you can use piercings or clamps.  Some people enjoy the pain.","SetZone(""ItemNipples"")",
@@ -131,7 +131,7 @@ ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  Ow
 340,350,That was easy.,I'll make it tighter next time.  Did you enjoy being tied up?,,!Player.IsRestrained()
 340,350,"It took a while, but I've done it.",That's great.  Did you enjoy being tied up?,,!Player.IsRestrained()
 350,360,"Sure, it was fun.",That's the spirit!  You're ready to explore the club then.,,
-350,360,"I loved it, I hope happens often.",That's the spirit!  You're ready to explore the club then.,ChangeMaidOpinion(-1),
+350,360,I loved it.  I hope happens often.,That's the spirit!  You're ready to explore the club then.,ChangeMaidOpinion(-1),
 350,360,I would rather strap you up.,"Not now, but you're ready to explore the club and do some bondage.",ChangeMaidOpinion(1),
 360,370,I'm sure it will be fun to explore the club.,"Oh yes, I'm sure too. Remember to be courteous and respect others.",SaveMaidOpinion(),HasBasicItems
 360,360,Can I have some items to start with?,"Sure, have these ropes and this gag.  (She gives you some ropes and a cloth gag.)",GetBasicItems(),!HasBasicItems

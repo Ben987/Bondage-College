@@ -8,6 +8,8 @@ var ChatRoomLastMessageIndex = 0;
 var ChatRoomTargetMemberNumber = null;
 var ChatRoomOwnershipOption = "";
 var ChatRoomPlayerCanJoin = false;
+var ChatRoomMoneyForOwner = 0;
+var ChatRoomQuestGiven = [];
 
 // Returns TRUE if the dialog option is available
 function ChatRoomCanAddWhiteList() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.WhiteList.indexOf(CurrentCharacter.MemberNumber) < 0) && (Player.BlackList.indexOf(CurrentCharacter.MemberNumber) < 0)) }
@@ -20,7 +22,8 @@ function ChatRoomCanChangeClothes() { return (Player.CanInteract() && (CurrentCh
 function ChatRoomOwnershipOptionIs(Option) { return (Option == ChatRoomOwnershipOption) }
 function ChatRoomCanTakeDrink() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (CurrentCharacter.ID != 0) && Player.CanInteract() && (InventoryGet(CurrentCharacter, "ItemMisc") != null) && (InventoryGet(CurrentCharacter, "ItemMisc").Asset.Name == "WoodenMaidTrayFull")) }
 function ChatRoomIsCollaredByPlayer() { return ((CurrentCharacter != null) && (CurrentCharacter.Ownership != null) && (CurrentCharacter.Ownership.Stage == 1) && (CurrentCharacter.Ownership.MemberNumber == Player.MemberNumber)) }
-function ChatRoomCanServerDrink() { return ((CurrentCharacter != null) && CurrentCharacter.CanWalk() && (ReputationCharacterGet(CurrentCharacter, "Maid") > 0)) }
+function ChatRoomCanServeDrink() { return ((CurrentCharacter != null) && CurrentCharacter.CanWalk() && (ReputationCharacterGet(CurrentCharacter, "Maid") > 0)) }
+function ChatRoomCanGiveMoneyForOwner() { return ((ChatRoomMoneyForOwner > 0) && (CurrentCharacter != null) && (Player.Ownership != null) && (Player.Ownership.Stage == 1) && (Player.Ownership.MemberNumber == CurrentCharacter.MemberNumber)) }
 
 // Creates the chat room input elements
 function ChatRoomCreateElement() {
@@ -90,7 +93,10 @@ function ChatRoomDrawCharacter(DoClick) {
 					if (ChatRoomCharacter[C].ID != 0) ServerSend("ChatRoomAllowItem", { MemberNumber: ChatRoomCharacter[C].MemberNumber });
 					if (ChatRoomCharacter[C].ID != 0) ServerSend("AccountOwnership", { MemberNumber: ChatRoomCharacter[C].MemberNumber });
 					CharacterSetCurrent(ChatRoomCharacter[C]);
-				} else ChatRoomTargetMemberNumber = ((ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) || (ChatRoomCharacter[C].ID == 0)) ? null : ChatRoomCharacter[C].MemberNumber;
+				} else {
+					if (!LogQuery("BlockWhisper", "OwnerRule") || (Player.Ownership == null) || (Player.Ownership.Stage != 1) || (Player.Ownership.MemberNumber == ChatRoomCharacter[C].MemberNumber))
+						ChatRoomTargetMemberNumber = ((ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) || (ChatRoomCharacter[C].ID == 0)) ? null : ChatRoomCharacter[C].MemberNumber;
+				}
 				break;
 			}
 		}
@@ -137,7 +143,7 @@ function ChatRoomRun() {
 	ElementPositionFix("TextAreaChatLog", 36, 1005, 5, 988, 923);
 	DrawButton(1675, 935, 60, 60, "", "White", "Icons/Small/Chat.png");
 	if (Player.CanKneel()) DrawButton(1740, 935, 60, 60, "", "White", "Icons/Small/Kneel.png");
-	if (Player.CanInteract() && !LogQuery("BlockChange", "Rule")) DrawButton(1805, 935, 60, 60, "", "White", "Icons/Small/Dress.png");
+	if (Player.CanChange()) DrawButton(1805, 935, 60, 60, "", "White", "Icons/Small/Dress.png");
 	DrawButton(1870, 935, 60, 60, "", "White", "Icons/Small/Character.png");
 	if (Player.CanWalk()) DrawButton(1935, 935, 60, 60, "", "White", "Icons/Small/Exit.png");
 }
@@ -157,7 +163,7 @@ function ChatRoomClick() {
 	}
 	
 	// When the user wants to change clothes
-	if ((MouseX >= 1805) && (MouseX < 1865) && (MouseY >= 935) && (MouseY < 995) && Player.CanInteract() && !LogQuery("BlockChange", "Rule")) { 
+	if ((MouseX >= 1805) && (MouseX < 1865) && (MouseY >= 935) && (MouseY < 995) && Player.CanChange()) { 
 		ElementRemove("InputChat");
 		ElementRemove("TextAreaChatLog");
 		CharacterAppearanceReturnRoom = "ChatRoom"; 
@@ -348,7 +354,9 @@ function ChatRoomMessage(data) {
 				if (msg == "MaidDrinkPick0") MaidQuartersOnlineDrinkPick(data.Sender, 0);
 				if (msg == "MaidDrinkPick5") MaidQuartersOnlineDrinkPick(data.Sender, 5);
 				if (msg == "MaidDrinkPick10") MaidQuartersOnlineDrinkPick(data.Sender, 10);
-				return;
+				if (msg.substring(0, 8) == "PayQuest") ChatRoomPayQuest(data);
+				if (msg.substring(0, 9) == "OwnerRule") data = ChatRoomSetRule(data);
+				if (data.Type == "Hidden") return;
 			}
 
 			// Builds the message to add depending on the type
@@ -482,6 +490,93 @@ function ChatRoomDrinkPick(DrinkType, Money) {
 }
 
 // Sends a rule / restriction / punishment to the slave character client, it will be handled from there
-function ChatRoomSendRule(RuleType) {
-	ServerSend("ChatRoomChat", { Content: "Rule" + RuleType, Type: "Hidden", Target: CurrentCharacter.MemberNumber } );
+function ChatRoomSendRule(RuleType, Option) {
+	ServerSend("ChatRoomChat", { Content: "OwnerRule" + RuleType, Type: "Hidden", Target: CurrentCharacter.MemberNumber } );
+	if (Option == "Quest") {
+		if (ChatRoomQuestGiven.indexOf(CurrentCharacter.MemberNumber) >= 0) ChatRoomQuestGiven.splice(ChatRoomQuestGiven.indexOf(CurrentCharacter.MemberNumber), 1);
+		ChatRoomQuestGiven.push(CurrentCharacter.MemberNumber);
+	}
+	if ((Option == "Leave") || (Option == "Quest")) DialogLeave();
+}
+
+// Sends the rule / restriction / punishment from the owner
+function ChatRoomSetRule(data) {
+	
+	// Only works if the sender is the player, and the player is fully collared
+	if ((data != null) && (Player.Ownership != null) && (Player.Ownership.Stage == 1) && (Player.Ownership.MemberNumber == data.Sender)) {
+
+		// Wardrobe/changing rules
+		if (data.Content == "OwnerRuleChangeAllow") LogDelete("BlockChange", "OwnerRule");
+		if (data.Content == "OwnerRuleChangeBlock1Hour") LogAdd("BlockChange", "OwnerRule", CurrentTime + 3600000);
+		if (data.Content == "OwnerRuleChangeBlock1Day") LogAdd("BlockChange", "OwnerRule", CurrentTime + 86400000);
+		if (data.Content == "OwnerRuleChangeBlock1Week") LogAdd("BlockChange", "OwnerRule", CurrentTime + 604800000);
+		if (data.Content == "OwnerRuleChangeBlock") LogAdd("BlockChange", "OwnerRule", CurrentTime + 1000000000000);
+
+		// Whisper rules
+		if (data.Content == "OwnerRuleWhisperAllow") LogDelete("BlockWhisper", "OwnerRule");
+		if (data.Content == "OwnerRuleWhisperBlock") { LogAdd("BlockWhisper", "OwnerRule"); ChatRoomTargetMemberNumber = null; }
+
+		// Key rules
+		if (data.Content == "OwnerRuleKeyAllow") LogDelete("BlockKey", "OwnerRule");
+		if (data.Content == "OwnerRuleKeyConfiscate") InventoryConfiscateKey();
+		if (data.Content == "OwnerRuleKeyBlock") LogAdd("BlockKey", "OwnerRule");
+
+		// Timer cell punishment
+		var TimerCell = 0;
+		if (data.Content == "OwnerRuleTimerCell5") TimerCell = 5;
+		if (data.Content == "OwnerRuleTimerCell15") TimerCell = 15;
+		if (data.Content == "OwnerRuleTimerCell30") TimerCell = 30;
+		if (data.Content == "OwnerRuleTimerCell60") TimerCell = 60;
+		if (TimerCell > 0) {
+			ServerSend("ChatRoomChat", { Content: Player.Name + " " + TextGet("ActionGrabbedForCell"), Type: "Action" } );
+			ElementRemove("InputChat");
+			ElementRemove("TextAreaChatLog");
+			ServerSend("ChatRoomLeave", "");
+			CellLock(TimerCell);
+		}
+
+		// Forced labor
+		if (data.Content == "OwnerRuleLaborMaidDrinks") {
+			var D = TextGet("ActionGrabbedToServeDrinksIntro");
+			ServerSend("ChatRoomChat", { Content: Player.Name + " " + TextGet("ActionGrabbedToServeDrinks"), Type: "Action" } );
+			ElementRemove("InputChat");
+			ElementRemove("TextAreaChatLog");
+			ServerSend("ChatRoomLeave", "");
+			CommonSetScreen("Room", "MaidQuarters");
+			CharacterSetCurrent(MaidQuartersMaid);
+			MaidQuartersMaid.CurrentDialog = D;
+			MaidQuartersMaid.Stage = "205";
+			MaidQuartersOnlineDrinkFromOwner = true;
+		}
+
+		// Switches it to a server message to announce the new rule to the player
+		data.Type = "ServerMessage";
+
+	}
+
+	// Returns the data packet
+	return data;
+
+}
+
+// When a slave gives her salary to her owner
+function ChatRoomGiveMoneyForOwner() {
+	if (ChatRoomCanGiveMoneyForOwner()) {
+		ServerSend("ChatRoomChat", { Content: Player.Name + " " + TextGet("ActionGiveEnvelopeToOwner"), Type: "Action" } );
+		ServerSend("ChatRoomChat", { Content: "PayQuest" + ChatRoomMoneyForOwner.toString(), Type: "Hidden", Target: CurrentCharacter.MemberNumber } );
+		ChatRoomMoneyForOwner = 0;
+		DialogLeave();
+	}
+}
+
+// When a quest is paid
+function ChatRoomPayQuest(data) {
+	if ((data != null) && (data.Sender != null) && (ChatRoomQuestGiven.indexOf(data.Sender) >= 0)) {
+		var M = parseInt(data.Content.substring(8));
+		if ((M == null) || isNaN(M)) M = 0;
+		if (M < 0) M = 0;
+		if (M > 30) M = 30;
+		CharacterChangeMoney(Player, M);
+		ChatRoomQuestGiven.splice(ChatRoomQuestGiven.indexOf(data.Sender), 1);
+	}
 }

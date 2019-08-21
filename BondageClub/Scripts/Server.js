@@ -99,7 +99,7 @@ function ServerValidateProperties(C, Item) {
 	if ((C.AccountName.substring(0, 4) == "NPC_") || (C.AccountName.substring(0, 4) == "NPC-")) return;
 
 	// For each effect on the item
-	if ((Item.Property != null) && (Item.Property.Effect != null))
+	if ((Item.Property != null) && (Item.Property.Effect != null)) {
 		for (var E = 0; E < Item.Property.Effect.length; E++) {
 
 			// Make sure the item can be locked, remove any lock that's invalid
@@ -150,11 +150,11 @@ function ServerValidateProperties(C, Item) {
 				}
 
 			}
-
 		}
+	}
 
 	// For each block on the item
-	if ((Item.Property != null) && (Item.Property.Block != null))
+	if ((Item.Property != null) && (Item.Property.Block != null)) {
 		for (var B = 0; B < Item.Property.Block.length; B++) {
 
 			// Check if the effect is allowed for the item
@@ -169,9 +169,14 @@ function ServerValidateProperties(C, Item) {
 				Item.Property.Block.splice(B, 1);
 				B--;
 			}
-
 		}
-		
+	}
+
+	if ((Item.Property != null) && (Item.Property.Type != null)) {
+		if ((Item.Asset.AllowType == null) || (Item.Asset.AllowType.indexOf(Item.Property.Type) < 0)) {
+			delete Item.Property.Type;
+		}
+	} 
 }
 
 // Loads the appearance assets from a server bundle that only contains the main info (no assets)

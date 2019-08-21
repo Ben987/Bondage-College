@@ -35,7 +35,7 @@ Bra,Bustier1,Satin Bustier
 Bra,Corset1,Corset + Garters
 Bra,Corset2,Corset
 Bra,Corset3,Half Cup Corset
-Bra,Corset4,Underbust Corset
+Bra,Corset4,Under Bust Corset
 Bra,Swimsuit1,Swimsuit style 1
 Bra,Swimsuit2,Swimsuit style 2
 Bra,BunnySuit,Bunny Girl Bodysuit
@@ -109,7 +109,7 @@ Glasses,Glasses5,Style 5
 Glasses,Glasses6,Style 6
 Glasses,SunGlasses1,Sunglasses 1
 Glasses,SunGlasses2,Sunglasses 2
-Glasses,Mask1,Venitian Mask
+Glasses,Mask1,Venetian Mask
 Glasses,Mask2,Domino Mask
 TailStraps,,Tail Strap
 TailStraps,TailStrap,Kitty Tail Strap
@@ -214,7 +214,7 @@ ItemLegs,MermaidRopeTie,Upper Mermaid Tie
 ItemVulva,,Vulva
 ItemVulva,VibratingEgg,Vibrating Egg
 ItemVulva,VibratingWand,Vibrating Wand
-ItemVulva,VibratorRemote,Vibrating Egg|Panties Remote
+ItemVulva,VibratorRemote,Vibrating Egg & Panties Remote
 ItemVulva,VibratingLatexPanties,Vibrating Latex Panties
 ItemButt,,Butt
 ItemButt,BlackButtPlug,Black Butt Plug
@@ -319,8 +319,8 @@ ItemHead,DuctTape,Duct Tape
 ItemHead,SmallBlindfold,Small Blindfold
 ItemHead,LeatherHoodOpenMouth,Leather Hood Mouth
 ItemEars,,Ears
-ItemEars,LightDutyEarPlugs,Light Duty EarPlugs
-ItemEars,HeavyDutyEarPlugs,Heavy Duty EarPlugs
+ItemEars,LightDutyEarPlugs,Light Duty Ear Plugs
+ItemEars,HeavyDutyEarPlugs,Heavy Duty Ear Plugs
 ItemMisc,,Misc Items
 ItemMisc,MetalPadlock,Metal Padlock
 ItemMisc,IntricatePadlock,Intricate Padlock

@@ -5,7 +5,7 @@ var ChatCreateMessage = "";
 var ChatCreatePrivate = false;
 var ChatCreateBackgroundIndex = 0;
 var ChatCreateBackgroundSelect = "Introduction";
-var ChatCreateBackgroundList = ["Introduction", "KidnapLeague", "MaidQuarters", "MainHall", "Management", "Private", "Shibari", "Bedroom", "HorseStable", "Nursery", "PrisonHall", "PaddedCell", "BDSMRoomBlue", "BDSMRoomPurple", "BDSMRoomRed", "Gardens", "IndoorPool", "OutdoorPool", "MaidCafe", "PublicBath", "ParkDay", "ParkNight", "ChillRoom"];
+var ChatCreateBackgroundList = ["Introduction", "KidnapLeague", "MaidQuarters", "MainHall", "Management", "Private", "Shibari", "Bedroom", "HorseStable", "Nursery", "PrisonHall", "PaddedCell", "BDSMRoomBlue", "BDSMRoomPurple", "BDSMRoomRed", "Gardens", "IndoorPool", "OutdoorPool", "MaidCafe", "PublicBath", "ParkDay", "ParkNight", "ChillRoom", "Boudoir", "BondageBedChamber"];
 
 // When the chat screens loads, we loads up to 24 public rooms
 function ChatCreateLoad() {
@@ -31,10 +31,10 @@ function ChatCreateRun() {
 	DrawButton(1300, 428, 64, 64, "", "White", ChatCreatePrivate ? "Icons/Checked.png" : "");
 	DrawText(TextGet("RoomSize"), 930, 568, "White", "Gray");
 	ElementPosition("InputSize", 1400, 560, 150);
-	DrawText(TextGet("RoomBackground"), 850, 672, "White", "Gray");
+	DrawText(TextGet("RoomBackground"), 850, 672, "White", "Gray");	
 	DrawBackNextButton(1100, 640, 350, 65, ChatCreateBackgroundSelect, "White", null, 
-		() => ChatCreateBackgroundIndex == 0 ? ChatCreateBackgroundList[ChatCreateBackgroundList.length - 1] : ChatCreateBackgroundList[ChatCreateBackgroundIndex - 1],
-		() => ChatCreateBackgroundIndex >= ChatCreateBackgroundList.length ? ChatCreateBackgroundList[0] : ChatCreateBackgroundList[ChatCreateBackgroundIndex + 1]);
+		() => (ChatCreateBackgroundIndex == 0) ? ChatCreateBackgroundList[ChatCreateBackgroundList.length - 1] : ChatCreateBackgroundList[ChatCreateBackgroundIndex - 1],
+		() => (ChatCreateBackgroundIndex >= ChatCreateBackgroundList.length - 1) ? ChatCreateBackgroundList[0] : ChatCreateBackgroundList[ChatCreateBackgroundIndex + 1]);
 	DrawButton(600, 800, 300, 65, TextGet("Create"), "White");
 	DrawButton(1100, 800, 300, 65, TextGet("Cancel"), "White");
 
