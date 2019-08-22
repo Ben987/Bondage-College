@@ -64,10 +64,10 @@ var AssetFemale3DCG = [
 		Asset: [
 			{ Name: "Bra1", Hide: ["ItemNipples"] },
 			{ Name: "Bra2", Hide: ["ItemNipples"] },
-			{ Name: "Bra7", Hide: ["ItemNipples"] },
+			{ Name: "Bra7", Priority: 19, Hide: ["ItemNipples"] },
 			{ Name: "Bra8", Value: 15, Hide: ["ItemNipples"] },
 			{ Name: "Bra9", Value: 15, Hide: ["ItemNipples"] },
-			{ Name: "Bandeau1", Value: 25, Hide: ["ItemNipples"] },
+			{ Name: "Bandeau1", Priority: 19, Value: 25, Hide: ["ItemNipples"] },
 			{ Name: "Bustier1", Value: 30, Hide: ["ItemNipples"] },
 			{ Name: "Corset1", Value: 30, Hide: ["ItemNipples"] },
 			{ Name: "Corset2", Value: 30, Hide: ["ItemNipples"] },
