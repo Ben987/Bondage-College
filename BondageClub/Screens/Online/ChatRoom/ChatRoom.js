@@ -334,7 +334,7 @@ function ChatRoomListManipulation(Add, Remove, Message) {
 	var C = parseInt(Message.substring(Message.indexOf(" ") + 1));
 	if ((C > 0) && (C != Player.MemberNumber)) {
 		if ((Add != null) && (Add.indexOf(C) < 0)) Add.push(C);
-		if (Remove == null) {
+		if (Remove != null) {
 			var R = Remove.indexOf(C);
 			if (R >= 0) Remove.splice(R, 1);
 		}
