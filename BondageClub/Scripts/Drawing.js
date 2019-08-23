@@ -3,6 +3,7 @@
 var MainCanvas;
 var TempCanvas;
 var ColorCanvas;
+var CharacterCanvas;
 
 // A bank of all the chached images
 var DrawCacheImage = {};
@@ -42,7 +43,8 @@ function DrawLoad() {
 	// Creates the objects used in the game
 	MainCanvas = document.getElementById("MainCanvas").getContext("2d");
 	TempCanvas = document.createElement("canvas").getContext("2d");
-	ColorCanvas = document.createElement("canvas");
+	ColorCanvas = document.createElement("canvas").getContext("2d");
+	CharacterCanvas = document.createElement("canvas").getContext("2d");
 	document.getElementById("MainCanvas").addEventListener("keypress", KeyDown);
 	document.getElementById("MainCanvas").tabIndex = 1000;	
 
@@ -104,39 +106,39 @@ function DrawGetImageOnError(Img, IsAsset) {
 function DrawCharacter(C, X, Y, Zoom) {
 
 	// Make sure we have a character
-	if (C != null) 
+	if (C != null) {
 		if ((C.ID == 0) || (Player.Effect.indexOf("BlindHeavy") < 0) || (CurrentScreen == "InformationSheet")) {
 
 			// There's 2 different canvas, one blinking and one that doesn't
 			var seconds = new Date().getTime();
 			var Canvas = (Math.round(seconds / 400) % C.BlinkFactor == 0) ? C.CanvasBlink : C.Canvas;
 			
+			// Initialize the working canvas
+			CharacterCanvas.canvas.width = Canvas.width;
+			CharacterCanvas.canvas.height = Canvas.height;
+
 			// If we must dark the Canvas characters
 			if ((C.ID != 0) && Player.IsBlind() && (CurrentScreen != "InformationSheet")) {
-				var CanvasH = document.createElement("canvas");
-				CanvasH.width = Canvas.width;
-				CanvasH.height = Canvas.height;
 				var DarkFactor = (Player.Effect.indexOf("BlindNormal") >= 0) ? 0.3 : 0.6;
-				var ctx = CanvasH.getContext('2d');
-				ctx.drawImage(Canvas, 0, 0);
+				CharacterCanvas.globalCompositeOperation = "copy";
+				CharacterCanvas.drawImage(Canvas, 0, 0);
 				// Overlay black rectangle.
-				ctx.fillStyle = "rgba(0,0,0," + (1.0 - DarkFactor) + ")";
-				ctx.fillRect(0, 0, CanvasH.width, CanvasH.height);
+				CharacterCanvas.globalCompositeOperation = "source-over";
+				CharacterCanvas.fillStyle = "rgba(0,0,0," + (1.0 - DarkFactor) + ")";
+				CharacterCanvas.fillRect(0, 0, CanvasH.width, CanvasH.height);
 				// Re-apply character alpha channel
-				ctx.globalCompositeOperation = 'destination-in';
-				ctx.drawImage(Canvas, 0, 0);
-				Canvas = CanvasH;
+				CharacterCanvas.globalCompositeOperation = "destination-in";
+				CharacterCanvas.drawImage(Canvas, 0, 0);
+				Canvas = CharacterCanvas.canvas;
 			}
 			
 			// If we must flip the canvas vertically
 			if (C.Pose.indexOf("Suspension") >= 0)	{
-				var CanvasH = document.createElement("canvas");
-				CanvasH.width = Canvas.width;
-				CanvasH.height = Canvas.height;
-				CanvasH.getContext("2d").scale(1, -1);
-				CanvasH.getContext("2d").translate(0, -Canvas.height);
-				CanvasH.getContext("2d").drawImage(Canvas, 0, 0);
-				Canvas = CanvasH;
+				CharacterCanvas.scale(1, -1);
+				CharacterCanvas.translate(0, -Canvas.height);
+				CharacterCanvas.globalCompositeOperation = "copy";
+				CharacterCanvas.drawImage(Canvas, 0, 0);
+				Canvas = CharacterCanvas.canvas;
 			}
 			
 			// Draw the character
@@ -146,96 +148,118 @@ function DrawCharacter(C, X, Y, Zoom) {
 				DrawCanvasZoom(Canvas, X, Y - (C.HeightModifier * Zoom), Zoom);
 
 			// Draws the character focus zones if we need too
-			if ((C.FocusGroup != null) && (C.FocusGroup.Zone != null))
-				for(var Z = 0; Z < C.FocusGroup.Zone.length; Z++)
-					if (C.Pose.indexOf("Suspension") >= 0)
-						DrawEmptyRect(C.FocusGroup.Zone[Z][0] + X, 1000 - (C.FocusGroup.Zone[Z][1] + Y + C.FocusGroup.Zone[Z][3]) - C.HeightModifier, C.FocusGroup.Zone[Z][2], C.FocusGroup.Zone[Z][3], "cyan");
-					else
-						DrawEmptyRect(C.FocusGroup.Zone[Z][0] + X, C.FocusGroup.Zone[Z][1] + Y - C.HeightModifier, C.FocusGroup.Zone[Z][2], C.FocusGroup.Zone[Z][3], "cyan");
-			
+			if ((C.FocusGroup != null) && (C.FocusGroup.Zone != null)) {
+				for(var Z = 0; Z < C.FocusGroup.Zone.length; Z++) {
+					var AdjustedY = C.FocusGroup.Zone[Z][1] + Y;
+					if (C.Pose.indexOf("Suspension") >= 0) {
+						AdjustedY = 1000 - (AdjustedY + C.FocusGroup.Zone[Z][3]);
+					}
+					DrawEmptyRect(C.FocusGroup.Zone[Z][0] + X, AdjustedY - C.HeightModifier, C.FocusGroup.Zone[Z][2], C.FocusGroup.Zone[Z][3], "cyan");
+				}
+			}
+
 			// Draw the character name below herself
-			if ((C.Name != "") && ((CurrentModule == "Room") || (CurrentModule == "Online") || ((CurrentScreen == "Wardrobe") && (C.ID != 0))) && (CurrentScreen != "Private")) 
+			if ((C.Name != "") && ((CurrentModule == "Room") || (CurrentModule == "Online") || ((CurrentScreen == "Wardrobe") && (C.ID != 0))) && (CurrentScreen != "Private")) {
 				if (!Player.IsBlind()) {
 					MainCanvas.font = "30px Arial";	
 					DrawText(C.Name, X + 255 * Zoom, Y + 980 * Zoom, (CommonIsColor(C.LabelColor)) ? C.LabelColor : "White", "Black");
 					MainCanvas.font = "36px Arial";
 				}
-
+			}
 		}
+	}
+}
 
+// Return a semi-transparent copy of a canvas
+function DrawAlpha(Canvas, Alpha) {
+	// If there's nothing to do simply return the original image
+	if ((Alpha == null) || (Alpha >= 1.0)) return Canvas;
+	// Copy the image to the temp canvas
+	TempCanvas.canvas.width = Canvas.width;
+	TempCanvas.canvas.height = Canvas.height;
+	TempCanvas.globalCompositeOperation = "copy";
+	TempCanvas.drawImage(Canvas, 0, 0);
+	// Apply the alpha
+	TempCanvas.globalCompositeOperation = "destination-in";
+	TempCanvas.fillStyle = "rgba(0,0,0," + Alpha + ")";
+	TempCanvas.fillRect(0, 0, Canvas.width, Canvas.height);
+	return TempCanvas.canvas;
 }
 
 // Draw a zoomed image from a source to a specific canvas
-function DrawImageZoomCanvas(Source, Canvas, SX, SY, SWidth, SHeight, X, Y, Width, Height) {
+function DrawImageZoomCanvas(Source, Context, SX, SY, SWidth, SHeight, X, Y, Width, Height, Alpha) {
 	var Img = DrawGetImage(Source);
 	if (!Img.complete) return false;
 	if (!Img.naturalWidth) return true;
-	Canvas.drawImage(Img, SX, SY, Math.round(SWidth), Math.round(SHeight), X, Y, Width, Height);
+	Context.drawImage(DrawAlpha(Img, Alpha), SX, SY, Math.round(SWidth), Math.round(SHeight), X, Y, Width, Height);
 	return true;
 }
 
-function DrawImageResize(Source, X, Y, Width, Height) {
+function DrawImageResize(Source, X, Y, Width, Height, Alpha) {
 	var Img = DrawGetImage(Source);
 	if (!Img.complete) return false;
 	if (!Img.naturalWidth) return true;
-	MainCanvas.drawImage(Img, 0, 0, Img.width, Img.height, X, Y, Width, Height);
+	MainCanvas.drawImage(DrawAlpha(Img, Alpha), 0, 0, Img.width, Img.height, X, Y, Width, Height);
 	return true;
 }
 
 // Draw a zoomed image from a source to a specific canvas
-function DrawImageCanvas(Source, Canvas, X, Y) {
+function DrawImageCanvas(Source, Context, X, Y, Alpha) {
 	var Img = DrawGetImage(Source);
 	if (!Img.complete) return false;
 	if (!Img.naturalWidth) return true;
-	Canvas.drawImage(Img, X, Y);
+	Context.drawImage(DrawAlpha(Img, Alpha), X, Y);
 	return true;
 }
 
 // Draw a specific canvas on the main canvas
-function DrawCanvas(Canvas, X, Y) {
-	MainCanvas.drawImage(Canvas, X, Y);
+function DrawCanvas(Canvas, X, Y, Alpha) {
+	MainCanvas.drawImage(DrawAlpha(Canvas, Alpha), X, Y);
 }
 
 // Draw a specific canvas with a zoom on the main canvas
-function DrawCanvasZoom(Canvas, X, Y, Zoom) {
-	MainCanvas.drawImage(Canvas, 0, 0, Canvas.width, Canvas.height, X, Y, Canvas.width * Zoom, Canvas.height * Zoom);
+function DrawCanvasZoom(Canvas, X, Y, Zoom, Alpha) {
+	MainCanvas.drawImage(DrawAlpha(Canvas, Alpha), 0, 0, Canvas.width, Canvas.height, X, Y, Canvas.width * Zoom, Canvas.height * Zoom);
 }
 
 // Draw a zoomed image from a source to the canvas and mirrors it from left to right
-function DrawImageZoomMirror(Source, SX, SY, SWidth, SHeight, X, Y, Width, Height) {
+function DrawImageZoomCanvas(Source, Context, SX, SY, SWidth, SHeight, X, Y, Width, Height, Alpha) {
 	var Img = DrawGetImage(Source);
 	if (!Img.complete) return false;
 	if (!Img.naturalWidth) return true;
-	MainCanvas.save();
-	MainCanvas.scale(-1, 1);
-	MainCanvas.drawImage(Img, X * -1, Y, Width * -1, Height);
-	MainCanvas.restore();
+	Context.drawImage(DrawAlpha(Img, Alpha), SX, SY, Math.round(SWidth), Math.round(SHeight), X, Y, Width, Height);
 	return true;
 }
 
 // Draw an image from a source to the canvas
-function DrawImage(Source, X, Y) {
+function DrawImage(Source, X, Y, Alpha) {
 	var Img = DrawGetImage(Source);
 	if (!Img.complete) return false;
 	if (!Img.naturalWidth) return true;
-	MainCanvas.drawImage(Img, X, Y);
+	MainCanvas.drawImage(DrawAlpha(Img, Alpha), X, Y);
 	return true;
 }
 
 // Draw an image from a source to the canvas
-function DrawImageCanvasColorize(Source, Canvas, X, Y, Zoom, HexColor, FullAlpha) {
+function DrawImageCanvasColorize(Source, Canvas, X, Y, Zoom, HexColor, FullAlpha, Alpha) {
 
 	// Make sure that the starting image is loaded
 	var Img = DrawGetImage(Source);
 	if (!Img.complete) return false;
 	if (!Img.naturalWidth) return true;
 
+	// Variable initialization
+	if (Alpha == null) Alpha = 1.0;
+	// var FullAlpha = (Filter == false) ? false : true;
+	var width = Img.width;
+	var height = Img.height;
+
 	// Prepares a canvas to draw the colorized image
-	ColorCanvas.width = Img.width;
-	ColorCanvas.height = Img.height;
-	var ctx = ColorCanvas.getContext("2d");
-	ctx.drawImage(Img, 0, 0);
-	var imageData = ctx.getImageData(0, 0, ColorCanvas.width, ColorCanvas.height);
+	ColorCanvas.canvas.width = width;
+	ColorCanvas.canvas.height = height;
+	ColorCanvas.globalCompositeOperation = "copy";
+	ColorCanvas.drawImage(Img, 0, 0);
+	var imageData = ColorCanvas.getImageData(0, 0, width, height);
 	var data = imageData.data;
 
 	// Get the RGB color used to transform
@@ -251,6 +275,7 @@ function DrawImageCanvasColorize(Source, Canvas, X, Y, Zoom, HexColor, FullAlpha
 			data[p + 0] = rgbColor.r * trans;
 			data[p + 1] = rgbColor.g * trans;
 			data[p + 2] = rgbColor.b * trans;
+			data[p + 3] *= Alpha;	
 		}
 	} else {
 		for (var p = 0, len = data.length; p < len; p += 4) {
@@ -260,12 +285,13 @@ function DrawImageCanvasColorize(Source, Canvas, X, Y, Zoom, HexColor, FullAlpha
 			data[p + 0] = rgbColor.r * trans;
 			data[p + 1] = rgbColor.g * trans;
 			data[p + 2] = rgbColor.b * trans;
+			data[p + 3] *= Alpha;
 		}
 	}
 
 	// Replace the source image with the modified canvas
-	ctx.putImageData(imageData, 0, 0);
-	Canvas.drawImage(ctx.canvas, 0, 0, Img.width, Img.height, X, Y, Img.width * Zoom, Img.height * Zoom);
+	ColorCanvas.putImageData(imageData, 0, 0);
+	Canvas.drawImage(ColorCanvas.canvas, 0, 0, Img.width, Img.height, X, Y, Img.width * Zoom, Img.height * Zoom);
 
 	return true;
 }
@@ -408,8 +434,8 @@ function DrawButton(Left, Top, Width, Height, Label, Color, Image, HoveringText)
 	// Draw the button rectangle (makes the background color cyan if the mouse is over it)
 	MainCanvas.beginPath();
 	MainCanvas.rect(Left, Top, Width, Height);
-    MainCanvas.fillStyle = ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile) ? "Cyan" : Color; 
-    MainCanvas.fillRect(Left, Top, Width, Height);
+	MainCanvas.fillStyle = ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile) ? "Cyan" : Color; 
+	MainCanvas.fillRect(Left, Top, Width, Height);
 	MainCanvas.fill();	
 	MainCanvas.lineWidth = '2';
 	MainCanvas.strokeStyle = 'black';
