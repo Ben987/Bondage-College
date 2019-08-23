@@ -144,7 +144,7 @@ function DocumentKeyDown(event) {
 			window[CurrentScreen + "Exit"]();
 		} else if ((CurrentCharacter != null) && Array.isArray(DialogMenuButton) && (DialogMenuButton.indexOf("Exit") >= 0)) {
 			DialogLeaveItemMenu();
-		} else if (CurrentCharacter != null) {
+		} else if ((CurrentCharacter != null) && (CurrentScreen == "ChatRoom")) {
 			DialogLeave();
 		}
 	}
