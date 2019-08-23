@@ -223,11 +223,14 @@ function DrawCanvasZoom(Canvas, X, Y, Zoom, Alpha) {
 }
 
 // Draw a zoomed image from a source to the canvas and mirrors it from left to right
-function DrawImageZoomCanvas(Source, Context, SX, SY, SWidth, SHeight, X, Y, Width, Height, Alpha) {
+function DrawImageZoomMirror(Source, SX, SY, SWidth, SHeight, X, Y, Width, Height, Alpha) {
 	var Img = DrawGetImage(Source);
 	if (!Img.complete) return false;
 	if (!Img.naturalWidth) return true;
-	Context.drawImage(DrawAlpha(Img, Alpha), SX, SY, Math.round(SWidth), Math.round(SHeight), X, Y, Width, Height);
+	MainCanvas.save();
+	MainCanvas.scale(-1, 1);	
+	MainCanvas.drawImage(DrawAlpha(Img, Alpha), X * -1, Y, Width * -1, Height);
+	MainCanvas.restore();
 	return true;
 }
 
