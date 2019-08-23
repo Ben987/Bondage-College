@@ -85,7 +85,7 @@ function WardrobeClick() {
 	
 	// If we must go back to the room
 	if ((MouseX >= 1750) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 90)) 
-		CommonSetScreen("Room", "Private");
+		WardrobeExit();
 	
 	// If we must load a saved outfit
 	if ((MouseX >= 500) && (MouseX < 725) && (MouseY >= 25) && (MouseY < 90) && (WardrobeSelection >= 0))
@@ -106,6 +106,11 @@ function WardrobeClick() {
 				if ((MouseX >= 500 + (C - 6) * 250) && (MouseX <= 725 + (C - 6) * 250) && (MouseY >= 550) && (MouseY <= 1000))
 					WardrobeSelection = C;
 			}
+}
+
+// when the user exit this screen
+function WardrobeExit() {
+	CommonSetScreen("Room", "Private");
 }
 
 // Set a wardrobe character name, sync it with server

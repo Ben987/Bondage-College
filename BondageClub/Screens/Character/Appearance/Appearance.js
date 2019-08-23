@@ -634,6 +634,13 @@ function AppearanceClick() {
 
 // When we cancel the character appearance edit, we restore the backup
 function CharacterAppearanceExit(C) {
+	// escape key pressed
+	if (C == null) {
+		if (CharacterAppearanceColorPicker != "") { CharacterAppearanceColorPicker = ""; return; }
+		if (CharacterAppearanceWardrobeMode)  { CharacterAppearanceWardrobeMode = false; ElementRemove("InputWardrobeName"); return; }
+		C = CharacterAppearanceSelection;
+	}
+
 	ElementRemove("InputWardrobeName");
 	CharacterAppearanceWardrobeMode = false;
 	C.Appearance = CharacterAppearanceBackup;

@@ -113,6 +113,7 @@
 // When the code is loaded, we start the game engine
 window.onload = function() {
 	//CheatImport();
+	document.addEventListener("keydown", DocumentKeyDown)
 	ServerURL = "https://bondage-club-server.herokuapp.com/";
 	CommonIsMobile = CommonDetectMobile();
 	TranslationLoad();
@@ -134,6 +135,15 @@ function KeyDown(event) {
 	if (event.repeat) return;
 	KeyPress = event.keyCode || event.which;
 	CommonKeyDown();
+}
+
+function DocumentKeyDown(event) {
+	if (event.repeat) return;
+	if (event.key == "Escape") {
+		if (typeof window[CurrentScreen + "Exit"] === "function") {
+			window[CurrentScreen + "Exit"]();
+		}	
+	}
 }
 
 // When the user clicks, we fire the click event for other screens
