@@ -142,9 +142,9 @@ function DocumentKeyDown(event) {
 	if (event.key == "Escape") {
 		if (typeof window[CurrentScreen + "Exit"] === "function") {
 			window[CurrentScreen + "Exit"]();
-		} else if (Array.isArray(DialogMenuButton) && DialogMenuButton.indexOf("Exit") >= 0) {
+		} else if ((CurrentCharacter != null) && Array.isArray(DialogMenuButton) && (DialogMenuButton.indexOf("Exit") >= 0)) {
 			DialogLeaveItemMenu();
-		} else {
+		} else if (CurrentCharacter != null) {
 			DialogLeave();
 		}
 	}
