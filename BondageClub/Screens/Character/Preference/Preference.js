@@ -35,7 +35,7 @@ function PreferenceRun() {
 
 // When the user clicks in the preference screen
 function PreferenceClick() {
-	
+
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) PreferenceExit();
 
 	// If we must change the restrain permission level

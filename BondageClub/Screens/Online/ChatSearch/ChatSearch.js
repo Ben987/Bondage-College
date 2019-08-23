@@ -37,7 +37,7 @@ function ChatSearchRun() {
 
 		// Draws the hovering text of friends in the current room
 		if (!CommonIsMobile && (MouseX >= 25) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 875)) {
-			
+
 			// Finds the room where the mouse is hovering
 			X = 25;
 			Y = 25;
@@ -59,7 +59,7 @@ function ChatSearchRun() {
 			}
 
 		}
-		
+
 	} else DrawText(TextGet("NoChatRoomFound"), 1000, 450, "White", "Gray");
 
 	// Draw the bottom controls

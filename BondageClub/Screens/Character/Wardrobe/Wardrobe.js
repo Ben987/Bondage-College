@@ -46,7 +46,7 @@ function WardrobeLoadCharacters(Fast) {
 			// randomize only one character
 			CharacterAppearanceFullRandom(WardrobeCharacter[W]);
 			WardrobeFastSave(WardrobeCharacter[W], P, false);
-		}		
+		}
 	}
 	if (W != null) {
 		if (Fast) {
@@ -69,7 +69,7 @@ function WardrobeRun() {
 	DrawButton(750, 25, 225, 65, TextGet("Save"), "White");
 	DrawButton(1750, 25, 225, 65, TextGet("Return"), "White");
 	DrawText(TextGet("SelectAppareance"), 1375, 60, "White", "Gray");
-	for(var C = 0; C < 12; C++)
+	for (var C = 0; C < 12; C++)
 		if (C < 6) {
 			DrawCharacter(WardrobeCharacter[C], 500 + C * 250, 100, 0.45);
 			if (WardrobeSelection == C) DrawEmptyRect(500 + C * 250, 105, 225, 440, "Cyan");
@@ -82,11 +82,11 @@ function WardrobeRun() {
 
 // Loads the character appearance screen and keeps a backup of the previous appearance
 function WardrobeClick() {
-	
+
 	// If we must go back to the room
-	if ((MouseX >= 1750) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 90)) 
+	if ((MouseX >= 1750) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 90))
 		WardrobeExit();
-	
+
 	// If we must load a saved outfit
 	if ((MouseX >= 500) && (MouseX < 725) && (MouseY >= 25) && (MouseY < 90) && (WardrobeSelection >= 0))
 		WardrobeFastLoad(Player, WardrobeSelection);
@@ -97,7 +97,7 @@ function WardrobeClick() {
 
 	// If we must select a different wardrobe
 	if ((MouseX >= 500) && (MouseX < 2000) && (MouseY >= 100) && (MouseY < 1000))
-		for(var C = 0; C < 12; C++)
+		for (var C = 0; C < 12; C++)
 			if (C < 6) {
 				if ((MouseX >= 500 + C * 250) && (MouseX <= 725 + C * 250) && (MouseY >= 100) && (MouseY <= 450))
 					WardrobeSelection = C;
@@ -140,7 +140,7 @@ function WardrobeFastLoad(C, W, Update) {
 			.filter(w => C.Appearance.find(a => a.Asset.Group.Name == w.Group) == null)
 			.forEach(w => {
 				var A = Asset.find(a =>
-					   a.Group.Name == w.Group
+					a.Group.Name == w.Group
 					&& a.Group.Category == "Appearance"
 					&& (AddAll || a.Group.Clothing)
 					&& a.Name == w.Name
