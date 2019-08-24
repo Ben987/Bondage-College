@@ -1049,12 +1049,12 @@ PunishCell,1000,It's fair Mistress.  (Go to the cell.),,RunPunishment(1),,,
 2050,2051,I'm thinking about renting you for a day.,(She seems unsure about the idea.)  Really?  You will rent me at the auction house?,,,SubSlaveMarketRent,
 2050,2051,I'm thinking about renting you for a day.,"(She looks preoccupied.)  Mistress, do you know the proverb: ""out of sight, out of mind""?  Are you sure it won't damage our relationship?",,,SubSlaveMarketRent,Wise
 2050,2051,I'm thinking about renting you for a day.,(She seems confused.)  Renting?  Like a car?  Are you sure this is ok?,,,SubSlaveMarketRent,Dumb
-2050,2055,I will sell you permanantly.,(She seems really sad.)  I'm sorry to hear that.  This is how we break up Mistress?,,,SubSlaveMarketSell,
-2050,2055,I will sell you permanantly.,(She looks furious.)  So that's how it ends?  Money is more important than me?,,,SubSlaveMarketSell,Violent
-2050,2055,I will sell you permanantly.,(She starts crying.)  Really Mistress?  This is the end between us?  You don't want me anymore?,,,SubSlaveMarketSell,Peaceful
+2050,2055,I will sell you permanently.,(She seems really sad.)  I'm sorry to hear that.  This is how we break up Mistress?,,,SubSlaveMarketSell,
+2050,2055,I will sell you permanently.,(She looks furious.)  So that's how it ends?  Money is more important than me?,,,SubSlaveMarketSell,Violent
+2050,2055,I will sell you permanently.,(She starts crying.)  Really Mistress?  This is the end between us?  You don't want me anymore?,,,SubSlaveMarketSell,Peaceful
 2050,2010,Let's talk about something else.,Yes Mistress.  What's on your mind?,,,,
-2051,2052,"Yes.  I will rent you, but only for a day.","(She sighs.)  Yes Mistress, but know that I'm not very happy about your decision.",NPCInteraction(-20),,SubSlaveMarketRentStart,
-2051,2052,"Yes.  I will rent you, but only for a day.",(She looks disappointed.)  Fine.  I still think it's a bad idea but I'll do it for you Mistress.,NPCInteraction(-30),,SubSlaveMarketRentStart,Serious
+2051,2052,"Yes.  I will rent you, but only for a day.",(She sighs.)  Yes Mistress.  But know that I'm not very happy about your decision.,NPCInteraction(-20),,SubSlaveMarketRentStart,
+2051,2052,"Yes.  I will rent you, but only for a day.","(She looks disappointed.)  Fine.  I still think it's a bad idea, but I'll do it for you Mistress.",NPCInteraction(-30),,SubSlaveMarketRentStart,Serious
 2051,2052,"Yes.  I will rent you, but only for a day.",(She shrugs.)  Alright!  I hope the other Dominant will be just as fun as you.,NPCInteraction(-10),,SubSlaveMarketRentStart,Playful
 2051,2010,No.  Let's forget it.,Alright!  Is there anything else you'd like to talk about?,,,,
 2052,2000,(Rent her at the slave market.),,"SlaveMarketStart(""Rent"")",,,

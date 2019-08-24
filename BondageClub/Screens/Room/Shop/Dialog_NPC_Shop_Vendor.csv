@@ -12,7 +12,7 @@ RemoveItemFeet,,,(You release her feet and she stretches them.)  I have the best
 ItemNeck,,,(She struggles as you strap the collar around her neck.)  I'm not looking for an owner.,,
 RemoveItemNeck,,,(You remove the collar from her neck.)  Yes!  This is much better.,,
 ItemPelvis,,,(You snap the belt around her waist while she sighs.)  Damn it.  I can't sell anymore keys for these.,,
-RemoveItemPelvis,,,(You unlock the belt from her waist and she smiles.)  I owe you one.,,
+RemoveItemPelvis,,,"(You unlock the belt from her waist, and she smiles.)  I owe you one.",,
 ItemHead,,,(You strap the device on her head as she complains.)  The store!  Think about the store!,,
 RemoveItemHead,,,(You remove the device and she looks relived.)  Thanks.  Nothing was stolen?,,
 ItemBreastLeatherWhip,,,(She whimpers as you whip her breast.)  Ouch!  You're whipping too hard.,,

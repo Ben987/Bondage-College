@@ -76,7 +76,7 @@ ServerMessageOwnerRuleKeyConfiscate,,,Your owner has confiscated your keys.  All
 ServerMessageOwnerRuleKeyBlock,,,Your owner is now preventing you from getting new keys.  The club shop will not sell keys to you anymore.
 LockMemberNumber,,,Member number on lock:
 TimerLeft,,,Time left:
-TimerRestart,,,SourceCharacter restarts the five minute timer padlock on DestinationCharacter BodyPart.
+TimerRestart,,,SourceCharacter restarts the five minutes timer padlock on DestinationCharacter BodyPart.
 RestartTimer,,,Restart Timer
 RemoveItemWithTimer,,,Remove item when the lock timer runs out
 WillRemoveItemWithTimer,,,The item will be removed when the lock timer runs out
@@ -135,7 +135,7 @@ DuctTapeHeadTypeWrap,,,Wrap
 DuctTapeHeadSetDouble,,,SourceCharacter takes a piece of duct tape for DestinationCharacter's and place on her face.
 DuctTapeHeadSetWrap,,,SourceCharacter wraps some duct tape onto DestinationCharacter's face.
 DuctTapeHeadTypeMummy,,,Mummy
-DuctTapeHeadSetMummy,,,SourceCharacter wraps DestinationCharacter's  head in tape with multiple layers. 
+DuctTapeHeadSetMummy,,,SourceCharacter wraps DestinationCharacter's head in tape with multiple layers. 
 Intensity-1,,,Item intensity: Disabled
 Intensity0,,,Item intensity: Low
 Intensity1,,,Item intensity: Medium
@@ -198,6 +198,6 @@ chains,,,chains
 unchains,,,removes the chains
 mittenstoharness,,,mittens to the baby harness
 mittensfromharness,,,mittens
-NeedHarness,,,They must be wearing a baby harness first to chain the mittens to it.
-FreeArms,,,Free arms first before attaching a mitten chains.
+NeedHarness,,,She must be wearing a baby harness to chain the mittens.
+FreeArms,,,You must free her arms before attaching mitten chains.
 FacialExpression,,,Facial expression

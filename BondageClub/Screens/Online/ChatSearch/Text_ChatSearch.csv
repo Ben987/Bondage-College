@@ -2,6 +2,7 @@ NoChatRoomFound,No chat room found.  You can create a new one.
 EnterName,Search for a room by name:
 "SearchRoom	",Search for a room
 "CreateRoom	",Create your room
+FriendsInRoom,Friends in room:
 ResponseRoomFull,This room is already full
 ResponseRoomBanned,You're banned from this room
 ResponseRoomKicked,You've been kicked out
