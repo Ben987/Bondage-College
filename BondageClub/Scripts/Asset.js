@@ -78,7 +78,11 @@ function AssetAdd(NewAsset) {
 		Layer: AssetBuildLayer(NewAsset.Layer),
 		AllowEffect: NewAsset.AllowEffect,
 		AllowBlock: NewAsset.AllowBlock,
-		AllowType: NewAsset.AllowType
+		AllowType: NewAsset.AllowType,
+		IgnoreParentGroup: (NewAsset.SkipParentGroup == null)? false: NewAsset.SkipParentGroup,
+		DynamicDescription: (typeof NewAsset.DynamicDescription === 'function')? NewAsset.DynamicDescription : function() {return this.Description;},
+		DynamicPreviewIcon: (typeof NewAsset.DynamicDescription === 'function')? NewAsset.DynamicPreviewIcon : function() {return ""},
+		DynamicAllowInventoryAdd: (typeof NewAsset.DynamicAllowInventoryAdd === 'function')? NewAsset.DynamicAllowInventoryAdd : function() {return true}
 	}
 	// Unwearable assets are not visible but can be overwritten
 	if (!A.Wear && NewAsset.Visible != true) A.Visible = false;

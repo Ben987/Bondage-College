@@ -245,7 +245,7 @@ function CharacterAppearanceBuildCanvas(C) {
 			// If there's a father group, we must add it to find the correct image
 			var CA = C.Appearance[A];
 			var G = "";
-			if (CA.Asset.Group.ParentGroupName != "")
+			if (CA.Asset.Group.ParentGroupName != "" && !CA.Asset.IgnoreParentGroup)
 				for (var FG = 0; FG < C.Appearance.length; FG++)
 					if (CA.Asset.Group.ParentGroupName == C.Appearance[FG].Asset.Group.Name)
 						G = "_" + C.Appearance[FG].Asset.Name;

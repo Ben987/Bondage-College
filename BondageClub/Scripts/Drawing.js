@@ -575,6 +575,6 @@ function DrawProcess() {
 // Draw the item preview box
 function DrawItemPreview(X, Y, Item) {
 	DrawRect(X, Y, 225, 275, "white");
-	DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.Group.Name + "/Preview/" + Item.Asset.Name + ".png", X + 2, Y + 2, 221, 221);
+	DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.Group.Name + "/Preview/" + Item.Asset.Name + Item.Asset.DynamicPreviewIcon() + ".png", X + 2, Y + 2, 221, 221);
 	DrawTextFit(Item.Asset.Description, X + 110, Y + 250, 221, "black");
 }
