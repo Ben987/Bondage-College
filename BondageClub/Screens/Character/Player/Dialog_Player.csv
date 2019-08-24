@@ -135,7 +135,7 @@ DuctTapeHeadTypeWrap,,,Wrap
 DuctTapeHeadSetDouble,,,SourceCharacter takes a piece of duct tape for DestinationCharacter's and place on her face.
 DuctTapeHeadSetWrap,,,SourceCharacter wraps some duct tape onto DestinationCharacter's face.
 DuctTapeHeadTypeMummy,,,Mummy
-DuctTapeHeadSetMummy,,,SourceCharacter wraps DestinationCharacter's head in tape with multiple layers. 
+DuctTapeHeadSetMummy,,,"SourceCharacter wraps DestinationCharacter's head in tape with multiple layers. "
 Intensity-1,,,Item intensity: Disabled
 Intensity0,,,Item intensity: Low
 Intensity1,,,Item intensity: Medium
@@ -201,3 +201,12 @@ mittensfromharness,,,mittens
 NeedHarness,,,She must be wearing a baby harness to chain the mittens.
 FreeArms,,,You must free her arms before attaching mitten chains.
 FacialExpression,,,Facial expression
+SelectSpankingToysType,,,Select a spanking toy
+SpankingToysTypeCrop,,,Crop
+SpankingToysTypeFlogger,,,Flogger
+SpankingToysTypeCane,,,Cane
+SpankingToysTypeHeartCrop,,,Heart Crop
+SpankingToysTypePaddle,,,Paddle
+SpankingToysTypeWhipPaddle,,,Whip Paddle
+SpankingToysSetPlayer,,,SourceCharacter takes out a Item
+SpankingToysSetOthers,,,SourceCharacter give DestinationCharacter a Item
