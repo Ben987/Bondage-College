@@ -537,6 +537,9 @@ function ChatRoomSetRule(data) {
 
 		// Forced labor
 		if (data.Content == "OwnerRuleLaborMaidDrinks") {
+			CharacterSetActivePose(Player, null);
+			InventoryRemove(Player, "ItemMouth");
+			ChatRoomCharacterUpdate(Player);
 			var D = TextGet("ActionGrabbedToServeDrinksIntro");
 			ServerSend("ChatRoomChat", { Content: Player.Name + " " + TextGet("ActionGrabbedToServeDrinks"), Type: "Action" } );
 			ElementRemove("InputChat");
