@@ -227,7 +227,7 @@ function DialogInventoryBuild(C) {
 		// Third, we add everything from the player inventory if the player isn't the victim
 		if (C.ID != 0)
 			for(var A = 0; A < Player.Inventory.length; A++)
-				if ((Player.Inventory[A].Asset != null) && (Player.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && (C.Inventory[A].Asset.DynamicAllowInventoryAdd()))
+				if ((Player.Inventory[A].Asset != null) && (Player.Inventory[A].Asset.Group.Name == C.FocusGroup.Name && Player.Inventory[A].Asset.DynamicAllowInventoryAdd()))
 					DialogInventoryAdd(Player.Inventory[A], false);
 		DialogMenuButtonBuild(C);
 
