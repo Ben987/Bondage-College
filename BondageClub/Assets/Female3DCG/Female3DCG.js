@@ -601,7 +601,7 @@ var AssetFemale3DCG = [
 			{ Name: "PaddedMittens", SelfBondage: false, Value: 50, AllowPose: ["BackBoxTie", "BackElbowTouch", "BackCuffs"], Effect: ["Block", "Prone"], Extended: true, Time: 15, Difficulty: 4, AllowLock: true },
 			{ Name: "PawMittens", SelfBondage: false, Value: 60, AllowPose: ["BackBoxTie", "BackElbowTouch", "BackCuffs"], Effect: ["Block", "Prone"], Extended: true, Time: 15, Difficulty: 4, AllowLock: true },
 			{ Name: "DuctTape", SelfBondage: false, Value: 50, SetPose: ["TapedHands"], AllowPose: ["BackBoxTie", "BackElbowTouch", "BackCuffs"], Hide: ["Gloves"], Effect: ["Block", "Prone"], Time: 20, RemoveTime: 10, Difficulty: 5, BuyGroup: "DuctTape" },
-			{ Name: "SpankingToys", Wear: true, Extended: true, Random: false, Value: 10, BuyGroup: "SpankingToys", AllowType: ["Crop" , "Flogger", "Cane", "HeartCrop","Paddle","WhipPaddle"], SkipParentGroup: true, DynamicDescription: () => {return InventoryIsWorn(Player, "ItemHands", "SpankingToys")? SpankingCurrentType : "Spanking Toy"}, DynamicPreviewIcon: () => {return SpankingCurrentType}}
+			{ Name: "SpankingToys", Wear: true, Extended: true, Random: false, Value: 10, BuyGroup: "SpankingToys", AllowType: ["Crop" , "Flogger", "Cane", "HeartCrop","Paddle","WhipPaddle"], SkipParentGroup: true, DynamicDescription: () => {return ((InventoryIsWorn(Player, "ItemHands", "SpankingToys")) && (InventoryGet(Player, "ItemHands").Property != null))? InventoryGet(Player, "ItemHands").Property.Type : "Spanking Toy"}, DynamicPreviewIcon: () => {return SpankingCurrentType}}
 		]
 	},
 

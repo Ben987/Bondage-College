@@ -6,7 +6,8 @@ let SpankingInventoryOffset = 0;
 let nextButton = false;
 // Loads the item extension properties
 function InventoryItemHandsSpankingToysLoad() {
-	DialogFocusItem.Property = {Type: SpankingCurrentType, AnotherType: "true"};
+	console.log(DialogFocusItem);
+	DialogFocusItem.Property = {Type: SpankingCurrentType};
 	if(SpankingInventory.length >4) nextButton = true;
 }
 
@@ -56,6 +57,10 @@ function InventoryItemHandsSpankingToysClick() {
 function InventorySpankingToySetType(NewType) {
 	let C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	//set the type
+	if (CurrentScreen == "ChatRoom") {
+		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
+		InventoryItemHandsSpankingToysLoad(); 
+	}
 	DialogFocusItem.Property.Type = NewType;
 	SpankingCurrentType = NewType;
 
@@ -81,6 +86,7 @@ function InventorySpankingToySetType(NewType) {
 	if (DialogInventory != null) {
 		DialogFocusItem = null;
 		DialogMenuButtonBuild(C);
+		console.log(DialogFocusItem);
 	}
 }
 
