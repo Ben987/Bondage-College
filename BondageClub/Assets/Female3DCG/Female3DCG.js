@@ -407,7 +407,13 @@ var AssetFemale3DCG = [
 			{ Name: "SuspensionHempRope", SelfBondage: false, Random: false, RemoveAtLogin: true, SetPose: ["Suspension", "LegsClosed"], Effect: ["Freeze", "Prone"], Value: -1, Height: 150, Time: 30, Difficulty: 3, Alpha: [[125, 850, 250, 150]], ExpressionTrigger: [{ Group: "Blush", Name: "High", Timer: 30 }, { Group: "Eyebrows", Name: "Raised", Timer: 10 }], Prerequisite: "NotChained" },
 			{ Name: "DuctTape", Value: 50, Time: 15, RemoveTime: 10, BuyGroup: "DuctTape" },
 			{ Name: "MermaidRopeTie", Value: 30, Time: 15, Difficulty: 3 },
-			{ Name: "SpankingToys", Wear: false, Random: false, Value: 10, BuyGroup: "SpankingToys", SkipParentGroup: true, DynamicDescription: () => {return SpankingCurrentType}, DynamicPreviewIcon: () => {return SpankingCurrentType}, DynamicAllowInventoryAdd: () => {return InventoryIsWorn(Player, "ItemHands", "SpankingToys")}}
+			{ 
+				Name: "SpankingToys", Wear: false, Random: false, Value: 10, BuyGroup: "SpankingToys", SkipParentGroup: true,
+				 DynamicDescription: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type}, 
+				 DynamicPreviewIcon: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type}, 
+				 DynamicAllowInventoryAdd: () => {return InventoryIsWorn(Player, "ItemHands", "SpankingToys")},
+				 DynamicExpressionTrigger: () => {return SpankingInventory.filter(x=> x.Name == (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type)[0].ExpressionTrigger}
+			}
 		]
 	},
 
@@ -431,7 +437,13 @@ var AssetFemale3DCG = [
 			{ Name: "LeatherBelt", Value: 25, Time: 5, AllowLock: true },
 			{ Name: "DuctTape", Value: 50, Time: 15, RemoveTime: 10, BuyGroup: "DuctTape" },
 			{ Name: "MermaidRopeTie", Value: 30, Time: 15, Difficulty: 3 },
-			{ Name: "SpankingToys", Wear: false, Random: false, Value: 10, BuyGroup: "SpankingToys", SkipParentGroup: true, DynamicDescription: () => {return SpankingCurrentType}, DynamicPreviewIcon: () => {return SpankingCurrentType}, DynamicAllowInventoryAdd: () => {return InventoryIsWorn(Player, "ItemHands", "SpankingToys")}}
+			{ 
+				Name: "SpankingToys", Wear: false, Random: false, Value: 10, BuyGroup: "SpankingToys", SkipParentGroup: true,
+				 DynamicDescription: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type},
+				 DynamicPreviewIcon: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type}, 
+				 DynamicAllowInventoryAdd: () => {return InventoryIsWorn(Player, "ItemHands", "SpankingToys")},
+				 DynamicExpressionTrigger: () => {return SpankingInventory.filter(x=> x.Name == (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type)[0].ExpressionTrigger}
+			}
 		]
 	},
 
@@ -449,7 +461,13 @@ var AssetFemale3DCG = [
 			{ Name: "VibratingWand", Wear: false, Value: 60, Prerequisite: "AccessVulva", Bonus: [{ Type: "KidnapManipulation", Factor: 3 }], ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyes", Name: "Closed", Timer: 5 }], Visible: false },
 			{ Name: "VibratorRemote", Effect: ["Remote"], Wear: false, Value: 80, BuyGroup: "VibratorRemote", Visible: false },
 			{ Name: "VibratingLatexPanties", Effect: ["Egged", "Chaste"], Block: ["ItemButt"], Value: 65, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }], AllowLock: true, AllowEffect: ["Egged", "Vibrating"] },
-			{ Name: "SpankingToys", Wear: false, Random: false, Value: 10, BuyGroup: "SpankingToys", SkipParentGroup: true, DynamicDescription: () => {return SpankingCurrentType}, DynamicPreviewIcon: () => {return SpankingCurrentType}, DynamicAllowInventoryAdd: () => {return InventoryIsWorn(Player, "ItemHands", "SpankingToys")}}
+			{ 
+				Name: "SpankingToys", Wear: false, Random: false, Value: 10, BuyGroup: "SpankingToys", SkipParentGroup: true,
+				 DynamicDescription: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type},
+				 DynamicPreviewIcon: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type}, 
+				 DynamicAllowInventoryAdd: () => {return InventoryIsWorn(Player, "ItemHands", "SpankingToys")},
+				 DynamicExpressionTrigger: () => {return SpankingInventory.filter(x=> x.Name == (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type)[0].ExpressionTrigger}
+			}
 		]
 	},
 
@@ -474,7 +492,13 @@ var AssetFemale3DCG = [
 			{ Name: "RaccoonTailPlug", Value: 50, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }] },
 			{ Name: "AnalBeads", Value: 20, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }], Visible: false },
 			{ Name: "ButtPump", Effect: [], Value: 35, Extended: true, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }], Visible: false },
-			{ Name: "SpankingToys", Wear: false, Random: false, Value: 10, BuyGroup: "SpankingToys", SkipParentGroup: true, DynamicDescription: () => {return SpankingCurrentType}, DynamicPreviewIcon: () => {return SpankingCurrentType}, DynamicAllowInventoryAdd: () => {return InventoryIsWorn(Player, "ItemHands", "SpankingToys")}}
+			{ 
+				Name: "SpankingToys", Wear: false, Random: false, Value: 10, BuyGroup: "SpankingToys", SkipParentGroup: true,
+				 DynamicDescription: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type},
+				 DynamicPreviewIcon: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type}, 
+				 DynamicAllowInventoryAdd: () => {return InventoryIsWorn(Player, "ItemHands", "SpankingToys")},
+				 DynamicExpressionTrigger: () => {return SpankingInventory.filter(x=> x.Name == (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type)[0].ExpressionTrigger}
+			}
 		]
 	},
 
@@ -494,7 +518,13 @@ var AssetFemale3DCG = [
 			{ Name: "LeatherCrop", Value: 40, Wear: false, BuyGroup: "LeatherCrop", Bonus: [{ Type: "KidnapDomination", Factor: 3 }], ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }] },
 			{ Name: "LeatherWhip", Value: 60, Wear: false, BuyGroup: "LeatherWhip", Bonus: [{ Type: "KidnapBruteForce", Factor: 3 }], ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }] },
 			{ Name: "StraponPanties", Effect: ["Chaste"], Block: ["ItemVulva", "ItemButt"], Value: 50, Prerequisite: "AccessVulva", Time: 15 },
-			{ Name: "SpankingToys", Wear: false, Random: false, Value: 10, BuyGroup: "SpankingToys", SkipParentGroup: true, DynamicDescription: () => {return SpankingCurrentType}, DynamicPreviewIcon: () => {return SpankingCurrentType}, DynamicAllowInventoryAdd: () => {return InventoryIsWorn(Player, "ItemHands", "SpankingToys")}}
+			{ 
+				Name: "SpankingToys", Wear: false, Random: false, Value: 10, BuyGroup: "SpankingToys", SkipParentGroup: true,
+				 DynamicDescription: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type},
+				 DynamicPreviewIcon: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type}, 
+				 DynamicAllowInventoryAdd: () => {return InventoryIsWorn(Player, "ItemHands", "SpankingToys")},
+				 DynamicExpressionTrigger: () => {return SpankingInventory.filter(x=> x.Name == (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type)[0].ExpressionTrigger}
+			}
 		]
 	},
 
@@ -514,7 +544,13 @@ var AssetFemale3DCG = [
 			{ Name: "HempRopeHarness", Value: 50, Prerequisite: "AccessTorso", Time: 25, RemoveTime: 35, Difficulty: 3 },
 			{ Name: "LeatherHarness", Value: 100, Prerequisite: "AccessTorso", Time: 15, RemoveTime: 10, Difficulty: 50, AllowLock: true },
 			{ Name: "AdultBabyHarness", Value: 80, Priority: 29, Time: 15, RemoveTime: 10, Difficulty: 3, AllowLock: true, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
-			{ Name: "SpankingToys", Wear: false, Random: false, Value: 10, BuyGroup: "SpankingToys", SkipParentGroup: true, DynamicDescription: () => {return SpankingCurrentType}, DynamicPreviewIcon: () => {return SpankingCurrentType}, DynamicAllowInventoryAdd: () => {return InventoryIsWorn(Player, "ItemHands", "SpankingToys")}}
+			{ 
+				Name: "SpankingToys", Wear: false, Random: false, Value: 10, BuyGroup: "SpankingToys", SkipParentGroup: true,
+				 DynamicDescription: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type},
+				 DynamicPreviewIcon: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type}, 
+				 DynamicAllowInventoryAdd: () => {return InventoryIsWorn(Player, "ItemHands", "SpankingToys")},
+				 DynamicExpressionTrigger: () => {return SpankingInventory.filter(x=> x.Name == (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type)[0].ExpressionTrigger}
+			}
 		]
 	},
 
@@ -536,7 +572,13 @@ var AssetFemale3DCG = [
 			{ Name: "VibratorRemote", Value: 80, Effect: ["Remote"], Wear: false, BuyGroup: "VibratorRemote" },
 			{ Name: "WeightedPiercing", Value: 35, Prerequisite: "AccessBreast", Time: 10, ExpressionTrigger: [{ Group: "Eyes", Name: "Closed", Timer: 5 }, { Group: "Eyebrows", Name: "Soft", Timer: 5 }] },
 			{ Name: "ChainClamp", Value: 35, Prerequisite: "AccessBreast", Time: 10, ExpressionTrigger: [{ Group: "Eyes", Name: "Closed", Timer: 5 }, { Group: "Eyebrows", Name: "Soft", Timer: 5 }] },
-			{ Name: "SpankingToys", Wear: false, Random: false, Value: 10, BuyGroup: "SpankingToys", SkipParentGroup: true, DynamicDescription: () => {return SpankingCurrentType}, DynamicPreviewIcon: () => {return SpankingCurrentType}, DynamicAllowInventoryAdd: () => {return InventoryIsWorn(Player, "ItemHands", "SpankingToys")}}
+			{ 
+				Name: "SpankingToys", Wear: false, Random: false, Value: 10, BuyGroup: "SpankingToys", SkipParentGroup: true,
+				 DynamicDescription: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type},
+				 DynamicPreviewIcon: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type}, 
+				 DynamicAllowInventoryAdd: () => {return InventoryIsWorn(Player, "ItemHands", "SpankingToys")},
+				 DynamicExpressionTrigger: () => {return SpankingInventory.filter(x=> x.Name == (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type)[0].ExpressionTrigger}
+			}
 		]
 	},
 
@@ -555,7 +597,13 @@ var AssetFemale3DCG = [
 			{ Name: "MetalChastityBraKey", Wear: false, Value: -1, Effect: ["Unlock-MetalChastityBra"], Prerequisite: "AccessBreast", Time: 5 },
 			{ Name: "LeatherCrop", Value: 40, Wear: false, BuyGroup: "LeatherCrop", Bonus: [{ Type: "KidnapDomination", Factor: 3 }], ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }] },
 			{ Name: "LeatherWhip", Value: 60, Wear: false, BuyGroup: "LeatherWhip", Bonus: [{ Type: "KidnapBruteForce", Factor: 3 }], ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }] },
-			{ Name: "SpankingToys", Wear: false, Random: false, Value: 10, BuyGroup: "SpankingToys", SkipParentGroup: true, DynamicDescription: () => {return SpankingCurrentType}, DynamicPreviewIcon: () => {return SpankingCurrentType}, DynamicAllowInventoryAdd: () => {return InventoryIsWorn(Player, "ItemHands", "SpankingToys")}}
+			{ 
+				Name: "SpankingToys", Wear: false, Random: false, Value: 10, BuyGroup: "SpankingToys", SkipParentGroup: true,
+				 DynamicDescription: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type},
+				 DynamicPreviewIcon: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type}, 
+				 DynamicAllowInventoryAdd: () => {return InventoryIsWorn(Player, "ItemHands", "SpankingToys")},
+				 DynamicExpressionTrigger: () => {return SpankingInventory.filter(x=> x.Name == (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type)[0].ExpressionTrigger}
+			}
 		]
 	},
 
@@ -582,7 +630,13 @@ var AssetFemale3DCG = [
 			{ Name: "DuctTape", SelfBondage: false, Extended: true, Value: 50, SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone"], Time: 20, RemoveTime: 10, Difficulty: 5, BuyGroup: "DuctTape", AllowBlock: ["ItemVulva", "ItemButt", "ItemPelvis", "ItemTorso", "ItemBreast", "ItemNipples"], AllowType: ["Bottom", "Top", "Full"] },
 			{ Name: "BitchSuit", Random: false, SelfBondage: false, Value: 250, SetPose: ["BackElbowTouch", "Kneel"], Hide: ["Cloth", "ClothLower", "BodyLower", "Shoes", "Socks"], Block: ["ItemPelvis", "ItemTorso", "ItemBreast", "ItemHands"], Effect: ["Block", "Prone", "ForceKneel"], Time: 40, RemoveTime: 30, Difficulty: 15, AllowLock: true, Prerequisite: "NotSuspended" },
 			{ Name: "CollarLeashHolding", Random: false, SelfBondage: false, Priority: 34, Value: -1, Time: 3, RemoveTime: 3, Difficulty: 1, Prerequisite: "NotSuspended" },
-			{ Name: "SpankingToys", Wear: false, Random: false, Value: 10, BuyGroup: "SpankingToys", SkipParentGroup: true, DynamicDescription: () => {return SpankingCurrentType}, DynamicPreviewIcon: () => {return SpankingCurrentType}, DynamicAllowInventoryAdd: () => {return InventoryIsWorn(Player, "ItemHands", "SpankingToys")}}
+			{ 
+				Name: "SpankingToys", Wear: false, Random: false, Value: 10, BuyGroup: "SpankingToys", SkipParentGroup: true,
+				 DynamicDescription: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type},
+				 DynamicPreviewIcon: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type}, 
+				 DynamicAllowInventoryAdd: () => {return InventoryIsWorn(Player, "ItemHands", "SpankingToys")},
+				 DynamicExpressionTrigger: () => {return SpankingInventory.filter(x=> x.Name == (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type)[0].ExpressionTrigger}
+			}
 		]
 	},
 	
@@ -601,7 +655,11 @@ var AssetFemale3DCG = [
 			{ Name: "PaddedMittens", SelfBondage: false, Value: 50, AllowPose: ["BackBoxTie", "BackElbowTouch", "BackCuffs"], Effect: ["Block", "Prone"], Extended: true, Time: 15, Difficulty: 4, AllowLock: true },
 			{ Name: "PawMittens", SelfBondage: false, Value: 60, AllowPose: ["BackBoxTie", "BackElbowTouch", "BackCuffs"], Effect: ["Block", "Prone"], Extended: true, Time: 15, Difficulty: 4, AllowLock: true },
 			{ Name: "DuctTape", SelfBondage: false, Value: 50, SetPose: ["TapedHands"], AllowPose: ["BackBoxTie", "BackElbowTouch", "BackCuffs"], Hide: ["Gloves"], Effect: ["Block", "Prone"], Time: 20, RemoveTime: 10, Difficulty: 5, BuyGroup: "DuctTape" },
-			{ Name: "SpankingToys", Wear: true, Extended: true, Random: false, Value: 10, BuyGroup: "SpankingToys", AllowType: ["Crop" , "Flogger", "Cane", "HeartCrop","Paddle","WhipPaddle"], SkipParentGroup: true, DynamicDescription: () => {return ((InventoryIsWorn(Player, "ItemHands", "SpankingToys")) && (InventoryGet(Player, "ItemHands").Property != null))? InventoryGet(Player, "ItemHands").Property.Type : "Spanking Toy"}, DynamicPreviewIcon: () => {return SpankingCurrentType}}
+			{ 
+				Name: "SpankingToys", Wear: true, Extended: true, Random: false, Value: 10, BuyGroup: "SpankingToys", AllowType: ["Crop" , "Flogger", "Cane", "HeartCrop","Paddle","WhipPaddle"], SkipParentGroup: true,
+				 DynamicDescription: () => {return ((InventoryIsWorn(CurrentCharacter, "ItemHands", "SpankingToys")) && (InventoryGet(CurrentCharacter, "ItemHands").Property != null))? InventoryGet(CurrentCharacter, "ItemHands").Property.Type : "Spanking Toy"},
+				 DynamicPreviewIcon: () => {return ((InventoryIsWorn(CurrentCharacter, "ItemHands", "SpankingToys")) && (InventoryGet(CurrentCharacter, "ItemHands").Property != null))? InventoryGet(CurrentCharacter, "ItemHands").Property.Type : "Paddle"}
+			}
 		]
 	},
 

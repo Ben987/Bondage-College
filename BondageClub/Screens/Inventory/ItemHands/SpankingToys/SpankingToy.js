@@ -1,13 +1,38 @@
 "use strict";
-const SpankingInventory = ["Crop" , "Flogger", "Cane", "HeartCrop","Paddle","WhipPaddle"];
+const SpankingInventory =[
+	{
+		Name: "Crop",
+		Bonus: [{ Type: "KidnapDomination", Factor: 3 }], 
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }]
+	},{
+		Name: "Flogger",
+		Bonus: [{ Type: "KidnapDomination", Factor: 3 }], 
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }]
+	},{
+		Name: "Cane",
+		Bonus: [{ Type: "KidnapDomination", Factor: 3 }], 
+		ExpressionTrigger: [{ Group: "Blush", Name: "High", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 },{ Group: "Eyes", Name: "Wink", Timer: 5 }]
+	},{
+		Name: "HeartCrop",
+		Bonus: [{ Type: "KidnapDomination", Factor: 3 }], 
+		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }]
+	},{
+		Name: "Paddle",
+		Bonus: [{ Type: "KidnapDomination", Factor: 3 }], 
+		ExpressionTrigger: [{ Group: "Blush", Name: "High", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Eyes", Name: "Closed", Timer: 5 }]
+	},{
+		Name: "WhipPaddle",
+		Bonus: [{ Type: "KidnapDomination", Factor: 3 }], 
+		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Eyes", Name: "Wink", Timer: 5 }]
+	}
+];
 
-var SpankingCurrentType = SpankingInventory[0];
+var SpankingCurrentType = null;
 let SpankingInventoryOffset = 0;
 let nextButton = false;
 // Loads the item extension properties
 function InventoryItemHandsSpankingToysLoad() {
-	console.log(DialogFocusItem);
-	DialogFocusItem.Property = {Type: SpankingCurrentType};
+	if(DialogFocusItem.Property == null) DialogFocusItem.Property = {Type: SpankingCurrentType};
 	if(SpankingInventory.length >4) nextButton = true;
 }
 
@@ -26,9 +51,9 @@ function InventoryItemHandsSpankingToysDraw() {
 	//draw the buttons 4 at a time
 	for(let I = SpankingInventoryOffset; (I < SpankingInventory.length) && (I < SpankingInventoryOffset +4); I++){
 		let offset = I - SpankingInventoryOffset;
-		DrawButton(1000 + offset*250, 550, 225, 225, "", ((SpankingCurrentType == SpankingInventory[I]) ? "#888888" : "White"));
-		DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/" + SpankingInventory[I] + ".png", 1000 + offset*250, 550);
-		DrawText(DialogFind(Player, "SpankingToysType" + SpankingInventory[I]), 1115 +offset*250, 800, "white", "gray");
+		DrawButton(1000 + offset*250, 550, 225, 225, "", ((DialogFocusItem.Property.Type == SpankingInventory[I].Name) ? "#888888" : "White"));
+		DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/" + SpankingInventory[I].Name + ".png", 1000 + offset*250, 550);
+		DrawText(DialogFind(Player, "SpankingToysType" + SpankingInventory[I].Name), 1115 +offset*250, 800, "white", "gray");
 	};
 }
 
@@ -42,10 +67,10 @@ function InventoryItemHandsSpankingToysClick() {
 	//Item buttons
 	
 	for(let I = SpankingInventoryOffset; (I < SpankingInventory.length) && (I < SpankingInventoryOffset +4); I++){
-		let nextItem = SpankingInventory[I];
+		let nextItem = SpankingInventory[I].Name;
 		let offset = I - SpankingInventoryOffset;
 		if ((MouseX >= 1000 + offset*250) && (MouseX <= 1225 + offset*250) && (MouseY >= 550) && (MouseY <= 775)){
-			if(SpankingCurrentType != nextItem){
+			if(DialogFocusItem.Property.Type != nextItem){
 				InventorySpankingToySetType(nextItem);
 			}
 		}
@@ -62,7 +87,8 @@ function InventorySpankingToySetType(NewType) {
 		InventoryItemHandsSpankingToysLoad(); 
 	}
 	DialogFocusItem.Property.Type = NewType;
-	SpankingCurrentType = NewType;
+	if(C.ID == 0)
+		SpankingCurrentType = NewType;
 
 	//update the character
 	CharacterRefresh(C);
@@ -86,7 +112,6 @@ function InventorySpankingToySetType(NewType) {
 	if (DialogInventory != null) {
 		DialogFocusItem = null;
 		DialogMenuButtonBuild(C);
-		console.log(DialogFocusItem);
 	}
 }
 
