@@ -412,7 +412,7 @@ var AssetFemale3DCG = [
 				 DynamicDescription: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type}, 
 				 DynamicPreviewIcon: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type}, 
 				 DynamicAllowInventoryAdd: () => {return InventoryIsWorn(Player, "ItemHands", "SpankingToys")},
-				 DynamicExpressionTrigger: () => {return SpankingInventory.filter(x=> x.Name == (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type)[0].ExpressionTrigger}
+				 DynamicExpressionTrigger: () => {return SpankingInventory.filter(x=> x.Name == ((SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type))[0].ExpressionTrigger}
 			}
 		]
 	},
@@ -442,7 +442,7 @@ var AssetFemale3DCG = [
 				 DynamicDescription: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type},
 				 DynamicPreviewIcon: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type}, 
 				 DynamicAllowInventoryAdd: () => {return InventoryIsWorn(Player, "ItemHands", "SpankingToys")},
-				 DynamicExpressionTrigger: () => {return SpankingInventory.filter(x=> x.Name == (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type)[0].ExpressionTrigger}
+				 DynamicExpressionTrigger: () => {return SpankingInventory.filter(x=> x.Name == ((SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type))[0].ExpressionTrigger}
 			}
 		]
 	},
@@ -466,7 +466,7 @@ var AssetFemale3DCG = [
 				 DynamicDescription: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type},
 				 DynamicPreviewIcon: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type}, 
 				 DynamicAllowInventoryAdd: () => {return InventoryIsWorn(Player, "ItemHands", "SpankingToys")},
-				 DynamicExpressionTrigger: () => {return SpankingInventory.filter(x=> x.Name == (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type)[0].ExpressionTrigger}
+				 DynamicExpressionTrigger: () => {return SpankingInventory.filter(x=> x.Name == ((SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type))[0].ExpressionTrigger}
 			}
 		]
 	},
@@ -497,7 +497,7 @@ var AssetFemale3DCG = [
 				 DynamicDescription: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type},
 				 DynamicPreviewIcon: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type}, 
 				 DynamicAllowInventoryAdd: () => {return InventoryIsWorn(Player, "ItemHands", "SpankingToys")},
-				 DynamicExpressionTrigger: () => {return SpankingInventory.filter(x=> x.Name == (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type)[0].ExpressionTrigger}
+				 DynamicExpressionTrigger: () => {return SpankingInventory.filter(x=> x.Name == ((SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type))[0].ExpressionTrigger}
 			}
 		]
 	},
@@ -523,7 +523,7 @@ var AssetFemale3DCG = [
 				 DynamicDescription: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type},
 				 DynamicPreviewIcon: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type}, 
 				 DynamicAllowInventoryAdd: () => {return InventoryIsWorn(Player, "ItemHands", "SpankingToys")},
-				 DynamicExpressionTrigger: () => {return SpankingInventory.filter(x=> x.Name == (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type)[0].ExpressionTrigger}
+				 DynamicExpressionTrigger: () => {return SpankingInventory.filter(x=> x.Name == ((SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type))[0].ExpressionTrigger}
 			}
 		]
 	},
@@ -549,7 +549,7 @@ var AssetFemale3DCG = [
 				 DynamicDescription: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type},
 				 DynamicPreviewIcon: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type}, 
 				 DynamicAllowInventoryAdd: () => {return InventoryIsWorn(Player, "ItemHands", "SpankingToys")},
-				 DynamicExpressionTrigger: () => {return SpankingInventory.filter(x=> x.Name == (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type)[0].ExpressionTrigger}
+				 DynamicExpressionTrigger: () => {return SpankingInventory.filter(x=> x.Name == ((SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type))[0].ExpressionTrigger}
 			}
 		]
 	},
@@ -577,7 +577,7 @@ var AssetFemale3DCG = [
 				 DynamicDescription: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type},
 				 DynamicPreviewIcon: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type}, 
 				 DynamicAllowInventoryAdd: () => {return InventoryIsWorn(Player, "ItemHands", "SpankingToys")},
-				 DynamicExpressionTrigger: () => {return SpankingInventory.filter(x=> x.Name == (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type)[0].ExpressionTrigger}
+				 DynamicExpressionTrigger: () => {return SpankingInventory.filter(x=> x.Name == ((SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type))[0].ExpressionTrigger}
 			}
 		]
 	},
@@ -602,7 +602,7 @@ var AssetFemale3DCG = [
 				 DynamicDescription: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type},
 				 DynamicPreviewIcon: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type}, 
 				 DynamicAllowInventoryAdd: () => {return InventoryIsWorn(Player, "ItemHands", "SpankingToys")},
-				 DynamicExpressionTrigger: () => {return SpankingInventory.filter(x=> x.Name == (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type)[0].ExpressionTrigger}
+				 DynamicExpressionTrigger: () => {return SpankingInventory.filter(x=> x.Name == ((SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type))[0].ExpressionTrigger}
 			}
 		]
 	},
@@ -635,7 +635,7 @@ var AssetFemale3DCG = [
 				 DynamicDescription: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type},
 				 DynamicPreviewIcon: () => {return (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type}, 
 				 DynamicAllowInventoryAdd: () => {return InventoryIsWorn(Player, "ItemHands", "SpankingToys")},
-				 DynamicExpressionTrigger: () => {return SpankingInventory.filter(x=> x.Name == (SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type)[0].ExpressionTrigger}
+				 DynamicExpressionTrigger: () => {return SpankingInventory.filter(x=> x.Name == ((SpankingCurrentType)? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type))[0].ExpressionTrigger}
 			}
 		]
 	},
@@ -660,22 +660,22 @@ var AssetFemale3DCG = [
 				 DynamicDescription: () => {return ((InventoryIsWorn(CurrentCharacter, "ItemHands", "SpankingToys")) && (InventoryGet(CurrentCharacter, "ItemHands").Property != null))? InventoryGet(CurrentCharacter, "ItemHands").Property.Type : "Spanking Toy"},
 				 DynamicPreviewIcon: () => {return ((InventoryIsWorn(CurrentCharacter, "ItemHands", "SpankingToys")) && (InventoryGet(CurrentCharacter, "ItemHands").Property != null))? InventoryGet(CurrentCharacter, "ItemHands").Property.Type : "Paddle"}
 			},{ 
-				Name: "SpankingToysCrop", Value: 10, PrerequisiteBuyGroups: ["SpankingToys"],
+				Name: "SpankingToysCrop", Value: 10, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				 DynamicAllowInventoryAdd: () => {return false}
 			},{ 
-				Name: "SpankingToysFlogger", Value: 10, PrerequisiteBuyGroups: ["SpankingToys"],
+				Name: "SpankingToysFlogger", Value: 10, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				 DynamicAllowInventoryAdd: () => {return false}
 			},{ 
-				Name: "SpankingToysCane", Value: 10, PrerequisiteBuyGroups: ["SpankingToys"],
+				Name: "SpankingToysCane", Value: 10, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				 DynamicAllowInventoryAdd: () => {return false}
 			},{ 
-				Name: "SpankingToysHeartCrop", Value: 10, PrerequisiteBuyGroups: ["SpankingToys"],
+				Name: "SpankingToysHeartCrop", Value: 10, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				 DynamicAllowInventoryAdd: () => {return false}
 			},{ 
-				Name: "SpankingToysPaddle", Value: 10, PrerequisiteBuyGroups: ["SpankingToys"],
+				Name: "SpankingToysPaddle", Value: 10, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				 DynamicAllowInventoryAdd: () => {return false}
 			},{ 
-				Name: "SpankingToysWhipPaddle", Value: 10, PrerequisiteBuyGroups: ["SpankingToys"],
+				Name: "SpankingToysWhipPaddle", Value: 10, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				 DynamicAllowInventoryAdd: () => {return false}
 			}
 		]
