@@ -489,7 +489,22 @@ var AssetFemale3DCG = [
 			{ Name: "MetalChastityBeltKey", Wear: false, Value: -1, Effect: ["Unlock-MetalChastityBelt"], Prerequisite: "AccessVulva", Time: 5 },
 			{ Name: "LeatherCrop", Value: 40, Wear: false, BuyGroup: "LeatherCrop", Bonus: [{ Type: "KidnapDomination", Factor: 3 }], ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }] },
 			{ Name: "LeatherWhip", Value: 60, Wear: false, BuyGroup: "LeatherWhip", Bonus: [{ Type: "KidnapBruteForce", Factor: 3 }], ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }] },
-			{ Name: "StraponPanties", Effect: ["Chaste"], Block: ["ItemVulva", "ItemButt"], Value: 50, Prerequisite: "AccessVulva", Time: 15 }
+			{ Name: "StraponPanties", Effect: ["Chaste"], Block: ["ItemVulva", "ItemButt"], Value: 50, Prerequisite: "AccessVulva", Time: 15 },
+			{
+				Name: "LoveChastityBelt", Value: 10, Prerequisite: "AccessVulva", Difficulty: 100, Time: 20, RemoveTime: 10, Extended: true,
+				// Effect: ["Locked"], OwnerOnly: true,
+				AllowEffect: ["Chaste", "Egged", "Vibrating"],
+				AllowBlock: ["ItemVulva", "ItemButt"],
+				AllowType: ["Open", "Closed", "Vibe", "Shock"],
+				Layer : [
+					{ Name: "Open", AllowColorize: true, AllowTypes: ["", "Open"], HasType: false },
+					{ Name: "Closed", AllowColorize: true, AllowTypes: ["Closed", "Vibe", "Shock"], HasType: false },
+					{ Name: "Vibe", AllowColorize: false, AllowTypes: ["Vibe"], HasType: false, NewParentGroupName: "" },
+					{ Name: "Shock", AllowColorize: false, AllowTypes: ["Shock"], HasType: false, NewParentGroupName: "" },
+					{ Name: "Lock", AllowColorize: false, AllowTypes: ["", "Open", "Closed", "Vibe", "Shock"], HasType: false, NewParentGroupName: "" },
+					{ Name: "ShieldLock", AllowColorize: false, AllowTypes: ["Closed", "Vibe", "Shock"], HasType: false, NewParentGroupName: "" },
+				]
+			}
 		]
 	},
 
