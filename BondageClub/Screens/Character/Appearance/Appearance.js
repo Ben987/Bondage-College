@@ -231,15 +231,15 @@ function CharacterAppearanceBuildCanvas(C) {
 	if (C.CanvasBlink == null) {
 		C.CanvasBlink = document.createElement("canvas");
 		C.CanvasBlink.width = 500;
-		C.CanvasBlink.height = 1000;		
+		C.CanvasBlink.height = 1000;
 	} else C.CanvasBlink.getContext("2d").clearRect(0, 0, 500, 1000);
-	
+
 	// Sorts the list
 	C.Appearance = CharacterAppearanceSort(C.Appearance);
 	C.MustDraw = true;
-	
+
 	// Loops in all visible items worn by the character
-	for (var A = 0; A < C.Appearance.length; A++) 
+	for (var A = 0; A < C.Appearance.length; A++) {
 		if (C.Appearance[A].Asset.Visible && CharacterAppearanceVisible(C, C.Appearance[A].Asset.Name, C.Appearance[A].Asset.Group.Name)) {
 
 			// If there's a father group, we must add it to find the correct image
@@ -249,7 +249,7 @@ function CharacterAppearanceBuildCanvas(C) {
 				for (var FG = 0; FG < C.Appearance.length; FG++)
 					if (CA.Asset.Group.ParentGroupName == C.Appearance[FG].Asset.Group.Name)
 						G = "_" + C.Appearance[FG].Asset.Name;
-			
+
 			// If there's a pose style we must add (first by group then by item)
 			var Pose = "";
 			if ((CA.Asset.Group.AllowPose != null) && (CA.Asset.Group.AllowPose.length > 0) && (C.Pose != null) && (C.Pose.length > 0))
@@ -269,7 +269,7 @@ function CharacterAppearanceBuildCanvas(C) {
 					C.Canvas.getContext("2d").clearRect(CA.Asset.Alpha[AL][0], CA.Asset.Alpha[AL][1], CA.Asset.Alpha[AL][2], CA.Asset.Alpha[AL][3]);
 					C.CanvasBlink.getContext("2d").clearRect(CA.Asset.Alpha[AL][0], CA.Asset.Alpha[AL][1], CA.Asset.Alpha[AL][2], CA.Asset.Alpha[AL][3]);
 				}
-			
+
 			// Check if we need to draw a different expression (for facial features)
 			var Expression = "";
 			if ((CA.Asset.Group.AllowExpression != null) && (CA.Asset.Group.AllowExpression.length > 0))
@@ -277,19 +277,19 @@ function CharacterAppearanceBuildCanvas(C) {
 					Expression = CA.Property.Expression + "/";
 
 			// Check if we need to draw a different variation (from type property)
-			var Variation = "";
-			if ((CA.Property != null) && (CA.Property.Type != null)) Variation = CA.Property.Type;
-			
+			var Type = "";
+			if ((CA.Property != null) && (CA.Property.Type != null)) Type = CA.Property.Type;
+
 			// Cycle through all layers of the image
 			var MaxLayer = (CA.Asset.Layer == null) ? 1 : CA.Asset.Layer.length;
 			for (var L = 0; L < MaxLayer; L++) {
-				var Layer =  "";
-
+				var Layer = "";
+				var LayerType = Type;
 				if (CA.Asset.Layer != null) {
 					Layer = "_" + CA.Asset.Layer[L].Name;
-					if (CA.Asset.Layer[L].AllowTypes.indexOf(Variation) < 0) continue;
+					if ((CA.Asset.Layer[L].AllowTypes != null) && (CA.Asset.Layer[L].AllowTypes.indexOf(Type) < 0)) continue;
 					if (!CA.Asset.Layer[L].HasExpression) Expression = "";
-					if (!CA.Asset.Layer[L].HasType) Variation = "";
+					if (!CA.Asset.Layer[L].HasType) LayerType = "";
 					if ((CA.Asset.Layer[L].NewParentGroupName != null) && (CA.Asset.Layer[L].NewParentGroupName != CA.Asset.Group.ParentGroupName)) {
 						if (CA.Asset.Layer[L].NewParentGroupName == "") G = "";
 						else
@@ -308,12 +308,12 @@ function CharacterAppearanceBuildCanvas(C) {
 
 				// Draw the item on the canvas (default or empty means no special color, # means apply a color, regular text means we apply that text)
 				if ((CA.Color != null) && (CA.Color.indexOf("#") == 0) && ((CA.Asset.Layer == null) || CA.Asset.Layer[L].AllowColorize)) {
-					DrawImageCanvasColorize("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + G + Variation + Layer + ".png", C.Canvas.getContext("2d"), CA.Asset.Group.DrawingLeft, CA.Asset.Group.DrawingTop, 1, CA.Color, CA.Asset.Group.DrawingFullAlpha);
-					if (!CA.Asset.Group.DrawingBlink) DrawImageCanvasColorize("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + G + Variation + Layer + ".png", C.CanvasBlink.getContext("2d"), CA.Asset.Group.DrawingLeft, CA.Asset.Group.DrawingTop, 1, CA.Color, CA.Asset.Group.DrawingFullAlpha);
+					DrawImageCanvasColorize("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + G + LayerType + Layer + ".png", C.Canvas.getContext("2d"), CA.Asset.Group.DrawingLeft, CA.Asset.Group.DrawingTop, 1, CA.Color, CA.Asset.Group.DrawingFullAlpha);
+					if (!CA.Asset.Group.DrawingBlink) DrawImageCanvasColorize("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + G + LayerType + Layer + ".png", C.CanvasBlink.getContext("2d"), CA.Asset.Group.DrawingLeft, CA.Asset.Group.DrawingTop, 1, CA.Color, CA.Asset.Group.DrawingFullAlpha);
 				} else {
 					var Color = ((CA.Color == null) || (CA.Color == "Default") || (CA.Color == "") || (CA.Color.length == 1) || (CA.Color.indexOf("#") == 0)) ? "" : "_" + CA.Color;
-					DrawImageCanvas("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + G + Variation + Color + Layer + ".png", C.Canvas.getContext("2d"), CA.Asset.Group.DrawingLeft, CA.Asset.Group.DrawingTop);
-					if (!CA.Asset.Group.DrawingBlink) DrawImageCanvas("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + G + Variation + Color + Layer + ".png", C.CanvasBlink.getContext("2d"), CA.Asset.Group.DrawingLeft, CA.Asset.Group.DrawingTop);
+					DrawImageCanvas("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + G + LayerType + Color + Layer + ".png", C.Canvas.getContext("2d"), CA.Asset.Group.DrawingLeft, CA.Asset.Group.DrawingTop);
+					if (!CA.Asset.Group.DrawingBlink) DrawImageCanvas("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + G + LayerType + Color + Layer + ".png", C.CanvasBlink.getContext("2d"), CA.Asset.Group.DrawingLeft, CA.Asset.Group.DrawingTop);
 				}
 			}
 
@@ -323,6 +323,7 @@ function CharacterAppearanceBuildCanvas(C) {
 				if (!CA.Asset.Group.DrawingBlink) DrawImageCanvas("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + Variation + "_Lock.png", C.CanvasBlink.getContext("2d"), CA.Asset.Group.DrawingLeft, CA.Asset.Group.DrawingTop);
 			}
 		}
+	}
 }
 
 // Returns a value from the character current appearance
