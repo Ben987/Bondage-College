@@ -132,6 +132,12 @@ function ShopClick() {
 									if ((Asset[B] != null) && (Asset[B].BuyGroup != null) && (Asset[B].BuyGroup == Asset[A].BuyGroup))
 										InventoryAdd(Player, Asset[B].Name, Asset[B].Group.Name);
 
+							if(Asset[A].PrerequisiteBuyGroups)
+								for(let B = 0; B < Asset.length; B++)
+									for(let C = 0; C < Asset[A].PrerequisiteBuyGroups.length; C++)
+										if((Asset[B]) && (Asset[B].BuyGroup != null) && (Asset[B].BuyGroup == Asset[A].PrerequisiteBuyGroups[C]))
+											InventoryAdd(Player, Asset[B].Name, Asset[B].Group.Name);
+
 						}
 
 					}

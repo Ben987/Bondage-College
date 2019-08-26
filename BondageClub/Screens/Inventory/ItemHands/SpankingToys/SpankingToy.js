@@ -30,10 +30,12 @@ const SpankingInventory =[
 var SpankingCurrentType = null;
 let SpankingInventoryOffset = 0;
 let nextButton = false;
+let SpankingPlayerInventory;
 // Loads the item extension properties
 function InventoryItemHandsSpankingToysLoad() {
+	SpankingPlayerInventory = SpankingInventory.filter(x => Player.Inventory.map(i => i.Name).includes("SpankingToys"+ x.Name));
 	if(DialogFocusItem.Property == null) DialogFocusItem.Property = {Type: SpankingCurrentType};
-	if(SpankingInventory.length >4) nextButton = true;
+	if(SpankingPlayerInventory.length >4) nextButton = true;
 }
 
 
@@ -49,11 +51,11 @@ function InventoryItemHandsSpankingToysDraw() {
 
 	DrawText(DialogFind(Player, "SelectSpankingToysType"), 1500, 500, "white", "gray");
 	//draw the buttons 4 at a time
-	for(let I = SpankingInventoryOffset; (I < SpankingInventory.length) && (I < SpankingInventoryOffset +4); I++){
+	for(let I = SpankingInventoryOffset; (I < SpankingPlayerInventory.length) && (I < SpankingInventoryOffset +4); I++){
 		let offset = I - SpankingInventoryOffset;
-		DrawButton(1000 + offset*250, 550, 225, 225, "", ((DialogFocusItem.Property.Type == SpankingInventory[I].Name) ? "#888888" : "White"));
-		DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/" + SpankingInventory[I].Name + ".png", 1000 + offset*250, 550);
-		DrawText(DialogFind(Player, "SpankingToysType" + SpankingInventory[I].Name), 1115 +offset*250, 800, "white", "gray");
+		DrawButton(1000 + offset*250, 550, 225, 225, "", ((DialogFocusItem.Property.Type == SpankingPlayerInventory[I].Name) ? "#888888" : "White"));
+		DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/" + SpankingPlayerInventory[I].Name + ".png", 1000 + offset*250, 550);
+		DrawText(DialogFind(Player, "SpankingToysType" + SpankingPlayerInventory[I].Name), 1115 +offset*250, 800, "white", "gray");
 	};
 }
 
@@ -62,12 +64,12 @@ function InventoryItemHandsSpankingToysClick() {
 	//menu buttons
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
 	if ((MouseX >= 1775) && (MouseX <= 1865) && (MouseY >= 25) && (MouseY <= 110) && (nextButton)) SpankingInventoryOffset += 4;
-	if(SpankingInventoryOffset > SpankingInventory.length) SpankingInventoryOffset = 0;
+	if(SpankingInventoryOffset > SpankingPlayerInventory.length) SpankingInventoryOffset = 0;
 
 	//Item buttons
 	
-	for(let I = SpankingInventoryOffset; (I < SpankingInventory.length) && (I < SpankingInventoryOffset +4); I++){
-		let nextItem = SpankingInventory[I].Name;
+	for(let I = SpankingInventoryOffset; (I < SpankingPlayerInventory.length) && (I < SpankingInventoryOffset +4); I++){
+		let nextItem = SpankingPlayerInventory[I].Name;
 		let offset = I - SpankingInventoryOffset;
 		if ((MouseX >= 1000 + offset*250) && (MouseX <= 1225 + offset*250) && (MouseY >= 550) && (MouseY <= 775)){
 			if(DialogFocusItem.Property.Type != nextItem){

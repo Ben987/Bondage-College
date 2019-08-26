@@ -49,6 +49,7 @@ function AssetAdd(NewAsset) {
 		Visible: (NewAsset.Visible == null) ? true : NewAsset.Visible,
 		Wear: (NewAsset.Wear == null) ? true : NewAsset.Wear,
 		BuyGroup: NewAsset.BuyGroup,
+		PrerequisiteBuyGroups: NewAsset.PrerequisiteBuyGroups,
 		Effect: NewAsset.Effect,
 		Bonus: NewAsset.Bonus,
 		Block: NewAsset.Block,
@@ -79,11 +80,12 @@ function AssetAdd(NewAsset) {
 		AllowEffect: NewAsset.AllowEffect,
 		AllowBlock: NewAsset.AllowBlock,
 		AllowType: NewAsset.AllowType,
-		IgnoreParentGroup: (NewAsset.SkipParentGroup == null)? false: NewAsset.SkipParentGroup,
+		IgnoreParentGroup: (NewAsset.IgnoreParentGroup == null)? false: NewAsset.IgnoreParentGroup,
 		DynamicDescription: (typeof NewAsset.DynamicDescription === 'function')? NewAsset.DynamicDescription : function() {return this.Description},
 		DynamicPreviewIcon: (typeof NewAsset.DynamicDescription === 'function')? NewAsset.DynamicPreviewIcon : function() {return ""},
 		DynamicAllowInventoryAdd: (typeof NewAsset.DynamicAllowInventoryAdd === 'function')? NewAsset.DynamicAllowInventoryAdd : function() {return true},
 		DynamicExpressionTrigger: (typeof NewAsset.DynamicExpressionTrigger === 'function')? NewAsset.DynamicExpressionTrigger : function() {return this.ExpressionTrigger}
+
 	}
 	// Unwearable assets are not visible but can be overwritten
 	if (!A.Wear && NewAsset.Visible != true) A.Visible = false;
