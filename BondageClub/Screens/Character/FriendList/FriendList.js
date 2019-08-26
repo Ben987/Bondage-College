@@ -3,6 +3,11 @@ var FriendListBackground = "BrickWall";
 var FriendListContent = "";
 var FriendListConfirmDelete = [];
 var FriendListReturn = null;
+var FriendListModes = ["Beeps", "Delete"];
+var FriendListModeIndex = 0;
+var FriendListShowBeep = -1;
+var FriendListLastBeeps = new Map();
+var FriendListLastData = [];
 
 // Loads the online friend list from the server
 function FriendListLoad() {
@@ -10,7 +15,7 @@ function FriendListLoad() {
 	ElementCreateDiv("FriendList");
 	ElementPositionFix("FriendList", 36, 0, 70, 2000, 930);
 	ElementContent("FriendList", FriendListContent);
-	ServerSend("AccountQuery", {Query: "OnlineFriends"});
+	ServerSend("AccountQuery", { Query: "OnlineFriends" });
 }
 
 // Run the friend list screen - Draw the controls
@@ -20,11 +25,17 @@ function FriendListRun() {
 	DrawText(TextGet("ChatRoomName"), 1270, 35, "White", "Gray");
 	DrawText(TextGet("Action"), 1685, 35, "White", "Gray");
 	ElementPositionFix("FriendList", 36, 5, 75, 1885, 890);
+	DrawButton(1865, 5, 60, 60, "", "White", "Icons/Small/Next.png");
 	DrawButton(1935, 5, 60, 60, "", "White", "Icons/Small/Exit.png");
 }
 
 // When the user clicks on the screen
 function FriendListClick() {
+	if ((MouseX >= 1865) && (MouseX < 1925) && (MouseY >= 5) && (MouseY < 65)) {
+		FriendListModeIndex++;
+		if (FriendListModeIndex >= FriendListModes.length) FriendListModeIndex = 0;
+		ServerSend("AccountQuery", { Query: "OnlineFriends" });
+	}
 	if ((MouseX >= 1935) && (MouseX < 1995) && (MouseY >= 5) && (MouseY < 65)) {
 		ElementRemove("FriendList");
 		if (FriendListReturn != null) {
@@ -36,19 +47,41 @@ function FriendListClick() {
 
 // Loads the friend list data in the div
 function FriendListLoadFriendList(data) {
+	FriendListLastData = data;
 	var BeepCaption = DialogFind(Player, "Beep");
 	var DeleteCaption = DialogFind(Player, "Delete");
 	var ConfirmDeleteCaption = DialogFind(Player, "ConfirmDelete");
 	var PrivateRoomCaption = DialogFind(Player, "PrivateRoom");
 	FriendListContent = "";
 	for (var F = 0; F < data.length; F++) {
-		FriendListContent = FriendListContent + "<div class='FriendListRow'>";
-		FriendListContent = FriendListContent + "<div class='FriendListTextColumn FriendListFirstColumn'>" + data[F].MemberName + "</div>";
-		FriendListContent = FriendListContent + "<div class='FriendListTextColumn'>" + data[F].MemberNumber.toString() + "</div>";
-		FriendListContent = FriendListContent + "<div class='FriendListTextColumn'>" + ((data[F].ChatRoomName == null) ? "-" : data[F].ChatRoomName.replace("-Private-", PrivateRoomCaption)) + "</div>";
-		FriendListContent = FriendListContent + "<div class='FriendListLinkColumn' onClick='FriendListBeep(" + data[F].MemberNumber.toString() + ")'>" + BeepCaption + "</div>";
-		if ((data[F].Type != null) && (data[F].Type != "Submissive")) FriendListContent = FriendListContent + "<div class='FriendListLinkColumn' onClick='FriendListDelete(" + data[F].MemberNumber.toString() + ")'>" + ((FriendListConfirmDelete.indexOf(data[F].MemberNumber) >= 0) ? ConfirmDeleteCaption : DeleteCaption) + "</div>";
-		FriendListContent = FriendListContent + "</div>";
+		var friend = "";
+		friend += "<div class='FriendListRow'>";
+		friend += "<div class='FriendListRow'>";
+		friend += "<div class='FriendListTextColumn FriendListFirstColumn'>" + data[F].MemberName + "</div>";
+		friend += "<div class='FriendListTextColumn'>" + data[F].MemberNumber.toString() + "</div>";
+		friend += "<div class='FriendListTextColumn'>" + ((data[F].ChatRoomName == null) ? "-" : data[F].ChatRoomName.replace("-Private-", PrivateRoomCaption)) + "</div>";
+		friend += "<div class='FriendListLinkColumn' onClick='FriendListBeep(" + data[F].MemberNumber.toString() + ")'>" + BeepCaption + "</div>";
+		if (FriendListModes[FriendListModeIndex] == "Beeps") {
+			if (FriendListLastBeeps.has(data[F].MemberNumber)) {
+				friend += "<div class='FriendListLinkColumn' " +
+					"onmouseover='FriendListShowLastBeep(" + data[F].MemberNumber.toString() + ", true)' " +
+					"onmouseout='FriendListShowLastBeep(" + data[F].MemberNumber.toString() + ", false)' " +
+					"ondblclick='FriendListRemoveLastBeep(" + data[F].MemberNumber.toString() + ")' " +
+					">";
+				if (FriendListShowBeep == data[F].MemberNumber) {
+					friend += FriendListLastBeeps.get(data[F].MemberNumber).Message;
+				} else {
+					friend += FriendListLastBeeps.get(data[F].MemberNumber).Time;
+				}
+				friend += "</div>";
+			}
+		} else if (FriendListModes[FriendListModeIndex] = "Delete") {
+			if ((data[F].Type != null) && (data[F].Type != "Submissive")) {
+				friend += "<div class='FriendListLinkColumn' onClick='FriendListDelete(" + data[F].MemberNumber.toString() + ")'>" + ((FriendListConfirmDelete.indexOf(data[F].MemberNumber) >= 0) ? ConfirmDeleteCaption : DeleteCaption) + "</div>";
+			}
+		}
+		friend += "</div>";
+		FriendListContent += friend;
 	}
 	ElementContent("FriendList", FriendListContent);
 }
@@ -57,12 +90,25 @@ function FriendListLoadFriendList(data) {
 function FriendListDelete(MemberNumber) {
 	if (FriendListConfirmDelete.indexOf(MemberNumber) >= 0) {
 		Player.FriendList.splice(Player.FriendList.indexOf(MemberNumber), 1);
-		ServerSend("AccountUpdate", {FriendList: Player.FriendList});
+		ServerSend("AccountUpdate", { FriendList: Player.FriendList });
 	} else FriendListConfirmDelete.push(MemberNumber);
-	ServerSend("AccountQuery", {Query: "OnlineFriends"});
+	ServerSend("AccountQuery", { Query: "OnlineFriends" });
 }
 
 // When the user wants to beep someone
 function FriendListBeep(MemberNumber) {
-	ServerSend("AccountBeep", {MemberNumber: MemberNumber});
+	ServerSend("AccountBeep", { MemberNumber: MemberNumber });
+}
+
+// sets the membernumber to show 
+function FriendListShowLastBeep(MemberNumber, Show) {
+	FriendListShowBeep = Show ? MemberNumber : -1;
+	FriendListLoadFriendList(FriendListLastData);
+}
+
+// removes a saved beep
+function FriendListRemoveLastBeep(MemberNumber) {
+	FriendListShowBeep = -1;
+	FriendListLastBeeps.delete(MemberNumber);
+	FriendListLoadFriendList(FriendListLastData);
 }
