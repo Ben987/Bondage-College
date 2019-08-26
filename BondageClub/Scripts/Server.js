@@ -324,10 +324,8 @@ function ServerAccountBeep(data) {
 		ServerBeep.Message = DialogFind(Player, "BeepFrom") + " " + ServerBeep.MemberName + " (" + ServerBeep.MemberNumber.toString() + ")";
 		if (ServerBeep.ChatRoomName != null) {
 			ServerBeep.Message = ServerBeep.Message + " " + DialogFind(Player, "InRoom") + " \"" + ServerBeep.ChatRoomName + "\"";
-			FriendListLastBeeps.set(ServerBeep.MemberNumber, { Time: ChatRoomCurrentTime(), Message: "From Room: " + ServerBeep.ChatRoomName });
-		} else {
-			FriendListLastBeeps.set(ServerBeep.MemberNumber, { Time: ChatRoomCurrentTime(), Message: "Not From Room." });
-		}
+		} 
+		FriendListLastBeeps.set(ServerBeep.MemberNumber, { Time: ChatRoomCurrentTime(), Message: ServerBeep.Message });
 		if (CurrentScreen == "FriendList") {
 			ServerSend("AccountQuery", { Query: "OnlineFriends" });
 		}

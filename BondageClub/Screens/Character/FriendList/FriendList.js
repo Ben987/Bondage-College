@@ -63,11 +63,18 @@ function FriendListLoadFriendList(data) {
 		friend += "<div class='FriendListLinkColumn' onClick='FriendListBeep(" + data[F].MemberNumber.toString() + ")'>" + BeepCaption + "</div>";
 		if (FriendListModes[FriendListModeIndex] == "Beeps") {
 			if (FriendListLastBeeps.has(data[F].MemberNumber)) {
-				friend += "<div class='FriendListLinkColumn' " +
-					"onmouseover='FriendListShowLastBeep(" + data[F].MemberNumber.toString() + ", true)' " +
-					"onmouseout='FriendListShowLastBeep(" + data[F].MemberNumber.toString() + ", false)' " +
-					"ondblclick='FriendListRemoveLastBeep(" + data[F].MemberNumber.toString() + ")' " +
-					">";
+				friend += "<div class='FriendListLinkColumn' ";
+				if (CommonIsMobile) {
+					if (FriendListShowBeep == data[F].MemberNumber) {
+						friend += "onClick='FriendListShowLastBeep(" + data[F].MemberNumber.toString() + ", false)' ";
+					} else {
+						friend += "onClick='FriendListShowLastBeep(" + data[F].MemberNumber.toString() + ", true)' ";
+					}
+				} else {
+					friend += "onmouseover='FriendListShowLastBeep(" + data[F].MemberNumber.toString() + ", true)' ";
+					friend += "onmouseout='FriendListShowLastBeep(" + data[F].MemberNumber.toString() + ", false)' ";
+				}
+				friend += "ondblclick='FriendListRemoveLastBeep(" + data[F].MemberNumber.toString() + ")' >";
 				if (FriendListShowBeep == data[F].MemberNumber) {
 					friend += FriendListLastBeeps.get(data[F].MemberNumber).Message;
 				} else {
