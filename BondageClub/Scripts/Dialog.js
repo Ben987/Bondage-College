@@ -382,20 +382,20 @@ function DialogMenuButtonClick() {
 			}
 
 			// Use Icon - Pops the item extension for the focused item
-			if (DialogMenuButton[I] == "Use") {
+			if ((DialogMenuButton[I] == "Use") && (Item != null)) {
 				DialogExtendItem(Item);
 				return;
 			}
 
 			// Remote Icon - Pops the item extension
-			if (DialogMenuButton[I] == "Remote") {
+			if ((DialogMenuButton[I] == "Remote") && (Item != null)) {
 				if (InventoryItemHasEffect(Item, "Egged") && InventoryAvailable(Player, "VibratorRemote", "ItemVulva"))
 					DialogExtendItem(Item);
 				return;
 			}
 
 			// Lock Icon - Rebuilds the inventory list with locking items
-			if (DialogMenuButton[I] == "Lock") {
+			if ((DialogMenuButton[I] == "Lock") && (Item != null)) {
 				if (DialogItemToLock == null) {
 					if ((Item != null) && (Item.Asset.AllowLock != null)) {
 						DialogInventoryOffset = 0;
@@ -414,13 +414,13 @@ function DialogMenuButtonClick() {
 			}
 
 			// Unlock/Remove/Struggle Icon - Starts the struggling mini-game (can be impossible to complete)
-			if ((DialogMenuButton[I] == "Unlock") || (DialogMenuButton[I] == "Remove") || (DialogMenuButton[I] == "Struggle")) {
+			if (((DialogMenuButton[I] == "Unlock") || (DialogMenuButton[I] == "Remove") || (DialogMenuButton[I] == "Struggle")) && (Item != null)) {
 				DialogProgressStart(C, Item, null);
 				return;
 			}
 
 			// When the player inspects a lock
-			if (DialogMenuButton[I] == "InspectLock") {
+			if ((DialogMenuButton[I] == "InspectLock") && (Item != null)) {
 				var Lock = InventoryGetLock(Item);
 				if (Lock != null) DialogExtendItem(Lock, Item);
 				return;
