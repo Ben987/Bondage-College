@@ -11,7 +11,7 @@ const SpankingInventory =[
 	},{
 		Name: "Cane",
 		Bonus: [{ Type: "KidnapDomination", Factor: 3 }], 
-		ExpressionTrigger: [{ Group: "Blush", Name: "High", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 },{ Group: "Eyes", Name: "Wink", Timer: 5 }]
+		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 },{ Group: "Eyes", Name: "Wink", Timer: 5 }]
 	},{
 		Name: "HeartCrop",
 		Bonus: [{ Type: "KidnapDomination", Factor: 3 }], 
