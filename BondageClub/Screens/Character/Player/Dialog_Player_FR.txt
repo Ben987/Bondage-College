@@ -5,22 +5,36 @@ Cannot use on yourself
 Impossible à utiliser sur soi
 Remove some clothes first
 Il faut enlever des vêtements
+Remove the suspension first
+Enlevez la suspension en premier
+Remove the chain to the floor first
+Enlevez la chaîne du sol en premier
+A collar must be fitted first to attach accessories to.
+Un collier doit être placé avant d'y attacher des accessoires.
+Must be collared and not suspended first.
+Doit avoir un collier et ne pas être suspendue.
 Cancel
 Annuler
 Back to character
 Retour au personnage
+View next items
+Prochaine page
 Remove the item
 Enlever l'objet
+Use this item
+Utiliser cet objet
 Try to struggle out
 Tenter d'échapper
 Use a lock
 Utiliser un cadenas
 Unlock the item
 Décadenasser l'objet
-Check the lock
-Vérifier le cadenas
+Inspect the lock
+Voir le cadenas
 Use your remote
 Utiliser une télécommande
+Use the Butt Plug's pump
+Utiliser la pompe du Plug Anal
 Color of next item
 Couleur du prochain objet
 Use this color
@@ -69,6 +83,16 @@ Pump gag level: Bloated
 Niveau de gonflage: Gonflé
 Pump gag level: Full mouth
 Niveau de gonflage: Bouche pleine
+Pump plug level: Empty
+Niveau de gonflage: Vide
+Pump plug level: Light
+Niveau de gonflage: Léger
+Pump plug level: Inflated
+Niveau de gonflage: Moyen
+Pump plug level: Bloated
+Niveau de gonflage: Gonflé
+Pump plug level: Max
+Niveau de gonflage: Max
 Deflate it
 Dégonfler
 Pump it
@@ -77,12 +101,70 @@ pumps
 pompe
 deflates
 dégonfle
+plug
+plug
 gag
 baillon
+'s
+
+Delete
+Delete
+Confirm
+Confirmer
+Beep
+Sonner
+Beep from
+Sonner de
+Beep from your owner in your private room
+Votre patronne vient de vous sonner de votre chambre privée
+in room
+dans la chambre
+<i>Private room</i>
+<i>Chambre privée</i>
+(As you enter the luxurious hallway, a maid comes to greet you.)  Welcome to the Bondage Club, is this your first visit?
+(Une servante vous approche alors que vous passez dans le hall luxurieux.)  Bienvenue au Club du Bondage, est-ce que c'est votre première visite?
+SourceCharacter is offering you to start a trial period as her submissive.  Click on her and manage your relationship to accept, don't do anything to refuse.
+SourceCharacter offre de commencer une période d'essai en tant que sa soumise. Appuyer sur elle pour voir et accepter la demande, ou ne faites rien pour refuser.
+The Bondage Club is pleased to announce that SourceCharacter is starting a 3 days minimum trial period as a submissive.
+Le Club du Bondage se plait d'annoncer que SourceCharacter va commencer une période d'essai d'un minimum de 3 jours comme soumise.
+SourceCharacter has prepared a great collaring ceremony.  A maid brings a slave collar, which her submissive must consent to wear.
+SourceCharacter a préparé la cérémonie du collier. Une servante apport le collier, que la soumise doit consentir à porter .
+The Bondage Club is proud to announce that SourceCharacter is now fully collared.  Her fate is in her Mistress hands.
+Le Club du Bondage se plait d'annoncer que SourceCharacter à maintenant un collier permanent. Son avenir est dans les mains de sa patronne.
+Your owner is now allowing you to access your wardrobe and change clothes.
+Votre patronne vous permet d'accéder à votre garde-robe et vêtements.
+Your owner has blocked your wardrobe access for an hour.  You won't be able to change clothes.
+Votre patronne a bloqué l'usage de votre garde-robe pour une heure. Vous ne pourez changer de vêtements.
+Your owner has blocked your wardrobe access for a day.  You won't be able to change clothes.
+Votre patronne a bloqué l'usage de votre garde-robe pour un jour. Vous ne pourez changer de vêtements.
+Your owner has blocked your wardrobe access for a week.  You won't be able to change clothes.
+Votre patronne a bloqué l'usage de votre garde-robe pour une semaine. Vous ne pourez changer de vêtements.
+Your owner has blocked your wardrobe access.  You won't be able to change clothes until that rule is revoked.
+Votre patronne a bloqué l'usage de votre garde-robe jusqu'à nouvel ordre.
+Your owner is now allowing you to whisper to other members when she's there.
+Votre patronne vous permet de chuchoter aux membres en sa présence.
+Your owner is now preventing you from whispering to other members when she's there.
+Votre patronne a bloqué le droit de chuchoter aux membres en sa présence.
+Your owner is now allowing you to have keys.  You can buy keys from the club shop.
+Votre patronne vous permet d'utiliser des clés. Vous pouvez les acheter au magasin.
+Your owner has confiscated your keys.  All your regular keys are lost.
+Votre patronne a confisqué vos clés. Elles sont maintenant perdues.
+Your owner is now preventing you from getting new keys.  The club shop will not sell keys to you anymore.
+Votre patronne a bloqué le droit d'acheter de nouvelles clés. Le magasin de vous en vendront point.
+Member number on lock:
+Numéro de membre sur le cadenas:
 Time left:
 Temps restant:
-SourceCharacter restarts the five minute timer padlock on DestinationCharacter BodyPart.
-SourceCharacter réinitialise le minuteur du cadenas sur le(s)/la BodyPart de DestinationCharacter.
+SourceCharacter restarts the five minutes timer padlock on DestinationCharacter BodyPart.
+SourceCharacter réinitialise le cadenas cinq minutes de DestinationCharacter.
+Restart Timer
+Réinitialiser le minuteur
+Remove item when the lock timer runs out
+Remove item when the lock timer runs out
+The item will be removed when the lock timer runs out
+Cet objet sera enlevé quand le minuteur sera à zéro
+The item will stay when the lock timer runs out
+Cet objet restera quand le minuteur sera à zéro
 Select the bondage position
 Sélectionner une position
 Select the tape wrapping
@@ -95,6 +177,10 @@ Une victime ne peut s'échapper si ses coudes sont attachés
 "Pour protéger vos proches"
 You can restart the timer but cannot unlock
 Vous pouvez réinitialiser le minuteur, mais non l'enlever
+"Never forget who you belong to"
+"Nèoublies pas à qui tu appartiens"
+Can only be locked or unlocked by her owner
+Ne peut être touché par sa patronne
 Detached
 Détaché
 Bind wrists
@@ -113,6 +199,8 @@ SourceCharacter attaches the leather cuffs wrist and elbow chains behind Destina
 SourceCharacter attache la chaîne des coudes et épaules derrière le dos de DestinationCharacter.
 Hands
 Mains
+Arms
+Arms
 Skirt
 Jupe
 Torso
@@ -127,8 +215,8 @@ SourceCharacter creates a duct tape top on DestinationCharacter and traps her ar
 SourceCharacter enroule les bras de DestinationCharacter dans un chandail de ruban adhésif.
 SourceCharacter creates a duct tape mummy on DestinationCharacter and traps her arms in it.
 SourceCharacter transforme DestinationCharacter en une momie de ruban adhésif.
-Select type of cloth gag
-Selectionner le type de baillon
+Select the type of gag
+Selectionner le type de bâillon
 Small
 Petit
 Cleave
@@ -161,6 +249,28 @@ SourceCharacter fully tapes DestinationCharacter's mouth.
 SourceCharacter enroule complètement la bouche de DestinationCharacter avec le ruban.
 SourceCharacter fully tapes DestinationCharacter's mouth with double layers.
 SourceCharacter enroule complètement la bouche de DestinationCharacter avec deux couches de ruban.
+SourceCharacter wraps many layers on DestinationCharacter's mouth.
+SourceCharacter enroule plusieurs couches sur la bouche de DestinationCharacter.
+Plugged
+Bouché
+Open
+Libre
+SourceCharacter plugs up DestinationCharacter's mouth.
+SourceCharacter bouche DestinationCharacter.
+SourceCharacter pulls out DestinationCharacter's plug from her gag.
+SourceCharacter débouche DestinationCharacter.
+Select the type of blindfold
+Selecttionner le type de bandeau
+Double
+Double
+Wrap
+Enroulé
+SourceCharacter takes a piece of duct tape for DestinationCharacter's and place on her face.
+SourceCharacter prend un morceau de ruban et le place sur la face de DestinationCharacter.
+SourceCharacter wraps some duct tape onto DestinationCharacter's face.
+SourceCharacter enroule du ruban sur la face de DestinationCharacter.
+SourceCharacter wraps DestinationCharacter's head in tape with multiple layers. 
+SourceCharacter enroule la tête de DestinationCharacter avec plusieurs couches. 
 Item intensity: Disabled
 Intensité de l'objet: Désactivée
 Item intensity: Low
@@ -221,6 +331,22 @@ DestinationCharacter's vibrating nipple clamps start buzzing strongly!
 Les pinces vibrantes de DestinationCharacter augmentent de vitesse puissamment.
 DestinationCharacter's vibrating nipple clamps jump up to maximum intensity!
 Les pinces vibrantes de DestinationCharacter sautent à leur vitesse maximale.
+DestinationCharacter's vibrating latex panties stops vibrating.
+Le slip vibrant en latex de DestinationCharacter arrête de vibrer.
+DestinationCharacter's vibrating latex panties slows down into a light tease.
+Le slip vibrant en latex de DestinationCharacter ralentit juste assez pour être ressentit.
+DestinationCharacter's vibrating latex panties returns to a moderate pace.
+Le slip vibrant en latex de DestinationCharacter retourne à une vitesse modérée.
+DestinationCharacter's vibrating latex panties slows down a tiny bit.
+Le slip vibrant en latex de DestinationCharacter ralentit juste un peu.
+DestinationCharacter's vibrating latex panties starts teasing her lightly.
+Le slip vibrant en latex de DestinationCharacter la taquine en vibrant légèrement.
+DestinationCharacter's vibrating latex panties builds up to a moderate pace.
+Le slip vibrant en latex de DestinationCharacter augmente à une vitesse modérée.
+DestinationCharacter's vibrating latex panties starts buzzing strongly!
+Le slip vibrant en latex de DestinationCharacter augmente de vitesse puissamment.
+DestinationCharacter's vibrating latex panties jumps up to maximum intensity!
+Le slip vibrant en latex de DestinationCharacter saute à sa vitesse maximale.
 Use Remote
 Utiliser la Télécommande
 (You can use or remove items by selecting specific body regions on yourself.)
@@ -259,7 +385,9 @@ removes the chains
 enlève les chaînes
 mittens to the baby harness
 les mitaines au harnais de bébé
-They must be wearing a baby harness first to chain the mittens to it.
-Elle doit porter un harnais de bébé avant de pouvoir y enchaîner les mitaines.
+She must be wearing a baby harness to chain the mittens.
+Elle doit porter un harnais de bébé pour enchaîner les mitaines.
+You must free her arms before attaching mitten chains.
+Vous devez libérer ses bras avant d'attacher les mitaines.
 Facial expression
 Expression faciale

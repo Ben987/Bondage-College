@@ -124,9 +124,14 @@ function InformationSheetRun() {
 
 // When the user clicks on the character info screen
 function InformationSheetClick() {
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) CommonSetScreen(InformationSheetPreviousModule, InformationSheetPreviousScreen);
+	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) InformationSheetExit();
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 190) && (MouseY < 280) && (InformationSheetSelection.ID == 0)) CommonSetScreen("Character", "Preference");
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 305) && (MouseY < 395) && (InformationSheetSelection.ID == 0)) CommonSetScreen("Character", "FriendList");
+}
+
+// when the user exit this screen
+function InformationSheetExit() {
+	CommonSetScreen(InformationSheetPreviousModule, InformationSheetPreviousScreen);
 }
 
 // Loads the information sheet for a character

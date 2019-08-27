@@ -92,6 +92,14 @@ kauft von DialogCharacterName einen Krug Bier für alle.
 ###_PLAYER
 (Accept her collar and begin the ceremony.)
 (Ihr Halsband annehmen und die Zeremonie beginnen.)
+(Rules, restrictions & punishments.)
+(Regeln, Einschränkungen und Bestrafungen.)
+###_NPC
+(Select the rule, restriction or punishment that you want to enforce.)
+(Wähle die Regel, Einschränkung oder Bestrafung, die du vollstrecken willst.)
+###_PLAYER
+(Give her the money envelope.)
+(Ihr den Geldumschlag geben.)
 (Pay 100$ for the collaring ceremony.)
 (100$ für die Halsband-Zeremonie zahlen.)
 ###_NPC
@@ -120,3 +128,128 @@ kauft von DialogCharacterName einen Krug Bier für alle.
 (Allen für 10$ eine Runde ausgeben.)
 (Get a 10$ beer pitcher for everyone.)
 (Allen für 10$ einen Krug Bier ausgeben.)
+(Wardrobe access.)
+(Kleiderschrank-Zugriff.)
+###_NPC
+(Select her wardrobe access.)
+(Bestimme ihren Zugriff auf den Kleiderschrank.)
+###_PLAYER
+(Whisper rules.)
+(Flüster-Regeln.)
+###_NPC
+(Select her rules for whispering when you're in the same room.)
+(Lege die Regeln fest, die für ihr Geflüster gelten, solange du im selben Raum bist.)
+###_PLAYER
+(Key restrictions.)
+(Schlüssel-Einschränkungen.)
+###_NPC
+(Select her restrictions for keys.)
+(Lege ihre Einschränkungen für Schlüssel fest.)
+###_PLAYER
+(Timer cell punishment.)
+(Auszeit-Zellen-Bestrafung.)
+###_NPC
+(For how long do you want to lock her up?  She will be isolated, and you won't be able to unlock her.)
+(Wie lange willst du sie einsperren? Sie wird isoliert bleiben und du wirst sie nicht vorzeitig befreien können.)
+###_PLAYER
+(Forced labor.)
+(Zwangsarbeit.)
+###_NPC
+(What kind of labor will she be forced to do?  Her salary will be given to you.)
+(Zu welcher Arbeit willst du sie zwingen? Ihr Lohn wird dir überreicht.)
+###_PLAYER
+(Allow her wardrobe access.)
+(Ihr Zugriff auf den Kleiderschrank geben.)
+###_NPC
+(She can now access her wardrobe and change clothes.)
+(Sie kann nun auf ihren Kleiderschrank zugreifen und sich umziehen.)
+###_PLAYER
+(Block her wardrobe for 1 hour.)
+(Ihren Kleiderschrank 1 Stunde lang sperren.)
+###_NPC
+(Her wardrobe access will be blocked for the next hour.)
+(Ihr Zugriff auf den Kleiderschrank wird eine Stunde lang gesperrt sein.)
+###_PLAYER
+(Block her wardrobe for 1 day.)
+(Ihren Kleiderschrank 1 Tag lang sperren.)
+###_NPC
+(Her wardrobe access will be blocked for the next day.)
+(Ihr Zugriff auf den Kleiderschrank wird einen Tag lang gesperrt sein.)
+###_PLAYER
+(Block her wardrobe for 1 week.)
+(Ihren Kleiderschrank 1 Woche lang sperren.)
+###_NPC
+(Her wardrobe access will be blocked for the next week.)
+(Ihr Zugriff auf den Kleiderschrank wird eine Woche lang gesperrt sein.)
+###_PLAYER
+(Block her wardrobe until you allow it.)
+(Ihren Kleiderschrank sperren, bis du es erlaubst.)
+###_NPC
+(Her wardrobe access will be blocked until you allow it again.)
+(Ihr Zugriff auf den Kleiderschrank wird gesperrt sein, bis du diese Regel aufhebst.)
+###_PLAYER
+(Allow her to whisper.)
+(Ihr das Flüstern erlauben.)
+###_NPC
+(She can now whisper normally.)
+(Sie darf nun normal flüstern.)
+###_PLAYER
+(Forbid her to whisper when you're there.)
+(Ihr das Flüstern verbieten, solange du da bist.)
+###_NPC
+(She cannot whisper to someone else when she's in the same room as you.)
+(Sie kann Anderen nichts mehr zuflüstern, solange ihr beide im selben Raum seid.)
+###_PLAYER
+(Allow her to buy keys.)
+(Ihr erlauben, Schlüssel zu kaufen.)
+###_NPC
+(The store will sell keys to her.)
+(Der Laden wird ihr Schlüssel verkaufen.)
+###_PLAYER
+(Confiscate her keys.)
+(Ihre Schlüssel beschlagnahmen.)
+###_NPC
+(She lost all of her keys.)
+(Sie hat alle ihre Schlüssel verloren.)
+###_PLAYER
+(Block her from buying keys.)
+(Sie daran hindern, Schlüssel zu kaufen.)
+###_NPC
+(The store will not sell keys to her anymore.)
+(Der Laden wird ihr keine Schlüssel mehr verkaufen.)
+###_PLAYER
+(Don't lock her up.)
+(Sie nicht einsperren.)
+(Lock her for 5 minutes.)
+(Sie 5 Minuten lang einsperren.)
+###_NPC
+(She will be isolated and locked up for 5 minutes.)
+(Sie wird 5 Minuten lang eingesperrt und isoliert bleiben.)
+###_PLAYER
+(Lock her for 15 minutes.)
+(Sie 15 Minuten lang einsperren.)
+###_NPC
+(She will be isolated and locked up for 15 minutes.)
+(Sie wird 15 Minuten lang eingesperrt und isoliert bleiben.)
+###_PLAYER
+(Lock her for 30 minutes.)
+(Sie 30 Minuten lang einsperren.)
+###_NPC
+(She will be isolated and locked up for 30 minutes.)
+(Sie wird 30 Minuten lang eingesperrt und isoliert bleiben.)
+###_PLAYER
+(Lock her for 60 minutes.)
+(Sie 60 Minuten lang einsperren.)
+###_NPC
+(She will be isolated and locked up for 60 minutes.)
+(Sie wird 60 Minuten lang eingesperrt und isoliert bleiben.)
+###_PLAYER
+(No forced labor.)
+(Keine Zwangsarbeit.)
+(Force her to serve drinks as a maid.)
+(Sie als Hausmädchen Getränke servieren lassen.)
+###_NPC
+(She will be sent to the maid quarters to prepare drinks.  You will earn her salary.)
+(Sie wird in die Dienerkammer geschickt, um Getränke zu servieren. Du erhältst ihren Lohn.)
+(She needs to be a maid in the sorority and be able to walk to do that job for you.)
+(Sie muss ein Hausmädchen in der Schwesternschaft sein und laufen können, um diese Arbeit für dich zu tätigen.)

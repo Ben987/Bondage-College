@@ -96,6 +96,12 @@ Spielen wir Siebzehn und Vier.
 (she gives you three dice)
 (Sie gibt dir drei Würfel.)
 ###_PLAYER
+Let's play Toothpick.
+Spielen wir Zahnstocher Aufheben.
+###_NPC
+(she lays out 15 toothpicks) Your turn sweety.
+(Sie legt 15 Zahnstocher hin.) Du bist dran, Süße.
+###_PLAYER
 I'd like to ask you some questions.
 Ich hätte da ein paar Fragen.
 ###_NPC
@@ -162,6 +168,12 @@ Was sind die Regeln beim Siebzehn und Vier?
 You roll three or more dice and count the points. Then I roll, and whoever has the most points wins. 
 Du wirfst drei oder mehr Würfel und zählst sie zusammen. Dann würfele ich, und wer die höhere Punktzahl hat, gewinnt.
 ###_PLAYER
+What are the rules of Toothpick?
+Was sind die Regeln für Zahnstocher Aufheben?
+###_NPC
+I put down 15 toothpicks. We will then alternately take 1-3 of them.
+Ich lege 15 Zahnstocher hin. Wir werden dann abwechselnd 1-3 davon nehmen.
+###_PLAYER
 (Tickle her.)
 (Sie kitzeln.)
 ###_NPC
@@ -201,6 +213,8 @@ If you go over 21 points you instantly lose the round.
 Wer aber 21 Punkte überschreitet, verliert die Runde sofort.
 Every round the loser strips. If they have no clothes left, they get a little more tied up.
 Nach jeder Runde zieht der Verlierer etwas aus. Ist keine Kleidung mehr übrig, kommen Fesseln hinzu.
+Whoever takes the last one has lost the game and gets tied up.
+Wer den letzten nimmt hat das Spiel verloren und wird gefesselt.
 ###_PLAYER
 Let's talk later.  (Leave her.)
 Reden wir später. (Dialog beenden.)
@@ -395,6 +409,34 @@ Oh, verloren. (Dich von ihr Knebeln lassen.)
 ###_NPC
 You lose! Open up, it's time for a gag...
 Du hast verloren! Mund auf, es wird Zeit für einen Knebel...
+###_PLAYER
+I take one.
+Ich nehme einen.
+###_NPC
+(nods)
+(Sie nickt.)
+###_PLAYER
+I take two.
+Ich nehme zwei.
+I take three.
+Ich nehme drei.
+I give up. (Let her tie you)
+Ich gebe auf. (Dich von ihr Fesseln lassen.)
+###_NPC
+(She smiles) What you mean?
+(Sie lächelt.) Was hast du gesagt?
+###_PLAYER
+I surrender.
+Ich ergebe mich, du hast gewonnen.
+###_NPC
+(She smiles)
+(Sie lächelt.)
+(She nods) I take 1
+(Sie nickt.) Ich nehme einen.
+(She nods) I take 2
+(Sie nickt.) Ich nehme zwei.
+(She nods) I take 3
+(Sie nickt.) Ich nehme drei.
 (She struggles in her restraints.)  Can you release me?
 (Sie zappelt in ihren Fesseln.) Kannst du mich befreien?
 ###_PLAYER
@@ -502,35 +544,3 @@ Thanks!  That was fun.
 Danke! Das hat Spaß gemacht.
 (Leave her.)
 (Dialog beenden.)
-###_PLAYER
-Let's play Toothpick.
-Lass uns Zahnstocher aufheben spielen.
-What are the rules of Toothpick?
-Wie sind die Regeln für Zahnstocher aufheben?
-I take one.
-Ich nehme einen.
-I take two.
-Ich nehme zwei.
-I take three.
-Ich nehme drei.
-I give up. (Let her tie you)
-Ich gebe auf. (Sich von ihr Fesseln lassen)
-I surrender.
-Ich ergebe mich, ihr habt gewonnen.
-###_NPC
-(she lays out 15 toothpicks) Your turn sweety.
-(Sie legt 15 Zahnstocher hin) Du bist dran süße.
-(She smiles) What you mean?
-(Sie lächelt) Was hast du gesagt?
-(She smiles)
-(Sie lächelt)
-(She nods) I take 1
-(Sie nickt) Ich nehme 1
-(She nods) I take 2
-(Sie nickt) Ich nehme 2
-(She nods) I take 3
-(Sie nickt) Ich nehme 3
-I put down 15 toothpicks. We will then alternately take 1-3 of them.
-Ich lege 15 Zahnstocher hin. Wir werden dann abwechselnd 1-3 davon nehmen.
-Whoever takes the last one has lost the game and gets tied up.
-Wer auch immer den letzten nimmt hat das Spiel verloren und wird gefesselt.
