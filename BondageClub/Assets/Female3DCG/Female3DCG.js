@@ -662,22 +662,22 @@ var AssetFemale3DCG = [
 				 DynamicDescription: () => {return ((InventoryIsWorn(CurrentCharacter, "ItemHands", "SpankingToys")) && (InventoryGet(CurrentCharacter, "ItemHands").Property != null))? InventoryGet(CurrentCharacter, "ItemHands").Property.Type : "Spanking Toy"},
 				 DynamicPreviewIcon: () => {return ((InventoryIsWorn(CurrentCharacter, "ItemHands", "SpankingToys")) && (InventoryGet(CurrentCharacter, "ItemHands").Property != null))? InventoryGet(CurrentCharacter, "ItemHands").Property.Type : "Paddle"}
 			},{ 
-				Name: "SpankingToysCrop", Value: 10, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
+				Name: "SpankingToysCrop", Value: 50, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				 DynamicAllowInventoryAdd: () => {return false}
 			},{ 
-				Name: "SpankingToysFlogger", Value: 10, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
+				Name: "SpankingToysFlogger", Value: 100, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				 DynamicAllowInventoryAdd: () => {return false}
 			},{ 
-				Name: "SpankingToysCane", Value: 10, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
+				Name: "SpankingToysCane", Value: 50, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				 DynamicAllowInventoryAdd: () => {return false}
 			},{ 
-				Name: "SpankingToysHeartCrop", Value: 10, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
+				Name: "SpankingToysHeartCrop", Value: 200, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				 DynamicAllowInventoryAdd: () => {return false}
 			},{ 
-				Name: "SpankingToysPaddle", Value: 10, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
+				Name: "SpankingToysPaddle", Value: 200, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				 DynamicAllowInventoryAdd: () => {return false}
 			},{ 
-				Name: "SpankingToysWhipPaddle", Value: 10, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
+				Name: "SpankingToysWhipPaddle", Value: 150, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				 DynamicAllowInventoryAdd: () => {return false}
 			}
 		]
