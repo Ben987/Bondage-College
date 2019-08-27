@@ -35,20 +35,8 @@ function PreferenceRun() {
 
 // When the user clicks in the preference screen
 function PreferenceClick() {
-	
-	// If we must save and exit
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) {
-		if (CommonIsColor(ElementValue("InputCharacterLabelColor"))) {
-			Player.LabelColor = ElementValue("InputCharacterLabelColor");
-			var P = {
-				ItemPermission: Player.ItemPermission,
-				LabelColor: Player.LabelColor
-			}
-			ServerSend("AccountUpdate", P);
-			ElementRemove("InputCharacterLabelColor");
-			CommonSetScreen("Character", "InformationSheet");
-		} else PreferenceMessage = "ErrorInvalidColor";
-	}
+
+	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) PreferenceExit();
 
 	// If we must change the restrain permission level
 	if ((MouseX >= 500) && (MouseX < 590) && (MouseY >= 280) && (MouseY < 370)) {
@@ -60,4 +48,19 @@ function PreferenceClick() {
 	if ((MouseX >= 1140) && (MouseX < 1205) && (MouseY >= 187) && (MouseY < 252)) PreferenceColorPick = (PreferenceColorPick != "InputCharacterLabelColor") ? "InputCharacterLabelColor" : "";
 	if ((MouseX >= 1250) && (MouseX < 1925) && (MouseY >= 85) && (MouseY < 915) && (PreferenceColorPick != "")) ElementValue(PreferenceColorPick, DrawRGBToHex(MainCanvas.getImageData(MouseX, MouseY, 1, 1).data));
 
+}
+
+// when the user exit this screen
+function PreferenceExit() {
+	// If we must save and exit
+	if (CommonIsColor(ElementValue("InputCharacterLabelColor"))) {
+		Player.LabelColor = ElementValue("InputCharacterLabelColor");
+		var P = {
+			ItemPermission: Player.ItemPermission,
+			LabelColor: Player.LabelColor
+		}
+		ServerSend("AccountUpdate", P);
+		ElementRemove("InputCharacterLabelColor");
+		CommonSetScreen("Character", "InformationSheet");
+	} else PreferenceMessage = "ErrorInvalidColor";
 }

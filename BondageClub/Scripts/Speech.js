@@ -20,7 +20,7 @@ function SpeechGarble(C, CD) {
 			if (H == "(") Par = true;
 			if (Par) NS = NS + CD.charAt(L);
 			else {
-				if (H == " " || H == "." || H == "?" || H == "!") NS = NS + H;
+				if (H == " " || H == "." || H == "?" || H == "!" || H == "~") NS = NS + H;
 				else NS = NS + "m";
 			}
 
@@ -43,7 +43,7 @@ function SpeechGarble(C, CD) {
 				if (H == "s" || H == "z" || H == "h") NS = NS + "h";
 				if (H == "b" || H == "p" || H == "v") NS = NS + "f";
 				if (H == "d" || H == "f" || H == "g" || H == "n" || H == "m") NS = NS + "m";
-				if (H == " " || H == "." || H == "?" || H == "!") NS = NS + H;
+				if (H == " " || H == "." || H == "?" || H == "!" || H == "~") NS = NS + H;
 			} else NS = NS + CD.charAt(L);
 			if (H == ")") Par = false;
 		}
@@ -65,7 +65,7 @@ function SpeechGarble(C, CD) {
 				if (H == "d" || H == "f") NS = NS + "m";
 				if (H == "p") NS = NS + "f";
 				if (H == "g") NS = NS + "n";
-				if (H == " " || H == "!" || H == "?" || H == "." || H == "a" || H == "e" || H == "i" || H == "o" || H == "u" || H == "m" || H == "n" || H == "h") NS = NS + H;
+				if (H == " " || H == "!" || H == "?" || H == "." || H == "~" || H == "a" || H == "e" || H == "i" || H == "o" || H == "u" || H == "m" || H == "n" || H == "h") NS = NS + H;
 			} else NS = NS + CD.charAt(L);
 			if (H == ")") Par = false;
 		}
@@ -86,7 +86,7 @@ function SpeechGarble(C, CD) {
 				if (H == "s") NS = NS + "z";
 				if (H == "z") NS = NS + "s";
 				if (H == "d" || H == "f" || H == "m" || H == "g") NS = NS + "m";
-				if (H == "b" || H == "h" || H == "n" || H == "v" || H == "w" || H == "p" || H == " " || H == "'" || H == "?" || H == "!" || H == "." || H == "," || H == "a" || H == "e" || H == "i" || H == "o" || H == "u" || H == "y") NS = NS + H;
+				if (H == "b" || H == "h" || H == "n" || H == "v" || H == "w" || H == "p" || H == " " || H == "'" || H == "?" || H == "!" || H == "." || H == "," || H == "~" || H == "a" || H == "e" || H == "i" || H == "o" || H == "u" || H == "y") NS = NS + H;
 			} else NS = NS + CD.charAt(L);
 			if (H == ")") Par = false;
 		}

@@ -36,13 +36,16 @@ function FriendListClick() {
 		if (FriendListModeIndex >= FriendListModes.length) FriendListModeIndex = 0;
 		ServerSend("AccountQuery", { Query: "OnlineFriends" });
 	}
-	if ((MouseX >= 1935) && (MouseX < 1995) && (MouseY >= 5) && (MouseY < 65)) {
-		ElementRemove("FriendList");
-		if (FriendListReturn != null) {
-			if (FriendListReturn == "ChatSearch") CommonSetScreen("Online", "ChatSearch");
-			FriendListReturn = null;
-		} else CommonSetScreen("Character", "InformationSheet");
-	}
+	if ((MouseX >= 1935) && (MouseX < 1995) && (MouseY >= 5) && (MouseY < 65)) FriendListExit();
+}
+
+// when the user exit this screen
+function FriendListExit() {
+	ElementRemove("FriendList");
+	if (FriendListReturn != null) {
+		if (FriendListReturn == "ChatSearch") CommonSetScreen("Online", "ChatSearch");
+		FriendListReturn = null;
+	} else CommonSetScreen("Character", "InformationSheet");
 }
 
 // Loads the friend list data in the div

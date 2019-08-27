@@ -148,6 +148,7 @@ function DialogLeaveItemMenu() {
 	DialogInventory = null;
 	DialogProgress = -1;
 	DialogColor = null;
+	DialogMenuButton = [];
 	ElementRemove("InputColor");
 }
 

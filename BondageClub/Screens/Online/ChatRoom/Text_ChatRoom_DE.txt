@@ -14,6 +14,14 @@ SourceCharacter rolls a DiceType sided dice.  The result is: DiceResult.
 SourceCharacter rollt einen DiceType-seitigen Würfel. Das Ergebnis ist: DiceResult.
 SourceCharacter flips a coin.  The result is: CoinResult.
 SourceCharacter wirft eine Münze. Das Ergebnis ist: CoinResult.
+gets grabbed by two maids and locked in a timer cell, following her owner commands.
+wird auf Befehl ihrer Besitzerin von zwei Hausmädchen gepackt und in eine Timer-Zelle gesperrt.
+gets grabbed by two maids and escorted to the maid quarters to serve drinks for her owner.
+wird von zwei Hausmädchen gepackt und in die Dienerkammer gebracht, um für ihre Besitzerin Getränke zu servieren.
+(Two maids grab you and escort you to their quarters.  Another maid addresses you.)  Your owner sent you here to work.
+(Zwei Hausmädchen packen dich und bringen dich in ihre Kammer. Ein weiteres Hausmädchen richtet sich an dich.) Deine Besitzerin hat dich hergeschickt, damit du arbeitest.
+gives a sealed envelope to her owner.
+gibt ihrer Besitzerin einen versiegelten Umschlag.
 Talk to everyone
 Mit allen reden
 Whisper to
