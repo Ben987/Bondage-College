@@ -49,7 +49,7 @@ Tut mir leid, Miss. Ich kann nicht helfen.
 (Du nimmst ihr das Halsband ab.) Danke, Miss.
 (You snap the belt around her waist and crotch while she sighs.)  No more fun for the crew.
 (Du lässt den Gürtel um ihre Taille zuschnappen und sie seufzt.) Kein Spaß mehr für die Crew.
-(You unlock the belt from her waist and she smiles.)  Thanks a lot Miss DialogPlayerName.
+(You unlock the belt from her waist, and she smiles.)  Thanks a lot Miss DialogPlayerName.
 (Du öffnest den Gürtel von ihrer Taille und sie lächelt.) Vielen Dank, Miss DialogPlayerName.
 (You strap the device on her head as she nods slowly.)  This will not make my job easier Miss.
 (Du schnallst ihr das Ding um den Kopf und sie nickt langsam.) Das wird meine Arbeit nicht einfacher machen, Miss.
@@ -151,8 +151,8 @@ Keine Zeit zum Plaudern. (Dialog beenden.)
 There's a blond girl stuck in a reserved bedroom.
 Eine Blondine steckt in einem reservierten Zimmer fest.
 ###_NPC
-Is that true?  I can send a maid to rescue her right away.  Who reserved the room?
-Ist das wahr? Ich kann unverzüglich ein Hausmädchen schicken, um sie zu befreien. Wer hat das Zimmer reserviert?
+Is that true?  I can send a maid to rescue her.  Who reserved the room?
+Ist das wahr? Ich kann ein Hausmädchen schicken, um sie zu befreien. Wer hat das Zimmer reserviert?
 ###_PLAYER
 Forget it.
 Vergiss es.
@@ -522,6 +522,36 @@ Ich ziehe mich erst um. (Die Uniform anziehen.)
 (You change into the maid uniform.)  Perfect!  Let me restrain you then.
 (Du ziehst die Hausmädchen-Uniform an.) Perfekt! Dann lass mich dich mal fesseln.
 ###_PLAYER
+Mistress did that?
+Meine Herrin war das?
+###_NPC
+Yes, she called us to get you here.  You will work for her.
+Ja, sie hat uns angewiesen, dich herzubringen. Du wirst für sie arbeiten.
+###_PLAYER
+What kind of work?
+Welche Art von Arbeit?
+###_NPC
+Your owner wants you to serve drinks for herself and her friends.
+Deine Besitzerin will, dass du ihr und ihren Freunden Getränke servierst.
+###_PLAYER
+Will I get paid?
+Werde ich dafür bezahlt?
+###_NPC
+No, she will get the profits.  Come back to work by yourself to get paid.
+Nein, sie bekommt die Einnahmen. Komm aus freien Stücken zum Arbeiten her, wenn du bezahlt werden willst.
+###_PLAYER
+(Pout.)  I don't have any choice I guess.
+(Schmollen.) Da habe ich wohl keine Wahl.
+###_NPC
+No, you don't.  And our guests are always thirsty.
+Nein, hast du nicht. Und unsere Gäste sind stets durstig.
+###_PLAYER
+It's an honor to work for my owner.
+Es ist mir eine Ehre, für meine Herrin zu arbeiten.
+###_NPC
+Good girl!  Our guests are always thirsty.
+Braves Mädchen! Unsere Gäste sind stets durstig.
+###_PLAYER
 Wait!  Restrain me?  Why?
 Moment! Mich fesseln? Warum?
 ###_NPC
@@ -637,6 +667,8 @@ Guter Versuch, aber vielleicht bist du dieser Aufgabe nicht gewachsen. Ich kann 
 ###_NPC
 Excellent!  Here's your salary.  (She gives you REPLACEMONEY $.)
 Ausgezeichnet! Hier ist dein Lohn. (Sie gibt dir REPLACEMONEY $.)
+Excellent!  Go see your owner and give her this.  (She gives you a sealed envelope with REPLACEMONEY $ for your owner.)
+Ausgezeichnet! Kehre zu deiner Herrin zurück und gib ihr das. (Sie gibt dir einen versiegelten Umschlag mit REPLACEMONEY $ für deine Besitzerin.)
 (She releases you and helps you to get dressed.)  All set!  Are you ready for more chores?
 (Sie befreit dich und hilft dir beim Anziehen.) Alles klar! Bist du bereit für weitere Aufgaben?
 ###_PLAYER

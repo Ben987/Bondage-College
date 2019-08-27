@@ -3289,7 +3289,7 @@ Ich überlege, dich einen Tag lang zu verleihen.
 (She seems confused.)  Renting?  Like a car?  Are you sure this is ok?
 (Sie scheint verwirrt.) Verleihen? Wie bei einem Autoverleih? Geht das auch wirklich in Ordnung?
 ###_PLAYER
-I will sell you permanantly.
+I will sell you permanently.
 Ich verkaufe dich endgültig.
 ###_NPC
 (She seems really sad.)  I'm sorry to hear that.  This is how we break up Mistress?
@@ -3307,10 +3307,10 @@ Ja, Herrin. Was geht Euch durch den Kopf?
 Yes.  I will rent you, but only for a day.
 Ja. Ich verleihe dich, aber nur einen Tag lang.
 ###_NPC
-(She sighs.)  Yes Mistress, but know that I'm not very happy about your decision.
-(Sie seufzt.) Ja, Herrin, aber Ihr solltet wissen, dass mich Eure Entscheidung nicht besonders glücklich macht.
+(She sighs.)  Yes Mistress.  But know that I'm not very happy about your decision.
+(Sie seufzt.) Ja, Herrin. Aber Ihr solltet wissen, dass mich Eure Entscheidung nicht besonders glücklich macht.
 ###_NPC [Serious]
-(She looks disappointed.)  Fine.  I still think it's a bad idea but I'll do it for you Mistress.
+(She looks disappointed.)  Fine.  I still think it's a bad idea, but I'll do it for you Mistress.
 (Sie wirkt enttäuscht.) Na schön. Ich halte es noch immer für eine schlechte Idee, aber ich tue es für Euch, Herrin.
 ###_NPC [Playful]
 (She shrugs.)  Alright!  I hope the other Dominant will be just as fun as you.

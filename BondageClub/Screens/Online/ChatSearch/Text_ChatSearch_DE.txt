@@ -6,6 +6,8 @@ Search for a room
 Raum suchen
 Create your room
 Raum erstellen
+Friends in room:
+Freunde im Raum:
 This room is already full
 Dieser Raum ist bereits voll
 You're banned from this room

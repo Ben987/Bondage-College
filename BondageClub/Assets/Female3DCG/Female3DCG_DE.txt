@@ -60,6 +60,8 @@ Lace and Satin
 Spitzensatin
 Strapless
 Trägerlos
+Bandeau
+Bandeau-BH
 Satin Bustier
 Satin-Bustier
 Corset + Garters
@@ -68,7 +70,7 @@ Corset
 Korsett
 Half Cup Corset
 Halbkörbchenkorsett
-Underbust Corset
+Under Bust Corset
 Unterbrustkorsett
 Swimsuit style 1
 Badeanzug Stil 1
@@ -196,7 +198,7 @@ Sunglasses 1
 Sonnenbrille 1
 Sunglasses 2
 Sonnenbrille 2
-Venitian Mask
+Venetian Mask
 Venezianische Maske
 Domino Mask
 Domino-Maske
@@ -300,6 +302,8 @@ Hemp Rope
 Hanfseil
 Leather Belt
 Ledergürtel
+Irish 8 Feet Cuffs
+Irische Achter-Fußschellen
 Suspension Hemp Rope
 Hänge-Hanfseil
 Duct Tape
@@ -308,13 +312,15 @@ Mermaid Rope Tie
 Meerjungfrau-Fessel
 Legs
 Beine
+Upper Mermaid Tie
+Obere Meerjungfrau-Fessel
 Vulva
 Vulva
 Vibrating Egg
 Vibrator-Ei
 Vibrating Wand
 Vibrator-Stab
-Vibrating Egg|Panties Remote
+Vibrating Egg & Panties Remote
 Vibrator-Fernbedienung
 Vibrating Latex Panties
 Latex-Vibratorhöschen
@@ -394,18 +400,20 @@ Leather Armbinder
 Monohandschuh
 Leather Cuffs
 Ledermanschetten
-Thumbless Padded Mittens
-Daumenlose Fäustlinge
+Mittens Chain
+Fäustlingskette
 Four Limbs Shackles
 Viererketten
 Latex Strait Leotard
 Latex-Zwangsjackenanzug
-Kitty Paw Mittens
-Katzenpfoten
 Pet Suit
 Tieranzug
 Holding Leash
 Leine
+Padded Mittens
+Gepolsterte Fäustlinge
+Paw Mittens
+Pfotenfäustlinge
 Neck
 Hals
 Leather Collar
@@ -424,6 +432,10 @@ Shock Collar Remote
 Elektrohalsband-Fernbedienung
 Bat Collar
 Fledermaus-Halsband
+Posture Collar
+Haltungshalsband
+Steel Posture Collar
+Stahl-Haltungshalsband
 Collar
 Halsband
 Bell
@@ -474,6 +486,8 @@ Panties Mask
 Höschen-Maske
 Plug Gag
 Plug-Knebel
+Dildo Gag
+Dildo-Knebel
 Head
 Kopf
 Cloth Blindfold
@@ -490,9 +504,13 @@ Kitty Blindfold
 Katzen-Augenbinde
 Small Blindfold
 Kleine Augenbinde
-Light Duty EarPlugs
+Leather Hood Mouth
+Lederhaube (Mund frei)
+Ears
+Ohren
+Light Duty Ear Plugs
 Herkömmliche Ohrenstöpsel
-Heavy Duty EarPlugs
+Heavy Duty Ear Plugs
 Hochleistungs-Ohrenstöpsel
 Misc Items
 Sonstiges
@@ -518,8 +536,8 @@ Wooden Maid Tray Full
 Holztablett voll
 Wooden Paddle
 Holzpaddel
-Front Devices
-Frontalgeräte
+Devices
+Geräte
 Wooden Box
 Holzkiste
 Water filled milk can 

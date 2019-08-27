@@ -23,6 +23,7 @@ ClothLower,Skirt1,Skirt
 ClothLower,TennisSkirt1,Tennis
 ClothLower,Jeans1,Jeans
 ClothLower,Shorts1,Shorts
+ClothLower,Pajama1,Pajama
 ClothLower,MistressBottom,Mistress Bottom
 Bra,,Bra
 Bra,Bra1,Style 1
@@ -239,6 +240,7 @@ ItemTorso,NylonRopeHarness,Nylon Rope Harness
 ItemTorso,HempRopeHarness,Hemp Rope Harness
 ItemTorso,LeatherHarness,Leather Harness
 ItemTorso,AdultBabyHarness,Adult Baby Harness
+ItemTorso,DiamondTie,Diamond Tie Harness
 ItemNipples,,Nipples
 ItemNipples,StraightPiercing,Straight Piercings
 ItemNipples,RoundPiercing,Round Piercings

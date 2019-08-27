@@ -48,6 +48,7 @@ var AssetFemale3DCG = [
 			{ Name: "TennisSkirt1", ParentItem: "TennisShirt1", Expose: ["ItemVulva", "ItemButt"] },
 			{ Name: "Jeans1" },
 			{ Name: "Shorts1" },
+			{ Name: "Pajama1", Random: false, Priority: 24 },
 			{ Name: "MistressBottom", Hide: ["Panties"], Value: -1 }
 		]
 	},
@@ -508,7 +509,8 @@ var AssetFemale3DCG = [
 			{ Name: "NylonRopeHarness", Value: 25, Prerequisite: "AccessTorso", Time: 25 },
 			{ Name: "HempRopeHarness", Value: 50, Prerequisite: "AccessTorso", Time: 25, RemoveTime: 35, Difficulty: 3 },
 			{ Name: "LeatherHarness", Value: 100, Prerequisite: "AccessTorso", Time: 15, RemoveTime: 10, Difficulty: 50, AllowLock: true },
-			{ Name: "AdultBabyHarness", Value: 80, Priority: 29, Time: 15, RemoveTime: 10, Difficulty: 3, AllowLock: true, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] }
+			{ Name: "AdultBabyHarness", Value: 80, Priority: 29, Time: 15, RemoveTime: 10, Difficulty: 3, AllowLock: true, ExpressionTrigger: [{Group: "Blush", Name: "Low", Timer: 10}] },
+			{ Name: "DiamondTie", Value: 50, Prerequisite: "AccessTorso", Time: 25, RemoveTime: 35, Difficulty: 3 }
 		]
 	},
 
@@ -719,7 +721,7 @@ var AssetFemale3DCG = [
 			{ Name: "ClothBlindfold", Effect: ["BlindLight", "Prone"], Hide: ["Glasses"], Value: 20, Time: 5 },
 			{ Name: "LeatherBlindfold", Effect: ["BlindNormal", "Prone"], Hide: ["Glasses"], Value: 40, Time: 5, AllowLock: true },
 			{ Name: "LeatherHood", Effect: ["BlindHeavy", "DeafHeavy", "Prone", "GagLight"], Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth", "Eyes"], Block: ["ItemMouth", "ItemEars", "ItemNeck"], Difficulty: 50, Value: 90, Time: 15, AllowLock: true },
-			{ Name: "LeatherHoodOpenEyes", Effect: ["Prone", "DeafLight", "GagLight"], Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth"], Block: ["ItemMouth", "ItemEars", "ItemNeck"], Difficulty: 50, Value: 60, Time: 15, AllowLock: true },
+			{ Name: "LeatherHoodOpenEyes", Effect: ["DeafLight", "GagLight"], Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth"], Block: ["ItemMouth", "ItemEars", "ItemNeck"], Difficulty: 50, Value: 60, Time: 15, AllowLock: true },
 			{ Name: "StuddedBlindfold", Effect: ["BlindNormal", "Prone"], Hide: ["Glasses"], Difficulty: 2, Value: -1, Time: 5, AllowLock: true },
 			{ Name: "KittyBlindfold", Effect: ["BlindLight", "Prone"], Hide: ["Glasses"], Value: 25, Time: 5, AllowLock: true },
 			{ Name: "DuctTape", Extended: true, AllowEffect: ["BlindNormal", "Prone", "GagNormal"], AllowBlock: ["ItemMouth", "ItemEars"], Hide: ["Glasses"], Value: 50, Time: 10, RemoveTime: 5, BuyGroup: "DuctTape", AllowType: ["Double", "Wrap", "Mummy"] },
@@ -739,8 +741,8 @@ var AssetFemale3DCG = [
 		Top: 50,
 		Zone: [[125, 25, 50, 125], [325, 25, 50, 125]],
 		Asset: [
-			{ Name: "LightDutyEarPlugs", Visible: false, Effect: ["Prone", "DeafLight"], Difficulty: 50, Value: 30, Time: 5 },
-			{ Name: "HeavyDutyEarPlugs", Visible: false, Effect: ["DeafHeavy", "Prone"], Difficulty: 50, Value: 40, Time: 5 }
+			{ Name: "LightDutyEarPlugs", Visible: false, Effect: ["DeafLight"], Difficulty: 50, Value: 30, Time: 5 },
+			{ Name: "HeavyDutyEarPlugs", Visible: false, Effect: ["DeafHeavy"], Difficulty: 50, Value: 40, Time: 5 }
 		]
 	},
 
