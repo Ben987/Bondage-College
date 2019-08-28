@@ -28,9 +28,9 @@ const SpankingInventory =[
 ];
 
 var SpankingCurrentType = null;
-let SpankingInventoryOffset = 0;
-let nextButton = false;
-let SpankingPlayerInventory;
+var SpankingInventoryOffset = 0;
+var nextButton = false;
+var SpankingPlayerInventory;
 // Loads the item extension properties
 function InventoryItemHandsSpankingToysLoad() {
 	SpankingPlayerInventory = SpankingInventory.filter(x => Player.Inventory.map(i => i.Name).includes("SpankingToys"+ x.Name));
@@ -51,8 +51,8 @@ function InventoryItemHandsSpankingToysDraw() {
 
 	DrawText(DialogFind(Player, "SelectSpankingToysType"), 1500, 500, "white", "gray");
 	//draw the buttons 4 at a time
-	for(let I = SpankingInventoryOffset; (I < SpankingPlayerInventory.length) && (I < SpankingInventoryOffset +4); I++){
-		let offset = I - SpankingInventoryOffset;
+	for(var I = SpankingInventoryOffset; (I < SpankingPlayerInventory.length) && (I < SpankingInventoryOffset +4); I++){
+		var offset = I - SpankingInventoryOffset;
 		DrawButton(1000 + offset*250, 550, 225, 225, "", ((DialogFocusItem.Property.Type == SpankingPlayerInventory[I].Name) ? "#888888" : "White"));
 		DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/" + SpankingPlayerInventory[I].Name + ".png", 1000 + offset*250, 550);
 		DrawText(DialogFind(Player, "SpankingToysType" + SpankingPlayerInventory[I].Name), 1115 +offset*250, 800, "white", "gray");
@@ -68,9 +68,9 @@ function InventoryItemHandsSpankingToysClick() {
 
 	//Item buttons
 	
-	for(let I = SpankingInventoryOffset; (I < SpankingPlayerInventory.length) && (I < SpankingInventoryOffset +4); I++){
-		let nextItem = SpankingPlayerInventory[I].Name;
-		let offset = I - SpankingInventoryOffset;
+	for(var I = SpankingInventoryOffset; (I < SpankingPlayerInventory.length) && (I < SpankingInventoryOffset +4); I++){
+		var nextItem = SpankingPlayerInventory[I].Name;
+		var offset = I - SpankingInventoryOffset;
 		if ((MouseX >= 1000 + offset*250) && (MouseX <= 1225 + offset*250) && (MouseY >= 550) && (MouseY <= 775)){
 			if(DialogFocusItem.Property.Type != nextItem){
 				InventorySpankingToySetType(nextItem);
@@ -82,7 +82,7 @@ function InventoryItemHandsSpankingToysClick() {
 
 // Uses spanking toy type (cane, crop, flogger, heartcrop)
 function InventorySpankingToySetType(NewType) {
-	let C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	//set the type
 	if (CurrentScreen == "ChatRoom") {
 		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
@@ -96,7 +96,7 @@ function InventorySpankingToySetType(NewType) {
 	CharacterRefresh(C);
 	ChatRoomCharacterUpdate(C);
 
-	let msg = "";
+	var msg = "";
 	if(C.ID == 0){
 		//put on player
 		msg = DialogFind(Player, "SpankingToysSetPlayer");

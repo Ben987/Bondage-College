@@ -271,7 +271,7 @@ function InventoryConfiscateKey() {
 
 function InventoryIsWorn(C, AssetGroup, name){
 	if((C == null) || (C.Appearance == null)) return null;
-	let item = C.Appearance.filter(i => i.Asset.Group.Name == AssetGroup)[0];
+	var item = C.Appearance.filter(i => i.Asset.Group.Name == AssetGroup)[0];
 	if((item != null) && (item.Asset.Name == name))
 		return true;
 	else
