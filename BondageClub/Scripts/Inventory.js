@@ -182,11 +182,11 @@ function InventoryItemHasEffect(Item, Effect, CheckProperties) {
 
 // Check if we must trigger an expression for the character after an item is used/applied
 function InventoryExpressionTrigger(C, Item) {
-	if ((Item != null) && (Item.Asset != null) && (Item.Asset.ExpressionTrigger != null))
-		for (var E = 0; E < Item.Asset.ExpressionTrigger.length; E++)
-			if ((InventoryGet(C, Item.Asset.ExpressionTrigger[E].Group) == null) || (InventoryGet(C, Item.Asset.ExpressionTrigger[E].Group).Property == null) || (InventoryGet(C, Item.Asset.ExpressionTrigger[E].Group).Property.Expression == null)) {
-				CharacterSetFacialExpression(C, Item.Asset.ExpressionTrigger[E].Group, Item.Asset.ExpressionTrigger[E].Name);
-				TimerInventoryRemoveSet(C, Item.Asset.ExpressionTrigger[E].Group, Item.Asset.ExpressionTrigger[E].Timer);
+	if ((Item != null) && (Item.Asset != null) && (Item.Asset.DynamicExpressionTrigger() != null))
+		for (var E = 0; E < Item.Asset.DynamicExpressionTrigger().length; E++)
+			if ((InventoryGet(C, Item.Asset.DynamicExpressionTrigger()[E].Group) == null) || (InventoryGet(C, Item.Asset.DynamicExpressionTrigger()[E].Group).Property == null) || (InventoryGet(C, Item.Asset.DynamicExpressionTrigger()[E].Group).Property.Expression == null)) {
+				CharacterSetFacialExpression(C, Item.Asset.DynamicExpressionTrigger()[E].Group, Item.Asset.DynamicExpressionTrigger()[E].Name);
+				TimerInventoryRemoveSet(C, Item.Asset.DynamicExpressionTrigger()[E].Group, Item.Asset.DynamicExpressionTrigger()[E].Timer);
 			}
 }
 
@@ -260,4 +260,20 @@ function InventoryFullLockRandom(C, FromOwner) {
 	for (var I = 0; I < C.Appearance.length; I++)
 		if (C.Appearance[I].Asset.AllowLock && (InventoryGetLock(C.Appearance[I]) == null))
 			InventoryLockRandom(C, C.Appearance[I], FromOwner);
+}
+
+// Removes all common keys from the player inventory
+function InventoryConfiscateKey() {
+	InventoryDelete(Player, "MetalCuffsKey", "ItemMisc");
+	InventoryDelete(Player, "MetalPadlockKey", "ItemMisc");
+	InventoryDelete(Player, "IntricatePadlockKey", "ItemMisc");
+}
+
+function InventoryIsWorn(C, AssetGroup, name){
+	if((C == null) || (C.Appearance == null)) return null;
+	var item = C.Appearance.filter(i => i.Asset.Group.Name == AssetGroup)[0];
+	if((item != null) && (item.Asset.Name == name))
+		return true;
+	else
+		return false;
 }

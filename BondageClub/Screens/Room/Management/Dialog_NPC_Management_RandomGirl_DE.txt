@@ -7,8 +7,6 @@ Clubsklaven sind so viel besser, wenn sie geknebelt sind.
 (Du entfernst den Knebel und sie seufzt.) Hoffentlich haben Sie noch einen anderen Knebel für mich, Miss.
 (She moans of pleasure as you restrain her arms.)  I'm glad you've found me Miss.
 (Sie stöhnt lüstern, als du ihre Arme fesselst.) Ich bin froh, dass Sie mich gefunden haben, Miss.
-(You free her arms and she stretches a little.)  This slave is here to server you Miss.
-(Du befreist ihre Arme und sie streckt sich ein wenig.) Diese Sklavin ist Ihnen stets zu Diensten, Miss.
 (You free her arms and she stretches a little.)  This slave is here to serve you Miss.
 (Du befreist ihre Arme und sie streckt sich ein wenig.) Diese Sklavin ist Ihnen stets zu Diensten, Miss.
 (You restrain her legs securely while she moans silently.)  This is sweet.
@@ -969,7 +967,7 @@ Es macht Spaß, wobei im Moment nicht viel los ist. Hoffentlich hast du auch Spa
 (Give her a hug.)
 (Sie umarmen.)
 ###_NPC
-(You exhange a close hug.)  If we can't wear clothes, at least we can warm ourselves like that.  (She giggles.)
+(You exchange a close hug.)  If we can't wear clothes, at least we can warm ourselves like that.  (She giggles.)
 (Ihr nehmt euch in die Arme.) Solange Kleidung verboten ist, können wir uns immerhin so warm halten. (Sie kichert.)
 ###_PLAYER
 (Mumble in your gag.)
@@ -1023,8 +1021,8 @@ Wer bist du, Mädchen?
 You seem well trained slave.
 Du scheinst wohlerzogen zu sein, Sklavin.
 ###_NPC
-(She smiles and nods.)  Thank you Miss, do you require my services?
-(Sie lächelt und nickt.) Danke, Miss, benötigen Sie meine Dienste?
+(She smiles and nods.)  Thank you Miss.  Do you require my services?
+(Sie lächelt und nickt.) Danke, Miss. Benötigen Sie meine Dienste?
 Are you also a submissive Miss?  Do you require my services?
 Sind Sie auch unterwürfig, Miss? Benötigen Sie meine Dienste?
 ###_PLAYER
@@ -1043,7 +1041,7 @@ Sklavin! Raus aus dem Versteck.
 I can see you.
 Ich sehe dich.
 ###_NPC
-(She slowly walks to you.)  I'm sorry Miss.  I didn't meant to hide from you.
+(She slowly walks to you.)  I'm sorry Miss.  I didn't mean to hide from you.
 (Sie kommt langsam zu dir.) Es tut mir leid, Miss. Ich wollte mich nicht vor Ihnen verstecken.
 ###_PLAYER
 Why are you hiding?
@@ -1063,8 +1061,8 @@ Warum versteckst du dich?
 You're having fun?
 Hast du Spaß?
 ###_NPC
-(She struggles some more and shakes her head no.)  I've been restrained for a while now, can you help me Miss?
-(Sie zappelt weiter und schüttelt den Kopf.) Ich bin jetzt schon eine ganze Weile gefesselt, können Sie mir helfen, Miss?
+(She struggles some more and shakes her head no.)  I've been restrained for a while now.  Can you help me Miss?
+(Sie zappelt weiter und schüttelt den Kopf.) Ich bin jetzt schon eine ganze Weile gefesselt. Können Sie mir helfen, Miss?
 ###_PLAYER
 Do you need help?
 Brauchst du Hilfe?
@@ -1151,7 +1149,7 @@ So lauten die Regeln, Miss, alle Clubsklavinnen unter Vertrag müssen nackt sein
 What's a club slave?
 Was ist eine Clubsklavin?
 ###_NPC
-We take a one hour contract with management and get paid to please club members.
+We take a one-hour contract with management and get paid to please club members.
 Wir unterschreiben beim Management einen einstündigen Vertrag und werden dafür bezalht, Clubmitgliedern zu dienen.
 ###_PLAYER
 Can I become a club slave?
@@ -1199,13 +1197,13 @@ Sehr wohl. Kann ich sonst noch etwas für Sie tun, Miss?
 (Slap her.)
 (Ihr eine Ohrfeige geben.)
 ###_NPC
-(You harshly slap her in the face and she bows her head in shame.)
+(You harshly slap her face and she bows her head in shame.)
 (Du klatschst ihr energisch ins Gesicht und sie senkt beschämt den Kopf.)
 ###_PLAYER
 (Spank her.)
 (Ihr auf den Hintern hauen.)
 ###_NPC
-(You spank her hard on the butt and she sharply inhales from the pain.)
+(You spank her hard on the butt, and she sharply inhales from the pain.)
 (Du haust ihr doll auf den Hintern und sie schnappt schmerzvoll nach Luft.)
 ###_PLAYER
 (Masturbate her.)

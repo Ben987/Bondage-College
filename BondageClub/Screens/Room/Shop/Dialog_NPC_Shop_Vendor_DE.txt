@@ -27,7 +27,7 @@ Das hier ist der einzige Laden der Stadt, der geknebelte Kundschaft empfängt.
 (Du nimmst ihr das Halsband ab.) Ja! Das ist viel besser.
 (You snap the belt around her waist while she sighs.)  Damn it.  I can't sell anymore keys for these.
 (Du lässt den Gürtel um sie zuschnappen und sie seufzt.) Verdammt. Ich darf keine Schlüssel mehr dafür verkaufen.
-(You unlock the belt from her waist and she smiles.)  I owe you one.
+(You unlock the belt from her waist, and she smiles.)  I owe you one.
 (Du öffnest den Gürtel von ihrer Taille und sie lächelt.) Ich schulde dir was.
 (You strap the device on her head as she complains.)  The store!  Think about the store!
 (Du schnallst ihr das Ding um den Kopf.) Der Laden! Denk doch mal einer an den Laden!
@@ -240,6 +240,8 @@ Do you have some special bondage Devices?
 Hast du irgendwelche besonderen Geräte?
 Can I see your hoods and blindfolds?
 Kann ich die Hauben und Augenbinden sehen?
+Do you sell anything to keep the noise down?
+Verkaufst du etwas gegen den Lärm?
 I'm looking for gags.
 Ich suche nach Knebeln.
 What about collars?
@@ -250,6 +252,8 @@ Do you have locks and keys?
 Hast du Schlüssel und Vorhängeschlösser?
 Show me your arm restraints.
 Zeig mir deine Armfesseln.
+Show me your hand restraints.
+Zeig mir deine Handfesseln.
 Something for the breast.
 Etwas für die Brust.
 Something for the nipples.

@@ -21,7 +21,7 @@ function CreationLoad() {
 
 }
 
-// Run the characther creation  screen 
+// Run the character creation screen 
 function CreationRun() {
 	
 	// Places the controls on the screen

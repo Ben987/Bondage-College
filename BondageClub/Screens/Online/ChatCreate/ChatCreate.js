@@ -5,7 +5,7 @@ var ChatCreateMessage = "";
 var ChatCreatePrivate = false;
 var ChatCreateBackgroundIndex = 0;
 var ChatCreateBackgroundSelect = "Introduction";
-var ChatCreateBackgroundList = ["Introduction", "KidnapLeague", "MaidQuarters", "MainHall", "Management", "Private", "Shibari", "Bedroom", "HorseStable", "Nursery", "PrisonHall", "PaddedCell", "BDSMRoomBlue", "BDSMRoomPurple", "BDSMRoomRed", "Gardens", "IndoorPool", "OutdoorPool", "MaidCafe", "PublicBath", "ParkDay", "ParkNight", "ChillRoom"];
+var ChatCreateBackgroundList = ["Introduction", "KidnapLeague", "MaidQuarters", "MainHall", "Management", "Private", "Shibari", "Bedroom", "HorseStable", "Nursery", "PrisonHall", "PaddedCell", "BDSMRoomBlue", "BDSMRoomPurple", "BDSMRoomRed", "Gardens", "IndoorPool", "OutdoorPool", "MaidCafe", "PublicBath", "ParkDay", "ParkNight", "ChillRoom", "Boudoir", "BondageBedChamber"];
 
 // When the chat screens loads, we loads up to 24 public rooms
 function ChatCreateLoad() {
@@ -32,9 +32,9 @@ function ChatCreateRun() {
 	DrawText(TextGet("RoomSize"), 930, 568, "White", "Gray");
 	ElementPosition("InputSize", 1400, 560, 150);
 	DrawText(TextGet("RoomBackground"), 850, 672, "White", "Gray");
-	DrawBackNextButton(1100, 640, 350, 65, ChatCreateBackgroundSelect, "White", null, 
-		() => ChatCreateBackgroundIndex == 0 ? ChatCreateBackgroundList[ChatCreateBackgroundList.length - 1] : ChatCreateBackgroundList[ChatCreateBackgroundIndex - 1],
-		() => ChatCreateBackgroundIndex >= ChatCreateBackgroundList.length ? ChatCreateBackgroundList[0] : ChatCreateBackgroundList[ChatCreateBackgroundIndex + 1]);
+	DrawBackNextButton(1100, 640, 350, 65, ChatCreateBackgroundSelect, "White", null,
+		() => (ChatCreateBackgroundIndex == 0) ? ChatCreateBackgroundList[ChatCreateBackgroundList.length - 1] : ChatCreateBackgroundList[ChatCreateBackgroundIndex - 1],
+		() => (ChatCreateBackgroundIndex >= ChatCreateBackgroundList.length - 1) ? ChatCreateBackgroundList[0] : ChatCreateBackgroundList[ChatCreateBackgroundIndex + 1]);
 	DrawButton(600, 800, 300, 65, TextGet("Create"), "White");
 	DrawButton(1100, 800, 300, 65, TextGet("Cancel"), "White");
 
@@ -57,30 +57,45 @@ function ChatCreateClick() {
 
 	// If the user wants to create a room
 	if ((MouseX >= 600) && (MouseX < 900) && (MouseY >= 800) && (MouseY < 865)) {
-		ChatRoomPlayerCanJoin = true;
-		var NewRoom = {
-			Name: ElementValue("InputName").trim(),
-			Description: ElementValue("InputDescription").trim(),
-			Background: ChatCreateBackgroundSelect,
-			Private: ChatCreatePrivate,
-			Limit: ElementValue("InputSize").trim()
-		};
-		ServerSend("ChatRoomCreate", NewRoom);
-		ChatCreateMessage = "CreatingRoom";
+		ChatCreateRoom();
 	}
 
 	// When the user cancels
 	if ((MouseX >= 1100) && (MouseX < 1400) && (MouseY >= 800) && (MouseY < 865)) {
-		ElementRemove("InputName");
-		ElementRemove("InputDescription");
-		ElementRemove("InputSize");
-		CommonSetScreen("Online", "ChatSearch");
+		ChatCreateExit();
 	}
 
+}
+
+// When the user press "enter", we create the room
+function ChatCreateKeyDown() {
+	if (KeyPress == 13) ChatCreateRoom();
+}
+
+// When the user exit from this screen
+function ChatCreateExit() {
+	ElementRemove("InputName");
+	ElementRemove("InputDescription");
+	ElementRemove("InputSize");
+	CommonSetScreen("Online", "ChatSearch");
 }
 
 // When the server sends a response
 function ChatCreateResponse(data) {
 	if ((data != null) && (typeof data === "string") && (data != ""))
 		ChatCreateMessage = "Response" + data;
+}
+
+// creates chat room
+function ChatCreateRoom() {
+	ChatRoomPlayerCanJoin = true;
+	var NewRoom = {
+		Name: ElementValue("InputName").trim(),
+		Description: ElementValue("InputDescription").trim(),
+		Background: ChatCreateBackgroundSelect,
+		Private: ChatCreatePrivate,
+		Limit: ElementValue("InputSize").trim()
+	};
+	ServerSend("ChatRoomCreate", NewRoom);
+	ChatCreateMessage = "CreatingRoom";
 }

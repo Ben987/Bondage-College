@@ -11,6 +11,8 @@ Remove the chain to the floor first
 Vorher die Kette zum Boden entfernen
 A collar must be fitted first to attach accessories to.
 Für Zubehör muss zunächst ein Halsband angelegt werden.
+Must be collared and not suspended first.
+Muss ein Halsband tragen und auf festem Boden sein.
 Cancel
 Abbrechen
 Back to character
@@ -129,11 +131,31 @@ SourceCharacter has prepared a great collaring ceremony.  A maid brings a slave 
 SourceCharacter hat eine fabelhafte Halsband-Zeremonie vorbereitet. Ein Hausmädchen bringt ein Sklavinnen-Halsband, das die Untergebene freien Willens annehmen muss.
 The Bondage Club is proud to announce that SourceCharacter is now fully collared.  Her fate is in her Mistress hands.
 Der Bondage-Club verkündet stolz, dass SourceCharacter nun ein ordnungsgemäßes Halsband trägt. Ihr Schicksal liegt in den Händen ihrer Herrin.
+Your owner is now allowing you to access your wardrobe and change clothes.
+Deine Besitzerin erlaubt dir nun, auf deinen Kleiderschrank zuzugreifen und dich umzuziehen.
+Your owner has blocked your wardrobe access for an hour.  You won't be able to change clothes.
+Deine Besitzerin hat deinen Kleiderschrank für eine Stunde gesperrt. Du kannst deine Kleidung nicht wechseln.
+Your owner has blocked your wardrobe access for a day.  You won't be able to change clothes.
+Deine Besitzerin hat deinen Kleiderschrank für einen Tag gesperrt. Du kannst deine Kleidung nicht wechseln.
+Your owner has blocked your wardrobe access for a week.  You won't be able to change clothes.
+Deine Besitzerin hat deinen Kleiderschrank für eine Woche gesperrt. Du kannst deine Kleidung nicht wechseln.
+Your owner has blocked your wardrobe access.  You won't be able to change clothes until that rule is revoked.
+Deine Besitzerin hat deinen Kleiderschrank gesperrt. Du kannst deine Kleidung nicht wechseln, bis diese Regel aufgehoben ist.
+Your owner is now allowing you to whisper to other members when she's there.
+Deine Besitzerin erlaubt dir nun, mit anderen Mitgliedern zu flüstern, wenn sie da ist.
+Your owner is now preventing you from whispering to other members when she's there.
+Deine Besitzerin verbietet dir nun, mit anderen Mitgliedern zu flüstern, wenn sie da ist.
+Your owner is now allowing you to have keys.  You can buy keys from the club shop.
+Deine Besitzerin erlaubt dir nun, Schlüssel zu besitzen. Du kannst Schlüssel im Clubladen kaufen.
+Your owner has confiscated your keys.  All your regular keys are lost.
+Deine Besitzerin hat deine Schlüssel beschlagnahmt. Alle deine gewöhnlichen Schlüssel sing weg.
+Your owner is now preventing you from getting new keys.  The club shop will not sell keys to you anymore.
+Deine Besitzerin hindert dich nun daran, neue Schlüssel zu erlangen. Der Clubladen wird dir keine Schlüssel mehr verkaufen.
 Member number on lock:
 Mitglieds-ID auf dem Schloss:
 Time left:
 Übrige Zeit:
-SourceCharacter restarts the five minute timer padlock on DestinationCharacter BodyPart.
+SourceCharacter restarts the five minutes timer padlock on DestinationCharacter BodyPart.
 SourceCharacter setzt das Fünf-Minuten-Schloss von DestinationCharacter zurück.
 Restart Timer
 Timer zurücksetzen
@@ -177,6 +199,8 @@ SourceCharacter attaches the leather cuffs wrist and elbow chains behind Destina
 SourceCharacter verbindet die Handgelenk- und Ellbogen-Ketten der Ledermanschetten hinter DestinationCharacters Rücken.
 Hands
 Hände
+Arms
+Arme
 Skirt
 Rock
 Torso
@@ -217,8 +241,6 @@ Full face
 Vollständig
 Double layer
 Doppelschicht
-OTN
-Mund und Nase
 SourceCharacter puts a piece of duct tape on DestinationCharacter's mouth.
 SourceCharacter klebt einen Streifen Klebeband auf DestinationCharacters Mund.
 SourceCharacter crosses two pieces of duct tape on DestinationCharacter's mouth.
@@ -247,8 +269,8 @@ SourceCharacter takes a piece of duct tape for DestinationCharacter's and place 
 SourceCharacter nimmt ein Stück Klebeband und klebt es auf DestinationCharacters Gesicht.
 SourceCharacter wraps some duct tape onto DestinationCharacter's face.
 SourceCharacter wickelt etwas Klebeband um DestinationCharacters Gesicht.
-SourceCharacter wraps DestinationCharacter's  head in tape with multiple layers. 
-SourceCharacter wickelt viele Schichten Klebeband um DestinationCharacters Kopf. 
+SourceCharacter wraps DestinationCharacter's head in tape with multiple layers. 
+SourceCharacter wickelt viele Schichten Klebeband um DestinationCharacters Kopf.
 Item intensity: Disabled
 Intensität: Deaktiviert
 Item intensity: Low
@@ -363,7 +385,9 @@ removes the chains
 entfernt die Ketten von
 mittens to the baby harness
 an ihr Babyharnisch
-They must be wearing a baby harness first to chain the mittens to it.
-Sie muss einen Babyharnisch tragen, um die Fäustlinge daran anzuketten.
+She must be wearing a baby harness to chain the mittens.
+Sie muss einen Babyharnisch tragen, um die Fäustlinge anzuketten.
+You must free her arms before attaching mitten chains.
+Ihre Arme müssen frei sein, um die Fäustlingsketten anbringen zu können.
 Facial expression
 Gesichtsausdruck

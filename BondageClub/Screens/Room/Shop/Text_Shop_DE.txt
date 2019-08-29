@@ -8,5 +8,7 @@ You already own this item.
 Das besitzt du bereits.
 You don't have enough money.
 Du hast nicht genug Geld.
+Sorry, I cannot sell you keys.
+Tut mir leid, ich darf dir keine Schlüssel verkaufen.
 Thank you!  Something else?
 Danke! Darf es sonst noch etwas sein?

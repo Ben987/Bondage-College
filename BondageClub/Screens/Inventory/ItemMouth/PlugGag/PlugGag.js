@@ -51,7 +51,7 @@ function InventoryItemMouthPlugGagSetType(NewType) {
 	CharacterRefresh(C);
 	ChatRoomCharacterUpdate(C);
 
-	var msg = DialogFind(Player, "PlugGagMouthSet" + ((NewType) ? NewType : "Plug"));
+	var msg = DialogFind(Player, "PlugGagMouthSet" + ((NewType) ? NewType : "Open"));
 	msg = msg.replace("SourceCharacter", Player.Name);
 	msg = msg.replace("DestinationCharacter", C.Name);
 	ChatRoomPublishCustomAction(msg, true);

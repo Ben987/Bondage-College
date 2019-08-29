@@ -57,6 +57,9 @@ ConfirmDelete,,,Confirm
 Beep,,,Beep
 BeepFrom,,,Beep from
 BeepFromOwner,,,Beep from your owner in your private room
+SentBeep,,,Sent at
+ReceivedBeep,,,Received at
+YourRoom,,,<i>Your private room</i>
 InRoom,,,in room
 PrivateRoom,,,<i>Private room</i>
 IntroductionMaidGreetings,,,"(As you enter the luxurious hallway, a maid comes to greet you.)  Welcome to the Bondage Club, is this your first visit?"
@@ -64,9 +67,19 @@ ServerMessageOfferStartTrial,,,"SourceCharacter is offering you to start a trial
 ServerMessageStartTrial,,,The Bondage Club is pleased to announce that SourceCharacter is starting a 3 days minimum trial period as a submissive.
 ServerMessageOfferEndTrial,,,"SourceCharacter has prepared a great collaring ceremony.  A maid brings a slave collar, which her submissive must consent to wear."
 ServerMessageEndTrial,,,The Bondage Club is proud to announce that SourceCharacter is now fully collared.  Her fate is in her Mistress hands.
+ServerMessageOwnerRuleChangeAllow,,,Your owner is now allowing you to access your wardrobe and change clothes.
+ServerMessageOwnerRuleChangeBlock1Hour,,,Your owner has blocked your wardrobe access for an hour.  You won't be able to change clothes.
+ServerMessageOwnerRuleChangeBlock1Day,,,Your owner has blocked your wardrobe access for a day.  You won't be able to change clothes.
+ServerMessageOwnerRuleChangeBlock1Week,,,Your owner has blocked your wardrobe access for a week.  You won't be able to change clothes.
+ServerMessageOwnerRuleChangeBlock,,,Your owner has blocked your wardrobe access.  You won't be able to change clothes until that rule is revoked.
+ServerMessageOwnerRuleWhisperAllow,,,Your owner is now allowing you to whisper to other members when she's there.
+ServerMessageOwnerRuleWhisperBlock,,,Your owner is now preventing you from whispering to other members when she's there.
+ServerMessageOwnerRuleKeyAllow,,,Your owner is now allowing you to have keys.  You can buy keys from the club shop.
+ServerMessageOwnerRuleKeyConfiscate,,,Your owner has confiscated your keys.  All your regular keys are lost.
+ServerMessageOwnerRuleKeyBlock,,,Your owner is now preventing you from getting new keys.  The club shop will not sell keys to you anymore.
 LockMemberNumber,,,Member number on lock:
 TimerLeft,,,Time left:
-TimerRestart,,,SourceCharacter restarts the five minute timer padlock on DestinationCharacter BodyPart.
+TimerRestart,,,SourceCharacter restarts the five minutes timer padlock on DestinationCharacter BodyPart.
 RestartTimer,,,Restart Timer
 RemoveItemWithTimer,,,Remove item when the lock timer runs out
 WillRemoveItemWithTimer,,,The item will be removed when the lock timer runs out
@@ -87,6 +100,15 @@ LeatherCuffsRestrainNone,,,SourceCharacter detaches the chain from DestinationCh
 LeatherCuffsRestrainWrist,,,SourceCharacter attaches the leather cuffs wrist chain behind DestinationCharacter's back.
 LeatherCuffsRestrainElbow,,,SourceCharacter attaches the leather cuffs elbow chain behind DestinationCharacter's back.
 LeatherCuffsRestrainBoth,,,SourceCharacter attaches the leather cuffs wrist and elbow chains behind DestinationCharacter's back.
+StraitJacketSelectTightness,,,How tight do you want to strap the jacket?
+StraitJacketPoseLoose,,,Loose
+StraitJacketPoseNormal,,,Normal
+StraitJacketPoseSnug,,,Snug
+StraitJacketPoseTight,,,Tight
+StraitJacketRestrainLoose,,,SourceCharacter loosens the straps on DestinationCharacter's straitjacket.
+StraitJacketRestrainNormal,,,SourceCharacter adjusts the straps normally on DestinationCharacter's straitjacket.
+StraitJacketRestrainSnug,,,SourceCharacter snugs the straps on DestinationCharacter's straitjacket.
+StraitJacketRestrainTight,,,SourceCharacter tightens the straps on DestinationCharacter's straitjacket.
 DuctTapePoseHands,,,Hands
 DuctTapePoseArms,,,Arms
 DuctTapePoseBottom,,,Skirt
@@ -125,7 +147,7 @@ DuctTapeHeadTypeWrap,,,Wrap
 DuctTapeHeadSetDouble,,,SourceCharacter takes a piece of duct tape for DestinationCharacter's and place on her face.
 DuctTapeHeadSetWrap,,,SourceCharacter wraps some duct tape onto DestinationCharacter's face.
 DuctTapeHeadTypeMummy,,,Mummy
-DuctTapeHeadSetMummy,,,SourceCharacter wraps DestinationCharacter's  head in tape with multiple layers. 
+DuctTapeHeadSetMummy,,,SourceCharacter wraps DestinationCharacter's head in tape with multiple layers. 
 Intensity-1,,,Item intensity: Disabled
 Intensity0,,,Item intensity: Low
 Intensity1,,,Item intensity: Medium
@@ -188,6 +210,15 @@ chains,,,chains
 unchains,,,removes the chains
 mittenstoharness,,,mittens to the baby harness
 mittensfromharness,,,mittens
-NeedHarness,,,They must be wearing a baby harness first to chain the mittens to it.
-FreeArms,,,Free arms first before attaching a mitten chains.
+NeedHarness,,,She must be wearing a baby harness to chain the mittens.
+FreeArms,,,You must free her arms before attaching mitten chains.
 FacialExpression,,,Facial expression
+SelectSpankingToysType,,,Select a spanking toy
+SpankingToysTypeCrop,,,Crop
+SpankingToysTypeFlogger,,,Flogger
+SpankingToysTypeCane,,,Cane
+SpankingToysTypeHeartCrop,,,Heart Crop
+SpankingToysTypePaddle,,,Paddle
+SpankingToysTypeWhipPaddle,,,Whip Paddle
+SpankingToysSetPlayer,,,SourceCharacter takes out a Item
+SpankingToysSetOthers,,,SourceCharacter give DestinationCharacter a Item

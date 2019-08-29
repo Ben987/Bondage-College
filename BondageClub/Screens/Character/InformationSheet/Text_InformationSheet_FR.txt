@@ -32,6 +32,8 @@ Flying Pegasus
 Pégase Volant
 Member Number:
 Numéro de Membre:
+-
+-
 Lover:
 Amante:
 Owner:
@@ -42,6 +44,10 @@ Member for
 Membre depuis
 Friends for
 Amies depuis
+On trial for
+Période d'essai pour
+Collared for
+Collier permanant depuis
 day(s)
 jour(s)
 Unknown

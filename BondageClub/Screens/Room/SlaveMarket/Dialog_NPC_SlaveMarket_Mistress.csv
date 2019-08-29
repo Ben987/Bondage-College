@@ -11,12 +11,12 @@ TrainingFail,,,You've failed your training.  Thanks for your time but I cannot p
 0,,"Hi, I'm DialogPlayerName.","Hello, I'm Mistress DialogCharacterName.  I run the market auctions today and sell the slaves.",DialogRemove(),
 0,10,Tell me about the slave market.,What would you like to know?,,
 0,20,Tell me about this slave girl.,Sure.  Are you interested in buying her?,,
-0,30,Can I help with slave training?,"You could, a well trained slave has higher market value.",,"DialogReputationGreater(""Dominant"", 50)"
+0,30,Can I help with slave training?,"You could, a well-trained slave has higher market value.",,"DialogReputationGreater(""Dominant"", 50)"
 0,,Can I help with slave training?,"Forget it girl, you're not Dominant enough.",,"DialogReputationLess(""Dominant"", 49)"
 0,40,When is the next slave coming up?,We need to sell this one first.  You can wait a little while for the next girl.,,
 0,,I need to go.  (Leave her.),,DialogLeave(),
 10,,How does the market works?,Owners can sell their own slaves or free submissives can sell themselves for profit.  They get sold through an auction.,,
-10,,Can I sell my slaves here?,"Yes, but only if your slave is fully collared.  You can sell her permantly or rent her for a day.  Go get her first.",,
+10,,Can I sell my slaves here?,"Yes, but only if your slave is fully collared.  You can sell her permanently or rent her for a day.  Go get her first.",,
 10,,Can I sell myself?,"Not yet, we cannot take you at the moment.  (This feature will be available in a future version.)",,!Player.IsOwned()
 10,,Can my owner sell me?,"Not yet, we cannot take you at the moment.  (This feature will be available in a future version.)",,Player.IsOwned()
 10,,It's consensual?,"Always.  Even if we call it the slave market, it remains consensual.  If the slave chickens out, we let her go.",,
@@ -24,7 +24,7 @@ TrainingFail,,,You've failed your training.  Thanks for your time but I cannot p
 10,,The prices are variable?,"Yes, since it's an auction and all slaves are different, some go at a higher price than others.  The better trained, the higher the auction goes.",,
 10,,How do you measure a slave training?,"It's hard to measure the training quality since every slave is different.  The longer the slave was with someone, the higher the training and market value.",,
 10,0,Let's talk about something else.,Fine.  What would you like know?,,
-20,,She's getting sold?,"Yes, she will be auctioned today.  You will be able to bet on her if you like, as long as you have some room to accomodate her.",,
+20,,She's getting sold?,"Yes, she will be auctioned today.  You will be able to bet on her if you like, as long as you have some room to accommodate her.",,
 20,,Why doesn't she talk with me?,"I run the auction, not her.  Don't speak with the merchandize.",,
 20,,What if I buy her?,She will move in with you and you two will be able to start a regular BDSM trial together.,,
 20,,What's the price?,"It's an auction.  You bet against other Dominants and the highest bet gets the girl.  Bring lots of money, you never know.",,
@@ -39,7 +39,7 @@ TrainingFail,,,You've failed your training.  Thanks for your time but I cannot p
 23,0,Very well.  (Check the new slave.),,NewSlave(),
 30,,How does training work?,"You'll get a slave to train, but they are all different: some need discipline, other need control and some even need corporal punishment.",,
 30,,Who gets trained?,It depends.  Some owners send their slaves here for education and some girls come willingly to raise their market value.,,
-30,,Do I get paid?,"Yes, you'll get paid for every succesful training session.  The higher we can sell them the better.",,
+30,,Do I get paid?,"Yes, you'll get paid for every successful training session.  The higher we can sell them the better.",,
 30,,Can I train her?,"Not her, she's getting sold today.  We have many other slaves to train though.",,
 30,31,I'm ready to train!,"Very well, a maid will lead you to the training room.  The slave to train will be waiting there for you.",,
 30,0,Let's talk some more first.,Fine.  What would you like know?,,

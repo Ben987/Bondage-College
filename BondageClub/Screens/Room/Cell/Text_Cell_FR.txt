@@ -1,0 +1,18 @@
+Lock timer: 
+Minuteur: 
+minutes
+Minutes
+Leave the cell
+Quitter la cellule
+Character profile
+Profil du personnage
+Add 5 minutes
+Ajouter 5 minutes
+Remove 5 minutes
+Soustraire 5 minutes
+Lock yourself
+S'enfermer
+Opens in
+Ouvre dans
+Kneel / Stand
+S'agenouiller / Se relever
