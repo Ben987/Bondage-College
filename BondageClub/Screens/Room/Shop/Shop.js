@@ -13,6 +13,7 @@ var ShopItemCount = 0;
 var ShopDemoItemPayment = 0;
 var ShopDemoItemGroup = "";
 var ShopDemoItemGroupList = ["ItemHead", "ItemMouth", "ItemArms", "ItemLegs", "ItemFeet"];
+var ShopSelectAsset = ShopAssetFocusGroup;
 
 // Returns TRUE if a dialog is permitted
 function ShopIsVendorRestrained() { return (ShopVendor.IsRestrained() || !ShopVendor.CanTalk()) }
@@ -61,7 +62,7 @@ function ShopRun() {
 		var Y = 125;
 		ShopItemCount = 0;
 		for(var A = 0; A < Asset.length; A++)
-			if ((Asset[A] != null) && (Asset[A].Group != null) && (Asset[A].Group.Name == ShopVendor.FocusGroup.Name) && (Asset[A].Value > 0)) {
+			if (ShopSelectAsset(Asset[A])) {
 				if ((ShopItemCount >= ShopItemOffset) && (ShopItemCount < ShopItemOffset + 12)) {
 					DrawRect(X, Y, 225, 275, ((MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275) && !CommonIsMobile) ? "cyan" : "white");
 					DrawImageResize("Assets/" + Asset[A].Group.Family + "/" + Asset[A].Group.Name + "/Preview/" + Asset[A].Name + ".png", X + 2, Y + 2, 221, 221);
@@ -84,6 +85,26 @@ function ShopRun() {
 
 }
 
+// Select asset by vendor's focusgroup
+function ShopAssetFocusGroup(Asset) {
+	return (Asset != null) && (Asset.Group != null) && (Asset.Value > 0) && (Asset.Group.Name == ShopVendor.FocusGroup.Name);
+}
+
+// Select missing assets
+function ShopAssetMissing(Asset) {
+	return (Asset != null) && (Asset.Group != null) && (Asset.Value > 0) && !InventoryAvailable(Player, Asset.Name, Asset.Group.Name);
+}
+
+// When user wants to see the missing items
+function ShopSelectAssetMissing() {
+	ShopVendor.FocusGroup = null;
+	ShopItemOffset = 0;
+	CurrentCharacter = null;
+	ShopStarted = true;
+	ShopSelectAsset = ShopAssetMissing;
+	ShopText = TextGet("SelectItemBuy");
+}
+
 // When the user clicks in the shop
 function ShopClick() {
 	
@@ -96,7 +117,7 @@ function ShopClick() {
 	} else {
 
 		// The user can select a different body by clicking on the vendor
-		if (ShopVendor.FocusGroup.Category == "Item")
+		if ((ShopVendor.FocusGroup != null) && (ShopVendor.FocusGroup.Category == "Item"))
 			if ((MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000))
 				for(var A = 0; A < AssetGroup.length; A++)
 					if ((AssetGroup[A].Category == "Item") && (AssetGroup[A].Zone != null))
@@ -104,6 +125,7 @@ function ShopClick() {
 							if ((MouseX - 500 >= AssetGroup[A].Zone[Z][0]) && (MouseY >= AssetGroup[A].Zone[Z][1] - ShopVendor.HeightModifier) && (MouseX - 500 <= AssetGroup[A].Zone[Z][0] + AssetGroup[A].Zone[Z][2]) && (MouseY <= AssetGroup[A].Zone[Z][1] + AssetGroup[A].Zone[Z][3] - ShopVendor.HeightModifier)) {
 								ShopItemOffset = 0;
 								ShopVendor.FocusGroup = AssetGroup[A];
+								ShopSelectAsset = ShopAssetFocusGroup;
 							}
 
 		// For each items in the assets with a value
@@ -111,7 +133,7 @@ function ShopClick() {
 		var Y = 125;
 		var ItemCount = 0;
 		for(var A = 0; A < Asset.length; A++)
-			if ((Asset[A] != null) && (Asset[A].Group != null) && (Asset[A].Group.Name == ShopVendor.FocusGroup.Name) && (Asset[A].Value > 0)) {
+			if (ShopSelectAsset(Asset[A])) {
 				if ((ItemCount >= ShopItemOffset) && (ItemCount < ShopItemOffset + 12)) {
 					if ((MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275)) {
 
@@ -183,6 +205,7 @@ function ShopStart(ItemGroup) {
 		ShopItemOffset = 0;
 		CurrentCharacter = null;
 		ShopStarted = true;
+		ShopSelectAsset = ShopAssetFocusGroup;
 		ShopText = TextGet("SelectItemBuy");
 	}
 

@@ -42,6 +42,7 @@ ItemPelvisLeatherCrop,,,(You lash the leather crop pretty hard on her butt.)  Da
 10,20,Can I tie you up?,"I'll make a deal with you.  If you buy everything from the store, I'll let you use the items on me.",CheckBoughtEverything(),!VendorAllowItem
 10,,Will you restrain me?,Maybe later after my shift.,,
 10,0,I don't have any more questions.,"Alright, would you like to buy something then?",,
+10,,Can you tell me what items am I missing,,SelectAssetMissing(),
 10,,Let's talk later.  (Leave her.),,DialogLeave(),
 20,10,Check my items.  I've bought everything.,No way!  Well a deal is a deal.  You can strap me up if you want.,VendorBondage(),BoughtEverything
 20,10,I'll remember that deal.,Sure!  Do you have more questions for me?,,
