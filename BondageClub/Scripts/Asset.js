@@ -105,7 +105,7 @@ function AssetBuildLayer(NewLayers) {
 			HasExpression: (Layer.HasExpression == null) ? true : Layer.HasExpression,
 			HasType: (Layer.HasType == null) ? true : Layer.HasType,
 			NewParentGroupName: Layer.NewParentGroupName,
-			NewAllowPose: (Layer.ANewAllowPose == null || !Array.isArray(Layer.ANewAllowPose)) ? null : Layer.ANewAllowPose
+			NewAllowPose: (Layer.NewAllowPose == null || !Array.isArray(Layer.NewAllowPose)) ? null : Layer.NewAllowPose
 		});
 	} 
 	return Layers;
