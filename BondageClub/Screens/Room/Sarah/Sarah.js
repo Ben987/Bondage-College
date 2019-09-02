@@ -719,9 +719,8 @@ function SarahGiveSecondSlaveItem(C) {
 		if (SarahAmandaIsInside()) SarahGiveSecondSlaveItem(Amanda);
 	} else {
 		InventoryAdd(C, "MetalChastityBra", "ItemBreast");
-		InventoryAdd(C, "MetalChastityBraKey", "ItemBreast");
+		InventoryAdd(C, "ClubMistressKey", "ItemMisc");
 		InventoryAdd(C, "MetalChastityBelt", "ItemPelvis");
-		InventoryAdd(C, "MetalChastityBeltKey", "ItemPelvis");
 	}
 }
 

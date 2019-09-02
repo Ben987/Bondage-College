@@ -411,8 +411,7 @@ function ManagementMistressKicked() {
 	InventoryDelete(Player, "MistressBoots", "Shoes", false);
 	InventoryDelete(Player, "MistressTop", "Cloth", false);
 	InventoryDelete(Player, "MistressBottom", "ClothLower", false);
-	InventoryDelete(Player, "MetalChastityBeltKey", "ItemPelvis", false);
-	InventoryDelete(Player, "MetalChastityBraKey", "ItemBreast", false);
+	InventoryDelete(Player, "ClubMistressKey", "ItemMisc", false);
 	ServerPlayerInventorySync();
 }
 

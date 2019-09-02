@@ -93,6 +93,7 @@ ItemMiscIntricatePadlockIntro,,,"""To keep your loved one secure"""
 ItemMiscTimerPadlockIntro,,,You can restart the timer but cannot unlock
 ItemMiscOwnerPadlockIntro,,,"""Never forget who you belong to"""
 ItemMiscOwnerPadlockDetail,,,Can only be locked or unlocked by her owner
+ItemMiscClubPadlockIntro,,,This lock can only be unlocked by a Club Mistress
 LeatherCuffsPoseNone,,,Detached
 LeatherCuffsPoseWrist,,,Bind wrists
 LeatherCuffsPoseElbow,,,Bind elbows

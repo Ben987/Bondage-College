@@ -514,8 +514,7 @@ var AssetFemale3DCG = [
 		Top: 375,
 		Zone: [[150, 420, 200, 80]],
 		Asset: [
-			{ Name: "MetalChastityBelt", Effect: ["Chaste", "Lock"], Block: ["ItemVulva", "ItemButt"], Value: 100, Prerequisite: "AccessVulva", Difficulty: 50, Time: 20, RemoveTime: 10, ExpressionTrigger: [{ Group: "Eyebrows", Name: "Soft", Timer: 10 }] },
-			{ Name: "MetalChastityBeltKey", Wear: false, Value: -1, Effect: ["Unlock-MetalChastityBelt"], Prerequisite: "AccessVulva", Time: 5 },
+			{ Name: "MetalChastityBelt", Effect: ["Chaste"], Block: ["ItemVulva", "ItemButt"], Value: 100, Prerequisite: "AccessVulva", AllowLock: true, Difficulty: 50, Time: 20, RemoveTime: 10, ExpressionTrigger: [{ Group: "Eyebrows", Name: "Soft", Timer: 10 }] },
 			{ Name: "LeatherCrop", Value: 40, Wear: false, BuyGroup: "LeatherCrop", Bonus: [{ Type: "KidnapDomination", Factor: 3 }], ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }] },
 			{ Name: "LeatherWhip", Value: 60, Wear: false, BuyGroup: "LeatherWhip", Bonus: [{ Type: "KidnapBruteForce", Factor: 3 }], ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }] },
 			{ Name: "StraponPanties", Effect: ["Chaste"], Block: ["ItemVulva", "ItemButt"], Value: 50, Prerequisite: "AccessVulva", Time: 15 },
@@ -594,8 +593,7 @@ var AssetFemale3DCG = [
 		Top: 200,
 		Zone: [[250, 260, 100, 80]],
 		Asset: [
-			{ Name: "MetalChastityBra", Value: 75, Effect: ["Lock", "BreastChaste"], Block: ["ItemNipples"], Hide: ["ItemNipples"], Prerequisite: "AccessBreast", Time: 15, Difficulty: 50, ExpressionTrigger: [{ Group: "Eyebrows", Name: "Soft", Timer: 10 }] },
-			{ Name: "MetalChastityBraKey", Wear: false, Value: -1, Effect: ["Unlock-MetalChastityBra"], Prerequisite: "AccessBreast", Time: 5 },
+			{ Name: "MetalChastityBra", Value: 75, Effect: ["BreastChaste"], Block: ["ItemNipples"], Hide: ["ItemNipples"], Prerequisite: "AccessBreast", AllowLock: true, Time: 15, Difficulty: 50, ExpressionTrigger: [{ Group: "Eyebrows", Name: "Soft", Timer: 10 }] },
 			{ Name: "LeatherCrop", Value: 40, Wear: false, BuyGroup: "LeatherCrop", Bonus: [{ Type: "KidnapDomination", Factor: 3 }], ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }] },
 			{ Name: "LeatherWhip", Value: 60, Wear: false, BuyGroup: "LeatherWhip", Bonus: [{ Type: "KidnapBruteForce", Factor: 3 }], ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }] },
 			{ 
@@ -845,9 +843,11 @@ var AssetFemale3DCG = [
 			{ Name: "IntricatePadlock", Wear: false, Value: 60, Time: 30, IsLock: true, Effect: [] },
 			{ Name: "TimerPadlock", Wear: false, Value: 100, RemoveTimer: 300, IsLock: true, Effect: [] },
 			{ Name: "OwnerPadlock", Wear: false, Value: 100, Time: 10, IsLock: true, OwnerOnly: true, Effect: [] },
+			{ Name: "ClubPadlock", Wear: false, Value: 10, Time: 10, IsLock: true, Effect: [] },
 			{ Name: "MetalPadlockKey", Wear: false, Value: 15, Effect: ["Unlock-MetalPadlock"] },
 			{ Name: "IntricatePadlockKey", Wear: false, Value: 60, Effect: ["Unlock-IntricatePadlock"] },
 			{ Name: "OwnerPadlockKey", Wear: false, Value: 100, OwnerOnly: true, Effect: ["Unlock-OwnerPadlock"] },
+			{ Name: "ClubMistressKey", Wear: false, Value: -1, Effect: ["Unlock-ClubPadlock"] },
 			{ Name: "MetalCuffsKey", Wear: false, Value: 25, Effect: ["Unlock-MetalCuffs"], Time: 5 },
 			{ Name: "WoodenMaidTray", Enable: false, Value: -1 },
 			{ Name: "WoodenMaidTrayFull", Enable: false, Value: -1 },

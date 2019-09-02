@@ -167,8 +167,7 @@ function CharacterArchetypeClothes(C, Archetype, ForceColor) {
 		InventoryWear(C, "MistressTop", "Cloth", Color);
 		InventoryAdd(C, "MistressBottom", "ClothLower", false);
 		InventoryWear(C, "MistressBottom", "ClothLower", Color);
-		InventoryAdd(C, "MetalChastityBeltKey", "ItemPelvis", false);
-		InventoryAdd(C, "MetalChastityBraKey", "ItemBreast", false);
+		InventoryAdd(C, "ClubMistressKey", "ItemMisc", false);
 		InventoryRemove(C, "HairAccessory");
 	}
 
