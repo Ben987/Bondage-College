@@ -12,6 +12,14 @@ function TimerToString(T) {
 	return M + ":" + S;
 }
 
+// Returns a string of the current remaining timer
+function TimerHourToString(T) {
+	var M = T.getMinutes().toString();
+	if (M.length == 1) M = "0" + M;
+	var H = T.getHours().toString();
+	return H + ":" + M;
+}
+
 // Check if we must remove items from a player or an NPC
 function TimerInventoryRemove() {
 	
@@ -69,6 +77,7 @@ function TimerPrivateOwnerBeep() {
 			ServerBeep.Message = DialogFind(Player, "BeepFromOwner");
 			LogAdd("OwnerBeepActive", "PrivateRoom");
 			LogAdd("OwnerBeepTimer", "PrivateRoom", CurrentTime + 120000);
+			FriendListBeepLog.push({ MemberName: Player.Owner, ChatRoomName: DialogFind(Player, "YourRoom"), Sent: false, Time: new Date() });
 		}
 }
 

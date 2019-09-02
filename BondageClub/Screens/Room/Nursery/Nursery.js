@@ -200,7 +200,7 @@ function NurseryNurseOutfitForNPC(CurrentNPC) {
 function NurseryABDLOutfitForNPC(CurrentNPC) {
 	CharacterNaked(CurrentNPC);
 	NurseryRandomDressSelection();
-	NurseryRandomColourSelection();
+	NurseryRandomColorSelection();
 	InventoryWear(CurrentNPC, RandomResultB, "Cloth", RandomResult);
 	InventoryWear(CurrentNPC, "Diapers1", "Panties", "Default");
 	RandomNumber = Math.floor(Math.random() * 8);
@@ -239,8 +239,8 @@ function NurseryRandomDressSelection() {
 	if (RandomResultB == PreviousDress) NurseryRandomDressSelection();
 }
 
-// Random selection for dress colours
-function NurseryRandomColourSelection() {
+// Random selection for dress colors
+function NurseryRandomColorSelection() {
 	PreviousDressColor = RandomResult
 	RandomNumber = Math.floor(Math.random() * 12);
 	if (RandomNumber == 0) RandomResult = "Default";
@@ -290,7 +290,7 @@ function NurseryPlayerAdmitted() {
 // When the player puts on a AB dress or has it put on
 function NurseryPlayerWearBabyDress() {
 	NurseryRandomDressSelection();
-	NurseryRandomColourSelection();
+	NurseryRandomColorSelection();
 	InventoryWear(Player, RandomResultB, "Cloth", RandomResult);
 }
 
@@ -387,7 +387,7 @@ function NurseryPlayerChangeDress() {
 // Player changes dress
 function NurseryPlayerChangeDressColor() {
 		CharacterChangeMoney(Player, -5);
-		NurseryRandomColourSelection();
+		NurseryRandomColorSelection();
 		InventoryWear(Player, RandomResultB, "Cloth", RandomResult);
 }
 

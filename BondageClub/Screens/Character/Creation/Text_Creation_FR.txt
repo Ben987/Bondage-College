@@ -28,5 +28,3 @@ Import Bondage College data
 Importer vos données de Bondage College
 Invalid server answer, it could be outdated.
 Réponse au serveur invalide, il pourrait avoir une nouvelle version.
-undefined
-non défini

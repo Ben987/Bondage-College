@@ -202,6 +202,7 @@ function PrivateClickCharacter() {
 
 				// Sets the new character (1000 if she's owner, 2000 if she's owned)
 				PrivateCharacterToSave = C;
+				PrivateLoadCharacter(C);
 				if ((PrivateCharacter[C].Stage == "0") && PrivateCharacter[C].IsOwner()) PrivateCharacter[C].Stage = "1000";
 				if ((PrivateCharacter[C].Stage == "0") && PrivateCharacter[C].IsOwnedByPlayer()) PrivateCharacter[C].Stage = "2000";
 				NPCTraitDialog(PrivateCharacter[C]);

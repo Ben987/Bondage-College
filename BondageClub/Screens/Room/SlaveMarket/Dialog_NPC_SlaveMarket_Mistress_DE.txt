@@ -3,6 +3,10 @@ Remove that gag or get lost.  I run the market and I don't have time for mumblin
 Nimm den Knebel ab oder verschwinde. Ich leite diesen Markt und habe keine Zeit für Gemurmel.
 Too bad it didn't work for you, but a new girl is coming up right now if you want to check her.
 Schade, dass es für dich nichts geworden ist, aber gleich kommt das nächste Mädchen, falls du Interesse hast.
+Well done!  I think this slave has learned a lot in your hands.  Here's your salary.  (She gives you MoneyAmount$)
+Gute Arbeit! Ich glaube, diese Sklavin hat dank dir eine Menge gelernt. Hier ist dein Lohn. (Sie gibt dir MoneyAmount$)
+You've failed your training.  Thanks for your time but I cannot pay you.
+Dein Training war nicht erfolgreich. Danke für deine Mühe, aber ich kann dich dafür nicht bezahlen.
 Greetings Mistress DialogPlayerName.  It's always a pleasure to see you at the market.  Are you here to train our slaves?
 Guten Tag, Herrin DialogPlayerName. Es ist stets eine Freude, Euch auf dem Markt zu sehen. Seid Ihr hier, um Eure Sklaven zu trainieren?
 Greetings head maid DialogPlayerName.  What do you need from the slave market?
@@ -37,7 +41,7 @@ Sicherlich. Interessiert, sie zu kaufen?
 Can I help with slave training?
 Kann ich beim Sklaventraining helfen?
 ###_NPC
-You could, a well trained slave has higher market value.
+You could, a well-trained slave has higher market value.
 Durchaus, eine wohlerzogene Sklavin hat einen höheren Marktwert.
 Forget it girl, you're not Dominant enough.
 Vergiss es, Mädchen, du bist nicht dominant genug.
@@ -59,8 +63,8 @@ Besitzer können ihre eigenen Sklavinnen verkaufen, und freie Subs können sich 
 Can I sell my slaves here?
 Kann ich meine Sklavinnen hier verkaufen?
 ###_NPC
-Yes, but only if your slave is fully collared.  You can sell her permantly or rent her for a day.  Go get her first.
-Ja, aber nur, wenn deine Sklavin ihr Halsband endgültig akzeotiert hat. Du kannst sie dauerhaft verkaufen oder einen Tag lang verleihen. Sprich vorher mit ihr.
+Yes, but only if your slave is fully collared.  You can sell her permanently or rent her for a day.  Go get her first.
+Ja, aber nur, wenn deine Sklavin ihr Halsband endgültig akzeptiert hat. Du kannst sie dauerhaft verkaufen oder einen Tag lang verleihen. Sprich vorher mit ihr.
 ###_PLAYER
 Can I sell myself?
 Kann ich mich selbt verkaufen?
@@ -103,7 +107,7 @@ Gut. Was möchtest du wissen?
 She's getting sold?
 Wird sie verkauft?
 ###_NPC
-Yes, she will be auctioned today.  You will be able to bet on her if you like, as long as you have some room to accomodate her.
+Yes, she will be auctioned today.  You will be able to bet on her if you like, as long as you have some room to accommodate her.
 Ja, sie wird heute versteigert. Du kannst für sie bieten, wenn du willst, solange du ausreichend Platz hast, um sie unterzubringen.
 ###_PLAYER
 Why doesn't she talk with me?
@@ -167,7 +171,7 @@ Kommt darauf an. Manche Besitzerinnen schicken ihre Sklavinnen her, um sie erzie
 Do I get paid?
 Werde ich dafür bezahlt?
 ###_NPC
-Yes, you'll get paid for every succesful training session.  The higher we can sell them the better.
+Yes, you'll get paid for every successful training session.  The higher we can sell them the better.
 Ja, für jede erfolgreiche Trainingsrunde wirst du bezahlt. Je teurer wir sie verkaufen können, desto besser.
 ###_PLAYER
 Can I train her?
@@ -179,13 +183,13 @@ Nicht diese hier, sie wird heute verkauft. Wir haben aber viele andere Sklavinne
 I'm ready to train!
 Ich bin bereit, sie zu trainieren!
 ###_NPC
-Very well, let me get a slave girl for you.  Make sure to break her.
-Sehr wohl, ich suche eine Sklavin für dich aus. Sieh zu, dass du sie kleinkriegst.
+Very well, a maid will lead you to the training room.  The slave to train will be waiting there for you.
+Sehr wohl, ein Hausmädchen wird dich in den Trainingsraum führen. Die zu trainierende Sklavin wartet dort auf dich.
 ###_PLAYER
 Let's talk some more first.
 Reden wir vorher noch ein wenig.
-(Wait for a slave.)
-(Auf eine Sklavin warten.)
+(Go train a slave.)
+(Eine Sklavin trainieren gehen.)
 (Wait for the next slave.)
 (Auf die nächste Sklavin warten.)
 ###_NPC
@@ -200,3 +204,30 @@ Sicher, schau dir die Kurven dieser tadellosen Ware an. (Sie feixt.)
 ###_PLAYER
 Thanks!  (Check on her.)
 Danke! (Sie dir ansehen.)
+###_NPC
+My pleasure.  Let me know if there's something else you need from me.
+Kein Problem. Sag Bescheid, wenn du noch etwas von mir brauchst.
+###_PLAYER
+There's no slave that I cannot train.
+Es gibt keine Sklavin, die ich nicht trainieren kann.
+###_NPC
+That's the spirit!  Let me know if there's something else you need from me.
+Das ist die richtige Einstellung! Sag Bescheid, wenn du noch etwas von mir brauchst.
+###_PLAYER
+I'll do better next time.
+Beim nächsten Mal mache ich das besser.
+###_NPC
+I hope you're right.  Do you need anything else?
+Hoffentlich hast du damit recht. Brauchst du sonst noch etwas?
+###_PLAYER
+I'm sorry.
+Tut mir leid.
+###_NPC
+Being sorry won't help, you need to be stronger and focus on your slave needs.  Do you want anything else?
+Es nützt nichts, dass es dir leid tut, du musst stärker sein und dich auf die Bedürfnisse deiner Sklavin konzentrieren. Brauchst du sonst noch etwas?
+###_PLAYER
+That slave was a wimp.
+Diese Sklavin war ein Weichei.
+###_NPC
+Maybe, but you still need to focus on your wimp needs.  Do you want anything else?
+Mag sein, aber du musst dich dennoch auf die Bedürfnisse deines Weicheis konzentrieren. Brauchst du sonst noch etwas?

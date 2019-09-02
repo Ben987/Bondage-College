@@ -77,13 +77,14 @@
 <script src="Screens/Online/ChatCreate/ChatCreate.js"></script>
 <script src="Screens/Online/ChatRoom/ChatRoom.js"></script>
 <script src="Screens/Inventory/ItemMouth/PumpGag/PumpGag.js"></script>
-<script src="Screens/Inventory/ItemArms/LeatherCuffs/LeatherCuffs.js"></script>
 <script src="Screens/Inventory/ItemVulva/VibratingEgg/VibratingEgg.js"></script>
 <script src="Screens/Inventory/ItemVulva/VibratingLatexPanties/VibratingLatexPanties.js"></script>
 <script src="Screens/Inventory/ItemNipples/VibeNippleClamp/VibeNippleClamp.js"></script>
 <script src="Screens/Inventory/ItemButt/ButtPump/ButtPump.js"></script>
 <script src="Screens/Inventory/ItemNeck/ShockCollar/ShockCollar.js"></script>
 <script src="Screens/Inventory/ItemNeckAccessories/CollarShockUnit/CollarShockUnit.js"></script>
+<script src="Screens/Inventory/ItemArms/LeatherCuffs/LeatherCuffs.js"></script>
+<script src="Screens/Inventory/ItemArms/StraitJacket/StraitJacket.js"></script>
 <script src="Screens/Inventory/ItemArms/PaddedMittens/PaddedMittens.js"></script>
 <script src="Screens/Inventory/ItemArms/PaddedMittensLocked/PaddedMittensLocked.js"></script>
 <script src="Screens/Inventory/ItemArms/PaddedMittensHarness/PaddedMittensHarness.js"></script>
@@ -99,46 +100,45 @@
 <script src="Screens/Inventory/ItemMisc/OwnerPadlock/OwnerPadlock.js"></script>
 <script src="Screens/Inventory/ItemHead/DuctTape/DuctTape.js"></script>
 <script src="Screens/Inventory/ItemMouth/PlugGag/PlugGag.js"></script>
+<script src="Screens//Inventory/ItemHands/SpankingToys/SpankingToy.js"></script>
+<script src="Screens//Inventory/ItemTorso/HempRopeHarness/HempRopeHarness.js"></script>
 <script>
 
 /*
-	NEXT VERSION:
-	
-	OK - ItemHands (wildsj)
-	OK - New collar slot + accessories (wildsj)
-	OK - New facial expression with icons (Adokilume)
-	OK - German translation (Adokilume)
-	OK - New tape for mouth + head (Gatetrek + Akita)
-	OK - New plug gag (Gatetrek)
-	OK - New tail straps (Gatetrek)
-	OK - Mermaid tie for legs (Gatetrek)
-	OK - New ear plugs + Bat Collar (Gatetrek & Kirsty)
-	OK - New backgrounds (Kirsty)
-	OK - New deaf effect for hoods (GermanPerson)
-	OK - Magic items in shop, pony fixes (git4nick)	
-	OK - New Irish 8 Feet Cuffs (AshKitty)
-	OK - New posture collars + dildo gag (Sekkmer + Slave)
-	OK - New Bandeau Bra (Uwnodi)
-	OK - Image loading error fix / allowtype in layers / refresh on color change (Sekkmer + Def)
+
+	NEXT VERISON:
 	TEST - /ban /kick X for room owner (Sekkmer)
 	TEST - /whitelist /blacklist /friendlist X (Sekkmer)
+	OK - Fix layers (Sekkmer & Def)
+	OK - Beeps history
+	OK - Appearance tooltip text (redpandu)
+	OK - French Translation (Kurisu)
+	OK - German Translation (Ado)
+	OK - Diamond Tie & new dialog
+	OK - Ungarble the "~"
+	OK - EarPlugs that block changing
+	OK - Enter/Escape key in chat room (Sekkmer)
+	OK - Pajama bottom
+	OK - BUG: Cannot read property Asset of Null - DrawItemPreview - 578, DialogDrawItemMenu - 764, DialogDraw - 863	
+	OK - New spanking toys (Sarukami & TechTheAwesome)
+	OK - New option in shop to show everything that's not bought (Sekkmer)
+	OK - Bug: NPC in private room cannot be released when tied up by owner - recalculate on click	
+	OK - Add a new straitjacket item that can be locked or strapped to be made tighter and harder to escape, use strait-leotard to start with
 	
-	OK - New slave market - Buy slaves for your private room
-	OK - In slave market, get hired to break or punish subs, only if you're dominant
-	OK - Sell your private room slaves to the market - The longer the time with her, the higher the $$$
-	OK - Rent your slave to the market - Drop love factor but earns some $$$, the slave still occupy an empty slot in the room
-	OK - Meet random club slaves in the hall, bring them to your room, automatically submissive
-	OK - The "seek trouble" button could bring you club slaves randomly instead of kidnappers
+	TO DO - Asylum entry gate with an intro nurse - Register as a nurse or a patient (With a new reputation on both sides)
+	TO DO - Patients can commit themselves for a set time (15 minutes, 1 hour, 4 hours, 1 day).  Once committed, they cannot leave the asylum
+	TO DO - Patients with high reputation are automatically locked in a straitjacket
+	TO DO - Nurses can wander freely in the Asylum and get paid to give treatments
+	TO DO - Four rooms within the asylum :
+	TO DO - Entry - Intro nurse only (can be kidnapped by patients to escape, patient becomes a false nurse)
+	TO DO - Bedroom - The patient is alone in there with a big bed to be strapped on (random visit from nurses)
+	TO DO - Treatment Room - Nurses can give treatments and patients can receive them (shock, tickle, orgasm, etc.)
+	TO DO - Social - Cafeteria style, meet other patients in straitjackets.  One of them can be bribed to release player.
+	TO DO - Escaped patients can be identified on their profile (for multiplayer roleplay), random nurses in the club to catch them
+	TO DO - Send your sub to the asylum for a while to have their traits changed a little, for a set $$$$
 
-	OK - Online slave: rule to block wardrobe for 1 / 8 / 24 hours or permanently (can be revoked)
-	OK - Online slave: rule to prevent whispering to anyone but your owner, if your owner is in the room
-	OK - Online slave: steal keys and block buying keys from the store
-	OK - Online slave: send to isolation/timer cell for 5 / 15 / 30 / 60 minutes
-	OK - Online slave: force her slave to be a maid and go serve drinks, and then get the profits
-	OK - Friends showing in chat search
-	
-	OK - Proof reading (Management random girl - club slave, Slave Market all girls, Private room custom girl)
-	
+	TO DO - Management - Allow sub to get a new appearance for slave collar
+		
 	TO DO - Patreon Import/Update
 	
 */
@@ -146,6 +146,7 @@
 // When the code is loaded, we start the game engine
 window.onload = function() {
 	//CheatImport();
+	document.addEventListener("keydown", DocumentKeyDown)
 	ServerURL = "https://bondage-club-server.herokuapp.com/";
 	CommonIsMobile = CommonDetectMobile();
 	TranslationLoad();
@@ -167,6 +168,19 @@ function KeyDown(event) {
 	if (event.repeat) return;
 	KeyPress = event.keyCode || event.which;
 	CommonKeyDown();
+}
+
+function DocumentKeyDown(event) {
+	if (event.repeat) return;
+	if (event.key == "Escape") {
+		if (typeof window[CurrentScreen + "Exit"] === "function") {
+			window[CurrentScreen + "Exit"]();
+		} else if ((CurrentCharacter != null) && Array.isArray(DialogMenuButton) && (DialogMenuButton.indexOf("Exit") >= 0)) {
+			DialogLeaveItemMenu();
+		} else if ((CurrentCharacter != null) && (CurrentScreen == "ChatRoom")) {
+			DialogLeave();
+		}
+	}
 }
 
 // When the user clicks, we fire the click event for other screens

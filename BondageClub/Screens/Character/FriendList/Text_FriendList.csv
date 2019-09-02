@@ -1,4 +1,6 @@
 OnlineFriend,Online friends
 MemberNumber,Member number
-ChatRoomName,Current chat room
-Action,Action
+ChatRoomName,Chat room
+ActionFriends,Send a beep
+ActionBeeps,Beep history
+ActionDelete,Delete a friend
