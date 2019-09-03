@@ -6,12 +6,12 @@ var ServerBeep = {};
 // Loads the server events
 function ServerInit() {
 	ServerSocket = io(ServerURL);
-	ServerSocket.on("ServerMessage", function (data) { console.log(data) });
-	ServerSocket.on("ServerInfo", function (data) { ServerInfo(data) });
-	ServerSocket.on("CreationResponse", function (data) { CreationResponse(data) });
-	ServerSocket.on("LoginResponse", function (data) { LoginResponse(data) });
-	ServerSocket.on("disconnect", function (data) { ServerDisconnect() });
-	ServerSocket.on("ForceDisconnect", function (data) { ServerDisconnect(data) });
+	ServerSocket.on("ServerMessage", function (data) { console.log(data); });
+	ServerSocket.on("ServerInfo", function (data) { ServerInfo(data); });
+	ServerSocket.on("CreationResponse", function (data) { CreationResponse(data); });
+	ServerSocket.on("LoginResponse", function (data) { LoginResponse(data); });
+	ServerSocket.on("disconnect", function (data) { ServerDisconnect(); });
+	ServerSocket.on("ForceDisconnect", function (data) { ServerDisconnect(data); });
 	ServerSocket.on("ChatRoomSearchResult", function (data) { ChatSearchResult = data; });
 	ServerSocket.on("ChatRoomSearchResponse", function (data) { ChatSearchResponse(data); });
 	ServerSocket.on("ChatRoomCreateResponse", function (data) { ChatCreateResponse(data); });
