@@ -107,9 +107,12 @@ function SpeechStutter(C, CD) {
 
 	if (CD == null) CD = "";
 	if (C.IsEgged()) {
-		var egg = C.Appearance.find(function(item){ return item.Asset.Name == "VibratingEgg" || item.Asset.Name == "VibeNippleClamp" || item.Asset.Name == "VibratingLatexPanties"; });
+		var egg = C.Appearance
+			.filter(function (item) { return InventoryItemHasEffect(item, "Egged", true) && item.Property && item.Property.Intensity; })
+			.sort()
+			.pop();
 		var intensity = 0;
-		if (egg.Property) intensity = egg.Property.Intensity;
+		if (egg && egg.Property) intensity = egg.Property.Intensity;
 
 		// If intensity is lower than 1, no stuttering occurs and we return the regular text
 		if (intensity <= 0) return CD;

@@ -556,3 +556,9 @@ function CharacterResetFacialExpression(C) {
 		if (C.Appearance[A].Asset.Group.AllowExpression)
 			CharacterSetFacialExpression(C, C.Appearance[A].Asset.Group.Name, null);
 }
+
+
+// returns the current selected character
+function CharacterGetCurrent() {
+	return (Player.FocusGroup != null) ? Player : CurrentCharacter;
+}

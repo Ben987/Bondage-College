@@ -35,8 +35,8 @@ function ManagementRefuseReleaseChastity() { return (Player.IsChaste() && !Manag
 function ManagementOwnerPending() { return (CommonTime() < ManagementMistressReleaseTimer) }
 function ManagementOwnerAccepted() { return ((CommonTime() >= ManagementMistressReleaseTimer) && ManagementCanReleaseChastity) }
 function ManagementOwnerRefused() { return ((CommonTime() >= ManagementMistressReleaseTimer) && !ManagementCanReleaseChastity) }
-function ManagementCanUnlockBra() { return ((Player.Money >= 25) && Player.IsBreastChaste()) }
-function ManagementCanUnlockBelt() { return ((Player.Money >= 25) && Player.IsVulvaChaste()) }
+function ManagementCanUnlockBra() { return ((Player.Money >= 25) && Player.IsBreastChaste() && !InventoryOwnerOnlyItem(InventoryGet(Player, "ItemBreast"))) }
+function ManagementCanUnlockBelt() { return ((Player.Money >= 25) && Player.IsVulvaChaste() && !InventoryOwnerOnlyItem(InventoryGet(Player, "ItemPelvis"))) }
 function ManagementEndChastityRelease() { ManagementMistressReleaseTimer = 0 }
 function ManagementCanReleaseFromOwnerFirst() { return ((Player.Money >= 60) && !LogQuery("ReleasedFromOwner", "Management")) }
 function ManagementCanReleaseFromOwner() { return ((Player.Money >= 200) && LogQuery("ReleasedFromOwner", "Management")) }
