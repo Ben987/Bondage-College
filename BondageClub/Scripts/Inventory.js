@@ -89,7 +89,8 @@ function InventoryAllow(C, Prerequisite) {
 	
 	// Prevent incompatible item combinations
 	if (Prerequisite == "NotSuspended" && C.Pose.indexOf("Suspension") >= 0) { DialogSetText("RemoveSuspensionForItem"); return false; }
-	if (Prerequisite == "NotKneeling" &&  C.Pose.indexOf("Kneel") >= 0 || C.Pose.indexOf("Suspension") >= 0) { DialogSetText("TheyMustBeStandingFirst"); return false; }
+	if (Prerequisite == "NotKneeling" &&  C.Pose.indexOf("Kneel") >= 0)  { DialogSetText("TheyMustBeStandingFirst"); return false; }
+    if (Prerequisite == "NotKneeling" &&  C.Pose.indexOf("Suspension") >= 0)  { DialogSetText("TheyMustBeStandingFirst"); return false; }
 	if (Prerequisite == "NotChained") {
 		if (InventoryGet(C, "ItemNeckAccessories") != null) {
 			if (InventoryGet(C, "ItemNeckAccessories").Asset.Name == "CollarChainLong") { DialogSetText("RemoveChainForItem"); return false; }
