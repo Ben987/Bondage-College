@@ -532,6 +532,31 @@ var AssetFemale3DCG = [
 				AllowEffect: ["Chaste", "Egged", "Vibrating"],
 				AllowBlock: ["ItemVulva", "ItemButt"],
 				AllowType: ["Open", "Closed", "Vibe", "Shock"],
+				DynamicExpressionTrigger: () => {
+					if (InventoryItemPelvisLoveChastityBeltLastAction == "Open") {
+						return [{ Group: "Blush", Name: "Low", Timer: 10 }];
+					} else if (InventoryItemPelvisLoveChastityBeltLastAction == "Close") {
+						return [{ Group: "Blush", Name: "Medium", Timer: 10 }];
+					} else if (InventoryItemPelvisLoveChastityBeltLastAction == "Vibe") {
+						return [{ Group: "Blush", Name: "Medium", Timer: 10 }];
+					} else if (InventoryItemPelvisLoveChastityBeltLastAction == "Shock") {
+						return [{ Group: "Blush", Name: "Medium", Timer: 10 }];
+					} else if (InventoryItemPelvisLoveChastityBeltLastAction == "ShockTriggered") {
+						var belt = InventoryGet(CurrentCharacter(), "ItemPelvis");
+						var intensity = belt && belt.Property && belt.Property.Intensity;
+						if (intensity == 0) {
+							return [{ Group: "Blush", Name: "Low", Timer: 10 }];
+						} else if (intensity == 1) {
+							return [{ Group: "Blush", Name: "Medium", Timer: 10 }];
+						} else if (intensity == 2) {
+							return [{ Group: "Blush", Name: "High", Timer: 10 }];
+						} else {
+							return null;
+						}						
+					} else {
+						return null;
+					}
+				},
 				Layer: [
 					{ Name: "Open", AllowColorize: true, AllowTypes: ["", "Open"], HasType: false },
 					{ Name: "Closed", AllowColorize: true, AllowTypes: ["Closed", "Vibe", "Shock"], HasType: false },

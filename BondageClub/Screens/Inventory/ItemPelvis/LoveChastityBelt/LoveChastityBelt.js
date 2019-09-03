@@ -1,5 +1,7 @@
 "use strict";
 
+var InventoryItemPelvisLoveChastityBeltLastAction = "";
+
 // Loads the item extension properties
 function InventoryItemPelvisLoveChastityBeltLoad() {
   if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Type: "Open", Intensity: -1, ShowText: true, LockButt: false };
@@ -71,6 +73,7 @@ function InventoryItemPelvisLoveChastityBeltClick() {
   if ((DialogFocusItem.Property.Type == "Closed") || (DialogFocusItem.Property.Type == "Vibe") || (DialogFocusItem.Property.Type == "Shock")) {
     if ((MouseX >= 1200) && (MouseX <= 1450) && (MouseY >= 800) && (MouseY <= 865)) {
       DialogFocusItem.Property.Type = "Open";
+      InventoryItemPelvisLoveChastityBeltLastAction = "Open";
       InventoryItemPelvisLoveChastityBeltUpdate();
       InventoryExpressionTrigger(CharacterGetCurrent(), DialogFocusItem);
       ChatRoomPublishCustomAction((DialogFind(Player, "LoveChastityBeltRemoveShieldMessage")));
@@ -78,18 +81,21 @@ function InventoryItemPelvisLoveChastityBeltClick() {
   } else {
     if ((MouseX >= 1200) && (MouseX <= 1450) && (MouseY >= 800) && (MouseY <= 865)) {
       DialogFocusItem.Property.Type = "Closed";
+      InventoryItemPelvisLoveChastityBeltLastAction = "Close";
       InventoryItemPelvisLoveChastityBeltUpdate();
       InventoryExpressionTrigger(CharacterGetCurrent(), DialogFocusItem);
       ChatRoomPublishCustomAction((DialogFind(Player, "LoveChastityBeltAddShieldMessage")));
     }
     if (InventoryGet(((Player.FocusGroup != null) ? Player : CurrentCharacter), "ItemVulva") == null) {
       if ((MouseX >= 1200) && (MouseX <= 1450) && (MouseY >= 900) && (MouseY <= 965)) {
+        InventoryItemPelvisLoveChastityBeltLastAction = "Vibe";
         DialogFocusItem.Property.Type = "Vibe";
         InventoryItemPelvisLoveChastityBeltUpdate();
         InventoryExpressionTrigger(CharacterGetCurrent(), DialogFocusItem);
         ChatRoomPublishCustomAction((DialogFind(Player, "LoveChastityBeltAddVibeMessage")));
       }
       if ((MouseX >= 1550) && (MouseX <= 1800) && (MouseY >= 900) && (MouseY <= 965)) {
+        InventoryItemPelvisLoveChastityBeltLastAction = "Shock";
         DialogFocusItem.Property.Type = "Shock";
         InventoryItemPelvisLoveChastityBeltUpdate();
         InventoryExpressionTrigger(CharacterGetCurrent(), DialogFocusItem);
@@ -130,6 +136,7 @@ function InventoryItemPelvisLoveChastityBeltIntensityCanDecrease() {
 
 // triggers the shock
 function InventoryItemPelvisLoveChastityBeltTriggerShock() {
+  InventoryItemPelvisLoveChastityBeltLastAction = "ShockTriggered";
   InventoryExpressionTrigger(CharacterGetCurrent(), DialogFocusItem);
   ChatRoomPublishCustomAction((DialogFind(Player, "LoveChastityBeltShockTrigger" + DialogFocusItem.Property.Intensity)), true);
 }
