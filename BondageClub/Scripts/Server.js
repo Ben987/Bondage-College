@@ -221,7 +221,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 				var NA = {
 					Asset: Asset[I],
 					Difficulty: parseInt((Bundle[A].Difficulty == null) ? 0 : Bundle[A].Difficulty),
-					Color: (Bundle[A].Color == null) ? "Default" : Bundle[A].Color
+					Color: ((Bundle[A].Color == null) || (typeof Bundle[A].Color !== 'string')) ? "Default" : Bundle[A].Color
 				}
 
 				// Validate color string, fallback to default in case of an invalid color
@@ -332,7 +332,10 @@ function ServerAccountBeep(data) {
 		ServerBeep.ChatRoomName = data.ChatRoomName;
 		ServerBeep.Timer = CurrentTime + 10000;
 		ServerBeep.Message = DialogFind(Player, "BeepFrom") + " " + ServerBeep.MemberName + " (" + ServerBeep.MemberNumber.toString() + ")";
-		if (ServerBeep.ChatRoomName != null) ServerBeep.Message = ServerBeep.Message + " " + DialogFind(Player, "InRoom") + " \"" + ServerBeep.ChatRoomName + "\"";
+		if (ServerBeep.ChatRoomName != null)
+			ServerBeep.Message = ServerBeep.Message + " " + DialogFind(Player, "InRoom") + " \"" + ServerBeep.ChatRoomName + "\"";
+		FriendListBeepLog.push({ MemberNumber: data.MemberNumber, MemberName: data.MemberName, ChatRoomName: data.ChatRoomName, Sent: false, Time: new Date() });
+		if (CurrentScreen == "FriendList") ServerSend("AccountQuery", { Query: "OnlineFriends" });
 	}
 }
 
