@@ -171,6 +171,9 @@ function LoginResponse(C) {
 			if (LogQuery("JoinedSorority", "Maid") && !InventoryAvailable(Player, "MaidOutfit2", "Cloth")) InventoryAdd(Player, "MaidOutfit2", "Cloth");
 			if ((InventoryGet(Player, "ItemArms") != null) && (InventoryGet(Player, "ItemArms").Asset.Name == "FourLimbsShackles")) InventoryRemove(Player, "ItemArms");
 			LoginValidCollar();
+			
+			// If player is a Club Mistress make sure they have their key and take it away if they are not one
+			if (LogQuery("ClubMistress", "Management")) { InventoryAdd(Player, "ClubMistressKey", "ItemMisc"); } else { InventoryDelete(Player, "ClubMistressKey", "ItemMisc"); }
 
 			// If the player must log back in the cell
 			if (LogQuery("Locked", "Cell")) {

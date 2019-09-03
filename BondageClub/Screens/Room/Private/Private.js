@@ -650,8 +650,8 @@ function PrivateRunPunishment(LoveFactor) {
 	if (PrivatePunishment == "BoundPet") { PrivateReleaseTimer = CommonTime() + 240000; CharacterSetActivePose(Player, "Kneel"); InventoryWear(Player, "LeatherBelt", "ItemLegs"); InventoryWear(Player, "TailButtPlug", "ItemButt"); InventoryWear(Player, "Ears" + (Math.floor(Math.random() * 2) + 1).toString(), "Hat"); InventoryWear(Player, "LeatherArmbinder", "ItemArms"); InventorySetDifficulty(Player, "ItemArms", 15); }
 	if ((PrivatePunishment == "ChastityBelt") && (NPCTraitGet(CurrentCharacter, "Horny") >= 0) && (InventoryGet(Player, "ItemVulva") == null)) InventoryWear(Player, "VibratingEgg", "ItemVulva");
 	if ((PrivatePunishment == "ChastityBelt") && (NPCTraitGet(CurrentCharacter, "Horny") >= 0) && (InventoryGet(Player, "ItemButt") == null)) InventoryWear(Player, "BlackButtPlug", "ItemButt");
-	if (PrivatePunishment == "ChastityBelt") InventoryWear(Player, "MetalChastityBelt", "ItemPelvis"); LockItem(Player, "ItemPelvis", "ClubPadlock");
-	if (PrivatePunishment == "ChastityBra") InventoryWear(Player, "MetalChastityBra", "ItemBreast"); LockItem(Player, "ItemBreast", "ClubPadlock");
+	if (PrivatePunishment == "ChastityBelt") { InventoryWear(Player, "MetalChastityBelt", "ItemPelvis"); LockItem(Player, "ItemPelvis", "ClubPadlock"); }
+	if (PrivatePunishment == "ChastityBra") { InventoryWear(Player, "MetalChastityBra", "ItemBreast"); LockItem(Player, "ItemBreast", "ClubPadlock"); }
 	if (PrivatePunishment == "ForceNaked") LogAdd("BlockChange", "Rule", CurrentTime + 1800000);
 	if (PrivatePunishment == "ConfiscateKey") InventoryConfiscateKey();
 	if (PrivatePunishment == "ConfiscateCrop") { InventoryDelete(Player, "LeatherCrop", "ItemPelvis"); InventoryDelete(Player, "LeatherCrop", "ItemBreast"); }
