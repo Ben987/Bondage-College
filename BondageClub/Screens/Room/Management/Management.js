@@ -30,13 +30,13 @@ function ManagementCanPlayWithoutPermission() { return (!ManagementMistressAllow
 function ManagementOwnerFromBondageCollege() { return ((Player.Owner == "NPC-Sidney") || (Player.Owner == "NPC-Amanda") || (Player.Owner == "NPC-Jennifer")) }
 function ManagementOwnerInPrivateRoom() { return PrivateOwnerInRoom() }
 function ManagementOwnerAway() { return !((Player.Owner == "NPC-Sidney") || (Player.Owner == "NPC-Amanda") || (Player.Owner == "NPC-Jennifer")) }
-function ManagementAllowReleaseChastity() { return (Player.IsChaste() && ManagementCanReleaseChastity) }
+function ManagementAllowReleaseChastity() { return (Player.IsChaste() && ManagementCanReleaseChastity && !InventoryOwnerOnlyItem(InventoryGet(Player, "ItemBreast"))&& !InventoryOwnerOnlyItem(InventoryGet(Player, "ItemPelvis"))) }
 function ManagementRefuseReleaseChastity() { return (Player.IsChaste() && !ManagementCanReleaseChastity) }
 function ManagementOwnerPending() { return (CommonTime() < ManagementMistressReleaseTimer) }
 function ManagementOwnerAccepted() { return ((CommonTime() >= ManagementMistressReleaseTimer) && ManagementCanReleaseChastity) }
 function ManagementOwnerRefused() { return ((CommonTime() >= ManagementMistressReleaseTimer) && !ManagementCanReleaseChastity) }
-function ManagementCanUnlockBra() { return ((Player.Money >= 25) && Player.IsBreastChaste()) }
-function ManagementCanUnlockBelt() { return ((Player.Money >= 25) && Player.IsVulvaChaste()) }
+function ManagementCanUnlockBra() { return ((Player.Money >= 25) && Player.IsBreastChaste() && !InventoryOwnerOnlyItem(InventoryGet(Player, "ItemBreast"))) }
+function ManagementCanUnlockBelt() { return ((Player.Money >= 25) && Player.IsVulvaChaste() && !InventoryOwnerOnlyItem(InventoryGet(Player, "ItemPelvis"))) }
 function ManagementEndChastityRelease() { ManagementMistressReleaseTimer = 0 }
 function ManagementCanReleaseFromOwnerFirst() { return ((Player.Money >= 60) && !LogQuery("ReleasedFromOwner", "Management")) }
 function ManagementCanReleaseFromOwner() { return ((Player.Money >= 200) && LogQuery("ReleasedFromOwner", "Management")) }
