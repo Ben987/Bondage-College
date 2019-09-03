@@ -1,0 +1,18 @@
+PlayerGagged,,,"Lovely gag, but you'll need to get it off if you want to talk with me.",,
+0,,,Greetings doctor DialogPlayerName.  It's always a pleasure to see you.  Are you working today?,,"DialogReputationGreater(""Asylum"", 100)"
+0,,,Welcome to the asylum nurse DialogPlayerName.  Our patients are expecting you.  Are you here to work?,,"DialogReputationGreater(""Asylum"", 50)"
+0,,,Hello assistant DialogPlayerName.  It's time to get to work for the asylum!,,"DialogReputationGreater(""Asylum"", 1)"
+0,,,It's always a pleasure to take you in patient DialogPlayerName.  Are you checking in again today?,,"DialogReputationLess(""Asylum"", -100)"
+0,,,Welcome to the asylum patient DialogPlayerName.  Do you still our help?,,"DialogReputationLess(""Asylum"", -50)"
+0,,,Hello again DialogPlayerName.  Are you here to check in?,,"DialogReputationLess(""Asylum"", -1)"
+0,,,Welcome to the asylum.  Do you need information?,,
+0,10,I want to learn about the asylum.,"In the asylum, you can work as a nurse or commit yourself as a patient.  What would you like to know?",,
+0,20,I'd like to commit myself,"By committing yourself, you will be locked down in the asylum until your time is up.",,"DialogReputationLess(""Asylum"", 0)"
+0,30,I'd like to work as a nurse.,Perfect!  We need staff to take care of our patients.,,"DialogReputationGreater(""Asylum"", 0)"
+0,,I must go.  (Leave her.),,DialogLeave(),
+10,,TO DO,TO DO,,
+10,0,Thanks for the information.,My pleasure.  Do you need anything else?,,
+20,,TO DO,TO DO,,
+20,0,Let me think about it.,Of course.  Do you need anything else?,,
+30,,TO DO,TO DO,,
+30,0,Let me think about it.,Of course.  Do you need anything else?,,

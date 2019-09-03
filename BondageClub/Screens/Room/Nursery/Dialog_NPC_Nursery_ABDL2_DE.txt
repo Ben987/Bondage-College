@@ -55,7 +55,7 @@ Im Moment gibt es hier nicht viel, aber die Schwester bringt später Milchflasch
 Your dress looks pretty.
 Dein Kleid sieht hübsch aus.
 ###_NPC
-(She blushes and fiddles with the herm of her dress.)  If you want to try a drifferent dress, you could try asking the nurse.
+(She blushes and fiddles with the hem of her dress.)  If you want to try a different dress, you could try asking the nurse.
 (Sie wird rot und zupft am Saum ihres Kleids.) Wenn du ein anderes Kleid ausprobieren willst, kannst du die Schwester fragen.
 ###_PLAYER
 (Show her your restraints.)
@@ -69,7 +69,7 @@ Ich habe keine Zeit zum Plaudern. (Dialog beenden.)
 Milk, is that all?
 Milch, ist das alles?
 ###_NPC
-I'm not sure its just milk either.  We tend to need these diapers sortly afterwards.
+I'm not sure its just milk either.  We tend to need these diapers shortly afterwards.
 Ich glaube auch nicht, dass es einfach nur Milch ist. Meistens haben wir diese Windeln kurz danach dringend nötig.
 ###_PLAYER
 Can we play any games now?

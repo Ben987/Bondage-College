@@ -72,10 +72,7 @@ function CheatRun() {
 function CheatClick() {
 	
 	// When the user exits
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) {
-		CheatExport();
-		CommonSetScreen("Character", "Login");
-	}
+	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) CheatExit();
 	
 	// When the user activates an option
 	for(var C = 0; C < CheatList.length; C++)
@@ -88,4 +85,10 @@ function CheatClick() {
 			return;
 		}
 
+}
+
+// when the user exit this screen
+function CheatExit() {
+	CheatExport();
+	CommonSetScreen("Character", "Login");
 }

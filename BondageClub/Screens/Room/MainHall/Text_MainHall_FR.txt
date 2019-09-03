@@ -28,6 +28,12 @@ Your Profile
 Votre Profil
 Change Appearance
 Changer l'Apparence
+Timer Cell
+Cellule Minutée
+Slave Market
+Marché d'Esclaves
+Look for Trouble
+Chercher du Trouble
 Leave the Club
 Quitter le Club
 Sarah's Bedroom
@@ -42,9 +48,5 @@ Stable by git4nick
 Écurie par git4nick
 The Nursery by wildsj
 La Pouponnière par wildsj
-Slave Market by wildsj
-Marché d'Esclaves par wildsj
-Seek Trouble by fleisch11
-Chercher du Trouble par fleisch11
 Houdini's Theater by git4nick
 Théâtre d'Houdini par git4nick

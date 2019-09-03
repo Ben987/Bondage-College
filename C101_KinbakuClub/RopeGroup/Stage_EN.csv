@@ -463,7 +463,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 830,0,0,,(Moan with pleasure.),"(You can't help yourself,|savouring the burning sensation in your nipples.",830,0,0,WaitingForMistress()
 830,0,0,,(Try to remove the|nipple clamps.),"(You try rubbing the clamps against the floor,|but that only irritates your sore nipples.)",830,0,0,WaitingForMistress()
 830,0,0,,(Struggle to escape|the hogtie.),"(You struggle madly, but there is no slack except for|the crotch rope, which jerks tight when you kick.)",830,0,0,WaitingForMistress()
-830,0,0,,(Search for a knot.),"(You carefully feel around, but cannot find a single knot.|You have been very skilfully bound.)",830,0,0,WaitingForMistress()
+830,0,0,,(Search for a knot.),"(You carefully feel around, but cannot find a single knot.|You have been very skillfully bound.)",830,0,0,WaitingForMistress()
 830,0,0,,(Chew on the gag.),"(The large ball is unyielding. You sign happily,|relishing how much it has made your jaw ache.)",830,0,0,WaitingForMistress()
 831,0,0,,@Mnftrmff?|Mistress?),That's right. I've a collar to lock around|your neck now so you never forget it.,832,1,0,
 831,0,0,,@Hmhthmr.|(Heather.),Leather? How did you guess? I've got you a nice|tough leather collar to lock around your neck.,832,0,0,
@@ -527,7 +527,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 860,0,0,,(Ignore her.),"What, no last words? Never mind.|(You hear her stand up and walk away.)",861,0,0,NoActor()
 861,0,0,,(Rub blindfold off.),"(You try rubbing it against the floor, bit is buckled|straps and the gags harness hold it firmly in place.)",861,0,0,Waiting()
 861,0,0,,(Struggle to escape|the hogtie.),"(You struggle madly, but there is no slack except for|the crotch rope, which jerks tight when you kick.)",861,0,0,Waiting()
-861,0,0,,(Search for a knot.),"(You carefully feel around, but cannot find a single knot.|You have been very skilfully and tightly bound.)",861,0,0,Waiting()
+861,0,0,,(Search for a knot.),"(You carefully feel around, but cannot find a single knot.|You have been very skillfully and tightly bound.)",861,0,0,Waiting()
 861,0,0,Masochist,(Chew on the gag.),"(The large ball is unyielding. You sign happily,|relishing how much it has made your jaw ache.)",861,0,0,Waiting()
 861,0,0,!Masochist,(Chew on the gag.),"(The large ball is unyielding. You groan helplessly,|realising how much it has made your jaw ache.)",861,0,0,Waiting()
 861,0,0,NippleClamped,(Try to remove the|nipple clamps.),"(You try rubbing the clamps against the floor,|but that only irritates your sore nipples.)",861,0,0,Waiting()

@@ -4,6 +4,8 @@ College
 Collège
 Maid
 Servante
+Maid Exposed
+Servante Exposée
 Student Black
 Étudiante Noir
 Student Bow
@@ -58,6 +60,8 @@ Lace and Satin
 Dentelle/Satin
 Strapless
 Sans Bretelles
+Bandeau
+Bandeau
 Satin Bustier
 Bustier Satin
 Corset + Garters
@@ -66,7 +70,7 @@ Corset
 Corset
 Half Cup Corset
 Demi-Corset
-Underbust Corset
+Under Bust Corset
 Corset Sous-buste
 Swimsuit style 1
 Maillot style 1
@@ -132,26 +136,50 @@ Hair Band
 Bande
 Beret
 Béret
+Hair Ribbon 1
+Ruban à Cheveux 1
+Giant Bow 1
+Grand Noeud 1
+Maid Hairband
+Servante
+Nurse Cap
+Chapeau Infirmière
+Santa Hat
+Père Noël
+Captain's Hat
+Capitaine
+Bunny Succubus 
+Lapin Succubus 
+Flower
+Fleur
+Hair Accessory
+Accessoire à Chvx.
 Ears Small
 Oreilles P.
 Ears Large
 Oreilles G.
 Pony Ears
 Oreilles de Poney
-Hair Ribbon 1
-Ruban à Cheveux 1
-Maid Hairband
-Servante
-Santa Hat
-Père Noël
-Nurse's Cap
-Infirmière
 Bunny Ears
 Lapin
 Floppy Bunny Ears
 Lapin Souples
-Captain's Hat
-Capitaine
+Puppy Ears
+Puppy Ears
+Succubus Horns
+Cornes Succubus
+Horns
+Cornes
+Horns 2
+Cornes 2
+Horns 3
+Cornes 3
+Fox Ears Small
+Oreilles Renard P.
+Small Bat Wings
+Ailes Chauve-Souris P.
+Full Kitty Mask
+Masque Chaton
 Gloves
 Gants
 Short Gloves
@@ -170,6 +198,44 @@ Sunglasses 1
 Lun. Soleil 1
 Sunglasses 2
 Lun. Soleil 2
+Venetian Mask
+Masque Vénitien
+Domino Mask
+Masque Domino
+Tail Strap
+Queue
+Kitty Tail Strap
+Queue de Chaton
+Horse Tail Strap
+Queue de Cheval
+Fox Tails Strap
+Queues de Renard
+Puppy Tail Strap
+Queue de Chiot
+Succubus Tail Strap
+Queue de Succubus
+Succubus2 Tail Strap
+Queue de Succubus 2
+Raccoon Tail Strap
+Queue de Raton
+Raccoon2 Tail Strap
+Queue de Raton 2
+Wings
+Ailes
+Succubus Feather 
+Plume de Succubus 
+Succubus Wings
+Ailes de Succubus
+Angel Feather
+Plume d'Ange
+Devil Wings
+Ailes de Démon
+Fallen Angel Wings
+Ailes d'Ange Déchu
+Angel Wings
+Ailes d'Ange
+Bat Wings
+Ailes de Chauve-Souris
 Upper Body
 Haut du Corps
 Small
@@ -236,20 +302,28 @@ Hemp Rope
 Corde en Chanvre
 Leather Belt
 Ceinture de Cuir
+Irish 8 Feet Cuffs
+Menottes Irlandaises-8
 Suspension Hemp Rope
 Corde de Suspension en Chanvre
 Duct Tape
 Ruban Adhésif
+Mermaid Rope Tie
+Ligotage de Sirène Bas
 Legs
 Jambes
+Upper Mermaid Tie
+Ligotage de Sirène Haut
 Vulva
 Vulve
 Vibrating Egg
 Oeuf Vibrant
 Vibrating Wand
 Baguette Vibrante
-Vibrating Egg Remote
-Télécommande pour Oeuf
+Vibrating Egg & Panties Remote
+Télécommande pour Oeuf et Slip
+Vibrating Latex Panties
+Slip en Latex Vibrant
 Butt
 Fesses
 Black Butt Plug
@@ -258,6 +332,22 @@ Kitty Butt Plug
 Plug Anal Chat
 Horse Butt Plug
 Plug Anal Poney
+Puppy Butt Plug
+Plug Anal Chiot
+Succubus Butt Plug
+Plug Anal Succubus
+Succubus Tail
+Queue de Succubus
+Fox Tails
+Queues de Renard
+Raccoon Butt Plug
+Plug Anal Raton
+Raccoon Tail Plug
+Queue Anale Raton
+Anal Beads
+Perles Anales
+Butt Pump
+Plug Anal Gonflable
 Pelvis
 Bassin
 Metal Chastity Belt
@@ -292,6 +382,10 @@ Vibrating Nipple Clamps
 Pinces à Seins Vibrantes
 Vibrating Clamps Remote
 Télécommande pour Pinces
+Weighted Piercing
+Perçants avec Poids
+Chain Clamp
+Chaîne à Pinces
 Breast
 Seins
 Metal Chastity Bra
@@ -306,18 +400,28 @@ Leather Armbinder
 Monogant en Cuir
 Leather Cuffs
 Lanières en Cuir
-Thumbless Padded Mittens
-Mitaines Rembourrées Sans Pouce
+Mittens Chain
+Chaîne pour Mitaines
 Four Limbs Shackles
 Entraves en Fer
 Latex Strait Leotard
-Latex Strait Leotard
-Kitty Paw Mittens
-Mitaines de Chaton
+Camisole de Force en Latex
+Pet Suit
+Habit de Familier
+Holding Leash
+Laisse de Retient
+Padded Mittens
+Mitaines Rembourrées
+Paw Mittens
+Mitaines Pattes
 Neck
 Cou
 Leather Collar
 Collier en Cuir
+Bell Collar
+Collier Cloche
+Bow Collar
+Collier Boucle
 Slave Collar
 Collier d'Esclave
 Club Slave Collar
@@ -326,8 +430,32 @@ Shock Collar
 Collier de Choc
 Shock Collar Remote
 Télécommande pour Collier de Choc
+Bat Collar
+Collier Chauve-Souris
+Posture Collar
+Collier de Posture
+Steel Posture Collar
+Collier de Posture en Fer
+Collar
+Collier
+Bell
+Cloche
+Bow
+Boucle
+Shock Unit
+Unité de Choc
+Long Chain
+Longue Chaîne
+Short Chain
+Courte Chaîne
+Leash
+Laisse
+Pulled Leash
+Laisse Tirée
 Cloth Gag
 Bâillon en Tissu
+Wiffle Ball Gag
+Bâillon-boule Troué
 Harness Ball Gag
 Bâillon-boule avec Harnais
 Harness Panel Gag
@@ -345,11 +473,21 @@ Bâillon-mordant
 Pump Gag
 Bâillon Gonflable
 Kitty Mask Gag
-Baillon Chaton
+Bâillon Chaton
+Kitty Harness Gag
+Harnais Bâillon-chaton
 Rubber Carrot Gag
-Baillon-carotte
+Bâillon-carotte
+Muzzle Gag
+Bâillon Museau
 Sleeping Pill
 Pillule Endormante
+Panties Mask
+Masque Slip
+Plug Gag
+Bâillon Plug
+Dildo Gag
+Bâillon Godemiché
 Head
 Tête
 Cloth Blindfold
@@ -364,6 +502,16 @@ Studded Blindfold
 Bandeau Clouté
 Kitty Blindfold
 Bandeau Chaton
+Small Blindfold
+Petit Bandeau
+Leather Hood Mouth
+Masque en Latex Bouche Ouverte
+Ears
+Oreilles
+Light Duty Ear Plugs
+Bouchons à Épreuve Faible
+Heavy Duty Ear Plugs
+Bouchons à Épreuve Forte
 Misc Items
 Objets Divers
 Metal Padlock
@@ -372,10 +520,14 @@ Intricate Padlock
 Cadenas Complexe
 Five Minutes Padlock
 Cadenas Cinq Minutes
+Owner Padlock
+Cadenas Patronne
 Metal Padlock Key
 Clé pour Cadenas
 Intricate Padlock Key
 Clé pour Cadenas Complexe
+Owner Padlock Key
+Clé pour Cadenas Patronne
 Metal Cuffs Key
 Clé pour Menottes en Métal
 Wooden Maid Tray
@@ -384,6 +536,8 @@ Wooden Maid Tray Full
 Plateau de Service en Bois Plein
 Wooden Paddle
 Pagaie en Bois
+Devices
+Devices
 Wooden Box
 Caisse en Bois
 Water filled milk can 
