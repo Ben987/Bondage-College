@@ -109,6 +109,7 @@ function SpeechStutter(C, CD) {
 	if (C.IsEgged()) {
 		var egg = C.Appearance
 			.filter(function (item) { return InventoryItemHasEffect(item, "Egged", true) && item.Property && item.Property.Intensity; })
+			.map(function (item) { return item.Property.Intensity; })
 			.sort()
 			.pop();
 		var intensity = 0;
