@@ -61,6 +61,7 @@ function ManagementCannotBeClubSlaveDominant() { return (!InventoryCharacterHasO
 function ManagementCannotBeClubSlaveOwnerLock() { return InventoryCharacterHasOwnerOnlyRestraint(Player) }
 function ManagementCanKiss() { return (Player.CanTalk() && CurrentCharacter.CanTalk()) }
 function ManagementCanMasturbate() { return (Player.CanInteract() && !CurrentCharacter.IsVulvaChaste()) }
+function LockItem(C, AssetGroup, AssetLock, MemberNumber) {InventoryLock(C, InventoryGet(C, AssetGroup), { Asset: AssetGet(C.AssetFamily, "ItemMisc", AssetLock)}, MemberNumber);}
 
 // Returns TRUE if there's no other Mistress in the player private room
 function ManagementNoMistressInPrivateRoom() {
@@ -154,6 +155,8 @@ function ManagementPlayerRandomRestrain() {
 	CharacterFullRandomRestrain(Player, "Lot");
 	InventoryWear(Player, "MetalChastityBelt", "ItemPelvis");
 	InventoryWear(Player, "MetalChastityBra", "ItemBreast");
+	LockItem(Player, "ItemBreast", "ClubPadlock");
+	LockItem(Player, "ItemPlevis", "ClubPadlock");
 	ManagementCanReleaseChastity = false;
 }
 
