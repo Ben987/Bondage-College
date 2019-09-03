@@ -224,6 +224,11 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 					Color: (Bundle[A].Color == null) ? "Default" : Bundle[A].Color
 				}
 
+				// Validate color string, fallback to default in case of an invalid color
+				if ((NA.Color != "Default") && (/^#(?:[0-9a-f]{3}){1,2}$/i.test(NA.Color) == false) && (NA.Asset.Group.ColorSchema.indexOf(NA.Color) < 0)) {
+					NA.Color = NA.Asset.Group.ColorSchema[0];
+				}
+
 				// Sets the item properties and make sure a non-owner cannot add an owner lock
 				if (Bundle[A].Property != null) {
 					NA.Property = Bundle[A].Property;
