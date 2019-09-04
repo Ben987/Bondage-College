@@ -154,10 +154,10 @@ function DialogLeaveItemMenu() {
 }
 
 // Adds the item in the dialog list
-function DialogInventoryAdd(C, NewInv, NewInvWorn) {
+function DialogInventoryAdd(C, NewInv, NewInvWorn, Weared) {
 
 	// Make sure we do not add owneronly items in case of not owned characters
-	if (NewInv.Asset.OwnerOnly && !C.IsOwnedByPlayer()) return;
+	if (NewInv.Asset.OwnerOnly && !C.IsOwnedByPlayer() && Weared != true) return;
 
 	// Make sure we do not duplicate the item
 	for(var I = 0; I < DialogInventory.length; I++)
@@ -220,7 +220,7 @@ function DialogInventoryBuild(C) {
 		var Item = null;
 		for(var A = 0; A < C.Appearance.length; A++)
 			if ((C.Appearance[A].Asset.Group.Name == C.FocusGroup.Name) && (C.Appearance[A].Asset.DynamicAllowInventoryAdd())) {
-				DialogInventoryAdd(C, C.Appearance[A], true);
+				DialogInventoryAdd(C, C.Appearance[A], true, true);
 				break;
 			}
 
