@@ -154,10 +154,10 @@ function DialogLeaveItemMenu() {
 }
 
 // Adds the item in the dialog list
-function DialogInventoryAdd(C, NewInv, NewInvWorn, Weared) {
+function DialogInventoryAdd(C, NewInv, NewInvWorn) {
 
 	// Make sure we do not add owneronly items in case of not owned characters
-	if (NewInv.Asset.OwnerOnly && !C.IsOwnedByPlayer() && Weared != true) return;
+	if (NewInv.Asset.OwnerOnly && !C.IsOwnedByPlayer() && NewInvWorn != true) return;
 
 	// Make sure we do not duplicate the item
 	for(var I = 0; I < DialogInventory.length; I++)
