@@ -847,6 +847,13 @@ function DialogFind(C, KeyWord1, KeyWord2, ReturnPrevious) {
 	return ((ReturnPrevious == null) || ReturnPrevious) ? C.CurrentDialog : "";
 }
 
+// Searches in the dialog for a specific stage keyword and returns that dialog option if we find it and replace the names
+function DialogFindAutoReplace(C, KeyWord1, KeyWord2, ReturnPrevious) {
+	return DialogFind(C, KeyWord1, KeyWord2, ReturnPrevious)
+		.replace("SourceCharacter", Player.Name)
+		.replace("DestinationCharacter", CharacterGetCurrent().Name);
+}
+
 // Draw all the possible interactions 
 function DialogDraw() {
 
