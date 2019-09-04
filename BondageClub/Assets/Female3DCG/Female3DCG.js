@@ -528,7 +528,7 @@ var AssetFemale3DCG = [
 			},
 			{
 				Name: "LoveChastityBelt", Value: 500, Prerequisite: "AccessVulva", Difficulty: 100, Time: 20, RemoveTime: 10, Extended: true,
-				Effect: ["Locked"], OwnerOnly: true,
+				Effect: ["Lock"], OwnerOnly: true,
 				AllowEffect: ["Chaste", "Egged", "Vibrating"],
 				AllowBlock: ["ItemVulva", "ItemButt"],
 				AllowType: ["Open", "Closed", "Vibe", "Shock"],
