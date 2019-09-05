@@ -77,6 +77,7 @@ function DialogPrerequisite(D) {
 
 // Searches for an item in the player inventory to unlock a specific item
 function DialogCanUnlock(C, Item) {
+	if ((Item != null) && (Item.Asset != null) && (Item.Asset.OwnerOnly == true)) return C.IsOwnedByPlayer();
 	if ((Item != null) && (Item.Property != null) && (Item.Property.SelfUnlock != null) && (Item.Property.SelfUnlock == false) && !Player.CanInteract()) return false;
 	var UnlockName = "Unlock-" + Item.Asset.Name;
 	if ((Item != null) && (Item.Property != null) && (Item.Property.LockedBy != null)) UnlockName = "Unlock-" + Item.Property.LockedBy;
@@ -153,7 +154,10 @@ function DialogLeaveItemMenu() {
 }
 
 // Adds the item in the dialog list
-function DialogInventoryAdd(NewInv, NewInvWorn) {
+function DialogInventoryAdd(C, NewInv, NewInvWorn) {
+
+	// Make sure we do not add owneronly items in case of not owned characters
+	if (NewInv.Asset.OwnerOnly && !C.IsOwnedByPlayer() && NewInvWorn != true) return;
 
 	// Make sure we do not duplicate the item
 	for(var I = 0; I < DialogInventory.length; I++)
@@ -216,20 +220,20 @@ function DialogInventoryBuild(C) {
 		var Item = null;
 		for(var A = 0; A < C.Appearance.length; A++)
 			if ((C.Appearance[A].Asset.Group.Name == C.FocusGroup.Name) && (C.Appearance[A].Asset.DynamicAllowInventoryAdd())) {
-				DialogInventoryAdd(C.Appearance[A], true);
+				DialogInventoryAdd(C, C.Appearance[A], true, true);
 				break;
 			}
 
 		// Second, we add everything from the victim inventory
 		for(var A = 0; A < C.Inventory.length; A++)
 			if ((C.Inventory[A].Asset != null) && (C.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && (C.Inventory[A].Asset.DynamicAllowInventoryAdd()))
-				DialogInventoryAdd(C.Inventory[A], false);
+				DialogInventoryAdd(C, C.Inventory[A], false);
 			
 		// Third, we add everything from the player inventory if the player isn't the victim
 		if (C.ID != 0)
 			for(var A = 0; A < Player.Inventory.length; A++)
 				if ((Player.Inventory[A].Asset != null) && (Player.Inventory[A].Asset.Group.Name == C.FocusGroup.Name && Player.Inventory[A].Asset.DynamicAllowInventoryAdd()))
-					DialogInventoryAdd(Player.Inventory[A], false);
+					DialogInventoryAdd(C, Player.Inventory[A], false);
 		DialogMenuButtonBuild(C);
 
 	}
@@ -403,8 +407,7 @@ function DialogMenuButtonClick() {
 						DialogItemToLock = Item;
 						for (var A = 0; A < Player.Inventory.length; A++)
 							if ((Player.Inventory[A].Asset != null) && Player.Inventory[A].Asset.IsLock)
-								if ((Player.Inventory[A].Asset.OwnerOnly == false) || C.IsOwnedByPlayer())
-									DialogInventoryAdd(Player.Inventory[A], false);
+								DialogInventoryAdd(C, Player.Inventory[A], false);
 					}
 				} else {
 					DialogItemToLock = null;
@@ -842,6 +845,13 @@ function DialogFind(C, KeyWord1, KeyWord2, ReturnPrevious) {
 			if (C.Dialog[D].Stage == KeyWord2)
 				return C.Dialog[D].Result.trim();
 	return ((ReturnPrevious == null) || ReturnPrevious) ? C.CurrentDialog : "";
+}
+
+// Searches in the dialog for a specific stage keyword and returns that dialog option if we find it and replace the names
+function DialogFindAutoReplace(C, KeyWord1, KeyWord2, ReturnPrevious) {
+	return DialogFind(C, KeyWord1, KeyWord2, ReturnPrevious)
+		.replace("SourceCharacter", Player.Name)
+		.replace("DestinationCharacter", CharacterGetCurrent().Name);
 }
 
 // Draw all the possible interactions 

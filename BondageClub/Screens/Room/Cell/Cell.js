@@ -6,7 +6,7 @@ var CellOpenTimer = 0;
 // Loads the cell screen
 function CellLoad() {
 	CharacterSetActivePose(Player, null);
-	CellOpenTimer = LogValue("Locked", "Cell")
+	CellOpenTimer = LogValue("Locked", "Cell");
 	if (CellOpenTimer == null) CellOpenTimer = 0;
 	if (CellOpenTimer > CurrentTime + 3600000) {
 		LogDelete("Locked", "Cell");

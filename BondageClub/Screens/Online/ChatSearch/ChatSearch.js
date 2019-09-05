@@ -2,6 +2,7 @@
 var ChatSearchBackground = "IntroductionDark";
 var ChatSearchResult = [];
 var ChatSearchMessage = "";
+var ChatSearchLeaveRoom = "MainHall";
 
 // When the chat screens loads, we loads up to 24 public rooms
 function ChatSearchLoad() {
@@ -89,7 +90,7 @@ function ChatSearchKeyDown() {
 // when the user exit this screen
 function ChatSearchExit() {
 	ElementRemove("InputSearch");
-	CommonSetScreen("Room", "MainHall");
+	CommonSetScreen("Room", ChatSearchLeaveRoom);
 }
 
 // When the player wants to join a chat room
@@ -131,5 +132,5 @@ function ChatSearchResponse(data) {
 // Sends a search query to the server
 function ChatSearchQuery() {
 	ChatSearchResult = [];
-	ServerSend("ChatRoomSearch", { Query: ElementValue("InputSearch").toUpperCase().trim() });
+	ServerSend("ChatRoomSearch", { Query: ElementValue("InputSearch").toUpperCase().trim(), Space: ChatRoomSpace });
 }

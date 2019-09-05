@@ -4,17 +4,27 @@ var ChatCreateResult = [];
 var ChatCreateMessage = "";
 var ChatCreatePrivate = false;
 var ChatCreateBackgroundIndex = 0;
-var ChatCreateBackgroundSelect = "Introduction";
-var ChatCreateBackgroundList = ["Introduction", "KidnapLeague", "MaidQuarters", "MainHall", "Management", "Private", "Shibari", "Bedroom", "HorseStable", "Nursery", "PrisonHall", "PaddedCell", "BDSMRoomBlue", "BDSMRoomPurple", "BDSMRoomRed", "Gardens", "IndoorPool", "OutdoorPool", "MaidCafe", "PublicBath", "ParkDay", "ParkNight", "ChillRoom", "Boudoir", "BondageBedChamber"];
+var ChatCreateBackgroundSelect = "";
+var ChatCreateBackgroundList = null;
 
-// When the chat screens loads, we loads up to 24 public rooms
+// When the chat creation screens loads
 function ChatCreateLoad() {
+
+	// If the current background isn't valid, we pick the first one
+	if (ChatCreateBackgroundList.indexOf(ChatCreateBackgroundSelect) < 0) {
+		ChatCreateBackgroundIndex = 0;
+		ChatCreateBackgroundSelect = ChatCreateBackgroundList[0];
+		ChatCreateBackground = ChatCreateBackgroundSelect + "Dark";
+	}
+
+	// Prepares the controls to create a room
 	ElementRemove("InputSearch");
 	ElementCreateInput("InputName", "text", "", "20");
 	ElementCreateInput("InputDescription", "text", "", "100");
 	ElementCreateInput("InputSize", "text", "10", "2");
 	ChatCreateMessage = "";
 	ChatCreatePrivate = false;
+
 }
 
 // When the chat creation screen runs
@@ -86,7 +96,7 @@ function ChatCreateResponse(data) {
 		ChatCreateMessage = "Response" + data;
 }
 
-// creates chat room
+// Creates the chat room
 function ChatCreateRoom() {
 	ChatRoomPlayerCanJoin = true;
 	var NewRoom = {
@@ -94,6 +104,7 @@ function ChatCreateRoom() {
 		Description: ElementValue("InputDescription").trim(),
 		Background: ChatCreateBackgroundSelect,
 		Private: ChatCreatePrivate,
+		Space: ChatRoomSpace,
 		Limit: ElementValue("InputSize").trim()
 	};
 	ServerSend("ChatRoomCreate", NewRoom);

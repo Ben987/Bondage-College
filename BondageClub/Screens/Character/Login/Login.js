@@ -144,7 +144,7 @@ function LoginResponse(C) {
 			Player.WhiteList = C.WhiteList;
 			Player.BlackList = C.BlackList;
 			Player.FriendList = C.FriendList;
-	
+
 			// Loads the player character model and data
 			Player.Appearance = ServerAppearanceLoadFromBundle(Player, C.AssetFamily, C.Appearance);
 			InventoryLoad(Player, C.Inventory);
@@ -180,16 +180,24 @@ function LoginResponse(C) {
 				CommonSetScreen("Room", "Cell");
 			} else {
 
-				// If the player must start in her room, in her cage
-				if (LogQuery("SleepCage", "Rule") && (Player.Owner != "") && PrivateOwnerInRoom()) {
-					InventoryRemove(Player, "ItemFeet");
-					InventoryRemove(Player, "ItemLegs");
-					Player.Cage = true;
-					CharacterSetActivePose(Player, "Kneel");
-					CommonSetScreen("Room", "Private");
+				// If the player must log back in the asylum
+				if (LogQuery("Committed", "Asylum")) {
+					CharacterRelease(Player);
+					CommonSetScreen("Room", "AsylumBedroom");
 				} else {
-					CommonSetScreen("Room", "MainHall");
-					MainHallMaidIntroduction();
+
+					// If the player must start in her room, in her cage
+					if (LogQuery("SleepCage", "Rule") && (Player.Owner != "") && PrivateOwnerInRoom()) {
+						InventoryRemove(Player, "ItemFeet");
+						InventoryRemove(Player, "ItemLegs");
+						Player.Cage = true;
+						CharacterSetActivePose(Player, "Kneel");
+						CommonSetScreen("Room", "Private");
+					} else {
+						CommonSetScreen("Room", "MainHall");
+						MainHallMaidIntroduction();
+					}
+
 				}
 
 			}

@@ -38,19 +38,20 @@ function DrawRGBToHex(rgb){
 
 // Loads the drawing objects
 function DrawLoad() {
-	
+
 	// Creates the objects used in the game
 	MainCanvas = document.getElementById("MainCanvas").getContext("2d");
 	TempCanvas = document.createElement("canvas").getContext("2d");
 	ColorCanvas = document.createElement("canvas");
 	document.getElementById("MainCanvas").addEventListener("keypress", KeyDown);
-	document.getElementById("MainCanvas").tabIndex = 1000;	
+	document.getElementById("MainCanvas").tabIndex = 1000;
+	document.addEventListener("keydown", DocumentKeyDown);
 
 	// Font is fixed for now, color can be set
 	MainCanvas.font = "36px Arial";
 	MainCanvas.textAlign = "center";
 	MainCanvas.textBaseline = "middle";
-	
+
 }
 
 // Returns the image file or build it from the source

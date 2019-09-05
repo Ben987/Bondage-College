@@ -236,6 +236,8 @@ ItemPelvis,LeatherChastityBelt,Leather Chastity Belt
 ItemPelvis,LeatherCrop,Leather Crop
 ItemPelvis,LeatherWhip,Leather Whip
 ItemPelvis,StraponPanties,Strap-On Panties
+ItemPelvis,SpankingToys,Spanking Toys
+ItemPelvis,LoveChastityBelt,Love Chastity Belt
 ItemTorso,,Torso
 ItemTorso,NylonRopeHarness,Nylon Rope Harness
 ItemTorso,HempRopeHarness,Hemp Rope Harness
@@ -344,7 +346,7 @@ ItemMisc,MetalCuffsKey,Metal Cuffs Key
 ItemMisc,WoodenMaidTray,Wooden Maid Tray
 ItemMisc,WoodenMaidTrayFull,Wooden Maid Tray Full
 ItemMisc,WoodenPaddle,Wooden Paddle
-ItemDevices,,Devices
+ItemDevices,,Body
 ItemDevices,WoodenBox,Wooden Box
 ItemDevices,MilkCan,Water filled milk can 
 ItemDevices,WaterCell,Water torture Cell
