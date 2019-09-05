@@ -49,6 +49,7 @@ function AssetAdd(NewAsset) {
 		Visible: (NewAsset.Visible == null) ? true : NewAsset.Visible,
 		Wear: (NewAsset.Wear == null) ? true : NewAsset.Wear,
 		BuyGroup: NewAsset.BuyGroup,
+		PrerequisiteBuyGroups: NewAsset.PrerequisiteBuyGroups,
 		Effect: NewAsset.Effect,
 		Bonus: NewAsset.Bonus,
 		Block: NewAsset.Block,
@@ -78,7 +79,14 @@ function AssetAdd(NewAsset) {
 		Layer: AssetBuildLayer(NewAsset.Layer),
 		AllowEffect: NewAsset.AllowEffect,
 		AllowBlock: NewAsset.AllowBlock,
-		AllowType: NewAsset.AllowType
+		AllowType: NewAsset.AllowType,
+		AlphaRange: NewAsset.AllowType || { Min: 1, Max: 1 },
+		IgnoreParentGroup: (NewAsset.IgnoreParentGroup == null)? false: NewAsset.IgnoreParentGroup,
+		DynamicDescription: (typeof NewAsset.DynamicDescription === 'function')? NewAsset.DynamicDescription : function() {return this.Description},
+		DynamicPreviewIcon: (typeof NewAsset.DynamicDescription === 'function')? NewAsset.DynamicPreviewIcon : function() {return ""},
+		DynamicAllowInventoryAdd: (typeof NewAsset.DynamicAllowInventoryAdd === 'function')? NewAsset.DynamicAllowInventoryAdd : function() {return true},
+		DynamicExpressionTrigger: (typeof NewAsset.DynamicExpressionTrigger === 'function')? NewAsset.DynamicExpressionTrigger : function() {return this.ExpressionTrigger}
+
 	}
 	// Unwearable assets are not visible but can be overwritten
 	if (!A.Wear && NewAsset.Visible != true) A.Visible = false;
@@ -99,7 +107,7 @@ function AssetBuildLayer(NewLayers) {
 			HasType: (Layer.HasType == null) ? true : Layer.HasType,
 			NewParentGroupName: Layer.NewParentGroupName,
 			NewAllowPose: (Layer.NewAllowPose == null || !Array.isArray(Layer.NewAllowPose)) ? null : Layer.NewAllowPose,
-			Alpha: Layer.Alpha
+			OverrideAllowPose: (Layer.OverrideAllowPose == null || !Array.isArray(Layer.OverrideAllowPose)) ? null : Layer.OverrideAllowPose
 		});
 	} 
 	return Layers;

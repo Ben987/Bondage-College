@@ -39,20 +39,21 @@ function DrawRGBToHex(rgb){
 
 // Loads the drawing objects
 function DrawLoad() {
-	
+
 	// Creates the objects used in the game
 	MainCanvas = document.getElementById("MainCanvas").getContext("2d");
 	TempCanvas = document.createElement("canvas").getContext("2d");
 	ColorCanvas = document.createElement("canvas").getContext("2d");
 	CharacterCanvas = document.createElement("canvas").getContext("2d");
 	document.getElementById("MainCanvas").addEventListener("keypress", KeyDown);
-	document.getElementById("MainCanvas").tabIndex = 1000;	
+	document.getElementById("MainCanvas").tabIndex = 1000;
+	document.addEventListener("keydown", DocumentKeyDown);
 
 	// Font is fixed for now, color can be set
 	MainCanvas.font = "36px Arial";
 	MainCanvas.textAlign = "center";
 	MainCanvas.textBaseline = "middle";
-	
+
 }
 
 // Returns the image file or build it from the source
@@ -604,6 +605,6 @@ function DrawProcess() {
 // Draw the item preview box
 function DrawItemPreview(X, Y, Item) {
 	DrawRect(X, Y, 225, 275, "white");
-	DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.Group.Name + "/Preview/" + Item.Asset.Name + ".png", X + 2, Y + 2, 221, 221);
+	DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.Group.Name + "/Preview/" + Item.Asset.Name + Item.Asset.DynamicPreviewIcon() + ".png", X + 2, Y + 2, 221, 221);
 	DrawTextFit(Item.Asset.Description, X + 110, Y + 250, 221, "black");
 }

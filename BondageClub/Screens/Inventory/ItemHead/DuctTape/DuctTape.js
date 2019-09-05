@@ -2,7 +2,7 @@
 
 // Loads the item extension properties
 function InventoryItemHeadDuctTapeLoad() {
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Type: null, Effect: ["BlindNormal"] };
+	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Type: null, Effect: ["BlindNormal", "Prone"] };
 }
 
 // Draw the item extension screen
@@ -45,17 +45,17 @@ function InventoryItemHeadDuctTapeSetType(NewType) {
 	DialogFocusItem.Property.Type = NewType;
 	if (NewType == null) {
         DialogFocusItem.Property.Hide = [];
-	    DialogFocusItem.Property.Effect = ["BlindNormal"];
+	    DialogFocusItem.Property.Effect = ["BlindNormal", "Prone"];
 		DialogFocusItem.Property.Block = [];
 	}
 	else if (NewType == "Wrap") {
         DialogFocusItem.Property.Hide = [];
-	    DialogFocusItem.Property.Effect = ["BlindNormal"];
+	    DialogFocusItem.Property.Effect = ["BlindNormal", "Prone"];
 		DialogFocusItem.Property.Block = [];
 	}
 	else if (NewType == "Mummy") {
         DialogFocusItem.Property.Hide = ["HairFront"];
-	    DialogFocusItem.Property.Effect = ["GagNormal", "BlindNormal"];
+	    DialogFocusItem.Property.Effect = ["GagNormal", "BlindNormal", "Prone"];
 		DialogFocusItem.Property.Block = ["ItemMouth", "ItemEars"];
 	}
 

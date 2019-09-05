@@ -311,11 +311,11 @@ function MagicRestrainCopyTransfer(FromC, ToC) {
 		}
 	// Adds all appearance assets from the first character to the second
 	for(var A = 0; A < FromC.Appearance.length; A++)
-		if ((FromC.Appearance[A].Asset != null) && ((FromC.Appearance[A].Asset.Group.Name == "ItemMouth") || (FromC.Appearance[A].Asset.Group.Name == "ItemArms") || (FromC.Appearance[A].Asset.Group.Name == "ItemFeet") || (FromC.Appearance[A].Asset.Group.Name == "ItemLegs") || (FromC.Appearance[A].Asset.Group.Name == "ItemHead") || (FromC.Appearance[A].Asset.Group.Name == "ItemMisc") || (ToC.Appearance[A].Asset.Group.Name == "ItemDevices")))
+		if ((FromC.Appearance[A].Asset != null) && ((FromC.Appearance[A].Asset.Group.Name == "ItemMouth") || (FromC.Appearance[A].Asset.Group.Name == "ItemArms") || (FromC.Appearance[A].Asset.Group.Name == "ItemFeet") || (FromC.Appearance[A].Asset.Group.Name == "ItemLegs") || (FromC.Appearance[A].Asset.Group.Name == "ItemHead") || (FromC.Appearance[A].Asset.Group.Name == "ItemMisc") || (FromC.Appearance[A].Asset.Group.Name == "ItemDevices")))
 			ToC.Appearance.push(FromC.Appearance[A]);
 	// Removes any previous appearance asset From first
 	for(var A = 0; A < FromC.Appearance.length; A++)
-		if ((FromC.Appearance[A].Asset != null) && ((FromC.Appearance[A].Asset.Group.Name == "ItemMouth") || (FromC.Appearance[A].Asset.Group.Name == "ItemArms") || (FromC.Appearance[A].Asset.Group.Name == "ItemFeet") || (FromC.Appearance[A].Asset.Group.Name == "ItemLegs") || (FromC.Appearance[A].Asset.Group.Name == "ItemHead") || (FromC.Appearance[A].Asset.Group.Name == "ItemMisc") || (ToC.Appearance[A].Asset.Group.Name == "ItemDevices"))) {
+		if ((FromC.Appearance[A].Asset != null) && ((FromC.Appearance[A].Asset.Group.Name == "ItemMouth") || (FromC.Appearance[A].Asset.Group.Name == "ItemArms") || (FromC.Appearance[A].Asset.Group.Name == "ItemFeet") || (FromC.Appearance[A].Asset.Group.Name == "ItemLegs") || (FromC.Appearance[A].Asset.Group.Name == "ItemHead") || (FromC.Appearance[A].Asset.Group.Name == "ItemMisc") || (FromC.Appearance[A].Asset.Group.Name == "ItemDevices"))) {
 			FromC.Appearance.splice(A, 1);
 			A--;
 		}

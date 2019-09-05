@@ -245,7 +245,7 @@ function CharacterAppearanceBuildCanvas(C) {
 			// If there's a father group, we must add it to find the correct image
 			var CA = C.Appearance[A];
 			var G = "";
-			if (CA.Asset.Group.ParentGroupName != "")
+			if (CA.Asset.Group.ParentGroupName != "" && !CA.Asset.IgnoreParentGroup)
 				for (var FG = 0; FG < C.Appearance.length; FG++)
 					if (CA.Asset.Group.ParentGroupName == C.Appearance[FG].Asset.Group.Name)
 						G = "_" + C.Appearance[FG].Asset.Name;
@@ -299,11 +299,11 @@ function CharacterAppearanceBuildCanvas(C) {
 								if (CA.Asset.Layer[L].NewParentGroupName == C.Appearance[FG].Asset.Group.Name)
 									G = "_" + C.Appearance[FG].Asset.Name;
 					}
-					if (CA.Asset.Layer[L].NewAllowPose != null) {
+					if (CA.Asset.Layer[L].OverrideAllowPose != null) {
 						Pose = "";
-						for (var AP = 0; AP < CA.Asset.Layer[L].NewAllowPose.length; AP++)
+						for (var AP = 0; AP < CA.Asset.Layer[L].OverrideAllowPose.length; AP++)
 							for (var P = 0; P < C.Pose.length; P++)
-								if (C.Pose[P] == CA.Asset.Layer[L].NewAllowPose[AP])
+								if (C.Pose[P] == CA.Asset.Layer[L].OverrideAllowPose[AP])
 									Pose = C.Pose[P] + "/";
 					}
 				}
@@ -321,11 +321,10 @@ function CharacterAppearanceBuildCanvas(C) {
 
 			// If we must draw the lock (never colorized)
 			if ((CA.Property != null) && (CA.Property.LockedBy != null) && (CA.Property.LockedBy != "")) {
-				DrawImageCanvas("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + Variation + "_Lock.png", C.Canvas.getContext("2d"), CA.Asset.Group.DrawingLeft, CA.Asset.Group.DrawingTop);
-				if (!CA.Asset.Group.DrawingBlink) DrawImageCanvas("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + Variation + "_Lock.png", C.CanvasBlink.getContext("2d"), CA.Asset.Group.DrawingLeft, CA.Asset.Group.DrawingTop);
+				DrawImageCanvas("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + Type + "_Lock.png", C.Canvas.getContext("2d"), CA.Asset.Group.DrawingLeft, CA.Asset.Group.DrawingTop);
+				if (!CA.Asset.Group.DrawingBlink) DrawImageCanvas("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + Type + "_Lock.png", C.CanvasBlink.getContext("2d"), CA.Asset.Group.DrawingLeft, CA.Asset.Group.DrawingTop);
 			}
 		}
-	}
 }
 
 // Returns a value from the character current appearance
