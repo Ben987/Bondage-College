@@ -7,6 +7,7 @@ var CharacterAppearanceBackup = null;
 var CharacterAppearanceAssets = [];
 var CharacterAppearanceColorPicker = "";
 var CharacterAppearanceColorPickerBackup = "";
+var CharacterAppearanceColorPickerItem = null;
 var CharacterAppearanceSelection = null;
 var CharacterAppearanceReturnRoom = "MainHall";
 var CharacterAppearanceReturnModule = "Room";
@@ -285,11 +286,11 @@ function CharacterAppearanceBuildCanvas(C) {
 			for (var L = 0; L < MaxLayer; L++) {
 				var Layer = "";
 				var LayerType = Type;
-        var Alpha = null;
+				var Alpha = CA.Alpha;
 				if (CA.Asset.Layer != null) {
 					Layer = "_" + CA.Asset.Layer[L].Name;
-          Alpha = CA.Asset.Layer[L].Alpha;
 					if ((CA.Asset.Layer[L].AllowTypes != null) && (CA.Asset.Layer[L].AllowTypes.indexOf(Type) < 0)) continue;
+					if (!CA.Asset.Layer[L].AllowAlpha) Alpha = null;
 					if (!CA.Asset.Layer[L].HasExpression) Expression = "";
 					if (!CA.Asset.Layer[L].HasType) LayerType = "";
 					if ((CA.Asset.Layer[L].NewParentGroupName != null) && (CA.Asset.Layer[L].NewParentGroupName != CA.Asset.Group.ParentGroupName)) {
@@ -561,7 +562,8 @@ function AppearanceClick() {
 
 						// Keeps the previous color in backup and creates a text box to enter the color
 						CharacterAppearanceColorPicker = AssetGroup[A].Name;
-						CharacterAppearanceColorPickerBackup = CharacterAppearanceGetCurrentValue(C, CharacterAppearanceColorPicker, "Color");
+						CharacterAppearanceColorPickerItem = CharacterAppearanceGetCurrentValue(C, CharacterAppearanceColorPicker, "Full");
+						CharacterAppearanceColorPickerBackup = CharacterAppearanceColorPickerItem.Color || "None";
 						ElementCreateInput("InputColor", "text", ((CharacterAppearanceColorPickerBackup == "Default") || (CharacterAppearanceColorPickerBackup == "None")) ? "#" : CharacterAppearanceColorPickerBackup, "7");
 
 					}
@@ -608,20 +610,33 @@ function AppearanceClick() {
 	} else {
 
 		// Can set a color manually from the text field
-		if ((MouseX >= 1610) && (MouseX < 1675) && (MouseY >= 37) && (MouseY < 102))
-			if (CommonIsColor(ElementValue("InputColor")))
-				CharacterAppearanceSetColorForGroup(C, ElementValue("InputColor").toLowerCase(), CharacterAppearanceColorPicker);
+		if ((MouseX >= 1610) && (MouseX < 1675) && (MouseY >= 37) && (MouseY < 102)) {
+			var value = ElementValue("InputColor");
+			if (CommonIsColor(value)) {
+				CharacterAppearanceColorPickerItem.Color = value.toLowerCase();
+				CharacterLoadCanvas(C);			
+			} else if (CharacterAppearanceColorPickerItem.Asset.AlphaRange != null) {
+				var Alpha = parseFloat(value);
+				if ((Alpha >= CharacterAppearanceColorPickerItem.Asset.AlphaRange.Min) && (Alpha <= CharacterAppearanceColorPickerItem.Asset.AlphaRange.Max)) {
+					CharacterAppearanceColorPickerItem.Alpha = Alpha;
+					if (Alpha == 1) delete CharacterAppearanceColorPickerItem.Alpha;
+					CharacterLoadCanvas(C);	
+				}
+			}
+		}
 
 		// In color picker mode, we can pick a color from the color image
 		if ((MouseX >= 1300) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 975)) {
 			var Color = DrawRGBToHex(MainCanvas.getImageData(MouseX, MouseY, 1, 1).data);
-			CharacterAppearanceSetColorForGroup(C, Color, CharacterAppearanceColorPicker);
+			CharacterAppearanceColorPickerItem.Color = Color;
+			CharacterLoadCanvas(C);	
 			ElementValue("InputColor", Color);
 		}
 
 		// Accepts the new color
 		if ((MouseX >= 1768) && (MouseX < 1858) && (MouseY >= 25) && (MouseY < 115)) {
-			CharacterAppearanceSetColorForGroup(C, CharacterAppearanceColorPickerBackup, CharacterAppearanceColorPicker);
+			CharacterAppearanceColorPickerItem.Color =  CharacterAppearanceColorPickerBackup;
+			CharacterLoadCanvas(C);	
 			CharacterAppearanceColorPicker = "";
 		}
 

@@ -80,7 +80,7 @@ function AssetAdd(NewAsset) {
 		AllowEffect: NewAsset.AllowEffect,
 		AllowBlock: NewAsset.AllowBlock,
 		AllowType: NewAsset.AllowType,
-		AlphaRange: NewAsset.AllowType || { Min: 1, Max: 1 },
+		AlphaRange: NewAsset.AlphaRange,
 		IgnoreParentGroup: (NewAsset.IgnoreParentGroup == null)? false: NewAsset.IgnoreParentGroup,
 		DynamicDescription: (typeof NewAsset.DynamicDescription === 'function')? NewAsset.DynamicDescription : function() {return this.Description},
 		DynamicPreviewIcon: (typeof NewAsset.DynamicDescription === 'function')? NewAsset.DynamicPreviewIcon : function() {return ""},
@@ -102,6 +102,7 @@ function AssetBuildLayer(NewLayers) {
 		Layers.push({
 			Name: Layer.Name,
 			AllowColorize: (Layer.AllowColorize == null) ? true : Layer.AllowColorize,
+			AllowAlpha: (Layer.AllowAlpha == null) ? true : Layer.AllowAlpha,
 			AllowTypes: (Layer.AllowTypes == null || !Array.isArray(Layer.AllowTypes)) ? [""] : Layer.AllowTypes,
 			HasExpression: (Layer.HasExpression == null) ? true : Layer.HasExpression,
 			HasType: (Layer.HasType == null) ? true : Layer.HasType,

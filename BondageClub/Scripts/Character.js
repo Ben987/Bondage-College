@@ -268,7 +268,7 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 							for (var A = 0; A < data.Appearance.length && !Refresh; A++) {
 								var Old = ChatRoomData.Character[C].Appearance[A];
 								var New = data.Appearance[A];
-								if ((New.Name != Old.Name) || (New.Group != Old.Group) || (New.Color != Old.Color)) Refresh = true;
+								if ((New.Name != Old.Name) || (New.Group != Old.Group) || (New.Color != Old.Color) || (New.Alpha != Old.Alpha)) Refresh = true;
 								else if ((New.Property != null) && (Old.Property != null) && (JSON.stringify(New.Property) != JSON.stringify(Old.Property))) Refresh = true;
 								else if (((New.Property != null) && (Old.Property == null)) || ((New.Property == null) && (Old.Property != null))) Refresh = true;
 							}

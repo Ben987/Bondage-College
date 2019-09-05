@@ -115,10 +115,16 @@ var AssetFemale3DCG = [
 		Left: 125,
 		Top: 400,
 		Asset: [
-			"Socks1", "Socks2", "Socks3", "Socks4", "Socks5", "Stockings1", "Stockings2",
-			{ Name: "Stockings3", Value: 10 },
-			{ Name: "Stockings4", Value: 10 },
-			{ Name: "Pantyhose1", Value: 10, Priority: 16, Block: ["ItemVulva", "ItemButt"] }
+			{ Name: "Socks1", AlphaRange: { Min: 0.4, Max: 1 } },
+			{ Name: "Socks2", AlphaRange: { Min: 0.4, Max: 1 } },
+			{ Name: "Socks3", AlphaRange: { Min: 0.4, Max: 1 } },
+			{ Name: "Socks4", AlphaRange: { Min: 0.4, Max: 1 } },
+			{ Name: "Socks5", AlphaRange: { Min: 0.4, Max: 1 } },
+			{ Name: "Stockings1", AlphaRange: { Min: 0.4, Max: 1 } },
+			{ Name: "Stockings2", AlphaRange: { Min: 0.4, Max: 1 } },
+			{ Name: "Stockings3", AlphaRange: { Min: 0.4, Max: 1 }, Value: 10 },
+			{ Name: "Stockings4", AlphaRange: { Min: 0.4, Max: 1 }, Value: 10 },
+			{ Name: "Pantyhose1", AlphaRange: { Min: 0.4, Max: 1 }, Value: 10, Priority: 16, Block: ["ItemVulva", "ItemButt"] }
 		]
 	},
 
@@ -203,7 +209,11 @@ var AssetFemale3DCG = [
 		Color: ["#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
 		Left: 75,
 		Top: 275,
-		Asset: ["Gloves1", "Gloves2", { Name: "MistressGloves", Value: -1 }]
+		Asset: [
+			{ Name: "Gloves1", AlphaRange: { Min: 0.4, Max: 1 } }, 
+			{ Name: "Gloves2", AlphaRange: { Min: 0.4, Max: 1 } }, 
+			{ Name: "MistressGloves", Value: -1 }
+		]
 	},
 
 	{

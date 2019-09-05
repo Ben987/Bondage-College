@@ -87,6 +87,7 @@ function ServerAppearanceBundle(Appearance) {
 		if ((Appearance[A].Color != null) && (Appearance[A].Color != "Default")) N.Color = Appearance[A].Color;
 		if ((Appearance[A].Difficulty != null) && (Appearance[A].Difficulty != 0)) N.Difficulty = Appearance[A].Difficulty;
 		if (Appearance[A].Property != null) N.Property = Appearance[A].Property;
+		if (Appearance[A].Alpha != null) N.Alpha = Appearance[A].Alpha;
 		Bundle.push(N);
 	}
 	return Bundle;
@@ -227,6 +228,11 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 				// Validate color string, fallback to default in case of an invalid color
 				if ((NA.Color != "Default") && (/^#(?:[0-9a-f]{3}){1,2}$/i.test(NA.Color) == false) && (NA.Asset.Group.ColorSchema.indexOf(NA.Color) < 0)) {
 					NA.Color = NA.Asset.Group.ColorSchema[0];
+				}
+
+				// Validate and load alpha
+				if ((typeof Bundle[A].Alpha === 'number') && (Asset[I].AlphaRange != null) && (Bundle[A].Alpha >= Asset[I].AlphaRange.Min) && (Bundle[A].Alpha <= Asset[I].AlphaRange.Max)) {
+					NA.Alpha = Bundle[A].Alpha;
 				}
 
 				// Sets the item properties and make sure a non-owner cannot add an owner lock
