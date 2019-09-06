@@ -126,7 +126,7 @@ function WardrobeSetCharacterName(W, Name, Push) {
 
 // Bundle an asset in wardrobe format
 function WardrobeAssetBundle(A) {
-	return { Name: A.Asset.Name, Group: A.Asset.Group.Name, Color: A.Color };
+	return { Name: A.Asset.Name, Group: A.Asset.Group.Name, Color: A.Color, Alpha: A.Alpha };
 }
 
 // Load character appearance from wardrobe, only load clothes on others
@@ -145,14 +145,14 @@ function WardrobeFastLoad(C, W, Update) {
 					&& (AddAll || a.Group.Clothing)
 					&& a.Name == w.Name
 					&& (a.Value == 0 || InventoryAvailable(Player, a.Name, a.Group.Name)));
-				if (A != null) CharacterAppearanceSetItem(C, w.Group, A, w.Color, 0, false);
+				if (A != null) CharacterAppearanceSetItem(C, w.Group, A, w.Color, 0, w.Alpha, false);
 			});
 		// Adds any critical appearance asset that could be missing, adds the default one
 		AssetGroup
 			.filter(g => g.Category == "Appearance" && !g.AllowNone)
 			.forEach(g => {
 				if (C.Appearance.find(a => a.Asset.Group.Name == g.Name) == null) {
-					C.Appearance.push({ Asset: Asset.find(a => a.Group.Name == g.Name), Difficulty: 0, Color: "Default" });
+					C.Appearance.push({ Asset: Asset.find(a => a.Group.Name == g.Name), Difficulty: 0, Color: g.ColorSchema[0] });
 				}
 			});
 		CharacterLoadCanvas(C);

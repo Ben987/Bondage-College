@@ -337,6 +337,7 @@ function CharacterAppearanceGetCurrentValue(C, Group, Type) {
 			if (Type == "Name") return C.Appearance[A].Asset.Name;
 			if (Type == "Description") return C.Appearance[A].Asset.Description;
 			if (Type == "Color") return C.Appearance[A].Color;
+			if (Type == "Alpha") return C.Appearance[A].Alpha;
 			if (Type == "ID") return A;
 			if (Type == "Effect") return C.Appearance[A].Asset.Effect;
 			if (Type == "Asset") return C.Appearance[A].Asset;
@@ -424,7 +425,7 @@ function AppearanceRun() {
 }
 
 // Sets an item in the character appearance
-function CharacterAppearanceSetItem(C, Group, ItemAsset, NewColor, DifficultyFactor, Refresh) {
+function CharacterAppearanceSetItem(C, Group, ItemAsset, NewColor, DifficultyFactor, NewAlpha, Refresh) {
 
 	// Sets the difficulty factor
 	if (DifficultyFactor == null) DifficultyFactor = 0;
@@ -432,8 +433,10 @@ function CharacterAppearanceSetItem(C, Group, ItemAsset, NewColor, DifficultyFac
 	// Removes the previous if we need to
 	var ID = CharacterAppearanceGetCurrentValue(C, Group, "ID");
 	var ItemColor;
+	var ItemAlpha;
 	if (ID != "None") {
 		ItemColor = CharacterAppearanceGetCurrentValue(C, Group, "Color");
+		ItemAlpha = CharacterAppearanceGetCurrentValue(C, Group, "Alpha");
 		C.Appearance.splice(ID, 1);
 	} else if (ItemAsset != null) ItemColor = ItemAsset.Group.ColorSchema[0];
 
@@ -443,6 +446,10 @@ function CharacterAppearanceSetItem(C, Group, ItemAsset, NewColor, DifficultyFac
 			Asset: ItemAsset,
 			Difficulty: parseInt((ItemAsset.Difficulty == null) ? 0 : ItemAsset.Difficulty) + parseInt(DifficultyFactor),
 			Color: ((NewColor == null) ? ItemColor : NewColor)
+		}
+		NewAlpha = NewAlpha || ItemAlpha;
+		if (ItemAsset.AlphaRange && NewAlpha && (NewAlpha >= ItemAsset.AlphaRange.Min) && (NewAlpha <= ItemAsset.AlphaRange.Max)) {
+			NA.Alpha = NewAlpha;
 		}
 		C.Appearance.push(NA);
 	}
