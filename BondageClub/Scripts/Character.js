@@ -395,6 +395,14 @@ function CharacterRefresh(C, Push) {
 	CharacterLoadPose(C);	
 	CharacterLoadCanvas(C);
 	if ((C.ID == 0) && (C.OnlineID != null) && ((Push == null) || (Push == true))) ServerPlayerAppearanceSync();
+	var Current = CharacterGetCurrent();
+	if (Current && C.ID == Current.ID) {
+		if (DialogFocusItem && DialogFocusItem.Asset) {
+			DialogFocusItem = C.Appearance.find(function (Item) { 
+				return Item.Asset.Name == DialogFocusItem.Asset.Name && Item.Asset.Group.Name == DialogFocusItem.Asset.Group.Name;
+			});
+		}
+	}
 }
 
 // Returns TRUE if a character has no item (the slave collar doesn't count)
