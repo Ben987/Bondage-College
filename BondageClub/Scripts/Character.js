@@ -401,6 +401,7 @@ function CharacterRefresh(C, Push) {
 			DialogFocusItem = C.Appearance.find(function (Item) { 
 				return Item.Asset.Name == DialogFocusItem.Asset.Name && Item.Asset.Group.Name == DialogFocusItem.Asset.Group.Name;
 			});
+		if (DialogFocusItem && DialogFocusItem.Asset.Extended)	CommonDynamicFunction("Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Load()");
 		}
 	}
 }
