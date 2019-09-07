@@ -439,6 +439,13 @@ var AssetFemale3DCG = [
 			{ Name: "DuctTape", Value: 50, Time: 15, RemoveTime: 10, BuyGroup: "DuctTape" },
 			{ Name: "MermaidRopeTie", Value: 30, Time: 15, Difficulty: 3 },
 			{
+                Name: "LegBinder", Value: 150, SetPose: ["LegsClosed"], Hide: ["Shoes"], Block: ["ClothLower", "ItemFeet"], Effect: ["Prone"], Time: 30, RemoveTime: 20, Difficulty: 15, AllowLock: true, Prerequisite: "NotKneeling",
+                Layer: [
+                    { Name: "Latex", AllowColorize: true },
+                    { Name: "Belts", AllowColorize: false }
+                ]
+            },
+			{
 				Name: "SpankingToys", Wear: false, Random: false, BuyGroup: "SpankingToys", IgnoreParentGroup: true,
 				DynamicDescription: () => { return (SpankingCurrentType) ? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type },
 				DynamicPreviewIcon: () => { return (SpankingCurrentType) ? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type },
