@@ -32,8 +32,10 @@ ReputationNone,None
 ReputationDominantPositive,Dominant:
 ReputationDominantNegative,Submissive:
 ReputationMaidPositive,Maid Sorority:
-ReputationGamblingPositive,Gambling Hall:
 ReputationKidnapPositive,Kidnappers League:
+ReputationAsylumPositive,Asylum Nurse:
+ReputationAsylumNegative,Asylum Patient:
+ReputationGamblingPositive,Gambling Hall:
 ReputationABDLPositive,ABDL:
 Skill,- Skills -
 SkillNone,None

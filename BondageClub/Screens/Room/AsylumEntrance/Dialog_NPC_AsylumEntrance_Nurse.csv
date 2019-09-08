@@ -1,0 +1,61 @@
+PlayerGagged,,,"Lovely gag, but you'll need to get it off if you want to talk with me.",,
+FightVictory,,,"Ow!  Well done, you're quite a tough patient.  I'm not letting you out anyway.",,
+FightDefeat,,,"You really thought you could beat me?  You trully are mad, little patient.",,
+0,,,Greetings doctor DialogPlayerName.  It's always a pleasure to see you.  Are you working today?,,"DialogReputationGreater(""Asylum"", 100)"
+0,,,Welcome to the asylum nurse DialogPlayerName.  Our patients are expecting you.  Are you here to work?,,"DialogReputationGreater(""Asylum"", 50)"
+0,,,Hello assistant DialogPlayerName.  It's time to get to work for the asylum!,,"DialogReputationGreater(""Asylum"", 1)"
+0,,,It's always a pleasure to take you in patient DialogPlayerName.  Are you checking in again today?,,"DialogReputationLess(""Asylum"", -100)"
+0,,,Welcome to the asylum patient DialogPlayerName.  Do you still our help?,,"DialogReputationLess(""Asylum"", -50)"
+0,,,Hello again DialogPlayerName.  Are you here to check in?,,"DialogReputationLess(""Asylum"", -1)"
+0,,,Welcome to the asylum.  Do you need information?,,
+0,10,I want to learn about the asylum.,"In the asylum, you can work as a nurse or commit yourself as a patient.  What would you like to know?",,
+0,20,I'd like to commit myself,"You can, but you will lose your nurse status and reputation.  Are you sure about that?",,"DialogReputationGreater(""Asylum"", 1)"
+0,21,I'd like to commit myself,"By committing yourself, you will be locked down in the asylum until your time is up.",,"DialogReputationLess(""Asylum"", 0)"
+0,30,I'd like to work as a nurse.,"You can, but you will lose your patient status and reputation.  Are you sure about that?",,"DialogReputationLess(""Asylum"", -1)"
+0,31,I'd like to work as a nurse.,Perfect!  We need staff to take care of our patients.  Are you ready to work now?,,"DialogReputationGreater(""Asylum"", 0)"
+0,,I must go.  (Leave her.),,DialogLeave(),
+10,,What goes in the asylum?,"The asylum is a place to relax, to forget about your stressful life for a while.  You can get therapies and mingle with patients and nurses.",,
+10,,Tell me about patients.,"Patients willingly commit themselves for a set time.  Until that time is up, they will receive therapies and will be locked in the asylum.",,
+10,,Tell me about nurses.,Nurses are paid by the asylum to take care of patients.  They give the therapies and strap-up feisty customers.  (She grins.),,
+10,,What are the therapies?,"There are lots of therapies available, depending on the patient needs.  They are bondage, pain, tickling and orgasm therapies.",,
+10,,Can I send my slaves here?,"Yes, if your submissive doesn't behave the way you want it.  You can send her here to correct her behavior.  Talk with her first.",,
+10,0,Thanks for the information.,My pleasure.  Do you need anything else?,,
+20,21,"Yes, I want to transfer from nurse to patient.","Very well.  By committing yourself, you will be locked down in the asylum until your time is up.",,
+20,0,Let me think about it.,Of course.  Do you need anything else?,,
+21,22,I accept to be locked down.,"(She grins.)  Perfect!  First thing first, you need to change and wear patient clothes.",,!Player.IsRestrained()
+21,0,I accept to be locked down.,"(She grins.)  Perfect!  But you need to get out of these restraints first.  Go get a maid to help you, I'm busy.",,Player.IsRestrained()
+21,0,Let me think about it.,Of course.  Do you need anything else?,,
+22,23,I'm already dressed like that.,(She nods.) For how long do you want to commit yourself?,,IsWearingPatientClothes()
+22,23,Can you help me to change?,I certainly can.  (She helps you to get dressed as a patient.)  For how long do you want to commit yourself?,"WearPatientClothes(""Player"")",!IsWearingPatientClothes()
+23,24,15 minutes.,"You're taking it easy don't you?  Very well, step inside.  (She locks the door behind you.)","CommitPatient(900000, 1)",
+23,24,1 hour.,"It should give you some time to relax.  Very well, step inside.  (She locks the door behind you.)","CommitPatient(3600000, 3)",
+23,24,4 hours.,"It should give you plenty of time to relax.  Very well, step inside.  (She locks the door behind you.)","CommitPatient(14400000, 6)",
+23,24,1 day.,"Good!  I'll prepare a bed for you, step inside.  (She locks the door behind you.)","CommitPatient(86400000, 9)",
+23,24,1 week.,"Impressive!  That's quite a commitment, step inside.  (She locks the door behind you.)","CommitPatient(604800000, 18)",
+24,25,Where do I start?,"The social room is a good place to start, or get to the beds to relax.  Now get going girl.",,
+24,25,You're locking the door?,"Don't be afraid, it's for your own good.  Now get going girl, you can explore the asylum freely.","DialogChangeReputation(""Dominant"", -2)",
+25,0,Thanks!  (Leave her.),,DialogLeave(),
+30,31,"Yes, I want to transfer from patient to nurse.",Perfect!  We need staff to take care of our patients.  Are you ready to work now?,,
+30,0,Let me think about it.,Of course.  Do you need anything else?,,
+31,32,I'm ready to work right now.,"Great!  But before you enter, you must wear the nurse uniform.",,!Player.IsRestrained()
+31,0,I'm ready to work right now.,"No you're not.  (She giggles.)  You're restrained girl.  Go get a maid to help you, I'm busy.",,Player.IsRestrained()
+31,0,Let me think about it.,Of course.  Do you need anything else?,,
+32,33,I'm already dressed up.,"Wonderful!  Come inside then, there are lots of patients to take care of.",StartNurse(),IsWearingNurseClothes()
+32,33,Can you help me to change?,"(She gives you the nurse clothes.)  Come inside, there are lots of patients to take care of.",StartNurse(),!IsWearingNurseClothes()
+33,0,Thanks!  (Leave her.),,DialogLeave(),
+100,,,"If it isn't the famous patient DialogPlayerName.  As usual, I hope your stay in the asylum is going well.",,"DialogReputationLess(""Asylum"", -100)"
+100,,,Hello again patient DialogPlayerName.  I hope your stay in the asylum is going well.,,"DialogReputationLess(""Asylum"", -50)"
+100,,,Hello there.  I hope your stay in the asylum is going well.,,
+100,,Can you release me?,"I'm sorry, but if someone restrained you, there must be good reasons.",,!Player.CanInteract()
+100,,Release me or I'll scream.,(She quickly gags you and giggles.)  Scream all you want.,"DialogWearRandomItem(""ItemMouth"")",!Player.CanInteract()
+100,,When do I get out of the asylum?,"Check the clock girl, it's on the wall behind you.",,
+100,,Can I go out temporarly?,"No, the rules are strict, you cannot get out until your time is up.",,
+100,110,You need to let me out now.,(She frowns and stares at you.)  No!  The rules are the rules!  Do your time.,,Player.CanInteract()
+100,,I must go.  (Leave her.),,DialogLeave(),
+110,0,"Fine, I'll do my time.",Alright.  Try to get some rest or make some friends.,,
+110,0,(Sigh and cross your arms.),Try to get some rest or make some friends.,,
+110,111,Do I have to force my way out?,(She clinches her fists.)  What does it mean?,,
+111,,It means war!  (Fight her.),,FightNurse(),
+111,0,"Nothing, forget it.",(She grumbles.)  Fine.  Try to get some rest or make some friends.,,
+120,,TO DO WIN,TO DO WIN,,
+130,,TO DO LOSE,TO DO LOSE,,

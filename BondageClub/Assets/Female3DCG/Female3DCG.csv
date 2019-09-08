@@ -230,11 +230,14 @@ ItemButt,RaccoonTailPlug,Raccoon Tail Plug
 ItemButt,AnalBeads,Anal Beads
 ItemButt,ButtPump,Butt Pump
 ItemPelvis,,Pelvis
+ItemPelvis,StraponPanties,Strap-On Panties
+ItemPelvis,LeatherChastityBelt,Leather Chastity Belt
+ItemPelvis,StuddedChastityBelt,Studded Chastity Belt
 ItemPelvis,MetalChastityBelt,Metal Chastity Belt
-ItemPelvis,MetalChastityBeltKey,Metal Chastity Belt Key
+ItemPelvis,LoveChastityBelt,Love Chastity Belt
 ItemPelvis,LeatherCrop,Leather Crop
 ItemPelvis,LeatherWhip,Leather Whip
-ItemPelvis,StraponPanties,Strap-On Panties
+ItemPelvis,SpankingToys,Spanking Toys
 ItemTorso,,Torso
 ItemTorso,NylonRopeHarness,Nylon Rope Harness
 ItemTorso,HempRopeHarness,Hemp Rope Harness
@@ -250,7 +253,6 @@ ItemNipples,WeightedPiercing,Weighted Piercing
 ItemNipples,ChainClamp,Chain Clamp
 ItemBreast,,Breast
 ItemBreast,MetalChastityBra,Metal Chastity Bra
-ItemBreast,MetalChastityBraKey,Metal Chastity Bra Key
 ItemBreast,LeatherCrop,Leather Crop
 ItemBreast,LeatherWhip,Leather Whip
 ItemArms,,Arms
@@ -335,14 +337,16 @@ ItemMisc,MetalPadlock,Metal Padlock
 ItemMisc,IntricatePadlock,Intricate Padlock
 ItemMisc,TimerPadlock,Five Minutes Padlock
 ItemMisc,OwnerPadlock,Owner Padlock
+ItemMisc,MistressPadlock,Mistress Padlock
 ItemMisc,MetalPadlockKey,Metal Padlock Key
 ItemMisc,IntricatePadlockKey,Intricate Padlock Key
 ItemMisc,OwnerPadlockKey,Owner Padlock Key
+ItemMisc,MistressPadlockKey,Mistress Padlock Key
 ItemMisc,MetalCuffsKey,Metal Cuffs Key
 ItemMisc,WoodenMaidTray,Wooden Maid Tray
 ItemMisc,WoodenMaidTrayFull,Wooden Maid Tray Full
 ItemMisc,WoodenPaddle,Wooden Paddle
-ItemDevices,,Devices
+ItemDevices,,Body
 ItemDevices,WoodenBox,Wooden Box
 ItemDevices,MilkCan,Water filled milk can 
 ItemDevices,WaterCell,Water torture Cell
