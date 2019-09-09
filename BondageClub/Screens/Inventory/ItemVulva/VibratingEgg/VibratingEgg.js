@@ -13,16 +13,28 @@ function InventoryItemVulvaVibratingEggDraw() {
 	else DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
 	DrawText(DialogFind(Player, "Intensity" + DialogFocusItem.Property.Intensity.toString()).replace("Item", DialogFocusItem.Asset.Description), 1500, 600, "White", "Gray");
-	if(DialogFocusItem.Property.Intensity > -1) DrawButton(1200, 700, 250, 65, DialogFind(Player, "Decrease"), "White");
-	if(DialogFocusItem.Property.Intensity < 3) DrawButton(1550, 700, 250, 65, DialogFind(Player, "Increase"), "White");
-	DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
+	if(DialogFocusItem.Property.Intensity > -1) DrawButton(1200, 650, 200, 55, DialogFind(Player, "TurnOff"), "White");
+	if(DialogFocusItem.Property.Intensity < 0) DrawButton(1550, 650, 200, 55, DialogFind(Player, "Low"), "White");
+	if(DialogFocusItem.Property.Intensity > 0) DrawButton(1550, 650, 200, 55, DialogFind(Player, "Low"), "White");
+	if(DialogFocusItem.Property.Intensity < 1) DrawButton(1200, 710, 200, 55, DialogFind(Player, "Medium"), "White");
+	if(DialogFocusItem.Property.Intensity > 1) DrawButton(1200, 710, 200, 55, DialogFind(Player, "Medium"), "White");
+	if(DialogFocusItem.Property.Intensity < 2) DrawButton(1550, 710, 200, 55, DialogFind(Player, "High"), "White");
+	if(DialogFocusItem.Property.Intensity > 2) DrawButton(1550, 710, 200, 55, DialogFind(Player, "High"), "White");
+	if(DialogFocusItem.Property.Intensity < 3) DrawButton(1375, 770, 200, 55, DialogFind(Player, "Maximum"), "White");
+	DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");	
 }
 
 // Catches the item extension clicks
 function InventoryItemVulvaVibratingEggClick() {
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1200) && (MouseX <= 1450) && (MouseY >= 700) && (MouseY <= 765) && (DialogFocusItem.Property.Intensity > -1)) InventoryItemVulvaVibratingEggSetIntensity(-1);
-	if ((MouseX >= 1550) && (MouseX <= 1800) && (MouseY >= 700) && (MouseY <= 765) && (DialogFocusItem.Property.Intensity < 3)) InventoryItemVulvaVibratingEggSetIntensity(1);
+	if ((MouseX >= 1200) && (MouseX <= 1400) && (MouseY >= 650) && (MouseY <= 705) && (DialogFocusItem.Property.Intensity > -1)) InventoryItemVulvaVibratingEggSetIntensity(-1 - DialogFocusItem.Property.Intensity);
+	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 650) && (MouseY <= 705) && (DialogFocusItem.Property.Intensity < 0)) InventoryItemVulvaVibratingEggSetIntensity(0 - DialogFocusItem.Property.Intensity);
+	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 650) && (MouseY <= 705) && (DialogFocusItem.Property.Intensity > 0)) InventoryItemVulvaVibratingEggSetIntensity(0 - DialogFocusItem.Property.Intensity);
+	if ((MouseX >= 1200) && (MouseX <= 1400) && (MouseY >= 710) && (MouseY <= 765) && (DialogFocusItem.Property.Intensity < 1)) InventoryItemVulvaVibratingEggSetIntensity(1 - DialogFocusItem.Property.Intensity);
+	if ((MouseX >= 1200) && (MouseX <= 1400) && (MouseY >= 710) && (MouseY <= 765) && (DialogFocusItem.Property.Intensity > 1)) InventoryItemVulvaVibratingEggSetIntensity(1 - DialogFocusItem.Property.Intensity);
+	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 710) && (MouseY <= 765) && (DialogFocusItem.Property.Intensity > 2)) InventoryItemVulvaVibratingEggSetIntensity(2 - DialogFocusItem.Property.Intensity);
+	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 710) && (MouseY <= 765) && (DialogFocusItem.Property.Intensity < 2)) InventoryItemVulvaVibratingEggSetIntensity(2 - DialogFocusItem.Property.Intensity);
+	if ((MouseX >= 1375) && (MouseX <= 1575) && (MouseY >= 770) && (MouseY <= 825) && (DialogFocusItem.Property.Intensity < 3)) InventoryItemVulvaVibratingEggSetIntensity(3 - DialogFocusItem.Property.Intensity);
 }
 
 // Sets the vibrating egg intensity

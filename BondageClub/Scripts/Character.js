@@ -167,8 +167,8 @@ function CharacterArchetypeClothes(C, Archetype, ForceColor) {
 		InventoryWear(C, "MistressTop", "Cloth", Color);
 		InventoryAdd(C, "MistressBottom", "ClothLower", false);
 		InventoryWear(C, "MistressBottom", "ClothLower", Color);
-		InventoryAdd(C, "MetalChastityBeltKey", "ItemPelvis", false);
-		InventoryAdd(C, "MetalChastityBraKey", "ItemBreast", false);
+		InventoryAdd(C, "MistressPadlock", "ItemMisc", false);
+		InventoryAdd(C, "MistressPadlockKey", "ItemMisc", false);
 		InventoryRemove(C, "HairAccessory");
 	}
 
@@ -555,4 +555,10 @@ function CharacterResetFacialExpression(C) {
 	for (var A = 0; A < C.Appearance.length; A++)
 		if (C.Appearance[A].Asset.Group.AllowExpression)
 			CharacterSetFacialExpression(C, C.Appearance[A].Asset.Group.Name, null);
+}
+
+
+// returns the current selected character
+function CharacterGetCurrent() {
+	return (Player.FocusGroup != null) ? Player : CurrentCharacter;
 }

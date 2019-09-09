@@ -297,11 +297,11 @@ function CharacterAppearanceBuildCanvas(C) {
 								if (CA.Asset.Layer[L].NewParentGroupName == C.Appearance[FG].Asset.Group.Name)
 									G = "_" + C.Appearance[FG].Asset.Name;
 					}
-					if (CA.Asset.Layer[L].NewAllowPose != null) {
+					if (CA.Asset.Layer[L].OverrideAllowPose != null) {
 						Pose = "";
-						for (var AP = 0; AP < CA.Asset.Layer[L].NewAllowPose.length; AP++)
+						for (var AP = 0; AP < CA.Asset.Layer[L].OverrideAllowPose.length; AP++)
 							for (var P = 0; P < C.Pose.length; P++)
-								if (C.Pose[P] == CA.Asset.Layer[L].NewAllowPose[AP])
+								if (C.Pose[P] == CA.Asset.Layer[L].OverrideAllowPose[AP])
 									Pose = C.Pose[P] + "/";
 					}
 				}

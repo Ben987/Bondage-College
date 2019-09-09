@@ -46,7 +46,7 @@ function KidnapInventoryBuild() {
 	if (KidnapOpponent.FocusGroup != null)
 		for(var A = 0; A < Player.Inventory.length; A++)
 			if ((Player.Inventory[A].Asset != null) && (Player.Inventory[A].Asset.Group.Name == KidnapOpponent.FocusGroup.Name) && Player.Inventory[A].Asset.Enable && Player.Inventory[A].Asset.Wear && Player.Inventory[A].Asset.Random)
-				DialogInventoryAdd(Player.Inventory[A], false);
+				DialogInventoryAdd(KidnapOpponent, Player.Inventory[A], false);
 
 }
 

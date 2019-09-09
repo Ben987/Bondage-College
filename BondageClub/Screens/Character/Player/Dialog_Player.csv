@@ -2,6 +2,7 @@ SelectItem,,,Select an item to use
 CannotUseOnSelf,,,Cannot use on yourself
 RemoveClothesForItem,,,Remove some clothes first
 RemoveSuspensionForItem,,,Remove the suspension first
+TheyMustBeStandingFirst,,,Must be standing and not suspended first.
 RemoveChainForItem,,,Remove the chain to the floor first
 MustCollaredFirst,,,A collar must be fitted first to attach accessories to.
 MustCollaredFirstAndRemoveSuspension,,,Must be collared and not suspended first.
@@ -92,6 +93,7 @@ ItemMiscIntricatePadlockIntro,,,"""To keep your loved one secure"""
 ItemMiscTimerPadlockIntro,,,You can restart the timer but cannot unlock
 ItemMiscOwnerPadlockIntro,,,"""Never forget who you belong to"""
 ItemMiscOwnerPadlockDetail,,,Can only be locked or unlocked by her owner
+ItemMiscMistressPadlockIntro,,,Can only be locked or unlocked by a Club Mistress
 LeatherCuffsPoseNone,,,Detached
 LeatherCuffsPoseWrist,,,Bind wrists
 LeatherCuffsPoseElbow,,,Bind elbows
@@ -105,7 +107,7 @@ StraitJacketPoseLoose,,,Loose
 StraitJacketPoseNormal,,,Normal
 StraitJacketPoseSnug,,,Snug
 StraitJacketPoseTight,,,Tight
-StraitJacketRestrainLoose,,,SourceCharacter loosens the straps on DestinationCharacter's straitjacket.
+StraitJacketRestrainNone,,,SourceCharacter loosens the straps on DestinationCharacter's straitjacket.
 StraitJacketRestrainNormal,,,SourceCharacter adjusts the straps normally on DestinationCharacter's straitjacket.
 StraitJacketRestrainSnug,,,SourceCharacter snugs the straps on DestinationCharacter's straitjacket.
 StraitJacketRestrainTight,,,SourceCharacter tightens the straps on DestinationCharacter's straitjacket.
@@ -148,6 +150,11 @@ DuctTapeHeadSetDouble,,,SourceCharacter takes a piece of duct tape for Destinati
 DuctTapeHeadSetWrap,,,SourceCharacter wraps some duct tape onto DestinationCharacter's face.
 DuctTapeHeadTypeMummy,,,Mummy
 DuctTapeHeadSetMummy,,,SourceCharacter wraps DestinationCharacter's head in tape with multiple layers. 
+SelectHarnessType,,,Select the type of Harness
+HempRopeHarnessTypeBasic,,,Basic Tie
+HempRopeHarnessTypeDiamond,,,Diamond Tie
+HempRopeHarnessSetBasic,,,SourceCharacter uses the rope on DestinationCharacter's to do a basic harness.
+HempRopeHarnessSetDiamond,,,SourceCharacter uses the rope on DestinationCharacter's to do a Diamond style harness.
 Intensity-1,,,Item intensity: Disabled
 Intensity0,,,Item intensity: Low
 Intensity1,,,Item intensity: Medium
@@ -222,3 +229,35 @@ SpankingToysTypePaddle,,,Paddle
 SpankingToysTypeWhipPaddle,,,Whip Paddle
 SpankingToysSetPlayer,,,SourceCharacter takes out a Item
 SpankingToysSetOthers,,,SourceCharacter give DestinationCharacter a Item
+TurnOff,,,TurnOff
+Low,,,Low
+Medium,,,Medium
+High,,,High
+Maximum,,,Maximum
+TriggerShock,,,Trigger Shock
+LoveChastityBeltUnlockButt,,,Unlock Butt
+LoveChastityBeltLockButt,,,Lock Butt
+LoveChastityBeltUnlockClosed,,,Remove Shield
+LoveChastityBeltUnlockVibe,,,Remove Vibe
+LoveChastityBeltUnlockShock,,,Remove Shock
+LoveChastityBeltAddShield,,,Add Shield
+LoveChastityBeltAddVibe,,,Add Vibe
+LoveChastityBeltAddShock,,,Add Shock
+LoveChastityBeltVibeIncreaseTo0,,,DestinationCharacter's love chastity belts starts teasing her lightly.
+LoveChastityBeltVibeIncreaseTo1,,,DestinationCharacter's love chastity belts builds up to a moderate pace.
+LoveChastityBeltVibeIncreaseTo2,,,DestinationCharacter's love chastity belts starts buzzing strongly!
+LoveChastityBeltVibeIncreaseTo3,,,DestinationCharacter's love chastity belts jumps up to maximum intensity!
+LoveChastityBeltVibeDecreaseTo-1,,,DestinationCharacter's love chastity belt stops vibrating.
+LoveChastityBeltVibeDecreaseTo0,,,DestinationCharacter's love chastity belt slows down into a light tease.
+LoveChastityBeltVibeDecreaseTo1,,,DestinationCharacter's love chastity belt returns to a moderate pace.
+LoveChastityBeltVibeDecreaseTo2,,,DestinationCharacter's love chastity belt slows down a tiny bit.
+LoveChastityBeltShockSet0,,,SourceCharacter sets DestinationCharacter's love chastity belt to low intensity.
+LoveChastityBeltShockSet1,,,SourceCharacter sets DestinationCharacter's love chastity belt to moderate intensity.
+LoveChastityBeltShockSet2,,,SourceCharacter sets DestinationCharacter's love chastity belt to high intensity.
+LoveChastityBeltShockTrigger0,,,DestinationCharacter's love chastity belt gives her a light shock.
+LoveChastityBeltShockTrigger1,,,DestinationCharacter's love chastity belt lets out a sharp jolt!
+LoveChastityBeltShockTrigger2,,,DestinationCharacter's love chastity belt delivers an intense shock!
+LoveChastityBeltRemoveShieldMessage,,,SourceCharacter removes shield from DestinationCharacter's love chastity belt
+LoveChastityBeltAddShieldMessage,,,SourceCharacter locks shield to DestinationCharacter's love chastity belt
+LoveChastityBeltAddVibeMessage,,,SourceCharacter locks vibe to DestinationCharacter's love chastity belt
+LoveChastityBeltAddShockMessage,,,SourceCharacter locks shock device to DestinationCharacter's love chastity belt
