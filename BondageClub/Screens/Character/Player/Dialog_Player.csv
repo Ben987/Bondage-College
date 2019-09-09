@@ -102,6 +102,14 @@ LeatherCuffsRestrainNone,,,SourceCharacter detaches the chain from DestinationCh
 LeatherCuffsRestrainWrist,,,SourceCharacter attaches the leather cuffs wrist chain behind DestinationCharacter's back.
 LeatherCuffsRestrainElbow,,,SourceCharacter attaches the leather cuffs elbow chain behind DestinationCharacter's back.
 LeatherCuffsRestrainBoth,,,SourceCharacter attaches the leather cuffs wrist and elbow chains behind DestinationCharacter's back.
+LeatherLegCuffsPoseNone,,,Detached
+LeatherLegCuffsPoseClosed,,,Chain Closed
+LeatherAnkleCuffsPoseNone,,,Detached
+LeatherAnkleCuffsPoseClosed,,,Chain Closed
+LeatherLegCuffsRestrainNone,,,SourceCharacter detaches the chain from DestinationCharacter's leather leg cuffs.
+LeatherLegCuffsRestrainClosed,,,SourceCharacter attaches the leather leg cuffs chain on DestinationCharacter's legs.
+LeatherAnkleCuffsRestrainNone,,,SourceCharacter detaches the chain from DestinationCharacter's leather ankle cuffs.
+LeatherAnkleCuffsRestrainClosed,,,SourceCharacter attaches the leather ankle cuffs chain on DestinationCharacter's ankles.
 StraitJacketSelectTightness,,,How tight do you want to strap the jacket?
 StraitJacketPoseLoose,,,Loose
 StraitJacketPoseNormal,,,Normal
