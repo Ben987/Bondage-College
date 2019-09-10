@@ -6,17 +6,21 @@ var TimerLastTime = CommonTime();
 
 // Returns a string of the current remaining timer
 function TimerToString(T) {
-	var M = Math.floor(T / 60000).toString();
+	var D = Math.floor(T / 86400000).toString();
+	var H = Math.floor((T % 86400000) / 3600000).toString();
+	var M = Math.floor((T % 3600000) / 60000).toString();
 	var S = Math.floor((T % 60000) / 1000).toString();
 	if (S.length == 1) S = "0" + S;
-	return M + ":" + S;
+	if (M.length == 1) M = "0" + M;
+	if (H.length == 1) H = "0" + H;
+	return ((D != "0") ? D + ":" : "") + (((D != "0") && (H != "0")) ? H + ":" : "") + M + ":" + S;
 }
 
 // Returns a string of the current remaining timer
 function TimerHourToString(T) {
 	var M = T.getMinutes().toString();
-	if (M.length == 1) M = "0" + M;
 	var H = T.getHours().toString();
+	if (M.length == 1) M = "0" + M;
 	return H + ":" + M;
 }
 

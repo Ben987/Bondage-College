@@ -140,8 +140,8 @@ var AssetFemale3DCG = [
 			{ Name: "Heels1", Height: 15 },
 			{ Name: "Heels2", Height: 15 },
 			{ Name: "Boots1", Height: 9 },
-			{ Name: "MistressBoots", Height: 35, Value: -1, Hide: ["Socks"], Alpha: [[125, 800, 250, 200]] },
-			{ Name: "PonyBoots", Height: 35, Value: -1, Hide: ["Socks"], Alpha: [[125, 800, 250, 200]] }
+			{ Name: "MistressBoots", Height: 35, Value: -1, HideItem: ["SocksSocks4", "SocksSocks5"], Alpha: [[125, 800, 250, 200]] },
+			{ Name: "PonyBoots", Height: 35, Value: -1, Alpha: [[125, 800, 250, 200]] }
 		]
 	},
 
@@ -439,6 +439,13 @@ var AssetFemale3DCG = [
 			{ Name: "MermaidRopeTie", Value: 30, Time: 15, Difficulty: 3, SetPose: ["LegsClosed"] },
 			{ Name: "LeatherLegCuffs", Value: 30, Time: 10, Difficulty: 2, Priority: 20, AllowPose: ["LegsClosed"], Extended: true, AllowLock: true, AllowEffect: ["Block", "Prone"], AllowType: ["Closed"] },
 			{
+                Name: "LegBinder", Value: 150, SetPose: ["LegsClosed"], Hide: ["Shoes"], Block: ["ClothLower", "ItemFeet"], Effect: ["Prone"], Time: 30, RemoveTime: 20, Difficulty: 15, AllowLock: true, Prerequisite: "NotKneeling",
+                Layer: [
+                    { Name: "Latex", AllowColorize: true },
+                    { Name: "Belts", AllowColorize: false }
+                ]
+            },
+			{
 				Name: "SpankingToys", Wear: false, Random: false, BuyGroup: "SpankingToys", IgnoreParentGroup: true,
 				DynamicDescription: () => { return (SpankingCurrentType) ? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type },
 				DynamicPreviewIcon: () => { return (SpankingCurrentType) ? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type },
@@ -462,6 +469,13 @@ var AssetFemale3DCG = [
 			{ Name: "VibratingWand", Wear: false, Value: 60, Prerequisite: "AccessVulva", Bonus: [{ Type: "KidnapManipulation", Factor: 3 }], ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyes", Name: "Closed", Timer: 5 }], Visible: false },
 			{ Name: "VibratorRemote", Effect: ["Remote"], Wear: false, Value: 80, BuyGroup: "VibratorRemote", Visible: false },
 			{ Name: "VibratingLatexPanties", Effect: ["Egged", "Chaste"], Block: ["ItemButt"], Value: 65, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }], AllowLock: true, AllowEffect: ["Egged", "Vibrating"] },
+			{
+			    Name: "WandBelt", Priority: 19, Effect: ["Egged"], Block: ["ItemPelvis"], Value: 125, Prerequisite: "AccessVulva", Time: 15, ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }], AllowLock: true, AllowEffect: ["Egged", "Vibrating"], HideItem: ["PantiesDiapers1", "ClothLowerJeans1", "ClothLowerPajama1", "ClothLowerShorts1", "ClothLowerMistressBottom"],
+				Layer: [
+					{ Name: "Belt", AllowColorize: true },
+					{ Name: "Wand", AllowColorize: false }
+				]
+			},
 			{
 				Name: "SpankingToys", Wear: false, Random: false, BuyGroup: "SpankingToys", IgnoreParentGroup: true,
 				DynamicDescription: () => { return (SpankingCurrentType) ? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type },
@@ -672,6 +686,13 @@ var AssetFemale3DCG = [
 			{ Name: "DuctTape", SelfBondage: false, Extended: true, Value: 50, SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone"], Time: 20, RemoveTime: 10, Difficulty: 5, BuyGroup: "DuctTape", AllowBlock: ["ItemVulva", "ItemButt", "ItemPelvis", "ItemTorso", "ItemBreast", "ItemNipples"], AllowType: ["Bottom", "Top", "Full"] },
 			{ Name: "BitchSuit", Random: false, SelfBondage: false, Value: 250, SetPose: ["BackElbowTouch", "Kneel"], Hide: ["Cloth", "ClothLower", "BodyLower", "Shoes", "Socks"], Block: ["ItemPelvis", "ItemTorso", "ItemBreast", "ItemHands"], Effect: ["Block", "Prone", "ForceKneel"], Time: 40, RemoveTime: 30, Difficulty: 15, AllowLock: true, Prerequisite: "NotSuspended" },
 			{ Name: "CollarLeashHolding", Random: false, SelfBondage: false, Priority: 34, Value: -1, Time: 3, RemoveTime: 3, Difficulty: 1, Prerequisite: "NotSuspended" },
+			{
+			    Name: "StraitDress", Random: false, SelfBondage: false, Value: 200, SetPose: ["BackElbowTouch", "LegsClosed"], Hide: ["Cloth", "ClothLower", "Shoes"], Block: ["ItemPelvis", "ItemTorso", "ItemBreast", "ItemHands", "ItemFeet", "ItemNipples", "ItemVulva", "ItemLegs", "ItemButt"], Effect: ["Block", "Prone"], Time: 40, RemoveTime: 30, Difficulty: 15, AllowLock: true, Prerequisite: "NotKneeling",
+				Layer: [
+					{ Name: "Latex", AllowColorize: true },
+					{ Name: "Belts", AllowColorize: false }
+				]
+			},
 			{
 				Name: "SpankingToys", Wear: false, Random: false, BuyGroup: "SpankingToys", IgnoreParentGroup: true,
 				DynamicDescription: () => { return (SpankingCurrentType) ? SpankingCurrentType : InventoryGet(Player, "ItemHands").Property.Type },
