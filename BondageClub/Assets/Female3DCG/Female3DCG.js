@@ -527,7 +527,7 @@ var AssetFemale3DCG = [
 				DynamicExpressionTrigger: () => {
 					if (InventoryItemPelvisLoveChastityBeltLastAction == "Open") {
 						return [{ Group: "Blush", Name: "Low", Timer: 10 }];
-					} else if (InventoryItemPelvisLoveChastityBeltLastAction == "Close") {
+					} else if (InventoryItemPelvisLoveChastityBeltLastAction == "Closed") {
 						return [{ Group: "Blush", Name: "Medium", Timer: 10 }];
 					} else if (InventoryItemPelvisLoveChastityBeltLastAction == "Vibe") {
 						return [{ Group: "Blush", Name: "Medium", Timer: 10 }];
@@ -552,10 +552,10 @@ var AssetFemale3DCG = [
 				Layer: [
 					{ Name: "Open", AllowColorize: true, AllowTypes: ["", "Open"], HasType: false },
 					{ Name: "Closed", AllowColorize: true, AllowTypes: ["Closed", "Vibe", "Shock"], HasType: false },
-					{ Name: "Vibe", AllowColorize: false, AllowTypes: ["Vibe"], HasType: false, NewParentGroupName: "" },
-					{ Name: "Shock", AllowColorize: false, AllowTypes: ["Shock"], HasType: false, NewParentGroupName: "" },
-					{ Name: "Lock", AllowColorize: false, AllowTypes: ["", "Open", "Closed", "Vibe", "Shock"], HasType: false, NewParentGroupName: "" },
-					{ Name: "ShieldLock", AllowColorize: false, AllowTypes: ["Closed", "Vibe", "Shock"], HasType: false, NewParentGroupName: "" },
+					{ Name: "Vibe", AllowColorize: false, AllowTypes: ["Vibe"], HasType: false, OverrideAllowPose: [] },
+					{ Name: "Shock", AllowColorize: false, AllowTypes: ["Shock"], HasType: false, OverrideAllowPose: [] },
+					{ Name: "Lock", AllowColorize: false, AllowTypes: ["", "Open", "Closed", "Vibe", "Shock"], HasType: false, OverrideAllowPose: [] },
+					{ Name: "ShieldLock", AllowColorize: false, AllowTypes: ["Closed", "Vibe", "Shock"], HasType: false, OverrideAllowPose: [] },
 				]
 			},
 			{ Name: "LeatherCrop", Value: 40, Wear: false, BuyGroup: "LeatherCrop", Bonus: [{ Type: "KidnapDomination", Factor: 3 }], ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }] },

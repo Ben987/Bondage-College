@@ -392,18 +392,9 @@ function CharacterChangeMoney(C, Value) {
 // Refreshes the character parameters
 function CharacterRefresh(C, Push) {
 	CharacterLoadEffect(C);
-	CharacterLoadPose(C);	
+	CharacterLoadPose(C);
 	CharacterLoadCanvas(C);
 	if ((C.ID == 0) && (C.OnlineID != null) && ((Push == null) || (Push == true))) ServerPlayerAppearanceSync();
-	var Current = CharacterGetCurrent();
-	if (Current && C.ID == Current.ID) {
-		if (DialogFocusItem && DialogFocusItem.Asset) {
-			DialogFocusItem = C.Appearance.find(function (Item) { 
-				return Item.Asset.Name == DialogFocusItem.Asset.Name && Item.Asset.Group.Name == DialogFocusItem.Asset.Group.Name;
-			});
-		if (DialogFocusItem && DialogFocusItem.Asset.Extended)	CommonDynamicFunction("Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Load()");
-		}
-	}
 }
 
 // Returns TRUE if a character has no item (the slave collar doesn't count)
