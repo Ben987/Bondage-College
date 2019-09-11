@@ -12,15 +12,28 @@ function InventoryItemMouthPumpGagDraw() {
 	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
 	DrawText(DialogFind(Player, "PumpLevel" + DialogFocusItem.Property.PumpLevel.toString()), 1500, 600, "White", "Gray");
-	if (DialogFocusItem.Property.PumpLevel > 0) DrawButton(1200, 700, 250, 65, DialogFind(Player, "DeflateIt"), "White");
-	if (DialogFocusItem.Property.PumpLevel < 4) DrawButton(1550, 700, 250, 65, DialogFind(Player, "PumpIt"), "White");
+	if(DialogFocusItem.Property.PumpLevel > 0) DrawButton(1200, 650, 200, 55, DialogFind(Player, "Empty"), "White");
+    if(DialogFocusItem.Property.PumpLevel < 1) DrawButton(1550, 650, 200, 55, DialogFind(Player, "Light"), "White");
+    if(DialogFocusItem.Property.PumpLevel > 1) DrawButton(1550, 650, 200, 55, DialogFind(Player, "Light"), "White");
+    if(DialogFocusItem.Property.PumpLevel < 2) DrawButton(1200, 710, 200, 55, DialogFind(Player, "Inflated"), "White");
+    if(DialogFocusItem.Property.PumpLevel > 2) DrawButton(1200, 710, 200, 55, DialogFind(Player, "Inflated"), "White");
+    if(DialogFocusItem.Property.PumpLevel < 3) DrawButton(1550, 710, 200, 55, DialogFind(Player, "Bloated"), "White");
+    if(DialogFocusItem.Property.PumpLevel > 3) DrawButton(1550, 710, 200, 55, DialogFind(Player, "Bloated"), "White");
+    if(DialogFocusItem.Property.PumpLevel < 4) DrawButton(1375, 770, 200, 55, DialogFind(Player, "Maximum"), "White");
 }
 
 // Catches the item extension clicks
 function InventoryItemMouthPumpGagClick() {
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1200) && (MouseX <= 1450) && (MouseY >= 700) && (MouseY <= 765) && (DialogFocusItem.Property.PumpLevel > 0)) InventoryItemMouthPumpGagSetPump(-1);
-	if ((MouseX >= 1550) && (MouseX <= 1800) && (MouseY >= 700) && (MouseY <= 765) && (DialogFocusItem.Property.PumpLevel < 4)) InventoryItemMouthPumpGagSetPump(1);
+	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
+	if ((MouseX >= 1200) && (MouseX <= 1400) && (MouseY >= 650) && (MouseY <= 705) && (DialogFocusItem.Property.PumpLevel > 0)) InventoryItemMouthPumpGagSetPump(0 - DialogFocusItem.Property.PumpLevel);
+	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 650) && (MouseY <= 705) && (DialogFocusItem.Property.PumpLevel < 1)) InventoryItemMouthPumpGagSetPump(1 - DialogFocusItem.Property.PumpLevel);
+	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 650) && (MouseY <= 705) && (DialogFocusItem.Property.PumpLevel > 1)) InventoryItemMouthPumpGagSetPump(1 - DialogFocusItem.Property.PumpLevel);
+	if ((MouseX >= 1200) && (MouseX <= 1400) && (MouseY >= 710) && (MouseY <= 765) && (DialogFocusItem.Property.PumpLevel < 2)) InventoryItemMouthPumpGagSetPump(2 - DialogFocusItem.Property.PumpLevel);
+	if ((MouseX >= 1200) && (MouseX <= 1400) && (MouseY >= 710) && (MouseY <= 765) && (DialogFocusItem.Property.PumpLevel > 2)) InventoryItemMouthPumpGagSetPump(2 - DialogFocusItem.Property.PumpLevel);
+	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 710) && (MouseY <= 765) && (DialogFocusItem.Property.PumpLevel > 3)) InventoryItemMouthPumpGagSetPump(3 - DialogFocusItem.Property.PumpLevel);
+	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 710) && (MouseY <= 765) && (DialogFocusItem.Property.PumpLevel < 3)) InventoryItemMouthPumpGagSetPump(3 - DialogFocusItem.Property.PumpLevel);
+	if ((MouseX >= 1375) && (MouseX <= 1575) && (MouseY >= 770) && (MouseY <= 825) && (DialogFocusItem.Property.PumpLevel < 4)) InventoryItemMouthPumpGagSetPump(4 - DialogFocusItem.Property.PumpLevel);
 }
 
 // Sets the pump gag level
@@ -54,6 +67,5 @@ function InventoryItemMouthPumpGagSetPump(Modifier) {
 	// Reloads the character
 	CharacterLoadEffect(C);
 	if (C.ID == 0) ServerPlayerAppearanceSync();
-	ChatRoomPublishCustomAction(Player.Name + " " + DialogFind(Player, ((Modifier > 0) ? "pumps" : "deflates")) + " " + C.Name + DialogFind(Player, "'s") + " " + DialogFind(Player, "gag") + ".", true);
-
+	ChatRoomPublishCustomAction((DialogFind(Player, "PumpGag" + ((Modifier > 0) ? "pumps" : "deflates") + "To" + DialogFocusItem.Property.PumpLevel)).replace("SourceCharacter",Player.Name).replace("DestinationCharacter",C.Name), true);
 }

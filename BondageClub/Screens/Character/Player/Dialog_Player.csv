@@ -212,6 +212,26 @@ BeltIncreaseTo0,,,DestinationCharacter's vibrating wand starts teasing her light
 BeltIncreaseTo1,,,DestinationCharacter's vibrating wand builds up to a moderate pace.
 BeltIncreaseTo2,,,DestinationCharacter's vibrating wand starts buzzing strongly!
 BeltIncreaseTo3,,,DestinationCharacter's vibrating wand jumps up to maximum intensity!
+BPumpsdeflatesTo0,,,SourceCharacter deflates DestinationCharacter's butt pump till its empty.
+BPumpsdeflatesTo1,,,SourceCharacter deflates DestinationCharacter's butt pump till only slighty filled.
+BPumpsdeflatesTo2,,,SourceCharacter deflates DestinationCharacter's butt pump till it's half full.
+BPumpsdeflatesTo3,,,SourceCharacter deflates DestinationCharacter's butt pump only a tiny bit.
+BPumpspumpsTo1,,,SourceCharacter inflates DestinationCharacter's butt pump only slightly.
+BPumpspumpsTo2,,,SourceCharacter inflates DestinationCharacter's butt pump till half full.
+BPumpspumpsTo3,,,SourceCharacter inflates DestinationCharacter's butt pump three quarters filled.
+BPumpspumpsTo4,,,SourceCharacter inflates DestinationCharacter's butt pump to the maximum amount.
+PumpGagdeflatesTo0,,,SourceCharacter deflates DestinationCharacter's gag fully till it's empty.
+PumpGagdeflatesTo1,,,SourceCharacter deflates DestinationCharacter's gag till only slighty filled.
+PumpGagdeflatesTo2,,,SourceCharacter deflates DestinationCharacter's gag till it's half full.
+PumpGagdeflatesTo3,,,SourceCharacter deflates DestinationCharacter's gag only a tiny bit.
+PumpGagpumpsTo1,,,SourceCharacter inflates DestinationCharacter's gag only slightly.
+PumpGagpumpsTo2,,,SourceCharacter inflates DestinationCharacter's gag till half full.
+PumpGagpumpsTo3,,,SourceCharacter inflates DestinationCharacter's gag three quarters filled.
+PumpGagpumpsTo4,,,SourceCharacter inflates DestinationCharacter's gag to the maximum amount.
+Empty,,,Empty
+Light,,,Light
+Inflated,,,Inflated
+Bloated,,,Bloated
 UseRemote,,,Use Remote
 PlayerGagged,,,(You can use or remove items by selecting specific body regions on yourself.)
 0,,,(You can use or remove items by selecting specific body regions on yourself.)
