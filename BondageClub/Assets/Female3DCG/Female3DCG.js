@@ -439,7 +439,7 @@ var AssetFemale3DCG = [
 			{ Name: "MermaidRopeTie", Value: 30, Time: 15, Difficulty: 3, SetPose: ["LegsClosed"] },
 			{ Name: "LeatherLegCuffs", Value: 30, Time: 10, Difficulty: 2, Priority: 20, AllowPose: ["LegsClosed"], Extended: true, AllowLock: true, AllowEffect: ["Block", "Prone"], AllowType: ["Closed"] },
 			{
-                Name: "LegBinder", Value: 150, SetPose: ["LegsClosed"], Hide: ["Shoes"], Block: ["ClothLower", "ItemFeet"], Effect: ["Prone"], Time: 30, RemoveTime: 20, Difficulty: 15, AllowLock: true, Prerequisite: "NotKneeling",
+                Name: "LegBinder", Value: 150, SetPose: ["LegsClosed"], Hide: ["Shoes", "Socks"], Block: ["ClothLower", "ItemFeet"], Effect: ["Prone"], Time: 30, RemoveTime: 20, Difficulty: 15, AllowLock: true, Prerequisite: "NotKneeling",
                 Layer: [
                     { Name: "Latex", AllowColorize: true },
                     { Name: "Belts", AllowColorize: false }
