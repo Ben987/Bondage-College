@@ -179,6 +179,11 @@ function ServerValidateProperties(C, Item) {
 	}
 }
 
+// checks if asset and bundle item is equal
+function AssetBundleEqual(A, B, AssetFamily) {
+	return (A.Name == B.Name) && (A.Group.Name == B.Group) && (A.Group.Family == AssetFamily);
+}
+
 // Loads the appearance assets from a server bundle that only contains the main info (no assets)
 function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumber) {
 
@@ -188,9 +193,11 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 	// Reapply any item that was equipped and isn't enable, same for owner locked items if the source member isn't the owner
 	if ((SourceMemberNumber != null) && (C.ID == 0))
 		for (var A = 0; A < C.Appearance.length; A++) {
-			if (!C.Appearance[A].Asset.Enable)
+			if (!C.Appearance[A].Asset.Enable) {
 				Appearance.push(C.Appearance[A]);
-			else
+			} else if (InventoryItemHasEffect(C.Appearance[A], "Lock", true) && C.Appearance[A].Asset.PropertyLocked && Bundle.some(B => AssetBundleEqual(C.Appearance[A].Asset, B, AssetFamily)) && InventoryItemHasEffect({ Asset: C.Appearance[A].Asset, Property: Bundle.find(B => AssetBundleEqual(C.Appearance[A].Asset, B, AssetFamily)).Property }, "Lock", true)) { 
+				Appearance.push(C.Appearance[A]);
+			} else {
 				if ((C.Ownership != null) && (C.Ownership.MemberNumber != null) && (C.Ownership.MemberNumber != SourceMemberNumber) && InventoryOwnerOnlyItem(C.Appearance[A])) {
 					var NA = C.Appearance[A];
 					if (!C.Appearance[A].Asset.OwnerOnly) {
@@ -203,6 +210,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 					}
 					Appearance.push(NA);
 				}
+			}
 		}
 
 	// For each appearance item to load
@@ -210,7 +218,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 
 		// Cycles in all assets to find the correct item to add (do not add )
 		for (var I = 0; I < Asset.length; I++)
-			if ((Asset[I].Name == Bundle[A].Name) && (Asset[I].Group.Name == Bundle[A].Group) && (Asset[I].Group.Family == AssetFamily)) {
+			if (AssetBundleEqual(Asset[I], Bundle[A], AssetFamily)) {
 
 				// OwnerOnly items can only get update if it comes from owner
 				if (Asset[I].OwnerOnly && (C.ID == 0)) {
