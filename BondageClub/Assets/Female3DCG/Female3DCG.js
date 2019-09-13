@@ -793,7 +793,7 @@ var AssetFemale3DCG = [
 			{ Name: "CollarChainShort", Value: -1, Random: false, Prerequisite: "CollaredNotSuspended", Time: 5, Difficulty: 6, AllowLock: true, BuyGroup: "CollarChain", SetPose: ["Kneel"], Effect: ["Freeze", "ForceKneel"], ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 15 }, { Group: "Eyebrows", Name: "Soft", Timer: 5 }] },
 			{ Name: "CollarLeash", Value: 30, Random: false, Prerequisite: "Collared", Time: 5, Difficulty: 6, AllowLock: true, ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 15 }] },
 			{ Name: "CollarLeashTaken", Value: -1, Random: false, Prerequisite: "Collared", Time: 5, Difficulty: 6, AllowLock: true, Effect: ["Tethered"], ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 15 }] },
-			{ Name: "CollarNameTag", Value: 30, Random: false, Prerequisite: "Collared", Time: 5, Difficulty: 3, Extended: true, AllowType: ["Bitch", "Cookie", "Kitten", "Love", "Maid", "Muffin", "Pet", "Puppy", "Slave", "Slut", "Sub", "Toy"] }
+			{ Name: "CollarNameTag", Value: 30, Random: false, Prerequisite: "Collared", Time: 5, Difficulty: 3, Extended: true, AllowLock: true, PropertyLocked: true, AllowType: ["Bitch", "Cookie", "Kitten", "Love", "Maid", "Muffin", "Pet", "Puppy", "Slave", "Slut", "Sub", "Toy"] }
 		]
 	},
 

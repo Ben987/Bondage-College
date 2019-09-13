@@ -14,8 +14,8 @@ function InventoryItemNeckAccessoriesCollarNameTagDraw() {
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
 
 	// Draw the possible tags
-	DrawText(DialogFind(Player, "SelectCollarNameTagType"), 1500, 500, "white", "gray");
 	if (!InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
+		DrawText(DialogFind(Player, "SelectCollarNameTagType"), 1500, 500, "white", "gray");
 		if(DialogFocusItem.Property.Type != "Bitch") DrawButton(1165, 650, 200, 55, "Bitch", "White");
 		if(DialogFocusItem.Property.Type != "Cookie") DrawButton(1375, 650, 200, 55, "Cookie", "White");
 		if(DialogFocusItem.Property.Type != "Kitten") DrawButton(1585, 650, 200, 55, "Kitten", "White");
@@ -28,6 +28,9 @@ function InventoryItemNeckAccessoriesCollarNameTagDraw() {
 		if(DialogFocusItem.Property.Type != "Slut") DrawButton(1165, 830, 200, 55, "Slut", "White");
 		if(DialogFocusItem.Property.Type != "Sub") DrawButton(1375, 830, 200, 55, "Sub", "White");
 		if(DialogFocusItem.Property.Type != "Toy") DrawButton(1585, 830, 200, 55, "Toy", "White");
+	}
+	else {
+		DrawText(DialogFind(Player, "SelectCollarNameTagTypeLocked"), 1500, 500, "white", "gray");
 	}
 }
 

@@ -298,6 +298,7 @@ LoveChastityBeltAddShieldMessage,,,SourceCharacter locks shield to DestinationCh
 LoveChastityBeltAddVibeMessage,,,SourceCharacter locks vibe to DestinationCharacter's love chastity belt
 LoveChastityBeltAddShockMessage,,,SourceCharacter locks shock device to DestinationCharacter's love chastity belt
 SelectCollarNameTagType,,,Select what tag you want to use
+SelectCollarNameTagTypeLocked,,,You cannot change the tag while it's locked
 CollarNameTagSetBitch,,,SourceCharacter uses a Bitch name tag on DestinationCharacter's collar.
 CollarNameTagSetCookie,,,SourceCharacter uses a Cookie name tag on DestinationCharacter's collar.
 CollarNameTagSetKitten,,,SourceCharacter uses a Kitten name tag on DestinationCharacter's collar.
