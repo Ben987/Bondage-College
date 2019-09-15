@@ -203,7 +203,7 @@ var AssetFemale3DCG = [
 		Color: ["#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
 		Left: 75,
 		Top: 275,
-		Asset: ["Gloves1", "Gloves2", { Name: "MistressGloves", Value: -1 }]
+		Asset: ["Gloves1", "Gloves2", { Name: "MistressGloves", Value: -1 }, { Name: "KnitFingerlessGloves", Value: 20 }]
 	},
 
 	{
