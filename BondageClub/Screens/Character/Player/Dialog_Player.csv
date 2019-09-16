@@ -102,6 +102,14 @@ LeatherCuffsRestrainNone,,,SourceCharacter detaches the chain from DestinationCh
 LeatherCuffsRestrainWrist,,,SourceCharacter attaches the leather cuffs wrist chain behind DestinationCharacter's back.
 LeatherCuffsRestrainElbow,,,SourceCharacter attaches the leather cuffs elbow chain behind DestinationCharacter's back.
 LeatherCuffsRestrainBoth,,,SourceCharacter attaches the leather cuffs wrist and elbow chains behind DestinationCharacter's back.
+LeatherLegCuffsPoseNone,,,Detached
+LeatherLegCuffsPoseClosed,,,Chain Closed
+LeatherAnkleCuffsPoseNone,,,Detached
+LeatherAnkleCuffsPoseClosed,,,Chain Closed
+LeatherLegCuffsRestrainNone,,,SourceCharacter detaches the chain from DestinationCharacter's leather leg cuffs.
+LeatherLegCuffsRestrainClosed,,,SourceCharacter attaches the leather leg cuffs chain on DestinationCharacter's legs.
+LeatherAnkleCuffsRestrainNone,,,SourceCharacter detaches the chain from DestinationCharacter's leather ankle cuffs.
+LeatherAnkleCuffsRestrainClosed,,,SourceCharacter attaches the leather ankle cuffs chain on DestinationCharacter's ankles.
 StraitJacketSelectTightness,,,How tight do you want to strap the jacket?
 StraitJacketPoseLoose,,,Loose
 StraitJacketPoseNormal,,,Normal
@@ -196,6 +204,34 @@ PantiesIncreaseTo0,,,DestinationCharacter's vibrating latex panties starts teasi
 PantiesIncreaseTo1,,,DestinationCharacter's vibrating latex panties builds up to a moderate pace.
 PantiesIncreaseTo2,,,DestinationCharacter's vibrating latex panties starts buzzing strongly!
 PantiesIncreaseTo3,,,DestinationCharacter's vibrating latex panties jumps up to maximum intensity!
+BeltDecreaseTo-1,,,DestinationCharacter's vibrating wand stops vibrating.
+BeltDecreaseTo0,,,DestinationCharacter's vibrating wand slows down into a light tease.
+BeltDecreaseTo1,,,DestinationCharacter's vibrating wand returns to a moderate pace.
+BeltDecreaseTo2,,,DestinationCharacter's vibrating wand slows down a tiny bit.
+BeltIncreaseTo0,,,DestinationCharacter's vibrating wand starts teasing her lightly.
+BeltIncreaseTo1,,,DestinationCharacter's vibrating wand builds up to a moderate pace.
+BeltIncreaseTo2,,,DestinationCharacter's vibrating wand starts buzzing strongly!
+BeltIncreaseTo3,,,DestinationCharacter's vibrating wand jumps up to maximum intensity!
+BPumpsdeflatesTo0,,,SourceCharacter deflates DestinationCharacter's butt pump till it's empty.
+BPumpsdeflatesTo1,,,SourceCharacter deflates DestinationCharacter's butt pump till only slighty filled.
+BPumpsdeflatesTo2,,,SourceCharacter deflates DestinationCharacter's butt pump till it's half full.
+BPumpsdeflatesTo3,,,SourceCharacter deflates DestinationCharacter's butt pump only a tiny bit.
+BPumpspumpsTo1,,,SourceCharacter inflates DestinationCharacter's butt pump only slightly.
+BPumpspumpsTo2,,,SourceCharacter inflates DestinationCharacter's butt pump till half full.
+BPumpspumpsTo3,,,SourceCharacter inflates DestinationCharacter's butt pump three quarters filled.
+BPumpspumpsTo4,,,SourceCharacter inflates DestinationCharacter's butt pump to the maximum amount.
+PumpGagdeflatesTo0,,,SourceCharacter deflates DestinationCharacter's gag fully till it's empty.
+PumpGagdeflatesTo1,,,SourceCharacter deflates DestinationCharacter's gag till only slighty filled.
+PumpGagdeflatesTo2,,,SourceCharacter deflates DestinationCharacter's gag till it's half full.
+PumpGagdeflatesTo3,,,SourceCharacter deflates DestinationCharacter's gag only a tiny bit.
+PumpGagpumpsTo1,,,SourceCharacter inflates DestinationCharacter's gag only slightly.
+PumpGagpumpsTo2,,,SourceCharacter inflates DestinationCharacter's gag till half full.
+PumpGagpumpsTo3,,,SourceCharacter inflates DestinationCharacter's gag three quarters filled.
+PumpGagpumpsTo4,,,SourceCharacter inflates DestinationCharacter's gag to the maximum amount.
+Empty,,,Empty
+Light,,,Light
+Inflated,,,Inflated
+Bloated,,,Bloated
 UseRemote,,,Use Remote
 PlayerGagged,,,(You can use or remove items by selecting specific body regions on yourself.)
 0,,,(You can use or remove items by selecting specific body regions on yourself.)

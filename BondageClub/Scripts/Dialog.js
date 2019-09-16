@@ -78,6 +78,7 @@ function DialogPrerequisite(D) {
 // Searches for an item in the player inventory to unlock a specific item
 function DialogCanUnlock(C, Item) {
 	if ((Item != null) && (Item.Asset != null) && (Item.Asset.OwnerOnly == true)) return C.IsOwnedByPlayer();
+	if ((Item != null) && (Item.Asset != null) && (Item.Asset.SelfUnlock != null) && (Item.Asset.SelfUnlock == false) && !Player.CanInteract()) return false;
 	if ((Item != null) && (Item.Property != null) && (Item.Property.SelfUnlock != null) && (Item.Property.SelfUnlock == false) && !Player.CanInteract()) return false;
 	if (C.IsOwnedByPlayer() && InventoryAvailable(Player, "OwnerPadlockKey", "ItemMisc")) return true;
 	var UnlockName = "Unlock-" + Item.Asset.Name;
@@ -867,13 +868,14 @@ function DialogDraw() {
 	
 	// If we must show the item/inventory menu
 	if (((Player.FocusGroup != null) || ((CurrentCharacter.FocusGroup != null) && CurrentCharacter.AllowItem)) && (DialogIntro() != "")) {
-		
+
 		// The view can show one specific extended item or the list of all items for a group
-		if (DialogFocusItem != null)
+		if (DialogFocusItem != null) {
 			CommonDynamicFunction("Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Draw()");
-		else
+			DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
+		} else {
 			DialogDrawItemMenu((Player.FocusGroup != null) ? Player : CurrentCharacter);
-		
+		}
 	} else {
 
 		// Draws the intro text or dialog result

@@ -17,7 +17,6 @@ function InventoryItemArmsPaddedMittensHarnessLockedDraw() {
 
 	DrawButton(1100, 700, 375, 65, DialogFind(Player, "UnlockMittens"), "White");
 	DrawButton(1525, 700, 375, 65, DialogFind(Player, "RemoveChain"), "White");
-	DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 }
 
 // Catches the item extension clicks

@@ -62,6 +62,7 @@ function AssetAdd(NewAsset) {
 		Value: (NewAsset.Value == null) ? 0 : NewAsset.Value,
 		Difficulty: (NewAsset.Difficulty == null) ? 0 : NewAsset.Difficulty,
 		SelfBondage: (NewAsset.SelfBondage == null) ? true : NewAsset.SelfBondage,
+		SelfUnlock: (NewAsset.SelfUnlock == null) ? true : NewAsset.SelfUnlock,
 		Random: (NewAsset.Random == null) ? true : NewAsset.Random,
 		RemoveAtLogin: (NewAsset.RemoveAtLogin == null) ? false : NewAsset.RemoveAtLogin,
 		WearTime: (NewAsset.Time == null) ? 0 : NewAsset.Time,

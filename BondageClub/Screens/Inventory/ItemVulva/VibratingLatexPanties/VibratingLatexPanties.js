@@ -22,7 +22,6 @@ function InventoryItemVulvaVibratingLatexPantiesDraw() {
 	if(DialogFocusItem.Property.Intensity < 2) DrawButton(1550, 710, 200, 55, DialogFind(Player, "High"), "White");
 	if(DialogFocusItem.Property.Intensity > 2) DrawButton(1550, 710, 200, 55, DialogFind(Player, "High"), "White");
 	if(DialogFocusItem.Property.Intensity < 3) DrawButton(1375, 770, 200, 55, DialogFind(Player, "Maximum"), "White");
-	DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");	
 }
 
 // Catches the item extension clicks
