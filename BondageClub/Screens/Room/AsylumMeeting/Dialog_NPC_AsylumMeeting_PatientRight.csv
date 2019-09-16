@@ -1,0 +1,10 @@
+PlayerGagged,,,(She giggles.),,
+0,,,(She barely seems to notice that you're there.),,CurrentCharacter.IsBlind()
+0,,,"Hello nurse DialogPlayerName, are you here for my bondage treatment?",,"DialogReputationGreater(""Asylum"", 1)"
+0,,,"Hello Madam, I hope you're having fun in the asylum.",,
+0,,Who are you?,"(She bows her head.)  I'm patient DialogCharacterName, pleased to meet you Madam.",,
+0,,Why are you restrained?,"Mistress sent me here for a bondage therapy.  So long story short, I'm in therapy.",,CurrentCharacter.IsRestrained()
+0,,Can I tie you up?,"(She shakes her head yes.)  Of course nurse DialogPlayerName, it's part of my treatment.",,"DialogReputationGreater(""Asylum"", 1)"
+0,,Can I tie you up?,"(She shakes her head yes.)  Yes Madam, it's part of my treatment.",,"DialogReputationLess(""Asylum"", 0)"
+0,,Can I play with you?,(She shakes her head yes.)  Absolutely.  Mistress said that I belong to the asylum until she gets me back.,,
+0,,I need to run.  (Leave her.),,DialogLeave(),

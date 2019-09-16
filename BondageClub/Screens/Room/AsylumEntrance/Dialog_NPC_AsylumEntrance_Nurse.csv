@@ -30,8 +30,7 @@ FightDefeat,,,"You really thought you could beat me?  You trully are mad, little
 23,24,15 minutes.,"You're taking it easy don't you?  Very well, step inside.  (She locks the door behind you.)","CommitPatient(900000, 1)",
 23,24,1 hour.,"It should give you some time to relax.  Very well, step inside.  (She locks the door behind you.)","CommitPatient(3600000, 3)",
 23,24,4 hours.,"It should give you plenty of time to relax.  Very well, step inside.  (She locks the door behind you.)","CommitPatient(14400000, 6)",
-23,24,1 day.,"Good!  I'll prepare a bed for you, step inside.  (She locks the door behind you.)","CommitPatient(86400000, 9)",
-23,24,1 week.,"Impressive!  That's quite a commitment, step inside.  (She locks the door behind you.)","CommitPatient(604800000, 18)",
+23,24,1 day.,"Impressive!  I'll prepare a bed for you, step inside.  (She locks the door behind you.)","CommitPatient(86400000, 9)",
 24,25,Where do I start?,"The social room is a good place to start, or get to the beds to relax.  Now get going girl.",,"DialogReputationGreater(""Asylum"", -49)"
 24,25,You're locking the door?,"Don't be afraid, it's for your own good.  Now get going girl, you can explore the asylum freely.","DialogChangeReputation(""Dominant"", -2)","DialogReputationGreater(""Asylum"", -49)"
 24,25,Where do I start?,"By wearing this.  (She straps a straitjacket on you.)  Patients like you must be kept under control.  Now carry on, you know the place.","PlayerJacket(""Normal"")","DialogReputationLess(""Asylum"", -50)"
@@ -95,8 +94,8 @@ FightDefeat,,,"You really thought you could beat me?  You trully are mad, little
 141,142,You're mistaken.,"(They quickly jump on you, force you to dress as a patient and strap you tight in a straitjacket.)",Recommit(),
 141,142,What's going on?,"(They quickly jump on you, force you to dress as a patient and strap you tight in a straitjacket.)",Recommit(),
 141,142,(Try to fight them.),"(They quickly overpower you, force you to dress as a patient and strap you tight in a straitjacket.)",Recommit(),
-142,143,What the hell?,"Welcome back patient, I'm sure your next week here will teach you a lesson.",,
-142,143,That's unfair!,"It's very fair.  Welcome back patient, I'm sure your next week here will teach you a lesson.",,
-143,100,One week?  Are you insane?,"From your current look, I'd say you're the insane one.  (She giggles.)  Now carry on, I have work to do.","DialogChangeReputation(""Dominant"", 2)",
+142,143,What the hell?,"Welcome back patient, I'm sure your forced day here will teach you a lesson.",,
+142,143,That's unfair!,"It's very fair.  Welcome back patient, I'm sure your forced day here will teach you a lesson.",,
+143,100,One full day?  Are you insane?,"From your current look, I'd say you're the insane one.  (She giggles.)  Now carry on, I have work to do.","DialogChangeReputation(""Dominant"", 2)",
 143,100,Yes Miss.  (Bow your head.),"Good girl.  (She smirks.)  Now carry on, I have work to do.","DialogChangeReputation(""Dominant"", -3)",
 144,100,Fine.  I'll do it.,"Very well.  (She smiles.)  Now carry on, I have work to do.",,
