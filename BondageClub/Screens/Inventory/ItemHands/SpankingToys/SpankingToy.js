@@ -27,7 +27,7 @@ const SpankingInventory = [
 	}
 ];
 
-var SpankingCurrentType = null;
+var SpankingCurrentType = "Crop";
 var SpankingInventoryOffset = 0;
 var SpankingNextButton = false;
 var SpankingPlayerInventory;

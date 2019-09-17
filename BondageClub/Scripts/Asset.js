@@ -81,6 +81,7 @@ function AssetAdd(NewAsset) {
 		AllowEffect: NewAsset.AllowEffect,
 		AllowBlock: NewAsset.AllowBlock,
 		AllowType: NewAsset.AllowType,
+		DefaultColor: NewAsset.DefaultColor,
 		PropertyLocked: (NewAsset.PropertyLocked == null) ? false : NewAsset.PropertyLocked,
 		IgnoreParentGroup: (NewAsset.IgnoreParentGroup == null)? false: NewAsset.IgnoreParentGroup,
 		DynamicDescription: (typeof NewAsset.DynamicDescription === 'function')? NewAsset.DynamicDescription : function() {return this.Description},

@@ -37,6 +37,7 @@ Bra,Corset1,Corset + Garters
 Bra,Corset2,Corset
 Bra,Corset3,Half Cup Corset
 Bra,Corset4,Under Bust Corset
+Bra,Bikini1,Frilled Bikini
 Bra,Swimsuit1,Swimsuit style 1
 Bra,Swimsuit2,Swimsuit style 2
 Bra,BunnySuit,Bunny Girl Bodysuit
@@ -49,6 +50,7 @@ Panties,Panties12,String Bikini
 Panties,Panties13,Satin Bikini
 Panties,Panties14,High Cut
 Panties,Panties15,Thong
+Panties,Bikini1,Frilled Bikini
 Panties,Diapers1,Diapers
 Socks,,Socks
 Socks,Socks1,Short
@@ -305,6 +307,7 @@ ItemNeckAccessories,CollarChainLong,Long Chain
 ItemNeckAccessories,CollarChainShort,Short Chain
 ItemNeckAccessories,CollarLeash,Leash
 ItemNeckAccessories,CollarLeashTaken,Pulled Leash
+ItemNeckAccessories,CollarNameTag,Name Tag
 ItemMouth,,Mouth
 ItemMouth,ClothGag,Cloth Gag
 ItemMouth,WiffleGag,Wiffle Ball Gag
@@ -354,6 +357,7 @@ ItemMisc,WoodenMaidTrayFull,Wooden Maid Tray Full
 ItemMisc,WoodenPaddle,Wooden Paddle
 ItemDevices,,Body
 ItemDevices,WoodenBox,Wooden Box
+ItemDevices,SmallWoodenBox,Small Wooden Box
 ItemDevices,MilkCan,Water filled milk can 
 ItemDevices,WaterCell,Water torture Cell
 ItemDevices,Cage,Stand up cage
