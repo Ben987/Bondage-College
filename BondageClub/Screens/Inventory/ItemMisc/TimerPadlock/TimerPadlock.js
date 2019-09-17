@@ -9,7 +9,6 @@ function InventoryItemMiscTimerPadlockLoad() {
 // Draw the extension screen
 function InventoryItemMiscTimerPadlockDraw() {
 	if ((DialogFocusItem == null) || (DialogFocusSourceItem.Property.RemoveTimer < CurrentTime)) { InventoryItemMiscTimerPadlockExit(); return; }
-	DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 	DrawText(DialogFind(Player, "TimerLeft") + " " + TimerToString(DialogFocusSourceItem.Property.RemoveTimer - CurrentTime), 1500, 150, "white", "gray");
 	DrawRect(1387, 225, 225, 275, "white");
 	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);

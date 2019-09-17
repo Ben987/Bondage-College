@@ -1,4 +1,4 @@
-TrainingEnd,,,(A maids comes to inform you that the training session is over and you must free the room.),,
+TrainingEnd,,,"(A maid comes to inform you that the training session is over, and you must free the room.)",,
 0,,,(The girl that you should train bows her head and doesn't dare to speak.),,
 0,10,Are you here to be trained?,"Yes Miss, I want to become a better submissive.",,
 0,10,You're in trouble girl.,(She trembles a little.)  I know.  I want to become a better submissive Miss.,"DialogChangeReputation(""Dominant"", 2)",
@@ -23,21 +23,21 @@ TrainingEnd,,,(A maids comes to inform you that the training session is over and
 300,,,(The slave that you should train bows her head and doesn't dare to speak.),,
 300,310,Are you here to be trained?,"Yes Miss, my Mistress sent me here to become a better submissive.",,
 300,310,You're in trouble girl.,(She trembles a little.)  I know.  My Mistress sent me here to become a better submissive.,"DialogChangeReputation(""Dominant"", 2)",
-300,310,Why did your owner sent you here?,My Mistress sent me here to become a better submissive.,,
-310,,What does she wants to improve?,I panic when I'm restrained and blindfolded.  Mistress is sick of that.  Can you help me?,DialogRemove(),
+300,310,Why did your owner send you here?,My Mistress sent me here to become a better submissive.,,
+310,,What does she want to improve?,I panic when I'm restrained and blindfolded.  Mistress is sick of that.  Can you help me?,DialogRemove(),
 310,,I could train you today.,"Thanks Miss, I know that if you restrain me slowly, I can overcome my claustrophobia.",DialogRemove(),
 310,1000,Let's start your training.,"Very well Miss, my Mistress will be thankful.  (How will you train her?)",,
 400,,,(The slave that you should train bows her head and doesn't dare to speak.),,
 400,410,Are you here to be trained?,"Yes Miss, my Mistress sent me here to become a better submissive.",,
 400,410,You're in trouble girl.,(She trembles a little.)  I know.  My Mistress sent me here to become a better submissive.,"DialogChangeReputation(""Dominant"", 2)",
-400,410,Why did your owner sent you here?,My Mistress sent me here to become a better submissive.,,
+400,410,Why did your owner send you here?,My Mistress sent me here to become a better submissive.,,
 410,,What do you want to improve?,I'm scared of pain and I don't handle it very well.  Mistress sent me here to get better with that.,DialogRemove(),
 410,,I could train you today.,"Thanks Miss, I know that if you hurt me gently and progressively, I can improve myself.",DialogRemove(),
 410,1000,Let's start your training.,"Very well Miss, my Mistress will be thankful.  (How will you train her?)",,
 500,,,(The slave that you should train bows her head and doesn't dare to speak.),,
 500,510,Are you here to be trained?,"Yes Miss, my Mistress sent me here to become a better submissive.",,
 500,510,You're in trouble girl.,(She trembles a little.)  I know.  My Mistress sent me here to become a better submissive.,"DialogChangeReputation(""Dominant"", 2)",
-500,510,Why did your owner sent you here?,My Mistress sent me here to become a better submissive.,,
+500,510,Why did your owner send you here?,My Mistress sent me here to become a better submissive.,,
 510,,What do you want to improve?,(She blushes.)  Mistress says that I can't control my orgasm and I cum without permission.  Can you help me with that?,DialogRemove(),
 510,,I could train you today.,"Thanks Miss, I know that I can learn to control my sexual self-control in your hands.  Mistress will appreciate.",DialogRemove(),
 510,1000,Let's start your training.,"Very well Miss, my Mistress will be thankful.  (How will you train her?)",,
@@ -51,10 +51,10 @@ TrainingEnd,,,(A maids comes to inform you that the training session is over and
 1100,,(Check on her well-being.),(She barely struggles and seems to be in control.),,"SlaveMarketTrainingLevelIs(""Low"")"
 1100,,(Check on her well-being.),"(She struggles a little and seems to be in a good learning mood, both in control and on the edge at the same time.)",,"SlaveMarketTrainingLevelIs(""Perfect"")"
 1100,,(Check on her well-being.),(She struggles a lot and seems to be panicking.),,"SlaveMarketTrainingLevelIs(""High"")"
-1100,,(Check on her well-being.),"(She struggles frenzily, cries and begs for freedom like an animal.)",,"SlaveMarketTrainingLevelIs(""Highest"")"
+1100,,(Check on her well-being.),"(She struggles frantically, cries and begs for freedom like an animal.)",,"SlaveMarketTrainingLevelIs(""Highest"")"
 1100,,(Loosen her restraints.),(She seems comforted as you loosen her restraints.),SlaveMarketTrainingProgress(-1),
 1100,,(Tease and grope her.),(She moans silently as you slowly tease and grope her.),SlaveMarketTrainingProgress(1),
-1100,,(Tighten her restraints.),(She whimpers a little as you thighten her restrains.),SlaveMarketTrainingProgress(3),
+1100,,(Tighten her restraints.),(She whimpers a little as you tighten her restrains.),SlaveMarketTrainingProgress(3),
 1100,,(Slap her.),"(She cowers as you slap her hard, trembling from her helpless pain.)",SlaveMarketTrainingProgress(5),
 1100,,(Tighten to stop her blood circulation.),"(She struggles and screams in the gag as her bondage gets really tight and cuts her blood flow, making her dizzy.)",SlaveMarketTrainingProgress(7),
 1100,,(Give up and go back.),,"SlaveMarketTrainingEnd(""Fail"")",
@@ -62,7 +62,7 @@ TrainingEnd,,,(A maids comes to inform you that the training session is over and
 1200,,(Check on her pain threshold.),(She looks like in a little bit of pain but nothing extreme.),,"SlaveMarketTrainingLevelIs(""Low"")"
 1200,,(Check on her pain threshold.),(She breathes fast and aches from the pain but seems to be well-focused on your training.),,"SlaveMarketTrainingLevelIs(""Perfect"")"
 1200,,(Check on her pain threshold.),"(She cries from the intense pain and cowers at your every move, in a state of panic.)",,"SlaveMarketTrainingLevelIs(""High"")"
-1200,,(Check on her pain threshold.),(She has large marks on her skin and is almost passed-out.  The intense pain makes her barely consious.),,"SlaveMarketTrainingLevelIs(""Highest"")"
+1200,,(Check on her pain threshold.),(She has large marks on her skin and is almost passed-out.  The intense pain makes her barely conscious.),,"SlaveMarketTrainingLevelIs(""Highest"")"
 1200,,(Take time to comfort her.),(She seems comforted as you take time to calm her down.),SlaveMarketTrainingProgress(-1),
 1200,,(Spank her.),(You spank her a few times as her eyes widen a little with each swing.),SlaveMarketTrainingProgress(1),
 1200,,(Crop her.),(She whimpers and jumps with each crop swing.),SlaveMarketTrainingProgress(3),"DialogInventoryAvailable(""LeatherCrop"", ""ItemPelvis"")"
@@ -78,7 +78,7 @@ TrainingEnd,,,(A maids comes to inform you that the training session is over and
 1300,,(Kiss her.),(You kiss her lovingly to keep her in the mood.),SlaveMarketTrainingProgress(1),CurrentCharacter.CanTalk()
 1300,,(Massage her breast.),(You massage her breast slowly as she moans from the pleasure.),SlaveMarketTrainingProgress(3),!CurrentCharacter.IsBreastChaste()
 1300,,(Masturbate her.),(You masturbate her skillfully as she moans loudly from the pleasure.),SlaveMarketTrainingProgress(5),!CurrentCharacter.IsVulvaChaste()
-1300,,(Eat her.),(She screams from the incontrollable pleasure as you eat her pussy with delight.),SlaveMarketTrainingProgress(7),!CurrentCharacter.IsVulvaChaste()
+1300,,(Eat her.),(She screams from the uncontrollable pleasure as you eat her pussy with delight.),SlaveMarketTrainingProgress(7),!CurrentCharacter.IsVulvaChaste()
 1300,,(Give up and go back.),,"SlaveMarketTrainingEnd(""Fail"")",
 1900,1901,Your training is done.,(She nods happily and seems to have learned from you.  Your training had positive effects.),,CurrentCharacter.CanTalk()
 1900,1901,Next time it will be harsher.,(She gulps but seems to have learned from you.  Your training had positive effects.),"DialogChangeReputation(""Dominant"", 3)",CurrentCharacter.CanTalk()
@@ -90,10 +90,10 @@ TrainingEnd,,,(A maids comes to inform you that the training session is over and
 1910,1911,(Stare at the trained girl.),"(She trembles without much control and panics a little, your training was too intense.)","DialogChangeReputation(""Dominant"", 3)",
 1910,1911,(Spank her one last time.),"(She trembles without much control and panics a little, your training was too intense.)","DialogChangeReputation(""Dominant"", 6)",
 1911,,(Back to the slave market.),,"SlaveMarketTrainingEnd(""Fail"")",
-1920,1921,Your training is done.,"(She shurgs and doesn't seem very affected, your training was too easy for her.)","DialogChangeReputation(""Dominant"", -1)",CurrentCharacter.CanTalk()
-1920,1921,Next time it will be harsher.,"(She giggles and doesn't seem very affected, your training was too easy for her.)",,CurrentCharacter.CanTalk()
-1920,1921,(Stare at the trained girl.),"(She shurgs and doesn't seem very affected, your training was too easy for her.)","DialogChangeReputation(""Dominant"", -1)",
-1920,1921,(Spank her one last time.),"(She giggles and doesn't seem very affected, your training was too easy for her.)",,
+1920,1921,Your training is done.,(She shrugs and doesn't seem very affected.  Your training was too easy for her.),"DialogChangeReputation(""Dominant"", -1)",CurrentCharacter.CanTalk()
+1920,1921,Next time it will be harsher.,(She giggles and doesn't seem very affected.  Your training was too easy for her.),,CurrentCharacter.CanTalk()
+1920,1921,(Stare at the trained girl.),(She shrugs and doesn't seem very affected.  Your training was too easy for her.),"DialogChangeReputation(""Dominant"", -1)",
+1920,1921,(Spank her one last time.),(She giggles and doesn't seem very affected.  Your training was too easy for her.),,
 1921,,(Back to the slave market.),,"SlaveMarketTrainingEnd(""Fail"")",
 1930,1931,Your training is done.,"(She seems confused from your training session, it's probably not what she needed.)","DialogChangeReputation(""Dominant"", -1)",CurrentCharacter.CanTalk()
 1930,1931,Next time it will be harsher.,"(She seems confused from your training session, it's probably not what she needed.)",,CurrentCharacter.CanTalk()

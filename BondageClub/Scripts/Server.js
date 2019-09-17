@@ -6,22 +6,22 @@ var ServerBeep = {};
 // Loads the server events
 function ServerInit() {
 	ServerSocket = io(ServerURL);
-	ServerSocket.on("ServerMessage", function (data) { console.log(data) });
-	ServerSocket.on("ServerInfo", function (data) { ServerInfo(data) });
-	ServerSocket.on("CreationResponse", function (data) { CreationResponse(data) });
-	ServerSocket.on("LoginResponse", function (data) { LoginResponse(data) });
-	ServerSocket.on("disconnect", function (data) { ServerDisconnect() } );
-	ServerSocket.on("ForceDisconnect", function (data) { ServerDisconnect(data) } );
-	ServerSocket.on("ChatRoomSearchResult", function (data) { ChatSearchResult = data; } );
-	ServerSocket.on("ChatRoomSearchResponse", function (data) { ChatSearchResponse(data); } );
-	ServerSocket.on("ChatRoomCreateResponse", function (data) { ChatCreateResponse(data); } );
-	ServerSocket.on("ChatRoomSync", function (data) { ChatRoomSync(data); } );
-	ServerSocket.on("ChatRoomMessage", function (data) { ChatRoomMessage(data); } );
-	ServerSocket.on("ChatRoomAllowItem", function (data) { ChatRoomAllowItem(data); } );
-	ServerSocket.on("PasswordResetResponse", function (data) { PasswordResetResponse(data); } );
-	ServerSocket.on("AccountQueryResult", function (data) { ServerAccountQueryResult(data); } );
-	ServerSocket.on("AccountBeep", function (data) { ServerAccountBeep(data); } );
-	ServerSocket.on("AccountOwnership", function (data) { ServerAccountOwnership(data); } );
+	ServerSocket.on("ServerMessage", function (data) { console.log(data); });
+	ServerSocket.on("ServerInfo", function (data) { ServerInfo(data); });
+	ServerSocket.on("CreationResponse", function (data) { CreationResponse(data); });
+	ServerSocket.on("LoginResponse", function (data) { LoginResponse(data); });
+	ServerSocket.on("disconnect", function (data) { ServerDisconnect(); });
+	ServerSocket.on("ForceDisconnect", function (data) { ServerDisconnect(data); });
+	ServerSocket.on("ChatRoomSearchResult", function (data) { ChatSearchResult = data; });
+	ServerSocket.on("ChatRoomSearchResponse", function (data) { ChatSearchResponse(data); });
+	ServerSocket.on("ChatRoomCreateResponse", function (data) { ChatCreateResponse(data); });
+	ServerSocket.on("ChatRoomSync", function (data) { ChatRoomSync(data); });
+	ServerSocket.on("ChatRoomMessage", function (data) { ChatRoomMessage(data); });
+	ServerSocket.on("ChatRoomAllowItem", function (data) { ChatRoomAllowItem(data); });
+	ServerSocket.on("PasswordResetResponse", function (data) { PasswordResetResponse(data); });
+	ServerSocket.on("AccountQueryResult", function (data) { ServerAccountQueryResult(data); });
+	ServerSocket.on("AccountBeep", function (data) { ServerAccountBeep(data); });
+	ServerSocket.on("AccountOwnership", function (data) { ServerAccountOwnership(data); });
 }
 
 // When the server sends some information to the client, we keep it in variables
@@ -32,7 +32,7 @@ function ServerInfo(data) {
 
 // When the server disconnects, we go back to the login screen
 function ServerDisconnect(data) {
-	if (Player.Name != "" ) window.location = window.location;
+	if (Player.Name != "") window.location = window.location;
 	else if (CurrentScreen == "Login") LoginMessage = TextGet((data != null) ? data : "ErrorDisconnectedFromServer");
 }
 
@@ -43,14 +43,14 @@ function ServerSend(Message, Data) {
 
 // Syncs some player information to the server
 function ServerPlayerSync() {
-	ServerSend("AccountUpdate", {Money: Player.Money, Owner: Player.Owner, Lover: Player.Lover});
+	ServerSend("AccountUpdate", { Money: Player.Money, Owner: Player.Owner, Lover: Player.Lover });
 }
 
 // Syncs the full player inventory to the server
 function ServerPlayerInventorySync() {
 	var D = {};
 	D.Inventory = [];
-	for(var I = 0; I < Player.Inventory.length; I++)
+	for (var I = 0; I < Player.Inventory.length; I++)
 		if (Player.Inventory[I].Asset != null)
 			D.Inventory.push({ Name: Player.Inventory[I].Asset.Name, Group: Player.Inventory[I].Asset.Group.Name });
 	ServerSend("AccountUpdate", D);
@@ -99,7 +99,7 @@ function ServerValidateProperties(C, Item) {
 	if ((C.AccountName.substring(0, 4) == "NPC_") || (C.AccountName.substring(0, 4) == "NPC-")) return;
 
 	// For each effect on the item
-	if ((Item.Property != null) && (Item.Property.Effect != null))
+	if ((Item.Property != null) && (Item.Property.Effect != null)) {
 		for (var E = 0; E < Item.Property.Effect.length; E++) {
 
 			// Make sure the item can be locked, remove any lock that's invalid
@@ -150,11 +150,11 @@ function ServerValidateProperties(C, Item) {
 				}
 
 			}
-
 		}
+	}
 
 	// For each block on the item
-	if ((Item.Property != null) && (Item.Property.Block != null))
+	if ((Item.Property != null) && (Item.Property.Block != null)) {
 		for (var B = 0; B < Item.Property.Block.length; B++) {
 
 			// Check if the effect is allowed for the item
@@ -169,9 +169,14 @@ function ServerValidateProperties(C, Item) {
 				Item.Property.Block.splice(B, 1);
 				B--;
 			}
-
 		}
-		
+	}
+
+	if ((Item.Property != null) && (Item.Property.Type != null)) {
+		if ((Item.Asset.AllowType == null) || (Item.Asset.AllowType.indexOf(Item.Property.Type) < 0)) {
+			delete Item.Property.Type;
+		}
+	}
 }
 
 // Loads the appearance assets from a server bundle that only contains the main info (no assets)
@@ -187,16 +192,16 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 				Appearance.push(C.Appearance[A]);
 			else
 				if ((C.Ownership != null) && (C.Ownership.MemberNumber != null) && (C.Ownership.MemberNumber != SourceMemberNumber) && InventoryOwnerOnlyItem(C.Appearance[A])) {
-
-					// If the owner-locked item is sent back from a non-owner, we allow to change some properties and lock it back with the owner lock
 					var NA = C.Appearance[A];
-					for (var B = 0; B < Bundle.length; B++)
-						if ((C.Appearance[A].Asset.Name == Bundle[B].Name) && (C.Appearance[A].Asset.Group.Name == Bundle[B].Group) && (C.Appearance[A].Asset.Group.Family == AssetFamily))
-							NA.Property = Bundle[B].Property;
-					ServerValidateProperties(C, NA);
-					InventoryLock(C, NA, { Asset: AssetGet(AssetFamily, "ItemMisc", "OwnerPadlock")}, C.Ownership.MemberNumber);
+					if (!C.Appearance[A].Asset.OwnerOnly) {
+						// If the owner-locked item is sent back from a non-owner, we allow to change some properties and lock it back with the owner lock
+						for (var B = 0; B < Bundle.length; B++)
+							if ((C.Appearance[A].Asset.Name == Bundle[B].Name) && (C.Appearance[A].Asset.Group.Name == Bundle[B].Group) && (C.Appearance[A].Asset.Group.Family == AssetFamily))
+								NA.Property = Bundle[B].Property;
+						ServerValidateProperties(C, NA);
+						InventoryLock(C, NA, { Asset: AssetGet(AssetFamily, "ItemMisc", "OwnerPadlock") }, C.Ownership.MemberNumber);
+					}
 					Appearance.push(NA);
-
 				}
 		}
 
@@ -207,11 +212,21 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 		for (var I = 0; I < Asset.length; I++)
 			if ((Asset[I].Name == Bundle[A].Name) && (Asset[I].Group.Name == Bundle[A].Group) && (Asset[I].Group.Family == AssetFamily)) {
 
+				// OwnerOnly items can only get update if it comes from owner
+				if (Asset[I].OwnerOnly && (C.ID == 0)) {
+					if ((C.Ownership == null) || (C.Ownership.MemberNumber == null) || ((C.Ownership.MemberNumber != SourceMemberNumber) && (SourceMemberNumber != null))) break;
+				}
+
 				// Creates the item and colorize it
 				var NA = {
 					Asset: Asset[I],
 					Difficulty: parseInt((Bundle[A].Difficulty == null) ? 0 : Bundle[A].Difficulty),
-					Color: (Bundle[A].Color == null) ? "Default" : Bundle[A].Color
+					Color: ((Bundle[A].Color == null) || (typeof Bundle[A].Color !== 'string')) ? "Default" : Bundle[A].Color
+				}
+
+				// Validate color string, fallback to default in case of an invalid color
+				if ((NA.Color != "Default") && (/^#(?:[0-9a-f]{3}){1,2}$/i.test(NA.Color) == false) && (NA.Asset.Group.ColorSchema.indexOf(NA.Color) < 0)) {
+					NA.Color = NA.Asset.Group.ColorSchema[0];
 				}
 
 				// Sets the item properties and make sure a non-owner cannot add an owner lock
@@ -255,7 +270,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 			if (!Found)
 				for (var I = 0; I < Asset.length; I++)
 					if (Asset[I].Group.Name == AssetGroup[G].Name) {
-						Appearance.push({ Asset: Asset[I], Color: "Default"});
+						Appearance.push({ Asset: Asset[I], Color: "Default" });
 						break;
 					}
 
@@ -266,14 +281,14 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 
 // Syncs the player appearance with the server
 function ServerPlayerAppearanceSync() {
-	
+
 	// Creates a big parameter string of every appearance items and sends it to the server
 	if (Player.AccountName != "") {
 		var D = {};
 		D.AssetFamily = Player.AssetFamily;
 		D.Appearance = ServerAppearanceBundle(Player.Appearance);
 		ServerSend("AccountUpdate", D);
-	}	
+	}
 
 }
 
@@ -282,7 +297,7 @@ function ServerPrivateCharacterSync() {
 	if (PrivateVendor != null) {
 		var D = {};
 		D.PrivateCharacter = [];
-		for(var ID = 1; ID < PrivateCharacter.length; ID++) {
+		for (var ID = 1; ID < PrivateCharacter.length; ID++) {
 			var C = {
 				Name: PrivateCharacter[ID].Name,
 				Love: PrivateCharacter[ID].Love,
@@ -298,7 +313,7 @@ function ServerPrivateCharacterSync() {
 			};
 			D.PrivateCharacter.push(C);
 		}
-		ServerSend("AccountUpdate", D);		
+		ServerSend("AccountUpdate", D);
 	}
 };
 
@@ -317,7 +332,10 @@ function ServerAccountBeep(data) {
 		ServerBeep.ChatRoomName = data.ChatRoomName;
 		ServerBeep.Timer = CurrentTime + 10000;
 		ServerBeep.Message = DialogFind(Player, "BeepFrom") + " " + ServerBeep.MemberName + " (" + ServerBeep.MemberNumber.toString() + ")";
-		if (ServerBeep.ChatRoomName != null) ServerBeep.Message = ServerBeep.Message + " " + DialogFind(Player, "InRoom") + " \"" + ServerBeep.ChatRoomName + "\"";
+		if (ServerBeep.ChatRoomName != null)
+			ServerBeep.Message = ServerBeep.Message + " " + DialogFind(Player, "InRoom") + " \"" + ServerBeep.ChatRoomName + "\"";
+		FriendListBeepLog.push({ MemberNumber: data.MemberNumber, MemberName: data.MemberName, ChatRoomName: data.ChatRoomName, Sent: false, Time: new Date() });
+		if (CurrentScreen == "FriendList") ServerSend("AccountQuery", { Query: "OnlineFriends" });
 	}
 }
 
@@ -328,7 +346,7 @@ function ServerDrawBeep() {
 
 // Gets the account ownership result from the query sent to the server
 function ServerAccountOwnership(data) {
-	
+
 	// If we get a result for a specific member number, we show that option in the online dialog
 	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.MemberNumber != null) && (typeof data.MemberNumber === "number") && (data.Result != null) && (typeof data.Result === "string"))
 		if ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber == data.MemberNumber))

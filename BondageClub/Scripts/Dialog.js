@@ -77,7 +77,10 @@ function DialogPrerequisite(D) {
 
 // Searches for an item in the player inventory to unlock a specific item
 function DialogCanUnlock(C, Item) {
+	if ((Item != null) && (Item.Asset != null) && (Item.Asset.OwnerOnly == true)) return C.IsOwnedByPlayer();
+	if ((Item != null) && (Item.Asset != null) && (Item.Asset.SelfUnlock != null) && (Item.Asset.SelfUnlock == false) && !Player.CanInteract()) return false;
 	if ((Item != null) && (Item.Property != null) && (Item.Property.SelfUnlock != null) && (Item.Property.SelfUnlock == false) && !Player.CanInteract()) return false;
+	if (C.IsOwnedByPlayer() && InventoryAvailable(Player, "OwnerPadlockKey", "ItemMisc")) return true;
 	var UnlockName = "Unlock-" + Item.Asset.Name;
 	if ((Item != null) && (Item.Property != null) && (Item.Property.LockedBy != null)) UnlockName = "Unlock-" + Item.Property.LockedBy;
 	for (var I = 0; I < Player.Inventory.length; I++)
@@ -148,11 +151,15 @@ function DialogLeaveItemMenu() {
 	DialogInventory = null;
 	DialogProgress = -1;
 	DialogColor = null;
+	DialogMenuButton = [];
 	ElementRemove("InputColor");
 }
 
 // Adds the item in the dialog list
-function DialogInventoryAdd(NewInv, NewInvWorn) {
+function DialogInventoryAdd(C, NewInv, NewInvWorn) {
+
+	// Make sure we do not add owneronly items in case of not owned characters
+	if (NewInv.Asset.OwnerOnly && !C.IsOwnedByPlayer() && NewInvWorn != true) return;
 
 	// Make sure we do not duplicate the item
 	for(var I = 0; I < DialogInventory.length; I++)
@@ -214,21 +221,21 @@ function DialogInventoryBuild(C) {
 		// First, we add anything that's currently equipped
 		var Item = null;
 		for(var A = 0; A < C.Appearance.length; A++)
-			if (C.Appearance[A].Asset.Group.Name == C.FocusGroup.Name) {
-				DialogInventoryAdd(C.Appearance[A], true);
+			if ((C.Appearance[A].Asset.Group.Name == C.FocusGroup.Name) && (C.Appearance[A].Asset.DynamicAllowInventoryAdd())) {
+				DialogInventoryAdd(C, C.Appearance[A], true, true);
 				break;
 			}
 
 		// Second, we add everything from the victim inventory
 		for(var A = 0; A < C.Inventory.length; A++)
-			if ((C.Inventory[A].Asset != null) && (C.Inventory[A].Asset.Group.Name == C.FocusGroup.Name))
-				DialogInventoryAdd(C.Inventory[A], false);
+			if ((C.Inventory[A].Asset != null) && (C.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && (C.Inventory[A].Asset.DynamicAllowInventoryAdd()))
+				DialogInventoryAdd(C, C.Inventory[A], false);
 			
 		// Third, we add everything from the player inventory if the player isn't the victim
 		if (C.ID != 0)
 			for(var A = 0; A < Player.Inventory.length; A++)
-				if ((Player.Inventory[A].Asset != null) && (Player.Inventory[A].Asset.Group.Name == C.FocusGroup.Name))
-					DialogInventoryAdd(Player.Inventory[A], false);
+				if ((Player.Inventory[A].Asset != null) && (Player.Inventory[A].Asset.Group.Name == C.FocusGroup.Name && Player.Inventory[A].Asset.DynamicAllowInventoryAdd()))
+					DialogInventoryAdd(C, Player.Inventory[A], false);
 		DialogMenuButtonBuild(C);
 
 	}
@@ -381,20 +388,20 @@ function DialogMenuButtonClick() {
 			}
 
 			// Use Icon - Pops the item extension for the focused item
-			if (DialogMenuButton[I] == "Use") {
+			if ((DialogMenuButton[I] == "Use") && (Item != null)) {
 				DialogExtendItem(Item);
 				return;
 			}
 
 			// Remote Icon - Pops the item extension
-			if (DialogMenuButton[I] == "Remote") {
+			if ((DialogMenuButton[I] == "Remote") && (Item != null)) {
 				if (InventoryItemHasEffect(Item, "Egged") && InventoryAvailable(Player, "VibratorRemote", "ItemVulva"))
 					DialogExtendItem(Item);
 				return;
 			}
 
 			// Lock Icon - Rebuilds the inventory list with locking items
-			if (DialogMenuButton[I] == "Lock") {
+			if ((DialogMenuButton[I] == "Lock") && (Item != null)) {
 				if (DialogItemToLock == null) {
 					if ((Item != null) && (Item.Asset.AllowLock != null)) {
 						DialogInventoryOffset = 0;
@@ -402,8 +409,7 @@ function DialogMenuButtonClick() {
 						DialogItemToLock = Item;
 						for (var A = 0; A < Player.Inventory.length; A++)
 							if ((Player.Inventory[A].Asset != null) && Player.Inventory[A].Asset.IsLock)
-								if ((Player.Inventory[A].Asset.OwnerOnly == false) || C.IsOwnedByPlayer())
-									DialogInventoryAdd(Player.Inventory[A], false);
+								DialogInventoryAdd(C, Player.Inventory[A], false);
 					}
 				} else {
 					DialogItemToLock = null;
@@ -413,13 +419,13 @@ function DialogMenuButtonClick() {
 			}
 
 			// Unlock/Remove/Struggle Icon - Starts the struggling mini-game (can be impossible to complete)
-			if ((DialogMenuButton[I] == "Unlock") || (DialogMenuButton[I] == "Remove") || (DialogMenuButton[I] == "Struggle")) {
+			if (((DialogMenuButton[I] == "Unlock") || (DialogMenuButton[I] == "Remove") || (DialogMenuButton[I] == "Struggle")) && (Item != null)) {
 				DialogProgressStart(C, Item, null);
 				return;
 			}
 
 			// When the player inspects a lock
-			if (DialogMenuButton[I] == "InspectLock") {
+			if ((DialogMenuButton[I] == "InspectLock") && (Item != null)) {
 				var Lock = InventoryGetLock(Item);
 				if (Lock != null) DialogExtendItem(Lock, Item);
 				return;
@@ -740,8 +746,8 @@ function DialogDrawItemMenu(C) {
 			var Item = DialogInventory[I];
 			DrawRect(X, Y, 225, 275, ((MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275) && !CommonIsMobile) ? "cyan" : DialogInventory[I].Worn ? "pink" : "white");
 			if (Item.Worn && InventoryItemHasEffect(InventoryGet(C, Item.Asset.Group.Name), "Vibrating", true)) DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.Group.Name + "/Preview/" + Item.Asset.Name + ".png", X + Math.floor(Math.random() * 3) + 1, Y + Math.floor(Math.random() * 3) + 1, 221, 221);
-			else DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.Group.Name + "/Preview/" + Item.Asset.Name + ".png", X + 2, Y + 2, 221, 221);
-			DrawTextFit(Item.Asset.Description, X + 112, Y + 250, 221, "black");
+			else DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.Group.Name + "/Preview/" + Item.Asset.Name + Item.Asset.DynamicPreviewIcon() + ".png", X + 2, Y + 2, 221, 221);
+			DrawTextFit(Item.Asset.DynamicDescription(), X + 112, Y + 250, 221, "black");
 			if (Item.Icon != "") DrawImage("Icons/" + Item.Icon + ".png", X + 2, Y + 110);
 			X = X + 250;
 			if (X > 1800) {
@@ -843,6 +849,13 @@ function DialogFind(C, KeyWord1, KeyWord2, ReturnPrevious) {
 	return ((ReturnPrevious == null) || ReturnPrevious) ? C.CurrentDialog : "";
 }
 
+// Searches in the dialog for a specific stage keyword and returns that dialog option if we find it and replace the names
+function DialogFindAutoReplace(C, KeyWord1, KeyWord2, ReturnPrevious) {
+	return DialogFind(C, KeyWord1, KeyWord2, ReturnPrevious)
+		.replace("SourceCharacter", Player.Name)
+		.replace("DestinationCharacter", CharacterGetCurrent().Name);
+}
+
 // Draw all the possible interactions 
 function DialogDraw() {
 
@@ -855,13 +868,14 @@ function DialogDraw() {
 	
 	// If we must show the item/inventory menu
 	if (((Player.FocusGroup != null) || ((CurrentCharacter.FocusGroup != null) && CurrentCharacter.AllowItem)) && (DialogIntro() != "")) {
-		
+
 		// The view can show one specific extended item or the list of all items for a group
-		if (DialogFocusItem != null)
+		if (DialogFocusItem != null) {
 			CommonDynamicFunction("Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Draw()");
-		else
+			DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
+		} else {
 			DialogDrawItemMenu((Player.FocusGroup != null) ? Player : CurrentCharacter);
-		
+		}
 	} else {
 
 		// Draws the intro text or dialog result

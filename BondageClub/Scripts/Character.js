@@ -33,7 +33,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		CanWalk : function() { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("Tethered") < 0) && ((this.Pose == null) || (this.Pose.indexOf("Kneel") < 0) || (this.Effect.indexOf("KneelFreeze") < 0))) },
 		CanKneel : function() { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("ForceKneel") < 0) && ((this.Pose == null) || (this.Pose.indexOf("LegsClosed") < 0))) },
 		CanInteract : function() { return (this.Effect.indexOf("Block") < 0) },
-		CanChange : function() { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("Block") < 0) && (this.Effect.indexOf("Prone") < 0) && !LogQuery("BlockChange", "Rule")) },
+		CanChange : function() { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("Block") < 0) && (this.Effect.indexOf("Prone") < 0) && !LogQuery("BlockChange", "Rule") && (!LogQuery("BlockChange", "OwnerRule") || (Player.Ownership == null) || (Player.Ownership.Stage != 1))) },
 		IsProne : function() { return (this.Effect.indexOf("Prone") >= 0) },
 		IsRestrained : function() { return ((this.Effect.indexOf("Freeze") >= 0) || (this.Effect.indexOf("Block") >= 0) || (this.Effect.indexOf("Prone") >= 0)) },
 		IsBlind : function() { return ((this.Effect.indexOf("BlindLight") >= 0) || (this.Effect.indexOf("BlindNormal") >= 0) || (this.Effect.indexOf("BlindHeavy") >= 0)) },
@@ -167,8 +167,8 @@ function CharacterArchetypeClothes(C, Archetype, ForceColor) {
 		InventoryWear(C, "MistressTop", "Cloth", Color);
 		InventoryAdd(C, "MistressBottom", "ClothLower", false);
 		InventoryWear(C, "MistressBottom", "ClothLower", Color);
-		InventoryAdd(C, "MetalChastityBeltKey", "ItemPelvis", false);
-		InventoryAdd(C, "MetalChastityBraKey", "ItemBreast", false);
+		InventoryAdd(C, "MistressPadlock", "ItemMisc", false);
+		InventoryAdd(C, "MistressPadlockKey", "ItemMisc", false);
 		InventoryRemove(C, "HairAccessory");
 	}
 
@@ -264,16 +264,14 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 					if (ChatRoomData.Character[C].ID == data.ID)
 						if (ChatRoomData.Character[C].Appearance.length != data.Appearance.length)
 							Refresh = true;
-						else 
-							for (var A = 0; A < data.Appearance.length; A++)
-								if ((data.Appearance[A].Name != ChatRoomData.Character[C].Appearance[A].Name) || (data.Appearance[A].Group != ChatRoomData.Character[C].Appearance[A].Group))
-									Refresh = true;
-								else
-									if ((data.Appearance[A].Property != null) && (ChatRoomData.Character[C].Appearance[A].Property != null) && (JSON.stringify(data.Appearance[A].Property) != JSON.stringify(ChatRoomData.Character[C].Appearance[A].Property)))
-										Refresh = true;
-									else 
-										if (((data.Appearance[A].Property != null) && (ChatRoomData.Character[C].Appearance[A].Property == null)) || ((data.Appearance[A].Property == null) && (ChatRoomData.Character[C].Appearance[A].Property != null)))
-											Refresh = true;
+						else
+							for (var A = 0; A < data.Appearance.length && !Refresh; A++) {
+								var Old = ChatRoomData.Character[C].Appearance[A];
+								var New = data.Appearance[A];
+								if ((New.Name != Old.Name) || (New.Group != Old.Group) || (New.Color != Old.Color)) Refresh = true;
+								else if ((New.Property != null) && (Old.Property != null) && (JSON.stringify(New.Property) != JSON.stringify(Old.Property))) Refresh = true;
+								else if (((New.Property != null) && (Old.Property == null)) || ((New.Property == null) && (Old.Property != null))) Refresh = true;
+							}
 
 		// Flags "refresh" if the ownership or inventory has changed
 		if (!Refresh && (JSON.stringify(Char.Ownership) !== JSON.stringify(data.Ownership))) Refresh = true;
@@ -394,7 +392,7 @@ function CharacterChangeMoney(C, Value) {
 // Refreshes the character parameters
 function CharacterRefresh(C, Push) {
 	CharacterLoadEffect(C);
-	CharacterLoadPose(C);	
+	CharacterLoadPose(C);
 	CharacterLoadCanvas(C);
 	if ((C.ID == 0) && (C.OnlineID != null) && ((Push == null) || (Push == true))) ServerPlayerAppearanceSync();
 }
@@ -557,4 +555,10 @@ function CharacterResetFacialExpression(C) {
 	for (var A = 0; A < C.Appearance.length; A++)
 		if (C.Appearance[A].Asset.Group.AllowExpression)
 			CharacterSetFacialExpression(C, C.Appearance[A].Asset.Group.Name, null);
+}
+
+
+// returns the current selected character
+function CharacterGetCurrent() {
+	return (Player.FocusGroup != null) ? Player : CurrentCharacter;
 }

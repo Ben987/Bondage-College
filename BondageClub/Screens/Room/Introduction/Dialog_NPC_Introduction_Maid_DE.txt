@@ -37,8 +37,8 @@ Natürlich, Hausdame DialogPlayerName. (Sie befreit dich.)
 (Du peitschst ihr mit der Ledergerte auf die Brust und sie lässt wimmernd den Kopf hängen.) Auuuuuuu!
 (You whip her butt hard as she sighs.)  Ahh! I promise I'll work harder Miss Head Maid!
 (Du peitschst ihr kräftig auf den Hintern und sie seufzt.) Ahh! Ich verspreche, härter zu arbeiten, Frau Hausdame!
-(She grumbles as you strike her butt with the crop.)  Oww! That stings Miss!.
-(Sie grummelt, als du ihren Hintern mit der Gerte triffst.) Auu! Das tut weh, Miss!
+(She grumbles as you strike her butt with the crop.)  Oww! That stings Miss.
+(Sie grummelt, als du ihren Hintern mit der Gerte triffst.) Auu! Das tut weh, Miss.
 Greetings Mistress DialogPlayerName.  Welcome to the introduction class.  (She does curtsies for you.)
 Grüßt Euch, Herrin DialogPlayerName. Willkommen beim Einstiegskurs. (Sie verneigt sich vor dir.)
 Greetings head maid DialogPlayerName.  Welcome to the introduction class.  (She does curtsies for you.)
@@ -143,7 +143,7 @@ Restraining the upper legs will still allow your victim to move around but it cr
 Mit gefesselten Oberschenkeln kann dein Opfer noch laufen, aber es entsteht ein netter Effekt.
 On the pussy or vagina region, you can use items such as vibrators or eggs.  The perfect place to tease your victim and make them climax.
 Am Intim- oder Vaginalbreich kannst du Dinge wie Vibratoren einsetzen. Die perfekte Stelle, mit deinem Opfer zu spielen und es zum Höhepunkt zu bringen.
-On the butt or anal region, you can use regular butt plugs or fashion plugs suchs as cat tails.
+On the butt or anal region, you can use regular butt plugs or fashion plugs such as cat tails.
 Im Gesäß- oder Analbereich kannst du Analstöpsel einsetzen, darunter auch Modestöpsel wie etwa mit Katzenschwänzen.
 On the pelvis, you can use whips, crops or chastity belts.  Know that it will restrict any access to the vagina and anus.
 Am Becken lassen sich Peitschen, Gerten oder Keuschheitsgürtel einsetzen. Beachte, dass Letzteres den Zugang zur Vagina und zum Anus verhindert.
@@ -157,10 +157,14 @@ The arms can be restrained using many devices.  This will prevent your victim fr
 Die Arme können mit vielerlei Gegenständen gefesselt werden. Das hindert dein Opfer daran, sich mit den Händen zu befreien.
 You can use collars on your victim's neck to show everyone that they are yours, enslave them or leash them.
 Mit Halsbändern kannst du allen zu verstehen geben, dass dein Opfer dir gehört. Du kannst es versklaven oder an die Leine nehmen.
+You can attach accessories items to a collar on your victim's neck.  Chains to the floor, leashes or just make them look pretty
+Du kannst am Halsband deines Opfers Accessoires anbringen. Ketten zum Boden, Leinen, oder einfach nur etwas, um sie hübscher zu machen.
 You can use gags to silence your victim, making her unable to speak.
 Mit Knebeln kannst du dein Opfer zum Schweigen bringen und es am Sprechen hindern.
-Blindfolds, ear muffs, and hoods can also be used to restrict vision and hearing.
-Mit Augenbinden, Ohrenschützern und Hauben können die Sicht und das Gehör deines Opfers beeinträchtigt werden.
+Blindfolds and hoods can be used to restrict vision and hearing.
+Mit Augenbinden und Hauben können die Sicht und das Gehör beeinträchtigt werden.
+Ear plugs can be used to deafen your victim.
+Ohrenstöpsel können verwendet werden, um dein Opfer taub zu machen.
 Your pockets can be used to store your padlocks and keys. 
 In deinen Taschen kannst du Schlösser und Schlüssel verstauen.
 Your pockets can be used to store more advanced devices. 
@@ -245,7 +249,7 @@ Nimm diese Basisgegenstände. Sie sind einfach zu benutzen, aber es ist auch ein
 Thanks!  (Take the items.)
 Danke! (Die Sachen nehmen.)
 ###_NPC
-(She gives you ropes for her arms and legs,  plus a basic cloth gag.)
+(She gives you ropes for her arms and legs, plus a basic cloth gag.)
 (Sie gibt dir Seile für Arme und Beine und einen einfachen Stoffknebel.)
 ###_PLAYER
 This is sweet.  (Take the items.)
@@ -440,8 +444,8 @@ Klar, es hat Spaß gemacht.
 That's the spirit!  You're ready to explore the club then.
 Das ist die richtige Einstellung! Damit bist du bereit, den Club zu erkunden.
 ###_PLAYER
-I loved it, I hope happens often.
-Ich liebe es, hoffentlich passiert das oft.
+I loved it.  I hope happens often.
+Ich liebe es. Hoffentlich passiert das oft.
 I would rather strap you up.
 Ich würde lieber dich fesseln.
 ###_NPC

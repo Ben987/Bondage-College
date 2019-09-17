@@ -49,6 +49,7 @@ function AssetAdd(NewAsset) {
 		Visible: (NewAsset.Visible == null) ? true : NewAsset.Visible,
 		Wear: (NewAsset.Wear == null) ? true : NewAsset.Wear,
 		BuyGroup: NewAsset.BuyGroup,
+		PrerequisiteBuyGroups: NewAsset.PrerequisiteBuyGroups,
 		Effect: NewAsset.Effect,
 		Bonus: NewAsset.Bonus,
 		Block: NewAsset.Block,
@@ -61,6 +62,7 @@ function AssetAdd(NewAsset) {
 		Value: (NewAsset.Value == null) ? 0 : NewAsset.Value,
 		Difficulty: (NewAsset.Difficulty == null) ? 0 : NewAsset.Difficulty,
 		SelfBondage: (NewAsset.SelfBondage == null) ? true : NewAsset.SelfBondage,
+		SelfUnlock: (NewAsset.SelfUnlock == null) ? true : NewAsset.SelfUnlock,
 		Random: (NewAsset.Random == null) ? true : NewAsset.Random,
 		RemoveAtLogin: (NewAsset.RemoveAtLogin == null) ? false : NewAsset.RemoveAtLogin,
 		WearTime: (NewAsset.Time == null) ? 0 : NewAsset.Time,
@@ -75,13 +77,40 @@ function AssetAdd(NewAsset) {
 		IsLock: (NewAsset.IsLock == null) ? false : NewAsset.IsLock,
 		OwnerOnly: (NewAsset.OwnerOnly == null) ? false : NewAsset.OwnerOnly,
 		ExpressionTrigger : NewAsset.ExpressionTrigger,
-		Layer: NewAsset.Layer,
+		Layer: AssetBuildLayer(NewAsset.Layer),
 		AllowEffect: NewAsset.AllowEffect,
-		AllowBlock: NewAsset.AllowBlock
+		AllowBlock: NewAsset.AllowBlock,
+		AllowType: NewAsset.AllowType,
+		DefaultColor: NewAsset.DefaultColor,
+		IgnoreParentGroup: (NewAsset.IgnoreParentGroup == null)? false: NewAsset.IgnoreParentGroup,
+		DynamicDescription: (typeof NewAsset.DynamicDescription === 'function')? NewAsset.DynamicDescription : function() {return this.Description},
+		DynamicPreviewIcon: (typeof NewAsset.DynamicDescription === 'function')? NewAsset.DynamicPreviewIcon : function() {return ""},
+		DynamicAllowInventoryAdd: (typeof NewAsset.DynamicAllowInventoryAdd === 'function')? NewAsset.DynamicAllowInventoryAdd : function() {return true},
+		DynamicExpressionTrigger: (typeof NewAsset.DynamicExpressionTrigger === 'function')? NewAsset.DynamicExpressionTrigger : function() {return this.ExpressionTrigger}
+
 	}
 	// Unwearable assets are not visible but can be overwritten
 	if (!A.Wear && NewAsset.Visible != true) A.Visible = false;
 	Asset.push(A);
+}
+
+// Builds layers for an asset
+function AssetBuildLayer(NewLayers) {
+	if (NewLayers == null || !Array.isArray(NewLayers)) return null;
+	var Layers = [];
+	for (var L = 0; L < NewLayers.length; L++) {
+		var Layer = NewLayers[L];
+		Layers.push({
+			Name: Layer.Name,
+			AllowColorize: (Layer.AllowColorize == null) ? true : Layer.AllowColorize,
+			AllowTypes: (Layer.AllowTypes == null || !Array.isArray(Layer.AllowTypes)) ? [""] : Layer.AllowTypes,
+			HasExpression: (Layer.HasExpression == null) ? true : Layer.HasExpression,
+			HasType: (Layer.HasType == null) ? true : Layer.HasType,
+			NewParentGroupName: Layer.NewParentGroupName,
+			OverrideAllowPose: (Layer.OverrideAllowPose == null || !Array.isArray(Layer.OverrideAllowPose)) ? null : Layer.OverrideAllowPose
+		});
+	} 
+	return Layers;
 }
 
 // Builds the asset description from the CSV file

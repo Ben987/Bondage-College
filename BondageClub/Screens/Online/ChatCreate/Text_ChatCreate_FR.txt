@@ -1,0 +1,26 @@
+Enter your room information
+Entrez l'information de votre salon
+Room Name (Letters & numbers only)
+Nom du Salon (Lettres & chiffres seulement)
+A short description or what's going on
+Une courte description du salon
+Private (Need exact name to find it)
+Privé (Nom exact nécéssaire pour le retrouver)
+Select the background
+Choisir le style
+Room maximum size, from 2 to 10 members
+Nombre de membres permis, de 2 à 10
+Create
+Créer
+Cancel
+Annuler
+Creating your room...
+Creation en cours...
+This room name is already taken
+Ce nom est déjà pris
+Account error, try to relog
+Erreur de compte, reconnectez
+Invalid room data
+Données invalides de compte
+Room created, joining it...
+Salon créé, vous vous y rendez...

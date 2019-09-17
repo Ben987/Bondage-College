@@ -5,7 +5,7 @@ Hihi... Du klingst lustig.
 (Sie akzeptiert den Knebel, kichert und probiert seinen Effekt aus.) Tihi. Meine Stimme klingt so lustig.
 (You remove her gag while she stretches her mouth.)  It seems kind of funny for a baby to be able to talk.
 (Du nimmst ihr den Knebel ab und sie streckt ihren Mund.) Es wirkt irgendwie seltsam, wenn ein Baby sprechen kann.
-(She wriggles nerviously while you restrain her arms.)  It looks like my arms won't get to play for a while.
+(She wriggles nervously while you restrain her arms.)  It looks like my arms won't get to play for a while.
 (Sie windet sich nervös, als du ihre Arme fesselst.) Meine Arme werden wohl eine Weile nicht mehr spielen können.
 (You free her arms and she nods happily.)  Thank you.  We could play all sorts of games now.
 (Du befreist ihre Arme und sie nickt glücklich.) Danke. Jetzt könnten wir alles mögliche zusammen spielen.
@@ -55,7 +55,7 @@ Im Moment gibt es hier nicht viel, aber die Schwester bringt später Milchflasch
 Your dress looks pretty.
 Dein Kleid sieht hübsch aus.
 ###_NPC
-(She blushes and fiddles with the herm of her dress.)  If you want to try a drifferent dress, you could try asking the nurse.
+(She blushes and fiddles with the hem of her dress.)  If you want to try a different dress, you could try asking the nurse.
 (Sie wird rot und zupft am Saum ihres Kleids.) Wenn du ein anderes Kleid ausprobieren willst, kannst du die Schwester fragen.
 ###_PLAYER
 (Show her your restraints.)
@@ -69,7 +69,7 @@ Ich habe keine Zeit zum Plaudern. (Dialog beenden.)
 Milk, is that all?
 Milch, ist das alles?
 ###_NPC
-I'm not sure its just milk either.  We tend to need these diapers sortly afterwards.
+I'm not sure its just milk either.  We tend to need these diapers shortly afterwards.
 Ich glaube auch nicht, dass es einfach nur Milch ist. Meistens haben wir diese Windeln kurz danach dringend nötig.
 ###_PLAYER
 Can we play any games now?

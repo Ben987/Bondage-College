@@ -2,6 +2,7 @@ SelectItem,,,Select an item to use
 CannotUseOnSelf,,,Cannot use on yourself
 RemoveClothesForItem,,,Remove some clothes first
 RemoveSuspensionForItem,,,Remove the suspension first
+TheyMustBeStandingFirst,,,Must be standing and not suspended first.
 RemoveChainForItem,,,Remove the chain to the floor first
 MustCollaredFirst,,,A collar must be fitted first to attach accessories to.
 MustCollaredFirstAndRemoveSuspension,,,Must be collared and not suspended first.
@@ -57,6 +58,9 @@ ConfirmDelete,,,Confirm
 Beep,,,Beep
 BeepFrom,,,Beep from
 BeepFromOwner,,,Beep from your owner in your private room
+SentBeep,,,Sent at
+ReceivedBeep,,,Received at
+YourRoom,,,<i>Your private room</i>
 InRoom,,,in room
 PrivateRoom,,,<i>Private room</i>
 IntroductionMaidGreetings,,,"(As you enter the luxurious hallway, a maid comes to greet you.)  Welcome to the Bondage Club, is this your first visit?"
@@ -64,9 +68,19 @@ ServerMessageOfferStartTrial,,,"SourceCharacter is offering you to start a trial
 ServerMessageStartTrial,,,The Bondage Club is pleased to announce that SourceCharacter is starting a 3 days minimum trial period as a submissive.
 ServerMessageOfferEndTrial,,,"SourceCharacter has prepared a great collaring ceremony.  A maid brings a slave collar, which her submissive must consent to wear."
 ServerMessageEndTrial,,,The Bondage Club is proud to announce that SourceCharacter is now fully collared.  Her fate is in her Mistress hands.
+ServerMessageOwnerRuleChangeAllow,,,Your owner is now allowing you to access your wardrobe and change clothes.
+ServerMessageOwnerRuleChangeBlock1Hour,,,Your owner has blocked your wardrobe access for an hour.  You won't be able to change clothes.
+ServerMessageOwnerRuleChangeBlock1Day,,,Your owner has blocked your wardrobe access for a day.  You won't be able to change clothes.
+ServerMessageOwnerRuleChangeBlock1Week,,,Your owner has blocked your wardrobe access for a week.  You won't be able to change clothes.
+ServerMessageOwnerRuleChangeBlock,,,Your owner has blocked your wardrobe access.  You won't be able to change clothes until that rule is revoked.
+ServerMessageOwnerRuleWhisperAllow,,,Your owner is now allowing you to whisper to other members when she's there.
+ServerMessageOwnerRuleWhisperBlock,,,Your owner is now preventing you from whispering to other members when she's there.
+ServerMessageOwnerRuleKeyAllow,,,Your owner is now allowing you to have keys.  You can buy keys from the club shop.
+ServerMessageOwnerRuleKeyConfiscate,,,Your owner has confiscated your keys.  All your regular keys are lost.
+ServerMessageOwnerRuleKeyBlock,,,Your owner is now preventing you from getting new keys.  The club shop will not sell keys to you anymore.
 LockMemberNumber,,,Member number on lock:
 TimerLeft,,,Time left:
-TimerRestart,,,SourceCharacter restarts the five minute timer padlock on DestinationCharacter BodyPart.
+TimerRestart,,,SourceCharacter restarts the five minutes timer padlock on DestinationCharacter BodyPart.
 RestartTimer,,,Restart Timer
 RemoveItemWithTimer,,,Remove item when the lock timer runs out
 WillRemoveItemWithTimer,,,The item will be removed when the lock timer runs out
@@ -79,6 +93,7 @@ ItemMiscIntricatePadlockIntro,,,"""To keep your loved one secure"""
 ItemMiscTimerPadlockIntro,,,You can restart the timer but cannot unlock
 ItemMiscOwnerPadlockIntro,,,"""Never forget who you belong to"""
 ItemMiscOwnerPadlockDetail,,,Can only be locked or unlocked by her owner
+ItemMiscMistressPadlockIntro,,,Can only be locked or unlocked by a Club Mistress
 LeatherCuffsPoseNone,,,Detached
 LeatherCuffsPoseWrist,,,Bind wrists
 LeatherCuffsPoseElbow,,,Bind elbows
@@ -87,6 +102,23 @@ LeatherCuffsRestrainNone,,,SourceCharacter detaches the chain from DestinationCh
 LeatherCuffsRestrainWrist,,,SourceCharacter attaches the leather cuffs wrist chain behind DestinationCharacter's back.
 LeatherCuffsRestrainElbow,,,SourceCharacter attaches the leather cuffs elbow chain behind DestinationCharacter's back.
 LeatherCuffsRestrainBoth,,,SourceCharacter attaches the leather cuffs wrist and elbow chains behind DestinationCharacter's back.
+LeatherLegCuffsPoseNone,,,Detached
+LeatherLegCuffsPoseClosed,,,Chain Closed
+LeatherAnkleCuffsPoseNone,,,Detached
+LeatherAnkleCuffsPoseClosed,,,Chain Closed
+LeatherLegCuffsRestrainNone,,,SourceCharacter detaches the chain from DestinationCharacter's leather leg cuffs.
+LeatherLegCuffsRestrainClosed,,,SourceCharacter attaches the leather leg cuffs chain on DestinationCharacter's legs.
+LeatherAnkleCuffsRestrainNone,,,SourceCharacter detaches the chain from DestinationCharacter's leather ankle cuffs.
+LeatherAnkleCuffsRestrainClosed,,,SourceCharacter attaches the leather ankle cuffs chain on DestinationCharacter's ankles.
+StraitJacketSelectTightness,,,How tight do you want to strap the jacket?
+StraitJacketPoseLoose,,,Loose
+StraitJacketPoseNormal,,,Normal
+StraitJacketPoseSnug,,,Snug
+StraitJacketPoseTight,,,Tight
+StraitJacketRestrainNone,,,SourceCharacter loosens the straps on DestinationCharacter's straitjacket.
+StraitJacketRestrainNormal,,,SourceCharacter adjusts the straps normally on DestinationCharacter's straitjacket.
+StraitJacketRestrainSnug,,,SourceCharacter snugs the straps on DestinationCharacter's straitjacket.
+StraitJacketRestrainTight,,,SourceCharacter tightens the straps on DestinationCharacter's straitjacket.
 DuctTapePoseHands,,,Hands
 DuctTapePoseArms,,,Arms
 DuctTapePoseBottom,,,Skirt
@@ -125,7 +157,12 @@ DuctTapeHeadTypeWrap,,,Wrap
 DuctTapeHeadSetDouble,,,SourceCharacter takes a piece of duct tape for DestinationCharacter's and place on her face.
 DuctTapeHeadSetWrap,,,SourceCharacter wraps some duct tape onto DestinationCharacter's face.
 DuctTapeHeadTypeMummy,,,Mummy
-DuctTapeHeadSetMummy,,,SourceCharacter wraps DestinationCharacter's  head in tape with multiple layers. 
+DuctTapeHeadSetMummy,,,SourceCharacter wraps DestinationCharacter's head in tape with multiple layers. 
+SelectHarnessType,,,Select the type of Harness
+HempRopeHarnessTypeBasic,,,Basic Tie
+HempRopeHarnessTypeDiamond,,,Diamond Tie
+HempRopeHarnessSetBasic,,,SourceCharacter uses the rope on DestinationCharacter's to do a basic harness.
+HempRopeHarnessSetDiamond,,,SourceCharacter uses the rope on DestinationCharacter's to do a Diamond style harness.
 Intensity-1,,,Item intensity: Disabled
 Intensity0,,,Item intensity: Low
 Intensity1,,,Item intensity: Medium
@@ -167,6 +204,34 @@ PantiesIncreaseTo0,,,DestinationCharacter's vibrating latex panties starts teasi
 PantiesIncreaseTo1,,,DestinationCharacter's vibrating latex panties builds up to a moderate pace.
 PantiesIncreaseTo2,,,DestinationCharacter's vibrating latex panties starts buzzing strongly!
 PantiesIncreaseTo3,,,DestinationCharacter's vibrating latex panties jumps up to maximum intensity!
+BeltDecreaseTo-1,,,DestinationCharacter's vibrating wand stops vibrating.
+BeltDecreaseTo0,,,DestinationCharacter's vibrating wand slows down into a light tease.
+BeltDecreaseTo1,,,DestinationCharacter's vibrating wand returns to a moderate pace.
+BeltDecreaseTo2,,,DestinationCharacter's vibrating wand slows down a tiny bit.
+BeltIncreaseTo0,,,DestinationCharacter's vibrating wand starts teasing her lightly.
+BeltIncreaseTo1,,,DestinationCharacter's vibrating wand builds up to a moderate pace.
+BeltIncreaseTo2,,,DestinationCharacter's vibrating wand starts buzzing strongly!
+BeltIncreaseTo3,,,DestinationCharacter's vibrating wand jumps up to maximum intensity!
+BPumpsdeflatesTo0,,,SourceCharacter deflates DestinationCharacter's butt pump till it's empty.
+BPumpsdeflatesTo1,,,SourceCharacter deflates DestinationCharacter's butt pump till only slighty filled.
+BPumpsdeflatesTo2,,,SourceCharacter deflates DestinationCharacter's butt pump till it's half full.
+BPumpsdeflatesTo3,,,SourceCharacter deflates DestinationCharacter's butt pump only a tiny bit.
+BPumpspumpsTo1,,,SourceCharacter inflates DestinationCharacter's butt pump only slightly.
+BPumpspumpsTo2,,,SourceCharacter inflates DestinationCharacter's butt pump till half full.
+BPumpspumpsTo3,,,SourceCharacter inflates DestinationCharacter's butt pump three quarters filled.
+BPumpspumpsTo4,,,SourceCharacter inflates DestinationCharacter's butt pump to the maximum amount.
+PumpGagdeflatesTo0,,,SourceCharacter deflates DestinationCharacter's gag fully till it's empty.
+PumpGagdeflatesTo1,,,SourceCharacter deflates DestinationCharacter's gag till only slighty filled.
+PumpGagdeflatesTo2,,,SourceCharacter deflates DestinationCharacter's gag till it's half full.
+PumpGagdeflatesTo3,,,SourceCharacter deflates DestinationCharacter's gag only a tiny bit.
+PumpGagpumpsTo1,,,SourceCharacter inflates DestinationCharacter's gag only slightly.
+PumpGagpumpsTo2,,,SourceCharacter inflates DestinationCharacter's gag till half full.
+PumpGagpumpsTo3,,,SourceCharacter inflates DestinationCharacter's gag three quarters filled.
+PumpGagpumpsTo4,,,SourceCharacter inflates DestinationCharacter's gag to the maximum amount.
+Empty,,,Empty
+Light,,,Light
+Inflated,,,Inflated
+Bloated,,,Bloated
 UseRemote,,,Use Remote
 PlayerGagged,,,(You can use or remove items by selecting specific body regions on yourself.)
 0,,,(You can use or remove items by selecting specific body regions on yourself.)
@@ -188,6 +253,84 @@ chains,,,chains
 unchains,,,removes the chains
 mittenstoharness,,,mittens to the baby harness
 mittensfromharness,,,mittens
-NeedHarness,,,They must be wearing a baby harness first to chain the mittens to it.
-FreeArms,,,Free arms first before attaching a mitten chains.
+NeedHarness,,,She must be wearing a baby harness to chain the mittens.
+FreeArms,,,You must free her arms before attaching mitten chains.
 FacialExpression,,,Facial expression
+SelectSpankingToysType,,,Select a spanking toy
+SpankingToysTypeCrop,,,Crop
+SpankingToysTypeFlogger,,,Flogger
+SpankingToysTypeCane,,,Cane
+SpankingToysTypeHeartCrop,,,Heart Crop
+SpankingToysTypePaddle,,,Paddle
+SpankingToysTypeWhipPaddle,,,Whip Paddle
+SpankingToysSetPlayer,,,SourceCharacter takes out a Item
+SpankingToysSetOthers,,,SourceCharacter give DestinationCharacter a Item
+TurnOff,,,TurnOff
+Low,,,Low
+Medium,,,Medium
+High,,,High
+Maximum,,,Maximum
+TriggerShock,,,Trigger Shock
+LoveChastityBeltUnlockButt,,,Unlock Butt
+LoveChastityBeltLockButt,,,Lock Butt
+LoveChastityBeltUnlockClosed,,,Remove Shield
+LoveChastityBeltUnlockVibe,,,Remove Vibe
+LoveChastityBeltUnlockShock,,,Remove Shock
+LoveChastityBeltAddShield,,,Add Shield
+LoveChastityBeltAddVibe,,,Add Vibe
+LoveChastityBeltAddShock,,,Add Shock
+LoveChastityBeltVibeIncreaseTo0,,,DestinationCharacter's love chastity belts starts teasing her lightly.
+LoveChastityBeltVibeIncreaseTo1,,,DestinationCharacter's love chastity belts builds up to a moderate pace.
+LoveChastityBeltVibeIncreaseTo2,,,DestinationCharacter's love chastity belts starts buzzing strongly!
+LoveChastityBeltVibeIncreaseTo3,,,DestinationCharacter's love chastity belts jumps up to maximum intensity!
+LoveChastityBeltVibeDecreaseTo-1,,,DestinationCharacter's love chastity belt stops vibrating.
+LoveChastityBeltVibeDecreaseTo0,,,DestinationCharacter's love chastity belt slows down into a light tease.
+LoveChastityBeltVibeDecreaseTo1,,,DestinationCharacter's love chastity belt returns to a moderate pace.
+LoveChastityBeltVibeDecreaseTo2,,,DestinationCharacter's love chastity belt slows down a tiny bit.
+LoveChastityBeltShockSet0,,,SourceCharacter sets DestinationCharacter's love chastity belt to low intensity.
+LoveChastityBeltShockSet1,,,SourceCharacter sets DestinationCharacter's love chastity belt to moderate intensity.
+LoveChastityBeltShockSet2,,,SourceCharacter sets DestinationCharacter's love chastity belt to high intensity.
+LoveChastityBeltShockTrigger0,,,DestinationCharacter's love chastity belt gives her a light shock.
+LoveChastityBeltShockTrigger1,,,DestinationCharacter's love chastity belt lets out a sharp jolt!
+LoveChastityBeltShockTrigger2,,,DestinationCharacter's love chastity belt delivers an intense shock!
+LoveChastityBeltRemoveShieldMessage,,,SourceCharacter removes shield from DestinationCharacter's love chastity belt
+LoveChastityBeltAddShieldMessage,,,SourceCharacter locks shield to DestinationCharacter's love chastity belt
+LoveChastityBeltAddVibeMessage,,,SourceCharacter locks vibe to DestinationCharacter's love chastity belt
+LoveChastityBeltAddShockMessage,,,SourceCharacter locks shock device to DestinationCharacter's love chastity belt
+SelectCollarNameTagType,,,Select what tag you want to use
+SelectCollarNameTagTypeLocked,,,You cannot change the tag while it's locked
+CollarNameTagSetBadGirl,,,SourceCharacter uses a BadGirl name tag on DestinationCharacter's collar.
+CollarNameTagSetBindMe,,,SourceCharacter uses a BindMe name tag on DestinationCharacter's collar.
+CollarNameTagSetBitch,,,SourceCharacter uses a Bitch name tag on DestinationCharacter's collar.
+CollarNameTagSetBunny,,,SourceCharacter uses a Bunny name tag on DestinationCharacter's collar.
+CollarNameTagSetCookie,,,SourceCharacter uses a Cookie name tag on DestinationCharacter's collar.
+CollarNameTagSetCupcake,,,SourceCharacter uses a Cupcake name tag on DestinationCharacter's collar.
+CollarNameTagSetDom,,,SourceCharacter uses a Dom name tag on DestinationCharacter's collar.
+CollarNameTagSetFoxy,,,SourceCharacter uses a Foxy name tag on DestinationCharacter's collar.
+CollarNameTagSetFree,,,SourceCharacter uses a Free name tag on DestinationCharacter's collar.
+CollarNameTagSetFuckMe,,,SourceCharacter uses a FuckMe name tag on DestinationCharacter's collar.
+CollarNameTagSetGagMe,,,SourceCharacter uses a GagMe name tag on DestinationCharacter's collar.
+CollarNameTagSetGoodGirl,,,SourceCharacter uses a GoodGirl name tag on DestinationCharacter's collar.
+CollarNameTagSetHoldMe,,,SourceCharacter uses a HoldMe name tag on DestinationCharacter's collar.
+CollarNameTagSetKitten,,,SourceCharacter uses a Kitten name tag on DestinationCharacter's collar.
+CollarNameTagSetLove,,,SourceCharacter uses a Love name tag on DestinationCharacter's collar.
+CollarNameTagSetMaid,,,SourceCharacter uses a Maid name tag on DestinationCharacter's collar.
+CollarNameTagSetMeat,,,SourceCharacter uses a Meat name tag on DestinationCharacter's collar.
+CollarNameTagSetMuffin,,,SourceCharacter uses a Muffin name tag on DestinationCharacter's collar.
+CollarNameTagSetNeedy,,,SourceCharacter uses a Needy name tag on DestinationCharacter's collar.
+CollarNameTagSetOwned,,,SourceCharacter uses a Owned name tag on DestinationCharacter's collar.
+CollarNameTagSetPanda,,,SourceCharacter uses a Panda name tag on DestinationCharacter's collar.
+CollarNameTagSetPet,,,SourceCharacter uses a Pet name tag on DestinationCharacter's collar.
+CollarNameTagSetPetMe,,,SourceCharacter uses a PetMe name tag on DestinationCharacter's collar.
+CollarNameTagSetPixie,,,SourceCharacter uses a Pixie name tag on DestinationCharacter's collar.
+CollarNameTagSetPuppy,,,SourceCharacter uses a Puppy name tag on DestinationCharacter's collar.
+CollarNameTagSetRacoon,,,SourceCharacter uses a Racoon name tag on DestinationCharacter's collar.
+CollarNameTagSetSlave,,,SourceCharacter uses a Slave name tag on DestinationCharacter's collar.
+CollarNameTagSetSlut,,,SourceCharacter uses a Slut name tag on DestinationCharacter's collar.
+CollarNameTagSetSub,,,SourceCharacter uses a Sub name tag on DestinationCharacter's collar.
+CollarNameTagSetSweetie,,,SourceCharacter uses a Sweetie name tag on DestinationCharacter's collar.
+CollarNameTagSetTaken,,,SourceCharacter uses a Taken name tag on DestinationCharacter's collar.
+CollarNameTagSetToy,,,SourceCharacter uses a Toy name tag on DestinationCharacter's collar.
+CollarNameTagSetUseless,,,SourceCharacter uses a Useless name tag on DestinationCharacter's collar.
+CollarNameTagSetUseMe,,,SourceCharacter uses a UseMe name tag on DestinationCharacter's collar.
+CollarNameTagSetWhore,,,SourceCharacter uses a Whore name tag on DestinationCharacter's collar.
