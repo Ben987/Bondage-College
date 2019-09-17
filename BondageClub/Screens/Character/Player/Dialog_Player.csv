@@ -6,6 +6,9 @@ TheyMustBeStandingFirst,,,Must be standing and not suspended first.
 RemoveChainForItem,,,Remove the chain to the floor first
 MustCollaredFirst,,,A collar must be fitted first to attach accessories to.
 MustCollaredFirstAndRemoveSuspension,,,Must be collared and not suspended first.
+MustCollaredFirstAndRemoveSuspension1,,,Must be collared and not suspended/mounted first.
+ToDo,,,block till ready.
+FeetClosed,,,Can't have Items locked to your feet.
 Cancel,,,Cancel
 Exit,,,Back to character
 Next,,,View next items
