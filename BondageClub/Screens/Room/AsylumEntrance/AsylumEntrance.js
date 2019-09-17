@@ -9,7 +9,7 @@ function AsylumEntranceCanWander() { return (Player.CanWalk() && ((LogValue("Com
 function AsylumEntranceLoad() {
 	if (AsylumEntranceNurse == null) {
 		AsylumEntranceNurse = CharacterLoadNPC("NPC_AsylumEntrance_Nurse");
-		NurseryNurseOutfitForNPC(AsylumEntranceNurse);
+		AsylumEntranceWearNurseClothes(AsylumEntranceNurse);
 		AsylumEntranceNurse.AllowItem = false;
 	}
 }
@@ -152,9 +152,9 @@ function AsylumEntrancePlayerNurseClothes(RepChange) {
 	AsylumEntranceWearNurseClothes(Player);
 }
 
-// When the nurse is forced to be a patient (will be tracked down for a full day after)
+// When the nurse is forced to be a patient (player will be tracked down for a full day after)
 function AsylumEntranceNurseBecomePatient() {
-	LogAdd("Escaped", "Asylum", CurrentTime + 604800000);
+	LogAdd("Escaped", "Asylum", CurrentTime + 86400000);
 	LogDelete("Committed", "Asylum");
 	AsylumEntranceWearPatientClothes(AsylumEntranceNurse);
 }
@@ -170,7 +170,7 @@ function AsylumEntranceNurseStrap(RepChange) {
 // When the player gets committed again after escaping
 function AsylumEntranceRecommit() {
 	DialogChangeReputation("Asylum", -3);
-	LogAdd("Committed", "Asylum", CurrentTime + 604800000);
+	LogAdd("Committed", "Asylum", CurrentTime + 86400000);
 	LogDelete("Escaped", "Asylum");
 	CharacterRelease(Player);
 	AsylumEntranceWearPatientClothes(Player);

@@ -81,6 +81,7 @@ function AssetAdd(NewAsset) {
 		AllowEffect: NewAsset.AllowEffect,
 		AllowBlock: NewAsset.AllowBlock,
 		AllowType: NewAsset.AllowType,
+		DefaultColor: NewAsset.DefaultColor,
 		IgnoreParentGroup: (NewAsset.IgnoreParentGroup == null)? false: NewAsset.IgnoreParentGroup,
 		DynamicDescription: (typeof NewAsset.DynamicDescription === 'function')? NewAsset.DynamicDescription : function() {return this.Description},
 		DynamicPreviewIcon: (typeof NewAsset.DynamicDescription === 'function')? NewAsset.DynamicPreviewIcon : function() {return ""},

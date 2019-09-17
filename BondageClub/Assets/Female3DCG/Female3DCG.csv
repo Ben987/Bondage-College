@@ -354,6 +354,7 @@ ItemMisc,WoodenMaidTrayFull,Wooden Maid Tray Full
 ItemMisc,WoodenPaddle,Wooden Paddle
 ItemDevices,,Body
 ItemDevices,WoodenBox,Wooden Box
+ItemDevices,SmallWoodenBox,Small Wooden Box
 ItemDevices,MilkCan,Water filled milk can 
 ItemDevices,WaterCell,Water torture Cell
 ItemDevices,Cage,Stand up cage
