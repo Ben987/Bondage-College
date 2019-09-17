@@ -201,11 +201,13 @@ function PrivateClickCharacter() {
 			if (NPCEventGet(PrivateCharacter[C], "SlaveMarketRent") <= CurrentTime) {
 
 				// Sets the new character (1000 if she's owner, 2000 if she's owned)
-				PrivateCharacterToSave = C;
-				PrivateLoadCharacter(C);
-				if ((PrivateCharacter[C].Stage == "0") && PrivateCharacter[C].IsOwner()) PrivateCharacter[C].Stage = "1000";
-				if ((PrivateCharacter[C].Stage == "0") && PrivateCharacter[C].IsOwnedByPlayer()) PrivateCharacter[C].Stage = "2000";
-				NPCTraitDialog(PrivateCharacter[C]);
+				if (PrivateCharacter[C].ID != 0) {
+					PrivateCharacterToSave = C;
+					PrivateLoadCharacter(C);
+					if ((PrivateCharacter[C].Stage == "0") && PrivateCharacter[C].IsOwner()) PrivateCharacter[C].Stage = "1000";
+					if ((PrivateCharacter[C].Stage == "0") && PrivateCharacter[C].IsOwnedByPlayer()) PrivateCharacter[C].Stage = "2000";
+					NPCTraitDialog(PrivateCharacter[C]);
+				}
 				CharacterSetCurrent(PrivateCharacter[C]);
 
 				// If the owner has beeped the player
@@ -650,8 +652,8 @@ function PrivateRunPunishment(LoveFactor) {
 	if (PrivatePunishment == "BoundPet") { PrivateReleaseTimer = CommonTime() + 240000; CharacterSetActivePose(Player, "Kneel"); InventoryWear(Player, "LeatherBelt", "ItemLegs"); InventoryWear(Player, "TailButtPlug", "ItemButt"); InventoryWear(Player, "Ears" + (Math.floor(Math.random() * 2) + 1).toString(), "Hat"); InventoryWear(Player, "LeatherArmbinder", "ItemArms"); InventorySetDifficulty(Player, "ItemArms", 15); }
 	if ((PrivatePunishment == "ChastityBelt") && (NPCTraitGet(CurrentCharacter, "Horny") >= 0) && (InventoryGet(Player, "ItemVulva") == null)) InventoryWear(Player, "VibratingEgg", "ItemVulva");
 	if ((PrivatePunishment == "ChastityBelt") && (NPCTraitGet(CurrentCharacter, "Horny") >= 0) && (InventoryGet(Player, "ItemButt") == null)) InventoryWear(Player, "BlackButtPlug", "ItemButt");
-	if (PrivatePunishment == "ChastityBelt") { InventoryWear(Player, "MetalChastityBelt", "ItemPelvis"); InventoryLock(Player, InventoryGet(Player, "ItemPelvis"), { Asset: AssetGet(C.AssetFamily, "ItemMisc", "MistressPadlock")}, -1); }
-	if (PrivatePunishment == "ChastityBra") { InventoryWear(Player, "MetalChastityBra", "ItemBreast"); InventoryLock(Player, InventoryGet(Player, "ItemBreast"), { Asset: AssetGet(C.AssetFamily, "ItemMisc", "MistressPadlock")}, -1); }
+	if (PrivatePunishment == "ChastityBelt") { InventoryWear(Player, "MetalChastityBelt", "ItemPelvis"); InventoryLock(Player, InventoryGet(Player, "ItemPelvis"), { Asset: AssetGet(Player.AssetFamily, "ItemMisc", "OwnerPadlock")}, null); }
+	if (PrivatePunishment == "ChastityBra") { InventoryWear(Player, "MetalChastityBra", "ItemBreast"); InventoryLock(Player, InventoryGet(Player, "ItemBreast"), { Asset: AssetGet(Player.AssetFamily, "ItemMisc", "OwnerPadlock")}, null); }
 	if (PrivatePunishment == "ForceNaked") LogAdd("BlockChange", "Rule", CurrentTime + 1800000);
 	if (PrivatePunishment == "ConfiscateKey") InventoryConfiscateKey();
 	if (PrivatePunishment == "ConfiscateCrop") { InventoryDelete(Player, "LeatherCrop", "ItemPelvis"); InventoryDelete(Player, "LeatherCrop", "ItemBreast"); }

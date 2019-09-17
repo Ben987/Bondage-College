@@ -392,7 +392,7 @@ function CharacterChangeMoney(C, Value) {
 // Refreshes the character parameters
 function CharacterRefresh(C, Push) {
 	CharacterLoadEffect(C);
-	CharacterLoadPose(C);	
+	CharacterLoadPose(C);
 	CharacterLoadCanvas(C);
 	if ((C.ID == 0) && (C.OnlineID != null) && ((Push == null) || (Push == true))) ServerPlayerAppearanceSync();
 }

@@ -27,7 +27,7 @@ const SpankingInventory = [
 	}
 ];
 
-var SpankingCurrentType = null;
+var SpankingCurrentType = "Crop";
 var SpankingInventoryOffset = 0;
 var SpankingNextButton = false;
 var SpankingPlayerInventory;
@@ -43,7 +43,6 @@ function InventoryItemHandsSpankingToysLoad() {
 function InventoryItemHandsSpankingToysDraw() {
 
 	// Draw the header and item
-	DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 	if (SpankingNextButton) DrawButton(1775, 25, 90, 90, "", "White", "Icons/Next.png");
 	DrawRect(1387, 125, 225, 275, "white");
 	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
