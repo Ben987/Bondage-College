@@ -37,6 +37,7 @@ Bra,Corset1,Corset + Garters
 Bra,Corset2,Corset
 Bra,Corset3,Half Cup Corset
 Bra,Corset4,Under Bust Corset
+Bra,Bikini1,Frilled Bikini
 Bra,Swimsuit1,Swimsuit style 1
 Bra,Swimsuit2,Swimsuit style 2
 Bra,BunnySuit,Bunny Girl Bodysuit
@@ -49,6 +50,7 @@ Panties,Panties12,String Bikini
 Panties,Panties13,Satin Bikini
 Panties,Panties14,High Cut
 Panties,Panties15,Thong
+Panties,Bikini1,Frilled Bikini
 Panties,Diapers1,Diapers
 Socks,,Socks
 Socks,Socks1,Short
@@ -206,17 +208,21 @@ ItemFeet,Irish8Cuffs,Irish 8 Feet Cuffs
 ItemFeet,SuspensionHempRope,Suspension Hemp Rope
 ItemFeet,DuctTape,Duct Tape
 ItemFeet,MermaidRopeTie,Mermaid Rope Tie
+ItemFeet,LeatherAnkleCuffs,Leather Ankle Cuffs
 ItemLegs,,Legs
 ItemLegs,NylonRope,Nylon Rope
 ItemLegs,HempRope,Hemp Rope
 ItemLegs,LeatherBelt,Leather Belt
 ItemLegs,DuctTape,Duct Tape
 ItemLegs,MermaidRopeTie,Upper Mermaid Tie
+ItemLegs,LeatherLegCuffs,Leather Leg Cuffs
+ItemLegs,LegBinder,Leg Binder
 ItemVulva,,Vulva
 ItemVulva,VibratingEgg,Vibrating Egg
 ItemVulva,VibratingWand,Vibrating Wand
 ItemVulva,VibratorRemote,Vibrating Egg & Panties Remote
 ItemVulva,VibratingLatexPanties,Vibrating Latex Panties
+ItemVulva,WandBelt,Wand Belt
 ItemButt,,Butt
 ItemButt,BlackButtPlug,Black Butt Plug
 ItemButt,TailButtPlug,Kitty Butt Plug
@@ -265,9 +271,11 @@ ItemArms,MittenChain1,Mittens Chain
 ItemArms,FourLimbsShackles,Four Limbs Shackles
 ItemArms,StraitLeotard,Latex Strait Leotard
 ItemArms,StraitJacket,Straitjacket
+ItemArms,Bolero,Bolero Straitjacket
 ItemArms,DuctTape,Duct Tape
 ItemArms,BitchSuit,Pet Suit
 ItemArms,CollarLeashHolding,Holding Leash
+ItemArms,StraitDress,Strait Dress
 ItemHands,,Hands
 ItemHands,PaddedMittens,Padded Mittens
 ItemHands,PawMittens,Paw Mittens
@@ -299,6 +307,7 @@ ItemNeckAccessories,CollarChainLong,Long Chain
 ItemNeckAccessories,CollarChainShort,Short Chain
 ItemNeckAccessories,CollarLeash,Leash
 ItemNeckAccessories,CollarLeashTaken,Pulled Leash
+ItemNeckAccessories,CollarNameTag,Name Tag
 ItemMouth,,Mouth
 ItemMouth,ClothGag,Cloth Gag
 ItemMouth,WiffleGag,Wiffle Ball Gag
@@ -348,6 +357,7 @@ ItemMisc,WoodenMaidTrayFull,Wooden Maid Tray Full
 ItemMisc,WoodenPaddle,Wooden Paddle
 ItemDevices,,Body
 ItemDevices,WoodenBox,Wooden Box
+ItemDevices,SmallWoodenBox,Small Wooden Box
 ItemDevices,MilkCan,Water filled milk can 
 ItemDevices,WaterCell,Water torture Cell
 ItemDevices,Cage,Stand up cage

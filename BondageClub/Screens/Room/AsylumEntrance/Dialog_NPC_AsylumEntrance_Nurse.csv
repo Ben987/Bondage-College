@@ -1,6 +1,6 @@
 PlayerGagged,,,"Lovely gag, but you'll need to get it off if you want to talk with me.",,
-FightVictory,,,"Ow!  Well done, you're quite a tough patient.  I'm not letting you out anyway.",,
-FightDefeat,,,"You really thought you could beat me?  You trully are mad, little patient.",,
+FightVictory,,,"Ow!  Well done, you're a tough patient.  I'm not letting you out anyway.",,
+FightDefeat,,,"You really thought you could beat me?  You're truly mad, little patient.",,
 0,,,Greetings doctor DialogPlayerName.  It's always a pleasure to see you.  Are you working today?,,"DialogReputationGreater(""Asylum"", 100)"
 0,,,Welcome to the asylum nurse DialogPlayerName.  Our patients are expecting you.  Are you here to work?,,"DialogReputationGreater(""Asylum"", 50)"
 0,,,Hello assistant DialogPlayerName.  It's time to get to work for the asylum!,,"DialogReputationGreater(""Asylum"", 1)"
@@ -25,20 +25,21 @@ FightDefeat,,,"You really thought you could beat me?  You trully are mad, little
 21,22,I accept to be locked down.,"(She grins.)  Perfect!  First thing first, you need to change and wear patient clothes.",,!Player.IsRestrained()
 21,0,I accept to be locked down.,"(She grins.)  Perfect!  But you need to get out of these restraints first.  Go get a maid to help you, I'm busy.",,Player.IsRestrained()
 21,0,Let me think about it.,Of course.  Do you need anything else?,,
-22,23,I'm already dressed like that.,(She nods.) For how long do you want to commit yourself?,,IsWearingPatientClothes()
-22,23,Can you help me to change?,I certainly can.  (She helps you to get dressed as a patient.)  For how long do you want to commit yourself?,"WearPatientClothes(""Player"")",!IsWearingPatientClothes()
-23,24,15 minutes.,"You're taking it easy don't you?  Very well, step inside.  (She locks the door behind you.)","CommitPatient(900000, 1)",
+22,23,I'm already dressed like that.,(She nods.) For how long you wish to commit yourself?,,IsWearingPatientClothes()
+22,23,Can you help me to change?,I certainly can.  (She helps you to get dressed as a patient.)  For how long you wish to commit yourself?,"WearPatientClothes(""Player"")",!IsWearingPatientClothes()
+23,24,15 minutes.,"You're taking it easy, don't you?  Very well, step inside.  (She locks the door behind you.)","CommitPatient(900000, 1)",
 23,24,1 hour.,"It should give you some time to relax.  Very well, step inside.  (She locks the door behind you.)","CommitPatient(3600000, 3)",
 23,24,4 hours.,"It should give you plenty of time to relax.  Very well, step inside.  (She locks the door behind you.)","CommitPatient(14400000, 6)",
-23,24,1 day.,"Good!  I'll prepare a bed for you, step inside.  (She locks the door behind you.)","CommitPatient(86400000, 9)",
-23,24,1 week.,"Impressive!  That's quite a commitment, step inside.  (She locks the door behind you.)","CommitPatient(604800000, 18)",
-24,25,Where do I start?,"The social room is a good place to start, or get to the beds to relax.  Now get going girl.",,
-24,25,You're locking the door?,"Don't be afraid, it's for your own good.  Now get going girl, you can explore the asylum freely.","DialogChangeReputation(""Dominant"", -2)",
-25,0,Thanks!  (Leave her.),,DialogLeave(),
+23,24,1 day.,"Impressive!  I'll prepare a bed for you, step inside.  (She locks the door behind you.)","CommitPatient(86400000, 9)",
+24,25,Where do I start?,The social room is a good place to start.  Or get to the beds to relax.  Now get going girl.,,"DialogReputationGreater(""Asylum"", -49)"
+24,25,You're locking the door?,"Don't be afraid, it's for your own good.  Now get going girl, you can explore the asylum freely.","DialogChangeReputation(""Dominant"", -2)","DialogReputationGreater(""Asylum"", -49)"
+24,25,Where do I start?,"By wearing this.  (She straps a straitjacket on you.)  Patients like you must be kept under control.  Now carry on, you know the place.","PlayerJacket(""Normal"")","DialogReputationLess(""Asylum"", -50)"
+24,25,Here we go again.,"You know the drill.  (She straps a straitjacket on you.)  Patients like you must be kept under control.  Now carry on, you know the place.","PlayerJacket(""Normal"")","DialogReputationLess(""Asylum"", -50)"
+25,0,Thanks.  (Leave her.),,DialogLeave(),
 30,31,"Yes, I want to transfer from patient to nurse.",Perfect!  We need staff to take care of our patients.  Are you ready to work now?,,
 30,0,Let me think about it.,Of course.  Do you need anything else?,,
 31,32,I'm ready to work right now.,"Great!  But before you enter, you must wear the nurse uniform.",,!Player.IsRestrained()
-31,0,I'm ready to work right now.,"No you're not.  (She giggles.)  You're restrained girl.  Go get a maid to help you, I'm busy.",,Player.IsRestrained()
+31,0,I'm ready to work right now.,"No, you're not.  (She giggles.)  You're restrained girl.  Go get a maid to help you, I'm busy.",,Player.IsRestrained()
 31,0,Let me think about it.,Of course.  Do you need anything else?,,
 32,33,I'm already dressed up.,"Wonderful!  Come inside then, there are lots of patients to take care of.",StartNurse(),IsWearingNurseClothes()
 32,33,Can you help me to change?,"(She gives you the nurse clothes.)  Come inside, there are lots of patients to take care of.",StartNurse(),!IsWearingNurseClothes()
@@ -46,16 +47,55 @@ FightDefeat,,,"You really thought you could beat me?  You trully are mad, little
 100,,,"If it isn't the famous patient DialogPlayerName.  As usual, I hope your stay in the asylum is going well.",,"DialogReputationLess(""Asylum"", -100)"
 100,,,Hello again patient DialogPlayerName.  I hope your stay in the asylum is going well.,,"DialogReputationLess(""Asylum"", -50)"
 100,,,Hello there.  I hope your stay in the asylum is going well.,,
-100,,Can you release me?,"I'm sorry, but if someone restrained you, there must be good reasons.",,!Player.CanInteract()
-100,,Release me or I'll scream.,(She quickly gags you and giggles.)  Scream all you want.,"DialogWearRandomItem(""ItemMouth"")",!Player.CanInteract()
+100,,Can you release me?,"If you're restrained, there must be good reasons.  Think about it.",,!Player.CanInteract()
+100,,Release me or I'll scream.,(She straps a muzzle gag on you and giggles.)  Scream all you want.,"DialogWearItem(""MuzzleGag"", ""ItemMouth"")",!Player.CanInteract()
 100,,When do I get out of the asylum?,"Check the clock girl, it's on the wall behind you.",,
-100,,Can I go out temporarly?,"No, the rules are strict, you cannot get out until your time is up.",,
+100,,Can I go out temporarily?,"No, the rules are strict, you cannot get out until your time is up.",,
 100,110,You need to let me out now.,(She frowns and stares at you.)  No!  The rules are the rules!  Do your time.,,Player.CanInteract()
 100,,I must go.  (Leave her.),,DialogLeave(),
-110,0,"Fine, I'll do my time.",Alright.  Try to get some rest or make some friends.,,
-110,0,(Sigh and cross your arms.),Try to get some rest or make some friends.,,
+110,100,"Fine, I'll do my time.",Alright.  Try to get some rest or make some friends.,,
+110,100,(Sigh and cross your arms.),Try to get some rest or make some friends.,,
 110,111,Do I have to force my way out?,(She clinches her fists.)  What does it mean?,,
 111,,It means war!  (Fight her.),,FightNurse(),
-111,0,"Nothing, forget it.",(She grumbles.)  Fine.  Try to get some rest or make some friends.,,
-120,,TO DO WIN,TO DO WIN,,
-130,,TO DO LOSE,TO DO LOSE,,
+111,100,"Nothing, forget it.",(She grumbles.)  Fine.  Try to get some rest or make some friends.,,
+120,121,I'm getting out girl.,"No, you're not.  They won't let you go patient.","DialogChangeReputation(""Dominant"", 2)",
+120,121,I have a plan for that.,"Forget it patient, they won't let you go.",,
+121,122,That's what you think.  (Strip her.),"What are you doing?  I have work to do, it's not a good time to get kinky.","DialogNaked(""CurrentCharacter"")",
+121,122,They will let me go.  (Strip her.),"What are you doing?  I have work to do, it's not a good time to get kinky.","DialogNaked(""CurrentCharacter"")",
+121,122,(Stay silent and strip her.),"What are you doing?  I have work to do, it's not a good time to get kinky.","DialogNaked(""CurrentCharacter"")",
+122,123,You'll understand soon.  (Strip.),"What the hell?  You're not going to rape me, are you?","DialogNaked(""Player"")",
+122,123,Be quiet little nurse.  (Strip.),"What the hell?  You're not going to rape me, are you?","DialogNaked(""Player"")",
+123,124,You're not my type.  (Wear her clothes.),Don't touch my uniform!  Are you thinking what I'm thinking?,PlayerNurseClothes(3),
+123,124,You're so clueless.  (Wear her clothes.),Don't touch my uniform!  Are you thinking what I'm thinking?,PlayerNurseClothes(0),
+123,124,(Blush and wear her clothes.),Don't touch my uniform!  Are you thinking what I'm thinking?,PlayerNurseClothes(-2),
+124,125,You're thinking too much.  (Dress her up.),(She struggles frenetically.)  Oh no you don't!  You're in deep trouble girl!,NurseBecomePatient(),
+124,125,A patient should relax.  (Dress her up.),(She struggles frenetically.)  Oh no you don't!  You're in deep trouble girl!,NurseBecomePatient(),
+124,125,You will enjoy your stay.  (Dress her up.),(She struggles frenetically.)  Oh no you don't!  You're in deep trouble girl!,NurseBecomePatient(),
+125,126,Let's wrap this.  (Strap her up.),(You strap her up in a straitjacket and gag her with medical restraints.)  You traitor!,NurseStrap(0),
+125,126,You will have fun.  (Strap her up.),(You strap her up in a straitjacket and gag her with medical restraints.)  You traitor!,NurseStrap(-1),
+125,126,Enough talking girl.  (Strap her up.),(You strap her up in a straitjacket and gag her with medical restraints.)  You traitor!,NurseStrap(2),
+126,,,(She still struggles madly and bites hard on her gag.)  Let me out!,,
+126,,Have fun struggling!  (Leave her.),,DialogLeave(),
+130,131,You were lucky.,"It's not about luck, it's about control.  And you will feel my control.",,
+130,131,I'll have my revenge.,When hell freezes.  Now it's time to control you girl.,"DialogChangeReputation(""Dominant"", 1)",
+130,131,You're really strong.,(She grins.)  Indeed.  And now it's time to control you girl.,"DialogChangeReputation(""Dominant"", -1)",
+131,132,What does that mean?,(She restrains your arms in a straitjacket and straps it snug.)  That's what it means.,"PlayerJacket(""Snug"")",
+131,132,Do your worst.,(She restrains your arms in a straitjacket and straps it tight.)  You're not getting out of that.,"PlayerJacket(""Tight"")",
+131,132,(Stay silent.),(She restrains your arms in a straitjacket and straps it behind your back.)  This will control you.,"PlayerJacket(""Normal"")",
+132,100,Fuck you!  This is unfair!,"Such a dirty mouth.  (She straps a muzzle gag on you and smiles.)  Carry on girl, I have work to do.","DialogWearItem(""MuzzleGag"", ""ItemMouth"")",
+132,100,This is tight.,"And don't force me to make it tighter.  Now carry on girl, I have work to do.",,
+132,100,You will leave me like that?,"Absolutely.  Now carry on girl, I have work to do.",,
+132,100,(Whimper.),"Stop crying girl and carry on, I have work to do.","DialogChangeReputation(""Dominant"", -3)",
+140,,,Wait!  Do I know you?  Who are you?,,
+140,141,Hello.  I'm DialogPlayerName.,It's you!  You're the patient that escaped.  Get her girls!  (Lots of nurses come to help her.),,
+140,141,Know me?  It's my first visit here.,I know!  You're the patient that escaped.  Get her girls!  (Lots of nurses come to help her.),,
+140,141,You should know me.  (Grin.),You're the patient that escaped.  Get her girls!  (Lots of nurses come to help her.),,
+140,,Uh oh.  I must go.  (Leave her.),,DialogLeave(),
+141,142,You're mistaken.,"(They quickly jump on you, force you to dress as a patient and strap you tight in a straitjacket.)",Recommit(),
+141,142,What's going on?,"(They quickly jump on you, force you to dress as a patient and strap you tight in a straitjacket.)",Recommit(),
+141,142,(Try to fight them.),"(They quickly overpower you, force you to dress as a patient and strap you tight in a straitjacket.)",Recommit(),
+142,143,What the hell?,"Welcome back patient, I'm sure your forced day here will teach you a lesson.",,
+142,143,That's unfair!,"It's very fair.  Welcome back patient, I'm sure your forced day here will teach you a lesson.",,
+143,100,One full day?  Are you insane?,"From your current look, I'd say you're the insane one.  (She giggles.)  Now carry on, I have work to do.","DialogChangeReputation(""Dominant"", 2)",
+143,100,Yes Miss.  (Bow your head.),"Good girl.  (She smirks.)  Now carry on, I have work to do.","DialogChangeReputation(""Dominant"", -3)",
+144,100,Fine.  I'll do it.,"Very well.  (She smiles.)  Now carry on, I have work to do.",,

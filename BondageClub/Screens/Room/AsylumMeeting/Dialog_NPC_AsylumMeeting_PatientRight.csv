@@ -1,0 +1,36 @@
+PlayerGagged,,,(She giggles.),,
+ItemMouth,,,(She opens her mouth wide and allows you to silence her easily.),,
+RemoveItemMouth,,,(You remove her gag as she smiles at you.)  Gags are so much fun Madam.,,
+ItemEars,,,(She seems curious as you push the earplugs in.)  You will need to talk louder Madam.,,
+RemoveItemEars,,,(You pull the earplugs out.) The silence was heightening my other senses.,,
+ItemArms,,,(She turns around submissively while you restrain her arms.)  This therapy is very kinky.,,
+RemoveItemArms,,,(You free her arms as she stretches.)  I hope my treatment isn't already complete.,,
+ItemHands,,,(She gives you her hands to be restrained.)  No more touching for me it seems.,,
+RemoveItemHands,,,(You release her hands as she nods slowly.)  Thank you Madam.,,
+ItemLegs,,,(She stands still as you restrain her legs.)  I wasn't planning on running away.,,
+RemoveItemLegs,,,(You release her legs as she rocks her hips.)  Best therapy ever!,,
+ItemFeet,,,(She laughs as you restrain her feet.)  It tickles!,,
+RemoveItemFeet,,,(You release her feet and she jumps playfully.)  I love being a patient here.,,
+ItemHead,,,"(You strap the device on her head as she tries to look around.)  This is scary, but I guess it's for my own good.",,
+RemoveItemHead,,,"(You remove the device and she looks at you.)  That was freaky, maybe we should try other types of items.",,
+ItemBreastLeatherWhip,,,"(She cowers from the pain as you whip her breast.)  Oooww, Madam!  Isn't it a little harsh?",,
+ItemBreastLeatherCrop,,,(You swing the crop on her breast as she whimpers.)  I beg you Madam!  I'll try to be a better patient.,,
+ItemPelvisLeatherWhip,,,(You whip her butt hard as she jumps from the pain.)  Fuck it hurts!  Oops!  Sorry I said that word.,,
+ItemPelvisLeatherCrop,,,(She tries to avoid the crop as you swing it on her butt.)  Oh please!  It's really painful.,,
+0,,,(She barely seems to notice that you're there.),,CurrentCharacter.IsBlind()
+0,,,"Hello nurse DialogPlayerName, are you here for my bondage treatment?",,"DialogReputationGreater(""Asylum"", 1)"
+0,,,"Hello Madam, I hope you're having fun in the asylum.",,
+0,,Who are you?,"(She bows her head.)  I'm patient DialogCharacterName, pleased to meet you Madam.",,
+0,,Why are you restrained?,"Mistress sent me here for a bondage therapy.  So long story short, I'm in therapy.",,CurrentCharacter.IsRestrained()
+0,,Can I tie you up?,"(She shakes her head yes.)  Of course nurse DialogPlayerName, it's part of my treatment.",,"DialogReputationGreater(""Asylum"", 1)"
+0,,Can I tie you up?,"(She shakes her head yes.)  Yes Madam, it's part of my treatment.",,"DialogReputationLess(""Asylum"", 0)"
+0,10,Can I play with you?,(She shakes her head yes.)  Absolutely.  Mistress said that I belong to the asylum until she gets me back.,,Player.CanInteract()
+0,,Will you tie me up?,(She shakes her head no.)  I'm sorry Madam.  I'm not allowed to use items on other persons.,,!Player.IsRestrained()
+0,,(Struggle in your restraints.),(She shakes her head no.)  I'm sorry Madam.  I'm not allowed to help you.,,Player.IsRestrained()
+0,,I need to run.  (Leave her.),,DialogLeave(),
+10,,(Pet her.),(She purrs a little as you pet her head gently.),,
+10,,(Tickle her.),(She trashes around and laughs from your skillful tickling hands.),,
+10,,(Kiss her.),(You exchange a sweet and loving kiss.),,CanKiss()
+10,,(Fondle her.),(She closes her eyes and seems to enjoy your touch as you fondle her breast and butt through her clothes.),,
+10,,(Masturbate her.),(You slide a hand in her pants and masturbate her slowly as she moans from the pleasure.),,
+10,0,That's enough.,(She nods as you stop playing with her.),,

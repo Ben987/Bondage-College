@@ -11,7 +11,6 @@ function InventoryItemHandsPawMittensLoad() {
 function InventoryItemHandsPawMittensDraw() {
 	
 	// Draw the header and item
-	DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 	DrawRect(1387, 125, 225, 275, "white");
 	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
@@ -24,7 +23,6 @@ function InventoryItemHandsPawMittensDraw() {
 ////	DrawButton(1100, 700, 375, 65, DialogFind(Player, "LockMittens"), "White");
 //	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 //	DrawButton(1525, 700, 375, 65, DialogFind(Player, "AttachChain"), "White");
-//	DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 
 	// Draw the possible options
 	DrawText(DialogFind(Player, "SelectFeature"), 1500, 500, "white", "gray");

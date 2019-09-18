@@ -202,6 +202,8 @@ function LoginResponse(C) {
 				// If the player must log back in the asylum
 				if (LogQuery("Committed", "Asylum")) {
 					CharacterRelease(Player);
+					AsylumEntranceWearPatientClothes(Player);
+					if (ReputationGet("Asylum") <= -50) AsylumEntrancePlayerJacket("Normal");
 					CommonSetScreen("Room", "AsylumBedroom");
 				} else {
 
