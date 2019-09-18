@@ -25,6 +25,8 @@ function ChatRoomCanTakeDrink() { return ((CurrentCharacter != null) && (Current
 function ChatRoomIsCollaredByPlayer() { return ((CurrentCharacter != null) && (CurrentCharacter.Ownership != null) && (CurrentCharacter.Ownership.Stage == 1) && (CurrentCharacter.Ownership.MemberNumber == Player.MemberNumber)) }
 function ChatRoomCanServeDrink() { return ((CurrentCharacter != null) && CurrentCharacter.CanWalk() && (ReputationCharacterGet(CurrentCharacter, "Maid") > 0)) }
 function ChatRoomCanGiveMoneyForOwner() { return ((ChatRoomMoneyForOwner > 0) && (CurrentCharacter != null) && (Player.Ownership != null) && (Player.Ownership.Stage == 1) && (Player.Ownership.MemberNumber == CurrentCharacter.MemberNumber)) }
+function ChatRoomPlayerIsAdmin() { return ((ChatRoomData.Admin != null) && (ChatRoomData.Admin.indexOf(Player.MemberNumber) >= 0)) }
+function ChatRoomCurrentCharacterIsAdmin() { return ((CurrentCharacter != null) && (ChatRoomData.Admin != null) && (ChatRoomData.Admin.indexOf(CurrentCharacter.MemberNumber) >= 0)) }
 
 // Creates the chat room input elements
 function ChatRoomCreateElement() {
@@ -220,9 +222,10 @@ function ChatRoomSendChat() {
 		// Keeps the chat log in memory so it can be accessed with pageup/pagedown
 		ChatRoomLastMessage.push(msg);
 		ChatRoomLastMessageIndex = ChatRoomLastMessage.length;
+		var m = msg.toLowerCase().trim();
 		
 		// Some custom functions like /dice or /coin are implemented for randomness
-		if (msg.toLowerCase().indexOf("/dice") == 0) {
+		if (m.indexOf("/dice") == 0) {
 			
 			// The player can roll a dice, if no size is specified, a 6 sided dice is assumed
 			var Dice = (isNaN(parseInt(msg.substring(5, 50).trim()))) ? 6 : parseInt(msg.substring(5, 50).trim());
@@ -233,7 +236,7 @@ function ChatRoomSendChat() {
 			msg = msg.replace("DiceResult", (Math.floor(Math.random() * Dice) + 1).toString());
 			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Action" } );
 
-		} else if (msg.toLowerCase().indexOf("/coin") == 0) {
+		} else if (m.indexOf("/coin") == 0) {
 
 			// The player can flip a coin, heads or tails are 50/50
 			msg = TextGet("ActionCoin");
@@ -242,14 +245,26 @@ function ChatRoomSendChat() {
 			msg = msg.replace("CoinResult", Heads ? TextGet("Heads") : TextGet("Tails"));
 			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Action" } );
 
-		} else if (msg.indexOf("*") == 0 || msg.indexOf("/me ") == 0) {
+		} else if ((m.indexOf("*") == 0) || (m.indexOf("/me ") == 0)) {
 
 			// The player can emote an action using * or /me (for those IRC or Skype users), it doesn't garble
 			msg = msg.replace(/\*/g, "");
 			msg = msg.replace(/\/me /g, "");
 			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Emote" } );
 
-		} else {
+		}
+		else if (m.indexOf("/friendlistadd ") == 0) ChatRoomListManipulation(Player.FriendList, null, msg);
+		else if (m.indexOf("/friendlistremove ") == 0) ChatRoomListManipulation(null, Player.FriendList, msg);
+		else if (m.indexOf("/whitelistadd ") == 0) ChatRoomListManipulation(Player.WhiteList, Player.BlackList, msg);
+		else if (m.indexOf("/whitelistremove ") == 0) ChatRoomListManipulation(null, Player.WhiteList, msg);
+		else if (m.indexOf("/blacklistadd ") == 0) ChatRoomListManipulation(Player.BlackList, Player.WhiteList, msg);
+		else if (m.indexOf("/blacklistremove ") == 0) ChatRoomListManipulation(null, Player.BlackList, msg);
+		else if (m.indexOf("/ban ") == 0) ChatRoomAdminChatAction("Ban", msg);
+		else if (m.indexOf("/unban ") == 0) ChatRoomAdminChatAction("Unban", msg);
+		else if (m.indexOf("/kick ") == 0) ChatRoomAdminChatAction("Kick", msg);
+		else if (m.indexOf("/promote ") == 0) ChatRoomAdminChatAction("Promote", msg);
+		else if (m.indexOf("/demote ") == 0) ChatRoomAdminChatAction("Demote", msg);
+		else {
 
 			// Regular chat can be garbled with a gag
 			msg = SpeechGarble(Player, msg);
@@ -417,17 +432,20 @@ function ChatRoomViewProfile() {
 	}
 }
 
-// Returns TRUE if the current user is the room creator and not herself
-function ChatRoomCanBanUser() {
-	if ((CurrentCharacter != null) && (CurrentCharacter.ID != 0) && (Player.OnlineID == ChatRoomData.CreatorID))
-		return true;
+// Sends an administrative command to the server for the chat room from the character dialog
+function ChatRoomAdminAction(ActionType) {
+	if ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && ChatRoomPlayerIsAdmin()) {
+		ServerSend("ChatRoomAdmin", { MemberNumber: CurrentCharacter.MemberNumber, Action: ActionType });
+		DialogLeave();
+	}
 }
 
-// Sends a ban command to the server for the current character, if the player is the room creator
-function ChatRoomBanFromRoom(Action) {
-	if ((CurrentCharacter != null) && (CurrentCharacter.ID != 0) && (Player.OnlineID == ChatRoomData.CreatorID)) {
-		ServerSend("ChatRoom" + Action, CurrentCharacter.AccountName.replace("Online-", ""));
-		DialogLeave();
+// Sends an administrative command to the server from the chat text field
+function ChatRoomAdminChatAction(ActionType, Message) {
+	if (ChatRoomPlayerIsAdmin()) {
+		var C = parseInt(Message.substring(Message.indexOf(" ") + 1));
+		if (!isNaN(C) && (C > 0) && (C != Player.MemberNumber))
+			ServerSend("ChatRoomAdmin", { MemberNumber: C, Action: ActionType });
 	}
 }
 
@@ -452,6 +470,16 @@ function ChatRoomListManage(Operation, ListType) {
 		var data = {};
 		data[ListType] = Player[ListType];
 		ServerSend("AccountUpdate", data);
+	}
+}
+
+// Modify the player FriendList/WhiteList/BlackList based on typed message
+function ChatRoomListManipulation(Add, Remove, Message) {
+	var C = parseInt(Message.substring(Message.indexOf(" ") + 1));
+	if (!isNaN(C) && (C > 0) && (C != Player.MemberNumber)) {
+		if ((Add != null) && (Add.indexOf(C) < 0)) Add.push(C);
+		if ((Remove != null) && (Remove.indexOf(C) >= 0)) Remove.splice(Remove.indexOf(C), 1);
+		ServerSend("AccountUpdate", { FriendList: Player.FriendList, WhiteList: Player.WhiteList, BlackList: Player.BlackList });
 	}
 }
 

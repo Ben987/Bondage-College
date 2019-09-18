@@ -143,7 +143,8 @@ function InventoryWearRandom(C, AssetGroup, Difficulty) {
 			if ((Asset[A].Group.Name == AssetGroup) && Asset[A].Wear && Asset[A].Enable && Asset[A].Random)
 				List.push(Asset[A]);
 		if (List.length == 0) return;
-		CharacterAppearanceSetItem(C, AssetGroup, List[Math.floor(Math.random() * List.length)], null, Difficulty);
+		var RandomAsset = List[Math.floor(Math.random() * List.length)];
+		CharacterAppearanceSetItem(C, AssetGroup, RandomAsset, RandomAsset.DefaultColor, Difficulty);
 		CharacterRefresh(C);
 	}
 }

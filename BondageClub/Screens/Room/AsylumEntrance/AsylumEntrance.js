@@ -58,7 +58,7 @@ function AsylumEntranceStartChat() {
 
 // Wears the nurse clothes on a character (same as nursery)
 function AsylumEntranceWearNurseClothes(C) {
-	InventoryWear(C, "NurseUniform", "Cloth", "Default");
+	InventoryWear(C, "NurseUniform", "Cloth", "#848080");
 	InventoryWear(C, "NurseCap", "Hat", "Default");
 	InventoryWear(C, "Stockings2", "Socks", "Default");
 }
