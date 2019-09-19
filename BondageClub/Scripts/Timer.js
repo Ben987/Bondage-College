@@ -13,7 +13,7 @@ function TimerToString(T) {
 	if (S.length == 1) S = "0" + S;
 	if (M.length == 1) M = "0" + M;
 	if (H.length == 1) H = "0" + H;
-	return ((D != "0") ? D + ":" : "") + (((D != "0") && (H != "0")) ? H + ":" : "") + M + ":" + S;
+	return ((D != "0") ? D + ":" : "") + (((D != "0") || (H != "00")) ? H + ":" : "") + M + ":" + S;
 }
 
 // Returns a string of the current remaining timer
