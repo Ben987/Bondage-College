@@ -122,7 +122,7 @@ function InventorySpankingToySetType(NewType) {
 }
 
 // get the type of the SpankingToy that the Player holds
-function InventorySpankingToyGetType() {
+function InventorySpankingToysGetType() {
 	var Toy = InventoryGet(Player, "ItemHands");
 	if (Toy && Toy.Property && Toy.Property.Type) return Toy.Property.Type;
 	return SpankingCurrentType;
