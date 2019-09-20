@@ -54,7 +54,7 @@ function InventoryItemPelvisLoveChastityBeltDraw() {
 
 // Catches the item extension clicks
 function InventoryItemPelvisLoveChastityBeltClick() {
-  if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
+  if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) { DialogFocusItem = null; return; }
 
   var C = CharacterGetCurrent();
   if (C != null && C.IsOwnedByPlayer()) {
