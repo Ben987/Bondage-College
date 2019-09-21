@@ -107,7 +107,6 @@ function InventoryAllow(C, Prerequisite) {
 	if (Prerequisite == "CollaredNotSuspended1" && (InventoryGet(C, "ItemNeck") == null || C.Pose.indexOf("Horse") >= 0)) { DialogSetText("MustCollaredFirstAndRemoveSuspension1"); return false; }
 	if (Prerequisite == "NotSuspendedOrHorsed" &&  C.Pose.indexOf("Suspension") >= 0)  { DialogSetText("TheyMustBeStandingFirst"); return false; }
 	if (Prerequisite == "NotSuspendedOrHorsed" &&  C.Pose.indexOf("Horse") >= 0)  { DialogSetText("TheyMustBeStandingFirst"); return false; }
-	if (Prerequisite == "ToDo" &&  C.Pose.indexOf("Horse") >= 0)  { DialogSetText("ToDo"); return false; }
 	return true;
 
 }
