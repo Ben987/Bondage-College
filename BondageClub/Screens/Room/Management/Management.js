@@ -154,9 +154,9 @@ function ManagementPlayerArmbinder(ChangeRep) {
 function ManagementPlayerRandomRestrain() {
 	CharacterFullRandomRestrain(Player, "Lot");
 	InventoryWear(Player, "MetalChastityBelt", "ItemPelvis");
-	InventoryLock(Player, InventoryGet(Player, "ItemPelvis"), { Asset: AssetGet(C.AssetFamily, "ItemMisc", "MistressPadlock")}, -1);
+	InventoryLock(Player, "ItemPelvis", "MistressPadlock", -1);
 	InventoryWear(Player, "MetalChastityBra", "ItemBreast");
-	InventoryLock(Player, InventoryGet(Player, "ItemBreast"), { Asset: AssetGet(C.AssetFamily, "ItemMisc", "MistressPadlock")}, -1);
+	InventoryLock(Player, "ItemBreast", "MistressPadlock", -1);
 	ManagementCanReleaseChastity = false;
 }
 
