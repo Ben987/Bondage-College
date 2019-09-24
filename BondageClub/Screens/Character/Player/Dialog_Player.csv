@@ -337,3 +337,4 @@ CollarNameTagSetToy,,,SourceCharacter uses a Toy name tag on DestinationCharacte
 CollarNameTagSetUseless,,,SourceCharacter uses a Useless name tag on DestinationCharacter's collar.
 CollarNameTagSetUseMe,,,SourceCharacter uses a UseMe name tag on DestinationCharacter's collar.
 CollarNameTagSetWhore,,,SourceCharacter uses a Whore name tag on DestinationCharacter's collar.
+SlaveCollarSetType,,,SourceCharacter change DestinationCharacter's slave collar type to SlaveCollarType.
