@@ -5,3 +5,4 @@ DoubleItemSpeed,Speed up the time to use any item
 BlockRandomKidnap,Prevent random kidnappings
 SkipTrialPeriod,Skip the D/s trial periods
 AutoShowTraits,Automatically show NPC traits
+NoLoveDecay,No love decay for NPC over time

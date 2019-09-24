@@ -383,9 +383,9 @@ function PrivateRelationDecay() {
 	var MustSave = false;
 	for (var C = 1; C < PrivateCharacter.length; C++) {
 		var LastDecay = NPCEventGet(PrivateCharacter[C], "LastDecay");
-		if (LastDecay == 0) 
+		if (LastDecay * CheatFactor("NoLoveDecay", 0) == 0)
 			NPCEventAdd(PrivateCharacter[C], "LastDecay", CurrentTime);
-		else 
+		else
 			if (LastDecay <= CurrentTime - 7200000) {
 				var Decay = Math.floor((CurrentTime - LastDecay) / 7200000);
 				NPCEventAdd(PrivateCharacter[C], "LastDecay", LastDecay + (Decay * 7200000));
