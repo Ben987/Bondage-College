@@ -57,7 +57,12 @@ function InventoryItemPelvisLoveChastityBeltClick() {
   if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) { DialogFocusItem = null; return; }
 
   var C = CharacterGetCurrent();
-  if (C != null && C.IsOwnedByPlayer()) {
+  if (CurrentScreen == "ChatRoom") {
+    DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
+    InventoryItemPelvisLoveChastityBeltLoad();
+  }
+
+  if (C && DialogFocusItem && C.IsOwnedByPlayer()) {
     if ((MouseX >= 1200) && (MouseX <= 1450) && (MouseY >= 600) && (MouseY <= 665) && (DialogFocusItem.Property.Type == "Vibe") && (DialogFocusItem.Property.Intensity > -1)) InventoryItemPelvisLoveChastityBeltSetIntensity(-1 - DialogFocusItem.Property.Intensity);
 
     if (DialogFocusItem.Property.Type == "Shock") {
@@ -79,7 +84,7 @@ function InventoryItemPelvisLoveChastityBeltClick() {
 
     if ((DialogFocusItem.Property.Type == "Closed") || (DialogFocusItem.Property.Type == "Vibe") || (DialogFocusItem.Property.Type == "Shock")) {
       if ((MouseX >= 1200) && (MouseX <= 1450) && (MouseY >= 800) && (MouseY <= 865)) {
-        DialogFocusItem.Property.Intensity = -1;  
+        DialogFocusItem.Property.Intensity = -1;
         InventoryItemPelvisLoveChastityBeltSetTypeTo("Open", "LoveChastityBeltRemoveShieldMessage");
       }
     } else {
