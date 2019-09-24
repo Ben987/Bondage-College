@@ -102,7 +102,7 @@ function LoginRun() {
 
 // Make sure the slave collar is equipped or unequipped based on the owner
 function LoginValidCollar() {
- 	if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "SlaveCollar") && (Player.Owner == "")) InventoryRemove(Player, "ItemNeck");
+ 	if (InventoryIsWorn(Player, "ItemNeck", "SlaveCollar") && (Player.Owner == "")) InventoryRemove(Player, "ItemNeck");
  	if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name != "SlaveCollar") && (InventoryGet(Player, "ItemNeck").Asset.Name != "ClubSlaveCollar") && (Player.Owner != "")) InventoryRemove(Player, "ItemNeck");
 	if ((InventoryGet(Player, "ItemNeck") == null) && (Player.Owner != "")) InventoryWear(Player, "SlaveCollar", "ItemNeck");
 }
@@ -190,7 +190,7 @@ function LoginResponse(C) {
 			// Fixes a few items
 			InventoryRemove(Player, "ItemMisc");
 			if (LogQuery("JoinedSorority", "Maid") && !InventoryAvailable(Player, "MaidOutfit2", "Cloth")) InventoryAdd(Player, "MaidOutfit2", "Cloth");
-			if ((InventoryGet(Player, "ItemArms") != null) && (InventoryGet(Player, "ItemArms").Asset.Name == "FourLimbsShackles")) InventoryRemove(Player, "ItemArms");
+			if (InventoryIsWorn(Player, "ItemArms", "FourLimbsShackles")) InventoryRemove(Player, "ItemArms");
 			LoginValidCollar();
 			LoginMistressItems();
 

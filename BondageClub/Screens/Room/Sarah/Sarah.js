@@ -35,12 +35,12 @@ function SarahCanInviteSophieToRoomAccept() { return (Player.CanWalk() && Sophie
 function SarahCanInviteSophieToRoomRefuse() { return (Player.CanWalk() && Sophie.CanWalk() && (PrivateCharacter.length < PrivateCharacterMax) && ((SophieUpsetCount < 0) || (SophieUpsetCount > 2))) }
 function SarahCanKickAmandaOut() { return (Amanda.CanWalk() && (Player.Owner != "NPC-Amanda") && (!SarahInside || (Amanda.Owner == Player.Name))) }
 function SarahCanKickAmandaOutRefuse() { return (Amanda.CanWalk() && (Player.Owner != "NPC-Amanda") && SarahInside && (Amanda.Owner != Player.Name)) }
-function SarahShackled() { return (SarahInside && (Sarah != null) && (InventoryGet(Sarah, "ItemArms") != null) && (InventoryGet(Sarah, "ItemArms").Asset.Name == "FourLimbsShackles")) }
-function SarahAmandaHasStrapon() { return (Player.CanInteract() && AmandaInside && (Amanda != null) && (InventoryGet(Amanda, "ItemPelvis") != null) && (InventoryGet(Amanda, "ItemPelvis").Asset.Name == "StraponPanties")) }
+function SarahShackled() { return (SarahInside && (Sarah != null) && InventoryIsWorn(Sarah, "ItemArms", "FourLimbsShackles")) }
+function SarahAmandaHasStrapon() { return (Player.CanInteract() && AmandaInside && (Amanda != null) && InventoryIsWorn(Amanda, "ItemPelvis", "StraponPanties")) }
 function SarahAmandaHasNoStrapon() { return (Player.CanInteract() && AmandaInside && (Amanda != null) && !Amanda.IsVulvaChaste()) }
 function SarahKnowAmandaInRoom() { return (SarahInside && AmandaInside && (Sarah != null) && (Amanda != null) && !Sarah.CanInteract() && (!Sarah.IsBlind() || Amanda.CanTalk())) }
 function SarahAmandaCanKiss() { return (AmandaInside && (Amanda != null) && Player.CanTalk() && Amanda.CanTalk() && (Player.Lover == "NPC-Amanda")) }
-function SarahIsClubSlave() { return ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "ClubSlaveCollar")) }
+function SarahIsClubSlave() { return InventoryIsWorn(Player, "ItemNeck", "ClubSlaveCollar") }
 function SarahCanKissSophie() { return (Player.CanTalk() && Sophie.CanTalk()) }
 function SarahCanFightSophie() { return (!SophieFightDone && Player.CanInteract()) }
 function SarahSophiePunishmentStageIs(Stage) { return (SophiePunishmentStage == parseInt(Stage)) }
@@ -368,7 +368,7 @@ function SarahSophieLeaveRoom() {
 function SarahTransferAmandaToRoom() {
 	SarahAmandaLeaveRoom();
 	CharacterRelease(Amanda);
-	if ((InventoryGet(Amanda, "ItemPelvis") != null) && (InventoryGet(Amanda, "ItemPelvis").Asset.Name == "StraponPanties")) InventoryRemove(Amanda, "ItemPelvis");
+	if (InventoryIsWorn(Amanda, "ItemPelvis", "StraponPanties")) InventoryRemove(Amanda, "ItemPelvis");
 	InventoryWear(Amanda, "CollegeOutfit1", "Cloth");
 	InventoryWear(Amanda, "Socks4", "Socks", "#AAAAAA");
 	InventoryWear(Amanda, "Shoes1", "Shoes", "#222222");
@@ -652,9 +652,9 @@ function SarahSlaveWithClampEggPlug(C) {
 		else if (SarahIsInside()) return SarahSlaveWithClampEggPlug(Sarah);
 		else return SarahSlaveWithClampEggPlug(Amanda);
 	} else {
-		if ((InventoryGet(C, "ItemNipples") == null) || (InventoryGet(C, "ItemNipples").Asset.Name != "NippleClamp")) return false;
-		if ((InventoryGet(C, "ItemVulva") == null) || (InventoryGet(C, "ItemVulva").Asset.Name != "VibratingEgg")) return false;
-		if ((InventoryGet(C, "ItemButt") == null) || (InventoryGet(C, "ItemButt").Asset.Name != "BlackButtPlug")) return false;
+		if (!InventoryIsWorn(C, "ItemNipples", "NippleClamp")) return false;
+		if (!InventoryIsWorn(C, "ItemVulva", "VibratingEgg")) return false;
+		if (!InventoryIsWorn(C, "ItemButt", "BlackButtPlug")) return false;
 		return true;
 	}
 }
@@ -666,11 +666,11 @@ function SarahSlaveChaste(C) {
 		else if (SarahIsInside()) return SarahSlaveChaste(Sarah);
 		else return SarahSlaveChaste(Amanda);
 	} else {
-		if ((InventoryGet(C, "ItemNipples") == null) || (InventoryGet(C, "ItemNipples").Asset.Name != "NippleClamp")) return false;
-		if ((InventoryGet(C, "ItemVulva") == null) || (InventoryGet(C, "ItemVulva").Asset.Name != "VibratingEgg")) return false;
-		if ((InventoryGet(C, "ItemButt") == null) || (InventoryGet(C, "ItemButt").Asset.Name != "BlackButtPlug")) return false;
-		if ((InventoryGet(C, "ItemPelvis") == null) || (InventoryGet(C, "ItemPelvis").Asset.Name != "MetalChastityBelt")) return false;
-		if ((InventoryGet(C, "ItemBreast") == null) || (InventoryGet(C, "ItemBreast").Asset.Name != "MetalChastityBra")) return false;
+		if (!InventoryIsWorn(C, "ItemNipples", "NippleClamp")) return false;
+		if (!InventoryIsWorn(C, "ItemVulva", "VibratingEgg")) return false;
+		if (!InventoryIsWorn(C, "ItemButt", "BlackButtPlug")) return false;
+		if (!InventoryIsWorn(C, "ItemPelvis", "MetalChastityBelt")) return false;
+		if (!InventoryIsWorn(C, "ItemBreast", "MetalChastityBra")) return false;
 		return true;
 	}
 }
@@ -682,12 +682,12 @@ function SarahSlaveLockedCuffs(C) {
 		else if (SarahIsInside()) return SarahSlaveLockedCuffs(Sarah);
 		else return SarahSlaveLockedCuffs(Amanda);
 	} else {
-		if ((InventoryGet(C, "ItemNipples") == null) || (InventoryGet(C, "ItemNipples").Asset.Name != "NippleClamp")) return false;
-		if ((InventoryGet(C, "ItemVulva") == null) || (InventoryGet(C, "ItemVulva").Asset.Name != "VibratingEgg")) return false;
-		if ((InventoryGet(C, "ItemButt") == null) || (InventoryGet(C, "ItemButt").Asset.Name != "BlackButtPlug")) return false;
-		if ((InventoryGet(C, "ItemPelvis") == null) || (InventoryGet(C, "ItemPelvis").Asset.Name != "MetalChastityBelt")) return false;
-		if ((InventoryGet(C, "ItemBreast") == null) || (InventoryGet(C, "ItemBreast").Asset.Name != "MetalChastityBra")) return false;
-		if ((InventoryGet(C, "ItemArms") == null) || (InventoryGet(C, "ItemArms").Asset.Name != "LeatherCuffs")) return false;
+		if (!InventoryIsWorn(C, "ItemNipples", "NippleClamp")) return false;
+		if (!InventoryIsWorn(C, "ItemVulva", "VibratingEgg")) return false;
+		if (!InventoryIsWorn(C, "ItemButt", "BlackButtPlug")) return false;
+		if (!InventoryIsWorn(C, "ItemPelvis", "MetalChastityBelt")) return false;
+		if (!InventoryIsWorn(C, "ItemBreast", "MetalChastityBra")) return false;
+		if (!InventoryIsWorn(C, "ItemArms", "LeatherCuffs")) return false;
 		if ((InventoryGet(C, "ItemArms").Property == null) || (InventoryGet(C, "ItemArms").Property.Restrain == null)) return false;
 		return true;
 	}
