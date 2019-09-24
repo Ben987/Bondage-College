@@ -4,6 +4,9 @@ var Log = [];
 // Add a new log to the server side
 function LogAdd(NewLogName, NewLogGroup, NewLogValue, Push) {
 
+	// OwnerRule can only be added if the player has owner
+	if (QueryLogGroup == "OwnerRule" && !Player.IsOwned()) return;
+
 	// Makes sure the value is numeric
 	if (NewLogValue != null) NewLogValue = parseInt(NewLogValue);
 
@@ -18,12 +21,11 @@ function LogAdd(NewLogName, NewLogGroup, NewLogValue, Push) {
 
 	// Adds a new log object if we need to
 	if (AddToLog) {
-		var NewLog = {
+		Log.push(NewLog = {
 			Name: NewLogName,
 			Group: NewLogGroup,
 			Value: NewLogValue
-		}
-		Log.push(NewLog);
+		});
 	}
 
 	// Sends the log to the server
@@ -36,11 +38,7 @@ function LogAdd(NewLogName, NewLogGroup, NewLogValue, Push) {
 function LogDelete(DelLogName, DelLogGroup, Push) {
 
 	// Finds the log entry and deletes it
-	for (var L = 0; L < Log.length; L++)
-		if ((Log[L].Name == DelLogName) && (Log[L].Group == DelLogGroup)) {
-			Log.splice(L, 1);
-			break;
-		}
+	Log = Log.filter(L => L.Name != DelLogName && L.Group != DelLogGroup);
 
 	// Sends the new log to the server
 	if ((Push == null) || Push)
@@ -50,19 +48,16 @@ function LogDelete(DelLogName, DelLogGroup, Push) {
 
 // Checks if the log exists, return true if it does (if there's a value, it counts as an expiry time)
 function LogQuery(QueryLogName, QueryLogGroup) {
-	for (var L = 0; L < Log.length; L++)
-		if ((Log[L].Name == QueryLogName) && (Log[L].Group == QueryLogGroup))
-			if ((Log[L].Value == null) || (Log[L].Value >= CurrentTime))
-				return true;
-	return false;
+	// If it is an OwnerRule and Player is not owned than return false
+	if (QueryLogGroup == "OwnerRule" && !Player.IsOwned()) return false;
+	return Log.some(L => L.Name == QueryLogName && L.Group == QueryLogGroup && (L.Value == null || L.Value >= CurrentTime));;
 }
 
 // Returns the value associated to the log
 function LogValue(QueryLogName, QueryLogGroup) {
-	for (var L = 0; L < Log.length; L++)
-		if ((Log[L].Name == QueryLogName) && (Log[L].Group == QueryLogGroup))
-			return Log[L].Value;
-	return null;
+	// If it is an OwnerRule and Player is not owned than return null
+	if (QueryLogGroup == "OwnerRule" && !Player.IsOwned()) return null;
+	return Log.find(L => L.Name == QueryLogName && L.Group == QueryLogGroup);
 }
 
 // Loads the account log
@@ -77,5 +72,4 @@ function LogLoad(NewLog) {
 			LogAdd(NewLog[L].Name, NewLog[L].Group, NewLog[L].Value, false);
 
 	}
-	
 }
