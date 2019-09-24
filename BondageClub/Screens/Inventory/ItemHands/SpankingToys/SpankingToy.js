@@ -81,11 +81,7 @@ function InventoryItemHandsSpankingToysClick() {
 function InventorySpankingToySetType(NewType) {
 
 	// Sets the type
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if (CurrentScreen == "ChatRoom") {
-		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
-		InventoryItemHandsSpankingToysLoad();
-	}
+	var C = InventoryExtendedItemGetCurrentCharacter();
 	DialogFocusItem.Property.Type = NewType;
 	if (C.ID == 0) SpankingCurrentType = NewType;
 

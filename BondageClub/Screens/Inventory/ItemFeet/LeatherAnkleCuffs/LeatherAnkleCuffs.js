@@ -35,11 +35,7 @@ function InventoryItemFeetLeatherAnkleCuffsClick() {
 function InventoryItemFeetLeatherAnkleCuffsSetPose(NewPose) {
 
 	// Gets the current item and character
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if (CurrentScreen == "ChatRoom") {
-		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
-		InventoryItemFeetLeatherAnkleCuffsLoad();
-	}
+	var C = InventoryExtendedItemGetCurrentCharacter();
 
 	// Sets the new pose with it's effects
 	DialogFocusItem.Property.Restrain = NewPose;

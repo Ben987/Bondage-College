@@ -37,7 +37,7 @@ function InventoryItemButtButtPumpClick() {
 
 // Sets the Butt Pump Level
 function InventoryItemButtButtPumpIntensity(Modifier) {
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	var C = InventoryExtendedItemGetCurrentCharacter();
 	DialogFocusItem.Property.InflateLevel = DialogFocusItem.Property.InflateLevel + Modifier;
 	if (DialogFocusItem.Property.InflateLevel == 0);
 	if (DialogFocusItem.Property.InflateLevel == 1);

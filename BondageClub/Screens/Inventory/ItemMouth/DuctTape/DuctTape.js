@@ -44,11 +44,7 @@ function InventoryItemMouthDuctTapeClick() {
 
 // Sets the gag type (small, cleave, otm, otn)
 function InventoryItemMouthDuctTapeSetType(NewType) {
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if (CurrentScreen == "ChatRoom") {
-		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
-		InventoryItemMouthDuctTapeLoad();
-	}
+	var C = InventoryExtendedItemGetCurrentCharacter();
 	DialogFocusItem.Property.Type = NewType;
 	if (NewType == null) DialogFocusItem.Property.Effect = ["GagLight"];
 	else if (NewType == "Crossed") DialogFocusItem.Property.Effect = ["GagLight"];

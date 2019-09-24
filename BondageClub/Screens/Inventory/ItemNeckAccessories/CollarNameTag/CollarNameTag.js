@@ -101,11 +101,7 @@ function InventoryItemNeckAccessoriesCollarNameTagClick() {
 
 // Sets the type of tag
 function InventoryItemNeckAccessoriesCollarNameTagSetType(NewType) {
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if (CurrentScreen == "ChatRoom") {
-		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
-		InventoryItemNeckAccessoriesCollarNameTagLoad();
-	}
+	var C = InventoryExtendedItemGetCurrentCharacter();
 	DialogFocusItem.Property.Type = NewType;
 	if (NewType == null) DialogFocusItem.Property.Effect = [];
     else if (NewType == "BadGirl") DialogFocusItem.Property.Effect = [];

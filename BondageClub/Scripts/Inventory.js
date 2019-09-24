@@ -280,3 +280,13 @@ function InventoryIsWorn(C, AssetGroup, name){
 	else
 		return false;
 }
+
+function InventoryExtendedItemGetCurrentCharacter() {
+	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	if (CurrentScreen == "ChatRoom") {
+		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
+		if (typeof window["Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Load"] === 'function')
+			window["Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Load"]();
+	}
+	return C;
+}
