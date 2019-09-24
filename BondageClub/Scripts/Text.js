@@ -2,7 +2,7 @@
 var Text = null;
 
 // Finds the text value linked to the tag in the buffer
-function TextGet(TextTag) {	
+function TextGet(TextTag) {
 	if (Text == null) return "";
 	for (var T = 0; T < Text.length; T++)
 		if (Text[T].Tag == TextTag)
@@ -35,21 +35,21 @@ function TextBuild(CSV) {
 // Loads the CSV text file of the current screen
 function TextLoad(TextGroup) {
 
-    // Finds the full path of the CSV file to use cache
+	// Finds the full path of the CSV file to use cache
 	Text = null;
 	if ((TextGroup == null) || (TextGroup = "")) TextGroup = CurrentScreen;
-    var FullPath = "Screens/" + CurrentModule + "/" + TextGroup + "/Text_" + TextGroup + ".csv";
-    if (CommonCSVCache[FullPath]) {
+	var FullPath = "Screens/" + CurrentModule + "/" + TextGroup + "/Text_" + TextGroup + ".csv";
+	if (CommonCSVCache[FullPath]) {
 		TextBuild(CommonCSVCache[FullPath]);
-        return;
-    }
-    
-    // Opens the file, parse it and returns the result it to build the dialog
-    CommonGet(FullPath, function() {
-        if (this.status == 200) {
-            CommonCSVCache[FullPath] = CommonParseCSV(this.responseText);
+		return;
+	}
+
+	// Opens the file, parse it and returns the result it to build the dialog
+	CommonGet(FullPath, function () {
+		if (this.status == 200) {
+			CommonCSVCache[FullPath] = CommonParseCSV(this.responseText);
 			TextBuild(CommonCSVCache[FullPath]);
-        }
-    });
+		}
+	});
 
 }
