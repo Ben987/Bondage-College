@@ -39,11 +39,9 @@ function InventoryItemArmsPaddedMittensLockedLock() {
 // Chain/Unchain function
 function InventoryItemArmsPaddedMittensLockedChain() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if (InventoryGet(C, "ItemTorso") != null) {
-		if (InventoryGet(C, "ItemTorso").Asset.Name == "AdultBabyHarness") {
+	if (InventoryIsWorn(C, "ItemTorso", "AdultBabyHarness")) {
 			InventoryWear(C, "PaddedMittensHarnessLocked", "ItemArms");
 			if (C.ID == 0) ServerPlayerAppearanceSync();
 			ChatRoomPublishCustomAction(Player.Name + " " + DialogFind(Player, "chains") + " " + C.Name + " " + DialogFind(Player, "mittenstoharness") + ".", true);
-		} else InventoryItemArmsPaddedMittensLockedMsg = "NeedHarness";
 	} else InventoryItemArmsPaddedMittensLockedMsg = "NeedHarness";
 }

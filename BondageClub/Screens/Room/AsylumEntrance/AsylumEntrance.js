@@ -79,9 +79,9 @@ function AsylumEntranceWearPatientClothes(C) {
 
 // Returns TRUE if the player is wearing patient clothes
 function AsylumEntranceIsWearingPatientClothes() {
-	if ((InventoryGet(Player, "Cloth") == null) || (InventoryGet(Player, "Cloth").Asset.Name != "TShirt1")) return false;
-	if ((InventoryGet(Player, "ClothLower") == null) || (InventoryGet(Player, "ClothLower").Asset.Name != "Pajama1")) return false;
-	if ((InventoryGet(Player, "Socks") == null) || (InventoryGet(Player, "Socks").Asset.Name != "Socks2")) return false;
+	if (!InventoryIsWorn(Player, "Cloth", "TShirt1")) return false;
+	if (!InventoryIsWorn(Player, "ClothLower", "Pajama1")) return false;
+	if (!InventoryIsWorn(Player, "Socks", "Socks2")) return false;
 	if (InventoryGet(Player, "Shoes") != null) return false;
 	if (InventoryGet(Player, "Wings") != null) return false;
 	if (InventoryGet(Player, "TailStraps") != null) return false;
@@ -93,9 +93,9 @@ function AsylumEntranceIsWearingPatientClothes() {
 
 // Returns TRUE if the player is wearing nurse clothes
 function AsylumEntranceIsWearingNurseClothes() {
-	if ((InventoryGet(Player, "Cloth") == null) || (InventoryGet(Player, "Cloth").Asset.Name != "NurseUniform")) return false;
-	if ((InventoryGet(Player, "Hat") == null) || (InventoryGet(Player, "Hat").Asset.Name != "NurseCap")) return false;
-	if ((InventoryGet(Player, "Socks") == null) || (InventoryGet(Player, "Socks").Asset.Name != "Stockings2")) return false;
+	if (!InventoryIsWorn(Player, "Cloth", "NurseUniform")) return false;
+	if (!InventoryIsWorn(Player, "Hat", "NurseCap")) return false;
+	if (!InventoryIsWorn(Player, "Socks", "Stockings2")) return false;
 	return true;
 }
 
