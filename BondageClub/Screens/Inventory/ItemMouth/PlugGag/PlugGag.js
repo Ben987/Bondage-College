@@ -32,11 +32,7 @@ function InventoryItemMouthPlugGagClick() {
 
 // Sets the gag type (Plug, Open)
 function InventoryItemMouthPlugGagSetType(NewType) {
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if (CurrentScreen == "ChatRoom") {
-		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
-		InventoryItemMouthPlugGagLoad();
-	}
+	var C = InventoryExtendedItemGetCurrentCharacter();
 	DialogFocusItem.Property.Type = NewType;
 	if (NewType == null) DialogFocusItem.Property.Effect = ["GagHeavy"];
 	else if (NewType == "Plug") DialogFocusItem.Property.Effect = ["GagTotal"];

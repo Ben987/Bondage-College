@@ -40,11 +40,7 @@ function InventoryItemMouthPumpGagClick() {
 function InventoryItemMouthPumpGagSetPump(Modifier) {
 
 	// Loads the item
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if (CurrentScreen == "ChatRoom") {
-		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
-		InventoryItemMouthPumpGagLoad();
-	}
+	var C = InventoryExtendedItemGetCurrentCharacter();
 
 	// Sets the pump & gag level
 	DialogFocusItem.Property.PumpLevel = DialogFocusItem.Property.PumpLevel + Modifier;

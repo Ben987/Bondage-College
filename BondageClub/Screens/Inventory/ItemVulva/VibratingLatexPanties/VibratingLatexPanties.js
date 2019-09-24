@@ -39,7 +39,7 @@ function InventoryItemVulvaVibratingLatexPantiesClick() {
 
 // Sets the Vibrating Latex Panties intensity
 function InventoryItemVulvaVibratingLatexPantiesSetIntensity(Modifier) {
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	var C = InventoryExtendedItemGetCurrentCharacter();
 	DialogFocusItem.Property.Intensity = DialogFocusItem.Property.Intensity + Modifier;
 	if (DialogFocusItem.Property.Intensity == -1) DialogFocusItem.Property.Effect = ["Egged"];
 	if (DialogFocusItem.Property.Intensity == 0) DialogFocusItem.Property.Effect = ["Egged", "Vibrating"];

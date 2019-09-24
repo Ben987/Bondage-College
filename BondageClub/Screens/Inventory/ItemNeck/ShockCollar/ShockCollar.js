@@ -32,7 +32,7 @@ function InventoryItemNeckShockCollarClick() {
 
 // Sets the shock collar intensity
 function InventoryItemNeckShockCollarSetIntensity(Modifier) {
-	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	var C = InventoryExtendedItemGetCurrentCharacter();
 	DialogFocusItem.Property.Intensity = DialogFocusItem.Property.Intensity + Modifier;
 	if (DialogFocusItem.Property.ShowText)
 		ChatRoomPublishCustomAction((DialogFind(Player, "ShockCollarSet" + DialogFocusItem.Property.Intensity)).replace("SourceCharacter",Player.Name).replace("DestinationCharacter",C.Name), true);
