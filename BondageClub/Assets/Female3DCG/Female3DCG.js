@@ -3,8 +3,8 @@ var AssetSpankingToys = {
 	Name: "SpankingToys", Wear: false, Random: false, BuyGroup: "SpankingToys", IgnoreParentGroup: true,
 	DynamicDescription: () => InventorySpankingToysGetType(),
 	DynamicPreviewIcon: () => InventorySpankingToysGetType(),
-	DynamicAllowInventoryAdd: () => { return InventoryIsWorn(Player, "ItemHands", "SpankingToys") },
-	DynamicExpressionTrigger: () => { return SpankingInventory.find(x => x.Name == InventorySpankingToysGetType()).ExpressionTrigger }
+	DynamicAllowInventoryAdd: () => InventoryIsWorn(Player, "ItemHands", "SpankingToys"),
+	DynamicExpressionTrigger: () => SpankingInventory.find(x => x.Name == InventorySpankingToysGetType()).ExpressionTrigger
 };
 
 // 3D Custom Girl based assets

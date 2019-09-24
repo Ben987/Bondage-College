@@ -272,11 +272,7 @@ function InventoryConfiscateKey() {
 	InventoryDelete(Player, "IntricatePadlockKey", "ItemMisc");
 }
 
-function InventoryIsWorn(C, AssetGroup, name){
-	if((C == null) || (C.Appearance == null)) return null;
-	var item = C.Appearance.filter(i => i.Asset.Group.Name == AssetGroup)[0];
-	if((item != null) && (item.Asset.Name == name))
-		return true;
-	else
-		return false;
+// returns TRUE if the item is worn
+function InventoryIsWorn(C, AssetGroup, AssetName){
+	return C && C.Appearance && C.Appearance.some(Item => Item.Asset.Group.Name == AssetGroup && Item.Asset.Name == AssetName);
 }
