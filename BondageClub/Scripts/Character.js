@@ -487,7 +487,7 @@ function CharacterDress(C, Appearance) {
 // Removes any binding item from the character
 function CharacterRelease(C) {
 	for(var E = 0; E < C.Appearance.length; E++)
-		if (C.Appearance[E].Asset.Group.IsRestraint) {
+		if (C.Appearance[E].Asset.IsRestraint) {
 			C.Appearance.splice(E, 1);
 			E--;
 		}
