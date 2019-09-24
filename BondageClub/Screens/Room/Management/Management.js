@@ -48,6 +48,7 @@ function ManagementCannotBeReleased() { return ((Player.Owner != "") && (Player.
 function ManagementWillOwnPlayer() { return ((Player.Owner == "") && (ReputationGet("Dominant") <= -100) && (ManagementMistressAngryCount == 0) && (PrivateCharacter.length <= PrivateCharacterMax) && !PrivatePlayerIsOwned() && ManagementNoMistressInPrivateRoom()) }
 function ManagementWontOwnPlayer() { return ((Player.Owner == "") && (ReputationGet("Dominant") <= -1) && (ReputationGet("Dominant") >= -99) && (PrivateCharacter.length <= PrivateCharacterMax) && !PrivatePlayerIsOwned() && ManagementNoMistressInPrivateRoom()) }
 function ManagementIsClubSlave() { return InventoryIsWorn(Player, "ItemNeck", "ClubSlaveCollar") }
+function ManagementWearingSlaveCollar() { return InventoryIsWorn(Player, "ItemNeck", "SlaveCollar") }
 function ManagementCanTransferToRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax) && !LogQuery("LockOutOfPrivateRoom", "Rule")) }
 function ManagementWontVisitRoom() { return (!ManagementVisitRoom && ManagementCanTransferToRoom()) }
 function ManagementCanBeClubMistress() { return ((ReputationGet("Dominant") >= 100) && ((Math.floor((CurrentTime - Player.Creation) / 86400000)) >= 30) && !LogQuery("ClubMistress", "Management") && !Player.IsRestrained() && !Player.IsKneeling() && Player.CanChange()) }
@@ -120,7 +121,7 @@ function ManagementClick() {
 			ManagementMistress.Stage = "500";
 			ManagementMistress.CurrentDialog = DialogFind(ManagementMistress, "MistressExpulsion");
 		}
-		if (((ManagementMistress.Stage == "0") || (ManagementMistress.Stage == "5")) && (ReputationGet("Dominant") < 0) && !Player.IsKneeling()) {
+		if (((ManagementMistress.Stage == "0") || (ManagementMistress.Stage == "5")) && (ReputationGet("Dominant") < 0) && !Player.IsKneeling() && Player.CanKneel()) {
 			ReputationProgress("Dominant", 1);
 			ManagementMistress.CurrentDialog = DialogFind(ManagementMistress, "KneelToTalk");
 			ManagementMistress.Stage = "5";
@@ -484,4 +485,13 @@ function ManagementClubSlaveVisitRoom() {
 		ManagementRandomGirl.Stage = "ClubSlaveVisit";
 		ManagementRandomGirl.CurrentDialog = DialogFind(ManagementRandomGirl, "ClubSlaveWillVisit");
 	}
+}
+
+// When the player wants to change her slave collar model
+function ManagementChangeSlaveCollarType(NewType) {
+	var Collar = InventoryGet(Player, "ItemNeck");
+	if (NewType == "") Collar.Property = null;
+	else Collar.Property = { Type: NewType, Effect: [] };
+	CharacterRefresh(Player);
+	CharacterChangeMoney(Player, -30);
 }

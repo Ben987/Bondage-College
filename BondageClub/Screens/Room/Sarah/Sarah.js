@@ -160,7 +160,7 @@ function SarahLoad() {
 		InventoryAdd(Amanda, "StraponPanties", "ItemPelvis");
 		InventoryWear(Amanda, "StraponPanties", "ItemPelvis");
 		InventoryWear(Amanda, "HempRope", "ItemArms");
-		InventoryWear(Amanda, "DuctTapeGag", "ItemMouth");
+		InventoryWear(Amanda, "DuctTape", "ItemMouth");
 		if ((AmandaStatus == "Owned") || (AmandaStatus == "Curfew")) {
 			InventoryWear(Amanda, "SlaveCollar", "ItemNeck");
 			Amanda.Owner = Player.Name;

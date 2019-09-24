@@ -40,6 +40,8 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 20,0,(Back to main menu.),(Main menu.),,
 30,0,(Kick her out of the room.),,"AdminAction(""Kick"")",
 30,0,(Ban her from the room.),,"AdminAction(""Ban"")",
+30,0,(Move her to the left.),,"AdminAction(""MoveLeft"")",
+30,0,(Move her to the right.),,"AdminAction(""MoveRight"")",
 30,0,(Promote her as room administrator.),,"AdminAction(""Promote"")",!CurrentCharacterIsAdmin()
 30,0,(Demote her from room administration.),,"AdminAction(""Demote"")",CurrentCharacterIsAdmin()
 30,0,(Back to main menu.),(Main menu.),,
