@@ -4,23 +4,23 @@ const SpankingInventory = [
 		Name: "Crop",
 		Bonus: [{ Type: "KidnapDomination", Factor: 3 }],
 		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }]
-	},{
+	}, {
 		Name: "Flogger",
 		Bonus: [{ Type: "KidnapDomination", Factor: 3 }],
 		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }]
-	},{
+	}, {
 		Name: "Cane",
 		Bonus: [{ Type: "KidnapDomination", Factor: 3 }],
-		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 },{ Group: "Eyes", Name: "Wink", Timer: 5 }]
-	},{
+		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Eyes", Name: "Wink", Timer: 5 }]
+	}, {
 		Name: "HeartCrop",
 		Bonus: [{ Type: "KidnapDomination", Factor: 3 }],
 		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }]
-	},{
+	}, {
 		Name: "Paddle",
 		Bonus: [{ Type: "KidnapDomination", Factor: 3 }],
 		ExpressionTrigger: [{ Group: "Blush", Name: "High", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Eyes", Name: "Closed", Timer: 5 }]
-	},{
+	}, {
 		Name: "WhipPaddle",
 		Bonus: [{ Type: "KidnapDomination", Factor: 3 }],
 		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Eyes", Name: "Wink", Timer: 5 }]
@@ -35,7 +35,7 @@ var SpankingPlayerInventory;
 // Loads the item extension properties
 function InventoryItemHandsSpankingToysLoad() {
 	SpankingPlayerInventory = SpankingInventory.filter(x => Player.Inventory.map(i => i.Name).includes("SpankingToys" + x.Name));
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = {Type: SpankingCurrentType};
+	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Type: SpankingCurrentType };
 	if (SpankingPlayerInventory.length > 4) SpankingNextButton = true;
 }
 
@@ -50,7 +50,7 @@ function InventoryItemHandsSpankingToysDraw() {
 
 	// Draw the buttons, 4 at a time
 	DrawText(DialogFind(Player, "SelectSpankingToysType"), 1500, 500, "white", "gray");
-	for (var I = SpankingInventoryOffset; (I < SpankingPlayerInventory.length) && (I < SpankingInventoryOffset +4); I++) {
+	for (var I = SpankingInventoryOffset; (I < SpankingPlayerInventory.length) && (I < SpankingInventoryOffset + 4); I++) {
 		var offset = I - SpankingInventoryOffset;
 		DrawButton(1000 + offset * 250, 550, 225, 225, "", ((DialogFocusItem.Property.Type == SpankingPlayerInventory[I].Name) ? "#888888" : "White"));
 		DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/" + SpankingPlayerInventory[I].Name + ".png", 1000 + offset * 250, 550);
@@ -68,7 +68,7 @@ function InventoryItemHandsSpankingToysClick() {
 	if (SpankingInventoryOffset > SpankingPlayerInventory.length) SpankingInventoryOffset = 0;
 
 	// Item buttons
-	for (var I = SpankingInventoryOffset; (I < SpankingPlayerInventory.length) && (I < SpankingInventoryOffset +4); I++) {
+	for (var I = SpankingInventoryOffset; (I < SpankingPlayerInventory.length) && (I < SpankingInventoryOffset + 4); I++) {
 		var nextItem = SpankingPlayerInventory[I].Name;
 		var offset = I - SpankingInventoryOffset;
 		if ((MouseX >= 1000 + offset * 250) && (MouseX <= 1225 + offset * 250) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property.Type != nextItem))
@@ -116,3 +116,10 @@ function InventorySpankingToySetType(NewType) {
 	}
 
 }
+
+// get the type of the SpankingToy that the Player holds
+function InventorySpankingToysGetType() {
+	var Toy = InventoryGet(Player, "ItemHands");
+	if (Toy && Toy.Property && Toy.Property.Type) return Toy.Property.Type;
+	return SpankingCurrentType;
+} 

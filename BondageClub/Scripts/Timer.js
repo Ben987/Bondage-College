@@ -26,7 +26,7 @@ function TimerHourToString(T) {
 
 // Check if we must remove items from a player or an NPC
 function TimerInventoryRemove() {
-	
+
 	// Cycles through all items items for all offline characters (player + NPC)
 	for (var C = 0; C < Character.length; C++)
 		if ((Character[C].ID == 0) || (Character[C].MemberNumber == null))
