@@ -334,3 +334,19 @@ CollarNameTagSetToy,,,SourceCharacter uses a Toy name tag on DestinationCharacte
 CollarNameTagSetUseless,,,SourceCharacter uses a Useless name tag on DestinationCharacter's collar.
 CollarNameTagSetUseMe,,,SourceCharacter uses a UseMe name tag on DestinationCharacter's collar.
 CollarNameTagSetWhore,,,SourceCharacter uses a Whore name tag on DestinationCharacter's collar.
+DuctTapePoseLegs,,,Legs
+DuctTapePoseHalfLegs,,,Half
+DuctTapePoseMostLegs,,,Most
+DuctTapePoseCompleteLegs,,,Complete
+DuctTapeRestrainLegs,,,SourceCharacter wraps duct tape around DestinationCharacter's legs.
+DuctTapeRestrainHalfLegs,,,SourceCharacter wraps more duct tape on DestinationCharacter's legs trapping them firmly.
+DuctTapeRestrainMostLegs,,,SourceCharacter wraps even more duct tape on DestinationCharacter's legs trapping them tightly.
+DuctTapeRestrainCompleteLegs,,,SourceCharacter wraps an extreme amount of duct tape on DestinationCharacter's legs fully trapping them.
+DuctTapePoseFeet,,,Feet
+DuctTapePoseHalfFeet,,,Half
+DuctTapePoseMostFeet,,,Most
+DuctTapePoseCompleteFeet,,,Complete
+DuctTapeRestrainFeet,,,SourceCharacter wraps duct tape around DestinationCharacter's feet.
+DuctTapeRestrainHalfFeet,,,SourceCharacter wraps more duct tape on DestinationCharacter's feet trapping them firmly.
+DuctTapeRestrainMostFeet,,,SourceCharacter wraps even more duct tape on DestinationCharacter's feet trapping them tightly.
+DuctTapeRestrainCompleteFeet,,,SourceCharacter wraps an extreme amount of duct tape on DestinationCharacter's feet fully trapping them.
