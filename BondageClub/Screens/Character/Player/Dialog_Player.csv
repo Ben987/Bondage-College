@@ -6,6 +6,8 @@ TheyMustBeStandingFirst,,,Must be standing and not suspended first.
 RemoveChainForItem,,,Remove the chain to the floor first
 MustCollaredFirst,,,A collar must be fitted first to attach accessories to.
 MustCollaredFirstAndRemoveSuspension,,,Must be collared and not suspended first.
+MustCollaredFirstAndRemoveSuspension1,,,Must be collared and not suspended/mounted first.
+FeetClosed,,,Can't have Items locked to your feet.
 Cancel,,,Cancel
 Exit,,,Back to character
 Next,,,View next items
@@ -78,6 +80,7 @@ ServerMessageOwnerRuleWhisperBlock,,,Your owner is now preventing you from whisp
 ServerMessageOwnerRuleKeyAllow,,,Your owner is now allowing you to have keys.  You can buy keys from the club shop.
 ServerMessageOwnerRuleKeyConfiscate,,,Your owner has confiscated your keys.  All your regular keys are lost.
 ServerMessageOwnerRuleKeyBlock,,,Your owner is now preventing you from getting new keys.  The club shop will not sell keys to you anymore.
+ServerMessageWhisperBlocked,,,You're on SourceCharacter blacklist.  Your message was blocked by the server.
 LockMemberNumber,,,Member number on lock:
 TimerLeft,,,Time left:
 TimerRestart,,,SourceCharacter restarts the five minutes timer padlock on DestinationCharacter BodyPart.
@@ -279,6 +282,8 @@ LoveChastityBeltUnlockShock,,,Remove Shock
 LoveChastityBeltAddShield,,,Add Shield
 LoveChastityBeltAddVibe,,,Add Vibe
 LoveChastityBeltAddShock,,,Add Shock
+LoveChastityBeltActionUnlockButt,,,SourceCharacter unlocks DestinationCharacter's love chastity belt butt.
+LoveChastityBeltActionLockButt,,,SourceCharacter lock DestinationCharacter's love chastity belt butt.
 LoveChastityBeltVibeIncreaseTo0,,,DestinationCharacter's love chastity belts starts teasing her lightly.
 LoveChastityBeltVibeIncreaseTo1,,,DestinationCharacter's love chastity belts builds up to a moderate pace.
 LoveChastityBeltVibeIncreaseTo2,,,DestinationCharacter's love chastity belts starts buzzing strongly!
@@ -293,10 +298,10 @@ LoveChastityBeltShockSet2,,,SourceCharacter sets DestinationCharacter's love cha
 LoveChastityBeltShockTrigger0,,,DestinationCharacter's love chastity belt gives her a light shock.
 LoveChastityBeltShockTrigger1,,,DestinationCharacter's love chastity belt lets out a sharp jolt!
 LoveChastityBeltShockTrigger2,,,DestinationCharacter's love chastity belt delivers an intense shock!
-LoveChastityBeltRemoveShieldMessage,,,SourceCharacter removes shield from DestinationCharacter's love chastity belt
-LoveChastityBeltAddShieldMessage,,,SourceCharacter locks shield to DestinationCharacter's love chastity belt
-LoveChastityBeltAddVibeMessage,,,SourceCharacter locks vibe to DestinationCharacter's love chastity belt
-LoveChastityBeltAddShockMessage,,,SourceCharacter locks shock device to DestinationCharacter's love chastity belt
+LoveChastityBeltRemoveShieldMessage,,,SourceCharacter removes shield from DestinationCharacter's love chastity belt.
+LoveChastityBeltAddShieldMessage,,,SourceCharacter locks shield to DestinationCharacter's love chastity belt.
+LoveChastityBeltAddVibeMessage,,,SourceCharacter locks vibe to DestinationCharacter's love chastity belt.
+LoveChastityBeltAddShockMessage,,,SourceCharacter locks shock device to DestinationCharacter's love chastity belt.
 SelectCollarNameTagType,,,Select what tag you want to use
 SelectCollarNameTagTypeLocked,,,You cannot change the tag while it's locked
 CollarNameTagSetBadGirl,,,SourceCharacter uses a BadGirl name tag on DestinationCharacter's collar.
@@ -350,3 +355,5 @@ DuctTapeRestrainFeet,,,SourceCharacter wraps duct tape around DestinationCharact
 DuctTapeRestrainHalfFeet,,,SourceCharacter wraps more duct tape on DestinationCharacter's feet trapping them firmly.
 DuctTapeRestrainMostFeet,,,SourceCharacter wraps even more duct tape on DestinationCharacter's feet trapping them tightly.
 DuctTapeRestrainCompleteFeet,,,SourceCharacter wraps an extreme amount of duct tape on DestinationCharacter's feet fully trapping them.
+SlaveCollarSelectType,,,Select the slave collar model
+SlaveCollarChangeType,,,SourceCharacter changes DestinationCharacter's collar model.

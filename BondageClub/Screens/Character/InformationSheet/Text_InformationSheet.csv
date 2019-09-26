@@ -1,11 +1,11 @@
 Name,Name:
 Title,Title:
+TitleNone,None
 TitleMistress,Mistress
 TitleHeadMaid,Head Maid
 TitleMaid,Maid
 TitleMasterKidnapper,Master Kidnapper
 TitleKidnapper,Kidnapper
-TitleNone,None
 TitlePonyFoal,Foal
 TitlePonyFarm,Farm Horse
 TitlePonyCold,Cold Blood Horse
@@ -14,6 +14,10 @@ TitlePonyHot,Hot Blood Horse
 TitlePonyWild,Wild Mustang
 TitlePonyUnicorn,Shining Unicorn
 TitlePonyPegasus,Flying Pegasus
+TitlePatient,Patient
+TitlePermanentPatient,Permanent Patient
+TitleNurse,Nurse
+TitleDoctor,Doctor
 MemberNumber,Member Number:
 NoMemberNumber,-
 Lover,Lover:

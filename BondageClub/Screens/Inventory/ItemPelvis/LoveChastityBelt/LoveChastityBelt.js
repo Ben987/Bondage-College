@@ -54,10 +54,15 @@ function InventoryItemPelvisLoveChastityBeltDraw() {
 
 // Catches the item extension clicks
 function InventoryItemPelvisLoveChastityBeltClick() {
-  if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
+  if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) { DialogFocusItem = null; return; }
 
-  if (CharacterGetCurrent().IsOwnedByPlayer()) {
+  var C = CharacterGetCurrent();
+  if (CurrentScreen == "ChatRoom") {
+    DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
+    InventoryItemPelvisLoveChastityBeltLoad();
+  }
 
+  if (C && DialogFocusItem && C.IsOwnedByPlayer()) {
     if ((MouseX >= 1200) && (MouseX <= 1450) && (MouseY >= 600) && (MouseY <= 665) && (DialogFocusItem.Property.Type == "Vibe") && (DialogFocusItem.Property.Intensity > -1)) InventoryItemPelvisLoveChastityBeltSetIntensity(-1 - DialogFocusItem.Property.Intensity);
 
     if (DialogFocusItem.Property.Type == "Shock") {
@@ -73,19 +78,20 @@ function InventoryItemPelvisLoveChastityBeltClick() {
     if ((MouseX >= 1550) && (MouseX <= 1800) && (MouseY >= 800) && (MouseY <= 865)) {
       DialogFocusItem.Property.LockButt = !DialogFocusItem.Property.LockButt;
       InventoryItemPelvisLoveChastityBeltUpdate();
-      CharacterRefresh((Player.FocusGroup != null) ? Player : CurrentCharacter);
+      CharacterRefresh(C);
+      ChatRoomPublishCustomAction((DialogFindAutoReplace(Player, "LoveChastityBeltAction" + DialogFocusItem.Property.LockButt ? "LockButt" : "UnlockButt")), true);
     }
 
     if ((DialogFocusItem.Property.Type == "Closed") || (DialogFocusItem.Property.Type == "Vibe") || (DialogFocusItem.Property.Type == "Shock")) {
       if ((MouseX >= 1200) && (MouseX <= 1450) && (MouseY >= 800) && (MouseY <= 865)) {
-        DialogFocusItem.Property.Intensity = -1;  
+        DialogFocusItem.Property.Intensity = -1;
         InventoryItemPelvisLoveChastityBeltSetTypeTo("Open", "LoveChastityBeltRemoveShieldMessage");
       }
     } else {
       if ((MouseX >= 1200) && (MouseX <= 1450) && (MouseY >= 800) && (MouseY <= 865)) {
         InventoryItemPelvisLoveChastityBeltSetTypeTo("Closed", "LoveChastityBeltAddShieldMessage");
       }
-      if (InventoryGet(((Player.FocusGroup != null) ? Player : CurrentCharacter), "ItemVulva") == null) {
+      if (InventoryGet(C, "ItemVulva") == null) {
         if ((MouseX >= 1200) && (MouseX <= 1450) && (MouseY >= 900) && (MouseY <= 965)) {
           InventoryItemPelvisLoveChastityBeltSetTypeTo("Vibe", "LoveChastityBeltAddVibeMessage");
         }
