@@ -43,7 +43,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 170,0,0,,Touch her again|and I'll kill you.,"(The girl looks down and gives you a collar.)|Collar her then, so it's clear that she's yours.",180,0,1,GetCollar()
 170,0,0,,Don't bother my|friend again.,"(The girl looks down and gives you a collar.)|Collar her then, so it's clear that she's yours.",180,1,0,GetCollar()
 170,0,0,,She's my slut.,"(The girl looks down and gives you a collar.)|Collar her then, so it's clear that she's yours.",180,-1,2,GetCollar()
-180,0,0,,We'll see about that.|Everything is ok now?,(The bully grumbles and exits the building.|Jennifer smiles and goes back to the pool.),100,0,0,
+180,0,0,,We'll see about that.|Everything is OK now?,(The bully grumbles and exits the building.|Jennifer smiles and goes back to the pool.),100,0,0,
 180,0,0,,Fine.  Get lost you two.|I need a good shower.,(The bully grumbles and exits the building.|Jennifer smiles and goes back to the pool.),100,0,0,
 200,0,0,,I didn't want to|start a scene.,I understand.  It's great that I'm a good runner.|What's the best way to deal with bullies?,201,0,0,
 200,0,0,,I know.  I'm sorry.,It's fine.  That's why I'm a good runner.|What's the best way to deal with bullies?,201,0,-1,

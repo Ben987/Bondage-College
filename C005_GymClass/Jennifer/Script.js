@@ -249,7 +249,7 @@ function C005_GymClass_Jennifer_BallGagPlayer() {
 	CurrentTime = CurrentTime + 50000;
 }
 
-// Chapter 5 - Ungag Player (Jennifer only does if the player is likeable and not submissive))
+// Chapter 5 - Ungag Player (Jennifer only does if the player is likable and not submissive))
 function C005_GymClass_Jennifer_UngagPlayer() {
 	if (ActorGetValue(ActorLove) + ActorGetValue(ActorSubmission) >= 0) {
 		OverridenIntroText = GetText("UngagPlayer");
@@ -315,7 +315,7 @@ function C005_GymClass_Jennifer_Orgasm() {
 	ActorAddOrgasm();
 }
 
-// Chapter 5 - Jennifer fighting skill training, the player can learn the figthing skill if there's 30 or more left
+// Chapter 5 - Jennifer fighting skill training, the player can learn the fighting skill if there's 30 or more left
 function C005_GymClass_Jennifer_TrainFighting() {
 	if (CurrentTime <= 11 * 60 * 60 * 1000) {
 		OverridenIntroText = GetText("TrainFighting");

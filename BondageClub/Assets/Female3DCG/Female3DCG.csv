@@ -217,6 +217,8 @@ ItemLegs,DuctTape,Duct Tape
 ItemLegs,MermaidRopeTie,Upper Mermaid Tie
 ItemLegs,LeatherLegCuffs,Leather Leg Cuffs
 ItemLegs,LegBinder,Leg Binder
+ItemLegs,HobbleSkirt,Hobble Skirt
+ItemLegs,WoodenHorse,Wooden Horse
 ItemVulva,,Vulva
 ItemVulva,VibratingEgg,Vibrating Egg
 ItemVulva,VibratingWand,Vibrating Wand
@@ -276,6 +278,7 @@ ItemArms,DuctTape,Duct Tape
 ItemArms,BitchSuit,Pet Suit
 ItemArms,CollarLeashHolding,Holding Leash
 ItemArms,StraitDress,Strait Dress
+ItemArms,StraitDressOpen,Open crotch Strait Dress
 ItemHands,,Hands
 ItemHands,PaddedMittens,Padded Mittens
 ItemHands,PawMittens,Paw Mittens

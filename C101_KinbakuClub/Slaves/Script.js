@@ -13,7 +13,7 @@ var C101_KinbakuClub_Slaves_JennaWillGag = false; // jenna will gag a noise play
 var C101_KinbakuClub_Slaves_WaitingDone = false;
 var C101_KinbakuClub_Slaves_SelfShackle = false; // true if player shackles herself.
 var C101_KinbakuClub_Slaves_EricaShackle = false; // true if player is shackled by Erica.
-var C101_KinbakuClub_Slaves_AmeliaShackle = false; // true if player is shackled by Ameilia.
+var C101_KinbakuClub_Slaves_AmeliaShackle = false; // true if player is shackled by Amelia.
 var C101_KinbakuClub_Slaves_AllShackle = false; // true if player is shackled by the whole club.
 var C101_KinbakuClub_Slaves_ButErica = false; // option if player is told the whole club knows about the shackles.
 var C101_KinbakuClub_Slaves_ChasteGagged = false;
@@ -21,10 +21,10 @@ var C101_KinbakuClub_Slaves_GaggedNotChaste = false;
 var C101_KinbakuClub_Slaves_GameStartTime = 0; // Records when time when Jenna starts teasing.
 var C101_KinbakuClub_Slaves_GameTime = 0; // How long the game lasted
 var C101_KinbakuClub_Slaves_PreviousTime = 0; // used for slowly increasing the players arousal state even if they do nothing.
-var C101_KinbakuClub_Slaves_PlayerArousal = 0; // how aroused the player is whne playing with Jenna.
+var C101_KinbakuClub_Slaves_PlayerArousal = 0; // how aroused the player is when playing with Jenna.
 var C101_KinbakuClub_Slaves_PlayerArousalChange = 0; // for working out the base rate for arousal increase
-var C101_KinbakuClub_Slaves_PlayerArousalMod = 0; // for altering arousal depedning on options selected
-var C101_KinbakuClub_Slaves_PlayerVeryAroused = false; // if jenna thinks the player is arroused enough to let her submit.
+var C101_KinbakuClub_Slaves_PlayerArousalMod = 0; // for altering arousal depending on options selected
+var C101_KinbakuClub_Slaves_PlayerVeryAroused = false; // if jenna thinks the player is aroused enough to let her submit.
 var C101_KinbakuClub_Slaves_PlayerNotVeryArousedGagged = false; // combined arousal and gag variables.
 var C101_KinbakuClub_Slaves_PlayerVeryArousedGagged = false; // combined arousal and gag variables.
 var C101_KinbakuClub_Slaves_TeaseImage = 0; // image used for Jenna's hand is no special images.
@@ -124,7 +124,7 @@ function C101_KinbakuClub_Slaves_Run() {
 		if (PlayerHasLockedInventory("TapeGag")) DrawImage(CurrentChapter + "/" + CurrentScreen + "/UnlockedCollarTapeGag.jpg", 780, 130);
 	}
 
-	// Player with collar lcoked on and to wall. Wists and ankles free
+	// Player with collar locked on and to wall. Wists and ankles free
 	if (C101_KinbakuClub_Slaves_CurrentStage == 110) {
 		if (PlayerHasLockedInventory("BallGag")) DrawImage(CurrentChapter + "/" + CurrentScreen + "/HalfwayBallGag.jpg", 840, 35);
 		if (PlayerHasLockedInventory("ClothGag")) DrawImage(CurrentChapter + "/" + CurrentScreen + "/HalfwayClothGag.jpg", 840, 35);
@@ -220,7 +220,7 @@ function C101_KinbakuClub_Slaves_Run() {
 	}
 
 	// Jenna teasing arousal game
-	// Players arousal will steadily inrease with time while Jenna is teasing her.
+	// Players arousal will steadily increase with time while Jenna is teasing her.
 	if (C101_KinbakuClub_Slaves_CurrentStage == 210) {
 		if (CurrentTime > (C101_KinbakuClub_Slaves_PreviousTime + 1000)) {
 			C101_KinbakuClub_Slaves_PreviousTime = CurrentTime;
@@ -307,7 +307,7 @@ function C101_KinbakuClub_Slaves_Click() {
 	C101_KinbakuClub_Slaves_CalcParams();
 }
 
-// Chapter 101 - Slaves - Leaviing the bag stage
+// Chapter 101 - Slaves - Leaving the bag stage
 function C101_KinbakuClub_Slaves_Leave() {
 	if (C101_KinbakuClub_Slaves_ReadyForSlaves && !C101_KinbakuClub_Slaves_ReadyMessageDone) {
 		C101_KinbakuClub_Slaves_ReadyMessageDone = true;
@@ -497,7 +497,7 @@ function C101_KinbakuClub_Slaves_EndGame() {
 	}
 }
 
-// Chapter 101 - Slaves - Select a random choice of the vairiable options during the game.
+// Chapter 101 - Slaves - Select a random choice of the variable options during the game.
 function C101_KinbakuClub_Slaves_RandomSelection() {
 	// Select 8 random numbers, each between 1 and 12
 	var randomNumbers = []
@@ -583,8 +583,8 @@ function C101_KinbakuClub_Slaves_Select3() {
 function C101_KinbakuClub_Slaves_Select4() {
 	C101_KinbakuClub_Slaves_NormalArousalIncrease()
 	C101_KinbakuClub_Slaves_RandomSelection();
-	// at low arousal has a claming effect, variable arousal decrease
-	// at higher arousal makes the brush more noticable, variable arousal increase
+	// at low arousal has a calming effect, variable arousal decrease
+	// at higher arousal makes the brush more noticeable, variable arousal increase
 	C101_KinbakuClub_Slaves_HandsSpecial = 4;
 	if (C101_KinbakuClub_Slaves_PlayerArousal > 250) {
 		C101_KinbakuClub_Slaves_PlayerArousalMod = 10;
@@ -640,18 +640,18 @@ function C101_KinbakuClub_Slaves_Select7() {
 	C101_KinbakuClub_Slaves_ShortLeashWarning++
 }
 
-// Chapter 101 - Slaves - Tease Select 8 (Think of your|favourite things.)
+// Chapter 101 - Slaves - Tease Select 8 (Think of your|favorite things.)
 function C101_KinbakuClub_Slaves_Select8() {
 	C101_KinbakuClub_Slaves_NormalArousalIncrease()
 	C101_KinbakuClub_Slaves_RandomSelection();
 	// if low arousal, think of non arousing happy times. variable arousal increase
-	// if moderate or high arousal, struggle with sexy thoughs. varaiable arousal increase or decrease
+	// if moderate or high arousal, struggle with sexy thoughts. variable arousal increase or decrease
 	C101_KinbakuClub_Slaves_PlayerArousalReduction()
 	if (C101_KinbakuClub_Slaves_PlayerArousal > 250) {
 		OverridenIntroText = GetText("SexyThoughts");
 		C101_KinbakuClub_Slaves_PlayerArousalMod = 10;
 	}
-	// if high arousal and already had/given an orgasm, think of earlier orgasm and varaiable high arousal increase
+	// if high arousal and already had/given an orgasm, think of earlier orgasm and variable high arousal increase
 	//if ((ActorSpecificGetValue(Amanda, ActorOrgasmCount) + ActorSpecificGetValue(Sarah, ActorOrgasmCount) + ActorSpecificGetValue(Sidney, ActorOrgasmCount) + ActorSpecificGetValue(Jennifer, ActorOrgasmCount) + ActorSpecificGetValue(Yuki, ActorOrgasmCount) + ActorSpecificGetValue(Natalie, ActorOrgasmCount) + ActorSpecificGetValue(Erica, ActorOrgasmCount) + ActorSpecificGetValue(Lauren, ActorOrgasmCount)) > 3) {
 	//	OverridenIntroText = GetText("RememberOrgasms");
 	//	C101_KinbakuClub_Slaves_PlayerArousalMod = 15;
@@ -663,7 +663,7 @@ function C101_KinbakuClub_Slaves_Select8() {
 function C101_KinbakuClub_Slaves_Select9() {
 	C101_KinbakuClub_Slaves_NormalArousalIncrease()
 	C101_KinbakuClub_Slaves_RandomSelection();
-	// varaiable arousal increase
+	// variable arousal increase
 	C101_KinbakuClub_Slaves_PlayerArousalMod = 10;
 	C101_KinbakuClub_Slaves_ArousalVariation();
 }
@@ -671,7 +671,7 @@ function C101_KinbakuClub_Slaves_Select9() {
 // Chapter 101 - Slaves - Tease Select 10 Aaarrgh|you bitch.
 function C101_KinbakuClub_Slaves_Select10() {
 	C101_KinbakuClub_Slaves_NormalArousalIncrease()
-	// on second try Jenna will gag player unggaed player
+	// on second try Jenna will gag player ungagged player
 	if (C101_KinbakuClub_Slaves_LanguageWarning && !Common_PlayerGagged) {
 		OverridenIntroText = GetText("BadLanguageGagged");
 		ActorChangeAttitude(0, -2);
@@ -728,7 +728,7 @@ function C101_KinbakuClub_Slaves_CryWolf() {
 	
 }
 
-// Chapter 101 - Slaves - Player says banana and then imediate says she is ok
+// Chapter 101 - Slaves - Player says banana and then immediately says she is OK
 function C101_KinbakuClub_Slaves_FalseBanana() {
 	C101_KinbakuClub_Slaves_RandomSelection();
 	if (!Common_PlayerGagged) PlayerLockInventory("BallGag");
@@ -768,7 +768,7 @@ function C101_KinbakuClub_Slaves_TeaseStageBack() {
 		C101_KinbakuClub_Slaves_PlayerArousal = C101_KinbakuClub_Slaves_PlayerArousal - 150
 }
 
-// Chapter 101 - Slaves - Reduction modefied for stage
+// Chapter 101 - Slaves - Reduction modified for stage
 function C101_KinbakuClub_Slaves_PlayerArousalReduction() {
 	C101_KinbakuClub_Slaves_PlayerArousalMod = -(C101_KinbakuClub_Slaves_PlayerArousalChange * 8 + 10);
 }

@@ -13,7 +13,7 @@ function TimerToString(T) {
 	if (S.length == 1) S = "0" + S;
 	if (M.length == 1) M = "0" + M;
 	if (H.length == 1) H = "0" + H;
-	return ((D != "0") ? D + ":" : "") + (((D != "0") && (H != "0")) ? H + ":" : "") + M + ":" + S;
+	return ((D != "0") ? D + ":" : "") + (((D != "0") || (H != "00")) ? H + ":" : "") + M + ":" + S;
 }
 
 // Returns a string of the current remaining timer
@@ -26,7 +26,7 @@ function TimerHourToString(T) {
 
 // Check if we must remove items from a player or an NPC
 function TimerInventoryRemove() {
-	
+
 	// Cycles through all items items for all offline characters (player + NPC)
 	for (var C = 0; C < Character.length; C++)
 		if ((Character[C].ID == 0) || (Character[C].MemberNumber == null))

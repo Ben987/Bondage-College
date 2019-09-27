@@ -353,7 +353,7 @@ function AppearanceLoad() {
 	var C = CharacterAppearanceSelection;
 
 	CharacterAppearanceBuildAssets(Player);
-	CharacterAppearanceBackup = JSON.parse(JSON.stringify(C.Appearance));
+	CharacterAppearanceBackup = C.Appearance.map(Item => Object.assign({}, Item));
 }
 
 // Run the character appearance selection screen

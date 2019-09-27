@@ -14,27 +14,27 @@ var DrawScreenHeight = -1;
 
 // Convert a hex color string to a RGB color
 function DrawHexToRGB(color) {
-    var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-    color = color.replace(shorthandRegex, function(m, r, g, b) {
-        return r + r + g + g + b + b;
-    });
+	var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+	color = color.replace(shorthandRegex, function (m, r, g, b) {
+		return r + r + g + g + b + b;
+	});
 
-    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
-    return result ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16)
-    } : {
-        r: 0,
-        g: 0,
-        b: 0
-    };
+	var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
+	return result ? {
+		r: parseInt(result[1], 16),
+		g: parseInt(result[2], 16),
+		b: parseInt(result[3], 16)
+	} : {
+			r: 0,
+			g: 0,
+			b: 0
+		};
 }
 
 // Returns the hex value of a RGB data
-function DrawRGBToHex(rgb){
+function DrawRGBToHex(rgb) {
 	var rgb = rgb[2] | (rgb[1] << 8) | (rgb[0] << 16);
-    return '#' + (0x1000000 + rgb).toString(16).slice(1);
+	return '#' + (0x1000000 + rgb).toString(16).slice(1);
 };
 
 // Loads the drawing objects
@@ -107,7 +107,7 @@ function DrawGetImageOnError(Img, IsAsset) {
 function DrawCharacter(C, X, Y, Zoom) {
 
 	// Make sure we have a character
-	if (C != null) {
+	if (C != null)
 		if ((C.ID == 0) || (Player.Effect.indexOf("BlindHeavy") < 0) || (CurrentScreen == "InformationSheet")) {
 
 			// There's 2 different canvas, one blinking and one that doesn't
@@ -132,7 +132,7 @@ function DrawCharacter(C, X, Y, Zoom) {
 				CharacterCanvas.drawImage(Canvas, 0, 0);
 				Canvas = CharacterCanvas.canvas;
 			}
-			
+
 			// If we must flip the canvas vertically
 			if (C.Pose.indexOf("Suspension") >= 0)	{
 				CharacterCanvas.scale(1, -1);
@@ -141,7 +141,7 @@ function DrawCharacter(C, X, Y, Zoom) {
 				CharacterCanvas.drawImage(Canvas, 0, 0);
 				Canvas = CharacterCanvas.canvas;
 			}
-			
+
 			// Draw the character
 			if ((Zoom == undefined) || (Zoom == 1))
 				DrawCanvas(Canvas, X, Y - C.HeightModifier);
@@ -162,7 +162,7 @@ function DrawCharacter(C, X, Y, Zoom) {
 			// Draw the character name below herself
 			if ((C.Name != "") && ((CurrentModule == "Room") || (CurrentModule == "Online") || ((CurrentScreen == "Wardrobe") && (C.ID != 0))) && (CurrentScreen != "Private")) {
 				if (!Player.IsBlind()) {
-					MainCanvas.font = "30px Arial";	
+					MainCanvas.font = "30px Arial";
 					DrawText(C.Name, X + 255 * Zoom, Y + 980 * Zoom, (CommonIsColor(C.LabelColor)) ? C.LabelColor : "White", "Black");
 					MainCanvas.font = "36px Arial";
 				}
@@ -319,17 +319,17 @@ function GetWrapTextSize(Text, Width, MaxLine) {
 	if (MainCanvas.measureText(Text).width > Width) {
 		var words = Text.split(' ');
 		var line = '';
-		
+
 		// Find the number of lines
 		var LineCount = 1;
-		for(var n = 0; n < words.length; n++) {
-		  var testLine = line + words[n] + ' ';
-		  if (MainCanvas.measureText(testLine).width > Width && n > 0) {
-			line = words[n] + ' ';			  
-  		    LineCount++;
-		  } else line = testLine;
+		for (var n = 0; n < words.length; n++) {
+			var testLine = line + words[n] + ' ';
+			if (MainCanvas.measureText(testLine).width > Width && n > 0) {
+				line = words[n] + ' ';
+				LineCount++;
+			} else line = testLine;
 		}
-		
+
 		// If there's too many lines, we launch the function again with size minus 2
 		if (LineCount > MaxLine) {
 			MainCanvas.font = (parseInt(MainCanvas.font.substring(0, 2)) - 2).toString() + "px arial";
@@ -346,57 +346,57 @@ function DrawTextWrap(Text, X, Y, Width, Height, ForeColor, BackColor, MaxLine) 
 	if (BackColor != null) {
 		MainCanvas.beginPath();
 		MainCanvas.rect(X, Y, Width, Height);
-		MainCanvas.fillStyle = BackColor; 
+		MainCanvas.fillStyle = BackColor;
 		MainCanvas.fillRect(X, Y, Width, Height);
 		MainCanvas.fill();
 		MainCanvas.lineWidth = '2';
 		MainCanvas.strokeStyle = ForeColor;
 		MainCanvas.stroke();
-		MainCanvas.closePath();		
+		MainCanvas.closePath();
 	}
-	
+
 	// Sets the text size if there's a maximum number of lines
 	var TextSize;
 	if (MaxLine != null) {
 		TextSize = MainCanvas.font
 		GetWrapTextSize(Text, Width, MaxLine);
 	}
-	
+
 	// Split the text if it wouldn't fit in the rectangle
 	MainCanvas.fillStyle = ForeColor;
 	if (MainCanvas.measureText(Text).width > Width) {
 		var words = Text.split(' ');
 		var line = '';
-		
+
 		// Find the number of lines
 		var LineCount = 1;
-		for(var n = 0; n < words.length; n++) {
-		  var testLine = line + words[n] + ' ';
-		  if (MainCanvas.measureText(testLine).width > Width && n > 0) {
-			line = words[n] + ' ';			  
-  		    LineCount++;
-		  } else line = testLine;
+		for (var n = 0; n < words.length; n++) {
+			var testLine = line + words[n] + ' ';
+			if (MainCanvas.measureText(testLine).width > Width && n > 0) {
+				line = words[n] + ' ';
+				LineCount++;
+			} else line = testLine;
 		}
-		
+
 		// Splits the words and draw the text
 		words = Text.split(' ');
 		line = '';
 		Y = Y - ((LineCount - 1) * 23) + (Height / 2);
-		for(var n = 0; n < words.length; n++) {
-		  var testLine = line + words[n] + ' ';
-		  if (MainCanvas.measureText(testLine).width > Width && n > 0) {
-			MainCanvas.fillText(line, X + Width / 2, Y);
-			line = words[n] + ' ';
-			Y += 46;
-		  }
-		  else {
-			line = testLine;
-		  }
+		for (var n = 0; n < words.length; n++) {
+			var testLine = line + words[n] + ' ';
+			if (MainCanvas.measureText(testLine).width > Width && n > 0) {
+				MainCanvas.fillText(line, X + Width / 2, Y);
+				line = words[n] + ' ';
+				Y += 46;
+			}
+			else {
+				line = testLine;
+			}
 		}
 		MainCanvas.fillText(line, X + Width / 2, Y);
-		
+
 	} else MainCanvas.fillText(Text, X + Width / 2, Y + Height / 2);
-	
+
 	// Resets the font text size
 	if ((MaxLine != null) && (TextSize != null))
 		MainCanvas.font = TextSize;
@@ -423,7 +423,7 @@ function DrawText(Text, X, Y, Color, BackColor) {
 	// Draw a back color relief text if needed
 	if ((BackColor != null) && (BackColor != "")) {
 		MainCanvas.fillStyle = BackColor;
-		MainCanvas.fillText(Text, X + 1, Y + 1);	
+		MainCanvas.fillText(Text, X + 1, Y + 1);
 	}
 
 	// Split the text on two lines if there's a |
@@ -438,18 +438,18 @@ function DrawButton(Left, Top, Width, Height, Label, Color, Image, HoveringText)
 	// Draw the button rectangle (makes the background color cyan if the mouse is over it)
 	MainCanvas.beginPath();
 	MainCanvas.rect(Left, Top, Width, Height);
-	MainCanvas.fillStyle = ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile) ? "Cyan" : Color; 
+	MainCanvas.fillStyle = ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile) ? "Cyan" : Color;
 	MainCanvas.fillRect(Left, Top, Width, Height);
-	MainCanvas.fill();	
+	MainCanvas.fill();
 	MainCanvas.lineWidth = '2';
 	MainCanvas.strokeStyle = 'black';
 	MainCanvas.stroke();
 	MainCanvas.closePath();
-	
+
 	// Draw the text or image
 	DrawText(Label, Left + Width / 2, Top + (Height / 2) + 1, "black");
 	if ((Image != null) && (Image != "")) DrawImage(Image, Left + 2, Top + 2);
-	
+
 	// Draw the hovering text
 	if ((HoveringText != null) && (MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile) {
 		DrawButtonHover(Left, Top, Width, Height, HoveringText);
@@ -464,9 +464,9 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 	var Split = Left + Width / 2;
 	MainCanvas.beginPath();
 	MainCanvas.rect(Left, Top, Width, Height);
-	MainCanvas.fillStyle = Color; 
+	MainCanvas.fillStyle = Color;
 	MainCanvas.fillRect(Left, Top, Width, Height);
-	if((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile) {
+	if ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile) {
 		MainCanvas.fillStyle = "Cyan";
 		if (MouseX > Split) {
 			MainCanvas.fillRect(Split, Top, Width / 2, Height);
@@ -478,9 +478,9 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 	MainCanvas.strokeStyle = 'black';
 	MainCanvas.stroke();
 	MainCanvas.closePath();
-	
+
 	// Draw the text or image
-	DrawTextFit(Label, Left + Width / 2, Top + (Height / 2) + 1, (CommonIsMobile) ? Width - 6 : Width - 36, "Black");	
+	DrawTextFit(Label, Left + Width / 2, Top + (Height / 2) + 1, (CommonIsMobile) ? Width - 6 : Width - 36, "Black");
 	if ((Image != null) && (Image != "")) DrawImage(Image, Left + 2, Top + 2);
 
 	// PC only section
@@ -488,16 +488,16 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 
 	// Draw the back arrow 
 	MainCanvas.beginPath();
-	MainCanvas.fillStyle = "black"; 
+	MainCanvas.fillStyle = "black";
 	MainCanvas.moveTo(Left + 15, Top + Height / 5);
 	MainCanvas.lineTo(Left + 5, Top + Height / 2);
 	MainCanvas.lineTo(Left + 15, Top + Height - Height / 5);
 	MainCanvas.stroke();
-	MainCanvas.closePath();	
+	MainCanvas.closePath();
 
 	// Draw the next arrow 
 	MainCanvas.beginPath();
-	MainCanvas.fillStyle = "black"; 
+	MainCanvas.fillStyle = "black";
 	MainCanvas.moveTo(Left + Width - 15, Top + Height / 5);
 	MainCanvas.lineTo(Left + Width - 5, Top + Height / 2);
 	MainCanvas.lineTo(Left + Width - 15, Top + Height - Height / 5);
@@ -508,7 +508,7 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 	if (BackText == null) BackText = () => "MISSING VALUE FOR: BACK TEXT";
 	if (NextText == null) NextText = () => "MISSING VALUE FOR: NEXT TEXT";
 	if ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height))
-		DrawButtonHover(Left, Top, Width, Height, (MouseX > Split) ? NextText(): BackText());
+		DrawButtonHover(Left, Top, Width, Height, (MouseX > Split) ? NextText() : BackText());
 
 }
 
@@ -540,9 +540,9 @@ function DrawEmptyRect(Left, Top, Width, Height, Color) {
 // Draw a basic rectangle
 function DrawRect(Left, Top, Width, Height, Color) {
 	MainCanvas.beginPath();
-    MainCanvas.fillStyle = Color; 
-    MainCanvas.fillRect(Left, Top, Width, Height);
-	MainCanvas.fill();	
+	MainCanvas.fillStyle = Color;
+	MainCanvas.fillRect(Left, Top, Width, Height);
+	MainCanvas.fill();
 }
 
 // Draw a basic circle
@@ -551,7 +551,7 @@ function DrawCircle(CenterX, CenterY, Radius, LineWidth, LineColor) {
 	MainCanvas.arc(CenterX, CenterY, Radius, 0, 2 * Math.PI, false);
 	MainCanvas.lineWidth = LineWidth;
 	MainCanvas.strokeStyle = LineColor;
-	MainCanvas.stroke();	
+	MainCanvas.stroke();
 }
 
 // Draw a progress bar
@@ -563,7 +563,7 @@ function DrawProgressBar(X, Y, W, H, Progress) {
 
 // Makes sure the screen is at the proper size
 function DrawProcess() {
-	
+
 	// Gets the Width and Height differently on mobile and regular browsers
 	var W = (CommonIsMobile) ? document.documentElement.clientWidth : window.innerWidth;
 	var H = (CommonIsMobile) ? document.documentElement.clientHeight : window.innerHeight;
@@ -575,16 +575,16 @@ function DrawProcess() {
 		if (W <= H * 2) {
 			MainCanvas.width = W;
 			MainCanvas.height = MainCanvas.width / 2;
-			MainCanvas.canvas.style.width = "100%"; 
+			MainCanvas.canvas.style.width = "100%";
 			MainCanvas.canvas.style.height = "";
 		} else {
 			MainCanvas.height = H;
 			MainCanvas.width = MainCanvas.height * 2;
-			MainCanvas.canvas.style.width = ""; 
+			MainCanvas.canvas.style.width = "";
 			MainCanvas.canvas.style.height = "100%";
 		}
 	}
-	
+
 	// Gets the current screen background and draw it, a darker version in character dialog mode
 	var B = window[CurrentScreen + "Background"];
 	if ((B != null) && (B != ""))
@@ -592,7 +592,7 @@ function DrawProcess() {
 			DrawRect(0, 0, 2000, 1000, "Black");
 		else
 			DrawImage("Backgrounds/" + B + ((((CurrentCharacter != null) || ShopStarted || (Player.Effect.indexOf("BlindLight") >= 0)) && (CurrentModule != "Character") && (B.indexOf("Dark") <= 0)) ? "Dark" : "") + ".jpg", 0, 0);
-	
+
 	// Draws the dialog screen or current screen if there's no loaded character
 	if (CurrentCharacter != null) DialogDraw();
 	else CommonDynamicFunction(CurrentScreen + "Run()");

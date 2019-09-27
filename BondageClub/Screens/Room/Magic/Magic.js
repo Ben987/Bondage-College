@@ -15,7 +15,7 @@ var MagicTrickCounter = 0;
 var MagicShowIncome = 0;
 var MagicShowState = 1;
 // 1 No Show
-// 2 Bevor Assist Redress
+// 2 Before Assist Redress
 // 3 After Assist Redress
 // 4 Assist is bind
 // 5 Assist is release

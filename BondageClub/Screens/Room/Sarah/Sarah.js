@@ -160,7 +160,7 @@ function SarahLoad() {
 		InventoryAdd(Amanda, "StraponPanties", "ItemPelvis");
 		InventoryWear(Amanda, "StraponPanties", "ItemPelvis");
 		InventoryWear(Amanda, "HempRope", "ItemArms");
-		InventoryWear(Amanda, "DuctTapeGag", "ItemMouth");
+		InventoryWear(Amanda, "DuctTape", "ItemMouth");
 		if ((AmandaStatus == "Owned") || (AmandaStatus == "Curfew")) {
 			InventoryWear(Amanda, "SlaveCollar", "ItemNeck");
 			Amanda.Owner = Player.Name;
@@ -568,15 +568,15 @@ function SarahSophiePunishEvent(EventType, DomRep) {
 	if (EventType == "Clamps") { InventoryRemove(Player, "ItemNipples"); InventoryWear(Player, "NippleClamp", "ItemNipples"); }
 	if ((EventType == "ClampsOther") && (Amanda != null) && AmandaInside) { InventoryRemove(Amanda, "ItemNipples"); InventoryWear(Amanda, "NippleClamp", "ItemNipples"); }
 	if ((EventType == "ClampsOther") && (Sarah != null) && SarahInside) { InventoryRemove(Sarah, "ItemNipples"); InventoryWear(Sarah, "NippleClamp", "ItemNipples"); }
-	if (EventType == "ChastityBra") { InventoryRemove(Player, "ItemBreast"); InventoryWear(Player, "MetalChastityBra", "ItemBreast"); InventoryLock(Player, InventoryGet(Player, "ItemBreast"), { Asset: AssetGet(C.AssetFamily, "ItemMisc", "MistressPadlock")}, -1); }
-	if ((EventType == "ChastityBraOther") && (Amanda != null) && AmandaInside) { InventoryRemove(Amanda, "ItemBreast"); InventoryWear(Amanda, "MetalChastityBra", "ItemBreast"); InventoryLock(Amanda, InventoryGet(Amanda, "ItemBreast"), { Asset: AssetGet(C.AssetFamily, "ItemMisc", "MistressPadlock")}, -1); }
-	if ((EventType == "ChastityBraOther") && (Sarah != null) && SarahInside) { InventoryRemove(Sarah, "ItemBreast"); InventoryWear(Sarah, "MetalChastityBra", "ItemBreast"); InventoryLock(Sarah, InventoryGet(Sarah, "ItemBreast"), { Asset: AssetGet(C.AssetFamily, "ItemMisc", "MistressPadlock")}, -1); }
+	if (EventType == "ChastityBra") { InventoryRemove(Player, "ItemBreast"); InventoryWear(Player, "MetalChastityBra", "ItemBreast"); InventoryLock(Player, "ItemBreast", "MistressPadlock", -1); }
+	if ((EventType == "ChastityBraOther") && (Amanda != null) && AmandaInside) { InventoryRemove(Amanda, "ItemBreast"); InventoryWear(Amanda, "MetalChastityBra", "ItemBreast"); InventoryLock(Amanda, "ItemBreast", "MistressPadlock", -1); }
+	if ((EventType == "ChastityBraOther") && (Sarah != null) && SarahInside) { InventoryRemove(Sarah, "ItemBreast"); InventoryWear(Sarah, "MetalChastityBra", "ItemBreast"); InventoryLock(Sarah, "ItemBreast", "MistressPadlock", -1); }
 	if (EventType == "EggAndPlug") { InventoryRemove(Player, "ItemVulva"); InventoryWear(Player, "VibratingEgg", "ItemVulva"); InventoryRemove(Player, "ItemButt"); InventoryWear(Player, "BlackButtPlug", "ItemButt"); }
 	if ((EventType == "EggAndPlugOther") && (Amanda != null) && AmandaInside) { InventoryRemove(Amanda, "ItemVulva"); InventoryWear(Amanda, "VibratingEgg", "ItemVulva"); InventoryRemove(Amanda, "ItemButt"); InventoryWear(Amanda, "BlackButtPlug", "ItemButt"); }
 	if ((EventType == "EggAndPlugOther") && (Sarah != null) && SarahInside) { InventoryRemove(Sarah, "ItemVulva"); InventoryWear(Sarah, "VibratingEgg", "ItemVulva"); InventoryRemove(Sarah, "ItemButt"); InventoryWear(Sarah, "BlackButtPlug", "ItemButt"); }
-	if (EventType == "ChastityBelt") { InventoryRemove(Player, "ItemPelvis"); InventoryWear(Player, "MetalChastityBelt", "ItemPelvis"); InventoryLock(Player, InventoryGet(Player, "ItemPelvis"), { Asset: AssetGet(C.AssetFamily, "ItemMisc", "MistressPadlock")}, -1); }
-	if ((EventType == "ChastityBeltOther") && (Amanda != null) && AmandaInside) { InventoryRemove(Amanda, "ItemPelvis"); InventoryWear(Amanda, "MetalChastityBelt", "ItemPelvis"); InventoryLock(Amanda, InventoryGet(Amanda, "ItemPelvis"), { Asset: AssetGet(C.AssetFamily, "ItemMisc", "MistressPadlock")}, -1); }
-	if ((EventType == "ChastityBeltOther") && (Sarah != null) && SarahInside) { InventoryRemove(Sarah, "ItemPelvis"); InventoryWear(Sarah, "MetalChastityBelt", "ItemPelvis"); InventoryLock(Sarah, InventoryGet(Sarah, "ItemPelvis"), { Asset: AssetGet(C.AssetFamily, "ItemMisc", "MistressPadlock")}, -1); }
+	if (EventType == "ChastityBelt") { InventoryRemove(Player, "ItemPelvis"); InventoryWear(Player, "MetalChastityBelt", "ItemPelvis"); InventoryLock(Player,"ItemPelvis", "MistressPadlock", -1); }
+	if ((EventType == "ChastityBeltOther") && (Amanda != null) && AmandaInside) { InventoryRemove(Amanda, "ItemPelvis"); InventoryWear(Amanda, "MetalChastityBelt", "ItemPelvis"); InventoryLock(Amanda, "ItemPelvis", "MistressPadlock", -1); }
+	if ((EventType == "ChastityBeltOther") && (Sarah != null) && SarahInside) { InventoryRemove(Sarah, "ItemPelvis"); InventoryWear(Sarah, "MetalChastityBelt", "ItemPelvis"); InventoryLock(Sarah, "ItemPelvis", "MistressPadlock", -1); }
 	if (EventType == "Buzz") SarahSophieStartBuzz(Player, 3);
 	if ((EventType == "Buzz") && (Amanda != null) && AmandaInside) SarahSophieStartBuzz(Amanda, 3);
 	if ((EventType == "Buzz") && (Sarah != null) && SarahInside) SarahSophieStartBuzz(Sarah, 3);
