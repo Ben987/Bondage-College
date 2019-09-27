@@ -58,7 +58,7 @@ function AsylumEntranceStartChat() {
 
 // Wears the nurse clothes on a character (same as nursery)
 function AsylumEntranceWearNurseClothes(C) {
-	InventoryWear(C, "NurseUniform", "Cloth", "Default");
+	InventoryWear(C, "NurseUniform", "Cloth", "#848080");
 	InventoryWear(C, "NurseCap", "Hat", "Default");
 	InventoryWear(C, "Stockings2", "Socks", "Default");
 }
@@ -152,9 +152,10 @@ function AsylumEntrancePlayerNurseClothes(RepChange) {
 	AsylumEntranceWearNurseClothes(Player);
 }
 
-// When the nurse is forced to be a patient (player will be tracked down for a full day after)
+// When the nurse is forced to be a patient (player will be tracked down for a full day after and a title will be forced)
 function AsylumEntranceNurseBecomePatient() {
 	LogAdd("Escaped", "Asylum", CurrentTime + 86400000);
+	TitleSet("EscapedPatient");
 	LogDelete("Committed", "Asylum");
 	AsylumEntranceWearPatientClothes(AsylumEntranceNurse);
 }

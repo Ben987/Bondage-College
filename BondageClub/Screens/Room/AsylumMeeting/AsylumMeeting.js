@@ -6,6 +6,8 @@ var AsylumMeetingPatientRight = null;
 // Returns TRUE if specific dialog conditions are met
 function AsylumMeetingCanReleasePlayer() { return (Player.IsRestrained() && !AsylumMeetingPatientLeft.IsRestrained() && (LogValue("Committed", "Asylum") >= CurrentTime)) }
 function AsylumMeetingCannotReleasePlayer() { return (Player.IsRestrained() && (AsylumMeetingPatientLeft.IsRestrained() || (LogValue("Committed", "Asylum") < CurrentTime))) }
+function AsylumMeetingCanRestrainPlayer() { return (!Player.IsRestrained() && !AsylumMeetingPatientLeft.IsRestrained() && (LogValue("Committed", "Asylum") >= CurrentTime)) }
+function AsylumMeetingCanKiss() { return (Player.CanTalk() && CurrentCharacter.CanTalk()) }
 
 // Loads the room and it's patients
 function AsylumMeetingLoad() {
@@ -50,7 +52,7 @@ function AsylumMeetingClick() {
 // When the player smokes with the patient
 function AsylumMeetingSmoke() {
 	CharacterSetFacialExpression(Player, "Blush", "Low");
-	TimerInventoryRemoveSet(Player, "Blush", 15);	
+	TimerInventoryRemoveSet(Player, "Blush", 15);
 	CharacterSetFacialExpression(Player, "Eyebrows", "Soft");
 	TimerInventoryRemoveSet(Player, "Eyebrows", 15);
 	CharacterSetFacialExpression(AsylumMeetingPatientLeft, "Blush", "Low");
@@ -79,4 +81,18 @@ function AsylumMeetingRunAway(RepChange) {
 	DialogChangeReputation("Asylum", RepChange);
 	DialogLeave();
 	AsylumMeetingPatientLeft.RunAway = true;
+}
+
+// When the player gets restrained
+function AsylumMeetingRestrainPlayer(RestraintsType) {
+	CharacterFullRandomRestrain(Player, RestraintsType);
+	DialogChangeReputation("Dominant", -1);
+}
+
+// When the player plays with a patient, she blushes
+function AsylumMeetingBlush(BlushType) {
+	CharacterSetFacialExpression(CurrentCharacter, "Blush", BlushType);
+	TimerInventoryRemoveSet(CurrentCharacter, "Blush", 10);
+	CharacterSetFacialExpression(CurrentCharacter, "Eyebrows", "Lowered");
+	TimerInventoryRemoveSet(CurrentCharacter, "Eyebrows", 10);
 }

@@ -3,7 +3,7 @@ var ImportBondageCollegeData = false;
 
 // Import the inventory from the Bondage College
 function ImportBondageCollege(C) {
-	
+
 	// If the user specified that he wanted to import
 	if (ImportBondageCollegeData) {
 

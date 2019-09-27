@@ -69,13 +69,13 @@ canvas {
 }
 .FriendListTextColumn{
 	float: left;
-	width: 24%;
+	width: 22%;
 	text-align: center;
 	padding-top: 1% !important;
 }
 .FriendListLinkColumn{
 	float: left;
-	width: 24%;
+	width: 22%;
 	text-align: center;
 	padding-top: 1% !important;
 	text-decoration: underline;

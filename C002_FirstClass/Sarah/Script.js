@@ -20,7 +20,7 @@ function C002_FirstClass_Sarah_CalcStage() {
 		if (C002_FirstClass_Sarah_CurrentStage == 100) C002_FirstClass_Sarah_CurrentStage = C002_FirstClass_Sarah_BackupStage;
 	}
 
-	// If the stage changed, we scrap the Overriden image
+	// If the stage changed, we scrap the Overridden image
 	if (EntryStage != C002_FirstClass_Sarah_CurrentStage) OverridenIntroImage = "";
 	
 	// The bondage hug is only available if Amanda and Sarah are in ropes

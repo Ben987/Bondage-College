@@ -69,7 +69,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 130,0,0,,French.,That's nice.  And what do|you do outside of college?,140,0,0,
 130,0,0,,Art.,I guess you had fun in Julia's class today.|And what do you do outside of college?,140,0,0,GoodMatch()
 130,0,0,,History.,Great!  I'm studying the history of the Olympics.|And what do you do outside of college?,140,0,0,GoodMatch()
-130,0,0,,Theatre.,I'm way too shy to act in a play.|What do you do outside of college?,140,0,0,BadMatch()
+130,0,0,,Theater.,I'm way too shy to act in a play.|What do you do outside of college?,140,0,0,BadMatch()
 130,0,0,,I don't know.,That's pretty hard to believe.|What do you do outside of college?,140,0,0,BadMatch()
 140,0,0,,Basketball.,Sweet!  You should join the college team.|(The waitress interrupts and asks for your order.),150,0,0,GoodMatch()
 140,0,0,,Rock music.,My roommate plays it way too loud.|(The waitress interrupts and asks for your order.),150,0,0,BadMatch()
@@ -157,7 +157,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 310,0,0,,Some exercise sounds|like a good idea.,Absolutely!  It will be very healthy.|Get on the ground and do ten push-ups.,320,1,0,
 310,0,0,,My shape is|already great.,You have a pretty big ego you know?|Get on the ground and do ten push-ups.,320,-1,0,
 320,0,0,,Yes coach!|(Do push-ups.),(You bend on the ground and start|to do push-ups while she counts.),330,1,-1,
-320,0,0,,"Oh shit, ok.|(Do push-ups.)",(You bend on the ground and start|to do push-ups while she counts.),330,-1,0,
+320,0,0,,"Oh shit, OK.|(Do push-ups.)",(You bend on the ground and start|to do push-ups while she counts.),330,-1,0,
 320,0,0,,"Forget it, I'm not|doing push-ups.",Then you need to be|punished for your laziness.,400,-1,0,
 330,0,0,,(Do a normal|push-up.),,330,0,0,PushUp(2)
 330,0,0,,(Do a weak|push-up.),,330,0,0,PushUp(1)

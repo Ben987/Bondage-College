@@ -193,7 +193,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 	// Reapply any item that was equipped and isn't enable, same for owner locked items if the source member isn't the owner
 	if ((SourceMemberNumber != null) && (C.ID == 0))
 		for (var A = 0; A < C.Appearance.length; A++) {
-			if (!C.Appearance[A].Asset.Enable) {
+			if (!C.Appearance[A].Asset.Enable && !C.Appearance[A].Asset.OwnerOnly) 
 				Appearance.push(C.Appearance[A]);
 			} else if (InventoryItemHasEffect(C.Appearance[A], "Lock", true) && C.Appearance[A].Asset.PropertyLocked && Bundle.some(B => AssetBundleEqual(C.Appearance[A].Asset, B, AssetFamily)) && InventoryItemHasEffect({ Asset: C.Appearance[A].Asset, Property: Bundle.find(B => AssetBundleEqual(C.Appearance[A].Asset, B, AssetFamily)).Property }, "Lock", true)) { 
 				Appearance.push(C.Appearance[A]);
@@ -256,7 +256,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 					}
 
 				// Make sure we don't push an item that's disabled, coming from another player	
-				if (CanPush && !NA.Asset.Enable && (SourceMemberNumber != null) && (C.ID == 0)) CanPush = false;
+				if (CanPush && !NA.Asset.Enable && !NA.Asset.OwnerOnly && (SourceMemberNumber != null) && (C.ID == 0)) CanPush = false;
 				if (CanPush) Appearance.push(NA);
 				break;
 
