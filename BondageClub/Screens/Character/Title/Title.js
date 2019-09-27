@@ -34,14 +34,15 @@ function TitleSet(NewTitle) {
 // Returns the current title and validates the title for the player
 function TitleGet(C) {
 
+	// If we find a title that we must force, we set it and return it
+	if (C.ID == 0)
+		for (var T = 0; T < TitleList.length; T++)
+			if (TitleList[T].Requirement() && (TitleList[T].Force != null) && TitleList[T].Force)
+				return TitleSet(TitleList[T].Name);
+
 	// No title or other character titles aren't validated
 	if ((C.Title == null) || (C.Title == "") || (C.Title == "None")) return "None";
 	if (C.ID != 0) return C.Title;
-
-	// If we find a title that we must force, we set it and return it
-	for (var T = 0; T < TitleList.length; T++)
-		if (TitleList[T].Requirement() && (TitleList[T].Force != null) && TitleList[T].Force)
-			return TitleSet(TitleList[T].Name);
 
 	// If we find a valid title, we return it
 	for (var T = 0; T < TitleList.length; T++)
@@ -54,10 +55,10 @@ function TitleGet(C) {
 }
 
 // Returns TRUE if the current player title is forced upon her
-function TitleIsForced() {
-	if ((Player.Title == null) || (Player.Title == "") || (Player.Title == "None")) return false;
+function TitleIsForced(Title) {
+	if ((Title == null) || (Title == "") || (Title == "None")) return false;
 	for (var T = 0; T < TitleList.length; T++)
-		if ((Player.Title == TitleList[T].Name) && (TitleList[T].Force != null) && TitleList[T].Force)
+		if ((Title == TitleList[T].Name) && (TitleList[T].Force != null) && TitleList[T].Force)
 			return true;
 	return false;
 }

@@ -17,7 +17,7 @@ ItemPelvis,,,"(She struggles as you lock the device on her.)  No, please!  I don
 RemoveItemPelvis,,,(She looks really happy as you unlock the device.)  Thank you so much Miss DialogPlayerName.,,
 ItemHead,,,(You put the device as she shakes her head.)  Ow!  You've made my day much awfully,,
 RemoveItemHead,,,"(You remove the device and she nods rapidly.)  Thanks a million, this is much better.",,
-ItemBreastLeatherWhip,,,(She trembles of painas you whip her breast.) This is a gambling hall no torture chamber.,,
+ItemBreastLeatherWhip,,,(She trembles of pain as you whip her breast.) This is a gambling hall no torture chamber.,,
 ItemBreastLeatherCrop,,,"(You swing the crop on her torso as she moans.) Oh, that's not a game anymore.",,
 ItemPelvisLeatherWhip,,,(You whip her butt as she jumps from the pain.) I do not find that funny.,,
 ItemPelvisLeatherCrop,,,(She moans each time the crop lands on it.) How can I still sit like this?,,
@@ -39,7 +39,7 @@ RemoveSuspensionHempRope,,,finally floor again under the feet.,,
 0,10,I'd like to ask you some questions.,What do you want to know?,,
 0,30,(Play with your own rules.),(She looks expectant.),,SecondSubRestrained()
 0,100,Let's play Catch the Fox.,Would you like to be the fox or the hunter?,"FoxController(""new"")",CanPlayFox()
-0,200,Let's play Street to Roissy.,"Ok, you're on.","StreetRoissyController(""new"")",CanPlayStreetRoissy()
+0,200,Let's play Street to Roissy.,"OK, you're on.","StreetRoissyController(""new"")",CanPlayStreetRoissy()
 0,300,Let's play Dare Six.,"I'm ready, let's go.","DaredSixController(""new"")",CanPlayDaredSix()
 0,50,(Struggle in your restraints.),Do you need help?,,Player.IsRestrained()
 0,,Let's talk later. (Leave her.),,DialogLeave(),
@@ -52,7 +52,7 @@ RemoveSuspensionHempRope,,,finally floor again under the feet.,,
 11,12,What are the rules of Catch the Fox?,"One player is the fox, the other is the hunter. The hunter pays a hunting lease of 10$. ",,CanPlayFox()
 11,20,What are the rules of Street to Roissy?,"Both players roll the dice simultaneously. Each player must roll a 1 first, then 2, 3, 4, 5, and finally 6.",,CanPlayStreetRoissy()
 11,26,What are the rules of Dare Six?,"In each round, you roll a dice as many times as you want and count the points together.",,CanPlayDaredSix()
-11,10,I have another question.,"Ok, go ahead.",,
+11,10,I have another question.,"OK, go ahead.",,
 12,13,(Listen.),The fox tries to catch them as prey. The fox and the hunter take turns throwing dice.,,
 13,14,(Listen.),The fox gets a dice lead and needs to reach a total of 30 to escape the hunter.,,
 14,10,(Listen.),"If the hunter's score is equal to or as high as the fox's score, they catch the fox and get the lease back.",,

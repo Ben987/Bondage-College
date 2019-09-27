@@ -344,7 +344,7 @@ function CharacterLoadEffect(C) {
 // Sorts the character appearance by priority and loads the canvas
 function CharacterLoadCanvas(C) {
 
-	// Sorts the full appearance arraw first
+	// Sorts the full appearance array first
 	var App = [];
 	for (var I = 0; I < 101 && App.length < C.Appearance.length; I++)
 		for (var A = 0; A < C.Appearance.length; A++)

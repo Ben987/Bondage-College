@@ -16,6 +16,7 @@ TitlePonyUnicorn,Shining Unicorn
 TitlePonyPegasus,Flying Pegasus
 TitlePatient,Patient
 TitlePermanentPatient,Permanent Patient
+TitleEscapedPatient,Escaped Patient
 TitleNurse,Nurse
 TitleDoctor,Doctor
 MemberNumber,Member Number:
@@ -46,7 +47,7 @@ SkillNone,None
 SkillBondage,Bondage:
 SkillEvasion,Evasion:
 SkillWillpower,Willpower:
-SkillDressage,Pony Dressage:
+SkillDressage,Dressage:
 SkillModifier,Global modifier:
 Trait,- Traits -
 TraitUnknown,Spend more time with her to know her traits

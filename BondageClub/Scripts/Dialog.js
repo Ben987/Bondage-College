@@ -304,7 +304,7 @@ function DialogStruggle(Reverse) {
 
 }
 
-// Starts the dialog progress bar and keeps the items that needs to be added / swaped / removed
+// Starts the dialog progress bar and keeps the items that needs to be added / swapped / removed
 function DialogProgressStart(C, PrevItem, NextItem) {
 	
 	// Gets the required skill / challenge level based on player/rigger skill and item difficulty (0 by default is easy to struggle out)
