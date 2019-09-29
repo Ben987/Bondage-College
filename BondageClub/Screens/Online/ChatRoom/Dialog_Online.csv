@@ -1,10 +1,20 @@
+MaidDrinkPickFreeWater,,,picks a glass of water from DialogCharacterName tray.,,
+MaidDrinkPickFreeOrangeJuice,,,picks an orange juice from DialogCharacterName tray.,,
 MaidDrinkPickFreeBeer,,,picks a beer from DialogCharacterName tray.,,
 MaidDrinkPickFreeWine,,,picks a glass of wine from DialogCharacterName tray.,,
-MaidDrinkPickFreeMargarita,,,picks a Margarita from DialogCharacterName tray.,,
+MaidDrinkPickVirginMojito,,,buys a Virgin Mojito from DialogCharacterName tray.,,
+MaidDrinkPickMargarita,,,buys a Margarita from DialogCharacterName tray.,,
 MaidDrinkPickWhiskey,,,buys a glass of Whiskey from DialogCharacterName.,,
 MaidDrinkPickChampagne,,,buys a glass of champagne from DialogCharacterName.,,
+MaidDrinkPickLemonadeJug,,,"buys a jug of refreshing lemonage for everyone, from DialogCharacterName.",,
 MaidDrinkPickRoundShooters,,,"buys a round of shooters for everyone, from DialogCharacterName.",,
+MaidDrinkPickSexOnTheBeachJug,,,"buys a jug of Sex on the Beach for everyone, from DialogCharacterName.",,
 MaidDrinkPickBeerPitcher,,,"buys a beer pitcher for everyone, from DialogCharacterName.",,
+MaidDrinkPickFreeTea,,,picks a tea from DialogCharacterName tray.,,
+MaidDrinkPickFreeCoffee,,,picks a coffee from DialogCharacterName tray.,,
+MaidDrinkPickHotChocolate,,,buys a hot chocolate from DialogCharacterName tray.,,
+MaidDrinkPickExpresso,,,buys a expresso from DialogCharacterName tray.,,
+MaidDrinkPickCappuccino,,,buys a cappuccino from DialogCharacterName tray.,,
 PlayerGagged,,,(You can use or remove items by selecting specific body regions.),,DialogDoAllowItem(CurrentCharacter)
 PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDoAllowItem(CurrentCharacter)
 0,,,(You can use or remove items by selecting specific body regions.),,DialogDoAllowItem(CurrentCharacter)
@@ -30,14 +40,36 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 11,0,(Pay 100$ for the collaring ceremony.),"(You pay and prepare the ceremony.  A maid brings a slave collar, she must accept it to complete the collaring.)","SendOwnershipRequest(""Propose"")",DialogMoneyGreater(100)
 11,0,(Refuse to pay.),(Main menu.),,
 10,0,(Back to main menu.),(Main menu.),,
-20,0,(Get a free beer.),,"DrinkPick(""FreeBeer"", 0)",
-20,0,(Get a free glass of wine.),,"DrinkPick(""FreeWine"", 0)",
-20,0,(Get a free Margarita.),,"DrinkPick(""FreeMargarita"", 0)",
-20,0,(Get a 5$ glass of Whiskey.),,"DrinkPick(""Whiskey"", 5)",DialogMoneyGreater(5)
-20,0,(Get a 5$ glass of Champagne.),,"DrinkPick(""Champagne"", 5)",DialogMoneyGreater(5)
-20,0,(Get a 10$ round of shooters for everyone.),,"DrinkPick(""RoundShooters"", 10)",DialogMoneyGreater(10)
-20,0,(Get a 10$ beer pitcher for everyone.),,"DrinkPick(""BeerPitcher"", 10)",DialogMoneyGreater(10)
+20,21,(Look at free drinks.),(Free drinks menu.),,
+20,22,(Look at regular drinks.),(Regular drinks menu.),,
+20,23,(Look at shared drinks.),(Shared drinks menu.),,
+20,24,(Look at hot drinks.),(Hot drinks menu.),,
 20,0,(Back to main menu.),(Main menu.),,
+21,0,(Get a free glass of water.),,"DrinkPick(""FreeWater"", 0)",
+21,0,(Get a free orange juice.),,"DrinkPick(""FreeOrangeJuice"", 0)",
+21,0,(Get a free beer.),,"DrinkPick(""FreeBeer"", 0)",
+21,0,(Get a free glass of wine.),,"DrinkPick(""FreeWine"", 0)",
+21,20,(Back to drink options.),(Drink options.),,
+21,0,(Back to main menu.),(Main menu.),,
+22,0,(Get a $5 Virgin Mojito.),,"DrinkPick(""VirginMojito"", 5)",DialogMoneyGreater(5)
+22,0,(Get a $5 Margarita.),,"DrinkPick(""Margarita"", 5)",DialogMoneyGreater(5)
+22,0,(Get a 5$ glass of Whiskey.),,"DrinkPick(""Whiskey"", 5)",DialogMoneyGreater(5)
+22,0,(Get a 5$ glass of Champagne.),,"DrinkPick(""Champagne"", 5)",DialogMoneyGreater(5)
+22,20,(Back to drink options.),(Drink options.),,
+22,0,(Back to main menu.),(Main menu.),,
+23,0,(Get a 10$ jug of Sicilian Lemonade for everyone.),,"DrinkPick(""LemonadeJug"", 10)",DialogMoneyGreater(10)
+23,0,(Get a 10$ round of shooters for everyone.),,"DrinkPick(""RoundShooters"", 10)",DialogMoneyGreater(10)
+23,0,(Get a 10$ jug of Sex on the Beach for everyone.),,"DrinkPick(""SexOnTheBeachJug"", 10)",DialogMoneyGreater(10)
+23,0,(Get a 10$ beer pitcher for everyone.),,"DrinkPick(""BeerPitcher"", 10)",DialogMoneyGreater(10)
+23,20,(Back to drink options.),(Drink options.),,
+23,0,(Back to main menu.),(Main menu.),,
+24,0,(Get a free tea.),,"DrinkPick(""FreeTea"", 0)",
+24,0,(Get a free coffee.),,"DrinkPick(""FreeCoffee"", 0)",
+24,0,(Get a 3$ hot chocolate.),,"DrinkPick(""HotChocolate"", 3)",DialogMoneyGreater(3)
+24,0,(Get a 3$ expresso.),,"DrinkPick(""Expresso"", 3)",DialogMoneyGreater(3)
+24,0,(Get a 3$ cappuccino.),,"DrinkPick(""Cappuccino"", 3)",DialogMoneyGreater(3)
+24,20,(Back to drink options.),(Drink options.),,
+24,0,(Back to main menu.),(Main menu.),,
 30,0,(Kick her out of the room.),,"AdminAction(""Kick"")",
 30,0,(Ban her from the room.),,"AdminAction(""Ban"")",
 30,0,(Move her to the left.),,"AdminAction(""MoveLeft"")",
