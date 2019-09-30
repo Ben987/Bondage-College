@@ -20,7 +20,7 @@ function InventoryItemNeckAccessoriesCollarNameTagDraw() {
 		var X = 955;
 		var Y = 530;
 		for (var T = 0; T < List.length; T++) {
-			if ((DialogFocusItem.Property.Type != List[T])) DrawButton(X, Y, 200, 55, List[T].replace(/([A-Z])/g, ' $1').trim(), "White");
+			if ((DialogFocusItem.Property.Type != List[T])) DrawButton(X, Y, 200, 55, DialogFind(Player, "CollarNameTagType" + List[T]), "White");
 			X = X + 210;
 			if (T % 5 == 4) { 
 				X = 955; 
@@ -65,9 +65,10 @@ function InventoryItemNeckAccessoriesCollarNameTagSetType(NewType) {
 	CharacterRefresh(C);
 	ChatRoomCharacterUpdate(C);
 
-	var msg = DialogFind(Player, "CollarNameTagSet" + ((NewType) ? NewType : ""));
-	msg = msg.replace("SourceCharacter", Player.Name);
-	msg = msg.replace("DestinationCharacter", C.Name);
+	var msg = DialogFind(Player, "CollarNameTagSet")
+		.replace("SourceCharacter", Player.Name)
+		.replace("DestinationCharacter", C.Name)
+		.replace("NameTagType", DialogFind(Player, "CollarNameTagType" + ((NewType) ? NewType : "")).toLowerCase());
 	ChatRoomPublishCustomAction(msg, true);
 	if (DialogInventory != null) {
 		DialogFocusItem = null;
