@@ -73,6 +73,7 @@ function AssetAdd(NewAsset) {
 		Alpha: NewAsset.Alpha,
 		Prerequisite: NewAsset.Prerequisite,
 		Extended: (NewAsset.Extended == null) ? false : NewAsset.Extended,
+		DefaultExtended: (NewAsset.DefaultExtended == null) ? true : NewAsset.DefaultExtended,
 		AllowLock: (NewAsset.AllowLock == null) ? false : NewAsset.AllowLock,
 		IsLock: (NewAsset.IsLock == null) ? false : NewAsset.IsLock,
 		OwnerOnly: (NewAsset.OwnerOnly == null) ? false : NewAsset.OwnerOnly,
