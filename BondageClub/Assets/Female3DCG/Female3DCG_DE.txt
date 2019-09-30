@@ -46,6 +46,8 @@ Jeans
 Jeans
 Shorts
 Shorts
+Pajama
+Pyjama
 Mistress Bottom
 Herrinnen-Unterteil
 Bra
@@ -72,6 +74,8 @@ Half Cup Corset
 Halbkörbchenkorsett
 Under Bust Corset
 Unterbrustkorsett
+Frilled Bikini
+Rüschenbikini
 Swimsuit style 1
 Badeanzug Stil 1
 Swimsuit style 2
@@ -310,10 +314,20 @@ Duct Tape
 Klebeband
 Mermaid Rope Tie
 Meerjungfrau-Fessel
+Leather Ankle Cuffs
+Leder-Fußfesseln
 Legs
 Beine
 Upper Mermaid Tie
 Obere Meerjungfrau-Fessel
+Leather Leg Cuffs
+Leder-Beinfesseln
+Leg Binder
+Zwangshose
+Hobble Skirt
+Humpelrock
+Wooden Horse
+Holzbock
 Vulva
 Vulva
 Vibrating Egg
@@ -324,6 +338,8 @@ Vibrating Egg & Panties Remote
 Vibrator-Fernbedienung
 Vibrating Latex Panties
 Latex-Vibratorhöschen
+Wand Belt
+Vibrator-Gürtel
 Butt
 Hintern
 Black Butt Plug
@@ -350,16 +366,22 @@ Butt Pump
 Analpumpe
 Pelvis
 Becken
+Strap-On Panties
+Umschnalldildo
+Leather Chastity Belt
+Leder-Keuschheitsgürtel
+Studded Chastity Belt
+Nieten-Keuschheitsgürtel
 Metal Chastity Belt
 Metall-Keuschheitsgürtel
-Metal Chastity Belt Key
-Metall-Keuschheitsschlüssel
+Love Chastity Belt
+Liebes-Keuschheitsgürtel
 Leather Crop
 Ledergerte
 Leather Whip
 Lederpeitsche
-Strap-On Panties
-Umschnalldildo
+Spanking Toys
+Spanking-Spielzeug
 Torso
 Körper
 Nylon Rope Harness
@@ -390,8 +412,6 @@ Breast
 Brust
 Metal Chastity Bra
 Metall-Keuschheits-BH
-Metal Chastity Bra Key
-Metall-Keuschheits-BH-Schlüssel
 Arms
 Arme
 Metal Cuffs
@@ -406,14 +426,34 @@ Four Limbs Shackles
 Viererketten
 Latex Strait Leotard
 Latex-Zwangsjackenanzug
+Straitjacket
+Zwangsjacke
+Bolero Straitjacket
+Bolero-Zwangsjacke
 Pet Suit
 Tieranzug
 Holding Leash
 Leine
+Strait Dress
+Zwangskleid
+Open crotch Strait Dress
+Schrittfreies Zwangskleid
 Padded Mittens
 Gepolsterte Fäustlinge
 Paw Mittens
 Pfotenfäustlinge
+Crop
+Gerte
+Flogger
+Peitsche
+Cane
+Rohrstock
+Heart Crop
+Herz-Gerte
+Paddle
+Paddel
+Whip Paddle
+Paddelpeitsche
 Neck
 Hals
 Leather Collar
@@ -452,6 +492,8 @@ Leash
 Leine
 Pulled Leash
 Gehaltene Leine
+Name Tag
+Namensschild
 Cloth Gag
 Stoffknebel
 Wiffle Ball Gag
@@ -522,12 +564,16 @@ Five Minutes Padlock
 Fünf-Minuten-Schloss
 Owner Padlock
 Besitzer-Schloss
+Mistress Padlock
+Herrinnen-Schloss
 Metal Padlock Key
 Vorhängeschloss-Schlüssel
 Intricate Padlock Key
 Komplex-Schloss-Schlüssel
 Owner Padlock Key
 Besitzer-Schloss-Schlüssel
+Mistress Padlock Key
+Herrinnen-Schloss-Schlüssel
 Metal Cuffs Key
 Handschellenschlüssel
 Wooden Maid Tray
@@ -536,13 +582,17 @@ Wooden Maid Tray Full
 Holztablett voll
 Wooden Paddle
 Holzpaddel
-Devices
-Geräte
+Body
+Körper
 Wooden Box
 Holzkiste
+Small Wooden Box
+Kleine Holzkiste
 Water filled milk can 
 Milchkanne mit Wasser
 Water torture Cell
 Wasserfolterzelle
-Frilled Bikini
-Rüschen Bikini
+Stand up cage
+Aufrechter Käfig
+Kennel
+Zwinger

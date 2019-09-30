@@ -9,10 +9,18 @@ Das hier ist der einzige Laden der Stadt, der geknebelte Kundschaft empfängt.
 (Sie schüttelt den Kopf, aber du schaffst es, sie mit einem Knebel zum Schweigen zu bringen.)
 (You remove her gag and she thanks you.)  Thanks a lot, my job requires me to speak.
 (Du nimmst ihren Knebel ab und sie bedankt sich.) Vielen Dank, ich muss bei meinem Job sprechen können.
+(You push some earplugs into place.) How am i going to hear the customers now?.
+(Du steckst ihr ein paar Ohrstöpsel hinein.) Wie soll ich denn jetzt die Kunden hören?
+(You pull the earplugs out.) Thank you i can hear you clearly again.
+(Du ziehst die Ohrstöpsel heraus.) Danke, jetzt kann ich dich wieder verstehen.
 (She grumbles but complies as you restrain her arms.)  What about the store?
 (Sie grummelt, lässt dich aber ihre Arme fesseln.) Was ist mit dem Laden?
 (You free her arms and she gives you a thumbs up.)  The club thanks you Miss.
 (Du befreist ihre Arme und sie zeigt dir einen Daumen nach oben.) Der Club dankt Ihnen, Miss.
+(She grumbles a little but soon complies as you start restraining her hands.)  What about the store Miss?
+(Sie grummelt ein wenig, fügt sich aber schnell, als du anfängst, ihre Hände zu fesseln.) Was ist mit dem Laden, Miss?
+(You release her hands.)  The club thanks you Miss
+(Du befreist ihre Hände.) Der Club dankt Ihnen, Miss.
 (She looks down as you restrain her legs securely.)  I'm not going out anyway.
 (Sie schaut herab, als du ihre Beine fest zusammenbindest.) Ich wollte sowieso nirgendwo hin.
 (You release her legs and she nods.)  Don't you want to buy something?
@@ -112,6 +120,8 @@ Wem gehört dieser Laden?
 It belongs to the Bondage Club.  All profits go back to the organization.
 Er gehört dem Bondage-Club. Alle Einnahmen gehen zurück an den Verband.
 ###_PLAYER
+Can you show me everything that I don't have?
+Kannst du mir alles zeigen, das mir fehlt?
 Can I tie you up?
 Kann ich dich fesseln?
 ###_NPC

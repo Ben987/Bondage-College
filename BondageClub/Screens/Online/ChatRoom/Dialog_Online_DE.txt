@@ -28,15 +28,17 @@ kauft von DialogCharacterName einen Krug Bier für alle.
 (You can give more access to your items by putting her on your whitelist, or less control by putting her on your blacklist.)
 (Nimm sie in deine Whitelist auf, um ihr Zugriff auf deine Fesseln zu gewähren, oder verwende die Blacklist, um Kontrolle zu entziehen.)
 ###_PLAYER
-(Kick her out of the room.)
-(Sie aus dem Raum werfen.)
-(Ban her from the room.)
-(Sie aus dem Raum verbannen.)
 (Check her drink tray.)
 (Ihr Getränketablett ansehen.)
 ###_NPC
 (There's a variety of drinks.  Some are offered by the club and some are more expensive.)
 (Es gibt mehrere verschiedene Getränke. Einige werden vom Club angeboten, andere sind etwas teurer.)
+###_PLAYER
+(Room administrator action.)
+(Raum-Administrator-Aktionen.)
+###_NPC
+(As a room administrator, you can take these actions with her.)
+(Als Raum-Administrator kannst du dir folgenden Aktionen an ihr ausführen.)
 ###_PLAYER
 (Leave this menu.)
 (Dieses Menü verlassen.)
@@ -128,6 +130,18 @@ kauft von DialogCharacterName einen Krug Bier für alle.
 (Allen für 10$ eine Runde ausgeben.)
 (Get a 10$ beer pitcher for everyone.)
 (Allen für 10$ einen Krug Bier ausgeben.)
+(Kick her out of the room.)
+(Sie aus dem Raum werfen.)
+(Ban her from the room.)
+(Sie aus dem Raum verbannen.)
+(Move her to the left.)
+(Sie nach links versetzen.)
+(Move her to the right.)
+(Sie nach rechts versetzen.)
+(Promote her as room administrator.)
+(Ihr Administratorrechte geben.)
+(Demote her from room administration.)
+(Ihre Administratorrechte aberkennen.)
 (Wardrobe access.)
 (Kleiderschrank-Zugriff.)
 ###_NPC

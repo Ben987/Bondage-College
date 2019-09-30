@@ -1,6 +1,6 @@
 Tag,Content
 NoBondage,(Elle te repousse.) Qu'est-ce que tu fais ?|Nous sommes censées peindre.
-CropForInfo,"(Tu la fouettes d'un coup sec.) Ouïe ! Ok Ok ! Parle-lui |de ""La Naissance de Vénus"" de Sandro Botticelli."
+CropForInfo,"(Tu la fouettes d'un coup sec.) Ouïe ! OK OK ! Parle-lui |de ""La Naissance de Vénus"" de Sandro Botticelli."
 RefuseBondage,(Elle te repousse et te regarde fixement.)|Non ! Tu ne m'attacheras pas.
 Bondage,(Elle essaye de t'arrêter|mais tu la maîtrises et l'attaches.)
 NoGag,(Elle repousse ta main.) C'est non !
@@ -16,7 +16,7 @@ TightenFail,(Tu essayes de resserrer les liens de Jennifer|mais tu échoues et l
 Tickle,"(Tu la chatouilles devant la classe. Embarrassée,|elle se recroqueville et essaye de te frapper.)"
 TickleFail,"(Tu tâtonnes un peu mais tu arrives à la chatouiller.|elle se couvre de honte et essaye de te frapper.)"
 EarnTrust,J'essaierai de te faire confiance.|Tout ceci me rend nerveuse.
-EggComment,"Mais, mais, mais...  Je, je...  Ok.|(Elle incline sa tête.)"
+EggComment,"Mais, mais, mais...  Je, je...  OK.|(Elle incline sa tête.)"
 PlayerUntie,"(Elle rougit et se lève pour te détacher.)|Et voilà mon amie, je parie que c'était bien humiliant."
 PlayerStayTied,"(Elle est trop nerveuse pour t'aider.)|(""+3"" en amour ou plus pour obtenir de l'aide.)"
 NoTimeToPaint,(Il ne reste plus assez de temps|pour produire une oeuvre d'art.)

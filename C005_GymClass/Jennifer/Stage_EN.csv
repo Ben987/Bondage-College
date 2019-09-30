@@ -3,8 +3,8 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 0,0,0,,You don't remove it.|You enjoy it.,That's not funny and I'm not enjoying it.|(She sighs.) I guess we have to team up for judo.,5,-1,0,
 0,0,0,,"I'm not sure, I'll|do some research.",Oh my!  Let me know as soon as you can.|I guess we have to team up for judo then.,5,0,0,
 0,0,0,,You can't remove it.|It will stay forever.,I hope I won't have to go to the hospital.|(She sighs.) I guess we have to team up for judo.,5,-1,0,
-0,0,0,,"Don't worry, I will|help you later.","Ok then, I'll trust you.|So do you want to team up for judo?",5,1,0,
-0,0,0,,If you're a good|girl I will help you.,"A good girl?  Mmmh, ok then.|Should we team up for judo then?",5,0,1,
+0,0,0,,"Don't worry, I will|help you later.","OK then, I'll trust you.|So do you want to team up for judo?",5,1,0,
+0,0,0,,If you're a good|girl I will help you.,"A good girl?  Mmmh, OK then.|Should we team up for judo then?",5,0,1,
 5,0,0,,I guess we'll|have to team up.,Alright.  So have you tried judo before?,10,0,0,
 5,0,0,,How come everyone|is paired but you?,No...  No reason.  Have you tried judo before?,10,-1,0,
 5,0,0,,Great!  It will be|fun to team up.,That's the spirit!  Have you tried judo before?,10,1,0,
@@ -87,19 +87,19 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 530,0,0,,(Whimper for mercy.)ADD_MINUTES:1,No.  I think I like you better like that.,530,0,0,UngagPlayer()
 530,0,0,,(Struggle playfully.)ADD_MINUTES:1,My!  Are you enjoying that?,530,0,0,
 530,0,0,,(Wait until gym ends.),,530,0,0,EndChapter()
-550,0,0,,"Yes, yes, I'm ok.|Thanks for asking.","Good, you were trembling like a leaf.|You got me worried for a few seconds.",510,0,-1,
-550,0,0,,I'm better than ok!|All thanks to you.,(She smiles.)  Alright then!  You|got me worried with that crazy trembling.,510,1,0,
+550,0,0,,"Yes, yes, I'm OK.|Thanks for asking.","Good, you were trembling like a leaf.|You got me worried for a few seconds.",510,0,-1,
+550,0,0,,I'm better than OK!|All thanks to you.,(She smiles.)  Alright then!  You|got me worried with that crazy trembling.,510,1,0,
 550,2,0,,Can I stay in your|arms?ADD_MINUTES:1,"Of course, stay here for as long as you need.",550,0,0,Cuddle()
 550,0,0,,I'm not sure.  Can|you release me please?,"Poor little thing.  Here, let me help you.|(She carefully unties you and let you dress back.)",600,0,-1,ReleasePlayer()
 560,0,0,,(Nod slowly and|blush.)ADD_MINUTES:1,"Good, you were trembling like a leaf.|You got me worried for a few seconds.",520,0,-1,
 560,0,0,,(Nod happily.)ADD_MINUTES:1,(She smiles.)  Alright then!  You|got me worried with that crazy trembling.,520,1,0,
-560,2,0,,(Cuddle in her|arms.)ADD_MINUTES:1,Stay here for as long as you need.|Just let me know if you're ok.,560,0,0,Cuddle()
+560,2,0,,(Cuddle in her|arms.)ADD_MINUTES:1,Stay here for as long as you need.|Just let me know if you're OK.,560,0,0,Cuddle()
 560,0,0,,(Shake your head in|panic.)ADD_MINUTES:1,"Poor little thing.  Here, let me help you.|(She carefully unties you and let you dress back.)",600,0,-1,ReleasePlayer()
 570,0,0,,(Nod slowly and|blush.)ADD_MINUTES:1,"Good, you were trembling like a leaf.|You got me worried for a few seconds.",530,0,-1,
 570,0,0,,(Nod happily.)ADD_MINUTES:1,(She smiles.)  Alright then!  You|got me worried with that crazy trembling.,530,1,0,
-570,2,0,,(Cuddle in her|arms.)ADD_MINUTES:1,Stay here for as long as you need.|Just let me know when you're ok.,570,0,0,Cuddle()
+570,2,0,,(Cuddle in her|arms.)ADD_MINUTES:1,Stay here for as long as you need.|Just let me know when you're OK.,570,0,0,Cuddle()
 570,0,0,,(Shake your head in|panic.)ADD_MINUTES:1,"Poor little thing.  Here, let me help you.|(She carefully unties you and let you dress back.)",600,0,-1,ReleasePlayer()
-600,0,0,,"Ok, another practice.|(Start a practice.)",,600,0,0,StartPractice()
+600,0,0,,"OK, another practice.|(Start a practice.)",,600,0,0,StartPractice()
 600,0,0,TrainingReady,(Train in fighting.)|(30 minutes),,600,0,0,TrainFighting()
 600,0,0,,(Search the gym.)ADD_MINUTES:1,(You search in the gym but you|don't find anything interesting.),600,0,0,Search()
 600,0,0,,"That's enough, let's|go eat. (Leave gym.)",,600,0,0,EndChapter()

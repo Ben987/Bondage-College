@@ -1,0 +1,261 @@
+###_NPC
+(A maid comes to inform you that the training session is over, and you must free the room.)
+(Ein Hausmädchen kommt herbei und informiert dich, dass das Training vorbei ist und du den Raum verlassen musst.)
+(The girl that you should train bows her head and doesn't dare to speak.)
+(Das Mädchen, das du trainieren solltest, neigt ihren Kopf nach unten und traut sich nicht zu sprechen.)
+###_PLAYER
+Are you here to be trained?
+Bist du hier, um trainiert zu werden?
+###_NPC
+Yes Miss, I want to become a better submissive.
+Ja, Miss, ich möchte eine bessere Sub werden.
+###_PLAYER
+You're in trouble girl.
+Du steckst in Schwierigkeiten, Mädel.
+###_NPC
+(She trembles a little.)  I know.  I want to become a better submissive Miss.
+(Sie zittert ein wenig.) Ich weiß. Ich möchte eine bessere Sub werden, Miss.
+###_PLAYER
+Why are you here?
+Warum bist du hier?
+###_NPC
+To be trained Miss.  I want to become a better submissive.
+Um trainiert zu werden, Miss. Ich möchte eine bessere Sub werden.
+###_PLAYER
+What do you want to improve?
+Was willst du an dir verbessern?
+###_NPC
+I panic when I'm restrained and blindfolded.  Can you help me with that?
+Ich gerate in Panik, wenn ich gefesselt bin und nichts sehen kann. Können Sie mir damit helfen?
+###_PLAYER
+I could train you today.
+Ich könnte dich heute trainieren.
+###_NPC
+Thanks Miss, I know that if you restrain me slowly and carefully, I can overcome my claustrophobia.
+Danke, Miss. Wenn sie mich langsam und vorsichtig fesseln, komme ich sicher über meine Platzangst hinweg.
+###_PLAYER
+Let's start your training.
+Fangen wir mit deinem Training an.
+###_NPC
+Very well Miss, thanks for your time.  (How will you train her?)
+Sehr wohl, Miss, vielen Dank, dass Sie sich die Zeit nehmen. (Wie wirst du sie trainieren?)
+I'm scared of pain and I don't handle it very well.  Can you help me with that?
+Ich habe Angst vor Schmerzen und komme nicht gut damit klar. Können Sie mir damit helfen?
+Thanks Miss, I know that if you hurt me gently and progressively, I can improve myself.
+Danke, Miss. Wenn Sie mir sachte und stufenweise wehtun, kann ich mich sicher verbessern.
+(She blushes.)  Dominants say that I can't control my orgasm and I cum without permission.  Can you help me with that?
+(Sie wird rot.) Dominante haben mir gesagt, ich hätte mich nicht unter Kontrolle und würde ohne Erlaubnis kommen. Können Sie mir damit helfen?
+Thanks Miss, I know that I can learn to control my sexual self-control in your hands.
+Danke, Miss. Mit Ihrer Hilfe lerne ich bestimmt, meine sexuelle Selbstbeherrschung unter Kontrolle zu bringen.
+(The slave that you should train bows her head and doesn't dare to speak.)
+(Die Sklavin, die du trainieren solltest, neigt ihren Kopf nach unten und traut sich nicht zu sprechen.)
+Yes Miss, my Mistress sent me here to become a better submissive.
+Ja, Miss. Meine Herrin hat mich hergeschickt, um mich zu einer besseren Sub zu machen.
+(She trembles a little.)  I know.  My Mistress sent me here to become a better submissive.
+(Sie zittert ein wenig.) Ich weiß. Meine Herrin hat mich hergeschickt, um mich zu einer besseren Sub zu machen.
+###_PLAYER
+Why did your owner send you here?
+Warum hat deine Besitzerin dich hergeschickt?
+###_NPC
+My Mistress sent me here to become a better submissive.
+Meine Herrin hat mich hergeschickt, um mich zu einer besseren Sub zu machen.
+###_PLAYER
+What does she want to improve?
+Was will sie an dir verbessern?
+###_NPC
+I panic when I'm restrained and blindfolded.  Mistress is sick of that.  Can you help me?
+Ich gerate in Panik, wenn ich gefesselt bin und nichts sehen kann. Herrin hat das satt. Können Sie mir helfen?
+Thanks Miss, I know that if you restrain me slowly, I can overcome my claustrophobia.
+Danke, Miss. Wenn sie mich langsam fesseln, komme ich sicher über meine Platzangst hinweg.
+Very well Miss, my Mistress will be thankful.  (How will you train her?)
+Sehr wohl, Miss, meine Herrin wird dankbar sein. (Wie wirst du sie trainieren?)
+I'm scared of pain and I don't handle it very well.  Mistress sent me here to get better with that.
+Ich habe Angst vor Schmerzen und komme nicht gut damit klar. Herrin hat mich hergeschickt, damit ich daran arbeiten kann.
+(She blushes.)  Mistress says that I can't control my orgasm and I cum without permission.  Can you help me with that?
+(Sie wird rot.) Herrin sagt, ich hätte mich nicht unter Kontrolle und würde ohne Erlaubnis kommen. Können Sie mir damit helfen?
+Thanks Miss, I know that I can learn to control my sexual self-control in your hands.  Mistress will appreciate.
+Danke, Miss. Mit Ihrer Hilfe lerne ich bestimmt, meine sexuelle Selbstbeherrschung unter Kontrolle zu bringen. Herrin wird das begrüßen.
+(She bows her head and waits on you.  How will you train her?)
+(Sie neigt ihren Kopf nach unten und wartet. Wie wirst du sie trainieren?)
+###_PLAYER
+(Do a bondage training.)
+(Bondage-Training durchführen.)
+###_NPC
+(She trembles in her restraints as you start the bondage training.)
+(Sie zittert in ihren Fesseln, als du mit dem Bondage-Training anfängst.)
+(Restrain her fully so she cannot walk, talk, see or use her hands to start the bondage training.)
+(Lege ihr Fesseln an, sodass sie nicht gehen, sprechen, sehen oder ihre Hände benutzen kann, um mit dem Bondage-Training zu beginnen.)
+###_PLAYER
+(Do a pain training.)
+(Schmerz-Training durchführen.)
+###_NPC
+(She takes a deep breath as you get closer to start a pain training.)
+(Sie holt tief Luft, als du dich näherst, um mit dem Schmerz-Training zu beginnen.)
+###_PLAYER
+(Do a sexual training.)
+(Sexualtraining durchführen.)
+###_NPC
+(She blushes red as you get closer to start a sexual training.)
+(Sie wird rot, als du dich näherst, um mit dem Sexualtraining zu beginnen.)
+###_PLAYER
+(Give up and go back.)
+(Aufgeben und zurückkehren.)
+(Check on her well-being.)
+(Ihr Wohlbefinden prüfen.)
+###_NPC
+(She seems to be very calm and relax.  She doesn't struggle at all.)
+(Sie wirkt sehr ruhig und gelassen. Sie wehrt sich kein bisschen.)
+(She barely struggles and seems to be in control.)
+(Sie wehrt sich kaum und scheint sich unter Kontrolle zu haben.)
+(She struggles a little and seems to be in a good learning mood, both in control and on the edge at the same time.)
+(Sie wehrt sich ein bisschen und scheint in guter Lernstimmung zu sein. Sie hat sich unter Kontrolle und ist gleichzeitig angespannt.)
+(She struggles a lot and seems to be panicking.)
+(Sie wehrt sich relativ stark und scheint in Panik zu geraten.)
+(She struggles frantically, cries and begs for freedom like an animal.)
+(Sie wehrt sich verzweifelt, weint und bettelt um ihre Freiheit wie ein Tier.)
+###_PLAYER
+(Loosen her restraints.)
+(Ihre Fesseln lockern.)
+###_NPC
+(She seems comforted as you loosen her restraints.)
+(Das Lockern ihrer Fesseln scheint sie zu besänftigen.)
+###_PLAYER
+(Tease and grope her.)
+(Sie befummeln und reizen.)
+###_NPC
+(She moans silently as you slowly tease and grope her.)
+(Sie stöhnt leise, als du sie langsam befummelst und reizt.)
+###_PLAYER
+(Tighten her restraints.)
+(Ihre Fesseln enger ziehen.)
+###_NPC
+(She whimpers a little as you tighten her restrains.)
+(Sie wimmert ein wenig, als du ihre Fesseln enger machst.)
+###_PLAYER
+(Slap her.)
+(Sie hauen.)
+###_NPC
+(She cowers as you slap her hard, trembling from her helpless pain.)
+(Sie kauert, als du kräftig zuhaust, und zittert hilflos for Schmerz.)
+###_PLAYER
+(Tighten to stop her blood circulation.)
+(Enger ziehen und ihren Kreislauf unterbrechen.)
+###_NPC
+(She struggles and screams in the gag as her bondage gets really tight and cuts her blood flow, making her dizzy.)
+(Sie wehrt sich und schreit in ihren Knebel, als ihre Fesseln sehr eng werden und ihren Blutkreislauf stören, wodurch ihr schwindelig wird.)
+###_PLAYER
+(Check on her pain threshold.)
+(Ihre Schmerzensgrenze prüfen.)
+###_NPC
+(She looks happy and doesn't seem to be in pain at all.)
+(Sie sieht glücklich aus und scheint keinerlei Schmerzen zu haben.)
+(She looks like in a little bit of pain but nothing extreme.)
+(Sie scheint leichte Schmerzen zu haben, aber nichts Überwältigendes.)
+(She breathes fast and aches from the pain but seems to be well-focused on your training.)
+(Sie atmet schwer und windet sich vor Schmerz, scheint sich aber gut auf dein Training zu konzentrieren.)
+(She cries from the intense pain and cowers at your every move, in a state of panic.)
+(Sie heult vor starkem Schmerz und zuckt panisch bei jeder einzelnen deiner Bewegungen.)
+(She has large marks on her skin and is almost passed-out.  The intense pain makes her barely conscious.)
+(Sie hat große Spuren auf der Haut und ist kaum noch bei Bewusstsein. Der starke Schmerz macht sie benommen.)
+###_PLAYER
+(Take time to comfort her.)
+(Dir Zeitn nehmen, sie zu beruhigen.)
+###_NPC
+(She seems comforted as you take time to calm her down.)
+(Es scheint ihr besser zu gehen, nachdem du dich eine Weile um ihr Wohlergehen sorgst.)
+###_PLAYER
+(Spank her.)
+(Ihr auf den Hintern hauen.)
+###_NPC
+(You spank her a few times as her eyes widen a little with each swing.)
+(Du haust ihr ein paar Mal auf den Po, und ihre Augen weiten sich bei jedem Treffer ein wenig.)
+###_PLAYER
+(Crop her.)
+(SIe mit der Gerte schlagen.)
+###_NPC
+(She whimpers and jumps with each crop swing.)
+(Sie wimmert und zuckt bei jedem Gertenhieb.)
+###_PLAYER
+(Strangle her lightly.)
+(Sie leicht würden.)
+###_NPC
+(You strangle her lightly as she struggles for air and against the pain.)
+(Du würgst sie leicht und sie ringt nach Luft, während sie gegen die Schmerzen ankämpft.)
+###_PLAYER
+(Whip her.)
+(Sie auspeitschen.)
+###_NPC
+(She cries with each whip lashes, trying to endure the pain and getting a strong adrenaline rush.)
+(Sie heult bei jedem Peitschenhieb auf, versucht, dem Schmerz standzuhalten, und spürt einen starken Adrenalinschub.)
+###_PLAYER
+(Check on her arousal.)
+(Ihre Erregung prüfen.)
+###_NPC
+(She doesn't seem turned on at all.)
+(Sie scheint kein bisschen erregt zu sein.)
+(She looks a little wet and seems to be enjoying herself.)
+(Sie wirkt ein bisschen feucht und scheint Spaß zu haben.)
+(She's on the edge of an orgasm, trembling and begging you to let her climax.)
+(Sie ist einem Orgasmus nahe, zittert und fleht dich an, sie kommen zu lassen.)
+(She shakes a lot and tries to hide the fact that she had an unapproved orgasm.)
+(Sie schüttelt ihren ganzen Körper und versucht zu verbergen, dass sie einen unerlaubten Orgasmus hatte.)
+(She's moaning loudly and dripping in her own juices.  She cannot hide her unapproved orgasm.)
+(Sie stöhnt laut und trieft geradezu vor sich hin. Sie kann ihren unerlaubten Orgasmus nicht verbergen.)
+###_PLAYER
+(Let her cool down.)
+(Sie runterkommen lassen.)
+###_NPC
+(You let her relax and cool down for a little while.)
+(Du lässt sie sich eine Weile entspannen und erholen.)
+###_PLAYER
+(Kiss her.)
+(Sie küssen.)
+###_NPC
+(You kiss her lovingly to keep her in the mood.)
+(Du gibst ihr einen liebevollen Kuss, um sie bei Laune zu halten.)
+###_PLAYER
+(Massage her breast.)
+(Ihre Brust massieren.)
+###_NPC
+(You massage her breast slowly as she moans from the pleasure.)
+(Du massierst langsam ihre Brust und sie stöhnt lüstern.)
+###_PLAYER
+(Masturbate her.)
+(Sie befriedigen.)
+###_NPC
+(You masturbate her skillfully as she moans loudly from the pleasure.)
+(Du befriedigst sie gekonnt und lässt sie laut und lüstern stöhnen.)
+###_PLAYER
+(Eat her.)
+(Sie oral befriedigen.)
+###_NPC
+(She screams from the uncontrollable pleasure as you eat her pussy with delight.)
+(Sie schreit vor unkontrollierbarer Lust, als du vergnügt ihre Muschi leckst.)
+###_PLAYER
+Your training is done.
+Dein Training ist zu Ende.
+###_NPC
+(She nods happily and seems to have learned from you.  Your training had positive effects.)
+(Sie nickt glücklich und scheint etwas von dir gelernt zu haben. Dein Training hatte positive Auswirkungen.)
+###_PLAYER
+Next time it will be harsher.
+Das nächste Mal wird es strenger sein.
+###_NPC
+(She gulps but seems to have learned from you.  Your training had positive effects.)
+(Sie schluckt, scheint aber etwas von dir gelernt zu haben. Dein Training hatte positive Auswirkungen.)
+###_PLAYER
+(Stare at the trained girl.)
+(Das trainierte Mädchen anstarren.)
+(Spank her one last time.)
+(Ihr einen letzten Klaps geben.)
+(Back to the slave market.)
+(Zurück zum Sklavenmarkt.)
+###_NPC
+(She trembles without much control and panics a little, your training was too intense.)
+(Sie zittert ohne Selbstbeherrschung und wirkt etwas panisch, dein Training war zu intensiv.)
+(She shrugs and doesn't seem very affected.  Your training was too easy for her.)
+(Sie zuckt mit den Schultern und wirkt unbekümmert. Dein Training war zu einfach für sie.)
+(She giggles and doesn't seem very affected.  Your training was too easy for her.)
+(Sie kichert und wirkt unbekümmert. Dein Training war zu einfach für sie.)
+(She seems confused from your training session, it's probably not what she needed.)
+(Dein Training scheint sie verwirrt zu haben, es war offenbar nicht das, was sie brauchte.)

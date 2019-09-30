@@ -14,10 +14,10 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 40,0,0,,Nous pourrions essayer de|maîtriser Mildred ensemble.,"La maîtriser ? Comme la kidnapper ?|C'est dangereux, qu'est-ce que ça m'apporte ?",50,0,0,
 40,0,0,,Nous devrions kidnapper|cette putain de prof.,"La kidnapper ? En plein cours ? Pour de vrai ?|C'est dangereux, qu'est-ce que ça m'apporte ?",50,1,0,
 40,0,0,,Tu m'aideras|à attacher la prof.,"T'aider à l'attacher en plein cours ?|C'est dangereux, qu'est-ce que ça m'apporte ?",50,0,1,
-50,3,0,PlayerHasRope,"Tu peux le faire ! Nous|sommes de bonnes amies.","Je suppose. Ok, je t'aiderais.|(Elle se retourne.) Mais tu y vas la première.",60,0,0,AgreeHelp()
+50,3,0,PlayerHasRope,"Tu peux le faire ! Nous|sommes de bonnes amies.","Je suppose. OK, je t'aiderais.|(Elle se retourne.) Mais tu y vas la première.",60,0,0,AgreeHelp()
 50,3,0,!PlayerHasRope,"Tu peux le faire ! Nous|sommes de bonnes amies.","Je suppose. Je t'aiderais, tu peux avoir ces cordes.|(Elle se retourne.) Mais tu y vas la première.",60,0,0,AgreeHelp()
-50,0,3,PlayerHasRope,Si tu ne m'aides pas !|Tu connaitras l'enfer !,"Ok, je ne veux pas d'ennuis après les cours. J'aiderais.|(Elle se retourne.) Mais tu y vas la première".,60,0,0,AgreeHelp()
-50,0,3,!PlayerHasRope,Si tu ne m'aides pas !|Tu connaitras l'enfer !,"Ok, je t'aiderais. Tu peux même utiliser ces cordes.|(Elle se retourne.) Mais tu y vas la première.",60,0,0,AgreeHelp()
+50,0,3,PlayerHasRope,Si tu ne m'aides pas !|Tu connaitras l'enfer !,"OK, je ne veux pas d'ennuis après les cours. J'aiderais.|(Elle se retourne.) Mais tu y vas la première".,60,0,0,AgreeHelp()
+50,0,3,!PlayerHasRope,Si tu ne m'aides pas !|Tu connaitras l'enfer !,"OK, je t'aiderais. Tu peux même utiliser ces cordes.|(Elle se retourne.) Mais tu y vas la première.",60,0,0,AgreeHelp()
 50,0,0,,"Fais-le ! Ça sera marrant.","Ha ! Tu crois que tu peux me convaincre comme ça ?|Il faut que ça me rapporte quelque chose si je t'aide.",50,0,0,
 50,0,0,,"Laisse-moi y réfléchir.","(Elle hausse les épaules.) Bien, je ne serai pas loin.|Il faut que ça me rapporte quelque chose si je t'aide.",50,0,0,
 100,0,0,SubdueRemarkReady,Et je parie que tu serais|aussi superbe toute ligotée.,Quoi ? Tu n'es pas sérieuse. (Elle rougit.),100,0,1,SubdueRemark()
