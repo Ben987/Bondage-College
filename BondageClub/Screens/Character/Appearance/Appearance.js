@@ -279,6 +279,7 @@ function CharacterAppearanceBuildCanvas(C) {
 			// Check if we need to draw a different variation (from type property)
 			var Type = "";
 			if ((CA.Property != null) && (CA.Property.Type != null)) Type = CA.Property.Type;
+			Type = Type.substring(0, Type.indexOf("#"));
 
 			// Cycle through all layers of the image
 			var MaxLayer = (CA.Asset.Layer == null) ? 1 : CA.Asset.Layer.length;

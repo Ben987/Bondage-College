@@ -7,7 +7,7 @@ function InventoryItemLegsLeatherLegCuffsLoad() {
 
 // Draw the item extension screen
 function InventoryItemLegsLeatherLegCuffsDraw() {
-	
+
 	// Draw the header and item
 	DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 	DrawRect(1387, 125, 225, 275, "white");
@@ -16,10 +16,10 @@ function InventoryItemLegsLeatherLegCuffsDraw() {
 
 	// Draw the possible poses
 	DrawText(DialogFind(Player, "SelectBondagePosition"), 1500, 500, "white", "gray");
-	DrawButton(1250, 550, 225, 225, "", (DialogFocusItem.Property.Restrain == null) ? "#888888" : "White");
+	DrawButton(1250, 550, 225, 225, "", (DialogFocusItem.Property.Type == null) ? "#888888" : "White");
 	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/None.png", 1250, 550);
 	DrawText(DialogFind(Player, "LeatherLegCuffsPoseNone"), 1365, 800, "white", "gray");
-	DrawButton(1500, 550, 225, 225, "", ((DialogFocusItem.Property.Restrain != null) && (DialogFocusItem.Property.Restrain == "Closed")) ? "#888888" : "Closed");
+	DrawButton(1500, 550, 225, 225, "", (DialogFocusItem.Property.Type == "#Closed") ? "#888888" : "White");
 	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Closed.png", 1500, 550);
 	DrawText(DialogFind(Player, "LeatherLegCuffsPoseClosed"), 1610, 800, "white", "gray");
 }
@@ -27,12 +27,12 @@ function InventoryItemLegsLeatherLegCuffsDraw() {
 // Catches the item extension clicks
 function InventoryItemLegsLeatherLegCuffsClick() {
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1250) && (MouseX <= 1475) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property.Restrain != null)) InventoryItemLegsLeatherLegCuffsSetPose(null);
-	if ((MouseX >= 1500) && (MouseX <= 1725) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Closed"))) InventoryItemLegsLeatherLegCuffsSetPose("Closed");
+	if ((MouseX >= 1250) && (MouseX <= 1475) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property.Type != null)) InventoryItemLegsLeatherLegCuffsSetType(null);
+	if ((MouseX >= 1500) && (MouseX <= 1725) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property.Type != "#Closed")) InventoryItemLegsLeatherLegCuffsSetType("#Closed");
 }
 
 // Sets the cuffs pose (wrist, elbow, both or none)
-function InventoryItemLegsLeatherLegCuffsSetPose(NewPose) {
+function InventoryItemLegsLeatherLegCuffsSetType(NewType) {
 
 	// Gets the current item and character
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
@@ -42,13 +42,13 @@ function InventoryItemLegsLeatherLegCuffsSetPose(NewPose) {
 	}
 
 	// Sets the new pose with it's effects
-	DialogFocusItem.Property.Restrain = NewPose;
-	if (NewPose == null) {
+	DialogFocusItem.Property.Type = NewType;
+	if (NewType == null) {
 		delete DialogFocusItem.Property.SetPose;
 		delete DialogFocusItem.Property.Effect;
 		delete DialogFocusItem.Property.SelfUnlock;
 		delete DialogFocusItem.Property.Difficulty;
-	} else if(NewPose == "Closed"){
+	} else if (NewType == "#Closed") {
 		DialogFocusItem.Property.SetPose = ["LegsClosed"];
 		DialogFocusItem.Property.Effect = ["Prone", "Freeze"];
 		DialogFocusItem.Property.Difficulty = 6;
@@ -62,7 +62,7 @@ function InventoryItemLegsLeatherLegCuffsSetPose(NewPose) {
 
 	// Refreshes the character and chatroom
 	CharacterRefresh(C);
-	var msg = DialogFind(Player, "LeatherLegCuffsRestrain" + ((NewPose == null) ? "None" : NewPose));
+	var msg = DialogFind(Player, "LeatherLegCuffsRestrain" + ((NewType == null) ? "None" : NewType.substring(1)));
 	msg = msg.replace("SourceCharacter", Player.Name);
 	msg = msg.replace("DestinationCharacter", C.Name);
 	ChatRoomPublishCustomAction(msg, true);
