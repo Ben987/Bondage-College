@@ -183,38 +183,14 @@ ShockCollarTrigger2,,,DestinationCharacter's collar delivers an intense shock!
 CollarShockUnitTrigger0,,,DestinationCharacter's collar gives her a light shock.
 CollarShockUnitTrigger1,,,DestinationCharacter's collar lets out a sharp jolt!
 CollarShockUnitTrigger2,,,DestinationCharacter's collar delivers an intense shock!
-EggDecreaseTo-1,,,DestinationCharacter's vibrating egg stops vibrating.
-EggDecreaseTo0,,,DestinationCharacter's vibrating egg slows down into a light tease.
-EggDecreaseTo1,,,DestinationCharacter's vibrating egg returns to a moderate pace.
-EggDecreaseTo2,,,DestinationCharacter's vibrating egg slows down a tiny bit.
-EggIncreaseTo0,,,DestinationCharacter's vibrating egg starts teasing her lightly.
-EggIncreaseTo1,,,DestinationCharacter's vibrating egg builds up to a moderate pace.
-EggIncreaseTo2,,,DestinationCharacter's vibrating egg starts buzzing strongly!
-EggIncreaseTo3,,,DestinationCharacter's vibrating egg jumps up to maximum intensity!
-NippleDecreaseTo-1,,,DestinationCharacter's vibrating nipple clamps stop vibrating.
-NippleDecreaseTo0,,,DestinationCharacter's vibrating nipple clamps slow down into a light tease.
-NippleDecreaseTo1,,,DestinationCharacter's vibrating nipple clamps return to a moderate pace.
-NippleDecreaseTo2,,,DestinationCharacter's vibrating nipple clamps slow down a tiny bit.
-NippleIncreaseTo0,,,DestinationCharacter's vibrating nipple clamps start teasing her lightly.
-NippleIncreaseTo1,,,DestinationCharacter's vibrating nipple clamps build up to a moderate pace.
-NippleIncreaseTo2,,,DestinationCharacter's vibrating nipple clamps start buzzing strongly!
-NippleIncreaseTo3,,,DestinationCharacter's vibrating nipple clamps jump up to maximum intensity!
-PantiesDecreaseTo-1,,,DestinationCharacter's vibrating latex panties stops vibrating.
-PantiesDecreaseTo0,,,DestinationCharacter's vibrating latex panties slows down into a light tease.
-PantiesDecreaseTo1,,,DestinationCharacter's vibrating latex panties returns to a moderate pace.
-PantiesDecreaseTo2,,,DestinationCharacter's vibrating latex panties slows down a tiny bit.
-PantiesIncreaseTo0,,,DestinationCharacter's vibrating latex panties starts teasing her lightly.
-PantiesIncreaseTo1,,,DestinationCharacter's vibrating latex panties builds up to a moderate pace.
-PantiesIncreaseTo2,,,DestinationCharacter's vibrating latex panties starts buzzing strongly!
-PantiesIncreaseTo3,,,DestinationCharacter's vibrating latex panties jumps up to maximum intensity!
-BeltDecreaseTo-1,,,DestinationCharacter's vibrating wand stops vibrating.
-BeltDecreaseTo0,,,DestinationCharacter's vibrating wand slows down into a light tease.
-BeltDecreaseTo1,,,DestinationCharacter's vibrating wand returns to a moderate pace.
-BeltDecreaseTo2,,,DestinationCharacter's vibrating wand slows down a tiny bit.
-BeltIncreaseTo0,,,DestinationCharacter's vibrating wand starts teasing her lightly.
-BeltIncreaseTo1,,,DestinationCharacter's vibrating wand builds up to a moderate pace.
-BeltIncreaseTo2,,,DestinationCharacter's vibrating wand starts buzzing strongly!
-BeltIncreaseTo3,,,DestinationCharacter's vibrating wand jumps up to maximum intensity!
+InventoryItemVibrationIntensityDecreaseTo-1,,,DestinationCharacter's ItemDescription stops vibrating.
+InventoryItemVibrationIntensityDecreaseTo0,,,DestinationCharacter's ItemDescription slows down into a light tease.
+InventoryItemVibrationIntensityDecreaseTo1,,,DestinationCharacter's ItemDescription returns to a moderate pace.
+InventoryItemVibrationIntensityDecreaseTo2,,,DestinationCharacter's ItemDescription slows down a tiny bit.
+InventoryItemVibrationIntensityIncreaseTo0,,,DestinationCharacter's ItemDescription starts teasing her lightly.
+InventoryItemVibrationIntensityIncreaseTo1,,,DestinationCharacter's ItemDescription builds up to a moderate pace.
+InventoryItemVibrationIntensityIncreaseTo2,,,DestinationCharacter's ItemDescription starts buzzing strongly!
+InventoryItemVibrationIntensityIncreaseTo3,,,DestinationCharacter's ItemDescription jumps up to maximum intensity!
 BPumpsdeflatesTo0,,,SourceCharacter deflates DestinationCharacter's butt pump till it's empty.
 BPumpsdeflatesTo1,,,SourceCharacter deflates DestinationCharacter's butt pump till only slighty filled.
 BPumpsdeflatesTo2,,,SourceCharacter deflates DestinationCharacter's butt pump till it's half full.
@@ -284,14 +260,6 @@ LoveChastityBeltAddVibe,,,Add Vibe
 LoveChastityBeltAddShock,,,Add Shock
 LoveChastityBeltActionUnlockButt,,,SourceCharacter unlocks DestinationCharacter's love chastity belt butt.
 LoveChastityBeltActionLockButt,,,SourceCharacter lock DestinationCharacter's love chastity belt butt.
-LoveChastityBeltVibeIncreaseTo0,,,DestinationCharacter's love chastity belts starts teasing her lightly.
-LoveChastityBeltVibeIncreaseTo1,,,DestinationCharacter's love chastity belts builds up to a moderate pace.
-LoveChastityBeltVibeIncreaseTo2,,,DestinationCharacter's love chastity belts starts buzzing strongly!
-LoveChastityBeltVibeIncreaseTo3,,,DestinationCharacter's love chastity belts jumps up to maximum intensity!
-LoveChastityBeltVibeDecreaseTo-1,,,DestinationCharacter's love chastity belt stops vibrating.
-LoveChastityBeltVibeDecreaseTo0,,,DestinationCharacter's love chastity belt slows down into a light tease.
-LoveChastityBeltVibeDecreaseTo1,,,DestinationCharacter's love chastity belt returns to a moderate pace.
-LoveChastityBeltVibeDecreaseTo2,,,DestinationCharacter's love chastity belt slows down a tiny bit.
 LoveChastityBeltShockSet0,,,SourceCharacter sets DestinationCharacter's love chastity belt to low intensity.
 LoveChastityBeltShockSet1,,,SourceCharacter sets DestinationCharacter's love chastity belt to moderate intensity.
 LoveChastityBeltShockSet2,,,SourceCharacter sets DestinationCharacter's love chastity belt to high intensity.

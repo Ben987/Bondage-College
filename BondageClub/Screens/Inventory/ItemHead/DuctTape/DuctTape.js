@@ -8,12 +8,6 @@ function InventoryItemHeadDuctTapeLoad() {
 // Draw the item extension screen
 function InventoryItemHeadDuctTapeDraw() {
 	
-	// Draw the header and item
-	DrawRect(1387, 100, 225, 275, "white");
-	DrawText(DialogFind(Player, "SelectBlindType"), 1500, 50, "white", "gray");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 102, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 350, 221, "black");
-
 	// Draw the possible Blindfold types
 	DrawButton(1000, 450, 225, 225, "", (DialogFocusItem.Property.Type == null || DialogFocusItem.Property.Type == "Double") ? "#888888" : "White");
 	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Double.png", 1000, 449);
@@ -28,7 +22,6 @@ function InventoryItemHeadDuctTapeDraw() {
 
 // Catches the item extension clicks
 function InventoryItemHeadDuctTapeClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
 	if ((MouseX >= 1000) && (MouseX <= 1225) && (MouseY >= 450) && (MouseY <= 675) && (DialogFocusItem.Property.Type != null)) InventoryItemHeadDuctTapeSetType(null);
 	if ((MouseX >= 1375) && (MouseX <= 1600) && (MouseY >= 450) && (MouseY <= 675) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Wrap"))) InventoryItemHeadDuctTapeSetType("Wrap");
 	if ((MouseX >= 1750) && (MouseX <= 1975) && (MouseY >= 450) && (MouseY <= 675) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Mummy"))) InventoryItemHeadDuctTapeSetType("Mummy");

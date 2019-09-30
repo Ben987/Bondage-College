@@ -33,7 +33,6 @@ function InventoryItemLegsDuctTapeDraw() {
 
 // Catches the item extension clicks
 function InventoryItemLegsDuctTapeClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
 	if ((MouseX >= 1000) && (MouseX <= 1225) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property != null)) InventoryItemLegsDuctTapeSetPose(null);
 	if ((MouseX >= 1250) && (MouseX <= 1475) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Restrain != "HalfLegs"))) InventoryItemLegsDuctTapeSetPose("HalfLegs");
 	if ((MouseX >= 1500) && (MouseX <= 1725) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Restrain != "MostLegs"))) InventoryItemLegsDuctTapeSetPose("MostLegs");

@@ -8,9 +8,6 @@ function InventoryItemMouthPumpGagLoad() {
 
 // Draw the item extension screen
 function InventoryItemMouthPumpGagDraw() {
-	DrawRect(1387, 225, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
 	DrawText(DialogFind(Player, "PumpLevel" + DialogFocusItem.Property.PumpLevel.toString()), 1500, 600, "White", "Gray");
 	if(DialogFocusItem.Property.PumpLevel > 0) DrawButton(1200, 650, 200, 55, DialogFind(Player, "Empty"), "White");
     if(DialogFocusItem.Property.PumpLevel < 1) DrawButton(1550, 650, 200, 55, DialogFind(Player, "Light"), "White");
@@ -24,8 +21,6 @@ function InventoryItemMouthPumpGagDraw() {
 
 // Catches the item extension clicks
 function InventoryItemMouthPumpGagClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
 	if ((MouseX >= 1200) && (MouseX <= 1400) && (MouseY >= 650) && (MouseY <= 705) && (DialogFocusItem.Property.PumpLevel > 0)) InventoryItemMouthPumpGagSetPump(0 - DialogFocusItem.Property.PumpLevel);
 	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 650) && (MouseY <= 705) && (DialogFocusItem.Property.PumpLevel < 1)) InventoryItemMouthPumpGagSetPump(1 - DialogFocusItem.Property.PumpLevel);
 	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 650) && (MouseY <= 705) && (DialogFocusItem.Property.PumpLevel > 1)) InventoryItemMouthPumpGagSetPump(1 - DialogFocusItem.Property.PumpLevel);

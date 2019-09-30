@@ -9,10 +9,6 @@ function InventoryItemNeckAccessoriesCollarShockUnitLoad() {
 
 // Draw the item extension screen
 function InventoryItemNeckAccessoriesCollarShockUnitDraw() {
-	DrawRect(1387, 225, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
-	DrawText(DialogFind(Player, "Intensity" + DialogFocusItem.Property.Intensity.toString()).replace("Item", DialogFocusItem.Asset.Description), 1500, 600, "White", "Gray");
 	if(DialogFocusItem.Property.Intensity > 0) DrawButton(1200, 650, 200, 55, DialogFind(Player, "Low"), "White");
 	if(DialogFocusItem.Property.Intensity < 1) DrawButton(1550, 650, 200, 55, DialogFind(Player, "Medium"), "White");
 	if(DialogFocusItem.Property.Intensity > 1) DrawButton(1550, 650, 200, 55, DialogFind(Player, "Medium"), "White");
@@ -23,7 +19,6 @@ function InventoryItemNeckAccessoriesCollarShockUnitDraw() {
 
 // Catches the item extension clicks
 function InventoryItemNeckAccessoriesCollarShockUnitClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
 	if ((MouseX >= 1325) && (MouseX <= 1389) && (MouseY >= 800) && (MouseY <= 864) && (CurrentScreen == "ChatRoom")) {
 		DialogFocusItem.Property.ShowText = !DialogFocusItem.Property.ShowText;
 		DialogLeave();

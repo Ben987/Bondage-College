@@ -8,11 +8,6 @@ function InventoryItemFeetDuctTapeLoad() {
 
 // Draw the item extension screen
 function InventoryItemFeetDuctTapeDraw() {
-	
-	// Draw the header and item
-	DrawRect(1387, 125, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
 
 	// Draw the possible poses
 	DrawText(DialogFind(Player, InventoryItemFeetDuctTapeMessage), 1500, 500, "white", "gray");
@@ -33,7 +28,6 @@ function InventoryItemFeetDuctTapeDraw() {
 
 // Catches the item extension clicks
 function InventoryItemFeetDuctTapeClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
 	if ((MouseX >= 1000) && (MouseX <= 1225) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property != null)) InventoryItemFeetDuctTapeSetPose(null);
 	if ((MouseX >= 1250) && (MouseX <= 1475) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Restrain != "HalfFeet"))) InventoryItemFeetDuctTapeSetPose("HalfFeet");
 	if ((MouseX >= 1500) && (MouseX <= 1725) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Restrain != "MostFeet"))) InventoryItemFeetDuctTapeSetPose("MostFeet");

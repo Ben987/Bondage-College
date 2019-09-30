@@ -37,7 +37,6 @@ function InventoryItemNeckSlaveCollarDraw() {
 
 // Catches the item extension clicks
 function InventoryItemNeckSlaveCollarClick() {
-    if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) { DialogFocusItem = null; return; }
     var C = CharacterGetCurrent();
     if (C != null && C.IsOwnedByPlayer()) {
         for (var I = 0; I < SlaveCollarTypes.length; I++) {

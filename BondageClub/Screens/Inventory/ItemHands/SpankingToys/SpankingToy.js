@@ -42,12 +42,6 @@ function InventoryItemHandsSpankingToysLoad() {
 // Item groups that called the function (just forwarding it to SpankingToysDraw()) *brute force, might be a better way to do this
 function InventoryItemHandsSpankingToysDraw() {
 
-	// Draw the header and item
-	if (SpankingNextButton) DrawButton(1775, 25, 90, 90, "", "White", "Icons/Next.png");
-	DrawRect(1387, 125, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
-
 	// Draw the buttons, 4 at a time
 	DrawText(DialogFind(Player, "SelectSpankingToysType"), 1500, 500, "white", "gray");
 	for (var I = SpankingInventoryOffset; (I < SpankingPlayerInventory.length) && (I < SpankingInventoryOffset + 4); I++) {
@@ -63,7 +57,6 @@ function InventoryItemHandsSpankingToysDraw() {
 function InventoryItemHandsSpankingToysClick() {
 
 	// Menu buttons
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
 	if ((MouseX >= 1775) && (MouseX <= 1865) && (MouseY >= 25) && (MouseY <= 110) && (SpankingNextButton)) SpankingInventoryOffset += 4;
 	if (SpankingInventoryOffset > SpankingPlayerInventory.length) SpankingInventoryOffset = 0;
 

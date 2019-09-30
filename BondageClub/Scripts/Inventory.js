@@ -286,3 +286,63 @@ function InventoryConfiscateKey() {
 function InventoryIsWorn(C, AssetGroup, AssetName){
 	return C && C.Appearance && C.Appearance.some(Item => Item.Asset.Group.Name == AssetGroup && Item.Asset.Name == AssetName);
 } 
+
+// draws vibration intenity buttons
+function InventoryDialogFocusItemVibrationIntensityDraw() {
+	if (DialogFocusItem.Property.Intensity > -1) DrawButton(1200, 650, 200, 55, DialogFind(Player, "TurnOff"), "White");
+	if (DialogFocusItem.Property.Intensity < 0) DrawButton(1550, 650, 200, 55, DialogFind(Player, "Low"), "White");
+	if (DialogFocusItem.Property.Intensity > 0) DrawButton(1550, 650, 200, 55, DialogFind(Player, "Low"), "White");
+	if (DialogFocusItem.Property.Intensity < 1) DrawButton(1200, 710, 200, 55, DialogFind(Player, "Medium"), "White");
+	if (DialogFocusItem.Property.Intensity > 1) DrawButton(1200, 710, 200, 55, DialogFind(Player, "Medium"), "White");
+	if (DialogFocusItem.Property.Intensity < 2) DrawButton(1550, 710, 200, 55, DialogFind(Player, "High"), "White");
+	if (DialogFocusItem.Property.Intensity > 2) DrawButton(1550, 710, 200, 55, DialogFind(Player, "High"), "White");
+	if (DialogFocusItem.Property.Intensity < 3) DrawButton(1375, 770, 200, 55, DialogFind(Player, "Maximum"), "White");
+}
+
+//  vibration intenity button clicks
+function InventoryDialogFocusItemVibrationIntensityClick() {
+	var C = C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	if ((MouseX >= 1200) && (MouseX <= 1400) && (MouseY >= 650) && (MouseY <= 705) && (DialogFocusItem.Property.Intensity > -1))InventoryItemSetVibrationIntensity(C, DialogFocusItem, -1 - DialogFocusItem.Property.Intensity);
+	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 650) && (MouseY <= 705) && (DialogFocusItem.Property.Intensity < 0)) InventoryItemSetVibrationIntensity(C, DialogFocusItem, 0 - DialogFocusItem.Property.Intensity);
+	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 650) && (MouseY <= 705) && (DialogFocusItem.Property.Intensity > 0)) InventoryItemSetVibrationIntensity(C, DialogFocusItem, 0 - DialogFocusItem.Property.Intensity);
+	if ((MouseX >= 1200) && (MouseX <= 1400) && (MouseY >= 710) && (MouseY <= 765) && (DialogFocusItem.Property.Intensity < 1)) InventoryItemSetVibrationIntensity(C, DialogFocusItem, 1 - DialogFocusItem.Property.Intensity);
+	if ((MouseX >= 1200) && (MouseX <= 1400) && (MouseY >= 710) && (MouseY <= 765) && (DialogFocusItem.Property.Intensity > 1)) InventoryItemSetVibrationIntensity(C, DialogFocusItem, 1 - DialogFocusItem.Property.Intensity);
+	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 710) && (MouseY <= 765) && (DialogFocusItem.Property.Intensity > 2)) InventoryItemSetVibrationIntensity(C, DialogFocusItem, 2 - DialogFocusItem.Property.Intensity);
+	if ((MouseX >= 1550) && (MouseX <= 1750) && (MouseY >= 710) && (MouseY <= 765) && (DialogFocusItem.Property.Intensity < 2)) InventoryItemSetVibrationIntensity(C, DialogFocusItem, 2 - DialogFocusItem.Property.Intensity);
+	if ((MouseX >= 1375) && (MouseX <= 1575) && (MouseY >= 770) && (MouseY <= 825) && (DialogFocusItem.Property.Intensity < 3)) InventoryItemSetVibrationIntensity(C, DialogFocusItem, 3 - DialogFocusItem.Property.Intensity);
+}
+
+// sets vibration intenity on item
+function InventoryItemSetVibrationIntensity(C, Item, Modifier) {
+	Item.Property.Intensity = Item.Property.Intensity + Modifier;
+	if (Item.Property.Intensity < -1) Item.Property.Intensity = -1;
+	if (Item.Property.Intensity > 3) Item.Property.Intensity = 3;
+	IntensityItemAddEffect(Item, "Egged");
+	if (Item.Property.Intensity >= 0) IntensityItemAddEffect(Item, "Vibrating");	
+	else IntensityItemRemoveEffect(Item, "Vibrating");
+
+	// Adds the lock effect back if item is lockable and it was padlocked
+	if (Item.Asset.AllowLock && (Item.Property.LockedBy != null) && (Item.Property.LockedBy != "")) {
+		IntensityItemAddEffect(Item, "Lock");
+	}
+
+	CharacterLoadEffect(C);
+	if (C.ID == 0) ServerPlayerAppearanceSync();
+
+	ChatRoomPublishCustomAction((DialogFind(Player, "InventoryItemVibrationIntensity" +((Modifier > 0) ? "Increase" : "Decrease") + "To" + Item.Property.Intensity)
+		.replace("DestinationCharacter",C.Name)
+		.replace("ItemDescription", Item.Asset.Description.toLowerCase())), true);
+}
+
+// adds effect to inventory item
+function IntensityItemAddEffect(Item, Effect) {
+	if (Item.Property == null) Item.Property = { Effect: [Effect] };
+	else if (Item.Property.Effect == null) Item.Property.Effect = [Effect];
+	else if (!Item.Property.Effect.includes(Effect)) Item.Property.Effect.push(Effect);
+}
+
+// removes effect from inventory item
+function IntensityItemRemoveEffect(Item, Effect) {
+	if (Item.Property && Item.Property.Effect) Item.Property.Effect = Item.Property.Effect.filter(E => E != Effect);
+	if (Item.Property && Item.Property.Effect.length == 0) delete Item.Property.Effect;
+}

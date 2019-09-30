@@ -585,9 +585,13 @@ function DialogClick() {
 	if (((Player.FocusGroup != null) || ((CurrentCharacter.FocusGroup != null) && CurrentCharacter.AllowItem)) && (DialogIntro() != "")) {
 
 		// If we must are in the extended menu of the item
-		if (DialogFocusItem != null)
-			CommonDynamicFunction("Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Click()");
-		else {
+		if (DialogFocusItem != null) {
+			if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
+			else {
+				if (InventoryItemHasEffect(DialogFocusItem, "Egged", true)) InventoryDialogFocusItemVibrationIntensityClick();
+				CommonDynamicFunction("Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Click()");
+			}
+		} else {
 	
 			// If the user wants to speed up the add / swap / remove progress
 			if ((MouseX >= 1000) && (MouseX < 2000) && (MouseY >= 600) && (MouseY < 1000) && (DialogProgress >= 0) && CommonIsMobile) DialogStruggle(false);
@@ -872,6 +876,15 @@ function DialogDraw() {
 
 		// The view can show one specific extended item or the list of all items for a group
 		if (DialogFocusItem != null) {
+			if (DialogFocusSourceItem && DialogFocusSourceItem.Property && DialogFocusSourceItem.Property.RemoveTimer < CurrentTime) { InventoryItemMiscTimerPadlockExit(); return; }
+			DrawRect(1387, 225, 225, 275, "white");
+			if (InventoryItemHasEffect(DialogFocusItem, "Vibrating", true) && (DialogFocusItem.Property.Intensity >= 0))
+				DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389 + Math.floor(Math.random() * 3) - 1, 227 + Math.floor(Math.random() * 3) - 1, 221, 221);
+			else DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
+			DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
+			if (DialogFocusItem.Property && DialogFocusItem.Property.Intensity && (InventoryItemHasEffect(DialogFocusItem, "Vibrating", true) || InventoryItemHasEffect(DialogFocusItem, "ReceiveShock", true)))
+				DrawText(DialogFind(Player, "Intensity" + DialogFocusItem.Property.Intensity.toString()).replace("Item", DialogFocusItem.Asset.Description), 1500, 550, "White", "Gray");
+			if (InventoryItemHasEffect(DialogFocusItem, "Egged", true)) InventoryDialogFocusItemVibrationIntensityDraw();
 			CommonDynamicFunction("Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Draw()");
 			DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 		} else {
