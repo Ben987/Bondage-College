@@ -317,13 +317,13 @@ function InventoryItemSetVibrationIntensity(C, Item, Modifier) {
 	Item.Property.Intensity = Item.Property.Intensity + Modifier;
 	if (Item.Property.Intensity < -1) Item.Property.Intensity = -1;
 	if (Item.Property.Intensity > 3) Item.Property.Intensity = 3;
-	IntensityItemAddEffect(Item, "Egged");
-	if (Item.Property.Intensity >= 0) IntensityItemAddEffect(Item, "Vibrating");	
-	else IntensityItemRemoveEffect(Item, "Vibrating");
+	InventoryItemAddEffect(Item, "Egged");
+	if (Item.Property.Intensity >= 0) InventoryItemAddEffect(Item, "Vibrating");	
+	else InventoryItemRemoveEffect(Item, "Vibrating");
 
 	// Adds the lock effect back if item is lockable and it was padlocked
 	if (Item.Asset.AllowLock && (Item.Property.LockedBy != null) && (Item.Property.LockedBy != "")) {
-		IntensityItemAddEffect(Item, "Lock");
+		InventoryItemAddEffect(Item, "Lock");
 	}
 
 	CharacterLoadEffect(C);
@@ -335,14 +335,14 @@ function InventoryItemSetVibrationIntensity(C, Item, Modifier) {
 }
 
 // adds effect to inventory item
-function IntensityItemAddEffect(Item, Effect) {
+function InventoryItemAddEffect(Item, Effect) {
 	if (Item.Property == null) Item.Property = { Effect: [Effect] };
 	else if (Item.Property.Effect == null) Item.Property.Effect = [Effect];
 	else if (!Item.Property.Effect.includes(Effect)) Item.Property.Effect.push(Effect);
 }
 
 // removes effect from inventory item
-function IntensityItemRemoveEffect(Item, Effect) {
+function InventoryItemRemoveEffect(Item, Effect) {
 	if (Item.Property && Item.Property.Effect) Item.Property.Effect = Item.Property.Effect.filter(E => E != Effect);
 	if (Item.Property && Item.Property.Effect.length == 0) delete Item.Property.Effect;
 }
