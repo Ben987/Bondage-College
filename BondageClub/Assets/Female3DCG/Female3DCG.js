@@ -155,7 +155,7 @@ var AssetFemale3DCG = [
 			{ Name: "Boots1", Height: 9 },
 			{ Name: "MistressBoots", Height: 35, Value: -1, HideItem: ["SocksSocks4", "SocksSocks5"], Alpha: [[125, 800, 250, 200]] },
 			{ Name: "PonyBoots", Height: 35, Value: -1, Alpha: [[125, 800, 250, 200]] },
-			{ Name: "Sandels", Priority: 20, Height: 3, Value: 35 }
+			{ Name: "Sandals", Priority: 20, Height: 3, Value: 35 }
 		]
 	},
 
