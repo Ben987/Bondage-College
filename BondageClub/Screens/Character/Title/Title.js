@@ -3,6 +3,7 @@ var TitleBackground = "Sheet";
 var TitleList = [
 	{ Name: "None", Requirement: function () { return true } },
 	{ Name: "Mistress", Requirement: function () { return LogQuery("ClubMistress", "Management") } },
+	{ Name: "ClubSlave", Requirement: function () { return ManagementIsClubSlave() }, Force: true },
 	{ Name: "Maid", Requirement: function () { return (LogQuery("JoinedSorority", "Maid") && !LogQuery("LeadSorority", "Maid")) } },
 	{ Name: "HeadMaid", Requirement: function () { return LogQuery("LeadSorority", "Maid") } },
 	{ Name: "Kidnapper", Requirement: function () { return ((ReputationGet("Kidnap") >= 50) && (ReputationGet("Kidnap") < 100)) } },
@@ -12,6 +13,7 @@ var TitleList = [
 	{ Name: "EscapedPatient", Requirement: function () { return (LogValue("Escaped", "Asylum") >= CurrentTime) }, Force: true },
 	{ Name: "Nurse", Requirement: function () { return ((ReputationGet("Asylum") >= 50) && (ReputationGet("Asylum") < 100)) } },
 	{ Name: "Doctor", Requirement: function () { return (ReputationGet("Asylum") >= 100) } },
+	{ Name: "CollegeStudent", Requirement: function () { return InventoryAvailable(Player, "CollegeOutfit1", "Cloth") } },
 	{ Name: "PonyPegasus", Requirement: function () { return (SkillGetLevel(Player, "Dressage") >= 10) } },
 	{ Name: "PonyUnicorn", Requirement: function () { return ((SkillGetLevel(Player, "Dressage") >= 8) && (SkillGetLevel(Player, "Dressage") <= 9)) } },
 	{ Name: "PonyWild", Requirement: function () { return ((SkillGetLevel(Player, "Dressage") >= 6) && (SkillGetLevel(Player, "Dressage") <= 7)) } },

@@ -246,6 +246,7 @@ function ManagementClubSlaveCollar(RepChange) {
 	InventoryWear(Player, "ClubSlaveCollar", "ItemNeck");
 	LogAdd("ClubSlave", "Management", CurrentTime + 3600000);
 	LogAdd("BlockChange", "Rule", CurrentTime + 3600000);
+	TitleSet("ClubSlave");
 }
 
 // When the player finishes the club slave contract

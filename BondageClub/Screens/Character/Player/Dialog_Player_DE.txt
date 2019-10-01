@@ -7,12 +7,18 @@ Remove some clothes first
 Vorher etwas Kleidung entfernen
 Remove the suspension first
 Vorher das Hängeseil entfernen
+Must be standing and not suspended first.
+Muss aufrecht stehen und nicht von der Decke hängen.
 Remove the chain to the floor first
 Vorher die Kette zum Boden entfernen
 A collar must be fitted first to attach accessories to.
 Für Zubehör muss zunächst ein Halsband angelegt werden.
 Must be collared and not suspended first.
 Muss ein Halsband tragen und auf festem Boden sein.
+Must be collared and not suspended/mounted first.
+Muss ein Halsband tragen und darf nicht hängen/reiten.
+Can't have Items locked to your feet.
+Es darf nichts an den Füßen befestigt sein.
 Cancel
 Abbrechen
 Back to character
@@ -117,6 +123,12 @@ Beep from
 Biep von
 Beep from your owner in your private room
 Beip von deiner Besitzerin im Privatzimmer
+Sent at
+Gesendet um
+Received at
+Erhalten um
+<i>Your private room</i>
+<i>Dein Privatzimmer</i>
 in room
 im Raum
 <i>Private room</i>
@@ -151,6 +163,8 @@ Your owner has confiscated your keys.  All your regular keys are lost.
 Deine Besitzerin hat deine Schlüssel beschlagnahmt. Alle deine gewöhnlichen Schlüssel sing weg.
 Your owner is now preventing you from getting new keys.  The club shop will not sell keys to you anymore.
 Deine Besitzerin hindert dich nun daran, neue Schlüssel zu erlangen. Der Clubladen wird dir keine Schlüssel mehr verkaufen.
+You're on SourceCharacter blacklist.  Your message was blocked by the server.
+Du bist auf SourceCharacter Blacklist. Deine Nachricht wurde vom Server blockiert.
 Member number on lock:
 Mitglieds-ID auf dem Schloss:
 Time left:
@@ -181,6 +195,8 @@ Das Schloss kann zurückgesetzt, aber nicht entfernt werden.
 "Vergiss nie, wem du gehörst"
 Can only be locked or unlocked by her owner
 Kann nur von ihrer Besitzerin verwendet werden
+Can only be locked or unlocked by a Club Mistress
+Kann nur von einer Club-Herrin verschlossen oder geöffnet werden
 Detached
 Getrennt
 Bind wrists
@@ -197,6 +213,34 @@ SourceCharacter attaches the leather cuffs elbow chain behind DestinationCharact
 SourceCharacter verbindet die Ellbogen-Kette der Ledermanschetten hinter DestinationCharacters Rücken.
 SourceCharacter attaches the leather cuffs wrist and elbow chains behind DestinationCharacter's back.
 SourceCharacter verbindet die Handgelenk- und Ellbogen-Ketten der Ledermanschetten hinter DestinationCharacters Rücken.
+Chain Closed
+Zusammen verketten
+SourceCharacter detaches the chain from DestinationCharacter's leather leg cuffs.
+SourceCharacter trennt DestinationCharacters Leder-Beinfesseln voneinander.
+SourceCharacter attaches the leather leg cuffs chain on DestinationCharacter's legs.
+SourceCharacter verbindet DestinationCharacters Leder-Beinfesseln mit einer Kette.
+SourceCharacter detaches the chain from DestinationCharacter's leather ankle cuffs.
+SourceCharacter trennt DestinationCharacters Leder-Fußfesseln voneinander.
+SourceCharacter attaches the leather ankle cuffs chain on DestinationCharacter's ankles.
+SourceCharacter verbindet DestinationCharacters Leder-Fußfesseln mit einer Kette.
+How tight do you want to strap the jacket?
+Wie eng möchtest du die Jacke ziehen?
+Loose
+Locker
+Normal
+Normal
+Snug
+Eng
+Tight
+Stramm
+SourceCharacter loosens the straps on DestinationCharacter's straitjacket.
+SourceCharacter lockert die Gurte an DestinationCharacters Zwangsjacke.
+SourceCharacter adjusts the straps normally on DestinationCharacter's straitjacket.
+SourceCharacter bringt die Gurte von DestinationCharacters Zwangsjacke in ihre normale Position.
+SourceCharacter snugs the straps on DestinationCharacter's straitjacket.
+SourceCharacter zieht die Gurte an DestinationCharacters Zwangsjacke eng.
+SourceCharacter tightens the straps on DestinationCharacter's straitjacket.
+SourceCharacter zieht die Gurte an DestinationCharacters Zwangsjacke stramm.
 Hands
 Hände
 Arms
@@ -271,6 +315,16 @@ SourceCharacter wraps some duct tape onto DestinationCharacter's face.
 SourceCharacter wickelt etwas Klebeband um DestinationCharacters Gesicht.
 SourceCharacter wraps DestinationCharacter's head in tape with multiple layers. 
 SourceCharacter wickelt viele Schichten Klebeband um DestinationCharacters Kopf.
+Select the type of Harness
+Harnisch-Typ wählen
+Basic Tie
+Einfach
+Diamond Tie
+Diamant
+SourceCharacter uses the rope on DestinationCharacter's to do a basic harness.
+SourceCharacter wickelt Seil als einfachen Harnisch um DestinationCharacter.
+SourceCharacter uses the rope on DestinationCharacter's to do a Diamond style harness.
+SourceCharacter wickelt Seil als Diamant-Harnisch um DestinationCharacter.
 Item intensity: Disabled
 Intensität: Deaktiviert
 Item intensity: Low
@@ -347,6 +401,62 @@ DestinationCharacter's vibrating latex panties starts buzzing strongly!
 DestinationCharacters vibrierendes Latexhöschen fängt an, stark zu vibrieren!
 DestinationCharacter's vibrating latex panties jumps up to maximum intensity!
 DestinationCharacters vibrierendes Latexhöschen springt auf die maximale Stufe!
+DestinationCharacter's vibrating wand stops vibrating.
+DestinationCharacters Vibrator-Stab hört auf zu vibrieren.
+DestinationCharacter's vibrating wand slows down into a light tease.
+DestinationCharacters Vibrator-Stab fällt auf ein leichtes Surren herab.
+DestinationCharacter's vibrating wand returns to a moderate pace.
+DestinationCharacters Vibrator-Stab fällt auf eine moderate Stärke herab.
+DestinationCharacter's vibrating wand slows down a tiny bit.
+DestinationCharacters Vibrator-Stab lässt ein kleines bisschen nach.
+DestinationCharacter's vibrating wand starts teasing her lightly.
+DestinationCharacters Vibrator-Stab fängt an, sie sanft zu erregen.
+DestinationCharacter's vibrating wand builds up to a moderate pace.
+DestinationCharacters Vibrator-Stab nimmt etwas Fahrt auf.
+DestinationCharacter's vibrating wand starts buzzing strongly!
+DestinationCharacters Vibrator-Stab fängt an, stark zu vibrieren!
+DestinationCharacter's vibrating wand jumps up to maximum intensity!
+DestinationCharacters Vibrator-Stab springt auf die maximale Stufe!
+SourceCharacter deflates DestinationCharacter's butt pump till it's empty.
+SourceCharacter lässt Luft aus DestinationCharacters Analpumpe, bis sie leer ist.
+SourceCharacter deflates DestinationCharacter's butt pump till only slighty filled.
+SourceCharacter lässt Luft aus DestinationCharacters Analpumpe, bis sie nur noch leicht gefüllt ist.
+SourceCharacter deflates DestinationCharacter's butt pump till it's half full.
+SourceCharacter lässt Luft aus DestinationCharacters Analpumpe, bis sie halb gefüllt ist.
+SourceCharacter deflates DestinationCharacter's butt pump only a tiny bit.
+SourceCharacter lässt ein kleines bisschen Luft aus DestinationCharacters Analpumpe.
+SourceCharacter inflates DestinationCharacter's butt pump only slightly.
+SourceCharacter bläst DestinationCharacters Analpumpe ein kleines bisschen auf.
+SourceCharacter inflates DestinationCharacter's butt pump till half full.
+SourceCharacter bläst DestinationCharacters Analpumpe zur Hälfte auf.
+SourceCharacter inflates DestinationCharacter's butt pump three quarters filled.
+SourceCharacter bläst DestinationCharacters Analpumpe zu drei Vierteln auf.
+SourceCharacter inflates DestinationCharacter's butt pump to the maximum amount.
+SourceCharacter bläst DestinationCharacters Analpumpe vollständig auf.
+SourceCharacter deflates DestinationCharacter's gag fully till it's empty.
+SourceCharacter lässt Luft aus DestinationCharacters Knebel, bis er leer ist.
+SourceCharacter deflates DestinationCharacter's gag till only slighty filled.
+SourceCharacter lässt Luft aus DestinationCharacters Knebel, bis er nur noch leicht gefüllt ist.
+SourceCharacter deflates DestinationCharacter's gag till it's half full.
+SourceCharacter lässt Luft aus DestinationCharacters Knebel, bis er halb gefüllt ist.
+SourceCharacter deflates DestinationCharacter's gag only a tiny bit.
+SourceCharacter lässt ein kleines bisschen Luft aus DestinationCharacters Knebel.
+SourceCharacter inflates DestinationCharacter's gag only slightly.
+SourceCharacter bläst DestinationCharacters Knebel ein kleines bisschen auf.
+SourceCharacter inflates DestinationCharacter's gag till half full.
+SourceCharacter bläst DestinationCharacters Knebel zur Hälfte auf.
+SourceCharacter inflates DestinationCharacter's gag three quarters filled.
+SourceCharacter bläst DestinationCharacters Knebel zu drei Vierteln auf.
+SourceCharacter inflates DestinationCharacter's gag to the maximum amount.
+SourceCharacter bläst DestinationCharacters Knebel vollständig auf.
+Empty
+Leer
+Light
+Leicht gefüllt
+Inflated
+Aufgeblasen
+Bloated
+Aufgebläht
 Use Remote
 Fernbedienung
 (You can use or remove items by selecting specific body regions on yourself.)
@@ -391,3 +501,193 @@ You must free her arms before attaching mitten chains.
 Ihre Arme müssen frei sein, um die Fäustlingsketten anbringen zu können.
 Facial expression
 Gesichtsausdruck
+Select a spanking toy
+Spanking-Spielzeug wählen
+Crop
+Gerte
+Flogger
+Peitsche
+Cane
+Rohrstock
+Heart Crop
+Herzgerte
+Paddle
+Paddel
+Whip Paddle
+Peitschenpaddel
+SourceCharacter takes out a Item
+SourceCharacter holt ein(e(n)) Item hervor
+SourceCharacter give DestinationCharacter a Item
+SourceCharacter gibt DestinationCharacter ein(e(n)) Item
+TurnOff
+Ausschalten
+Low
+Niedrig
+Medium
+Mittel
+High
+Hoch
+Maximum
+Maximal
+Trigger Shock
+Schock auslösen
+Unlock Butt
+Po entriegeln
+Lock Butt
+Po verriegeln
+Remove Shield
+Schild entfernen
+Remove Vibe
+Vibrator entfernen
+Remove Shock
+Schocker entfernen
+Add Shield
+Schild anbringen
+Add Vibe
+Vibrator anbringen
+Add Shock
+Schocker anbringen
+SourceCharacter unlocks DestinationCharacter's love chastity belt butt.
+SourceCharacter öffnet den Hintereingang von DestinationCharacters Liebes-Keuschheitsgürtel.
+SourceCharacter lock DestinationCharacter's love chastity belt butt.
+SourceCharacter verriegelt den Hintereingang von DestinationCharacters Liebes-Keuschheitsgürtel.
+DestinationCharacter's love chastity belts starts teasing her lightly.
+DestinationCharacters Liebes-Keuschheitsgürtel fängt an, sie sanft zu erregen.
+DestinationCharacter's love chastity belts builds up to a moderate pace.
+DestinationCharacters Liebes-Keuschheitsgürtel nimmt etwas Fahrt auf.
+DestinationCharacter's love chastity belts starts buzzing strongly!
+DestinationCharacters Liebes-Keuschheitsgürtel fängt an, stark zu vibrieren!
+DestinationCharacter's love chastity belts jumps up to maximum intensity!
+DestinationCharacters Liebes-Keuschheitsgürtel springt auf die maximale Stufe!
+DestinationCharacter's love chastity belt stops vibrating.
+DestinationCharacters Liebes-Keuschheitsgürtel hört auf zu vibrieren.
+DestinationCharacter's love chastity belt slows down into a light tease.
+DestinationCharacters Liebes-Keuschheitsgürtel fällt auf ein leichtes Surren herab.
+DestinationCharacter's love chastity belt returns to a moderate pace.
+DestinationCharacters Liebes-Keuschheitsgürtel fällt auf eine moderate Stärke herab.
+DestinationCharacter's love chastity belt slows down a tiny bit.
+DestinationCharacters Liebes-Keuschheitsgürtel lässt ein kleines bisschen nach.
+SourceCharacter sets DestinationCharacter's love chastity belt to low intensity.
+SourceCharacter stellt DestinationCharacters Liebes-Keuschheitsgürtel auf "niedrig".
+SourceCharacter sets DestinationCharacter's love chastity belt to moderate intensity.
+SourceCharacter stellt DestinationCharacters Liebes-Keuschheitsgürtel auf "mittel".
+SourceCharacter sets DestinationCharacter's love chastity belt to high intensity.
+SourceCharacter stellt DestinationCharacters Liebes-Keuschheitsgürtel auf "hoch".
+DestinationCharacter's love chastity belt gives her a light shock.
+Ihr Liebes-Keuschheitsgürtel gibt DestinationCharacter einen leichten Schock.
+DestinationCharacter's love chastity belt lets out a sharp jolt!
+Ihr Liebes-Keuschheitsgürtel versetzt DestinationCharacter einen scharfen Ruck!
+DestinationCharacter's love chastity belt delivers an intense shock!
+Ihr Liebes-Keuschheitsgürtel verabreicht DestinationCharacter einen heftigen Schock!
+SourceCharacter removes shield from DestinationCharacter's love chastity belt.
+SourceCharacter entfernt die Abschirmung von DestinationCharacters Liebes-Keuschheitsgürtel.
+SourceCharacter locks shield to DestinationCharacter's love chastity belt.
+SourceCharacter bringt die Abschirmung an DestinationCharacters Liebes-Keuschheitsgürtel an.
+SourceCharacter locks vibe to DestinationCharacter's love chastity belt.
+SourceCharacter befestigt einen Vibrator an DestinationCharacters Liebes-Keuschheitsgürtel.
+SourceCharacter locks shock device to DestinationCharacter's love chastity belt.
+SourceCharacter befestigt einen Schocker an DestinationCharacters Liebes-Keuschheitsgürtel.
+Select what tag you want to use
+Namensschild wählen
+You cannot change the tag while it's locked
+Namensschilder mit Schlössern können nicht geändert werden
+SourceCharacter uses a BadGirl name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Böses Mädchen"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a BindMe name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Fessel mich"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a Bitch name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Bitch"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a Bunny name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Häschen"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a Cookie name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Keks"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a Cupcake name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Törtchen"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a Dom name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Dom"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a Foxy name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Fuchs"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a Free name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Frei"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a FuckMe name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Fick mich"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a GagMe name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Knebel mich"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a GoodGirl name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Braves Mädchen"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a HoldMe name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Halt mich fest"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a Kitten name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Kätzchen"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a Love name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Liebling"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a Maid name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Dienerin"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a Meat name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Fleisch"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a Muffin name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Muffin"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a Needy name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Gierig"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a Owned name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Eigentum"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a Panda name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Panda"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a Pet name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Haustier"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a PetMe name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Streichel mich"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a Pixie name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Fee"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a Puppy name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Hündchen"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a Racoon name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Waschbär"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a Slave name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Sklavin"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a Slut name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Schlampe"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a Sub name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Sub"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a Sweetie name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Schatz"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a Taken name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Vergeben"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a Toy name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Spielzeug"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a Useless name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Nutzlos"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a UseMe name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Benutz mich"-Namensschild an DestinationCharacters Halsband an.
+SourceCharacter uses a Whore name tag on DestinationCharacter's collar.
+SourceCharacter bringt ein "Hure"-Namensschild an DestinationCharacters Halsband an.
+Legs
+Beine
+Half
+Halb
+Most
+Größtenteils
+Complete
+Vollständig
+SourceCharacter wraps duct tape around DestinationCharacter's legs.
+SourceCharacter wickelt Klebeband um DestinationCharacters Beine.
+SourceCharacter wraps more duct tape on DestinationCharacter's legs trapping them firmly.
+SourceCharacter wickelt viel Klebeband um DestinationCharacters Beine und hält sie gefangen.
+SourceCharacter wraps even more duct tape on DestinationCharacter's legs trapping them tightly.
+SourceCharacter wickelt sehr viel Klebeband um DestinationCharacters Beine und hält sie fest zusammen.
+SourceCharacter wraps an extreme amount of duct tape on DestinationCharacter's legs fully trapping them.
+SourceCharacter wickelt extrem viel Klebeband um DestinationCharacters Beine und umhüllt sie vollständig.
+Feet
+Füße
+SourceCharacter wraps duct tape around DestinationCharacter's feet.
+SourceCharacter wickelt Klebeband um DestinationCharacters Füße.
+SourceCharacter wraps more duct tape on DestinationCharacter's feet trapping them firmly.
+SourceCharacter wickelt viel Klebeband um DestinationCharacters Füße und hält sie gefangen.
+SourceCharacter wraps even more duct tape on DestinationCharacter's feet trapping them tightly.
+SourceCharacter wickelt sehr viel Klebeband um DestinationCharacters Füße und hält sie fest zusammen.
+SourceCharacter wraps an extreme amount of duct tape on DestinationCharacter's feet fully trapping them.
+SourceCharacter wickelt extrem viel Klebeband um DestinationCharacters Füße und umhüllt sie vollständig.
+Select the slave collar model
+Sklavenhalsband-Modell wählen
+SourceCharacter changes DestinationCharacter's collar model.
+SourceCharacter wechselt DestinationCharacters Halsband aus.

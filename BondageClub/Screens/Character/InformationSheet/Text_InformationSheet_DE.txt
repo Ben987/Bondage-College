@@ -1,7 +1,9 @@
-﻿Name:
+Name:
 Name:
 Title:
 Titel:
+None
+---
 Mistress
 Herrin
 Head Maid
@@ -12,8 +14,6 @@ Master Kidnapper
 Kidnapper-Meisterin
 Kidnapper
 Kidnapperin
-None
----
 Foal
 Fohlen
 Farm Horse
@@ -30,6 +30,16 @@ Shining Unicorn
 Glänzendes Einhorn
 Flying Pegasus
 Fliegender Pegasus
+Patient
+Patientin
+Permanent Patient
+Dauerhafte Patientin
+Escaped Patient
+Entlaufene Patientin
+Nurse
+Schwester
+Doctor
+Doktor
 Member Number:
 Mitgliedsnummer:
 -
@@ -60,10 +70,14 @@ Submissive:
 Unterwürfig:
 Maid Sorority:
 Hausmädchen:
-Gambling Hall:
-Spielhalle:
 Kidnappers League:
 Kidnapper-Liga:
+Asylum Nurse:
+Anstalts-Schwester:
+Asylum Patient:
+Anstalts-Patientin:
+Gambling Hall:
+Spielhalle:
 ABDL:
 ABDL:
 - Skills -
@@ -75,7 +89,7 @@ Entfesselung:
 Willpower:
 Willenskraft:
 Dressage:
-Pony-Dressur:
+Dressur:
 Global modifier:
 Globaler Modifikator:
 - Traits -

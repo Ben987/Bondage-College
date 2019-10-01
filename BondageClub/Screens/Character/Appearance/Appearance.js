@@ -132,7 +132,7 @@ function CharacterAppearanceFullRandom(C, ClothOnly) {
 
 	// For each item group (non default items only show at a 20% rate)
 	for (var A = 0; A < AssetGroup.length; A++)
-		if ((AssetGroup[A].Category == "Appearance") && (AssetGroup[A].IsDefault || (Math.random() < 0.2) || CharacterAppearanceRequired(C, AssetGroup[A].Name)) && !CharacterAppearanceMustHide(C, AssetGroup[A].Name) && (CharacterAppearanceGetCurrentValue(C, AssetGroup[A].Name, "Name") == "None")) {
+		if ((AssetGroup[A].Category == "Appearance") && (AssetGroup[A].IsDefault || (Math.random() < 0.2) || CharacterAppearanceRequired(C, AssetGroup[A].Name)) && (!CharacterAppearanceMustHide(C, AssetGroup[A].Name) || !AssetGroup[A].AllowNone) && (CharacterAppearanceGetCurrentValue(C, AssetGroup[A].Name, "Name") == "None")) {
 
 			// Get the parent size
 			var ParentSize = "";
