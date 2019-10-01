@@ -6,7 +6,7 @@ MaidDrinkPickVirginMojito,,,buys a Virgin Mojito from DialogCharacterName tray.,
 MaidDrinkPickMargarita,,,buys a Margarita from DialogCharacterName tray.,,
 MaidDrinkPickWhiskey,,,buys a glass of Whiskey from DialogCharacterName.,,
 MaidDrinkPickChampagne,,,buys a glass of champagne from DialogCharacterName.,,
-MaidDrinkPickLemonadeJug,,,"buys a jug of refreshing lemonage for everyone, from DialogCharacterName.",,
+MaidDrinkPickLemonadeJug,,,"buys a jug of refreshing lemonade for everyone, from DialogCharacterName.",,
 MaidDrinkPickRoundShooters,,,"buys a round of shooters for everyone, from DialogCharacterName.",,
 MaidDrinkPickSexOnTheBeachJug,,,"buys a jug of Sex on the Beach for everyone, from DialogCharacterName.",,
 MaidDrinkPickBeerPitcher,,,"buys a beer pitcher for everyone, from DialogCharacterName.",,
@@ -65,9 +65,9 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 23,0,(Back to main menu.),(Main menu.),,
 24,0,(Get a free tea.),,"DrinkPick(""FreeTea"", 0)",
 24,0,(Get a free coffee.),,"DrinkPick(""FreeCoffee"", 0)",
-24,0,(Get a 3$ hot chocolate.),,"DrinkPick(""HotChocolate"", 3)",DialogMoneyGreater(3)
-24,0,(Get a 3$ expresso.),,"DrinkPick(""Expresso"", 3)",DialogMoneyGreater(3)
-24,0,(Get a 3$ cappuccino.),,"DrinkPick(""Cappuccino"", 3)",DialogMoneyGreater(3)
+24,0,(Get a 5$ hot chocolate.),,"DrinkPick(""Cappuccino"", 5)",DialogMoneyGreater(5)
+24,0,(Get a 5$ expresso.),,"DrinkPick(""Cappuccino"", 5)",DialogMoneyGreater(5)
+24,0,(Get a 5$ cappuccino.),,"DrinkPick(""Cappuccino"", 5)",DialogMoneyGreater(5)
 24,20,(Back to drink options.),(Drink options.),,
 24,0,(Back to main menu.),(Main menu.),,
 30,0,(Kick her out of the room.),,"AdminAction(""Kick"")",
