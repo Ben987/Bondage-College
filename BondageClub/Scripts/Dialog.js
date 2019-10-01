@@ -941,3 +941,21 @@ function DialogDrawExpressionMenu() {
 		DrawButton(340, OffsetY, 90, 90, "", (FE.MenuExpression3 == FE.CurrentExpression ? "Pink" : "White"), "Assets/Female3DCG/" + FE.Appearance.Asset.Group.Name + (FE.MenuExpression3 ? "/" + FE.MenuExpression3 : "") + "/Icon.png");
 	}
 }
+
+// constact a complex dialog
+function DialogReplace(Dialog, Source, Target, ...args) {
+	if (Source && Source.Name) Dialog = Dialog.replace("SourceCharacter", Source.Name);
+	if (Target && Target.Name) Dialog = Dialog.replace("DestinationCharacter", Target.Name);
+	if (args.length > 0) {
+		Dialog = Dialog.replace(/\{([0-9]{1,})\}/g, (_, index) => {
+			var I = parseInt(index);
+			if (!isNaN(I) && args[I] && args[I].Description) return args[I].Description.toLowerCase();
+			return "MISSING ARGUMENT FOR REPLACE";
+		});
+		Dialog = Dialog.replace(/\{([0-9]{1,})#(\w+)#(\w+)\}/g, (_, index, singular, plural) => {
+			var I = parseInt(index);
+			return (!isNaN(I) && args[I] && args[I].IsPlural) ? plural : singular;
+		});
+	}
+	return Dialog;
+}

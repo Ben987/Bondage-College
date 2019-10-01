@@ -183,14 +183,14 @@ ShockCollarTrigger2,,,DestinationCharacter's collar delivers an intense shock!
 CollarShockUnitTrigger0,,,DestinationCharacter's collar gives her a light shock.
 CollarShockUnitTrigger1,,,DestinationCharacter's collar lets out a sharp jolt!
 CollarShockUnitTrigger2,,,DestinationCharacter's collar delivers an intense shock!
-InventoryItemVibrationIntensityDecreaseTo-1,,,DestinationCharacter's ItemDescription stops vibrating.
-InventoryItemVibrationIntensityDecreaseTo0,,,DestinationCharacter's ItemDescription slows down into a light tease.
-InventoryItemVibrationIntensityDecreaseTo1,,,DestinationCharacter's ItemDescription returns to a moderate pace.
-InventoryItemVibrationIntensityDecreaseTo2,,,DestinationCharacter's ItemDescription slows down a tiny bit.
-InventoryItemVibrationIntensityIncreaseTo0,,,DestinationCharacter's ItemDescription starts teasing her lightly.
-InventoryItemVibrationIntensityIncreaseTo1,,,DestinationCharacter's ItemDescription builds up to a moderate pace.
-InventoryItemVibrationIntensityIncreaseTo2,,,DestinationCharacter's ItemDescription starts buzzing strongly!
-InventoryItemVibrationIntensityIncreaseTo3,,,DestinationCharacter's ItemDescription jumps up to maximum intensity!
+InventoryItemVibrationIntensityDecreaseTo-1,,,DestinationCharacter's {0} {0#stops#stop} vibrating.
+InventoryItemVibrationIntensityDecreaseTo0,,,DestinationCharacter's {0} {0#slows#slow} down into a light tease.
+InventoryItemVibrationIntensityDecreaseTo1,,,DestinationCharacter's {0} {0#returns#return} to a moderate pace.
+InventoryItemVibrationIntensityDecreaseTo2,,,DestinationCharacter's {0} {0#slows#slow} down a tiny bit.
+InventoryItemVibrationIntensityIncreaseTo0,,,DestinationCharacter's {0} {0#starts#start} teasing her lightly.
+InventoryItemVibrationIntensityIncreaseTo1,,,DestinationCharacter's {0} {0#builds#build} up to a moderate pace.
+InventoryItemVibrationIntensityIncreaseTo2,,,DestinationCharacter's {0} {0#starts#start} buzzing strongly!
+InventoryItemVibrationIntensityIncreaseTo3,,,DestinationCharacter's {0} {0#jumps#jump} up to maximum intensity!
 BPumpsdeflatesTo0,,,SourceCharacter deflates DestinationCharacter's butt pump till it's empty.
 BPumpsdeflatesTo1,,,SourceCharacter deflates DestinationCharacter's butt pump till only slighty filled.
 BPumpsdeflatesTo2,,,SourceCharacter deflates DestinationCharacter's butt pump till it's half full.

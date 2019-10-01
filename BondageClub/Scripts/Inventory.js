@@ -329,9 +329,9 @@ function InventoryItemSetVibrationIntensity(C, Item, Modifier) {
 	CharacterLoadEffect(C);
 	if (C.ID == 0) ServerPlayerAppearanceSync();
 
-	ChatRoomPublishCustomAction((DialogFind(Player, "InventoryItemVibrationIntensity" +((Modifier > 0) ? "Increase" : "Decrease") + "To" + Item.Property.Intensity)
-		.replace("DestinationCharacter",C.Name)
-		.replace("ItemDescription", Item.Asset.Description.toLowerCase())), true);
+	ChatRoomPublishCustomAction(DialogReplace(
+		DialogFind(Player, "InventoryItemVibrationIntensity" + ((Modifier > 0) ? "Increase" : "Decrease") + "To" + Item.Property.Intensity),
+		Player, C, Item.Asset), true);
 }
 
 // adds effect to inventory item

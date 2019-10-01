@@ -83,6 +83,7 @@ function AssetAdd(NewAsset) {
 		AllowBlock: NewAsset.AllowBlock,
 		AllowType: NewAsset.AllowType,
 		DefaultColor: NewAsset.DefaultColor,
+		IsPlural: (NewAsset.IsPlural == null) ? false : NewAsset.IsPlural,
 		IgnoreParentGroup: (NewAsset.IgnoreParentGroup == null) ? false : NewAsset.IgnoreParentGroup,
 		IsRestraint: (NewAsset.IsRestraint == null) ? ((AssetCurrentGroup.IsRestraint == null) ? false : AssetCurrentGroup.IsRestraint) : NewAsset.IsRestraint,
 		DynamicDescription: (typeof NewAsset.DynamicDescription === 'function') ? NewAsset.DynamicDescription : function () { return this.Description },
