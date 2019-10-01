@@ -25,9 +25,9 @@ var AssetFemale3DCG = [
 			{ Name: "StudentOutfit1", Hide: ["ClothLower", "ItemNeck"] },
 			{ Name: "StudentOutfit2", Hide: ["ClothLower"], HideItem: ["ItemArmsLeatherCuffs"] },
 			{ Name: "BabydollDress1", Hide: ["ClothLower"] },
-			{ Name: "TeacherOutfit1", Hide: ["ClothLower", "ItemNeck"], HideItem: ["ItemArmsLeatherCuffs"], ParentGroup: ["BodyLower"], AllowPose: ["Horse"] },
+			{ Name: "TeacherOutfit1", Hide: ["ClothLower", "ItemNeck"], HideItem: ["ItemArmsLeatherCuffs"], ParentGroup: ["BodyLower"], AllowPose: ["Horse","BackBoxTie", "BackCuffs", "BackElbowTouch", "Bolero"] },
 			{ Name: "ChineseDress1", Hide: ["ClothLower"] },
-			{ Name: "ChineseDress2", Value: 100, ParentGroup: ["BodyLower"], AllowPose: ["Horse"] },
+			{ Name: "ChineseDress2", Value: 100 },
 			{ Name: "TShirt1", Require: ["ClothLower"] },
 			{ Name: "TennisShirt1", Require: ["ClothLower"] },
 			{ Name: "Sweater1", Require: ["ClothLower"], HideItem: ["ItemArmsLeatherCuffs"] },
@@ -37,7 +37,9 @@ var AssetFemale3DCG = [
 			{ Name: "AdultBabyDress3", Hide: ["ClothLower"], Value: 200 },
 			{ Name: "NurseUniform", Hide: ["ClothLower"], Value: -1 },
 			{ Name: "BunnyCollarCuffs", Value: 10, Expose: ["ItemNipples", "ItemBreast", "ItemTorso"] },
-			{ Name: "Robe1", Value: 50 }
+			{ Name: "Robe1", Value: 50 },
+			{ Name: "FlowerDress", Value: 100, Hide: ["ClothLower"] },
+			{ Name: "Dress", Value: 100 }
 		]
 	},
 
@@ -152,7 +154,8 @@ var AssetFemale3DCG = [
 			{ Name: "Heels2", Height: 15 },
 			{ Name: "Boots1", Height: 9 },
 			{ Name: "MistressBoots", Height: 35, Value: -1, HideItem: ["SocksSocks4", "SocksSocks5"], Alpha: [[125, 800, 250, 200]] },
-			{ Name: "PonyBoots", Height: 35, Value: -1, Alpha: [[125, 800, 250, 200]] }
+			{ Name: "PonyBoots", Height: 35, Value: -1, Alpha: [[125, 800, 250, 200]] },
+			{ Name: "Sandels", Priority: 20, Height: 3, Value: 35 }
 		]
 	},
 
@@ -458,7 +461,7 @@ var AssetFemale3DCG = [
                 ]
             },
 			{
-				Name: "WoodenHorse", Random: false, Priority: 30, Value: 350, Time: 10, Difficulty: 3, SetPose: ["Horse"], ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyes", Name: "Closed", Timer: 5 }], Effect: ["Block", "Prone", "Enclose", "Freeze"], Block: ["ItemFeet"], Hide: ["Shoes", "Socks"], HideItem: ["ClothLowerPajama1", "ClothLowerShorts1", "ClothLowerJeans1"], Prerequisite: "Horse",
+				Name: "WoodenHorse", Random: false, Alpha: [[160, 720, 200, 240]], Priority: 30, Value: 350, Time: 10, Difficulty: 3, SetPose: ["Horse"], ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyes", Name: "Closed", Timer: 5 }], Effect: ["Block", "Prone", "Enclose", "Freeze"], Block: ["ItemFeet"], Hide: ["Shoes", "Socks"], HideItem: ["ClothLowerPajama1", "ClothLowerShorts1", "ClothLowerJeans1"], Prerequisite: "Horse",
 				Layer: [
                     { Name: "Frame", AllowColorize: true },
                     { Name: "Wood", AllowColorize: false }
@@ -923,12 +926,12 @@ var AssetFemale3DCG = [
 		Top: -250,
 		Zone: [[25, 580, 75, 410], [400, 580, 75, 410]],
 		Asset: [
-			{ Name: "WoodenBox", RemoveAtLogin: true, Block: ["ItemArms", "ItemBreast", "ItemButt", "ItemEars", "ItemFeet", "ItemHands", "ItemHead", "ItemLegs", "ItemMisc", "ItemMouth", "ItemNeck", "ItemNeckAccessories", "ItemNipples", "ItemPelvis", "ItemTorso", "ItemVulva"], Effect: ["BlindNormal", "Prone", "Enclose", "GagLight", "Freeze"], Value: 350, Time: 15, RemoveTime: 10, Difficulty: -2, AllowLock: true, Prerequisite: "NotSuspended" },
-			{ Name: "SmallWoodenBox", RemoveAtLogin: true, Block: ["ItemArms", "ItemBreast", "ItemButt", "ItemEars", "ItemFeet", "ItemHands", "ItemHead", "ItemLegs", "ItemMisc", "ItemMouth", "ItemNeck", "ItemNeckAccessories", "ItemNipples", "ItemPelvis", "ItemTorso", "ItemVulva"], SetPose: ["Kneel"], Effect: ["ForceKneel", "Block", "Prone", "Enclose", "Freeze", "BlindNormal", "GagLight"], Value: 250, Time: 15, RemoveTime: 10, Difficulty: -2, AllowLock: true, Prerequisite: "NotSuspendedOrHorsed" },
+			{ Name: "WoodenBox", RemoveAtLogin: true, Alpha: [[1, 80, 105, 900], [410, 80, 105, 900]], Block: ["ItemArms", "ItemBreast", "ItemButt", "ItemEars", "ItemFeet", "ItemHands", "ItemHead", "ItemLegs", "ItemMisc", "ItemMouth", "ItemNeck", "ItemNeckAccessories", "ItemNipples", "ItemPelvis", "ItemTorso", "ItemVulva"], Effect: ["BlindNormal", "Prone", "Enclose", "GagLight", "Freeze"], Value: 350, Time: 15, RemoveTime: 10, Difficulty: -2, AllowLock: true, Prerequisite: "NotSuspended" },
+			{ Name: "SmallWoodenBox", RemoveAtLogin: true, Alpha: [[1, 80, 75, 900], [400, 80, 95, 900]], Block: ["ItemArms", "ItemBreast", "ItemButt", "ItemEars", "ItemFeet", "ItemHands", "ItemHead", "ItemLegs", "ItemMisc", "ItemMouth", "ItemNeck", "ItemNeckAccessories", "ItemNipples", "ItemPelvis", "ItemTorso", "ItemVulva"], SetPose: ["Kneel"], Effect: ["ForceKneel", "Block", "Prone", "Enclose", "Freeze", "BlindNormal", "GagLight"], Value: 250, Time: 15, RemoveTime: 10, Difficulty: -2, AllowLock: true, Prerequisite: "NotSuspendedOrHorsed" },
 			{ Name: "MilkCan", RemoveAtLogin: true, Effect: ["BlindHeavy", "Prone", "Enclose", "GagHeavy", "Freeze"], SetPose: ["Kneel"], Value: -1, Time: 15, RemoveTime: 10, Difficulty: 5 },
 			{ Name: "WaterCell", RemoveAtLogin: true, Effect: ["Prone", "Enclose", "GagHeavy", "Freeze"], SetPose: ["Suspension", "LegsClosed"], Block: ["ItemFeet"], Value: -1, Time: 15, RemoveTime: 15, Difficulty: 5 },
-			{ Name: "Cage", RemoveAtLogin: true, Hide: ["Wings", "TailStraps", "ItemButt"], Block: ["ItemArms", "ItemBreast", "ItemButt", "ItemEars", "ItemFeet", "ItemHands", "ItemHead", "ItemLegs", "ItemMisc", "ItemMouth", "ItemNeck", "ItemNeckAccessories", "ItemNipples", "ItemPelvis", "ItemTorso", "ItemVulva"], Effect: ["Block", "Prone", "Enclose", "Freeze"], Value: 350, Time: 15, RemoveTime: 10, Difficulty: 7, AllowLock: true, Prerequisite: "NotKneeling" },
-			{ Name: "LowCage", RemoveAtLogin: true, Hide: ["Wings", "TailStraps", "ItemButt"], Block: ["ItemArms", "ItemBreast", "ItemButt", "ItemEars", "ItemFeet", "ItemHands", "ItemHead", "ItemLegs", "ItemMisc", "ItemMouth", "ItemNeck", "ItemNeckAccessories", "ItemNipples", "ItemPelvis", "ItemTorso", "ItemVulva"], SetPose: ["Kneel"], Effect: ["ForceKneel", "Block", "Prone", "Enclose", "Freeze"], Value: 250, Time: 15, RemoveTime: 10, Difficulty: 7, AllowLock: true, Prerequisite: "NotSuspendedOrHorsed" }
+			{ Name: "Cage", RemoveAtLogin: true,  Alpha: [[1, 80, 105, 900], [410, 80, 105, 900]], Block: ["ItemArms", "ItemBreast", "ItemButt", "ItemEars", "ItemFeet", "ItemHands", "ItemHead", "ItemLegs", "ItemMisc", "ItemMouth", "ItemNeck", "ItemNeckAccessories", "ItemNipples", "ItemPelvis", "ItemTorso", "ItemVulva"], Effect: ["Block", "Prone", "Enclose", "Freeze"], Value: 350, Time: 15, RemoveTime: 10, Difficulty: 7, AllowLock: true, Prerequisite: "NotKneeling" },
+			{ Name: "LowCage", RemoveAtLogin: true, Alpha: [[1, 80, 75, 900], [400, 80, 95, 900]], Block: ["ItemArms", "ItemBreast", "ItemButt", "ItemEars", "ItemFeet", "ItemHands", "ItemHead", "ItemLegs", "ItemMisc", "ItemMouth", "ItemNeck", "ItemNeckAccessories", "ItemNipples", "ItemPelvis", "ItemTorso", "ItemVulva"], SetPose: ["Kneel"], Effect: ["ForceKneel", "Block", "Prone", "Enclose", "Freeze"], Value: 250, Time: 15, RemoveTime: 10, Difficulty: 7, AllowLock: true, Prerequisite: "NotSuspendedOrHorsed" }
 		]
 	}
 

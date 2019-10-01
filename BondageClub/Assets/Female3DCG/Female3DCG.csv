@@ -18,6 +18,8 @@ Cloth,AdultBabyDress3,Flower Baby dress
 Cloth,NurseUniform,Nurse Uniform
 Cloth,BunnyCollarCuffs,Bunny Girl Accessories
 Cloth,Robe1,Robe
+Cloth,FlowerDress,Flower Dress
+Cloth,Dress,Dress
 ClothLower,,Bottom
 ClothLower,Skirt1,Skirt
 ClothLower,TennisSkirt1,Tennis
@@ -74,6 +76,7 @@ Shoes,Heels2,Heels Strap
 Shoes,Boots1,Boots
 Shoes,MistressBoots,Mistress Boots
 Shoes,PonyBoots,Pony Boots
+Shoes,Sandels,Strap Sandels
 Hat,,Hat
 Hat,Band1,Hair Band
 Hat,Beret1,Beret
