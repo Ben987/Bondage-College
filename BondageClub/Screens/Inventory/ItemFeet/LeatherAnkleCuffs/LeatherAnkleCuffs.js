@@ -16,10 +16,10 @@ function InventoryItemFeetLeatherAnkleCuffsDraw() {
 
 	// Draw the possible poses
 	DrawText(DialogFind(Player, "SelectBondagePosition"), 1500, 500, "white", "gray");
-	DrawButton(1250, 550, 225, 225, "", (DialogFocusItem.Property.Type == null) ? "#888888" : "White");
+	DrawButton(1250, 550, 225, 225, "", InventoryItemIsType(DialogFocusItem, null) ? "#888888" : "White");
 	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/None.png", 1265, 550);
 	DrawText(DialogFind(Player, "LeatherAnkleCuffsPoseNone"), 1365, 800, "white", "gray");
-	DrawButton(1500, 550, 225, 225, "", (DialogFocusItem.Property.Type == "#Closed") ? "#888888" : "White");
+	DrawButton(1500, 550, 225, 225, "", InventoryItemIsType(DialogFocusItem,"#Closed") ? "#888888" : "White");
 	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Closed.png", 1515, 550);
 	DrawText(DialogFind(Player, "LeatherAnkleCuffsPoseClosed"), 1610, 800, "white", "gray");
 }
@@ -27,8 +27,8 @@ function InventoryItemFeetLeatherAnkleCuffsDraw() {
 // Catches the item extension clicks
 function InventoryItemFeetLeatherAnkleCuffsClick() {
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1250) && (MouseX <= 1475) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property.Type != null)) InventoryItemFeetLeatherAnkleCuffsSetType(null);
-	if ((MouseX >= 1500) && (MouseX <= 1725) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property.Type != "#Closed")) InventoryItemFeetLeatherAnkleCuffsSetType("#Closed");
+	if ((MouseX >= 1250) && (MouseX <= 1475) && (MouseY >= 550) && (MouseY <= 775) && !InventoryItemIsType(DialogFocusItem, null)) InventoryItemFeetLeatherAnkleCuffsSetType(null);
+	if ((MouseX >= 1500) && (MouseX <= 1725) && (MouseY >= 550) && (MouseY <= 775) && !InventoryItemIsType(DialogFocusItem, "#Closed")) InventoryItemFeetLeatherAnkleCuffsSetType("#Closed");
 }
 
 // Sets the cuffs pose (wrist, elbow, both or none)
