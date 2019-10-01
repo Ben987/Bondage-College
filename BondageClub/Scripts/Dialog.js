@@ -588,7 +588,7 @@ function DialogClick() {
 		if (DialogFocusItem != null) {
 			if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
 			else {
-				if (InventoryItemHasEffect(DialogFocusItem, "Egged", true)) InventoryDialogFocusItemVibrationIntensityClick();
+				if (InventoryItemHasEffect(DialogFocusItem, "Egged", true) && (!DialogFocusItem.Asset.OwnerOnly || C.IsOwnedByPlayer())) InventoryDialogFocusItemVibrationIntensityClick();
 				CommonDynamicFunction("Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Click()");
 			}
 		} else {
@@ -885,7 +885,7 @@ function DialogDraw() {
 				DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
 				if (DialogFocusItem.Property && DialogFocusItem.Property.Intensity && (InventoryItemHasEffect(DialogFocusItem, "Vibrating", true) || InventoryItemHasEffect(DialogFocusItem, "ReceiveShock", true)))
 					DrawText(DialogFind(Player, "Intensity" + DialogFocusItem.Property.Intensity.toString()).replace("Item", DialogFocusItem.Asset.Description), 1500, 550, "White", "Gray");
-				if (InventoryItemHasEffect(DialogFocusItem, "Egged", true)) InventoryDialogFocusItemVibrationIntensityDraw();
+				if (InventoryItemHasEffect(DialogFocusItem, "Egged", true) && (!DialogFocusItem.Asset.OwnerOnly || C.IsOwnedByPlayer())) InventoryDialogFocusItemVibrationIntensityDraw();
 			}
 			CommonDynamicFunction("Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Draw()");
 			DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
