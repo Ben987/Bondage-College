@@ -167,7 +167,7 @@ ItemHeadDuctTapeMummy,,,Mummy
 ItemHeadDuctTapeSetTypeDouble,,,SourceCharacter takes a piece of duct tape for DestinationCharacter's and place on her face.
 ItemHeadDuctTapeSetTypeWrap,,,SourceCharacter wraps some duct tape onto DestinationCharacter's face.
 ItemHeadDuctTapeSetTypeMummy,,,SourceCharacter wraps DestinationCharacter's head in tape with multiple layers. 
-ItemTorsoSelect,,,Select the type of Harness
+ItemTorsoHempRopeHarnessSelect,,,Select the type of Harness
 ItemTorsoHempRopeHarnessBasic,,,Basic Tie
 ItemTorsoHempRopeHarnessDiamond,,,Diamond Tie
 ItemTorsoHempRopeHarnessSetTypeBasic,,,SourceCharacter uses the rope on DestinationCharacter's to do a basic harness.
