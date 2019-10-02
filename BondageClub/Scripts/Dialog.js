@@ -80,6 +80,8 @@ function DialogCanUnlock(C, Item) {
 	if ((Item != null) && (Item.Asset != null) && (Item.Asset.OwnerOnly == true)) return Item.Asset.Enable && C.IsOwnedByPlayer();
 	if ((Item != null) && (Item.Asset != null) && (Item.Asset.SelfUnlock != null) && (Item.Asset.SelfUnlock == false) && !Player.CanInteract()) return false;
 	if ((Item != null) && (Item.Property != null) && (Item.Property.SelfUnlock != null) && (Item.Property.SelfUnlock == false) && !Player.CanInteract()) return false;
+	var Mofifiers = AssetTypeGetMofifiers(Item);
+	if ((Mofifiers != null) && (Mofifiers.SelfUnlock == false) && !Player.CanInteract()) return false;
 	if (C.IsOwnedByPlayer() && InventoryAvailable(Player, "OwnerPadlockKey", "ItemMisc") && Item.Asset.Enable) return true;
 	var UnlockName = "Unlock-" + Item.Asset.Name;
 	if ((Item != null) && (Item.Property != null) && (Item.Property.LockedBy != null)) UnlockName = "Unlock-" + Item.Property.LockedBy;
@@ -204,7 +206,7 @@ function DialogMenuButtonBuild(C) {
 		if ((Item != null) && Item.Asset.AllowLock && !InventoryItemHasEffect(Item, "Lock", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Lock");
 		if ((Item != null) && !InventoryItemHasEffect(Item, "Lock", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Remove");
 		if (InventoryItemHasEffect(Item, "Egged") && InventoryAvailable(Player, "VibratorRemote", "ItemVulva") && Player.CanInteract()) DialogMenuButton.push("Remote");
-		if ((Item != null) && Item.Asset.Extended && Player.CanInteract() && (!Item.Asset.OwnerOnly || (C.IsOwnedByPlayer()))) DialogMenuButton.push("Use");
+		if ((Item != null) && (Item.Asset.Extended || Item.Asset.TypeMetaLoaded)&& Player.CanInteract() && (!Item.Asset.OwnerOnly || (C.IsOwnedByPlayer()))) DialogMenuButton.push("Use");
 		if (Player.CanInteract()) DialogMenuButton.push("ColorPick");
 	}
 
@@ -313,6 +315,8 @@ function DialogProgressStart(C, PrevItem, NextItem) {
 		S = S + SkillGetLevel(Player, "Evasion"); // Add the player evasion level
 		if (PrevItem.Difficulty != null) S = S - PrevItem.Difficulty; // Subtract the item difficulty (regular difficulty + player that restrained difficulty)
 		if ((PrevItem.Property != null) && (PrevItem.Property.Difficulty != null)) S = S - PrevItem.Property.Difficulty; // Subtract the additional item difficulty for expanded items only
+		var Mofifiers = AssetTypeGetMofifiers(PrevItem);
+		if ((Mofifiers != null) && (Mofifiers.Difficulty != null)) S = S - Mofifiers.Difficulty;
 	}
 	if ((C.ID != 0) || ((C.ID == 0) && (PrevItem == null))) S = S + SkillGetLevel(Player, "Bondage"); // Adds the bondage skill if no previous item or playing with another player
 	if (Player.IsEnclose()) S = S - 5; // Harder if there's an enclosing item
@@ -540,7 +544,7 @@ function DialogItemClick(ClickItem) {
 					}
 				} 
 				else
-					if ((CurrentItem.Asset.Name == ClickItem.Asset.Name) && CurrentItem.Asset.Extended)
+					if ((CurrentItem.Asset.Name == ClickItem.Asset.Name) && (CurrentItem.Asset.Extended || CurrentItem.Asset.TypeMetaLoaded))
 						DialogExtendItem(CurrentItem);
 		return;
 	}
@@ -550,7 +554,7 @@ function DialogItemClick(ClickItem) {
 		if (InventoryItemHasEffect(ClickItem, "Unlock-" + CurrentItem.Asset.Name))
 			DialogProgressStart(C, CurrentItem, null);
 		else
-			if ((CurrentItem.Asset.Name == ClickItem.Asset.Name) && CurrentItem.Asset.Extended)
+			if ((CurrentItem.Asset.Name == ClickItem.Asset.Name) && (CurrentItem.Asset.Extended || CurrentItem.Asset.TypeMetaLoaded))
 				DialogExtendItem(CurrentItem);
 			else
 				if (!ClickItem.Asset.Wear)
@@ -585,9 +589,10 @@ function DialogClick() {
 	if (((Player.FocusGroup != null) || ((CurrentCharacter.FocusGroup != null) && CurrentCharacter.AllowItem)) && (DialogIntro() != "")) {
 
 		// If we must are in the extended menu of the item
-		if (DialogFocusItem != null)
-			CommonDynamicFunction("Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Click()");
-		else {
+		if (DialogFocusItem != null) {
+			if (DialogFocusItem.Asset.Extended) CommonDynamicFunction("Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Click()");
+			else AssetTypeSetClick();
+		} else {
 	
 			// If the user wants to speed up the add / swap / remove progress
 			if ((MouseX >= 1000) && (MouseX < 2000) && (MouseY >= 600) && (MouseY < 1000) && (DialogProgress >= 0) && CommonIsMobile) DialogStruggle(false);
@@ -609,7 +614,7 @@ function DialogClick() {
 
 					// If the item is clicked
 					if ((MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275))
-						if (DialogInventory[I].Asset.Enable || (DialogInventory[I].Asset.Extended && DialogInventory[I].Asset.OwnerOnly && CurrentCharacter.IsOwnedByPlayer())) {
+						if (DialogInventory[I].Asset.Enable || ((DialogInventory[I].Asset.Extended || DialogInventory[I].Asset.TypeMetaLoaded)&& DialogInventory[I].Asset.OwnerOnly && CurrentCharacter.IsOwnedByPlayer())) {
 							DialogItemClick(DialogInventory[I]);
 							break;
 						}
@@ -712,7 +717,7 @@ function DialogExtendItem(Item, SourceItem) {
 	DialogColor = null;
 	DialogFocusItem = Item;
 	DialogFocusSourceItem = SourceItem;
-	CommonDynamicFunction("Inventory" + Item.Asset.Group.Name + Item.Asset.Name + "Load()");
+	if (Item.Asset.Extended) CommonDynamicFunction("Inventory" + Item.Asset.Group.Name + Item.Asset.Name + "Load()");
 }
 
 // Draw the item menu dialog
@@ -807,7 +812,7 @@ function DialogDrawItemMenu(C) {
 			}
 
 			// Check to open the extended menu of the item.  In a chat room, we publish the result for everyone
-			if ((DialogProgressNextItem != null) && DialogProgressNextItem.Asset.Extended) {
+			if ((DialogProgressNextItem != null) && (DialogProgressNextItem.Asset.Extended || DialogProgressNextItem.Asset.TypeMetaLoaded)) {
 				DialogInventoryBuild(C);
 				ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, false);
 				DialogExtendItem(InventoryGet(C, DialogProgressNextItem.Asset.Group.Name));
@@ -872,7 +877,8 @@ function DialogDraw() {
 
 		// The view can show one specific extended item or the list of all items for a group
 		if (DialogFocusItem != null) {
-			CommonDynamicFunction("Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Draw()");
+			if (DialogFocusItem.Asset.Extended) CommonDynamicFunction("Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Draw()");
+			else AssetTypeSetDraw();
 			DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 		} else {
 			DialogDrawItemMenu((Player.FocusGroup != null) ? Player : CurrentCharacter);

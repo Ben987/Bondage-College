@@ -97,49 +97,54 @@ ItemMiscTimerPadlockIntro,,,You can restart the timer but cannot unlock
 ItemMiscOwnerPadlockIntro,,,"""Never forget who you belong to"""
 ItemMiscOwnerPadlockDetail,,,Can only be locked or unlocked by her owner
 ItemMiscMistressPadlockIntro,,,Can only be locked or unlocked by a Club Mistress
-LeatherCuffsPoseNone,,,Detached
-LeatherCuffsPoseWrist,,,Bind wrists
-LeatherCuffsPoseElbow,,,Bind elbows
-LeatherCuffsPoseBoth,,,Bind both
-LeatherCuffsRestrainNone,,,SourceCharacter detaches the chain from DestinationCharacter's leather cuffs.
-LeatherCuffsRestrainWrist,,,SourceCharacter attaches the leather cuffs wrist chain behind DestinationCharacter's back.
-LeatherCuffsRestrainElbow,,,SourceCharacter attaches the leather cuffs elbow chain behind DestinationCharacter's back.
-LeatherCuffsRestrainBoth,,,SourceCharacter attaches the leather cuffs wrist and elbow chains behind DestinationCharacter's back.
-LeatherLegCuffsPoseNone,,,Detached
-LeatherLegCuffsPoseClosed,,,Chain Closed
-LeatherAnkleCuffsPoseNone,,,Detached
-LeatherAnkleCuffsPoseClosed,,,Chain Closed
-LeatherLegCuffsRestrainNone,,,SourceCharacter detaches the chain from DestinationCharacter's leather leg cuffs.
-LeatherLegCuffsRestrainClosed,,,SourceCharacter attaches the leather leg cuffs chain on DestinationCharacter's legs.
-LeatherAnkleCuffsRestrainNone,,,SourceCharacter detaches the chain from DestinationCharacter's leather ankle cuffs.
-LeatherAnkleCuffsRestrainClosed,,,SourceCharacter attaches the leather ankle cuffs chain on DestinationCharacter's ankles.
-StraitJacketSelectTightness,,,How tight do you want to strap the jacket?
-StraitJacketPoseLoose,,,Loose
-StraitJacketPoseNormal,,,Normal
-StraitJacketPoseSnug,,,Snug
-StraitJacketPoseTight,,,Tight
-StraitJacketRestrainNone,,,SourceCharacter loosens the straps on DestinationCharacter's straitjacket.
-StraitJacketRestrainNormal,,,SourceCharacter adjusts the straps normally on DestinationCharacter's straitjacket.
-StraitJacketRestrainSnug,,,SourceCharacter snugs the straps on DestinationCharacter's straitjacket.
-StraitJacketRestrainTight,,,SourceCharacter tightens the straps on DestinationCharacter's straitjacket.
-DuctTapePoseHands,,,Hands
-DuctTapePoseArms,,,Arms
-DuctTapePoseBottom,,,Skirt
-DuctTapePoseTop,,,Torso
-DuctTapePoseFull,,,Mummy
-DuctTapeRestrainHands,,,SourceCharacter wraps duct tape around DestinationCharacter's hands.
-DuctTapeRestrainBottom,,,SourceCharacter creates a duct tape skirt on DestinationCharacter and traps her hands in it.
-DuctTapeRestrainTop,,,SourceCharacter creates a duct tape top on DestinationCharacter and traps her arms in it.
-DuctTapeRestrainFull,,,SourceCharacter creates a duct tape mummy on DestinationCharacter and traps her arms in it.
-SelectGagType,,,Select the type of gag
-ClothGagTypeSmall,,,Small
-ClothGagTypeCleave,,,Cleave
-ClothGagTypeOTM,,,OTM
-ClothGagTypeOTN,,,OTN
-ClothGagSetSmall,,,SourceCharacter ties the cloth into a small gag over DestinationCharacter's mouth.
-ClothGagSetCleave,,,SourceCharacter ties the cloth into a cleave gag over DestinationCharacter's mouth.
-ClothGagSetOTM,,,SourceCharacter stuffs DestinationCharacter's mouth with a piece of cloth and secures it with another piece.
-ClothGagSetOTN,,,SourceCharacter stuffs DestinationCharacter's mouth with a piece of cloth and secures the gag over her mouth and nose.
+ItemArmsLeatherCuffsSelect,,,Select the bondage position
+ItemArmsLeatherCuffsNone,,,Detached
+ItemArmsLeatherCuffs_Wrist,,,Bind wrists
+ItemArmsLeatherCuffs_Elbow,,,Bind elbows
+ItemArmsLeatherCuffs_Both,,,Bind both
+ItemArmsLeatherCuffsSetTypeNone,,,SourceCharacter detaches the chain from DestinationCharacter's leather cuffs.
+ItemArmsLeatherCuffsSetType_Wrist,,,SourceCharacter attaches the leather cuffs wrist chain behind DestinationCharacter's back.
+ItemArmsLeatherCuffsSetType_Elbow,,,SourceCharacter attaches the leather cuffs elbow chain behind DestinationCharacter's back.
+ItemArmsLeatherCuffsSetType_Both,,,SourceCharacter attaches the leather cuffs wrist and elbow chains behind DestinationCharacter's back.
+ItemLegsLeatherLegCuffsSelect,,,Select the bondage position
+ItemLegsLeatherLegCuffsNone,,,Detached
+ItemLegsLeatherLegCuffs_Closed,,,Chain Closed
+ItemLegsLeatherLegCuffsSetTypeNone,,,SourceCharacter detaches the chain from DestinationCharacter's leather leg cuffs.
+ItemLegsLeatherLegCuffsSetType_Closed,,,SourceCharacter attaches the leather leg cuffs chain on DestinationCharacter's legs.
+ItemFeetLeatherAnkleCuffsSelect,,,Select the bondage position
+ItemFeetLeatherAnkleCuffsNone,,,Detached
+ItemFeetLeatherAnkleCuffs_Closed,,,Chain Closed
+ItemFeetLeatherAnkleCuffsSetTypeNone,,,SourceCharacter detaches the chain from DestinationCharacter's leather ankle cuffs.
+ItemFeetLeatherAnkleCuffsSetType_Closed,,,SourceCharacter attaches the leather ankle cuffs chain on DestinationCharacter's ankles.
+ItemArmsStraitJacketSelect,,,How tight do you want to strap the jacket?
+ItemArmsStraitJacketPose_Loose,,,Loose
+ItemArmsStraitJacketPose_Normal,,,Normal
+ItemArmsStraitJacketPose_Snug,,,Snug
+ItemArmsStraitJacketPose_Tight,,,Tight
+ItemArmsStraitJacketSetType_Loose,,,SourceCharacter loosens the straps on DestinationCharacter's straitjacket.
+ItemArmsStraitJacketSetType_Normal,,,SourceCharacter adjusts the straps normally on DestinationCharacter's straitjacket.
+ItemArmsStraitJacketSetType_Snug,,,SourceCharacter snugs the straps on DestinationCharacter's straitjacket.
+ItemArmsStraitJacketSetType_Tight,,,SourceCharacter tightens the straps on DestinationCharacter's straitjacket.
+ItemArmsDuctTapeSelect,,,Select the tape wrapping
+ItemArmsDuctTapePoseHands,,,Hands
+ItemArmsDuctTapePoseArms,,,Arms
+ItemArmsDuctTapePoseBottom,,,Skirt
+ItemArmsDuctTapePoseTop,,,Torso
+ItemArmsDuctTapePoseFull,,,Mummy
+ItemArmsDuctTapeSetTypeHands,,,SourceCharacter wraps duct tape around DestinationCharacter's hands.
+ItemArmsDuctTapeSetTypeBottom,,,SourceCharacter creates a duct tape skirt on DestinationCharacter and traps her hands in it.
+ItemArmsDuctTapeSetTypeTop,,,SourceCharacter creates a duct tape top on DestinationCharacter and traps her arms in it.
+ItemArmsDuctTapeSetTypeFull,,,SourceCharacter creates a duct tape mummy on DestinationCharacter and traps her arms in it.
+ItemMouthClothGagSelect,,,Select the type of gag
+ItemMouthClothGagSmall,,,Small
+ItemMouthClothGagCleave,,,Cleave
+ItemMouthClothGagOTM,,,OTM
+ItemMouthClothGagOTN,,,OTN
+ItemMouthClothGagSetTypeSmall,,,SourceCharacter ties the cloth into a small gag over DestinationCharacter's mouth.
+ItemMouthClothGagSetTypeCleave,,,SourceCharacter ties the cloth into a cleave gag over DestinationCharacter's mouth.
+ItemMouthClothGagSetTypeOTM,,,SourceCharacter stuffs DestinationCharacter's mouth with a piece of cloth and secures it with another piece.
+ItemMouthClothGagSetTypeOTN,,,SourceCharacter stuffs DestinationCharacter's mouth with a piece of cloth and secures the gag over her mouth and nose.
+ItemMouthDuctTapeSelect,,,Select the type of gag
 DuctTapeMouthTypeSmall,,,Single strip
 DuctTapeMouthTypeCrossed,,,Crossed strips
 DuctTapeMouthTypeFull,,,Full face
@@ -150,22 +155,23 @@ DuctTapeMouthSetCrossed,,,SourceCharacter crosses two pieces of duct tape on Des
 DuctTapeMouthSetFull,,,SourceCharacter fully tapes DestinationCharacter's mouth.
 DuctTapeMouthSetDouble,,,SourceCharacter fully tapes DestinationCharacter's mouth with double layers.
 DuctTapeMouthSetCover,,,SourceCharacter wraps many layers on DestinationCharacter's mouth.
-PlugGagMouthTypePlug,,,Plugged
-PlugGagMouthTypeOpen,,,Open
-PlugGagMouthSetPlug,,,SourceCharacter plugs up DestinationCharacter's mouth.
-PlugGagMouthSetOpen,,,SourceCharacter pulls out DestinationCharacter's plug from her gag.
-SelectBlindType,,,Select the type of blindfold
-DuctTapeHeadTypeDouble,,,Double
-DuctTapeHeadTypeWrap,,,Wrap
-DuctTapeHeadSetDouble,,,SourceCharacter takes a piece of duct tape for DestinationCharacter's and place on her face.
-DuctTapeHeadSetWrap,,,SourceCharacter wraps some duct tape onto DestinationCharacter's face.
-DuctTapeHeadTypeMummy,,,Mummy
-DuctTapeHeadSetMummy,,,SourceCharacter wraps DestinationCharacter's head in tape with multiple layers. 
-SelectHarnessType,,,Select the type of Harness
-HempRopeHarnessTypeBasic,,,Basic Tie
-HempRopeHarnessTypeDiamond,,,Diamond Tie
-HempRopeHarnessSetBasic,,,SourceCharacter uses the rope on DestinationCharacter's to do a basic harness.
-HempRopeHarnessSetDiamond,,,SourceCharacter uses the rope on DestinationCharacter's to do a Diamond style harness.
+ItemMouthPlugGagSelect,,,Select the type of gag
+ItemMouthPlugGagPlug,,,Plugged
+ItemMouthPlugGagOpen,,,Open
+ItemMouthPlugGagSetTypePlug,,,SourceCharacter plugs up DestinationCharacter's mouth.
+ItemMouthPlugGagSetTypeOpen,,,SourceCharacter pulls out DestinationCharacter's plug from her gag.
+ItemHeadDuctTapeSelect,,,Select the type of blindfold
+ItemHeadDuctTapeDouble,,,Double
+ItemHeadDuctTapeWrap,,,Wrap
+ItemHeadDuctTapeMummy,,,Mummy
+ItemHeadDuctTapeSetTypeDouble,,,SourceCharacter takes a piece of duct tape for DestinationCharacter's and place on her face.
+ItemHeadDuctTapeSetTypeWrap,,,SourceCharacter wraps some duct tape onto DestinationCharacter's face.
+ItemHeadDuctTapeSetTypeMummy,,,SourceCharacter wraps DestinationCharacter's head in tape with multiple layers. 
+ItemTorsoSelect,,,Select the type of Harness
+ItemTorsoHempRopeHarnessBasic,,,Basic Tie
+ItemTorsoHempRopeHarnessDiamond,,,Diamond Tie
+ItemTorsoHempRopeHarnessSetTypeBasic,,,SourceCharacter uses the rope on DestinationCharacter's to do a basic harness.
+ItemTorsoHempRopeHarnessSetTypeDiamond,,,SourceCharacter uses the rope on DestinationCharacter's to do a Diamond style harness.
 Intensity-1,,,Item intensity: Disabled
 Intensity0,,,Item intensity: Low
 Intensity1,,,Item intensity: Medium
@@ -356,21 +362,23 @@ CollarNameTagTypeToy,,,Toy
 CollarNameTagTypeUseless,,,Useless
 CollarNameTagTypeUseMe,,,Use Me
 CollarNameTagTypeWhore,,,Whore
-DuctTapePoseLegs,,,Legs
-DuctTapePoseHalfLegs,,,Half
-DuctTapePoseMostLegs,,,Most
-DuctTapePoseCompleteLegs,,,Complete
-DuctTapeRestrainLegs,,,SourceCharacter wraps duct tape around DestinationCharacter's legs.
-DuctTapeRestrainHalfLegs,,,SourceCharacter wraps more duct tape on DestinationCharacter's legs trapping them firmly.
-DuctTapeRestrainMostLegs,,,SourceCharacter wraps even more duct tape on DestinationCharacter's legs trapping them tightly.
-DuctTapeRestrainCompleteLegs,,,SourceCharacter wraps an extreme amount of duct tape on DestinationCharacter's legs fully trapping them.
-DuctTapePoseFeet,,,Feet
-DuctTapePoseHalfFeet,,,Half
-DuctTapePoseMostFeet,,,Most
-DuctTapePoseCompleteFeet,,,Complete
-DuctTapeRestrainFeet,,,SourceCharacter wraps duct tape around DestinationCharacter's feet.
-DuctTapeRestrainHalfFeet,,,SourceCharacter wraps more duct tape on DestinationCharacter's feet trapping them firmly.
-DuctTapeRestrainMostFeet,,,SourceCharacter wraps even more duct tape on DestinationCharacter's feet trapping them tightly.
-DuctTapeRestrainCompleteFeet,,,SourceCharacter wraps an extreme amount of duct tape on DestinationCharacter's feet fully trapping them.
+ItemLegsDuctTapeSelect,,,Select the tape wrapping
+ItemLegsDuctTapeLegs,,,Legs
+ItemLegsDuctTapeHalfLegs,,,Half
+ItemLegsDuctTapeMostLegs,,,Most
+ItemLegsDuctTapeCompleteLegs,,,Complete
+ItemLegsDuctTapeSetTypeLegs,,,SourceCharacter wraps duct tape around DestinationCharacter's legs.
+ItemLegsDuctTapeSetTypeHalfLegs,,,SourceCharacter wraps more duct tape on DestinationCharacter's legs trapping them firmly.
+ItemLegsDuctTapeSetTypeMostLegs,,,SourceCharacter wraps even more duct tape on DestinationCharacter's legs trapping them tightly.
+ItemLegsDuctTapeSetTypeCompleteLegs,,,SourceCharacter wraps an extreme amount of duct tape on DestinationCharacter's legs fully trapping them.
+ItemFeetDuctTapeFeetSelect,,,Select the tape wrapping
+ItemFeetDuctTapeFeet,,,Feet
+ItemFeetDuctTapeHalfFeet,,,Half
+ItemFeetDuctTapeMostFeet,,,Most
+ItemFeetDuctTapeCompleteFeet,,,Complete
+ItemFeetDuctTapeSetTypeFeet,,,SourceCharacter wraps duct tape around DestinationCharacter's feet.
+ItemFeetDuctTapeSetTypeHalfFeet,,,SourceCharacter wraps more duct tape on DestinationCharacter's feet trapping them firmly.
+ItemFeetDuctTapeSetTypeMostFeet,,,SourceCharacter wraps even more duct tape on DestinationCharacter's feet trapping them tightly.
+ItemFeetDuctTapeSetTypeCompleteFeet,,,SourceCharacter wraps an extreme amount of duct tape on DestinationCharacter's feet fully trapping them.
 SlaveCollarSelectType,,,Select the slave collar model
 SlaveCollarChangeType,,,SourceCharacter changes DestinationCharacter's collar model.

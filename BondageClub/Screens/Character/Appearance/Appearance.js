@@ -114,6 +114,8 @@ function CharacterAppearanceMustHide(C, GroupName) {
 	for (var A = 0; A < C.Appearance.length; A++) {
 		if ((C.Appearance[A].Asset.Hide != null) && (C.Appearance[A].Asset.Hide.indexOf(GroupName) >= 0)) return true;
 		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.Hide != null) && (C.Appearance[A].Property.Hide.indexOf(GroupName) >= 0)) return true;
+		var Mofifiers = AssetTypeGetMofifiers(C.Appearance[A]);
+		if ((Mofifiers != null) && (Mofifiers.Hide != null) && (Mofifiers.Hide.indexOf(GroupName) >= 0)) return true;
 	}
 	return false;
 }
@@ -279,6 +281,7 @@ function CharacterAppearanceBuildCanvas(C) {
 			// Check if we need to draw a different variation (from type property)
 			var Type = "";
 			if ((CA.Property != null) && (CA.Property.Type != null)) Type = CA.Property.Type;
+			if (Type.indexOf("_") >= 0) Type = Type.substring(0, Type.indexOf("_")); 
 
 			// Cycle through all layers of the image
 			var MaxLayer = (CA.Asset.Layer == null) ? 1 : CA.Asset.Layer.length;

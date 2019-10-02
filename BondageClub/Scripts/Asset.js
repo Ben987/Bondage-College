@@ -80,7 +80,7 @@ function AssetAdd(NewAsset) {
 		Layer: AssetBuildLayer(NewAsset.Layer),
 		AllowEffect: NewAsset.AllowEffect,
 		AllowBlock: NewAsset.AllowBlock,
-		AllowType: NewAsset.AllowType,
+		HasType: (NewAsset.HasType == null) ? false : NewAsset.HasType,
 		DefaultColor: NewAsset.DefaultColor,
 		IgnoreParentGroup: (NewAsset.IgnoreParentGroup == null) ? false : NewAsset.IgnoreParentGroup,
 		IsRestraint: (NewAsset.IsRestraint == null) ? ((AssetCurrentGroup.IsRestraint == null) ? false : AssetCurrentGroup.IsRestraint) : NewAsset.IsRestraint,
@@ -195,6 +195,7 @@ function AssetLoadAll() {
 	Asset = [];
 	AssetGroup = [];
 	AssetLoad(AssetFemale3DCG, "Female3DCG");
+	AssetTypeLoad();
 	Pose = PoseFemale3DCG;
 }
 

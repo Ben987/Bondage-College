@@ -299,10 +299,12 @@ function CharacterDelete(NPCType) {
 }
 
 // Adds new effects on a character if it's not already there
-function CharacterAddPose(C, NewPose) {
-	for (var E = 0; E < NewPose.length; E++)
-		if (C.Pose.indexOf(NewPose[E]) < 0)
-			C.Pose.push(NewPose[E]);
+function CharacterAddPose(C, Container) {
+	if (Container == null || Container.SetPose == null) return false;
+	for (var E = 0; E < Container.SetPose.length; E++)
+		if (C.Pose.indexOf(Container.SetPose[E]) < 0)
+			C.Pose.push(Container.SetPose[E]);
+	return true;
 }
 
 // Resets the current pose list on a character
@@ -310,34 +312,31 @@ function CharacterLoadPose(C) {
 	C.Pose = [];
 	if (C.ActivePose != null) C.Pose.push(C.ActivePose);
 	for (var A = 0; A < C.Appearance.length; A++) {
-		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.SetPose != null))
-			CharacterAddPose(C, C.Appearance[A].Property.SetPose);
-		else
-			if (C.Appearance[A].Asset.SetPose != null)
-				CharacterAddPose(C, C.Appearance[A].Asset.SetPose);
-			else
-				if (C.Appearance[A].Asset.Group.SetPose != null)
-					CharacterAddPose(C, C.Appearance[A].Asset.Group.SetPose);
+		if (CharacterAddPose(C, C.Appearance[A].Property));
+		else if (CharacterAddPose(C, AssetTypeGetMofifiers(C.Appearance[A])));
+		else if (CharacterAddPose(C, C.Appearance[A].Asset));
+		else CharacterAddPose(C, C.Appearance[A].Asset.Group);
 	}
 }
 
 // Adds new effects on a character if it's not already there
-function CharacterAddEffect(C, NewEffect) {
-	for (var E = 0; E < NewEffect.length; E++)
-		if (C.Effect.indexOf(NewEffect[E]) < 0)
-			C.Effect.push(NewEffect[E]);
+function CharacterAddEffect(C, Container) {
+	if (Container == null || Container.Effect == null) return false;
+	for (var E = 0; E < Container.Effect.length; E++)
+		if (C.Effect.indexOf(Container.Effect[E]) < 0)
+			C.Effect.push(Container.Effect[E]);
+	return true;
 }
 
 // Resets the current effect list on a character
 function CharacterLoadEffect(C) {
 	C.Effect = [];
 	for (var A = 0; A < C.Appearance.length; A++) {
-		if ((C.Appearance[A].Property != null) && (C.Appearance[A].Property.Effect != null)) CharacterAddEffect(C, C.Appearance[A].Property.Effect);
-		if (C.Appearance[A].Asset.Effect != null)
-			CharacterAddEffect(C, C.Appearance[A].Asset.Effect);
-		else
-			if (C.Appearance[A].Asset.Group.Effect != null)
-				CharacterAddEffect(C, C.Appearance[A].Asset.Group.Effect);
+		CharacterAddEffect(C, C.Appearance[A].Property);
+		CharacterAddEffect(C, AssetTypeGetMofifiers(C.Appearance[A]));
+		if (!CharacterAddEffect(C, C.Appearance[A].Asset)) {
+			CharacterAddEffect(C, C.Appearance[A].Asset.Group);
+		}
 	}
 }
 

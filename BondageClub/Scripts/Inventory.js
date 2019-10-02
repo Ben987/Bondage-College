@@ -170,8 +170,12 @@ function InventoryRemove(C, AssetGroup) {
 // Returns TRUE if the currently worn item is blocked by another item (hoods blocks gags, belts blocks eggs, etc.)
 function InventoryGroupIsBlocked(C) {
 	for (var E = 0; E < C.Appearance.length; E++) {
-		if (!(C.Appearance[E].Asset.Group.Clothing) && (C.Appearance[E].Asset.Block != null) && (C.Appearance[E].Asset.Block.includes(C.FocusGroup.Name))) return true;
-		if (!(C.Appearance[E].Asset.Group.Clothing) && (C.Appearance[E].Property != null) && (C.Appearance[E].Property.Block != null) && (C.Appearance[E].Property.Block.indexOf(C.FocusGroup.Name) >= 0)) return true;
+		if (!(C.Appearance[E].Asset.Group.Clothing)) {
+			if ((C.Appearance[E].Asset.Block != null) && (C.Appearance[E].Asset.Block.includes(C.FocusGroup.Name))) return true;
+			if ((C.Appearance[E].Property != null) && (C.Appearance[E].Property.Block != null) && (C.Appearance[E].Property.Block.indexOf(C.FocusGroup.Name) >= 0)) return true;
+			var Mofifiers = AssetTypeGetMofifiers(C.Appearance[E]);
+			if ((Mofifiers != null) && (Mofifiers.Block != null) && (Mofifiers.Block.indexOf(C.FocusGroup.Name) >= 0)) return true;
+		}	
 	}
 	return false;
 }
@@ -180,13 +184,14 @@ function InventoryGroupIsBlocked(C) {
 function InventoryItemHasEffect(Item, Effect, CheckProperties) {
 	if (!Item) return null;
 
+	var Mofifiers = AssetTypeGetMofifiers(Item);
 	// If no effect is specified, we simply check if the item has any effect
 	if (!Effect) {
-		if ((Item.Asset && Item.Asset.Effect) || (CheckProperties && Item.Property && Item.Property.Effect)) return true;
+		if ((Item.Asset && Item.Asset.Effect) || (Mofifiers && Mofifiers.Effect) || (CheckProperties && Item.Property && Item.Property.Effect)) return true;		
 		else return false;
 	}
 	else {
-		if ((Item.Asset && Item.Asset.Effect && Item.Asset.Effect.indexOf(Effect) >= 0) || (CheckProperties && Item.Property && Item.Property.Effect && Item.Property.Effect.indexOf(Effect) >= 0)) return true;
+		if ((Item.Asset && Item.Asset.Effect && Item.Asset.Effect.indexOf(Effect) >= 0) || (Mofifiers && Mofifiers.Effect && Mofifiers.Effect.indexOf(Effect) >= 0) || (CheckProperties && Item.Property && Item.Property.Effect && Item.Property.Effect.indexOf(Effect) >= 0)) return true;
 		else return false;
 	}
 }
