@@ -541,10 +541,8 @@ function SarahSophiePreparePunishCharacter(C) {
 	InventoryWear(C, "LeatherBelt", "ItemFeet");
 	InventoryWear(C, "LeatherBelt", "ItemLegs");
 	var Cuffs = InventoryGet(C, "ItemArms");
-	Cuffs.Property = {};
-	Cuffs.Property.Restrain = "Wrist";
-	Cuffs.Property.SetPose = ["BackBoxTie"];
-	Cuffs.Property.Effect = ["Block", "Prone", "Lock"];
+	AssetTypeSet(C, Cuffs, "Wrist");
+	Cuffs.Property.Effect = ["Lock"];
 	CharacterRefresh(C);
 }
 
