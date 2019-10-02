@@ -13,7 +13,7 @@ var AssetTypeInfo = {
             },
             DynamicAllowSetType: (C, Item, Type) => (Type == null) || (InventoryGet(C, "ClothLower") == null)
         },
-        LeatherCuff: {
+        LeatherCuffs: {
             Allow: [null, "_Wrist", "_Elbow", "_Both"],      
             Mofifiers: {
                 _Wrist: { Difficulty: 2, SetPose: ["BackBoxTie"], Effect: ["Block", "Prone"], },
