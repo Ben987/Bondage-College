@@ -61,7 +61,7 @@ function InventoryItemNeckSlaveCollarClick() {
             if ((MouseX >= 1665) && (MouseX <= 1755) && (MouseY >= 25) && (MouseY <= 110)) {
                 var Color = ElementValue("InputColor");
                 if (CommonIsColor(Color)) {
-                    CharacterAppearanceSetColorForGroup(C, "ItemNeck", Color);
+                    CharacterAppearanceSetColorForGroup(C, Color, "ItemNeck");
                     InventoryItemNeckSlaveColorMode = false;
                     ElementRemove("InputColor");
                     ChatRoomCharacterUpdate(C);
@@ -71,13 +71,13 @@ function InventoryItemNeckSlaveCollarClick() {
             }
             if ((MouseX >= 1775) && (MouseX <= 1865) && (MouseY >= 25) && (MouseY <= 110)) {
                 InventoryItemNeckSlaveColorMode = false;
-                CharacterAppearanceSetColorForGroup(C, "ItemNeck", InventoryItemNeckSlaveColor);
+                CharacterAppearanceSetColorForGroup(C, InventoryItemNeckSlaveColor, "ItemNeck");
                 ElementRemove("InputColor");
                 CharacterLoadCanvas(C);
             }
             if ((MouseX >= 1300) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 975)) {
                 var Color = DrawRGBToHex(MainCanvas.getImageData(MouseX, MouseY, 1, 1).data);
-                CharacterAppearanceSetColorForGroup(C, "ItemNeck", Color);
+                CharacterAppearanceSetColorForGroup(C, Color, "ItemNeck");
                 CharacterLoadCanvas(C);
                 ElementValue("InputColor", Color);
             }
