@@ -39,7 +39,7 @@ var AssetFemale3DCG = [
 			{ Name: "BunnyCollarCuffs", Value: 10, Expose: ["ItemNipples", "ItemBreast", "ItemTorso"] },
 			{ Name: "Robe1", Value: 50 },
 			{ Name: "FlowerDress", Value: 100, Hide: ["ClothLower"] },
-			{ Name: "Dress", Value: 100 }
+			{ Name: "Dress2", Value: 100 }
 		]
 	},
 
