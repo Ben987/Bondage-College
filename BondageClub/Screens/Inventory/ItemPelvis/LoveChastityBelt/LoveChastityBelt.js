@@ -150,23 +150,15 @@ function InventoryItemPelvisLoveChastityBeltTriggerShock() {
 
 // loads the belt into a correct state
 function InventoryItemPelvisLoveChastityBeltLoadType() {
-  if (DialogFocusItem.Property.Type == "Open") {
-    DialogFocusItem.Property.Effect = null;
-    DialogFocusItem.Property.Block = null;
-    if (DialogFocusItem.Property.LockButt == true) DialogFocusItem.Property.Block = ["ItemButt"];
-  } else {
-    DialogFocusItem.Property.Block = ["ItemVulva"];
-    if (DialogFocusItem.Property.LockButt) DialogFocusItem.Property.Block.push("ItemButt");
-    DialogFocusItem.Property.Effect = ["Chaste"];
-    if (DialogFocusItem.Property.Type == "Vibe") {
-      if (DialogFocusItem.Property.Intensity < -1) DialogFocusItem.Property.Intensity = -1;
-      if (DialogFocusItem.Property.Intensity > 3) DialogFocusItem.Property.Intensity = 3;
-      DialogFocusItem.Property.Effect.push("Egged");
-      if (DialogFocusItem.Property.Intensity >= 0) DialogFocusItem.Property.Effect.push("Vibrating");
-    } else if (DialogFocusItem.Property.Type == "Shock") {
-      if (DialogFocusItem.Property.Intensity < 0) DialogFocusItem.Property.Intensity = 0;
-      if (DialogFocusItem.Property.Intensity > 2) DialogFocusItem.Property.Intensity = 2;
-    }
+  delete DialogFocusItem.Property.Effect;
+  if (DialogFocusItem.Property.LockButt) DialogFocusItem.Property.Block = ["ItemButt"];
+  if (DialogFocusItem.Property.Type == "Vibe") {
+    if (DialogFocusItem.Property.Intensity < -1) DialogFocusItem.Property.Intensity = -1;
+    if (DialogFocusItem.Property.Intensity > 3) DialogFocusItem.Property.Intensity = 3;
+    if (DialogFocusItem.Property.Intensity >= 0) DialogFocusItem.Property.Effect = ["Vibrating"];
+  } else if (DialogFocusItem.Property.Type == "Shock") {
+    if (DialogFocusItem.Property.Intensity < 0) DialogFocusItem.Property.Intensity = 0;
+    if (DialogFocusItem.Property.Intensity > 2) DialogFocusItem.Property.Intensity = 2;
   }
 }
 
@@ -176,11 +168,11 @@ function InventoryItemPelvisLoveChastityBeltSetIntensity(Modifier) {
   DialogFocusItem.Property.Intensity = DialogFocusItem.Property.Intensity + Modifier;
   var Type = DialogFocusItem.Property.Type;
   if (DialogFocusItem.Property.Type == "Vibe") {
-    if (DialogFocusItem.Property.Intensity == -1) DialogFocusItem.Property.Effect = ["Egged"];
-    if (DialogFocusItem.Property.Intensity == 0) DialogFocusItem.Property.Effect = ["Egged", "Vibrating"];
-    if (DialogFocusItem.Property.Intensity == 1) DialogFocusItem.Property.Effect = ["Egged", "Vibrating"];
-    if (DialogFocusItem.Property.Intensity == 2) DialogFocusItem.Property.Effect = ["Egged", "Vibrating"];
-    if (DialogFocusItem.Property.Intensity == 3) DialogFocusItem.Property.Effect = ["Egged", "Vibrating"];
+    if (DialogFocusItem.Property.Intensity == -1) delete DialogFocusItem.Property.Effect;
+    if (DialogFocusItem.Property.Intensity == 0) DialogFocusItem.Property.Effect = ["Vibrating"];
+    if (DialogFocusItem.Property.Intensity == 1) DialogFocusItem.Property.Effect = ["Vibrating"];
+    if (DialogFocusItem.Property.Intensity == 2) DialogFocusItem.Property.Effect = ["Vibrating"];
+    if (DialogFocusItem.Property.Intensity == 3) DialogFocusItem.Property.Effect = ["Vibrating"];
     CharacterLoadEffect(C);
     if (C.ID == 0) ServerPlayerAppearanceSync();
   }

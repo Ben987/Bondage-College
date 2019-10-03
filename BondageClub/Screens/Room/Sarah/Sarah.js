@@ -540,10 +540,8 @@ function SarahSophiePreparePunishCharacter(C) {
 	InventoryWear(C, "LeatherCuffs", "ItemArms");
 	InventoryWear(C, "LeatherBelt", "ItemFeet");
 	InventoryWear(C, "LeatherBelt", "ItemLegs");
-	var Cuffs = InventoryGet(C, "ItemArms");
-	AssetTypeSet(C, Cuffs, "Wrist");
-	Cuffs.Property.Effect = ["Lock"];
-	CharacterRefresh(C);
+	AssetTypeSet(C, InventoryGet(C, "ItemArms"), "Wrist");
+	InventoryLock(C, "ItemArms", "IntricatePadlock");
 }
 
 // When Sophie starts a character vibrator

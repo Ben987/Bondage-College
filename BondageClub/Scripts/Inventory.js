@@ -291,3 +291,8 @@ function InventoryConfiscateKey() {
 function InventoryIsWorn(C, AssetGroup, AssetName){
 	return C && C.Appearance && C.Appearance.some(Item => Item.Asset.Group.Name == AssetGroup && Item.Asset.Name == AssetName);
 } 
+
+// checks if an item is a specific type
+function InventoryItemIsType(Item, Type) {
+	return ((Item != null) && (Item.Property != null)) ? (Item.Property.Type == Type) : (Type == null);
+}

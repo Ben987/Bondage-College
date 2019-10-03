@@ -145,16 +145,16 @@ ItemMouthClothGagSetTypeCleave,,,SourceCharacter ties the cloth into a cleave ga
 ItemMouthClothGagSetTypeOTM,,,SourceCharacter stuffs DestinationCharacter's mouth with a piece of cloth and secures it with another piece.
 ItemMouthClothGagSetTypeOTN,,,SourceCharacter stuffs DestinationCharacter's mouth with a piece of cloth and secures the gag over her mouth and nose.
 ItemMouthDuctTapeSelect,,,Select the type of gag
-DuctTapeMouthTypeSmall,,,Single strip
-DuctTapeMouthTypeCrossed,,,Crossed strips
-DuctTapeMouthTypeFull,,,Full face
-DuctTapeMouthTypeDouble,,,Double layer
-DuctTapeMouthTypeCover,,,OTN
-DuctTapeMouthSetSmall,,,SourceCharacter puts a piece of duct tape on DestinationCharacter's mouth.
-DuctTapeMouthSetCrossed,,,SourceCharacter crosses two pieces of duct tape on DestinationCharacter's mouth.
-DuctTapeMouthSetFull,,,SourceCharacter fully tapes DestinationCharacter's mouth.
-DuctTapeMouthSetDouble,,,SourceCharacter fully tapes DestinationCharacter's mouth with double layers.
-DuctTapeMouthSetCover,,,SourceCharacter wraps many layers on DestinationCharacter's mouth.
+ItemMouthDuctTapeSmall,,,Single strip
+ItemMouthDuctTapeCrossed,,,Crossed strips
+ItemMouthDuctTapeFull,,,Full face
+ItemMouthDuctTapeDouble,,,Double layer
+ItemMouthDuctTapeCover,,,OTN
+ItemMouthDuctTapeSetTypeSmall,,,SourceCharacter puts a piece of duct tape on DestinationCharacter's mouth.
+ItemMouthDuctTapeSetTypeCrossed,,,SourceCharacter crosses two pieces of duct tape on DestinationCharacter's mouth.
+ItemMouthDuctTapeSetTypeFull,,,SourceCharacter fully tapes DestinationCharacter's mouth.
+ItemMouthDuctTapeSetTypeDouble,,,SourceCharacter fully tapes DestinationCharacter's mouth with double layers.
+ItemMouthDuctTapeSetTypeCover,,,SourceCharacter wraps many layers on DestinationCharacter's mouth.
 ItemMouthPlugGagSelect,,,Select the type of gag
 ItemMouthPlugGagPlug,,,Plugged
 ItemMouthPlugGagOpen,,,Open
