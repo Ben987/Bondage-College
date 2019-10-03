@@ -171,7 +171,7 @@ function ChatRoomClick() {
 	// Room Admin controls
 	if ((MouseX >= 1805) && (MouseX < 1865) && (MouseY >= 870) && (MouseY < 935) &&  ChatRoomPlayerIsAdmin())  ServerSend("ChatRoomAdmin", { MemberNumber: Player.ID, Action: "Private" });
 	if ((MouseX >= 1870) && (MouseX < 1930) && (MouseY >= 870) && (MouseY < 935) &&  ChatRoomPlayerIsAdmin() && Player.CanChange())  ServerSend("ChatRoomAdmin", { MemberNumber: Player.ID, Action: "Lock" });
-	if ((MouseX >= 1935) && (MouseX < 1995) && (MouseY >= 870) && (MouseY < 935) &&  ChatRoomPlayerIsAdmin()) // for RoomAdmin Screen...-> In Progress
+	if ((MouseX >= 1935) && (MouseX < 1995) && (MouseY >= 870) && (MouseY < 935) &&  ChatRoomPlayerIsAdmin()) {}// for RoomAdmin Screen...-> In Progress
 	
 	// When the player kneels
 	if ((MouseX >= 1740) && (MouseX < 1800) && (MouseY >= 935) && (MouseY < 995) && Player.CanKneel()) { 
