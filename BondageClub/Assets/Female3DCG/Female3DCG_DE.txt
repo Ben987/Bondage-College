@@ -98,6 +98,8 @@ Diapers
 Windeln
 Socks
 Socken
+Ankle
+Knöchel
 Short
 Kurz
 Regular
