@@ -77,6 +77,8 @@ Shoes,Boots1,Boots
 Shoes,MistressBoots,Mistress Boots
 Shoes,PonyBoots,Pony Boots
 Shoes,Sandals,Strap Sandals
+Shoes,PawBoots,Paw Boots
+Shoes,WoollyBootsTall,Woolly Boots
 Hat,,Hat
 Hat,Band1,Hair Band
 Hat,Beret1,Beret
@@ -106,6 +108,7 @@ Gloves,,Gloves
 Gloves,Gloves1,Short Gloves
 Gloves,Gloves2,Long Gloves
 Gloves,MistressGloves,Mistress Gloves
+Gloves,FingerlessGloves,Fingerless Gloves
 Glasses,,Glasses
 Glasses,Glasses1,Style 1
 Glasses,Glasses2,Style 2
@@ -306,6 +309,8 @@ ItemNeck,ShockCollarRemote,Shock Collar Remote
 ItemNeck,BatCollar,Bat Collar
 ItemNeck,PostureCollar,Posture Collar
 ItemNeck,SteelPostureCollar,Steel Posture Collar
+ItemNeck,LeatherChoker,Leather Choker
+ItemNeck,PetCollar,Pet Collar
 ItemNeckAccessories,,Collar
 ItemNeckAccessories,CollarBell,Bell
 ItemNeckAccessories,CollarBow,Bow
