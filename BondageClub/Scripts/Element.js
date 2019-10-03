@@ -24,7 +24,7 @@ function ElementCreateTextArea(ID) {
 		var TextArea = document.createElement("TextArea");
 		TextArea.setAttribute("ID", ID);
 		TextArea.setAttribute("name", ID);
-		TextArea.setAttribute("readonly", "readonly");
+		//TextArea.setAttribute("readonly", "readonly");
 		TextArea.addEventListener("keydown", KeyDown);
 		document.body.appendChild(TextArea);
 	}
@@ -63,7 +63,7 @@ function ElementRemove(ID) {
 }
 
 // Draw a regular HTML element at a specific position
-function ElementPosition(ElementID, X, Y, W) {
+function ElementPosition(ElementID, X, Y, W, H) {
 
 	// Different positions based on the width/height ratio
 	var Font;
@@ -73,13 +73,13 @@ function ElementPosition(ElementID, X, Y, W) {
 	var Top;
 	if (DrawScreenWidth <= DrawScreenHeight * 2) {
 		Font = (DrawScreenWidth / 50);
-		Height = Font * 1.15;
+		Height = H ? (H * DrawScreenWidth / 2000) : (Font * 1.15);
 		Left = ((X - (W / 2)) * DrawScreenWidth / 2000);
 		Width = (W * DrawScreenWidth / 2000) - 18;
 		Top = (Y * DrawScreenWidth / 2000) + ((DrawScreenHeight * 2 - DrawScreenWidth) / 4) - (Height / 2);
 	} else {
 		Font = (DrawScreenHeight / 25);
-		Height = Font * 1.15;
+		Height = H ? (H * DrawScreenWidth / 1000) : (Font * 1.15);;
 		Left = ((X - (W / 2)) * DrawScreenHeight / 1000) + (DrawScreenWidth - DrawScreenHeight * 2) / 2;
 		Width = (W * DrawScreenHeight / 1000) - 18;
 		Top = (Y * DrawScreenHeight / 1000) - (Height / 2);
