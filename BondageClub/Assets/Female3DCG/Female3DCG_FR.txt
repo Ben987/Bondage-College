@@ -94,6 +94,8 @@ Diapers
 Couche
 Socks
 Chaussettes
+Ankle
+Cheville
 Short
 Petit
 Regular
