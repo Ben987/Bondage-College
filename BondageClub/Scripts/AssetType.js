@@ -50,7 +50,7 @@ var AssetTypeInfo = {
         LeatherAnkleCuffs: {
             Allow: [null, "_Closed"],
             Mofifiers: {
-                _Closed: { Difficulty: 6, Effect: ["Freeze"], SetPose: ["LegsClosed"] }
+                _Closed: { Difficulty: 6, Effect: ["Prone", "Freeze"], SetPose: ["LegsClosed"] }
             }
         }
     },
@@ -78,7 +78,7 @@ var AssetTypeInfo = {
         LeatherLegCuffs: {
             Allow: [null, "_Closed"],
             Mofifiers: {
-                _Closed: { Difficulty: 6, Effect: ["Prone", "Freeze"], SetPose: ["LegsClosed"] }
+                _Closed: { Difficulty: 6, Effect: ["Prone", "KneelFreeze"], SetPose: ["LegsClosed"] }
             }
         }
     },
