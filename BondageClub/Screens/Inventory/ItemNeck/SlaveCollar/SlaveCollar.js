@@ -16,7 +16,11 @@ var SlaveCollarTypes = [
         Name: "LeatherPosture",
         Image: "PostureCollar",
         Property: { Type: "LeatherPosture", Effect: [] }
-    },
+    },{
+        Name: "PetCollar",
+        Image: "PetCollar",
+        Property: { Type: "PetCollar", Effect: [] }
+	},
 ];
 
 // Loads the item extension properties
@@ -44,9 +48,9 @@ function InventoryItemNeckSlaveCollarDraw() {
         for (var I = 0; I < SlaveCollarTypes.length; I++) {
             var Type = DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.Type || "";
             if (C != null && C.IsOwnedByPlayer() || Type == SlaveCollarTypes[I].Name) {
-                DrawButton(1037 + I * 350, 450, 225, 225, "", (Type == SlaveCollarTypes[I].Name) ? "#888888" : "White");
-                DrawImage("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + SlaveCollarTypes[I].Image + ".png", 1037 + I * 350, 450);
-                DrawText(AssetGet(DialogFocusItem.Asset.Group.Family, DialogFocusItem.Asset.Group.Name, SlaveCollarTypes[I].Image).Description, 1150 + I * 350, 720, "white", "gray");
+                DrawButton(987 + I * 250, 450, 225, 225, "", (Type == SlaveCollarTypes[I].Name) ? "#888888" : "White");
+                DrawImage("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + SlaveCollarTypes[I].Image + ".png", 987 + I * 250, 450);
+                DrawText(AssetGet(DialogFocusItem.Asset.Group.Family, DialogFocusItem.Asset.Group.Name, SlaveCollarTypes[I].Image).Description, 1100 + I * 250, 720, "white", "gray");
             }
         }
     }
@@ -89,7 +93,7 @@ function InventoryItemNeckSlaveCollarClick() {
             }
             for (var I = 0; I < SlaveCollarTypes.length; I++) {
                 var Type = DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.Type || "";
-                if ((MouseX >= 1037 + I * 350) && (MouseX <= 1262 + I * 350) && (MouseY >= 450) && (MouseY <= 675) && (Type != SlaveCollarTypes[I].Name))
+                if ((MouseX >= 987 + I * 250) && (MouseX <= 1212 + I * 250) && (MouseY >= 450) && (MouseY <= 675) && (Type != SlaveCollarTypes[I].Name))
                     InventoryItemNeckSlaveCollarSetType(SlaveCollarTypes[I].Name);
             }
         }
