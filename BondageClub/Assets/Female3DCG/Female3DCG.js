@@ -38,7 +38,13 @@ var AssetFemale3DCG = [
 			{ Name: "NurseUniform", Hide: ["ClothLower"], Value: -1 },
 			{ Name: "BunnyCollarCuffs", Value: 10, Expose: ["ItemNipples", "ItemBreast", "ItemTorso"] },
 			{ Name: "Robe1", Value: 50 },
-			{ Name: "FlowerDress", Value: 100, Hide: ["ClothLower"] },
+			{
+			    Name: "FlowerDress", Value: 100, Hide: ["ClothLower"],
+				Layer: [
+					{ Name: "Dress", AllowColorize: true },
+					{ Name: "Flower", AllowColorize: false }
+				]
+			},
 			{ Name: "Dress2", Value: 100 }
 		]
 	},
@@ -155,7 +161,9 @@ var AssetFemale3DCG = [
 			{ Name: "Boots1", Height: 9 },
 			{ Name: "MistressBoots", Height: 35, Value: -1, HideItem: ["SocksSocks4", "SocksSocks5"], Alpha: [[125, 800, 250, 200]] },
 			{ Name: "PonyBoots", Height: 35, Value: -1, Alpha: [[125, 800, 250, 200]] },
-			{ Name: "Sandals", Priority: 20, Height: 3, Value: 35 }
+			{ Name: "Sandals", Priority: 20, Height: 3, Value: 35 },
+			{ Name: "PawBoots", Height: 3, Value: 55 },
+			{ Name: "WoollyBootsTall", Height: 9, Value: 95 }
 		]
 	},
 
@@ -217,7 +225,7 @@ var AssetFemale3DCG = [
 		Color: ["#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
 		Left: 75,
 		Top: 275,
-		Asset: ["Gloves1", "Gloves2", { Name: "MistressGloves", Value: -1 }]
+		Asset: ["Gloves1", "Gloves2", { Name: "MistressGloves", Value: -1 }, { Name: "FingerlessGloves", Value: 60 }]
 	},
 
 	{
@@ -753,13 +761,15 @@ var AssetFemale3DCG = [
 			{ Name: "LeatherCollar", Value: 40, Time: 5, Difficulty: 50, AllowLock: true },
 			{ Name: "LeatherCollarBell", Value: 40, Time: 5, Difficulty: 50, AllowLock: true },
 			{ Name: "LeatherCollarBow", Value: 40, Time: 5, Difficulty: 50, AllowLock: true },
-			{ Name: "SlaveCollar", Random: false, Effect: ["Lock"], OwnerOnly: true, Extended: true, Enable: false, Value: -1, Time: 5, Difficulty: 50, AllowType: ["SteelPosture", "LeatherPosture"] },
+			{ Name: "SlaveCollar", Random: false, Effect: ["Lock"], OwnerOnly: true, Extended: true, Enable: false, Value: -1, Time: 5, Difficulty: 50, AllowType: ["SteelPosture", "LeatherPosture", "PetCollar"] },
 			{ Name: "ClubSlaveCollar", Random: false, Effect: ["Lock"], Enable: false, Value: -1, Time: 5, Difficulty: 50, ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 15 }] },
 			{ Name: "ShockCollar", Random: false, Extended: true, Effect: ["ReceiveShock"], BuyGroup: "ShockCollar", Value: 250, Time: 15, Difficulty: 50, AllowLock: true, ExpressionTrigger: [{ Group: "Eyebrows", Name: "Soft", Timer: 10 }] },
 			{ Name: "ShockCollarRemote", Random: false, Wear: false, Effect: ["TriggerShock"], BuyGroup: "ShockCollar", Value: -1, ExpressionTrigger: [{ Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Blush", Name: "Soft", Timer: 15 }, { Group: "Eyes", Name: "Closed", Timer: 5 }] },
 			{ Name: "BatCollar", Value: 40, Time: 5, Difficulty: 50, AllowLock: true },
 			{ Name: "PostureCollar", Value: 40, Time: 5, Difficulty: 50, AllowLock: true },
-			{ Name: "SteelPostureCollar", Value: 40, Time: 5, Difficulty: 50, AllowLock: true }
+			{ Name: "SteelPostureCollar", Value: 40, Time: 5, Difficulty: 50, AllowLock: true },
+			{ Name: "LeatherChoker", Value: 40, Time: 5, Difficulty: 50, AllowLock: true },
+			{ Name: "PetCollar", Time: 5, Difficulty: 50, AllowLock: true }
 		]
 	},
 
@@ -831,6 +841,7 @@ var AssetFemale3DCG = [
 			{ Name: "KittenHarnessPanelGag", DefaultColor: "#A0A0A0", Effect: ["GagHeavy"], Difficulty: 6, Value: 80, Time: 20, AllowLock: true },
 			{ Name: "CarrotGag", Effect: ["GagHeavy"], Random: false, Value: 50, Time: 15 },
 			{ Name: "MuzzleGag", DefaultColor: "#404040", Difficulty: 6, Value: 70, Time: 20, AllowLock: true },
+			{ Name: "BoneGag", Difficulty: 6, Value: 70, Time: 10, Effect: ["GagNormal"], AllowLock: true },
 			{ Name: "RegularSleepingPill", Enable: false, Wear: false, Value: -1, Bonus: [{ Type: "KidnapSneakiness", Factor: 3 }] },
 			{ Name: "PantiesMask", Effect: [], Random: false, Value: 20, Time: 15 },
 			{
