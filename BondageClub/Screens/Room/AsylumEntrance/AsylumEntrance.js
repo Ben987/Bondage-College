@@ -2,6 +2,9 @@
 var AsylumEntranceBackground = "AsylumEntrance";
 var AsylumEntranceNurse = null;
 var AsylumEntranceKidnapNurse = null;
+var AsylumEntranceEscapedPatient = null;
+var AsylumEntranceEscapedPatientWillBribe = false;
+var AsylumEntranceEscapedPatientWillJoin = false;
 
 // Returns TRUE if specific dialog conditions are met
 function AsylumEntranceCanWander() { return (Player.CanWalk() && ((LogValue("Committed", "Asylum") >= CurrentTime) || ((ReputationGet("Asylum") >= 1) && AsylumEntranceIsWearingNurseClothes(Player)))) }
@@ -10,6 +13,7 @@ function AsylumEntranceCanKiss() { return (Player.CanTalk() && CurrentCharacter.
 
 // Loads the room and generates the nurse
 function AsylumEntranceLoad() {
+	AsylumEntranceBackground = "AsylumEntrance";
 	if (AsylumEntranceNurse == null) {
 		AsylumEntranceNurse = CharacterLoadNPC("NPC_AsylumEntrance_Nurse");
 		AsylumEntranceWearNurseClothes(AsylumEntranceNurse);
@@ -255,4 +259,74 @@ function AsylumEntranceBackAsPatient() {
 	AsylumEntranceWearPatientClothes("Player");
 	CharacterRelease(AsylumEntranceNurse);
 	AsylumEntranceWearNurseClothes(AsylumEntranceNurse);
+}
+
+// When the player meets an escaped patient as a nurse
+function AsylumEntranceEscapedPatientMeet() {
+	CommonSetScreen("Room", "AsylumEntrance");
+	AsylumEntranceBackground = "MainHall";
+	AsylumEntranceEscapedPatient = null;
+	CharacterDelete("NPC_AsylumEntrance_EscapedPatient");	
+	AsylumEntranceEscapedPatient = CharacterLoadNPC("NPC_AsylumEntrance_EscapedPatient");	
+	AsylumEntranceWearPatientClothes(AsylumEntranceEscapedPatient);
+	AsylumEntranceEscapedPatient.Stage = "0";
+	AsylumEntranceEscapedPatient.CurrentDialog = DialogFind(AsylumEntranceEscapedPatient, "Intro" + (Math.floor(Math.random() * 3)).toString());
+	AsylumEntranceEscapedPatient.AllowItem = false;
+	AsylumEntranceEscapedPatientWillBribe = (Math.random() > 0.667);
+	AsylumEntranceEscapedPatientWillJoin = ((Math.random() > 0.667) && AsylumEntranceCanTransferToRoom());
+	CharacterSetCurrent(AsylumEntranceEscapedPatient);
+}
+
+// When the player starts a fight against the escaped patient
+function AsylumEntranceEscapedPatientFight() {
+	DialogChangeReputation("Asylum", 2);
+	DialogChangeReputation("Dominant", 2);
+	KidnapStart(AsylumEntranceEscapedPatient, "MainHallDark", 4, "AsylumEntranceEscapedPatientFightOutro()");
+}
+
+// When the player fight ends against the escaped patient
+function AsylumEntranceEscapedPatientFightOutro(Surrender) {
+	CommonSetScreen("Room", "AsylumEntrance");
+	AsylumEntranceBackground = "MainHall";
+	SkillProgress("Willpower", ((Player.KidnapMaxWillpower - Player.KidnapWillpower) + (AsylumEntranceEscapedPatient.KidnapMaxWillpower - AsylumEntranceEscapedPatient.KidnapWillpower)) * 2);
+	if ((Surrender != null) && Surrender) DialogChangeReputation("Dominant", -3);
+	AsylumEntranceEscapedPatient.Stage = (KidnapVictory) ? "100" : "200";
+	if (!KidnapVictory) CharacterRelease(AsylumEntranceEscapedPatient);
+	InventoryRemove(Player, "ItemMouth");
+	InventoryRemove(AsylumEntranceEscapedPatient, "ItemMouth");
+	CharacterSetCurrent(AsylumEntranceEscapedPatient);
+	AsylumEntranceEscapedPatient.CurrentDialog = DialogFind(AsylumEntranceEscapedPatient, ((KidnapVictory) ? "Victory" : "Defeat"));
+}
+
+// When the player gets bribed by a patient
+function AsylumEntranceEscapedPatientBribe() {
+	CharacterChangeMoney(Player, 5);
+	DialogChangeReputation("Asylum", -1);
+}
+
+// When the player transfers a patient to her room
+function AsylumEntranceEscapedPatientTransferToRoom() {
+	AsylumEntranceWearPatientClothes(AsylumEntranceEscapedPatient);
+	CharacterRelease(Player);
+	CommonSetScreen("Room", "Private");
+	PrivateAddCharacter(AsylumEntranceEscapedPatient, "Patient");
+	DialogLeave();
+}
+
+// When the player brings back an escaped patient to the asylum
+function AsylumEntranceEscapedPatientTransferToAsylum() {
+	AsylumEntranceBackground = "AsylumEntrance";
+	CharacterChangeMoney(Player, 15);
+	DialogChangeReputation("Asylum", 4);
+	CharacterRelease(AsylumEntranceEscapedPatient);
+	AsylumEntranceWearPatientClothes(AsylumEntranceEscapedPatient);
+	InventoryWear(AsylumEntranceEscapedPatient, "StraitJacket", "ItemArms");
+	InventoryWear(AsylumEntranceEscapedPatient, "SmallBlindfold", "ItemHead");
+	InventoryWear(AsylumEntranceEscapedPatient, "MuzzleGag", "ItemMouth");
+}
+
+// When the player leaves the escaped patient
+function AsylumEntranceEscapedPatientLeave() {
+	CommonSetScreen("Room", "MainHall");
+	DialogLeave();
 }

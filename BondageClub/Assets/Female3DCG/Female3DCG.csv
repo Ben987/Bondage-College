@@ -18,6 +18,8 @@ Cloth,AdultBabyDress3,Flower Baby dress
 Cloth,NurseUniform,Nurse Uniform
 Cloth,BunnyCollarCuffs,Bunny Girl Accessories
 Cloth,Robe1,Robe
+Cloth,FlowerDress,Flower Dress
+Cloth,Dress2,Nomadic Dress
 ClothLower,,Bottom
 ClothLower,Skirt1,Skirt
 ClothLower,TennisSkirt1,Tennis
@@ -53,6 +55,7 @@ Panties,Panties15,Thong
 Panties,Bikini1,Frilled Bikini
 Panties,Diapers1,Diapers
 Socks,,Socks
+Socks,Socks0,Ankle
 Socks,Socks1,Short
 Socks,Socks2,Regular
 Socks,Socks3,Middle Leg
@@ -74,6 +77,9 @@ Shoes,Heels2,Heels Strap
 Shoes,Boots1,Boots
 Shoes,MistressBoots,Mistress Boots
 Shoes,PonyBoots,Pony Boots
+Shoes,Sandals,Strap Sandals
+Shoes,PawBoots,Paw Boots
+Shoes,WoollyBootsTall,Woolly Boots
 Hat,,Hat
 Hat,Band1,Hair Band
 Hat,Beret1,Beret
@@ -85,6 +91,7 @@ Hat,Santa1,Santa Hat
 Hat,CaptainHat1,Captain's Hat
 Hat,BunnySuccubus2,Bunny Succubus 
 Hat,HairFlower1, Flower
+Hat,WitchHat1, Witch Hat
 HairAccessory,,Hair Accessory
 HairAccessory,Ears1,Ears Small
 HairAccessory,Ears2,Ears Large
@@ -103,6 +110,7 @@ Gloves,,Gloves
 Gloves,Gloves1,Short Gloves
 Gloves,Gloves2,Long Gloves
 Gloves,MistressGloves,Mistress Gloves
+Gloves,FingerlessGloves,Fingerless Gloves
 Glasses,,Glasses
 Glasses,Glasses1,Style 1
 Glasses,Glasses2,Style 2
@@ -114,6 +122,7 @@ Glasses,SunGlasses1,Sunglasses 1
 Glasses,SunGlasses2,Sunglasses 2
 Glasses,Mask1,Venetian Mask
 Glasses,Mask2,Domino Mask
+Glasses,ButterflyMask1,Butterfly Mask
 TailStraps,,Tail Strap
 TailStraps,TailStrap,Kitty Tail Strap
 TailStraps,HorseTailStrap,Horse Tail Strap
@@ -302,7 +311,9 @@ ItemNeck,ShockCollar,Shock Collar
 ItemNeck,ShockCollarRemote,Shock Collar Remote
 ItemNeck,BatCollar,Bat Collar
 ItemNeck,PostureCollar,Posture Collar
-ItemNeck,SteelPostureCollar,Steel Posture Collar
+ItemNeck,SteelPostureCollar,Steel Collar
+ItemNeck,LeatherChoker,Leather Choker
+ItemNeck,PetCollar,Pet Collar
 ItemNeckAccessories,,Collar
 ItemNeckAccessories,CollarBell,Bell
 ItemNeckAccessories,CollarBow,Bow
@@ -329,6 +340,7 @@ ItemMouth,KittyGag,Kitty Mask Gag
 ItemMouth,KittenHarnessPanelGag,Kitty Harness Gag
 ItemMouth,CarrotGag,Rubber Carrot Gag
 ItemMouth,MuzzleGag,Muzzle Gag
+ItemMouth,BoneGag,Bone Gag
 ItemMouth,RegularSleepingPill,Sleeping Pill
 ItemMouth,PantiesMask,Panties Mask
 ItemMouth,PlugGag,Plug Gag
