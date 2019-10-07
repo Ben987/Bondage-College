@@ -121,7 +121,8 @@ var AssetFemale3DCG = [
 			{ Name: "Panties14", Value: 10, HideItem: ["ItemVulvaVibratingDildo"] },
 			{ Name: "Panties15", Value: 10, HideItem: ["ItemVulvaVibratingDildo"] },
 			{ Name: "Bikini1", Value: 25, HideItem: ["ItemVulvaVibratingDildo"] },
-			{ Name: "Diapers1", Value: 50, HideItem: ["ItemVulvaVibratingDildo"] }
+			{ Name: "Diapers1", Value: 50, HideItem: ["ItemVulvaVibratingDildo"] },
+			{ Name: "Panties16", Value: 15, HideItem: ["ItemVulvaVibratingDildo"] }
 		]
 	},
 
@@ -140,7 +141,14 @@ var AssetFemale3DCG = [
 			"Socks0", "Socks1", "Socks2", "Socks3", "Socks4", "Socks5", "Stockings1", "Stockings2",
 			{ Name: "Stockings3", Value: 10 },
 			{ Name: "Stockings4", Value: 10 },
-			{ Name: "Pantyhose1", Value: 10, Priority: 16, Block: ["ItemVulva", "ItemButt"], HideItem: ["ItemVulvaVibratingDildo"] }
+			{ Name: "Pantyhose1", Value: 10, Priority: 16, Block: ["ItemVulva", "ItemButt"], HideItem: ["ItemVulvaVibratingDildo"] },
+			{
+			    Name: "Socks6", Value: 25, HideItem: ["ItemVulvaVibratingDildo"],
+				Layer: [
+					{ Name: "Sock", AllowColorize: true },
+					{ Name: "Frill", AllowColorize: false }
+				]
+			}
 		]
 	},
 
@@ -327,7 +335,7 @@ var AssetFemale3DCG = [
 		AllowPose: ["Suspension"],
 		Left: 50,
 		Top: 0,
-		Asset: ["HairNone", "HairBack1", "HairBack2", "HairBack4", "HairBack10", "HairBack14", "HairBack15", "HairBack16", "HairBack17", "HairBack18", "HairBack19"]
+		Asset: ["HairNone", "HairBack1", "HairBack2", "HairBack4", "HairBack10", "HairBack14", "HairBack15", "HairBack16", "HairBack17", "HairBack18", "HairBack19", "HairBack20"]
 	},
 
 	{
