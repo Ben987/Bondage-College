@@ -539,7 +539,9 @@ function DialogItemClick(ClickItem) {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	var CurrentItem = InventoryGet(C, C.FocusGroup.Name);
 
+	// permission mode allow/block items
 	if (C.ID == 0 && DialogItemPermissionMode) {
+		if (CurrentItem && (CurrentItem.Asset.Name = ClickItem.Asset.Name)) return;
 		if (Player.BlockItems.some(B => B.Name == ClickItem.Asset.Name && B.Group == ClickItem.Asset.Group.Name)) {
 			Player.BlockItems = Player.BlockItems.filter(B => B.Name != ClickItem.Asset.Name || B.Group != ClickItem.Asset.Group.Name);
 		} else {
