@@ -1,18 +1,38 @@
 ###_NPC
+picks a glass of water from DialogCharacterName tray.
+nimmt sich ein Glas Wasser von DialogCharacterName Servierplatte.
+picks an orange juice from DialogCharacterName tray.
+nimmt sich einen Orangensaft von DialogCharacterName Servierplatte.
 picks a beer from DialogCharacterName tray.
 nimmt sich ein Bier von DialogCharacterName Servierplatte.
 picks a glass of wine from DialogCharacterName tray.
 nimmt sich ein Glas Wein von DialogCharacterName Servierplatte.
-picks a Margarita from DialogCharacterName tray.
-nimmt sich einen Margarita von DialogCharacterName Servierplatte.
+buys a Virgin Mojito from DialogCharacterName tray.
+kauft einen Virgin von DialogCharacterName Servierplatte.
+buys a Margarita from DialogCharacterName tray.
+kauft einen Margarita von DialogCharacterName Servierplatte.
 buys a glass of Whiskey from DialogCharacterName.
 kauft ein Glas Whiskey von DialogCharacterName.
 buys a glass of champagne from DialogCharacterName.
 kauft ein Glas Champagner von DialogCharacterName.
+buys a jug of refreshing lemonade for everyone, from DialogCharacterName.
+kauft von DialogCharacterName einen Krug erfrischende Limonade für alle.
 buys a round of shooters for everyone, from DialogCharacterName.
 gibt bei DialogCharacterName allen eine Runde aus.
+buys a jug of Sex on the Beach for everyone, from DialogCharacterName.
+kauft von DialogCharacterName einen Krug Sex on the Beach für alle.
 buys a beer pitcher for everyone, from DialogCharacterName.
 kauft von DialogCharacterName einen Krug Bier für alle.
+picks a tea from DialogCharacterName tray.
+nimmt sich einen Tee von DialogCharacterName Servierplatte.
+picks a coffee from DialogCharacterName tray.
+nimmt sich einen Kaffee von DialogCharacterName Servierplatte.
+buys a hot chocolate from DialogCharacterName tray.
+kauft eine heiße Schokolade von DialogCharacterName Servierplatte.
+buys a expresso from DialogCharacterName tray.
+kauft einen Espresso von DialogCharacterName Servierplatte.
+buys a cappuccino from DialogCharacterName tray.
+kauft einen Cappuccino von DialogCharacterName Servierplatte.
 (You can use or remove items by selecting specific body regions.)
 (Wähle eine Körperregion, um Items zu benutzen oder zu entfernen.)
 (You don't have access to use or remove items on her.)
@@ -116,20 +136,70 @@ kauft von DialogCharacterName einen Krug Bier für alle.
 ###_PLAYER
 (Back to main menu.)
 (Zurück zum Hauptmenü.)
+(Look at free drinks.)
+(Kostenlose Drinks ansehen.)
+###_NPC
+(Free drinks menu.)
+(Kostenlose Drinks.)
+###_PLAYER
+(Look at regular drinks.)
+(Reguläre Drinks ansehen.)
+###_NPC
+(Regular drinks menu.)
+(Reguläre Drinks.)
+###_PLAYER
+(Look at shared drinks.)
+(Gemeinschafts-Drinks ansehen.)
+###_NPC
+(Shared drinks menu.)
+(Gemeinschafts-Drinks.)
+###_PLAYER
+(Look at hot drinks.)
+(Heißgetränke ansehen.)
+###_NPC
+(Hot drinks menu.)
+(Heißgetränke.)
+###_PLAYER
+(Get a free glass of water.)
+(Ein kostenloses Glas Wasser nehmen.)
+(Get a free orange juice.)
+(Einen kostenlosen Orangensaft nehmen.)
 (Get a free beer.)
 (Ein kostenloses Bier nehmen.)
 (Get a free glass of wine.)
 (Ein kostenloses Glas Wein nehmen.)
-(Get a free Margarita.)
-(Einen kostenlosen Margarita nehmen.)
+(Back to drink options.)
+(Zurück zur Getränkeauswahl.)
+###_NPC
+(Drink options.)
+(Getränkeauswahl.)
+###_PLAYER
+(Get a $5 Virgin Mojito.)
+(Einen Virgin Mojito für 5$ kaufen.)
+(Get a $5 Margarita.)
+(Einen Margarita für 5$ kaufen.)
 (Get a 5$ glass of Whiskey.)
 (Ein Glas Whiskey für 5$ kaufen.)
 (Get a 5$ glass of Champagne.)
 (Ein Glas Champagner für 5$ kaufen.)
+(Get a 10$ jug of Sicilian Lemonade for everyone.)
+(Allen für 10$ einen Krug sizilianischer Limonade ausgeben.)
 (Get a 10$ round of shooters for everyone.)
 (Allen für 10$ eine Runde ausgeben.)
+(Get a 10$ jug of Sex on the Beach for everyone.)
+(Allen für 10$ einen Krug Sex on the Beach ausgeben.)
 (Get a 10$ beer pitcher for everyone.)
 (Allen für 10$ einen Krug Bier ausgeben.)
+(Get a free tea.)
+(Einen kostenlosen Tee nehmen.)
+(Get a free coffee.)
+(Einen kostenlosen Kaffee nehmen.)
+(Get a 5$ hot chocolate.)
+(Eine heiße Schokolade für 5$ kaufen.)
+(Get a 5$ expresso.)
+(Einen Espresso für 5$ kaufen.)
+(Get a 5$ cappuccino.)
+(Einen Cappuccino für 5$ kaufen.)
 (Kick her out of the room.)
 (Sie aus dem Raum werfen.)
 (Ban her from the room.)
