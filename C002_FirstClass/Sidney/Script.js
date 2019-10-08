@@ -113,7 +113,7 @@ function C002_FirstClass_Sidney_Click() {
 		CurrentTime = CurrentTime + 60000;
 	}
 
-	// If the stage changed, we remove the Overriden image, also recalculates the Amanda and Sarah variables
+	// If the stage changed, we remove the Overridden image, also recalculates the Amanda and Sarah variables
 	if (EntryStage != C002_FirstClass_Sidney_CurrentStage) OverridenIntroImage = "";
 	C002_FirstClass_Sidney_AmandaSarahVariables();
 

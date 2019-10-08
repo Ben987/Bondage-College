@@ -112,7 +112,7 @@ function C002_FirstClass_Amanda_Click() {
 		CurrentTime = CurrentTime + 60000;
 	}
 	
-	// If the stage changed, we remove the Overriden image, also check for the bondage hug
+	// If the stage changed, we remove the Overridden image, also check for the bondage hug
 	if (EntryStage != C002_FirstClass_Amanda_CurrentStage) OverridenIntroImage = "";
 	C002_FirstClass_Amanda_BondageHugReady = ((C002_FirstClass_Amanda_CurrentStage > 100) && (Common_PlayerNotRestrained) && (Common_PlayerNotGagged) && (C002_FirstClass_Classroom_MildredSubdueSuccess) && (ActorSpecificHasInventory("Amanda", "Rope")) && (ActorSpecificHasInventory("Sarah", "Rope")));
 

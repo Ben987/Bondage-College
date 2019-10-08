@@ -349,7 +349,7 @@ function C101_KinbakuClub_SlaveTwin_LucyCheck() {
 	if (ActorGetValue(ActorName) == "Heather" && ActorGetValue(ActorHideName) == false) C101_KinbakuClub_SlaveTwin_CurrentStage = 100;
 }
 
-// Chapter 101 - SlaveTwin - Free twins arms and she will remove everything else appart from the manacels
+// Chapter 101 - SlaveTwin - Free twins arms and she will remove everything else apart from the manacles
 function C101_KinbakuClub_SlaveTwin_AlmostFreed() {
 	if (ActorHasInventory("Cuffs") || ActorHasInventory("Manacles")) {
 		if (ActorHasInventory("Cuffs")) OverridenIntroText = GetText("CuffsNeedKey");

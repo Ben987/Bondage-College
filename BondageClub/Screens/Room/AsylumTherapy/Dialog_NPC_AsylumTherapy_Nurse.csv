@@ -1,0 +1,23 @@
+PlayerGagged,,,"Patient DialogPlayerName, you'll need to get that gag off if you want to be understood.",,
+0,,,"Welcome patient DialogPlayerName.   The therapy room is ready for you, as usual.",,"DialogReputationLess(""Asylum"", -100)"
+0,,,Hello patient DialogPlayerName.   Are you here to receive another treatment?,,"DialogReputationLess(""Asylum"", -50)"
+0,,,Hello there.   Are you here for a therapy?,,
+0,,Who are you?,"I'm nurse DialogCharacterName, I provide the patient therapies today.",,
+0,10,Tell me of the therapies.,Absolutely.  What would you like to know?,,
+0,30,I'd like to get a therapy.,(She grins.)  This is great.  And what kind of treatment are you looking for?,,
+0,,(Struggle in your restraints.),I'm not allowed to release you.  But you can receive treatments while being restrained.,,Player.IsRestrained()
+0,20,(Mumble in the gag.),Poor patient.  You need help with that gag?,,!Player.CanTalk()
+0,,I must go.  (Leave her.),,DialogLeave(),
+10,,What kind of therapies are available?,"We offer four kinds of therapies: bondage, pain, tickle & orgasm.",,
+10,,Tell me about bondage therapies.,Some patients gets claustrophobic and panic when restrained.  This therapy helps them to relax and appreciate the restraints.,,
+10,,Tell me about pain therapies.,"If pain haunts you or makes you cringe, we have a specific therapy to help you cope with it and grow stronger.",,
+10,,Tell me about tickle therapies.,"The tickling therapy is about accepting your submissive fate and losing control of your body, to please your owner.",,
+10,,Tell me about orgasm therapies.,Many submissive cannot control their body and orgasms.  This therapy helps them with sexual self-control.,,
+10,0,Thanks for the info.,My pleasure.  Are you ready for your treatment?,,
+20,0,(Nod and whimper.),Here you go little patient.  (She removes your gag.),PlayerUngag(),
+20,0,(Shake your head no.),"Stay gagged then, you're cute like that.  (She laughs.)",,
+30,,I'll take the bondage therapy.,TO DO,,
+30,,I'll take the pain therapy.,TO DO,,
+30,,I'll take the tickle therapy.,TO DO,,
+30,,I'll take the orgasm therapy.,TO DO,,
+30,0,I've changed my mind.,Very well.  Is there anything else you need?,,

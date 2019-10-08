@@ -5,10 +5,18 @@ Gesegnet sei, wer nichts zu sagen hat und daher schweigt.
 (Sie schüttelt den Kopf, aber du schaffst es, sie mit einem Knebel zum Schweigen zu bringen.)
 (You remove her gag and she stretches her mouth.)  "Thanks,  that was getting uncomfortable."
 (Du nimmst ihren Knebel ab und sie streckt ihren Mund.) Danke, das wurde langsam unangenehm.
+(You push some earplugs into place.) Oh everything is so muffled hehe.
+(Du steckst ihr ein Paar Ohrstöpsel hinein.) Oh, jetzt ist alles so gedämpft, hihi.
+(You pull the earplugs out.) Oh i can hear you clearly again.
+(Du ziehst die Ohrstöpsel heraus.) Oh, ich kann dich wieder klar hören.
 (She grumbles but complies as you restrain her arms.)  How can I roll the dice like this?
 (Sie grummelt, lässt dich aber ihre Arme fesseln.) Wie soll ich denn jetzt würfeln?
 (You free her arms and she gives you a thumbs up.)  That's better, thanks!.
 (Du befreist ihre Arme und sie zeigt dir einen Daumen nach oben.) So ist es besser, danke!
+(She sighs and lets you restrain her hands.) Am not going be able to throw dice like this.
+(Sie seufzt und lässt sich von dir ihre Hände fesseln.) So werde ich keine Würfel benutzen können.
+(You slowly release her hands.)  That's more better thanks
+(Du befreist langsam ihre Hände.) Das ist besser, danke.
 (She looks down as you restrain her legs securely.)  I'm not going anywhere anyway.
 (Sie schaut herab, als du ihre Beine fest zusammenbindest.) Ich wollte sowieso nirgendwo hin.
 (You release her legs from the restraint.)  You're quite good with restraints Miss.
@@ -29,7 +37,7 @@ Gesegnet sei, wer nichts zu sagen hat und daher schweigt.
 (Sie schüttelt den Kopf, als du es ihr umschnallst.) Au! Du hast meinen Tag ganz schön furchtbar gemacht.
 (You remove the device and she nods rapidly.)  Thanks a million, this is much better.
 (Du nimmst das Ding ab und sie nickt energisch.) Tausend Dank, das ist viel besser.
-(She trembles of painas you whip her breast.) This is a gambling hall no torture chamber.
+(She trembles of pain as you whip her breast.) This is a gambling hall no torture chamber.
 (Sie zittert vor Schmerz, als du ihre Brust auspeitscht.) Das hier ist die Spielhalle, nicht die Folterkammer.
 (You swing the crop on her torso as she moans.) Oh, that's not a game anymore.
 (Du schwingst die Gerte auf ihren Körper und sie stöhnt.) Oh, das ist jetzt kein Spiel mehr.
@@ -87,7 +95,7 @@ Möchtest du Fuchs oder Jäger sein?
 Let's play Street to Roissy.
 Spielen wir Straße nach Roissy.
 ###_NPC
-Ok, you're on.
+OK, you're on.
 Okay, los geht's.
 ###_PLAYER
 Let's play Dare Six.
@@ -140,7 +148,7 @@ What are the rules of Catch the Fox?
 Was sind die Regeln für Fang den Fuchs?
 ###_NPC
 One player is the fox, the other is the hunter. The hunter pays a hunting lease of 10$. 
-Ein Spieler ist der Fuchs, der andere ist der Jäger. Der Jäger zahlt eine Jagdgebühr von 10$. 
+Ein Spieler ist der Fuchs, der andere ist der Jäger. Der Jäger zahlt eine Jagdgebühr von 10$.
 ###_PLAYER
 What are the rules of Street to Roissy?
 Was sind die Regeln für Straße nach Roissy?
@@ -157,7 +165,7 @@ In jeder Runde würfelst du so oft du willst und zählst die Punkte zusammen.
 I have another question.
 Ich habe noch eine Frage.
 ###_NPC
-Ok, go ahead.
+OK, go ahead.
 Okay, raus damit.
 ###_PLAYER
 (Listen.)
@@ -222,7 +230,7 @@ Wer zuerst 6 Runden verliert, ist der Verlierer des ganzen Spiels.
 (Nicken.)
 ###_NPC
 Are you ready to pay 25$? 
-Bist du bereit, 25 dafür zu zahlen$? 
+Bist du bereit, 25$ dafür zu zahlen?
 ###_PLAYER
 Yes, can you release me?
 Ja, kannst du mich befreien?

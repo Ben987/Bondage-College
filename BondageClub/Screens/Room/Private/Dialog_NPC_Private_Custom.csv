@@ -1006,6 +1006,10 @@ PunishCell,1000,It's fair Mistress.  (Go to the cell.),,RunPunishment(1),,,
 2010,2050,Have you visited the slave market?,"(She frowns.)  I know that some owner sells their slaves on the market.  But our relationship is stronger than that, isn't it?",NPCInteraction(-4),CanSellSlave(),SubSlaveMarket,Serious
 2010,2050,Have you visited the slave market?,(She nods.)  Yes!  I've seen some slaves on display there.  It must be quite a thrill.,,CanSellSlave(),SubSlaveMarket,Playful
 2010,,Have you visited the slave market?,"(She pouts.)  Don't you dare try to sell me!  Kick me out instead, I'm not happy in here anyway.",NPCInteraction(-5),CannotSellSlave(),,
+2010,2060,You need to improve yourself.,Improve myself?  You want to change me Mistress?,,,SubStartImprove,
+2010,2060,You need to improve yourself.,Changing oneself isn't an easy endeavor.   How could I please you more Mistress?,,,SubStartImprove,Serious|Polite
+2010,2060,You need to improve yourself.,What the hell?  You wanna change your horny slut Mistress?,,,SubStartImprove,Horny|Rude
+2010,2060,You need to improve yourself.,Just beat me up until I'm perfect.  Is that your plan?,,,SubStartImprove,Violent|Dumb
 2010,2030,You should go.,Mistress?  You want me to leave now?  This is the end between us?,,,SubKickOut,
 2010,2030,You should go.,Is the bell tolling on our relationship Mistress?  Is this the end of the epic tale that we've shared?,,,SubKickOut,Wise|Polite
 2010,2030,You should go.,What the fuck?  You're kicking me out?  It's the end?,,,SubKickOut,Rude|Dumb
@@ -1063,6 +1067,40 @@ PunishCell,1000,It's fair Mistress.  (Go to the cell.),,RunPunishment(1),,,
 2055,2056,Yes.  I will sell and release you.,(She shrugs.)  I guess it was a fun ride while it lasted.  I'm sure I'll find a good owner.,,,SubSlaveMarketSellStart,Playful
 2055,2010,No.  Let's forget it.,You had me really worried Mistress.  Is there anything else you'd like to talk about?,NPCInteraction(-10),,,
 2056,2000,(Sell her at the slave market.),,"SlaveMarketStart(""Sell"")",,,
+2060,2061,I want to change your submissiveness.,(She seems curious.)  Change it how Mistress?,,,,
+2060,2062,I want to adjust your pain threshold.,(She seems curious.)  Adjust it how Mistress?,,,,
+2060,2063,I want to manage your horniness.,(She seems curious.)  Manage it how Mistress?,,,,
+2060,2064,I want to change your language.,(She seems curious.)  Change it how Mistress?,,,,
+2060,2065,I want to adjust your wit.,(She seems curious.)  Adjust it how Mistress?,,,,
+2060,2066,I want to alter your seriousness.,(She seems curious.)  Alter it how Mistress?,,,,
+2060,2010,Forget it.,Alright.  Anything else?,,,,
+2061,2067,You need to become more dominant.,I'm surprised to hear that.  But how can I truly change?,"SlaveImproveSelect(""Dominant"")",,,
+2061,2067,You need to become more submissive.,Yes Mistress.  But how can I truly change?,"SlaveImproveSelect(""Submissive"")",,,
+2061,2010,Forget it.,Alright.  Anything else?,,,,
+2062,2067,You need to become more violent.,Alright!  But how can I truly change?,"SlaveImproveSelect(""Violent"")",,,
+2062,2067,You need to become more peaceful.,Very well Mistress.  But how can I truly change?,"SlaveImproveSelect(""Peaceful"")",,,
+2062,2010,Forget it.,Alright.  Anything else?,,,,
+2063,2067,You need to become hornier.,Kinky!  But how can I truly change?,"SlaveImproveSelect(""Horny"")",,,
+2063,2067,You need to become more frigid.,Less sex then?  But how can I truly change?,"SlaveImproveSelect(""Frigid"")",,,
+2063,2010,Forget it.,Alright.  Anything else?,,,,
+2064,2067,You need to become ruder.,Wow!  But how can I truly change?,"SlaveImproveSelect(""Rude"")",,,
+2064,2067,You need to become more polite.,That's a good submissive quality.  But how can I truly change?,"SlaveImproveSelect(""Polite"")",,,
+2064,2010,Forget it.,Alright.  Anything else?,,,,
+2065,2067,You need to become wiser.,I should hit the books then.  But how can I truly change?,"SlaveImproveSelect(""Wise"")",,,
+2065,2067,You need to become dumber.,Less chess and more candy crush?  How can I truly change?,"SlaveImproveSelect(""Dumb"")",,,
+2065,2010,Forget it.,Alright.  Anything else?,,,,
+2066,2067,You need to become more serious.,(She nods.)  But how can I truly change?,"SlaveImproveSelect(""Serious"")",,,
+2066,2067,You need to become more playful.,Sweet!  But how can I truly change?,"SlaveImproveSelect(""Playful"")",,,
+2066,2010,Forget it.,Alright.  Anything else?,,,,
+2067,2068,The asylum will change you.,"(She nods.)  Yes, they have specific one day treatments.  But there's a 25$ fee, will you pay for it?",,,,
+2067,2068,You'll get therapies at the asylum.,"(She nods.)  Yes, they have specific one day treatments.  But there's a 25$ fee, will you pay for it?",,,,
+2067,2068,They have treatments for that at the asylum.,"(She nods.)  Yes, they have specific one day treatments.  But there's a 25$ fee, will you pay for it?",,,,
+2068,2069,I will pay the 25$.,Alright Mistress.  I will go there right now.  I will be back tomorrow.,,DialogMoneyGreater(25),SubPayImprove,
+2068,2069,I will pay the 25$.,(She nods slowly.)  I will go there and become a better subbie.  I will be back tomorrow.,,DialogMoneyGreater(25),SubPayImprove,Playful|Peaceful
+2068,2069,I will pay the 25$.,I have my doubts but it's worth a try.  I'll go there quickly and be back tomorrow.,,DialogMoneyGreater(25),SubPayImprove,Serious|Violent
+2068,2069,I will pay the 25$.,I'll try to be the best cunt for you.  I'll go there and be back tomorrow.,,DialogMoneyGreater(25),SubPayImprove,Horny|Rude
+2068,2010,Forget it then.,Alright.  Anything else?,,,,
+2069,2000,See you tomorrow!  (Send her to the asylum.),,SlaveImproveSend(),,,
 2100,,,What would you like to do Mistress?,,,,
 2100,,(Tickle her.),"(You tickle her on the ribs and tummy.  She seems to enjoy it and cannot resist laughing.)  Hehehe, it tickles!",,Player.CanInteract(),SubPlayTickle,
 2100,,(Tickle her.),(You tickle her on the ribs and tummy.  She laughs out loud and almost cries.)  Eeeeeaaahahaha!  You're so funnyyyyahaha!,NPCInteraction(1),Player.CanInteract(),SubPlayTickle,Playful|Peaceful

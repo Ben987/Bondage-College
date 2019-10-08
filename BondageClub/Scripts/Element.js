@@ -5,7 +5,7 @@ function ElementValue(ID, Value) {
 	if (document.getElementById(ID) != null)
 		if (Value == null)
 			return document.getElementById(ID).value.trim();
-		else 
+		else
 			document.getElementById(ID).value = Value;
 }
 
@@ -14,7 +14,7 @@ function ElementContent(ID, Content) {
 	if (document.getElementById(ID) != null)
 		if (Content == null)
 			return document.getElementById(ID).innerHTML;
-		else 
+		else
 			document.getElementById(ID).innerHTML = Content;
 }
 
@@ -64,7 +64,7 @@ function ElementRemove(ID) {
 
 // Draw a regular HTML element at a specific position
 function ElementPosition(ElementID, X, Y, W) {
-	
+
 	// Different positions based on the width/height ratio
 	var Font;
 	var Height;
@@ -87,12 +87,12 @@ function ElementPosition(ElementID, X, Y, W) {
 
 	// Sets the element style
 	document.getElementById(ElementID).setAttribute("style", "font-size:" + Font + "px; font-family:Arial; position:absolute; padding-left:10px; left:" + Left + "px; top:" + Top + "px; width:" + Width + "px; height:" + Height + "px;");
-	
+
 }
 
 // Draw a regular HTML element at a specific position
 function ElementPositionFix(ElementID, Font, X, Y, W, H) {
-	
+
 	// Different positions based on the width/height ratio
 	var Left;
 	var Width;
@@ -114,18 +114,22 @@ function ElementPositionFix(ElementID, Font, X, Y, W, H) {
 
 	// Sets the element style
 	document.getElementById(ElementID).setAttribute("style", "font-size:" + Font + "px; font-family:Arial; position:absolute; padding-left:10px; left:" + Left + "px; top:" + Top + "px; width:" + Width + "px; height:" + Height + "px; resize: none;");
-	
+
+}
+
+// Sets a custom data-attribute to a specified value on a specified element
+function ElementSetDataAttribute(ID, Name, Value) {
+	var element = document.getElementById(ID);
+	if (element != null) {
+		element.setAttribute("data-" + Name, Value);
+	}
 }
 
 // Scrolls to the end of a specified element
 function ElementScrollToEnd(ID) {
-	if (document.getElementById(ID) != null) {
-		var element = document.getElementById(ID);
-		element.focus();
-		if (element.value != null)
-			element.selectionStart = element.selectionEnd = element.value.length;
-		else
-			element.scrollTop = element.scrollHeight;
+	var element = document.getElementById(ID);
+	if (element != null) {
+		element.scrollTop = element.scrollHeight;
 	}
 }
 

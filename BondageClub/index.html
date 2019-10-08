@@ -44,6 +44,7 @@
 <script src="Screens/Character/Cheat/Cheat.js"></script>
 <script src="Screens/Character/PasswordReset/PasswordReset.js"></script>
 <script src="Screens/Character/FriendList/FriendList.js"></script>
+<script src="Screens/Character/Title/Title.js"></script>
 <script src="Screens/Room/MainHall/MainHall.js"></script>
 <script src="Screens/Room/Shop/Shop.js"></script>
 <script src="Screens/Room/Introduction/Introduction.js"></script>
@@ -90,10 +91,6 @@
 <script src="Screens/Inventory/ItemNeckAccessories/CollarShockUnit/CollarShockUnit.js"></script>
 <script src="Screens/Inventory/ItemArms/LeatherCuffs/LeatherCuffs.js"></script>
 <script src="Screens/Inventory/ItemArms/StraitJacket/StraitJacket.js"></script>
-<script src="Screens/Inventory/ItemArms/PaddedMittens/PaddedMittens.js"></script>
-<script src="Screens/Inventory/ItemArms/PaddedMittensLocked/PaddedMittensLocked.js"></script>
-<script src="Screens/Inventory/ItemArms/PaddedMittensHarness/PaddedMittensHarness.js"></script>
-<script src="Screens/Inventory/ItemArms/PaddedMittensHarnessLocked/PaddedMittensHarnessLocked.js"></script>
 <script src="Screens/Inventory/ItemArms/DuctTape/DuctTape.js"></script>
 <script src="Screens/Inventory/ItemHands/PaddedMittens/PaddedMittens.js"></script>
 <script src="Screens/Inventory/ItemHands/PawMittens/PawMittens.js"></script>
@@ -112,25 +109,53 @@
 <script src="Screens/Inventory/ItemLegs/LeatherLegCuffs/LeatherLegCuffs.js"></script>
 <script src="Screens/Inventory/ItemFeet/LeatherAnkleCuffs/LeatherAnkleCuffs.js"></script>
 <script src="Screens/Inventory/ItemNeckAccessories/CollarNameTag/CollarNameTag.js"></script>
+<script src="Screens/Inventory/ItemLegs/DuctTape/DuctTape.js"></script>
+<script src="Screens/Inventory/ItemFeet/DuctTape/DuctTape.js"></script>
+<script src="Screens/Inventory/ItemNeck/SlaveCollar/SlaveCollar.js"></script>
+<script src="Screens/Inventory/ItemVulva/VibratingDildo/VibratingDildo.js"></script>
+<script src="Screens/Inventory/ItemButt/VibratingButtplug/VibratingButtplug.js"></script>
 <script>
 
 /*
 	
 	NEXT VERISON:
 
-	BUG - SENT TO SEKKMER - Love Chastity Belt - Adding shield right after adding belt + Code crash
+	OK - Love Chastity Belt - Adding shield right after adding belt + Code crash (Sekkmer)
 	OK - Move left - Move right (MrsHoudini)
+	OK - New HobbleSkirt and Open crotch StraitDress (FeuertinKira)
+	OK - Collar Tag Refactor (Sekkmer)
+	OK - SpankingToys Fixes (Sekkmer)
+	OK - InventoryLock refactor (Sekkmer)
+	OK - IsRestraint based on item, not groups (Sekkmer)
+	OK - Random appearance error - AllowNone (Sekkmer)
+	OK - Legs, wooden horse (Gatetrek)
+	OK - Typo fixes / test proofing (klorpa)
+	OK - DuctTape extension for feet and legs (FeuertinKira)
+	OK - Expanded maid drinks menu (Sociocratic)
+	OK - German translation (Adokilume)
+	OK - New vibrating butt plug and dildo (FeuertinKira)
+	OK - Text cleanup for collar tags (Sekkmer)
+	OK - New color picker for custom slave collar (Sekkmer)
+	OK - 2 new dresses and sandals (Gatetrek)
+	OK - New Witch Hat & Butterfly mask (FeuertinKira + Terenthi)
+	OK - New Ankle Socks (TheGnarp)
+	OK - Leather Choker, Bone Gag, Pet Collar, New Boots, Fingerless gloves (gatetrek + Kirsty)
+	OK - Chat display settings (Adokilume)
+	OK - New Lace Babydoll + Sleeveless Top + Jeans (gatetrek)
+	OK - Padded mittens + Nursery fixes (wildsj)
 
 	Asylum
 	TO DO - Bedroom - The patient can rest on the bed to relax, or be strapped on it for a set time
-	TO DO - Treatment Room - Nurses can give treatments and patients can receive them (shock, tickle, orgasm, etc.), nurses get paid and gain reputation
-	TO DO - Random nurses will try to catch escaped patient and bring them back after a fight
-	TO DO - Escaped patients can be identified on their profile (for multiplayer roleplay), forced title
-	TO DO - Send your sub to the asylum for a while to have their traits changed a little, for a set $ amount
+	IN PROGRESS - Treatment Room - Nurses can give treatments and patients can receive them (shock, tickle, orgasm, etc.), nurses get paid and gain reputation
+	OK - Random nurses will try to catch escaped patient and bring them back after a fight
+	OK - Escaped patients can be identified on their profile (for multiplayer roleplay), forced title
+	OK - Meet random patients if dressed as a nurse, can bring them to room or back to asylum after a fight, earn $ and reputation
+	OK - Send your sub to the asylum for a while to have their traits changed a little, for a set $ amount
 
 	OK - Management - Allow sub to get a new appearance for slave collar
 	OK - Server - Block whispers from players on black list + return an error message to the blacklisted person
-	TO DO - Allow player to choose their favorite title from all available titles (forced title prevails), upload selected title to chatroom for others to see
+	OK - Allow player to choose their favorite title from all available titles (forced title prevails), upload selected title to chatroom for others to see
+	OK - Remove prison option from maid rescue missions
 
 	TO DO - Patreon Import/Update
 	

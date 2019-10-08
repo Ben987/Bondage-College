@@ -50,7 +50,7 @@ function InventoryItemLegsLeatherLegCuffsSetPose(NewPose) {
 		delete DialogFocusItem.Property.Difficulty;
 	} else if(NewPose == "Closed"){
 		DialogFocusItem.Property.SetPose = ["LegsClosed"];
-		DialogFocusItem.Property.Effect = ["Prone", "Freeze"];
+		DialogFocusItem.Property.Effect = ["Prone", "KneelFreeze"];
 		DialogFocusItem.Property.Difficulty = 6;
 	}
 

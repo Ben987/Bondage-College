@@ -40,7 +40,7 @@ function InventoryItemHandsPaddedMittensDraw() {
 //	DrawText(DialogFind(Player, "LeatherCuffsPoseBoth"), 1875, 800, "white", "gray");
 //	DrawText(DialogFind(Player, "CannotUnlockIfElbowBound"), 1500, 900, "white", "gray");
 
-	// Draw the messaage if present
+	// Draw the message if present
 	if (InventoryItemHandsPaddedMittensMsg != null) DrawTextWrap(DialogFind(Player, InventoryItemHandsPaddedMittensMsg), 1100, 850, 800, 160, "White");
 }
 
