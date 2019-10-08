@@ -1,0 +1,13 @@
+PlayerGagged,,,It's strange to hear a gagged nurse.,,
+0,,,Oh my!  The famous doctor DialogPlayerName.  It's an honor.,,"DialogReputationGreater(""Asylum"", 100)"
+0,,,Hello nurse PlayerName.  I've heard about you.,,"DialogReputationGreater(""Asylum"", 50)"
+0,,,Hello nurse.  Are you here for my treatment?,,
+0,,Who are you?,I'm patient DialogCharacterName.  I'm here for my therapy.,,
+0,,(Struggle in your restraints.),This is so weird.  I don't think I'm allowed to help you.,,Player.IsRestrained()
+0,10,It's time for your treatment.,I'm ready nurse DialogPlayerName.  What are we focusing on today?,,!Player.IsRestrained()
+0,,I must go.  (Leave her.),,DialogLeave(),
+10,,You will do bondage therapy.,TO DO,,
+10,,You will do pain therapy.,TO DO,,
+10,,You will do tickle therapy.,TO DO,,
+10,,You will do orgasm therapy.,TO DO,,
+10,0,Let me review your file first.,Of course nurse DialogPlayerName.,,
