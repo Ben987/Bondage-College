@@ -47,7 +47,14 @@ var AssetFemale3DCG = [
 			},
 			{ Name: "Dress2", Value: 100 },
 			{ Name: "LaceBabydoll", Value: 75 },
-			{ Name: "SleevelessTop", Value: 45 }
+			{ Name: "SleevelessTop", Value: 45 },
+			{
+				Name: "DressFur", Value: 150,
+				Layer: [
+					{ Name: "Fabric", AllowColorize: true },
+					{ Name: "Fur", AllowColorize: false }
+				]
+			}
 		]
 	},
 
@@ -140,7 +147,14 @@ var AssetFemale3DCG = [
 			"Socks0", "Socks1", "Socks2", "Socks3", "Socks4", "Socks5", "Stockings1", "Stockings2",
 			{ Name: "Stockings3", Value: 10 },
 			{ Name: "Stockings4", Value: 10 },
-			{ Name: "Pantyhose1", Value: 10, Priority: 16, Block: ["ItemVulva", "ItemButt"], HideItem: ["ItemVulvaVibratingDildo"] }
+			{ Name: "Pantyhose1", Value: 10, Priority: 16, Block: ["ItemVulva", "ItemButt"], HideItem: ["ItemVulvaVibratingDildo"] },
+			{ 
+				Name: "SocksFur", Value: 45,
+				Layer: [
+					{ Name: "Fabric", AllowColorize: true },
+					{ Name: "Fur", AllowColorize: false }
+				]
+			}
 		]
 	},
 
@@ -226,10 +240,21 @@ var AssetFemale3DCG = [
 		Underwear: true,
 		Default: false,
 		AllowPose: ["BackBoxTie", "BackCuffs", "BackElbowTouch"],
-		Color: ["#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
+		Color: ["Default", "#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
 		Left: 75,
 		Top: 275,
-		Asset: ["Gloves1", "Gloves2", { Name: "MistressGloves", Value: -1 }, { Name: "FingerlessGloves", Value: 60 }]
+		Asset: [
+			"Gloves1", "Gloves2",
+			{ Name: "MistressGloves", Value: -1 },
+			{ Name: "FingerlessGloves", Value: 60 },
+			{ 
+				Name: "GlovesFur", Value: 45,
+				Layer: [
+					{ Name: "Fabric", AllowColorize: true },
+					{ Name: "Fur", AllowColorize: false }
+				]
+			}
+		]
 	},
 
 	{

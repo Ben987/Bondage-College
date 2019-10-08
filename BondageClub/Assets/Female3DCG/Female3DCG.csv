@@ -22,6 +22,7 @@ Cloth,FlowerDress,Flower Dress
 Cloth,Dress2,Nomadic Dress
 Cloth,LaceBabydoll,Lace Babydoll
 Cloth,SleevelessTop,Sleeveless Top
+Cloth,DressFur,Dress with Fur
 ClothLower,,Bottom
 ClothLower,Skirt1,Skirt
 ClothLower,TennisSkirt1,Tennis
@@ -69,6 +70,7 @@ Socks,Stockings2,Stockings Light
 Socks,Stockings3,Silky Stockings
 Socks,Stockings4,Fishnet Stockings
 Socks,Pantyhose1,Pantyhose
+Socks,SocksFur,Socks with Fur
 Shoes,,Shoes
 Shoes,Shoes1,Style 1
 Shoes,Shoes2,Style 2
@@ -114,6 +116,7 @@ Gloves,Gloves1,Short Gloves
 Gloves,Gloves2,Long Gloves
 Gloves,MistressGloves,Mistress Gloves
 Gloves,FingerlessGloves,Fingerless Gloves
+Gloves,GlovesFur,Gloves with Fur
 Glasses,,Glasses
 Glasses,Glasses1,Style 1
 Glasses,Glasses2,Style 2
