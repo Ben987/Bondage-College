@@ -117,15 +117,19 @@ function ElementPositionFix(ElementID, Font, X, Y, W, H) {
 
 }
 
+// Sets a custom data-attribute to a specified value on a specified element
+function ElementSetDataAttribute(ID, Name, Value) {
+	var element = document.getElementById(ID);
+	if (element != null) {
+		element.setAttribute("data-" + Name, Value);
+	}
+}
+
 // Scrolls to the end of a specified element
 function ElementScrollToEnd(ID) {
-	if (document.getElementById(ID) != null) {
-		var element = document.getElementById(ID);
-		element.focus();
-		if (element.value != null)
-			element.selectionStart = element.selectionEnd = element.value.length;
-		else
-			element.scrollTop = element.scrollHeight;
+	var element = document.getElementById(ID);
+	if (element != null) {
+		element.scrollTop = element.scrollHeight;
 	}
 }
 
