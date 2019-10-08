@@ -154,6 +154,7 @@ function DialogLeaveItemMenu() {
 	DialogProgress = -1;
 	DialogColor = null;
 	DialogMenuButton = [];
+	DialogItemPermissionMode = false;
 	ElementRemove("InputColor");
 }
 
@@ -211,7 +212,8 @@ function DialogMenuButtonBuild(C) {
 	}
 
 	if (C.ID == 0) {
-		DialogMenuButton.push("Permission");
+		if (DialogItemPermissionMode) DialogMenuButton.push("DialogNormalMode");
+		else DialogMenuButton.push("DialogPermissionMode");
 	}
 }
 
@@ -474,6 +476,17 @@ function DialogMenuButtonClick() {
 				return;
 			}
 
+			if (DialogMenuButton[I] == "DialogPermissionMode") {
+				DialogItemPermissionMode = true;
+				DialogMenuButtonBuild(C);
+				return;
+			}
+
+			if (DialogMenuButton[I] == "DialogNormalMode") {
+				DialogItemPermissionMode = false;
+				DialogMenuButtonBuild(C);
+				return;
+			}
 		}
 
 }

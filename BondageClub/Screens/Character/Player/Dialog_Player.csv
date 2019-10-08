@@ -18,6 +18,8 @@ Lock,,,Use a lock
 Unlock,,,Unlock the item
 InspectLock,,,Inspect the lock
 Remote,,,Use your remote
+DialogNormalMode,,,Exit Permission Mode
+DialogPermissionMode,,,Edit Item Permissions
 ButtPump,,,Use the Butt Plug's pump
 ColorPick,,,Color of next item
 ColorSelect,,,Use this color
