@@ -62,6 +62,7 @@ ItemPelvisLeatherCrop,,,(You lash the leather crop pretty hard on her butt.)  Da
 34,31,Can I try again?,Alright.  Let me find an item to promote.  (She checks on the shelves for an item to use on you.),,Player.CanInteract()
 34,,Can you help me out?,"I don't have time, there's too many customers.  Go find a maid if you can't struggle out.",DialogRemove(),!Player.CanInteract()
 100,,Regular clothes or outfits.,,"Start(""Cloth"")",
+100,,Show me your pants or skirts.,,"Start(""ClothLower"")",
 100,,Hats or head accessories.,,"Start(""Hat"")",
 100,,Do you have glasses?,,"Start(""Glasses"")",
 100,,Show me your gloves.,,"Start(""Gloves"")",

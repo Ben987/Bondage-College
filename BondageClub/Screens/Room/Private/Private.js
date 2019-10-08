@@ -15,6 +15,7 @@ var PrivateActivityTarget = null;
 var PrivatePunishment = "";
 var PrivatePunishmentList = ["Cage", "Bound", "BoundPet", "ChastityBelt", "ChastityBra", "ForceNaked", "ConfiscateKey", "ConfiscateCrop", "ConfiscateWhip", "SleepCage", "LockOut", "Cell"];
 var PrivateCharacterNewClothes = null;
+var PrivateSlaveImproveType = "";
 
 // Returns TRUE if a specific dialog option is allowed
 function PrivateIsCaged() { return (CurrentCharacter.Cage == null) ? false : true }
@@ -98,14 +99,25 @@ function PrivateDrawCharacter() {
 		// If the character is rent, she won't show in the room but her slot is still taken
 		if (NPCEventGet(PrivateCharacter[C], "SlaveMarketRent") <= CurrentTime) {
 
-			// Draw the NPC and the cage if needed
-			if (PrivateCharacter[C].Cage != null) DrawImage("Screens/Room/Private/CageBack.png", X + (C - PrivateCharacterOffset) * 470, 0);
-			DrawCharacter(PrivateCharacter[C], X + (C - PrivateCharacterOffset) * 470, 0, 1);
-			if (PrivateCharacter[C].Cage != null) DrawImage("Screens/Room/Private/CageFront.png", X + (C - PrivateCharacterOffset) * 470, 0);
-			if (LogQuery("Cage", "PrivateRoom") && !LogQuery("BlockCage", "Rule"))
-				if ((Player.Cage == null) || (C == 0))
-					if (!PrivateCharacter[C].IsOwner())
-						DrawButton(X + 205 + (C - PrivateCharacterOffset) * 470, 900, 90, 90, "", "White", "Icons/Cage.png");
+			// If the character is sent to the asylum, she won't show in the room but her slot is still taken
+			if (NPCEventGet(PrivateCharacter[C], "AsylumSent") <= CurrentTime) {
+		
+				// Draw the NPC and the cage if needed
+				if (PrivateCharacter[C].Cage != null) DrawImage("Screens/Room/Private/CageBack.png", X + (C - PrivateCharacterOffset) * 470, 0);
+				DrawCharacter(PrivateCharacter[C], X + (C - PrivateCharacterOffset) * 470, 0, 1);
+				if (PrivateCharacter[C].Cage != null) DrawImage("Screens/Room/Private/CageFront.png", X + (C - PrivateCharacterOffset) * 470, 0);
+				if (LogQuery("Cage", "PrivateRoom") && !LogQuery("BlockCage", "Rule"))
+					if ((Player.Cage == null) || (C == 0))
+						if (!PrivateCharacter[C].IsOwner())
+							DrawButton(X + 205 + (C - PrivateCharacterOffset) * 470, 900, 90, 90, "", "White", "Icons/Cage.png");
+
+			} else {
+
+				// Draw the "X on rental for a day" text
+				DrawText(PrivateCharacter[C].Name, X + 235 + (C - PrivateCharacterOffset) * 470, 420, "White", "Black");
+				DrawText(TextGet("AsylumDay"), X + 235 + (C - PrivateCharacterOffset) * 470, 500, "White", "Black");
+
+			}
 
 		} else {
 
@@ -166,7 +178,7 @@ function PrivateClickCharacterButton() {
 
 		// The cage is only available on certain conditions
 		if ((MouseX >= X + 205 + (C - PrivateCharacterOffset) * 470) && (MouseX <= X + 295 + (C - PrivateCharacterOffset) * 470))
-			if (NPCEventGet(PrivateCharacter[C], "SlaveMarketRent") <= CurrentTime)
+			if ((NPCEventGet(PrivateCharacter[C], "SlaveMarketRent") <= CurrentTime) && (NPCEventGet(PrivateCharacter[C], "AsylumSent") <= CurrentTime))
 				if (LogQuery("Cage", "PrivateRoom") && !LogQuery("BlockCage", "Rule"))
 					if ((Player.Cage == null) || (C == 0))
 						if (!PrivateCharacter[C].IsOwner()) {
@@ -198,7 +210,7 @@ function PrivateClickCharacter() {
 	// For each character, we find the one that was clicked and open it's dialog
 	for (var C = PrivateCharacterOffset; (C < PrivateCharacter.length && C < PrivateCharacterOffset + 4); C++)
 		if ((MouseX >= X + (C - PrivateCharacterOffset) * 470) && (MouseX <= X + 470 + (C - PrivateCharacterOffset) * 470))
-			if (NPCEventGet(PrivateCharacter[C], "SlaveMarketRent") <= CurrentTime) {
+			if ((NPCEventGet(PrivateCharacter[C], "SlaveMarketRent") <= CurrentTime) && (NPCEventGet(PrivateCharacter[C], "AsylumSent") <= CurrentTime)) {
 
 				// Sets the new character (1000 if she's owner, 2000 if she's owned)
 				if (PrivateCharacter[C].ID != 0) {
@@ -729,4 +741,23 @@ function PrivateSlaveMarketStart(AuctionType) {
 	CommonSetScreen("Cutscene", "NPCSlaveAuction");
 	if (AuctionType == "Sell") PrivateKickOut();
 	else DialogLeave();
+}
+
+// When the player selects how to improve her slave
+function PrivateSlaveImproveSelect(Type) {
+	PrivateSlaveImproveType = Type;
+}
+
+// The player slave can be sent to the asylum to have a trait corrected (The higher the value, the slower it raises)
+function PrivateSlaveImproveSend() {
+	CharacterChangeMoney(Player, -25);
+	var T = NPCTraitGet(CurrentCharacter, PrivateSlaveImproveType);
+	var N = T + 20 - Math.floor((T + 100) / 10);
+	if (N < 0) {
+		PrivateSlaveImproveType = NPCTraitReverse(PrivateSlaveImproveType);
+		N = N * -1;
+	}
+	NPCTraitSet(CurrentCharacter, PrivateSlaveImproveType, N);
+	NPCEventAdd(CurrentCharacter, "AsylumSent", CurrentTime + 86400000);
+	DialogLeave();
 }
