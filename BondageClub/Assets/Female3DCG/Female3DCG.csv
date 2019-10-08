@@ -218,6 +218,7 @@ ItemFeet,SuspensionHempRope,Suspension Hemp Rope
 ItemFeet,DuctTape,Duct Tape
 ItemFeet,MermaidRopeTie,Mermaid Rope Tie
 ItemFeet,LeatherAnkleCuffs,Leather Ankle Cuffs
+ItemFeet,SpreaderMetal, Metal Leg Spreader
 ItemLegs,,Legs
 ItemLegs,NylonRope,Nylon Rope
 ItemLegs,HempRope,Hemp Rope
@@ -379,3 +380,4 @@ ItemDevices,MilkCan,Water filled milk can
 ItemDevices,WaterCell,Water torture Cell
 ItemDevices,Cage,Stand up cage
 ItemDevices,LowCage,Kennel
+ItemDevices,SaddleStand,Saddle Stand
