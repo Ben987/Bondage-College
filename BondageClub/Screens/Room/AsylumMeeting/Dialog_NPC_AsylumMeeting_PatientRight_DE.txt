@@ -1,0 +1,135 @@
+###_NPC
+(She giggles.)
+(Sie kichert.)
+(She opens her mouth wide and allows you to silence her easily.)
+(Sie öffnet ihren Mund und erlaubt dir, sie problemlos zum Schweigen zu bringen.)
+(You remove her gag as she smiles at you.)  Gags are so much fun Madam.
+(Du nimmst den Knebel ab und sie lächelt dich an.) Knebel machen so viel Spaß, Madam.
+(She seems curious as you push the earplugs in.)  You will need to talk louder Madam.
+(Sie wirkt neugierig, als du ihr die Ohrstöpsel einsetzt.) Sie werden lauter reden müssen, Madam.
+(You pull the earplugs out.) The silence was heightening my other senses.
+(Du ziehst die Ohrstöpsel heraus.) Die Stille hat meine anderen Sinne angeregt.
+(She turns around submissively while you restrain her arms.)  This therapy is very kinky.
+(Sie dreht sich unterwürfig um, während du ihre Hände fesselst.) Diese Therapie ist ziemlich aufregend.
+(You free her arms as she stretches.)  I hope my treatment isn't already complete.
+(Du befreist ihre Arme und sie streckt sich.) Ich hoffe, meine Behandlung ist nicht schon vorbei.
+(She gives you her hands to be restrained.)  No more touching for me it seems.
+(Sie gibt dir ihre Hände, damit du sie fesseln kannst.) Ich werde wohl nichts mehr anfassen.
+(You release her hands as she nods slowly.)  Thank you Madam.
+(Du befreist ihre Hände und sie nickt langsam.) Danke, Madam.
+(She stands still as you restrain her legs.)  I wasn't planning on running away.
+(Sie steht still, während du ihre Beine fesselst.) Ich hatte nicht vor, wegzulaufen.
+(You release her legs as she rocks her hips.)  Best therapy ever!
+(Du befreist ihre Beine und sie wackelt mit den Hüften.) Beste Therapie aller Zeiten!
+(She laughs as you restrain her feet.)  It tickles!
+(Sie lacht, als du ihre Beine fesselst.) Das kitzelt!
+(You release her feet and she jumps playfully.)  I love being a patient here.
+(Du befreist ihre Füße und sie hüpft verspielt.) Ich liebe es, hier Patientin zu sein.
+(You strap the device on her head as she tries to look around.)  This is scary, but I guess it's for my own good.
+(Du schnallst ihr das Gerät um den Kopf und sie versucht sich umzusehen.) Das macht mir Angst, aber es ist wohl zu meinem eigenen Besten.
+(You remove the device and she looks at you.)  That was freaky, maybe we should try other types of items.
+(Du nimmst das Ding ab und sie schaut dich an.) Das war beunruhigend, vielleicht sollten wir andere Sachen ausprobieren.
+(She cowers from the pain as you whip her breast.)  Oooww, Madam!  Isn't it a little harsh?
+(Sie kauert vor Schmerz, als du auf ihre Brust peitschst.) Aaauu, Madam! Ist das nicht etwas grob?
+(You swing the crop on her breast as she whimpers.)  I beg you Madam!  I'll try to be a better patient.
+(Du schwingst die Gerte auf ihre Brust und sie wimmert.) Ich flehe Sie an, Madam! Ich werde versuchen, eine bessere Patientin zu sein.
+(You whip her butt hard as she jumps from the pain.)  Fuck it hurts!  Oops!  Sorry I said that word.
+(Du peitschst kräftig auf ihren Po ein und sie zuckt vor Schmerz.) Scheiße, tut das weh! Ups! Tut mir leid, dass ich dieses Wort gesagt hab.
+(She tries to avoid the crop as you swing it on her butt.)  Oh please!  It's really painful.
+(Sie versucht der Gerte auszuweichen, die du auf ihren Hintern schwingst.) Oh, bitte! Das tut wirklich weh.
+(She barely seems to notice that you're there.)
+(Sie scheint kaum wahrzunehmen, dass du da bist.)
+Hello nurse DialogPlayerName, are you here for my bondage treatment?
+Hallo, Schwester DialogPlayerName, sind Sie wegen meiner Bondage-Behandlung hier?
+Hello Madam, I hope you're having fun in the asylum.
+Hallo, Madam, Ich hoffe, Sie haben Spaß in der Anstalt.
+###_PLAYER
+Who are you?
+Wer bist du?
+###_NPC
+(She bows her head.)  I'm patient DialogCharacterName, pleased to meet you Madam.
+(Sie neigt ihren Kopf nach unten.) Ich bin Patientin DialogCharacterName, sehr erfreut, Madam.
+###_PLAYER
+Why are you restrained?
+Warum bist du gefesselt?
+###_NPC
+Mistress sent me here for a bondage therapy.  So long story short, I'm in therapy.
+Meine Herrin hat mich für eine Bondage-Therapie hergeschickt. Also, kurz gesagt, werde ich therapiert.
+###_PLAYER
+Can I tie you up?
+Kann ich dich fesseln?
+###_NPC
+(She shakes her head yes.)  Of course nurse DialogPlayerName, it's part of my treatment.
+(Sie nickt.) Natürlich, Schwester DialogPlayerName, das ist Teil meiner Behandlung.
+(She shakes her head yes.)  Yes Madam, it's part of my treatment.
+(Sie nickt.) Ja, Madam, das ist Teil meiner Behandlung.
+###_PLAYER
+Can I play with you?
+Kann ich mit dir spielen?
+###_NPC
+(She shakes her head yes.)  Absolutely.  Mistress said that I belong to the asylum until she gets me back.
+(Sie nickt.) Auf jeden Fall. Herrin sagte, ich gehöre der Anstalt, bis sie mich wieder abholt.
+###_PLAYER
+Will you tie me up?
+Würdest du mich fesseln?
+###_NPC
+(She shakes her head no.)  I'm sorry Madam.  I'm not allowed to use items on other persons.
+(Sie schüttelt den Kopf.) Tut mir leid, Madam. Es ist mir untersagt, andere zu fesseln.
+###_PLAYER
+(Struggle in your restraints.)
+(In deinen Fesseln zappeln.)
+###_NPC
+(She shakes her head no.)  I'm sorry Madam.  I'm not allowed to help you.
+(Sie schüttelt den Kopf.) Tut mir leid, Madam. Es ist mir untersagt, Ihnen zu helfen.
+###_PLAYER
+(Play with her.)
+(Mit ihr spielen.)
+###_NPC
+(You take a step forward and start to play with her.)
+(Du trittst einen Schritt vor und fängst an, mit ihr zu spielen.)
+###_PLAYER
+I need to run.  (Leave her.)
+Ich muss weg. (Dialog beenden.)
+###_NPC
+(She barely seems to notice that you're there, as you step forward to play with her.)
+(Sie scheint deine Anwesenheit kaum wahrzunehmen, als du einen Schritt vortrittst, um mit ihr zu spielen.)
+Hello nurse DialogPlayerName, would you like to touch me?
+Hallo, Schwester DialogPlayerName, möchten Sie mich anfassen?
+Hello Madam, would you like to touch me?
+Hallo, Madam, möchten Sie mich anfassen?
+###_PLAYER
+(Pet her.)
+(Sie streicheln.)
+###_NPC
+(She purrs a little as you pet her head gently.)
+(Sie schnurrt ein wenig, als du sanft ihren Kopf streichelst.)
+###_PLAYER
+(Tickle her.)
+(Sie kitzeln.)
+###_NPC
+(She trashes around and laughs from your skillful tickling hands.)
+(Sie windet sich umher und lacht, als deine Hände sie gekonnt kitzeln.)
+###_PLAYER
+(Kiss her.)
+(Sie küssen.)
+###_NPC
+(You exchange a sweet and loving kiss.)
+(Ihr gebt euch einen netten und liebevollen Kuss.)
+###_PLAYER
+(Fondle her.)
+(Sie befummeln.)
+###_NPC
+(She closes her eyes and seems to enjoy your touch as you fondle her breast and butt through her clothes.)
+(Sie schließt die Augen und scheint deine Berührung zu genießen, als du ihre Brust und ihren Po durch ihre Kleidung befummelst.)
+###_PLAYER
+(Masturbate her.)
+(Sie befriedigen.)
+###_NPC
+(You slide a hand in her pants and masturbate her slowly as she moans from the pleasure.)
+(Du steckst ihr eine Hand in die Hose und befriedigst sie langsam, während sie lüstern stöhnt.)
+###_PLAYER
+(Stop playing with her.)
+(Aufhören, mit ihr zu spielen.)
+###_NPC
+(She nods as you stop playing with her.)
+(Sie nickt als du auförst, mit ihr zu spielen.)

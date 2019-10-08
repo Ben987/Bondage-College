@@ -59,7 +59,7 @@ function C004_ArtClass_ArtRoom_Click() {
 	if ((MouseX >= 930) && (MouseX <= 1170) && (MouseY >= 10) && (MouseY <= 590) && (C004_ArtClass_ArtRoom_ExtraModel != "Sarah")) SetScene(CurrentChapter, "Sarah");
 	if ((MouseX >= 850) && (MouseX <= 930) && (MouseY >= 260) && (MouseY <= 360)) SetScene(CurrentChapter, "HiddenEgg");
 
-	// Checks if the user clicks on any regular item, no inventory is allowed if the player is modelling
+	// Checks if the user clicks on any regular item, no inventory is allowed if the player is modeling
 	InventoryClick(GetClickedInventory(), "C004_ArtClass", "ArtRoom");
 
 }

@@ -45,7 +45,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 130,0,0,,I came here|to relax.,Good idea.  School is so boring.|We need some time to enjoy life.,131,0,0,
 130,0,0,,I came here to drink.|Go get me a beer.,Great idea!  (She comes back with two beers.)|This is so much better than our boring college.,131,1,1,
 130,0,0,,I got lost and|ended up here.,You got lost?  That's pretty silly.|At least you're out of our boring classes.,131,0,-1,"SetPose("""")"
-130,0,0,,I came here to drink.|Get me some red wine.,Ok.  (She comes back with wine and a beer.)|This is so much better than our boring college.,131,0,1,
+130,0,0,,I came here to drink.|Get me some red wine.,OK.  (She comes back with wine and a beer.)|This is so much better than our boring college.,131,0,1,
 131,0,0,,You're boring!,(She gives you an angry look.)|You look tense.  Wanna smoke?,132,-1,0,
 131,0,0,,"Yeah, it was|a long day.",Fuck yeah.  We have to forget it.|Do you want to smoke with me?,132,0,0,
 131,0,0,,It's never boring|when you're around.,You're sweet Miss COMMON_PLAYERNAME.|Do you want to smoke with me?,132,1,0,
@@ -115,7 +115,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 191,0,0,,This school is shit.,Hell yeah!  So you want to party here?,192,1,0,
 191,0,0,,The education level|seems adequate.,What kind of language is that?|At least do you know how to party?,192,-1,0,
 192,0,0,,I setup parties.,That's pretty good.  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,0,1,"SetPose(""Duck"")"
-192,0,0,,I'm ok with parties.,If the beer is cheap...  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,0,0,"SetPose(""Duck"")"
+192,0,0,,I'm OK with parties.,If the beer is cheap...  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,0,0,"SetPose(""Duck"")"
 192,0,0,,I'm a party animal!,Rock on!  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,1,0,"SetPose(""Duck"")"
 192,0,0,,I usually try to|avoid parties.,That's pretty lame.  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,0,-1,"SetPose(""Duck"")"
 192,0,0,,I only do parties|with close friends.,I can understand...  (She pauses.)  Oh fuck!|(She checks around and ducks behind the counter.),200,1,-1,"SetPose(""Duck"")"
@@ -139,13 +139,13 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 203,0,0,,We can hide|at my place.,It's too risky to get out.|She might see me run.,203,0,0,
 203,10,0,,Sweetie.  Together|we can run for it.,Very well!  I'm ready when you are.,205,1,0,
 203,0,10,,"When I say ""go"".|You run with me.",Yes Miss!  I'm ready when you are.,205,0,1,
-203,1,-10,,Miss Sidney.  I will|cover your escape.,Ok girl!  I'm ready when you are.,205,0,-1,
+203,1,-10,,Miss Sidney.  I will|cover your escape.,OK girl!  I'm ready when you are.,205,0,-1,
 204,0,0,,Stay here Sidney.|(Meet the pusher.),"(You walk and meet Sidney's pusher.)|Hey there, do you need something?",210,1,0,"SetActor("""")"
 204,0,0,,It might not|be a good idea.,"Yeah, keep quiet and she'll go away.",203,0,0,
 205,0,0,,(Run with Sidney.),(You both run away and head back to your|dorm while Sidney tries to catch her breath.),300,0,0,"LeaveWithSidney(""Exhausted"")"
 210,0,0,,"Yes, I'm here to|talk about Sidney.",What's going on with her?,211,0,0,
 210,0,0,,You know Sidney?,Yes.  What's going on with her?,211,0,0,
-210,0,0,,I'm here for Sidney.,Ok.  What's going on with her?,211,0,0,
+210,0,0,,I'm here for Sidney.,OK.  What's going on with her?,211,0,0,
 211,0,0,,She owes you money?,Yes she does.  And she was|supposed to pay me last week.,212,0,0,
 211,0,0,,I've heard she has a|special debt with you.,Yes she does.  And she was|supposed to pay me last week.,212,0,0,
 212,0,0,,I came here to|settle her debt.,(She gives you a curious look.)|So you will pay me now?,213,0,0,

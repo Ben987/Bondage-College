@@ -78,7 +78,7 @@ function DialogPrerequisite(D) {
 
 // Searches for an item in the player inventory to unlock a specific item
 function DialogCanUnlock(C, Item) {
-	if ((Item != null) && (Item.Asset != null) && (Item.Asset.OwnerOnly == true)) return C.IsOwnedByPlayer();
+	if ((Item != null) && (Item.Asset != null) && (Item.Asset.OwnerOnly == true)) return Item.Asset.Enable && C.IsOwnedByPlayer();
 	if ((Item != null) && (Item.Asset != null) && (Item.Asset.SelfUnlock != null) && (Item.Asset.SelfUnlock == false) && !Player.CanInteract()) return false;
 	if ((Item != null) && (Item.Property != null) && (Item.Property.SelfUnlock != null) && (Item.Property.SelfUnlock == false) && !Player.CanInteract()) return false;
 	if (C.IsOwnedByPlayer() && InventoryAvailable(Player, "OwnerPadlockKey", "ItemMisc") && Item.Asset.Enable) return true;
@@ -206,7 +206,7 @@ function DialogMenuButtonBuild(C) {
 		if ((Item != null) && Item.Asset.AllowLock && !InventoryItemHasEffect(Item, "Lock", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Lock");
 		if ((Item != null) && !InventoryItemHasEffect(Item, "Lock", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Remove");
 		if (InventoryItemHasEffect(Item, "Egged") && InventoryAvailable(Player, "VibratorRemote", "ItemVulva") && Player.CanInteract()) DialogMenuButton.push("Remote");
-		if ((Item != null) && Item.Asset.Extended && Player.CanInteract()) DialogMenuButton.push("Use");
+		if ((Item != null) && Item.Asset.Extended && Player.CanInteract() && (!Item.Asset.OwnerOnly || (C.IsOwnedByPlayer()))) DialogMenuButton.push("Use");
 		if (Player.CanInteract()) DialogMenuButton.push("ColorPick");
 	}
 
@@ -224,8 +224,9 @@ function DialogInventoryBuild(C) {
 	if (C.FocusGroup != null) {
 
 		// First, we add anything that's currently equipped
-		for (var A = 0; A < C.Appearance.length; A++)
-			if ((C.Appearance[A].Asset.Group.Name == C.FocusGroup.Name) && ((typeof C.Appearance[A].Asset.DynamicAllowInventoryAdd !== "function") || C.Appearance[A].Asset.DynamicAllowInventoryAdd())) {
+		var Item = null;
+		for(var A = 0; A < C.Appearance.length; A++)
+			if ((C.Appearance[A].Asset.Group.Name == C.FocusGroup.Name) && C.Appearance[A].Asset.DynamicAllowInventoryAdd()) {
 				DialogInventoryAdd(C, C.Appearance[A], true, true);
 				break;
 			}
@@ -244,14 +245,14 @@ function DialogInventoryBuild(C) {
 		}
 
 		// Second, we add everything from the victim inventory
-		for (var A = 0; A < C.Inventory.length; A++)
-			if ((C.Inventory[A].Asset != null) && (C.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && ((typeof C.Inventory[A].Asset.DynamicAllowInventoryAdd !== "function") || C.Inventory[A].Asset.DynamicAllowInventoryAdd()))
+		for(var A = 0; A < C.Inventory.length; A++)
+			if ((C.Inventory[A].Asset != null) && (C.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && C.Inventory[A].Asset.DynamicAllowInventoryAdd())
 				DialogInventoryAdd(C, C.Inventory[A], false);
 
 		// Third, we add everything from the player inventory if the player isn't the victim
 		if (C.ID != 0)
-			for (var A = 0; A < Player.Inventory.length; A++)
-				if ((Player.Inventory[A].Asset != null) && (Player.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && ((typeof Player.Inventory[A].Asset.DynamicAllowInventoryAdd !== "function") || Player.Inventory[A].Asset.DynamicAllowInventoryAdd()))
+			for(var A = 0; A < Player.Inventory.length; A++)
+				if ((Player.Inventory[A].Asset != null) && (Player.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && Player.Inventory[A].Asset.DynamicAllowInventoryAdd())
 					DialogInventoryAdd(C, Player.Inventory[A], false);
 		DialogMenuButtonBuild(C);
 
@@ -320,7 +321,7 @@ function DialogStruggle(Reverse) {
 
 }
 
-// Starts the dialog progress bar and keeps the items that needs to be added / swaped / removed
+// Starts the dialog progress bar and keeps the items that needs to be added / swapped / removed
 function DialogProgressStart(C, PrevItem, NextItem) {
 
 	// Gets the required skill / challenge level based on player/rigger skill and item difficulty (0 by default is easy to struggle out)
@@ -634,10 +635,11 @@ function DialogClick() {
 				for (var I = DialogInventoryOffset; (I < DialogInventory.length) && (I < DialogInventoryOffset + 12); I++) {
 
 					// If the item is clicked
-					if ((MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275) && DialogInventory[I].Asset.Enable) {
-						DialogItemClick(DialogInventory[I]);
-						break;
-					}
+					if ((MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275))
+						if (DialogInventory[I].Asset.Enable || (DialogInventory[I].Asset.Extended && DialogInventory[I].Asset.OwnerOnly && CurrentCharacter.IsOwnedByPlayer())) {
+							DialogItemClick(DialogInventory[I]);
+							break;
+						}
 
 					// Change the X and Y position to get the next square
 					X = X + 250;
@@ -776,8 +778,8 @@ function DialogDrawItemMenu(C) {
 				(DialogInventory[I].Worn ? "yellow" : Block ? Hover ? "red" : "pink" : Hover ? "green" : "lime") : 
 				((Hover && !Block) ? "cyan" : DialogInventory[I].Worn ? "pink" : Block ? "gray" : "white"));
 			if (Item.Worn && InventoryItemHasEffect(InventoryGet(C, Item.Asset.Group.Name), "Vibrating", true)) DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.Group.Name + "/Preview/" + Item.Asset.Name + ".png", X + Math.floor(Math.random() * 3) + 1, Y + Math.floor(Math.random() * 3) + 1, 221, 221);
-			else DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.Group.Name + "/Preview/" + Item.Asset.Name + ((typeof Item.Asset.DynamicPreviewIcon === "function") ? Item.Asset.DynamicPreviewIcon() : "") + ".png", X + 2, Y + 2, 221, 221);
-			DrawTextFit(((typeof Item.Asset.DynamicDescription === "function") ? Item.Asset.DynamicDescription() : ""), X + 112, Y + 250, 221, "black");
+			else DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.Group.Name + "/Preview/" + Item.Asset.Name + Item.Asset.DynamicPreviewIcon() + ".png", X + 2, Y + 2, 221, 221);
+			DrawTextFit(Item.Asset.DynamicDescription(), X + 112, Y + 250, 221, "black");
 			if (Item.Icon != "") DrawImage("Icons/" + Item.Icon + ".png", X + 2, Y + 110);
 			X = X + 250;
 			if (X > 1800) {

@@ -18,6 +18,10 @@ Cloth,AdultBabyDress3,Flower Baby dress
 Cloth,NurseUniform,Nurse Uniform
 Cloth,BunnyCollarCuffs,Bunny Girl Accessories
 Cloth,Robe1,Robe
+Cloth,FlowerDress,Flower Dress
+Cloth,Dress2,Nomadic Dress
+Cloth,LaceBabydoll,Lace Babydoll
+Cloth,SleevelessTop,Sleeveless Top
 ClothLower,,Bottom
 ClothLower,Skirt1,Skirt
 ClothLower,TennisSkirt1,Tennis
@@ -25,6 +29,7 @@ ClothLower,Jeans1,Jeans
 ClothLower,Shorts1,Shorts
 ClothLower,Pajama1,Pajama
 ClothLower,MistressBottom,Mistress Bottom
+ClothLower,Jeans2,Ripped Jeans
 Bra,,Bra
 Bra,Bra1,Style 1
 Bra,Bra2,Style 2
@@ -53,6 +58,7 @@ Panties,Panties15,Thong
 Panties,Bikini1,Frilled Bikini
 Panties,Diapers1,Diapers
 Socks,,Socks
+Socks,Socks0,Ankle
 Socks,Socks1,Short
 Socks,Socks2,Regular
 Socks,Socks3,Middle Leg
@@ -74,6 +80,9 @@ Shoes,Heels2,Heels Strap
 Shoes,Boots1,Boots
 Shoes,MistressBoots,Mistress Boots
 Shoes,PonyBoots,Pony Boots
+Shoes,Sandals,Strap Sandals
+Shoes,PawBoots,Paw Boots
+Shoes,WoollyBootsTall,Woolly Boots
 Hat,,Hat
 Hat,Band1,Hair Band
 Hat,Beret1,Beret
@@ -85,6 +94,7 @@ Hat,Santa1,Santa Hat
 Hat,CaptainHat1,Captain's Hat
 Hat,BunnySuccubus2,Bunny Succubus 
 Hat,HairFlower1, Flower
+Hat,WitchHat1, Witch Hat
 HairAccessory,,Hair Accessory
 HairAccessory,Ears1,Ears Small
 HairAccessory,Ears2,Ears Large
@@ -103,6 +113,7 @@ Gloves,,Gloves
 Gloves,Gloves1,Short Gloves
 Gloves,Gloves2,Long Gloves
 Gloves,MistressGloves,Mistress Gloves
+Gloves,FingerlessGloves,Fingerless Gloves
 Glasses,,Glasses
 Glasses,Glasses1,Style 1
 Glasses,Glasses2,Style 2
@@ -114,6 +125,7 @@ Glasses,SunGlasses1,Sunglasses 1
 Glasses,SunGlasses2,Sunglasses 2
 Glasses,Mask1,Venetian Mask
 Glasses,Mask2,Domino Mask
+Glasses,ButterflyMask1,Butterfly Mask
 TailStraps,,Tail Strap
 TailStraps,TailStrap,Kitty Tail Strap
 TailStraps,HorseTailStrap,Horse Tail Strap
@@ -217,12 +229,15 @@ ItemLegs,DuctTape,Duct Tape
 ItemLegs,MermaidRopeTie,Upper Mermaid Tie
 ItemLegs,LeatherLegCuffs,Leather Leg Cuffs
 ItemLegs,LegBinder,Leg Binder
+ItemLegs,HobbleSkirt,Hobble Skirt
+ItemLegs,WoodenHorse,Wooden Horse
 ItemVulva,,Vulva
 ItemVulva,VibratingEgg,Vibrating Egg
 ItemVulva,VibratingWand,Vibrating Wand
 ItemVulva,VibratorRemote,Vibrating Egg & Panties Remote
 ItemVulva,VibratingLatexPanties,Vibrating Latex Panties
 ItemVulva,WandBelt,Wand Belt
+ItemVulva,VibratingDildo,Vibrating Dildo
 ItemButt,,Butt
 ItemButt,BlackButtPlug,Black Butt Plug
 ItemButt,TailButtPlug,Kitty Butt Plug
@@ -235,6 +250,7 @@ ItemButt,Raccoon Butt Plug,Raccoon Butt Plug
 ItemButt,RaccoonTailPlug,Raccoon Tail Plug
 ItemButt,AnalBeads,Anal Beads
 ItemButt,ButtPump,Butt Pump
+ItemButt,VibratingButtPlug,Vibrating Butt Plug
 ItemPelvis,,Pelvis
 ItemPelvis,StraponPanties,Strap-On Panties
 ItemPelvis,LeatherChastityBelt,Leather Chastity Belt
@@ -276,6 +292,7 @@ ItemArms,DuctTape,Duct Tape
 ItemArms,BitchSuit,Pet Suit
 ItemArms,CollarLeashHolding,Holding Leash
 ItemArms,StraitDress,Strait Dress
+ItemArms,StraitDressOpen,Open crotch Strait Dress
 ItemHands,,Hands
 ItemHands,PaddedMittens,Padded Mittens
 ItemHands,PawMittens,Paw Mittens
@@ -297,7 +314,9 @@ ItemNeck,ShockCollar,Shock Collar
 ItemNeck,ShockCollarRemote,Shock Collar Remote
 ItemNeck,BatCollar,Bat Collar
 ItemNeck,PostureCollar,Posture Collar
-ItemNeck,SteelPostureCollar,Steel Posture Collar
+ItemNeck,SteelPostureCollar,Steel Collar
+ItemNeck,LeatherChoker,Leather Choker
+ItemNeck,PetCollar,Pet Collar
 ItemNeckAccessories,,Collar
 ItemNeckAccessories,CollarBell,Bell
 ItemNeckAccessories,CollarBow,Bow
@@ -328,6 +347,7 @@ ItemMouth,RegularSleepingPill,Sleeping Pill
 ItemMouth,PantiesMask,Panties Mask
 ItemMouth,PlugGag,Plug Gag
 ItemMouth,DildoGag,Dildo Gag
+ItemMouth,BoneGag,Bone Gag
 ItemHead,,Head
 ItemHead,ClothBlindfold,Cloth Blindfold
 ItemHead,LeatherBlindfold,Leather Blindfold
