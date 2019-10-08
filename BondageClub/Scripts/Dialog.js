@@ -478,13 +478,13 @@ function DialogMenuButtonClick() {
 
 			if (DialogMenuButton[I] == "DialogPermissionMode") {
 				DialogItemPermissionMode = true;
-				DialogMenuButtonBuild(C);
+				DialogInventoryBuild(C);
 				return;
 			}
 
 			if (DialogMenuButton[I] == "DialogNormalMode") {
 				DialogItemPermissionMode = false;
-				DialogMenuButtonBuild(C);
+				DialogInventoryBuild(C);
 				return;
 			}
 		}
@@ -640,7 +640,7 @@ function DialogClick() {
 				ElementValue("InputColor", DrawRGBToHex(MainCanvas.getImageData(MouseX, MouseY, 1, 1).data));
 
 			// If the user clicks on one of the items
-			if ((MouseX >= 1000) && (MouseX <= 1975) && (MouseY >= 125) && (MouseY <= 1000) && Player.CanInteract() && (DialogProgress < 0) && (DialogColor == null)) {
+			if ((MouseX >= 1000) && (MouseX <= 1975) && (MouseY >= 125) && (MouseY <= 1000) && ((DialogItemPermissionMode && (Player.FocusGroup != null)) || (Player.CanInteract() && !InventoryGroupIsBlocked(C))) && (DialogProgress < 0) && (DialogColor == null)) {
 
 				// For each items in the player inventory
 				var X = 1000;
@@ -777,7 +777,7 @@ function DialogDrawItemMenu(C) {
 	}
 
 	// Inventory is only accessible if the player can interact and there's no progress bar
-	if (Player.CanInteract() && (DialogProgress < 0) && !InventoryGroupIsBlocked(C)) {
+	if ((DialogItemPermissionMode && (C.ID == 0) && (DialogProgress < 0)) || (Player.CanInteract() && (DialogProgress < 0) && !InventoryGroupIsBlocked(C))) {
 
 		// Draw each items in the player inventory (up to 12 per screen)
 		if (DialogInventory == null) DialogInventoryBuild(C);
