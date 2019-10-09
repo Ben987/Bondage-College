@@ -18,19 +18,12 @@ function SpeechGarble(C, CD) {
 	var Par = false;
 	if (CD == null) CD = "";
 
+	var test = "";
+
 	// Total gags always returns mmmmm
 	if (C.Effect.indexOf("GagTotal") >= 0 || ((C.ID != 0) && (Player.Effect.indexOf("DeafTotal") >= 0))) {
-		for (var L = 0; L < CD.length; L++) {
-			var H = CD.charAt(L).toLowerCase();
-			if (H == "(") Par = true;
-			if (Par) NS = NS + CD.charAt(L);
-			else {
-				if (H == " " || H == "." || H == "?" || H == "!" || H == "~") NS = NS + H;
-				else NS = NS + "m";
-			}
-
-			if (H == ")") Par = false;
-		}
+		console.log("total gag");
+		NS = GarbleTotal(C, CD, Par)
 		NS = SpeechStutter(C, NS);
 		NS = SpeechBabyTalk(C, NS);
 		return NS;
@@ -38,6 +31,7 @@ function SpeechGarble(C, CD) {
 
 	// Heavy garble - Almost no letter stays the same
 	if (C.Effect.indexOf("GagHeavy") >= 0 || ((C.ID != 0) && (Player.Effect.indexOf("DeafHeavy") >= 0))) {
+		console.log("heavy gag");
 		for (var L = 0; L < CD.length; L++) {
 			var H = CD.charAt(L).toLowerCase();
 			if (H == "(") Par = true;
@@ -59,6 +53,7 @@ function SpeechGarble(C, CD) {
 
 	// Normal garble, keep vowels and a few letters the same
 	if (C.Effect.indexOf("GagNormal") >= 0 || ((C.ID != 0) && (Player.Effect.indexOf("DeafNormal") >= 0))) {
+		console.log("normal gag");
 		for (var L = 0; L < CD.length; L++) {
 			var H = CD.charAt(L).toLowerCase();
 			if (H == "(") Par = true;
@@ -81,6 +76,7 @@ function SpeechGarble(C, CD) {
 
 	// Light garble, half of the letters stay the same
 	if (C.Effect.indexOf("GagLight") >= 0 || ((C.ID != 0) && (Player.Effect.indexOf("DeafLight") >= 0))) {
+		console.log("light gag");
 		for (var L = 0; L < CD.length; L++) {
 			var H = CD.charAt(L).toLowerCase();
 			if (H == "(") Par = true;
@@ -105,6 +101,25 @@ function SpeechGarble(C, CD) {
 	CD = SpeechBabyTalk(C, CD);
 	return CD;
 
+}
+
+function GarbleTotal(C, message, skipLetter) {
+	var newString = "";
+	for (var L = 0; L < message.length; L++){
+		var H = message.charAt(L).toLowerCase();
+
+		if (H == "(") skipLetter = true;
+		if (skipLetter) newString += message.charAt(L);
+		else {
+			if (H == " " || H == "." || H == "?" || H == "!" || H == "~") newString += H;
+			else newString += "m";
+		}
+
+		if (H == ")") skipLetter = false;
+	}
+	newString = SpeechStutter(C, newString);
+	newString = SpeechBabyTalk(C, newString);
+	return newString;
 }
 
 // Makes the character stutter if she has a vibrating egg set to high intensity
