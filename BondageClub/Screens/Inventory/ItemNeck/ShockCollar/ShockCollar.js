@@ -17,7 +17,6 @@ function InventoryItemNeckShockCollarDraw() {
 	if( DialogFocusItem.Property.Intensity < 2) DrawButton(1550, 700, 250, 65, DialogFind(Player, "Increase"), "White");
 	if( CurrentScreen == "ChatRoom") DrawButton(1325, 800, 64, 64, "", "White", DialogFocusItem.Property.ShowText ? "Icons/Checked.png" : "");
 	if( CurrentScreen == "ChatRoom") DrawText(DialogFind(Player, "ShockCollarShowChat"), 1570, 833, "White", "Gray");
-	DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 }
 
 // Catches the item extension clicks

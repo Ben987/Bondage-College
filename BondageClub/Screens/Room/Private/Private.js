@@ -15,6 +15,7 @@ var PrivateActivityTarget = null;
 var PrivatePunishment = "";
 var PrivatePunishmentList = ["Cage", "Bound", "BoundPet", "ChastityBelt", "ChastityBra", "ForceNaked", "ConfiscateKey", "ConfiscateCrop", "ConfiscateWhip", "SleepCage", "LockOut", "Cell"];
 var PrivateCharacterNewClothes = null;
+var PrivateSlaveImproveType = "";
 
 // Returns TRUE if a specific dialog option is allowed
 function PrivateIsCaged() { return (CurrentCharacter.Cage == null) ? false : true }
@@ -98,14 +99,25 @@ function PrivateDrawCharacter() {
 		// If the character is rent, she won't show in the room but her slot is still taken
 		if (NPCEventGet(PrivateCharacter[C], "SlaveMarketRent") <= CurrentTime) {
 
-			// Draw the NPC and the cage if needed
-			if (PrivateCharacter[C].Cage != null) DrawImage("Screens/Room/Private/CageBack.png", X + (C - PrivateCharacterOffset) * 470, 0);
-			DrawCharacter(PrivateCharacter[C], X + (C - PrivateCharacterOffset) * 470, 0, 1);
-			if (PrivateCharacter[C].Cage != null) DrawImage("Screens/Room/Private/CageFront.png", X + (C - PrivateCharacterOffset) * 470, 0);
-			if (LogQuery("Cage", "PrivateRoom") && !LogQuery("BlockCage", "Rule"))
-				if ((Player.Cage == null) || (C == 0))
-					if (!PrivateCharacter[C].IsOwner())
-						DrawButton(X + 205 + (C - PrivateCharacterOffset) * 470, 900, 90, 90, "", "White", "Icons/Cage.png");
+			// If the character is sent to the asylum, she won't show in the room but her slot is still taken
+			if (NPCEventGet(PrivateCharacter[C], "AsylumSent") <= CurrentTime) {
+		
+				// Draw the NPC and the cage if needed
+				if (PrivateCharacter[C].Cage != null) DrawImage("Screens/Room/Private/CageBack.png", X + (C - PrivateCharacterOffset) * 470, 0);
+				DrawCharacter(PrivateCharacter[C], X + (C - PrivateCharacterOffset) * 470, 0, 1);
+				if (PrivateCharacter[C].Cage != null) DrawImage("Screens/Room/Private/CageFront.png", X + (C - PrivateCharacterOffset) * 470, 0);
+				if (LogQuery("Cage", "PrivateRoom") && !LogQuery("BlockCage", "Rule"))
+					if ((Player.Cage == null) || (C == 0))
+						if (!PrivateCharacter[C].IsOwner())
+							DrawButton(X + 205 + (C - PrivateCharacterOffset) * 470, 900, 90, 90, "", "White", "Icons/Cage.png");
+
+			} else {
+
+				// Draw the "X on rental for a day" text
+				DrawText(PrivateCharacter[C].Name, X + 235 + (C - PrivateCharacterOffset) * 470, 420, "White", "Black");
+				DrawText(TextGet("AsylumDay"), X + 235 + (C - PrivateCharacterOffset) * 470, 500, "White", "Black");
+
+			}
 
 		} else {
 
@@ -130,8 +142,8 @@ function PrivateRun() {
 	if (LogQuery("RentRoom", "PrivateRoom")) {
 		PrivateDrawCharacter();
 		if ((Player.Cage == null) && Player.CanWalk()) DrawButton(1885, 265, 90, 90, "", "White", "Icons/Shop.png");
-		if (!LogQuery("BlockChange", "Rule")) DrawButton(1885, 385, 90, 90, "", "White", "Icons/Dress.png");
-		if (LogQuery("Wardrobe", "PrivateRoom") && !LogQuery("BlockChange", "Rule")) DrawButton(1885, 505, 90, 90, "", "White", "Icons/Wardrobe.png");
+		if (Player.CanChange()) DrawButton(1885, 385, 90, 90, "", "White", "Icons/Dress.png");
+		if (LogQuery("Wardrobe", "PrivateRoom") && Player.CanChange()) DrawButton(1885, 505, 90, 90, "", "White", "Icons/Wardrobe.png");
 		if (LogQuery("Expansion", "PrivateRoom")) DrawButton(1885, 625, 90, 90, "", "White", "Icons/Next.png");
 	} else {
 		DrawCharacter(Player, 500, 0, 1);
@@ -166,7 +178,7 @@ function PrivateClickCharacterButton() {
 
 		// The cage is only available on certain conditions
 		if ((MouseX >= X + 205 + (C - PrivateCharacterOffset) * 470) && (MouseX <= X + 295 + (C - PrivateCharacterOffset) * 470))
-			if (NPCEventGet(PrivateCharacter[C], "SlaveMarketRent") <= CurrentTime)
+			if ((NPCEventGet(PrivateCharacter[C], "SlaveMarketRent") <= CurrentTime) && (NPCEventGet(PrivateCharacter[C], "AsylumSent") <= CurrentTime))
 				if (LogQuery("Cage", "PrivateRoom") && !LogQuery("BlockCage", "Rule"))
 					if ((Player.Cage == null) || (C == 0))
 						if (!PrivateCharacter[C].IsOwner()) {
@@ -198,13 +210,16 @@ function PrivateClickCharacter() {
 	// For each character, we find the one that was clicked and open it's dialog
 	for (var C = PrivateCharacterOffset; (C < PrivateCharacter.length && C < PrivateCharacterOffset + 4); C++)
 		if ((MouseX >= X + (C - PrivateCharacterOffset) * 470) && (MouseX <= X + 470 + (C - PrivateCharacterOffset) * 470))
-			if (NPCEventGet(PrivateCharacter[C], "SlaveMarketRent") <= CurrentTime) {
+			if ((NPCEventGet(PrivateCharacter[C], "SlaveMarketRent") <= CurrentTime) && (NPCEventGet(PrivateCharacter[C], "AsylumSent") <= CurrentTime)) {
 
 				// Sets the new character (1000 if she's owner, 2000 if she's owned)
-				PrivateCharacterToSave = C;
-				if ((PrivateCharacter[C].Stage == "0") && PrivateCharacter[C].IsOwner()) PrivateCharacter[C].Stage = "1000";
-				if ((PrivateCharacter[C].Stage == "0") && PrivateCharacter[C].IsOwnedByPlayer()) PrivateCharacter[C].Stage = "2000";
-				NPCTraitDialog(PrivateCharacter[C]);
+				if (PrivateCharacter[C].ID != 0) {
+					PrivateCharacterToSave = C;
+					PrivateLoadCharacter(C);
+					if ((PrivateCharacter[C].Stage == "0") && PrivateCharacter[C].IsOwner()) PrivateCharacter[C].Stage = "1000";
+					if ((PrivateCharacter[C].Stage == "0") && PrivateCharacter[C].IsOwnedByPlayer()) PrivateCharacter[C].Stage = "2000";
+					NPCTraitDialog(PrivateCharacter[C]);
+				}
 				CharacterSetCurrent(PrivateCharacter[C]);
 
 				// If the owner has beeped the player
@@ -240,8 +255,8 @@ function PrivateClick() {
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk() && (Player.Cage == null)) CommonSetScreen("Room", "MainHall");
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235) && LogQuery("RentRoom", "PrivateRoom") && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355) && LogQuery("RentRoom", "PrivateRoom") && Player.CanWalk() && (Player.Cage == null)) CharacterSetCurrent(PrivateVendor);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475) && LogQuery("RentRoom", "PrivateRoom") && !LogQuery("BlockChange", "Rule")) CharacterAppearanceLoadCharacter(Player);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 505) && (MouseY < 595) && LogQuery("RentRoom", "PrivateRoom") && !LogQuery("BlockChange", "Rule") && LogQuery("Wardrobe", "PrivateRoom")) CommonSetScreen("Character", "Wardrobe");
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475) && LogQuery("RentRoom", "PrivateRoom") && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 505) && (MouseY < 595) && LogQuery("RentRoom", "PrivateRoom") && Player.CanChange() && LogQuery("Wardrobe", "PrivateRoom")) CommonSetScreen("Character", "Wardrobe");
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 625) && (MouseY < 715) && LogQuery("RentRoom", "PrivateRoom") && LogQuery("Expansion", "PrivateRoom")) PrivateCharacterOffset = (PrivateCharacterOffset == 0) ? 4 : 0;
 	if ((MouseX <= 1885) && (MouseY < 900) && LogQuery("RentRoom", "PrivateRoom") && (Player.Cage == null)) PrivateClickCharacter();
 	if ((MouseX <= 1885) && (MouseY >= 900) && LogQuery("RentRoom", "PrivateRoom")) PrivateClickCharacterButton();
@@ -380,9 +395,9 @@ function PrivateRelationDecay() {
 	var MustSave = false;
 	for (var C = 1; C < PrivateCharacter.length; C++) {
 		var LastDecay = NPCEventGet(PrivateCharacter[C], "LastDecay");
-		if (LastDecay == 0) 
+		if (LastDecay * CheatFactor("NoLoveDecay", 0) == 0)
 			NPCEventAdd(PrivateCharacter[C], "LastDecay", CurrentTime);
-		else 
+		else
 			if (LastDecay <= CurrentTime - 7200000) {
 				var Decay = Math.floor((CurrentTime - LastDecay) / 7200000);
 				NPCEventAdd(PrivateCharacter[C], "LastDecay", LastDecay + (Decay * 7200000));
@@ -624,7 +639,7 @@ function PrivateSelectPunishment() {
 		if ((PrivatePunishment == "BoundPet") && !Player.IsVulvaChaste() && (NPCTraitGet(CurrentCharacter, "Playful") >= 0)) break;
 		if ((PrivatePunishment == "ChastityBelt") && !Player.IsVulvaChaste() && (NPCTraitGet(CurrentCharacter, "Frigid") >= 0)) break;
 		if ((PrivatePunishment == "ChastityBra") && !Player.IsBreastChaste() && (NPCTraitGet(CurrentCharacter, "Frigid") >= 0)) break;
-		if ((PrivatePunishment == "ForceNaked") && !LogQuery("BlockChange", "Rule") && (NPCTraitGet(CurrentCharacter, "Horny") >= 0)) break;
+		if ((PrivatePunishment == "ForceNaked") && Player.CanChange() && (NPCTraitGet(CurrentCharacter, "Horny") >= 0)) break;
 		if ((PrivatePunishment == "ConfiscateKey") && (InventoryAvailable(Player, "MetalCuffsKey", "ItemMisc") || InventoryAvailable(Player, "MetalPadlockKey", "ItemMisc") || InventoryAvailable(Player, "IntricatePadlockKey", "ItemMisc"))) break;
 		if ((PrivatePunishment == "ConfiscateCrop") && (InventoryAvailable(Player, "LeatherCrop", "ItemPelvis") || InventoryAvailable(Player, "LeatherCrop", "ItemBreast"))) break;
 		if ((PrivatePunishment == "ConfiscateWhip") && (InventoryAvailable(Player, "LeatherWhip", "ItemPelvis") || InventoryAvailable(Player, "LeatherWhip", "ItemBreast"))) break;
@@ -649,10 +664,10 @@ function PrivateRunPunishment(LoveFactor) {
 	if (PrivatePunishment == "BoundPet") { PrivateReleaseTimer = CommonTime() + 240000; CharacterSetActivePose(Player, "Kneel"); InventoryWear(Player, "LeatherBelt", "ItemLegs"); InventoryWear(Player, "TailButtPlug", "ItemButt"); InventoryWear(Player, "Ears" + (Math.floor(Math.random() * 2) + 1).toString(), "Hat"); InventoryWear(Player, "LeatherArmbinder", "ItemArms"); InventorySetDifficulty(Player, "ItemArms", 15); }
 	if ((PrivatePunishment == "ChastityBelt") && (NPCTraitGet(CurrentCharacter, "Horny") >= 0) && (InventoryGet(Player, "ItemVulva") == null)) InventoryWear(Player, "VibratingEgg", "ItemVulva");
 	if ((PrivatePunishment == "ChastityBelt") && (NPCTraitGet(CurrentCharacter, "Horny") >= 0) && (InventoryGet(Player, "ItemButt") == null)) InventoryWear(Player, "BlackButtPlug", "ItemButt");
-	if (PrivatePunishment == "ChastityBelt") InventoryWear(Player, "MetalChastityBelt", "ItemPelvis");
-	if (PrivatePunishment == "ChastityBra") InventoryWear(Player, "MetalChastityBra", "ItemBreast");
+	if (PrivatePunishment == "ChastityBelt") { InventoryWear(Player, "MetalChastityBelt", "ItemPelvis"); InventoryLock(Player, "ItemPelvis", "OwnerPadlock", null); }
+	if (PrivatePunishment == "ChastityBra") { InventoryWear(Player, "MetalChastityBra", "ItemBreast"); InventoryLock(Player, "ItemBreast", "OwnerPadlock", null); }
 	if (PrivatePunishment == "ForceNaked") LogAdd("BlockChange", "Rule", CurrentTime + 1800000);
-	if (PrivatePunishment == "ConfiscateKey") { InventoryDelete(Player, "MetalCuffsKey", "ItemMisc"); InventoryDelete(Player, "MetalPadlockKey", "ItemMisc"); InventoryDelete(Player, "IntricatePadlockKey", "ItemMisc"); }
+	if (PrivatePunishment == "ConfiscateKey") InventoryConfiscateKey();
 	if (PrivatePunishment == "ConfiscateCrop") { InventoryDelete(Player, "LeatherCrop", "ItemPelvis"); InventoryDelete(Player, "LeatherCrop", "ItemBreast"); }
 	if (PrivatePunishment == "ConfiscateWhip") { InventoryDelete(Player, "LeatherWhip", "ItemPelvis"); InventoryDelete(Player, "LeatherWhip", "ItemBreast"); }
 	if (PrivatePunishment == "SleepCage") LogAdd("SleepCage", "Rule", CurrentTime + 604800000);
@@ -726,4 +741,23 @@ function PrivateSlaveMarketStart(AuctionType) {
 	CommonSetScreen("Cutscene", "NPCSlaveAuction");
 	if (AuctionType == "Sell") PrivateKickOut();
 	else DialogLeave();
+}
+
+// When the player selects how to improve her slave
+function PrivateSlaveImproveSelect(Type) {
+	PrivateSlaveImproveType = Type;
+}
+
+// The player slave can be sent to the asylum to have a trait corrected (The higher the value, the slower it raises)
+function PrivateSlaveImproveSend() {
+	CharacterChangeMoney(Player, -25);
+	var T = NPCTraitGet(CurrentCharacter, PrivateSlaveImproveType);
+	var N = T + 20 - Math.floor((T + 100) / 10);
+	if (N < 0) {
+		PrivateSlaveImproveType = NPCTraitReverse(PrivateSlaveImproveType);
+		N = N * -1;
+	}
+	NPCTraitSet(CurrentCharacter, PrivateSlaveImproveType, N);
+	NPCEventAdd(CurrentCharacter, "AsylumSent", CurrentTime + 86400000);
+	DialogLeave();
 }

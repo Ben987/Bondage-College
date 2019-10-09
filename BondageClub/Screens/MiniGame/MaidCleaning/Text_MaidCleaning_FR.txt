@@ -1,0 +1,6 @@
+Move the duster over every dirty spot before the supervisor comes back.
+Déplacez-vous pour dépoussiérer chaque recoin avant que la superviseuse revienne.
+Congratulations!  You've cleaned everything in time.
+Félicitations! Vous avez tout nettoyé à temps.
+Sorry, you've failed to clean everything in time.
+Dommage, vous n'avez pas pu tout nettoyer à temps.

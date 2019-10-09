@@ -14,7 +14,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 40,0,0,,We could try to|subdue Mildred together.,"Subdue her?  Like a kidnapping?|It's dangerous, what's in there for me?",50,0,0,
 40,0,0,,We should kidnap|the fucking teacher.,"Kidnap her in class?  For real?|It's dangerous, what's in there for me?",50,1,0,
 40,0,0,,You will help me|to bind the teacher.,"Help you to kidnap her in class?|It's dangerous, what's in there for me?",50,0,1,
-50,3,0,PlayerHasRope,You can do it because|we are good friends.,"I guess.  Ok, I'll help you.|(She turns around.) But you do the first move.",60,0,0,AgreeHelp()
+50,3,0,PlayerHasRope,You can do it because|we are good friends.,"I guess.  OK, I'll help you.|(She turns around.) But you do the first move.",60,0,0,AgreeHelp()
 50,3,0,!PlayerHasRope,You can do it because|we are good friends.,I guess.  I'll help and you can have this rope.|(She turns around.) But you do the first move.,60,0,0,AgreeHelp()
 50,0,3,PlayerHasRope,If you don't help.|I'll give you hell.,Fine.  I don't want trouble after school.  I'll help.|(She turns around.) But you do the first move.,60,0,0,AgreeHelp()
 50,0,3,!PlayerHasRope,If you don't help.|I'll give you hell.,"Fine, I'll help.  You can even use these ropes.|(She turns around.) But you do the first move.",60,0,0,AgreeHelp()

@@ -1,18 +1,38 @@
 ###_NPC
+picks a glass of water from DialogCharacterName tray.
+nimmt sich ein Glas Wasser von DialogCharacterName Servierplatte.
+picks an orange juice from DialogCharacterName tray.
+nimmt sich einen Orangensaft von DialogCharacterName Servierplatte.
 picks a beer from DialogCharacterName tray.
 nimmt sich ein Bier von DialogCharacterName Servierplatte.
 picks a glass of wine from DialogCharacterName tray.
 nimmt sich ein Glas Wein von DialogCharacterName Servierplatte.
-picks a Margarita from DialogCharacterName tray.
-nimmt sich einen Margarita von DialogCharacterName Servierplatte.
+buys a Virgin Mojito from DialogCharacterName tray.
+kauft einen Virgin von DialogCharacterName Servierplatte.
+buys a Margarita from DialogCharacterName tray.
+kauft einen Margarita von DialogCharacterName Servierplatte.
 buys a glass of Whiskey from DialogCharacterName.
 kauft ein Glas Whiskey von DialogCharacterName.
 buys a glass of champagne from DialogCharacterName.
 kauft ein Glas Champagner von DialogCharacterName.
+buys a jug of refreshing lemonade for everyone, from DialogCharacterName.
+kauft von DialogCharacterName einen Krug erfrischende Limonade für alle.
 buys a round of shooters for everyone, from DialogCharacterName.
 gibt bei DialogCharacterName allen eine Runde aus.
+buys a jug of Sex on the Beach for everyone, from DialogCharacterName.
+kauft von DialogCharacterName einen Krug Sex on the Beach für alle.
 buys a beer pitcher for everyone, from DialogCharacterName.
 kauft von DialogCharacterName einen Krug Bier für alle.
+picks a tea from DialogCharacterName tray.
+nimmt sich einen Tee von DialogCharacterName Servierplatte.
+picks a coffee from DialogCharacterName tray.
+nimmt sich einen Kaffee von DialogCharacterName Servierplatte.
+buys a hot chocolate from DialogCharacterName tray.
+kauft eine heiße Schokolade von DialogCharacterName Servierplatte.
+buys a expresso from DialogCharacterName tray.
+kauft einen Espresso von DialogCharacterName Servierplatte.
+buys a cappuccino from DialogCharacterName tray.
+kauft einen Cappuccino von DialogCharacterName Servierplatte.
 (You can use or remove items by selecting specific body regions.)
 (Wähle eine Körperregion, um Items zu benutzen oder zu entfernen.)
 (You don't have access to use or remove items on her.)
@@ -28,15 +48,17 @@ kauft von DialogCharacterName einen Krug Bier für alle.
 (You can give more access to your items by putting her on your whitelist, or less control by putting her on your blacklist.)
 (Nimm sie in deine Whitelist auf, um ihr Zugriff auf deine Fesseln zu gewähren, oder verwende die Blacklist, um Kontrolle zu entziehen.)
 ###_PLAYER
-(Kick her out of the room.)
-(Sie aus dem Raum werfen.)
-(Ban her from the room.)
-(Sie aus dem Raum verbannen.)
 (Check her drink tray.)
 (Ihr Getränketablett ansehen.)
 ###_NPC
 (There's a variety of drinks.  Some are offered by the club and some are more expensive.)
 (Es gibt mehrere verschiedene Getränke. Einige werden vom Club angeboten, andere sind etwas teurer.)
+###_PLAYER
+(Room administrator action.)
+(Raum-Administrator-Aktionen.)
+###_NPC
+(As a room administrator, you can take these actions with her.)
+(Als Raum-Administrator kannst du dir folgenden Aktionen an ihr ausführen.)
 ###_PLAYER
 (Leave this menu.)
 (Dieses Menü verlassen.)
@@ -92,6 +114,14 @@ kauft von DialogCharacterName einen Krug Bier für alle.
 ###_PLAYER
 (Accept her collar and begin the ceremony.)
 (Ihr Halsband annehmen und die Zeremonie beginnen.)
+(Rules, restrictions & punishments.)
+(Regeln, Einschränkungen und Bestrafungen.)
+###_NPC
+(Select the rule, restriction or punishment that you want to enforce.)
+(Wähle die Regel, Einschränkung oder Bestrafung, die du vollstrecken willst.)
+###_PLAYER
+(Give her the money envelope.)
+(Ihr den Geldumschlag geben.)
 (Pay 100$ for the collaring ceremony.)
 (100$ für die Halsband-Zeremonie zahlen.)
 ###_NPC
@@ -106,17 +136,204 @@ kauft von DialogCharacterName einen Krug Bier für alle.
 ###_PLAYER
 (Back to main menu.)
 (Zurück zum Hauptmenü.)
+(Look at free drinks.)
+(Kostenlose Drinks ansehen.)
+###_NPC
+(Free drinks menu.)
+(Kostenlose Drinks.)
+###_PLAYER
+(Look at regular drinks.)
+(Reguläre Drinks ansehen.)
+###_NPC
+(Regular drinks menu.)
+(Reguläre Drinks.)
+###_PLAYER
+(Look at shared drinks.)
+(Gemeinschafts-Drinks ansehen.)
+###_NPC
+(Shared drinks menu.)
+(Gemeinschafts-Drinks.)
+###_PLAYER
+(Look at hot drinks.)
+(Heißgetränke ansehen.)
+###_NPC
+(Hot drinks menu.)
+(Heißgetränke.)
+###_PLAYER
+(Get a free glass of water.)
+(Ein kostenloses Glas Wasser nehmen.)
+(Get a free orange juice.)
+(Einen kostenlosen Orangensaft nehmen.)
 (Get a free beer.)
 (Ein kostenloses Bier nehmen.)
 (Get a free glass of wine.)
 (Ein kostenloses Glas Wein nehmen.)
-(Get a free Margarita.)
-(Einen kostenlosen Margarita nehmen.)
+(Back to drink options.)
+(Zurück zur Getränkeauswahl.)
+###_NPC
+(Drink options.)
+(Getränkeauswahl.)
+###_PLAYER
+(Get a $5 Virgin Mojito.)
+(Einen Virgin Mojito für 5$ kaufen.)
+(Get a $5 Margarita.)
+(Einen Margarita für 5$ kaufen.)
 (Get a 5$ glass of Whiskey.)
 (Ein Glas Whiskey für 5$ kaufen.)
 (Get a 5$ glass of Champagne.)
 (Ein Glas Champagner für 5$ kaufen.)
+(Get a 10$ jug of Sicilian Lemonade for everyone.)
+(Allen für 10$ einen Krug sizilianischer Limonade ausgeben.)
 (Get a 10$ round of shooters for everyone.)
 (Allen für 10$ eine Runde ausgeben.)
+(Get a 10$ jug of Sex on the Beach for everyone.)
+(Allen für 10$ einen Krug Sex on the Beach ausgeben.)
 (Get a 10$ beer pitcher for everyone.)
 (Allen für 10$ einen Krug Bier ausgeben.)
+(Get a free tea.)
+(Einen kostenlosen Tee nehmen.)
+(Get a free coffee.)
+(Einen kostenlosen Kaffee nehmen.)
+(Get a 5$ hot chocolate.)
+(Eine heiße Schokolade für 5$ kaufen.)
+(Get a 5$ expresso.)
+(Einen Espresso für 5$ kaufen.)
+(Get a 5$ cappuccino.)
+(Einen Cappuccino für 5$ kaufen.)
+(Kick her out of the room.)
+(Sie aus dem Raum werfen.)
+(Ban her from the room.)
+(Sie aus dem Raum verbannen.)
+(Move her to the left.)
+(Sie nach links versetzen.)
+(Move her to the right.)
+(Sie nach rechts versetzen.)
+(Promote her as room administrator.)
+(Ihr Administratorrechte geben.)
+(Demote her from room administration.)
+(Ihre Administratorrechte aberkennen.)
+(Wardrobe access.)
+(Kleiderschrank-Zugriff.)
+###_NPC
+(Select her wardrobe access.)
+(Bestimme ihren Zugriff auf den Kleiderschrank.)
+###_PLAYER
+(Whisper rules.)
+(Flüster-Regeln.)
+###_NPC
+(Select her rules for whispering when you're in the same room.)
+(Lege die Regeln fest, die für ihr Geflüster gelten, solange du im selben Raum bist.)
+###_PLAYER
+(Key restrictions.)
+(Schlüssel-Einschränkungen.)
+###_NPC
+(Select her restrictions for keys.)
+(Lege ihre Einschränkungen für Schlüssel fest.)
+###_PLAYER
+(Timer cell punishment.)
+(Auszeit-Zellen-Bestrafung.)
+###_NPC
+(For how long do you want to lock her up?  She will be isolated, and you won't be able to unlock her.)
+(Wie lange willst du sie einsperren? Sie wird isoliert bleiben und du wirst sie nicht vorzeitig befreien können.)
+###_PLAYER
+(Forced labor.)
+(Zwangsarbeit.)
+###_NPC
+(What kind of labor will she be forced to do?  Her salary will be given to you.)
+(Zu welcher Arbeit willst du sie zwingen? Ihr Lohn wird dir überreicht.)
+###_PLAYER
+(Allow her wardrobe access.)
+(Ihr Zugriff auf den Kleiderschrank geben.)
+###_NPC
+(She can now access her wardrobe and change clothes.)
+(Sie kann nun auf ihren Kleiderschrank zugreifen und sich umziehen.)
+###_PLAYER
+(Block her wardrobe for 1 hour.)
+(Ihren Kleiderschrank 1 Stunde lang sperren.)
+###_NPC
+(Her wardrobe access will be blocked for the next hour.)
+(Ihr Zugriff auf den Kleiderschrank wird eine Stunde lang gesperrt sein.)
+###_PLAYER
+(Block her wardrobe for 1 day.)
+(Ihren Kleiderschrank 1 Tag lang sperren.)
+###_NPC
+(Her wardrobe access will be blocked for the next day.)
+(Ihr Zugriff auf den Kleiderschrank wird einen Tag lang gesperrt sein.)
+###_PLAYER
+(Block her wardrobe for 1 week.)
+(Ihren Kleiderschrank 1 Woche lang sperren.)
+###_NPC
+(Her wardrobe access will be blocked for the next week.)
+(Ihr Zugriff auf den Kleiderschrank wird eine Woche lang gesperrt sein.)
+###_PLAYER
+(Block her wardrobe until you allow it.)
+(Ihren Kleiderschrank sperren, bis du es erlaubst.)
+###_NPC
+(Her wardrobe access will be blocked until you allow it again.)
+(Ihr Zugriff auf den Kleiderschrank wird gesperrt sein, bis du diese Regel aufhebst.)
+###_PLAYER
+(Allow her to whisper.)
+(Ihr das Flüstern erlauben.)
+###_NPC
+(She can now whisper normally.)
+(Sie darf nun normal flüstern.)
+###_PLAYER
+(Forbid her to whisper when you're there.)
+(Ihr das Flüstern verbieten, solange du da bist.)
+###_NPC
+(She cannot whisper to someone else when she's in the same room as you.)
+(Sie kann Anderen nichts mehr zuflüstern, solange ihr beide im selben Raum seid.)
+###_PLAYER
+(Allow her to buy keys.)
+(Ihr erlauben, Schlüssel zu kaufen.)
+###_NPC
+(The store will sell keys to her.)
+(Der Laden wird ihr Schlüssel verkaufen.)
+###_PLAYER
+(Confiscate her keys.)
+(Ihre Schlüssel beschlagnahmen.)
+###_NPC
+(She lost all of her keys.)
+(Sie hat alle ihre Schlüssel verloren.)
+###_PLAYER
+(Block her from buying keys.)
+(Sie daran hindern, Schlüssel zu kaufen.)
+###_NPC
+(The store will not sell keys to her anymore.)
+(Der Laden wird ihr keine Schlüssel mehr verkaufen.)
+###_PLAYER
+(Don't lock her up.)
+(Sie nicht einsperren.)
+(Lock her for 5 minutes.)
+(Sie 5 Minuten lang einsperren.)
+###_NPC
+(She will be isolated and locked up for 5 minutes.)
+(Sie wird 5 Minuten lang eingesperrt und isoliert bleiben.)
+###_PLAYER
+(Lock her for 15 minutes.)
+(Sie 15 Minuten lang einsperren.)
+###_NPC
+(She will be isolated and locked up for 15 minutes.)
+(Sie wird 15 Minuten lang eingesperrt und isoliert bleiben.)
+###_PLAYER
+(Lock her for 30 minutes.)
+(Sie 30 Minuten lang einsperren.)
+###_NPC
+(She will be isolated and locked up for 30 minutes.)
+(Sie wird 30 Minuten lang eingesperrt und isoliert bleiben.)
+###_PLAYER
+(Lock her for 60 minutes.)
+(Sie 60 Minuten lang einsperren.)
+###_NPC
+(She will be isolated and locked up for 60 minutes.)
+(Sie wird 60 Minuten lang eingesperrt und isoliert bleiben.)
+###_PLAYER
+(No forced labor.)
+(Keine Zwangsarbeit.)
+(Force her to serve drinks as a maid.)
+(Sie als Hausmädchen Getränke servieren lassen.)
+###_NPC
+(She will be sent to the maid quarters to prepare drinks.  You will earn her salary.)
+(Sie wird in die Dienerkammer geschickt, um Getränke zu servieren. Du erhältst ihren Lohn.)
+(She needs to be a maid in the sorority and be able to walk to do that job for you.)
+(Sie muss ein Hausmädchen in der Schwesternschaft sein und laufen können, um diese Arbeit für dich zu tätigen.)

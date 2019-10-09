@@ -5,7 +5,7 @@ var NurseryJustClicked = null;
 var NurseryNurse = null;
 var NurseryABDL1 = null;
 var NurseryABDL2 = null;
-var NurseryPlayerBadBabyStatus = 0;						//	0 = Good girl	1 = ready to be forgiven	>= 2 = severity of naughtyness.
+var NurseryPlayerBadBabyStatus = 0;						//	0 = Good girl	1 = ready to be forgiven	>= 2 = severity of naughtiness.
 var NurseryPlayerInappropriateCloth = null;
 var NurseryCoolDownTime = 0;
 var NurseryPlayerAppearance = null;
@@ -18,7 +18,7 @@ var PreviousDress = "";
 var PreviousDressColor = "";
 var NurseryPlayerKeepsLoosingBinky = null;
 var NurseryGateMsg = null;								// message about nursery gate
-var NurseryLeaveMsg = null;								// message abou ease of opening nursery gate
+var NurseryLeaveMsg = null;								// message about ease of opening nursery gate
 var NurseryEscapeAttempts = null;
 var NursuryEscapeFailMsg = null;
 var NurseryRepeatOffender = null;
@@ -87,7 +87,6 @@ function NurseryRun() {
 	DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
 	if (NurserySituation == ("AtGate") || NurserySituation == ( "Admitted")) {
 		DrawButton(1885, 265, 90, 90, "", "White", "Icons/Crying.png");
-		if (CharacterAppearanceGetCurrentValue(Player, "ItemMouth", "Name") == "PacifierGag") DrawButton(1885, 385, 90, 90, "", "White", "Icons/SpitOutPacifier.png");
 	}
 	NurseryGoodBehaviour();
 	NurseryDrawText();
@@ -125,7 +124,6 @@ function NurseryClick() {
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355)) {
 			NurseryLoadNurse();
 		}
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475)) NurseryPlayerSpitOutPacifier();
 	}
 	NurseryJustClicked = null;
 }
@@ -200,7 +198,7 @@ function NurseryNurseOutfitForNPC(CurrentNPC) {
 function NurseryABDLOutfitForNPC(CurrentNPC) {
 	CharacterNaked(CurrentNPC);
 	NurseryRandomDressSelection();
-	NurseryRandomColourSelection();
+	NurseryRandomColorSelection();
 	InventoryWear(CurrentNPC, RandomResultB, "Cloth", RandomResult);
 	InventoryWear(CurrentNPC, "Diapers1", "Panties", "Default");
 	RandomNumber = Math.floor(Math.random() * 8);
@@ -213,19 +211,25 @@ function NurseryNPCResrained(CurrentNPC, RestraintSet) {
 	if (RestraintSet >= 1 || RestraintSet <= 2) InventoryWear(CurrentNPC, "PacifierGag", "ItemMouth");
 	if (RestraintSet == 3) {
 		InventoryWear(CurrentNPC, "PacifierGag", "ItemMouth");
-		InventoryWear(CurrentNPC, "PaddedMittens", "ItemArms");
+		InventoryWear(CurrentNPC, "PaddedMittens", "ItemHands");
 	}
 	if (RestraintSet == 4) {
 		InventoryWear(CurrentNPC, "PacifierGag", "ItemMouth");
-		InventoryWear(CurrentNPC, "PaddedMittensHarness", "ItemArms");
+		InventoryWear(CurrentNPC, "PaddedMittens", "ItemHands");
 		InventoryWear(CurrentNPC, "AdultBabyHarness", "ItemTorso");
+		InventoryWear(CurrentNPC, "MittenChain1", "ItemArms");
 	}
 	if (RestraintSet == 5) {
 		InventoryWear(CurrentNPC, "HarnessPacifierGag", "ItemMouth");
-		InventoryWear(CurrentNPC, "PaddedMittensHarnessLocked", "ItemArms");
+		InventoryWear(CurrentNPC, "PaddedMittens", "ItemHands");
 		InventoryWear(CurrentNPC, "AdultBabyHarness", "ItemTorso");
+		InventoryWear(CurrentNPC, "MittenChain1", "ItemArms");
+		InventoryLock(CurrentNPC, InventoryGet(CurrentNPC, "ItemMouth"), { Asset: AssetGet("Female3DCG", "ItemMisc", "IntricatePadlock")}, "Nursery property");
+		InventoryLock(CurrentNPC, InventoryGet(CurrentNPC, "ItemTorso"), { Asset: AssetGet("Female3DCG", "ItemMisc", "IntricatePadlock")}, "Nursery property");
+		InventoryLock(CurrentNPC, InventoryGet(CurrentNPC, "ItemArms"), { Asset: AssetGet("Female3DCG", "ItemMisc", "IntricatePadlock")}, "Nursery property");
+		InventoryLock(CurrentNPC, InventoryGet(CurrentNPC, "ItemHands"), { Asset: AssetGet("Female3DCG", "ItemMisc", "IntricatePadlock")}, "Nursery property");
 	}
-	if (RestraintSet >= 6) InventoryWear(CurrentNPC, "PaddedMittens", "ItemArms");
+	if (RestraintSet >= 6) InventoryWear(CurrentNPC, "PaddedMittens", "ItemHands");
 }
 
 
@@ -239,8 +243,8 @@ function NurseryRandomDressSelection() {
 	if (RandomResultB == PreviousDress) NurseryRandomDressSelection();
 }
 
-// Random selection for dress colours
-function NurseryRandomColourSelection() {
+// Random selection for dress colors
+function NurseryRandomColorSelection() {
 	PreviousDressColor = RandomResult
 	RandomNumber = Math.floor(Math.random() * 12);
 	if (RandomNumber == 0) RandomResult = "Default";
@@ -259,7 +263,7 @@ function NurseryRandomColourSelection() {
 }
 
 
-// Remove baby dresses from inventroy for testing only
+// Remove baby dresses from inventory for testing only
 function NurseryDeleteItem() {
 	InventoryDelete(Player, "Padlock", "ItemArms");
 	InventoryDelete(Player, "PadlockKey", "ItemArms");
@@ -290,30 +294,40 @@ function NurseryPlayerAdmitted() {
 // When the player puts on a AB dress or has it put on
 function NurseryPlayerWearBabyDress() {
 	NurseryRandomDressSelection();
-	NurseryRandomColourSelection();
+	NurseryRandomColorSelection();
 	InventoryWear(Player, RandomResultB, "Cloth", RandomResult);
 }
 
 // Restraints used on player
 function NurseryPlayerRestrained(RestraintSet) {
 	if (RestraintSet == 1) {
-		InventoryWear(Player, "PaddedMittens", "ItemArms", "Default");
+		InventoryWear(Player, "PaddedMittens", "ItemHands", "Default");
 		InventoryWear(Player, "PacifierGag", "ItemMouth", "Default");
 	}
 	if (RestraintSet == 2) {
-		InventoryWear(Player, "PaddedMittensHarness", "ItemArms", "Default");
+		InventoryWear(Player, "PaddedMittens", "ItemHands", "Default");
 		InventoryWear(Player, "AdultBabyHarness", "ItemTorso", "Default");
+		InventoryWear(Player, "MittenChain1", "ItemArms", "Default");
 	}
 	if (RestraintSet == 3) {
 		InventoryWear(Player, "HarnessPacifierGag", "ItemMouth", "Default");
 		InventoryWear(Player, "AdultBabyHarness", "ItemTorso", "Default");
-		InventoryWear(Player, "PaddedMittensHarnessLocked", "ItemArms", "Default");
+		InventoryWear(Player, "MittenChain1", "ItemArms", "Default");
+		InventoryWear(Player, "PaddedMittens", "ItemHands", "Default");
+		InventoryLock(Player, InventoryGet(Player, "ItemMouth"), { Asset: AssetGet("Female3DCG", "ItemMisc", "IntricatePadlock")}, "Nursery property");
+		InventoryLock(Player, InventoryGet(Player, "ItemTorso"), { Asset: AssetGet("Female3DCG", "ItemMisc", "IntricatePadlock")}, "Nursery property");
+		InventoryLock(Player, InventoryGet(Player, "ItemArms"), { Asset: AssetGet("Female3DCG", "ItemMisc", "IntricatePadlock")}, "Nursery property");
+		InventoryLock(Player, InventoryGet(Player, "ItemHands"), { Asset: AssetGet("Female3DCG", "ItemMisc", "IntricatePadlock")}, "Nursery property");
 		NurseryPlayerNeedsPunishing(2);
 	}
 	if (RestraintSet == 4) {
 		if (!Player.IsRestrained()) {	
 			InventoryWear(Player, "AdultBabyHarness", "ItemTorso", "Default");
-			InventoryWear(Player, "PaddedMittensHarnessLocked", "ItemArms", "Default");
+			InventoryWear(Player, "MittenChain1", "ItemArms", "Default");
+			InventoryWear(Player, "PaddedMittens", "ItemHands", "Default");
+			InventoryLock(Player, InventoryGet(Player, "ItemTorso"), { Asset: AssetGet("Female3DCG", "ItemMisc", "IntricatePadlock")}, "Nursery property");
+			InventoryLock(Player, InventoryGet(Player, "ItemArms"), { Asset: AssetGet("Female3DCG", "ItemMisc", "IntricatePadlock")}, "Nursery property");
+			InventoryLock(Player, InventoryGet(Player, "ItemHands"), { Asset: AssetGet("Female3DCG", "ItemMisc", "IntricatePadlock")}, "Nursery property");
 		}
 	}
 	if (RestraintSet == 5) {
@@ -328,9 +342,10 @@ function NurseryPlayerRestrained(RestraintSet) {
 	}
 }
 
-// Player can spits out regular pacifier
-function NurseryPlayerSpitOutPacifier() {
-	InventoryRemove(Player, "ItemMouth");
+// Apply lock to specified item
+function NurseryAddLock(C, LockItem) {
+	var CurrentItem = InventoryGet(Player, LockItem);
+	if ((CurrentItem.Property.LockedBy == null) (CurrentItem.Property.LockedBy != "")) InventoryLock(C, CurrentItem, { Asset: AssetGet("Female3DCG", "ItemMisc", "IntricatePadlock")});
 }
 
 // Player can spits out regular pacifier
@@ -387,7 +402,7 @@ function NurseryPlayerChangeDress() {
 // Player changes dress
 function NurseryPlayerChangeDressColor() {
 		CharacterChangeMoney(Player, -5);
-		NurseryRandomColourSelection();
+		NurseryRandomColorSelection();
 		InventoryWear(Player, RandomResultB, "Cloth", RandomResult);
 }
 
@@ -442,7 +457,7 @@ function NurseryEscapeGate() {
 		if (RandomNumber <= 2) {										// Player manages to open gate
 			NurseryLeaveMsg = 3;
 		} else {														// Player fails to escape....
-			if (RandomNumber > (14 - NurseryEscapeAttempts)) {			// and nurse noices player
+			if (RandomNumber > (14 - NurseryEscapeAttempts)) {			// and nurse notices player
 				NurseryEscapeAttempts = NurseryEscapeAttempts - 4;
 				NurseryNurse.Stage = "280";
 				NurseryLoadNurse();
@@ -495,7 +510,7 @@ function NurseryPlayerPunished(Severity) {
 	if (NurseryPlayerBadBabyStatus < 1) NurseryPlayerBadBabyStatus = 1;
 }
 
-// Player bad baby status can reduce with time until she is ready to appolgise
+// Player bad baby status can reduce with time until she is ready to apologise
 function NurseryGoodBehaviour() {
 	if (NurseryPlayerBadBabyStatus > 1) {
 		if (NurseryCoolDownTime == 0) NurseryCoolDownTime = CommonTime() + 180000;

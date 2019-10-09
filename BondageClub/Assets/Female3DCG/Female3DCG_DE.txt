@@ -38,6 +38,10 @@ Bunny Girl Accessories
 Bunny-Accessoires
 Robe
 Robe
+Flower Dress
+Blumenkleid
+Nomadic Dress
+Nomadenkleid
 Bottom
 Kleidung unten
 Skirt
@@ -46,6 +50,8 @@ Jeans
 Jeans
 Shorts
 Shorts
+Pajama
+Pyjama
 Mistress Bottom
 Herrinnen-Unterteil
 Bra
@@ -60,6 +66,8 @@ Lace and Satin
 Spitzensatin
 Strapless
 Trägerlos
+Bandeau
+Bandeau-BH
 Satin Bustier
 Satin-Bustier
 Corset + Garters
@@ -68,8 +76,10 @@ Corset
 Korsett
 Half Cup Corset
 Halbkörbchenkorsett
-Underbust Corset
+Under Bust Corset
 Unterbrustkorsett
+Frilled Bikini
+Rüschenbikini
 Swimsuit style 1
 Badeanzug Stil 1
 Swimsuit style 2
@@ -92,6 +102,8 @@ Diapers
 Windeln
 Socks
 Socken
+Ankle
+Knöchel
 Short
 Kurz
 Regular
@@ -128,6 +140,12 @@ Mistress Boots
 Herrinnen-Stiefel
 Pony Boots
 Pony-Stiefel
+Strap Sandals
+Riemensandalen
+Paw Boots
+Tatzenstiefel
+Woolly Boots
+Wollstiefel
 Hat
 Kopfbedeckung
 Hair Band
@@ -150,6 +168,8 @@ Bunny Succubus
 Hasen-Succubus
  Flower
 Blüte
+ Witch Hat
+Hexenhut
 Hair Accessory
 Haar-Accessoire
 Ears Small
@@ -186,6 +206,8 @@ Long Gloves
 Lange Handschuhe
 Mistress Gloves
 Herrinnen-Handschuhe
+Fingerless Gloves
+Fingerfreie Handschuhe
 Glasses
 Brille
 Style 5
@@ -196,10 +218,12 @@ Sunglasses 1
 Sonnenbrille 1
 Sunglasses 2
 Sonnenbrille 2
-Venitian Mask
+Venetian Mask
 Venezianische Maske
 Domino Mask
 Domino-Maske
+Butterfly Mask
+Schmetterlingsmaske
 Tail Strap
 Schwanzgürtel
 Kitty Tail Strap
@@ -300,24 +324,46 @@ Hemp Rope
 Hanfseil
 Leather Belt
 Ledergürtel
+Irish 8 Feet Cuffs
+Irische Achter-Fußschellen
 Suspension Hemp Rope
 Hänge-Hanfseil
 Duct Tape
 Klebeband
 Mermaid Rope Tie
 Meerjungfrau-Fessel
+Leather Ankle Cuffs
+Leder-Fußfesseln
 Legs
 Beine
+Upper Mermaid Tie
+Obere Meerjungfrau-Fessel
+Leather Leg Cuffs
+Leder-Beinfesseln
+Leg Binder
+Zwangshose
+Hobble Skirt
+Humpelrock
+Wooden Horse
+Holzbock
+Saddle Stand
+Sattelständer
+Metal Leg Spreader
+Metall Beinspreizer
 Vulva
 Vulva
 Vibrating Egg
 Vibrator-Ei
 Vibrating Wand
 Vibrator-Stab
-Vibrating Egg|Panties Remote
+Vibrating Egg & Panties Remote
 Vibrator-Fernbedienung
 Vibrating Latex Panties
 Latex-Vibratorhöschen
+Wand Belt
+Vibrator-Gürtel
+Vibrating Dildo
+Vibrator-Dildo
 Butt
 Hintern
 Black Butt Plug
@@ -342,18 +388,26 @@ Anal Beads
 Analperlenkette
 Butt Pump
 Analpumpe
+Vibrating Butt Plug
+Vibrator-Analstöpsel
 Pelvis
 Becken
+Strap-On Panties
+Umschnalldildo
+Leather Chastity Belt
+Leder-Keuschheitsgürtel
+Studded Chastity Belt
+Nieten-Keuschheitsgürtel
 Metal Chastity Belt
 Metall-Keuschheitsgürtel
-Metal Chastity Belt Key
-Metall-Keuschheitsschlüssel
+Love Chastity Belt
+Liebes-Keuschheitsgürtel
 Leather Crop
 Ledergerte
 Leather Whip
 Lederpeitsche
-Strap-On Panties
-Umschnalldildo
+Spanking Toys
+Spanking-Spielzeug
 Torso
 Körper
 Nylon Rope Harness
@@ -384,8 +438,6 @@ Breast
 Brust
 Metal Chastity Bra
 Metall-Keuschheits-BH
-Metal Chastity Bra Key
-Metall-Keuschheits-BH-Schlüssel
 Arms
 Arme
 Metal Cuffs
@@ -394,18 +446,40 @@ Leather Armbinder
 Monohandschuh
 Leather Cuffs
 Ledermanschetten
-Thumbless Padded Mittens
-Daumenlose Fäustlinge
+Mittens Chain
+Fäustlingskette
 Four Limbs Shackles
 Viererketten
 Latex Strait Leotard
 Latex-Zwangsjackenanzug
-Kitty Paw Mittens
-Katzenpfoten
+Straitjacket
+Zwangsjacke
+Bolero Straitjacket
+Bolero-Zwangsjacke
 Pet Suit
 Tieranzug
 Holding Leash
 Leine
+Strait Dress
+Zwangskleid
+Open crotch Strait Dress
+Schrittfreies Zwangskleid
+Padded Mittens
+Gepolsterte Fäustlinge
+Paw Mittens
+Pfotenfäustlinge
+Crop
+Gerte
+Flogger
+Peitsche
+Cane
+Rohrstock
+Heart Crop
+Herz-Gerte
+Paddle
+Paddel
+Whip Paddle
+Paddelpeitsche
 Neck
 Hals
 Leather Collar
@@ -424,6 +498,14 @@ Shock Collar Remote
 Elektrohalsband-Fernbedienung
 Bat Collar
 Fledermaus-Halsband
+Posture Collar
+Haltungshalsband
+Steel Collar
+Stahlhalsband
+Leather Choker
+Lederhalsreif
+Pet Collar
+Tierhalsband
 Collar
 Halsband
 Bell
@@ -440,6 +522,8 @@ Leash
 Leine
 Pulled Leash
 Gehaltene Leine
+Name Tag
+Namensschild
 Cloth Gag
 Stoffknebel
 Wiffle Ball Gag
@@ -468,12 +552,16 @@ Rubber Carrot Gag
 Gummikarotten-Knebel
 Muzzle Gag
 Kiefer-Maulkorb
+Bone Gag
+Knochenknebel
 Sleeping Pill
 Schlaftablette
 Panties Mask
 Höschen-Maske
 Plug Gag
 Plug-Knebel
+Dildo Gag
+Dildo-Knebel
 Head
 Kopf
 Cloth Blindfold
@@ -490,9 +578,13 @@ Kitty Blindfold
 Katzen-Augenbinde
 Small Blindfold
 Kleine Augenbinde
-Light Duty EarPlugs
+Leather Hood Mouth
+Lederhaube (Mund frei)
+Ears
+Ohren
+Light Duty Ear Plugs
 Herkömmliche Ohrenstöpsel
-Heavy Duty EarPlugs
+Heavy Duty Ear Plugs
 Hochleistungs-Ohrenstöpsel
 Misc Items
 Sonstiges
@@ -504,12 +596,16 @@ Five Minutes Padlock
 Fünf-Minuten-Schloss
 Owner Padlock
 Besitzer-Schloss
+Mistress Padlock
+Herrinnen-Schloss
 Metal Padlock Key
 Vorhängeschloss-Schlüssel
 Intricate Padlock Key
 Komplex-Schloss-Schlüssel
 Owner Padlock Key
 Besitzer-Schloss-Schlüssel
+Mistress Padlock Key
+Herrinnen-Schloss-Schlüssel
 Metal Cuffs Key
 Handschellenschlüssel
 Wooden Maid Tray
@@ -518,11 +614,23 @@ Wooden Maid Tray Full
 Holztablett voll
 Wooden Paddle
 Holzpaddel
-Front Devices
-Frontalgeräte
+Body
+Körper
 Wooden Box
 Holzkiste
+Small Wooden Box
+Kleine Holzkiste
 Water filled milk can 
 Milchkanne mit Wasser
 Water torture Cell
 Wasserfolterzelle
+Stand up cage
+Aufrechter Käfig
+Kennel
+Zwinger
+Dress with Fur
+Kleid mit Fell
+Socks with Fur
+Socken mit Fell
+Gloves with Fur
+Handschuhe mit Fell

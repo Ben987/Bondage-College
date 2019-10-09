@@ -4,17 +4,16 @@ var LoginMessage = "";
 var LoginCredits = null;
 var LoginCreditsPosition = 0;
 var LoginThankYou = "";
-var LoginThankYouList = ["Alvin", "Bryce", "Christian", "Desch", "Designated", "Escurse", "EugeneTooms", "Jenni", "Karel", "Kitten", "Laioken", "Michal", "Mindtie", 
-						"MunchyCat", "Nick", "Overlord", "Rashiash", "Ryner", "Setsu95", "Shadow", "Shaun", "Simeon", "Sky", "Terry", "William", "Winterisbest", "Xepherio"];
+var LoginThankYouList = ["Alvin", "Bryce", "Christian", "Desch", "DonOlaf", "Escurse", "EugeneTooms", "Girvan", "Greendragon", "Kitten", "Laioken", "Michal", "Mindtie", "Misa", "MunchyCat", 
+						 "Nick", "Overlord", "Rashiash", "Robin", "Ryner", "Setsu95", "Shadow", "Shaun", "Shinonon", "Simeon", "Sky", "Terry", "William", "Winterisbest", "Xepherio"];
 var LoginThankYouNext = 0;
 
 // Loads the next thank you bubble
 function LoginDoNextThankYou() {
 	LoginThankYou = CommonRandomItemFromList(LoginThankYou, LoginThankYouList);
+	CharacterRelease(Player);
 	CharacterAppearanceFullRandom(Player);
-	if (Math.random() >= 0.5) InventoryWearRandom(Player, "ItemFeet"); else InventoryRemove(Player, "ItemFeet");
-	if (Math.random() >= 0.5) InventoryWearRandom(Player, "ItemLegs"); else InventoryRemove(Player, "ItemLegs");
-	if (Math.random() >= 0.5) InventoryWearRandom(Player, "ItemArms"); else InventoryRemove(Player, "ItemArms");
+	CharacterFullRandomRestrain(Player);
 	LoginThankYouNext = CommonTime() + 4000;
 }
 
@@ -107,6 +106,27 @@ function LoginValidCollar() {
 	if ((InventoryGet(Player, "ItemNeck") == null) && (Player.Owner != "")) InventoryWear(Player, "SlaveCollar", "ItemNeck");
 }
 
+// Only players that are club Mistresses can have the Mistress Padlock & Key
+function LoginMistressItems() {
+	if (LogQuery("ClubMistress", "Management")) {
+		InventoryAdd(Player, "MistressGloves", "Gloves", false);
+		InventoryAdd(Player, "MistressBoots", "Shoes", false);
+		InventoryAdd(Player, "MistressTop", "Cloth", false);
+		InventoryAdd(Player, "MistressBottom", "ClothLower", false);
+		InventoryAdd(Player, "MistressPadlock", "ItemMisc", false);
+		InventoryAdd(Player, "MistressPadlockKey", "ItemMisc", false);
+		ServerPlayerInventorySync();
+	} else {
+		InventoryDelete(Player, "MistressPadlock", "ItemMisc", false);
+		InventoryDelete(Player, "MistressPadlockKey", "ItemMisc", false);
+		InventoryDelete(Player, "MistressGloves", "Gloves", false);
+		InventoryDelete(Player, "MistressBoots", "Shoes", false);
+		InventoryDelete(Player, "MistressTop", "Cloth", false);
+		InventoryDelete(Player, "MistressBottom", "ClothLower", false);
+		ServerPlayerInventorySync();
+	}
+}
+
 // When the character logs, we analyze the data
 function LoginResponse(C) {
 
@@ -123,6 +143,7 @@ function LoginResponse(C) {
 			Player.Name = C.Name;
 			Player.AccountName = C.AccountName;
 			Player.AssetFamily = C.AssetFamily;
+			Player.Title = C.Title;
 			if (CommonIsNumeric(C.Money)) Player.Money = C.Money;
 			Player.Owner = ((C.Owner == null) || (C.Owner == "undefined")) ? "" : C.Owner;
 			Player.Lover = ((C.Lover == null) || (C.Lover == "undefined")) ? "" : C.Lover;
@@ -130,6 +151,7 @@ function LoginResponse(C) {
 			Player.Wardrobe = C.Wardrobe;
 			Player.OnlineID = C.ID.toString();
 			Player.MemberNumber = C.MemberNumber;
+			Player.BlockItems = ((C.BlockItems == null) || !Array.isArray(C.BlockItems)) ? [] : C.BlockItems;
 			Player.WardrobeCharacterNames = C.WardrobeCharacterNames;
 			WardrobeCharacter = [];
 
@@ -141,10 +163,11 @@ function LoginResponse(C) {
 			// Gets the online preferences
 			Player.LabelColor = C.LabelColor;
 			Player.ItemPermission = C.ItemPermission;
+			Player.ChatSettings = C.ChatSettings;
 			Player.WhiteList = C.WhiteList;
 			Player.BlackList = C.BlackList;
 			Player.FriendList = C.FriendList;
-	
+
 			// Loads the player character model and data
 			Player.Appearance = ServerAppearanceLoadFromBundle(Player, C.AssetFamily, C.Appearance);
 			InventoryLoad(Player, C.Inventory);
@@ -171,22 +194,33 @@ function LoginResponse(C) {
 			if (LogQuery("JoinedSorority", "Maid") && !InventoryAvailable(Player, "MaidOutfit2", "Cloth")) InventoryAdd(Player, "MaidOutfit2", "Cloth");
 			if ((InventoryGet(Player, "ItemArms") != null) && (InventoryGet(Player, "ItemArms").Asset.Name == "FourLimbsShackles")) InventoryRemove(Player, "ItemArms");
 			LoginValidCollar();
+			LoginMistressItems();
 
 			// If the player must log back in the cell
 			if (LogQuery("Locked", "Cell")) {
 				CommonSetScreen("Room", "Cell");
 			} else {
 
-				// If the player must start in her room, in her cage
-				if (LogQuery("SleepCage", "Rule") && (Player.Owner != "") && PrivateOwnerInRoom()) {
-					InventoryRemove(Player, "ItemFeet");
-					InventoryRemove(Player, "ItemLegs");
-					Player.Cage = true;
-					CharacterSetActivePose(Player, "Kneel");
-					CommonSetScreen("Room", "Private");
+				// If the player must log back in the asylum
+				if (LogQuery("Committed", "Asylum")) {
+					CharacterRelease(Player);
+					AsylumEntranceWearPatientClothes(Player);
+					if (ReputationGet("Asylum") <= -50) AsylumEntrancePlayerJacket("Normal");
+					CommonSetScreen("Room", "AsylumBedroom");
 				} else {
-					CommonSetScreen("Room", "MainHall");
-					MainHallMaidIntroduction();
+
+					// If the player must start in her room, in her cage
+					if (LogQuery("SleepCage", "Rule") && (Player.Owner != "") && PrivateOwnerInRoom()) {
+						InventoryRemove(Player, "ItemFeet");
+						InventoryRemove(Player, "ItemLegs");
+						Player.Cage = true;
+						CharacterSetActivePose(Player, "Kneel");
+						CommonSetScreen("Room", "Private");
+					} else {
+						CommonSetScreen("Room", "MainHall");
+						MainHallMaidIntroduction();
+					}
+
 				}
 
 			}

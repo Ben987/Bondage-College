@@ -56,7 +56,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 160,0,0,,You're pretty.  You|should not hide it.,You're so kind COMMON_PLAYERNAME.|You really think I'm pretty?,170,1,0,
 160,0,0,,Can I sit with you?,"I'm sorry, I prefer to read alone.",160,0,0,TestSitTogether()
 160,0,5,,"Move it, I want|to sit here.","Fine, you can have my seat.|(She stands up and walks away.)",190,-1,1,JenniferLeave()
-170,10,0,,You're adorable.  You|should strip and show me.,"Are you sure my friend?  Ok, I'll do it.|(She blushes and slowly strips to her underwear.)",171,0,0,"Strip(""Underwear"")"
+170,10,0,,You're adorable.  You|should strip and show me.,"Are you sure my friend?  OK, I'll do it.|(She blushes and slowly strips to her underwear.)",171,0,0,"Strip(""Underwear"")"
 170,0,10,,Stop being shy.  Strip|and show me your body.,"Yes Miss, I'm sure it's for my best interest.|(She blushes and slowly strips to her underwear.)",171,0,0,"Strip(""Underwear"")"
 170,0,0,,"Yes, you should|show more skin.",Show skin here?  Teacher Yuki would be angry.|(You need +10 love or submission to convince her.),170,0,0,TestStrip()
 170,5,0,CanAskDate,You're very pretty Jen.|We should go out tonight.,"Me?  Go out tonight?  With you?|It's interesting, I'll think about it.",170,1,0,AskDate()
@@ -118,7 +118,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 213,0,0,,I like you Jen.,I like you too COMMON_PLAYERNAME.,220,0,0,
 213,0,0,,I should go.|(Walk away.),,180,-1,0,PlayerLeave()
 220,0,0,,Do you want to|make love with me?,Really?  In the library?  (She looks around.)|Yes COMMON_PLAYERNAME.  I will do it.,230,0,0,TestMakeLove()
-220,0,0,,Do you wanna cum?,For real?  In the library?  (She looks around.)|Ok COMMON_PLAYERNAME.  I will do it.,230,-1,0,TestMakeLove()
+220,0,0,,Do you wanna cum?,For real?  In the library?  (She looks around.)|OK COMMON_PLAYERNAME.  I will do it.,230,-1,0,TestMakeLove()
 220,0,0,,"Girl, I will|have you now.",Have me?  (She looks around nervously.)|I guess we could do that.,230,-1,1,TestMakeLove()
 230,0,0,,"Don't worry, it will|be fun.  (Strip.)",(She nods and you both|strip to your underwear.),240,0,0,"StripBoth(""Underwear"")"
 230,0,0,,We have to remove|some clothes first.,(She nods and you both|strip to your underwear.),240,0,0,"StripBoth(""Underwear"")"

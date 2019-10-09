@@ -1,8 +1,12 @@
 PlayerGagged,,,Blessed those who have nothing to say and yet remain silent ,,
 ItemMouth,,,(She shakes her head but you're able to gag and silence her.),,
 RemoveItemMouth,,,(You remove her gag and she stretches her mouth.)  I was starting to drool...,,
+ItemEars,,,(She grumbles while you push some earplugs in.) I can't hear you properly now.,,
+RemoveItemEars,,,(You pull the earplugs out.) That's better i can hear you clearly now.,,
 ItemArms,,,(She grumbles but complies as you restrain her arms.)  How can I roll the dice this way?,,
 RemoveItemArms,,,(You free her arms and she gives you a thumbs up.)  That's better.,,
+ItemHands,,,(She submits to you while restrain you hands.)  You're being very kinky now.,,
+RemoveItemHands,,,(You release her hands and she nods a little.)  Thank you Miss.,,
 ItemLegs,,,(She looks down as you restrain her legs securely.)  I'm not going anywhere anyway.,,
 RemoveItemLegs,,,(You release her legs from the restraint.)  You're quite good with restraints Miss.,,
 ItemFeet,,,(She looks puzzled as you restrain her feet.)  I don't plan to run anytime soon.,,
@@ -13,7 +17,7 @@ ItemPelvis,,,"(She struggles as you lock the device on her.)  No, please!  I don
 RemoveItemPelvis,,,(She looks really happy as you unlock the device.)  Thank you so much Miss DialogPlayerName.,,
 ItemHead,,,(You put the device as she shakes her head.)  Ow!  You've made my day much awfully,,
 RemoveItemHead,,,"(You remove the device and she nods rapidly.)  Thanks a million, this is much better.",,
-ItemBreastLeatherWhip,,,(She trembles of painas you whip her breast.) This is a gambling hall no torture chamber.,,
+ItemBreastLeatherWhip,,,(She trembles of pain as you whip her breast.) This is a gambling hall no torture chamber.,,
 ItemBreastLeatherCrop,,,"(You swing the crop on her torso as she moans.) Oh, that's not a game anymore.",,
 ItemPelvisLeatherWhip,,,(You whip her butt as she jumps from the pain.) I do not find that funny.,,
 ItemPelvisLeatherCrop,,,(She moans each time the crop lands on it.) How can I still sit like this?,,
@@ -37,6 +41,7 @@ RemoveSuspensionHempRope,,,finally floor again under the feet.,,
 0,70,(Struggle in your restraints.),Are you having fun?,,Player.IsRestrained()
 0,30,(Play with your own rules.),(She looks expectant),,FirstSubRestrained()
 0,,Let's play fifteen and six.,(she gives you three dice),"TwentyOneController(""new"")",CanPlayTwentyOne()
+0,,Let's play Toothpick.,(she lays out 15 toothpicks) Your turn sweety.,"ToothpickController(""new"")",CanPlayToothpick()
 0,10,I'd like to ask you some questions.,Don't be shy.  How can I help you?,,
 10,11,Which games can I play here? ,That depends on your reputation. Only a simple dice game at first. ,,
 10,20,Can you explain the rules to me?,"Of course, which game interests you?",,
@@ -48,6 +53,7 @@ RemoveSuspensionHempRope,,,finally floor again under the feet.,,
 11,10,(Listen.),"At a higher reputation still fifteen and six, and eventually more games with other players.",,
 20,10,What are the rules of the simple dice game?,We both roll a dice. Whoever has the higher number may tie the opponent,,
 20,50,What are the rules of fifteen and six?,"You roll three or more dice and count the points. Then I roll, and whoever has the most points wins. ",,
+20,55,What are the rules of Toothpick?,"I put down 15 toothpicks. We will then alternately take 1-3 of them.",,
 30,,(Tickle her.),"(You tickle her around the underarms and rubs.  She giggles, laughs and cries a little.)",,
 30,,(Kiss her.),(You put your hand behind her head and pull her to your lips for a long and kinky kiss.),,Player.CanInteract()
 30,,(Fondle her.),(You playfully tease her breasts as she gasps softly and blushes.),,Player.CanTalk()
@@ -56,6 +62,7 @@ RemoveSuspensionHempRope,,,finally floor again under the feet.,,
 30,0,(End the Game),(You go back a step and she looks surprised.),,
 50,51,(Listen.),If you go over 21 points you instantly lose the round.,,
 51,10,(Listen.),"Every round the loser strips. If they have no clothes left, they get a little more tied up.",,
+55,10,(Listen.),"Whoever takes the last one has lost the game and gets tied up.",,
 0,,Let's talk later.  (Leave her.),,DialogLeave(),
 70,72,"Please Miss, can you release me?",Let's see what the dice say...,,!FirstSubRestrained()
 70,0,"Please Miss, can you release me?",(Show her your restraints.),,FirstSubRestrained()
@@ -127,6 +134,17 @@ RemoveSuspensionHempRope,,,finally floor again under the feet.,,
 174,,"Oh, I lost. (Let her tie your legs)",Looks like you're not going anywhere. ,"TwentyOneController(""lost_next"")",ShowDiceStack()
 175,,"Oh, I lost. (Let her tie your arms)",Not much before you can't move at all... ,"TwentyOneController(""lost_next"")",ShowDiceStack()
 176,,"Oh, I lost. (Open your mouth and let her gag you)","You lose! Open up, it's time for a gag...","TwentyOneController(""lost_next"")",ShowDiceStack()
+200,,I take one.,(nods),"ToothpickController("1")",ToothpickCanPickOne()
+200,,I take two.,(nods),"ToothpickController("2")",ToothpickCanPickTwo()
+200,,I take three.,(nods),"ToothpickController("3")",ToothpickCanPickThree()
+200,,I give up. (Let her tie you),(She smiles) What you mean?,"ToothpickController(""give_up"")",ShowToothpickStack()
+201,0,"Yeah, I won!",You were lucky. I guess you get to tie me up.,"ToothpickController(""win"")",
+202,0,Dammit! You win.,I want to test some items...,"ToothpickController(""lost"")",
+203,0,I surrender.,I want to test some items...,"ToothpickController(""lost"")",
+ToothpickLost,,,(She smiles),,
+Toothpick1,,,(She nods) I take 1,,
+Toothpick2,,,(She nods) I take 2,,
+Toothpick3,,,(She nods) I take 3,,
 MaidRescue,,,(She struggles in her restraints.)  Can you release me?,,IsSubsRestrained()
 MaidRescue,,I'll go find some help.  (Leave her.),,DialogLeave(),
 MaidRescue,,What happened here?,I lost a game and the winner left me!,,

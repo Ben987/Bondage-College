@@ -24,7 +24,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 20,0,0,,It's none of your|fucking business.,We'll see if you can escape now little miss.|(She grabs you and straps an armbinder on you.),300,-1,1,RestrainPlayer()
 21,0,0,,I can escape|from anything!,"Alright young lady, try to escape from this.|(She grabs you and straps an armbinder on you.)",300,0,1,RestrainPlayer()
 21,0,0,,No.  I was very|lucky this morning.,You certainly are a special student.|Can you promise me to be good now?,22,0,0,
-22,0,0,,"Ok, I promise.",Very well.  Are you looking for a book?,100,0,0,NoSecondChance()
+22,0,0,,"OK, I promise.",Very well.  Are you looking for a book?,100,0,0,NoSecondChance()
 22,0,0,,"That's fair, I|promise to be good.",Excellent.  Are you looking for a book?,100,1,0,NoSecondChance()
 22,0,0,,"Yeah, yeah, yeah.|I promise.",Anyway.  Are you looking for a book?,100,-1,0,NoSecondChance()
 22,0,0,,I will never|promise that!,"If you can't behave, I will keep you restrained.|(She grabs you and straps an armbinder on you.)",300,-1,1,RestrainPlayer()
@@ -32,14 +32,14 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 30,0,0,,That hour of|isolation went fast.,"(She frowns.)  Next time it will be a full day.|Anyway, can you promise me to be good now?",31,0,1,
 30,0,0,,I'm sorry I could|not please you.,I'll give you a second chance little pet.|(She grabs your hair and sits on her desk.),700,0,-1,StartPleasure()
 30,0,0,,I'm sure I can|make you cum.,Oh really?  We'll see about that little pet.|(She grabs your hair and sits on her desk.),700,0,1,StartPleasure()
-31,0,0,,"Ok, I promise.",Very well.  Are you looking for a book?,100,0,0,NoSecondChance()
+31,0,0,,"OK, I promise.",Very well.  Are you looking for a book?,100,0,0,NoSecondChance()
 31,0,0,,"That's fair, I|promise to be good.",Excellent.  Are you looking for a book?,100,1,0,NoSecondChance()
 31,0,0,,"Yeah, yeah, yeah.|I promise.",Anyway.  Are you looking for a book?,100,-1,0,NoSecondChance()
 31,0,0,,I will never|promise that!,"If you can't behave, I will keep you restrained.|(She grabs you and straps an armbinder on you.)",300,-1,1,RestrainPlayer()
 40,0,0,,Trouble is my|middle name.,(She sighs.)  Promise me to be quiet|and not cause any trouble in the library.,41,0,1,
 40,0,0,,I'm not causing|any trouble.,"Alright, promise me to be quiet and|not cause any trouble in the library.",41,0,0,
 40,0,0,,"Yes Miss, I'm a|good girl now.","Very good, promise me to be quiet and|not cause any trouble in the library.",41,0,-1,
-41,0,0,,"Ok, I promise.",Very well.  Are you looking for a book?,100,0,0,NoSecondChance()
+41,0,0,,"OK, I promise.",Very well.  Are you looking for a book?,100,0,0,NoSecondChance()
 41,0,0,,"That's fair, I|promise to be good.",Excellent.  Are you looking for a book?,100,1,0,NoSecondChance()
 41,0,0,,"Yeah, yeah, yeah.|I promise.",Anyway.  Are you looking for a book?,100,-1,0,NoSecondChance()
 41,0,0,,I will never|promise that!,"If you can't behave, I will keep you restrained.|(She grabs you and straps an armbinder on you.)",300,-1,1,RestrainPlayer()
@@ -182,7 +182,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 340,0,0,,@Mmammih!,(She seems to hear you but|doesn't move or say anything.),340,0,0,TwoMinutes()
 340,0,0,,(Struggle to get out.),(You struggle to get out of the leather|binder but cannot manage to do much.),340,0,0,TwoMinutes()
 340,0,0,,(Wait patiently.),(You wait patiently under the desk.|Time seems to fly very slowly.),340,0,0,TwoMinutes()
-400,0,0,,Are you ok Miss?|You look tired.,"(She nods and slowly crumbles|to ground, falling fast asleep.)",410,0,-1,Sleep()
+400,0,0,,Are you OK Miss?|You look tired.,"(She nods and slowly crumbles|to ground, falling fast asleep.)",410,0,-1,Sleep()
 400,0,0,,(Grab her and|lie her down.),(You grab her and lay her on|the ground where she falls asleep.),410,0,1,Sleep()
 400,0,0,,Are you sleepy?,"(She nods and slowly crumbles|to ground, falling fast asleep.)",410,0,0,Sleep()
 410,0,0,,(Search the room.),,410,0,0,StartSearch()

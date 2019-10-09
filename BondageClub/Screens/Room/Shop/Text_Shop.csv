@@ -3,4 +3,5 @@ SelectItemBuy,Select the item you want to buy.
 EmptyCategory,There are no items to sell for this category.
 AlreadyOwned,You already own this item.
 NotEnoughMoney,You don't have enough money.
+CannotSellKey,"Sorry, I cannot sell you keys."
 ThankYou,Thank you!  Something else?

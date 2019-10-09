@@ -89,6 +89,8 @@ function InventoryAllow(C, Prerequisite) {
 	
 	// Prevent incompatible item combinations
 	if (Prerequisite == "NotSuspended" && C.Pose.indexOf("Suspension") >= 0) { DialogSetText("RemoveSuspensionForItem"); return false; }
+	if (Prerequisite == "NotKneeling" &&  C.Pose.indexOf("Kneel") >= 0)  { DialogSetText("TheyMustBeStandingFirst"); return false; }
+        if (Prerequisite == "NotKneeling" &&  C.Pose.indexOf("Suspension") >= 0)  { DialogSetText("TheyMustBeStandingFirst"); return false; }
 	if (Prerequisite == "NotChained") {
 		if (InventoryGet(C, "ItemNeckAccessories") != null) {
 			if (InventoryGet(C, "ItemNeckAccessories").Asset.Name == "CollarChainLong") { DialogSetText("RemoveChainForItem"); return false; }
@@ -96,8 +98,22 @@ function InventoryAllow(C, Prerequisite) {
 	}
 	if (Prerequisite == "Collared" && InventoryGet(C, "ItemNeck") == null) { DialogSetText("MustCollaredFirst"); return false; }
 	if (Prerequisite == "CollaredNotSuspended" && (InventoryGet(C, "ItemNeck") == null || C.Pose.indexOf("Suspension") >= 0)) { DialogSetText("MustCollaredFirstAndRemoveSuspension"); return false; }
-	return true;
+	if (Prerequisite == "LegsOpen" &&  C.Pose.indexOf("LegsClosed") >= 0)  { DialogSetText("FeetClosed"); return false; }
+	
+	///Saddle stand
+	if (Prerequisite == "LegsOpen1" &&  C.Pose.indexOf("LegsClosed") >= 0)  { DialogSetText("FeetClosed"); return false; }
+	if (Prerequisite == "LegsOpen1" &&  C.Pose.indexOf("Suspension") >= 0)  { DialogSetText("TheyMustBeStandingFirst"); return false; }
+	if (Prerequisite == "LegsOpen1" &&  C.Pose.indexOf("Horse") >= 0)  { DialogSetText("TheyMustBeStandingFirst"); return false; }
 
+	/// Wooden horse blocks
+	if (Prerequisite == "Horse" &&  C.Pose.indexOf("Kneel") >= 0)  { DialogSetText("TheyMustBeStandingFirst"); return false; }
+	if (Prerequisite == "Horse" &&  C.Pose.indexOf("LegsClosed") >= 0)  { DialogSetText("FeetClosed"); return false; }
+	if (Prerequisite == "Horse" &&  C.Pose.indexOf("Suspension") >= 0)  { DialogSetText("TheyMustBeStandingFirst"); return false; }
+	if (Prerequisite == "CollaredNotSuspended1" && (InventoryGet(C, "ItemNeck") == null || C.Pose.indexOf("Suspension") >= 0)) { DialogSetText("MustCollaredFirstAndRemoveSuspension1"); return false; }
+	if (Prerequisite == "CollaredNotSuspended1" && (InventoryGet(C, "ItemNeck") == null || C.Pose.indexOf("Horse") >= 0)) { DialogSetText("MustCollaredFirstAndRemoveSuspension1"); return false; }
+	if (Prerequisite == "NotSuspendedOrHorsed" &&  C.Pose.indexOf("Suspension") >= 0)  { DialogSetText("TheyMustBeStandingFirst"); return false; }
+	if (Prerequisite == "NotSuspendedOrHorsed" &&  C.Pose.indexOf("Horse") >= 0)  { DialogSetText("TheyMustBeStandingFirst"); return false; }
+	return true;
 }
 
 // Gets the current item worn a specific spot
@@ -112,7 +128,7 @@ function InventoryGet(C, AssetGroup) {
 function InventoryWear(C, AssetName, AssetGroup, ItemColor, Difficulty) {
 	for (var A = 0; A < Asset.length; A++)
 		if ((Asset[A].Name == AssetName) && (Asset[A].Group.Name == AssetGroup)) {
-			CharacterAppearanceSetItem(C, AssetGroup, Asset[A], ItemColor, Difficulty);
+			CharacterAppearanceSetItem(C, AssetGroup, Asset[A], ((ItemColor == null) || (ItemColor == "Default")) ? AssetGet(C.AssetFamily, AssetGroup, AssetName).DefaultColor : ItemColor, Difficulty);
 			InventoryExpressionTrigger(C, InventoryGet(C, AssetGroup));
 			return;
 		}
@@ -141,7 +157,8 @@ function InventoryWearRandom(C, AssetGroup, Difficulty) {
 			if ((Asset[A].Group.Name == AssetGroup) && Asset[A].Wear && Asset[A].Enable && Asset[A].Random)
 				List.push(Asset[A]);
 		if (List.length == 0) return;
-		CharacterAppearanceSetItem(C, AssetGroup, List[Math.floor(Math.random() * List.length)], null, Difficulty);
+		var RandomAsset = List[Math.floor(Math.random() * List.length)];
+		CharacterAppearanceSetItem(C, AssetGroup, RandomAsset, RandomAsset.DefaultColor, Difficulty);
 		CharacterRefresh(C);
 	}
 }
@@ -182,11 +199,11 @@ function InventoryItemHasEffect(Item, Effect, CheckProperties) {
 
 // Check if we must trigger an expression for the character after an item is used/applied
 function InventoryExpressionTrigger(C, Item) {
-	if ((Item != null) && (Item.Asset != null) && (Item.Asset.ExpressionTrigger != null))
-		for (var E = 0; E < Item.Asset.ExpressionTrigger.length; E++)
-			if ((InventoryGet(C, Item.Asset.ExpressionTrigger[E].Group) == null) || (InventoryGet(C, Item.Asset.ExpressionTrigger[E].Group).Property == null) || (InventoryGet(C, Item.Asset.ExpressionTrigger[E].Group).Property.Expression == null)) {
-				CharacterSetFacialExpression(C, Item.Asset.ExpressionTrigger[E].Group, Item.Asset.ExpressionTrigger[E].Name);
-				TimerInventoryRemoveSet(C, Item.Asset.ExpressionTrigger[E].Group, Item.Asset.ExpressionTrigger[E].Timer);
+	if ((Item != null) && (Item.Asset != null) && (Item.Asset.DynamicExpressionTrigger() != null))
+		for (var E = 0; E < Item.Asset.DynamicExpressionTrigger().length; E++)
+			if ((InventoryGet(C, Item.Asset.DynamicExpressionTrigger()[E].Group) == null) || (InventoryGet(C, Item.Asset.DynamicExpressionTrigger()[E].Group).Property == null) || (InventoryGet(C, Item.Asset.DynamicExpressionTrigger()[E].Group).Property.Expression == null)) {
+				CharacterSetFacialExpression(C, Item.Asset.DynamicExpressionTrigger()[E].Group, Item.Asset.DynamicExpressionTrigger()[E].Name);
+				TimerInventoryRemoveSet(C, Item.Asset.DynamicExpressionTrigger()[E].Group, Item.Asset.DynamicExpressionTrigger()[E].Timer);
 			}
 }
 
@@ -215,7 +232,7 @@ function InventoryCharacterHasOwnerOnlyRestraint(C) {
 	if ((C.Ownership == null) || (C.Ownership.MemberNumber == null) || (C.Ownership.MemberNumber == "")) return false;
 	if (C.Appearance != null)
 		for (var A = 0; A < C.Appearance.length; A++)
-			if (C.Appearance[A].Asset.Group.IsRestraint && InventoryOwnerOnlyItem(C.Appearance[A]))
+			if (C.Appearance[A].Asset.IsRestraint && InventoryOwnerOnlyItem(C.Appearance[A]))
 				return true;
 	return false;
 }
@@ -230,10 +247,12 @@ function InventoryHasLockableItems(C) {
 
 // Applies a lock to an inventory item
 function InventoryLock(C, Item, Lock, MemberNumber) {
-	if (Item.Asset.AllowLock) {
+	if (typeof Item === 'string') Item = InventoryGet(C, Item);
+	if (typeof Lock === 'string') Lock = { Asset: AssetGet(C.AssetFamily, "ItemMisc", Lock) };
+	if (Item && Lock && Item.Asset.AllowLock) {
 		if (Item.Property == null) Item.Property = {};
 		if (Item.Property.Effect == null) Item.Property.Effect = [];
-		Item.Property.Effect.push("Lock");
+		if (Item.Property.Effect.indexOf("Lock") < 0) Item.Property.Effect.push("Lock");
 		Item.Property.LockedBy = Lock.Asset.Name;
 		if (MemberNumber != null) Item.Property.LockMemberNumber = MemberNumber;
 		if (Lock.Asset.RemoveTimer > 0) TimerInventoryRemoveSet(C, Item.Asset.Group.Name, Lock.Asset.RemoveTimer);
@@ -261,3 +280,15 @@ function InventoryFullLockRandom(C, FromOwner) {
 		if (C.Appearance[I].Asset.AllowLock && (InventoryGetLock(C.Appearance[I]) == null))
 			InventoryLockRandom(C, C.Appearance[I], FromOwner);
 }
+
+// Removes all common keys from the player inventory
+function InventoryConfiscateKey() {
+	InventoryDelete(Player, "MetalCuffsKey", "ItemMisc");
+	InventoryDelete(Player, "MetalPadlockKey", "ItemMisc");
+	InventoryDelete(Player, "IntricatePadlockKey", "ItemMisc");
+}
+
+// returns TRUE if the item is worn
+function InventoryIsWorn(C, AssetGroup, AssetName){
+	return C && C.Appearance && C.Appearance.some(Item => Item.Asset.Group.Name == AssetGroup && Item.Asset.Name == AssetName);
+} 

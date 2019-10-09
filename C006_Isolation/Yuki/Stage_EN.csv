@@ -13,15 +13,15 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 20,0,0,,Awesome!  I|love bondage.,You won't enjoy this hour.  Now you will give|me this bag.  (She confiscates your bag.),30,-1,-1,StealItems()
 20,0,0,,Forget it!  I won't do it.,You don't have a choice.  First you will|give me this.  (She confiscates your bag.),30,0,1,StealItems()
 30,0,0,,Please don't|steal anything.,"I won't, don't worry.  Now|you will remove your uniform.",40,0,-1,
-30,0,0,,You thief!,Stop complaining ok?  Now|you will remove your uniform.,40,-1,0,
+30,0,0,,You thief!,Stop complaining OK?  Now|you will remove your uniform.,40,-1,0,
 30,0,0,,You can't do that.,Of course I can.  Now|you will remove your uniform.,40,0,0,
 40,0,0,,Strip?  Sorry but you're|way too ugly for me.,"(She pushes you on a pillory and locks it.)|If you resist, I'll have to use these devices.",70,-1,0,
 40,0,0,,Forget it lady.|I'm not stripping.,"(She pushes you on a pillory and locks it.)|If you resist, I'll have to use these devices.",70,0,0,
-40,0,0,,"Damn it!  Ok, ok.|(Strip.) ADD_MINUTES:1",Very well.  And you are expected to wear|this.  (She shows you a leather collar.),50,0,0,
+40,0,0,,"Damn it!  OK, OK.|(Strip.) ADD_MINUTES:1",Very well.  And you are expected to wear|this.  (She shows you a leather collar.),50,0,0,
 40,0,0,,It's only for your eyes.|(Strip.) ADD_MINUTES:1,Of course.  And you are expected to wear|this.  (She shows you a leather collar.),50,1,0,
 50,0,0,,Yes Miss.|(Bow your head.),(She straps the collar around your neck.)|And how do you feel now?  Vulnerable?,100,0,-1,AddCollar()
 50,0,0,,A collar?  Do I|look like a dog?,"(She pushes you on a pillory and locks it.)|If you resist, I'll have to use these devices.",80,0,0,
-50,0,0,,Mmmh.  Ok.|(Bow your head.),(She straps the collar around your neck.)|And how do you feel now?  Vulnerable?,100,0,0,AddCollar()
+50,0,0,,Mmmh.  OK.|(Bow your head.),(She straps the collar around your neck.)|And how do you feel now?  Vulnerable?,100,0,0,AddCollar()
 50,0,0,,It will be freezing in|hell before I wear that.,"(She pushes you on a pillory and locks it.)|If you resist, I'll have to use these devices.",80,0,1,
 70,0,0,,(Stay silent.),Silence is gold.  (She removes your uniform.)|You will also have to wear a leather collar.,80,0,0,
 70,0,0,,Strip me?  You're some|kind of crazy lesbian?,Such foul language.  (She removes your uniform.)|You will also have to wear a leather collar.,80,-1,0,

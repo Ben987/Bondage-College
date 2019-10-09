@@ -31,10 +31,18 @@ Tut mir leid, Miss. Ich kann nicht helfen.
 (Sie schüttelt erst den Kopf, um dem Knebel zu entgehen, lässt sich aber schließlich von dir zum Schweigen bringen.)
 (You remove her gag while she stretches her mouth.)  Thanks Miss, it's hard to dispatch maids with that gag.
 (Du nimmst den Knebel ab und sie streckt ihren Mund.) Danke, Miss, geknebelt ist es schwierig, Hausmädchen loszuschicken.
+(She grumbles while you push some earplugs in.) I can't hear you properly now.
+(Sie grummelt, als du ihr Ohrstöpsel hineinsteckst.) Jetzt kann ich Sie nicht mehr richtig verstehen.
+(You pull the earplugs out.) That's better i can hear you clearly now.
+(Du ziehst die Ohrstöpsel heraus.) Das ist besser, jetzt verstehe ich Sie ordentlich.
 (She sighs and turns around while you restrain her arms.)  It might be a little hard to work like that Miss.
 (Sie seufzt und dreht sich um, als du ihre Arme fesselst.) Das könnte meine Arbeit etwas erschweren, Miss.
 (You free her arms and she nods happily.)  Thanks a lot Miss.
 (Du befreist ihre Arme und sie nickt glücklich.) Vielen Dank, Miss.
+(She submits to you while restrain you hands.)  You are a kinky one.
+(Sie unterwirft sich, als du ihre Hände fesselst.) Sie sind ideenreich.
+(You release her hands and she nods a little.)  Thank you Miss.
+(Du befreist ihre Hände und sie nickt kaum merklich.) Danke, Miss.
 (She submits to you while you restrain her legs securely.)  I don't need to move anyway.
 (Sie lässt sich von dir ordentlich die Beine fesseln.) Ich muss sowieso nicht von hier weg.
 (You release her legs from the restraint.)  Let me know if I can help you Miss.
@@ -49,7 +57,7 @@ Tut mir leid, Miss. Ich kann nicht helfen.
 (Du nimmst ihr das Halsband ab.) Danke, Miss.
 (You snap the belt around her waist and crotch while she sighs.)  No more fun for the crew.
 (Du lässt den Gürtel um ihre Taille zuschnappen und sie seufzt.) Kein Spaß mehr für die Crew.
-(You unlock the belt from her waist and she smiles.)  Thanks a lot Miss DialogPlayerName.
+(You unlock the belt from her waist, and she smiles.)  Thanks a lot Miss DialogPlayerName.
 (Du öffnest den Gürtel von ihrer Taille und sie lächelt.) Vielen Dank, Miss DialogPlayerName.
 (You strap the device on her head as she nods slowly.)  This will not make my job easier Miss.
 (Du schnallst ihr das Ding um den Kopf und sie nickt langsam.) Das wird meine Arbeit nicht einfacher machen, Miss.
@@ -81,6 +89,8 @@ Schön dich zu sehen, Schwester! Wie kann ich behilflich sein?
 ###_NPC
 (She removes your gag and smiles.)  Much better sweetie.  How can I help you?
 (Sie nimmt deinen Knebel ab und lächelt.) So ist es besser, Liebes. Wie kann ich dir helfen?
+(She checks your locks and frowns.)  I cannot help you girl.  Go find your owner.
+(Sie überprüft deine Schlösser und runzelt die Stirn.) Ich kann dir nicht helfen, Mädchen. Geh zu deiner Besitzerin.
 ###_PLAYER
 Hello, I'm DialogPlayerName.  Pleased to meet you.
 Hallo, ich bin DialogPlayerName. Sehr erfreut.
@@ -151,8 +161,8 @@ Keine Zeit zum Plaudern. (Dialog beenden.)
 There's a blond girl stuck in a reserved bedroom.
 Eine Blondine steckt in einem reservierten Zimmer fest.
 ###_NPC
-Is that true?  I can send a maid to rescue her right away.  Who reserved the room?
-Ist das wahr? Ich kann unverzüglich ein Hausmädchen schicken, um sie zu befreien. Wer hat das Zimmer reserviert?
+Is that true?  I can send a maid to rescue her.  Who reserved the room?
+Ist das wahr? Ich kann ein Hausmädchen schicken, um sie zu befreien. Wer hat das Zimmer reserviert?
 ###_PLAYER
 Forget it.
 Vergiss es.
@@ -522,6 +532,36 @@ Ich ziehe mich erst um. (Die Uniform anziehen.)
 (You change into the maid uniform.)  Perfect!  Let me restrain you then.
 (Du ziehst die Hausmädchen-Uniform an.) Perfekt! Dann lass mich dich mal fesseln.
 ###_PLAYER
+Mistress did that?
+Meine Herrin war das?
+###_NPC
+Yes, she called us to get you here.  You will work for her.
+Ja, sie hat uns angewiesen, dich herzubringen. Du wirst für sie arbeiten.
+###_PLAYER
+What kind of work?
+Welche Art von Arbeit?
+###_NPC
+Your owner wants you to serve drinks for herself and her friends.
+Deine Besitzerin will, dass du ihr und ihren Freunden Getränke servierst.
+###_PLAYER
+Will I get paid?
+Werde ich dafür bezahlt?
+###_NPC
+No, she will get the profits.  Come back to work by yourself to get paid.
+Nein, sie bekommt die Einnahmen. Komm aus freien Stücken zum Arbeiten her, wenn du bezahlt werden willst.
+###_PLAYER
+(Pout.)  I don't have any choice I guess.
+(Schmollen.) Da habe ich wohl keine Wahl.
+###_NPC
+No, you don't.  And our guests are always thirsty.
+Nein, hast du nicht. Und unsere Gäste sind stets durstig.
+###_PLAYER
+It's an honor to work for my owner.
+Es ist mir eine Ehre, für meine Herrin zu arbeiten.
+###_NPC
+Good girl!  Our guests are always thirsty.
+Braves Mädchen! Unsere Gäste sind stets durstig.
+###_PLAYER
 Wait!  Restrain me?  Why?
 Moment! Mich fesseln? Warum?
 ###_NPC
@@ -637,6 +677,8 @@ Guter Versuch, aber vielleicht bist du dieser Aufgabe nicht gewachsen. Ich kann 
 ###_NPC
 Excellent!  Here's your salary.  (She gives you REPLACEMONEY $.)
 Ausgezeichnet! Hier ist dein Lohn. (Sie gibt dir REPLACEMONEY $.)
+Excellent!  Go see your owner and give her this.  (She gives you a sealed envelope with REPLACEMONEY $ for your owner.)
+Ausgezeichnet! Kehre zu deiner Herrin zurück und gib ihr das. (Sie gibt dir einen versiegelten Umschlag mit REPLACEMONEY $ für deine Besitzerin.)
 (She releases you and helps you to get dressed.)  All set!  Are you ready for more chores?
 (Sie befreit dich und hilft dir beim Anziehen.) Alles klar! Bist du bereit für weitere Aufgaben?
 ###_PLAYER

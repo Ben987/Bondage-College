@@ -4,24 +4,6 @@ var InformationSheetSelection = null;
 var InformationSheetPreviousModule = "";
 var InformationSheetPreviousScreen = "";
 
-// Gets the best title for the player and returns it
-function InformationSheetGetTitle() {
-	if (LogQuery("ClubMistress", "Management")) return TextGet("TitleMistress");
-	if (SkillGetLevel(Player, "Dressage") >= 10) return TextGet("TitlePonyPegasus");
-	if (LogQuery("LeadSorority", "Maid")) return TextGet("TitleHeadMaid");
-	if (ReputationGet("Kidnap") >= 100) return TextGet("TitleMasterKidnapper");
-	if (SkillGetLevel(Player, "Dressage") >= 8) return TextGet("TitlePonyUnicorn");
-	if (SkillGetLevel(Player, "Dressage") >= 6) return TextGet("TitlePonyWild");
-	if (SkillGetLevel(Player, "Dressage") >= 5) return TextGet("TitlePonyHot");
-	if (LogQuery("JoinedSorority", "Maid")) return TextGet("TitleMaid");
-	if (ReputationGet("Kidnap") >= 50) return TextGet("TitleKidnapper");
-	if (SkillGetLevel(Player, "Dressage") >= 4) return TextGet("TitlePonyWarm");
-	if (SkillGetLevel(Player, "Dressage") >= 3) return TextGet("TitlePonyCold");
-	if (SkillGetLevel(Player, "Dressage") >= 2) return TextGet("TitlePonyFarm");
-	if (SkillGetLevel(Player, "Dressage") >= 1) return TextGet("TitlePonyFoal");
-	return TextGet("TitleNone");
-}
-
 // Returns the NPC love text
 function InformationSheetGetLove(Love) {
 	if (Love >= 100) return TextGet("Relationship") + " " + Love.toString() + " " + TextGet("RelationshipPerfect");
@@ -40,10 +22,11 @@ function InformationSheetRun() {
 
 	// Draw the character base values
 	var C = InformationSheetSelection;
+	var CurrentTitle = TitleGet(C);
 	DrawCharacter(C, 50, 50, 0.9);
 	MainCanvas.textAlign = "left";
 	DrawText(TextGet("Name") + " " + C.Name, 550, 125, "Black", "Gray");
-	DrawText(TextGet("Title") + " " + ((C.ID == 0) ? InformationSheetGetTitle() : (C.Title == null) ? TextGet("TitleNone") : TextGet("Title" + C.Title)), 550, 200, "Black", "Gray");
+	DrawText(TextGet("Title") + " " + TextGet("Title" + CurrentTitle), 550, 200, (TitleIsForced(CurrentTitle)) ? "Red" : "Black", "Gray");
 	DrawText(TextGet("MemberNumber") + " " + ((C.MemberNumber == null) ? TextGet("NoMemberNumber") : C.MemberNumber.toString()), 550, 275, "Black", "Gray");
 
 	// Some info are not available for online players
@@ -117,16 +100,25 @@ function InformationSheetRun() {
 	// Draw the last controls
 	MainCanvas.textAlign = "center";
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
-	if (C.ID == 0) DrawButton(1815, 190, 90, 90, "", "White", "Icons/Preference.png");
-	if (C.ID == 0) DrawButton(1815, 305, 90, 90, "", "White", "Icons/FriendList.png");
+	if (C.ID == 0) {
+		if (!TitleIsForced(CurrentTitle)) DrawButton(1815, 190, 90, 90, "", "White", "Icons/Title.png");
+		DrawButton(1815, 305, 90, 90, "", "White", "Icons/Preference.png");
+		DrawButton(1815, 420, 90, 90, "", "White", "Icons/FriendList.png");
+	}
 
 }
 
 // When the user clicks on the character info screen
 function InformationSheetClick() {
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) CommonSetScreen(InformationSheetPreviousModule, InformationSheetPreviousScreen);
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 190) && (MouseY < 280) && (InformationSheetSelection.ID == 0)) CommonSetScreen("Character", "Preference");
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 305) && (MouseY < 395) && (InformationSheetSelection.ID == 0)) CommonSetScreen("Character", "FriendList");
+	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) InformationSheetExit();
+	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 190) && (MouseY < 280) && (InformationSheetSelection.ID == 0) && (!TitleIsForced(InformationSheetSelection.Title))) CommonSetScreen("Character", "Title");
+	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 305) && (MouseY < 395) && (InformationSheetSelection.ID == 0)) CommonSetScreen("Character", "Preference");
+	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 420) && (MouseY < 510) && (InformationSheetSelection.ID == 0)) CommonSetScreen("Character", "FriendList");
+}
+
+// when the user exit this screen
+function InformationSheetExit() {
+	CommonSetScreen(InformationSheetPreviousModule, InformationSheetPreviousScreen);
 }
 
 // Loads the information sheet for a character

@@ -1,7 +1,7 @@
 "use strict";
 var CheatBackground = "Sheet";
 var CheatAllow = false;
-var CheatList = ["DoubleReputation", "DoubleSkill", "DoubleMoney", "DoubleItemSpeed", "BlockRandomKidnap", "SkipTrialPeriod", "AutoShowTraits"];
+var CheatList = ["DoubleReputation", "DoubleSkill", "DoubleMoney", "DoubleItemSpeed", "BlockRandomKidnap", "SkipTrialPeriod", "AutoShowTraits", "NoLoveDecay"];
 var CheatBonusList = ["DoubleMoney", "DoubleSkill"];
 var CheatBonusFactor = 2;
 var CheatBonusTime = 1552967946711;
@@ -58,8 +58,8 @@ function CheatRun() {
 	// List all the cheats
 	MainCanvas.textAlign = "left";
 	for(var C = 0; C < CheatList.length; C++) {
-		DrawButton(150, 150 + (C * 100), 64, 64, "", "White", CheatActive(CheatList[C]) ? "Icons/Checked.png" : "");
-		DrawText(TextGet(CheatList[C]), 250, 182 + (C * 100), "Black", "Gray");		
+		DrawButton(150, 115 + (C * 100), 64, 64, "", "White", CheatActive(CheatList[C]) ? "Icons/Checked.png" : "");
+		DrawText(TextGet(CheatList[C]), 250, 147 + (C * 100), "Black", "Gray");		
 	}
 
 	// Draw the exit button
@@ -72,14 +72,11 @@ function CheatRun() {
 function CheatClick() {
 	
 	// When the user exits
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) {
-		CheatExport();
-		CommonSetScreen("Character", "Login");
-	}
+	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) CheatExit();
 	
 	// When the user activates an option
 	for(var C = 0; C < CheatList.length; C++)
-		if ((MouseX >= 150) && (MouseX <= 800) && (MouseY >= 150 + (C * 100)) && (MouseY <= 214 + (C * 100))) {
+		if ((MouseX >= 150) && (MouseX <= 800) && (MouseY >= 115 + (C * 100)) && (MouseY <= 179 + (C * 100))) {
 			var CheatName = CheatList[C];
 			if (CheatActivated.indexOf(CheatName) >= 0)
 				CheatActivated.splice(CheatActivated.indexOf(CheatName), 1);
@@ -88,4 +85,10 @@ function CheatClick() {
 			return;
 		}
 
+}
+
+// when the user exit this screen
+function CheatExit() {
+	CheatExport();
+	CommonSetScreen("Character", "Login");
 }

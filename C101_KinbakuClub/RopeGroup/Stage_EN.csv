@@ -44,7 +44,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 215,0,0,EscapedIsolationYuki,Yuki left me tied up|and I escaped that.,"Impressive, but I wouldn't expect Yuki to just|tie someone up and then leave them.",216,1,0,
 215,0,0,,No ropes can hold me.,That’s a bold claim.|Turn around and we'll see about that.,218,0,0,
 216,0,0,,I drugged her so she just|tied me up in a basement.,"If you do things like that, maybe we ought|to keep you permanently restrained.",200,-1,0,
-216,0,0,IsolationYukiOrgasm,"She forced me to give|her oral, then gagged me.",Haha that's some serious motivation to escape|or did you want to savour that gag instead?,217,0,0,
+216,0,0,IsolationYukiOrgasm,"She forced me to give|her oral, then gagged me.",Haha that's some serious motivation to escape|or did you want to savor that gag instead?,217,0,0,
 216,0,0,IsolationYukiOrgasm,She wanted some control|while I made her cum.,"Wow, fair play.",200,1,1,
 217,0,0,,I couldn't get that|gag out fast enough.,I'm not surprised.,200,0,0,
 217,0,0,,I though about keeping|the gag in after escaping.,You must be a very obedient teachers pet to|love your mistress’s taste that much.,200,0,-2,
@@ -69,7 +69,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 234,0,0,,Your breasts would look|massive if I tied you up.,That isn't going to happen.,200,-1,1,
 234,0,0,HasLooseArmbinder,I have an armbinder that|pins the elbows together.,"Cool, have you tried it on yourself?",235,0,0,
 235,0,0,,"I tried, but it's no|good for self bondage.",I will help strap you into it.,236,1,-1,
-235,0,0,,No it's only for|my favorite subies.,Some of the girls in this club would love|to be your favourite pet for that.,200,0,0,
+235,0,0,,No it's only for|my favorite subbies.,Some of the girls in this club would love|to be your favorite pet for that.,200,0,0,
 235,0,0,,"No, but you should try it.","Forget it, try that on me and they can|use it on you as an arm splint.",200,-1,0,
 236,0,0,,I'm not sure I want|to just yet,"Nonsense, come on you will look|beautifully submissive with it on.",236,0,-1,
 236,0,0,,"No, another time.","Okay, your loss.",200,0,0,
@@ -77,7 +77,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 250,0,0,,Do they both|need restraining?,Lucy is sweet enough when she isn't trying to steal|boyfriends and she knows a lot of Kinbaku techniques.,251,,,
 250,0,0,,Do you need to restrain|me like that too?,"Maybe, but we didn't need to restrain Lucy, she could|demonstrate some impressive Kinbaku on you.",251,0,-1,
 251,0,0,,And Heather?,She is the evil left twin and impersonates her sister.|They both claim to be Lucy.,252,0,0,
-251,0,0,,I already know enough|to restrain anybody.,Lucy could teach you that kinbaku is more than just|restraint.  Heather though would teach you about pain.,252,0,1,
+251,0,0,,I already know enough|to restrain anybody.,Lucy could teach you that Kinbaku is more than just|restraint.  Heather though would teach you about pain.,252,0,1,
 252,0,0,,If we work out which one is|Lucy we should untie her. ,"Yes, she would teach you a thing or two,|but how could you tell which one she is?",200,0,0,
 252,0,0,,Best keep them|both tightly bound.,Probably. If we knew which one was Lucy then|she could show us some new techniques.,200,0,1,
 255,0,0,,"Cool, lets make their|bondage even tighter.",It’s already plenty tight enough.|Any tighter would cut of their blood circulation.,200,,,
@@ -460,10 +460,10 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 830,0,0,,(Shake your loose breasts.),"(You jiggle as best you can, the weight|of the clamps twisting your nipples.)",830,0,0,WaitingForMistress()
 830,0,0,,(Reach for a knot.),"(You reach up behind your back to find a knot, but|that pulls the crotch rope, digging it deeper into you.)",830,0,0,HelplessKnot()
 830,0,0,,(Try struggling in|this bondage.),"(As you kick your legs, they yank on the crotch|rope, making it cut deep into your pussy.)",830,0,0,HelplessStruggle()
-830,0,0,,(Moan with pleasure.),"(You can't help yourself,|savouring the burning sensation in your nipples.",830,0,0,WaitingForMistress()
+830,0,0,,(Moan with pleasure.),"(You can't help yourself,|savoring the burning sensation in your nipples.",830,0,0,WaitingForMistress()
 830,0,0,,(Try to remove the|nipple clamps.),"(You try rubbing the clamps against the floor,|but that only irritates your sore nipples.)",830,0,0,WaitingForMistress()
 830,0,0,,(Struggle to escape|the hogtie.),"(You struggle madly, but there is no slack except for|the crotch rope, which jerks tight when you kick.)",830,0,0,WaitingForMistress()
-830,0,0,,(Search for a knot.),"(You carefully feel around, but cannot find a single knot.|You have been very skilfully bound.)",830,0,0,WaitingForMistress()
+830,0,0,,(Search for a knot.),"(You carefully feel around, but cannot find a single knot.|You have been very skillfully bound.)",830,0,0,WaitingForMistress()
 830,0,0,,(Chew on the gag.),"(The large ball is unyielding. You sign happily,|relishing how much it has made your jaw ache.)",830,0,0,WaitingForMistress()
 831,0,0,,@Mnftrmff?|Mistress?),That's right. I've a collar to lock around|your neck now so you never forget it.,832,1,0,
 831,0,0,,@Hmhthmr.|(Heather.),Leather? How did you guess? I've got you a nice|tough leather collar to lock around your neck.,832,0,0,
@@ -527,7 +527,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 860,0,0,,(Ignore her.),"What, no last words? Never mind.|(You hear her stand up and walk away.)",861,0,0,NoActor()
 861,0,0,,(Rub blindfold off.),"(You try rubbing it against the floor, bit is buckled|straps and the gags harness hold it firmly in place.)",861,0,0,Waiting()
 861,0,0,,(Struggle to escape|the hogtie.),"(You struggle madly, but there is no slack except for|the crotch rope, which jerks tight when you kick.)",861,0,0,Waiting()
-861,0,0,,(Search for a knot.),"(You carefully feel around, but cannot find a single knot.|You have been very skilfully and tightly bound.)",861,0,0,Waiting()
+861,0,0,,(Search for a knot.),"(You carefully feel around, but cannot find a single knot.|You have been very skillfully and tightly bound.)",861,0,0,Waiting()
 861,0,0,Masochist,(Chew on the gag.),"(The large ball is unyielding. You sign happily,|relishing how much it has made your jaw ache.)",861,0,0,Waiting()
 861,0,0,!Masochist,(Chew on the gag.),"(The large ball is unyielding. You groan helplessly,|realising how much it has made your jaw ache.)",861,0,0,Waiting()
 861,0,0,NippleClamped,(Try to remove the|nipple clamps.),"(You try rubbing the clamps against the floor,|but that only irritates your sore nipples.)",861,0,0,Waiting()

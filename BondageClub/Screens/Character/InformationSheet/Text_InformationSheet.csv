@@ -1,11 +1,18 @@
 Name,Name:
 Title,Title:
+TitleNone,None
 TitleMistress,Mistress
+TitleClubSlave,Club Slave
 TitleHeadMaid,Head Maid
 TitleMaid,Maid
 TitleMasterKidnapper,Master Kidnapper
 TitleKidnapper,Kidnapper
-TitleNone,None
+TitlePatient,Patient
+TitlePermanentPatient,Permanent Patient
+TitleEscapedPatient,Escaped Patient
+TitleNurse,Nurse
+TitleDoctor,Doctor
+TitleCollegeStudent,College Student
 TitlePonyFoal,Foal
 TitlePonyFarm,Farm Horse
 TitlePonyCold,Cold Blood Horse
@@ -32,15 +39,17 @@ ReputationNone,None
 ReputationDominantPositive,Dominant:
 ReputationDominantNegative,Submissive:
 ReputationMaidPositive,Maid Sorority:
-ReputationGamblingPositive,Gambling Hall:
 ReputationKidnapPositive,Kidnappers League:
+ReputationAsylumPositive,Asylum Nurse:
+ReputationAsylumNegative,Asylum Patient:
+ReputationGamblingPositive,Gambling Hall:
 ReputationABDLPositive,ABDL:
 Skill,- Skills -
 SkillNone,None
 SkillBondage,Bondage:
 SkillEvasion,Evasion:
 SkillWillpower,Willpower:
-SkillDressage,Pony Dressage:
+SkillDressage,Dressage:
 SkillModifier,Global modifier:
 Trait,- Traits -
 TraitUnknown,Spend more time with her to know her traits
