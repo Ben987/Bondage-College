@@ -628,3 +628,9 @@ Stand up cage
 Aufrechter Käfig
 Kennel
 Zwinger
+Dress with Fur
+Kleid mit Fell
+Socks with Fur
+Socken mit Fell
+Gloves with Fur
+Handschuhe mit Fell

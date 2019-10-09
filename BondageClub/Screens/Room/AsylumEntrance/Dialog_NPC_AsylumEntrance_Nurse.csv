@@ -13,6 +13,7 @@ FightDefeat,,,"You really thought you could beat me?  You're truly mad, little p
 0,21,I'd like to commit myself,"By committing yourself, you will be locked down in the asylum until your time is up.",,"DialogReputationLess(""Asylum"", 0)"
 0,30,I'd like to work as a nurse.,"You can, but you will lose your patient status and reputation.  Are you sure about that?",,"DialogReputationLess(""Asylum"", -1)"
 0,31,I'd like to work as a nurse.,Perfect!  We need staff to take care of our patients.  Are you ready to work now?,,"DialogReputationGreater(""Asylum"", 0)"
+0,,Can I get my own nurse uniform?,Of course.  Here you go nurse DialogPlayerName.  Wear it with pride.  (She gives you a nurse uniform.),GiveNurseUniform(),CanGetNurseUniform()
 0,,I must go.  (Leave her.),,DialogLeave(),
 10,,What goes in the asylum?,"The asylum is a place to relax, to forget about your stressful life for a while.  You can get therapies and mingle with patients and nurses.",,
 10,,Tell me about patients.,"Patients willingly commit themselves for a set time.  Until that time is up, they will receive therapies and will be locked in the asylum.",,
