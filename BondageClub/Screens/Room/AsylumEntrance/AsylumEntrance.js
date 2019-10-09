@@ -10,6 +10,7 @@ var AsylumEntranceEscapedPatientWillJoin = false;
 function AsylumEntranceCanWander() { return (Player.CanWalk() && ((LogValue("Committed", "Asylum") >= CurrentTime) || ((ReputationGet("Asylum") >= 1) && AsylumEntranceIsWearingNurseClothes(Player)))) }
 function AsylumEntranceCanTransferToRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax) && !LogQuery("LockOutOfPrivateRoom", "Rule")) }
 function AsylumEntranceCanKiss() { return (Player.CanTalk() && CurrentCharacter.CanTalk()) }
+function AsylumEntranceCanGetNurseUniform() { return ((ReputationGet("Asylum") >= 50) && (!DialogInventoryAvailable("NurseUniform", "Cloth") || !DialogInventoryAvailable("NurseCap", "Hat"))) }
 
 // Loads the room and generates the nurse
 function AsylumEntranceLoad() {
@@ -59,7 +60,7 @@ function AsylumEntranceStartChat() {
 	ChatRoomSpace = "Asylum";
 	ChatSearchBackground = "AsylumEntranceDark";
 	ChatSearchLeaveRoom = "AsylumEntrance";
-	ChatCreateBackgroundList = ["AsylumEntrance", "AsylumBedroom", "AsylumMeeting", "AsylumTherapy", "PaddedCell"];
+	ChatCreateBackgroundList = ["AsylumEntrance", "AsylumBedroom", "AsylumMeeting", "AsylumTherapy", "PaddedCell", "PaddedCell2"];
 	CommonSetScreen("Online", "ChatSearch");
 }
 
@@ -329,4 +330,10 @@ function AsylumEntranceEscapedPatientTransferToAsylum() {
 function AsylumEntranceEscapedPatientLeave() {
 	CommonSetScreen("Room", "MainHall");
 	DialogLeave();
+}
+
+// Gives the nurse uniform to the player if asylum reputation is 50 or more
+function AsylumEntranceGiveNurseUniform() {
+	InventoryAdd(Player, "NurseUniform", "Cloth");
+	InventoryAdd(Player, "NurseCap", "Hat");
 }

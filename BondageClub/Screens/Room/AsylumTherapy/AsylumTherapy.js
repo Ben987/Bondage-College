@@ -3,6 +3,8 @@ var AsylumTherapyBackground = "AsylumTherapy";
 var AsylumTherapyNurse = null;
 var AsylumTherapyPatient = null;
 
+function AsylumTherapyPatientReadyForTherapy() { return (!Player.IsRestrained() && Player.IsNaked()) }
+
 // Loads the room
 function AsylumTherapyLoad() {
 	if (AsylumTherapyNurse == null) {
@@ -42,9 +44,35 @@ function AsylumTherapyClick() {
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475) && Player.CanChange() && (LogValue("Committed", "Asylum") >= CurrentTime)) CharacterNaked(Player);
 }
 
-// When the players get ungagged by the nurse
+// When the player gets ungagged by the nurse
 function AsylumTherapyPlayerUngag() {
 	DialogChangeReputation("Dominant", -1);
 	InventoryRemove(Player, "ItemHead");
 	InventoryRemove(Player, "ItemMouth");
+}
+
+// When the player is stripped and unrestrained
+function AsylumTherapyStripPlayer() {
+	CharacterRelease(Player);
+	CharacterNaked(Player);
+}
+
+// Depending on the patient reputation, the bondage therapy gets harsher
+function AsylumTherapyBondageTherapyRestrain() {
+	if ((ReputationGet("Asylum") <= -1) && (ReputationGet("Asylum") >= -49)) CharacterFullRandomRestrain(Player, "FEW");
+	if ((ReputationGet("Asylum") <= -50) && (ReputationGet("Asylum") >= -99)) CharacterFullRandomRestrain(Player, "LOT");
+	if ((ReputationGet("Asylum") <= -100) && (ReputationGet("Asylum") >= -100)) CharacterFullRandomRestrain(Player, "ALL");
+}
+
+// When the patient therapy fails
+function AsylumTherapyTherapyFail() {
+	CharacterRelease(Player);
+	DialogChangeReputation("Asylum", 3);
+	if (ReputationGet("Asylum") >= 0) DialogSetReputation("Asylum", -1);
+}
+
+// When the patient therapy succeeds
+function AsylumTherapyTherapySuccess() {
+	CharacterRelease(Player);
+	DialogChangeReputation("Asylum", -4);
 }
