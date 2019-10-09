@@ -5,8 +5,13 @@ function SpeechFullEmote(D) {
 	return ((D.indexOf("(") == 0) && (D.indexOf(")") == D.length - 1));
 }
 
-// Garbles the speech if the character is gagged, anything between parentheses isn't touched
 function SpeechGarble(C, CD) {
+	/*
+	Garbles the speech if the character is gagged.
+	Anything between parentheses stays untouched.
+	:Param Object C: An object containing information about the player.
+	:Param string CD: The message that the player wants to send.
+	*/
 
 	// Variables to build the new string and check if we are in a parentheses
 	var NS = "";
