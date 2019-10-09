@@ -27,6 +27,12 @@ ParkNight,Park Night
 ChillRoom,Chill Room
 Boudoir,Boudoir
 BondageBedChamber,Bondage Bedchamber
+Beach,Beach
+ForestPath,Forest Path
+DeepForest,Deep Forest
+SpookyForest,Spooky Forest
+AbandonedBuilding,Abandoned Building
+PaddedCell2,Padded Cell 2
 RoomSize,"Room maximum size, from 2 to 10 members"
 Create,Create
 Cancel,Cancel
