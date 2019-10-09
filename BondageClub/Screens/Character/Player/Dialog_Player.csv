@@ -18,6 +18,8 @@ Lock,,,Use a lock
 Unlock,,,Unlock the item
 InspectLock,,,Inspect the lock
 Remote,,,Use your remote
+DialogNormalMode,,,Exit Permission Mode
+DialogPermissionMode,,,Edit Item Permissions
 ButtPump,,,Use the Butt Plug's pump
 ColorPick,,,Color of next item
 ColorSelect,,,Use this color
@@ -48,6 +50,11 @@ InflateLevel1,,,Pump plug level: Light
 InflateLevel2,,,Pump plug level: Inflated
 InflateLevel3,,,Pump plug level: Bloated
 InflateLevel4,,,Pump plug level: Max
+SuctionLevel0,,,Suction Cup level: Loose
+SuctionLevel1,,,Suction Cup level: Light
+SuctionLevel2,,,Suction Cup level: Medium
+SuctionLevel3,,,Suction Cup level: Heavy
+SuctionLevel4,,,Suction Cup level: Max
 DeflateIt,,,Deflate it
 PumpIt,,,Pump it
 pumps,,,pumps
@@ -191,6 +198,22 @@ InventoryItemVibrationIntensityIncreaseTo0,,,DestinationCharacter's {0} {0#start
 InventoryItemVibrationIntensityIncreaseTo1,,,DestinationCharacter's {0} {0#builds#build} up to a moderate pace.
 InventoryItemVibrationIntensityIncreaseTo2,,,DestinationCharacter's {0} {0#starts#start} buzzing strongly!
 InventoryItemVibrationIntensityIncreaseTo3,,,DestinationCharacter's {0} {0#jumps#jump} up to maximum intensity!
+NipSucloosensTo0,,,SourceCharacter loosens DestinationCharacter's nipple suction cups until they hang loosely.
+NipSucloosensTo1,,,SourceCharacter loosens DestinationCharacter's nipple suction cups to a light amount of suction.
+NipSucloosensTo2,,,SourceCharacter loosens DestinationCharacter's nipple suction cups to a moderate amount of suction.
+NipSucloosensTo3,,,SourceCharacter loosens DestinationCharacter's nipple suction cups a bit to a heavy amount of suction.
+NipSuctightensTo1,,,SourceCharacter tweaks DestinationCharacter's nipple suction cups sucking in her nipples lightly.
+NipSuctightensTo2,,,SourceCharacter tweaks DestinationCharacter's nipple suction cups sucking in her nipples firmly.
+NipSuctightensTo3,,,SourceCharacter tweaks DestinationCharacter's nipple suction cups sucking in her nipples heavily.
+NipSuctightensTo4,,,SourceCharacter tweaks DestinationCharacter's nipple suction cups sucking in her nipples entirely.
+ClitSucloosensTo0,,,SourceCharacter loosens DestinationCharacter's clit suction cup until it hangs loosely.
+ClitSucloosensTo1,,,SourceCharacter loosens DestinationCharacter's clit suction cup to a light amount of suction.
+ClitSucloosensTo2,,,SourceCharacter loosens DestinationCharacter's clit suction cup to a moderate amount of suction.
+ClitSucloosensTo3,,,SourceCharacter loosens DestinationCharacter's clit suction cup a bit to a heavy amount of suction.
+ClitSuctightensTo1,,,SourceCharacter tweaks DestinationCharacter's clit suction cup sucking in her clit lightly.
+ClitSuctightensTo2,,,SourceCharacter tweaks DestinationCharacter's clit suction cup sucking in her clit firmly.
+ClitSuctightensTo3,,,SourceCharacter tweaks DestinationCharacter's clit suction cup sucking in her clit heavily.
+ClitSuctightensTo4,,,SourceCharacter tweaks DestinationCharacter's clit suction cup sucking in her clit entirely.
 BPumpsdeflatesTo0,,,SourceCharacter deflates DestinationCharacter's butt pump till it's empty.
 BPumpsdeflatesTo1,,,SourceCharacter deflates DestinationCharacter's butt pump till only slighty filled.
 BPumpsdeflatesTo2,,,SourceCharacter deflates DestinationCharacter's butt pump till it's half full.
@@ -219,6 +242,11 @@ Empty,,,Empty
 Light,,,Light
 Inflated,,,Inflated
 Bloated,,,Bloated
+Loose,,,Loose
+LightSuction,,,Light
+MediumSuction,,,Medium
+HeavySuction,,,Heavy
+MaximumSuction,,,Maximum
 UseRemote,,,Use Remote
 PlayerGagged,,,(You can use or remove items by selecting specific body regions on yourself.)
 0,,,(You can use or remove items by selecting specific body regions on yourself.)
