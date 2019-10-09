@@ -38,6 +38,10 @@ Bunny Girl Accessories
 Bunny-Accessoires
 Robe
 Robe
+Flower Dress
+Blumenkleid
+Nomadic Dress
+Nomadenkleid
 Bottom
 Kleidung unten
 Skirt
@@ -136,6 +140,12 @@ Mistress Boots
 Herrinnen-Stiefel
 Pony Boots
 Pony-Stiefel
+Strap Sandals
+Riemensandalen
+Paw Boots
+Tatzenstiefel
+Woolly Boots
+Wollstiefel
 Hat
 Kopfbedeckung
 Hair Band
@@ -158,6 +168,8 @@ Bunny Succubus
 Hasen-Succubus
  Flower
 Blüte
+ Witch Hat
+Hexenhut
 Hair Accessory
 Haar-Accessoire
 Ears Small
@@ -194,6 +206,8 @@ Long Gloves
 Lange Handschuhe
 Mistress Gloves
 Herrinnen-Handschuhe
+Fingerless Gloves
+Fingerfreie Handschuhe
 Glasses
 Brille
 Style 5
@@ -208,6 +222,8 @@ Venetian Mask
 Venezianische Maske
 Domino Mask
 Domino-Maske
+Butterfly Mask
+Schmetterlingsmaske
 Tail Strap
 Schwanzgürtel
 Kitty Tail Strap
@@ -330,6 +346,10 @@ Hobble Skirt
 Humpelrock
 Wooden Horse
 Holzbock
+Saddle Stand
+Sattelständer
+Metal Leg Spreader
+Metall Beinspreizer
 Vulva
 Vulva
 Vibrating Egg
@@ -342,6 +362,8 @@ Vibrating Latex Panties
 Latex-Vibratorhöschen
 Wand Belt
 Vibrator-Gürtel
+Vibrating Dildo
+Vibrator-Dildo
 Butt
 Hintern
 Black Butt Plug
@@ -366,6 +388,8 @@ Anal Beads
 Analperlenkette
 Butt Pump
 Analpumpe
+Vibrating Butt Plug
+Vibrator-Analstöpsel
 Pelvis
 Becken
 Strap-On Panties
@@ -476,8 +500,12 @@ Bat Collar
 Fledermaus-Halsband
 Posture Collar
 Haltungshalsband
-Steel Posture Collar
-Stahl-Haltungshalsband
+Steel Collar
+Stahlhalsband
+Leather Choker
+Lederhalsreif
+Pet Collar
+Tierhalsband
 Collar
 Halsband
 Bell
@@ -524,6 +552,8 @@ Rubber Carrot Gag
 Gummikarotten-Knebel
 Muzzle Gag
 Kiefer-Maulkorb
+Bone Gag
+Knochenknebel
 Sleeping Pill
 Schlaftablette
 Panties Mask
@@ -598,3 +628,9 @@ Stand up cage
 Aufrechter Käfig
 Kennel
 Zwinger
+Dress with Fur
+Kleid mit Fell
+Socks with Fur
+Socken mit Fell
+Gloves with Fur
+Handschuhe mit Fell

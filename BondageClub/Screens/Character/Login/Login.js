@@ -11,10 +11,9 @@ var LoginThankYouNext = 0;
 // Loads the next thank you bubble
 function LoginDoNextThankYou() {
 	LoginThankYou = CommonRandomItemFromList(LoginThankYou, LoginThankYouList);
+	CharacterRelease(Player);
 	CharacterAppearanceFullRandom(Player);
-	if (Math.random() >= 0.5) InventoryWearRandom(Player, "ItemFeet"); else InventoryRemove(Player, "ItemFeet");
-	if (Math.random() >= 0.5) InventoryWearRandom(Player, "ItemLegs"); else InventoryRemove(Player, "ItemLegs");
-	if (Math.random() >= 0.5) InventoryWearRandom(Player, "ItemArms"); else InventoryRemove(Player, "ItemArms");
+	CharacterFullRandomRestrain(Player);
 	LoginThankYouNext = CommonTime() + 4000;
 }
 
@@ -152,6 +151,7 @@ function LoginResponse(C) {
 			Player.Wardrobe = C.Wardrobe;
 			Player.OnlineID = C.ID.toString();
 			Player.MemberNumber = C.MemberNumber;
+			Player.BlockItems = ((C.BlockItems == null) || !Array.isArray(C.BlockItems)) ? [] : C.BlockItems;
 			Player.WardrobeCharacterNames = C.WardrobeCharacterNames;
 			WardrobeCharacter = [];
 

@@ -207,7 +207,9 @@ function CommonTime() {
 
 // Returns TRUE if the string is a HEX color
 function CommonIsColor(Value) {
-	return ((Value != null) && /^#[0-9A-F]{6}$/i.test(Value));
+	if ((Value == null) || (Value.length < 3)) return false;
+	if (/^#[0-9A-F]{3}$/i.test(Value)) Value = "#" + Value[1] + Value[1] + Value[2] + Value[2] + Value[3] + Value[3];	//convert short hand hex color to standard format
+	return /^#[0-9A-F]{6}$/i.test(Value);
 }
 
 // Returns a random item from a list but make sure we don't pick the previous item again
