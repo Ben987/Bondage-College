@@ -2,6 +2,7 @@
 var MainHallBackground = "MainHall";
 var MainHallStartEventTimer = null;
 var MainHallNextEventTimer = null;
+var MainHallRandomEventOdds = 0; 
 var MainHallMaid = null;
 var MainHallIsMaid = false;
 var MainHallIsHeadMaid = false;
@@ -25,6 +26,8 @@ function MainHallLoad() {
 	CommonReadCSV("NoArravVar", "Room", "Management", "Dialog_NPC_Management_RandomGirl");
 	CommonReadCSV("NoArravVar", "Room", "KidnapLeague", "Dialog_NPC_KidnapLeague_RandomKidnapper");
 	CommonReadCSV("NoArravVar", "Room", "Private", "Dialog_NPC_Private_Custom");
+	CommonReadCSV("NoArravVar", "Room", "AsylumEntrance", "Dialog_NPC_AsylumEntrance_KidnapNurse");
+	CommonReadCSV("NoArravVar", "Room", "AsylumEntrance", "Dialog_NPC_AsylumEntrance_EscapedPatient");
 
 }
 
@@ -128,11 +131,35 @@ function MainHallRun() {
 
 // When the player walks to another room, she can be attacked by a random kidnapper
 function MainHallWalk(RoomName) {
-	if ((Math.random() > 0.85) && ManagementIsClubSlave()) ManagementClubSlaveRandomIntro();
-	else if ((Math.random() > 0.96) && (KidnapLeagueRandomKidnapperTimer < CommonTime()) && (ReputationGet("Kidnap") > 0) && (CheatFactor("BlockRandomKidnap", 0) == 1)) KidnapLeagueRandomIntro();
-	else if ((KidnapLeagueBountyLocation == RoomName) && (KidnapLeagueBounty != null) && (KidnapLeagueBountyVictory == null) && Player.CanInteract() && (ReputationGet("Kidnap") > 0)) KidnapLeagueBountyStart();
-	else if (Math.random() > 0.96) ManagementFindClubSlaveRandomIntro();
-	else CommonSetScreen("Room", RoomName);
+
+	// Each time the player travels from room to room, the odds raises for a random event
+	if ((Math.random() * 100 < MainHallRandomEventOdds) || (RoomName == "Trouble")) {
+
+		// Some circumstantial events have better odds of happening (player is club slave or escaped patient)
+		MainHallRandomEventOdds = 0;
+		var PlayerClubSlave = (ManagementIsClubSlave()) ? (Math.random() * 3) : 0;
+		var PlayerEscapedAsylum = ((LogValue("Escaped", "Asylum") >= CurrentTime) && (CheatFactor("BlockRandomKidnap", 0) == 1)) ? (Math.random() * 3) : 0;
+		var MeetEscapedPatient = ((ReputationGet("Asylum") > 0) && !Player.IsRestrained() && AsylumEntranceIsWearingNurseClothes()) ? (Math.random() * 2) : 0;
+		var MeetKidnapper = ((ReputationGet("Kidnap") > 0) && (CheatFactor("BlockRandomKidnap", 0) == 1)) ? Math.random() : 0;
+		var MeetClubSlave = Math.random();
+
+		// Starts the event with the highest value (picked at random)
+		if ((PlayerClubSlave > PlayerEscapedAsylum) && (PlayerClubSlave > MeetEscapedPatient) && (PlayerClubSlave > MeetKidnapper) && (PlayerClubSlave > MeetClubSlave)) ManagementClubSlaveRandomIntro();
+		else if ((PlayerEscapedAsylum > MeetEscapedPatient) && (PlayerEscapedAsylum > MeetKidnapper) && (PlayerEscapedAsylum > MeetClubSlave)) AsylumEntranceNurseCatchEscapedPlayer();
+		else if ((MeetEscapedPatient > MeetKidnapper) && (MeetEscapedPatient > MeetClubSlave)) AsylumEntranceEscapedPatientMeet();
+		else if (MeetKidnapper > MeetClubSlave) KidnapLeagueRandomIntro();
+		else ManagementFindClubSlaveRandomIntro();
+
+	} else {
+
+		// Each time the player travels, the odds get better for a random event
+		MainHallRandomEventOdds = MainHallRandomEventOdds + 2;
+		if (ManagementIsClubSlave()) MainHallRandomEventOdds = MainHallRandomEventOdds + 4;
+		if ((KidnapLeagueBountyLocation == RoomName) && (KidnapLeagueBounty != null) && (KidnapLeagueBountyVictory == null) && Player.CanInteract() && (ReputationGet("Kidnap") > 0)) KidnapLeagueBountyStart();
+		else CommonSetScreen("Room", RoomName);
+
+	}
+
 }
 
 // When the user clicks in the main hall screen
@@ -147,7 +174,7 @@ function MainHallClick() {
 		ChatRoomSpace = "";
 		ChatSearchBackground = "IntroductionDark";
 		ChatSearchLeaveRoom = "MainHall";
-		ChatCreateBackgroundList = ["Introduction", "KidnapLeague", "MaidQuarters", "MainHall", "Management", "Private", "Shibari", "Bedroom", "HorseStable", "Nursery", "PrisonHall", "BDSMRoomBlue", "BDSMRoomPurple", "BDSMRoomRed", "Gardens", "IndoorPool", "OutdoorPool", "MaidCafe", "PublicBath", "ParkDay", "ParkNight", "ChillRoom", "Boudoir", "BondageBedChamber"];
+		ChatCreateBackgroundList = ["Introduction", "KidnapLeague", "MaidQuarters", "MainHall", "Management", "Private", "Shibari", "Bedroom", "HorseStable", "Nursery", "PrisonHall", "BDSMRoomBlue", "BDSMRoomPurple", "BDSMRoomRed", "Gardens", "IndoorPool", "OutdoorPool", "MaidCafe", "PublicBath", "ParkDay", "ParkNight", "ChillRoom", "Boudoir", "BondageBedChamber", "Beach", "ForestPath", "DeepForest", "SpookyForest", "AbandonedBuilding"];
 		CommonSetScreen("Online", "ChatSearch");
 	}
 
@@ -169,11 +196,7 @@ function MainHallClick() {
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475) && SarahRoomAvailable) MainHallWalk("Sarah");
 
 		// Cell, Slave Market & Look for trouble
-		if ((MouseX >= 1645) && (MouseX < 1735) && (MouseY >= 505) && (MouseY < 595)) {
-			if (ManagementIsClubSlave() && (Math.random() >= 0.1)) ManagementClubSlaveRandomIntro();
-			else if ((ReputationGet("Kidnap") > 0) && (Math.random() >= 0.5) && !ManagementIsClubSlave()) KidnapLeagueRandomIntro();
-			else ManagementFindClubSlaveRandomIntro();
-		}
+		if ((MouseX >= 1645) && (MouseX < 1735) && (MouseY >= 505) && (MouseY < 595)) MainHallWalk("Trouble");
 		if ((MouseX >= 1765) && (MouseX < 1855) && (MouseY >= 505) && (MouseY < 595)) MainHallWalk("SlaveMarket");
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 505) && (MouseY < 595)) MainHallWalk("Cell");
 
@@ -242,6 +265,7 @@ function MainHallResetClubSlave() {
 	CharacterNaked(Player);
 	LogAdd("ClubSlave", "Management", CurrentTime + 3600000);
 	LogAdd("BlockChange", "Rule", CurrentTime + 3600000);
+	TitleSet("ClubSlave");
 }
 
 // The maid can lead the player to the club management to be expelled

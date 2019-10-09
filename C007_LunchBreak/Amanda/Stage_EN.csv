@@ -13,7 +13,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 20,0,0,NoOption,Could you show|me that place?,"I can't, I already have plans for lunch.",40,0,0,
 20,0,0,,I'll try the cafe.|See you later.,Welcome.  (She turns around|and heads out for lunch.),50,0,0,EndLunch()
 30,0,0,,Let's go now!|(Eat with Amanda.),(You both walk out to a nearby|restaurant and find an empty table.),100,0,0,StartLunch()
-40,0,0,,"Ok, see you later.",See you later then!|(She heads up for lunch.),50,0,0,EndLunch()
+40,0,0,,"OK, see you later.",See you later then!|(She heads up for lunch.),50,0,0,EndLunch()
 40,0,0,,Have a great|lunch then!,"Thanks, I will!  Same to you.|(She heads out for lunch.)",50,1,0,EndLunch()
 40,0,0,,You suck.,Mmmh.  (She turns around|and heads out for lunch.),50,-1,0,EndLunch()
 100,0,0,,So what do|you recommend?,Soup and salad are my favorite.|So do you like our college so far?,110,0,0,
@@ -24,14 +24,14 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 110,0,0,,I've never seen a|kinky college like that.,(She giggles.)  And you're|studying here to work as?,120,0,0,
 110,0,0,,It's hard to judge|from a few hours.,Very true.  And you're|studying here to work as?,120,0,0,GoodMatch()
 110,0,0,,It's a pretty|boring school.,I guess some classes can be boring.|And you're studying here to work as?,120,0,0,
-120,0,0,,A musician.,Ok.  And what's your favorite class?,130,0,0,
+120,0,0,,A musician.,OK.  And what's your favorite class?,130,0,0,
 120,0,0,,A doctor.,Very nice.  And what's your favorite class?,130,0,0,GoodMatch()
 120,0,0,,An athlete.,I'm pretty bad in sports.|And what's your favorite class?,130,0,0,BadMatch()
 120,0,0,,A teacher.,Very nice.  And what's your favorite class?,130,0,0,GoodMatch()
-120,0,0,,An actor.,Ok.  And what's your favorite class?,130,0,0,
+120,0,0,,An actor.,OK.  And what's your favorite class?,130,0,0,
 120,0,0,,A dominatrix.,Be serious.  What's your favorite class?,130,0,0,
 120,0,0,,An architect.,Very nice.  And what's your favorite class?,130,0,0,GoodMatch()
-120,0,0,,A farmer.,Ok.  And what's your favorite class?,130,0,0,
+120,0,0,,A farmer.,OK.  And what's your favorite class?,130,0,0,
 120,0,0,,A programmer.,Very nice.  And what's your favorite class?,130,0,0,GoodMatch()
 120,0,0,,I don't know yet.,You'll need to know soon.|What's your favorite class?,130,0,0,BadMatch()
 130,0,0,,Math.,Great!  And what's your favorite hobby?,140,0,0,GoodMatch()
@@ -42,7 +42,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 130,0,0,,French.,Great!  And what's your favorite hobby?,140,0,0,GoodMatch()
 130,0,0,,Art.,Alright.  And what's your favorite hobby?,140,0,0,
 130,0,0,,History.,Great!  And what's your favorite hobby?,140,0,0,GoodMatch()
-130,0,0,,Theatre.,Alright.  And what's your favorite hobby?,140,0,0,
+130,0,0,,Theater.,Alright.  And what's your favorite hobby?,140,0,0,
 130,0,0,,I don't know.,"Nonsense, everyone has a preferred class.|And what's your favorite hobby?",140,0,0,BadMatch()
 140,0,0,,Basketball.,I don't like sports.  (A waitress|interrupts to take your order.),150,0,0,BadMatch()
 140,0,0,,Rock music.,Really?  (A waitress|interrupts to take your order.),150,0,0,
@@ -141,20 +141,20 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 400,0,0,,What the fuck|is going on?,I have a wild idea but you need to trust me.|Will you submit to me and remove your outfit?,410,-1,1,
 400,0,0,,(Try to push her away.),(She pushes you back.)  I have a wild idea.|Will you submit to me and remove your outfit?,410,0,1,
 410,0,0,,Submit to you?|I'll never do that.,I respect that and would never force you.|Let's go back to school then.,490,0,2,
-410,0,0,,Not here in public.|But maybe later.,"Its ok, I would never force you.|Let's go back to school then.",490,0,0,
+410,0,0,,Not here in public.|But maybe later.,"Its OK, I would never force you.|Let's go back to school then.",490,0,0,
 410,0,0,,"Alright, I will submit.|(Strip.) ADD_MINUTES:1","Wonderful!  This is so kinky, I love it.|Now turn around, hands behind your back.",420,0,0,SubbieStrip()
 410,0,0,,Yes Miss Amanda.|(Strip.) ADD_MINUTES:1,"Good girl!  This is so kinky, I love it.|Now turn around, hands behind your back.",420,0,-1,SubbieStrip()
 420,0,0,,This is great.|(Turn around.),"I know!  I told you it would be kinky.|Now I will tie you up with ropes, it's fine?",430,1,0,
-420,0,0,,Ok Amanda.|(Turn around.),"(She grabs your butt and smiles.)|Now I will tie you up with ropes, it's fine?",430,0,0,
+420,0,0,,OK Amanda.|(Turn around.),"(She grabs your butt and smiles.)|Now I will tie you up with ropes, it's fine?",430,0,0,
 420,0,0,,(Try to turn the|tables and strip her.),"(She's stronger than you and forces you to turn.)|Since you cannot behave, I will restrain you.",430,0,1,
-420,0,0,,Maybe we should stop.|(Dress back up.),"Its ok, I would never force you.|(You dress back.)  Let's go back.",490,-1,0,
+420,0,0,,Maybe we should stop.|(Dress back up.),"Its OK, I would never force you.|(You dress back.)  Let's go back.",490,-1,0,
 430,0,0,,Yes Miss Amanda.|(Obey.) ADD_MINUTES:1,(She grabs your arms and circle rope|around them and your body.)  Open wide!,440,0,-1,SubbieRope()
 430,0,0,,So this is for real?|(Obey.) ADD_MINUTES:1,(She grabs your arms and circle rope|around them and your body.)  Open wide!,440,0,0,SubbieRope()
-430,0,0,,Maybe we should stop.|(Dress back up.),"Its ok, I would never force you.|(You dress back.)  Let's go back.",490,-1,0,
+430,0,0,,Maybe we should stop.|(Dress back up.),"Its OK, I would never force you.|(You dress back.)  Let's go back.",490,-1,0,
 440,0,0,,(Pull your tongue.)ADD_MINUTES:1,(She giggles and pulls her tongue also.)|Common!  Open wide subbie girl.,440,0,0,
 440,0,0,,(Clench your teeth.)ADD_MINUTES:1,You're not helping at all you know.|Common!  Open wide subbie girl.,440,0,0,ClenchTeeth()
 440,0,0,,(Open wide.)ADD_MINUTES:1,(She pushes a ballgag in and straps it.)|Can I touch you now?  Do you want pleasure?,450,0,0,SubbieGag()
-440,0,0,,Maybe we should stop.|Can you release me?,"Its ok, I would never force you.|(She releases you.)  Let's go back.",490,-1,0,SubbieRelease()
+440,0,0,,Maybe we should stop.|Can you release me?,"Its OK, I would never force you.|(She releases you.)  Let's go back.",490,-1,0,SubbieRelease()
 450,0,0,,@Hheesh hissh.|(Nod slowly.),(She pushes you against the|fence and starts to rub her hand.),460,0,0,
 450,0,0,,@UOOG HEESSH!|(Nod rapidly.),(She pushes you against the|fence and starts to rub her hand.),460,1,0,
 450,0,0,,(Shake your head|from left to right.),"(She tickles you for fun and releases you.)|Its fine, I hope you had fun.  Let's go back.",490,-1,0,SubbieRelease()

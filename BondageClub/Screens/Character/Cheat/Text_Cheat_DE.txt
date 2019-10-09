@@ -12,3 +12,5 @@ Skip the D/s trial periods
 D/s-Probezeiten überspringen
 Automatically show NPC traits
 NPC-Merkmale automatisch anzeigen
+No love decay for NPC over time
+NPC-Zuneigung nicht verfallen lassen

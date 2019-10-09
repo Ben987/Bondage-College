@@ -17,7 +17,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 30,0,0,,Vous ne pouvez|pas faire ça.,Bien sûr que je le peux. Maintenant|tu vas enlever ton uniforme.,40,0,0,
 40,0,0,,"Désolée, mais vous êtes|trop moche pour moi.","(Elle te met au pilori et referme la planche.)|Puisque tu résistes, je vais devoir utiliser ces appareils.",70,-1,0,
 40,0,0,,"Oubliez ça, madame.|Je ne me déshabillerai pas.","(Elle te met au pilori et referme la planche.)|Puisque tu résistes, je vais devoir utiliser ces appareils.",70,0,0,
-40,0,0,,"Bon sang ! Ok, ok. (Tu|te déshabilles.)ADD_MINUTES:1",Très bien. Et tu es censée porter ceci.|(Elle te montre un collier en cuir.),50,0,0,
+40,0,0,,"Bon sang ! OK, OK. (Tu|te déshabilles.)ADD_MINUTES:1",Très bien. Et tu es censée porter ceci.|(Elle te montre un collier en cuir.),50,0,0,
 40,0,0,,Juste pour vos yeux. (Tu|te déshabilles.)ADD_MINUTES:1,Évidemment. Et tu es censée porter ceci.|(Elle te montre un collier en cuir.),50,1,0,
 50,0,0,,Oui Madame.|(Tu inclines la tête.),(Elle te met le collier autour du cou.)|Comment tu te sens maintenant ? Vulnérable ?,100,0,-1,AddCollar()
 50,0,0,,Un collier ?|J'ai l'air d'un chien ?,"(Elle te met au pilori et referme la planche.)|Puisque tu résistes, je vais devoir utiliser ces appareils.",80,0,0,

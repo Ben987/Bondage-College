@@ -76,7 +76,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 153,0,0,,Let's fuck again!,Oh yes my sexy lover!,100,0,0,
 153,0,0,Common_ActorIsOwned,My love slave.|Get in bed now.,Oh yes my lovely Mistress!,100,0,1,
 153,0,0,,I'm so happy!,Yes!  There will be lots of love and sex.|What could we do to start our relationship?,0,1,0,
-153,0,0,,I can't wait to|tell my friends.,"Ok, but let me talk with Amanda first.|What could we do to have fun now?",0,-1,0,
+153,0,0,,I can't wait to|tell my friends.,"OK, but let me talk with Amanda first.|What could we do to have fun now?",0,-1,0,
 153,0,0,,We should|go out later.,Oh yeah!  Well we might have to until|tomorrow for a romantic rendezvous.,0,0,0,
 160,0,0,AmandaAvail,She loves you|very much.,Really?  (She seems confused.)|Well she should tell me then.,161,0,0,
 160,0,0,AmandaAvail,She's crazy|about you.,Really?  (She seems confused.)|Well she should tell me then.,161,0,0,

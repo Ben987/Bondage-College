@@ -16,3 +16,35 @@ Owner only
 Nur Besitzer
 Put a valid hex #red-green-blue color
 Bitte gültige #rot-grün-blau Hex-Farbe eingeben
+- Chat display settings -
+- Chatanzeigeoptionen -
+Color theme:
+Farbschema:
+Light
+Hell
+Dark
+Dunkel
+Enter/Leave message style:
+Beitritt/Verlassen-Nachrichten:
+Normal
+Normal
+Smaller
+Kleiner
+Hidden
+Verbergen
+Display member numbers:
+Mitglieder-IDs anzeigen:
+Always
+Immer
+Never
+Nie
+On Mouseover
+Bei Mouseover
+Display timestamps
+Zeitstempel anzeigen
+Color names
+Namen färben
+Color actions
+Handlungen färben
+Color emotes
+Emotes färben

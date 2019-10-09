@@ -22,7 +22,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 30,0,0,,You're the bitch.,Shut up bitch!  Now come outside|with us and don't cause any trouble.,40,-1,0,
 30,0,0,,What are you|two planning?,You'll see soon.  Now come outside|with us and don't cause any trouble.,40,0,0,
 30,0,0,,Forget it girl.|I won't be your bitch.,I'm not asking you.  Now come outside|with us and don't cause any trouble.,40,0,1,
-30,0,0,,Look!  I'm sorry ok?|What do you want?,It's too late for that.  Now come outside|with us and don't cause any trouble.,40,0,-1,
+30,0,0,,Look!  I'm sorry OK?|What do you want?,It's too late for that.  Now come outside|with us and don't cause any trouble.,40,0,-1,
 30,0,0,,Get out of|my way pig.,That's it!  I will break all of your bones.,90,-1,1,ProvokePose()
 31,0,0,CanBribe,How about some items?|(Offer half of your items.),We have a deal!  You're on your own Jennifer.|(Sidney picks some items in your bag and leaves.),32,1,0,Bribe()
 31,0,0,,How about a kiss?,Are you stupid?  Now come outside|with us and don't cause any trouble.,40,-1,0,
@@ -128,7 +128,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 155,0,0,,"Yes, and it's none|of your business.","Fine, I can understand why you're grumpy.|Time to run!  All you have to do is one lap.",160,-1,0,
 155,0,0,,"Yes, I kind of|locked myself.",I'm not sure if that's kinky or stupid.|Time to run!  All you have to do is one lap.,160,0,-1,
 155,0,0,,Do you know how|to unlock these?,"I have no idea, find a good locksmith.|Time to run!  All you have to do is one lap.",160,0,0,
-160,0,0,,"Ok, let's do|this quickly.",It's not that easy.  Sidney|wants you to run gagged.,170,0,0,
+160,0,0,,"OK, let's do|this quickly.",It's not that easy.  Sidney|wants you to run gagged.,170,0,0,
 160,0,0,,Move away.  I'll do|your stupid lap.,It's not that easy.  Sidney|wants you to run gagged.,170,0,1,
 160,0,0,,Please Miss.  This|is very humiliating.,"I know, and it might get worse.|Sidney wants you to run gagged.",170,0,-1,
 160,0,0,AllowFight,Over my dead body!|(Fight them both.),,160,-1,1,StartFight()

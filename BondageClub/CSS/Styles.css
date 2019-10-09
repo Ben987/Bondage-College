@@ -51,6 +51,44 @@ canvas {
 	font-style: italic;
 	color: silver;
 }
+#TextAreaChatLog[data-ColorTheme=Dark i] {
+	background-color: #111;
+	color: #eee;
+}
+#TextAreaChatLog[data-ColorTheme=Dark i] .ChatMessageName {
+	text-shadow: 0.05em 0.05em #eee;
+}
+#TextAreaChatLog[data-EnterLeave=Smaller i] .ChatMessageEnterLeave {
+	font-size: 0.5em;
+	text-align: center;
+}
+#TextAreaChatLog[data-EnterLeave=Hidden i] .ChatMessageEnterLeave {
+	display: none;
+}
+#TextAreaChatLog[data-MemberNumbers=Never i] .ChatMessage::after,
+#TextAreaChatLog[data-MemberNumbers=OnMouseover i] .ChatMessage::after {
+	display: none;
+}
+#TextAreaChatLog[data-MemberNumbers=OnMouseover i] .ChatMessage:hover::after {
+	display: block;
+}
+#TextAreaChatLog[data-DisplayTimestamps=false i] .ChatMessage::before {
+	display: none;
+}
+#TextAreaChatLog[data-DisplayTimestamps=false i] .ChatMessage::after {
+	top: 0;
+}
+#TextAreaChatLog[data-ColorNames=false] .ChatMessageName {
+	color: inherit !important;
+	text-shadow: none;
+	font-weight: bold;
+}
+#TextAreaChatLog[data-ColorActions=false i] .ChatMessageAction {
+	background-color: transparent !important;
+}
+#TextAreaChatLog[data-ColorEmotes=false i] .ChatMessageEmote {
+	background-color: transparent !important;
+}
 #FriendList {
 	border: 2px solid white;
 	overflow: auto;
@@ -69,13 +107,13 @@ canvas {
 }
 .FriendListTextColumn{
 	float: left;
-	width: 24%;
+	width: 22%;
 	text-align: center;
 	padding-top: 1% !important;
 }
 .FriendListLinkColumn{
 	float: left;
-	width: 24%;
+	width: 22%;
 	text-align: center;
 	padding-top: 1% !important;
 	text-decoration: underline;

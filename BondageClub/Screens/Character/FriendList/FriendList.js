@@ -19,10 +19,10 @@ function FriendListLoad() {
 
 // Run the friend list screen - Draw the controls
 function FriendListRun() {
-	DrawText(TextGet("OnlineFriend"), 250, 35, "White", "Gray");
-	DrawText(TextGet("MemberNumber"), 725, 35, "White", "Gray");
-	DrawText(TextGet("ChatRoomName"), 1200, 35, "White", "Gray");
-	DrawText(TextGet("Action" + FriendListMode[FriendListModeIndex]), 1675, 35, "White", "Gray");
+	DrawText(TextGet("OnlineFriend"), 230, 35, "White", "Gray");
+	DrawText(TextGet("MemberNumber"), 665, 35, "White", "Gray");
+	DrawText(TextGet("ChatRoomName"), 1100, 35, "White", "Gray");
+	DrawText(TextGet("Action" + FriendListMode[FriendListModeIndex]), 1535, 35, "White", "Gray");
 	ElementPositionFix("FriendList", 36, 5, 75, 1985, 890);
 	DrawButton(1865, 5, 60, 60, "", "White", "Icons/Small/Next.png");
 	DrawButton(1935, 5, 60, 60, "", "White", "Icons/Small/Exit.png");
