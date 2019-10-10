@@ -940,7 +940,8 @@ var AssetFemale3DCG = [
 					{ Name: "Dildo", AllowColorize: true }
 				]
 			},
-			{ Name: "BoneGag", Difficulty: 6, Value: 70, Time: 10, Effect: ["GagNormal"], AllowLock: true }
+			{ Name: "BoneGag", Difficulty: 6, Value: 70, Time: 10, Effect: ["GagNormal"], AllowLock: true },
+			{ Name: "ChopstickGag", Difficulty: 2, Value: 15, Time: 10 }
 		]
 	},
 
