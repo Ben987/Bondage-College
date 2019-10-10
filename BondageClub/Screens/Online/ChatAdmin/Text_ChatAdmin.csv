@@ -1,0 +1,20 @@
+EnterRoomInfo,Edit your room
+RoomName,Edit Room Name :
+RoomDescription,Edit the Description :
+RoomBanList,Ban List :
+RoomAdminList,Admin List :
+RoomPrivate,Private :
+RoomLocked,Locked :
+RoomSize,"Room size(2-10) :"
+ListDesciption,Use only account numbers separated by a comma 
+ListExample,(i.e. "627,3571,541,7001,...")
+PlayerBound,You can't lock room while bound
+RoomBackground,Change the background
+Save,Save
+Cancel,Cancel
+UpdatingRoom,Updating your room...
+ResponseRoomAlreadyExist,This room name is already taken
+ResponseUpdateError,Error while updating room
+ResponseAccountError,"Account error, try to relog"
+ResponseInvalidRoomData,Invalid room data
+ResponseUpdated,"Room Updated, returning to it..."
