@@ -62,6 +62,7 @@ function AsylumTherapyBondageTherapyRestrain() {
 	if ((ReputationGet("Asylum") <= -1) && (ReputationGet("Asylum") >= -49)) CharacterFullRandomRestrain(Player, "FEW");
 	if ((ReputationGet("Asylum") <= -50) && (ReputationGet("Asylum") >= -99)) CharacterFullRandomRestrain(Player, "LOT");
 	if ((ReputationGet("Asylum") <= -100) && (ReputationGet("Asylum") >= -100)) CharacterFullRandomRestrain(Player, "ALL");
+	if (Player.CanTalk()) InventoryWearRandom(Player, "ItemMouth");
 }
 
 // When the patient therapy fails
@@ -69,10 +70,22 @@ function AsylumTherapyTherapyFail() {
 	CharacterRelease(Player);
 	DialogChangeReputation("Asylum", 3);
 	if (ReputationGet("Asylum") >= 0) DialogSetReputation("Asylum", -1);
+	InventoryRemove(AsylumTherapyNurse, "ItemHands");
+	CharacterSetActivePose(Player, null);
 }
 
 // When the patient therapy succeeds
 function AsylumTherapyTherapySuccess() {
 	CharacterRelease(Player);
 	DialogChangeReputation("Asylum", -4);
+}
+
+// Depending on the patient reputation, the pain therapy gets a tougher weapon
+function AsylumTherapyPainTherapyRestrain() {
+	InventoryWear(Player, "FourLimbsShackles", "ItemArms");
+	CharacterSetActivePose(Player, "Kneel");
+	InventoryWear(AsylumTherapyNurse, "SpankingToys", "ItemHands");
+	if ((ReputationGet("Asylum") <= -1) && (ReputationGet("Asylum") >= -49)) InventoryGet(AsylumTherapyNurse, "ItemHands").Property = { Type: "Paddle" };
+	if (ReputationGet("Asylum") <= -100) InventoryGet(AsylumTherapyNurse, "ItemHands").Property = { Type: "Flogger" };
+	CharacterRefresh(AsylumTherapyNurse);
 }

@@ -7,7 +7,7 @@ RemoveChainForItem,,,Remove the chain to the floor first
 MustCollaredFirst,,,A collar must be fitted first to attach accessories to.
 MustCollaredFirstAndRemoveSuspension,,,Must be collared and not suspended first.
 MustCollaredFirstAndRemoveSuspension1,,,Must be collared and not suspended/mounted first.
-FeetClosed,,,Can't have Items locked to your feet.
+LegsCannotOpen,,,Legs cannot open.
 Cancel,,,Cancel
 Exit,,,Back to character
 Next,,,View next items
