@@ -4,25 +4,30 @@ var AsylumMeetingPatientLeft = null;
 var AsylumMeetingPatientRight = null;
 
 // Returns TRUE if specific dialog conditions are met
-function AsylumEntranceCanReleasePlayer() { return (Player.IsRestrained() && !AsylumMeetingPatientLeft.IsRestrained() && (LogValue("Committed", "Asylum") >= CurrentTime)) }
-function AsylumEntranceCannotReleasePlayer() { return (Player.IsRestrained() && (AsylumMeetingPatientLeft.IsRestrained() || (LogValue("Committed", "Asylum") < CurrentTime))) }
+function AsylumMeetingCanReleasePlayer() { return (Player.IsRestrained() && !AsylumMeetingPatientLeft.IsRestrained() && (LogValue("Committed", "Asylum") >= CurrentTime)) }
+function AsylumMeetingCannotReleasePlayer() { return (Player.IsRestrained() && (AsylumMeetingPatientLeft.IsRestrained() || (LogValue("Committed", "Asylum") < CurrentTime))) }
+function AsylumMeetingCanRestrainPlayer() { return (!Player.IsRestrained() && !AsylumMeetingPatientLeft.IsRestrained() && (LogValue("Committed", "Asylum") >= CurrentTime)) }
+function AsylumMeetingCanKiss() { return (Player.CanTalk() && CurrentCharacter.CanTalk()) }
 
 // Loads the room and it's patients
 function AsylumMeetingLoad() {
 	if (AsylumMeetingPatientLeft == null) {
-		AsylumMeetingPatientLeft = CharacterLoadNPC("NPC_AsylumEntrance_PatientLeft");
+		AsylumMeetingPatientLeft = CharacterLoadNPC("NPC_AsylumMeeting_PatientLeft");
 		AsylumEntranceWearPatientClothes(AsylumMeetingPatientLeft);
 		AsylumMeetingPatientLeft.AllowItem = false;
 		AsylumMeetingPatientLeft.RunAway = false;
 		InventoryWear(AsylumMeetingPatientLeft, "Beret1", "Hat", "#BB0000");
 	}
 	if (AsylumMeetingPatientRight == null) {
-		AsylumMeetingPatientRight = CharacterLoadNPC("NPC_AsylumEntrance_PatientRight");
+		AsylumMeetingPatientRight = CharacterLoadNPC("NPC_AsylumMeeting_PatientRight");
 		AsylumEntranceWearPatientClothes(AsylumMeetingPatientRight);
 		InventoryWear(AsylumMeetingPatientRight, "SlaveCollar", "ItemNeck");
 		InventoryWear(AsylumMeetingPatientRight, "StraitJacket", "ItemArms");
 		InventoryWear(AsylumMeetingPatientRight, "SmallBlindfold", "ItemHead");
 		InventoryWear(AsylumMeetingPatientRight, "MuzzleGag", "ItemMouth");
+		InventoryAdd(AsylumMeetingPatientRight, "StraitJacket", "ItemArms");
+		InventoryAdd(AsylumMeetingPatientRight, "SmallBlindfold", "ItemHead");
+		InventoryAdd(AsylumMeetingPatientRight, "MuzzleGag", "ItemMouth");
 	}
 }
 
@@ -47,7 +52,7 @@ function AsylumMeetingClick() {
 // When the player smokes with the patient
 function AsylumMeetingSmoke() {
 	CharacterSetFacialExpression(Player, "Blush", "Low");
-	TimerInventoryRemoveSet(Player, "Blush", 15);	
+	TimerInventoryRemoveSet(Player, "Blush", 15);
 	CharacterSetFacialExpression(Player, "Eyebrows", "Soft");
 	TimerInventoryRemoveSet(Player, "Eyebrows", 15);
 	CharacterSetFacialExpression(AsylumMeetingPatientLeft, "Blush", "Low");
@@ -76,4 +81,18 @@ function AsylumMeetingRunAway(RepChange) {
 	DialogChangeReputation("Asylum", RepChange);
 	DialogLeave();
 	AsylumMeetingPatientLeft.RunAway = true;
+}
+
+// When the player gets restrained
+function AsylumMeetingRestrainPlayer(RestraintsType) {
+	CharacterFullRandomRestrain(Player, RestraintsType);
+	DialogChangeReputation("Dominant", -1);
+}
+
+// When the player plays with a patient, she blushes
+function AsylumMeetingBlush(BlushType) {
+	CharacterSetFacialExpression(CurrentCharacter, "Blush", BlushType);
+	TimerInventoryRemoveSet(CurrentCharacter, "Blush", 10);
+	CharacterSetFacialExpression(CurrentCharacter, "Eyebrows", "Lowered");
+	TimerInventoryRemoveSet(CurrentCharacter, "Eyebrows", 10);
 }

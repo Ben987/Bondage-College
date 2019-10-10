@@ -12,7 +12,7 @@ function SkillSave(S) {
 function SkillChange(SkillType, SkillLevel, SkillProgress, Push) {
 
 	// Make sure the progress and level are valid
-	SkillProgress = parseInt(SkillProgress) || 0;	
+	SkillProgress = parseInt(SkillProgress) || 0;
 	SkillLevel = parseInt(SkillLevel) || 0;
 	if ((SkillProgress < 0) || (SkillProgress >= 1000)) SkillProgress = 0;
 	if ((SkillLevel < 0) || (SkillLevel > 10)) SkillLevel = 0;
@@ -25,7 +25,7 @@ function SkillChange(SkillType, SkillLevel, SkillProgress, Push) {
 			if ((Push == null) || Push) SkillSave(Player.Skill[S])
 			return;
 		}
-	
+
 	// Creates a new skill
 	var NewSkill = {
 		Type: SkillType,
@@ -48,7 +48,7 @@ function SkillLoad(NewSkill) {
 			SkillChange(NewSkill[S].Type, NewSkill[S].Level, NewSkill[S].Progress, false);
 
 	}
-	
+
 }
 
 // Returns a specific skill level from a character

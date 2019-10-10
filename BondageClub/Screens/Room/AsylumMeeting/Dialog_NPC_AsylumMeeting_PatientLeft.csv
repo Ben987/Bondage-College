@@ -6,17 +6,19 @@ PlayerGagged,,,"Get that gag off or stop talking, you're driving me nuts.",,
 0,,,Hey DialogPlayerName.  What do you want?,,"DialogReputationLess(""Asylum"", -50)"
 0,,,Hey girls!  (She looks around the meeting room for approval.)  It's the new patient.,,"DialogReputationLess(""Asylum"", -1)"
 0,,,What do you want?,,
-0,10,Who are you?,"I'm suprised you don't know, I'm DialogCharacterName.  I'm the girl you talk too if you need something.",,"DialogReputationLess(""Asylum"", -1)"
-0,10,I need something from you.,I'm listening.  What do you need?,,"DialogReputationLess(""Asylum"", -50)"
+0,10,Who are you?,"I'm surprised you don't know, I'm DialogCharacterName.  I'm the girl you talk too if you need something.",,"DialogReputationLess(""Asylum"", -1)"
+0,10,I need something from you.,I'm listening.  What do you need?,,"DialogReputationLess(""Asylum"", -1)"
 0,,Who are you?,"You should know me, I'm DialogCharacterName.  I'm the best patient around.  (She smirks.)",,"DialogReputationGreater(""Asylum"", 1)"
 0,20,(Struggle in your restraints.),"I can see that you need help, but what's in there for me?  Give me 10$ and I'll help you out.",,CanReleasePlayer()
 0,20,(Struggle in your restraints.),(She shakes her head no.),,CannotReleasePlayer()
 0,30,It's time for your treatment.,It is?  (She thinks.)  Look!  A patient is trying to escape!  (She points behind you.),,"DialogReputationGreater(""Asylum"", 1)"
 0,,I must go.  (Leave her.),,DialogLeave(),
 10,,What can you provide?,"What do you need?  A smoke?  A vibrator?  Some help with a jacket?  I'm here for you, and your money.",,
-10,11,I want some cigarettes.,"Sure, the price is 1$ per smoke, do you want one?",,
+10,11,I want a cigarette.,"Sure, the price is 1$ per smoke, do you want one?",,
 10,12,I want a vibrator.,"I have a vibrating wand I can sell you.  It's used and it's not cheap, it goes for 80$.  Do you want it?",,"!DialogInventoryAvailable(""VibratingWand"", ""ItemVulva"")"
 10,,I want to get out of here.,"I can't help you there.  You can always try to fight your way out, but you'll get in trouble later.",,
+10,,Can I tie you up?,"Forget it girl.  I'm here to do business, not to struggle.",,"DialogReputationLess(""Asylum"", -1)"
+10,40,Will you tie me up?,Bondage is free but freedom has a price.  How tight do you want it?,,CanRestrainPlayer()
 10,0,I have everything I need.,Alright.  You know where to find me if you need something else.,,
 11,10,Alright.  (Pay her 1$ and smoke.),"(You smoke with her for a while, it's kind of relaxing.)  Anything else you need?",Smoke(),DialogMoneyGreater(1)
 11,10,I've changed my mind.,Whatever!  Anything else you need?,,
@@ -30,3 +32,7 @@ PlayerGagged,,,"Get that gag off or stop talking, you're driving me nuts.",,
 30,31,I'm not falling for that.,Catch me then!  (She runs like hell and disappears in the halls.),,
 31,,(Leave and report her behavior.),,RunAway(1),
 31,,(Leave and don't report her.),,RunAway(0),
+40,0,Nothing too tight please.,Chicken!  (She uses a few items on you and makes chicken sounds.),"RestrainPlayer(""FEW"")",
+40,0,Some secure bondage I guess.,Alright!  (She uses some items on you and smirks.),"RestrainPlayer(""LOT"")",
+40,0,I can take it.  Do your worst.,Enjoy your struggling.  (She uses lots of items on you and grins.),"RestrainPlayer(""ALL"")",
+40,10,I've changed my mind.,Whatever!  Anything else you need?,,

@@ -1,6 +1,6 @@
 Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 0,0,0,,Painting isn't my forte.,Oh!  I'm sure you can do it.|You don't like art and painting?,10,0,-1,
-0,0,0,,I should be ok.,I'm sure you will be fine.|So do you like the art class and Julia?,10,0,0,
+0,0,0,,I should be OK.,I'm sure you will be fine.|So do you like the art class and Julia?,10,0,0,
 0,0,0,,I would rather|paint you.,(She blushes.)  So kind of you.|So you don't like our teacher?,10,1,0,
 0,0,0,BondageDone,If you're a good girl|I'll tie you again today.,(She bows her head.)  Yes Miss.|So do you like the art class and Julia?,10,0,1,
 10,0,0,,Julia is a big|model to paint.,Don't be too tough with her.  She's|kind of fat but she's a good teacher.,20,-1,0,
@@ -24,7 +24,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 130,0,0,Common_PlayerGagged,(Bow your head.),You're a nice submissive you know?,130,0,0,BowHead()
 130,0,0,GetTapeAvail,Anything else to spice|things up? ADD_MINUTES:1,Yes!  I have something you can use here.|(She walks around and returns with some tape.),130,0,0,GetTape()
 130,0,0,IsModel,Shouldn't you undress|like Julia?ADD_MINUTES:1,(She giggles.)  Indeed.|(She strips to her underwear.),140,0,0,"SetCloth(1, 0, 0)"
-130,0,0,IsModel,Show some more skin|blondie. ADD_MINUTES:1,Blondie?  Mmmh.  Ok.|(She strips to her underwear.),140,0,0,"SetCloth(1, -1, 1)"
+130,0,0,IsModel,Show some more skin|blondie. ADD_MINUTES:1,Blondie?  Mmmh.  OK.|(She strips to her underwear.),140,0,0,"SetCloth(1, -1, 1)"
 130,0,0,IsModel,You would be cute without|that outfit. ADD_MINUTES:1,You really think so?|(She strips to her underwear.),140,0,0,"SetCloth(1, 1, 0)"
 140,0,0,GetTapeAvail,Anything else to spice|things up? ADD_MINUTES:1,Yes!  I have something you can use here.|(She walks around and returns with some tape.),140,0,0,GetTape()
 140,0,0,IsModel,Common girl!  You can|do better. ADD_MINUTES:1,"I know, I know, I was teasing.|(She playfully removes her undies.)",150,0,0,"SetCloth(2, 0, 1)"

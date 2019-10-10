@@ -17,7 +17,7 @@ function AssetGroupAdd(NewAssetFamily, NewAsset) {
 		AllowNone: (NewAsset.AllowNone == null) ? true : NewAsset.AllowNone,
 		AllowColorize: (NewAsset.AllowColorize == null) ? true : NewAsset.AllowColorize,
 		AllowCustomize: (NewAsset.AllowCustomize == null) ? true : NewAsset.AllowCustomize,
-		KeepNaked : (NewAsset.KeepNaked == null) ? false : NewAsset.KeepNaked,
+		KeepNaked: (NewAsset.KeepNaked == null) ? false : NewAsset.KeepNaked,
 		ColorSchema: (NewAsset.Color == null) ? ["Default"] : NewAsset.Color,
 		ParentSize: (NewAsset.ParentSize == null) ? "" : NewAsset.ParentSize,
 		ParentColor: (NewAsset.ParentColor == null) ? "" : NewAsset.ParentColor,
@@ -44,7 +44,7 @@ function AssetAdd(NewAsset) {
 		Name: NewAsset.Name,
 		Description: NewAsset.Name,
 		Group: AssetCurrentGroup,
-		ParentItem : NewAsset.ParentItem,
+		ParentItem: NewAsset.ParentItem,
 		Enable: (NewAsset.Enable == null) ? true : NewAsset.Enable,
 		Visible: (NewAsset.Visible == null) ? true : NewAsset.Visible,
 		Wear: (NewAsset.Wear == null) ? true : NewAsset.Wear,
@@ -53,7 +53,7 @@ function AssetAdd(NewAsset) {
 		Effect: NewAsset.Effect,
 		Bonus: NewAsset.Bonus,
 		Block: NewAsset.Block,
-		Expose: (NewAsset.Expose==null)?[]:NewAsset.Expose,
+		Expose: (NewAsset.Expose == null) ? [] : NewAsset.Expose,
 		Hide: NewAsset.Hide,
 		HideItem: NewAsset.HideItem,
 		Require: NewAsset.Require,
@@ -76,17 +76,18 @@ function AssetAdd(NewAsset) {
 		AllowLock: (NewAsset.AllowLock == null) ? false : NewAsset.AllowLock,
 		IsLock: (NewAsset.IsLock == null) ? false : NewAsset.IsLock,
 		OwnerOnly: (NewAsset.OwnerOnly == null) ? false : NewAsset.OwnerOnly,
-		ExpressionTrigger : NewAsset.ExpressionTrigger,
+		ExpressionTrigger: NewAsset.ExpressionTrigger,
 		Layer: AssetBuildLayer(NewAsset.Layer),
 		AllowEffect: NewAsset.AllowEffect,
 		AllowBlock: NewAsset.AllowBlock,
 		AllowType: NewAsset.AllowType,
-		IgnoreParentGroup: (NewAsset.IgnoreParentGroup == null)? false: NewAsset.IgnoreParentGroup,
-		DynamicDescription: (typeof NewAsset.DynamicDescription === 'function')? NewAsset.DynamicDescription : function() {return this.Description},
-		DynamicPreviewIcon: (typeof NewAsset.DynamicDescription === 'function')? NewAsset.DynamicPreviewIcon : function() {return ""},
-		DynamicAllowInventoryAdd: (typeof NewAsset.DynamicAllowInventoryAdd === 'function')? NewAsset.DynamicAllowInventoryAdd : function() {return true},
-		DynamicExpressionTrigger: (typeof NewAsset.DynamicExpressionTrigger === 'function')? NewAsset.DynamicExpressionTrigger : function() {return this.ExpressionTrigger}
-
+		DefaultColor: NewAsset.DefaultColor,
+		IgnoreParentGroup: (NewAsset.IgnoreParentGroup == null) ? false : NewAsset.IgnoreParentGroup,
+		IsRestraint: (NewAsset.IsRestraint == null) ? ((AssetCurrentGroup.IsRestraint == null) ? false : AssetCurrentGroup.IsRestraint) : NewAsset.IsRestraint,
+		DynamicDescription: (typeof NewAsset.DynamicDescription === 'function') ? NewAsset.DynamicDescription : function () { return this.Description },
+		DynamicPreviewIcon: (typeof NewAsset.DynamicDescription === 'function') ? NewAsset.DynamicPreviewIcon : function () { return "" },
+		DynamicAllowInventoryAdd: (typeof NewAsset.DynamicAllowInventoryAdd === 'function') ? NewAsset.DynamicAllowInventoryAdd : function () { return true },
+		DynamicExpressionTrigger: (typeof NewAsset.DynamicExpressionTrigger === 'function') ? NewAsset.DynamicExpressionTrigger : function () { return this.ExpressionTrigger } 
 	}
 	// Unwearable assets are not visible but can be overwritten
 	if (!A.Wear && NewAsset.Visible != true) A.Visible = false;
@@ -108,7 +109,7 @@ function AssetBuildLayer(NewLayers) {
 			NewParentGroupName: Layer.NewParentGroupName,
 			OverrideAllowPose: (Layer.OverrideAllowPose == null || !Array.isArray(Layer.OverrideAllowPose)) ? null : Layer.OverrideAllowPose
 		});
-	} 
+	}
 	return Layers;
 }
 
@@ -117,12 +118,12 @@ function AssetBuildDescription(Family, CSV) {
 
 	// For each assets in the family
 	var L = 0;
-	for (var A = 0; A < Asset.length; A++) 
+	for (var A = 0; A < Asset.length; A++)
 		if (Asset[A].Group.Family == Family) {
 
 			// Checks if the group matches
 			if ((CSV[L][0] != null) && (CSV[L][0].trim() != "") && (Asset[A].Group.Name == CSV[L][0].trim())) {
-			
+
 				// If we must put the group description
 				if (((CSV[L][1] == null) || (CSV[L][1].trim() == "")) && ((CSV[L][2] != null) && (CSV[L][2].trim() != ""))) {
 					Asset[A].Group.Description = CSV[L][2].trim();
@@ -132,13 +133,13 @@ function AssetBuildDescription(Family, CSV) {
 				// If we must put the asset description
 				if ((CSV[L][1] != null) && (CSV[L][1].trim() != "") && (CSV[L][2] != null) && (CSV[L][2].trim() != "")) {
 					Asset[A].Description = CSV[L][2].trim();
-					L++;					
+					L++;
 				}
 
 			}
 
 		}
-		
+
 	// Translates the descriptions to a foreign language
 	TranslationAsset(Family);
 
@@ -147,30 +148,30 @@ function AssetBuildDescription(Family, CSV) {
 // Loads the description of the assets in a specific language
 function AssetLoadDescription(Family) {
 
-    // Finds the full path of the CSV file to use cache
-    var FullPath = "Assets/" + Family + "/" + Family + ".csv";    
-    if (CommonCSVCache[FullPath]) {
+	// Finds the full path of the CSV file to use cache
+	var FullPath = "Assets/" + Family + "/" + Family + ".csv";
+	if (CommonCSVCache[FullPath]) {
 		AssetBuildDescription(Family, CommonCSVCache[FullPath]);
-        return;
-    }
-    
-    // Opens the file, parse it and returns the result it to build the dialog
-    CommonGet(FullPath, function() {
-        if (this.status == 200) {
-            CommonCSVCache[FullPath] = CommonParseCSV(this.responseText);
+		return;
+	}
+
+	// Opens the file, parse it and returns the result it to build the dialog
+	CommonGet(FullPath, function () {
+		if (this.status == 200) {
+			CommonCSVCache[FullPath] = CommonParseCSV(this.responseText);
 			AssetBuildDescription(Family, CommonCSVCache[FullPath]);
-        }
-    });
-	
+		}
+	});
+
 }
 
 // Loads a specific asset file
 function AssetLoad(A, Family) {
-	
+
 	// For each group in the asset file
 	var G;
 	for (G = 0; G < A.length; G++) {
-		
+
 		// Creates the asset group
 		AssetGroupAdd(Family, A[G]);
 
@@ -183,10 +184,10 @@ function AssetLoad(A, Family) {
 				AssetAdd(A[G].Asset[I]);
 
 	}
-	
+
 	// Loads the description of the assets in a specific language
 	AssetLoadDescription(Family);
-	
+
 }
 
 // Reset and load all the assets
@@ -199,9 +200,9 @@ function AssetLoadAll() {
 
 // Make sure all the assets from a character are loaded properly
 function AssetReload(C) {
-	for(var A = 0; A < C.Appearance.length; A++)
+	for (var A = 0; A < C.Appearance.length; A++)
 		if (C.Appearance[A].Asset != null)
-			for(var S = 0; S < Asset.length; S++)
+			for (var S = 0; S < Asset.length; S++)
 				if ((Asset[S].Name == C.Appearance[A].Asset.Name) && (Asset[S].Group.Name == C.Appearance[A].Asset.Group.Name))
 					C.Appearance[A].Asset = Asset[S];
 }

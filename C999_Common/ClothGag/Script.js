@@ -48,7 +48,7 @@ function C999_Common_ClothGag_SelfGag() {
 	}
 }
 
-// Chapter Common - Self Ung«g
+// Chapter Common - Self Ungag
 function C999_Common_ClothGag_SelfUngag() {
     PlayerUnlockInventory("ClothGag");
     PlayerAddInventory("ClothGag", 1);

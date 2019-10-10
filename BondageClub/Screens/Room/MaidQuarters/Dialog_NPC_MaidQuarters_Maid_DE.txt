@@ -31,10 +31,18 @@ Tut mir leid, Miss. Ich kann nicht helfen.
 (Sie schüttelt erst den Kopf, um dem Knebel zu entgehen, lässt sich aber schließlich von dir zum Schweigen bringen.)
 (You remove her gag while she stretches her mouth.)  Thanks Miss, it's hard to dispatch maids with that gag.
 (Du nimmst den Knebel ab und sie streckt ihren Mund.) Danke, Miss, geknebelt ist es schwierig, Hausmädchen loszuschicken.
+(She grumbles while you push some earplugs in.) I can't hear you properly now.
+(Sie grummelt, als du ihr Ohrstöpsel hineinsteckst.) Jetzt kann ich Sie nicht mehr richtig verstehen.
+(You pull the earplugs out.) That's better i can hear you clearly now.
+(Du ziehst die Ohrstöpsel heraus.) Das ist besser, jetzt verstehe ich Sie ordentlich.
 (She sighs and turns around while you restrain her arms.)  It might be a little hard to work like that Miss.
 (Sie seufzt und dreht sich um, als du ihre Arme fesselst.) Das könnte meine Arbeit etwas erschweren, Miss.
 (You free her arms and she nods happily.)  Thanks a lot Miss.
 (Du befreist ihre Arme und sie nickt glücklich.) Vielen Dank, Miss.
+(She submits to you while restrain you hands.)  You are a kinky one.
+(Sie unterwirft sich, als du ihre Hände fesselst.) Sie sind ideenreich.
+(You release her hands and she nods a little.)  Thank you Miss.
+(Du befreist ihre Hände und sie nickt kaum merklich.) Danke, Miss.
 (She submits to you while you restrain her legs securely.)  I don't need to move anyway.
 (Sie lässt sich von dir ordentlich die Beine fesseln.) Ich muss sowieso nicht von hier weg.
 (You release her legs from the restraint.)  Let me know if I can help you Miss.
@@ -81,6 +89,8 @@ Schön dich zu sehen, Schwester! Wie kann ich behilflich sein?
 ###_NPC
 (She removes your gag and smiles.)  Much better sweetie.  How can I help you?
 (Sie nimmt deinen Knebel ab und lächelt.) So ist es besser, Liebes. Wie kann ich dir helfen?
+(She checks your locks and frowns.)  I cannot help you girl.  Go find your owner.
+(Sie überprüft deine Schlösser und runzelt die Stirn.) Ich kann dir nicht helfen, Mädchen. Geh zu deiner Besitzerin.
 ###_PLAYER
 Hello, I'm DialogPlayerName.  Pleased to meet you.
 Hallo, ich bin DialogPlayerName. Sehr erfreut.

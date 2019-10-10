@@ -11,7 +11,7 @@ function ReputationChange(RepType, RepValue, Push) {
 	// Nothing will be done for a zero change
 	RepValue = parseInt(RepValue) || 0;
 	if (RepValue != 0) {
-		
+
 		// If the reputation already exists, we update and push it
 		for (var R = 0; R < Player.Reputation.length; R++)
 			if (Player.Reputation[R].Type == RepType) {
@@ -21,7 +21,7 @@ function ReputationChange(RepType, RepValue, Push) {
 				if ((Push == null) || Push) ReputationSave(Player.Reputation[R]);
 				return;
 			}
-		
+
 		// Creates the new reputation
 		var NewRep = {
 			Type: RepType,
@@ -47,7 +47,7 @@ function ReputationLoad(NewRep) {
 			ReputationChange(NewRep[R].Type, NewRep[R].Value, false);
 
 	}
-	
+
 }
 
 // Returns a specific reputation value for the player

@@ -6,6 +6,8 @@ TheyMustBeStandingFirst,,,Must be standing and not suspended first.
 RemoveChainForItem,,,Remove the chain to the floor first
 MustCollaredFirst,,,A collar must be fitted first to attach accessories to.
 MustCollaredFirstAndRemoveSuspension,,,Must be collared and not suspended first.
+MustCollaredFirstAndRemoveSuspension1,,,Must be collared and not suspended/mounted first.
+LegsCannotOpen,,,Legs cannot open.
 Cancel,,,Cancel
 Exit,,,Back to character
 Next,,,View next items
@@ -16,6 +18,8 @@ Lock,,,Use a lock
 Unlock,,,Unlock the item
 InspectLock,,,Inspect the lock
 Remote,,,Use your remote
+DialogNormalMode,,,Exit Permission Mode
+DialogPermissionMode,,,Edit Item Permissions
 ButtPump,,,Use the Butt Plug's pump
 ColorPick,,,Color of next item
 ColorSelect,,,Use this color
@@ -46,6 +50,11 @@ InflateLevel1,,,Pump plug level: Light
 InflateLevel2,,,Pump plug level: Inflated
 InflateLevel3,,,Pump plug level: Bloated
 InflateLevel4,,,Pump plug level: Max
+SuctionLevel0,,,Suction Cup level: Loose
+SuctionLevel1,,,Suction Cup level: Light
+SuctionLevel2,,,Suction Cup level: Medium
+SuctionLevel3,,,Suction Cup level: Heavy
+SuctionLevel4,,,Suction Cup level: Max
 DeflateIt,,,Deflate it
 PumpIt,,,Pump it
 pumps,,,pumps
@@ -78,6 +87,7 @@ ServerMessageOwnerRuleWhisperBlock,,,Your owner is now preventing you from whisp
 ServerMessageOwnerRuleKeyAllow,,,Your owner is now allowing you to have keys.  You can buy keys from the club shop.
 ServerMessageOwnerRuleKeyConfiscate,,,Your owner has confiscated your keys.  All your regular keys are lost.
 ServerMessageOwnerRuleKeyBlock,,,Your owner is now preventing you from getting new keys.  The club shop will not sell keys to you anymore.
+ServerMessageWhisperBlocked,,,You're on SourceCharacter blacklist.  Your message was blocked by the server.
 LockMemberNumber,,,Member number on lock:
 TimerLeft,,,Time left:
 TimerRestart,,,SourceCharacter restarts the five minutes timer padlock on DestinationCharacter BodyPart.
@@ -188,6 +198,14 @@ EggIncreaseTo0,,,DestinationCharacter's vibrating egg starts teasing her lightly
 EggIncreaseTo1,,,DestinationCharacter's vibrating egg builds up to a moderate pace.
 EggIncreaseTo2,,,DestinationCharacter's vibrating egg starts buzzing strongly!
 EggIncreaseTo3,,,DestinationCharacter's vibrating egg jumps up to maximum intensity!
+DildoDecreaseTo-1,,,DestinationCharacter's vibrating dildo stops vibrating.
+DildoDecreaseTo0,,,DestinationCharacter's vibrating dildo slows down into a light tease.
+DildoDecreaseTo1,,,DestinationCharacter's vibrating dildo returns to a moderate pace.
+DildoDecreaseTo2,,,DestinationCharacter's vibrating dildo slows down a tiny bit.
+DildoIncreaseTo0,,,DestinationCharacter's vibrating dildo starts teasing her lightly.
+DildoIncreaseTo1,,,DestinationCharacter's vibrating dildo builds up to a moderate pace.
+DildoIncreaseTo2,,,DestinationCharacter's vibrating dildo starts buzzing strongly!
+DildoIncreaseTo3,,,DestinationCharacter's vibrating dildo jumps up to maximum intensity!
 NippleDecreaseTo-1,,,DestinationCharacter's vibrating nipple clamps stop vibrating.
 NippleDecreaseTo0,,,DestinationCharacter's vibrating nipple clamps slow down into a light tease.
 NippleDecreaseTo1,,,DestinationCharacter's vibrating nipple clamps return to a moderate pace.
@@ -196,6 +214,30 @@ NippleIncreaseTo0,,,DestinationCharacter's vibrating nipple clamps start teasing
 NippleIncreaseTo1,,,DestinationCharacter's vibrating nipple clamps build up to a moderate pace.
 NippleIncreaseTo2,,,DestinationCharacter's vibrating nipple clamps start buzzing strongly!
 NippleIncreaseTo3,,,DestinationCharacter's vibrating nipple clamps jump up to maximum intensity!
+NippleEggDecreaseTo-1,,,DestinationCharacter's vibrating eggs on her nipples stop vibrating.
+NippleEggDecreaseTo0,,,DestinationCharacter's vibrating eggs on her nipples slow down into a light tease.
+NippleEggDecreaseTo1,,,DestinationCharacter's vibrating eggs on her nipples return to a moderate pace.
+NippleEggDecreaseTo2,,,DestinationCharacter's vibrating eggs on her nipples slow down a tiny bit.
+NippleEggIncreaseTo0,,,DestinationCharacter's vibrating eggs on her nipples start teasing her lightly.
+NippleEggIncreaseTo1,,,DestinationCharacter's vibrating eggs on her nipples build up to a moderate pace.
+NippleEggIncreaseTo2,,,DestinationCharacter's vibrating eggs on her nipples start buzzing strongly!
+NippleEggIncreaseTo3,,,DestinationCharacter's vibrating eggs on her nipples jump up to maximum intensity!
+NipSucloosensTo0,,,SourceCharacter loosens DestinationCharacter's nipple suction cups until they hang loosely.
+NipSucloosensTo1,,,SourceCharacter loosens DestinationCharacter's nipple suction cups to a light amount of suction.
+NipSucloosensTo2,,,SourceCharacter loosens DestinationCharacter's nipple suction cups to a moderate amount of suction.
+NipSucloosensTo3,,,SourceCharacter loosens DestinationCharacter's nipple suction cups a bit to a heavy amount of suction.
+NipSuctightensTo1,,,SourceCharacter tweaks DestinationCharacter's nipple suction cups sucking in her nipples lightly.
+NipSuctightensTo2,,,SourceCharacter tweaks DestinationCharacter's nipple suction cups sucking in her nipples firmly.
+NipSuctightensTo3,,,SourceCharacter tweaks DestinationCharacter's nipple suction cups sucking in her nipples heavily.
+NipSuctightensTo4,,,SourceCharacter tweaks DestinationCharacter's nipple suction cups sucking in her nipples entirely.
+ClitSucloosensTo0,,,SourceCharacter loosens DestinationCharacter's clit suction cup until it hangs loosely.
+ClitSucloosensTo1,,,SourceCharacter loosens DestinationCharacter's clit suction cup to a light amount of suction.
+ClitSucloosensTo2,,,SourceCharacter loosens DestinationCharacter's clit suction cup to a moderate amount of suction.
+ClitSucloosensTo3,,,SourceCharacter loosens DestinationCharacter's clit suction cup a bit to a heavy amount of suction.
+ClitSuctightensTo1,,,SourceCharacter tweaks DestinationCharacter's clit suction cup sucking in her clit lightly.
+ClitSuctightensTo2,,,SourceCharacter tweaks DestinationCharacter's clit suction cup sucking in her clit firmly.
+ClitSuctightensTo3,,,SourceCharacter tweaks DestinationCharacter's clit suction cup sucking in her clit heavily.
+ClitSuctightensTo4,,,SourceCharacter tweaks DestinationCharacter's clit suction cup sucking in her clit entirely.
 PantiesDecreaseTo-1,,,DestinationCharacter's vibrating latex panties stops vibrating.
 PantiesDecreaseTo0,,,DestinationCharacter's vibrating latex panties slows down into a light tease.
 PantiesDecreaseTo1,,,DestinationCharacter's vibrating latex panties returns to a moderate pace.
@@ -228,10 +270,23 @@ PumpGagpumpsTo1,,,SourceCharacter inflates DestinationCharacter's gag only sligh
 PumpGagpumpsTo2,,,SourceCharacter inflates DestinationCharacter's gag till half full.
 PumpGagpumpsTo3,,,SourceCharacter inflates DestinationCharacter's gag three quarters filled.
 PumpGagpumpsTo4,,,SourceCharacter inflates DestinationCharacter's gag to the maximum amount.
+ButtplugDecreaseTo-1,,,DestinationCharacter's vibrating buttplug stops vibrating.
+ButtplugDecreaseTo0,,,DestinationCharacter's vibrating buttplug slows down into a light tease.
+ButtplugDecreaseTo1,,,DestinationCharacter's vibrating buttplug returns to a moderate pace.
+ButtplugDecreaseTo2,,,DestinationCharacter's vibrating buttplug slows down a tiny bit.
+ButtplugIncreaseTo0,,,DestinationCharacter's vibrating buttplug starts teasing her lightly.
+ButtplugIncreaseTo1,,,DestinationCharacter's vibrating buttplug builds up to a moderate pace.
+ButtplugIncreaseTo2,,,DestinationCharacter's vibrating buttplug starts buzzing strongly!
+ButtplugIncreaseTo3,,,DestinationCharacter's vibrating buttplug jumps up to maximum intensity!
 Empty,,,Empty
 Light,,,Light
 Inflated,,,Inflated
 Bloated,,,Bloated
+Loose,,,Loose
+LightSuction,,,Light
+MediumSuction,,,Medium
+HeavySuction,,,Heavy
+MaximumSuction,,,Maximum
 UseRemote,,,Use Remote
 PlayerGagged,,,(You can use or remove items by selecting specific body regions on yourself.)
 0,,,(You can use or remove items by selecting specific body regions on yourself.)
@@ -279,6 +334,8 @@ LoveChastityBeltUnlockShock,,,Remove Shock
 LoveChastityBeltAddShield,,,Add Shield
 LoveChastityBeltAddVibe,,,Add Vibe
 LoveChastityBeltAddShock,,,Add Shock
+LoveChastityBeltActionUnlockButt,,,SourceCharacter unlocks DestinationCharacter's love chastity belt butt.
+LoveChastityBeltActionLockButt,,,SourceCharacter lock DestinationCharacter's love chastity belt butt.
 LoveChastityBeltVibeIncreaseTo0,,,DestinationCharacter's love chastity belts starts teasing her lightly.
 LoveChastityBeltVibeIncreaseTo1,,,DestinationCharacter's love chastity belts builds up to a moderate pace.
 LoveChastityBeltVibeIncreaseTo2,,,DestinationCharacter's love chastity belts starts buzzing strongly!
@@ -293,7 +350,63 @@ LoveChastityBeltShockSet2,,,SourceCharacter sets DestinationCharacter's love cha
 LoveChastityBeltShockTrigger0,,,DestinationCharacter's love chastity belt gives her a light shock.
 LoveChastityBeltShockTrigger1,,,DestinationCharacter's love chastity belt lets out a sharp jolt!
 LoveChastityBeltShockTrigger2,,,DestinationCharacter's love chastity belt delivers an intense shock!
-LoveChastityBeltRemoveShieldMessage,,,SourceCharacter removes shield from DestinationCharacter's love chastity belt
-LoveChastityBeltAddShieldMessage,,,SourceCharacter locks shield to DestinationCharacter's love chastity belt
-LoveChastityBeltAddVibeMessage,,,SourceCharacter locks vibe to DestinationCharacter's love chastity belt
-LoveChastityBeltAddShockMessage,,,SourceCharacter locks shock device to DestinationCharacter's love chastity belt
+LoveChastityBeltRemoveShieldMessage,,,SourceCharacter removes shield from DestinationCharacter's love chastity belt.
+LoveChastityBeltAddShieldMessage,,,SourceCharacter locks shield to DestinationCharacter's love chastity belt.
+LoveChastityBeltAddVibeMessage,,,SourceCharacter locks vibe to DestinationCharacter's love chastity belt.
+LoveChastityBeltAddShockMessage,,,SourceCharacter locks shock device to DestinationCharacter's love chastity belt.
+SelectCollarNameTagType,,,Select what tag you want to use
+SelectCollarNameTagTypeLocked,,,You cannot change the tag while it's locked
+CollarNameTagSet,,,SourceCharacter uses a NameTagType name tag on DestinationCharacter's collar.
+CollarNameTagTypeBadGirl,,,Bad Girl
+CollarNameTagTypeBindMe,,,Bind Me
+CollarNameTagTypeBitch,,,Bitch
+CollarNameTagTypeBunny,,,Bunny
+CollarNameTagTypeCookie,,,Cookie
+CollarNameTagTypeCupcake,,,Cupcake
+CollarNameTagTypeDom,,,Dom
+CollarNameTagTypeFoxy,,,Foxy
+CollarNameTagTypeFree,,,Free
+CollarNameTagTypeFuckMe,,,Fuck Me
+CollarNameTagTypeGagMe,,,GagMe
+CollarNameTagTypeGoodGirl,,,Good Girl
+CollarNameTagTypeHoldMe,,,Hold Me
+CollarNameTagTypeKitten,,,Kitten
+CollarNameTagTypeLove,,,Love
+CollarNameTagTypeMaid,,,Maid
+CollarNameTagTypeMeat,,,Meat
+CollarNameTagTypeMuffin,,,Muffin
+CollarNameTagTypeNeedy,,,Needy
+CollarNameTagTypeOwned,,,Owned
+CollarNameTagTypePanda,,,Panda
+CollarNameTagTypePet,,,Pet
+CollarNameTagTypePetMe,,,Pet Me
+CollarNameTagTypePixie,,,Pixie
+CollarNameTagTypePuppy,,,Puppy
+CollarNameTagTypeRacoon,,,Racoon
+CollarNameTagTypeSlave,,,Slave
+CollarNameTagTypeSlut,,,Slut
+CollarNameTagTypeSub,,,Sub
+CollarNameTagTypeSweetie,,,Sweetie
+CollarNameTagTypeTaken,,,Taken
+CollarNameTagTypeToy,,,Toy
+CollarNameTagTypeUseless,,,Useless
+CollarNameTagTypeUseMe,,,Use Me
+CollarNameTagTypeWhore,,,Whore
+DuctTapePoseLegs,,,Legs
+DuctTapePoseHalfLegs,,,Half
+DuctTapePoseMostLegs,,,Most
+DuctTapePoseCompleteLegs,,,Complete
+DuctTapeRestrainLegs,,,SourceCharacter wraps duct tape around DestinationCharacter's legs.
+DuctTapeRestrainHalfLegs,,,SourceCharacter wraps more duct tape on DestinationCharacter's legs trapping them firmly.
+DuctTapeRestrainMostLegs,,,SourceCharacter wraps even more duct tape on DestinationCharacter's legs trapping them tightly.
+DuctTapeRestrainCompleteLegs,,,SourceCharacter wraps an extreme amount of duct tape on DestinationCharacter's legs fully trapping them.
+DuctTapePoseFeet,,,Feet
+DuctTapePoseHalfFeet,,,Half
+DuctTapePoseMostFeet,,,Most
+DuctTapePoseCompleteFeet,,,Complete
+DuctTapeRestrainFeet,,,SourceCharacter wraps duct tape around DestinationCharacter's feet.
+DuctTapeRestrainHalfFeet,,,SourceCharacter wraps more duct tape on DestinationCharacter's feet trapping them firmly.
+DuctTapeRestrainMostFeet,,,SourceCharacter wraps even more duct tape on DestinationCharacter's feet trapping them tightly.
+DuctTapeRestrainCompleteFeet,,,SourceCharacter wraps an extreme amount of duct tape on DestinationCharacter's feet fully trapping them.
+SlaveCollarSelectType,,,Select the slave collar model
+SlaveCollarChangeType,,,SourceCharacter changes DestinationCharacter's collar model.

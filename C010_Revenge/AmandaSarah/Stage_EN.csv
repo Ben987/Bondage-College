@@ -27,7 +27,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 40,0,15,,"Sarah, get on|your knees.",On my knees?  Yes Miss.  (She kneels|while Amanda looks at her speechless.),51,0,1,SarahKneel()
 50,0,0,,What do you|want from me?,(Amanda steps forward.)  First you will|drop your stuff and surrender to us.,60,0,0,"SwitchFocus(""Amanda"")"
 50,0,0,,What is your|stupid plan?,(Amanda steps forward.)  First you will|drop your stuff and surrender to us.,60,-1,0,"SwitchFocus(""Amanda"")"
-50,0,0,,Let's make|peace ok?,(Amanda steps forward.)  Oh no!|You will drop your stuff and surrender to us.,60,0,-1,"SwitchFocus(""Amanda"")"
+50,0,0,,Let's make|peace OK?,(Amanda steps forward.)  Oh no!|You will drop your stuff and surrender to us.,60,0,-1,"SwitchFocus(""Amanda"")"
 50,0,15,,"Sarah, get on|your knees.",On my knees?  Yes Miss.  (She kneels|while Amanda gives her an angry stare.),51,0,1,SarahKneel()
 51,0,0,,"Get out of|my face, slave.",(Sarah runs away and Amanda is left alone.)|SARAH!!!  What the hell?  We had a plan!,52,0,1,SarahLeave()
 51,0,0,,Good little pet.|Now run away.,(Sarah runs away and Amanda is left alone.)|SARAH!!!  What the hell?  We had a plan!,52,1,0,SarahLeave()
@@ -39,17 +39,17 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 54,0,0,,Don't resist Amanda.|(Push her in the locker.),"(You open a locker and push her inside.)|Please don't do that, I'm claustrophobic.",55,-1,1,"EnterLocker(""Amanda"")"
 54,0,0,,"I won't, but you owe me.|(Leave Amanda alone.)",,54,2,0,"EarlyEnding(""Alone"")"
 55,0,0,,Enjoy the locker.|(Close the locker.),(You close the locker and lock it.)|(You can barely hear whimpering inside.),56,0,0,"CloseLocker(""Amanda"")"
-55,0,0,,"Ok, get out and run.|(Leave Amanda alone.)",,55,1,1,"EarlyEnding(""Alone"")"
+55,0,0,,"OK, get out and run.|(Leave Amanda alone.)",,55,1,1,"EarlyEnding(""Alone"")"
 56,0,0,,(Open the locker.),(She breathes heavily and looks at you|with pleading eyes.)  Please let me go.,55,0,0,"OpenLocker(""Amanda"")"
 56,0,0,,(Leave her and go.),,56,-3,1,"EarlyEnding(""Locker"")"
 60,0,0,,Forget it.  I'm|keeping my bag.,This is your last chance.  If you don't|surrender now we will beat you up.,70,0,0,
 60,0,0,,Get lost losers.|I have to go.,This is your last chance.  If you don't|surrender now we will beat you up.,70,-1,0,
-60,0,0,,"Ok, but don't steal.|(Drop your items.)","Very good, and now you|will strip for us, get naked.",80,1,-1,StealItems()
+60,0,0,,"OK, but don't steal.|(Drop your items.)","Very good, and now you|will strip for us, get naked.",80,1,-1,StealItems()
 60,0,0,,Yes Miss.|(Drop your items.),"Good girl, and now you|will strip for us, get naked.",80,1,-2,StealItems()
 60,0,15,,Amanda.  Shut up|and kneel for me.,Errr...   What Miss?  Kneel?|(She blushes and seems confused.),71,0,0,"CalmDown(""Amanda"")"
 70,0,0,AllowFight,You want to fight?|Then let's fight!,,70,0,0,StartFight()
 70,0,0,,You'll pay later.|(Drop your items.),"Shut up and strip, get naked.",80,0,0,StealItems()
-70,0,0,,Ok but don't steal.|(Drop your items.),"Very good, and now you|will strip for us, get naked.",80,0,-1,StealItems()
+70,0,0,,OK but don't steal.|(Drop your items.),"Very good, and now you|will strip for us, get naked.",80,0,-1,StealItems()
 70,0,15,,Amanda.  Shut up|and kneel for me.,Errr...   What Miss?  Kneel?|(She blushes and seems confused.),71,0,0,"CalmDown(""Amanda"")"
 71,0,0,,Be a good submissive|and get on your knees.,Yes Miss.  I'm so sorry Sarah.|(She bows down and kneels for you.),72,1,0,AmandaKneel()
 71,0,0,,Don't make me repeat.|Get on your knees.,Yes Miss.  You don't have to repeat.|(She bows down and kneels for you.),72,0,1,AmandaKneel()
@@ -61,7 +61,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 74,5,0,,"My friend, I dare you|to get in the locker.",I'll never turn down a good dare!|(She enters the locker and giggles.),75,0,1,"EnterLocker(""Sarah"")"
 74,0,0,,I'll get you next time.|(Leave Sarah alone.),,74,0,0,"EarlyEnding(""Alone"")"
 75,0,0,,Enjoy the locker.|(Close the locker.),(You close the locker and lock it.)|(You can barely hear her giggling inside.),76,0,0,"CloseLocker(""Sarah"")"
-75,0,0,,"Ok, get out and run.|(Leave Sarah alone.)",,75,0,0,"EarlyEnding(""Alone"")"
+75,0,0,,"OK, get out and run.|(Leave Sarah alone.)",,75,0,0,"EarlyEnding(""Alone"")"
 76,0,0,,(Open the locker.),(She looks at you and smiles.)|This is quite a thrill.,75,0,0,"OpenLocker(""Sarah"")"
 76,0,0,,(Leave her and go.),,76,-1,1,"EarlyEnding(""Locker"")"
 80,0,0,,Naked?  This is|going too far.,We're not asking you.  You will|strip up or we will beat you up.,90,0,0,
@@ -70,7 +70,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 80,0,0,,I guess it's fair.|(Strip naked.),Very fair.  (They smile while you|strip in the empty school hall.),100,1,-1,PlayerStrip()
 90,0,0,AllowFight,You want to fight?|Then let's fight!,,90,0,0,StartFight()
 90,0,0,,I'll get you later.|(Strip naked.),Shut up!  (They smile while you|strip in the empty school hall.),100,0,0,PlayerStrip()
-90,0,0,,"Ok, don't hurt me.|(Strip naked.)",We won't.  (They smile while you|strip in the empty school hall.),100,0,-1,PlayerStrip()
+90,0,0,,"OK, don't hurt me.|(Strip naked.)",We won't.  (They smile while you|strip in the empty school hall.),100,0,-1,PlayerStrip()
 100,0,0,Common_PlayerChaste,What's so funny?,The belt!  You're wearing a chastity belt!,110,0,-1,
 100,0,0,Common_PlayerChaste,Stop starring!,I can't!  You're wearing a chastity belt!,110,0,0,
 100,0,0,!Common_PlayerChaste,Are you happy now?,(She giggles.)  I like what I see.|But soon I will like it even more.,120,0,0,
@@ -97,11 +97,11 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 160,0,0,,Take one more step|and you'll get hurt.,(Amanda is enraged and opens the locker.)|See that locker?  You will get in it.,170,-1,1,"SwitchFocus(""Amanda"")"
 170,0,0,,You can't|be serious!,Very serious.  Now step in|before we force you in.,180,0,0,
 170,0,0,,No way!  Are|you two insane?,Shut up and step in|before we force you.,180,-1,0,
-170,0,0,,"Ok, but not for long.|(Step in the locker.)",(You squeeze yourself in the locker.)|It will be fine.  Any last words?,190,1,-1,"EnterLocker(""Player"")"
+170,0,0,,"OK, but not for long.|(Step in the locker.)",(You squeeze yourself in the locker.)|It will be fine.  Any last words?,190,1,-1,"EnterLocker(""Player"")"
 170,0,0,,I understand Miss.|(Step in the locker.),(You squeeze yourself in the locker.)|You will be alright.  Any last words?,190,0,-2,"EnterLocker(""Player"")"
 180,0,0,AllowFight,Never!  I will|fight you both!,,180,0,0,StartFight()
 180,0,0,,Fine!  I'll do it.|(Step in the locker.),(You squeeze yourself in the locker.)|You will be alright.  Any last words?,190,0,0,"EnterLocker(""Player"")"
-180,0,0,,"Ok, I surrender.|(Step in the locker.)",(You squeeze yourself in the locker.)|You will be alright.  Any last words?,190,0,-1,"EnterLocker(""Player"")"
+180,0,0,,"OK, I surrender.|(Step in the locker.)",(You squeeze yourself in the locker.)|You will be alright.  Any last words?,190,0,-1,"EnterLocker(""Player"")"
 190,0,0,,Wait!  Let's negotiate!,Negotiation time is over!|(She slams the door and locks it.),200,0,-1,"CloseLocker(""Player"")"
 190,0,0,,Sleep with only|one eye open.,Sleep?  Try to sleep in here.|(She slams the door and locks it.),200,0,1,"CloseLocker(""Player"")"
 190,0,0,,(Stay silent.),(She closes the door and locks it.),200,0,0,"CloseLocker(""Player"")"
@@ -112,7 +112,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 200,0,0,,(Try to get comfy.),(You struggle to find a comfy position but|there's no such thing in such a tiny space.),200,0,0,WaitLocker()
 200,0,0,,(Masturbate.),(You slowly masturbate inside the locker.|Your body shivers with sexual pleasure.),200,0,0,MasturbateLocker()
 210,0,0,,Hey!  I was only|removing the sweat!,Liar!  We caught you!  (She pulls her tongue.)|So you enjoyed your trip in the locker?,220,-1,0,StopMasturbating()
-210,0,0,,Fuck you Sarah!|Can't you shup up?,(She frowns and shuts up only for a few seconds.)|Wow!  So you did not enjoy your trip in the locker?,220,-1,1,StopMasturbating()
+210,0,0,,Fuck you Sarah!|Can't you shut up?,(She frowns and shuts up only for a few seconds.)|Wow!  So you did not enjoy your trip in the locker?,220,-1,1,StopMasturbating()
 210,0,0,,What else could|I do in there?,I agree!  (She smiles and claps her hands.)|So you enjoyed your trip in the locker?,220,1,0,StopMasturbating()
 210,0,0,,(Blush red.),She was touching herself!  We caught her!|So you enjoyed your trip in the locker?,220,0,-1,StopMasturbating()
 210,0,0,,Yes!  Now close the|door so I can finish.,Ha!  Well you'll need to finish elsewhere.|So did you enjoy your trip in the locker?,220,1,1,StopMasturbating()

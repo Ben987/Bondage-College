@@ -7,10 +7,18 @@ Natürlich, Hausdame DialogPlayerName. (Sie befreit dich.)
 (Sie schüttelt erst den Kopf, um dem Knebel zu entgehen, lässt sich aber schließlich von dir zum Schweigen bringen.)
 (You remove her gag while she stretches her mouth.)  Thanks, it's hard to introduce newcomers with that gag.
 (Du nimmst den Knebel ab und sie streckt ihren Mund.) Danke, geknebelt ist es schwierig, Neulinge einzuweisen.
+(You push some earplugs into place.) Oh everything is so quiet now.
+(Du steckst ihr Ohrstöpsel hinein.) Oh, jetzt ist alles so leise.
+(You pull the earplugs out.) Oh i can hear you clearly again.
+(Du ziehst die Ohrstöpsel heraus.) Oh, jetzt kann ich dich wieder deutlich hören.
 (She sighs and turns around while you restrain her arms.)  It might be a little hard to work like that Miss.
 (Sie seufzt und dreht sich um, als du ihre Arme fesselst.) Das könnte meine Arbeit etwas erschweren, Miss.
 (You free her arms and she nods slowly.)  Thanks a lot Miss, this is much better.
 (Du befreist ihre Arme und sie nickt langsam.) Vielen Dank, Miss, das ist viel besser.
+(She sighs and lets you restrain her hands.) It's going be difficult to work now miss.
+(Sie seufzt und lässt sich von dir ihre Hände fesseln.) Das wird mir die Arbeit erschweren, Miss.
+(You slowly release her hands.)  Thanks you Miss this is much better
+(Du befreist langsam ihre Hände.) Danke, Miss, das ist viel besser.
 (She submits to you while you restrain her legs.)  Do I get paid overtime if I'm stuck here?
 (Sie lässt sich von dir die Beine fesseln.) Bekomme ich Überstunden bezahlt, wenn ich hier nicht weg kann?
 (You release her legs from the restraint.)  You're quite good with restraints Miss.
