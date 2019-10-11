@@ -45,11 +45,11 @@ PumpLevel1,,,Pump gag level: Light
 PumpLevel2,,,Pump gag level: Inflated
 PumpLevel3,,,Pump gag level: Bloated
 PumpLevel4,,,Pump gag level: Full mouth
-InflateLevel0,,,Pump plug level: Empty
-InflateLevel1,,,Pump plug level: Light
-InflateLevel2,,,Pump plug level: Inflated
-InflateLevel3,,,Pump plug level: Bloated
-InflateLevel4,,,Pump plug level: Max
+InflateLevel0,,,Inflation level: Empty
+InflateLevel1,,,Inflation level: Light
+InflateLevel2,,,Inflation level: Inflated
+InflateLevel3,,,Inflation level: Bloated
+InflateLevel4,,,Inflation level: Max
 SuctionLevel0,,,Suction Cup level: Loose
 SuctionLevel1,,,Suction Cup level: Light
 SuctionLevel2,,,Suction Cup level: Medium
@@ -206,6 +206,22 @@ DildoIncreaseTo0,,,DestinationCharacter's vibrating dildo starts teasing her lig
 DildoIncreaseTo1,,,DestinationCharacter's vibrating dildo builds up to a moderate pace.
 DildoIncreaseTo2,,,DestinationCharacter's vibrating dildo starts buzzing strongly!
 DildoIncreaseTo3,,,DestinationCharacter's vibrating dildo jumps up to maximum intensity!
+InflVibeDildo_VibeDecreaseTo-1,,,DestinationCharacter's inflatable vibrating dildo stops vibrating.
+InflVibeDildo_VibeDecreaseTo0,,,DestinationCharacter's inflatable vibrating dildo slows down into a light tease.
+InflVibeDildo_VibeDecreaseTo1,,,DestinationCharacter's inflatable vibrating dildo returns to a moderate pace.
+InflVibeDildo_VibeDecreaseTo2,,,DestinationCharacter's inflatable vibrating dildo slows down a tiny bit.
+InflVibeDildo_VibeIncreaseTo0,,,DestinationCharacter's inflatable vibrating dildo starts teasing her lightly.
+InflVibeDildo_VibeIncreaseTo1,,,DestinationCharacter's inflatable vibrating dildo builds up to a moderate pace.
+InflVibeDildo_VibeIncreaseTo2,,,DestinationCharacter's inflatable vibrating dildo starts buzzing strongly!
+InflVibeDildo_VibeIncreaseTo3,,,DestinationCharacter's inflatable vibrating dildo jumps up to maximum intensity!
+InflVibeDildo_PumpdeflatesTo0,,,SourceCharacter deflates DestinationCharacter's inflatable vibrating dildo till it's regular sized.
+InflVibeDildo_PumpdeflatesTo1,,,SourceCharacter deflates DestinationCharacter's inflatable vibrating dildo till only slighty bulging.
+InflVibeDildo_PumpdeflatesTo2,,,SourceCharacter deflates DestinationCharacter's inflatable vibrating dildo till it's moderately bulging.
+InflVibeDildo_PumpdeflatesTo3,,,SourceCharacter deflates DestinationCharacter's inflatable vibrating dildo only a tiny bit.
+InflVibeDildo_PumppumpsTo1,,,SourceCharacter inflates DestinationCharacter's inflatable vibrating dildo only slightly.
+InflVibeDildo_PumppumpsTo2,,,SourceCharacter inflates DestinationCharacter's inflatable vibrating dildo till it's moderately bulging.
+InflVibeDildo_PumppumpsTo3,,,SourceCharacter inflates DestinationCharacter's inflatable vibrating dildo till it's heavily bulging.
+InflVibeDildo_PumppumpsTo4,,,SourceCharacter inflates DestinationCharacter's inflatable vibrating dildo to it's maximum size.
 NippleDecreaseTo-1,,,DestinationCharacter's vibrating nipple clamps stop vibrating.
 NippleDecreaseTo0,,,DestinationCharacter's vibrating nipple clamps slow down into a light tease.
 NippleDecreaseTo1,,,DestinationCharacter's vibrating nipple clamps return to a moderate pace.

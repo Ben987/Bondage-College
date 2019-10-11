@@ -100,12 +100,12 @@ function InventoryAllow(C, Prerequisite) {
 	if (Prerequisite == "CollaredNotSuspended" && (InventoryGet(C, "ItemNeck") == null || C.Pose.indexOf("Suspension") >= 0)) { DialogSetText("MustCollaredFirstAndRemoveSuspension"); return false; }
 	if (Prerequisite == "LegsOpen" &&  C.Pose.indexOf("LegsClosed") >= 0)  { DialogSetText("LegsCannotOpen"); return false; }
 	
-	///Saddle stand
+	// Saddle stand
 	if (Prerequisite == "LegsOpen1" &&  C.Pose.indexOf("LegsClosed") >= 0)  { DialogSetText("LegsCannotOpen"); return false; }
 	if (Prerequisite == "LegsOpen1" &&  C.Pose.indexOf("Suspension") >= 0)  { DialogSetText("TheyMustBeStandingFirst"); return false; }
 	if (Prerequisite == "LegsOpen1" &&  C.Pose.indexOf("Horse") >= 0)  { DialogSetText("TheyMustBeStandingFirst"); return false; }
 
-	/// Wooden horse blocks
+	// Wooden horse blocks
 	if (Prerequisite == "Horse" &&  C.Pose.indexOf("Kneel") >= 0)  { DialogSetText("TheyMustBeStandingFirst"); return false; }
 	if (Prerequisite == "Horse" &&  C.Pose.indexOf("LegsClosed") >= 0)  { DialogSetText("LegsCannotOpen"); return false; }
 	if (Prerequisite == "Horse" &&  C.Pose.indexOf("Suspension") >= 0)  { DialogSetText("TheyMustBeStandingFirst"); return false; }
