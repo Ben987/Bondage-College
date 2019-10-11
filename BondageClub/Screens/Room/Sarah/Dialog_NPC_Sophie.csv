@@ -311,10 +311,10 @@ SophieOrgasmGameDefeat,,,"(You cannot control yourself, and surrender to the ple
 284,,(Look at Sarah.),"(Sarah gets whipped mercilessly by Mistress Sophie, she jumps and cry from the pain but still asks for more.)",DialogRemove(),SarahIsInside()
 284,285,(Enjoy the show.),"(You watch a severe beating scene.  Mistress Sophie seems to enjoy it a lot, before stopping promptly.)  That's enough!",,
 284,285,(Look away.),"(You look away but can hear the whipping sound and the cries for a while, then everything stops.)  That's enough!",,
-285,286,Enough Mistress Sophie?,"*Oui*!  (She removes all the restrains expect for Sarah's.)  Sarah, to end your punishment, find a way out.",SophireReleaseEveryoneButSarah(),SarahIsInside()
-285,286,(Nod slowly.),"*Oui*!  (She removes all the restrains expect for Sarah's.)  Sarah, to end your punishment, find a way out.",SophireReleaseEveryoneButSarah(),SarahIsInside()
-285,286,Enough Mistress Sophie?,*Oui*!  (She removes the restrains from everyone.),SophireReleaseEveryoneButSarah(),!SarahIsInside()
-285,286,(Nod slowly.),*Oui*!  (She removes the restrains from everyone.),SophireReleaseEveryoneButSarah(),!SarahIsInside()
+285,286,Enough Mistress Sophie?,"*Oui*!  (She removes all the restrains expect for Sarah's.)  Sarah, to end your punishment, find a way out.",SophieReleaseEveryoneButSarah(),SarahIsInside()
+285,286,(Nod slowly.),"*Oui*!  (She removes all the restrains expect for Sarah's.)  Sarah, to end your punishment, find a way out.",SophieReleaseEveryoneButSarah(),SarahIsInside()
+285,286,Enough Mistress Sophie?,*Oui*!  (She removes the restrains from everyone.),SophieReleaseEveryoneButSarah(),!SarahIsInside()
+285,286,(Nod slowly.),*Oui*!  (She removes the restrains from everyone.),SophieReleaseEveryoneButSarah(),!SarahIsInside()
 286,287,Are we free Miss?,You're free as a bird little *esclave*.  I have other appointments today.,,
 286,287,The punishment is over?,"It is, little *esclave*.  I have other appointments today.",,
 286,287,That was intense.,"It will be worse next time, little *esclave*.  But I have other appointments today.",,
