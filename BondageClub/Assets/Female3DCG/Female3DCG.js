@@ -494,6 +494,7 @@ var AssetFemale3DCG = [
 			{ Name: "MermaidRopeTie", Value: 30, Time: 15, Difficulty: 3, SetPose: ["LegsClosed"] },
 			{ Name: "LeatherAnkleCuffs", Value: 30, Time: 10, Difficulty: 2, Effect: [], Priority: 20, AllowPose: ["LegsClosed"], Extended: true, AllowLock: true, AllowEffect: ["Freeze", "Prone"] },
 			{ Name: "SpreaderMetal", Value: 50, Time: 10, Difficulty: 3, Priority: 39, AllowLock: true, Effect: [ "Freeze", "Prone"], SetPose: ["LegsOpen"], Block: ["ItemLegs"],  Prerequisite: "LegsOpen", RemoveAtLogin: true },
+			{ Name: "BallChain", Value: 40, Time: 10, Difficulty: 5, Effect: [], RemoveTime: 10, AllowLock: true, AllowPose: ["LegsOpen", "LegsClosed"] },
 			AssetSpankingToys
 		]
 	},
@@ -571,7 +572,14 @@ var AssetFemale3DCG = [
 					{ Name: "Pussy", AllowColorize: false }
 				]
 			},
+			{ Name: "InflatableVibeDildo", Effect: ["Egged"], Value: 200, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }], AllowEffect: ["Egged", "Vibrating"],
+			Layer: [
+					{ Name: "Dildo", AllowColorize: true },
+					{ Name: "Pussy", AllowColorize: false }
+				]
+			},
 			{ Name: "ClitSuctionCup", Effect: [], Value: 50, Extended: true, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{ Group: "Eyes", Name: "Closed", Timer: 5 }, { Group: "Eyebrows", Name: "Angry", Timer: 5 }] },
+			{ Name: "TapeStrips", Value: 10, Prerequisite: "AccessVulva", Time: 5, ExpressionTrigger: [{ Group: "Eyebrows", Name: "Soft", Timer: 5 }] },
 			AssetSpankingToys
 		]
 	},
@@ -709,6 +717,7 @@ var AssetFemale3DCG = [
 			{ Name: "NippleAccessory1", Value: 15, Prerequisite: "AccessBreast", Time: 5, },
 			{ Name: "TapedVibeEggs", Value: 30, Effect: ["Egged"], Prerequisite: "AccessBreast", Time: 5, AllowEffect: ["Egged", "Vibrating"] },
 			{ Name: "NippleSuctionCups", Effect: [], Value: 50, Extended: true, Prerequisite: "AccessBreast", Time: 10, ExpressionTrigger: [{ Group: "Eyes", Name: "Closed", Timer: 5 }, { Group: "Eyebrows", Name: "Angry", Timer: 5 }] },
+			{ Name: "NippleTape" ,Value: 10, Prerequisite: "AccessBreast", Time: 5, ExpressionTrigger: [{ Group: "Eyebrows", Name: "Soft", Timer: 5 }] },
 			AssetSpankingToys
 		]
 	},
@@ -940,7 +949,8 @@ var AssetFemale3DCG = [
 					{ Name: "Dildo", AllowColorize: true }
 				]
 			},
-			{ Name: "BoneGag", Difficulty: 6, Value: 70, Time: 10, Effect: ["GagNormal"], AllowLock: true }
+			{ Name: "BoneGag", Difficulty: 6, Value: 70, Time: 10, Effect: ["GagNormal"], AllowLock: true },
+			{ Name: "ChopstickGag", Difficulty: 2, Value: 15, Time: 10 }
 		]
 	},
 

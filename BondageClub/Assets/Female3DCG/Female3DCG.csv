@@ -258,7 +258,8 @@ ItemFeet,SuspensionHempRope,Suspension Hemp Rope
 ItemFeet,DuctTape,Duct Tape
 ItemFeet,MermaidRopeTie,Mermaid Rope Tie
 ItemFeet,LeatherAnkleCuffs,Leather Ankle Cuffs
-ItemFeet,SpreaderMetal,Metal Leg Spreader
+ItemFeet,SpreaderMetal, Metal Leg Spreader
+ItemFeet,BallChain,Ball And Chain
 ItemLegs,,Legs
 ItemLegs,NylonRope,Nylon Rope
 ItemLegs,HempRope,Hemp Rope
@@ -276,7 +277,9 @@ ItemVulva,VibratorRemote,Vibrating Items Remote
 ItemVulva,VibratingLatexPanties,Vibrating Latex Panties
 ItemVulva,WandBelt,Wand Belt
 ItemVulva,VibratingDildo,Vibrating Dildo
+ItemVulva,InflatableVibeDildo,Inflatable Vibrating Dildo
 ItemVulva,ClitSuctionCup,Clit Suction Cup
+ItemVulva,TapeStrips,Tape Strips
 ItemButt,,Butt
 ItemButt,BlackButtPlug,Black Butt Plug
 ItemButt,TailButtPlug,Kitty Butt Plug
@@ -320,6 +323,7 @@ ItemNipples,HeartPasties,Heart Pasties
 ItemNipples,NippleAccessory1,Nipple Jewels
 ItemNipples,TapeVibeEggs,Taped Vibrating Eggs
 ItemNipples,NippleSuctionCups,Nipple Suction Cups
+ItemNipples,NippleTape,Pair Of Nipple Tapes
 ItemBreast,,Breast
 ItemBreast,MetalChastityBra,Metal Chastity Bra
 ItemBreast,LeatherCrop,Leather Crop
@@ -398,6 +402,7 @@ ItemMouth,PantiesMask,Panties Mask
 ItemMouth,PlugGag,Plug Gag
 ItemMouth,DildoGag,Dildo Gag
 ItemMouth,BoneGag,Bone Gag
+ItemMouth,ChopstickGag,Chopstick Gag
 ItemHead,,Head
 ItemHead,ClothBlindfold,Cloth Blindfold
 ItemHead,LeatherBlindfold,Leather Blindfold
