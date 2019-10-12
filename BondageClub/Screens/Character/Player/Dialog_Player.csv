@@ -442,3 +442,12 @@ DuctTapeRestrainMostFeet,,,SourceCharacter wraps even more duct tape on Destinat
 DuctTapeRestrainCompleteFeet,,,SourceCharacter wraps an extreme amount of duct tape on DestinationCharacter's feet fully trapping them.
 SlaveCollarSelectType,,,Select the slave collar model
 SlaveCollarChangeType,,,SourceCharacter changes DestinationCharacter's collar model.
+SelectTeddyBearType,,,Select the Type of Teddy Bear
+TeddyBearTypeBear,,,Bear
+TeddyBearTypeFox,,,Fox
+TeddyBearTypeKitty,,,Kitty
+TeddyBearTypePup,,,Puppy
+TeddyBearSetBear,,,SourceCharacter gives DestinationCharacter's a cute teddy bear.
+TeddyBearSetFox,,,SourceCharacter gives DestinationCharacter's a cute foxy teddy.
+TeddyBearSetKitty,,,SourceCharacter gives DestinationCharacter's a cute kitty teddy.
+TeddyBearSetPup,,,SourceCharacter gives DestinationCharacter's a cute puppy teddy.
