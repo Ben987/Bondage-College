@@ -22,8 +22,8 @@ PlayerGagged,,,"Patient DialogPlayerName, you'll need to get that gag off if you
 30,410,I'll take the orgasm therapy.,"(She winks.)  I know you would.  Since you're already naked, we can begin right now.",StripPlayer(),PatientReadyForTherapy()
 30,100,I'll take the bondage therapy.,(She smiles.)  You'll need to be fully naked to start your therapy.  Do you need help to strip?,,!PatientReadyForTherapy()
 30,200,I'll take the pain therapy.,(She smirks.)  You'll need to be fully naked to start your therapy.  Do you need help to strip?,,!PatientReadyForTherapy()
-30,300,I'll take the tickle therapy.,(She cracks her knuckles.)  You'll need to be fully naked to start your therapy.  Do you need help to strip?,StripPlayer(),!PatientReadyForTherapy()
-30,400,I'll take the orgasm therapy.,(She winks.)  You'll need to be fully naked to start your therapy.  Do you need help to strip?,StripPlayer(),!PatientReadyForTherapy()
+30,300,I'll take the tickle therapy.,(She cracks her knuckles.)  You'll need to be fully naked to start your therapy.  Do you need help to strip?,,!PatientReadyForTherapy()
+30,400,I'll take the orgasm therapy.,(She winks.)  You'll need to be fully naked to start your therapy.  Do you need help to strip?,,!PatientReadyForTherapy()
 30,0,I've changed my mind.,Very well.  Is there anything else you need?,,
 100,,Do I really need to be naked?,(She gives you a stern look.)  Do I need to force you?,DialogRemove(),
 100,110,Very well.  (Strip with her help.),(She helps you to strip down naked.)  Your bondage therapy can begin.,StripPlayer(),
@@ -46,7 +46,7 @@ PlayerGagged,,,"Patient DialogPlayerName, you'll need to get that gag off if you
 180,190,(Shake your head no.),Good.  We are almost done.  (Two minutes goes by.)  Do you want to be released now?,,
 190,500,(Nod yes.),"(She quickly releases you.)  I'm sorry, this therapy might be too rough for you.",TherapyFail(),
 190,600,(Shake your head no.),(Two minutes goes by and she slowly releases you.)  This bondage therapy was a success.  How do you feel?,TherapySuccess(),
-200,,Do I really need to be naked?,(She gives you a stern look.)  Do I need to force you?,DialogRemove(),
+200,,Do I really need to be naked?,(She gives you a stern look.)  Pain doesn't work great on clothes.,DialogRemove(),
 200,210,Very well.  (Strip with her help.),(She helps you to strip down naked.)  Your bondage therapy can begin.,StripPlayer(),
 210,220,I'm ready for pain!,We'll see about that.  Get on your knees and put your hands behind your back.,"DialogChangeReputation(""Dominant"", 2)",
 210,220,Please don't be too harsh.,Don't worry little patient.  Get on your knees and put your hands behind your back.,"DialogChangeReputation(""Dominant"", -1)",
@@ -70,7 +70,7 @@ PlayerGagged,,,"Patient DialogPlayerName, you'll need to get that gag off if you
 280,500,(Start crying.),"(She puts away her weapon and helps you up.)  I'm sorry, this therapy might be too rough for you.",TherapyFail(),
 280,600,(Take deep breathes.),"(She hits you one last time and helps you to stand you.)  Well done, this therapy was a success.  How do you feel?",TherapySuccess(),
 280,600,(Nod slowly.),"(She hits you one last time and helps you to stand you.)  Well done, this therapy was a success.  How are you?",TherapySuccess(),
-300,,Do I really need to be naked?,(She gives you a stern look.)  Do I need to force you?,DialogRemove(),
+300,,Do I really need to be naked?,"(She gives you a stern look.)  This is a tickle therapy, you'll need to show some skin.",DialogRemove(),
 300,310,Very well.  (Strip with her help.),(She helps you to strip down naked.)  Your tickle therapy can begin.,StripPlayer(),
 310,320,(Stay silent and nod.),Put your hands behind your back.  They must stay there for the whole therapy.,,
 310,320,"Be careful, I'm ticklish.",That's great!  Put your hands behind your back.  They must stay there for the whole therapy.,"DialogChangeReputation(""Dominant"", -1)",
@@ -97,11 +97,31 @@ PlayerGagged,,,"Patient DialogPlayerName, you'll need to get that gag off if you
 390,600,Yyyyyeeeaahhahaha!,(She tickles you one last time and removes your blindfold.)  You did it!  The therapy was a success.,TherapySuccess(),
 390,600,(Bite your lips not to laugh.),(She tickles you one last time and removes your blindfold.)  You did it!  The therapy was a success.,TherapySuccess(),
 390,500,(Push the duster away.),"(She sighs and removes your blindfold.)  I'm sorry, this therapy will not work for you.",TherapyFail(),
-400,,Do I really need to be naked?,(She gives you a stern look.)  Do I need to force you?,DialogRemove(),
+400,,Do I really need to be naked?,(She gives you a stern look.)  Do I need to explain why an orgasm therapy must be done naked?,DialogRemove(),
 400,410,Very well.  (Strip with her help.),(She helps you to strip down.)  Your orgasm therapy can begin.,StripPlayer(),
-410,30,(Blush.)  What about the belt?,"(She laughs.)  Yes, you have a problem there girl, and I cannot help you.  We can do another therapy if you want.",Player.IsVulvaChaste(),
-410,420,I'm ready!,"Wonderful!  I will tease you with this vibrating wand.  You cannot orgasm until I say so, and you must orgasm when I command it.",!Player.IsVulvaChaste(),
-420,,TO DO,TO DO,,
+410,30,(Blush.)  What about the belt?,"(She laughs.)  Yes, you have a problem there girl, and I cannot help you.  We can do another therapy if you want.",,Player.IsVulvaChaste()
+410,420,I'm ready!,"Wonderful!  I will tease you with this vibrating wand.  You cannot orgasm until I say so, and you must orgasm when I command it.",,!Player.IsVulvaChaste()
+420,,That's quite a challenge.,"Yes, It can be a challenge.  It will teach you about controlling your own body and pulsions.",DialogRemove(),
+420,430,I'll follow your lead.,"Since your breast is chaste, we cannot work on the nipples, but we can have fun down there.  (She turns on the vibrating wand.)",,Player.IsBreastChaste()
+420,430,I'll follow your lead.,"(She puts an object on your nipples.)  Breast first, then we can work down there.  (She turns on the vibrating wand.)",OrgasmTherapyRestrain(),!Player.IsBreastChaste()
+420,500,This might not be for me.,"(She sighs and stops everything.)  I'm sorry, this therapy will not work for you.",TherapyFail(),
+430,500,Wait!  I've changed my mind.,"(She sighs and stops everything.)  I'm sorry, this therapy will not work for you.",TherapyFail(),
+430,440,(Take a deep breath.),(She starts to massage your pussy with the vibrating wand.),,
+440,450,I'm your slut Miss.,"Remember, you cannot cum until I say so.  (She applies a little more pressure on the device.)","DialogChangeReputation(""Dominant"", -2)",
+440,450,(Stay silent.),"Remember, you cannot cum until I say so.  (She applies a little more pressure on the device.)",,
+440,500,(Take a step back.),"(She sighs and stops everything.)  I'm sorry, this therapy will not work for you.",TherapyFail(),
+450,500,(Have a surprise orgasm.),"(She giggles and stops everything.)  Your orgasm was too quick, you've failed the therapy.",TherapyFail(),
+450,460,Oooooh!,"(She speeds up the vibrator and grabs your butt, maintaining the pressure.)  Not yet.",,
+450,460,I'm strong.  Don't worry.,"(She speeds up the vibrator and grabs your butt, maintaining the pressure.)  Not yet.","DialogChangeReputation(""Dominant"", 2)",
+460,470,(Take long and deep breathes.),"(She massages your pussy skillfully with the vibrating wand, giving lots of stimulation.)  Not yet.",,
+460,500,(Lose control and orgasm.),"(She giggles and stops everything.)  Your orgasm was too quick, you've failed the therapy.",TherapyFail(),
+460,470,Aaaaaah!  Aah!,"(She massages your pussy skillfully with the vibrating wand, giving lots of stimulation.)  Not yet.",,
+470,500,(Lose control and orgasm.),"(She giggles and stops everything.)  Your orgasm was too quick, you've failed the therapy.",TherapyFail(),
+470,480,(Stay strong and resist.),"(She speeds up the vibrating wand again, making you tremble and shiver from sexual pleasure.)  Not yet.",,
+480,500,(Lose control and orgasm.),"(She giggles and stops everything.)  Your orgasm was too quick, you've failed the therapy.",TherapyFail(),
+480,490,(Stay strong and resist.),(She forces the full speed vibrating wand against you pussy lips and stares at you.)  Now girl!  Cum now!,,
+490,600,(Lose control and orgasm.),(You get a great orgasm as she smiles at you.)  You did it patient DialogPlayerName.  The therapy was a success.,TherapySuccess(),
+490,500,(Stay strong and resist.),"(She frowns and stops everything.)  Sorry girl, you failed to orgasm on command.",TherapyFail(),
 500,510,It will be better next time.,"Maybe it will.  We can try again if you want, or you can take a break.",,
 500,510,The therapy failed?,"Yes, it failed.  We can try again if you want, or you can take a break.",,
 500,510,You're a bad therapist.,"You failed it, not me.  We can try again if you want, or you can take a break.","DialogChangeReputation(""Dominant"", 2)",
