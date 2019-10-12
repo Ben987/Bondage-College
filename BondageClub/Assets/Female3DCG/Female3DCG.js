@@ -958,6 +958,13 @@ var AssetFemale3DCG = [
 					{ Name: "Chopsticks", AllowColorize: true },
 					{ Name: "Tongue", AllowColorize: false }
 				]
+			},
+			{ 
+				Name: "BambooGag", DefaultColor: "#A07858", Difficulty: 6, Value: 30, Time: 10,
+				Layer: [
+					{ Name: "Rod", AllowColorize: false },
+					{ Name: "Rope", AllowColorize: true }
+				]
 			}
 		]
 	},
