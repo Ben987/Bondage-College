@@ -121,7 +121,7 @@ function ElementPositionFix(ElementID, Font, X, Y, W, H) {
 function ElementSetDataAttribute(ID, Name, Value) {
 	var element = document.getElementById(ID);
 	if (element != null) {
-		element.setAttribute("data-" + Name, Value);
+		element.setAttribute(("data-" + Name).toLowerCase(), Value.toString().toLowerCase());
 	}
 }
 
