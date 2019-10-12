@@ -278,14 +278,6 @@ BPumpspumpsTo1,,,SourceCharacter inflates DestinationCharacter's butt pump only 
 BPumpspumpsTo2,,,SourceCharacter inflates DestinationCharacter's butt pump till half full.
 BPumpspumpsTo3,,,SourceCharacter inflates DestinationCharacter's butt pump three quarters filled.
 BPumpspumpsTo4,,,SourceCharacter inflates DestinationCharacter's butt pump to the maximum amount.
-PumpGagdeflatesTo0,,,SourceCharacter deflates DestinationCharacter's gag fully till it's empty.
-PumpGagdeflatesTo1,,,SourceCharacter deflates DestinationCharacter's gag till only slighty filled.
-PumpGagdeflatesTo2,,,SourceCharacter deflates DestinationCharacter's gag till it's half full.
-PumpGagdeflatesTo3,,,SourceCharacter deflates DestinationCharacter's gag only a tiny bit.
-PumpGagpumpsTo1,,,SourceCharacter inflates DestinationCharacter's gag only slightly.
-PumpGagpumpsTo2,,,SourceCharacter inflates DestinationCharacter's gag till half full.
-PumpGagpumpsTo3,,,SourceCharacter inflates DestinationCharacter's gag three quarters filled.
-PumpGagpumpsTo4,,,SourceCharacter inflates DestinationCharacter's gag to the maximum amount.
 ButtplugDecreaseTo-1,,,DestinationCharacter's vibrating buttplug stops vibrating.
 ButtplugDecreaseTo0,,,DestinationCharacter's vibrating buttplug slows down into a light tease.
 ButtplugDecreaseTo1,,,DestinationCharacter's vibrating buttplug returns to a moderate pace.
@@ -294,6 +286,30 @@ ButtplugIncreaseTo0,,,DestinationCharacter's vibrating buttplug starts teasing h
 ButtplugIncreaseTo1,,,DestinationCharacter's vibrating buttplug builds up to a moderate pace.
 ButtplugIncreaseTo2,,,DestinationCharacter's vibrating buttplug starts buzzing strongly!
 ButtplugIncreaseTo3,,,DestinationCharacter's vibrating buttplug jumps up to maximum intensity!
+InflVibeButtPlug_VibeDecreaseTo-1,,,DestinationCharacter's inflatable vibrating butt plug stops vibrating.
+InflVibeButtPlug_VibeDecreaseTo0,,,DestinationCharacter's inflatable vibrating butt plug slows down into a light tease.
+InflVibeButtPlug_VibeDecreaseTo1,,,DestinationCharacter's inflatable vibrating butt plug returns to a moderate pace.
+InflVibeButtPlug_VibeDecreaseTo2,,,DestinationCharacter's inflatable vibrating butt plug slows down a tiny bit.
+InflVibeButtPlug_VibeIncreaseTo0,,,DestinationCharacter's inflatable vibrating butt plug starts teasing her lightly.
+InflVibeButtPlug_VibeIncreaseTo1,,,DestinationCharacter's inflatable vibrating butt plug builds up to a moderate pace.
+InflVibeButtPlug_VibeIncreaseTo2,,,DestinationCharacter's inflatable vibrating butt plugo starts buzzing strongly!
+InflVibeButtPlug_VibeIncreaseTo3,,,DestinationCharacter's inflatable vibrating butt plug jumps up to maximum intensity!
+InflVibeButtPlug_PumpdeflatesTo0,,,SourceCharacter deflates DestinationCharacter's inflatable vibrating butt plug till it's empty.
+InflVibeButtPlug_PumpdeflatesTo1,,,SourceCharacter deflates DestinationCharacter's inflatable vibrating butt plug till only slightly filled.
+InflVibeButtPlug_PumpdeflatesTo2,,,SourceCharacter deflates DestinationCharacter's inflatable vibrating butt plug till it's half full.
+InflVibeButtPlug_PumpdeflatesTo3,,,SourceCharacter deflates DestinationCharacter's inflatable vibrating butt plug only a tiny bit.
+InflVibeButtPlug_PumppumpsTo1,,,SourceCharacter inflates DestinationCharacter's inflatable vibrating dildo only slightly.
+InflVibeButtPlug_PumppumpsTo2,,,SourceCharacter inflates DestinationCharacter's inflatable vibrating dildo till it's half full.
+InflVibeButtPlug_PumppumpsTo3,,,SourceCharacter inflates DestinationCharacter's inflatable vibrating dildo till three quarters filled.
+InflVibeButtPlug_PumppumpsTo4,,,SourceCharacter inflates DestinationCharacter's inflatable vibrating dildo to it's maximum amount.
+PumpGagdeflatesTo0,,,SourceCharacter deflates DestinationCharacter's gag fully till it's empty.
+PumpGagdeflatesTo1,,,SourceCharacter deflates DestinationCharacter's gag till only slighty filled.
+PumpGagdeflatesTo2,,,SourceCharacter deflates DestinationCharacter's gag till it's half full.
+PumpGagdeflatesTo3,,,SourceCharacter deflates DestinationCharacter's gag only a tiny bit.
+PumpGagpumpsTo1,,,SourceCharacter inflates DestinationCharacter's gag only slightly.
+PumpGagpumpsTo2,,,SourceCharacter inflates DestinationCharacter's gag till half full.
+PumpGagpumpsTo3,,,SourceCharacter inflates DestinationCharacter's gag three quarters filled.
+PumpGagpumpsTo4,,,SourceCharacter inflates DestinationCharacter's gag to the maximum amount.
 Empty,,,Empty
 Light,,,Light
 Inflated,,,Inflated

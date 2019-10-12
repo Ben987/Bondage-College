@@ -38,7 +38,7 @@ var AssetFemale3DCG = [
 			{ Name: "NurseUniform", Hide: ["ClothLower"], Value: -1 },
 			{ Name: "BunnyCollarCuffs", Value: 10, Expose: ["ItemNipples", "ItemBreast", "ItemTorso"] },
 			{ Name: "Robe1", Value: 50 },
-			{ Name: "SuspenderTop1", Priority: 16, Value: 100, Expose: ["ItemNipples", "ItemBreast"], Hide: ["Panties"], HideItem: ["ItemVulvaVibratingDildo", "ItemVulvaClitSuctionCup"] },
+			{ Name: "SuspenderTop1", Priority: 20, Value: 100, Expose: ["ItemNipples", "ItemBreast"], Hide: ["Panties"], HideItem: ["ItemVulvaVibratingDildo", "ItemVulvaClitSuctionCup"] },
 			{ Name: "LeatherCorsetTop1", Priority: 20, Value: 80 },
 			{
 			    Name: "FlowerDress", Value: 100, Hide: ["ClothLower"],
@@ -74,16 +74,16 @@ var AssetFemale3DCG = [
 		Asset: [
 			{ Name: "Skirt1", Expose: ["ItemVulva", "ItemButt"] },
 			{ Name: "TennisSkirt1", ParentItem: "TennisShirt1", Expose: ["ItemVulva", "ItemButt"] },
-			{ Name: "Jeans1", HideItem: ["ItemVulvaVibratingDildo", "ItemVulvaClitSuctionCup"] },
+			{ Name: "Jeans1", HideItem: ["ItemVulvaVibratingDildo", "ItemVulvaClitSuctionCup", "SocksSocksFur", "SocksSocks6"] },
 			{ Name: "Shorts1", HideItem: ["ItemVulvaVibratingDildo", "ItemVulvaClitSuctionCup"] },
 			{ Name: "Pajama1", Random: false, Priority: 23 },
 			{ Name: "MistressBottom", Hide: ["Panties"], HideItem: ["ItemVulvaVibratingDildo", "ItemVulvaClitSuctionCup"], Value: -1 },
 			{ Name: "Waspie1", Priority: 24, Value: 80, Expose: ["ItemVulva", "ItemButt"] },
 			{ Name: "Waspie2", Priority: 24, Value: 100, Expose: ["ItemVulva", "ItemButt"] },
 			{ Name: "Waspie3", Priority: 24, Value: 60, Expose: ["ItemVulva", "ItemButt"] },
-			{ Name: "LatexPants1", Value: 80, HideItem: ["ItemVulvaVibratingDildo"], Hide: ["Socks"] },
+			{ Name: "LatexPants1", Value: 80, HideItem: ["ItemVulvaVibratingDildo"], HideItem: ["SocksSocksFur", "SocksSocks1", "SocksSocks2", "SocksSocks3", "SocksSocks4", "SocksSocks5", "SocksSocks6", "SocksStockings2", "SocksStockings3"] },
 			{ Name: "LatexSkirt1", Value: 60, Expose: ["ItemVulva", "ItemButt"] },
-			{ Name: "Jeans2", HideItem: ["ItemVulvaVibratingDildo", "ItemVulvaClitSuctionCup"], HideItem,: ["SocksSocksFur", "SocksSocks6"], Value: 45 }
+			{ Name: "Jeans2", HideItem: ["ItemVulvaVibratingDildo", "ItemVulvaClitSuctionCup", "SocksSocksFur", "SocksSocks6"], Value: 45 }
 		]
 	},
 
@@ -110,6 +110,7 @@ var AssetFemale3DCG = [
 			{ Name: "Corset4", Value: 30, Expose: ["ItemNipples", "ItemBreast"] },
 			{ Name: "Corset5", Value: 30, Expose: ["ItemNipples", "ItemBreast"] },
 			{ Name: "Bikini1", Value: 25, Hide: ["ItemNipples"] },
+			{ Name: "SexyBikini1", Value: 50, Hide: ["ItemNipples"] },
 			{ Name: "Swimsuit1", Value: 20, Hide: ["Panties", "ItemNipples"], HideItem: ["ItemVulvaVibratingDildo"] },
 			{ Name: "Swimsuit2", Value: 25, Hide: ["Panties", "ItemNipples"], HideItem: ["ItemVulvaVibratingDildo"] },
 			{ Name: "BunnySuit", Value: 30, Hide: ["Panties", "ItemNipples"], HideItem: ["ItemVulvaVibratingDildo"] },
@@ -237,7 +238,8 @@ var AssetFemale3DCG = [
 			{ Name: "BunnySuccubus2", Value: 50 },
 			{ Name: "HairFlower1", Value: 10 },
 			{ Name: "WitchHat1", Value: 77 },
-			{ Name: "PirateBandana1", Value: 50 }
+			{ Name: "PirateBandana1", Value: 50 },
+			{ Name: "PoliceWomanHat", Value: 50 }
 		]
 	},
 
@@ -494,7 +496,7 @@ var AssetFemale3DCG = [
 			{ Name: "MermaidRopeTie", Value: 30, Time: 15, Difficulty: 3, SetPose: ["LegsClosed"] },
 			{ Name: "LeatherAnkleCuffs", Value: 30, Time: 10, Difficulty: 2, Effect: [], Priority: 20, AllowPose: ["LegsClosed"], Extended: true, AllowLock: true, AllowEffect: ["Freeze", "Prone"] },
 			{ Name: "SpreaderMetal", Value: 50, Time: 10, Difficulty: 3, Priority: 39, AllowLock: true, Effect: [ "Freeze", "Prone"], SetPose: ["LegsOpen"], Block: ["ItemLegs"],  Prerequisite: "LegsOpen", RemoveAtLogin: true },
-			{ Name: "BallChain", Value: 40, Time: 10, Difficulty: 5, Effect: [], RemoveTime: 10, AllowLock: true, AllowPose: ["LegsOpen", "LegsClosed"] },
+			{ Name: "BallChain", Value: 40, Time: 10, Difficulty: 5, Effect: [], RemoveTime: 10, Random: false, AllowLock: true, AllowPose: ["LegsOpen", "LegsClosed"] },
 			AssetSpankingToys
 		]
 	},
@@ -606,6 +608,7 @@ var AssetFemale3DCG = [
 			{ Name: "AnalBeads", Value: 20, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }], Visible: false },
 			{ Name: "ButtPump", Effect: [], Value: 35, Extended: true, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }], Visible: false },
 			{ Name: "VibratingButtplug", Effect: ["Egged"], Value: 100, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }], AllowEffect: ["Egged", "Vibrating"], Visible: false },
+			{ Name: "InflVibeButtPlug", Effect: ["Egged"], Value: 200, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }], AllowEffect: ["Egged", "Vibrating"], Visible: false },
 			AssetSpankingToys
 		]
 	},
@@ -805,6 +808,7 @@ var AssetFemale3DCG = [
 		Asset: [
 			{ Name: "PaddedMittens", SelfBondage: false, Value: 50, AllowPose: ["BackBoxTie", "BackElbowTouch", "BackCuffs"], Effect: ["Block", "Prone"], Extended: true, Time: 15, Difficulty: 4, AllowLock: true },
 			{ Name: "PawMittens", SelfBondage: false, Value: 60, AllowPose: ["BackBoxTie", "BackElbowTouch", "BackCuffs"], Effect: ["Block", "Prone"], Extended: true, Time: 15, Difficulty: 4, AllowLock: true },
+			{ Name: "PolishedMittens", SelfBondage: false, Value: 100, AllowPose: ["BackBoxTie", "BackElbowTouch", "BackCuffs"], Effect: ["Block", "Prone"], Time: 20, RemoveTime: 10, Difficulty: 8, AllowLock: true  },
 			{ Name: "DuctTape", SelfBondage: false, Value: 50, SetPose: ["TapedHands"], AllowPose: ["BackBoxTie", "BackElbowTouch", "BackCuffs"], Hide: ["Gloves"], Effect: ["Block", "Prone"], Time: 20, RemoveTime: 10, Difficulty: 5, BuyGroup: "DuctTape" },
 			{
 				Name: "SpankingToys", Wear: true,  IsRestraint: false, Extended: true, Random: false, BuyGroup: "SpankingToys", AllowType: ["Crop", "Flogger", "Cane", "HeartCrop", "Paddle", "WhipPaddle"], IgnoreParentGroup: true, AllowPose: ["BackBoxTie", "BackElbowTouch", "BackCuffs"],

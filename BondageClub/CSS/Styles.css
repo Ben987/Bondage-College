@@ -51,42 +51,45 @@ canvas {
 	font-style: italic;
 	color: silver;
 }
-#TextAreaChatLog[data-ColorTheme=Dark i] {
+#TextAreaChatLog[data-colortheme=dark] {
 	background-color: #111;
 	color: #eee;
 }
-#TextAreaChatLog[data-ColorTheme=Dark i] .ChatMessageName {
+#TextAreaChatLog[data-colortheme=dark] .ChatMessageName {
 	text-shadow: 0.05em 0.05em #eee;
 }
-#TextAreaChatLog[data-EnterLeave=Smaller i] .ChatMessageEnterLeave {
+#TextAreaChatLog[data-colortheme=dark] .ChatMessageWhisper {
+	color: #555;
+}
+#TextAreaChatLog[data-enterleave=smaller] .ChatMessageEnterLeave {
 	font-size: 0.5em;
 	text-align: center;
 }
-#TextAreaChatLog[data-EnterLeave=Hidden i] .ChatMessageEnterLeave {
+#TextAreaChatLog[data-enterleave=hidden] .ChatMessageEnterLeave {
 	display: none;
 }
-#TextAreaChatLog[data-MemberNumbers=Never i] .ChatMessage::after,
-#TextAreaChatLog[data-MemberNumbers=OnMouseover i] .ChatMessage::after {
+#TextAreaChatLog[data-membernumbers=never] .ChatMessage::after,
+#TextAreaChatLog[data-membernumbers=onmouseover] .ChatMessage::after {
 	display: none;
 }
-#TextAreaChatLog[data-MemberNumbers=OnMouseover i] .ChatMessage:hover::after {
+#TextAreaChatLog[data-membernumbers=onmouseover] .ChatMessage:hover::after {
 	display: block;
 }
-#TextAreaChatLog[data-DisplayTimestamps=false i] .ChatMessage::before {
+#TextAreaChatLog[data-displaytimestamps=false] .ChatMessage::before {
 	display: none;
 }
-#TextAreaChatLog[data-DisplayTimestamps=false i] .ChatMessage::after {
+#TextAreaChatLog[data-displaytimestamps=false] .ChatMessage::after {
 	top: 0;
 }
-#TextAreaChatLog[data-ColorNames=false] .ChatMessageName {
+#TextAreaChatLog[data-colornames=false] .ChatMessageName {
 	color: inherit !important;
 	text-shadow: none;
 	font-weight: bold;
 }
-#TextAreaChatLog[data-ColorActions=false i] .ChatMessageAction {
+#TextAreaChatLog[data-coloractions=false] .ChatMessageAction {
 	background-color: transparent !important;
 }
-#TextAreaChatLog[data-ColorEmotes=false i] .ChatMessageEmote {
+#TextAreaChatLog[data-coloremotes=false] .ChatMessageEmote {
 	background-color: transparent !important;
 }
 #FriendList {
