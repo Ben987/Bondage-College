@@ -435,8 +435,10 @@ function CharacterAppearanceSetItem(C, Group, ItemAsset, NewColor, DifficultyFac
 	var ItemColor;
 	var ItemAlpha;
 	if (ID != "None") {
-		ItemColor = CharacterAppearanceGetCurrentValue(C, Group, "Color");
-		ItemAlpha = CharacterAppearanceGetCurrentValue(C, Group, "Alpha");
+		if (CurrentScreen == "Appearance") {
+			ItemColor = CharacterAppearanceGetCurrentValue(C, Group, "Color");
+			ItemAlpha = CharacterAppearanceGetCurrentValue(C, Group, "Alpha");
+		}
 		C.Appearance.splice(ID, 1);
 	} else if (ItemAsset != null) ItemColor = ItemAsset.Group.ColorSchema[0];
 
