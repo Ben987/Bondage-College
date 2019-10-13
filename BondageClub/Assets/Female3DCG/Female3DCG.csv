@@ -52,6 +52,7 @@ Bra,Corset3,Half Cup Corset
 Bra,Corset4,Under Bust Corset
 Bra,Corset5,Floral Corset
 Bra,Bikini1,Frilled Bikini
+Bra,SexyBikini1,Demonique Bikini
 Bra,Swimsuit1,Swimsuit style 1
 Bra,Swimsuit2,Swimsuit style 2
 Bra,BunnySuit,Bunny Girl Bodysuit
@@ -125,6 +126,7 @@ Hat,BunnySuccubus2,Bunny Succubus
 Hat,HairFlower1, Flower
 Hat,WitchHat1, Witch Hat
 Hat,PirateBandana1,Pirate Bandana
+Hat,PoliceWomanHat,Police Woman Hat
 HairAccessory,,Hair Accessory
 HairAccessory,Ears1,Ears Small
 HairAccessory,Ears2,Ears Large
@@ -259,6 +261,7 @@ ItemFeet,DuctTape,Duct Tape
 ItemFeet,MermaidRopeTie,Mermaid Rope Tie
 ItemFeet,LeatherAnkleCuffs,Leather Ankle Cuffs
 ItemFeet,SpreaderMetal, Metal Leg Spreader
+ItemFeet,BallChain,Ball And Chain
 ItemLegs,,Legs
 ItemLegs,NylonRope,Nylon Rope
 ItemLegs,HempRope,Hemp Rope
@@ -276,7 +279,9 @@ ItemVulva,VibratorRemote,Vibrating Items Remote
 ItemVulva,VibratingLatexPanties,Vibrating Latex Panties
 ItemVulva,WandBelt,Wand Belt
 ItemVulva,VibratingDildo,Vibrating Dildo
+ItemVulva,InflatableVibeDildo,Inflatable Vibrating Dildo
 ItemVulva,ClitSuctionCup,Clit Suction Cup
+ItemVulva,TapeStrips,Tape Strips
 ItemButt,,Butt
 ItemButt,BlackButtPlug,Black Butt Plug
 ItemButt,TailButtPlug,Kitty Butt Plug
@@ -290,11 +295,13 @@ ItemButt,RaccoonTailPlug,Raccoon Tail Plug
 ItemButt,AnalBeads,Anal Beads
 ItemButt,ButtPump,Butt Pump
 ItemButt,VibratingButtPlug,Vibrating Butt Plug
+ItemButt,InflVibeButtPlug,Inflatable Vibrating Butt Plug
 ItemPelvis,,Pelvis
 ItemPelvis,StraponPanties,Strap-On Panties
 ItemPelvis,LeatherChastityBelt,Leather Chastity Belt
 ItemPelvis,StuddedChastityBelt,Studded Chastity Belt
 ItemPelvis,MetalChastityBelt,Metal Chastity Belt
+ItemPelvis,PolishedChastityBelt,Polished Chastity Belt
 ItemPelvis,LoveChastityBelt,Love Chastity Belt
 ItemPelvis,LeatherCrop,Leather Crop
 ItemPelvis,LeatherWhip,Leather Whip
@@ -302,6 +309,8 @@ ItemPelvis,SpankingToys,Spanking Toys
 ItemTorso,,Torso
 ItemTorso,NylonRopeHarness,Nylon Rope Harness
 ItemTorso,HempRopeHarness,Hemp Rope Harness
+ItemTorso,NylonCrotchRope,Nylon Crotch Rope
+ItemTorso,HempCrotchRope,Hemp Crotch Rope
 ItemTorso,LeatherHarness,Leather Harness
 ItemTorso,AdultBabyHarness,Adult Baby Harness
 ItemNipples,,Nipples
@@ -318,8 +327,10 @@ ItemNipples,HeartPasties,Heart Pasties
 ItemNipples,NippleAccessory1,Nipple Jewels
 ItemNipples,TapeVibeEggs,Taped Vibrating Eggs
 ItemNipples,NippleSuctionCups,Nipple Suction Cups
+ItemNipples,NippleTape,Pair Of Nipple Tapes
 ItemBreast,,Breast
 ItemBreast,MetalChastityBra,Metal Chastity Bra
+ItemBreast,PolishedChastityBra,Polished Chastity Bra
 ItemBreast,LeatherCrop,Leather Crop
 ItemBreast,LeatherWhip,Leather Whip
 ItemArms,,Arms
@@ -341,6 +352,7 @@ ItemArms,StraitDressOpen,Open Crotch Strait Dress
 ItemHands,,Hands
 ItemHands,PaddedMittens,Padded Mittens
 ItemHands,PawMittens,Paw Mittens
+ItemHands,PolishedMittens,Polished Steel Mittens
 ItemHands,DuctTape,Duct Tape
 ItemHands,SpankingToys,Spanking Toys
 ItemHands,SpankingToysCrop,Crop
@@ -396,6 +408,8 @@ ItemMouth,PantiesMask,Panties Mask
 ItemMouth,PlugGag,Plug Gag
 ItemMouth,DildoGag,Dildo Gag
 ItemMouth,BoneGag,Bone Gag
+ItemMouth,ChopstickGag,Chopstick Gag
+ItemMouth,BambooGag,Bamboo Gag
 ItemHead,,Head
 ItemHead,ClothBlindfold,Cloth Blindfold
 ItemHead,LeatherBlindfold,Leather Blindfold
