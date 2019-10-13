@@ -175,7 +175,7 @@ function LoginResponse(C) {
 			ReputationLoad(C.Reputation);
 			SkillLoad(C.Skill);
 			CharacterLoadCSVDialog(Player);
-			PrivateCharacterMax = (LogQuery("Expansion", "PrivateRoom")) ? 8 : 4;
+			PrivateExpansionLoad();
 			CharacterRefresh(Player, false);
 			ElementRemove("InputName");
 			ElementRemove("InputPassword");

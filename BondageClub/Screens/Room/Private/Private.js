@@ -19,7 +19,7 @@ var PrivateSlaveImproveType = "";
 
 // Returns TRUE if a specific dialog option is allowed
 function PrivateIsCaged() { return (CurrentCharacter.Cage == null) ? false : true }
-function PrivateVendorCanPlay() { return (LogQuery("RentRoom", "PrivateRoom") && LogQuery("Wardrobe", "PrivateRoom") && LogQuery("Cage", "PrivateRoom") && LogQuery("Expansion", "PrivateRoom") && Player.CanInteract() && PrivateVendor.CanInteract()) }
+function PrivateVendorCanPlay() { return (LogQuery("RentRoom", "PrivateRoom") && LogQuery("Wardrobe", "PrivateRoom") && LogQuery("Cage", "PrivateRoom") && LogValue("ExpansionCount", "PrivateRoom") && Player.CanInteract() && PrivateVendor.CanInteract()) }
 function PrivateAllowChange() { return (!CurrentCharacter.IsRestrained() && (ReputationGet("Dominant") + 25 >= NPCTraitGet(CurrentCharacter, "Dominant"))) }
 function PrivateWontChange() { return (!CurrentCharacter.IsRestrained() && (ReputationGet("Dominant") + 25 < NPCTraitGet(CurrentCharacter, "Dominant"))) }
 function PrivateIsRestrained() { return (CurrentCharacter.IsRestrained()) }
@@ -86,6 +86,19 @@ function PrivateLoad() {
 
 }
 
+// Converts old expansion log item to new log item and determines max private characters
+function PrivateExpansionLoad() {
+	var ExpansionCount = LogValue("ExpansionCount", "PrivateRoom");
+	if (ExpansionCount == null) {
+		if (LogQuery("Expansion", "PrivateRoom")) {
+			ExpansionCount = 1;
+			LogAdd("ExpansionCount", "PrivateRoom", ExpansionCount);
+			LogDelete("Expansion", "PrivateRoom");
+		}
+	}
+	PrivateCharacterMax = ExpansionCount ? (ExpansionCount + 1) * 4 : 4;
+}
+
 // Draw all the characters in the private room
 function PrivateDrawCharacter() {
 
@@ -144,7 +157,12 @@ function PrivateRun() {
 		if ((Player.Cage == null) && Player.CanWalk()) DrawButton(1885, 265, 90, 90, "", "White", "Icons/Shop.png");
 		if (Player.CanChange()) DrawButton(1885, 385, 90, 90, "", "White", "Icons/Dress.png");
 		if (LogQuery("Wardrobe", "PrivateRoom") && Player.CanChange()) DrawButton(1885, 505, 90, 90, "", "White", "Icons/Wardrobe.png");
-		if (LogQuery("Expansion", "PrivateRoom")) DrawButton(1885, 625, 90, 90, "", "White", "Icons/Next.png");
+		var E = LogValue("ExpansionCount", "PrivateRoom");
+		if (E) {
+			DrawButton(1885, 625, 90, 90, "", "White", "Icons/Next.png");
+			DrawButton(1885, 745, 90, 90, "", "White", "Icons/Previous.png");
+			DrawText((PrivateCharacterOffset / 4 + 1) + " / " + (1 + E), 1930, 875, "White", "Black");
+		}
 	} else {
 		DrawCharacter(Player, 500, 0, 1);
 		DrawCharacter(PrivateVendor, 1000, 0, 1);
@@ -257,9 +275,20 @@ function PrivateClick() {
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355) && LogQuery("RentRoom", "PrivateRoom") && Player.CanWalk() && (Player.Cage == null)) CharacterSetCurrent(PrivateVendor);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475) && LogQuery("RentRoom", "PrivateRoom") && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 505) && (MouseY < 595) && LogQuery("RentRoom", "PrivateRoom") && Player.CanChange() && LogQuery("Wardrobe", "PrivateRoom")) CommonSetScreen("Character", "Wardrobe");
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 625) && (MouseY < 715) && LogQuery("RentRoom", "PrivateRoom") && LogQuery("Expansion", "PrivateRoom")) PrivateCharacterOffset = (PrivateCharacterOffset == 0) ? 4 : 0;
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 625) && (MouseY < 715) && LogQuery("RentRoom", "PrivateRoom") && LogValue("ExpansionCount", "PrivateRoom")) PrivateSetCharacterOffset(4);
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 745) && (MouseY < 835) && LogQuery("RentRoom", "PrivateRoom") && LogValue("ExpansionCount", "PrivateRoom")) PrivateSetCharacterOffset(-4);
 	if ((MouseX <= 1885) && (MouseY < 900) && LogQuery("RentRoom", "PrivateRoom") && (Player.Cage == null)) PrivateClickCharacter();
 	if ((MouseX <= 1885) && (MouseY >= 900) && LogQuery("RentRoom", "PrivateRoom")) PrivateClickCharacterButton();
+}
+
+function PrivateSetCharacterOffset(O) {
+	PrivateCharacterOffset += O;
+	if (PrivateCharacterOffset < 0) {
+		PrivateCharacterOffset = PrivateCharacterMax - 4;
+	}
+	if (PrivateCharacterOffset >= PrivateCharacterMax) {
+		PrivateCharacterOffset = 0;
+	}
 }
 
 // When the player rents the room
@@ -283,8 +312,9 @@ function PrivateGetCage() {
 // When the player gets the room expansion
 function PrivateGetExpansion() {
 	CharacterChangeMoney(Player, -200);
-	LogAdd("Expansion", "PrivateRoom");
-	PrivateCharacterMax = 8;
+	var E = LogValue("ExpansionCount", "PrivateRoom") + 1;
+	LogAdd("ExpansionCount", "PrivateRoom", E);
+	PrivateCharacterMax = (E + 1) * 4;
 }
 
 // Loads the private room character
