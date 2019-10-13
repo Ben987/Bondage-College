@@ -68,7 +68,8 @@ function AsylumTherapyBondageTherapyRestrain() {
 
 // When any therapy ends (fail or success), release player
 function AsylumTherapyTherapyEnd() {
-	CharacterRelease(Player);	
+	CharacterRelease(Player);
+	if (!Player.IsBreastChaste()) InventoryRemove(Player, "ItemNipples");
 	InventoryRemove(AsylumTherapyNurse, "ItemHands");
 	CharacterSetActivePose(Player, null);
 }
@@ -106,4 +107,11 @@ function AsylumTherapyTickleTherapyBlindfold() {
 	if ((ReputationGet("Asylum") <= -1) && (ReputationGet("Asylum") >= -49)) InventoryWear(Player, "ClothBlindfold", "ItemHead");
 	if ((ReputationGet("Asylum") <= -50) && (ReputationGet("Asylum") >= -99)) InventoryWear(Player, "LeatherBlindfold", "ItemHead");
 	if ((ReputationGet("Asylum") <= -100) && (ReputationGet("Asylum") >= -100)) InventoryWear(Player, "StuddedBlindfold", "ItemHead");
+}
+
+// For the orgasm therapy, a vibrating toy can be applied on the player's breast
+function AsylumTherapyOrgasmTherapyRestrain() {
+	if ((ReputationGet("Asylum") <= -1) && (ReputationGet("Asylum") >= -49)) InventoryWear(Player, "TapedVibeEggs", "ItemNipples");
+	if ((ReputationGet("Asylum") <= -50) && (ReputationGet("Asylum") >= -99)) InventoryWear(Player, "NippleSuctionCups", "ItemNipples");
+	if ((ReputationGet("Asylum") <= -100) && (ReputationGet("Asylum") >= -100)) InventoryWear(Player, "NippleClamp", "ItemNipples");
 }

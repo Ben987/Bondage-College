@@ -496,7 +496,7 @@ var AssetFemale3DCG = [
 			{ Name: "MermaidRopeTie", Value: 30, Time: 15, Difficulty: 3, SetPose: ["LegsClosed"] },
 			{ Name: "LeatherAnkleCuffs", Value: 30, Time: 10, Difficulty: 2, Effect: [], Priority: 20, AllowPose: ["LegsClosed"], Extended: true, AllowLock: true, AllowEffect: ["Freeze", "Prone"] },
 			{ Name: "SpreaderMetal", Value: 50, Time: 10, Difficulty: 3, Priority: 39, AllowLock: true, Effect: [ "Freeze", "Prone"], SetPose: ["LegsOpen"], Block: ["ItemLegs"],  Prerequisite: "LegsOpen", RemoveAtLogin: true },
-			{ Name: "BallChain", Value: 40, Time: 10, Difficulty: 5, Effect: [], RemoveTime: 10, AllowLock: true, AllowPose: ["LegsOpen", "LegsClosed"] },
+			{ Name: "BallChain", Value: 40, Time: 10, Difficulty: 5, Effect: [], RemoveTime: 10, Random: false, AllowLock: true, AllowPose: ["LegsOpen", "LegsClosed"] },
 			AssetSpankingToys
 		]
 	},
@@ -963,7 +963,14 @@ var AssetFemale3DCG = [
 					{ Name: "Tongue", AllowColorize: false }
 				]
 			},
-			{Name: "HarnessBallGag1", Effect: ["GagHeavy"], Difficulty: 4, Value: 85, Time: 20, AllowLock: true}
+			{ 
+				Name: "BambooGag", DefaultColor: "#A07858", Difficulty: 6, Value: 30, Time: 10,
+				Layer: [
+					{ Name: "Rod", AllowColorize: false },
+					{ Name: "Rope", AllowColorize: true }
+				]
+			},
+      {Name: "HarnessBallGag1", Effect: ["GagHeavy"], Difficulty: 4, Value: 85, Time: 20, AllowLock: true}
 		]
 	},
 
