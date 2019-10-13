@@ -962,7 +962,8 @@ var AssetFemale3DCG = [
 					{ Name: "Chopsticks", AllowColorize: true },
 					{ Name: "Tongue", AllowColorize: false }
 				]
-			}
+			},
+			{Name: "HarnessBallGag1", Effect: ["GagHeavy"], Difficulty: 4, Value: 85, Time: 20, AllowLock: true}
 		]
 	},
 
