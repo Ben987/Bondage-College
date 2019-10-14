@@ -174,10 +174,11 @@ function InventoryRemove(C, AssetGroup) {
 }
 
 // Returns TRUE if the currently worn item is blocked by another item (hoods blocks gags, belts blocks eggs, etc.)
-function InventoryGroupIsBlocked(C) {
+function InventoryGroupIsBlocked(C, AssetGroup) {
+	if (AssetGroup == null) AssetGroup = C.FocusGroup.Name;
 	for (var E = 0; E < C.Appearance.length; E++) {
-		if (!(C.Appearance[E].Asset.Group.Clothing) && (C.Appearance[E].Asset.Block != null) && (C.Appearance[E].Asset.Block.includes(C.FocusGroup.Name))) return true;
-		if (!(C.Appearance[E].Asset.Group.Clothing) && (C.Appearance[E].Property != null) && (C.Appearance[E].Property.Block != null) && (C.Appearance[E].Property.Block.indexOf(C.FocusGroup.Name) >= 0)) return true;
+		if (!(C.Appearance[E].Asset.Group.Clothing) && (C.Appearance[E].Asset.Block != null) && (C.Appearance[E].Asset.Block.includes(AssetGroup))) return true;
+		if (!(C.Appearance[E].Asset.Group.Clothing) && (C.Appearance[E].Property != null) && (C.Appearance[E].Property.Block != null) && (C.Appearance[E].Property.Block.indexOf(AssetGroup) >= 0)) return true;
 	}
 	return false;
 }

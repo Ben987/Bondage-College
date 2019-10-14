@@ -463,7 +463,7 @@ function SarahSophiePunishGirls() {
 	// Sets the correct stage & dialog
 	if ((SophiePunishmentStage % 2 == 0) && !SarahInside && !AmandaInside) SophiePunishmentStage++;
 
-	if (((SophiePunishmentStage == 7) || (SophiePunishmentStage == 5)) && InventoryIsWorn(Player, "ItemPelvis", "LoveChastityBelt") && Player.IsOwned() && (Player.Owner != "NPC-Sophie")) {
+	if (((SophiePunishmentStage == 7) || ((SophiePunishmentStage == 5 && InventoryGroupIsBlocked(Player, "ItemVulva")))) && InventoryIsWorn(Player, "ItemPelvis", "LoveChastityBelt") && Player.IsOwned() && (Player.Owner != "NPC-Sophie")) {
 		SophiePunishmentStage++;
 		if (!SarahInside && !AmandaInside) SophiePunishmentStage++;
 		if (SophiePunishmentStage == 7) SophiePunishmentStage = 9;
@@ -541,9 +541,9 @@ function SarahSophiePreparePunishCharacter(C) {
 	CharacterRelease(C);
 	if (!InventoryIsWorn(C, "ItemPelvis", "LoveChastityBelt") || (!C.IsOwned() || C.Owner == "NPC-Sophie")) InventoryRemove(C, "ItemPelvis");
 	InventoryRemove(C, "ItemBreast");
-	InventoryRemove(C, "ItemNipples");
-	if (!InventoryIsWorn(C, "ItemPelvis", "LoveChastityBelt") || (!C.IsOwned() || C.Owner == "NPC-Sophie")) InventoryRemove(C, "ItemVulva");
-	InventoryRemove(C, "ItemButt");
+	if (!InventoryGroupIsBlocked(Player, "ItemNipples")) InventoryRemove(C, "ItemNipples");
+	if (!InventoryGroupIsBlocked(Player, "ItemVulva")) InventoryRemove(C, "ItemVulva");
+	if (!InventoryGroupIsBlocked(Player, "ItemButt")) InventoryRemove(C, "ItemButt");
 	InventoryWear(C, "LeatherCuffs", "ItemArms");
 	InventoryWear(C, "LeatherBelt", "ItemFeet");
 	InventoryWear(C, "LeatherBelt", "ItemLegs");
@@ -623,9 +623,9 @@ function SarahSophieReleaseEveryoneButSarah() {
 	CharacterRelease(Player);
 	if (!InventoryIsWorn(Player, "ItemPelvis", "LoveChastityBelt") || (!Player.IsOwned() || Player.Owner == "NPC-Sophie")) InventoryRemove(Player, "ItemPelvis");
 	InventoryRemove(Player, "ItemBreast");
-	InventoryRemove(Player, "ItemNipples");
-	if (!InventoryIsWorn(Player, "ItemPelvis", "LoveChastityBelt") || (!Player.IsOwned() || Player.Owner == "NPC-Sophie")) InventoryRemove(Player, "ItemVulva");
-	InventoryRemove(Player, "ItemButt");
+	if (!InventoryGroupIsBlocked(Player, "ItemNipples")) InventoryRemove(Player, "ItemNipples");
+	if (!InventoryGroupIsBlocked(Player, "ItemVulva")) InventoryRemove(Player, "ItemVulva");
+	if (!InventoryGroupIsBlocked(Player, "ItemButt")) InventoryRemove(Player, "ItemButt");
 	if (SarahAmandaIsInside()) {
 		CharacterRelease(Amanda);
 		InventoryRemove(Amanda, "ItemPelvis");
