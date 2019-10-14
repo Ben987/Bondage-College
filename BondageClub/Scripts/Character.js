@@ -241,51 +241,16 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 		Char.Owner = (data.Owner != null) ? data.Owner : "";
 		Char.Title = data.Title;
 		Char.AccountName = "Online-" + data.ID.toString();
-		Char.MemberNumber = data.MemberNumber;	
+		Char.MemberNumber = data.MemberNumber;
 		var BackupCurrentScreen = CurrentScreen;
 		CurrentScreen = "ChatRoom";
 		CharacterLoadCSVDialog(Char, "Screens/Online/ChatRoom/Dialog_Online");
-		CharacterOnlineRefresh(Char, data, SourceMemberNumber);
 		CurrentScreen = BackupCurrentScreen;
 
-	} else {
-
-		// If we must add a character, we refresh it
-		var Refresh = true;
-		if (ChatRoomData.Character != null)
-			for (var C = 0; C < ChatRoomData.Character.length; C++)
-				if (ChatRoomData.Character[C].ID.toString() == data.ID.toString()) {
-					Refresh = false;
-					break;
-				}
-
-		// Flags "refresh" if we need to redraw the character
-		if (!Refresh)
-			if ((Char.ActivePose != data.ActivePose) || (Char.Title != data.Title) || (Char.LabelColor != data.LabelColor) || (ChatRoomData == null) || (ChatRoomData.Character == null))
-				Refresh = true;
-			else
-				for (var C = 0; C < ChatRoomData.Character.length; C++)
-					if (ChatRoomData.Character[C].ID == data.ID)
-						if (ChatRoomData.Character[C].Appearance.length != data.Appearance.length)
-							Refresh = true;
-						else
-							for (var A = 0; A < data.Appearance.length && !Refresh; A++) {
-								var Old = ChatRoomData.Character[C].Appearance[A];
-								var New = data.Appearance[A];
-								if ((New.Name != Old.Name) || (New.Group != Old.Group) || (New.Color != Old.Color)) Refresh = true;
-								else if ((New.Property != null) && (Old.Property != null) && (JSON.stringify(New.Property) != JSON.stringify(Old.Property))) Refresh = true;
-								else if (((New.Property != null) && (Old.Property == null)) || ((New.Property == null) && (Old.Property != null))) Refresh = true;
-							}
-
-		// Flags "refresh" if the ownership or inventory or blockitems has changed
-		if (!Refresh && (JSON.stringify(Char.Ownership) !== JSON.stringify(data.Ownership))) Refresh = true;
-		if (!Refresh && (data.Inventory != null) && (Char.Inventory.length != data.Inventory.length)) Refresh = true;
-		if (!Refresh && (data.BlockItems != null) && (Char.BlockItems.length != data.BlockItems.length)) Refresh = true;
-
-		// If we must refresh
-		if (Refresh) CharacterOnlineRefresh(Char, data, SourceMemberNumber);
-
 	}
+
+	// Refresh the character
+	CharacterOnlineRefresh(Char, data, SourceMemberNumber);
 
 	// Returns the character
 	return Char;

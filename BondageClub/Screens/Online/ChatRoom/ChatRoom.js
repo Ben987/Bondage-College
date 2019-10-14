@@ -413,20 +413,36 @@ function ChatRoomMessage(data) {
 
 // Gets the new room data from the server
 function ChatRoomSync(data) {
-	if ((data != null) && (typeof data === "object") && (data.Name != null)) {
+	if ((data != null) && (typeof data === "object") && (data.Name != null) && Array.isArray(data.Character) && Array.isArray(data.TargetMemberNumbers)) {
 
 		// Load the room
 		if ((CurrentScreen != "ChatRoom") && (CurrentScreen != "Appearance") && (CurrentModule != "Character")) {
 			if (ChatRoomPlayerCanJoin) {
 				ChatRoomPlayerCanJoin = false;
+				ChatRoomCharacter = data.Character.map(C => CharacterLoadOnline(C, data.SourceMemberNumber));
 				CommonSetScreen("Online", "ChatRoom");
-			} else return;
-		}
+			} 
+		} else {
+			// Someone left the room, no character need to be updated 
+			if (data.TargetMemberNumbers.length == 0) {
+				ChatRoomCharacter = ChatRoomCharacter.filter(C => C.MemberNumber != data.SourceMemberNumber);
+			}
 
-		// Load the characters
-		ChatRoomCharacter = [];
-		for (var C = 0; C < data.Character.length; C++)
-			ChatRoomCharacter.push(CharacterLoadOnline(data.Character[C], data.SourceMemberNumber));
+			// One character changed
+			else if (data.TargetMemberNumbers.length == 1) {
+				var Target = data.Character.find(C => C.MemberNumber == data.TargetMemberNumbers[0]);
+				if (Target) ChatRoomCharacter.forEach(C => (C.MemberNumber == data.TargetMemberNumbers[0]) ? CharacterLoadOnline(Target, data.SourceMemberNumber) : C);
+			}
+
+			// Swap two character position
+			else if (data.TargetMemberNumbers.length == 2) {
+				var I = ChatRoomCharacter.findIndex(C => C.MemberNumber == data.TargetMemberNumbers[0]);
+				var J = ChatRoomCharacter.findIndex(C => C.MemberNumber == data.TargetMemberNumbers[1]);
+				if (I >= 0 && J >= 0) {
+					[ChatRoomCharacter[I], ChatRoomCharacter[J]] = [ChatRoomCharacter[J], ChatRoomCharacter[I]];
+				}
+			}
+		}
 
 		// Keeps a copy of the previous version
 		ChatRoomData = data;
