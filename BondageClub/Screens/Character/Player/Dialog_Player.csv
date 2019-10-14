@@ -350,6 +350,7 @@ SpankingToysTypeCane,,,Cane
 SpankingToysTypeHeartCrop,,,Heart Crop
 SpankingToysTypePaddle,,,Paddle
 SpankingToysTypeWhipPaddle,,,Whip Paddle
+SpankingToysTypeWhip,,,Whip
 SpankingToysSetPlayer,,,SourceCharacter takes out a Item
 SpankingToysSetOthers,,,SourceCharacter give DestinationCharacter a Item
 TurnOff,,,TurnOff
@@ -447,7 +448,11 @@ TeddyBearTypeBear,,,Bear
 TeddyBearTypeFox,,,Fox
 TeddyBearTypeKitty,,,Kitty
 TeddyBearTypePup,,,Puppy
+TeddyBearTypeBunny,,,Bunny
+TeddyBearTypePony,,,Pony
 TeddyBearSetBear,,,SourceCharacter gives DestinationCharacter's a cute teddy bear.
 TeddyBearSetFox,,,SourceCharacter gives DestinationCharacter's a cute foxy teddy.
 TeddyBearSetKitty,,,SourceCharacter gives DestinationCharacter's a cute kitty teddy.
 TeddyBearSetPup,,,SourceCharacter gives DestinationCharacter's a cute puppy teddy.
+TeddyBearSetBunny,,,SourceCharacter gives DestinationCharacter's a cute Bunny teddy.
+TeddyBearSetPony,,,SourceCharacter gives DestinationCharacter's a cute Pony teddy.

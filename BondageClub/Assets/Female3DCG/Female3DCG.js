@@ -811,7 +811,7 @@ var AssetFemale3DCG = [
 			{ Name: "PolishedMittens", SelfBondage: false, Value: 100, AllowPose: ["BackBoxTie", "BackElbowTouch", "BackCuffs"], Effect: ["Block", "Prone"], Time: 20, RemoveTime: 10, Difficulty: 8, AllowLock: true  },
 			{ Name: "DuctTape", SelfBondage: false, Value: 50, SetPose: ["TapedHands"], AllowPose: ["BackBoxTie", "BackElbowTouch", "BackCuffs"], Hide: ["Gloves"], Effect: ["Block", "Prone"], Time: 20, RemoveTime: 10, Difficulty: 5, BuyGroup: "DuctTape" },
 			{
-				Name: "SpankingToys", Wear: true,  IsRestraint: false, Extended: true, Random: false, BuyGroup: "SpankingToys", AllowType: ["Crop", "Flogger", "Cane", "HeartCrop", "Paddle", "WhipPaddle"], IgnoreParentGroup: true, AllowPose: ["BackBoxTie", "BackElbowTouch", "BackCuffs"],
+				Name: "SpankingToys", Wear: true,  IsRestraint: false, Extended: true, Random: false, BuyGroup: "SpankingToys", AllowType: ["Crop", "Flogger", "Cane", "HeartCrop", "Paddle", "WhipPaddle", "Whip"], IgnoreParentGroup: true, AllowPose: ["BackBoxTie", "BackElbowTouch", "BackCuffs"],
 				DynamicDescription: () => { return ((InventoryIsWorn(CurrentCharacter, "ItemHands", "SpankingToys")) && (InventoryGet(CurrentCharacter, "ItemHands").Property != null)) ? InventoryGet(CurrentCharacter, "ItemHands").Property.Type : "Spanking Toy" },
 				DynamicPreviewIcon: () => { return ((InventoryIsWorn(CurrentCharacter, "ItemHands", "SpankingToys")) && (InventoryGet(CurrentCharacter, "ItemHands").Property != null)) ? InventoryGet(CurrentCharacter, "ItemHands").Property.Type : "Paddle" }
 			}, {
@@ -831,6 +831,9 @@ var AssetFemale3DCG = [
 				DynamicAllowInventoryAdd: () => { return false }
 			}, {
 				Name: "SpankingToysWhipPaddle", Value: 150, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
+				DynamicAllowInventoryAdd: () => { return false }
+			}, {
+				Name: "SpankingToysWhip", Value: 150, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				DynamicAllowInventoryAdd: () => { return false }
 			}
 		]
@@ -988,7 +991,7 @@ var AssetFemale3DCG = [
 			{ Name: "ClothBlindfold", DefaultColor: "#A0A0A0", Effect: ["BlindLight", "Prone"], Hide: ["Glasses"], Value: 20, Time: 5 },
 			{ Name: "LeatherBlindfold", DefaultColor: "#404040", Effect: ["BlindNormal", "Prone"], Hide: ["Glasses"], Value: 40, Time: 5, AllowLock: true },
 			{ Name: "LeatherHood", DefaultColor: "#404040", Effect: ["BlindHeavy", "DeafLight", "Prone", "GagNormal"], Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth", "Eyes"], Block: ["ItemMouth", "ItemEars", "ItemNeck"], Difficulty: 50, Value: 90, Time: 15, AllowLock: true },
-			{ Name: "LeatherHoodOpenEyes", DefaultColor: "#404040", Effect: ["GagLight"], Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth"], Block: ["ItemMouth", "ItemEars", "ItemNeck"], Difficulty: 50, Value: 60, Time: 15, AllowLock: true },
+			{ Name: "LeatherHoodOpenEyes", Priority: 29, DefaultColor: "#404040", Effect: ["GagLight"], Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth"], Block: ["ItemMouth", "ItemEars", "ItemNeck"], Difficulty: 50, Value: 60, Time: 15, AllowLock: true },
 			{ Name: "StuddedBlindfold", DefaultColor: "#FF4040", Effect: ["BlindNormal", "Prone"], Hide: ["Glasses"], Difficulty: 2, Value: -1, Time: 5, AllowLock: true },
 			{ Name: "KittyBlindfold", DefaultColor: "#A0A0A0", Effect: ["BlindLight", "Prone"], Hide: ["Glasses"], Value: 25, Time: 5, AllowLock: true },
 			{ Name: "DuctTape", Extended: true, AllowEffect: ["BlindNormal", "Prone", "GagNormal"], AllowBlock: ["ItemMouth", "ItemEars"], Hide: ["Glasses"], Value: 50, Time: 10, RemoveTime: 5, BuyGroup: "DuctTape", AllowType: ["Double", "Wrap", "Mummy"] },
@@ -1060,7 +1063,7 @@ var AssetFemale3DCG = [
 			{ Name: "Cage", RemoveAtLogin: true,  Alpha: [[1, 80, 105, 900], [410, 80, 105, 900]], Block: ["ItemArms", "ItemBreast", "ItemButt", "ItemEars", "ItemFeet", "ItemHands", "ItemHead", "ItemLegs", "ItemMisc", "ItemMouth", "ItemNeck", "ItemNeckAccessories", "ItemNipples", "ItemPelvis", "ItemTorso", "ItemVulva"], Effect: ["Block", "Prone", "Enclose", "Freeze"], Value: 350, Time: 15, RemoveTime: 10, Difficulty: 7, AllowLock: true, Prerequisite: "NotKneeling" },
 			{ Name: "LowCage", RemoveAtLogin: true, Alpha: [[1, 80, 75, 900], [400, 80, 95, 900]], Block: ["ItemArms", "ItemBreast", "ItemButt", "ItemEars", "ItemFeet", "ItemHands", "ItemHead", "ItemLegs", "ItemMisc", "ItemMouth", "ItemNeck", "ItemNeckAccessories", "ItemNipples", "ItemPelvis", "ItemTorso", "ItemVulva"], SetPose: ["Kneel"], Effect: ["ForceKneel", "Block", "Prone", "Enclose", "Freeze"], Value: 250, Time: 15, RemoveTime: 10, Difficulty: 7, AllowLock: true, Prerequisite: "NotSuspendedOrHorsed" },
 			{ Name: "SaddleStand", OverrideHeight: 30, Value: 150, Time: 10, Difficulty: 5, AllowLock: false, SetPose: ["LegsOpen"], Prerequisite: "LegsOpen1", RemoveAtLogin: true, Block: ["ItemPelvis", "ItemLegs"], Effect: ["Prone", "Freeze"] },
-			{ Name: "TeddyBear", Priority: 27, IsRestraint: false, Extended: true, Difficulty: -4, Value: 100, Time: 5, Effect: [], AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Bolero", "Horse", "StraitDressOpen"], AllowType: ["Bear", "Fox", "Kitty", "Pup"] },
+			{ Name: "TeddyBear", Priority: 27, IsRestraint: false, Extended: true, Difficulty: -4, Value: 100, Time: 5, Effect: [], AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Bolero", "Horse", "StraitDressOpen"], AllowType: ["Bear", "Fox", "Kitty", "Pup", "Bunny", "Pony"] },
 		]
 	},
 
