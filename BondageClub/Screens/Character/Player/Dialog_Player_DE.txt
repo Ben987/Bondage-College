@@ -17,8 +17,8 @@ Must be collared and not suspended first.
 Muss ein Halsband tragen und auf festem Boden sein.
 Must be collared and not suspended/mounted first.
 Muss ein Halsband tragen und darf nicht hängen/reiten.
-Can't have Items locked to your feet.
-Es darf nichts an den Füßen befestigt sein.
+Legs cannot open.
+Die Beine lassen sich nicht spreizen.
 Cancel
 Abbrechen
 Back to character
@@ -39,6 +39,10 @@ Inspect the lock
 Das Schloss untersuchen
 Use your remote
 Fernbedienung verwenden
+Exit Permission Mode
+Berechtigungsmodus verlassen
+Edit Item Permissions
+Item-Berechtigungen bearbeiten
 Use the Butt Plug's pump
 Analpumpe benutzen
 Color of next item
@@ -89,16 +93,26 @@ Pump gag level: Bloated
 Pumpknebel: Aufgebläht
 Pump gag level: Full mouth
 Pumpknebel: Mund ausfüllend
-Pump plug level: Empty
-Analpumpe: Leer
-Pump plug level: Light
-Analpumpe: Leicht gefüllt
-Pump plug level: Inflated
-Analpumpe: Aufgeblasen
-Pump plug level: Bloated
-Analpumpe: Aufgebläht
-Pump plug level: Max
-Analpumpe: Maximal
+Inflation level: Empty
+Aufblasstufe: Leer
+Inflation level: Light
+Aufblasstufe: Leicht gefüllt
+Inflation level: Inflated
+Aufblasstufe: Aufgeblasen
+Inflation level: Bloated
+Aufblasstufe: Aufgebläht
+Inflation level: Max
+Aufblasstufe: Maximal
+Suction Cup level: Loose
+Saugstärke: Locker
+Suction Cup level: Light
+Saugstärke: Leicht
+Suction Cup level: Medium
+Saugstärke: Mittel
+Suction Cup level: Heavy
+Saugstärke: Stark
+Suction Cup level: Max
+Saugstärke: Maximal
 Deflate it
 Luft ablassen
 Pump it
@@ -385,6 +399,38 @@ DestinationCharacter's vibrating dildo starts buzzing strongly!
 DestinationCharacters Vibrator-Dildo fängt an, stark zu vibrieren!
 DestinationCharacter's vibrating dildo jumps up to maximum intensity!
 DestinationCharacters Vibrator-Dildo springt auf die maximale Stufe!
+DestinationCharacter's inflatable vibrating dildo stops vibrating.
+DestinationCharacters aufblasbarer Vibrator-Dildo hört auf zu vibrieren.
+DestinationCharacter's inflatable vibrating dildo slows down into a light tease.
+DestinationCharacters aufblasbarer Vibrator-Dildo fällt auf ein leichtes Surren herab.
+DestinationCharacter's inflatable vibrating dildo returns to a moderate pace.
+DestinationCharacters aufblasbarer Vibrator-Dildo fällt auf eine moderate Stärke herab.
+DestinationCharacter's inflatable vibrating dildo slows down a tiny bit.
+DestinationCharacters aufblasbarer Vibrator-Dildo lässt ein kleines bisschen nach.
+DestinationCharacter's inflatable vibrating dildo starts teasing her lightly.
+DestinationCharacters aufblasbarer Vibrator-Dildo fängt an, sie sanft zu erregen.
+DestinationCharacter's inflatable vibrating dildo builds up to a moderate pace.
+DestinationCharacters aufblasbarer Vibrator-Dildo nimmt etwas Fahrt auf.
+DestinationCharacter's inflatable vibrating dildo starts buzzing strongly!
+DestinationCharacters aufblasbarer Vibrator-Dildo fängt an, stark zu vibrieren!
+DestinationCharacter's inflatable vibrating dildo jumps up to maximum intensity!
+DestinationCharacters aufblasbarer Vibrator-Dildo springt auf die maximale Stufe!
+SourceCharacter deflates DestinationCharacter's inflatable vibrating dildo till it's regular sized.
+SourceCharacter lässt Luft aus DestinationCharacters aufblasbarem Vibrator-Dildo ab, bis er seine normale Größe erreicht hat.
+SourceCharacter deflates DestinationCharacter's inflatable vibrating dildo till only slighty bulging.
+SourceCharacter lässt Luft aus DestinationCharacters aufblasbarem Vibrator-Dildo ab, bis er nur noch leicht angeschwollen ist.
+SourceCharacter deflates DestinationCharacter's inflatable vibrating dildo till it's moderately bulging.
+SourceCharacter lässt Luft aus DestinationCharacters aufblasbarem Vibrator-Dildo ab, bis er einigermaßen angeschwollen ist.
+SourceCharacter deflates DestinationCharacter's inflatable vibrating dildo only a tiny bit.
+SourceCharacter lässt ein kleines bisschen Luft aus DestinationCharacters aufblasbarem Vibrator-Dildo ab.
+SourceCharacter inflates DestinationCharacter's inflatable vibrating dildo only slightly.
+SourceCharacter bläst DestinationCharacters aufblasbarem Vibrator-Dildo ein kleines bisschen auf.
+SourceCharacter inflates DestinationCharacter's inflatable vibrating dildo till it's moderately bulging.
+SourceCharacter bläst DestinationCharacters aufblasbarem Vibrator-Dildo auf, bis er ein wenig angeschwollen ist.
+SourceCharacter inflates DestinationCharacter's inflatable vibrating dildo till it's heavily bulging.
+SourceCharacter bläst DestinationCharacters aufblasbarem Vibrator-Dildo auf, bis er stark angeschwollen ist.
+SourceCharacter inflates DestinationCharacter's inflatable vibrating dildo to it's maximum size.
+SourceCharacter bläst DestinationCharacters aufblasbarem Vibrator-Dildo bis zu seiner Maximalgröße auf.
 DestinationCharacter's vibrating nipple clamps stop vibrating.
 Die Vibrator-Nippelklemmen von DestinationCharacter hören auf zu vibrieren.
 DestinationCharacter's vibrating nipple clamps slow down into a light tease.
@@ -401,6 +447,54 @@ DestinationCharacter's vibrating nipple clamps start buzzing strongly!
 Die Vibrator-Nippelklemmen von DestinationCharacter fangen an, stark zu vibrieren!
 DestinationCharacter's vibrating nipple clamps jump up to maximum intensity!
 Die Vibrator-Nippelklemmen von DestinationCharacter springen auf die maximale Stufe!
+DestinationCharacter's vibrating eggs on her nipples stop vibrating.
+DestinationCharacters Nippel-Vibratoren hören auf zu vibrieren.
+DestinationCharacter's vibrating eggs on her nipples slow down into a light tease.
+DestinationCharacters Nippel-Vibratoren fallen auf ein leichtes Surren herab.
+DestinationCharacter's vibrating eggs on her nipples return to a moderate pace.
+DestinationCharacters Nippel-Vibratoren fallen auf eine moderate Stärke herab.
+DestinationCharacter's vibrating eggs on her nipples slow down a tiny bit.
+DestinationCharacters Nippel-Vibratoren lassen ein kleines bisschen nach.
+DestinationCharacter's vibrating eggs on her nipples start teasing her lightly.
+DestinationCharacters Nippel-Vibratoren fangen an, sie sanft zu erregen.
+DestinationCharacter's vibrating eggs on her nipples build up to a moderate pace.
+DestinationCharacters Nippel-Vibratoren nehmen etwas Fahrt auf.
+DestinationCharacter's vibrating eggs on her nipples start buzzing strongly!
+DestinationCharacters Nippel-Vibratoren fangen an, stark zu vibrieren!
+DestinationCharacter's vibrating eggs on her nipples jump up to maximum intensity!
+DestinationCharacters Nippel-Vibratoren springen auf die maximale Stufe!
+SourceCharacter loosens DestinationCharacter's nipple suction cups until they hang loosely.
+SourceCharacter lockert DestinationCharacters Nippel-Saugnäpfe, bis sie lose herabhängen.
+SourceCharacter loosens DestinationCharacter's nipple suction cups to a light amount of suction.
+SourceCharacter lockert DestinationCharacters Nippel-Saugnäpfe, bis sie nur noch leicht saugen.
+SourceCharacter loosens DestinationCharacter's nipple suction cups to a moderate amount of suction.
+SourceCharacter lockert DestinationCharacters Nippel-Saugnäpfe, bis sie mittelstark saugen.
+SourceCharacter loosens DestinationCharacter's nipple suction cups a bit to a heavy amount of suction.
+SourceCharacter lockert DestinationCharacters Nippel-Saugnäpfe ein wenig.
+SourceCharacter tweaks DestinationCharacter's nipple suction cups sucking in her nipples lightly.
+SourceCharacter justiert DestinationCharacters Nippel-Saugnäpfe, sodass sie leicht an ihren Nippeln saugen.
+SourceCharacter tweaks DestinationCharacter's nipple suction cups sucking in her nipples firmly.
+SourceCharacter justiert DestinationCharacters Nippel-Saugnäpfe, sodass sie ordentlich an ihren Nippeln saugen.
+SourceCharacter tweaks DestinationCharacter's nipple suction cups sucking in her nipples heavily.
+SourceCharacter justiert DestinationCharacters Nippel-Saugnäpfe, sodass sie kräftig an ihren Nippeln saugen.
+SourceCharacter tweaks DestinationCharacter's nipple suction cups sucking in her nipples entirely.
+SourceCharacter justiert DestinationCharacters Nippel-Saugnäpfe, sodass sie vollständig an ihren Nippeln saugen.
+SourceCharacter loosens DestinationCharacter's clit suction cup until it hangs loosely.
+SourceCharacter lockert DestinationCharacters Klitoris-Saugnapf, bis er lose herabhängt.
+SourceCharacter loosens DestinationCharacter's clit suction cup to a light amount of suction.
+SourceCharacter lockert DestinationCharacters Klitoris-Saugnapf, bis er nur noch leicht saugt.
+SourceCharacter loosens DestinationCharacter's clit suction cup to a moderate amount of suction.
+SourceCharacter lockert DestinationCharacters Klitoris-Saugnapf, bis er mittelstark saugt.
+SourceCharacter loosens DestinationCharacter's clit suction cup a bit to a heavy amount of suction.
+SourceCharacter lockert DestinationCharacters Klitoris-Saugnapf, ein wenig.
+SourceCharacter tweaks DestinationCharacter's clit suction cup sucking in her clit lightly.
+SourceCharacter justiert DestinationCharacters Klitoris-Saugnapf, sodass er leicht an ihrer Klitoris saugt.
+SourceCharacter tweaks DestinationCharacter's clit suction cup sucking in her clit firmly.
+SourceCharacter justiert DestinationCharacters Klitoris-Saugnapf, sodass er ordentlich an ihrer Klitoris saugt.
+SourceCharacter tweaks DestinationCharacter's clit suction cup sucking in her clit heavily.
+SourceCharacter justiert DestinationCharacters Klitoris-Saugnapf, sodass er kräftig an ihrer Klitoris saugt.
+SourceCharacter tweaks DestinationCharacter's clit suction cup sucking in her clit entirely.
+SourceCharacter justiert DestinationCharacters Klitoris-Saugnapf, sodass er vollständig an ihrer Klitoris saugt.
 DestinationCharacter's vibrating latex panties stops vibrating.
 DestinationCharacters vibrierendes Latexhöschen hört auf zu vibrieren.
 DestinationCharacter's vibrating latex panties slows down into a light tease.
@@ -449,22 +543,6 @@ SourceCharacter inflates DestinationCharacter's butt pump three quarters filled.
 SourceCharacter bläst DestinationCharacters Analpumpe zu drei Vierteln auf.
 SourceCharacter inflates DestinationCharacter's butt pump to the maximum amount.
 SourceCharacter bläst DestinationCharacters Analpumpe vollständig auf.
-SourceCharacter deflates DestinationCharacter's gag fully till it's empty.
-SourceCharacter lässt Luft aus DestinationCharacters Knebel, bis er leer ist.
-SourceCharacter deflates DestinationCharacter's gag till only slighty filled.
-SourceCharacter lässt Luft aus DestinationCharacters Knebel, bis er nur noch leicht gefüllt ist.
-SourceCharacter deflates DestinationCharacter's gag till it's half full.
-SourceCharacter lässt Luft aus DestinationCharacters Knebel, bis er halb gefüllt ist.
-SourceCharacter deflates DestinationCharacter's gag only a tiny bit.
-SourceCharacter lässt ein kleines bisschen Luft aus DestinationCharacters Knebel.
-SourceCharacter inflates DestinationCharacter's gag only slightly.
-SourceCharacter bläst DestinationCharacters Knebel ein kleines bisschen auf.
-SourceCharacter inflates DestinationCharacter's gag till half full.
-SourceCharacter bläst DestinationCharacters Knebel zur Hälfte auf.
-SourceCharacter inflates DestinationCharacter's gag three quarters filled.
-SourceCharacter bläst DestinationCharacters Knebel zu drei Vierteln auf.
-SourceCharacter inflates DestinationCharacter's gag to the maximum amount.
-SourceCharacter bläst DestinationCharacters Knebel vollständig auf.
 DestinationCharacter's vibrating buttplug stops vibrating.
 DestinationCharacters Vibrator-Analstöpsel hört auf zu vibrieren.
 DestinationCharacter's vibrating buttplug slows down into a light tease.
@@ -481,6 +559,54 @@ DestinationCharacter's vibrating buttplug starts buzzing strongly!
 DestinationCharacters Vibrator-Analstöpsel fängt an, stark zu vibrieren!
 DestinationCharacter's vibrating buttplug jumps up to maximum intensity!
 DestinationCharacters Vibrator-Analstöpsel springt auf die maximale Stufe!
+DestinationCharacter's inflatable vibrating butt plug stops vibrating.
+DestinationCharacter's aufblasbarer Vibrator-Analstöpsel hört auf zu vibrieren.
+DestinationCharacter's inflatable vibrating butt plug slows down into a light tease.
+DestinationCharacter's aufblasbarer Vibrator-Analstöpsel fällt auf ein leichtes Surren herab.
+DestinationCharacter's inflatable vibrating butt plug returns to a moderate pace.
+DestinationCharacter's aufblasbarer Vibrator-Analstöpsel fällt auf eine moderate Stärke herab.
+DestinationCharacter's inflatable vibrating butt plug slows down a tiny bit.
+DestinationCharacter's aufblasbarer Vibrator-Analstöpsel lässt ein kleines bisschen nach.
+DestinationCharacter's inflatable vibrating butt plug starts teasing her lightly.
+DestinationCharacter's aufblasbarer Vibrator-Analstöpsel fängt an, sie sanft zu erregen.
+DestinationCharacter's inflatable vibrating butt plug builds up to a moderate pace.
+DestinationCharacter's aufblasbarer Vibrator-Analstöpsel nimmt etwas Fahrt auf.
+DestinationCharacter's inflatable vibrating butt plug starts buzzing strongly!
+DestinationCharacter's aufblasbarer Vibrator-Analstöpsel fängt an, stark zu vibrieren!
+DestinationCharacter's inflatable vibrating butt plug jumps up to maximum intensity!
+DestinationCharacter's aufblasbarer Vibrator-Analstöpsel springt auf die maximale Stufe!
+SourceCharacter deflates DestinationCharacter's inflatable vibrating butt plug till it's empty.
+SourceCharacter lässt Luft aus DestinationCharacters aufblasbarem Vibrator-Analstöpsel, bis er leer ist.
+SourceCharacter deflates DestinationCharacter's inflatable vibrating butt plug till only slightly filled.
+SourceCharacter lässt Luft aus DestinationCharacters aufblasbarem Vibrator-Analstöpsel, bis er nur noch leicht gefüllt ist.
+SourceCharacter deflates DestinationCharacter's inflatable vibrating butt plug till it's half full.
+SourceCharacter lässt Luft aus DestinationCharacters aufblasbarem Vibrator-Analstöpsel, bis er halb gefüllt ist.
+SourceCharacter deflates DestinationCharacter's inflatable vibrating butt plug only a tiny bit.
+SourceCharacter lässt ein kleines bisschen Luft aus DestinationCharacters aufblasbarem Vibrator-Analstöpsel.
+SourceCharacter inflates DestinationCharacter's inflatable vibrating butt plug only slightly.
+SourceCharacter bläst DestinationCharacters aufblasbaren Vibrator-Analstöpsel ein kleines bisschen auf.
+SourceCharacter inflates DestinationCharacter's inflatable vibrating butt plug till it's half full.
+SourceCharacter bläst DestinationCharacters aufblasbaren Vibrator-Analstöpsel zur Hälfte auf.
+SourceCharacter inflates DestinationCharacter's inflatable vibrating butt plug till three quarters filled.
+SourceCharacter bläst DestinationCharacters aufblasbaren Vibrator-Analstöpsel zu drei Vierteln auf.
+SourceCharacter inflates DestinationCharacter's inflatable vibrating butt plug to it's maximum amount.
+SourceCharacter bläst DestinationCharacters aufblasbaren Vibrator-Analstöpsel vollständig auf.
+SourceCharacter deflates DestinationCharacter's gag fully till it's empty.
+SourceCharacter lässt Luft aus DestinationCharacters Knebel, bis er leer ist.
+SourceCharacter deflates DestinationCharacter's gag till only slighty filled.
+SourceCharacter lässt Luft aus DestinationCharacters Knebel, bis er nur noch leicht gefüllt ist.
+SourceCharacter deflates DestinationCharacter's gag till it's half full.
+SourceCharacter lässt Luft aus DestinationCharacters Knebel, bis er halb gefüllt ist.
+SourceCharacter deflates DestinationCharacter's gag only a tiny bit.
+SourceCharacter lässt ein kleines bisschen Luft aus DestinationCharacters Knebel.
+SourceCharacter inflates DestinationCharacter's gag only slightly.
+SourceCharacter bläst DestinationCharacters Knebel ein kleines bisschen auf.
+SourceCharacter inflates DestinationCharacter's gag till half full.
+SourceCharacter bläst DestinationCharacters Knebel zur Hälfte auf.
+SourceCharacter inflates DestinationCharacter's gag three quarters filled.
+SourceCharacter bläst DestinationCharacters Knebel zu drei Vierteln auf.
+SourceCharacter inflates DestinationCharacter's gag to the maximum amount.
+SourceCharacter bläst DestinationCharacters Knebel vollständig auf.
 Empty
 Leer
 Light
@@ -489,6 +615,12 @@ Inflated
 Aufgeblasen
 Bloated
 Aufgebläht
+Medium
+Mittel
+Heavy
+Stark
+Maximum
+Maximal
 Use Remote
 Fernbedienung
 (You can use or remove items by selecting specific body regions on yourself.)
@@ -555,12 +687,8 @@ TurnOff
 Ausschalten
 Low
 Niedrig
-Medium
-Mittel
 High
 Hoch
-Maximum
-Maximal
 Trigger Shock
 Schock auslösen
 Unlock Butt

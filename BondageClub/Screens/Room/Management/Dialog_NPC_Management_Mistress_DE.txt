@@ -302,6 +302,8 @@ The leather posture collar please.
 Das Haltungshalsband aus Leder, bitte.
 The steel posture collar please.
 Das Haltungshalsband aus Stahl, bitte.
+The leather pet collar please.
+Das Tierhalsband aus Leder, bitte.
 I've changed my mind.
 Ich hab's mir anders überlegt.
 ###_NPC

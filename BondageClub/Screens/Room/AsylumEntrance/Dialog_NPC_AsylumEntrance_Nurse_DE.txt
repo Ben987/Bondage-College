@@ -42,6 +42,12 @@ Lässt sich machen, aber dann verlierst du deinen Status und Rang als Patientin.
 Perfect!  We need staff to take care of our patients.  Are you ready to work now?
 Perfekt! Wir brauchen Personal, das sich um unsere Patienten kümmert. Bist du bereit, sofort anzufangen?
 ###_PLAYER
+Can I get my own nurse uniform?
+Kann ich meine eigene Uniform haben?
+###_NPC
+Of course.  Here you go nurse DialogPlayerName.  Wear it with pride.  (She gives you a nurse uniform.)
+Natürlich. Bitteschön, Schwester DialogPlayerName. Trage sie mit Stolz. (Sie gibt dir eine Krankenschwester-Uniform.)
+###_PLAYER
 I must go.  (Leave her.)
 Ich muss gehen. (Dialog beenden.)
 What goes in the asylum?
