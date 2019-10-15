@@ -143,7 +143,11 @@ var AssetTypeInfo = {
     },
     ItemDevices: {
         TeddyBear: {
-            Allow: ["Bear", "Fox", "Kitty", "Pup", "Bunny", "Pony"]
+            Allow: [null, "Fox", "Kitty", "Pup", "Bunny", "Pony"],
+            NoneTypeName: "Bear",
+            Mofifiers: {                
+                Fox: { Effect:[] }
+            }
         }
     }
 };
