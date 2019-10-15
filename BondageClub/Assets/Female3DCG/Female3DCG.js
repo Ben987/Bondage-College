@@ -229,8 +229,6 @@ var AssetFemale3DCG = [
 		Top: 0,
 		Asset: [
 			"Band1", "Beret1",
-			{ Name: "Ribbons1", Priority: 3, BuyGroup: "Ribbons1" },
-			{ Name: "GiantBow1", Priority: 3, BuyGroup: "GiantBow1" },
 			{ Name: "MaidHairband1", Value: -1 },
 			{ Name: "NurseCap", Value: -1 },
 			{ Name: "Santa1", Value: 30 },
