@@ -9,7 +9,7 @@ PlayerGagged,,,"Patient DialogPlayerName, you'll need to get that gag off if you
 0,20,(Mumble in the gag.),Poor patient.  You need help with that gag?,,!Player.CanTalk()
 0,,I must go.  (Leave her.),,DialogLeave(),
 10,,What kind of therapies are available?,"We offer four kinds of therapies: bondage, pain, tickle & orgasm.",,
-10,,Tell me about bondage therapies.,Some patients gets claustrophobic and panic when restrained.  This therapy helps them to relax and appreciate the restraints.,,
+10,,Tell me about bondage therapies.,Some patients get claustrophobic and panic when restrained.  This therapy helps them to relax and appreciate the restraints.,,
 10,,Tell me about pain therapies.,"If pain haunts you or makes you cringe, we have a specific therapy to help you cope with it and grow stronger.",,
 10,,Tell me about tickle therapies.,The tickling therapy is about accepting your submissive fate and losing control of your body.  It's done blindfolded.,,
 10,,Tell me about orgasm therapies.,Many submissive cannot control their body and orgasms.  This therapy helps them with sexual self-control.,,
@@ -30,10 +30,10 @@ PlayerGagged,,,"Patient DialogPlayerName, you'll need to get that gag off if you
 110,120,Please don't be too rough.,Don't worry little patient.  Now give me your arms so I can restrain you.,"DialogChangeReputation(""Dominant"", -2)",
 110,120,I'm ready for anything.,We'll see if you are.  Give me your arms so I can restrain you.,"DialogChangeReputation(""Dominant"", 1)",
 110,120,(Stay silent.),Give me your arms so I can restrain you.,,
-120,,Are you sure it's safe?,Of course it's safe.  Now give me your arms.,DialogRemove(),
+120,,Are you sure it's safe?,"Of course, it's safe.  Now give me your arms.",DialogRemove(),
 120,130,(Let her restrain you.),(She carefully restrains you.)  All set!  Are you comfy?,BondageTherapyRestrain(),
 130,140,(Nod yes.),Very good.  I will keep you restrained for ten minutes.  You need to stay calm and docile.,,
-130,140,(Shake your head no.),(She loosen your restraints.)  Try to be strong girl.  I will keep you restrained for ten minutes.  You need to stay calm and docile.,,
+130,140,(Shake your head no.),(She loosens your restraints.)  Try to be strong girl.  I will keep you restrained for ten minutes.  You need to stay calm and docile.,,
 140,150,(Nod slowly.),Very good.  (She pets your head as two minutes goes by.)  Are you panicking?  Are you too nervous?,,
 140,500,(Freak out and panic.),"(She quickly releases you.)  I'm sorry, this therapy might be too rough for you.",TherapyFail(),
 150,500,(Nod yes.),"(She quickly releases you.)  I'm sorry, this therapy might be too rough for you.",TherapyFail(),
@@ -58,7 +58,7 @@ PlayerGagged,,,"Patient DialogPlayerName, you'll need to get that gag off if you
 240,250,(Stay silent and nod.),(She hits your feet several times.)  Green if it's fine.  Red if I should stop.,,
 240,500,Stop!,"(She puts away her weapon and helps you up.)  I'm sorry, this therapy might be too rough for you.",TherapyFail(),
 250,500,Red.,"(She puts away her weapon and helps you up.)  I'm sorry, this therapy might be too rough for you.",TherapyFail(),
-250,260,Green.,"You can whimper and moan, but you cannot move.  (She swings and hits your butt switfly many times.)",,
+250,260,Green.,"You can whimper and moan, but you cannot move.  (She swings and hits your butt swiftly many times.)",,
 250,500,Blue.,"(She puts away her weapon and helps you up.)  If you cannot be serious, this therapy isn't for you.",TherapyFail(),
 260,,(Whimper a little.),Be strong little patient.  (She gives you some time to recover.),DialogRemove(),
 260,500,(Try to avoid her.),"(She puts away her weapon and helps you up.)  I'm sorry, this therapy might be too rough for you.",TherapyFail(),
@@ -70,7 +70,7 @@ PlayerGagged,,,"Patient DialogPlayerName, you'll need to get that gag off if you
 280,500,(Start crying.),"(She puts away her weapon and helps you up.)  I'm sorry, this therapy might be too rough for you.",TherapyFail(),
 280,600,(Take deep breathes.),"(She hits you one last time and helps you to stand you.)  Well done, this therapy was a success.  How do you feel?",TherapySuccess(),
 280,600,(Nod slowly.),"(She hits you one last time and helps you to stand you.)  Well done, this therapy was a success.  How are you?",TherapySuccess(),
-300,,Do I really need to be naked?,"(She gives you a stern look.)  This is a tickle therapy, you'll need to show some skin.",DialogRemove(),
+300,,Do I really need to be naked?,(She gives you a stern look.)  This is a tickle therapy.  You'll need to show some skin.,DialogRemove(),
 300,310,Very well.  (Strip with her help.),(She helps you to strip down naked.)  Your tickle therapy can begin.,StripPlayer(),
 310,320,(Stay silent and nod.),Put your hands behind your back.  They must stay there for the whole therapy.,,
 310,320,"Be careful, I'm ticklish.",That's great!  Put your hands behind your back.  They must stay there for the whole therapy.,"DialogChangeReputation(""Dominant"", -1)",
@@ -99,9 +99,9 @@ PlayerGagged,,,"Patient DialogPlayerName, you'll need to get that gag off if you
 390,500,(Push the duster away.),"(She sighs and removes your blindfold.)  I'm sorry, this therapy will not work for you.",TherapyFail(),
 400,,Do I really need to be naked?,(She gives you a stern look.)  Do I need to explain why an orgasm therapy must be done naked?,DialogRemove(),
 400,410,Very well.  (Strip with her help.),(She helps you to strip down.)  Your orgasm therapy can begin.,StripPlayer(),
-410,30,(Blush.)  What about the belt?,"(She laughs.)  Yes, you have a problem there girl, and I cannot help you.  We can do another therapy if you want.",,Player.IsVulvaChaste()
+410,30,(Blush.)  What about the belt?,"(She laughs.)  Yes, you have a problem girl, and I cannot help you.  We can do another therapy if you want.",,Player.IsVulvaChaste()
 410,420,I'm ready!,"Wonderful!  I will tease you with this vibrating wand.  You cannot orgasm until I say so, and you must orgasm when I command it.",,!Player.IsVulvaChaste()
-420,,That's quite a challenge.,"Yes, It can be a challenge.  It will teach you about controlling your own body and pulsions.",DialogRemove(),
+420,,That's quite a challenge.,It can be a challenge.  It will teach you about controlling your body and sexual urges.,DialogRemove(),
 420,430,I'll follow your lead.,"Since your breast is chaste, we cannot work on the nipples, but we can have fun down there.  (She turns on the vibrating wand.)",,Player.IsBreastChaste()
 420,430,I'll follow your lead.,"(She puts an object on your nipples.)  Breast first, then we can work down there.  (She turns on the vibrating wand.)",OrgasmTherapyRestrain(),!Player.IsBreastChaste()
 420,500,This might not be for me.,"(She sighs and stops everything.)  I'm sorry, this therapy will not work for you.",TherapyFail(),
@@ -119,7 +119,7 @@ PlayerGagged,,,"Patient DialogPlayerName, you'll need to get that gag off if you
 470,500,(Lose control and orgasm.),"(She giggles and stops everything.)  Your orgasm was too quick, you've failed the therapy.",TherapyFail(),
 470,480,(Stay strong and resist.),"(She speeds up the vibrating wand again, making you tremble and shiver from sexual pleasure.)  Not yet.",,
 480,500,(Lose control and orgasm.),"(She giggles and stops everything.)  Your orgasm was too quick, you've failed the therapy.",TherapyFail(),
-480,490,(Stay strong and resist.),(She forces the full speed vibrating wand against you pussy lips and stares at you.)  Now girl!  Cum now!,,
+480,490,(Stay strong and resist.),(She forces the full speed vibrating wand against your pussy lips and stares at you.)  Now girl!  Cum now!,,
 490,600,(Lose control and orgasm.),(You get a great orgasm as she smiles at you.)  You did it patient DialogPlayerName.  The therapy was a success.,TherapySuccess(),
 490,500,(Stay strong and resist.),"(She frowns and stops everything.)  Sorry girl, you failed to orgasm on command.",TherapyFail(),
 500,510,It will be better next time.,"Maybe it will.  We can try again if you want, or you can take a break.",,

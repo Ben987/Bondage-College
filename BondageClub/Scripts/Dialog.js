@@ -235,7 +235,7 @@ function DialogInventoryBuild(C) {
 
 		if (DialogItemPermissionMode) {
 			for (var A = 0; A < Asset.length; A++)
-				if (Asset[A].Enable && Asset[A].Wear && Asset[A].Group.Name == C.FocusGroup.Name)
+				if (Asset[A].Enable && (Asset[A].Wear || Asset[A].IsLock) && Asset[A].Group.Name == C.FocusGroup.Name)
 					if (!DialogInventory.some(D => (D.Asset.Group.Name == Asset[A].Group.Name) && (D.Asset.Name == Asset[A].Name)))
 						DialogInventory.push({
 							Asset: Asset[A],
