@@ -145,7 +145,8 @@ var AssetTypeInfo = {
         TeddyBear: {
             Allow: [null, "Fox", "Kitty", "Pup", "Bunny", "Pony"],
             NoneTypeName: "Bear",
-            Mofifiers: {                
+            Mofifiers: {       
+                Bear: { Effect:[] }, 
                 Fox: { Effect:[] }
             }
         }
@@ -255,5 +256,5 @@ function AssetTypeSet(C, Item, NewType) {
 
 // loads type modifiers of an appearance item
 function AssetTypeGetMofifiers(Item) {
-    return (Item && Item.Property && Item.Property.Type && Item.Asset.TypeMofifiers) ? Item.Asset.TypeMofifiers[Item.Property.Type] : null;
+    return (Item && Item.Property && Item.Asset.TypeMofifiers) ? Item.Asset.TypeMofifiers[Item.Property.Type || Item.Asset.NoneTypeName] : null;
 }
