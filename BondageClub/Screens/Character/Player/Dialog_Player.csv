@@ -451,16 +451,16 @@ ItemFeetDuctTapeSetTypeMostFeet,,,SourceCharacter wraps even more duct tape on D
 ItemFeetDuctTapeSetTypeCompleteFeet,,,SourceCharacter wraps an extreme amount of duct tape on DestinationCharacter's feet fully trapping them.
 SlaveCollarSelectType,,,Select the slave collar model
 SlaveCollarChangeType,,,SourceCharacter changes DestinationCharacter's collar model.
-SelectTeddyBearType,,,Select the Type of Teddy Bear
-TeddyBearTypeBear,,,Bear
-TeddyBearTypeFox,,,Fox
-TeddyBearTypeKitty,,,Kitty
-TeddyBearTypePup,,,Puppy
-TeddyBearTypeBunny,,,Bunny
-TeddyBearTypePony,,,Pony
-TeddyBearSetBear,,,SourceCharacter gives DestinationCharacter's a cute teddy bear.
-TeddyBearSetFox,,,SourceCharacter gives DestinationCharacter's a cute foxy teddy.
-TeddyBearSetKitty,,,SourceCharacter gives DestinationCharacter's a cute kitty teddy.
-TeddyBearSetPup,,,SourceCharacter gives DestinationCharacter's a cute puppy teddy.
-TeddyBearSetBunny,,,SourceCharacter gives DestinationCharacter's a cute Bunny teddy.
-TeddyBearSetPony,,,SourceCharacter gives DestinationCharacter's a cute Pony teddy.
+ItemDevicesTeddyBearSelect,,,Select the Type of Teddy Bear
+ItemDevicesTeddyBearBear,,,Bear
+ItemDevicesTeddyBearFox,,,Fox
+ItemDevicesTeddyBearKitty,,,Kitty
+ItemDevicesTeddyBearPup,,,Puppy
+ItemDevicesTeddyBearBunny,,,Bunny
+ItemDevicesTeddyBearPony,,,Pony
+ItemDevicesTeddyBearSetTyoeBear,,,SourceCharacter gives DestinationCharacter's a cute teddy bear.
+ItemDevicesTeddyBearSetTyoeFox,,,SourceCharacter gives DestinationCharacter's a cute foxy teddy.
+ItemDevicesTeddyBearSetTyoeKitty,,,SourceCharacter gives DestinationCharacter's a cute kitty teddy.
+ItemDevicesTeddyBearSetTyoePup,,,SourceCharacter gives DestinationCharacter's a cute puppy teddy.
+ItemDevicesTeddyBearSetTyoeBunny,,,SourceCharacter gives DestinationCharacter's a cute Bunny teddy.
+ItemDevicesTeddyBearSetTyoePony,,,SourceCharacter gives DestinationCharacter's a cute Pony teddy.
