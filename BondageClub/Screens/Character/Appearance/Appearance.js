@@ -388,6 +388,7 @@ function AppearanceRun() {
 					() => CharacterAppearanceNextItem(C, AssetGroup[A].Name, false, true),
 					() => CharacterAppearanceNextItem(C, AssetGroup[A].Name, true, true));
 				var Color = CharacterAppearanceGetCurrentValue(C, AssetGroup[A].Name, "Color", "");
+				if (Color == null) Color = "Default";
 				DrawButton(1725, 145 + (A - CharacterAppearanceOffset) * 95, 160, 65, Color, ((Color.indexOf("#") == 0) ? Color : "White"));
 				DrawButton(1910, 145 + (A - CharacterAppearanceOffset) * 95, 65, 65, "", "White", AssetGroup[A].AllowColorize ? "Icons/Color.png" : "Icons/ColorBlocked.png");
 			}

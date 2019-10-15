@@ -24,7 +24,11 @@ const SpankingInventory = [
 		Name: "WhipPaddle",
 		Bonus: [{ Type: "KidnapDomination", Factor: 3 }],
 		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Eyes", Name: "Wink", Timer: 5 }]
-	}
+	}, {
+		Name: "Whip",
+		Bonus: [{ Type: "KidnapDomination", Factor: 3 }],
+		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Eyes", Name: "Wink", Timer: 5 }]
+	},
 ];
 
 var SpankingCurrentType = "Crop";

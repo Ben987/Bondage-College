@@ -1,0 +1,47 @@
+###_NPC
+It's strange to hear a gagged nurse.
+Es ist seltsam, eine geknebelte Krankenschwester zu sehen.
+Oh my!  The famous doctor DialogPlayerName.  It's an honor.
+Meine Güte! Die berühmte Doktor DialogPlayerName. Es ist mir eine Ehre.
+Hello nurse PlayerName.  I've heard about you.
+Hallo, Schwester PlayerName. Ich habe von Ihnen gehört.
+Hello nurse.  Are you here for my treatment?
+Hallo, Schwester. Sind Sie wegen meiner Behandlung hier?
+###_PLAYER
+Who are you?
+Wer bist du?
+###_NPC
+I'm patient DialogCharacterName.  I'm here for my therapy.
+Ich bin Patientin DialogCharacterName. Ich bin wegen meiner Therapie hier.
+###_PLAYER
+(Struggle in your restraints.)
+(In deinen Fesseln zappeln.)
+###_NPC
+This is so weird.  I don't think I'm allowed to help you.
+Das ist so seltsam. Ich glaube nicht, dass ich Ihnen helfen darf.
+###_PLAYER
+It's time for your treatment.
+Es ist Zeit für deine Behandlung.
+###_NPC
+I'm ready nurse DialogPlayerName.  What are we focusing on today?
+Ich bin bereit, Schwester DialogPlayerName. Womit beschäftigen wir uns heute?
+###_PLAYER
+I must go.  (Leave her.)
+Ich muss gehen. (Dialog beenden.)
+You will do bondage therapy.
+Du bekommst eine Bondage-Therapie.
+###_NPC
+TO DO
+TO DO
+###_PLAYER
+You will do pain therapy.
+Du bekommst eine Schmerz-Therapie.
+You will do tickle therapy.
+Du bekommst eine Kitzel-Therapie.
+You will do orgasm therapy.
+Du bekommst eine Orgasmus-Therapie.
+Let me review your file first.
+Lass mich erst deine Akte prüfen.
+###_NPC
+Of course nurse DialogPlayerName.
+Natürlich, Schwester DialogPlayerName.

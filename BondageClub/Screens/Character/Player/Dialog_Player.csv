@@ -298,16 +298,16 @@ InflVibeButtPlug_VibeDecreaseTo1,,,DestinationCharacter's inflatable vibrating b
 InflVibeButtPlug_VibeDecreaseTo2,,,DestinationCharacter's inflatable vibrating butt plug slows down a tiny bit.
 InflVibeButtPlug_VibeIncreaseTo0,,,DestinationCharacter's inflatable vibrating butt plug starts teasing her lightly.
 InflVibeButtPlug_VibeIncreaseTo1,,,DestinationCharacter's inflatable vibrating butt plug builds up to a moderate pace.
-InflVibeButtPlug_VibeIncreaseTo2,,,DestinationCharacter's inflatable vibrating butt plugo starts buzzing strongly!
+InflVibeButtPlug_VibeIncreaseTo2,,,DestinationCharacter's inflatable vibrating butt plug starts buzzing strongly!
 InflVibeButtPlug_VibeIncreaseTo3,,,DestinationCharacter's inflatable vibrating butt plug jumps up to maximum intensity!
 InflVibeButtPlug_PumpdeflatesTo0,,,SourceCharacter deflates DestinationCharacter's inflatable vibrating butt plug till it's empty.
 InflVibeButtPlug_PumpdeflatesTo1,,,SourceCharacter deflates DestinationCharacter's inflatable vibrating butt plug till only slightly filled.
 InflVibeButtPlug_PumpdeflatesTo2,,,SourceCharacter deflates DestinationCharacter's inflatable vibrating butt plug till it's half full.
 InflVibeButtPlug_PumpdeflatesTo3,,,SourceCharacter deflates DestinationCharacter's inflatable vibrating butt plug only a tiny bit.
-InflVibeButtPlug_PumppumpsTo1,,,SourceCharacter inflates DestinationCharacter's inflatable vibrating dildo only slightly.
-InflVibeButtPlug_PumppumpsTo2,,,SourceCharacter inflates DestinationCharacter's inflatable vibrating dildo till it's half full.
-InflVibeButtPlug_PumppumpsTo3,,,SourceCharacter inflates DestinationCharacter's inflatable vibrating dildo till three quarters filled.
-InflVibeButtPlug_PumppumpsTo4,,,SourceCharacter inflates DestinationCharacter's inflatable vibrating dildo to it's maximum amount.
+InflVibeButtPlug_PumppumpsTo1,,,SourceCharacter inflates DestinationCharacter's inflatable vibrating butt plug only slightly.
+InflVibeButtPlug_PumppumpsTo2,,,SourceCharacter inflates DestinationCharacter's inflatable vibrating butt plug till it's half full.
+InflVibeButtPlug_PumppumpsTo3,,,SourceCharacter inflates DestinationCharacter's inflatable vibrating butt plug till three quarters filled.
+InflVibeButtPlug_PumppumpsTo4,,,SourceCharacter inflates DestinationCharacter's inflatable vibrating butt plug to it's maximum amount.
 PumpGagdeflatesTo0,,,SourceCharacter deflates DestinationCharacter's gag fully till it's empty.
 PumpGagdeflatesTo1,,,SourceCharacter deflates DestinationCharacter's gag till only slighty filled.
 PumpGagdeflatesTo2,,,SourceCharacter deflates DestinationCharacter's gag till it's half full.
@@ -356,6 +356,7 @@ SpankingToysTypeCane,,,Cane
 SpankingToysTypeHeartCrop,,,Heart Crop
 SpankingToysTypePaddle,,,Paddle
 SpankingToysTypeWhipPaddle,,,Whip Paddle
+SpankingToysTypeWhip,,,Whip
 SpankingToysSetPlayer,,,SourceCharacter takes out a Item
 SpankingToysSetOthers,,,SourceCharacter give DestinationCharacter a Item
 TurnOff,,,TurnOff
@@ -450,3 +451,16 @@ ItemFeetDuctTapeSetTypeMostFeet,,,SourceCharacter wraps even more duct tape on D
 ItemFeetDuctTapeSetTypeCompleteFeet,,,SourceCharacter wraps an extreme amount of duct tape on DestinationCharacter's feet fully trapping them.
 SlaveCollarSelectType,,,Select the slave collar model
 SlaveCollarChangeType,,,SourceCharacter changes DestinationCharacter's collar model.
+SelectTeddyBearType,,,Select the Type of Teddy Bear
+TeddyBearTypeBear,,,Bear
+TeddyBearTypeFox,,,Fox
+TeddyBearTypeKitty,,,Kitty
+TeddyBearTypePup,,,Puppy
+TeddyBearTypeBunny,,,Bunny
+TeddyBearTypePony,,,Pony
+TeddyBearSetBear,,,SourceCharacter gives DestinationCharacter's a cute teddy bear.
+TeddyBearSetFox,,,SourceCharacter gives DestinationCharacter's a cute foxy teddy.
+TeddyBearSetKitty,,,SourceCharacter gives DestinationCharacter's a cute kitty teddy.
+TeddyBearSetPup,,,SourceCharacter gives DestinationCharacter's a cute puppy teddy.
+TeddyBearSetBunny,,,SourceCharacter gives DestinationCharacter's a cute Bunny teddy.
+TeddyBearSetPony,,,SourceCharacter gives DestinationCharacter's a cute Pony teddy.

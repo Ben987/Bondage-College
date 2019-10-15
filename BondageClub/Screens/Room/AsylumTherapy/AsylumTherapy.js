@@ -115,3 +115,45 @@ function AsylumTherapyOrgasmTherapyRestrain() {
 	if ((ReputationGet("Asylum") <= -50) && (ReputationGet("Asylum") >= -99)) InventoryWear(Player, "NippleSuctionCups", "ItemNipples");
 	if ((ReputationGet("Asylum") <= -100) && (ReputationGet("Asylum") >= -100)) InventoryWear(Player, "NippleClamp", "ItemNipples");
 }
+
+// Initiates the pain therapy as a nurse
+function AsylumTherapyPatientPainIntro(RepChange) {
+	DialogChangeReputation("Dominant", RepChange);
+	InventoryWear(AsylumTherapyPatient, "FourLimbsShackles", "ItemArms");
+	CharacterSetActivePose(AsylumTherapyPatient, "Kneel");
+	InventoryWear(Player, "SpankingToys", "ItemHands");
+	if ((ReputationGet("Asylum") <= -50) && (ReputationGet("Asylum") >= -99)) InventoryGet(Player, "ItemHands").Property = { Type: "Paddle" };
+	if (ReputationGet("Asylum") <= -100) InventoryGet(Player, "ItemHands").Property = { Type: "Flogger" };
+	CharacterRefresh(Player);
+}
+
+// Starts the therapy mini-game as a nurse
+function AsylumTherapyTherapyStart(Difficulty) {
+	TherapyCharacterLeft = Player;
+	TherapyCharacterRight = AsylumTherapyPatient;
+	MiniGameStart("Therapy", Difficulty, "AsylumTherapyTherapyEnd");
+}
+
+// Ends the therapy mini-game as a nurse, plays with reputation and money
+function AsylumTherapyTherapyEnd() {
+	CommonSetScreen("Room", "AsylumTherapy");
+	CharacterSetCurrent(AsylumTherapyPatient);
+	AsylumTherapyPatient.Stage = MiniGameVictory ? "1100" : "1200";
+	AsylumTherapyPatient.CurrentDialog = DialogFind(AsylumTherapyPatient, MiniGameVictory ? "TherapyVictory" : "TherapyDefeat");
+	if (!MiniGameVictory) {
+		DialogChangeReputation("Asylum", -2);
+		if (ReputationGet("Asylum") <= 0) DialogSetReputation("Asylum", 1);
+	}
+	if (MiniGameVictory && (MiniGameDifficulty == "Easy")) {
+		DialogChangeReputation("Asylum", 2);
+		CharacterChangeMoney(Player, 10);
+	}
+	if (MiniGameVictory && (MiniGameDifficulty == "Normal")) {
+		DialogChangeReputation("Asylum", 4);
+		CharacterChangeMoney(Player, 15);
+	}
+	if (MiniGameVictory && (MiniGameDifficulty == "Hard")) {
+		DialogChangeReputation("Asylum", 6);
+		CharacterChangeMoney(Player, 20);
+	}
+}
