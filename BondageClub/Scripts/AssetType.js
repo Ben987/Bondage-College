@@ -33,7 +33,7 @@ var AssetTypeInfo = {
     },
     ItemHands: {
         SpankingToys: {
-            Allow: ["Crop", "Flogger", "Cane", "HeartCrop", "Paddle", "WhipPaddle"],
+            Allow: ["Crop", "Flogger", "Cane", "HeartCrop", "Paddle", "WhipPaddle", "Whip"],
         }
     },
     ItemFeet: {
@@ -139,6 +139,11 @@ var AssetTypeInfo = {
                 Shock: { Block: ["ItemVulva"], Effect: ["Chaste", "ReceiveShock"] }
             },
             DynamicAllowSetType: (C, Item, Type) => C.IsOwnedByPlayer() && (Type == "Open")
+        }
+    },
+    ItemDevices: {
+        TeddyBear: {
+            Allow: ["Bear", "Fox", "Kitty", "Pup", "Bunny", "Pony"]
         }
     }
 };
