@@ -92,7 +92,7 @@ function ManagementLoad() {
 		CharacterNaked(ManagementSub);
 		InventoryWear(ManagementSub, "SlaveCollar", "ItemNeck");
 		CharacterFullRandomRestrain(ManagementSub, "Lot");
-		InventoryWear(ManagementSub, "Ears" + (Math.floor(Math.random() * 2) + 1).toString(), "HairAccessory", "#BBBBBB");
+		InventoryWear(ManagementSub, "Ears" + (Math.floor(Math.random() * 2) + 1).toString(), "HairAccessory1", "#BBBBBB");
 		InventoryWear(ManagementSub, "TailButtPlug", "ItemButt");
 		InventoryWear(ManagementSub, "MetalChastityBelt", "ItemPelvis");
 		InventoryWear(ManagementSub, "MetalChastityBra", "ItemBreast");

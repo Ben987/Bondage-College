@@ -151,7 +151,8 @@ function CharacterArchetypeClothes(C, Archetype, ForceColor) {
 		CharacterAppearanceSetItem(C, "Hat", C.Inventory[C.Inventory.length - 1].Asset);
 		CharacterAppearanceSetColorForGroup(C, "Default", "Hat");
 		InventoryAdd(C, "MaidOutfit2", "Cloth", false);
-		InventoryRemove(C, "HairAccessory");
+		InventoryRemove(C, "HairAccessory1");
+		InventoryRemove(C, "HairAccessory2");
 		C.AllowItem = (LogQuery("LeadSorority", "Maid"));
 	}
 
@@ -170,7 +171,8 @@ function CharacterArchetypeClothes(C, Archetype, ForceColor) {
 		InventoryWear(C, "MistressBottom", "ClothLower", Color);
 		InventoryAdd(C, "MistressPadlock", "ItemMisc", false);
 		InventoryAdd(C, "MistressPadlockKey", "ItemMisc", false);
-		InventoryRemove(C, "HairAccessory");
+		InventoryRemove(C, "HairAccessory1");
+		InventoryRemove(C, "HairAccessory2");
 	}
 
 }
