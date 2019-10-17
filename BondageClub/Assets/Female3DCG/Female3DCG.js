@@ -210,8 +210,8 @@ var AssetFemale3DCG = [
 			{ Name: "Heels1", Height: 15 },
 			{ Name: "Heels2", Height: 15 },
 			{ Name: "Boots1", Height: 9 },
-			{ Name: "MistressBoots", OverrideHeight: 35, Value: -1, HideItem: ["SocksSocks4", "SocksSocks5"], Alpha: [[125, 800, 250, 200]] },
-			{ Name: "PonyBoots", OverrideHeight: 35, Value: -1, Alpha: [[125, 800, 250, 200]] },
+			{ Name: "MistressBoots", Height: 35, Value: -1, HideItem: ["SocksSocks4", "SocksSocks5"], Alpha: [[125, 800, 250, 200]] },
+			{ Name: "PonyBoots", Height: 35, Value: -1, Alpha: [[125, 800, 250, 200]] },
 			{ Name: "Sandals", Priority: 20, Height: 3, Value: 35, Hide: ["Socks"] },
 			{ Name: "PawBoots", Height: 3, Value: 55 },
 			{ Name: "WoollyBootsTall", Height: 9, Value: 95 }
@@ -1068,7 +1068,7 @@ var AssetFemale3DCG = [
 			{ Name: "WaterCell", RemoveAtLogin: true, Effect: ["Prone", "Enclose", "GagHeavy", "Freeze"], SetPose: ["Suspension", "LegsClosed"], Block: ["ItemFeet"], Value: -1, Time: 15, RemoveTime: 15, Difficulty: 5 },
 			{ Name: "Cage", RemoveAtLogin: true,  Alpha: [[1, 80, 105, 900], [410, 80, 105, 900]], Block: ["ItemArms", "ItemBreast", "ItemButt", "ItemEars", "ItemFeet", "ItemHands", "ItemHead", "ItemLegs", "ItemMisc", "ItemMouth", "ItemNeck", "ItemNeckAccessories", "ItemNipples", "ItemPelvis", "ItemTorso", "ItemVulva"], Effect: ["Block", "Prone", "Enclose", "Freeze"], Value: 350, Time: 15, RemoveTime: 10, Difficulty: 7, AllowLock: true, Prerequisite: "NotKneeling" },
 			{ Name: "LowCage", RemoveAtLogin: true, Alpha: [[1, 80, 75, 900], [400, 80, 95, 900]], Block: ["ItemArms", "ItemBreast", "ItemButt", "ItemEars", "ItemFeet", "ItemHands", "ItemHead", "ItemLegs", "ItemMisc", "ItemMouth", "ItemNeck", "ItemNeckAccessories", "ItemNipples", "ItemPelvis", "ItemTorso", "ItemVulva"], SetPose: ["Kneel"], Effect: ["ForceKneel", "Block", "Prone", "Enclose", "Freeze"], Value: 250, Time: 15, RemoveTime: 10, Difficulty: 7, AllowLock: true, Prerequisite: "NotSuspendedOrHorsed" },
-			{ Name: "SaddleStand", OverrideHeight: 30, Value: 150, Time: 10, Difficulty: 5, AllowLock: false, SetPose: ["LegsOpen"], Prerequisite: "LegsOpen1", RemoveAtLogin: true, Block: ["ItemPelvis", "ItemLegs"], Effect: ["Prone", "Freeze"] },
+			{ Name: "SaddleStand", Height: 30, Value: 150, Time: 10, Difficulty: 5, AllowLock: false, SetPose: ["LegsOpen"], Prerequisite: "LegsOpen1", RemoveAtLogin: true, Block: ["ItemPelvis", "ItemLegs"], Effect: ["Prone", "Freeze"] },
 			{ Name: "TeddyBear", Priority: 27, IsRestraint: false, Extended: true, Difficulty: -4, Value: 100, Time: 5, Effect: [], AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Bolero", "Horse", "StraitDressOpen"], AllowType: ["Bear", "Fox", "Kitty", "Pup", "Bunny", "Pony"] },
 		]
 	},
