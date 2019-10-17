@@ -213,7 +213,6 @@ function CharacterOnlineRefresh(Char, data, SourceMemberNumber) {
 	Char.BlockItems = Array.isArray(data.BlockItems) ? data.BlockItems : [];
 	Char.Appearance = ServerAppearanceLoadFromBundle(Char, "Female3DCG", data.Appearance, SourceMemberNumber);
 	if (Char.ID != 0) InventoryLoad(Char, data.Inventory);
-	AssetReload(Char);
 	CharacterLoadEffect(Char);
 	CharacterRefresh(Char);
 }
@@ -348,12 +347,7 @@ function CharacterLoadEffect(C) {
 function CharacterLoadCanvas(C) {
 
 	// Sorts the full appearance array first
-	var App = [];
-	for (var I = 0; I < 101 && App.length < C.Appearance.length; I++)
-		for (var A = 0; A < C.Appearance.length; A++)
-			if (C.Appearance[A].Asset.Group.DrawingPriority == I)
-				App.push(C.Appearance[A]);
-	C.Appearance = App;
+	C.Appearance = CharacterAppearanceSort(C.Appearance);
 
 	// Sets the total height modifier for that character
 	C.HeightModifier = 0;
@@ -430,8 +424,6 @@ function CharacterIsInUnderwear(C) {
 // Removes all appearance items from the character
 function CharacterNaked(C) {
 	CharacterAppearanceNaked(C);
-	AssetReload(C);
-	C.Appearance = CharacterAppearanceSort(C.Appearance);
 	CharacterRefresh(C);
 }
 
@@ -459,8 +451,6 @@ function CharacterRandomUnderwear(C) {
 		}
 
 	// Refreshes the character
-	AssetReload(C);
-	C.Appearance = CharacterAppearanceSort(C.Appearance);
 	CharacterRefresh(C);
 
 }
@@ -471,8 +461,6 @@ function CharacterUnderwear(C, Appearance) {
 	for (var A = 0; A < Appearance.length; A++)
 		if ((Appearance[A].Asset != null) && Appearance[A].Asset.Group.Underwear && (Appearance[A].Asset.Group.Category == "Appearance"))
 			C.Appearance.push(Appearance[A]);
-	AssetReload(C);
-	C.Appearance = CharacterAppearanceSort(C.Appearance);
 	CharacterRefresh(C);
 }
 
@@ -483,8 +471,6 @@ function CharacterDress(C, Appearance) {
 			if ((Appearance[A].Asset != null) && (Appearance[A].Asset.Group.Category == "Appearance"))
 				if (InventoryGet(C, Appearance[A].Asset.Group.Name) == null)
 					C.Appearance.push(Appearance[A]);
-		AssetReload(C);
-		C.Appearance = CharacterAppearanceSort(C.Appearance);
 		CharacterRefresh(C);
 	}
 }

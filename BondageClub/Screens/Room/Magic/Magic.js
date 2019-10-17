@@ -320,8 +320,6 @@ function MagicRestrainCopyTransfer(FromC, ToC) {
 			A--;
 		}
 	// Refreshes the second character and saves it if it's the player
-	AssetReload(ToC);
-	AssetReload(FromC);
 	CharacterRefresh(ToC);
 	CharacterRefresh(FromC);
 	if (ToC.ID == 0) ServerPlayerAppearanceSync();

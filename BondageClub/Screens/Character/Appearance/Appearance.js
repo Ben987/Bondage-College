@@ -234,8 +234,6 @@ function CharacterAppearanceBuildCanvas(C) {
 		C.CanvasBlink.height = 1000;
 	} else C.CanvasBlink.getContext("2d").clearRect(0, 0, 500, 1000);
 
-	// Sorts the list
-	C.Appearance = CharacterAppearanceSort(C.Appearance);
 	C.MustDraw = true;
 
 	// Loops in all visible items worn by the character
@@ -704,7 +702,6 @@ function CharacterAppearanceCopy(FromC, ToC) {
 			ToC.Appearance.push(FromC.Appearance[A]);
 
 	// Refreshes the second character and saves it if it's the player
-	AssetReload(ToC);
 	CharacterRefresh(ToC);
 	if (ToC.ID == 0) ServerPlayerAppearanceSync();
 

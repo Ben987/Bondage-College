@@ -306,7 +306,6 @@ function PrivateLoadCharacter(C) {
 		if (PrivateCharacter[C].Lover != null) N.Lover = PrivateCharacter[C].Lover;
 		if (PrivateCharacter[C].Owner != null) N.Owner = PrivateCharacter[C].Owner;
 		N.Love = (PrivateCharacter[C].Love == null) ? 0 : parseInt(PrivateCharacter[C].Love);
-		AssetReload(N);
 		NPCTraitDialog(N);
 		CharacterRefresh(N);
 		if (NPCEventGet(N, "PrivateRoomEntry") == 0) NPCEventAdd(N, "PrivateRoomEntry", CurrentTime);
