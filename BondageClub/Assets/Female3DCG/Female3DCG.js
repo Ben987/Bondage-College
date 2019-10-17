@@ -176,7 +176,7 @@ var AssetFemale3DCG = [
 			{ Name: "Stockings4", Value: 10 },
 			{ Name: "Pantyhose1", Value: 10, Priority: 16, Block: ["ItemVulva", "ItemButt"], HideItem: ["ItemVulvaVibratingDildo", "ItemVulvaClitSuctionCup"] },
 			{
-			    Name: "Socks6", Value: 25, HideItem: ["ItemVulvaVibratingDildo"],
+			    Name: "Socks6", Value: 25,
 				Layer: [
 					{ Name: "Sock", AllowColorize: true },
 					{ Name: "Frill", AllowColorize: false }
