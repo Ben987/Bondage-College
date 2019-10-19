@@ -1,6 +1,25 @@
 "use strict"
 
-// type information
+/**
+ * @typedef {Object} IAssetTypeModifier
+ * @property {number} Difficulty
+ * @property {string[]} Hide
+ * @property {string[]} Block
+ * @property {string[]} Effect
+ * @property {string[]} SetPose
+ * @property {boolean} SelfUnlock
+ */
+
+/**
+ * @typedef {Object} IAssetTypeInfo
+ * @property {string[]} Allow
+ * @property {string} NoneTypeName
+ * @property {Object.<string, IAssetTypeModifier>} Mofifiers
+ * @property {(C: any, Item: any, Type: string) => boolean} DynamicAllowSetType
+ * @property {(C: any, Type: string) => string} DynamicSetDialog
+ */
+
+/** @type {Object.<string, Object.<string, IAssetTypeInfo>>} Asset Type Informations */
 var AssetTypeInfo = {
     ItemArms: {
         DuctTape: {
@@ -153,8 +172,17 @@ var AssetTypeInfo = {
     }
 };
 
-// button X cordinets for type selection
-var AssetTypeButtonPosition = [
+/**
+ * @typedef {Object} IAssetTypeButtonPosition
+ * @property {number} X
+ * @property {number} Y
+ * @property {number} W Width
+ * @property {number} H Height
+ * @property {number} TH Text Relative Height
+ */
+
+/** @type {IAssetTypeButtonPosition[][]} */
+var AssetTypeButtonPositions = [
     [],
     [{ X: 1500 }],
     [{ X: 1175 }, { X: 1600 }],
@@ -164,7 +192,11 @@ var AssetTypeButtonPosition = [
     [{ X: 1000, Y: 450 }, { X: 1375, Y: 450 }, { X: 1750, Y: 450 }, { X: 1000, Y: 750 }, { X: 1375, Y: 750 }, { X: 1750, Y: 750 }]
 ];
 
-
+/** 
+ * Sets nulls to defaults
+ * @param {IAssetTypeButtonPosition[]} Positions 
+ * @returns {IAssetTypeButtonPosition[]}
+ */
 function AssetTypeButtonPositionExtend(Positions) {
     return Positions.map(P => {
         return {
@@ -172,17 +204,18 @@ function AssetTypeButtonPositionExtend(Positions) {
             Y: (P.Y != null) ? P.Y : 600,
             W: (P.W != null) ? P.W : 225,
             H: (P.H != null) ? P.H : 225,
+            TH: (P.TH != null) ? P.TH : 250,
         };
     });
 }
 
-// loads type information
+// Loads type information
 function AssetTypeLoad() {
-    for (var A = 0; A < Asset.length; A++) {
+    for (let A = 0; A < Asset.length; A++) {
         if (!Asset[A].HasType) continue;
-        var MetaGroup = AssetTypeInfo[Asset[A].Group.Name];
+        const MetaGroup = AssetTypeInfo[Asset[A].Group.Name];
         if (MetaGroup == null) continue;
-        var Meta = MetaGroup[Asset[A].Name];
+        const Meta = MetaGroup[Asset[A].Name];
         if (Meta == null) continue;
         Asset[A].TypeMetaLoaded = true;
         Asset[A].AllowType = Meta.Allow;
@@ -191,11 +224,11 @@ function AssetTypeLoad() {
             Asset[A].DynamicAllowSetType = (Meta.DynamicAllowSetType != null) ? Meta.DynamicAllowSetType : () => true;
         Asset[A].DynamicSetDialog = (Meta.DynamicSetDialog != null) ? Meta.DynamicSetDialog :
             (Item, Type) => DialogFind(Player, Item.Asset.Group.Name + Item.Asset.Name + "SetType" + (Type ? Type : Item.Asset.NoneTypeName));
-        Asset[A].TypePosition = AssetTypeButtonPositionExtend((Meta.Allow.length > 6) ? [] : AssetTypeButtonPosition[Meta.Allow.length])
+        Asset[A].TypePosition = AssetTypeButtonPositionExtend((Meta.Allow.length > 6) ? [] : AssetTypeButtonPositions[Meta.Allow.length])
     }
 }
 
-// default typed item draw
+// Default typed item draw
 function AssetTypeSetDraw() {
     if (DialogFocusItem.Asset.TypeMetaLoaded != true) return;
 
@@ -204,25 +237,25 @@ function AssetTypeSetDraw() {
     DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
     DrawText(DialogFind(Player, DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Select"), 1500, 550, "white", "gray");
 
-    for (var I = 0; I < DialogFocusItem.Asset.AllowType.length; I++) {
-        var P = DialogFocusItem.Asset.TypePosition[I];
-        var Type = (DialogFocusItem.Asset.AllowType[I] == null) ? DialogFocusItem.Asset.NoneTypeName : DialogFocusItem.Asset.AllowType[I]
+    for (let I = 0; I < DialogFocusItem.Asset.AllowType.length; I++) {
+        const P = DialogFocusItem.Asset.TypePosition[I];
+        const Type = (DialogFocusItem.Asset.AllowType[I] == null) ? DialogFocusItem.Asset.NoneTypeName : DialogFocusItem.Asset.AllowType[I]
         DrawButton(P.X, P.Y, P.W, P.H, "", InventoryItemIsType(DialogFocusItem, DialogFocusItem.Asset.AllowType[I]) ? "#888888" : "White");
         DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/" + Type + ".png", P.X - 1, P.Y - 1);
-        DrawText(DialogFind(Player, DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + Type), P.X + 113, P.Y + 250, "white", "gray");
+        DrawText(DialogFind(Player, DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + Type), P.X + P.W / 2, P.Y + P.TH, "white", "gray");
     }
 }
 
-// default typed item click
+// Default typed item click
 function AssetTypeSetClick() {
     if (DialogFocusItem.Asset.TypeMetaLoaded != true) return;
 
     if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) { DialogFocusItem = null; return; }
 
-    var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+    const C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 
-    for (var I = 0; I < DialogFocusItem.Asset.AllowType.length; I++) {
-        var P = DialogFocusItem.Asset.TypePosition[I];
+    for (let I = 0; I < DialogFocusItem.Asset.AllowType.length; I++) {
+        const P = DialogFocusItem.Asset.TypePosition[I];
         if ((MouseX >= P.X) && (MouseX <= P.X + P.W) && (MouseY >= P.Y) && (MouseY <= P.Y + P.H) && !InventoryItemIsType(DialogFocusItem, DialogFocusItem.Asset.AllowType[I])) {
             if (DialogFocusItem.Asset.DynamicAllowSetType(C, DialogFocusItem, DialogFocusItem.Asset.AllowType[I])) {
                 AssetTypeSet(C, DialogFocusItem, DialogFocusItem.Asset.AllowType[I]);
@@ -236,7 +269,12 @@ function AssetTypeSetClick() {
     }
 }
 
-// set a new type for an item
+/**
+ * Set a new type for an item
+ * @param {*} C 
+ * @param {*} Item 
+ * @param {string} NewType 
+ */
 function AssetTypeSet(C, Item, NewType) {
     if (CurrentScreen == "ChatRoom") {
         Item = InventoryGet(C, C.FocusGroup.Name);
@@ -248,13 +286,16 @@ function AssetTypeSet(C, Item, NewType) {
     CharacterRefresh(C);
     ChatRoomCharacterUpdate(C);
 
-    var msg = Item.Asset.DynamicSetDialog(Item, NewType);
+    let msg = Item.Asset.DynamicSetDialog(Item, NewType);
     msg = msg.replace("SourceCharacter", Player.Name);
     msg = msg.replace("DestinationCharacter", C.Name);
     ChatRoomPublishCustomAction(msg, true);
 }
 
-// loads type modifiers of an appearance item
+/**
+ * Loads type modifiers of an appearance item
+ * @param {*} Item 
+ */
 function AssetTypeGetMofifiers(Item) {
     return (Item && Item.Property && Item.Asset.TypeMofifiers) ? Item.Asset.TypeMofifiers[Item.Property.Type || Item.Asset.NoneTypeName] : null;
 }
