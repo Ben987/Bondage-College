@@ -114,9 +114,7 @@ var OnlineProfileBackground = "Sheet";
 var OnlineProfileScreen = null;
 
 function OnlineProfileLoad() {
-    console.log("OnlineProfileLoad");
     if(OnlineProfileScreen == null){
-        console.log("OnlineProfileScreen CREATE");
         OnlineProfileScreen = new OnlineProfile();
     }
     OnlineProfileScreen.Load(InformationSheetSelection);
