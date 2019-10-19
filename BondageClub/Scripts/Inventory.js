@@ -1,6 +1,12 @@
 "use strict";
 
-// Add a new item by group & name to character inventory
+/**
+ * Add a new item by group & name to character inventory
+ * @param {ICharacter} C 
+ * @param {string} NewItemName 
+ * @param {string} NewItemGroup 
+ * @param {boolean} [Push = true] 
+ */
 function InventoryAdd(C, NewItemName, NewItemGroup, Push) {
 
 	// First, we check if the inventory already exists, exit if it's the case
@@ -18,7 +24,7 @@ function InventoryAdd(C, NewItemName, NewItemGroup, Push) {
 
 	// Only add the item if we found the asset
 	if (NewItemAsset != null) {
-		
+
 		// Creates the item and pushes it in the inventory queue
 		var NewItem = {
 			Name: NewItemName,
@@ -35,7 +41,13 @@ function InventoryAdd(C, NewItemName, NewItemGroup, Push) {
 
 }
 
-// Deletes an item from the character inventory
+/**
+ * Deletes an item from the character inventory
+ * @param {ICharacter} C 
+ * @param {string} DelItemName 
+ * @param {string} DelItemGroup 
+ * @param {boolean} [Push = true] 
+ */
 function InventoryDelete(C, DelItemName, DelItemGroup, Push) {
 
 	// First, we remove the item from the player inventory
@@ -51,7 +63,11 @@ function InventoryDelete(C, DelItemName, DelItemGroup, Push) {
 
 }
 
-// Loads the current inventory for a character
+/**
+ * Loads the current inventory for a character
+ * @param {ICharacter} C 
+ * @param {any[]} Inventory 
+ */
 function InventoryLoad(C, Inventory) {
 
 	// Add each items one by one from the server by name/group
@@ -61,7 +77,13 @@ function InventoryLoad(C, Inventory) {
 
 }
 
-// Checks if the character has the inventory available
+/**
+ * Checks if the character has the inventory available
+ * @param {ICharacter} C 
+ * @param {string} InventoryName 
+ * @param {string} InventoryGroup
+ * @returns {boolean}
+ */
 function InventoryAvailable(C, InventoryName, InventoryGroup) {
 	for (var I = 0; I < C.Inventory.length; I++)
 		if ((C.Inventory[I].Name == InventoryName) && (C.Inventory[I].Group == InventoryGroup))
@@ -69,7 +91,12 @@ function InventoryAvailable(C, InventoryName, InventoryGroup) {
 	return false;
 }
 
-// Returns TRUE if we can add the item, no other items must block that prerequisite
+/**
+ * Returns TRUE if we can add the item, no other items must block that prerequisite
+ * @param {ICharacter} C 
+ * @param {string} Prerequisite 
+ * @returns {boolean}
+ */
 function InventoryAllow(C, Prerequisite) {
 
 	// Torso items can only be blocked by clothes
@@ -79,18 +106,18 @@ function InventoryAllow(C, Prerequisite) {
 
 	// Breast items can be blocked by clothes
 	if ((Prerequisite == "AccessBreast") && (((curCloth != null) && !curCloth.Asset.Expose.includes("ItemBreast"))
-			|| (InventoryGet(C, "Bra") != null && !InventoryGet(C, "Bra").Asset.Expose.includes("ItemBreast")))) { DialogSetText("RemoveClothesForItem"); return false; }
+		|| (InventoryGet(C, "Bra") != null && !InventoryGet(C, "Bra").Asset.Expose.includes("ItemBreast")))) { DialogSetText("RemoveClothesForItem"); return false; }
 
 	// Vulva/Butt items can be blocked by clothes, panties and some socks
 	if ((Prerequisite == "AccessVulva") && (((curCloth != null) && curCloth.Asset.Block != null && curCloth.Asset.Block.includes("ItemVulva"))
-			|| (InventoryGet(C, "ClothLower") != null && !InventoryGet(C, "ClothLower").Asset.Expose.includes("ItemVulva"))
-			|| (InventoryGet(C, "Panties") != null && !InventoryGet(C, "Panties").Asset.Expose.includes("ItemVulva"))
-			|| (InventoryGet(C, "Socks") != null && (InventoryGet(C, "Socks").Asset.Block != null) && InventoryGet(C, "Socks").Asset.Block.includes("ItemVulva")))) { DialogSetText("RemoveClothesForItem"); return false; }
-	
+		|| (InventoryGet(C, "ClothLower") != null && !InventoryGet(C, "ClothLower").Asset.Expose.includes("ItemVulva"))
+		|| (InventoryGet(C, "Panties") != null && !InventoryGet(C, "Panties").Asset.Expose.includes("ItemVulva"))
+		|| (InventoryGet(C, "Socks") != null && (InventoryGet(C, "Socks").Asset.Block != null) && InventoryGet(C, "Socks").Asset.Block.includes("ItemVulva")))) { DialogSetText("RemoveClothesForItem"); return false; }
+
 	// Prevent incompatible item combinations
 	if (Prerequisite == "NotSuspended" && C.Pose.indexOf("Suspension") >= 0) { DialogSetText("RemoveSuspensionForItem"); return false; }
-	if (Prerequisite == "NotKneeling" &&  C.Pose.indexOf("Kneel") >= 0)  { DialogSetText("TheyMustBeStandingFirst"); return false; }
-        if (Prerequisite == "NotKneeling" &&  C.Pose.indexOf("Suspension") >= 0)  { DialogSetText("TheyMustBeStandingFirst"); return false; }
+	if (Prerequisite == "NotKneeling" && C.Pose.indexOf("Kneel") >= 0) { DialogSetText("TheyMustBeStandingFirst"); return false; }
+	if (Prerequisite == "NotKneeling" && C.Pose.indexOf("Suspension") >= 0) { DialogSetText("TheyMustBeStandingFirst"); return false; }
 	if (Prerequisite == "NotChained") {
 		if (InventoryGet(C, "ItemNeckAccessories") != null) {
 			if (InventoryGet(C, "ItemNeckAccessories").Asset.Name == "CollarChainLong") { DialogSetText("RemoveChainForItem"); return false; }
@@ -98,26 +125,31 @@ function InventoryAllow(C, Prerequisite) {
 	}
 	if (Prerequisite == "Collared" && InventoryGet(C, "ItemNeck") == null) { DialogSetText("MustCollaredFirst"); return false; }
 	if (Prerequisite == "CollaredNotSuspended" && (InventoryGet(C, "ItemNeck") == null || C.Pose.indexOf("Suspension") >= 0)) { DialogSetText("MustCollaredFirstAndRemoveSuspension"); return false; }
-	if (Prerequisite == "LegsOpen" &&  C.Pose.indexOf("LegsClosed") >= 0)  { DialogSetText("LegsCannotOpen"); return false; }
-	
+	if (Prerequisite == "LegsOpen" && C.Pose.indexOf("LegsClosed") >= 0) { DialogSetText("LegsCannotOpen"); return false; }
+
 	// Saddle stand
-	if (Prerequisite == "LegsOpen1" &&  C.Pose.indexOf("LegsClosed") >= 0)  { DialogSetText("LegsCannotOpen"); return false; }
-	if (Prerequisite == "LegsOpen1" &&  C.Pose.indexOf("Suspension") >= 0)  { DialogSetText("TheyMustBeStandingFirst"); return false; }
-	if (Prerequisite == "LegsOpen1" &&  C.Pose.indexOf("Horse") >= 0)  { DialogSetText("TheyMustBeStandingFirst"); return false; }
-	if (Prerequisite == "LegsOpen1" &&  C.Pose.indexOf("Kneel") >= 0)  { DialogSetText("TheyMustBeStandingFirst"); return false; }
+	if (Prerequisite == "LegsOpen1" && C.Pose.indexOf("LegsClosed") >= 0) { DialogSetText("LegsCannotOpen"); return false; }
+	if (Prerequisite == "LegsOpen1" && C.Pose.indexOf("Suspension") >= 0) { DialogSetText("TheyMustBeStandingFirst"); return false; }
+	if (Prerequisite == "LegsOpen1" && C.Pose.indexOf("Horse") >= 0) { DialogSetText("TheyMustBeStandingFirst"); return false; }
+	if (Prerequisite == "LegsOpen1" && C.Pose.indexOf("Kneel") >= 0) { DialogSetText("TheyMustBeStandingFirst"); return false; }
 
 	// Wooden horse blocks
-	if (Prerequisite == "Horse" &&  C.Pose.indexOf("Kneel") >= 0)  { DialogSetText("TheyMustBeStandingFirst"); return false; }
-	if (Prerequisite == "Horse" &&  C.Pose.indexOf("LegsClosed") >= 0)  { DialogSetText("LegsCannotOpen"); return false; }
-	if (Prerequisite == "Horse" &&  C.Pose.indexOf("Suspension") >= 0)  { DialogSetText("TheyMustBeStandingFirst"); return false; }
+	if (Prerequisite == "Horse" && C.Pose.indexOf("Kneel") >= 0) { DialogSetText("TheyMustBeStandingFirst"); return false; }
+	if (Prerequisite == "Horse" && C.Pose.indexOf("LegsClosed") >= 0) { DialogSetText("LegsCannotOpen"); return false; }
+	if (Prerequisite == "Horse" && C.Pose.indexOf("Suspension") >= 0) { DialogSetText("TheyMustBeStandingFirst"); return false; }
 	if (Prerequisite == "CollaredNotSuspended1" && (InventoryGet(C, "ItemNeck") == null || C.Pose.indexOf("Suspension") >= 0)) { DialogSetText("MustCollaredFirstAndRemoveSuspension1"); return false; }
 	if (Prerequisite == "CollaredNotSuspended1" && (InventoryGet(C, "ItemNeck") == null || C.Pose.indexOf("Horse") >= 0)) { DialogSetText("MustCollaredFirstAndRemoveSuspension1"); return false; }
-	if (Prerequisite == "NotSuspendedOrHorsed" &&  C.Pose.indexOf("Suspension") >= 0)  { DialogSetText("TheyMustBeStandingFirst"); return false; }
-	if (Prerequisite == "NotSuspendedOrHorsed" &&  C.Pose.indexOf("Horse") >= 0)  { DialogSetText("TheyMustBeStandingFirst"); return false; }
+	if (Prerequisite == "NotSuspendedOrHorsed" && C.Pose.indexOf("Suspension") >= 0) { DialogSetText("TheyMustBeStandingFirst"); return false; }
+	if (Prerequisite == "NotSuspendedOrHorsed" && C.Pose.indexOf("Horse") >= 0) { DialogSetText("TheyMustBeStandingFirst"); return false; }
 	return true;
 }
 
-// Gets the current item worn a specific spot
+/**
+ * Gets the current item worn a specific spot
+ * @param {ICharacter} C 
+ * @param {string} AssetGroup 
+ * @returns {IItem}
+ */
 function InventoryGet(C, AssetGroup) {
 	for (var A = 0; A < C.Appearance.length; A++)
 		if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Family == C.AssetFamily) && (C.Appearance[A].Asset.Group.Name == AssetGroup))
@@ -125,7 +157,14 @@ function InventoryGet(C, AssetGroup) {
 	return null;
 }
 
-// Makes the character wear an item, color can be undefined
+/**
+ * Makes the character wear an item, color can be undefined
+ * @param {ICharacter} C 
+ * @param {string} AssetName 
+ * @param {string} AssetGroup 
+ * @param {string} ItemColor 
+ * @param {number} Difficulty 
+ */
 function InventoryWear(C, AssetName, AssetGroup, ItemColor, Difficulty) {
 	for (var A = 0; A < Asset.length; A++)
 		if ((Asset[A].Name == AssetName) && (Asset[A].Group.Name == AssetGroup)) {
@@ -135,7 +174,12 @@ function InventoryWear(C, AssetName, AssetGroup, ItemColor, Difficulty) {
 		}
 }
 
-// Sets the difficulty to remove an item
+/**
+ * Sets the difficulty to remove an item
+ * @param {ICharacter} C 
+ * @param {string} AssetGroup 
+ * @param {number} Difficulty 
+ */
 function InventorySetDifficulty(C, AssetGroup, Difficulty) {
 	if ((Difficulty >= 0) && (Difficulty <= 100))
 		for (var A = 0; A < C.Appearance.length; A++)
@@ -144,13 +188,22 @@ function InventorySetDifficulty(C, AssetGroup, Difficulty) {
 	if ((CurrentModule != "Character") && (C.ID == 0)) ServerPlayerAppearanceSync();
 }
 
-// Returns TRUE if there's already a locked item at a given position
+/**
+ * Returns TRUE if there's already a locked item at a given position
+ * @param {ICharacter} C 
+ * @param {string} AssetGroup 
+ */
 function InventoryLocked(C, AssetGroup) {
 	var I = InventoryGet(C, AssetGroup);
 	return ((I != null) && InventoryItemHasEffect(I, "Lock"));
 }
 
-// Makes the character wear a random item from a group
+/**
+ * Makes the character wear a random item from a group
+ * @param {ICharacter} C 
+ * @param {string} AssetGroup 
+ * @param {number} Difficulty 
+ */
 function InventoryWearRandom(C, AssetGroup, Difficulty) {
 	if (!InventoryLocked(C, AssetGroup)) {
 		var List = [];
@@ -164,7 +217,11 @@ function InventoryWearRandom(C, AssetGroup, Difficulty) {
 	}
 }
 
-// Removes a specific item from the player appearance
+/**
+ * Removes a specific item from the player appearance
+ * @param {ICharacter} C 
+ * @param {string} AssetGroup 
+ */
 function InventoryRemove(C, AssetGroup) {
 	for (var E = 0; E < C.Appearance.length; E++)
 		if (C.Appearance[E].Asset.Group.Name == AssetGroup) {
@@ -174,7 +231,11 @@ function InventoryRemove(C, AssetGroup) {
 	CharacterRefresh(C);
 }
 
-// Returns TRUE if the currently worn item is blocked by another item (hoods blocks gags, belts blocks eggs, etc.)
+/**
+ * Returns TRUE if the currently worn item is blocked by another item (hoods blocks gags, belts blocks eggs, etc.)
+ * @param {ICharacter} C
+ * @returns {boolean}
+ */
 function InventoryGroupIsBlocked(C) {
 	for (var E = 0; E < C.Appearance.length; E++) {
 		if (!(C.Appearance[E].Asset.Group.Clothing) && (C.Appearance[E].Asset.Block != null) && (C.Appearance[E].Asset.Block.includes(C.FocusGroup.Name))) return true;
@@ -183,9 +244,15 @@ function InventoryGroupIsBlocked(C) {
 	return false;
 }
 
-// Returns TRUE if the item has a specific effect.
+/**
+ * Returns TRUE if the item has a specific effect.
+ * @param {IItem} Item 
+ * @param {string} Effect 
+ * @param {boolean} CheckProperties
+ * @returns {boolean}
+ */
 function InventoryItemHasEffect(Item, Effect, CheckProperties) {
-	if (!Item) return null;
+	if (!Item) return false;
 
 	// If no effect is specified, we simply check if the item has any effect
 	if (!Effect) {
@@ -198,7 +265,11 @@ function InventoryItemHasEffect(Item, Effect, CheckProperties) {
 	}
 }
 
-// Check if we must trigger an expression for the character after an item is used/applied
+/**
+ * Check if we must trigger an expression for the character after an item is used/applied
+ * @param {ICharacter} C 
+ * @param {IItem} Item 
+ */
 function InventoryExpressionTrigger(C, Item) {
 	if ((Item != null) && (Item.Asset != null) && (Item.Asset.DynamicExpressionTrigger() != null))
 		for (var E = 0; E < Item.Asset.DynamicExpressionTrigger().length; E++)
@@ -208,7 +279,11 @@ function InventoryExpressionTrigger(C, Item) {
 			}
 }
 
-// Returns the item that locks another item
+/**
+ * Returns the item that locks another item
+ * @param {IItem} Item 
+ * @returns {IItem}
+ */
 function InventoryGetLock(Item) {
 	if ((Item == null) || (Item.Property == null) || (Item.Property.LockedBy == null)) return null;
 	for (var A = 0; A < Asset.length; A++)
@@ -217,7 +292,11 @@ function InventoryGetLock(Item) {
 	return null;
 }
 
-// Returns TRUE if the item has an OwnerOnly flag, such as the owner padlock
+/**
+ * Returns TRUE if the item has an OwnerOnly flag, such as the owner padlock
+ * @param {IItem} Item
+ * @returns {boolean}
+ */
 function InventoryOwnerOnlyItem(Item) {
 	if (Item == null) return false;
 	if (Item.Asset.OwnerOnly) return true;
@@ -228,7 +307,11 @@ function InventoryOwnerOnlyItem(Item) {
 	return false;
 }
 
-// Returns TRUE if the character is wearing at least one item that's a restraint with a OwnerOnly flag, such as the owner padlock
+/**
+ * Returns TRUE if the character is wearing at least one item that's a restraint with a OwnerOnly flag, such as the owner padlock
+ * @param {ICharacter} C 
+ * @returns {boolean}
+ */
 function InventoryCharacterHasOwnerOnlyRestraint(C) {
 	if ((C.Ownership == null) || (C.Ownership.MemberNumber == null) || (C.Ownership.MemberNumber == "")) return false;
 	if (C.Appearance != null)
@@ -238,7 +321,11 @@ function InventoryCharacterHasOwnerOnlyRestraint(C) {
 	return false;
 }
 
-// Returns TRUE if at least one item on the character can be locked
+/**
+ * Returns TRUE if at least one item on the character can be locked
+ * @param {ICharacter} C
+ * @returns {boolean}
+ */
 function InventoryHasLockableItems(C) {
 	for (var I = 0; I < C.Appearance.length; I++)
 		if (C.Appearance[I].Asset.AllowLock && (InventoryGetLock(C.Appearance[I]) == null))
@@ -246,7 +333,13 @@ function InventoryHasLockableItems(C) {
 	return false;
 }
 
-// Applies a lock to an inventory item
+/**
+ * Applies a lock to an inventory item
+ * @param {ICharacter} C 
+ * @param {(IItem | string)} Item 
+ * @param {(IItem | string)} Lock 
+ * @param {number} MemberNumber 
+ */
 function InventoryLock(C, Item, Lock, MemberNumber) {
 	if (typeof Item === 'string') Item = InventoryGet(C, Item);
 	if (typeof Lock === 'string') Lock = { Asset: AssetGet(C.AssetFamily, "ItemMisc", Lock) };
@@ -261,7 +354,12 @@ function InventoryLock(C, Item, Lock, MemberNumber) {
 	}
 }
 
-// Applies a random lock on an item
+/**
+ * Applies a random lock on an item
+ * @param {ICharacter} C 
+ * @param {IItem} Item 
+ * @param {boolean} FromOwner 
+ */
 function InventoryLockRandom(C, Item, FromOwner) {
 	if (Item.Asset.AllowLock) {
 		var List = [];
@@ -275,21 +373,31 @@ function InventoryLockRandom(C, Item, FromOwner) {
 	}
 }
 
-// Applies random locks on each character items that can be locked
+/**
+ * Applies random locks on each character items that can be locked
+ * @param {ICharacter} C 
+ * @param {boolean} FromOwner 
+ */
 function InventoryFullLockRandom(C, FromOwner) {
 	for (var I = 0; I < C.Appearance.length; I++)
 		if (C.Appearance[I].Asset.AllowLock && (InventoryGetLock(C.Appearance[I]) == null))
 			InventoryLockRandom(C, C.Appearance[I], FromOwner);
 }
 
-// Removes all common keys from the player inventory
+/** Removes all common keys from the player inventory */
 function InventoryConfiscateKey() {
 	InventoryDelete(Player, "MetalCuffsKey", "ItemMisc");
 	InventoryDelete(Player, "MetalPadlockKey", "ItemMisc");
 	InventoryDelete(Player, "IntricatePadlockKey", "ItemMisc");
 }
 
-// returns TRUE if the item is worn
-function InventoryIsWorn(C, AssetGroup, AssetName){
+/**
+ * returns TRUE if the item is worn
+ * @param {*} C
+ * @param {string} AssetGroup
+ * @param {*} AssetName
+ * @returns {boolean}
+ */
+function InventoryIsWorn(C, AssetGroup, AssetName) {
 	return C && C.Appearance && C.Appearance.some(Item => Item.Asset.Group.Name == AssetGroup && Item.Asset.Name == AssetName);
 } 

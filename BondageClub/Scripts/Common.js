@@ -1,11 +1,19 @@
 // Main variables
 "use strict";
+
+/** @type {ICharacter} */
 var Player;
+/** @type {number} */
 var MouseX = 0;
+/** @type {number} */
 var MouseY = 0;
+/** @type {string} */
 var KeyPress = "";
+/** @type {string} */
 var CurrentModule;
+/** @type {string} */
 var CurrentScreen;
+/** @type {ICharacter} */
 var CurrentCharacter = null;
 var CurrentOnlinePlayers = 0;
 var CommonIsMobile = false;

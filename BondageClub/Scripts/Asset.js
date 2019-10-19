@@ -1,11 +1,21 @@
 "use strict";
+
+/** @type {IAsset[]} */
 var Asset = [];
+/** @type {IAssetGroup[]} */
 var AssetGroup = [];
+/** @type {IAssetGroup} */
 var AssetCurrentGroup;
+/** @type {IPose} */
 var Pose = [];
 
-// Adds a new asset group to the main list
+/**
+ * Adds a new asset group to the main list
+ * @param {IAssetFamily} NewAssetFamily 
+ * @param {*} NewAsset 
+ */
 function AssetGroupAdd(NewAssetFamily, NewAsset) {
+	/** @type IAssetGroup */
 	var A = {
 		Family: NewAssetFamily,
 		Name: NewAsset.Group,
@@ -38,8 +48,11 @@ function AssetGroupAdd(NewAssetFamily, NewAsset) {
 	AssetCurrentGroup = A;
 }
 
-// Adds a new asset to the main list
+/** Adds a new asset to the main list
+ * @param {*} NewAsset 
+ */
 function AssetAdd(NewAsset) {
+	/** @type {IAsset} */
 	var A = {
 		Name: NewAsset.Name,
 		Description: NewAsset.Name,
@@ -87,14 +100,18 @@ function AssetAdd(NewAsset) {
 		DynamicDescription: (typeof NewAsset.DynamicDescription === 'function') ? NewAsset.DynamicDescription : function () { return this.Description },
 		DynamicPreviewIcon: (typeof NewAsset.DynamicDescription === 'function') ? NewAsset.DynamicPreviewIcon : function () { return "" },
 		DynamicAllowInventoryAdd: (typeof NewAsset.DynamicAllowInventoryAdd === 'function') ? NewAsset.DynamicAllowInventoryAdd : function () { return true },
-		DynamicExpressionTrigger: (typeof NewAsset.DynamicExpressionTrigger === 'function') ? NewAsset.DynamicExpressionTrigger : function () { return this.ExpressionTrigger } 
+		DynamicExpressionTrigger: (typeof NewAsset.DynamicExpressionTrigger === 'function') ? NewAsset.DynamicExpressionTrigger : function () { return this.ExpressionTrigger }
 	}
 	// Unwearable assets are not visible but can be overwritten
 	if (!A.Wear && NewAsset.Visible != true) A.Visible = false;
 	Asset.push(A);
 }
 
-// Builds layers for an asset
+/**
+ * Builds layers for an asset
+ * @param {IAssetLayer[]} NewLayers 
+ * @returns {IAssetLayer[]} 
+ */
 function AssetBuildLayer(NewLayers) {
 	if (NewLayers == null || !Array.isArray(NewLayers)) return null;
 	var Layers = [];
@@ -113,7 +130,11 @@ function AssetBuildLayer(NewLayers) {
 	return Layers;
 }
 
-// Builds the asset description from the CSV file
+/**
+ * Builds the asset description from the CSV file
+ * @param {IAssetFamily} Family 
+ * @param {string[][]} CSV
+ */
 function AssetBuildDescription(Family, CSV) {
 
 	// For each assets in the family
@@ -145,7 +166,10 @@ function AssetBuildDescription(Family, CSV) {
 
 }
 
-// Loads the description of the assets in a specific language
+/**
+ * Loads the description of the assets in a specific language
+ * @param {IAssetFamily} Family 
+ */
 function AssetLoadDescription(Family) {
 
 	// Finds the full path of the CSV file to use cache
@@ -165,7 +189,10 @@ function AssetLoadDescription(Family) {
 
 }
 
-// Loads a specific asset file
+/** Loads a specific asset file
+ * @param {*} A 
+ * @param {IAssetFamily} Family 
+ */
 function AssetLoad(A, Family) {
 
 	// For each group in the asset file
@@ -190,7 +217,7 @@ function AssetLoad(A, Family) {
 
 }
 
-// Reset and load all the assets
+/** Reset and load all the assets */
 function AssetLoadAll() {
 	Asset = [];
 	AssetGroup = [];
@@ -207,7 +234,13 @@ function AssetReload(C) {
 					C.Appearance[A].Asset = Asset[S];
 }
 
-// Gets a specific asset by family/group/name
+/**
+ * Gets a specific asset by family/group/name
+ * @param {IAssetFamily} Family 
+ * @param {string} Group 
+ * @param {string} Name 
+ * @returns {IAsset}
+ */
 function AssetGet(Family, Group, Name) {
 	for (var A = 0; A < Asset.length; A++)
 		if ((Asset[A].Name == Name) && (Asset[A].Group.Name == Group) && (Asset[A].Group.Family == Family))

@@ -1,7 +1,13 @@
 "use strict";
+
+/** @type ICharacter */
 var Character = [];
 
-// Loads a character in the buffer
+/**
+ * Loads a character in the buffer
+ * @param {number} CharacterID 
+ * @param {IAssetFamily} CharacterAssetFamily 
+ */
 function CharacterReset(CharacterID, CharacterAssetFamily) {
 
 	// Prepares the character sheet
@@ -69,7 +75,10 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 
 }
 
-// Creates a random name for the character
+/**
+ * Creates a random name for the character
+ * @param {ICharacter} C 
+ */
 function CharacterRandomName(C) {
 
 	// Generates a name from the name bank 
@@ -92,7 +101,11 @@ function CharacterRandomName(C) {
 
 }
 
-// Builds the dialog objects from the CSV files
+/**
+ * Builds the dialog objects from the CSV files
+ * @param {ICharacter} C
+ * @param {string[][]} CSV
+ */
 function CharacterBuildDialog(C, CSV) {
 
 	// For each lines in the file
@@ -119,7 +132,11 @@ function CharacterBuildDialog(C, CSV) {
 
 }
 
-// Loads a CSV file to build the character dialog
+/**
+ * Loads a CSV file to build the character dialog
+ * @param {ICharacter} C
+ * @param {string} Override
+ */
 function CharacterLoadCSVDialog(C, Override) {
 
 	// Finds the full path of the CSV file to use cache
@@ -139,7 +156,12 @@ function CharacterLoadCSVDialog(C, Override) {
 
 }
 
-// Sets the clothes based on a character archetype
+/**
+ * Sets the clothes based on a character archetype
+ * @param {ICharacter} C
+ * @param {('Maid'|'Mistress')} Archetype
+ * @param {string} ForceColor
+ */
 function CharacterArchetypeClothes(C, Archetype, ForceColor) {
 
 	// Maid archetype
@@ -175,7 +197,11 @@ function CharacterArchetypeClothes(C, Archetype, ForceColor) {
 
 }
 
-// Loads in the NPC character in the buffer
+/**
+ * Loads in the NPC character in the buffer
+ * @param {string} NPCType
+ * @returns {ICharacter}
+ */
 function CharacterLoadNPC(NPCType) {
 
 	// Checks if the NPC already exists and returns it if it's the case
@@ -201,7 +227,12 @@ function CharacterLoadNPC(NPCType) {
 
 }
 
-// Sets up the online character
+/**
+ * Sets up the online character
+ * @param {ICharacter} Char 
+ * @param {*} data 
+ * @param {number} SourceMemberNumber 
+ */
 function CharacterOnlineRefresh(Char, data, SourceMemberNumber) {
 	if (Char.ID != 0) Char.Title = data.Title;
 	Char.ActivePose = data.ActivePose;
@@ -218,7 +249,12 @@ function CharacterOnlineRefresh(Char, data, SourceMemberNumber) {
 	CharacterRefresh(Char);
 }
 
-// Loads an online character
+/**
+ * Loads an online character
+ * @param {*} data 
+ * @param {number} SourceMemberNumber
+ * @returns {ICharacter}
+ */
 function CharacterLoadOnline(data, SourceMemberNumber) {
 
 	// Checks if the NPC already exists and returns it if it's the case
@@ -292,7 +328,10 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 
 }
 
-// Deletes an NPC from the buffer
+/**
+ * Deletes an NPC from the buffer
+ * @param {string} NPCType 
+ */
 function CharacterDelete(NPCType) {
 	for (var C = 0; C < Character.length; C++)
 		if (Character[C].AccountName == NPCType) {
@@ -301,14 +340,21 @@ function CharacterDelete(NPCType) {
 		}
 }
 
-// Adds new effects on a character if it's not already there
+/**
+ * Adds new effects on a character if it's not already there
+ * @param {ICharacter} C 
+ * @param {string} NewPose 
+ */
 function CharacterAddPose(C, NewPose) {
 	for (var E = 0; E < NewPose.length; E++)
 		if (C.Pose.indexOf(NewPose[E]) < 0)
 			C.Pose.push(NewPose[E]);
 }
 
-// Resets the current pose list on a character
+/**
+ * Resets the current pose list on a character
+ * @param {ICharacter} C 
+ */
 function CharacterLoadPose(C) {
 	C.Pose = [];
 	if (C.ActivePose != null) C.Pose.push(C.ActivePose);
@@ -324,14 +370,21 @@ function CharacterLoadPose(C) {
 	}
 }
 
-// Adds new effects on a character if it's not already there
+/**
+ * Adds new effects on a character if it's not already there
+ * @param {ICharacter} C 
+ * @param {string} NewEffect 
+ */
 function CharacterAddEffect(C, NewEffect) {
 	for (var E = 0; E < NewEffect.length; E++)
 		if (C.Effect.indexOf(NewEffect[E]) < 0)
 			C.Effect.push(NewEffect[E]);
 }
 
-// Resets the current effect list on a character
+/**
+ * Resets the current effect list on a character
+ * @param {ICharacter} C 
+ */
 function CharacterLoadEffect(C) {
 	C.Effect = [];
 	for (var A = 0; A < C.Appearance.length; A++) {
@@ -344,7 +397,10 @@ function CharacterLoadEffect(C) {
 	}
 }
 
-// Sorts the character appearance by priority and loads the canvas
+/**
+ * Sorts the character appearance by priority and loads the canvas
+ * @param {ICharacter} C 
+ */
 function CharacterLoadCanvas(C) {
 
 	// Sorts the full appearance array first
@@ -371,7 +427,7 @@ function CharacterLoadCanvas(C) {
 
 }
 
-// Reload all characters canvas
+/** Reload all characters canvas */
 function CharacterLoadCanvasAll() {
 	for (var C = 0; C < Character.length; C++)
 		if (Character[C].MustDraw) {
@@ -380,7 +436,10 @@ function CharacterLoadCanvasAll() {
 		}
 }
 
-// Sets the current character for conversation with introduction
+/**
+ * Sets the current character for conversation with introduction
+ * @param {ICharacter} C 
+ */
 function CharacterSetCurrent(C) {
 	CurrentCharacter = C;
 	var NewDialog = DialogIntro();
@@ -388,13 +447,21 @@ function CharacterSetCurrent(C) {
 	if (NewDialog != "") C.CurrentDialog = NewDialog;
 }
 
-// Changes the character money and sync with the account server
+/**
+ * Changes the character money and sync with the account server
+ * @param {ICharacter} C 
+ * @param {(string|number)} Value 
+ */
 function CharacterChangeMoney(C, Value) {
 	C.Money = parseInt(C.Money) + parseInt(Value) * ((Value > 0) ? CheatFactor("DoubleMoney", 2) : 1);
 	ServerPlayerSync();
 }
 
-// Refreshes the character parameters
+/**
+ * Refreshes the character parameters
+ * @param {ICharacter} C 
+ * @param {boolean} [Push = true] 
+ */
 function CharacterRefresh(C, Push) {
 	CharacterLoadEffect(C);
 	CharacterLoadPose(C);
@@ -402,7 +469,11 @@ function CharacterRefresh(C, Push) {
 	if ((C.ID == 0) && (C.OnlineID != null) && ((Push == null) || (Push == true))) ServerPlayerAppearanceSync();
 }
 
-// Returns TRUE if a character has no item (the slave collar doesn't count)
+/**
+ * Returns TRUE if a character has no item (the slave collar doesn't count)
+ * @param {ICharacter} C
+ * @returns {boolean}
+ */
 function CharacterHasNoItem(C) {
 	for (var A = 0; A < C.Appearance.length; A++)
 		if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Category == "Item"))
@@ -411,7 +482,11 @@ function CharacterHasNoItem(C) {
 	return true;
 }
 
-// Returns TRUE if a character is naked
+/**
+ * Returns TRUE if a character is naked
+ * @param {ICharacter} C
+ * @returns {boolean}
+ */
 function CharacterIsNaked(C) {
 	for (var A = 0; A < C.Appearance.length; A++)
 		if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Category == "Appearance") && C.Appearance[A].Asset.Group.AllowNone && !C.Appearance[A].Asset.Group.KeepNaked)
@@ -419,7 +494,11 @@ function CharacterIsNaked(C) {
 	return true;
 }
 
-// Returns TRUE if a character is in her underwear
+/**
+ * Returns TRUE if a character is in her underwear
+ * @param {ICharacter} C 
+ * @returns {boolean}
+ */
 function CharacterIsInUnderwear(C) {
 	for (var A = 0; A < C.Appearance.length; A++)
 		if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Category == "Appearance") && C.Appearance[A].Asset.Group.AllowNone && !C.Appearance[A].Asset.Group.KeepNaked && !C.Appearance[A].Asset.Group.Underwear)
@@ -427,7 +506,10 @@ function CharacterIsInUnderwear(C) {
 	return true;
 }
 
-// Removes all appearance items from the character
+/**
+ * Removes all appearance items from the character
+ * @param {ICharacter} C 
+ */
 function CharacterNaked(C) {
 	CharacterAppearanceNaked(C);
 	AssetReload(C);
@@ -435,7 +517,10 @@ function CharacterNaked(C) {
 	CharacterRefresh(C);
 }
 
-// Dress the character in random underwear
+/**
+ * Dress the character in random underwear
+ * @param {ICharacter} C 
+ */
 function CharacterRandomUnderwear(C) {
 
 	// Clear the current clothes
@@ -465,7 +550,11 @@ function CharacterRandomUnderwear(C) {
 
 }
 
-// Removes all appearance items from the character expect underwear
+/**
+ * Removes all appearance items from the character expect underwear
+ * @param {ICharacter} C 
+ * @param {IItem[]} Appearance 
+ */
 function CharacterUnderwear(C, Appearance) {
 	CharacterAppearanceNaked(C);
 	for (var A = 0; A < Appearance.length; A++)
@@ -476,7 +565,11 @@ function CharacterUnderwear(C, Appearance) {
 	CharacterRefresh(C);
 }
 
-// Redress the character based on a specific appearance object
+/**
+ * Redress the character based on a specific appearance object
+ * @param {ICharacter} C 
+ * @param {IItem[]} Appearance 
+ */
 function CharacterDress(C, Appearance) {
 	if ((Appearance != null) && (Appearance.length > 0)) {
 		for (var A = 0; A < Appearance.length; A++)
@@ -499,7 +592,12 @@ function CharacterRelease(C) {
 	CharacterRefresh(C);
 }
 
-// Returns the best bonus factor available
+/**
+ * Returns the best bonus factor available
+ * @param {ICharacter} C 
+ * @param {string} BonusType
+ * @returns {number}
+ */
 function CharacterGetBonus(C, BonusType) {
 	var Bonus = 0;
 	for (var I = 0; I < C.Inventory.length; I++)
@@ -510,7 +608,11 @@ function CharacterGetBonus(C, BonusType) {
 	return Bonus;
 }
 
-// Fully restrain a character with random items
+/**
+ * Fully restrain a character with random items
+ * @param {ICharacter} C 
+ * @param {string} Ratio 
+ */
 function CharacterFullRandomRestrain(C, Ratio) {
 
 	// Sets the ratio depending on the parameter
@@ -532,13 +634,22 @@ function CharacterFullRandomRestrain(C, Ratio) {
 
 }
 
-// Sets a new pose for the character
+/**
+ * Sets a new pose for the character
+ * @param {ICharacter} C 
+ * @param {string} NewPose 
+ */
 function CharacterSetActivePose(C, NewPose) {
 	C.ActivePose = NewPose;
 	CharacterRefresh(C, false);
 }
 
-// Sets a specific facial expression for the character's specified AssetGruo
+/**
+ * Sets a specific facial expression for the character's specified AssetGruop
+ * @param {ICharacter} C 
+ * @param {string} AssetGroup 
+ * @param {string} Expression 
+ */
 function CharacterSetFacialExpression(C, AssetGroup, Expression) {
 	for (var A = 0; A < C.Appearance.length; A++) {
 		if ((C.Appearance[A].Asset.Group.Name == AssetGroup) && (C.Appearance[A].Asset.Group.AllowExpression)) {
@@ -555,15 +666,20 @@ function CharacterSetFacialExpression(C, AssetGroup, Expression) {
 	}
 }
 
-// Resets the character's facial expression to the default
+/**
+ * Resets the character's facial expression to the default
+ * @param {ICharacter} C 
+ */
 function CharacterResetFacialExpression(C) {
 	for (var A = 0; A < C.Appearance.length; A++)
 		if (C.Appearance[A].Asset.Group.AllowExpression)
 			CharacterSetFacialExpression(C, C.Appearance[A].Asset.Group.Name, null);
 }
 
-
-// returns the current selected character
+/**
+ * Returns the current selected character
+ * @returns {ICharacter}
+ */
 function CharacterGetCurrent() {
 	return (Player.FocusGroup != null) ? Player : CurrentCharacter;
 }
