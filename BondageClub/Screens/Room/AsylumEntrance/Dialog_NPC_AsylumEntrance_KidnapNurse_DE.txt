@@ -9,7 +9,7 @@ Geknebelte Patienten sind die besten Patienten.
 (Eine Krankenschwester steht dir im Weg.) Ich bin zu deinem eigenen Besten hier, Patientin DialogPlayerName. Komm mit mir zurück in die Anstalt.
 (A nurse sees you and grins.)  This is too easy.  You're going back to the asylum patient DialogPlayerName.
 (Eine Krankenschwester sieht dich und grinst.) Das ist zu einfach. Du kommst zurück in die Anstalt, Patientin DialogPlayerName.
-(A nurse grabs your arm.)  You always get in trouble do you?  Come back to the asylum with me now.
+(A nurse grabs your arm.)  You always get in trouble, do you?  Come back to the asylum with me now.
 (Eine Krankenschwester packt dich am Arm.) Du machst immer nur Ärger, was? Komm auf der Stelle mit mir in die Anstalt zurück.
 (A nurse blocks your path and smiles.)  Struggling is futile patient DialogPlayerName.  You're coming back with me.
 (Eine Krankenschwester stellt sich dir in den Weg und lächelt.) Widerstand ist zwecklos, Patientin DialogPlayerName. Du kommst mit mir zurück.
@@ -180,7 +180,7 @@ Ist das wirklich nötig?
 ###_PLAYER
 (Stay silent.)
 (Schweigen.)
-Bye bye nurse.
+Bye-bye nurse.
 Tschüss, Schwester.
 (Leave her.)
 (Dialog beenden.)

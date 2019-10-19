@@ -3472,7 +3472,7 @@ Die Anstalt wird dich ändern.
 You'll get therapies at the asylum.
 Du bekommst eine Therapie in der Anstalt.
 They have treatments for that at the asylum.
-In der Anstalt beiten sie Behandlungen für sowas an.
+In der Anstalt bieten sie Behandlungen für sowas an.
 I will pay the 25$.
 Ich zahle die 25$.
 ###_NPC

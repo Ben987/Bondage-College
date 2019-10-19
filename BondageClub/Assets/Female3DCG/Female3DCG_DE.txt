@@ -147,7 +147,7 @@ Windeln
 Frill Panties
 Rüschenhöschen
 Maid Panties
-Dienstmädchen-Höschen
+Hausmädchen-Höschen
 Latex Panties
 Latexhöschen
 Wrap Panties
@@ -446,6 +446,14 @@ Clit Suction Cup
 Klitoris-Saugnapf
 Tape Strips
 Pflaster
+Straight Clit Piercing
+Gerades Klitoris-Piercing
+Round Clit Piercing
+Rundes Klitoris-Piercing
+Weighted Clit Piercing
+Gewichtetes Klitoris-Piercing
+Chastity Clit Piercing
+Keuschheits-Klitoris-Piercing
 Butt
 Hintern
 Black Butt Plug
@@ -588,6 +596,8 @@ Paddle
 Paddel
 Whip Paddle
 Paddelpeitsche
+Whip
+Peitsche
 Neck
 Hals
 Leather Collar
@@ -618,6 +628,8 @@ Leather Choker
 Lederhalsreif
 Pet Collar
 Tierhalsband
+Maid Collar
+Hausmädchenhalsband
 Collar
 Halsband
 Bell
@@ -680,6 +692,10 @@ Chopstick Gag
 Stäbchenknebel
 Bamboo Gag
 Bambusknebel
+Harness Ball Gag XL
+XL-Harnischballknebel
+Pumpkin Gag
+Kürbisknebel
 Head
 Kopf
 Cloth Blindfold
@@ -756,6 +772,8 @@ Kennel
 Zwinger
 Saddle Stand
 Sattelständer
+Teddy Bear Set
+Teddybär-Set
 Ballet Heels
 Ballett-Heels
 Ballet Wedges

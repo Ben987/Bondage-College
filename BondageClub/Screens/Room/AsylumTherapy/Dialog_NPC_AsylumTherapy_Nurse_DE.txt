@@ -49,7 +49,7 @@ Wir bieten vier verschiedene Arten von Therapien an: Bondage, Schmerz, Kitzeln u
 Tell me about bondage therapies.
 Erzähl mir von den Bondage-Therapien.
 ###_NPC
-Some patients gets claustrophobic and panic when restrained.  This therapy helps them to relax and appreciate the restraints.
+Some patients get claustrophobic and panic when restrained.  This therapy helps them to relax and appreciate the restraints.
 Macnhe Patienten werden klaustrophobisch und geraten in Panik, wenn sie gefesselt sind. Diese Therapie hilft ihnen, sich zu entspannen und in den Fesseln wohl zu fühlen.
 ###_PLAYER
 Tell me about pain therapies.
@@ -159,7 +159,7 @@ Gib mir deine Arme, damit ich dich fesseln kann.
 Are you sure it's safe?
 Ist das auch sicher ungefährlich?
 ###_NPC
-Of course it's safe.  Now give me your arms.
+Of course, it's safe.  Now give me your arms.
 Natürlich ist es ungefährlich. Jetzt gib mir deine Arme.
 ###_PLAYER
 (Let her restrain you.)
@@ -173,7 +173,7 @@ Natürlich ist es ungefährlich. Jetzt gib mir deine Arme.
 ###_NPC
 Very good.  I will keep you restrained for ten minutes.  You need to stay calm and docile.
 Sehr gut. Ich werde dich zehn minuten lang gefesselt lassen. Du musst ruhig und fügsam bleiben.
-(She loosen your restraints.)  Try to be strong girl.  I will keep you restrained for ten minutes.  You need to stay calm and docile.
+(She loosens your restraints.)  Try to be strong girl.  I will keep you restrained for ten minutes.  You need to stay calm and docile.
 (Sie lockert deine Fesseln.) Versuche, stark zu bleiben, Mädchen. Ich werde dich zehn minuten lang gefesselt lassen. Du musst ruhig und fügsam bleiben.
 ###_PLAYER
 (Nod slowly.)
@@ -247,7 +247,7 @@ Rot.
 Green.
 Grün.
 ###_NPC
-You can whimper and moan, but you cannot move.  (She swings and hits your butt switfly many times.)
+You can whimper and moan, but you cannot move.  (She swings and hits your butt swiftly many times.)
 Du darfst wimmern und stöhnen, aber du darfst dich nicht bewegen. (Sie holt aus und trifft mehrere Male schnell deinen Po.)
 ###_PLAYER
 Blue.
@@ -291,8 +291,8 @@ Fuck! Das tut weh!
 (Sie schlägt dich ein letztes Mal und hilft dir, aufzustehen.) Gut gemacht, diese Therapie war ein Erfolg. Wie fühlst du dich?
 (She hits you one last time and helps you to stand you.)  Well done, this therapy was a success.  How are you?
 (Sie schlägt dich ein letztes Mal und hilft dir, aufzustehen.) Gut gemacht, diese Therapie war ein Erfolg. Wie geht es dir?
-(She gives you a stern look.)  This is a tickle therapy, you'll need to show some skin.
-(Sie schaut dich streng an.) Dies ist eine Kitzel-Therapie, du musst etwas Haut zeigen.
+(She gives you a stern look.)  This is a tickle therapy.  You'll need to show some skin.
+(Sie schaut dich streng an.) Dies ist eine Kitzel-Therapie. Du wirst etwas Haut zeigen müssen.
 (She helps you to strip down naked.)  Your tickle therapy can begin.
 (Sie hilft dir, dich auszuziehen.) Deine Kitzel-Therapie kann beginnen.
 Put your hands behind your back.  They must stay there for the whole therapy.
@@ -409,7 +409,7 @@ Jjjiieeeaahhahaha!
 (Blush.)  What about the belt?
 (Rot werden.) Was ist mit dem Gürtel?
 ###_NPC
-(She laughs.)  Yes, you have a problem there girl, and I cannot help you.  We can do another therapy if you want.
+(She laughs.)  Yes, you have a problem girl, and I cannot help you.  We can do another therapy if you want.
 (Sie lacht.) Ja, du hast da ein kleines Problem, Mädchen, und ich kann dir dabei nicht helfen. Wir können eine andere Therapie durchführen, wenn du willst.
 ###_PLAYER
 I'm ready!
@@ -421,8 +421,8 @@ Wundervoll! Ich werde dich mit diesem Vibrator-Stab erregen. Du darfst keinen Or
 That's quite a challenge.
 Das klingt nach einer ziemlichen Herausforderung.
 ###_NPC
-Yes, It can be a challenge.  It will teach you about controlling your own body and pulsions.
-Ja, es kann herausfordernd sein. Es wird dir beibringen, deinen Körper unter Kontrolle zu halten.
+It can be a challenge.  It will teach you about controlling your body and sexual urges.
+Es kann herausfordernd sein. Es wird dir beibringen, deinen Körper und deine sexuellen Bedürfnisse unter Kontrolle zu halten.
 ###_PLAYER
 I'll follow your lead.
 Ich folge deinen Anweisungen.
@@ -477,7 +477,7 @@ Aaaaaah! Aah!
 ###_NPC
 (She speeds up the vibrating wand again, making you tremble and shiver from sexual pleasure.)  Not yet.
 (Sie erhöht die Vibration erneut und lässt dich vor sexuellen Reizen zittern und schaudern.) Noch nicht.
-(She forces the full speed vibrating wand against you pussy lips and stares at you.)  Now girl!  Cum now!
+(She forces the full speed vibrating wand against your pussy lips and stares at you.)  Now girl!  Cum now!
 (Sie drückt den auf Höchstgeschwindigkeit vibrierenden Stab gegen deine Schamlippen und starrt dich an.) Jetzt, Mädchen! Komm!
 (You get a great orgasm as she smiles at you.)  You did it patient DialogPlayerName.  The therapy was a success.
 (Du erlangst einen grandiosen Orgasmus und sie lächelt dich an.) Du hast es geschafft, Patientin DialogPlayerName. Die Therapie war ein Erfolg.
