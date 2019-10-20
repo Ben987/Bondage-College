@@ -106,9 +106,9 @@ function InformationSheetRun() {
 		if (!TitleIsForced(CurrentTitle)) DrawButton(1815, 190, 90, 90, "", "White", "Icons/Title.png");
 		DrawButton(1815, 305, 90, 90, "", "White", "Icons/Preference.png");
 		DrawButton(1815, 420, 90, 90, "", "White", "Icons/FriendList.png");
-		DrawButton(1815, 535, 90, 90, "", "White", "Icons/Preference.png");
+		DrawButton(1815, 535, 90, 90, "", "White", "Icons/Title.png", "Online Profile");
 	} else if (isOnlinePlayer) {
-		DrawButton(1815, 190, 90, 90, "", "White", "Icons/Preference.png", "Online Profile");
+		DrawButton(1815, 190, 90, 90, "", "White", "Icons/Title.png", "Online Profile");
 	}
 }
 
@@ -120,7 +120,7 @@ function InformationSheetClick() {
 	if (CommonIsClickAt(1815, 75, 90, 90)) InformationSheetExit();
 
 	if (C.ID == 0) {
-		if (CommonIsClickAt(1815, 190, 90, 90) && !TitleIsForced(CurrentTitle)) CommonSetScreen("Character", "Title");
+		if (CommonIsClickAt(1815, 190, 90, 90) && !TitleIsForced(TitleGet(C))) CommonSetScreen("Character", "Title");
 		if (CommonIsClickAt(1815, 305, 90, 90)) CommonSetScreen("Character", "Preference");
 		if (CommonIsClickAt(1815, 420, 90, 90)) CommonSetScreen("Character", "FriendList");
 		if (CommonIsClickAt(1815, 535, 90, 90)) CommonSetScreen("Character", "OnlineProfile");
