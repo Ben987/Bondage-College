@@ -586,6 +586,7 @@ function PrivateActivityRun(LoveFactor) {
 		InventoryRemove(Player, "ItemLegs");
 		InventoryRemove(Player, "ItemFeet");
 		InventoryRemove(Player, "Hat");
+		InventoryRemove(Player, "HairAccessory2");
 		InventoryWearRandom(Player, "ItemMouth");
 		InventoryWear(Player, "BitchSuit", "ItemArms", "Default", Math.floor(Math.random() * 10) + 1);
 		InventoryWear(Player, "PuppyEars1", "HairAccessory1");
