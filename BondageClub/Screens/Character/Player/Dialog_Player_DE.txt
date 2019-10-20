@@ -679,6 +679,8 @@ Paddle
 Paddel
 Whip Paddle
 Peitschenpaddel
+Whip
+Peitsche
 SourceCharacter takes out a Item
 SourceCharacter holt ein(e(n)) Item hervor
 SourceCharacter give DestinationCharacter a Item
@@ -853,3 +855,25 @@ Select the slave collar model
 Sklavenhalsband-Modell wählen
 SourceCharacter changes DestinationCharacter's collar model.
 SourceCharacter wechselt DestinationCharacters Halsband aus.
+Select the Type of Teddy Bear
+Teddybär-Typ wählen
+Bear
+Bär
+Fox
+Fuchs
+Kitty
+Kätzchen
+Pony
+Pony
+SourceCharacter gives DestinationCharacter a cute teddy bear.
+SourceCharacter gibt DestinationCharacter einen süßen Teddybären.
+SourceCharacter gives DestinationCharacter a cute foxy teddy.
+SourceCharacter gibt DestinationCharacter einen süßen Plüschfuchs.
+SourceCharacter gives DestinationCharacter a cute kitty teddy.
+SourceCharacter gibt DestinationCharacter eine süße Plüschkatze.
+SourceCharacter gives DestinationCharacter a cute puppy teddy.
+SourceCharacter gibt DestinationCharacter einen süßen Plüschhund.
+SourceCharacter gives DestinationCharacter a cute Bunny teddy.
+SourceCharacter gibt DestinationCharacter einen süßen Stoffhasen.
+SourceCharacter gives DestinationCharacter a cute Pony teddy.
+SourceCharacter gibt DestinationCharacter ein süßes Plüschpony.

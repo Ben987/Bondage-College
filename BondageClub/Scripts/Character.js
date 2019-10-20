@@ -358,7 +358,8 @@ function CharacterLoadCanvas(C) {
 	// Sets the total height modifier for that character
 	C.HeightModifier = 0;
 	for (var A = 0; A < C.Appearance.length; A++)
-		C.HeightModifier = C.HeightModifier + C.Appearance[A].Asset.HeightModifier;
+		if (CharacterAppearanceVisible(C, C.Appearance[A].Asset.Name, C.Appearance[A].Asset.Group.Name))
+			C.HeightModifier = C.HeightModifier + C.Appearance[A].Asset.HeightModifier;
 	if (C.Pose != null)
 		for (var A = 0; A < C.Pose.length; A++)
 			for (var P = 0; P < Pose.length; P++)

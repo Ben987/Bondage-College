@@ -69,6 +69,7 @@ function AsylumEntranceWearNurseClothes(C) {
 	InventoryWear(C, "NurseUniform", "Cloth", "#848080");
 	InventoryWear(C, "NurseCap", "Hat", "Default");
 	InventoryWear(C, "Stockings2", "Socks", "Default");
+	InventoryRemove(C, "ClothLower");
 }
 
 // Wears the patient clothes on a character
