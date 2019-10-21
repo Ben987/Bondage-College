@@ -172,9 +172,9 @@ Natürlich ist es ungefährlich. Jetzt gib mir deine Arme.
 (Nicken.)
 ###_NPC
 Very good.  I will keep you restrained for ten minutes.  You need to stay calm and docile.
-Sehr gut. Ich werde dich zehn minuten lang gefesselt lassen. Du musst ruhig und fügsam bleiben.
+Sehr gut. Ich werde dich zehn Minuten lang gefesselt lassen. Du musst ruhig und fügsam bleiben.
 (She loosens your restraints.)  Try to be strong girl.  I will keep you restrained for ten minutes.  You need to stay calm and docile.
-(Sie lockert deine Fesseln.) Versuche, stark zu bleiben, Mädchen. Ich werde dich zehn minuten lang gefesselt lassen. Du musst ruhig und fügsam bleiben.
+(Sie lockert deine Fesseln.) Versuche, stark zu bleiben, Mädchen. Ich werde dich zehn Minuten lang gefesselt lassen. Du musst ruhig und fügsam bleiben.
 ###_PLAYER
 (Nod slowly.)
 (Langsam nicken.)

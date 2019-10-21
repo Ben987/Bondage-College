@@ -149,7 +149,7 @@ Hände hinter den Rücken. Dir werden die Augen verbunden, Mädchen.
 Please put your arms behind.  I will put a blindfold on you.
 Bitte nimm deine Hände hinter den Rücken. Ich verbinde dir die Augen.
 Patient, put your arms behind.  I will blindfold you.
-Patientin, Arme nach Hinten. Ich verbinde dir die Augen.
+Patientin, Arme nach hinten. Ich verbinde dir die Augen.
 Surrender to me until the tickling therapy is over.
 Unterwirf dich mir, bis die Kitzel-Therapie vorbei ist.
 ###_NPC
@@ -157,7 +157,7 @@ Unterwirf dich mir, bis die Kitzel-Therapie vorbei ist.
 (Sie versucht vergeblich, sich umzuschauen.) Ja, Schwester DialogPlayerName. Seien sie vorsichtig, ich bin sehr kitzelig.
 ###_PLAYER
 You're not allowed to move for the full treatment.
-Du darfst dich die ganze Behandlung über nicht bewegen.
+Du darfst dich während der Behandlung nicht bewegen.
 Please put your arms behind.  I will add something kinky.
 Bitte nimm die Arme nach hinten. Ich lege dir etwas Versautes an.
 ###_NPC
@@ -179,7 +179,7 @@ Ich werde deine sexuellen Bedürfnisse und Orgasmen kontrollieren.
 (Do an easy therapy for a lesser pay.)
 (Eine einfache Therapie für weniger Lohn starten.)
 (Do a regular therapy for a regular pay.)
-(Eine normale Therapie für Standard-Lohn starten.)
+(Eine normale Therapie für normalen Lohn starten.)
 (Do a tough therapy for a better pay.)
 (Eine schwierige Therapie für mehr Lohn starten.)
 I didn't do much, you were a good patient.
