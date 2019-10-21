@@ -3,6 +3,7 @@ CannotUseOnSelf,,,Cannot use on yourself
 RemoveClothesForItem,,,Remove some clothes first
 RemoveSuspensionForItem,,,Remove the suspension first
 TheyMustBeStandingFirst,,,Must be standing and not suspended first.
+CannotBeUsedWithFeetSpreader,,,Cannot be used with legs spreader.
 RemoveChainForItem,,,Remove the chain to the floor first
 MustCollaredFirst,,,A collar must be fitted first to attach accessories to.
 MustCollaredFirstAndRemoveSuspension,,,Must be collared and not suspended first.
@@ -450,9 +451,9 @@ TeddyBearTypeKitty,,,Kitty
 TeddyBearTypePup,,,Puppy
 TeddyBearTypeBunny,,,Bunny
 TeddyBearTypePony,,,Pony
-TeddyBearSetBear,,,SourceCharacter gives DestinationCharacter's a cute teddy bear.
-TeddyBearSetFox,,,SourceCharacter gives DestinationCharacter's a cute foxy teddy.
-TeddyBearSetKitty,,,SourceCharacter gives DestinationCharacter's a cute kitty teddy.
-TeddyBearSetPup,,,SourceCharacter gives DestinationCharacter's a cute puppy teddy.
-TeddyBearSetBunny,,,SourceCharacter gives DestinationCharacter's a cute Bunny teddy.
-TeddyBearSetPony,,,SourceCharacter gives DestinationCharacter's a cute Pony teddy.
+TeddyBearSetBear,,,SourceCharacter gives DestinationCharacter a cute teddy bear.
+TeddyBearSetFox,,,SourceCharacter gives DestinationCharacter a cute foxy teddy.
+TeddyBearSetKitty,,,SourceCharacter gives DestinationCharacter a cute kitty teddy.
+TeddyBearSetPup,,,SourceCharacter gives DestinationCharacter a cute puppy teddy.
+TeddyBearSetBunny,,,SourceCharacter gives DestinationCharacter a cute Bunny teddy.
+TeddyBearSetPony,,,SourceCharacter gives DestinationCharacter a cute Pony teddy.

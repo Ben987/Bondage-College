@@ -77,12 +77,14 @@ function TherapyRun() {
 // Validates if the therapy must end
 function TherapyVerifyEnd() {
 	if (MiniGameProgress >= 100) {
-		MiniGameVictory = true;	
+		MiniGameVictory = true;
 		MiniGameEnded = true;
+		MiniGameProgress = 100;
 	}
 	if (TherapyStress >= 20) {
 		MiniGameVictory = false;
 		MiniGameEnded = true;
+		TherapyStress = 20;
 	}
 }
 

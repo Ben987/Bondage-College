@@ -14,7 +14,7 @@ Guten Tag, Hausdame DialogPlayerName. Was führt Sie zum Sklavenmarkt?
 Greetings master kidnapper DialogPlayerName.  Do you have some merchandize for us?
 Guten Tag, Meisterkidnapperin DialogPlayerName. Haben Sie neue Ware für uns?
 Welcome little maid.  What are you doing in the slave market?
-Willkommen, kleines Dienstmädchen. Was suchst du denn auf dem Sklavenmarkt?
+Willkommen, kleines Hausmädchen. Was suchst du denn auf dem Sklavenmarkt?
 Welcome kidnapper.  Do you have some merchandize for us?
 Willkommen, Kidnapperin. Hast du neue Ware für uns?
 Welcome to the slave market.  Are you looking for a submissive?
