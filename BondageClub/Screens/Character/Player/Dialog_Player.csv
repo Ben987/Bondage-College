@@ -350,17 +350,17 @@ mittensfromharness,,,mittens
 NeedHarness,,,She must be wearing a baby harness to chain the mittens.
 FreeArms,,,You must free her arms before attaching mitten chains.
 FacialExpression,,,Facial expression
-SelectSpankingToysType,,,Select a spanking toy
-SpankingToysTypeCrop,,,Crop
-SpankingToysTypeFlogger,,,Flogger
-SpankingToysTypeCane,,,Cane
-SpankingToysTypeHeartCrop,,,Heart Crop
-SpankingToysTypePaddle,,,Paddle
-SpankingToysTypeWhipPaddle,,,Whip Paddle
-SpankingToysTypeWhip,,,Whip
-SpankingToysTypeTennisRacket,,,Tennis Racket
-SpankingToysSetPlayer,,,SourceCharacter takes out a Item
-SpankingToysSetOthers,,,SourceCharacter give DestinationCharacter a Item
+ItemHandsSpankingToysSelect,,,Select a spanking toy
+ItemHandsSpankingToysCrop,,,Crop
+ItemHandsSpankingToysFlogger,,,Flogger
+ItemHandsSpankingToysCane,,,Cane
+ItemHandsSpankingToysHeartCrop,,,Heart Crop
+ItemHandsSpankingToysPaddle,,,Paddle
+ItemHandsSpankingToysWhipPaddle,,,Whip Paddle
+ItemHandsSpankingToysWhip,,,Whip
+ItemHandsSpankingToysTennisRacket,,,Tennis Racket
+ItemHandsSpankingToysSetPlayer,,,SourceCharacter takes out a Item
+ItemHandsSpankingToysSetOthers,,,SourceCharacter give DestinationCharacter a Item
 TurnOff,,,TurnOff
 Low,,,Low
 Medium,,,Medium

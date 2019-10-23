@@ -1,25 +1,8 @@
 "use strict"
 
-/**
- * @typedef {Object} IAssetTypeModifier
- * @property {number} Difficulty
- * @property {string[]} Hide
- * @property {string[]} Block
- * @property {string[]} Effect
- * @property {string[]} SetPose
- * @property {boolean} SelfUnlock
- */
+var AssetTypeOffset = 0;
 
-/**
- * @typedef {Object} IAssetTypeInfo
- * @property {string[]} Allow
- * @property {string} NoneTypeName
- * @property {Object.<string, IAssetTypeModifier>} Mofifiers
- * @property {(C: any, Item: any, Type: string) => boolean} DynamicAllowSetType
- * @property {(C: any, Type: string) => string} DynamicSetDialog
- */
-
-/** @type {Object.<string, Object.<string, IAssetTypeInfo>>} Asset Type Informations */
+/** Asset Type Informations */
 var AssetTypeInfo = {
     ItemArms: {
         DuctTape: {
@@ -52,7 +35,19 @@ var AssetTypeInfo = {
     },
     ItemHands: {
         SpankingToys: {
-            Allow: ["Crop", "Flogger", "Cane", "HeartCrop", "Paddle", "WhipPaddle", "Whip"],
+            Allow: ["Crop", "Flogger", "Cane", "HeartCrop", "Paddle", "WhipPaddle", "Whip", "TennisRacket"],
+            ShowCount: 4,
+            DynamicSetDialog: (C, Item, Type) => {
+                if (C.ID = 0) {
+                    SpankingCurrentType = NewType;
+                    return DialogFind(Player, "ItemHandsSpankingToysSetPlayer").replace("Item", (Type) ? Type.toLowerCase() : "crop");
+                } else {
+                    return DialogFind(Player, "ItemHandsSpankingToysSetOthers").replace("Item", (Type) ? Type.toLowerCase() : "crop");
+                }
+            },
+            DynamicAllowType: (Item) => {
+                return Item.Asset.AllowType.filter(Type => Player.Inventory.findIndex(I => I.Name.includes("SpankingToys" + Type)));
+            }
         }
     },
     ItemFeet: {
@@ -144,7 +139,7 @@ var AssetTypeInfo = {
     ItemNeckAccessories: {
         CollarNameTag: {
             Allow: ["BadGirl", "BindMe", "Bitch", "Bunny", "Cookie", "Cupcake", "Dom", "Foxy", "Free", "FuckMe", "GagMe", "GoodGirl", "HoldMe", "Kitten", "Love", "Maid", "Meat", "Muffin", "Needy", "Owned", "Panda", "Pet", "PetMe", "Pixie", "Puppy", "Racoon", "Slave", "Slut", "Sub", "Sweetie", "Taken", "Toy", "Useless", "UseMe", "Whore"],
-            DynamicSetDialog: (Item, Type) =>
+            DynamicSetDialog: (C, Item, Type) =>
                 DialogFind(Player, "CollarNameTagSet")
                     .replace("NameTagType", DialogFind(Player, "CollarNameTagType" + ((Type) ? Type : "")).toLowerCase())
         }
@@ -172,16 +167,8 @@ var AssetTypeInfo = {
     }
 };
 
-/**
- * @typedef {Object} IAssetTypeButtonPosition
- * @property {number} X
- * @property {number} Y
- * @property {number} W Width
- * @property {number} H Height
- * @property {number} TH Text Relative Height
- */
 
-/** @type {IAssetTypeButtonPosition[][]} */
+/** Button position and sizes */
 var AssetTypeButtonPositions = [
     [],
     [{ X: 1500 }],
@@ -192,12 +179,9 @@ var AssetTypeButtonPositions = [
     [{ X: 1000, Y: 450 }, { X: 1375, Y: 450 }, { X: 1750, Y: 450 }, { X: 1000, Y: 750 }, { X: 1375, Y: 750 }, { X: 1750, Y: 750 }]
 ];
 
-/** 
- * Sets nulls to defaults
- * @param {IAssetTypeButtonPosition[]} Positions 
- * @returns {IAssetTypeButtonPosition[]}
- */
+/** Sets nulls to defaults */
 function AssetTypeButtonPositionExtend(Positions) {
+    if (!Positions) return [];
     return Positions.map(P => {
         return {
             X: P.X,
@@ -209,7 +193,7 @@ function AssetTypeButtonPositionExtend(Positions) {
     });
 }
 
-// Loads type information
+/** Loads type information */
 function AssetTypeLoad() {
     for (let A = 0; A < Asset.length; A++) {
         if (!Asset[A].HasType) continue;
@@ -219,46 +203,66 @@ function AssetTypeLoad() {
         if (Meta == null) continue;
         Asset[A].TypeMetaLoaded = true;
         Asset[A].AllowType = Meta.Allow;
+        Asset[A].TypeShowCount = Meta.ShowCount ? Meta.ShowCount : 0;
         Asset[A].TypeMofifiers = Meta.Mofifiers;
         Asset[A].NoneTypeName = (Meta.NoneTypeName != null) ? Meta.NoneTypeName : "None",
             Asset[A].DynamicAllowSetType = (Meta.DynamicAllowSetType != null) ? Meta.DynamicAllowSetType : () => true;
         Asset[A].DynamicSetDialog = (Meta.DynamicSetDialog != null) ? Meta.DynamicSetDialog :
-            (Item, Type) => DialogFind(Player, Item.Asset.Group.Name + Item.Asset.Name + "SetType" + (Type ? Type : Item.Asset.NoneTypeName));
-        Asset[A].TypePosition = AssetTypeButtonPositionExtend((Meta.Allow.length > 6) ? [] : AssetTypeButtonPositions[Meta.Allow.length])
+            (C, Item, Type) => DialogFind(Player, Item.Asset.Group.Name + Item.Asset.Name + "SetType" + (Type ? Type : Item.Asset.NoneTypeName));
+        Asset[A].DynamicAllowType = Meta.DynamicAllowType ? Meta.DynamicAllowType : () => Meta.Allow;
+        Asset[A].TypePosition = AssetTypeButtonPositionExtend((Meta.Allow.length > 6) ? AssetTypeButtonPositions[Meta.ShowCount] : AssetTypeButtonPositions[Meta.Allow.length])
     }
 }
 
-// Default typed item draw
+function AssetTypeSetLoad() {
+    AssetTypeOffset = 0;
+    if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Type: DialogFocusItem.Asset.AllowType[0] };
+    if (DialogFocusItem.Asset.Extended) CommonDynamicFunction("Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Load()");
+}
+
+/** Default typed item draw */
 function AssetTypeSetDraw() {
     if (DialogFocusItem.Asset.TypeMetaLoaded != true) return;
+
+    const Types = DialogFocusItem.Asset.DynamicAllowType(DialogFocusItem);
+
+    if (DialogFocusItem.Asset.TypeShowCount > 0 && Types.length > DialogFocusItem.Asset.TypeShowCount) DrawButton(1775, 25, 90, 90, "", "White", "Icons/Next.png");
 
     DrawRect(1387, 225, 225, 275, "white");
     DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
     DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
     DrawText(DialogFind(Player, DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Select"), 1500, 550, "white", "gray");
 
-    for (let I = 0; I < DialogFocusItem.Asset.AllowType.length; I++) {
-        const P = DialogFocusItem.Asset.TypePosition[I];
-        const Type = (DialogFocusItem.Asset.AllowType[I] == null) ? DialogFocusItem.Asset.NoneTypeName : DialogFocusItem.Asset.AllowType[I]
-        DrawButton(P.X, P.Y, P.W, P.H, "", InventoryItemIsType(DialogFocusItem, DialogFocusItem.Asset.AllowType[I]) ? "#888888" : "White");
+    for (let I = AssetTypeOffset; I < Types.length && ((DialogFocusItem.Asset.TypeShowCount == 0) || (I < DialogFocusItem.Asset.TypeShowCount + AssetTypeOffset)); I++) {
+        const P = DialogFocusItem.Asset.TypePosition[I - AssetTypeOffset];
+        const Type = (Types[I] == null) ? DialogFocusItem.Asset.NoneTypeName : Types[I]
+        DrawButton(P.X, P.Y, P.W, P.H, "", InventoryItemIsType(DialogFocusItem, Types[I]) ? "#888888" : "White");
         DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/" + Type + ".png", P.X - 1, P.Y - 1);
         DrawText(DialogFind(Player, DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + Type), P.X + P.W / 2, P.Y + P.TH, "white", "gray");
     }
 }
 
-// Default typed item click
+/** Default typed item click */
 function AssetTypeSetClick() {
     if (DialogFocusItem.Asset.TypeMetaLoaded != true) return;
 
     if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) { DialogFocusItem = null; return; }
+    
+    const Types =  DialogFocusItem.Asset.DynamicAllowType(DialogFocusItem);
 
-    const C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+    if ((MouseX >= 1775) && (MouseX <= 1865) && (MouseY >= 25) && (MouseY <= 110) && (DialogFocusItem.Asset.TypeShowCount > 0) && (Types.length > DialogFocusItem.Asset.TypeShowCount)) { 
+        AssetTypeOffset += DialogFocusItem.Asset.TypeShowCount;
+        if (AssetTypeOffset >= Types.length) AssetTypeOffset = 0;
+        return;
+    }
 
-    for (let I = 0; I < DialogFocusItem.Asset.AllowType.length; I++) {
-        const P = DialogFocusItem.Asset.TypePosition[I];
-        if ((MouseX >= P.X) && (MouseX <= P.X + P.W) && (MouseY >= P.Y) && (MouseY <= P.Y + P.H) && !InventoryItemIsType(DialogFocusItem, DialogFocusItem.Asset.AllowType[I])) {
-            if (DialogFocusItem.Asset.DynamicAllowSetType(C, DialogFocusItem, DialogFocusItem.Asset.AllowType[I])) {
-                AssetTypeSet(C, DialogFocusItem, DialogFocusItem.Asset.AllowType[I]);
+    const C = CharacterGetCurrent();
+
+    for (let I = AssetTypeOffset; I < Types.length && ((DialogFocusItem.Asset.TypeShowCount == 0) || (I < DialogFocusItem.Asset.TypeShowCount + AssetTypeOffset)); I++) {
+        const P = DialogFocusItem.Asset.TypePosition[I - AssetTypeOffset];
+        if ((MouseX >= P.X) && (MouseX <= P.X + P.W) && (MouseY >= P.Y) && (MouseY <= P.Y + P.H) && !InventoryItemIsType(DialogFocusItem, Types[I])) {
+            if (DialogFocusItem.Asset.DynamicAllowSetType(C, DialogFocusItem, Types[I])) {
+                AssetTypeSet(C, DialogFocusItem, Types[I]);
             }
             if (DialogInventory != null) {
                 DialogFocusItem = null;
@@ -269,15 +273,11 @@ function AssetTypeSetClick() {
     }
 }
 
-/**
- * Set a new type for an item
- * @param {*} C 
- * @param {*} Item 
- * @param {string} NewType 
- */
+/** Set a new type for an item */
 function AssetTypeSet(C, Item, NewType) {
     if (CurrentScreen == "ChatRoom") {
-        Item = InventoryGet(C, C.FocusGroup.Name);
+        Item = InventoryGet(C, Item ? Item.Asset.Group.Name : C.FocusGroup.Name);
+        if (Item.Asset.Extended) CommonDynamicFunction("Inventory" + Item.Asset.Group.Name + Item.Asset.Name + "Load()");
     }
 
     if (Item.Property) Item.Property.Type = NewType;
@@ -286,16 +286,13 @@ function AssetTypeSet(C, Item, NewType) {
     CharacterRefresh(C);
     ChatRoomCharacterUpdate(C);
 
-    let msg = Item.Asset.DynamicSetDialog(Item, NewType);
+    let msg = Item.Asset.DynamicSetDialog(C, Item, NewType);
     msg = msg.replace("SourceCharacter", Player.Name);
     msg = msg.replace("DestinationCharacter", C.Name);
     ChatRoomPublishCustomAction(msg, true);
 }
 
-/**
- * Loads type modifiers of an appearance item
- * @param {*} Item 
- */
+/** Loads type modifiers of an appearance item */
 function AssetTypeGetMofifiers(Item) {
     return (Item && Item.Property && Item.Asset.TypeMofifiers) ? Item.Asset.TypeMofifiers[Item.Property.Type || Item.Asset.NoneTypeName] : null;
 }
