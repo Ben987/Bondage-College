@@ -82,7 +82,8 @@ function AsylumEntranceWearPatientClothes(C) {
 	InventoryRemove(C, "Wings");
 	InventoryRemove(C, "TailStraps");
 	InventoryRemove(C, "Gloves");
-	InventoryRemove(C, "HairAccessory");
+	InventoryRemove(C, "HairAccessory1");
+	InventoryRemove(C, "HairAccessory2");
 	InventoryRemove(C, "Hat");
 }
 
@@ -95,7 +96,8 @@ function AsylumEntranceIsWearingPatientClothes() {
 	if (InventoryGet(Player, "Wings") != null) return false;
 	if (InventoryGet(Player, "TailStraps") != null) return false;
 	if (InventoryGet(Player, "Gloves") != null) return false;
-	if (InventoryGet(Player, "HairAccessory") != null) return false;
+	if (InventoryGet(Player, "HairAccessory1") != null) return false;
+	if (InventoryGet(Player, "HairAccessory2") != null) return false;
 	if (InventoryGet(Player, "Hat") != null) return false;
 	return true;
 }
