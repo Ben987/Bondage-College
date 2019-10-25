@@ -8,6 +8,8 @@ MustCollaredFirst,,,A collar must be fitted first to attach accessories to.
 MustCollaredFirstAndRemoveSuspension,,,Must be collared and not suspended first.
 MustCollaredFirstAndRemoveSuspension1,,,Must be collared and not suspended/mounted first.
 LegsCannotOpen,,,Legs cannot open.
+MustFreeFeetFirst,,,Must free feet frist.
+RemoveShacklesFirst,,,Must remove shackles first.
 Cancel,,,Cancel
 Exit,,,Back to character
 Next,,,View next items
@@ -138,6 +140,8 @@ DuctTapeRestrainHands,,,SourceCharacter wraps duct tape around DestinationCharac
 DuctTapeRestrainBottom,,,SourceCharacter creates a duct tape skirt on DestinationCharacter and traps her hands in it.
 DuctTapeRestrainTop,,,SourceCharacter creates a duct tape top on DestinationCharacter and traps her arms in it.
 DuctTapeRestrainFull,,,SourceCharacter creates a duct tape mummy on DestinationCharacter and traps her arms in it.
+WristShacklesPoseInFront,,,In-front of body
+WristShacklesPoseBehind,,,Behind back.
 SelectGagType,,,Select the type of gag
 ClothGagTypeSmall,,,Small
 ClothGagTypeCleave,,,Cleave
