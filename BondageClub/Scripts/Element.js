@@ -24,7 +24,7 @@ function ElementCreateTextArea(ID) {
 		var TextArea = document.createElement("TextArea");
 		TextArea.setAttribute("ID", ID);
 		TextArea.setAttribute("name", ID);
-		TextArea.setAttribute("readonly", "readonly");
+		// TextArea.setAttribute("readonly", "readonly");
 		TextArea.addEventListener("keydown", KeyDown);
 		document.body.appendChild(TextArea);
 	}
@@ -121,7 +121,7 @@ function ElementPositionFix(ElementID, Font, X, Y, W, H) {
 function ElementSetDataAttribute(ID, Name, Value) {
 	var element = document.getElementById(ID);
 	if (element != null) {
-		element.setAttribute("data-" + Name, Value);
+		element.setAttribute(("data-" + Name).toLowerCase(), Value.toString().toLowerCase());
 	}
 }
 

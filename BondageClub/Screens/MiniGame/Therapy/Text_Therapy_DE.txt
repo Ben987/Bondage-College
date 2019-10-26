@@ -1,0 +1,18 @@
+Starts in
+Beginnt in
+Hit the therapy circles when they appear.
+Triff die Therapie-Kreise, wenn sie erscheinen.
+Don't miss or you'll stress your patient.
+Deine Patientin leidet unter Stress, wenn du verfehlst.
+Progress
+Fortschritt
+Stress
+Stress
+Perfect!  The therapy was a complete success.
+Perfekt! Die Therapie war ein voller Erfolg.
+You did it!  The therapy was a success.
+Geschafft! Die Therapie war ein Erfolg.
+The patient breaks and the therapy fails.
+Die Patientin bricht zusammen und die Therapie schlägt fehl.
+Click on yourself to continue.
+Klicke dich an, um fortzufahren.

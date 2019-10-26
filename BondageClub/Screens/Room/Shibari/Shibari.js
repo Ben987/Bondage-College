@@ -40,18 +40,18 @@ function ShibariLoad() {
 		InventoryAdd(ShibariTeacher, "HempRope", "ItemFeet");
 		InventoryAdd(ShibariTeacher, "SuspensionHempRope", "ItemFeet");
 		InventoryAdd(ShibariTeacher, "HempRopeHarness", "ItemTorso");
-		InventoryAdd(ShibariTeacher, "ClothGag", "ItemMouth");
+		InventoryAdd(ShibariTeacher, "BambooGag", "ItemMouth");
 		InventoryAdd(ShibariStudent, "HempRope", "ItemArms");
 		InventoryAdd(ShibariStudent, "HempRope", "ItemLegs");
 		InventoryAdd(ShibariStudent, "HempRope", "ItemFeet");
 		InventoryAdd(ShibariStudent, "SuspensionHempRope", "ItemFeet");
 		InventoryAdd(ShibariStudent, "HempRopeHarness", "ItemTorso");
-		InventoryAdd(ShibariStudent, "ClothGag", "ItemMouth");
+		InventoryAdd(ShibariStudent, "BambooGag", "ItemMouth");
 		InventoryWear(ShibariStudent, "HempRope", "ItemArms");
 		InventoryWear(ShibariStudent, "HempRope", "ItemLegs");
 		InventoryWear(ShibariStudent, "SuspensionHempRope", "ItemFeet");
 		InventoryWear(ShibariStudent, "HempRopeHarness", "ItemTorso");
-		InventoryWear(ShibariStudent, "ClothGag", "ItemMouth");
+		InventoryWear(ShibariStudent, "BambooGag", "ItemMouth");
 	}
 	
 	// Rescue mission load
@@ -118,7 +118,7 @@ function ShibariRestrainPlayer(Level) {
 	if (Level == 2) InventoryWear(Player, "HempRope", "ItemFeet", "Default", (Level - 1) * 3);
 	if (Level >= 3) InventoryWear(Player, "SuspensionHempRope", "ItemFeet", "Default", (Level - 1) * 3);
 	if ((Level >= 4) && (InventoryGet(Player, "Cloth") == null) && (InventoryGet(Player, "ItemTorso") == null)) InventoryWear(Player, "HempRopeHarness", "ItemTorso", "Default", (Level - 1) * 3);
-	if (Level >= 4) InventoryWearRandom(Player, "ItemMouth");
+	if (Level >= 4) InventoryWear(Player, "BambooGag", "ItemMouth");
 	ShibariTeacherReleaseTimer = CommonTime() + 60000;
 }
 

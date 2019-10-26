@@ -63,8 +63,9 @@ function PrivateSubTrialInProgress() { return ((NPCEventGet(CurrentCharacter, "E
 function PrivateSubTrialOverWilling() { return ((NPCEventGet(CurrentCharacter, "EndDomTrial") > 0) && (CurrentTime >= CheatFactor("SkipTrialPeriod", 0) * NPCEventGet(CurrentCharacter, "EndDomTrial")) && (CurrentCharacter.Love >= 90)) }
 function PrivateSubTrialOverUnwilling() { return ((NPCEventGet(CurrentCharacter, "EndDomTrial") > 0) && (CurrentTime >= CheatFactor("SkipTrialPeriod", 0) * NPCEventGet(CurrentCharacter, "EndDomTrial")) && (CurrentCharacter.Love < 90)) }
 function PrivateCanPet() { return ((CurrentCharacter.Love >= 0) && !CurrentCharacter.IsRestrained() && (InventoryGet(Player, "ItemArms") != null) && (InventoryGet(Player, "ItemArms").Asset.Name == "BitchSuit")) }
-function PrivateCanSellSlave() { return (!Player.IsRestrained() && (CurrentCharacter.Love >= 0) && (CurrentCharacter.Name != "Amanda") && (CurrentCharacter.Name != "Sarah") && (CurrentCharacter.Name != "Sophie") && (NPCEventGet(CurrentCharacter, "NPCCollaring") > 0)) }
-function PrivateCannotSellSlave() { return (!Player.IsRestrained() && (CurrentCharacter.Love < 0) && (CurrentCharacter.Name != "Amanda") && (CurrentCharacter.Name != "Sarah") && (CurrentCharacter.Name != "Sophie") && (NPCEventGet(CurrentCharacter, "NPCCollaring") > 0)) }
+function PrivateCanSellSlave() { return (!Player.IsRestrained() && (CurrentCharacter.Love >= 0) && (CurrentCharacter.Name != "Amanda") && (CurrentCharacter.Name != "Sarah") && (CurrentCharacter.Name != "Sophie") && (CurrentCharacter.Name != "Jennifer") && (CurrentCharacter.Name != "Sidney") && (NPCEventGet(CurrentCharacter, "NPCCollaring") > 0)) }
+function PrivateCannotSellSlave() { return (!Player.IsRestrained() && (CurrentCharacter.Love < 0) && (CurrentCharacter.Name != "Amanda") && (CurrentCharacter.Name != "Sarah") && (CurrentCharacter.Name != "Sophie") && (CurrentCharacter.Name != "Jennifer") && (CurrentCharacter.Name != "Sidney") && (NPCEventGet(CurrentCharacter, "NPCCollaring") > 0)) }
+function PrivateCanGetCollegeClothes() { return (!InventoryAvailable(Player, "CollegeOutfit1", "Cloth") && ((CurrentCharacter.Name == "Amanda") || (CurrentCharacter.Name == "Sarah") || (CurrentCharacter.Name == "Jennifer") || (CurrentCharacter.Name == "Sidney"))) }
 
 // Loads the private room vendor NPC
 function PrivateLoad() {
@@ -306,7 +307,6 @@ function PrivateLoadCharacter(C) {
 		if (PrivateCharacter[C].Lover != null) N.Lover = PrivateCharacter[C].Lover;
 		if (PrivateCharacter[C].Owner != null) N.Owner = PrivateCharacter[C].Owner;
 		N.Love = (PrivateCharacter[C].Love == null) ? 0 : parseInt(PrivateCharacter[C].Love);
-		AssetReload(N);
 		NPCTraitDialog(N);
 		CharacterRefresh(N);
 		if (NPCEventGet(N, "PrivateRoomEntry") == 0) NPCEventAdd(N, "PrivateRoomEntry", CurrentTime);
@@ -586,9 +586,10 @@ function PrivateActivityRun(LoveFactor) {
 		InventoryRemove(Player, "ItemLegs");
 		InventoryRemove(Player, "ItemFeet");
 		InventoryRemove(Player, "Hat");
+		InventoryRemove(Player, "HairAccessory2");
 		InventoryWearRandom(Player, "ItemMouth");
 		InventoryWear(Player, "BitchSuit", "ItemArms", "Default", Math.floor(Math.random() * 10) + 1);
-		InventoryWear(Player, "PuppyEars1", "HairAccessory");
+		InventoryWear(Player, "PuppyEars1", "HairAccessory1");
 		InventoryWear(Player, "PuppyTailPlug", "ItemButt");
 		PrivateReleaseTimer = CommonTime() + (Math.random() * 120000) + 120000;
 	}
@@ -760,4 +761,11 @@ function PrivateSlaveImproveSend() {
 	NPCTraitSet(CurrentCharacter, PrivateSlaveImproveType, N);
 	NPCEventAdd(CurrentCharacter, "AsylumSent", CurrentTime + 86400000);
 	DialogLeave();
+}
+
+// When Amanda/Sarah/Sidney/Jennifer gives her college outfit to the player
+function PrivateGetCollegeClothes() {
+	NPCLoveChange(CurrentCharacter, -10);
+	InventoryAdd(Player, "CollegeOutfit1", "Cloth");
+	if ((InventoryGet(CurrentCharacter, "Cloth") != null) && (InventoryGet(CurrentCharacter, "Cloth").Asset.Name == "CollegeOutfit1")) InventoryRemove(CurrentCharacter, "Cloth");
 }

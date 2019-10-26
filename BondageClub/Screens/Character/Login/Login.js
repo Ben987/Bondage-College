@@ -4,8 +4,8 @@ var LoginMessage = "";
 var LoginCredits = null;
 var LoginCreditsPosition = 0;
 var LoginThankYou = "";
-var LoginThankYouList = ["Alvin", "Bryce", "Christian", "Desch", "DonOlaf", "Escurse", "EugeneTooms", "Girvan", "Greendragon", "Kitten", "Laioken", "Michal", "Mindtie", "Misa", "MunchyCat", 
-						 "Nick", "Overlord", "Rashiash", "Robin", "Ryner", "Setsu95", "Shadow", "Shaun", "Shinonon", "Simeon", "Sky", "Terry", "William", "Winterisbest", "Xepherio"];
+var LoginThankYouList = ["Alvin", "Bryce", "Christian", "Desch", "Dini", "DonOlaf", "Escurse", "Ethan", "Greendragon", "Kitten", "Laioken", "Michal", "Mindtie", "Misa", "MunchyCat", 
+						 "Nick", "Overlord", "Rashiash", "Robin", "Ryner", "Setsu", "Shadow", "Shaun", "Shinonon", "Simeon", "Sky", "Terry", "William", "Winterisbest", "Xepherio"];
 var LoginThankYouNext = 0;
 
 // Loads the next thank you bubble
@@ -147,6 +147,7 @@ function LoginResponse(C) {
 			if (CommonIsNumeric(C.Money)) Player.Money = C.Money;
 			Player.Owner = ((C.Owner == null) || (C.Owner == "undefined")) ? "" : C.Owner;
 			Player.Lover = ((C.Lover == null) || (C.Lover == "undefined")) ? "" : C.Lover;
+			Player.Description = C.Description;
 			Player.Creation = C.Creation;
 			Player.Wardrobe = C.Wardrobe;
 			Player.OnlineID = C.ID.toString();

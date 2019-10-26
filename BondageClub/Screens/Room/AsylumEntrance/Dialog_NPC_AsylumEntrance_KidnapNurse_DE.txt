@@ -1,0 +1,186 @@
+###_NPC
+Gagged patients are the best patients.
+Geknebelte Patienten sind die besten Patienten.
+(A nurse runs after you.)  Here you are patient DialogPlayerName!  You're going back to the asylum with me.
+(Eine Krankenschwester kommt dir hinterhergerannt.) Da bist du ja, Patientin DialogPlayerName! Du kommst mit mir zurück in die Anstalt.
+(A nurse catches you by surprise.)  DialogPlayerName!  I'm bringing you back to the asylum, whether you want it or not.
+(Eine Krankenschwester kommt dir überraschend entgegen.) DialogPlayerName! Ich bringe dich in die Anstalt zurück, ob du willst oder nicht.
+(A nurse is blocking your way.)  I'm here for your own good patient DialogPlayerName.  Come to the asylum with me.
+(Eine Krankenschwester steht dir im Weg.) Ich bin zu deinem eigenen Besten hier, Patientin DialogPlayerName. Komm mit mir zurück in die Anstalt.
+(A nurse sees you and grins.)  This is too easy.  You're going back to the asylum patient DialogPlayerName.
+(Eine Krankenschwester sieht dich und grinst.) Das ist zu einfach. Du kommst zurück in die Anstalt, Patientin DialogPlayerName.
+(A nurse grabs your arm.)  You always get in trouble, do you?  Come back to the asylum with me now.
+(Eine Krankenschwester packt dich am Arm.) Du machst immer nur Ärger, was? Komm auf der Stelle mit mir in die Anstalt zurück.
+(A nurse blocks your path and smiles.)  Struggling is futile patient DialogPlayerName.  You're coming back with me.
+(Eine Krankenschwester stellt sich dir in den Weg und lächelt.) Widerstand ist zwecklos, Patientin DialogPlayerName. Du kommst mit mir zurück.
+(She surrenders to you.)  You're too tough for me.  I can understand why you've escaped.
+(Sie ergibt sich.) Du bist zu stark für mich. Ich verstehe jetzt, warum du ausgebrochen bist.
+(She crosses her arms and smiles.)  It's time to go back to the asylum girl.
+(Sie verschränkt die Arme und lächelt.) Es ist Zeit, in die Anstalt zurückzukehren, Mädchen.
+(She looks around and takes the money.)  Don't cross my path again.  Run!
+(Sie schaut umher und nimmt das Geld.) Lass dich bloß nicht nochmal von mir erwischen. Lauf!
+(She refuses the money.)  You cannot bribe me!  You're going back with me.
+(Sie lehnt das Geld ab.) Du kannst mich nicht bestechen! Du komsmt mit mir zurück.
+###_PLAYER
+I don't understand.
+Ich verstehe nicht.
+###_NPC
+Don't think you can fool me.  You escaped from the asylum and I'm brining you back.  I will use force if it's needed.
+Glaub nicht, dass du mich zum Narren halten kannst. Du bist aus der Anstalt ausgebrochen und ich bringe dich zurück. Mit Gewalt, wenn nötig.
+###_PLAYER
+You're going down nurse!
+Ich mach dich platt, Schwester!
+Wait!  Can we negotiate?
+Warte! Können wir verheilen?
+###_NPC
+(She thinks for a few seconds.)  Negotiate?  How much do you value your freedom?
+(Sie denkt ein paar Sekunden nach.) Verhandeln? Wie viel ist dir deine Freiheit wert?
+###_PLAYER
+(Fight her.)
+(Gegen sie kämpfen.)
+(Surrender.)
+(Dich ergeben.)
+###_NPC
+(You surrender without a fight as she grins.)  It's time to go back to the asylum girl.
+(Du gibst dich kampflos geschlagen und sie grinst.) Es ist Zeit, in die Anstalt zurückzukehren, Mädchen.
+###_PLAYER
+I'll give you 10$.
+Ich gebe dir 10$.
+I'll give you 25$.
+Ich gebe dir 25$.
+I'll give you 50$.
+Ich gebe dir 50$.
+I'll give you 100$.
+Ich gebe dir 100$.
+We could become friends.
+Wir könnten Freunde werden.
+###_NPC
+Forget it!  I'm bringing you back to the asylum.
+Vergiss es! Ich bringe dich in die Anstalt zurück.
+###_PLAYER
+I won't knock you out if you run now.
+Ich schlage dich nicht K.O., wenn du jetzt gehst.
+###_NPC
+You think you can scare me?  I'm bringing you back to the asylum.
+Du glaubst, du kannst mir drohen? Ich bringe dich in die Anstalt zurück.
+###_PLAYER
+(Run away.)
+(Weglaufen.)
+###_NPC
+NOEXIT
+NOEXIT
+###_PLAYER
+You fought well.
+Du hast gut gekämpft.
+###_NPC
+Thanks, but I still need to train.
+Danke, aber ich muss noch trainieren.
+###_PLAYER
+If I let you go, you need to forget about me.
+Wenn ich dich gehen lasse, musst du mich vergessen.
+###_NPC
+(She grumbles.)  Fine, I won't track you anymore.
+(Sie grummelt.) Na schön, ich werde dich nicht mehr verfolgen.
+###_PLAYER
+(Play with her.)
+(Mit ihr spielen.)
+###_NPC
+(You get closer to play with her.)
+(Du trittst näher, um mit ihr zu spielen.)
+###_PLAYER
+(Bring her to your room.)
+(Sie in dein Zimmer bringen.)
+(Let her go.)
+(Sie gehen lassen.)
+(Tickle her.)
+(Sie kitzeln.)
+###_NPC
+(You tickle her on the ribs and tummy.  She trashes in her bondage, failing to escape.)
+(Du kitzelst ihre Rippen und ihren Bauch. Sie windet sich in ihren Fesseln, kommt aber nicht davon.)
+###_PLAYER
+(Kiss her.)
+(Sie küssen.)
+###_NPC
+(She stares at you as you put your hands behind her head and pull her to your lips for a long French kiss.)
+(Sie starrt dich an, während du deine Hände um sie legst und sie für einen langen Zungenkuss an deine Lippen ziehst.)
+###_PLAYER
+(Fondle her.)
+(Sie befummeln.)
+###_NPC
+(You playfully fondle her breasts and butt as she grumbles and blushes lightly.)
+(Du fummelst verspielt an ihren Brüsten und ihrem Po herum, während sie grummelt und leich errötet.)
+###_PLAYER
+(Slap her.)
+(Ihr eine Ohrfeige geben.)
+###_NPC
+(She tries to avoid you as you slap her face swiftly.  She tries to stay strong but whimper a little.)
+(Sie versucht dir auszuweichen, als du ihr schnell auf die Wange haust. Sie versucht stark zu bleiben, wimmert aber ein wenig.)
+###_PLAYER
+(Spank her.)
+(Ihr auf den Hintern hauen.)
+###_NPC
+(She jumps a little as you spank her pretty hard on the butt.)
+(Sie zuckt ein wenig, als du ihr ziemlich doll auf den Hintern haust.)
+###_PLAYER
+(Stop playing with her.)
+(Aufhören, mit ihr zu spielen.)
+###_NPC
+(You take a step back.)
+(Du trittst einen Schritt zurück.)
+###_PLAYER
+Fine, let's go.
+Na schön, gehen wir.
+###_NPC
+(She drags you to the asylum and smiles.)  You will feel right at home.
+(Sie zerrt dich zur ANstalt und lächelt.) Du wirst dich wie zu Hause fühlen.
+###_PLAYER
+Don't push me!
+Nicht schubsen!
+(Go to the asylum.)
+(In die Anstalt gehen.)
+We'll see about that.
+Das werden wir sehen.
+###_NPC
+(She nods and stares at you.) It's time to change patient DialogPlayerName.
+(Sie nickt und starrt dich an.) Es ist Zeit, dass du dich umziehst, Patientin DialogPlayerName.
+###_PLAYER
+I guess it will be fun to go back.
+Ich schätze, die Rückkehr könnte Spaß machen.
+###_NPC
+(She nods happily and stares at you.) It's time to change patient DialogPlayerName.
+(Sie nickt glücklich und starrt dich an.) Es ist Zeit, dass du dich umziehst, Patientin DialogPlayerName.
+###_PLAYER
+One day I'll reverse the roles.
+Eines Tages tausche ich die Rollen.
+###_NPC
+(She grumbles and stares at you.) It's time to change patient DialogPlayerName.
+(Sie grummelt und starrt dich an.) Es ist Zeit, dass du dich umziehst, Patientin DialogPlayerName.
+###_PLAYER
+(Nod slowly.)
+(Langsam nicken.)
+###_NPC
+(She smiles and stares at you.) It's time to change patient DialogPlayerName.
+(Sie lächelt und starrt dich an.) Es ist Zeit, dass du dich umziehst, Patientin DialogPlayerName.
+###_PLAYER
+Very well.
+Sehr wohl.
+###_NPC
+(She helps you to change back as a patient.)  You also need to be restrained.
+(Sie hilft dir, dich wieder wie eine Patientin zu kleiden.) Du musst außerdem gefesselt werden.
+###_PLAYER
+I hate these clothes.
+Ich hasse diese Klamotten.
+(Nod and change.)
+(Nicken und dich umziehen.)
+That's really necessary?
+Ist das wirklich nötig?
+###_NPC
+(She straps you up tightly in a straitjacket.)  Welcome back patient DialogPlayerName.  Carry on.
+(Sie schnallt dir eine enge Zwangsjacke um.) Willkommen zurück, Patientin DialogPlayerName. Ab mit dir.
+###_PLAYER
+(Stay silent.)
+(Schweigen.)
+Bye-bye nurse.
+Tschüss, Schwester.
+(Leave her.)
+(Dialog beenden.)
