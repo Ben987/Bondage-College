@@ -131,6 +131,10 @@ function CommonClick() {
 		DialogClick();
 }
 
+function CommonIsClickAt(Left, Top, Width, Height) {
+	return (MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height);
+}
+
 // Catches the clicks on the main screen and forwards it to the current screen or dialog screen
 function CommonKeyDown() {
 	if (CurrentCharacter == null) {

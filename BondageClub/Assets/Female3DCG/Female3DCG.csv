@@ -116,31 +116,48 @@ Shoes,WoollyBootsTall,Woolly Boots
 Hat,,Hat
 Hat,Band1,Hair Band
 Hat,Beret1,Beret
-Hat,Ribbons1,Hair Ribbon 1
-Hat,GiantBow1, Giant Bow 1
 Hat,MaidHairband1,Maid Hairband
 Hat,NurseCap,Nurse Cap
 Hat,Santa1,Santa Hat
 Hat,CaptainHat1,Captain's Hat
-Hat,BunnySuccubus2,Bunny Succubus 
-Hat,HairFlower1, Flower
+Hat,BunnySuccubus2,Bunny Succubus
 Hat,WitchHat1, Witch Hat
 Hat,PirateBandana1,Pirate Bandana
 Hat,PoliceWomanHat,Police Woman Hat
-HairAccessory,,Hair Accessory
-HairAccessory,Ears1,Ears Small
-HairAccessory,Ears2,Ears Large
-HairAccessory,PonyEars1,Pony Ears
-HairAccessory,BunnyEars1,Bunny Ears
-HairAccessory,BunnyEars2,Floppy Bunny Ears
-HairAccessory,PuppyEars1,Puppy Ears
-HairAccessory,SuccubusHorns,Succubus Horns
-HairAccessory,Horns,Horns
-HairAccessory,Horns2,Horns 2
-HairAccessory,Horns3,Horns 3
-HairAccessory,FoxEars1,Fox Ears Small
-HairAccessory,BatWings,Small Bat Wings
-HairAccessory,KittyMask1,Full Kitty Mask
+HairAccessory1,,Hair Accessory
+HairAccessory1,Ears1,Ears Small
+HairAccessory1,Ears2,Ears Large
+HairAccessory1,PonyEars1,Pony Ears
+HairAccessory1,Ribbons1,Hair Ribbon 1
+HairAccessory1,GiantBow1, Giant Bow 1
+HairAccessory1,BunnyEars1,Bunny Ears
+HairAccessory1,BunnyEars2,Floppy Bunny Ears
+HairAccessory1,PuppyEars1,Puppy Ears
+HairAccessory1,SuccubusHorns,Succubus Horns
+HairAccessory1,Horns,Horns
+HairAccessory1,Horns2,Horns 2
+HairAccessory1,Horns3,Horns 3
+HairAccessory1,HairFlower1, Flower
+HairAccessory1,FoxEars1,Fox Ears Small
+HairAccessory1,BatWings,Small Bat Wings
+HairAccessory1,KittyMask1,Full Kitty Mask
+HairAccessory2,,Hair Accessory
+HairAccessory2,Ears1,Ears Small
+HairAccessory2,Ears2,Ears Large
+HairAccessory2,PonyEars1,Pony Ears
+HairAccessory2,Ribbons1,Hair Ribbon 1
+HairAccessory2,GiantBow1, Giant Bow 1
+HairAccessory2,BunnyEars1,Bunny Ears
+HairAccessory2,BunnyEars2,Floppy Bunny Ears
+HairAccessory2,PuppyEars1,Puppy Ears
+HairAccessory2,SuccubusHorns,Succubus Horns
+HairAccessory2,Horns,Horns
+HairAccessory2,Horns2,Horns 2
+HairAccessory2,Horns3,Horns 3
+HairAccessory2,HairFlower1, Flower
+HairAccessory2,FoxEars1,Fox Ears Small
+HairAccessory2,BatWings,Small Bat Wings
+HairAccessory2,KittyMask1,Full Kitty Mask
 Gloves,,Gloves
 Gloves,Gloves1,Short Gloves
 Gloves,Gloves2,Long Gloves
@@ -205,6 +222,7 @@ HairBack,HairBack20,Style 11
 HairBack,HairBack5,Style 12
 HairBack,HairBack8,Style 13
 HairBack,HairBack11,Style 14
+HairBack,HairBack6,Style 15
 HairFront,,Front Hair
 HairFront,HairFront1,Style 1
 HairFront,HairFront2,Style 2
@@ -286,7 +304,9 @@ ItemVulva,TapeStrips,Tape Strips
 ItemVulva,StraightClitPiercing,Straight Clit Piercing
 ItemVulva,RoundClitPiercing,Round Clit Piercing
 ItemVulva,WeightedClitPiercing,Weighted Clit Piercing
+ItemVulva,BarbellClitPiercing,Barbell Clit Piercing
 ItemVulva,ChastityClitPiercing,Chastity Clit Piercing
+ItemVulva,ChastityClitShield,Chastity Clit Shield
 ItemButt,,Butt
 ItemButt,BlackButtPlug,Black Butt Plug
 ItemButt,TailButtPlug,Kitty Butt Plug
@@ -330,9 +350,12 @@ ItemNipples,ScrewClamps,Screw Clamps
 ItemNipples,ChainTassles,Chain Tassles
 ItemNipples,HeartPasties,Heart Pasties
 ItemNipples,NippleAccessory1,Nipple Jewels
+ItemNipples,NippleAccessory2,Nipple Jewel Piercings
 ItemNipples,TapeVibeEggs,Taped Vibrating Eggs
 ItemNipples,NippleSuctionCups,Nipple Suction Cups
 ItemNipples,NippleTape,Pair Of Nipple Tapes
+ItemNipples,BarbellPiercing,Barbell Piercing
+ItemNipples,ChopStickNippleClamps,Chopstick Nipple Clamps
 ItemBreast,,Breast
 ItemBreast,MetalChastityBra,Metal Chastity Bra
 ItemBreast,PolishedChastityBra,Polished Chastity Bra
@@ -370,6 +393,7 @@ ItemHands,SpankingToysHeartCrop,Heart Crop
 ItemHands,SpankingToysPaddle,Paddle
 ItemHands,SpankingToysWhipPaddle,Whip Paddle
 ItemHands,SpankingToysWhip,Whip
+ItemHands,SpankingToysTennisRacket,Tennis Racket
 ItemNeck,,Neck
 ItemNeck,LeatherCollar,Leather Collar
 ItemNeck,LeatherCollarBell,Bell Collar
@@ -462,6 +486,7 @@ ItemDevices,Cage,Stand up cage
 ItemDevices,LowCage,Kennel
 ItemDevices,SaddleStand,Saddle Stand
 ItemDevices,TeddyBear,Teddy Bear Set
+ItemDevices,OneBarPrison,One Bar Prison
 ItemBoots,,Feet
 ItemBoots,PonyBoots,Pony Boots
 ItemBoots,BalletHeels,Ballet Heels

@@ -234,8 +234,6 @@ function CharacterAppearanceBuildCanvas(C) {
 		C.CanvasBlink.height = 1000;
 	} else C.CanvasBlink.getContext("2d").clearRect(0, 0, 500, 1000);
 
-	// Sorts the list
-	C.Appearance = CharacterAppearanceSort(C.Appearance);
 	C.MustDraw = true;
 
 	// Loops in all visible items worn by the character
@@ -372,7 +370,7 @@ function AppearanceRun() {
 		if (C.ID == 0) {
 			DrawButton(1300, 25, 90, 90, "", "White", "Icons/" + ((LogQuery("Wardrobe", "PrivateRoom")) ? "Wardrobe" : "Reset") + ".png", TextGet("ResetClothes"));
 			DrawButton(1417, 25, 90, 90, "", "White", "Icons/Random.png", TextGet("Random"));
-		} else if (LogQuery("Wardrobe", "PrivateRoom")) DrawButton(1417, 25, 90, 90, "", "White", "Icons/Wardrobe.png");
+		} else if (LogQuery("Wardrobe", "PrivateRoom")) DrawButton(1417, 25, 90, 90, "", "White", "Icons/Wardrobe.png", TextGet("Wardrobe"));
 		DrawButton(1534, 25, 90, 90, "", "White", "Icons/Naked.png", TextGet("Naked"));
 		DrawButton(1651, 25, 90, 90, "", "White", "Icons/Next.png", TextGet("Next"));
 
@@ -393,7 +391,7 @@ function AppearanceRun() {
 	} else if (CharacterAppearanceWardrobeMode) {
 
 		// Draw the wardrobe top controls & buttons
-		DrawButton(1417, 25, 90, 90, "", "White", "Icons/Dress.png", TextGet("Random"));
+		DrawButton(1417, 25, 90, 90, "", "White", "Icons/Dress.png", TextGet("DressUp"));
 		DrawButton(1534, 25, 90, 90, "", "White", "Icons/Naked.png", TextGet("Naked"));
 		DrawButton(1651, 25, 90, 90, "", "White", "Icons/Next.png", TextGet("Next"));
 		DrawText(CharacterAppearanceWardrobeText, 1645, 220, "White", "Gray");
@@ -704,7 +702,6 @@ function CharacterAppearanceCopy(FromC, ToC) {
 			ToC.Appearance.push(FromC.Appearance[A]);
 
 	// Refreshes the second character and saves it if it's the player
-	AssetReload(ToC);
 	CharacterRefresh(ToC);
 	if (ToC.ID == 0) ServerPlayerAppearanceSync();
 
@@ -720,11 +717,10 @@ function CharacterAppearanceLoadCharacter(C) {
 
 // Load wardrobe menu in appearance selection
 function CharacterAppearanceWardrobeLoad(C) {
-	if (Player.Wardrobe == null || Player.Wardrobe.length < 12) {
+	if ((Player.Wardrobe == null) || (Player.Wardrobe.length < 12))
 		WardrobeLoadCharacters(true);
-	} else {
+	else
 		WardrobeLoadCharacterNames();
-	}
 	ElementCreateInput("InputWardrobeName", "text", C.Name, "20");
 	CharacterAppearanceWardrobeMode = true;
 	CharacterAppearanceWardrobeText = TextGet("WardrobeNameInfo");

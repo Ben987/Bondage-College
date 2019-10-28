@@ -1,5 +1,5 @@
 ###_NPC
-(She imitates your gagged speach and giggles.)
+(She imitates your gagged speech and giggles.)
 (Sie ahmt dein Knebel-Gemurmel nach und kichert.)
 (A nervous asylum patient crosses your path.)  Oh!  Hello nurse DialogPlayerName.  What are you doing here?
 (Eine nervöse Anstaltspatientin läuft dir über den Weg.) Oh! Hallo, Schwester DialogPlayerName. Was machen Sie denn hier?

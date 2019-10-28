@@ -24,7 +24,7 @@ function ElementCreateTextArea(ID) {
 		var TextArea = document.createElement("TextArea");
 		TextArea.setAttribute("ID", ID);
 		TextArea.setAttribute("name", ID);
-		TextArea.setAttribute("readonly", "readonly");
+		// TextArea.setAttribute("readonly", "readonly");
 		TextArea.addEventListener("keydown", KeyDown);
 		document.body.appendChild(TextArea);
 	}

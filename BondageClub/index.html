@@ -39,6 +39,7 @@
 <script src="Screens/Character/Appearance/Appearance.js"></script>
 <script src="Screens/Character/Creation/Creation.js"></script>
 <script src="Screens/Character/InformationSheet/InformationSheet.js"></script>
+<script src="Screens/Character/OnlineProfile/OnlineProfile.js"></script>
 <script src="Screens/Character/Preference/Preference.js"></script>
 <script src="Screens/Character/Wardrobe/Wardrobe.js"></script>
 <script src="Screens/Character/Cheat/Cheat.js"></script>
@@ -61,6 +62,8 @@
 <script src="Screens/Room/AsylumBedroom/AsylumBedroom.js"></script>
 <script src="Screens/Room/AsylumMeeting/AsylumMeeting.js"></script>
 <script src="Screens/Room/AsylumTherapy/AsylumTherapy.js"></script>
+<script src="Screens/Room/CollegeEntrance/CollegeEntrance.js"></script>
+<script src="Screens/Room/CollegeTennis/CollegeTennis.js"></script>
 <script src="Screens/Room/Gambling/Gambling.js"></script>
 <script src="Screens/Room/Prison/Prison.js"></script>
 <script src="Screens/Room/Photographic/Photographic.js"></script>
@@ -74,6 +77,7 @@
 <script src="Screens/MiniGame/SlaveAuction/SlaveAuction.js"></script>
 <script src="Screens/MiniGame/RhythmGame/RhythmGame.js"></script>
 <script src="Screens/MiniGame/Therapy/Therapy.js"></script>
+<script src="Screens/MiniGame/Tennis/Tennis.js"></script>
 <script src="Screens/Cutscene/PlayerCollaring/PlayerCollaring.js"></script>
 <script src="Screens/Cutscene/PlayerMistress/PlayerMistress.js"></script>
 <script src="Screens/Cutscene/NPCCollaring/NPCCollaring.js"></script>
@@ -127,64 +131,43 @@
 /*
 	
 	NEXT VERISON:
+		
+	OK - Chopstick nipple clamps (Gnarp)
+	OK - 4 new piercings (FeuertinKira)
+	OK - German translation + Stable text corrections (Adokilume)
+	OK - Text proofing (GermanPerson)
+	OK - Second hair accessory (Nythaleath)
+	TEST - New Kidnap League background (Kirsty)
+	TEST - Online profile deescription (EveFerox)
+	TEST - Drawing optimization (Sekkmer)
+	TEST - Gag support for Cyrillic characters (FunnyEnthusiasm)
+	TEST - One-bar prison (Nythaleath)
 
-	OK - Love Chastity Belt - Adding shield right after adding belt + Code crash (Sekkmer)
-	OK - Move left - Move right (MrsHoudini)
-	OK - New HobbleSkirt and Open crotch StraitDress (FeuertinKira)
-	OK - Collar Tag Refactor (Sekkmer)
-	OK - SpankingToys Fixes (Sekkmer)
-	OK - InventoryLock refactor (Sekkmer)
-	OK - IsRestraint based on item, not groups (Sekkmer)
-	OK - Random appearance error - AllowNone (Sekkmer)
-	OK - Legs, wooden horse (Gatetrek)
-	OK - Typo fixes / test proofing (klorpa)
-	OK - DuctTape extension for feet and legs (FeuertinKira)
-	OK - Expanded maid drinks menu (Sociocratic)
-	OK - German translation (Adokilume)
-	OK - New vibrating butt plug and dildo (FeuertinKira)
-	OK - Text cleanup for collar tags (Sekkmer)
-	OK - New color picker for custom slave collar (Sekkmer)
-	OK - 2 new dresses and sandals (Gatetrek)
-	OK - New Witch Hat & Butterfly mask (FeuertinKira + Terenthi)
-	OK - New Ankle Socks (TheGnarp)
-	OK - Leather Choker, Bone Gag, Pet Collar, New Boots, Fingerless gloves (gatetrek + Kirsty)
-	OK - Chat display settings (Adokilume)
-	OK - New Lace Babydoll + Sleeveless Top + Jeans (gatetrek)
-	OK - Padded mittens + Nursery fixes (wildsj)
-	OK - New Spreader bar & Saddle stand (Gnarp)
-	OK - Fur dress + socks + gloves (Uwnodi)
-	OK - Locking boots + Lots & lots of new clothes (FeuertinKira)
-	OK - Item blocking permission system (Sekkmer)
-	OK - Frill panties, Frill socks, 5 new hair styles (Gatetrek)
-	OK - 6 new backgrounds (FeuertinKira)
-	OK - 3 new hoods (FeuertinKira)
-	OK - 2 new crotch ropes (Gnarp)
-	OK - Ball & chain, Nipple tape, Tape strips, Inflatable vibe dildo (FeuertinKira)
-	OK - Chopstick gag (wildsj)
-	OK - Fixes for Jeans & Latex Panties (Gatetrek)
-	OK - New chastity belt + bra + 3 backgrounds (FeuertinKira)
-	OK - Chopstick / tongue split (wildsj)
-	OK - Sexy Bikini, inflatable butt plug, Polished mittens (FeuertinKira)
-	OK - Chat styles adjustments (Adokilume)
-	OK - Police woman hat (Gatetrek)
-	OK - Bamboo gag (Gnarp)
-	OK - Spreader bar on NPCs cannot be removed
-	OK - Teddy bears (Gatetrek)		
+	Bugs to fix
+	TEST - Upside down teddy bear when suspended
+	TEST - Dressing room buttons have wrong label (random/reset)
+	TEST - If collared by NPC, the collar gets removed in online rooms
+	TEST - When importing Bondage College char with Chastity Belt, add a Mistress Lock
+	
+	Assets / Core
+	OK - New hair style (For Jennifer) + Tennis racket
+	TEST - Gag support for Accents/Latin characters
+	TEST - Get free school uniform from collared Sarah/Amanda/Jennifer/Sidney
+	TEST - Get changed into school uniform + get free uniform from Mistress Sarah/Amanda/Jennifer/Sidney
+
+	Bondage College - Integrated from the Club main hall (Go to College option)
+	OK - Entrance - A student can introduce the college, main hub to reach the other areas
+	TEST - Tennis court - Jennifer, beat her at a tennis mini-game to get the school uniform to go inside, get tennis racket spanking toys from her, spawn a random girl to play tennis after Jennifer
+	TO DO - Cafeteria (require school uniform) - Sidney, fight her and win to get access to detention room, get the dunce hat from her
+	TO DO - Theater (require school uniform) - Julia, trick her and restrain her to get the teacher lounge key, get a theater dress from her
+	TO DO - Detention room (require fighting Sidney) - Yuki, give her an orgasm to get the teacher key and sleeping pills
+	TO DO - Teacher lounge (require key from Julia or Yuki) - Mildred, become her slave or make her your slave to get a new unique wooden stocks restraint for the hands
 
 	Asylum
-	TO DO - Bedroom - The patient can rest on the bed to relax, or be strapped on it for a set time
-	OK - Give nurse outfit if reputation > 50
-	IN PROGRESS - Treatment Room - Nurses can give treatments and patients can receive them (shock, tickle, orgasm, etc.), nurses get paid and gain reputation
-	OK - Random nurses will try to catch escaped patient and bring them back after a fight
-	OK - Escaped patients can be identified on their profile (for multiplayer roleplay), forced title
-	OK - Meet random patients if dressed as a nurse, can bring them to room or back to asylum after a fight, earn $ and reputation
-	OK - Send your sub to the asylum for a while to have their traits changed a little, for a set $ amount
-
-	OK - Management - Allow sub to get a new appearance for slave collar
-	OK - Server - Block whispers from players on black list + return an error message to the blacklisted person
-	OK - Allow player to choose their favorite title from all available titles (forced title prevails), upload selected title to chatroom for others to see
-	OK - Remove prison option from maid rescue missions
-
+	TO DO - Sleep option if you're a patient (exits out of the game)
+	TO DO - Asylum / Kidnap League / Maid Quarters - Cannot do anything there if you're a club slave.  Special dialog to prevent it.
+		
+	TO DO - Proof reading
 	TO DO - Patreon Import/Update
 	
 */

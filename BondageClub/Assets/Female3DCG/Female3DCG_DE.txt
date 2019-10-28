@@ -147,7 +147,7 @@ Windeln
 Frill Panties
 Rüschenhöschen
 Maid Panties
-Dienstmädchen-Höschen
+Hausmädchen-Höschen
 Latex Panties
 Latexhöschen
 Wrap Panties
@@ -216,10 +216,6 @@ Hair Band
 Haarband
 Beret
 Baskenmütze
-Hair Ribbon 1
-Haarschleife 1
- Giant Bow 1
-Große Schleife 1
 Maid Hairband
 Hausmädchen-Haarband
 Nurse Cap
@@ -228,10 +224,8 @@ Santa Hat
 Weihnachtsmütze
 Captain's Hat
 Kapitänsmütze
-Bunny Succubus 
+Bunny Succubus
 Hasen-Succubus
- Flower
-Blüte
  Witch Hat
 Hexenhut
 Pirate Bandana
@@ -246,6 +240,10 @@ Ears Large
 Tierohren groß
 Pony Ears
 Pony-Ohren
+Hair Ribbon 1
+Haarschleife 1
+ Giant Bow 1
+Große Schleife 1
 Bunny Ears
 Hasenohren
 Floppy Bunny Ears
@@ -260,6 +258,8 @@ Horns 2
 Hörner 2
 Horns 3
 Hörner 3
+ Flower
+Blüte
 Fox Ears Small
 Fuchsohren klein
 Small Bat Wings
@@ -366,6 +366,8 @@ Style 13
 Stil 13
 Style 14
 Stil 14
+Style 15
+Stil 15
 Front Hair
 Haare vorne
 Eyes
@@ -446,6 +448,18 @@ Clit Suction Cup
 Klitoris-Saugnapf
 Tape Strips
 Pflaster
+Straight Clit Piercing
+Gerades Klitoris-Piercing
+Round Clit Piercing
+Rundes Klitoris-Piercing
+Weighted Clit Piercing
+Gewichtetes Klitoris-Piercing
+Barbell Clit Piercing
+Barbell-Klitoris-Piercing
+Chastity Clit Piercing
+Keuschheits-Klitoris-Piercing
+Chastity Clit Shield
+Keuschheits-Klitoris-Schild
 Butt
 Hintern
 Black Butt Plug
@@ -532,12 +546,18 @@ Heart Pasties
 Herz-Pasties
 Nipple Jewels
 Nippelschmuck
+Nipple Jewel Piercings
+Nippelschmuck-Piercings
 Taped Vibrating Eggs
 Klebeband-Vibratoren
 Nipple Suction Cups
 Nippel-Saugnäpfe
 Pair Of Nipple Tapes
 Nippel-Klebeband
+Barbell Piercing
+Barbell-Piercing
+Chopstick Nipple Clamps
+Stäbchen-Nippelklemmen
 Breast
 Brust
 Metal Chastity Bra
@@ -588,6 +608,10 @@ Paddle
 Paddel
 Whip Paddle
 Paddelpeitsche
+Whip
+Peitsche
+Tennis Racket
+Tennisschläger
 Neck
 Hals
 Leather Collar
@@ -618,6 +642,8 @@ Leather Choker
 Lederhalsreif
 Pet Collar
 Tierhalsband
+Maid Collar
+Hausmädchenhalsband
 Collar
 Halsband
 Bell
@@ -680,6 +706,10 @@ Chopstick Gag
 Stäbchenknebel
 Bamboo Gag
 Bambusknebel
+Harness Ball Gag XL
+XL-Harnischballknebel
+Pumpkin Gag
+Kürbisknebel
 Head
 Kopf
 Cloth Blindfold
@@ -756,6 +786,8 @@ Kennel
 Zwinger
 Saddle Stand
 Sattelständer
+Teddy Bear Set
+Teddybär-Set
 Ballet Heels
 Ballett-Heels
 Ballet Wedges
