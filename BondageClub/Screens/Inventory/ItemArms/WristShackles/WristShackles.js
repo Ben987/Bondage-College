@@ -31,7 +31,7 @@ function InventoryItemArmsWristShacklesClick() {
 	if ((MouseX >= 1500) && (MouseX <= 1725) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property.Restrain == null)) InventoryItemArmsWristShacklesSetPose("Behind");
 }
 
-// Sets the cuffs pose (wrist, elbow, both or none)
+// Sets the cuffs pose (InFront, Behind)
 function InventoryItemArmsWristShacklesSetPose(NewPose) {
 
 	// Gets the current item and character
@@ -61,7 +61,7 @@ function InventoryItemArmsWristShacklesSetPose(NewPose) {
 
 	// Refreshes the character and chatroom
 	CharacterRefresh(C);
-	var msg = DialogFind(Player, "WristShacklesRestrain" + ((NewPose == null) ? "None" : NewPose));
+	var msg = DialogFind(Player, "WristShacklesRestrain" + ((NewPose == null) ? "InFront" : NewPose));
 	msg = msg.replace("SourceCharacter", Player.Name);
 	msg = msg.replace("DestinationCharacter", C.Name);
 	ChatRoomPublishCustomAction(msg, true);
