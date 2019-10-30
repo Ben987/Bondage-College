@@ -1,7 +1,7 @@
 ###_NPC
-Fine, Horses don't speech.
-Gut, Pferde sprechen nicht.
-(She first shakes her head to avoid the gag, but finally surrenders as you silence her.)
+Good. Horses don't speak.
+Gut so, Pferde sprechen nicht.
+(She first shakes her head to avoid the gag, but finally surrenders and lets you silence her.)
 (Sie schüttelt erst den Kopf, um dem Knebel zu entgehen, lässt sich aber schließlich von dir zum Schweigen bringen.)
 (You remove her gag while she stretches her mouth.)  Thanks Miss, it's hard to dispatch ponies with that gag.
 (Du nimmst den Knebel ab und sie streckt ihren Mund.) Danke, Miss, geknebelt ist es schwierig, Ponys abzufertigen.
@@ -15,8 +15,8 @@ Gut, Pferde sprechen nicht.
 (Du befreist ihre Beine.) Sagen Sie Bescheid, wenn ich behilflich sein kann, Miss.
 (She looks puzzled as you restrain her feet.)  I'll stay on guard here Miss.
 (Sie guckt verwirrt, als du ihre Füße fesselst.) Ich halte hier die Stellung, Miss.
-(You release her feet and she wiggles them.)  Thanks Miss, it was troublesome.
-(Du befreist ihre Füße und sie wackelt mit ihnen herum.) Danke, Miss, das war problematisch.
+(You release her feet and she wiggles them.)  Thanks Miss, that was quite troublesome.
+(Du befreist ihre Füße und sie wackelt mit ihnen herum.) Danke, Miss, das war ziemlich lästig.
 (You strap the collar on her while she blushes.)  You're quite a Dominant Miss.
 (Du legst ihr das Halsband um und sie wird rot.) Sie sind ziemlich dominant, Miss.
 (You remove the collar around her neck.)  Thanks Miss.
@@ -35,16 +35,16 @@ Gut, Pferde sprechen nicht.
 (Du peitschst ihr mit der Ledergerte auf die Brust und sie lässt wimmernd den Kopf hängen.)
 (You whip her butt hard as she sighs.)  I promise I'll work harder.
 (Du peitschst ihr kräftig auf den Hintern und sie seufzt.) Ich verspreche, härter zu arbeiten.
-(She grumbles as you strike her butt with the crop.)  I'm a Trainer not a horse.
+(She grumbles as you strike her butt with the crop.)  I'm a Trainer, not a horse.
 (Sie grummelt, als du ihren Hintern mit der Gerte triffst.) Ich bin eine Trainerin und kein Pferd.
 (She tries to fight back.)  That's equipment for the horses.
 (Sie versucht sich zu wehren.) Das ist Ausrüstung für die Pferde.
-(You remove the device.)  Thanks, so can work again.
-(Du nimmst es ab.) Danke, so kann ich wieder arbeiten.
-(She looks surprised.) is not a saddle?
+(You remove the device.)  Thanks, now can work again.
+(Du nimmst es ab.) Danke, jetzt kann ich wieder arbeiten.
+(She looks surprised.) Is that not a saddle?
 (Sie wirkt überrascht.) Das ist kein Sattel, oder?
-(She looks irritated.) is the riding lesson finished?
-(Sie wirkt gereizt.) Ist die Reitstunde vorüber?
+(She looks confused.) Is the riding lesson over?
+(Sie wirkt irritiert.) Ist die Reitstunde vorüber?
 (She whimpers as you use the device on her breast.)  Sorry to object, but this isn't very convenient or comfortable.
 (Sie wimmert, als du es an ihrer Brust anwendest.) Ich will mich ja nicht einmischen, aber das ist weder praktisch noch angenehm.
 (She grumbles as you use remove the item.)  Be thoughtful and don't remove anything until I'm hurt and broken.
@@ -55,9 +55,9 @@ Gut, Pferde sprechen nicht.
 (Du steckst das Ei hinein, aber sie reagiert kaum.) Ich will ja hier nicht die Wunschzettelsub spielen, aber das Ei würde bei Anderen mehr bewirken.
 (She doesn't react as you remove the egg.)  Maybe it doesn't work, I didn't feel a thing in there.
 (Sie reagiert nicht, als du das Ei herausnimmst.) Vielleicht ist es kaputt, ich hab da drin nichts gespürt.
-(She fights against.) look like the bridle?
+(She struggles against it.) Not a bridle?
 (Sie wehrt sich.) Sieht das etwa wie Zaumzeug aus?
-(She breathes.) Finally.  What should that be?
+(She catches her breath.) Finally.  What was that supposed to be?
 (Sie atmet durch.) Endlich. Was sollte das denn?
 Welcome to the Horse Stable.  How can I help you?
 Willkommen im Pferdestall. Was kann ich für dich tun?
@@ -71,12 +71,12 @@ Die Freude ist ganz meinerseits. Ich bin, DialogCharacterName, eine Trainerin in
 Can you answer some questions?
 Kannst du mir ein paar Fragen beantworten?
 ###_NPC
-Yes sure, but hurry up the ponies are waiting.
+Yes sure, but hurry up, the ponies are waiting.
 Ja, klar, aber beeil dich, die Ponys warten.
 ###_PLAYER
 Can I get a pony training? 
 Kann ich ein Pony-Training bekommen?
-I want to become a Trainer.
+I want to become a trainer.
 Ich will eine Trainerin werden.
 I want a trial pony training.
 Ich will ein Pony-Probetraining.
@@ -86,9 +86,9 @@ Okay, fangen wir an.
 ###_PLAYER
 I want a trial trainer training.
 Ich will ein Trainer-Probetraining.
-I'm her for a Training Routine.
+I'm here for a training routine.
 Ich bin für eine Trainingsstunde hier.
-I'm her for a Pony Exam.
+I'm here for a pony exam.
 Ich bin für eine Pony-Prüfung hier.
 ###_NPC
 You are not ready yet.  You have to train harder.
@@ -96,21 +96,21 @@ Du bist noch nicht bereit. Du musst härter trainieren.
 Do you think the training was successful? Then I get 50 $ exam fee.
 Meinst du, dein Training war erfolgreich? Dann bekomme ich 50 $ Prüfungsgebühr.
 ###_PLAYER
-I'm her for a trainer Exam.
+I'm here for a trainer exam.
 Ich bin für eine Trainer-Prüfung hier.
 ###_NPC
-You? I do not laugh.
+You? Don't make me laugh.
 Du? Dass ich nicht lache.
-Do you think that's it? Then pay the 50 $.
-Meinst du, du bist soweit? Dann zahle die 50 $.
+Do you think you're ready? Then pay the 50$.
+Meinst du, du bist soweit? Dann zahle die 50$.
 ###_PLAYER
 I want to train a pony.
 Ich will ein Pony trainieren.
 ###_NPC
-I get 10 $ cleaning fee for your riding gear.
-Das macht dann 10 $ Reinigungsgebühr für dein Reitzeug.
+That'll be a 10$ cleaning fee for your riding gear.
+Das macht dann 10$ Reinigungsgebühr für dein Reitzeug.
 ###_PLAYER
-(End Training and dress Back.)
+(End the training and dress back up.)
 (Das Training beenden und dich anziehen.)
 ###_NPC
 (She begins to stow the bridle.)
@@ -121,7 +121,7 @@ Ich habe keine Zeit zum Plaudern. (Dialog beenden.)
 Here's the money, let's start.
 Hier ist das Geld, fangen wir an.
 ###_NPC
-(She puts it in her pocket.) Dress Off
+(She puts it in her pocket.) Undress.
 (Sie packt das Geld in ihre Tasche.) Zieh dich aus.
 ###_PLAYER
 Thank you for the information.
@@ -133,72 +133,72 @@ Kein Problem, war mir eine Freude.
 No way!  Can't I stay clothed?
 Nicht im Ernst! Kann ich nicht angezogen bleiben?
 ###_NPC
-(She slap your Face) Have you ever seen a horse in clothes?
+(She slaps your face.) Have you ever seen a horse wearing clothes?
 (Sie gibt dir eine Ohrfeige.) Hast du jemals ein Pferd mit Kleidung gesehen?
 ###_PLAYER
-(Dress Off)
+(Undress.)
 (Dich ausziehen.)
 ###_NPC
-That's how it is. Now open your Mouth.
+That's it. Now open your mouth.
 So ist es richtig. Jetzt mach den Mund auf.
 ###_PLAYER
 Why should I?
 Warum sollte ich?
 ###_NPC
-On the teeth one recognizes the age of a horse. 
+You can tell a horse's age by examining its teeth.
 An den Zähnen lässt sich das Alter eines Pferdes ablesen.
 ###_PLAYER
-(Open your Mouth)
+(Open your mouth.)
 (Deinen Mund öffnen.)
 ###_NPC
-(She looks in.) That looks good. Now bend over.
+(She looks inside.) That looks good. Now bend over.
 (Sie sieht hinein.) Sieht gut aus. Jetzt beuge dich vor.
-I'll check your Butt for healthy.
-Ich muss den gesundheitlichen Zustand deines Hinterteils prüfen.
+So I can check if you're healthy back there.
+Damit ich prüfen kann, od da hinten gesundheitlich alles in bester Ordnung ist.
 ###_PLAYER
-(Bend over to the front.)
+(Bend over.)
 (Dich nach vorne beugen.)
 ###_NPC
-(She feels the Butt) Ok nice, I think that's okay. Stand straight.
-(Sie tastet deinen Hintern ab.) Okay, schön, ich glaube, das ist in Ordnung. Steh aufrecht.
+(She feels your butt.) OK, I think that's good. Stand straight.
+(Sie tastet deinen Hintern ab.) Okay, ich glaube, das ist in Ordnung. Steh aufrecht.
 ###_PLAYER
-(Just bend over a little.)
+(Bend over just a little.)
 (Dich nur ein bisschen vorbeugen.)
 ###_NPC
-(she pushes you down your shoulders) The resistance will drive you out.
+(She pushes you down by your shoulders.) We'll need to work on that resistance of yours.
 (Sie drückt dich an den Schultern nach unten.) Diese Widerspenstigkeit treiben wir dir schon noch aus.
 ###_PLAYER
-(Wait)
+(Wait.)
 (Warten.)
 ###_NPC
-(She feels the Butt) Your butt is a little pale a few strands would stand well. Stand straight.
+(She feels your butt.) Your butt is a little bit pale. A few strands would suit it well. Stand straight.
 (Sie tastet deinen Hintern ab.) Dein Po ist etwas blass, ein paar Peitschenhiebe würden sich gut machen. Steh aufrecht.
 ###_PLAYER
 (Stand straight.)
 (Dich aufrichten.)
 ###_NPC
-(She pops the whip.) Go 10 steps.
+(She cracks the whip.) Walk 10 steps.
 (Sie lässt die Peitsche knallen.) Gehe 10 Schritte.
 ###_PLAYER
-(Go slowly forward.)
+(Walk forwards slowly.)
 (Langsam vorwärts gehen.)
 ###_NPC
-She pops the whip.
+(She cracks the whip.)
 (Sie lässt die Peitsche knallen.)
 ###_PLAYER
-(Go fast forward.)
+(Walk forwards quickly.)
 (Schnell vorwärts gehen.)
 ###_NPC
-Lift the legs properly
+Lift your legs properly.
 Hebe die Beine ordentlich an.
 ###_PLAYER
-(Go faster)
+(Go faster.)
 (Schneller werden.)
 ###_NPC
-That has potential. Now dress the Harness.
-Das hat Potenzial. Jetzt zieh dir das Geschirr an.
+You have potential. Now wear the harness.
+Du hast Potenzial. Jetzt zieh dir das Geschirr an.
 ###_PLAYER
-(Do as she says)
+(Do as she says.)
 (Tun, was sie sagt.)
 ###_NPC
 The leather harness will make your exercises easier, and you should always remember that horses are farm animals.
@@ -207,47 +207,39 @@ Dieser Lederharnisch wird dir bei deinen Übungen helfen, und du solltest nie ve
 (Dress up.)
 (Dich ankleiden.)
 ###_NPC
-Open your Mouth.
+Open your mouth.
 Mach den Mund auf.
 Horses D O   N O T   T A L K.
 Pferde S P R E C H E N   N I C H T.
-###_PLAYER
-(Open your Mouth.)
-(Deinen Mund öffnen.)
-###_NPC
-Arms behind your back
+Arms behind your back.
 Arme hinter den Rücken.
 ###_PLAYER
-(Wait and do Nothing)
+(Wait and do nothing.)
 (Warten und nichts tun.)
 ###_NPC
-(The Whip hit your Butt.) Faster.
+(The whip hits your butt.) Faster.
 (Die Peitsche trifft deinen Hintern.) Schneller.
 ###_PLAYER
-(Move the arms backwards)
-(Deine Arme nach hinten nehmen.)
+(Put your arms behind your back.)
+(Deine Arme hinter den Rücken nehmen.)
 ###_NPC
-Bend Over
+Bend over.
 Bück dich.
-###_PLAYER
-(Bend Over)
-(Dich bücken.)
-###_NPC
-(She feels the Butt) O.K. here is the Horse Tail Plug. Now we finished dress off. Stand straight.
+(She feels your butt.) OK. Here's your horse tail plug. And with that, you're all geared up. Stand straight.
 (Sie tastet deinen Hintern ab.) Okay, hier kommt der Pferdeschweif. Damit bist du fertig ausgestattet. Steh aufrecht.
-Take a step forward. 
+Take a step forward.
 Mache einen Schritt vorwärts.
 ###_PLAYER
-(Take a Step)
+(Take a step.)
 (Einen Schritt machen.)
 ###_NPC
-Elegant like a fence post, you have a long way to go.
-Elegant wie ein Zaunpfahl, vor dir liegt noch ein weiter Weg.
+About as elegant as a fence post. You have a long way to go.
+In etwa so elegant wie ein Zaunpfahl. Vor dir liegt noch ein weiter Weg.
 ###_PLAYER
 What's going on in here?
 Was geht hier vor sich?
 ###_NPC
-We train Submissive to be Ponygirls. This allows them to move very elegantly.
+We train submissives to become pony girls. This allows them to move very elegantly.
 Wir trainieren Unterwürfige zu Pony-Mädchen. Das erlaubt ihnen eine sehr elegante Fortbewegung.
 ###_PLAYER
 May I play with the ponies?
@@ -256,81 +248,81 @@ Darf ich mit den Ponys spielen?
 No. Ponies are only allowed to play with other ponies.
 Nein. Ponys dürfen nur mit anderen Ponys spielen.
 ###_PLAYER
-Is allowed to release the ponies?
+Is it allowed to release the ponies?
 Dürfen Ponys freigelassen werden?
 ###_NPC
 No, the strict equipment is mandatory.
 Nein, die strenge Ausstattung gehört zum Pflichtprogramm.
 ###_PLAYER
-How do I become a Ponygirl?
+How do I become a pony girl?
 Wie werde ich zu einem Ponymädchen?
 ###_NPC
 You have to be submissive, have the right equipment and pay the training fee.
 Du musst unterwürfig sein, die richtige Ausrüstung besitzen und die Trainingsgebühr zahlen.
 ###_PLAYER
-Can i become a Trainer?
+Can i become a trainer?
 Kann ich eine Trainerin werden?
 ###_NPC
-The Trainer guild is currently looking for some new strong members. 
+The trainer guild is currently looking for some new strong members. 
 Die Trainergilde sucht derzeit nach neuem, starkem Zuwachs.
 ###_PLAYER
-How does a training Routine go?
+What does a training routine look like?
 Wie läuft eine Trainingsstunde ab?
 ###_NPC
-It consists of several exercises. before the equipment is checked. after docile ponies are rewarded.
-Sie besteht aus mehreren Übungen. Davor wird die Ausrüstung überprüft. Danach werden fügsame Ponys belohnt.
+It consists of several exercises. First the equipment is checked. Afterwards docile ponies are rewarded.
+Sie besteht aus mehreren Übungen. Zuerst wird die Ausrüstung überprüft. Danach werden fügsame Ponys belohnt.
 ###_PLAYER
-(more . . .)
-(Mehr . . .)
-Thank you I have no further questions.
+(More...)
+(Mehr...)
+Thank you, I have no further questions.
 Danke, ich habe keine weiteren Fragen.
 ###_NPC
-So go, why are you standing around in the stable?
-Dann los, warum stehst du hier im Stall herum?
+Run along then. What are you doing standing around here in the stable?
+Dann mach, dass du weiterkommst. Warum stehst du hier so im Stall herum?
 ###_PLAYER
 Can a pony get better?
 Kann ein Pony besser werden?
 ###_NPC
-Yes, that requires a lot of training. better ponies are also allowed to do difficult exercises.
+Yes, that requires a lot of training. Better ponies are also allowed to do more difficult exercises.
 Ja, das erfordert eine Menge Training. Bessere Ponys dürfen auch an schwierigeren Übungen teilnehmen.
 ###_PLAYER
-Give it an exam for ponies?
+Is there an exam for ponies?
 Gibt es eine Prüfung für Ponys?
 ###_NPC
-Good ponies are allowed to take an exam. Three disciplines are required: hurdles, races and dressage.
+Good ponies are allowed to take an exam. Three disciplines are required: hurdles, races, and dressage.
 Gute Ponys dürfen eine Prüfung ablegen. Sie besteht aus drei Disziplinen: Hindernislauf, Wettrennen und Dressur.
 ###_PLAYER
-Give it an exam for trainer?
+Is there an exam for trainers?
 Gibt es eine Prüfung für Trainer?
 ###_NPC
 Trainers can take an exam. Then they can take over the stall control.
 Trainer können eine Prüfung ablegen. Danach dürfen Sie die Leitung des Stalls übernehmen.
 ###_PLAYER
-I have questions about special training?
+I need to ask about a particular exercise.
 Ich habe Fragen zu bestimmten Trainingsarten.
 ###_NPC
-to which exercise?
-Zu welcher Übung?
+Sure, which one?
+Klar, um welche Übung geht's denn?
 ###_PLAYER
-(listen)
+(Listen.)
 (Zuhören.)
 ###_NPC
-A trainer needs to know his dressage skills and be very dominant. Also you need some Equipment like Whips, Crops and Belts.
+A trainer needs to know her dressage skills and be very dominant. You also need certain equipment like whips, crops and belts.
 Eine Trainerin muss sich mit Dressur auskennen und sehr dominant sein. Außerdem brauchst du Dinge wie Peitschen, Gerten und Gürtel.
-If it interests you, start saving. Horses are an expensive hobby. 
+If you're interested, start saving your money. Horses are an expensive hobby.
 Wenn du Interesse hast, fang schonmal an zu sparen. Pferde sind kein billiges Hobby.
 The fee will not be refunded if you cancel the training.
 Die Gebühr wird nicht erstattet, wenn du das Training abbrichst.
-For every training routine you have to appear with a collar.
+You'll have to attend every training routine wearing a collar.
 Zu jeder Trainingsstunde hast du mit einem Halsband zu erscheinen.
-Three disciplines are required: knowledge of the dressage, handling the whip and hurdles.
+Three disciplines are required: dressage knowledge, handling a whip, and hurdles.
 Es werden drei Disziplinen geprüft: Dressurkenntnisse, Umgang mit der Peitsche und Hürdenlauf.
-This is really challenging. Therefore, it may be repeated. A fee is due each time.
+It's really challenging. Therefore, it may be repeated. A fee is due each time.
 Das ist äußerst anspruchsvoll. Daher kann es wiederholt werden. Eine Gebühr wird jedes Mal fällig.
-After the exam you can use the Pony-Bit-gag also outside the Stable.
+After the exam, you can use the pony bit gag anywhere in the club.
 Nach der Prüfung kannst du den Pony-Knebel auch außerhalb des Stalls benutzen.
 ###_PLAYER
-(Stand still and wait)
+(Stand still and wait.)
 (Stillstehen und warten.)
 ###_NPC
 What a cute pony.
@@ -345,33 +337,33 @@ Dann gibt es auch keine Prüfung.
 Here is the money, can we start?
 Hier ist das Geld, können wir anfangen?
 ###_NPC
-Get ready, now it gets serious.
+Get ready, we're getting serious now.
 Mach dich bereit, jetzt wird es ernst.
 ###_PLAYER
-Rather not yet
-Lieber noch nicht.
+On second thought, I'm not ready yet.
+Andererseits bin ich doch noch nicht bereit.
 ###_NPC
-Get in touch if you have thought about it.
+Get in touch if you change your mind.
 Sag mir Bescheid, wenn du es dir überlegt hast.
 ###_PLAYER
 Here's the money, go ahead.
 Hier ist das Geld, du kannst loslegen.
-How can I better overcome the hurdles?
+How do I get over the hurdles?
 Wie komme ich besser über die Hürden?
 ###_NPC
 The success depends on your skill, so exercise more often.
 Der Erfolg hängt von deinem Können ab, also übe möglichst oft.
 ###_PLAYER
-I can not manage all hurdles / carrots.
+I can't get all the hurdles / carrots in time.
 Ich erreiche nicht alle Hürden oder Karotten.
 ###_NPC
 The running speed depends on your skill, so exercise more often.
 Deine Geschwindigkeit hängt von deinem Können ab, also übe möglichst oft.
 ###_PLAYER
-The counter says I whip a trainer, but that's not true
+The counter says I hit a trainer, but that's not true.
 Der Peitsch-Zähler zählt grundlos beim Trainer hoch.
 ###_NPC
-A failed pony counts as a hit coach.
+When you miss a pony, it counts as a trainer hit.
 Ein nicht getroffenes Pony zählt wie eine getroffene Trainerin.
 ###_PLAYER
 The running exercises do not seem to get shorter.
@@ -386,7 +378,7 @@ Keine weiteren Sonderfragen.
 What else do you want to know?
 Was möchtest du sonst noch wissen?
 ###_PLAYER
-(Waiting for instructions)
+(Wait for instructions.)
 (Auf Anweisung warten.)
 (Do it quickly.)
 (Es schnell tun.)
@@ -397,41 +389,41 @@ Was möchtest du sonst noch wissen?
 I want to become a trainer, not a stableboy!
 Ich will Trainerin werden, kein Stallknecht!
 ###_NPC
-she winks. that is the dominant nature. give your money. Welcome to the guild her is your Dress.
-(Sie zwinkert.) Worte wahrer Dominanz. Gib mir dein Geld. Willkommen in der Gilde. Hier ist deine Kleidung.
+(She winks.) That's the dominant spirit we're looking for. Give me your money. Welcome to the guild! Here's your uniform.
+(Sie zwinkert.) Worte wahrer Dominanz. Gib mir dein Geld. Willkommen in der Gilde! Hier ist deine Uniform.
 ###_PLAYER
 Here is the money.  Hurry up.
 Hier ist das Geld. Beeilung.
 ###_NPC
-(She will give you the clean clothes.) have a lot of fun.
+(She gives you clean clothes.) Have a lot of fun.
 (Sie gibt dir die sauberen Sachen.) Ich wünsche dir viel Spaß.
 ###_PLAYER
 I forgot my wallet.
 Ich hab mein Geld nicht dabei.
 ###_NPC
-Then it will not work, you loser.
+Then it won't work, you loser.
 Dann wird da nichts draus, du Lusche.
 That was great, right?
 Das war toll, was?
-With exercise that will certainly better.
+With a bit of practice, that will certainly get better.
 Mit etwas Übung wird das garantiert besser.
-No not yet. Only submissive people can be trained.
+No, not yet. Only submissive people can be trained.
 Nein, noch nicht. Nur Unterwürfige können trainiert werden.
-No not yet. You have to buy the necessary equipment in the shop first.
+No, not yet. You have to buy the necessary equipment in the shop first.
 Nein, noch nicht. Du musst dir erst die notwendige Ausrüstung im Laden kaufen.
-You need the following: a Harness Ball Gag, a Leather Armbinder, a Leather Harness and a Horse-Tail-Plug.
+You need the following: a harness ball gag, a leather armbinder, a leather harness, and a horse tail plug.
 Du brauchst folgendes: Einen Harnisch-Ballknebel, einen Monohandschuh, einen Lederharnisch und einen Analstöpsel mit Pferdeschweif.
-No not yet. You also have to wear a collar.
+No, not yet. You also have to wear a collar.
 Nein, noch nicht. Du musst auch ein Halsband tragen.
-No not yet.  The Training cost 50 $.
+No, not yet.  The training fee is 50$.
 Nein, noch nicht. Das Training kostet 50 $.
-Yes, the training cost 50 $. The training is long and demanding.
+Yes, the training costs 50$. It's long and demanding.
 Ja, das Training kostet 50 $. Es ist lang und anspruchsvoll.
 ###_PLAYER
 When can I start?
 Wann kann ich anfangen?
 ###_NPC
-once you have paid the fee and the health check is completed. 
+Once you have paid the fee and the health check is completed.
 Sobald du die Gebühr bezahlt und dich der gesundheitlichen Untersuchung unterzogen hast.
 ###_PLAYER
 I do not want it.
@@ -441,204 +433,200 @@ Contact me if you change your mind.
 Sag mir Bescheid, wenn du deine Meinung änderst.
 Before you become a trainer, you must first learn the subtleties of dressage.
 Bevor du eine Trainerin werden kannst, muss du die Raffinesse der Dressur erlernen.
-Only dominant people can become trainer
+Only dominant people can become trainers.
 Nur dominante Leute können Trainer werden.
-you lack the necessary equipment. you have to buy the following: Crops, Whips and Leather Belt for Feet and Legs
+You lack the necessary equipment. You have to buy the following: crops, whips, and leather belts for feet and legs.
 Dir fehlt die nötige Ausrüstung. Du brauchst Folgendes: Gerten, Peitschen, und Ledergurte für Füße und Beine.
-You are too poor and can not afford the training of ponies.
+You are too poor and cannot afford training ponies.
 Du bist zu arm, um dir das Trainieren von Ponys leisten zu können.
-Yes, you can join the trainer guild. the entrance fee is 500 $.
-Ja, du kannst der Trainergilde beitreten. Die Eintrittsgebühr beträgt 500 $.
+Yes, you can join the trainer guild. The entrance fee is 500$.
+Ja, du kannst der Trainergilde beitreten. Die Eintrittsgebühr beträgt 500$.
 ###_PLAYER
 Take my money. when can I start?
 Nimm das Geld. Wann kann ich anfangen?
 ###_NPC
-First exercise: Take the broom and return the stable.
+First exercise: grab a broom and sweep the stable.
 Erste Übung: Nimm den Besen und kehre den Stall.
 ###_PLAYER
 That is too expensive for me.
 Das ist mir zu teuer.
 ###_NPC
-Contact me if you have saved.
+Contact me when you've saved some cash.
 Sag mir Bescheid, wenn du gespart hast.
 Where is your collar?
 Wo ist dein Halsband?
-Let's go. Dress off.
+Let's go. Undress.
 Dann los. Zieh dich aus.
-She puts you the equipment.
+(She puts the equipment on you.)
 (Sie legt dir die Ausrüstung an.)
-The training is over for today. I'll help you to dress off the Armbinder.
+The training is over for today. I'll help you take off the Armbinder.
 Das Training ist für heute vorbei. Ich helfe dir, den Monohandschuh abzunehmen.
 ###_PLAYER
-(Look hopfull to the other Ponies)
+(Shoot a hopeful glance at the other ponies.)
 (Die anderen Ponys hoffnungsvoll ansehen.)
 ###_NPC
-Oh, I see, you wound to the herd. Have Fun.
-Ach, ich verstehe, du möchtest zu deiner Herde. Viel Spaß.
+Oh, I see. You want to hang out with the herd. Have Fun.
+Ach, ich verstehe. Du möchtest zu deiner Herde. Viel Spaß.
 ###_PLAYER
-(Dress off the Armbinder)
+(Take the Armbinder off.)
 (Den Monohandschuh abnehmen.)
 ###_NPC
 (She stows the equipment.)
 (Sie verstaut die Ausrüstung.)
-Gallop through the manege.
-Galoppiere durch die Manege.
+Gallop through the paddock.
+Galoppiere durch die Koppel.
 ###_PLAYER
-(Run happily)
+(Run happily.)
 (Fröhlich laufen.)
-(Go galloping)
+(Start galloping.)
 (Galoppieren.)
-(sneak forward)
+(Sneak forward.)
 (Dich vorwärts schleifen.)
 ###_NPC
-Go a few steps and lift your legs properly.
+Walk a few steps and lift your legs properly.
 Gehe ein paar Schritte und hebe die Beine ordentlich an.
 ###_PLAYER
-(Step elegantly)
+(Step elegantly.)
 (Elegant schreiten.)
-(Walk forward)
+(Walk forward.)
 (Vorwärts gehen.)
 ###_NPC
-Dance a round through the manege.
-Tanze eine Runde durch die Manege.
+Dance around through the paddock.
+Tanze in der Koppel herum.
 ###_PLAYER
-(Perform a feat)
+(Perform a feat.)
 (Ein Kunststück vollbringen.)
-(Dance a round)
+(Dance around.)
 (Herumtanzen.)
-(stand still stubborn)
+(Stand still stubbornly.)
 (Stur stehenbleiben.)
 ###_NPC
 Train walking on the treadmill.
 Trainiere das Laufen auf dem Laufband.
 ###_PLAYER
-(Run away)
+(Run away.)
 (Weglaufen.)
-(Start)
+(Start.)
 (Anfangen.)
 ###_NPC
 Train walking on the treadmill with a belt around your legs.
 Trainiere das Laufen auf dem Laufband mit einem Gurt um die Beine.
-We train with the carriage.
+We'll train with the carriage.
 Wir üben jetzt mit der Kutsche.
 ###_PLAYER
-(Wait with joyful excitement)
+(Wait with joyful excitement.)
 (Mit fröhlicher Aufregung warten.)
-(try to escape)
+(Try to escape.)
 (Versuchen, zu entkommen.)
 ###_NPC
 We train with the carriage with a belt around your legs.
 Wir üben jetzt mit der Kutsche und einem Gurt um deine Beine.
 Get out on the pasture to collect carrots
 Geh raus aufs Feld und sammle Karotten ein.
-you have to practice jumping over the hurdles.
-Du musst üben, über die Hürden zu springen.
+You have to practice jumping over hurdles.
+Du musst üben, über Hürden zu springen.
 ###_PLAYER
-(Try to Jump)
+(Try to jump.)
 (Versuchen, zu springen.)
-(Triple in small steps)
+(Scuttle in small steps.)
 (Mit kleinen Schritten nach vorne trippeln.)
 ###_NPC
-You have to do a race 
+You have to do a race.
 Du musst ein Wettrennen machen.
 ###_PLAYER
-(Be curious to start)
+(Look curious and wait for it to start.)
 (Gespannt auf den Start warten.)
-(Go to the starting position)
+(Go to the starting position.)
 (Zur Startposition gehen.)
-(Reluctantly go to the start)
+(Reluctantly go to the starting position.)
 (Lustlos zur Startposition gehen.)
 ###_NPC
-You have to do a race against a stronger Pony.
+You have to do a race against a stronger pony.
 Du musst gegen ein stärkeres Pony um die Wette laufen.
 Well done.
 Gut gemacht.
 ###_PLAYER
-(Whinny happy)
+(Whinny happily.)
 (Glücklich wiehern.)
 ###_NPC
-I suppose that did not work
+I suppose that did not work.
 Das hat wohl nicht geklappt.
 ###_PLAYER
-(Lower your head)
+(Lower your head.)
 (Deinen Kopf hängen lassen.)
 ###_NPC
-The exercise was successful. 
+The exercise was successful.
 Die Übung war ein Erfolg.
-The exercise was successful, but your behavior left a lot to be desired. 
+The exercise was successful, but your behavior left a lot to be desired.
 Die Übung war ein Erfolg, aber dein Verhalten ließ viel zu Wünschen übrig.
 ###_PLAYER
-(Look disappointed)
+(Look disappointed.)
 (Enttäuscht gucken.)
 ###_NPC
-You failed, we have to practice that again.
+You failed, we'll have to practice that again.
 Du hast versagt, das müssen wir noch üben.
-The exercise has failed and your behavior is poor
+The exercise has failed and your behavior is poor.
 Die Übung war ein Reinfall und dein Verhalten ist miserabel.
 (She strokes you over the head.)
 (Sie streichelt dir über den Kopf.)
 ###_PLAYER
-(Wiggle your head)
+(Wiggle your head.)
 (Mit dem Kopf wackeln.)
 ###_NPC
-(she is scratching your back.)
+(She is scratching your back.)
 (Sie kratzt dir den Rücken.)
 ###_PLAYER
-(Sigh satisfied)
+(Sigh satisfied.)
 (Zufrieden seufzen.)
-(pecking nervously)
-(Nervös auf dem Boden herumhacken.)
+(Look around nervously.)
+(Nervös umherschauen.)
 ###_NPC
-(She takes a brush and Straightens your hair)
+(She takes a brush and straightens your hair.)
 (Sie nimmt eine Bürste und kämmt dein Haar.)
 ###_PLAYER
-(Shake your head)
+(Shake your head.)
 (Mit dem Kopf schütteln.)
-(Snort excited)
+(Snort excited.)
 (Aufgeregt schnauben.)
 ###_NPC
-(She takes a sponge and cleans you)
+(She takes a sponge and cleans you.)
 (Sie nimmt einen Schwamm und säubert dich.)
-(she gives you an oatcake.) You deserve a delicious.
+(She gives you an oatcake.) You deserve a treat.
 (Sie gibt dir ein Haferplätzchen.) Du hast dir ein Leckerli verdient.
 ###_PLAYER
-(Grab it)
+(Grab it.)
 (Es fassen.)
-(Wait quietly)
+(Wait calmly.)
 (Ruhig warten.)
 ###_NPC
 (She pushes you into the stall.)  Play with the other ponies.
 (Sie schubst dich in den Stall.) Spiele ein wenig mit den anderen Ponys.
 ###_PLAYER
-(Go)
+(Go.)
 (Gehen.)
 ###_NPC
-Welcome Back.
+Welcome back.
 Willkommen zurück.
 You deserve a break.
 Du hast dir eine Pause verdient.
 ###_PLAYER
-(Scratch with your feet)
+(Scratch with your feet.)
 (Mit deinen Füßen scharren.)
-(Leave her)
+(Leave her.)
 (Dialog beenden.)
-(Trap decisively)
+(Tramp decisively.)
 (Entschlossen trappen.)
 ###_NPC
-(The whip pops.) It only continues when you are calm.
+(The whip cracks.) We'll continue when you're calm.
 (Die Peitsche knallt.) Es geht erst weiter, wenn du ruhig bist.
 ###_PLAYER
-(Trot with lowered head)
+(Trot with lowered head.)
 (Mit gesenktem Haupt traben.)
-###_NPC
-(She pops the whip.)
-(Sie lässt die Peitsche knallen.)
-###_PLAYER
-(Moan with pain)
+(Moan with pain.)
 (Schmerzvoll aufstöhnen.)
-(Jump together)
+(Wince.)
 (Zusammenzucken.)
-(Ignore her)
+(Ignore her.)
 (Sie ignorieren.)
 ###_NPC
 (The whip hits your back.)
@@ -647,40 +635,40 @@ Du hast dir eine Pause verdient.
 (Die Peitsche trifft deine Hüfte.)
 (The whip hits your butt.)
 (Die Peitsche trifft deinen Hintern.)
-(The whip hits your Legs.)
+(The whip hits your legs.)
 (Die Peitsche trifft deine Beine.)
-(The whip hits your Breast.)
+(The whip hits your breast.)
 (Die Peitsche trifft deine Brust.)
 (She pours a bucket of ice water over you.)
 (Sie gießt einen Eimer voll eisigem Wasser über dir aus.)
-Go first in the stable until you have calmed down.
+Go into the stable first, until you've calmed down.
 Geh erstmal in den Stall, bis du dich beruhigt hast.
 ###_PLAYER
-(Wait patiently)
+(Wait patiently.)
 (Geduldig warten.)
 ###_NPC
-Before the next exercise I just check the equipment quickly.
+Before the next exercise I just need to check the equipment quickly.
 Vor der nächsten Übung muss ich noch schnell deine Ausrüstung überprüfen.
 ###_PLAYER
-(Whinny excited)
+(Whinny excitedly.)
 (Aufgeregt wiehern.)
-(kick her)
+(Kick her.)
 (Sie treten.)
 ###_NPC
-First exam hurdles.
+First part of the exam: hurdles.
 Erster Prüfungsteil: Hürdenlauf.
-Second Test: A race against a strong pony
+Second Test: a race against a strong pony.
 Zweiter Test: Ein Wettlauf gegen ein starkes Pony.
-The final, the dressage.
+Finally, the dressage.
 Zu guter Letzt, die Dressur.
 ###_PLAYER
-(Dance the test)
+(Dance the test.)
 (Den Test tanzen.)
 ###_NPC
 You failed in this exam. Continue training before you sign up again.
 In dieser Prüfung bist du durchgefallen. Trainiere weiter, bevor du es erneut versuchst.
 ###_PLAYER
-(leave the exam course and dress back.)
+(Leave the exam course and dress back up.)
 (Den Prüfungsbereich verlassen und dich anziehen.)
 ###_NPC
 That was an outstanding performance. You deserve an award.
@@ -691,11 +679,11 @@ Das war eine überragende Leistung. Dafür verdienst du einen Preis.
 ###_NPC
 We are proud of you and look forward to your training. 
 Wir sind stolz auf dich und freuen uns auf dein weiteres Training.
-As a reward, you will receive a bottle of champagne, which you drink with your friends. 
+As a reward, you will receive a bottle of champagne, which you can drink with your friends.
 Zur Belohnung erhältst du eine Flasche Champagner für dich und deine Freunde.
 ###_PLAYER
-(Celebration of victory) 
-(Deinen Sieg feiern.) 
+(Celebrate your victory.)
+(Deinen Sieg feiern.)
 ###_NPC
 (In addition, you may leave the stall during future training)
 (Außerdem darfst du ab jetzt den Stall während des Trainings verlassen.)
@@ -704,19 +692,19 @@ Was hast du jetzt vor?
 First, I have some questions about dressage.
 Zuerst stellte ich dir ein paar Fragen zum Thema Dressur.
 ###_PLAYER
-(try to answer the questions.)
+(Try to answer the questions.)
 (Versuchen, die Fragen zu beantworten.)
 ###_NPC
 The knowledge is sufficient, now to the whip.
 Dein Wissen ist ausreichend, jetzt kommt die Peitsche dran.
 ###_PLAYER
-(Check your Whip.)
+(Check your whip.)
 (Deine Peitsche überprüfen.)
 ###_NPC
 That was good, now on to the practical exercise.
 Das war gut, nun zur praktischen Übung.
 ###_PLAYER
-(bring a pony to the hurdle course)
+(Bring a pony to the hurdle course)
 (Ein Pony zur Hürdenstrecke führen.)
 ###_NPC
 Keep training and then try again.
@@ -724,8 +712,8 @@ Trainiere weiter und versuche es dann erneut.
 Congratulations, you have passed all the exams.
 Herzlichen Glückwunsch, du hast alle Prüfungen bestanden.
 ###_PLAYER
-(Give the present trainers a Whiskey (50 $))
-(Den anderen Trainern einen Whiskey ausgeben (50 $).)
+(Give the present trainers a whiskey (50$).)
+(Den anderen Trainern einen Whiskey ausgeben (50$).)
 ###_NPC
-(They celebrate your success) Hip Hip Hurray!
+(They celebrate your success.) Hip Hip Hurray!
 (Sie feiern deinen Erfolg.) Hip Hip Hurra!

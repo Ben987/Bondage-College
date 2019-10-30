@@ -24,7 +24,6 @@ function ElementCreateTextArea(ID) {
 		var TextArea = document.createElement("TextArea");
 		TextArea.setAttribute("ID", ID);
 		TextArea.setAttribute("name", ID);
-		//TextArea.setAttribute("readonly", "readonly");
 		TextArea.addEventListener("keydown", KeyDown);
 		document.body.appendChild(TextArea);
 	}
@@ -117,15 +116,19 @@ function ElementPositionFix(ElementID, Font, X, Y, W, H) {
 
 }
 
+// Sets a custom data-attribute to a specified value on a specified element
+function ElementSetDataAttribute(ID, Name, Value) {
+	var element = document.getElementById(ID);
+	if (element != null) {
+		element.setAttribute(("data-" + Name).toLowerCase(), Value.toString().toLowerCase());
+	}
+}
+
 // Scrolls to the end of a specified element
 function ElementScrollToEnd(ID) {
-	if (document.getElementById(ID) != null) {
-		var element = document.getElementById(ID);
-		element.focus();
-		if (element.value != null)
-			element.selectionStart = element.selectionEnd = element.value.length;
-		else
-			element.scrollTop = element.scrollHeight;
+	var element = document.getElementById(ID);
+	if (element != null) {
+		element.scrollTop = element.scrollHeight;
 	}
 }
 

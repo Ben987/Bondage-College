@@ -19,13 +19,13 @@ function InventoryItemFeetDuctTapeDraw() {
 	DrawButton(1000, 550, 225, 225, "", (DialogFocusItem.Property == null) ? "#888888" : "White");
 	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Feet.png", 1000, 550);
 	DrawText(DialogFind(Player, "DuctTapePoseFeet"), 1125, 800, "white", "gray");
-	DrawButton(1250, 550, 225, 225, "", ((DialogFocusItem.Property != null) && (DialogFocusItem.Property.Restrain == "HalfFeet")) ? "#888888" : "White");
+	DrawButton(1250, 550, 225, 225, "", ((DialogFocusItem.Property != null) && (DialogFocusItem.Property.Type == "HalfFeet")) ? "#888888" : "White");
 	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/HalfFeet.png", 1250, 550);
 	DrawText(DialogFind(Player, "DuctTapePoseHalfFeet"), 1375, 800, "white", "gray");
-	DrawButton(1500, 550, 225, 225, "", ((DialogFocusItem.Property != null) && (DialogFocusItem.Property.Restrain == "MostFeet")) ? "#888888" : "White");
+	DrawButton(1500, 550, 225, 225, "", ((DialogFocusItem.Property != null) && (DialogFocusItem.Property.Type == "MostFeet")) ? "#888888" : "White");
 	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/MostFeet.png", 1500, 550);
 	DrawText(DialogFind(Player, "DuctTapePoseMostFeet"), 1625, 800, "white", "gray");
-	DrawButton(1750, 550, 225, 225, "", ((DialogFocusItem.Property != null) && (DialogFocusItem.Property.Restrain == "CompleteFeet")) ? "#888888" : "White");
+	DrawButton(1750, 550, 225, 225, "", ((DialogFocusItem.Property != null) && (DialogFocusItem.Property.Type == "CompleteFeet")) ? "#888888" : "White");
 	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/CompleteFeet.png", 1750, 550);
 	DrawText(DialogFind(Player, "DuctTapePoseCompleteFeet"), 1875, 800, "white", "gray");
 
@@ -35,9 +35,9 @@ function InventoryItemFeetDuctTapeDraw() {
 function InventoryItemFeetDuctTapeClick() {
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
 	if ((MouseX >= 1000) && (MouseX <= 1225) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property != null)) InventoryItemFeetDuctTapeSetPose(null);
-	if ((MouseX >= 1250) && (MouseX <= 1475) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Restrain != "HalfFeet"))) InventoryItemFeetDuctTapeSetPose("HalfFeet");
-	if ((MouseX >= 1500) && (MouseX <= 1725) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Restrain != "MostFeet"))) InventoryItemFeetDuctTapeSetPose("MostFeet");
-	if ((MouseX >= 1750) && (MouseX <= 1975) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Restrain != "CompleteFeet"))) InventoryItemFeetDuctTapeSetPose("CompleteFeet");
+	if ((MouseX >= 1250) && (MouseX <= 1475) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Type != "HalfFeet"))) InventoryItemFeetDuctTapeSetPose("HalfFeet");
+	if ((MouseX >= 1500) && (MouseX <= 1725) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Type != "MostFeet"))) InventoryItemFeetDuctTapeSetPose("MostFeet");
+	if ((MouseX >= 1750) && (MouseX <= 1975) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Type != "CompleteFeet"))) InventoryItemFeetDuctTapeSetPose("CompleteFeet");
 }
 
 // Sets the duct tape type (the wraps require no clothes)

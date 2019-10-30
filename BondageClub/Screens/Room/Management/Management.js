@@ -92,7 +92,7 @@ function ManagementLoad() {
 		CharacterNaked(ManagementSub);
 		InventoryWear(ManagementSub, "SlaveCollar", "ItemNeck");
 		CharacterFullRandomRestrain(ManagementSub, "Lot");
-		InventoryWear(ManagementSub, "Ears" + (Math.floor(Math.random() * 2) + 1).toString(), "HairAccessory", "#BBBBBB");
+		InventoryWear(ManagementSub, "Ears" + (Math.floor(Math.random() * 2) + 1).toString(), "HairAccessory1", "#BBBBBB");
 		InventoryWear(ManagementSub, "TailButtPlug", "ItemButt");
 		InventoryWear(ManagementSub, "MetalChastityBelt", "ItemPelvis");
 		InventoryWear(ManagementSub, "MetalChastityBra", "ItemBreast");
@@ -495,4 +495,10 @@ function ManagementChangeSlaveCollarType(NewType) {
 	else Collar.Property = { Type: NewType, Effect: [] };
 	CharacterRefresh(Player);
 	CharacterChangeMoney(Player, -30);
+}
+
+// Some NPC won't be available if the player is a club slave, they will have a special dialog for that
+function ManagementClubSlaveDialog(C) {
+	if ((C != null) && (C.Stage == "0") && ManagementIsClubSlave()) C.Stage = "ClubSlave";
+	if ((C != null) && (C.Stage == "ClubSlave") && !ManagementIsClubSlave()) C.Stage = "0";
 }

@@ -94,6 +94,8 @@ Diapers
 Couche
 Socks
 Chaussettes
+Ankle
+Cheville
 Short
 Petit
 Regular
@@ -544,3 +546,7 @@ Water filled milk can
 Bidon de Lait Rempli d'Eau
 Water torture Cell
 Cellule de Torture d'Eau
+Saddle Stand
+Stand de selle
+Metal Leg Spreader
+Écarteur de jambe en métal

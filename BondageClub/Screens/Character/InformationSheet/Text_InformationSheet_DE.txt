@@ -6,6 +6,8 @@ None
 ---
 Mistress
 Herrin
+Club Slave
+Clubsklavin
 Head Maid
 Hausdame
 Maid
@@ -14,6 +16,18 @@ Master Kidnapper
 Kidnapper-Meisterin
 Kidnapper
 Kidnapperin
+Patient
+Patientin
+Permanent Patient
+Dauerhafte Patientin
+Escaped Patient
+Entlaufene Patientin
+Nurse
+Schwester
+Doctor
+Doktor
+College Student
+College-Schülerin
 Foal
 Fohlen
 Farm Horse
@@ -30,16 +44,6 @@ Shining Unicorn
 Glänzendes Einhorn
 Flying Pegasus
 Fliegender Pegasus
-Patient
-Patientin
-Permanent Patient
-Dauerhafte Patientin
-Escaped Patient
-Entlaufene Patientin
-Nurse
-Schwester
-Doctor
-Doktor
 Member Number:
 Mitgliedsnummer:
 -

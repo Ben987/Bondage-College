@@ -28,6 +28,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		MustDraw: false,
 		BlinkFactor: Math.round(Math.random() * 10) + 10,
 		AllowItem: true,
+		BlockItems: [],
 		HeightModifier: 0,
 		CanTalk: function () { return ((this.Effect.indexOf("GagLight") < 0) && (this.Effect.indexOf("GagNormal") < 0) && (this.Effect.indexOf("GagHeavy") < 0) && (this.Effect.indexOf("GagTotal") < 0)) },
 		CanWalk: function () { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("Tethered") < 0) && ((this.Pose == null) || (this.Pose.indexOf("Kneel") < 0) || (this.Effect.indexOf("KneelFreeze") < 0))) },
@@ -150,7 +151,8 @@ function CharacterArchetypeClothes(C, Archetype, ForceColor) {
 		CharacterAppearanceSetItem(C, "Hat", C.Inventory[C.Inventory.length - 1].Asset);
 		CharacterAppearanceSetColorForGroup(C, "Default", "Hat");
 		InventoryAdd(C, "MaidOutfit2", "Cloth", false);
-		InventoryRemove(C, "HairAccessory");
+		InventoryRemove(C, "HairAccessory1");
+		InventoryRemove(C, "HairAccessory2");
 		C.AllowItem = (LogQuery("LeadSorority", "Maid"));
 	}
 
@@ -169,7 +171,8 @@ function CharacterArchetypeClothes(C, Archetype, ForceColor) {
 		InventoryWear(C, "MistressBottom", "ClothLower", Color);
 		InventoryAdd(C, "MistressPadlock", "ItemMisc", false);
 		InventoryAdd(C, "MistressPadlockKey", "ItemMisc", false);
-		InventoryRemove(C, "HairAccessory");
+		InventoryRemove(C, "HairAccessory1");
+		InventoryRemove(C, "HairAccessory2");
 	}
 
 }
@@ -209,9 +212,10 @@ function CharacterOnlineRefresh(Char, data, SourceMemberNumber) {
 	if (Char.ID != 0) Char.ItemPermission = data.ItemPermission;
 	Char.Ownership = data.Ownership;
 	Char.Reputation = (data.Reputation != null) ? data.Reputation : [];
+	Char.BlockItems = Array.isArray(data.BlockItems) ? data.BlockItems : [];
 	Char.Appearance = ServerAppearanceLoadFromBundle(Char, "Female3DCG", data.Appearance, SourceMemberNumber);
+	if (Char.ID == 0) LoginValidCollar();
 	if (Char.ID != 0) InventoryLoad(Char, data.Inventory);
-	AssetReload(Char);
 	CharacterLoadEffect(Char);
 	CharacterRefresh(Char);
 }
@@ -238,8 +242,9 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 		Char.Lover = (data.Lover != null) ? data.Lover : "";
 		Char.Owner = (data.Owner != null) ? data.Owner : "";
 		Char.Title = data.Title;
+		Char.Description = data.Description;
 		Char.AccountName = "Online-" + data.ID.toString();
-		Char.MemberNumber = data.MemberNumber;
+		Char.MemberNumber = data.MemberNumber;	
 		var BackupCurrentScreen = CurrentScreen;
 		CurrentScreen = "ChatRoom";
 		CharacterLoadCSVDialog(Char, "Screens/Online/ChatRoom/Dialog_Online");
@@ -275,9 +280,10 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 								else if (((New.Property != null) && (Old.Property == null)) || ((New.Property == null) && (Old.Property != null))) Refresh = true;
 							}
 
-		// Flags "refresh" if the ownership or inventory has changed
+		// Flags "refresh" if the ownership or inventory or blockitems has changed
 		if (!Refresh && (JSON.stringify(Char.Ownership) !== JSON.stringify(data.Ownership))) Refresh = true;
 		if (!Refresh && (data.Inventory != null) && (Char.Inventory.length != data.Inventory.length)) Refresh = true;
+		if (!Refresh && (data.BlockItems != null) && (Char.BlockItems.length != data.BlockItems.length)) Refresh = true;
 
 		// If we must refresh
 		if (Refresh) CharacterOnlineRefresh(Char, data, SourceMemberNumber);
@@ -345,17 +351,13 @@ function CharacterLoadEffect(C) {
 function CharacterLoadCanvas(C) {
 
 	// Sorts the full appearance array first
-	var App = [];
-	for (var I = 0; I < 101 && App.length < C.Appearance.length; I++)
-		for (var A = 0; A < C.Appearance.length; A++)
-			if (C.Appearance[A].Asset.Group.DrawingPriority == I)
-				App.push(C.Appearance[A]);
-	C.Appearance = App;
+	C.Appearance = CharacterAppearanceSort(C.Appearance);
 
 	// Sets the total height modifier for that character
 	C.HeightModifier = 0;
 	for (var A = 0; A < C.Appearance.length; A++)
-		C.HeightModifier = C.HeightModifier + C.Appearance[A].Asset.HeightModifier;
+		if (CharacterAppearanceVisible(C, C.Appearance[A].Asset.Name, C.Appearance[A].Asset.Group.Name))
+			C.HeightModifier = C.HeightModifier + C.Appearance[A].Asset.HeightModifier;
 	if (C.Pose != null)
 		for (var A = 0; A < C.Pose.length; A++)
 			for (var P = 0; P < Pose.length; P++)
@@ -427,8 +429,6 @@ function CharacterIsInUnderwear(C) {
 // Removes all appearance items from the character
 function CharacterNaked(C) {
 	CharacterAppearanceNaked(C);
-	AssetReload(C);
-	C.Appearance = CharacterAppearanceSort(C.Appearance);
 	CharacterRefresh(C);
 }
 
@@ -456,8 +456,6 @@ function CharacterRandomUnderwear(C) {
 		}
 
 	// Refreshes the character
-	AssetReload(C);
-	C.Appearance = CharacterAppearanceSort(C.Appearance);
 	CharacterRefresh(C);
 
 }
@@ -468,8 +466,6 @@ function CharacterUnderwear(C, Appearance) {
 	for (var A = 0; A < Appearance.length; A++)
 		if ((Appearance[A].Asset != null) && Appearance[A].Asset.Group.Underwear && (Appearance[A].Asset.Group.Category == "Appearance"))
 			C.Appearance.push(Appearance[A]);
-	AssetReload(C);
-	C.Appearance = CharacterAppearanceSort(C.Appearance);
 	CharacterRefresh(C);
 }
 
@@ -480,8 +476,6 @@ function CharacterDress(C, Appearance) {
 			if ((Appearance[A].Asset != null) && (Appearance[A].Asset.Group.Category == "Appearance"))
 				if (InventoryGet(C, Appearance[A].Asset.Group.Name) == null)
 					C.Appearance.push(Appearance[A]);
-		AssetReload(C);
-		C.Appearance = CharacterAppearanceSort(C.Appearance);
 		CharacterRefresh(C);
 	}
 }

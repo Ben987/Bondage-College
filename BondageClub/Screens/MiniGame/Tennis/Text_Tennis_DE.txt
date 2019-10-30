@@ -1,0 +1,28 @@
+Starts in
+Beginnt in
+Send the tennis ball past your opponent.
+Schicke den Tennisball an deiner Gegnerin vorbei.
+Don't let the ball slip through your side.
+Lass den Ball nicht auf deiner Seite durch.
+0
+0
+15
+15
+30
+30
+40
+40
+Deuce
+Einstand
+Advantage
+Vorteil
+Winner
+Siegerin
+Victory!  Perfect game.
+Gewonnen! Perfektes Spiel.
+You won the game.
+Du hast das Spiel gewonnen.
+You lost the game.
+Du hast das Spiel verloren.
+Click on yourself to continue.
+Klicke dich an, um fortzufahren.

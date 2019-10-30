@@ -38,6 +38,11 @@ function ChatRoomCreateElement() {
 		ElementPositionFix("TextAreaChatLog", 36, 1005, 5, 988, 923);
 		ElementContent("TextAreaChatLog", ChatRoomLog);
 		ElementScrollToEnd("TextAreaChatLog");
+		if (Player.ChatSettings) {
+			for (var property in Player.ChatSettings) {
+				ElementSetDataAttribute("TextAreaChatLog", property, Player.ChatSettings[property]);
+			}
+		}
 		ElementFocus("InputChat");
 	}
 }
@@ -394,6 +399,12 @@ function ChatRoomMessage(data) {
 				if (data.Type == "Hidden") return;
 			}
 
+			// [Temporary?] Checks if the message is a notification about the user entering or leaving the room
+			var enterLeave = "";
+			if ((data.Type == "Action") && (msg.startsWith(SenderCharacter.Name + " entered.") || msg.startsWith(SenderCharacter.Name + " left.") || msg.startsWith(SenderCharacter.Name + " disconnected.") || msg.startsWith(SenderCharacter.Name + " was banned by ") || msg.startsWith(SenderCharacter.Name + " was kicked-out by "))) {
+				enterLeave = " ChatMessageEnterLeave";
+			}
+
 			// Builds the message to add depending on the type
 			if ((data.Type != null) && (data.Type == "Chat") && Player.IsDeaf()) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + SpeechGarble(SenderCharacter, msg);
 			if ((data.Type != null) && (data.Type == "Chat") && !Player.IsDeaf()) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + msg;
@@ -405,8 +416,8 @@ function ChatRoomMessage(data) {
 			// Adds the message and scrolls down unless the user has scrolled up
 			var ShouldScrollDown = ElementIsScrolledToEnd("TextAreaChatLog");
 			var DataAttributes = 'data-time="' + ChatRoomCurrentTime() + '" data-sender="' + data.Sender + '"';
-			var BackgroundColor = ((data.Type == "Emote" || data.Type == "Action") ? 'style="background-color:' + ChatRoomGetLighterColor(SenderCharacter.LabelColor) + ';"' : "");
-			ChatRoomLog = ChatRoomLog + '<div class="ChatMessage ChatMessage' + data.Type + '" ' + DataAttributes + ' ' + BackgroundColor + '>' + msg + '</div>';
+			var BackgroundColor = ((data.Type == "Emote" || data.Type == "Action") ? 'style="background-color:' + ChatRoomGetTransparentColor(SenderCharacter.LabelColor) + ';"' : "");
+			ChatRoomLog = ChatRoomLog + '<div class="ChatMessage ChatMessage' + data.Type + enterLeave + '" ' + DataAttributes + ' ' + BackgroundColor + '>' + msg + '</div>';
 			if (document.getElementById("TextAreaChatLog") != null) {
 				ElementContent("TextAreaChatLog", ChatRoomLog);
 				if (ShouldScrollDown) ElementScrollToEnd("TextAreaChatLog");
@@ -474,11 +485,11 @@ function ChatRoomCurrentTime() {
 	return ("0" + D.getHours()).substr(-2) + ":" + ("0" + D.getMinutes()).substr(-2);
 }
 
-// Returns a lighter color for the current HexCode
-function ChatRoomGetLighterColor(Color) {
-	if (!Color) return "#f0f0f0";
+// Returns a transparent version of the specified hex color
+function ChatRoomGetTransparentColor(Color) {
+	if (!Color) return "rgba(128,128,128,0.1)";
 	var R = Color.substring(1, 3), G = Color.substring(3, 5), B = Color.substring(5, 7);
-	return "#" + (255 - Math.floor((255 - parseInt(R, 16)) * 0.1)).toString(16) + (255 - Math.floor((255 - parseInt(G, 16)) * 0.1)).toString(16) + (255 - Math.floor((255 - parseInt(B, 16)) * 0.1)).toString(16);
+	return "rgba(" + parseInt(R, 16) + "," + parseInt(G, 16) + "," + parseInt(B, 16) + ",0.1)";
 }
 
 // Adds or remove an online member to/from a specific list

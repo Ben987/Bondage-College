@@ -341,12 +341,12 @@ function GamblingFoxController(FoxState){
 			GamblingPlayerIsFox = true;
 			GamblingPlayerDice = Math.floor(Math.random() * 6) + 1;
 			GamblingPlayerDiceStack[GamblingPlayerDiceStack.length] = GamblingPlayerDice;
-			GamblingMoneyBet = 10;
+			GamblingMoneyBet = 5;
 			GamblingSecondSub.Stage = 101;
 		} else if (FoxState == "hunter") { 
 			GamblingPlayerIsFox = false;
-			CharacterChangeMoney(Player, -10);
-			GamblingMoneyBet = 10;
+			GamblingMoneyBet = 5;
+			CharacterChangeMoney(Player, GamblingMoneyBet * -1);
 			GamblingNpcDice = Math.floor(Math.random() * 6) + 1;
 			GamblingNpcDiceStack[GamblingNpcDiceStack.length] = GamblingNpcDice;
 			GamblingSecondSub.Stage = 101;
@@ -374,7 +374,7 @@ function GamblingFoxController(FoxState){
 		} else if (FoxState == "player_fox_win"){
 			GamblingSecondSub.AllowItem = false;
 			GamblingSecondSub.CurrentDialog = GamblingSecondSub.CurrentDialog.replace("REPLACEMONEY", GamblingMoneyBet.toString());
-			CharacterChangeMoney(Player, 10);
+			CharacterChangeMoney(Player, GamblingMoneyBet);
 			ReputationProgress("Gambling", 2);
 			GamblingPlayerDiceStack = [];
 			GamblingNpcDiceStack = [];
@@ -391,7 +391,7 @@ function GamblingFoxController(FoxState){
 			InventoryWearRandom(GamblingSecondSub, "ItemArms"); 
 			GamblingSecondSub.AllowItem = true;
 			GamblingSecondSub.CurrentDialog = GamblingSecondSub.CurrentDialog.replace("REPLACEMONEY", GamblingMoneyBet.toString());
-			CharacterChangeMoney(Player, 10);
+			CharacterChangeMoney(Player, GamblingMoneyBet);
 			ReputationProgress("Gambling", 1);
 			GamblingPlayerDiceStack = [];
 			GamblingNpcDiceStack = [];

@@ -220,6 +220,8 @@ Na gut. Lass mich einen Werbegegenstand für dich aussuchen. (Sie durchstöbert 
 ###_PLAYER
 Regular clothes or outfits.
 Gewöhnliche Kleidung oder Outfits.
+Show me your pants or skirts.
+Zeig mir deine Hosen und Röcke.
 Hats or head accessories.
 Hüte oder Kopfbedeckungen.
 Do you have glasses?
@@ -280,6 +282,8 @@ Something to restrain the legs.
 Etwas, um die Beine zu fesseln.
 What do you have for feet?
 Was hast du für Füße auf Lager?
+You got any boots?
+Hast du Stiefel?
 ###_NPC
 (She struggles in her restraints.)  Help!
 (Sie zappelt in ihren Fesseln.) Hilfe!

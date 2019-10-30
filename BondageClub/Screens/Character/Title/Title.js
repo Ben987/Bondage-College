@@ -13,7 +13,7 @@ var TitleList = [
 	{ Name: "EscapedPatient", Requirement: function () { return (LogValue("Escaped", "Asylum") >= CurrentTime) }, Force: true },
 	{ Name: "Nurse", Requirement: function () { return ((ReputationGet("Asylum") >= 50) && (ReputationGet("Asylum") < 100)) } },
 	{ Name: "Doctor", Requirement: function () { return (ReputationGet("Asylum") >= 100) } },
-	{ Name: "CollegeStudent", Requirement: function () { return InventoryAvailable(Player, "CollegeOutfit1", "Cloth") } },
+	{ Name: "CollegeStudent", Requirement: function () { return LogQuery("BondageCollege", "Import") } },
 	{ Name: "PonyPegasus", Requirement: function () { return (SkillGetLevel(Player, "Dressage") >= 10) } },
 	{ Name: "PonyUnicorn", Requirement: function () { return ((SkillGetLevel(Player, "Dressage") >= 8) && (SkillGetLevel(Player, "Dressage") <= 9)) } },
 	{ Name: "PonyWild", Requirement: function () { return ((SkillGetLevel(Player, "Dressage") >= 6) && (SkillGetLevel(Player, "Dressage") <= 7)) } },
