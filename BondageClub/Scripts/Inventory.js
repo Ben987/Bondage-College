@@ -114,7 +114,7 @@ function InventoryAllow(C, Prerequisite) {
 	
 	//Shackles and Manacles
 	if (Prerequisite == "Shackles" && InventoryGet(C, "ItemFeet") != null) { DialogSetText("MustFreeFeetFirst"); return false; }
-	if (Prerequisite == "Shackles" && (InventoryGet(C, "ItemDevices") != null) && (InventoryGet(C, "ItemDevices").Asset.Name == "SaddleStand")) { DialogSetText("CannotBeUsedWithSaddleStand"); return false; }
+	if (Prerequisite == "Shackles" && C.Effect.indexOf("Mounted") >= 0)  { DialogSetText("CannotBeUsedWhenMounted"); return false; }
 	if (Prerequisite == "Shackles" &&  C.Pose.indexOf("Suspension") >= 0)  { DialogSetText("TheyMustBeStandingFirst"); return false; }
 	if (Prerequisite == "Shackles" &&  C.Pose.indexOf("Horse") >= 0)  { DialogSetText("TheyMustBeStandingFirst"); return false; }
 	
@@ -132,9 +132,11 @@ function InventoryAllow(C, Prerequisite) {
 	if (Prerequisite == "Horse" &&  C.Effect.indexOf("Shackled") >= 0) { DialogSetText("RemoveShacklesFirst"); return false; }
 	if (Prerequisite == "CollaredNotSuspended1" && (InventoryGet(C, "ItemNeck") == null || C.Pose.indexOf("Suspension") >= 0)) { DialogSetText("MustCollaredFirstAndRemoveSuspension1"); return false; }
 	if (Prerequisite == "CollaredNotSuspended1" && (InventoryGet(C, "ItemNeck") == null || C.Pose.indexOf("Horse") >= 0)) { DialogSetText("MustCollaredFirstAndRemoveSuspension1"); return false; }
+	if (Prerequisite == "CollaredNotSuspended1" && (InventoryGet(C, "ItemNeck") == null || C.Effect.indexOf("Mounted") >= 0)) { DialogSetText("MustCollaredFirstAndRemoveSuspension1"); return false; }
 	if (Prerequisite == "NotSuspendedOrHorsed" && C.Pose.indexOf("Suspension") >= 0) { DialogSetText("TheyMustBeStandingFirst"); return false; }
 	if (Prerequisite == "NotSuspendedOrHorsed" && C.Pose.indexOf("Horse") >= 0) { DialogSetText("TheyMustBeStandingFirst"); return false; }
 	if (Prerequisite == "NotSuspendedOrHorsed" && (InventoryGet(C, "ItemFeet") != null) && (InventoryGet(C, "ItemFeet").Asset.Name == "SpreaderMetal")) { DialogSetText("CannotBeUsedWithFeetSpreader"); return false; }
+	if (Prerequisite == "NotSuspendedOrHorsed" && C.Effect.indexOf("Mounted") >= 0)  { DialogSetText("CannotBeUsedWhenMounted"); return false; }
 	return true;
 
 }

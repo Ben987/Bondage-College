@@ -3,7 +3,7 @@ CannotUseOnSelf,,,Cannot use on yourself
 RemoveClothesForItem,,,Remove some clothes first
 RemoveSuspensionForItem,,,Remove the suspension first
 TheyMustBeStandingFirst,,,Must be standing and not suspended first.
-CannotBeUsedWithSaddleStand,,,Cannot be used with saddle stand.
+CannotBeUsedWhenMounted,,,Cannot be used when mounted.
 CannotBeUsedWithFeetSpreader,,,Cannot be used with legs spreader.
 RemoveChastityFirst,,,Must remove chastity first.
 RemoveChainForItem,,,Remove the chain to the floor first
