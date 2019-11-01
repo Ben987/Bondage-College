@@ -216,10 +216,6 @@ Hair Band
 Haarband
 Beret
 Baskenmütze
-Hair Ribbon 1
-Haarschleife 1
- Giant Bow 1
-Große Schleife 1
 Maid Hairband
 Hausmädchen-Haarband
 Nurse Cap
@@ -228,10 +224,8 @@ Santa Hat
 Weihnachtsmütze
 Captain's Hat
 Kapitänsmütze
-Bunny Succubus 
+Bunny Succubus
 Hasen-Succubus
- Flower
-Blüte
  Witch Hat
 Hexenhut
 Pirate Bandana
@@ -246,6 +240,10 @@ Ears Large
 Tierohren groß
 Pony Ears
 Pony-Ohren
+Hair Ribbon 1
+Haarschleife 1
+ Giant Bow 1
+Große Schleife 1
 Bunny Ears
 Hasenohren
 Floppy Bunny Ears
@@ -260,6 +258,8 @@ Horns 2
 Hörner 2
 Horns 3
 Hörner 3
+ Flower
+Blüte
 Fox Ears Small
 Fuchsohren klein
 Small Bat Wings
@@ -366,6 +366,8 @@ Style 13
 Stil 13
 Style 14
 Stil 14
+Style 15
+Stil 15
 Front Hair
 Haare vorne
 Eyes
@@ -608,6 +610,8 @@ Whip Paddle
 Paddelpeitsche
 Whip
 Peitsche
+Tennis Racket
+Tennisschläger
 Neck
 Hals
 Leather Collar

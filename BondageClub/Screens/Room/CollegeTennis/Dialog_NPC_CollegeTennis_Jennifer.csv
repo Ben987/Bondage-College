@@ -32,7 +32,7 @@ TennisDefeat,,,(She looks happy.)  Good game!  But you need some practice.  We c
 110,120,I love your attitude.,Thanks a lot!  I'm glad you came to the court today.,,
 110,0,You won't win with that attitude.,"(She sighs.)  Yes, maybe you're right.  Let's talk about something else.",,
 120,,I need to go though.,(She nods.)  Alright.  Come back whenever you want.,,
-120,,We could become friends.,(She seems very excited.)  Wow!  I'd love to have a fr...  I mean...  I'd love to be your friend.,,
+120,130,We could become friends.,(She seems very excited.)  Wow!  I'd love to have a fr...  I mean...  I'd love to be your friend.,,
 130,140,Alright friend!,You're so nice.  Do you live near the campus?,,
 130,10,Another game my friend?,(She nods happily.)  Absolutely!  I want my revenge.,,
 140,0,I live out of town.,That's fine.  Would you like to play another match?,,

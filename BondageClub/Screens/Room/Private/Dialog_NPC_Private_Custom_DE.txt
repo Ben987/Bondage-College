@@ -882,6 +882,12 @@ Zieh alles aus.
 (She blushes and gets fully naked.)  Something kinky is brewing!
 (Sie wird rot und entkleidet sich vollständig.) Hier braut sich was Versautes zusammen!
 ###_PLAYER
+Can I have your college clothes?
+Kann ich deine College-Kleidung haben?
+###_NPC
+I cannot do that.  I'll get punished if I lose this college outfit.
+Das geht nicht. Ich werde bestraft, wenn ich diese College-Uniform verliere.
+###_PLAYER
 Let's go shop for new clothes.
 Lass uns neue Kleidung kaufen.
 ###_NPC
@@ -3276,10 +3282,28 @@ Sorry, I'm kind of confused Mistress.  What would you like to do?
 ###_NPC
 (She blushes and gets fully naked.)  Something kinky is brewing.
 (Sie wird rot und entkleidet sich vollständig.) Hier braut sich was Versautes zusammen.
+###_PLAYER
+Give me your college clothes.
+Gib mir deine College-Kleidung.
+###_NPC
+I can't Mistress.  I'll get punished if I lose this college outfit.
+Das geht nicht, Herrin. Ich werde bestraft, wenn ich diese College-Uniform verliere.
 (She smiles.)  That's a great idea Mistress.  Do you have at least 50$ to pay for my new clothes?
 (Sie lächelt.) Das ist eine tolle Idee, Herrin. Habt Ihr mindestens 50$, um meine neuen Sachen zu bezahlen?
 Yes Mistress.  What would you like to do then?
 Ja, Herrin. Was möchtet Ihr also machen?
+###_PLAYER
+Fine.  Forget it girl.
+Na schön. Vergiss es, Mädchen.
+###_NPC
+Very well.  What would you like to do then?
+Sehr wohl. Was wollen wir also machen?
+###_PLAYER
+You'll get punished now if you don't obey.
+Du wirst bestraft, wenn du nicht gehorchst.
+###_NPC
+(She gulps and give you her college outfit.)  Yes Mistress.  I'll try to find a good excuse for losing them.
+(Sie schluckt und gibt dir ihre College-Uniform.) Ja, Herrin. Ich versuche, eine gute Ausrede für den Verlust zu finden.
 ###_PLAYER
 Would you like to be auctioned?
 Würdest du gern versteigert werden?

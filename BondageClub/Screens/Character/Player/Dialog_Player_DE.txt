@@ -683,6 +683,8 @@ Whip Paddle
 Peitschenpaddel
 Whip
 Peitsche
+Tennis Racket
+Tennisschläger
 SourceCharacter takes out a Item
 SourceCharacter holt ein(e(n)) Item hervor
 SourceCharacter give DestinationCharacter a Item

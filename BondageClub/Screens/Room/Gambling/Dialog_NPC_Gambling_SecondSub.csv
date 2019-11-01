@@ -49,7 +49,7 @@ RemoveSuspensionHempRope,,,finally floor again under the feet.,,
 10,,Can I tie you up?,Only if you win a game. ,,
 10,,Will you restrain me?,"You bet your ass I will, if I win or if you run out of money.",,
 10,0,I don't have any more questions.,Alright. Shall we play a game?,,
-11,12,What are the rules of Catch the Fox?,"One player is the fox, the other is the hunter. The hunter pays a hunting lease of 10$. ",,CanPlayFox()
+11,12,What are the rules of Catch the Fox?,"One player is the fox, the other is the hunter. The hunter pays a hunting lease of 5$.",,CanPlayFox()
 11,20,What are the rules of Street to Roissy?,"Both players roll the dice simultaneously. Each player must roll a 1 first, then 2, 3, 4, 5, and finally 6.",,CanPlayStreetRoissy()
 11,26,What are the rules of Dare Six?,"In each round, you roll a dice as many times as you want and count the points together.",,CanPlayDaredSix()
 11,10,I have another question.,"OK, go ahead.",,

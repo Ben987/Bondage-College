@@ -1,6 +1,9 @@
 PlayerGagged,,,"Lovely gag, but you'll need to get it off if you want to talk with me.",,
 FightVictory,,,"Ow!  Well done, you're a tough patient.  I'm not letting you out anyway.",,
 FightDefeat,,,"You really thought you could beat me?  You're truly mad, little patient.",,
+ClubSlave,,,What are you doing here little slave?  Go back to the club and serve our customers.,,
+ClubSlave,,Can we talk about the asylum?,"No, as a club slave you have work to do.  Get going girl.",,
+ClubSlave,,(Leave her.),,DialogLeave(),
 0,,,Greetings doctor DialogPlayerName.  It's always a pleasure to see you.  Are you working today?,,"DialogReputationGreater(""Asylum"", 100)"
 0,,,Welcome to the asylum nurse DialogPlayerName.  Our patients are expecting you.  Are you here to work?,,"DialogReputationGreater(""Asylum"", 50)"
 0,,,Hello assistant DialogPlayerName.  It's time to get to work for the asylum!,,"DialogReputationGreater(""Asylum"", 1)"

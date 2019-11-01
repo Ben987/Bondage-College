@@ -86,6 +86,7 @@
 <script src="Screens/Online/ChatSearch/ChatSearch.js"></script>
 <script src="Screens/Online/ChatCreate/ChatCreate.js"></script>
 <script src="Screens/Online/ChatRoom/ChatRoom.js"></script>
+<script src="Screens/Online/ChatAdmin/ChatAdmin.js"></script>
 <script src="Screens/Inventory/ItemMouth/PumpGag/PumpGag.js"></script>
 <script src="Screens/Inventory/ItemVulva/VibratingEgg/VibratingEgg.js"></script>
 <script src="Screens/Inventory/ItemVulva/VibratingLatexPanties/VibratingLatexPanties.js"></script>
@@ -110,6 +111,9 @@
 <script src="Screens/Inventory/ItemMouth/PlugGag/PlugGag.js"></script>
 <script src="Screens/Inventory/ItemHands/SpankingToys/SpankingToy.js"></script>
 <script src="Screens/Inventory/ItemTorso/HempRopeHarness/HempRopeHarness.js"></script>
+<script src="Screens/Inventory/ItemTorso/NylonRopeHarness/NylonRopeHarness.js"></script>
+<script src="Screens/Inventory/ItemFeet/HempRope/HempRope.js"></script>
+<script src="Screens/Inventory/ItemLegs/HempRope/HempRope.js"></script>
 <script src="Screens/Inventory/ItemPelvis/LoveChastityBelt/LoveChastityBelt.js"></script>
 <script src="Screens/Inventory/ItemLegs/LeatherLegCuffs/LeatherLegCuffs.js"></script>
 <script src="Screens/Inventory/ItemFeet/LeatherAnkleCuffs/LeatherAnkleCuffs.js"></script>
@@ -125,6 +129,7 @@
 <script src="Screens/Inventory/ItemVulva/InflatableVibeDildo/InflatableVibeDildo.js"></script>
 <script src="Screens/Inventory/ItemButt/InflVibeButtPlug/InflVibeButtPlug.js"></script>
 <script src="Screens/Inventory/ItemDevices/TeddyBear/TeddyBear.js"></script>
+<script src="Screens/Inventory/ItemArms/WristShackles/WristShackles.js"></script>
 <script>
 
 /*
@@ -133,36 +138,42 @@
 		
 	OK - Chopstick nipple clamps (Gnarp)
 	OK - 4 new piercings (FeuertinKira)
-	OK - German translation (Adokilume)
+	OK - German translation + Stable/Pony/Photo text corrections (Adokilume)
 	OK - Text proofing (GermanPerson)
 	OK - Second hair accessory (Nythaleath)
-	TEST - New Kidnap League background (Kirsty)
-	TEST - Online profile deescription (EveFerox)
-	TEST - Drawing optimization (Sekkmer)
-	TEST - Gag support for Cyrillic characters (FunnyEnthusiasm)
+	OK - New Kidnap League background (Kirsty)
+	OK - Online profile deescription (EveFerox)
+	OK - Drawing optimization (Sekkmer)
+	OK - Gag support for Cyrillic characters (FunnyEnthusiasm)
+	OK - One-bar prison (Nythaleath)
+	OK - Wrist/Ankles/Shackles/Manacles (Nythaleath)
+	OK - Chat Room Admin Screen (MrsHoudini)
+	OK - Rope Merge (Nythaleath)
 
 	Bugs to fix
-	TEST - Upside down teddy bear when suspended
-	TEST - Dressing room buttons have wrong label (random/reset)
-	TEST - If collared by NPC, the collar gets removed in online rooms
-	TEST - When importing Bondage College char with Chastity Belt, add a Mistress Lock
+	OK - Upside down teddy bear when suspended
+	OK - Dressing room buttons have wrong label (random/reset)
+	OK - If collared by NPC, the collar gets removed in online rooms
+	OK - When importing Bondage College char with Chastity Belt, add a Mistress Lock
 	
 	Assets / Core
 	OK - New hair style (For Jennifer) + Tennis racket
-	TEST - Gag support for Accents/Latin characters
-	TEST - Get free school uniform from collared Sarah/Amanda/Jennifer/Sidney
+	OK - Gag support for Accents/Latin characters
+	OK - Get free school uniform from collared Sarah/Amanda/Jennifer/Sidney
+	OK - Get changed into school uniform + get free uniform from Mistress Sarah/Amanda/Jennifer/Sidney
+	OK - Price review for all items
 
 	Bondage College - Integrated from the Club main hall (Go to College option)
 	OK - Entrance - A student can introduce the college, main hub to reach the other areas
-	TEST - Tennis court - Jennifer, beat her at a tennis mini-game to get the school uniform to go inside, get tennis racket spanking toys from her, spawn a random girl to play tennis after Jennifer
+	OK - Tennis court - Jennifer, beat her at a tennis mini-game to get the tennis racket spanking toys from her, spawn a random girl to play tennis after Jennifer, bet money on games
 	TO DO - Cafeteria (require school uniform) - Sidney, fight her and win to get access to detention room, get the dunce hat from her
 	TO DO - Theater (require school uniform) - Julia, trick her and restrain her to get the teacher lounge key, get a theater dress from her
 	TO DO - Detention room (require fighting Sidney) - Yuki, give her an orgasm to get the teacher key and sleeping pills
 	TO DO - Teacher lounge (require key from Julia or Yuki) - Mildred, become her slave or make her your slave to get a new unique wooden stocks restraint for the hands
 
 	Asylum
-	TO DO - Sleep option if you're a patient (exits out of the game)
-	TO DO - Asylum / Kidnap League / Maid Quarters - Cannot do anything there if you're a club slave.  Special dialog to prevent it.
+	OK - Sleep option if you're a patient (exits out of the game)
+	OK - Asylum / Kidnap League / Maid Quarters - Cannot do anything there if you're a club slave.  Special dialog to prevent it.
 		
 	TO DO - Proof reading
 	TO DO - Patreon Import/Update
@@ -172,7 +183,7 @@
 // When the code is loaded, we start the game engine
 window.onload = function() {
 	//CheatImport();
-	ServerURL = "https://bondage-club-server.herokuapp.com/";
+	//ServerURL = "https://bondage-club-server.herokuapp.com/";
 	CommonIsMobile = CommonDetectMobile();
 	TranslationLoad();
 	DrawLoad();

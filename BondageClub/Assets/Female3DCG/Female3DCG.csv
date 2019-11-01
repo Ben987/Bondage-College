@@ -276,16 +276,15 @@ ItemFeet,LeatherBelt,Leather Belt
 ItemFeet,Irish8Cuffs,Irish 8 Feet Cuffs
 ItemFeet,SuspensionHempRope,Suspension Hemp Rope
 ItemFeet,DuctTape,Duct Tape
-ItemFeet,MermaidRopeTie,Mermaid Rope Tie
 ItemFeet,LeatherAnkleCuffs,Leather Ankle Cuffs
 ItemFeet,SpreaderMetal, Metal Leg Spreader
 ItemFeet,BallChain,Ball And Chain
+ItemFeet,AnkleShackles, Ankle Shackles
 ItemLegs,,Legs
 ItemLegs,NylonRope,Nylon Rope
 ItemLegs,HempRope,Hemp Rope
 ItemLegs,LeatherBelt,Leather Belt
 ItemLegs,DuctTape,Duct Tape
-ItemLegs,MermaidRopeTie,Upper Mermaid Tie
 ItemLegs,LeatherLegCuffs,Leather Leg Cuffs
 ItemLegs,LegBinder,Leg Binder
 ItemLegs,HobbleSkirt,Hobble Skirt
@@ -331,10 +330,8 @@ ItemPelvis,LeatherCrop,Leather Crop
 ItemPelvis,LeatherWhip,Leather Whip
 ItemPelvis,SpankingToys,Spanking Toys
 ItemTorso,,Torso
-ItemTorso,NylonRopeHarness,Nylon Rope Harness
-ItemTorso,HempRopeHarness,Hemp Rope Harness
-ItemTorso,NylonCrotchRope,Nylon Crotch Rope
-ItemTorso,HempCrotchRope,Hemp Crotch Rope
+ItemTorso,NylonRopeHarness,Nylon Rope
+ItemTorso,HempRopeHarness,Hemp Rope
 ItemTorso,LeatherHarness,Leather Harness
 ItemTorso,AdultBabyHarness,Adult Baby Harness
 ItemNipples,,Nipples
@@ -368,6 +365,9 @@ ItemArms,LeatherArmbinder,Leather Armbinder
 ItemArms,LeatherCuffs,Leather Cuffs
 ItemArms,MittenChain1,Mittens Chain
 ItemArms,FourLimbsShackles,Four Limbs Shackles
+ItemArms,Manacles,Manacles
+ItemArms,FullBodyShackles,Full Body Shackles
+ItemArms,WristShackles,Wrist Shackles
 ItemArms,StraitLeotard,Latex Strait Leotard
 ItemArms,StraitJacket,Straitjacket
 ItemArms,Bolero,Bolero Straitjacket
@@ -482,6 +482,7 @@ ItemDevices,Cage,Stand up cage
 ItemDevices,LowCage,Kennel
 ItemDevices,SaddleStand,Saddle Stand
 ItemDevices,TeddyBear,Teddy Bear Set
+ItemDevices,OneBarPrison,One Bar Prison
 ItemBoots,,Feet
 ItemBoots,PonyBoots,Pony Boots
 ItemBoots,BalletHeels,Ballet Heels
