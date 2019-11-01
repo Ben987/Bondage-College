@@ -31,7 +31,7 @@ Glaub nicht, dass du mich zum Narren halten kannst. Du bist aus der Anstalt ausg
 You're going down nurse!
 Ich mach dich platt, Schwester!
 Wait!  Can we negotiate?
-Warte! Können wir verheilen?
+Warte! Können wir verhandeln?
 ###_NPC
 (She thinks for a few seconds.)  Negotiate?  How much do you value your freedom?
 (Sie denkt ein paar Sekunden nach.) Verhandeln? Wie viel ist dir deine Freiheit wert?
@@ -132,7 +132,7 @@ Fine, let's go.
 Na schön, gehen wir.
 ###_NPC
 (She drags you to the asylum and smiles.)  You will feel right at home.
-(Sie zerrt dich zur ANstalt und lächelt.) Du wirst dich wie zu Hause fühlen.
+(Sie zerrt dich zur Anstalt und lächelt.) Du wirst dich wie zu Hause fühlen.
 ###_PLAYER
 Don't push me!
 Nicht schubsen!
