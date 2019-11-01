@@ -16,7 +16,7 @@ var AssetFemale3DCG = [
 		Priority: 27,
 		ParentGroup: "BodyUpper",
 		Clothing: true,
-		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Bolero"],
+		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Bolero", "Yoked"],
 		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
 		Asset: [
 			{ Name: "CollegeOutfit1", HideItem: ["ClothLowerLatexSkirt1", "ClothLowerSkirt1", "ClothLowerTennisSkirt1"], Hide: ["ItemNeck"], Value: -1 },
@@ -378,7 +378,7 @@ var AssetFemale3DCG = [
 		Priority: 5,
 		AllowNone: false,
 		AllowColorize: false,
-		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "StraitDressOpen"],
+		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "StraitDressOpen", "Yoked"],
 		Color: ["White", "Asian", "Black"],
 		Asset: ["Small", "Normal", "Large", "XLarge"],
 	},
@@ -789,7 +789,7 @@ var AssetFemale3DCG = [
 		Default: false,
 		IsRestraint: true,
 		Color: ["Default"],
-		Left: 125,
+		Left: 50,
 		Top: 200,
 		Zone: [[50, 250, 100, 150], [350, 250, 100, 150]],
 		Asset: [
@@ -826,6 +826,7 @@ var AssetFemale3DCG = [
 					{ Name: "Belts", AllowColorize: false }
 				]
 			},
+			{ Name: "Yoke", DefaultColor: "#909090", Value: 15, SetPose: ["Yoked"], Effect: [], Time: 15 },
 			AssetSpankingToys
 		]
 	},
@@ -1141,5 +1142,9 @@ var PoseFemale3DCG = [
 		Name: "Horse",
 		OverrideHeight: -75,
 		Hide: ["ItemFeet"]
-	}
+	},
+	{
+		Name: "Yoked",
+		Hide: ["Hands"]
+			}
 ];
