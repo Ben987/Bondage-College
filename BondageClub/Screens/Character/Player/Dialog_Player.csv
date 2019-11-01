@@ -145,8 +145,8 @@ DuctTapeRestrainTop,,,SourceCharacter creates a duct tape top on DestinationChar
 DuctTapeRestrainFull,,,SourceCharacter creates a duct tape mummy on DestinationCharacter and traps her arms in it.
 WristShacklesPoseInFront,,,In-front of body
 WristShacklesPoseBehind,,,Behind back.
-WristShacklesRestrainInFront,,,DestinationCharacter shackles SourceCharacter's wrist in-front of their body.
-WristShacklesRestrainBehind,,,DestinationCharacter shackles SourceCharacter's wrist behind their back.
+WristShacklesRestrainInFront,,,SourceCharacter shackles DestinationCharacter's wrist in-front of their body.
+WristShacklesRestrainBehind,,,SourceCharacter shackles DestinationCharacter's wrist behind their back.
 SelectGagType,,,Select the type of gag
 ClothGagTypeSmall,,,Small
 ClothGagTypeCleave,,,Cleave
