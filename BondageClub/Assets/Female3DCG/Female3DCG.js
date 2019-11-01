@@ -919,7 +919,7 @@ var AssetFemale3DCG = [
 				]
 			},
 			{ Name: "LeatherChoker", Value: 10, Time: 5, Difficulty: 50, AllowLock: true },
-			{ Name: "PetCollar", Value: 15, Time: 5, Difficulty: 50, AllowLock: true },
+			{ Name: "PetCollar", Time: 5, Difficulty: 50, AllowLock: true },
 			{ Name: "MaidCollar", Value: 30, Time: 5, Difficulty: 50, AllowLock: true }
 		]
 	},
