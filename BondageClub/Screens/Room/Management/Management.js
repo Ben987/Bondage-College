@@ -496,3 +496,9 @@ function ManagementChangeSlaveCollarType(NewType) {
 	CharacterRefresh(Player);
 	CharacterChangeMoney(Player, -30);
 }
+
+// Some NPC won't be available if the player is a club slave, they will have a special dialog for that
+function ManagementClubSlaveDialog(C) {
+	if ((C != null) && (C.Stage == "0") && ManagementIsClubSlave()) C.Stage = "ClubSlave";
+	if ((C != null) && (C.Stage == "ClubSlave") && !ManagementIsClubSlave()) C.Stage = "0";
+}

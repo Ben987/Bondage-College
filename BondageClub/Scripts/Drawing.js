@@ -485,18 +485,20 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 
 // Draw the hovering text
 function DrawButtonHover(Left, Top, Width, Height, HoveringText) {
-	Left = (MouseX > 1000) ? Left - 475 : Left + Width + 25;
-	Top = Top + (Height - 65) / 2;
-	MainCanvas.beginPath();
-	MainCanvas.rect(Left, Top, 450, 65);
-	MainCanvas.fillStyle = "#FFFF88";
-	MainCanvas.fillRect(Left, Top, 450, 65);
-	MainCanvas.fill();
-	MainCanvas.lineWidth = '2';
-	MainCanvas.strokeStyle = 'black';
-	MainCanvas.stroke();
-	MainCanvas.closePath();
-	DrawTextFit(HoveringText, Left + 225, Top + 33, 444, "black");
+	if ((HoveringText != null) && (HoveringText != "")) {
+		Left = (MouseX > 1000) ? Left - 475 : Left + Width + 25;
+		Top = Top + (Height - 65) / 2;
+		MainCanvas.beginPath();
+		MainCanvas.rect(Left, Top, 450, 65);
+		MainCanvas.fillStyle = "#FFFF88";
+		MainCanvas.fillRect(Left, Top, 450, 65);
+		MainCanvas.fill();
+		MainCanvas.lineWidth = '2';
+		MainCanvas.strokeStyle = 'black';
+		MainCanvas.stroke();
+		MainCanvas.closePath();
+		DrawTextFit(HoveringText, Left + 225, Top + 33, 444, "black");
+	}
 }
 
 // Draw a basic empty rectangle

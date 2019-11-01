@@ -1,0 +1,252 @@
+###_NPC
+(She laughs.)  If you play tennis like that, I'll keep the score.
+(Sie lacht.) Wenn du so Tennis spielen willst, zähle ich den Punktestand.
+(She catches her breath.)  Good game!  Do you want a rematch?  I know I can do better.
+(Sie atmet durch.) Gutes Spiel! Wie wär's mit einer Revanche? Ich weiß, dass ich das besser kann.
+(She looks happy.)  Good game!  But you need some practice.  We can play again if you want.
+(Sie sieht glücklich aus.) Gutes Spiel! Aber du brauchst etwas Übung. Wir können nochmal spielen, wenn du willst.
+It's nice to see you DialogPlayerName.  Would you like to play tennis with me?
+Schön dich zu sehen, DialogPlayerName. Möchtest du eine Runde Tennis mit mir spielen?
+Darling!  (She gives you a loving kiss on the lips.)  Would you like to play tennis with me?
+Schatz! (Sie gibt dir einen liebevollen Kuss auf die Lippen.) Möchtest du eine Runde Tennis mit mir spielen?
+Oh, it's you DialogPlayerName.  (She sighs, seeming a little heartbroken.)  Are you here to play tennis?
+Oh, du bist's, DialogPlayerName. (Sie seufzt und wirkt etwas niedergeschlagen.) Bist du hier, um Tennis zu spielen?
+(She bows respectfully.)  It's wonderful to see you Mentor.  Would you like to play tennis with me?
+(Sie verneigt sich respektvoll.) Es ist wundervoll, Euch zu sehen, Mentorin. Möchtet Ihr eine Runde Tennis mit mir spielen?
+(She smirks.)  My little protege is here!  Are you here to get trained at tennis?
+(Sie feixt.) Da ist ja mein kleiner Schützling! Bist du hier, um dich im Tennis trainieren zu lassen?
+(She frowns.)  Hello my ex-protege.  Are you here to play some tennis?
+(Sie runzelt die Stirn.) Hallo, mein Ex-Schützling. Bist du hier, um Tennis zu spielen?
+Hello there.  Would you like to play tennis with me?
+Hallo. Möchtest du eine Runde Tennis mit mir spielen?
+###_PLAYER
+Who are you?
+Wer bist du?
+###_NPC
+I'm Jennifer, pleased to meet you.  I study and live here at the college.
+Ich bin Jennifer, schön dich kennenzulernen. Ich lerne und wohne hier im College.
+###_PLAYER
+How have you been?
+Wie geht's dir so?
+###_NPC
+(She shrugs.)  Not too bad I guess.  Nothing exciting is going on right now.
+(Sie zuckt mit den Schultern.) Ganz okay, würde ich sagen. Im Moment ist nichts Spannendes los.
+###_PLAYER
+You're playing alone?
+Spielst du allein?
+###_NPC
+(She sighs.)  Yeah, I'm practicing alone today.
+(Sie seufzt.) Ja, ich trainiere heute allein.
+###_PLAYER
+How do tennis points work?
+Wie funktionieren die Punkte beim Tennis?
+###_NPC
+The first point is 15, second is 30 and third is 40.  You win if you score after 40.  There's a tie breaker if we are both at 40.
+Zuerst gibt es 15 Punkte, danach 30 und dann 40. Du gewinnst, wenn du nach 40 punktest. Es gibt eine Entscheidungsrunde, wenn wir beide auf 40 stehen.
+###_PLAYER
+We could play a tennis game.
+Wir könnten eine Runde Tennis spielen.
+###_NPC
+Alright!  It's time for some sport.  (She starts to warm up.)
+Alles klar! Zeit für etwas Sport. (Sie fängt an, sich aufzuwärmen.)
+###_PLAYER
+My love, I've found a wonderful club.
+Liebste, ich hab einen wundervollen Club gefunden.
+###_NPC
+A club darling?  What kind of club?
+Einen Club, Schatz? Was für einen Club?
+###_PLAYER
+Mentor, I've found a wonderful club.
+Mentorin, ich hab einen wundervollen Club gefunden.
+###_NPC
+A club my protege?  What kind of club?
+Einen Club, mein Schützling? Was für einen Club?
+###_PLAYER
+My girl, I've found a wonderful club.
+Mein Mädchen, ich hab einen wundervollen Club gefunden.
+###_NPC
+A club Mentor?  What kind of club?
+Einen Club, Mentorin? Was für einen Club?
+###_PLAYER
+I need to go.  (Leave her.)
+Ich muss los. (Dialog beenden.)
+An easy game ok?  (Play tennis.)
+Ein einfaches Spiel, okay? (Tennis spielen.)
+A game for honor?  (Play tennis.)
+Ein Spiel um die Ehre? (Tennis spielen.)
+You'll bite the dust.  (Play tennis.)
+Du beißt ins Gras. (Tennis spielen.)
+Maybe we can play later.
+Vielleicht spielen wir später.
+###_NPC
+Of course.  You can come back whenever you want.
+Natürlich. Komm zurück, wann immer du willst.
+###_PLAYER
+It's called the Bondage Club.
+Er nennt sich der Bondage-Club.
+###_NPC
+(She giggles.)  I've heard of it.  It's an adult club downtown?
+(Sie kichert.) Davon hab ich gehört. Es ist ein Erwachsenenclub in der Innenstadt, oder?
+###_PLAYER
+Its a BDSM club.
+Es ist ein BDSM-Club.
+###_NPC
+Oh yes, I've heard of the adult club downtown.
+Ah, ja, von dem Erwachsenenclub in der Innenstadt hab ich gehört.
+###_PLAYER
+You should come there with me.
+Du solltest mit mir dorthin gehen.
+###_NPC
+(She looks intrigued.)  Sure, I'm curious to see your club.  Should we go there now?
+(Sie wirkt interessiert.) Klar, ich bin neugierig, wie es in deinem Club zugeht. Sollen wir jetzt los?
+###_PLAYER
+One day I will show you.
+Ich zeige ihn dir eines Tages.
+###_NPC
+Thanks, I'm curious now.  I'm not sure this is a place for me though.  Invite me over if you have room for me.
+Danke, jetzt bin ich neugierig. Ich weiß aber nicht, ob das der richtige Ort für mich ist. Lade mich ein, wenn du Platz für mich hast.
+###_PLAYER
+Let's go now!  (Bring her to your room.)
+Gehen wir! (Sie in dein Zimmer bringen.)
+Not now.
+Nicht jetzt.
+###_NPC
+Very well.  Would you like to play tennis with me?
+Also gut. Möchtest du eine Runde Tennis mit mir spielen?
+###_PLAYER
+Another match?  Sure!
+Eine Revanche? Sicher!
+###_NPC
+That's the spirit!  I'm glad you still have some energy left.
+So lob ich's mir! Gut, dass du noch nicht erschöpft bist.
+###_PLAYER
+That was a great game.
+Das war ein tolles Spiel.
+###_NPC
+(She smiles.)  Yes!  I love a good challenge.  Winning or losing ins't very important.
+(Sie lächelt.) Ja! Ich liebe fordernde Spiele. Gewinnen oder verlieren ist nicht besonders wichtig.
+###_PLAYER
+I love your attitude.
+Ich liebe deine Einstellung.
+###_NPC
+Thanks a lot!  I'm glad you came to the court today.
+Vielen Dank! Ich bin froh, dass du heute hierher gekommen bist.
+###_PLAYER
+You won't win with that attitude.
+Mit dieser Einstellung gewinnst du nie.
+###_NPC
+(She sighs.)  Yes, maybe you're right.  Let's talk about something else.
+(Sie seufzt.) Ja, vielleicht hast du recht. Reden wir über etwas Anderes.
+###_PLAYER
+I need to go though.
+Ich muss aber los.
+###_NPC
+(She nods.)  Alright.  Come back whenever you want.
+(Sie nickt.) Alles klar. Komm zurück, wann immer du willst.
+###_PLAYER
+We could become friends.
+Wir könnten Freunde werden.
+###_NPC
+(She seems very excited.)  Wow!  I'd love to have a fr...  I mean...  I'd love to be your friend.
+(Sie wirkt äußerst aufgeregt.) Wow! Ich hätte so gern eine Fr-... Ich meine... Ich wäre sehr gern deine Freundin.
+###_PLAYER
+Alright friend!
+Alles klar, meine Frundin!
+###_NPC
+You're so nice.  Do you live near the campus?
+Du bist so nett. Wohnst du inder Nähe des Campus?
+###_PLAYER
+Another game my friend?
+Noch eine Runde, meine Freundin?
+###_NPC
+(She nods happily.)  Absolutely!  I want my revenge.
+(Sie nickt fröhlich.) Auf jeden Fall! Ich will meine Revanche.
+###_PLAYER
+I live out of town.
+Ich wohne außerhalb der Stadt.
+###_NPC
+That's fine.  Would you like to play another match?
+Das ist in Ordnung. Möchtest du noch eine Runde spielen?
+###_PLAYER
+I live with my parents.
+Ich wohne bei meinen Eltern.
+I own a place in a club.
+Mir gehört ein Zimmer in einem Club.
+###_NPC
+In a club?  That's very special.  What kind of club?
+In einem Club? Das ist schon etwas Besonderes. Was denn für ein Club?
+###_PLAYER
+It's a sex club for adults.
+Es ist ein Sexclub für Erwachsene.
+###_NPC
+(She looks baffled.)  Oh my!  Anyway.  Would you like to play another game?
+(Sie wirkt entgeistert.) Ach je! Wie dem auch sei. Möchtest du noch eine Runde spielen?
+###_PLAYER
+It's hard to describe, would you like to see it?
+Schwer zu beschreiben, möchtest du ihn sehen?
+###_NPC
+(She looks curious.)  Sure, should we go there right now?  You can tell me about it on the road.
+(Sie wirkt neugierig.) Klar, sollten wir jetzt gleich dort hin? Du kannst mir unterwegs davon erzählen.
+###_PLAYER
+It's a torture dungeon.
+Es ist ein Folterkeller.
+###_NPC
+(She looks shocked.)  Oh my!  Anyway.  Would you like to play another game?
+(Sie wirkt schockiert.) Ach je! Wie dem auch sei. Möchtest du noch eine Runde spielen?
+###_PLAYER
+Yes, I want my revenge.
+Ja, ich will meine Revanche.
+No, that's enough.
+Nein, das reicht.
+###_NPC
+Very well.  We can play later if you want.
+Alles klar. Wir können später spielen, wenn du willst.
+Hey!  Are you up for a tennis match against me?
+Hey! Lust auf eine Partie Tennis gegen mich?
+I'm DialogCharacterName, I'm a student here.
+Ich bin DialogCharacterName, ich bin hier eine Schülerin.
+###_PLAYER
+I'm DialogPlayerName.
+Ich bin DialogPlayerName.
+###_NPC
+It's nice to meet you.  Do you want to play against me?
+Schön dich kennenzulernen. Möchtest du gegen mich anterten?
+No.  I'm waiting for a challenger.
+Nein. Ich warte auf eine Herausforderin.
+Absolutely, have you played before?  I can go easy on you if you're a beginner.
+Natürlich, hast du schon mal gespielt? Ich kann es dir einfach machen, wenn du eine Anfängerin bist.
+###_PLAYER
+Please go easy.  (Play tennis.)
+Bitte mach es mir einfach. (Tennis spielen.)
+Let's do a regular game.  (Play tennis.)
+Spielen wir ganz normal. (Tennis spielen.)
+We can bet some money on the game.
+Wir können etwas Geld auf das Spiel wetten.
+###_NPC
+Are you willing to bet 25$ on the game?  The winner keeps everything.
+Bist du bereit dazu, 25$ zu wetten? Die Siegerin bekommt alles.
+You're too poor for that.  Get 25$ and we can bet it on a tennis match.
+Dafür bist du zu arm. Besorge dir 25$, dann können wir auf eine Tennispartie wetten.
+Sure, let me know when you're ready.
+Klar, sag Bescheid, wenn du bereit bist.
+###_PLAYER
+Here's 25$, you're going down.  (Play tennis.)
+Hier sind 25$, du wirst untergehen. (Tennis spielen.)
+Forget it.
+Vergiss es.
+###_NPC
+Chicken!
+Weichei!
+Perfect, this time I will crush you.
+Perfekt, diesmal mach ich dich platt.
+Alright, you can come back to play anytime.
+Alles klar, du kannst jederzeit für ein Spiel zurückkommen.
+###_PLAYER
+I want my revenge!
+Ich will meine Revanche!
+###_NPC
+That's the only way to get better.  Should I go easy on you?
+Nur so wird man besser. Soll ich es dir einfach machen?
+###_PLAYER
+That's enough.
+Das reicht.

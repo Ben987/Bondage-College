@@ -4,5 +4,5 @@ Treadmill
 Laufband
 Horse Carriage
 Pferdekutsche
-You wait in an isolation Stable
+You wait in an isolation stable
 Du wartest in einem Isolationsstall
