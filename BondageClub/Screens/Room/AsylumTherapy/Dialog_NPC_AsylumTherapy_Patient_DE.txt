@@ -6,7 +6,7 @@ Das war eine gute Therapie, Schwester DialogPlayerName. Ich habe daraus gelernt.
 I'm sorry nurse DialogPlayerName.  I don't think this is working.
 Tut mir leid, Schwester DialogPlayerName. Ich glaube nicht, dass das funktioniert.
 Oh my!  The famous doctor DialogPlayerName.  It's an honor.
-Meine Güte! Die berühmte Doktor DialogPlayerName. Es ist mir eine Ehre.
+Meine Güte! Die berühmte Doktorin DialogPlayerName. Es ist mir eine Ehre.
 Hello nurse DialogPlayerName.  I've heard about you.
 Hallo, Schwester DialogPlayerName. Ich habe von Ihnen gehört.
 Hello nurse.  Are you here for my treatment?
@@ -104,7 +104,7 @@ Mädel, du wirst eine vollständige Bondage-Therapie erleben.
 (Sie streicheln und umarmen, um sie zu beruhigen.)
 ###_NPC
 (She takes long deep breathes and tries to relax.)
-(Sie atmet tief und langsam und versucht sich zu entspannen.)
+(Sie atmet tief ein und langsam ausund versucht sich zu entspannen.)
 ###_PLAYER
 (Make sure her restraints aren't too tight.)
 (Prüfen, ob ihre Fesseln nicht zu eng sind.)
@@ -112,7 +112,7 @@ Mädel, du wirst eine vollständige Bondage-Therapie erleben.
 (Ihre Fesseln etwas fester ziehen.)
 ###_NPC
 (She whimpers and takes long deep breathes.)
-(Sie wimmert und atmet tief und langsam.)
+(Sie wimmert und atmet tief ein und langsam aus.)
 ###_PLAYER
 Get on your knees, hands behind your back.
 Geh auf die Knie, Hände hinter den Rücken.
