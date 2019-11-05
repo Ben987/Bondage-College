@@ -430,6 +430,7 @@ ItemNeck,ShockCollarRemote,Shock Collar Remote
 ItemNeck,BatCollar,Bat Collar
 ItemNeck,PostureCollar,Posture Collar
 ItemNeck,SteelPostureCollar,Steel Collar
+ItemNeck,DogCollar,Dog Collar
 ItemNeck,SpikeCollar,Spike Collar
 ItemNeck,HighCollar,High Collar
 ItemNeck,LeatherChoker,Leather Choker
@@ -496,6 +497,7 @@ ItemHead,LeatherHoodSealed,Sealed Leather Hood
 ItemHead,PolishedSteelHood,Polished Steel Hood
 ItemHead,SackHood,Sack Hood
 ItemHead,LewdBlindfold,Lewd Blindfold
+ItemHead,DogHood,Dog Hood
 ItemEars,,Ears
 ItemEars,LightDutyEarPlugs,Light Duty Ear Plugs
 ItemEars,HeavyDutyEarPlugs,Heavy Duty Ear Plugs
