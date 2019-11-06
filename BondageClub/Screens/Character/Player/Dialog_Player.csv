@@ -11,6 +11,7 @@ MustCollaredFirst,,,A collar must be fitted first to attach accessories to.
 MustCollaredFirstAndRemoveSuspension,,,Must be collared and not suspended first.
 MustCollaredFirstAndRemoveSuspension1,,,Must be collared and not suspended/mounted first.
 LegsCannotOpen,,,Legs cannot open.
+LegsCannotClose,,,Legs cannot close.
 MustFreeFeetFirst,,,Must free feet frist.
 RemoveShacklesFirst,,,Must remove shackles first.
 Cancel,,,Cancel

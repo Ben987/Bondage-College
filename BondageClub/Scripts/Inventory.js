@@ -100,6 +100,12 @@ function InventoryAllow(C, Prerequisite) {
 	if (Prerequisite == "CollaredNotSuspended" && (InventoryGet(C, "ItemNeck") == null || C.Pose.indexOf("Suspension") >= 0)) { DialogSetText("MustCollaredFirstAndRemoveSuspension"); return false; }
 	if (Prerequisite == "LegsOpen" && C.Pose.indexOf("LegsClosed") >= 0)  { DialogSetText("LegsCannotOpen"); return false; }
 	
+	//ToeTied
+	if (Prerequisite == "ToeTied" && (InventoryGet(C, "ItemFeet") != null) && (InventoryGet(C, "ItemFeet").Asset.Name == "SpreaderMetal")) { DialogSetText("LegsCannotClose"); return false; }
+	if (Prerequisite == "ToeTied" && (InventoryGet(C, "ItemLegs") != null) && (InventoryGet(C, "ItemLegs").Asset.Name == "WoodenHorse")) { DialogSetText("LegsCannotClose"); return false; }
+	if (Prerequisite == "ToeTied" && (InventoryGet(C, "ItemDevices") != null) && (InventoryGet(C, "ItemDevices").Asset.Name == "OneBarPrison")) { DialogSetText("LegsCannotClose"); return false; }
+	if (Prerequisite == "ToeTied" && (InventoryGet(C, "ItemDevices") != null) && (InventoryGet(C, "ItemDevices").Asset.Name == "SaddleStand")) { DialogSetText("LegsCannotClose"); return false; }
+	
 	//One Bar Prison
 	if (Prerequisite == "OBP" && C.Pose.indexOf("LegsClosed") >= 0)  { DialogSetText("LegsCannotOpen"); return false; }
 	if (Prerequisite == "OBP" && C.Pose.indexOf("Suspension") >= 0)  { DialogSetText("TheyMustBeStandingFirst"); return false; }
