@@ -3,9 +3,9 @@ Are you talking to me?
 Redest du mit mir?
 (She willingly opens her mouth.)
 (Sie öffnet widerstandslos ihren Mund.)
-(She grins at you.) was that it. 
+(She grins at you.) Was that it?
 (Sie grinst dich an.) War das alles?
-(She sighs and turns around while you restrain her arms.)  Is really tight.
+(She sighs and turns around while you restrain her arms.)  It's really tight.
 (Sie seufzt und dreht sich um, als du ihre Arme fesselst.) Das ist echt eng.
 (You free her arms and she nods happily.)  Thanks a lot.
 (Du befreist ihre Arme und sie nickt glücklich.) Vielen Dank.
@@ -16,16 +16,16 @@ Redest du mit mir?
 (She looks puzzled as you restrain her feet.)  I'll stay on guard here.
 (Sie guckt verwirrt, als du ihre Füße fesselst.) Ich halte hier die Stellung.
 (You release her feet and she wiggles them.)  Thanks, it was troublesome.
-(Du befreist ihre Füße und sie wackelt mit ihnen herum.) Danke, das war problematisch.
-(You strap the collar on her while she blushes.)  Does this really have to be?
+(Du befreist ihre Füße und sie wackelt mit ihnen herum.) Danke, das war lästig.
+(You strap the collar on her while she blushes.)  Is this really necessary?
 (Du legst ihr das Halsband um und sie wird rot.) Muss das wirklich sein?
-(You remove the collar around her neck.)  Thanks.
+(You remove the collar from her neck.)  Thanks.
 (Du nimmst ihr das Halsband ab.) Danke.
-(You snap the belt around her waist and crotch while she sighs.)  Anyway this is not a trick.
-(Du lässt den Gürtel um ihre Taille zuschnappen und sie seufzt.) Zumindest das ist kein Trick.
+(You snap the belt around her waist and crotch while she sighs.)  This is certainly not a trick.
+(Du lässt den Gürtel um ihre Taille zuschnappen und sie seufzt.) Das ist garantiert kein Trick.
 (You unlock the belt from her waist and she smiles.)  Thanks a lot DialogPlayerName.
 (Du öffnest den Gürtel von ihrer Taille und sie lächelt.) Vielen Dank, DialogPlayerName.
-(You strap the device on her head as she nods slowly.)  Dark in here.
+(You strap the device on her head as she nods slowly.)  It's dark in here.
 (Du schnallst ihr das Ding um den Kopf und sie nickt langsam.) Ganz schön dunkel hier drin.
 (You remove the device and she nods rapidly.)  Thanks a million, this is much better.
 (Du nimmst das Ding ab und sie nickt energisch.) Tausend Dank, das ist viel besser.
@@ -37,14 +37,14 @@ Redest du mit mir?
 (Du peitschst ihren Hintern kräftig aus und sie seufzt.) Was tut man nicht alles für die Show.
 (She grumbles as you strike her butt with the crop.)  For the show.
 (Sie grummelt, als du ihren Hintern mit der Gerte schlägst.) Was tut man nicht alles für die Show.
-(She tries to fight back.)  It should be like that.
+(She tries to fight back.)  This is how it's meant to be.
 (Sie versucht sich zu wehren.) So sollte es sein.
-(You remove the device.)  Thanks, so can work again.
+(You remove the device.)  Thanks, now I can work again.
 (Du nimmst es ab.) Danke, so kann ich wieder arbeiten.
-(She looks surprised.) Ups?
+(She looks surprised.) Oops?
 (Sie wirkt überrascht.) Ups?
-(She looks irritated.) Thanks, that fine?
-(Sie wirkt gereizt.) Danke, war's das?
+(She looks confused.) Thanks, are we done?
+(Sie wirkt irritiert.) Danke, war's das?
 (She whimpers as you use the device on her breast.)  Sorry to object, but this isn't very convenient or comfortable.
 (Sie wimmert, als du es an ihrer Brust anwendest.) Ich will mich ja nicht einmischen, aber das ist weder praktisch noch angenehm.
 (She grumbles as you use remove the item.)  Be thoughtful and don't remove anything until I'm hurt and broken.
@@ -55,11 +55,11 @@ Redest du mit mir?
 (Du steckst das Ei hinein, aber sie reagiert kaum.) Ich will ja hier nicht die Wunschzettelsub spielen, aber das Ei würde bei Anderen mehr bewirken.
 (She doesn't react as you remove the egg.)  Maybe it doesn't work, I didn't feel a thing in there.
 (Sie reagiert nicht, als du das Ei herausnimmst.) Vielleicht ist es kaputt, ich hab da drin nichts gespürt.
-(She fights against.) Like the great master Houdini?
-(Sie wehrt sich.) Wie der große Meister Houdini?
-(She breathes.) Finally.  What should that be?
+(She struggles against it.) Like the great master Houdini?
+(Sie kämpft dagegen an.) Wie der große Meister Houdini?
+(She catches her breath.) Finally.  What was that supposed to be?
 (Sie atmet durch.) Endlich. Was sollte das denn?
-Welcome to the theater 
+Welcome to the theater!
 Willkommen im Theater!
 ###_PLAYER
 Hello, I'm DialogPlayerName.  Nice to meet you.
@@ -68,10 +68,10 @@ Hallo, ich bin DialogPlayerName. Sehr erfreut.
 Pleased to meet you too.  I'm DialogCharacterName, Would you like to assist me?
 Schön dich kennenzulernen. Ich bin DialogCharacterName, möchtest du mir assistieren?
 ###_PLAYER
-Please change, the show starts.
+Please change, the show's starting.
 Zieh dich bitte um, es geht los.
 ###_NPC
-I hurry up.
+I'll hurry up.
 Ich eile.
 ###_PLAYER
 Take fife, You are free.
@@ -80,27 +80,27 @@ Gönn' dir eine Pause, du bist frei.
 Thank you very much!
 Vielen Dank!
 ###_PLAYER
-Sing: Sweet, Sweet Gwendolyn
+(Sing "Sweet, Sweet Gwendolyne".)
 ("Sweet, Sweet Gwendolyne" singen.)
 ###_NPC
-During the song you tie each other. The spectators are thrilled.
-Während des Songs fesselt ihr euch gegenseitig. Das Publikum ist begeistert.
+(During the song you tie each other. The spectators are thrilled.)
+(Während des Songs fesselt ihr euch gegenseitig. Das Publikum ist begeistert.)
 ###_PLAYER
-Sing: Bad Girl
+(Sing "Bad Girl".)
 ("Bad Girl" singen.)
 ###_NPC
-Some spectators are giving you money. you get REPLACEMONEY $.
-Ein paar der Zuschauer geben euch Geld. Du erhältst REPLACEMONEY $.
+(Some spectators give you money. You get REPLACEMONEY$.)
+(Ein paar der Zuschauer geben euch Geld. Du erhältst REPLACEMONEY$.)
 ###_PLAYER
 I should tie you up.
 Ich sollte dich fesseln.
 ###_NPC
-make it really nice.
+Make it look really nice.
 Gib dir Mühe, damit es richtig schön aussieht.
-I can not, because I am tied up. please free me.
+I can't, I'm tied up. Please free me.
 Ich kann nicht, ich bin gefesselt. Bitte befreie mich.
 ###_PLAYER
-Goodbye.  (Leave)
+Goodbye.  (Leave her.)
 Wiedersehen. (Dialog beenden.)
 Can we continue the show? 
 Können wir mit der Show weitermachen?

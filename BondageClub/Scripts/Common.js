@@ -223,3 +223,25 @@ function CommonRandomItemFromList(ItemPrevious, ItemList) {
 		NewItem = ItemList[Math.floor(Math.random() * ItemList.length)];
 	return NewItem;
 }
+
+// Converts a string of numbers to an array with map and remove all NaN or undefined elements with reduce
+function CommonConvertStringToArray(s) {
+	var arr = [];
+	if (s != "") {
+		arr = s.split(',').map(Number).reduce((list,curr) => {
+			if (!((curr === false) || Number.isNaN(curr))) list.push(curr);
+			return list;
+		}, []);
+	}
+	return arr;
+}
+
+// Converts an array of numbers to a string, separated with ","
+function CommonConvertArrayToString(Arr) {
+	var S = "";
+	for (var P = 0; P < Arr.length; P++) {
+		if (P != 0) S = S + ",";
+		S = S + Arr[P].toString();
+	}
+	return S;
+}

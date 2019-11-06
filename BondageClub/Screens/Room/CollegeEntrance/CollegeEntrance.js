@@ -49,7 +49,7 @@ function CollegeEntranceClick() {
 function CollegeEntranceWearStudentClothes(C) {
 	if ((typeof C === "string") && (C == "Player")) C = Player;
 	InventoryWear(C, "CollegeOutfit1", "Cloth", "Default");
-	InventoryWear(C, "Socks4", "Socks", "#CCCCCC");
+	InventoryWear(C, "Socks4", "Socks", "#AAAAAA");
 	InventoryRemove(C, "ClothLower");
 	InventoryRemove(C, "Wings");
 	InventoryRemove(C, "TailStraps");

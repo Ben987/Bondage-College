@@ -1,0 +1,17 @@
+RoomName,Room Name
+RoomDescription,Description
+RoomBanList,Ban List
+RoomAdminList,Administrator List
+RoomPrivate,Private
+RoomLocked,Locked
+RoomSize,Size (2-10)
+UseMemberNumbers,"Use member numbers, separated by commas (ex: 3571,541,7001)"
+AdminOnly,Room settings can only be updated by administrators
+Background,Background
+Save,Save
+Exit,Exit
+Cancel,Cancel
+UpdatingRoom,Updating the chat room...
+ResponseRoomAlreadyExist,This room name is already taken
+ResponseAccountError,"Account error, please try to relog"
+ResponseInvalidRoomData,Invalid chat room data detected

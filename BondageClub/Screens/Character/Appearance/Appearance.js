@@ -28,43 +28,38 @@ function CharacterAppearanceBuildAssets(C) {
 
 }
 
-// Makes sure the character appearance is valid from inventory and cloth requirement
+// Makes sure the character appearance is valid from inventory and asset requirement
 function CharacterAppearanceValidate(C) {
 
-	// Prevent changing the player if there's a no change rule
-	if ((C.ID != 0) || (!LogQuery("BlockChange", "Rule") && (!LogQuery("BlockChange", "OwnerRule") || (Player.Ownership == null) || (Player.Ownership.Stage != 1)))) {
+	// Remove any appearance item that's not in inventory
+	var Refresh = false;
+	for (var A = 0; A < C.Appearance.length; A++)
+		if ((C.Appearance[A].Asset.Value != 0) && (C.Appearance[A].Asset.Group.Category == "Appearance") && !InventoryAvailable(C, C.Appearance[A].Asset.Name, C.Appearance[A].Asset.Group.Name)) {
+			C.Appearance.splice(A, 1);
+			Refresh = true;
+			A--;
+		}
 
-		// Remove any appearance item that's not in inventory
-		var Refresh = false;
-		for (var A = 0; A < C.Appearance.length; A++)
-			if ((C.Appearance[A].Asset.Value != 0) && (C.Appearance[A].Asset.Group.Category == "Appearance") && !InventoryAvailable(C, C.Appearance[A].Asset.Name, C.Appearance[A].Asset.Group.Name)) {
-				C.Appearance.splice(A, 1);
-				Refresh = true;
-				A--;
-			}
+	// Remove items flagged as "Remove At Login"
+	for (var A = 0; A < C.Appearance.length; A++)
+		if (C.Appearance[A].Asset.RemoveAtLogin) {
+			C.Appearance.splice(A, 1);
+			Refresh = true;
+			A--;
+		}
 
-		// Remove items flagged as "Remove At Login"
-		for (var A = 0; A < C.Appearance.length; A++)
-			if (C.Appearance[A].Asset.RemoveAtLogin) {
-				C.Appearance.splice(A, 1);
-				Refresh = true;
-				A--;
-			}
+	// Dress back if there are missing appearance items
+	for (var A = 0; A < AssetGroup.length; A++)
+		if (!AssetGroup[A].AllowNone && (CharacterAppearanceGetCurrentValue(C, AssetGroup[A].Name, "Name") == "None"))
+			for (var B = 0; B < Asset.length; B++)
+				if (Asset[B].Group.Name == AssetGroup[A].Name) {
+					C.Appearance.push({ Asset: Asset[B], Color: Asset[B].Group.ColorSchema[0] });
+					Refresh = true;
+					break;
+				}
 
-		// Dress back if there are missing appearance items
-		for (var A = 0; A < AssetGroup.length; A++)
-			if (AssetGroup[A].IsDefault && (CharacterAppearanceGetCurrentValue(C, AssetGroup[A].Name, "Name") == "None"))
-				for (var B = 0; B < Asset.length; B++)
-					if (Asset[B].Group.Name == AssetGroup[A].Name) {
-						C.Appearance.push({ Asset: Asset[B], Color: Asset[B].Group.ColorSchema[0] });
-						Refresh = true;
-						break;
-					}
-
-		// If we must refresh the character and push the appearance to the server
-		if (Refresh) CharacterRefresh(C);
-
-	}
+	// If we must refresh the character and push the appearance to the server
+	if (Refresh) CharacterRefresh(C);
 
 }
 
@@ -368,7 +363,7 @@ function AppearanceRun() {
 
 		// Draw the top buttons with images
 		if (C.ID == 0) {
-			DrawButton(1300, 25, 90, 90, "", "White", "Icons/" + ((LogQuery("Wardrobe", "PrivateRoom")) ? "Wardrobe" : "Reset") + ".png", TextGet("ResetClothes"));
+			DrawButton(1300, 25, 90, 90, "", "White", "Icons/" + ((LogQuery("Wardrobe", "PrivateRoom")) ? "Wardrobe" : "Reset") + ".png", TextGet(LogQuery("Wardrobe", "PrivateRoom") ? "Wardrobe" : "ResetClothes"));
 			DrawButton(1417, 25, 90, 90, "", "White", "Icons/Random.png", TextGet("Random"));
 		} else if (LogQuery("Wardrobe", "PrivateRoom")) DrawButton(1417, 25, 90, 90, "", "White", "Icons/Wardrobe.png", TextGet("Wardrobe"));
 		DrawButton(1534, 25, 90, 90, "", "White", "Icons/Naked.png", TextGet("Naked"));
@@ -391,7 +386,7 @@ function AppearanceRun() {
 	} else if (CharacterAppearanceWardrobeMode) {
 
 		// Draw the wardrobe top controls & buttons
-		DrawButton(1417, 25, 90, 90, "", "White", "Icons/Dress.png", TextGet("DressUp"));
+		DrawButton(1417, 25, 90, 90, "", "White", "Icons/Dress.png", TextGet("DressManually"));
 		DrawButton(1534, 25, 90, 90, "", "White", "Icons/Naked.png", TextGet("Naked"));
 		DrawButton(1651, 25, 90, 90, "", "White", "Icons/Next.png", TextGet("Next"));
 		DrawText(CharacterAppearanceWardrobeText, 1645, 220, "White", "Gray");

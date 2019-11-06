@@ -1,26 +1,26 @@
 PlayerGagged,,,Are you talking to me?,,
 ItemMouth,,,(She willingly opens her mouth.),,
-RemoveItemMouth,,,(She grins at you.) was that it. ,,
-ItemArms,,,(She sighs and turns around while you restrain her arms.)  Is really tight.,,
+RemoveItemMouth,,,(She grins at you.) Was that it?,,
+ItemArms,,,(She sighs and turns around while you restrain her arms.)  It's really tight.,,
 RemoveItemArms,,,(You free her arms and she nods happily.)  Thanks a lot.,,
 ItemLegs,,,(She submits to you while you restrain her legs securely.)  I don't need to move anyway.,,
 RemoveItemLegs,,,(You release her legs from the restraint.)  Thanks a lot.,,
 ItemFeet,,,(She looks puzzled as you restrain her feet.)  I'll stay on guard here.,,
 RemoveItemFeet,,,"(You release her feet and she wiggles them.)  Thanks, it was troublesome.",,
-ItemNeck,,,(You strap the collar on her while she blushes.)  Does this really have to be?,,
-RemoveItemNeck,,,(You remove the collar around her neck.)  Thanks.,,
-ItemPelvis,,,(You snap the belt around her waist and crotch while she sighs.)  Anyway this is not a trick.,,
+ItemNeck,,,(You strap the collar on her while she blushes.)  Is this really necessary?,,
+RemoveItemNeck,,,(You remove the collar from her neck.)  Thanks.,,
+ItemPelvis,,,(You snap the belt around her waist and crotch while she sighs.)  This is certainly not a trick.,,
 RemoveItemPelvis,,,(You unlock the belt from her waist and she smiles.)  Thanks a lot DialogPlayerName.,,
-ItemHead,,,(You strap the device on her head as she nods slowly.)  Dark in here.,,
+ItemHead,,,(You strap the device on her head as she nods slowly.)  It's dark in here.,,
 RemoveItemHead,,,"(You remove the device and she nods rapidly.)  Thanks a million, this is much better.",,
 ItemBreastLeatherWhip,,,(She jumps from the searing pain on her breast.)  Ouch!,,
 ItemBreastLeatherCrop,,,(You whip her breast with the leather crop as she whimpers and bows her head.),,
 ItemPelvisLeatherWhip,,,(You whip her butt hard as she sighs.)  For the show.,,
 ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  For the show.,,
-ItemTorso,,,(She tries to fight back.)  It should be like that.,,
-RemoveItemTorso,,,"(You remove the device.)  Thanks, so can work again.",,
-ItemButt,,,(She looks surprised.) Ups?,,
-RemoveItemButt,,,"(She looks irritated.) Thanks, that fine?",,
+ItemTorso,,,(She tries to fight back.)  This is how it's meant to be.,,
+RemoveItemTorso,,,"(You remove the device.)  Thanks, now I can work again.",,
+ItemButt,,,(She looks surprised.) Oops?,,
+RemoveItemButt,,,"(She looks confused.) Thanks, are we done?",,
 ItemBreast,,,"(She whimpers as you use the device on her breast.)  Sorry to object, but this isn't very convenient or comfortable.",,
 RemoveItemBreast,,,(She grumbles as you use remove the item.)  Be thoughtful and don't remove anything until I'm hurt and broken.,,
 ItemNipples,,,"(She whimpers as you use the device on her breast.)  Sorry to object, but this isn't very convenient or comfortable.",,
@@ -28,16 +28,16 @@ RemoveItemNipples,,,(She grumbles as you use remove the item.)  Be thoughtful an
 ItemVulvaVibratingWand,,,"(You massage her pussy with the wand, but she stays cold.)  I'm very sorry.  I'm not in the mood.",,
 VibratingEgg,,,"(You slide the egg inside, but she barely reacts to it.)  I don't want to top from the bottom, but this egg would work better on someone else.",,
 RemoveVibratingEgg,,,"(She doesn't react as you remove the egg.)  Maybe it doesn't work, I didn't feel a thing in there.",,
-SuspensionHempRope,,,(She fights against.) Like the great master Houdini?,,
-RemoveSuspensionHempRope,,,(She breathes.) Finally.  What should that be?,,
-0,,,Welcome to the theater ,,
+SuspensionHempRope,,,(She struggles against it.) Like the great master Houdini?,,
+RemoveSuspensionHempRope,,,(She catches her breath.) Finally.  What was that supposed to be?,,
+0,,,Welcome to the theater!,,
 0,,"Hello, I'm DialogPlayerName.  Nice to meet you.","Pleased to meet you too.  I'm DialogCharacterName, Would you like to assist me?",DialogRemove(),
-0,,"Please change, the show starts.",I hurry up.,AssistantDress(),ShowIsState(2)
+0,,"Please change, the show's starting.",I'll hurry up.,AssistantDress(),ShowIsState(2)
 0,,"Take fife, You are free.",Thank you very much!,AssistantRelese(),AssistantIsReleased()
-0,,"Sing: Sweet, Sweet Gwendolyn",During the song you tie each other. The spectators are thrilled.,SongGwendoyn(),ShowIsState(6)
-0,10,Sing: Bad Girl,Some spectators are giving you money. you get REPLACEMONEY $.,SongBadGirl(),ShowIsState(6)
-0,,I should tie you up.,make it really nice.,DialogRemove(),ShowIsState(7)
-0,,"Please change, the show starts.","I can not, because I am tied up. please free me.",,AssistantIsDressRestrain()
-0,,"Please change, the show starts.",I hurry up.,AssistantDress(),AssistantIsntDressRestrain()
-0,,Goodbye.  (Leave),,DialogLeave(),
+0,,"(Sing ""Sweet, Sweet Gwendolyne"".)",(During the song you tie each other. The spectators are thrilled.),SongGwendoyn(),ShowIsState(6)
+0,10,"(Sing ""Bad Girl"".)",(Some spectators give you money. You get REPLACEMONEY$.),SongBadGirl(),ShowIsState(6)
+0,,I should tie you up.,Make it look really nice.,DialogRemove(),ShowIsState(7)
+0,,"Please change, the show's starting.","I can't, I'm tied up. Please free me.",,AssistantIsDressRestrain()
+0,,"Please change, the show's starting.",I'll hurry up.,AssistantDress(),AssistantIsntDressRestrain()
+0,,Goodbye.  (Leave her.),,DialogLeave(),
 10,0,Can we continue the show? ,"(She nods in agreement.) Yes, please.",AssistantRelese(),AssistantIsReleased()

@@ -612,7 +612,7 @@ function SarahSophieOrgasmGame(Factor) {
 }
 
 // When Sophie releases all the characters but Sarah
-function SarahSophireReleaseEveryoneButSarah() {
+function SarahSophieReleaseEveryoneButSarah() {
 	CharacterRelease(Player);
 	InventoryRemove(Player, "ItemPelvis");
 	InventoryRemove(Player, "ItemBreast");

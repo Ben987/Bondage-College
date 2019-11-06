@@ -50,13 +50,13 @@ Tell me about bondage therapies.
 Erzähl mir von den Bondage-Therapien.
 ###_NPC
 Some patients get claustrophobic and panic when restrained.  This therapy helps them to relax and appreciate the restraints.
-Macnhe Patienten werden klaustrophobisch und geraten in Panik, wenn sie gefesselt sind. Diese Therapie hilft ihnen, sich zu entspannen und in den Fesseln wohl zu fühlen.
+Manche Patienten werden klaustrophobisch und geraten in Panik, wenn sie gefesselt sind. Diese Therapie hilft ihnen, sich zu entspannen und in den Fesseln wohlzufühlen.
 ###_PLAYER
 Tell me about pain therapies.
 Erzähl mir von den Schmerz-Therapien.
 ###_NPC
 If pain haunts you or makes you cringe, we have a specific therapy to help you cope with it and grow stronger.
-Wenn dir Schmerz Angst machen oder dich unbehaglich fühlen lassen, haben wir eine Therapie, die dir hilft, damit umzugehen und stärker zu werden.
+Wenn dir Schmerzen Angst machen oder dich unbehaglich fühlen lassen, haben wir eine Therapie, die dir hilft, damit umzugehen und stärker zu werden.
 ###_PLAYER
 Tell me about tickle therapies.
 Erzähl mir von den Kitzel-Therapien.
@@ -311,10 +311,10 @@ We'll see about that.  Put your hands behind your back.  They must stay there fo
 Das werden wir sehen. Nimm deine Hände hinter den Rücken. Sie müssen die gesamte Therapie über dort bleiben.
 ###_PLAYER
 This tickle therapy is pretty serious.
-Diese Kitzel-Therapieist ziemlich ernst.
+Diese Kitzel-Therapie ist ziemlich ernst.
 ###_NPC
 (She giggles.)  Yep, nothing more serious.  Put your hands behind your back and don't move them.
-(Sie kichert.) Jep, es gibt nichts ernsteres. Nimm deine Hände hinter den Rücken und bewege sie nicht.
+(Sie kichert.) Jep, es gibt nichts Ernsteres. Nimm deine Hände hinter den Rücken und bewege sie nicht.
 ###_PLAYER
 (Put your hands behind your back.)
 (Deine Hände hinter den Rücken nehmen.)

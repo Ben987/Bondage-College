@@ -5,7 +5,7 @@ var C000_Intro_ChapterSelect_Credits = [];
 var C000_Intro_ChapterSelect_CreditActors = ["Player", "Amanda", "Sarah", "Sidney", "Jennifer", "Julia", "Yuki"];
 var C000_Intro_ChapterSelect_ThankYouCount = 999999;
 var C000_Intro_ChapterSelect_ThankYouList = ["Alvin", "Bryce", "Christian", "Designated", "Dick", "Escurse", "EugeneTooms", "James", "Jenni", "Jyeoh", "Karel", "Kitten", "Laioken", "Michal", "Mindtie", 
-											"MunchyCat", "Nick", "Overlord", "Rashiash", "Ryner", "Setsu95", "Shadow", "Shaun", "Simeon", "Sky", "Terry", "William", "Winterisbest", "Xepherio"];
+											"MunchyCat", "Nick", "Overlord", "Rashiash", "Ryner", "Setsu95", "Shadow", "Shaun", "Simeon", "Sky", "Terry", "Victor", "William", "Winterisbest", "Xepherio"];
 var C000_Intro_ChapterSelect_ThankYouCurrent = -1;
 var C000_Intro_ChapterSelect_CreditTextColor = "black";
 

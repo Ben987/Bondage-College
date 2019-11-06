@@ -6,7 +6,7 @@
 (An asylum patient tries to run from you but get stuck in a dead end.)  What do you want?
 (Eine Anstaltspatientin versucht vor dir zu fliehen, bleibt aber in einer Sackgasse stecken.) Was willst du?
 (You surprise a suspicious looking asylum patient.)  Oh my!  You've scared me.  What's going on?
-(Du überraschst eine verd#chtig wirkende Anstaltspatientin.) Meine Güte! Haben Sie mich erschreckt. Was ist los?
+(Du überraschst eine verdächtig wirkende Anstaltspatientin.) Meine Güte! Haben Sie mich erschreckt. Was ist los?
 (She surrenders to you.)  You got me nurse DialogPlayerName.  What do you want from me?
 (Sie ergibt sich.) Sie haben mich erwischt, Schwester DialogPlayerName. Was wollen Sie von mir?
 (She checks your bondage and grins.)  I'll never return to the asylum!

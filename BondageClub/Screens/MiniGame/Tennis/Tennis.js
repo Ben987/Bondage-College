@@ -13,7 +13,9 @@ var TennisBallAngle = 0;  // Angle is in radians (0 is right, PI / 2 is up, PI i
 
 // When a player serves, the angle can go 45 degrees both up or down
 function TennisServe(CharacterLeftServe) {
-	TennisBallSpeed = 100;
+	TennisBallSpeed = 120;
+	if (MiniGameDifficulty == "Normal") TennisBallSpeed = 180;
+	if (MiniGameDifficulty == "Hard") TennisBallSpeed = 240;
 	TennisBallAngle = (CharacterLeftServe ? 0 : Math.PI) - (Math.PI * 0.25) + (Math.PI * 0.5 * Math.random());
 	TennisBallX = CharacterLeftServe ? 600 : 1400;
 	TennisBallY = 500;
@@ -67,35 +69,35 @@ function TennisRun() {
 			DrawText(TextGet("Intro2"), 1000, 500, "black");
 			DrawText(TextGet("StartsIn") + " " + (5 - Math.floor(MiniGameTimer / 1000)).toString(), 1000, 600, "black");
 		} else {
-			
+						
 			// Moves the ball
 			TennisBallX = TennisBallX + Math.cos(TennisBallAngle) * TennisBallSpeed / TimerRunInterval;
 			TennisBallY = TennisBallY - Math.sin(TennisBallAngle) * TennisBallSpeed / TimerRunInterval;
 
 			// Moves the player and opponent racket, the opponent speeds up with difficulty, tracks the ball in defense, go back toward the middle in offense
 			if ((MouseY >= 0) && (MouseY <= 999)) TennisCharacterLeftRacket = MouseY;
-			if ((Math.sin(TennisBallAngle) > 0) && (TennisBallY > TennisCharacterRightRacket + 55)) TennisCharacterRightRacket = TennisCharacterRightRacket + (MiniGameDifficultyRatio / TimerRunInterval);
-			if ((Math.sin(TennisBallAngle) > 0) && (TennisBallY < TennisCharacterRightRacket - 55)) TennisCharacterRightRacket = TennisCharacterRightRacket - (MiniGameDifficultyRatio / TimerRunInterval);
-			if ((Math.sin(TennisBallAngle) < 0) && (TennisCharacterRightRacket < 450)) TennisCharacterRightRacket = TennisCharacterRightRacket + (MiniGameDifficultyRatio / TimerRunInterval);
-			if ((Math.sin(TennisBallAngle) < 0) && (TennisCharacterRightRacket > 550)) TennisCharacterRightRacket = TennisCharacterRightRacket - (MiniGameDifficultyRatio / TimerRunInterval);
+			if ((Math.cos(TennisBallAngle) > 0) && (TennisBallY > TennisCharacterRightRacket + 55)) TennisCharacterRightRacket = TennisCharacterRightRacket + (MiniGameDifficultyRatio / TimerRunInterval);
+			if ((Math.cos(TennisBallAngle) > 0) && (TennisBallY < TennisCharacterRightRacket - 55)) TennisCharacterRightRacket = TennisCharacterRightRacket - (MiniGameDifficultyRatio / TimerRunInterval);
+			if ((Math.cos(TennisBallAngle) < 0) && (TennisCharacterRightRacket < 450)) TennisCharacterRightRacket = TennisCharacterRightRacket + (MiniGameDifficultyRatio / TimerRunInterval);
+			if ((Math.cos(TennisBallAngle) < 0) && (TennisCharacterRightRacket > 550)) TennisCharacterRightRacket = TennisCharacterRightRacket - (MiniGameDifficultyRatio / TimerRunInterval);
 
 			// Bounces on the upper and lower side
 			if (TennisBallY < 20) {
 				TennisBallY = 20 + (20 - TennisBallY);
-				TennisBallAngle = Math.acos((Math.cos(TennisBallAngle) * -1));
+				TennisBallAngle = Math.PI + Math.acos((Math.cos(TennisBallAngle) * -1));
 			}
 			if (TennisBallY > 980) {
 				TennisBallY = 980 - (TennisBallY - 980);
-				TennisBallAngle = (Math.PI * 2) - Math.acos((Math.cos(TennisBallAngle) * -1));
+				TennisBallAngle = Math.PI - Math.acos((Math.cos(TennisBallAngle) * -1));
 			}
 
 			// If the racket hits the ball, we bounce it at an angle linked to the racket vs ball Y position
-			if ((Math.sin(TennisBallAngle) < 0) && (TennisBallX >= 500) && (TennisBallX <= 550) && (TennisBallY >= TennisCharacterLeftRacket - 110) && (TennisBallY <= TennisCharacterLeftRacket + 110)) {
+			if ((Math.cos(TennisBallAngle) < 0) && (TennisBallX >= 500) && (TennisBallX <= 550) && (TennisBallY >= TennisCharacterLeftRacket - 110) && (TennisBallY <= TennisCharacterLeftRacket + 110)) {
 				TennisBallAngle = (Math.PI * 0.4 * ((TennisCharacterLeftRacket - TennisBallY) / 110));
 				TennisBallSpeed = TennisBallSpeed + 20;
 			}
-			if ((Math.sin(TennisBallAngle) > 0) && (TennisBallX >= 1450) && (TennisBallX <= 1500) && (TennisBallY >= TennisCharacterRightRacket - 110) && (TennisBallY <= TennisCharacterRightRacket + 110)) {
-				TennisBallAngle = Math.PI + (Math.PI * 0.4 * ((TennisCharacterLeftRacket - TennisBallY) / 110));
+			if ((Math.cos(TennisBallAngle) > 0) && (TennisBallX >= 1450) && (TennisBallX <= 1500) && (TennisBallY >= TennisCharacterRightRacket - 110) && (TennisBallY <= TennisCharacterRightRacket + 110)) {
+				TennisBallAngle = Math.PI + (Math.PI * 0.4 * ((TennisBallY - TennisCharacterRightRacket) / 110));
 				TennisBallSpeed = TennisBallSpeed + 20;
 			}
 			

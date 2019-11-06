@@ -3,9 +3,9 @@ Speak more clearly if you want something.
 Sprich deutlicher, wenn du etwas willst.
 (She willingly opens her mouth.)
 (Sie öffnet widerstandslos ihren Mund.)
-(She grins at you.) was that it. 
+(She grins at you.) Was that it?
 (Sie grinst dich an.) War das alles?
-(She sighs and turns around while you restrain her arms.)  Is really tight.
+(She sighs and turns around while you restrain her arms.)  It's really tight.
 (Sie seufzt und dreht sich um, als du ihre Arme fesselst.) Das ist echt eng.
 (You free her arms and she nods happily.)  Thanks a lot.
 (Du befreist ihre Arme und sie nickt glücklich.) Vielen Dank.
@@ -16,16 +16,16 @@ Sprich deutlicher, wenn du etwas willst.
 (She looks puzzled as you restrain her feet.)  I'll stay on guard here.
 (Sie guckt verwirrt, als du ihre Füße fesselst.) Ich halte hier die Stellung.
 (You release her feet and she wiggles them.)  Thanks, it was troublesome.
-(Du befreist ihre Füße und sie wackelt mit ihnen herum.) Danke, das war problematisch.
-(You strap the collar on her while she blushes.)  Does this really have to be?
+(Du befreist ihre Füße und sie wackelt mit ihnen herum.) Danke, das war lästig.
+(You strap the collar on her while she blushes.)  Is this really necessary?
 (Du legst ihr das Halsband um und sie wird rot.) Muss das wirklich sein?
-(You remove the collar around her neck.)  Thanks.
+(You remove the collar from her neck.)  Thanks.
 (Du nimmst ihr das Halsband ab.) Danke.
-(You snap the belt around her waist and crotch while she sighs.)  Anyway this is not a trick.
-(Du lässt den Gürtel um ihre Taille zuschnappen und sie seufzt.) Zumindest das ist kein Trick.
+(You snap the belt around her waist and crotch while she sighs.)  This is certainly not a trick.
+(Du lässt den Gürtel um ihre Taille zuschnappen und sie seufzt.) Das ist garantiert kein Trick.
 (You unlock the belt from her waist and she smiles.)  Thanks a lot DialogPlayerName.
 (Du öffnest den Gürtel von ihrer Taille und sie lächelt.) Vielen Dank, DialogPlayerName.
-(You strap the device on her head as she nods slowly.)  Dark in here.
+(You strap the device on her head as she nods slowly.)  It's dark in here.
 (Du schnallst ihr das Ding um den Kopf und sie nickt langsam.) Ganz schön dunkel hier drin.
 (You remove the device and she nods rapidly.)  Thanks a million, this is much better.
 (Du nimmst das Ding ab und sie nickt energisch.) Tausend Dank, das ist viel besser.
@@ -37,14 +37,14 @@ Sprich deutlicher, wenn du etwas willst.
 (Du peitschst ihren Hintern kräftig aus und sie seufzt.) Was tut man nicht alles für die Show.
 (She grumbles as you strike her butt with the crop.)  For the show.
 (Sie grummelt, als du ihren Hintern mit der Gerte schlägst.) Was tut man nicht alles für die Show.
-(She tries to fight back.)  It should be like that.
+(She tries to fight back.)  This is how it's meant to be.
 (Sie versucht sich zu wehren.) So sollte es sein.
-(You remove the device.)  Thanks, so can work again.
+(You remove the device.)  Thanks, now can work again.
 (Du nimmst es ab.) Danke, so kann ich wieder arbeiten.
-(She looks surprised.) Ups?
+(She looks surprised.) Oops?
 (Sie wirkt überrascht.) Ups?
-(She looks irritated.) Thanks, that fine?
-(Sie wirkt gereizt.) Danke, war's das?
+(She looks confused.) Thanks, are we done?
+(Sie wirkt irritiert.) Danke, war's das?
 (She whimpers as you use the device on her breast.)  Sorry to object, but this isn't very convenient or comfortable.
 (Sie wimmert, als du es an ihrer Brust anwendest.) Ich will mich ja nicht einmischen, aber das ist weder praktisch noch angenehm.
 (She grumbles as you use remove the item.)  Be thoughtful and don't remove anything until I'm hurt and broken.
@@ -55,9 +55,9 @@ Sprich deutlicher, wenn du etwas willst.
 (Du steckst das Ei hinein, aber sie reagiert kaum.) Ich will ja hier nicht die Wunschzettelsub spielen, aber das Ei würde bei Anderen mehr bewirken.
 (She doesn't react as you remove the egg.)  Maybe it doesn't work, I didn't feel a thing in there.
 (Sie reagiert nicht, als du das Ei herausnimmst.) Vielleicht ist es kaputt, ich hab da drin nichts gespürt.
-(She fights against.) Like the great master Houdini?
-(Sie wehrt sich.) Wie der große Meister Houdini?
-(She breathes.) Finally.  What should that be?
+(She struggles against it.) Like the great master Houdini?
+(Sie kämpft dagegen an.) Wie der große Meister Houdini?
+(She catches her breath.) Finally.  What was that supposed to be?
 (Sie atmet durch.) Endlich. Was sollte das denn?
 Welcome to the theater 
 Willkommen im Theater!
@@ -77,7 +77,7 @@ Was möchtest du wissen?
 Show me one of your magic tricks.
 Zeige mir einen deiner Zaubertricks.
 ###_NPC
-(She snaps her fingers) And you've already changed clothes with my assistant. 
+(She snaps her fingers.) And just like that, you've swapped clothes with my assistant.
 (Sie schnippst mit den Fingern.) Und schon hast du mit meiner Assistentin die Kleidung getauscht.
 ###_PLAYER
 The show can begin.
@@ -89,18 +89,18 @@ Willkommen, verehrtes Publikum.
 (Squirm in the shackles and seek help.)
 (Dich hilfesuchend in den Ketten winden.)
 ###_NPC
-I can not work like that. Good Buy.
+I can not work like that. Goodbye.
 So kann ich nicht arbeiten. Auf Wiedersehen.
 ###_PLAYER
-I'm ready for the next Trick.
+I'm ready for the next trick.
 Ich bin bereit für den nächsten Trick.
 I did it and I want to stop.
 Ich bin fertig und möchte aufhören.
 ###_NPC
-(She gives you the income of REPLACEMONEY $.)
+(She gives you the income of REPLACEMONEY$.)
 (Sie gibt dir den Lohn von REPLACEMONEY $.)
 ###_PLAYER
-Goodbye. (Leave)
+Goodbye. (Leave.)
 Wiedersehen. (Dialog beenden.)
 What is this room? 
 Was ist das für ein Raum?
@@ -108,85 +108,81 @@ Was ist das für ein Raum?
 The Houdini-Theater in which a magic show will be performed.
 Das Houdini-Theater, wo eine Zaubershow aufgeführt wird.
 ###_PLAYER
-What brings me the participation?
+What's in it for me if I participate?
 Was bringt mir die Teilnahme?
 ###_NPC
 As an assistant, you can earn some money.
 Als Assistentin kannst du etwas Geld verdienen.
 ###_PLAYER
-I can participate in the magic show?
+Can I participate in the magic show?
 Kann ich bei der Zaubershow mitwirken?
 ###_NPC
-I am still looking for a escape artist as assistant.
+I am still looking for an escape artist as an assistant.
 Ich bin noch auf der Suche nach einer Entfesselungskünstlerin als Assistentin.
 ###_PLAYER
 How does the payment work?
 Wie funktioniert die Bezahlung?
 ###_NPC
-You get paid for tricks. With every trick your income goes up to the maximum limit.
+You get paid for tricks. With every trick your income increases up to the maximum limit.
 Du wirst für Tricks bezahlt. Mit jedem Trick erhöht sich dein Lohn bis zur Obergrenze.
 ###_PLAYER
 No further questions.
 Keine weiteren Fragen.
 ###_NPC
-Then enjoy the show.
+Enjoy the show then.
 Dann viel Spaß bei der Show.
 ###_PLAYER
-(listen)
+(Listen.)
 (Zuhören.)
 ###_NPC
-Payment is made at the end of the show. If you fail in a trick, you fly off the stage and go out.
+Payment is made at the end of the show. If you fail during a trick, you'll get thrown off the stage and have to leave.
 Die Bezahlung erfolgt am Ende der Show. Misslingt dir ein Trick, fliegst du von der Bühne und musst gehen.
 ###_PLAYER
-(wait)
+(Wait.)
 (Warten.)
 ###_NPC
 Would you like to join the show?
 Möchtest du bei der Show mitmachen?
 ###_PLAYER
-Yes gladly.
+Yes, gladly.
 Ja, gerne.
 ###_NPC
-Then tell my assistant to change clothes the show starts.
+Then tell my assistant to change clothes so the show can start.
 Dann sag meiner Assistentin, dass sie sich umziehen soll, weil die Show anfängt.
 ###_PLAYER
-No, it's enough for me.
+No, that's enough for me.
 Nein, das reicht mir.
 ###_NPC
-Pity, goodbye. Here is your Dress back.
+Pity, goodbye. Here are your clothes.
 Schade, auf Wiedersehen. Hier hast du deine Kleidung zurück.
-###_PLAYER
-(Wait)
-(Warten.)
-###_NPC
-Your task: Bind me and then give me the sign to start.
+Your task: bind me and then give me the signal to start.
 Deine Aufgabe: Fessele mich und gib mir das Zeichen zum Anfangen.
 ###_PLAYER
-Who should I tie up?
+Whom should I tie up?
 Wen sollte ich fesseln?
 ###_NPC
-Me, I want to show a trick.
+Me, I want to perform a trick.
 Mich, ich will einen Trick vorführen.
 ###_PLAYER
-How should I tie up?
-Wie sollte ich fesseln?
+What restraints should I use?
+Welche Fesseln sollte ich verwenden?
 ###_NPC
-With five objects for eye, mouth, arms, legs and feet.
+Use five restraints for the eyes, mouth, arms, legs and feet.
 Benutze fünf Gegenstände für Augen, Mund, Arme, Beine und Füße.
 ###_PLAYER
-(Show that you are done)
-(Zeigen, dass du fertig bist.)
+(Signal her that you are done.)
+(Signalisieren, dass du fertig bist.)
 ###_NPC
 Now show the audience how to get out of there.
 Jetzt zeige dem Publikum, wie du da rauskommst.
 ###_PLAYER
-That was easy. Let's show the next trick 
+That was easy. Let's do the next trick.
 Das war einfach. Lass den nächsten Trick sehen.
 ###_NPC
 Applause for the artist.
 Applaus für die Künstlerin.
 ###_PLAYER
-(Give up and beg for help)
+(Give up and beg for help.)
 (Aufgeben und um Hilfe betteln.)
 ###_NPC
 Your performance is over.
@@ -195,82 +191,78 @@ Dein Auftritt ist vorbei.
 (Turn away.)
 (Dich wegdrehen.)
 ###_NPC
-go over and free my assistant.
+Go over there and free my assistant.
 Geh rüber und hilf meiner Assistentin.
 ###_PLAYER
-(Leave)
+(Leave.)
 (Dialog beenden.)
 ###_NPC
-Your task: Dance a short Time, I perform some Tricks with my Assistant.
+Your task: dance a while, I'll perform some tricks with my assistant.
 Deine Aufgabe: Tanze eine Weile, während ich mit meiner Assistentin ein paar Tricks vorführe.
 ###_PLAYER
 (Dance forcefully.)
 (Energisch tanzen.)
 ###_NPC
-(The Performer shows some little tricks.)
-(Die Magierin führt ein paar kleine Tricks vor.)
+(The performer shows the audience a few little tricks.)
+(Die Magierin führt dem Publikum ein paar kleine Tricks vor.)
 ###_PLAYER
-(Dance devot.)
+(Dance submissively.)
 (Devot tanzen.)
 (Wait for your next trick.)
 (Auf deinen nächsten Trick warten.)
 ###_NPC
-Your task: Bind my Assistant and then give me the sign to start.
+Your task: bind my assistant and then give me the signal to start.
 Deine Aufgabe: Fessele meine Assistentin und gib mir das Zeichen zum Anfangen.
-Please tie my Assistant.
+Please tie my assistant.
 Bitte fessele meine Assistentin.
-###_PLAYER
-That was easy. Let's show the next trick.
-Das war einfach. Lass den nächsten Trick sehen.
-###_NPC
-Your task: Escape from a wooden Box with some light tie.
+Your task: escape from a wooden box and some light bondage.
 Deine Aufgabe: Entkomme leicht gefesselt aus einer Holzkiste.
 ###_PLAYER
 (Prepare the trick.)
 (Den Trick vorbereiten.)
 ###_NPC
-The question is, can she escape
+The question is, can she escape?
 Die Frage lautet: Kann sie sich befreien?
 ###_PLAYER
-Her I am, the Show goes on.
+Here I am, the show goes on.
 Hier bin ich, die Show geht weiter.
 ###_NPC
 Applause for the escape.
 Applaus für diesen Ausbruch.
 ###_PLAYER
-I escaped happily and finish the show.
+I escaped and am happy to finish the show.
 Ich bin entkommen und würde gern aufhören.
 ###_NPC
-(She gives you the income of REPLACEMONEY $.) will you come back?
+(She gives you the income of REPLACEMONEY$.) Will you come back?
 (Sie gibt dir den Lohn von REPLACEMONEY $.) Kommst du wieder?
 ###_PLAYER
-(knock for help.)
+(Knock for help.)
 (Um Hilfe klopfen.)
 ###_NPC
-She conjures a few coins out of nowhere and holds them out to you. 
+(She conjures a few coins out of nowhere and holds them out to you.)
 Sie beschwört ein paar Münzen aus dem Nichts und hält sie dir entgegen.
 ###_PLAYER
-take them.
+(Take them.)
 (Sie nehmen.)
 ###_NPC
-You get REPLACEMONEY $.
+(You get REPLACEMONEY$.)
 Du erhältst REPLACEMONEY $.
 ###_PLAYER
-give her back.
+(Give them back.)
 (Sie ihr zurückgeben.)
 ###_NPC
-She performs another card trick and the show continues.
+(She performs another card trick and the show continues.)
 Sie führt einen weiteren Kartentrick vor und die Show geht weiter.
 ###_PLAYER
-(Entertain the audience)
+(Entertain the audience.)
 (Das Publikum unterhalten.)
 ###_NPC
-Your task: Escape from a wooden Box with some heavy tie.
+Your task: escape from a wooden box and some heavy bondage.
 Deine Aufgabe: Entkomme stark gefesselt aus einer Holzkiste.
-Crooked, will we ever see her again? 
-Krass, ob wir sie wohl jemals wiedersehen?
+Incredible, will we ever see her again?
+Unglaublich, ob wir sie wohl jemals wiedersehen?
 ###_PLAYER
-Nothing can stop me, it goes on. 
+Nothing can stop me, it goes on.
 Nichts kann mich aufhalten, weiter geht's.
 ###_NPC
 Cheers for the feat.
@@ -279,56 +271,56 @@ Ein Jubeln für diese Leistung, bitte.
 I need a break and get out of the show.
 Ich brauche eine Pause von dieser Show.
 ###_NPC
-(She gives you the income of REPLACEMONEY $.) Thank you so much.
+(She gives you the income of REPLACEMONEY$.) Thank you so much.
 (Sie gibt dir den Lohn von REPLACEMONEY $.) Vielen Dank.
-Now the classic. Despite being handcuffed, she is able to escape from a water-filled milk can?
+Now the classic. Despite being handcuffed, will she be able to escape from a water-filled milk can?
 Jetzt kommt der Klassiker. Kann sie sich trotz ihrer Handschellen aus einer mit Wasser gefüllten Milchkanne befreien?
 ###_PLAYER
-(Dive skillfully under the water.)
+(Dive under the water skillfully.)
 (Gekonnt unter Wasser tauchen.)
 ###_NPC
-(Fastens the lid with three bolts.) 
+(She fastens the lid with three bolts.)
 (Sie befestigt den Deckel mit drei Schrauben.)
 ###_PLAYER
-I am Houdini's true heritage.
+I am Houdini's true heiress.
 Ich bin Houdinis wahre Erbin.
-(breathe) I have enough. 
+(Catch your breath.) I've had enough.
 (Aufatmen.) Ich hab genug.
 ###_NPC
-(She gives you the income of REPLACEMONEY $.) Thanks for Show.
+(She gives you the income of REPLACEMONEY$.) Thanks for the show.
 (Sie gibt dir den Lohn von REPLACEMONEY $.) Danke für die Show.
-Your task: Escape from the incredible Water Torture Cell.
+Your task: escape from the incredible water torture cell.
 Deine Aufgabe: Entkomme aus der unglaublichen Wasserfolterkammer.
 ###_PLAYER
 (Prepare for the task.)
 (Dich auf die Aufgabe vorbereiten.)
 ###_NPC
-A few piranhas for motivation? 
+A few piranhas for motivation?
 Wie wär's mit ein paar Piranhas als Ansporn?
 ###_PLAYER
-Here I am the shark. Go on, go on. 
+Here I am the shark. Go on, go on.
 Hier bin ich der weiße Hai. Immer weiter.
-The submarine has appeared. I need a break. 
+The submarine has emerged. I need a break.
 Das U-Boot ist aufgetaucht. Ich brauche eine Pause.
 (Wink for help.)
 (Um Hilfe zwinkern.)
-(wait and smile)
+(Wait and smile.)
 (Warten und lächeln.)
 ###_NPC
-I have to rebuild the stage. Sing as long as a song with my assistant.
+I have to redecorate the stage. In the meantime, sing a song with my assistant.
 Ich muss die Bühne umbauen. Singe solange einen Song mit meiner Assistentin.
 ###_PLAYER
-(Walk away)
+(Walk away.)
 (Weggehen.)
 ###_NPC
-How did she get dressed again? Go over and tell her to change for the show.
+How did she get dressed again? Go over to her and tell her to change for the show.
 Wie hat sie sich denn wieder angezogen? Gehe zu ihr und sag ihr, sie soll sich für die Show umziehen.
 ###_PLAYER
-The Show must go on.
+The show must go on.
 Die Show muss weitergehen.
 ###_NPC
-Applause for the both.
+Applause for both of them.
 Applaus für die Beiden.
 ###_PLAYER
-God bye, I leave the Show.
+Goodbye, I'm leaving the show.
 Auf Wiedersehen, ich verlasse die Show.

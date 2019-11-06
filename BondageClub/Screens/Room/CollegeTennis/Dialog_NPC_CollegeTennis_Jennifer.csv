@@ -9,7 +9,7 @@ TennisDefeat,,,(She looks happy.)  Good game!  But you need some practice.  We c
 0,,,(She frowns.)  Hello my ex-protege.  Are you here to play some tennis?,,"JenniferStatusIs(""ExOwner"")"
 0,,,Hello there.  Would you like to play tennis with me?,,
 0,,Who are you?,"I'm Jennifer, pleased to meet you.  I study and live here at the college.",DialogRemove(),"JenniferStatusIs("""")"
-0,,How have you been?,(She shrugs.)  Not too bad I guess.  Nothing exciting is going on right now.,DialogRemove(),"!JenniferStatusIs("""")"
+0,,How have you been?,"(She shrugs.)  Not too bad, I guess.  Nothing exciting is going on right now.",DialogRemove(),"!JenniferStatusIs("""")"
 0,,You're playing alone?,"(She sighs.)  Yeah, I'm practicing alone today.",DialogRemove(),
 0,,How do tennis points work?,"The first point is 15, second is 30 and third is 40.  You win if you score after 40.  There's a tie breaker if we are both at 40.",,
 0,10,We could play a tennis game.,Alright!  It's time for some sport.  (She starts to warm up.),,
@@ -28,11 +28,11 @@ TennisDefeat,,,(She looks happy.)  Good game!  But you need some practice.  We c
 22,,Let's go now!  (Bring her to your room.),,InviteToPrivateRoom(),
 22,0,Not now.,Very well.  Would you like to play tennis with me?,,
 100,10,Another match?  Sure!,That's the spirit!  I'm glad you still have some energy left.,,
-100,110,That was a great game.,(She smiles.)  Yes!  I love a good challenge.  Winning or losing ins't very important.,,JenniferWillJoinRoom
+100,110,That was a great game.,(She smiles.)  Yes!  I love a good challenge.  Winning or losing isn't very important.,,JenniferWillJoinRoom
 110,120,I love your attitude.,Thanks a lot!  I'm glad you came to the court today.,,
 110,0,You won't win with that attitude.,"(She sighs.)  Yes, maybe you're right.  Let's talk about something else.",,
 120,,I need to go though.,(She nods.)  Alright.  Come back whenever you want.,,
-120,,We could become friends.,(She seems very excited.)  Wow!  I'd love to have a fr...  I mean...  I'd love to be your friend.,,
+120,130,We could become friends.,(She seems very excited.)  Wow!  I'd love to have a fr...  I mean...  I'd love to be your friend.,,
 130,140,Alright friend!,You're so nice.  Do you live near the campus?,,
 130,10,Another game my friend?,(She nods happily.)  Absolutely!  I want my revenge.,,
 140,0,I live out of town.,That's fine.  Would you like to play another match?,,
@@ -44,7 +44,7 @@ TennisDefeat,,,(She looks happy.)  Good game!  But you need some practice.  We c
 200,10,"Yes, I want my revenge.",That's the spirit!  I'm glad you still have some energy left.,,
 200,0,"No, that's enough.",Very well.  We can play later if you want.,,
 1000,,,Hey!  Are you up for a tennis match against me?,,
-1000,,Who are you?,"I'm DialogCharacterName, I'm a student here.",DialogRemove(),
+1000,,Who are you?,I'm a student here.  Tennis is my favorite sport.  Do you want to play?,DialogRemove(),
 1000,,I'm DialogPlayerName.,It's nice to meet you.  Do you want to play against me?,DialogRemove(),
 1000,,You're playing alone?,No.  I'm waiting for a challenger.,DialogRemove(),
 1000,,How do tennis points work?,"The first point is 15, second is 30 and third is 40.  You win if you score after 40.  There's a tie breaker if we are both at 40.",,
@@ -52,8 +52,8 @@ TennisDefeat,,,(She looks happy.)  Good game!  But you need some practice.  We c
 1000,,I need to go.  (Leave her.),,DialogLeave(),
 1010,,Please go easy.  (Play tennis.),,"GameStart(""Easy"")",
 1010,,Let's do a regular game.  (Play tennis.),,"GameStart(""Normal"")",
-1010,1011,We can bet some money on the game.,Are you willing to bet 25$ on the game?  The winner keeps everything.,,DialogMoneyGreater(25)
-1010,,We can bet some money on the game.,You're too poor for that.  Get 25$ and we can bet it on a tennis match.,,!DialogMoneyGreater(25)
+1010,1011,We can bet some money on the game.,Are you willing to bet 25$ on the game?  The winner keeps everything.  I won't go easy on you.,,DialogMoneyGreater(25)
+1010,,We can bet some money on the game.,You're too poor for that.  Get 25$ and we can bet it on a real tennis match.,,!DialogMoneyGreater(25)
 1010,1000,Maybe we can play later.,"Sure, let me know when you're ready.",,
 1011,,"Here's 25$, you're going down.  (Play tennis.)",,"GameStart(""Hard"")",
 1011,1000,Forget it.,Chicken!,,
