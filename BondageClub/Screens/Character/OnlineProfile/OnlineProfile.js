@@ -1,95 +1,39 @@
 "use strict";
-
 var OnlineProfileBackground = "Sheet";
-var OnlineProfileIsEditMode = false;
-var OnlineProfileDescriptionInputMaxLength = 1000;
 
+// When the online profile screens loads, we create the text area
 function OnlineProfileLoad() {
-    OnlineProfileSetEditMode(false);
-}
-
-function OnlineProfileRun() {
-    var C = InformationSheetSelection;
-
-    MainCanvas.textAlign = "center";
-    
-    // Header text
-    DrawText("- Online Profile -", 1000, 100, "Black", "Gray");
-    
-    MainCanvas.textAlign = "left";
-
-    var desc = ElementValue("DescriptionInput");
-    DrawText("Description: ("+ desc.length + "/" + OnlineProfileDescriptionInputMaxLength + " characters)", 100, 150, "Black", "Gray");
-    ElementPositionFix("DescriptionInput", 36, 100,200,1650,750);
-
-    MainCanvas.textAlign = "center";
-
-    // Buttons
-    DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png", "Back");
-    if (C.ID == 0) {
-        if (OnlineProfileIsEditMode) {
-            DrawButton(1815, 420, 90, 90, "", "White", "Icons/Cancel.png", "Cancel");
-            DrawButton(1815, 535, 90, 90, "", "White", "Icons/ColorSelect.png", "Save Changes");
-        } else {
-            DrawButton(1815, 420, 90, 90, "", "White", "Icons/Use.png", "Edit");
-        }
-    }
-}
-
-function OnlineProfileClick() {
-    var C = InformationSheetSelection;
-    if (CommonIsClickAt(1815, 75, 90, 90)) OnlineProfileExit();
-    if ((C.ID == 0)) {
-        if (OnlineProfileIsEditMode) {
-            if (CommonIsClickAt(1815, 420, 90, 90)) OnlineProfileSetEditMode(!OnlineProfileIsEditMode);
-            if (CommonIsClickAt(1815, 535, 90, 90)) OnlineProfileSave();
-        } else {
-            if (CommonIsClickAt(1815, 420, 90, 90)) OnlineProfileSetEditMode(!OnlineProfileIsEditMode);
-        }
-    }
-}
-
-function OnlineProfileExit() {
-    ElementRemove("DescriptionInput");
-    
-    CommonSetScreen("Character", "InformationSheet");
-}
-
-function OnlineProfileSetEditMode(isEdit) {
-    OnlineProfileIsEditMode = isEdit;
-
-    var C = InformationSheetSelection;
-
     ElementRemove("DescriptionInput");
     ElementCreateTextArea("DescriptionInput");
-
     var DescriptionInput = document.getElementById("DescriptionInput");
-    DescriptionInput.setAttribute("maxlength", OnlineProfileDescriptionInputMaxLength);
-    DescriptionInput.value = C.Description;
-
-    if (!isEdit) {
-        DescriptionInput.setAttribute("readonly", "readonly");
-    }
+    DescriptionInput.setAttribute("maxlength", 1000);
+    DescriptionInput.value = (InformationSheetSelection.Description != null) ? InformationSheetSelection.Description : "";
+    if (InformationSheetSelection.ID != 0) DescriptionInput.setAttribute("readonly", "readonly");
 }
 
-function OnlineProfileSave(){
-    var C = InformationSheetSelection;
+// Run the online profile screens
+function OnlineProfileRun() {
 
-    var isChanged = false;
+    // Sets the screen controls
+    var desc = ElementValue("DescriptionInput");
+    DrawText(TextGet((InformationSheetSelection.ID == 0) ? "EnterDescription" : "ViewDescription").replace("CharacterName", InformationSheetSelection.Name), 910, 105, "Black", "Gray");
+    ElementPositionFix("DescriptionInput", 36, 100, 160, 1790, 750);
+    DrawButton(1820, 60, 90, 90, "", "White", "Icons/Exit.png");
 
-    var desc = ElementValue("DescriptionInput").trim();
-    if (C.Description != desc) {
-        C.Description = desc;
-        isChanged = true;
-    }
+}
 
-    if (isChanged) {
-        ServerSend("AccountUpdate",
-            {
-                Description: C.Description
-            });
-        ChatRoomCharacterUpdate(C);
-    }
+// When the player clicks in the online profile form
+function OnlineProfileClick() {
+	
+	// If the current character is the player, we update the description
+    if (CommonIsClickAt(1820, 60, 90, 90)) {
+		if ((InformationSheetSelection.ID == 0) && (InformationSheetSelection.Description != ElementValue("DescriptionInput").trim())) {
+			InformationSheetSelection.Description = ElementValue("DescriptionInput").trim();
+			ServerSend("AccountUpdate", { Description: InformationSheetSelection.Description });
+			ChatRoomCharacterUpdate(InformationSheetSelection);
+		}
+		ElementRemove("DescriptionInput");
+		CommonSetScreen("Character", "InformationSheet");
+	}
 
-    OnlineProfileSetEditMode(false);
 }

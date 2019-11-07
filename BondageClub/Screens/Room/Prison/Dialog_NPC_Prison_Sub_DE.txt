@@ -1,13 +1,13 @@
 ###_NPC
 Rest is the first civil duty.
 Ruhe ist die oberste Bürgerpflicht.
-(She opens her mouth wide.)  It must be well.
+(She opens her mouth wide.)  I guess there's no way around it.
 (Sie macht den Mund weit auf.) Wenn es sein muss.
 (You remove her gag and she sighs.)  Finally.
 (Du nimmst ihren Knebel ab und sie seufzt.) Endlich.
-(You push some earplugs into place.) Oh everything is so quiet now.
+(You put some earplugs into place.) Oh, everything is so quiet now.
 (Du steckst ihr ein paar Ohrstöpsel hinein.) Oh, jetzt ist alles so leise.
-(You pull the earplugs out.) Oh i can hear you clearly again.
+(You pull the earplugs out.) Oh, I can hear you clearly again.
 (Du ziehst die Ohrstöpsel heraus.) Oh, jetzt kann ich Sie wieder verstehen.
 (She tugs at the shackles.) Is that necessary? 
 (Sie zerrt an den Fesseln.) Ist das nötig?
@@ -33,9 +33,9 @@ Ruhe ist die oberste Bürgerpflicht.
 (Sie versucht sich zu wehren, als du ihr das Teil anlegst.)
 (She seems relieved as you unlock the device.)
 (Sie wirkt erleichtert, als du das Teil aufschließt.)
-(You strap the device on her head.)  A dark cell in the cell in the Prison.
+(You strap the device on her head.)  A dark cell in the prison cell.
 (Du schnallst ihr das Ding um den Kopf.) Eine dunkle Zelle in der Gefängniszelle.
-(You remove the device and she looks at you.)  Fiat Lux.
+(You remove the device and she looks at you.)  Fiat lux.
 (Du nimmst das Ding ab und sie sieht dich an.) Es werde Licht.
 (You prepare a full body harness on her torso as she blushes.)  Something was missing.
 (Du legst einen Harnisch um ihren Körper und sie errötet.) Es hat etwas gefehlt.
@@ -45,95 +45,95 @@ Ruhe ist die oberste Bürgerpflicht.
 (Sie stöhnt und genießt den Schmerz, als du ihre Brüste und ihren Oberkörper auspeitschst.)
 (She jumps and makes her breast wiggle with each hit.)  I am a bad person.
 (Sie zuckt und wackelt bei jedem Treffer mit der Brust.) Ich bin ein schlechter Mensch.
-(She trembles and moans with each lashes.)  Punishment is needed!
+(She trembles and moans with each lashe.)  I need to be punished!
 (Sie zittert und stöhnt bei jedem Hieb.) Ich brauche Bestrafung!
 (You whip her butt with the leather crop as she wiggles it for more.)
 (Du peitschst ihr mit der Ledergerte auf den Hintern, mit dem sie einladend wackelt.)
-(She wriggles in her shackles.)  I confess everything you want.
+(She wriggles in her shackles.)  I'll confess anything you want.
 (Sie windet sich in ihren Fesseln.) Ich gestehe alles, was du willst.
 (She looks surprised.) Sweet pains.
 (Sie wirkt überrascht.) Süßer Schmerz.
-Uff. I could not have lasted much longer.
+Oof. I could not have lasted much longer.
 Uff. Das hätte ich nicht viel länger ausgehalten.
 (You restrain her legs with the long hemp rope and suspend her by the feet from the ceiling.)  Oh my god!
 (Du fesselst ihre Beine mit dem langen Hanfseil und lässt sie an den Füßen von der Decke baumeln.) Oh mein Gott!
 (You untie the hemp rope from the ceiling and slowly get her down.)  Wow!  That was quite a ride.
 (Du löst das Hanfseil von der Decke und lässt sie langsam herab.) Wow! Das war echt abgefahren.
-(A girl come in and looks arround) Hello, wat's going on here?
+(A girl comes in and looks around.) Hello, what's going on here?
 (Ein Mädchen kommt herein und schaut sich um.) Hallo, was geht hier vor sich?
 ###_PLAYER
-It's under Construction. Please go out.
+It's under construction. Please leave.
 Es ist noch nicht fertig. Bitte geh wieder.
-I search for a curious person in Handcuffs for some Tests.
+I'm looking for a curious person in handcuffs for some tests.
 Ich suche nach neugierigen Leuten in Handschellen.
-(Shoves she into the cell and closes the door)
+(Shove her into the cell and close the door.)
 (Sie in die Zelle schubsen und die Tür verriegeln.)
 ###_NPC
-(She looks surprised)
+(She looks surprised.)
 (Sie wirkt überrascht.)
 ###_PLAYER
-(Strip Search her for a Key)
+(Strip search her for a key.)
 (Leibesvisitation nach einem Schlüssel vornehmen.)
 ###_NPC
 Is that necessary?
 Ist das nötig?
 ###_PLAYER
-(Give her the clothes back)
+(Give her clothes back.)
 (Ihr ihre Kleidung zurückgeben.)
 ###_NPC
-(She Nods slowly)
+(She nods slowly.)
 (Sie nickt langsam.)
 ###_PLAYER
-(Torture)
+(Torture her.)
 (Sie foltern.)
 ###_NPC
-(She looks worried)
+(She looks worried.)
 (Sie sieht besorgt aus.)
 ###_PLAYER
-(let her out)
+(Let her out.)
 (Sie rauslassen.)
 ###_NPC
 Thanks, next time it's your turn.
 Danke, das nächste Mal bist du dran.
 ###_PLAYER
-(Leave her)
+(Leave her.)
 (Dialog beenden.)
-(Spank her Butt)
+(Spank her butt.)
 (Ihr auf den Hintern hauen.)
 ###_NPC
-(She squirms painfully)
+(She squirms painfully.)
 (Sie windet sich vor Schmerz.)
 ###_PLAYER
-(Slap into her Face)
+(Slap her face.)
 (Ihr eine Ohrfeige geben.)
 ###_NPC
-(She whines and is scared)
+(She whines and is scared.)
 (Sie jammert verängstigt.)
 ###_PLAYER
-(Fondle her Brest)
+(Fondle her breast.)
 (Ihre Brust befummeln.)
 ###_NPC
-(She moans joyfully)
+(She moans joyfully.)
 (Sie stöhnt glücklich.)
 ###_PLAYER
-(Tickle her Feet)
+(Tickle her feet.)
 (Ihre Füße kitzeln.)
 ###_NPC
-(She laughs out loud)
+(She laughs out loud.)
 (Sie lacht lauthals.)
 ###_PLAYER
-(massages her neck)
+(Massage her neck.)
 (Ihren Hals massieren.)
 ###_NPC
-(She purrs like a kitten)
+(She purrs like a kitten.)
 (Sie schnurrt wie ein Kätzchen.)
 ###_PLAYER
-(End torture)
+(End her torture.)
 (Die Folter beenden.)
 ###_NPC
-(She breathes in relief)
+(She breathes in relief.)
 (Sie atmet erleichtert auf.)
-Now, it sounds interesting. Her I am.
+Now, that sounds interesting. Here I am.
 Das klingt doch mal interessant. Hier bin ich.
-then I'll go better.
+I guess I'd better go then.
 Dann gehe ich besser.

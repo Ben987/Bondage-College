@@ -5,7 +5,7 @@ function InventoryItemVulvaInflatableVibeDildoLoad() {
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { InflateLevel: 0 };
 	if (DialogFocusItem.Property.InflateLevel == null) DialogFocusItem.Property.InflateLevel = 0;
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Intensity: -1 };
-	if (DialogFocusItem.Property.Intensity == null) DialogFocusItem.Property.Intensity = 0;
+	if (DialogFocusItem.Property.Intensity == null) DialogFocusItem.Property.Intensity = -1;
 }
 
 // Draw the item extension screen

@@ -9,8 +9,12 @@ Remove the suspension first
 Vorher das Hängeseil entfernen
 Must be standing and not suspended first.
 Muss aufrecht stehen und nicht von der Decke hängen.
+Cannot be used when mounted.
+Muss zuerst vom Gerät absteigen.
 Cannot be used with legs spreader.
 Kann nicht mit der Spreizstange kombiniert werden.
+Must remove chastity first.
+Vorher Keuschheitsvorrichtung entfernen.
 Remove the chain to the floor first
 Vorher die Kette zum Boden entfernen
 A collar must be fitted first to attach accessories to.
@@ -21,6 +25,10 @@ Must be collared and not suspended/mounted first.
 Muss ein Halsband tragen und darf nicht hängen/reiten.
 Legs cannot open.
 Die Beine lassen sich nicht spreizen.
+Must free feet frist.
+Vorher die Füße befreien.
+Must remove shackles first.
+Vorher die Ketten entfernen.
 Cancel
 Abbrechen
 Back to character
@@ -33,6 +41,10 @@ Use this item
 Gegenstand benutzen
 Try to struggle out
 Entfesselung versuchen
+Dismount
+Absteigen
+Escape from the item
+Ausbrechen
 Use a lock
 Schloss anbringen
 Unlock the item
@@ -63,6 +75,10 @@ Unlocking...
 Aufschließen...
 Removing...
 Entfernen...
+Dismounting...
+Absteigen...
+Escaping...
+Ausbrechen...
 Locking...
 Abschließen...
 Adding...
@@ -257,6 +273,50 @@ SourceCharacter snugs the straps on DestinationCharacter's straitjacket.
 SourceCharacter zieht die Gurte an DestinationCharacters Zwangsjacke eng.
 SourceCharacter tightens the straps on DestinationCharacter's straitjacket.
 SourceCharacter zieht die Gurte an DestinationCharacters Zwangsjacke stramm.
+SourceCharacter loosens the straps on DestinationCharacter's leather straitjacket.
+SourceCharacter lockert die Gurte an DestinationCharacters Leder-Zwangsjacke.
+SourceCharacter adjusts the straps normally on DestinationCharacter's leather straitjacket.
+SourceCharacter bringt die Gurte von DestinationCharacters Leder-Zwangsjacke in ihre normale Position.
+SourceCharacter snugs the straps on DestinationCharacter's leather straitjacket.
+SourceCharacter zieht die Gurte an DestinationCharacters Leder-Zwangsjacke eng.
+SourceCharacter tightens the straps on DestinationCharacter's leather straitjacket.
+SourceCharacter zieht die Gurte an DestinationCharacters Leder-Zwangsjacke stramm.
+How much do you want to inflate the body bag?
+Wie stark möchtest du den Schlafsack aufblasen?
+Light
+Leicht gefüllt
+Inflated
+Aufgeblasen
+Bloated
+Aufgebläht
+Max
+Maximal
+SourceCharacter adjusts DestinationCharacter's inflatable body bag to be only lightly filled.
+SourceCharacter justiert DestinationCharacters aufblasbaren Schlafsack, sodass er nur leicht aufgeblasen ist.
+SourceCharacter adjusts DestinationCharacter's inflatable body bag to be half filled.
+SourceCharacter justiert DestinationCharacter aufblasbaren Schlafsack, sodass er halb aufgeblasen ist.
+SourceCharacter adjusts DestinationCharacter's inflatable body bag to three quarters filled.
+SourceCharacter justiert DestinationCharacter aufblasbaren Schlafsack, sodass er zu drei Vierteln aufgeblasen ist.
+SourceCharacter adjusts DestinationCharacter's inflatable body bag to fill the maximum amount.
+SourceCharacter justiert DestinationCharacter aufblasbaren Schlafsack, sodass er vollständig aufgeblasen ist.
+How many leather belts do you want to apply?
+Wie viele Ledergurte möchtest du anbringen?
+One
+Einen
+Two
+Zwei
+Three
+Drei
+Four
+Vier
+SourceCharacter restrains DestinationCharacter with only one sturdy leather belt.
+SourceCharacter fesselt DestinationCharacter mit nur einem robusten Ledergurt.
+SourceCharacter restrains DestinationCharacter with two sturdy leather belts.
+SourceCharacter fesselt DestinationCharacter mit zwei robusten Ledergurten.
+SourceCharacter restrains DestinationCharacter with three sturdy leather belts.
+SourceCharacter fesselt DestinationCharacter mit drei robusten Ledergurten.
+SourceCharacter restrains DestinationCharacter with four sturdy leather belts.
+SourceCharacter fesselt DestinationCharacter mit vier robusten Ledergurten.
 Hands
 Hände
 Arms
@@ -275,6 +335,14 @@ SourceCharacter creates a duct tape top on DestinationCharacter and traps her ar
 SourceCharacter wickelt ein Klebeband-Top um DestinationCharacter und fängt ihre Arme darin ein.
 SourceCharacter creates a duct tape mummy on DestinationCharacter and traps her arms in it.
 SourceCharacter mummifiziert DestinationCharacter mit Klebeband und fängt ihre Arme darin ein.
+In-front of body
+Vor dem Körper
+Behind back.
+Hinter dem Rücken.
+SourceCharacter shackles DestinationCharacter's wrist in-front of their body.
+SourceCharacter verkettet DestinationCharacters Handgelenke vor ihrem Körper.
+SourceCharacter shackles DestinationCharacter's wrist behind their back.
+SourceCharacter verkettet DestinationCharacters Handgelenke hinter ihrem Rücken.
 Select the type of gag
 Knebel-Typ wählen
 Small
@@ -331,16 +399,26 @@ SourceCharacter wraps some duct tape onto DestinationCharacter's face.
 SourceCharacter wickelt etwas Klebeband um DestinationCharacters Gesicht.
 SourceCharacter wraps DestinationCharacter's head in tape with multiple layers. 
 SourceCharacter wickelt viele Schichten Klebeband um DestinationCharacters Kopf.
-Select the type of Harness
-Harnisch-Typ wählen
+Select the tie style
+Fesselstil wählen
 Basic Tie
 Einfach
-Diamond Tie
-Diamant
-SourceCharacter uses the rope on DestinationCharacter's to do a basic harness.
-SourceCharacter wickelt Seil als einfachen Harnisch um DestinationCharacter.
-SourceCharacter uses the rope on DestinationCharacter's to do a Diamond style harness.
-SourceCharacter wickelt Seil als Diamant-Harnisch um DestinationCharacter.
+Crotch Rope Tie
+Schrittseil-Fesselung
+Diamond Harness
+Diamantharnisch
+Mermaid Tie
+Meerjungfrau-Fesselung
+SourceCharacter uses the rope on DestinationCharacter to do a basic harness.
+SourceCharacter wendet das Seil an DestinationCharacter an, um einen einfachen Harnisch zu binden.
+SourceCharacter uses the rope on DestinationCharacter to do a crotch rope tie.
+SourceCharacter wendet das Seil an DestinationCharacter an, um eine Schrittseil-Fesselung zu binden.
+SourceCharacter uses the rope on DestinationCharacter to do a Diamond style harness.
+SourceCharacter wendet das Seil an DestinationCharacter an, um einen Diamantharnisch zu binden.
+SourceCharacter uses the rope on DestinationCharacter to do a basic tie.
+SourceCharacter wendet das Seil an DestinationCharacter an, um einen einfache Fesselung zu binden.
+SourceCharacter uses the rope on DestinationCharacter to do a mermaid tie.
+SourceCharacter wendet das Seil an DestinationCharacter an, um eine Meerjungfrau-Fesselung zu binden.
 Item intensity: Disabled
 Intensität: Deaktiviert
 Item intensity: Low
@@ -611,12 +689,6 @@ SourceCharacter inflates DestinationCharacter's gag to the maximum amount.
 SourceCharacter bläst DestinationCharacters Knebel vollständig auf.
 Empty
 Leer
-Light
-Leicht gefüllt
-Inflated
-Aufgeblasen
-Bloated
-Aufgebläht
 Medium
 Mittel
 Heavy
@@ -683,9 +755,13 @@ Whip Paddle
 Peitschenpaddel
 Whip
 Peitsche
+Cattle Prod
+Viehtreiber
+Tennis Racket
+Tennisschläger
 SourceCharacter takes out a Item
 SourceCharacter holt ein(e(n)) Item hervor
-SourceCharacter give DestinationCharacter a Item
+SourceCharacter gives DestinationCharacter a Item
 SourceCharacter gibt DestinationCharacter ein(e(n)) Item
 TurnOff
 Ausschalten

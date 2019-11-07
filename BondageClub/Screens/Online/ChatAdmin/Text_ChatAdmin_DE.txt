@@ -1,0 +1,34 @@
+Room Name
+Raumname
+Description
+Beschreibung
+Ban List
+Bannliste
+Administrator List
+Administratorliste
+Private
+Privat
+Locked
+Abgeschlossen
+Size (2-10)
+Größe (2-10)
+Use member numbers, separated by commas (ex: 3571,541,7001)
+Mitgliedernummern, mit Kommas getrennt (Bsp: 3571,541,7001)
+Room settings can only be updated by administrators
+Raum-Einstellungen können nur von Administratoren bearbeitet werden
+Background
+Hintergrund
+Save
+Speichern
+Exit
+Verlassen
+Cancel
+Abbrechen
+Updating the chat room...
+Chatraum wird aktualisiert...
+This room name is already taken
+Dieser Raumname ist bereits vergeben
+Account error, please try to relog
+Accountfehler, bitter erneut einloggen
+Invalid chat room data detected
+Ungültige Chatraum-Daten erkannt

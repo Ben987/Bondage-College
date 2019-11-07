@@ -1,26 +1,26 @@
 PlayerGagged,,,Speak more clearly if you want something.,,
 ItemMouth,,,(She willingly opens her mouth.),,
-RemoveItemMouth,,,(She grins at you.) was that it. ,,
-ItemArms,,,(She sighs and turns around while you restrain her arms.)  Is really tight.,,
+RemoveItemMouth,,,(She grins at you.) Was that it?,,
+ItemArms,,,(She sighs and turns around while you restrain her arms.)  It's really tight.,,
 RemoveItemArms,,,(You free her arms and she nods happily.)  Thanks a lot.,,
 ItemLegs,,,(She submits to you while you restrain her legs securely.)  I don't need to move anyway.,,
 RemoveItemLegs,,,(You release her legs from the restraint.)  Thanks a lot.,,
 ItemFeet,,,(She looks puzzled as you restrain her feet.)  I'll stay on guard here.,,
 RemoveItemFeet,,,"(You release her feet and she wiggles them.)  Thanks, it was troublesome.",,
-ItemNeck,,,(You strap the collar on her while she blushes.)  Does this really have to be?,,
-RemoveItemNeck,,,(You remove the collar around her neck.)  Thanks.,,
-ItemPelvis,,,(You snap the belt around her waist and crotch while she sighs.)  Anyway this is not a trick.,,
+ItemNeck,,,(You strap the collar on her while she blushes.)  Is this really necessary?,,
+RemoveItemNeck,,,(You remove the collar from her neck.)  Thanks.,,
+ItemPelvis,,,(You snap the belt around her waist and crotch while she sighs.)  This is certainly not a trick.,,
 RemoveItemPelvis,,,(You unlock the belt from her waist and she smiles.)  Thanks a lot DialogPlayerName.,,
-ItemHead,,,(You strap the device on her head as she nods slowly.)  Dark in here.,,
+ItemHead,,,(You strap the device on her head as she nods slowly.)  It's dark in here.,,
 RemoveItemHead,,,"(You remove the device and she nods rapidly.)  Thanks a million, this is much better.",,
 ItemBreastLeatherWhip,,,(She jumps from the searing pain on her breast.)  Ouch!,,
 ItemBreastLeatherCrop,,,(You whip her breast with the leather crop as she whimpers and bows her head.),,
 ItemPelvisLeatherWhip,,,(You whip her butt hard as she sighs.)  For the show.,,
 ItemPelvisLeatherCrop,,,(She grumbles as you strike her butt with the crop.)  For the show.,,
-ItemTorso,,,(She tries to fight back.)  It should be like that.,,
-RemoveItemTorso,,,"(You remove the device.)  Thanks, so can work again.",,
-ItemButt,,,(She looks surprised.) Ups?,,
-RemoveItemButt,,,"(She looks irritated.) Thanks, that fine?",,
+ItemTorso,,,(She tries to fight back.)  This is how it's meant to be.,,
+RemoveItemTorso,,,"(You remove the device.)  Thanks, now can work again.",,
+ItemButt,,,(She looks surprised.) Oops?,,
+RemoveItemButt,,,"(She looks confused.) Thanks, are we done?",,
 ItemBreast,,,"(She whimpers as you use the device on her breast.)  Sorry to object, but this isn't very convenient or comfortable.",,
 RemoveItemBreast,,,(She grumbles as you use remove the item.)  Be thoughtful and don't remove anything until I'm hurt and broken.,,
 ItemNipples,,,"(She whimpers as you use the device on her breast.)  Sorry to object, but this isn't very convenient or comfortable.",,
@@ -28,97 +28,97 @@ RemoveItemNipples,,,(She grumbles as you use remove the item.)  Be thoughtful an
 ItemVulvaVibratingWand,,,"(You massage her pussy with the wand, but she stays cold.)  I'm very sorry.  I'm not in the mood.",,
 VibratingEgg,,,"(You slide the egg inside, but she barely reacts to it.)  I don't want to top from the bottom, but this egg would work better on someone else.",,
 RemoveVibratingEgg,,,"(She doesn't react as you remove the egg.)  Maybe it doesn't work, I didn't feel a thing in there.",,
-SuspensionHempRope,,,(She fights against.) Like the great master Houdini?,,
-RemoveSuspensionHempRope,,,(She breathes.) Finally.  What should that be?,,
+SuspensionHempRope,,,(She struggles against it.) Like the great master Houdini?,,
+RemoveSuspensionHempRope,,,(She catches her breath.) Finally.  What was that supposed to be?,,
 0,,,Welcome to the theater ,,
 0,,"Hello, I'm DialogPlayerName.  Nice to meet you.","Pleased to meet you too.  I'm DialogCharacterName, Would you like to assist me?",DialogRemove(),
 0,10,Can you answer some questions?,What do you want to know?,,
-0,20,Show me one of your magic tricks.,(She snaps her fingers) And you've already changed clothes with my assistant. ,,ShowIsState(1)
+0,20,Show me one of your magic tricks.,"(She snaps her fingers.) And just like that, you've swapped clothes with my assistant.",,ShowIsState(1)
 0,30,The show can begin.,Welcome dear spectators.,ShowStart(),ShowIsState(3)
-0,,(Squirm in the shackles and seek help.),I can not work like that. Good Buy.,TrickEndPerformance(),Player.IsRestrained()
-0,,I'm ready for the next Trick.,,SelectTrick(),ShowIsState(5)
-0,,I did it and I want to stop.,(She gives you the income of REPLACEMONEY $.),ShowPayoff(),ShowIsState(5)
-0,,Goodbye. (Leave),,DialogLeave(),
+0,,(Squirm in the shackles and seek help.),I can not work like that. Goodbye.,TrickEndPerformance(),Player.IsRestrained()
+0,,I'm ready for the next trick.,,SelectTrick(),ShowIsState(5)
+0,,I did it and I want to stop.,(She gives you the income of REPLACEMONEY$.),ShowPayoff(),ShowIsState(5)
+0,,Goodbye. (Leave.),,DialogLeave(),
 10,,What is this room? ,The Houdini-Theater in which a magic show will be performed.,,
-10,,What brings me the participation?,"As an assistant, you can earn some money.",,
-10,,I can participate in the magic show?,I am still looking for a escape artist as assistant.,,
-10,11,How does the payment work?,You get paid for tricks. With every trick your income goes up to the maximum limit.,,
-10,0,No further questions.,Then enjoy the show.,,
-11,10,(listen),"Payment is made at the end of the show. If you fail in a trick, you fly off the stage and go out.",,
-20,21,(wait),Would you like to join the show?,TrickChangeDresses(),
-21,0,Yes gladly.,Then tell my assistant to change clothes the show starts.,,
-21,0,"No, it's enough for me.","Pity, goodbye. Here is your Dress back.",TrickChangeDressesBack(),
-30,,(Wait),,SelectTrick(),
-100,,,Your task: Bind me and then give me the sign to start.,,
-100,,Who should I tie up?,"Me, I want to show a trick.",,
-100,,How should I tie up?,"With five objects for eye, mouth, arms, legs and feet.",,
-100,,(Show that you are done),,TrickChangeBinds(),RestrainPerformerMinItem(5)
+10,,What's in it for me if I participate?,"As an assistant, you can earn some money.",,
+10,,Can I participate in the magic show?,I am still looking for an escape artist as an assistant.,,
+10,11,How does the payment work?,You get paid for tricks. With every trick your income increases up to the maximum limit.,,
+10,0,No further questions.,Enjoy the show then.,,
+11,10,(Listen.),"Payment is made at the end of the show. If you fail during a trick, you'll get thrown off the stage and have to leave.",,
+20,21,(Wait.),Would you like to join the show?,TrickChangeDresses(),
+21,0,"Yes, gladly.",Then tell my assistant to change clothes so the show can start.,,
+21,0,"No, that's enough for me.","Pity, goodbye. Here are your clothes.",TrickChangeDressesBack(),
+30,,(Wait.),,SelectTrick(),
+100,,,Your task: bind me and then give me the signal to start.,,
+100,,Whom should I tie up?,"Me, I want to perform a trick.",,
+100,,What restraints should I use?,"Use five restraints for the eyes, mouth, arms, legs and feet.",,
+100,,(Signal her that you are done.),,TrickChangeBinds(),RestrainPerformerMinItem(5)
 101,,,Now show the audience how to get out of there.,,
-101,102,That was easy. Let's show the next trick ,Applause for the artist.,,!Player.IsRestrained()
-101,0,I did it and I want to stop.,(She gives you the income of REPLACEMONEY $.),ShowPayoff(),!Player.IsRestrained()
-101,0,(Give up and beg for help),Your performance is over.,TrickEndPerformance(),Player.IsRestrained()
+101,102,That was easy. Let's do the next trick.,Applause for the artist.,,!Player.IsRestrained()
+101,0,I did it and I want to stop.,(She gives you the income of REPLACEMONEY$.),ShowPayoff(),!Player.IsRestrained()
+101,0,(Give up and beg for help.),Your performance is over.,TrickEndPerformance(),Player.IsRestrained()
 101,,(Turn away.),,DialogLeave(),
-102,,(wait),,SelectTrick(),
-103,,,go over and free my assistant.,,
-103,0,(Leave),,DialogLeave(),
-110,,,"Your task: Dance a short Time, I perform some Tricks with my Assistant.",,
-110,111,(Dance forcefully.),(The Performer shows some little tricks.),"DialogChangeReputation(""Dominant"", 1)",
-110,111,(Dance devot.),(The Performer shows some little tricks.),"DialogChangeReputation(""Dominant"", -1)",
+102,,(Wait.),,SelectTrick(),
+103,,,Go over there and free my assistant.,,
+103,0,(Leave.),,DialogLeave(),
+110,,,"Your task: dance a while, I'll perform some tricks with my assistant.",,
+110,111,(Dance forcefully.),(The performer shows the audience a few little tricks.),"DialogChangeReputation(""Dominant"", 1)",
+110,111,(Dance submissively.),(The performer shows the audience a few little tricks.),"DialogChangeReputation(""Dominant"", -1)",
 111,,(Wait for your next trick.),,SelectTrick(),
-120,,,Your task: Bind my Assistant and then give me the sign to start.,,
-120,,Who should I tie up?,Please tie my Assistant.,,
-120,,How should I tie up?,"With five objects for eye, mouth, arms, legs and feet.",,
-120,,(Leave),,DialogLeave(),
-120,,(Show that you are done),,TrickBindAsstant(),RestrainAssistantMinItem(5)
+120,,,Your task: bind my assistant and then give me the signal to start.,,
+120,,Whom should I tie up?,Please tie my assistant.,,
+120,,What restraints should I use?,"Use five restraints for the eyes, mouth, arms, legs and feet.",,
+120,,(Leave.),,DialogLeave(),
+120,,(Signal her that you are done.),,TrickBindAsstant(),RestrainAssistantMinItem(5)
 121,,,Now show the audience how to get out of there.,,
-121,122,That was easy. Let's show the next trick.,Applause for the artist.,,!Player.IsRestrained()
-121,0,I did it and I want to stop.,(She gives you the income of REPLACEMONEY $.),ShowPayoff(),!Player.IsRestrained()
-121,0,(Give up and beg for help),Your performance is over.,TrickEndPerformance(),Player.IsRestrained()
+121,122,That was easy. Let's do the next trick.,Applause for the artist.,,!Player.IsRestrained()
+121,0,I did it and I want to stop.,(She gives you the income of REPLACEMONEY$.),ShowPayoff(),!Player.IsRestrained()
+121,0,(Give up and beg for help.),Your performance is over.,TrickEndPerformance(),Player.IsRestrained()
 121,,(Turn away.),,DialogLeave(),
-122,,(wait),,SelectTrick(),
-130,,,Your task: Escape from a wooden Box with some light tie.,,
+122,,(Wait.),,SelectTrick(),
+130,,,Your task: escape from a wooden box and some light bondage.,,
 130,,(Prepare the trick.),,TrickBoxTiedLight(),
-131,,,"The question is, can she escape",,
-131,132,"Her I am, the Show goes on.",Applause for the escape.,,!Player.IsRestrained()
-131,0,I escaped happily and finish the show.,(She gives you the income of REPLACEMONEY $.) will you come back?,ShowPayoff(),!Player.IsRestrained()
-131,0,(knock for help.),,TrickEndPerformance(),Player.IsRestrained()
+131,,,"The question is, can she escape?",,
+131,132,"Here I am, the show goes on.",Applause for the escape.,,!Player.IsRestrained()
+131,0,I escaped and am happy to finish the show.,(She gives you the income of REPLACEMONEY$.) Will you come back?,ShowPayoff(),!Player.IsRestrained()
+131,0,(Knock for help.),,TrickEndPerformance(),Player.IsRestrained()
 131,,(Turn away.),,DialogLeave(),
-132,,(wait),,SelectTrick(),
-140,,,She conjures a few coins out of nowhere and holds them out to you. ,,
-140,141,take them.,You get REPLACEMONEY $.,TrickGetCoin(),
-140,141,give her back.,She performs another card trick and the show continues.,,
-141,,(Entertain the audience),,SelectTrick(),
-150,,,Your task: Escape from a wooden Box with some heavy tie.,,
+132,,(Wait.),,SelectTrick(),
+140,,,(She conjures a few coins out of nowhere and holds them out to you.),,
+140,141,(Take them.),(You get REPLACEMONEY$.),TrickGetCoin(),
+140,141,(Give them back.),(She performs another card trick and the show continues.),,
+141,,(Entertain the audience.),,SelectTrick(),
+150,,,Your task: escape from a wooden box and some heavy bondage.,,
 150,,(Prepare the trick.),,TrickBoxTiedHeavy(),
-151,,,"Crooked, will we ever see her again? ",,
-151,152,"Nothing can stop me, it goes on. ",Cheers for the feat.,,!Player.IsRestrained()
-151,0,I need a break and get out of the show.,(She gives you the income of REPLACEMONEY $.) Thank you so much.,ShowPayoff(),!Player.IsRestrained()
-151,0,(knock for help.),,TrickEndPerformance(),Player.IsRestrained()
+151,,,"Incredible, will we ever see her again?",,
+151,152,"Nothing can stop me, it goes on.",Cheers for the feat.,,!Player.IsRestrained()
+151,0,I need a break and get out of the show.,(She gives you the income of REPLACEMONEY$.) Thank you so much.,ShowPayoff(),!Player.IsRestrained()
+151,0,(Knock for help.),,TrickEndPerformance(),Player.IsRestrained()
 151,,(Turn away.),,DialogLeave(),
-152,,(wait),,SelectTrick(),
-160,,,"Now the classic. Despite being handcuffed, she is able to escape from a water-filled milk can?",,
-160,,(Dive skillfully under the water.),,TrickBoxMilkCan(),
-161,,,(Fastens the lid with three bolts.) ,,
-161,162,I am Houdini's true heritage.,Cheers for the feat.,,!Player.IsRestrained()
-161,0,(breathe) I have enough. ,(She gives you the income of REPLACEMONEY $.) Thanks for Show.,ShowPayoff(),!Player.IsRestrained()
-161,0,(knock for help.),,TrickEndPerformance(),Player.IsRestrained()
+152,,(Wait.),,SelectTrick(),
+160,,,"Now the classic. Despite being handcuffed, will she be able to escape from a water-filled milk can?",,
+160,,(Dive under the water skillfully.),,TrickBoxMilkCan(),
+161,,,(She fastens the lid with three bolts.),,
+161,162,I am Houdini's true heiress.,Cheers for the feat.,,!Player.IsRestrained()
+161,0,(Catch your breath.) I've had enough.,(She gives you the income of REPLACEMONEY$.) Thanks for the show.,ShowPayoff(),!Player.IsRestrained()
+161,0,(Knock for help.),,TrickEndPerformance(),Player.IsRestrained()
 161,,(Turn away.),,DialogLeave(),
-162,,(wait),,SelectTrick(),
-170,,,Your task: Escape from the incredible Water Torture Cell.,,
+162,,(Wait.),,SelectTrick(),
+170,,,Your task: escape from the incredible water torture cell.,,
 170,,(Prepare for the task.),,TrickBoxWaterCell(),
-171,,,A few piranhas for motivation? ,,
-171,172,"Here I am the shark. Go on, go on. ",Cheers for the feat.,,!Player.IsRestrained()
-171,0,The submarine has appeared. I need a break. ,(She gives you the income of REPLACEMONEY $.) Thanks for Show.,ShowPayoff(),!Player.IsRestrained()
+171,,,A few piranhas for motivation?,,
+171,172,"Here I am the shark. Go on, go on.",Cheers for the feat.,,!Player.IsRestrained()
+171,0,The submarine has emerged. I need a break.,(She gives you the income of REPLACEMONEY$.) Thanks for the show.,ShowPayoff(),!Player.IsRestrained()
 171,0,(Wink for help.),,TrickEndPerformance(),Player.IsRestrained()
 171,,(Turn away.),,DialogLeave(),
-172,,(wait and smile),,SelectTrick(),
-180,,,I have to rebuild the stage. Sing as long as a song with my assistant.,,
-180,0,(Walk away),,SongLeavePerformer(),
-190,,,Your task: Bind my Assistant and then give me the sign to start.,,
-190,,Who should I tie up?,Please tie my Assistant.,,
-190,,How should I tie up?,"With five objects for eye, mouth, arms, legs and feet.",,
-190,,(Leave),,DialogLeave(),
-190,,(Show that you are done),,TrickAsstantChange(),RestrainAssistantMinItem(5)
-191,,,How did she get dressed again? Go over and tell her to change for the show.,,
-191,,The Show must go on.,Applause for the both.,SelectTrick(),ShowIsState(3)
-191,,"God bye, I leave the Show.",(She gives you the income of REPLACEMONEY $.) will you come back?,ShowPayoff(),ShowIsState(3)
+172,,(Wait and smile.),,SelectTrick(),
+180,,,"I have to redecorate the stage. In the meantime, sing a song with my assistant.",,
+180,0,(Walk away.),,SongLeavePerformer(),
+190,,,Your task: bind my assistant and then give me the signal to start.,,
+190,,Whom should I tie up?,Please tie my assistant.,,
+190,,What restraints should I use?,"Use five restraints for the eyes, mouth, arms, legs and feet.",,
+190,,(Leave.),,DialogLeave(),
+190,,(Signal her that you are done.),,TrickAsstantChange(),RestrainAssistantMinItem(5)
+191,,,How did she get dressed again? Go over to her and tell her to change for the show.,,
+191,,The show must go on.,Applause for both of them.,SelectTrick(),ShowIsState(3)
+191,,"Goodbye, I'm leaving the show.",(She gives you the income of REPLACEMONEY$.) Will you come back?,ShowPayoff(),ShowIsState(3)

@@ -39,6 +39,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsRestrained: function () { return ((this.Effect.indexOf("Freeze") >= 0) || (this.Effect.indexOf("Block") >= 0) || (this.Effect.indexOf("Prone") >= 0)) },
 		IsBlind: function () { return ((this.Effect.indexOf("BlindLight") >= 0) || (this.Effect.indexOf("BlindNormal") >= 0) || (this.Effect.indexOf("BlindHeavy") >= 0)) },
 		IsEnclose: function () { return (this.Effect.indexOf("Enclose") >= 0) },
+		IsMounted: function () { return (this.Effect.indexOf("Mounted") >= 0) },
 		IsChaste: function () { return ((this.Effect.indexOf("Chaste") >= 0) || (this.Effect.indexOf("BreastChaste") >= 0)) },
 		IsVulvaChaste: function () { return (this.Effect.indexOf("Chaste") >= 0) },
 		IsBreastChaste: function () { return (this.Effect.indexOf("BreastChaste") >= 0) },
