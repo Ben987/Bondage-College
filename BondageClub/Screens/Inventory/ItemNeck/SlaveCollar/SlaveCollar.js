@@ -32,10 +32,6 @@ var SlaveCollarTypes = [
         Name: "LeatherCollarBow",
         Image: "LeatherCollarBow",
         Property: { Type: "LeatherCollarBow", Effect: [] }
-	},{
-        Name: "LoveLeatherCollar",
-        Image: "LoveLeatherCollar",
-        Property: { Type: "LoveLeatherCollar", Effect: [] }
 	},
 ];
 
