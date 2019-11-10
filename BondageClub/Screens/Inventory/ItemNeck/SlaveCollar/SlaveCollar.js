@@ -32,6 +32,26 @@ var SlaveCollarTypes = [
         Name: "LeatherCollarBow",
         Image: "LeatherCollarBow",
         Property: { Type: "LeatherCollarBow", Effect: [] }
+	},{
+        Name: "MaidCollar",
+        Image: "MaidCollar",
+        Property: { Type: "MaidCollar", Effect: [] }
+	},{
+        Name: "BatCollar",
+        Image: "BatCollar",
+        Property: { Type: "BatCollar", Effect: [] }
+	},{
+        Name: "HighSecurityCollar",
+        Image: "HighSecurityCollar",
+        Property: { Type: "HighSecurityCollar", Effect: [] }
+	},{
+        Name: "SpikeCollar",
+        Image: "SpikeCollar",
+        Property: { Type: "SpikeCollar", Effect: [] }
+	},{
+        Name: "BordelleCollar",
+        Image: "BordelleCollar",
+        Property: { Type: "BordelleCollar", Effect: [] }
 	},
 ];
 
@@ -60,9 +80,15 @@ function InventoryItemNeckSlaveCollarDraw() {
         for (var I = 0; I < SlaveCollarTypes.length; I++) {
             var Type = DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.Type || "";
             if (C != null && C.IsOwnedByPlayer() || Type == SlaveCollarTypes[I].Name) {
-                DrawButton(987 + I * 125, 450, 125, 150, "", (Type == SlaveCollarTypes[I].Name) ? "#888888" : "White");
-                DrawImage("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/PreviewSlaveCollar/" + SlaveCollarTypes[I].Image + ".png", 987 + I * 125, 450);
-                DrawTextFit(AssetGet(DialogFocusItem.Asset.Group.Family, DialogFocusItem.Asset.Group.Name, SlaveCollarTypes[I].Image).Description, 1047 + I * 125, 585, 125, 125, "white", "gray");
+                DrawButton(937 + I * 125, 450, 125, 150, "", (Type == SlaveCollarTypes[I].Name) ? "#888888" : "White");
+                DrawImage("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/PreviewSlaveCollar/" + SlaveCollarTypes[I].Image + ".png", 937 + I * 125, 450);
+                DrawTextFit(AssetGet(DialogFocusItem.Asset.Group.Family, DialogFocusItem.Asset.Group.Name, SlaveCollarTypes[I].Image).Description, 999 + I * 125, 585, 125, 125, "white", "gray");
+				DrawButton(1262, 800, 125, 125, "", (DialogFocusItem.Property.Type == null || DialogFocusItem.Property.Type == "HighSecurityCollar") ? "#888888" : "White");
+	            DrawImage("Assets/Female3DCG/" + DialogFocusItem.Asset.Group.Name + "/PreviewSlaveCollar/" + DialogFocusItem.Asset.Name + "HighSecurityCollar.png", 1267, 809);
+				DrawButton(1387, 800, 125, 125, "", (DialogFocusItem.Property.Type == null || DialogFocusItem.Property.Type == "SpikeCollar") ? "#888888" : "White");
+	            DrawImage("Assets/Female3DCG/" + DialogFocusItem.Asset.Group.Name + "/PreviewSlaveCollar/" + DialogFocusItem.Asset.Name + "SpikeCollar.png", 1392, 809);
+				DrawButton(1512, 800, 125, 125, "", (DialogFocusItem.Property.Type == null || DialogFocusItem.Property.Type == "BordelleCollar") ? "#888888" : "White");
+	            DrawImage("Assets/Female3DCG/" + DialogFocusItem.Asset.Group.Name + "/PreviewSlaveCollar/" + DialogFocusItem.Asset.Name + "BordelleCollar.png", 1517, 809);
             }
         }
     }
@@ -105,7 +131,7 @@ function InventoryItemNeckSlaveCollarClick() {
             }
             for (var I = 0; I < SlaveCollarTypes.length; I++) {
                 var Type = DialogFocusItem && DialogFocusItem.Property && DialogFocusItem.Property.Type || "";
-                if ((MouseX >= 987 + I * 125) && (MouseX <= 1112 + I * 125) && (MouseY >= 450) && (MouseY <= 600) && (Type != SlaveCollarTypes[I].Name))
+                if ((MouseX >= 937 + I * 125) && (MouseX <= 1062 + I * 125) && (MouseY >= 450) && (MouseY <= 600) && (Type != SlaveCollarTypes[I].Name))
                     InventoryItemNeckSlaveCollarSetType(SlaveCollarTypes[I].Name);
             }
         }
