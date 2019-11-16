@@ -113,7 +113,7 @@ function ChatRoomDrawCharacter(DoClick) {
 			if ((C == 5) && (Player.Effect.indexOf("BlindHeavy") < 0) && (Player.Effect.indexOf("BlindNormal") < 0)) DrawImageZoomCanvas("Backgrounds/" + ChatRoomData.Background + ((Player.Effect.indexOf("BlindLight") < 0) ? "" : "Dark") + ".jpg", MainCanvas, 0, 0, 2000, 1000, 0, 500, 1000, 500);
 
 			// Draw the character
-			DrawCharacter(ChatRoomCharacter[C], (C % 5) * Space + X, Y + Math.floor(C / 5) * 500, Zoom);
+			DrawCharacter(ChatRoomCharacter[C],(C % 5) * Space + (ChatRoomCharacter.length >= 5 ? X * 4 : (ChatRoomCharacter.length == 4 ? X * 2.5 : ChatRoomCharacter.length == 3 ? X * 1.25 : X)),Y - 980*(1-Zoom) + Math.floor(C / 5) * 500, Zoom, true);
 			if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber) DrawImage("Icons/Small/Whisper.png", (C % 5) * Space + X + 75 * Zoom, Y + Math.floor(C / 5) * 500 + 950 * Zoom);
 			
 			// Draw the friendlist / blacklist / whitelist icons

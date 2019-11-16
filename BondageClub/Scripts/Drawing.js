@@ -102,7 +102,9 @@ function DrawGetImageOnError(Img, IsAsset) {
 }
 
 // Refreshes the character if not all images are loaded and draw the character canvas on the main game screen
-function DrawCharacter(C, X, Y, Zoom) {
+function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
+	if (Zoom == 1){ IsHeightResizeAllowed=true; }
+	if (C != undefined){ Zoom *= CharacterAppearanceGetCurrentValue(C,"Height","Asset").Name; }
 
 	// Make sure we have a character
 	if (C != null)
@@ -141,8 +143,8 @@ function DrawCharacter(C, X, Y, Zoom) {
 			}
 
 			// Draw the character
-			if ((Zoom == undefined) || (Zoom == 1))
-				DrawCanvas(Canvas, X, Y - C.HeightModifier);
+			if (IsHeightResizeAllowed)
+				DrawCanvasZoom(Canvas, X + Canvas.width * (1-Zoom)/2, Y + (Canvas.height-46) * (1-Zoom) - (C.HeightModifier * Zoom), Zoom);
 			else
 				DrawCanvasZoom(Canvas, X, Y - (C.HeightModifier * Zoom), Zoom);
 
@@ -158,7 +160,7 @@ function DrawCharacter(C, X, Y, Zoom) {
 			if ((C.Name != "") && ((CurrentModule == "Room") || (CurrentModule == "Online") || ((CurrentScreen == "Wardrobe") && (C.ID != 0))) && (CurrentScreen != "Private"))
 				if (!Player.IsBlind()) {
 					MainCanvas.font = "30px Arial";
-					DrawText(C.Name, X + 255 * Zoom, Y + 980 * Zoom, (CommonIsColor(C.LabelColor)) ? C.LabelColor : "White", "Black");
+					DrawText(C.Name, X + 255, Y + 980, (CommonIsColor(C.LabelColor)) ? C.LabelColor : "White", "Black");
 					MainCanvas.font = "36px Arial";
 				}
 
@@ -190,11 +192,6 @@ function DrawImageCanvas(Source, Canvas, X, Y) {
 	if (!Img.naturalWidth) return true;
 	Canvas.drawImage(Img, X, Y);
 	return true;
-}
-
-// Draw a specific canvas on the main canvas
-function DrawCanvas(Canvas, X, Y) {
-	MainCanvas.drawImage(Canvas, X, Y);
 }
 
 // Draw a specific canvas with a zoom on the main canvas
