@@ -103,8 +103,8 @@ function DrawGetImageOnError(Img, IsAsset) {
 
 // Refreshes the character if not all images are loaded and draw the character canvas on the main game screen
 function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
-	if (Zoom == 1){ IsHeightResizeAllowed=true; }
-	if (C != undefined){ Zoom *= CharacterAppearanceGetCurrentValue(C,"Height","Asset").Name; }
+	if (Zoom == 1){ IsHeightResizeAllowed = true; }
+	if (C != undefined && IsHeightResizeAllowed){ Zoom *= CharacterAppearanceGetCurrentValue(C,"Height","Asset").Name; }
 
 	// Make sure we have a character
 	if (C != null)
