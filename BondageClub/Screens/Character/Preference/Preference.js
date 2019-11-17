@@ -23,7 +23,8 @@ function PreferenceLoad() {
 		DisplayTimestamps: true,
 		ColorNames: true,
 		ColorActions: true,
-		ColorEmotes: true
+		ColorEmotes: true,
+		FullSensDep: false
 	};
 
 	PreferenceChatColorThemeList = ["Light", "Dark"];
@@ -126,6 +127,7 @@ function PreferenceSubscreenChatRun() {
 	DrawText(TextGet("ColorNames"), 600, 625, "Black", "Gray");
 	DrawText(TextGet("ColorActions"), 600, 725, "Black", "Gray");
 	DrawText(TextGet("ColorEmotes"), 600, 825, "Black", "Gray");
+	DrawText(TextGet("FullSensDep"), 600, 925, "Black", "Gray");
 	MainCanvas.textAlign = "center";
 	DrawBackNextButton(1000, 190, 350, 70, TextGet(PreferenceChatColorThemeSelected), "White", "",
 		() => TextGet((PreferenceChatColorThemeIndex == 0) ? PreferenceChatColorThemeList[PreferenceChatColorThemeList.length - 1] : PreferenceChatColorThemeList[PreferenceChatColorThemeIndex - 1]),
@@ -140,6 +142,7 @@ function PreferenceSubscreenChatRun() {
 	DrawButton(500, 592, 64, 64, "", "White", (Player.ChatSettings && Player.ChatSettings.ColorNames) ? "Icons/Checked.png" : "");
 	DrawButton(500, 692, 64, 64, "", "White", (Player.ChatSettings && Player.ChatSettings.ColorActions) ? "Icons/Checked.png" : "");
 	DrawButton(500, 792, 64, 64, "", "White", (Player.ChatSettings && Player.ChatSettings.ColorEmotes) ? "Icons/Checked.png" : "");
+	DrawButton(500, 892, 64, 64, "", "White", (Player.ChatSettings && Player.ChatSettings.FullSensDep) ? "Icons/Checked.png" : "");
 
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
 	DrawCharacter(Player, 50, 50, 0.9);
@@ -153,6 +156,7 @@ function PreferenceSubscreenChatClick() {
 		if ((MouseY >= 592) && (MouseY < 656)) Player.ChatSettings.ColorNames = !Player.ChatSettings.ColorNames;
 		if ((MouseY >= 692) && (MouseY < 756)) Player.ChatSettings.ColorActions = !Player.ChatSettings.ColorActions;
 		if ((MouseY >= 792) && (MouseY < 856)) Player.ChatSettings.ColorEmotes = !Player.ChatSettings.ColorEmotes;
+		if ((MouseY >= 892) && (MouseY < 956)) Player.ChatSettings.FullSensDep= !Player.ChatSettings.FullSensDep;
 	}
 
 	// If the user used one of the BackNextButtons
