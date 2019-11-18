@@ -37,7 +37,7 @@ var AssetFemale3DCG = [
 			{ Name: "StudentOutfit1", HideItem: ["ClothLowerLatexSkirt1", "ClothLowerLatexSkirt2", "ClothLowerSkirt1", "ClothLowerTennisSkirt1", "ClothLowerClothSkirt1"], Hide: ["ItemNeck"] },
 			{ Name: "StudentOutfit2", HideItem: ["ItemArmsLeatherCuffs", "ClothLowerLatexSkirt1", "ClothLowerLatexSkirt2", "ClothLowerSkirt1", "ClothLowerTennisSkirt1", "ClothLowerClothSkirt1"] },
 			{ Name: "BabydollDress1", HideItem: ["ClothLowerLatexSkirt1"] },
-			{ Name: "TeacherOutfit1", Hide: ["ItemNeck"], HideItem: ["ItemArmsLeatherCuffs", "ClothLowerLatexSkirt1", "ClothLowerSkirt1", "ClothLowerTennisSkirt1", "ClothLowerClothSkirt1"], ParentGroup: ["BodyLower"], AllowPose: ["Horse","BackBoxTie", "BackCuffs", "BackElbowTouch", "Bolero"] },
+			{ Name: "TeacherOutfit1", Hide: ["ItemNeck"], HideItem: ["ItemArmsLeatherCuffs", "ClothLowerLatexSkirt1", "ClothLowerSkirt1", "ClothLowerTennisSkirt1", "ClothLowerClothSkirt1"], ParentGroup: ["BodyLower"], AllowPose: ["Horse","KneelingSpread","BackBoxTie", "BackCuffs", "BackElbowTouch", "Bolero"] },
 			{ Name: "ChineseDress1", HideItem: ["ClothLowerLatexSkirt1", "ClothLowerLatexSkirt2", "ClothLowerSkirt1", "ClothLowerTennisSkirt1", "ClothLowerClothSkirt1"] },
 			{ Name: "ChineseDress2", Value: 60 },
 			{ Name: "TShirt1", Require: ["ClothLower"] },
@@ -84,7 +84,7 @@ var AssetFemale3DCG = [
 		ParentGroup: "BodyLower",
 		ParentColor: "Cloth",
 		Clothing: true,
-		AllowPose: ["LegsClosed", "Kneel", "StraitDressOpen", "Horse"],
+		AllowPose: ["LegsClosed", "Kneel", "StraitDressOpen", "Horse","KneelingSpread"],
 		Color: ["Default", "#bbbbbb", "#808080", "#202020", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
 		Left: 105,
 		Top: 380,
@@ -416,7 +416,7 @@ var AssetFemale3DCG = [
 		AllowColorize: false,
 		ParentSize: "BodyUpper",
 		ParentColor: "BodyUpper",
-		AllowPose: ["LegsClosed", "Kneel", "Horse"],
+		AllowPose: ["LegsClosed", "Kneel", "Horse", "KneelingSpread"],
 		Color: ["White", "Asian", "Black"],
 		Top: 462,
 		Asset: ["Small", "Normal", "Large", "XLarge"]
@@ -876,7 +876,7 @@ var AssetFemale3DCG = [
 					{ Name: "Belts", AllowColorize: false }
 				]
 			},
-			{ Name: "DuctTape", SelfBondage: false, Extended: true, Value: 50, SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone"], Time: 20, RemoveTime: 10, Difficulty: 5, BuyGroup: "DuctTape", AllowBlock: ["ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemPelvis", "ItemTorso", "ItemBreast", "ItemNipples", "ItemNipplesPiercings"], AllowType: ["Bottom", "Top", "Full"], ParentGroup: ["BodyLower"], AllowPose: ["Horse"] },
+			{ Name: "DuctTape", SelfBondage: false, Extended: true, Value: 50, SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone"], Time: 20, RemoveTime: 10, Difficulty: 5, BuyGroup: "DuctTape", AllowBlock: ["ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemPelvis", "ItemTorso", "ItemBreast", "ItemNipples", "ItemNipplesPiercings"], AllowType: ["Bottom", "Top", "Full"], ParentGroup: ["BodyLower"], AllowPose: ["Horse","KneelingSpread"] },
 			{ Name: "BitchSuit", DefaultColor: "#C08080", Random: false, SelfBondage: false, SelfUnlock: false, Value: 200, SetPose: ["BackElbowTouch", "Kneel"], Hide: ["Cloth", "ClothLower", "BodyLower", "Shoes", "Socks", "ItemBoots"], HideItem: ["ItemLegsLegBinder", "HobbleSkirt"], Block: ["ItemPelvis", "ItemTorso", "ItemBreast", "ItemHands"], Effect: ["Block", "Prone", "ForceKneel"], Time: 40, RemoveTime: 30, Difficulty: 15, AllowLock: true, Prerequisite: "NotSuspendedOrHorsed" },
 			{ Name: "CollarLeashHolding", Random: false, SelfBondage: false, Priority: 34, Value: -1, Time: 3, RemoveTime: 3, Difficulty: 1, Prerequisite: "NotSuspended" },
 			{
@@ -1001,7 +1001,7 @@ var AssetFemale3DCG = [
 			{ Name: "CollarBow", Value: 5, Random: false, Prerequisite: "Collared", Time: 5, Difficulty: 1 },
 			{ Name: "CollarShockUnit", Value: 80, Random: false, Extended: true, Effect: ["ReceiveShock"], Prerequisite: "Collared", Time: 5, Difficulty: 6, AllowLock: true, BuyGroup: "ShockCollar", ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 15 }] },
 			{ Name: "ShockCollarRemote", Random: false, Wear: false, Effect: ["TriggerShock"], BuyGroup: "ShockCollar", Value: -1, ExpressionTrigger: [{ Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Blush", Name: "Soft", Timer: 15 }, { Group: "Eyes", Name: "Closed", Timer: 5 }] },
-			{ Name: "CollarChainLong", Value: 30, Random: false, Prerequisite: "CollaredNotSuspended", Time: 5, Difficulty: 6, AllowLock: true, BuyGroup: "CollarChain", AllowPose: ["Kneel", "Horse"], Effect: ["Tethered"], ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 15 }], ParentGroup: ["BodyLower"] },
+			{ Name: "CollarChainLong", Value: 30, Random: false, Prerequisite: "CollaredNotSuspended", Time: 5, Difficulty: 6, AllowLock: true, BuyGroup: "CollarChain", AllowPose: ["Kneel", "Horse", "KneelingSpread"], Effect: ["Tethered"], ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 15 }], ParentGroup: ["BodyLower"] },
 			{ Name: "CollarChainShort", Value: -1, Random: false, Prerequisite: "CollaredNotSuspended1", Time: 5, Difficulty: 6, AllowLock: true, BuyGroup: "CollarChain", SetPose: ["Kneel"], Effect: ["Freeze", "ForceKneel"], ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 15 }, { Group: "Eyebrows", Name: "Soft", Timer: 5 }] },
 			{ Name: "CollarLeash", Value: 20, Random: false, Prerequisite: "Collared", Time: 5, Difficulty: 6, AllowLock: true, ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 15 }] },
 			{ Name: "CollarLeashTaken", Value: -1, Random: false, Prerequisite: "Collared", Time: 5, Difficulty: 6, AllowLock: true, Effect: ["Tethered"], ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 15 }] },
@@ -1214,7 +1214,10 @@ var AssetFemale3DCG = [
 					{ Name: "Bar", AllowColorize: true },
 					{ Name: "Pussy", AllowColorize: false }
 				]
-			}
+			},
+			{ Name: "TheDisplayFrame", RemoveAtLogin: true, Value: 100, Time: 10, Difficulty: 50, Priority: 32, AllowLock: true, SetPose: ["LegsClosed", "BackElbowTouch"], Prerequisite: "DisplayFrame", Block: ["ItemArms", "ItemLegs", "ItemFeet", "ItemBoots", "ItemNeckAccessories"], Effect: ["Prone", "Freeze", "Block"] },
+			{ Name: "Sybian", RemoveAtLogin: true, IsRestraint: false, Value: 80, Time: 10, Difficulty: 1, Priority: 22, SetPose: ["KneelingSpread"], Prerequisite: "Sybian", Block: ["ItemLegs", "ItemFeet", "ItemBoots", "ItemPelvis", "ItemButt", "ItemVulva"], Effect: ["Egged"], Hide: ["Shoes", "Socks", "ItemBoots", "ItemVulva"], HideItem: ["ClothLowerPajama1", "ClothLowerShorts1", "ClothLowerJeans1", "ClothLowerJeans2", "ClothLowerWaspie1", "ClothLowerWaspie2", "ClothLowerWaspie3", "ClothLowerLatexPants1", "ItemDevicesTeddyBear"] }
+		
 		]
 	},
 
@@ -1253,6 +1256,11 @@ var PoseFemale3DCG = [
 		{
 		Name: "Horse",
 		OverrideHeight: -75,
+		Hide: ["ItemFeet"]
+	},
+		{
+		Name: "KneelingSpread",
+		OverrideHeight: -250,
 		Hide: ["ItemFeet"]
 	}
 ];
