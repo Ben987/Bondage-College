@@ -91,7 +91,7 @@ function ChatRoomDrawCharacter(DoClick) {
 	for (var C = 0; C < ChatRoomCharacter.length; C++)
 		if (DoClick) {
 			if ((MouseX >= (C % 5) * Space + X) && (MouseX <= (C % 5) * Space + X + 450 * Zoom) && (MouseY >= Y + Math.floor(C / 5) * 500) && (MouseY <= Y + Math.floor(C / 5) * 500 + 1000 * Zoom)) {
-				if (MouseY <= Y + Math.floor(C / 5) * 500 + 900 * Zoom && Player.ChatSettings.FullSensDep ? !Player.IsBlind() : true) {
+				if ((MouseY <= Y + Math.floor(C / 5) * 500 + 900 * Zoom) && (Player.ChatSettings.FullSensDep ? (!Player.IsBlind() || ChatRoomCharacter[C].ID == Player.ID): true)) {
 					ElementRemove("InputChat");
 					ElementRemove("TextAreaChatLog");
 					ChatRoomBackground = ChatRoomData.Background;
@@ -415,7 +415,7 @@ function ChatRoomMessage(data) {
 				}
 				else if (data.Type == "Whisper") msg = '<span class="ChatMessageName" style="font-style: italic; color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + msg;
 				else if (data.Type == "Emote") {
-					if (Player.ChatSettings.FullSensDep && Player.IsDeaf() && Player.IsBlind()) msg = "*Someone " + msg + "*";
+					if (Player.ChatSettings.FullSensDep && Player.IsDeaf() && Player.IsBlind() && SenderCharacter.ID != Player.ID) msg = "*Someone " + msg + "*";
 					else msg = "*" + SenderCharacter.Name + " " + msg + "*";
 				}
 				else if (data.Type == "Action") msg = "(" + msg + ")";
