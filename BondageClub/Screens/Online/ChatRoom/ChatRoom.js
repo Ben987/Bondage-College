@@ -91,7 +91,7 @@ function ChatRoomDrawCharacter(DoClick) {
 	for (var C = 0; C < ChatRoomCharacter.length; C++)
 		if (DoClick) {
 			if ((MouseX >= (C % 5) * Space + X) && (MouseX <= (C % 5) * Space + X + 450 * Zoom) && (MouseY >= Y + Math.floor(C / 5) * 500) && (MouseY <= Y + Math.floor(C / 5) * 500 + 1000 * Zoom)) {
-				if (MouseY <= Y + Math.floor(C / 5) * 500 + 900 * Zoom) {
+				if (MouseY <= Y + Math.floor(C / 5) * 500 + 900 * Zoom && Player.ChatSettings.FullSensDep ? !Player.IsBlind() : true) {
 					ElementRemove("InputChat");
 					ElementRemove("TextAreaChatLog");
 					ChatRoomBackground = ChatRoomData.Background;
@@ -407,13 +407,20 @@ function ChatRoomMessage(data) {
 			}
 
 			// Builds the message to add depending on the type
-			//todo add garbling of names here
-			if ((data.Type != null) && (data.Type == "Chat") && Player.IsDeaf()) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + SpeechGarble(SenderCharacter, msg);
-			if ((data.Type != null) && (data.Type == "Chat") && !Player.IsDeaf()) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + msg;
-			if ((data.Type != null) && (data.Type == "Whisper")) msg = '<span class="ChatMessageName" style="font-style: italic; color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + msg;
-			if ((data.Type != null) && (data.Type == "Emote")) msg = "*" + SenderCharacter.Name + " " + msg + "*";
-			if ((data.Type != null) && (data.Type == "Action")) msg = "(" + msg + ")";
-			if ((data.Type != null) && (data.Type == "ServerMessage")) msg = "<b>" + DialogFind(Player, "ServerMessage" + msg).replace("SourceCharacter", SenderCharacter.Name) + "</b>";
+			if (data.Type != null) {
+				if (data.Type == "Chat"){
+					if (Player.ChatSettings.FullSensDep && Player.IsDeaf() && Player.IsBlind()) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SpeechGarble(SenderCharacter, SenderCharacter.Name) + ':</span> ' + SpeechGarble(SenderCharacter, msg);
+					else if (Player.IsDeaf()) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + SpeechGarble(SenderCharacter, msg);
+					else msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + SpeechGarble(SenderCharacter, msg);
+				}
+				else if (data.Type == "Whisper") msg = '<span class="ChatMessageName" style="font-style: italic; color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + msg;
+				else if (data.Type == "Emote") {
+					if (Player.ChatSettings.FullSensDep && Player.IsDeaf() && Player.IsBlind()) msg = "*Someone " + msg + "*";
+					else msg = "*" + SenderCharacter.Name + " " + msg + "*";
+				}
+				else if (data.Type == "Action") msg = "(" + msg + ")";
+				else if (data.Type == "ServerMessage") msg = "<b>" + DialogFind(Player, "ServerMessage" + msg).replace("SourceCharacter", SenderCharacter.Name) + "</b>";
+			}
 
 			// Adds the message and scrolls down unless the user has scrolled up
 			var ShouldScrollDown = ElementIsScrolledToEnd("TextAreaChatLog");
@@ -425,11 +432,8 @@ function ChatRoomMessage(data) {
 				if (ShouldScrollDown) ElementScrollToEnd("TextAreaChatLog");
 				ElementFocus("InputChat");
 			}
-
 		}
-
 	}
-
 }
 
 // Gets the new room data from the server

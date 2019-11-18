@@ -156,7 +156,7 @@ function PreferenceSubscreenChatClick() {
 		if ((MouseY >= 592) && (MouseY < 656)) Player.ChatSettings.ColorNames = !Player.ChatSettings.ColorNames;
 		if ((MouseY >= 692) && (MouseY < 756)) Player.ChatSettings.ColorActions = !Player.ChatSettings.ColorActions;
 		if ((MouseY >= 792) && (MouseY < 856)) Player.ChatSettings.ColorEmotes = !Player.ChatSettings.ColorEmotes;
-		if ((MouseY >= 892) && (MouseY < 956)) Player.ChatSettings.FullSensDep= !Player.ChatSettings.FullSensDep;
+		if ((MouseY >= 892) && (MouseY < 956)) Player.ChatSettings.FullSensDep = !Player.ChatSettings.FullSensDep;
 	}
 
 	// If the user used one of the BackNextButtons
