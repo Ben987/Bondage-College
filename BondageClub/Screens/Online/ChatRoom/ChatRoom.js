@@ -415,7 +415,7 @@ function ChatRoomMessage(data) {
 				}
 				else if (data.Type == "Whisper") msg = '<span class="ChatMessageName" style="font-style: italic; color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + msg;
 				else if (data.Type == "Emote") {
-					if (Player.ChatSettings.FullSensDep && Player.IsDeaf() && Player.IsBlind() && SenderCharacter.ID != Player.ID) msg = "*Someone " + msg + "*";
+					if (Player.ChatSettings.FullSensDep && Player.IsDeaf() && Player.IsBlind() && SenderCharacter.ID != Player.ID) msg = "*" + TextGet("Someone") + " " + msg + "*";
 					else msg = "*" + SenderCharacter.Name + " " + msg + "*";
 				}
 				else if (data.Type == "Action") msg = "(" + msg + ")";
