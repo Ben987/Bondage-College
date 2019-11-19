@@ -2,6 +2,7 @@
 var ServerSocket = null;
 var ServerURL = "http://localhost:4288";
 var ServerBeep = {};
+var ServerBeepAudio = new Audio();
 
 // Loads the server events
 function ServerInit() {
@@ -23,6 +24,7 @@ function ServerInit() {
 	ServerSocket.on("AccountQueryResult", function (data) { ServerAccountQueryResult(data); });
 	ServerSocket.on("AccountBeep", function (data) { ServerAccountBeep(data); });
 	ServerSocket.on("AccountOwnership", function (data) { ServerAccountOwnership(data); });
+	ServerBeepAudio.src = "url";
 }
 
 // When the server sends some information to the client, we keep it in variables
@@ -345,7 +347,15 @@ function ServerAccountBeep(data) {
 
 // Draws the beep sent by the server
 function ServerDrawBeep() {
-	if ((ServerBeep.Timer != null) && (ServerBeep.Timer > CurrentTime)) DrawButton((CurrentScreen == "ChatRoom") ? 0 : 500, 0, 1000, 50, ServerBeep.Message, "Pink", "");
+
+	//todo complete and test audio integration;
+
+	if ((ServerBeep.Timer != null) && (ServerBeep.Timer > CurrentTime)) {
+		DrawButton((CurrentScreen == "ChatRoom") ? 0 : 500, 0, 1000, 50, ServerBeep.Message, "Pink", "");
+	}
+	if (ServerBeepAudio.ended){
+		ServerBeepAudio.play();
+	}
 }
 
 // Gets the account ownership result from the query sent to the server
