@@ -24,7 +24,7 @@ function ServerInit() {
 	ServerSocket.on("AccountQueryResult", function (data) { ServerAccountQueryResult(data); });
 	ServerSocket.on("AccountBeep", function (data) { ServerAccountBeep(data); });
 	ServerSocket.on("AccountOwnership", function (data) { ServerAccountOwnership(data); });
-	ServerBeepAudio.src = "url";
+	ServerBeepAudio.src = "Assets/Electronic_Chime.mp3";
 }
 
 // When the server sends some information to the client, we keep it in variables
@@ -347,13 +347,8 @@ function ServerAccountBeep(data) {
 
 // Draws the beep sent by the server
 function ServerDrawBeep() {
-
-	//todo complete and test audio integration;
-
 	if ((ServerBeep.Timer != null) && (ServerBeep.Timer > CurrentTime)) {
 		DrawButton((CurrentScreen == "ChatRoom") ? 0 : 500, 0, 1000, 50, ServerBeep.Message, "Pink", "");
-	}
-	if (ServerBeepAudio.ended){
 		ServerBeepAudio.play();
 	}
 }
