@@ -911,8 +911,8 @@ function DialogFindAutoReplace(C, KeyWord1, KeyWord2, ReturnPrevious) {
 function DialogDraw() {
 
 	// Draw both the player and the interaction character
-	if (CurrentCharacter.ID != 0) DrawCharacter(Player, 0, 0, 1);
-	DrawCharacter(CurrentCharacter, 500, 0, 1);
+	if (CurrentCharacter.ID != 0) DrawCharacter(Player, 0, 0, 1, false);
+	DrawCharacter(CurrentCharacter, 500, 0, 1, false);
 
 	// Draw the menu for facial expressions if the player clicked on herself
 	if (CurrentCharacter.ID == 0) DialogDrawExpressionMenu();
