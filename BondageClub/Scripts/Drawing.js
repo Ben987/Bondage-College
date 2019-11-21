@@ -110,8 +110,6 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 			// There's 2 different canvas, one blinking and one that doesn't
 			var seconds = new Date().getTime();
 			var Canvas = (Math.round(seconds / 400) % C.BlinkFactor == 0) ? C.CanvasBlink : C.Canvas;
-
-			//todo error with suspension rope, it's zoomed in
 			var playerHeight = 1.0;
 			if ((IsHeightResizeAllowed === undefined && Zoom === 1.0) || IsHeightResizeAllowed){ playerHeight = CharacterAppearanceGetCurrentValue(C,"Height","Asset").Name; }
 			X += Zoom * Canvas.width * (1 - playerHeight) / 2;
@@ -140,6 +138,7 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 				CanvasH.width = Canvas.width;
 				CanvasH.height = Canvas.height;
 				CanvasH.getContext("2d").scale(1, -1);
+				//todo test suspension ropes with low height
 				CanvasH.getContext("2d").translate(0, -Canvas.height+Zoom * Canvas.height * (1 - playerHeight)*2);
 				CanvasH.getContext("2d").drawImage(Canvas, 0, 0);
 				Canvas = CanvasH;
