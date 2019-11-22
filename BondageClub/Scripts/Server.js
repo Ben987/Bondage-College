@@ -337,6 +337,7 @@ function ServerAccountBeep(data) {
 		ServerBeep.MemberName = data.MemberName;
 		ServerBeep.ChatRoomName = data.ChatRoomName;
 		ServerBeep.Timer = CurrentTime + 10000;
+		ServerBeepAudio.play();
 		ServerBeep.Message = DialogFind(Player, "BeepFrom") + " " + ServerBeep.MemberName + " (" + ServerBeep.MemberNumber.toString() + ")";
 		if (ServerBeep.ChatRoomName != null)
 			ServerBeep.Message = ServerBeep.Message + " " + DialogFind(Player, "InRoom") + " \"" + ServerBeep.ChatRoomName + "\"";
@@ -347,10 +348,7 @@ function ServerAccountBeep(data) {
 
 // Draws the beep sent by the server
 function ServerDrawBeep() {
-	if ((ServerBeep.Timer != null) && (ServerBeep.Timer > CurrentTime)) {
-		DrawButton((CurrentScreen == "ChatRoom") ? 0 : 500, 0, 1000, 50, ServerBeep.Message, "Pink", "");
-		ServerBeepAudio.play();
-	}
+	if ((ServerBeep.Timer != null) && (ServerBeep.Timer > CurrentTime)) DrawButton((CurrentScreen == "ChatRoom") ? 0 : 500, 0, 1000, 50, ServerBeep.Message, "Pink", "");
 }
 
 // Gets the account ownership result from the query sent to the server
