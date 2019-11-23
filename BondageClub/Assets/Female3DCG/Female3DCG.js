@@ -455,7 +455,6 @@ var AssetFemale3DCG = [
 		Asset: ["HairFront1", "HairFront2", "HairFront3", "HairFront4", "HairFront5", "HairFront6", "HairFront7", "HairFront8", "HairFront9", "HairFront10", "HairFront11", "HairFront12", "HairFront13"]
 	},
 
-	//todo add translation and use better names than "0.9"
 	{
 		Group: "Height",
 		AllowNone:false,

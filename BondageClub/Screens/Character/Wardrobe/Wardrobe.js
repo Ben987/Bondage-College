@@ -71,11 +71,11 @@ function WardrobeRun() {
 	DrawText(TextGet("SelectAppareance"), 1375, 60, "White", "Gray");
 	for (var C = 0; C < 12; C++)
 		if (C < 6) {
-			DrawCharacter(WardrobeCharacter[C], 500 + C * 250, 100, 0.45);
+			DrawCharacter(WardrobeCharacter[C], 500 + C * 250, 100, 0.45, true);
 			if (WardrobeSelection == C) DrawEmptyRect(500 + C * 250, 105, 225, 440, "Cyan");
 		}
 		else {
-			DrawCharacter(WardrobeCharacter[C], 500 + (C - 6) * 250, 550, 0.45);
+			DrawCharacter(WardrobeCharacter[C], 500 + (C - 6) * 250, 550, 0.45, true);
 			if (WardrobeSelection == C) DrawEmptyRect(500 + (C - 6) * 250, 555, 225, 440, "Cyan");
 		}
 }

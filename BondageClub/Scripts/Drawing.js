@@ -113,8 +113,7 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 			var playerHeight = 1.0;
 			if ((IsHeightResizeAllowed === undefined && Zoom === 1.0) || IsHeightResizeAllowed){ playerHeight = CharacterAppearanceGetCurrentValue(C,"Height","Asset").Name; }
 			X += Zoom * Canvas.width * (1 - playerHeight) / 2;
-			//todo test
-			if ((C.Pose.indexOf("Suspension") < 0)) { Y += Zoom * Canvas.height * (1 - playerHeight); }
+			Y += Zoom * Canvas.height * (1 - playerHeight);
 
 			// If we must dark the Canvas characters
 			if ((C.ID != 0) && Player.IsBlind() && (CurrentScreen != "InformationSheet")) {
@@ -139,11 +138,7 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 				CanvasH.width = Canvas.width;
 				CanvasH.height = Canvas.height;
 				CanvasH.getContext("2d").scale(1, -1);
-				//todo test suspension ropes with low height
-				CanvasH.getContext("2d").translate(0, -Canvas.height);
-				//CanvasH.getContext("2d").translate(0, -Canvas.height + 2 * Zoom * Canvas.height * (1 - playerHeight));
-				//CanvasH.getContext("2d").translate(0, -Canvas.height + Canvas.height * Math.pow(1 - playerHeight, 2));
-				//CanvasH.getContext("2d").translate(0, - Canvas.Height * (1 - Zoom);
+				CanvasH.getContext("2d").translate(0, -Canvas.height + Canvas.height * (1 - playerHeight));
 				CanvasH.getContext("2d").drawImage(Canvas, 0, 0);
 				Canvas = CanvasH;
 			}
