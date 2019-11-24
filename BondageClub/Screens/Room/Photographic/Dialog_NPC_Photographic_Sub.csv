@@ -45,7 +45,7 @@ RemoveVibratingEgg,,,"Pity, we just got started.",,
 0,40,Please take off your clothes.,Where should I start?,,!PhotographicSubIsRestrained()
 0,,Please change your pose.,"Alright, how is this?",SubChangePose(),PhotographicSubCanKeel()
 0,,(Nod for help.),I'll help you right away.,PlayerRelease(),Player.IsRestrained()
-0,,Good-bye. (Leave her.),,DialogLeave(),
+0,,Goodbye. (Leave her.),,DialogLeave(),
 10,,(Remove hat.),"Go on, don't be shy.","PlayerClothRemove(""Hat"")",PlayerHatAvailable()
 10,,(Remove gloves.),"Go on, don't be shy.","PlayerClothRemove(""Gloves"")",PlayerGlovesAvailable()
 10,,(Remove cloth.),"Go on, don't be shy.","PlayerClothRemove(""Cloth"")",PlayerClothAvailable()
@@ -78,7 +78,7 @@ RemoveVibratingEgg,,,"Pity, we just got started.",,
 100,,What's going on here?,In the photo studio you can make pictures and collect them.,,
 100,,What do the pictures cost?,"Nothing, this is a service of the club.",,
 100,,Why is the room so barren?,This is a neutral photo background.,,
-100,,Can I tie you up?,"Of course, if that's necessary for the foto session.",,
+100,,Can I tie you up?,"Of course, if that's necessary for the photo session.",,
 100,,Will you restrain me?,I would do much more for a good picture.,,
 100,0,I don't have any more questions.,"Well then, show me your best pose.",,
 PhotographicSubTied,0,,"(She shows you her restraints.) I would like to, but...",,

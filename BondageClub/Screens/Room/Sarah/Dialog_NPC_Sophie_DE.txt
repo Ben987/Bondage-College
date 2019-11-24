@@ -387,18 +387,18 @@ Könnt Ihr mir zeigen, wie man sie züchtigen kann?
 Yes Mistress Sophie.  (Give your hands.)
 Ja, Herrin Sophie.  (Ihr deine Hände geben.)
 ###_NPC
-(She stays silent and grabs your arms, locking leather cuffs on them.)
-(Sie greift schweigend nach deinen Armen und befestigt Lederfesseln an daran.)
+(She looks at your device and seems to be bothered.)  Girl, why are you already *chaste*?
+(Sie schaut auf deine Vorrichtung und scheint sich daran zu stören.) Mädchen, weshalb bist du bereits *chaste*?
 ###_PLAYER
 Fine, make it quick.  (Give your hands.)
 Gut, aber nur kurz.  (Ihr deine Hände geben.)
-###_NPC
-(She frowns and grabs your arms forcefully, locking leather cuffs on them.)
-(Sie runzelt die Stirn und greift kräftig nach deinen Armen, um Lederfesselndaran zu befestigen.)
-###_PLAYER
 Is it really necessary?
 Ist das wirklich notwendig?
 ###_NPC
+(She stays silent and grabs your arms, locking leather cuffs on them.)
+(Sie greift schweigend nach deinen Armen und befestigt Lederfesseln daran.)
+(She frowns and grabs your arms forcefully, locking leather cuffs on them.)
+(Sie runzelt die Stirn und greift kräftig nach deinen Armen, um Lederfesseln daran zu befestigen.)
 (She doesn't listen and grabs your arms forcefully, locking leather cuffs on them.)
 (Sie hört nicht zu, packt kräftig deine Arme und schließt die Lederfesseln daran fest.)
 ###_PLAYER
@@ -438,6 +438,26 @@ I'm ready to be punished Miss.
 Ich bin bereit, bestraft zu werden, Miss.
 I understand Mistress Sophie.
 Ich verstehe, Herrin Sophie.
+Does it matter?
+Spielt das eine Rolle?
+###_NPC
+I can't *punir* you while you're wearing that.  Get out!  (She points at the door.)
+Du kannst keine *Punition* erhalten, wähernd du das trägst. Raus! (Sie deutet zur Tür.)
+###_PLAYER
+A Dominant forced it on me.
+Eine dominante Person hat mir das aufgezwungen.
+Someone played a prank.
+Jemand hat mir einen Streich gespielt.
+I protect myself.
+Ich schütze mich damit.
+This is unfair!
+Das ist unfair!
+###_NPC
+Stop complaining and start walking.  You're not allowed in here anymore.
+Hör auf zu jammern und fang an zu laufen. Du wirst hier nicht länger geduldet.
+###_PLAYER
+(Back to the club.)
+(Zurück zum Club.)
 That was quite a fight.
 Das war ein toller Kampf.
 ###_NPC
@@ -582,8 +602,6 @@ Wenn du mich berührst, schlage ich dich!
 (Gegen sie kämpfen.)
 (Run for your life.)
 (Um dein Leben laufen.)
-(Back to the club.)
-(Zurück zum Club.)
 It sounds too dramatic.
 Das klingt zu dramatisch.
 ###_NPC

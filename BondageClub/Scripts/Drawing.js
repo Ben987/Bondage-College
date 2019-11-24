@@ -418,7 +418,7 @@ function DrawButton(Left, Top, Width, Height, Label, Color, Image, HoveringText)
 	MainCanvas.closePath();
 
 	// Draw the text or image
-	DrawText(Label, Left + Width / 2, Top + (Height / 2) + 1, "black");
+	DrawTextFit(Label, Left + Width / 2, Top + (Height / 2) + 1, Width - 4, "black");
 	if ((Image != null) && (Image != "")) DrawImage(Image, Left + 2, Top + 2);
 
 	// Draw the hovering text

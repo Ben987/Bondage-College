@@ -52,6 +52,16 @@ Sleeveless Top
 Ärmelloses Top
 Dress with Fur
 Kleid mit Fell
+Towel
+Handtuch
+Yukata
+Yukata
+Steampunk Corset
+Steampunk-Korsett
+Bondage Dress Style 1
+Bondage-Kleid Stil 1
+Bondage Dress Style 2
+Bondage-Kleid Stil 2
 Bottom
 Kleidung unten
 Skirt
@@ -74,6 +84,10 @@ Latex Pants
 Latexhose
 Latex Skirt
 LatexRock
+Long Latex Skirt
+Langer Latexrock
+Patterned Skirt
+Musterrock
 Ripped Jeans
 Zerrissene Jeans
 Bra
@@ -122,6 +136,8 @@ Latex Bra
 Latex-BH
 Bondage Harness
 Harnisch-BH
+Leather Strap Harness
+Lederriemen-Harnisch
 Cute Bikini
 Süßer Bikini
 Corset Bikini
@@ -130,6 +146,10 @@ Ouvert Perl
 Reizwäsche
 Sarashi
 Binden-BH
+Kitty Bra
+Katzen-BH
+Fishnet Bikini
+Netzbikini
 Panties
 Slip
 Style 4
@@ -160,6 +180,12 @@ G-String Pasty
 String-Pasty
 Zip-String Panties
 Reißverschluss-String
+Kitty Panties
+Katzenhöschen
+Pearl String
+Perlenstring
+Sunstripe Panties
+Sonnenstrahl-Slip
 Socks
 Socken
 Ankle
@@ -402,24 +428,24 @@ Hemp Rope
 Hanfseil
 Leather Belt
 Ledergürtel
+Sturdy Leather Belt
+Robuster Ledergürtel
 Irish 8 Feet Cuffs
 Irische Achter-Fußschellen
 Suspension Hemp Rope
 Hänge-Hanfseil
 Duct Tape
 Klebeband
-Mermaid Rope Tie
-Meerjungfrau-Fessel
 Leather Ankle Cuffs
 Leder-Fußfesseln
  Metal Leg Spreader
 Metall-Spreizstange
 Ball And Chain
 Sträflingskugel
+ Ankle Shackles
+Fußketten
 Legs
 Beine
-Upper Mermaid Tie
-Obere Meerjungfrau-Fessel
 Leather Leg Cuffs
 Leder-Beinfesseln
 Leg Binder
@@ -448,18 +474,26 @@ Clit Suction Cup
 Klitoris-Saugnapf
 Tape Strips
 Pflaster
+Pair Of Ben Wa Balls
+Liebeskugeln
+Clit
+Klitoris
 Straight Clit Piercing
-Gerades Klitoris-Piercing
+Gerades Klitorispiercing
 Round Clit Piercing
-Rundes Klitoris-Piercing
+Rundes Klitorispiercing
 Weighted Clit Piercing
-Gewichtetes Klitoris-Piercing
+Gewichtetes Klitorispiercing
 Barbell Clit Piercing
-Barbell-Klitoris-Piercing
+Barbell-KlitorispPiercing
 Chastity Clit Piercing
-Keuschheits-Klitoris-Piercing
+Keuschheits-Klitorispiercing
 Chastity Clit Shield
-Keuschheits-Klitoris-Schild
+Keuschheits-Klitorispchild
+Jewel Clit Piercing
+Juwelen-Klitorispiercing
+Adorned Clit Piercing
+Verziertes Klitorispiercing
 Butt
 Hintern
 Black Butt Plug
@@ -488,6 +522,8 @@ Vibrating Butt Plug
 Vibrator-Analstöpsel
 Inflatable Vibrating Butt Plug
 Aufblasbarer Vibrator-Analstöpsel
+Anal Hook
+Analhaken
 Pelvis
 Becken
 Strap-On Panties
@@ -510,14 +546,6 @@ Spanking Toys
 Spanking-Spielzeug
 Torso
 Körper
-Nylon Rope Harness
-Nylonseil-Harnisch
-Hemp Rope Harness
-Hanfseil-Harnisch
-Nylon Crotch Rope
-Nylon-Schrittseil
-Hemp Crotch Rope
-Hanfschrittseil
 Leather Harness
 Lederharnisch
 Adult Baby Harness
@@ -558,6 +586,10 @@ Barbell Piercing
 Barbell-Piercing
 Chopstick Nipple Clamps
 Stäbchen-Nippelklemmen
+Kitty Pasties
+Katzen-Pasties
+Clothespins
+Wäscheklammern
 Breast
 Brust
 Metal Chastity Bra
@@ -570,16 +602,26 @@ Metal Cuffs
 Handschellen
 Leather Armbinder
 Monohandschuh
+Armbinder Jacket
+Monohandschuh-Jacke
 Leather Cuffs
 Ledermanschetten
 Mittens Chain
 Fäustlingskette
 Four Limbs Shackles
 Viererketten
+Manacles
+Ketten
+Full Body Shackles
+Ganzkörperketten
+Wrist Shackles
+Handketten
 Latex Strait Leotard
 Latex-Zwangsjackenanzug
 Straitjacket
 Zwangsjacke
+Leather Straitjacket
+Leder-Zwangsjacke
 Bolero Straitjacket
 Bolero-Zwangsjacke
 Pet Suit
@@ -594,6 +636,10 @@ Padded Mittens
 Gepolsterte Fäustlinge
 Paw Mittens
 Pfotenfäustlinge
+Leather Mittens
+Lederfäustlinge
+Padded Leather Mittens
+Gepolsterte Lederfäustlinge
 Polished Steel Mittens
 Hochglanz-Stahlfäustlinge
 Crop
@@ -610,6 +656,8 @@ Whip Paddle
 Paddelpeitsche
 Whip
 Peitsche
+Cattle Prod
+Viehtreiber
 Tennis Racket
 Tennisschläger
 Neck
@@ -644,6 +692,10 @@ Pet Collar
 Tierhalsband
 Maid Collar
 Hausmädchenhalsband
+Bordelle Collar
+Bordelle-Halsband
+Lover Leather Collar
+Liebes-Lederhalsband
 Collar
 Halsband
 Bell
@@ -662,6 +714,8 @@ Pulled Leash
 Gehaltene Leine
 Name Tag
 Namensschild
+Moon
+Mond
 Cloth Gag
 Stoffknebel
 Wiffle Ball Gag
@@ -710,6 +764,16 @@ Harness Ball Gag XL
 XL-Harnischballknebel
 Pumpkin Gag
 Kürbisknebel
+Lips Gag
+Lippenknebel
+Spider Gag
+Spinnenknebel
+Cloth Stuffing
+Stofffüllung
+Scarf
+Schal
+Lewd Gag
+Versauter Knebel
 Head
 Kopf
 Cloth Blindfold
@@ -736,12 +800,20 @@ Open Hair Latex Hood
 Haarfreie Lederhaube
 Sealed Leather Hood
 Dichte Lederhaube
+Polished Steel Hood
+Polierte Stahlhaube
+Sack Hood
+Sackhaube
+Lewd Blindfold
+Versaute Augenbinde
 Ears
 Ohren
 Light Duty Ear Plugs
 Herkömmliche Ohrenstöpsel
 Heavy Duty Ear Plugs
 Hochleistungs-Ohrenstöpsel
+Headphone Ear Plugs
+Kopfhörer-Ohrenstöpsel
 Misc Items
 Sonstiges
 Metal Padlock
@@ -786,9 +858,21 @@ Kennel
 Zwinger
 Saddle Stand
 Sattelständer
+Burlap Sack
+Leinensack
+Inflatable Body Bag
+Aufblasbarer Schlafsack
 Teddy Bear Set
 Teddybär-Set
+One Bar Prison
+Ein-Stangen-Gefängins
 Ballet Heels
 Ballett-Heels
 Ballet Wedges
 Ballett-Wedges
+Metal Toe Cuffs
+Metall-Zehenfesseln
+Leather Toe Cuffs
+Leder-Zehenfesseln
+Toe Tie
+Zehenfessel

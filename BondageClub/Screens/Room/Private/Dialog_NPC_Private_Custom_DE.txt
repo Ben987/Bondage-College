@@ -2447,6 +2447,34 @@ Yes Mistress.  (Change for her.)
 Ja, Herrin. (Dich umziehen.)
 (Change slowly.)
 (Dich langsam umziehen.)
+###_NPC
+I'm curious to see how you would look in college clothes.  Here, take my spare set and change.  (She hands you some college clothes.)
+Ich frage mich, wie du in meiner College-Uniform aussehen würdest. Hier, nimm meine Ersatzuniform und zieh dich um. (Sie gibt dir eine College-Uniform.)
+###_PLAYER
+You have strange fetishes.  (Change for her.)
+Ihr habt seltsame Fetische. (Dich für sie umziehen.)
+###_NPC
+(You change for her as she nods.)  Stay like that school girl, you cannot change for 5 minutes.
+(Du ziehst dich für sie um und sie nickt.) Bleib so, Schulmädchen, du darfst dich 5 Minuten lang nicht umziehen.
+###_PLAYER
+Alright Mistress.  (Change for her.)
+Alles klar, Herrin. (Dich für sie umziehen.)
+###_NPC
+(You change for her as she smiles.)  You will be my school girl for 5 minutes, you cannot change.
+(Du ziehst dich für sie um und sie lächelt.) Du wirst 5 Minuten lang mein Schulmädchen sein, du darfst dich nicht umziehen.
+###_PLAYER
+I'll be your school girl.  (Change for her.)
+Ich werde Euer Schulmädchen sein. (Dich für sie umziehen.)
+###_NPC
+(You change for her as she smirks.)  You're a good school girl, and you cannot change again for 5 minutes.
+(Du ziehst dich für sie um und sie feixt.) Du bist ein braves Schulmädchen, und du darfst dich 5 Minuten lang nicht umziehen.
+###_PLAYER
+No!  This is silly.
+Nein! Das ist albern.
+###_NPC
+(She grumbles and forces you to change.)  There!  And you cannot change for 5 minutes school girl.
+(Sie grummelt und zwingt dich, dich umzuziehen.) So! Und du darfst dich 5 Minuten lang nicht umziehen, Schulmädchen.
+###_PLAYER
 Easy enough.
 Klingt einfach.
 ###_NPC

@@ -5,13 +5,13 @@
 (Sie wirft dir einen verwunderten Blick zu.) Ist dir nicht kalt? Zieh dir etwas an, bevor eine Lehrerin kommt.
 Hello fellow student.  I hope you're doing well.
 Hallo, Mitschülerin. Ich hoffe, es geht dir gut.
-Hello there.  Welcome to the college.
+Hello there.  Welcome to our college.
 Hallo. Willkommen im College.
 ###_PLAYER
 Who are you?
 Wer bist du?
 ###_NPC
-I'm DialogCharacterName.  I study in the college.
+I'm DialogCharacterName.  I study at the college.
 Ich bin DialogCharacterName. Ich bin eine Schülerin im College.
 ###_PLAYER
 Why are you here?
@@ -59,8 +59,8 @@ Ich muss los. (Dialog beenden.)
 Who studies here?
 Wer lernt hier denn so?
 ###_NPC
-It's a girl only college.  So there's only women, both students and teachers.
-Es ist ein reines Mädchencollege. Darum gibt es nur Frauen, sowohl unter den Lehrern als auch in der Schülerschaft.
+It's a girl only college.  There's only women, both students and teachers.
+Es ist ein reines Mädchencollege. Es gibt hier nur Frauen, sowohl unter den Lehrern als auch in der Schülerschaft.
 ###_PLAYER
 Is it expansive?
 Ist es teuer?
@@ -71,7 +71,7 @@ Meine Familie zahlt für mich, also weiß ich das nicht genau. Ich habe gehört,
 What is the required uniform?
 Wie sieht die Pflichtuniform aus?
 ###_NPC
-Students have to wear ties, a skirt like mine and high leg socks.  Also, nothing too exotic will be accepted.
+Students must wear ties, a skirt like mine and high leg socks.  Also, nothing too exotic will be accepted.
 Schülerinnen brauchen eine Krawatte, einen Rock wie meinen hier, und hohe Strümpfe. Außerdem wird nichts zugelassen, das zu exotisch ist.
 ###_PLAYER
 The place looks pretty old.
@@ -85,20 +85,20 @@ Kann ich am Unterricht teilnehmen?
 ###_NPC
 Why are you asking me that?  Sure, go inside and get to your classes.
 Wozu fragst du mich das? Klar, geh rein und geh zu deinem Unterricht.
-You could register for the next semester if you have the required papers.  It's in a few months.
-Du könntest dich für das nächste Semester anmelden, wenn du die nötigen Unterlagen hast. Es beginnt in ein paar Monaten.
+You could register for the next semester if you have the required papers.  It's only in a few months.
+Du könntest dich für das nächste Semester anmelden, wenn du die nötigen Unterlagen hast. Es beginnt erst in ein paar Monaten.
 ###_PLAYER
 Thanks for your time.
 Danke für deine Zeit.
 ###_NPC
-No problem.  Is there anything else you need?
-Kein Problem. Brauchst du sonst noch etwas?
+No problem.  Is there anything else you want?
+Kein Problem. Wolltest du sonst noch etwas?
 ###_PLAYER
 I was kidding.
 Das war nur Spaß.
 ###_NPC
-(She frowns.)  Yeah, alright.  Is there anything else you need?
-(Sie runzelt die Stirn.) Ja, okay. Brauchst du sonst noch etwas?
+(She frowns.)  Yeah, alright.  Is there anything else you want?
+(Sie runzelt die Stirn.) Ja, okay. Wolltest du sonst noch etwas?
 ###_PLAYER
 I'm serious.  I want to tie you up.
 Ich mein's ernst. Ich will dich fesseln.

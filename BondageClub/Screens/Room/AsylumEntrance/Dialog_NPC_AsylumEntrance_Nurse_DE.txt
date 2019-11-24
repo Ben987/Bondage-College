@@ -5,6 +5,18 @@ Ow!  Well done, you're a tough patient.  I'm not letting you out anyway.
 Au! Starke Leistung, du bist 'ne hartnäckige Patientin. Ich lasse dich aber trotzdem nicht raus.
 You really thought you could beat me?  You're truly mad, little patient.
 Dachtest du wirklich, du kämst an mir vorbei? Du bist wahrhaftig verrückt, kleine Patientin.
+What are you doing here little slave?  Go back to the club and serve our customers.
+Was machst du denn hier, kleine Sklavin? Gehe zurück in den Club und diene unseren Kunden.
+###_PLAYER
+Can we talk about the asylum?
+Können wir über die Anstalt reden?
+###_NPC
+No, as a club slave you have work to do.  Get going girl.
+Nein, als Clubsklavin hast du zu arbeiten. Mach dich auf den Weg, Mädchen.
+###_PLAYER
+(Leave her.)
+(Dialog beenden.)
+###_NPC
 Greetings doctor DialogPlayerName.  It's always a pleasure to see you.  Are you working today?
 Ich grüße Sie, Doktor DialogPlayerName. Es ist immer eine Freude, Sie zu sehen. Arbeiten Sie heute?
 Welcome to the asylum nurse DialogPlayerName.  Our patients are expecting you.  Are you here to work?
@@ -149,7 +161,7 @@ The social room is a good place to start.  Or get to the beds to relax.  Now get
 Der Sozialraum ist ein guter Anfangspunkt. Oder geh zu den Betten, um dich auszuruhen. Jetzt los, Mädchen.
 ###_PLAYER
 You're locking the door?
-Du schließtdie Tür ab?
+Du schließt die Tür ab?
 ###_NPC
 Don't be afraid, it's for your own good.  Now get going girl, you can explore the asylum freely.
 Keine Angst, das ist zu deinem eigenen Besten. Jetzt los, Mädchen, du darfst die Anstalt frei erkunden.
@@ -196,7 +208,7 @@ Can you release me?
 Kannst du mich freilassen?
 ###_NPC
 If you're restrained, there must be good reasons.  Think about it.
-Wenn du gefesselt bist, muss es gute gründe dafür geben. Denk darüber nach.
+Wenn du gefesselt bist, muss es gute Gründe dafür geben. Denk darüber nach.
 ###_PLAYER
 Release me or I'll scream.
 Lass mich frei, sonst schreie ich.
@@ -226,16 +238,16 @@ Fine, I'll do my time.
 Na gut, ich warte.
 ###_NPC
 Alright.  Try to get some rest or make some friends.
-Alles klar. Erhole dich etwas, oder lerne neue freunde kennen.
+Alles klar. Erhole dich etwas, oder lerne neue Freunde kennen.
 ###_PLAYER
 (Sigh and cross your arms.)
 (Seufzen und deine Arme verschränken.)
 ###_NPC
 Try to get some rest or make some friends.
-Erhole dich etwas, oder lerne neue freunde kennen.
+Erhole dich etwas, oder lerne neue Freunde kennen.
 ###_PLAYER
 Do I have to force my way out?
-Muss ich michetwa gewaltsam freikämpfen?
+Muss ich mich etwa gewaltsam freikämpfen?
 ###_NPC
 (She clinches her fists.)  What does it mean?
 (Sie ballt ihre Hände zu Fäusten.) Was soll das bedeuten?
@@ -246,7 +258,7 @@ Nothing, forget it.
 Nichts, vergiss es.
 ###_NPC
 (She grumbles.)  Fine.  Try to get some rest or make some friends.
-(Sie grummelt.) Na schön. Erhole dich etwas, oder lerne neue freunde kennen.
+(Sie grummelt.) Na schön. Erhole dich etwas, oder lerne neue Freunde kennen.
 ###_PLAYER
 I'm getting out girl.
 Ich komme hier schon noch raus, Mädchen.
@@ -264,7 +276,7 @@ That's what you think.  (Strip her.)
 Das glaubst auch nur du. (Sie ausziehen.)
 ###_NPC
 What are you doing?  I have work to do, it's not a good time to get kinky.
-Was machst du da? Ich hbae zu arbeiten, das ist nicht der richtige Zeitpunkt für Spielereien.
+Was machst du da? Ich habe zu arbeiten, das ist nicht der richtige Zeitpunkt für Spielereien.
 ###_PLAYER
 They will let me go.  (Strip her.)
 Man wird mich rauslassen. (Sie ausziehen.)

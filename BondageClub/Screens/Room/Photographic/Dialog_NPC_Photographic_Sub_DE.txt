@@ -126,7 +126,7 @@ Also gut, wie wär's hiermit?
 I'll help you right away.
 Ich helfe dir sofort.
 ###_PLAYER
-Good-bye. (Leave her.)
+Goodbye. (Leave her.)
 Auf Wiedersehen. (Dialog beenden.)
 (Remove hat.)
 (Deine Kopfbedeckung abnehmen.)
@@ -279,7 +279,7 @@ Es ist ein neutraler Fotohintergrund.
 Can I tie you up?
 Kann ich dich fesseln?
 ###_NPC
-Of course, if that's necessary for the foto session.
+Of course, if that's necessary for the photo session.
 Natürlich, wenn es für das Fotoshooting nötig ist.
 ###_PLAYER
 Will you restrain me?

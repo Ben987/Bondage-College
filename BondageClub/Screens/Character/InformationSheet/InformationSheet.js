@@ -39,7 +39,6 @@ function InformationSheetRun() {
 		if (C.Creation != null) DrawText(TextGet("MemberFor") + " " + (Math.floor((CurrentTime - C.Creation) / 86400000)).toString() + " " + TextGet("Days"), 550, 350, "Black", "Gray");
 	}
 	
-	C.Lover = "";
 	// Shows the lover and owner
 	DrawText(TextGet("Lover") + " " + (((C.Lover == null) || (C.Lover == "")) ? TextGet("LoverNone") : C.Lover.replace("NPC-", "")), 550, 500, "Black", "Gray");	
 	if ((C.Ownership == null) || (C.Ownership.Name == null) || (C.Ownership.MemberNumber == null) || (C.Ownership.Start == null) || (C.Ownership.Stage == null)) {

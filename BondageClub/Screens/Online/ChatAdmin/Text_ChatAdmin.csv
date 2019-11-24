@@ -5,7 +5,7 @@ RoomAdminList,Administrator List
 RoomPrivate,Private
 RoomLocked,Locked
 RoomSize,Size (2-10)
-UseMemberNumbers,"Use member numbers, separated by commas (ex: 1,2,3,5)"
+UseMemberNumbers,"Use member numbers, separated by commas (ex: 3571,541,7001)"
 AdminOnly,Room settings can only be updated by administrators
 Background,Background
 Save,Save

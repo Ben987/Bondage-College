@@ -97,9 +97,12 @@ SophieOrgasmGameDefeat,,,"(You cannot control yourself, and surrender to the ple
 45,46,Much better.,I will make sure your girls are fine and leave.  Take good care of your *esclaves*.,"DialogChangeReputation(""Dominant"", 2)",
 45,13,Can you show me how to punish them?,*Absolument*!  Just follow my orders and they will be punished properly.,,
 46,,Goodbye.,,SophieFreeSarahAndLeave(),
-50,51,Yes Mistress Sophie.  (Give your hands.),"(She stays silent and grabs your arms, locking leather cuffs on them.)","RestrainedBySophie(0, -2)",
-50,51,"Fine, make it quick.  (Give your hands.)","(She frowns and grabs your arms forcefully, locking leather cuffs on them.)","RestrainedBySophie(0, 2)",
-50,51,Is it really necessary?,"(She doesn't listen and grabs your arms forcefully, locking leather cuffs on them.)","RestrainedBySophie(0, 0)",
+50,55,Yes Mistress Sophie.  (Give your hands.),"(She looks at your device and seems to be bothered.)  Girl, why are you already *chaste*?","DialogChangeReputation(""Dominant"", -2)",Player.IsChaste()
+50,55,"Fine, make it quick.  (Give your hands.)","(She looks at your device and seems to be bothered.)  Girl, why are you already *chaste*?","DialogChangeReputation(""Dominant"", 2)",Player.IsChaste()
+50,55,Is it really necessary?,"(She looks at your device and seems to be bothered.)  Girl, why are you already *chaste*?",,Player.IsChaste()
+50,51,Yes Mistress Sophie.  (Give your hands.),"(She stays silent and grabs your arms, locking leather cuffs on them.)","RestrainedBySophie(0, -2)",!Player.IsChaste()
+50,51,"Fine, make it quick.  (Give your hands.)","(She frowns and grabs your arms forcefully, locking leather cuffs on them.)","RestrainedBySophie(0, 2)",!Player.IsChaste()
+50,51,Is it really necessary?,"(She doesn't listen and grabs your arms forcefully, locking leather cuffs on them.)","RestrainedBySophie(0, 0)",!Player.IsChaste()
 51,,What are these cuffs?,These leather cuffs are very handy to keep *soumises* under control.  They can be locked first and chained together later in many fashions.,DialogRemove(),
 51,52,It's really tight Miss.,(She grins and restrain your legs tightly with leather belts.),"RestrainedBySophie(1, -1)",
 51,52,What the fuck?,(She frowns and restrain your legs tightly with leather belts.),"RestrainedBySophie(1, 1)",
@@ -109,6 +112,12 @@ SophieOrgasmGameDefeat,,,"(You cannot control yourself, and surrender to the ple
 52,53,(Stay silent.),This punishment will help you learn and grow.  (She prepares you to be punished and attaches the wrist cuffs with a chain.),"RestrainedBySophie(2, 0)",
 53,200,I'm ready to be punished Miss.,,SophiePunishGirls(),
 53,200,I understand Mistress Sophie.,,SophiePunishGirls(),
+55,56,Does it matter?,I can't *punir* you while you're wearing that.  Get out!  (She points at the door.),,
+55,56,A Dominant forced it on me.,I can't *punir* you while you're wearing that.  Get out!  (She points at the door.),,
+55,56,Someone played a prank.,I can't *punir* you while you're wearing that.  Get out!  (She points at the door.),,
+55,56,I protect myself.,I can't *punir* you while you're wearing that.  Get out!  (She points at the door.),,
+56,,This is unfair!,Stop complaining and start walking.  You're not allowed in here anymore.,DialogRemove(),
+56,,(Back to the club.),,KickPlayerOut(),
 60,61,That was quite a fight.,*Absolument*.  And you've won DialogPlayerName.  You've also won my respect.,"DialogChangeReputation(""Dominant"", 6)",
 60,61,Who's the queen now?,Do not be *arrogante* DialogPlayerName.  Treasure the respect that you've won.,"DialogChangeReputation(""Dominant"", 8)",
 60,61,I was lucky.,It was more than *chance* DialogPlayerName.  You're a formidable opponent and you've won my respect.,"DialogChangeReputation(""Dominant"", 4)",
@@ -311,10 +320,10 @@ SophieOrgasmGameDefeat,,,"(You cannot control yourself, and surrender to the ple
 284,,(Look at Sarah.),"(Sarah gets whipped mercilessly by Mistress Sophie, she jumps and cry from the pain but still asks for more.)",DialogRemove(),SarahIsInside()
 284,285,(Enjoy the show.),"(You watch a severe beating scene.  Mistress Sophie seems to enjoy it a lot, before stopping promptly.)  That's enough!",,
 284,285,(Look away.),"(You look away but can hear the whipping sound and the cries for a while, then everything stops.)  That's enough!",,
-285,286,Enough Mistress Sophie?,"*Oui*!  (She removes all the restrains expect for Sarah's.)  Sarah, to end your punishment, find a way out.",SophireReleaseEveryoneButSarah(),SarahIsInside()
-285,286,(Nod slowly.),"*Oui*!  (She removes all the restrains expect for Sarah's.)  Sarah, to end your punishment, find a way out.",SophireReleaseEveryoneButSarah(),SarahIsInside()
-285,286,Enough Mistress Sophie?,*Oui*!  (She removes the restrains from everyone.),SophireReleaseEveryoneButSarah(),!SarahIsInside()
-285,286,(Nod slowly.),*Oui*!  (She removes the restrains from everyone.),SophireReleaseEveryoneButSarah(),!SarahIsInside()
+285,286,Enough Mistress Sophie?,"*Oui*!  (She removes all the restrains expect for Sarah's.)  Sarah, to end your punishment, find a way out.",SophieReleaseEveryoneButSarah(),SarahIsInside()
+285,286,(Nod slowly.),"*Oui*!  (She removes all the restrains expect for Sarah's.)  Sarah, to end your punishment, find a way out.",SophieReleaseEveryoneButSarah(),SarahIsInside()
+285,286,Enough Mistress Sophie?,*Oui*!  (She removes the restrains from everyone.),SophieReleaseEveryoneButSarah(),!SarahIsInside()
+285,286,(Nod slowly.),*Oui*!  (She removes the restrains from everyone.),SophieReleaseEveryoneButSarah(),!SarahIsInside()
 286,287,Are we free Miss?,You're free as a bird little *esclave*.  I have other appointments today.,,
 286,287,The punishment is over?,"It is, little *esclave*.  I have other appointments today.",,
 286,287,That was intense.,"It will be worse next time, little *esclave*.  But I have other appointments today.",,
