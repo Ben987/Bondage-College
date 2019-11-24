@@ -24,7 +24,9 @@ function PreferenceLoad() {
 		ColorNames: true,
 		ColorActions: true,
 		ColorEmotes: true,
-		FullSensDep: false
+		SensDepGarbleNames: false,
+		SensDepGarbleNamesEmotes: false,
+		SensDepDisableExamine: true
 	};
 
 	PreferenceChatColorThemeList = ["Light", "Dark"];
