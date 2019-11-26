@@ -50,7 +50,6 @@ function InventoryItemArmsLeatherStraitJacketSetPose(NewPose) {
 	}
 
 	// Sets the new pose with it's effects
-	DialogFocusItem.Property.Restrain = NewPose;
 	if (NewPose == null) {
 		delete DialogFocusItem.Property.Difficulty;
 		delete DialogFocusItem.Property.Type;

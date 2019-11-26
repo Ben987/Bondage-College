@@ -166,6 +166,19 @@ SturdyLeatherBeltsRestrainNone,,,SourceCharacter restrains DestinationCharacter 
 SturdyLeatherBeltsRestrainTwo,,,SourceCharacter restrains DestinationCharacter with two sturdy leather belts.
 SturdyLeatherBeltsRestrainThree,,,SourceCharacter restrains DestinationCharacter with three sturdy leather belts.
 SturdyLeatherBeltsRestrainFour,,,SourceCharacter restrains DestinationCharacter with four sturdy leather belts.
+BondageBenchStrapsSelectTightness,,,How many leather belts do you want to apply?
+BondageBenchStrapsPoseLight,,,Light
+BondageBenchStrapsPoseNormal,,,Normal
+BondageBenchStrapsPoseHeavy,,,Heavy
+BondageBenchStrapsPoseFull,,,Full
+BondageBenchStrapsRestrainNone,,,SourceCharacter loosely restrains DestinationCharacter to the bondage bench with few leather belts.
+BondageBenchStrapsRestrainNormal,,,SourceCharacter restrains DestinationCharacter to the bondage bench with a handful of leather belts.
+BondageBenchStrapsRestrainHeavy,,,SourceCharacter strictly restrains DestinationCharacter to the bondage bench with a good amount of leather belts.
+BondageBenchStrapsRestrainFull,,,SourceCharacter fully restrains DestinationCharacter to the bondage bench with a large amount of leather belts.
+BondageBenchSelectType,,,How do you want to restrain them?
+BondageBenchPoseStrapUp,,,Leather Belt Straps
+BondageBenchRestrainNone,,,SourceCharacter removes the leather belts from DestinationCharacter's body.
+BondageBenchRestrainStrapUp,,,SourceCharacter loosely restrains DestinationCharacter to the bondage bench with few leather belts.
 DuctTapePoseHands,,,Hands
 DuctTapePoseArms,,,Arms
 DuctTapePoseBottom,,,Skirt

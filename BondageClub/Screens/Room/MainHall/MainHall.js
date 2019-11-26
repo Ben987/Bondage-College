@@ -175,7 +175,7 @@ function MainHallClick() {
 		ChatRoomSpace = "";
 		ChatSearchBackground = "IntroductionDark";
 		ChatSearchLeaveRoom = "MainHall";
-		ChatCreateBackgroundList = ["Introduction", "KidnapLeague", "MaidQuarters", "MainHall", "Management", "Private", "Shibari", "Bedroom", "HorseStable", "Nursery", "PrisonHall", "BDSMRoomBlue", "BDSMRoomPurple", "BDSMRoomRed", "Gardens", "IndoorPool", "OutdoorPool", "MaidCafe", "PublicBath", "ParkDay", "ParkNight", "ChillRoom", "Boudoir", "BondageBedChamber", "Beach", "ForestPath", "DeepForest", "SpookyForest", "AbandonedBuilding", "BalconyNight", "CozyLivingRoom", "RooftopParty"];
+		ChatCreateBackgroundList = ["Introduction", "KidnapLeague", "MaidQuarters", "MainHall", "Management", "Private", "Shibari", "Bedroom", "HorseStable", "Nursery", "PrisonHall", "BDSMRoomBlue", "BDSMRoomPurple", "BDSMRoomRed", "Gardens", "IndoorPool", "OutdoorPool", "MaidCafe", "PublicBath", "ParkDay", "ParkNight", "ChillRoom", "Boudoir", "BondageBedChamber", "Beach", "ForestPath", "DeepForest", "SpookyForest", "AbandonedBuilding", "BalconyNight", "CozyLivingRoom", "RooftopParty", "CosyChalet", "ParkWinter", "XmasEve", "XmasDay"];
 		CommonSetScreen("Online", "ChatSearch");
 	}
 
