@@ -620,7 +620,7 @@ function DialogClick() {
 			if ((AssetGroup[A].Category == "Item") && (AssetGroup[A].Zone != null))
 				for (var Z = 0; Z < AssetGroup[A].Zone.length; Z++)
 					if (((C.Pose.indexOf("Suspension") < 0) && (MouseX - X >= ((AssetGroup[A].Zone[Z][0] * characterHeight) + Xoffset)) && (MouseY >= (((AssetGroup[A].Zone[Z][1] - C.HeightModifier) * characterHeight) + YOffset)) && (MouseX - X <= (((AssetGroup[A].Zone[Z][0] + AssetGroup[A].Zone[Z][2]) * characterHeight) + Xoffset)) && (MouseY <= (((AssetGroup[A].Zone[Z][1] + AssetGroup[A].Zone[Z][3] - C.HeightModifier) * characterHeight) + YOffset)))
-						|| ((C.Pose.indexOf("Suspension") >= 0) && (MouseX - X >= ((AssetGroup[A].Zone[Z][0] * characterHeight) + Xoffset)) && (MouseY >= 1000 - (characterHeight * (AssetGroup[A].Zone[Z][1] + AssetGroup[A].Zone[Z][3]) - C.HeightModifier)) && (MouseX - X <= (((AssetGroup[A].Zone[Z][0] + AssetGroup[A].Zone[Z][2]) * characterHeight) + Xoffset)) && (MouseY <= 1000 - (characterHeight * AssetGroup[A].Zone[Z][1] - C.HeightModifier)))) {
+						|| ((C.Pose.indexOf("Suspension") >= 0) && (MouseX - X >= ((AssetGroup[A].Zone[Z][0] * characterHeight) + Xoffset)) && (MouseY >= (characterHeight * (1000 - (AssetGroup[A].Zone[Z][1] + AssetGroup[A].Zone[Z][3])) - C.HeightModifier)) && (MouseX - X <= (((AssetGroup[A].Zone[Z][0] + AssetGroup[A].Zone[Z][2]) * characterHeight) + Xoffset)) && (MouseY <= (characterHeight * (1000 - (AssetGroup[A].Zone[Z][1])) - C.HeightModifier)))) {
 						C.FocusGroup = AssetGroup[A];
 						DialogItemToLock = null;
 						DialogFocusItem = null;

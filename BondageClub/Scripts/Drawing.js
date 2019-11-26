@@ -155,9 +155,9 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 			if ((C.FocusGroup != null) && (C.FocusGroup.Zone != null))
 				for (var Z = 0; Z < C.FocusGroup.Zone.length; Z++)
 					if (C.Pose.indexOf("Suspension") >= 0)
-						DrawEmptyRect(C.FocusGroup.Zone[Z][0] + X, 1000 - (C.FocusGroup.Zone[Z][1] + Y + C.FocusGroup.Zone[Z][3]) - C.HeightModifier, (characterHeight * C.FocusGroup.Zone[Z][2]), (characterHeight * C.FocusGroup.Zone[Z][3]), "cyan");
+						DrawEmptyRect((characterHeight * C.FocusGroup.Zone[Z][0]) + X, (1000 - (characterHeight * (C.FocusGroup.Zone[Z][1] + Y + C.FocusGroup.Zone[Z][3]))) - C.HeightModifier, (characterHeight * C.FocusGroup.Zone[Z][2]), (characterHeight * C.FocusGroup.Zone[Z][3]), "cyan");
 					else
-						DrawEmptyRect(C.FocusGroup.Zone[Z][0] + X, C.FocusGroup.Zone[Z][1] + Y - C.HeightModifier, (characterHeight * C.FocusGroup.Zone[Z][2]), (characterHeight * C.FocusGroup.Zone[Z][3]), "cyan");
+						DrawEmptyRect((characterHeight * C.FocusGroup.Zone[Z][0]) + X, (characterHeight * C.FocusGroup.Zone[Z][1]) + Y - C.HeightModifier, (characterHeight * C.FocusGroup.Zone[Z][2]), (characterHeight * C.FocusGroup.Zone[Z][3]), "cyan");
 
 			// Draw the character name below herself
 			if ((C.Name != "") && ((CurrentModule == "Room") || (CurrentModule == "Online") || ((CurrentScreen == "Wardrobe") && (C.ID != 0))) && (CurrentScreen != "Private"))
