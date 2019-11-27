@@ -62,11 +62,9 @@ function PreferenceRun() {
 	DrawButton(500, 280, 90, 90, "", "White", "Icons/Next.png");
 	DrawText(TextGet("ItemPermission") + " " + TextGet("PermissionLevel" + Player.ItemPermission.toString()), 615, 325, "Black", "Gray");
 	if (PreferenceMessage != "") DrawText(TextGet(PreferenceMessage), 500, 550, "Red", "Black");
+	DrawText(TextGet("FullSensDep"), 600, 525, "Black", "Gray");
+	DrawButton(500, 492, 64, 64, "", "White", (Player.PreferencesSettings && Player.PreferencesSettings.FullSensDep) ? "Icons/Checked.png" : "");
 	MainCanvas.textAlign = "center";
-
-	//todo to test
-	DrawText(TextGet("FullsensDep"), 600, 825, "Black", "Gray");
-	DrawButton(500, 792, 64, 64, "", "White", (Player.PreferencesSettings && Player.PreferencesSettings.FullSensDep) ? "Icons/Checked.png" : "");
 
 	// Draw the player & controls
 	DrawCharacter(Player, 50, 50, 0.9);
@@ -104,9 +102,7 @@ function PreferenceClick() {
 	// If we must show/hide/use the color picker
 	if ((MouseX >= 1140) && (MouseX < 1205) && (MouseY >= 187) && (MouseY < 252)) PreferenceColorPick = (PreferenceColorPick != "InputCharacterLabelColor") ? "InputCharacterLabelColor" : "";
 	if ((MouseX >= 1250) && (MouseX < 1925) && (MouseY >= 85) && (MouseY < 915) && (PreferenceColorPick != "")) ElementValue(PreferenceColorPick, DrawRGBToHex(MainCanvas.getImageData(MouseX, MouseY, 1, 1).data));
-
-	//todo to test
-	if ((MouseY >= 792) && (MouseY < 856)) Player.PreferencesSettings.FullSensDep = !Player.PreferencesSettings.FullSensDep;
+	if ((MouseX >= 500) && (MouseX < 564) && (MouseY >= 492) && (MouseY < 556)) Player.PreferencesSettings.FullSensDep = !Player.PreferencesSettings.FullSensDep;
 }
 
 // when the user exit this screen
