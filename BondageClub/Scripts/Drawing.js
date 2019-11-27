@@ -111,7 +111,7 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 			var seconds = new Date().getTime();
 			var Canvas = (Math.round(seconds / 400) % C.BlinkFactor == 0) ? C.CanvasBlink : C.Canvas;
 			var characterHeight = 1.0;
-			if ((IsHeightResizeAllowed === undefined && Zoom === 1.0) || IsHeightResizeAllowed){ characterHeight = CharacterAppearanceGetCurrentValue(C,"Height","Asset").Name; }
+			if ((IsHeightResizeAllowed == undefined) || IsHeightResizeAllowed){ characterHeight = CharacterAppearanceGetCurrentValue(C,"Height","Asset").Name; }
 			X += Zoom * Canvas.width * (1 - characterHeight) / 2;
 			Y += Zoom * Canvas.height * (1 - characterHeight);
 
