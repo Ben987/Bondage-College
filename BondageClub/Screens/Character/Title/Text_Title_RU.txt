@@ -1,0 +1,44 @@
+﻿Select your displayed title
+Выберите заголовок
+None
+Никто
+Mistress
+Госпожа
+Club Slave
+Клуб Рабов
+Head Maid
+Главная Горничная
+Maid
+Горничная
+Master Kidnapper
+Мастер-Похититель
+Kidnapper
+Похититель
+Patient
+Пациент
+Permanent Patient
+Постоянный Пациент
+Escaped Patient
+Сбежавший Пациент
+Nurse
+Медсестра
+Doctor
+Доктор
+College Student
+Студент Колледжа
+Foal
+Жеребенок
+Farm Horse
+Лошадиная Ферма
+Cold Blood Horse
+Хладнокровная Лошадь
+Warm Blood Horse
+Обычная Лошадь
+Hot Blood Horse
+Горячая Лошадь 
+Wild Mustang
+Дикий Мустанг
+Shining Unicorn
+Сияющий Единорог
+Flying Pegasus
+Летающий Пегас

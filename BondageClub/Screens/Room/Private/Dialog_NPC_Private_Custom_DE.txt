@@ -3286,7 +3286,7 @@ Ich schwöre, ehrlich und gerecht zu sein.
 (Sie nickt und lächelt.) Ja, Herrin.
 ###_PLAYER
 I vow to be strict but fair.
-Sich schwöre, streng aber fair zu sein.
+Ich schwöre, streng aber fair zu sein.
 I vow to be fun and joyful.
 Ich schwöre, dir Spaß und Freude zu bringen.
 I vow to nurture you and help you grow.

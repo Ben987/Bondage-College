@@ -10,6 +10,7 @@ RemoveChainForItem,,,Remove the chain to the floor first
 MustCollaredFirst,,,A collar must be fitted first to attach accessories to.
 MustCollaredFirstAndRemoveSuspension,,,Must be collared and not suspended first.
 MustCollaredFirstAndRemoveSuspension1,,,Must be collared and not suspended/mounted first.
+NoClothAndCollared,,,Remove some clothes and requires a collar.
 LegsCannotOpen,,,Legs cannot open.
 LegsCannotClose,,,Legs cannot close.
 MustFreeFeetFirst,,,Must free feet frist.
@@ -107,6 +108,7 @@ WillRemoveItemWithTimer,,,The item will be removed when the lock timer runs out
 WontRemoveItemWithTimer,,,The item will stay when the lock timer runs out
 SelectBondagePosition,,,Select the bondage position
 SelectTapeWrapping,,,Select the tape wrapping
+SelectPiercingState,,,Select the piercing attachment
 CannotUnlockIfElbowBound,,,A victim cannot unlock herself if her elbows are bound
 ItemMiscMetalPadlockIntro,,,"""From your friendly hardware store"""
 ItemMiscIntricatePadlockIntro,,,"""To keep your loved one secure"""
@@ -166,15 +168,30 @@ SturdyLeatherBeltsRestrainNone,,,SourceCharacter restrains DestinationCharacter 
 SturdyLeatherBeltsRestrainTwo,,,SourceCharacter restrains DestinationCharacter with two sturdy leather belts.
 SturdyLeatherBeltsRestrainThree,,,SourceCharacter restrains DestinationCharacter with three sturdy leather belts.
 SturdyLeatherBeltsRestrainFour,,,SourceCharacter restrains DestinationCharacter with four sturdy leather belts.
+BondageBenchStrapsSelectTightness,,,How many leather belts do you want to apply?
+BondageBenchStrapsPoseLight,,,Light
+BondageBenchStrapsPoseNormal,,,Normal
+BondageBenchStrapsPoseHeavy,,,Heavy
+BondageBenchStrapsPoseFull,,,Full
+BondageBenchStrapsRestrainNone,,,SourceCharacter loosely restrains DestinationCharacter to the bondage bench with few leather belts.
+BondageBenchStrapsRestrainNormal,,,SourceCharacter restrains DestinationCharacter to the bondage bench with a handful of leather belts.
+BondageBenchStrapsRestrainHeavy,,,SourceCharacter strictly restrains DestinationCharacter to the bondage bench with a good amount of leather belts.
+BondageBenchStrapsRestrainFull,,,SourceCharacter fully restrains DestinationCharacter to the bondage bench with a large amount of leather belts.
+BondageBenchSelectType,,,How do you want to restrain them?
+BondageBenchPoseStrapUp,,,Leather Belt Straps
+BondageBenchRestrainNone,,,SourceCharacter removes the leather belts from DestinationCharacter's body.
+BondageBenchRestrainStrapUp,,,SourceCharacter loosely restrains DestinationCharacter to the bondage bench with few leather belts.
 DuctTapePoseHands,,,Hands
 DuctTapePoseArms,,,Arms
 DuctTapePoseBottom,,,Skirt
 DuctTapePoseTop,,,Torso
 DuctTapePoseFull,,,Mummy
+DuctTapePoseComplete,,,Full Mummy
 DuctTapeRestrainHands,,,SourceCharacter wraps duct tape around DestinationCharacter's hands.
 DuctTapeRestrainBottom,,,SourceCharacter creates a duct tape skirt on DestinationCharacter and traps her hands in it.
 DuctTapeRestrainTop,,,SourceCharacter creates a duct tape top on DestinationCharacter and traps her arms in it.
 DuctTapeRestrainFull,,,SourceCharacter creates a duct tape mummy on DestinationCharacter and traps her arms in it.
+DuctTapeRestrainComplete,,,SourceCharacter creates a completed duct tape mummy on DestinationCharacter and traps her entire upper body in it.
 WristShacklesPoseInFront,,,In-front of body
 WristShacklesPoseBehind,,,Behind back.
 WristShacklesRestrainInFront,,,SourceCharacter shackles DestinationCharacter's wrist in-front of their body.
@@ -244,6 +261,14 @@ EggIncreaseTo0,,,DestinationCharacter's vibrating egg starts teasing her lightly
 EggIncreaseTo1,,,DestinationCharacter's vibrating egg builds up to a moderate pace.
 EggIncreaseTo2,,,DestinationCharacter's vibrating egg starts buzzing strongly!
 EggIncreaseTo3,,,DestinationCharacter's vibrating egg jumps up to maximum intensity!
+SybianDecreaseTo-1,,,DestinationCharacter's sybian stops vibrating.
+SybianDecreaseTo0,,,DestinationCharacter's sybian slows down into a light tease.
+SybianDecreaseTo1,,,DestinationCharacter's sybian returns to a moderate pace.
+SybianDecreaseTo2,,,DestinationCharacter's sybian slows down a tiny bit.
+SybianIncreaseTo0,,,DestinationCharacter's sybian starts teasing her lightly.
+SybianIncreaseTo1,,,DestinationCharacter's sybian builds up to a moderate pace.
+SybianIncreaseTo2,,,DestinationCharacter's sybian starts buzzing strongly!
+SybianIncreaseTo3,,,DestinationCharacter's sybian jumps up to maximum intensity!
 DildoDecreaseTo-1,,,DestinationCharacter's vibrating dildo stops vibrating.
 DildoDecreaseTo0,,,DestinationCharacter's vibrating dildo slows down into a light tease.
 DildoDecreaseTo1,,,DestinationCharacter's vibrating dildo returns to a moderate pace.
@@ -473,6 +498,14 @@ CollarNameTagTypeToy,,,Toy
 CollarNameTagTypeUseless,,,Useless
 CollarNameTagTypeUseMe,,,Use Me
 CollarNameTagTypeWhore,,,Whore
+RoundPiercingPoseBase,,,Base
+RoundPiercingPoseChain,,,Chain
+RoundPiercingRestrainBase,,,SourceCharacter detaches extras from DestinationCharacter's round piercings.
+RoundPiercingRestrainChain,,,SourceCharacter attaches a chain from DestinationCharacter's round piercings to her collar.
+WeightedPiercingPoseBase,,,Base
+WeightedPiercingPoseChain,,,Chain
+WeightedPiercingRestrainBase,,,SourceCharacter detaches extras from DestinationCharacter's weighted piercings.
+WeightedPiercingRestrainChain,,,SourceCharacter attaches a chain from DestinationCharacter's weighted piercings to her collar.
 DuctTapePoseLegs,,,Legs
 DuctTapePoseHalfLegs,,,Half
 DuctTapePoseMostLegs,,,Most
@@ -504,3 +537,10 @@ TeddyBearSetKitty,,,SourceCharacter gives DestinationCharacter a cute kitty tedd
 TeddyBearSetPup,,,SourceCharacter gives DestinationCharacter a cute puppy teddy.
 TeddyBearSetBunny,,,SourceCharacter gives DestinationCharacter a cute Bunny teddy.
 TeddyBearSetPony,,,SourceCharacter gives DestinationCharacter a cute Pony teddy.
+HeadphoneEarPlugsSelectTightness,,,Turn the headphones on/off and adjust their volume.
+HeadphoneEarPlugsPoseOff,,,Off
+HeadphoneEarPlugsPoseLight,,,Light
+HeadphoneEarPlugsPoseHeavy,,,Heavy
+HeadphoneEarPlugsRestrainNone,,,SourceCharacter turns off DestinationCharacter's headphone earplugs.
+HeadphoneEarPlugsRestrainLight,,,SourceCharacter turns the volume to low on DestinationCharacter's headphone earplugs.
+HeadphoneEarPlugsRestrainHeavy,,,SourceCharacter turns the volume up to high on DestinationCharacter's headphone earplugs.

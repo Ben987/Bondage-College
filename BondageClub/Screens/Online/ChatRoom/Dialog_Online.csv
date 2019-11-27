@@ -13,7 +13,7 @@ MaidDrinkPickBeerPitcher,,,"buys a beer pitcher for everyone, from DialogCharact
 MaidDrinkPickFreeTea,,,picks a tea from DialogCharacterName tray.,,
 MaidDrinkPickFreeCoffee,,,picks a coffee from DialogCharacterName tray.,,
 MaidDrinkPickHotChocolate,,,buys a hot chocolate from DialogCharacterName tray.,,
-MaidDrinkPickExpresso,,,buys a expresso from DialogCharacterName tray.,,
+MaidDrinkPickExpresso,,,buys a espresso from DialogCharacterName tray.,,
 MaidDrinkPickCappuccino,,,buys a cappuccino from DialogCharacterName tray.,,
 PlayerGagged,,,(You can use or remove items by selecting specific body regions.),,DialogDoAllowItem(CurrentCharacter)
 PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDoAllowItem(CurrentCharacter)

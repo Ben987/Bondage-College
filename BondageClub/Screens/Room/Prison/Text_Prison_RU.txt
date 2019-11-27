@@ -1,0 +1,4 @@
+﻿(You are under lock and key.)
+(Ты находишься под замком.)
+(You have to guard the room.)
+(Ты должна охранять комнату.)

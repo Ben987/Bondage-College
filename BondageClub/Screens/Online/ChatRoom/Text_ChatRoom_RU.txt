@@ -1,0 +1,40 @@
+﻿SourceCharacter swaps a PrevAsset for a NextAsset on DestinationCharacter FocusAssetGroup.
+Исходный персонаж  заменяет предыдущий актив на следующий актив в группе целевых персонажей  фокус-активов.
+SourceCharacter uses a NextAsset on DestinationCharacter FocusAssetGroup.
+Исходный персонаж  использует следующий актив в Целевой группе фокусных активов персонажа.
+SourceCharacter locks a NextAsset on DestinationCharacter FocusAssetGroup.
+Исходный персонаж  блокирует следующий актив в группе целевых символов фокус-активов.
+SourceCharacter adds a NextAsset on DestinationCharacter FocusAssetGroup PrevAsset.
+Исходный персонаж  добавляет следующий актив к целевому символу фокус-группы активов Предыдущих Активов.
+SourceCharacter removes the PrevAsset from DestinationCharacter FocusAssetGroup.
+Исходный персонаж  удаляет предыдущий актив из целевой группы фокус-активов.
+SourceCharacter unlocks and removes the PrevAsset from DestinationCharacter FocusAssetGroup.
+Исходный персонаж разблокирует и удаляет предыдущий актив из целевой группы фокус-активов персонажей.
+SourceCharacter rolls a DiceType sided dice.  The result is: DiceResult.
+Исходный персонаж бросает кости.  В результате получается: кости результат.
+SourceCharacter flips a coin.  The result is: CoinResult.
+Исходный персонаж переворачивает монету.  Результат таков: результат монеты.
+gets grabbed by two maids and locked in a timer cell, following her owner commands.
+получает схвачен двумя горничными и заперт в клетке с таймером, следуя ее командам владельца.
+gets grabbed by two maids and escorted to the maid quarters to serve drinks for her owner.
+его схватили две горничные и сопроводили в комнату для прислуги, чтобы подать напитки для ее владельца.
+(Two maids grab you and escort you to their quarters.  Another maid addresses you.)  Your owner sent you here to work.
+(Две служанки хватают тебя и провожают в свои покои.  К тебе обращается другая горничная)  Твой хозяин послал тебя сюда работать.
+gives a sealed envelope to her owner.
+дает запечатанный конверт ее владельцу.
+Talk to everyone
+Обсуждение для всех
+Whisper to
+Шепот в
+Heads
+Головы
+Tails
+Хвосты
+her
+ее
+'s
+'s
+kneels down
+преклонить колени
+stands up
+встать
