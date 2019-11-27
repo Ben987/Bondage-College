@@ -61,10 +61,10 @@ function PreferenceRun() {
 	DrawButton(1140, 187, 65, 65, "", "White", "Icons/Color.png");
 	DrawButton(500, 280, 90, 90, "", "White", "Icons/Next.png");
 	DrawText(TextGet("ItemPermission") + " " + TextGet("PermissionLevel" + Player.ItemPermission.toString()), 615, 325, "Black", "Gray");
+	DrawText(TextGet("EnableSounds"), 600, 425, "Black", "Gray");
+	DrawButton(500, 392, 64, 64, "", "White", (Player.PreferencesSettings && Player.PreferencesSettings.EnableSounds) ? "Icons/Checked.png" : "");
 	if (PreferenceMessage != "") DrawText(TextGet(PreferenceMessage), 500, 550, "Red", "Black");
 	MainCanvas.textAlign = "center";
-	DrawText(TextGet("EnableSounds"), 700, 425, "Black", "Gray");
-	DrawButton(500, 392, 64, 64, "", "White", (Player.PreferencesSettings && Player.PreferencesSettings.EnableSounds) ? "Icons/Checked.png" : "");
 
 	// Draw the player & controls
 	DrawCharacter(Player, 50, 50, 0.9);
