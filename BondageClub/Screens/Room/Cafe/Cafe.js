@@ -4,11 +4,11 @@ var CafeMaid = null;
 var CafeIsMaid = false;
 var CafeIsHeadMaid = false;
 var CafeVibeIncreased = false;
-var EnergyDrinkPrice = 5;
-var GlassMilkPrice = 5;
-var CupcakePrice = 5;
-var AskedFor = null;
-var Price = 0;
+var CafeEnergyDrinkPrice = 5;
+var CafeGlassMilkPrice = 5;
+var CafeCupcakePrice = 5;
+var CafeAskedFor = null;
+var CafePrice = 0;
 
 // Returns TRUE if
 function CafeMaidCanServe() { return (!CafeMaid.IsRestrained() && !Player.IsRestrained()) }
@@ -21,7 +21,7 @@ function CafeIsGaggedMaid() { return (!Player.CanTalk() && !CafeIsHeadMaid && Re
 function CafeIsMaidChoice() { return (ReputationGet("Maid") >= 50 && !CafeIsHeadMaid) }
 function CafeIsMaidNoChoice() { return (ReputationGet("Maid") < 50 && !CafeIsHeadMaid) }
 function CafeCanDildo() { return (!Player.IsVulvaChaste() && InventoryGet(Player, "ItemVulva") == null) }
-function CafeEquired(Type) { return (Type == AskedFor) }
+function CafeEquired(Type) { return (Type == CafeAskedFor) }
 
 // Loads the Cafe room
 function CafeLoad() {
@@ -61,39 +61,39 @@ function CafeClick() {
 
 // Player asks for a special, is told the rpice
 function CafeEquirePrice(Item) {
-	AskedFor = Item;
-	if (AskedFor == "EnergyDrink") Price = EnergyDrinkPrice;
-	if (AskedFor == "GlassMilk") Price = GlassMilkPrice;
-	if (AskedFor == "Cupcake") Price = CupcakePrice;
-	CafeMaid.CurrentDialog = CafeMaid.CurrentDialog.replace("REPLACEMONEY", Price.toString());
+	CafeAskedFor = Item;
+	if (CafeAskedFor == "EnergyDrink") CafePrice = CafeEnergyDrinkPrice;
+	if (CafeAskedFor == "GlassMilk") CafePrice = CafeGlassMilkPrice;
+	if (CafeAskedFor == "Cupcake") CafePrice = CafeCupcakePrice;
+	CafeMaid.CurrentDialog = CafeMaid.CurrentDialog.replace("REPLACEMONEY", CafePrice.toString());
 
 }
 
 // Player consumes a speciality
 function CafeConsumeSpeciiality() {
-	if (Player.Money < Price)  {
+	if (Player.Money < CafePrice)  {
 		CafeMaid.CurrentDialog = DialogFind(CafeMaid, "NotEnoughMoney");
 	}
 	else {
-		CharacterChangeMoney(Player, Price);
+		CharacterChangeMoney(Player, CafePrice);
 		if (!LogQuery("ModifierDuration", "SkillModifier")) LogAdd("ModifierLevel", "SkillModifier", 0)
 			SkillModifier = LogValue("ModifierLevel", "SkillModifier");
 
-		if (AskedFor == "EnergyDrink") {
+		if (CafeAskedFor == "EnergyDrink") {
 			if (SkillModifier >= SkillModifierMax) CafeMaid.CurrentDialog = DialogFind(CafeMaid, "EnergyDrinkLimit");
 			else SkillModifier++;
 			LogAdd("ModifierDuration", "SkillModifier", CurrentTime + 3600000); // affects lasts 1 hour
 			LogAdd("ModifierLevel", "SkillModifier", SkillModifier); // alters the skill modifier level
 		}
 
-		if (AskedFor == "GlassMilk") {
+		if (CafeAskedFor == "GlassMilk") {
 			if (SkillModifier <= SkillModifierMin) CafeMaid.CurrentDialog = DialogFind(CafeMaid, "GlassMilkLimit");
 			else SkillModifier = SkillModifier - 2;
 			LogAdd("ModifierDuration", "SkillModifier", CurrentTime + 3600000); // affects lasts 1 hour
 			LogAdd("ModifierLevel", "SkillModifier", SkillModifier); // alters the skill modifier level
 		}
 
-		if (AskedFor == "Cupcake") {
+		if (CafeAskedFor == "Cupcake") {
 
 		}
 	}
