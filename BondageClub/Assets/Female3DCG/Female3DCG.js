@@ -460,15 +460,11 @@ var AssetFemale3DCG = [
 		AllowNone:false,
 		AllowColorize:false,
 		Asset: [
-			{Name: "1.0", Visible:false},
+			{Name: "1.0", Visible: false},
 			{Name: "0.975", Visible: false},
 			{Name: "0.95", Visible: false},
 			{Name: "0.925", Visible: false},
 			{Name: "0.9", Visible: false},
-			{Name: "0.875", Visible: false},
-			{Name: "0.85", Visible: false},
-			{Name: "0.825", Visible: false},
-			{Name: "0.8", Visible: false}
 		]
 	},
 
