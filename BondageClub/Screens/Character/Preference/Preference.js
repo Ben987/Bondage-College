@@ -26,6 +26,10 @@ function PreferenceLoad() {
 		ColorEmotes: true
 	};
 
+	if (!Player.PreferencesSettings) Player.PreferencesSettings = {
+		EnableSounds: false
+	};
+
 	PreferenceChatColorThemeList = ["Light", "Dark"];
 	PreferenceChatEnterLeaveList = ["Normal", "Smaller", "Hidden"];
 	PreferenceChatMemberNumbersList = ["Always", "Never", "OnMouseover"];
@@ -59,6 +63,9 @@ function PreferenceRun() {
 	DrawText(TextGet("ItemPermission") + " " + TextGet("PermissionLevel" + Player.ItemPermission.toString()), 615, 325, "Black", "Gray");
 	if (PreferenceMessage != "") DrawText(TextGet(PreferenceMessage), 500, 550, "Red", "Black");
 	MainCanvas.textAlign = "center";
+	//todo to test
+	DrawText(TextGet("Enablesounds"), 600, 825, "Black", "Gray");
+	DrawButton(500, 792, 64, 64, "", "White", (Player.PreferencesSettings && Player.PreferencesSettings.EnableSounds) ? "Icons/Checked.png" : "");
 
 	// Draw the player & controls
 	DrawCharacter(Player, 50, 50, 0.9);
@@ -97,6 +104,8 @@ function PreferenceClick() {
 	if ((MouseX >= 1140) && (MouseX < 1205) && (MouseY >= 187) && (MouseY < 252)) PreferenceColorPick = (PreferenceColorPick != "InputCharacterLabelColor") ? "InputCharacterLabelColor" : "";
 	if ((MouseX >= 1250) && (MouseX < 1925) && (MouseY >= 85) && (MouseY < 915) && (PreferenceColorPick != "")) ElementValue(PreferenceColorPick, DrawRGBToHex(MainCanvas.getImageData(MouseX, MouseY, 1, 1).data));
 
+	//todo to test
+	//if ((MouseY >= 792) && (MouseY < 856)) Player.PreferencesSettings.EnableSounds = !Player.PreferencesSettings.EnableSounds;
 }
 
 // when the user exit this screen
@@ -107,7 +116,8 @@ function PreferenceExit() {
 		var P = {
 			ItemPermission: Player.ItemPermission,
 			LabelColor: Player.LabelColor,
-			ChatSettings: Player.ChatSettings
+			ChatSettings: Player.ChatSettings,
+			PreferencesSettings: Player.PreferencesSettings
 		}
 		ServerSend("AccountUpdate", P);
 		ElementRemove("InputCharacterLabelColor");
