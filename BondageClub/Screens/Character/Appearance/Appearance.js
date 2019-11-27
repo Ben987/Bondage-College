@@ -354,7 +354,7 @@ function AppearanceRun() {
 		if (C.ID == 0) CharacterAppearanceHeaderText = TextGet("SelectYourAppearance");
 		else CharacterAppearanceHeaderText = TextGet("SelectSomeoneAppearance").replace("TargetCharacterName", C.Name);
 	}
-	DrawCharacter(C, -550, (C.IsKneeling()) ? -1100 : -100, 4);
+	DrawCharacter(C, -550, (C.IsKneeling()) ? -1100 : -100, 4, false);
 	DrawCharacter(C, 800, 0, 1);
 	DrawText(CharacterAppearanceHeaderText, 450, 40, "White", "Black");
 
