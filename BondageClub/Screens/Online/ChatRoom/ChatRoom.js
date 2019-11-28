@@ -40,7 +40,9 @@ function ChatRoomCreateElement() {
 		ElementScrollToEnd("TextAreaChatLog");
 		if (Player.ChatSettings)
 			for (var property in Player.ChatSettings)
-				ElementSetDataAttribute("TextAreaChatLog", property, Player.ChatSettings[property]);
+			    ElementSetDataAttribute("TextAreaChatLog", property, Player.ChatSettings[property]);
+        //todo test
+        if (Player.PreferencesSettings.FullSensDep && (Player.Effect.indexOf("DeafHeavy") >= 0) && (Player.Effect.indexOf("BlindHeavy") >= 0)) { ElementSetDataAttribute("TextAreaChatLog", "EnterLeave", "Hidden") }
 		ElementFocus("InputChat");
 	}
 }
