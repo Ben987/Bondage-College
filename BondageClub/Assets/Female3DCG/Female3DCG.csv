@@ -60,6 +60,8 @@ Bra,Corset4,Under Bust Corset
 Bra,Corset5,Floral Corset
 Bra,Bikini1,Frilled Bikini
 Bra,SexyBikini1,Demonique Bikini
+Bra,SexyBikini2,Micro Bikini
+Bra,SexyBikini3,One Piece Swimsuit
 Bra,Swimsuit1,Swimsuit style 1
 Bra,Swimsuit2,Swimsuit style 2
 Bra,BunnySuit,Bunny Girl Bodysuit
@@ -75,6 +77,8 @@ Bra,OuvertPerl1,Ouvert Perl
 Bra,Sarashi1,Sarashi
 Bra,KittyBra1,Kitty Bra
 Bra,FishnetBikini1,Fishnet Bikini
+Bra,SexyBeachBra1,Sexy Beach Bra
+Bra,SexyBikiniBra1,Micro Bikini Top
 Panties,,Panties
 Panties,Panties1,Style 1
 Panties,Panties7,Style 2
@@ -98,6 +102,7 @@ Panties,HarnessPanties1,Bondage Harness
 Panties,KittyPanties1,Kitty Panties
 Panties,PearlPanties1,Pearl String
 Panties,SunstripePanties1,Sunstripe Panties
+Panties,SexyBeachPanties1,Sexy Beach Panties
 Socks,,Socks
 Socks,Socks0,Ankle
 Socks,Socks1,Short
@@ -237,6 +242,8 @@ HairBack,HairBack5,Style 12
 HairBack,HairBack8,Style 13
 HairBack,HairBack11,Style 14
 HairBack,HairBack6,Style 15
+HairBack,HairBack21,Style 16
+HairBack,HairBack22,Style 17
 HairFront,,Front Hair
 HairFront,HairFront1,Style 1
 HairFront,HairFront2,Style 2
@@ -316,13 +323,15 @@ ItemVulva,InflatableVibeDildo,Inflatable Vibrating Dildo
 ItemVulva,ClitSuctionCup,Clit Suction Cup
 ItemVulva,TapeStrips,Tape Strips
 ItemVulva,BenWaBalls,Pair Of Ben Wa Balls
+ItemVulva,HeavyWeightClamp,Heavy Weight Clamp
 ItemVulvaPiercings,,Clit
 ItemVulvaPiercings,StraightClitPiercing,Straight Clit Piercing
 ItemVulvaPiercings,RoundClitPiercing,Round Clit Piercing
 ItemVulvaPiercings,WeightedClitPiercing,Weighted Clit Piercing
 ItemVulvaPiercings,BarbellClitPiercing,Barbell Clit Piercing
-ItemVulvaPiercings,ChastityClitPiercing,Chastity Clit Piercing
-ItemVulvaPiercings,ChastityClitShield,Chastity Clit Shield
+ItemVulvaPiercings,ChastityClitPiercing,Chastity Vulva Piercings
+ItemVulvaPiercings,ChastityClitShield,Chastity Vulva Shield
+ItemVulvaPiercings,HighSecurityVulvaShield,High Security Vulva Shield
 ItemVulvaPiercings,JewelClitPiercing,Jewel Clit Piercing
 ItemVulvaPiercings,AdornedClitPiercing,Adorned Clit Piercing
 ItemButt,,Butt
@@ -340,12 +349,16 @@ ItemButt,ButtPump,Butt Pump
 ItemButt,VibratingButtPlug,Vibrating Butt Plug
 ItemButt,InflVibeButtPlug,Inflatable Vibrating Butt Plug
 ItemButt,AnalHook,Anal Hook
+ItemButt,ButtPlugLock,Butt Plug Lock
 ItemPelvis,,Pelvis
 ItemPelvis,StraponPanties,Strap-On Panties
 ItemPelvis,LeatherChastityBelt,Leather Chastity Belt
+ItemPelvis,SleekLeatherChastityBelt,Sleek Leather Chastity Belt
 ItemPelvis,StuddedChastityBelt,Studded Chastity Belt
 ItemPelvis,MetalChastityBelt,Metal Chastity Belt
 ItemPelvis,PolishedChastityBelt,Polished Chastity Belt
+ItemPelvis,SteelChastityPanties,Steel Chastity Panties
+ItemPelvis,HarnessPanties1,Bondage Harness
 ItemPelvis,LoveChastityBelt,Love Chastity Belt
 ItemPelvis,LeatherCrop,Leather Crop
 ItemPelvis,LeatherWhip,Leather Whip
@@ -355,6 +368,11 @@ ItemTorso,NylonRopeHarness,Nylon Rope
 ItemTorso,HempRopeHarness,Hemp Rope
 ItemTorso,LeatherHarness,Leather Harness
 ItemTorso,AdultBabyHarness,Adult Baby Harness
+ItemTorso,HarnessBra1,Bondage Harness
+ItemTorso,HarnessBra2,Leather Strap Harness
+ItemTorso,Corset3,Half Cup Corset
+ItemTorso,Corset4,Under Bust Corset
+ItemTorso,Corset5,Floral Corset
 ItemNipples,,Nipples
 ItemNipples,NippleClamp,Nipple Clamps
 ItemNipples,VibeNippleClamp,Vibrating Nipple Clamps
@@ -369,13 +387,17 @@ ItemNipples,NippleTape,Pair Of Nipple Tapes
 ItemNipples,ChopStickNippleClamps,Chopstick Nipple Clamps
 ItemNipples,KittyPasties,Kitty Pasties
 ItemNipples,Clothespins,Clothespins
+ItemNipples,NippleWeightClamps,Nipple Weight Clamps
 ItemNipplesPiercings,,Nipples
 ItemNipplesPiercings,StraightPiercing,Straight Piercings
 ItemNipplesPiercings,RoundPiercing,Round Piercings
 ItemNipplesPiercings,WeightedPiercing,Weighted Piercing
 ItemNipplesPiercings,NippleAccessory1,Nipple Jewels
 ItemNipplesPiercings,NippleAccessory2,Nipple Jewel Piercings
+ItemNipplesPiercings,NippleAccessory3,Nipple Gems Piercings
 ItemNipplesPiercings,BarbellPiercing,Barbell Piercing
+ItemNipplesPiercings,NippleChastityPiercing1,Chastity Guard Shield
+ItemNipplesPiercings,NippleChastityPiercing2,Chastity Cross Shield
 ItemBreast,,Breast
 ItemBreast,MetalChastityBra,Metal Chastity Bra
 ItemBreast,PolishedChastityBra,Polished Chastity Bra
@@ -431,6 +453,7 @@ ItemNeck,ShockCollarRemote,Shock Collar Remote
 ItemNeck,BatCollar,Bat Collar
 ItemNeck,PostureCollar,Posture Collar
 ItemNeck,SteelPostureCollar,Steel Collar
+ItemNeck,DogCollar,Dog Collar
 ItemNeck,SpikeCollar,Spike Collar
 ItemNeck,HighCollar,High Collar
 ItemNeck,LeatherChoker,Leather Choker
@@ -438,6 +461,12 @@ ItemNeck,PetCollar,Pet Collar
 ItemNeck,MaidCollar,Maid Collar
 ItemNeck,BordelleCollar,Bordelle Collar
 ItemNeck,LoveLeatherCollar,Lover Leather Collar
+ItemNeck,StrictPostureCollar,Strict Posture Collar
+ItemNeck,NobleCorsetCollar,Noble Corset Collar
+ItemNeck,HeartCollar,Heart Collar
+ItemNeck,LatexPostureCollar,Latex Posture Collar
+ItemNeck,LeatherCorsetCollar,Leather Corset Collar
+ItemNeck,HighSecurityCollar,High Security Collar
 ItemNeckAccessories,,Collar
 ItemNeckAccessories,CollarBell,Bell
 ItemNeckAccessories,CollarBow,Bow
@@ -465,7 +494,6 @@ ItemMouth,KittyGag,Kitty Mask Gag
 ItemMouth,KittenHarnessPanelGag,Kitty Harness Gag
 ItemMouth,CarrotGag,Rubber Carrot Gag
 ItemMouth,MuzzleGag,Muzzle Gag
-ItemMouth,NeckCorsetGag,Neck Corset Gag
 ItemMouth,RegularSleepingPill,Sleeping Pill
 ItemMouth,PantiesMask,Panties Mask
 ItemMouth,PlugGag,Plug Gag
@@ -480,6 +508,7 @@ ItemMouth,SpiderGag,Spider Gag
 ItemMouth,ClothStuffing,Cloth Stuffing
 ItemMouth,ScarfGag,Scarf
 ItemMouth,LewdGag,Lewd Gag
+ItemMouth,DeepthroatGag,Deepthroat Penis Gag
 ItemHead,,Head
 ItemHead,ClothBlindfold,Cloth Blindfold
 ItemHead,LeatherBlindfold,Leather Blindfold
@@ -497,11 +526,13 @@ ItemHead,LeatherHoodSealed,Sealed Leather Hood
 ItemHead,PolishedSteelHood,Polished Steel Hood
 ItemHead,SackHood,Sack Hood
 ItemHead,LewdBlindfold,Lewd Blindfold
+ItemHead,LatexBlindfold,Latex Blindfold
+ItemHead,DogHood,Dog Hood
 ItemEars,,Ears
 ItemEars,LightDutyEarPlugs,Light Duty Ear Plugs
 ItemEars,HeavyDutyEarPlugs,Heavy Duty Ear Plugs
 ItemEars,HeadphoneEarPlugs,Headphone Ear Plugs
-ItemMisc,,Misc Items
+ItemMisc,,Body
 ItemMisc,MetalPadlock,Metal Padlock
 ItemMisc,IntricatePadlock,Intricate Padlock
 ItemMisc,TimerPadlock,Five Minutes Padlock
@@ -525,8 +556,13 @@ ItemDevices,LowCage,Kennel
 ItemDevices,SaddleStand,Saddle Stand
 ItemDevices,BurlapSack,Burlap Sack
 ItemDevices,InflatableBodyBag,Inflatable Body Bag
+ItemDevices,BondageBench,Bondage Bench
 ItemDevices,TeddyBear,Teddy Bear Set
 ItemDevices,OneBarPrison,One Bar Prison
+ItemDevices,TheDisplayFrame,Display Frame
+ItemDevices,Sybian,Sybian
+ItemAddon,,Body
+ItemAddon,BondageBenchStraps,Leather Belt Straps
 ItemBoots,,Feet
 ItemBoots,PonyBoots,Pony Boots
 ItemBoots,BalletHeels,Ballet Heels

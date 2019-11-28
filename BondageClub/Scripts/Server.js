@@ -2,6 +2,7 @@
 var ServerSocket = null;
 var ServerURL = "http://localhost:4288";
 var ServerBeep = {};
+var ServerBeepAudio = new Audio();
 
 // Loads the server events
 function ServerInit() {
@@ -23,6 +24,7 @@ function ServerInit() {
 	ServerSocket.on("AccountQueryResult", function (data) { ServerAccountQueryResult(data); });
 	ServerSocket.on("AccountBeep", function (data) { ServerAccountBeep(data); });
 	ServerSocket.on("AccountOwnership", function (data) { ServerAccountOwnership(data); });
+	ServerBeepAudio.src = "Audio/BeepAlarm.mp3";
 }
 
 // When the server sends some information to the client, we keep it in variables
@@ -335,6 +337,7 @@ function ServerAccountBeep(data) {
 		ServerBeep.MemberName = data.MemberName;
 		ServerBeep.ChatRoomName = data.ChatRoomName;
 		ServerBeep.Timer = CurrentTime + 10000;
+		if (Player.AudioSettings && Player.AudioSettings.PlayBeeps) ServerBeepAudio.play();
 		ServerBeep.Message = DialogFind(Player, "BeepFrom") + " " + ServerBeep.MemberName + " (" + ServerBeep.MemberNumber.toString() + ")";
 		if (ServerBeep.ChatRoomName != null)
 			ServerBeep.Message = ServerBeep.Message + " " + DialogFind(Player, "InRoom") + " \"" + ServerBeep.ChatRoomName + "\"";

@@ -1,0 +1,16 @@
+﻿Gain reputation at double the rate
+Заработайте репутацию в два раза быстрее
+Gain skills at double the rate
+Заработайте навыки в два раза быстрее
+Gain double amount of money
+Заработайте двойную сумму денег
+Speed up the time to use any item
+Ускорьте время использования любого предмета
+Prevent random kidnappings
+Предотвращение случайных похищений
+Skip the D/s trial periods
+Пропустить пробные периоды в Д/с
+Automatically show NPC traits
+Автоматически показывать черты НПС
+No love decay for NPC over time
+Никакого распада любви для НПС с течением времени.

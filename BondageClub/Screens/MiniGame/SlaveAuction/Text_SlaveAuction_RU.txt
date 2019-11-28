@@ -1,0 +1,28 @@
+﻿Current bid:
+Текущая ставка:
+Highest bidder:
+Предложивший наивысшую цену:
+I bid
+Я ставлю
+Bid
+Ставка
+You
+Ты
+Someone else
+Кто-то другой
+Nobody
+Никто
+Your money:
+Твои деньги:
+Give up
+Сдаться
+Return
+Возвращать
+Do I hear
+Я слышу
+Going once!
+Едем один раз!
+Going twice!
+Дважды!
+Sold!
+Продано!

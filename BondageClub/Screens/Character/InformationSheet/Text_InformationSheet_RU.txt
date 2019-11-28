@@ -1,0 +1,154 @@
+﻿Name:
+Имя:
+Title:
+Титул:
+None
+Нет
+Mistress
+Госпожа
+Club Slave
+Клуб Рабов
+Head Maid
+Главная Горничная
+Maid
+Горничная
+Master Kidnapper
+Мастер-Похититель
+Kidnapper
+Похититель
+Patient
+Пациент
+Permanent Patient
+Постоянный Пациент
+Escaped Patient
+Сбежавший Пациент
+Nurse
+Медсестра
+Doctor
+Врач
+College Student
+студент колледжа
+Foal
+Жеребенок
+Farm Horse
+Лошадинная Ферма 
+Cold Blood Horse
+Хладнокровная Лошадь
+Warm Blood Horse
+Обычная лошадь 
+Hot Blood Horse
+Горячая Лошадь
+Wild Mustang
+дикий мустанг
+Shining Unicorn
+Сияющий Единорог
+Flying Pegasus
+Летающий Пегас
+Member Number:
+Номер Участника:
+-
+-
+Lover:
+Возлюбленная
+Owner:
+Владелец:
+Money:
+Деньги:
+Member for
+Член в течении
+Friends for
+Друзья для
+On trial for
+На суде за
+Collared for
+Ошейник для
+day(s)
+день(дни)
+Unknown
+Неизвестный
+- Reputation -
+- Репутация -
+Dominant:
+Доминирующий:
+Submissive:
+Покорный:
+Maid Sorority:
+Горничная Женского Общества:
+Kidnappers League:
+Лига Похитителей :
+Asylum Nurse:
+Медсестра Приюта:
+Asylum Patient:
+Пациент Психушки:
+Gambling Hall:
+игорный зал:
+ABDL:
+ABDL:
+- Skills -
+- Навыки -
+Bondage:
+Бондаж:
+Evasion:
+Уклонение:
+Willpower:
+Сила воли:
+Dressage:
+Выездка:
+Global modifier:
+Глобальный модификатор:
+- Traits -
+- Черты -
+Spend more time with her to know her traits
+Проводите с ней больше времени, чтобы узнать ее черты
+Violent:
+Жестокая:
+Peaceful:
+Тихая:
+Horny:
+Похотливая:
+Frigid:
+Фригидная:
+Rude:
+Грубый:
+Polite:
+Вежливая:
+Wise:
+Мудрая:
+Dumb:
+Тупая:
+Serious:
+Серьезная:
+Playful:
+Игривая:
+Relation:
+Отношение:
+(Perfect)
+(Идеальное)
+(Great)
+(Отличное)
+(Good)
+(Хорошие)
+(Fair)
+(Честное)
+(Neutral)
+(Нейтральное)
+(Poor)
+(Жалкое)
+(Bad)
+(Плохое)
+(Horrible)
+(Ужасное)
+(Atrocious)
+(Жестокое)
+Item permission:
+Разрешены элементы:
+Everyone, no exceptions
+Все, без исключений
+Everyone, except blacklist
+Все, кроме черного списка
+Owner, whitelist & Dominants
+Владелец, белый список и Доминанты
+Owner and whitelist only
+Владелец и только белый список
+Owner only
+Только владелец

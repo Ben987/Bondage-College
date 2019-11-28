@@ -53,7 +53,7 @@ function InventoryItemHeadDuctTapeSetType(NewType) {
 		DialogFocusItem.Property.Block = [];
 	}
 	else if (NewType == "Mummy") {
-        DialogFocusItem.Property.Hide = ["HairFront"];
+        DialogFocusItem.Property.Hide = ["HairFront", "HairBack"];
 	    DialogFocusItem.Property.Effect = ["GagNormal", "BlindNormal", "Prone"];
 		DialogFocusItem.Property.Block = ["ItemMouth", "ItemEars"];
 	}
