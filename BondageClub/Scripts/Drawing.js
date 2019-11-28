@@ -111,9 +111,10 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 			var seconds = new Date().getTime();
 			var Canvas = (Math.round(seconds / 400) % C.BlinkFactor == 0) ? C.CanvasBlink : C.Canvas;
 			var characterHeight = 1.0;
-			if ((IsHeightResizeAllowed == undefined) || IsHeightResizeAllowed){ characterHeight = CharacterAppearanceGetCurrentValue(C,"Height","Asset").Name; }
+			// Applies an offset to X and Y based on the characterHeight
+			if ((IsHeightResizeAllowed == undefined) || IsHeightResizeAllowed) { characterHeight = CharacterAppearanceGetCurrentValue(C,"Height","Asset").Name; }
 			X += Zoom * Canvas.width * (1 - characterHeight) / 2;
-			Y += Zoom * Canvas.height * (1 - characterHeight);
+			if (C.Pose.indexOf("Suspension") < 0) { Y += Zoom * Canvas.height * (1 - characterHeight); }
 
 			// If we must dark the Canvas characters
 			if ((C.ID != 0) && Player.IsBlind() && (CurrentScreen != "InformationSheet")) {
@@ -138,7 +139,7 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 				CanvasH.width = Canvas.width;
 				CanvasH.height = Canvas.height;
 				CanvasH.getContext("2d").scale(1, -1);
-				CanvasH.getContext("2d").translate(0, -Canvas.height + Canvas.height * (1 - characterHeight));
+				CanvasH.getContext("2d").translate(0, -Canvas.height);
 				CanvasH.getContext("2d").drawImage(Canvas, 0, 0);
 				Canvas = CanvasH;
 			}
@@ -150,6 +151,9 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 				DrawCanvas(Canvas, X, Y - C.HeightModifier);
 			else
 				DrawCanvasZoom(Canvas, X, Y - (C.HeightModifier * Zoom), Zoom);
+
+			// Applies now the offset for Y if the character is suspended
+			if (C.Pose.indexOf("Suspension") >= 0) { Y += (Zoom * Canvas.height * (1 - characterHeight) / characterHeight); }
 
 			// Draws the character focus zones if we need too
 			if ((C.FocusGroup != null) && (C.FocusGroup.Zone != null))
