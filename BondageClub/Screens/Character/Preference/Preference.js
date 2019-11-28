@@ -28,6 +28,7 @@ function PreferenceLoad() {
 		ColorEmotes: true,
 	};
 
+	//if the user never set some of the global settings, construct them to replicate the default behavior
 	if (!Player.PreferencesSettings) Player.PreferencesSettings = {
 		FullSensDep: false
 	};
@@ -72,9 +73,10 @@ function PreferenceRun() {
 	DrawText(TextGet("ItemPermission") + " " + TextGet("PermissionLevel" + Player.ItemPermission.toString()), 615, 325, "Black", "Gray");
 	DrawText(TextGet("PlayBeeps"), 600, 425, "Black", "Gray");
 	DrawButton(500, 392, 64, 64, "", "White", (Player.AudioSettings && Player.AudioSettings.PlayBeeps) ? "Icons/Checked.png" : "");
-	if (PreferenceMessage != "") DrawText(TextGet(PreferenceMessage), 500, 550, "Red", "Black");
+	//todo realign correctly
 	DrawText(TextGet("FullSensDep"), 600, 525, "Black", "Gray");
 	DrawButton(500, 492, 64, 64, "", "White", (Player.PreferencesSettings && Player.PreferencesSettings.FullSensDep) ? "Icons/Checked.png" : "");
+	if (PreferenceMessage != "") DrawText(TextGet(PreferenceMessage), 500, 550, "Red", "Black");
 	MainCanvas.textAlign = "center";
 
 	// Draw the player & controls
@@ -113,8 +115,9 @@ function PreferenceClick() {
 	// If we must show/hide/use the color picker
 	if ((MouseX >= 1140) && (MouseX < 1205) && (MouseY >= 187) && (MouseY < 252)) PreferenceColorPick = (PreferenceColorPick != "InputCharacterLabelColor") ? "InputCharacterLabelColor" : "";
 	if ((MouseX >= 1250) && (MouseX < 1925) && (MouseY >= 85) && (MouseY < 915) && (PreferenceColorPick != "")) ElementValue(PreferenceColorPick, DrawRGBToHex(MainCanvas.getImageData(MouseX, MouseY, 1, 1).data));
-	if ((MouseX >= 500) && (MouseX < 564) && (MouseY >= 492) && (MouseY < 556)) Player.PreferencesSettings.FullSensDep = !Player.PreferencesSettings.FullSensDep;
+	//todo realign correctly
 	if ((MouseX >= 500) && (MouseX < 564) && (MouseY >= 392) && (MouseY < 456)) Player.AudioSettings.PlayBeeps = !Player.AudioSettings.PlayBeeps;
+	if ((MouseX >= 500) && (MouseX < 564) && (MouseY >= 492) && (MouseY < 556)) Player.PreferencesSettings.FullSensDep = !Player.PreferencesSettings.FullSensDep;
 
 }
 
