@@ -3,7 +3,7 @@ var SkillModifier = 0;
 var SkillModifierMax = 5;
 var SkillModifierMin = -10
 var SkillLevelMaximum = 10;
-var SkillLevelMinimum = -5;
+var SkillLevelMinimum = 0;
 
 // Pushes the skill progression to the server
 function SkillSave(S) {
@@ -56,7 +56,7 @@ function SkillLoad(NewSkill) {
 // Returns a specific skill level from a character
 function SkillGetLevel(C, SkillType) {
 	for (var S = 0; S < C.Skill.length; S++)
-		if (C.Skill[S].Type == SkillType) {
+		if (C.Skill[S].Type == SkillType && (SkillType == "Bondage" || SkillType == "Evasion")) {
 
 			// check the skills modifier effect duration and level of effect
 			if (!LogQuery("ModifierDuration", "SkillModifier")) LogAdd("ModifierLevel", "SkillModifier", 0)
@@ -65,8 +65,8 @@ function SkillGetLevel(C, SkillType) {
 			if (SkillModifier > SkillModifierMax) SkillModifier = SkillModifierMax;
 			
 			var Level = (C.Skill[S].Level + SkillModifier);
-			if (Level > SkillLevelMaximum) Level = SkillLevelMaximum;
-			if (Level < SkillLevelMinimum) Level = SkillLevelMinimum;
+			if (Level > (SkillLevelMaximum + SkillModifierMax)) Level = (SkillLevelMaximum + SkillModifierMax);
+			if (Level < (SkillLevelMinimum + SkillModifierMin)) Level = (SkillLevelMinimum + SkillModifierMin);
 			return Level;
 		}
 	return 0;
