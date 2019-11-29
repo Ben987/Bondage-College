@@ -28,14 +28,14 @@ function PreferenceLoad() {
 		ColorEmotes: true,
 	};
 
-	//if the user never set some of the global settings, construct them to replicate the default behavior
-	if (!Player.PreferencesSettings) Player.PreferencesSettings = {
-		FullSensDep: false
-	};
-
 	// If the user never set the audio settings before, construct them to replicate the default behavior
 	if (!Player.AudioSettings) Player.AudioSettings = {
 		PlayBeeps: false
+	};
+
+	//if the user never set some of the global settings, construct them to replicate the default behavior
+	if (!Player.PreferencesSettings) Player.PreferencesSettings = {
+		FullSensDep: false
 	};
 
 	// Sets the chat themes

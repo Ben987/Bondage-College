@@ -346,13 +346,6 @@ function CharacterLoadEffect(C) {
 			if (C.Appearance[A].Asset.Group.Effect != null)
 				CharacterAddEffect(C, C.Appearance[A].Asset.Group.Effect);
 	}
-	//if in chatroom
-	//todo test
-	if ( CurrentScreen == "ChatRoom" && C.PreferencesSettings){
-		console.log("will test FullSensDep");
-		if (C.PreferencesSettings.FullSensDep && (C.Effect.indexOf("DeafHeavy") >= 0) && (C.Effect.indexOf("BlindHeavy") >= 0)) { ElementSetDataAttribute("TextAreaChatLog", "EnterLeave", "Hidden"); }
-		else {ElementSetDataAttribute("TextAreaChatLog", "EnterLeave", EnterLeave); }
-	}
 }
 
 // Sorts the character appearance by priority and loads the canvas
