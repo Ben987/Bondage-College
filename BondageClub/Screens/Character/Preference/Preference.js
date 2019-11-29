@@ -73,10 +73,9 @@ function PreferenceRun() {
 	DrawText(TextGet("ItemPermission") + " " + TextGet("PermissionLevel" + Player.ItemPermission.toString()), 615, 325, "Black", "Gray");
 	DrawText(TextGet("PlayBeeps"), 600, 425, "Black", "Gray");
 	DrawButton(500, 392, 64, 64, "", "White", (Player.AudioSettings && Player.AudioSettings.PlayBeeps) ? "Icons/Checked.png" : "");
-	//todo realign correctly
 	DrawText(TextGet("FullSensDep"), 600, 525, "Black", "Gray");
 	DrawButton(500, 492, 64, 64, "", "White", (Player.PreferencesSettings && Player.PreferencesSettings.FullSensDep) ? "Icons/Checked.png" : "");
-	if (PreferenceMessage != "") DrawText(TextGet(PreferenceMessage), 500, 550, "Red", "Black");
+	if (PreferenceMessage != "") DrawText(TextGet(PreferenceMessage), 500, 650, "Red", "Black");
 	MainCanvas.textAlign = "center";
 
 	// Draw the player & controls
@@ -115,7 +114,6 @@ function PreferenceClick() {
 	// If we must show/hide/use the color picker
 	if ((MouseX >= 1140) && (MouseX < 1205) && (MouseY >= 187) && (MouseY < 252)) PreferenceColorPick = (PreferenceColorPick != "InputCharacterLabelColor") ? "InputCharacterLabelColor" : "";
 	if ((MouseX >= 1250) && (MouseX < 1925) && (MouseY >= 85) && (MouseY < 915) && (PreferenceColorPick != "")) ElementValue(PreferenceColorPick, DrawRGBToHex(MainCanvas.getImageData(MouseX, MouseY, 1, 1).data));
-	//todo realign correctly
 	if ((MouseX >= 500) && (MouseX < 564) && (MouseY >= 392) && (MouseY < 456)) Player.AudioSettings.PlayBeeps = !Player.AudioSettings.PlayBeeps;
 	if ((MouseX >= 500) && (MouseX < 564) && (MouseY >= 492) && (MouseY < 556)) Player.PreferencesSettings.FullSensDep = !Player.PreferencesSettings.FullSensDep;
 
@@ -130,8 +128,8 @@ function PreferenceExit() {
 			LabelColor: Player.LabelColor,
 			ChatSettings: Player.ChatSettings,
 			AudioSettings: Player.AudioSettings,
-			PreferenceSettings: Player.PreferenceSettings
-		}
+			PreferencesSettings: Player.PreferencesSettings
+		};
 		ServerSend("AccountUpdate", P);
 		PreferenceMessage = "";
 		ElementRemove("InputCharacterLabelColor");
