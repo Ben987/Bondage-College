@@ -161,7 +161,7 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 					if (C.Pose.indexOf("Suspension") >= 0)
 						DrawEmptyRect((characterHeight * C.FocusGroup.Zone[Z][0]) + X, (1000 - (characterHeight * (C.FocusGroup.Zone[Z][1] + Y + C.FocusGroup.Zone[Z][3]))) - C.HeightModifier, (characterHeight * C.FocusGroup.Zone[Z][2]), (characterHeight * C.FocusGroup.Zone[Z][3]), "cyan");
 					else
-						DrawEmptyRect((characterHeight * C.FocusGroup.Zone[Z][0]) + X, (characterHeight * C.FocusGroup.Zone[Z][1]) + Y - C.HeightModifier, (characterHeight * C.FocusGroup.Zone[Z][2]), (characterHeight * C.FocusGroup.Zone[Z][3]), "cyan");
+						DrawEmptyRect((characterHeight * C.FocusGroup.Zone[Z][0]) + X, (characterHeight * C.FocusGroup.Zone[Z][1]) + Y - C.HeightModifier - (C.IsKneeling() ? (250 * (1-characterHeight)) : 0), (characterHeight * C.FocusGroup.Zone[Z][2]), (characterHeight * C.FocusGroup.Zone[Z][3]), "cyan");
 
 			// Draw the character name below herself
 			if ((C.Name != "") && ((CurrentModule == "Room") || (CurrentModule == "Online") || ((CurrentScreen == "Wardrobe") && (C.ID != 0))) && (CurrentScreen != "Private"))
