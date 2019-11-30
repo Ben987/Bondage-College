@@ -34,8 +34,9 @@ function PreferenceLoad() {
 	};
 
 	//if the user never set some of the global settings, construct them to replicate the default behavior
-	if (!Player.PreferencesSettings) Player.PreferencesSettings = {
-		FullSensDep: false
+	if (!Player.GameplaySettings) Player.GameplaySettings = {
+		SensDepGarbleName: false,
+		SensDepDisableExamine: false
 	};
 
 	// Sets the chat themes
@@ -73,9 +74,11 @@ function PreferenceRun() {
 	DrawText(TextGet("ItemPermission") + " " + TextGet("PermissionLevel" + Player.ItemPermission.toString()), 615, 325, "Black", "Gray");
 	DrawText(TextGet("PlayBeeps"), 600, 425, "Black", "Gray");
 	DrawButton(500, 392, 64, 64, "", "White", (Player.AudioSettings && Player.AudioSettings.PlayBeeps) ? "Icons/Checked.png" : "");
-	DrawText(TextGet("FullSensDep"), 600, 525, "Black", "Gray");
-	DrawButton(500, 492, 64, 64, "", "White", (Player.PreferencesSettings && Player.PreferencesSettings.FullSensDep) ? "Icons/Checked.png" : "");
-	if (PreferenceMessage != "") DrawText(TextGet(PreferenceMessage), 500, 650, "Red", "Black");
+	DrawText(TextGet("SensDepGarbleName"), 600, 525, "Black", "Gray");
+	DrawButton(500, 492, 64, 64, "", "White", (Player.GameplaySettings && Player.GameplaySettings.SensDepGarbleName) ? "Icons/Checked.png" : "");
+	DrawText(TextGet("SensDepDisableExamine"), 600, 625, "Black", "Gray");
+	DrawButton(500, 592, 64, 64, "", "White", (Player.GameplaySettings && Player.GameplaySettings.SensDepDisableExamine) ? "Icons/Checked.png" : "");
+	if (PreferenceMessage != "") DrawText(TextGet(PreferenceMessage), 500, 750, "Red", "Black");
 	MainCanvas.textAlign = "center";
 
 	// Draw the player & controls
@@ -114,9 +117,11 @@ function PreferenceClick() {
 	// If we must show/hide/use the color picker
 	if ((MouseX >= 1140) && (MouseX < 1205) && (MouseY >= 187) && (MouseY < 252)) PreferenceColorPick = (PreferenceColorPick != "InputCharacterLabelColor") ? "InputCharacterLabelColor" : "";
 	if ((MouseX >= 1250) && (MouseX < 1925) && (MouseY >= 85) && (MouseY < 915) && (PreferenceColorPick != "")) ElementValue(PreferenceColorPick, DrawRGBToHex(MainCanvas.getImageData(MouseX, MouseY, 1, 1).data));
-	if ((MouseX >= 500) && (MouseX < 564) && (MouseY >= 392) && (MouseY < 456)) Player.AudioSettings.PlayBeeps = !Player.AudioSettings.PlayBeeps;
-	if ((MouseX >= 500) && (MouseX < 564) && (MouseY >= 492) && (MouseY < 556)) Player.PreferencesSettings.FullSensDep = !Player.PreferencesSettings.FullSensDep;
-
+	if ((MouseX >= 500) && (MouseX < 564)) {
+		if ((MouseY >= 392) && (MouseY < 456)) Player.AudioSettings.PlayBeeps = !Player.AudioSettings.PlayBeeps;
+		if ((MouseY >= 492) && (MouseY < 556)) Player.GameplaySettings.SensDepGarbleName = !Player.GameplaySettings.SensDepGarbleName;
+		if ((MouseY >= 592) && (MouseY < 656)) Player.GameplaySettings.SensDepDisableExamine = !Player.GameplaySettings.SensDepDisableExamine;
+	}
 }
 
 // When the user exit the preference screen, we push the data back to the server
@@ -128,7 +133,7 @@ function PreferenceExit() {
 			LabelColor: Player.LabelColor,
 			ChatSettings: Player.ChatSettings,
 			AudioSettings: Player.AudioSettings,
-			PreferencesSettings: Player.PreferencesSettings
+			GameplaySettings: Player.GameplaySettings
 		};
 		ServerSend("AccountUpdate", P);
 		PreferenceMessage = "";

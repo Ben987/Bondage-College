@@ -24,4 +24,5 @@ ColorNames,Color names
 ColorActions,Color actions
 ColorEmotes,Color emotes
 PlayBeeps,Audio alarm for beeps
-FullSensDep,Full sensory deprivation
+SensDepGarbleName,Garble the name of the sender when blind and deaf
+SensDepDisableExamine,Disable examining people when blind and deaf
