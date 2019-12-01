@@ -33,7 +33,7 @@ function PreferenceLoad() {
 		PlayBeeps: false
 	};
 
-	//if the user never set some of the global settings, construct them to replicate the default behavior
+	//if the user never set the gameplay settings before, construct them to replicate the default behavior
 	if (!Player.GameplaySettings) Player.GameplaySettings = {
 		SensDepGarbleName: false,
 		BlindDisableExamine: false

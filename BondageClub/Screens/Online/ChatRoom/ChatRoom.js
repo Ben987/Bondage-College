@@ -460,7 +460,7 @@ function ChatRoomSync(data) {
 	}
 }
 
-// Refreshes the ChatLog
+// Refreshes the chat log element
 function ChatRoomRefreshChatSettings(C) {
 	if (C.ChatSettings) {
 		for (var property in C.ChatSettings)
