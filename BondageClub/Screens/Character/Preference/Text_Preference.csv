@@ -24,5 +24,5 @@ ColorNames,Color names
 ColorActions,Color actions
 ColorEmotes,Color emotes
 PlayBeeps,Audio alarm for beeps
-SensDepGarbleName,Garble the name of the sender when blind and deaf
+SensDepGarbleName,Garble names in chat when blind and deaf
 BlindDisableExamine,Disable examining people when blind

@@ -25,7 +25,7 @@ function PreferenceLoad() {
 		DisplayTimestamps: true,
 		ColorNames: true,
 		ColorActions: true,
-		ColorEmotes: true,
+		ColorEmotes: true
 	};
 
 	// If the user never set the audio settings before, construct them to replicate the default behavior
