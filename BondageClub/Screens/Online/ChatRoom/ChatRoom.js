@@ -38,9 +38,7 @@ function ChatRoomCreateElement() {
 		ElementPositionFix("TextAreaChatLog", 36, 1005, 5, 988, 859);
 		ElementContent("TextAreaChatLog", ChatRoomLog);
 		ElementScrollToEnd("TextAreaChatLog");
-		if (Player.ChatSettings)
-			for (var property in Player.ChatSettings)
-				ElementSetDataAttribute("TextAreaChatLog", property, Player.ChatSettings[property]);
+		ChatRoomRefreshChatSettings(Player);
 		ElementFocus("InputChat");
 	}
 }
@@ -91,7 +89,7 @@ function ChatRoomDrawCharacter(DoClick) {
 	for (var C = 0; C < ChatRoomCharacter.length; C++)
 		if (DoClick) {
 			if ((MouseX >= (C % 5) * Space + X) && (MouseX <= (C % 5) * Space + X + 450 * Zoom) && (MouseY >= Y + Math.floor(C / 5) * 500) && (MouseY <= Y + Math.floor(C / 5) * 500 + 1000 * Zoom)) {
-				if ((MouseY <= Y + Math.floor(C / 5) * 500 + 900 * Zoom) && (Player.GameplaySettings.BlindDisableExamine ? (!(Player.Effect.indexOf("BlindHeavy") >= 0) || ChatRoomCharacter[C].ID == Player.ID): true)) {
+				if ((MouseY <= Y + Math.floor(C / 5) * 500 + 900 * Zoom) && (Player.GameplaySettings && Player.GameplaySettings.BlindDisableExamine ? (!(Player.Effect.indexOf("BlindHeavy") >= 0) || ChatRoomCharacter[C].ID == Player.ID): true)) {
 					ElementRemove("InputChat");
 					ElementRemove("TextAreaChatLog");
 					ChatRoomBackground = ChatRoomData.Background;
@@ -459,6 +457,15 @@ function ChatRoomSync(data) {
 		// Keeps a copy of the previous version
 		ChatRoomData = data;
 
+	}
+}
+
+// Refreshes the ChatLog
+function ChatRoomRefreshChatSettings(C) {
+	if (C.ChatSettings) {
+		for (var property in C.ChatSettings)
+			ElementSetDataAttribute("TextAreaChatLog", property, C.ChatSettings[property]);
+		if (C.GameplaySettings && C.GameplaySettings.SensDepGarbleName && (C.Effect.indexOf("DeafHeavy") >= 0) && (C.Effect.indexOf("BlindHeavy") >= 0)) { ElementSetDataAttribute("TextAreaChatLog", "EnterLeave", "Hidden"); }
 	}
 }
 
