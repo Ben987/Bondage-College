@@ -369,6 +369,12 @@ function InventoryConfiscateKey() {
 	InventoryDelete(Player, "IntricatePadlockKey", "ItemMisc");
 }
 
+// Removes the remotes of the vibrators from the player inventory
+function InventoryConfiscateRemote() {
+	InventoryDelete(Player, "VibratorRemote", "ItemVulva");
+	InventoryDelete(Player, "VibratorRemote", "ItemNipples");
+}
+
 // returns TRUE if the item is worn
 function InventoryIsWorn(C, AssetGroup, AssetName){
 	return C && C.Appearance && C.Appearance.some(Item => Item.Asset.Group.Name == AssetGroup && Item.Asset.Name == AssetName);

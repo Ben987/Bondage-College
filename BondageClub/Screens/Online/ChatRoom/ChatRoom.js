@@ -581,6 +581,11 @@ function ChatRoomSetRule(data) {
 		if (data.Content == "OwnerRuleKeyConfiscate") InventoryConfiscateKey();
 		if (data.Content == "OwnerRuleKeyBlock") LogAdd("BlockKey", "OwnerRule");
 
+		// Remote rules
+		if (data.Content == "OwnerRuleRemoteAllow") LogDelete("BlockRemote", "OwnerRule");
+		if (data.Content == "OwnerRuleRemoteConfiscate") InventoryConfiscateRemote();
+		if (data.Content == "OwnerRuleRemoteBlock") LogAdd("BlockRemote", "OwnerRule");
+
 		// Timer cell punishment
 		var TimerCell = 0;
 		if (data.Content == "OwnerRuleTimerCell5") TimerCell = 5;
