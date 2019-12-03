@@ -121,6 +121,8 @@ function LoginMistressItems() {
 	} else {
 		InventoryDelete(Player, "MistressPadlock", "ItemMisc", false);
 		InventoryDelete(Player, "MistressPadlockKey", "ItemMisc", false);
+		InventoryDelete(Player, "MistressTimerPadlock", "ItemMisc", false);
+		InventoryDelete(Player, "MistressTimerPadlockKey", "ItemMisc", false);
 		InventoryDelete(Player, "MistressGloves", "Gloves", false);
 		InventoryDelete(Player, "MistressBoots", "Shoes", false);
 		InventoryDelete(Player, "MistressTop", "Cloth", false);

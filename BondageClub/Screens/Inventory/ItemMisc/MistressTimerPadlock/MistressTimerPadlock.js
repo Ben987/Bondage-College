@@ -1,13 +1,15 @@
 "use strict";
 
+
 // Loads the item extension properties
-function InventoryItemMiscTimerPadlockLoad() {
+function InventoryItemMiscMistressTimerPadlockLoad() {
+// todo make the add timing only visible by mistresses, change description to : "Can only be unlocked by a club Mistress or once the timer has run out
     if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property == null)) DialogFocusSourceItem.Property = {};
     if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property != null) && (DialogFocusSourceItem.Property.RemoveItem == null)) DialogFocusSourceItem.Property.RemoveItem = false;
 }
 
 // Draw the extension screen
-function InventoryItemMiscTimerPadlockDraw() {
+function InventoryItemMiscMistressTimerPadlockDraw() {
     if ((DialogFocusItem == null) || (DialogFocusSourceItem.Property.RemoveTimer < CurrentTime)) { InventoryItemMiscTimerPadlockExit(); return; }
     DrawText(DialogFind(Player, "TimerLeft") + " " + TimerToString(DialogFocusSourceItem.Property.RemoveTimer - CurrentTime), 1500, 150, "white", "gray");
     DrawRect(1387, 225, 225, 275, "white");
@@ -22,7 +24,7 @@ function InventoryItemMiscTimerPadlockDraw() {
 }
 
 // Catches the item extension clicks
-function InventoryItemMiscTimerPadlockClick() {
+function InventoryItemMiscMistressTimerPadlockClick() {
     if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) InventoryItemMiscTimerPadlockExit();
     if ((MouseX >= 1350) && (MouseX <= 1650) && (MouseY >= 700) && (MouseY <= 765) && Player.CanInteract()) InventoryItemMiscTimerPadlockReset();
     if ((MouseX >= 1100) && (MouseX <= 1164) && (MouseY >= 836) && (MouseY <= 900) && (Player.MemberNumber == DialogFocusSourceItem.Property.LockMemberNumber) && Player.CanInteract()) {
@@ -32,7 +34,7 @@ function InventoryItemMiscTimerPadlockClick() {
 }
 
 // When the timer resets
-function InventoryItemMiscTimerPadlockReset() {
+function InventoryItemMiscMistressTimerPadlockReset() {
     if (DialogFocusItem.Asset.RemoveTimer > 0) DialogFocusSourceItem.Property.RemoveTimer = CurrentTime + (DialogFocusItem.Asset.RemoveTimer * 1000);
     if (CurrentScreen == "ChatRoom") {
         var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
