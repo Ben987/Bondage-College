@@ -115,6 +115,8 @@ function LoginMistressItems() {
 		InventoryAdd(Player, "MistressBottom", "ClothLower", false);
 		InventoryAdd(Player, "MistressPadlock", "ItemMisc", false);
 		InventoryAdd(Player, "MistressPadlockKey", "ItemMisc", false);
+		InventoryAdd(Player, "MistressTimerPadlock", "ItemMisc", false);
+		InventoryAdd(Player, "MistressTimerPadlockKey", "ItemMisc", false);
 		ServerPlayerInventorySync();
 	} else {
 		InventoryDelete(Player, "MistressPadlock", "ItemMisc", false);
