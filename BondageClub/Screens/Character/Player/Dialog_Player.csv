@@ -102,10 +102,13 @@ ServerMessageWhisperBlocked,,,You're on SourceCharacter blacklist.  Your message
 LockMemberNumber,,,Member number on lock:
 TimerLeft,,,Time left:
 TimerRestart,,,SourceCharacter restarts the five minutes timer padlock on DestinationCharacter BodyPart.
+TimerUnknown,,,Unknown time left
 RestartTimer,,,Restart Timer
+Add15minTimer,,,Add 15 minutes to the Timer
 RemoveItemWithTimer,,,Remove item when the lock timer runs out
 WillRemoveItemWithTimer,,,The item will be removed when the lock timer runs out
 WontRemoveItemWithTimer,,,The item will stay when the lock timer runs out
+ShowItemWithTimerRemaining,,,Show the time remaining
 SelectBondagePosition,,,Select the bondage position
 SelectTapeWrapping,,,Select the tape wrapping
 SelectPiercingState,,,Select the piercing attachment
@@ -116,7 +119,7 @@ ItemMiscTimerPadlockIntro,,,You can restart the timer but cannot unlock
 ItemMiscOwnerPadlockIntro,,,"""Never forget who you belong to"""
 ItemMiscOwnerPadlockDetail,,,Can only be locked or unlocked by her owner
 ItemMiscMistressPadlockIntro,,,Can only be locked or unlocked by a Club Mistress
-ItemMiscMistressTimerPadlockIntro,,,Can only be locked or unlocked by a Club Mistress
+ItemMiscMistressTimerPadlockIntro,,,Can only be locked or unlocked by a Club Mistress or once the timer has run out
 LeatherCuffsPoseNone,,,Detached
 LeatherCuffsPoseWrist,,,Bind wrists
 LeatherCuffsPoseElbow,,,Bind elbows

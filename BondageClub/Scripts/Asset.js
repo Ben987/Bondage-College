@@ -68,6 +68,8 @@ function AssetAdd(NewAsset) {
 		WearTime: (NewAsset.Time == null) ? 0 : NewAsset.Time,
 		RemoveTime: (NewAsset.RemoveTime == null) ? ((NewAsset.Time == null) ? 0 : NewAsset.Time) : NewAsset.RemoveTime,
 		RemoveTimer: (NewAsset.RemoveTimer == null) ? 0 : NewAsset.RemoveTimer,
+		ShowTimer: (NewAsset.ShowTimer == null) ? true : NewAsset.ShowTimer,
+		MaxTimer: (NewAsset.MaxTimer == null) ? 0 : NewAsset.MaxTimer,
 		DrawingPriority: NewAsset.Priority,
 		HeightModifier: (NewAsset.Height == null) ? 0 : NewAsset.Height,
 		ZoomModifier: (NewAsset.Zoom == null) ? 1 : NewAsset.Zoom,
