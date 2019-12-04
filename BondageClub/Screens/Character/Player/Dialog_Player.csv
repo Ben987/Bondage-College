@@ -132,6 +132,22 @@ LeatherLegCuffsRestrainNone,,,SourceCharacter detaches the chain from Destinatio
 LeatherLegCuffsRestrainClosed,,,SourceCharacter attaches the leather leg cuffs chain on DestinationCharacter's legs.
 LeatherAnkleCuffsRestrainNone,,,SourceCharacter detaches the chain from DestinationCharacter's leather ankle cuffs.
 LeatherAnkleCuffsRestrainClosed,,,SourceCharacter attaches the leather ankle cuffs chain on DestinationCharacter's ankles.
+OrnateCuffsPoseNone,,,Detached
+OrnateCuffsPoseWrist,,,Bind wrists
+OrnateCuffsPoseElbow,,,Bind elbows
+OrnateCuffsPoseBoth,,,Bind both
+OrnateCuffsRestrainNone,,,SourceCharacter detaches the chain from DestinationCharacter's Ornate cuffs.
+OrnateCuffsRestrainWrist,,,SourceCharacter attaches the Ornate cuffs wrist chain behind DestinationCharacter's back.
+OrnateCuffsRestrainElbow,,,SourceCharacter attaches the Ornate cuffs elbow chain behind DestinationCharacter's back.
+OrnateCuffsRestrainBoth,,,SourceCharacter attaches the Ornate cuffs wrist and elbow chains behind DestinationCharacter's back.
+OrnateLegCuffsPoseNone,,,Detached
+OrnateLegCuffsPoseClosed,,,Chain Closed
+OrnateAnkleCuffsPoseNone,,,Detached
+OrnateAnkleCuffsPoseClosed,,,Chain Closed
+OrnateLegCuffsRestrainNone,,,SourceCharacter detaches the chain from DestinationCharacter's Ornate leg cuffs.
+OrnateLegCuffsRestrainClosed,,,SourceCharacter attaches the Ornate leg cuffs chain on DestinationCharacter's legs.
+OrnateAnkleCuffsRestrainNone,,,SourceCharacter detaches the chain from DestinationCharacter's Ornate ankle cuffs.
+OrnateAnkleCuffsRestrainClosed,,,SourceCharacter attaches the Ornate ankle cuffs chain on DestinationCharacter's ankles.
 StraitJacketSelectTightness,,,How tight do you want to strap the jacket?
 StraitJacketPoseLoose,,,Loose
 StraitJacketPoseNormal,,,Normal
