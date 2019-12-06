@@ -1,0 +1,26 @@
+PlayerGagged,,,(She gives you a curious look.)  Why are you wearing that?  Are you on a fucking diet?,,
+FightVictory,,,(She catches her breath.)  Fuck this!  I was too hungry to fight anyway.,,
+FightDefeat,,,(She smirks.)  This is what you get for messing with me bitch.,,
+0,,,(Sidney is waiting in line to get her food.)  Hey DialogPlayerName.  Don't you dare cutting in front of me.,,"SidneyStatusIs(""SchoolMate"")"
+0,,,Sweetheart!  (She holds your hands and smiles.)  Are you having lunch with me?,,"SidneyStatusIs(""Lover"")"
+0,,,(She snobs you.)  You broke with me fucking fast.  What do you want now?,,"SidneyStatusIs(""ExLover"")"
+0,,,"(She doesn't dare to look you in the eyes.)  Hello Mistress, would you like to step in front of me?",,"SidneyStatusIs(""Owned"")"
+0,,,"(She laughs.)  My slut is back!  Stay behind me, you will carry my lunch.",,"SidneyStatusIs(""Owner"")"
+0,,,(She frowns.)  Hey ex-slut.  Don't you dare cutting in front of me.,,"SidneyStatusIs(""ExOwner"")"
+0,,,(She doesn't seem to recognize you.)  Hey!  Don't you dare cutting in front of me.,,
+0,,Who are you?,"That's none of your business.  Get lost, I'm waiting to eat.",DialogRemove(),"SidneyStatusIs("""")"
+0,,How have you been?,Hungry as shit!  This line is taking forever.,DialogRemove(),"!SidneyStatusIs("""")"
+0,,What is that hat?,(She grumbles.)  Lets change subject please.,DialogRemove(),"SidneyStatusIs(""Owned"")"
+0,,What is that hat?,Shut up!  Don't talk about it.,DialogRemove(),"!SidneyStatusIs(""Owned"")"
+0,10,What are you eating?,"I'll take your cunt.  (She laughs out loud.)  Seriously, they better have some red meat.  What are you getting my love?",,"SidneyStatusIs(""Lover"")"
+0,10,What are you eating?,"I don't know, but they better have some red meat.  What are you getting?",,"!SidneyStatusIs(""Lover"")"
+0,,I'll check the menu.  (Leave her.),,DialogLeave(),
+10,,TO DO,TO DO,,
+10,,I'll check the menu.  (Leave her.),,DialogLeave(),
+1000,,,"(A student is waiting in line in front of you.)  Hey there.  Be patient, the line is long today.",,
+1000,,Who are you?,"I study music, I don't think I've seen you before.",DialogRemove(),
+1000,,I'm DialogPlayerName.,"Pleased to meet you.  I hope you're not too hungry, this line isn't moving much.",DialogRemove(),
+1000,,What's on the menu?,The usual stuff.  Yesterday's salad is today's soup.  (She giggles.),DialogRemove(),
+1000,,Can I cut in front of you?,No.  I've been here for longer than you.,DialogRemove(),
+1000,,Can I eat with you?,"Sure, if that line gets moving before the bell rings.",DialogRemove(),
+1000,,I'll check the menu.  (Leave her.),,DialogLeave(),

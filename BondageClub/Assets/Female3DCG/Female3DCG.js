@@ -269,7 +269,8 @@ var AssetFemale3DCG = [
 			{ Name: "WitchHat1", Value: 40 },
 			{ Name: "PirateBandana1", Value: 15 },
 			{ Name: "PoliceWomanHat", Value: 40 },
-			{ Name: "HeadTowel1", Value: 15, Hide: ["HairFront", "HairBack"] }
+			{ Name: "HeadTowel1", Value: 15, Hide: ["HairFront", "HairBack"] },
+			{ Name: "CollegeDunce", Value: -1 }
 		]
 	},
 
@@ -459,7 +460,7 @@ var AssetFemale3DCG = [
 
 	{
 		Group: "HairBack",
-		Priority: 7,
+		Priority: 6,
 		AllowNone: false,
 		Color: ["#6a3628", "#202020", "#dcc787", "#6c2132", "#999999", "#dddddd", "#e781b1", "#81e7b1", "#81b1e7", "#eeee99", "#ee9999", "#ee99ee"],
 		AllowPose: ["Suspension"],
@@ -922,7 +923,7 @@ var AssetFemale3DCG = [
 			{ Name: "HempRope", SelfBondage: false, Value: 60, SetPose: ["BackBoxTie"], BuyGroup: ["HempRope"], Effect: ["Block", "Prone"], Time: 20, Difficulty: 3 },
 			{ Name: "MetalCuffs", Priority: 30, Value: 40, SetPose: ["BackCuffs"], Effect: ["Block", "Prone", "Lock"], Difficulty: 5, Time: 5 },
 			{ Name: "SturdyLeatherBelts", SelfBondage: false, AllowLock: true, Value: 50, SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone"], Time: 20, Difficulty: 5, BuyGroup: "SturdyLeatherBelts", Extended: true, AllowType: ["One", "Two", "Three", "Four"] },
-			{ Name: "LeatherArmbinder", DefaultColor: "#404040", SelfBondage: false, SelfUnlock: false, Priority: 9, Value: 80, SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone"], Block: ["ItemHands"], Time: 25, RemoveTime: 10, Difficulty: 10, AllowLock: true },
+			{ Name: "LeatherArmbinder", DefaultColor: "#404040", SelfBondage: false, SelfUnlock: false, Priority: 7, Value: 80, SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone"], Block: ["ItemHands"], Time: 25, RemoveTime: 10, Difficulty: 10, AllowLock: true },
 			{ Name: "ArmbinderJacket", SelfBondage: false, SelfUnlock: false, Value: 100, SetPose: ["BackElbowTouch", "Bolero"], Hide: ["Cloth"], Effect: ["Block", "Prone"], Block: ["ItemHands"], Time: 35, RemoveTime: 25, Difficulty: 12, AllowLock: true },
 			{ Name: "LeatherCuffs", DefaultColor: "#404040", Priority: 30, Random: false, Value: 100, AllowPose: ["BackBoxTie", "BackElbowTouch"], Time: 20, Difficulty: 3, Extended: true, AllowLock: true, AllowEffect: ["Block", "Prone"], AllowType: ["Wrist", "Elbow", "Both"] },
 			{ Name: "OrnateCuffs", Priority: 30, Random: false, Value: 200, AllowPose: ["BackBoxTie", "BackElbowTouch"], Time: 20, Difficulty: 4, Extended: true, AllowLock: true, AllowEffect: ["Block", "Prone"], AllowType: ["Wrist", "Elbow", "Both"],

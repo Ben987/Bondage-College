@@ -188,7 +188,7 @@ function SarahLoad() {
 		InventoryWear(Sophie, "Eyes1", "Eyes", "#b08061");
 		InventoryWear(Sophie, "Glasses5", "Glasses", "#222222");
 		InventoryWear(Sophie, "Mouth1", "Mouth", "Default");
-		InventoryWear(Sophie, "H0980", "Height", "Default");
+		InventoryWear(Sophie, "H0970", "Height", "Default");
 		InventoryWear(Sophie, "Large", "BodyUpper", "White");
 		InventoryWear(Sophie, "Large", "BodyLower", "White");
 		InventoryWear(Sophie, "Default", "Hands", "White");

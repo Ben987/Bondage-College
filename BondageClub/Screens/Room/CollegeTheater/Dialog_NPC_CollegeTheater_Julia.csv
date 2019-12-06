@@ -1,0 +1,4 @@
+PlayerGagged,,,Pupil!  This is not a silent play.  (She laughs.),
+0,,,(A large woman greets you warmly.)  Oooooh!  Are you here to enlist in the next play?,
+0,,TO DO,TO DO,
+0,,"Not now, maybe later.  (Leave her.)",,DialogLeave()
