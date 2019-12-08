@@ -1,0 +1,14 @@
+﻿Can I interest you in anything else?
+Могу я вас еще чем-нибудь заинтересовать?
+Select the item you want to buy.
+Выберите товар, который вы хотите купить.
+There are no items to sell for this category.
+В этой категории нет товаров для продажи.
+You already own this item.
+Вы уже владеете этим предметом.
+You don't have enough money.
+У вас не хватает денег.
+Sorry, I cannot sell you keys.
+Извините, я не могу продать вам ключи.
+Thank you!  Something else?
+Спасибо!  Что-то еще?

@@ -1,0 +1,345 @@
+###_NPC
+Well done, another satisfied customer.  Here's your commission.  (She gives you MoneyAmount$.)
+Молодец, еще один довольный клиент.  Вот твоя комиссия.  (Она дает тебе MoneyAmount$.)
+Too bad, the customer left.
+Жаль, что клиент ушел.
+This is the only store in town that receives gagged customers.
+Это единственный магазин в городе, который принимает клиентов с кляпом во рту.
+(She shakes her head no but you're able to gag and silence her.)
+(Она отрицательно качает головой, но ты можешь заткнуть ей рот и заставить замолчать.)
+(You remove her gag and she thanks you.)  Thanks a lot, my job requires me to speak.
+(Ты вынимаешь у нее кляп, и она благодарит тебя.) Большое спасибо, моя работа требует, чтобы я говорила.
+(You push some earplugs into place.) How am i going to hear the customers now?.
+(Вы вставляете затычки для ушей на место.) Как я теперь буду слышать клиентов?.
+(You pull the earplugs out.) Thank you i can hear you clearly again.
+(Ты вытаскиваешь затычки для ушей.) Спасибо, я снова хорошо тебя слышу.
+(She grumbles but complies as you restrain her arms.)  What about the store?
+(Она ворчит, но подчиняется, когда ты связываешь ее руки.) А как же магазин?
+(You free her arms and she gives you a thumbs up.)  The club thanks you Miss.
+(Ты освобождаешь ее руки, и она показывает тебе большой палец.) Клуб благодарит Вас, Мисс.
+(She grumbles a little but soon complies as you start restraining her hands.)  What about the store Miss?
+(Она немного ворчит, но вскоре подчиняется, когда ты начинаешье связывать ее кисти.)  А как насчет магазина Мисс?
+(You release her hands.)  The club thanks you Miss
+(Освобождаешь ее кисти.) Клуб благодарит вас, мисс.
+(She looks down as you restrain her legs securely.)  I'm not going out anyway.
+(Она смотрит вниз, когда ты крепко связываешь ее ноги.) Я все равно не выйду.
+(You release her legs and she nods.)  Don't you want to buy something?
+(Ты освобождаешь ее ноги и она кивнет.) Не хочешь что-нибудь купить?
+(She giggles as you restrain her feet.)  That's why they call it a fixed job.
+(Она хихикает, когда ты связываешь ее ступни.) Вот почему это называется фиксированной работой.
+(You release her feet and she stretches them.)  I have the best customers in town.
+(Вы освобождаешь ее ступни, и она вытягивает их.)  У меня лучшие клиенты в городе.
+(She struggles as you strap the collar around her neck.)  I'm not looking for an owner.
+(Она сопротивляется, когда ты надеваешь ей на шею ошейник.)  Я не ищу хозяйку.
+(You remove the collar from her neck.)  Yes!  This is much better.
+(Ты снимаешь ошейник с ее шеи.) Да!  Это намного лучше.
+(You snap the belt around her waist while she sighs.)  Damn it.  I can't sell anymore keys for these.
+(Ты застегиваешь ремень на ее талии, пока она вздыхает.)  Черт подери! Я больше не могу продавать ключи для них.
+(You unlock the belt from her waist, and she smiles.)  I owe you one.
+(Ты отстегиваешь ремень с ее талии, и она улыбается.)  Я твя должница.
+(You strap the device on her head as she complains.)  The store!  Think about the store!
+(You strap the device on her head as she complains.)  Магазин!  Подумай о магазине!
+(You remove the device and she looks relived.)  Thanks.  Nothing was stolen?
+(Ты снимаешь устройство, и она выглядит ожившей.)  Спасибо.  Ничего не украли?
+(She whimpers as you whip her breast.)  Ouch!  You're whipping too hard.
+(Она хнычет, когда ты хлещешь ее по груди.)  Ай!  Вы слишком сильно бьете.
+(You swing the crop on her torso as she grumbles.)  That's what they call trying the merchandise.
+(Ты бьешь стеком по ее торсу, а она ворчит.)  Это то, что они называют пробой товара.
+(You whip her butt as she whimpers.)  Oooww.  Are you a satisfied customer?
+(Ты хлещешь ее по заднице, когда она хнычет.)  Оооу.  Вы довольный клиент?
+(You lash the leather crop pretty hard on her butt.)  Damn it!  I need a better job.
+(Ты довольно сильно хлещешь кожаным стеком по ее заднице.)  Черт возьми!  Мне нужна работа получше.
+Greetings Mistress DialogPlayerName.  What are you looking for today?
+Приветствую Госпожу DialogPlayerName.  Что вы ищете сегодня?
+(She looks at you and giggles.)  Are you looking for some clothes?
+(Она смотрит на тебя и хихикает.)  Ты ищешь какую-нибудь одежду?
+Welcome to the Bondage Club store.  What are you looking for today?
+Добро пожаловать в магазин Бондаж Клуба. Что вы ищете сегодня?
+###_PLAYER
+I'm looking for clothes and accessories.
+Я ищу одежду и аксессуары.
+###_NPC
+Of course, what kind of clothes?
+Конечно, какая одежда вам нужна?
+###_PLAYER
+I'm looking for underwear.
+Я ищу нижнее белье.
+###_NPC
+Absolutely, what kind of underwear?
+Конечно, какое нижнее белье вам нужно?
+###_PLAYER
+I'm looking for exotic accessories.
+Я ищу экзотические аксессуары.
+###_NPC
+Absolutely, what kind of accessories?
+Конечно, какие аксессуары вам нужны?
+###_PLAYER
+I'm looking for kinky items for the head.
+Я ищу извращенные предметы для головы.
+###_NPC
+Excellent!  For which body part exactly?
+Отлично!  Для какой именно части тела?
+###_PLAYER
+I'm looking for kinky items for the body or arms.
+Я ищу извращенные предметы для тела или рук.
+I'm looking for kinky items for private parts or legs.
+Я ищу извращенные предметы для интимных частей или ног.
+I'd like to ask you some questions.
+Я хотела бы задать вам несколько вопросов.
+###_NPC
+Don't be shy.  How can I help you?
+Не стесняйтесь.  Чем я могу вам помочь?
+###_PLAYER
+Can you help me out?
+Вы можете мне помочь?
+###_NPC
+I'm not allowed to release you.  But I can help you to shop and pay.  I will be honest.
+Я не имею права отпускать тебя.  Но я могу помочь тебе сделать покупки и заплатить.  Я буду честной.
+###_PLAYER
+Do you have work for me?
+У вас есть работа для меня?
+###_NPC
+Sure, I can give you a salary if you're willing to demonstrate the items we are selling.  Are you ready for that?
+Конечно, я могу вам заплатить, если вы готовы демонстрировать предметы, которые мы продаем.  Вы готовы к этому?
+###_PLAYER
+I need to run.  (Leave her.)
+Мне нужно бежать.  (Оставить ее.)
+###_NPC
+You have some questions for me?
+У вас есть ко мне вопросы?
+###_PLAYER
+What are you selling?
+Что вы продаете?
+###_NPC
+Look around, there are clothes of all kinds and lots of BDSM gear.
+Осмотритесь, тут есть одежда всех видов и много БДСМ принадлежностей.
+###_PLAYER
+Who owns this store?
+Кому принадлежит этот магазин?
+###_NPC
+It belongs to the Bondage Club.  All profits go back to the organization.
+Он принадлежит к Бондаж Клубу. Все доходы идут  этой организации.
+###_PLAYER
+Can you show me everything that I don't have?
+Вы можете показать мне все, чего у меня нет?
+Can I tie you up?
+Можно я тебя свяжу?
+###_NPC
+I'll make a deal with you.  If you buy everything from the store, I'll let you use the items on me.
+Я заключу с вами сделку.  Если вы купите что то в магазине, я позволю вам использовать эти предметы на мне.
+###_PLAYER
+Will you restrain me?
+Вы можите меня связать?
+###_NPC
+Maybe later after my shift.
+Может быть, позже, после моей смены.
+###_PLAYER
+I don't have any more questions.
+У меня нет больше вопросов.
+###_NPC
+Alright, would you like to buy something then?
+Хорошо, может тогда вы хотите что-нибудь купить?
+###_PLAYER
+Let's talk later.  (Leave her.)
+Давайте поговорим позже.  (Оставь ее.)
+Check my items.  I've bought everything.
+Проверьте мои вещи.  Я уже все купила.
+###_NPC
+No way!  Well a deal is a deal.  You can strap me up if you want.
+Ни за что!  Что ж, сделка есть сделка.  Ты можешь связать меня, если хочешь.
+###_PLAYER
+I'll remember that deal.
+Я запомню это предложение.
+###_NPC
+Sure!  Do you have more questions for me?
+Конечно!  У вас есть еще вопросы ко мне?
+###_PLAYER
+What's the job?
+А что это за работа?
+###_NPC
+Selling gears.  Customers wants to know if the items are secure and good looking.  You could demonstrate for them.
+Продажа снаряжения.  Клиенты хотят знать, безопасны ли эти предметы и хорошо ли они выглядят.  Ты можешь продемонстрировать это для них.
+###_PLAYER
+How much does it pay?
+Сколько мне заплатят?
+###_NPC
+I can give you 10% of the selling price, minimum 5$, for each item you help me to sell.  It's a good commission.
+Я могу дать тебе 10% от продажной цены, минимум 5$, за каждую вещь, которую ты мне помогаешь продать.  Это хорошая комиссия.
+###_PLAYER
+I'm ready!
+Я готова!
+###_NPC
+Very well, let me find an item to promote.  (She checks on the shelves for an item to use on you.)
+Очень хорошо, позвольте мне найти товар для рекламы.  (Она ищет на полках на предмет, который можно использовать на тебе.)
+###_PLAYER
+Not right now.
+Не сейчас.
+###_NPC
+Alright, let me know when you're ready.  Is there anything else you need?
+Хорошо, дай мне знать, когда будешь готова.  Что-нибудь еще тебе нужно?
+###_PLAYER
+(Let her restrain you.)
+(Позволь ей связать тебя.)
+###_NPC
+(She uses an item on you and smiles.)  You can wait for a customer right there.
+(Она использует предмет на тебе и улыбается.)  Ты можешь подождать клиента прямо здесь.
+###_PLAYER
+Wait!  I've changed my mind.
+Стой!  Я передумала.
+(Wait for a customer.)
+(Ждите клиента.)
+Thanks a lot!
+Большое спасибо!
+###_NPC
+My pleasure.  Is there anything else you need?
+С удовольствием.  Вам еще что-нибудь нужно?
+###_PLAYER
+(Nod happily.)
+(Счастливо киваю.)
+Can I do it again?
+Могу я сделать это снова?
+###_NPC
+Sure!  Let me find an item to promote.  (She checks on the shelves for an item to use on you.)
+Конечно!  Позвольте мне найти предмет для рекламы.  (Она проверяет полки на предмет использования на тебе.)
+I don't have time, there's too many customers.  Go find a maid if you can't struggle out.
+У меня нет времени, слишком много клиентов.  Найди горничную, если не можешь выбраться.
+###_PLAYER
+I'm not a great saleswoman.
+Я не очень хорошая продавщица.
+###_NPC
+Don't worry about it.  Is there anything else you need?
+Не беспокойся об этом.  Тебе еще что-нибудь нужно?
+###_PLAYER
+(Nod very slowly.)
+(Кивни очень медленно.)
+Can I try again?
+Могу я попробовать еще раз?
+###_NPC
+Alright.  Let me find an item to promote.  (She checks on the shelves for an item to use on you.)
+Хорошо.  Позвольте мне найти предмет для рекламы.  (Она проверяет полки в поисках предмета, который можно было бы использовать на тебе.)
+###_PLAYER
+Regular clothes or outfits.
+Обычная одежда или костюмы.
+Show me your pants or skirts.
+Покажите мне брюки или юбки.
+Hats or head accessories.
+Головные уборы или головные аксессуары.
+Do you have glasses?
+У вас есть очки?
+Show me your gloves.
+Покажите мне перчатки.
+Maybe some shoes.
+Может быть, какие-нибудь туфли.
+I've changed my mind.
+Я передумала.
+###_NPC
+Can I help you with something else?
+Могу я вам еще чем-нибудь помочь?
+###_PLAYER
+Can I see your bras?
+Можно взглянуть на бюстгалтеры?
+Maybe some panties.
+Может быть, трусики.
+Do you sell socks?
+Вы продаете носки?
+Do you sell outfits or accessories for body?
+Вы продаете одежду или аксессуары для тела?
+Do you by chance have any tail straps?
+У вас случайно нет хвостовых ремней?
+Do you have any hair accessories?
+У вас есть какие-нибудь аксессуары для волос?
+Do you have some special bondage Devices?
+У вас есть какие-то специальные устройства для бондажа?
+Can I see your hoods and blindfolds?
+Могу я посмотреть на капюшоны и повязки?
+Do you sell anything to keep the noise down?
+Вы продаете что-нибудь, чтобы ограничить слух?
+I'm looking for gags.
+Я ищу кляпы.
+What about collars?
+Как насчет ошейников?
+Do you sell anything to attach to collars?
+Вы продаете что-нибудь, чтобы прикрепить к ошейнику?
+Do you have locks and keys?
+У вас есть замки и ключи?
+Show me your arm restraints.
+Покажите мне предметы для ограничения рук.
+Show me your hand restraints.
+Покажите мне предметы для ограничения кистей.
+Something for the breast.
+Что-нибудь для груди.
+Some toys for the nipples.
+Некоторые игрушки для сосков.
+Something to decorate the nipples.
+Что-то, чтобы украсить соски.
+Any harnesses for the torso?
+Какую-нибудь сбрую для туловища?
+Do you sell chastity belts?
+Вы продаете пояса верности?
+Kinky items for the kinky region.
+Извращенные предметы для интимной области.
+I'd like some piercings for down below.
+Я бы хотела сделать пирсинг киски.
+What can be used on the butt?
+Что можно использовать на попе?
+Something to restrain the legs.
+Что-то, чтобы связать ноги.
+What do you have for feet?
+Что у вас есть для ступней?
+You got any boots?
+У вас есть сапоги?
+###_NPC
+(She struggles in her restraints.)  Help!
+(Она борется в своих оковах.) Помогите!
+(She gives you a thumbs up.)  Everything is back to normal, thanks to you and the sorority.
+(Она показывает тебе большой палец вверх.) Все возвращается на круги своя, благодаря тебе и женскому обществу.
+###_PLAYER
+Do you need help?
+Вам нужна помощь?
+###_NPC
+(She nods quickly.)  Yes, yes, yes!  Please help.
+(Она быстро кивает.) Да, да, да!  Пожалуйста помоги.
+###_PLAYER
+Anything was stolen?
+Что-нибудь украли?
+###_NPC
+(She shrugs.)  I sure hope not.
+(Она пожимает плечами.) Я очень надеюсь, что нет.
+###_PLAYER
+Is everything alright now?
+Теперь все в порядке?
+###_NPC
+You've took care of everything.  Please send my regards to the maids of the sorority.
+Ты обо всем позаботилася.  Пожалуйста, передайте мои наилучшие пожелания горничным женского общества.
+###_PLAYER
+What happened here?
+Что здесь произошло?
+###_NPC
+I've made a deal with a client that if she bought everything, she could use the items on me.  So, she did just that.
+Я договорилася с клиентом, что если она купит все, то сможет использовать эти вещи на мне.  Поэтому она так и сделала.
+A burglar surprised and restrained me.  The maids caught her and dragged her away.  I guess they sent you to help me.
+Грабительница застал меня врасплог и связала.  Горничные схватили ее и потащили прочь.  Наверное, они послали тебя помочь мне.
+I was bored and wanted to try a few items.  I think I got a little carried away.
+Мне было скучно, и я хотела попробовать несколько предметов.  Кажется, я немного увлеклася.
+There wasn't any customer and I fell asleep.  The Head Mistress caught me and restrained me like that until she called the maids.
+Посетителей не было, и я заснула.  Старшая Госпожа поймала меня и связала так до тех пор, пока не позвала горничных.
+###_PLAYER
+I'll go get help.  (Leave her.)
+Я пойду за помощью.  (Оставить ее.)
+I'm glad to be of service Miss.
+Я рада быть полезной Мисс.
+###_NPC
+You maids are so sweet.  Would you like to buy something?
+Вы, горничные, такие милые.  Хочешь что-нибудь купить?
+###_PLAYER
+Will you give me a discount?
+Вы дадите мне скидку?
+###_NPC
+Nice try, but I can't do that.  The sorority will pay you for your work though.  Would you like to buy something?
+Хорошая попытка, но я не могу этого сделать.  Хотя женское общество будет платить вам за вашу работу.  Хотите что-нибудь купить?
+###_PLAYER
+The sorority will always protect you.
+Женское общество всегда будет защищать тебя.
+###_NPC
+It's great to feel protected.  Would you like to buy something?
+Здорово чувствовать себя защищенной.  Хотите что-нибудь купить?

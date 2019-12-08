@@ -1,0 +1,28 @@
+﻿Select your appearance
+Выберите свой внешний вид
+Select TargetCharacterName's appearance
+Выберите внешний вид имени целевого персонажа
+You must pick an item of type:
+Вы должны выбрать элемент типа:
+Set wardrobe character name:
+Установить имя персонажа гардероба:
+Invalid name for character.
+Неверное имя для персонажа.
+Reset character
+Сбросить персонажа
+Randomize character
+Случайный персонаж
+Strip naked
+Раздеться догола
+Next
+Следующий
+Previous
+Предыдущий
+Cancel changes
+Отменить изменения
+Accept changes
+Принять изменения
+Wardrobe
+Гардероб
+Dress manually
+Одеться вручную

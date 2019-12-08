@@ -1,0 +1,50 @@
+﻿- Preferences -
+- Предпочтения -
+Character label color:
+Цвет значка персонажа:
+Item permission:
+Разрешение элемента :
+Everyone, no exceptions
+Все, без исключений
+Everyone, except blacklist
+Все, кроме черного списка
+Owner, whitelist & Dominants
+Хозяйка, белый список и Домины
+Owner and whitelist only
+Хозяйка и только белый список
+Owner only
+Только Хозяйка
+Put a valid hex #red-green-blue color
+Поставьте допустимый шестнадцатеричный #красно-зелено-синий цвет
+- Chat display settings -
+- Настройки отображения чата -
+Color theme:
+Цветовая тема:
+Light
+Светлая
+Dark
+Темная
+Enter/Leave message style:
+Вход/выход стиль сообщений:
+Normal
+Нормальный
+Smaller
+Маленький
+Hidden
+Скрытый
+Display member numbers:
+Отображение номеров элементов:
+Always
+Всегда
+Never
+Никогда
+On Mouseover
+При Наведении Курсора Мыши
+Display timestamps
+Отображение временных меток
+Color names
+Имя цвета
+Color actions
+Цветовые действия
+Color emotes
+Цветовые эмоции

@@ -1,0 +1,26 @@
+﻿No chat room found.  You can create a new one.
+Чат не найден.  Вы можете создать новый.
+Search for a room by name:
+Поиск комнаты по имени:
+Search for a room
+Поиск комнаты
+Create your room
+Создайте свою комнату
+Friends in room:
+Друзья в комнате:
+This room is already full
+Эта комната уже заполнена
+This room is locked
+Эта комната закрыта
+You're banned from this room
+Тебе запрещено находиться в этой комнате
+You've been kicked out
+Тебя выгнали вон
+Room doesn't exist anymore
+Комната больше не существует
+Account Error
+Ошибка Учетной Записи
+Invalid Room Data
+Неверные Данные Комнаты
+Entering the room...
+Входим в комнату...

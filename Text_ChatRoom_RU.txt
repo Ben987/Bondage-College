@@ -1,0 +1,40 @@
+﻿SourceCharacter swaps a PrevAsset for a NextAsset on DestinationCharacter FocusAssetGroup.
+SourceCharacter  заменяет PrevAsset на NextAsset в DestinationCharacter FocusAssetGroup.
+SourceCharacter uses a NextAsset on DestinationCharacter FocusAssetGroup.
+SourceCharacter  использует NextAsset в DestinationCharacter FocusAssetGroup.
+SourceCharacter locks a NextAsset on DestinationCharacter FocusAssetGroup.
+SourceCharacter  блокирует NextAsset в DestinationCharacter FocusAssetGroup.
+SourceCharacter adds a NextAsset on DestinationCharacter FocusAssetGroup PrevAsset.
+SourceCharacter  добавляет NextAsset к DestinationCharacter FocusAssetGroup PrevAsset.
+SourceCharacter removes the PrevAsset from DestinationCharacter FocusAssetGroup.
+SourceCharacter  удаляет PrevAsset из DestinationCharacter FocusAssetGroup.
+SourceCharacter unlocks and removes the PrevAsset from DestinationCharacter FocusAssetGroup.
+SourceCharacter разблокирует и удаляет PrevAsset из DestinationCharacter FocusAssetGroup.
+SourceCharacter rolls a DiceType sided dice.  The result is: DiceResult.
+SourceCharacter бросает кости.  В результате получается: DiceResult.
+SourceCharacter flips a coin.  The result is: CoinResult.
+SourceCharacter переворачивает монету.  Результат таков: CoinResult.
+gets grabbed by two maids and locked in a timer cell, following her owner commands.
+ее схватили две горничные и заперли в клетке с таймером, следуя командам ее хозяйки.
+gets grabbed by two maids and escorted to the maid quarters to serve drinks for her owner.
+ее схватили две горничные и сопроводили в комнату для прислуги, чтобы подать напитки для ее хозяйки.
+(Two maids grab you and escort you to their quarters.  Another maid addresses you.)  Your owner sent you here to work.
+(Две служанки хватают тебя и провожают в свои покои.  К тебе обращается другая горничная)  Твоя хозяйка послал тебя сюда работать.
+gives a sealed envelope to her owner.
+дает запечатанный конверт ее хозяйке.
+Talk to everyone
+Обсуждение для всех
+Whisper to
+Шепот в
+Heads
+Головы
+Tails
+Хвосты
+her
+ее
+'s
+'s
+kneels down
+преклонить колени
+stands up
+встать

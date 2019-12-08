@@ -1,0 +1,12 @@
+﻿Online friends
+Друзья онлайн
+Member number
+Номер участника
+Chat room
+чат-комната
+Send a beep
+Послать вызов
+Beep history
+История вызовов
+Delete a friend
+Удалить друга

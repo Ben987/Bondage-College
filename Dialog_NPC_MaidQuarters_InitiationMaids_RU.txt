@@ -1,0 +1,100 @@
+﻿###_NPC
+(The maids laugh at your mumbles and try to cheer you up.)
+(Горничные смеются над твоим бормотанием и пытаются тебя развеселить.)
+(A maid comes close to you with a large wooden paddle.)  I'm first today?  Sweet!  Show me your butt.
+(К тебе подходит Горничнаяс большим деревянным падлом.)  Я сегодня первая?  Мило!  Покажи мне свою задницу.
+###_PLAYER
+Wait!  Are you serious?
+Стой!  Ты серьезно?
+(Present your butt.)
+(Покажи свою задницу.)
+###_NPC
+(She lightly hits your butt with the paddle and giggle.)  Welcome to the sorority!
+(Она слегка ударяет тебя падлом по заднице и хихикает.) Добро пожаловать в сообщество!
+###_PLAYER
+(Whimper lightly.)
+(Слегка хныкать.)
+###_NPC
+(She gives the paddle to another maid which steps forward.)  My turn!
+(Она отдает падл другой горничной, которая выходит вперед.)  Моя очередь!
+###_PLAYER
+That wasn't too bad.
+Это было не так уж плохо.
+(Nod happily.)
+(Счастливо киваю.)
+###_NPC
+(She swings the paddle on the same spot as before.)  Right on!  Welcome sister.
+(Она бьет падлом по тому же месту, что и раньше.)  Прямо сейчас!  Добро пожаловать, сестра.
+###_PLAYER
+Don't hit too hard!
+Не бейте слишком сильно!
+(Stare at the floor.)
+(Уставился в пол.)
+###_NPC
+(She tosses the flogging device to another maid.)  Don't worry, this won't hurt me.
+(Она бросает устройство для порки другой горничной.)  Не волнуйся, мне это не повредит.
+###_PLAYER
+(Stand strong.)
+(Стойко держитесь.)
+###_NPC
+(She wacks your butt pretty good and laughs.)  One of us!
+(Она хорошенько шлепает тебя по заднице и смеется.)  Одна из нас!
+###_PLAYER
+Careful with that.
+Осторожнее с этим.
+(Try to dodge her.)
+(Попробуй увернуться от нее.)
+###_NPC
+(You try to dodge but she hits you easily and laughs.)  Nice try sis!
+(Ты пытаешься увернуться, но она легко попадает по тебе и смеется.)  Хорошая попытка, сестренка!
+###_PLAYER
+(Cry a little.)
+(Поплачь немного.)
+###_NPC
+(Another maid picks the paddle.)  Don't cry little sister, it will be over soon.
+(Другая горничная берет падл.)  Не плачь, сестренка, скоро все закончится.
+###_PLAYER
+(Try to look tough.)
+(Постарайся выглядеть крутой.)
+###_NPC
+(Another maid picks the paddle.)  We have a tough cookie here sisters!
+(Другая горничная берет падл.)  У нас тут крепкий орешик, сестры!
+###_PLAYER
+Please stop!
+Пожалуйста, остановитесь!
+Do your worst.
+Делай, что хочешь.
+###_NPC
+(She swings a pretty mean one that stings right on impact.)  Sisters in pain, sisters for life!
+(Она замахивается своей штучкой, которая жалит при ударе.)  Сестры в муках, сестры на всю жизнь!
+###_PLAYER
+(Fall on the floor.)
+(Упасть на пол.)
+###_NPC
+(They catch you before you fall and another one picks the paddle.)  Be strong, this is the last one.
+(Они ловят тебя до того, как ты упадешь, и другая берет падл.)  Будь сильной, это последнее.
+###_PLAYER
+(Try to stay strong.)
+(Постарайся оставаться сильной.)
+###_NPC
+(Another maid picks the paddle and smiles.)  You're a pro sis, this is the last one.
+(Другая горничная берет падл и улыбается.)  Ты же профессионалка, сестренка, это последнее.
+###_PLAYER
+(Close your eyes and prepare for impact.)
+(Закрой глаза и приготовься к удару.)
+###_NPC
+(She smashes the paddle with strength, almost making you fall.)  You've did it!  Welcome to the maid sorority!
+(Она с силой обрушивает падл, почти заставляя тебя упасть.)  Ты сделала это!  Добро пожаловать в Женское сообщество горничных!
+###_PLAYER
+(Whimper and try to beg for mercy.)
+(Хныкать и пытаться молить о пощаде.)
+(Defy them and present your butt proudly.)
+(Брось им вызов и с гордостью представь свою задницу.)
+Oh my god!
+Боже ты мой!
+(Catch your breath.)
+(Переведи дыхание.)
+(Jump of joy clumsily.)
+(Неуклюже прыгай от радости.)
+(Cry a few tears.)
+(Поплачь пару раз.)

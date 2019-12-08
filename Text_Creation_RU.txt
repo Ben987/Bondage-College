@@ -1,0 +1,30 @@
+﻿Enter your account & character information
+Введите свою учетную запись и информацию о персонаже
+Character name (letters & spaces)
+Имя персонажа (буквы и пробелы)
+Account name (letters & numbers)
+Имя учетной записи (буквы и цифры)
+Account password (letters & numbers)
+Пароль учетной записи (буквы и цифры)
+Confirm password (letters & numbers)
+Подтвердите пароль (буквы и цифры)
+Email (optional, to recover password)
+Электронная почта (необязательно, чтобы восстановить пароль)
+Create your account
+Создайте свой аккаунт
+Your account already exists?
+Ваша учетная запись уже существует?
+Login
+Авторизоваться
+Creating your character...
+Создание вашего персонажа...
+Error:
+Ошибка:
+Invalid character, account name, password or email
+Недопустимый символ, имя учетной записи, пароль или адрес электронной почты
+Both passwords do not match
+Оба пароля не совпадают
+Import Bondage College data
+Импорт данных Бондаж Колледжа
+Invalid server answer, it could be outdated.
+Неверный ответ сервера, он может быть устаревшим.
