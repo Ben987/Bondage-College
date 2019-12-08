@@ -220,7 +220,8 @@ var AssetFemale3DCG = [
 					{ Name: "Fabric", AllowColorize: true },
 					{ Name: "Fur", AllowColorize: false }
 				]
-			}
+			},
+			{ Name: "SocksStriped1", Value: 10 }
 		]
 	},
 
