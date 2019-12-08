@@ -115,7 +115,6 @@ function LoginMistressItems() {
 		InventoryAdd(Player, "MistressBottom", "ClothLower", false);
 		InventoryAdd(Player, "MistressPadlock", "ItemMisc", false);
 		InventoryAdd(Player, "MistressPadlockKey", "ItemMisc", false);
-		ServerPlayerInventorySync();
 	} else {
 		InventoryDelete(Player, "MistressPadlock", "ItemMisc", false);
 		InventoryDelete(Player, "MistressPadlockKey", "ItemMisc", false);
@@ -123,8 +122,22 @@ function LoginMistressItems() {
 		InventoryDelete(Player, "MistressBoots", "Shoes", false);
 		InventoryDelete(Player, "MistressTop", "Cloth", false);
 		InventoryDelete(Player, "MistressBottom", "ClothLower", false);
-		ServerPlayerInventorySync();
 	}
+	ServerPlayerInventorySync();
+}
+
+// Only players that are ponies or trainers can have the pony equipment
+function LoginStableItems() {
+	if (LogQuery("JoinedStable", "PonyExam") || LogQuery("JoinedStable", "TrainerExam")) {
+		InventoryAdd(Player, "HarnessPonyBits", "ItemMouth", false);
+		InventoryAdd(Player, "PonyBoots", "Shoes", false);
+		InventoryAdd(Player, "PonyBoots", "ItemBoots", false);
+	} else {
+		InventoryDelete(Player, "HarnessPonyBits", "ItemMouth", false);
+		InventoryDelete(Player, "PonyBoots", "Shoes", false);
+		InventoryDelete(Player, "PonyBoots", "ItemBoots", false);
+	}
+	ServerPlayerInventorySync();
 }
 
 // When the character logs, we analyze the data
@@ -198,6 +211,7 @@ function LoginResponse(C) {
 			if ((InventoryGet(Player, "ItemArms") != null) && (InventoryGet(Player, "ItemArms").Asset.Name == "FourLimbsShackles")) InventoryRemove(Player, "ItemArms");
 			LoginValidCollar();
 			LoginMistressItems();
+			LoginStableItems();
 			CharacterAppearanceValidate(Player);
 
 			// If the player must log back in the cell
