@@ -508,6 +508,7 @@ var AssetFemale3DCG = [
 	{
 		Group: "Nipples",
 		Priority: 11,
+		AllowNone: false,
 		ParentGroup: "BodyUpper",
 		Default: false,
 		Color: ["Default", "#a6665b", "#803d26", "#d68777", "#9b4a2e", "#bb6655"],
