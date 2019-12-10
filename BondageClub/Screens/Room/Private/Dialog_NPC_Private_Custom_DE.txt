@@ -882,6 +882,12 @@ Zieh alles aus.
 (She blushes and gets fully naked.)  Something kinky is brewing!
 (Sie wird rot und entkleidet sich vollständig.) Hier braut sich was Versautes zusammen!
 ###_PLAYER
+Can I have your college clothes?
+Kann ich deine College-Kleidung haben?
+###_NPC
+I cannot do that.  I'll get punished if I lose this college outfit.
+Das geht nicht. Ich werde bestraft, wenn ich diese College-Uniform verliere.
+###_PLAYER
 Let's go shop for new clothes.
 Lass uns neue Kleidung kaufen.
 ###_NPC
@@ -2441,6 +2447,34 @@ Yes Mistress.  (Change for her.)
 Ja, Herrin. (Dich umziehen.)
 (Change slowly.)
 (Dich langsam umziehen.)
+###_NPC
+I'm curious to see how you would look in college clothes.  Here, take my spare set and change.  (She hands you some college clothes.)
+Ich frage mich, wie du in meiner College-Uniform aussehen würdest. Hier, nimm meine Ersatzuniform und zieh dich um. (Sie gibt dir eine College-Uniform.)
+###_PLAYER
+You have strange fetishes.  (Change for her.)
+Ihr habt seltsame Fetische. (Dich für sie umziehen.)
+###_NPC
+(You change for her as she nods.)  Stay like that school girl, you cannot change for 5 minutes.
+(Du ziehst dich für sie um und sie nickt.) Bleib so, Schulmädchen, du darfst dich 5 Minuten lang nicht umziehen.
+###_PLAYER
+Alright Mistress.  (Change for her.)
+Alles klar, Herrin. (Dich für sie umziehen.)
+###_NPC
+(You change for her as she smiles.)  You will be my school girl for 5 minutes, you cannot change.
+(Du ziehst dich für sie um und sie lächelt.) Du wirst 5 Minuten lang mein Schulmädchen sein, du darfst dich nicht umziehen.
+###_PLAYER
+I'll be your school girl.  (Change for her.)
+Ich werde Euer Schulmädchen sein. (Dich für sie umziehen.)
+###_NPC
+(You change for her as she smirks.)  You're a good school girl, and you cannot change again for 5 minutes.
+(Du ziehst dich für sie um und sie feixt.) Du bist ein braves Schulmädchen, und du darfst dich 5 Minuten lang nicht umziehen.
+###_PLAYER
+No!  This is silly.
+Nein! Das ist albern.
+###_NPC
+(She grumbles and forces you to change.)  There!  And you cannot change for 5 minutes school girl.
+(Sie grummelt und zwingt dich, dich umzuziehen.) So! Und du darfst dich 5 Minuten lang nicht umziehen, Schulmädchen.
+###_PLAYER
 Easy enough.
 Klingt einfach.
 ###_NPC
@@ -3252,7 +3286,7 @@ Ich schwöre, ehrlich und gerecht zu sein.
 (Sie nickt und lächelt.) Ja, Herrin.
 ###_PLAYER
 I vow to be strict but fair.
-Sich schwöre, streng aber fair zu sein.
+Ich schwöre, streng aber fair zu sein.
 I vow to be fun and joyful.
 Ich schwöre, dir Spaß und Freude zu bringen.
 I vow to nurture you and help you grow.
@@ -3276,10 +3310,28 @@ Sorry, I'm kind of confused Mistress.  What would you like to do?
 ###_NPC
 (She blushes and gets fully naked.)  Something kinky is brewing.
 (Sie wird rot und entkleidet sich vollständig.) Hier braut sich was Versautes zusammen.
+###_PLAYER
+Give me your college clothes.
+Gib mir deine College-Kleidung.
+###_NPC
+I can't Mistress.  I'll get punished if I lose this college outfit.
+Das geht nicht, Herrin. Ich werde bestraft, wenn ich diese College-Uniform verliere.
 (She smiles.)  That's a great idea Mistress.  Do you have at least 50$ to pay for my new clothes?
 (Sie lächelt.) Das ist eine tolle Idee, Herrin. Habt Ihr mindestens 50$, um meine neuen Sachen zu bezahlen?
 Yes Mistress.  What would you like to do then?
 Ja, Herrin. Was möchtet Ihr also machen?
+###_PLAYER
+Fine.  Forget it girl.
+Na schön. Vergiss es, Mädchen.
+###_NPC
+Very well.  What would you like to do then?
+Sehr wohl. Was wollen wir also machen?
+###_PLAYER
+You'll get punished now if you don't obey.
+Du wirst bestraft, wenn du nicht gehorchst.
+###_NPC
+(She gulps and give you her college outfit.)  Yes Mistress.  I'll try to find a good excuse for losing them.
+(Sie schluckt und gibt dir ihre College-Uniform.) Ja, Herrin. Ich versuche, eine gute Ausrede für den Verlust zu finden.
 ###_PLAYER
 Would you like to be auctioned?
 Würdest du gern versteigert werden?
@@ -3472,7 +3524,7 @@ Die Anstalt wird dich ändern.
 You'll get therapies at the asylum.
 Du bekommst eine Therapie in der Anstalt.
 They have treatments for that at the asylum.
-In der Anstalt beiten sie Behandlungen für sowas an.
+In der Anstalt bieten sie Behandlungen für sowas an.
 I will pay the 25$.
 Ich zahle die 25$.
 ###_NPC

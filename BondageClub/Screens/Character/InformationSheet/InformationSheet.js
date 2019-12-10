@@ -49,8 +49,9 @@ function InformationSheetRun() {
 		DrawText(TextGet((C.Ownership.Stage == 0) ? "TrialFor" : "CollaredFor") + " " + (Math.floor((CurrentTime - C.Ownership.Start) / 86400000)).toString() + " " + TextGet("Days"), 550, 650, "Black", "Gray");
 	}
 
+	var OnlinePlayer = C.AccountName.indexOf("Online-") >= 0;
 	// For player and online characters, we show the reputation and skills
-	if ((C.ID == 0) || (C.AccountName.indexOf("Online-") >= 0)) {
+	if ((C.ID == 0) || OnlinePlayer) {
 
 		// Shows the member number and online permissions for other players
 		if (C.ID != 0) DrawText(TextGet("ItemPermission") + " " + TextGet("PermissionLevel" + C.ItemPermission.toString()), 550, 850, "Black", "Gray");
@@ -77,8 +78,17 @@ function InformationSheetRun() {
 		}
 
 		// Draw the player skill modifier if there's one
-		if ((C.ID == 0) && (SkillModifier != 0))
-			DrawText(TextGet("SkillModifier") + " " + SkillModifier, 1450, 500, "Black", "Gray");
+		SkillGetLevel(C, "Evasion");
+		if ((C.ID == 0) && (SkillModifier != 0)) {
+			var PlusSign = "";
+			if (SkillModifier > 0) PlusSign = "+";
+			else PlusSign = "";
+			DrawText(TextGet("SkillModifier"), 1450, 575, "Black", "Gray");
+			DrawText(TextGet("SkillBondage") + " " + PlusSign + SkillModifier, 1450, 650, "Black", "Gray");
+			DrawText(TextGet("SkillEvasion") + " " + PlusSign + SkillModifier, 1450, 725, "Black", "Gray");
+			DrawText(TextGet("SkillModifierDuration") + " " + (TimermsToTime(LogValue("ModifierDuration", "SkillModifier") - CurrentTime)), 1450, 800, "Black", "Gray");
+		}
+
 
 	} else {
 
@@ -104,16 +114,24 @@ function InformationSheetRun() {
 		if (!TitleIsForced(CurrentTitle)) DrawButton(1815, 190, 90, 90, "", "White", "Icons/Title.png");
 		DrawButton(1815, 305, 90, 90, "", "White", "Icons/Preference.png");
 		DrawButton(1815, 420, 90, 90, "", "White", "Icons/FriendList.png");
+		DrawButton(1815, 535, 90, 90, "", "White", "Icons/Introduction.png");
+	} else if (OnlinePlayer) {
+		DrawButton(1815, 190, 90, 90, "", "White", "Icons/Introduction.png");
 	}
-
 }
 
 // When the user clicks on the character info screen
 function InformationSheetClick() {
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) InformationSheetExit();
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 190) && (MouseY < 280) && (InformationSheetSelection.ID == 0) && (!TitleIsForced(InformationSheetSelection.Title))) CommonSetScreen("Character", "Title");
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 305) && (MouseY < 395) && (InformationSheetSelection.ID == 0)) CommonSetScreen("Character", "Preference");
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 420) && (MouseY < 510) && (InformationSheetSelection.ID == 0)) CommonSetScreen("Character", "FriendList");
+	var C = InformationSheetSelection;
+	if (CommonIsClickAt(1815, 75, 90, 90)) InformationSheetExit();
+	if (C.ID == 0) {
+		if (CommonIsClickAt(1815, 190, 90, 90) && !TitleIsForced(TitleGet(C))) CommonSetScreen("Character", "Title");
+		if (CommonIsClickAt(1815, 305, 90, 90)) CommonSetScreen("Character", "Preference");
+		if (CommonIsClickAt(1815, 420, 90, 90)) CommonSetScreen("Character", "FriendList");
+		if (CommonIsClickAt(1815, 535, 90, 90)) CommonSetScreen("Character", "OnlineProfile");
+	} else if (C.AccountName.indexOf("Online-") >= 0) {
+		if (CommonIsClickAt(1815, 190, 90, 90)) CommonSetScreen("Character", "OnlineProfile");
+	}
 }
 
 // when the user exit this screen

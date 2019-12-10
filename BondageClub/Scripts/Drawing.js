@@ -102,68 +102,75 @@ function DrawGetImageOnError(Img, IsAsset) {
 }
 
 // Refreshes the character if not all images are loaded and draw the character canvas on the main game screen
-function DrawCharacter(C, X, Y, Zoom) {
+function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
+	if ((C != null) && ((C.ID == 0) || (Player.Effect.indexOf("BlindHeavy") < 0) || (CurrentScreen == "InformationSheet"))) {
 
-	// Make sure we have a character
-	if (C != null)
-		if ((C.ID == 0) || (Player.Effect.indexOf("BlindHeavy") < 0) || (CurrentScreen == "InformationSheet")) {
+		// There's 2 different canvas, one blinking and one that doesn't
+		var seconds = new Date().getTime();
+		var Canvas = (Math.round(seconds / 400) % C.BlinkFactor == 0) ? C.CanvasBlink : C.Canvas;
+		
+		// Applies an offset to X and Y based on the HeightRatio.  If the player prefers full height, we always use 1.0
+		var HeightRatio = 1.0;
+		if ((IsHeightResizeAllowed == undefined) || IsHeightResizeAllowed) HeightRatio = CharacterAppearanceGetCurrentValue(C, "Height", "Zoom");
+		if ((Player != null) && (Player.VisualSettings != null) && (Player.VisualSettings.ForceFullHeight != null) && Player.VisualSettings.ForceFullHeight) HeightRatio = 1.0;
+		X += Zoom * Canvas.width * (1 - HeightRatio) / 2;
+		if (C.Pose.indexOf("Suspension") < 0) Y += Zoom * Canvas.height * (1 - HeightRatio);
 
-			// There's 2 different canvas, one blinking and one that doesn't
-			var seconds = new Date().getTime();
-			var Canvas = (Math.round(seconds / 400) % C.BlinkFactor == 0) ? C.CanvasBlink : C.Canvas;
-
-			// If we must dark the Canvas characters
-			if ((C.ID != 0) && Player.IsBlind() && (CurrentScreen != "InformationSheet")) {
-				var CanvasH = document.createElement("canvas");
-				CanvasH.width = Canvas.width;
-				CanvasH.height = Canvas.height;
-				var DarkFactor = (Player.Effect.indexOf("BlindNormal") >= 0) ? 0.3 : 0.6;
-				var ctx = CanvasH.getContext('2d');
-				ctx.drawImage(Canvas, 0, 0);
-				// Overlay black rectangle.
-				ctx.fillStyle = "rgba(0,0,0," + (1.0 - DarkFactor) + ")";
-				ctx.fillRect(0, 0, CanvasH.width, CanvasH.height);
-				// Re-apply character alpha channel
-				ctx.globalCompositeOperation = 'destination-in';
-				ctx.drawImage(Canvas, 0, 0);
-				Canvas = CanvasH;
-			}
-
-			// If we must flip the canvas vertically
-			if (C.Pose.indexOf("Suspension") >= 0) {
-				var CanvasH = document.createElement("canvas");
-				CanvasH.width = Canvas.width;
-				CanvasH.height = Canvas.height;
-				CanvasH.getContext("2d").scale(1, -1);
-				CanvasH.getContext("2d").translate(0, -Canvas.height);
-				CanvasH.getContext("2d").drawImage(Canvas, 0, 0);
-				Canvas = CanvasH;
-			}
-
-			// Draw the character
-			if ((Zoom == undefined) || (Zoom == 1))
-				DrawCanvas(Canvas, X, Y - C.HeightModifier);
-			else
-				DrawCanvasZoom(Canvas, X, Y - (C.HeightModifier * Zoom), Zoom);
-
-			// Draws the character focus zones if we need too
-			if ((C.FocusGroup != null) && (C.FocusGroup.Zone != null))
-				for (var Z = 0; Z < C.FocusGroup.Zone.length; Z++)
-					if (C.Pose.indexOf("Suspension") >= 0)
-						DrawEmptyRect(C.FocusGroup.Zone[Z][0] + X, 1000 - (C.FocusGroup.Zone[Z][1] + Y + C.FocusGroup.Zone[Z][3]) - C.HeightModifier, C.FocusGroup.Zone[Z][2], C.FocusGroup.Zone[Z][3], "cyan");
-					else
-						DrawEmptyRect(C.FocusGroup.Zone[Z][0] + X, C.FocusGroup.Zone[Z][1] + Y - C.HeightModifier, C.FocusGroup.Zone[Z][2], C.FocusGroup.Zone[Z][3], "cyan");
-
-			// Draw the character name below herself
-			if ((C.Name != "") && ((CurrentModule == "Room") || (CurrentModule == "Online") || ((CurrentScreen == "Wardrobe") && (C.ID != 0))) && (CurrentScreen != "Private"))
-				if (!Player.IsBlind()) {
-					MainCanvas.font = "30px Arial";
-					DrawText(C.Name, X + 255 * Zoom, Y + 980 * Zoom, (CommonIsColor(C.LabelColor)) ? C.LabelColor : "White", "Black");
-					MainCanvas.font = "36px Arial";
-				}
-
+		// If we must dark the Canvas characters
+		if ((C.ID != 0) && Player.IsBlind() && (CurrentScreen != "InformationSheet")) {
+			var CanvasH = document.createElement("canvas");
+			CanvasH.width = Canvas.width;
+			CanvasH.height = Canvas.height;
+			var DarkFactor = (Player.Effect.indexOf("BlindNormal") >= 0) ? 0.3 : 0.6;
+			var ctx = CanvasH.getContext('2d');
+			ctx.drawImage(Canvas, 0, 0);
+			// Overlay black rectangle.
+			ctx.fillStyle = "rgba(0,0,0," + (1.0 - DarkFactor) + ")";
+			ctx.fillRect(0, 0, CanvasH.width, CanvasH.height);
+			// Re-apply character alpha channel
+			ctx.globalCompositeOperation = 'destination-in';
+			ctx.drawImage(Canvas, 0, 0);
+			Canvas = CanvasH;
 		}
 
+		// If we must flip the canvas vertically
+		if (C.Pose.indexOf("Suspension") >= 0) {
+			var CanvasH = document.createElement("canvas");
+			CanvasH.width = Canvas.width;
+			CanvasH.height = Canvas.height;
+			CanvasH.getContext("2d").scale(1, -1);
+			CanvasH.getContext("2d").translate(0, -Canvas.height);
+			CanvasH.getContext("2d").drawImage(Canvas, 0, 0);
+			Canvas = CanvasH;
+		}
+
+		// Draw the character and applies the zoom ratio
+		Zoom *= HeightRatio;
+		if ((Zoom == undefined) || (Zoom == 1))
+			DrawCanvas(Canvas, X, Y - C.HeightModifier);
+		else
+			DrawCanvasZoom(Canvas, X, Y - (C.HeightModifier * Zoom), Zoom);
+
+		// Applies a Y offset if the character is suspended
+		if (C.Pose.indexOf("Suspension") >= 0) Y += (Zoom * Canvas.height * (1 - HeightRatio) / HeightRatio);
+
+		// Draws the character focus zones if we need too
+		if ((C.FocusGroup != null) && (C.FocusGroup.Zone != null))
+			for (var Z = 0; Z < C.FocusGroup.Zone.length; Z++)
+				if (C.Pose.indexOf("Suspension") >= 0)
+					DrawEmptyRect((HeightRatio * C.FocusGroup.Zone[Z][0]) + X, (1000 - (HeightRatio * (C.FocusGroup.Zone[Z][1] + Y + C.FocusGroup.Zone[Z][3]))) - C.HeightModifier, (HeightRatio * C.FocusGroup.Zone[Z][2]), (HeightRatio * C.FocusGroup.Zone[Z][3]), "cyan");
+				else
+					DrawEmptyRect((HeightRatio * C.FocusGroup.Zone[Z][0]) + X, (HeightRatio * C.FocusGroup.Zone[Z][1]) + Y - C.HeightModifier - (C.IsKneeling() ? (250 * (1 - HeightRatio)) : 0), (HeightRatio * C.FocusGroup.Zone[Z][2]), (HeightRatio * C.FocusGroup.Zone[Z][3]), "cyan");
+
+		// Draw the character name below herself
+		if ((C.Name != "") && ((CurrentModule == "Room") || (CurrentModule == "Online") || ((CurrentScreen == "Wardrobe") && (C.ID != 0))) && (CurrentScreen != "Private"))
+			if (!Player.IsBlind()) {
+				MainCanvas.font = "30px Arial";
+				DrawText(C.Name, X + 255 * Zoom, Y + 980 * Zoom, (CommonIsColor(C.LabelColor)) ? C.LabelColor : "White", "Black");
+				MainCanvas.font = "36px Arial";
+			}
+
+	}
 }
 
 // Draw a zoomed image from a source to a specific canvas
@@ -418,7 +425,7 @@ function DrawButton(Left, Top, Width, Height, Label, Color, Image, HoveringText)
 	MainCanvas.closePath();
 
 	// Draw the text or image
-	DrawText(Label, Left + Width / 2, Top + (Height / 2) + 1, "black");
+	DrawTextFit(Label, Left + Width / 2, Top + (Height / 2) + 1, Width - 4, "black");
 	if ((Image != null) && (Image != "")) DrawImage(Image, Left + 2, Top + 2);
 
 	// Draw the hovering text
@@ -485,18 +492,20 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 
 // Draw the hovering text
 function DrawButtonHover(Left, Top, Width, Height, HoveringText) {
-	Left = (MouseX > 1000) ? Left - 475 : Left + Width + 25;
-	Top = Top + (Height - 65) / 2;
-	MainCanvas.beginPath();
-	MainCanvas.rect(Left, Top, 450, 65);
-	MainCanvas.fillStyle = "#FFFF88";
-	MainCanvas.fillRect(Left, Top, 450, 65);
-	MainCanvas.fill();
-	MainCanvas.lineWidth = '2';
-	MainCanvas.strokeStyle = 'black';
-	MainCanvas.stroke();
-	MainCanvas.closePath();
-	DrawTextFit(HoveringText, Left + 225, Top + 33, 444, "black");
+	if ((HoveringText != null) && (HoveringText != "")) {
+		Left = (MouseX > 1000) ? Left - 475 : Left + Width + 25;
+		Top = Top + (Height - 65) / 2;
+		MainCanvas.beginPath();
+		MainCanvas.rect(Left, Top, 450, 65);
+		MainCanvas.fillStyle = "#FFFF88";
+		MainCanvas.fillRect(Left, Top, 450, 65);
+		MainCanvas.fill();
+		MainCanvas.lineWidth = '2';
+		MainCanvas.strokeStyle = 'black';
+		MainCanvas.stroke();
+		MainCanvas.closePath();
+		DrawTextFit(HoveringText, Left + 225, Top + 33, 444, "black");
+	}
 }
 
 // Draw a basic empty rectangle

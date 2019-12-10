@@ -1,0 +1,112 @@
+###_NPC
+(She looks at you and giggles.)  Did you annoy one of the teachers?
+(Sie sieht dich an und kichert.) Bist du einer Lehrerin auf die Nerven gegangen?
+(She gives you a curious look.)  Aren't you cold?  Go get some clothes before a teacher comes.
+(Sie wirft dir einen verwunderten Blick zu.) Ist dir nicht kalt? Zieh dir etwas an, bevor eine Lehrerin kommt.
+Hello fellow student.  I hope you're doing well.
+Hallo, Mitschülerin. Ich hoffe, es geht dir gut.
+Hello there.  Welcome to our college.
+Hallo. Willkommen im College.
+###_PLAYER
+Who are you?
+Wer bist du?
+###_NPC
+I'm DialogCharacterName.  I study at the college.
+Ich bin DialogCharacterName. Ich bin eine Schülerin im College.
+###_PLAYER
+Why are you here?
+Was machst du hier?
+###_NPC
+I'm waiting for my bus.
+Ich warte auf meinen Bus.
+###_PLAYER
+I'm a student here.
+Ich bin hier eine Schülerin.
+###_NPC
+You should wear your uniform then.  They won't let you in without it.
+Dann solltest du deine Uniform anziehen. Sonst lassen die dich nicht rein.
+###_PLAYER
+Can I go inside?
+Kann ich reingehen?
+###_NPC
+Absolutely.  Just beep security, they will open the gate for you.
+Natürlich. Ruf einfach den Sicherheitsdienst, der macht das Tor für dich auf.
+I don't think they will let you in dressed like that.
+Ich glaube, du wirst nicht reinkommen, so wie du angezogen bist.
+###_PLAYER
+Can I use the tennis court?
+Kann ich den Tennisplatz benutzen?
+###_NPC
+Sure, you're already dressed up to play.
+Klar, du trägst bereits die richtige Kleidung zum Spielen.
+You can, but only if you're wearing a tennis outfit and some sneakers.
+Ja, aber nur, wenn du ein Tennis-Outfit und ein Paar Turnschuhe anziehst.
+###_PLAYER
+Tell me about the college.
+Erzähl mir etwas über das College.
+###_NPC
+Sure.  What would you like to know?
+Klar. Was möchtest du denn wissen?
+###_PLAYER
+Can I tie you up?
+Kann ich dich fesseln?
+###_NPC
+(She takes a step back.)  What?  Are you some kind of pervert?
+(Sie tritt einen Schritt zurück.) Was? Bist du etwa pervers?
+###_PLAYER
+I need to go.  (Leave her.)
+Ich muss los. (Dialog beenden.)
+Who studies here?
+Wer lernt hier denn so?
+###_NPC
+It's a girl only college.  There's only women, both students and teachers.
+Es ist ein reines Mädchencollege. Es gibt hier nur Frauen, sowohl unter den Lehrern als auch in der Schülerschaft.
+###_PLAYER
+Is it expansive?
+Ist es teuer?
+###_NPC
+My family is paying so I'm not sure.  I've heard that it's pretty expensive.
+Meine Familie zahlt für mich, also weiß ich das nicht genau. Ich habe gehört, es soll ziemlich teuer sein.
+###_PLAYER
+What is the required uniform?
+Wie sieht die Pflichtuniform aus?
+###_NPC
+Students must wear ties, a skirt like mine and high leg socks.  Also, nothing too exotic will be accepted.
+Schülerinnen brauchen eine Krawatte, einen Rock wie meinen hier, und hohe Strümpfe. Außerdem wird nichts zugelassen, das zu exotisch ist.
+###_PLAYER
+The place looks pretty old.
+Das alles hier sieht ziemlich alt aus.
+###_NPC
+Yeah, both the buildings and teaching methods are outdated.  It's very strict.
+Ja, sowohl die Gebäude als auch die Lehrmethoden sind nicht gerade auf dem neusten Stand. Es geht hier sehr streng zu.
+###_PLAYER
+Can I take classes?
+Kann ich am Unterricht teilnehmen?
+###_NPC
+Why are you asking me that?  Sure, go inside and get to your classes.
+Wozu fragst du mich das? Klar, geh rein und geh zu deinem Unterricht.
+You could register for the next semester if you have the required papers.  It's only in a few months.
+Du könntest dich für das nächste Semester anmelden, wenn du die nötigen Unterlagen hast. Es beginnt erst in ein paar Monaten.
+###_PLAYER
+Thanks for your time.
+Danke für deine Zeit.
+###_NPC
+No problem.  Is there anything else you want?
+Kein Problem. Wolltest du sonst noch etwas?
+###_PLAYER
+I was kidding.
+Das war nur Spaß.
+###_NPC
+(She frowns.)  Yeah, alright.  Is there anything else you want?
+(Sie runzelt die Stirn.) Ja, okay. Wolltest du sonst noch etwas?
+###_PLAYER
+I'm serious.  I want to tie you up.
+Ich mein's ernst. Ich will dich fesseln.
+###_NPC
+(She pushes you back.)  No!  I don't know you!  Go away now or I'll call security.
+(Sie schubst dich von sich.) Nein! Ich kenne dich nicht! Verschwinde oder ich rufe den Sicherheitsdienst.
+Go away!  I'm not speaking with you anymore.
+Geh weg! Ich rede nicht mehr mit dir.
+###_PLAYER
+(Leave her.)
+(Dialog beenden.)

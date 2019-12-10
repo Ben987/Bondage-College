@@ -1,7 +1,9 @@
 "use strict";
 var SkillModifier = 0;
+var SkillModifierMax = 5;
+var SkillModifierMin = -10
 var SkillLevelMaximum = 10;
-var SkillLevelMinimum = -5;
+var SkillLevelMinimum = 0;
 
 // Pushes the skill progression to the server
 function SkillSave(S) {
@@ -55,10 +57,23 @@ function SkillLoad(NewSkill) {
 function SkillGetLevel(C, SkillType) {
 	for (var S = 0; S < C.Skill.length; S++)
 		if (C.Skill[S].Type == SkillType) {
-			var Level = (C.Skill[S].Level + SkillModifier);
-			if (Level > SkillLevelMaximum) Level = SkillLevelMaximum;
-			if (Level < SkillLevelMinimum) Level = SkillLevelMinimum;
+
+			// Skills modifier only apply to bondage and evasion
+			var Mod = 0;
+			if ((SkillType == "Bondage") || (SkillType == "Evasion")) {
+				if (!LogQuery("ModifierDuration", "SkillModifier")) LogAdd("ModifierLevel", "SkillModifier", 0);
+				SkillModifier = LogValue("ModifierLevel", "SkillModifier");
+				if (SkillModifier < SkillModifierMin) SkillModifier = SkillModifierMin;
+				if (SkillModifier > SkillModifierMax) SkillModifier = SkillModifierMax;
+				Mod = SkillModifier;
+			}
+
+			// Gets the skill level and applies the modifier if needed, make sure we don't go over maximum or under minimum
+			var Level = (C.Skill[S].Level + Mod);
+			if (Level > (SkillLevelMaximum + SkillModifierMax)) Level = (SkillLevelMaximum + SkillModifierMax);
+			if (Level < (SkillLevelMinimum + SkillModifierMin)) Level = (SkillLevelMinimum + SkillModifierMin);
 			return Level;
+
 		}
 	return 0;
 }

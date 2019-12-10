@@ -1,0 +1,63 @@
+PlayerGagged,,,"(She laughs.)  If you play tennis like that, I'll keep the score.",,
+TennisVictory,,,(She catches her breath.)  Good game!  Do you want a rematch?  I know I can do better.,,
+TennisDefeat,,,(She looks happy.)  Good game!  But you need some practice.  We can play again if you want.,,
+0,,,It's nice to see you DialogPlayerName.  Would you like to play tennis with me?,,"JenniferStatusIs(""SchoolMate"")"
+0,,,Darling!  (She gives you a loving kiss on the lips.)  Would you like to play tennis with me?,,"JenniferStatusIs(""Lover"")"
+0,,,"Oh, it's you DialogPlayerName.  (She sighs, seeming a little heartbroken.)  Are you here to play tennis?",,"JenniferStatusIs(""ExLover"")"
+0,,,(She bows respectfully.)  It's wonderful to see you Mentor.  Would you like to play tennis with me?,,"JenniferStatusIs(""Owned"")"
+0,,,(She smirks.)  My little protege is here!  Are you here to get trained at tennis?,,"JenniferStatusIs(""Owner"")"
+0,,,(She frowns.)  Hello my ex-protege.  Are you here to play some tennis?,,"JenniferStatusIs(""ExOwner"")"
+0,,,Hello there.  Would you like to play tennis with me?,,
+0,,Who are you?,"I'm Jennifer, pleased to meet you.  I study and live here at the college.",DialogRemove(),"JenniferStatusIs("""")"
+0,,How have you been?,"(She shrugs.)  Not too bad, I guess.  Nothing exciting is going on right now.",DialogRemove(),"!JenniferStatusIs("""")"
+0,,You're playing alone?,"(She sighs.)  Yeah, I'm practicing alone today.",DialogRemove(),
+0,,How do tennis points work?,"The first point is 15, second is 30 and third is 40.  You win if you score after 40.  There's a tie breaker if we are both at 40.",,
+0,10,We could play a tennis game.,Alright!  It's time for some sport.  (She starts to warm up.),,
+0,20,"My love, I've found a wonderful club.",A club darling?  What kind of club?,,"JenniferStatusIs(""Lover"")"
+0,20,"Mentor, I've found a wonderful club.",A club my protege?  What kind of club?,,"JenniferStatusIs(""Owner"")"
+0,20,"My girl, I've found a wonderful club.",A club Mentor?  What kind of club?,,"JenniferStatusIs(""Owned"")"
+0,,I need to go.  (Leave her.),,DialogLeave(),
+10,,An easy game ok?  (Play tennis.),,"GameStart(""Easy"")",
+10,,A game for honor?  (Play tennis.),,"GameStart(""Normal"")",
+10,,You'll bite the dust.  (Play tennis.),,"GameStart(""Hard"")",
+10,0,Maybe we can play later.,Of course.  You can come back whenever you want.,,
+20,21,It's called the Bondage Club.,(She giggles.)  I've heard of it.  It's an adult club downtown?,,
+20,21,Its a BDSM club.,"Oh yes, I've heard of the adult club downtown.",,
+21,22,You should come there with me.,"(She looks intrigued.)  Sure, I'm curious to see your club.  Should we go there now?",,CanInviteToPrivateRoom()
+21,0,One day I will show you.,"Thanks, I'm curious now.  I'm not sure this is a place for me though.  Invite me over if you have room for me.",,
+22,,Let's go now!  (Bring her to your room.),,InviteToPrivateRoom(),
+22,0,Not now.,Very well.  Would you like to play tennis with me?,,
+100,10,Another match?  Sure!,That's the spirit!  I'm glad you still have some energy left.,,
+100,110,That was a great game.,(She smiles.)  Yes!  I love a good challenge.  Winning or losing isn't very important.,,JenniferWillJoinRoom
+110,120,I love your attitude.,Thanks a lot!  I'm glad you came to the court today.,,
+110,0,You won't win with that attitude.,"(She sighs.)  Yes, maybe you're right.  Let's talk about something else.",,
+120,,I need to go though.,(She nods.)  Alright.  Come back whenever you want.,,
+120,130,We could become friends.,(She seems very excited.)  Wow!  I'd love to have a fr...  I mean...  I'd love to be your friend.,,
+130,140,Alright friend!,You're so nice.  Do you live near the campus?,,
+130,10,Another game my friend?,(She nods happily.)  Absolutely!  I want my revenge.,,
+140,0,I live out of town.,That's fine.  Would you like to play another match?,,
+140,0,I live with my parents.,That's fine.  Would you like to play another match?,,
+140,150,I own a place in a club.,In a club?  That's very special.  What kind of club?,,
+150,0,It's a sex club for adults.,(She looks baffled.)  Oh my!  Anyway.  Would you like to play another game?,,
+150,22,"It's hard to describe, would you like to see it?","(She looks curious.)  Sure, should we go there right now?  You can tell me about it on the road.",,
+150,0,It's a torture dungeon.,(She looks shocked.)  Oh my!  Anyway.  Would you like to play another game?,,
+200,10,"Yes, I want my revenge.",That's the spirit!  I'm glad you still have some energy left.,,
+200,0,"No, that's enough.",Very well.  We can play later if you want.,,
+1000,,,Hey!  Are you up for a tennis match against me?,,
+1000,,Who are you?,I'm a student here.  Tennis is my favorite sport.  Do you want to play?,DialogRemove(),
+1000,,I'm DialogPlayerName.,It's nice to meet you.  Do you want to play against me?,DialogRemove(),
+1000,,You're playing alone?,No.  I'm waiting for a challenger.,DialogRemove(),
+1000,,How do tennis points work?,"The first point is 15, second is 30 and third is 40.  You win if you score after 40.  There's a tie breaker if we are both at 40.",,
+1000,1010,We could play a tennis game.,"Absolutely, have you played before?  I can go easy on you if you're a beginner.",,
+1000,,I need to go.  (Leave her.),,DialogLeave(),
+1010,,Please go easy.  (Play tennis.),,"GameStart(""Easy"")",
+1010,,Let's do a regular game.  (Play tennis.),,"GameStart(""Normal"")",
+1010,1011,We can bet some money on the game.,Are you willing to bet 25$ on the game?  The winner keeps everything.  I won't go easy on you.,,DialogMoneyGreater(25)
+1010,,We can bet some money on the game.,You're too poor for that.  Get 25$ and we can bet it on a real tennis match.,,!DialogMoneyGreater(25)
+1010,1000,Maybe we can play later.,"Sure, let me know when you're ready.",,
+1011,,"Here's 25$, you're going down.  (Play tennis.)",,"GameStart(""Hard"")",
+1011,1000,Forget it.,Chicken!,,
+1100,1010,Another match?  Sure!,"Perfect, this time I will crush you.",,
+1100,1000,"No, that's enough.","Alright, you can come back to play anytime.",,
+1200,1010,I want my revenge!,That's the only way to get better.  Should I go easy on you?,,
+1200,1000,That's enough.,"Alright, you can come back to play anytime.",,

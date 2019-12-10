@@ -12,7 +12,7 @@ Reset character
 Charakter zurücksetzen
 Randomize character
 Zufälliger Charakter
-Strip Naked
+Strip naked
 Alles ausziehen
 Next
 Weiter
@@ -22,3 +22,7 @@ Cancel changes
 Änderungen verwerfen
 Accept changes
 Änderungen übernehmen
+Wardrobe
+Kleiderschrank
+Dress manually
+Manuell kleiden

@@ -1,0 +1,6 @@
+﻿Move the duster over every dirty spot before the supervisor comes back.
+Перемещай тряпку над каждым грязным пятном, прежде чем начальница вернется.
+Congratulations!  You've cleaned everything in time.
+Поздравляю!  Ты все убрала вовремя.
+Sorry, you've failed to clean everything in time.
+Извини, ты не успела все убрать вовремя.

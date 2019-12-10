@@ -65,7 +65,7 @@ function MaidCleaningRun() {
 
 	// Draw the player character, progress bar and text
 	MaidCleaningDoMove();
-	DrawCharacter(Player, MaidCleaningPlayerX, MaidCleaningPlayerY, 2);
+	DrawCharacter(Player, MaidCleaningPlayerX, MaidCleaningPlayerY, 2, false);
 	MaidCleaningDrawSpots();
 	if (!MiniGameEnded) DrawProgressBar(0, 950, 2000, 50, (MiniGameTimer - Time) / 600);
 	else DrawRect(0, 950, 2000, 50, "white");

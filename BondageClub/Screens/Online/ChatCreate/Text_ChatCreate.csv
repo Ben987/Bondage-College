@@ -27,6 +27,26 @@ ParkNight,Park Night
 ChillRoom,Chill Room
 Boudoir,Boudoir
 BondageBedChamber,Bondage Bedchamber
+Beach,Beach
+ForestPath,Forest Path
+DeepForest,Deep Forest
+SpookyForest,Spooky Forest
+AbandonedBuilding,Abandoned Building
+BalconyNight,Balcony Night
+CozyLivingRoom, Cozy Living Room
+RooftopParty,Rooftop Party
+CosyChalet,Cosy Chalet
+ParkWinter,Park Winter
+XmasEve,Xmas Eve Lounge
+XmasDay,Xmas Day Lounge
+StreetNight, Street Night
+SnowyStreet, Snowy Street
+AsylumEntrance,Entrance
+AsylumBedroom,Bedroom
+AsylumMeeting,Meeting
+AsylumTherapy,Therapy
+PaddedCell,Padded Cell
+PaddedCell2,Padded Cell 2
 RoomSize,"Room maximum size, from 2 to 10 members"
 Create,Create
 Cancel,Cancel

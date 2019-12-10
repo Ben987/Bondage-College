@@ -1,2 +1,8 @@
 Remaining Time:
 Verbleibende Zeit:
+Asylum Entrance
+Anstaltseingang
+Your Profile
+Dein Profil
+Sleep (Log Off)
+Schlafen (Ausloggen)

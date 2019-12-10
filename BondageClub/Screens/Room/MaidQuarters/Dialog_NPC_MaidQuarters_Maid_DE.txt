@@ -71,6 +71,18 @@ Tut mir leid, Miss. Ich kann nicht helfen.
 (Du peitschst ihr kräftig auf den Hintern und sie seufzt.) Ich verspreche, härter zu arbeiten, Frau Hausdame.
 (She grumbles as you strike her butt with the crop.)  A maid work isn't easy.
 (Sie grummelt, als du ihren Hintern mit der Gerte triffst.) Ein Hausmädchen hat es nicht leicht.
+Are you lost slave girl?  You should hurry back to the hall and please our customers.
+Hast du dich verlaufen, Sklavenmädchen? Du solltest schnell zurück in die Haupthalle und unsere Kunden beglücken.
+###_PLAYER
+Can I work as a maid?
+Kann ich als Hausmädchen arbeiten?
+###_NPC
+Finish your club slave contract first.  Then we can talk about work.
+Vollende erstmal deinen Clubsklaven-Vertrag. Dann können wir über Arbeit reden.
+###_PLAYER
+(Leave her.)
+(Dialog beenden.)
+###_NPC
 Greetings head maid DialogPlayerName.  How can I help you?  (She does curtsies for you.)
 Servus, Hausdame DialogPlayerName. Wie kann ich behilflich sein? (Sie macht vor dir einen Knicks.)
 How pleasant to see you Mistress DialogPlayerName.  (She does curtsies for you.)
@@ -671,10 +683,6 @@ Hier ist dein Anteil am Trinkgeld. (Sie gibt dir REPLACEMONEY $.)
 ###_NPC
 Nice try, but maybe you're not fit for that job.  I can't pay you.
 Guter Versuch, aber vielleicht bist du dieser Aufgabe nicht gewachsen. Ich kann dich nicht bezahlen.
-###_PLAYER
-(Leave her.)
-(Dialog beenden.)
-###_NPC
 Excellent!  Here's your salary.  (She gives you REPLACEMONEY $.)
 Ausgezeichnet! Hier ist dein Lohn. (Sie gibt dir REPLACEMONEY $.)
 Excellent!  Go see your owner and give her this.  (She gives you a sealed envelope with REPLACEMONEY $ for your owner.)

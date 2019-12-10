@@ -113,6 +113,14 @@ function CommonReadCSV(Array, Path, Screen, File) {
 			window[Array] = CommonCSVCache[FullPath];
 		}
 	});
+
+	// If a translation file is available, we open the txt file and keep it in cache
+	var TranslationPath = FullPath.replace(".csv", "_" + TranslationLanguage + ".txt");
+	if (TranslationAvailable(TranslationPath))
+		CommonGet(TranslationPath, function() {
+			if (this.status == 200) TranslationCache[TranslationPath] = TranslationParseTXT(this.responseText);
+		});
+
 }
 
 // AJAX utility to get a file and return it's content
@@ -129,6 +137,10 @@ function CommonClick() {
 		CommonDynamicFunction(CurrentScreen + "Click()");
 	else
 		DialogClick();
+}
+
+function CommonIsClickAt(Left, Top, Width, Height) {
+	return (MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height);
 }
 
 // Catches the clicks on the main screen and forwards it to the current screen or dialog screen
@@ -207,7 +219,9 @@ function CommonTime() {
 
 // Returns TRUE if the string is a HEX color
 function CommonIsColor(Value) {
-	return ((Value != null) && /^#[0-9A-F]{6}$/i.test(Value));
+	if ((Value == null) || (Value.length < 3)) return false;
+	if (/^#[0-9A-F]{3}$/i.test(Value)) Value = "#" + Value[1] + Value[1] + Value[2] + Value[2] + Value[3] + Value[3];	//convert short hand hex color to standard format
+	return /^#[0-9A-F]{6}$/i.test(Value);
 }
 
 // Returns a random item from a list but make sure we don't pick the previous item again
@@ -216,4 +230,26 @@ function CommonRandomItemFromList(ItemPrevious, ItemList) {
 	while (NewItem == ItemPrevious)
 		NewItem = ItemList[Math.floor(Math.random() * ItemList.length)];
 	return NewItem;
+}
+
+// Converts a string of numbers to an array with map and remove all NaN or undefined elements with reduce
+function CommonConvertStringToArray(s) {
+	var arr = [];
+	if (s != "") {
+		arr = s.split(',').map(Number).reduce((list,curr) => {
+			if (!((curr === false) || Number.isNaN(curr))) list.push(curr);
+			return list;
+		}, []);
+	}
+	return arr;
+}
+
+// Converts an array of numbers to a string, separated with ","
+function CommonConvertArrayToString(Arr) {
+	var S = "";
+	for (var P = 0; P < Arr.length; P++) {
+		if (P != 0) S = S + ",";
+		S = S + Arr[P].toString();
+	}
+	return S;
 }

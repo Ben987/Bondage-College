@@ -1,0 +1,36 @@
+﻿Welcome to the Bondage Club
+Добро пожаловать в Бондаж Клуб
+Enter your name and password
+Введите свое имя и пароль
+Account Name
+Имя Аккаунта
+Password
+Пароль
+Login
+Авторизоваться
+Language
+Язык
+Or create a new character
+Или создайте нового персонажа
+New Character
+Новый Персонаж
+Error loading character data
+Ошибка загрузки данных персонажа
+Error: Disconnected from server
+Ошибка: разрыв соединения с сервером
+Disconnected for duplicated login
+Отключен из-за дублированного входа в систему
+Validating name and password...
+Проверка имени и пароля...
+Incorrect name or password
+Некорректное имя или пароль
+Error:
+Ошибка:
+Invalid name or password
+Неверное имя или пароль
+Select Cheats
+Выберите Читы
+Reset Password
+Восстановление Пароля
+Thank you
+Спасибо

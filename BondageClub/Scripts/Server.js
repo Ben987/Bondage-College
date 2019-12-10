@@ -2,6 +2,7 @@
 var ServerSocket = null;
 var ServerURL = "http://localhost:4288";
 var ServerBeep = {};
+var ServerBeepAudio = new Audio();
 
 // Loads the server events
 function ServerInit() {
@@ -15,6 +16,7 @@ function ServerInit() {
 	ServerSocket.on("ChatRoomSearchResult", function (data) { ChatSearchResult = data; });
 	ServerSocket.on("ChatRoomSearchResponse", function (data) { ChatSearchResponse(data); });
 	ServerSocket.on("ChatRoomCreateResponse", function (data) { ChatCreateResponse(data); });
+	ServerSocket.on("ChatRoomUpdateResponse", function (data) { ChatAdminResponse(data); });
 	ServerSocket.on("ChatRoomSync", function (data) { ChatRoomSync(data); });
 	ServerSocket.on("ChatRoomMessage", function (data) { ChatRoomMessage(data); });
 	ServerSocket.on("ChatRoomAllowItem", function (data) { ChatRoomAllowItem(data); });
@@ -22,6 +24,7 @@ function ServerInit() {
 	ServerSocket.on("AccountQueryResult", function (data) { ServerAccountQueryResult(data); });
 	ServerSocket.on("AccountBeep", function (data) { ServerAccountBeep(data); });
 	ServerSocket.on("AccountOwnership", function (data) { ServerAccountOwnership(data); });
+	ServerBeepAudio.src = "Audio/BeepAlarm.mp3";
 }
 
 // When the server sends some information to the client, we keep it in variables
@@ -208,6 +211,9 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 	// For each appearance item to load
 	for (var A = 0; A < Bundle.length; A++) {
 
+		// disable blocked items
+		if (Array.isArray(C.BlockItems) && C.BlockItems.some(B => B.Name == Bundle[A].Name && B.Group == Bundle[A].Group)) continue;
+
 		// Cycles in all assets to find the correct item to add (do not add )
 		for (var I = 0; I < Asset.length; I++)
 			if ((Asset[I].Name == Bundle[A].Name) && (Asset[I].Group.Name == Bundle[A].Group) && (Asset[I].Group.Family == AssetFamily)) {
@@ -331,6 +337,7 @@ function ServerAccountBeep(data) {
 		ServerBeep.MemberName = data.MemberName;
 		ServerBeep.ChatRoomName = data.ChatRoomName;
 		ServerBeep.Timer = CurrentTime + 10000;
+		if (Player.AudioSettings && Player.AudioSettings.PlayBeeps) ServerBeepAudio.play();
 		ServerBeep.Message = DialogFind(Player, "BeepFrom") + " " + ServerBeep.MemberName + " (" + ServerBeep.MemberNumber.toString() + ")";
 		if (ServerBeep.ChatRoomName != null)
 			ServerBeep.Message = ServerBeep.Message + " " + DialogFind(Player, "InRoom") + " \"" + ServerBeep.ChatRoomName + "\"";

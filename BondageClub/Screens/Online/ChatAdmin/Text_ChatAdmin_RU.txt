@@ -1,0 +1,34 @@
+﻿Room Name
+Название Комнаты
+Description
+Описание
+Ban List
+бан-лист
+Administrator List
+Список Администраторов
+Private
+Приватный
+Locked
+Заблокированный
+Size (2-10)
+Размер (2-10)
+Use member numbers, separated by commas (ex: 3571,541,7001)
+Используйте номера членов, разделенные запятыми (ex: 3571,541,7001)
+Room settings can only be updated by administrators
+Параметры комнаты могут быть обновлены только администраторами
+Background
+Фон
+Save
+Сохранить
+Exit
+Выход
+Cancel
+Отменить
+Updating the chat room...
+Обновление чата комнаты...
+This room name is already taken
+Это название комнаты уже занято
+Account error, please try to relog
+Ошибка учетной записи, пожалуйста, попробуйте перерегистрироватся
+Invalid chat room data detected
+Обнаружены недопустимые данные чата комнаты 

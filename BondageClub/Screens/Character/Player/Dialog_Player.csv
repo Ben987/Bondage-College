@@ -3,21 +3,32 @@ CannotUseOnSelf,,,Cannot use on yourself
 RemoveClothesForItem,,,Remove some clothes first
 RemoveSuspensionForItem,,,Remove the suspension first
 TheyMustBeStandingFirst,,,Must be standing and not suspended first.
+CannotBeUsedWhenMounted,,,Cannot be used when mounted.
+CannotBeUsedWithFeetSpreader,,,Cannot be used with legs spreader.
+RemoveChastityFirst,,,Must remove chastity first.
 RemoveChainForItem,,,Remove the chain to the floor first
 MustCollaredFirst,,,A collar must be fitted first to attach accessories to.
 MustCollaredFirstAndRemoveSuspension,,,Must be collared and not suspended first.
 MustCollaredFirstAndRemoveSuspension1,,,Must be collared and not suspended/mounted first.
-FeetClosed,,,Can't have Items locked to your feet.
+NoClothAndCollared,,,Remove some clothes and requires a collar.
+LegsCannotOpen,,,Legs cannot open.
+LegsCannotClose,,,Legs cannot close.
+MustFreeFeetFirst,,,Must free feet frist.
+RemoveShacklesFirst,,,Must remove shackles first.
 Cancel,,,Cancel
 Exit,,,Back to character
 Next,,,View next items
 Remove,,,Remove the item
 Use,,,Use this item
 Struggle,,,Try to struggle out
+Dismount,,,Dismount
+Escape,,,Escape from the item
 Lock,,,Use a lock
 Unlock,,,Unlock the item
 InspectLock,,,Inspect the lock
 Remote,,,Use your remote
+DialogNormalMode,,,Exit Permission Mode
+DialogPermissionMode,,,Edit Item Permissions
 ButtPump,,,Use the Butt Plug's pump
 ColorPick,,,Color of next item
 ColorSelect,,,Use this color
@@ -27,6 +38,8 @@ Swapping,,,Swapping...
 Struggling,,,Struggling...
 Unlocking,,,Unlocking...
 Removing,,,Removing...
+Dismounting,,,Dismounting...
+Escaping,,,Escaping...
 Locking,,,Locking...
 Adding,,,Adding...
 Impossible,,,Impossible to escape!
@@ -43,11 +56,16 @@ PumpLevel1,,,Pump gag level: Light
 PumpLevel2,,,Pump gag level: Inflated
 PumpLevel3,,,Pump gag level: Bloated
 PumpLevel4,,,Pump gag level: Full mouth
-InflateLevel0,,,Pump plug level: Empty
-InflateLevel1,,,Pump plug level: Light
-InflateLevel2,,,Pump plug level: Inflated
-InflateLevel3,,,Pump plug level: Bloated
-InflateLevel4,,,Pump plug level: Max
+InflateLevel0,,,Inflation level: Empty
+InflateLevel1,,,Inflation level: Light
+InflateLevel2,,,Inflation level: Inflated
+InflateLevel3,,,Inflation level: Bloated
+InflateLevel4,,,Inflation level: Max
+SuctionLevel0,,,Suction Cup level: Loose
+SuctionLevel1,,,Suction Cup level: Light
+SuctionLevel2,,,Suction Cup level: Medium
+SuctionLevel3,,,Suction Cup level: Heavy
+SuctionLevel4,,,Suction Cup level: Max
 DeflateIt,,,Deflate it
 PumpIt,,,Pump it
 pumps,,,pumps
@@ -80,6 +98,9 @@ ServerMessageOwnerRuleWhisperBlock,,,Your owner is now preventing you from whisp
 ServerMessageOwnerRuleKeyAllow,,,Your owner is now allowing you to have keys.  You can buy keys from the club shop.
 ServerMessageOwnerRuleKeyConfiscate,,,Your owner has confiscated your keys.  All your regular keys are lost.
 ServerMessageOwnerRuleKeyBlock,,,Your owner is now preventing you from getting new keys.  The club shop will not sell keys to you anymore.
+ServerMessageOwnerRuleRemoteAllow,,,Your owner is now allowing you to have remotes.  You can buy remotes from the club shop.
+ServerMessageOwnerRuleRemoteConfiscate,,,Your owner has confiscated your remotes.  All your remotes are lost.
+ServerMessageOwnerRuleRemoteBlock,,,Your owner is now preventing you from getting new remotes.  The club shop will not sell remotes to you anymore.
 ServerMessageWhisperBlocked,,,You're on SourceCharacter blacklist.  Your message was blocked by the server.
 LockMemberNumber,,,Member number on lock:
 TimerLeft,,,Time left:
@@ -90,6 +111,8 @@ WillRemoveItemWithTimer,,,The item will be removed when the lock timer runs out
 WontRemoveItemWithTimer,,,The item will stay when the lock timer runs out
 SelectBondagePosition,,,Select the bondage position
 SelectTapeWrapping,,,Select the tape wrapping
+SelectAttachmentState,,,Select an item attachment
+SelectPiercingState,,,Select the piercing attachment
 CannotUnlockIfElbowBound,,,A victim cannot unlock herself if her elbows are bound
 ItemMiscMetalPadlockIntro,,,"""From your friendly hardware store"""
 ItemMiscIntricatePadlockIntro,,,"""To keep your loved one secure"""
@@ -113,6 +136,22 @@ LeatherLegCuffsRestrainNone,,,SourceCharacter detaches the chain from Destinatio
 LeatherLegCuffsRestrainClosed,,,SourceCharacter attaches the leather leg cuffs chain on DestinationCharacter's legs.
 LeatherAnkleCuffsRestrainNone,,,SourceCharacter detaches the chain from DestinationCharacter's leather ankle cuffs.
 LeatherAnkleCuffsRestrainClosed,,,SourceCharacter attaches the leather ankle cuffs chain on DestinationCharacter's ankles.
+OrnateCuffsPoseNone,,,Detached
+OrnateCuffsPoseWrist,,,Bind wrists
+OrnateCuffsPoseElbow,,,Bind elbows
+OrnateCuffsPoseBoth,,,Bind both
+OrnateCuffsRestrainNone,,,SourceCharacter detaches the chain from DestinationCharacter's Ornate cuffs.
+OrnateCuffsRestrainWrist,,,SourceCharacter attaches the Ornate cuffs wrist chain behind DestinationCharacter's back.
+OrnateCuffsRestrainElbow,,,SourceCharacter attaches the Ornate cuffs elbow chain behind DestinationCharacter's back.
+OrnateCuffsRestrainBoth,,,SourceCharacter attaches the Ornate cuffs wrist and elbow chains behind DestinationCharacter's back.
+OrnateLegCuffsPoseNone,,,Detached
+OrnateLegCuffsPoseClosed,,,Chain Closed
+OrnateAnkleCuffsPoseNone,,,Detached
+OrnateAnkleCuffsPoseClosed,,,Chain Closed
+OrnateLegCuffsRestrainNone,,,SourceCharacter detaches the chain from DestinationCharacter's Ornate leg cuffs.
+OrnateLegCuffsRestrainClosed,,,SourceCharacter attaches the Ornate leg cuffs chain on DestinationCharacter's legs.
+OrnateAnkleCuffsRestrainNone,,,SourceCharacter detaches the chain from DestinationCharacter's Ornate ankle cuffs.
+OrnateAnkleCuffsRestrainClosed,,,SourceCharacter attaches the Ornate ankle cuffs chain on DestinationCharacter's ankles.
 StraitJacketSelectTightness,,,How tight do you want to strap the jacket?
 StraitJacketPoseLoose,,,Loose
 StraitJacketPoseNormal,,,Normal
@@ -122,15 +161,61 @@ StraitJacketRestrainNone,,,SourceCharacter loosens the straps on DestinationChar
 StraitJacketRestrainNormal,,,SourceCharacter adjusts the straps normally on DestinationCharacter's straitjacket.
 StraitJacketRestrainSnug,,,SourceCharacter snugs the straps on DestinationCharacter's straitjacket.
 StraitJacketRestrainTight,,,SourceCharacter tightens the straps on DestinationCharacter's straitjacket.
+LeatherStraitJacketSelectTightness,,,How tight do you want to strap the jacket?
+LeatherStraitJacketPoseLoose,,,Loose
+LeatherStraitJacketPoseNormal,,,Normal
+LeatherStraitJacketPoseSnug,,,Snug
+LeatherStraitJacketPoseTight,,,Tight
+LeatherStraitJacketRestrainNone,,,SourceCharacter loosens the straps on DestinationCharacter's leather straitjacket.
+LeatherStraitJacketRestrainNormal,,,SourceCharacter adjusts the straps normally on DestinationCharacter's leather straitjacket.
+LeatherStraitJacketRestrainSnug,,,SourceCharacter snugs the straps on DestinationCharacter's leather straitjacket.
+LeatherStraitJacketRestrainTight,,,SourceCharacter tightens the straps on DestinationCharacter's leather straitjacket.
+InflatableBodyBagSelectTightness,,,How much do you want to inflate the body bag?
+InflatableBodyBagPoseLight,,,Light
+InflatableBodyBagPoseInflated,,,Inflated
+InflatableBodyBagPoseBloated,,,Bloated
+InflatableBodyBagPoseMax,,,Max
+InflatableBodyBagRestrainNone,,,SourceCharacter adjusts DestinationCharacter's inflatable body bag to be only lightly filled.
+InflatableBodyBagRestrainInflated,,,SourceCharacter adjusts DestinationCharacter's inflatable body bag to be half filled.
+InflatableBodyBagRestrainBloated,,,SourceCharacter adjusts DestinationCharacter's inflatable body bag to three quarters filled.
+InflatableBodyBagRestrainMax,,,SourceCharacter adjusts DestinationCharacter's inflatable body bag to fill the maximum amount.
+SturdyLeatherBeltsSelectTightness,,,How many leather belts do you want to apply?
+SturdyLeatherBeltsPoseOne,,,One
+SturdyLeatherBeltsPoseTwo,,,Two
+SturdyLeatherBeltsPoseThree,,,Three
+SturdyLeatherBeltsPoseFour,,,Four
+SturdyLeatherBeltsRestrainNone,,,SourceCharacter restrains DestinationCharacter with only one sturdy leather belt.
+SturdyLeatherBeltsRestrainTwo,,,SourceCharacter restrains DestinationCharacter with two sturdy leather belts.
+SturdyLeatherBeltsRestrainThree,,,SourceCharacter restrains DestinationCharacter with three sturdy leather belts.
+SturdyLeatherBeltsRestrainFour,,,SourceCharacter restrains DestinationCharacter with four sturdy leather belts.
+BondageBenchStrapsSelectTightness,,,How many leather belts do you want to apply?
+BondageBenchStrapsPoseLight,,,Light
+BondageBenchStrapsPoseNormal,,,Normal
+BondageBenchStrapsPoseHeavy,,,Heavy
+BondageBenchStrapsPoseFull,,,Full
+BondageBenchStrapsRestrainNone,,,SourceCharacter loosely restrains DestinationCharacter to the bondage bench with few leather belts.
+BondageBenchStrapsRestrainNormal,,,SourceCharacter restrains DestinationCharacter to the bondage bench with a handful of leather belts.
+BondageBenchStrapsRestrainHeavy,,,SourceCharacter strictly restrains DestinationCharacter to the bondage bench with a good amount of leather belts.
+BondageBenchStrapsRestrainFull,,,SourceCharacter fully restrains DestinationCharacter to the bondage bench with a large amount of leather belts.
+BondageBenchSelectType,,,How do you want to restrain them?
+BondageBenchPoseStrapUp,,,Leather Belt Straps
+BondageBenchRestrainNone,,,SourceCharacter removes the leather belts from DestinationCharacter's body.
+BondageBenchRestrainStrapUp,,,SourceCharacter loosely restrains DestinationCharacter to the bondage bench with few leather belts.
 DuctTapePoseHands,,,Hands
 DuctTapePoseArms,,,Arms
 DuctTapePoseBottom,,,Skirt
 DuctTapePoseTop,,,Torso
 DuctTapePoseFull,,,Mummy
+DuctTapePoseComplete,,,Full Mummy
 DuctTapeRestrainHands,,,SourceCharacter wraps duct tape around DestinationCharacter's hands.
 DuctTapeRestrainBottom,,,SourceCharacter creates a duct tape skirt on DestinationCharacter and traps her hands in it.
 DuctTapeRestrainTop,,,SourceCharacter creates a duct tape top on DestinationCharacter and traps her arms in it.
 DuctTapeRestrainFull,,,SourceCharacter creates a duct tape mummy on DestinationCharacter and traps her arms in it.
+DuctTapeRestrainComplete,,,SourceCharacter creates a completed duct tape mummy on DestinationCharacter and traps her entire upper body in it.
+WristShacklesPoseInFront,,,In-front of body
+WristShacklesPoseBehind,,,Behind back.
+WristShacklesRestrainInFront,,,SourceCharacter shackles DestinationCharacter's wrist in-front of their body.
+WristShacklesRestrainBehind,,,SourceCharacter shackles DestinationCharacter's wrist behind their back.
 SelectGagType,,,Select the type of gag
 ClothGagTypeSmall,,,Small
 ClothGagTypeCleave,,,Cleave
@@ -161,11 +246,16 @@ DuctTapeHeadSetDouble,,,SourceCharacter takes a piece of duct tape for Destinati
 DuctTapeHeadSetWrap,,,SourceCharacter wraps some duct tape onto DestinationCharacter's face.
 DuctTapeHeadTypeMummy,,,Mummy
 DuctTapeHeadSetMummy,,,SourceCharacter wraps DestinationCharacter's head in tape with multiple layers. 
-SelectHarnessType,,,Select the type of Harness
-HempRopeHarnessTypeBasic,,,Basic Tie
-HempRopeHarnessTypeDiamond,,,Diamond Tie
-HempRopeHarnessSetBasic,,,SourceCharacter uses the rope on DestinationCharacter's to do a basic harness.
-HempRopeHarnessSetDiamond,,,SourceCharacter uses the rope on DestinationCharacter's to do a Diamond style harness.
+SelectTieStyle,,,Select the tie style
+RopeStyleBasic,,,Basic Tie
+RopeStyleCrotchRope,,,Crotch Rope Tie
+RopeStyleDiamond,,,Diamond Harness
+RopeStyleMermaid,,,Mermaid Tie
+RopeHarnessSetBasic,,,SourceCharacter uses the rope on DestinationCharacter to do a basic harness.
+RopeHarnessSetCrotchRope,,,SourceCharacter uses the rope on DestinationCharacter to do a crotch rope tie.
+RopeHarnessSetDiamond,,,SourceCharacter uses the rope on DestinationCharacter to do a Diamond style harness.
+LegRopeSetBasic,,,SourceCharacter uses the rope on DestinationCharacter to do a basic tie.
+LegRopeSetMermaid,,,SourceCharacter uses the rope on DestinationCharacter to do a mermaid tie.
 Intensity-1,,,Item intensity: Disabled
 Intensity0,,,Item intensity: Low
 Intensity1,,,Item intensity: Medium
@@ -191,6 +281,14 @@ EggIncreaseTo0,,,DestinationCharacter's vibrating egg starts teasing her lightly
 EggIncreaseTo1,,,DestinationCharacter's vibrating egg builds up to a moderate pace.
 EggIncreaseTo2,,,DestinationCharacter's vibrating egg starts buzzing strongly!
 EggIncreaseTo3,,,DestinationCharacter's vibrating egg jumps up to maximum intensity!
+SybianDecreaseTo-1,,,DestinationCharacter's sybian stops vibrating.
+SybianDecreaseTo0,,,DestinationCharacter's sybian slows down into a light tease.
+SybianDecreaseTo1,,,DestinationCharacter's sybian returns to a moderate pace.
+SybianDecreaseTo2,,,DestinationCharacter's sybian slows down a tiny bit.
+SybianIncreaseTo0,,,DestinationCharacter's sybian starts teasing her lightly.
+SybianIncreaseTo1,,,DestinationCharacter's sybian builds up to a moderate pace.
+SybianIncreaseTo2,,,DestinationCharacter's sybian starts buzzing strongly!
+SybianIncreaseTo3,,,DestinationCharacter's sybian jumps up to maximum intensity!
 DildoDecreaseTo-1,,,DestinationCharacter's vibrating dildo stops vibrating.
 DildoDecreaseTo0,,,DestinationCharacter's vibrating dildo slows down into a light tease.
 DildoDecreaseTo1,,,DestinationCharacter's vibrating dildo returns to a moderate pace.
@@ -199,6 +297,22 @@ DildoIncreaseTo0,,,DestinationCharacter's vibrating dildo starts teasing her lig
 DildoIncreaseTo1,,,DestinationCharacter's vibrating dildo builds up to a moderate pace.
 DildoIncreaseTo2,,,DestinationCharacter's vibrating dildo starts buzzing strongly!
 DildoIncreaseTo3,,,DestinationCharacter's vibrating dildo jumps up to maximum intensity!
+InflVibeDildo_VibeDecreaseTo-1,,,DestinationCharacter's inflatable vibrating dildo stops vibrating.
+InflVibeDildo_VibeDecreaseTo0,,,DestinationCharacter's inflatable vibrating dildo slows down into a light tease.
+InflVibeDildo_VibeDecreaseTo1,,,DestinationCharacter's inflatable vibrating dildo returns to a moderate pace.
+InflVibeDildo_VibeDecreaseTo2,,,DestinationCharacter's inflatable vibrating dildo slows down a tiny bit.
+InflVibeDildo_VibeIncreaseTo0,,,DestinationCharacter's inflatable vibrating dildo starts teasing her lightly.
+InflVibeDildo_VibeIncreaseTo1,,,DestinationCharacter's inflatable vibrating dildo builds up to a moderate pace.
+InflVibeDildo_VibeIncreaseTo2,,,DestinationCharacter's inflatable vibrating dildo starts buzzing strongly!
+InflVibeDildo_VibeIncreaseTo3,,,DestinationCharacter's inflatable vibrating dildo jumps up to maximum intensity!
+InflVibeDildo_PumpdeflatesTo0,,,SourceCharacter deflates DestinationCharacter's inflatable vibrating dildo till it's regular sized.
+InflVibeDildo_PumpdeflatesTo1,,,SourceCharacter deflates DestinationCharacter's inflatable vibrating dildo till only slighty bulging.
+InflVibeDildo_PumpdeflatesTo2,,,SourceCharacter deflates DestinationCharacter's inflatable vibrating dildo till it's moderately bulging.
+InflVibeDildo_PumpdeflatesTo3,,,SourceCharacter deflates DestinationCharacter's inflatable vibrating dildo only a tiny bit.
+InflVibeDildo_PumppumpsTo1,,,SourceCharacter inflates DestinationCharacter's inflatable vibrating dildo only slightly.
+InflVibeDildo_PumppumpsTo2,,,SourceCharacter inflates DestinationCharacter's inflatable vibrating dildo till it's moderately bulging.
+InflVibeDildo_PumppumpsTo3,,,SourceCharacter inflates DestinationCharacter's inflatable vibrating dildo till it's heavily bulging.
+InflVibeDildo_PumppumpsTo4,,,SourceCharacter inflates DestinationCharacter's inflatable vibrating dildo to it's maximum size.
 NippleDecreaseTo-1,,,DestinationCharacter's vibrating nipple clamps stop vibrating.
 NippleDecreaseTo0,,,DestinationCharacter's vibrating nipple clamps slow down into a light tease.
 NippleDecreaseTo1,,,DestinationCharacter's vibrating nipple clamps return to a moderate pace.
@@ -207,6 +321,30 @@ NippleIncreaseTo0,,,DestinationCharacter's vibrating nipple clamps start teasing
 NippleIncreaseTo1,,,DestinationCharacter's vibrating nipple clamps build up to a moderate pace.
 NippleIncreaseTo2,,,DestinationCharacter's vibrating nipple clamps start buzzing strongly!
 NippleIncreaseTo3,,,DestinationCharacter's vibrating nipple clamps jump up to maximum intensity!
+NippleEggDecreaseTo-1,,,DestinationCharacter's vibrating eggs on her nipples stop vibrating.
+NippleEggDecreaseTo0,,,DestinationCharacter's vibrating eggs on her nipples slow down into a light tease.
+NippleEggDecreaseTo1,,,DestinationCharacter's vibrating eggs on her nipples return to a moderate pace.
+NippleEggDecreaseTo2,,,DestinationCharacter's vibrating eggs on her nipples slow down a tiny bit.
+NippleEggIncreaseTo0,,,DestinationCharacter's vibrating eggs on her nipples start teasing her lightly.
+NippleEggIncreaseTo1,,,DestinationCharacter's vibrating eggs on her nipples build up to a moderate pace.
+NippleEggIncreaseTo2,,,DestinationCharacter's vibrating eggs on her nipples start buzzing strongly!
+NippleEggIncreaseTo3,,,DestinationCharacter's vibrating eggs on her nipples jump up to maximum intensity!
+NipSucloosensTo0,,,SourceCharacter loosens DestinationCharacter's nipple suction cups until they hang loosely.
+NipSucloosensTo1,,,SourceCharacter loosens DestinationCharacter's nipple suction cups to a light amount of suction.
+NipSucloosensTo2,,,SourceCharacter loosens DestinationCharacter's nipple suction cups to a moderate amount of suction.
+NipSucloosensTo3,,,SourceCharacter loosens DestinationCharacter's nipple suction cups a bit to a heavy amount of suction.
+NipSuctightensTo1,,,SourceCharacter tweaks DestinationCharacter's nipple suction cups sucking in her nipples lightly.
+NipSuctightensTo2,,,SourceCharacter tweaks DestinationCharacter's nipple suction cups sucking in her nipples firmly.
+NipSuctightensTo3,,,SourceCharacter tweaks DestinationCharacter's nipple suction cups sucking in her nipples heavily.
+NipSuctightensTo4,,,SourceCharacter tweaks DestinationCharacter's nipple suction cups sucking in her nipples entirely.
+ClitSucloosensTo0,,,SourceCharacter loosens DestinationCharacter's clit suction cup until it hangs loosely.
+ClitSucloosensTo1,,,SourceCharacter loosens DestinationCharacter's clit suction cup to a light amount of suction.
+ClitSucloosensTo2,,,SourceCharacter loosens DestinationCharacter's clit suction cup to a moderate amount of suction.
+ClitSucloosensTo3,,,SourceCharacter loosens DestinationCharacter's clit suction cup a bit to a heavy amount of suction.
+ClitSuctightensTo1,,,SourceCharacter tweaks DestinationCharacter's clit suction cup sucking in her clit lightly.
+ClitSuctightensTo2,,,SourceCharacter tweaks DestinationCharacter's clit suction cup sucking in her clit firmly.
+ClitSuctightensTo3,,,SourceCharacter tweaks DestinationCharacter's clit suction cup sucking in her clit heavily.
+ClitSuctightensTo4,,,SourceCharacter tweaks DestinationCharacter's clit suction cup sucking in her clit entirely.
 PantiesDecreaseTo-1,,,DestinationCharacter's vibrating latex panties stops vibrating.
 PantiesDecreaseTo0,,,DestinationCharacter's vibrating latex panties slows down into a light tease.
 PantiesDecreaseTo1,,,DestinationCharacter's vibrating latex panties returns to a moderate pace.
@@ -231,14 +369,6 @@ BPumpspumpsTo1,,,SourceCharacter inflates DestinationCharacter's butt pump only 
 BPumpspumpsTo2,,,SourceCharacter inflates DestinationCharacter's butt pump till half full.
 BPumpspumpsTo3,,,SourceCharacter inflates DestinationCharacter's butt pump three quarters filled.
 BPumpspumpsTo4,,,SourceCharacter inflates DestinationCharacter's butt pump to the maximum amount.
-PumpGagdeflatesTo0,,,SourceCharacter deflates DestinationCharacter's gag fully till it's empty.
-PumpGagdeflatesTo1,,,SourceCharacter deflates DestinationCharacter's gag till only slighty filled.
-PumpGagdeflatesTo2,,,SourceCharacter deflates DestinationCharacter's gag till it's half full.
-PumpGagdeflatesTo3,,,SourceCharacter deflates DestinationCharacter's gag only a tiny bit.
-PumpGagpumpsTo1,,,SourceCharacter inflates DestinationCharacter's gag only slightly.
-PumpGagpumpsTo2,,,SourceCharacter inflates DestinationCharacter's gag till half full.
-PumpGagpumpsTo3,,,SourceCharacter inflates DestinationCharacter's gag three quarters filled.
-PumpGagpumpsTo4,,,SourceCharacter inflates DestinationCharacter's gag to the maximum amount.
 ButtplugDecreaseTo-1,,,DestinationCharacter's vibrating buttplug stops vibrating.
 ButtplugDecreaseTo0,,,DestinationCharacter's vibrating buttplug slows down into a light tease.
 ButtplugDecreaseTo1,,,DestinationCharacter's vibrating buttplug returns to a moderate pace.
@@ -247,10 +377,51 @@ ButtplugIncreaseTo0,,,DestinationCharacter's vibrating buttplug starts teasing h
 ButtplugIncreaseTo1,,,DestinationCharacter's vibrating buttplug builds up to a moderate pace.
 ButtplugIncreaseTo2,,,DestinationCharacter's vibrating buttplug starts buzzing strongly!
 ButtplugIncreaseTo3,,,DestinationCharacter's vibrating buttplug jumps up to maximum intensity!
+InflVibeButtPlug_VibeDecreaseTo-1,,,DestinationCharacter's inflatable vibrating butt plug stops vibrating.
+InflVibeButtPlug_VibeDecreaseTo0,,,DestinationCharacter's inflatable vibrating butt plug slows down into a light tease.
+InflVibeButtPlug_VibeDecreaseTo1,,,DestinationCharacter's inflatable vibrating butt plug returns to a moderate pace.
+InflVibeButtPlug_VibeDecreaseTo2,,,DestinationCharacter's inflatable vibrating butt plug slows down a tiny bit.
+InflVibeButtPlug_VibeIncreaseTo0,,,DestinationCharacter's inflatable vibrating butt plug starts teasing her lightly.
+InflVibeButtPlug_VibeIncreaseTo1,,,DestinationCharacter's inflatable vibrating butt plug builds up to a moderate pace.
+InflVibeButtPlug_VibeIncreaseTo2,,,DestinationCharacter's inflatable vibrating butt plug starts buzzing strongly!
+InflVibeButtPlug_VibeIncreaseTo3,,,DestinationCharacter's inflatable vibrating butt plug jumps up to maximum intensity!
+InflVibeButtPlug_PumpdeflatesTo0,,,SourceCharacter deflates DestinationCharacter's inflatable vibrating butt plug till it's empty.
+InflVibeButtPlug_PumpdeflatesTo1,,,SourceCharacter deflates DestinationCharacter's inflatable vibrating butt plug till only slightly filled.
+InflVibeButtPlug_PumpdeflatesTo2,,,SourceCharacter deflates DestinationCharacter's inflatable vibrating butt plug till it's half full.
+InflVibeButtPlug_PumpdeflatesTo3,,,SourceCharacter deflates DestinationCharacter's inflatable vibrating butt plug only a tiny bit.
+InflVibeButtPlug_PumppumpsTo1,,,SourceCharacter inflates DestinationCharacter's inflatable vibrating butt plug only slightly.
+InflVibeButtPlug_PumppumpsTo2,,,SourceCharacter inflates DestinationCharacter's inflatable vibrating butt plug till it's half full.
+InflVibeButtPlug_PumppumpsTo3,,,SourceCharacter inflates DestinationCharacter's inflatable vibrating butt plug till three quarters filled.
+InflVibeButtPlug_PumppumpsTo4,,,SourceCharacter inflates DestinationCharacter's inflatable vibrating butt plug to it's maximum amount.
+ButtPlugLockPoseBase,,,Nothing
+ButtPlugLockPoseChainShort,,,Short Chain
+ButtPlugLockPoseChainLong,,,Long Chain
+ButtPlugLockRestrainBase,,,SourceCharacter removes the chain from DestinationCharacter's locking butt plug.
+ButtPlugLockRestrainChainShort,,,SourceCharacter attaches a short chain to DestinationCharacter's locking butt plug.
+ButtPlugLockRestrainChainLong,,,SourceCharacter attaches a long chain to DestinationCharacter's locking butt plug.
+AnalHookPoseBase,,,Nothing
+AnalHookPoseChain,,,Chain
+AnalHookPoseHair,,,Hair
+AnalHookRestrainBase,,,SourceCharacter detaches DestinationCharacter's anal hook.
+AnalHookRestrainChain,,,SourceCharacter attaches a chain to DestinationCharacter's anal hook.
+AnalHookRestrainHair,,,SourceCharacter attaches DestinationCharacter's anal hook to her hair.
+PumpGagdeflatesTo0,,,SourceCharacter deflates DestinationCharacter's gag fully till it's empty.
+PumpGagdeflatesTo1,,,SourceCharacter deflates DestinationCharacter's gag till only slighty filled.
+PumpGagdeflatesTo2,,,SourceCharacter deflates DestinationCharacter's gag till it's half full.
+PumpGagdeflatesTo3,,,SourceCharacter deflates DestinationCharacter's gag only a tiny bit.
+PumpGagpumpsTo1,,,SourceCharacter inflates DestinationCharacter's gag only slightly.
+PumpGagpumpsTo2,,,SourceCharacter inflates DestinationCharacter's gag till half full.
+PumpGagpumpsTo3,,,SourceCharacter inflates DestinationCharacter's gag three quarters filled.
+PumpGagpumpsTo4,,,SourceCharacter inflates DestinationCharacter's gag to the maximum amount.
 Empty,,,Empty
 Light,,,Light
 Inflated,,,Inflated
 Bloated,,,Bloated
+Loose,,,Loose
+LightSuction,,,Light
+MediumSuction,,,Medium
+HeavySuction,,,Heavy
+MaximumSuction,,,Maximum
 UseRemote,,,Use Remote
 PlayerGagged,,,(You can use or remove items by selecting specific body regions on yourself.)
 0,,,(You can use or remove items by selecting specific body regions on yourself.)
@@ -282,8 +453,11 @@ SpankingToysTypeCane,,,Cane
 SpankingToysTypeHeartCrop,,,Heart Crop
 SpankingToysTypePaddle,,,Paddle
 SpankingToysTypeWhipPaddle,,,Whip Paddle
+SpankingToysTypeWhip,,,Whip
+SpankingToysTypeCattleProd,,,Cattle Prod
+SpankingToysTypeTennisRacket,,,Tennis Racket
 SpankingToysSetPlayer,,,SourceCharacter takes out a Item
-SpankingToysSetOthers,,,SourceCharacter give DestinationCharacter a Item
+SpankingToysSetOthers,,,SourceCharacter gives DestinationCharacter a Item
 TurnOff,,,TurnOff
 Low,,,Low
 Medium,,,Medium
@@ -321,32 +495,32 @@ LoveChastityBeltAddShockMessage,,,SourceCharacter locks shock device to Destinat
 SelectCollarNameTagType,,,Select what tag you want to use
 SelectCollarNameTagTypeLocked,,,You cannot change the tag while it's locked
 CollarNameTagSet,,,SourceCharacter uses a NameTagType name tag on DestinationCharacter's collar.
+CollarNameTagTypeAngel,,,Angel
 CollarNameTagTypeBadGirl,,,Bad Girl
 CollarNameTagTypeBindMe,,,Bind Me
 CollarNameTagTypeBitch,,,Bitch
-CollarNameTagTypeBunny,,,Bunny
-CollarNameTagTypeCookie,,,Cookie
+CollarNameTagTypeBoobs,,,Boobs
 CollarNameTagTypeCupcake,,,Cupcake
+CollarNameTagTypeDevil,,,Devil
 CollarNameTagTypeDom,,,Dom
-CollarNameTagTypeFoxy,,,Foxy
 CollarNameTagTypeFree,,,Free
 CollarNameTagTypeFuckMe,,,Fuck Me
 CollarNameTagTypeGagMe,,,GagMe
+CollarNameTagTypeGoddess,,,Goddess
 CollarNameTagTypeGoodGirl,,,Good Girl
 CollarNameTagTypeHoldMe,,,Hold Me
-CollarNameTagTypeKitten,,,Kitten
+CollarNameTagTypeJewel,,,Jewel
 CollarNameTagTypeLove,,,Love
 CollarNameTagTypeMaid,,,Maid
 CollarNameTagTypeMeat,,,Meat
-CollarNameTagTypeMuffin,,,Muffin
+CollarNameTagTypeMiss,,,Miss
+CollarNameTagTypeMummy,,,Mummy
 CollarNameTagTypeNeedy,,,Needy
+CollarNameTagTypeNice,,,Nice
 CollarNameTagTypeOwned,,,Owned
-CollarNameTagTypePanda,,,Panda
-CollarNameTagTypePet,,,Pet
-CollarNameTagTypePetMe,,,Pet Me
-CollarNameTagTypePixie,,,Pixie
-CollarNameTagTypePuppy,,,Puppy
-CollarNameTagTypeRacoon,,,Racoon
+CollarNameTagTypePrecious,,,Precious
+CollarNameTagTypePudding,,,Pudding
+CollarNameTagTypeQueen,,,Queen
 CollarNameTagTypeSlave,,,Slave
 CollarNameTagTypeSlut,,,Slut
 CollarNameTagTypeSub,,,Sub
@@ -356,6 +530,76 @@ CollarNameTagTypeToy,,,Toy
 CollarNameTagTypeUseless,,,Useless
 CollarNameTagTypeUseMe,,,Use Me
 CollarNameTagTypeWhore,,,Whore
+SelectCollarNameTagOvalType,,,Select what tag you want to use
+SelectCollarNameTagOvalTypeLocked,,,You cannot change the tag while it's locked
+CollarNameTagOvalSet,,,SourceCharacter uses a NameTagType oval name tag on DestinationCharacter's collar.
+CollarNameTagOvalTypeBabe,,,Babe
+CollarNameTagOvalTypeBandit,,,Bandit
+CollarNameTagOvalTypeBimbo,,,Bimbo
+CollarNameTagOvalTypeBratty,,,Bratty
+CollarNameTagOvalTypeChair,,,Chair
+CollarNameTagOvalTypeChaste,,,Chaste
+CollarNameTagOvalTypeCrazy,,,Crazy
+CollarNameTagOvalTypeCumslut,,,Cumslut
+CollarNameTagOvalTypeCutie,,,Cutie
+CollarNameTagOvalTypeDamsel,,,Damsel
+CollarNameTagOvalTypeDoll,,,Doll
+CollarNameTagOvalTypeEdgeMe,,,EdgeMe
+CollarNameTagOvalTypeEvil,,,Evil
+CollarNameTagOvalTypeForSale,,,ForSale
+CollarNameTagOvalTypeGreedy,,,Greedy
+CollarNameTagOvalTypeHappy,,,Happy
+CollarNameTagOvalTypeHorny,,,Horny
+CollarNameTagOvalTypeKinky,,,Kinky
+CollarNameTagOvalTypeLady,,,Lady
+CollarNameTagOvalTypeLockMe,,,LockMe
+CollarNameTagOvalTypeNude,,,Nude
+CollarNameTagOvalTypeNurse,,,Nurse
+CollarNameTagOvalTypeNympho,,,Nympho
+CollarNameTagOvalTypePainslut,,,Painslut
+CollarNameTagOvalTypePillow,,,Pillow
+CollarNameTagOvalTypePunish,,,Punish
+CollarNameTagOvalTypeRobber,,,Robber
+CollarNameTagOvalTypeSad,,,Sad
+CollarNameTagOvalTypeSwitch,,,Switch
+CollarNameTagOvalTypeTable,,,Table
+CollarNameTagOvalTypeTicklish,,,Ticklish
+CollarNameTagOvalTypeUndress,,,Undress
+CollarNameTagOvalTypeVictim,,,Victim
+CollarNameTagOvalTypeViolent,,,Violent
+CollarNameTagOvalTypeWorm,,,Worm
+SelectCollarNameTagPetType,,,Select what tag you want to use
+SelectCollarNameTagPetTypeLocked,,,You cannot change the tag while it's locked
+CollarNameTagPetSet,,,SourceCharacter uses a NameTagType pet name tag on DestinationCharacter's collar.
+CollarNameTagPetTypeBunny,,,Bunny
+CollarNameTagPetTypeCat,,,Cat
+CollarNameTagPetTypeDog,,,Dog
+CollarNameTagPetTypeFoxy,,,Foxy
+CollarNameTagPetTypeKitten,,,Kitten
+CollarNameTagPetTypeKitty,,,Kitty
+CollarNameTagPetTypeMochi,,,Mochi
+CollarNameTagPetTypePanda,,,Panda,,,
+CollarNameTagPetTypePet,,,Pet
+CollarNameTagPetTypePetMe,,,PetMe
+CollarNameTagPetTypePixie,,,Pixie
+CollarNameTagPetTypePony,,,Pony
+CollarNameTagPetTypePuppy,,,Puppy
+CollarNameTagPetTypeRacoon,,,Racoon
+CollarNameTagPetTypeSloth,,,Sloth
+SelectCollarNameTagLoverType,,,Select what tag you want to use
+SelectCollarNameTagLoverTypeLocked,,,You cannot change the tag while it's locked
+CollarNameTagLoverSet,,,SourceCharacter uses a NameTagType lover name tag on DestinationCharacter's collar.
+CollarNameTagLoverTypeCookie,,,Cookie
+CollarNameTagLoverTypeLover,,,Lover
+CollarNameTagLoverTypeMuffin,,,Muffin
+RoundPiercingPoseBase,,,Base
+RoundPiercingPoseChain,,,Chain
+RoundPiercingRestrainBase,,,SourceCharacter detaches extras from DestinationCharacter's round piercings.
+RoundPiercingRestrainChain,,,SourceCharacter attaches a chain from DestinationCharacter's round piercings to her collar.
+WeightedPiercingPoseBase,,,Base
+WeightedPiercingPoseChain,,,Chain
+WeightedPiercingRestrainBase,,,SourceCharacter detaches extras from DestinationCharacter's weighted piercings.
+WeightedPiercingRestrainChain,,,SourceCharacter attaches a chain from DestinationCharacter's weighted piercings to her collar.
 DuctTapePoseLegs,,,Legs
 DuctTapePoseHalfLegs,,,Half
 DuctTapePoseMostLegs,,,Most
@@ -374,3 +618,23 @@ DuctTapeRestrainMostFeet,,,SourceCharacter wraps even more duct tape on Destinat
 DuctTapeRestrainCompleteFeet,,,SourceCharacter wraps an extreme amount of duct tape on DestinationCharacter's feet fully trapping them.
 SlaveCollarSelectType,,,Select the slave collar model
 SlaveCollarChangeType,,,SourceCharacter changes DestinationCharacter's collar model.
+SelectTeddyBearType,,,Select the Type of Teddy Bear
+TeddyBearTypeBear,,,Bear
+TeddyBearTypeFox,,,Fox
+TeddyBearTypeKitty,,,Kitty
+TeddyBearTypePup,,,Puppy
+TeddyBearTypeBunny,,,Bunny
+TeddyBearTypePony,,,Pony
+TeddyBearSetBear,,,SourceCharacter gives DestinationCharacter a cute teddy bear.
+TeddyBearSetFox,,,SourceCharacter gives DestinationCharacter a cute foxy teddy.
+TeddyBearSetKitty,,,SourceCharacter gives DestinationCharacter a cute kitty teddy.
+TeddyBearSetPup,,,SourceCharacter gives DestinationCharacter a cute puppy teddy.
+TeddyBearSetBunny,,,SourceCharacter gives DestinationCharacter a cute Bunny teddy.
+TeddyBearSetPony,,,SourceCharacter gives DestinationCharacter a cute Pony teddy.
+HeadphoneEarPlugsSelectTightness,,,Turn the headphones on/off and adjust their volume.
+HeadphoneEarPlugsPoseOff,,,Off
+HeadphoneEarPlugsPoseLight,,,Light
+HeadphoneEarPlugsPoseHeavy,,,Heavy
+HeadphoneEarPlugsRestrainNone,,,SourceCharacter turns off DestinationCharacter's headphone earplugs.
+HeadphoneEarPlugsRestrainLight,,,SourceCharacter turns the volume to low on DestinationCharacter's headphone earplugs.
+HeadphoneEarPlugsRestrainHeavy,,,SourceCharacter turns the volume up to high on DestinationCharacter's headphone earplugs.

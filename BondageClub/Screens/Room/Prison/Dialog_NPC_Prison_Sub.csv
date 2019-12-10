@@ -1,8 +1,8 @@
 PlayerGagged,,,Rest is the first civil duty.,,
-ItemMouth,,,(She opens her mouth wide.)  It must be well.,,
+ItemMouth,,,(She opens her mouth wide.)  I guess there's no way around it.,,
 RemoveItemMouth,,,(You remove her gag and she sighs.)  Finally.,,
-ItemEars,,,(You push some earplugs into place.) Oh everything is so quiet now.,,
-RemoveItemEars,,,(You pull the earplugs out.) Oh i can hear you clearly again.,,
+ItemEars,,,"(You put some earplugs into place.) Oh, everything is so quiet now.",,
+RemoveItemEars,,,"(You pull the earplugs out.) Oh, I can hear you clearly again.",,
 ItemArms,,,(She tugs at the shackles.) Is that necessary? ,,
 RemoveItemArms,,,(You free her arms and she stretches a little.)  What will you use on me next?,,
 ItemHands,,,(She grumbles towards you.)  This isn't necessary.,,
@@ -15,33 +15,33 @@ ItemNeck,,,(You strap the collar on her neck while she frowns.)  I am a free clu
 RemoveItemNeck,,,(You remove the collar around her neck.)  Much better!,,
 ItemPelvis,,,(She tries to fight back while the device is put on.),,
 RemoveItemPelvis,,,(She seems relieved as you unlock the device.),,
-ItemHead,,,(You strap the device on her head.)  A dark cell in the cell in the Prison.,,
-RemoveItemHead,,,(You remove the device and she looks at you.)  Fiat Lux.,,
+ItemHead,,,(You strap the device on her head.)  A dark cell in the prison cell.,,
+RemoveItemHead,,,(You remove the device and she looks at you.)  Fiat lux.,,
 ItemTorso,,,(You prepare a full body harness on her torso as she blushes.)  Something was missing.,,
 RemoveItemTorso,,,(You remove the body harness from her torso.)  A first step to freedom.,,
 ItemBreastLeatherWhip,,,"(She moans as you whip her breast, enjoying the pain.)",,
 ItemBreastLeatherCrop,,,(She jumps and makes her breast wiggle with each hit.)  I am a bad person.,,
-ItemPelvisLeatherWhip,,,(She trembles and moans with each lashes.)  Punishment is needed!,,
+ItemPelvisLeatherWhip,,,(She trembles and moans with each lashe.)  I need to be punished!,,
 ItemPelvisLeatherCrop,,,(You whip her butt with the leather crop as she wiggles it for more.),,
-ItemVulvaVibratingWand,,,(She wriggles in her shackles.)  I confess everything you want.,,
+ItemVulvaVibratingWand,,,(She wriggles in her shackles.)  I'll confess anything you want.,,
 VibratingEgg,,,(She looks surprised.) Sweet pains.,,
-RemoveVibratingEgg,,,Uff. I could not have lasted much longer.,,
+RemoveVibratingEgg,,,Oof. I could not have lasted much longer.,,
 SuspensionHempRope,,,(You restrain her legs with the long hemp rope and suspend her by the feet from the ceiling.)  Oh my god!,,
 RemoveSuspensionHempRope,,,(You untie the hemp rope from the ceiling and slowly get her down.)  Wow!  That was quite a ride.,,
-0,,,"(A girl come in and looks arround) Hello, wat's going on here?",,
-0,,It's under Construction. Please go out.,,SubSendAway(),!PrisonSubIsBehindBars()
-0,,I search for a curious person in Handcuffs for some Tests.,,SubHandcuffing(),PrisonSubAskForCuff()
-0,,(Shoves she into the cell and closes the door),(She looks surprised),CellSubIn(),PrisonSubIsHandcuffedOut()
-0,,(Strip Search her for a Key),Is that necessary?,SubHavySearch(),PrisonSubCanStripSearch()
-0,,(Give her the clothes back),(She Nods slowly),SubClothBack(),PrisonSubCanClothBack()
-0,10,(Torture),(She looks worried),,PrisonSubIsBehindBars()
-0,,(let her out),"Thanks, next time it's your turn.",CellSubOut(),PrisonSubIsBehindBars()
-0,,(Leave her),,DialogLeave(),
-10,,(Spank her Butt),(She squirms painfully),,
-10,,(Slap into her Face),(She whines and is scared),,
-10,,(Fondle her Brest),(She moans joyfully),,
-10,,(Tickle her Feet),(She laughs out loud),,
-10,,(massages her neck),(She purrs like a kitten),,
-10,0,(End torture),(She breathes in relief),,
-PrisonSubInterrest,0,,"Now, it sounds interesting. Her I am.",,
-PrisonSubNoInterrest,0,,then I'll go better.,,
+0,,,"(A girl comes in and looks around.) Hello, what's going on here?",,
+0,,It's under construction. Please leave.,,SubSendAway(),!PrisonSubIsBehindBars()
+0,,I'm looking for a curious person in handcuffs for some tests.,,SubHandcuffing(),PrisonSubAskForCuff()
+0,,(Shove her into the cell and close the door.),(She looks surprised.),CellSubIn(),PrisonSubIsHandcuffedOut()
+0,,(Strip search her for a key.),Is that necessary?,SubHavySearch(),PrisonSubCanStripSearch()
+0,,(Give her clothes back.),(She nods slowly.),SubClothBack(),PrisonSubCanClothBack()
+0,10,(Torture her.),(She looks worried.),,PrisonSubIsBehindBars()
+0,,(Let her out.),"Thanks, next time it's your turn.",CellSubOut(),PrisonSubIsBehindBars()
+0,,(Leave her.),,DialogLeave(),
+10,,(Spank her butt.),(She squirms painfully.),,
+10,,(Slap her face.),(She whines and is scared.),,
+10,,(Fondle her breast.),(She moans joyfully.),,
+10,,(Tickle her feet.),(She laughs out loud.),,
+10,,(Massage her neck.),(She purrs like a kitten.),,
+10,0,(End her torture.),(She breathes in relief.),,
+PrisonSubInterrest,0,,"Now, that sounds interesting. Here I am.",,
+PrisonSubNoInterrest,0,,I guess I'd better go then.,,
