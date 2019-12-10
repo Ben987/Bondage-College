@@ -1,0 +1,14 @@
+StartsIn,Starts in
+Intro1,Send the tennis ball past your opponent.
+Intro2,Don't let the ball slip through your side.
+Point0,0
+Point1,15
+Point2,30
+Point3,40
+Deuce,Deuce
+Advantage,Advantage
+Winner,Winner
+Perfect,Victory!  Perfect game.
+Victory,You won the game.
+Defeat,You lost the game.
+ClickContinue,Click on yourself to continue.

@@ -9,7 +9,7 @@ Schweigen ist die höchste Form der Wahrheit!
 (Sie nickt und dreht sich um, damit du ihre Arme festmachen kannst.) Das wird ein lustiger Arbeitstag.
 (You free her arms and she stretches.)  Thanks head maid DialogPlayerName, this will make my work easier.
 (Du befreist ihre Arme und sie streckt sich.) Danke, Hausdame DialogPlayerName, das erleichtert meine Arbeit.
-(She submits as you restrain her legs.)  How should I work now?
+(She submits as you restrain her legs.)  How am I supposed to work now?
 (Sie lässt sich von dir die Beine fesseln.) Wie soll ich denn jetzt zur Arbeit kommen?
 (You release her legs while she shakes her butt.)  Thanks Miss.
 (Du befreist ihre Beine und sie wackelt mit dem Po.) Danke, Miss.
@@ -53,7 +53,7 @@ Ich suche nach Leuten, die Handschellen tragen, um etwas zu testen.
 What kind of test is it?
 Was ist es für ein Test?
 ###_NPC
-(She shoves you into a cell and closes the door)
+(She shoves you into a cell and closes the door.)
 (Sie schubst dich in die Zelle und verriegelt die Tür.)
 ###_PLAYER
 Okay. Bye! (Leave her.)
@@ -62,7 +62,7 @@ Okay. Tschüss! (Dialog beenden.)
 Pleased to meet you. I'm DialogCharacterName, I work here as a maid.
 Schön dich kennenzulernen. Ich bin DialogCharacterName und arbeite hier als Hausmädchen.
 ###_PLAYER
-(look surprised)
+(Look surprised.)
 (Überrascht gucken.)
 ###_NPC
 It's good that you're under lock and key!
@@ -70,17 +70,17 @@ Gut, dass du hinter Schloss und Riegel steckst!
 ###_PLAYER
 Please, can you let me out?
 Bitte, kannst du mich rauslassen?
-(Stay silent and wait)
+(Stay silent and wait.)
 (Schweigen und warten.)
-(shake on the bars)
+(Shake the bars.)
 (An den Gitterstäben rütteln.)
-(try to free yourself)
+(Try to free yourself.)
 (Versuchen, dich zu befreien.)
 (Whimper and make pleading eyes.)
 (Wimmern und flehende Augen machen.)
-(Leave her)
+(Leave her.)
 (Dialog beenden.)
-(watch her leave)
+(Watch her leave.)
 (Ihr hinterherschauen.)
 Thanks, that was a nice experience.
 Danke, das war eine nette Erfahrung.
@@ -88,7 +88,7 @@ Danke, das war eine nette Erfahrung.
 You're welcome.
 Keine Ursache.
 ###_PLAYER
-Finally I am out of the hole.
+Finally I am out of that hole.
 Endlich bin ich raus aus diesem Loch.
 ###_NPC
 All ends well
@@ -97,7 +97,7 @@ Ende gut, alles gut.
 Hey! That really hurts!
 Hey! Das tut wirklich weh!
 ###_NPC
-You don't deserve better!
+You don't deserve any better!
 Etwas Besseres hast du nicht verdient!
 ###_PLAYER
 Miss!  Is that proper?
@@ -118,7 +118,7 @@ Das mache ich gerne nochmal.
 That's right my prisoner.
 Ganz recht, meine Gefangene.
 ###_PLAYER
-(Trash in your bondage.)
+(Thrash in your bondage.)
 (Dich in deinen Fesseln winden.)
 ###_NPC
 You'll never escape!
@@ -127,23 +127,23 @@ Du wirst niemals entkommen!
 (Stay silent and cold.)
 (Still und kühl bleiben.)
 ###_NPC
-(she turns away)
+(She turns away.)
 (Sie dreht sich weg.)
-I don't want to hear it. (She gags you)
+I don't want to hear it. (She gags you.)
 Das will ich gar nicht hören. (Sie knebelt dich.)
-Just be quiet! (She gags you).
+Just be quiet! (She gags you.)
 Sei einfach still! (Sie knebelt dich.)
-Prisoners like you shouldn't speak. (She gags you)
+Prisoners like you shouldn't speak. (She gags you.)
 Gefangene wie du sollten nicht reden. (Sie knebelt dich.)
 I won't let you out. You're a bad girl!
 Ich lasse dich nicht raus. Du bist ein böses Mädchen!
-Alright, you can come out. Here are your clothes back.
+Alright, you can come out. Here are your clothes.
 Also gut, du darfst raus. Hier hast du deine Sachen wieder.
 I won't let you out, but you can have your clothes back. 
 Ich lasse dich nicht raus, aber du kannst deine Kleidung wiederhaben.
 Shut up! You're staying that way.
 Halt die Klappe! Du bleibst, wie du bist.
-Prisoners must wear handcuffs and should not have keys. I'll strip search you then leave.
+Prisoners must wear handcuffs and should not have keys. I'll strip search you, and then I'll leave.
 Gefangene müssen Handschellen tragen und dürfen keine Schlüssel haben. Ich werde dich durchsuchen, bevor ich gehe.
 I'll give you some time to think about how bad you've been. I'll come back later.
 Ich gebe dir etwas Zeit, darüber nachzudenken, wie ungezogen du warst. Ich komme später wieder.
@@ -153,25 +153,25 @@ Prisoners must wear handcuffs.
 Gefangene müssen Handschellen tragen.
 You're all good, but I'm going to take your keys and leave. 
 Alles in Ordnung, aber ich nehme dir deine Schlüssel ab, bevor ich gehe.
-Chill out. I'm going to get a coffee in the maid quarter.
+Chill out. I'm going to get a coffee in the maid quarters.
 Ganz ruhig. Ich hole mir einen Kaffee in der Dienerkammer.
-(She whips you) You need punishment!
+(She whips you.) You need to be punished!
 (Sie peitscht dich aus.) Du musst bestraft werden!
-(She spanks your butt) This should teach you discipline, prisoner!.
+(She spanks your butt.) This should teach you some discipline, prisoner!
 (Sie haut dir auf den Hintern.) Das sollte dir Manieren beibringen, Gefangene!
-(She spanks your breasts) Stand upright.
+(She spanks your breasts.) Stand upright.
 (Sie haut dir auf die Brüste.) Steh aufrecht.
-(She fondles your butt) What a soft body.
+(She fondles your butt.) What a soft body.
 (Sie befummelt deinen Po.) Was für ein schön weicher Körper.
-(She fondles your breast) What a soft body.
+(She fondles your breast.) What a soft body.
 (Sie befummelt deine Brust.) Was für ein schön weicher Körper.
-(she tickles your feet) Tickle, tickle, tickel.
+(She tickles your feet.) Tickle, tickle, tickle.
 (Sie kitzelt deine Füße.) Killekillekille.
-(she slaps your Face) Give it a rest!
+(She slaps your face.) Give it a rest!
 (Sie gibt dir eine Ohrfeige.) Gib endlich Ruhe!
-(She massages your neck) A collar would look nice on you.
+(She massages your neck.) A collar would look nice on you.
 (Sie massiert deinen Hals.) Ein Halsband würde dir sicher gut stehen.
-(She uses her crop) This hurts me more than it hurts you!
+(She uses her crop.) This hurts me more than it hurts you!
 (Sie setzt ihre Gerte ein.) Das tut mir mehr weh als dir!
-You changed your clothes despite your mistress's ban. Therefore, you've been put into a cell by other players'.
+You changed your clothes despite your mistress's ban. Therefore, you've been sent into a cell by other members.
 Du hast trotz des Verbots deiner Herrin deine Kleidung gewechselt. Daher wirst du von den Anderen in die Gefängniszelle gesperrt.

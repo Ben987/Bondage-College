@@ -62,6 +62,7 @@ ItemPelvisLeatherCrop,,,(You lash the leather crop pretty hard on her butt.)  Da
 34,31,Can I try again?,Alright.  Let me find an item to promote.  (She checks on the shelves for an item to use on you.),,Player.CanInteract()
 34,,Can you help me out?,"I don't have time, there's too many customers.  Go find a maid if you can't struggle out.",DialogRemove(),!Player.CanInteract()
 100,,Regular clothes or outfits.,,"Start(""Cloth"")",
+100,,Show me your pants or skirts.,,"Start(""ClothLower"")",
 100,,Hats or head accessories.,,"Start(""Hat"")",
 100,,Do you have glasses?,,"Start(""Glasses"")",
 100,,Show me your gloves.,,"Start(""Gloves"")",
@@ -73,7 +74,7 @@ ItemPelvisLeatherCrop,,,(You lash the leather crop pretty hard on her butt.)  Da
 110,0,I've changed my mind.,Can I help you with something else?,,
 120,,Do you sell outfits or accessories for body?,,"Start(""Wings"")",
 120,,Do you by chance have any tail straps?,,"Start(""TailStraps"")",
-120,,Do you have any hair accessories?,,"Start(""HairAccessory"")",
+120,,Do you have any hair accessories?,,"Start(""HairAccessory1"")",
 120,,Do you have some special bondage Devices?,,"Start(""ItemDevices"")",
 120,0,I've changed my mind.,Can I help you with something else?,,
 200,,Can I see your hoods and blindfolds?,,"Start(""ItemHead"")",
@@ -86,17 +87,18 @@ ItemPelvisLeatherCrop,,,(You lash the leather crop pretty hard on her butt.)  Da
 210,,Show me your arm restraints.,,"Start(""ItemArms"")",
 210,,Show me your hand restraints.,,"Start(""ItemHands"")",
 210,,Something for the breast.,,"Start(""ItemBreast"")",
-210,,Something for the nipples.,,"Start(""ItemNipples"")",
+210,,Some toys for the nipples.,,"Start(""ItemNipples"")",
+210,,Something to decorate the nipples.,,"Start(""ItemNipplesPiercings"")",
 210,,Any harnesses for the torso?,,"Start(""ItemTorso"")",
 210,,Do you sell chastity belts?,,"Start(""ItemPelvis"")",
-210,,Do you have locks and keys?,,"Start(""ItemMisc"")",
 210,0,I've changed my mind.,Can I help you with something else?,,
 220,,Do you sell chastity belts?,,"Start(""ItemPelvis"")",
 220,,Kinky items for the kinky region.,,"Start(""ItemVulva"")",
+220,,I'd like some piercings for down below.,,"Start(""ItemVulvaPiercings"")",
 220,,What can be used on the butt?,,"Start(""ItemButt"")",
 220,,Something to restrain the legs.,,"Start(""ItemLegs"")",
 220,,What do you have for feet?,,"Start(""ItemFeet"")",
-220,,Do you have locks and keys?,,"Start(""ItemMisc"")",
+220,,You got any boots?,,"Start(""ItemBoots"")",
 220,0,I've changed my mind.,Can I help you with something else?,,
 MaidRescue,,,(She struggles in her restraints.)  Help!,,IsVendorRestrained()
 MaidRescue,,,"(She gives you a thumbs up.)  Everything is back to normal, thanks to you and the sorority.",,!IsVendorRestrained()

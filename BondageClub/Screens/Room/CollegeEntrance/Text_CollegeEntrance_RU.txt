@@ -1,0 +1,16 @@
+﻿Return to the Club
+Вернуться в Клуб
+Your Profile
+Ваш профиль
+Change Clothes
+Переодеться
+Tennis Court
+Теннисный корт
+College Cafeteria (Not Ready)
+Кафетерий колледжа (Не готов)
+College Theater (Not Ready)
+Театр колледжа (Не готов)
+Detention Room (Not Ready)
+Тюремная камера (Не готова)
+Teacher Lounge (Not Ready)
+Учительская (Не готова)

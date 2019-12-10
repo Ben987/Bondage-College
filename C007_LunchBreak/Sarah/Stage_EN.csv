@@ -41,7 +41,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 130,0,0,,French.,Sweet!  And what do you do outside of school?,140,0,0,GoodMatch()
 130,0,0,,Art.,Sweet!  And what do you do outside of school?,140,0,0,GoodMatch()
 130,0,0,,History.,Alright.  And what do you do outside of school?,140,0,0,
-130,0,0,,Theatre.,Sweet!  And what do you do outside of school?,140,0,0,GoodMatch()
+130,0,0,,Theater.,Sweet!  And what do you do outside of school?,140,0,0,GoodMatch()
 130,0,0,,I don't know.,"Don't be shy, it's only chit chat.|And what do you do outside of school?",140,0,0,BadMatch()
 140,0,0,,Basketball.,Mmmmhmmm.  (A waitress|interrupts to take your order.),150,0,0,
 140,0,0,,Rock music.,That's great!  (A waitress|interrupts to take your order.),150,0,0,GoodMatch()

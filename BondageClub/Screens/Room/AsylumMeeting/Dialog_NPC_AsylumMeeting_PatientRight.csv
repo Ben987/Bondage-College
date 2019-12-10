@@ -24,13 +24,18 @@ ItemPelvisLeatherCrop,,,(She tries to avoid the crop as you swing it on her butt
 0,,Why are you restrained?,"Mistress sent me here for a bondage therapy.  So long story short, I'm in therapy.",,CurrentCharacter.IsRestrained()
 0,,Can I tie you up?,"(She shakes her head yes.)  Of course nurse DialogPlayerName, it's part of my treatment.",,"DialogReputationGreater(""Asylum"", 1)"
 0,,Can I tie you up?,"(She shakes her head yes.)  Yes Madam, it's part of my treatment.",,"DialogReputationLess(""Asylum"", 0)"
-0,10,Can I play with you?,(She shakes her head yes.)  Absolutely.  Mistress said that I belong to the asylum until she gets me back.,,Player.CanInteract()
+0,,Can I play with you?,(She shakes her head yes.)  Absolutely.  Mistress said that I belong to the asylum until she gets me back.,,Player.CanInteract()
 0,,Will you tie me up?,(She shakes her head no.)  I'm sorry Madam.  I'm not allowed to use items on other persons.,,!Player.IsRestrained()
 0,,(Struggle in your restraints.),(She shakes her head no.)  I'm sorry Madam.  I'm not allowed to help you.,,Player.IsRestrained()
+0,10,(Play with her.),(You take a step forward and start to play with her.),,Player.CanInteract()
 0,,I need to run.  (Leave her.),,DialogLeave(),
-10,,(Pet her.),(She purrs a little as you pet her head gently.),,
-10,,(Tickle her.),(She trashes around and laughs from your skillful tickling hands.),,
-10,,(Kiss her.),(You exchange a sweet and loving kiss.),,CanKiss()
-10,,(Fondle her.),(She closes her eyes and seems to enjoy your touch as you fondle her breast and butt through her clothes.),,
-10,,(Masturbate her.),(You slide a hand in her pants and masturbate her slowly as she moans from the pleasure.),,
-10,0,That's enough.,(She nods as you stop playing with her.),,
+10,,,"(She barely seems to notice that you're there, as you step forward to play with her.)",,CurrentCharacter.IsBlind()
+10,,,"Hello nurse DialogPlayerName, would you like to touch me?",,"DialogReputationGreater(""Asylum"", 1)"
+10,,,"Hello Madam, would you like to touch me?",,
+10,,(Pet her.),(She purrs a little as you pet her head gently.),"Blush(""Low"")",
+10,,(Tickle her.),(She trashes around and laughs from your skillful tickling hands.),"Blush(""Low"")",
+10,,(Kiss her.),(You exchange a sweet and loving kiss.),"Blush(""Medium"")",CanKiss()
+10,,(Fondle her.),(She closes her eyes and seems to enjoy your touch as you fondle her breast and butt through her clothes.),"Blush(""Medium"")",
+10,,(Masturbate her.),(You slide a hand in her pants and masturbate her slowly as she moans from the pleasure.),"Blush(""High"")",
+10,0,(Stop playing with her.),(She nods as you stop playing with her.),,
+10,,I need to run.  (Leave her.),,DialogLeave(),

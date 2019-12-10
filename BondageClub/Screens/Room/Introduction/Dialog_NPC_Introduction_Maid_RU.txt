@@ -1,0 +1,553 @@
+﻿###_NPC
+Communicating with a gag is quite hard.  You'll need to remove it to chat.
+Общаться с кляпом довольно сложно.  Тебе нужно будет удалить его, чтобы общаться.
+Of course, head maid DialogPlayerName.  (She releases you.)
+Конечно, старшая горничная DialogPlayerName.  (Она освобождает тебя.)
+(She first shakes her head to avoid the gag, but eventually surrenders as you silence her.)
+(Сначала она мотает головой, чтобы избежать кляпа, но в конце концов сдается, когда ты заставляешь ее замолчать.)
+(You remove her gag while she stretches her mouth.)  Thanks, it's hard to introduce newcomers with that gag.
+(Ты вынимаешь у нее кляп, пока она растягивает рот.) Спасибо, трудно представить новичков с этим кляпом.
+(You push some earplugs into place.) Oh everything is so quiet now.
+(Ты вставляешь затычки для ушей на место.) О, теперь все так тихо.
+(You pull the earplugs out.) Oh i can hear you clearly again.
+(Ты вытаскиваешь затычки для ушей.) О, я снова отчетливо слышу вас.
+(She sighs and turns around while you restrain her arms.)  It might be a little hard to work like that Miss.
+(Она вздыхает и оборачивается, пока ты связываешь ее руки.) Это может быть немного трудно работать, как эта мисс.
+(You free her arms and she nods slowly.)  Thanks a lot Miss, this is much better.
+(Ты освобождаешь ее руки, и она медленно кивает.) Большое спасибо Мисс, это намного лучше.
+(She sighs and lets you restrain her hands.) It's going be difficult to work now miss.
+(Она вздыхает и позволяет тебе связать ее запястья.) Теперь будет трудно работать, Мисс.
+(You slowly release her hands.)  Thanks you Miss this is much better
+(Ты медленно освобождаешь ее запястья.) Спасибо, вам Мисс, так намного лучше
+(She submits to you while you restrain her legs.)  Do I get paid overtime if I'm stuck here?
+(Она подчиняется тебе, пока ты связываешь ее ноги.) Мне заплатят сверхурочные, если я застряну здесь?
+(You release her legs from the restraint.)  You're quite good with restraints Miss.
+(Ты освобождаешь ее ноги от пут.) Вы неплохо справляетесь с ограничениями, Мисс.
+(She looks puzzled as you restrain her feet.)  I didn't plan on running anytime soon.
+(Она выглядит озадаченной, когда ты связываешь ее ступни.) Я не планировала бежать в ближайшее время.
+(You release her feet.)  Wonderful!
+(Ты освобождаешь ее ступни.) Замечательно!
+(You strap the collar on her while she blushes.)  I bet you're a great Mistress.
+(Ты надеваешь на нее ошейник, а она краснеет.) Бьюсь об заклад, вы отличная Госпожа.
+(You remove the collar around her neck while she stares into your eyes.)
+(Ты снимаешь ошейник с ее шеи, пока она смотрит тебе в глаза.)
+(She struggles as you lock the device on her.)  No, please don't!  I don't have a key!
+(Она борется, когда ты закрываешь устройство на ней.) Нет, пожалуйста, не надо!  У меня нет ключа!
+(She looks extremely relieved as you unlock the device.)  Thank you so much Miss DialogPlayerName.
+(Она выглядит очень облегченно, когда ты открываешь устройство.) Большое вам спасибо Мисс DialogPlayerName.
+(You strap the device on her head as she sighs.)  Well this could make my shift difficult...
+(Ты пристегиваешь устройство к ее голове, когда она вздыхает.) Ну, это может затруднить мою смену...
+(You remove the device as she shakes her head joyfully.)  Wonderful!  That'll make my day easier.
+(Ты снимаешь устройство, когда она радостно качает головой.) Замечательно!  Это облегчит мой день.
+(She jumps from the searing pain on her breast.)  Ouch!  Miss Head Maid!
+(Она подскакивает от жгучей боли в груди.) Ой!  Мисс Старшая Горничная!
+(You whip her breast with the leather crop as she whimpers and bows her head.) Owwwwwww!
+(Ты хлещешь ее по груди кожаным стеком, когда она всхлипывает и склоняет голову.) Оуууууууу!
+(You whip her butt hard as she sighs.)  Ahh! I promise I'll work harder Miss Head Maid!
+(Ты сильно хлещешь ее по заднице, когда она вздыхает.) ААА! Я обещаю, что буду работать усерднее, Мисс старшая горничная!
+(She grumbles as you strike her butt with the crop.)  Oww! That stings Miss.
+(Она ворчит, когда ты бьешь ее по заднице стеком.) Ой! Это жжет Мисс.
+Greetings Mistress DialogPlayerName.  Welcome to the introduction class.  (She does curtsies for you.)
+Приветствую Госпожу DialogPlayerName.  Добро пожаловать на ознакомительный урок.  (Она делает реверанс перед тобой.)
+Greetings head maid DialogPlayerName.  Welcome to the introduction class.  (She does curtsies for you.)
+Приветсвую старшую горничную DialogPlayerName. Добро пожаловать на ознакомительный урок.  (Она делает реверанс перед тобой.)
+(She stares at you.)  Hello naked girl.  Welcome to the introduction class.
+(Она пристально смотрит на тебя.)  Привет голая девушка.  Добро пожаловать на ознакомительный урок.
+Hi sister, welcome to the introduction class.
+Привет сестренка, добро пожаловать на ознакомительный урок.
+Hello there, welcome to the introduction class.
+Здравствуйте, добро пожаловать в ознакомительный класс.
+###_PLAYER
+Hi, my name is DialogPlayerName.
+Привет, меня зовут DialogPlayerName.
+###_NPC
+Pleased to meet you.  I'm DialogCharacterName, I work here as a maid.
+Приятно познакомиться.  Я DialogCharacterName, Я работаю здесь горничной.
+###_PLAYER
+Thanks, little maid.  What's going on here?
+Спасибо, маленькая горничная.  Что здесь происходит?
+###_NPC
+In here, you can learn how to restrain someone, and how to escape by yourself.
+Здесь вы можете узнать, как связать кого-то, и как самостоятельно убежать.
+###_PLAYER
+Introduction class?
+Ознакомительный класс?
+###_NPC
+In this class, you can learn how to restrain someone, and how to free yourself.
+В этом классе вы можете научиться связать кого-то и как освободить себя.
+###_PLAYER
+I don't need any introduction.
+Я не нуждаюсь в ознакомлении.
+###_NPC
+Very well, would you like to practice with us then?
+Очень хорошо, тогда не хотите ли попрактиковаться с нами?
+###_PLAYER
+I can't stay to chat.  (Leave her.)
+Я не могу остаться, чтобы поболтать.  (Оставить ее.)
+Can I strap up anyone at any time?
+Могу ли я связать кого-нибудь в любое время?
+###_NPC
+Yes and no.  You need their consent and you cannot do it in the middle of a conversation.
+И да, и нет.  Вам нужно их согласие, и вы не можете сделать это в середине разговора.
+###_PLAYER
+This is great!
+Это здорово!
+###_NPC
+I'm glad you like it.  Let me teach you about the body parts your can restrain.
+Я рада, что вам понравилось.  Позвольте мне рассказать вам о частях тела, которые вы можете связывать.
+###_PLAYER
+It sounds kinky. (Blush a little.)
+Это звучит извращенно. (Немного покраснеть.)
+###_NPC
+It's kinky and it's fun!  Let me teach you first about the body parts your can restrain.
+Это извращенно, и это весело!  Позвольте мне сначала рассказать вам о частях тела, которые вы можете связывать.
+###_PLAYER
+Tell me about the club first.
+Сначала расскажи мне о клубе.
+###_NPC
+The Bondage Club is a place for open minded adults to share their BDSM kinks.
+Бондаж Клуба - это место для непредубежденных взрослых, чтобы поделиться своими извращениями в БДСМ.
+###_PLAYER
+You're both a maid and a teacher?
+Ты и горничная, и учительница?
+###_NPC
+We maids do a lot of work here.  You'll see this with time.
+Мы, горничные, здесь много работаем.  Вы увидите это со временем.
+###_PLAYER
+I already know that.
+Я уже знаю это.
+Fair enough.
+Справедливо.
+###_NPC
+Very well.  Let me teach you about the body parts your can restrain.
+Очень хорошо.  Позвольте мне рассказать вам о частях тела, которые вы можете связывать.
+###_PLAYER
+Awesome!
+Потрясающе!
+I'm listening.
+Я тебя слушаю.
+###_NPC
+There are eleven body parts to interact with.  To access them, select the body region I will show you.
+Есть одиннадцать частей тела, чтобы взаимодействовать.  Чтобы получить к ним доступ, выберите область тела, которую я вам покажу.
+###_PLAYER
+Please tell me Miss.
+Пожалуйста, расскажи мне Мисс.
+###_NPC
+There are eight body parts to interact with.  To access them, select the body region I will show you.
+Есть восемь частей тела, чтобы взаимодействовать.  Чтобы получить к ним доступ, выберите область тела, которую я вам покажу.
+###_PLAYER
+Alright, but make it quick.
+Хорошо, но сделай это быстро.
+Show me the body regions I can select.
+Покажи мне области тела, которые я могу выбрать.
+###_NPC
+Restraining the feet will prevent your victim from moving away.
+Удерживая ступни, вы не дадите жертве отойти в сторону.
+###_PLAYER
+(Listen.)
+(Слушать.)
+###_NPC
+Restraining the upper legs will still allow your victim to move around but it creates a nice effect.
+Ограничение верхних частей ног все еще позволит вашей жертве передвигаться, но это создает хороший эффект.
+On the pussy or vagina region, you can use items such as vibrators or eggs.  The perfect place to tease your victim and make them climax.
+В области киски или влагалища можно использовать такие предметы, как вибраторы или яйца.  Идеальное место, чтобы дразнить свою жертву и довести ее до оргазма.
+On the butt or anal region, you can use regular butt plugs or fashion plugs such as cat tails.
+На попе или анальной области вы можете использовать обычные анальные пробки или модные пробки, такие как кошачьи хвосты.
+On the pelvis, you can use whips, crops or chastity belts.  Know that it will restrict any access to the vagina and anus.
+На тазу можно использовать хлысты, стеки или пояса верности.  Знайте, что это ограничит любой доступ к влагалищу и анусу.
+On the torso, you can use many kinds of harnesses, mostly for esthetics.
+На туловище можно использовать много видов сбруи, в основном для эстетики.
+On the nipples, you can use piercings or clamps.  Some people enjoy the pain.
+На сосках, вы можете использовать пирсинг или зажимы. Некоторые люди любят боль.
+The breast region can be used for more chastity devices, as well as whips or crops.
+Область грудей может быть использована для усиленых устройств целомудрия, а также для плетей или стеков.
+The arms can be restrained using many devices.  This will prevent your victim from using her hands to free herself.
+Руки можно ограничить с помощью многих устройств. Это позволит помешать вашей жертве использовать руки, чтобы освободиться.
+You can use collars on your victim's neck to show everyone that they are yours, enslave them or leash them.
+Вы можете использовать ошейники на шее вашей жертвы, чтобы показать всем, что они являются вашими, поработить их или взять их на поводок.
+You can attach accessories items to a collar on your victim's neck.  Chains to the floor, leashes or just make them look pretty
+Вы можете прикрепить аксессуары к ошейнику на шее вашей жертвы. Цепи до пола, поводки или просто сделать вид более красивым.
+You can use gags to silence your victim, making her unable to speak.
+Вы можете использовать кляпы, чтобы заставить замолчать свою жертву, делая ее неспособной говорить.
+Blindfolds and hoods can be used to restrict vision and hearing.
+Повязки и капюшоны могут быть использованы для ограничения зрения и слуха.
+Ear plugs can be used to deafen your victim.
+Беруши могут быть использованы что бы оглушить вашу жертву.
+Your pockets can be used to store your padlocks and keys. 
+Ваши карманы могут быть использованы для хранения замков и ключей. 
+Your pockets can be used to store more advanced devices. 
+Ваши карманы могут быть использованы для хранения более сложных устройств. 
+That's about everything. Remember that your arms need to be free to restrain someone.
+Это все. Помните, что ваши руки должны быть свободными, чтобы связать кого-то.
+###_PLAYER
+Thanks for the info.
+Спасибо за информацию.
+###_NPC
+My pleasure! Now we can practice.  Would you prefer to restrain someone, or be tied up yourself?
+С удовольствием! Теперь мы можем попрактиковать. Вы бы предпочли, чтобы связать кого-то, или быть связаной самой?
+###_PLAYER
+That makes sense.
+В этом есть смысл.
+###_NPC
+Of course! And now we can practice.  Would you prefer to restrain someone, or be tied up yourself?
+Конечно! А теперь мы можем попрактиковать.  Вы бы предпочли, чтобы связать кого-то, или быть связаной самой?
+###_PLAYER
+Can I strap you up now?
+Могу ли я связать тебя сейчас?
+###_NPC
+Not me I'm afraid, but we have someone here who would certainly enjoy being your victim.
+Боюсь, что не я не могу, но у нас тут есть кое-кто, кому наверняка понравится быть вашей жертвой.
+I'm all yours if you want me, head maid DialogPlayerName.  I will not resist you.
+Я вся ваша, если хотите, старшая горничная. DialogPlayerName.  Я не буду сопротивляться вам.
+###_PLAYER
+Can we practice?
+Можем ли мы попрактиковать?
+###_NPC
+Absolutely.  Would you prefer to restrain someone, or be tied up yourself?
+Разумеется.  Вы бы предпочли, чтобы связать кого-то, или быть связаной самой?
+###_PLAYER
+Can you tie me up now?
+Можете ли вы связать меня сейчас?
+###_NPC
+I can certainly tie you up.  It's a good time to practice.
+Я, конечно, могу связать вас.  Это хорошее время для практики.
+You can practice your bondage skills here.  Would you prefer to restrain someone, or be tied up yourself?
+Вы можете практиковать свои навыки бондажа здесь.  Вы бы предпочли, чтобы связать кого-то, или быть связаной самой?
+###_PLAYER
+I want to practice tying you up.
+Я хочу потренироваться связывать тебя.
+###_NPC
+(She blushes.)  Yes, head maid DialogPlayerName.  I will not resist you.
+(Она краснеет.) Да, старшая горничная DialogPlayerName.  Я не буду сопротивляться вам.
+You can't tie me up, but we have someone here who would certainly enjoy being your subject.
+Вы не можете связать меня, но у нас здесь есть кое-кто, кому определенно понравится быть вашим объектом.
+###_PLAYER
+Can I tie her up?
+Можно я ее свяжу?
+###_NPC
+Absolutely, you have the perfect candidate here to practice on.
+Безусловно, у вас есть идеальный кандидат для практики.
+###_PLAYER
+I want to practice freeing myself.
+Я хочу попрактиковаться в освобождении себя.
+###_NPC
+Awesome!  If you're ready now I can get started.
+Потрясающе!  Если вы готовы сейчас, я могу начать.
+###_PLAYER
+Who runs this club?
+Кто управляет этим клубом?
+###_NPC
+The Head Mistress is in charge.  You should go present yourself if you haven't already.
+За все отвечает Старшая Госпожа.  Вы должны пойти представиться, если вы еще не сделали этого.
+###_PLAYER
+Let's practice later.  (Leave her.)
+Давай попробуем позже.  (Оставить ее.)
+I can use my favorite restraints on her?
+Я могу использовать свои любимые ограничения на ней?
+###_NPC
+Of course, use anything you want on her.  She's very submissive, I'm sure she'll enjoy it.
+Конечно, используй на ней все, что захотите.  Она очень покорная, я уверена, ей понравится.
+###_PLAYER
+Can I have some items to practice with?
+Можно мне попрактиковаться с некоторыми предметами?
+###_NPC
+Use these basic items. They are easy to use, but also easy to struggle out from.
+Используйте эти базовые предметы. Они просты в использовании, но также просты в борьбе.
+###_PLAYER
+Thanks!  (Take the items.)
+Спасибо!  (Возьми предметы.)
+###_NPC
+(She gives you ropes for her arms and legs, plus a basic cloth gag.)
+(Она дает тебе веревки для ее рук и ног, плюс основной кляп из ткани.)
+###_PLAYER
+This is sweet.  (Take the items.)
+Это очень мило.  (Возьми предметы.)
+I'll make it extra tight.
+Я сделаю это очень тугим.
+###_NPC
+Impressive.  Make sure to restrain her arms, her feet and to gag her.
+Впечатляюще.  Обязательно свяжите ей руки, ноги и заткните рот кляпом.
+###_PLAYER
+I'm ready!
+Я готова!
+###_NPC
+Wonderful.  Make sure to restrain her arms and her feet, and don't forget to gag her!
+Замечательно.  Убедитесь, что вы связали ей руки и ноги, и не забудьте заткнуть ей рот!
+###_PLAYER
+I can do it now?
+Я могу сделать это сейчас?
+###_NPC
+Absolutely.  Make sure to restrain her arms and her feet, and don't forget to gag her!
+Разумеется.  Убедитесь, что вы связали ей руки и ноги, и не забудьте заткнуть ей рот!
+Make sure to restrain her arms and her feet, and don't forget to gag her!
+Убедитесь, что вы связали ей руки и ноги, и не забудьте заткнуть ей рот!
+###_PLAYER
+She's restrained pretty well now.
+Сейчас она довольно хорошо связана.
+###_NPC
+(She looks at your victim and smiles.)  Excellent!  So how does it feel to restrain someone?
+(Она смотрит на твою жертву и улыбается.)  Отлично!  Так каково это - связывать кого-то?
+###_PLAYER
+Very good.  (Leave her.)
+Отлично.  (Оставить ее.)
+I can tie her up at any time?
+Я могу связать ее в любое время?
+###_NPC
+Yes and no.  You cannot strap her up in the middle of a conversation.
+И да, и нет.  Вы не можете связать ее в середине разговора.
+###_PLAYER
+Tell me about the body parts I can restrain.
+Расскажи мне о тех частях тела, которые я могу связать.
+It was fun to strap her up.
+Было забавно связать ее.
+###_NPC
+I'm glad you feel that way.  I think you're ready to explore the club now.
+Я рада, что вы так считаете.  Я думаю, что теперь вы готовы исследовать клуб.
+###_PLAYER
+I would rather be restrained myself.
+Я бы и сама предпочла быть связанной.
+###_NPC
+Don't worry, I'm sure it will happen often.  I think you're ready to explore the club now.
+Не волнуйтесь, я уверена, что это будет происходить часто.  Я думаю, что теперь вы готовы исследовать клуб.
+###_PLAYER
+It's empowering!  I need to find a whip now...
+Это вдохновляет!  Мне нужно найти кнут прямо сейчас...
+###_NPC
+A monster is born!  (She giggles.)  You're ready to explore the club now.
+Рождается монстр!  (Она хихикает.)  Теперь вы готовы исследовать клуб.
+###_PLAYER
+I can tie up anyone?
+Я могу связать кого угодно?
+###_NPC
+Anyone that's into bondage, yes.  Have fun causing trouble.
+Любую, кто увлекается бондажем.  Развлекайтесь и создавайте проблемы.
+###_PLAYER
+Can I tie you up now?
+Теперь я могу связать тебя?
+###_NPC
+(She giggles.)  Not now, I have work to do here.  But I'm sure you'll find victims if you wander around.
+(Она хихикает.) Не сейчас, у меня здесь много работы.  Но я уверен, что вы найдете жертв, если будете бродить вокруг.
+(She giggles.)  If you wish head maid DialogPlayerName.
+(Она хихикает.) Если пожелаете, старшая горничная DialogPlayerName.
+Your introduction class is done.  I hope you have fun in the club!
+Ваш вводный урок закончен.  Надеюсь, вам будет весело в клубе!
+###_PLAYER
+You were a great teacher.
+Ты был великолепным учителем.
+###_NPC
+Well thanks a lot.  (She smiles.)  You're a good student.
+Ну спасибо большое.  (Она улыбается.) Ты хорошая ученица.
+###_PLAYER
+Thanks!  Have a great time.  (Leave her.)
+Спасибо!  Желаю хорошо провести время.  (Оставить ее.)
+Can you teach me more about rope bondage?
+Можешь ли ты рассказать меня больше о веревочном бондаже?
+###_NPC
+If you like rope bondage that much, try the Shibari Dojo.  You might learn a few new tricks.
+Если вам так нравится веревочный бондаж, попробуйте Додзе шибари.  Вы можете узнать несколько новых приемов.
+###_PLAYER
+Tell me about the other types of restraints.
+Расскажи мне о других видах ограничений.
+###_NPC
+Some items are impossible to struggle out from, so you'll need to find help.  Also, items like cuffs can be locked, and you'll need a key to unlock them.
+С некоторыми предметами невозможно бороться, поэтому вам нужно будет найти помощь.  Кроме того, такие предметы, как манжеты, могут быть заблокированы, и вам понадобится ключ, чтобы разблокировать их.
+###_PLAYER
+Tell me about item permissions.
+Расскажите мне о разрешениях для предметов.
+###_NPC
+In your profile, there's an item permission level you can set.  It only affects online players and will block them from restraining you, depending on the level.
+В вашем профиле есть уровень прав доступа к предметам, который вы можете установить.  Она влияет только на онлайн игроков и будет блокировать их от связывания вас, в зависимости от уровня.
+Of course!  If you're ready for the challenge I will tie you up.
+Конечно!  Если вы готовы к вызову, я свяжу вас.
+Are you ready to struggle against the ropes?
+Готовы ли вы бороться с веревками?
+Get your arms free first if you want to practice struggling against my ropes.  Let me know when you're ready.
+Сначала освободи руки, если хочешь попрактиковаться в борьбе с моими веревками.  Дай мне знать, когда будешь готова.
+###_PLAYER
+I'm ready, you can tie me up.
+Я готова, вы можете связать меня.
+###_NPC
+(She wraps a white nylon rope around your feet and does two knots.)
+(Она обматывает твои ноги белой нейлоновой веревкой и делает два узла.)
+###_PLAYER
+Not yet.  Give me some time.  (Leave her.)
+Пока нет.  Дайте мне немного времени. (Оставь ее.)
+I won't be running away now.
+Я не собираюсь убегать сейчас.
+###_NPC
+That's for sure.  (She wraps a second rope around your legs.)
+Это уж точно.  (Она обматывает вторую веревку вокруг твоих ног.)
+###_PLAYER
+That's all?
+И это все?
+###_NPC
+Hah, of course not.  Much left to do.  (She wraps a second rope around your legs.)
+Ха, конечно нет.  Многое еще предстоит сделать.  (Она обматывает вторую веревку вокруг твоих ног..)
+###_PLAYER
+It feels good.
+Приятно себя чувствовую.
+###_NPC
+(She nods and wraps a third rope around your body and arms, forcing them to stick into your back.)
+(Она кивает головой и обертывает третью веревку вокруг тела и рук, заставляя их прижаться к спине.)
+###_PLAYER
+You sure know the ropes.
+Вы точно знаете, что такое веревки.
+###_NPC
+(She smiles and wraps a third rope around your body and arms, forcing them to stick into your back.)
+(Она улыбается и обматывается третьей веревкой вокруг тела и рук, заставляя их прижаться к спине.)
+###_PLAYER
+It's too tight!
+Слишком туго!
+###_NPC
+You'll get used to it.  Now do you think you can escape?
+Ты привыкнешь к этому.  Теперь ты думаешь, что сможешь сбежать?
+###_PLAYER
+That's the best you can do?
+Это лучшее, что ты можешь сделать?
+###_NPC
+You're very bold, I like it.  Now do you think you can escape?
+Ты очень смелая, мне нравится.  Теперь ты думаешь, что сможешь сбежать?
+###_PLAYER
+This is pretty kinky.
+Это довольно извращенно.
+###_NPC
+Absolutely!  Now do you think you can escape?
+Конечно!  Теперь ты думаешь, что сможешь сбежать?
+You're still struggling to get out?  Don't give up.
+Ты все еще пытаешься выбраться?  Не сдавайся.
+###_PLAYER
+How do I escape?
+Как мне сбежать?
+###_NPC
+Grab the rope on your arms and try to free yourself.  Good luck!
+Возьмись за веревку на руках и попытайся освободиться.  Удачи!
+###_PLAYER
+Get me out now!
+Освободите меня сейчас же!
+###_NPC
+You're not in control girl.  (She grabs your mouth and straps a cloth gag on you.)
+Ты не контролируешь ситуацию, девочка.  (Она хватает тебя за рот и затыкает рот тряпкой.)
+###_PLAYER
+Don't look, I will escape by myself.  (Leave her.)
+Не смотри, я сбегу сама.  (Оставь ее.)
+###_NPC
+Well done!  You were able to struggle out.
+Молодец!  Тебе удалось вырваться.
+###_PLAYER
+That was easy.
+Это было легко.
+###_NPC
+I'll make it tighter next time.  Did you enjoy being tied up?
+В следующий раз я сделаю его более жестким.  Вам понравилось быть связанной?
+###_PLAYER
+It took a while, but I've done it.
+Это заняло некоторое время, но я сделала это.
+###_NPC
+That's great.  Did you enjoy being tied up?
+Это здорово.  Вам понравилось быть связанной?
+###_PLAYER
+Sure, it was fun.
+Конечно, было весело.
+###_NPC
+That's the spirit!  You're ready to explore the club then.
+Вот это настрой!  Тогда вы готовы исследовать клуб.
+###_PLAYER
+I loved it.  I hope happens often.
+Мне понравилось.  Надеюсь, это будет часто случаться.
+I would rather strap you up.
+Я бы лучше связала тебя.
+###_NPC
+Not now, but you're ready to explore the club and do some bondage.
+Не сейчас, но вы готову исследовать клуб и поработать с бондажем.
+###_PLAYER
+I'm sure it will be fun to explore the club.
+Уверена, будет весело познакомиться с клубом.
+###_NPC
+Oh yes, I'm sure too. Remember to be courteous and respect others.
+О, да, я тоже уверена. Не забывайте быть вежливой и уважать других.
+###_PLAYER
+Can I have some items to start with?
+Могу ли я получить некоторые предметы для начала?
+###_NPC
+Sure, have these ropes and this gag.  (She gives you some ropes and a cloth gag.)
+Конечно, возьмите эти веревки и кляп.  (Она дает тебе веревки и тряпичный кляп.)
+You're ready to explore.  Remember to be courteous and respect others.
+Вы готовы к исследованию.  Не забывайте быть вежливой и уважать других.
+Well thanks a lot.  You're a good student.
+Ну спасибо большое.  Ты хорошая ученица.
+###_PLAYER
+Thanks!  Take care.  (Leave her.)
+Спасибо!  Береги себя.  (Оставить ее.)
+Can I strap her up?
+Можно я ее свяжу?
+###_NPC
+Sure, my assistant here will be happy to help you practice.
+Конечно, моя помощница будет рада помочь вам попрактиковаться.
+###_PLAYER
+Can I get better at struggling out?
+Могу ли я лучше справляться с освобождением?
+###_NPC
+Yes. You might learn new skills to escape faster if you stick around.  Others might also learn skills to make your struggling harder though...
+Да. Вы можете узнать новые навыки, чтобы бежать быстрее, если вы останетесь.  Другие могут также научиться навыкам, чтобы сделать вашу борьбу сложнее, хотя...
+###_PLAYER
+Can you teach me more on rope bondage?
+Можете ли вы больше научить меня веревочному бондажу?
+###_NPC
+Again?  Well of course.  Are you ready to struggle now?
+Опять?  Ну конечно.  Готовы ли вы бороться сейчас?
+(She struggles and tries to get out.)  Can you please help me?
+(Она борется и пытается выбраться.) Не могли бы вы мне помочь?
+(She bows her head respectfully.)  Can you also help our friend here?
+(Она почтительно склоняет голову.) Вы можете также помочь нашей подруге?
+I will spread the good word of you around the sorority.  Thanks for helping.
+Я разнесу доброе слово о вас по всему женскому обществу.  Спасибо за помощь.
+###_PLAYER
+Do you need help?
+Вам нужна помощь?
+###_NPC
+(She eagerly nods her head.)  Yes, can you release us both?
+(Она нетерпеливо кивает головой.) Да, вы можете освободить нас обеих?
+###_PLAYER
+Should I help your friend?
+Мне помочь твоей подруге?
+###_NPC
+Yes, please release both of us.
+Да, пожалуйста, освободите нас обоех.
+###_PLAYER
+Is everything alright now?
+Теперь все в порядке?
+###_NPC
+Everything is great, please report to my sisters of your fine work here.
+Все замечательно, пожалуйста, расскажите моим сестрам о вашей прекрасной работе здесь.
+###_PLAYER
+What happened here?
+Что здесь произошло?
+###_NPC
+A true maid story. A silent girl in latex gear barged in and strapped us both up in armbinders and belts.  She gagged us and left.
+Настоящая история горничной. Молчаливая девушка в латексном костюме ворвалась внутрь и пристегнула нас обоих ремнями и армбиндером.  Она заткнула нам рот кляпом и ушла.
+It started with a new club member curious about armbinders and finished with her running to the maids to get help.
+Все началось с того, что новый член клуба заинтересовалася армбиндерами, а закончилось тем, что она побежала к горничным за помощью.
+A rival maid of mine came in and we fought.  She got lucky and managed to restrain us in belts and armbinders.
+Вошла моя соперница, горничная, и мы подрались.  Ей повезло, и она сумела связать нас ремнями и армбиндером.
+A sales rep came in with belts and armbinders and I think we got a little too carried away by her merchandise.
+Пришел торговый представитель с ремнями и армбиндерами, и я думаю, что мы слишком увлеклись ее товаром.
+###_PLAYER
+I'll go get help.  (Leave her.)
+Я пойду за помощью.  (Оставить ее.)
+As a maid, you owe me a favor now.
+Как горничная, ты теперь у меня в долгу.
+###_NPC
+(She gulps.)  Yes Miss.  Is there something else you need?
+(Она сглатывает.) Да Мисс.  Вам что-то еще нужно?
+###_PLAYER
+My pleasure.  The maids protect each other.
+С удовольствием.  Горничные защищают друг друга.
+###_NPC
+Well said!  Is there something else you need?
+Хорошо сказано!  Тебе что-то еще нужно?
+###_PLAYER
+Another satisfied customer.
+Еще один довольный клиент.
+###_NPC
+A very satisfied customer.  Is there something else you need?
+Очень довольный клиент.  Тебе что-то еще нужно?

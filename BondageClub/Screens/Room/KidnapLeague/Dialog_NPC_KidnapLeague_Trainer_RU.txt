@@ -1,0 +1,494 @@
+﻿###_NPC
+It seems that someone got kidnapped recently.  (She giggles.)  I can't understand you though.
+Кажется, недавно кого-то похитили.  (Она хихикает.)  Но я не могу вас понять.
+(She bows her head.)  Congratulations on your victory!  I'm your victim.
+(Она склоняет голову.)  Поздравляю вас с победой!  Я ваша жертва.
+(She smiles.)  That was a fun fight wasn't it?
+(Она улыбается.)  Это была забавная драка, не так ли?
+You need to find and kidnap BOUNTYNAME.  She usually kidnaps newcomers.  If you succeed, you'll get paid BOUNTYAMOUNT$.
+Вас нужно найти и похитить BOUNTYNAME.  Она обычно похищает новичков.  Если вы добьетесь успеха, вам заплатят BOUNTYAMOUNT$.
+Your bounty is BOUNTYNAME.  She really likes Japanese rope bondage.  The bounty amount is BOUNTYAMOUNT$.
+Ваш приз - это BOUNTYNAME.  Ей очень нравится японский веревочный бондаж.  Сумма вознаграждения составляет BOUNTYAMOUNT$.
+Find and restrain BOUNTYNAME for a bounty of BOUNTYAMOUNT$.  She's a big spender and loves to shop.
+Найти и связать BOUNTYNAME за награду BOUNTYAMOUNT$.  Она большая транжира и любит ходить по магазинам.
+There's a bounty of BOUNTYAMOUNT$ for BOUNTYNAME.  She's a part time maid for the club.
+Там есть приз BOUNTYAMOUNT$ за BOUNTYNAME.  Она подрабатывает горничной в клубе.
+Very good! Here's your pay.  (She gives you BOUNTYAMOUNT$.)  Did she give you trouble?
+Очень хорошо! Вот ваша плата.  (Она дает тебе BOUNTYAMOUNT$.)  Она доставила вам проблем?
+(She tries to avoid the gag for a few seconds but surrenders quickly as you insist.)
+(Она пытается избежать кляпа в течение нескольких секунд, но быстро сдается, так как ты настаиваешь.)
+(You remove her gag and she smiles.)  Thanks!  Would you like to do another practice fight?
+(Ты вынимаешь у нее кляп, и она улыбается.)  Спасибо!  Не хотите еще раз потренироваться в бою?
+(She struggles for fun but allows you to restrain her.)  I can't count the number of times I've been tied up this month.
+(Она радостно борется, но позволяет тебе связать ее.)  Я не могу сосчитать, сколько раз я был связана в этом месяце.
+(You free her arms and she cracks her fingers.)  Ready for another round?
+(Ты освобождаешь ее руки, и она щелкает пальцами.)  Готова к следующему раунду?
+(She wiggles her butt as you restrain her legs.)  A good kidnapper never forgets the legs.
+(Она виляет задницей, когда ты связываешь ее ноги.)  Хорошая похитительница никогда не забывает о ногах.
+(You release her legs from the bondage device.)  Anything else before we can continue?
+(Ты освобождаешь ее ноги от бондажного устройства.)  Что-нибудь еще, прежде чем мы сможем продолжить?
+(She stands on her toes as you restrain her feet.)  Bondage is great isn't it?
+(Она стоит на цыпочках, пока ты связываешь ее ступни.)  Бондаж - это здорово, не так ли?
+(You release her feet and she wiggles them.)  Thanks a lot, it's not easy to be forced like that.
+(Ты освобождаешь ее ступни, и она шевелит ими.)  Большое спасибо, не так-то просто быть принужденной.
+(You strap the collar on her while she blushes.)  Collars are important in both BDSM and kidnappings.
+(Ты пристегиваешь ей ошейник, пока она краснеет.)  Ошейники важны как в БДСМ, так и в похищениях.
+(You remove the collar fastened around her neck.)  Much better!
+(Ты снимаешь ошейник, застегнутый на ее шее.)  Гораздо лучше!
+(You lock the belt on her as she panics.)  Oh, come on!  That's not fair or funny.
+(Ты застегиваешь на ней пояс, когда она впадает в панику.)  Да ладно!  Это нечестно и не смешно.
+(You unlock the device from her waist and she nods.)  That was cruel, even for a kidnapper.
+(Ты отстегиваешь устройство от ее талии, и она кивает.)  Это было жестоко, даже для похитительницы.
+(You strap it on her head as she sighs.)  Please don't leave me like this for too long.
+(Ты надеваешь его ей на голову, когда она вздыхает.)  Пожалуйста, не оставляйте меня на слишком долго.
+(You remove the device as she hums a happy song.)  Thanks!  I appreciate it.
+(Ты удаляешь устройство, как она напевает счастливую песню.)  Спасибо!  Я ценю это.
+(You strap the harness on her torso as she blushes.)  This is pretty kinky Miss.
+(Ты пристегиваешь сбрую к ее туловищу, когда она краснеет.)  Это довольно извращенно, Мисс.
+(She stretches as you release her from the harness.)  It will be easier to breath like that.
+(Она потягивается, когда ты освобождаешь ее от сбруи.)  Так будет легче дышать.
+(She whimpers as you whip her breast.)  Hey!  I'm only here to help you practice!
+(Она хнычет, когда ты хлещешь ее по груди.)  Эй!  Я здесь только для того, чтобы помочь вам попрактиковаться!
+(You swing the crop on her torso.)  Ow! I wouldn't do that to you, use it on the other kidnappers.
+(Ты хлещишь стеком по ее торсу.)  Ай! Я бы не стала так поступать с вами, использовать это на других похитительницах.
+(You whip her butt as she grumbles.)  Whip the kidnappers, not the teacher!
+(Ты хлещешь ее по заднице, когда она ворчит.)  Бейте похитительниц, а не учительницу!
+(You lash the leather crop pretty hard on her butt.)  Ahh! I'm glad I'm not facing you in a real match.
+(Ты довольно сильно хлещешь кожаным стеком по ее заднице.)  ААА! Я рада, что не встречаюсь с вами в настоящем поединке.
+(You restrain her feet with the rope and suspend her from the ceiling.)  Woah!  Maybe you should go to the Dojo.
+(Ты связываешь ей ступни веревкой и подвешиваешь ее к потолку.)  Ого!  Может вам стоит пойти в Додзе.
+(You let her down from the ceiling and release her feet.)  Thanks a lot!  I was getting dizzy.
+(Ты спускаешь ее с потолка и освобождаешь ступни.)  Большое спасибо!  У меня закружилась голова.
+Why are you here girl?  The kidnappers league isn't for club slaves.
+Почему ты здесь, девочка?  Лига Похитительниц не для клубных рабынь.
+###_PLAYER
+Can we talk about kidnappings?
+Мы можем поговорить о похищениях?
+###_NPC
+No, your duty as a club slave is to serve our customers.
+Нет, твой долг как клубной рабыни - обслуживать наших клиентов.
+###_PLAYER
+(Leave her.)
+(Оставь ее.)
+###_NPC
+(She grins.)  Hello naked girl.  Welcome to the Kidnappers League.
+(Она усмехается.) Привет голая девушка.  Добро пожаловать в Лигу Похитительниц.
+Welcome to the Kidnappers League.  Are you here to register as a kidnapper?
+Добро пожаловать в Лигу Похитительниц.  Вы здесь, чтобы зарегистрироваться в качестве похитительницы?
+It's wonderful to see you Miss.  It's always thrilling to see one of our best kidnappers.
+Как приятно видеть вас, Мисс.  Всегда приятно видеть одну из наших лучших похитительниц.
+Hi DialogPlayerName, it's always nice to see you.  Do you want to practice with me?
+Привет DialogPlayerName, я всегда рада вас видеть.  Хотите попрактиковаться со мной?
+Welcome to the league dear member.  Do you need any information, or do you want to practice with me?
+Добро пожаловать в Лигу уважаемый член.  Вам нужна какая-то информация, или вы хотите попрактиковаться со мной?
+###_PLAYER
+Hi, I'm DialogPlayerName.
+Привет, я DialogPlayerName.
+###_NPC
+I'm DialogCharacterName, it's nice to meet you.  I register league kidnappers and do practice fights.
+Я DialogCharacterName, приятно познакомиться.  Я регистрирую похитительниц лиги и занимаюсь тренировочными боями.
+###_PLAYER
+How do kidnappings work?
+Как происходит похищение людей?
+###_NPC
+There's a lot to explain on fighting and kidnapping.  What would you like to know?
+Есть много инструкций по борьбе и похищению людей.  Что бы вы хотели узнать?
+###_PLAYER
+Tell me about the league.
+Расскажите мне о Лиге.
+###_NPC
+Sure!  What would you like to know?
+Конечно!  Что бы вы хотели узнать?
+###_PLAYER
+I want to join the Kidnappers League.
+Я хочу вступить в Лигу Похитительниц.
+###_NPC
+Excellent!  We are always eager to get new members.  Do you know the league rules and accept them?
+Отлично!  Мы всегда стремимся заполучить новых членов.  Вы знаете правила Лиги и принимаете их?
+###_PLAYER
+I want to leave the league.
+Я хочу покинуть Лигу.
+###_NPC
+I'm sorry to hear that, but you can come back later.  You will lose your reputation in the league though. Are you sure you want to leave?
+Мне жаль это слышать, но вы сможете вернуться позже.  Однако вы потеряете свою репутацию в Лиге. Вы уверены, что хотите уйти?
+###_PLAYER
+I'll take a bounty hunter job.
+Я возьму работу охотника за головами.
+###_NPC
+We have many kidnapping bounties available.  Are you looking for an easy target, or more of a challenge?
+У нас есть много возможностей для похищения людей.  Вы ищете легкую цель, или более сложную задачу?
+###_PLAYER
+Who's my bounty target again?
+Еще раз, кто моя цель для добычи?
+I've succeeded, my bounty was kidnapped.
+Я преуспела, моя добыча была похищена.
+I've failed to kidnap my bounty.
+Мне не удалось похитить свою добычу.
+###_NPC
+Maybe the challenge was too tough for you.  You can take a break, or pick up another bounty if you want.
+Может быть, этот вызов был слишком трудным для вас.  Вы можете сделать перерыв, или забрать другую добычу, если хотите.
+###_PLAYER
+I want to practice kidnappings with you.
+Я хочу попрактиковаться в похищениях вместе с вами.
+###_NPC
+Great!  I can go easy on you, or use all my tricks if you're confident enough.  Which will it be?
+Отлично!  Я могу быть с вами помягче или использовать все свои трюки, если вы достаточно уверены в себе.  Что же это будет?
+###_PLAYER
+Let's talk later.  (Leave her.)
+Давайте поговорим позже.  (Оставь ее.)
+Please go easy on me.
+Пожалуйста, полегче со мной.
+A regular match please.
+Обычный матч, пожалуйста.
+Give me a tough fight.
+Дайте мне жесткий бой.
+I can face any challenge!
+Я могу принять любой вызов!
+I've changed my mind.
+Я передумала.
+###_NPC
+It's fine.  Would you like to talk then?
+Все нормально.  Может быть, вы хотите поговорить?
+###_PLAYER
+Tell me of the rules.
+Расскажите мне о правилах.
+###_NPC
+First, all league members can kidnap and be kidnapped at any time in the Bondage Club.  Do you agree to that?
+Во-первых, все члены лиги могут похитить и быть похищены в любое время в Бондаж Клубе.  Вы согласны с этим?
+###_PLAYER
+I know the rules.
+Я знаю правила.
+###_NPC
+So, you agree that you can kidnap and be kidnapped at any time in the Bondage Club.
+Итак, вы согласны, что вы можете похитить и быть похищенной в любое время в Бондаж Клубе.
+###_PLAYER
+I accept.
+Я согласна.
+###_NPC
+We kidnap each other for fun but it's always consensual.  If someone panics or wants to be released, you must let her go.
+Мы похищаем друг друга ради забавы, но это всегда происходит по обоюдному согласию.  Если кто-то паникует или хочет быть освобожденным, вы должны отпустить ее.
+###_PLAYER
+I refuse.
+Я отказываюсь.
+###_NPC
+Then you cannot join the kidnappers league, sorry.
+Тогда вы не можете присоединиться к Лиге Похитительниц, извините.
+You can fight while you kidnap, but you can't do anything that would leave permanent marks or damage on your opponents.
+Вы можете сражаться во время похищения, но вы не можете сделать ничего, что оставило бы постоянные следы или повреждения на ваших противниках.
+You're ready to join the league then!  Are you in?
+Тогда вы готовы вступить в Лигу!  Вы в деле?
+###_PLAYER
+I'm in!  (Join the league.)
+Я в деле!  (Присоедись к Лиге.)
+###_NPC
+Welcome to the Kidnappers League!  I hope you have fun and cause lots of trouble.
+Добро пожаловать в Лигу Похитительниц!  Надеюсь, вам будет весело и причините много неприятностей.
+Alright, let me know if you ever think about joining the league again.
+Хорошо, дайте мне знать, если вы когда-нибудь снова подумаете о вступлении в Лигу.
+###_PLAYER
+I quit.  (Leave the league.)
+Я ухожу.  (Покинуть Лигу.)
+###_NPC
+Fine, you won't be kidnapped and cannot kidnap any longer.
+Ладно, вас не похитят и вы больше не сможете похищать.
+###_PLAYER
+I need to think some more. (Stay.)
+Мне нужно еще немного подумать. (Остаться.)
+###_NPC
+Perfect!  I'm glad you're staying with us.
+Отлично!  Я рада, что вы остаетесь с нами.
+###_PLAYER
+What is the Kidnappers League?
+Что такое Лига Похитительниц?
+###_NPC
+We are a kinky group that enjoys kidnapping and being kidnapped.  Even though we play rough, it's always consensual.
+Мы извращенная группа людей, которая любит похищать и быть похищенной.  Даже если мы играем грубо, это всегда происходит по обоюдному согласию.
+###_PLAYER
+The league members kidnap each other all the time?
+Члены Лиги постоянно похищают друг друга?
+###_NPC
+Pretty much.  (She giggles.)  Members can stalk, attack, and kidnap each other everywhere and at any time in the Bondage Club.
+В значительной степени. (Она хихикает.)  Участники могут преследовать, нападать и похищать друг друга везде и в любое время в Бондаж Клубе.
+###_PLAYER
+Do people get hurt?
+Люди получают травмы?
+###_NPC
+It can happen when a fight gets too intense.  We try to never do anything that could cause permanent injuries.
+Это может случиться, когда борьба становится слишком интенсивной.  Мы стараемся никогда не делать ничего, что может привести к необратимым травмам.
+###_PLAYER
+How can a kidnapping be consensual?
+Как похищение может быть по обоюдному согласию?
+###_NPC
+Just like BDSM, the kidnappings are consensual.  We all agree that we can be kidnapped, and we can leave the league if we want to quit.
+Как и БДСМ, похищения совершаются по обоюдному согласию.  Мы все согласны, что нас могут похитить, и мы можем покинуть Лигу, если захотим уйти.
+###_PLAYER
+How much does it cost?
+Сколько это стоит?
+###_NPC
+There's no cost to join and there are bounty hunter jobs that you can take if you need some money.
+Тут нет никакиой платы, чтобы присоединиться и есть работа охотника за головами, которую вы можете взять, если вам нужны деньги.
+###_PLAYER
+Can members leave the league?
+Могут ли члены покинуть Лигу?
+###_NPC
+Of course.  Though you will lose any reputation gained in the league before.
+Конечно.  Хотя вы потеряете любую репутацию, полученную в Лиге раньше.
+###_PLAYER
+That's enough.
+Этого достаточно.
+###_NPC
+Very good.  Can I help you with anything else?
+Отлично.  Могу я вам еще чем-нибудь помочь?
+###_PLAYER
+How do I kidnap?
+Как мне похитить?
+###_NPC
+To kidnap, you must fight your opponent and break her willpower.  You can use many types of moves and items to make her submit to you.
+Чтобы похитить, вы должны сразиться со своей оппоненткой и сломить ее силу воли.  Вы можете использовать множество типов действий и элементов, чтобы заставить ее подчиниться вам.
+###_PLAYER
+How do I win a kidnapping fight?
+Как мне победить в борьбе при похищение?
+###_NPC
+To win, you must break your opponent's willpower before getting yours broken yourself.  The first to break will submit, and then their arms can be restrained.
+Чтобы победить, вы должны сломить волю противника, прежде чем сломают вас. Первая, кто сломается, подчинятся, и тогда их руки можно будет связать.
+###_PLAYER
+How can I attack?
+Как я могу атаковать?
+###_NPC
+Both kidnappers attack at the same time and can perform any one of four moves.  Each move has strengths and weaknesses against other moves.
+Оба похитителя атакуют одновременно и могут выполнить любой из четырех действий. Каждое действие имеет сильные и слабые стороны против других действий.
+###_PLAYER
+What are these different moves?
+Что это за разные действия?
+###_NPC
+We call them the "BDSM" moves, they are: Brute force, Domination, Sneakiness, and Manipulation.
+Мы называем их" БДСМ " действия, они являются: Грубая сила, Доминирование, Подлость, и Манипуляция.
+###_PLAYER
+How does the strength move work?
+Как работает действие?
+###_NPC
+The stronger the move, the more it will break your opponent's willpower.
+Чем сильнее действие, тем больше оно сломает силу воли вашего противника.
+###_PLAYER
+What's an upper hand in a fight?
+Что такое преимущество в бою?
+###_NPC
+You get the upper hand when you carry out a good move against your opponent.  It will allow you to restrain your opponent or get free yourself.
+Вы получаете преимущество, когда выполняете хорошие действие против своего противника.  Это позволит вам связать своего противника или освободиться самой.
+###_PLAYER
+Can I use items that are not restraints?
+Могу ли я использовать предметы, которые не являются ограничениями?
+###_NPC
+Yes, if you have items such as whips, crops, or vibrators. They will give you a starting advantage on various moves.
+Да, если у вас есть такие предметы, как хлысты, стеки или вибраторы. Они дадут вам начальное преимущество на различных действиях.
+###_PLAYER
+I know everything I need.
+Я узнала все, что мне нужно.
+###_NPC
+Excellent.  Can I help you with anything else?
+Отлично.  Могу я вам еще чем-нибудь помочь?
+###_PLAYER
+(Listen.)
+(Слушать.)
+###_NPC
+Brute force is about using physical strength and endurance against your opponent.  You can slap, kick, punch, and choke, but don't go too far.
+Грубая сила - это использование физической силы и выносливости против вашего противника.  Вы можете шлепать, пинать, бить и душить, но не заходите слишком далеко.
+Brute force is good versus Domination, fair versus Manipulation, and bad versus Sneakiness.  Brute force is halved if clothes are removed.
+Грубая сила - хороша против Доминирования, равна против Манипуляции и плоха против Подлости.  Грубая сила уменьшается вдвое, если снять одежду.
+Domination consists of intimidating, insulting, and making your opponent feel weaker than you, which breaks their morale.
+Доминирование состоит в запугивании, оскорблении и заставлении противника чувствовать себя слабее вас, что подрывает ее моральный дух.
+Domination is good versus Manipulation, fair versus Sneakiness, and bad versus Brute force.  Domination is halved when collared.
+Доминирование - хорошо против Манипуляции, равно против Подлости и плохо против Грубой силы.  Доминирование сокращается вдвое, когда на вас ошейник.
+Sneakiness means to ambush, trip, surprise, sneak, tickle, or use rapid tricks to break your opponent.
+Подлость означает устроить засаду, подножку, неожиданно напасть, подкрасться, пощекотать или использовать быстрые трюки, чтобы сломать своего противника.
+Sneakiness is good versus Brute force, fair versus Domination, and bad versus Manipulation.  Sneakiness is halved if the feet are restrained.
+Подлость - хороша против Грубой силы, равноа против Доминирования и плоха против Манипуляции.  Подлость уменьшается вдвое, если связаны ступни.
+Manipulation is all about deceiving, fooling, charming, and seducing your opponent so she will submit to you.
+Манипуляция - это все о том, чтобы обмануть, одурачить, очаровать и соблазнить вашего противника, чтобы она подчинилася вам.
+Manipulation is good against Sneakiness, fair against Brute force, and bad against Domination.  Manipulation is halved if you're gagged.
+Манипуляция - хороша против Подлости, равна против Грубой силы и плоха против Доминирования.  Манипуляция сокращается вдвое, если вам заткнули рот.
+Each time you use a move, it's strength will be halved, so it's good to alternate between different moves.  Each move slowly recuperates with time.
+Каждый раз, когда вы используете действие, его сила будет уменьшена вдвое, поэтому хорошо чередовать различные действия.  Каждое действие медленно восстанавливается со временем.
+###_PLAYER
+I want an easy bounty.
+Я хочу легкий приз.
+Give me some challenge.
+Дайте мне какой-нибудь вызов.
+I'll take your top bounty.
+Я возьму вашу лучший приз.
+###_NPC
+Very well.  Is there something else you want?
+Очень хорошо.  Есть ли что-то еще, что вы хотите?
+###_PLAYER
+I'll go get her.
+Я схожу за ней.
+###_NPC
+Good!  Come back when you've kidnapped her for your reward.
+Хорошо!  Возвращайся, когда похитишь ее, чтобы получить награду.
+###_PLAYER
+That girl is in deep trouble!
+Эта девушка в большой беде!
+###_NPC
+Perfect!  Come back when you've kidnapped her for your reward.
+Отлично!  Возвращайся, когда похитишь ее, чтобы получить свою награду.
+###_PLAYER
+I'll try my best.
+Я буду стараться изо всех сил.
+###_NPC
+Alright, good luck.  Come back when you've kidnapped her for your reward.
+Хорошо, удачи.  Возвращайся, когда похитишь ее, чтобы получить свою награду.
+###_PLAYER
+Yeah, she did put quite a fight.
+Да, она устроила настоящую драку.
+###_NPC
+That was to be expected of her.  Would you like to take another bounty?
+Этого от нее и следовало ожидать.  Не хотите ли вы получить еще один приз?
+###_PLAYER
+No problem, I represent the league.
+Нет проблем, я представляю Лигу.
+###_NPC
+Very good, I like your attitude.  Would you like to take another bounty then?
+Очень хорошо, мне нравится ваше отношение.  Не хотите ли вы получить еще один приз?
+###_PLAYER
+It was fair and fun fight.
+Это был честный и веселый бой.
+###_NPC
+That's what we aim for in the league.  Would you like to take another bounty?
+Это то, к чему мы стремимся в Лиге.  Не хотите ли вы получить еще один приз?
+###_PLAYER
+No worries, I'm happy to win or lose anyway.
+Не волнуйтесь, я счастлива выиграть или проиграть в любом случае.
+###_NPC
+You're quite a kinky kidnapper.  Would you like to take another bounty?
+Вы довольно извращенная похитительница.  Не хотите ли вы получить еще один приз?
+###_PLAYER
+No trouble, I can take on anyone.
+Никаких проблем, я могу справиться с кем угодно.
+###_NPC
+You'll go far in the club Miss.  Would you like to take another bounty?
+Вы далеко пойдете в клубе Мисс.  Не хотите ли вы получить еще один приз?
+(She struggles for fun.)  I hope you enjoyed our practice fight.
+(Она борется за удовольствие.)  Надеюсь, вам понравился наш тренировочный бой.
+I hope you enjoyed our practice fight.
+Надеюсь, вам понравился наш тренировочный бой.
+###_PLAYER
+Now you know who's boss.
+Теперь ты знаешь, кто здесь главный.
+###_NPC
+(She nods politely.)  Yes Miss.
+(Она вежливо кивает.)  Да, Мисс.
+###_PLAYER
+It was a fun match.
+Это был веселый матч.
+###_NPC
+(She nods happily.)  Absolutely!
+(Она радостно кивает.)  Точно!
+###_PLAYER
+I got lucky I guess.
+Наверное, мне повезло.
+###_NPC
+(She shakes her head no.)  It's more than simple luck.
+(Она отрицательно качает головой.)  Это больше, чем просто удача.
+(She struggles some more.)  If you release me, we can do another match.
+(Она борется еще немного.)  Если вы освободите меня, мы сможем провести еще один матч.
+Would you like to talk some more?  Or do another fight?
+Не хотите еще немного поговорить?  Или провести еще один бой?
+###_PLAYER
+What can I do with my victims?
+Что я могу сделать со своими жертвами?
+###_NPC
+Anything you want, as long as you don't go over their limits.  You can tickle, spank, tease, or even make love with them.
+Все, что вы хотите, до тех пор, пока вы не выходите за их пределы.  Вы можете щекотать, шлепать, дразнить или даже заниматься с ними любовью.
+###_PLAYER
+Struggle some more!
+Борись еще немного!
+###_NPC
+(She struggles but doesn't really try to escape.)  It's all part of the fun.
+(Она борется, но на самом деле не пытается убежать.)  Это все часть веселья.
+###_PLAYER
+Let's chit chat.
+Давайте поболтаем.
+###_NPC
+What would you like to talk about?
+О чем бы вы хотели поговорить?
+###_PLAYER
+I want to try another practice fight.
+Я хочу попробовать еще один тренировочный бой.
+Congratulations!  That was fun.
+Поздравляю!  Это было весело.
+###_NPC
+Yes!  I hope you've learned a few tricks.
+Да!  Надеюсь, вы научилися нескольким трюкам.
+###_PLAYER
+Yes, but you're too strong for me.
+Да, но вы слишком силны для меня.
+###_NPC
+You'll learn new tricks and you'll get stronger.
+Вы научитесь новым приемам и станете сильнее.
+###_PLAYER
+(Struggle to talk.)
+(Изо всех сил старайся говорить.)
+###_NPC
+Do you need help with that gag?
+Вам нужна помощь с этим кляпом?
+###_PLAYER
+(Blush and bow your head.)
+(Покраснеть и склонить голову.)
+###_NPC
+Poor sweetie.  Do you need help with that gag?
+Бедняжка.  Вам нужна помощь с этим кляпом?
+###_PLAYER
+(Nod in agreement.)
+(Кивни в знак согласия.)
+###_NPC
+Very well.  (She removes your gag.)  But in a real kidnapping you won't be released that easily.
+Очень хорошо.  (Она вынимает у тебя кляп.)  Но в настоящем похищении вас так просто не отпустят.
+###_PLAYER
+(Shake your head no.)
+(Отрицательно покачай головой.)
+###_NPC
+You're a good loser, I respect that.
+Вы хорошая проигравшая, я это уважаю.
+###_PLAYER
+I'll train to become the best kidnapper.
+Я буду тренироваться, чтобы стать лучшей похитительницей.
+###_NPC
+Impressive!  I can release you now or you can struggle if you prefer.
+Впечатляет!  Я могу освободить вас сейчас или вы можете бороться, если хотите.
+###_PLAYER
+I will practice and get better.
+Я буду тренироваться и развиваться.
+###_NPC
+Exactly!  I can release you now or you can struggle if you prefer.
+Вот именно!  Я могу освободить вас сейчас или вы можете бороться, если хотите.
+###_PLAYER
+Maybe I'm not fit to be a kidnapper.
+Может быть, я не гожусь в похитительницы.
+###_NPC
+Nonsense!  It just takes practice. I can release you now or you can struggle if you prefer.
+Чепуха!  Это просто требует практики. Я могу освободить вас сейчас или вы можете бороться, если хотите.
+###_PLAYER
+(Struggle in your restraints.)
+(Борьба в твоих ограничениях.)
+###_NPC
+You can struggle on your own or I can release you now if you prefer.
+Вы можете бороться самостоятельно или я могу освободить вас сейчас, если вы этого хотите.
+I can release you for another kidnapping if you want.
+Я могу отпустить вас за другое похищение, если хотите.
+###_PLAYER
+I'm already out!
+Я уже выхожу!
+###_NPC
+Well done.  Would you like to talk or try again?
+Отлично сработано.  Вы хотите поговорить или попробовать еще раз?
+###_PLAYER
+Can you help me out?
+Вы можете мне помочь?
+###_NPC
+(She releases you.)  Here you go.  Would you like to talk or try again?
+(Она освобождает тебя.) Ну, вот.  Вы хотите поговорить или попробовать еще раз?
+###_PLAYER
+(Make pleading eyes.)
+(Сделай умоляющие глаза.)
+(Leave her to struggle by yourself.)
+(Оставьте ее и бороть самостоятельно.)

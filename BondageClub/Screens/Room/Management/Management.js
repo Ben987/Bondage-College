@@ -48,6 +48,7 @@ function ManagementCannotBeReleased() { return ((Player.Owner != "") && (Player.
 function ManagementWillOwnPlayer() { return ((Player.Owner == "") && (ReputationGet("Dominant") <= -100) && (ManagementMistressAngryCount == 0) && (PrivateCharacter.length <= PrivateCharacterMax) && !PrivatePlayerIsOwned() && ManagementNoMistressInPrivateRoom()) }
 function ManagementWontOwnPlayer() { return ((Player.Owner == "") && (ReputationGet("Dominant") <= -1) && (ReputationGet("Dominant") >= -99) && (PrivateCharacter.length <= PrivateCharacterMax) && !PrivatePlayerIsOwned() && ManagementNoMistressInPrivateRoom()) }
 function ManagementIsClubSlave() { return ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "ClubSlaveCollar")) }
+function ManagementWearingSlaveCollar() { return ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "SlaveCollar")) }
 function ManagementCanTransferToRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax) && !LogQuery("LockOutOfPrivateRoom", "Rule")) }
 function ManagementWontVisitRoom() { return (!ManagementVisitRoom && ManagementCanTransferToRoom()) }
 function ManagementCanBeClubMistress() { return ((ReputationGet("Dominant") >= 100) && ((Math.floor((CurrentTime - Player.Creation) / 86400000)) >= 30) && !LogQuery("ClubMistress", "Management") && !Player.IsRestrained() && !Player.IsKneeling() && Player.CanChange()) }
@@ -91,7 +92,7 @@ function ManagementLoad() {
 		CharacterNaked(ManagementSub);
 		InventoryWear(ManagementSub, "SlaveCollar", "ItemNeck");
 		CharacterFullRandomRestrain(ManagementSub, "Lot");
-		InventoryWear(ManagementSub, "Ears" + (Math.floor(Math.random() * 2) + 1).toString(), "HairAccessory", "#BBBBBB");
+		InventoryWear(ManagementSub, "Ears" + (Math.floor(Math.random() * 2) + 1).toString(), "HairAccessory1", "#BBBBBB");
 		InventoryWear(ManagementSub, "TailButtPlug", "ItemButt");
 		InventoryWear(ManagementSub, "MetalChastityBelt", "ItemPelvis");
 		InventoryWear(ManagementSub, "MetalChastityBra", "ItemBreast");
@@ -120,7 +121,7 @@ function ManagementClick() {
 			ManagementMistress.Stage = "500";
 			ManagementMistress.CurrentDialog = DialogFind(ManagementMistress, "MistressExpulsion");
 		}
-		if (((ManagementMistress.Stage == "0") || (ManagementMistress.Stage == "5")) && (ReputationGet("Dominant") < 0) && !Player.IsKneeling()) {
+		if (((ManagementMistress.Stage == "0") || (ManagementMistress.Stage == "5")) && (ReputationGet("Dominant") < 0) && !Player.IsKneeling() && Player.CanKneel()) {
 			ReputationProgress("Dominant", 1);
 			ManagementMistress.CurrentDialog = DialogFind(ManagementMistress, "KneelToTalk");
 			ManagementMistress.Stage = "5";
@@ -153,9 +154,9 @@ function ManagementPlayerArmbinder(ChangeRep) {
 function ManagementPlayerRandomRestrain() {
 	CharacterFullRandomRestrain(Player, "Lot");
 	InventoryWear(Player, "MetalChastityBelt", "ItemPelvis");
-	InventoryLock(Player, InventoryGet(Player, "ItemPelvis"), { Asset: AssetGet(C.AssetFamily, "ItemMisc", "MistressPadlock")}, -1);
+	InventoryLock(Player, "ItemPelvis", "MistressPadlock", -1);
 	InventoryWear(Player, "MetalChastityBra", "ItemBreast");
-	InventoryLock(Player, InventoryGet(Player, "ItemBreast"), { Asset: AssetGet(C.AssetFamily, "ItemMisc", "MistressPadlock")}, -1);
+	InventoryLock(Player, "ItemBreast", "MistressPadlock", -1);
 	ManagementCanReleaseChastity = false;
 }
 
@@ -245,6 +246,7 @@ function ManagementClubSlaveCollar(RepChange) {
 	InventoryWear(Player, "ClubSlaveCollar", "ItemNeck");
 	LogAdd("ClubSlave", "Management", CurrentTime + 3600000);
 	LogAdd("BlockChange", "Rule", CurrentTime + 3600000);
+	TitleSet("ClubSlave");
 }
 
 // When the player finishes the club slave contract
@@ -484,4 +486,19 @@ function ManagementClubSlaveVisitRoom() {
 		ManagementRandomGirl.Stage = "ClubSlaveVisit";
 		ManagementRandomGirl.CurrentDialog = DialogFind(ManagementRandomGirl, "ClubSlaveWillVisit");
 	}
+}
+
+// When the player wants to change her slave collar model
+function ManagementChangeSlaveCollarType(NewType) {
+	var Collar = InventoryGet(Player, "ItemNeck");
+	if (NewType == "") Collar.Property = null;
+	else Collar.Property = { Type: NewType, Effect: [] };
+	CharacterRefresh(Player);
+	CharacterChangeMoney(Player, -30);
+}
+
+// Some NPC won't be available if the player is a club slave, they will have a special dialog for that
+function ManagementClubSlaveDialog(C) {
+	if ((C != null) && (C.Stage == "0") && ManagementIsClubSlave()) C.Stage = "ClubSlave";
+	if ((C != null) && (C.Stage == "ClubSlave") && !ManagementIsClubSlave()) C.Stage = "0";
 }

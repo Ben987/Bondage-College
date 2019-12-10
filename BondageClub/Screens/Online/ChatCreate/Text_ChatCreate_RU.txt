@@ -1,0 +1,100 @@
+﻿Enter your room information
+Введите информацию о комнате 
+Room Name (Letters & numbers only)
+Имя Комнаты (Только буквы и цифры )
+A short description or what's going on
+Краткое описание или что происходит
+Private (Need exact name to find it)
+Приватная (нужно точное имя, чтобы найти ее)
+Select the background
+Выберите фон
+Introduction
+Вступление
+Kidnappers League
+Лига Похитителей 
+Maid Quarters
+Помещение для прислуги
+Main Hall
+Главный Зал
+Club Management
+Руководство Клуба
+Private Room
+Приватная Комната
+Shibari Dojo
+Шибари Додзе
+Bedroom
+Спальня
+Horse Stable
+Конюшня
+Nursery
+Питомник
+Prison Hall
+Тюремный Зал
+BDSM Room Blue
+Синяя БДСМ комната
+BDSM Room Purple
+Фиолетовая БДСМ комната
+BDSM Room Red
+Красная БДСМ комната
+Gardens
+Сады
+Indoor Pool
+Крытый бассейн
+Outdoor Pool
+Открытый бассейн
+Maid Café
+Горничная Кафе
+Public Bath
+Общественная Баня
+Park Day
+Парк днем
+Park Night
+Парк ночью
+Chill Room
+Холодная Комната
+Boudoir
+Будуар
+Bondage Bedchamber
+Бондаж Опочивальня
+Beach
+Пляж
+Forest Path
+Лесная Тропинка
+Deep Forest
+Густой Лес
+Spooky Forest
+Жуткий Лес
+Abandoned Building
+Заброшенное Здание
+Balcony Night
+Балкон Ночью
+Cozy Living Room
+Уютная Гостиная
+Rooftop Party
+Вечеринка На Крыше
+Entrance
+Вступление
+Meeting
+Встреча
+Therapy
+Терапия
+Padded Cell
+Обитая войлоком
+Padded Cell 2
+Обитая войлоком 2
+Room maximum size, from 2 to 10 members
+Комната максимального размера, от 2 до 10 членов
+Create
+Создайте
+Cancel
+Отмена
+Creating your room...
+Создание вашей комнаты...
+This room name is already taken
+Это имя для комнаты уже занято
+Account error, try to relog
+Ошибка аккаунта, попробуйте перезайти
+Invalid room data
+Недействительные данные комнаты
+Room created, joining it...
+Комната создана, присоединение к ней...

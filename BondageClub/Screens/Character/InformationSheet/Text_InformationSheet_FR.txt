@@ -1,4 +1,4 @@
-Name:
+﻿Name:
 Nom:
 Title:
 Titre:
@@ -74,8 +74,8 @@ Evasion:
 Évasion:
 Willpower:
 Volonté:
-Pony Dressage:
-Dressage de Poney:
+Dressage:
+Dressage:
 Global modifier:
 Modificateur global:
 - Traits -

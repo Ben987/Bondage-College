@@ -311,7 +311,7 @@ function C004_ArtClass_Julia_BegForRelease() {
 	}	
 }
 
-// Chapter 4 - Julia Gagged Speach
+// Chapter 4 - Julia Gagged Speech
 function C004_ArtClass_Julia_GaggedSpeach() {
 	if ((C004_ArtClass_ArtRoom_JuliaStage == 6) || (C004_ArtClass_ArtRoom_JuliaStage == 7))
 		OverridenIntroText = GetText("GaggedSpeach");

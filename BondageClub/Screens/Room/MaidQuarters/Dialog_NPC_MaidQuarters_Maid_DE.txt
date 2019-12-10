@@ -31,10 +31,18 @@ Tut mir leid, Miss. Ich kann nicht helfen.
 (Sie schüttelt erst den Kopf, um dem Knebel zu entgehen, lässt sich aber schließlich von dir zum Schweigen bringen.)
 (You remove her gag while she stretches her mouth.)  Thanks Miss, it's hard to dispatch maids with that gag.
 (Du nimmst den Knebel ab und sie streckt ihren Mund.) Danke, Miss, geknebelt ist es schwierig, Hausmädchen loszuschicken.
+(She grumbles while you push some earplugs in.) I can't hear you properly now.
+(Sie grummelt, als du ihr Ohrstöpsel hineinsteckst.) Jetzt kann ich Sie nicht mehr richtig verstehen.
+(You pull the earplugs out.) That's better i can hear you clearly now.
+(Du ziehst die Ohrstöpsel heraus.) Das ist besser, jetzt verstehe ich Sie ordentlich.
 (She sighs and turns around while you restrain her arms.)  It might be a little hard to work like that Miss.
 (Sie seufzt und dreht sich um, als du ihre Arme fesselst.) Das könnte meine Arbeit etwas erschweren, Miss.
 (You free her arms and she nods happily.)  Thanks a lot Miss.
 (Du befreist ihre Arme und sie nickt glücklich.) Vielen Dank, Miss.
+(She submits to you while restrain you hands.)  You are a kinky one.
+(Sie unterwirft sich, als du ihre Hände fesselst.) Sie sind ideenreich.
+(You release her hands and she nods a little.)  Thank you Miss.
+(Du befreist ihre Hände und sie nickt kaum merklich.) Danke, Miss.
 (She submits to you while you restrain her legs securely.)  I don't need to move anyway.
 (Sie lässt sich von dir ordentlich die Beine fesseln.) Ich muss sowieso nicht von hier weg.
 (You release her legs from the restraint.)  Let me know if I can help you Miss.
@@ -63,6 +71,18 @@ Tut mir leid, Miss. Ich kann nicht helfen.
 (Du peitschst ihr kräftig auf den Hintern und sie seufzt.) Ich verspreche, härter zu arbeiten, Frau Hausdame.
 (She grumbles as you strike her butt with the crop.)  A maid work isn't easy.
 (Sie grummelt, als du ihren Hintern mit der Gerte triffst.) Ein Hausmädchen hat es nicht leicht.
+Are you lost slave girl?  You should hurry back to the hall and please our customers.
+Hast du dich verlaufen, Sklavenmädchen? Du solltest schnell zurück in die Haupthalle und unsere Kunden beglücken.
+###_PLAYER
+Can I work as a maid?
+Kann ich als Hausmädchen arbeiten?
+###_NPC
+Finish your club slave contract first.  Then we can talk about work.
+Vollende erstmal deinen Clubsklaven-Vertrag. Dann können wir über Arbeit reden.
+###_PLAYER
+(Leave her.)
+(Dialog beenden.)
+###_NPC
 Greetings head maid DialogPlayerName.  How can I help you?  (She does curtsies for you.)
 Servus, Hausdame DialogPlayerName. Wie kann ich behilflich sein? (Sie macht vor dir einen Knicks.)
 How pleasant to see you Mistress DialogPlayerName.  (She does curtsies for you.)
@@ -81,6 +101,8 @@ Schön dich zu sehen, Schwester! Wie kann ich behilflich sein?
 ###_NPC
 (She removes your gag and smiles.)  Much better sweetie.  How can I help you?
 (Sie nimmt deinen Knebel ab und lächelt.) So ist es besser, Liebes. Wie kann ich dir helfen?
+(She checks your locks and frowns.)  I cannot help you girl.  Go find your owner.
+(Sie überprüft deine Schlösser und runzelt die Stirn.) Ich kann dir nicht helfen, Mädchen. Geh zu deiner Besitzerin.
 ###_PLAYER
 Hello, I'm DialogPlayerName.  Pleased to meet you.
 Hallo, ich bin DialogPlayerName. Sehr erfreut.
@@ -661,10 +683,6 @@ Hier ist dein Anteil am Trinkgeld. (Sie gibt dir REPLACEMONEY $.)
 ###_NPC
 Nice try, but maybe you're not fit for that job.  I can't pay you.
 Guter Versuch, aber vielleicht bist du dieser Aufgabe nicht gewachsen. Ich kann dich nicht bezahlen.
-###_PLAYER
-(Leave her.)
-(Dialog beenden.)
-###_NPC
 Excellent!  Here's your salary.  (She gives you REPLACEMONEY $.)
 Ausgezeichnet! Hier ist dein Lohn. (Sie gibt dir REPLACEMONEY $.)
 Excellent!  Go see your owner and give her this.  (She gives you a sealed envelope with REPLACEMONEY $ for your owner.)

@@ -1,0 +1,53 @@
+PlayerGagged,,,Gagged patients are the best patients.,,
+Intro0,,,(A nurse runs after you.)  Here you are patient DialogPlayerName!  You're going back to the asylum with me.,,
+Intro1,,,"(A nurse catches you by surprise.)  DialogPlayerName!  I'm bringing you back to the asylum, whether you want it or not.",,
+Intro2,,,(A nurse is blocking your way.)  I'm here for your own good patient DialogPlayerName.  Come to the asylum with me.,,
+Automatic0,,,(A nurse sees you and grins.)  This is too easy.  You're going back to the asylum patient DialogPlayerName.,,
+Automatic1,,,"(A nurse grabs your arm.)  You always get in trouble, do you?  Come back to the asylum with me now.",,
+Automatic2,,,(A nurse blocks your path and smiles.)  Struggling is futile patient DialogPlayerName.  You're coming back with me.,,
+Victory,,,(She surrenders to you.)  You're too tough for me.  I can understand why you've escaped.,,
+Defeat,,,(She crosses her arms and smiles.)  It's time to go back to the asylum girl.,,
+BribeSuccess,,,(She looks around and takes the money.)  Don't cross my path again.  Run!,,
+BribeFailure,,,(She refuses the money.)  You cannot bribe me!  You're going back with me.,,
+0,,I don't understand.,Don't think you can fool me.  You escaped from the asylum and I'm brining you back.  I will use force if it's needed.,DialogRemove(),
+0,,You're going down nurse!,,KidnapNurseFight(),Player.CanInteract()
+0,10,Wait!  Can we negotiate?,(She thinks for a few seconds.)  Negotiate?  How much do you value your freedom?,,
+0,,(Fight her.),,KidnapNurseFight(),Player.CanInteract()
+0,200,(Surrender.),(You surrender without a fight as she grins.)  It's time to go back to the asylum girl.,"DialogChangeReputation(""Dominant"", -4)",
+10,,I'll give you 10$.,,"KidnapNurseBribe(10, 25)",DialogMoneyGreater(10)
+10,,I'll give you 25$.,,"KidnapNurseBribe(25, 50)",DialogMoneyGreater(25)
+10,,I'll give you 50$.,,"KidnapNurseBribe(50, 75)",DialogMoneyGreater(50)
+10,,I'll give you 100$.,,"KidnapNurseBribe(100, 100)",DialogMoneyGreater(100)
+10,11,We could become friends.,Forget it!  I'm bringing you back to the asylum.,"DialogChangeReputation(""Dominant"", -2)",
+10,11,I won't knock you out if you run now.,You think you can scare me?  I'm bringing you back to the asylum.,"DialogChangeReputation(""Dominant"", 2)",
+11,,(Fight her.),,KidnapNurseFight(),Player.CanInteract()
+11,200,(Surrender.),(You surrender without a fight as she grins.)  It's time to go back to the asylum girl.,"DialogChangeReputation(""Dominant"", -4)",
+12,,(Run away.),,KidnapNurseExit(),
+100,,,NOEXIT,,
+100,,You fought well.,"Thanks, but I still need to train.",,
+100,,"If I let you go, you need to forget about me.","(She grumbles.)  Fine, I won't track you anymore.",,
+100,110,(Play with her.),(You get closer to play with her.),,
+100,,(Bring her to your room.),,KidnapNurseTransferToRoom(),CanTransferToRoom()
+100,,(Let her go.),,KidnapNurseExit(),
+110,,(Tickle her.),"(You tickle her on the ribs and tummy.  She trashes in her bondage, failing to escape.)",,Player.CanInteract()
+110,,(Kiss her.),(She stares at you as you put your hands behind her head and pull her to your lips for a long French kiss.),,CanKiss()
+110,,(Fondle her.),(You playfully fondle her breasts and butt as she grumbles and blushes lightly.),,Player.CanInteract()
+110,,(Slap her.),(She tries to avoid you as you slap her face swiftly.  She tries to stay strong but whimper a little.),,Player.CanInteract()
+110,,(Spank her.),(She jumps a little as you spank her pretty hard on the butt.),,Player.CanInteract()
+110,100,(Stop playing with her.),(You take a step back.),,
+110,,(Bring her to your room.),,KidnapNurseTransferToRoom(),CanTransferToRoom()
+110,,(Let her go.),,KidnapNurseExit(),
+200,210,"Fine, let's go.",(She drags you to the asylum and smiles.)  You will feel right at home.,GoToAsylum(),
+200,210,Don't push me!,(She drags you to the asylum and smiles.)  You will feel right at home.,GoToAsylum(),
+200,210,(Go to the asylum.),(She drags you to the asylum and smiles.)  You will feel right at home.,GoToAsylum(),
+210,220,We'll see about that.,(She nods and stares at you.) It's time to change patient DialogPlayerName.,,
+210,220,I guess it will be fun to go back.,(She nods happily and stares at you.) It's time to change patient DialogPlayerName.,"DialogChangeReputation(""Asylum"", -3)",
+210,220,One day I'll reverse the roles.,(She grumbles and stares at you.) It's time to change patient DialogPlayerName.,"DialogChangeReputation(""Asylum"", 3)",
+210,220,(Nod slowly.),(She smiles and stares at you.) It's time to change patient DialogPlayerName.,,
+220,230,Very well.,(She helps you to change back as a patient.)  You also need to be restrained.,BackAsPatient(),
+220,230,I hate these clothes.,(She helps you to change back as a patient.)  You also need to be restrained.,BackAsPatient(),
+220,230,(Nod and change.),(She helps you to change back as a patient.)  You also need to be restrained.,BackAsPatient(),
+230,240,That's really necessary?,(She straps you up tightly in a straitjacket.)  Welcome back patient DialogPlayerName.  Carry on.,"PlayerJacket(""Tight"")",
+230,240,(Stay silent.),(She straps you up tightly in a straitjacket.)  Welcome back patient DialogPlayerName.  Carry on.,"PlayerJacket(""Tight"")",
+240,,Bye-bye nurse.,,DialogLeave(),
+240,,(Leave her.),,DialogLeave(),

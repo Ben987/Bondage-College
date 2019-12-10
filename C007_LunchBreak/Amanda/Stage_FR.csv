@@ -24,14 +24,14 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 110,0,0,,Je n'ai jamais vue une|université si coquine.,(Elle rit.) Qu'est-ce que tu souhaites devenir plus tard ?,120,0,0,
 110,0,0,,C'est difficile de juger|en quelques heures.,Exact. Qu'est-ce que tu souhaites devenir plus tard ?,120,0,0,GoodMatch()
 110,0,0,,C'est une école|plutôt ennuyeuse.,Je présume que certains cours peuvent être ennuyeux.|Qu'est-ce que tu souhaites devenir plus tard ?,120,0,0,
-120,0,0,,Une musicienne.,Ok. Quel est ton cours préféré ?,130,0,0,
+120,0,0,,Une musicienne.,OK. Quel est ton cours préféré ?,130,0,0,
 120,0,0,,Un médecin.,Très bien. Quel est ton cours préféré ?,130,0,0,GoodMatch()
 120,0,0,,Une athlète.,Je suis plutôt mauvaise en sport.|Quel est ton cours préféré ?,130,0,0,BadMatch()
 120,0,0,,Une enseignante.,Très bien. Quel est ton cours préféré ?,130,0,0,GoodMatch()
-120,0,0,,Une actrice.,Ok. Quel est ton cours préféré ?,130,0,0,
+120,0,0,,Une actrice.,OK. Quel est ton cours préféré ?,130,0,0,
 120,0,0,,Une dominatrice.,Sois sérieuse. Quel est ton cours préféré ?,130,0,0,
 120,0,0,,Une architecte.,Très bien. Quel est ton cours préféré ?,130,0,0,GoodMatch()
-120,0,0,,Une agricultrice.,Ok. Quel est ton cours préféré ?,130,0,0,
+120,0,0,,Une agricultrice.,OK. Quel est ton cours préféré ?,130,0,0,
 120,0,0,,Une programmeuse.,Très bien. Quel est ton cours préféré ?,130,0,0,GoodMatch()
 120,0,0,,Je ne sais pas encore.,Tu devras bientôt te décider.|Quel est ton cours préféré ?,130,0,0,BadMatch()
 130,0,0,,Les Maths.,Super ! Quel est ton passe-temps préféré ?,140,0,0,GoodMatch()

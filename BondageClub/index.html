@@ -39,11 +39,13 @@
 <script src="Screens/Character/Appearance/Appearance.js"></script>
 <script src="Screens/Character/Creation/Creation.js"></script>
 <script src="Screens/Character/InformationSheet/InformationSheet.js"></script>
+<script src="Screens/Character/OnlineProfile/OnlineProfile.js"></script>
 <script src="Screens/Character/Preference/Preference.js"></script>
 <script src="Screens/Character/Wardrobe/Wardrobe.js"></script>
 <script src="Screens/Character/Cheat/Cheat.js"></script>
 <script src="Screens/Character/PasswordReset/PasswordReset.js"></script>
 <script src="Screens/Character/FriendList/FriendList.js"></script>
+<script src="Screens/Character/Title/Title.js"></script>
 <script src="Screens/Room/MainHall/MainHall.js"></script>
 <script src="Screens/Room/Shop/Shop.js"></script>
 <script src="Screens/Room/Introduction/Introduction.js"></script>
@@ -60,18 +62,25 @@
 <script src="Screens/Room/AsylumBedroom/AsylumBedroom.js"></script>
 <script src="Screens/Room/AsylumMeeting/AsylumMeeting.js"></script>
 <script src="Screens/Room/AsylumTherapy/AsylumTherapy.js"></script>
+<script src="Screens/Room/CollegeEntrance/CollegeEntrance.js"></script>
+<script src="Screens/Room/CollegeTennis/CollegeTennis.js"></script>
+<script src="Screens/Room/CollegeCafeteria/CollegeCafeteria.js"></script>
+<script src="Screens/Room/CollegeTheater/CollegeTheater.js"></script>
 <script src="Screens/Room/Gambling/Gambling.js"></script>
 <script src="Screens/Room/Prison/Prison.js"></script>
 <script src="Screens/Room/Photographic/Photographic.js"></script>
 <script src="Screens/Room/Stable/Stable.js"></script>
 <script src="Screens/Room/Magic/Magic.js"></script>
 <script src="Screens/Room/Nursery/Nursery.js"></script>
+<script src="Screens/Room/Cafe/Cafe.js"></script>
 <script src="Screens/MiniGame/HorseWalk/HorseWalk.js"></script>
 <script src="Screens/MiniGame/Kidnap/Kidnap.js"></script>
 <script src="Screens/MiniGame/MaidDrinks/MaidDrinks.js"></script>
 <script src="Screens/MiniGame/MaidCleaning/MaidCleaning.js"></script>
 <script src="Screens/MiniGame/SlaveAuction/SlaveAuction.js"></script>
 <script src="Screens/MiniGame/RhythmGame/RhythmGame.js"></script>
+<script src="Screens/MiniGame/Therapy/Therapy.js"></script>
+<script src="Screens/MiniGame/Tennis/Tennis.js"></script>
 <script src="Screens/Cutscene/PlayerCollaring/PlayerCollaring.js"></script>
 <script src="Screens/Cutscene/PlayerMistress/PlayerMistress.js"></script>
 <script src="Screens/Cutscene/NPCCollaring/NPCCollaring.js"></script>
@@ -80,6 +89,7 @@
 <script src="Screens/Online/ChatSearch/ChatSearch.js"></script>
 <script src="Screens/Online/ChatCreate/ChatCreate.js"></script>
 <script src="Screens/Online/ChatRoom/ChatRoom.js"></script>
+<script src="Screens/Online/ChatAdmin/ChatAdmin.js"></script>
 <script src="Screens/Inventory/ItemMouth/PumpGag/PumpGag.js"></script>
 <script src="Screens/Inventory/ItemVulva/VibratingEgg/VibratingEgg.js"></script>
 <script src="Screens/Inventory/ItemVulva/VibratingLatexPanties/VibratingLatexPanties.js"></script>
@@ -90,10 +100,6 @@
 <script src="Screens/Inventory/ItemNeckAccessories/CollarShockUnit/CollarShockUnit.js"></script>
 <script src="Screens/Inventory/ItemArms/LeatherCuffs/LeatherCuffs.js"></script>
 <script src="Screens/Inventory/ItemArms/StraitJacket/StraitJacket.js"></script>
-<script src="Screens/Inventory/ItemArms/PaddedMittens/PaddedMittens.js"></script>
-<script src="Screens/Inventory/ItemArms/PaddedMittensLocked/PaddedMittensLocked.js"></script>
-<script src="Screens/Inventory/ItemArms/PaddedMittensHarness/PaddedMittensHarness.js"></script>
-<script src="Screens/Inventory/ItemArms/PaddedMittensHarnessLocked/PaddedMittensHarnessLocked.js"></script>
 <script src="Screens/Inventory/ItemArms/DuctTape/DuctTape.js"></script>
 <script src="Screens/Inventory/ItemHands/PaddedMittens/PaddedMittens.js"></script>
 <script src="Screens/Inventory/ItemHands/PawMittens/PawMittens.js"></script>
@@ -108,61 +114,83 @@
 <script src="Screens/Inventory/ItemMouth/PlugGag/PlugGag.js"></script>
 <script src="Screens/Inventory/ItemHands/SpankingToys/SpankingToy.js"></script>
 <script src="Screens/Inventory/ItemTorso/HempRopeHarness/HempRopeHarness.js"></script>
+<script src="Screens/Inventory/ItemTorso/NylonRopeHarness/NylonRopeHarness.js"></script>
+<script src="Screens/Inventory/ItemFeet/HempRope/HempRope.js"></script>
+<script src="Screens/Inventory/ItemLegs/HempRope/HempRope.js"></script>
 <script src="Screens/Inventory/ItemPelvis/LoveChastityBelt/LoveChastityBelt.js"></script>
 <script src="Screens/Inventory/ItemLegs/LeatherLegCuffs/LeatherLegCuffs.js"></script>
 <script src="Screens/Inventory/ItemFeet/LeatherAnkleCuffs/LeatherAnkleCuffs.js"></script>
 <script src="Screens/Inventory/ItemNeckAccessories/CollarNameTag/CollarNameTag.js"></script>
+<script src="Screens/Inventory/ItemNeckAccessories/CollarNameTagOval/CollarNameTagOval.js"></script>
+<script src="Screens/Inventory/ItemNeckAccessories/CollarNameTagPet/CollarNameTagPet.js"></script>
+<script src="Screens/Inventory/ItemNeckAccessories/CollarNameTagLover/CollarNameTagLover.js"></script>
+<script src="Screens/Inventory/ItemLegs/DuctTape/DuctTape.js"></script>
+<script src="Screens/Inventory/ItemFeet/DuctTape/DuctTape.js"></script>
+<script src="Screens/Inventory/ItemNeck/SlaveCollar/SlaveCollar.js"></script>
+<script src="Screens/Inventory/ItemVulva/VibratingDildo/VibratingDildo.js"></script>
+<script src="Screens/Inventory/ItemButt/VibratingButtplug/VibratingButtplug.js"></script>
+<script src="Screens/Inventory/ItemNipples/TapedVibeEggs/TapedVibeEggs.js"></script>
+<script src="Screens/Inventory/ItemNipples/NippleSuctionCups/NippleSuctionCups.js"></script>
+<script src="Screens/Inventory/ItemVulva/ClitSuctionCup/ClitSuctionCup.js"></script>
+<script src="Screens/Inventory/ItemVulva/InflatableVibeDildo/InflatableVibeDildo.js"></script>
+<script src="Screens/Inventory/ItemButt/InflVibeButtPlug/InflVibeButtPlug.js"></script>
+<script src="Screens/Inventory/ItemDevices/TeddyBear/TeddyBear.js"></script>
+<script src="Screens/Inventory/ItemArms/LeatherStraitJacket/LeatherStraitJacket.js"></script>
+<script src="Screens/Inventory/ItemDevices/InflatableBodyBag/InflatableBodyBag.js"></script>
+<script src="Screens/Inventory/ItemArms/WristShackles/WristShackles.js"></script>
+<script src="Screens/Inventory/ItemEars/HeadphoneEarPlugs/HeadphoneEarPlugs.js"></script>
+<script src="Screens/Inventory/ItemArms/SturdyLeatherBelts/SturdyLeatherBelts.js"></script>
+<script src="Screens/Inventory/ItemLegs/SturdyLeatherBelts/SturdyLeatherBelts.js"></script>
+<script src="Screens/Inventory/ItemFeet/SturdyLeatherBelts/SturdyLeatherBelts.js"></script>
+<script src="Screens/Inventory/ItemNipplesPiercings/RoundPiercing/RoundPiercing.js"></script>
+<script src="Screens/Inventory/ItemNipplesPiercings/WeightedPiercing/WeightedPiercing.js"></script>
+<script src="Screens/Inventory/ItemDevices/Sybian/Sybian.js"></script>
+<script src="Screens/Inventory/ItemDevices/BondageBench/BondageBench.js"></script>
+<script src="Screens/Inventory/ItemAddon/BondageBenchStraps/BondageBenchStraps.js"></script>
+<script src="Screens/Inventory/ItemButt/AnalHook/AnalHook.js"></script>
+<script src="Screens/Inventory/ItemButt/ButtPlugLock/ButtPlugLock.js"></script>
+<script src="Screens/Inventory/ItemArms/OrnateCuffs/OrnateCuffs.js"></script>
+<script src="Screens/Inventory/ItemLegs/OrnateLegCuffs/OrnateLegCuffs.js"></script>
+<script src="Screens/Inventory/ItemFeet/OrnateAnkleCuffs/OrnateAnkleCuffs.js"></script>
 <script>
 
 /*
 
 	NEXT VERISON:
-	OK - Fix layers (Sekkmer & Def)
-	OK - Beeps history
-	OK - Appearance tooltip text (redpandu)
-	OK - French Translation (Kurisu)
-	OK - German Translation (Ado)
-	OK - Diamond Tie & new dialog (gatetrek)
-	OK - Ungarble the "~"
-	OK - EarPlugs that block changing
-	OK - Enter/Escape key in chat room (Sekkmer)
-	OK - Pajama bottom
-	OK - BUG: Cannot read property Asset of Null - DrawItemPreview - 578, DialogDrawItemMenu - 764, DialogDraw - 863	
-	OK - New spanking toys (Sarukami & TechTheAwesome)
-	OK - New option in shop to show everything that's not bought (Sekkmer)
-	OK - Bug: NPC in private room cannot be released when tied up by owner - recalculate on click	
-	OK - Add a new straitjacket item that can be locked or strapped to be made tighter and harder to escape, use strait-leotard to start with
-	OK - New cages for public rooms (Gatetrek & Kirsty)
-	OK - New Mistress Padlocks and Keys + New Chastity belts (Nythaleath)
-	OK - Vibrating panties / eggs with easier control access (Gatetrek)	
-	OK - Wand Belt (Gatetrek)
-	OK - StraitDress + Leg Binder (Gatetrek & Kirsty & Akita)
-	OK - New leg cuffs (BxRad)
-	ADD SHIELD BUG SENT TO SEKKMER - New Love Chastity Belt (Sekkmer and Slave)
-	OK - New Bolero Jacket (wildsj)
-	OK - Exit button standardize (EveFerox)
-	OK - New Bolero Jacket (wildsj)
-	OK - SelfUnlock=false on strait items and armbinder
-	OK - Greyscaling for bondage items - (FeuertinKira)
-	OK - DefaultColor
-	OK - Collar tags (FeuertinKira & Nythaleath)
-	OK - New bikini (Uwnodi)
-	
-	OK - Asylum entry gate with an intro nurse - Register as a nurse or a patient (With a new reputation on both sides)
-	OK - Patients can commit themselves for a set time (15 minutes, 1 hour, 4 hours, 1 day).  Once committed, they cannot leave the asylum
-	OK - Nurses can wander freely in the Asylum and get paid to give treatments
-	OK - Patients with high reputation are automatically locked in a straitjacket
-	OK - Entrance - Intro nurse only (can be kidnapped by patients to escape, patient becomes a false nurse)
-	OK - Social - Cafeteria style, meet other patients in straitjackets.  One of them can be bribed to release player.
-	TO DO - Bedroom - The patient is alone in there with a big bed to be strapped on (random visit from nurses)
-	TO DO - Treatment Room - Nurses can give treatments and patients can receive them (shock, tickle, orgasm, etc.)
-	TO DO - Escaped patients can be identified on their profile (for multiplayer roleplay), random nurses in the club to catch them
-	TO DO - Send your sub to the asylum for a while to have their traits changed a little, for a set $$$$
 
-	TO DO - Management - Allow sub to get a new appearance for slave collar
-		
-	TO DO - Patreon Import/Update
+	OK: Dog Hood & Dog Collar (Nythaleath)
+	OK: Display Frame + Sybian (Nythaleath)
+	OK: Russian Translation (MAKeevchanin)
+	OK: Bondage Bench (FeuertinKira & EveFerox)
+	OK: 2 New Short Hair (wildsj)
+	OK: Deepthroat Gag (wildsj)
+	OK: New Winter Scenes (wildsj)
+	OK: Yoke (wildsj)
+	OK: Server Beep Audio (Atasly)
+	OK: New Character Height System (Atasly)
+	OK: New High Security Collar (Gatetrek)	
+	OK: 20+ new items (FeuertinKira)
+	OK: New cafe and skills boost (wildsj)
+	OK: New immersion parameters for hoods (Atasly)
+	OK: New rules for remotes (Atasly)
+	OK: New ornate cuffs (Nythaleath)
+	OK: Exposed Dog Muzzle & XL Bone Gag (Nythaleath)
+	OK: 2 new winter scenes (Nythaleath)
+	OK: New stripped socks (Uwnodi)
+	OK: Many new items (FeuertinKira)
+	OK: Pony items at login (Atasly)
+	CREDIT: German Translation (Adokilume & Dallun511)
+	BUG: Sturdy belt for NPCs
 	
+	College Room
+	OK - Cafeteria (require school uniform) - Sidney, fight her and win to get access to detention room, get the dunce hat from her
+	IN PROGRESS - Theater (require school uniform) - Julia, trick her and restrain her to get the teacher lounge key, get a theater dress from her
+	TO DO - Detention room (require fighting Sidney) - Yuki, give her an orgasm to get the teacher key and sleeping pills
+	TO DO - Teacher lounge (require key from Julia or Yuki) - Mildred, become her slave or make her your slave to get a new unique wooden stocks restraint for the hands
+
+	TO DO - Proof reading : Julia
+	TO DO - Patreon Import/Update
+
 */
 
 // When the code is loaded, we start the game engine

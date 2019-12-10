@@ -73,7 +73,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 240,0,0,,French.,That's boring but it might help you I guess.|And what do you do outside of school?,250,0,0,
 240,0,0,,Art.,This is such a pointless class.|What do you do outside of school?,250,0,0,BadMatch()
 240,0,0,,History.,"Yeah, the history of wars can be fun.|And what do you do outside of school?",250,0,0,GoodMatch()
-240,0,0,,Theatre.,This is such a pointless class.|What do you do outside of school?,250,0,0,
+240,0,0,,Theater.,This is such a pointless class.|What do you do outside of school?,250,0,0,
 240,0,0,,I don't know.,Yeah...  Fuck these classes anyway.|What do you do outside of school?,250,0,0,GoodMatch()
 250,0,0,,Basketball.,I guess there are worse hobbies.|(A waitress interrupts to take your order.),260,0,0,
 250,0,0,,Rock music.,I prefer metal but rock is fine.|(A waitress interrupts to take your order.),260,0,0,GoodMatch()

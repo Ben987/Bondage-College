@@ -70,35 +70,100 @@ function InventoryAvailable(C, InventoryName, InventoryGroup) {
 }
 
 // Returns TRUE if we can add the item, no other items must block that prerequisite
-function InventoryAllow(C, Prerequisite) {
+function InventoryAllow(C, Prerequisite, SetDialog) {
 
 	// Torso items can only be blocked by clothes
-	if (Prerequisite == null) return true;
+	if (Prerequisite == null || Prerequisite == "") return true;
+	var T = "";
 	var curCloth = InventoryGet(C, "Cloth");
-	if ((Prerequisite == "AccessTorso") && (curCloth != null) && !curCloth.Asset.Expose.includes("ItemTorso")) { DialogSetText("RemoveClothesForItem"); return false; }
+	if ((Prerequisite == "AccessTorso") && (curCloth != null) && !curCloth.Asset.Expose.includes("ItemTorso")) T = "RemoveClothesForItem";
 
 	// Breast items can be blocked by clothes
 	if ((Prerequisite == "AccessBreast") && (((curCloth != null) && !curCloth.Asset.Expose.includes("ItemBreast"))
-			|| (InventoryGet(C, "Bra") != null && !InventoryGet(C, "Bra").Asset.Expose.includes("ItemBreast")))) { DialogSetText("RemoveClothesForItem"); return false; }
+			|| (InventoryGet(C, "Bra") != null && !InventoryGet(C, "Bra").Asset.Expose.includes("ItemBreast")))) T = "RemoveClothesForItem";
 
 	// Vulva/Butt items can be blocked by clothes, panties and some socks
 	if ((Prerequisite == "AccessVulva") && (((curCloth != null) && curCloth.Asset.Block != null && curCloth.Asset.Block.includes("ItemVulva"))
 			|| (InventoryGet(C, "ClothLower") != null && !InventoryGet(C, "ClothLower").Asset.Expose.includes("ItemVulva"))
 			|| (InventoryGet(C, "Panties") != null && !InventoryGet(C, "Panties").Asset.Expose.includes("ItemVulva"))
-			|| (InventoryGet(C, "Socks") != null && (InventoryGet(C, "Socks").Asset.Block != null) && InventoryGet(C, "Socks").Asset.Block.includes("ItemVulva")))) { DialogSetText("RemoveClothesForItem"); return false; }
-	
+			|| (InventoryGet(C, "Socks") != null && (InventoryGet(C, "Socks").Asset.Block != null) && InventoryGet(C, "Socks").Asset.Block.includes("ItemVulva")))) T = "RemoveClothesForItem";
+
 	// Prevent incompatible item combinations
-	if (Prerequisite == "NotSuspended" && C.Pose.indexOf("Suspension") >= 0) { DialogSetText("RemoveSuspensionForItem"); return false; }
-	if (Prerequisite == "NotKneeling" &&  C.Pose.indexOf("Kneel") >= 0)  { DialogSetText("TheyMustBeStandingFirst"); return false; }
-        if (Prerequisite == "NotKneeling" &&  C.Pose.indexOf("Suspension") >= 0)  { DialogSetText("TheyMustBeStandingFirst"); return false; }
-	if (Prerequisite == "NotChained") {
-		if (InventoryGet(C, "ItemNeckAccessories") != null) {
-			if (InventoryGet(C, "ItemNeckAccessories").Asset.Name == "CollarChainLong") { DialogSetText("RemoveChainForItem"); return false; }
-		} else return true;
-	}
-	if (Prerequisite == "Collared" && InventoryGet(C, "ItemNeck") == null) { DialogSetText("MustCollaredFirst"); return false; }
-	if (Prerequisite == "CollaredNotSuspended" && (InventoryGet(C, "ItemNeck") == null || C.Pose.indexOf("Suspension") >= 0)) { DialogSetText("MustCollaredFirstAndRemoveSuspension"); return false; }
-	return true;
+	if (Prerequisite == "NotSuspended" && C.Pose.indexOf("Suspension") >= 0) T = "RemoveSuspensionForItem";
+	if (Prerequisite == "NotKneeling" && C.Pose.indexOf("Kneel") >= 0) T = "TheyMustBeStandingFirst";
+	if (Prerequisite == "NotKneeling" && C.Pose.indexOf("Suspension") >= 0) T = "TheyMustBeStandingFirst";
+	if (Prerequisite == "NotChained" && InventoryGet(C, "ItemNeckAccessories") != null && InventoryGet(C, "ItemNeckAccessories").Asset.Name == "CollarChainLong") T = "RemoveChainForItem";
+	if (Prerequisite == "Collared" && InventoryGet(C, "ItemNeck") == null) T = "MustCollaredFirst";
+	if (Prerequisite == "CollaredNotSuspended" && (InventoryGet(C, "ItemNeck") == null || C.Pose.indexOf("Suspension") >= 0)) T = "MustCollaredFirstAndRemoveSuspension";
+	if (Prerequisite == "LegsOpen" && C.Pose.indexOf("LegsClosed") >= 0) T = "LegsCannotOpen";
+
+	// Toe Tied
+	if (Prerequisite == "ToeTied" && (InventoryGet(C, "ItemFeet") != null) && (InventoryGet(C, "ItemFeet").Asset.Name == "SpreaderMetal")) T = "LegsCannotClose";
+	if (Prerequisite == "ToeTied" && (InventoryGet(C, "ItemLegs") != null) && (InventoryGet(C, "ItemLegs").Asset.Name == "WoodenHorse")) T = "LegsCannotClose";
+	if (Prerequisite == "ToeTied" && (InventoryGet(C, "ItemDevices") != null) && (InventoryGet(C, "ItemDevices").Asset.Name == "OneBarPrison")) T = "LegsCannotClose";
+	if (Prerequisite == "ToeTied" && (InventoryGet(C, "ItemDevices") != null) && (InventoryGet(C, "ItemDevices").Asset.Name == "SaddleStand")) T = "LegsCannotClose";
+
+	// Display Frame
+	if (Prerequisite == "DisplayFrame" && C.Pose.indexOf("Suspension") >= 0) T = "TheyMustBeStandingFirst";
+	if (Prerequisite == "DisplayFrame" && C.Pose.indexOf("Horse") >= 0) T = "TheyMustBeStandingFirst";
+	if (Prerequisite == "DisplayFrame" && C.Pose.indexOf("Kneel") >= 0) T = "TheyMustBeStandingFirst";
+	if (Prerequisite == "DisplayFrame" && (InventoryGet(C, "ItemArms") != null || InventoryGet(C, "ItemLegs") != null || InventoryGet(C, "ItemFeet") != null || InventoryGet(C, "ItemBoots") != null)) T = "TheyMustBeStandingFirst";
+	if (Prerequisite == "DisplayFrame" && (InventoryGet(C, "Cloth") != null || InventoryGet(C, "ClothLower") != null || InventoryGet(C, "Shoes") != null)) T = "RemoveClothesForItem";
+
+	// Sybian
+	if (Prerequisite == "Sybian" && C.Pose.indexOf("Kneel") >= 0) T = "TheyMustBeStandingFirst";
+	if (Prerequisite == "Sybian" && C.Pose.indexOf("LegsClosed") >= 0) T = "LegsCannotOpen";
+	if (Prerequisite == "Sybian" && C.Pose.indexOf("Suspension") >= 0) T = "TheyMustBeStandingFirst";
+	if (Prerequisite == "Sybian" && C.Effect.indexOf("Shackled") >= 0) T = "RemoveShacklesFirst";
+	if (Prerequisite == "Sybian" && C.Effect.indexOf("Chaste") >= 0) T = "RemoveChastityFirst";
+	if ((Prerequisite == "Sybian") && (((curCloth != null) && curCloth.Asset.Block != null && curCloth.Asset.Block.includes("ItemVulva"))
+		|| (InventoryGet(C, "ClothLower") != null && !InventoryGet(C, "ClothLower").Asset.Expose.includes("ItemVulva"))
+		|| (InventoryGet(C, "Panties") != null && !InventoryGet(C, "Panties").Asset.Expose.includes("ItemVulva"))
+		|| (InventoryGet(C, "Socks") != null && (InventoryGet(C, "Socks").Asset.Block != null) && InventoryGet(C, "Socks").Asset.Block.includes("ItemVulva")))) T = "RemoveClothesForItem";
+
+	// One Bar Prison
+	if (Prerequisite == "OBP" && C.Pose.indexOf("LegsClosed") >= 0) T = "LegsCannotOpen";
+	if (Prerequisite == "OBP" && C.Pose.indexOf("Suspension") >= 0) T = "TheyMustBeStandingFirst";
+	if (Prerequisite == "OBP" && C.Pose.indexOf("Horse") >= 0) T = "TheyMustBeStandingFirst";
+	if (Prerequisite == "OBP" && C.Pose.indexOf("Kneel") >= 0) T = "TheyMustBeStandingFirst";
+	if (Prerequisite == "OBP" &&  C.Effect.indexOf("Chaste") >= 0) T = "RemoveChastityFirst";
+	if ((Prerequisite == "OBP") && (((curCloth != null) && curCloth.Asset.Block != null && curCloth.Asset.Block.includes("ItemVulva"))
+		|| (InventoryGet(C, "ClothLower") != null && !InventoryGet(C, "ClothLower").Asset.Expose.includes("ItemVulva"))
+		|| (InventoryGet(C, "Panties") != null && !InventoryGet(C, "Panties").Asset.Expose.includes("ItemVulva"))
+		|| (InventoryGet(C, "Socks") != null && (InventoryGet(C, "Socks").Asset.Block != null) && InventoryGet(C, "Socks").Asset.Block.includes("ItemVulva")))) T = "RemoveClothesForItem";
+
+	// Shackles and Manacles
+	if (Prerequisite == "Shackles" && InventoryGet(C, "ItemFeet") != null) T = "MustFreeFeetFirst";
+	if (Prerequisite == "Shackles" && C.Effect.indexOf("Mounted") >= 0) T = "CannotBeUsedWhenMounted";
+	if (Prerequisite == "Shackles" && C.Pose.indexOf("Suspension") >= 0) T = "TheyMustBeStandingFirst";
+	if (Prerequisite == "Shackles" && C.Pose.indexOf("Horse") >= 0) T = "TheyMustBeStandingFirst";
+	if (Prerequisite == "Shackles" && C.Pose.indexOf("KneelingSpread") >= 0) T = "TheyMustBeStandingFirst";
+
+	// Saddle stand
+	if (Prerequisite == "LegsOpen1" && C.Pose.indexOf("LegsClosed") >= 0) T = "LegsCannotOpen";
+	if (Prerequisite == "LegsOpen1" && C.Pose.indexOf("Suspension") >= 0) T = "TheyMustBeStandingFirst";
+	if (Prerequisite == "LegsOpen1" && C.Pose.indexOf("Horse") >= 0) T = "TheyMustBeStandingFirst";
+	if (Prerequisite == "LegsOpen1" && C.Pose.indexOf("KneelingSpread") >= 0) T = "TheyMustBeStandingFirst";
+	if (Prerequisite == "LegsOpen1" && C.Pose.indexOf("Kneel") >= 0) T = "TheyMustBeStandingFirst";
+	if (Prerequisite == "LegsOpen1" && C.Effect.indexOf("Shackled") >= 0) T = "RemoveShacklesFirst";
+
+	// Wooden horse blocks
+	if (Prerequisite == "Horse" && C.Pose.indexOf("Kneel") >= 0) T = "TheyMustBeStandingFirst";
+	if (Prerequisite == "Horse" && C.Pose.indexOf("LegsClosed") >= 0) T = "LegsCannotOpen";
+	if (Prerequisite == "Horse" && C.Pose.indexOf("Suspension") >= 0) T = "TheyMustBeStandingFirst";
+	if (Prerequisite == "Horse" && C.Effect.indexOf("Shackled") >= 0) T = "RemoveShacklesFirst";
+	if (Prerequisite == "CollaredNotSuspended1" && (InventoryGet(C, "ItemNeck") == null || C.Pose.indexOf("Suspension") >= 0)) T = "MustCollaredFirstAndRemoveSuspension1";
+	if (Prerequisite == "CollaredNotSuspended1" && (InventoryGet(C, "ItemNeck") == null || C.Pose.indexOf("Horse") >= 0)) T = "MustCollaredFirstAndRemoveSuspension1";
+	if (Prerequisite == "CollaredNotSuspended1" && (InventoryGet(C, "ItemNeck") == null || C.Effect.indexOf("Mounted") >= 0)) T = "MustCollaredFirstAndRemoveSuspension1";
+	if (Prerequisite == "NotSuspendedOrHorsed" && C.Pose.indexOf("Suspension") >= 0) T = "TheyMustBeStandingFirst";
+	if (Prerequisite == "NotSuspendedOrHorsed" && C.Pose.indexOf("Horse") >= 0) T = "TheyMustBeStandingFirst";
+	if (Prerequisite == "NotSuspendedOrHorsed" && C.Pose.indexOf("KneelingSpread") >= 0) T = "TheyMustBeStandingFirst";
+	if (Prerequisite == "NotSuspendedOrHorsed" && (InventoryGet(C, "ItemFeet") != null) && (InventoryGet(C, "ItemFeet").Asset.Name == "SpreaderMetal")) T = "CannotBeUsedWithFeetSpreader";
+	if (Prerequisite == "NotSuspendedOrHorsed" && C.Effect.indexOf("Mounted") >= 0) T = "CannotBeUsedWhenMounted";
+
+	// If no error text was found, we return TRUE, if a text was found, we can show it in the dialog
+	if (T != "" && (SetDialog == null || SetDialog)) DialogSetText(T);
+	return (T == "");
 
 }
 
@@ -136,15 +201,30 @@ function InventoryLocked(C, AssetGroup) {
 }
 
 // Makes the character wear a random item from a group
-function InventoryWearRandom(C, AssetGroup, Difficulty) {
-	if (!InventoryLocked(C, AssetGroup)) {
+function InventoryWearRandom(C, GroupName, Difficulty) {
+	if (!InventoryLocked(C, GroupName)) {
+
+		// Finds the asset group and make sure it's not blocked
+		for (var A = 0; A < AssetGroup.length; A++)
+			if (AssetGroup[A].Name == GroupName) {
+				var FG = C.FocusGroup;
+				C.FocusGroup = AssetGroup[A];
+				var IsBlocked = InventoryGroupIsBlocked(C);
+				C.FocusGroup = FG;
+				if (IsBlocked) return;
+				break;
+			}
+
+		// Builds a list of all possible items and use one
 		var List = [];
 		for (var A = 0; A < Asset.length; A++)
-			if ((Asset[A].Group.Name == AssetGroup) && Asset[A].Wear && Asset[A].Enable && Asset[A].Random)
+			if ((Asset[A].Group.Name == GroupName) && Asset[A].Wear && Asset[A].Enable && Asset[A].Random && InventoryAllow(C, Asset[A].Prerequisite, false))
 				List.push(Asset[A]);
 		if (List.length == 0) return;
-		CharacterAppearanceSetItem(C, AssetGroup, List[Math.floor(Math.random() * List.length)], null, Difficulty);
+		var RandomAsset = List[Math.floor(Math.random() * List.length)];
+		CharacterAppearanceSetItem(C, GroupName, RandomAsset, RandomAsset.DefaultColor, Difficulty);
 		CharacterRefresh(C);
+
 	}
 }
 
@@ -158,13 +238,29 @@ function InventoryRemove(C, AssetGroup) {
 	CharacterRefresh(C);
 }
 
-// Returns TRUE if the currently worn item is blocked by another item (hoods blocks gags, belts blocks eggs, etc.)
+// Returns TRUE if the focused group for a character is blocked and cannot be used
 function InventoryGroupIsBlocked(C) {
+
+	// Items can block each other (hoods blocks gags, belts blocks eggs, etc.)
 	for (var E = 0; E < C.Appearance.length; E++) {
-		if (!(C.Appearance[E].Asset.Group.Clothing) && (C.Appearance[E].Asset.Block != null) && (C.Appearance[E].Asset.Block.includes(C.FocusGroup.Name))) return true;
-		if (!(C.Appearance[E].Asset.Group.Clothing) && (C.Appearance[E].Property != null) && (C.Appearance[E].Property.Block != null) && (C.Appearance[E].Property.Block.indexOf(C.FocusGroup.Name) >= 0)) return true;
+		if (!C.Appearance[E].Asset.Group.Clothing && (C.Appearance[E].Asset.Block != null) && (C.Appearance[E].Asset.Block.includes(C.FocusGroup.Name))) return true;
+		if (!C.Appearance[E].Asset.Group.Clothing && (C.Appearance[E].Property != null) && (C.Appearance[E].Property.Block != null) && (C.Appearance[E].Property.Block.indexOf(C.FocusGroup.Name) >= 0)) return true;
 	}
+
+	// If another character is enclosed, items other than the enclosing one cannot be used
+	if ((C.ID != 0) && C.IsEnclose()) {
+		for (var E = 0; E < C.Appearance.length; E++)
+			if ((C.Appearance[E].Asset.Group.Name == C.FocusGroup.Name) && InventoryItemHasEffect(C.Appearance[E], "Enclose"))
+				return false;
+		return true;
+	}
+
+	// If the player is enclosed, all groups for another character are blocked
+	if ((C.ID != 0) && Player.IsEnclose()) return true;
+
+	// Nothing is preventing the group from being used
 	return false;
+
 }
 
 // Returns TRUE if the item has a specific effect.
@@ -217,7 +313,7 @@ function InventoryCharacterHasOwnerOnlyRestraint(C) {
 	if ((C.Ownership == null) || (C.Ownership.MemberNumber == null) || (C.Ownership.MemberNumber == "")) return false;
 	if (C.Appearance != null)
 		for (var A = 0; A < C.Appearance.length; A++)
-			if (C.Appearance[A].Asset.Group.IsRestraint && InventoryOwnerOnlyItem(C.Appearance[A]))
+			if (C.Appearance[A].Asset.IsRestraint && InventoryOwnerOnlyItem(C.Appearance[A]))
 				return true;
 	return false;
 }
@@ -232,10 +328,12 @@ function InventoryHasLockableItems(C) {
 
 // Applies a lock to an inventory item
 function InventoryLock(C, Item, Lock, MemberNumber) {
-	if (Item.Asset.AllowLock) {
+	if (typeof Item === 'string') Item = InventoryGet(C, Item);
+	if (typeof Lock === 'string') Lock = { Asset: AssetGet(C.AssetFamily, "ItemMisc", Lock) };
+	if (Item && Lock && Item.Asset.AllowLock) {
 		if (Item.Property == null) Item.Property = {};
 		if (Item.Property.Effect == null) Item.Property.Effect = [];
-		Item.Property.Effect.push("Lock");
+		if (Item.Property.Effect.indexOf("Lock") < 0) Item.Property.Effect.push("Lock");
 		Item.Property.LockedBy = Lock.Asset.Name;
 		if (MemberNumber != null) Item.Property.LockMemberNumber = MemberNumber;
 		if (Lock.Asset.RemoveTimer > 0) TimerInventoryRemoveSet(C, Item.Asset.Group.Name, Lock.Asset.RemoveTimer);
@@ -271,11 +369,13 @@ function InventoryConfiscateKey() {
 	InventoryDelete(Player, "IntricatePadlockKey", "ItemMisc");
 }
 
-function InventoryIsWorn(C, AssetGroup, name){
-	if((C == null) || (C.Appearance == null)) return null;
-	var item = C.Appearance.filter(i => i.Asset.Group.Name == AssetGroup)[0];
-	if((item != null) && (item.Asset.Name == name))
-		return true;
-	else
-		return false;
+// Removes the remotes of the vibrators from the player inventory
+function InventoryConfiscateRemote() {
+	InventoryDelete(Player, "VibratorRemote", "ItemVulva");
+	InventoryDelete(Player, "VibratorRemote", "ItemNipples");
 }
+
+// returns TRUE if the item is worn
+function InventoryIsWorn(C, AssetGroup, AssetName){
+	return C && C.Appearance && C.Appearance.some(Item => Item.Asset.Group.Name == AssetGroup && Item.Asset.Name == AssetName);
+} 

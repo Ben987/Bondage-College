@@ -1,10 +1,20 @@
+MaidDrinkPickFreeWater,,,picks a glass of water from DialogCharacterName tray.,,
+MaidDrinkPickFreeOrangeJuice,,,picks an orange juice from DialogCharacterName tray.,,
 MaidDrinkPickFreeBeer,,,picks a beer from DialogCharacterName tray.,,
 MaidDrinkPickFreeWine,,,picks a glass of wine from DialogCharacterName tray.,,
-MaidDrinkPickFreeMargarita,,,picks a Margarita from DialogCharacterName tray.,,
+MaidDrinkPickVirginMojito,,,buys a Virgin Mojito from DialogCharacterName tray.,,
+MaidDrinkPickMargarita,,,buys a Margarita from DialogCharacterName tray.,,
 MaidDrinkPickWhiskey,,,buys a glass of Whiskey from DialogCharacterName.,,
 MaidDrinkPickChampagne,,,buys a glass of champagne from DialogCharacterName.,,
+MaidDrinkPickLemonadeJug,,,"buys a jug of refreshing lemonade for everyone, from DialogCharacterName.",,
 MaidDrinkPickRoundShooters,,,"buys a round of shooters for everyone, from DialogCharacterName.",,
+MaidDrinkPickSexOnTheBeachJug,,,"buys a jug of Sex on the Beach for everyone, from DialogCharacterName.",,
 MaidDrinkPickBeerPitcher,,,"buys a beer pitcher for everyone, from DialogCharacterName.",,
+MaidDrinkPickFreeTea,,,picks a tea from DialogCharacterName tray.,,
+MaidDrinkPickFreeCoffee,,,picks a coffee from DialogCharacterName tray.,,
+MaidDrinkPickHotChocolate,,,buys a hot chocolate from DialogCharacterName tray.,,
+MaidDrinkPickExpresso,,,buys a espresso from DialogCharacterName tray.,,
+MaidDrinkPickCappuccino,,,buys a cappuccino from DialogCharacterName tray.,,
 PlayerGagged,,,(You can use or remove items by selecting specific body regions.),,DialogDoAllowItem(CurrentCharacter)
 PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDoAllowItem(CurrentCharacter)
 0,,,(You can use or remove items by selecting specific body regions.),,DialogDoAllowItem(CurrentCharacter)
@@ -30,24 +40,49 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 11,0,(Pay 100$ for the collaring ceremony.),"(You pay and prepare the ceremony.  A maid brings a slave collar, she must accept it to complete the collaring.)","SendOwnershipRequest(""Propose"")",DialogMoneyGreater(100)
 11,0,(Refuse to pay.),(Main menu.),,
 10,0,(Back to main menu.),(Main menu.),,
-20,0,(Get a free beer.),,"DrinkPick(""FreeBeer"", 0)",
-20,0,(Get a free glass of wine.),,"DrinkPick(""FreeWine"", 0)",
-20,0,(Get a free Margarita.),,"DrinkPick(""FreeMargarita"", 0)",
-20,0,(Get a 5$ glass of Whiskey.),,"DrinkPick(""Whiskey"", 5)",DialogMoneyGreater(5)
-20,0,(Get a 5$ glass of Champagne.),,"DrinkPick(""Champagne"", 5)",DialogMoneyGreater(5)
-20,0,(Get a 10$ round of shooters for everyone.),,"DrinkPick(""RoundShooters"", 10)",DialogMoneyGreater(10)
-20,0,(Get a 10$ beer pitcher for everyone.),,"DrinkPick(""BeerPitcher"", 10)",DialogMoneyGreater(10)
+20,21,(Look at free drinks.),(Free drinks menu.),,
+20,22,(Look at regular drinks.),(Regular drinks menu.),,
+20,23,(Look at shared drinks.),(Shared drinks menu.),,
+20,24,(Look at hot drinks.),(Hot drinks menu.),,
 20,0,(Back to main menu.),(Main menu.),,
+21,0,(Get a free glass of water.),,"DrinkPick(""FreeWater"", 0)",
+21,0,(Get a free orange juice.),,"DrinkPick(""FreeOrangeJuice"", 0)",
+21,0,(Get a free beer.),,"DrinkPick(""FreeBeer"", 0)",
+21,0,(Get a free glass of wine.),,"DrinkPick(""FreeWine"", 0)",
+21,20,(Back to drink options.),(Drink options.),,
+21,0,(Back to main menu.),(Main menu.),,
+22,0,(Get a $5 Virgin Mojito.),,"DrinkPick(""VirginMojito"", 5)",DialogMoneyGreater(5)
+22,0,(Get a $5 Margarita.),,"DrinkPick(""Margarita"", 5)",DialogMoneyGreater(5)
+22,0,(Get a 5$ glass of Whiskey.),,"DrinkPick(""Whiskey"", 5)",DialogMoneyGreater(5)
+22,0,(Get a 5$ glass of Champagne.),,"DrinkPick(""Champagne"", 5)",DialogMoneyGreater(5)
+22,20,(Back to drink options.),(Drink options.),,
+22,0,(Back to main menu.),(Main menu.),,
+23,0,(Get a 10$ jug of Sicilian Lemonade for everyone.),,"DrinkPick(""LemonadeJug"", 10)",DialogMoneyGreater(10)
+23,0,(Get a 10$ round of shooters for everyone.),,"DrinkPick(""RoundShooters"", 10)",DialogMoneyGreater(10)
+23,0,(Get a 10$ jug of Sex on the Beach for everyone.),,"DrinkPick(""SexOnTheBeachJug"", 10)",DialogMoneyGreater(10)
+23,0,(Get a 10$ beer pitcher for everyone.),,"DrinkPick(""BeerPitcher"", 10)",DialogMoneyGreater(10)
+23,20,(Back to drink options.),(Drink options.),,
+23,0,(Back to main menu.),(Main menu.),,
+24,0,(Get a free tea.),,"DrinkPick(""FreeTea"", 0)",
+24,0,(Get a free coffee.),,"DrinkPick(""FreeCoffee"", 0)",
+24,0,(Get a 5$ hot chocolate.),,"DrinkPick(""HotChocolate"", 5)",DialogMoneyGreater(5)
+24,0,(Get a 5$ expresso.),,"DrinkPick(""Expresso"", 5)",DialogMoneyGreater(5)
+24,0,(Get a 5$ cappuccino.),,"DrinkPick(""Cappuccino"", 5)",DialogMoneyGreater(5)
+24,20,(Back to drink options.),(Drink options.),,
+24,0,(Back to main menu.),(Main menu.),,
 30,0,(Kick her out of the room.),,"AdminAction(""Kick"")",
 30,0,(Ban her from the room.),,"AdminAction(""Ban"")",
+30,0,(Move her to the left.),,"AdminAction(""MoveLeft"")",
+30,0,(Move her to the right.),,"AdminAction(""MoveRight"")",
 30,0,(Promote her as room administrator.),,"AdminAction(""Promote"")",!CurrentCharacterIsAdmin()
 30,0,(Demote her from room administration.),,"AdminAction(""Demote"")",CurrentCharacterIsAdmin()
 30,0,(Back to main menu.),(Main menu.),,
 100,110,(Wardrobe access.),(Select her wardrobe access.),,
 100,120,(Whisper rules.),(Select her rules for whispering when you're in the same room.),,
 100,130,(Key restrictions.),(Select her restrictions for keys.),,
-100,140,(Timer cell punishment.),"(For how long do you want to lock her up?  She will be isolated, and you won't be able to unlock her.)",,
-100,150,(Forced labor.),(What kind of labor will she be forced to do?  Her salary will be given to you.),,
+100,140,(Remote restrictions.),(Select her restrictions for remotes.),,
+100,150,(Timer cell punishment.),"(For how long do you want to lock her up?  She will be isolated, and you won't be able to unlock her.)",,
+100,160,(Forced labor.),(What kind of labor will she be forced to do?  Her salary will be given to you.),,
 100,0,(Back to main menu.),(Main menu.),,
 110,100,(Allow her wardrobe access.),(She can now access her wardrobe and change clothes.),"SendRule(""ChangeAllow"")",
 110,100,(Block her wardrobe for 1 hour.),(Her wardrobe access will be blocked for the next hour.),"SendRule(""ChangeBlock1Hour"")",
@@ -62,13 +97,17 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 130,100,(Confiscate her keys.),(She lost all of her keys.),"SendRule(""KeyConfiscate"")",
 130,100,(Block her from buying keys.),(The store will not sell keys to her anymore.),"SendRule(""KeyBlock"")",
 130,0,(Back to main menu.),(Main menu.),,
-140,100,(Don't lock her up.),"(Select the rule, restriction or punishment that you want to enforce.)",,
-140,100,(Lock her for 5 minutes.),(She will be isolated and locked up for 5 minutes.),"SendRule(""TimerCell5"", ""Leave"")",
-140,100,(Lock her for 15 minutes.),(She will be isolated and locked up for 15 minutes.),"SendRule(""TimerCell15"", ""Leave"")",
-140,100,(Lock her for 30 minutes.),(She will be isolated and locked up for 30 minutes.),"SendRule(""TimerCell30"", ""Leave"")",
-140,100,(Lock her for 60 minutes.),(She will be isolated and locked up for 60 minutes.),"SendRule(""TimerCell60"", ""Leave"")",
+140,100,(Allow her to buy remotes.),(The store will sell remotes to her.),"SendRule(""RemoteAllow"")",
+140,100,(Confiscate her remotes.),(She lost all of her remotes.),"SendRule(""RemoteConfiscate"")",
+140,100,(Block her from buying remotes.),(The store will not sell remotes to her anymore.),"SendRule(""RemoteBlock"")",
 140,0,(Back to main menu.),(Main menu.),,
-150,100,(No forced labor.),"(Select the rule, restriction or punishment that you want to enforce.)",,
-150,100,(Force her to serve drinks as a maid.),(She will be sent to the maid quarters to prepare drinks.  You will earn her salary.),"SendRule(""LaborMaidDrinks"", ""Quest"")",CanServeDrink()
-150,,(Force her to serve drinks as a maid.),(She needs to be a maid in the sorority and be able to walk to do that job for you.),,!CanServeDrink()
+150,100,(Don't lock her up.),"(Select the rule, restriction or punishment that you want to enforce.)",,
+150,100,(Lock her for 5 minutes.),(She will be isolated and locked up for 5 minutes.),"SendRule(""TimerCell5"", ""Leave"")",
+150,100,(Lock her for 15 minutes.),(She will be isolated and locked up for 15 minutes.),"SendRule(""TimerCell15"", ""Leave"")",
+150,100,(Lock her for 30 minutes.),(She will be isolated and locked up for 30 minutes.),"SendRule(""TimerCell30"", ""Leave"")",
+150,100,(Lock her for 60 minutes.),(She will be isolated and locked up for 60 minutes.),"SendRule(""TimerCell60"", ""Leave"")",
 150,0,(Back to main menu.),(Main menu.),,
+160,100,(No forced labor.),"(Select the rule, restriction or punishment that you want to enforce.)",,
+160,100,(Force her to serve drinks as a maid.),(She will be sent to the maid quarters to prepare drinks.  You will earn her salary.),"SendRule(""LaborMaidDrinks"", ""Quest"")",CanServeDrink()
+160,,(Force her to serve drinks as a maid.),(She needs to be a maid in the sorority and be able to walk to do that job for you.),,!CanServeDrink()
+160,0,(Back to main menu.),(Main menu.),,

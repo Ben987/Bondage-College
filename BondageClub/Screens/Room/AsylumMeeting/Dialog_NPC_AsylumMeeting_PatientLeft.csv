@@ -7,7 +7,7 @@ PlayerGagged,,,"Get that gag off or stop talking, you're driving me nuts.",,
 0,,,Hey girls!  (She looks around the meeting room for approval.)  It's the new patient.,,"DialogReputationLess(""Asylum"", -1)"
 0,,,What do you want?,,
 0,10,Who are you?,"I'm surprised you don't know, I'm DialogCharacterName.  I'm the girl you talk too if you need something.",,"DialogReputationLess(""Asylum"", -1)"
-0,10,I need something from you.,I'm listening.  What do you need?,,"DialogReputationLess(""Asylum"", -50)"
+0,10,I need something from you.,I'm listening.  What do you need?,,"DialogReputationLess(""Asylum"", -1)"
 0,,Who are you?,"You should know me, I'm DialogCharacterName.  I'm the best patient around.  (She smirks.)",,"DialogReputationGreater(""Asylum"", 1)"
 0,20,(Struggle in your restraints.),"I can see that you need help, but what's in there for me?  Give me 10$ and I'll help you out.",,CanReleasePlayer()
 0,20,(Struggle in your restraints.),(She shakes her head no.),,CannotReleasePlayer()

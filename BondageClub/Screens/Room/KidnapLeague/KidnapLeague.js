@@ -4,7 +4,6 @@ var KidnapLeagueTrainer = null;
 var KidnapLeagueRandomKidnapper = null;
 var KidnapLeagueRandomKidnapperScenario = "0";
 var KidnapLeagueRandomKidnapperDifficulty = 0;
-var KidnapLeagueRandomKidnapperTimer = 0;
 var KidnapLeagueArchetype = null;
 var KidnapLeagueWillPayForFreedom = false;
 var KidnapLeagueRandomActivityList = ["AddGag", "RemoveGag", "AddFeet", "RemoveFeet", "AddLegs", "RemoveLegs", "Tickle", "Spank", "Kiss", "Fondle"];
@@ -20,7 +19,6 @@ var KidnapLeagueVisitRoom = false;
 // Returns TRUE if the dialog option are available
 function KidnapLeagueAllowKidnap() { return (!Player.IsRestrained() && !KidnapLeagueTrainer.IsRestrained()) }
 function KidnapLeagueIsTrainerRestrained() { return KidnapLeagueTrainer.IsRestrained() }
-function KidnapLeagueResetTimer() { KidnapLeagueRandomKidnapperTimer = CommonTime() + 180000 }
 function KidnapLeagueCanTakeBounty() { return ((ReputationGet("Kidnap") > 0) && (KidnapLeagueBounty == null)) }
 function KidnapLeagueBountyTaken() { return ((ReputationGet("Kidnap") > 0) && (KidnapLeagueBounty != null) && (KidnapLeagueBountyVictory == null)) }
 function KidnapLeagueBountyWasVictory() { return ((ReputationGet("Kidnap") > 0) && (KidnapLeagueBounty != null) && (KidnapLeagueBountyVictory == true)) }
@@ -47,14 +45,16 @@ function KidnapLeagueRun() {
 // When the user clicks in the kidnap league room
 function KidnapLeagueClick() {
 	if ((MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-	if ((MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(KidnapLeagueTrainer);
+	if ((MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000)) {
+		ManagementClubSlaveDialog(KidnapLeagueTrainer);
+		CharacterSetCurrent(KidnapLeagueTrainer);
+	}
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) {
 		if ((InventoryGet(Player, "Cloth") == null) && (KidnapPlayerCloth != null)) {
 			InventoryWear(Player, KidnapPlayerCloth.Asset.Name, "Cloth", KidnapPlayerCloth.Color);
 			if (KidnapPlayerClothLower != null) InventoryWear(Player, KidnapPlayerClothLower.Asset.Name, "ClothLower", KidnapPlayerClothLower.Color);
 		}
-		KidnapLeagueResetTimer();
 		CommonSetScreen("Room", "MainHall");
 	}
 }
@@ -214,7 +214,6 @@ function KidnapLeagueRandomStart() {
 // When a the player bribes her way out of a fight
 function KidnapLeagueRandomBribe(Amount) {
 	CharacterChangeMoney(Player, Amount * -1);
-	KidnapLeagueResetTimer();
 	DialogLeave();
 	CommonSetScreen("Room", "MainHall");
 }
@@ -235,7 +234,6 @@ function KidnapLeagueRandomEnd() {
 		InventoryWear(KidnapLeagueRandomKidnapper, KidnapOpponentCloth.Asset.Name, "Cloth", KidnapOpponentCloth.Color);
 		if (KidnapOpponentClothLower != null) InventoryWear(KidnapLeagueRandomKidnapper, KidnapOpponentClothLower.Asset.Name, "ClothLower", KidnapOpponentClothLower.Color);
 	}
-	KidnapLeagueResetTimer();
 	DialogLeave();
 	CommonSetScreen("Room", "MainHall");
 }

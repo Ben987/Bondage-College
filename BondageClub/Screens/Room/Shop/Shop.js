@@ -22,8 +22,9 @@ function ShopIsRescueScenario(ScenarioName) { return (ShopRescueScenario == Scen
 // Loads the shop room
 function ShopLoad() {
 
-	// Creates the shop vendor
+	// Creates the shop vendor always at full height to be able to click on her zones correctly
 	ShopVendor = CharacterLoadNPC("NPC_Shop_Vendor");
+	InventoryWear(ShopVendor, "H1000", "Height", "Default");
 	ShopVendor.AllowItem = ShopVendorAllowItem;
 	ShopStarted = false;
 	ShopText = TextGet("SelectItemBuy");
@@ -140,7 +141,8 @@ function ShopClick() {
 						// If the item isn't already owned and the player has enough money, we buy it
 						if (InventoryAvailable(Player, Asset[A].Name, Asset[A].Group.Name)) ShopText = TextGet("AlreadyOwned");
 						else if (Asset[A].Value > Player.Money) ShopText = TextGet("NotEnoughMoney");
-						else if (LogQuery("BlockKey", "OwnerRule") && ((Asset[A].Name == "MetalCuffsKey") || (Asset[A].Name == "MetalPadlockKey") || (Asset[A].Name == "IntricatePadlockKey"))) ShopText = TextGet("CannotSellKey");
+						else if (LogQuery("BlockKey", "OwnerRule") && (Player.Ownership != null) && (Player.Ownership.Stage == 1) && ((Asset[A].Name == "MetalCuffsKey") || (Asset[A].Name == "MetalPadlockKey") || (Asset[A].Name == "IntricatePadlockKey"))) ShopText = TextGet("CannotSellKey");
+						else if (LogQuery("BlockRemote", "OwnerRule") && (Player.Ownership != null) && (Player.Ownership.Stage == 1) && (Asset[A].Name == "VibratorRemote")) ShopText = TextGet("CannotSellRemote");
 						else {
 
 							// Add the item and removes the money

@@ -13,7 +13,7 @@ function TimerToString(T) {
 	if (S.length == 1) S = "0" + S;
 	if (M.length == 1) M = "0" + M;
 	if (H.length == 1) H = "0" + H;
-	return ((D != "0") ? D + ":" : "") + (((D != "0") && (H != "0")) ? H + ":" : "") + M + ":" + S;
+	return ((D != "0") ? D + ":" : "") + (((D != "0") || (H != "00")) ? H + ":" : "") + M + ":" + S;
 }
 
 // Returns a string of the current remaining timer
@@ -26,7 +26,7 @@ function TimerHourToString(T) {
 
 // Check if we must remove items from a player or an NPC
 function TimerInventoryRemove() {
-	
+
 	// Cycles through all items items for all offline characters (player + NPC)
 	for (var C = 0; C < Character.length; C++)
 		if ((Character[C].ID == 0) || (Character[C].MemberNumber == null))
@@ -76,7 +76,7 @@ function TimerInventoryRemoveSet(C, AssetGroup, Timer) {
 // On a random chance, the private room owner can beep the player anywhere in the club, she has 2 minutes to get back to her
 function TimerPrivateOwnerBeep() {
 	if ((Player.Owner != "") && (Player.Ownership == null) && (CurrentScreen != "Private") && (CurrentScreen != "ChatRoom") && (CurrentScreen != "InformationSheet") && (CurrentScreen != "FriendList") && (CurrentScreen != "Cell") && PrivateOwnerInRoom())
-		if (!LogQuery("OwnerBeepActive", "PrivateRoom") && !LogQuery("OwnerBeepTimer", "PrivateRoom") && !LogQuery("LockOutOfPrivateRoom", "Rule") && (Math.floor(Math.random() * 500) == 1)) {
+		if ((Math.floor(Math.random() * 500) == 1) && !LogQuery("OwnerBeepActive", "PrivateRoom") && !LogQuery("OwnerBeepTimer", "PrivateRoom") && !LogQuery("LockOutOfPrivateRoom", "Rule") && !LogQuery("Committed", "Asylum")) {
 			ServerBeep.Timer = CurrentTime + 15000;
 			ServerBeep.Message = DialogFind(Player, "BeepFromOwner");
 			LogAdd("OwnerBeepActive", "PrivateRoom");
@@ -104,3 +104,23 @@ function TimerProcess(Timestamp) {
 	requestAnimationFrame(MainRun);
 
 }
+
+// Convert milliseconds to written time
+function TimermsToTime(s) {
+
+	// Pad to 2 or 3 digits, default is 2
+	function pad(n, z) {
+	  z = z || 2;
+	  return ('00' + n).slice(-z);
+	}
+  
+	// Returns the formatted value
+	var ms = s % 1000;
+	s = (s - ms) / 1000;
+	var secs = s % 60;
+	s = (s - secs) / 60;
+	var mins = s % 60;
+	var hrs = (s - mins) / 60;
+	return pad(hrs) + ':' + pad(mins) + ':' + pad(secs);
+	
+  }

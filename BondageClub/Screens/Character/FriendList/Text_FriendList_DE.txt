@@ -2,7 +2,11 @@ Online friends
 Freunde online
 Member number
 Mitgliedsnummer
-Current chat room
-Aktueller Chatraum
-Action
-Aktion
+Chat room
+Chatraum
+Send a beep
+Biep senden
+Beep history
+Biep-Verlauf
+Delete a friend
+Freund entfernen

@@ -1,0 +1,453 @@
+###_NPC
+Lovely gag, but you'll need to get it off if you want to talk with me.
+Süßer Knebel, aber den wirst du abnehmen müssen, wenn du mit mir reden willst.
+Ow!  Well done, you're a tough patient.  I'm not letting you out anyway.
+Au! Starke Leistung, du bist 'ne hartnäckige Patientin. Ich lasse dich aber trotzdem nicht raus.
+You really thought you could beat me?  You're truly mad, little patient.
+Dachtest du wirklich, du kämst an mir vorbei? Du bist wahrhaftig verrückt, kleine Patientin.
+What are you doing here little slave?  Go back to the club and serve our customers.
+Was machst du denn hier, kleine Sklavin? Gehe zurück in den Club und diene unseren Kunden.
+###_PLAYER
+Can we talk about the asylum?
+Können wir über die Anstalt reden?
+###_NPC
+No, as a club slave you have work to do.  Get going girl.
+Nein, als Clubsklavin hast du zu arbeiten. Mach dich auf den Weg, Mädchen.
+###_PLAYER
+(Leave her.)
+(Dialog beenden.)
+###_NPC
+Greetings doctor DialogPlayerName.  It's always a pleasure to see you.  Are you working today?
+Ich grüße Sie, Doktor DialogPlayerName. Es ist immer eine Freude, Sie zu sehen. Arbeiten Sie heute?
+Welcome to the asylum nurse DialogPlayerName.  Our patients are expecting you.  Are you here to work?
+Willkommen in der Anstalt, Schwester DialogPlayerName. Unsere Patienten erwarten Sie. Sind Sie zum Arbeiten hier?
+Hello assistant DialogPlayerName.  It's time to get to work for the asylum!
+Hallo, Assistentin DialogPlayerName. Es ist Zeit, für die Anstalt zu arbeiten!
+It's always a pleasure to take you in patient DialogPlayerName.  Are you checking in again today?
+Es ist immer wieder eine Freude, dich in unsere Obhut zu nehmen, Patientin DialogPlayerName. Lässt du dich wieder einweisen?
+Welcome to the asylum patient DialogPlayerName.  Do you still our help?
+Willkommen in der Anstalt, Patientin DialogPlayerName. Brauchst du noch immer unsere Hilfe?
+Hello again DialogPlayerName.  Are you here to check in?
+Hallo mal wieder, DialogPlayerName. Möchtest du dich einweisen lassen?
+Welcome to the asylum.  Do you need information?
+Willkommen in der Anstalt. Brauchst du Informationen?
+###_PLAYER
+I want to learn about the asylum.
+Ich möchte etwas über die Anstalt erfahren
+###_NPC
+In the asylum, you can work as a nurse or commit yourself as a patient.  What would you like to know?
+In der Anstalt kannst du als Krankenschwester arbeiten oder dich als Patientin einweisen. Was möchtest du wissen?
+###_PLAYER
+I'd like to commit myself
+Ich möchte mich einweisen lassen.
+###_NPC
+You can, but you will lose your nurse status and reputation.  Are you sure about that?
+Lässt sich machen, aber dann verlierst du deinen Status und Rang als Krankenschwester. Bist du sicher?
+By committing yourself, you will be locked down in the asylum until your time is up.
+Wenn du dich einweisen lässt, wirst du in der Anstalt festgehalten, bis deine Zeit vorüber ist.
+###_PLAYER
+I'd like to work as a nurse.
+Ich möchte als Krankenschwester arbeiten.
+###_NPC
+You can, but you will lose your patient status and reputation.  Are you sure about that?
+Lässt sich machen, aber dann verlierst du deinen Status und Rang als Patientin. Bist du sicher?
+Perfect!  We need staff to take care of our patients.  Are you ready to work now?
+Perfekt! Wir brauchen Personal, das sich um unsere Patienten kümmert. Bist du bereit, sofort anzufangen?
+###_PLAYER
+Can I get my own nurse uniform?
+Kann ich meine eigene Uniform haben?
+###_NPC
+Of course.  Here you go nurse DialogPlayerName.  Wear it with pride.  (She gives you a nurse uniform.)
+Natürlich. Bitteschön, Schwester DialogPlayerName. Trage sie mit Stolz. (Sie gibt dir eine Krankenschwester-Uniform.)
+###_PLAYER
+I must go.  (Leave her.)
+Ich muss gehen. (Dialog beenden.)
+What goes in the asylum?
+Was geht in der Anstalt so vor sich?
+###_NPC
+The asylum is a place to relax, to forget about your stressful life for a while.  You can get therapies and mingle with patients and nurses.
+Die Anstalt ist ein Ort zum Entspannen, um den stressigen Alltag eine Weile lang zu vergessen. Man kann Therapien erhalten oder mit den Patienten und Schwestern herumhängen.
+###_PLAYER
+Tell me about patients.
+Erzähl mir von Patienten.
+###_NPC
+Patients willingly commit themselves for a set time.  Until that time is up, they will receive therapies and will be locked in the asylum.
+Patienten weisen sich freiwillig für einen bestimmten Zeitraum ein. Bis diese Zeit um ist, erhalten sie Therapien und bleiben in der Anstalt eingesperrt.
+###_PLAYER
+Tell me about nurses.
+Erzähl mir von Krankenschwestern.
+###_NPC
+Nurses are paid by the asylum to take care of patients.  They give the therapies and strap-up feisty customers.  (She grins.)
+Schwestern werden von der Anstalt bezahlt, um sich um die Patienten zu kümmern. Sie verabreichen Therapien und schnallen widerspenstige Kunden fest. (Sie grinst.)
+###_PLAYER
+What are the therapies?
+Was sind das für Therapien?
+###_NPC
+There are lots of therapies available, depending on the patient needs.  They are bondage, pain, tickling and orgasm therapies.
+Es stehen verschiedene Arten von Therapien zur Verfügung, je nach den Bedürfnissen der Patienten. Die Kategorien sind Bondage, Schmerz, Kitzeln und Orgasmus.
+###_PLAYER
+Can I send my slaves here?
+Kann ich meine Sklavinnen herschicken?
+###_NPC
+Yes, if your submissive doesn't behave the way you want it.  You can send her here to correct her behavior.  Talk with her first.
+Ja, wenn deine Sub sich nicht so benimmt, wie du es gern hättest. Schicke sie hierher, und wir korrigieren das. Sprich erst mit ihr.
+###_PLAYER
+Thanks for the information.
+Danke für die Information.
+###_NPC
+My pleasure.  Do you need anything else?
+Jederzeit. Brauchst du sonst noch etwas?
+###_PLAYER
+Yes, I want to transfer from nurse to patient.
+Ja, ich steige von Schwester zu Patientin um.
+###_NPC
+Very well.  By committing yourself, you will be locked down in the asylum until your time is up.
+Alles klar. Wenn du dich einweisen lässt, wirst du in der Anstalt festgehalten, bis deine Zeit vorüber ist.
+###_PLAYER
+Let me think about it.
+Lass mich darüber nachdenken.
+###_NPC
+Of course.  Do you need anything else?
+Natürlich. Brauchst du sonst noch etwas?
+###_PLAYER
+I accept to be locked down.
+Ich willige ein, mich einsperren zu lassen.
+###_NPC
+(She grins.)  Perfect!  First thing first, you need to change and wear patient clothes.
+(Sie grinst.) Perfekt! Als Allererstes musst du dich umziehen und Patientenkleidung tragen.
+(She grins.)  Perfect!  But you need to get out of these restraints first.  Go get a maid to help you, I'm busy.
+(Sie grinst.) Perfekt! Aber erst musst du diese Fesseln loswerden. Lass dier von einem Hausmädchen helfen, ich hab zu tun.
+###_PLAYER
+I'm already dressed like that.
+Ich bin schon richtig gekleidet.
+###_NPC
+(She nods.) For how long you wish to commit yourself?
+(Sie nickt.) Für welche Dauer möchtest du dich einweisen lassen?
+###_PLAYER
+Can you help me to change?
+Hilfst du mir beim Umziehen?
+###_NPC
+I certainly can.  (She helps you to get dressed as a patient.)  For how long you wish to commit yourself?
+Sicher doch. (Sie hilft dir, dich wie eine Patientin zu kleiden.) Für welche Dauer möchtest du dich einweisen lassen?
+###_PLAYER
+15 minutes.
+15 Minuten.
+###_NPC
+You're taking it easy, don't you?  Very well, step inside.  (She locks the door behind you.)
+Du machst es dir einfach, was? Also gut, hereinspaziert. (Sie schließt die Tür hinter dir ab.)
+###_PLAYER
+1 hour.
+1 Stunde.
+###_NPC
+It should give you some time to relax.  Very well, step inside.  (She locks the door behind you.)
+Das sollte dir etwas Zeit geben, dich zu entspannen. Also gut, hereinspaziert. (Sie schließt die Tür hinter dir ab.)
+###_PLAYER
+4 hours.
+4 Stunden.
+###_NPC
+It should give you plenty of time to relax.  Very well, step inside.  (She locks the door behind you.)
+Das sollte dir reichlich Zeit geben, dich zu entspannen. Also gut, hereinspaziert. (Sie schließt die Tür hinter dir ab.)
+###_PLAYER
+1 day.
+1 Tag.
+###_NPC
+Impressive!  I'll prepare a bed for you, step inside.  (She locks the door behind you.)
+Beeindruckend! Ich bereite ein Bett für dich vor, hereinspaziert. (Sie schließt die Tür hinter dir ab.)
+###_PLAYER
+Where do I start?
+Wo fange ich an?
+###_NPC
+The social room is a good place to start.  Or get to the beds to relax.  Now get going girl.
+Der Sozialraum ist ein guter Anfangspunkt. Oder geh zu den Betten, um dich auszuruhen. Jetzt los, Mädchen.
+###_PLAYER
+You're locking the door?
+Du schließt die Tür ab?
+###_NPC
+Don't be afraid, it's for your own good.  Now get going girl, you can explore the asylum freely.
+Keine Angst, das ist zu deinem eigenen Besten. Jetzt los, Mädchen, du darfst die Anstalt frei erkunden.
+By wearing this.  (She straps a straitjacket on you.)  Patients like you must be kept under control.  Now carry on, you know the place.
+Indem du das überziehst. (Sie schnallt dir eine Zwangsjacke um.) Patientinnen wie du müssen unter Kontrolle gehalten werden. Jetzt Abmarsch, du kennst dich ja schon aus.
+###_PLAYER
+Here we go again.
+Jetzt geht's wieder los.
+###_NPC
+You know the drill.  (She straps a straitjacket on you.)  Patients like you must be kept under control.  Now carry on, you know the place.
+Du weißt Bescheid. (Sie schnallt dir eine Zwangsjacke um.) Patientinnen wie du müssen unter Kontrolle gehalten werden. Jetzt Abmarsch, du kennst dich ja schon aus.
+###_PLAYER
+Thanks.  (Leave her.)
+Danke. (Dialog beenden.)
+Yes, I want to transfer from patient to nurse.
+Ja, ich steige von Patientin zu Schwester um.
+I'm ready to work right now.
+Ich bin bereit, sofort zu arbeiten.
+###_NPC
+Great!  But before you enter, you must wear the nurse uniform.
+Super! Bevor du eintrittst, musst du die Schwestern-Uniform tragen.
+No, you're not.  (She giggles.)  You're restrained girl.  Go get a maid to help you, I'm busy.
+Nein, bist du nicht. (Sie kichert.) Du bist gefesselt, Mädchen. Lass dir von einem Hausmädchen helfen, ich hab zu tun.
+###_PLAYER
+I'm already dressed up.
+Ich bin schon richtig angezogen.
+###_NPC
+Wonderful!  Come inside then, there are lots of patients to take care of.
+Wundervoll! Dann immer herein, es gibt eine Menge Patienten, um die wir uns kümmern müssen.
+(She gives you the nurse clothes.)  Come inside, there are lots of patients to take care of.
+(Sie gibt dir die Krankenschwester-Kleidung.) Immer herein, es gibt eine Menge Patienten, um die wir uns kümmern müssen.
+###_PLAYER
+Thanks!  (Leave her.)
+Danke! (Dialog beenden.)
+###_NPC
+If it isn't the famous patient DialogPlayerName.  As usual, I hope your stay in the asylum is going well.
+Wenn das mal nicht die berühmte Patientin DialogPlayerName ist. Wie immer hoffe ich, dass dein Aufenthalt in der Anstalt dir gut tut.
+Hello again patient DialogPlayerName.  I hope your stay in the asylum is going well.
+Hallo mal wieder, Patientin DialogPlayerName. Ich hoffe, dein Aufenthalt in der Anstalt tut dir gut.
+Hello there.  I hope your stay in the asylum is going well.
+Hallo. Ich hoffe, dein Aufenthalt in der Anstalt tut dir gut.
+###_PLAYER
+Can you release me?
+Kannst du mich freilassen?
+###_NPC
+If you're restrained, there must be good reasons.  Think about it.
+Wenn du gefesselt bist, muss es gute Gründe dafür geben. Denk darüber nach.
+###_PLAYER
+Release me or I'll scream.
+Lass mich frei, sonst schreie ich.
+###_NPC
+(She straps a muzzle gag on you and giggles.)  Scream all you want.
+(Sie schnallt dir einen Maulkorb um und kichert.) Schrei, so viel du willst.
+###_PLAYER
+When do I get out of the asylum?
+Wann komme ich aus der Anstalt raus?
+###_NPC
+Check the clock girl, it's on the wall behind you.
+Schau auf die Uhr, Mädchen. Sie hängt an der Wand hinter dir.
+###_PLAYER
+Can I go out temporarily?
+Kann ich vorübergehend raus?
+###_NPC
+No, the rules are strict, you cannot get out until your time is up.
+Nein, die Regeln sind eindeutig, du darfst nicht raus, bis deine Zeit um ist.
+###_PLAYER
+You need to let me out now.
+Du musst mich jetzt rauslassen.
+###_NPC
+(She frowns and stares at you.)  No!  The rules are the rules!  Do your time.
+(Sie starrt dich stirnrunzelnd an.) Nein! Regeln sind Regeln! Sitz deine Zeit ab.
+###_PLAYER
+Fine, I'll do my time.
+Na gut, ich warte.
+###_NPC
+Alright.  Try to get some rest or make some friends.
+Alles klar. Erhole dich etwas, oder lerne neue Freunde kennen.
+###_PLAYER
+(Sigh and cross your arms.)
+(Seufzen und deine Arme verschränken.)
+###_NPC
+Try to get some rest or make some friends.
+Erhole dich etwas, oder lerne neue Freunde kennen.
+###_PLAYER
+Do I have to force my way out?
+Muss ich mich etwa gewaltsam freikämpfen?
+###_NPC
+(She clinches her fists.)  What does it mean?
+(Sie ballt ihre Hände zu Fäusten.) Was soll das bedeuten?
+###_PLAYER
+It means war!  (Fight her.)
+Das bedeutet Krieg! (Gegen sie kämpfen.)
+Nothing, forget it.
+Nichts, vergiss es.
+###_NPC
+(She grumbles.)  Fine.  Try to get some rest or make some friends.
+(Sie grummelt.) Na schön. Erhole dich etwas, oder lerne neue Freunde kennen.
+###_PLAYER
+I'm getting out girl.
+Ich komme hier schon noch raus, Mädchen.
+###_NPC
+No, you're not.  They won't let you go patient.
+Auf keinen Fall. Man wird dich nicht gehen lassen, Patientin.
+###_PLAYER
+I have a plan for that.
+Dafür habe ich einen Plan.
+###_NPC
+Forget it patient, they won't let you go.
+Vergiss es, Patientin, man wird dich nicht rauslassen.
+###_PLAYER
+That's what you think.  (Strip her.)
+Das glaubst auch nur du. (Sie ausziehen.)
+###_NPC
+What are you doing?  I have work to do, it's not a good time to get kinky.
+Was machst du da? Ich habe zu arbeiten, das ist nicht der richtige Zeitpunkt für Spielereien.
+###_PLAYER
+They will let me go.  (Strip her.)
+Man wird mich rauslassen. (Sie ausziehen.)
+(Stay silent and strip her.)
+(Schweigen und sie ausziehen.)
+You'll understand soon.  (Strip.)
+Du wirst es bald verstehen. (Dich ausziehen.)
+###_NPC
+What the hell?  You're not going to rape me, are you?
+Was zu Hölle? Du willst mich doch nicht etwa vergewaltigen, oder?
+###_PLAYER
+Be quiet little nurse.  (Strip.)
+Sei still, kleine Krankenschwester. (Dich ausziehen.)
+You're not my type.  (Wear her clothes.)
+Du bist nicht mein Typ. (Ihre Sachen anziehen.)
+###_NPC
+Don't touch my uniform!  Are you thinking what I'm thinking?
+Finger weg von meiner Uniform! Denkst du etwa, was ich denke?
+###_PLAYER
+You're so clueless.  (Wear her clothes.)
+Du hast ja keine Ahnung. (Ihre Sachen anziehen.)
+(Blush and wear her clothes.)
+(Rot werden und ihre Sachen anziehen.)
+You're thinking too much.  (Dress her up.)
+Du denkst zu viel. (Sie anziehen.)
+###_NPC
+(She struggles frenetically.)  Oh no you don't!  You're in deep trouble girl!
+(Sie wehrt sich verzweifelt.) Oh nein, das tust du nicht! Du bekommst mächtig Ärger, Mädchen!
+###_PLAYER
+A patient should relax.  (Dress her up.)
+Eine Patientin sollte sich ausruhen. (Sie anziehen.)
+You will enjoy your stay.  (Dress her up.)
+Genieß deinen Aufenthalt. (Sie anziehen.)
+Let's wrap this.  (Strap her up.)
+Lass uns das schön verpacken. (Sie festschnallen.)
+###_NPC
+(You strap her up in a straitjacket and gag her with medical restraints.)  You traitor!
+(Du ziehst ihr eine Zwangsjacke an und knebelst sie mit medizinischen Fesseln.) Du Verräterin!
+###_PLAYER
+You will have fun.  (Strap her up.)
+Du wirst Spaß haben. (Sie festschnallen.)
+Enough talking girl.  (Strap her up.)
+Genug geredet, Mädchen. (Sie festschnallen.)
+###_NPC
+(She still struggles madly and bites hard on her gag.)  Let me out!
+(Sie zappelt noch immer wie verrückt und beißt fest auf ihren Knebel.) Lass mich frei!
+###_PLAYER
+Have fun struggling!  (Leave her.)
+Viel Spaß beim Zappen! (Dialog beenden.)
+You were lucky.
+Du hattest Glück.
+###_NPC
+It's not about luck, it's about control.  And you will feel my control.
+Es geht nicht um Glück, es geht um Kontrolle. Und du wirst meine Kontrolle zu Spüren bekommen.
+###_PLAYER
+I'll have my revenge.
+Ich werde mich rächen.
+###_NPC
+When hell freezes.  Now it's time to control you girl.
+Wenn die Hölle zufriert. Jetzt ist es Zeit, dich zu kontrollieren, Mädchen.
+###_PLAYER
+You're really strong.
+Du bist echt stark.
+###_NPC
+(She grins.)  Indeed.  And now it's time to control you girl.
+(Sie grinst.) In der Tat. Und jetzt ist es Zeit, dich zu kontrollieren, Mädchen.
+###_PLAYER
+What does that mean?
+Was bedeutet das?
+###_NPC
+(She restrains your arms in a straitjacket and straps it snug.)  That's what it means.
+(Sie zieht dir eine Zwangsjacke über und schnallt sie kuschelig fest.) Das bedeutet das.
+###_PLAYER
+Do your worst.
+Mach doch, was du willst.
+###_NPC
+(She restrains your arms in a straitjacket and straps it tight.)  You're not getting out of that.
+(Sie zieht dir eine Zwangsjacke über und schnallt sie sehr fest.) Da kommst du nicht raus.
+###_PLAYER
+(Stay silent.)
+(Schweigen.)
+###_NPC
+(She restrains your arms in a straitjacket and straps it behind your back.)  This will control you.
+(Sie zieht dir eine Zwangsjacke über und schnallt sie hinter deinem Rücken fest.) Das wird dich unter Kontrolle halten.
+###_PLAYER
+Fuck you!  This is unfair!
+Fick dich! Das ist unfair!
+###_NPC
+Such a dirty mouth.  (She straps a muzzle gag on you and smiles.)  Carry on girl, I have work to do.
+So ein Schandmaul. (Sie schnallt dir einen Maulkorb um und lächelt.) Ab mit dir, Mädchen, ich habe zu arbeiten.
+###_PLAYER
+This is tight.
+Das ist eng.
+###_NPC
+And don't force me to make it tighter.  Now carry on girl, I have work to do.
+Und zwing mich nicht, es noch enger zu machen. Jetzt ab mit dir, Mädchen, ich habe zu arbeiten.
+###_PLAYER
+You will leave me like that?
+Lässt du mich etwa so?
+###_NPC
+Absolutely.  Now carry on girl, I have work to do.
+Natürlich. Jetzt ab mit dir, Mädchen, ich habe zu arbeiten.
+###_PLAYER
+(Whimper.)
+(Wimmern.)
+###_NPC
+Stop crying girl and carry on, I have work to do.
+Hör auf zu weinen, Mädchen, und ab mit dir, ich habe zu arbeiten.
+Wait!  Do I know you?  Who are you?
+Moment! Kenne ich dich? Wer bist du?
+###_PLAYER
+Hello.  I'm DialogPlayerName.
+Hallo. Ich bin DialogPlayerName.
+###_NPC
+It's you!  You're the patient that escaped.  Get her girls!  (Lots of nurses come to help her.)
+Du bist es! Du bist die Patientin, die davongelaufen ist. Auf sie, Mädels! (Eine Menge Krankenschwestern eilen ihr zu Hilfe.)
+###_PLAYER
+Know me?  It's my first visit here.
+Mich kennen? Ich bin zum ersten Mal hier.
+###_NPC
+I know!  You're the patient that escaped.  Get her girls!  (Lots of nurses come to help her.)
+Na klar! Du bist die Patientin, die davongelaufen ist. Auf sie, Mädels! (Eine Menge Krankenschwestern eilen ihr zu Hilfe.)
+###_PLAYER
+You should know me.  (Grin.)
+Du solltest mich kennen. (Grinsen.)
+###_NPC
+You're the patient that escaped.  Get her girls!  (Lots of nurses come to help her.)
+Du bist die Patientin, die davongelaufen ist. Auf sie, Mädels! (Eine Menge Krankenschwestern eilen ihr zu Hilfe.)
+###_PLAYER
+Uh oh.  I must go.  (Leave her.)
+Oh-oh. Ich muss weg. (Dialog beenden.)
+You're mistaken.
+Du irrst dich.
+###_NPC
+(They quickly jump on you, force you to dress as a patient and strap you tight in a straitjacket.)
+(Sie springen dich schnell an, zwängen dich in Patientenkleidung und schnallen dir eine enge Zwangsjacke um.)
+###_PLAYER
+What's going on?
+Was ist los?
+(Try to fight them.)
+(Versuchen, sie zu bekämpfen.)
+###_NPC
+(They quickly overpower you, force you to dress as a patient and strap you tight in a straitjacket.)
+(Sie überwältigen dich schnell, zwängen dich in Patientenkleidung und schnallen dir eine enge Zwangsjacke um.)
+###_PLAYER
+What the hell?
+Was zur Hölle?
+###_NPC
+Welcome back patient, I'm sure your forced day here will teach you a lesson.
+Willkommen zurück, Patientin. Dein erzwungener Tag hier bei uns wird dir sicher eine Lehre sein.
+###_PLAYER
+That's unfair!
+Das ist unfair!
+###_NPC
+It's very fair.  Welcome back patient, I'm sure your forced day here will teach you a lesson.
+Das ist sowas von fair. Willkommen zurück, Patientin. Dein erzwungener Tag hier bei uns wird dir sicher eine Lehre sein.
+###_PLAYER
+One full day?  Are you insane?
+Ein ganzer Tag? Bist du verrückt?
+###_NPC
+From your current look, I'd say you're the insane one.  (She giggles.)  Now carry on, I have work to do.
+So wie du gerade aussiehst, würde ich sagen, dass du die Verrückte bist. (Sie kichert.) Jetzt ab mit dir, ich habe zu arbeiten.
+###_PLAYER
+Yes Miss.  (Bow your head.)
+Ja, Miss. (Deinen Kopf senken.)
+###_NPC
+Good girl.  (She smirks.)  Now carry on, I have work to do.
+Braves Mädchen. (Sie feixt.) Jetzt ab mit dir, ich habe zu arbeiten.
+###_PLAYER
+Fine.  I'll do it.
+Na schön. Ich tu's.
+###_NPC
+Very well.  (She smiles.)  Now carry on, I have work to do.
+Sehr schön. (Sie lächelt.) Jetzt ab mit dir, ich habe zu arbeiten.

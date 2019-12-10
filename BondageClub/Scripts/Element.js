@@ -5,7 +5,7 @@ function ElementValue(ID, Value) {
 	if (document.getElementById(ID) != null)
 		if (Value == null)
 			return document.getElementById(ID).value.trim();
-		else 
+		else
 			document.getElementById(ID).value = Value;
 }
 
@@ -14,7 +14,7 @@ function ElementContent(ID, Content) {
 	if (document.getElementById(ID) != null)
 		if (Content == null)
 			return document.getElementById(ID).innerHTML;
-		else 
+		else
 			document.getElementById(ID).innerHTML = Content;
 }
 
@@ -24,7 +24,6 @@ function ElementCreateTextArea(ID) {
 		var TextArea = document.createElement("TextArea");
 		TextArea.setAttribute("ID", ID);
 		TextArea.setAttribute("name", ID);
-		TextArea.setAttribute("readonly", "readonly");
 		TextArea.addEventListener("keydown", KeyDown);
 		document.body.appendChild(TextArea);
 	}
@@ -63,8 +62,8 @@ function ElementRemove(ID) {
 }
 
 // Draw a regular HTML element at a specific position
-function ElementPosition(ElementID, X, Y, W) {
-	
+function ElementPosition(ElementID, X, Y, W, H) {
+
 	// Different positions based on the width/height ratio
 	var Font;
 	var Height;
@@ -73,13 +72,13 @@ function ElementPosition(ElementID, X, Y, W) {
 	var Top;
 	if (DrawScreenWidth <= DrawScreenHeight * 2) {
 		Font = (DrawScreenWidth / 50);
-		Height = Font * 1.15;
+		Height = H ? (H * DrawScreenWidth / 2000) : (Font * 1.15);
 		Left = ((X - (W / 2)) * DrawScreenWidth / 2000);
 		Width = (W * DrawScreenWidth / 2000) - 18;
 		Top = (Y * DrawScreenWidth / 2000) + ((DrawScreenHeight * 2 - DrawScreenWidth) / 4) - (Height / 2);
 	} else {
 		Font = (DrawScreenHeight / 25);
-		Height = Font * 1.15;
+		Height = H ? (H * DrawScreenHeight / 1000) : (Font * 1.15);
 		Left = ((X - (W / 2)) * DrawScreenHeight / 1000) + (DrawScreenWidth - DrawScreenHeight * 2) / 2;
 		Width = (W * DrawScreenHeight / 1000) - 18;
 		Top = (Y * DrawScreenHeight / 1000) - (Height / 2);
@@ -87,12 +86,12 @@ function ElementPosition(ElementID, X, Y, W) {
 
 	// Sets the element style
 	document.getElementById(ElementID).setAttribute("style", "font-size:" + Font + "px; font-family:Arial; position:absolute; padding-left:10px; left:" + Left + "px; top:" + Top + "px; width:" + Width + "px; height:" + Height + "px;");
-	
+
 }
 
 // Draw a regular HTML element at a specific position
 function ElementPositionFix(ElementID, Font, X, Y, W, H) {
-	
+
 	// Different positions based on the width/height ratio
 	var Left;
 	var Width;
@@ -114,19 +113,21 @@ function ElementPositionFix(ElementID, Font, X, Y, W, H) {
 
 	// Sets the element style
 	document.getElementById(ElementID).setAttribute("style", "font-size:" + Font + "px; font-family:Arial; position:absolute; padding-left:10px; left:" + Left + "px; top:" + Top + "px; width:" + Width + "px; height:" + Height + "px; resize: none;");
-	
+
+}
+
+// Sets a custom data-attribute to a specified value on a specified element
+function ElementSetDataAttribute(ID, Name, Value) {
+	var element = document.getElementById(ID);
+	if (element != null) {
+		element.setAttribute(("data-" + Name).toLowerCase(), Value.toString().toLowerCase());
+	}
 }
 
 // Scrolls to the end of a specified element
 function ElementScrollToEnd(ID) {
-	if (document.getElementById(ID) != null) {
-		var element = document.getElementById(ID);
-		element.focus();
-		if (element.value != null)
-			element.selectionStart = element.selectionEnd = element.value.length;
-		else
-			element.scrollTop = element.scrollHeight;
-	}
+	var element = document.getElementById(ID);
+	if (element != null) element.scrollTop = element.scrollHeight;
 }
 
 // Returns TRUE if the specified element is currently scrolled to the very bottom

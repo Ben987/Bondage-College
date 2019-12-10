@@ -120,6 +120,12 @@ Dazu habe ich keine Zeit.
 Forget it girl.  Don't bug me with these kinds of questions.
 Vergiss es, Mädchen. Belästige mich nicht mit derartigen Fragen.
 ###_PLAYER
+Are there other slave collar models?
+Gibt es auch andere Sklavenhalsband-Modelle?
+###_NPC
+There is, some fancy slaves want fancy collars.  There's a 30$ fee to change your collar.  Are you willing to pay?
+Durchaus, manche modischen Sklavinnen brauchen modische Halsbänder. Das Auswechseln deines Halsbandes kostet 30$. Zahlst du das?
+###_PLAYER
 Let's talk about something else.
 Reden wir über etwas anderes.
 ###_NPC
@@ -268,6 +274,42 @@ Du wagst es, dich mir zu widersetzen? Jetzt kannst du was erleben!
 ###_PLAYER
 (Nod politely and look down.)
 (Höflich nicken und zu Boden schauen.)
+I will pay the 30$.
+Ich zahle die 30$.
+###_NPC
+Good.  What kind of model would you prefer?
+Gut. Welches Modell hättest du denn gern?
+###_PLAYER
+I don't have enough money.
+Ich habe nicht genug Geld.
+###_NPC
+That's not my problem.  Get to work or get lost.
+Das ist nicht mein Problem. Suche dir Arbeit oder hau ab.
+###_PLAYER
+I'll think about it.
+Ich denke darüber nach.
+###_NPC
+Fine.  And stop wasting my time.  Is there anything else you need?
+Gut. Und verschwende nicht meine Zeit. Brauchst du sonst noch was?
+###_PLAYER
+The regular slave collar please.
+Das normale Sklavenhalsband, bitte.
+###_NPC
+(She calls a maid and swaps your collars.)  Here you go girl.  Is there anything else you need?
+(Sie ruft ein Hausmädchen und wechselt dein Halsband aus.) Bitteschön, Mädchen. Brauchst du sonst noch was?
+###_PLAYER
+The leather posture collar please.
+Das Haltungshalsband aus Leder, bitte.
+The steel posture collar please.
+Das Haltungshalsband aus Stahl, bitte.
+The leather pet collar please.
+Das Tierhalsband aus Leder, bitte.
+I've changed my mind.
+Ich hab's mir anders überlegt.
+###_NPC
+Stop wasting my time girl.  Is there anything else you need?
+Verschwende nicht meine Zeit, Mädchen. Brauchst du sonst noch was?
+###_PLAYER
 Why the ears and tail?
 Wozu die Katzenohren und der Schwanz?
 ###_NPC
@@ -375,16 +417,14 @@ Ich tue nur meine Pflicht. Brauchst du noch etwas anderes?
 What are the rules for chastity items?
 Was sind die Regeln für Keuschheitsgeräte?
 ###_NPC
-Only the club Mistresses can unlock chastity devices.  Make sure you use your keys wisely.  (She winks at you.)
-Nur Clubherrinnen können Keuschheitsgeräte aufschließen. Setze deine Schlüssel weise ein. (Sie zwinkert dir zu.)
-Only the club Mistresses can unlock chastity devices.  If you have an owner, you need your owner permission to be unlocked.
-Nur Clubherrinnen können Keuschheitsgeräte aufschließen. Wenn du eine Besitzerin hast, brauchst du zuerst ihre Erlaubnis.
+The maids will not remove your chastity devices.  So if you get locked without a key, you'll need to come and see us.  Bring money.
+Die Hausmädchen rühren deine Keuschheitsgeräte nicht an. Wenn dich also jemand darin einschließt und du keinen Schlüssel hast, musst du uns um Hilfe bitten. Bring Geld mit.
 ###_PLAYER
-Can I buy a key?
-Kann ich einen Schlüssel kaufen?
+Can a slave with an owner be unlocked?
+Können Sklavinnen von Schlössern befreit werden, wenn sie eine Besitzerin haben?
 ###_NPC
-No, the keys are not for sales.  They are for Mistresses only.
-Nein, die Schlüssel sind nicht zu verkaufen. Sie sind den Herrinnen vorbehalten.
+Yes, but we will query the owner first.
+Ja, aber das sprechen wir zuerst mit der Besitzerin ab.
 ###_PLAYER
 I'm stuck, I need your help.
 Ich stecke fest, ich brauche Hilfe.
@@ -408,8 +448,8 @@ Ich wollte mich schützen.
 Since you're not owned, all there is to do is pay the unlocking fee and lick my heels.  (She points to her boot.)
 Da du keinen Besitzer hast, brauchst du nur die Gebühr zu bezahlen und meine Stiefel zu lecken. (Sie zeigt auf ihren Schuh.)
 ###_PLAYER
-I was inspecting the belt and it locked on me.
-Ich hab den Gürtel untersucht und er schnappte zu.
+I was inspecting the device and it locked on me.
+Ich wollte das Teil untersuchen und es ist zugeschnappt.
 Someone played a prank on me.
 Jemand hat mir einen Streich gespielt.
 I've played a crazy "Truth or Dare" game.
@@ -479,16 +519,8 @@ Bitte öffnen Sie den Gürtel. (25$ zahlen.)
 ###_NPC
 Alright.  (You remove your clothes and she unlocks the belt.)  How does it feel?
 Also gut. (Du ziehst deine Kleidung aus und sie schließt den Gürtel auf.) Wie fühlt sich das an?
-###_PLAYER
-I don't have enough money.
-Ich habe nicht genug Geld.
-###_NPC
 Get to work then.  I'm not doing any discount.
 Dann an die Arbeit. Bei mir gibt es keinen Rabatt.
-###_PLAYER
-I'll think about it.
-Ich denke darüber nach.
-###_NPC
 Think about ways to stop wasting my time girl.
 Denke darüber nach, wie du weniger von meiner Zeit verschwendest, Mädchen.
 ###_PLAYER
@@ -993,8 +1025,8 @@ Natürlich. Das Wochengehalt beträgt 100$ und sie erhalten die offizielle Herri
 Do they have privileges?
 Haben sie Sonderrechte?
 ###_NPC
-They have a special privilege that comes with responsibilities.  Every Mistress get special keys for chastity devices.
-Sie haben ein Sonderrecht, das mit Verpflichtungen verbunden ist. Jede Herrin erhält spezielle Schlüssel für Keuschheitsgeräte.
+They have a special privilege that comes with responsibilities.  Every Mistress gets unique club padlocks and keys.
+Sie bekommen ein Privileg, das aber auch Verantwortung mit sich bringt. Jede Herrin bekommt exklusive Club-Schlösser und -Schlüssel.
 ###_PLAYER
 What if a Mistress turns submissive?
 Was, wenn eine Herrin Unterwürfig wird?
@@ -1109,8 +1141,8 @@ Ja, deine Bloßstellung hält eine Stunde lang an. Du musst nackt durch den Club
 (Grumble and get naked.)
 (Grummeln und dich ausziehen.)
 ###_NPC
-You're not allowed to wear clothes for the next hour.  Now surrender your Mistress outfit and chastity keys.
-Für die Dauer der nächsten Stunde ist dir jegliche Kleidung untersagt. Jetzt gib dein Herrinnen-Outfit und deine Keuschheitsschlüssel ab.
+You're not allowed to wear clothes for the next hour.  Now surrender your Mistress outfit and items.
+Für die Dauer der nächsten Stunde ist dir jegliche Kleidung untersagt. Jetzt gib dein Herrinnen-Outfit und das Zubehör ab.
 ###_PLAYER
 (Stay silent and get naked.)
 (Schweigen und dich ausziehen.)

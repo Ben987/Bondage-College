@@ -1,9 +1,9 @@
-PlayerGagged,,,Blessed those who have nothing to say and yet remain silent ,,
+PlayerGagged,,,Blessed those who have nothing to say and yet remain silent.,,
 ItemMouth,,,(She shakes her head but you're able to gag and silence her.),,
 RemoveItemMouth,,,(You remove her gag and she stretches her mouth.)  I was starting to drool...,,
 ItemEars,,,(She grumbles while you push some earplugs in.) I can't hear you properly now.,,
-RemoveItemEars,,,(You pull the earplugs out.) That's better i can hear you clearly now.,,
-ItemArms,,,(She grumbles but complies as you restrain her arms.)  How can I roll the dice this way?,,
+RemoveItemEars,,,"(You pull the earplugs out.) That's better, I can hear you clearly now.",,
+ItemArms,,,(She grumbles but complies as you restrain her arms.)  How am I supposed to roll the dice like this?,,
 RemoveItemArms,,,(You free her arms and she gives you a thumbs up.)  That's better.,,
 ItemHands,,,(She submits to you while restrain you hands.)  You're being very kinky now.,,
 RemoveItemHands,,,(You release her hands and she nods a little.)  Thank you Miss.,,
@@ -15,108 +15,108 @@ ItemNeck,,,(She struggles as you strap the collar around her neck.)  I'm not loo
 RemoveItemNeck,,,(You remove the collar from her neck.)  Yes!  This is much better.,,
 ItemPelvis,,,"(She struggles as you lock the device on her.)  No, please!  I don't have the key for that!",,
 RemoveItemPelvis,,,(She looks really happy as you unlock the device.)  Thank you so much Miss DialogPlayerName.,,
-ItemHead,,,(You put the device as she shakes her head.)  Ow!  You've made my day much awfully,,
+ItemHead,,,(You put the device on her as she shakes her head.)  Ow!  You've made my day much more awful.,,
 RemoveItemHead,,,"(You remove the device and she nods rapidly.)  Thanks a million, this is much better.",,
-ItemBreastLeatherWhip,,,(She trembles of painas you whip her breast.) This is a gambling hall no torture chamber.,,
-ItemBreastLeatherCrop,,,"(You swing the crop on her torso as she moans.) Oh, that's not a game anymore.",,
+ItemBreastLeatherWhip,,,"(She trembles of pain as you whip her breast.) This is a gambling hall, not a torture chamber.",,
+ItemBreastLeatherCrop,,,"(You swing the crop at her torso as she moans.) Oh, this isn't a game anymore.",,
 ItemPelvisLeatherWhip,,,(You whip her butt as she jumps from the pain.) I do not find that funny.,,
-ItemPelvisLeatherCrop,,,(She moans each time the crop lands on it.) How can I still sit like this?,,
+ItemPelvisLeatherCrop,,,(She moans each time the crop lands on it.) How will I be able to sit like this?,,
 ItemTorso,,,I like my clothes better.,,
 RemoveItemTorso,,,"(You remove the device and she nods rapidly.)  Thanks a million, this is much better.",,
-ItemButt,,,I can not concentrate that way.,,
-RemoveItemButt,,,"Uff, close at last",,
-ItemBreast,,,"Oh, that's really necessary?",,
-RemoveItemBreast,,,She looks at you satisfied.,,
-ItemNipples,,,"Oh, that's really necessary?",,
-RemoveItemNipples,,,She looks at you satisfied.,,
+ItemButt,,,I cannot concentrate this way.,,
+RemoveItemButt,,,"Oof, it's finally over.",,
+ItemBreast,,,"Oh, is that really necessary?",,
+RemoveItemBreast,,,(She looks at you satisfied.),,
+ItemNipples,,,"Oh, is that really necessary?",,
+RemoveItemNipples,,,(She looks at you satisfied.),,
 ItemVulvaVibratingWand,,,According to which rules is this allowed?,,
-VibratingEgg,,,"I want to play with dices, not with eggs.",,
-RemoveVibratingEgg,,,"Thanks, now I can concentrate on the essential.",,
-SuspensionHempRope,,,woe to the vanquished.,,
-RemoveSuspensionHempRope,,,finally floor again under the feet.,,
+VibratingEgg,,,"I want to play with dice, not with eggs.",,
+RemoveVibratingEgg,,,"Thanks, now I can concentrate on what matters.",,
+SuspensionHempRope,,,Woe to the vanquished.,,
+RemoveSuspensionHempRope,,,"Finally, I'm back on firm ground.",,
 0,,,Welcome to the Gambling Hall. Shall we play a game?,,
 0,,"Hello, I'm DialogPlayerName.  Pleased to meet you.",Pleased to meet you too.  I'm DialogCharacterName.,DialogRemove(),
 0,,What's going on here?,In the Gambling Hall we play kinky games of chance.,DialogRemove(),
-0,,Let's play a simple dice game.,"Let's play, good luck","SimpleDiceController(""new"")",CanPlaySimpleDice()
+0,,Let's play a simple dice game.,"Let's play, good luck!","SimpleDiceController(""new"")",CanPlaySimpleDice()
 0,70,(Struggle in your restraints.),Are you having fun?,,Player.IsRestrained()
-0,30,(Play with your own rules.),(She looks expectant),,FirstSubRestrained()
-0,,Let's play fifteen and six.,(she gives you three dice),"TwentyOneController(""new"")",CanPlayTwentyOne()
-0,,Let's play Toothpick.,(she lays out 15 toothpicks) Your turn sweety.,"ToothpickController(""new"")",CanPlayToothpick()
+0,30,(Play by your own rules.),(She looks expectant.),,FirstSubRestrained()
+0,,Let's play fifteen and six.,(She gives you three dice.),"TwentyOneController(""new"")",CanPlayTwentyOne()
+0,,Let's play Toothpick.,(She lays out 15 toothpicks.) Your turn sweetie.,"ToothpickController(""new"")",CanPlayToothpick()
 0,10,I'd like to ask you some questions.,Don't be shy.  How can I help you?,,
-10,11,Which games can I play here? ,That depends on your reputation. Only a simple dice game at first. ,,
-10,20,Can you explain the rules to me?,"Of course, which game interests you?",,
-10,,Can I get better in the games?,"No, they are games of chance.",,
+10,11,Which games can I play here?,That depends on your reputation. Only a simple dice game at first.,,
+10,20,Can you explain the rules to me?,"Of course, which game are you interested in?",,
+10,,Can I get better at the games?,"No, they are games of chance.",,
 10,,How do I get reputation?,By winning games.,,
 10,,Can I tie you up?,Only if you win a game.,,
 10,,Will you restrain me?,"Most certainly, if I win.",,
 10,0,I don't have any more questions.,Alright. Shall we play a game?,,
-11,10,(Listen.),"At a higher reputation still fifteen and six, and eventually more games with other players.",,
-20,10,What are the rules of the simple dice game?,We both roll a dice. Whoever has the higher number may tie the opponent,,
-20,50,What are the rules of fifteen and six?,"You roll three or more dice and count the points. Then I roll, and whoever has the most points wins. ",,
-20,55,What are the rules of Toothpick?,"I put down 15 toothpicks. We will then alternately take 1-3 of them.",,
+11,10,(Listen.),"At a higher reputation you'll get to play fifteen and six, and eventually more games with other players.",,
+20,10,What are the rules of the simple dice game?,We both roll a die. Whoever has the higher number may tie the opponent.,,
+20,50,What are the rules of fifteen and six?,"You roll three or more dice and count the points. Then I roll, and whoever has the most points wins.",,
+20,55,What are the rules of Toothpick?,"I put down 15 toothpicks. We will then alternately take one, two or three of them.",,
 30,,(Tickle her.),"(You tickle her around the underarms and rubs.  She giggles, laughs and cries a little.)",,
 30,,(Kiss her.),(You put your hand behind her head and pull her to your lips for a long and kinky kiss.),,Player.CanInteract()
 30,,(Fondle her.),(You playfully tease her breasts as she gasps softly and blushes.),,Player.CanTalk()
 30,,(Slap her.),(You swiftly slap her on the face.  She bows down her head and whimpers.),,
 30,,(Spank her.),(You spank her hard on the butt and she jumps from the pain.),,Player.CanInteract()
-30,0,(End the Game),(You go back a step and she looks surprised.),,
+30,0,(End the game.),(You take a step back and she looks surprised.),,
 50,51,(Listen.),If you go over 21 points you instantly lose the round.,,
 51,10,(Listen.),"Every round the loser strips. If they have no clothes left, they get a little more tied up.",,
-55,10,(Listen.),"Whoever takes the last one has lost the game and gets tied up.",,
+55,10,(Listen.),Whoever takes the last one has lost the game and gets tied up.,,
 0,,Let's talk later.  (Leave her.),,DialogLeave(),
 70,72,"Please Miss, can you release me?",Let's see what the dice say...,,!FirstSubRestrained()
-70,0,"Please Miss, can you release me?",(Show her your restraints.),,FirstSubRestrained()
+70,0,"Please Miss, can you release me?",(She shows you her restraints.),,FirstSubRestrained()
 70,0,(Struggle in your restraints.),(She giggles.)  Well someone seems to be having fun.,,
 70,71,(Whimper and make pleading eyes.),Do you need help?,,
 71,72,(Nod yes.),Let's let the dice decide...,,!FirstSubRestrained()
-71,0,(Nod yes.),(Show her your restraints.),,FirstSubRestrained()
+71,0,(Nod yes.),(She shows you her restraints.),,FirstSubRestrained()
 71,0,(Frown at her.),"Fine, you can stay like that if you want.",AnnoyGamblingSub(),!FirstSubRestrained()
-71,0,(Frown at her.),(Show her your restraints.),,FirstSubRestrained()
+71,0,(Frown at her.),(She shows you her restraints.),,FirstSubRestrained()
 72,,"Yes, of course.",,"ReleasePlayerGame(""new"")",Player.CanTalk()
-72,,(Look angry),,"ReleasePlayerGame(""new"")",!Player.CanTalk()
+72,,(Look angry.),,"ReleasePlayerGame(""new"")",!Player.CanTalk()
 72,0,"No, please! No dice!","Fine, stay like that then.",,Player.CanTalk()
-72,0,(Shake your head),"Oh, you want to stay as you are? Fine with me.",,!Player.CanTalk()
+72,0,(Shake your head.),"Oh, you want to stay as you are? Fine with me.",,!Player.CanTalk()
 81,0,"Yeah, I won!",You were lucky. I guess you get to tie me up.,"SimpleDiceController(""win"")",ShowDiceStack()
 82,0,Dammit! You win.,I want to test some items...,"SimpleDiceController(""lost"")",ShowDiceStack()
 83,0,It's a draw., I'll definitely win next time!,"SimpleDiceController(""eqaul"")",ShowDiceStack()
-103,,I want to add a dice. ,(She gives you another dice.),"TwentyOneController(""add"")",ShowDiceStack()
-103,,3 points are enough,My roll. ,"TwentyOneController(""fin"")",ShowDiceStack()
-104,,I want to add a dice. ,(She gives you another dice.),"TwentyOneController(""add"")",ShowDiceStack()
-104,,4 points are enough,My roll. ,"TwentyOneController(""fin"")",ShowDiceStack()
-105,,I want to add a dice. ,(She gives you another dice.),"TwentyOneController(""add"")",ShowDiceStack()
-105,,5 points are enough,My roll. ,"TwentyOneController(""fin"")",ShowDiceStack()
-106,,I want to add a dice. ,(She gives you another dice.),"TwentyOneController(""add"")",ShowDiceStack()
-106,,6 points are enough,My roll. ,"TwentyOneController(""fin"")",ShowDiceStack()
-107,,I want to add a dice. ,(She gives you another dice.),"TwentyOneController(""add"")",ShowDiceStack()
-107,,7 points are enough,My roll. ,"TwentyOneController(""fin"")",ShowDiceStack()
-108,,I want to add a dice. ,(She gives you another dice.),"TwentyOneController(""add"")",ShowDiceStack()
-108,,8 points are enough,My roll. ,"TwentyOneController(""fin"")",ShowDiceStack()
-109,,I want to add a dice. ,(She gives you another dice.),"TwentyOneController(""add"")",ShowDiceStack()
-109,,9 points are enough,My roll. ,"TwentyOneController(""fin"")",ShowDiceStack()
-110,,I want to add a dice. ,(She gives you another dice.),"TwentyOneController(""add"")",ShowDiceStack()
-110,,10 points are enough,My roll. ,"TwentyOneController(""fin"")",ShowDiceStack()
-111,,I want to add a dice. ,(She gives you another dice.),"TwentyOneController(""add"")",ShowDiceStack()
-111,,11 points are enough,My roll. ,"TwentyOneController(""fin"")",ShowDiceStack()
-112,,I want to add a dice. ,(She gives you another dice.),"TwentyOneController(""add"")",ShowDiceStack()
-112,,12 points are enough,My roll. ,"TwentyOneController(""fin"")",ShowDiceStack()
-113,,I want to add a dice. ,(She gives you another dice.),"TwentyOneController(""add"")",ShowDiceStack()
-113,,13 points are enough,My roll. ,"TwentyOneController(""fin"")",ShowDiceStack()
-114,,I want to add a dice. ,(She gives you another dice.),"TwentyOneController(""add"")",ShowDiceStack()
-114,,14 points are enough,My roll. ,"TwentyOneController(""fin"")",ShowDiceStack()
-115,,I want to add a dice. ,(She gives you another dice.),"TwentyOneController(""add"")",ShowDiceStack()
-115,,15 points are enough,My roll. ,"TwentyOneController(""fin"")",ShowDiceStack()
-116,,I want to add a dice. ,(She gives you another dice.),"TwentyOneController(""add"")",ShowDiceStack()
-116,,16 points are enough,My roll. ,"TwentyOneController(""fin"")",ShowDiceStack()
-117,,I want to add a dice. ,(She gives you another dice.),"TwentyOneController(""add"")",ShowDiceStack()
-117,,17 points are enough,My roll. ,"TwentyOneController(""fin"")",ShowDiceStack()
-118,,I want to add a dice. ,(She gives you another dice.),"TwentyOneController(""add"")",ShowDiceStack()
-118,,18 points are enough,My roll. ,"TwentyOneController(""fin"")",ShowDiceStack()
-119,,I want to add a dice. ,(She gives you another dice.),"TwentyOneController(""add"")",ShowDiceStack()
-119,,19 points are enough,My roll. ,"TwentyOneController(""fin"")",ShowDiceStack()
-120,,I want to add a dice. ,(She gives you another dice.),"TwentyOneController(""add"")",ShowDiceStack()
-120,,20 points are enough,My roll. ,"TwentyOneController(""fin"")",ShowDiceStack()
-121,,I want to add a dice. ,(She gives you another dice.),"TwentyOneController(""add"")",ShowDiceStack()
-121,,21 points are enough,My roll. ,"TwentyOneController(""fin"")",ShowDiceStack()
+103,,I want to add a die.,(She gives you another die.),"TwentyOneController(""add"")",ShowDiceStack()
+103,,3 points are enough.,My roll.,"TwentyOneController(""fin"")",ShowDiceStack()
+104,,I want to add a die.,(She gives you another die.),"TwentyOneController(""add"")",ShowDiceStack()
+104,,4 points are enough.,My roll.,"TwentyOneController(""fin"")",ShowDiceStack()
+105,,I want to add a die.,(She gives you another die.),"TwentyOneController(""add"")",ShowDiceStack()
+105,,5 points are enough.,My roll.,"TwentyOneController(""fin"")",ShowDiceStack()
+106,,I want to add a die.,(She gives you another die.),"TwentyOneController(""add"")",ShowDiceStack()
+106,,6 points are enough.,My roll.,"TwentyOneController(""fin"")",ShowDiceStack()
+107,,I want to add a die.,(She gives you another die.),"TwentyOneController(""add"")",ShowDiceStack()
+107,,7 points are enough.,My roll.,"TwentyOneController(""fin"")",ShowDiceStack()
+108,,I want to add a die.,(She gives you another die.),"TwentyOneController(""add"")",ShowDiceStack()
+108,,8 points are enough.,My roll.,"TwentyOneController(""fin"")",ShowDiceStack()
+109,,I want to add a die.,(She gives you another die.),"TwentyOneController(""add"")",ShowDiceStack()
+109,,9 points are enough.,My roll.,"TwentyOneController(""fin"")",ShowDiceStack()
+110,,I want to add a die.,(She gives you another die.),"TwentyOneController(""add"")",ShowDiceStack()
+110,,10 points are enough.,My roll.,"TwentyOneController(""fin"")",ShowDiceStack()
+111,,I want to add a die.,(She gives you another die.),"TwentyOneController(""add"")",ShowDiceStack()
+111,,11 points are enough.,My roll.,"TwentyOneController(""fin"")",ShowDiceStack()
+112,,I want to add a die.,(She gives you another die.),"TwentyOneController(""add"")",ShowDiceStack()
+112,,12 points are enough.,My roll.,"TwentyOneController(""fin"")",ShowDiceStack()
+113,,I want to add a die.,(She gives you another die.),"TwentyOneController(""add"")",ShowDiceStack()
+113,,13 points are enough.,My roll.,"TwentyOneController(""fin"")",ShowDiceStack()
+114,,I want to add a die.,(She gives you another die.),"TwentyOneController(""add"")",ShowDiceStack()
+114,,14 points are enough.,My roll.,"TwentyOneController(""fin"")",ShowDiceStack()
+115,,I want to add a die.,(She gives you another die.),"TwentyOneController(""add"")",ShowDiceStack()
+115,,15 points are enough.,My roll.,"TwentyOneController(""fin"")",ShowDiceStack()
+116,,I want to add a die.,(She gives you another die.),"TwentyOneController(""add"")",ShowDiceStack()
+116,,16 points are enough.,My roll.,"TwentyOneController(""fin"")",ShowDiceStack()
+117,,I want to add a die.,(She gives you another die.),"TwentyOneController(""add"")",ShowDiceStack()
+117,,17 points are enough.,My roll.,"TwentyOneController(""fin"")",ShowDiceStack()
+118,,I want to add a die.,(She gives you another die.),"TwentyOneController(""add"")",ShowDiceStack()
+118,,18 points are enough.,My roll.,"TwentyOneController(""fin"")",ShowDiceStack()
+119,,I want to add a die.,(She gives you another die.),"TwentyOneController(""add"")",ShowDiceStack()
+119,,19 points are enough.,My roll.,"TwentyOneController(""fin"")",ShowDiceStack()
+120,,I want to add a die.,(She gives you another die.),"TwentyOneController(""add"")",ShowDiceStack()
+120,,20 points are enough.,My roll.,"TwentyOneController(""fin"")",ShowDiceStack()
+121,,I want to add a die.,(She gives you another die.),"TwentyOneController(""add"")",ShowDiceStack()
+121,,21 points are enough.,My roll.,"TwentyOneController(""fin"")",ShowDiceStack()
 122,,"22 points. Oh shit, I lost!",(She grins.),"TwentyOneController(""lost_next"")",ShowDiceStack()
 123,,"23 points. Oh shit, I lost!",(She grins.),"TwentyOneController(""lost_next"")",ShowDiceStack()
 124,,"24 points. Oh shit, I lost!",(She grins.),"TwentyOneController(""lost_next"")",ShowDiceStack()
@@ -128,23 +128,23 @@ RemoveSuspensionHempRope,,,finally floor again under the feet.,,
 164,,I win. Let's secure your legs first.,(She nods slowly while you tie her legs.),"TwentyOneController(""win_next"")",ShowDiceStack()
 165,,I win. You don't need to use your arms for this game.,(She struggles while you bind her arms behind her back.),"TwentyOneController(""win_next"")",ShowDiceStack()
 166,,"I win. Come on, open up.",(She reluctantly accepts the gag.),"TwentyOneController(""win_next"")",ShowDiceStack()
-171,,"Oh, I lost. (Take off your accessories)",(She grins.),"TwentyOneController(""lost_next"")",ShowDiceStack()
-172,,"Oh, I lost. (Take off your clothes)","Whoops, time to lose some clothes! ","TwentyOneController(""lost_next"")",ShowDiceStack()
-173,,"Oh, I lost. (Take off your underwear)",Are you starting to feel exposed? ,"TwentyOneController(""lost_next"")",ShowDiceStack()
-174,,"Oh, I lost. (Let her tie your legs)",Looks like you're not going anywhere. ,"TwentyOneController(""lost_next"")",ShowDiceStack()
-175,,"Oh, I lost. (Let her tie your arms)",Not much before you can't move at all... ,"TwentyOneController(""lost_next"")",ShowDiceStack()
+171,,"Oh, I lost. (Take off your accessories.)",(She grins.),"TwentyOneController(""lost_next"")",ShowDiceStack()
+172,,"Oh, I lost. (Take off your clothes.)","Whoops, time to lose some clothes!","TwentyOneController(""lost_next"")",ShowDiceStack()
+173,,"Oh, I lost. (Take off your underwear.)",Are you starting to feel exposed?,"TwentyOneController(""lost_next"")",ShowDiceStack()
+174,,"Oh, I lost. (Let her tie your legs.)",Looks like you're not going anywhere.,"TwentyOneController(""lost_next"")",ShowDiceStack()
+175,,"Oh, I lost. (Let her tie your arms.)",Not much left until you can't move at all...,"TwentyOneController(""lost_next"")",ShowDiceStack()
 176,,"Oh, I lost. (Open your mouth and let her gag you)","You lose! Open up, it's time for a gag...","TwentyOneController(""lost_next"")",ShowDiceStack()
-200,,I take one.,(nods),"ToothpickController("1")",ToothpickCanPickOne()
-200,,I take two.,(nods),"ToothpickController("2")",ToothpickCanPickTwo()
-200,,I take three.,(nods),"ToothpickController("3")",ToothpickCanPickThree()
-200,,I give up. (Let her tie you),(She smiles) What you mean?,"ToothpickController(""give_up"")",ShowToothpickStack()
+200,,I'll take one.,(She nods.),"ToothpickController(""1"")",ToothpickCanPickOne()
+200,,I'll take two.,(She nods.),"ToothpickController(""2"")",ToothpickCanPickTwo()
+200,,I'll take three.,(She nods.),"ToothpickController(""3"")",ToothpickCanPickThree()
+200,,I give up. (Let her tie you up.),(She smiles.) What do you mean?,"ToothpickController(""give_up"")",ShowToothpickStack()
 201,0,"Yeah, I won!",You were lucky. I guess you get to tie me up.,"ToothpickController(""win"")",
 202,0,Dammit! You win.,I want to test some items...,"ToothpickController(""lost"")",
 203,0,I surrender.,I want to test some items...,"ToothpickController(""lost"")",
-ToothpickLost,,,(She smiles),,
-Toothpick1,,,(She nods) I take 1,,
-Toothpick2,,,(She nods) I take 2,,
-Toothpick3,,,(She nods) I take 3,,
+ToothpickLost,,,(She smiles.),,
+Toothpick1,,,(She nods.) I'll take one.,,
+Toothpick2,,,(She nods.) I'll take two.,,
+Toothpick3,,,(She nods.) I'll take three.,,
 MaidRescue,,,(She struggles in her restraints.)  Can you release me?,,IsSubsRestrained()
 MaidRescue,,I'll go find some help.  (Leave her.),,DialogLeave(),
 MaidRescue,,What happened here?,I lost a game and the winner left me!,,
@@ -152,7 +152,7 @@ MaidRescue,,Do you need help?,"Yes please, can you release us all?",,IsSubsRestr
 MaidRescue,MaidRescueComplete,Is everything alright now?,"Yeah, you've taken care of everything!  Please send my regards to the maids of the sorority.",CompleteRescue(),!IsSubsRestrained()
 MaidRescueComplete,0,Great!  A chore well done.,Absolutely.  Is there something I can do for you?,,
 MaidRescueComplete,0,No problem.  We are here to serve you.,I like the sound of that!  Is there something I can do for you?,"DialogChangeReputation(""Dominant"", -2)",
-MaidRescueComplete,0,"Alright, but be more careful next time.","I will, thankyou.  Is there something I can do for you?","DialogChangeReputation(""Dominant"", 2)",
+MaidRescueComplete,0,"Alright, but be more careful next time.","I will, thank you.  Is there something I can do for you?","DialogChangeReputation(""Dominant"", 2)",
 ActivityKissIntro,,,(She gets close to you for a long and loving kiss on your lips.)  Mmmmmmmmh...,,
 ActivityKiss,,That's not fair!,,"ReleasePlayerGame(""next"")",ShowNpcDice()
 ActivityKiss,,You have wonderful lips...,,"ReleasePlayerGame(""next"")",ShowNpcDice()

@@ -1,11 +1,18 @@
 Name,Name:
 Title,Title:
+TitleNone,None
 TitleMistress,Mistress
+TitleClubSlave,Club Slave
 TitleHeadMaid,Head Maid
 TitleMaid,Maid
 TitleMasterKidnapper,Master Kidnapper
 TitleKidnapper,Kidnapper
-TitleNone,None
+TitlePatient,Patient
+TitlePermanentPatient,Permanent Patient
+TitleEscapedPatient,Escaped Patient
+TitleNurse,Nurse
+TitleDoctor,Doctor
+TitleCollegeStudent,College Student
 TitlePonyFoal,Foal
 TitlePonyFarm,Farm Horse
 TitlePonyCold,Cold Blood Horse
@@ -42,8 +49,9 @@ SkillNone,None
 SkillBondage,Bondage:
 SkillEvasion,Evasion:
 SkillWillpower,Willpower:
-SkillDressage,Pony Dressage:
-SkillModifier,Global modifier:
+SkillDressage,Dressage:
+SkillModifier,Skills modifier:
+SkillModifierDuration, Time left:
 Trait,- Traits -
 TraitUnknown,Spend more time with her to know her traits
 TraitDominant,Dominant:

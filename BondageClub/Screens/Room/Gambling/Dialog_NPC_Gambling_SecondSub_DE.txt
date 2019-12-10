@@ -3,12 +3,20 @@ Blessed those who have nothing to say and yet remain silent.
 Gesegnet sei, wer nichts zu sagen hat und daher schweigt.
 (She shakes her head but you're able to gag and silence her.)
 (Sie schüttelt den Kopf, aber du schaffst es, sie mit einem Knebel zum Schweigen zu bringen.)
-(You remove her gag and she stretches her mouth.)  "Thanks,  that was getting uncomfortable."
+(You remove her gag and she stretches her mouth.)  Thanks, that was getting uncomfortable.
 (Du nimmst ihren Knebel ab und sie streckt ihren Mund.) Danke, das wurde langsam unangenehm.
-(She grumbles but complies as you restrain her arms.)  How can I roll the dice like this?
+(You put some earplugs into place.) Oh, everything is so muffled, hehe.
+(Du steckst ihr ein Paar Ohrstöpsel hinein.) Oh, jetzt ist alles so gedämpft, hihi.
+(You pull the earplugs out.) Oh, I can hear you clearly again.
+(Du ziehst die Ohrstöpsel heraus.) Oh, ich kann dich wieder klar hören.
+(She grumbles but complies as you restrain her arms.)  How am I supposed to roll the dice like this?
 (Sie grummelt, lässt dich aber ihre Arme fesseln.) Wie soll ich denn jetzt würfeln?
-(You free her arms and she gives you a thumbs up.)  That's better, thanks!.
+(You free her arms and she gives you a thumbs up.)  That's better, thanks!
 (Du befreist ihre Arme und sie zeigt dir einen Daumen nach oben.) So ist es besser, danke!
+(She sighs and lets you restrain her hands.) I'm not going be able to throw dice like this.
+(Sie seufzt und lässt sich von dir ihre Hände fesseln.) So werde ich keine Würfel benutzen können.
+(You slowly release her hands.)  That's better, thanks.
+(Du befreist langsam ihre Hände.) Das ist besser, danke.
 (She looks down as you restrain her legs securely.)  I'm not going anywhere anyway.
 (Sie schaut herab, als du ihre Beine fest zusammenbindest.) Ich wollte sowieso nirgendwo hin.
 (You release her legs from the restraint.)  You're quite good with restraints Miss.
@@ -25,37 +33,37 @@ Gesegnet sei, wer nichts zu sagen hat und daher schweigt.
 (Sie zappelt, als du es verschließt.) Nein, bitte! Ich habe keinen Schlüssel dafür!
 (She looks really happy as you unlock the device.)  Thank you so much Miss DialogPlayerName.
 (Sie wirkt sehr glücklich, als du es aufschließt.) Vielen lieben Dank, Miss DialogPlayerName.
-(You put the device as she shakes her head.)  Ow!  You've made my day much awfully
+(You put the device as she shakes her head.)  Ow!  You've made my day much more awful.
 (Sie schüttelt den Kopf, als du es ihr umschnallst.) Au! Du hast meinen Tag ganz schön furchtbar gemacht.
 (You remove the device and she nods rapidly.)  Thanks a million, this is much better.
 (Du nimmst das Ding ab und sie nickt energisch.) Tausend Dank, das ist viel besser.
-(She trembles of painas you whip her breast.) This is a gambling hall no torture chamber.
+(She trembles of pain as you whip her breast.) This is a gambling hall, not a torture chamber.
 (Sie zittert vor Schmerz, als du ihre Brust auspeitscht.) Das hier ist die Spielhalle, nicht die Folterkammer.
 (You swing the crop on her torso as she moans.) Oh, that's not a game anymore.
 (Du schwingst die Gerte auf ihren Körper und sie stöhnt.) Oh, das ist jetzt kein Spiel mehr.
 (You whip her butt as she jumps from the pain.) I do not find that funny.
 (Du peitschst ihr auf den Hintern und sie zuckt vor Schmerz zusammen.) Ich finde das nicht lustig.
-(She moans each time the crop lands on it.) How can I still sit like this?
+(She moans each time the crop lands on it.) How will I be able to sit like this?
 (Sie stöhnt bei jedem Treffer der Gerte.) Wie soll ich denn jetzt noch sitzen?
 I like my clothes better.
 Meine Kleidung ist mir lieber.
-I can not concentrate that way.
+I cannot concentrate this way.
 So kann ich mich nicht konzentrieren.
-Uff, close at last
-Uff, na endlich.
-Oh, that's really necessary?
+Oof, it's finally over.
+Uff, endlich ist es vorbei.
+Oh, is that really necessary?
 Oh, muss das wirklich sein?
-She looks at you satisfied.
+(She looks at you satisfied.)
 (Sie sieht dich zufrieden an.)
-you will pay for it.
+You will pay for this.
 Dafür wirst du bezahlen.
-I want to play with dices, not with eggs.
+I want to play with dice, not with eggs.
 Ich will mit Würfeln spielen, nicht mit Eiern.
-Thanks, now I can concentrate on the essential.
+Thanks, now I can concentrate on what matters.
 Danke, jetzt kann ich mich aufs Wesentliche konzentrieren.
-woe to the vanquished.
+Woe to the vanquished.
 Wehe den Besiegten.
-finally floor again under the feet.
+Finally, I'm back on firm ground.
 Endlich wieder Boden unter den Füßen.
 Welcome to the Gambling Hall. Shall we play a game?
 Willkommen in der Spielhalle. Ein Spiel gefällig?
@@ -72,7 +80,7 @@ Ich hätte da ein paar Fragen.
 What do you want to know?
 Was möchtest du wissen?
 ###_PLAYER
-(Play with your own rules.)
+(Play by your own rules.)
 (Nach deinen eigenen Regeln spielen.)
 ###_NPC
 (She looks expectant.)
@@ -87,7 +95,7 @@ Möchtest du Fuchs oder Jäger sein?
 Let's play Street to Roissy.
 Spielen wir Straße nach Roissy.
 ###_NPC
-Ok, you're on.
+OK, you're on.
 Okay, los geht's.
 ###_PLAYER
 Let's play Dare Six.
@@ -121,7 +129,7 @@ Klar. Für welches Spiel?
 Can I tie you up?
 Kann ich dich fesseln?
 ###_NPC
-Only if you win a game. 
+Only if you win a game.
 Nur, wenn du ein Spiel gewinnst.
 ###_PLAYER
 Will you restrain me?
@@ -139,8 +147,8 @@ Alles klar. Ein Spiel gefällig?
 What are the rules of Catch the Fox?
 Was sind die Regeln für Fang den Fuchs?
 ###_NPC
-One player is the fox, the other is the hunter. The hunter pays a hunting lease of 10$. 
-Ein Spieler ist der Fuchs, der andere ist der Jäger. Der Jäger zahlt eine Jagdgebühr von 10$. 
+One player is the fox, the other is the hunter. The hunter pays a hunting lease of 5$.
+Ein Spieler ist der Fuchs, der andere ist der Jäger. Der Jäger zahlt eine Jagdgebühr von 5$.
 ###_PLAYER
 What are the rules of Street to Roissy?
 Was sind die Regeln für Straße nach Roissy?
@@ -157,7 +165,7 @@ In jeder Runde würfelst du so oft du willst und zählst die Punkte zusammen.
 I have another question.
 Ich habe noch eine Frage.
 ###_NPC
-Ok, go ahead.
+OK, go ahead.
 Okay, raus damit.
 ###_PLAYER
 (Listen.)
@@ -169,7 +177,7 @@ The fox gets a dice lead and needs to reach a total of 30 to escape the hunter.
 Der Fuchs bekommt einen Vorsprung von einem Würfel und muss eine Summe von 30 erreichen, um dem Jäger zu entkommen.
 If the hunter's score is equal to or as high as the fox's score, they catch the fox and get the lease back.
 Wenn die Punktzahl des Jägers größer oder gleich der des Fuchses ist, hat er den Fuchs gefangen und bekommt die Gebühr zurück.
-If a player rolls the wrong number, they pay 1$ and roll again. 
+If a player rolls the wrong number, they pay 1$ and roll again.
 Wer nicht die richtige Zahl würfelt, muss 1$ zahlen und erneut würfeln.
 If a player rolls the correct number, the opponent takes a step towards Roissy and either remove clothes or add restraints.
 Wenn ein Spieler richtig würfelt, bewegt sich sein Gegner auf Roissy zu und legt Kleidung ab oder bekommt Fesseln dazu.
@@ -179,7 +187,7 @@ Then I roll the dice. Whoever has more points wins the round.
 Danach würfele ich genauso oft. Wer mehr Punkte hat, gewinnt die Runde.
 However, if you throw a 6, you instantly lose the round.
 Wenn du aber eine 6 würfelst, hast du die Runde sofort verloren.
-The first player to lose 6 rounds loses the game. 
+The first player to lose 6 rounds loses the game.
 Wer zuerst 6 Runden verliert, ist der Verlierer des ganzen Spiels.
 ###_PLAYER
 (Tickle her.)
@@ -212,17 +220,17 @@ Wer zuerst 6 Runden verliert, ist der Verlierer des ganzen Spiels.
 (You spank her hard and she yelps from the pain.)
 (Du haust ihr doll auf den Hintern und sie jault vor Schmerz.)
 ###_PLAYER
-(End the Game.)
+(End the game.)
 (Das Spiel beenden.)
 ###_NPC
-(You go back a step and she looks surprised.)
+(You take a step back and she looks surprised.)
 (Du trittst einen Schritt zurück und sie wirkt überrascht.)
 ###_PLAYER
 (Nod yes.)
 (Nicken.)
 ###_NPC
-Are you ready to pay 25$? 
-Bist du bereit, 25 dafür zu zahlen$? 
+Are you ready to pay 25$?
+Bist du bereit, 25$ dafür zu zahlen?
 ###_PLAYER
 Yes, can you release me?
 Ja, kannst du mich befreien?
@@ -269,8 +277,8 @@ Okay.
 The fox has escaped! (Take the win.)
 Der Fuchs ist entkommen! (Deinen Gewinn kassieren.)
 ###_NPC
-(She gives you the profit of REPLACEMONEY $.)
-(Sie gibt dir den Gewinn von REPLACEMONEY $.)
+(She gives you the profit of REPLACEMONEY$.)
+(Sie gibt dir den Gewinn von REPLACEMONEY$.)
 ###_PLAYER
 Congratulations! (Give her the win.)
 Glückwunsch! (Ihr den Gewinn geben.)
@@ -281,14 +289,14 @@ Glückwunsch! (Ihr den Gewinn geben.)
 Uh oh, you caught me!
 Oh-oh, du hast mich erwischt!
 ###_NPC
- (She ties you up.)
+(She ties you up.)
 (Sie fesselt dich.)
 ###_PLAYER
 Ahah! You can't escape me!
 Ahah! Du kommst mir nicht davon!
 ###_NPC
-(She gives you the REPLACEMONEY $ back.)
-(Sie gibt dir die REPLACEMONEY $ zurück.)
+(She gives you the REPLACEMONEY$ back.)
+(Sie gibt dir die REPLACEMONEY$ zurück.)
 ###_PLAYER
 (Roll the dice.)
 (Würfeln.)
@@ -341,7 +349,7 @@ Beide richtig. Weg mit der Unterwäsche.
 Both right. You'll have to start hopping!
 Beide richtig. Jetzt musst du wohl hüpfen!
 ###_NPC
-(She nod slowly while you tie her legs and then you both move towards Roissy.)
+(She nods slowly while you tie her legs and then you both move towards Roissy.)
 (Sie nickt langsam, während du ihre Beine fesselst, und dann geht ihr beide auf Roissy zu.)
 ###_PLAYER
 Both right. Rolling might get difficult now...
@@ -389,31 +397,31 @@ Verliere jetzt bloß nicht das Gleichgewicht.
 Oh, I lost. (Let her tie your arms.)
 Oh, verloren. (Sie deine Arme fesseln lassen.)
 ###_NPC
-Just a little bit more to go... 
+Just a little bit more to go...
 Nur noch ein kleines Stückchen...
 ###_PLAYER
 Oh, I lost. (Try to resist her putting the gag in.)
 Oh, verloren. (Dich gegen den Knebel wehren.)
 ###_NPC
-Oh no you don't!  (She forces the gag into your mouth and takes the REPLACEMONEY $ winnings.)
-Das kannst du dir abschminken! (Sie zwingt dir den Knebel auf und nimmt den Gewinn von REPLACEMONEY $.)
+Oh no you don't!  (She forces the gag into your mouth and takes the REPLACEMONEY$ winnings.)
+Das kannst du dir abschminken! (Sie zwingt dir den Knebel auf und nimmt den Gewinn von REPLACEMONEY$.)
 ###_PLAYER
 I win. Take off your accessories.
 Gewonnen. Nimm deine Accessoires ab.
 ###_NPC
-(She take her accessories off.)
+(She takes her accessories off.)
 (Sie nimmt ihre Accessoires ab.)
 ###_PLAYER
 I win. Lose the clothes.
 Gewonnen. Weg mit der Kleidung.
 ###_NPC
-(She take her clothes off.)
+(She takes her clothes off.)
 (Sie zieht ihre Kleidung aus.)
 ###_PLAYER
 I win. Time for you to get naked.
 Gewonnen. Zeit, dich nackig zu machen.
 ###_NPC
-(She take her underwear off.)
+(She takes her underwear off.)
 (Sie zieht ihre Unterwäsche aus.)
 ###_PLAYER
 I win. Let's tie up those legs, shall we?
@@ -431,13 +439,13 @@ Gewonnen. Du brauchst deine Arme nicht zum Würfeln.
 I win. Time for the final touch!
 Gewonnen. Zeit, das Werk zu vollenden!
 ###_NPC
-(She mumbles as you gag her, and then you take the REPLACEMONEY $ winnings.)
-(Sie murmelt, als du sie knebelst, und dann nimmst du den Gewinn von REPLACEMONEY $ an dich.)
+(She mumbles as you gag her, and then you take the REPLACEMONEY$ winnings.)
+(Sie murmelt, als du sie knebelst, und dann nimmst du den Gewinn von REPLACEMONEY$ an dich.)
 ###_PLAYER
-I want to add a dice. 
+I want to add a die.
 Ich will noch einen Würfel.
 ###_NPC
-(She gives you another dice.)
+(She gives you another die.)
 (Sie gibt dir einen weiteren Würfel.)
 ###_PLAYER
 That's enough.
@@ -459,8 +467,8 @@ Hey, das steht dir wirklich super...
 Oh, I lost. (Open your mouth.)
 Oh, verloren. (Deinen Mund aufmachen.)
 ###_NPC
-This gag is perfect for you. (She takes the REPLACEMONEY $ winnings.)
-Dieser Knebel ist perfekt für dich. (Sie nimmt den Gewinn von REPLACEMONEY $.)
+This gag is perfect for you. (She takes the REPLACEMONEY$ winnings.)
+Dieser Knebel ist perfekt für dich. (Sie nimmt den Gewinn von REPLACEMONEY$.)
 ###_PLAYER
 I win. Take off those accessories.
 Gewonnen. Nimm diese Accessoires ab.
@@ -495,15 +503,15 @@ Gewonnen. Diese Arme sind nur im Weg.
 I win. Open wide!
 Gewonnen. Mund auf!
 ###_NPC
-(She opens her mouth slowly and you gag her, and then take the REPLACEMONEY $ winnings.)
-(Sie macht langsam ihren Mund auf, du knebelst sie und nimmst den Gewinn von REPLACEMONEY $ an dich.)
+(She opens her mouth slowly and you gag her, and then take the REPLACEMONEY$ winnings.)
+(Sie macht langsam ihren Mund auf, du knebelst sie und nimmst den Gewinn von REPLACEMONEY$ an dich.)
 ###_PLAYER
 (Mumble into the gag.)
 (In den Knebel murmeln.)
 ###_NPC
 (She cheers.)
 (Sie jubelt.)
-(she shows her restraints.) I would like to, but ...
+(She shows you her restraints.) I would like to, but...
 (Sie zeigt dir ihre Fesseln.) Ich würde ja gern, aber...
 (She struggles in her restraints.)  Can you release me?
 (Sie zappelt in ihren Fesseln.) Kannst du mich befreien?
@@ -515,7 +523,7 @@ Was ist hier passiert?
 ###_NPC
 I lost a game and the winner just left me all tied up!
 Ich habe ein Spiel verloren und die Siegerin hat mich einfach gefesselt stehen lassen!
-Yes please, can you release us? 
+Yes please, can you release us?
 Ja, bitte, kannst du uns befreien?
 ###_PLAYER
 Is everything alright now?

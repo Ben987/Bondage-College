@@ -13,7 +13,7 @@ var MaidQuartersIsMaid = false;
 var MaidQuartersIsHeadMaid = false;
 var MaidQuartersDominantRep = 0;
 var MaidQuartersCurrentRescue = "";
-var MaidQuartersRescueList = ["IntroductionClass", "ShibariDojo", "Shop", "Gambling", "Prison"];
+var MaidQuartersRescueList = ["IntroductionClass", "ShibariDojo", "Shop", "Gambling"]; // "Prison" should be re-added when git4nick code is ready
 var MaidQuartersRescueStage = ["310", "320", "330", "340", "350"];
 var MaidQuartersCurrentRescueStarted = false;
 var MaidQuartersCurrentRescueCompleted = false;
@@ -65,6 +65,7 @@ function MaidQuartersRun() {
 function MaidQuartersClick() {
 	if ((MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
 	if ((MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000)) {
+		ManagementClubSlaveDialog(MaidQuartersMaid);
 		CharacterSetCurrent(MaidQuartersMaid);
 		if (MaidQuartersMaid.Stage == "285") MaidQuartersMaid.CurrentDialog = DialogFind(MaidQuartersMaid, (MaidQuartersOnlineDrinkCompleted()) ? "MaidDrinkOnlineComplete" : "MaidDrinkOnlineIncomplete");
 	}
@@ -158,7 +159,7 @@ function MaidQuartersMaidReleasePlayer() {
 
 // Prepares a counter that will affect the dominant reputation of the player
 function MaidQuartersDominantRepChange(Value) {
-	MaidQuartersDominantRep = MaidQuartersDominantRep + Value;
+	MaidQuartersDominantRep = MaidQuartersDominantRep + parseInt(Value);
 }
 
 // When we switch from one maid to another in the initiation

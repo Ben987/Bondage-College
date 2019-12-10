@@ -52,7 +52,7 @@ function AsylumMeetingClick() {
 // When the player smokes with the patient
 function AsylumMeetingSmoke() {
 	CharacterSetFacialExpression(Player, "Blush", "Low");
-	TimerInventoryRemoveSet(Player, "Blush", 15);	
+	TimerInventoryRemoveSet(Player, "Blush", 15);
 	CharacterSetFacialExpression(Player, "Eyebrows", "Soft");
 	TimerInventoryRemoveSet(Player, "Eyebrows", 15);
 	CharacterSetFacialExpression(AsylumMeetingPatientLeft, "Blush", "Low");
@@ -87,4 +87,12 @@ function AsylumMeetingRunAway(RepChange) {
 function AsylumMeetingRestrainPlayer(RestraintsType) {
 	CharacterFullRandomRestrain(Player, RestraintsType);
 	DialogChangeReputation("Dominant", -1);
+}
+
+// When the player plays with a patient, she blushes
+function AsylumMeetingBlush(BlushType) {
+	CharacterSetFacialExpression(CurrentCharacter, "Blush", BlushType);
+	TimerInventoryRemoveSet(CurrentCharacter, "Blush", 10);
+	CharacterSetFacialExpression(CurrentCharacter, "Eyebrows", "Lowered");
+	TimerInventoryRemoveSet(CurrentCharacter, "Eyebrows", 10);
 }

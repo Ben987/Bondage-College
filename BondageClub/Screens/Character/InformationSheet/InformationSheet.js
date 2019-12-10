@@ -4,24 +4,6 @@ var InformationSheetSelection = null;
 var InformationSheetPreviousModule = "";
 var InformationSheetPreviousScreen = "";
 
-// Gets the best title for the player and returns it
-function InformationSheetGetTitle() {
-	if (LogQuery("ClubMistress", "Management")) return TextGet("TitleMistress");
-	if (SkillGetLevel(Player, "Dressage") >= 10) return TextGet("TitlePonyPegasus");
-	if (LogQuery("LeadSorority", "Maid")) return TextGet("TitleHeadMaid");
-	if (ReputationGet("Kidnap") >= 100) return TextGet("TitleMasterKidnapper");
-	if (SkillGetLevel(Player, "Dressage") >= 8) return TextGet("TitlePonyUnicorn");
-	if (SkillGetLevel(Player, "Dressage") >= 6) return TextGet("TitlePonyWild");
-	if (SkillGetLevel(Player, "Dressage") >= 5) return TextGet("TitlePonyHot");
-	if (LogQuery("JoinedSorority", "Maid")) return TextGet("TitleMaid");
-	if (ReputationGet("Kidnap") >= 50) return TextGet("TitleKidnapper");
-	if (SkillGetLevel(Player, "Dressage") >= 4) return TextGet("TitlePonyWarm");
-	if (SkillGetLevel(Player, "Dressage") >= 3) return TextGet("TitlePonyCold");
-	if (SkillGetLevel(Player, "Dressage") >= 2) return TextGet("TitlePonyFarm");
-	if (SkillGetLevel(Player, "Dressage") >= 1) return TextGet("TitlePonyFoal");
-	return TextGet("TitleNone");
-}
-
 // Returns the NPC love text
 function InformationSheetGetLove(Love) {
 	if (Love >= 100) return TextGet("Relationship") + " " + Love.toString() + " " + TextGet("RelationshipPerfect");
@@ -40,10 +22,11 @@ function InformationSheetRun() {
 
 	// Draw the character base values
 	var C = InformationSheetSelection;
+	var CurrentTitle = TitleGet(C);
 	DrawCharacter(C, 50, 50, 0.9);
 	MainCanvas.textAlign = "left";
 	DrawText(TextGet("Name") + " " + C.Name, 550, 125, "Black", "Gray");
-	DrawText(TextGet("Title") + " " + ((C.ID == 0) ? InformationSheetGetTitle() : (C.Title == null) ? TextGet("TitleNone") : TextGet("Title" + C.Title)), 550, 200, "Black", "Gray");
+	DrawText(TextGet("Title") + " " + TextGet("Title" + CurrentTitle), 550, 200, (TitleIsForced(CurrentTitle)) ? "Red" : "Black", "Gray");
 	DrawText(TextGet("MemberNumber") + " " + ((C.MemberNumber == null) ? TextGet("NoMemberNumber") : C.MemberNumber.toString()), 550, 275, "Black", "Gray");
 
 	// Some info are not available for online players
@@ -66,8 +49,9 @@ function InformationSheetRun() {
 		DrawText(TextGet((C.Ownership.Stage == 0) ? "TrialFor" : "CollaredFor") + " " + (Math.floor((CurrentTime - C.Ownership.Start) / 86400000)).toString() + " " + TextGet("Days"), 550, 650, "Black", "Gray");
 	}
 
+	var OnlinePlayer = C.AccountName.indexOf("Online-") >= 0;
 	// For player and online characters, we show the reputation and skills
-	if ((C.ID == 0) || (C.AccountName.indexOf("Online-") >= 0)) {
+	if ((C.ID == 0) || OnlinePlayer) {
 
 		// Shows the member number and online permissions for other players
 		if (C.ID != 0) DrawText(TextGet("ItemPermission") + " " + TextGet("PermissionLevel" + C.ItemPermission.toString()), 550, 850, "Black", "Gray");
@@ -94,8 +78,17 @@ function InformationSheetRun() {
 		}
 
 		// Draw the player skill modifier if there's one
-		if ((C.ID == 0) && (SkillModifier != 0))
-			DrawText(TextGet("SkillModifier") + " " + SkillModifier, 1450, 500, "Black", "Gray");
+		SkillGetLevel(C, "Evasion");
+		if ((C.ID == 0) && (SkillModifier != 0)) {
+			var PlusSign = "";
+			if (SkillModifier > 0) PlusSign = "+";
+			else PlusSign = "";
+			DrawText(TextGet("SkillModifier"), 1450, 575, "Black", "Gray");
+			DrawText(TextGet("SkillBondage") + " " + PlusSign + SkillModifier, 1450, 650, "Black", "Gray");
+			DrawText(TextGet("SkillEvasion") + " " + PlusSign + SkillModifier, 1450, 725, "Black", "Gray");
+			DrawText(TextGet("SkillModifierDuration") + " " + (TimermsToTime(LogValue("ModifierDuration", "SkillModifier") - CurrentTime)), 1450, 800, "Black", "Gray");
+		}
+
 
 	} else {
 
@@ -117,16 +110,28 @@ function InformationSheetRun() {
 	// Draw the last controls
 	MainCanvas.textAlign = "center";
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
-	if (C.ID == 0) DrawButton(1815, 190, 90, 90, "", "White", "Icons/Preference.png");
-	if (C.ID == 0) DrawButton(1815, 305, 90, 90, "", "White", "Icons/FriendList.png");
-
+	if (C.ID == 0) {
+		if (!TitleIsForced(CurrentTitle)) DrawButton(1815, 190, 90, 90, "", "White", "Icons/Title.png");
+		DrawButton(1815, 305, 90, 90, "", "White", "Icons/Preference.png");
+		DrawButton(1815, 420, 90, 90, "", "White", "Icons/FriendList.png");
+		DrawButton(1815, 535, 90, 90, "", "White", "Icons/Introduction.png");
+	} else if (OnlinePlayer) {
+		DrawButton(1815, 190, 90, 90, "", "White", "Icons/Introduction.png");
+	}
 }
 
 // When the user clicks on the character info screen
 function InformationSheetClick() {
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) InformationSheetExit();
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 190) && (MouseY < 280) && (InformationSheetSelection.ID == 0)) CommonSetScreen("Character", "Preference");
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 305) && (MouseY < 395) && (InformationSheetSelection.ID == 0)) CommonSetScreen("Character", "FriendList");
+	var C = InformationSheetSelection;
+	if (CommonIsClickAt(1815, 75, 90, 90)) InformationSheetExit();
+	if (C.ID == 0) {
+		if (CommonIsClickAt(1815, 190, 90, 90) && !TitleIsForced(TitleGet(C))) CommonSetScreen("Character", "Title");
+		if (CommonIsClickAt(1815, 305, 90, 90)) CommonSetScreen("Character", "Preference");
+		if (CommonIsClickAt(1815, 420, 90, 90)) CommonSetScreen("Character", "FriendList");
+		if (CommonIsClickAt(1815, 535, 90, 90)) CommonSetScreen("Character", "OnlineProfile");
+	} else if (C.AccountName.indexOf("Online-") >= 0) {
+		if (CommonIsClickAt(1815, 190, 90, 90)) CommonSetScreen("Character", "OnlineProfile");
+	}
 }
 
 // when the user exit this screen

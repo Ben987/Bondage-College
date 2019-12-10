@@ -1,0 +1,166 @@
+###_NPC
+(She imitates your gagged speech and giggles.)
+(Sie ahmt dein Knebel-Gemurmel nach und kichert.)
+(A nervous asylum patient crosses your path.)  Oh!  Hello nurse DialogPlayerName.  What are you doing here?
+(Eine nervöse Anstaltspatientin läuft dir über den Weg.) Oh! Hallo, Schwester DialogPlayerName. Was machen Sie denn hier?
+(An asylum patient tries to run from you but get stuck in a dead end.)  What do you want?
+(Eine Anstaltspatientin versucht vor dir zu fliehen, bleibt aber in einer Sackgasse stecken.) Was willst du?
+(You surprise a suspicious looking asylum patient.)  Oh my!  You've scared me.  What's going on?
+(Du überraschst eine verdächtig wirkende Anstaltspatientin.) Meine Güte! Haben Sie mich erschreckt. Was ist los?
+(She surrenders to you.)  You got me nurse DialogPlayerName.  What do you want from me?
+(Sie ergibt sich.) Sie haben mich erwischt, Schwester DialogPlayerName. Was wollen Sie von mir?
+(She checks your bondage and grins.)  I'll never return to the asylum!
+(Sie überprüft deine Fesseln und grinst.) Ich gehe nie mehr in die Anstalt zurück!
+###_PLAYER
+Who are you?
+Wer bist du?
+###_NPC
+Me?  I'm nobody!  Can I go now?
+Ich? Ich bin niemand! Kann ich jetzt gehen?
+###_PLAYER
+You seem nervous.
+Du wirkst nervös.
+###_NPC
+No, no, no, no.  Why would I be nervous?  (She looks even more nervous.)
+Nein, nein, nein, nein. Wieso sollte ich denn nervös sein? (Sie sieht jetzt noch nervöser aus.)
+###_PLAYER
+Have I seen you before?
+Habe ich dich schon mal gesehen?
+###_NPC
+Maybe, it's a small world after all.
+Möglich, die Welt ist ja schließlich klein.
+###_PLAYER
+(Let her go.)
+(Sie gehen lassen.)
+Are you a committed patient?
+Bist du eine eingewiesene Patientin?
+###_NPC
+Yes, I mean no.  I'm not going back there!  (She raises her fists.)
+Ja, ich meine nein. Ich gehe nicht dorthin zurück! (Sie hebt die Fäuste.)
+###_PLAYER
+Did you escape from the asylum?
+Bist du aus der Anstalt ausgebrochen?
+###_NPC
+(She raises her fists.)  I'm not going back there!
+(Sie hebt die Fäuste.) Ich gehe nicht dorthin zurück!
+###_PLAYER
+I'm here to bring you back girl.
+Ich bringe dich zurück, Mädchen.
+I'll bring you back by force.  (Fight her.)
+Ich bringe dich mit Gewalt zurück. (Gegen sie kämpfen.)
+Don't hurt me!
+Tu mir nicht weh!
+###_NPC
+You're pathetic.  Get out of my face.
+Du bist jämmerlich. Mach 'nen Abgang.
+###_PLAYER
+Maybe we can make a deal.
+Vielleicht finden wir eine andere Lösung.
+###_NPC
+A deal?  What kind of deal?
+Eine andere Lösung? Was meinst du damit?
+###_PLAYER
+Pay me and I'll let you go.
+Gib mir Geld und ich lasse dich gehen.
+###_NPC
+Forget it, you won't get any money from me.
+Vergiss es, von mir bekommst du kein Geld.
+You're so corrupted.  Take these 5$ and leave me alone.
+Du bist so korrupt. Nimm diese 5$ und lass mich in Ruhe.
+###_PLAYER
+Come to my room, you can hide there.
+Komm in mein Zimmer, da kannst du dich verstecken.
+###_NPC
+No way, I'm not following a nurse anywhere.
+Niemals, ich folge einer Krankenschwester nirgendwohin.
+I guess there are worse plans than that.  Alright then, I'll follow you.
+Ist wahrscheinlich nicht der schlechteste Plan der Welt. Also gut, Ich folge dir.
+###_PLAYER
+I won't drag you by your hair.  (Fight her.)
+Ich zerre dich nicht an den Haaren herum. (Gegen sie kämpfen.)
+It's a pleasure doing business with you.
+Schön, mit dir Geschäfte zu machen.
+###_NPC
+Yeah, yeah, yeah.  Can I go now?
+Ja, ja, ja. Kann ich jetzt gehen?
+###_PLAYER
+(Bring her to your room.)
+(Sie in dein Zimmer bringen.)
+###_NPC
+NOEXIT
+NOEXIT
+###_PLAYER
+You fought well.
+Du hast gut gekämpft.
+###_NPC
+Thanks, but nobody can win against the system.
+Danke, aber gegen das System kommt niemand an.
+###_PLAYER
+I'm bringing you back to the asylum.
+Ich bringe dich in die Anstalt zurück.
+###_NPC
+Why are you so cruel?  Fine!  I'll go back with you.
+Warum bist du so grausam? Na schön! Ich komme mit dir mit.
+###_PLAYER
+I feel like keeping you for myself.
+Ich glaube, ich behalte dich für mich.
+###_NPC
+(She looks nervous.)  What does that mean?  Where are we going?
+(Sie wirkt nervös.) Was soll das heißen? Wo gehen wir hin?
+###_PLAYER
+I'm feeling merciful.  I'll let you go.
+Mir ist nach Gnade. Ich lasse dich laufen.
+###_NPC
+Really?  Wow, thank you so much!  You're the best.
+Wirklich? Wow, vielen Dank! Du bist die Beste.
+###_PLAYER
+(Take her back to the asylum.)
+(Sie in die Anstalt zurückbringen.)
+###_NPC
+(You bring her back to asylum where she gets fully restrained.  They congratulate you and pay you 15$ for your work.)
+(Du bringst sie in die Anstalt zurück, wo man sie in sichere Fessseln packt. Dir wird gratuliert und du erhältst 15$ für deine Arbeit.)
+###_PLAYER
+Welcome home girl.
+Willkommen zu Hause, Mädchen.
+###_NPC
+(She sighs and bows her head.)
+(Sie seufzt und lässt den Kopf hängen.)
+###_PLAYER
+Don't try to escape again.
+Versuche nicht wieder auszubrechen.
+###_NPC
+(She shakes her head no.)
+(Sie schüttelt den Kopf.)
+###_PLAYER
+(Get your money and leave her.)
+(Dein Geld nehmen und Dialog beenden.)
+You're a tough patient.
+Du bist eine hartnäckige Patientin.
+###_NPC
+Yep.  And now it's time for us to split.  Have fun struggling little nurse.
+Jep. Und es ist an der Zeit, dass wir getrennte Wege gehen. Viel Spaß beim Zappeln, kleine Krankenschwester.
+###_PLAYER
+Enough!  Don't hurt me anymore.
+Das reicht! Tu mir nicht mehr weh.
+###_NPC
+It was so easy to defeat you.  Have fun struggling little nurse.
+Dich zu besiegen war so einfach. Viel Spaß beim Zappeln, kleine Krankenschwester.
+###_PLAYER
+What will you do now?
+Was hast du jetzt vor?
+###_NPC
+It's none of your business, I'm going now.  Have fun struggling little nurse.
+Das geht dich nichts an, ich muss los. Viel Spaß beim Zappeln, kleine Krankenschwester.
+###_PLAYER
+You cannot leave me like that.
+Du kannst mich nicht so hier lassen.
+###_NPC
+(She turns around and walks away with a grin on her face.)
+(Sie dreht sich um und geht grinsend davon.)
+###_PLAYER
+I'll crush you next time!
+Beim nächsten Mal krieg ich dich!
+You won't be able to run forever.
+Du kannst nicht ewig davonlaufen.
+(Back to main hall.)
+(Zurück zum Hauptsaal.)

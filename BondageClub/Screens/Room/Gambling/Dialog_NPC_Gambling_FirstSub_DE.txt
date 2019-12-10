@@ -1,14 +1,22 @@
 ###_NPC
-Blessed those who have nothing to say and yet remain silent 
+Blessed those who have nothing to say and yet remain silent.
 Gesegnet sei, wer nichts zu sagen hat und daher schweigt.
 (She shakes her head but you're able to gag and silence her.)
 (Sie schüttelt den Kopf, aber du schaffst es, sie mit einem Knebel zum Schweigen zu bringen.)
 (You remove her gag and she stretches her mouth.)  I was starting to drool...
 (Du nimmst ihren Knebel ab und sie streckt ihren Mund.) Ich fing schon an zu sabbern...
-(She grumbles but complies as you restrain her arms.)  How can I roll the dice this way?
+(She grumbles while you push some earplugs in.) I can't hear you properly now.
+(Sie grummelt, als du ihr Ohrstöpsel hineinsteckst.) Jetzt kann ich dich gar nicht mehr richtig verstehen.
+(You pull the earplugs out.) That's better, I can hear you clearly now.
+(Du ziehst die Ohrstöpsel heraus.) Schon besser, jetzt verstehe ich dich ordentlich.
+(She grumbles but complies as you restrain her arms.)  How am I supposed to roll the dice like this?
 (Sie grummelt, lässt dich aber ihre Arme fesseln.) Wie soll ich denn jetzt würfeln?
 (You free her arms and she gives you a thumbs up.)  That's better.
 (Du befreist ihre Arme und sie zeigt dir einen Daumen nach oben.) So ist es besser.
+(She submits to you while restrain you hands.)  You're being very kinky now.
+(Sie lässt sich von dir ohne Widerstand die Hände fesseln.) Jetzt traust du dich aber was.
+(You release her hands and she nods a little.)  Thank you Miss.
+(Du befreist ihre Hände und sie nickt kaum merklich.) Danke, Miss.
 (She looks down as you restrain her legs securely.)  I'm not going anywhere anyway.
 (Sie schaut herab, als du ihre Beine fest zusammenbindest.) Ich wollte sowieso nirgendwo hin.
 (You release her legs from the restraint.)  You're quite good with restraints Miss.
@@ -25,37 +33,37 @@ Gesegnet sei, wer nichts zu sagen hat und daher schweigt.
 (Sie zappelt, als du es verschließt.) Nein, bitte! Ich habe keinen Schlüssel dafür!
 (She looks really happy as you unlock the device.)  Thank you so much Miss DialogPlayerName.
 (Sie wirkt sehr glücklich, als du es aufschließt.) Vielen lieben Dank, Miss DialogPlayerName.
-(You put the device as she shakes her head.)  Ow!  You've made my day much awfully
+(You put the device on her as she shakes her head.)  Ow!  You've made my day much more awful.
 (Sie schüttelt den Kopf, als du es ihr umschnallst.) Au! Du hast meinen Tag ganz schön furchtbar gemacht.
 (You remove the device and she nods rapidly.)  Thanks a million, this is much better.
 (Du nimmst das Ding ab und sie nickt energisch.) Tausend Dank, das ist viel besser.
-(She trembles of painas you whip her breast.) This is a gambling hall no torture chamber.
+(She trembles of pain as you whip her breast.) This is a gambling hall, not a torture chamber.
 (Sie zittert vor Schmerz, als du ihre Brust auspeitscht.) Das hier ist die Spielhalle, nicht die Folterkammer.
-(You swing the crop on her torso as she moans.) Oh, that's not a game anymore.
+(You swing the crop at her torso as she moans.) Oh, this isn't a game anymore.
 (Du schwingst die Gerte auf ihren Körper und sie stöhnt.) Oh, das ist jetzt kein Spiel mehr.
 (You whip her butt as she jumps from the pain.) I do not find that funny.
 (Du peitschst ihr auf den Hintern und sie zuckt vor Schmerz zusammen.) Ich finde das nicht lustig.
-(She moans each time the crop lands on it.) How can I still sit like this?
+(She moans each time the crop lands on it.) How will I be able to sit like this?
 (Sie stöhnt bei jedem Treffer der Gerte.) Wie soll ich denn jetzt noch sitzen?
 I like my clothes better.
 Meine Kleidung ist mir lieber.
-I can not concentrate that way.
+I cannot concentrate this way.
 So kann ich mich nicht konzentrieren.
-Uff, close at last
-Uff, na endlich.
-Oh, that's really necessary?
+Oof, it's finally over.
+Uff, endlich ist es vorbei.
+Oh, is that really necessary?
 Oh, muss das wirklich sein?
-She looks at you satisfied.
+(She looks at you satisfied.)
 (Sie sieht dich zufrieden an.)
 According to which rules is this allowed?
 Nach welchen Regeln ist das erlaubt?
-I want to play with dices, not with eggs.
+I want to play with dice, not with eggs.
 Ich will mit Würfeln spielen, nicht mit Eiern.
-Thanks, now I can concentrate on the essential.
+Thanks, now I can concentrate on what matters.
 Danke, jetzt kann ich mich aufs Wesentliche konzentrieren.
-woe to the vanquished.
+Woe to the vanquished.
 Wehe den Besiegten.
-finally floor again under the feet.
+Finally, I'm back on firm ground.
 Endlich wieder Boden unter den Füßen.
 Welcome to the Gambling Hall. Shall we play a game?
 Willkommen in der Spielhalle. Ein Spiel gefällig?
@@ -75,7 +83,7 @@ In der Spielhalle finden Glücksspiele mit ungewöhnlichen Einsätzen statt.
 Let's play a simple dice game.
 Spielen wir ein einfaches Würfelspiel.
 ###_NPC
-Let's play, good luck
+Let's play, good luck!
 Alles klar, viel Glück!
 ###_PLAYER
 (Struggle in your restraints.)
@@ -84,22 +92,22 @@ Alles klar, viel Glück!
 Are you having fun?
 Hast du Spaß?
 ###_PLAYER
-(Play with your own rules.)
+(Play by your own rules.)
 (Nach deinen eigenen Regeln spielen.)
 ###_NPC
-(She looks expectant)
+(She looks expectant.)
 (Sie sieht dich erwartungsvoll an.)
 ###_PLAYER
 Let's play fifteen and six.
 Spielen wir Siebzehn und Vier.
 ###_NPC
-(she gives you three dice)
+(She gives you three dice.)
 (Sie gibt dir drei Würfel.)
 ###_PLAYER
 Let's play Toothpick.
 Spielen wir Zahnstocher Aufheben.
 ###_NPC
-(she lays out 15 toothpicks) Your turn sweety.
+(She lays out 15 toothpicks.) Your turn sweetie.
 (Sie legt 15 Zahnstocher hin.) Du bist dran, Süße.
 ###_PLAYER
 I'd like to ask you some questions.
@@ -108,19 +116,19 @@ Ich hätte da ein paar Fragen.
 Don't be shy.  How can I help you?
 Nur keine Scheu. Wie kann ich dir helfen?
 ###_PLAYER
-Which games can I play here? 
+Which games can I play here?
 Was kann ich hier spielen?
 ###_NPC
-That depends on your reputation. Only a simple dice game at first. 
+That depends on your reputation. Only a simple dice game at first.
 Das hängt von deinem Rang ab. Am Anfang nur ein einfaches Würfelspiel.
 ###_PLAYER
 Can you explain the rules to me?
 Kannst du mir die Regeln erklären?
 ###_NPC
-Of course, which game interests you?
+Of course, which game are you interested in?
 Natürlich, an welchem Spiel bist du interessiert?
 ###_PLAYER
-Can I get better in the games?
+Can I get better at the games?
 Kann ich in diesen Spielen besser werden?
 ###_NPC
 No, they are games of chance.
@@ -153,26 +161,26 @@ Also gut. Ein Spiel gefällig?
 (Listen.)
 (Zuhören.)
 ###_NPC
-At a higher reputation still fifteen and six, and eventually more games with other players.
+At a higher reputation you'll get to play fifteen and six, and eventually more games with other players.
 Bei einem höheren Rang kommt Siebzehn und Vier dazu, und später andere Spiele mit anderen Leuten.
 ###_PLAYER
 What are the rules of the simple dice game?
 Was sind die Regeln des einfachen Würfelspiels?
 ###_NPC
-We both roll a dice. Whoever has the higher number may tie the opponent
+We both roll a die. Whoever has the higher number may tie the opponent.
 Wir würfeln beide ein Mal. Wer die höhere Zahl hat, darf den Gegner fesseln.
 ###_PLAYER
 What are the rules of fifteen and six?
 Was sind die Regeln beim Siebzehn und Vier?
 ###_NPC
-You roll three or more dice and count the points. Then I roll, and whoever has the most points wins. 
+You roll three or more dice and count the points. Then I roll, and whoever has the most points wins.
 Du wirfst drei oder mehr Würfel und zählst sie zusammen. Dann würfele ich, und wer die höhere Punktzahl hat, gewinnt.
 ###_PLAYER
 What are the rules of Toothpick?
 Was sind die Regeln für Zahnstocher Aufheben?
 ###_NPC
-I put down 15 toothpicks. We will then alternately take 1-3 of them.
-Ich lege 15 Zahnstocher hin. Wir werden dann abwechselnd 1-3 davon nehmen.
+I put down 15 toothpicks. We will then alternately take one, two or three of them.
+Ich lege 15 Zahnstocher hin. Wir werden dann abwechselnd einen, zwei oder drei davon nehmen.
 ###_PLAYER
 (Tickle her.)
 (Sie kitzeln.)
@@ -204,10 +212,10 @@ Ich lege 15 Zahnstocher hin. Wir werden dann abwechselnd 1-3 davon nehmen.
 (You spank her hard on the butt and she jumps from the pain.)
 (Du gibst ihr einen harten Klaps auf den Po und sie zuckt vor Schmerz zusammen.)
 ###_PLAYER
-(End the Game)
+(End the game.)
 (Das Spiel beenden.)
 ###_NPC
-(You go back a step and she looks surprised.)
+(You take a step back and she looks surprised.)
 (Du trittst einen Schritt zurück und sie sieht überrascht aus.)
 If you go over 21 points you instantly lose the round.
 Wer aber 21 Punkte überschreitet, verliert die Runde sofort.
@@ -223,8 +231,8 @@ Bitte, Miss, können Sie mich befreien?
 ###_NPC
 Let's see what the dice say...
 Mal sehen, was die Würfel dazu sagen...
-(Show her your restraints.)
-(Ihr deine Fesseln zeigen.)
+(She shows you her restraints.)
+(Sie zeigt dir ihre Fesseln.)
 (She giggles.)  Well someone seems to be having fun.
 (Sie kichert.) Tja, da scheint wohl jemand Spaß zu haben.
 ###_PLAYER
@@ -248,7 +256,7 @@ Na gut, du kannst auch gern so bleiben, wenn du willst.
 ###_PLAYER
 Yes, of course.
 Ja, natürlich.
-(Look angry)
+(Look angry.)
 (Verärgert gucken.)
 No, please! No dice!
 Nein, bitte! Keine Würfel!
@@ -256,7 +264,7 @@ Nein, bitte! Keine Würfel!
 Fine, stay like that then.
 Gut, dann bleibst du eben so.
 ###_PLAYER
-(Shake your head)
+(Shake your head.)
 (Deinen Kopf schütteln.)
 ###_NPC
 Oh, you want to stay as you are? Fine with me.
@@ -280,53 +288,53 @@ Unentschieden.
  I'll definitely win next time!
 Beim nächsten Mal gewinne ich bestimmt!
 ###_PLAYER
-I want to add a dice. 
+I want to add a die.
 Ich will noch einen Würfel.
 ###_NPC
-(She gives you another dice.)
+(She gives you another die.)
 (Sie gibt dir noch einen Würfel.)
 ###_PLAYER
-3 points are enough
+3 points are enough.
 3 Punkte reichen.
 ###_NPC
-My roll. 
+My roll.
 Ich bin dran.
 ###_PLAYER
-4 points are enough
+4 points are enough.
 4 Punkte reichen.
-5 points are enough
+5 points are enough.
 5 Punkte reichen.
-6 points are enough
+6 points are enough.
 6 Punkte reichen.
-7 points are enough
+7 points are enough.
 7 Punkte reichen.
-8 points are enough
+8 points are enough.
 8 Punkte reichen.
-9 points are enough
+9 points are enough.
 9 Punkte reichen.
-10 points are enough
+10 points are enough.
 10 Punkte reichen.
-11 points are enough
+11 points are enough.
 11 Punkte reichen.
-12 points are enough
+12 points are enough.
 12 Punkte reichen.
-13 points are enough
+13 points are enough.
 13 Punkte reichen.
-14 points are enough
+14 points are enough.
 14 Punkte reichen.
-15 points are enough
+15 points are enough.
 15 Punkte reichen.
-16 points are enough
+16 points are enough.
 16 Punkte reichen.
-17 points are enough
+17 points are enough.
 17 Punkte reichen.
-18 points are enough
+18 points are enough.
 18 Punkte reichen.
-19 points are enough
+19 points are enough.
 19 Punkte reichen.
-20 points are enough
+20 points are enough.
 20 Punkte reichen.
-21 points are enough
+21 points are enough.
 21 Punkte reichen.
 22 points. Oh shit, I lost!
 22 Punkte. Oh, Scheiße, verloren!
@@ -378,30 +386,30 @@ Gewonnen. Komm schon, Mund auf.
 (She reluctantly accepts the gag.)
 (Sie nimmt widerwillig den Knebel an.)
 ###_PLAYER
-Oh, I lost. (Take off your accessories)
+Oh, I lost. (Take off your accessories.)
 Oh, verloren. (Deine Accessoires abnehmen.)
-Oh, I lost. (Take off your clothes)
+Oh, I lost. (Take off your clothes.)
 Oh, verloren. (Deine Kleidung ausziehen.)
 ###_NPC
-Whoops, time to lose some clothes! 
+Whoops, time to lose some clothes!
 Ups, Zeit, etwas Haut zu zeigen!
 ###_PLAYER
-Oh, I lost. (Take off your underwear)
+Oh, I lost. (Take off your underwear.)
 Oh, verloren. (Deine Unterwäsche ausziehen.)
 ###_NPC
-Are you starting to feel exposed? 
+Are you starting to feel exposed?
 Fühlst du dich langsam entblößt?
 ###_PLAYER
-Oh, I lost. (Let her tie your legs)
+Oh, I lost. (Let her tie your legs.)
 Oh, verloren. (Sie deine Beine fesseln lassen.)
 ###_NPC
-Looks like you're not going anywhere. 
+Looks like you're not going anywhere.
 So schnell kommst du wohl nicht mehr davon.
 ###_PLAYER
-Oh, I lost. (Let her tie your arms)
+Oh, I lost. (Let her tie your arms.)
 Oh, verloren. (Sie deine Arme fesseln lassen.)
 ###_NPC
-Not much before you can't move at all... 
+Not much left until you can't move at all...
 Du bist schon fast vollkommen hilflos...
 ###_PLAYER
 Oh, I lost. (Open your mouth and let her gag you)
@@ -410,32 +418,32 @@ Oh, verloren. (Dich von ihr Knebeln lassen.)
 You lose! Open up, it's time for a gag...
 Du hast verloren! Mund auf, es wird Zeit für einen Knebel...
 ###_PLAYER
-I take one.
+I'll take one.
 Ich nehme einen.
 ###_NPC
-(nods)
+(She nods.)
 (Sie nickt.)
 ###_PLAYER
-I take two.
+I'll take two.
 Ich nehme zwei.
-I take three.
+I'll take three.
 Ich nehme drei.
-I give up. (Let her tie you)
+I give up. (Let her tie you up.)
 Ich gebe auf. (Dich von ihr Fesseln lassen.)
 ###_NPC
-(She smiles) What you mean?
+(She smiles.) What do you mean?
 (Sie lächelt.) Was hast du gesagt?
 ###_PLAYER
 I surrender.
 Ich ergebe mich, du hast gewonnen.
 ###_NPC
-(She smiles)
+(She smiles.)
 (Sie lächelt.)
-(She nods) I take 1
+(She nods.) I'll take one.
 (Sie nickt.) Ich nehme einen.
-(She nods) I take 2
+(She nods.) I'll take two.
 (Sie nickt.) Ich nehme zwei.
-(She nods) I take 3
+(She nods.) I'll take three.
 (Sie nickt.) Ich nehme drei.
 (She struggles in her restraints.)  Can you release me?
 (Sie zappelt in ihren Fesseln.) Kannst du mich befreien?
@@ -471,7 +479,7 @@ Das hört sich gut an! Kann ich etwas für dich tun?
 Alright, but be more careful next time.
 Gut, aber sei in Zukunft vorsichtiger.
 ###_NPC
-I will, thankyou.  Is there something I can do for you?
+I will, thank you.  Is there something I can do for you?
 Das werde ich, danke. Kann ich etwas für dich tun?
 (She gets close to you for a long and loving kiss on your lips.)  Mmmmmmmmh...
 (Sie kommt näher und gibt dir einen langen und zärtlichen Kuss auf die Lippen.) Mmmmmmmmh...

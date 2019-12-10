@@ -59,6 +59,18 @@ Sehr gut! Hier ist dein Lohn. (Sie gibt dir BOUNTYAMOUNT$.) Hat sie dir Ärger g
 (Du fesselst ihre Füße mit dem Seil und lässt sie von der Decke baumeln.) Woah! Vielleicht solltest du ins Dojo gehen.
 (You let her down from the ceiling and release her feet.)  Thanks a lot!  I was getting dizzy.
 (Du löst das Hanfseil von der Decke und befreist ihre Füße.) Vielen Dank! Mir wurde langsam schwindlig.
+Why are you here girl?  The kidnappers league isn't for club slaves.
+Warum bist du hier, Mädchen? Die Kidnapper-Liga ist nichts für Clubsklaven.
+###_PLAYER
+Can we talk about kidnappings?
+Können wir übers Kidnappen reden?
+###_NPC
+No, your duty as a club slave is to serve our customers.
+Nein, deine Aufgabe als Clubsklavin ist es, unseren Kunden zu dienen.
+###_PLAYER
+(Leave her.)
+(Dialog beenden.)
+###_NPC
 (She grins.)  Hello naked girl.  Welcome to the Kidnappers League.
 (Sie grinst.) Hallo, nacktes Mädchen. Willkommen in der Kidnapper-Liga.
 Welcome to the Kidnappers League.  Are you here to register as a kidnapper?
