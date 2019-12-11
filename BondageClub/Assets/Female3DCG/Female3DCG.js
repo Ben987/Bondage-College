@@ -1075,7 +1075,6 @@ var AssetFemale3DCG = [
 		Category: "Item",
 		Priority: 37,
 		Default: false,
-		IsRestraint: false,
 		Color: ["Default"],
 		Left: 0,
 		Top: 190,
