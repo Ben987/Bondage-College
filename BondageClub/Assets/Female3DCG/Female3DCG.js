@@ -383,7 +383,8 @@ var AssetFemale3DCG = [
 			{ Name: "SuccubusStrap", Value: 15 },
 			{ Name: "SuccubusTailStrap", Value: 10 },
 			{ Name: "RaccoonStrap", Value: 25 },
-			{ Name: "RaccoonTailStrap", Priority: 2, Value: 35 }
+			{ Name: "RaccoonTailStrap", Priority: 2, Value: 35 },
+			{ Name: "PuppyTailStrap1", Value: 20 }
 		]
 	},
 
@@ -718,6 +719,7 @@ var AssetFemale3DCG = [
 			{ Name: "TailButtPlug", Value: 40, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }] },
 			{ Name: "HorsetailPlug", Value: 30, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }] },
 			{ Name: "PuppyTailPlug", Value: 25, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }] },
+			{ Name: "PuppyTailPlug1", Value: 30, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }] },
 			{ Name: "SuccubusButtPlug", Value: 25, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }] },
 			{ Name: "SuccubusButtPlug2", Value: 25, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }] },
 			{ Name: "FoxTails", Priority: 2, Value: 60, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }] },
