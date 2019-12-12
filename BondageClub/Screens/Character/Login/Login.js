@@ -178,6 +178,7 @@ function LoginResponse(C) {
 			Player.LabelColor = C.LabelColor;
 			Player.ItemPermission = C.ItemPermission;
 			Player.ChatSettings = C.ChatSettings;
+			Player.VisualSettings = C.VisualSettings;
 			Player.AudioSettings = C.AudioSettings;
 			Player.GameplaySettings = C.GameplaySettings;
 			Player.WhiteList = C.WhiteList;

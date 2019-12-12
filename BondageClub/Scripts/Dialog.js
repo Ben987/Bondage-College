@@ -614,8 +614,9 @@ function DialogClick() {
 		var C = (MouseX < 500) ? Player : CurrentCharacter;
 		var X = (MouseX < 500) ? 0 : 500;
 		var HeightRatio = CharacterAppearanceGetCurrentValue(C, "Height", "Zoom");
+		if ((Player != null) && (Player.VisualSettings != null) && (Player.VisualSettings.ForceFullHeight != null) && Player.VisualSettings.ForceFullHeight) HeightRatio = 1.0;
 		var Xoffset = 500 * (1 - HeightRatio) / 2;
-		var YOffset = 1000 * (1 - HeightRatio);		
+		var YOffset = 1000 * (1 - HeightRatio);
 		for (var A = 0; A < AssetGroup.length; A++)
 			if ((AssetGroup[A].Category == "Item") && (AssetGroup[A].Zone != null))
 				for (var Z = 0; Z < AssetGroup[A].Zone.length; Z++)

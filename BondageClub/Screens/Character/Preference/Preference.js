@@ -28,6 +28,11 @@ function PreferenceLoad() {
 		ColorEmotes: true
 	};
 
+	// If the user never set the visual settings before, construct them to replicate the default behavior
+	if (!Player.VisualSettings) Player.VisualSettings = {
+		ForceFullHeight: false
+	};
+	
 	// If the user never set the audio settings before, construct them to replicate the default behavior
 	if (!Player.AudioSettings) Player.AudioSettings = {
 		PlayBeeps: false
@@ -78,6 +83,8 @@ function PreferenceRun() {
 	DrawButton(500, 492, 64, 64, "", "White", (Player.GameplaySettings && Player.GameplaySettings.SensDepGarbleName) ? "Icons/Checked.png" : "");
 	DrawText(TextGet("BlindDisableExamine"), 600, 625, "Black", "Gray");
 	DrawButton(500, 592, 64, 64, "", "White", (Player.GameplaySettings && Player.GameplaySettings.BlindDisableExamine) ? "Icons/Checked.png" : "");
+	DrawText(TextGet("ForceFullHeight"), 600, 725, "Black", "Gray");
+	DrawButton(500, 692, 64, 64, "", "White", (Player.VisualSettings && Player.VisualSettings.ForceFullHeight) ? "Icons/Checked.png" : "");
 	if (PreferenceMessage != "") DrawText(TextGet(PreferenceMessage), 500, 750, "Red", "Black");
 	MainCanvas.textAlign = "center";
 
@@ -121,6 +128,7 @@ function PreferenceClick() {
 		if ((MouseY >= 392) && (MouseY < 456)) Player.AudioSettings.PlayBeeps = !Player.AudioSettings.PlayBeeps;
 		if ((MouseY >= 492) && (MouseY < 556)) Player.GameplaySettings.SensDepGarbleName = !Player.GameplaySettings.SensDepGarbleName;
 		if ((MouseY >= 592) && (MouseY < 656)) Player.GameplaySettings.BlindDisableExamine = !Player.GameplaySettings.BlindDisableExamine;
+		if ((MouseY >= 692) && (MouseY < 756)) Player.VisualSettings.ForceFullHeight = !Player.VisualSettings.ForceFullHeight;
 	}
 }
 
@@ -132,7 +140,8 @@ function PreferenceExit() {
 			ItemPermission: Player.ItemPermission,
 			LabelColor: Player.LabelColor,
 			ChatSettings: Player.ChatSettings,
-			AudioSettings: Player.AudioSettings,
+			VisualSettings: Player.VisualSettings,
+			AudioSettings: Player.AudioSettings,		
 			GameplaySettings: Player.GameplaySettings
 		};
 		ServerSend("AccountUpdate", P);

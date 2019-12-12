@@ -26,3 +26,4 @@ ColorEmotes,Color emotes
 PlayBeeps,Audio alarm for beeps
 SensDepGarbleName,Garble names in chat when blind and deaf
 BlindDisableExamine,Disable examining people when blind
+ForceFullHeight,Display all characters at maximum height
