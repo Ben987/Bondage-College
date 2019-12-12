@@ -264,7 +264,13 @@ var AssetFemale3DCG = [
 			"Band1", "Beret1",
 			{ Name: "MaidHairband1", Value: -1 },
 			{ Name: "NurseCap", Value: -1 },
-			{ Name: "Santa1", Value: 20 },
+			{
+				Name: "Santa1", Value: 20,
+				Layer: [
+					{ Name: "Fabric", AllowColorize: true },
+					{ Name: "Fur", AllowColorize: false }
+				]
+			},
 			{ Name: "CaptainHat1", Value: 25 },
 			{ Name: "BunnySuccubus2", Value: 35 },
 			{ Name: "WitchHat1", Value: 40 },
