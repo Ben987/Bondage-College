@@ -843,6 +843,7 @@ function DialogDrawItemMenu(C) {
 
 			// remove associated items at the same time
 			if (InventoryGet(C, "ItemNeck") == null) InventoryRemove(C, "ItemNeckAccessories");
+			if (InventoryGet(C, "ItemNeck") == null) InventoryRemove(C, "ItemNeckRestraints");
 
 			// The player can use another item right away, for another character we jump back to her reaction
 			if (C.ID == 0) {
