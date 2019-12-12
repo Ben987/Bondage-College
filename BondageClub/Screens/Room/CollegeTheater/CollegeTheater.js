@@ -2,6 +2,7 @@
 var CollegeTheaterBackground = "CollegeTheater";
 var CollegeTheaterJulia = null;
 var CollegeTheaterJuliaLove = 0;
+var CollegeTheaterRandomColors = ["#AA4444", "#44AA44", "#4444AA", "#AAAA44", "#AA44AA", "#44AAAA"]
 
 // Returns TRUE if the dialog option should be shown
 function CollegeTheaterCanInviteToPrivateRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax)) }
@@ -43,6 +44,7 @@ function CollegeTheaterLoad() {
 		CollegeTheaterJulia = CharacterLoadNPC("NPC_CollegeTheater_Julia");
 		CollegeTheaterJulia.AllowItem = false;
 		CollegeTheaterJulia.Name = "Julia";
+		CollegeTheaterJulia.GoneAway = false;
 		CollegeTheaterJuliaClothes();
 		CharacterRefresh(CollegeTheaterJulia);
 		
@@ -53,42 +55,71 @@ function CollegeTheaterLoad() {
 // Runs the room (shows the player and Julia)
 function CollegeTheaterRun() {
 	DrawCharacter(Player, 500, 0, 1);
-	if (CollegeTheaterJulia != null) DrawCharacter(CollegeTheaterJulia, 1000, 0, 1);
+	if ((CollegeTheaterJulia != null) && !CollegeTheaterJulia.GoneAway) DrawCharacter(CollegeTheaterJulia, 1000, 0, 1);
 	DrawButton(1885, 25, 90, 90, "", Player.CanWalk() ? "White" : "Pink", "Icons/Exit.png", TextGet("Exit"));
 	DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png", TextGet("Profile"));
 }
 
 // When the user clicks in the room
 function CollegeTheaterClick() {
-	if ((MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-	if ((MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000) && (CollegeTheaterJulia != null)) CharacterSetCurrent(CollegeTheaterJulia);
+	if ((MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000) && (CollegeTheaterJulia != null) && !CollegeTheaterJulia.GoneAway) CharacterSetCurrent(CollegeTheaterJulia);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) CommonSetScreen("Room", "CollegeEntrance");
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
 }
 
+// Wears the clothes for the play
+function CollegeTheaterPlayClothes(C1, C2) {
+	InventoryWear(C1, "WitchHat1", "Hat", "#555555");
+	InventoryWear(C1, "BondageDress2", "Cloth", "#555555");
+	InventoryWear(C2, "Beret1", "Hat", "#CC8899");
+	InventoryWear(C2, "Dress2", "Cloth", "Default");
+}
+
 // Puts a random colored rope on a character
 function CollegeTheaterRandomRope(C) {
-	var Color = CommonRandomItemFromList("", ["#AA4444", "#44AA44", "#4444AA", "#AAAA44", "#AA44AA", "#44AAAA"]);
+	var Color = CommonRandomItemFromList("", CollegeTheaterRandomColors);
 	InventoryWear(C, "HempRope", "ItemArms", Color);
 	InventoryWear(C, "HempRope", "ItemLegs", Color);
 	InventoryWear(C, "HempRope", "ItemFeet", Color);
 }
 
-// When Julia love towards the player changes, it can also trigger an event
+// Puts a random colored belt on a character
+function CollegeTheaterRandomBelt(C) {
+	var Color = CommonRandomItemFromList("", CollegeTheaterRandomColors);
+	InventoryWear(C, "SturdyLeatherBelts", "ItemArms", Color);
+	InventoryWear(C, "SturdyLeatherBelts", "ItemLegs", Color);
+	InventoryWear(C, "SturdyLeatherBelts", "ItemFeet", Color);
+}
+
+// Strips a character to its underwear
+function CollegeTheaterUnderwear(C) {
+	InventoryRemove(C, "Cloth");
+	InventoryRemove(C, "ClothLower");
+	InventoryRemove(C, "Shoes");
+	InventoryRemove(C, "Hat");
+}
+
+// When Julia love towards the player changes, it can also trigger an event.  When 0 or less is applied, she gives a quick angry look.
 function CollegeTheaterJuliaLoveChange(LoveChange, Event) {
 	if (LoveChange != null) CollegeTheaterJuliaLove = CollegeTheaterJuliaLove + parseInt(LoveChange);
-	if (Event == "PlayerWitch") {
-		InventoryWear(Player, "WitchHat1", "Hat", "Default");
-		InventoryWear(CollegeTheaterJulia, "Dress2", "Cloth", "Default");
+	if ((LoveChange != null) && (parseInt(LoveChange) <= 0)) {
+		CharacterSetFacialExpression(CollegeTheaterJulia, "Eyebrows", "Angry");
+		TimerInventoryRemoveSet(CollegeTheaterJulia, "Eyebrows", 3);
 	}
-	if (Event == "JuliaWitch") {
-		InventoryWear(CollegeTheaterJulia, "WitchHat1", "Hat", "Default");
-		InventoryWear(Player, "Dress2", "Cloth", "Default");
-	}
+	if (Event == "PlayerWitch") CollegeTheaterPlayClothes(Player, CollegeTheaterJulia);
+	if (Event == "JuliaWitch") CollegeTheaterPlayClothes(CollegeTheaterJulia, Player);
+	if (Event == "PlayerUnderwear") CollegeTheaterUnderwear(Player);
+	if (Event == "JuliaUnderwear") CollegeTheaterUnderwear(CollegeTheaterJulia);
 	if (Event == "PlayerNaked") CharacterNaked(Player);
 	if (Event == "JuliaNaked") CharacterNaked(CollegeTheaterJulia);
 	if (Event == "PlayerRope") CollegeTheaterRandomRope(Player);
 	if (Event == "JuliaRope") CollegeTheaterRandomRope(CollegeTheaterJulia);
+	if (Event == "PlayerBelt") CollegeTheaterRandomBelt(Player);
+	if (Event == "JuliaBelt") CollegeTheaterRandomBelt(CollegeTheaterJulia);
+	if (Event == "PlayerClothBlindfold") InventoryWear(Player, "ClothBlindfold", "ItemHead", CommonRandomItemFromList("", CollegeTheaterRandomColors));
+	if (Event == "JuliaClothBlindfold") InventoryWear(CollegeTheaterJulia, "ClothBlindfold", "ItemHead", CommonRandomItemFromList("", CollegeTheaterRandomColors));
+	if (Event == "PlayerLeatherBlindfold") InventoryWear(Player, "LeatherBlindfold", "ItemHead", CommonRandomItemFromList("", CollegeTheaterRandomColors));
+	if (Event == "JuliaLeatherBlindfold") InventoryWear(CollegeTheaterJulia, "LeatherBlindfold", "ItemHead", CommonRandomItemFromList("", CollegeTheaterRandomColors));
 }
 
 // Dress back the player and Julia when the plays end
@@ -97,21 +128,27 @@ function CollegeTheaterDressBack() {
 	CharacterRelease(CollegeTheaterJulia);
 	CollegeEntranceWearStudentClothes(Player);
 	CollegeTheaterJuliaClothes();
+	InventoryRemove(Player, "Hat");
+	InventoryRemove(CollegeTheaterJulia, "Hat");
 }
 
 // When the plater invites Julia to her room
-function CollegeTheaterInviteToPrivateRoom() {
+function CollegeTheaterInviteToPrivateRoom(Role) {
+	CollegeTheaterDressBack();
+	if (Role == "Witch") InventoryAdd(Player, "WitchHat1", "Hat");
+	if (Role == "Witch") InventoryAdd(Player, "BondageDress2", "Cloth");
+	if (Role == "Maiden") InventoryAdd(Player, "Dress2", "Cloth");
 	CommonSetScreen("Room", "Private");
 	PrivateAddCharacter(CollegeTheaterJulia, null, true);
 	var C = PrivateCharacter[PrivateCharacter.length - 1];
 	C.Trait = [];
-	NPCTraitSet(C, "Dominant", 30);
-	NPCTraitSet(C, "Violent", 60);
-	NPCTraitSet(C, "Dumb", 40);
-	NPCTraitSet(C, "Rude", 90);
+	NPCTraitSet(C, "Playful", 90);
+	NPCTraitSet(C, "Peaceful", 70);
+	NPCTraitSet(C, "Horny", 40);
+	NPCTraitSet(C, "Polite", 20);
 	C.Love = 20;
 	NPCTraitDialog(C);
 	ServerPrivateCharacterSync();
 	DialogLeave();
-	CollegeTheaterJulia = null;
+	CollegeTheaterJulia.GoneAway = true;
 }
