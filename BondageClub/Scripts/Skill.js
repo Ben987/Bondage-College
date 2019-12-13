@@ -61,8 +61,8 @@ function SkillGetLevel(C, SkillType) {
 			// Skills modifier only apply to bondage and evasion
 			var Mod = 0;
 			if ((SkillType == "Bondage") || (SkillType == "Evasion")) {
-				if (!LogQuery("ModifierDuration", "SkillModifier")) LogAdd("ModifierLevel", "SkillModifier", 0);
 				SkillModifier = LogValue("ModifierLevel", "SkillModifier");
+				if (SkillModifier == null) SkillModifier = 0;
 				if (SkillModifier < SkillModifierMin) SkillModifier = SkillModifierMin;
 				if (SkillModifier > SkillModifierMax) SkillModifier = SkillModifierMax;
 				Mod = SkillModifier;

@@ -99,12 +99,16 @@ function CollegeTheaterUnderwear(C) {
 	InventoryRemove(C, "Hat");
 }
 
-// When Julia love towards the player changes, it can also trigger an event.  When 0 or less is applied, she gives a quick angry look.
+// When Julia love towards the player changes, it can also trigger an event.  When a good or bad move is done, her expression will change quickly.
 function CollegeTheaterJuliaLoveChange(LoveChange, Event) {
 	if (LoveChange != null) CollegeTheaterJuliaLove = CollegeTheaterJuliaLove + parseInt(LoveChange);
 	if ((LoveChange != null) && (parseInt(LoveChange) <= 0)) {
 		CharacterSetFacialExpression(CollegeTheaterJulia, "Eyebrows", "Angry");
-		TimerInventoryRemoveSet(CollegeTheaterJulia, "Eyebrows", 3);
+		TimerInventoryRemoveSet(CollegeTheaterJulia, "Eyebrows", 2);
+	}
+	if ((LoveChange != null) && (parseInt(LoveChange) >= 2)) {
+		CharacterSetFacialExpression(CollegeTheaterJulia, "Blush", "Low");
+		TimerInventoryRemoveSet(CollegeTheaterJulia, "Blush", 2);
 	}
 	if (Event == "PlayerWitch") CollegeTheaterPlayClothes(Player, CollegeTheaterJulia);
 	if (Event == "JuliaWitch") CollegeTheaterPlayClothes(CollegeTheaterJulia, Player);
@@ -112,13 +116,13 @@ function CollegeTheaterJuliaLoveChange(LoveChange, Event) {
 	if (Event == "JuliaUnderwear") CollegeTheaterUnderwear(CollegeTheaterJulia);
 	if (Event == "PlayerNaked") CharacterNaked(Player);
 	if (Event == "JuliaNaked") CharacterNaked(CollegeTheaterJulia);
-	if (Event == "PlayerRope") CollegeTheaterRandomRope(Player);
+	if (Event == "PlayerHandCuffs") InventoryWear(Player, "MetalCuffs", "ItemArms", CommonRandomItemFromList("", CollegeTheaterRandomColors));
+	if (Event == "PlayerFeetCuffs") InventoryWear(Player, "Irish8Cuffs", "ItemFeet", CommonRandomItemFromList("", CollegeTheaterRandomColors));
+	if (Event == "PlayerFeetIron") InventoryWear(Player, "BallChain", "ItemFeet", CommonRandomItemFromList("", CollegeTheaterRandomColors));
+	if (Event == "PlayerFairy") InventoryWear(Player, "BatWings", "Wings", CommonRandomItemFromList("", CollegeTheaterRandomColors));
 	if (Event == "JuliaRope") CollegeTheaterRandomRope(CollegeTheaterJulia);
-	if (Event == "PlayerBelt") CollegeTheaterRandomBelt(Player);
 	if (Event == "JuliaBelt") CollegeTheaterRandomBelt(CollegeTheaterJulia);
-	if (Event == "PlayerClothBlindfold") InventoryWear(Player, "ClothBlindfold", "ItemHead", CommonRandomItemFromList("", CollegeTheaterRandomColors));
 	if (Event == "JuliaClothBlindfold") InventoryWear(CollegeTheaterJulia, "ClothBlindfold", "ItemHead", CommonRandomItemFromList("", CollegeTheaterRandomColors));
-	if (Event == "PlayerLeatherBlindfold") InventoryWear(Player, "LeatherBlindfold", "ItemHead", CommonRandomItemFromList("", CollegeTheaterRandomColors));
 	if (Event == "JuliaLeatherBlindfold") InventoryWear(CollegeTheaterJulia, "LeatherBlindfold", "ItemHead", CommonRandomItemFromList("", CollegeTheaterRandomColors));
 }
 
@@ -138,6 +142,7 @@ function CollegeTheaterInviteToPrivateRoom(Role) {
 	if (Role == "Witch") InventoryAdd(Player, "WitchHat1", "Hat");
 	if (Role == "Witch") InventoryAdd(Player, "BondageDress2", "Cloth");
 	if (Role == "Maiden") InventoryAdd(Player, "Dress2", "Cloth");
+	if (Role == "Maiden") InventoryAdd(Player, "BatWings", "Wings");
 	CommonSetScreen("Room", "Private");
 	PrivateAddCharacter(CollegeTheaterJulia, null, true);
 	var C = PrivateCharacter[PrivateCharacter.length - 1];
