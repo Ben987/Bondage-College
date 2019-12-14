@@ -1221,10 +1221,10 @@ var AssetFemale3DCG = [
 		Asset: [
 			{ Name: "MetalPadlock", Wear: false, Value: 15, Time: 10, IsLock: true, Effect: [] },
 			{ Name: "IntricatePadlock", Wear: false, Value: 50, Time: 30, IsLock: true, Effect: [] },
-			{ Name: "TimerPadlock", Wear: false, Value: 80, RemoveTimer: 300, IsLock: true, Effect: [] },
+			{ Name: "TimerPadlock", Wear: false, Value: 80, RemoveTimer: 300, MaxTimer: 300, IsLock: true, Effect: [] },
 			{ Name: "OwnerPadlock", Wear: false, Value: 100, Time: 10, IsLock: true, OwnerOnly: true, Effect: [] },
 			{ Name: "MistressPadlock", Wear: false, Value: -1, Time: 10, IsLock: true, Effect: [] },
-			{ Name: "MistressTimerPadlock", Wear: false, Value: -1, RemoveTimer: 900, MaxTimer: 3600, IsLock: true, Effect:[] },
+			{ Name: "MistressTimerPadlock", Wear: false, Value: -1, RemoveTimer: 900, MaxTimer: 14400, IsLock: true, Effect:[] },
 			{ Name: "MetalPadlockKey", Wear: false, Value: 10, Effect: ["Unlock-MetalPadlock"] },
 			{ Name: "IntricatePadlockKey", Wear: false, Value: 30, Effect: ["Unlock-IntricatePadlock"] },
 			{ Name: "OwnerPadlockKey", Wear: false, Value: 60, OwnerOnly: true, Effect: ["Unlock-OwnerPadlock"] },

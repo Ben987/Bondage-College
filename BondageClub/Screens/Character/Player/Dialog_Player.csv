@@ -104,7 +104,8 @@ TimerLeft,,,Time left:
 TimerRestart,,,SourceCharacter restarts the five minutes timer padlock on DestinationCharacter BodyPart.
 TimerUnknown,,,Unknown time left
 RestartTimer,,,Restart Timer
-MistressTimerAddTime,,,SourceCharacter adds TimerTime minutes to the mistress' timer padlock on DestinationCharacter BodyPart.
+MistressTimerAddTime,,,SourceCharacter adds TimerTime minutes to the mistress timer padlock on DestinationCharacter's BodyPart.
+AllowModifyTimer,,,Allow everyone adding more time
 AddTimerTime,,,Add TimerTime minutes to the Timer
 RemoveItemWithTimer,,,Remove item when the lock timer runs out
 WillRemoveItemWithTimer,,,The item will be removed when the lock timer runs out
