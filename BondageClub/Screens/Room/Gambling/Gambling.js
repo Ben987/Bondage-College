@@ -36,10 +36,13 @@ function GamblingToothpickCanPickOne() {return GamblingToothpickCount >= 1}
 function GamblingToothpickCanPickTwo() {return GamblingToothpickCount >= 2}
 function GamblingToothpickCanPickThree() {return GamblingToothpickCount >= 3}
 
+function GamblingIsRestrainedWithLock() { return InventoryCharacterHasLockedRestraint(Player) };
+function GamblingIsRestrainedWithoutLock() { return (Player.IsRestrained() && !InventoryCharacterHasLockedRestraint(Player)) };
 
 // Loads the Gambling Hall
 function GamblingLoad() {
-		// Default load
+	
+	// Default load
 	if (GamblingFirstSub == null) {
 		GamblingFirstSub =  CharacterLoadNPC("NPC_Gambling_FirstSub");
 		GamblingSecondSub = CharacterLoadNPC("NPC_Gambling_SecondSub");
@@ -48,8 +51,10 @@ function GamblingLoad() {
 		GamblingAppearanceFirst = GamblingFirstSub.Appearance.slice();
 		GamblingAppearanceSecond = GamblingSecondSub.Appearance.slice();
 	}
+	
 	GamblingAppearancePlayer = Player.Appearance.slice();
 	GamblingIllegalChange = false;
+	
 	// Rescue mission load
 	if ((MaidQuartersCurrentRescue == "Gambling") && !MaidQuartersCurrentRescueStarted) {
 		MaidQuartersCurrentRescueStarted = true;

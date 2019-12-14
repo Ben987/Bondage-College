@@ -308,6 +308,15 @@ function InventoryOwnerOnlyItem(Item) {
 	return false;
 }
 
+// Returns TRUE if the character is wearing at least one restraint that's locked with an extra lock
+function InventoryCharacterHasLockedRestraint(C) {
+	if (C.Appearance != null)
+		for (var A = 0; A < C.Appearance.length; A++)
+			if (C.Appearance[A].Asset.IsRestraint && (InventoryGetLock(C.Appearance[A]) != null))
+				return true;
+	return false;
+}
+
 // Returns TRUE if the character is wearing at least one item that's a restraint with a OwnerOnly flag, such as the owner padlock
 function InventoryCharacterHasOwnerOnlyRestraint(C) {
 	if ((C.Ownership == null) || (C.Ownership.MemberNumber == null) || (C.Ownership.MemberNumber == "")) return false;
