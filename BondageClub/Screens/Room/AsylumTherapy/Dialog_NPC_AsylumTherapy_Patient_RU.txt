@@ -1,0 +1,229 @@
+﻿###_NPC
+It's strange to hear a gagged nurse.
+Странно слышать медсестру с кляпом во рту.
+That was a good therapy nurse DialogPlayerName.  I've learned from it.
+Это была хорошая терапия медсестра DialogPlayerName.  Я извлекла из этого урок.
+I'm sorry nurse DialogPlayerName.  I don't think this is working.
+Простите сестра DialogPlayerName.  Я не думаю, что это работает.
+Oh my!  The famous doctor DialogPlayerName.  It's an honor.
+О боже!  Известный врач DialogPlayerName.  Это большая честь.
+Hello nurse DialogPlayerName.  I've heard about you.
+Здравствуйте медсестра DialogPlayerName.  Я слышала о вас.
+Hello nurse.  Are you here for my treatment?
+Здравствуйте, медсестра.  Вы здесь для моего лечения?
+###_PLAYER
+How are you?
+Как твои дела?
+###_NPC
+I admit I'm a little nervous.  I'm here for my therapy.
+Признаюсь, я немного нервничаю.  Я здесь для своей терапии.
+###_PLAYER
+You're here for a therapy?
+Ты здесь для терапии?
+###_NPC
+Absolutely.  I'm not sure what kind therapy I should do today though, you'll have to tell me.
+Конечно.  Хотя я не уверена, какую терапию мне сегодня проходить, вам придётся мне рассказать.
+###_PLAYER
+(Struggle in your restraints.)
+(Борись в своих ограничениях.)
+###_NPC
+This is so weird.  I don't think I'm allowed to help you.
+Это так странно.  Не думаю, что мне позволено помогать вам.
+###_PLAYER
+It's time for your treatment.
+Пришло время для твоего лечения.
+###_NPC
+I'm ready nurse DialogPlayerName.  What are we focusing on today?
+Я готова медсестра DialogPlayerName.  На чем мы сегодня фокусируемся?
+###_PLAYER
+I must go.  (Leave her.)
+Я должна идти.  (Оставь ее.)
+You will do a bondage therapy.
+Ты будешь проходить бондаж терапию.
+###_NPC
+(She nods slowly.)  I understand, how do we begin?
+(Она медленно кивает.)  Я понимаю, с чего мы начнем?
+###_PLAYER
+You will do a pain therapy.
+Ты будешь проходить терапию болью.
+###_NPC
+Oh my!  (She looks scared.)  Very well, how do we begin?
+О боже!  (Она выглядит испуганной.)  Очень хорошо, когда же мы начнем?
+###_PLAYER
+You will do a tickle therapy.
+Ты будешь проходить терапию щекоткой.
+###_NPC
+(She giggles and nods.)  Very well, how do we begin?
+(Она хихикает и кивает.)  Очень хорошо, когда же мы начнем?
+###_PLAYER
+You will do an orgasm therapy.
+Ты будешь проходить терапию оргазмом.
+###_NPC
+It sounds fascinating.  (She winks a you.)  How do we begin?
+Звучит заманчиво.  (Она подмигивает тебе.)  С чего мы начнем?
+###_PLAYER
+Let me review your file first.
+Позволь мне сначала просмотреть твой файл.
+###_NPC
+Of course, nurse DialogPlayerName.
+Конечно, медсестра DialogPlayerName.
+###_PLAYER
+By getting naked.
+Раздевайся догола.
+###_NPC
+Of course, nurse DialogPlayerName.  (She strips down nervously.)
+Конечно, медсестра DialogPlayerName.  (Она нервно раздевается.)
+###_PLAYER
+Start by stripping.
+Начни с раздевания.
+Don't worry.  I will only use a few restraints on you.
+Не беспокойся.  Я использую только немного ограничений на тебе.
+###_NPC
+(She surrenders and allows you to restrain her with a few items you find in the room.  She gets a little nervous.)
+(Она сдается и позволяет тебе связать ее с помощью нескольких предметов, которые ты найдешь в комнате.  Она немного нервничает.)
+###_PLAYER
+I will now use some restraints on you.
+Теперь я буду использовать некоторые ограничения на тебе.
+###_NPC
+(She surrenders and allows you to restrain her with some items you find in the room.  She gets a little nervous.)
+(Она сдается и позволяет тебе связать ее с помощью нескольких предметов, которые ты найдешь в комнате.  Она немного нервничает.)
+###_PLAYER
+Patient, I will use lots of restraints on you.
+Пациентка, я буду использовать много ограничений на тебе.
+###_NPC
+(She surrenders and allows you to restrain her with lots of items you find in the room.  She gets a little nervous.)
+(Она сдается и позволяет тебе связать ее с помощью нескольких предметов, которые ты найдешь в комнате.  Она немного нервничает.)
+###_PLAYER
+Girl, you will experience a full bondage therapy.
+Девочка, ты испытаешь полную бондаж терапию.
+###_NPC
+(She surrenders and allows you to restrain her with all items you find in the room.  She gets a little nervous.)
+(Она сдается и позволяет тебе связать ее с помощью нескольких предметов, которые ты найдешь в комнате.  Она немного нервничает.)
+###_PLAYER
+(Pet and caress her to keep her calm.)
+(Гладь и ласкай ее, чтобы успокоить.)
+###_NPC
+(She takes long deep breathes and tries to relax.)
+(Она делает долгие глубокие вдохи и пытается расслабиться.)
+###_PLAYER
+(Make sure her restraints aren't too tight.)
+(Убедись, что ее ремни не слишком туго натянуты.)
+(Tighten her restraints a little.)
+(Немного затяни ее путы.)
+###_NPC
+(She whimpers and takes long deep breathes.)
+(Она скулит и делает глубокие вдохи.)
+###_PLAYER
+Get on your knees, hands behind your back.
+На колени, руки за спину.
+###_NPC
+(She seems nervous but complies.)  Yes.
+(Она кажется нервничает, но подчиняется.)  Да.
+###_PLAYER
+Kneel girl, and put your arms behind your back.
+На колени, девочка, и положи руки за спину.
+###_NPC
+(She seems nervous but complies.)  Yes, nurse DialogPlayerName.
+(Кажется, она нервничает, но подчиняется.)  Да, медсестра DialogPlayerName.
+###_PLAYER
+Please get on your knees and gently put your arms back.
+Пожалуйста, встань на колени и аккуратно опустите руки.
+###_NPC
+(She slowly complies and gets on her knees.)
+(Она медленно подчиняется и встает на колени.)
+###_PLAYER
+Don't move until the pain therapy is over.
+Не двигайся, пока не закончится болевая терапия.
+###_NPC
+I will try my best Miss.  Please don't be too harsh with me.
+Я постараюсь изо всех сил, Мисс.  Пожалуйста, не будь со мной слишком строгой.
+###_PLAYER
+You're not allowed to stand up for the full treatment.
+Тебе не разрешается вставать до окончания лечения.
+Hands behind you back.  You will be blind girl.
+Руки за спину.  Ты будешь слепой девочкой.
+###_NPC
+(She puts her hands behind her back and gives you one last curious look as you blindfold her.)
+(Она убирает руки за спину и бросает на тебя последний любопытный взгляд, пока ты завязываешь ей глаза.)
+###_PLAYER
+Please put your arms behind.  I will put a blindfold on you.
+Пожалуйста, заведи руки за спину.  Я надену тебе повязку на глаза.
+Patient, put your arms behind.  I will blindfold you.
+Пациентка, убери руки за спину.  Я завяжу тебе глаза.
+Surrender to me until the tickling therapy is over.
+Починись мне, пока не закончится терапия щекоткой.
+###_NPC
+(She tries to look around in vain.)  Yes, nurse DialogPlayerName.  Be careful, I'm very ticklish.
+(Она тщетно пытается оглядеться.)  Да, медсестра DialogPlayerName.  Будьте осторожны, я очень боюсь щекотки.
+###_PLAYER
+You're not allowed to move for the full treatment.
+Ты не можешь двигаться до окончания лечения.
+Please put your arms behind.  I will add something kinky.
+Пожалуйста, заведи руки за спину.  Я буду добавлять что-то развратное.
+###_NPC
+(She puts her hands behind her back as you use a device on her breast.)
+(Она кладет руки за спину, когда ты используешь устройство на ее груди.)
+###_PLAYER
+Put your arms behind.  There's something for your breast.
+Убери руки за спину.  Есть кое-что для твоей груди.
+Hands behind you back.  I'll take care of your boobs first.
+Руки за спину.  Сначала я позабочусь о твоих сиськах.
+You're not allowed to cum until I say so.
+Тебе нельзя кончать, пока я не скажу.
+###_NPC
+(She seems already wet.)  It won't be easy for me nurse DialogPlayerName.  I'll try my best.
+(Она кажется уже мокрой.)  Это будет нелегко для меня медсестра DialogPlayerName.  Я буду стараться изо всех сил.
+###_PLAYER
+I will control your sexual urges and orgasms.
+Я буду контролировать твои сексуальные позывы и оргазмы.
+(Do an easy therapy for a lesser pay.)
+(Сделай легкую терапию за меньшую плату.)
+(Do a regular therapy for a regular pay.)
+(Проводи обычную терапию за обычную плату.)
+(Do a tough therapy for a better pay.)
+(Сделай жесткую терапию для лучшей оплаты.)
+I didn't do much, you were a good patient.
+Я мало что сделала, ты была хорошей пациенткой.
+###_NPC
+(She shrugs.)  I will make sure to spread good words on you.  You deserve your salary.
+(Она пожимает плечами.)  Я позабочусь о том, чтобы передать о вас хорошие слова.  Вы заслужили свою зарплату.
+###_PLAYER
+When I'm in control, it always works.
+Когда я контролирую ситуацию, это всегда срабатывает.
+###_NPC
+(She bows her head.)  I will make sure to spread good words on you.  You deserve your salary.
+(Она склоняет голову.)   Я позабочусь о том, чтобы передать о вас хорошие слова.  Вы заслужили свою зарплату.
+###_PLAYER
+I'm glad it worked, and you could grow.
+Я рада, что это сработало, и ты смогла развиться.
+###_NPC
+(She nods.)  I will make sure to spread good words on you.  You deserve your salary.
+(Она кивает.)   Я позабочусь о том, чтобы передать о вас хорошие слова.  Вы заслужили свою зарплату.
+###_PLAYER
+Thanks, you're free to go now.
+Спасибо, теперь ты свободна.
+###_NPC
+Very well, please help me to dress back up and I'll go back to my room.
+Очень хорошо, пожалуйста, помогите мне одеться, и я вернусь в свою комнату.
+###_PLAYER
+Your therapy is done patient.
+Твоя терапия закончена.
+(Help her to go and welcome a new patient.)
+(Помоги ей выйти и поприветствовать нового пациента.)
+You were too stubborn to follow my orders.
+Ты была слишком упрямой, чтобы выполнять мои приказы.
+###_NPC
+(She bows her head in shame.)  I know, I'm sorry about that.  I'll be better next time.
+(Она со стыдом опускает голову.)  Я знаю, я сожалею об этом.  В следующий раз я буду лучше.
+###_PLAYER
+I've failed as a nurse.
+Я провалилась как медсестра.
+###_NPC
+(She shakes her head no.)  Don't be ashamed, it will work better next time.
+(Она отрицательно качает головой.)  Не стыдитесь, в следующий раз это сработает лучше.
+###_PLAYER
+We'll try another therapy next time.
+В следующий раз попробуем другую терапию.
+###_NPC
+(She nods slowly.)  Yes, another therapy might work better.
+(Она медленно кивает.)  Да, другая терапия может сработать лучше.
