@@ -103,8 +103,8 @@ function CollegeTheaterUnderwear(C) {
 function CollegeTheaterJuliaLoveChange(LoveChange, Event) {
 	if (LoveChange != null) CollegeTheaterJuliaLove = CollegeTheaterJuliaLove + parseInt(LoveChange);
 	if ((LoveChange != null) && (parseInt(LoveChange) <= 0)) {
-		CharacterSetFacialExpression(CollegeTheaterJulia, "Eyebrows", "Angry");
-		TimerInventoryRemoveSet(CollegeTheaterJulia, "Eyebrows", 2);
+		CharacterSetFacialExpression(CollegeTheaterJulia, "Eyes", "Dazed");
+		TimerInventoryRemoveSet(CollegeTheaterJulia, "Eyes", 2);
 	}
 	if ((LoveChange != null) && (parseInt(LoveChange) >= 2)) {
 		CharacterSetFacialExpression(CollegeTheaterJulia, "Blush", "Low");
