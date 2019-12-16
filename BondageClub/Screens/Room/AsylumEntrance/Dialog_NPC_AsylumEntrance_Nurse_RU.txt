@@ -1,0 +1,453 @@
+﻿###_NPC
+Lovely gag, but you'll need to get it off if you want to talk with me.
+Прекрасный кляп, но тебе придется его снять, если ты хочешь поговорить со мной.
+Ow!  Well done, you're a tough patient.  I'm not letting you out anyway.
+Ай!  Молодец, ты сильная пациентка.  Я все равно тебя не выпущу.
+You really thought you could beat me?  You're truly mad, little patient.
+Ты действительно думала, что сможешь победить меня?  Ты действительно сумасшедшая, маленькая пациентка.
+What are you doing here little slave?  Go back to the club and serve our customers.
+Что ты здесь делаешь, маленькая рабыня?  Возвращайтесь в клуб и обслуживай наших клиентов.
+###_PLAYER
+Can we talk about the asylum?
+Мы можем поговорить о психлечебнице?
+###_NPC
+No, as a club slave you have work to do.  Get going girl.
+Нет, как клубная рабыня ты должна работать.  Уходи, девочка.
+###_PLAYER
+(Leave her.)
+(Оставь ее.)
+###_NPC
+Greetings doctor DialogPlayerName.  It's always a pleasure to see you.  Are you working today?
+Приветствую вас доктор DialogPlayerName.  Это всегда приятно видеть вас.  Вы сегодня работаете?
+Welcome to the asylum nurse DialogPlayerName.  Our patients are expecting you.  Are you here to work?
+Добро пожаловать в психлечебницу медсестра DialogPlayerName.  Наши пациенты ждут вас.  Вы здесь, чтобы работать?
+Hello assistant DialogPlayerName.  It's time to get to work for the asylum!
+Здравствуйте ассистентка DialogPlayerName.  Пора приниматься за работу в психлечебнице!
+It's always a pleasure to take you in patient DialogPlayerName.  Are you checking in again today?
+Всегда приятно принять тебя в качестве пациента DialogPlayerName.  Ты сегодня снова проверяешься?
+Welcome to the asylum patient DialogPlayerName.  Do you still our help?
+Добро пожаловать в лечебницу пациент DialogPlayerName.  Тебе все еще нужна наша помощь?
+Hello again DialogPlayerName.  Are you here to check in?
+Еще раз здравствуйте DialogPlayerName.  Ты здесь, чтобы провериться?
+Welcome to the asylum.  Do you need information?
+Добро пожаловать в психлечебницу.  Вам нужна информация?
+###_PLAYER
+I want to learn about the asylum.
+Я хочу узнать о психлечебнице.
+###_NPC
+In the asylum, you can work as a nurse or commit yourself as a patient.  What would you like to know?
+В психлечебнице вы можете работать медсестрой или взять на себя обязательства как пациент.  Что бы вы хотели узнать?
+###_PLAYER
+I'd like to commit myself
+Я бы хотела взять на себя обязательство.
+###_NPC
+You can, but you will lose your nurse status and reputation.  Are you sure about that?
+Вы можете это сделать, но вы потеряете свой статус медсестры и репутацию.  Вы уверены в этом?
+By committing yourself, you will be locked down in the asylum until your time is up.
+Взяв на себя обязательство, вы будете заперты в психлечебнице до тех пор, пока не истечет ваше время.
+###_PLAYER
+I'd like to work as a nurse.
+Я бы хотела работать медсестрой.
+###_NPC
+You can, but you will lose your patient status and reputation.  Are you sure about that?
+Вы можете это сделать, но вы потеряете свой статус пациента и репутацию.  Вы уверены в этом?
+Perfect!  We need staff to take care of our patients.  Are you ready to work now?
+Отлично!  Нам нужен персонал, чтобы заботиться о наших пациентах.  Готовы ли вы начать работать сейчас?
+###_PLAYER
+Can I get my own nurse uniform?
+Могу я получить свою собственную униформу медсестры?
+###_NPC
+Of course.  Here you go nurse DialogPlayerName.  Wear it with pride.  (She gives you a nurse uniform.)
+Конечно.  Здесь вы идете медсестра DialogPlayerName.  Носите это с гордостью.  (Она дает тебе форму медсестры.)
+###_PLAYER
+I must go.  (Leave her.)
+Я должна идти.  (Оставь ее.)
+What goes in the asylum?
+Что происходит в психлечебнице?
+###_NPC
+The asylum is a place to relax, to forget about your stressful life for a while.  You can get therapies and mingle with patients and nurses.
+Психлечебница - это место, где можно расслабиться, на время забыть о своей напряженной жизни.  Вы можете получать терапию и общаться с пациентами и медсестрами.
+###_PLAYER
+Tell me about patients.
+Расскажите мне о пациентах.
+###_NPC
+Patients willingly commit themselves for a set time.  Until that time is up, they will receive therapies and will be locked in the asylum.
+Пациенты охотно берут на себя обязательства в течение определенного времени.  До тех пор, пока это время не истечет, они будут получать терапию и будут заперты в психлечебнице.
+###_PLAYER
+Tell me about nurses.
+Расскажите мне о медсестрах.
+###_NPC
+Nurses are paid by the asylum to take care of patients.  They give the therapies and strap-up feisty customers.  (She grins.)
+Медсестры получают деньги от психлечебницы, за то чтобы заботиться о пациентах.  Они дают терапию и пристегивают дерзких клиенток.  (Она усмехается.)
+###_PLAYER
+What are the therapies?
+Каковы методы терапии?
+###_NPC
+There are lots of therapies available, depending on the patient needs.  They are bondage, pain, tickling and orgasm therapies.
+Есть много доступных методов терапии, в зависимости от потребностей пациента.  Это бондаж, боль, щекотка и терапия оргазма.
+###_PLAYER
+Can I send my slaves here?
+Могу я послать сюда своих рабынь?
+###_NPC
+Yes, if your submissive doesn't behave the way you want it.  You can send her here to correct her behavior.  Talk with her first.
+Да, если ваша нижняя ведет себя не так, как вы этого хотите.  Вы можете отправить ее сюда, чтобы исправить ее поведение.  Сначала поговорите с ней.
+###_PLAYER
+Thanks for the information.
+Спасибо за информацию.
+###_NPC
+My pleasure.  Do you need anything else?
+С удовольствием.  Вам нужно что-нибудь еще?
+###_PLAYER
+Yes, I want to transfer from nurse to patient.
+Да, я хочу перейти из медсестры к пациенке.
+###_NPC
+Very well.  By committing yourself, you will be locked down in the asylum until your time is up.
+Очень хорошо.  Взяв на себя это обязательство, вы будете заперты в психлечебнице до тех пор, пока не истечет ваше время.
+###_PLAYER
+Let me think about it.
+Дайте мне подумать об этом.
+###_NPC
+Of course.  Do you need anything else?
+Конечно.  Вам нужно что-нибудь еще?
+###_PLAYER
+I accept to be locked down.
+Я согласна быть запертой.
+###_NPC
+(She grins.)  Perfect!  First thing first, you need to change and wear patient clothes.
+(Она усмехается.) Отлично!  Прежде всего, тебе нужно переодеться и надеть одежду пациента.
+(She grins.)  Perfect!  But you need to get out of these restraints first.  Go get a maid to help you, I'm busy.
+(Она усмехается.) Отлично!  Но сначала тебе нужно освободиться от этих ограничений.  Иди позови горничную, я занята.
+###_PLAYER
+I'm already dressed like that.
+Я уже так одета.
+###_NPC
+(She nods.) For how long you wish to commit yourself?
+(Она кивает.) На какой срок ты хочешь взять на себя обязательство?
+###_PLAYER
+Can you help me to change?
+Вы можете помочь мне переодется?
+###_NPC
+I certainly can.  (She helps you to get dressed as a patient.)  For how long you wish to commit yourself?
+Конечно, могу.  (Она помогает тебе одеться как пациент.)  На какой срок ты хочешь взять на себя обязательства?
+###_PLAYER
+15 minutes.
+15 минут.
+###_NPC
+You're taking it easy, don't you?  Very well, step inside.  (She locks the door behind you.)
+Ты ведь не торопишься, правда?  Очень хорошо, заходи внутрь.  (Она запирает за тобой дверь.)
+###_PLAYER
+1 hour.
+1 час.
+###_NPC
+It should give you some time to relax.  Very well, step inside.  (She locks the door behind you.)
+Это должно дать тебе некоторое время, чтобы расслабиться.  Очень хорошо, заходи внутрь.  (Она запирает за тобой дверь.)
+###_PLAYER
+4 hours.
+4 часа.
+###_NPC
+It should give you plenty of time to relax.  Very well, step inside.  (She locks the door behind you.)
+Это должно дать тебе достаточно времени, чтобы расслабиться.  Очень хорошо, заходи внутрь.  (Она запирает за тобой дверь.)
+###_PLAYER
+1 day.
+1 день.
+###_NPC
+Impressive!  I'll prepare a bed for you, step inside.  (She locks the door behind you.)
+Впечатляет!  Я приготовлю тебе постель, заходи.  (Она запирает за тобой дверь.)
+###_PLAYER
+Where do I start?
+С чего мне начать?
+###_NPC
+The social room is a good place to start.  Or get to the beds to relax.  Now get going girl.
+Социальная комната - хорошее место для начала.  Или иди в кровать, чтобы расслабиться.  А теперь иди, девочка.
+###_PLAYER
+You're locking the door?
+Вы запираете дверь?
+###_NPC
+Don't be afraid, it's for your own good.  Now get going girl, you can explore the asylum freely.
+Не бойся, это для твоего же блага.  Теперь идти девушка, ты можешь свободно исследовать психлечебницу.
+By wearing this.  (She straps a straitjacket on you.)  Patients like you must be kept under control.  Now carry on, you know the place.
+Надень это.  (Она надевает на тебя смирительную рубашку.)  Таких пациенток, как ты, надо держать под контролем.  А теперь продолжай, ты знаешь это место.
+###_PLAYER
+Here we go again.
+Это снова мы.
+###_NPC
+You know the drill.  (She straps a straitjacket on you.)  Patients like you must be kept under control.  Now carry on, you know the place.
+Ты знаешь правила.  (Она застегнула на тебя смирительную рубашку.)  Таких пациенток, как ты, надо держать под контролем.  А теперь продолжай, ты знаешь это место.
+###_PLAYER
+Thanks.  (Leave her.)
+Спасибо.  (Оставь ее.)
+Yes, I want to transfer from patient to nurse.
+Да, я хочу перейти из пациентки к медсестре.
+I'm ready to work right now.
+Я готова начать работать прямо сейчас.
+###_NPC
+Great!  But before you enter, you must wear the nurse uniform.
+Отлично!  Но прежде чем начать, вы должны надеть форму медсестры.
+No, you're not.  (She giggles.)  You're restrained girl.  Go get a maid to help you, I'm busy.
+Нет, это не так.  (Она хихикает.) Ты связанная девочка.  Иди позови горничную, я занята.
+###_PLAYER
+I'm already dressed up.
+Я уже оделась.
+###_NPC
+Wonderful!  Come inside then, there are lots of patients to take care of.
+Замечательно!  Тогда заходите внутрь, там много пациентов, о которых нужно позаботиться.
+(She gives you the nurse clothes.)  Come inside, there are lots of patients to take care of.
+(Она дает тебе одежду медсестры.)  Заходите внутрь, там много пациентов, о которых нужно позаботиться.
+###_PLAYER
+Thanks!  (Leave her.)
+Спасибо!  (Оставь ее.)
+###_NPC
+If it isn't the famous patient DialogPlayerName.  As usual, I hope your stay in the asylum is going well.
+Разве это не известная пациентка DialogPlayerName.  Как обычно, я надеюсь, что твое пребывание в психлечебнице будет отличным.
+Hello again patient DialogPlayerName.  I hope your stay in the asylum is going well.
+Привет еще раз пациентка DialogPlayerName.  Я надеюсь, что твое пребывание в психлечебнице будет отличным.
+Hello there.  I hope your stay in the asylum is going well.
+Здравствуй.  Я надеюсь, что твое пребывание в психлечебнице будет отличным.
+###_PLAYER
+Can you release me?
+Вы можете отпустить меня?
+###_NPC
+If you're restrained, there must be good reasons.  Think about it.
+Если ты связана, то этому должны быть веские причины.  Подумай об этом.
+###_PLAYER
+Release me or I'll scream.
+Отпустите меня, или я закричу.
+###_NPC
+(She straps a muzzle gag on you and giggles.)  Scream all you want.
+(Она затыкает тебе рот кляпом и хихикает.)  Кричи сколько хочешь.
+###_PLAYER
+When do I get out of the asylum?
+Когда я выйду из психлечебницы?
+###_NPC
+Check the clock girl, it's on the wall behind you.
+Посмотри на часы, девочка, они висят на стене позади тебя.
+###_PLAYER
+Can I go out temporarily?
+Могу я временно уйти?
+###_NPC
+No, the rules are strict, you cannot get out until your time is up.
+Нет, правила строги, ты не можешь уйти, пока твое время не истекло.
+###_PLAYER
+You need to let me out now.
+Вы должны выпустить меня сейчас же.
+###_NPC
+(She frowns and stares at you.)  No!  The rules are the rules!  Do your time.
+(Она хмурится и смотрит на тебя.)  Нет!  Правила есть правила!  Делай свое дело.
+###_PLAYER
+Fine, I'll do my time.
+Ладно, я отсижу свое время.
+###_NPC
+Alright.  Try to get some rest or make some friends.
+Хорошо.  Постарайся немного отдохнуть или завести друзей.
+###_PLAYER
+(Sigh and cross your arms.)
+(Вздохни и скрести руки на груди.)
+###_NPC
+Try to get some rest or make some friends.
+Постарайся немного отдохнуть или завести друзей.
+###_PLAYER
+Do I have to force my way out?
+Должна ли я силой пробиваться наружу?
+###_NPC
+(She clinches her fists.)  What does it mean?
+(Она сжимает кулаки.)  Что это значит?
+###_PLAYER
+It means war!  (Fight her.)
+Это означает войну!  (Сразись с ней.)
+Nothing, forget it.
+Ничего, забудь об этом.
+###_NPC
+(She grumbles.)  Fine.  Try to get some rest or make some friends.
+(Ворчит она.)  Хорошо.  Постарайся немного отдохнуть или завести друзей.
+###_PLAYER
+I'm getting out girl.
+Я выхожу, девочка.
+###_NPC
+No, you're not.  They won't let you go patient.
+Нет, это не так.  Они не отпустят тебя пациентка.
+###_PLAYER
+I have a plan for that.
+У меня есть план на этот счет.
+###_NPC
+Forget it patient, they won't let you go.
+Забудь об этом, пациентка, они тебя не отпустят.
+###_PLAYER
+That's what you think.  (Strip her.)
+Это то, что ты думаешь.  (Раздень ее.)
+###_NPC
+What are you doing?  I have work to do, it's not a good time to get kinky.
+Что ты делаешь?  У меня много работы, сейчас не самое подходящее время для извращений.
+###_PLAYER
+They will let me go.  (Strip her.)
+Они меня отпустят.  (Раздень ее.)
+(Stay silent and strip her.)
+(Замолчи и раздень ее.)
+You'll understand soon.  (Strip.)
+Скоро ты все поймешь.  (Раздеться.)
+###_NPC
+What the hell?  You're not going to rape me, are you?
+Какого черта?  Ты же не собираешься меня изнасиловать, правда?
+###_PLAYER
+Be quiet little nurse.  (Strip.)
+Успокойся, маленькая медсестра.  (Раздеться)
+You're not my type.  (Wear her clothes.)
+Ты не в моем вкусе.  (Надень ее одежду.)
+###_NPC
+Don't touch my uniform!  Are you thinking what I'm thinking?
+Не трогай мою форму!  Ты думаешь о том же, о чем и я?
+###_PLAYER
+You're so clueless.  (Wear her clothes.)
+Ты такая невежественная. (Надень ее одежду.)
+(Blush and wear her clothes.)
+(Краснеть и носить ее одежду.)
+You're thinking too much.  (Dress her up.)
+Ты слишком много думаешь.  (Одень ее.)
+###_NPC
+(She struggles frenetically.)  Oh no you don't!  You're in deep trouble girl!
+(Она отчаянно сопротивляется.)  О нет, не надо!  У тебя будут большие неприятности, девочка!
+###_PLAYER
+A patient should relax.  (Dress her up.)
+Пациентка должен расслабиться.  (Одень ее.)
+You will enjoy your stay.  (Dress her up.)
+Ты будешь наслаждаться своим пребыванием.  (Dress her up.)
+Let's wrap this.  (Strap her up.)
+Давай завернем это.  (Свяжи ее.)
+###_NPC
+(You strap her up in a straitjacket and gag her with medical restraints.)  You traitor!
+(Ты пристегиваешь ее смирительной рубашкой и затыкаешь кляп медицинскими ремнями.)  Ты предательница!
+###_PLAYER
+You will have fun.  (Strap her up.)
+Ты будешь получать удовольствие.  (Пристегни ее.)
+Enough talking girl.  (Strap her up.)
+Хватит болтать, девочка.  (Пристегни ее.)
+###_NPC
+(She still struggles madly and bites hard on her gag.)  Let me out!
+(Она все еще отчаянно сопротивляется и сильно кусает свой кляп.) Выпустите меня!
+###_PLAYER
+Have fun struggling!  (Leave her.)
+Получай удовольствие борясь!  (Оставь ее.)
+You were lucky.
+Тебе повезло.
+###_NPC
+It's not about luck, it's about control.  And you will feel my control.
+Дело не в удаче, а в контроле.  И ты почувствуешь мой контроль.
+###_PLAYER
+I'll have my revenge.
+Я отомщу тебе.
+###_NPC
+When hell freezes.  Now it's time to control you girl.
+Когда ад замерзнет.  Теперь пришло время контролировать тебя, девочка.
+###_PLAYER
+You're really strong.
+Ты действительно сильная.
+###_NPC
+(She grins.)  Indeed.  And now it's time to control you girl.
+(Она усмехается.)  Действительно.  И теперь пришло время контролировать тебя, девочка.
+###_PLAYER
+What does that mean?
+Что это значит?
+###_NPC
+(She restrains your arms in a straitjacket and straps it snug.)  That's what it means.
+(Она связывает твои руки в смирительную рубашку и крепко стягивает ее.) Вот что это значит.
+###_PLAYER
+Do your worst.
+Делай, что хочешь.
+###_NPC
+(She restrains your arms in a straitjacket and straps it tight.)  You're not getting out of that.
+(Она связывает твои руки в смирительной рубашке и пристеггивает ее ремнями.) Ты не выберешься из этого.
+###_PLAYER
+(Stay silent.)
+(Замолчи.)
+###_NPC
+(She restrains your arms in a straitjacket and straps it behind your back.)  This will control you.
+(Она связывае  твои руки в смирительной рубашке и закрепляет их за спиной.) Это будет контролировать тебя.
+###_PLAYER
+Fuck you!  This is unfair!
+Пошла ты на хуй!  Это несправедливо!
+###_NPC
+Such a dirty mouth.  (She straps a muzzle gag on you and smiles.)  Carry on girl, I have work to do.
+Такой грязный рот.  (Она застегнула тебя кляп и улыбается.) Продолжай, девочка, у меня еще есть работа.
+###_PLAYER
+This is tight.
+Это туго.
+###_NPC
+And don't force me to make it tighter.  Now carry on girl, I have work to do.
+И не заставляй меня напрягаться.  А теперь продолжай, девочка, у меня еще есть работа.
+###_PLAYER
+You will leave me like that?
+Вы оставите меня в таком состоянии?
+###_NPC
+Absolutely.  Now carry on girl, I have work to do.
+Конечно.  А теперь продолжай, девочка, у меня еще есть работа.
+###_PLAYER
+(Whimper.)
+(Хныкай.)
+###_NPC
+Stop crying girl and carry on, I have work to do.
+Перестань плакать девочка и продолжай, у меня еще есть работа.
+Wait!  Do I know you?  Who are you?
+Стой!  Я тебя знаю?  Кто ты такая?
+###_PLAYER
+Hello.  I'm DialogPlayerName.
+Привет.  Я DialogPlayerName.
+###_NPC
+It's you!  You're the patient that escaped.  Get her girls!  (Lots of nurses come to help her.)
+Это ты!  Ты та пациентка, которая сбежала.  Приведите ее, девочки!  (Многие медсестры приходят ей на помощь.)
+###_PLAYER
+Know me?  It's my first visit here.
+Знаешь меня?  Это мой первый визит сюда.
+###_NPC
+I know!  You're the patient that escaped.  Get her girls!  (Lots of nurses come to help her.)
+Я знаю! Ты та пациентка, которая сбежала.  Приведите ее, девочки!  (Многие медсестры приходят ей на помощь.)
+###_PLAYER
+You should know me.  (Grin.)
+Ты должна знать меня.  (Скалить зубы.)
+###_NPC
+You're the patient that escaped.  Get her girls!  (Lots of nurses come to help her.)
+Ты та пациентка, которая сбежала.  Приведите ее, девочки!  (Многие медсестры приходят ей на помощь.)
+###_PLAYER
+Uh oh.  I must go.  (Leave her.)
+Ой-ой.  Я должна идти.  (Оставь ее.)
+You're mistaken.
+Ты ошибаешься.
+###_NPC
+(They quickly jump on you, force you to dress as a patient and strap you tight in a straitjacket.)
+(Они быстро набрасываются на тебя, заставляют одеться как пациента и туго затягивают смирительную рубашку.)
+###_PLAYER
+What's going on?
+Что происходит?
+(Try to fight them.)
+(Попробуй сразиться с ними.)
+###_NPC
+(They quickly overpower you, force you to dress as a patient and strap you tight in a straitjacket.)
+(Они быстро одолевают тебя, заставляют одеваться как пациента и туго затягивают смирительную рубашку.)
+###_PLAYER
+What the hell?
+Какого черта?
+###_NPC
+Welcome back patient, I'm sure your forced day here will teach you a lesson.
+Добро пожаловать обратно пациентка, я уверена, что твой вынужденный день здесь преподаст тебе урок.
+###_PLAYER
+That's unfair!
+Это несправедливо!
+###_NPC
+It's very fair.  Welcome back patient, I'm sure your forced day here will teach you a lesson.
+Это очень справедливо. Добро пожаловать обратно пациентка, я уверена, что твой вынужденный день здесь преподаст тебе урок.
+###_PLAYER
+One full day?  Are you insane?
+Целый день?  Вы с ума сошли?
+###_NPC
+From your current look, I'd say you're the insane one.  (She giggles.)  Now carry on, I have work to do.
+Судя по твоему нынешнему виду, я бы сказала, что ты сумасшедшая.  (Она хихикает.)  А теперь продолжай, у меня еще есть работа.
+###_PLAYER
+Yes Miss.  (Bow your head.)
+Да, Мисс.  (Склони голову.)
+###_NPC
+Good girl.  (She smirks.)  Now carry on, I have work to do.
+Хорошая девочка.  (Она ухмыляется.)  А теперь продолжай, у меня еще есть работа.
+###_PLAYER
+Fine.  I'll do it.
+Хорошо.  Я сделаю это.
+###_NPC
+Very well.  (She smiles.)  Now carry on, I have work to do.
+Очень хорошо.  (Она улыбается.)  А теперь продолжай, у меня еще есть работа.
