@@ -1,0 +1,117 @@
+﻿###_NPC
+Welcome to Mistress lair.  The club management office.
+Добро пожаловать в логово Госпожи.  Это офис руководства клуба.
+###_PLAYER
+Who are you?
+Кто ты такая?
+###_NPC
+(She purrs like a cat.)  I'm DialogCharacterName, pleased to meet you Miss.
+(Она мурлычет, как кошка.)  Я DialogCharacterName, приятно познакомиться, Мисс.
+###_PLAYER
+Why are you restrained?
+Почему ты связана?
+###_NPC
+(She struggles playfully.)  Mistress loves to have me restrained while she works.
+(Она игриво борется.)  Госпожа любит, чтобы я была связанной, пока она работает.
+###_PLAYER
+(Purr and meow like a cat.)
+(Мурлыкать и мяукать как кошка.)
+###_NPC
+(She gets a little bit closer and purrs playfully.)
+(Она подходит чуть ближе и игриво мурлычет.)
+###_PLAYER
+Can I play with you?
+Можно я с тобой поиграю?
+###_NPC
+(She shakes her head no.)  I don't think Mistress would approve.
+(Она отрицательно качает головой.)  Не думаю, что Госпожа это одобрит.
+###_PLAYER
+(Play with her.)
+(Играть с ней.)
+###_NPC
+(You get closer to her.)
+(Ты приближаешься к ней.)
+###_PLAYER
+(Release her.)
+(Освободить ее.)
+I need to go, take care.  (Leave her.)
+Мне нужно идти, береги себя.  (Оставить ее.)
+(Try to talk with her.)
+(Попробуй поговорить с ней.)
+###_NPC
+(You both try to speak to each other but fail to have a coherent conversation.)
+(Вы обе пытаетесь заговорить друг с другом, но у вас не получается связного разговора.)
+###_PLAYER
+(Lean on her.)
+(Обопрись на нее.)
+###_NPC
+(You lean and rest on each other shoulder while she purrs slowly.)
+(Ты наклоняешься и опираешься друг другу на плечи, пока она медленно мурлычет.)
+###_PLAYER
+(Nuzzle with her.)
+(Прижмись к ней носом.)
+###_NPC
+(You clumsily nuzzle each other in your restraints and giggle.)
+(Вы неуклюже утыкаетесь носом друг в друга и хихикаете.)
+###_PLAYER
+(Give her a restrained hug.)
+(Обними ее.)
+###_NPC
+(You get close to each other for a long submissive hug.  She seems to enjoy it and moans like a cat.)
+(Вы становитесь ближе друг к другу для долгих покорных объятий.  Похоже, ей это нравится и она стонет, как кошка.)
+###_PLAYER
+(Rub your body against hers.)
+(Потри свое тело о ее.)
+###_NPC
+(You both rub your bodies against each other and moan slowly.  She slides her tail against your skin.)
+(Вы оба трудитесь друг о друга и медленно стонаете.  Она прижимает хвост к твоей коже.)
+###_PLAYER
+(Try to masturbate her.)
+(Попробуй мастурбировать.)
+###_NPC
+(You rub your armbinder against her chastity belt and realize that you won't be able to give her any pleasure.)
+(Ты трешь своим армбиндером о её пояс целомудрия и понимаешь, что не сможешь доставить ей удовольствие.)
+###_PLAYER
+(Try to release her.)
+(Попробуй освободить ее.)
+###_NPC
+(You struggle in your armbinder and try to release her.  But you fail miserably.)
+(Ты борешься в своем армбиндере и пытаешься освободить её.  Но ты терпишь неудачу.)
+###_PLAYER
+(Step back.)
+(Отойди.)
+###_NPC
+(You step back.)
+(Ты отходишь.)
+###_PLAYER
+I love your ears and tail.
+Я люблю твои уши и хвост.
+###_NPC
+(She nods happily.)  I've got the tail at the club store.
+(Она радостно кивает.)  У меня есть хвост из клубного магазина.
+###_PLAYER
+You're a good kitty.
+Ты хороший котенок.
+###_NPC
+(She purrs some more.)  Thank you Miss.
+(Она еще немного мурлычет.)  Спасибо Мисс.
+###_PLAYER
+Are you a furry?
+Ты что, фурри?
+###_NPC
+(She shakes her head no and grumbles in her gag.)
+(Она отрицательно качает головой и ворчит сквозь кляп.)
+###_PLAYER
+Are you a neko?
+Ты Неко?
+###_NPC
+(She shakes her head yes and purrs.)
+(Она утвердительно качает головой и мурлычет.)
+###_PLAYER
+(Pet her.)
+(Погладь ее.)
+(Talk about something else.)
+(Поговорим о чем-нибудь другом.)
+###_NPC
+(You take one step back.)
+(Ты делаешь шаг назад.)

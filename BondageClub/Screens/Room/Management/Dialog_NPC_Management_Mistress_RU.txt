@@ -1,0 +1,1156 @@
+﻿###_NPC
+Don't waste your time talking, I cannot understand.
+Не трать время на разговоры, я не понимаю.
+(DialogCharacterName comes in front of you.)  What are you doing?  Don't touch my pet.
+(DialogCharacterName становиться перед тобой.)  Что ты делаешь?  Не трогай моего питомца.
+(DialogCharacterName grabs your arm.)  You're getting on my nerves.  Never touch my kitty.
+(DialogCharacterName хватает тебя за руку.) Ты действуешь мне на нервы. Никогда не трогай мою кошечку.
+(DialogCharacterName grabs your hair.)  Touch my pet again and you'll get in a world of trouble!
+(DialogCharacterName хватает тебя за волосы.)  Прикоснись к моему питомцу еще раз, и ты получишь море проблем!
+(She pulls you to her by the hair.)  Never touch my pet!  Now you're in trouble.
+(Она притягивает тебя к себе за волосы.)  Никогда не трогай моего питомца!  Теперь у тебя проблемы.
+Submissive girl, what are you doing standing up in my presence?  Get on your knees if you want to speak to me.
+Покорная девочка, что ты делаешь, стоя в моем присутствии?  Встань на колени, если хочешь поговорить со мной.
+We Mistresses have been speaking.  It seems you're not fit to wear the heels anymore.
+Мы, Госпожи, разговаривали.  Похоже, ты больше не в состоянии быть Верхней.
+(She looks at you and grins.)  Be direct and don't waste my time naked girl.
+(Она смотрит на тебя и улыбается.)  Говори прямо и не трать мое время голая девушка.
+My respects to you Mistress DialogPlayerName.
+Мое почтение вам Госпожа DialogPlayerName.
+Greetings head maid DialogPlayerName.  Is there a problem that the sorority cannot handle?
+Приветствую старшую горничную DialogPlayerName.  Есть ли проблемы, с которой женское сообщество не может справиться?
+Greetings master kidnapper DialogPlayerName.  I trust you're having a good time hunting.
+Приветствую мастера-похитительнтцу DialogPlayerName.  Надеюсь, вы хорошо проводите время на охоте.
+Welcome little maid.  How can I help you?
+Добро пожаловать, маленькая горничная.  Чем я могу тебе помочь?
+Welcome kidnapper.  How can I help you?
+Добро пожаловать, похитительница.  Чем я могу вам помочь?
+Be direct and don't waste my time girl.
+Говори прямо и не трать мое время, девочка.
+###_PLAYER
+Greetings Miss.  My name is DialogPlayerName.
+Приветствую, Мисс.  Меня зовут DialogPlayerName.
+###_NPC
+You seem to have some manners.  I'm DialogCharacterName, I'm in charge of the club today.
+Похоже, у тебя хорошие манеры.  Я DialogCharacterName, сегодня я отвечаю за клуб.
+###_PLAYER
+How come Sarah is locked down?
+Как получилось, что Сара заперта?
+###_NPC
+Sarah you say?  Oh yes, the blond college student.  Mistress Sophie reserved a room for her punishment.
+Сара, говоришь?  Ах да, белокурая студентка колледжа.  Госпожа София зарезервировала комнату для ее наказания.
+###_PLAYER
+I have a few questions.
+У меня есть несколько вопросов.
+###_NPC
+Don't be shy, but don't waste my time.
+Не стесняйся, но не трать мое время.
+###_PLAYER
+Who's that bound girl?
+Кто эта связанная девушка?
+###_NPC
+She's my kitty.  She stays with me while I work.
+Она моя кошечка.  Она остается со мной, пока я работаю.
+###_PLAYER
+Can we talk about chastity devices?
+Мы можем поговорить об устройствах целомудрия?
+###_NPC
+Absolutely, what would you like to know?
+Конечно, что бы ты хотела знать?
+###_PLAYER
+About Dominant/submissive relationships...
+О Доминантных/сабмисивных отношениях....
+###_NPC
+I'm listening.  How can I educate you?
+Я слушаю.  Как я могу тебя просветить?
+###_PLAYER
+About club Mistresses...
+О Госпожах клуба...
+###_NPC
+Speak up.  What would you like to know?
+Говори громче.  Что ты хочешь знать?
+###_PLAYER
+About club slaves...
+О клубных рабынях...
+###_NPC
+Yes, what would you like to know?
+Да, что бы ты хотела знать?
+###_PLAYER
+Sorry, I need to go.  (Leave her.)
+Извините, мне нужно идти.  (Оставь ее.)
+Oops, I'm sorry Miss.  (Kneel for her.)
+Ой, простите, Мисс.  (На колени перед ней.)
+###_NPC
+(She smirks as you kneel down for her.)  Good girl.  What can I do for you?
+(Она ухмыляется, когда ты опускаешься на колени перед ней.)  Хорошая девочка.  Что я могу для тебя сделать?
+###_PLAYER
+(Bow your head and kneel.)
+(Склони голову и преклони колени.)
+We cannot talk then.  (Leave her.)
+Тогда мы не можем говорить.  (Оставь ее.)
+What do you do in the club?
+Чем вы занимаетесь в клубе?
+###_NPC
+I'm both a Mistress and a manager.  I prepare collaring ceremonies and hold keys for chastity devices.
+Я и Госпожа и менеджер.  Я готовлю церемонии ошейников и держу ключи от устройств целомудрия.
+###_PLAYER
+Who owns the club?
+Кто владелец клуба?
+###_NPC
+The club is owned by every member, but the Head Mistress is truly in charge.
+Клуб принадлежит каждому члену, но Главная Госпожа действительно отвечает за все.
+###_PLAYER
+Can I tie you up?
+Могу я связать тебя?
+###_NPC
+Don't make me laugh.
+Не заставляй меня смеяться.
+Forget it girl.  Don't bug me with such stupid questions.
+Забудь об этом, девочка.  Не приставай ко мне с такими глупыми вопросами.
+I said forget it!  Ask me again and you'll be in a world of trouble.
+Я сказала, забудь об этом!  Спросишь меня еще раз, и ты получишь море проблем.
+Now you're in trouble!
+Теперь ты в беде!
+###_PLAYER
+Will you tie me up?
+Вы свяжете меня?
+###_NPC
+I don't have time for that.
+У меня нет на это времени.
+Forget it girl.  Don't bug me with these kinds of questions.
+Забудь об этом, девочка.  Не приставай ко мне с такими вопросами.
+###_PLAYER
+Are there other slave collar models?
+Есть ли другие модели рабского ошейника?
+###_NPC
+There is, some fancy slaves want fancy collars.  There's a 30$ fee to change your collar.  Are you willing to pay?
+Есть, некоторые модные рабы хотят модные ошейники.  За смену ошейника взимается плата в размере 30 долларов.  Ты готова заплатить?
+###_PLAYER
+Let's talk about something else.
+Давайте поговорим о чем-нибудь другом.
+###_NPC
+What's on your mind girl?  Don't waste my time.
+Что у тебя на уме, девочка?  Не трать мое время.
+###_PLAYER
+I'm sorry Mistress.
+Я извеняюсь, Госпожа.
+###_NPC
+Sorry isn't enough.  Strip girl.
+Извинений недостаточно.  Раздевайся.
+###_PLAYER
+What does that mean?
+Что это значит?
+###_NPC
+It means you're going to strip right now.
+Это значит, что ты собираешься раздеться прямо сейчас.
+###_PLAYER
+(Stay silent.)
+(Молчать.)
+###_NPC
+You need to know your place.  Strip girl.
+Тебе нужно знать свое место.  Раздевайся.
+###_PLAYER
+Strip here?  No way!
+Раздеться здесь?  Ни за что!
+###_NPC
+(She slaps your face pretty hard.)  Oh yes you will!
+(Она довольно сильно бьет тебя по лицу.)  О, да, ты это сделаешь!
+###_PLAYER
+Yes Mistress.
+Да, Госпожа.
+###_NPC
+(You slowly strip for her as she smiles.)
+(Ты медленно раздеваешься для нее, пока она улыбается.)
+###_PLAYER
+I'm not stripping!
+Я не раздеваюсь!
+###_NPC
+We'll see about that!  (She painfully locks your arm behind your back until you give up and strip.)
+Мы еще посмотрим на это!  (Она больно сжимает твою руку за спиной, пока ты не сдаешься и не раздеваешься.)
+###_PLAYER
+(Strip slowly.)
+(Раздевайся медленно.)
+That's embarrassing.
+Это так неловко.
+###_NPC
+And it's about to get worse.  (She forces an armbinder on you and straps it tight.)
+А дальше будет только хуже.  (Она натягивает на тебя армбиндер и крепко стягивает его.)
+###_PLAYER
+Are you happy now?
+Теперь вы довольны?
+###_NPC
+Not yet.  (She forces an armbinder on you and straps it tight.)
+Ещё нет.  (Она натягивает на тебя армбиндер и крепко стягивает его.)
+###_PLAYER
+(Blush and bow your head.)
+(Покраснеть и склонить голову.)
+###_NPC
+Good girl.  (She forces an armbinder on you and straps it tight.)
+Хорошая девоча.  (Она натягивает на тебя армбиндер и крепко стягивает его.)
+###_PLAYER
+This is really tight.
+Это действительно туго.
+###_NPC
+Have you learned your lesson?  Will you be good, or I need to restrict you even more?
+Ты усвоила свой урок?  Ты будешь вести себя хорошо, или мне придется еще больше тебя связать?
+###_PLAYER
+(Tug on the binder.)
+(Потяни за биндер.)
+Yes, I've learned my lesson.
+Да, я усвоила свой урок.
+###_NPC
+Alright.  (She straps your legs with a belt.)  I will release you later, you can struggle for my amusement.
+Хорошо.  (Она стягивает твои ноги ремнем.)  Я отсвобоже тебя позже, ты можешь бороться для моего развлечения.
+###_PLAYER
+What lesson?
+Какой урок?
+###_NPC
+I'll show you.  (She uses many more items on you.)  I will release you later, you can struggle for my amusement.
+Я тебе покажу.  (Она использует гораздо больше предметов на тебе.)  Я отсвобоже тебя позже, ты можешь бороться для моего развлечения.
+###_PLAYER
+Fuck you!
+Хрен тебе!
+###_NPC
+Oh yeah?  (She uses many more items on you.)  I will release you later, you can struggle for my amusement.
+О да?  (Она использует гораздо больше предметов на тебе.)  Я отсвобоже тебя позже, ты можешь бороться для моего развлечения.
+###_PLAYER
+(Nod and blush.)
+(Киваю и краснею.)
+###_NPC
+How's the bratty girl doing?
+Как поживает эта своевольная девчонка?
+###_PLAYER
+Can you please help me?
+Не могли бы вы мне помочь?
+###_NPC
+Struggle some more, I'm having fun.
+Борись еще немного, я получаю удовольствие.
+###_PLAYER
+(Whimper and beg for mercy.)
+(Хныкать и молить о пощаде.)
+###_NPC
+Very well, I will help you.  (She releases you.)  Don't annoy me anymore.
+Очень хорошо, я помогу тебе.  (Она освобождает тебя.) Не надо меня больше раздражать.
+###_PLAYER
+(Leave her.)
+(Оставить ее.)
+Who's the Head Mistress?
+Кто Главная Госпожа?
+###_NPC
+Mistress Sophie is the club current Head Mistress.  She's a strict but fair manager.
+Госпожа София - сейчас Главная Госпожа клуба.  Она строгий, но справедливый менеджер.
+###_PLAYER
+How do you choose the Head Mistress?
+Как вы выбираете себе Главную Госпожу?
+###_NPC
+There's an electoral process between Mistresses.  You'll learn more if you become a club Mistress yourself.
+Между Госпожами идет избирательный процесс.  Ты узнаешь больше, если сама станете клубной Госпожой.
+###_PLAYER
+Can I meet the Head Mistress?
+Могу я познакомиться с Главной Госпожой?
+###_NPC
+She's not available now.  Please come back later.
+Она сейчас недоступна.  Пожалуйста, зайди попозже.
+What's on your mind girl?  Time is money.
+Что у тебя на уме, девочка?  Время - деньги.
+###_PLAYER
+I'm sorry.  Please forgive me Mistress.
+Извините.  Пожалуйста, простите меня, Госпожа.
+###_NPC
+(She gives you a stern look.)  Don't do it again.
+(Она сурово смотрит на тебя.)  Не делай этого снова.
+###_PLAYER
+I won't do it again.
+Я больше не буду этого делать.
+###_NPC
+(She gives you a stern look.)  Fine.
+(Она сурово смотрит на тебя.)  Хорошо.
+###_PLAYER
+I'll do what I want.
+Я делаю все, что захочу.
+###_NPC
+You dare to defy me?  Now you're in trouble!
+Ты смеешь мне перечить?  Теперь ты в беде!
+###_PLAYER
+(Nod politely and look down.)
+(Вежливо кивни и опусти глаза.)
+I will pay the 30$.
+Я заплачу 30$.
+###_NPC
+Good.  What kind of model would you prefer?
+Хорошо.  Какую модель ты бы предпочла?
+###_PLAYER
+I don't have enough money.
+У меня не хватает денег.
+###_NPC
+That's not my problem.  Get to work or get lost.
+Это не моя проблема.  Иди на работу или проваливай.
+###_PLAYER
+I'll think about it.
+Я подумаю об этом.
+###_NPC
+Fine.  And stop wasting my time.  Is there anything else you need?
+Хорошо.  И перестань тратить мое время.  Тебе еще что-нибудь нужно?
+###_PLAYER
+The regular slave collar please.
+Обычный рабский ошейник, пожалуйста.
+###_NPC
+(She calls a maid and swaps your collars.)  Here you go girl.  Is there anything else you need?
+(Она зовет горничную и меняет твой ошейник.)  Вот так, девочка.  Тебе еще что-нибудь нужно?
+###_PLAYER
+The leather posture collar please.
+Кожаный позиционирующий ошейник, пожалуйста.
+The steel posture collar please.
+Стальной позиционирующий ошейник, пожалуйста.
+The leather pet collar please.
+Кожаный ошейник для питомца, пожалуйста.
+I've changed my mind.
+Я передумала.
+###_NPC
+Stop wasting my time girl.  Is there anything else you need?
+Перестань тратить мое время, девочка.  Тебе еще что-нибудь нужно?
+###_PLAYER
+Why the ears and tail?
+Почему уши и хвост?
+###_NPC
+She's a neko, a girl with cat features.  Don't judge her, she's a good kitty.
+Она Неко, девочка с кошачьими чертами лица.  Не суди ее, она хорошая кошечка.
+###_PLAYER
+You keep her restrained all day?
+Вы держите ее связанной весь день?
+###_NPC
+Yes, she's not allowed to stray or talk while I work.
+Да, ей не позволено бродить или разговаривать, пока я работаю.
+###_PLAYER
+She's enjoying herself?
+Ей нравится?
+###_NPC
+Absolutely, she's my submissive and she's a bondage slut.
+Конечно, она моя сабмиссив и бондажная шлюха.
+###_PLAYER
+Can I play with her?
+Могу я с ней поиграть?
+###_NPC
+(She ponders for a little while.)  You could, but there's a requirement.
+(Она долго размышляет.)  Ты можешь, но есть требование.
+Forget it.  I don't let any Dominant touch my pet.
+Забудь об этом.  Я не позволяю Доминам трогать моих питомцев.
+###_PLAYER
+Can I release her?
+Могу я ее развязать?
+###_NPC
+No.  Don't even dare to try.
+Нет.  Даже не смей пытаться.
+Forget it girl.  Don't bug me again on that subject.
+Забудь, девочка.  Больше не надоедай мне по этому поводу..
+Fine, and stop staring at my pet.
+Хорошо, и перестань пялиться на моего питомца.
+###_PLAYER
+What requirement?
+Какое требование?
+###_NPC
+If you want to play with her, you must join her.  Do you agree?
+Если ты хочешь играть с ней, ты должен присоединиться к ней.  Ты согласна?
+###_PLAYER
+Please tell me.
+Пожалуйста, скажите мне.
+I'm not sure I understand.
+Я не уверена, что понимаю.
+###_NPC
+I'm not going to repeat again.  If you want to play with her, you must join her.
+Я больше не собираюсь повторять.  Если ты хочешь играть с ней, ты должен присоединиться к ней.
+###_PLAYER
+Alright!  I'll do it!
+Хорошо!  Я сделаю это!
+###_NPC
+(She smirks.)  Very well, strip girl.
+(Она ухмыляется.) Очень хорошо, раздевайся.
+###_PLAYER
+I can't do that.
+Я не могу этого сделать.
+###_NPC
+Don't waste my time then.  Is there anything else you want?
+Тогда не тратьте мое время.  Тебе еще что-нибудь нужно?
+###_PLAYER
+Yes Mistress.  (Strip for her.)
+Да, Госпожа.  (Раздевайся для нее.)
+###_NPC
+And it will get tighter.  (She adds more items.)  You two can play now.
+И он будет становиться все туже.  (Она добавляет больше предметов.)  Теперь вы можете играть вдвоем.
+###_PLAYER
+You're a great Mistress.
+Вы великая Госпожа.
+###_NPC
+I try my best.  (She adds more items.)  You two can play now.
+Я стараюсь изо всех сил.  (Она добавляет больше предметов.)  Теперь вы можете играть вдвоем.
+Enjoy your predicament.  (She adds more items.)  You two can play now.
+Наслаждайся своим затруднительным положением. (Она добавляет больше предметов.)  Теперь вы можете играть вдвоем.
+Play some more, I'm having fun.
+Поиграй еще немного, мне весело.
+Very well, I will help you.  (She releases you.)  I hope you had fun with my pet.
+Очень хорошо, я помогу тебе.  (Она освобождает тебя.)  Надеюсь, тебе было весело с моим питомцем.
+###_PLAYER
+Can you please release her?
+Пожалуйста, не могли бы вы отпустить ее?
+###_NPC
+No, Mistress Sophie already made plans.  Do not interfere.
+Нет, Госпожа София уже все запланировала.  Не вмешайся.
+###_PLAYER
+She's my property, let her go.
+Она моя собственность, отпусти ее.
+###_NPC
+Of course, I will send a maid to warn Mistress Sophie and free your slave.
+Конечно, я пошлю служанку предупредить Госпожу Софию и освободить вашу рабыню.
+###_PLAYER
+Very well, punish her properly then.
+Очень хорошо, тогда накажи ее как следует.
+###_NPC
+Don't worry, Mistress Sophie will discipline her well.
+Не волнуйтесь, Госпожа София хорошо ее приучит.
+###_PLAYER
+Thank you.
+Спасибо.
+###_NPC
+It's my duty.  Is there something else you need?
+Это мой долг. Вам что-то еще нужно?
+###_PLAYER
+What are the rules for chastity items?
+Каковы правила для устройств целомудрия?
+###_NPC
+The maids will not remove your chastity devices.  So if you get locked without a key, you'll need to come and see us.  Bring money.
+Горничные не будут снимать твои устройства целомудрия.  Так что если тебя запрут без ключа, тебе придется прийти и увидеться с нами.  Принети деньги.
+###_PLAYER
+Can a slave with an owner be unlocked?
+Может ли рабыня, имеющая хозяйку, быть разблокированой?
+###_NPC
+Yes, but we will query the owner first.
+Да, но сначала мы спросим хозяйку.
+###_PLAYER
+I'm stuck, I need your help.
+Я застряла, мне нужна ваша помощь.
+###_NPC
+(She smirks.)  So, a subbie girl got herself locked?  What's your story?
+(Она ухмыляется.)  Значит, девушка-сабба сама себя заперла?  Как у тебя это вышло?
+(She laughs.)  Better learn to enjoy it girl.  I'm not releasing you.
+(Она смеется.)  Лучше научись наслаждаться этим, девочка.  Я тебя не освобожу.
+###_PLAYER
+A friend of mine needs your help.
+Моя подруга нуждается в вашей помощи.
+###_NPC
+What friend?  You're alone girl.
+Какая еще подруга?  Ты одна, девочка.
+Alright, but make it snappy.
+Хорошо, но сделай это быстро.
+###_PLAYER
+I wanted to protect myself.
+Я хотела защитить себя.
+###_NPC
+Since you're not owned, all there is to do is pay the unlocking fee and lick my heels.  (She points to her boot.)
+Так как ты никому не принадлежишь, все, что нужно сделать, это заплатить за освобождение и вылизать мою обувь.  (Она указывает на свою обувь.)
+###_PLAYER
+I was inspecting the device and it locked on me.
+Я осматривала устройство,и оно закрылось на мне.
+Someone played a prank on me.
+Кто-то подшутил надо мной.
+I've played a crazy "Truth or Dare" game.
+Я играла в сумасшедшую игру "Правда или Действие".
+###_NPC
+I understand.  But since you're owned, I need your Mistress approval to unlock any chastity item from you.
+Я понимаю.  Но так как ты принадлежишь хозяйке, мне нужно разрешение твоей Госпожи, чтобы разблокировать любой предмет целомудрия на тебе.
+(She grins.)  Of course.  Since you're owned, I need your Mistress approval to unlock any chastity item from you.
+(Она усмехается.)  Конечно.  Так как ты принадлежишь хозяйке, мне нужно разрешение твоей Госпожи, чтобы разблокировать любой предмет целомудрия на тебе.
+###_PLAYER
+I've played a crazy game of: "Truth or Dare".
+Я играла в сумасшедшую игру "Правда или Действие".
+###_NPC
+I hope you won that game.  Since you're owned, I need your Mistress approval to unlock any chastity item from you.
+Надеюсь, ты выиграла эту игру. Так как ты принадлежишь хозяйке, мне нужно разрешение твоей Госпожи, чтобы разблокировать любой предмет целомудрия на тебе.
+###_PLAYER
+My Mistress wanted to protect me.
+Моя Госпожа хотела защитить меня.
+###_NPC
+Very well, but you know that I need your Mistress approval to unlock any chastity item from you.
+Очень хорошо, но ты же знаешь, что мне нужно разрешение твоей Госпожи, чтобы разблокировать любой предмет целомудрия на тебе.
+###_PLAYER
+My owner punished me.
+Моя хозяйка наказала меня.
+###_NPC
+I bet you deserved it.  You know that I need your Mistress approval to unlock any chastity item from you.
+Держу пари, ты это заслужила.  Ты же знаешь, что мне нужно разрешение твоей Госпожи, чтобы разблокировать любой предмет целомудрия на тебе.
+###_PLAYER
+I'm not kissing your ass or licking your heels.
+Я не буду целовать вашу задницу или лизать вашу обувь.
+###_NPC
+You can't blame me for trying.  Just pay the unlocking fee of 25$ then.
+Ты не можешь винить меня за эту попытку.  Просто заплати плату за разблокировку в размере 25$.
+###_PLAYER
+Lick your heels?  That's the regular procedure?
+Лизать вам обувь?  Это обычная процедура?
+###_NPC
+My duty, my rules.  You lick or your leave?
+Моя услуга, мои правила.  Ты лижешь или уходишь?
+###_PLAYER
+Fine.  (Lick her heels.)
+Хорошо.  (Лижешь ей обувь.)
+###_NPC
+(You bend down and slowly lick her heels as she laughs.)  Good girl, the unlocking fee is 25$.
+(Ты наклоняешься и медленно лижешь ей обувь, пока она смеется.) Хорошая девочка, плата за разблокировку составляет 25$.
+###_PLAYER
+I won't lick your heels!
+Я не буду лизать вашу обувь!
+###_NPC
+(She laughs.)  Then you stay chaste. 
+(Она смеется.) Тогда ты остаешься целомудренной. 
+###_PLAYER
+That's extortion!
+Это вымогательство!
+###_NPC
+No, that's a lesson.  You pay or you go?
+Нет, это урок.  Ты платишь или уходишь?
+###_PLAYER
+Please unlock the bra.  (Pay her 25$.)
+Пожалуйста, разблокируйте бюстгальтер.  (Заплати ей 25$.)
+###_NPC
+Alright.  (You remove your clothes and she unlocks the bra.)  How does it feel?
+Хорошо.  (Ты снимаешь одежду и она открывает лифчик.)  Как ты себя чувствуешь?
+###_PLAYER
+Please unlock the belt.  (Pay her 25$.)
+Пожалуйста, разблокируйте пояс.  (Заплати ей 25$.)
+###_NPC
+Alright.  (You remove your clothes and she unlocks the belt.)  How does it feel?
+Хорошо.  (Ты снимаешь одежду, и она расстегивает пояс.)  Как ты себя чувствуешь?
+Get to work then.  I'm not doing any discount.
+Тогда приступай к работе.  Я не делаю никаких скидок.
+Think about ways to stop wasting my time girl.
+Подумай о том, как перестать тратить мое время, девочка.
+###_PLAYER
+Better!  I'll never get stuck again.
+Великолепно!  Я больше никогда не застряну.
+###_NPC
+(She laughs.)  They all say that, and they all come back.
+(Она смеется.)  Они все говорят это, и все они возвращаются.
+###_PLAYER
+This is great!
+Это здорово!
+###_NPC
+Be careful not to get locked again.  I don't do discount for multiple release.
+Будь осторожной, чтобы не стать снова запертой. Я не делаю скидку за многократные освобождения.
+###_PLAYER
+(Blush.)  This is wonderful, thanks Mistress.
+(Краснеет.)  Это замечательно, спасибо Госпожа.
+###_NPC
+She pets your head.  Good girl, be careful not to get locked again.
+Она гладит тебя по голове.  Хорошая девочка, будь осторожна, чтобы не стать запертой снова.
+###_PLAYER
+My owner isn't a club member.
+Моя хозяйка не член клуба.
+###_NPC
+That's not a problem girl.  We will call her to get her approval.
+Это не проблема, девочка.  Мы позвоним ей, чтобы получить ее разрешение.
+###_PLAYER
+My Mistress is a college student.
+Моя Госпожа - студентка колледжа.
+My owner is in my private room.
+Моя хозяйка в моей приватной комнате.
+###_NPC
+Excellent.  I will send a maid to get her approval.
+Отлично.  Я пошлю горничную, чтобы получить ее разрешение.
+###_PLAYER
+Mistress is in the club right now.
+Госпожа сейчас в клубе.
+###_NPC
+Good.  I will send a maid to get her approval.
+Хорошо.  Я пошлю горничную, чтобы получить ее разрешение.
+###_PLAYER
+I can go get my owner.
+Я могу сходить за своей хозяйкой.
+###_NPC
+You don't need to do anything.  I will send a maid to get her approval.
+Тебе не нужно ничего делать.  Я пошлю горничную, чтобы получить ее разрешение.
+###_PLAYER
+I'm not sure where my owner is.
+Я не знаю, где моя хозяйка.
+###_NPC
+Don't worry, we will find her.  I will send a maid to get her approval.
+Не волнуйся, мы найдем ее.  Я пошлю горничную, чтобы получить ее разрешение.
+###_PLAYER
+My Mistress isn't around.
+Моей Госпожи здесь нет.
+That's easy!
+Это же просто!
+###_NPC
+It's not that easy, there's a 20$ fee to contact your Mistress and a 25$ fee for any item to remove.  And you won't get any refund if she refuses.
+Это не так просто, есть 20$ плата за контакт с твоей Госпожей и 25$ плата за любой предмет для разблокировки.  И ты не получишь никакого возмещения, если она откажет.
+###_PLAYER
+Thanks Mistress.
+Спасибо, Госпожа.
+###_NPC
+Hold on girl, there's a 20$ fee to contact your Mistress and a 25$ fee for any item to remove.  And you won't get any refund if she refuses.
+Держись девочка, есть 20$ плата за контакт с твоей Госпожей и 25$ плата за любой предмет для разблокировки.  И ты не получишь никакого возмещения, если она откажет.
+###_PLAYER
+Does it cost anything?
+Это что-нибудь стоит?
+###_NPC
+Of course, there's a 20$ fee to contact your Mistress and a 25$ fee for any item to remove.  And you won't get any refund if she refuses.
+Конечно, есть 20$ плата за контакт с твоей Госпожей и 25$ плата за любой предмет для разблокировки.  И ты не получишь никакого возмещения, если она откажет.
+###_PLAYER
+Please contact her. (Pay her 20$.)
+Пожалуйста, свяжитесь с ней. (Заплати ей 20$.)
+###_NPC
+(She takes your money and sends a maid to contact your owner.)  Come back in a few minutes
+(Она берет твои деньги и посылает горничную, чтобы связаться с твоей хозяйкой.) Приходи через несколько минут
+(She grins.)  Welcome back, chaste girl.
+(Она усмехается.) С возвращением, целомудренная девочка.
+###_PLAYER
+Have you contacted my owner?
+Вы связались с моей хозяйкой?
+###_NPC
+Not yet, don't be hasty.  Come back in a few minutes.
+Пока нет, не торопись.  Возвращайся через несколько минут.
+Yes, and your Mistress accepted to get you out.  It cost 25$ for each item to unlock.
+Да, и твоя Госпожа согласилась тебя выпустить.  Это стоит 25$ за каждый предмет, что надо разблокировать.
+Yes, and your Mistress refused to unlock you.  You will stay chaste girl.
+Да, и твоя Госпожа отказалась отпереть тебя.  Ты останешься целомудренной девушкой.
+###_PLAYER
+I'll wait. (Leave her.)
+Я подожду. (Оставить ее.)
+###_NPC
+Which chastity device should I unlock?  The fee is 25$ per item.
+Какое устройство целомудрия я должна разблокировать?  Плата составляет 25$ за предмет.
+Very well, undress subbie girl.  (You remove your clothes and she unlocks the bra.)
+Очень хорошо, раздевайся девушка-сабба.  (Ты снимаешь одежду, и она расстегивает лифчик.)
+Very well, undress subbie girl.  (You remove your clothes and she unlocks the belt.)
+Очень хорошо, раздевайся девушка-сабба.  (Ты снимаешь одежду, и она расстегивает пояс.)
+###_PLAYER
+I'm fine now.  Thanks.
+Теперь я в порядке.  Спасибо.
+###_NPC
+Alright.  If you ask again, you will have to go through the same procedure.
+Хорошо.  Если ты снова попросишь об этом, то тебе придется пройти через ту же процедуру.
+###_PLAYER
+I'll be right back.  (Leave her.)
+Я сейчас вернусь.  (Оставить ее.)
+Yes Mistress.  (Bow your head.)
+Да, Госпожа.  (Склони голову.)
+###_NPC
+Good girl.  Enjoy your chaste life.  (She smirks.)
+Хорошая девушка.  Наслаждайся своей целомудренной жизнью.  (Она ухмыляется.)
+###_PLAYER
+What?  That's unfair!
+Что?  Это несправедливо!
+###_NPC
+Life isn't fair girl.  I'm not unlocking you.  (She grins.)
+Жизнь несправедлива, девочка.  Я тебя не отпираю.  (Она усмехается.)
+###_PLAYER
+Alright.
+Хорошо.
+###_NPC
+Good.  Is there anything else you need?
+Хорошо.  Тебе еще что-нибудь нужно?
+###_PLAYER
+She's in my private room.
+Она в моей приватной комнате.
+###_NPC
+I'll make a deal with you then.  I'll send a maid to your room, and she will unlock all of your friends that are not owned by someone else for 50$.
+Тогда я заключу с тобой сделку.  Я пришлю горничную в твою комнату, и она разблокирует всех твоих подруг, которые не принадлежат кому-то, еще за 50$.
+###_PLAYER
+In my room Mistress.
+В моей комнате Госпожи.
+Deal!  (Pay her 50$.)
+Договорились!  (Заплати ей 50$.)
+###_NPC
+Very good.  (She takes the money and sends a maid to your private room.)  Anything else?
+Отлично.  (Она берет деньги и отправляет горничную в твою приватную комнату.)  Что-нибудь еще?
+###_PLAYER
+What is a D/s family?
+Что такое семья Д/с?
+###_NPC
+You can build your own D/s family or join a Dominant family.  A submissive can only have one Mistress.  A Mistress can have many collared submissives.
+Ты можешь построить свою собственную семью Д/с или присоединиться к доминирующей семье.  У сабмиссива может быть только одна Госпожа.  У Госпожи может быть много сабмиссивов в ошейниках.
+###_PLAYER
+Is there a fee to collar or be collared?
+Есть ли плата за ошейник или за  освобождения от ошейника?
+###_NPC
+Yes, the Dominant must pay 100$ for each pet, we provide the locking collar.  If a slave wants freedom, she will pay 60$ on the first occurrence and 200$ on others.
+Да, Доминант должен заплатить 100$ за каждого питомца, мы предоставляем фиксирующий ошейник.  Если рабыня хочет свободы, она заплатит 60$ при первом появлении и 200$ при других.
+###_PLAYER
+Will you be my Mistress?
+Вы будете моей Госопжей?
+###_NPC
+I've heard about you girl.  They say you're one of the best slaves around.  You would offer yourself to me?
+Я слышала о тебе, девочка.  Говорят, ты одна из лучших рабынь в округе.  Ты предлагаешь себя мне?
+Girl, my standards are high.  If I get a new slave, she would have to be the perfect submissive.
+Девочка, у меня высокие стандарты.  Если я возьму новую рабыню, она должна быть идеальной сабмиссивкой.
+###_PLAYER
+Can I collar and own anyone?
+Могу ли я одеть на кого то ошейник?
+###_NPC
+BDSM is consensual.  As long as the person isn't already owned and consent to be your slave, you can collar her.
+БДСМ является консенсуальным.  До тех пор, пока человек еще не принадлежит и соглась быть твоей рабыней, ты можешь надеть на нее ошейник.
+###_PLAYER
+I want to collar a submissive.
+Я хочу надеть ошейник на сабмиссива.
+###_NPC
+Perfect!  Go get your consenting pet and bring her here.  You will need to pay 100$ for the slave collar and the ceremony.
+Отлично!  Иди, возьми свою любимицу и приведи ее сюда.  Вам нужно будет заплатить 100$ за рабский ошейник и церемонию.
+###_PLAYER
+A Dominant wants to collar me.
+Доминант хочет взять меня под ошейник.
+###_NPC
+You must be thrilled sub girl, but your Dominant will arrange the collaring ceremony, not you.  Ask her politely to contact us.
+Ты должна быть в восторге, девочка, но твоя Домина устроит церемонию ошейника, а не ты.  Попроси ее вежливо связаться с нами.
+###_PLAYER
+I want to break my trial period.
+Я хочу прервать свой испытательный срок.
+###_NPC
+Breaking a trial period is alright, it happens everyday.  But are you totally sure?  You really thought about it?
+Прерывание испытательного срока - это нормально, это происходит каждый день.  Но ты абсолютно уверена?  Ты действительно обдумала это?
+###_PLAYER
+I want to be released from my owner.
+Я хочу, чтобы меня освободили от моей хозяйки.
+###_NPC
+I'm sorry to hear that.  Breaking a BDSM bond is serious.  Tell me your story, why do you want to leave?
+Мне жаль это слышать.  Разрыв БДСМ-связи - это серьезно.  Расскажи мне свою историю, почему ты хочешь уйти?
+Girl, it's too soon for that.  There's a three days delay before we will uncollar anyone.
+Девочка, еще слишком рано для этого.  Есть трехдневная отсрочка, прежде чем мы с кого-нибудь снимем ошейник.
+Girl, I know your owner.  Speak with her about it first.
+Девочка, я знаю твоею хозяйку.  Сначала поговори с ней об этом.
+As long as you don't ask anything idiotic.
+Главное, чтобы ты не задавала идиотских вопросов.
+###_PLAYER
+My Mistress doesn't want to join the club.
+Моя Госпожа не хочет вступать в клуб.
+###_NPC
+I understand.  BDSM is consensual, you have the right to leave your owner.  Since we don't encourage flyby slaves, there's a fee for your freedom.
+Я понимаю.  БДСМ происходит по обоюдному согласию, ты имеете право оставить своею хозяйку.  Поскольку мы не поощряем непостоянных рабынь, за твою свободу полагается плата.
+###_PLAYER
+My owner is a student, she's not mature enough.
+Моя хозяйка - студентка, она еще недостаточно взрослая.
+###_NPC
+That makes sense.  BDSM is consensual, you have the right to leave your owner.  Since we don't encourage flyby slaves, there's a fee for your freedom.
+В этом есть смысл.  БДСМ происходит по обоюдному согласию, ты имеете право оставить своею хозяйку.  Поскольку мы не поощряем непостоянных рабынь, за твою свободу полагается плата.
+###_PLAYER
+My owner disappeared.
+Моя хозяйка исчезла.
+###_NPC
+Poor girl, I'm sure you'll find another owner someday.  Since we don't encourage flyby slaves, there's a fee for your freedom.
+Бедняжка, я уверена, что когда-нибудь ты найдешь другую хозяйку.  Поскольку мы не поощряем непостоянных рабынь, за твою свободу полагается плата.
+###_PLAYER
+My limits were broken too many times.
+Мои границы были нарушены слишком много раз.
+###_NPC
+I'm sorry for you, some limits are not meant to be broken.  Since we don't encourage flyby slaves, there's a fee for your freedom.
+Мне жаль тебя, некоторые границы не должны быть нарушены.  Поскольку мы не поощряем непостоянных рабынь, за твою свободу полагается плата.
+###_PLAYER
+I've found a better Mistress.
+Я нашел себе Госпожу получше.
+###_NPC
+The Bondage Club isn't a shopping mall for Dominants.  (She frowns at you.)  Since we don't encourage flyby slaves, there's a fee for your freedom.
+Бондаж Клуб - это не торговый центр Домин.  (Она хмурится, глядя на тебя.)  Поскольку мы не поощряем непостоянных рабынь, за твою свободу полагается плата.
+###_PLAYER
+My owner doesn't want me anymore.
+Моя хозяйка больше не хочет меня видеть.
+###_NPC
+Poor girl, I'm sure you'll find a good owner someday.  But since we don't encourage flyby slaves, there's a fee for your freedom.
+Бедняжка, я уверена, что когда-нибудь ты найдешь хорошую хозяйку. Но поскольку мы не поощряем непостоянных рабынь, за твою свободу полагается плата.
+###_PLAYER
+Mistress wants to become a slave.
+Госпожа хочет стать рабыней.
+###_NPC
+People change you know.  It can happen to the best of us.  Since we don't encourage flyby slaves, there's a fee for your freedom.
+Люди меняются, знаешь ли.  Это может случиться с лучшей из нас.  Поскольку мы не поощряем непостоянных рабынь, за твою свободу полагается плата.
+###_PLAYER
+I guess I don't have any good reason.
+Наверное, у меня нет никаких веских причин.
+###_NPC
+Then that collar stays around your neck girl.  Go see your Mistress and work things out with her.
+Тогда этот ошейник останется на твоей шее, девочка.  Иди к своей Госпоже и разберись с ней.
+###_PLAYER
+How much does it cost?
+Сколько это стоит?
+###_NPC
+The regular cost to be released from your owner bond is 200$.  But since everyone can make mistakes, it cost 60$ if it's the first time you do it.
+Обычная стоимость освобождения от хозяйке составляет 200$.  Но так как каждая может совершать ошибки, это стоит 60$, если ты делаешь это в первый раз.
+###_PLAYER
+I'm kind of poor.
+Я вроде как бедная.
+(Let her talk.)
+(Дай ей выговориться.)
+Why are there two different prices?
+Почему существуют две разные цены?
+###_NPC
+We want to make sure that our members take their D/s relationship seriously.  You can see the higher price as a punitive measure.
+Мы хотим убедиться, что наши члены серьезно относятся к своим  Д/с отношениям.  Ты можешь рассматривать более высокую цену как карательную меру.
+###_PLAYER
+I want my freedom. (Pay her 60$)
+Я хочу свою свободу. (Заплати ей 60$)
+###_NPC
+Very well, it seems that we've lost a pet.  I will remove the slave collar from your neck.
+Очень хорошо, кажется, что мы потеряли питомца.  Я сниму с твоей шеи рабский ошейник.
+###_PLAYER
+I want my freedom. (Pay her 200$)
+Я хочу свою свободу. (Заплати ей 200$)
+###_NPC
+Take your time before getting collared again.  I will remove the slave collar from your neck.
+Не торопись, прежде чем получить ошейник снова.  Я сниму с твоей шеи рабский ошейник.
+###_PLAYER
+Let me think about it.
+Дайте мне подумать об этом.
+###_NPC
+Think girl, this is a serious decision.
+Подумай девочка, это серьезное решение.
+###_PLAYER
+Alright.  (Expose your neck.)
+Хорошо.  (Подставь шею.)
+###_NPC
+(She gets a special key and unlocks the collar from your neck.)  You're free girl, enjoy the club as you see fit.
+(Она достает специальный ключ и отпирает ошейник с твоей шеи.)  Ты свободна, девочка, наслаждайся клубом, как считаешь нужным.
+###_PLAYER
+(Bow your head and expose your neck.)
+(Наклони голову и обнажи шею.)
+I won't get collared again.  (Expose your neck.)
+Я не хочу, чтобы на меня снова надели ошейник.  (Подставь шею.)
+Thanks a lot.
+Большое спасибо.
+###_NPC
+My pleasure.  Is there anything else you need?
+С удовольствием.  Тебе еще что-нибудь нужно?
+###_PLAYER
+I will!
+Я сделаю это!
+(Nod happily.)
+(Счастливо киваю.)
+###_NPC
+Is there anything else you need?
+Тебе еще что-нибудь нужно?
+###_PLAYER
+Yes Miss.  Would you collar someone like me?
+Да, Мисс.  Вы бы взяли под ошейник кого-нибудь вроде меня?
+###_NPC
+I might be interested, but I need to know you better first.  Is there a place we could meet?
+Возможно, мне будет интересно, но сначала мне нужно узнать тебя получше.  Есть ли место, где мы могли бы встретиться?
+###_PLAYER
+I need a strong woman like you to control me.
+Мне нужна сильная женщина, как вы, чтобы контролировать меня.
+(Nod slowly and bow your head.)
+(Медленно кивни и склони голову.)
+###_NPC
+Of course, think very carefully slave girl.
+Конечно, подумай хорошенько, рабыня.
+###_PLAYER
+I have my private room in the club.
+У меня есть отдельная комната в клубе.
+###_NPC
+That could certainly work.  I'll take my kitty to her cage and go see your place right after.
+Это конечно может сработать.  Я отведу свою кошечку в клетку и сразу же пойду к тебе.
+###_PLAYER
+Yes, we could use my room Miss.
+Да, мы могли бы воспользоваться моей комнатой, Мисс.
+I don't know.
+Я не знаю.
+###_NPC
+It's fine girl.  Let me know if you can find a good place where we could meet after my shift.
+Все нормально, девочка.  Дай мне знать, если найдешь хорошее место, где мы могли бы встретиться после моей смены.
+###_PLAYER
+Great, I'll see you there.
+Отлично, увидимся там.
+Take your time Miss.
+Не торопитесь, Мисс.
+You're welcome any time.
+Добро пожаловать в любое время.
+Yes, I want to break my trial.
+Да, я хочу прервать свое испытание.
+###_NPC
+(She announces the end of your trial period and makes it official.)  You're free girl, enjoy the club.
+(Она объявляет об окончании твоего испытательного срока и делает это официально.)  Ты свободная девушка, наслаждайся клубом.
+###_PLAYER
+Let me think some more.
+Дайте мне подумать еще немного.
+What are club slaves?
+Что такое клубные рабыни?
+###_NPC
+Submissive girls can take slavery contracts with the club and get paid for it.  They become preys for anyone to play with while under that contract.
+Покорные девушки могут заключать рабские контракты с клубом и получать за это деньги.  Они становятся добычей для любого, с кем можно играть, находясь под этим контрактом.
+###_PLAYER
+What are the slave contract terms?
+Каковы условия рабского контракта?
+###_NPC
+The contract lasts for one hour and the girl gets paid 80$ at the end of it.  A special collar will be locked for the contract duration.
+Контракт длится один час, и девушка получает 80$ в конце его.  Специальный ошейник будет заблокирован на время действия контракта.
+###_PLAYER
+There's a special collar?
+Там есть специальный ошейник?
+###_NPC
+Regular slaves wear the red collar, which means they are already taken.  Club slaves wear the green collar, which means they are open for anyone.
+Обычные рабы носят красный ошейник, Что означает, что они уже взяты.  Клубные рабы носят зеленый ошейник, Что означает, что они открыты для всех.
+###_PLAYER
+What must club slaves do?
+Что должны делать клубные рабыни?
+###_NPC
+Club slaves can still enjoy the club but must be naked at all times.  They can be approached by any club member to be restrained or played with.
+Клубные рабыни все еще могут наслаждаться клубом, но должны быть голыми во все времена.  К ним может подойти любой член клуба, чтобы быть связать или поиграть с ними.
+###_PLAYER
+What if the sub is already owned?
+Что, если саба уже кому-то принадлежит?
+###_NPC
+As long as the owner doesn't disapprove, a regular slave can take a club slave contract for one hour.  We will swap collars and lock the slave collar again in the end.
+Пока хозяйка не возражает, обычная раба может взять контракт с клубом рабыньна один час.  Мы поменяемся ошейниками и снова запрем рабский ошейник в конце.
+###_PLAYER
+Can I become a club slave?
+Могу ли я стать клубной рабыней?
+###_NPC
+No, you're not submissive enough.
+Нет, ты недостаточно покорная.
+(She checks your locks.)  No, your Mistress has put an owner lock on you, get released first.
+(Она проверяет твои замки.)  Нет, твоя Госпожа закрыла тебя на замок хозяйки, освободись сначала.
+You could, are you sure you understand the terms and commitments?  Do you accept the contract?
+Ты могла бы, ты уверена, что понимаешь условия и обязательства?  Ты принимаешь контракт?
+Alright girl, but don't waste my time.
+Ладно, девочка, но не трать мое время.
+###_PLAYER
+I accept the terms.  I want to be a club slave.
+Я принимаю условия.  Я хочу быть рабыней клуба.
+###_NPC
+Very good, it's time to strip girl.
+Очень хорошо, пришло время раздеть девушку.
+Since you're already naked, it's time for your collar slave.
+Так как ты уже голая, пришло время для твоего рабского ошейника.
+###_PLAYER
+Let's review the rules first.
+Давайте сначала рассмотрим правила.
+###_NPC
+Fine, what troubles you?
+Ладно, что тебя беспокоит?
+###_PLAYER
+Yes Miss.  (Strip.)
+Да, Мисс.  (Раздеться.)
+###_NPC
+(You strip down as she smirks.)  It's time for your collar slave.
+(Ты раздеваешься, пок она ухмыляется.)  Пришло время для твоего рабского ошейника.
+###_PLAYER
+My pleasure.  (Strip.)
+С удовольствием.  (Раздеться.)
+Very well.  (Present your neck.)
+Очень хорошо.  (Подставь свою шею.)
+###_NPC
+(She removes your regular collar and straps a club slave collar around your neck.  She locks it securely with a strong padlock.)  Good girl.
+(Она снимает с тебя обычный ошейник и обвязывает твою шею ошейником рабыни.  Она надежно запирает его прочным навесным замком.)  Хорошая девочка.
+(She straps a club slave collar around your neck.  She locks it securely with a strong padlock.)  Good girl.
+(Она пристегнула тебе на шею ошейник рабыни клуба.  Она надежно запирает его прочным навесным замком.)  Хорошая девочка.
+###_PLAYER
+Please don't strap it too tight.
+Пожалуйста, не затягивайте его слишком туго.
+###_NPC
+(She removes your regular collar and straps a club slave collar around your neck.  She locks it securely with a strong padlock.)  Don't complain.
+(Она снимает с тебя обычный ошейник и обвязывает твою шею ошейником рабыни.  Она надежно запирает его прочным навесным замком.)  Не жалуйся.
+(She straps a club slave collar around your neck.  She locks it securely with a strong padlock.)  Don't complain.
+(Она пристегнула тебе на шею ошейник рабыни клуба.  Она надежно запирает его прочным навесным замком.)  Не жалуйся.
+###_PLAYER
+It's an honor to serve the club.
+Для меня честь служить клубу.
+###_NPC
+(She removes your regular collar and straps a club slave collar around your neck.  She locks it securely with a strong padlock.)  Slave, make us proud.
+(Она снимает с тебя обычный ошейник и обвязывает твою шею ошейником рабыни.  Она надежно запирает его прочным навесным замком.)  Рабыня, заставь нас гордиться тобой.
+(She straps a club slave collar around your neck.  She locks it securely with a strong padlock.)  Slave, make us proud.
+(Она пристегнула тебе на шею ошейник рабыни клуба.  Она надежно запирает его прочным навесным замком..)  Рабыня, заставь нас гордиться тобой.
+###_PLAYER
+Am I ready Miss?
+Я готова, мисс?
+###_NPC
+You're ready slave.  Go in the club and make sure everyone see's you.  Make our customers and members happy.
+Ты готова, рабыня.  Иди в клуб и убедись, что все видят тебя.  Сделай наших клиентов и членов счастливыми.
+###_PLAYER
+I should wander in the club?
+Мне стоит побродить по клубу?
+###_NPC
+Absolutely.  Go in the club and make sure everyone see's you.  Make our customers and members happy.
+Конечно.  Иди в клуб и убедись, что все видят тебя.  Сделай наших клиентов и членов счастливыми.
+Get going girl!  Go in the club and make sure everyone see's you.  Make our customers and members happy.
+Давай, девочка!  Иди в клуб и убедись, что все видят тебя.  Сделай наших клиентов и членов счастливыми.
+Don't stay here girl, you're on duty.  Go in the club and make sure everyone see's you.  Make our customers and members happy.
+Не оставайся здесь, девочка, ты на дежурстве.  Иди в клуб и убедись, что все видят тебя.  Сделай наших клиентов и членов счастливыми.
+Your slave time is done girl.  Are you here to complete your contract?
+Твое рабское время закончилось, девочка.  Ты здесь, чтобы завершить контракт?
+###_PLAYER
+Miss, I wish to complete my contract.
+Мисс, я хочу завершить свой контракт..
+###_NPC
+Very good, did you enjoy your experience?
+Очень хорошо, тебе понравился твой опыт?
+###_PLAYER
+(Bow your head and leave her.)
+(Склони голову и оставь ее.)
+It was very kinky Miss.
+Это было очень извращенно, Мисс.
+###_NPC
+(She swaps your collars and laughs.)  Very good, here's your money slave.  (She gives you 80$.)
+(Она меняет ошейники и смеется.)  Очень хорошо, вот твой деньги, рабыня.  (Она дает тебе 80$.)
+(She removes your collar and laughs.)  Very good, here's your money slave.  (She gives you 80$.)
+(Она снимает с тебя ошейник и смеется.)  Очень хорошо, вот твой деньги, рабыня.   (Она дает тебе 80$.)
+###_PLAYER
+I loved it.  I hope to do it again.
+Мне понравилось.  Я надеюсь сделать это снова.
+###_NPC
+(She swaps your collars and grins.)  You can come back anytime.  Here's your money slave.  (She gives you 80$.)
+(Она меняет ошейники и ухмыляется)  Ты можешь вернуться в любое время.  Вот твой деньги, рабыня.  (Она дает тебе 80$.)
+(She removes your collar and grins.)  You can come back anytime.  Here's your money slave.  (She gives you 80$.)
+(Она снимает с тебя ошейник и улыбается.)  Ты можешь вернуться в любое время.  Вот твой деньги, рабыня.  (Она дает тебе 80$.)
+###_PLAYER
+Maybe I'm not fit to be a public slave.
+Может быть, я не гожусь на роль общественной рабыни.
+###_NPC
+(She swaps your collars and nods.)  Going public isn't for everyone.  Here's your money girl.  (She gives you 80$.)
+(Она меняет местами ошейники и кивает.)  Выход на публику - это не для всех.  Вот твой деньги, рабыня.  (Она дает тебе 80$.)
+(She removes your collar and nods.)  Going public isn't for everyone.  Here's your money girl.  (She gives you 80$.)
+(Она снимает с тебя ошейник и кивает.)  Выход на публику - это не для всех.  Вот твой деньги, рабыня.  (Она дает тебе 80$.)
+###_PLAYER
+What are club Mistresses?
+Что такое клубные Госпожи?
+###_NPC
+We Mistresses are the final arbiters in the club.  We make the rules and enforce them.  It's hard work but it's rewarding.
+Мы, Госпожи, - последние арбитры в клубе.  Мы устанавливаем правила и следим за их соблюдением.  Это тяжелая работа, но она приносит удовлетворение.
+###_PLAYER
+What are the requirements?
+Каковы требования?
+###_NPC
+To apply to be a club Mistress, someone must be a club member for at least one month and be known to be really dominant.
+Чтобы претендовать на роль Госпожи клуба, кто-то должен быть членом клуба по крайней мере один месяц и быть известен как действительно доминирующий.
+###_PLAYER
+Do they get paid?
+Они получают деньги?
+###_NPC
+Absolutely.  The salary is 100$ per week and they will receive the official Mistress outfit that I'm wearing right now.
+Разумется.  Зарплата составляет 100$ в неделю, и они получат официальный наряд Госпожи, который я ношу прямо сейчас.
+###_PLAYER
+Do they have privileges?
+Есть ли у них привилегии?
+###_NPC
+They have a special privilege that comes with responsibilities.  Every Mistress gets unique club padlocks and keys.
+У них есть особая привилегия, которая приходит с обязанностями.  Каждая Госпожа получает уникальные клубные замки и ключи.
+###_PLAYER
+What if a Mistress turns submissive?
+Что делать, если Госпожа становится покорной?
+###_NPC
+She will be kicked out of the group and her Mistress clothes will be confiscated.
+Ее выгонят из группы, а одежду Госпожи конфискуют.
+###_PLAYER
+Can I become a club Mistress?
+Могу ли я стать Госпожей клуба?
+###_NPC
+You've made quite a reputation for yourself in the club.  Are you serious about becoming a Mistress?
+Вы заработали себе неплохую репутацию в клубе.  Вы серьезно собираетеся стать Госпожей?
+We've noticed your good reputation but it's not enough.  Work harder to become an elite Dominant.
+Мы заметили вашу хорошую репутацию, но этого недостаточно.  Работайте усерднее, чтобы стать элитной Доминой.
+You?  Don't make me laugh.  Being a Mistress is for real Dominants only.
+Ты?  Не заставляй меня смеяться.  Быть Госпожей - это только для настоящих доминантов.
+Girl, you're a new member.  You must be a club member for at least one month before you can apply.
+Девочка, вы новенькая.  Вы должны быть членом клуба по крайней мере один месяц, прежде чем вы сможете подать заявку.
+###_PLAYER
+I'm here to collect my salary.
+Я здесь, чтобы получить свою зарплату.
+###_NPC
+(She checks her book and gives you 100$.)  Here you go Mistress DialogPlayerName.  Come again in seven days for your next pay.
+(Она проверяет свою книгу и дает тебе 100$.)  Вот и вы Госпожа DialogPlayerName.  Приходите через семь дней за следующей зарплатой.
+(She checks her book and frowns.)  You're too early Mistress DialogPlayerName.  It takes a full week between each payment.
+(Она проверяет свою книгу и хмурится.)  Вы слишком рано Госпожа DialogPlayerName.  Обычно проходит целая неделя между каждой оплатой.
+###_PLAYER
+That's all I wanted to know.
+Это все, что я хотела знать.
+###_NPC
+Good.  Now, get to the point or get going.
+Хорошо.  А теперь переходи к делу или уходи.
+###_PLAYER
+Yes, I'm serious.
+Да, я серьезно.
+###_NPC
+Excellent!  First, we need to prepare a perfect outfit for you.  Do you prefer black, red or silver?
+Отлично!  Во-первых, нам нужно подготовить для вас идеальный наряд.  Вы предпочитаете черный, красный или серебристый?
+###_PLAYER
+Do you think I can do it?
+Думаете, я смогу это сделать?
+###_NPC
+Not with this attitude.  You'll know when you're ready, and it's not now.
+Не с таким отношением.  Вы узнаете, когда будете готовы, но не сейчас.
+Sure, take your time.
+Конечно, не торопитесь.
+###_PLAYER
+Black.
+Черный.
+###_NPC
+Good.  (She snaps her fingers and a submissive girl comes to dress you up.)
+Хорошо.  (Она щелкает пальцами, и покорная девушка приходит, чтобы одеть тебя.)
+###_PLAYER
+Red.
+Красный.
+Silver.
+Серебристый.
+This is perfect, I love it.
+Это прекрасно, я люблю его.
+###_NPC
+(She smiles.)  It's time for your inauguration party Mistress DialogPlayerName.
+(Она улыбается.)  Пришло время для вашей инаугурационной вечеринки Госпожа DialogPlayerName.
+###_PLAYER
+Good girl.  (Spank the dressing girl.)
+Хорошая девушка.  (Шлепни девушку, что помогает одеваться.)
+###_NPC
+(She grins.)  It's time for your inauguration party Mistress DialogPlayerName.
+(Она усмехается.)  Пришло время для вашей инаугурационной вечеринки Госпожа DialogPlayerName.
+###_PLAYER
+So much power!
+Так много энергии!
+###_NPC
+(She nods.)  It's time for your inauguration party Mistress DialogPlayerName.
+(She nods.)  Пришло время для вашей инаугурационной вечеринки Госпожа  DialogPlayerName.
+###_PLAYER
+Excellent!  (Do the inauguration party.)
+Превосходно!  (Сделай инаугурационную вечеринку.)
+This should be fun.  (Do the party.)
+Это должно быть весело.  (Сделай вечеринку.)
+What does it mean?
+Что это значит?
+###_NPC
+It means that you're not Dominant enough and you're getting kicked out of the Mistresses circle.
+Это значит, что ты недостаточно доминантна и тебя выгоняют из круга Госпож.
+###_PLAYER
+You're kicking me out?
+Ты меня выгоняешь?
+###_NPC
+Correct, you're not Dominant enough, so you're getting kicked out of the Mistresses circle.
+Правильно, ты недостаточно доминантна, поэтому тебя выгоняют из круга Госпож.
+Girl, you've really lost your Dominant touch and you're getting kicked out of the Mistresses circle.
+Девочка, ты действительно потеряла свое доминирующую составляющую, и тебя выгоняют из круга Госпож.
+###_PLAYER
+That's unfair!
+Это несправедливо!
+###_NPC
+Don't make it harder than it should be, you've brought this on yourself.  Now get naked for your shaming.
+Не усложняй ситуацию больше, чем она должна быть, ты сама навлекла это на себя.  А теперь раздевайся для своего позора.
+###_PLAYER
+I understand.
+Я понимаю.
+###_NPC
+Very good, you did bring this on yourself.  Now get naked for your shaming.
+Очень хорошо, ты сама навлекла это на себя.  А теперь раздевайся для своего позора.
+###_PLAYER
+My shaming?
+Моего позора?
+###_NPC
+Yes, your shaming period will last for an hour.  You will have to wander the club naked, so everyone knows you're not a Mistress anymore.
+Да, твой позорный период продлится целый час.  Тебе придется бродить по клубу голышом, чтобы все знали, что ты больше не Госпожа.
+###_PLAYER
+(Grumble and get naked.)
+(Ворчать и раздеваться.)
+###_NPC
+You're not allowed to wear clothes for the next hour.  Now surrender your Mistress outfit and items.
+Тебе не разрешается носить одежду в течение следующего часа.  Теперь сдай свои предметы и одежду Госпожи.
+###_PLAYER
+(Stay silent and get naked.)
+(Молчи и раздевайся.)
+Fine, take it.  (Give your Mistress items.)
+Ладно, бери.  (Отдай свои предметы Госпожи.)
+###_NPC
+(She takes your Mistress items and sighs.)  Such a pity, you had so much potential.  Carry on girl.
+(Она берет твои вещи Госпожи и вздыхает.)  Какая жалость, у тебя был такой большой потенциал.  Продолжай, девочка.
+###_PLAYER
+That sucks!  (Give your Mistress items.)
+Это отстой!  (Отдай свои предметы Госпожи.)
