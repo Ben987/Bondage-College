@@ -1,0 +1,166 @@
+﻿###_NPC
+(She imitates your gagged speech and giggles.)
+(Она имитирует твою речь сквозь кляп и хихикает.)
+(A nervous asylum patient crosses your path.)  Oh!  Hello nurse DialogPlayerName.  What are you doing here?
+(Нервная пациентка психушки пересекает твой путь.)  О!  Здравствуйте медсестра DialogPlayerName.  Что вы здесь делаете?
+(An asylum patient tries to run from you but get stuck in a dead end.)  What do you want?
+(Пациентка психушки пыталась убежать от тебя, но застряла в тупике.)  Что вам надо?
+(You surprise a suspicious looking asylum patient.)  Oh my!  You've scared me.  What's going on?
+(Ты застаешь вразплог подозрительно ищущею пациентку.)  О боже!  Вы напугали меня.  Что происходит?
+(She surrenders to you.)  You got me nurse DialogPlayerName.  What do you want from me?
+(Она сдается тебе.)  У вас есть я, медсестра DialogPlayerName.  Чего вы хотите от меня?
+(She checks your bondage and grins.)  I'll never return to the asylum!
+(Она проверяет твое бондаж и усмехается.)  Я никогда не вернусь в психлечебницу!
+###_PLAYER
+Who are you?
+Кто ты такая?
+###_NPC
+Me?  I'm nobody!  Can I go now?
+Я?  Я - никто!  Теперь я могу идти?
+###_PLAYER
+You seem nervous.
+Похоже, ты нервничаешь.
+###_NPC
+No, no, no, no.  Why would I be nervous?  (She looks even more nervous.)
+Нет, нет, нет, нет.  С чего бы мне нервничать?  (Она выглядит еще более нервной.)
+###_PLAYER
+Have I seen you before?
+Я тебя раньше не видела?
+###_NPC
+Maybe, it's a small world after all.
+Может быть, это все-таки маленький мир.
+###_PLAYER
+(Let her go.)
+(Отпустить ее.)
+Are you a committed patient?
+Ты постоянная пациентка?
+###_NPC
+Yes, I mean no.  I'm not going back there!  (She raises her fists.)
+Да, то есть нет.  Я туда не вернусь!  (Она поднимает кулаки.)
+###_PLAYER
+Did you escape from the asylum?
+Ты сбежала из психлечебницы?
+###_NPC
+(She raises her fists.)  I'm not going back there!
+(Она поднимает кулаки.)  Я туда не вернусь!
+###_PLAYER
+I'm here to bring you back girl.
+Я здесь, чтобы вернуть тебя, девочка.
+I'll bring you back by force.  (Fight her.)
+Я верну тебя силой.  (Сразись с ней.)
+Don't hurt me!
+Не делай мне больно!
+###_NPC
+You're pathetic.  Get out of my face.
+Ты жалка.  Убирайся с моех глаз.
+###_PLAYER
+Maybe we can make a deal.
+Может быть, мы сможем договориться.
+###_NPC
+A deal?  What kind of deal?
+Договориться?  Что за сделка?
+###_PLAYER
+Pay me and I'll let you go.
+Заплати мне, и я отпущу тебя.
+###_NPC
+Forget it, you won't get any money from me.
+Забудь об этом, ты не получишь от меня никаких денег.
+You're so corrupted.  Take these 5$ and leave me alone.
+Ты такая коррумпированая.  Возьми эти 5$ и оставь меня в покое.
+###_PLAYER
+Come to my room, you can hide there.
+Пойдем в мою комнату, ты можешь спрятаться там.
+###_NPC
+No way, I'm not following a nurse anywhere.
+Ни за что, я никуда не пойду за медсестрой.
+I guess there are worse plans than that.  Alright then, I'll follow you.
+Думаю, есть планы и похуже.  Хорошо, тогда я пойду за тобой.
+###_PLAYER
+I won't drag you by your hair.  (Fight her.)
+Я не буду тащить тебя за волосы.  (Сразись с ней.)
+It's a pleasure doing business with you.
+Очень приятно иметь  с тобой дело.
+###_NPC
+Yeah, yeah, yeah.  Can I go now?
+Да, да, да.  Теперь я могу идти?
+###_PLAYER
+(Bring her to your room.)
+(Приведи ее в свою комнату.)
+###_NPC
+NOEXIT
+NOEXIT
+###_PLAYER
+You fought well.
+Ты хорошо сражалася.
+###_NPC
+Thanks, but nobody can win against the system.
+Спасибо, но никто не может победить систему.
+###_PLAYER
+I'm bringing you back to the asylum.
+Я отведу тебя обратно в психлечебницу.
+###_NPC
+Why are you so cruel?  Fine!  I'll go back with you.
+Почему ты такая жестокая?  Ладно!  Я вернусь с тобой.
+###_PLAYER
+I feel like keeping you for myself.
+Я чувствую, что хочу оставить тебя себе.
+###_NPC
+(She looks nervous.)  What does that mean?  Where are we going?
+(Она выглядит нервной.)  Что это значит?  Куда мы идем?
+###_PLAYER
+I'm feeling merciful.  I'll let you go.
+Я чувствую себя милосердной.  Я тебя отпущу.
+###_NPC
+Really?  Wow, thank you so much!  You're the best.
+Правда?  Ого, большое спасибо!  Ты лучшая.
+###_PLAYER
+(Take her back to the asylum.)
+(Отведи ее обратно в психлечебницу.)
+###_NPC
+(You bring her back to asylum where she gets fully restrained.  They congratulate you and pay you 15$ for your work.)
+(Ты возвращаешь ее обратно в психлечебницу, где ее полностью связывают.  Тебя поздравляют и платят 15$ за твою работу.)
+###_PLAYER
+Welcome home girl.
+Добро пожаловать домой, девочка.
+###_NPC
+(She sighs and bows her head.)
+(Она вздыхает и склоняет голову.)
+###_PLAYER
+Don't try to escape again.
+Не пытайся сбежать снова.
+###_NPC
+(She shakes her head no.)
+(Она отрицательно качает головой.)
+###_PLAYER
+(Get your money and leave her.)
+(Бери свои деньги и оставь ее.)
+You're a tough patient.
+Ты сильная пациентка.
+###_NPC
+Yep.  And now it's time for us to split.  Have fun struggling little nurse.
+Да.  А теперь нам пора разделиться.  Развлекайся, маленькая медсестра.
+###_PLAYER
+Enough!  Don't hurt me anymore.
+Хватит!  Не делай больно мне больше.
+###_NPC
+It was so easy to defeat you.  Have fun struggling little nurse.
+Было так легко победить тебя.  Развлекайся, маленькая медсестра.
+###_PLAYER
+What will you do now?
+Что ты теперь будешь делать?
+###_NPC
+It's none of your business, I'm going now.  Have fun struggling little nurse.
+Это не твое дело, я ухожу.  Развлекайся, маленькая медсестра.
+###_PLAYER
+You cannot leave me like that.
+Ты не можешь оставить меня в таком состоянии.
+###_NPC
+(She turns around and walks away with a grin on her face.)
+(Она поворачивается и уходит с улыбкой на лице.)
+###_PLAYER
+I'll crush you next time!
+В следующий раз я тебя раздавлю!
+You won't be able to run forever.
+Ты не сможешь бегать вечно.
+(Back to main hall.)
+(Возвращаемся в главный зал.)
