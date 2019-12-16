@@ -1,0 +1,112 @@
+﻿###_NPC
+(She looks at you and giggles.)  Did you annoy one of the teachers?
+(Она смотрит на тебя и хихикает.)  Ты раздражала кого-то из учителей?
+(She gives you a curious look.)  Aren't you cold?  Go get some clothes before a teacher comes.
+(Она бросает на тебя любопытный взгляд.)  Тебе не холодно?  Сходи за одеждой, пока не пришла учительница.
+Hello fellow student.  I hope you're doing well.
+Привет, сокурсница.  Надеюсь, у тебя все хорошо.
+Hello there.  Welcome to our college.
+Привет.  Добро пожаловать в наш колледж.
+###_PLAYER
+Who are you?
+Кто ты такая?
+###_NPC
+I'm DialogCharacterName.  I study at the college.
+Я DialogCharacterName.  Я учусь в колледже.
+###_PLAYER
+Why are you here?
+Что ты здесь делаешь?
+###_NPC
+I'm waiting for my bus.
+Я жду свой автобус.
+###_PLAYER
+I'm a student here.
+Я здесь студентка.
+###_NPC
+You should wear your uniform then.  They won't let you in without it.
+Тогда тебе следует надеть форму.  Без него тебя не пустят.
+###_PLAYER
+Can I go inside?
+Можно мне зайти внутрь?
+###_NPC
+Absolutely.  Just beep security, they will open the gate for you.
+Конечно.  Просто позови охрану, она откроет тебе ворота.
+I don't think they will let you in dressed like that.
+Не думаю, что они впустят тебя в таком виде.
+###_PLAYER
+Can I use the tennis court?
+Могу я воспользоваться теннисным кортом?
+###_NPC
+Sure, you're already dressed up to play.
+Конечно, ты уже одета, чтобы играть.
+You can, but only if you're wearing a tennis outfit and some sneakers.
+Ты можешь, но только если ты носишь теннисный костюм и кроссовки.
+###_PLAYER
+Tell me about the college.
+Расскажи мне о колледже.
+###_NPC
+Sure.  What would you like to know?
+Конечно.  Что бы ты хотела узнать?
+###_PLAYER
+Can I tie you up?
+Можно я тебя свяжу?
+###_NPC
+(She takes a step back.)  What?  Are you some kind of pervert?
+(Она делает шаг назад.)  Что?  Ты что, извращенка какая-то?
+###_PLAYER
+I need to go.  (Leave her.)
+Мне нужно идти.  (Оставь ее.)
+Who studies here?
+Кто здесь учится?
+###_NPC
+It's a girl only college.  There's only women, both students and teachers.
+Это всего лишь колледж для девочек.  Там только женщины, и студенты, и учителя.
+###_PLAYER
+Is it expansive?
+Это дорого?
+###_NPC
+My family is paying so I'm not sure.  I've heard that it's pretty expensive.
+Моя семья платит, так что я не уверена.  Я слышала, что это довольно дорого.
+###_PLAYER
+What is the required uniform?
+Какая должна быть форма?
+###_NPC
+Students must wear ties, a skirt like mine and high leg socks.  Also, nothing too exotic will be accepted.
+Студентки должны носить галстуки, юбку, как у меня, и носки выше колена.  Кроме того, ничего слишком экзотического не разрешено.
+###_PLAYER
+The place looks pretty old.
+Место выглядит довольно старым.
+###_NPC
+Yeah, both the buildings and teaching methods are outdated.  It's very strict.
+Да, и здания, и методы обучения устарели.  Тут очень строго.
+###_PLAYER
+Can I take classes?
+Могу ли я посещать занятия?
+###_NPC
+Why are you asking me that?  Sure, go inside and get to your classes.
+Почему ты спрашиваешь меня об этом?  Конечно, иди в здание и приступай к занятиям.
+You could register for the next semester if you have the required papers.  It's only in a few months.
+Ты можешь зарегистрироваться на следующий семестр, если у тебя есть необходимые документы.  Это только через несколько месяцев.
+###_PLAYER
+Thanks for your time.
+Спасибо, что уделила мне время.
+###_NPC
+No problem.  Is there anything else you want?
+Нет проблем.  Есть что-нибудь еще, что ты хочешь узнать?
+###_PLAYER
+I was kidding.
+Я пошутила.
+###_NPC
+(She frowns.)  Yeah, alright.  Is there anything else you want?
+(Она хмурится.)  Да, хорошо.  Есть что-нибудь еще, что ты хочешь узнать?
+###_PLAYER
+I'm serious.  I want to tie you up.
+Я серьезно.  Я хочу связать тебя.
+###_NPC
+(She pushes you back.)  No!  I don't know you!  Go away now or I'll call security.
+(Она отталкивает тебя назад.)  Нет!  Я тебя не знаю!  Уходи сейчас же, или я вызову охрану.
+Go away!  I'm not speaking with you anymore.
+Уходи!  Я больше с тобой не разговариваю.
+###_PLAYER
+(Leave her.)
+(Оставь ее.)
