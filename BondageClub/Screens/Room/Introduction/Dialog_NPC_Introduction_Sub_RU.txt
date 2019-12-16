@@ -1,0 +1,180 @@
+﻿###_NPC
+It seems that you've been naughty.  Lovely gag by the way.
+Кажется, ты был непослушной.  Кстати, прекрасный кляп.
+(She licks her lips seeing the gag and allows you to silence her easily.)
+(Она облизывает губы, видя кляп и позволяет тебе легко заставить ее замолчать.)
+(You remove her gag and she smiles at you.)  You're quite fun Miss.  Let me know if you want me to try another gag.
+(Ты вынимаешь у нее кляп, и она улыбается тебе.) Вы довольно забавная Мисс.  Дайте мне знать, если вы хотите, чтобы я попробовал еще один кляп.
+(She watches while you push some earplugs in.) I wont be able to hear you properly now Miss.
+(Она смотрит, как ты затыкаешь уши затычками.) Я не смогу услышать вас как следует, Мисс.
+(You pull the earplugs out.) That's better i can hear you clearly now.
+(Ты вытаскиваешь затычки для ушей.) Так-то лучше, теперь я вас отчетливо слышу.
+(She turns around submissively while you restrain her arms.)  You have lots of potential in the club Miss.
+(Она покорно поворачивается, пока ты связываешь ее руки.)  У вас большой потенциал в клубе Мисс.
+(You free her arms and she stretches a little.)  That was nice Miss.
+(Ты освобождаешь ее руки, и она немного потягивается.)  Это была прекрасно Мисс.
+(She submits to you while restrain you hands.)  You are a kinky one.
+(Она подчиняется тебе, пока ты связываешь ее запястья.)  Ты извращенка.
+(You release her hands and she nods a little.)  Thank you Miss.
+(Ты освобождаешь ее запястья, и она слегка кивает.)  Спасибо Мисс.
+(She stands still while you restrain her legs securely.)  Ooh I love it.
+(Она стоит неподвижно, пока ты надежно связываешь ее ноги.)  О, мне это нравится.
+(You release her legs while she wiggles her butt.)  Good bondage Miss!
+(Ты освобождаешь ее ноги, пока она виляет попкой.)  Хороший бондаж Мисс!
+(She giggles while you restrain her feet, preventing her from walking.)
+(Она хихикает, пока ты связываешь ее ступни, мешая ей идти.)
+(You release her feet and she jumps playfully.)  You can tie me up anytime you want Miss.
+(Ты освобождаешь ее ступни, и она игриво подпрыгивает.)  Вы можете связать меня в любое время, Мисс.
+(You strap the collar on her while she blushes.)  Collars have a special meaning. Someday you might find a sub for you in the club.
+(Ты застегиваешь ей ошейник, когда она краснеет.)  Ошейники имеют особое значение. Когда-нибудь вы сможете найти себе сабу в клубе.
+(You remove the collar around her neck.)  You can also lock collars on willing submissives.
+(Ты снимаешь ошейник с ее шеи.)  Вы также можете заблокировать ошейники на желающих сабмиссивах.
+(You snap the belt around her waist while she wiggles her butt.)  This is so kinky!  Thanks Miss.
+(Ты застегиваешь ремень на ее талии, пока она виляет попкой.)  Это так извращенно!  Спасибо, Мисс.
+(You unlock the belt from her waist and crotch.)  I can't wait to see what you'll use on me next...
+(Ты отстегиваешь ремень от ее талии и промежности.)  Я не могу дождаться, чтобы увидеть, что вы будете использовать на мне в следующий раз...
+(You strap the device on her head as she tries to look around.)  You know, this will heighten my other senses. Including touch...
+(Ты пристегиваешь устройство к ее голове, когда она пытается оглядеться.)  Знаете, это обострит мои другие чувства. В том числе и тактильные...
+(You remove the device and she looks at you.)  That was pretty intense.  What else can we try?
+(Ты убираешь устройство, и она смотрит на тебя.)  Это было довольно интенсивно.  Что еще мы можем попробовать?
+(She trembles of pain and pleasure as you whip her breast.)  Ohhhh Miss!  This is wonderful.
+(Она дрожит от боли и удовольствия, когда ты хлещешь ее по груди.)  Оооо Мисс!  Это замечательно.
+(You swing the crop on her torso as she moans.)  Mmmh! You have lots of talents Miss.
+(Ты бьешь стеком по ее торсу, когда она стонет.)  МММ! У вас много талантов, Мисс.
+(You whip her butt as she jumps from the pain.)  It hurts soooooo good Miss.
+(Ты хлещешь ее по заднице, когда она подпрыгивает от боли.)  Это больно и тааак хорошо Мисс.
+(She moans and shakes her butt each time the crop lands on it.) I love the pain Miss.
+(Она стонет и виляет попкой каждый раз, когда на нее падает стек.) Я люблю боль, Мисс.
+It's an honor to see you at the introduction class Mistress DialogPlayerName.
+Для меня большая честь видеть Вас в ознакомительном классе Госпожа DialogPlayerName.
+(She giggles.)  Greetings naked girl.  Welcome to the introduction class.
+(Она хихикает.)  Приветствую обнаженную девушку.  Добро пожаловать в ознакомительный класс.
+Greetings head maid DialogPlayerName.  Welcome to the introduction class.
+Приветствую, старшую горничную DialogPlayerName.  Добро пожаловать в ознакомительный класс.
+Greetings maid DialogPlayerName.  Welcome to the introduction class.
+Приветствую горничную DialogPlayerName.  Добро пожаловать в ознакомительный класс.
+Greetings Miss.  Welcome to the Bondage Club.
+Приветствую Вас, Мисс.  Добро пожаловать в Бондаж Клуб.
+###_PLAYER
+Hello, my name is DialogPlayerName.
+Здравствуйте, меня зовут DialogPlayerName.
+###_NPC
+Pleased to meet you Miss DialogPlayerName.  I hope you will enjoy yourself in the club.
+Рад познакомиться с вами Мисс DialogPlayerName.  Надеюсь, вам понравится в клубе.
+###_PLAYER
+Who are you?
+Кто вы такая?
+###_NPC
+I'm a new club member.  My name is DialogCharacterName.
+Я новый член клуба.  Меня зовут DialogCharacterName.
+###_PLAYER
+What's going on here?
+Что здесь происходит?
+###_NPC
+This is a BDSM club.  People come from all over the world to share their kinks.
+Это БДСМ-клуб.  Люди приезжают со всего мира, чтобы поделиться своими извращениям.
+###_PLAYER
+Tell me about the club.
+Расскажите мне о клубе.
+###_NPC
+The Bondage Club is pretty old.  People come from all over the world to share their kinks.
+Бондаж Клуб довольно старый.  Люди приезжают со всего мира, чтобы поделиться своими извращениями.
+###_PLAYER
+Why are you calling me Miss?
+Почему вы называете меня Мисс?
+###_NPC
+It's protocol.  Most submissives will call strangers "Miss" or "Sir" to be polite.
+Это протокол.  Большинство сабмиссивов будут называть незнакомцев "Мисс" или "Сэр", чтобы быть вежливыми.
+###_PLAYER
+Can I tie you up?
+Можно я тебя свяжу?
+###_NPC
+(She blushes a little.)  With pleasure Miss.  If you need help with restraints, you can ask our friendly maid here.
+(Она слегка краснеет.)  С удовольствием Мисс.  Если вам нужна помощь с ограничениями, вы можете здесь попросить нашу дружелюбную горничную.
+###_PLAYER
+Will you tie me up?
+Вы меня свяжете?
+###_NPC
+No Miss, I'm a submissive.  But our friendly maid here can help you with that.
+Нет, мисс, я сабмиссив.  Но наша дружелюбная горничная может помочь вам с этим.
+###_PLAYER
+I need to go, take care.  (Leave her.)
+Мне нужно идти, береги себя. (Оставить ее.)
+So, you're a kinky girl?
+Значит, ты извращенка?
+###_NPC
+(She nods and blushes.)  Yes Miss.
+(Она кивает и краснеет.) Да Мисс.
+###_PLAYER
+What are you doing here?
+Что ты здесь делаешь?
+###_NPC
+I'm helping the maid staff to introduce newcomers to the club.
+Я помогаю горничным знакомить новичков с клубом.
+###_PLAYER
+What is this room?
+Что это за комната?
+###_NPC
+This is the introduction class room, where newcomers learn about basic bondage.
+Это вводная классная комната, где новички узнают о базовом бондаже.
+###_PLAYER
+So, you work for the club?
+Так ты работаешь в клубе?
+###_NPC
+Not yet, but I hope to become a maid someday.
+Пока нет, но я надеюсь когда-нибудь стать горничной.
+###_PLAYER
+Tell me about the maids.
+Расскажи мне о горничных.
+###_NPC
+The maids are the work force of the club.  They do everything from cleaning to releasing helpless victims.
+Горничные - это рабочая сила клуба.  Они делают все, от уборки до освобождения беспомощных жертв.
+You probably know more about the maid sorority than me.  Do you need anything else?
+Вы, наверное, знаете о женском обществе горничных больше, чем я.  Вам нужно что-нибудь еще?
+###_PLAYER
+Can I become a maid?
+Могу ли я стать горничной?
+###_NPC
+Absolutely, go to the maid quarters and ask for a job.  After a while they may let you join their sorority.
+Конечно, идите в комнату для прислуги и попросите работу.  Через некоторое время они могут позволить вам присоединиться к их женскому обществу.
+###_PLAYER
+Thanks for the info.
+Спасибо за информацию.
+###_NPC
+It's my pleasure Miss.  Is there something else you would like to know?
+Это доставляет мне удовольствие, Мисс.  Есть ли что-то еще, что вы хотели бы знать?
+###_PLAYER
+Thanks for the tip.
+Спасибо за подсказку.
+###_NPC
+Maybe we'll work together someday.  Is there something else you would like to know?
+Может быть, когда-нибудь мы будем работать вместе.  Есть ли что-то еще, что вы хотели бы знать?
+Thanks for coming to the rescue Miss.
+Спасибо, что пришли на помощь Мисс.
+###_PLAYER
+Do you need help?
+Тебе нужна помощь?
+###_NPC
+(She nods slowly.)  Yes please, can you release me and our friendly maid here?  Check with her if everything is fine.
+(Она медленно кивает.)  Да, пожалуйста, вы можете отпустить меня и нашу дружелюбную горничную?  Проверьте у нее, все ли в порядке.
+###_PLAYER
+Is everything alright now?
+Теперь все в порядке?
+###_NPC
+I think everything is fine.  Please check with the maid to make sure.
+Я думаю, что все в порядке.  Пожалуйста, свяжитесь с горничной, чтобы убедиться в этом.
+###_PLAYER
+What happened here?
+Что здесь произошло?
+###_NPC
+An intimidating woman dressed in latex came in.  Without a word, she forced us into armbinders, belts, and then she gagged us before leaving.
+Вошла устрашающая женщина, одетая в латекс.  Не говоря ни слова, она заставила нас надеть повязки, ремни, а затем заткнула нам рот кляпом, прежде чем уйти.
+A newcomer wanted to learn about armbinders and got a little too carried away.  She left for the maid quarters to ask for help.
+Новичок хотела узнать об армбиндеры и немного увлеклася.  Она ушла в комнату для прислуги, чтобы попросить о помощи.
+Another maid came in and started a fight with our friendly maid here.  As you can guess, the other girl won.
+Вошла еще одна горничная и затеяла драку с нашей дружелюбной горничной.  Как вы можете догадаться, победила другая девушка.
+A sales woman came to sell us armbinders and some belts.  As you can see, she was very convincing.  (She giggles.)
+Продавщица пришла продать нам армбиндеры и несколько ремней.  Как видите, она была очень убедительна.  (Она хихикает.)
+###_PLAYER
+I'll go get help.  (Leave her.)
+Я пойду за помощью.  (Оставить ее.)
