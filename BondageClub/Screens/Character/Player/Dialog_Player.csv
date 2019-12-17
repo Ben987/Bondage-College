@@ -105,8 +105,10 @@ TimerRestart,,,SourceCharacter restarts the five minutes timer padlock on Destin
 TimerUnknown,,,Unknown time left
 RestartTimer,,,Restart Timer
 MistressTimerAddTime,,,SourceCharacter adds TimerTime minutes to the mistress timer padlock on DestinationCharacter's BodyPart.
+OwnerTimerAddTime,,,SourceCharacter add TimerTime hours to the owner timer padlock on DestinationCharacter's BodyPart.
 AllowModifyTimer,,,Allow everyone adding more time
-AddTimerTime,,,Add TimerTime minutes to the Timer
+AddTimerTimeMinutes,,,Add TimerTime minutes to the Timer
+AddTimerTimeHours,,,Add TimerTime hours to the Timer
 RemoveItemWithTimer,,,Remove item when the lock timer runs out
 WillRemoveItemWithTimer,,,The item will be removed when the lock timer runs out
 WontRemoveItemWithTimer,,,The item will stay when the lock timer runs out
@@ -120,6 +122,8 @@ ItemMiscIntricatePadlockIntro,,,"""To keep your loved one secure"""
 ItemMiscTimerPadlockIntro,,,You can restart the timer but cannot unlock
 ItemMiscOwnerPadlockIntro,,,"""Never forget who you belong to"""
 ItemMiscOwnerPadlockDetail,,,Can only be locked or unlocked by her owner
+ItemMiscOwnerTimerPadlockIntro,,,"""Never forget who you belong to"""
+ItemMiscOwnerTimerPadlockDetail,,,Can only be unlocked or extended by her owner
 ItemMiscMistressPadlockIntro,,,Can only be locked or unlocked by a Club Mistress
 ItemMiscMistressTimerPadlockIntro,,,Can only be unlocked or extended by a Club Mistress
 LeatherCuffsPoseNone,,,Detached

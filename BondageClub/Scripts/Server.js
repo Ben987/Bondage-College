@@ -207,7 +207,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 							if ((C.Appearance[A].Asset.Name == Bundle[B].Name) && (C.Appearance[A].Asset.Group.Name == Bundle[B].Group) && (C.Appearance[A].Asset.Group.Family == AssetFamily))
 								NA.Property = Bundle[B].Property;
 						ServerValidateProperties(C, NA);
-						InventoryLock(C, NA, { Asset: AssetGet(AssetFamily, "ItemMisc", "OwnerPadlock") }, C.Ownership.MemberNumber);
+						if (C.Appearance[A].Asset.LockedBy == "OwnerPadlock") InventoryLock(C, NA, { Asset: AssetGet(AssetFamily, "ItemMisc", "OwnerPadlock") }, C.Ownership.MemberNumber);
 					}
 					Appearance.push(NA);
 				}

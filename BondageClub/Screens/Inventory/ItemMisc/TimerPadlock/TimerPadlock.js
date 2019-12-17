@@ -8,6 +8,7 @@ function InventoryItemMiscTimerPadlockLoad() {
 
 // Draw the extension screen
 function InventoryItemMiscTimerPadlockDraw() {
+	// todo add number + change position of elements
 	if ((DialogFocusItem == null) || (DialogFocusSourceItem.Property.RemoveTimer < CurrentTime)) { InventoryItemMiscTimerPadlockExit(); return; }
 	DrawText(DialogFind(Player, "TimerLeft") + " " + TimerToString(DialogFocusSourceItem.Property.RemoveTimer - CurrentTime), 1500, 150, "white", "gray");
 	DrawRect(1387, 225, 225, 275, "white");

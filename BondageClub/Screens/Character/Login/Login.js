@@ -116,13 +116,11 @@ function LoginMistressItems() {
 		InventoryAdd(Player, "MistressPadlock", "ItemMisc", false);
 		InventoryAdd(Player, "MistressPadlockKey", "ItemMisc", false);
 		InventoryAdd(Player, "MistressTimerPadlock", "ItemMisc", false);
-		InventoryAdd(Player, "MistressTimerPadlockKey", "ItemMisc", false);
 		ServerPlayerInventorySync();
 	} else {
 		InventoryDelete(Player, "MistressPadlock", "ItemMisc", false);
 		InventoryDelete(Player, "MistressPadlockKey", "ItemMisc", false);
 		InventoryDelete(Player, "MistressTimerPadlock", "ItemMisc", false);
-		InventoryDelete(Player, "MistressTimerPadlockKey", "ItemMisc", false);
 		InventoryDelete(Player, "MistressGloves", "Gloves", false);
 		InventoryDelete(Player, "MistressBoots", "Shoes", false);
 		InventoryDelete(Player, "MistressTop", "Cloth", false);

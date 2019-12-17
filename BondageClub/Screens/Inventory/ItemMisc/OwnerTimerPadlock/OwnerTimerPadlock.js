@@ -2,9 +2,10 @@
 
 
 // Loads the item extension properties
-function InventoryItemMiscMistressTimerPadlockLoad() {
+function InventoryItemMiscOwnerTimerPadlockLoad() {
     // todo add more precise way to add time
-    // todo add number + change position of elements
+    // todo change position of elements
+    // todo make sure it updates correctly
     // todo find/change pictures (padlock)
     if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property == null)) DialogFocusSourceItem.Property = {};
     if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property != null) && (DialogFocusSourceItem.Property.RemoveItem == null)) DialogFocusSourceItem.Property.RemoveItem = false;
@@ -13,8 +14,8 @@ function InventoryItemMiscMistressTimerPadlockLoad() {
 }
 
 // Draw the extension screen
-function InventoryItemMiscMistressTimerPadlockDraw() {
-    if ((DialogFocusItem == null) || (DialogFocusSourceItem.Property.RemoveTimer < CurrentTime)) { InventoryItemMiscMistressTimerPadlockExit(); return; }
+function InventoryItemMiscOwnerTimerPadlockDraw() {
+    if ((DialogFocusItem == null) || (DialogFocusSourceItem.Property.RemoveTimer < CurrentTime)) { InventoryItemMiscOwnerTimerPadlockExit(); return; }
     if (DialogFocusSourceItem.Property.ShowTimer) {
         DrawText(DialogFind(Player, "TimerLeft") + " " + TimerToString(DialogFocusSourceItem.Property.RemoveTimer - CurrentTime), 1500, 150, "white", "gray");
     } else { DrawText(DialogFind(Player, "TimerUnknown"), 1500, 150, "white", "gray"); }
@@ -32,38 +33,39 @@ function InventoryItemMiscMistressTimerPadlockDraw() {
     } else {
         if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property != null) && (DialogFocusSourceItem.Property.LockMemberNumber != null))
             DrawText(DialogFind(Player, "LockMemberNumber") + " " + DialogFocusSourceItem.Property.LockMemberNumber.toString(), 1500, 700, "white", "gray");
+        DrawText(DialogFind(Player, DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Detail"), 1500, 800, "white", "gray");
         DrawText(DialogFind(Player, (DialogFocusSourceItem.Property.RemoveItem) ? "WillRemoveItemWithTimer" : "WontRemoveItemWithTimer"), 1500, 868, "white", "gray");
     }
-    if (Player.CanInteract() && (LogQuery("ClubMistress", "Management") || DialogFocusSourceItem.Property.AllowModifyTimer)) {
-        DrawButton(1150, 910, 300, 65, DialogFind(Player, "AddTimerTimeMinutes").replace("TimerTime", DialogFocusItem.Asset.RemoveTimer / 60), "White");
-        DrawButton(1550, 910, 300, 65, DialogFind(Player, "AddTimerTimeMinutes").replace("TimerTime", DialogFocusItem.Asset.RemoveTimer * 4 / 60), "White");
+    if (Player.CanInteract() && ((Player.MemberNumber == DialogFocusSourceItem.Property.LockMemberNumber) || DialogFocusSourceItem.Property.AllowModifyTimer)) {
+        DrawButton(1150, 910, 300, 65, DialogFind(Player, "AddTimerTimeHours").replace("TimerTime", DialogFocusItem.Asset.RemoveTimer / (60 * 60)), "White");
+        DrawButton(1550, 910, 300, 65, DialogFind(Player, "AddTimerTimeHours").replace("TimerTime", DialogFocusItem.Asset.RemoveTimer * 4 / (60 * 60)), "White");
     }
 }
 
 // Catches the item extension clicks
-function InventoryItemMiscMistressTimerPadlockClick() {
-    if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) InventoryItemMiscMistressTimerPadlockExit();
+function InventoryItemMiscOwnerTimerPadlockClick() {
+    if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) InventoryItemMiscOwnerTimerPadlockExit();
     if ((MouseX >= 1100) && (MouseX <= 1164) && (Player.MemberNumber == DialogFocusSourceItem.Property.LockMemberNumber) && Player.CanInteract()) {
         if ((MouseY >= 666) && (MouseY <= 730)) { DialogFocusSourceItem.Property.RemoveItem = !(DialogFocusSourceItem.Property.RemoveItem); }
         if ((MouseY >= 746) && (MouseY <= 810)) { DialogFocusSourceItem.Property.ShowTimer = !(DialogFocusSourceItem.Property.ShowTimer); }
         if ((MouseY >= 826) && (MouseY <= 890)) { DialogFocusSourceItem.Property.AllowModifyTimer = !(DialogFocusSourceItem.Property.AllowModifyTimer); }
         if (CurrentScreen == "ChatRoom") ChatRoomCharacterUpdate(CurrentCharacter);
     }
-    if ((MouseY >= 910) && (MouseY <= 975) && Player.CanInteract() && (LogQuery("ClubMistress", "Management") || DialogFocusSourceItem.Property.AllowModifyTimer)) {
-        if ((MouseX >= 1150) && (MouseX <= 1450)) InventoryItemMiscMistressTimerPadlockAdd(DialogFocusItem.Asset.RemoveTimer);
-        if ((MouseX >= 1550) && (MouseX <= 1850)) InventoryItemMiscMistressTimerPadlockAdd(DialogFocusItem.Asset.RemoveTimer * 4);
+    if ((MouseY >= 910) && (MouseY <= 975) && Player.CanInteract() && ((Player.MemberNumber == DialogFocusSourceItem.Property.LockMemberNumber) || DialogFocusSourceItem.Property.AllowModifyTimer)) {
+        if ((MouseX >= 1150) && (MouseX <= 1450)) InventoryItemMiscOwnerTimerPadlockAdd(DialogFocusItem.Asset.RemoveTimer);
+        if ((MouseX >= 1550) && (MouseX <= 1850)) InventoryItemMiscOwnerTimerPadlockAdd(DialogFocusItem.Asset.RemoveTimer * 4);
     }
 }
 
 // When a value is added to the timer
-function InventoryItemMiscMistressTimerPadlockAdd(TimeToAdd) {
+function InventoryItemMiscOwnerTimerPadlockAdd(TimeToAdd) {
     var TimerBefore = DialogFocusSourceItem.Property.RemoveTimer;
     if (DialogFocusItem.Asset.RemoveTimer > 0) DialogFocusSourceItem.Property.RemoveTimer = Math.min(DialogFocusSourceItem.Property.RemoveTimer + (TimeToAdd * 1000), CurrentTime + (DialogFocusItem.Asset.MaxTimer * 1000));
     if (CurrentScreen == "ChatRoom") {
         var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-        var msg = DialogFind(Player, "MistressTimerAddTime");
+        var msg = DialogFind(Player, "OwnerTimerAddTime");
         msg = msg.replace("SourceCharacter", Player.Name);
-        msg = msg.replace("TimerTime", Math.round((DialogFocusSourceItem.Property.RemoveTimer - TimerBefore) / (1000 * 60)));
+        msg = msg.replace("TimerTime", Math.round((DialogFocusSourceItem.Property.RemoveTimer - TimerBefore) / (1000 * 60 * 60)));
         msg = msg.replace("DestinationCharacter", C.Name);
         msg = msg.replace("BodyPart", C.FocusGroup.Description.toLowerCase());
         ChatRoomPublishCustomAction(msg, false);
@@ -72,7 +74,7 @@ function InventoryItemMiscMistressTimerPadlockAdd(TimeToAdd) {
 }
 
 // Exits the extended menu
-function InventoryItemMiscMistressTimerPadlockExit() {
+function InventoryItemMiscOwnerTimerPadlockExit() {
     DialogFocusItem = null;
     if (DialogInventory != null) DialogMenuButtonBuild((Player.FocusGroup != null) ? Player : CurrentCharacter);
 }

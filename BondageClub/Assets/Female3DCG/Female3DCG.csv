@@ -549,13 +549,13 @@ ItemMisc,MetalPadlock,Metal Padlock
 ItemMisc,IntricatePadlock,Intricate Padlock
 ItemMisc,TimerPadlock,Five Minutes Padlock
 ItemMisc,OwnerPadlock,Owner Padlock
+ItemMisc,OwnerTimerPadlock,Owner Timer Padlock
 ItemMisc,MistressPadlock,Mistress Padlock
 ItemMisc,MistressTimerPadlock,Mistress Timer Padlock
 ItemMisc,MetalPadlockKey,Metal Padlock Key
 ItemMisc,IntricatePadlockKey,Intricate Padlock Key
 ItemMisc,OwnerPadlockKey,Owner Padlock Key
 ItemMisc,MistressPadlockKey,Mistress Padlock Key
-ItemMisc,MistressTimerPadlockKey,Mistress Timer Padlock Key
 ItemMisc,MetalCuffsKey,Metal Cuffs Key
 ItemMisc,WoodenMaidTray,Wooden Maid Tray
 ItemMisc,WoodenMaidTrayFull,Wooden Maid Tray Full
