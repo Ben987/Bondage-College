@@ -274,6 +274,7 @@ HairFront,HairFront10,Style 10
 HairFront,HairFront11,Style 11
 HairFront,HairFront12,Style 12
 HairFront,HairFront13,Style 13
+HairFront,HairFront14,Style 14
 Eyes,,Eyes
 Eyes,Eyes1,Style 1
 Eyes,Eyes2,Style 2
@@ -505,6 +506,7 @@ ItemNeckAccessories,CollarLapis,Lapis Pendant
 ItemNeckAccessories,CollarPentagram,Pentagram Pendant
 ItemNeckAccessories,CollarFlower,Flower
 ItemNeckAccessories,CollarRose,Rose
+ItemNeckRestraints,,Collar
 ItemNeckRestraints,CollarChainLong,Long Chain
 ItemNeckRestraints,CollarChainShort,Short Chain
 ItemNeckRestraints,CollarLeash,Leash

@@ -58,7 +58,7 @@ PlayerGagged,,,Pupil!  This is not a silent play.  (She laughs.),,
 170,180,I will steal your beauty.,You cannot steal my beauty!  Return to your cauldron old witch!,JuliaLoveChange(1),
 180,190,"On your knees, girl.","Never!  (She starts to run around you, pretending to run away.)",JuliaLoveChange(0),
 180,190,Bow to my magic.,"Never!  (She starts to run around you, pretending to run away.)",JuliaLoveChange(1),
-180,190,Surrender or feel my wraith.,"Never!  (She starts to run around you, pretending to run away.)",JuliaLoveChange(2),
+180,190,Surrender or feel my wrath.,"Never!  (She starts to run around you, pretending to run away.)",JuliaLoveChange(2),
 190,200,(Whisper to her that you do a rope spell.),"(You pick some random theater ropes and tie her up, pretending it's magic.)  By golly!  Your wickedness knows no end!","JuliaLoveChange(0, ""JuliaRope"")",JuliaLoveIs(15)
 190,200,Magika ropa!  (Pick some ropes and tie her up.),"(You pick some random theater ropes and tie her up, pretending it's magic.)  By golly!  Your wickedness knows no end!","JuliaLoveChange(2, ""JuliaRope"")",JuliaLoveIs(15)
 190,200,(Point at some belts to notice her you're doing magic.),"(You pick some random theater belts and strap her up, pretending it's magic.)  By golly!  Your wickedness knows no end!","JuliaLoveChange(0, ""JuliaBelt"")",JuliaLoveIs(15)

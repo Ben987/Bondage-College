@@ -485,7 +485,7 @@ var AssetFemale3DCG = [
 		Color: ["#6a3628", "#202020", "#dcc787", "#6c2132", "#999999", "#dddddd", "#e781b1", "#81e7b1", "#81b1e7", "#eeee99", "#ee9999", "#ee99ee"],
 		Left: 150,
 		Top: 50,
-		Asset: ["HairFront1", "HairFront2", "HairFront3", "HairFront4", "HairFront5", "HairFront6", "HairFront7", "HairFront8", "HairFront9", "HairFront10", "HairFront11", "HairFront12", "HairFront13"]
+		Asset: ["HairFront1", "HairFront2", "HairFront3", "HairFront4", "HairFront5", "HairFront6", "HairFront7", "HairFront8", "HairFront9", "HairFront10", "HairFront11", "HairFront12", "HairFront13", "HairFront14"]
 	},
 
 	{
@@ -1082,7 +1082,7 @@ var AssetFemale3DCG = [
 	{
 		Group: "ItemNeckAccessories",
 		Category: "Item",
-		Priority: 37,
+		Priority: 38,
 		Default: false,
 		Color: ["Default"],
 		Left: 0,
@@ -1109,7 +1109,7 @@ var AssetFemale3DCG = [
 	{
 		Group: "ItemNeckRestraints",
 		Category: "Item",
-		Priority: 38,
+		Priority: 37,
 		Default: false,
 		IsRestraint: true,
 		Color: ["Default"],
