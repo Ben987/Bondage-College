@@ -1,8 +1,0 @@
-﻿Load
-Загрузить
-Save
-Сохранить
-Return
-Вернуться
-Save or load your favorite appearance
-Сохранить или загрузить свой любимую внешность
