@@ -1,6 +1,0 @@
-﻿Audience Patience Level
-Уровень Терпения Аудитории 
-Accuracy
-Точность
-Bonus
-Бонус
