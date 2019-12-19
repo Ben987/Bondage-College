@@ -48,7 +48,7 @@ var AssetFemale3DCG = [
 			{ Name: "AdultBabyDress2", HideItem: ["ClothLowerLatexSkirt1", "ClothLowerLatexSkirt2", "ClothLowerSkirt1", "ClothLowerTennisSkirt1", "ClothLowerClothSkirt1", "ItemNipplesPiercingsRoundPiercing", "ItemNipplesPiercingsWeightedPiercing"], Value: 80 },
 			{ Name: "AdultBabyDress3", HideItem: ["ClothLowerLatexSkirt1", "ClothLowerLatexSkirt2", "ClothLowerSkirt1", "ClothLowerTennisSkirt1", "ClothLowerClothSkirt1", "ItemNipplesPiercingsRoundPiercing", "ItemNipplesPiercingsWeightedPiercing"], Value: 40 },
 			{ Name: "NurseUniform", HideItem: ["ClothLowerLatexSkirt1", "ClothLowerLatexSkirt2", "ClothLowerSkirt1", "ClothLowerTennisSkirt1", "ClothLowerClothSkirt1", "ItemNipplesPiercingsRoundPiercing", "ItemNipplesPiercingsWeightedPiercing"], Value: -1 },
-			{ Name: "BunnyCollarCuffs", Value: 10, Expose: ["ItemNipples","ItemNipplesPiercings", "ItemBreast", "ItemTorso"] },
+			{ Name: "BunnyCollarCuffs", Value: 10, Expose: ["ItemNipples", "ItemNipplesPiercings", "ItemBreast", "ItemTorso"] },
 			{ Name: "Robe1", Value: 30, HideItem: ["ClothLowerLatexSkirt1", "ItemNipplesPiercingsRoundPiercing", "ItemNipplesPiercingsWeightedPiercing", "ItemArmsLeatherCuffs", "ItemArmsOrnateCuffs"] },
 			{ Name: "SuspenderTop1", Priority: 25, Value: 50, Expose: ["ItemNipples","ItemNipplesPiercings", "ItemBreast"], Hide: ["Panties", "ItemVulva", "ItemVulvaPiercings"] },
 			{ Name: "LeatherCorsetTop1", Priority: 25, Value: 60, HideItem: ["ItemNipplesPiercingsRoundPiercing", "ItemNipplesPiercingsWeightedPiercing"] },
@@ -820,7 +820,7 @@ var AssetFemale3DCG = [
 		Category: "Item",
 		Priority: 18,
 		Default: false,
-		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch"],
+		AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Yoked"],
 		Color: ["Default"],
 		Left: 125,
 		Top: 200,
@@ -1391,19 +1391,19 @@ var PoseFemale3DCG = [
 		OverrideHeight: -250,
 		Hide: ["ItemFeet"]
 	},
-		{
+	{
 		Name: "Horse",
 		OverrideHeight: -75,
 		Hide: ["ItemFeet"]
 	},
-		{
+	{
 		Name: "KneelingSpread",
 		OverrideHeight: -250,
 		Hide: ["ItemFeet"]
 	},
-
-		{
+	{
 		Name: "Yoked",
 		Hide: ["Hands"]
-			}
+	}
+
 ];
