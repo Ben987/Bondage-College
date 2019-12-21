@@ -328,7 +328,7 @@ function DialogStruggle(Reverse) {
 	}
 
 	// drool Expression
-	if (DialogAllowBlush && !Reverse) {
+	if (DialogAllowDrool && !Reverse) {
 		if (DialogProgressStruggleCount == 15) CharacterSetFacialExpression(Player, "Drool", "Right", "Left");
 	}
 
