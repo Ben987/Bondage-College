@@ -3,10 +3,11 @@
 
 // Loads the item extension properties
 function InventoryItemMiscOwnerTimerPadlockLoad() {
-    // todo add more precise way to add time
-    // todo change position of elements
     // todo make sure it updates correctly
-    // todo find/change pictures (padlock)
+    // todo add more settings for time (max time and min time, then force exit menu) --> scrolling wheel ?
+    // todo align settings button to left then center with
+    // MainCanvas.textAlign = "left";
+    // todo change picture (padlock)
     if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property == null)) DialogFocusSourceItem.Property = {};
     if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property != null) && (DialogFocusSourceItem.Property.RemoveItem == null)) DialogFocusSourceItem.Property.RemoveItem = false;
     if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property != null) && (DialogFocusSourceItem.Property.ShowTimer == null)) DialogFocusSourceItem.Property.ShowTimer = true;
@@ -37,6 +38,17 @@ function InventoryItemMiscOwnerTimerPadlockDraw() {
         DrawText(DialogFind(Player, (DialogFocusSourceItem.Property.RemoveItem) ? "WillRemoveItemWithTimer" : "WontRemoveItemWithTimer"), 1500, 868, "white", "gray");
     }
     if (Player.CanInteract() && ((Player.MemberNumber == DialogFocusSourceItem.Property.LockMemberNumber) || DialogFocusSourceItem.Property.AllowModifyTimer)) {
+        //DrawText(TextGet("ColorTheme"), 500, 225, "Black", "Gray");
+        //DrawBackNextButton(1000, 190, 350, 70, TextGet(PreferenceChatColorThemeSelected), "White", "",
+        // 		() => TextGet(PreferenceChatColorThemeList[PreferenceChatColorThemeIndex + PreferenceChatColorThemeList.length % PreferenceChatColorThemeList.length]),
+        // 		() => TextGet((PreferenceChatColorThemeIndex >= PreferenceChatColorThemeList.length - 1) ? PreferenceChatColorThemeList[0] : PreferenceChatColorThemeList[PreferenceChatColorThemeIndex + 1]));
+        //if ((MouseX >= 1000) && (MouseX < 1350) && (MouseY >= 190) && (MouseY < 270)) {
+        // 		if (MouseX <= 1175) PreferenceChatColorThemeIndex = (PreferenceChatColorThemeIndex <= 0) ? PreferenceChatColorThemeList.length - 1 : PreferenceChatColorThemeIndex - 1;
+        // 		else PreferenceChatColorThemeIndex = (PreferenceChatColorThemeIndex >= PreferenceChatColorThemeList.length - 1) ? 0 : PreferenceChatColorThemeIndex + 1;
+        // 		PreferenceChatColorThemeSelected = PreferenceChatColorThemeList[PreferenceChatColorThemeIndex];
+        // 		Player.ChatSettings.ColorTheme = PreferenceChatColorThemeSelected;
+        // 	}
+
         DrawButton(1150, 910, 300, 65, DialogFind(Player, "AddTimerTimeHours").replace("TimerTime", DialogFocusItem.Asset.RemoveTimer / (60 * 60)), "White");
         DrawButton(1550, 910, 300, 65, DialogFind(Player, "AddTimerTimeHours").replace("TimerTime", DialogFocusItem.Asset.RemoveTimer * 4 / (60 * 60)), "White");
     }

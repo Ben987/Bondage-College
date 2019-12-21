@@ -4,8 +4,9 @@
 // Loads the item extension properties
 function InventoryItemMiscMistressTimerPadlockLoad() {
     // todo add more precise way to add time
-    // todo add number + change position of elements
-    // todo find/change pictures (padlock)
+    // todo add more settings for time (max time and min time, then force exit menu) --> scrolling wheel ?
+    // todo add id list to check when adding time (setting)
+    // todo change picture padlock
     if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property == null)) DialogFocusSourceItem.Property = {};
     if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property != null) && (DialogFocusSourceItem.Property.RemoveItem == null)) DialogFocusSourceItem.Property.RemoveItem = false;
     if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property != null) && (DialogFocusSourceItem.Property.ShowTimer == null)) DialogFocusSourceItem.Property.ShowTimer = true;
