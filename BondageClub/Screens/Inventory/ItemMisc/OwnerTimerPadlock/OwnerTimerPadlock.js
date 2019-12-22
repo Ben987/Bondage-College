@@ -1,13 +1,12 @@
 "use strict";
 
+var OwnerTimerChooseList = [1, 2, 4, 8, 16, 24, 48, 72, 96, 120, 144, 168];
+var OwnerTimerChooseIndex = 0;
 
 // Loads the item extension properties
 function InventoryItemMiscOwnerTimerPadlockLoad() {
     // todo make sure it updates correctly
-    // todo add more settings for time (max time and min time, then force exit menu) --> scrolling wheel ?
-    // todo align settings button to left then center with
-    // MainCanvas.textAlign = "left";
-    // todo change picture (padlock)
+    // todo add id list
     if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property == null)) DialogFocusSourceItem.Property = {};
     if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property != null) && (DialogFocusSourceItem.Property.RemoveItem == null)) DialogFocusSourceItem.Property.RemoveItem = false;
     if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property != null) && (DialogFocusSourceItem.Property.ShowTimer == null)) DialogFocusSourceItem.Property.ShowTimer = true;
@@ -25,12 +24,14 @@ function InventoryItemMiscOwnerTimerPadlockDraw() {
     DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
     DrawText(DialogFind(Player, DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Intro"), 1500, 600, "white", "gray");
     if ((Player.MemberNumber == DialogFocusSourceItem.Property.LockMemberNumber) && Player.CanInteract()) {
+        MainCanvas.textAlign = "left";
         DrawButton(1100, 666, 64, 64, "", "White", (DialogFocusSourceItem.Property.RemoveItem) ? "Icons/Checked.png" : "");
-        DrawText(DialogFind(Player, "RemoveItemWithTimer"), 1550, 698, "white", "gray");
+        DrawText(DialogFind(Player, "RemoveItemWithTimer"), 1200, 698, "white", "gray");
         DrawButton( 1100, 746, 64, 64, "", "White", (DialogFocusSourceItem.Property.ShowTimer) ? "Icons/Checked.png" : "");
-        DrawText(DialogFind(Player,"ShowItemWithTimerRemaining"), 1550, 778, "white", "gray");
+        DrawText(DialogFind(Player,"ShowItemWithTimerRemaining"), 1200, 778, "white", "gray");
         DrawButton(1100, 826, 64, 64, "", "White", (DialogFocusSourceItem.Property.AllowModifyTimer) ? "Icons/Checked.png" : "");
-        DrawText(DialogFind(Player, "AllowModifyTimer"), 1550, 858, "white", "gray");
+        DrawText(DialogFind(Player, "AllowModifyTimer"), 1200, 858, "white", "gray");
+        MainCanvas.textAlign = "center";
     } else {
         if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property != null) && (DialogFocusSourceItem.Property.LockMemberNumber != null))
             DrawText(DialogFind(Player, "LockMemberNumber") + " " + DialogFocusSourceItem.Property.LockMemberNumber.toString(), 1500, 700, "white", "gray");
@@ -38,19 +39,10 @@ function InventoryItemMiscOwnerTimerPadlockDraw() {
         DrawText(DialogFind(Player, (DialogFocusSourceItem.Property.RemoveItem) ? "WillRemoveItemWithTimer" : "WontRemoveItemWithTimer"), 1500, 868, "white", "gray");
     }
     if (Player.CanInteract() && ((Player.MemberNumber == DialogFocusSourceItem.Property.LockMemberNumber) || DialogFocusSourceItem.Property.AllowModifyTimer)) {
-        //DrawText(TextGet("ColorTheme"), 500, 225, "Black", "Gray");
-        //DrawBackNextButton(1000, 190, 350, 70, TextGet(PreferenceChatColorThemeSelected), "White", "",
-        // 		() => TextGet(PreferenceChatColorThemeList[PreferenceChatColorThemeIndex + PreferenceChatColorThemeList.length % PreferenceChatColorThemeList.length]),
-        // 		() => TextGet((PreferenceChatColorThemeIndex >= PreferenceChatColorThemeList.length - 1) ? PreferenceChatColorThemeList[0] : PreferenceChatColorThemeList[PreferenceChatColorThemeIndex + 1]));
-        //if ((MouseX >= 1000) && (MouseX < 1350) && (MouseY >= 190) && (MouseY < 270)) {
-        // 		if (MouseX <= 1175) PreferenceChatColorThemeIndex = (PreferenceChatColorThemeIndex <= 0) ? PreferenceChatColorThemeList.length - 1 : PreferenceChatColorThemeIndex - 1;
-        // 		else PreferenceChatColorThemeIndex = (PreferenceChatColorThemeIndex >= PreferenceChatColorThemeList.length - 1) ? 0 : PreferenceChatColorThemeIndex + 1;
-        // 		PreferenceChatColorThemeSelected = PreferenceChatColorThemeList[PreferenceChatColorThemeIndex];
-        // 		Player.ChatSettings.ColorTheme = PreferenceChatColorThemeSelected;
-        // 	}
-
-        DrawButton(1150, 910, 300, 65, DialogFind(Player, "AddTimerTimeHours").replace("TimerTime", DialogFocusItem.Asset.RemoveTimer / (60 * 60)), "White");
-        DrawButton(1550, 910, 300, 65, DialogFind(Player, "AddTimerTimeHours").replace("TimerTime", DialogFocusItem.Asset.RemoveTimer * 4 / (60 * 60)), "White");
+        DrawButton(1100, 910, 250, 70, TextGet("AddTimerTime"), "White");
+        DrawBackNextButton(1400, 910, 200, 70, TextGet(OwnerTimerChooseList[OwnerTimerChooseIndex]), "White", "",
+            () => OwnerTimerChooseList[(OwnerTimerChooseList.length + OwnerTimerChooseIndex - 1) % OwnerTimerChooseList.length] + " " + TextGet("Hours"),
+            () => OwnerTimerChooseList[(OwnerTimerChooseIndex + 1) % OwnerTimerChooseList.length] + " " + TextGet("Hours"));
     }
 }
 
@@ -64,8 +56,11 @@ function InventoryItemMiscOwnerTimerPadlockClick() {
         if (CurrentScreen == "ChatRoom") ChatRoomCharacterUpdate(CurrentCharacter);
     }
     if ((MouseY >= 910) && (MouseY <= 975) && Player.CanInteract() && ((Player.MemberNumber == DialogFocusSourceItem.Property.LockMemberNumber) || DialogFocusSourceItem.Property.AllowModifyTimer)) {
-        if ((MouseX >= 1150) && (MouseX <= 1450)) InventoryItemMiscOwnerTimerPadlockAdd(DialogFocusItem.Asset.RemoveTimer);
-        if ((MouseX >= 1550) && (MouseX <= 1850)) InventoryItemMiscOwnerTimerPadlockAdd(DialogFocusItem.Asset.RemoveTimer * 4);
+        if ((MouseX >= 1100) && (MouseX < 1350)) InventoryItemMiscOwnerTimerPadlockAdd(OwnerTimerChooseList[OwnerTimerChooseIndex] * 60 * 60);
+        if ((MouseX >= 1400) && (MouseX < 1600)) {
+            if (MouseX <= 1500) OwnerTimerChooseIndex = (OwnerTimerChooseList.length + OwnerTimerChooseIndex - 1) % OwnerTimerChooseList.length;
+            else OwnerTimerChooseIndex = (OwnerTimerChooseIndex + 1) % OwnerTimerChooseList.length;
+        }
     }
 }
 
@@ -75,14 +70,16 @@ function InventoryItemMiscOwnerTimerPadlockAdd(TimeToAdd) {
     if (DialogFocusItem.Asset.RemoveTimer > 0) DialogFocusSourceItem.Property.RemoveTimer = Math.min(DialogFocusSourceItem.Property.RemoveTimer + (TimeToAdd * 1000), CurrentTime + (DialogFocusItem.Asset.MaxTimer * 1000));
     if (CurrentScreen == "ChatRoom") {
         var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-        var msg = DialogFind(Player, "OwnerTimerAddTime");
+        var msg = DialogFind(Player, "TimerAddTime");
         msg = msg.replace("SourceCharacter", Player.Name);
         msg = msg.replace("TimerTime", Math.round((DialogFocusSourceItem.Property.RemoveTimer - TimerBefore) / (1000 * 60 * 60)));
+        msg = msg.replace("TimerUnit", DialogFind(Player, "Hours"));
         msg = msg.replace("DestinationCharacter", C.Name);
         msg = msg.replace("BodyPart", C.FocusGroup.Description.toLowerCase());
-        ChatRoomPublishCustomAction(msg, false);
+        ChatRoomPublishCustomAction(msg, true);
     }
     else { CharacterRefresh(CurrentCharacter); }
+    InventoryItemMiscTimerPadlockExit();
 }
 
 // Exits the extended menu
