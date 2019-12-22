@@ -554,7 +554,7 @@ var AssetFemale3DCG = [
 		AllowNone: false,
 		AllowColorize: false,
 		AllowCustomize: false,
-		AllowExpression: ["Right", "Left"],
+		AllowExpression: ["Right", "Left", "Both", "Messy"],
 		Left: 240,
 		Top: 190,
 		Asset: ["Drool"]
