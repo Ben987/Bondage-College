@@ -30,6 +30,7 @@ Cloth,Yukata1,Yukata
 Cloth,SteampunkCorsetTop1,Steampunk Corset
 Cloth,BondageDress1,Bondage Dress Style 1
 Cloth,BondageDress2,Bondage Dress Style 2
+Cloth,ShoulderlessTop,Shoulderless Top
 ClothLower,,Bottom
 ClothLower,Skirt1,Skirt
 ClothLower,TennisSkirt1,Tennis
@@ -117,6 +118,7 @@ Socks,Stockings4,Fishnet Stockings
 Socks,Pantyhose1,Pantyhose
 Socks,Socks6,Frill Socks
 Socks,SocksFur,Socks with Fur
+Socks,SocksStriped1,Striped Socks
 Shoes,,Shoes
 Shoes,Shoes1,Style 1
 Shoes,Shoes2,Style 2
@@ -143,6 +145,7 @@ Hat,WitchHat1, Witch Hat
 Hat,PirateBandana1,Pirate Bandana
 Hat,PoliceWomanHat,Police Woman Hat
 Hat,HeadTowel1,Towel
+Hat,CollegeDunce,Dunce Hat
 HairAccessory1,,Hair Accessory
 HairAccessory1,Ears1,Ears Small
 HairAccessory1,Ears2,Ears Large
@@ -205,6 +208,7 @@ TailStraps,SuccubusStrap,Succubus Tail Strap
 TailStraps,SuccubusStrap2,Succubus2 Tail Strap
 TailStraps,RaccoonStrap,Raccoon Tail Strap
 TailStraps,RaccoonTailStrap,Raccoon2 Tail Strap
+TailStraps,PuppyTailStrap1,Puppy Fluffy Tail Strap
 Wings,,Wings
 Wings,SuccubusFeather,Succubus Feather 
 Wings,SuccubusWings,Succubus Wings
@@ -213,6 +217,18 @@ Wings,DevilWings,Devil Wings
 Wings,FallenAngelWings,Fallen Angel Wings
 Wings,AngelWings,Angel Wings
 Wings,BatWings,Bat Wings
+Height,,Height
+Height,H0950,165 cm
+Height,H0960,167 cm
+Height,H0970,169 cm
+Height,H0980,171 cm
+Height,H0990,173 cm
+Height,H1000,175 cm
+Height,H0900,155 cm
+Height,H0910,157 cm
+Height,H0920,159 cm
+Height,H0930,161 cm
+Height,H0940,163 cm
 BodyUpper,,Upper Body
 BodyUpper,Small,Small
 BodyUpper,Normal,Normal
@@ -258,6 +274,7 @@ HairFront,HairFront10,Style 10
 HairFront,HairFront11,Style 11
 HairFront,HairFront12,Style 12
 HairFront,HairFront13,Style 13
+HairFront,HairFront14,Style 14
 Eyes,,Eyes
 Eyes,Eyes1,Style 1
 Eyes,Eyes2,Style 2
@@ -299,6 +316,7 @@ ItemFeet,Irish8Cuffs,Irish 8 Feet Cuffs
 ItemFeet,SuspensionHempRope,Suspension Hemp Rope
 ItemFeet,DuctTape,Duct Tape
 ItemFeet,LeatherAnkleCuffs,Leather Ankle Cuffs
+ItemFeet,OrnateAnkleCuffs,Ornate Ankle Cuffs
 ItemFeet,SpreaderMetal, Metal Leg Spreader
 ItemFeet,BallChain,Ball And Chain
 ItemFeet,AnkleShackles, Ankle Shackles
@@ -309,6 +327,7 @@ ItemLegs,LeatherBelt,Leather Belt
 ItemLegs,SturdyLeatherBelts,Sturdy Leather Belt
 ItemLegs,DuctTape,Duct Tape
 ItemLegs,LeatherLegCuffs,Leather Leg Cuffs
+ItemLegs,OrnateLegCuffs,Ornate Leg Cuffs
 ItemLegs,LegBinder,Leg Binder
 ItemLegs,HobbleSkirt,Hobble Skirt
 ItemLegs,WoodenHorse,Wooden Horse
@@ -339,6 +358,7 @@ ItemButt,BlackButtPlug,Black Butt Plug
 ItemButt,TailButtPlug,Kitty Butt Plug
 ItemButt,HorseButtPlug,Horse Butt Plug
 ItemButt,PuppyTailPlug,Puppy Butt Plug
+ItemButt,PuppyTailPlug1,Puppy Fluffy Butt Plug
 ItemButt,SuccubusButtPlug,Succubus Butt Plug
 ItemButt,SuccubusButtPlug2,Succubus Tail
 ItemButt,FoxTails,Fox Tails
@@ -357,6 +377,7 @@ ItemPelvis,SleekLeatherChastityBelt,Sleek Leather Chastity Belt
 ItemPelvis,StuddedChastityBelt,Studded Chastity Belt
 ItemPelvis,MetalChastityBelt,Metal Chastity Belt
 ItemPelvis,PolishedChastityBelt,Polished Chastity Belt
+ItemPelvis,OrnateChastityBelt,Ornate Chastity Belt
 ItemPelvis,SteelChastityPanties,Steel Chastity Panties
 ItemPelvis,HarnessPanties1,Bondage Harness
 ItemPelvis,LoveChastityBelt,Love Chastity Belt
@@ -401,6 +422,7 @@ ItemNipplesPiercings,NippleChastityPiercing2,Chastity Cross Shield
 ItemBreast,,Breast
 ItemBreast,MetalChastityBra,Metal Chastity Bra
 ItemBreast,PolishedChastityBra,Polished Chastity Bra
+ItemBreast,OrnateChastityBra,Ornate Chastity Bra
 ItemBreast,LeatherCrop,Leather Crop
 ItemBreast,LeatherWhip,Leather Whip
 ItemArms,,Arms
@@ -411,6 +433,7 @@ ItemArms,SturdyLeatherBelts,Sturdy Leather Belt
 ItemArms,LeatherArmbinder,Leather Armbinder
 ItemArms,ArmbinderJacket,Armbinder Jacket
 ItemArms,LeatherCuffs,Leather Cuffs
+ItemArms,OrnateCuffs,Ornate Cuffs
 ItemArms,MittenChain1,Mittens Chain
 ItemArms,FourLimbsShackles,Four Limbs Shackles
 ItemArms,Manacles,Manacles
@@ -464,20 +487,30 @@ ItemNeck,LoveLeatherCollar,Lover Leather Collar
 ItemNeck,StrictPostureCollar,Strict Posture Collar
 ItemNeck,NobleCorsetCollar,Noble Corset Collar
 ItemNeck,HeartCollar,Heart Collar
-ItemNeck,LatexPostureCollar,Latex Posture Collar
-ItemNeck,LeatherCorsetCollar,Leather Corset Collar
+ItemNeck,LatexPostureCollar,Latex Posture Collar Gag
+ItemNeck,LeatherCorsetCollar,Leather Corset Collar Gag
 ItemNeck,HighSecurityCollar,High Security Collar
+ItemNeck,OrnateCollar,Ornate Collar
 ItemNeckAccessories,,Collar
 ItemNeckAccessories,CollarBell,Bell
 ItemNeckAccessories,CollarBow,Bow
 ItemNeckAccessories,CollarShockUnit,Shock Unit
 ItemNeckAccessories,ShockCollarRemote,Shock Collar Remote
-ItemNeckAccessories,CollarChainLong,Long Chain
-ItemNeckAccessories,CollarChainShort,Short Chain
-ItemNeckAccessories,CollarLeash,Leash
-ItemNeckAccessories,CollarLeashTaken,Pulled Leash
 ItemNeckAccessories,CollarNameTag,Name Tag
-ItemNeckAccessories,CollarMoon,Moon
+ItemNeckAccessories,CollarNameTagOval,Oval Name Tag
+ItemNeckAccessories,CollarNameTagPet,Pet Name Tag
+ItemNeckAccessories,CollarNameTagLover,Lover Name Tag
+ItemNeckAccessories,CollarMoon,Moon Pendant
+ItemNeckAccessories,CollarSun,Sun Pendant
+ItemNeckAccessories,CollarLapis,Lapis Pendant
+ItemNeckAccessories,CollarPentagram,Pentagram Pendant
+ItemNeckAccessories,CollarFlower,Flower
+ItemNeckAccessories,CollarRose,Rose
+ItemNeckRestraints,,Collar
+ItemNeckRestraints,CollarChainLong,Long Chain
+ItemNeckRestraints,CollarChainShort,Short Chain
+ItemNeckRestraints,CollarLeash,Leash
+ItemNeckRestraints,CollarLeashTaken,Pulled Leash
 ItemMouth,,Mouth
 ItemMouth,ClothGag,Cloth Gag
 ItemMouth,WiffleGag,Wiffle Ball Gag
@@ -506,9 +539,15 @@ ItemMouth,PumpkinGag,Pumpkin Gag
 ItemMouth,LipGag,Lips Gag
 ItemMouth,SpiderGag,Spider Gag
 ItemMouth,ClothStuffing,Cloth Stuffing
+ItemMouth,ChloroformCloth,Chloroform Cloth
 ItemMouth,ScarfGag,Scarf
 ItemMouth,LewdGag,Lewd Gag
 ItemMouth,DeepthroatGag,Deepthroat Penis Gag
+ItemMouth,LeatherCorsetCollar,Leather Corset Collar Gag
+ItemMouth,LatexPostureCollar,Latex Posture Collar Gag
+ItemMouth,BitGag,Silicon Bit Gag
+ItemMouth,XLBoneGag,XL Bone Gag
+ItemMouth,DogMuzzleExposed,Exposed Dog Muzzle
 ItemHead,,Head
 ItemHead,ClothBlindfold,Cloth Blindfold
 ItemHead,LeatherBlindfold,Leather Blindfold

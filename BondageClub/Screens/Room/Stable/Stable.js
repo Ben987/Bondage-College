@@ -666,8 +666,7 @@ function StablePlayerExamDressage() {
 
 function StablePlayerExamPass() {
 	LogAdd("JoinedStable", "PonyExam");
-	InventoryAdd(Player, "HarnessPonyBits", "ItemMouth");
-	InventoryAdd(Player, "PonyBoots", "Shoes");
+	LoginStableItems();
 	StablePlayerExamEnd();
 	StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableExamAwardIntro");
 	StableTrainer.Stage = "StableExamAward1";
@@ -874,8 +873,7 @@ function StablePlayerTExamHurdlesEnd() {
 
 function StablePlayerTExamPass() {
 	LogAdd("JoinedStable", "TrainerExam");
-	InventoryAdd(Player, "HarnessPonyBits", "ItemMouth");
-	InventoryAdd(Player, "PonyBoots", "Shoes");
+	LoginStableItems();
 	CharacterChangeMoney(Player, -50);
 	StablePlayerTExamEnd();
 }

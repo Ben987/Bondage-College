@@ -1,0 +1,5 @@
+PlayerGagged,,,(She's waiting in line in front of you.  She's too far away to notice you.),
+0,,,(She's waiting in line in front of you.  She's too far away to notice you.),
+0,,Hey there!,(She's doesn't notice you.),
+0,,(Try to catch her attention.),(She's doesn't notice you.),
+0,,(Leave her.),,DialogLeave()

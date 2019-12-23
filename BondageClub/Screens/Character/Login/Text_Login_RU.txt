@@ -7,7 +7,7 @@ Account Name
 Password
 Пароль
 Login
-Логин
+Авторизоваться
 Language
 Язык
 Or create a new character
@@ -34,13 +34,3 @@ Reset Password
 Восстановление Пароля
 Thank you
 Спасибо
-Developers
-Разработчики
-Translators
-Переводчики
-Support
-Поддержка
-Sponsors
-Спонсоры
-And a huge thanks to the fans!
-И огромное спасибо фанатам!

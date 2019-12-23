@@ -1,7 +1,7 @@
 ﻿Select your appearance
 Выберите свой внешний вид
- Select TargetCharacterName's appearance
- Выберите внешний вид имени целевого персонажа
+Select TargetCharacterName's appearance
+Выберите внешний вид имени целевого персонажа
 You must pick an item of type:
 Вы должны выбрать элемент типа:
 Set wardrobe character name:

@@ -876,3 +876,5 @@ Leather Toe Cuffs
 Leder-Zehenfesseln
 Toe Tie
 Zehenfessel
+Striped Socks
+Gestreifte Socken

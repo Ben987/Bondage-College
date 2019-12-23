@@ -26,6 +26,7 @@ ColorEmotes,Color emotes
 AudioVolume,Audio volume
 PlayBeeps,Audio alarm for beeps
 SensDepSetting,Sensory deprivation setting
-SensDepNames,names hidden
+SensDepNames,Names hidden
 SensDepTotal,Total
 BlindDisableExamine,Disable examining people when blind
+ForceFullHeight,Display all characters at maximum height

@@ -76,7 +76,7 @@ function TimerInventoryRemoveSet(C, AssetGroup, Timer) {
 // On a random chance, the private room owner can beep the player anywhere in the club, she has 2 minutes to get back to her
 function TimerPrivateOwnerBeep() {
 	if ((Player.Owner != "") && (Player.Ownership == null) && (CurrentScreen != "Private") && (CurrentScreen != "ChatRoom") && (CurrentScreen != "InformationSheet") && (CurrentScreen != "FriendList") && (CurrentScreen != "Cell") && PrivateOwnerInRoom())
-		if (!LogQuery("OwnerBeepActive", "PrivateRoom") && !LogQuery("OwnerBeepTimer", "PrivateRoom") && !LogQuery("LockOutOfPrivateRoom", "Rule") && (Math.floor(Math.random() * 500) == 1)) {
+		if ((Math.floor(Math.random() * 500) == 1) && !LogQuery("OwnerBeepActive", "PrivateRoom") && !LogQuery("OwnerBeepTimer", "PrivateRoom") && !LogQuery("LockOutOfPrivateRoom", "Rule") && !LogQuery("Committed", "Asylum")) {
 			ServerBeep.Timer = CurrentTime + 15000;
 			ServerBeep.Message = DialogFind(Player, "BeepFromOwner");
 			LogAdd("OwnerBeepActive", "PrivateRoom");
@@ -104,3 +104,23 @@ function TimerProcess(Timestamp) {
 	requestAnimationFrame(MainRun);
 
 }
+
+// Convert milliseconds to written time
+function TimermsToTime(s) {
+
+	// Pad to 2 or 3 digits, default is 2
+	function pad(n, z) {
+	  z = z || 2;
+	  return ('00' + n).slice(-z);
+	}
+  
+	// Returns the formatted value
+	var ms = s % 1000;
+	s = (s - ms) / 1000;
+	var secs = s % 60;
+	s = (s - secs) / 60;
+	var mins = s % 60;
+	var hrs = (s - mins) / 60;
+	return pad(hrs) + ':' + pad(mins) + ':' + pad(secs);
+	
+  }

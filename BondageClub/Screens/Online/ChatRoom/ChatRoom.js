@@ -245,6 +245,11 @@ function ChatRoomSendChat() {
 		// Keeps the chat log in memory so it can be accessed with pageup/pagedown
 		ChatRoomLastMessage.push(msg);
 		ChatRoomLastMessageIndex = ChatRoomLastMessage.length;
+
+		// Replace < and > characters to prevent HTML injections
+		while (msg.indexOf("<") > -1) msg = msg.replace("<", "&lt;");
+		while (msg.indexOf(">") > -1) msg = msg.replace(">", "&gt;");
+
 		var m = msg.toLowerCase().trim();
 		
 		// Some custom functions like /dice or /coin are implemented for randomness
@@ -290,7 +295,7 @@ function ChatRoomSendChat() {
 		else {
 
 			// Regular chat can be garbled with a gag
-			msg = SpeechGarble(Player, msg);
+			//msg = SpeechGarble(Player, msg);
 			if ((msg != "") && (ChatRoomTargetMemberNumber == null)) ServerSend("ChatRoomChat", { Content: msg, Type: "Chat" } );
 
 			// The whispers get sent to the server and shown on the client directly
@@ -602,6 +607,11 @@ function ChatRoomSetRule(data) {
 		if (data.Content == "OwnerRuleKeyAllow") LogDelete("BlockKey", "OwnerRule");
 		if (data.Content == "OwnerRuleKeyConfiscate") InventoryConfiscateKey();
 		if (data.Content == "OwnerRuleKeyBlock") LogAdd("BlockKey", "OwnerRule");
+
+		// Remote rules
+		if (data.Content == "OwnerRuleRemoteAllow") LogDelete("BlockRemote", "OwnerRule");
+		if (data.Content == "OwnerRuleRemoteConfiscate") InventoryConfiscateRemote();
+		if (data.Content == "OwnerRuleRemoteBlock") LogAdd("BlockRemote", "OwnerRule");
 
 		// Timer cell punishment
 		var TimerCell = 0;

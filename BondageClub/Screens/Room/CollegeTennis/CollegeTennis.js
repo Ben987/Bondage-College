@@ -35,6 +35,7 @@ function CollegeTennisLoad() {
 			InventoryWear(CollegeTennisJennifer, "PussyLight1", "Pussy", "#edd6b0");
 			InventoryWear(CollegeTennisJennifer, "Eyes5", "Eyes", "#ffa239");
 			InventoryWear(CollegeTennisJennifer, "Mouth1", "Mouth", "Default");
+			InventoryWear(CollegeTennisJennifer, "H0980", "Height", "Default");
 			InventoryWear(CollegeTennisJennifer, "Small", "BodyUpper", "White");
 			InventoryWear(CollegeTennisJennifer, "Small", "BodyLower", "White");
 			InventoryWear(CollegeTennisJennifer, "Default", "Hands", "White");

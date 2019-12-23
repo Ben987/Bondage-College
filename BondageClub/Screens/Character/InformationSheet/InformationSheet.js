@@ -78,8 +78,17 @@ function InformationSheetRun() {
 		}
 
 		// Draw the player skill modifier if there's one
-		if ((C.ID == 0) && (SkillModifier != 0))
-			DrawText(TextGet("SkillModifier") + " " + SkillModifier, 1450, 500, "Black", "Gray");
+		SkillGetLevel(C, "Evasion");
+		if ((C.ID == 0) && (SkillModifier != 0)) {
+			var PlusSign = "";
+			if (SkillModifier > 0) PlusSign = "+";
+			else PlusSign = "";
+			DrawText(TextGet("SkillModifier"), 1450, 575, "Black", "Gray");
+			DrawText(TextGet("SkillBondage") + " " + PlusSign + SkillModifier, 1450, 650, "Black", "Gray");
+			DrawText(TextGet("SkillEvasion") + " " + PlusSign + SkillModifier, 1450, 725, "Black", "Gray");
+			DrawText(TextGet("SkillModifierDuration") + " " + (TimermsToTime(LogValue("ModifierDuration", "SkillModifier") - CurrentTime)), 1450, 800, "Black", "Gray");
+		}
+
 
 	} else {
 

@@ -50,7 +50,8 @@ SkillBondage,Bondage:
 SkillEvasion,Evasion:
 SkillWillpower,Willpower:
 SkillDressage,Dressage:
-SkillModifier,Global modifier:
+SkillModifier,Skills modifier:
+SkillModifierDuration, Time left:
 Trait,- Traits -
 TraitUnknown,Spend more time with her to know her traits
 TraitDominant,Dominant:

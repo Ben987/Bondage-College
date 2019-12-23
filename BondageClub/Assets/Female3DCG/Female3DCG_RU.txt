@@ -7,7 +7,7 @@ Maid
 Maid Exposed
 обнаженная горничная
 Student Black
-Школьница черная
+школьница черная
 Student Bow
 Юнга
 Babydoll Dress
@@ -19,11 +19,11 @@ Chinese Dress
 Chinese Long
 китайское Длинное
 T-Shirt
-Футболка
+футболка
 Tennis
-Тенниска
+тенниска
 Sweater
-Свитер
+свитер
 Mistress Top
 верх Госпожи
 Puffy Baby Dress
@@ -35,15 +35,15 @@ Flower Baby dress
 Nurse Uniform
 униформа медсестры
 Bunny Girl Accessories
-Аксессуары Для Девочек-Зайчиков
+аксессуары для девочек-зайчиков
 Robe
 халат
 Suspender Top
 верх подвязка
 Leather Corset Top
-Кожаный Корсет
+кожаный корсет
 Flower Dress
-Цветочное Платье
+цветочное платье
 Nomadic Dress
 одежда кочевника
 Lace Babydoll
@@ -51,55 +51,55 @@ Lace Babydoll
 Sleeveless Top
 верх без руковов
 Dress with Fur
-Платье с мехом
+платье с мехом
 Towel
-Полотенце
+полотенце
 Yukata
 кимоно
 Steampunk Corset
-Корсет Стимпанк
+корсет стимпанк
 Bondage Dress Style 1
-Платье  БондажСтиль 1
+платье  бондаж стиль 1
 Bondage Dress Style 2
-Платье Бондаж Стиль 2
+платье  бондаж стиль 2
 Bottom
 Низ
 Skirt
-Юбка
+юбка
 Jeans
-Синие джинсы
+синие джинсы
 Shorts
-Шорты
+шорты
 Pajama
-Пижама
+пижама
 Mistress Bottom
 низ Госпожи
 Bondage Waspie
-Бондаж Пояс 
+бондаж пояс 
 Royal Waspie
-Королевский Пояс
+королевский пояс
 Straps Waspie
-Ременной Пояс
+ременной пояс
 Latex Pants
-Латексные Брюки
+латексные брюки
 Latex Skirt
-Латексная Юбка
+латексная юбка
 Long Latex Skirt
-Длинная Латексная Юбка
+длинная латексная юбка
 Patterned Skirt
-Юбка С Рисунком
+юбка с рисунком
 Ripped Jeans
-Рваные Джинсы
+рваные джинсы
 Bra
 Бюстгальтер
 Style 1
-Стиль 1
+стиль 1
 Style 2
-Стиль 2
+стиль 2
 Style 3
-Стиль 3
+стиль 3
 Lace and Satin
-Кружево и Атлас
+кружево и атлас
 Strapless
 Без бретелек
 Bandeau
@@ -601,9 +601,9 @@ Arms
 Metal Cuffs
 Металлические Манжеты
 Leather Armbinder
-Кожаный амбидекстер
+Кожаный армбиндер
 Armbinder Jacket
-Куртка-амбидекстер
+Куртка-армбиндер
 Leather Cuffs
 Кожаные Манжеты
 Mittens Chain
@@ -823,7 +823,7 @@ Intricate Padlock
 Five Minutes Padlock
 Пятиминутный Висячий Замок
 Owner Padlock
-Навесной Замок Владелеца 
+Навесной Замок Хозяйки
 Mistress Padlock
 Висячий Замок Госпожи
 Metal Padlock Key
@@ -831,7 +831,7 @@ Metal Padlock Key
 Intricate Padlock Key
 Замысловатый ключ
 Owner Padlock Key
-Ключ Владельца
+Ключ Хозяйки
 Mistress Padlock Key
 Ключ Госпожи
 Metal Cuffs Key

@@ -11,7 +11,7 @@ Stress
 Perfect!  The therapy was a complete success.
 Отлично!  Терапия прошла с полным успехом.
 You did it!  The therapy was a success.
-Ты сделал это!  Терапия прошла успешно.
+Ты сделала это!  Терапия прошла успешно.
 The patient breaks and the therapy fails.
 Пациент прерывается и терапия терпит неудачу.
 Click on yourself to continue.

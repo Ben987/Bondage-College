@@ -1,21 +1,21 @@
 ﻿Synchronizing with server, please wait...
 Синхронизация с сервером, пожалуйста подождите...
 A rescue maid is coming...
-Сейчас придет спасательная горничная...
+Сейчас придет спасение...
 Online Members:
 Онлайн-Участники:
 Introduction Class
-Введение Класс
+Ознакомительный класс
 Maid Quarters
-Помещение Для Прислуги
+Комната для прислуги
 Shibari Dojo
 Шибари Додзе
 Kidnappers League
 Лига Похитителей 
 Private Room
-приватная комната
+Приватная комната
 Club Management
-руководство Rлуба
+Руководство Клуба
 Search for Sarah
 Поиск Сары
 Explore the Club
@@ -23,23 +23,23 @@ Explore the Club
 Online Chat Rooms
 Онлайн Чаты
 Club Shop
-клубный магазин
+Клубный магазин
 Your Profile
-ваш профиль
+Ваш профиль
 Change Appearance
-Изменение Внешнего Вида
+Изменение внешнего вида
 Timer Cell
 Таймер клетки
 Slave Market
-рынок рабов
+Рынок рабынь
 Look for Trouble
-Ищи неприятности
+Ищите неприятности
 Asylum
 Убежище
 Visit the College
-Посети колледж
+Посетите колледж
 Leave the Club
-покинуть Клуб
+Покинуть Клуб
 Sarah's Bedroom
 Спальня Сары 
 Gambling by git4nick
