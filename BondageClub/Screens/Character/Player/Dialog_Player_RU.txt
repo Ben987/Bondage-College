@@ -1,6 +1,6 @@
 ﻿###_NPC
 Select an item to use
-Выберите элемент для использования
+Выберите предмет для использования
 Cannot use on yourself
 Нельзя использовать на себя
 Remove some clothes first
@@ -38,9 +38,9 @@ Back to character
 View next items
 View next items
 Remove the item
-Remove the item
+Удалить предмет
 Use this item
-Use this item
+Используйте этот предмет
 Try to struggle out
 Попробуй вырваться
 Dismount
@@ -48,21 +48,21 @@ Dismount
 Escape from the item
 Escape from the item
 Use a lock
-Use a lock
+Заблокируйте
 Unlock the item
-Unlock the item
+Разблокировать предмет
 Inspect the lock
-Inspect the lock
+Осмотрите замок
 Use your remote
-Use your remote
+Используйте свой пульт дистанционного управления
 Exit Permission Mode
 Выход Из Режима Разрешений
 Edit Item Permissions
-Изменить Права Доступа К Элементу
+Изменить права доступа к предмету
 Use the Butt Plug's pump
 Use the Butt Plug's pump
 Color of next item
-Color of next item
+Цвет следующего предмета
 Use this color
 Use this color
 Default color
@@ -74,9 +74,9 @@ Swapping...
 Struggling...
 Борьба...
 Unlocking...
-Unlocking...
+Разблокирование ...
 Removing...
-Removing...
+Удаление ...
 Dismounting...
 Dismounting...
 Escaping...
@@ -84,7 +84,7 @@ Escaping...
 Locking...
 Locking...
 Adding...
-Adding...
+Добавление...
 Impossible to escape!
 Сбежать невозможно!
 Struggle to free yourself
@@ -96,11 +96,11 @@ You can unlock yourself
 You cannot unlock yourself
 You cannot unlock yourself
 This zone is out of reach from another item
-This zone is out of reach from another item
+Эта зона находится вне досягаемости из-за другого предмета
 You cannot access your items
-Вы не можете получить доступ к своим элементам
+Вы не можете получить доступ к своим предметам
 Click here to speed up the progress
-Click here to speed up the progress
+Нажмите здесь, чтобы ускорить прогресс
 Alternate keys A and S to speed up
 Альтернативные ключи A и S для ускорения
 Pump gag level: Empty
@@ -200,13 +200,13 @@ Your owner is now preventing you from getting new keys.  The club shop will not 
 You're on SourceCharacter blacklist.  Your message was blocked by the server.
 You're on SourceCharacter blacklist.  Your message was blocked by the server.
 Member number on lock:
-Member number on lock:
+Номер члена Клуба на замке:
 Time left:
-Time left:
+Осталось времени:
 SourceCharacter restarts the five minutes timer padlock on DestinationCharacter BodyPart.
 SourceCharacter restarts the five minutes timer padlock on DestinationCharacter BodyPart.
 Restart Timer
-Restart Timer
+Перезапуск таймера
 Remove item when the lock timer runs out
 Remove item when the lock timer runs out
 The item will be removed when the lock timer runs out
@@ -214,9 +214,9 @@ The item will be removed when the lock timer runs out
 The item will stay when the lock timer runs out
 The item will stay when the lock timer runs out
 Select the bondage position
-Select the bondage position
+Выбери положение бондажа
 Select the tape wrapping
-Select the tape wrapping
+Выбери клейкую ленту 
 A victim cannot unlock herself if her elbows are bound
 A victim cannot unlock herself if her elbows are bound
 "From your friendly hardware store"
@@ -224,15 +224,15 @@ A victim cannot unlock herself if her elbows are bound
 "To keep your loved one secure"
 "To keep your loved one secure"
 You can restart the timer but cannot unlock
-You can restart the timer but cannot unlock
+Вы можете перезапустить таймер, но не можете разблокировать
 "Never forget who you belong to"
-"Never forget who you belong to"
+«Никогда не забывай, кому ты принадлежишь"
 Can only be locked or unlocked by her owner
-Can only be locked or unlocked by her owner
+Может быть заблокировано только или разблокирован ее хозяйкой
 Can only be locked or unlocked by a Club Mistress
-Can only be locked or unlocked by a Club Mistress
+Может быть заблокирован или разблокирован только Госпожей Клуба
 Detached
-Detached
+Отдельный
 Bind wrists
 Bind wrists
 Bind elbows
@@ -248,7 +248,7 @@ SourceCharacter attaches the leather cuffs elbow chain behind DestinationCharact
 SourceCharacter attaches the leather cuffs wrist and elbow chains behind DestinationCharacter's back.
 SourceCharacter attaches the leather cuffs wrist and elbow chains behind DestinationCharacter's back.
 Chain Closed
-Chain Closed
+Цепь Закрытая
 SourceCharacter detaches the chain from DestinationCharacter's leather leg cuffs.
 SourceCharacter detaches the chain from DestinationCharacter's leather leg cuffs.
 SourceCharacter attaches the leather leg cuffs chain on DestinationCharacter's legs.
@@ -302,31 +302,31 @@ SourceCharacter adjusts DestinationCharacter's inflatable body bag to three quar
 SourceCharacter adjusts DestinationCharacter's inflatable body bag to fill the maximum amount.
 SourceCharacter adjusts DestinationCharacter's inflatable body bag to fill the maximum amount.
 How many leather belts do you want to apply?
-How many leather belts do you want to apply?
+Сколько кожаных ремней вы хотите применить?
 One
-One
+Один
 Two
-Two
+Два
 Three
-Three
+Три
 Four
-Four
+Четыре
 SourceCharacter restrains DestinationCharacter with only one sturdy leather belt.
-SourceCharacter restrains DestinationCharacter with only one sturdy leather belt.
+SourceCharacter связывает DestinationCharacter только одним крепким кожаным ремнем.
 SourceCharacter restrains DestinationCharacter with two sturdy leather belts.
-SourceCharacter restrains DestinationCharacter with two sturdy leather belts.
+SourceCharacter связывает  DestinationCharacter только двумя крепкими кожаными ремнями.
 SourceCharacter restrains DestinationCharacter with three sturdy leather belts.
-SourceCharacter restrains DestinationCharacter with three sturdy leather belts.
+SourceCharacter связывает  DestinationCharacter только тремя крепкими кожаными ремнями.
 SourceCharacter restrains DestinationCharacter with four sturdy leather belts.
-SourceCharacter restrains DestinationCharacter with four sturdy leather belts.
+SourceCharacter связывает  DestinationCharacter только четырьмя крепкими кожаными ремнями.
 Hands
-Hands
+Запястья
 Arms
-Arms
+Руки
 Skirt
 Skirt
 Torso
-Torso
+Торс
 Mummy
 Mummy
 SourceCharacter wraps duct tape around DestinationCharacter's hands.
@@ -346,15 +346,15 @@ SourceCharacter shackles DestinationCharacter's wrist in-front of their body.
 SourceCharacter shackles DestinationCharacter's wrist behind their back.
 SourceCharacter shackles DestinationCharacter's wrist behind their back.
 Select the type of gag
-Select the type of gag
+Выбери тип кляпа
 Small
-Small
+Маленький
 Cleave
-Cleave
+Разрезающий
 OTM
-OTM
+Через рот
 OTN
-OTN
+Через нос
 SourceCharacter ties the cloth into a small gag over DestinationCharacter's mouth.
 SourceCharacter ties the cloth into a small gag over DestinationCharacter's mouth.
 SourceCharacter ties the cloth into a cleave gag over DestinationCharacter's mouth.
@@ -364,13 +364,13 @@ SourceCharacter stuffs DestinationCharacter's mouth with a piece of cloth and se
 SourceCharacter stuffs DestinationCharacter's mouth with a piece of cloth and secures the gag over her mouth and nose.
 SourceCharacter stuffs DestinationCharacter's mouth with a piece of cloth and secures the gag over her mouth and nose.
 Single strip
-Single strip
+Одна полоса
 Crossed strips
-Crossed strips
+Перекрещенные полосы
 Full face
-Full face
+Анфас
 Double layer
-Double layer
+Двухслойный
 SourceCharacter puts a piece of duct tape on DestinationCharacter's mouth.
 SourceCharacter puts a piece of duct tape on DestinationCharacter's mouth.
 SourceCharacter crosses two pieces of duct tape on DestinationCharacter's mouth.
@@ -402,15 +402,15 @@ SourceCharacter wraps some duct tape onto DestinationCharacter's face.
 SourceCharacter wraps DestinationCharacter's head in tape with multiple layers. 
 SourceCharacter wraps DestinationCharacter's head in tape with multiple layers. 
 Select the tie style
-Select the tie style
+Выберите стиль обвязки
 Basic Tie
-Basic Tie
+Базовая обвязка
 Crotch Rope Tie
-Crotch Rope Tie
+Обвязка через промежность
 Diamond Harness
-Diamond Harness
+Обвязка Алмаз
 Mermaid Tie
-Mermaid Tie
+Обвязка Русалка
 SourceCharacter uses the rope on DestinationCharacter to do a basic harness.
 SourceCharacter uses the rope on DestinationCharacter to do a basic harness.
 SourceCharacter uses the rope on DestinationCharacter to do a crotch rope tie.
@@ -904,15 +904,15 @@ Useless
 Use Me
 Use Me
 Whore
-Whore
+Шлюха
 Legs
-Legs
+Ноги
 Half
-Half
+Половину
 Most
-Most
+Большую часть
 Complete
-Complete
+Полностью.
 SourceCharacter wraps duct tape around DestinationCharacter's legs.
 SourceCharacter wraps duct tape around DestinationCharacter's legs.
 SourceCharacter wraps more duct tape on DestinationCharacter's legs trapping them firmly.
@@ -922,7 +922,7 @@ SourceCharacter wraps even more duct tape on DestinationCharacter's legs trappin
 SourceCharacter wraps an extreme amount of duct tape on DestinationCharacter's legs fully trapping them.
 SourceCharacter wraps an extreme amount of duct tape on DestinationCharacter's legs fully trapping them.
 Feet
-Feet
+Ступни
 SourceCharacter wraps duct tape around DestinationCharacter's feet.
 SourceCharacter wraps duct tape around DestinationCharacter's feet.
 SourceCharacter wraps more duct tape on DestinationCharacter's feet trapping them firmly.

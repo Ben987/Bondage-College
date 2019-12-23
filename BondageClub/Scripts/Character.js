@@ -400,7 +400,10 @@ function CharacterRefresh(C, Push) {
 	CharacterLoadEffect(C);
 	CharacterLoadPose(C);
 	CharacterLoadCanvas(C);
-	if ((C.ID == 0) && (C.OnlineID != null) && ((Push == null) || (Push == true))) ServerPlayerAppearanceSync();
+	if ((C.ID == 0) && (C.OnlineID != null) && ((Push == null) || (Push == true))) {
+		ChatRoomRefreshChatSettings(C);
+		ServerPlayerAppearanceSync();
+	}
 }
 
 // Returns TRUE if a character has no item (the slave collar doesn't count)

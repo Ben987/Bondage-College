@@ -1,0 +1,86 @@
+PlayerGagged,,,(She gives you a curious look.)  Why are you wearing that?  Are you on a fucking diet?,,
+FightVictory,,,(A teacher comes and separates you.  You both clean up as she catches her breath.)  Fuck this!  I'm too hungry to fight anyway.,,
+FightDefeat,,,(A teacher comes and separates you.  You both clean up as she smirks.)  This is what you get for messing with me bitch.,,
+0,,,(Sidney is waiting in line to get her food.)  Hey DialogPlayerName.  Don't you dare cutting in front of me.,,"SidneyStatusIs(""SchoolMate"")"
+0,,,Sweetheart!  (She holds your hands and smiles.)  Are you having lunch with me?,,"SidneyStatusIs(""Lover"")"
+0,,,(She snobs you.)  You broke with me fucking fast.  What do you want now?,,"SidneyStatusIs(""ExLover"")"
+0,,,"(She doesn't dare to look you in the eyes.)  Hello Mistress, would you like to step in front of me?",,"SidneyStatusIs(""Owned"")"
+0,,,"(She laughs.)  My slut is back!  Stay behind me, you will carry my lunch.",,"SidneyStatusIs(""Owner"")"
+0,,,(She frowns.)  Hey ex-slut.  Don't you dare cutting in front of me.,,"SidneyStatusIs(""ExOwner"")"
+0,,,(She doesn't seem to recognize you.)  Hey!  Don't you dare cutting in front of me.,,
+0,,Who are you?,"That's none of your business.  Get lost, I'm waiting to eat.",DialogRemove(),"SidneyStatusIs("""")"
+0,,How have you been?,Hungry as shit!  This line is taking forever.,DialogRemove(),"!SidneyStatusIs("""")"
+0,,What is that hat?,(She grumbles.)  Let's change subject please.,DialogRemove(),"SidneyStatusIs(""Owned"")"
+0,,What is that hat?,Shut up!  Don't talk about it.,DialogRemove(),"!SidneyStatusIs(""Owned"")"
+0,10,What are you eating?,"I'll take your cunt.  (She laughs out loud.)  Seriously, they better have some red meat.  What are you getting my love?",,"SidneyStatusIs(""Lover"")"
+0,10,What are you eating?,"I don't know, but they better have some red meat.  What are you getting?",,"!SidneyStatusIs(""Lover"")"
+0,,I'll check the menu.  (Leave her.),,DialogLeave(),
+10,20,Only a soup.  I'm not hungry.,That's lame.  Try something better like a steak.  I'm broke so I'll have the cheap ass fried chicken.,,
+10,20,Probably a hamburger.,"Good choice, I would go for two burgers also, but I don't have enough money.",SidneyLoveChange(1),
+10,20,A grilled cheese.,That's lame.  Try something better like a steak.  I'm broke so I'll have the cheap ass fried chicken.,,
+10,20,A bloody steak.,"Hell yeah!  I would eat a steak also, but it's too expensive.",SidneyLoveChange(2),
+10,20,I'll try the big salad.,That's lame.  Try something better like a steak.  I'm broke so I'll have the cheap ass fried chicken.,,
+10,20,Fried chicken for me.,"Same here, I would go for a steak, but I'm broke as shit.",SidneyLoveChange(1),
+10,,I'll check the menu.  (Leave her.),,DialogLeave(),
+20,30,You can't afford your lunch?,"Yeah, I spent all my money on we...  on schoolbooks.  Can I borrow 20$ from you?  I'll repay you next week.",SidneyLoveChange(1),
+20,30,How much do you need?,"20$ for a good meal, can I borrow it from you?  I'll repay you next week.",SidneyLoveChange(2),
+20,50,I'm also broke.,"Yeah, life is a bitch.  (She replaces her hat.)  Fucking Mildred and her fucking rules.",,
+30,50,"No way, I'm keeping my money.","Fine, I don't care.  (She replaces her hat.)  Fucking Mildred and her fucking rules.",,
+30,50,"I would, but I don't have enough cash.",The economy is crap.  (She replaces her hat.)  Fucking Mildred and her fucking rules.,SidneyLoveChange(1),
+30,40,"Here's 20$, repay me next week.","Thanks!  (She takes your 20$.)  Come to think of it, can I borrow 40$ more for boo... supper later?","SidneyLoveChange(2, 20)",DialogMoneyGreater(20)
+30,40,"Here's 20$, no need to repay me.","Fuck yeah!  (She takes your 20$.)  Come to think of it, can I borrow 40$ more for boo... for supper later?","SidneyLoveChange(3, 20)",DialogMoneyGreater(20)
+40,50,"Not 40$, but I can give you another 20$.",Wow!  Thanks!  (She replaces her hat.)  Fucking Mildred and her fucking rules.,"SidneyLoveChange(2, 20)",DialogMoneyGreater(20)
+40,50,"Here's 40$ for your ""supper"".",Jackpot!  (She takes your money and replaces her hat.)  Fucking Mildred and her fucking rules.,"SidneyLoveChange(3, 40)",DialogMoneyGreater(40)
+40,50,"No, you're pushing your luck.",Can't blame me for trying.  (She replaces her hat.)  Fucking Mildred and her fucking rules.,,
+50,60,That dunce hat is a punishment?,"Yeah, for texting in class.  That bitch Mildred won't give me back my phone if I don't wear it all day.",SidneyLoveChange(1),
+50,60,That hat is ridiculous.,I know!  (She looks angry.)  That bitch Mildred won't give me back my phone if I don't wear it all day.,,
+50,60,Mildred is making you wear it?,"Fuck yeah, for texting in class.  That bitch won't give me back my phone if I don't wear it all day.",SidneyLoveChange(2),
+60,70,This is illegal!,Damn right!  We think alike.  (She turns to the other girls.)  That line is slow as shit!,SidneyLoveChange(2),
+60,70,She can't do that.,"Yeah, she's the worst.  (She turns to the other girls.)  That line is slow as shit!",SidneyLoveChange(1),
+60,70,It's a fair punishment.,Fuck that.  (She turns to the other girls.)  That line is slow as shit!,,
+70,80,We should skip it.,"I agree, but I'm already in trouble.  I hate this school.",SidneyLoveChange(1),
+70,80,There's not much to do.,I guess.  (She sighs.)  I hate this school.,,
+70,80,We should go elsewhere.,What's your plan?  I hate this school.,SidneyLoveChange(2),
+80,90,We could skip school and go downtown to eat.,(She seems to agree.)  I'm game!  But why should we go downtown?,,CanInviteToPrivateRoom()
+80,100,We could skip school and go downtown to eat.,(She shakes her head no.)  No way.  I'm not going downtown.  (She turns back to the line.),,!CanInviteToPrivateRoom()
+80,100,Let's wait in line.,(She shrugs.)  Not much else to do.,,
+90,91,I have a room in a club downtown.,A club?  What kind of club?  It better not be managed by the college.,,
+90,100,"You're right, let's stay here.","Fine, let's wait in the stupid line.",,
+91,92,"Come with me, I will explain on the road.",Adios suckers!  (She gives the middle finger to everyone in the line.),,
+92,,(Bring her to your room.),,InviteToPrivateRoom(),
+100,,,(Sidney is waiting in line to get her food.)  This line is fucking ridiculous.,,
+100,,Is the line moving?,"(She checks in front and shakes her head.)  Nope, this is hell.",,
+100,110,(Try to cut in front of her.),(She blocks you.)  What the fuck do you think you're doing?,,"!SidneyStatusIs(""Owned"")"
+100,,(Wait in line and leave her.),,DialogLeave(),
+110,120,I will eat before you.,(She gets ready to fight.)  Over my dead body!,,
+110,200,"Nothing, I'm sorry.",You're pathetic!  Now stay in your place and shut up.  (She smirks and ignores you.),,
+120,,You're going down!  (Fight her.),,FightStart(),
+120,200,Wait!  Calm down!  (Don't fight.),You're pathetic!  Now stay in your place and shut up.  (She smirks and ignores you.),,
+200,,,(She ignores you.),,
+200,,Hey!  Can we talk?,(She ignores you.),,
+200,,(Wait in line and leave her.),,DialogLeave(),
+300,310,That was quite a fight!,"(She recovers her breath and nods.)  Yeah, you're dangerous.",SidneyLoveChange(2),
+300,310,You're such a loser.,(She recovers her breath and frowns.)  I'll get my revenge someday.,,
+300,310,(Stare at her.),(She recovers her breath and stares back.)  This isn't over.,SidneyLoveChange(1),
+310,320,(Crack your knuckles.),(She also cracks her knuckles as a teacher sermon you two on fighting and make sure you won't do it again.),SidneyLoveChange(1),
+310,320,We should ally instead of fighting each other.,(She nods as a teacher sermon you two on fighting and make sure you won't do it again.),SidneyLoveChange(2),
+310,320,Don't cross my path again.,(She grumbles as a teacher sermon you two on fighting and make sure you won't do it again.),,
+320,,,(A teacher is making sure you don't fight again.  Sidney is ignoring you.),,
+320,330,Pssst!  Wanna skip the line and go out with me?,(She seems intrigued.)  Anything to get out of here.  Where should we go?,,CanInviteToPrivateRoom()
+320,,Pssst!  Wanna skip the line and go out with me?,(She ignores you.),,!CanInviteToPrivateRoom()
+320,,Can we talk?,(She ignores you.),,
+320,,(Wait in line and leave her.),,DialogLeave(),
+330,331,I have a room in a club downtown.,A club?  What kind of club?  It better not be managed by the college.,,
+331,332,"Come with me, I will explain on the road.",Adios suckers!  (She gives the middle finger to everyone in the line.),,
+331,320,Forget it then.,"Fine, leave me alone.",,
+332,,(Bring her to your room.),,InviteToPrivateRoom(),
+400,200,Well done.  That was quite a fight.,"(She ignores you as a teacher sermon you two on fighting, and make sure you won't do it again.)",,
+400,200,You fight like a dirty bitch.,"(She ignores you as a teacher sermon you two on fighting, and make sure you won't do it again.)",,
+400,200,(Stare at her.),"(She ignores you as a teacher sermon you two on fighting, and make sure you won't do it again.)",,
+1000,,,"(A student is waiting in line in front of you.)  Hey there.  Be patient, the line is long today.",,
+1000,,Who are you?,"I study music, I don't think I've seen you before.",DialogRemove(),
+1000,,I'm DialogPlayerName.,"Pleased to meet you.  I hope you're not too hungry, this line isn't moving much.",DialogRemove(),
+1000,,What's on the menu?,The usual stuff.  Yesterday's salad is today's soup.  (She giggles.),DialogRemove(),
+1000,,Can I cut in front of you?,No.  I've been here for longer than you.,DialogRemove(),
+1000,,Can I eat with you?,"Sure, if that line gets moving before the bell rings.",DialogRemove(),
+1000,,I'll check the menu.  (Leave her.),,DialogLeave(),

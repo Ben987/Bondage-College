@@ -15,4 +15,4 @@ You did it!  Your customers are satisfied.
 You failed, you've spilled your drinks.
 Ты потерпела неудачу, ты пролила свои напитки.
 Click on yourself to continue.
-Нажмите на себя, чтобы продолжить.
+Нажми на себя, чтобы продолжить.

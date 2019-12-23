@@ -1,5 +1,9 @@
-﻿Brute Force
-грубая сила
+﻿Select your move
+Выбери свое действие
+Opponent moves
+Действие пртивника
+Brute Force
+Грубая сила
 Domination
 Доминирование
 Sneakiness
@@ -15,11 +19,11 @@ lost
 willpower
 сила воли
 didn't lose any willpower
-не терял никакой силы воли
+не теряет никакой силы воли
 has the upper hand
 имеет преимущество
 Upper hand moves:
-Верхнее движение руки:
+Действие рукой:
 Sudden Death
 внезапная смерть
 Cancel
@@ -27,31 +31,31 @@ Cancel
 Wins
 Выигрывает
 Remove her cloth
-Уберите ее ткань
+Сними с нее одежду
 Use a collar item
-Используйте ошейник
+Используй ошейник
 Use a feet item
-Используйте стопы
+Используй предмет на стопы
 Use a gag item
-Используйте кляп
+Используй кляп
 Dress back up
 Одевайся обратно
 Remove your collar
-Снимите ошейник
+Сними ошейник
 Release your legs
-Освободите ноги.
+Освободи ноги.
 Remove your gag
-Снимите кляп
+Сними кляп
 Have mercy
 Помилуйте меня.
 Select the item to use on her
-Выберите элемент для использования на ней
+Выбери элемент для использования на ней
 (Using the upper hand, she forcefully removes your clothes.)
-(Используя кисти, она с силой снимает с тебя одежду.)
+(Используя руки, она с силой снимает с тебя одежду.)
 (She produces a collar and force it around your neck.)
 (Она достает ошейник и надевает его тебе на шею.)
 (She quickly uses her advantage to restrain your feet.)
-(Она быстро использует свое преимущество, чтобы сдержать твои ноги.)
+(Она быстро использует свое преимущество, чтобы связать твои ступни.)
 (She uses her advantage to silence you with a gag.)
 (Она использует свое преимущество, чтобы заткнуть тебе рот кляпом.)
 (She uses her advantage on you to dress back up.)
@@ -59,9 +63,9 @@ Select the item to use on her
 (Using her advantage, she removes her collar.)
 (Пользуясь своим преимуществом, она снимает ошейник.)
 (She uses the opportunity to release her feet.)
-(Она использует эту возможность, чтобы освободить ноги.)
+(Она использует эту возможность, чтобы освободить ступни.)
 (She's able to remove her gag while she has the upper hand.)
-(Она может снять кляп, пока у нее есть преимущество.)
+(Она используетс свое преимущество, что бы снять кляп.)
 (She looks at your current situation and gives you some mercy.)
 (Она смотрит на твою нынешнюю ситуацию и проявляет милосердие.)
 (You try to get a good grip on her, but she fights back and pushes you away.)
@@ -83,7 +87,7 @@ That's how you fight bitch?
 I hope you enjoyed your trip. Don't forget to send a postcard!
 Надеюсь, тебе понравится твое путешествие. Не забудь отправить открытку!
 (You slap her face pretty hard.  She responds with a wicked smile.)
-(Ты довольно сильно ударил ее по лицу.  Она отвечает злой улыбкой.)
+(Ты довольно сильно ударил ее по лицу. Она отвечает злой улыбкой.)
 You want another one?
 Хочешь еще одну?
 So cute.  That's all you've got?
@@ -99,7 +103,7 @@ You look away, you suffer.
 Ouch!  Why don't you surrender?
 Ай!  Почему бы тебе не сдаться?
 You're feeling smart now?
-Теперь ты чувствуешь себя умной?
+Теперь ты чувствуешь себя самой умной?
 (You both argue on who should kneel for the other, but nobody gives in.)
 (Вы обе спорите о том, кто должен преклонять колени перед другой, но никто не сдается.)
 On your knees girl!
@@ -111,11 +115,11 @@ No!  You get on your knees!
 On your knees and stop tickling me!
 На колени и перестань щекотать меня!
 I still have options on my knees.
-У меня все еще есть выбор на коленях.
+У меня все еще есть варианты, даже стоя на коленях.
 (She tries to seduce you but gets dazzled by your stern and menacing stance.)
 (Она пытается соблазнить тебя, но ослепляется твоей суровой и угрожающей позой.)
 Your cute ass belongs in a cage.
-Твоя милая задница должна быть в клетке..
+Твоя милая задница должна быть в клетке.
 (She bows her head.)  Yes Miss.
 (Она склоняет голову.)  Да, Мисс.
 (She seems hypnotized and paralyzed by your glaring look.)
@@ -135,7 +139,7 @@ Just you wait!
 I'm not going down that easily.
 Я так легко не сдамся.
 Fighting on your knees?  That's low.
-Сражаешься на коленях?  Это низко.
+Сражаешься на коленях?  Это унизительно.
 (You grab each other and try to make the other fall down, but you both tumble down to the ground.)
 (Вы хватаете друг друга и пытаетесь заставить другого упасть, но вы обе падаете на землю.)
 Ugly move, Bruce Lea.

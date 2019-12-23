@@ -2,7 +2,7 @@
 Can you mime what you're trying to say?
 Ты можешь изобразить то, что пытаешься сказать?
 Hello, I want to get a device like the one you're wearing, for my slave.
-Здравствуйте, я хочу получить устройство, подобное тому, что вы носите, для Моего раба.
+Здравствуй, я хочу получить устройство, подобное тому, что ты носишь, для моей рабыни.
 ###_PLAYER
 Hello, welcome to the store.
 Здравствуйте, добро пожаловать в магазин.
@@ -33,13 +33,13 @@ That's disappointing.  I might be back later then.  Take care.
 Это разочаровывает.  Возможно, я вернусь позже. Береги себя.
 ###_PLAYER
 (Shrug with your shoulders.)
-(Пожмите плечами.)
+(Пожми плечами.)
 ###_NPC
 You don't know?  I'll go check with the manager then.  Take care.
 Ты не знаешь?  Тогда я пойду узнаю у менеджера. Береги себя.
 ###_PLAYER
 (Nod affirmatively.)
-(Утвердительно кивните.)
+(Утвердительно кивни.)
 ###_NPC
 Perfect!  And what about the fabric?  It's good quality?
 Отлично!  А как насчет ткани?  Это хорошее качество?
@@ -59,95 +59,95 @@ Really?  I'll buy it from somewhere else then.  Take care.
 Правда?  Тогда я куплю его где-нибудь в другом месте. Береги себя.
 ###_PLAYER
 (Nod your head yes.)
-(Кивни головой, да.)
+(Утвердительно кивни головой.)
 ###_NPC
 Cute gag, I'm thinking of getting the same model for my girlfriend.
 Милый кляп, я думаю о том, чтобы получить ту же модель для моей подруги.
 Is it comfy?  I don't want to hurt my lover.
-Это удобно?  Я не хочу причинять боль своему любовнику.
+Это удобно?  Я не хочу причинять боль своей любимой.
 ###_PLAYER
 (Do mumbled noises.)
 (Пробормочи какие то звуки.)
 ###_NPC
 (She giggles.)  Is it comfy?  I don't want to hurt my lover.
-(Она хихикает.) Это удобно?  Я не хочу причинять боль своему любовнику.
+(Она хихикает.) Это удобно?  Я не хочу причинять боль своей любимой.
 ###_PLAYER
 (Hum a song and rock your head.)
 (Напевай песню и качай головой..)
 ###_NPC
 (She sings a little.)  Is it comfy?  I don't want to hurt my lover.
-(Она немного поет.) Это удобно?  Я не хочу причинять боль своему любовнику.
+(Она немного поет.) Это удобно?  Я не хочу причинять боль своей любимой.
 ###_PLAYER
 (Pretend you're in pain.)
 (Притворись, что тебе больно.)
 ###_NPC
 Forget it then, I don't want to hurt my sweetie.  Bye bye.
-Тогда забудь, я не хочу причинять боль своему милому.  Пока-пока.
+Тогда забудь, я не хочу причинять боль своей милой.  Пока-пока.
 ###_PLAYER
 (Show that you're not in pain.)
 (Покажи, что тебе не больно.)
 ###_NPC
 Very nice, and is it effective?  I don't want to be able to understand her.
-Очень приятно, и это эффективно?  Я не хочу быть в состоянии понять его.
+Очень приятно, и это эффективно?  Я не хочу быть в состоянии понять ее.
 ###_PLAYER
 (Try to talk normally.)
 (Постарайтесь говорить нормально.)
 ###_NPC
 Fair enough.  I like the sound of gagged girls.  Will you wrap it up?  It's a present.
-Справедливо.  Мне нравится, как девушки с кляпом во рту разговаривают.  Вы не могли бы завернуть его?  Это подарок.
+Справедливо.  Мне нравится, как девушки с кляпом во рту разговаривают.  Ты не могла бы завернуть его?  Это подарок.
 ###_PLAYER
 (Mumble incomprehensibly on purpose.)
 (нарочно непонятно бормотать.)
 ###_NPC
 Very nice.  I like the sound of gagged girls.  Will you wrap it up?  It's a present.
-Очень симпатичный.  Мне нравится, как девушки с кляпом во рту разговаривают.  Вы не могли бы завернуть его?  Это подарок.
+Очень симпатичный.  Мне нравится, как девушки с кляпом во рту разговаривают.  Ты не могла бы завернуть его?  Это подарок.
 ###_PLAYER
 (Try to talk as best as you can.)
-(Постарайтесь говорить как можно лучше.)
+(Постарайся говорить как можно лучше.)
 ###_NPC
 That's not good, I think I can still understand you.  Forget it, bye bye.
 Это нехорошо, я думаю, что все еще могу понять тебя.  Забудь об этом, пока.
 ###_PLAYER
 (Nod yes.)
-(Кивни, если да.)
+(Утвердительно кивни)
 ###_NPC
 (She smiles.)  You've just sold a gag, thanks for the demonstration.  I'll go pay now.
-(Она улыбается.) Вы только что продали кляп, спасибо за демонстрацию.  Я пойду заплачу сейчас.
+(Она улыбается.) Ты только что продала кляп, спасибо за демонстрацию.  Я пойду оплачу сейчас.
 Too bad, I'll go buy elsewhere then.  Bye bye.
 Жаль, тогда я пойду покупать в другом месте.  Пока-пока.
 A restrained demonstration?  I'm actually looking to get restraints like that.
 Демонстрация неволи?  Я вообще-то хочу получить такие ограничения.
 ###_PLAYER
 It's for your slave?
-Это для твоего раба?
+Это для вашей рабыни?
 ###_NPC
 (She blushes.)  No, it's for myself.  Do you think it would look good on me?
-(Она краснеет.)  Нет, это для меня.  Как вы думаете, это будет хорошо смотреться на мне?
+(Она краснеет.)  Нет, это для меня.  Как ты думаешь, это будет хорошо смотреться на мне?
 ###_PLAYER
 It's for yourself?
-Это для тебя?
+Это для вас?
 ###_NPC
 (She blushes.)  Yes, it's for myself.  Do you think it would look good on me?
-(Она краснеет.)  Да, это для меня.  Как вы думаете, это будет хорошо смотреться на мне?
+(Она краснеет.)  Да, это для меня.  Как ты думаешь, это будет хорошо смотреться на мне?
 ###_PLAYER
 It's for your lover?
-Это для твоего любовника?
+Это для вашей любовницы?
 It will look great on you.
 Это будет отлично смотреться на вас.
 ###_NPC
 (She looks at herself and nods.)  And it really secure?  Can you escape now?
-(Она смотрит на себя и кивает.) И это действительно безопасно?  Вы можете убежать сейчас?
+(Она смотрит на себя и кивает.) И это действительно безопасно?  Ты можешь убежать сейчас?
 ###_PLAYER
 Frankly, I'm not sure.
 Честно говоря, я не уверена.
 ###_NPC
 Thanks for your honesty, I'll find something else to buy.  Ciao!
-Спасибо за вашу честность, я найду что-нибудь еще, чтобы купить.  ЧАО!
+Спасибо за твою честность, я найду что-нибудь еще, чтобы купить.  ЧАО!
 ###_PLAYER
 You have the perfect shape for it.
-У тебя идеальная фигура для этого.
+У вас идеальная фигура для этого.
 Maybe I could show you something else.
-Может, я покажу тебе что-нибудь еще.
+Может, я покажу вам что-нибудь еще.
 I could, but I'm an escape artist.
 Я могла бы, но я мастер побега.
 ###_NPC
@@ -157,18 +157,18 @@ It's not what I'm looking for then.  Thanks for your help anyway.
 After some struggling you could escape.
 После некоторой борьбы вы могли бы убежать.
 Trust me, it's impossible to escape.
-Поверь мне, сбежать невозможно.
+Поверьте мне, сбежать невозможно.
 ###_NPC
 Wonderful!  (She blushes again.)  Would you like to use it on me later?
-Замечательно!  (Она снова краснеет.) Может быть, вы хотите использовать это на мне позже?
+Замечательно!  (Она снова краснеет.) Может быть, ты захочишь использовать это на мне позже?
 ###_PLAYER
 (Pretend to struggle in vain.)
-(Притворись, что безуспешно боретесь.)
+(Притворись, что безуспешно борешься.)
 Sure!  If I see you later.
-Конечно!  Если я увижу тебя позже.
+Конечно!  Если я увижу вас позже.
 ###_NPC
 It's a deal then!  I'll buy it.  Thanks for your help.
-Значит, договорились!  Я куплю это.  Спасибо за вашу помощь.
+Значит, договорились!  Я куплю это.  Спасибо за твою помощь.
 ###_PLAYER
 Sounds good, we could restrain each other.
 Звучит неплохо, мы могли бы связывать друг друга.
@@ -184,27 +184,27 @@ Girl, you're in trouble when I finish my shift.
 Девочка, у тебя будут неприятности, когда я закончу свою смену.
 ###_NPC
 (She shivers.)  It's a deal Miss, I'll buy it.  Thanks for your help.
-(Она вздрагивает.)  Это сделка, Мисс, я ее куплю.  Спасибо за вашу помощь.
+(Она вздрагивает.)  Это сделка, Мисс, я ее куплю.  Спасибо за твою помощь.
 You have lovely legs you know, and this item fits perfectly on you.
 У вас прекрасные ноги, вы знаете, и этот предмет идеально подходит для вас.
 ###_PLAYER
 You have great legs also.
-У тебя тоже отличные ноги.
+У вас тоже отличные ноги.
 ###_NPC
 Thanks sweetie.  (She winks.)  Does it leave marks on the skin?  Little marks are sexy.
-Спасибо, дорогуша. (Она подмигивает.) Это оставляет следы на коже? Маленькие отметины сексуальные.
+Спасибо, дорогуша. (Она подмигивает.) Это оставляет следы на коже? Маленькие отметины такие сексуальные.
 ###_PLAYER
 (Blush a little.)  Thanks a lot.
 (Немного покраснела.) Большое спасибо.
 ###_NPC
 You're cute when you blush.  (She winks.)  Does it leave marks on the skin?  Little marks are sexy.
-Ты такая милая, когда краснеешь.  (Она подмигивает.) Это оставляет следы на коже? Маленькие отметины сексуальные.
+Ты такая милая, когда краснеешь.  (Она подмигивает.) Это оставляет следы на коже? Маленькие отметины такие сексуальные.
 ###_PLAYER
 Are you flirting with me girl?
 Ты флиртуешь со мной, девочка?
 ###_NPC
 Maybe, you're cute.  (She winks.)  Does it leave marks on the skin?  Little marks are sexy.
-Может быть, ты симпатичная. (Она подмигивает.) Это оставляет следы на коже? Маленькие отметины сексуальные.
+Может быть, ты симпатичная. (Она подмигивает.) Это оставляет следы на коже? Маленькие отметины такие сексуальные.
 ###_PLAYER
 No marks at all
 Вообще никаких следов
@@ -223,6 +223,7 @@ Yes, pretty good marks.
 Yes, huge marks.
 Да, очень качественные.
 Да, огромные отметины.
+At this price, there's no better.
 По этой цене, нет ничего лучше.
 ###_NPC
 (She nods.)  You're an angel.  Can I kiss you, sexy angel?
@@ -239,7 +240,7 @@ You're not my type.
 (Она снобически смотрит на тебя)  Хорошо!  Я пойду за покупками в другое место.
 ###_PLAYER
 Sorry, I can't flirt with customers.
-Извини, я не могу флиртовать с клиентами.
+Извините, я не могу флиртовать с клиентами.
 A kiss?  Sure, why not.
 Поцелуй?  Конечно, почему бы и нет.
 ###_NPC
@@ -247,7 +248,7 @@ A kiss?  Sure, why not.
 (Вы обмениваитесь прекрасным поцелуем.)  Ты продала мне своими губами, сексуальный ангел. Я пойду заплачу. Спасибо.
 ###_PLAYER
 Oh yes!  Absolutely.
-О да! Абсолютно.
+О да! Конечно.
 ###_NPC
 Girl.  The vendor told me you're demonstrating some feet restraints?
 Девочка. Продавец сказала мне, что вы демонстрируете некоторые ограничения для ног?
@@ -256,13 +257,13 @@ Yes, would you like to try it?
 Да, вы хотели бы попробовать?
 ###_NPC
 (She laughs.)  No girl, it's not for me.  Do you enjoy being restrained?
-(Она смеется.)  Нет, девочка, это не для меня.  Вам нравится быть сдержанной?
+(Она смеется.)  Нет, девочка, это не для меня.  Тебе нравится быть связанной?
 ###_PLAYER
 Yes, it's a nice item.
 Да, это хороший предмет.
 ###_NPC
 It looks good on you.  Do you enjoy being restrained?
-Он хорошо смотрится на тебе.  Вам нравится быть сдержанной?
+Он хорошо смотрится на тебе.  Тебе нравится быть связанной?
 ###_PLAYER
 Yes Miss.  (Wiggle your feet.)
 Да, Мисс.  (Пошевели ногами.)
@@ -292,21 +293,21 @@ It can be tight.
 Это может быть тугим.
 ###_NPC
 That's awesome.  Struggle and hop around for me girl.
-Это потрясающе.  Борись и прыгай вокруг меня девушка.
+Это потрясающе.  Борись и прыгай вокруг меня, девочка.
 ###_PLAYER
 Very, very tight.
 Очень, очень туго.
 (Struggle for her.)
-(Боритесь для нее.)
+(Борись для нее.)
 ###_NPC
 Great.  You've did a good demonstration.  I'll buy it.  Thanks girl.
-Отличный.  Вы хорошо показали себя.  Я куплю это. Спасибо, девочка.
+Отлично.  Ты хорошо показала себя.  Я куплю это. Спасибо, девочка.
 ###_PLAYER
 (Wiggle your feet.)
 (Пошевели ногами.)
 ###_NPC
 Alright.  You've did a fair demonstration.  I'll buy it.  Thanks girl.
-Хорошо.  Вы провели честную демонстрацию.  Я куплю это.  Спасибо, девочка.
+Хорошо.  Ты провела честную демонстрацию.  Я куплю это.  Спасибо, девочка.
 ###_PLAYER
 (Don't move.)
 (Не двигайся.)
@@ -318,18 +319,18 @@ Great!  Can you help me before you pay?
 Отлично!  Не могли бы вы помочь мне, прежде чем оплатить?
 ###_NPC
 Fine, I will help you.  (She releases you from the item.)  I'll go pay now.
-Хорошо, Я помогу тебе.  (Она освобождает вас от предмета.) Я пойду заплачу сейчас.
+Хорошо, я помогу тебе.  (Она освобождает тебя от предмета.) Я пойду заплачу сейчас.
 Stay like that, you can sell it again to another customer.
-Оставайтесь в таком состоянии, вы можете продать его снова другому клиенту.
+Оставайс в таком состоянии, ты можешь продать его снова другому клиенту.
 ###_PLAYER
 (Struggle in the device.)
 (Бороться в устройстве.)
 (Go back to the store vendor.)
-(Вернитесь к продавцу магазина.)
+(Вернись к продавцу магазина.)
 Can you help me before you go?
-Ты можешь мне помочь, прежде чем уйдешь?
+Вы можете мне помочь, прежде чем уйдете?
 ###_NPC
 Fine, I will help you.  (She releases you from the item.)  Take care!
-Хорошо, Я помогу тебе.  (Она освобождает вас от предмета.)  Береги себя!
+Хорошо, я помогу тебе.  (Она освобождает тебя от предмета.)  Береги себя!
 Stay like that, you're a poor saleswoman anyway.
 Оставайся такой, ты все равно плохая продавщица.

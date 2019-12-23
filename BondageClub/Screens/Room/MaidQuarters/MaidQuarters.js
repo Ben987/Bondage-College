@@ -159,7 +159,7 @@ function MaidQuartersMaidReleasePlayer() {
 
 // Prepares a counter that will affect the dominant reputation of the player
 function MaidQuartersDominantRepChange(Value) {
-	MaidQuartersDominantRep = MaidQuartersDominantRep + Value;
+	MaidQuartersDominantRep = MaidQuartersDominantRep + parseInt(Value);
 }
 
 // When we switch from one maid to another in the initiation

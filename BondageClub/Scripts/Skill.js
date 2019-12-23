@@ -56,18 +56,29 @@ function SkillLoad(NewSkill) {
 // Returns a specific skill level from a character
 function SkillGetLevel(C, SkillType) {
 	for (var S = 0; S < C.Skill.length; S++)
-		if (C.Skill[S].Type == SkillType && (SkillType == "Bondage" || SkillType == "Evasion")) {
+		if (C.Skill[S].Type == SkillType) {
 
-			// check the skills modifier effect duration and level of effect
-			if (!LogQuery("ModifierDuration", "SkillModifier")) LogAdd("ModifierLevel", "SkillModifier", 0)
-			SkillModifier = LogValue("ModifierLevel", "SkillModifier");
-			if (SkillModifier < SkillModifierMin) SkillModifier = SkillModifierMin;
-			if (SkillModifier > SkillModifierMax) SkillModifier = SkillModifierMax;
-			
-			var Level = (C.Skill[S].Level + SkillModifier);
+			// Skills modifier only apply to bondage and evasion
+			var Mod = 0;
+			if ((SkillType == "Bondage") || (SkillType == "Evasion")) {
+				if ((LogValue("ModifierDuration", "SkillModifier") > CurrentTime) && (LogValue("ModifierDuration", "SkillModifier") < CurrentTime + 3600000)) {
+					SkillModifier = LogValue("ModifierLevel", "SkillModifier");
+					if (SkillModifier == null) SkillModifier = 0;
+					if (SkillModifier < SkillModifierMin) SkillModifier = SkillModifierMin;
+					if (SkillModifier > SkillModifierMax) SkillModifier = SkillModifierMax;
+					Mod = SkillModifier;
+				} else {
+					SkillModifier = 0;
+					if (LogValue("ModifierLevel", "SkillModifier") != 0) LogAdd("ModifierLevel", "SkillModifier", 0);
+				}
+			}
+
+			// Gets the skill level and applies the modifier if needed, make sure we don't go over maximum or under minimum
+			var Level = (C.Skill[S].Level + Mod);
 			if (Level > (SkillLevelMaximum + SkillModifierMax)) Level = (SkillLevelMaximum + SkillModifierMax);
 			if (Level < (SkillLevelMinimum + SkillModifierMin)) Level = (SkillLevelMinimum + SkillModifierMin);
 			return Level;
+
 		}
 	return 0;
 }

@@ -1,0 +1,931 @@
+﻿###_NPC
+Lovely gag.  Do you need help with it?  Nod if you do.
+Прекрасный кляп.  Тебе нужна помощь с этим?  Кивни, если да.
+Can you go check on the Introduction Class?  Sometimes new members get out of control.
+Ты можешь пойти проверить в ознакомительном классе?  Иногда новые члены тераят контроль.
+I've heard rumors of trouble going on at the Shibari Dojo.  Can you make sure everyone is fine?
+Я слышала слухи о неприятностях, происходящих в додзе шибари.  Ты можешь убедиться, что все в порядке?
+I think that something went wrong at the store.  Can you go there to help the vendor?
+Я думаю, что что-то пошло не так в магазине.  Ты можешь пойти туда, чтобы помочь продавцу?
+I think that something went wrong at the Gambling Hall.  Can you go there to help the players?
+Я думаю, что что-то пошло не так в игорном зале.  Можешь ли ты пойти туда, чтобы помочь игрокам?
+Guard the prison cell so that nothing happens there.
+Охраняй тюремную камеру, чтобы там ничего не случилось.
+(You come back to DialogCharacterName with an empty drink platter.)  Well done!
+(Ты возвращаешься в DialogCharacterName с пустой тарелкой с напитками.) Молодец!
+(You come back to DialogCharacterName with spilled drinks all over your uniform.)
+(Ты возвращаешься к DialogCharacterName с пролитыми напитками по всей твоей форме.)
+Hurry to the chat rooms girl!  The club members are thirsty.  (You need to serve drinks to 5 unique online players.)
+Поторопись с девушкой из чата!  Члены клуба жаждут пить.  (Напитки нужно подавать 5 уникальным онлайн-игрокам.)
+(She checks your empty tray.)  Well done!  Our members were satisfied?
+(Она проверяет твой пустой поднос.) Молодец!  Наши члены были удовлетворены?
+(DialogCharacterName gets you back to the maid quarters and smiles.)  You've did it!
+(DialogCharacterName возвращает тебя в комнату для горничный и улыбается.)  Ты сделала это!
+(DialogCharacterName gets you back to the maid quarters and frowns.)  You failed to clean up in time.
+(DialogCharacterName возвращает тебя в комнату для горничных и хмурится.)  Ты не смогла вовремя убраться.
+(DialogCharacterName hugs you and gropes your red butt.)  You're now a full maid my sister.
+(DialogCharacterName обнимает тебя и лапает твою красную задницу. Ты теперь настоящая горничная, моя сестренка.
+I'm sorry Miss.  I cannot help you.
+Простите, Мисс.  Я не могу вам помочь.
+(She first shakes her head to avoid the gag, but finally surrenders as you silence her.)
+(Сначала она качает головой, чтобы избежать кляп, но в конце концов сдается, когда ты заставляешь ее замолчать.)
+(You remove her gag while she stretches her mouth.)  Thanks Miss, it's hard to dispatch maids with that gag.
+(Ты снимаешь ее кляп, пока она растягивает рот.)  Спасибо, Мисс, тяжело отправлять горничных с этим кляпом.
+(She grumbles while you push some earplugs in.) I can't hear you properly now.
+(Она ворчит, пока ты затыкаешь ее уши затычками.) Я не слышу вас как следует.
+(You pull the earplugs out.) That's better i can hear you clearly now.
+(Ты вытаскиваешь беруши.) Теперь я лучше вас слышу.
+(She sighs and turns around while you restrain her arms.)  It might be a little hard to work like that Miss.
+(Она вздыхает и поворачивается, пока ты связываешь ее руки.)  Это может быть немного трудно работать, как эта Мисс.
+(You free her arms and she nods happily.)  Thanks a lot Miss.
+(Ты освобождаешь ее руки, и она радостно кивает.)  Большое спасибо, Мисс.
+(She submits to you while restrain you hands.)  You are a kinky one.
+(Она подчиняется тебе, пока ты связываешь ее запястья.)  Вы извращенка.
+(You release her hands and she nods a little.)  Thank you Miss.
+(Ты освобождаешь ее запястья, и она слегка кивает.)  Спасибо Мисс.
+(She submits to you while you restrain her legs securely.)  I don't need to move anyway.
+(Она подчиняется тебе, пока ты надежно связываешь ее ноги.)  Мне все равно не нужно двигаться.
+(You release her legs from the restraint.)  Let me know if I can help you Miss.
+(Ты освобождаешь ее ноги от пут.)  Дайте мне знать, если я могу помочь вам помочь.
+(She looks puzzled as you restrain her feet.)  I'll stay on guard here Miss.
+(Она выглядит озадаченной, когда ты связываешь ее ступни.)  Я останусь здесь на страже, Мисс.
+(You release her feet and she wiggles them.)  Thanks Miss, it was troublesome.
+(Ты освобождаешь ее ступни и она шевелит ими.)  Спасибо, Мисс, это было хлопотно.
+(You strap the collar on her while she blushes.)  You're quite a Dominant Miss.
+(Ты пристегиваешь ей ошейник, пока она краснеет.)  Вы довольно доминантная Мисс.
+(You remove the collar around her neck.)  Thanks Miss.
+(Ты снимаешь ошейник с ее шеи.)  Спасибо, Мисс.
+(You snap the belt around her waist and crotch while she sighs.)  No more fun for the crew.
+(Ты застегиваешь ремень вокруг ее талии и промежности, пока она вздыхает.)  Больше никаких развлечений для команды.
+(You unlock the belt from her waist, and she smiles.)  Thanks a lot Miss DialogPlayerName.
+(Ты отстегиваешь ремень с ее талии, и она улыбается.)  Большое спасибо Мисс DialogPlayerName.
+(You strap the device on her head as she nods slowly.)  This will not make my job easier Miss.
+(Ты пристегиваешь устройство к ее голове, и она медленно кивает.)  Это не сделает мою работу легче Мисс.
+(You remove the device and she nods rapidly.)  Thanks a million, this is much better.
+(Ты убираешь устройство, и она быстро кивает.)  Спасибо, так намного лучше.
+(She jumps from the searing pain on her breast.)  Ouch!  Miss Head Maid!
+(Она подпрыгивает от жгучей боли в груди.)  Ай!  Мисс Старшая Горничная!
+(You whip her breast with the leather crop as she whimpers and bows her head.)
+(Ты хлещешь ее по груди кожаным стеком, когда она всхлипывает и склоняет голову.)
+(You whip her butt hard as she sighs.)  I promise I'll work harder Miss Head Maid.
+(Ты сильно хлещешь ее по заднице, когда она вздыхает.)  Я обещаю, что буду работать усерднее, Мисс старшая горничная.
+(She grumbles as you strike her butt with the crop.)  A maid work isn't easy.
+(Она ворчит, когда ты бьешь ее по заднице стеком.)  Работа горничной нелегка.
+Are you lost slave girl?  You should hurry back to the hall and please our customers.
+Ты потерялась, рабыня?  Ты должна поторопиться вернуться в зал и порадовать наших клиентов.
+###_PLAYER
+Can I work as a maid?
+Могу я работать горничной?
+###_NPC
+Finish your club slave contract first.  Then we can talk about work.
+Закончи свой первый клубный рабский контракт.  Тогда мы сможем поговорить о работе.
+###_PLAYER
+(Leave her.)
+(Оставь ее.)
+###_NPC
+Greetings head maid DialogPlayerName.  How can I help you?  (She does curtsies for you.)
+Поздравляю старшую горничную DialogPlayerName.  Чем я могу вам помочь?  (Она делает реверанс перед тобой.)
+How pleasant to see you Mistress DialogPlayerName.  (She does curtsies for you.)
+Как приятно видеть вас Госпожа DialogPlayerName.  (Она делает реверанс перед тобой.)
+(She giggles.) Welcome to the Maid Quarters naked girl.  How can I help you?
+(Она хихикает.) Добро пожаловать в комнату для прислуги голая девушка.  Чем я могу тебе помочь?
+Welcome to the Maid Quarters.  How can I help you?
+Добро пожаловать в комнату для прислуги.  Чем я могу вам помочь?
+You've done a lot for the maid sorority.  You should apply to become a full sister.
+Ты много сделала для общества горничных.  Ты должна подать заявление, чтобы стать полноправной сестрой.
+It's great to see you sister!  How can I help you?
+Как я рада видеть тебя, сестра!  Чем я могу тебе помочь?
+###_PLAYER
+(Nod yes.)
+(Согласно киваю)
+###_NPC
+(She removes your gag and smiles.)  Much better sweetie.  How can I help you?
+(Она вынимает кляп и улыбается.)  Намного лучше, милая.  Чем я могу тебе помочь?
+(She checks your locks and frowns.)  I cannot help you girl.  Go find your owner.
+(Она проверяет твои замки и хмурится.)  Я не могу помочь тебе, девочка.  Иди и найди свою хозяйку.
+###_PLAYER
+Hello, I'm DialogPlayerName.  Pleased to meet you.
+Привет, я DialogPlayerName.  Приятно познакомиться.
+###_NPC
+Pleased to meet you too.  I'm DialogCharacterName, I'm responsible to find work for maids.
+Я тоже рада с вами познакомиться.  Я DialogCharacterName, Я отвечаю за поиск работы для горничных.
+###_PLAYER
+What's going on in here?
+Что здесь происходит?
+###_NPC
+Maids come here to get job assignments.  They can earn some money by working for the club.
+Горничные приходят сюда, чтобы получить работу.  Они могут заработать немного денег, работая в клубе.
+###_PLAYER
+What kind of chores do maid do in the club?
+Что за работу делают горничные в клубе?
+###_NPC
+Cleaning, serving drinks, testing new devices, rescuing helpless people and more.
+Уборка, подача напитков, тестирование новых устройств, спасение беспомощных людей и многое другое.
+###_PLAYER
+Can I become a maid?
+Могу ли я стать горничной?
+###_NPC
+You could, if you're not afraid of work and you don't mind the uniform.
+Ты могла бы, если не боишься работы и не возражаешь против униформы.
+###_PLAYER
+Do you have work for me?
+У тебя есть для меня работа?
+###_NPC
+Absolutely, these are the chores available for you.  (She shows you a list of maid tasks to complete.)
+Безусловно, это те обязанности, которые доступны для тебя.  (Она показывает тебе список задач.)
+###_PLAYER
+I'd like to become a full maid in the sorority.
+Я бы хотела стать полноправной горничной в женском обществе.
+###_NPC
+That's awesome!  We would be glad to have you.  You really have the maid calling?
+Это потрясающе!  Мы будем рады видеть тебя.  Ты действительно думаешь, что горничная - это твое призвание?
+You need to prove yourself first.  Do more work for the sorority and we'll accept you.
+Сначала ты должна проявить себя.  Сделай больше работы для женского общества, и мы примем тебя.
+###_PLAYER
+Who are the leaders in the sorority?
+Кто является лидером в женском обществе?
+###_NPC
+The leaders are the head maids, they are dominant and experienced maids like you Miss.
+Лидеры - старшие горничные, они доминирующие и опытные горничные, как вы, мисс.
+The leaders are the head maids, they are dominant and experienced maids.  Maybe someday you could be head maid if you work hard enough.
+Лидеры - старшие горничные, они доминирующие и опытные горничные.  Может, когда-нибудь ты сможешь стать старшей горничной, если будешь достаточно усердно работать.
+###_PLAYER
+Tell me about the club.
+Расскажи мне о клубе.
+###_NPC
+The Bondage Club has a long history.  It was a secret club back then when BDSM was taboo and forbidden.
+Бондаж Клуб имеет долгую историю.  Тогда это был секретный клуб, когда БДСМ был под табу и запрещен.
+###_PLAYER
+As head maid, I have a task for you.
+Как старшая горничная, у меня есть задание для тебя.
+###_NPC
+Of course Miss.  What can I do for you?
+Конечно, мисс.  Что я могу для вас сделать?
+###_PLAYER
+Can I have a duster gag?
+Можно мне тряпку-кляп?
+###_NPC
+You have lots of cleaning to do sister?  (She giggles.)  Of course, you can have one.  (She gives you a duster gag.)
+У тебя много работы по уборке, сестра?  (Она хихикает.)  Конечно, ты можешь взять один.  (Она дает тебе тряпку-кляп.)
+###_PLAYER
+I can't stay to chat.  (Leave her.)
+Я не могу остаться, чтобы поболтать.  (Оставить ее.)
+There's a blond girl stuck in a reserved bedroom.
+Там блондинка застряла в спальне.
+###_NPC
+Is that true?  I can send a maid to rescue her.  Who reserved the room?
+Это правда?  Я могу послать служанку, чтобы спасти ее.  Кто забронировал номер?
+###_PLAYER
+Forget it.
+Забудь это.
+###_NPC
+Very well.  Is there anything else I can do head maid DialogPlayerName?
+Очень хорошо.  Могу я еще что-нибудь сделать, старшая горничная DialogPlayerName?
+###_PLAYER
+It's reserved by Mistress Sophie.
+Его забронировала Госпожа София.
+###_NPC
+(Her eyes widen.)  The sorority cannot interfere then.  Please check with the club management.
+(Ее глаза расширяются.)  Тогда женское общество не сможет вмешаться.  Пожалуйста, свяжитесь с руководством клуба.
+###_PLAYER
+I've reserved it.  Send a maid now.
+Я забронировала его.  Сейчас же пришлите горничную.
+###_NPC
+Yes Miss!  (She sends a maid to unlock Sarah.)  It shouldn't take long.  Is there anything else I can do?
+Да, Мисс!  (Она посылает служанку отпереть Сару.)  Это не займет много времени.  Я могу еще что-нибудь сделать?
+###_PLAYER
+Forget it, I'll do it myself.
+Забудь об этом, я сделаю это сама.
+I love the uniform!
+Я люблю униформу!
+###_NPC
+Wonderful.  I'm sure we'll find your size.  After lots of work for us, you can earn a permanent uniform that you can keep.
+Замечательно.  Я уверена, что мы найдем твой размер.  После долгой работы на нас, ты сможешь заработать постоянную форму.
+###_PLAYER
+I'll need to dress like you?
+Мне нужно будет одеться как ты?
+###_NPC
+Only when you're doing a chore.  After lots of work for us, you can earn a permanent uniform that you can keep.
+Только когда ты выполняешь работу по дому.  После долгой работы на нас, ты сможешь заработать постоянную форму.
+###_PLAYER
+I'm not afraid of work.
+Я не боюсь работы.
+###_NPC
+That's the spirit!  And after lots of work for us, you can earn a permanent uniform that you can keep.
+Вот это настрой!  И после долгой работы на нас, ты сможешь заработать постоянную форму.
+###_PLAYER
+Not now, maybe another time.
+Не сейчас, может быть, в другой раз.
+###_NPC
+It's fine, how can I help you then?
+Хорошо, чем я могу вам помочь?
+###_PLAYER
+Very good, and you will give me work?
+Очень хорошо, и ты дашь мне работу?
+###_NPC
+Yes, I have a list of chores that needs to be done.  Simply pick one that you can do.
+Да, у меня есть список работ, которые нужно выполнить.  Просто выбери то, что ты можешь сделать.
+###_PLAYER
+How do I get work?
+Как я могу получить работу?
+###_NPC
+I have a list of chores that needs to be done.  Simply pick one that you can do.
+У меня есть список работ, которые нужно выполнить.   Просто выбери то, что ты можешь сделать.
+###_PLAYER
+Sign me in!  Can I see the list?
+Запишите меня!  Могу я посмотреть список?
+###_NPC
+Welcome to the maid sorority, these are the chores available for you.  (She shows you a list of tasks.)
+Добро пожаловать в женское сообщество горничных, это те обязанности, которые доступны для тебя.  (Она показывает тебе список задач.)
+###_PLAYER
+I'm ready for my first chore!
+Я готова к своей первой работе!
+Yes, I was born to serve.
+Да, я был рождена, чтобы служить.
+###_NPC
+Perfect!  Your initiation can begin.  (She rings a bell and other maids comes in.)
+Отлично!  Твое посвящение может начаться.  (Она звонит в колокольчик, и входят другие служанки.)
+###_PLAYER
+Yes, I love your sorority.
+Да, мне нравится ваше женское сообщество.
+###_NPC
+Excellent!  Your initiation can begin.  (She rings a bell and other maids comes in.)
+Отлично!  Твое посвящение может начаться.  (Она звонит в колокольчик, и входят другие служанки.)
+###_PLAYER
+I'm not sure, let me think about it.
+Я не уверена, дайте мне подумать об этом.
+###_NPC
+No problem, you don't have to join now.
+Нет проблем, ты не должна присоединиться прямо сейчас.
+###_PLAYER
+What?  Nobody told me about an initiation!
+Что?  Никто не говорил мне о посвящении!
+###_NPC
+It won't hurt... too much.  First, you need to get naked.  Strip for us.
+Это не будет больно... слишком.  Во-первых, тебе нужно раздеться.  Раздевайся для нас.
+###_PLAYER
+Very well Miss.  (Bow your head.)
+Очень хорошо, мисс. (Склони голову.)
+###_NPC
+First, you need to get naked.  Strip for us.
+Во-первых, тебе нужно раздеться.  Раздевайся для нас.
+###_PLAYER
+Alright, but don't try anything funky.  (Strip naked.)
+Хорошо, но не пытайтесь сделать что-нибудь стремное.  (Раздевайся догола.)
+###_NPC
+Don't worry.  (She turns to the other maids.)  Sisters!  Today we introduce a new member in our sorority.
+Не беспокойся.  (Она поворачивается к другим служанкам.)  Сестры!  Сегодня мы представляем нового члена в нашем женском сообществе.
+###_PLAYER
+You girls are so kinky.  (Strip naked.)
+Вы, девочки, такие извращенки.  (Раздевайся догола.)
+###_NPC
+(She smiles and turns to the other maids.)  Sisters!  Today we introduce a new member in our sorority.
+(Она улыбается и поворачивается к другим горничным.)  Сестры!  Сегодня мы представляем нового члена нашего женского сообщества.
+###_PLAYER
+Sweet!  Who will fuck me first?  (Strip naked.)
+Мило!  Кто будет трахать меня?  (Раздевайся догола.)
+###_NPC
+(She giggles and turns to the other maids.)  Sisters!  Today we introduce a new member in our sorority.
+(Она хихикает и поворачивается к другим горничным.)  Сестры!  Сегодня мы представляем нового члена нашего женского сообщества.
+###_PLAYER
+No way!  Can't I stay clothed?
+Ни за что!  Разве я не могу остаться одетой?
+###_NPC
+Strip girl, we've all did it before.  
+Стриптиз девушка, мы все делали это раньше.  
+###_PLAYER
+I'll need some help to undress.
+Мне понадобится помощь, чтобы раздеться.
+###_NPC
+Of course, sweetie.  (She releases you and gives you a thumbs up.)  Now get naked.
+Конечно, милая.  (Она освобождает тебя и показывает большой палец вверх.)  А теперь раздевайся.
+###_PLAYER
+We will rule the club together my sisters.
+Мы будем править клубом вместе, мои сестры.
+###_NPC
+You're quite ambitious, I like it.  Let the initiation begin!  We can restrain her.
+Ты довольно амбициозна, мне это нравится.  Пусть начнется посвящение!  Мы можем ее связать.
+###_PLAYER
+I'm really happy to join you all.
+Я очень рад присоединиться ко всем вам.
+###_NPC
+We are happy to have you.  Let the initiation begin!  We can restrain her.
+Мы рады, что ты у нас есть.  Пусть начнется посвящение!  Мы можем ее связать.
+###_PLAYER
+Let's do our best to serve the club.
+Давайте сделаем все возможное, чтобы служить клубу.
+###_NPC
+That's the spirit.  Let the initiation begin!  We can restrain her.
+Вот это настрой.  Пусть начнется посвящение!  Мы можем ее связать.
+###_PLAYER
+Restrain me?  I'm already naked.  Isn't that enough?
+Связатьь меня?  Я уже голая.  Разве этого не достаточно?
+###_NPC
+You're in the Bondage Club sweetie, it's a regular initiation.
+Ты в Бондаж Клубе, милая, это обычная инициация.
+###_PLAYER
+Very well.  (Allow them to restrain you.)
+Очень хорошо.  (Позволь им связать тебя.)
+###_NPC
+(She grabs your arms and restrain them behind your back.)
+(Она хватает тебя за руки и связывает их за спиной.)
+###_PLAYER
+You sure know how to do an initiation.
+Ты точно знаешь, как проводить посвящение.
+###_NPC
+It's only the beginning.  (She quickly restrains your feet.)
+Это только начало.  (Она быстро связывает твои ступни.)
+###_PLAYER
+(Struggle playfully.)
+(Игриво борись.)
+###_NPC
+(They all giggle looking at you while DialogCharacterName restrains your feet.)
+(Они все хихикают глядя на тебя пока DialogCharacterName связывает твои ступни.)
+###_PLAYER
+I can still move my legs!
+Я все еще могу двигать ногами!
+###_NPC
+Not for long.  (She restrains your legs and smiles.)
+Это ненадолго.  (Она связывает твои ноги и улыбается.)
+###_PLAYER
+What's next?
+Что дальше?
+###_NPC
+I'm sure you can guess.  (She restrains your legs and smiles.)
+Я уверена, что ты можешь догадаться.  (Она связывает твои ноги и улыбается.)
+###_PLAYER
+I'm all bundled up now.
+Я уже весь обмотанная.
+###_NPC
+Almost!  Open wide little sister.
+Почти!  Открой пошире, сестренка.
+###_PLAYER
+This is so kinky, I love it.
+Это так извращенно, я люблю это.
+###_NPC
+Great!  Now open wide little sister.
+Отлично!  Теперь открой пошире, сестренка.
+###_PLAYER
+I can't wait to initiate other maids.
+Я не могу дождаться, чтобы инициировать других горничных.
+###_NPC
+It's your turn now.  Open wide little sister.
+Теперь твоя очередь.  Открой пошире, сестренка.
+###_PLAYER
+Hey!  I can't talk during my own initiation?
+Эй!  Я не могу говорить во время моего собственного посвящения?
+###_NPC
+(She quickly silences you with a gag and everyone cheers.)
+(Она быстро заставляет тебя замолчать кляпом и все аплодируют.)
+###_PLAYER
+(Stay silent and open your mouth.)
+(Молчи и открой рот.)
+###_NPC
+(She silences you with a gag and everyone cheers.)
+(Она затыкает тебя кляпом и все аплодируют.)
+###_PLAYER
+(Blush and look down.)
+(Покраснела и посмотрела вниз.)
+###_NPC
+My sisters!  It's time to show your strength!  Bring the paddle!
+Мои сестры!  Пришло время показать свою силу!  Принесите падл!
+###_PLAYER
+(Look at them and wait.)
+(Посмотри на них и жди.)
+(Scream in your gag.)
+(Кричи через кляп.)
+(Struggle in your restraints.)
+(Борись в своих путах.)
+(Try to look tough.)
+(Постарайся выглядеть круто.)
+(Nod happily.)
+(Счастливо кивни.)
+###_NPC
+(She releases you and smiles.)  You will now get your own uniform to keep.
+(Она освобождает тебя и улыбается.)  Теперь ты получишь свою собственную форму.
+###_PLAYER
+(Struggle to get out.)
+(Бороться, чтобы выбраться отсюда.)
+I will wear it with pride.
+Я буду носить его с гордостью.
+###_NPC
+(You dress up in your own maid uniform while the maids clap their hands.)
+(Ты одеваешься в свою форму горничной, а горничные хлопают в ладоши.)
+###_PLAYER
+Thank you so much.
+Большое спасибо.
+I love you my sisters.
+Я люблю вас, сестры мои.
+###_NPC
+(The other maids cheers and go back to work.)  This is great!  Do you want some chores now or simply chat?
+(Остальные горничные аплодируют и возвращаются к работе.)  Это здорово!  Хочешь поработать сейчас или просто поболтать?
+###_PLAYER
+I will start to climb up in the sorority ladder right now!
+Я начну подниматься по лестнице женского сообщества прямо сейчас!
+I hope we will protect each other.
+Надеюсь, мы будем защищать друг друга.
+I'm ready to become head maid.
+Я готова стать старшей горничной.
+###_NPC
+You would be a wonderful head maid Miss.
+Вы были бы замечательной старшей горничной, Мисс.
+###_PLAYER
+Can I become head maid?
+Могу я стать старшей горничной?
+###_NPC
+You'll need to have a perfect reputation in the sorority and be recognized as a dominant in the club first.
+Вам необходимо иметь безупречную репутацию в женском сообществе и быть признанной доминирующей в нем в первую очередь.
+###_PLAYER
+Tell me of the head maids responsibilities.
+Расскажите мне об обязанностях горничных.
+###_NPC
+The head maids have regular meetings with the club head Mistress.  They must make sure that the maids are working properly.
+Старшие горничные регулярно встречаются с Госпожами клуба.  Они должны убедиться, что горничные работают правильно.
+###_PLAYER
+Tell me of the head maids powers.
+Расскажи мне о старших горничных.
+###_NPC
+They rule over the regular maids and can restrain them whenever they want.
+Они управляют обычными горничными и могут связывать их, когда захотят.
+###_PLAYER
+Let's talk about something else.
+Давай поговорим о чем-нибудь другом.
+###_NPC
+Of course.  How can I help you?
+Конечно.  Чем могу помочь?
+###_PLAYER
+How does it work?
+Как это работает?
+###_NPC
+Nothing special Miss.  All you need to do is sign a contract with the club.
+Ничего особенного, Мисс.  Все, что вам нужно сделать, это подписать контракт с клубом.
+###_PLAYER
+Is there an initiation?
+Есть посвящение?
+###_NPC
+No Miss, you're already in the sorority.  All you need to do is sign a contract with the club.
+Нет, Мисс, вы уже в женском сообществе.  Все, что вам нужно сделать, это подписать контракт с клубом.
+###_PLAYER
+Perfect!  Give me that contract.  (Sign the contract.)
+Отлично!  Дай мне контракт.  (Подпиши контракт.)
+###_NPC
+(You sign the head maid contract.)  The sorority will grow stronger under your rule Miss.
+(Ты подписываешь контракт старшей горничной.)  Под вашим руководством женское сообщество будет становиться сильнее, Мисс.
+###_PLAYER
+It might be too many responsibilities for me.
+Это может быть слишком большой ответственностью для меня..
+###_NPC
+It's a lot of work and responsibilities indeed.  Think about it and let me know if you're ready someday.
+Это действительно много работы и обязанностей.  Подумай об этом и дай мне знать, если когда-нибудь будешь готова.
+###_PLAYER
+I will be a fair ruler.
+Я буду справедливой руководительницей.
+###_NPC
+I'm sure you will Miss.  Is there anything else I can do for you?
+Уверена, вы будете такой Мисс.  Я могу еще что-нибудь для вас сделать?
+###_PLAYER
+I will rule with an iron first.
+Сначала я буду править железой рукой.
+###_NPC
+Excellent Miss.  Is there anything else I can do for you?
+Превосходно, Мисс.  Я могу еще что-нибудь для вас сделать?
+(She shows you a list of chores.)  What kind of job are you looking for?
+(Она показывает тебе список работ по дому.)  Какую работу ты ищешь?
+###_PLAYER
+Can you please release me so I can take a job?
+Пожалуйста, отпустите меня, чтобы я мог устроиться на работу.
+###_NPC
+Poor thing, of course I can help you.  (She releases you and shows you the chores list again.)  
+Бедняжка, конечно, я могу тебе помочь.  (Она освобождает тебя и снова показывает список дел по дому.)  
+(She shakes her head no.)
+(Она отрицательно качает головой.)
+###_PLAYER
+I'll take a rescue mission.
+Я возьму на себя спасательную миссию.
+###_NPC
+Excellent!  We need to make sure our members are safe.
+Отлично!  Мы должны убедиться, что наши члены в безопасности.
+###_PLAYER
+I'll go serve drinks.
+Пойду принесу напитки.
+###_NPC
+Nice!  Our guests are always thirsty.
+Отлично!  Наши гости всегда хотят пить.
+###_PLAYER
+I'll take the cleaning chore.
+Я возьму на себя всю работу по уборке.
+###_NPC
+Awesome!  There's a lot of cleaning to do.
+Потрясающе!  Нужно много убираться.
+###_PLAYER
+I'll play music.
+Я включу музыку.
+###_NPC
+Great! We always want some musician to play nice music.
+Отлично! Мы всегда хотим, чтобы какой-то музыкант играл хорошую музыку.
+###_PLAYER
+Let's talk some more first.
+Давай сначала еще поговорим.
+###_NPC
+Sure.  How can I help you?
+Конечно.  Чем я могу вам помочь?
+###_PLAYER
+Give me a few minutes first.  (Leave her.)
+Дай мне сначала несколько минут.  (Оставить ее.)
+I'm already dressed up.
+Я уже переоделась.
+###_NPC
+Perfect!  Let me restrain you then.
+Отлично!  Тогда позволь мне тебя связать.
+###_PLAYER
+I'll change first.  (Wear the maid uniform.)
+Сначала я переоденусь.  (Надень форму горничной.)
+###_NPC
+(You change into the maid uniform.)  Perfect!  Let me restrain you then.
+(Ты переодеваешься в униформу горничной.) Отлично!  Тогда позвольте мне тебя связать.
+###_PLAYER
+Mistress did that?
+Госпожа сделала это?
+###_NPC
+Yes, she called us to get you here.  You will work for her.
+Да, она позвонила нам, чтобы мы доставили тебя сюда.  Ты будешь работать на нее.
+###_PLAYER
+What kind of work?
+Что за работа?
+###_NPC
+Your owner wants you to serve drinks for herself and her friends.
+Твоя хозяйка хочет, чтобы ты подавала напитки для нее и ее друзей.
+###_PLAYER
+Will I get paid?
+Мне заплатят?
+###_NPC
+No, she will get the profits.  Come back to work by yourself to get paid.
+Нет, она получит прибыль.  Возвращайся на работу самостоятельно, чтобы получить зарплату.
+###_PLAYER
+(Pout.)  I don't have any choice I guess.
+(Надуться.) У меня, наверное, нет выбора.
+###_NPC
+No, you don't.  And our guests are always thirsty.
+Нет, ты не знаешь.  И наши гости всегда хотят пить.
+###_PLAYER
+It's an honor to work for my owner.
+Для меня большая честь работать на мою хозяйку.
+###_NPC
+Good girl!  Our guests are always thirsty.
+Хорошая девочка!  Наши гости всегда хотят пить.
+###_PLAYER
+Wait!  Restrain me?  Why?
+Стой!  Связать меня?  Зачем?
+###_NPC
+You're in the Bondage Club sweetie.  Waitresses need to be restrained.
+Ты в Бондаж Клубе милая.  Официантки должны быть связаными.
+###_PLAYER
+Very well Miss.  (Blush and allow her to restrain you.)
+Очень хорошо Мисс.  (Покраснеть и позволить ей связать тебя.)
+###_NPC
+Very good, first I will restrain your legs but not your feet.  You need to be able to walk around.
+Очень хорошо, сначала я свяжу твои ноги, но не ступни.  Ты должна быть в состоянии ходить.
+###_PLAYER
+I know the drill.  (Allow her to restrain you.)
+Я знаю правила игры.  (Позвольте ей связать тебя.)
+I understand.
+Я понимаю.
+###_NPC
+Good.  (She restrains your legs and smiles.)  Next is your arms, you won't need them since your drink platter comes with straps.
+Хорошо.  (Она связывает твои ноги и улыбается.)  Далее твои руки, ты не будешь нуждаться в них, так как твой поднос прикрепляеться ремнями.
+###_PLAYER
+It won't be easy to walk.
+Идти будет нелегко.
+###_NPC
+Indeed.  (She restrains your legs and smiles.)  Next is your arms, you won't need them since your drink platter comes with straps.
+Действительно.  (Она связывает твои ноги и улыбается.)  Далее твои руки, ты не будешь нуждаться в них, так как твой поднос прикрепляеться ремнями.
+###_PLAYER
+I can't serve drinks without my arms.
+Я не могу подавать напитки без рук.
+###_NPC
+Don't worry, our customers will simply pick them from your platter.
+Не волнуйтесь, наши клиенты просто заберут их с твоего подноса.
+###_PLAYER
+Very well.
+Очень хорошо.
+###_NPC
+(She restrains your arms behind your back.)  I will now strap the drink platter on you.
+(Она связывает тебе руки за спиной.)  А теперь я надену на тебя поднос с напитками.
+###_PLAYER
+This is so kinky.
+Это так извращенно
+Yes please.
+Да, пожалуйста.
+###_NPC
+(She straps a drink platter on you.)  Get used to balance the platter with your body, you don't want to make a mess.
+(Она ставит перед тобой поднос с напитками.)  Привыкай балансировать поднос своим телом, ты же не хочешь сделать беспорядок.
+###_PLAYER
+Make sure it won't tip.
+Убедись, что он не будет наклоняться.
+(Practice a little.)
+(Потренируйся немного.)
+###_NPC
+(You practice keeping your balance with the drink platter.)  Are you ready now?
+(Ты тренируешься держать равновесие с подносом для напитков.) Теперь ты готова?
+###_PLAYER
+I will be fine.
+Я справлюсь.
+###_NPC
+Of course you will.  Now open wide!
+Конечно, ты справишься.  Теперь открой пошире!
+###_PLAYER
+I'm afraid I won't be able to do it Miss.
+Боюсь, я не в состоянии сделать это Мисс.
+###_NPC
+You will be fine.  You worry too much.  Now open wide!
+С тобой все будет хорошо.  Ты слишком много волнуешься.  А теперь открывай пошире!
+###_PLAYER
+Open wide?  Why?
+Открыть пошире? Зачем?
+###_NPC
+(She gags you before you can finish your question.)  Your job is to serve, not to talk.
+(Она затыкает тебе рот, прежде чем ты успеваешь закончить свой вопрос.)  Твоя работа - служить, а не болтать.
+###_PLAYER
+(Open your mouth.)
+(Открыть рот.)
+###_NPC
+(She silences you with a gag.)  Your job is to serve, not to talk.
+(Она затыкает тебе рот кляпом.)  Твоя работа - служить, а не болтать.
+###_PLAYER
+(Mumble in your gag.)
+(Мычать в кляп.)
+###_NPC
+You're so cute when you try to talk with that gag.
+Ты такая милая, когда пытаешься говорить с этим кляпом.
+###_PLAYER
+(Frown at her.)
+(Нахмуриться на нее.)
+###_NPC
+Come sweetie!  Our guests are waiting for your drinks.
+Пойдем, милая!  Наши гости ждут твоих напитков.
+###_PLAYER
+(Nod slowly.)
+(Медленно кивни.)
+(Serve drinks slowly but safely.)
+(Подавай напитки медленно, но безопасно.)
+(Serve drinks at a normal pace.)
+(Подавай напитки в обычном темпе.)
+(Serve drinks quickly for more tips.)
+(Подавай напитки быстро для получения дополнительных чаевых.)
+(Serve drinks in online chat rooms.)
+(Подавай напитки в чат-комнатах.)
+###_NPC
+Here's your share of the tips.  (She gives you REPLACEMONEY $.)
+Вот твоя доля чаевых.  (Она дает тебе REPLACEMONEY $.)
+###_PLAYER
+(Bow your head.)
+(Склони голову.)
+###_NPC
+Nice try, but maybe you're not fit for that job.  I can't pay you.
+Хорошая попытка, но, возможно, ты не подходишь для этой работы. Я не могу заплатить тебе.
+Excellent!  Here's your salary.  (She gives you REPLACEMONEY $.)
+Отлично!  Вот твоя зарплата.  (Она дает тебе REPLACEMONEY $.)
+Excellent!  Go see your owner and give her this.  (She gives you a sealed envelope with REPLACEMONEY $ for your owner.)
+Отлично!  Иди к своей хозяйке и передай ей это.  (Она дает тебе запечатанный конверт с REPLACEMONEY $ для твоей хозяйке.)
+(She releases you and helps you to get dressed.)  All set!  Are you ready for more chores?
+(Она освобождает тебя и помогает одеться.) Все готово!  Готова ли ты к большим хлопотам?
+###_PLAYER
+Thanks a lot!
+Большое спасибо!
+###_NPC
+(She nods.)  Are you ready for more chores?
+(Она кивает.)  Ты готова к новым обязанностям?
+You'll have to patrol around the club and release members that are stuck.  I'll give you a specific location to monitor.
+Тебе придется патрулировать клуб и освобождать застрявших членов.  Я дам тебе конкретное местоположение для мониторинга.
+###_PLAYER
+Where should I go?
+Куда мне идти?
+###_NPC
+Did you go to the Introduction Class?  Is there anything to report?
+Ты ходила к ознакомительному классу?  Есть ли что-нибудь, чтобы отчитаться?
+###_PLAYER
+Everything is under control.
+Все под контролем.
+###_NPC
+Perfect!  Let me pay you for your efforts then.  (She gives you REPLACEMONEY $.)
+Отлично!  Тогда позвольте мне заплатить тебе за твои усилия.  (Она дает тебе REPLACEMONEY $.)
+(You change into the maid uniform.)  Wonderful!  Make the sorority proud.
+(Ты переодеваешься в форму горничной.) Замечательно!  Заставь женское общество гордиться тобой.
+###_PLAYER
+I'll go check the Introduction Class.  (Leave her.)
+Пойду проверю ознакомительный клас.  (Оставь ее.)
+I went there, but I couldn't do the rescue mission.
+Я пошла туда, но не смогла выполнить спасательную миссию.
+###_NPC
+This is disappointing, but I can send someone else.  You understand that you won't get paid.  What happened?
+Это разочаровывает, но я могу послать кого-нибудь другого.  Ты же понимаешь, что тебе не заплатят.  Что случилось?
+Have you inspected the Shibari Dojo?  Is everything alright?
+Ты осмотрела Додзе шибари?  Все в порядке?
+###_PLAYER
+I'll go check the Shibari Dojo.  (Leave her.)
+Я пойду проверю Додзе шибари.  (Оставить ее.)
+###_NPC
+What's going on at the Bondage Club store?  Did the vendor got in trouble?
+Что происходит в магазине Бондаж Клуба?  Неужели продавец попал в беду?
+###_PLAYER
+I'll go check the Bondage Club store.  (Leave her.)
+Я пойду проверю магазин Бондаж Клуба.  (Оставь ее.)
+###_NPC
+What's going on at the Gambling Hall?  Did some Player got in trouble?
+Что происходит в игорном зале?  Неужели какой-то игрок попал в беду?
+###_PLAYER
+I'll go check the Gambling Hall.  (Leave her.)
+Пойду проверю игорный зал.  (Оставить ее.)
+###_NPC
+Everything is there in its place?
+Все ли там на своих местах?
+###_PLAYER
+I'll go guard the Prison.  (Leave her.)
+I'll go guard the Prison.  (Leave her.)
+Everyone will be safe as long as I'm in control.
+Все будут в безопасности, пока я контролирую ситуацию.
+###_NPC
+That's very comforting to hear.  Are you ready for more chores?
+Это очень приятно слышать.  Готова ли ты другим хлопотам?
+###_PLAYER
+I'm happy I could serve the sorority Miss.
+Я счастлива, что могу служить женскому сообществу Мисс .
+###_NPC
+You're such a sweet servant.  Are you ready for more chores?
+Ты такая милая служанка.  Готова ли ты другим хлопотам?
+###_PLAYER
+Don't mention it.
+Не стоит благодарности.
+###_NPC
+Excellent!  Are you ready for more chores?
+Отлично! Готова ли ты другим хлопотам?
+###_PLAYER
+I didn't have the proper tools or techniques.
+У меня не было подходящих инструментов или методов.
+###_NPC
+You still have a lot to learn, don't you?  I can give you another chore if you're up for it.
+Тебе еще многому надо научиться, не так ли?  Я могу дать тебе еще одну работу, если ты готова.
+###_PLAYER
+I'm sorry, I don't have any excuses.
+Извините, у меня нет никаких оправданий.
+###_NPC
+It's alright girl, don't worry.  I can give you another chore if you're up for it.
+Все в порядке, девочка, не волнуйся. Я могу дать тебе еще одну работу, если ты готова.
+###_PLAYER
+The rescue was already done.
+Спасение было уже сделано.
+###_NPC
+Very well, it happens from time to time.  I can give you another chore if you're up for it.
+Очень хорошо, это случается время от времени.  Я могу дать тебе еще одну работу, если ты готова.
+###_PLAYER
+I can't clean while being restrained.
+Я не могу убирать, будучи связанной.
+###_NPC
+Don't worry sweetie, we have the perfect cleaning tools for you.
+Не волнуйся, милая, у нас есть идеальный инструмент для убоки для тебя.
+###_PLAYER
+I'll be happy to be restrained by you Miss.
+Я буду счастлива быть связанной вами, Мисс.
+###_NPC
+To start, I will restrain your feet.  You won't need to move far.
+Для начала я свяжу твои ступни.  Тебе не нужно будет далеко уходить.
+###_PLAYER
+I guess I have no choice.  (Allow her to restrain you.)
+Наверное, у меня нет выбора.  (Позволь ей связать тебя.)
+How can I clean if I can't walk?
+Как я могу убираться, если не могу ходить?
+###_NPC
+You'll learn to hop around.  You won't need to leave the room anyway.
+Ты научишься прыгать вокруг.  Тебе все равно не придется выходить из комнаты.
+###_PLAYER
+Very well, you can tie my feet.
+Очень хорошо, вы можете связать мне ступни.
+###_NPC
+(She nods and restrains your feet.)  Next is your legs, for the complete effect.
+(Она кивает и связывает тебе ступни.) Далее твои ноги, для полного эффекта.
+###_PLAYER
+I should have guessed.
+Я должна была догадаться.
+###_NPC
+(She giggles and restrains your legs.)  Next is your arms, you won't need either.
+(Она хихикает и связывает ноги.) Затем руки, тебе они не нужны.
+###_PLAYER
+You really enjoy your job, don't you?
+Вы действительно получаете удовольствие от работы, не так ли?
+This is ridiculous!  How will I be able to clean?
+Это смешно! Как я смогу убираться?
+###_NPC
+You will understand soon.  Give me your arms girl.
+Скоро ты все поймешь.  Дай мне свои руки, девочка.
+###_PLAYER
+Fine, you can tie my arms.
+Ладно, можешь связать мне руки.
+###_NPC
+(She restrains your arms behind your back.)  How does it feel to be restrained for work?
+(Она связывает тебе руки за спиной.) Каково это-быть связанной на работе?
+###_PLAYER
+This is crazy.  (Give your arms.)
+Это безумие.  (Дай свои руки.)
+I try to focus on the money.
+Я стараюсь сосредоточиться на деньгах.
+###_NPC
+Go check the store after your shift.  Next is the gag, your cleaning tool, open wide!
+Иди проверь чек после смены.  Далее кляп, твой инструмент очистки, открой широко рот!
+###_PLAYER
+I would rather restrain you.
+Я бы предпочла связать тебя.
+###_NPC
+Maybe it will happen soon.  (She smiles.)  Next is the gag, your cleaning tool, open wide!
+Может быть, это произойдет в ближайшее время.  (Она улыбается.) Далее кляп, твой инструмент очистки, открой широко рот!
+###_PLAYER
+It's a dream job for me.
+Для меня это работа мечты.
+###_NPC
+This club is perfect for you.  (She smiles.)  Next is the gag, your cleaning tool, open wide!
+Этот клуб идеально подходит для тебя.  (Она улыбается.)  Далее кляп, твой инструмент очистки, открой широко рот!
+###_PLAYER
+Can we skip the gag?
+Мы можем обойтись без кляпа?
+###_NPC
+Absolutely not, this is your cleaning tool after all.
+Разумеется нет, это твой инструмент для очистки в конце концов.
+###_PLAYER
+Very well, you can gag me.
+Очень хорошо, можешь заткнуть мне рот.
+###_NPC
+(She gets a gag with a duster attached in front of it and straps it around your head.)  Ready to go?
+(Она достает кляп с тряпкой, прикрепленной перед ним, и завязывает его вокруг твоей головы.) Готова начать?
+###_PLAYER
+(Wave the duster gag with your head.)
+(Помаши тряпкой кляпом с твоей головой.)
+###_NPC
+(She looks at you and laughs.)  You're learning the job pretty fast.  Are you ready now?
+(Она смотрит на тебя и смеется.)  Ты довольно быстро осваиваешь эту работу.  Теперь ты готова?
+Come sweetie!  I'll drag you to your workspace.  You need to clean the room before I come to get your back.
+Пойдем, милая!  Я проведу тебя на рабочее место.  Тебе нужно прибраться в комнате, прежде чем я приду за тобой.
+Come sweetie!  I'll drag you to your workspace.  You need to clean your area before I come to get your back.
+Пойдем, милая!  Я проведу тебя на рабочее место.  Тебе нужно очистить свой участок, прежде чем я приду за тобой.
+###_PLAYER
+(Pick an easy place to clean.)
+(Выбери удобное место для уборки.)
+(Let her choose your work area.)
+(Позволь ей выбрать твою рабочую зону.)
+(Pick the dirtiest place to impress her.)
+(Выбери самое грязное место, чтобы произвести на нее впечатление.)
+###_NPC
+Here's your pay for your hard work.  (She gives you REPLACEMONEY $.)
+Вот тебе плата за твою тяжелую работу.  (Она дает тебе REPLACEMONEY $.)
+I hope you understand why I can't reward you.  You can try again though.
+Надеюсь, ты понимаешь, почему я не могу вознаградить тебя.  Хотя, ты можешь попробовать еще раз.
+###_PLAYER
+Let me change first.
+Позвольте мне сначала переодеться.
+###_NPC
+Sure. Do you want me to explain the work?
+Конечно. Ты хочешь, чтобы я объяснила тебе работу?
+###_PLAYER
+I prefer in my own dress as it feels comfortable.
+Я предпочитаю свое собственном платье, так как чувствует себя в нем комфортно.
+No thank you, I'm familiar with it already.
+Нет, спасибо, я уже знакома с ней.
+###_NPC
+Perfect! Now go ahead and select the song you are good at.
+Отлично! Теперь идите вперед и выбери песню, в которой ты хороша.
+You should hit " S D K L " on your keyboard when the musical notes drop from the top to the bottom. Press and hold the key if it is a long note.
+Ты должна нажать "S D K L" на клавиатуре, когда музыкальные ноты падают сверху вниз. Нажми и удерживайте клавишу, если это длинная нота.
+###_PLAYER
+(Nod.)
+(Кивок.)
+###_NPC
+Each hit is judged with "PERFECT", "GREAT", or "MISS"	 if you release your key early in case of a long note, you get an "END MISS".
+Каждое нажатие оценивается как "PERFECT", "GREAT" или "MISS" если ты отпустишь свой ключ рано в случае длинной ноты, ты получишь "END MISS".
+You break your combo if you get a "MISS" or "END MISS", and audience will eventually become unhappy.
+Ты нарушишь свою комбинацию, если ты получишь "MISS" или "END MISS", и аудитория в конечном итоге станет несчастной.
+Audience will tie you up when they couldn't enjoy the music, because that's part of the entertainment for them.
+Зрители будут связывать тебя, если они не могли наслаждаться музыкой, потому что это часть развлечения для них.
+If you finished the play, you will be awarded based on your performance.
+Когда ты закончишь игру, ты будешь награждена в зависимости от твоего выступления.
+That's basically everything, and you will find out more during the play.
+Это в основном все, и ты узнаешь больше во время игры.
+###_PLAYER
+Thank you for the instruction.
+Спасибо за инструкцию.
+Select song.
+Выбери песню.
+###_NPC
+(List of songs)
+(Список песен)
+###_PLAYER
+и¦‹гЃ€гЃЄгЃ„дЅ•гЃ‹гЃ«жЂЇгЃ€г‚‹е¤њ (LV 2)
+и¦‹гЃ€гЃЄгЃ„дЅ•гЃ‹гЃ«жЂЇгЃ€г‚‹е¤њ (LV 2)
+и¦‹гЃ€гЃЄгЃ„дЅ•гЃ‹гЃ«жЂЇгЃ€г‚‹е¤њ (LV 5)
+и¦‹гЃ€гЃЄгЃ„дЅ•гЃ‹гЃ«жЂЇгЃ€г‚‹е¤њ (LV 5)
+и¦‹гЃ€гЃЄгЃ„дЅ•гЃ‹гЃ«жЂЇгЃ€г‚‹е¤њ (LV 7)
+и¦‹гЃ€гЃЄгЃ„дЅ•гЃ‹гЃ«жЂЇгЃ€г‚‹е¤њ (LV 7)
+(Want more Songs)
+(Хочешь больше песен)
+###_NPC
+We are adding more contents to this minigame. If you have royalty free songs or wish to create charts, you are welcomed to contact the dev for more information.
+Мы добавляем больше контента в эту мини-игру. Если у вас есть песни без роялти или вы хотите создать диаграммы, вы можете связаться с разработчиком для получения дополнительной информации.
+(She releases you.)  All set!  Are you ready for more chores?
+(Она отпускает тебя.) Все готово!  Готова ли ты к большим хлопотам?

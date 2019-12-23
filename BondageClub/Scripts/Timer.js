@@ -77,7 +77,7 @@ function TimerInventoryRemoveSet(C, AssetGroup, Timer) {
 // On a random chance, the private room owner can beep the player anywhere in the club, she has 2 minutes to get back to her
 function TimerPrivateOwnerBeep() {
 	if ((Player.Owner != "") && (Player.Ownership == null) && (CurrentScreen != "Private") && (CurrentScreen != "ChatRoom") && (CurrentScreen != "InformationSheet") && (CurrentScreen != "FriendList") && (CurrentScreen != "Cell") && PrivateOwnerInRoom())
-		if (!LogQuery("OwnerBeepActive", "PrivateRoom") && !LogQuery("OwnerBeepTimer", "PrivateRoom") && !LogQuery("LockOutOfPrivateRoom", "Rule") && (Math.floor(Math.random() * 500) == 1)) {
+		if ((Math.floor(Math.random() * 500) == 1) && !LogQuery("OwnerBeepActive", "PrivateRoom") && !LogQuery("OwnerBeepTimer", "PrivateRoom") && !LogQuery("LockOutOfPrivateRoom", "Rule") && !LogQuery("Committed", "Asylum")) {
 			ServerBeep.Timer = CurrentTime + 15000;
 			ServerBeep.Message = DialogFind(Player, "BeepFromOwner");
 			LogAdd("OwnerBeepActive", "PrivateRoom");

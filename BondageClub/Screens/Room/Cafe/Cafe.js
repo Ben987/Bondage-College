@@ -75,7 +75,7 @@ function CafeConsumeSpeciiality() {
 		CafeMaid.CurrentDialog = DialogFind(CafeMaid, "NotEnoughMoney");
 	}
 	else {
-		CharacterChangeMoney(Player, CafePrice);
+		CharacterChangeMoney(Player, CafePrice * -1);
 		if (!LogQuery("ModifierDuration", "SkillModifier")) LogAdd("ModifierLevel", "SkillModifier", 0)
 			SkillModifier = LogValue("ModifierLevel", "SkillModifier");
 

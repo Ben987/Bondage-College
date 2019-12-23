@@ -38,9 +38,7 @@ function ChatRoomCreateElement() {
 		ElementPositionFix("TextAreaChatLog", 36, 1005, 5, 988, 859);
 		ElementContent("TextAreaChatLog", ChatRoomLog);
 		ElementScrollToEnd("TextAreaChatLog");
-		if (Player.ChatSettings)
-			for (var property in Player.ChatSettings)
-				ElementSetDataAttribute("TextAreaChatLog", property, Player.ChatSettings[property]);
+		ChatRoomRefreshChatSettings(Player);
 		ElementFocus("InputChat");
 	}
 }
@@ -91,7 +89,7 @@ function ChatRoomDrawCharacter(DoClick) {
 	for (var C = 0; C < ChatRoomCharacter.length; C++)
 		if (DoClick) {
 			if ((MouseX >= (C % 5) * Space + X) && (MouseX <= (C % 5) * Space + X + 450 * Zoom) && (MouseY >= Y + Math.floor(C / 5) * 500) && (MouseY <= Y + Math.floor(C / 5) * 500 + 1000 * Zoom)) {
-				if (MouseY <= Y + Math.floor(C / 5) * 500 + 900 * Zoom) {
+				if ((MouseY <= Y + Math.floor(C / 5) * 500 + 900 * Zoom) && (Player.GameplaySettings && Player.GameplaySettings.BlindDisableExamine ? (!(Player.Effect.indexOf("BlindHeavy") >= 0) || ChatRoomCharacter[C].ID == Player.ID): true)) {
 					ElementRemove("InputChat");
 					ElementRemove("TextAreaChatLog");
 					ChatRoomBackground = ChatRoomData.Background;
@@ -247,6 +245,11 @@ function ChatRoomSendChat() {
 		// Keeps the chat log in memory so it can be accessed with pageup/pagedown
 		ChatRoomLastMessage.push(msg);
 		ChatRoomLastMessageIndex = ChatRoomLastMessage.length;
+
+		// Replace < and > characters to prevent HTML injections
+		while (msg.indexOf("<") > -1) msg = msg.replace("<", "&lt;");
+		while (msg.indexOf(">") > -1) msg = msg.replace(">", "&gt;");
+
 		var m = msg.toLowerCase().trim();
 		
 		// Some custom functions like /dice or /coin are implemented for randomness
@@ -292,7 +295,7 @@ function ChatRoomSendChat() {
 		else {
 
 			// Regular chat can be garbled with a gag
-			msg = SpeechGarble(Player, msg);
+			//msg = SpeechGarble(Player, msg);
 			if ((msg != "") && (ChatRoomTargetMemberNumber == null)) ServerSend("ChatRoomChat", { Content: msg, Type: "Chat" } );
 
 			// The whispers get sent to the server and shown on the client directly
@@ -407,12 +410,20 @@ function ChatRoomMessage(data) {
 			}
 
 			// Builds the message to add depending on the type
-			if ((data.Type != null) && (data.Type == "Chat") && Player.IsDeaf()) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + SpeechGarble(SenderCharacter, msg);
-			if ((data.Type != null) && (data.Type == "Chat") && !Player.IsDeaf()) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + msg;
-			if ((data.Type != null) && (data.Type == "Whisper")) msg = '<span class="ChatMessageName" style="font-style: italic; color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + msg;
-			if ((data.Type != null) && (data.Type == "Emote")) msg = "*" + SenderCharacter.Name + " " + msg + "*";
-			if ((data.Type != null) && (data.Type == "Action")) msg = "(" + msg + ")";
-			if ((data.Type != null) && (data.Type == "ServerMessage")) msg = "<b>" + DialogFind(Player, "ServerMessage" + msg).replace("SourceCharacter", SenderCharacter.Name) + "</b>";
+			if (data.Type != null) {
+				if (data.Type == "Chat"){
+					if (Player.GameplaySettings && Player.GameplaySettings.SensDepGarbleName && (Player.Effect.indexOf("DeafHeavy") >= 0) && (Player.Effect.indexOf("BlindHeavy") >= 0)) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SpeechGarble(SenderCharacter, SenderCharacter.Name) + ':</span> ' + SpeechGarble(SenderCharacter, msg);
+					else if (Player.IsDeaf()) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + SpeechGarble(SenderCharacter, msg);
+					else msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + SpeechGarble(SenderCharacter, msg);
+				}
+				else if (data.Type == "Whisper") msg = '<span class="ChatMessageName" style="font-style: italic; color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + msg;
+				else if (data.Type == "Emote") {
+					if (Player.GameplaySettings && Player.GameplaySettings.SensDepGarbleName && (Player.Effect.indexOf("DeafHeavy") >= 0) && (Player.Effect.indexOf("BlindHeavy") >= 0) && SenderCharacter.ID != Player.ID) msg = "*" + TextGet("Someone") + " " + msg + "*";
+					else msg = "*" + SenderCharacter.Name + " " + msg + "*";
+				}
+				else if (data.Type == "Action") msg = "(" + msg + ")";
+				else if (data.Type == "ServerMessage") msg = "<b>" + DialogFind(Player, "ServerMessage" + msg).replace("SourceCharacter", SenderCharacter.Name) + "</b>";
+			}
 
 			// Adds the message and scrolls down unless the user has scrolled up
 			var ShouldScrollDown = ElementIsScrolledToEnd("TextAreaChatLog");
@@ -451,6 +462,15 @@ function ChatRoomSync(data) {
 		// Keeps a copy of the previous version
 		ChatRoomData = data;
 
+	}
+}
+
+// Refreshes the chat log element
+function ChatRoomRefreshChatSettings(C) {
+	if (C.ChatSettings) {
+		for (var property in C.ChatSettings)
+			ElementSetDataAttribute("TextAreaChatLog", property, C.ChatSettings[property]);
+		if (C.GameplaySettings && C.GameplaySettings.SensDepGarbleName && (C.Effect.indexOf("DeafHeavy") >= 0) && (C.Effect.indexOf("BlindHeavy") >= 0)) { ElementSetDataAttribute("TextAreaChatLog", "EnterLeave", "Hidden"); }
 	}
 }
 
@@ -580,6 +600,11 @@ function ChatRoomSetRule(data) {
 		if (data.Content == "OwnerRuleKeyAllow") LogDelete("BlockKey", "OwnerRule");
 		if (data.Content == "OwnerRuleKeyConfiscate") InventoryConfiscateKey();
 		if (data.Content == "OwnerRuleKeyBlock") LogAdd("BlockKey", "OwnerRule");
+
+		// Remote rules
+		if (data.Content == "OwnerRuleRemoteAllow") LogDelete("BlockRemote", "OwnerRule");
+		if (data.Content == "OwnerRuleRemoteConfiscate") InventoryConfiscateRemote();
+		if (data.Content == "OwnerRuleRemoteBlock") LogAdd("BlockRemote", "OwnerRule");
 
 		// Timer cell punishment
 		var TimerCell = 0;
