@@ -407,13 +407,13 @@ function ChatRoomMessage(data) {
 			// Builds the message to add depending on the type
 			if (data.Type != null) {
 				if (data.Type == "Chat"){
-					if (Player.GameplaySettings && Player.GameplaySettings.SensDepGarbleName && (Player.Effect.indexOf("DeafHeavy") >= 0) && (Player.Effect.indexOf("BlindHeavy") >= 0)) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SpeechGarble(SenderCharacter, SenderCharacter.Name) + ':</span> ' + SpeechGarble(SenderCharacter, msg);
+					if (Player.GameplaySettings && (Player.GameplaySettings.SensDepChatLog == "SensDepNames" || Player.GameplaySettings.SensDepChatLog == "SensDepTotal") && (Player.Effect.indexOf("DeafHeavy") >= 0) && (Player.Effect.indexOf("BlindHeavy") >= 0)) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SpeechGarble(SenderCharacter, SenderCharacter.Name) + ':</span> ' + SpeechGarble(SenderCharacter, msg);
 					else if (Player.IsDeaf()) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + SpeechGarble(SenderCharacter, msg);
 					else msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + SpeechGarble(SenderCharacter, msg);
 				}
 				else if (data.Type == "Whisper") msg = '<span class="ChatMessageName" style="font-style: italic; color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + msg;
 				else if (data.Type == "Emote") {
-					if (Player.GameplaySettings && Player.GameplaySettings.SensDepGarbleName && (Player.Effect.indexOf("DeafHeavy") >= 0) && (Player.Effect.indexOf("BlindHeavy") >= 0) && SenderCharacter.ID != Player.ID) msg = "*" + TextGet("Someone") + " " + msg + "*";
+					if (Player.GameplaySettings && (Player.GameplaySettings.SensDepChatLog == "SensDepNames" || Player.GameplaySettings.SensDepChatLog == "SensDepTotal") && (Player.Effect.indexOf("DeafHeavy") >= 0) && (Player.Effect.indexOf("BlindHeavy") >= 0) && SenderCharacter.ID != Player.ID) msg = "*" + DialogFind(Player,"Someone") + " " + msg + "*";
 					else msg = "*" + SenderCharacter.Name + " " + msg + "*";
 				}
 				else if (data.Type == "Action") msg = "(" + msg + ")";
@@ -465,7 +465,14 @@ function ChatRoomRefreshChatSettings(C) {
 	if (C.ChatSettings) {
 		for (var property in C.ChatSettings)
 			ElementSetDataAttribute("TextAreaChatLog", property, C.ChatSettings[property]);
-		if (C.GameplaySettings && C.GameplaySettings.SensDepGarbleName && (C.Effect.indexOf("DeafHeavy") >= 0) && (C.Effect.indexOf("BlindHeavy") >= 0)) { ElementSetDataAttribute("TextAreaChatLog", "EnterLeave", "Hidden"); }
+		if (C.GameplaySettings && (C.GameplaySettings.SensDepChatLog == "SensDepNames" || C.GameplaySettings.SensDepChatLog == "SensDepTotal") && (C.Effect.indexOf("DeafHeavy") >= 0) && (C.Effect.indexOf("BlindHeavy") >= 0)) ElementSetDataAttribute("TextAreaChatLog", "EnterLeave", "Hidden");
+		if (C.GameplaySettings && (C.GameplaySettings.SensDepChatLog == "SensDepTotal") && (C.Effect.indexOf("DeafHeavy") >= 0) && (C.Effect.indexOf("BlindHeavy") >= 0)) {
+			ElementSetDataAttribute("TextAreaChatLog", "DisplayTimestamps", "false");
+			ElementSetDataAttribute("TextAreaChatLog", "ColorNames", "false");
+			ElementSetDataAttribute("TextAreaChatLog", "ColorActions", "false");
+			ElementSetDataAttribute("TextAreaChatLog", "ColorEmotes", "false");
+			ElementSetDataAttribute("TextAreaChatLog", "MemberNumbers", "Never");
+		}
 	}
 }
 
