@@ -5,8 +5,6 @@ var OwnerTimerChooseIndex = 0;
 
 // Loads the item extension properties
 function InventoryItemMiscOwnerTimerPadlockLoad() {
-    // todo make sure it updates correctly
-    // todo add id list
     if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property == null)) DialogFocusSourceItem.Property = {};
     if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property != null) && (DialogFocusSourceItem.Property.RemoveItem == null)) DialogFocusSourceItem.Property.RemoveItem = false;
     if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property != null) && (DialogFocusSourceItem.Property.ShowTimer == null)) DialogFocusSourceItem.Property.ShowTimer = true;
