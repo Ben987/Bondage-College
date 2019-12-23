@@ -107,14 +107,15 @@ TimerLeft,,,Time left:
 TimerRestart,,,SourceCharacter restarts the five minutes timer padlock on DestinationCharacter BodyPart.
 TimerUnknown,,,Unknown time left
 RestartTimer,,,Restart Timer
-TimerAddTime,,,SourceCharacter add TimerTime TimerUnit to the padlock on DestinationCharacter's BodyPart.
+TimerAddTime,,,SourceCharacter adds TimerTime TimerUnit to the padlock on DestinationCharacter's BodyPart.
+TimerAddUnknownTime,,,an unknown amount of time
 AllowModifyTimer,,,Allow everyone adding more time
 AddTimerTimeMinutes,,,Add TimerTime minutes to the Timer
 AddTimerTime,,,Add
 RemoveItemWithTimer,,,Remove item when the lock timer runs out
 WillRemoveItemWithTimer,,,The item will be removed when the lock timer runs out
 WontRemoveItemWithTimer,,,The item will stay when the lock timer runs out
-ShowItemWithTimerRemaining,,,Show the time remaining
+ShowItemWithTimerRemaining,,,Show the time remaining/being added
 Minutes,,,minutes
 Hours,,,hours
 SelectBondagePosition,,,Select the bondage position

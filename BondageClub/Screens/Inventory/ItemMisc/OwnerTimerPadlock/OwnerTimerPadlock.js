@@ -72,8 +72,8 @@ function InventoryItemMiscOwnerTimerPadlockAdd(TimeToAdd) {
         var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
         var msg = DialogFind(Player, "TimerAddTime");
         msg = msg.replace("SourceCharacter", Player.Name);
-        msg = msg.replace("TimerTime", Math.round((DialogFocusSourceItem.Property.RemoveTimer - TimerBefore) / (1000 * 60 * 60)));
-        msg = msg.replace("TimerUnit", DialogFind(Player, "Hours"));
+        msg = msg.replace("TimerTime", DialogFocusSourceItem.Property.ShowTimer ? Math.round((DialogFocusSourceItem.Property.RemoveTimer - TimerBefore) / (1000 * 60 * 60)) : DialogFind(Player, "TimerAddUnknownTime"));
+        msg = msg.replace("TimerUnit", DialogFocusSourceItem.Property.ShowTimer ? DialogFind(Player, "Hours") : "");
         msg = msg.replace("DestinationCharacter", C.Name);
         msg = msg.replace("BodyPart", C.FocusGroup.Description.toLowerCase());
         ChatRoomPublishCustomAction(msg, true);
