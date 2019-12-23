@@ -39,10 +39,10 @@ function InventoryItemMiscOwnerTimerPadlockDraw() {
         DrawText(DialogFind(Player, (DialogFocusSourceItem.Property.RemoveItem) ? "WillRemoveItemWithTimer" : "WontRemoveItemWithTimer"), 1500, 868, "white", "gray");
     }
     if (Player.CanInteract() && ((Player.MemberNumber == DialogFocusSourceItem.Property.LockMemberNumber) || DialogFocusSourceItem.Property.AllowModifyTimer)) {
-        DrawButton(1100, 910, 250, 70, TextGet("AddTimerTime"), "White");
-        DrawBackNextButton(1400, 910, 200, 70, TextGet(OwnerTimerChooseList[OwnerTimerChooseIndex]), "White", "",
-            () => OwnerTimerChooseList[(OwnerTimerChooseList.length + OwnerTimerChooseIndex - 1) % OwnerTimerChooseList.length] + " " + TextGet("Hours"),
-            () => OwnerTimerChooseList[(OwnerTimerChooseIndex + 1) % OwnerTimerChooseList.length] + " " + TextGet("Hours"));
+        DrawButton(1100, 910, 250, 70, DialogFind(Player, "AddTimerTime"), "White");
+        DrawBackNextButton(1400, 910, 200, 70, OwnerTimerChooseList[OwnerTimerChooseIndex] + " " + DialogFind(Player, "Hours"), "White", "",
+            () => OwnerTimerChooseList[(OwnerTimerChooseList.length + OwnerTimerChooseIndex - 1) % OwnerTimerChooseList.length] + " " + DialogFind(Player, "Hours"),
+            () => OwnerTimerChooseList[(OwnerTimerChooseIndex + 1) % OwnerTimerChooseList.length] + " " + DialogFind(Player, "Hours"));
     }
 }
 

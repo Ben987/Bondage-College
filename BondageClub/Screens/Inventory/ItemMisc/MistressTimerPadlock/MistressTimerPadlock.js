@@ -1,6 +1,6 @@
 "use strict";
 
-var MistressTimerChooseList = [5, 10, 15, 30, 1, 2, 3, 4];
+var MistressTimerChooseList = [5, 10, 15, 30, 60, 120, 180, 240];
 var MistressTimerChooseIndex = 0;
 
 // Loads the item extension properties
@@ -37,10 +37,10 @@ function InventoryItemMiscMistressTimerPadlockDraw() {
         DrawText(DialogFind(Player, (DialogFocusSourceItem.Property.RemoveItem) ? "WillRemoveItemWithTimer" : "WontRemoveItemWithTimer"), 1500, 868, "white", "gray");
     }
     if (Player.CanInteract() && (LogQuery("ClubMistress", "Management") || DialogFocusSourceItem.Property.AllowModifyTimer)) {
-        DrawButton(1100, 910, 250, 70, TextGet("AddTimerTime"), "White");
-        DrawBackNextButton(1400, 910, 200, 70, TextGet(MistressTimerChooseList[MistressTimerChooseIndex]), "White", "",
-            () => MistressTimerChooseList[(MistressTimerChooseList.length + MistressTimerChooseIndex - 1) % MistressTimerChooseList.length] + " " + TextGet("Minutes"),
-            () => MistressTimerChooseList[(MistressTimerChooseIndex + 1) % MistressTimerChooseList.length] + " " + TextGet("Minutes"));
+        DrawButton(1100, 910, 250, 70, DialogFind(Player, "AddTimerTime"), "White");
+        DrawBackNextButton(1400, 910, 200, 70, MistressTimerChooseList[MistressTimerChooseIndex] + " " + DialogFind(Player, "Minutes"), "White", "",
+            () => MistressTimerChooseList[(MistressTimerChooseList.length + MistressTimerChooseIndex - 1) % MistressTimerChooseList.length] + " " + DialogFind(Player, "Minutes"),
+            () => MistressTimerChooseList[(MistressTimerChooseIndex + 1) % MistressTimerChooseList.length] + " " + DialogFind(Player, "Minutes"));
     }
 }
 
