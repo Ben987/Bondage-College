@@ -242,3 +242,7 @@ function PreferenceSubscreenChatClick() {
 		ElementCreateInput("InputCharacterLabelColor", "text", Player.LabelColor);
 	}
 }
+
+function PreferenceHasPlayerEnabledSensDep() {
+	return (Player.GameplaySettings && ((Player.GameplaySettings.SensDepChatLog == "SensDepNames") || (Player.GameplaySettings.SensDepChatLog == "SensDepTotal")) && (Player.Effect.indexOf("DeafHeavy") >= 0) && (Player.Effect.indexOf("BlindHeavy") >= 0));
+}

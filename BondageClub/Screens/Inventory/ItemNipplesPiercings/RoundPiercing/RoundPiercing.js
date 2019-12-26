@@ -47,10 +47,11 @@ function InventoryItemNipplesPiercingsRoundPiercingSetPose(NewPose) {
 			if (NewPose == "Chain") DialogFocusItem.Property.Hide = [""];
 		}
 		CharacterRefresh(C);
-		var msg = DialogFind(Player, "RoundPiercingRestrain" + ((NewPose == null) ? "Base" : NewPose));
-		msg = msg.replace("SourceCharacter", Player.Name);
-		msg = msg.replace("DestinationCharacter", C.Name);
-		ChatRoomPublishCustomAction(msg, true);
+		var msg = "RoundPiercingRestrain" + ((NewPose == null) ? "Base" : NewPose);
+		var Dictionary = [];
+		Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+		Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+		ChatRoomPublishCustomAction(msg, true, Dictionary);
 		if (DialogInventory != null) {
 			DialogFocusItem = null;
 			DialogMenuButtonBuild(C);

@@ -62,10 +62,11 @@ function InventoryItemDevicesTeddyBearSetType(NewType) {
 	CharacterRefresh(C);
 	ChatRoomCharacterUpdate(C);
 
-	var msg = DialogFind(Player, "TeddyBearSet" + ((NewType) ? NewType : "Bear"));
-	msg = msg.replace("SourceCharacter", Player.Name);
-	msg = msg.replace("DestinationCharacter", C.Name);
-	ChatRoomPublishCustomAction(msg, true);
+	var msg = "TeddyBearSet" + ((NewType) ? NewType : "Bear");
+	var Dictionary = [];
+	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+	Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+	ChatRoomPublishCustomAction(msg, true, Dictionary);
 	if (DialogInventory != null) {
 		DialogFocusItem = null;
 		DialogMenuButtonBuild(C);

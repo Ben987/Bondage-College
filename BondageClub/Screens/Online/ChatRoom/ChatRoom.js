@@ -258,20 +258,22 @@ function ChatRoomSendChat() {
 			// The player can roll a dice, if no size is specified, a 6 sided dice is assumed
 			var Dice = (isNaN(parseInt(msg.substring(5, 50).trim()))) ? 6 : parseInt(msg.substring(5, 50).trim());
 			if ((Dice < 4) || (Dice > 100)) Dice = 6;
-			msg = TextGet("ActionDice");
-			msg = msg.replace("SourceCharacter", Player.Name);
-			msg = msg.replace("DiceType", Dice.toString());
-			msg = msg.replace("DiceResult", (Math.floor(Math.random() * Dice) + 1).toString());
-			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Action" } );
+			msg = "ActionDice";
+			var Dictionary = [];
+			Dictionary.push({Tag: "SourceCharacter", Text: Player.Name});
+			Dictionary.push({Tag: "DiceType", Text: Dice.toString()});
+			Dictionary.push({Tag: "DiceResult", Text: (Math.floor(Math.random() * Dice) + 1).toString()});
+			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Action", Dictionary: Dictionary} );
 
 		} else if (m.indexOf("/coin") == 0) {
 
 			// The player can flip a coin, heads or tails are 50/50
-			msg = TextGet("ActionCoin");
+			msg = "ActionCoin";
 			var Heads = (Math.random() >= 0.5);
-			msg = msg.replace("SourceCharacter", Player.Name);
-			msg = msg.replace("CoinResult", Heads ? TextGet("Heads") : TextGet("Tails"));
-			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Action" } );
+			var Dictionary = [];
+			Dictionary.push({Tag: "SourceCharacter", Text: Player.Name});
+			Dictionary.push({Tag: "CoinResult", TextToLookUp: Heads ? "Heads" : "Tails"});
+			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Action", Dictionary: Dictionary} );
 
 		} else if ((m.indexOf("*") == 0) || (m.indexOf("/me ") == 0)) {
 
@@ -330,22 +332,23 @@ function ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem
 
 		// Prepares the message
 		var msg = "";
-		if ((DialogProgressPrevItem != null) && (DialogProgressNextItem != null) && !DialogProgressNextItem.Asset.IsLock) msg = TextGet("ActionSwap");
-		else if ((DialogProgressPrevItem != null) && (DialogProgressNextItem != null) && DialogProgressNextItem.Asset.IsLock) msg = TextGet("ActionAddLock");
-		else if (InventoryItemHasEffect(DialogProgressNextItem, "Lock")) msg = TextGet("ActionLock");
-		else if (DialogProgressNextItem != null) msg = TextGet("ActionUse");
-		else if (InventoryItemHasEffect(DialogProgressPrevItem, "Lock")) msg = TextGet("ActionUnlock");
-		else msg = TextGet("ActionRemove");
+		var Dictionary = [];
+		if ((DialogProgressPrevItem != null) && (DialogProgressNextItem != null) && !DialogProgressNextItem.Asset.IsLock) msg = "ActionSwap";
+		else if ((DialogProgressPrevItem != null) && (DialogProgressNextItem != null) && DialogProgressNextItem.Asset.IsLock) msg = "ActionAddLock";
+		else if (InventoryItemHasEffect(DialogProgressNextItem, "Lock")) msg = "ActionLock";
+		else if (DialogProgressNextItem != null) msg = "ActionUse";
+		else if (InventoryItemHasEffect(DialogProgressPrevItem, "Lock")) msg = "ActionUnlock";
+		else msg = "ActionRemove";
 		
 		// Replaces the action tags to build the phrase
-		msg = msg.replace("SourceCharacter", Player.Name);
-		msg = msg.replace("DestinationCharacter", (C.ID == 0) ? TextGet("Her") : C.Name + TextGet("'s"));
-		if (DialogProgressPrevItem != null) msg = msg.replace("PrevAsset", DialogProgressPrevItem.Asset.DynamicDescription().toLowerCase());
-		if (DialogProgressNextItem != null) msg = msg.replace("NextAsset", DialogProgressNextItem.Asset.DynamicDescription().toLowerCase());
-		if (C.FocusGroup != null) msg = msg.replace("FocusAssetGroup", C.FocusGroup.Description.toLowerCase());
- 
+		Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+		Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+		if (DialogProgressPrevItem != null) Dictionary.push({Tag: "PrevAsset", AssetName: DialogProgressPrevItem.Asset.Name});
+		if (DialogProgressNextItem != null) Dictionary.push({Tag: "NextAsset", AssetName: DialogProgressNextItem.Asset.Name});
+		if (C.FocusGroup != null) Dictionary.push({ Tag: "FocusAssetGroup", AssetGroupName: C.FocusGroup.Name});
+
 		// Sends the result to the server and leaves the dialog if we need to
-		ServerSend("ChatRoomChat", { Content: msg, Type: "Action" } );
+		ServerSend("ChatRoomChat", { Content: msg, Type: "Action", Dictionary: Dictionary} );
 		ChatRoomCharacterUpdate(C);
 		if (LeaveDialog && (CurrentCharacter != null)) DialogLeave();
 
@@ -353,9 +356,9 @@ function ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem
 }
 
 // Publishes a custom action to the chat
-function ChatRoomPublishCustomAction(msg, LeaveDialog) {
+function ChatRoomPublishCustomAction(msg, LeaveDialog, Dictionary) {
 	if (CurrentScreen == "ChatRoom") {
-		ServerSend("ChatRoomChat", { Content: msg, Type: "Action" } );
+		ServerSend("ChatRoomChat", { Content: msg, Type: "Action", Dictionary: Dictionary} );
 		ChatRoomCharacterUpdate(CurrentCharacter);
 		if (LeaveDialog && (CurrentCharacter != null)) DialogLeave();
 	}
@@ -409,16 +412,42 @@ function ChatRoomMessage(data) {
 				enterLeave = " ChatMessageEnterLeave";
 			}
 
+			// Replace actions by the content of the dictionary
+			else if (data.Type && (data.Type == "Action")) {
+				console.log(data);
+				msg = DialogFind(Player, msg);
+				if (data.Dictionary) {
+					var dictionary = data.Dictionary;
+					for (var D = 0; D < dictionary.length; D++) {
+						if ((dictionary[D].Tag == "SourceCharacter") && PreferenceHasPlayerEnabledSensDep() && dictionary[D].MemberNumber != Player.MemberNumber) msg = msg.replace(dictionary[D].Tag, DialogFind(Player, "Someone"));
+						else if (dictionary[D].Tag == "DestinationCharacter") msg = msg.replace(dictionary[D].Tag, SenderCharacter.MemberNumber == dictionary[D].MemberNumber ? DialogFind(Player, "Her") :
+							(PreferenceHasPlayerEnabledSensDep() && dictionary[D].MemberNumber != Player.MemberNumber ? DialogFind(Player, "Someone").toLowerCase : dictionary[D].Text + DialogFind(Player, "'s")));
+						else if (dictionary[D].TextToLookUp) msg = msg.replace(dictionary[D].Tag, DialogFind(Player, dictionary[D].TextToLookUp));
+						else if (dictionary[D].AssetName) {
+							for (var A = 0; A < Asset.length; A++)
+								if (Asset[A].Name == dictionary[D].AssetName)
+									msg = msg.replace(dictionary[D].Tag, Asset[A].DynamicDescription().toLowerCase());
+						}
+						else if (dictionary[D].AssetGroupName) {
+							for (var A = 0; A < AssetGroup.length; A++)
+								if (AssetGroup[A].Name == dictionary[D].AssetGroupName)
+									msg = msg.replace(dictionary[D].Tag, AssetGroup[A].Description.toLowerCase());
+						}
+						else msg = msg.replace(dictionary[D].Tag, dictionary[D].Text);
+					}
+				}
+			}
+
 			// Builds the message to add depending on the type
 			if (data.Type != null) {
 				if (data.Type == "Chat"){
-					if (Player.GameplaySettings && (Player.GameplaySettings.SensDepChatLog == "SensDepNames" || Player.GameplaySettings.SensDepChatLog == "SensDepTotal") && (Player.Effect.indexOf("DeafHeavy") >= 0) && (Player.Effect.indexOf("BlindHeavy") >= 0)) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SpeechGarble(SenderCharacter, SenderCharacter.Name) + ':</span> ' + SpeechGarble(SenderCharacter, msg);
+					if (PreferenceHasPlayerEnabledSensDep() && SenderCharacter.MemberNumber != Player.MemberNumber) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SpeechGarble(Player, SenderCharacter.Name) + ':</span> ' + SpeechGarble(SenderCharacter, msg);
 					else if (Player.IsDeaf()) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + SpeechGarble(SenderCharacter, msg);
 					else msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + SpeechGarble(SenderCharacter, msg);
 				}
 				else if (data.Type == "Whisper") msg = '<span class="ChatMessageName" style="font-style: italic; color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + msg;
 				else if (data.Type == "Emote") {
-					if (Player.GameplaySettings && (Player.GameplaySettings.SensDepChatLog == "SensDepNames" || Player.GameplaySettings.SensDepChatLog == "SensDepTotal") && (Player.Effect.indexOf("DeafHeavy") >= 0) && (Player.Effect.indexOf("BlindHeavy") >= 0) && SenderCharacter.ID != Player.ID) msg = "*" + DialogFind(Player,"Someone") + " " + msg + "*";
+					if (PreferenceHasPlayerEnabledSensDep() && SenderCharacter.MemberNumber != Player.MemberNumber) msg = "*" + DialogFind(Player, "Someone") + " " + msg + "*";
 					else msg = "*" + SenderCharacter.Name + " " + msg + "*";
 				}
 				else if (data.Type == "Action") msg = "(" + msg + ")";
