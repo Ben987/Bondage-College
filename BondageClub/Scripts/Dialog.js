@@ -21,6 +21,7 @@ var DialogMenuButton = [];
 var DialogItemToLock = null;
 var DialogAllowBlush = false;
 var DialogAllowEyebrows = false;
+var DialogAllowDrool = false;
 var DialogFacialExpressions = [];
 var DialogItemPermissionMode = false;
 
@@ -142,7 +143,11 @@ function DialogEndExpression() {
 		TimerInventoryRemoveSet(Player, "Eyebrows", 5);
 		DialogAllowEyebrows = false;
 	}
-}
+	}
+	if (DialogAllowDrool) {
+		TimerInventoryRemoveSet(Player, "Drool", 5);
+		DialogAllowDrool = false;
+	}
 
 // Leaves the item menu for both characters
 function DialogLeaveItemMenu() {
@@ -320,6 +325,11 @@ function DialogStruggle(Reverse) {
 		if (DialogProgressStruggleCount == 15) CharacterSetFacialExpression(Player, "Blush", "Low");
 		if (DialogProgressStruggleCount == 50) CharacterSetFacialExpression(Player, "Blush", "Medium");
 		if (DialogProgressStruggleCount == 125) CharacterSetFacialExpression(Player, "Blush", "High");
+	}
+
+	// drool Expression
+	if (DialogAllowDrool && !Reverse) {
+		if (DialogProgressStruggleCount == 15) CharacterSetFacialExpression(Player, "Drool", "Right", "Left");
 	}
 
 	// Over 50 progress, the character frowns

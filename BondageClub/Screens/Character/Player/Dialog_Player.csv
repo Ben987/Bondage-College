@@ -117,10 +117,19 @@ ActionCoin,,,SourceCharacter flips a coin.  The result is: CoinResult.
 LockMemberNumber,,,Member number on lock:
 TimerLeft,,,Time left:
 TimerRestart,,,SourceCharacter restarts the five minutes timer padlock on DestinationCharacter FocusAssetGroup.
+TimerUnknown,,,Unknown time left
 RestartTimer,,,Restart Timer
+TimerAddTime,,,SourceCharacter adds TimerTime TimerUnit to the padlock on DestinationCharacter's FocusAssetGroup.
+TimerAddUnknownTime,,,an unknown amount of time
+AllowModifyTimer,,,Allow everyone adding more time
+AddTimerTimeMinutes,,,Add TimerTime minutes to the Timer
+AddTimerTime,,,Add
 RemoveItemWithTimer,,,Remove item when the lock timer runs out
 WillRemoveItemWithTimer,,,The item will be removed when the lock timer runs out
 WontRemoveItemWithTimer,,,The item will stay when the lock timer runs out
+ShowItemWithTimerRemaining,,,Show the time remaining/being added
+Minutes,,,minutes
+Hours,,,hours
 SelectBondagePosition,,,Select the bondage position
 SelectTapeWrapping,,,Select the tape wrapping
 SelectAttachmentState,,,Select an item attachment
@@ -131,7 +140,10 @@ ItemMiscIntricatePadlockIntro,,,"""To keep your loved one secure"""
 ItemMiscTimerPadlockIntro,,,You can restart the timer but cannot unlock
 ItemMiscOwnerPadlockIntro,,,"""Never forget who you belong to"""
 ItemMiscOwnerPadlockDetail,,,Can only be locked or unlocked by her owner
+ItemMiscOwnerTimerPadlockIntro,,,"""Never forget who you belong to"""
+ItemMiscOwnerTimerPadlockDetail,,,Can only be unlocked or extended by her owner
 ItemMiscMistressPadlockIntro,,,Can only be locked or unlocked by a Club Mistress
+ItemMiscMistressTimerPadlockIntro,,,Can only be unlocked or extended by a Club Mistress
 LeatherCuffsPoseNone,,,Detached
 LeatherCuffsPoseWrist,,,Bind wrists
 LeatherCuffsPoseElbow,,,Bind elbows
