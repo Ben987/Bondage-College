@@ -2,10 +2,13 @@
 var CollegeDetentionBackground = "CollegeDetention";
 var CollegeDetentionYuki = null;
 var CollegeDetentionYukiLove = 0;
+var CollegeDetentionYukiWillReleaseAt = 0;
 
 // Returns TRUE if the dialog option should be shown
 function CollegeDetentionCanInviteToPrivateRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax)) }
 function CollegeDetentionYukiLoveIs(LoveLevel) { return (CollegeDetentionYukiLove >= parseInt(LoveLevel)) }
+function CollegeDetentionGetSleepingPills() { InventoryAdd(Player, "RegularSleepingPill", "ItemMouth") }
+function CollegeDetentionYukiWillRelease() { return (CollegeDetentionYukiWillReleaseAt < CurrentTime) }
 
 // Fully dress-up Yuki
 function CollegeDetentionYukiClothes() {
@@ -81,6 +84,8 @@ function CollegeDetentionYukiLoveChange(LoveChange, Event) {
 		TimerInventoryRemoveSet(CollegeDetentionYuki, "Eyebrows", 2);
 		if (CollegeDetentionYukiLove >= 10) {
 			CollegeDetentionYuki.Stage = "2000";
+			CollegeDetentionYukiLove = 0;
+			CollegeDetentionYukiWillReleaseAt = 0;
 			CollegeDetentionYuki.CurrentDialog = DialogFind(CollegeDetentionYuki, "YukiPropose");
 		}
 	}
@@ -92,6 +97,35 @@ function CollegeDetentionDressBack() {
 	CharacterRelease(CollegeDetentionYuki);
 	CollegeEntranceWearStudentClothes(Player);
 	CollegeDetentionYukiClothes();
+}
+
+// Strips both the player and Yuki
+function CollegeDetentionBothNaked() {
+	CharacterNaked(Player);
+	CharacterNaked(CollegeDetentionYuki);
+}
+
+// When the player pleases Yuki, it's a race against the clock to make her orgasm
+function CollegeDetentionPleaseYuki(Factor) {
+	CollegeDetentionYukiWillReleaseAt++;
+	CollegeDetentionYukiLove = CollegeDetentionYukiLove + Factor;
+	if (CollegeDetentionYukiLove >= 6) {
+		CollegeDetentionYuki.Stage = "2100";
+		CollegeDetentionYuki.CurrentDialog = DialogFind(CollegeDetentionYuki, "Orgasm");
+		return;
+	}
+	if (CollegeDetentionYukiWillReleaseAt >= 6) {
+		CollegeDetentionYuki.Stage = "2200";
+		CollegeDetentionYuki.CurrentDialog = DialogFind(CollegeDetentionYuki, "NoOrgasm");
+		return;
+	}
+}
+
+// When Yuki restrains the player
+function CollegeDetentionRestrainPlayer(Type) {
+	if (Type == "Arms") InventoryWearRandom(Player, "ItemArms", 4);
+	if (Type == "Legs") { InventoryWearRandom(Player, "ItemFeet", 4); InventoryWearRandom(Player, "ItemLegs", 4); }
+	if (Type == "Mouth") { InventoryWearRandom(Player, "ItemMouth", 4); CollegeDetentionYukiWillReleaseAt = CurrentTime + 180000; }
 }
 
 // When the plater invites Yuki to her room
