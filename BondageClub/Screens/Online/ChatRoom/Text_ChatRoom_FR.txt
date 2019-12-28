@@ -1,19 +1,3 @@
-SourceCharacter swaps a PrevAsset for a NextAsset on DestinationCharacter FocusAssetGroup.
-SourceCharacter échange un(e) PrevAsset pour un(e) NextAsset sur le/a/es FocusAssetGroup de DestinationCharacter.
-SourceCharacter uses a NextAsset on DestinationCharacter FocusAssetGroup.
-SourceCharacter utilise un(e) NextAsset sur le/a/es FocusAssetGroup de DestinationCharacter.
-SourceCharacter locks a NextAsset on DestinationCharacter FocusAssetGroup.
-SourceCharacter vérouille un(e) NextAsset sur le/a/es FocusAssetGroup de DestinationCharacter.
-SourceCharacter adds a NextAsset on DestinationCharacter FocusAssetGroup PrevAsset.
-SourceCharacter ajoute un(e) NextAsset sur le/a/es FocusAssetGroup de DestinationCharacter PrevAsset.
-SourceCharacter removes the PrevAsset from DestinationCharacter FocusAssetGroup.
-SourceCharacter enlève le/a/es PrevAsset sur le/a/es FocusAssetGroup de DestinationCharacter.
-SourceCharacter unlocks and removes the PrevAsset from DestinationCharacter FocusAssetGroup.
-SourceCharacter dévérouille et enlève le/a/es PrevAsset sur le/a/es FocusAssetGroup de DestinationCharacter.
-SourceCharacter rolls a DiceType sided dice.  The result is: DiceResult.
-SourceCharacter roule un dé à DiceType côtés. Le résultat est: DiceResult.
-SourceCharacter flips a coin.  The result is: CoinResult.
-SourceCharacter lance une pièce. Le résultat est: CoinResult.
 gets grabbed by two maids and locked in a timer cell, following her owner commands.
 est attrapée par deux servantes et enfermée dans une cellule minutée, selon l'ordre de sa patronne.
 gets grabbed by two maids and escorted to the maid quarters to serve drinks for her owner.
@@ -26,15 +10,3 @@ Talk to everyone
 Parler à tous
 Whisper to
 Chuchoter à
-Heads
-Face
-Tails
-Pile
-her
-elle
-'s
-
-kneels down
-s'agenouille
-stands up
-se relève

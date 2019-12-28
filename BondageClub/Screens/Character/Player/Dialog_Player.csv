@@ -77,6 +77,12 @@ Heads,,,Heads
 Tails,,,Tails
 Her,,,her
 Someone,,,Someone
+KneelDown,,,SourceCharacter kneels down
+StandUp,,,SourceCharacter stands up
+Private,,,Private
+Public,,,Public
+Locked,,,Locked
+Unlocked,,,Unlocked
 Delete,,,Delete
 ConfirmDelete,,,Confirm
 Beep,,,Beep
@@ -106,6 +112,16 @@ ServerMessageOwnerRuleRemoteAllow,,,Your owner is now allowing you to have remot
 ServerMessageOwnerRuleRemoteConfiscate,,,Your owner has confiscated your remotes.  All your remotes are lost.
 ServerMessageOwnerRuleRemoteBlock,,,Your owner is now preventing you from getting new remotes.  The club shop will not sell remotes to you anymore.
 ServerMessageWhisperBlocked,,,You're on SourceCharacter blacklist.  Your message was blocked by the server.
+ServerEnter,,,SourceCharacter entered.
+ServerLeave,,,SourceCharacter left.
+ServerDisconnect,,,SourceCharacter disconnected.
+ServerBan,,,SourceCharacter was banned by SourceCharacter.
+ServerKick,,,SourceCharacter was kicked-out by SourceCharacter.
+ServerMoveLeft,,,SourceCharacter was moved to the left by SourceCharacter.
+ServerMoveRight,,,SourceCharacter was moved to the right by SourceCharacter.
+ServerPromoteAdmin,,,SourceCharacter was promoted to administrator by SourceCharacter.
+ServerDemoteAdmin,,,SourceCharacter was demoted from administration by SourceCharacter.
+ServerUpdateRoom,,,SourceCharacter updated the room. Name: ChatRoomName. Limit: ChatRoomLimit.  ChatRoomPrivacy.  ChatRoomLocked.
 ActionSwap,,,SourceCharacter swaps a PrevAsset for a NextAsset on DestinationCharacter FocusAssetGroup.
 ActionUse,,,SourceCharacter uses a NextAsset on DestinationCharacter FocusAssetGroup.
 ActionLock,,,SourceCharacter locks a NextAsset on DestinationCharacter FocusAssetGroup.
@@ -121,7 +137,7 @@ TimerUnknown,,,Unknown time left
 RestartTimer,,,Restart Timer
 TimerAddTime,,,SourceCharacter adds TimerTime TimerUnit to the padlock on DestinationCharacter's FocusAssetGroup.
 TimerAddUnknownTime,,,an unknown amount of time
-AllowModifyTimer,,,Allow everyone adding more time
+AllowModifyTimer,,,Allow everyone to add more time
 AddTimerTimeMinutes,,,Add TimerTime minutes to the Timer
 AddTimerTime,,,Add
 RemoveItemWithTimer,,,Remove item when the lock timer runs out

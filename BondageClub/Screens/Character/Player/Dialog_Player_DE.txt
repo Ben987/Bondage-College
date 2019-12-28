@@ -144,7 +144,17 @@ Stöpsel
 gag
 Knebel
 's
-s
+
+Heads
+Kopf
+Tails
+Zahl
+her
+sich selbst
+SourceCharacter kneels down
+SourceCharacter kniet sich hin
+SourceCharacter stands up
+SourceCharacter steht auf
 Delete
 Löschen
 Confirm
@@ -197,6 +207,22 @@ Your owner is now preventing you from getting new keys.  The club shop will not 
 Deine Besitzerin hindert dich nun daran, neue Schlüssel zu erlangen. Der Clubladen wird dir keine Schlüssel mehr verkaufen.
 You're on SourceCharacter blacklist.  Your message was blocked by the server.
 Du bist auf SourceCharacter Blacklist. Deine Nachricht wurde vom Server blockiert.
+SourceCharacter swaps a PrevAsset for a NextAsset on DestinationCharacter FocusAssetGroup.
+SourceCharacter tauscht bei DestinationCharacter PrevAsset gegen NextAsset.
+SourceCharacter uses a NextAsset on DestinationCharacter FocusAssetGroup.
+SourceCharacter setzt NextAsset an DestinationCharacter ein.
+SourceCharacter locks a NextAsset on DestinationCharacter FocusAssetGroup.
+SourceCharacter verschließt NextAsset an DestinationCharacter.
+SourceCharacter adds a NextAsset on DestinationCharacter FocusAssetGroup PrevAsset.
+SourceCharacter bringt ein NextAsset an DestinationCharacters PrevAsset an.
+SourceCharacter removes the PrevAsset from DestinationCharacter FocusAssetGroup.
+SourceCharacter entfernt PrevAsset von DestinationCharacter.
+SourceCharacter unlocks and removes the PrevAsset from DestinationCharacter FocusAssetGroup.
+SourceCharacter öffnet und entfernt PrevAsset von DestinationCharacter.
+SourceCharacter rolls a DiceType sided dice.  The result is: DiceResult.
+SourceCharacter rollt einen DiceType-seitigen Würfel. Das Ergebnis ist: DiceResult.
+SourceCharacter flips a coin.  The result is: CoinResult.
+SourceCharacter wirft eine Münze. Das Ergebnis ist: CoinResult.
 Member number on lock:
 Mitglieds-ID auf dem Schloss:
 Time left:

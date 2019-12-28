@@ -107,6 +107,16 @@ gag
 baillon
 's
 
+Heads
+Face
+Tails
+Pile
+her
+elle
+SourceCharacter kneels down
+SourceCharacter s'agenouille
+SourceCharacter stands up
+SourceCharacter se relève
 Delete
 Delete
 Confirm
@@ -151,6 +161,22 @@ Your owner has confiscated your keys.  All your regular keys are lost.
 Votre patronne a confisqué vos clés. Elles sont maintenant perdues.
 Your owner is now preventing you from getting new keys.  The club shop will not sell keys to you anymore.
 Votre patronne a bloqué le droit d'acheter de nouvelles clés. Le magasin de vous en vendront point.
+SourceCharacter swaps a PrevAsset for a NextAsset on DestinationCharacter FocusAssetGroup.
+SourceCharacter échange un(e) PrevAsset pour un(e) NextAsset sur le/a/es FocusAssetGroup de DestinationCharacter.
+SourceCharacter uses a NextAsset on DestinationCharacter FocusAssetGroup.
+SourceCharacter utilise un(e) NextAsset sur le/a/es FocusAssetGroup de DestinationCharacter.
+SourceCharacter locks a NextAsset on DestinationCharacter FocusAssetGroup.
+SourceCharacter vérouille un(e) NextAsset sur le/a/es FocusAssetGroup de DestinationCharacter.
+SourceCharacter adds a NextAsset on DestinationCharacter FocusAssetGroup PrevAsset.
+SourceCharacter ajoute un(e) NextAsset sur le/a/es FocusAssetGroup de DestinationCharacter PrevAsset.
+SourceCharacter removes the PrevAsset from DestinationCharacter FocusAssetGroup.
+SourceCharacter enlève le/a/es PrevAsset sur le/a/es FocusAssetGroup de DestinationCharacter.
+SourceCharacter unlocks and removes the PrevAsset from DestinationCharacter FocusAssetGroup.
+SourceCharacter dévérouille et enlève le/a/es PrevAsset sur le/a/es FocusAssetGroup de DestinationCharacter.
+SourceCharacter rolls a DiceType sided dice.  The result is: DiceResult.
+SourceCharacter roule un dé à DiceType côtés. Le résultat est: DiceResult.
+SourceCharacter flips a coin.  The result is: CoinResult.
+SourceCharacter lance une pièce. Le résultat est: CoinResult.
 Member number on lock:
 Numéro de membre sur le cadenas:
 Time left:

@@ -177,7 +177,9 @@ function ChatRoomClick() {
 
 	// When the user character kneels
 	if ((MouseX >= 1805) && (MouseX < 1865) && (MouseY >= 935) && (MouseY < 995) && Player.CanKneel()) {
-		ServerSend("ChatRoomChat", { Content: Player.Name + " " + TextGet((Player.ActivePose == null) ? "KneelDown": "StandUp"), Type: "Action" } );
+		var Dictionary = [];
+		Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+		ServerSend("ChatRoomChat", { Content: (Player.ActivePose == null) ? "KneelDown": "StandUp", Type: "Action" , Dictionary: Dictionary} );
 		CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
 		ChatRoomCharacterUpdate(Player);
 	}
@@ -377,6 +379,7 @@ function ChatRoomCharacterUpdate(C) {
 // When the server sends a chat message
 function ChatRoomMessage(data) {
 
+	console.log(data);
 	// Make sure the message is valid (needs a Sender and Content)
 	if ((data != null) && (typeof data === "object") && (data.Content != null) && (typeof data.Content === "string") && (data.Content != "") && (data.Sender != null) && (typeof data.Sender === "number") && (data.Sender > 0)) {
 
@@ -408,13 +411,12 @@ function ChatRoomMessage(data) {
 
 			// [Temporary?] Checks if the message is a notification about the user entering or leaving the room
 			var enterLeave = "";
-			if ((data.Type == "Action") && (msg.startsWith(SenderCharacter.Name + " entered.") || msg.startsWith(SenderCharacter.Name + " left.") || msg.startsWith(SenderCharacter.Name + " disconnected.") || msg.startsWith(SenderCharacter.Name + " was banned by ") || msg.startsWith(SenderCharacter.Name + " was kicked-out by "))) {
+			if ((data.Type == "Action") && (msg.startsWith("ServerEnter")) || (msg.startsWith("ServerLeave")) || (msg.startsWith("ServerDisconnect")) || (msg.startsWith("ServerBan")) || (msg.startsWith("ServerKick"))) {
 				enterLeave = " ChatMessageEnterLeave";
 			}
 
 			// Replace actions by the content of the dictionary
-			else if (data.Type && (data.Type == "Action")) {
-				console.log(data);
+			if (data.Type && (data.Type == "Action")) {
 				msg = DialogFind(Player, msg);
 				if (data.Dictionary) {
 					var dictionary = data.Dictionary;
@@ -441,7 +443,7 @@ function ChatRoomMessage(data) {
 			// Builds the message to add depending on the type
 			if (data.Type != null) {
 				if (data.Type == "Chat"){
-					if (PreferenceHasPlayerEnabledSensDep() && SenderCharacter.MemberNumber != Player.MemberNumber) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SpeechGarble(Player, SenderCharacter.Name) + ':</span> ' + SpeechGarble(SenderCharacter, msg);
+					if (PreferenceHasPlayerEnabledSensDep() && SenderCharacter.MemberNumber != Player.MemberNumber) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SpeechGarble(SenderCharacter, SenderCharacter.Name) + ':</span> ' + SpeechGarble(SenderCharacter, msg);
 					else if (Player.IsDeaf()) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + SpeechGarble(SenderCharacter, msg);
 					else msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + SpeechGarble(SenderCharacter, msg);
 				}
