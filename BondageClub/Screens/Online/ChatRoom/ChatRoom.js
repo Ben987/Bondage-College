@@ -420,9 +420,11 @@ function ChatRoomMessage(data) {
 				if (data.Dictionary) {
 					var dictionary = data.Dictionary;
 					for (var D = 0; D < dictionary.length; D++) {
-						if ((dictionary[D].MemberNumber && ((dictionary[D].Tag == "SourceCharacter") ||(dictionary[D].Tag == "TargetCharacter"))) && PreferenceIsPlayerInSensDep() && dictionary[D].MemberNumber != Player.MemberNumber) msg = msg.replace(dictionary[D].Tag, DialogFind(Player, "Someone"));
+						if ((dictionary[D].Tag == "SourceCharacter") && PreferenceIsPlayerInSensDep() && dictionary[D].MemberNumber != Player.MemberNumber) msg = msg.replace(dictionary[D].Tag, DialogFind(Player, "Someone"));
+						else if (dictionary[D].Tag == "TargetCharacter") msg = msg.replace(dictionary[D].Tag, SenderCharacter.MemberNumber == dictionary[D].MemberNumber ? DialogFind(Player, "Herself") :
+							(PreferenceIsPlayerInSensDep() && dictionary[D].MemberNumber != Player.MemberNumber ? DialogFind(Player, "Someone").toLowerCase() : dictionary[D].Text));
 						else if (dictionary[D].Tag == "DestinationCharacter") msg = msg.replace(dictionary[D].Tag, SenderCharacter.MemberNumber == dictionary[D].MemberNumber ? DialogFind(Player, "Her") :
-							(PreferenceIsPlayerInSensDep() && dictionary[D].MemberNumber != Player.MemberNumber ? DialogFind(Player, "Someone").toLowerCase : dictionary[D].Text + DialogFind(Player, "'s")));
+							(PreferenceIsPlayerInSensDep() && dictionary[D].MemberNumber != Player.MemberNumber ? DialogFind(Player, "Someone").toLowerCase() : dictionary[D].Text + DialogFind(Player, "'s")));
 						else if (dictionary[D].TextToLookUp) msg = msg.replace(dictionary[D].Tag, DialogFind(Player, dictionary[D].TextToLookUp));
 						else if (dictionary[D].AssetName) {
 							for (var A = 0; A < Asset.length; A++)

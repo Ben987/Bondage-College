@@ -235,12 +235,12 @@ Mummy
 Momie
 SourceCharacter wraps duct tape around DestinationCharacter hands.
 SourceCharacter enroule du ruban adhésif autour des mains de DestinationCharacter.
-SourceCharacter creates a duct tape skirt on DestinationCharacter and traps her hands in it.
-SourceCharacter crée une jupe avec le ruban adhésif et enroule les mains de DestinationCharacter à l'intérieur.
-SourceCharacter creates a duct tape top on DestinationCharacter and traps her arms in it.
-SourceCharacter enroule les bras de DestinationCharacter dans un chandail de ruban adhésif.
-SourceCharacter creates a duct tape mummy on DestinationCharacter and traps her arms in it.
-SourceCharacter transforme DestinationCharacter en une momie de ruban adhésif.
+SourceCharacter creates a duct tape skirt on TargetCharacter and traps her hands in it.
+SourceCharacter crée une jupe avec le ruban adhésif et enroule les mains de TargetCharacter à l'intérieur.
+SourceCharacter creates a duct tape top on TargetCharacter and traps her arms in it.
+SourceCharacter enroule les bras de TargetCharacter dans un chandail de ruban adhésif.
+SourceCharacter creates a duct tape mummy on TargetCharacter and traps her arms in it.
+SourceCharacter transforme TargetCharacter en une momie de ruban adhésif.
 Select the type of gag
 Selectionner le type de bâillon
 Small
@@ -291,8 +291,8 @@ Double
 Double
 Wrap
 Enroulé
-SourceCharacter takes a piece of duct tape for DestinationCharacter and place on her face.
-SourceCharacter prend un morceau de ruban et le place sur la face de DestinationCharacter.
+SourceCharacter takes a piece of duct tape for TargetCharacter and place on her face.
+SourceCharacter prend un morceau de ruban et le place sur la face de TargetCharacter.
 SourceCharacter wraps some duct tape onto DestinationCharacter face.
 SourceCharacter enroule du ruban sur la face de DestinationCharacter.
 SourceCharacter wraps DestinationCharacter head in tape with multiple layers. 

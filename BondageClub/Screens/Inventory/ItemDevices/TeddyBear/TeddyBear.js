@@ -65,7 +65,7 @@ function InventoryItemDevicesTeddyBearSetType(NewType) {
 	var msg = "TeddyBearSet" + ((NewType) ? NewType : "Bear");
 	var Dictionary = [];
 	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
-	Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+	Dictionary.push({Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
 	if (DialogInventory != null) {
 		DialogFocusItem = null;

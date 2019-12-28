@@ -76,6 +76,7 @@ gag,,,gag
 Heads,,,Heads
 Tails,,,Tails
 Her,,,her
+Herself,,,herself
 Someone,,,Someone
 KneelDown,,,SourceCharacter kneels down
 StandUp,,,SourceCharacter stands up
@@ -135,7 +136,7 @@ TimerLeft,,,Time left:
 TimerRestart,,,SourceCharacter restarts the five minutes timer padlock on DestinationCharacter FocusAssetGroup.
 TimerUnknown,,,Unknown time left
 RestartTimer,,,Restart Timer
-TimerAddTime,,,SourceCharacter adds TimerTime TimerUnit to the padlock on DestinationCharacter's FocusAssetGroup.
+TimerAddTime,,,SourceCharacter adds TimerTime TimerUnit to the padlock on DestinationCharacter FocusAssetGroup.
 TimerAddUnknownTime,,,an unknown amount of time
 AllowModifyTimer,,,Allow everyone to add more time
 AddTimerTimeMinutes,,,Add TimerTime minutes to the Timer
@@ -224,23 +225,23 @@ SturdyLeatherBeltsPoseOne,,,One
 SturdyLeatherBeltsPoseTwo,,,Two
 SturdyLeatherBeltsPoseThree,,,Three
 SturdyLeatherBeltsPoseFour,,,Four
-SturdyLeatherBeltsRestrainNone,,,SourceCharacter restrains DestinationCharacter with only one sturdy leather belt.
-SturdyLeatherBeltsRestrainTwo,,,SourceCharacter restrains DestinationCharacter with two sturdy leather belts.
-SturdyLeatherBeltsRestrainThree,,,SourceCharacter restrains DestinationCharacter with three sturdy leather belts.
-SturdyLeatherBeltsRestrainFour,,,SourceCharacter restrains DestinationCharacter with four sturdy leather belts.
+SturdyLeatherBeltsRestrainNone,,,SourceCharacter restrains TargetCharacter with only one sturdy leather belt.
+SturdyLeatherBeltsRestrainTwo,,,SourceCharacter restrains TargetCharacter with two sturdy leather belts.
+SturdyLeatherBeltsRestrainThree,,,SourceCharacter restrains TargetCharacter with three sturdy leather belts.
+SturdyLeatherBeltsRestrainFour,,,SourceCharacter restrains TargetCharacter with four sturdy leather belts.
 BondageBenchStrapsSelectTightness,,,How many leather belts do you want to apply?
 BondageBenchStrapsPoseLight,,,Light
 BondageBenchStrapsPoseNormal,,,Normal
 BondageBenchStrapsPoseHeavy,,,Heavy
 BondageBenchStrapsPoseFull,,,Full
-BondageBenchStrapsRestrainNone,,,SourceCharacter loosely restrains DestinationCharacter to the bondage bench with few leather belts.
-BondageBenchStrapsRestrainNormal,,,SourceCharacter restrains DestinationCharacter to the bondage bench with a handful of leather belts.
-BondageBenchStrapsRestrainHeavy,,,SourceCharacter strictly restrains DestinationCharacter to the bondage bench with a good amount of leather belts.
-BondageBenchStrapsRestrainFull,,,SourceCharacter fully restrains DestinationCharacter to the bondage bench with a large amount of leather belts.
+BondageBenchStrapsRestrainNone,,,SourceCharacter loosely restrains TargetCharacter to the bondage bench with few leather belts.
+BondageBenchStrapsRestrainNormal,,,SourceCharacter restrains TargetCharacter to the bondage bench with a handful of leather belts.
+BondageBenchStrapsRestrainHeavy,,,SourceCharacter strictly restrains TargetCharacter to the bondage bench with a good amount of leather belts.
+BondageBenchStrapsRestrainFull,,,SourceCharacter fully restrains TargetCharacter to the bondage bench with a large amount of leather belts.
 BondageBenchSelectType,,,How do you want to restrain them?
 BondageBenchPoseStrapUp,,,Leather Belt Straps
 BondageBenchRestrainNone,,,SourceCharacter removes the leather belts from DestinationCharacter body.
-BondageBenchRestrainStrapUp,,,SourceCharacter loosely restrains DestinationCharacter to the bondage bench with few leather belts.
+BondageBenchRestrainStrapUp,,,SourceCharacter loosely restrains TargetCharacter to the bondage bench with few leather belts.
 DuctTapePoseHands,,,Hands
 DuctTapePoseArms,,,Arms
 DuctTapePoseBottom,,,Skirt
@@ -248,10 +249,10 @@ DuctTapePoseTop,,,Torso
 DuctTapePoseFull,,,Mummy
 DuctTapePoseComplete,,,Full Mummy
 DuctTapeRestrainHands,,,SourceCharacter wraps duct tape around DestinationCharacter hands.
-DuctTapeRestrainBottom,,,SourceCharacter creates a duct tape skirt on DestinationCharacter and traps her hands in it.
-DuctTapeRestrainTop,,,SourceCharacter creates a duct tape top on DestinationCharacter and traps her arms in it.
-DuctTapeRestrainFull,,,SourceCharacter creates a duct tape mummy on DestinationCharacter and traps her arms in it.
-DuctTapeRestrainComplete,,,SourceCharacter creates a completed duct tape mummy on DestinationCharacter and traps her entire upper body in it.
+DuctTapeRestrainBottom,,,SourceCharacter creates a duct tape skirt on TargetCharacter and traps her hands in it.
+DuctTapeRestrainTop,,,SourceCharacter creates a duct tape top on TargetCharacter and traps her arms in it.
+DuctTapeRestrainFull,,,SourceCharacter creates a duct tape mummy on TargetCharacter and traps her arms in it.
+DuctTapeRestrainComplete,,,SourceCharacter creates a completed duct tape mummy on TargetCharacter and traps her entire upper body in it.
 WristShacklesPoseInFront,,,In-front of body
 WristShacklesPoseBehind,,,Behind back.
 WristShacklesRestrainInFront,,,SourceCharacter shackles DestinationCharacter wrist in-front of their body.
@@ -282,7 +283,7 @@ PlugGagMouthSetOpen,,,SourceCharacter pulls out DestinationCharacter plug from h
 SelectBlindType,,,Select the type of blindfold
 DuctTapeHeadTypeDouble,,,Double
 DuctTapeHeadTypeWrap,,,Wrap
-DuctTapeHeadSetDouble,,,SourceCharacter takes a piece of duct tape for DestinationCharacter and place on her face.
+DuctTapeHeadSetDouble,,,SourceCharacter takes a piece of duct tape for TargetCharacter and place on her face.
 DuctTapeHeadSetWrap,,,SourceCharacter wraps some duct tape onto DestinationCharacter face.
 DuctTapeHeadTypeMummy,,,Mummy
 DuctTapeHeadSetMummy,,,SourceCharacter wraps DestinationCharacter head in tape with multiple layers. 
@@ -291,11 +292,11 @@ RopeStyleBasic,,,Basic Tie
 RopeStyleCrotchRope,,,Crotch Rope Tie
 RopeStyleDiamond,,,Diamond Harness
 RopeStyleMermaid,,,Mermaid Tie
-RopeHarnessSetBasic,,,SourceCharacter uses the rope on DestinationCharacter to do a basic harness.
-RopeHarnessSetCrotchRope,,,SourceCharacter uses the rope on DestinationCharacter to do a crotch rope tie.
-RopeHarnessSetDiamond,,,SourceCharacter uses the rope on DestinationCharacter to do a Diamond style harness.
-LegRopeSetBasic,,,SourceCharacter uses the rope on DestinationCharacter to do a basic tie.
-LegRopeSetMermaid,,,SourceCharacter uses the rope on DestinationCharacter to do a mermaid tie.
+RopeHarnessSetBasic,,,SourceCharacter uses the rope on TargetCharacter to do a basic harness.
+RopeHarnessSetCrotchRope,,,SourceCharacter uses the rope on TargetCharacter to do a crotch rope tie.
+RopeHarnessSetDiamond,,,SourceCharacter uses the rope on TargetCharacter to do a Diamond style harness.
+LegRopeSetBasic,,,SourceCharacter uses the rope on TargetCharacter to do a basic tie.
+LegRopeSetMermaid,,,SourceCharacter uses the rope on TargetCharacter to do a mermaid tie.
 Intensity-1,,,Item intensity: Disabled
 Intensity0,,,Item intensity: Low
 Intensity1,,,Item intensity: Medium
@@ -497,7 +498,7 @@ SpankingToysTypeWhip,,,Whip
 SpankingToysTypeCattleProd,,,Cattle Prod
 SpankingToysTypeTennisRacket,,,Tennis Racket
 SpankingToysSetPlayer,,,SourceCharacter takes out a ItemUsed
-SpankingToysSetOthers,,,SourceCharacter gives DestinationCharacter a ItemUsed
+SpankingToysSetOthers,,,SourceCharacter gives TargetCharacter a ItemUsed
 TurnOff,,,TurnOff
 Low,,,Low
 Medium,,,Medium
@@ -665,12 +666,12 @@ TeddyBearTypeKitty,,,Kitty
 TeddyBearTypePup,,,Puppy
 TeddyBearTypeBunny,,,Bunny
 TeddyBearTypePony,,,Pony
-TeddyBearSetBear,,,SourceCharacter gives DestinationCharacter a cute teddy bear.
-TeddyBearSetFox,,,SourceCharacter gives DestinationCharacter a cute foxy teddy.
-TeddyBearSetKitty,,,SourceCharacter gives DestinationCharacter a cute kitty teddy.
-TeddyBearSetPup,,,SourceCharacter gives DestinationCharacter a cute puppy teddy.
-TeddyBearSetBunny,,,SourceCharacter gives DestinationCharacter a cute Bunny teddy.
-TeddyBearSetPony,,,SourceCharacter gives DestinationCharacter a cute Pony teddy.
+TeddyBearSetBear,,,SourceCharacter gives TargetCharacter a cute teddy bear.
+TeddyBearSetFox,,,SourceCharacter gives TargetCharacter a cute foxy teddy.
+TeddyBearSetKitty,,,SourceCharacter gives TargetCharacter a cute kitty teddy.
+TeddyBearSetPup,,,SourceCharacter gives TargetCharacter a cute puppy teddy.
+TeddyBearSetBunny,,,SourceCharacter gives TargetCharacter a cute Bunny teddy.
+TeddyBearSetPony,,,SourceCharacter gives TargetCharacter a cute Pony teddy.
 HeadphoneEarPlugsSelectTightness,,,Turn the headphones on/off and adjust their volume.
 HeadphoneEarPlugsPoseOff,,,Off
 HeadphoneEarPlugsPoseLight,,,Light

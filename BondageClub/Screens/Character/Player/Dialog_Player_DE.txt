@@ -335,14 +335,14 @@ Three
 Drei
 Four
 Vier
-SourceCharacter restrains DestinationCharacter with only one sturdy leather belt.
-SourceCharacter fesselt DestinationCharacter mit nur einem robusten Ledergurt.
-SourceCharacter restrains DestinationCharacter with two sturdy leather belts.
-SourceCharacter fesselt DestinationCharacter mit zwei robusten Ledergurten.
-SourceCharacter restrains DestinationCharacter with three sturdy leather belts.
-SourceCharacter fesselt DestinationCharacter mit drei robusten Ledergurten.
-SourceCharacter restrains DestinationCharacter with four sturdy leather belts.
-SourceCharacter fesselt DestinationCharacter mit vier robusten Ledergurten.
+SourceCharacter restrains TargetCharacter with only one sturdy leather belt.
+SourceCharacter fesselt TargetCharacter mit nur einem robusten Ledergurt.
+SourceCharacter restrains TargetCharacter with two sturdy leather belts.
+SourceCharacter fesselt TargetCharacter mit zwei robusten Ledergurten.
+SourceCharacter restrains TargetCharacter with three sturdy leather belts.
+SourceCharacter fesselt TargetCharacter mit drei robusten Ledergurten.
+SourceCharacter restrains TargetCharacter with four sturdy leather belts.
+SourceCharacter fesselt TargetCharacter mit vier robusten Ledergurten.
 Hands
 Hände
 Arms
@@ -355,12 +355,12 @@ Mummy
 Mumie
 SourceCharacter wraps duct tape around DestinationCharacter hands.
 SourceCharacter wickelt Klebeband um DestinationCharacters Hände.
-SourceCharacter creates a duct tape skirt on DestinationCharacter and traps her hands in it.
-SourceCharacter wickelt einen Klebeband-Rock um DestinationCharacter und fängt ihre Hände darin ein.
-SourceCharacter creates a duct tape top on DestinationCharacter and traps her arms in it.
-SourceCharacter wickelt ein Klebeband-Top um DestinationCharacter und fängt ihre Arme darin ein.
-SourceCharacter creates a duct tape mummy on DestinationCharacter and traps her arms in it.
-SourceCharacter mummifiziert DestinationCharacter mit Klebeband und fängt ihre Arme darin ein.
+SourceCharacter creates a duct tape skirt on TargetCharacter and traps her hands in it.
+SourceCharacter wickelt einen Klebeband-Rock um TargetCharacter und fängt ihre Hände darin ein.
+SourceCharacter creates a duct tape top on TargetCharacter and traps her arms in it.
+SourceCharacter wickelt ein Klebeband-Top um TargetCharacter und fängt ihre Arme darin ein.
+SourceCharacter creates a duct tape mummy on TargetCharacter and traps her arms in it.
+SourceCharacter mummifiziert TargetCharacter mit Klebeband und fängt ihre Arme darin ein.
 In-front of body
 Vor dem Körper
 Behind back.
@@ -419,8 +419,8 @@ Double
 Doppelt
 Wrap
 Binde
-SourceCharacter takes a piece of duct tape for DestinationCharacter and place on her face.
-SourceCharacter nimmt ein Stück Klebeband und klebt es auf DestinationCharacters Gesicht.
+SourceCharacter takes a piece of duct tape for TargetCharacter and place on her face.
+SourceCharacter nimmt ein Stück Klebeband und klebt es auf TargetCharacter Gesicht.
 SourceCharacter wraps some duct tape onto DestinationCharacter face.
 SourceCharacter wickelt etwas Klebeband um DestinationCharacters Gesicht.
 SourceCharacter wraps DestinationCharacter head in tape with multiple layers. 
@@ -435,16 +435,16 @@ Diamond Harness
 Diamantharnisch
 Mermaid Tie
 Meerjungfrau-Fesselung
-SourceCharacter uses the rope on DestinationCharacter to do a basic harness.
-SourceCharacter wendet das Seil an DestinationCharacter an, um einen einfachen Harnisch zu binden.
-SourceCharacter uses the rope on DestinationCharacter to do a crotch rope tie.
-SourceCharacter wendet das Seil an DestinationCharacter an, um eine Schrittseil-Fesselung zu binden.
-SourceCharacter uses the rope on DestinationCharacter to do a Diamond style harness.
-SourceCharacter wendet das Seil an DestinationCharacter an, um einen Diamantharnisch zu binden.
-SourceCharacter uses the rope on DestinationCharacter to do a basic tie.
-SourceCharacter wendet das Seil an DestinationCharacter an, um einen einfache Fesselung zu binden.
-SourceCharacter uses the rope on DestinationCharacter to do a mermaid tie.
-SourceCharacter wendet das Seil an DestinationCharacter an, um eine Meerjungfrau-Fesselung zu binden.
+SourceCharacter uses the rope on TargetCharacter to do a basic harness.
+SourceCharacter wendet das Seil an TargetCharacter an, um einen einfachen Harnisch zu binden.
+SourceCharacter uses the rope on TargetCharacter to do a crotch rope tie.
+SourceCharacter wendet das Seil an TargetCharacter an, um eine Schrittseil-Fesselung zu binden.
+SourceCharacter uses the rope on TargetCharacter to do a Diamond style harness.
+SourceCharacter wendet das Seil an TargetCharacter an, um einen Diamantharnisch zu binden.
+SourceCharacter uses the rope on TargetCharacter to do a basic tie.
+SourceCharacter wendet das Seil an TargetCharacter an, um einen einfache Fesselung zu binden.
+SourceCharacter uses the rope on TargetCharacter to do a mermaid tie.
+SourceCharacter wendet das Seil an TargetCharacter an, um eine Meerjungfrau-Fesselung zu binden.
 Item intensity: Disabled
 Intensität: Deaktiviert
 Item intensity: Low
@@ -785,10 +785,10 @@ Cattle Prod
 Viehtreiber
 Tennis Racket
 Tennisschläger
-SourceCharacter takes out a Item
-SourceCharacter holt ein(e(n)) Item hervor
-SourceCharacter gives DestinationCharacter a Item
-SourceCharacter gibt DestinationCharacter ein(e(n)) Item
+SourceCharacter takes out a ItemUsed
+SourceCharacter holt ein(e(n)) ItemUsed hervor
+SourceCharacter gives TargetCharacter a ItemUsed
+SourceCharacter gibt TargetCharacter ein(e(n)) ItemUsed
 TurnOff
 Ausschalten
 Low
@@ -969,15 +969,15 @@ Kitty
 Kätzchen
 Pony
 Pony
-SourceCharacter gives DestinationCharacter a cute teddy bear.
-SourceCharacter gibt DestinationCharacter einen süßen Teddybären.
-SourceCharacter gives DestinationCharacter a cute foxy teddy.
-SourceCharacter gibt DestinationCharacter einen süßen Plüschfuchs.
-SourceCharacter gives DestinationCharacter a cute kitty teddy.
-SourceCharacter gibt DestinationCharacter eine süße Plüschkatze.
-SourceCharacter gives DestinationCharacter a cute puppy teddy.
-SourceCharacter gibt DestinationCharacter einen süßen Plüschhund.
-SourceCharacter gives DestinationCharacter a cute Bunny teddy.
-SourceCharacter gibt DestinationCharacter einen süßen Stoffhasen.
-SourceCharacter gives DestinationCharacter a cute Pony teddy.
-SourceCharacter gibt DestinationCharacter ein süßes Plüschpony.
+SourceCharacter gives TargetCharacter a cute teddy bear.
+SourceCharacter gibt TargetCharacter einen süßen Teddybären.
+SourceCharacter gives TargetCharacter a cute foxy teddy.
+SourceCharacter gibt TargetCharacter einen süßen Plüschfuchs.
+SourceCharacter gives TargetCharacter a cute kitty teddy.
+SourceCharacter gibt TargetCharacter eine süße Plüschkatze.
+SourceCharacter gives TargetCharacter a cute puppy teddy.
+SourceCharacter gibt TargetCharacter einen süßen Plüschhund.
+SourceCharacter gives TargetCharacter a cute Bunny teddy.
+SourceCharacter gibt TargetCharacter einen süßen Stoffhasen.
+SourceCharacter gives TargetCharacter a cute Pony teddy.
+SourceCharacter gibt TargetCharacter ein süßes Plüschpony.

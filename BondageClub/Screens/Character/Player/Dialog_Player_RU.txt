@@ -337,14 +337,14 @@ Three
 Три
 Four
 Четыре
-SourceCharacter restrains DestinationCharacter with only one sturdy leather belt.
-SourceCharacter связывает DestinationCharacter только одним крепким кожаным ремнем.
-SourceCharacter restrains DestinationCharacter with two sturdy leather belts.
-SourceCharacter связывает  DestinationCharacter только двумя крепкими кожаными ремнями.
-SourceCharacter restrains DestinationCharacter with three sturdy leather belts.
-SourceCharacter связывает  DestinationCharacter только тремя крепкими кожаными ремнями.
-SourceCharacter restrains DestinationCharacter with four sturdy leather belts.
-SourceCharacter связывает  DestinationCharacter только четырьмя крепкими кожаными ремнями.
+SourceCharacter restrains TargetCharacter with only one sturdy leather belt.
+SourceCharacter связывает TargetCharacter только одним крепким кожаным ремнем.
+SourceCharacter restrains TargetCharacter with two sturdy leather belts.
+SourceCharacter связывает  TargetCharacter только двумя крепкими кожаными ремнями.
+SourceCharacter restrains TargetCharacter with three sturdy leather belts.
+SourceCharacter связывает  TargetCharacter только тремя крепкими кожаными ремнями.
+SourceCharacter restrains TargetCharacter with four sturdy leather belts.
+SourceCharacter связывает  TargetCharacter только четырьмя крепкими кожаными ремнями.
 Hands
 Запястья
 Arms
@@ -357,12 +357,12 @@ Mummy
 Mummy
 SourceCharacter wraps duct tape around DestinationCharacter hands.
 SourceCharacter wraps duct tape around DestinationCharacter hands.
-SourceCharacter creates a duct tape skirt on DestinationCharacter and traps her hands in it.
-SourceCharacter creates a duct tape skirt on DestinationCharacter and traps her hands in it.
-SourceCharacter creates a duct tape top on DestinationCharacter and traps her arms in it.
-SourceCharacter creates a duct tape top on DestinationCharacter and traps her arms in it.
-SourceCharacter creates a duct tape mummy on DestinationCharacter and traps her arms in it.
-SourceCharacter creates a duct tape mummy on DestinationCharacter and traps her arms in it.
+SourceCharacter creates a duct tape skirt on TargetCharacter and traps her hands in it.
+SourceCharacter creates a duct tape skirt on TargetCharacter and traps her hands in it.
+SourceCharacter creates a duct tape top on TargetCharacter and traps her arms in it.
+SourceCharacter creates a duct tape top on TargetCharacter and traps her arms in it.
+SourceCharacter creates a duct tape mummy on TargetCharacter and traps her arms in it.
+SourceCharacter creates a duct tape mummy on TargetCharacter and traps her arms in it.
 In-front of body
 In-front of body
 Behind back.
@@ -437,16 +437,16 @@ Diamond Harness
 Обвязка Алмаз
 Mermaid Tie
 Обвязка Русалка
-SourceCharacter uses the rope on DestinationCharacter to do a basic harness.
-SourceCharacter uses the rope on DestinationCharacter to do a basic harness.
-SourceCharacter uses the rope on DestinationCharacter to do a crotch rope tie.
-SourceCharacter uses the rope on DestinationCharacter to do a crotch rope tie.
-SourceCharacter uses the rope on DestinationCharacter to do a Diamond style harness.
-SourceCharacter uses the rope on DestinationCharacter to do a Diamond style harness.
-SourceCharacter uses the rope on DestinationCharacter to do a basic tie.
-SourceCharacter uses the rope on DestinationCharacter to do a basic tie.
-SourceCharacter uses the rope on DestinationCharacter to do a mermaid tie.
-SourceCharacter uses the rope on DestinationCharacter to do a mermaid tie.
+SourceCharacter uses the rope on TargetCharacter to do a basic harness.
+SourceCharacter uses the rope on TargetCharacter to do a basic harness.
+SourceCharacter uses the rope on TargetCharacter to do a crotch rope tie.
+SourceCharacter uses the rope on TargetCharacter to do a crotch rope tie.
+SourceCharacter uses the rope on TargetCharacter to do a Diamond style harness.
+SourceCharacter uses the rope on TargetCharacter to do a Diamond style harness.
+SourceCharacter uses the rope on TargetCharacter to do a basic tie.
+SourceCharacter uses the rope on TargetCharacter to do a basic tie.
+SourceCharacter uses the rope on TargetCharacter to do a mermaid tie.
+SourceCharacter uses the rope on TargetCharacter to do a mermaid tie.
 Item intensity: Disabled
 Item intensity: Disabled
 Item intensity: Low
@@ -787,10 +787,10 @@ Cattle Prod
 Cattle Prod
 Tennis Racket
 Tennis Racket
-SourceCharacter takes out a Item
-SourceCharacter takes out a Item
-SourceCharacter gives DestinationCharacter a Item
-SourceCharacter gives DestinationCharacter a Item
+SourceCharacter takes out a ItemUsed
+SourceCharacter takes out a ItemUsed
+SourceCharacter gives TargetCharacter a ItemUsed
+SourceCharacter gives TargetCharacter a ItemUsed
 TurnOff
 TurnOff
 Low
@@ -971,15 +971,15 @@ Kitty
 Kitty
 Pony
 Pony
-SourceCharacter gives DestinationCharacter a cute teddy bear.
-SourceCharacter gives DestinationCharacter a cute teddy bear.
-SourceCharacter gives DestinationCharacter a cute foxy teddy.
-SourceCharacter gives DestinationCharacter a cute foxy teddy.
-SourceCharacter gives DestinationCharacter a cute kitty teddy.
-SourceCharacter gives DestinationCharacter a cute kitty teddy.
-SourceCharacter gives DestinationCharacter a cute puppy teddy.
-SourceCharacter gives DestinationCharacter a cute puppy teddy.
-SourceCharacter gives DestinationCharacter a cute Bunny teddy.
-SourceCharacter gives DestinationCharacter a cute Bunny teddy.
-SourceCharacter gives DestinationCharacter a cute Pony teddy.
-SourceCharacter gives DestinationCharacter a cute Pony teddy.
+SourceCharacter gives TargetCharacter a cute teddy bear.
+SourceCharacter gives TargetCharacter a cute teddy bear.
+SourceCharacter gives TargetCharacter a cute foxy teddy.
+SourceCharacter gives TargetCharacter a cute foxy teddy.
+SourceCharacter gives TargetCharacter a cute kitty teddy.
+SourceCharacter gives TargetCharacter a cute kitty teddy.
+SourceCharacter gives TargetCharacter a cute puppy teddy.
+SourceCharacter gives TargetCharacter a cute puppy teddy.
+SourceCharacter gives TargetCharacter a cute Bunny teddy.
+SourceCharacter gives TargetCharacter a cute Bunny teddy.
+SourceCharacter gives TargetCharacter a cute Pony teddy.
+SourceCharacter gives TargetCharacter a cute Pony teddy.

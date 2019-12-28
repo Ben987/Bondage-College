@@ -65,10 +65,11 @@ function InventoryItemArmsDuctTapeSetPose(NewPose) {
 			if (NewPose == "Complete") DialogFocusItem.Property.Difficulty = 7;
 		}
 		CharacterRefresh(C);
-		var msg ="DuctTapeRestrain" + ((NewPose == null) ? "Hands" : NewPose);
+		var msg = "DuctTapeRestrain" + ((NewPose == null) ? "Hands" : NewPose);
 		var Dictionary = [];
 		Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
 		Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+		Dictionary.push({Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
 		ChatRoomPublishCustomAction(msg, true, Dictionary);
 		if (DialogInventory != null) {
 			DialogFocusItem = null;
