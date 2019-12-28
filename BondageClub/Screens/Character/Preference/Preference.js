@@ -33,18 +33,18 @@ function PreferenceLoad() {
 	};
 
 	// If the user never set the visual settings before, construct them to replicate the default behavior
-	if (!Player.VisualSettings) Player.VisualSettings = {
+	if (!Player.VisualSettings || (typeof Player.VisualSettings !== "boolean")) Player.VisualSettings = {
 		ForceFullHeight: false
 	};
 
 	// If the user never set the audio settings before, construct them to replicate the default behavior
-	if (!Player.AudioSettings || !Player.Volume) Player.AudioSettings = {
+	if (!Player.AudioSettings || (typeof Player.AudioSettings.Volume !== "number") || (typeof Player.AudioSettings.PlayBeeps !== "boolean")) Player.AudioSettings = {
 		Volume: 1,
 		PlayBeeps: false
 	};
 
 	//if the user never set the gameplay settings before, construct them to replicate the default behavior
-	if (!Player.GameplaySettings || !Player.SensDepChatLog) Player.GameplaySettings = {
+	if (!Player.GameplaySettings || (typeof Player.GameplaySettings.SensDepChatLog !== "string") || (typeof Player.GameplaySettings.BlindDisableExamine !== "boolean")) Player.GameplaySettings = {
 		SensDepChatLog: "Normal",
 		BlindDisableExamine: false
 	};
@@ -59,7 +59,7 @@ function PreferenceLoad() {
 	PreferenceChatEnterLeaveIndex = (!Player.ChatSettings || PreferenceChatEnterLeaveList.indexOf(Player.ChatSettings.EnterLeave) < 0) ? 0 : PreferenceChatEnterLeaveList.indexOf(Player.ChatSettings.EnterLeave);
 	PreferenceChatMemberNumbersIndex = (!Player.ChatSettings || PreferenceChatMemberNumbersList.indexOf(Player.ChatSettings.MemberNumbers) < 0) ? 0 : PreferenceChatMemberNumbersList.indexOf(Player.ChatSettings.MemberNumbers);
 	PreferenceSettingsVolumeIndex = (!Player.AudioSettings || PreferenceSettingsVolumeList.indexOf(Player.AudioSettings.Volume) < 0) ? 0 : PreferenceSettingsVolumeList.indexOf(Player.AudioSettings.Volume);
-	PreferenceSettingsVolumeIndex = (!Player.GameplaySettings || PreferenceSettingsSensDepList.indexOf(Player.GameplaySettings.SensDepChatLog) < 0 ) ? 0 : PreferenceSettingsSensDepList.indexOf(Player.GameplaySettings.SensDepChatLog);
+	PreferenceSettingsSensDepIndex = (!Player.GameplaySettings || PreferenceSettingsSensDepList.indexOf(Player.GameplaySettings.SensDepChatLog) < 0 ) ? 0 : PreferenceSettingsSensDepList.indexOf(Player.GameplaySettings.SensDepChatLog);
 	PreferenceChatColorThemeSelected = PreferenceChatColorThemeList[PreferenceChatColorThemeIndex];
 	PreferenceChatEnterLeaveSelected = PreferenceChatEnterLeaveList[PreferenceChatEnterLeaveIndex];
 	PreferenceChatMemberNumbersSelected = PreferenceChatMemberNumbersList[PreferenceChatMemberNumbersIndex];
@@ -87,9 +87,9 @@ function PreferenceRun() {
 	DrawButton(500, 280, 90, 90, "", "White", "Icons/Next.png");
 	DrawText(TextGet("ItemPermission") + " " + TextGet("PermissionLevel" + Player.ItemPermission.toString()), 615, 325, "Black", "Gray");
 	DrawText(TextGet("AudioVolume"), 800, 425, "Black", "Gray");
-	DrawText(TextGet("PlayBeeps"), 600, 505, "Black", "Gray");
-	DrawButton(500, 472, 64, 64, "", "White", (Player.AudioSettings && Player.AudioSettings.PlayBeeps) ? "Icons/Checked.png" : "");
-	DrawText(TextGet("SensDepSetting"), 800, 585, "Black", "Gray");
+	DrawText(TextGet("SensDepSetting"), 800, 505, "Black", "Gray");
+	DrawText(TextGet("PlayBeeps"), 600, 585, "Black", "Gray");
+	DrawButton(500, 552, 64, 64, "", "White", (Player.AudioSettings && Player.AudioSettings.PlayBeeps) ? "Icons/Checked.png" : "");
 	DrawText(TextGet("BlindDisableExamine"), 600, 665, "Black", "Gray");
 	DrawButton(500, 632, 64, 64, "", "White", (Player.GameplaySettings && Player.GameplaySettings.BlindDisableExamine) ? "Icons/Checked.png" : "");
 	DrawText(TextGet("ForceFullHeight"), 600, 745, "Black", "Gray");
@@ -99,7 +99,7 @@ function PreferenceRun() {
 	DrawBackNextButton(500, 392, 250, 64, Player.AudioSettings.Volume * 100 + "%", "White", "",
 		() => PreferenceSettingsVolumeList[(PreferenceSettingsVolumeIndex + PreferenceSettingsVolumeList.length - 1) % PreferenceSettingsVolumeList.length] * 100 + "%",
 		() => PreferenceSettingsVolumeList[(PreferenceSettingsVolumeIndex + 1) % PreferenceSettingsVolumeList.length] * 100 + "%");
-	DrawBackNextButton(500, 552, 250, 64, TextGet(Player.GameplaySettings.SensDepChatLog), "White", "",
+	DrawBackNextButton(500, 472, 250, 64, TextGet(Player.GameplaySettings.SensDepChatLog), "White", "",
 		() => TextGet(PreferenceSettingsSensDepList[(PreferenceSettingsSensDepIndex + PreferenceSettingsSensDepList.length - 1) % PreferenceSettingsSensDepList.length]),
 		() => TextGet(PreferenceSettingsSensDepList[(PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length]));
 
@@ -146,13 +146,13 @@ function PreferenceClick() {
 		else PreferenceSettingsVolumeIndex = (PreferenceSettingsVolumeIndex + 1) % PreferenceSettingsVolumeList.length;
 		Player.AudioSettings.Volume = PreferenceSettingsVolumeList[PreferenceSettingsVolumeIndex];
 	}
-	if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 552) && (MouseY < 616)) {
+	if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 472) && (MouseY < 536)) {
 		if (MouseX <= 625) PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepList.length + PreferenceSettingsSensDepIndex - 1) % PreferenceSettingsSensDepList.length;
 		else PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length;
 		Player.GameplaySettings.SensDepChatLog = PreferenceSettingsSensDepList[PreferenceSettingsSensDepIndex];
 	}
 	if ((MouseX >= 500) && (MouseX < 564)) {
-		if ((MouseY >= 472) && (MouseY < 536)) Player.AudioSettings.PlayBeeps = !Player.AudioSettings.PlayBeeps;
+		if ((MouseY >= 552) && (MouseY < 616)) Player.AudioSettings.PlayBeeps = !Player.AudioSettings.PlayBeeps;
 		if ((MouseY >= 632) && (MouseY < 696)) Player.GameplaySettings.BlindDisableExamine = !Player.GameplaySettings.BlindDisableExamine;
 		if ((MouseY >= 712) && (MouseY < 776)) Player.VisualSettings.ForceFullHeight = !Player.VisualSettings.ForceFullHeight;
 	}
@@ -243,6 +243,7 @@ function PreferenceSubscreenChatClick() {
 	}
 }
 
+// todo rework/reformulate that
 function PreferenceHasPlayerEnabledSensDep() {
 	return (Player.GameplaySettings && ((Player.GameplaySettings.SensDepChatLog == "SensDepNames") || (Player.GameplaySettings.SensDepChatLog == "SensDepTotal")) && (Player.Effect.indexOf("DeafHeavy") >= 0) && (Player.Effect.indexOf("BlindHeavy") >= 0));
 }

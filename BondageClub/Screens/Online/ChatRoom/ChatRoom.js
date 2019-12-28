@@ -379,7 +379,6 @@ function ChatRoomCharacterUpdate(C) {
 // When the server sends a chat message
 function ChatRoomMessage(data) {
 
-	console.log(data);
 	// Make sure the message is valid (needs a Sender and Content)
 	if ((data != null) && (typeof data === "object") && (data.Content != null) && (typeof data.Content === "string") && (data.Content != "") && (data.Sender != null) && (typeof data.Sender === "number") && (data.Sender > 0)) {
 
