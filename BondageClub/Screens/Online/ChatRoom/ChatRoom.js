@@ -420,9 +420,9 @@ function ChatRoomMessage(data) {
 				if (data.Dictionary) {
 					var dictionary = data.Dictionary;
 					for (var D = 0; D < dictionary.length; D++) {
-						if ((dictionary[D].MemberNumber && ((dictionary[D].Tag == "SourceCharacter") ||(dictionary[D].Tag == "TargetCharacter"))) && PreferenceHasPlayerEnabledSensDep() && dictionary[D].MemberNumber != Player.MemberNumber) msg = msg.replace(dictionary[D].Tag, DialogFind(Player, "Someone"));
+						if ((dictionary[D].MemberNumber && ((dictionary[D].Tag == "SourceCharacter") ||(dictionary[D].Tag == "TargetCharacter"))) && PreferenceIsPlayerInSensDep() && dictionary[D].MemberNumber != Player.MemberNumber) msg = msg.replace(dictionary[D].Tag, DialogFind(Player, "Someone"));
 						else if (dictionary[D].Tag == "DestinationCharacter") msg = msg.replace(dictionary[D].Tag, SenderCharacter.MemberNumber == dictionary[D].MemberNumber ? DialogFind(Player, "Her") :
-							(PreferenceHasPlayerEnabledSensDep() && dictionary[D].MemberNumber != Player.MemberNumber ? DialogFind(Player, "Someone").toLowerCase : dictionary[D].Text + DialogFind(Player, "'s")));
+							(PreferenceIsPlayerInSensDep() && dictionary[D].MemberNumber != Player.MemberNumber ? DialogFind(Player, "Someone").toLowerCase : dictionary[D].Text + DialogFind(Player, "'s")));
 						else if (dictionary[D].TextToLookUp) msg = msg.replace(dictionary[D].Tag, DialogFind(Player, dictionary[D].TextToLookUp));
 						else if (dictionary[D].AssetName) {
 							for (var A = 0; A < Asset.length; A++)
@@ -442,13 +442,13 @@ function ChatRoomMessage(data) {
 			// Builds the message to add depending on the type
 			if (data.Type != null) {
 				if (data.Type == "Chat"){
-					if (PreferenceHasPlayerEnabledSensDep() && SenderCharacter.MemberNumber != Player.MemberNumber) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SpeechGarble(SenderCharacter, SenderCharacter.Name) + ':</span> ' + SpeechGarble(SenderCharacter, msg);
+					if (PreferenceIsPlayerInSensDep() && SenderCharacter.MemberNumber != Player.MemberNumber) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SpeechGarble(SenderCharacter, SenderCharacter.Name) + ':</span> ' + SpeechGarble(SenderCharacter, msg);
 					else if (Player.IsDeaf()) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + SpeechGarble(SenderCharacter, msg);
 					else msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + SpeechGarble(SenderCharacter, msg);
 				}
 				else if (data.Type == "Whisper") msg = '<span class="ChatMessageName" style="font-style: italic; color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + msg;
 				else if (data.Type == "Emote") {
-					if (PreferenceHasPlayerEnabledSensDep() && SenderCharacter.MemberNumber != Player.MemberNumber) msg = "*" + DialogFind(Player, "Someone") + " " + msg + "*";
+					if (PreferenceIsPlayerInSensDep() && SenderCharacter.MemberNumber != Player.MemberNumber) msg = "*" + DialogFind(Player, "Someone") + " " + msg + "*";
 					else msg = "*" + SenderCharacter.Name + " " + msg + "*";
 				}
 				else if (data.Type == "Action") msg = "(" + msg + ")";

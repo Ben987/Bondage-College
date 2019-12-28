@@ -243,7 +243,7 @@ function PreferenceSubscreenChatClick() {
 	}
 }
 
-// todo rework/reformulate that
-function PreferenceHasPlayerEnabledSensDep() {
+// Return true if sensory deprivation is active
+function PreferenceIsPlayerInSensDep() {
 	return (Player.GameplaySettings && ((Player.GameplaySettings.SensDepChatLog == "SensDepNames") || (Player.GameplaySettings.SensDepChatLog == "SensDepTotal")) && (Player.Effect.indexOf("DeafHeavy") >= 0) && (Player.Effect.indexOf("BlindHeavy") >= 0));
 }
