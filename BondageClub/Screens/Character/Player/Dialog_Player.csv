@@ -116,12 +116,12 @@ ServerMessageWhisperBlocked,,,You're on SourceCharacter blacklist.  Your message
 ServerEnter,,,SourceCharacter entered.
 ServerLeave,,,SourceCharacter left.
 ServerDisconnect,,,SourceCharacter disconnected.
-ServerBan,,,TargetCharacter was banned by SourceCharacter.
-ServerKick,,,TargetCharacter was kicked-out by SourceCharacter.
-ServerMoveLeft,,,TargetCharacter was moved to the left by SourceCharacter.
-ServerMoveRight,,,TargetCharacter was moved to the right by SourceCharacter.
-ServerPromoteAdmin,,,TargetCharacter was promoted to administrator by SourceCharacter.
-ServerDemoteAdmin,,,TargetCharacter was demoted from administration by SourceCharacter.
+ServerBan,,,TargetCharacterName was banned by SourceCharacter.
+ServerKick,,,TargetCharacterName was kicked-out by SourceCharacter.
+ServerMoveLeft,,,TargetCharacterName was moved to the left by SourceCharacter.
+ServerMoveRight,,,TargetCharacterName was moved to the right by SourceCharacter.
+ServerPromoteAdmin,,,TargetCharacterName was promoted to administrator by SourceCharacter.
+ServerDemoteAdmin,,,TargetCharacterName was demoted from administration by SourceCharacter.
 ServerUpdateRoom,,,SourceCharacter updated the room. Name: ChatRoomName. Limit: ChatRoomLimit.  ChatRoomPrivacy.  ChatRoomLocked.
 ActionSwap,,,SourceCharacter swaps a PrevAsset for a NextAsset on DestinationCharacter FocusAssetGroup.
 ActionUse,,,SourceCharacter uses a NextAsset on DestinationCharacter FocusAssetGroup.
@@ -308,44 +308,44 @@ ShockCollarShowChat,,,Show chat message
 ShockCollarSet0,,,SourceCharacter sets DestinationCharacter shock collar to low intensity.
 ShockCollarSet1,,,SourceCharacter sets DestinationCharacter shock collar to moderate intensity.
 ShockCollarSet2,,,SourceCharacter sets DestinationCharacter shock collar to high intensity.
-ShockCollarTrigger0,,,DestinationCharacter collar gives her a light shock.
-ShockCollarTrigger1,,,DestinationCharacter collar lets out a sharp jolt!
-ShockCollarTrigger2,,,DestinationCharacter collar delivers an intense shock!
-CollarShockUnitTrigger0,,,DestinationCharacter collar gives her a light shock.
-CollarShockUnitTrigger1,,,DestinationCharacter collar lets out a sharp jolt!
-CollarShockUnitTrigger2,,,DestinationCharacter collar delivers an intense shock!
-EggDecreaseTo-1,,,DestinationCharacter vibrating egg stops vibrating.
-EggDecreaseTo0,,,DestinationCharacter vibrating egg slows down into a light tease.
-EggDecreaseTo1,,,DestinationCharacter vibrating egg returns to a moderate pace.
-EggDecreaseTo2,,,DestinationCharacter vibrating egg slows down a tiny bit.
-EggIncreaseTo0,,,DestinationCharacter vibrating egg starts teasing her lightly.
-EggIncreaseTo1,,,DestinationCharacter vibrating egg builds up to a moderate pace.
-EggIncreaseTo2,,,DestinationCharacter vibrating egg starts buzzing strongly!
-EggIncreaseTo3,,,DestinationCharacter vibrating egg jumps up to maximum intensity!
-SybianDecreaseTo-1,,,DestinationCharacter sybian stops vibrating.
-SybianDecreaseTo0,,,DestinationCharacter sybian slows down into a light tease.
-SybianDecreaseTo1,,,DestinationCharacter sybian returns to a moderate pace.
-SybianDecreaseTo2,,,DestinationCharacter sybian slows down a tiny bit.
-SybianIncreaseTo0,,,DestinationCharacter sybian starts teasing her lightly.
-SybianIncreaseTo1,,,DestinationCharacter sybian builds up to a moderate pace.
-SybianIncreaseTo2,,,DestinationCharacter sybian starts buzzing strongly!
-SybianIncreaseTo3,,,DestinationCharacter sybian jumps up to maximum intensity!
-DildoDecreaseTo-1,,,DestinationCharacter vibrating dildo stops vibrating.
-DildoDecreaseTo0,,,DestinationCharacter vibrating dildo slows down into a light tease.
-DildoDecreaseTo1,,,DestinationCharacter vibrating dildo returns to a moderate pace.
-DildoDecreaseTo2,,,DestinationCharacter vibrating dildo slows down a tiny bit.
-DildoIncreaseTo0,,,DestinationCharacter vibrating dildo starts teasing her lightly.
-DildoIncreaseTo1,,,DestinationCharacter vibrating dildo builds up to a moderate pace.
-DildoIncreaseTo2,,,DestinationCharacter vibrating dildo starts buzzing strongly!
-DildoIncreaseTo3,,,DestinationCharacter vibrating dildo jumps up to maximum intensity!
-InflVibeDildo_VibeDecreaseTo-1,,,DestinationCharacter inflatable vibrating dildo stops vibrating.
-InflVibeDildo_VibeDecreaseTo0,,,DestinationCharacter inflatable vibrating dildo slows down into a light tease.
-InflVibeDildo_VibeDecreaseTo1,,,DestinationCharacter inflatable vibrating dildo returns to a moderate pace.
-InflVibeDildo_VibeDecreaseTo2,,,DestinationCharacter inflatable vibrating dildo slows down a tiny bit.
-InflVibeDildo_VibeIncreaseTo0,,,DestinationCharacter inflatable vibrating dildo starts teasing her lightly.
-InflVibeDildo_VibeIncreaseTo1,,,DestinationCharacter inflatable vibrating dildo builds up to a moderate pace.
-InflVibeDildo_VibeIncreaseTo2,,,DestinationCharacter inflatable vibrating dildo starts buzzing strongly!
-InflVibeDildo_VibeIncreaseTo3,,,DestinationCharacter inflatable vibrating dildo jumps up to maximum intensity!
+ShockCollarTrigger0,,,DestinationCharacterName collar gives her a light shock.
+ShockCollarTrigger1,,,DestinationCharacterName collar lets out a sharp jolt!
+ShockCollarTrigger2,,,DestinationCharacterName collar delivers an intense shock!
+CollarShockUnitTrigger0,,,DestinationCharacterName collar gives her a light shock.
+CollarShockUnitTrigger1,,,DestinationCharacterName collar lets out a sharp jolt!
+CollarShockUnitTrigger2,,,DestinationCharacterName collar delivers an intense shock!
+EggDecreaseTo-1,,,DestinationCharacterName vibrating egg stops vibrating.
+EggDecreaseTo0,,,DestinationCharacterName vibrating egg slows down into a light tease.
+EggDecreaseTo1,,,DestinationCharacterName vibrating egg returns to a moderate pace.
+EggDecreaseTo2,,,DestinationCharacterName vibrating egg slows down a tiny bit.
+EggIncreaseTo0,,,DestinationCharacterName vibrating egg starts teasing her lightly.
+EggIncreaseTo1,,,DestinationCharacterName vibrating egg builds up to a moderate pace.
+EggIncreaseTo2,,,DestinationCharacterName vibrating egg starts buzzing strongly!
+EggIncreaseTo3,,,DestinationCharacterName vibrating egg jumps up to maximum intensity!
+SybianDecreaseTo-1,,,DestinationCharacterName sybian stops vibrating.
+SybianDecreaseTo0,,,DestinationCharacterName sybian slows down into a light tease.
+SybianDecreaseTo1,,,DestinationCharacterName sybian returns to a moderate pace.
+SybianDecreaseTo2,,,DestinationCharacterName sybian slows down a tiny bit.
+SybianIncreaseTo0,,,DestinationCharacterName sybian starts teasing her lightly.
+SybianIncreaseTo1,,,DestinationCharacterName sybian builds up to a moderate pace.
+SybianIncreaseTo2,,,DestinationCharacterName sybian starts buzzing strongly!
+SybianIncreaseTo3,,,DestinationCharacterName sybian jumps up to maximum intensity!
+DildoDecreaseTo-1,,,DestinationCharacterName vibrating dildo stops vibrating.
+DildoDecreaseTo0,,,DestinationCharacterName vibrating dildo slows down into a light tease.
+DildoDecreaseTo1,,,DestinationCharacterName vibrating dildo returns to a moderate pace.
+DildoDecreaseTo2,,,DestinationCharacterName vibrating dildo slows down a tiny bit.
+DildoIncreaseTo0,,,DestinationCharacterName vibrating dildo starts teasing her lightly.
+DildoIncreaseTo1,,,DestinationCharacterName vibrating dildo builds up to a moderate pace.
+DildoIncreaseTo2,,,DestinationCharacterName vibrating dildo starts buzzing strongly!
+DildoIncreaseTo3,,,DestinationCharacterName vibrating dildo jumps up to maximum intensity!
+InflVibeDildo_VibeDecreaseTo-1,,,DestinationCharacterName inflatable vibrating dildo stops vibrating.
+InflVibeDildo_VibeDecreaseTo0,,,DestinationCharacterName inflatable vibrating dildo slows down into a light tease.
+InflVibeDildo_VibeDecreaseTo1,,,DestinationCharacterName inflatable vibrating dildo returns to a moderate pace.
+InflVibeDildo_VibeDecreaseTo2,,,DestinationCharacterName inflatable vibrating dildo slows down a tiny bit.
+InflVibeDildo_VibeIncreaseTo0,,,DestinationCharacterName inflatable vibrating dildo starts teasing her lightly.
+InflVibeDildo_VibeIncreaseTo1,,,DestinationCharacterName inflatable vibrating dildo builds up to a moderate pace.
+InflVibeDildo_VibeIncreaseTo2,,,DestinationCharacterName inflatable vibrating dildo starts buzzing strongly!
+InflVibeDildo_VibeIncreaseTo3,,,DestinationCharacterName inflatable vibrating dildo jumps up to maximum intensity!
 InflVibeDildo_PumpdeflatesTo0,,,SourceCharacter deflates DestinationCharacter inflatable vibrating dildo till it's regular sized.
 InflVibeDildo_PumpdeflatesTo1,,,SourceCharacter deflates DestinationCharacter inflatable vibrating dildo till only slighty bulging.
 InflVibeDildo_PumpdeflatesTo2,,,SourceCharacter deflates DestinationCharacter inflatable vibrating dildo till it's moderately bulging.
@@ -354,22 +354,22 @@ InflVibeDildo_PumppumpsTo1,,,SourceCharacter inflates DestinationCharacter infla
 InflVibeDildo_PumppumpsTo2,,,SourceCharacter inflates DestinationCharacter inflatable vibrating dildo till it's moderately bulging.
 InflVibeDildo_PumppumpsTo3,,,SourceCharacter inflates DestinationCharacter inflatable vibrating dildo till it's heavily bulging.
 InflVibeDildo_PumppumpsTo4,,,SourceCharacter inflates DestinationCharacter inflatable vibrating dildo to it's maximum size.
-NippleDecreaseTo-1,,,DestinationCharacter vibrating nipple clamps stop vibrating.
-NippleDecreaseTo0,,,DestinationCharacter vibrating nipple clamps slow down into a light tease.
-NippleDecreaseTo1,,,DestinationCharacter vibrating nipple clamps return to a moderate pace.
-NippleDecreaseTo2,,,DestinationCharacter vibrating nipple clamps slow down a tiny bit.
-NippleIncreaseTo0,,,DestinationCharacter vibrating nipple clamps start teasing her lightly.
-NippleIncreaseTo1,,,DestinationCharacter vibrating nipple clamps build up to a moderate pace.
-NippleIncreaseTo2,,,DestinationCharacter vibrating nipple clamps start buzzing strongly!
-NippleIncreaseTo3,,,DestinationCharacter vibrating nipple clamps jump up to maximum intensity!
-NippleEggDecreaseTo-1,,,DestinationCharacter vibrating eggs on her nipples stop vibrating.
-NippleEggDecreaseTo0,,,DestinationCharacter vibrating eggs on her nipples slow down into a light tease.
-NippleEggDecreaseTo1,,,DestinationCharacter vibrating eggs on her nipples return to a moderate pace.
-NippleEggDecreaseTo2,,,DestinationCharacter vibrating eggs on her nipples slow down a tiny bit.
-NippleEggIncreaseTo0,,,DestinationCharacter vibrating eggs on her nipples start teasing her lightly.
-NippleEggIncreaseTo1,,,DestinationCharacter vibrating eggs on her nipples build up to a moderate pace.
-NippleEggIncreaseTo2,,,DestinationCharacter vibrating eggs on her nipples start buzzing strongly!
-NippleEggIncreaseTo3,,,DestinationCharacter vibrating eggs on her nipples jump up to maximum intensity!
+NippleDecreaseTo-1,,,DestinationCharacterName vibrating nipple clamps stop vibrating.
+NippleDecreaseTo0,,,DestinationCharacterName vibrating nipple clamps slow down into a light tease.
+NippleDecreaseTo1,,,DestinationCharacterName vibrating nipple clamps return to a moderate pace.
+NippleDecreaseTo2,,,DestinationCharacterName vibrating nipple clamps slow down a tiny bit.
+NippleIncreaseTo0,,,DestinationCharacterName vibrating nipple clamps start teasing her lightly.
+NippleIncreaseTo1,,,DestinationCharacterName vibrating nipple clamps build up to a moderate pace.
+NippleIncreaseTo2,,,DestinationCharacterName vibrating nipple clamps start buzzing strongly!
+NippleIncreaseTo3,,,DestinationCharacterName vibrating nipple clamps jump up to maximum intensity!
+NippleEggDecreaseTo-1,,,DestinationCharacterName vibrating eggs on her nipples stop vibrating.
+NippleEggDecreaseTo0,,,DestinationCharacterName vibrating eggs on her nipples slow down into a light tease.
+NippleEggDecreaseTo1,,,DestinationCharacterName vibrating eggs on her nipples return to a moderate pace.
+NippleEggDecreaseTo2,,,DestinationCharacterName vibrating eggs on her nipples slow down a tiny bit.
+NippleEggIncreaseTo0,,,DestinationCharacterName vibrating eggs on her nipples start teasing her lightly.
+NippleEggIncreaseTo1,,,DestinationCharacterName vibrating eggs on her nipples build up to a moderate pace.
+NippleEggIncreaseTo2,,,DestinationCharacterName vibrating eggs on her nipples start buzzing strongly!
+NippleEggIncreaseTo3,,,DestinationCharacterName vibrating eggs on her nipples jump up to maximum intensity!
 NipSucloosensTo0,,,SourceCharacter loosens DestinationCharacter nipple suction cups until they hang loosely.
 NipSucloosensTo1,,,SourceCharacter loosens DestinationCharacter nipple suction cups to a light amount of suction.
 NipSucloosensTo2,,,SourceCharacter loosens DestinationCharacter nipple suction cups to a moderate amount of suction.
@@ -386,22 +386,22 @@ ClitSuctightensTo1,,,SourceCharacter tweaks DestinationCharacter clit suction cu
 ClitSuctightensTo2,,,SourceCharacter tweaks DestinationCharacter clit suction cup sucking in her clit firmly.
 ClitSuctightensTo3,,,SourceCharacter tweaks DestinationCharacter clit suction cup sucking in her clit heavily.
 ClitSuctightensTo4,,,SourceCharacter tweaks DestinationCharacter clit suction cup sucking in her clit entirely.
-PantiesDecreaseTo-1,,,DestinationCharacter vibrating latex panties stops vibrating.
-PantiesDecreaseTo0,,,DestinationCharacter vibrating latex panties slows down into a light tease.
-PantiesDecreaseTo1,,,DestinationCharacter vibrating latex panties returns to a moderate pace.
-PantiesDecreaseTo2,,,DestinationCharacter vibrating latex panties slows down a tiny bit.
-PantiesIncreaseTo0,,,DestinationCharacter vibrating latex panties starts teasing her lightly.
-PantiesIncreaseTo1,,,DestinationCharacter vibrating latex panties builds up to a moderate pace.
-PantiesIncreaseTo2,,,DestinationCharacter vibrating latex panties starts buzzing strongly!
-PantiesIncreaseTo3,,,DestinationCharacter vibrating latex panties jumps up to maximum intensity!
-BeltDecreaseTo-1,,,DestinationCharacter vibrating wand stops vibrating.
-BeltDecreaseTo0,,,DestinationCharacter vibrating wand slows down into a light tease.
-BeltDecreaseTo1,,,DestinationCharacter vibrating wand returns to a moderate pace.
-BeltDecreaseTo2,,,DestinationCharacter vibrating wand slows down a tiny bit.
-BeltIncreaseTo0,,,DestinationCharacter vibrating wand starts teasing her lightly.
-BeltIncreaseTo1,,,DestinationCharacter vibrating wand builds up to a moderate pace.
-BeltIncreaseTo2,,,DestinationCharacter vibrating wand starts buzzing strongly!
-BeltIncreaseTo3,,,DestinationCharacter vibrating wand jumps up to maximum intensity!
+PantiesDecreaseTo-1,,,DestinationCharacterName vibrating latex panties stops vibrating.
+PantiesDecreaseTo0,,,DestinationCharacterName vibrating latex panties slows down into a light tease.
+PantiesDecreaseTo1,,,DestinationCharacterName vibrating latex panties returns to a moderate pace.
+PantiesDecreaseTo2,,,DestinationCharacterName vibrating latex panties slows down a tiny bit.
+PantiesIncreaseTo0,,,DestinationCharacterName vibrating latex panties starts teasing her lightly.
+PantiesIncreaseTo1,,,DestinationCharacterName vibrating latex panties builds up to a moderate pace.
+PantiesIncreaseTo2,,,DestinationCharacterName vibrating latex panties starts buzzing strongly!
+PantiesIncreaseTo3,,,DestinationCharacterName vibrating latex panties jumps up to maximum intensity!
+BeltDecreaseTo-1,,,DestinationCharacterName vibrating wand stops vibrating.
+BeltDecreaseTo0,,,DestinationCharacterName vibrating wand slows down into a light tease.
+BeltDecreaseTo1,,,DestinationCharacterName vibrating wand returns to a moderate pace.
+BeltDecreaseTo2,,,DestinationCharacterName vibrating wand slows down a tiny bit.
+BeltIncreaseTo0,,,DestinationCharacterName vibrating wand starts teasing her lightly.
+BeltIncreaseTo1,,,DestinationCharacterName vibrating wand builds up to a moderate pace.
+BeltIncreaseTo2,,,DestinationCharacterName vibrating wand starts buzzing strongly!
+BeltIncreaseTo3,,,DestinationCharacterName vibrating wand jumps up to maximum intensity!
 BPumpsdeflatesTo0,,,SourceCharacter deflates DestinationCharacter butt pump till it's empty.
 BPumpsdeflatesTo1,,,SourceCharacter deflates DestinationCharacter butt pump till only slighty filled.
 BPumpsdeflatesTo2,,,SourceCharacter deflates DestinationCharacter butt pump till it's half full.
@@ -410,22 +410,22 @@ BPumpspumpsTo1,,,SourceCharacter inflates DestinationCharacter butt pump only sl
 BPumpspumpsTo2,,,SourceCharacter inflates DestinationCharacter butt pump till half full.
 BPumpspumpsTo3,,,SourceCharacter inflates DestinationCharacter butt pump three quarters filled.
 BPumpspumpsTo4,,,SourceCharacter inflates DestinationCharacter butt pump to the maximum amount.
-ButtplugDecreaseTo-1,,,DestinationCharacter vibrating buttplug stops vibrating.
-ButtplugDecreaseTo0,,,DestinationCharacter vibrating buttplug slows down into a light tease.
-ButtplugDecreaseTo1,,,DestinationCharacter vibrating buttplug returns to a moderate pace.
-ButtplugDecreaseTo2,,,DestinationCharacter vibrating buttplug slows down a tiny bit.
-ButtplugIncreaseTo0,,,DestinationCharacter vibrating buttplug starts teasing her lightly.
-ButtplugIncreaseTo1,,,DestinationCharacter vibrating buttplug builds up to a moderate pace.
-ButtplugIncreaseTo2,,,DestinationCharacter vibrating buttplug starts buzzing strongly!
-ButtplugIncreaseTo3,,,DestinationCharacter vibrating buttplug jumps up to maximum intensity!
-InflVibeButtPlug_VibeDecreaseTo-1,,,DestinationCharacter inflatable vibrating butt plug stops vibrating.
-InflVibeButtPlug_VibeDecreaseTo0,,,DestinationCharacter inflatable vibrating butt plug slows down into a light tease.
-InflVibeButtPlug_VibeDecreaseTo1,,,DestinationCharacter inflatable vibrating butt plug returns to a moderate pace.
-InflVibeButtPlug_VibeDecreaseTo2,,,DestinationCharacter inflatable vibrating butt plug slows down a tiny bit.
-InflVibeButtPlug_VibeIncreaseTo0,,,DestinationCharacter inflatable vibrating butt plug starts teasing her lightly.
-InflVibeButtPlug_VibeIncreaseTo1,,,DestinationCharacter inflatable vibrating butt plug builds up to a moderate pace.
-InflVibeButtPlug_VibeIncreaseTo2,,,DestinationCharacter inflatable vibrating butt plug starts buzzing strongly!
-InflVibeButtPlug_VibeIncreaseTo3,,,DestinationCharacter inflatable vibrating butt plug jumps up to maximum intensity!
+ButtplugDecreaseTo-1,,,DestinationCharacterName vibrating buttplug stops vibrating.
+ButtplugDecreaseTo0,,,DestinationCharacterName vibrating buttplug slows down into a light tease.
+ButtplugDecreaseTo1,,,DestinationCharacterName vibrating buttplug returns to a moderate pace.
+ButtplugDecreaseTo2,,,DestinationCharacterName vibrating buttplug slows down a tiny bit.
+ButtplugIncreaseTo0,,,DestinationCharacterName vibrating buttplug starts teasing her lightly.
+ButtplugIncreaseTo1,,,DestinationCharacterName vibrating buttplug builds up to a moderate pace.
+ButtplugIncreaseTo2,,,DestinationCharacterName vibrating buttplug starts buzzing strongly!
+ButtplugIncreaseTo3,,,DestinationCharacterName vibrating buttplug jumps up to maximum intensity!
+InflVibeButtPlug_VibeDecreaseTo-1,,,DestinationCharacterName inflatable vibrating butt plug stops vibrating.
+InflVibeButtPlug_VibeDecreaseTo0,,,DestinationCharacterName inflatable vibrating butt plug slows down into a light tease.
+InflVibeButtPlug_VibeDecreaseTo1,,,DestinationCharacterName inflatable vibrating butt plug returns to a moderate pace.
+InflVibeButtPlug_VibeDecreaseTo2,,,DestinationCharacterName inflatable vibrating butt plug slows down a tiny bit.
+InflVibeButtPlug_VibeIncreaseTo0,,,DestinationCharacterName inflatable vibrating butt plug starts teasing her lightly.
+InflVibeButtPlug_VibeIncreaseTo1,,,DestinationCharacterName inflatable vibrating butt plug builds up to a moderate pace.
+InflVibeButtPlug_VibeIncreaseTo2,,,DestinationCharacterName inflatable vibrating butt plug starts buzzing strongly!
+InflVibeButtPlug_VibeIncreaseTo3,,,DestinationCharacterName inflatable vibrating butt plug jumps up to maximum intensity!
 InflVibeButtPlug_PumpdeflatesTo0,,,SourceCharacter deflates DestinationCharacter inflatable vibrating butt plug till it's empty.
 InflVibeButtPlug_PumpdeflatesTo1,,,SourceCharacter deflates DestinationCharacter inflatable vibrating butt plug till only slightly filled.
 InflVibeButtPlug_PumpdeflatesTo2,,,SourceCharacter deflates DestinationCharacter inflatable vibrating butt plug till it's half full.
@@ -515,20 +515,20 @@ LoveChastityBeltAddVibe,,,Add Vibe
 LoveChastityBeltAddShock,,,Add Shock
 LoveChastityBeltActionUnlockButt,,,SourceCharacter unlocks DestinationCharacter love chastity belt butt.
 LoveChastityBeltActionLockButt,,,SourceCharacter lock DestinationCharacter love chastity belt butt.
-LoveChastityBeltVibeIncreaseTo0,,,DestinationCharacter love chastity belts starts teasing her lightly.
-LoveChastityBeltVibeIncreaseTo1,,,DestinationCharacter love chastity belts builds up to a moderate pace.
-LoveChastityBeltVibeIncreaseTo2,,,DestinationCharacter love chastity belts starts buzzing strongly!
-LoveChastityBeltVibeIncreaseTo3,,,DestinationCharacter love chastity belts jumps up to maximum intensity!
-LoveChastityBeltVibeDecreaseTo-1,,,DestinationCharacter love chastity belt stops vibrating.
-LoveChastityBeltVibeDecreaseTo0,,,DestinationCharacter love chastity belt slows down into a light tease.
-LoveChastityBeltVibeDecreaseTo1,,,DestinationCharacter love chastity belt returns to a moderate pace.
-LoveChastityBeltVibeDecreaseTo2,,,DestinationCharacter love chastity belt slows down a tiny bit.
+LoveChastityBeltVibeIncreaseTo0,,,DestinationCharacterName love chastity belts starts teasing her lightly.
+LoveChastityBeltVibeIncreaseTo1,,,DestinationCharacterName love chastity belts builds up to a moderate pace.
+LoveChastityBeltVibeIncreaseTo2,,,DestinationCharacterName love chastity belts starts buzzing strongly!
+LoveChastityBeltVibeIncreaseTo3,,,DestinationCharacterName love chastity belts jumps up to maximum intensity!
+LoveChastityBeltVibeDecreaseTo-1,,,DestinationCharacterName love chastity belt stops vibrating.
+LoveChastityBeltVibeDecreaseTo0,,,DestinationCharacterName love chastity belt slows down into a light tease.
+LoveChastityBeltVibeDecreaseTo1,,,DestinationCharacterName love chastity belt returns to a moderate pace.
+LoveChastityBeltVibeDecreaseTo2,,,DestinationCharacterName love chastity belt slows down a tiny bit.
 LoveChastityBeltShockSet0,,,SourceCharacter sets DestinationCharacter love chastity belt to low intensity.
 LoveChastityBeltShockSet1,,,SourceCharacter sets DestinationCharacter love chastity belt to moderate intensity.
 LoveChastityBeltShockSet2,,,SourceCharacter sets DestinationCharacter love chastity belt to high intensity.
-LoveChastityBeltShockTrigger0,,,DestinationCharacter love chastity belt gives her a light shock.
-LoveChastityBeltShockTrigger1,,,DestinationCharacter love chastity belt lets out a sharp jolt!
-LoveChastityBeltShockTrigger2,,,DestinationCharacter love chastity belt delivers an intense shock!
+LoveChastityBeltShockTrigger0,,,DestinationCharacterName love chastity belt gives her a light shock.
+LoveChastityBeltShockTrigger1,,,DestinationCharacterName love chastity belt lets out a sharp jolt!
+LoveChastityBeltShockTrigger2,,,DestinationCharacterName love chastity belt delivers an intense shock!
 LoveChastityBeltRemoveShieldMessage,,,SourceCharacter removes shield from DestinationCharacter love chastity belt.
 LoveChastityBeltAddShieldMessage,,,SourceCharacter locks shield to DestinationCharacter love chastity belt.
 LoveChastityBeltAddVibeMessage,,,SourceCharacter locks vibe to DestinationCharacter love chastity belt.

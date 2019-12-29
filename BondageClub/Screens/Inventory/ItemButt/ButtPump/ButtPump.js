@@ -46,6 +46,9 @@ function InventoryItemButtButtPumpIntensity(Modifier) {
 	if (DialogFocusItem.Property.InflateLevel == 4);
 	if (C.ID == 0) ServerPlayerAppearanceSync();
 	ChatRoomCharacterUpdate(C);
-    ChatRoomPublishCustomAction((DialogFind(Player, "BPumps" + ((Modifier > 0) ? "pumps" : "deflates") + "To" + DialogFocusItem.Property.InflateLevel)).replace("SourceCharacter",Player.Name).replace("DestinationCharacter",C.Name), true);
+	var Dictionary = [];
+	Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+    ChatRoomPublishCustomAction("BPumps" + ((Modifier > 0) ? "pumps" : "deflates") + "To" + DialogFocusItem.Property.InflateLevel, true, Dictionary);
 } 
 

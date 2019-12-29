@@ -183,6 +183,9 @@ function InventoryItemNeckSlaveCollarSetType(NewType) {
     var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
     var Type = InventoryItemNeckSlaveCollarTypes.find(Collar => Collar.Name == NewType) || InventoryItemNeckSlaveCollarTypes[0];
     DialogFocusItem.Property = Type.Property;
-    ChatRoomPublishCustomAction(DialogFind(Player, "SlaveCollarChangeType").replace("SourceCharacter", Player.Name).replace("DestinationCharacter", C.Name), true);
+    var Dictionary = [];
+    Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+    Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+    ChatRoomPublishCustomAction("SlaveCollarChangeType", true, Dictionary);
     if (CurrentScreen != "ChatRoom") CharacterRefresh(C);
 }
