@@ -467,60 +467,60 @@ SourceCharacter sets DestinationCharacter shock collar to moderate intensity.
 SourceCharacter stellt DestinationCharacters Elektrohalsband auf "mittel".
 SourceCharacter sets DestinationCharacter shock collar to high intensity.
 SourceCharacter stellt DestinationCharacters Elektrohalsband auf "hoch".
-DestinationCharacter collar gives her a light shock.
-Ihr Halsband gibt DestinationCharacter einen leichten Schock.
-DestinationCharacter collar lets out a sharp jolt!
-Ihr Halsband versetzt DestinationCharacter einen scharfen Ruck!
-DestinationCharacter collar delivers an intense shock!
-Ihr Halsband verabreicht DestinationCharacter einen heftigen Schock!
-DestinationCharacter vibrating egg stops vibrating.
-DestinationCharacters Vibrator-Ei hört auf zu vibrieren.
-DestinationCharacter vibrating egg slows down into a light tease.
-DestinationCharacters Vibrator-Ei fällt auf ein leichtes Surren herab.
-DestinationCharacter vibrating egg returns to a moderate pace.
-DestinationCharacters Vibrator-Ei fällt auf eine moderate Stärke herab.
-DestinationCharacter vibrating egg slows down a tiny bit.
-DestinationCharacters Vibrator-Ei lässt ein kleines bisschen nach.
-DestinationCharacter vibrating egg starts teasing her lightly.
-DestinationCharacters Vibrator-Ei fängt an, sie sanft zu erregen.
-DestinationCharacter vibrating egg builds up to a moderate pace.
-DestinationCharacters Vibrator-Ei nimmt etwas Fahrt auf.
-DestinationCharacter vibrating egg starts buzzing strongly!
-DestinationCharacters Vibrator-Ei fängt an, stark zu vibrieren!
-DestinationCharacter vibrating egg jumps up to maximum intensity!
-DestinationCharacters Vibrator-Ei springt auf die maximale Stufe!
-DestinationCharacter vibrating dildo stops vibrating.
-DestinationCharacters Vibrator-Dildo hört auf zu vibrieren.
-DestinationCharacter vibrating dildo slows down into a light tease.
-DestinationCharacters Vibrator-Dildo fällt auf ein leichtes Surren herab.
-DestinationCharacter vibrating dildo returns to a moderate pace.
-DestinationCharacters Vibrator-Dildo fällt auf eine moderate Stärke herab.
-DestinationCharacter vibrating dildo slows down a tiny bit.
-DestinationCharacters Vibrator-Dildo lässt ein kleines bisschen nach.
-DestinationCharacter vibrating dildo starts teasing her lightly.
-DestinationCharacters Vibrator-Dildo fängt an, sie sanft zu erregen.
-DestinationCharacter vibrating dildo builds up to a moderate pace.
-DestinationCharacters Vibrator-Dildo nimmt etwas Fahrt auf.
-DestinationCharacter vibrating dildo starts buzzing strongly!
-DestinationCharacters Vibrator-Dildo fängt an, stark zu vibrieren!
-DestinationCharacter vibrating dildo jumps up to maximum intensity!
-DestinationCharacters Vibrator-Dildo springt auf die maximale Stufe!
-DestinationCharacter inflatable vibrating dildo stops vibrating.
-DestinationCharacters aufblasbarer Vibrator-Dildo hört auf zu vibrieren.
-DestinationCharacter inflatable vibrating dildo slows down into a light tease.
-DestinationCharacters aufblasbarer Vibrator-Dildo fällt auf ein leichtes Surren herab.
-DestinationCharacter inflatable vibrating dildo returns to a moderate pace.
-DestinationCharacters aufblasbarer Vibrator-Dildo fällt auf eine moderate Stärke herab.
-DestinationCharacter inflatable vibrating dildo slows down a tiny bit.
-DestinationCharacters aufblasbarer Vibrator-Dildo lässt ein kleines bisschen nach.
-DestinationCharacter inflatable vibrating dildo starts teasing her lightly.
-DestinationCharacters aufblasbarer Vibrator-Dildo fängt an, sie sanft zu erregen.
-DestinationCharacter inflatable vibrating dildo builds up to a moderate pace.
-DestinationCharacters aufblasbarer Vibrator-Dildo nimmt etwas Fahrt auf.
-DestinationCharacter inflatable vibrating dildo starts buzzing strongly!
-DestinationCharacters aufblasbarer Vibrator-Dildo fängt an, stark zu vibrieren!
-DestinationCharacter inflatable vibrating dildo jumps up to maximum intensity!
-DestinationCharacters aufblasbarer Vibrator-Dildo springt auf die maximale Stufe!
+DestinationCharacterName collar gives her a light shock.
+Ihr Halsband gibt DestinationCharacterName einen leichten Schock.
+DestinationCharacterName collar lets out a sharp jolt!
+Ihr Halsband versetzt DestinationCharacterName einen scharfen Ruck!
+DestinationCharacterName collar delivers an intense shock!
+Ihr Halsband verabreicht DestinationCharacterName einen heftigen Schock!
+DestinationCharacterName vibrating egg stops vibrating.
+DestinationCharacterNames Vibrator-Ei hört auf zu vibrieren.
+DestinationCharacterName vibrating egg slows down into a light tease.
+DestinationCharacterNames Vibrator-Ei fällt auf ein leichtes Surren herab.
+DestinationCharacterName vibrating egg returns to a moderate pace.
+DestinationCharacterNames Vibrator-Ei fällt auf eine moderate Stärke herab.
+DestinationCharacterName vibrating egg slows down a tiny bit.
+DestinationCharacterNames Vibrator-Ei lässt ein kleines bisschen nach.
+DestinationCharacterName vibrating egg starts teasing her lightly.
+DestinationCharacterNames Vibrator-Ei fängt an, sie sanft zu erregen.
+DestinationCharacterName vibrating egg builds up to a moderate pace.
+DestinationCharacterNames Vibrator-Ei nimmt etwas Fahrt auf.
+DestinationCharacterName vibrating egg starts buzzing strongly!
+DestinationCharacterNames Vibrator-Ei fängt an, stark zu vibrieren!
+DestinationCharacterName vibrating egg jumps up to maximum intensity!
+DestinationCharacterNames Vibrator-Ei springt auf die maximale Stufe!
+DestinationCharacterName vibrating dildo stops vibrating.
+DestinationCharacterNames Vibrator-Dildo hört auf zu vibrieren.
+DestinationCharacterName vibrating dildo slows down into a light tease.
+DestinationCharacterNames Vibrator-Dildo fällt auf ein leichtes Surren herab.
+DestinationCharacterName vibrating dildo returns to a moderate pace.
+DestinationCharacterNames Vibrator-Dildo fällt auf eine moderate Stärke herab.
+DestinationCharacterName vibrating dildo slows down a tiny bit.
+DestinationCharacterNames Vibrator-Dildo lässt ein kleines bisschen nach.
+DestinationCharacterName vibrating dildo starts teasing her lightly.
+DestinationCharacterNames Vibrator-Dildo fängt an, sie sanft zu erregen.
+DestinationCharacterName vibrating dildo builds up to a moderate pace.
+DestinationCharacterNames Vibrator-Dildo nimmt etwas Fahrt auf.
+DestinationCharacterName vibrating dildo starts buzzing strongly!
+DestinationCharacterNames Vibrator-Dildo fängt an, stark zu vibrieren!
+DestinationCharacterName vibrating dildo jumps up to maximum intensity!
+DestinationCharacterNames Vibrator-Dildo springt auf die maximale Stufe!
+DestinationCharacterName inflatable vibrating dildo stops vibrating.
+DestinationCharacterNames aufblasbarer Vibrator-Dildo hört auf zu vibrieren.
+DestinationCharacterName inflatable vibrating dildo slows down into a light tease.
+DestinationCharacterNames aufblasbarer Vibrator-Dildo fällt auf ein leichtes Surren herab.
+DestinationCharacterName inflatable vibrating dildo returns to a moderate pace.
+DestinationCharacterNames aufblasbarer Vibrator-Dildo fällt auf eine moderate Stärke herab.
+DestinationCharacterName inflatable vibrating dildo slows down a tiny bit.
+DestinationCharacterNames aufblasbarer Vibrator-Dildo lässt ein kleines bisschen nach.
+DestinationCharacterName inflatable vibrating dildo starts teasing her lightly.
+DestinationCharacterNames aufblasbarer Vibrator-Dildo fängt an, sie sanft zu erregen.
+DestinationCharacterName inflatable vibrating dildo builds up to a moderate pace.
+DestinationCharacterNames aufblasbarer Vibrator-Dildo nimmt etwas Fahrt auf.
+DestinationCharacterName inflatable vibrating dildo starts buzzing strongly!
+DestinationCharacterNames aufblasbarer Vibrator-Dildo fängt an, stark zu vibrieren!
+DestinationCharacterName inflatable vibrating dildo jumps up to maximum intensity!
+DestinationCharacterNames aufblasbarer Vibrator-Dildo springt auf die maximale Stufe!
 SourceCharacter deflates DestinationCharacter inflatable vibrating dildo till it's regular sized.
 SourceCharacter lässt Luft aus DestinationCharacters aufblasbarem Vibrator-Dildo ab, bis er seine normale Größe erreicht hat.
 SourceCharacter deflates DestinationCharacter inflatable vibrating dildo till only slighty bulging.
@@ -537,38 +537,38 @@ SourceCharacter inflates DestinationCharacter inflatable vibrating dildo till it
 SourceCharacter bläst DestinationCharacters aufblasbarem Vibrator-Dildo auf, bis er stark angeschwollen ist.
 SourceCharacter inflates DestinationCharacter inflatable vibrating dildo to it's maximum size.
 SourceCharacter bläst DestinationCharacters aufblasbarem Vibrator-Dildo bis zu seiner Maximalgröße auf.
-DestinationCharacter vibrating nipple clamps stop vibrating.
-Die Vibrator-Nippelklemmen von DestinationCharacter hören auf zu vibrieren.
-DestinationCharacter vibrating nipple clamps slow down into a light tease.
-Die Vibrator-Nippelklemmen von DestinationCharacter fallen auf ein leichtes Surren herab.
-DestinationCharacter vibrating nipple clamps return to a moderate pace.
-Die Vibrator-Nippelklemmen von DestinationCharacter fallen auf eine moderate Stärke herab.
-DestinationCharacter vibrating nipple clamps slow down a tiny bit.
-Die Vibrator-Nippelklemmen von DestinationCharacter lassen ein kleines bisschen nach.
-DestinationCharacter vibrating nipple clamps start teasing her lightly.
-Die Vibrator-Nippelklemmen von DestinationCharacter fangen an, sie sanft zu erregen.
-DestinationCharacter vibrating nipple clamps build up to a moderate pace.
-Die Vibrator-Nippelklemmen von DestinationCharacter nehmen etwas Fahrt auf.
-DestinationCharacter vibrating nipple clamps start buzzing strongly!
-Die Vibrator-Nippelklemmen von DestinationCharacter fangen an, stark zu vibrieren!
-DestinationCharacter vibrating nipple clamps jump up to maximum intensity!
-Die Vibrator-Nippelklemmen von DestinationCharacter springen auf die maximale Stufe!
-DestinationCharacter vibrating eggs on her nipples stop vibrating.
-DestinationCharacters Nippel-Vibratoren hören auf zu vibrieren.
-DestinationCharacter vibrating eggs on her nipples slow down into a light tease.
-DestinationCharacters Nippel-Vibratoren fallen auf ein leichtes Surren herab.
-DestinationCharacter vibrating eggs on her nipples return to a moderate pace.
-DestinationCharacters Nippel-Vibratoren fallen auf eine moderate Stärke herab.
-DestinationCharacter vibrating eggs on her nipples slow down a tiny bit.
-DestinationCharacters Nippel-Vibratoren lassen ein kleines bisschen nach.
-DestinationCharacter vibrating eggs on her nipples start teasing her lightly.
-DestinationCharacters Nippel-Vibratoren fangen an, sie sanft zu erregen.
-DestinationCharacter vibrating eggs on her nipples build up to a moderate pace.
-DestinationCharacters Nippel-Vibratoren nehmen etwas Fahrt auf.
-DestinationCharacter vibrating eggs on her nipples start buzzing strongly!
-DestinationCharacters Nippel-Vibratoren fangen an, stark zu vibrieren!
-DestinationCharacter vibrating eggs on her nipples jump up to maximum intensity!
-DestinationCharacters Nippel-Vibratoren springen auf die maximale Stufe!
+DestinationCharacterName vibrating nipple clamps stop vibrating.
+Die Vibrator-Nippelklemmen von DestinationCharacterName hören auf zu vibrieren.
+DestinationCharacterName vibrating nipple clamps slow down into a light tease.
+Die Vibrator-Nippelklemmen von DestinationCharacterName fallen auf ein leichtes Surren herab.
+DestinationCharacterName vibrating nipple clamps return to a moderate pace.
+Die Vibrator-Nippelklemmen von DestinationCharacterName fallen auf eine moderate Stärke herab.
+DestinationCharacterName vibrating nipple clamps slow down a tiny bit.
+Die Vibrator-Nippelklemmen von DestinationCharacterName lassen ein kleines bisschen nach.
+DestinationCharacterName vibrating nipple clamps start teasing her lightly.
+Die Vibrator-Nippelklemmen von DestinationCharacterName fangen an, sie sanft zu erregen.
+DestinationCharacterName vibrating nipple clamps build up to a moderate pace.
+Die Vibrator-Nippelklemmen von DestinationCharacterName nehmen etwas Fahrt auf.
+DestinationCharacterName vibrating nipple clamps start buzzing strongly!
+Die Vibrator-Nippelklemmen von DestinationCharacterName fangen an, stark zu vibrieren!
+DestinationCharacterName vibrating nipple clamps jump up to maximum intensity!
+Die Vibrator-Nippelklemmen von DestinationCharacterName springen auf die maximale Stufe!
+DestinationCharacterName vibrating eggs on her nipples stop vibrating.
+DestinationCharacterNames Nippel-Vibratoren hören auf zu vibrieren.
+DestinationCharacterName vibrating eggs on her nipples slow down into a light tease.
+DestinationCharacterNames Nippel-Vibratoren fallen auf ein leichtes Surren herab.
+DestinationCharacterName vibrating eggs on her nipples return to a moderate pace.
+DestinationCharacterNames Nippel-Vibratoren fallen auf eine moderate Stärke herab.
+DestinationCharacterName vibrating eggs on her nipples slow down a tiny bit.
+DestinationCharacterNames Nippel-Vibratoren lassen ein kleines bisschen nach.
+DestinationCharacterName vibrating eggs on her nipples start teasing her lightly.
+DestinationCharacterNames Nippel-Vibratoren fangen an, sie sanft zu erregen.
+DestinationCharacterName vibrating eggs on her nipples build up to a moderate pace.
+DestinationCharacterNames Nippel-Vibratoren nehmen etwas Fahrt auf.
+DestinationCharacterName vibrating eggs on her nipples start buzzing strongly!
+DestinationCharacterNames Nippel-Vibratoren fangen an, stark zu vibrieren!
+DestinationCharacterName vibrating eggs on her nipples jump up to maximum intensity!
+DestinationCharacterNames Nippel-Vibratoren springen auf die maximale Stufe!
 SourceCharacter loosens DestinationCharacter nipple suction cups until they hang loosely.
 SourceCharacter lockert DestinationCharacters Nippel-Saugnäpfe, bis sie lose herabhängen.
 SourceCharacter loosens DestinationCharacter nipple suction cups to a light amount of suction.
@@ -601,38 +601,38 @@ SourceCharacter tweaks DestinationCharacter clit suction cup sucking in her clit
 SourceCharacter justiert DestinationCharacters Klitoris-Saugnapf, sodass er kräftig an ihrer Klitoris saugt.
 SourceCharacter tweaks DestinationCharacter clit suction cup sucking in her clit entirely.
 SourceCharacter justiert DestinationCharacters Klitoris-Saugnapf, sodass er vollständig an ihrer Klitoris saugt.
-DestinationCharacter vibrating latex panties stops vibrating.
-DestinationCharacters vibrierendes Latexhöschen hört auf zu vibrieren.
-DestinationCharacter vibrating latex panties slows down into a light tease.
-DestinationCharacters vibrierendes Latexhöschen fällt auf ein leichtes Surren herab.
-DestinationCharacter vibrating latex panties returns to a moderate pace.
-DestinationCharacters vibrierendes Latexhöschen fällt auf eine moderate Stärke herab.
-DestinationCharacter vibrating latex panties slows down a tiny bit.
-DestinationCharacters vibrierendes Latexhöschen lässt ein kleines bisschen nach.
-DestinationCharacter vibrating latex panties starts teasing her lightly.
-DestinationCharacters vibrierendes Latexhöschen fängt an, sie sanft zu erregen.
-DestinationCharacter vibrating latex panties builds up to a moderate pace.
-DestinationCharacters vibrierendes Latexhöschen nimmt etwas Fahrt auf.
-DestinationCharacter vibrating latex panties starts buzzing strongly!
-DestinationCharacters vibrierendes Latexhöschen fängt an, stark zu vibrieren!
-DestinationCharacter vibrating latex panties jumps up to maximum intensity!
-DestinationCharacters vibrierendes Latexhöschen springt auf die maximale Stufe!
-DestinationCharacter vibrating wand stops vibrating.
-DestinationCharacters Vibrator-Stab hört auf zu vibrieren.
-DestinationCharacter vibrating wand slows down into a light tease.
-DestinationCharacters Vibrator-Stab fällt auf ein leichtes Surren herab.
-DestinationCharacter vibrating wand returns to a moderate pace.
-DestinationCharacters Vibrator-Stab fällt auf eine moderate Stärke herab.
-DestinationCharacter vibrating wand slows down a tiny bit.
-DestinationCharacters Vibrator-Stab lässt ein kleines bisschen nach.
-DestinationCharacter vibrating wand starts teasing her lightly.
-DestinationCharacters Vibrator-Stab fängt an, sie sanft zu erregen.
-DestinationCharacter vibrating wand builds up to a moderate pace.
-DestinationCharacters Vibrator-Stab nimmt etwas Fahrt auf.
-DestinationCharacter vibrating wand starts buzzing strongly!
-DestinationCharacters Vibrator-Stab fängt an, stark zu vibrieren!
-DestinationCharacter vibrating wand jumps up to maximum intensity!
-DestinationCharacters Vibrator-Stab springt auf die maximale Stufe!
+DestinationCharacterName vibrating latex panties stops vibrating.
+DestinationCharacterNames vibrierendes Latexhöschen hört auf zu vibrieren.
+DestinationCharacterName vibrating latex panties slows down into a light tease.
+DestinationCharacterNames vibrierendes Latexhöschen fällt auf ein leichtes Surren herab.
+DestinationCharacterName vibrating latex panties returns to a moderate pace.
+DestinationCharacterNames vibrierendes Latexhöschen fällt auf eine moderate Stärke herab.
+DestinationCharacterName vibrating latex panties slows down a tiny bit.
+DestinationCharacterNames vibrierendes Latexhöschen lässt ein kleines bisschen nach.
+DestinationCharacterName vibrating latex panties starts teasing her lightly.
+DestinationCharacterNames vibrierendes Latexhöschen fängt an, sie sanft zu erregen.
+DestinationCharacterName vibrating latex panties builds up to a moderate pace.
+DestinationCharacterNames vibrierendes Latexhöschen nimmt etwas Fahrt auf.
+DestinationCharacterName vibrating latex panties starts buzzing strongly!
+DestinationCharacterNames vibrierendes Latexhöschen fängt an, stark zu vibrieren!
+DestinationCharacterName vibrating latex panties jumps up to maximum intensity!
+DestinationCharacterNames vibrierendes Latexhöschen springt auf die maximale Stufe!
+DestinationCharacterName vibrating wand stops vibrating.
+DestinationCharacterNames Vibrator-Stab hört auf zu vibrieren.
+DestinationCharacterName vibrating wand slows down into a light tease.
+DestinationCharacterNames Vibrator-Stab fällt auf ein leichtes Surren herab.
+DestinationCharacterName vibrating wand returns to a moderate pace.
+DestinationCharacterNames Vibrator-Stab fällt auf eine moderate Stärke herab.
+DestinationCharacterName vibrating wand slows down a tiny bit.
+DestinationCharacterNames Vibrator-Stab lässt ein kleines bisschen nach.
+DestinationCharacterName vibrating wand starts teasing her lightly.
+DestinationCharacterNames Vibrator-Stab fängt an, sie sanft zu erregen.
+DestinationCharacterName vibrating wand builds up to a moderate pace.
+DestinationCharacterNames Vibrator-Stab nimmt etwas Fahrt auf.
+DestinationCharacterName vibrating wand starts buzzing strongly!
+DestinationCharacterNames Vibrator-Stab fängt an, stark zu vibrieren!
+DestinationCharacterName vibrating wand jumps up to maximum intensity!
+DestinationCharacterNames Vibrator-Stab springt auf die maximale Stufe!
 SourceCharacter deflates DestinationCharacter butt pump till it's empty.
 SourceCharacter lässt Luft aus DestinationCharacters Analpumpe, bis sie leer ist.
 SourceCharacter deflates DestinationCharacter butt pump till only slighty filled.
@@ -649,38 +649,38 @@ SourceCharacter inflates DestinationCharacter butt pump three quarters filled.
 SourceCharacter bläst DestinationCharacters Analpumpe zu drei Vierteln auf.
 SourceCharacter inflates DestinationCharacter butt pump to the maximum amount.
 SourceCharacter bläst DestinationCharacters Analpumpe vollständig auf.
-DestinationCharacter vibrating buttplug stops vibrating.
-DestinationCharacters Vibrator-Analstöpsel hört auf zu vibrieren.
-DestinationCharacter vibrating buttplug slows down into a light tease.
-DestinationCharacters Vibrator-Analstöpsel fällt auf ein leichtes Surren herab.
-DestinationCharacter vibrating buttplug returns to a moderate pace.
-DestinationCharacters Vibrator-Analstöpsel fällt auf eine moderate Stärke herab.
-DestinationCharacter vibrating buttplug slows down a tiny bit.
-DestinationCharacters Vibrator-Analstöpsel lässt ein kleines bisschen nach.
-DestinationCharacter vibrating buttplug starts teasing her lightly.
-DestinationCharacters Vibrator-Analstöpsel fängt an, sie sanft zu erregen.
-DestinationCharacter vibrating buttplug builds up to a moderate pace.
-DestinationCharacters Vibrator-Analstöpsel nimmt etwas Fahrt auf.
-DestinationCharacter vibrating buttplug starts buzzing strongly!
-DestinationCharacters Vibrator-Analstöpsel fängt an, stark zu vibrieren!
-DestinationCharacter vibrating buttplug jumps up to maximum intensity!
-DestinationCharacters Vibrator-Analstöpsel springt auf die maximale Stufe!
-DestinationCharacter inflatable vibrating butt plug stops vibrating.
-DestinationCharacter aufblasbarer Vibrator-Analstöpsel hört auf zu vibrieren.
-DestinationCharacter inflatable vibrating butt plug slows down into a light tease.
-DestinationCharacter aufblasbarer Vibrator-Analstöpsel fällt auf ein leichtes Surren herab.
-DestinationCharacter inflatable vibrating butt plug returns to a moderate pace.
-DestinationCharacter aufblasbarer Vibrator-Analstöpsel fällt auf eine moderate Stärke herab.
-DestinationCharacter inflatable vibrating butt plug slows down a tiny bit.
-DestinationCharacter aufblasbarer Vibrator-Analstöpsel lässt ein kleines bisschen nach.
-DestinationCharacter inflatable vibrating butt plug starts teasing her lightly.
-DestinationCharacter aufblasbarer Vibrator-Analstöpsel fängt an, sie sanft zu erregen.
-DestinationCharacter inflatable vibrating butt plug builds up to a moderate pace.
-DestinationCharacter aufblasbarer Vibrator-Analstöpsel nimmt etwas Fahrt auf.
-DestinationCharacter inflatable vibrating butt plug starts buzzing strongly!
-DestinationCharacter aufblasbarer Vibrator-Analstöpsel fängt an, stark zu vibrieren!
-DestinationCharacter inflatable vibrating butt plug jumps up to maximum intensity!
-DestinationCharacter aufblasbarer Vibrator-Analstöpsel springt auf die maximale Stufe!
+DestinationCharacterName vibrating buttplug stops vibrating.
+DestinationCharacterNames Vibrator-Analstöpsel hört auf zu vibrieren.
+DestinationCharacterName vibrating buttplug slows down into a light tease.
+DestinationCharacterNames Vibrator-Analstöpsel fällt auf ein leichtes Surren herab.
+DestinationCharacterName vibrating buttplug returns to a moderate pace.
+DestinationCharacterNames Vibrator-Analstöpsel fällt auf eine moderate Stärke herab.
+DestinationCharacterName vibrating buttplug slows down a tiny bit.
+DestinationCharacterNames Vibrator-Analstöpsel lässt ein kleines bisschen nach.
+DestinationCharacterName vibrating buttplug starts teasing her lightly.
+DestinationCharacterNames Vibrator-Analstöpsel fängt an, sie sanft zu erregen.
+DestinationCharacterName vibrating buttplug builds up to a moderate pace.
+DestinationCharacterNames Vibrator-Analstöpsel nimmt etwas Fahrt auf.
+DestinationCharacterName vibrating buttplug starts buzzing strongly!
+DestinationCharacterNames Vibrator-Analstöpsel fängt an, stark zu vibrieren!
+DestinationCharacterName vibrating buttplug jumps up to maximum intensity!
+DestinationCharacterNames Vibrator-Analstöpsel springt auf die maximale Stufe!
+DestinationCharacterName inflatable vibrating butt plug stops vibrating.
+DestinationCharacterName aufblasbarer Vibrator-Analstöpsel hört auf zu vibrieren.
+DestinationCharacterName inflatable vibrating butt plug slows down into a light tease.
+DestinationCharacterName aufblasbarer Vibrator-Analstöpsel fällt auf ein leichtes Surren herab.
+DestinationCharacterName inflatable vibrating butt plug returns to a moderate pace.
+DestinationCharacterName aufblasbarer Vibrator-Analstöpsel fällt auf eine moderate Stärke herab.
+DestinationCharacterName inflatable vibrating butt plug slows down a tiny bit.
+DestinationCharacterName aufblasbarer Vibrator-Analstöpsel lässt ein kleines bisschen nach.
+DestinationCharacterName inflatable vibrating butt plug starts teasing her lightly.
+DestinationCharacterName aufblasbarer Vibrator-Analstöpsel fängt an, sie sanft zu erregen.
+DestinationCharacterName inflatable vibrating butt plug builds up to a moderate pace.
+DestinationCharacterName aufblasbarer Vibrator-Analstöpsel nimmt etwas Fahrt auf.
+DestinationCharacterName inflatable vibrating butt plug starts buzzing strongly!
+DestinationCharacterName aufblasbarer Vibrator-Analstöpsel fängt an, stark zu vibrieren!
+DestinationCharacterName inflatable vibrating butt plug jumps up to maximum intensity!
+DestinationCharacterName aufblasbarer Vibrator-Analstöpsel springt auf die maximale Stufe!
 SourceCharacter deflates DestinationCharacter inflatable vibrating butt plug till it's empty.
 SourceCharacter lässt Luft aus DestinationCharacters aufblasbarem Vibrator-Analstöpsel, bis er leer ist.
 SourceCharacter deflates DestinationCharacter inflatable vibrating butt plug till only slightly filled.
@@ -817,34 +817,34 @@ SourceCharacter unlocks DestinationCharacter love chastity belt butt.
 SourceCharacter öffnet den Hintereingang von DestinationCharacters Liebes-Keuschheitsgürtel.
 SourceCharacter lock DestinationCharacter love chastity belt butt.
 SourceCharacter verriegelt den Hintereingang von DestinationCharacters Liebes-Keuschheitsgürtel.
-DestinationCharacter love chastity belts starts teasing her lightly.
-DestinationCharacters Liebes-Keuschheitsgürtel fängt an, sie sanft zu erregen.
-DestinationCharacter love chastity belts builds up to a moderate pace.
-DestinationCharacters Liebes-Keuschheitsgürtel nimmt etwas Fahrt auf.
-DestinationCharacter love chastity belts starts buzzing strongly!
-DestinationCharacters Liebes-Keuschheitsgürtel fängt an, stark zu vibrieren!
-DestinationCharacter love chastity belts jumps up to maximum intensity!
-DestinationCharacters Liebes-Keuschheitsgürtel springt auf die maximale Stufe!
-DestinationCharacter love chastity belt stops vibrating.
-DestinationCharacters Liebes-Keuschheitsgürtel hört auf zu vibrieren.
-DestinationCharacter love chastity belt slows down into a light tease.
-DestinationCharacters Liebes-Keuschheitsgürtel fällt auf ein leichtes Surren herab.
-DestinationCharacter love chastity belt returns to a moderate pace.
-DestinationCharacters Liebes-Keuschheitsgürtel fällt auf eine moderate Stärke herab.
-DestinationCharacter love chastity belt slows down a tiny bit.
-DestinationCharacters Liebes-Keuschheitsgürtel lässt ein kleines bisschen nach.
+DestinationCharacterName love chastity belts starts teasing her lightly.
+DestinationCharacterNames Liebes-Keuschheitsgürtel fängt an, sie sanft zu erregen.
+DestinationCharacterName love chastity belts builds up to a moderate pace.
+DestinationCharacterNames Liebes-Keuschheitsgürtel nimmt etwas Fahrt auf.
+DestinationCharacterName love chastity belts starts buzzing strongly!
+DestinationCharacterNames Liebes-Keuschheitsgürtel fängt an, stark zu vibrieren!
+DestinationCharacterName love chastity belts jumps up to maximum intensity!
+DestinationCharacterNames Liebes-Keuschheitsgürtel springt auf die maximale Stufe!
+DestinationCharacterName love chastity belt stops vibrating.
+DestinationCharacterNames Liebes-Keuschheitsgürtel hört auf zu vibrieren.
+DestinationCharacterName love chastity belt slows down into a light tease.
+DestinationCharacterNames Liebes-Keuschheitsgürtel fällt auf ein leichtes Surren herab.
+DestinationCharacterName love chastity belt returns to a moderate pace.
+DestinationCharacterNames Liebes-Keuschheitsgürtel fällt auf eine moderate Stärke herab.
+DestinationCharacterName love chastity belt slows down a tiny bit.
+DestinationCharacterNames Liebes-Keuschheitsgürtel lässt ein kleines bisschen nach.
 SourceCharacter sets DestinationCharacter love chastity belt to low intensity.
 SourceCharacter stellt DestinationCharacters Liebes-Keuschheitsgürtel auf "niedrig".
 SourceCharacter sets DestinationCharacter love chastity belt to moderate intensity.
 SourceCharacter stellt DestinationCharacters Liebes-Keuschheitsgürtel auf "mittel".
 SourceCharacter sets DestinationCharacter love chastity belt to high intensity.
 SourceCharacter stellt DestinationCharacters Liebes-Keuschheitsgürtel auf "hoch".
-DestinationCharacter love chastity belt gives her a light shock.
-Ihr Liebes-Keuschheitsgürtel gibt DestinationCharacter einen leichten Schock.
-DestinationCharacter love chastity belt lets out a sharp jolt!
-Ihr Liebes-Keuschheitsgürtel versetzt DestinationCharacter einen scharfen Ruck!
-DestinationCharacter love chastity belt delivers an intense shock!
-Ihr Liebes-Keuschheitsgürtel verabreicht DestinationCharacter einen heftigen Schock!
+DestinationCharacterName love chastity belt gives her a light shock.
+Ihr Liebes-Keuschheitsgürtel gibt DestinationCharacterName einen leichten Schock.
+DestinationCharacterName love chastity belt lets out a sharp jolt!
+Ihr Liebes-Keuschheitsgürtel versetzt DestinationCharacterName einen scharfen Ruck!
+DestinationCharacterName love chastity belt delivers an intense shock!
+Ihr Liebes-Keuschheitsgürtel verabreicht DestinationCharacterName einen heftigen Schock!
 SourceCharacter removes shield from DestinationCharacter love chastity belt.
 SourceCharacter entfernt die Abschirmung von DestinationCharacters Liebes-Keuschheitsgürtel.
 SourceCharacter locks shield to DestinationCharacter love chastity belt.
