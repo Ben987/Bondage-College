@@ -29,4 +29,5 @@ SensDepSetting,Sensory deprivation setting
 SensDepNames,Hide names
 SensDepTotal,Total
 BlindDisableExamine,Disable examining people when blind
+DisableAutoRemoveLogin,Keep all of your restraints when logging off
 ForceFullHeight,Display all characters at maximum height

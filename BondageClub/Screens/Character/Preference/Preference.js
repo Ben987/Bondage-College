@@ -44,9 +44,10 @@ function PreferenceLoad() {
 	};
 
 	//if the user never set the gameplay settings before, construct them to replicate the default behavior
-	if (!Player.GameplaySettings || (typeof Player.GameplaySettings.SensDepChatLog !== "string") || (typeof Player.GameplaySettings.BlindDisableExamine !== "boolean")) Player.GameplaySettings = {
+	if (!Player.GameplaySettings || (typeof Player.GameplaySettings.SensDepChatLog !== "string") || (typeof Player.GameplaySettings.BlindDisableExamine !== "boolean") || (typeof Player.GameplaySettings.DisableAutoRemoveLogin !== "boolean")) Player.GameplaySettings = {
 		SensDepChatLog: "Normal",
-		BlindDisableExamine: false
+		BlindDisableExamine: false,
+		DisableAutoRemoveLogin: false
 	};
 
 	// Sets the chat themes
@@ -78,6 +79,7 @@ function PreferenceRun() {
 	// Draw the online preferences
 	MainCanvas.textAlign = "left";
 	DrawText(TextGet("Preferences"), 500, 125, "Black", "Gray");
+	if (PreferenceMessage != "") DrawText(TextGet(PreferenceMessage), 865, 125, "Red", "Black");
 	DrawText(TextGet("CharacterLabelColor"), 500, 225, "Black", "Gray");
 	ElementPosition("InputCharacterLabelColor", 990, 212, 250);
 	if (CommonIsColor(ElementValue("InputCharacterLabelColor"))) document.getElementById("InputCharacterLabelColor").style.color = ElementValue("InputCharacterLabelColor");
@@ -92,9 +94,10 @@ function PreferenceRun() {
 	DrawButton(500, 552, 64, 64, "", "White", (Player.AudioSettings && Player.AudioSettings.PlayBeeps) ? "Icons/Checked.png" : "");
 	DrawText(TextGet("BlindDisableExamine"), 600, 665, "Black", "Gray");
 	DrawButton(500, 632, 64, 64, "", "White", (Player.GameplaySettings && Player.GameplaySettings.BlindDisableExamine) ? "Icons/Checked.png" : "");
-	DrawText(TextGet("ForceFullHeight"), 600, 745, "Black", "Gray");
-	DrawButton(500, 712, 64, 64, "", "White", (Player.VisualSettings && Player.VisualSettings.ForceFullHeight) ? "Icons/Checked.png" : "");
-	if (PreferenceMessage != "") DrawText(TextGet(PreferenceMessage), 500, 850, "Red", "Black");
+	DrawText(TextGet("DisableAutoRemoveLogin"), 600, 745, "Black", "Gray");
+	DrawButton(500, 712, 64, 64, "", "White", (Player.GameplaySettings && Player.GameplaySettings.DisableAutoRemoveLogin) ? "Icons/Checked.png" : "");
+	DrawText(TextGet("ForceFullHeight"), 600, 825, "Black", "Gray");
+	DrawButton(500, 792, 64, 64, "", "White", (Player.VisualSettings && Player.VisualSettings.ForceFullHeight) ? "Icons/Checked.png" : "");
 	MainCanvas.textAlign = "center";
 	DrawBackNextButton(500, 392, 250, 64, Player.AudioSettings.Volume * 100 + "%", "White", "",
 		() => PreferenceSettingsVolumeList[(PreferenceSettingsVolumeIndex + PreferenceSettingsVolumeList.length - 1) % PreferenceSettingsVolumeList.length] * 100 + "%",
@@ -154,7 +157,8 @@ function PreferenceClick() {
 	if ((MouseX >= 500) && (MouseX < 564)) {
 		if ((MouseY >= 552) && (MouseY < 616)) Player.AudioSettings.PlayBeeps = !Player.AudioSettings.PlayBeeps;
 		if ((MouseY >= 632) && (MouseY < 696)) Player.GameplaySettings.BlindDisableExamine = !Player.GameplaySettings.BlindDisableExamine;
-		if ((MouseY >= 712) && (MouseY < 776)) Player.VisualSettings.ForceFullHeight = !Player.VisualSettings.ForceFullHeight;
+		if ((MouseY >= 712) && (MouseY < 776)) Player.GameplaySettings.DisableAutoRemoveLogin = !Player.GameplaySettings.DisableAutoRemoveLogin;
+		if ((MouseY >= 792) && (MouseY < 856)) Player.VisualSettings.ForceFullHeight = !Player.VisualSettings.ForceFullHeight;
 	}
 }
 
