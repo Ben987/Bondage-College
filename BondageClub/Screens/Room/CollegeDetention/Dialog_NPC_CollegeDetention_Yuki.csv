@@ -3,7 +3,6 @@ YukiHadEnough,,,"Enough shit!  Since you can't behave, you'll spend detention re
 YukiPropose,,,You're a little whore aren't you?  A bad girl?  I have a proposal for you.,,
 Orgasm,,,(She shakes and screams from a long orgasm.)  Fuuuuuuuuck yeah!  That... that was intense!,,
 NoOrgasm,,,(She pushes you away.)  That's enough!  I'm not in the mood anymore and I need to go.,,
-0,,,NOEXIT,,
 0,,,(A small woman welcomes you coldly.)  Another one?  What's your story?  Why were you sent to detention?,,
 0,,Who are you?,I'm teacher Yuki.  I monitor the detention room today.  Why are you here?,DialogRemove(),"!DialogLogQuery(""BondageCollege"", ""Import"")"
 0,,Hello teacher Yuki.,Hello DialogPlayerName.  Why were you sent to detention today?,DialogRemove(),"DialogLogQuery(""BondageCollege"", ""Import"")"
@@ -13,7 +12,7 @@ NoOrgasm,,,(She pushes you away.)  That's enough!  I'm not in the mood anymore a
 0,10,I'm sorry Miss.,You better be sorry.  What did you do wrong?,YukiLoveChange(1),
 0,10,"Oops, wrong door.",Very funny young lady.  What did you do wrong?,,
 0,10,I should go.  (Leave her.),(She stops you.)  You're not going anywhere young lady.  What did you do wrong?,YukiLoveChange(-1),
-10,20,Fuck you bitch.,That answer is worth your detention.  You'll spend the rest of the day with me.,YukiLoveChange(-1),
+10,20,Fuck you bitch.,"That answer alone, is worth your detention time.  You'll spend the rest of the day with me.",YukiLoveChange(-1),
 10,20,I didn't do anything.,"I'll check with your teacher later.  Whatever you did, you'll spend the rest of the day with me.",,
 10,20,I'm innocent!,"I'll check with your teacher later.  Whatever you did, you'll spend the rest of the day with me.",,
 10,20,I've chatted in class.,"Bad girl, you know you shouldn't do that.  You'll spend the rest of the day with me.",YukiLoveChange(1),
@@ -124,9 +123,10 @@ NoOrgasm,,,(She pushes you away.)  That's enough!  I'm not in the mood anymore a
 1030,,You cannot do that!,(She laughs.)  It seems I've just did it.,,
 1030,,"Ok, that's enough.",I'll tell you when it's enough.  You need to wait young lady.,,
 1030,,(Struggle and beg for help.),"(She checks the clock.)  No, your time isn't done yet.  Learn your lesson.",,!YukiWillRelease()
-1030,1040,(Struggle and beg for help.),"(She checks the clock and nods.)  Fine, your time is done.  (She releases you.)  I hope you've learned something.",,YukiWillRelease()
+1030,1040,(Struggle and beg for help.),"(She checks the clock and nods.)  Fine, your time is done.  (She releases you.)  I hope you've learned something.","DialogRelease(""Player"")",YukiWillRelease()
 1030,,(Wait patiently.),(You both wait together as the clock turns very slowly.),,!YukiWillRelease()
-1030,1040,(Wait patiently.),"(She checks the clock and nods.)  Fine, your time is done.  (She releases you.)  I hope you've learned something.",,YukiWillRelease()
+1030,1040,(Wait patiently.),"(She checks the clock and nods.)  Fine, your time is done.  (She releases you.)  I hope you've learned something.","DialogRelease(""Player"")",YukiWillRelease()
+1040,,,I'm closing the detention room soon.  You must go.,,
 1040,,I'm free to go?,"Yeah, I'm closing the detention room really soon.",DialogRemove(),
 1040,,What are you doing later?,That's none of your business.  Now go.,DialogRemove(),
 1040,,(Leave her.),,DialogLeave(),
@@ -154,6 +154,7 @@ NoOrgasm,,,(She pushes you away.)  That's enough!  I'm not in the mood anymore a
 2110,2150,I know a place where we could meet.,Really?  Where could we go?,,CanInviteToPrivateRoom()
 2110,2120,We'll meet when I go back to detention.,"Alright.  Get out then, I need to close the room.",,
 2110,2120,I don't want to see you again.,"(She snobs you.)  Fine, get out then.  I need to close the room anyway.",,
+2120,,,I'm closing the detention room soon.  You must go.,,
 2120,,No goodbye kisses?,Don't think you're funny young lady.,DialogRemove(),
 2120,,(Leave her.),,DialogLeave(),
 2150,2160,It's a club downtown.,"I'm in, just give me the address and I'll meet you there later.",,
@@ -162,6 +163,7 @@ NoOrgasm,,,(She pushes you away.)  That's enough!  I'm not in the mood anymore a
 2200,2210,We barely begun!,"I know girl.  (You both dress back up.)  You're not good enough, now get out.",DressBack(),
 2200,2210,That was too quick.,"I know girl.  (You both dress back up.)  You're not good enough, now get out.",DressBack(),
 2200,2210,So we dress back up?,"We do.  (You both dress back up.)  You're not good enough, now get out.",DressBack(),
+2210,,,I'm closing the detention room soon.  You must go.,,
 2210,,That's it?  I can go?,"Yeah, I'm closing the detention room really soon.",DialogRemove(),
 2210,,No goodbye kisses?,Don't think you're funny young lady.,DialogRemove(),
 2210,,What are you doing later?,That's none of your business.  Now go.,DialogRemove(),

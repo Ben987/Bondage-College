@@ -293,6 +293,7 @@ var AssetFemale3DCG = [
 		Asset: [
 			"Ears1", "Ears2", "PonyEars1",
 			{ Name: "Ribbons1", Priority: 4, BuyGroup: "Ribbons1" },
+			{ Name: "Ribbons2", Priority: 4, Value: -1, BuyGroup: "Ribbons2" },
 			{ Name: "GiantBow1", Priority: 4, BuyGroup: "GiantBow1" },
 			{ Name: "BunnyEars1", Value: 10, BuyGroup: "BunnyEars1" },
 			{ Name: "BunnyEars2", Value: 20, BuyGroup: "BunnyEars2" },
@@ -320,6 +321,7 @@ var AssetFemale3DCG = [
 		Asset: [
 			"Ears1", "Ears2", "PonyEars1",
 			{ Name: "Ribbons1", Priority: 4, BuyGroup: "Ribbons1" },
+			{ Name: "Ribbons2", Priority: 4, Value: -1, BuyGroup: "Ribbons2" },
 			{ Name: "GiantBow1", Priority: 4, BuyGroup: "GiantBow1" },
 			{ Name: "BunnyEars1", Value: 10, BuyGroup: "BunnyEars1" },
 			{ Name: "BunnyEars2", Value: 20, BuyGroup: "BunnyEars2" },
