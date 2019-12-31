@@ -342,7 +342,10 @@ function ServerAccountBeep(data) {
 		ServerBeep.MemberName = data.MemberName;
 		ServerBeep.ChatRoomName = data.ChatRoomName;
 		ServerBeep.Timer = CurrentTime + 10000;
-		if (Player.AudioSettings && Player.AudioSettings.PlayBeeps) ServerBeepAudio.play();
+		if (Player.AudioSettings && Player.AudioSettings.PlayBeeps) {
+			ServerBeepAudio.volume = Player.AudioSettings.Volume;
+			ServerBeepAudio.play();
+		}
 		ServerBeep.Message = DialogFind(Player, "BeepFrom") + " " + ServerBeep.MemberName + " (" + ServerBeep.MemberNumber.toString() + ")";
 		if (ServerBeep.ChatRoomName != null)
 			ServerBeep.Message = ServerBeep.Message + " " + DialogFind(Player, "InRoom") + " \"" + ServerBeep.ChatRoomName + "\"";
