@@ -690,7 +690,7 @@ function ChatRoomCanSelectYourself() {
 
 // Sends two character movement to the server
 function ChatRoomCharacterMove(Action) {
-	if (CurrentCharacter != null && ChatRoomMoveCharacter != null && Action != "Cancel") {
+	if ((CurrentCharacter != null) && (ChatRoomMoveCharacter != null) && (Action != "Cancel")) {
 		ServerSend("ChatRoomAdmin", { Action: Action, MemberNumber: ChatRoomMoveCharacter.MemberNumber, TargetMemberNumber: CurrentCharacter.MemberNumber });
 	}
 	ChatRoomMoveCharacter = null;
@@ -700,7 +700,7 @@ function ChatRoomCharacterMove(Action) {
 
 // Returns true if the second character for movement is valid
 function ChatRoomCanMoveCharacter(Action) {
-	if (CurrentCharacter == null || ChatRoomMoveCharacter == null) return false;
+	if ((CurrentCharacter == null) || (ChatRoomMoveCharacter == null)) return false;
 	if (CurrentCharacter.MemberNumber == ChatRoomMoveCharacter.MemberNumber) return false;
 	if (Action == "Swap") return true;
 	var A = ChatRoomCharacter.findIndex(C => C.MemberNumber == ChatRoomMoveCharacter.MemberNumber);
