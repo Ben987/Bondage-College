@@ -7,7 +7,6 @@ var MainHallMaid = null;
 var MainHallIsMaid = false;
 var MainHallIsHeadMaid = false;
 var MainHallHasOwnerLock = false;
-var MainHallTip = 0;
 
 // Returns TRUE if a dialog option is available
 function MainHallCanTrickMaid() { return (ManagementIsClubSlave() && SarahUnlockQuest) }
@@ -24,7 +23,6 @@ function MainHallLoad() {
 	MainHallIsMaid = LogQuery("JoinedSorority", "Maid");
 	MainHallIsHeadMaid = LogQuery("LeadSorority", "Maid");
 	MainHallHasOwnerLock = InventoryCharacterHasOwnerOnlyRestraint(Player);
-	MainHallTip = Math.floor(Math.random() * 20);
 	CommonReadCSV("NoArravVar", "Room", "Management", "Dialog_NPC_Management_RandomGirl");
 	CommonReadCSV("NoArravVar", "Room", "KidnapLeague", "Dialog_NPC_KidnapLeague_RandomKidnapper");
 	CommonReadCSV("NoArravVar", "Room", "Private", "Dialog_NPC_Private_Custom");
@@ -59,9 +57,6 @@ function MainHallRun() {
 
 	// Draws the character and main hall buttons
 	DrawCharacter(Player, 750, 0, 1);
-	MainCanvas.font = "italic 30px Arial";	
-	DrawTextWrap(TextGet("Tip" + MainHallTip), 100, 800, 500, 200, "White");
-	MainCanvas.font = "36px Arial";	
 	
 	// Char, Dressing, Exit & Chat
 	DrawButton(1645, 25, 90, 90, "", "White", "Icons/Character.png", TextGet("Profile"));
