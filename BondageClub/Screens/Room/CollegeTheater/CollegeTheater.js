@@ -2,13 +2,12 @@
 var CollegeTheaterBackground = "CollegeTheater";
 var CollegeTheaterJulia = null;
 var CollegeTheaterJuliaLove = 0;
-var CollegeTheaterRandomColors = ["#AA4444", "#44AA44", "#4444AA", "#AAAA44", "#AA44AA", "#44AAAA"];
+var CollegeTheaterRandomColors = ["#AA4444", "#44AA44", "#4444AA", "#AAAA44", "#AA44AA", "#44AAAA"]
 
 // Returns TRUE if the dialog option should be shown
 function CollegeTheaterCanInviteToPrivateRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax)) }
 function CollegeTheaterJuliaLoveIs(LoveLevel) { return (CollegeTheaterJuliaLove >= parseInt(LoveLevel)) }
 function CollegeTheaterCanChooseRole() { return ((ReputationGet("Dominant") > -30) && (ReputationGet("Dominant") < 30)) }
-function CollegeTheaterGetTeacherKey() { LogAdd("TeacherKey", "College") }
 
 // Sets Julia in her full theater clothes
 function CollegeTheaterJuliaClothes() {
