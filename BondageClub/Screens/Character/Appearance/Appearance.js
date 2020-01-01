@@ -41,13 +41,12 @@ function CharacterAppearanceValidate(C) {
 		}
 
 	// Remove items flagged as "Remove At Login"
-	if (!Player.GameplaySettings || !Player.GameplaySettings.DisableAutoRemoveLogin)
-		for (var A = 0; A < C.Appearance.length; A++)
-			if (C.Appearance[A].Asset.RemoveAtLogin) {
-				C.Appearance.splice(A, 1);
-				Refresh = true;
-				A--;
-			}
+	for (var A = 0; A < C.Appearance.length; A++)
+		if (C.Appearance[A].Asset.RemoveAtLogin) {
+			C.Appearance.splice(A, 1);
+			Refresh = true;
+			A--;
+		}
 
 	// Dress back if there are missing appearance items
 	for (var A = 0; A < AssetGroup.length; A++)
