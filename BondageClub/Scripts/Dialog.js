@@ -922,6 +922,25 @@ function DialogFindAutoReplace(C, KeyWord1, KeyWord2, ReturnPrevious) {
 		.replace("DestinationCharacter", CharacterGetCurrent().Name);
 }
 
+// Replace TargetName in the Stage and loads it as a dynamic dialog
+function DialogBuildDynamicTarget(C, Stage, Target) {
+	C.Dialog = C.Dialog
+		.filter(D => D.Stage != "Dynamic")
+		.concat(C.Dialog
+			.filter(D => D.Stage == Stage)
+			.map(D => Object.assign({}, D, {
+				Stage: "Dynamic",
+				Option: D.Option && D.Option.replace("TargetName", (Target.ID == 0) ? DialogFind(Player, "Yourself").toLowerCase() : Target.Name),
+				Result: D.Result && D.Result.replace("TargetName", (Target.ID == 0) ? DialogFind(Player, "Yourself").toLowerCase() : Target.Name)
+			})));
+}
+
+// Removes all dynamic dialog and reset stage if it was Dynamic
+function DialogRemoveDynamic(C, Stage) {
+	C.Dialog = C.Dialog.filter(D => D.Stage != "Dynamic");
+	if (C.Stage == "Dynamic") C.Stage = Stage || "0";
+}
+
 // Draw all the possible interactions 
 function DialogDraw() {
 

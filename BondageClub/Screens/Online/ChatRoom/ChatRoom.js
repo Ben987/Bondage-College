@@ -11,6 +11,7 @@ var ChatRoomPlayerCanJoin = false;
 var ChatRoomMoneyForOwner = 0;
 var ChatRoomQuestGiven = [];
 var ChatRoomSpace = "";
+var ChatRoomMoveCharacter = null;
 
 // Returns TRUE if the dialog option is available
 function ChatRoomCanAddWhiteList() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.WhiteList.indexOf(CurrentCharacter.MemberNumber) < 0) && (Player.BlackList.indexOf(CurrentCharacter.MemberNumber) < 0)) }
@@ -97,6 +98,10 @@ function ChatRoomDrawCharacter(DoClick) {
 					ChatRoomOwnershipOption = "";
 					if (ChatRoomCharacter[C].ID != 0) ServerSend("ChatRoomAllowItem", { MemberNumber: ChatRoomCharacter[C].MemberNumber });
 					if (ChatRoomCharacter[C].ID != 0) ServerSend("AccountOwnership", { MemberNumber: ChatRoomCharacter[C].MemberNumber });
+					if (ChatRoomMoveCharacter != null) { 
+						if (!ChatRoomCharacter[C].Dialog.some(D => D.Stage == "Dynamic")) DialogBuildDynamicTarget(ChatRoomCharacter[C], "ChatRoomMove", ChatRoomMoveCharacter);
+						ChatRoomCharacter[C].Stage = "Dynamic";
+					}
 					CharacterSetCurrent(ChatRoomCharacter[C]);
 				} else {
 					if (!LogQuery("BlockWhisper", "OwnerRule") || (Player.Ownership == null) || (Player.Ownership.Stage != 1) || (Player.Ownership.MemberNumber == ChatRoomCharacter[C].MemberNumber))
@@ -667,4 +672,40 @@ function ChatRoomPayQuest(data) {
 		CharacterChangeMoney(Player, M);
 		ChatRoomQuestGiven.splice(ChatRoomQuestGiven.indexOf(data.Sender), 1);
 	}
+}
+
+// Select character to move and loads dynamic dialogs
+function ChatRoomSelectCharacterForMove() {
+	if (CurrentCharacter != null) {
+		ChatRoomMoveCharacter = CurrentCharacter;
+		ChatRoomCharacter.forEach(C => DialogBuildDynamicTarget(C, "ChatRoomMove", CurrentCharacter));
+	}
+	DialogLeave();
+}
+
+// returns true if Player can be selected to be moved
+function ChatRoomCanSelectYourself() {
+	return (CurrentCharacter != null) && (ChatRoomMoveCharacter == null) && (CurrentScreen == "ChatRoom") && ChatRoomPlayerIsAdmin();
+}
+
+// Sends two character movement to the server
+function ChatRoomCharacterMove(Action) {
+	if (CurrentCharacter != null && ChatRoomMoveCharacter != null && Action != "Cancel") {
+		ServerSend("ChatRoomAdmin", { Action: Action, MemberNumber: ChatRoomMoveCharacter.MemberNumber, TargetMemberNumber: CurrentCharacter.MemberNumber });
+	}
+	ChatRoomMoveCharacter = null;
+	ChatRoomCharacter.forEach(DialogRemoveDynamic);
+	DialogLeave();
+}
+
+// Returns true if the second character for movement is valid
+function ChatRoomCanMoveCharacter(Action) {
+	if (CurrentCharacter == null || ChatRoomMoveCharacter == null) return false;
+	if (CurrentCharacter.MemberNumber == ChatRoomMoveCharacter.MemberNumber) return false;
+	if (Action == "Swap") return true;
+	var A = ChatRoomCharacter.findIndex(C => C.MemberNumber == ChatRoomMoveCharacter.MemberNumber);
+	var B = ChatRoomCharacter.findIndex(C => C.CurrentCharacter == ChatRoomMoveCharacter.MemberNumber);
+	if ((Action == "MoveLeftOf") && (A >= 0) && (B >= 0) && (A != B - 1)) return true;
+	if ((Action == "MoveRightOf") && (A >= 0) && (B >= 0) && (A != B + 1)) return true;
+	return false;
 }
