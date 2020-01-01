@@ -61,6 +61,7 @@ NoOrgasm,,,(She pushes you away.)  That's enough!  I'm not in the mood anymore a
 200,210,I'll give you 20$ if we forget this.,You think you can bribe me?  Don't make me laugh.,YukiLoveChange(-1),
 210,220,"(Write: ""I will be a good student."".)",I miss the days when we rarely had anyone in detention.,,
 210,220,(Wink at her.),(She winks back.)  You're a curious student aren't you?  Keep writing.,YukiLoveChange(1),
+210,220,(Try to steal her key.),"(As she watches her cell phone, you steal her teacher lounge key from her desk.)",GetTeacherKey(),"!DialogLogQuery(""TeacherKey"", ""College"")"
 220,230,"(Write: ""I will be a student good."".)",Watch your phrase young lady.  Stay focused.,YukiLoveChange(-1),
 220,230,"(Write: ""I will be a good student."".)",(She watches you write and scratches her back.),,
 230,240,"(Write: ""I will be a good student."".)",(She checks her social network on her phone.),,

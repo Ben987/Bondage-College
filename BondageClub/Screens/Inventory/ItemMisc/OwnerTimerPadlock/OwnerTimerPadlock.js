@@ -38,7 +38,7 @@ function InventoryItemMiscOwnerTimerPadlockDraw() {
     }
     if (Player.CanInteract() && ((Player.MemberNumber == DialogFocusSourceItem.Property.LockMemberNumber) || DialogFocusSourceItem.Property.AllowModifyTimer)) {
         DrawButton(1100, 910, 250, 70, DialogFind(Player, "AddTimerTime"), "White");
-        DrawBackNextButton(1400, 910, 200, 70, OwnerTimerChooseList[OwnerTimerChooseIndex] + " " + DialogFind(Player, "Hours"), "White", "",
+        DrawBackNextButton(1400, 910, 250, 70, OwnerTimerChooseList[OwnerTimerChooseIndex] + " " + DialogFind(Player, "Hours"), "White", "",
             () => OwnerTimerChooseList[(OwnerTimerChooseList.length + OwnerTimerChooseIndex - 1) % OwnerTimerChooseList.length] + " " + DialogFind(Player, "Hours"),
             () => OwnerTimerChooseList[(OwnerTimerChooseIndex + 1) % OwnerTimerChooseList.length] + " " + DialogFind(Player, "Hours"));
     }
@@ -55,8 +55,8 @@ function InventoryItemMiscOwnerTimerPadlockClick() {
     }
     if ((MouseY >= 910) && (MouseY <= 975) && Player.CanInteract() && ((Player.MemberNumber == DialogFocusSourceItem.Property.LockMemberNumber) || DialogFocusSourceItem.Property.AllowModifyTimer)) {
         if ((MouseX >= 1100) && (MouseX < 1350)) InventoryItemMiscOwnerTimerPadlockAdd(OwnerTimerChooseList[OwnerTimerChooseIndex] * 60 * 60);
-        if ((MouseX >= 1400) && (MouseX < 1600)) {
-            if (MouseX <= 1500) OwnerTimerChooseIndex = (OwnerTimerChooseList.length + OwnerTimerChooseIndex - 1) % OwnerTimerChooseList.length;
+        if ((MouseX >= 1400) && (MouseX < 1650)) {
+            if (MouseX <= 1525) OwnerTimerChooseIndex = (OwnerTimerChooseList.length + OwnerTimerChooseIndex - 1) % OwnerTimerChooseList.length;
             else OwnerTimerChooseIndex = (OwnerTimerChooseIndex + 1) % OwnerTimerChooseList.length;
         }
     }
