@@ -151,7 +151,6 @@ HairAccessory1,Ears1,Ears Small
 HairAccessory1,Ears2,Ears Large
 HairAccessory1,PonyEars1,Pony Ears
 HairAccessory1,Ribbons1,Hair Ribbon 1
-HairAccessory1,Ribbons2,Hair Ribbon 2
 HairAccessory1,GiantBow1, Giant Bow 1
 HairAccessory1,BunnyEars1,Bunny Ears
 HairAccessory1,BunnyEars2,Floppy Bunny Ears
@@ -169,7 +168,6 @@ HairAccessory2,Ears1,Ears Small
 HairAccessory2,Ears2,Ears Large
 HairAccessory2,PonyEars1,Pony Ears
 HairAccessory2,Ribbons1,Hair Ribbon 1
-HairAccessory2,Ribbons2,Hair Ribbon 2
 HairAccessory2,GiantBow1, Giant Bow 1
 HairAccessory2,BunnyEars1,Bunny Ears
 HairAccessory2,BunnyEars2,Floppy Bunny Ears
@@ -307,8 +305,6 @@ Pussy,PussyDark2,Dark 2
 Pussy,PussyDark3,Dark 3
 Eyebrows,,Eyebrows
 Eyebrows,Eyebrows1,Eyebrows
-Drool,,Drool
-Drool,Drool,Drool
 Blush,,Blush
 Blush,Blush,Blush
 ItemFeet,,Feet
@@ -580,9 +576,7 @@ ItemMisc,MetalPadlock,Metal Padlock
 ItemMisc,IntricatePadlock,Intricate Padlock
 ItemMisc,TimerPadlock,Five Minutes Padlock
 ItemMisc,OwnerPadlock,Owner Padlock
-ItemMisc,OwnerTimerPadlock,Owner Timer Padlock
 ItemMisc,MistressPadlock,Mistress Padlock
-ItemMisc,MistressTimerPadlock,Mistress Timer Padlock
 ItemMisc,MetalPadlockKey,Metal Padlock Key
 ItemMisc,IntricatePadlockKey,Intricate Padlock Key
 ItemMisc,OwnerPadlockKey,Owner Padlock Key
