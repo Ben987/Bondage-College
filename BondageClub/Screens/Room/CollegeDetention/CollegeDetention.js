@@ -8,6 +8,7 @@ var CollegeDetentionYukiWillReleaseAt = 0;
 function CollegeDetentionCanInviteToPrivateRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax)) }
 function CollegeDetentionYukiLoveIs(LoveLevel) { return (CollegeDetentionYukiLove >= parseInt(LoveLevel)) }
 function CollegeDetentionGetSleepingPills() { InventoryAdd(Player, "RegularSleepingPill", "ItemMouth") }
+function CollegeDetentionGetTeacherKey() { LogAdd("TeacherKey", "College") }
 function CollegeDetentionYukiWillRelease() { return (CollegeDetentionYukiWillReleaseAt < CurrentTime) }
 
 // Fully dress-up Yuki

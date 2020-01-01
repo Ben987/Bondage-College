@@ -83,6 +83,8 @@ PlayerGagged,,,Pupil!  This is not a silent play.  (She laughs.),,
 230,900,(Stop acting.)  And now what?,(She stops the play.)  Nice try little pupil.  But you're not exactly who I'm looking for.  It's time to release me.,,
 230,300,Muahahaha!  (Dance and chant a youth ritual.),(She jumps on joy in her bondage.)  Bravo!  Magnifico!  You are a wonderful actress!,,JuliaLoveIs(20)
 230,900,Muahahaha!  (Dance and chant a youth ritual.),(She stops the play.)  Nice try little pupil.  But you're not exactly who I'm looking for.  It's time to release me.,,!JuliaLoveIs(20)
+230,,(Check in her purse.),"(Since she's blindfolded, she cannot see you searching in her purse.  You find a teacher lounge key in it.)",GetTeacherKey(),"!DialogLogQuery(""TeacherKey"", ""College"")"
+230,,(Check in her purse.),"(Since she's blindfolded, she cannot see you searching in her purse.  You don't find anything interesting in it.)",,"DialogLogQuery(""TeacherKey"", ""College"")"
 300,310,Thanks a lot.,"You get the role little pupil, you're excellent.  Where did you learn to act like that?",,
 300,310,Do I get the role?,Si!  You were excellent.  Where did you learn to act like that?,,
 310,320,In a club downtown.,A club where I could meet artists?  An acting club?  An impro club?,,
