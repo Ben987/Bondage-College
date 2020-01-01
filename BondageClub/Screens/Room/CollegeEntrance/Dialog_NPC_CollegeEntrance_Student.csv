@@ -16,8 +16,6 @@ PlayerGagged,,,(She looks at you and giggles.)  Did you annoy one of the teacher
 10,,Who studies here?,"It's a girl only college.  There's only women, both students and teachers.",,,
 10,,Is it expensive?,My family is paying so I'm not sure.  I've heard that it's pretty expensive.,,,
 10,,What is the required uniform?,"Students must wear ties, a skirt like mine and high leg socks.  Also, nothing too exotic will be accepted.",,,
-10,,Can I get a college uniform?,These uniforms are expensive and we can get punished if we lose them.  Try your luck with another student that knows you better.,,!CanGoInside(),
-10,,How can I go in the teacher's lounge?,Students are not allowed in there.  You'll need a key for that and they only give them to teachers.,,CanGoInside(),
 10,,The place looks pretty old.,"Yeah, both the buildings and teaching methods are outdated.  It's very strict.",,,
 10,,Can I take classes?,"Why are you asking me that?  Sure, go inside and get to your classes.",,CanGoInside(),
 10,,Can I take classes?,You could register for the next semester if you have the required papers.  It's only in a few months.,,!CanGoInside(),
