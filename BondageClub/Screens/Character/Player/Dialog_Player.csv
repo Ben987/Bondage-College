@@ -123,6 +123,7 @@ ServerAdminMoveLeft,,,TargetCharacterName was moved to the left by SourceCharact
 ServerAdminMoveRight,,,TargetCharacterName was moved to the right by SourceCharacter.
 ServerAdminMoveLeftOf,,,TargetCharacterName was moved before TargetCharacterName.
 ServerAdminMoveRightOf,,,TargetCharacterName was moved after TargetCharacterName.
+ServerAdminSwap,,,TargetCharacterName was swapped with TargetCharacterName.
 ServerAdminPromote,,,TargetCharacterName was promoted to administrator by SourceCharacter.
 ServerAdminDemote,,,TargetCharacterName was demoted from administration by SourceCharacter.
 ServerUpdateRoom,,,SourceCharacter updated the room. Name: ChatRoomName. Limit: ChatRoomLimit.  ChatRoomPrivacy.  ChatRoomLocked.
