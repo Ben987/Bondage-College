@@ -1,5 +1,5 @@
 "use strict";
-var CollegeTeacherBackground = "CollegeTeacher";
+var CollegeTeacherBackground = "CollegeTeacherLounge";
 var CollegeTeacherMildred = null;
 var CollegeTeacherMildredLove = 0;
 
@@ -54,15 +54,15 @@ function CollegeTeacherLoad() {
 
 // Runs the room (shows the player and Mildred)
 function CollegeTeacherRun() {
-	DrawCharacter(Player, 500, 0, 1);
-	if ((CollegeTeacherMildred != null) && !CollegeTeacherMildred.GoneAway) DrawCharacter(CollegeTeacherMildred, 1000, 0, 1);
+	DrawCharacter(Player, 0, 0, 1);
+	if ((CollegeTeacherMildred != null) && !CollegeTeacherMildred.GoneAway) DrawCharacter(CollegeTeacherMildred, 500, 0, 1);
 	DrawButton(1885, 25, 90, 90, "", Player.CanWalk() ? "White" : "Pink", "Icons/Exit.png", TextGet("Exit"));
 	DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png", TextGet("Profile"));
 }
 
 // When the user clicks in the room
 function CollegeTeacherClick() {
-	if ((MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000) && (CollegeTeacherMildred != null) && !CollegeTeacherMildred.GoneAway) CharacterSetCurrent(CollegeTeacherMildred);
+	if ((MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000) && (CollegeTeacherMildred != null) && !CollegeTeacherMildred.GoneAway) CharacterSetCurrent(CollegeTeacherMildred);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) CommonSetScreen("Room", "CollegeEntrance");
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
 }
@@ -79,6 +79,17 @@ function CollegeTeacherMildredLoveChange(LoveChange, Event) {
 		TimerInventoryRemoveSet(CollegeTeacherMildred, "Blush", 2);
 	}
 	if (Event == "Pillory") InventoryWear(Player, "Pillory", "ItemArms");
+	if (Event == "Lock") InventoryLock(Player, "ItemArms", "IntricatePadlock", -1);
+	if (Event == "Crop") {
+		InventoryWear(CollegeTeacherMildred, "SpankingToys", "ItemHands");
+		InventoryGet(CollegeTeacherMildred, "ItemHands").Property = { Type: "Crop" };
+	}
+	if (Event == "Hit") {
+		CharacterSetFacialExpression(Player, "Eyes", "Closed");
+		TimerInventoryRemoveSet(Player, "Eyes", 3);
+		CharacterSetFacialExpression(Player, "Blush", "Medium");
+		TimerInventoryRemoveSet(Player, "Blush", 3);
+	}		
 }
 
 // Dress back the player and Mildred

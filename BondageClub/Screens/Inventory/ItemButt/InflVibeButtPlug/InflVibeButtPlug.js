@@ -68,7 +68,10 @@ function InventoryItemButtInflVibeButtPlugInflation(Modifier) {
 	if (DialogFocusItem.Property.InflateLevel == 4);
 	if (C.ID == 0) ServerPlayerAppearanceSync();
 	ChatRoomCharacterUpdate(C);
-    ChatRoomPublishCustomAction((DialogFind(Player, "InflVibeButtPlug_Pump" + ((Modifier > 0) ? "pumps" : "deflates") + "To" + DialogFocusItem.Property.InflateLevel)).replace("SourceCharacter",Player.Name).replace("DestinationCharacter",C.Name), true);
+	var Dictionary = [];
+	Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+    ChatRoomPublishCustomAction("InflVibeButtPlug_Pump" + ((Modifier > 0) ? "pumps" : "deflates") + "To" + DialogFocusItem.Property.InflateLevel, true, Dictionary);
 
 }
 
@@ -83,6 +86,6 @@ function InventoryItemButtInflVibeButtPlugSetIntensity(Modifier) {
 	if (DialogFocusItem.Property.Intensity == 3) DialogFocusItem.Property.Effect = ["Egged", "Vibrating"];	
 	CharacterLoadEffect(C);
 	if (C.ID == 0) ServerPlayerAppearanceSync();
-	
-	ChatRoomPublishCustomAction((DialogFind(Player, "InflVibeButtPlug_Vibe" + ((Modifier > 0) ? "Increase" : "Decrease") + "To" + DialogFocusItem.Property.Intensity)).replace("DestinationCharacter",C.Name), true);
+
+	ChatRoomPublishCustomAction( "InflVibeButtPlug_Vibe" + ((Modifier > 0) ? "Increase" : "Decrease") + "To" + DialogFocusItem.Property.Intensity, true, [{Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber}]);
 }

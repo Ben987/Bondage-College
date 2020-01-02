@@ -515,11 +515,11 @@ function DialogPublishAction(C, ClickItem) {
 			if (CurrentScreen == "ChatRoom") {
 				var intensity = TargetItem.Property ? TargetItem.Property.Intensity : 0;
 				InventoryExpressionTrigger(C, ClickItem);
-				ChatRoomPublishCustomAction((DialogFind(Player, TargetItem.Asset.Name + "Trigger" + intensity)).replace("DestinationCharacter", C.Name), true);
+				ChatRoomPublishCustomAction(TargetItem.Asset.Name + "Trigger" + intensity, true, [{Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber}]);
 			}
 			else {
 				var intensity = TargetItem.Property ? TargetItem.Property.Intensity : 0;
-				var D = (DialogFind(Player, TargetItem.Asset.Name + "Trigger" + intensity)).replace("DestinationCharacter", C.Name);
+				var D = (DialogFind(Player, TargetItem.Asset.Name + "Trigger" + intensity)).replace("DestinationCharacterName", C.Name);
 				if (D != "") {
 					InventoryExpressionTrigger(C, ClickItem);
 					C.CurrentDialog = "(" + D + ")";

@@ -25,7 +25,9 @@ ColorActions,Color actions
 ColorEmotes,Color emotes
 AudioVolume,Audio volume
 PlayBeeps,Audio alarm for beeps
-SensDepGarbleName,Garble names in chat when blind and deaf
+SensDepSetting,Sensory deprivation setting
+SensDepNames,Hide names
+SensDepTotal,Total
 BlindDisableExamine,Disable examining people when blind
 DisableAutoRemoveLogin,Keep all of your restraints when relogging
 ForceFullHeight,Display all characters at maximum height

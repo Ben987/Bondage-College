@@ -40,11 +40,12 @@ function InventoryItemMiscTimerPadlockReset() {
 	if (DialogFocusItem.Asset.RemoveTimer > 0) DialogFocusSourceItem.Property.RemoveTimer = CurrentTime + (DialogFocusItem.Asset.RemoveTimer * 1000);
 	if (CurrentScreen == "ChatRoom") {
 		var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-		var msg = DialogFind(Player, "TimerRestart");
-		msg = msg.replace("SourceCharacter", Player.Name);
-		msg = msg.replace("DestinationCharacter", C.Name);
-		msg = msg.replace("BodyPart", C.FocusGroup.Description.toLowerCase());
-		ChatRoomPublishCustomAction(msg, true);
+		var msg = "TimerRestart";
+		var Dictionary = [];
+		Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+		Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+		Dictionary.push({Tag: "FocusAssetGroup", AssetGroupName: C.FocusGroup.Name});
+		ChatRoomPublishCustomAction(msg, true, Dictionary);
 	}
 	InventoryItemMiscTimerPadlockExit();
 }

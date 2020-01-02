@@ -67,13 +67,20 @@ function InventoryItemMiscMistressTimerPadlockAdd(TimeToAdd) {
     if (DialogFocusItem.Asset.RemoveTimer > 0) DialogFocusSourceItem.Property.RemoveTimer = Math.min(DialogFocusSourceItem.Property.RemoveTimer + (TimeToAdd * 1000), CurrentTime + (DialogFocusItem.Asset.MaxTimer * 1000));
     if (CurrentScreen == "ChatRoom") {
         var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-        var msg = DialogFind(Player, "TimerAddTime");
-        msg = msg.replace("SourceCharacter", Player.Name);
-        msg = msg.replace("TimerTime", Math.round((DialogFocusSourceItem.Property.RemoveTimer - TimerBefore) / (1000 * 60)));
-        msg = msg.replace("TimerUnit", DialogFind(Player, "Minutes"));
-        msg = msg.replace("DestinationCharacter", C.Name);
-        msg = msg.replace("BodyPart", C.FocusGroup.Description.toLowerCase());
-        ChatRoomPublishCustomAction(msg, true);
+        var msg = "TimerAddTime";
+        var Dictionary = [];
+        Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+        Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+        if (DialogFocusSourceItem.Property.ShowTimer) {
+            Dictionary.push({Tag: "TimerTime", Text: Math.round((DialogFocusSourceItem.Property.RemoveTimer - TimerBefore) / (1000 * 60))});
+            Dictionary.push({Tag: "TimerUnit", TextToLookUp: "Minutes"});
+        }
+        else {
+            Dictionary.push({Tag: "TimerTime", TextToLookUp: "TimerAddUnknownTime"});
+            Dictionary.push({Tag: "TimerUnit", Text: ""});
+        }
+        Dictionary.push({Tag: "FocusAssetGroup", AssetGroupName: C.FocusGroup.Name});
+        ChatRoomPublishCustomAction(msg, true, Dictionary);
     }
     else { CharacterRefresh(CurrentCharacter); }
     InventoryItemMiscTimerPadlockExit();

@@ -39,6 +39,9 @@ function GamblingToothpickCanPickThree() {return GamblingToothpickCount >= 3}
 function GamblingIsRestrainedWithLock() { return InventoryCharacterHasLockedRestraint(Player) };
 function GamblingIsRestrainedWithoutLock() { return (Player.IsRestrained() && !InventoryCharacterHasLockedRestraint(Player)) };
 
+function GamblingCanPayToRelease() { return ((Player.Money >= 25) && !InventoryCharacterHasLockedRestraint(Player)) };
+function GamblingCannotPayToRelease() { return ((Player.Money < 25) && !InventoryCharacterHasLockedRestraint(Player)) };
+
 // Loads the Gambling Hall
 function GamblingLoad() {
 	

@@ -67,5 +67,8 @@ function InventoryItemMouthPumpGagSetPump(Modifier) {
 	// Reloads the character
 	CharacterLoadEffect(C);
 	if (C.ID == 0) ServerPlayerAppearanceSync();
-	ChatRoomPublishCustomAction((DialogFind(Player, "PumpGag" + ((Modifier > 0) ? "pumps" : "deflates") + "To" + DialogFocusItem.Property.PumpLevel)).replace("SourceCharacter",Player.Name).replace("DestinationCharacter",C.Name), true);
+	var Dictionary = [];
+	Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+	ChatRoomPublishCustomAction("PumpGag" + ((Modifier > 0) ? "pumps" : "deflates") + "To" + DialogFocusItem.Property.PumpLevel, true, Dictionary);
 }

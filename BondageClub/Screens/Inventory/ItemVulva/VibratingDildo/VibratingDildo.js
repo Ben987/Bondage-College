@@ -48,5 +48,5 @@ function InventoryItemVulvaVibratingDildoSetIntensity(Modifier) {
 	CharacterLoadEffect(C);
 	if (C.ID == 0) ServerPlayerAppearanceSync();
 
-	ChatRoomPublishCustomAction((DialogFind(Player, "Dildo" + ((Modifier > 0) ? "Increase" : "Decrease") + "To" + DialogFocusItem.Property.Intensity)).replace("DestinationCharacter",C.Name), true);
+	ChatRoomPublishCustomAction("Dildo" + ((Modifier > 0) ? "Increase" : "Decrease") + "To" + DialogFocusItem.Property.Intensity, true, [{Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber}]);
 }
