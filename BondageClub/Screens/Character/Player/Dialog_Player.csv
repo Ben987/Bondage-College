@@ -117,12 +117,14 @@ ServerMessageWhisperBlocked,,,You're on SourceCharacter blacklist.  Your message
 ServerEnter,,,SourceCharacter entered.
 ServerLeave,,,SourceCharacter left.
 ServerDisconnect,,,SourceCharacter disconnected.
-ServerBan,,,TargetCharacterName was banned by SourceCharacter.
-ServerKick,,,TargetCharacterName was kicked-out by SourceCharacter.
-ServerMoveLeft,,,TargetCharacterName was moved to the left by SourceCharacter.
-ServerMoveRight,,,TargetCharacterName was moved to the right by SourceCharacter.
-ServerPromoteAdmin,,,TargetCharacterName was promoted to administrator by SourceCharacter.
-ServerDemoteAdmin,,,TargetCharacterName was demoted from administration by SourceCharacter.
+ServerAdminBan,,,TargetCharacterName was banned by SourceCharacter.
+ServerAdminKick,,,TargetCharacterName was kicked-out by SourceCharacter.
+ServerAdminMoveLeft,,,TargetCharacterName was moved to the left by SourceCharacter.
+ServerAdminMoveRight,,,TargetCharacterName was moved to the right by SourceCharacter.
+ServerAdminMoveLeftOf,,,TargetCharacterName was moved before TargetCharacterName.
+ServerAdminMoveRightOf,,,TargetCharacterName was moved after TargetCharacterName.
+ServerAdminPromote,,,TargetCharacterName was promoted to administrator by SourceCharacter.
+ServerAdminDemote,,,TargetCharacterName was demoted from administration by SourceCharacter.
 ServerUpdateRoom,,,SourceCharacter updated the room. Name: ChatRoomName. Limit: ChatRoomLimit.  ChatRoomPrivacy.  ChatRoomLocked.
 ActionSwap,,,SourceCharacter swaps a PrevAsset for a NextAsset on DestinationCharacter FocusAssetGroup.
 ActionUse,,,SourceCharacter uses a NextAsset on DestinationCharacter FocusAssetGroup.
