@@ -98,7 +98,7 @@ function ChatRoomDrawCharacter(DoClick) {
 					ChatRoomOwnershipOption = "";
 					if (ChatRoomCharacter[C].ID != 0) ServerSend("ChatRoomAllowItem", { MemberNumber: ChatRoomCharacter[C].MemberNumber });
 					if (ChatRoomCharacter[C].ID != 0) ServerSend("AccountOwnership", { MemberNumber: ChatRoomCharacter[C].MemberNumber });
-					if (ChatRoomMoveCharacter != null) { 
+					if ((ChatRoomCharacter[C].ID != 0) && (ChatRoomMoveCharacter != null)) { 
 						if (!ChatRoomCharacter[C].Dialog.some(D => D.Stage == "Dynamic")) DialogBuildDynamicTarget(ChatRoomCharacter[C], "ChatRoomMove", ChatRoomMoveCharacter);
 						ChatRoomCharacter[C].Stage = "Dynamic";
 					}
@@ -731,7 +731,8 @@ function ChatRoomCanSelectYourself() {
 
 // Sends two character movement to the server
 function ChatRoomCharacterMove(Action) {
-	if ((CurrentCharacter != null) && (ChatRoomMoveCharacter != null) && (Action != "Cancel")) {
+	if ((CurrentCharacter != null) && (Action != "Cancel")) {
+		if (ChatRoomMoveCharacter == null) ChatRoomMoveCharacter = Player;
 		ServerSend("ChatRoomAdmin", { Action: Action, MemberNumber: ChatRoomMoveCharacter.MemberNumber, TargetMemberNumber: CurrentCharacter.MemberNumber });
 	}
 	ChatRoomMoveCharacter = null;
@@ -741,7 +742,8 @@ function ChatRoomCharacterMove(Action) {
 
 // Returns true if the second character for movement is valid
 function ChatRoomCanMoveCharacter(Action) {
-	if ((CurrentCharacter == null) || (ChatRoomMoveCharacter == null)) return false;
+	if (ChatRoomMoveCharacter == null) ChatRoomMoveCharacter = Player;
+	if ((CurrentCharacter == null)) return false;
 	if (CurrentCharacter.MemberNumber == ChatRoomMoveCharacter.MemberNumber) return false;
 	if (Action == "Swap") return true;
 	var A = ChatRoomCharacter.findIndex(C => C.MemberNumber == ChatRoomMoveCharacter.MemberNumber);

@@ -469,7 +469,6 @@ MaximumSuction,,,Maximum
 UseRemote,,,Use Remote
 PlayerGagged,,,(You can use or remove items by selecting specific body regions on yourself.)
 0,,,(You can use or remove items by selecting specific body regions on yourself.)
-0,,(Select yourself to be moved in the room.),(You can use or remove items by selecting specific body regions on yourself.),"@ChatRoomSelectCharacterForMove()","@ChatRoomCanSelectYourself()"
 ItemBreastLeatherWhip,,,(You clumsily whip your own breast and tummy.  It would be more painful if someone else did it.)
 ItemBreastLeatherCrop,,,(You swing the crop on yourself a few times.  You can feel your breast and tummy becoming more sensitive.)
 ItemPelvisLeatherWhip,,,(You need a few tries but you're able to somewhat whip your own butt and feel the pain.)
@@ -684,10 +683,3 @@ HeadphoneEarPlugsPoseHeavy,,,Heavy
 HeadphoneEarPlugsRestrainNone,,,SourceCharacter turns off DestinationCharacter headphone earplugs.
 HeadphoneEarPlugsRestrainLight,,,SourceCharacter turns the volume to low on DestinationCharacter headphone earplugs.
 HeadphoneEarPlugsRestrainHeavy,,,SourceCharacter turns the volume up to high on DestinationCharacter headphone earplugs.
-ChatRoomMove,0,,(Moving TargetName in the chatroom.),,"@ChatRoomCanMoveCharacter(""Swap"")"
-ChatRoomMove,0,,(You can't select the same character twice.),,"!@ChatRoomCanMoveCharacter(""Swap"")"
-ChatRoomMove,0,(Swap TargetName with yourself.),,"@ChatRoomCharacterMove(""Swap"")","@ChatRoomCanMoveCharacter(""Swap"")"
-ChatRoomMove,0,(Move TargetName before yourself.),,"@ChatRoomCharacterMove(""MoveLeftOf"")","@ChatRoomCanMoveCharacter(""MoveLeftOf"")"
-ChatRoomMove,0,(Move TargetName after yourself.),,"@ChatRoomCharacterMove(""MoveRightOf"")","@ChatRoomCanMoveCharacter(""MoveRightOf"")"
-ChatRoomMove,0,(Cancel movement.),,"@ChatRoomCharacterMove(""Cancel"")",
-ChatRoomMove,0,(Select someone else.),,"DialogLeave()"",

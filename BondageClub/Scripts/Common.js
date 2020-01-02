@@ -179,8 +179,7 @@ function CommonDynamicFunctionParams(FunctionName) {
 	for (var P = 0; P < Params.length; P++)
 		Params[P] = Params[P].trim().replace('"', '').replace('"', '')
 	FunctionName = FunctionName.substring(0, openParenthesisIndex);
-	if (FunctionName.indexOf("@") == 0) FunctionName = FunctionName.replace("@", "");
-	else if ((FunctionName.indexOf("Dialog") != 0) && (FunctionName.indexOf("Inventory") != 0) && (FunctionName.indexOf(CurrentScreen) != 0)) FunctionName = CurrentScreen + FunctionName;
+	if ((FunctionName.indexOf("Dialog") != 0) && (FunctionName.indexOf("Inventory") != 0) && (FunctionName.indexOf(CurrentScreen) != 0)) FunctionName = CurrentScreen + FunctionName;
 
 	// If it's really a function, we continue
 	if (typeof window[FunctionName] === "function") {
