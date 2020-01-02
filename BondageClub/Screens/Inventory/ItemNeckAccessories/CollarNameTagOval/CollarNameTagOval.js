@@ -69,7 +69,7 @@ function InventoryItemNeckAccessoriesCollarNameTagOvalSetType(NewType) {
 	Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
 	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
 	Dictionary.push({Tag: "NameTagType", TextToLookUp: "CollarNameTagOvalType" + ((NewType) ? NewType : "")});
-	ChatRoomPublishCustomAction("CollarNameTagOvalType", true, Dictionary);
+	ChatRoomPublishCustomAction("CollarNameTagOvalSet", true, Dictionary);
 	if (DialogInventory != null) {
 		DialogFocusItem = null;
 		DialogMenuButtonBuild(C);
