@@ -724,16 +724,11 @@ function ChatRoomSelectCharacterForMove() {
 	DialogLeave();
 }
 
-// returns true if Player can be selected to be moved
-function ChatRoomCanSelectYourself() {
-	return (CurrentCharacter != null) && (ChatRoomMoveCharacter == null) && (CurrentScreen == "ChatRoom") && ChatRoomPlayerIsAdmin();
-}
-
 // Sends two character movement to the server
 function ChatRoomCharacterMove(Action) {
 	if ((CurrentCharacter != null) && (Action != "Cancel")) {
-		if (ChatRoomMoveCharacter == null) ChatRoomMoveCharacter = Player;
-		ServerSend("ChatRoomAdmin", { Action: Action, MemberNumber: ChatRoomMoveCharacter.MemberNumber, TargetMemberNumber: CurrentCharacter.MemberNumber });
+		var C = ChatRoomMoveCharacter || Player
+		ServerSend("ChatRoomAdmin", { Action: Action, MemberNumber: C.MemberNumber, TargetMemberNumber: CurrentCharacter.MemberNumber });
 	}
 	ChatRoomMoveCharacter = null;
 	ChatRoomCharacter.forEach(DialogRemoveDynamic);
@@ -742,12 +737,12 @@ function ChatRoomCharacterMove(Action) {
 
 // Returns true if the second character for movement is valid
 function ChatRoomCanMoveCharacter(Action) {
-	if (ChatRoomMoveCharacter == null) ChatRoomMoveCharacter = Player;
+	var C = ChatRoomMoveCharacter || Player;
 	if ((CurrentCharacter == null)) return false;
-	if (CurrentCharacter.MemberNumber == ChatRoomMoveCharacter.MemberNumber) return false;
+	if (CurrentCharacter.MemberNumber == C.MemberNumber) return false;
 	if (Action == "Swap") return true;
-	var A = ChatRoomCharacter.findIndex(C => C.MemberNumber == ChatRoomMoveCharacter.MemberNumber);
-	var B = ChatRoomCharacter.findIndex(C => C.CurrentCharacter == ChatRoomMoveCharacter.MemberNumber);
+	var A = ChatRoomCharacter.findIndex(C => C.MemberNumber == C.MemberNumber);
+	var B = ChatRoomCharacter.findIndex(C => C.CurrentCharacter == C.MemberNumber);
 	if ((Action == "MoveLeftOf") && (A >= 0) && (B >= 0) && (A != B - 1)) return true;
 	if ((Action == "MoveRightOf") && (A >= 0) && (B >= 0) && (A != B + 1)) return true;
 	return false;
