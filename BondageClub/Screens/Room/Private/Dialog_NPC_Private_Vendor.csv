@@ -52,6 +52,7 @@ RemoveSuspensionHempRope,,,(You release her from the ceiling and release her fee
 200,210,I would like a wardrobe.,An excellent choice.  The price is 100$.  Can you afford it?,,"!DialogLogQuery(""Wardrobe"", ""PrivateRoom"")"
 200,220,I want some cages.,"We have a kinky tenant.  (She giggles.)  We can prepare cages for your room for 150$, do you have the funds?",,"!DialogLogQuery(""Cage"", ""PrivateRoom"")"
 200,230,I'd like to invite more people.,"Of course, we can double the size of your room for 200$, do you have the funds?",,"!DialogLogQuery(""Expansion"", ""PrivateRoom"")"
+200,240,I'd like even more space.,"(She ponders.)  It could be done, but we'll need to renovate to get you a bigger room.  Can you cover the 400$ fees for it?",,CanGetSecondExtension()
 200,0,I've changed my mind.,Alright.  What can I do for you then?,,
 210,,How can I use the wardrobe?,The wardrobe allows you to sort your clothes and items.  To change from one look to another quickly.,,
 210,120,Here's the money. (Pay 100$),Wonderful!  Give us a few seconds and we'll prepare your wardrobe.,GetWardrobe(),DialogMoneyGreater(100)
@@ -65,3 +66,6 @@ RemoveSuspensionHempRope,,,(You release her from the ceiling and release her fee
 230,120,Here's the money. (Pay 200$),Wonderful!  Here are the keys for the expansion doors.  (She gives you the room expansion keys.),GetExpansion(),DialogMoneyGreater(200)
 230,0,I don't have enough money.,You can get work as a maid or take kidnapping bounties if you need money.,,!DialogMoneyGreater(200)
 230,0,I've changed my mind.,Alright.  What can I do for you then?,,
+240,120,Here's the money. (Pay 400$),This is great!  I'll call the maintenance team right now.  (They renovate your room to give you even more space.),GetSecondExpansion(),DialogMoneyGreater(400)
+240,0,I don't have enough money.,You can get work as a maid or take kidnapping bounties if you need money.,,!DialogMoneyGreater(400)
+240,0,I've changed my mind.,Alright.  What can I do for you then?,,

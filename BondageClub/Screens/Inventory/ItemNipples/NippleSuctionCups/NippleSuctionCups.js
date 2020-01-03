@@ -46,6 +46,9 @@ function InventoryItemNipplesNippleSuctionCupsIntensity(Modifier) {
 	if (DialogFocusItem.Property.SuctionLevel == 4);
 	if (C.ID == 0) ServerPlayerAppearanceSync();
 	ChatRoomCharacterUpdate(C);
-    ChatRoomPublishCustomAction((DialogFind(Player, "NipSuc" + ((Modifier > 0) ? "tightens" : "loosens") + "To" + DialogFocusItem.Property.SuctionLevel)).replace("SourceCharacter",Player.Name).replace("DestinationCharacter",C.Name), true);
+	var Dictionary = [];
+	Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+    ChatRoomPublishCustomAction("NipSuc" + ((Modifier > 0) ? "tightens" : "loosens") + "To" + DialogFocusItem.Property.SuctionLevel, true, Dictionary);
 } 
 

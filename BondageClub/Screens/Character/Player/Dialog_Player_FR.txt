@@ -107,6 +107,16 @@ gag
 baillon
 's
 
+Heads
+Face
+Tails
+Pile
+her
+elle
+SourceCharacter kneels down
+SourceCharacter s'agenouille
+SourceCharacter stands up
+SourceCharacter se relève
 Delete
 Delete
 Confirm
@@ -151,11 +161,27 @@ Your owner has confiscated your keys.  All your regular keys are lost.
 Votre patronne a confisqué vos clés. Elles sont maintenant perdues.
 Your owner is now preventing you from getting new keys.  The club shop will not sell keys to you anymore.
 Votre patronne a bloqué le droit d'acheter de nouvelles clés. Le magasin de vous en vendront point.
+SourceCharacter swaps a PrevAsset for a NextAsset on DestinationCharacter FocusAssetGroup.
+SourceCharacter échange un(e) PrevAsset pour un(e) NextAsset sur le/a/es FocusAssetGroup de DestinationCharacter.
+SourceCharacter uses a NextAsset on DestinationCharacter FocusAssetGroup.
+SourceCharacter utilise un(e) NextAsset sur le/a/es FocusAssetGroup de DestinationCharacter.
+SourceCharacter locks a NextAsset on DestinationCharacter FocusAssetGroup.
+SourceCharacter vérouille un(e) NextAsset sur le/a/es FocusAssetGroup de DestinationCharacter.
+SourceCharacter adds a NextAsset on DestinationCharacter FocusAssetGroup PrevAsset.
+SourceCharacter ajoute un(e) NextAsset sur le/a/es FocusAssetGroup de DestinationCharacter PrevAsset.
+SourceCharacter removes the PrevAsset from DestinationCharacter FocusAssetGroup.
+SourceCharacter enlève le/a/es PrevAsset sur le/a/es FocusAssetGroup de DestinationCharacter.
+SourceCharacter unlocks and removes the PrevAsset from DestinationCharacter FocusAssetGroup.
+SourceCharacter dévérouille et enlève le/a/es PrevAsset sur le/a/es FocusAssetGroup de DestinationCharacter.
+SourceCharacter rolls a DiceType sided dice.  The result is: DiceResult.
+SourceCharacter roule un dé à DiceType côtés. Le résultat est: DiceResult.
+SourceCharacter flips a coin.  The result is: CoinResult.
+SourceCharacter lance une pièce. Le résultat est: CoinResult.
 Member number on lock:
 Numéro de membre sur le cadenas:
 Time left:
 Temps restant:
-SourceCharacter restarts the five minutes timer padlock on DestinationCharacter BodyPart.
+SourceCharacter restarts the five minutes timer padlock on DestinationCharacter FocusAssetGroup.
 SourceCharacter réinitialise le cadenas cinq minutes de DestinationCharacter.
 Restart Timer
 Réinitialiser le minuteur
@@ -189,13 +215,13 @@ Bind elbows
 Coudes attachés
 Bind both
 Tout attaché
-SourceCharacter detaches the chain from DestinationCharacter's leather cuffs.
+SourceCharacter detaches the chain from DestinationCharacter leather cuffs.
 SourceCharacter détache la chaîne des lanières en cuir de DestinationCharacter.
-SourceCharacter attaches the leather cuffs wrist chain behind DestinationCharacter's back.
+SourceCharacter attaches the leather cuffs wrist chain behind DestinationCharacter back.
 SourceCharacter attache la chaîne aux poignets derrière le dos de DestinationCharacter.
-SourceCharacter attaches the leather cuffs elbow chain behind DestinationCharacter's back.
+SourceCharacter attaches the leather cuffs elbow chain behind DestinationCharacter back.
 SourceCharacter attache la chaîne aux coudes derrière le dos de DestinationCharacter.
-SourceCharacter attaches the leather cuffs wrist and elbow chains behind DestinationCharacter's back.
+SourceCharacter attaches the leather cuffs wrist and elbow chains behind DestinationCharacter back.
 SourceCharacter attache la chaîne des coudes et épaules derrière le dos de DestinationCharacter.
 Hands
 Mains
@@ -207,14 +233,14 @@ Torso
 Torse
 Mummy
 Momie
-SourceCharacter wraps duct tape around DestinationCharacter's hands.
+SourceCharacter wraps duct tape around DestinationCharacter hands.
 SourceCharacter enroule du ruban adhésif autour des mains de DestinationCharacter.
-SourceCharacter creates a duct tape skirt on DestinationCharacter and traps her hands in it.
-SourceCharacter crée une jupe avec le ruban adhésif et enroule les mains de DestinationCharacter à l'intérieur.
-SourceCharacter creates a duct tape top on DestinationCharacter and traps her arms in it.
-SourceCharacter enroule les bras de DestinationCharacter dans un chandail de ruban adhésif.
-SourceCharacter creates a duct tape mummy on DestinationCharacter and traps her arms in it.
-SourceCharacter transforme DestinationCharacter en une momie de ruban adhésif.
+SourceCharacter creates a duct tape skirt on TargetCharacter and traps her hands in it.
+SourceCharacter crée une jupe avec le ruban adhésif et enroule les mains de TargetCharacter à l'intérieur.
+SourceCharacter creates a duct tape top on TargetCharacter and traps her arms in it.
+SourceCharacter enroule les bras de TargetCharacter dans un chandail de ruban adhésif.
+SourceCharacter creates a duct tape mummy on TargetCharacter and traps her arms in it.
+SourceCharacter transforme TargetCharacter en une momie de ruban adhésif.
 Select the type of gag
 Selectionner le type de bâillon
 Small
@@ -225,13 +251,13 @@ OTM
 OTM
 OTN
 OTN
-SourceCharacter ties the cloth into a small gag over DestinationCharacter's mouth.
+SourceCharacter ties the cloth into a small gag over DestinationCharacter mouth.
 SourceCharacter ligote le tissu en un petit baillon couvrant la bouche de DestinationCharacter.
-SourceCharacter ties the cloth into a cleave gag over DestinationCharacter's mouth.
+SourceCharacter ties the cloth into a cleave gag over DestinationCharacter mouth.
 SourceCharacter ligote le tissu et fend la bouche de DestinationCharacter avec le baillon.
-SourceCharacter stuffs DestinationCharacter's mouth with a piece of cloth and secures it with another piece.
+SourceCharacter stuffs DestinationCharacter mouth with a piece of cloth and secures it with another piece.
 SourceCharacter rempli la bouche de DestinationCharacter avec un morceau de tissu et l'enroule avec un autre.
-SourceCharacter stuffs DestinationCharacter's mouth with a piece of cloth and secures the gag over her mouth and nose.
+SourceCharacter stuffs DestinationCharacter mouth with a piece of cloth and secures the gag over her mouth and nose.
 SourceCharacter rempli la bouche de DestinationCharacter avec un morceau de tissu et enroule la bouche et le nez avec un autre.
 Single strip
 Bande simple
@@ -241,23 +267,23 @@ Full face
 Face pleine
 Double layer
 Double couche
-SourceCharacter puts a piece of duct tape on DestinationCharacter's mouth.
+SourceCharacter puts a piece of duct tape on DestinationCharacter mouth.
 SourceCharacter place un morceau de ruban sur la bouche de DestinationCharacter.
-SourceCharacter crosses two pieces of duct tape on DestinationCharacter's mouth.
+SourceCharacter crosses two pieces of duct tape on DestinationCharacter mouth.
 SourceCharacter croise deux morceaux de ruban sur la bouche de DestinationCharacter.
-SourceCharacter fully tapes DestinationCharacter's mouth.
+SourceCharacter fully tapes DestinationCharacter mouth.
 SourceCharacter enroule complètement la bouche de DestinationCharacter avec le ruban.
-SourceCharacter fully tapes DestinationCharacter's mouth with double layers.
+SourceCharacter fully tapes DestinationCharacter mouth with double layers.
 SourceCharacter enroule complètement la bouche de DestinationCharacter avec deux couches de ruban.
-SourceCharacter wraps many layers on DestinationCharacter's mouth.
+SourceCharacter wraps many layers on DestinationCharacter mouth.
 SourceCharacter enroule plusieurs couches sur la bouche de DestinationCharacter.
 Plugged
 Bouché
 Open
 Libre
-SourceCharacter plugs up DestinationCharacter's mouth.
+SourceCharacter plugs up DestinationCharacter mouth.
 SourceCharacter bouche DestinationCharacter.
-SourceCharacter pulls out DestinationCharacter's plug from her gag.
+SourceCharacter pulls out DestinationCharacter plug from her gag.
 SourceCharacter débouche DestinationCharacter.
 Select the type of blindfold
 Selecttionner le type de bandeau
@@ -265,11 +291,11 @@ Double
 Double
 Wrap
 Enroulé
-SourceCharacter takes a piece of duct tape for DestinationCharacter's and place on her face.
-SourceCharacter prend un morceau de ruban et le place sur la face de DestinationCharacter.
-SourceCharacter wraps some duct tape onto DestinationCharacter's face.
+SourceCharacter takes a piece of duct tape for TargetCharacter and place on her face.
+SourceCharacter prend un morceau de ruban et le place sur la face de TargetCharacter.
+SourceCharacter wraps some duct tape onto DestinationCharacter face.
 SourceCharacter enroule du ruban sur la face de DestinationCharacter.
-SourceCharacter wraps DestinationCharacter's head in tape with multiple layers. 
+SourceCharacter wraps DestinationCharacter head in tape with multiple layers. 
 SourceCharacter enroule la tête de DestinationCharacter avec plusieurs couches. 
 Item intensity: Disabled
 Intensité de l'objet: Désactivée
@@ -287,66 +313,66 @@ Decrease
 Réduire
 Show chat message
 Message visible
-SourceCharacter sets DestinationCharacter's shock collar to low intensity.
+SourceCharacter sets DestinationCharacter shock collar to low intensity.
 SourceCharacter règle le collier de choc de DestinationCharacter à intensité faible.
-SourceCharacter sets DestinationCharacter's shock collar to moderate intensity.
+SourceCharacter sets DestinationCharacter shock collar to moderate intensity.
 SourceCharacter règle le collier de choc de DestinationCharacter à intensité moyenne.
-SourceCharacter sets DestinationCharacter's shock collar to high intensity.
+SourceCharacter sets DestinationCharacter shock collar to high intensity.
 SourceCharacter règle le collier de choc de DestinationCharacter à intensité forte.
-DestinationCharacter's collar gives her a light shock.
-Le collier de DestinationCharacter lui donne un choc léger.
-DestinationCharacter's collar lets out a sharp jolt!
-Le collier de DestinationCharacter lui donne une secousse aigüe.
-DestinationCharacter's collar delivers an intense shock!
-Le collier de DestinationCharacter lui donne un choc intense.
-DestinationCharacter's vibrating egg stops vibrating.
-L'oeuf de DestinationCharacter arrête de vibrer.
-DestinationCharacter's vibrating egg slows down into a light tease.
-L'oeuf de DestinationCharacter ralenti juste assez pour être ressenti.
-DestinationCharacter's vibrating egg returns to a moderate pace.
-L'oeuf de DestinationCharacter retourne à une vitesse modérée.
-DestinationCharacter's vibrating egg slows down a tiny bit.
-L'oeuf de DestinationCharacter ralenti juste un peu.
-DestinationCharacter's vibrating egg starts teasing her lightly.
-L'oeuf de DestinationCharacter la taquine en vibrant légèrement.
-DestinationCharacter's vibrating egg builds up to a moderate pace.
-L'oeuf de DestinationCharacter augmente à une vitesse modérée.
-DestinationCharacter's vibrating egg starts buzzing strongly!
-L'oeuf de DestinationCharacter augmente de vitesse puissamment.
-DestinationCharacter's vibrating egg jumps up to maximum intensity!
-L'oeuf de DestinationCharacter saute à sa vitesse maximale.
-DestinationCharacter's vibrating nipple clamps stop vibrating.
-Les pinces vibrantes de DestinationCharacter arrêtent de vibrer.
-DestinationCharacter's vibrating nipple clamps slow down into a light tease.
-Les pinces vibrantes de DestinationCharacter ralentissent juste assez pour être ressenties.
-DestinationCharacter's vibrating nipple clamps return to a moderate pace.
-Les pinces vibrantes de DestinationCharacter retournent à une vitesse modérée.
-DestinationCharacter's vibrating nipple clamps slow down a tiny bit.
-Les pinces vibrantes de DestinationCharacter ralentissent juste un peu.
-DestinationCharacter's vibrating nipple clamps start teasing her lightly.
-Les pinces vibrantes de DestinationCharacter la taquinent en vibrant légèrement.
-DestinationCharacter's vibrating nipple clamps build up to a moderate pace.
-Les pinces vibrantes de DestinationCharacter augmentent à une vitesse modérée.
-DestinationCharacter's vibrating nipple clamps start buzzing strongly!
-Les pinces vibrantes de DestinationCharacter augmentent de vitesse puissamment.
-DestinationCharacter's vibrating nipple clamps jump up to maximum intensity!
-Les pinces vibrantes de DestinationCharacter sautent à leur vitesse maximale.
-DestinationCharacter's vibrating latex panties stops vibrating.
-Le slip vibrant en latex de DestinationCharacter arrête de vibrer.
-DestinationCharacter's vibrating latex panties slows down into a light tease.
-Le slip vibrant en latex de DestinationCharacter ralentit juste assez pour être ressentit.
-DestinationCharacter's vibrating latex panties returns to a moderate pace.
-Le slip vibrant en latex de DestinationCharacter retourne à une vitesse modérée.
-DestinationCharacter's vibrating latex panties slows down a tiny bit.
-Le slip vibrant en latex de DestinationCharacter ralentit juste un peu.
-DestinationCharacter's vibrating latex panties starts teasing her lightly.
-Le slip vibrant en latex de DestinationCharacter la taquine en vibrant légèrement.
-DestinationCharacter's vibrating latex panties builds up to a moderate pace.
-Le slip vibrant en latex de DestinationCharacter augmente à une vitesse modérée.
-DestinationCharacter's vibrating latex panties starts buzzing strongly!
-Le slip vibrant en latex de DestinationCharacter augmente de vitesse puissamment.
-DestinationCharacter's vibrating latex panties jumps up to maximum intensity!
-Le slip vibrant en latex de DestinationCharacter saute à sa vitesse maximale.
+DestinationCharacterName collar gives her a light shock.
+Le collier de DestinationCharacterName lui donne un choc léger.
+DestinationCharacterName collar lets out a sharp jolt!
+Le collier de DestinationCharacterName lui donne une secousse aigüe.
+DestinationCharacterName collar delivers an intense shock!
+Le collier de DestinationCharacterName lui donne un choc intense.
+DestinationCharacterName vibrating egg stops vibrating.
+L'oeuf de DestinationCharacterName arrête de vibrer.
+DestinationCharacterName vibrating egg slows down into a light tease.
+L'oeuf de DestinationCharacterName ralenti juste assez pour être ressenti.
+DestinationCharacterName vibrating egg returns to a moderate pace.
+L'oeuf de DestinationCharacterName retourne à une vitesse modérée.
+DestinationCharacterName vibrating egg slows down a tiny bit.
+L'oeuf de DestinationCharacterName ralenti juste un peu.
+DestinationCharacterName vibrating egg starts teasing her lightly.
+L'oeuf de DestinationCharacterName la taquine en vibrant légèrement.
+DestinationCharacterName vibrating egg builds up to a moderate pace.
+L'oeuf de DestinationCharacterName augmente à une vitesse modérée.
+DestinationCharacterName vibrating egg starts buzzing strongly!
+L'oeuf de DestinationCharacterName augmente de vitesse puissamment.
+DestinationCharacterName vibrating egg jumps up to maximum intensity!
+L'oeuf de DestinationCharacterName saute à sa vitesse maximale.
+DestinationCharacterName vibrating nipple clamps stop vibrating.
+Les pinces vibrantes de DestinationCharacterName arrêtent de vibrer.
+DestinationCharacterName vibrating nipple clamps slow down into a light tease.
+Les pinces vibrantes de DestinationCharacterName ralentissent juste assez pour être ressenties.
+DestinationCharacterName vibrating nipple clamps return to a moderate pace.
+Les pinces vibrantes de DestinationCharacterName retournent à une vitesse modérée.
+DestinationCharacterName vibrating nipple clamps slow down a tiny bit.
+Les pinces vibrantes de DestinationCharacterName ralentissent juste un peu.
+DestinationCharacterName vibrating nipple clamps start teasing her lightly.
+Les pinces vibrantes de DestinationCharacterName la taquinent en vibrant légèrement.
+DestinationCharacterName vibrating nipple clamps build up to a moderate pace.
+Les pinces vibrantes de DestinationCharacterName augmentent à une vitesse modérée.
+DestinationCharacterName vibrating nipple clamps start buzzing strongly!
+Les pinces vibrantes de DestinationCharacterName augmentent de vitesse puissamment.
+DestinationCharacterName vibrating nipple clamps jump up to maximum intensity!
+Les pinces vibrantes de DestinationCharacterName sautent à leur vitesse maximale.
+DestinationCharacterName vibrating latex panties stops vibrating.
+Le slip vibrant en latex de DestinationCharacterName arrête de vibrer.
+DestinationCharacterName vibrating latex panties slows down into a light tease.
+Le slip vibrant en latex de DestinationCharacterName ralentit juste assez pour être ressentit.
+DestinationCharacterName vibrating latex panties returns to a moderate pace.
+Le slip vibrant en latex de DestinationCharacterName retourne à une vitesse modérée.
+DestinationCharacterName vibrating latex panties slows down a tiny bit.
+Le slip vibrant en latex de DestinationCharacterName ralentit juste un peu.
+DestinationCharacterName vibrating latex panties starts teasing her lightly.
+Le slip vibrant en latex de DestinationCharacterName la taquine en vibrant légèrement.
+DestinationCharacterName vibrating latex panties builds up to a moderate pace.
+Le slip vibrant en latex de DestinationCharacterName augmente à une vitesse modérée.
+DestinationCharacterName vibrating latex panties starts buzzing strongly!
+Le slip vibrant en latex de DestinationCharacterName augmente de vitesse puissamment.
+DestinationCharacterName vibrating latex panties jumps up to maximum intensity!
+Le slip vibrant en latex de DestinationCharacterName saute à sa vitesse maximale.
 Use Remote
 Utiliser la Télécommande
 (You can use or remove items by selecting specific body regions on yourself.)

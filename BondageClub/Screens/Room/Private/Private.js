@@ -19,6 +19,7 @@ var PrivateSlaveImproveType = "";
 
 // Returns TRUE if a specific dialog option is allowed
 function PrivateIsCaged() { return (CurrentCharacter.Cage == null) ? false : true }
+function PrivateCanGetSecondExtension() { return (LogQuery("Expansion", "PrivateRoom") && !LogQuery("SecondExpansion", "PrivateRoom")) }
 function PrivateVendorCanPlay() { return (LogQuery("RentRoom", "PrivateRoom") && LogQuery("Wardrobe", "PrivateRoom") && LogQuery("Cage", "PrivateRoom") && LogQuery("Expansion", "PrivateRoom") && Player.CanInteract() && PrivateVendor.CanInteract()) }
 function PrivateAllowChange() { return (!CurrentCharacter.IsRestrained() && (ReputationGet("Dominant") + 25 >= NPCTraitGet(CurrentCharacter, "Dominant"))) }
 function PrivateWontChange() { return (!CurrentCharacter.IsRestrained() && (ReputationGet("Dominant") + 25 < NPCTraitGet(CurrentCharacter, "Dominant"))) }
@@ -258,7 +259,7 @@ function PrivateClick() {
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355) && LogQuery("RentRoom", "PrivateRoom") && Player.CanWalk() && (Player.Cage == null)) CharacterSetCurrent(PrivateVendor);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475) && LogQuery("RentRoom", "PrivateRoom") && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 505) && (MouseY < 595) && LogQuery("RentRoom", "PrivateRoom") && Player.CanChange() && LogQuery("Wardrobe", "PrivateRoom")) CommonSetScreen("Character", "Wardrobe");
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 625) && (MouseY < 715) && LogQuery("RentRoom", "PrivateRoom") && LogQuery("Expansion", "PrivateRoom")) PrivateCharacterOffset = (PrivateCharacterOffset == 0) ? 4 : 0;
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 625) && (MouseY < 715) && LogQuery("RentRoom", "PrivateRoom") && LogQuery("Expansion", "PrivateRoom")) PrivateCharacterOffset = (PrivateCharacterOffset + 4 == PrivateCharacterMax) ? 0 : PrivateCharacterOffset + 4;
 	if ((MouseX <= 1885) && (MouseY < 900) && LogQuery("RentRoom", "PrivateRoom") && (Player.Cage == null)) PrivateClickCharacter();
 	if ((MouseX <= 1885) && (MouseY >= 900) && LogQuery("RentRoom", "PrivateRoom")) PrivateClickCharacterButton();
 }
@@ -286,6 +287,13 @@ function PrivateGetExpansion() {
 	CharacterChangeMoney(Player, -200);
 	LogAdd("Expansion", "PrivateRoom");
 	PrivateCharacterMax = 8;
+}
+
+// When the player gets the room expansion
+function PrivateGetSecondExpansion() {
+	CharacterChangeMoney(Player, -400);
+	LogAdd("SecondExpansion", "PrivateRoom");
+	PrivateCharacterMax = 12;
 }
 
 // Loads the private room character
@@ -726,7 +734,7 @@ function PrivateNPCInteraction(LoveFactor) {
 		NPCLoveChange(CurrentCharacter, LoveFactor);
 }
 
-// When the slave market transation starts (10$ + 1$ per day for sold slave + 0% to 100% from the random auction, divide in 5 for rentals)
+// When the slave market transation starts (10$ + 1$ per day for sold slave + 0% to 100% from the random auction, divide in 7 for rentals)
 function PrivateSlaveMarketStart(AuctionType) {
 	if (AuctionType == "Rent") NPCEventAdd(CurrentCharacter, "SlaveMarketRent", CurrentTime + 86400000);
 	else InventoryRemove(CurrentCharacter, "ItemNeck");
@@ -739,7 +747,7 @@ function PrivateSlaveMarketStart(AuctionType) {
 	if (NPCSlaveAuctionAmount > 90) NPCSlaveAuctionAmount = 90;
 	if (NPCSlaveAuctionAmount < 0) NPCSlaveAuctionAmount = 0;
 	NPCSlaveAuctionAmount = Math.round((10 + NPCSlaveAuctionAmount) * (1 + Math.random()));
-	if (AuctionType == "Rent") NPCSlaveAuctionAmount = Math.round(NPCSlaveAuctionAmount / 5);
+	if (AuctionType == "Rent") NPCSlaveAuctionAmount = Math.round(NPCSlaveAuctionAmount / 7);
 	CharacterChangeMoney(Player, NPCSlaveAuctionAmount);
 	CommonSetScreen("Cutscene", "NPCSlaveAuction");
 	if (AuctionType == "Sell") PrivateKickOut();

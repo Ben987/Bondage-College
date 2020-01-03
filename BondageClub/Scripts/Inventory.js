@@ -161,6 +161,14 @@ function InventoryAllow(C, Prerequisite, SetDialog) {
 	if (Prerequisite == "NotSuspendedOrHorsed" && (InventoryGet(C, "ItemFeet") != null) && (InventoryGet(C, "ItemFeet").Asset.Name == "SpreaderMetal")) T = "CannotBeUsedWithFeetSpreader";
 	if (Prerequisite == "NotSuspendedOrHorsed" && C.Effect.indexOf("Mounted") >= 0) T = "CannotBeUsedWhenMounted";
 
+	// Burlap sack or body bag
+	if (Prerequisite == "CanBeBagged" && C.Pose.indexOf("Suspension") >= 0) T = "TheyMustBeStandingFirst";
+	if (Prerequisite == "CanBeBagged" && C.Pose.indexOf("Horse") >= 0) T = "TheyMustBeStandingFirst";
+	if (Prerequisite == "CanBeBagged" && C.Pose.indexOf("KneelingSpread") >= 0) T = "TheyMustBeStandingFirst";
+	if (Prerequisite == "CanBeBagged" && (InventoryGet(C, "ItemFeet") != null) && (InventoryGet(C, "ItemFeet").Asset.Name == "SpreaderMetal")) T = "CannotBeUsedWithFeetSpreader";
+	if (Prerequisite == "CanBeBagged" && C.Effect.indexOf("Mounted") >= 0) T = "CannotBeUsedWhenMounted";
+	if (Prerequisite == "CanBeBagged" && C.Pose.indexOf("Yoked") >= 0) T = "CannotBeUsedWhenYoked";
+	
 	// If no error text was found, we return TRUE, if a text was found, we can show it in the dialog
 	if (T != "" && (SetDialog == null || SetDialog)) DialogSetText(T);
 	return (T == "");

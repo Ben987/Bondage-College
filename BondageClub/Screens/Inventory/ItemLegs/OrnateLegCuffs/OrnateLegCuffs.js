@@ -62,10 +62,11 @@ function InventoryItemLegsOrnateLegCuffsSetPose(NewPose) {
 
 	// Refreshes the character and chatroom
 	CharacterRefresh(C);
-	var msg = DialogFind(Player, "OrnateLegCuffsRestrain" + ((NewPose == null) ? "None" : NewPose));
-	msg = msg.replace("SourceCharacter", Player.Name);
-	msg = msg.replace("DestinationCharacter", C.Name);
-	ChatRoomPublishCustomAction(msg, true);
+	var msg = "OrnateLegCuffsRestrain" + ((NewPose == null) ? "None" : NewPose);
+	var Dictionary = [];
+	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+	Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+	ChatRoomPublishCustomAction(msg, true, Dictionary);
 
 	// Rebuilds the inventory menu
 	if (DialogInventory != null) {

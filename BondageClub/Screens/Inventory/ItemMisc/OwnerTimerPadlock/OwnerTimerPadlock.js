@@ -38,7 +38,7 @@ function InventoryItemMiscOwnerTimerPadlockDraw() {
     }
     if (Player.CanInteract() && ((Player.MemberNumber == DialogFocusSourceItem.Property.LockMemberNumber) || DialogFocusSourceItem.Property.AllowModifyTimer)) {
         DrawButton(1100, 910, 250, 70, DialogFind(Player, "AddTimerTime"), "White");
-        DrawBackNextButton(1400, 910, 200, 70, OwnerTimerChooseList[OwnerTimerChooseIndex] + " " + DialogFind(Player, "Hours"), "White", "",
+        DrawBackNextButton(1400, 910, 250, 70, OwnerTimerChooseList[OwnerTimerChooseIndex] + " " + DialogFind(Player, "Hours"), "White", "",
             () => OwnerTimerChooseList[(OwnerTimerChooseList.length + OwnerTimerChooseIndex - 1) % OwnerTimerChooseList.length] + " " + DialogFind(Player, "Hours"),
             () => OwnerTimerChooseList[(OwnerTimerChooseIndex + 1) % OwnerTimerChooseList.length] + " " + DialogFind(Player, "Hours"));
     }
@@ -55,8 +55,8 @@ function InventoryItemMiscOwnerTimerPadlockClick() {
     }
     if ((MouseY >= 910) && (MouseY <= 975) && Player.CanInteract() && ((Player.MemberNumber == DialogFocusSourceItem.Property.LockMemberNumber) || DialogFocusSourceItem.Property.AllowModifyTimer)) {
         if ((MouseX >= 1100) && (MouseX < 1350)) InventoryItemMiscOwnerTimerPadlockAdd(OwnerTimerChooseList[OwnerTimerChooseIndex] * 60 * 60);
-        if ((MouseX >= 1400) && (MouseX < 1600)) {
-            if (MouseX <= 1500) OwnerTimerChooseIndex = (OwnerTimerChooseList.length + OwnerTimerChooseIndex - 1) % OwnerTimerChooseList.length;
+        if ((MouseX >= 1400) && (MouseX < 1650)) {
+            if (MouseX <= 1525) OwnerTimerChooseIndex = (OwnerTimerChooseList.length + OwnerTimerChooseIndex - 1) % OwnerTimerChooseList.length;
             else OwnerTimerChooseIndex = (OwnerTimerChooseIndex + 1) % OwnerTimerChooseList.length;
         }
     }
@@ -68,13 +68,20 @@ function InventoryItemMiscOwnerTimerPadlockAdd(TimeToAdd) {
     if (DialogFocusItem.Asset.RemoveTimer > 0) DialogFocusSourceItem.Property.RemoveTimer = Math.min(DialogFocusSourceItem.Property.RemoveTimer + (TimeToAdd * 1000), CurrentTime + (DialogFocusItem.Asset.MaxTimer * 1000));
     if (CurrentScreen == "ChatRoom") {
         var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-        var msg = DialogFind(Player, "TimerAddTime");
-        msg = msg.replace("SourceCharacter", Player.Name);
-        msg = msg.replace("TimerTime", DialogFocusSourceItem.Property.ShowTimer ? Math.round((DialogFocusSourceItem.Property.RemoveTimer - TimerBefore) / (1000 * 60 * 60)) : DialogFind(Player, "TimerAddUnknownTime"));
-        msg = msg.replace("TimerUnit", DialogFocusSourceItem.Property.ShowTimer ? DialogFind(Player, "Hours") : "");
-        msg = msg.replace("DestinationCharacter", C.Name);
-        msg = msg.replace("BodyPart", C.FocusGroup.Description.toLowerCase());
-        ChatRoomPublishCustomAction(msg, true);
+        var msg = "TimerAddTime";
+        var Dictionary = [];
+        Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+        Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+        if (DialogFocusSourceItem.Property.ShowTimer) {
+            Dictionary.push({Tag: "TimerTime", Text: Math.round((DialogFocusSourceItem.Property.RemoveTimer - TimerBefore) / (1000 * 60 * 60))});
+            Dictionary.push({Tag: "TimerUnit", TextToLookUp: "Hours"});
+        }
+        else {
+            Dictionary.push({Tag: "TimerTime", TextToLookUp: "TimerAddUnknownTime"});
+            Dictionary.push({Tag: "TimerUnit", Text: ""});
+        }
+        Dictionary.push({Tag: "FocusAssetGroup", AssetGroupName: C.FocusGroup.Name});
+        ChatRoomPublishCustomAction(msg, true, Dictionary);
     }
     else { CharacterRefresh(CurrentCharacter); }
     InventoryItemMiscTimerPadlockExit();

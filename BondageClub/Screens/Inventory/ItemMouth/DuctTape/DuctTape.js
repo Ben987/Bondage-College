@@ -56,10 +56,11 @@ function InventoryItemMouthDuctTapeSetType(NewType) {
 	else if (NewType == "Double") DialogFocusItem.Property.Effect = ["GagNormal"];
 	else if (NewType == "Cover") DialogFocusItem.Property.Effect = ["GagNormal"];
 	CharacterRefresh(C);
-	var msg = DialogFind(Player, "DuctTapeMouthSet" + ((NewType) ? NewType : "Small"));
-	msg = msg.replace("SourceCharacter", Player.Name);
-	msg = msg.replace("DestinationCharacter", C.Name);
-	ChatRoomPublishCustomAction(msg, true);
+	var msg = "DuctTapeMouthSet" + ((NewType) ? NewType : "Small");
+	var Dictionary = [];
+	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+	Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+	ChatRoomPublishCustomAction(msg, true, Dictionary);
 	if (DialogInventory != null) {
 		DialogFocusItem = null;
 		DialogMenuButtonBuild(C);

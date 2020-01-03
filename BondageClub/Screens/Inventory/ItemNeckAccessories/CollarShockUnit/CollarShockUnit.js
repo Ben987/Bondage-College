@@ -38,8 +38,12 @@ function InventoryItemNeckAccessoriesCollarShockUnitClick() {
 function InventoryItemNeckAccessoriesCollarShockUnitSetIntensity(Modifier) {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	DialogFocusItem.Property.Intensity = DialogFocusItem.Property.Intensity + Modifier;
-	if (DialogFocusItem.Property.ShowText)
-		ChatRoomPublishCustomAction((DialogFind(Player, "ShockCollarSet" + DialogFocusItem.Property.Intensity)).replace("SourceCharacter",Player.Name).replace("DestinationCharacter",C.Name), true);
+	if (DialogFocusItem.Property.ShowText) {
+		var Dictionary = [];
+		Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+		Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+		ChatRoomPublishCustomAction("ShockCollarSet" + DialogFocusItem.Property.Intensity, true, Dictionary);
+	}
 	else
 		DialogLeave();
 }
