@@ -1,0 +1,109 @@
+﻿###_NPC
+Are you talking to me?
+Вы со мной разговариваете?
+(She willingly opens her mouth.)
+(Она охотно открывает рот.)
+(She grins at you.) Was that it?
+(Она улыбается тебе.) И это все?
+(She sighs and turns around while you restrain her arms.)  It's really tight.
+(Она вздыхает и оборачивается, пока ты связываешь ее руки.)  Это действительно туго.
+(You free her arms and she nods happily.)  Thanks a lot.
+(Ты освобождаешь ее руки, и она радостно кивает.)  Большое спасибо.
+(She submits to you while you restrain her legs securely.)  I don't need to move anyway.
+(Она подчиняется тебе, пока ты надежно связываешь ее ноги.)  Мне все равно не нужно двигаться.
+(You release her legs from the restraint.)  Thanks a lot.
+(Ты освобождаешь ее ноги от пут.)  Большое спасибо.
+(She looks puzzled as you restrain her feet.)  I'll stay on guard here.
+(Она выглядит озадаченной, когда ты связываешь ее ступни.)  Я останусь здесь на страже.
+(You release her feet and she wiggles them.)  Thanks, it was troublesome.
+(Ты освобождаешь ее ступни, и она шевелит ими.)  Спасибо, это было хлопотно.
+(You strap the collar on her while she blushes.)  Is this really necessary?
+(Ты пристегиваешь ей ошейник, пока она краснеет.)  Это действительно необходимо?
+(You remove the collar from her neck.)  Thanks.
+(Ты снимаешь ошейник с ее шеи.)  Спасибо.
+(You snap the belt around her waist and crotch while she sighs.)  This is certainly not a trick.
+(Ты застегиваешь пояс вокруг ее талии и промежности, пока она вздыхает.)  Это, конечно, не трюк.
+(You unlock the belt from her waist and she smiles.)  Thanks a lot DialogPlayerName.
+(Ты отстегиваешь пояс с ее талии, и она улыбается.)  Большое спасибо DialogPlayerName.
+(You strap the device on her head as she nods slowly.)  It's dark in here.
+(Ты пристегиваешь устройство к ее голове, и она медленно кивает.)  Здесь темно.
+(You remove the device and she nods rapidly.)  Thanks a million, this is much better.
+(Ты убираешь устройство, и она быстро кивает.)  Спасибо на миллион, так намного лучше.
+(She jumps from the searing pain on her breast.)  Ouch!
+(Она подпрыгивает от жгучей боли в груди.)  Ай!
+(You whip her breast with the leather crop as she whimpers and bows her head.)
+(Ты хлещешь ее по груди кожаным стеком, пока она всхлипывает и склоняет голову.)
+(You whip her butt hard as she sighs.)  For the show.
+(Ты сильно хлещешь ее по заднице, пока она вздыхает.)  Для шоу.
+(She grumbles as you strike her butt with the crop.)  For the show.
+(Она ворчит, когда ты бьешь ее по заднице стеком.)  Для шоу.
+(She tries to fight back.)  This is how it's meant to be.
+(Она пытается сопротивляться.)  Вот как это должно быть.
+(You remove the device.)  Thanks, now I can work again.
+(Ты удаляешь устройство.)  Спасибо, теперь я снова могу работать.
+(She looks surprised.) Oops?
+(Она выглядит удивленной.) Упс?
+(She looks confused.) Thanks, are we done?
+(Она выглядит смущенной.) Спасибо, мы закончили?
+(She whimpers as you use the device on her breast.)  Sorry to object, but this isn't very convenient or comfortable.
+(Она хнычет, когда ты используешь устройство на ее груди.)  Извините, что возражаю, но это не очень удобно или комфортно.
+(She grumbles as you use remove the item.)  Be thoughtful and don't remove anything until I'm hurt and broken.
+(Она ворчит, как ты собираешься удалить элемент.)  Будьте внимательны и не снимайте ничего, пока я не пострадаю и не сломаюсь.
+(You massage her pussy with the wand, but she stays cold.)  I'm very sorry.  I'm not in the mood.
+(Ты массируешь ее киску с палочкой, но она остается холодной.)  Мне очень жаль. Я не в настроении.
+(You slide the egg inside, but she barely reacts to it.)  I don't want to top from the bottom, but this egg would work better on someone else.
+(Ты вставляешь вовнутрь яйцо, но она едва реагирует на него.)  Я не хочу начинать с самого низа, но это яйцо будет лучше работать на ком-то другом.
+(She doesn't react as you remove the egg.)  Maybe it doesn't work, I didn't feel a thing in there.
+(Она не реагирует, когда ты убираешь яйцо.)  Может быть, оно не работает, я ничего не чувствовала там.
+(She struggles against it.) Like the great master Houdini?
+(Она борется с этим.) Как великий мастер Гудини?
+(She catches her breath.) Finally.  What was that supposed to be?
+(У нее перехватывает дыхание.) Наконец-то.  Что это должно было быть?
+Welcome to the theater!
+Добро пожаловать в театр!
+###_PLAYER
+Hello, I'm DialogPlayerName.  Nice to meet you.
+Привет, я  DialogPlayerName.  Приятно познакомиться.
+###_NPC
+Pleased to meet you too.  I'm DialogCharacterName, Would you like to assist me?
+Я тоже рада с вами познакомиться.  Я DialogCharacterName, не хотите ли вы помочь мне?
+###_PLAYER
+Please change, the show's starting.
+Пожалуйста, переоденьтесь, шоу начинается.
+###_NPC
+I'll hurry up.
+Я потороплюсь.
+###_PLAYER
+Take fife, You are free.
+Держите пять, вы свободны.
+###_NPC
+Thank you very much!
+Большое спасибо!
+###_PLAYER
+(Sing "Sweet, Sweet Gwendolyne".)
+(Пой "Милая, Милая Гвендолин".)
+###_NPC
+(During the song you tie each other. The spectators are thrilled.)
+(Во время песни вы связываете друг друга. Зрители в восторге.)
+###_PLAYER
+(Sing "Bad Girl".)
+(Пой " Плохая Девочка".)
+###_NPC
+(Some spectators give you money. You get REPLACEMONEY$.)
+(Некоторые зрители дают вам деньги. Ты получаешь REPLACEMONEY$.)
+###_PLAYER
+I should tie you up.
+Я должна связать вас.
+###_NPC
+Make it look really nice.
+Сделайте так, чтобы это выглядело очень красиво.
+I can't, I'm tied up. Please free me.
+Я не могу, я связана. Пожалуйста, освободите меня.
+###_PLAYER
+Goodbye.  (Leave her.)
+До свидания.  (Оставь ее.)
+Can we continue the show? 
+Мы можем продолжить шоу? 
+###_NPC
+(She nods in agreement.) Yes, please.
+(Она кивает в знак согласия.) Да, пожалуйста.

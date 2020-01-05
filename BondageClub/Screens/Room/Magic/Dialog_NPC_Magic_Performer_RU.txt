@@ -1,0 +1,326 @@
+﻿###_NPC
+Speak more clearly if you want something.
+Говорите четко, если вы хотите что-то.
+(She willingly opens her mouth.)
+(Она охотно открывает рот.)
+(She grins at you.) Was that it?
+(Она улыбается тебе.) И это все?
+(She sighs and turns around while you restrain her arms.)  It's really tight.
+(Она вздыхает и оборачивается, пока ты связываешь ее руки.)  Это действительно туго.
+(You free her arms and she nods happily.)  Thanks a lot.
+(Ты освобождаешь ее руки, и она радостно кивает.)  Большое спасибо.
+(She submits to you while you restrain her legs securely.)  I don't need to move anyway.
+(Она подчиняется тебе, пока ты надежно связываешь ее ноги.)  Мне все равно не нужно двигаться.
+(You release her legs from the restraint.)  Thanks a lot.
+(Ты освобождаешь ее ноги от пут.)  Большое спасибо.
+(She looks puzzled as you restrain her feet.)  I'll stay on guard here.
+(Она выглядит озадаченной, когда ты связываешь ее ступни.)  Я останусь здесь на страже.
+(You release her feet and she wiggles them.)  Thanks, it was troublesome.
+(Ты освобождаешь ее ступни, и она шевелит ими.)  Спасибо, это было хлопотно.
+(You strap the collar on her while she blushes.)  Is this really necessary?
+(Ты надеваешь на нее ошейник, когда она краснеет.)  Это действительно необходимо?
+(You remove the collar from her neck.)  Thanks.
+(Ты снимаешь ошейник с ее шеи.)  Спасибо.
+(You snap the belt around her waist and crotch while she sighs.)  This is certainly not a trick.
+(Ты застегиваешь пояс вокруг ее талии и промежности, пока она вздыхает.)  Это, конечно, не трюк.
+(You unlock the belt from her waist and she smiles.)  Thanks a lot DialogPlayerName.
+(Ты отстегиваешь ремень с ее талии, и она улыбается.)  Большое спасибо DialogPlayerName.
+(You strap the device on her head as she nods slowly.)  It's dark in here.
+(Ты пристегиваешь устройство к ее голове, и она медленно кивает.)  Здесь темно.
+(You remove the device and she nods rapidly.)  Thanks a million, this is much better.
+(Ты убираешь устройство, и она быстро кивает.)  Спасибо на миллион, так намного лучше.
+(She jumps from the searing pain on her breast.)  Ouch!
+(Она подпрыгивает от жгучей боли в груди.)  Ай!
+(You whip her breast with the leather crop as she whimpers and bows her head.)
+(Ты хлещешь ее по груди кожаным стеком, пока она всхлипывает и склоняет голову.)
+(You whip her butt hard as she sighs.)  For the show.
+(Ты сильно хлещешь ее по заднице, пока она вздыхает.)  Для шоу.
+(She grumbles as you strike her butt with the crop.)  For the show.
+(Она ворчит, когда ты бьешь ее по заднице стеком.)  Для шоу.
+(She tries to fight back.)  This is how it's meant to be.
+(Она пытается сопротивляться.)  Вот как это должно быть.
+(You remove the device.)  Thanks, now can work again.
+(Ты удаляешь устройство.)  Спасибо, теперь можно снова работать.
+(She looks surprised.) Oops?
+(Она выглядит удивленной.) Упс?
+(She looks confused.) Thanks, are we done?
+(Она выглядит смущенной.) Спасибо, мы закончили?
+(She whimpers as you use the device on her breast.)  Sorry to object, but this isn't very convenient or comfortable.
+(Она хнычет, когда ты используешь устройство на ее груди.)  Извините, что возражаю, но это не очень удобно или комфортно.
+(She grumbles as you use remove the item.)  Be thoughtful and don't remove anything until I'm hurt and broken.
+(Она ворчит, как ты пробуешь удалить элемент.)  Будьте внимательны и не снимайте ничего, пока я не пострадаю и не сломаюсь.
+(You massage her pussy with the wand, but she stays cold.)  I'm very sorry.  I'm not in the mood.
+(Ты массируешь ее киску палочкой, но она остается холодной.)  Мне очень жаль.  Я не в настроении.
+(You slide the egg inside, but she barely reacts to it.)  I don't want to top from the bottom, but this egg would work better on someone else.
+(Ты засовываешь яйцо внутрь, но она едва реагирует на него.)  Я не хочу начинать с самого низа, но это яйцо будет лучше работать на ком-то другом.
+(She doesn't react as you remove the egg.)  Maybe it doesn't work, I didn't feel a thing in there.
+(Она не реагирует, когда ты убираешь яйцо.)  Может быть, оно не работает, я ничего не чувствовала там.
+(She struggles against it.) Like the great master Houdini?
+(Она борется с этим.) Как великий мастер Гудини?
+(She catches her breath.) Finally.  What was that supposed to be?
+(У нее перехватывает дыхание.) Напоследок.  Что это должно было быть?
+Welcome to the theater 
+Добро пожаловать в театр 
+###_PLAYER
+Hello, I'm DialogPlayerName.  Nice to meet you.
+Привет, я  DialogPlayerName.  Приятно познакомиться.
+###_NPC
+Pleased to meet you too.  I'm DialogCharacterName, Would you like to assist me?
+Я тоже рада с вами познакомиться.  Я DialogCharacterName, не хотите ли вы помочь мне?
+###_PLAYER
+Can you answer some questions?
+Вы можете ответить на несколько вопросов?
+###_NPC
+What do you want to know?
+Что вы хотите узнать?
+###_PLAYER
+Show me one of your magic tricks.
+Покажите мне один из своих трюком.
+###_NPC
+(She snaps her fingers.) And just like that, you've swapped clothes with my assistant.
+(Она щелкает пальцами.) И вот так вы поменялися одеждой с моей ассистенткой.
+###_PLAYER
+The show can begin.
+Шоу может начаться.
+###_NPC
+Welcome dear spectators.
+Добро пожаловать дорогие зрители.
+###_PLAYER
+(Squirm in the shackles and seek help.)
+(Извивайся в кандалах и ищи помощи.)
+###_NPC
+I can not work like that. Goodbye.
+Я не могу так работать. До свидания.
+###_PLAYER
+I'm ready for the next trick.
+Я готова к следующему трюку.
+I did it and I want to stop.
+Я сделала это и хочу остановиться.
+###_NPC
+(She gives you the income of REPLACEMONEY$.)
+(Она дает тебе награду в размере REPLACEMONEY$.)
+###_PLAYER
+Goodbye. (Leave.)
+До свидания. (Оставь ее.)
+What is this room? 
+Что это за комната? 
+###_NPC
+The Houdini-Theater in which a magic show will be performed.
+Это Гудини-театр, в котором будет разыгрываться волшебное шоу.
+###_PLAYER
+What's in it for me if I participate?
+Что я получу, если я буду участвовать?
+###_NPC
+As an assistant, you can earn some money.
+В качестве помощницы вы можете заработать немного денег.
+###_PLAYER
+Can I participate in the magic show?
+Могу ли я принять участие в магическом шоу?
+###_NPC
+I am still looking for an escape artist as an assistant.
+Я все еще ищу художника побега в качестве помощницы.
+###_PLAYER
+How does the payment work?
+Как работает оплата?
+###_NPC
+You get paid for tricks. With every trick your income increases up to the maximum limit.
+Вам платят за трюки. С каждым трюком ваш доход увеличивается до максимального предела.
+###_PLAYER
+No further questions.
+Больше никаких вопросов.
+###_NPC
+Enjoy the show then.
+Тогда наслаждайтесь шоу.
+###_PLAYER
+(Listen.)
+(Слушать.)
+###_NPC
+Payment is made at the end of the show. If you fail during a trick, you'll get thrown off the stage and have to leave.
+Оплата производится в конце шоу. Если вы потерпите неудачу во время трюка, вы будете изгнаны со сцены и должны уйти.
+###_PLAYER
+(Wait.)
+(Подождите.)
+###_NPC
+Would you like to join the show?
+Хотите присоединиться к шоу?
+###_PLAYER
+Yes, gladly.
+Да, с удовольствием.
+###_NPC
+Then tell my assistant to change clothes so the show can start.
+Тогда скажите моей помощнице, чтобы она переоделася, и шоу начнется.
+###_PLAYER
+No, that's enough for me.
+Нет, для меня этого достаточно.
+###_NPC
+Pity, goodbye. Here are your clothes.
+Жаль, до свидания. Вот ваша одежда.
+Your task: bind me and then give me the signal to start.
+Ваша задача: связать меня, а затем дать мне сигнал к началу.
+###_PLAYER
+Whom should I tie up?
+Кого я должна связать?
+###_NPC
+Me, I want to perform a trick.
+А я хочу показать трюк.
+###_PLAYER
+What restraints should I use?
+Какие ограничения я должна использовать?
+###_NPC
+Use five restraints for the eyes, mouth, arms, legs and feet.
+Используйте пять ограничений: для глаз, рта, рук, ног и ступней.
+###_PLAYER
+(Signal her that you are done.)
+(Просигнализируй ей, что ты закончила.)
+###_NPC
+Now show the audience how to get out of there.
+А теперь покажите зрителям, как оттуда выбраться.
+###_PLAYER
+That was easy. Let's do the next trick.
+Это было легко. Давайте сделаем следующий трюк.
+###_NPC
+Applause for the artist.
+Аплодисменты артистке.
+###_PLAYER
+(Give up and beg for help.)
+(Сдавайся и просите о помощи.)
+###_NPC
+Your performance is over.
+Ваше выступление окончено.
+###_PLAYER
+(Turn away.)
+(Отвернуться.)
+###_NPC
+Go over there and free my assistant.
+Идите туда и освободите мою помощницу.
+###_PLAYER
+(Leave.)
+(Покинуть.)
+###_NPC
+Your task: dance a while, I'll perform some tricks with my assistant.
+Ваша задача: потанцуйте немного, а я исполню несколько трюков со своей помощницей.
+###_PLAYER
+(Dance forcefully.)
+(Танцуй решительно.)
+###_NPC
+(The performer shows the audience a few little tricks.)
+(Артистка показывает зрителям несколько небольших трюков.)
+###_PLAYER
+(Dance submissively.)
+(Танцуй покорно.)
+(Wait for your next trick.)
+(Жди своего следующего трюка.)
+###_NPC
+Your task: bind my assistant and then give me the signal to start.
+Ваша задача: связать мою помощницу, а затем дать мне сигнал к старту.
+Please tie my assistant.
+Пожалуйста, свяжите моею помощницу.
+Your task: escape from a wooden box and some light bondage.
+Ваша задача: освободится из деревянного ящика и легкого бондажа.
+###_PLAYER
+(Prepare the trick.)
+(Приготовь трюк.)
+###_NPC
+The question is, can she escape?
+Вопрос заключается в том, может ли она сбежать?
+###_PLAYER
+Here I am, the show goes on.
+А вот и я, шоу продолжается.
+###_NPC
+Applause for the escape.
+Аплодисменты за побег.
+###_PLAYER
+I escaped and am happy to finish the show.
+Я сбежала и счастлив закончить шоу.
+###_NPC
+(She gives you the income of REPLACEMONEY$.) Will you come back?
+(Она дает вам награду в размере REPLACEMONEY$.) Вы вернетеся?
+###_PLAYER
+(Knock for help.)
+(Стучи, зови на помощь.)
+###_NPC
+(She conjures a few coins out of nowhere and holds them out to you.)
+(Она наколдовала несколько монет из ниоткуда и протянула их тебе.)
+###_PLAYER
+(Take them.)
+(Взять их.)
+###_NPC
+(You get REPLACEMONEY$.)
+(Ты получаешь REPLACEMONEY$.)
+###_PLAYER
+(Give them back.)
+(Отдай их обратно.)
+###_NPC
+(She performs another card trick and the show continues.)
+(Она выполняет еще один карточный трюк, и шоу продолжается.)
+###_PLAYER
+(Entertain the audience.)
+(Развлекать публику.)
+###_NPC
+Your task: escape from a wooden box and some heavy bondage.
+Ваша задача: освободится из деревянного ящика и какого-нибудь жесткого бондажа.
+Incredible, will we ever see her again?
+Невероятно, увидим ли мы ее когда-нибудь снова?
+###_PLAYER
+Nothing can stop me, it goes on.
+Ничто не может остановить меня, шоу продолжается.
+###_NPC
+Cheers for the feat.
+Выпьем за мастерство.
+###_PLAYER
+I need a break and get out of the show.
+Мне нужно отдохнуть и покинуть шоу.
+###_NPC
+(She gives you the income of REPLACEMONEY$.) Thank you so much.
+(Она дает тебе награду в размере REPLACEMONEY$.) Огромное спасибо.
+Now the classic. Despite being handcuffed, will she be able to escape from a water-filled milk can?
+Теперь классика. Несмотря на наручники, сможет ли она выбраться из наполненного водой молочного бака?
+###_PLAYER
+(Dive under the water skillfully.)
+(Умело ныряй под воду.)
+###_NPC
+(She fastens the lid with three bolts.)
+(Она закручивает крышку на три болта.)
+###_PLAYER
+I am Houdini's true heiress.
+Я - истинная наследница Гудини.
+(Catch your breath.) I've had enough.
+(Отдышись.) С меня хватит.
+###_NPC
+(She gives you the income of REPLACEMONEY$.) Thanks for the show.
+(Она дает тебе награду в размере REPLACEMONEY$.) Спасибо за шоу.
+Your task: escape from the incredible water torture cell.
+Ваша задача: побег из невероятной камеры пыток водой.
+###_PLAYER
+(Prepare for the task.)
+(Приготовься к выполнению задания.)
+###_NPC
+A few piranhas for motivation?
+Несколько пираней для мотивации?
+###_PLAYER
+Here I am the shark. Go on, go on.
+Тут я и есть акула. Продолжай, продолжай.
+The submarine has emerged. I need a break.
+Подводная лодка всплыла. Мне нужен перерыв.
+(Wink for help.)
+(Проси помощи.)
+(Wait and smile.)
+(Жди и улыбайся.)
+###_NPC
+I have to redecorate the stage. In the meantime, sing a song with my assistant.
+Мне нужно поменять декорации на сцене. А пока спойте песню с моей помощницей.
+###_PLAYER
+(Walk away.)
+(Уходи.)
+###_NPC
+How did she get dressed again? Go over to her and tell her to change for the show.
+Как она опять оделась? Подойдите к ней и скажите, чтобы она переоделась для шоу.
+###_PLAYER
+The show must go on.
+Шоу должно продолжаться.
+###_NPC
+Applause for both of them.
+Аплодисменты им обоим.
+###_PLAYER
+Goodbye, I'm leaving the show.
+До свидания, я ухожу из шоу.
