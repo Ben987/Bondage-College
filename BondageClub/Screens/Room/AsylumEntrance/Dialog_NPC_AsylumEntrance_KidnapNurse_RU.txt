@@ -1,0 +1,186 @@
+﻿###_NPC
+Gagged patients are the best patients.
+Пациентки с кляпом во рту - лучшие пациентки.
+(A nurse runs after you.)  Here you are patient DialogPlayerName!  You're going back to the asylum with me.
+(Медсестра бежит за тобой.)  Вот ты где пациентка DialogPlayerName!  Ты вернешься в психлечебницу вместе со мной.
+(A nurse catches you by surprise.)  DialogPlayerName!  I'm bringing you back to the asylum, whether you want it or not.
+(Медсестра застает тебя врасплох.)  DialogPlayerName!  Я верну тебя в психлечебницу, хочешь ты этого или нет.
+(A nurse is blocking your way.)  I'm here for your own good patient DialogPlayerName.  Come to the asylum with me.
+(Медсестра преграждает тебе путь.)  Я здесь для твоего же блага пациентка DialogPlayerName.  Пойдем со мной в психлечебницу.
+(A nurse sees you and grins.)  This is too easy.  You're going back to the asylum patient DialogPlayerName.
+(Медсестра видит тебя и улыбается.)  Это слишком просто.  Ты возвращаешься в психлечебницу пациентка DialogPlayerName.
+(A nurse grabs your arm.)  You always get in trouble, do you?  Come back to the asylum with me now.
+(Медсестра хватает тебя за руку.)  Ты всегда попадаешь в неприятности, да?  А теперь возвращайся со мной в психлечебницу.
+(A nurse blocks your path and smiles.)  Struggling is futile patient DialogPlayerName.  You're coming back with me.
+(Медсестра преграждает тебе путь и улыбается.)  Бороться бесполезно пациентка DialogPlayerName.  Ты вернешься со мной.
+(She surrenders to you.)  You're too tough for me.  I can understand why you've escaped.
+(Она сдается тебе.)  Ты слишком крута для меня.  Я могу понять, почему ты сбежала.
+(She crosses her arms and smiles.)  It's time to go back to the asylum girl.
+(Она скрещивает руки на груди и улыбается.)  Пора возвращаться назад девочка из психлечебницы.
+(She looks around and takes the money.)  Don't cross my path again.  Run!
+(Она оглядывается и берет деньги.)  Не попадайся мне снова.  Беги!
+(She refuses the money.)  You cannot bribe me!  You're going back with me.
+(Она отказывается от денег.)  Ты не сможешь подкупить меня!  Ты возвращаешься со мной.
+###_PLAYER
+I don't understand.
+Я не понимаю.
+###_NPC
+Don't think you can fool me.  You escaped from the asylum and I'm brining you back.  I will use force if it's needed.
+Не думай, что сможешь обмануть меня.  Ты сбежала из психлечебницы, и я верну тебя обратно.  Если понадобится, я применю силу.
+###_PLAYER
+You're going down nurse!
+Ты проиграешь медсестра!
+Wait!  Can we negotiate?
+Подожди!  Мы можем договориться?
+###_NPC
+(She thinks for a few seconds.)  Negotiate?  How much do you value your freedom?
+(Она задумывается на несколько секунд.)  Договориться?  Насколько ты ценишь свою свободу?
+###_PLAYER
+(Fight her.)
+(Борись с ней.)
+(Surrender.)
+(Сдаться.)
+###_NPC
+(You surrender without a fight as she grins.)  It's time to go back to the asylum girl.
+(Ты сдаешься без боя, когда она улыбается.)  Пора возвращаться назад девочка из психлечебницы.
+###_PLAYER
+I'll give you 10$.
+Я дам тебе 10$.
+I'll give you 25$.
+Я дам тебе 25$.
+I'll give you 50$.
+Я дам тебе 50$.
+I'll give you 100$.
+Я дам тебе 100$.
+We could become friends.
+Мы могли бы стать подругами.
+###_NPC
+Forget it!  I'm bringing you back to the asylum.
+Забудь об этом!  Я отведу тебя обратно в психлечебницу.
+###_PLAYER
+I won't knock you out if you run now.
+Я не побью тебя, если ты сейчас убежишь.
+###_NPC
+You think you can scare me?  I'm bringing you back to the asylum.
+Ты думаешь, что можешь напугать меня?  Я отвезу тебя обратно в психлечебницу.
+###_PLAYER
+(Run away.)
+(Убежать.)
+###_NPC
+NOEXIT
+NOEXIT
+###_PLAYER
+You fought well.
+Ты хорошо сражалася.
+###_NPC
+Thanks, but I still need to train.
+Спасибо, но мне еще нужно тренироваться.
+###_PLAYER
+If I let you go, you need to forget about me.
+Если я отпущу тебя, ты должна забыть обо мне.
+###_NPC
+(She grumbles.)  Fine, I won't track you anymore.
+(Ворчит она.)  Ладно, я больше не буду тебя выслеживать.
+###_PLAYER
+(Play with her.)
+(Играть с ней.)
+###_NPC
+(You get closer to play with her.)
+(Ты подходишь ближе, чтобы поиграть с ней.)
+###_PLAYER
+(Bring her to your room.)
+(Приведи ее в свою комнату.)
+(Let her go.)
+(Отпустить ее.)
+(Tickle her.)
+(Щекотать ее.)
+###_NPC
+(You tickle her on the ribs and tummy.  She trashes in her bondage, failing to escape.)
+(Ты щекочешь ее по ребрам и животу.  Она мечется в своем бондаже, не в силах вырваться.)
+###_PLAYER
+(Kiss her.)
+(Поцеловать ее.)
+###_NPC
+(She stares at you as you put your hands behind her head and pull her to your lips for a long French kiss.)
+(Она смотрит на тебя, когда ты кладешь руки ей за голову и притягиваешь ее к своим губам для долгого французского поцелуя.)
+###_PLAYER
+(Fondle her.)
+(Ласкать ей.)
+###_NPC
+(You playfully fondle her breasts and butt as she grumbles and blushes lightly.)
+(Ты игриво ласкаешь ее грудь и ягодицы, а она ворчит и слегка краснеет.)
+###_PLAYER
+(Slap her.)
+(Ударить ее.)
+###_NPC
+(She tries to avoid you as you slap her face swiftly.  She tries to stay strong but whimper a little.)
+(Она пытается увернуться от тебя, когда ты быстро даешь ей пощечину.  Она пытается оставаться сильной, но немного хнычет.)
+###_PLAYER
+(Spank her.)
+(Отшлепай ее.)
+###_NPC
+(She jumps a little as you spank her pretty hard on the butt.)
+(Она немного подпрыгивает, когда ты довольно сильно шлепаешь ее по заднице.)
+###_PLAYER
+(Stop playing with her.)
+(Хватит с ней играть.)
+###_NPC
+(You take a step back.)
+(Ты делаешь шаг назад.)
+###_PLAYER
+Fine, let's go.
+Ладно, пошли.
+###_NPC
+(She drags you to the asylum and smiles.)  You will feel right at home.
+(Она тащит тебя в психлечебницу и улыбается.)  Ты будешь чувствовать себя как дома.
+###_PLAYER
+Don't push me!
+Не дави на меня!
+(Go to the asylum.)
+(Иди в психушку.)
+We'll see about that.
+Ну, это мы еще посмотрим.
+###_NPC
+(She nods and stares at you.) It's time to change patient DialogPlayerName.
+(Она кивает и смотрит на тебя.) Пришло время переодеться пациентка DialogPlayerName.
+###_PLAYER
+I guess it will be fun to go back.
+Думаю, будет весело вернуться.
+###_NPC
+(She nods happily and stares at you.) It's time to change patient DialogPlayerName.
+(Она радостно кивает и смотрит на тебя.) Пришло время переодеться пациенткаDialogPlayerName.
+###_PLAYER
+One day I'll reverse the roles.
+Однажды я поменяюсь ролями.
+###_NPC
+(She grumbles and stares at you.) It's time to change patient DialogPlayerName.
+(Она ворчит и смотрит на тебя.) Пришло время переодеться пациентка DialogPlayerName.
+###_PLAYER
+(Nod slowly.)
+(Медленно кивни.)
+###_NPC
+(She smiles and stares at you.) It's time to change patient DialogPlayerName.
+(Она улыбается и смотрит на тебя.) Пришло время переодеться пациентка DialogPlayerName.
+###_PLAYER
+Very well.
+Очень хорошо.
+###_NPC
+(She helps you to change back as a patient.)  You also need to be restrained.
+(Она помогает тебе переодеться обратно как пациентке.)  Ты также должна быть сдержана.
+###_PLAYER
+I hate these clothes.
+Я ненавижу эту одежду.
+(Nod and change.)
+(Кивни и переоденься.)
+That's really necessary?
+Это действительно необходимо?
+###_NPC
+(She straps you up tightly in a straitjacket.)  Welcome back patient DialogPlayerName.  Carry on.
+(Она крепко застегивает на тебе смирительную рубашку.)  С возвращением пациентка DialogPlayerName.  Продолжай.
+###_PLAYER
+(Stay silent.)
+(Молчать.)
+Bye-bye nurse.
+Пока-пока, медсестра.
+(Leave her.)
+(Оставь ее.)
