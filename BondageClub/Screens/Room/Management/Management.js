@@ -387,6 +387,7 @@ function ManagementClubSlaveTransferToRoom() {
 // When the player gets the Mistress clothes
 function ManagementGetMistressOutfit(Color) {
 	CharacterRelease(Player);
+	LoginMistressItems();
 	CharacterArchetypeClothes(Player, "Mistress", Color);
 	ServerPlayerInventorySync();
 }

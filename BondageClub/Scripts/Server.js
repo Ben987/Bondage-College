@@ -112,6 +112,10 @@ function ServerValidateProperties(C, Item) {
 				delete Item.Property.LockMemberNumber;
 				delete Item.Property.RemoveTimer;
 				delete Item.Property.MaxTimer;
+				delete Item.Property.RemoveItem;
+				delete Item.Property.ShowTimer;
+				delete Item.Property.EnableRandomInput;
+				delete Item.Property.MemberNumberList;
 				Item.Property.Effect.splice(E, 1);
 				E--;
 			}
@@ -135,6 +139,10 @@ function ServerValidateProperties(C, Item) {
 					delete Item.Property.LockMemberNumber;
 					delete Item.Property.RemoveTimer;
                     delete Item.Property.MaxTimer;
+					delete Item.Property.RemoveItem;
+					delete Item.Property.ShowTimer;
+					delete Item.Property.EnableRandomInput;
+					delete Item.Property.MemberNumberList;
 					Item.Property.Effect.splice(E, 1);
 					E--;
 				}

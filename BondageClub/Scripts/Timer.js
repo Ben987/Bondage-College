@@ -36,9 +36,13 @@ function TimerInventoryRemove() {
 
 						// Remove any lock or timer
 						delete Character[C].Appearance[A].Property.LockedBy;
+						delete Character[C].Appearance[A].Property.LockMemberNumber;
 						delete Character[C].Appearance[A].Property.RemoveTimer;
 						delete Character[C].Appearance[A].Property.MaxTimer;
-						delete Character[C].Appearance[A].Property.LockMemberNumber;
+						delete Character[C].Appearance[A].Property.RemoveItem;
+						delete Character[C].Appearance[A].Property.ShowTimer;
+						delete Character[C].Appearance[A].Property.EnableRandomInput;
+						delete Character[C].Appearance[A].Property.MemberNumberList;
 						if (Character[C].Appearance[A].Property.Effect != null)
 							for (var E = 0; E < Character[C].Appearance[A].Property.Effect.length; E++)
 								if (Character[C].Appearance[A].Property.Effect[E] == "Lock")
