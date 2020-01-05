@@ -527,7 +527,7 @@ Anal Hook
 Pelvis
 Таз
 Strap-On Panties
-Страпон-На Трусики
+Трусики-старпон
 Leather Chastity Belt
 Кожаный Пояс Верности
 Studded Chastity Belt
@@ -695,7 +695,7 @@ Maid Collar
 Bordelle Collar
 ошейник для борделя
 Lover Leather Collar
-Кожаный Ошейник любовницы
+Кожаный Ошейник любимой
 Collar
 Ошейник
 Bell
@@ -841,7 +841,7 @@ Wooden Maid Tray
 Wooden Maid Tray Full
 Деревянный Поднос Горничной Полный
 Wooden Paddle
-Деревянная Лопатка
+Деревянный падл
 Body
 Тело
 Wooden Box
