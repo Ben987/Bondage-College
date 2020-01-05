@@ -1,0 +1,546 @@
+﻿###_NPC
+Patient DialogPlayerName, you'll need to get that gag off if you want to be understood.
+Пациентка DialogPlayerName, тебенужно будет снять этот кляп, если ты хочешь, чтобы тебя поняли.
+Welcome patient DialogPlayerName.   The therapy room is ready for you, as usual.
+Добро пожаловать пациентка DialogPlayerName.   Терапевтический кабинет готов для тебя, как обычно.
+Hello patient DialogPlayerName.   Are you here to receive another treatment?
+Здраствуй пациентка DialogPlayerName.   Ты здесь, чтобы получить еще одну терапию?
+Hello there.   Are you here for a therapy?
+Привет.   Ты здесь для терапии?
+###_PLAYER
+Who are you?
+Кто вы такая?
+###_NPC
+I'm nurse DialogCharacterName, I provide the patient therapies today.
+Я медсестра DialogCharacterName, Я сегодня провожу терапию пациентам.
+###_PLAYER
+Tell me of the therapies.
+Расскажите мне о методах терапии.
+###_NPC
+Absolutely.  What would you like to know?
+Разумеется.  Что бы ты хотела узнать?
+###_PLAYER
+I'd like to get a therapy.
+Я бы хотела пройти курс терапии.
+###_NPC
+(She grins.)  This is great.  And what kind of treatment are you looking for?
+(Она усмехается.)  Это здорово. И какою терапию ты ищешь?
+###_PLAYER
+(Struggle in your restraints.)
+(Struggle in your restraints.)
+###_NPC
+I'm not allowed to release you.  But you can receive treatments while being restrained.
+I'm not allowed to release you.  But you can receive treatments while being restrained.
+###_PLAYER
+(Mumble in the gag.)
+(Mumble in the gag.)
+###_NPC
+Poor patient.  You need help with that gag?
+Poor patient.  You need help with that gag?
+###_PLAYER
+I must go.  (Leave her.)
+Я должна идти.  (Оставь ее.)
+What kind of therapies are available?
+Какие существуют методы терапии?
+###_NPC
+We offer four kinds of therapies: bondage, pain, tickle & orgasm.
+Мы предлагаем четыре вида терапии: бондаж, боль, щекотка и оргазм.
+###_PLAYER
+Tell me about bondage therapies.
+Расскажите мне о бондаж терапии.
+###_NPC
+Some patients get claustrophobic and panic when restrained.  This therapy helps them to relax and appreciate the restraints.
+Некоторые пациенты испытывают клаустрофобию и панику, когда их связывают.  Эта терапия помогает им расслабиться и оценить ограничения.
+###_PLAYER
+Tell me about pain therapies.
+Расскажите мне о терапии боли.
+###_NPC
+If pain haunts you or makes you cringe, we have a specific therapy to help you cope with it and grow stronger.
+Если боль мучит тебя или заставляет съеживаться, у нас есть специальная терапия, которая поможет тебе справиться с ней и стать сильнее.
+###_PLAYER
+Tell me about tickle therapies.
+Расскажите мне о терапии щекоткой.
+###_NPC
+The tickling therapy is about accepting your submissive fate and losing control of your body.  It's done blindfolded.
+Терапия щекоткой - это принятие своей покорной судьбы и потери контроля над своим телом.  Это делается с завязанными глазами.
+###_PLAYER
+Tell me about orgasm therapies.
+Расскажите мне о терапии оргазма.
+###_NPC
+Many submissive cannot control their body and orgasms.  This therapy helps them with sexual self-control.
+Многие покорные не могут контролировать свое тело и оргазмы.  Эта терапия помогает им с сексуальным самоконтролем.
+###_PLAYER
+Thanks for the info.
+Спасибо за информацию.
+###_NPC
+My pleasure.  Are you ready for your treatment?
+С удовольствием. Готова ли ты к своему лечению?
+###_PLAYER
+(Nod and whimper.)
+(Кивай и хныч.)
+###_NPC
+Here you go little patient.  (She removes your gag.)
+Вот ты где, маленькая пациентка.  (Она вынимает у тебя кляп.)
+###_PLAYER
+(Shake your head no.)
+(Отрицательно покачай головой.)
+###_NPC
+Stay gagged then, you're cute like that.  (She laughs.)
+Тогда оставайся с кляпом во рту, ты такая милая.  (Она смеется.)
+###_PLAYER
+I'll take the bondage therapy.
+Я возьму бондаж терапию.
+###_NPC
+(She smiles.)  Very good.  Since you're already naked, we can begin right now.
+(Она улыбается.)  Очень хорошо. Так как ты уже голая, мы можем начать прямо сейчас.
+###_PLAYER
+I'll take the pain therapy.
+Я возьму терапию боли.
+###_NPC
+(She smirks.)  Good girl.  Since you're already naked, we can begin right now.
+(Она ухмыляется.)  Хорошая девочка.  Поскольку ты уже голая, мы можем начать прямо сейчас.
+###_PLAYER
+I'll take the tickle therapy.
+Я возьму терапию щекоткой.
+###_NPC
+(She cracks her knuckles.)  Perfect!  Since you're already naked, we can begin right now.
+(Она хрустит костяшками пальцев.)  Отлично!  Поскольку ты уже голая, мы можем начать прямо сейчас.
+###_PLAYER
+I'll take the orgasm therapy.
+Я возьму терапию оргазма.
+###_NPC
+(She winks.)  I know you would.  Since you're already naked, we can begin right now.
+(Она подмигивает.)  Я знаю, что ты бы это сделала.  Поскольку ты уже голая, мы можем начать прямо сейчас.
+(She smiles.)  You'll need to be fully naked to start your therapy.  Do you need help to strip?
+(Она улыбается.) Ты должна быть полностью голой, чтобы начать терапию. Тебе нужна помощь что бы раздеться?
+(She smirks.)  You'll need to be fully naked to start your therapy.  Do you need help to strip?
+(Она улыбается.) Ты должна быть полностью голой, чтобы начать терапию. Тебе нужна помощь что бы раздеться?
+(She cracks her knuckles.)  You'll need to be fully naked to start your therapy.  Do you need help to strip?
+(Она хрустит костяшками пальцев.)  Ты должна быть полностью обнаженной, чтобы начать терапию. Тебе нужна помощь, чтобы раздеться?
+(She winks.)  You'll need to be fully naked to start your therapy.  Do you need help to strip?
+(She winks.)  Ты должна быть полностью обнаженной, чтобы начать терапию. Тебе нужна помощь, чтобы раздеться?
+###_PLAYER
+I've changed my mind.
+Я передумала.
+###_NPC
+Very well.  Is there anything else you need?
+Отлично. Есть ли что-нибудь еще тебе нужно?
+###_PLAYER
+Do I really need to be naked?
+Мне действительно нужно быть голой?
+###_NPC
+(She gives you a stern look.)  Do I need to force you?
+(Она строго смотрит на тебя.) Мне нужно заставить тебя?
+###_PLAYER
+Very well.  (Strip with her help.)
+Отлично. (Разденься с ее помощью.)
+###_NPC
+(She helps you to strip down naked.)  Your bondage therapy can begin.
+(Она помогает тебе раздеться догола.)  Твоя бондаж терапия может начаться.
+###_PLAYER
+Please don't be too rough.
+Пожалуйста, не будьте слишком грубой.
+###_NPC
+Don't worry little patient.  Now give me your arms so I can restrain you.
+Не волнуйся, маленькая пациентка. Теперь дай мне свои руки, так что я могла связать тебя.
+###_PLAYER
+I'm ready for anything.
+Я готова ко всему.
+###_NPC
+We'll see if you are.  Give me your arms so I can restrain you.
+Посмотрим, так ли это.  Дай мне свои руки, чтобы я могла связать тебя.
+###_PLAYER
+(Stay silent.)
+(Молчать.)
+###_NPC
+Give me your arms so I can restrain you.
+Дай мне свои руки, чтобы я могла связать тебя.
+###_PLAYER
+Are you sure it's safe?
+Вы уверены, что это безопасно?
+###_NPC
+Of course, it's safe.  Now give me your arms.
+Конечно, это безопасно.  А теперь дай мне свои руки.
+###_PLAYER
+(Let her restrain you.)
+(Пусть она тебя связывает.)
+###_NPC
+(She carefully restrains you.)  All set!  Are you comfy?
+(Она осторожно связывает тебя.)  Все готово!  Тебе удобно?
+###_PLAYER
+(Nod yes.)
+(Кивни да.)
+###_NPC
+Very good.  I will keep you restrained for ten minutes.  You need to stay calm and docile.
+Отлично.  Я свяжу тебя на десять минут.  Ты должна оставаться спокойной и послушной.
+(She loosens your restraints.)  Try to be strong girl.  I will keep you restrained for ten minutes.  You need to stay calm and docile.
+(Она ослабляет твои путы.) Постарайся быть сильной девочкой. Я свяжу тебя на десять минут. Ты должна оставаться спокойной и послушной.
+###_PLAYER
+(Nod slowly.)
+(Медленно кивни.)
+###_NPC
+Very good.  (She pets your head as two minutes goes by.)  Are you panicking?  Are you too nervous?
+Отлично.  (Она гладит тебя по голове, пока проходит две минуты.)  Ты что, паникуешь?  Ты слишком нервничаешь?
+###_PLAYER
+(Freak out and panic.)
+(Психануть и запаниковать.)
+###_NPC
+(She quickly releases you.)  I'm sorry, this therapy might be too rough for you.
+(Она быстро освобождает тебя.)  Извини, эта терапия может быть слишком грубой для тебя.
+Dominants will love your calm and docile attitude toward restraints.  (Two minutes goes by.)  Are you still fine?
+Доминам понравится твое спокойное и послушное отношение к ограничениям.  (Проходит две минуты.)  Ты все еще в порядке?
+A good pet must learn to love being restrained.  (Two minutes goes by.)  Are you at ease in your submissive space?
+Хороший питомец должен научиться любить быть связанным.  (Проходит две минуты.) Тебе комфортно в твоем покорном пространстве?
+(She slowly pets you and checks your bondage as two minutes goes by.)  Are you nervous?  Do you want out?
+(Она медленно гладит тебя и проверяет твой бондаж, пока проходит две минуты.)  Ты нервничаешь?  Ты хочешь освободится?
+Good.  We are almost done.  (Two minutes goes by.)  Do you want to be released now?
+Хорошо.  Мы почти закончили.  (Проходит две минуты.)  Ты хочешь, чтобы тебя освободили прямо сейчас?
+(Two minutes goes by and she slowly releases you.)  This bondage therapy was a success.  How do you feel?
+(Проходит две минуты, и она медленно развязывает тебя.)  Эта бондаж терапия была успешной.  Как ты себя чувствуешь?
+(She gives you a stern look.)  Pain doesn't work great on clothes.
+(Она сурово смотрит на тебя.)  Боль не очень хорошо действует через одежду.
+###_PLAYER
+I'm ready for pain!
+Я готова к боли!
+###_NPC
+We'll see about that.  Get on your knees and put your hands behind your back.
+Ну, это мы еще посмотрим.  Встань на колени и заведи руки за спину.
+###_PLAYER
+Please don't be too harsh.
+Пожалуйста, не будьте слишком жестокой.
+###_NPC
+Don't worry little patient.  Get on your knees and put your hands behind your back.
+Не волнуйся, маленькая пациентка.   Встань на колени и заведи руки за спину.
+Get on your knees and put your hands behind your back.
+Встань на колени и заведи руки за спину.
+###_PLAYER
+(Kneel and put your hands behind your back.)
+(Встань на колени и заведи руки за спину.)
+###_NPC
+(You kneel as she searches in her desk and gets a pain device.)
+(Ты становишься на колени, а она роется в своем столе и достает болевое устройство.)
+###_PLAYER
+Wait!  This is going too far.
+Стойте!  Это заходит слишком далеко.
+###_NPC
+(She puts away her weapon and helps you up.)  I'm sorry, this therapy might be too rough for you.
+(Она убирает орудие и помогает тебе подняться.)  Извини, эта терапия может быть слишком грубой для тебя.
+###_PLAYER
+(Take a deep breath.)
+(Сделай глубокий вдох.)
+###_NPC
+(She swings a few painful hits on your legs.)  Are you alright?  Is it too painful?
+(Она наносит несколько болезненных ударов по ногам.)  Ты в порядке?  Это слишком больно?
+###_PLAYER
+I'm fine, thanks.
+Я в порядке, спасибо.
+###_NPC
+(She hits your feet several times.)  Green if it's fine.  Red if I should stop.
+(Она бьет тебя по ногам несколько раз.)  Зеленый, если это нормально.  Красный, что бы я остановлась.
+###_PLAYER
+(Stay silent and nod.)
+(Молчи и кивай.)
+Stop!
+Стой!
+Red.
+Красный.
+Green.
+Зеленый.
+###_NPC
+You can whimper and moan, but you cannot move.  (She swings and hits your butt swiftly many times.)
+Ты можешь хныкать и стонать, но не можешь двигаться.  (Она замахивается и быстро бьет тебя по заднице много раз.)
+###_PLAYER
+Blue.
+Голубой.
+###_NPC
+(She puts away her weapon and helps you up.)  If you cannot be serious, this therapy isn't for you.
+(Она убирает орудие и помогает тебе подняться.)  Если ты не можешь быть серьезной, эта терапия не для тебя.
+###_PLAYER
+(Whimper a little.)
+(Немного похныкай.)
+###_NPC
+Be strong little patient.  (She gives you some time to recover.)
+Будь сильной и терпеливой.  (Она дает тебе время прийти в себя.)
+###_PLAYER
+(Try to avoid her.)
+(Старайсяь уклониться от ее.)
+(Block her.)
+(Заблокируй ее.)
+(Stand still.)
+(Стоять смирно.)
+###_NPC
+(She hits your breast again and again.)  Your breast can get very sensitive.  Do you feel the blood rush?
+(Она бьет тебя по груди снова и снова.)  Твоя грудь может стать очень чувствительной.  Ты чувствуешь прилив крови?
+###_PLAYER
+Yes.  I can take it.
+Да.  Я справляюсь с этим.
+###_NPC
+(She doubles down on your breast in a sadistic manner.)  You need to endure pain like a good submissive.
+(Она посадистски удваивает свои усилия на твоей груди.)  Ты должна терпеть боль, как хороший сабмиссив.
+(She doubles down on your breast.)  You need to endure pain like a good submissive.
+(Она удваивает свои усилия на твоей груди.)  Ты должна терпеть боль, как хороший сабмиссив.
+###_PLAYER
+Fuck!  It hurts!
+Блядь!  Это больно!
+(Start crying.)
+(Начинай плакать.)
+(Take deep breathes.)
+(Сделай глубокий вдох.)
+###_NPC
+(She hits you one last time and helps you to stand you.)  Well done, this therapy was a success.  How do you feel?
+(Она бьет тебя в последний раз и помогает встать.)  Хорошо сделано, эта терапия была успешной.  Как ты себя чувствуешь?
+(She hits you one last time and helps you to stand you.)  Well done, this therapy was a success.  How are you?
+(Она бьет тебя в последний раз и помогает встать.)   Хорошо сделано, эта терапия была успешной.  Как твои дела?
+(She gives you a stern look.)  This is a tickle therapy.  You'll need to show some skin.
+(Она сурово смотрит на тебя.)  Это терапия щекоткой. Тебе нужно будет показать немного кожи.
+(She helps you to strip down naked.)  Your tickle therapy can begin.
+(Она помогает тебе раздеться догола.)  Твоя терапия щекоткой может начаться.
+Put your hands behind your back.  They must stay there for the whole therapy.
+Убери руки за спину.  Они должны оставаться там на протяжении всей терапии.
+###_PLAYER
+Be careful, I'm ticklish.
+Будьте осторожней, я боюсь щекотки.
+###_NPC
+That's great!  Put your hands behind your back.  They must stay there for the whole therapy.
+Это здорово!  Убери руки за спину.  Они должны оставаться там на протяжении всей терапии.
+###_PLAYER
+No stress, I'm not ticklish.
+Никакого стресса, я не боюсь щекотки.
+###_NPC
+We'll see about that.  Put your hands behind your back.  They must stay there for the whole therapy.
+Ну, это мы еще посмотрим.  Убери руки за спину.  Они должны оставаться там на протяжении всей терапии.
+###_PLAYER
+This tickle therapy is pretty serious.
+Эта терапия щекоткой довольно серьезна.
+###_NPC
+(She giggles.)  Yep, nothing more serious.  Put your hands behind your back and don't move them.
+(Она хихикает.)  Да, ничего более серьезного.  Заведи руки за спину и не двигай ими.
+###_PLAYER
+(Put your hands behind your back.)
+(Убери руки за спину.)
+###_NPC
+(You put your hands behind your back as she gets a blindfold.)  For this therapy, you will be blind.
+(Ты прячешь руки за спину, а она готовится завязать тебе глаза.)  Для этой терапии ты будешь слепа.
+###_PLAYER
+Very well.  (Let her blindfold you.)
+Очень хорошо.  (Пусть она завяжет тебе глаза.)
+###_NPC
+(She blindfolds you and caresses your ribs.)  You must remain still and keep your hands there.
+(Она завязывает тебе глаза и ласкает твои ребра.)  Ты должна оставаться неподвижной и держать свои руки там.
+(She sighs and puts away the blindfold.)  I'm sorry, this therapy will not work for you.
+(Она вздыхает и убирает повязку.)  Прости, но эта терапия тебе не поможет.
+###_PLAYER
+I think I will love this therapy.
+Я думаю, что мне понравится эта терапия.
+###_NPC
+I sure hope you will.  We'll see if you're ticklish.  (She caresses your tummy.)
+Я очень на это надеюсь.  Посмотрим, не боишься ли ты щекотки.  (Она ласкает твой животик.)
+###_PLAYER
+This might not be for me.
+Это может быть не для меня.
+###_NPC
+(She sighs and removes your blindfold.)  I'm sorry, this therapy will not work for you.
+(Она вздыхает и снимает с твоих глаз повязку.)  Прости, но эта терапия тебе не поможет.
+###_PLAYER
+(Let her tickle you.)
+(Позволь ей пощекотать тебя.)
+###_NPC
+(She playfully tickles your ribs.)  Being blindfolded heightens your senses doesn't it?
+(Она игриво щекочет твои ребра.)  Завязанные глаза усиливают твои чувства, не так ли?
+###_PLAYER
+Hehehe, yes, I love it.
+Хе-хе-хе, да, мне это нравится.
+###_NPC
+(She catches you by surprise and alternates between your legs and torso.)
+(Она застает тебе врасплох и чередует твои ноги и туловище.)
+###_PLAYER
+I don't feel any difference.
+Я не чувствую никакой разницы.
+Can we stop now?
+Мы можем сейчас остановиться?
+This is stupid.
+Это глупо.
+Eeeeeeaaaahhahaha!
+Ээээээаааахахаха!
+###_NPC
+(She laughs with you and tickles your tummy and breast.)
+(Она смеется вместе с тобой и щекочет твой животик и грудь.)
+###_PLAYER
+Unfair!
+Нечесно!
+###_NPC
+Life isn't fair.  (She tickles your tummy and breast.)
+Жизнь несправедлива.  (Она щекочет твой животик и грудь.)
+###_PLAYER
+(Laugh out loud.)
+(Смеяться вслух.)
+###_NPC
+(She doubles down and starts to tickle your armpits.)
+(Она сгибается пополам и начинает щекотать твои подмышки.)
+###_PLAYER
+That's enough!
+Этого достаточно!
+(Remain still.)
+(Оставайтесь на месте.)
+###_NPC
+I have a surprise from the sorority.  (She uses what seems to be a feather duster to tickle you mercilessly.)
+У меня есть сюрприз от женского сообщества.  (Она использует то, что кажется метелкой из перьев, чтобы безжалостно щекотать тебя.)
+###_PLAYER
+(Cry of laughter.)
+(Смейся во весь голос.)
+(Try to block her.)
+(Попробуй заблокировать ее.)
+Yyyyyeeeaahhahaha!
+Уууууееееехахаха!
+###_NPC
+(She tickles you one last time and removes your blindfold.)  You did it!  The therapy was a success.
+(Она щекочет тебя в последний раз и снимает повязку с твоих глаз.)  Ты сделала это!  Терапия прошла успешно.
+###_PLAYER
+(Bite your lips not to laugh.)
+(Кусай губы, чтобы не рассмеяться.)
+(Push the duster away.)
+(Отодвинуся от метелки подальше.)
+###_NPC
+(She gives you a stern look.)  Do I need to explain why an orgasm therapy must be done naked?
+(Она сурово смотрит на тебя.)  Нужно ли мне объяснять, почему терапия оргазма должна проводиться в голом виде?
+(She helps you to strip down.)  Your orgasm therapy can begin.
+(Она помогает тебе раздеться.)  Твоя терапия оргазма может начаться.
+###_PLAYER
+(Blush.)  What about the belt?
+(Румянец.)  А как насчет пояса?
+###_NPC
+(She laughs.)  Yes, you have a problem girl, and I cannot help you.  We can do another therapy if you want.
+(Она смеется.)  Да, у тебя проблемы, девочка, и я не могу тебе помочь.  Мы можем провести еще одну терапию, если хочешь.
+###_PLAYER
+I'm ready!
+Я готова!
+###_NPC
+Wonderful!  I will tease you with this vibrating wand.  You cannot orgasm until I say so, and you must orgasm when I command it.
+Замечательно!  Я буду дразнить тебя этой вибрирующей палочкой.  Ты не можешь достичь оргазма, пока я не скажу, и ты должна достичь оргазма, когда я прикажу.
+###_PLAYER
+That's quite a challenge.
+Это довольно сложная задача.
+###_NPC
+It can be a challenge.  It will teach you about controlling your body and sexual urges.
+Это может быть проблемой.  Это научит тебя контролировать свое тело и сексуальные потребности.
+###_PLAYER
+I'll follow your lead.
+Я последую вашему руководству.
+###_NPC
+Since your breast is chaste, we cannot work on the nipples, but we can have fun down there.  (She turns on the vibrating wand.)
+Так как твоя грудь целомудренна, мы не можем работать над сосками, но мы можем повеселиться там. (Она включает вибрирующую палочку.)
+(She puts an object on your nipples.)  Breast first, then we can work down there.  (She turns on the vibrating wand.)
+(Она кладет какой-то предмет на твои соски.)  Сначала грудь, а потом мы сможем работать там.  (Она включает вибрирующую палочку.)
+(She sighs and stops everything.)  I'm sorry, this therapy will not work for you.
+(Она вздыхает и останавливает все.)  Прости, но эта терапия тебе не поможет.
+###_PLAYER
+Wait!  I've changed my mind.
+Стойте!  Я передумала.
+###_NPC
+(She starts to massage your pussy with the vibrating wand.)
+(Она начинает массировать твою киску вибрирующей палочкой.)
+###_PLAYER
+I'm your slut Miss.
+Я ваша шлюха Мисс.
+###_NPC
+Remember, you cannot cum until I say so.  (She applies a little more pressure on the device.)
+Помни, ты не можешь кончить, пока я не скажу.  (Она прикладывает немного больше давления на устройство.)
+###_PLAYER
+(Take a step back.)
+(Сделай шаг назад.)
+(Have a surprise orgasm.)
+(Получи неожиданный оргазм.)
+###_NPC
+(She giggles and stops everything.)  Your orgasm was too quick, you've failed the therapy.
+(Она хихикает и все прекращает.)  Твой оргазм был слишком быстрым, ты провалила терапию.
+###_PLAYER
+Oooooh!
+Ооооох!
+###_NPC
+(She speeds up the vibrator and grabs your butt, maintaining the pressure.)  Not yet.
+(Она ускоряет вибратор и хватает тебя за задницу, поддерживая давление.)  Ещё нет.
+###_PLAYER
+I'm strong.  Don't worry.
+Я сильная.  Не беспокойтесь.
+(Take long and deep breathes.)
+(Делай длинные и глубокие вдохи.)
+###_NPC
+(She massages your pussy skillfully with the vibrating wand, giving lots of stimulation.)  Not yet.
+(Она умело массирует твою киску вибрирующей палочкой, давая много стимуляции.)  Ещё нет.
+###_PLAYER
+(Lose control and orgasm.)
+(Потеряй контроль и оргазмируй.)
+Aaaaaah!  Aah!
+Аааааах!  Ааах!
+(Stay strong and resist.)
+(Оставайся сильной и сопротивляйся.)
+###_NPC
+(She speeds up the vibrating wand again, making you tremble and shiver from sexual pleasure.)  Not yet.
+(Она снова ускоряет вибрирующую палочку, заставляя тебя дрожать и трепетать от сексуального удовольствия.)  Еще нет.
+(She forces the full speed vibrating wand against your pussy lips and stares at you.)  Now girl!  Cum now!
+(Она прижимает к твоей киске вибрирующую палочку, работающию на полную скорость и смотрит на тебя.) Теперь девочка!  Кончай немедленно!
+(You get a great orgasm as she smiles at you.)  You did it patient DialogPlayerName.  The therapy was a success.
+(Ты получаешь отличный оргазм, когда она улыбается тебе.)  Ты сделала это пациенка DialogPlayerName.  Терапия прошла успешно.
+(She frowns and stops everything.)  Sorry girl, you failed to orgasm on command.
+(Она хмурится и все прекращает.)  Прости, девочка, ты не смогла достичь оргазма по команде.
+###_PLAYER
+It will be better next time.
+В следующий раз будет лучше.
+###_NPC
+Maybe it will.  We can try again if you want, or you can take a break.
+Все может быть.  Мы можем попробовать еще раз, если ты хочешь, или ты можешь сделать перерыв.
+###_PLAYER
+The therapy failed?
+Терапия не удалась?
+###_NPC
+Yes, it failed.  We can try again if you want, or you can take a break.
+Да, она удалось. Мы можем попробовать еще раз, если ты хочешь, или ты можешь сделать перерыв.
+###_PLAYER
+You're a bad therapist.
+Вы плохой психотерапевт.
+###_NPC
+You failed it, not me.  We can try again if you want, or you can take a break.
+Ты провалил ее, а не я.  Мы можем попробовать еще раз, если ты хочешь, или ты можешь сделать перерыв.
+###_PLAYER
+(Cry a little.)
+(Поплачь немного.)
+###_NPC
+Don't cry little patient.  We can try again if you want, or you can take a break.
+Не плачь, маленькая пациентка.  Мы можем попробовать еще раз, если ты хочешь, или ты можешь сделать перерыв.
+###_PLAYER
+I'll try another therapy.
+Я попробую другую терапию.
+###_NPC
+That's the spirit!  What kind of treatment will you try now?
+Вот это рвение!  Какую терапию ты будешь пробовать сейчас?
+###_PLAYER
+I'll take a break.  (Leave her.)
+Я сделаю перерыв.  (Оставь ее.)
+I think I've learned from it.
+Я думаю, что извлекла из этого урок.
+###_NPC
+(She smiles.)  That's great!  Let me know if want to take another therapy.
+(Она улыбается.)  Это здорово!  Дай мне знать, если захочешь пройти еще одну терапию.
+###_PLAYER
+I will be a better submissive.
+Я буду лучше подчиняться.
+###_NPC
+(She nods slowly.)  Absolutely.  Let me know if want to take another therapy.
+(Она медленно кивает.) Разумется.  Дай мне знать, если захочешь пройти еще одну терапию.
+###_PLAYER
+I'm ready to conquer the world!
+Я готова покорить весь мир!
+###_NPC
+(She gives you an amused look.)  Very good.  Let me know if want to take another therapy.
+(Она бросает на тебя удивленный взгляд.)  Отлично.  Дай мне знать, если захочешь пройти еще одну терапию.
+###_PLAYER
+(Nod happily.)
+(Счастливо киваю.)
+###_NPC
+You're a good patient.  Let me know if want to take another therapy.
+Ты хорошая пациентка.  Дай мне знать, если захочешь пройти еще одну терапию.
+###_PLAYER
+Yes, I'll try another therapy.
+Да, я попробую другую терапию.
+Thanks, I will.  (Leave her.)
+Спасибо, я так и сделаю.  (Оставь ее.)
