@@ -63,7 +63,7 @@ On trial for
 Collared for
 Ошейник для
 day(s)
-день(дни)
+дн.
 Unknown
 Неизвестная
 - Reputation -
@@ -77,13 +77,13 @@ Maid Sorority:
 Kidnappers League:
 Лига Похитителей :
 Asylum Nurse:
-Медсестра Приюта:
+Медсестра Психушки:
 Asylum Patient:
 Пациентка Психушки:
 Gambling Hall:
-игорный зал:
+Игорный зал:
 ABDL:
-ABDL:
+Погузники:
 - Skills -
 - Навыки -
 Bondage:
@@ -95,7 +95,7 @@ Willpower:
 Dressage:
 Выездка:
 Global modifier:
-Глобальный модификатор:
+Модификатор:
 - Traits -
 - Черты -
 Spend more time with her to know her traits
