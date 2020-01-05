@@ -1,0 +1,85 @@
+﻿###_NPC
+Heehee   you sound funny.
+Хеехехе. Звучит смешно.
+(She accepts the gag, giggles and tests its effect.)  Teehee.  This makes my voice sound funny
+(Она принимает кляп, хихикает и проверяет его действие.)  Тих-Хи.  Это заставляет мой голос звучать смешно
+(You remove her gag while she stretches her mouth.)  It seems kind of funny for a baby to be able to talk.
+(Ты вынимаешь у нее кляп, пока она растягивает рот.)  Это кажется довольно забавным для ребенка - уметь говорить.
+(She wriggles nervously while you restrain her arms.)  It looks like my arms won't get to play for a while.
+(Она нервно извивается, пока ты связываешь ее руки.)  Похоже, мои руки какое-то время не смогут играть.
+(You free her arms and she nods happily.)  Thank you.  We could play all sorts of games now.
+(Ты освобождаешь ее руки, и она радостно кивает.)  Спасибо.  Теперь мы могли бы поиграть в разные игры.
+(She submits to you while you restrain her legs securely.)  I don't need to move anyway.
+(Она подчиняется тебе, пока ты надежно связываешь ее ноги.)  Мне все равно не нужно двигаться.
+(You release her legs from the restraint.)  Let me know if I can help you Miss.
+(Ты освобождаешь ее ноги от пут.)  Дайте мне знать, если я смогу вам помочь, Мисс.
+(She looks puzzled as you restrain her feet.)  I'll stay on guard here Miss.
+(Она выглядит озадаченной, пока ты связываешь ее ступни.)  Я останусь здесь на страже, Мисс.
+(You release her feet and she wiggles them.)  Thanks Miss, it was troublesome.
+(Ты освобождаеть ее ступни, и она ими шевелит.)  Спасибо, Мисс, это было хлопотно.
+(You strap the collar on her while she blushes.)  You're quite a Dominant Miss.
+(Ты застегиваешь ей ошейник, пока она краснеет.)  Вы довольно доминантная, Мисс.
+(You remove the collar around her neck.)  Thanks Miss.
+(Ты снимаешь ошейник с ее шеи.) Спасибо, Мисс.
+(You snap the belt around her waist and crotch while she sighs.)  No more fun for the crew.
+(Ты застегиваешь пояс вокруг ее талии и промежности, пока она вздыхает.)  Больше никаких развлечений.
+(You unlock the belt from her waist and she smiles.)  Thanks a lot Miss DialogPlayerName.
+(Ты отстегиваешь пояс с ее талии, и она улыбается.)  Большое спасибо Мисс DialogPlayerName.
+(You strap the device on her head as she nods slowly.)  This will not make my job easier Miss.
+(Ты пристегиваешь устройство к ее голове, и она медленно кивает.)  Это не сделает мою работу легче Мисс.
+(You remove the device and she nods rapidly.)  Thanks a million, this is much better.
+(Ты убираешь устройство, и она быстро кивает.)  Огромное спасибо, так гораздо лучше.
+(She jumps from the searing pain on her breast.)  Ouch!  Miss Head Maid!
+(Она подпрыгивает от жгучей боли в груди.)  Ай!  Мисс Старшая Горничная!
+(You whip her breast with the leather crop as she whimpers and bows her head.)
+(Ты хлещешь ее по груди кожаным стеком, пока она всхлипывает и склоняет голову.)
+(You whip her butt hard as she sighs.)  I promise I'll work harder Miss Head Maid.
+(Ты сильно хлещешь ее по заднице, пока она вздыхает.)  Я обещаю, что буду работать усерднее, Мисс старшая горничная.
+(She grumbles as you strike her butt with the crop.)  A maid work isn't easy.
+(Она ворчит, когда ты бьешь ее по заднице хлыстом.)  Работа горничной - это нелегко.
+Welcome to the Nursery.  How can I help you?
+Добро пожаловать в детскую.  Чем я могу тебе помочь?
+###_PLAYER
+My name's DialogPlayerName.  Whats yours?
+Меня зовут DialogPlayerName.  А как твое?
+###_NPC
+I'm DialogCharacterName. Would you like to play?
+Я DialogCharacterName. Не хочешь ли поиграть?
+###_PLAYER
+What is there to do here?
+А что здесь можно делать?
+###_NPC
+There isn't a lot to do at the moment, but the nurse will come along later with bottles of milk.
+Сейчас тут не так уж много дел, но позже придет медсестра с бутылками молока.
+###_PLAYER
+Your dress looks pretty.
+Твое платье выглядит очень красивым.
+###_NPC
+(She blushes and fiddles with the hem of her dress.)  If you want to try a different dress, you could try asking the nurse.
+(Она краснеет и теребит подол своего платья.)  Если ты хочешь попробовать другое платье, ты можешь попробовать спросить медсестру.
+###_PLAYER
+(Show her your restraints.)
+(Покажи ей свои ограничения.)
+###_NPC
+(She giggles and shakes her head.)
+(Она хихикает и качает головой.)
+###_PLAYER
+I can't stay to chat.  (Leave her.)
+Я не могу остаться, чтобы поболтать.  (Оставь ее.)
+Milk, is that all?
+Молоко, и это все?
+###_NPC
+I'm not sure its just milk either.  We tend to need these diapers shortly afterwards.
+Я тоже не уверена, что это просто молоко.  Как правило, вскоре после этого нам нужны эти подгузники.
+###_PLAYER
+Can we play any games now?
+А теперь мы можем поиграть в какие-нибудь игры?
+###_NPC
+I'm not sure what games we could play.  The nurse will organise some fun and games for us later.
+Я не знаю, в какие игры мы могли бы поиграть.  Позже медсестра организует для нас развлечения и игры.
+###_PLAYER
+Is that all?
+И это все?
+###_NPC
+For the time being.  The nursery is still under development.
+На данный момент.  Детская все еще находится в стадии разработки.
