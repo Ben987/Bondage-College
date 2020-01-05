@@ -1,0 +1,177 @@
+﻿###_NPC
+Silence is the highest form of truth!
+Молчание - это высшая форма истины!
+(She gives a curious look at the gag but doesn't resist as you silence her.)
+(Она слюбопытством смотрит на кляп, но не сопротивляется, когда ты заставляешь ее замолчать.)
+(You remove her gag slowly.)  I am the supervisor here.
+(Ты медленно удаляешь ее кляп.)  Я здесь главная.
+(She nods and turns around as you restrain her arms securely.)  It will be a kinky work day.
+(Она кивает и поворачивается, когда ты крепко связываешь ее руки.)  Это будет извращенный рабочий день.
+(You free her arms and she stretches.)  Thanks head maid DialogPlayerName, this will make my work easier.
+(Ты освобождаешь ее руки и она подтягивается.)  Спасибо, старшая горничная DialogPlayerName, это облегчит мою работу.
+(She submits as you restrain her legs.)  How am I supposed to work now?
+(Она подчиняется пока ты связываешь ее ноги.) Как я должна работать теперь?
+(You release her legs while she shakes her butt.)  Thanks Miss.
+(Ты освобождаете ее ноги, пока она виляет задницей.)  Спасибо, Мисс.
+(You restrain her feet securely.)  I can not get on like this.
+(Ты надежно связываешь ее ступни.)  Я не могу так жить дальше.
+(You release her feet.)  Much better.
+(Ты освобождаешь ее ступни.)  Так гораздо лучше.
+(You strap the collar on her while she blushes.)  Someday I'll find a wonderful Mistress like you Miss.
+(Ты пристегиваешь ей ошейник, когда она краснеет.)  Когда-нибудь я найду такую замечательную Госпожу, как вы, Мисс.
+(You remove the collar around her neck.)  Freedom is overrated.
+(Ты снимаешь ошейник с ее шеи.)  Свобода переоценивается.
+(She frowns as you lock the device on her.)  I hope you will unlock it after my shift Miss.
+(Она хмурится, когда ты закрываешь устройство на ней.)  Я надеюсь, что вы откроете его после моей смены, Мисс.
+(She nods happily as you unlock the device.)  Yes!  That's very nice of you Miss.
+(Она радостно кивает, когда ты открываешь устройство.)  Да!  Это очень мило с вашей стороны, Мисс.
+(You strap the device on her head as she mumbles.)  It will be a kinky work day it seems.
+(Ты пристегиваешь устройство к ее голове, пока она бормочет.)  Кажется, это будет извращеный рабочий день.
+(You remove the device and she nods slowly.)  You're the best head maid DialogPlayerName.
+(Ты убираешь устройство, и она медленно кивает.)  Вы лучшая старшая горничная DialogPlayerName.
+(She jumps from the searing pain on her breast.)  Ouch!  Miss Head Maid!
+(Она подпрыгивает от жгучей боли в груди.)  Ай!  Мисс Старшая Горничная!
+(You whip her breast with the leather crop as she whimpers and bows her head.)
+(Ты хлещешь ее по груди кожаным стеком, пока она всхлипывает и склоняет голову.)
+(You whip her butt hard as she sighs.)  I promise I'll work harder Miss Head Maid.
+(Ты сильно хлещешь ее по заднице, пока она охает.)  Я обещаю, что буду работать усерднее, Мисс Старшая Горничная.
+(She grumbles as you strike her butt with the crop.)  A maids work isn't easy.
+(Она ворчит, когда ты бьешь ее по заднице стеком.)  А работать горничной нелегко.
+(You restrain her legs with the long hemp rope and suspend her by the feet from the ceiling.)  Well done.
+(Ты связываешь ей ноги длинной пеньковой веревкой и подвешиваешь ее за ноги к потолку.)  Отлично сработано.
+(You untie the hemp rope from the ceiling and slowly let her down.)  Always be careful when you suspend someone.
+(Ты отвязываешь пеньковую веревку от потолка и медленно спускаешь ее вниз.)  Всегда будьте осторожны, когда вы подвешиваете кого-то.
+(A maid stands around and greets you.) This room is under construction. Please leave.
+(Горничная стоит тут и приветствует тебя.) Эта комната находится в стадии строительства. Пожалуйста, уходите.
+###_PLAYER
+What's going on here?
+Что здесь происходит?
+###_NPC
+I'm looking for someone in handcuffs to help me test something.
+Я ищу кого-то в наручниках, чтобы помочь мне кое-что проверить.
+###_PLAYER
+What kind of test is it?
+Это какое-то испытание?
+###_NPC
+(She shoves you into a cell and closes the door.)
+(Она запихивает тебя в камеру и закрывает дверь.)
+###_PLAYER
+Okay. Bye! (Leave her.)
+Окей. Пока! (Оставь ее.)
+###_NPC
+Pleased to meet you. I'm DialogCharacterName, I work here as a maid.
+Приятно познакомиться. Я DialogCharacterName, Я работаю здесь горничной.
+###_PLAYER
+(Look surprised.)
+(Выглядишь удивлённой.)
+###_NPC
+It's good that you're under lock and key!
+Хорошо, что ты под замком!
+###_PLAYER
+Please, can you let me out?
+Пожалуйста, вы можете меня выпустить?
+(Stay silent and wait.)
+(Молчи и жди.)
+(Shake the bars.)
+(Тряси решетку.)
+(Try to free yourself.)
+(Попытайся освободиться.)
+(Whimper and make pleading eyes.)
+(Хныкать и делать умоляющие глаза.)
+(Leave her.)
+(Оставь ее.)
+(Watch her leave.)
+(Смотри, как она уходит.)
+Thanks, that was a nice experience.
+Спасибо, это был хороший опыт.
+###_NPC
+You're welcome.
+Пожалуйста.
+###_PLAYER
+Finally I am out of that hole.
+Наконец-то я выбралася из этой дыры.
+###_NPC
+All ends well
+Все заканчивается хорошо
+###_PLAYER
+Hey! That really hurts!
+Эй! Это очень больно!
+###_NPC
+You don't deserve any better!
+Ты не заслуживаешь лучшего!
+###_PLAYER
+Miss!  Is that proper?
+Мисс!  Это нормально?
+###_NPC
+You have to learn modesty.
+Ты должна научиться смирению.
+###_PLAYER
+Thanks! You're really good to me.
+Спасибо! Вы очень хорошо ко мне относитесь.
+###_NPC
+I'll gladly do it again.
+Я с удовольствием сделаю это снова.
+###_PLAYER
+(Whimper from the pain.)
+(Хныкать от боли.)
+###_NPC
+That's right my prisoner.
+Именно так, моя пленница.
+###_PLAYER
+(Thrash in your bondage.)
+(Метаться в своем бондаже.)
+###_NPC
+You'll never escape!
+Ты никогда не сбежишь!
+###_PLAYER
+(Stay silent and cold.)
+(Сохраняй тишину и равнодушие.)
+###_NPC
+(She turns away.)
+(Она отворачивается.)
+I don't want to hear it. (She gags you.)
+Я не хочу этого слышать. (Она затыкает тебе рот.)
+Just be quiet! (She gags you.)
+Просто помолчи! (Она затыкает тебе рот.)
+Prisoners like you shouldn't speak. (She gags you.)
+Заключенные вроде тебя не должны говорить. (Она затыкает тебе рот.)
+I won't let you out. You're a bad girl!
+Я тебя не выпущу. Ты плохая девочка!
+Alright, you can come out. Here are your clothes.
+Ладно, можешь выходить. Вот твоя одежда.
+I won't let you out, but you can have your clothes back. 
+Я не выпущу тебя, но ты можешь забрать свою одежду. 
+Shut up! You're staying that way.
+Заткнись! Ты так и останешься.
+Prisoners must wear handcuffs and should not have keys. I'll strip search you, and then I'll leave.
+Заключенные должны носить наручники и не иметь ключей. Я тебя обыщу, а потом уйду.
+I'll give you some time to think about how bad you've been. I'll come back later.
+Я дам тебе время подумать о том, как плохо ты себя вела. Я вернусь позже.
+Poor girl, there are too many restraints. I'll take some off of you.
+Бедная девочка, здесь слишком много ограничений. Я сниму с тебя несколько.
+Prisoners must wear handcuffs.
+Заключенные должны носить наручники.
+You're all good, but I'm going to take your keys and leave. 
+У тебя все хорошо, но я заберу твои ключи и уйду. 
+Chill out. I'm going to get a coffee in the maid quarters.
+Расслабься. Я собираюсь выпить кофе в комнате для прислуги.
+(She whips you.) You need to be punished!
+(Она тебя хлещет.) Ты должна быть наказана!
+(She spanks your butt.) This should teach you some discipline, prisoner!
+(Она шлепает тебя по заднице.) Это должно научить тебя дисциплине, заключенная!
+(She spanks your breasts.) Stand upright.
+(Она шлепает тебя по груди.) Стой смирно.
+(She fondles your butt.) What a soft body.
+(Она ласкает твою задницу.) Какое мягкое тело.
+(She fondles your breast.) What a soft body.
+(Она ласкает твою грудь.) Какое мягкое тело.
+(She tickles your feet.) Tickle, tickle, tickle.
+(Она щекочет твои ступни.) Щекотка, щекотка, щекотка.
+(She slaps your face.) Give it a rest!
+(Она дает тебе пощечину.) Оставь это в покое!
+(She massages your neck.) A collar would look nice on you.
+(Она массирует твою шею.) Ошейник будет хорошо смотреться на тебе.
+(She uses her crop.) This hurts me more than it hurts you!
+(Она использует свой стек.) Это ранит меня больше, чем тебя!
+You changed your clothes despite your mistress's ban. Therefore, you've been sent into a cell by other members.
+Ты переоделась, несмотря на запрет Госпожи. Поэтому тебя отправили в камеру другие члены.

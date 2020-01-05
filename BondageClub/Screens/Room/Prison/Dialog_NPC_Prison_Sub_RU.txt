@@ -1,0 +1,139 @@
+﻿###_NPC
+Rest is the first civil duty.
+Отдых - это первая гражданская обязанность.
+(She opens her mouth wide.)  I guess there's no way around it.
+(Она широко раскрывает рот.)  Я думаю, что нет никакого способа обойти это.
+(You remove her gag and she sighs.)  Finally.
+(Ты вынимаешь у нее кляп и она вздыхает.)  Наконец.
+(You put some earplugs into place.) Oh, everything is so quiet now.
+(Ты вставляешь затычки для ушей.) О, теперь все так тихо.
+(You pull the earplugs out.) Oh, I can hear you clearly again.
+(Ты вытаскиваешь затычки для ушей.) О, я снова вас ясно слышу.
+(She tugs at the shackles.) Is that necessary? 
+(Она дергает кандалы.) Разве это необходимо? 
+(You free her arms and she stretches a little.)  What will you use on me next?
+(Ты освобождаешь ее руки, и она немного потягивается.)  Что вы собираетесь использовать на мне в следующий раз?
+(She grumbles towards you.)  This isn't necessary.
+(Она ворчит на тебя.)  В этом нет необходимости.
+(You release her hands.)  What are you going to try next?
+(Ты освобождаешь ее руки.)  Что вы собираетесь делать дальше?
+(You restrain her legs securely.)  As if I could run away.
+(Ты надежно связываешь ее ноги.)  Как будто я могла убежать.
+(You release her legs.)  You can tie me up any time you want Miss.
+(Ты освобождаешь ее ноги.)  Вы можете связать меня в любое время, Мисс.
+(She wiggles her feet playfully as you restrain them.)  More bondage Miss?
+(Она игриво шевелит ступнями, пока ты их связываешь.)  Еще бондажа, Мисс?
+(You release her feet and she jumps playfully.)  This is great.
+(Ты освобождаешь ее ступни, и она игриво подпрыгивает.)  Это просто замечательно.
+(You strap the collar on her neck while she frowns.)  I am a free club member.
+(Ты надеваешь ей на шею ошейник, а она хмурится.)  Я свободный член клуба.
+(You remove the collar around her neck.)  Much better!
+(Ты снимаешь ошейник с ее шеи.)  Так гораздо лучше!
+(She tries to fight back while the device is put on.)
+(Она пытается сопротивляться, пока устройство надето.)
+(She seems relieved as you unlock the device.)
+(Она, кажется, испытывает облегчение, когда ты открываешь устройство.)
+(You strap the device on her head.)  A dark cell in the prison cell.
+(Ты пристегиваешь устройство к ее голове.)  Темная камера в тюремной камере.
+(You remove the device and she looks at you.)  Fiat lux.
+(Ты снимаешь устройство, и она смотрит на тебя.)  Супер.
+(You prepare a full body harness on her torso as she blushes.)  Something was missing.
+(Ты надеваешь сбрую на ее торс, пока она краснеет.)  Чего-то не хватало.
+(You remove the body harness from her torso.)  A first step to freedom.
+(Ты снимаешь с ее торса сбрую.)  Первый шаг к свободе.
+(She moans as you whip her breast, enjoying the pain.)
+(Она стонет, когда ты хлещешь ее по груди, наслаждаясь болью.)
+(She jumps and makes her breast wiggle with each hit.)  I am a bad person.
+(Она подпрыгивает и заставляет свою грудь шевелиться при каждом ударе.)  Я плохая девочка.
+(She trembles and moans with each lashe.)  I need to be punished!
+(Она дрожит и стонет с каждым ударом плети.)  Я должна быть наказана!
+(You whip her butt with the leather crop as she wiggles it for more.)
+(Ты хлещешь ее по заднице кожаным стеком, когда она виляет ею для большего.)
+(She wriggles in her shackles.)  I'll confess anything you want.
+(Она извивается в своих путах.)  Я признаюсь во всем, что вы хотите.
+(She looks surprised.) Sweet pains.
+(Она выглядит удивленной.) Сладкая боль.
+Oof. I could not have lasted much longer.
+Уфф. Я не смогла долго продержаться.
+(You restrain her legs with the long hemp rope and suspend her by the feet from the ceiling.)  Oh my god!
+(Ты связываешь ей ноги длинной пеньковой веревкой и подвешиваешь ее за ноги к потолку.)  О боже мой!
+(You untie the hemp rope from the ceiling and slowly get her down.)  Wow!  That was quite a ride.
+(Ты отвязываешь пеньковую веревку от потолка и медленно спускаешь ее вниз.)  Ух ты!  Это была неплохая поездка.
+(A girl comes in and looks around.) Hello, what's going on here?
+(Входит девушка и оглядывается по сторонам.) Привет, что здесь происходит?
+###_PLAYER
+It's under construction. Please leave.
+Это находится в стадии строительства. Пожалуйста, уходите.
+I'm looking for a curious person in handcuffs for some tests.
+Я ищу любопытного человека в наручниках для некоторых тестов.
+(Shove her into the cell and close the door.)
+(Запихни ее в камеру и закрой дверь.)
+###_NPC
+(She looks surprised.)
+(Она выглядит удивленной.)
+###_PLAYER
+(Strip search her for a key.)
+(Раздень и обыщи ее в поисках ключа.)
+###_NPC
+Is that necessary?
+Разве это необходимо?
+###_PLAYER
+(Give her clothes back.)
+(Верни ей одежду.)
+###_NPC
+(She nods slowly.)
+(Она медленно кивает.)
+###_PLAYER
+(Torture her.)
+(Пытай ее.)
+###_NPC
+(She looks worried.)
+(Она выглядит обеспокоенной.)
+###_PLAYER
+(Let her out.)
+(Выпусти ее.)
+###_NPC
+Thanks, next time it's your turn.
+Спасибо, в следующий раз твоя очередь.
+###_PLAYER
+(Leave her.)
+(Оставь ее.)
+(Spank her butt.)
+(Отшлепай ее по заднице.)
+###_NPC
+(She squirms painfully.)
+(Она мучительно извивается.)
+###_PLAYER
+(Slap her face.)
+(Ударь ее по лицу.)
+###_NPC
+(She whines and is scared.)
+(Она скулит и боится.)
+###_PLAYER
+(Fondle her breast.)
+(Ласкай ее грудь.)
+###_NPC
+(She moans joyfully.)
+(Она радостно стонет.)
+###_PLAYER
+(Tickle her feet.)
+(Пощекочи ей ступни.)
+###_NPC
+(She laughs out loud.)
+(Она громко смеется.)
+###_PLAYER
+(Massage her neck.)
+(Помассируй ей шею.)
+###_NPC
+(She purrs like a kitten.)
+(Она мурлычет как котенок.)
+###_PLAYER
+(End her torture.)
+(Прекрати ее пытать.)
+###_NPC
+(She breathes in relief.)
+(Она вздыхает с облегчением.)
+Now, that sounds interesting. Here I am.
+Звучит интересно. А вот и я.
+I guess I'd better go then.
+Наверное, мне лучше уйти.
