@@ -1,0 +1,135 @@
+﻿###_NPC
+(She giggles.)
+(Она хихикает.)
+(She opens her mouth wide and allows you to silence her easily.)
+(Она широко открывает рот и позволяет тебе легко заставить ее замолчать.)
+(You remove her gag as she smiles at you.)  Gags are so much fun Madam.
+(Ты вынимаешь у нее кляп, когда она улыбается тебе.)  Кляпы - это так весело, Мадам.
+(She seems curious as you push the earplugs in.)  You will need to talk louder Madam.
+(Она кажется любопытной, когда ты вставляешь затычки для ушей.)  Вам нужно будет говорить громче, Мадам.
+(You pull the earplugs out.) The silence was heightening my other senses.
+(Ты вытаскиваешь затычки для ушей.) Тишина обостряла другие мои чувства.
+(She turns around submissively while you restrain her arms.)  This therapy is very kinky.
+(Она покорно поворачивается, пока ты связываешь ее руки.)  Эта терапия очень извращенная.
+(You free her arms as she stretches.)  I hope my treatment isn't already complete.
+(Ты освобождаешь ее руки, пока она потягивается.)  Надеюсь, мое лечение еще не завершено.
+(She gives you her hands to be restrained.)  No more touching for me it seems.
+(Она дает тебе свои запястья, чтобы быть связанной.), Кажется, больше никаких прикосновений для меня.
+(You release her hands as she nods slowly.)  Thank you Madam.
+(Ты освобождаешь ее запястья, и она медленно кивает.)  Спасибо, Мадам.
+(She stands still as you restrain her legs.)  I wasn't planning on running away.
+(Она стоит неподвижно, пока ты связываешь ее ноги.)  Я не собиралась убегать.
+(You release her legs as she rocks her hips.)  Best therapy ever!
+(Ты освобождаешь ее ноги, пока она виляет бедрами.)  Лучшая терапия в мире!
+(She laughs as you restrain her feet.)  It tickles!
+(Она смеется, когда ты связываешь ее щиколотки.)  Это щекотно!
+(You release her feet and she jumps playfully.)  I love being a patient here.
+(Ты освобождаешь ее ступни, и она игриво подпрыгивает.)  Мне нравится быть здесь пациенткой.
+(You strap the device on her head as she tries to look around.)  This is scary, but I guess it's for my own good.
+(Ты пристегиваешь устройство к ее голове, когда она пытается оглядеться.)  Это страшно, но я думаю, что это для моего же блага.
+(You remove the device and she looks at you.)  That was freaky, maybe we should try other types of items.
+(Ты убираешь устройство, и она смотрит на тебя.)  Это было странно, может быть, мы должны попробовать другие типы предметов.
+(She cowers from the pain as you whip her breast.)  Oooww, Madam!  Isn't it a little harsh?
+(Она съеживается от боли, когда ты хлещешь ее по груди.)  Оооо, Мадам!  Не слишком ли это жестко?
+(You swing the crop on her breast as she whimpers.)  I beg you Madam!  I'll try to be a better patient.
+(Ты бьешь стеком по ее груди, когда она всхлипывает.)  Умоляю вас, Мадам!  Я постараюсь быть лучшей пациенткой.
+(You whip her butt hard as she jumps from the pain.)  Fuck it hurts!  Oops!  Sorry I said that word.
+(Ты сильно хлещешь ее по заднице, когда она подпрыгивает от боли.)  Бля, как больно!  Ой!  Простите, что сказал это слово.
+(She tries to avoid the crop as you swing it on her butt.)  Oh please!  It's really painful.
+(Она пытается избежать стека, когда ты бьешь им по ее заднице.)  О, пожалуйста!  Это действительно больно.
+(She barely seems to notice that you're there.)
+(Она, кажется, почти не замечает, что ты здесь.)
+Hello nurse DialogPlayerName, are you here for my bondage treatment?
+Здравствуйте медсестра DialogPlayerName, вы здесь для моей бондаж терапии?
+Hello Madam, I hope you're having fun in the asylum.
+Здравствуйте, Мадам, я надеюсь, что вы весело проводите время в психлечебнице.
+###_PLAYER
+Who are you?
+Кто ты такая?
+###_NPC
+(She bows her head.)  I'm patient DialogCharacterName, pleased to meet you Madam.
+(Она склоняет голову.)  Я пациентка DialogCharacterName, рад познакомиться с вами, Мадам.
+###_PLAYER
+Why are you restrained?
+Почему ты связана?
+###_NPC
+Mistress sent me here for a bondage therapy.  So long story short, I'm in therapy.
+Госпожа послала меня сюда для бондаж терапии.  Короче говоря, я лечусь у психотерапевта.
+###_PLAYER
+Can I tie you up?
+Можно я тебя свяжу?
+###_NPC
+(She shakes her head yes.)  Of course nurse DialogPlayerName, it's part of my treatment.
+(Она утвердительно кивает.)  Конечно, медсестра DialogPlayerName, это часть моего лечения.
+(She shakes her head yes.)  Yes Madam, it's part of my treatment.
+(Она утвердительно кивает.)  Да, Мадам, это часть моего лечения.
+###_PLAYER
+Can I play with you?
+Можно я с тобой поиграю?
+###_NPC
+(She shakes her head yes.)  Absolutely.  Mistress said that I belong to the asylum until she gets me back.
+(Она утвердительно кивает.)  Разумеется. Госпожа говорит, что я принадлежу к психлечебнице, пока она не заберет меня.
+###_PLAYER
+Will you tie me up?
+Ты меня свяжешь?
+###_NPC
+(She shakes her head no.)  I'm sorry Madam.  I'm not allowed to use items on other persons.
+(Она отрицательно качает головой.) Мне жаль Мадам. Я не могу использовать предметы на других людях.
+###_PLAYER
+(Struggle in your restraints.)
+(Борись в своих ограничениях.)
+###_NPC
+(She shakes her head no.)  I'm sorry Madam.  I'm not allowed to help you.
+(Она отрицательно качает головой.)  Простите, Мадам.  Я не имею права помогать вам.
+###_PLAYER
+(Play with her.)
+(Играть с ней.)
+###_NPC
+(You take a step forward and start to play with her.)
+(Ты делаешь шаг вперед и начинаешь играть с ней.)
+###_PLAYER
+I need to run.  (Leave her.)
+Мне нужно бежать.  (Оставь ее.)
+###_NPC
+(She barely seems to notice that you're there, as you step forward to play with her.)
+(Она едва замечает, что ты здесь, когда ты делаешь шаг вперед, чтобы поиграть с ней.)
+Hello nurse DialogPlayerName, would you like to touch me?
+Здравствуйте медсестра DialogPlayerName, хотите прикоснуться ко мне?
+Hello Madam, would you like to touch me?
+Здравствуйте, Мадам, вы хотите прикоснуться ко мне?
+###_PLAYER
+(Pet her.)
+(Погладь ее.)
+###_NPC
+(She purrs a little as you pet her head gently.)
+(Она слегка мурлычет, когда ты нежно гладишь ее по голове.)
+###_PLAYER
+(Tickle her.)
+(Щекоти ее.)
+###_NPC
+(She trashes around and laughs from your skillful tickling hands.)
+(Она мечется и смеется от твоих умелых щекочущих рук.)
+###_PLAYER
+(Kiss her.)
+(Поцелуй ее.)
+###_NPC
+(You exchange a sweet and loving kiss.)
+(Вы обмениваетесь нежным и любящим поцелуем.)
+###_PLAYER
+(Fondle her.)
+(Ласкай ей.)
+###_NPC
+(She closes her eyes and seems to enjoy your touch as you fondle her breast and butt through her clothes.)
+(Она закрывает глаза и, кажется, наслаждается твоими прикосновениями, когда ты ласкаешь ее грудь и ягодицы сквозь одежду.)
+###_PLAYER
+(Masturbate her.)
+(Мастурбируй ее.)
+###_NPC
+(You slide a hand in her pants and masturbate her slowly as she moans from the pleasure.)
+(Ты просовываешь руку в ее штаны и медленно маструбируешь ее, пока она стонет от удовольствия.)
+###_PLAYER
+(Stop playing with her.)
+(Хватит с ней играть.)
+###_NPC
+(She nods as you stop playing with her.)
+(Она кивает, когда ты перестаешь играть с ней.)

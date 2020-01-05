@@ -1,0 +1,167 @@
+﻿###_NPC
+Get that gag off or stop talking, you're driving me nuts.
+Вытащи кляп или замолчи, ты сводишь меня с ума.
+What's up doc?
+Как дела, док?
+What's up nurse?
+Как дела, медсестра?
+Hey, it's the new nurse!
+Эй, это новая медсестра!
+Yo DialogPlayerName.  You got in trouble again?  Do you need anything?
+Йоу DialogPlayerName.  У тебя опять неприятности?  Тебе что-нибудь нужно?
+Hey DialogPlayerName.  What do you want?
+Эй DialogPlayerName.  Что тебе надо?
+Hey girls!  (She looks around the meeting room for approval.)  It's the new patient.
+Эй, девочки!  (Она оглядывает конференс-зал в поисках одобрения.)  Это новая пациентка.
+What do you want?
+Что тебе надо?
+###_PLAYER
+Who are you?
+Кто ты такая?
+###_NPC
+I'm surprised you don't know, I'm DialogCharacterName.  I'm the girl you talk too if you need something.
+Я удивлена, что ты не знаешь, я  DialogCharacterName.  Я та девушка, о которой ты тоже говоришь, если тебе что-то нужно.
+###_PLAYER
+I need something from you.
+Мне нужно кое-что от тебя.
+###_NPC
+I'm listening.  What do you need?
+Я тебя слушаю.  Что тебе нужно?
+You should know me, I'm DialogCharacterName.  I'm the best patient around.  (She smirks.)
+Ты должна знать меня, я  DialogCharacterName.  Я самый лучшая пациентка в округе.  (Она ухмыляется.)
+###_PLAYER
+(Struggle in your restraints.)
+(Борись в своих удерживающих устройствах.)
+###_NPC
+I can see that you need help, but what's in there for me?  Give me 10$ and I'll help you out.
+Я вижу, что тебе нужна помощь, но я с этого получу?  Дай мне 10 долларов и я тебе помогу.
+(She shakes her head no.)
+(Она отрицательно качает головой.)
+###_PLAYER
+It's time for your treatment.
+Пришло время для твоего лечения.
+###_NPC
+It is?  (She thinks.)  Look!  A patient is trying to escape!  (She points behind you.)
+Правда?  (Она думает.)  Смотри!  Пациентка пытается сбежать!  (Она указывает тебе за спину.)
+###_PLAYER
+I must go.  (Leave her.)
+Я должна идти.  (Оставь ее.)
+What can you provide?
+Что ты можешь предложить?
+###_NPC
+What do you need?  A smoke?  A vibrator?  Some help with a jacket?  I'm here for you, and your money.
+Что тебе нужно?  Покурить?  Вибратор?  Кто-нибудь поможет с рубашкой?  Я здесь ради тебя и твоих денег.
+###_PLAYER
+I want a cigarette.
+Я хочу сигарету.
+###_NPC
+Sure, the price is 1$ per smoke, do you want one?
+Конечно, цена составляет 1$ за курево, ты хочешь одну?
+###_PLAYER
+I want a vibrator.
+Я хочу вибратор.
+###_NPC
+I have a vibrating wand I can sell you.  It's used and it's not cheap, it goes for 80$.  Do you want it?
+У меня есть вибрирующая палочка, которую я могу тебе продать.  Она подержанная и не дешевая, стоит 80$.  Хочешь?
+###_PLAYER
+I want to get out of here.
+Я хочу выбраться отсюда.
+###_NPC
+I can't help you there.  You can always try to fight your way out, but you'll get in trouble later.
+Я не могу тебе помочь.  Ты всегда можешь попытаться выбраться отсюда, но потом у тебя будут неприятности.
+###_PLAYER
+Can I tie you up?
+Можно я тебя свяжу?
+###_NPC
+Forget it girl.  I'm here to do business, not to struggle.
+Забудь, девочка.  Я здесь для того, чтобы заниматься бизнесом, а не бороться.
+###_PLAYER
+Will you tie me up?
+Ты меня свяжешь?
+###_NPC
+Bondage is free but freedom has a price.  How tight do you want it?
+Бондаж бесплатен, но свобода имеет свою цену.  Насколько сильно ты этого хочешь?
+###_PLAYER
+I have everything I need.
+У меня есть все, что мне нужно.
+###_NPC
+Alright.  You know where to find me if you need something else.
+Хорошо.  Ты знаешь, где меня найти, если тебе нужно что-то еще.
+###_PLAYER
+Alright.  (Pay her 1$ and smoke.)
+Хорошо.  (Заплати ей 1$ и кури.)
+###_NPC
+(You smoke with her for a while, it's kind of relaxing.)  Anything else you need?
+(Ты куришь с ней какое-то время, это немного расслабляет.)  Тебе еще что-нибудь нужно?
+###_PLAYER
+I've changed my mind.
+Я передумала.
+###_NPC
+Whatever!  Anything else you need?
+Неважно!  Что-нибудь еще тебе нужно?
+###_PLAYER
+It's a deal!  (Pay her 80$)
+Договорились!  (Заплати ей 80$)
+###_NPC
+(She sells you the used vibrating wand and grins.)  Have fun!  I'm sure you'll get popular with that toy.
+(Она продает тебе подержанную вибрирующую палочку и улыбается.)  Повеселись! Уверена, ты будешь популярна с этой игрушкой.
+###_PLAYER
+No way!  80$ for a used vibrator!
+Ни за что!  80$ за использованный вибратор!
+###_NPC
+Don't take it then.  I'm sure you'll come crawling back later to get it.
+Тогда не покупай его.  Уверена, ты приползешь за ним попозже.
+###_PLAYER
+Can you do it for free?
+Ты можешь сделать это бесплатно?
+###_NPC
+No way.  You pay or you stay like that.
+Ни за что.  Ты платишь или остаешься такой.
+###_PLAYER
+(Nod yes.)
+(Кивни, если да.)
+###_NPC
+It's a pleasure to do business with you.  (She releases you and smirks.)  Anything else you need?
+Это очень приятно делать бизнес с тобой.  (Она освобождает тебя и ухмыляется.) Что-нибудь еще нужно?
+###_PLAYER
+(Whimper and beg.)
+(Хныкать и умолять.)
+###_NPC
+Stop begging.  You pay or you stay like that.
+Прекрати попрошайничать.  Ты платишь или остаешься такой.
+###_PLAYER
+(Turn around.)
+(Обернуться.)
+###_NPC
+Sucker!  (She runs like hell and disappears in the halls.)
+Лохушка!  (Она бежит изо всех сил и исчезает в коридорах.)
+###_PLAYER
+What?  Where?
+Что?  Где?
+I'm not falling for that.
+Я на это не куплюсь.
+###_NPC
+Catch me then!  (She runs like hell and disappears in the halls.)
+Тогда поймай меня!  (Она бежит изо всех сил и исчезает в коридорах.)
+###_PLAYER
+(Leave and report her behavior.)
+(Уходи и доложи о ее поведении.)
+(Leave and don't report her.)
+(Уходи и не докладывай о ней.)
+Nothing too tight please.
+Ничего слишком тугого, пожалуйста.
+###_NPC
+Chicken!  (She uses a few items on you and makes chicken sounds.)
+Курица!  (Она использует несколько предметов на тебе и издает куриные звуки.)
+###_PLAYER
+Some secure bondage I guess.
+Наверное, какой-то надежный бондаж.
+###_NPC
+Alright!  (She uses some items on you and smirks.)
+Хорошо!  (Она использует некоторые предметы на тебе и ухмыляется.)
+###_PLAYER
+I can take it.  Do your worst.
+Я могу это принять.  Делай что хочешь.
+###_NPC
+Enjoy your struggling.  (She uses lots of items on you and grins.)
+Наслаждайся своей борьбой.  (Она использует много предметов на тебе и улыбается.)
