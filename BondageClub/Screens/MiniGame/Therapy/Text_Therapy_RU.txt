@@ -1,9 +1,9 @@
 ﻿Starts in
-Начинается в
+Начинается через
 Hit the therapy circles when they appear.
-Погружайтесь в терапевтические круги, когда они появятся.
+Попадай в терапевтические круги, когда они появятся.
 Don't miss or you'll stress your patient.
-Не пропустите, или вы будете напрягать вашего пациента.
+Не пропусти, или ты будешь напрягать свою пациентку.
 Progress
 Прогресс
 Stress
@@ -13,6 +13,6 @@ Perfect!  The therapy was a complete success.
 You did it!  The therapy was a success.
 Ты сделала это!  Терапия прошла успешно.
 The patient breaks and the therapy fails.
-Пациент прерывается и терапия терпит неудачу.
+Пациентка сломалась и терапия терпит неудачу.
 Click on yourself to continue.
-Нажмите на себя, чтобы продолжить.
+Нажми на себя, чтобы продолжить.
