@@ -1,14 +1,14 @@
 ﻿Move to the Carrots ($CARROTS) and avoid the crops ($CROPS)
-Переходим к моркови ($CARROTS) и избегаем кнутов ($CROPS)
+Идем к моркови ($CARROTS) и избегаем кнутов ($CROPS)
 Congratulations!  (Carrots: $CARROTS, crops: $CROPS)
 Поздравляем!  (Морковь: $CARROTS, кнут: $CROPS)
 Sorry, you've failed.  (Carrots: $CARROTS, crops: $CROPS)
 Сожалею, вы потерпели неудачу (Морковь: $CARROTS, кнут: $CROPS)
 Jump over the Hurdles. Win: ($HURDLEWIN), Failed: ($HURDLEFAIL)
-Перепрыгнули через преаятствие. Выиграшь: ($HURDLEWIN), Провал: ($HURDLEFAIL)
+Перепрыгнула через препятствие. Выиграшь: ($HURDLEWIN), Провал: ($HURDLEFAIL)
 Congratulations!  (Win: $HURDLEWIN, Failed: $HURDLEFAIL)
 Поздравляем!   (Выиграшь: $HURDLEWIN, Провал: $HURDLEFAIL)
 Sorry, you've failed.  (Win: $HURDLEWIN, Failed: $HURDLEFAIL)
 Сожалею, вы потерпели неудачу  (Выиграшь: $HURDLEWIN, Провал: $HURDLEFAIL)
 Whip the ponies ($PONY), not the trainer ($TRAINER).
-Кнутом пони ($PONY), нет тренера ($TRAINER).
+Кнутом по пони ($PONY), промах по тренеру ($TRAINER).
