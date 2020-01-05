@@ -1,0 +1,233 @@
+﻿###_NPC
+Remove that gag or get lost.  I run the market and I don't have time for mumblings.
+Снеми этот кляп или проваливай.  Я управляю рынком, и у меня нет времени на бормотание.
+Too bad it didn't work for you, but a new girl is coming up right now if you want to check her.
+Жаль, что это не работает для вас, но новая девочка прийдет прямо сейчас, если вы хотите можете проверить ее.
+Well done!  I think this slave has learned a lot in your hands.  Here's your salary.  (She gives you MoneyAmount$)
+Молодец!  Я думаю, этот рабыня многому научился в ваших руках.  Вот ваша зарплата.  (Она дает тебе MoneyAmount$)
+You've failed your training.  Thanks for your time but I cannot pay you.
+Вы потерпели неудачу в обучении. Спасибо за ваше время, но я не могу вам заплатить.
+Greetings Mistress DialogPlayerName.  It's always a pleasure to see you at the market.  Are you here to train our slaves?
+Приветствую Госпожу DialogPlayerName.  Всегда приятно видеть вас на рынке.  Вы здесь, чтобы обучать наших рабынь?
+Greetings head maid DialogPlayerName.  What do you need from the slave market?
+Приветствую старшую горничную DialogPlayerName.  Что вам нужно от рынка рабынь?
+Greetings master kidnapper DialogPlayerName.  Do you have some merchandize for us?
+Приветствую мастера похитительницу DialogPlayerName.  У вас есть какой-нибудь товар для нас?
+Welcome little maid.  What are you doing in the slave market?
+Добро пожаловать, маленькая горничная.  Что ты делаешь на рынке рыбынь?
+Welcome kidnapper.  Do you have some merchandize for us?
+Добро пожаловать, похитительница.  У вас есть какой-нибудь товар для нас?
+Welcome to the slave market.  Are you looking for a submissive?
+Добро пожаловать на рынок рабынь.  Вы ищете сабмиссива?
+###_PLAYER
+Hi, I'm DialogPlayerName.
+Привет, я DialogPlayerName.
+###_NPC
+Hello, I'm Mistress DialogCharacterName.  I run the market auctions today and sell the slaves.
+Привет, я Mistress DialogCharacterName.  Сегодня я веду рыночные торги и продаю рабынь.
+###_PLAYER
+Tell me about the slave market.
+Расскажите мне о рынке рабынь.
+###_NPC
+What would you like to know?
+Что бы вы хотели узнать?
+###_PLAYER
+Tell me about this slave girl.
+Расскажите мне об этой рабыне.
+###_NPC
+Sure.  Are you interested in buying her?
+Конечно. Вы заинтересованы в ее покупке?
+###_PLAYER
+Can I help with slave training?
+Могу ли я помочь с обучением рабынь?
+###_NPC
+You could, a well-trained slave has higher market value.
+Вы могли бы, хорошо обученная рабыня имеет более высокую рыночную стоимость.
+Forget it girl, you're not Dominant enough.
+Забудь об этом, девочка, ты недостаточно Доминантна.
+###_PLAYER
+When is the next slave coming up?
+Когда будет следующая рабыня?
+###_NPC
+We need to sell this one first.  You can wait a little while for the next girl.
+Сначала нам нужно продать вот это.  Вы можете немного подождать следующую девушку.
+###_PLAYER
+I need to go.  (Leave her.)
+Мне нужно идти.  (Оставь ее.)
+How does the market works?
+Как работает рынок?
+###_NPC
+Owners can sell their own slaves or free submissives can sell themselves for profit.  They get sold through an auction.
+Хозяйки могут продавать своих собственных рабынь, а свободные нижние могут продавать себя ради прибыли.  Их продают через аукцион.
+###_PLAYER
+Can I sell my slaves here?
+Могу я продать здесь своих рабынь?
+###_NPC
+Yes, but only if your slave is fully collared.  You can sell her permanently or rent her for a day.  Go get her first.
+Да, но только если твоя рабыня в постоянном ошенике.  Вы можете продать ее навсегда или сдать в аренду на один день.  Сначала приведите ее.
+###_PLAYER
+Can I sell myself?
+Могу ли я продать себя?
+###_NPC
+Not yet, we cannot take you at the moment.  (This feature will be available in a future version.)
+Пока нет, мы не можем взять вас сейчас.  (Эта функция будет доступна в будущей версии.)
+###_PLAYER
+Can my owner sell me?
+Может ли моя хозяйка продать меня?
+It's consensual?
+Это по обоюдному согласию?
+###_NPC
+Always.  Even if we call it the slave market, it remains consensual.  If the slave chickens out, we let her go.
+Всегда.  Даже если мы назовем это рынком рабынь, он остается добровольным.  Если рабыня струсит, мы ее отпустим.
+###_PLAYER
+Who gets the profits?
+Кто получает прибыль?
+###_NPC
+If the slave is owned, the owner gets the profit.  If not, she gets it.  The Bondage Club takes half the amount of every transaction.
+Если рабыня принадлежит, то ее хозяйка получает прибыль.  Если нет, она сама ее получит.  Бондаж Клуб берет половину от суммы каждой сделки.
+###_PLAYER
+The prices are variable?
+Цены различаются?
+###_NPC
+Yes, since it's an auction and all slaves are different, some go at a higher price than others.  The better trained, the higher the auction goes.
+Да, поскольку это аукцион и все рабыни разные, некоторые идут по более высокой цене, чем другие.  Чем лучше обучена, тем выше цена.
+###_PLAYER
+How do you measure a slave training?
+Как вы определяете обучение рабов?
+###_NPC
+It's hard to measure the training quality since every slave is different.  The longer the slave was with someone, the higher the training and market value.
+Трудно измерить качество обучения, так как каждая рабыня отличается. Чем дольше рабыня была с кем-то, тем выше обучение и рыночная стоимость.
+###_PLAYER
+Let's talk about something else.
+Давайте поговорим о чем-нибудь другом.
+###_NPC
+Fine.  What would you like know?
+Хорошо. Что бы вы хотели узнать?
+###_PLAYER
+She's getting sold?
+Ее продают?
+###_NPC
+Yes, she will be auctioned today.  You will be able to bet on her if you like, as long as you have some room to accommodate her.
+Да, сегодня она будет выставлена на аукцион.  Вы можете сделать ставку на нее, если хотите, если у вас есть место, чтобы разместить ее.
+###_PLAYER
+Why doesn't she talk with me?
+Почему она не разговаривает со мной?
+###_NPC
+I run the auction, not her.  Don't speak with the merchandize.
+Аукцион веду я, а не она.  Не разговаривайте с товаром.
+###_PLAYER
+What if I buy her?
+А что, если я ее куплю?
+###_NPC
+She will move in with you and you two will be able to start a regular BDSM trial together.
+Она переедет к вам, и вы двое сможете начать регулярные совместные эксперементы в БДСМ.
+###_PLAYER
+What's the price?
+Какова цена?
+###_NPC
+It's an auction.  You bet against other Dominants and the highest bet gets the girl.  Bring lots of money, you never know.
+Это же аукцион. Вы ставите против других Домин, и самой высокой ставке достается девушке.  Принесите много денег, вы никогда не узнаете сколько нужно.
+###_PLAYER
+I want to participate in the auction.
+Я хочу принять участие в аукционе.
+###_NPC
+Excellent.  Just wait here for the other Dominants to come in and we'll be ready.
+Отлично.  Просто подождите здесь, пока не придут другие Домины, и мы будем готовы.
+No girl.  You're way too submissive to take care of a slave.  You can watch but you cannot bet.
+Нет, девочка.  Ты слишком покорная, чтобы заботиться о рабыне.  Ты можешь смотреть, но ты не можешь делать ставки.
+No.  You need to have some room for her first.  If you buy the merchandize you need to store it.
+Нет. Сначала вам нужно найти для нее место.  Если вы покупаете товар, вы должны иметь место, что бы хранить его.
+###_PLAYER
+(Start the auction.)
+(Начинай аукцион.)
+I've changed my mind.
+Я передумала.
+###_NPC
+(She frowns.)  Make up your mind girl.  What do you want?
+(Она хмурится.)  Решайтесь девочка. Что ты хочешь?
+Congratulations on your purchase!  I hope you two share a wonderful time.
+Поздравляем с покупкой! Я надеюсь, что вы обе замечательное проведете время.
+###_PLAYER
+Thanks a lot!
+Большое спасибо!
+###_NPC
+We have brand new girl for sale.  Unless you want to talk about something else.
+У нас есть совершенно новая девушка для продажи.  Если только вы не хотите поговорить о чем-то другом.
+###_PLAYER
+Very well.  (Check the new slave.)
+Очень хорошо.  (Проверь новую рабыню.)
+How does training work?
+Как работает обучение?
+###_NPC
+You'll get a slave to train, but they are all different: some need discipline, other need control and some even need corporal punishment.
+Вы получите рабыню для обучения, но все они разные: некоторые нуждаются в дисциплине, другие нуждаются в контроле, а некоторые даже нуждаются в телесном наказании.
+###_PLAYER
+Who gets trained?
+Кто проходит обучение?
+###_NPC
+It depends.  Some owners send their slaves here for education and some girls come willingly to raise their market value.
+Когда как.  Некоторые хозяйкипосылают сюда своих рабыньдля получения обучения, а некоторые девушки охотно приезжают, чтобы поднять свою рыночную стоимость.
+###_PLAYER
+Do I get paid?
+Я буду получать за это деньги?
+###_NPC
+Yes, you'll get paid for every successful training session.  The higher we can sell them the better.
+Да, вы будете получать деньги за каждую успешную тренировку. Чем дороже мы можем продавать их, тем лучше.
+###_PLAYER
+Can I train her?
+Могу ли я обучать ее?
+###_NPC
+Not her, she's getting sold today.  We have many other slaves to train though.
+Не ее, она сегодня продается. У нас есть много других рабынь, чтобы обучать их.
+###_PLAYER
+I'm ready to train!
+Я готова обучать!
+###_NPC
+Very well, a maid will lead you to the training room.  The slave to train will be waiting there for you.
+Очень хорошо, горничная приведет вас к учебной комнате.  Рабыня для обучения будет ждать вас там.
+###_PLAYER
+Let's talk some more first.
+Давайте сначала еще немного поговорим.
+(Go train a slave.)
+(Иди тренируй рабыню.)
+(Wait for the next slave.)
+(Жди следующею рабыню.)
+###_NPC
+(The auction goes on, the slave is sold and replaced by a new one.)  Here's the new product!
+(Аукцион продолжается, рабыню продают и заменяют на новую.)  Вот вам и новинка!
+###_PLAYER
+I'll check that one again.
+Я посмотрю на эту еще раз.
+###_NPC
+Sure, check the curves on that fine product.  (She smirks.)
+Конечно, проверьте дефекты на этом прекрасном продукте.  (Она ухмыляется.)
+###_PLAYER
+Thanks!  (Check on her.)
+Спасибо!  (Проверь ее.)
+###_NPC
+My pleasure.  Let me know if there's something else you need from me.
+С удовольствием.  Дайте мне знать, если вам еще что-то понадобится от меня.
+###_PLAYER
+There's no slave that I cannot train.
+Нет такой рабыни, которую я не могла бы обучить.
+###_NPC
+That's the spirit!  Let me know if there's something else you need from me.
+Вот это рвение!  Дайте мне знать, если вам еще что-то понадобится от меня.
+###_PLAYER
+I'll do better next time.
+В следующий раз я сделаю лучше.
+###_NPC
+I hope you're right.  Do you need anything else?
+Надеюсь, ты права.  Вам нужно что-нибудь еще?
+###_PLAYER
+I'm sorry.
+Извините.
+###_NPC
+Being sorry won't help, you need to be stronger and focus on your slave needs.  Do you want anything else?
+Сожаления не помогут, тебе нужно быть сильнее и сосредоточиться на своих потребностях рабыни. Тебе еще что-нибудь нужно?
+###_PLAYER
+That slave was a wimp.
+Этот рабыня была слабачкой.
+###_NPC
+Maybe, but you still need to focus on your wimp needs.  Do you want anything else?
+Может быть, но вам все равно нужно сосредоточиться на своих слабых сторонах.  Вам еще что-нибудь нужно?

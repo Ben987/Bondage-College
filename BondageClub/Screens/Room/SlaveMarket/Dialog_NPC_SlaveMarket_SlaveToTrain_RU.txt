@@ -1,0 +1,261 @@
+﻿###_NPC
+(A maid comes to inform you that the training session is over, and you must free the room.)
+(Горничная приходит сообщить тебе, что обучение окончено, и ты должна освободить комнату.)
+(The girl that you should train bows her head and doesn't dare to speak.)
+(Девушка, которую ты должна обучать, склоняет голову и не смеет говорить.)
+###_PLAYER
+Are you here to be trained?
+Ты здесь, чтобы пройти обучение?
+###_NPC
+Yes Miss, I want to become a better submissive.
+Да, Мисс, я хочу стать лучшей нижней.
+###_PLAYER
+You're in trouble girl.
+У тебя проблемы, девочка.
+###_NPC
+(She trembles a little.)  I know.  I want to become a better submissive Miss.
+(Она слегка дрожит.)  Я знаю.  Я хочу стать лучшей нижней, Мисс.
+###_PLAYER
+Why are you here?
+Почему ты здесь?
+###_NPC
+To be trained Miss.  I want to become a better submissive.
+Чтобы быть обученной Мисс.  Я хочу стать лучшей нижней.
+###_PLAYER
+What do you want to improve?
+Что ты хочешь улучшить?
+###_NPC
+I panic when I'm restrained and blindfolded.  Can you help me with that?
+Я паникую, когда меня связывают и завязывают глаза.  Вы можете мне помочь с этим?
+###_PLAYER
+I could train you today.
+Я могла бы потренировать тебя сегодня.
+###_NPC
+Thanks Miss, I know that if you restrain me slowly and carefully, I can overcome my claustrophobia.
+Спасибо Мисс, я знаю, что если вы будете связывать меня медленно и осторожно, я смогу преодолеть свою клаустрофобию.
+###_PLAYER
+Let's start your training.
+Давай начнем твое обучение.
+###_NPC
+Very well Miss, thanks for your time.  (How will you train her?)
+Очень хорошо, Мисс, спасибо, что уделили мне время.  (Как ты будешь тренировать ее?)
+I'm scared of pain and I don't handle it very well.  Can you help me with that?
+Я боюсь боли и не очень хорошо с ней справляюсь.  Вы можете мне помочь с этим?
+Thanks Miss, I know that if you hurt me gently and progressively, I can improve myself.
+Спасибо Мисс, я знаю, что если вы причините мне боль мягко и постепенно, я смогу преодолеть себя.
+(She blushes.)  Dominants say that I can't control my orgasm and I cum without permission.  Can you help me with that?
+(Она краснеет.) Домины говорят, что я не могу контролировать свой оргазм и кончаю без разрешения.  Вы можете мне помочь с этим?
+Thanks Miss, I know that I can learn to control my sexual self-control in your hands.
+Спасибо Мисс, я знаю, что могу научиться контролировать свой сексуальный самоконтроль в ваших руках.
+(The slave that you should train bows her head and doesn't dare to speak.)
+(Рабыня, которую ты должна обучать, склоняет голову и не смеет говорить.)
+Yes Miss, my Mistress sent me here to become a better submissive.
+Да, Мисс, моя Госпожа послала меня сюда, чтобы я стал лучшей нижней.
+(She trembles a little.)  I know.  My Mistress sent me here to become a better submissive.
+(Она слегка дрожит.)  Я знаю.  Моя Госпожа послала меня сюда, чтобы я стал лучшей нижней.
+###_PLAYER
+Why did your owner send you here?
+Зачем хозяйка послала тебя сюда?
+###_NPC
+My Mistress sent me here to become a better submissive.
+Моя Госпожа послала меня сюда, чтобы я стал лучшей нижней.
+###_PLAYER
+What does she want to improve?
+Что она хочет улучшить?
+###_NPC
+I panic when I'm restrained and blindfolded.  Mistress is sick of that.  Can you help me?
+Я паникую, когда меня связывают и завязывают глаза.  Госпожа устала от этого.  Вы не могли бы мне помочь?
+Thanks Miss, I know that if you restrain me slowly, I can overcome my claustrophobia.
+Спасибо Мисс, я знаю, что если вы будете связывать меня медленно, я смогу преодолеть свою клаустрофобию.
+Very well Miss, my Mistress will be thankful.  (How will you train her?)
+Очень хорошо Мисс, моя Госпожа будет благодарна.  (Как ты будешь тренировать ее?)
+I'm scared of pain and I don't handle it very well.  Mistress sent me here to get better with that.
+Я боюсь боли и не очень хорошо с ней справляюсь.  Госпожа послала меня сюда, чтобы я справилась с этим.
+(She blushes.)  Mistress says that I can't control my orgasm and I cum without permission.  Can you help me with that?
+(Она краснеет.)  Госпожа говорит, что я не могу контролировать свой оргазм и кончаю без разрешения.  Вы можете мне помочь с этим?
+Thanks Miss, I know that I can learn to control my sexual self-control in your hands.  Mistress will appreciate.
+Спасибо Мисс, я знаю, что могу научиться контролировать свой сексуальный самоконтроль в ваших руках.  Госпожа оценит это.
+(She bows her head and waits on you.  How will you train her?)
+(Она склоняет голову и ждет тебя.  Как ты будешь тренировать ее?)
+###_PLAYER
+(Do a bondage training.)
+(Приступить к треноровкам бондажа.)
+###_NPC
+(She trembles in her restraints as you start the bondage training.)
+(Она дрожит в своих путах, когда ты начинаешь тренировки бондажа.)
+(Restrain her fully so she cannot walk, talk, see or use her hands to start the bondage training.)
+(Полностью свяжите ее, чтобы она не могла ходить, говорить, видеть или использовать свои руки, чтобы начать тренировки бондажа.)
+###_PLAYER
+(Do a pain training.)
+(Приступить к болевым треноровкам.)
+###_NPC
+(She takes a deep breath as you get closer to start a pain training.)
+(Она делает глубокий вдох, когда ты подходишь ближе, чтобы начать болевые тренировки.)
+###_PLAYER
+(Do a sexual training.)
+(Приступить к сексуальным тренировкам.)
+###_NPC
+(She blushes red as you get closer to start a sexual training.)
+(Она краснеет, когда ты приближаешься, чтобы начать сексуальные тренировки.)
+###_PLAYER
+(Give up and go back.)
+(Сдавайся и возвращайся.)
+(Check on her well-being.)
+(Проверь ее самочувствие.)
+###_NPC
+(She seems to be very calm and relax.  She doesn't struggle at all.)
+(Она кажется очень спокойной и расслабленной.  Она совсем не сопротивляется.)
+(She barely struggles and seems to be in control.)
+(Она едва сопротивляется и, кажется, контролирует ситуацию.)
+(She struggles a little and seems to be in a good learning mood, both in control and on the edge at the same time.)
+(Она немного борется и, кажется, находится в хорошем учебном настроении, как и в контроле, так и на краю в то же время.)
+(She struggles a lot and seems to be panicking.)
+(Она много борется и, кажется, паникует.)
+(She struggles frantically, cries and begs for freedom like an animal.)
+(Она отчаянно борется, плачет и молит о свободе, как животное.)
+###_PLAYER
+(Loosen her restraints.)
+(Развяжи ее путы.)
+###_NPC
+(She seems comforted as you loosen her restraints.)
+(Она кажется успокоенной, когда ты развязываешь ее путы.)
+###_PLAYER
+(Tease and grope her.)
+(Дразнить и щупать ее.)
+###_NPC
+(She moans silently as you slowly tease and grope her.)
+(Она тихо стонет, когда ты медленно дразнишь и щупаешь ее.)
+###_PLAYER
+(Tighten her restraints.)
+(Затяни ее путы.)
+###_NPC
+(She whimpers a little as you tighten her restrains.)
+(Она тихонько всхлипывает, когда ты затягиваешь ее путы.)
+###_PLAYER
+(Slap her.)
+(Ударь ее.)
+###_NPC
+(She cowers as you slap her hard, trembling from her helpless pain.)
+(Она съеживается, когда ты сильно шлепаешь ее, дрожа от беспомощной боли.)
+###_PLAYER
+(Tighten to stop her blood circulation.)
+(Затяни, чтобы остановить ее кровообращение.)
+###_NPC
+(She struggles and screams in the gag as her bondage gets really tight and cuts her blood flow, making her dizzy.)
+(Она борется и кричит в кляп, как ее бондаж становится очень жестким и перекрывает ее кровоток, что вызывает головокружение.)
+###_PLAYER
+(Check on her pain threshold.)
+(Проверь ее болевой порог.)
+###_NPC
+(She looks happy and doesn't seem to be in pain at all.)
+(Она выглядит счастливой и, кажется, совсем не испытывает боли.)
+(She looks like in a little bit of pain but nothing extreme.)
+(Она выглядит так, как будто ей немного больно, но нет ничего экстремального.)
+(She breathes fast and aches from the pain but seems to be well-focused on your training.)
+(Она часто дышит и болит от боли, но, кажется, хорошо сосредоточена на твоей тренировке.)
+(She cries from the intense pain and cowers at your every move, in a state of panic.)
+(Она плачет от сильной боли и съеживается при каждом твоем движении, находясь в состоянии паники.)
+(She has large marks on her skin and is almost passed-out.  The intense pain makes her barely conscious.)
+(У нее большие отметины на коже, и она почти без сознания.  От сильной боли она едва приходит в сознание.)
+###_PLAYER
+(Take time to comfort her.)
+(Найди время, чтобы успокоить ее.)
+###_NPC
+(She seems comforted as you take time to calm her down.)
+(Она кажется успокоенной, когда ты находишь время, чтобы успокоить ее.)
+###_PLAYER
+(Spank her.)
+(Отшлепай ее.)
+###_NPC
+(You spank her a few times as her eyes widen a little with each swing.)
+(Ты шлепаешь ее несколько раз, и ее глаза немного расширяются с каждым ударом.)
+###_PLAYER
+(Crop her.)
+(Стеком по ней.)
+###_NPC
+(She whimpers and jumps with each crop swing.)
+(Она всхлипывает и подпрыгивает при каждом взмахе стека.)
+###_PLAYER
+(Strangle her lightly.)
+(Придуши ее легонько.)
+###_NPC
+(You strangle her lightly as she struggles for air and against the pain.)
+(Ты слегка душишь ее, когда она борется за воздух и против боли.)
+###_PLAYER
+(Whip her.)
+(Выпороть ее.)
+###_NPC
+(She cries with each whip lashes, trying to endure the pain and getting a strong adrenaline rush.)
+(Она плачет с каждым ударом хлыста, пытаясь вытерпеть боль и получая сильный выброс адреналина.)
+###_PLAYER
+(Check on her arousal.)
+(Проверь ее возбуждение.)
+###_NPC
+(She doesn't seem turned on at all.)
+(Кажется, она совсем не возбуждена.)
+(She looks a little wet and seems to be enjoying herself.)
+(Она выглядит немного мокрой и, кажется, наслаждается собой.)
+(She's on the edge of an orgasm, trembling and begging you to let her climax.)
+(Она находится на краю оргазма, дрожа и умолять тебя, чтобы позволить ей кончить.)
+(She shakes a lot and tries to hide the fact that she had an unapproved orgasm.)
+(Она сильно трясется и пытается скрыть тот факт, что у нее был несанкционированный оргазм.)
+(She's moaning loudly and dripping in her own juices.  She cannot hide her unapproved orgasm.)
+(Она громко стонет и капает собственными соками.  Она не может скрыть свой несанкционированный оргазм.)
+###_PLAYER
+(Let her cool down.)
+(Дай ей остыть.)
+###_NPC
+(You let her relax and cool down for a little while.)
+(Дай ей немного расслабиться и остыть.)
+###_PLAYER
+(Kiss her.)
+(Поцелуй ее.)
+###_NPC
+(You kiss her lovingly to keep her in the mood.)
+(Ты целуешь ее с любовью, чтобы держать ее в нужном настроении.)
+###_PLAYER
+(Massage her breast.)
+(Массируй ее грудь.)
+###_NPC
+(You massage her breast slowly as she moans from the pleasure.)
+(Ты медленно массируешь ее грудь, пока она стонет от удовольствия.)
+###_PLAYER
+(Masturbate her.)
+(Мастурбируй ее.)
+###_NPC
+(You masturbate her skillfully as she moans loudly from the pleasure.)
+(Ты умело ее мастурбируешь, пока она громко стонет от удовольствия.)
+###_PLAYER
+(Eat her.)
+(Полижи ее.)
+###_NPC
+(She screams from the uncontrollable pleasure as you eat her pussy with delight.)
+(Она кричит от неконтролируемого удовольствия, когда ты с удовольствием лижешь ее киску.)
+###_PLAYER
+Your training is done.
+Твое обучение закончено.
+###_NPC
+(She nods happily and seems to have learned from you.  Your training had positive effects.)
+(Она радостно кивает и, кажется, научилась у тебя.  Твои тренировки дали положительный эффект.)
+###_PLAYER
+Next time it will be harsher.
+В следующий раз будет жестче.
+###_NPC
+(She gulps but seems to have learned from you.  Your training had positive effects.)
+(Она сглатывает, но, кажется, научилась у тебя.  Твои тренировки дали положительный эффект.)
+###_PLAYER
+(Stare at the trained girl.)
+(Смотри на обученную девушку.)
+(Spank her one last time.)
+(Отшлепай ее в последний раз.)
+(Back to the slave market.)
+(Вернемся на рынок рабынь.)
+###_NPC
+(She trembles without much control and panics a little, your training was too intense.)
+(Она дрожит без особого контроля и немного паникует, твоя тренировка была слишком интенсивной.)
+(She shrugs and doesn't seem very affected.  Your training was too easy for her.)
+(Она пожимает плечами и не выглядит очень впечатленной.  Твоя тренировка была слишком легкой для нее.)
+(She giggles and doesn't seem very affected.  Your training was too easy for her.)
+(Она хихикает и, похоже, не очень впечатлена.  Твоя тренировка была слишком легкой для нее.)
+(She seems confused from your training session, it's probably not what she needed.)
+(Она кажется растерянной от твоей тренировки, это, вероятно, не то, что ей нужно.)

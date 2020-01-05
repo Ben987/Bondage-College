@@ -1,0 +1,60 @@
+﻿###_NPC
+(She looks at your gag and giggles silently.)
+(Она смотрит на твой кляп и тихо хихикает.)
+(She looks at you with bright eyes.)  Thank you so much Miss, you're very generous.
+(Она смотрит на тебя блестящими глазами.)  Большое спасибо, Мисс, вы очень великодушны.
+(She bows her head to greet you.)
+(Она склоняет голову, приветствуя вас.)
+###_PLAYER
+Who are you?
+Кто ты такая?
+###_NPC
+(She stays silent.)
+(Она молчит.)
+###_PLAYER
+Are you getting sold?
+Тебя что, продают?
+###_NPC
+(She nods her head yes.)
+(Она утвердительно кивает головой.)
+###_PLAYER
+Are you mute?
+Ты немая?
+###_NPC
+(She shakes her head no.)
+(Она отрицательно качает головой.)
+###_PLAYER
+Can I tie you up?
+Можно я тебя свяжу?
+###_NPC
+(She blushes and looks at the Mistress.)
+(Она краснеет и смотрит на Госпожу.)
+###_PLAYER
+(Spank her butt.)
+(Отшлепай ее по заднице.)
+###_NPC
+(She jumps from the pain but doesn't make a sound.)
+(Она подпрыгивает от боли, но не издает ни звука.)
+###_PLAYER
+Take care.  (Leave her.)
+Береги себя.  (Оставь ее.)
+I'll take good care of you.
+Я буду хорошо о тебе заботиться.
+###_NPC
+Thank you so much, I appreciate.  Can you help me so we can visit your room?
+Большое спасибо, я ценю это.  Не могли бы вы помочь мне, чтобы мы могли посетить вашу комнату?
+###_PLAYER
+It's my pleasure girl.
+Это моя любимая девочка.
+###_NPC
+(She smiles.)  This is wonderful.  Can you help me so we can visit your room?
+(Она улыбается.)  Это замечательно.  Не могли бы вы помочь мне, чтобы мы могли посетить вашу комнату?
+###_PLAYER
+You better be a good investment.
+Тебе лучше быть хорошим капиталовложением.
+###_NPC
+(She gulps and nods quickly.)  Yes Miss.  Can you help me so we can visit your room?
+(Она сглатывает и быстро кивает.)  Да, Мисс.  Не могли бы вы помочь мне, чтобы мы могли посетить вашу комнату?
+###_PLAYER
+(Bring her to your room.)
+(Приведи ее в свою комнату.)
