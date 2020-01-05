@@ -109,9 +109,13 @@ function InventoryItemMiscMistressTimerPadlockAdd(TimeToAdd, PlayerMemberNumberT
             Dictionary.push({Tag: "TimerUnit", Text: ""});
         }
         Dictionary.push({Tag: "FocusAssetGroup", AssetGroupName: C.FocusGroup.Name});
+
+        for (var A = 0; A < C.Appearance.length; A++) {
+            if (C.Appearance[A].Asset.Group.Name == C.FocusGroup.Name)
+                C.Appearance[A] = DialogFocusSourceItem;
+        }
         ChatRoomPublishCustomAction(msg, true, Dictionary);
-    }
-    CharacterRefresh(C);
+    } else { CharacterRefresh(C); }
     InventoryItemMiscTimerPadlockExit();
 }
 
