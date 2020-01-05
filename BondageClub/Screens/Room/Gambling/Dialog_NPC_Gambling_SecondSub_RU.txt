@@ -1,0 +1,551 @@
+﻿###_NPC
+Blessed those who have nothing to say and yet remain silent. 
+Благослови тех, кому нечего сказать и при этом молчат.
+(She shakes her head but you're able to gag and silence her.)
+(Она качает головой, но ты можешь заткнуть ей рот и заставить замолчать.)
+(You remove her gag and she stretches her mouth.)  Thanks, that was getting uncomfortable.
+(Ты снимаешь с неё кляп и она разминает рот.)  Спасибо, мне стало неудобно.
+(You put some earplugs into place.) Oh, everything is so muffled, hehe.
+(Ты вставляешь в уши затычки.) О, все так приглушено, хе-хе.
+(You pull the earplugs out.) Oh, I can hear you clearly again.
+(Ты вытаскиваешь затычки для ушей.) О, я снова отчетливо слышу вас.
+(She grumbles but complies as you restrain her arms.)  How am I supposed to roll the dice like this?
+(Она ворчит, но подчиняется, когда ты связываешь ее руки.)  Как я могу вот так бросать кости?
+(You free her arms and she gives you a thumbs up.)  That's better, thanks!
+(Ты освобождаешь ее руки, и она показывает тебе большой палец.)  Так-то лучше, спасибо!
+(She sighs and lets you restrain her hands.) I'm not going be able to throw dice like this.
+(Она вздыхает и позволяет тебе связать ее запястья.) Я не смогу так бросать кости.
+(You slowly release her hands.)  That's better, thanks.
+(Ты медленно развязываешь ее запястья.)  Так-то лучше, спасибо.
+(She looks down as you restrain her legs securely.)  I'm not going anywhere anyway.
+(Она смотрит вниз, пока ты надежно связываешь ее ноги.)  Я в любом случае никуда не пойду.
+(You release her legs from the restraint.)  You're quite good with restraints Miss.
+(Ты освобождаешь ее ноги от пут.)  Вы неплохо справляетесь с ограничениями, Мисс.
+(She looks puzzled as you restrain her feet.)  I don't plan on leaving Miss.
+(Она выглядит озадаченной, когда ты связываешь ее ступни.)  Я не собираюсь уходить, Мисс.
+(You release her feet.)  Wonderful!
+(Ты освобождаешь ее ступни.)  Замечательно!
+(She struggles as you strap the collar around her neck.)  I'm not looking for an owner.
+(Она сопротивляется, когда ты надеваешь ей на шею ошейник.)  Я не ищу хозяйку.
+(You remove the collar from her neck.)  Yes!  This is much better.
+(Ты снимаешь ошейник с ее шеи.)  Да!  Так намного лучше.
+(She struggles as you lock the device on her.)  No, please!  I don't have the key for that!
+(Она борется, когда ты закрываешь устройство на ней.)  Нет, пожалуйста!  У меня нет ключа от него!
+(She looks really happy as you unlock the device.)  Thank you so much Miss DialogPlayerName.
+(Она выглядит очень счастливой, как ты открываешь устройство.)  Большое спасибо Мисс DialogPlayerName.
+(You put the device as she shakes her head.)  Ow!  You've made my day much more awful.
+(Ты размещаешь устройство, когда она качает головой.)  Ай!  Ты сделала мой день еще более ужасным.
+(You remove the device and she nods rapidly.)  Thanks a million, this is much better.
+(Ты убираешь устройство, и она быстро кивает.)  Спасибо на миллион, так намного лучше.
+(She trembles of pain as you whip her breast.) This is a gambling hall, not a torture chamber.
+(Она дрожит от боли, когда ты хлещешь ее по груди.) Это игорный зал, а не камера пыток.
+(You swing the crop on her torso as she moans.) Oh, that's not a game anymore.
+(Ты бьешь стеком по ее торсу, когда она стонет.) О, это уже не игра.
+(You whip her butt as she jumps from the pain.) I do not find that funny.
+(Ты хлещешь ее по заднице, когда она подпрыгивает от боли.) Я не нахожу это смешным.
+(She moans each time the crop lands on it.) How will I be able to sit like this?
+(Она стонет каждый раз, когда стек падает на нее.) Как я смогу сидеть после этого?
+I like my clothes better.
+Мне больше нравится моя одежда.
+I cannot concentrate this way.
+Я не могу сосредоточиться таким образом.
+Oof, it's finally over.
+О, наконец-то все закончилось.
+Oh, is that really necessary?
+О, неужели это так необходимо?
+(She looks at you satisfied.)
+(Она смотрит на тебя удовлетворенной.)
+You will pay for this.
+Ты заплатишь за это.
+I want to play with dice, not with eggs.
+Я хочу играть в кости, а не с яйцами.
+Thanks, now I can concentrate on what matters.
+Спасибо, теперь я могу сосредоточиться на том, что имеет значение.
+Woe to the vanquished.
+Горе побежденным.
+Finally, I'm back on firm ground.
+Наконец-то, я вернулася на твердую землю.
+Welcome to the Gambling Hall. Shall we play a game?
+Добро пожаловать в Игорный Зал. Может, сыграем в игру?
+###_PLAYER
+Hello, I'm DialogPlayerName.  Pleased to meet you.
+Привет, я  DialogPlayerName.  Приятно познакомиться.
+###_NPC
+Pleased to meet you too.  I'm DialogCharacterName.
+Я тоже рада с тобой познакомиться.  Я DialogCharacterName.
+###_PLAYER
+I'd like to ask you some questions.
+Я хотела бы задать тебе несколько вопросов.
+###_NPC
+What do you want to know?
+Что ты хочешь узнать?
+###_PLAYER
+(Play by your own rules.)
+(Играй по своим правилам.)
+###_NPC
+(She looks expectant.)
+(Она смотрит выжидающе.)
+###_PLAYER
+Let's play Catch the Fox.
+Давай поиграем в Поймай Лису.
+###_NPC
+Would you like to be the fox or the hunter?
+Ты хотела бы быть лисой или охотником?
+###_PLAYER
+Let's play Street to Roissy.
+Давай сыграем в Улица в Руасси.
+###_NPC
+OK, you're on.
+Хорошо, давай.
+###_PLAYER
+Let's play Dare Six.
+Давай сыграем в Смелая Шестерка.
+###_NPC
+I'm ready, let's go.
+Я готова, давай начнем.
+###_PLAYER
+(Struggle in your restraints.)
+(Борись в своих ограничениях.)
+###_NPC
+Do you need help?
+Тебе нужна помощь?
+###_PLAYER
+Let's talk later. (Leave her.)
+Давай поговорим позже. (Оставь ее.)
+Which games can I play with you?
+В какие игры я могу играть с тобой?
+###_NPC
+Depending on reputation and money: Catch the Fox, Street to Roissy or Dare Six.
+В зависимости от репутации и денег: Поймай Лису, Улица в Руасси или Смелая Шестерка.
+###_PLAYER
+Can you explain the rules to me?
+Ты можешь объяснить мне правила?
+###_NPC
+Not until you have a high enough reputation and some money.
+Не раньше, чем у тебя будет достаточно высокая репутация и немного денег.
+Sure. Which game?
+Конечно. Какая игра?
+###_PLAYER
+Can I tie you up?
+Можно я тебя свяжу?
+###_NPC
+Only if you win a game.
+Только если ты выиграешь игру.
+###_PLAYER
+Will you restrain me?
+Ты будешь меня связывать?
+###_NPC
+You bet your ass I will, if I win or if you run out of money.
+Можешь поспорить на свою задницу, что я это сделаю, если выиграю или у тебя кончатся деньги.
+###_PLAYER
+I don't have any more questions.
+У меня больше нет вопросов.
+###_NPC
+Alright. Shall we play a game?
+Хорошо. Может, сыграем в игру?
+###_PLAYER
+What are the rules of Catch the Fox?
+Каковы правила Поймай Лису?
+###_NPC
+One player is the fox, the other is the hunter. The hunter pays a hunting lease of 5$.
+Один игрок лиса, другой охотник. Охотник платит охотничий взнос 5 $.
+###_PLAYER
+What are the rules of Street to Roissy?
+Каковы правила Улица в Руасси?
+###_NPC
+Both players roll the dice simultaneously. Each player must roll a 1 first, then 2, 3, 4, 5, and finally 6.
+Оба игрока кидают кости одновременно. Каждый игрок должен выкинуть 1, а затем 2, 3, 4, 5, и, наконец, 6.
+###_PLAYER
+What are the rules of Dare Six?
+Каковы правила Смелая Шестерка?
+###_NPC
+In each round, you roll a dice as many times as you want and count the points together.
+В каждом раунде ты бросаешь кости столько раз, сколько хочешь, и подсчитываешь общие очки.
+###_PLAYER
+I have another question.
+У меня есть еще один вопрос.
+###_NPC
+OK, go ahead.
+Ладно, давай.
+###_PLAYER
+(Listen.)
+(Слушать.)
+###_NPC
+The fox tries to catch them as prey. The fox and the hunter take turns throwing dice.
+Лису пытаются поймать как добычу. Лиса и охотник по очереди бросают кости.
+The fox gets a dice lead and needs to reach a total of 30 to escape the hunter.
+Лиса получает кость преимущества и ей необходимо свыше 30 очков, чтобы убежать от охотника.
+If the hunter's score is equal to or as high as the fox's score, they catch the fox and get the lease back.
+Если счет охотника равен или выше, чем счет лисы, она ловит лису и получает обратно взнос.
+If a player rolls the wrong number, they pay 1$ and roll again.
+Если игрок выкидывает неправильное значение, она платят 1$ и бросает снова.
+If a player rolls the correct number, the opponent takes a step towards Roissy and either remove clothes or add restraints.
+Если игрок выкидывает правильное значение, противница делает шаг в сторону Руасси и либо снимает одежду, либо добавляет ограничения.
+The first person to reach Roissy loses, and the winner takes all the money.
+Первая, кто доберется до Руасси, проиграет, а победительница заберет все деньги.
+Then I roll the dice. Whoever has more points wins the round.
+Потом я бросаю кости. Тот, у кого больше очков, тот выигрывает раунд.
+However, if you throw a 6, you instantly lose the round.
+Однако, если ты выкидываешь 6, ты мгновенно проигрываешь раунд.
+The first player to lose 6 rounds loses the game.
+Первый игрок, потерявшая 6 раундов, проигрывает игру.
+###_PLAYER
+(Tickle her.)
+(Щекотать ее.)
+###_NPC
+(You tickle her behind the knees and feet.  She squirms around laughing and trying to escape.)
+(Ты щекочешь ее под коленями и ступни.  Она извивается от смеха и пытается убежать.)
+###_PLAYER
+(Kiss her.)
+(Поцеловать ее.)
+###_NPC
+(You grab a clump of her hair and place a firm and passionate kiss on her lips.)
+(Ты хватаешь ее за волосы и крепко и страстно целуешь в губы.)
+###_PLAYER
+(Fondle her.)
+(Ласкать ее.)
+###_NPC
+(You fondle her breasts and butt, making her moan softly.)
+(Ты ласкаешь ее грудь и ягодицы, заставляя ее тихо стонать.)
+###_PLAYER
+(Slap her.)
+(Ударить ее.)
+###_NPC
+(You slap her firmly in the face. She gasps from the pain and bows her head.)
+(Ты даешь ей сильную пощечину. Она задыхается от боли и склоняет голову.)
+###_PLAYER
+(Spank her.)
+(Отшлепай ее.)
+###_NPC
+(You spank her hard and she yelps from the pain.)
+(Ты сильно шлепаешь ее, и она визжит от боли.)
+###_PLAYER
+(End the game.)
+(Закончить игру.)
+###_NPC
+(You take a step back and she looks surprised.)
+(Ты делаешь шаг назад, и она выглядит удивленной.)
+###_PLAYER
+(Nod yes.)
+(Кивни, если да.)
+###_NPC
+Are you ready to pay 25$?
+Готова ли ты заплатить 25$?
+###_PLAYER
+Yes, can you release me?
+Да, ты можешь освободить меня?
+(Shake your head.)
+(Покачай головой.)
+###_NPC
+Tough luck then.
+Тогда не повезло.
+###_PLAYER
+No, thanks.
+Нет, спасибо.
+###_NPC
+Fair enough, but I'm not letting you out.
+Достаточно честно, но я тебя не выпущу.
+(She release you and takes the money.)
+(Она отпускает тебя и забирает деньги.)
+###_PLAYER
+Yes, you can have the money.
+Да, ты можешь получить деньги.
+###_NPC
+Up to you.
+Тебе решать.
+###_PLAYER
+No way, not a chance! (Leave her.)
+Ни за что, ни за что! (Оставь ее.)
+I'll play as the fox.
+Я буду играть за лисицу.
+###_NPC
+You roll first then.
+Ты бросаешь первой тогда.
+###_PLAYER
+I'll play as the hunter.
+Я буду играть за охотника.
+###_NPC
+Ok, I'll roll first then.
+Хорошо, я буду бросать первой тогда.
+###_PLAYER
+Next roll.
+Следующий бросок.
+###_NPC
+Ok.
+Хорошо.
+###_PLAYER
+The fox has escaped! (Take the win.)
+Лиса сбежала! (Забери приз.)
+###_NPC
+(She gives you the profit of REPLACEMONEY$.)
+(Она дает тебе награду REPLACEMONEY$.)
+###_PLAYER
+Congratulations! (Give her the win.)
+Поздравляю! (Отдай ей приз.)
+###_NPC
+(She quickly takes the money.)
+(Она быстро берет деньги.)
+###_PLAYER
+Uh oh, you caught me!
+Ой, ты меня поймала!
+###_NPC
+(She ties you up.)
+(Она связывает тебя.)
+###_PLAYER
+Ahah! You can't escape me!
+ААА! Ты не можешь сбежать от меня!
+###_NPC
+(She gives you the REPLACEMONEY$ back.)
+(Она отдает тебе обратно REPLACEMONEY$.)
+###_PLAYER
+(Roll the dice.)
+(Бросить кости.)
+###_NPC
+(You both roll the dice.)
+(Вы обе бросаете кости.)
+###_PLAYER
+(Cheer.)
+(Подбадривать.)
+###_NPC
+(She mumbles into the gag.)
+(Она бормочет что-то в кляп.)
+###_PLAYER
+I walk the line.
+Я иду по линии.
+###_NPC
+Can you see the place to be?
+Ты видишь, где это место?
+###_PLAYER
+(Struggle.)
+(Борьба.)
+###_NPC
+Are you enjoying yourself there?
+Тебе там нравится?
+###_PLAYER
+We walk side by side.
+Мы идем бок о бок.
+###_NPC
+On a long street.
+По длинной улице.
+###_PLAYER
+Both right. Take off your accessories.
+Обе выиграли. Снимай свои аксессуары.
+###_NPC
+(She takes her accessories off while you both move towards Roissy.)
+(Она снимает свои аксессуары, пока вы обе двигаетесь к Руасси.)
+###_PLAYER
+Both right. Take off your clothes.
+Обе выиграли. Снимай свою одежду.
+###_NPC
+(She takes her clothes off while you both move towards Roissy.)
+(Она раздевается, а вы обе двигаетесь к Руасси.)
+###_PLAYER
+Both right. Take off your underwear.
+Обе выиграли. Снимай нижнее белье.
+###_NPC
+(She takes her underwear off while you both move towards Roissy.)
+(Она снимает нижнее белье, пока вы обе двигаетесь в сторону Руасси.)
+###_PLAYER
+Both right. You'll have to start hopping!
+Обе выиграли. Тебе придется начать прыгать!
+###_NPC
+(She nods slowly while you tie her legs and then you both move towards Roissy.)
+(Она медленно кивает, пока ты связываешь ей ноги, а затем вы обе двигаетесь к Руасси.)
+###_PLAYER
+Both right. Rolling might get difficult now...
+Обе выиграли. Броски сейчас могут стать трудными...
+###_NPC
+(She struggles while you bind her arms and then you both move towards Roissy.)
+(Она сопротивляется, пока ты связываешь ей руки, а потом вы обе двигаетесь к Руасси.)
+###_PLAYER
+I win. Time to gag you.
+Я выиграла. Пора заткнуть тебе рот.
+###_NPC
+(She mumbles as you stuff the gag into her mouth and you step towards Roissy.)
+(Она бормочет, когда ты засовываешь кляп ей в рот и делает шаг к Руасси.)
+###_PLAYER
+There can only be one winner!
+Тут может быть только один победитель!
+###_NPC
+Lets roll the dice again.
+Давай снова бросим кости.
+###_PLAYER
+Oh, I lost. (Take off your accessories.)
+О, я проиграла. (Сними свои аксессуары.)
+###_NPC
+I like where this is going.
+Мне нравится, к чему все идет.
+###_PLAYER
+Oh, I lost. (Take off your clothes.)
+О, я проиграла. (Снимай свою одежду.)
+###_NPC
+Hurry up!
+Поторопись!
+###_PLAYER
+Oh, I lost. (Take off your underwear.)
+О, я проиграла. (Сними свое нижнее белье.)
+###_NPC
+Feeling exposed?
+Чувствуешь себя незащищенной?
+###_PLAYER
+Oh, I lost. (Let her tie your legs.)
+О, я проиграла. (Пусть она свяжет тебе ноги.)
+###_NPC
+Don't lose your balance now.
+Не теряй сейчас равновесие.
+###_PLAYER
+Oh, I lost. (Let her tie your arms.)
+О, я проиграла. (Пусть она свяжет тебе руки.)
+###_NPC
+Just a little bit more to go...
+Еще чуть-чуть...
+###_PLAYER
+Oh, I lost. (Try to resist her putting the gag in.)
+О, я проиграла. (Попробуй сопротивляться тому, чтобы она вставила кляп.)
+###_NPC
+Oh no you don't!  (She forces the gag into your mouth and takes the REPLACEMONEY$ winnings.)
+О нет, не надо!  (Она заталкивает тебе в рот кляп и забирает REPLACEMONEY$ выигрыша.)
+###_PLAYER
+I win. Take off your accessories.
+Я выиграла. Сними свои аксессуары.
+###_NPC
+(She takes her accessories off.)
+(Она снимает свои аксессуары.)
+###_PLAYER
+I win. Lose the clothes.
+Я выиграла. Сбрось одежду.
+###_NPC
+(She takes her clothes off.)
+(Она снимает с себя одежду.)
+###_PLAYER
+I win. Time for you to get naked.
+Я выиграла. Пора тебе раздеться.
+###_NPC
+(She takes her underwear off.)
+(Она снимает с себя нижнее белье.)
+###_PLAYER
+I win. Let's tie up those legs, shall we?
+Я выиграла. Давай перевяжем эти ноги?
+###_NPC
+(She nods slowly as you bind her legs.)
+(Она медленно кивает, пока ты связываешь ее ноги.)
+###_PLAYER
+I win. You don't need those arms to roll the dice.
+Я выиграла. Тебе не нужны эти руки, чтобы бросать кости.
+###_NPC
+(She struggles as you tie her arms behind her.)
+(Она сопротивляется, когда ты связываешь ей руки за спиной.)
+###_PLAYER
+I win. Time for the final touch!
+Я выиграла. Время для последнего штриха!
+###_NPC
+(She mumbles as you gag her, and then you take the REPLACEMONEY$ winnings.)
+(Она бормочет, когда ты затыкаешь ей рот, а затем ты берешь REPLACEMONEY$ выигрыша.)
+###_PLAYER
+I want to add a die.
+Я хочу добавить кубик.
+###_NPC
+(She gives you another die.)
+(Она дает тебе еще одну кость.)
+###_PLAYER
+That's enough.
+Этого достаточно.
+###_NPC
+(She nods slowly and rolls her dice.)
+(Она медленно кивает и бросает кости.)
+(She smiles menacingly.)
+(Она угрожающе улыбается.)
+Quickly now!
+Быстрее!
+I hope you're not too cold!
+Надеюсь, тебе не слишком холодно!
+Looking better already, don't you think?
+Уже лучше выглядишь, тебе не кажется?
+Hey, you look great like this...
+Эй, ты отлично выглядишь в таком виде...
+###_PLAYER
+Oh, I lost. (Open your mouth.)
+О, я проиграла. (Открыть рот.)
+###_NPC
+This gag is perfect for you. (She takes the REPLACEMONEY$ winnings.)
+Этот кляп идеально подходит для тебя. (Она забирает REPLACEMONEY$ выигрыша.)
+###_PLAYER
+I win. Take off those accessories.
+Я выиграла. Сними эти аксессуары.
+###_NPC
+(She removes her accessories.)
+(Она снимает свои аксессуары.)
+###_PLAYER
+I win. Let's see some underwear.
+Я выиграла. Давай посмотрим твое нижнее белье.
+###_NPC
+(She drops her clothes to the floor.)
+(Она роняет одежду на пол.)
+###_PLAYER
+I win. Lose the bra and panties.
+Я выиграла. Сними лифчик и трусики.
+###_NPC
+(She removes her underwear.)
+(Она снимает нижнее белье.)
+###_PLAYER
+I win. Let's get those legs tied up.
+Я выиграла. Давай свяжем эти ноги.
+###_NPC
+(She nods slowly as you tie her legs together.)
+(Она медленно кивает, когда ты связываешь ее ноги вместе.)
+###_PLAYER
+I win. Time to keep those arms out of the way.
+Я выиграла. Пора убрать эти руки назад.
+###_NPC
+(She looks down as you tie her arms behind her.)
+(Она смотрит вниз, когда ты связываешь ей руки за спиной.)
+###_PLAYER
+I win. Open wide!
+Я выиграла. Открой рот пошире!
+###_NPC
+(She opens her mouth slowly and you gag her, and then take the REPLACEMONEY$ winnings.)
+(Она медленно открывает рот, и ты затыкаешь ей рот кляпом, и потом забераешь REPLACEMONEY$ выигрыша.)
+###_PLAYER
+(Mumble into the gag.)
+(Мычать в кляп.)
+###_NPC
+(She cheers.)
+(Она ликует.)
+(She shows you her restraints.) I would like to, but...
+(Она показывает тебе свои ограничения.) Я бы с удовольствием, но ... ..
+(She struggles in her restraints.)  Can you release me?
+(Она борется в своих путах.)  Ты можешь освободить меня?
+###_PLAYER
+I'll go get help.  (Leave her.)
+Я пойду за помощью.  (Оставь ее.)
+What happened here?
+Что здесь произошло?
+###_NPC
+I lost a game and the winner just left me all tied up!
+Я проиграла партию, и победительница просто оставила меня связанной!
+Yes please, can you release us?
+Да, пожалуйста, ты можешь освободить нас?
+###_PLAYER
+Is everything alright now?
+Теперь все в порядке?
+###_NPC
+Yes, much better now, thanks.  Please thank the maids sorority for me!.
+Да, теперь намного лучше, спасибо.  Пожалуйста, поблагодари сообщество горничных от меня!
+###_PLAYER
+Great!  A chore well done.
+Отлично!  Хорошо сделанная работа.
+###_NPC
+Absolutely.  Is there something I can do for you?
+Разумеется.  Я могу что-нибудь для тебя сделать?
+###_PLAYER
+No problem.  We are here to serve you Miss.
+Нет проблем.  Мы здесь, чтобы служить вам Мисс.
+###_NPC
+That's great to hear!  Is there something I can do for you?
+Это приятно слышать!  Я могу что-нибудь для тебя сделать?
+###_PLAYER
+Alright, but take more care next time.
+Хорошо, но в следующий раз будьте осторожнее.
+###_NPC
+I will, thanks.  Is there something I can do for you?
+Я так и сделаю, спасибо.  Я могу что-нибудь для тебя сделать?
