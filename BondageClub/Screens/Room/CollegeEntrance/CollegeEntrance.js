@@ -5,8 +5,8 @@ var CollegeEntranceStudent = null;
 // Returns TRUE if specific dialog conditions are met
 function CollegeEntranceCanGoTennis() { return (Player.CanWalk() && Player.CanTalk() && !Player.IsRestrained() && CollegeEntranceIsWearingTennisClothes()) }
 function CollegeEntranceCanGoInside() { return (Player.CanWalk() && Player.CanTalk() && !Player.IsRestrained() && CollegeEntranceIsWearingCollegeClothes()) }
-function CollegeEntranceCanGoDetention() { return (false) }
-function CollegeEntranceCanGoTeacher() { return (false) }
+function CollegeEntranceCanGoDetention() { return (Player.CanWalk() && Player.CanTalk() && !Player.IsRestrained() && CollegeEntranceIsWearingCollegeClothes()) }
+function CollegeEntranceCanGoTeacher() { return (Player.CanWalk() && Player.CanTalk() && !Player.IsRestrained() && CollegeEntranceIsWearingCollegeClothes() && LogQuery("TeacherKey", "College")) }
 
 // Generates the entrance student
 function CollegeEntranceLoad() {

@@ -111,6 +111,7 @@ function ServerValidateProperties(C, Item) {
 				delete Item.Property.LockedBy;
 				delete Item.Property.LockMemberNumber;
 				delete Item.Property.RemoveTimer;
+				delete Item.Property.MaxTimer;
 				Item.Property.Effect.splice(E, 1);
 				E--;
 			}
@@ -121,8 +122,11 @@ function ServerValidateProperties(C, Item) {
 				// Make sure the remove timer on the lock is valid
 				var Lock = InventoryGetLock(Item);
 				if ((Lock.Asset.RemoveTimer != null) && (Lock.Asset.RemoveTimer != 0)) {
-					if ((typeof Item.Property.RemoveTimer !== "number") || (Item.Property.RemoveTimer > CurrentTime + Lock.Asset.RemoveTimer * 1000))
+					var CurrentTimeDelay = 5000;
+				    // As CurrentTime can be slightly different, we accept a small delay in ms
+					if ((typeof Item.Property.RemoveTimer !== "number") || (Item.Property.RemoveTimer - CurrentTimeDelay > CurrentTime + Lock.Asset.MaxTimer * 1000)){
 						Item.Property.RemoveTimer = CurrentTime + Lock.Asset.RemoveTimer * 1000;
+					}
 				} else delete Item.Property.RemoveTimer;
 
 				// Make sure the owner lock is valid
@@ -130,6 +134,7 @@ function ServerValidateProperties(C, Item) {
 					delete Item.Property.LockedBy;
 					delete Item.Property.LockMemberNumber;
 					delete Item.Property.RemoveTimer;
+                    delete Item.Property.MaxTimer;
 					Item.Property.Effect.splice(E, 1);
 					E--;
 				}
@@ -202,7 +207,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 							if ((C.Appearance[A].Asset.Name == Bundle[B].Name) && (C.Appearance[A].Asset.Group.Name == Bundle[B].Group) && (C.Appearance[A].Asset.Group.Family == AssetFamily))
 								NA.Property = Bundle[B].Property;
 						ServerValidateProperties(C, NA);
-						InventoryLock(C, NA, { Asset: AssetGet(AssetFamily, "ItemMisc", "OwnerPadlock") }, C.Ownership.MemberNumber);
+						if (C.Appearance[A].Asset.LockedBy == "OwnerPadlock") InventoryLock(C, NA, { Asset: AssetGet(AssetFamily, "ItemMisc", "OwnerPadlock") }, C.Ownership.MemberNumber);
 					}
 					Appearance.push(NA);
 				}
@@ -289,7 +294,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 function ServerPlayerAppearanceSync() {
 
 	// Creates a big parameter string of every appearance items and sends it to the server
-	if (Player.AccountName != "") {
+	if ((Player.AccountName != "") && (CurrentScreen != "Photographic")) {
 		var D = {};
 		D.AssetFamily = Player.AssetFamily;
 		D.Appearance = ServerAppearanceBundle(Player.Appearance);
@@ -337,7 +342,10 @@ function ServerAccountBeep(data) {
 		ServerBeep.MemberName = data.MemberName;
 		ServerBeep.ChatRoomName = data.ChatRoomName;
 		ServerBeep.Timer = CurrentTime + 10000;
-		if (Player.AudioSettings && Player.AudioSettings.PlayBeeps) ServerBeepAudio.play();
+		if (Player.AudioSettings && Player.AudioSettings.PlayBeeps) {
+			ServerBeepAudio.volume = Player.AudioSettings.Volume;
+			ServerBeepAudio.play();
+		}
 		ServerBeep.Message = DialogFind(Player, "BeepFrom") + " " + ServerBeep.MemberName + " (" + ServerBeep.MemberNumber.toString() + ")";
 		if (ServerBeep.ChatRoomName != null)
 			ServerBeep.Message = ServerBeep.Message + " " + DialogFind(Player, "InRoom") + " \"" + ServerBeep.ChatRoomName + "\"";

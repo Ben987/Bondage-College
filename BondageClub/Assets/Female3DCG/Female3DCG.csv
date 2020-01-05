@@ -151,6 +151,7 @@ HairAccessory1,Ears1,Ears Small
 HairAccessory1,Ears2,Ears Large
 HairAccessory1,PonyEars1,Pony Ears
 HairAccessory1,Ribbons1,Hair Ribbon 1
+HairAccessory1,Ribbons2,Hair Ribbon 2
 HairAccessory1,GiantBow1, Giant Bow 1
 HairAccessory1,BunnyEars1,Bunny Ears
 HairAccessory1,BunnyEars2,Floppy Bunny Ears
@@ -163,11 +164,19 @@ HairAccessory1,HairFlower1, Flower
 HairAccessory1,FoxEars1,Fox Ears Small
 HairAccessory1,BatWings,Small Bat Wings
 HairAccessory1,KittyMask1,Full Kitty Mask
+HairAccessory1,KittenEars1,Black Kitty Ears
+HairAccessory1,KittenEars2,Light Kitty Ears
+HairAccessory1,WolfEars1,Wolf Ears One Piece
+HairAccessory1,WolfEars2,Wolf Ears Big
+HairAccessory1,FoxEars2,Fox Ears Large 
+HairAccessory1,FoxEars3,Fox Ears Bell
+HairAccessory1,PuppyEars2,Floppy Puppy Ears
 HairAccessory2,,Hair Accessory
 HairAccessory2,Ears1,Ears Small
 HairAccessory2,Ears2,Ears Large
 HairAccessory2,PonyEars1,Pony Ears
 HairAccessory2,Ribbons1,Hair Ribbon 1
+HairAccessory2,Ribbons2,Hair Ribbon 2
 HairAccessory2,GiantBow1, Giant Bow 1
 HairAccessory2,BunnyEars1,Bunny Ears
 HairAccessory2,BunnyEars2,Floppy Bunny Ears
@@ -180,6 +189,13 @@ HairAccessory2,HairFlower1, Flower
 HairAccessory2,FoxEars1,Fox Ears Small
 HairAccessory2,BatWings,Small Bat Wings
 HairAccessory2,KittyMask1,Full Kitty Mask
+HairAccessory2,KittenEars1,Black Kitty Ears
+HairAccessory2,KittenEars2,Light Kitty Ears
+HairAccessory2,WolfEars1,Wolf Ears One Piece
+HairAccessory2,WolfEars2,Wolf Ears Big
+HairAccessory2,FoxEars2,Fox Ears Large 
+HairAccessory2,FoxEars3,Fox Ears Bell
+HairAccessory2,PuppyEars2,Floppy Puppy Ears
 Gloves,,Gloves
 Gloves,Gloves1,Short Gloves
 Gloves,Gloves2,Long Gloves
@@ -209,6 +225,13 @@ TailStraps,SuccubusStrap2,Succubus2 Tail Strap
 TailStraps,RaccoonStrap,Raccoon Tail Strap
 TailStraps,RaccoonTailStrap,Raccoon2 Tail Strap
 TailStraps,PuppyTailStrap1,Puppy Fluffy Tail Strap
+TailStraps,KittenTailStrap1,Light Kitten Tail Strap
+TailStraps,KittenTailStrap2,Small Fluffy Kitten Tail Strap
+TailStraps,FoxTailStrap1,Fox Small Tail Strap
+TailStraps,FoxTailStrap2,Fox Large Tail Strap
+TailStraps,WolfTailStrap1,Wolf Large Tail Strap
+TailStraps,WolfTailStrap2,Wolf Small Tail Strap
+TailStraps,WolfTailStrap3,Wolf White Tail Strap
 Wings,,Wings
 Wings,SuccubusFeather,Succubus Feather 
 Wings,SuccubusWings,Succubus Wings
@@ -274,6 +297,7 @@ HairFront,HairFront10,Style 10
 HairFront,HairFront11,Style 11
 HairFront,HairFront12,Style 12
 HairFront,HairFront13,Style 13
+HairFront,HairFront14,Style 14
 Eyes,,Eyes
 Eyes,Eyes1,Style 1
 Eyes,Eyes2,Style 2
@@ -287,11 +311,7 @@ Eyes,Eyes9,Style 9
 Eyes,Eyes10,Style 10
 Eyes,Eyes11,Style 11
 Mouth,,Mouth
-Mouth,Mouth1,Style 1
-Mouth,Mouth2,Style 2
-Mouth,Mouth3,Style 3
-Mouth,Mouth4,Style 4
-Mouth,Mouth5,Style 5
+Mouth,Mouth,Mouth
 Nipples,,Nipples Style
 Nipples,Nipples1,Small
 Nipples,Nipples2,Large
@@ -306,6 +326,10 @@ Eyebrows,,Eyebrows
 Eyebrows,Eyebrows1,Eyebrows
 Blush,,Blush
 Blush,Blush,Blush
+Fluids,,Fluids
+Fluids,Fluids,Fluids
+Emoticon,,Emoticon
+Emoticon,Emoticon,Emoticon
 ItemFeet,,Feet
 ItemFeet,NylonRope,Nylon Rope
 ItemFeet,HempRope,Hemp Rope
@@ -369,6 +393,13 @@ ItemButt,VibratingButtPlug,Vibrating Butt Plug
 ItemButt,InflVibeButtPlug,Inflatable Vibrating Butt Plug
 ItemButt,AnalHook,Anal Hook
 ItemButt,ButtPlugLock,Butt Plug Lock
+ItemButt,KittenTail1,Light Kitten Tail
+ItemButt,KittenTail2,Small Fluffy Kitten Tail
+ItemButt,FoxTail1,Fox Tail Small
+ItemButt,FoxTail2,Fox Tail Large
+ItemButt,WolfTail1,Wolf Tail Large
+ItemButt,WolfTail2,Wolf Tail Small
+ItemButt,WolfTail3,Wolf Tail White
 ItemPelvis,,Pelvis
 ItemPelvis,StraponPanties,Strap-On Panties
 ItemPelvis,LeatherChastityBelt,Leather Chastity Belt
@@ -447,6 +478,8 @@ ItemArms,BitchSuit,Pet Suit
 ItemArms,CollarLeashHolding,Holding Leash
 ItemArms,StraitDress,Strait Dress
 ItemArms,StraitDressOpen,Open Crotch Strait Dress
+ItemArms,Yoke,Yoke
+ItemArms,Pillory,Pillory
 ItemHands,,Hands
 ItemHands,PaddedMittens,Padded Mittens
 ItemHands,PawMittens,Paw Mittens
@@ -495,10 +528,6 @@ ItemNeckAccessories,CollarBell,Bell
 ItemNeckAccessories,CollarBow,Bow
 ItemNeckAccessories,CollarShockUnit,Shock Unit
 ItemNeckAccessories,ShockCollarRemote,Shock Collar Remote
-ItemNeckAccessories,CollarChainLong,Long Chain
-ItemNeckAccessories,CollarChainShort,Short Chain
-ItemNeckAccessories,CollarLeash,Leash
-ItemNeckAccessories,CollarLeashTaken,Pulled Leash
 ItemNeckAccessories,CollarNameTag,Name Tag
 ItemNeckAccessories,CollarNameTagOval,Oval Name Tag
 ItemNeckAccessories,CollarNameTagPet,Pet Name Tag
@@ -509,6 +538,11 @@ ItemNeckAccessories,CollarLapis,Lapis Pendant
 ItemNeckAccessories,CollarPentagram,Pentagram Pendant
 ItemNeckAccessories,CollarFlower,Flower
 ItemNeckAccessories,CollarRose,Rose
+ItemNeckRestraints,,Collar
+ItemNeckRestraints,CollarChainLong,Long Chain
+ItemNeckRestraints,CollarChainShort,Short Chain
+ItemNeckRestraints,CollarLeash,Leash
+ItemNeckRestraints,CollarLeashTaken,Pulled Leash
 ItemMouth,,Mouth
 ItemMouth,ClothGag,Cloth Gag
 ItemMouth,WiffleGag,Wiffle Ball Gag
@@ -546,6 +580,7 @@ ItemMouth,LatexPostureCollar,Latex Posture Collar Gag
 ItemMouth,BitGag,Silicon Bit Gag
 ItemMouth,XLBoneGag,XL Bone Gag
 ItemMouth,DogMuzzleExposed,Exposed Dog Muzzle
+ItemMouth,FoxyHarnessPanelGag,Foxy Harness Gag
 ItemHead,,Head
 ItemHead,ClothBlindfold,Cloth Blindfold
 ItemHead,LeatherBlindfold,Leather Blindfold
@@ -565,6 +600,7 @@ ItemHead,SackHood,Sack Hood
 ItemHead,LewdBlindfold,Lewd Blindfold
 ItemHead,LatexBlindfold,Latex Blindfold
 ItemHead,DogHood,Dog Hood
+ItemHead,FoxyMask,Foxy Mask
 ItemEars,,Ears
 ItemEars,LightDutyEarPlugs,Light Duty Ear Plugs
 ItemEars,HeavyDutyEarPlugs,Heavy Duty Ear Plugs
@@ -574,7 +610,9 @@ ItemMisc,MetalPadlock,Metal Padlock
 ItemMisc,IntricatePadlock,Intricate Padlock
 ItemMisc,TimerPadlock,Five Minutes Padlock
 ItemMisc,OwnerPadlock,Owner Padlock
+ItemMisc,OwnerTimerPadlock,Owner Timer Padlock
 ItemMisc,MistressPadlock,Mistress Padlock
+ItemMisc,MistressTimerPadlock,Mistress Timer Padlock
 ItemMisc,MetalPadlockKey,Metal Padlock Key
 ItemMisc,IntricatePadlockKey,Intricate Padlock Key
 ItemMisc,OwnerPadlockKey,Owner Padlock Key

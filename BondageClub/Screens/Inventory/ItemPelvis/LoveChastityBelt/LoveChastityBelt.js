@@ -79,7 +79,10 @@ function InventoryItemPelvisLoveChastityBeltClick() {
       DialogFocusItem.Property.LockButt = !DialogFocusItem.Property.LockButt;
       InventoryItemPelvisLoveChastityBeltUpdate();
       CharacterRefresh(C);
-      ChatRoomPublishCustomAction((DialogFindAutoReplace(Player, "LoveChastityBeltAction" + DialogFocusItem.Property.LockButt ? "LockButt" : "UnlockButt")), true);
+      var Dictionary = [];
+      Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+      Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+      ChatRoomPublishCustomAction("LoveChastityBeltAction" + (DialogFocusItem.Property.LockButt ? "LockButt" : "UnlockButt"), true, Dictionary);
     }
 
     if ((DialogFocusItem.Property.Type == "Closed") || (DialogFocusItem.Property.Type == "Vibe") || (DialogFocusItem.Property.Type == "Shock")) {
@@ -109,7 +112,10 @@ function InventoryItemPelvisLoveChastityBeltSetTypeTo(Type, Message) {
   DialogFocusItem.Property.Type = Type;
   InventoryItemPelvisLoveChastityBeltUpdate();
   InventoryExpressionTrigger(CharacterGetCurrent(), DialogFocusItem);
-  ChatRoomPublishCustomAction((DialogFindAutoReplace(Player, Message)), true);
+  var Dictionary = [];
+  Dictionary.push({Tag: "DestinationCharacter", Text: CharacterGetCurrent().Name, MemberNumber: CharacterGetCurrent().MemberNumber});
+  Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+  ChatRoomPublishCustomAction(Message, true, Dictionary);
 }
 
 // updates the belt on character
@@ -145,7 +151,10 @@ function InventoryItemPelvisLoveChastityBeltIntensityCanDecrease() {
 function InventoryItemPelvisLoveChastityBeltTriggerShock() {
   InventoryItemPelvisLoveChastityBeltLastAction = "ShockTriggered";
   InventoryExpressionTrigger(CharacterGetCurrent(), DialogFocusItem);
-  ChatRoomPublishCustomAction((DialogFindAutoReplace(Player, "LoveChastityBeltShockTrigger" + DialogFocusItem.Property.Intensity)), true);
+  var Dictionary = [];
+  Dictionary.push({Tag: "DestinationCharacterName", Text: CharacterGetCurrent().Name, MemberNumber: CharacterGetCurrent().MemberNumber});
+  Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+  ChatRoomPublishCustomAction("LoveChastityBeltShockTrigger" + DialogFocusItem.Property.Intensity, true, Dictionary);
 }
 
 // loads the belt into a correct state
@@ -186,8 +195,11 @@ function InventoryItemPelvisLoveChastityBeltSetIntensity(Modifier) {
   }
   CharacterRefresh(C);
   if (Type == "Vibe") {
-    ChatRoomPublishCustomAction((DialogFindAutoReplace(Player, "LoveChastityBeltVibe" + ((Modifier > 0) ? "Increase" : "Decrease") + "To" + DialogFocusItem.Property.Intensity)), true);
+    ChatRoomPublishCustomAction("LoveChastityBeltVibe" + ((Modifier > 0) ? "Increase" : "Decrease") + "To" + DialogFocusItem.Property.Intensity, true, [{Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber}]);
   } else if (DialogFocusItem.Property.ShowText) {
-    ChatRoomPublishCustomAction((DialogFindAutoReplace(Player, "LoveChastityBeltShockSet" + DialogFocusItem.Property.Intensity)), true);
+    var Dictionary = [];
+    Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+    Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+    ChatRoomPublishCustomAction("LoveChastityBeltShockSet" + DialogFocusItem.Property.Intensity, true, Dictionary);
   }
 }

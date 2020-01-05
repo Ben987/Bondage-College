@@ -48,5 +48,5 @@ function InventoryItemDevicesSybianSetIntensity(Modifier) {
 	CharacterLoadEffect(C);
 	if (C.ID == 0) ServerPlayerAppearanceSync();
 
-	ChatRoomPublishCustomAction((DialogFind(Player, "Sybian" + ((Modifier > 0) ? "Increase" : "Decrease") + "To" + DialogFocusItem.Property.Intensity)).replace("DestinationCharacter",C.Name), true);
+	ChatRoomPublishCustomAction("Sybian" + ((Modifier > 0) ? "Increase" : "Decrease") + "To" + DialogFocusItem.Property.Intensity, true, [{Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber}]);
 }

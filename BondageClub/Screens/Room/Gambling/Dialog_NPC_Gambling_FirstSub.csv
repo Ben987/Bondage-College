@@ -38,7 +38,8 @@ RemoveSuspensionHempRope,,,"Finally, I'm back on firm ground.",,
 0,,"Hello, I'm DialogPlayerName.  Pleased to meet you.",Pleased to meet you too.  I'm DialogCharacterName.,DialogRemove(),
 0,,What's going on here?,In the Gambling Hall we play kinky games of chance.,DialogRemove(),
 0,,Let's play a simple dice game.,"Let's play, good luck!","SimpleDiceController(""new"")",CanPlaySimpleDice()
-0,70,(Struggle in your restraints.),Are you having fun?,,Player.IsRestrained()
+0,70,(Struggle in your restraints.),Are you having fun?,,IsRestrainedWithoutLock()
+0,,(Struggle in your restraints.),"(She checks your locks.)  I'm sorry, there's not much I can do.",,IsRestrainedWithLock()
 0,30,(Play by your own rules.),(She looks expectant.),,FirstSubRestrained()
 0,,Let's play fifteen and six.,(She gives you three dice.),"TwentyOneController(""new"")",CanPlayTwentyOne()
 0,,Let's play Toothpick.,(She lays out 15 toothpicks.) Your turn sweetie.,"ToothpickController(""new"")",CanPlayToothpick()

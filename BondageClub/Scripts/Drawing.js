@@ -113,6 +113,7 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 		var HeightRatio = 1.0;
 		if ((IsHeightResizeAllowed == undefined) || IsHeightResizeAllowed) HeightRatio = CharacterAppearanceGetCurrentValue(C, "Height", "Zoom");
 		if ((Player != null) && (Player.VisualSettings != null) && (Player.VisualSettings.ForceFullHeight != null) && Player.VisualSettings.ForceFullHeight) HeightRatio = 1.0;
+		if (Zoom == null) Zoom = 1;
 		X += Zoom * Canvas.width * (1 - HeightRatio) / 2;
 		if (C.Pose.indexOf("Suspension") < 0) Y += Zoom * Canvas.height * (1 - HeightRatio);
 
@@ -144,12 +145,10 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 			Canvas = CanvasH;
 		}
 
-		// Draw the character and applies the zoom ratio
+		// Draw the character and applies the zoom ratio, the canvas to draw can be shrunk based on the height modifier
 		Zoom *= HeightRatio;
-		if ((Zoom == undefined) || (Zoom == 1))
-			DrawCanvas(Canvas, X, Y - C.HeightModifier);
-		else
-			DrawCanvasZoom(Canvas, X, Y - (C.HeightModifier * Zoom), Zoom);
+		var H = Canvas.height + (((C.HeightModifier != null) && (C.HeightModifier < 0)) ? C.HeightModifier : 0);
+		MainCanvas.drawImage(Canvas, 0, 0, Canvas.width, H, X, Y - (C.HeightModifier * Zoom), Canvas.width * Zoom, H * Zoom);
 
 		// Applies a Y offset if the character is suspended
 		if (C.Pose.indexOf("Suspension") >= 0) Y += (Zoom * Canvas.height * (1 - HeightRatio) / HeightRatio);

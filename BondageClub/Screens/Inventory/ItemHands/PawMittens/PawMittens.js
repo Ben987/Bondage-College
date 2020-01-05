@@ -64,7 +64,10 @@ function InventoryItemHandsPawMittensChain() {
 			if (InventoryGet(C, "ItemTorso").Asset.Name == "AdultBabyHarness") {
 				InventoryWear(C, "MittenChain1", "ItemArms");
 				if (C.ID == 0) ServerPlayerAppearanceSync();
-				ChatRoomPublishCustomAction(Player.Name + " " + DialogFind(Player, "chains") + " " + C.Name + " " + DialogFind(Player, "mittenstoharness") + ".", true);
+				var Dictionary = [];
+				Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+				Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+				ChatRoomPublishCustomAction("MittenChain", true, Dictionary);
 			} else InventoryItemHandsPawMittensMsg = "NeedHarness";
 		} else InventoryItemHandsPawMittensMsg = "NeedHarness";
 	} else InventoryItemHandsPawMittensMsg = "FreeArms";

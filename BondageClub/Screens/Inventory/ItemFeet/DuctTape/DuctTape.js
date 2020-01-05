@@ -59,10 +59,11 @@ function InventoryItemFeetDuctTapeSetPose(NewPose) {
 			if (NewPose == "CompleteFeet") DialogFocusItem.Property.Difficulty = 6;
 		}
 		CharacterRefresh(C);
-		var msg = DialogFind(Player, "DuctTapeRestrain" + ((NewPose == null) ? "Feet" : NewPose));
-		msg = msg.replace("SourceCharacter", Player.Name);
-		msg = msg.replace("DestinationCharacter", C.Name);
-		ChatRoomPublishCustomAction(msg, true);
+		var msg = "DuctTapeRestrain" + ((NewPose == null) ? "Feet" : NewPose);
+		var Dictionary = [];
+		Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+		Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+		ChatRoomPublishCustomAction(msg, true, Dictionary);
 		if (DialogInventory != null) {
 			DialogFocusItem = null;
 			DialogMenuButtonBuild(C);

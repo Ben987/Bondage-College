@@ -48,5 +48,5 @@ function InventoryItemNipplesTapedVibeEggsSetIntensity(Modifier) {
 	if (DialogFocusItem.Property.Intensity == 3) DialogFocusItem.Property.Effect = ["Egged", "Vibrating"];	
 	CharacterLoadEffect(C);
 	if (C.ID == 0) ServerPlayerAppearanceSync();
-	ChatRoomPublishCustomAction((DialogFind(Player, "NippleEgg" + ((Modifier > 0) ? "Increase" : "Decrease") + "To" + DialogFocusItem.Property.Intensity)).replace("DestinationCharacter",C.Name), true);
+	ChatRoomPublishCustomAction("NippleEgg" + ((Modifier > 0) ? "Increase" : "Decrease") + "To" + DialogFocusItem.Property.Intensity, true, [{Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber}]);
 }

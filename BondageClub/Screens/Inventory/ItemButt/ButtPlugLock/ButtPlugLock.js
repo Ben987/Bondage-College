@@ -80,10 +80,11 @@ function InventoryItemButtButtPlugLockSetPose(NewPose) {
 
 	// Refreshes the character and chatroom
 	CharacterRefresh(C);
-	var msg = DialogFind(Player, "ButtPlugLockRestrain" + ((NewPose == null) ? "Base" : NewPose));
-	msg = msg.replace("SourceCharacter", Player.Name);
-	msg = msg.replace("DestinationCharacter", C.Name);
-	ChatRoomPublishCustomAction(msg, true);
+	var msg = "ButtPlugLockRestrain" + ((NewPose == null) ? "Base" : NewPose);
+	var Dictionary = [];
+	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+	Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+	ChatRoomPublishCustomAction(msg, true, Dictionary);
 
 	// Rebuilds the inventory menu
 	if (DialogInventory != null) {

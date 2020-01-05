@@ -161,6 +161,14 @@ function InventoryAllow(C, Prerequisite, SetDialog) {
 	if (Prerequisite == "NotSuspendedOrHorsed" && (InventoryGet(C, "ItemFeet") != null) && (InventoryGet(C, "ItemFeet").Asset.Name == "SpreaderMetal")) T = "CannotBeUsedWithFeetSpreader";
 	if (Prerequisite == "NotSuspendedOrHorsed" && C.Effect.indexOf("Mounted") >= 0) T = "CannotBeUsedWhenMounted";
 
+	// Burlap sack or body bag
+	if (Prerequisite == "CanBeBagged" && C.Pose.indexOf("Suspension") >= 0) T = "TheyMustBeStandingFirst";
+	if (Prerequisite == "CanBeBagged" && C.Pose.indexOf("Horse") >= 0) T = "TheyMustBeStandingFirst";
+	if (Prerequisite == "CanBeBagged" && C.Pose.indexOf("KneelingSpread") >= 0) T = "TheyMustBeStandingFirst";
+	if (Prerequisite == "CanBeBagged" && (InventoryGet(C, "ItemFeet") != null) && (InventoryGet(C, "ItemFeet").Asset.Name == "SpreaderMetal")) T = "CannotBeUsedWithFeetSpreader";
+	if (Prerequisite == "CanBeBagged" && C.Effect.indexOf("Mounted") >= 0) T = "CannotBeUsedWhenMounted";
+	if (Prerequisite == "CanBeBagged" && C.Pose.indexOf("Yoked") >= 0) T = "CannotBeUsedWhenYoked";
+	
 	// If no error text was found, we return TRUE, if a text was found, we can show it in the dialog
 	if (T != "" && (SetDialog == null || SetDialog)) DialogSetText(T);
 	return (T == "");
@@ -305,6 +313,15 @@ function InventoryOwnerOnlyItem(Item) {
 		var Lock = InventoryGetLock(Item);
 		if ((Lock != null) && (Lock.Asset.OwnerOnly != null) && Lock.Asset.OwnerOnly) return true;
 	}
+	return false;
+}
+
+// Returns TRUE if the character is wearing at least one restraint that's locked with an extra lock
+function InventoryCharacterHasLockedRestraint(C) {
+	if (C.Appearance != null)
+		for (var A = 0; A < C.Appearance.length; A++)
+			if (C.Appearance[A].Asset.IsRestraint && (InventoryGetLock(C.Appearance[A]) != null))
+				return true;
 	return false;
 }
 
