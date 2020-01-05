@@ -1,0 +1,281 @@
+﻿###_NPC
+(She nods to you.)
+(Она кивает тебе.)
+(She bows her head and presents her mouth so you can gag her easily.)
+(Она склоняет голову и подставляет свой рот, так что ты легко можешь заткнуть ей рот.)
+(You remove her gag and she looks angry.) Give it back to me.
+(Ты снимаешь с нее кляп, и она выглядит сердитой.) Верните мне его обратно.
+(She tugs really hard on her restraints, almost hurting herself, and moans.)  This feels sooooo good.
+(Она очень сильно натягивает свои путы, почти причиняя себе боль, и стонет.)  Это ощущается оооочень хорошо.
+(You free her arms and she stretches a little.)  What will you use on me next?
+(Ты освобождаешь ее руки, и она немного потягивается.)  Что вы собираетесь использовать на мне в следующий раз?
+(She submits to you while you restrain her legs securely.)  That's how the race really gets tough.
+(Она подчиняется тебе, пока ты надежно связываешь ее ноги.)  Вот так гонка становится действительно жесткой.
+(You release her legs from the restraint.)  The training finally continues.
+(Ты освобождаешь ее ноги от оков.)  Тренировка наконец-то продолжается.
+(She looks puzzled as you restrain her feet.)  I'll stay on guard here, trainer.
+(Она выглядит озадаченной, когда ты связываешь ее ступни.)  Я останусь здесь на страже, тренер.
+(You release her feet and she wiggles them.)  Thanks, it was troublesome.
+(Ты освобождаешь ее ступни, и она ими шевелит.)  Спасибо, это было хлопотно.
+(You strap the collar on her.)  With that, the equipment is complete.
+(Ты застегиваешь ей ошейник.)  С этим предметов все готово.
+(You remove the collar from her neck.)  Time to return to normal.
+(Ты снимаешь ошейник с ее шеи.)  Время, чтобы вернуться к нормальной жизни.
+(You snap the belt around her waist and crotch while she sighs.)  No more fun.
+(Ты засчтегиваешь пояс вокруг ее талии и промежности, пока она вздыхает.)  Больше никакого веселья.
+(You unlock the belt from her waist and she smiles.)  Thanks a lot Miss DialogPlayerName.
+(Ты отстегиваешь пояс от ее талии, и она улыбается.)  Большое спасибо, Мисс DialogPlayerName.
+(You strap the device on her head as she nods slowly.)  I understand, no distractions.
+(Ты прикрепляешь устройство к ее голове, пока она медленно кивает.)  Я понимаю, не отвлекайтесь.
+(You remove the device and she nods rapidly.)
+(Ты убераешь устройство, и она быстро кивает.)
+(She jumps from the searing pain on her breast.)  Ouch!
+(Она подпрыгивает от жгучей боли в груди.)  Ай!
+(You whip her breast with the leather crop as she whimpers and bows her head.)
+(Ты хлещешь ее по груди кожаным стеком, пока она всхлипывает и склоняет голову.)
+(You whip her butt hard as she sighs.)  I promise I'll train harder Miss.
+(Ты сильно хлещешь ее по заднице, когда она вздыхает.)  Обещаю, что буду тренироваться еще усерднее, Мисс.
+(She grumbles as you strike her butt with the crop.)  Next time I will try harder.
+(Она ворчит, когда ты бьешь ее по заднице стеком.)  В следующий раз я буду стараться сильнее.
+(She radiates with joy.) Thanks, that makes life easier.
+(Она излучает радость.) Спасибо, это облегчит жизнь.
+(She steps after you.) That's part of the equipment.
+(Она идет за тобой по пятам.) Это часть экипировки.
+(She nods in agreement.) That is really necessary.
+(Она согласно кивает.) Это действительно необходимо.
+(She flops her ears.)
+(Она хлопает себя по ушам.)
+(She holds her breath as you use the item.)  Oh my!  What did I do to deserve that?
+(Она задерживает дыхание, когда ты используешь этот предмет.)  О боже!  Что я такого сделала, чтобы заслужить это?
+(She wiggles her breast slowly as you remove the device.)  Do you have other items we could try?
+(Она медленно виляет своей грудью, пока ты снимаешь устройство.)  У вас есть другие предметы, которые мы могли бы попробовать?
+(She moans softly as you massage her pussy with the wand.)  Mmmmh, this is nice.  Whinny!
+(Она тихо стонет, когда ты массируешь ее киску палочкой.)  Мммм, это очень мило.  Ржание!
+(She moans loudly as you slide the egg inside.)  This egg is so sexy.
+(Она громко стонет, когда ты засовываешь внутрь яйцо.)  Это яйцо такое сексуальное.
+(She does one last moan as you remove the egg.)  Ooooh!  That was quite a stimulation.
+(Она издает последний стон, когда ты убираешь яйцо.)  Оооо!  Это была настоящая стимуляция.
+(You restrain her feet and suspend her from the ceiling.)  Oh my!  Careful, I don't want to fall.
+(Ты связываешь ее ступни и подвешиваешь к потолку.)  О боже!  Осторожно, я не хочу упасть.
+(You let her down from the ceiling.)  Much better!  I was slowly getting dizzy.
+(Ты спускаешь ее с потолка.)  Так гораздо лучше!  У меня немпного кружится голова.
+(She whinnies.)
+(Она ржет.)
+###_PLAYER
+Hello, I'm DialogPlayerName.  Pleased to meet you.
+Привет, я DialogPlayerName.  Приятно познакомиться.
+What's going on in here?
+Что здесь происходит?
+###_NPC
+(She stomps on the ground.)
+(Она топает по земле.)
+###_PLAYER
+(Try to trot to her.)
+(Попробуй подскочить к ней.)
+###_NPC
+(She turns away.)
+(Она отворачивается.)
+###_PLAYER
+(Whinny to her.)
+(Ржи для нее.)
+###_NPC
+(She kicks your butt.)
+(Она пинает тебя под зад.)
+###_PLAYER
+(Trot to her.)
+(Рысью к ней.)
+###_NPC
+(She nudges you with her nose.)
+(Она толкает тебя носом.)
+###_PLAYER
+(Start the training.)
+(Начинай тренироваться.)
+###_NPC
+(She looks expectant.)
+(Она смотрит выжидающе.)
+###_PLAYER
+I can't stay to chat.  (Leave her.)
+Я не могу остаться, чтобы поболтать.  (Оставь ее.)
+(Try to talk to her.)
+(Попробуй поговорить с ней.)
+###_NPC
+(You both try to mumble to each other but it makes no sense.)
+(Вы обе пытаетесь что-то пробормотать друг другу, но это бессмысленно.)
+###_PLAYER
+(Lean on her.)
+(Прижаться к ней.)
+###_NPC
+(You lean and rest on each other's hips while she whinnies slowly.)
+(Вы наклоняетесь и опираетесь на бедра друг друга, пока она медленно ржет.)
+###_PLAYER
+(Nuzzle with her.)
+(Прижмись к ней носом.)
+###_NPC
+(You clumsily nuzzle each other in your restraints and giggle.)
+(Вы неуклюже утыкаетесь носом друг в друга и хихикаете.)
+###_PLAYER
+(Rub your body against hers.)
+(Потереться своим телом о ее.)
+###_NPC
+(You both rub your bodies against each other and moan slowly.)
+(Вы обе третеся телами друг о друга и медленно стонете.)
+###_PLAYER
+(Try to masturbate her with your finger.)
+(Попробуйте подрочить ее пальцем.)
+###_NPC
+(You rub your armbinder against her and hear a satisfied snort.)
+(Ты трешься о нее своим армбиндером и слышишь удовлетворенное фырканье.)
+###_PLAYER
+(Try to masturbate her with your feet.)
+(Попробуй мастурбировать ее ногами.)
+###_NPC
+(You both rub your feet against each other's crotch and have a lot of fun.)
+(Вы обе третеся ногами о промежность друг друга и получаете массу удовольствия.)
+###_PLAYER
+(More...)
+(Больше...)
+(Step back.)
+(Шаг назад.)
+###_NPC
+(You step back.)
+(Ты отходишь назад.)
+###_PLAYER
+(Try to release her.)
+(Попробуй освободить ее.)
+###_NPC
+(You struggle in your armbinder and try to release her.  But you fail miserably.)
+(Ты борешься в своем армбиндере и пытаешься освободить ее.  Но ты с треском проигрываешь.)
+###_PLAYER
+(Try to kiss her.)
+(Попробуй поцеловать ее.)
+###_NPC
+(You try to kiss her, but the gag prevents you from doing it.)
+(Ты пытаешься поцеловать ее, но кляп мешает тебе сделать это.)
+###_PLAYER
+(Try to masturbate her with your tongue.)
+(Попробуй подрочить ей своим язычком.)
+###_NPC
+(You lick her to an orgasm.)
+(Ты лижешь ее до оргазма.)
+###_PLAYER
+(Check the equipment before the start of the exercise.)
+(Проверьте снаряжение перед началом упражнения.)
+(Send her back to the herd. End the training)
+(Отправь ее обратно в стадо. Окончание обучения)
+###_NPC
+(She trots back into her box.)
+(Она рысью возвращается в свое стойло.)
+###_PLAYER
+(Make her gallop through the manege.)
+(Пусть она скачет галопом по манежу.)
+(Make her walk a few steps and lift her legs properly.)
+(Заставь ее пройти несколько шагов и правильно поднимать ноги.)
+(Make her dance around through the manege.)
+(Заставь ее танцевать по всему манежу.)
+(Make her practice walking on the treadmill.)
+(Пусть она потренируется ходить по беговой дорожке.)
+(Make her practice with the carriage.)
+(Заставь ее попрактиковаться с экипажем.)
+(Send her out on the pasture to collect carrots.)
+(Отправь ее на пастбище собирать морковь.)
+(Make her practice jumping over the hurdles.)
+(Заставьте ее попрактиковаться в прыжках через барьеры.)
+(Check your whip.)
+(Проверь свой хлыст.)
+(Reward her.)
+(Вознагради ее.)
+###_NPC
+(She trots to you.)
+(Она бежит к тебе рысью.)
+###_PLAYER
+(Ignore her.)
+(Игнорируй ее.)
+###_NPC
+(She waits patiently.)
+(Она терпеливо ждет.)
+###_PLAYER
+(Punish her.)
+(Наказать ее.)
+###_NPC
+(She ignores you.)
+(Она игнорирует тебя.)
+###_PLAYER
+(Caress her head.)
+(Погладь ее по голове.)
+###_NPC
+(She whinnies excitedly.)
+(Она взволнованно ржет.)
+###_PLAYER
+(Scratch her back.)
+(Почеши ей спину.)
+###_NPC
+(She moans satisfied.)
+(Она стонет довольная.)
+###_PLAYER
+(Take a brush and straighten her hair.)
+(Возьми щётку и поправь её волосы.)
+(Take a sponge and clean her.)
+(Возьми губку и почисти ее.)
+(Give her an oatcake.)
+(Дайте ей овсяную лепешку.)
+###_NPC
+(She grabs for it greedily.)
+(Она жадно хватается за нее.)
+###_PLAYER
+(Stop rewarding her.)
+(Перестань награждать ее.)
+###_NPC
+(She looks at you.)
+(Она смотрит на тебя.)
+###_PLAYER
+(Crack the whip.)
+(Щелкни кнутом.)
+###_NPC
+(She winces.)
+(Она вздрагивает.)
+###_PLAYER
+(Hit her back with the whip.)
+(Ударь ее хлыстом по спине.)
+###_NPC
+(Startled, she takes a step forward.)
+(Перепуганная, она делает шаг вперед.)
+###_PLAYER
+(Hit the whip against her hip.)
+(Ударь хлыстом по ее бедру.)
+###_NPC
+(She cries in pain.)
+(Она плачет от боли.)
+###_PLAYER
+(Hit the whip against her butt.)
+(Ударил кнутом по ее заднице.)
+###_NPC
+(She stands upright and looks at you carefully.)
+(Она выпрямляется и внимательно смотрит на тебя.)
+###_PLAYER
+(Hit her legs with the whip.)
+(Ударь ее хлыстом по ногам.)
+###_NPC
+(She glances at the manege with a tense look.)
+(Она напряженно смотрит на манеж.)
+###_PLAYER
+(Hit her breast with the whip.)
+(Ударил ее хлыстом по груди.)
+###_NPC
+(She whimpers in pain.)
+(Она всхлипывает от боли.)
+###_PLAYER
+(Pour a bucket of ice water over her.)
+(Вылей на нее ведро ледяной воды.)
+###_NPC
+(She stands rigid and motionless in fright.)
+(Она стоит неподвижно и застыла в испуге.)
+###_PLAYER
+(Stop punishing her.)
+(Перестань ее наказывать.)
+###_NPC
+(She is a good match.)
+(Она - хорошая партия.)
+(She fails miserably.)
+(Она с треском проигрывает.)
+(She kicks you.)
+(Она тебя пинает.)

@@ -1,0 +1,719 @@
+﻿###_NPC
+Good. Horses don't speak.
+Хорошо. Лошади не разговаривают.
+(She first shakes her head to avoid the gag, but finally surrenders and lets you silence her.)
+(Она сначала мотает головой, чтобы избежать кляпа, но в конце концов сдается и позволяет тебе заставить ее замолчать.)
+(You remove her gag while she stretches her mouth.)  Thanks Miss, it's hard to dispatch ponies with that gag.
+(Ты вынимаешь у нее кляп, пока она растягивает рот.)  Спасибо, Мисс, трудно отправить пони с таким кляпом.
+(She sighs and turns around while you restrain her arms.)  It might be a little hard to work like that Miss.
+(Она вздыхает и оборачивается, пока ты связываешь ее руки.)  Наверное, будет так трудно работать, Мисс.
+(You free her arms and she nods happily.)  Thanks a lot Miss.
+(Ты освобождаешь ее руки, и она радостно кивает.)  Большое спасибо, Мисс.
+(She submits to you while you restrain her legs securely.)  I don't need to move anyway.
+(Она подчиняется тебе, пока ты надежно связываешь ее ноги.)  Мне все равно не нужно двигаться.
+(You release her legs from the restraint.)  Let me know if I can help you Miss.
+(Ты освобождаешь ее ноги от пут.)  Дайте мне знать, если я могу помочь вам, Мисс.
+(She looks puzzled as you restrain her feet.)  I'll stay on guard here Miss.
+(Она выглядит озадаченной, когда ты связываешь ее ступни.)  Я останусь здесь на страже, Мисс.
+(You release her feet and she wiggles them.)  Thanks Miss, that was quite troublesome.
+(Ты освобождаешь ее ступни, и она шевелит ими.)  Спасибо, Мисс, это было довольно хлопотно.
+(You strap the collar on her while she blushes.)  You're quite a Dominant Miss.
+(Ты застегиваешь ей ошейник, когда она краснеет.)  Вы довольно Домининантная Мисс.
+(You remove the collar around her neck.)  Thanks Miss.
+(Ты снимаешь ошейник с ее шеи.)  Спасибо, Мисс.
+(You snap the belt around her waist and crotch while she sighs.)  No more fun for the crew.
+(Ты застегиваешь пояс вокруг ее талии и промежности, пока она вздыхает.)  Больше никаких развлечений.
+(You unlock the belt from her waist and she smiles.)  Thanks a lot Miss DialogPlayerName.
+(Ты снимаешь с ее талии, и она улыбается.)  Большое спасибо Мисс DialogPlayerName.
+(You strap the device on her head as she nods slowly.)  This will not make my job easier Miss.
+(Ты пристегиваешь устройство к ее голове, и она медленно кивает.)  Это не сделает мою работу легче, Мисс.
+(You remove the device and she nods rapidly.)  Thanks a million, this is much better.
+(Ты снимаешь устройство, и она быстро кивает.)  Спасибо на миллион, так намного лучше.
+(She jumps from the searing pain on her breast.)  Ouch!  Miss Head Maid!
+(Она подпрыгивает от жгучей боли в груди.)  Ай!  Мисс Старшая Горничная!
+(You whip her breast with the leather crop as she whimpers and bows her head.)
+(Ты хлещешь ее по груди кожаным стеком, когда она всхлипывает и склоняет голову.)
+(You whip her butt hard as she sighs.)  I promise I'll work harder.
+(Ты сильно хлещешь ее по заднице, когда она вздыхает.)  Я обещаю, что буду работать усерднее.
+(She grumbles as you strike her butt with the crop.)  I'm a Trainer, not a horse.
+(Она ворчит, когда ты бьешь ее по заднице стеком.)  Я тренер, а не лошадь.
+(She tries to fight back.)  That's equipment for the horses.
+(Она пытается сопротивляться.)  Это снаряжение для лошадей.
+(You remove the device.)  Thanks, now can work again.
+(Ты удаляешь устройство.)  Спасибо, теперь можно снова работать.
+(She looks surprised.) Is that not a saddle?
+(Она выглядит удивленной.) Это не седло?
+(She looks confused.) Is the riding lesson over?
+(Она выглядит растерянной.) Урок верховой езды закончен?
+(She whimpers as you use the device on her breast.)  Sorry to object, but this isn't very convenient or comfortable.
+(Она скулит, когда ты используешь устройство на ее груди.)  Извините, что возражаю, но это не очень удобно и некомфортно.
+(She grumbles as you use remove the item.)  Be thoughtful and don't remove anything until I'm hurt and broken.
+(Она ворчит, как ты пробуешь снять устройство.)  Будьте внимательны и не снимайте ничего, пока я не пострадаю и не сломаюсь.
+(You massage her pussy with the wand, but she stays cold.)  I'm very sorry.  I'm not in the mood.
+(Ты массируешь ее киску палочкой, но она остается холодной.)  Мне очень жаль.  Я не в настроении.
+(You slide the egg inside, but she barely reacts to it.)  I don't want to top from the bottom, but this egg would work better on someone else.
+(Ты просовываешь яйцо внутрь, но она едва реагирует на это.)  Я не хочу подниматься с самого низа, но это яйцо будет лучше работать на ком-то другом.
+(She doesn't react as you remove the egg.)  Maybe it doesn't work, I didn't feel a thing in there.
+(Она не реагирует, когда ты убираешь яйцо.)  Может быть, оно не работает, я ничего не чувствовала там.
+(She struggles against it.) Not a bridle?
+(Она борется с этим.) Не уздечка?
+(She catches her breath.) Finally.  What was that supposed to be?
+(У нее перехватывает дыхание.) В заключение. Что это должно быть?
+Welcome to the Horse Stable.  How can I help you?
+Добро пожаловать в конюшню.  Чем я могу тебе помочь?
+###_PLAYER
+Hello, I'm DialogPlayerName.  Pleased to meet you.
+Привет, я DialogPlayerName.  Приятно познакомиться.
+###_NPC
+Pleased to meet you too.  I'm DialogCharacterName, I'm a Trainer for our Horse Club.
+Я тоже рада с тобой познакомиться.  Я DialogCharacterName, Я тренер нашего конного клуба.
+###_PLAYER
+Can you answer some questions?
+Вы можете ответить на несколько вопросов?
+###_NPC
+Yes sure, but hurry up, the ponies are waiting.
+Да, конечно, но поторопись, пони ждут.
+###_PLAYER
+Can I get a pony training? 
+Могу ли я пройти тренировку пони? 
+I want to become a trainer.
+Я хочу стать тренером.
+I want a trial pony training.
+Я хочу пробную тренировку пони.
+###_NPC
+Ok, let us start.
+Хорошо, давай начнем.
+###_PLAYER
+I want a trial trainer training.
+Я хочу пробное обучение тренера.
+I'm here for a training routine.
+Я здесь для тренировки.
+I'm here for a pony exam.
+Я здесь для экзаменае по пони.
+###_NPC
+You are not ready yet.  You have to train harder.
+Ты еще не готова.  Ты должна тренироваться усерднее.
+Do you think the training was successful? Then I get 50 $ exam fee.
+Как ты думаешь, тренировка прошла успешно? Тогда я получаю 50 $ экзаменационного взноса.
+###_PLAYER
+I'm here for a trainer exam.
+Я здесь для экзамена на тренера.
+###_NPC
+You? Don't make me laugh.
+Ты? Не заставляй меня смеяться.
+Do you think you're ready? Then pay the 50$.
+Так ты думаешь, что ты готова? Тогда заплати 50$.
+###_PLAYER
+I want to train a pony.
+Я хочу дрессировать пони.
+###_NPC
+That'll be a 10$ cleaning fee for your riding gear.
+Тут будет плата за уборку твоего снаряжения для верховой езды в размере 10$.
+###_PLAYER
+(End the training and dress back up.)
+(Закончи обучение и оденься обратно.)
+###_NPC
+(She begins to stow the bridle.)
+(Она начинает укладывать уздечку.)
+###_PLAYER
+I can't stay to chat.  (Leave her.)
+Я не могу остаться, чтобы поболтать.  (Оставь ее.)
+Here's the money, let's start.
+Вот деньги, давайте начнем.
+###_NPC
+(She puts it in her pocket.) Undress.
+(Она кладет их в карман.) Раздевайся.
+###_PLAYER
+Thank you for the information.
+Спасибо за информацию.
+###_NPC
+No problem, always happy.
+Нет проблем, всегда рада помочь.
+###_PLAYER
+No way!  Can't I stay clothed?
+Ни за что!  Разве я не могу остаться одетой?
+###_NPC
+(She slaps your face.) Have you ever seen a horse wearing clothes?
+(Она дает тебе пощечину.) Ты когда-нибудь видела лошадь в одежде?
+###_PLAYER
+(Undress.)
+(Раздеться.)
+###_NPC
+That's it. Now open your mouth.
+Вот и все. А теперь открой рот.
+###_PLAYER
+Why should I?
+Зачем?
+###_NPC
+You can tell a horse's age by examining its teeth.
+Возраст лошади можно определить по зубам.
+###_PLAYER
+(Open your mouth.)
+(Открой рот.)
+###_NPC
+(She looks inside.) That looks good. Now bend over.
+(Она заглядывает внутрь.) Выглядит неплохо. Теперь наклонись.
+So I can check if you're healthy back there.
+Таким образом, я могу проверить, здорова ли ты там.
+###_PLAYER
+(Bend over.)
+(Наклониться.)
+###_NPC
+(She feels your butt.) OK, I think that's good. Stand straight.
+(Она ощупывает твою задницу.) Ладно, думаю, тут все хорошо. Встань прямо.
+###_PLAYER
+(Bend over just a little.)
+(Наклонись чуть-чуть.)
+###_NPC
+(She pushes you down by your shoulders.) We'll need to work on that resistance of yours.
+(Она толкает тебя вниз за плечи.) Нам нужно поработать над твоим послушанием.
+###_PLAYER
+(Wait.)
+(Подожди.)
+###_NPC
+(She feels your butt.) Your butt is a little bit pale. A few strands would suit it well. Stand straight.
+(Она ощупывает твою задницу.) Твоя задница немного бледная. Несколько полосок вполне подошли бы ей. Стой прямо.
+###_PLAYER
+(Stand straight.)
+(Встань прямо.)
+###_NPC
+(She cracks the whip.) Walk 10 steps.
+(Она щелкает кнутом.) Пройди 10 шагов.
+###_PLAYER
+(Walk forwards slowly.)
+(Медленно иди вперед.)
+###_NPC
+(She cracks the whip.)
+(Она щелкает кнутом.)
+###_PLAYER
+(Walk forwards quickly.)
+(Иди вперед быстро.)
+###_NPC
+Lift your legs properly.
+Поднимай правильно ноги.
+###_PLAYER
+(Go faster.)
+(Идти быстрее.)
+###_NPC
+You have potential. Now wear the harness.
+У тебя есть потенциал. Теперь надень сбрую.
+###_PLAYER
+(Do as she says.)
+(Делай, как она говорит.)
+###_NPC
+The leather harness will make your exercises easier, and you should always remember that horses are farm animals.
+Кожаная упряжь облегчит твои упражнения, и ты всегда должны помнить, что лошади - это сельскохозяйственные животные.
+###_PLAYER
+(Dress up.)
+(Одеть.)
+###_NPC
+Open your mouth.
+Открой рот.
+Horses D O   N O T   T A L K.
+Лошади  НЕ РАЗГОВАРИВАЮТ.
+Arms behind your back.
+Заведи руки за спину.
+###_PLAYER
+(Wait and do nothing.)
+(Ждать и ничего не делать.)
+###_NPC
+(The whip hits your butt.) Faster.
+(Хлыст бьет тебя по заднице.) Быстрее.
+###_PLAYER
+(Put your arms behind your back.)
+(Заведи руки за спину.)
+###_NPC
+Bend over.
+Наклонись.
+(She feels your butt.) OK. Here's your horse tail plug. And with that, you're all geared up. Stand straight.
+(Она щупает твою задницу.) ОК. Вот тебе пробка с конскимо хвостои. И с этим, ты полностью готова. Стой прямо.
+Take a step forward.
+Сделай шаг вперед.
+###_PLAYER
+(Take a step.)
+(Шагнуть.)
+###_NPC
+About as elegant as a fence post. You have a long way to go.
+Примерно так же элегантно, как столб забора. Тебе предстоит долгий путь.
+###_PLAYER
+What's going on in here?
+Что здесь происходит?
+###_NPC
+We train submissives to become pony girls. This allows them to move very elegantly.
+Мы тренируем сабмиссивов, чтобы они стали пони-девочками. Это позволяет им двигаться очень элегантно.
+###_PLAYER
+May I play with the ponies?
+Могу я поиграть с пони?
+###_NPC
+No. Ponies are only allowed to play with other ponies.
+Нет. Пони разрешается играть только с другими пони.
+###_PLAYER
+Is it allowed to release the ponies?
+Можно ли освободить пони?
+###_NPC
+No, the strict equipment is mandatory.
+Нет, строгая экипировка обязательна.
+###_PLAYER
+How do I become a pony girl?
+Как мне стать пони?
+###_NPC
+You have to be submissive, have the right equipment and pay the training fee.
+Ты должна быть покорной, иметь правильную экипировку и платить за обучение.
+###_PLAYER
+Can i become a trainer?
+Могу я стать тренером?
+###_NPC
+The trainer guild is currently looking for some new strong members. 
+Гильдия тренеров в настоящее время ищет новых сильных членов. 
+###_PLAYER
+What does a training routine look like?
+Как выглядит тренировочная программа?
+###_NPC
+It consists of several exercises. First the equipment is checked. Afterwards docile ponies are rewarded.
+Она состоит из нескольких упражнений. Сначала проверяется экипировка. После этого послушные пони вознаграждаются.
+###_PLAYER
+(More...)
+(Больше...)
+Thank you, I have no further questions.
+Спасибо, у меня больше нет вопросов.
+###_NPC
+Run along then. What are you doing standing around here in the stable?
+Тогда беги. Что ты делаешь здесь, в конюшне?
+###_PLAYER
+Can a pony get better?
+Может ли пони стать лучше?
+###_NPC
+Yes, that requires a lot of training. Better ponies are also allowed to do more difficult exercises.
+Да, это требует большой подготовки. Лучшие пони также могут выполнять более сложные упражнения.
+###_PLAYER
+Is there an exam for ponies?
+Есть ли экзамен для пони?
+###_NPC
+Good ponies are allowed to take an exam. Three disciplines are required: hurdles, races, and dressage.
+Хорошим пони разрешается сдавать экзамен. Требуются три дисциплины: барьеры, гонки и выездка.
+###_PLAYER
+Is there an exam for trainers?
+Есть ли экзамен для тренеров?
+###_NPC
+Trainers can take an exam. Then they can take over the stall control.
+Тренеры могут сдать экзамен. Тогда они смогут взять на себя управление стойлами.
+###_PLAYER
+I need to ask about a particular exercise.
+Мне нужно узнать о конкретном упражнении.
+###_NPC
+Sure, which one?
+Конечно, каком именно?
+###_PLAYER
+(Listen.)
+(Слушать.)
+###_NPC
+A trainer needs to know her dressage skills and be very dominant. You also need certain equipment like whips, crops and belts.
+Тренер должен знать свои навыки выездки и быть очень доминирующим. Тебе также нужно определенное оборудование, такое как хлысты, стеки и ремни.
+If you're interested, start saving your money. Horses are an expensive hobby.
+Если ты заинтересована, начинай экономить свои деньги. Лошади - дорогое хобби.
+The fee will not be refunded if you cancel the training.
+Плата не будет возвращена, если ты прервешь обучение.
+You'll have to attend every training routine wearing a collar.
+Тебе придется посещать все тренировки в ошейнике.
+Three disciplines are required: dressage knowledge, handling a whip, and hurdles.
+Требуются три дисциплины: знание выездки, обращение с хлыстом и барьеры.
+It's really challenging. Therefore, it may be repeated. A fee is due each time.
+Это действительно сложно. Поэтому его можно повторить. Плата взимается каждый раз.
+After the exam, you can use the pony bit gag anywhere in the club.
+После экзамена, ты можешь использовать кляп пони-удило в любом месте в клубе.
+###_PLAYER
+(Stand still and wait.)
+(Стой спокойно и жди.)
+###_NPC
+What a cute pony.
+Какая милая пони.
+###_PLAYER
+I can not afford that.
+Я не могу себе этого позволить.
+###_NPC
+Then there is no exam.
+Then there is no exam.
+###_PLAYER
+Here is the money, can we start?
+Вот деньги, можно начинать?
+###_NPC
+Get ready, we're getting serious now.
+Готовься, мы сейчас серьезно подходим к делу.
+###_PLAYER
+On second thought, I'm not ready yet.
+Если подумать, я еще не готова.
+###_NPC
+Get in touch if you change your mind.
+Свяжись с нами, если передумаешь.
+###_PLAYER
+Here's the money, go ahead.
+Вот вам деньги, начинайте.
+How do I get over the hurdles?
+Как мне преодолеть барьеры?
+###_NPC
+The success depends on your skill, so exercise more often.
+Успех зависит от твоего мастерства, поэтому тренируйся чаще.
+###_PLAYER
+I can't get all the hurdles / carrots in time.
+Я не могу пройти все барьеры / собрать морковь вовремя.
+###_NPC
+The running speed depends on your skill, so exercise more often.
+Скорость бега зависит от твоего мастерства, поэтому тренируйтесь чаще.
+###_PLAYER
+The counter says I hit a trainer, but that's not true.
+Счетчик говорит, что я ударила тренера, но это неправда.
+###_NPC
+When you miss a pony, it counts as a trainer hit.
+Когда ты промахнулась по пони, это считается ударом по тренеру.
+###_PLAYER
+The running exercises do not seem to get shorter.
+Беговые упражнения, кажется, не становятся короче.
+###_NPC
+Stronger ponies must train over a longer distance to achieve further learning success
+Более сильные пони должны тренироваться на более длинном расстоянии, чтобы достичь дальнейшего успеха в обучении
+###_PLAYER
+No further special questions.
+Больше никаких особых вопросов.
+###_NPC
+What else do you want to know?
+Что еще ты хочешь узнать?
+###_PLAYER
+(Wait for instructions.)
+(Жди указаний.)
+(Do it quickly.)
+(Сделай это быстро.)
+###_NPC
+(She grins.)  You are not really dominant.
+(Она усмехается.)  Ты на самом деле не доминируешь.
+###_PLAYER
+I want to become a trainer, not a stableboy!
+Я хочу стать тренером, а не конюхом!
+###_NPC
+(She winks.) That's the dominant spirit we're looking for. Give me your money. Welcome to the guild! Here's your uniform.
+(Она подмигивает.) Это тот доминирующий дух, который мы ищем. Дай мне свои деньги. Добро пожаловать в гильдию! Вот твоя форма.
+###_PLAYER
+Here is the money.  Hurry up.
+Вот эти деньги.  Поторопись.
+###_NPC
+(She gives you clean clothes.) Have a lot of fun.
+(Она дает тебе чистую одежду.) Желаю хорошо повеселиться.
+###_PLAYER
+I forgot my wallet.
+Я забыла свой бумажник.
+###_NPC
+Then it won't work, you loser.
+Тогда это не сработает, неудачница.
+That was great, right?
+Это было здорово, правда?
+With a bit of practice, that will certainly get better.
+С небольшой практикой, это, безусловно, станет лучше.
+No, not yet. Only submissive people can be trained.
+Нет, пока нет. Только покорных людей можно обучить.
+No, not yet. You have to buy the necessary equipment in the shop first.
+Нет, пока нет. Сначала ты должна купить необходимую экипировку в магазине.
+You need the following: a harness ball gag, a leather armbinder, a leather harness, and a horse tail plug.
+Тебе нужно следующее: шар-кляп со сбруей, кожаный армбиндер, кожаная сбруя и пробка с конским хвостом.
+No, not yet. You also have to wear a collar.
+Нет, не сейчас. Ты также должна носить ошейник.
+No, not yet.  The training fee is 50$.
+Нет, не сейчас. Плата за обучение составляет 50 $.
+Yes, the training costs 50$. It's long and demanding.
+Да, обучение стоит 50$. Оно продолжительно и требовательно.
+###_PLAYER
+When can I start?
+Когда я могу начать?
+###_NPC
+Once you have paid the fee and the health check is completed.
+После того, как ты заплатишь взнос и пройдешь проверку здоровья.
+###_PLAYER
+I do not want it.
+Я не хочу этого.
+###_NPC
+Contact me if you change your mind.
+Свяжи со мной, если передумаешь.
+Before you become a trainer, you must first learn the subtleties of dressage.
+Прежде чем стать тренером, ты должна сначала изучить тонкости выездки.
+Only dominant people can become trainers.
+Только доминирующие люди могут стать тренерами.
+You lack the necessary equipment. You have to buy the following: crops, whips, and leather belts for feet and legs.
+Тебе не хватает необходимого оборудования. Ты должна купить следующее: стеки, хлысты и кожаные ремни для ног и ног.
+You are too poor and cannot afford training ponies.
+Ты слишком бедна и не можете позволить себе обучать пони.
+Yes, you can join the trainer guild. The entrance fee is 500$.
+Да, ты можешь вступить в гильдию тренеров. Входная плата составляет 500$.
+###_PLAYER
+Take my money. when can I start?
+Возьмите мои деньги. когда я могу начать?
+###_NPC
+First exercise: grab a broom and sweep the stable.
+Первое упражнение: возьми метлу и подмети конюшню.
+###_PLAYER
+That is too expensive for me.
+Это слишком дорого для меня.
+###_NPC
+Contact me when you've saved some cash.
+Свяжись со мной, когда накопишь немного денег.
+Where is your collar?
+Где твой ошейник?
+Let's go. Undress.
+Начнем. Раздевайся.
+(She puts the equipment on you.)
+(Она надевает на тебя экипировку.)
+The training is over for today. I'll help you take off the Armbinder.
+На сегодня тренировка закончена. Я помогу тебе снять армбиндер.
+###_PLAYER
+(Shoot a hopeful glance at the other ponies.)
+(Бросьте полный надежды взгляд на других пони.)
+###_NPC
+Oh, I see. You want to hang out with the herd. Have Fun.
+А, понятно. Ты хочешь тусоваться со стадом. Повеселись.
+###_PLAYER
+(Take the Armbinder off.)
+(Сними армбиндер.)
+###_NPC
+(She stows the equipment.)
+(Она снимает экипировку.)
+Gallop through the manege.
+Галопом по манежу.
+###_PLAYER
+(Run happily.)
+(Беги счастливо.)
+(Start galloping.)
+(Начинай скакать галопом.)
+(Sneak forward.)
+(Прошмыгнуть вперед.)
+###_NPC
+Walk a few steps and lift your legs properly.
+Пройди несколько шагов и правильно поднимай ноги.
+###_PLAYER
+(Step elegantly.)
+(Шагай изящно.)
+(Walk forward.)
+(Иди вперед.)
+###_NPC
+Dance around through the manege.
+Танцуйте вокруг манежа.
+###_PLAYER
+(Perform a feat.)
+(Покажи мастерство.)
+(Dance around.)
+(Танцевать вокруг.)
+(Stand still stubbornly.)
+(Упрямо стой на месте.)
+###_NPC
+Train walking on the treadmill.
+Тренировка идет по беговой дорожке.
+###_PLAYER
+(Run away.)
+(Побежать.)
+(Start.)
+(Начать.)
+###_NPC
+Train walking on the treadmill with a belt around your legs.
+Тренируйся ходить по беговой дорожке с ремнем вокруг ног.
+We'll train with the carriage.
+Мы будем тренироваться вместе с экипажем.
+###_PLAYER
+(Wait with joyful excitement.)
+(Жди с радостным волнением.)
+(Try to escape.)
+(Попробуй убежать.)
+###_NPC
+We train with the carriage with a belt around your legs.
+Мы тренируемся с коляской с ремнем вокруг ног.
+Get out on the pasture to collect carrots
+Выходи на пастбище для сбора моркови
+You have to practice jumping over hurdles.
+Ты должна практиковать прыжки через барьеры.
+###_PLAYER
+(Try to jump.)
+(Попробуй прыгнуть.)
+(Scuttle in small steps.)
+(Беги маленькими шажками.)
+###_NPC
+You have to do a race.
+Ты должна выиграть гонку.
+###_PLAYER
+(Look curious and wait for it to start.)
+(Смотри с любопытством и жди, когда это начнется.)
+(Go to the starting position.)
+(Перейди в исходное положение.)
+(Reluctantly go to the starting position.)
+(Неохотно иди в исходное положение.)
+###_NPC
+You have to do a race against a stronger pony.
+Ты должна выиграть гонку против более сильной пони.
+Well done.
+Отлично сработано.
+###_PLAYER
+(Whinny happily.)
+(Радостно ржи.)
+###_NPC
+I suppose that did not work.
+Полагаю, это не сработало.
+###_PLAYER
+(Lower your head.)
+(Опусти голову.)
+###_NPC
+The exercise was successful.
+Упражнение прошло успешно.
+The exercise was successful, but your behavior left a lot to be desired.
+Упражнение прошло успешно, но твое поведение оставляло желать лучшего.
+###_PLAYER
+(Look disappointed.)
+(Выглядь разочарованной.)
+###_NPC
+You failed, we'll have to practice that again.
+Ты потерпела неудачу, и нам придется снова практиковаться.
+The exercise has failed and your behavior is poor.
+Упражнение провалилось, и твое поведение оставляет желать лучшего.
+(She strokes you over the head.)
+(Она гладит тебя по голове.)
+###_PLAYER
+(Wiggle your head.)
+(Покачай головой.)
+###_NPC
+(She is scratching your back.)
+(Она чешет тебе спину.)
+###_PLAYER
+(Sigh satisfied.)
+(Удовлетворенно вздохнуть.)
+(Look around nervously.)
+(Нервно оглядываться по сторонам.)
+###_NPC
+(She takes a brush and straightens your hair.)
+(Она берет щетку и поправляет тебе волосы.)
+###_PLAYER
+(Shake your head.)
+(Покачай головой.)
+(Snort excited.)
+(Взволнованно фыркнуть.)
+###_NPC
+(She takes a sponge and cleans you.)
+(Она берет губку и чистит тебя.)
+(She gives you an oatcake.) You deserve a treat.
+(Она дает тебе овсяную лепешку.) Ты заслуживаешь угощения.
+###_PLAYER
+(Grab it.)
+(Схватить ее.)
+(Wait calmly.)
+(Спокойно жди.)
+###_NPC
+(She pushes you into the stall.)  Play with the other ponies.
+(Она толкает тебя в стойло.)  Поиграй с другими пони.
+###_PLAYER
+(Go.)
+(Идти.)
+###_NPC
+Welcome back.
+С возвращением.
+You deserve a break.
+Ты заслуживаешь передышки.
+###_PLAYER
+(Scratch with your feet.)
+(Скрести своими ногами.)
+(Leave her.)
+(Оставь ее.)
+(Tramp decisively.)
+(Решительно топай.)
+###_NPC
+(The whip cracks.) We'll continue when you're calm.
+(Щелчок хлыста.) Мы продолжим, когда ты успокоишься.
+###_PLAYER
+(Trot with lowered head.)
+(Рысью с опущенной головой.)
+(Moan with pain.)
+(Стони от боли.)
+(Wince.)
+(Вздрогнуть)
+(Ignore her.)
+(Игнорируй ее.)
+###_NPC
+(The whip hits your back.)
+(Хлыст бьет тебя по спине.)
+(The whip hits your hip.)
+(Хлыст бьет тебя по бедру.)
+(The whip hits your butt.)
+(Хлыст бьет тебя по заднице.)
+(The whip hits your legs.)
+(Хлыст бьет тебя по ногам.)
+(The whip hits your breast.)
+(Хлыст бьет тебя по груди.)
+(She pours a bucket of ice water over you.)
+(Она выливает на тебя ведро ледяной воды.)
+Go into the stable first, until you've calmed down.
+Иди в конюшню, пока не успокоишься.
+###_PLAYER
+(Wait patiently.)
+(Терпеливо ждать.)
+###_NPC
+Before the next exercise I just need to check the equipment quickly.
+Перед следующим упражнением мне просто нужно быстро проверить снаряжение.
+###_PLAYER
+(Whinny excitedly.)
+(Взволнованно заржать.)
+(Kick her.)
+(Пнуть ее.)
+###_NPC
+First part of the exam: hurdles.
+Первая часть экзамена: барьеры.
+Second Test: a race against a strong pony.
+Второе испытание: гонка против сильной пони.
+Finally, the dressage.
+Наконец, выездка.
+###_PLAYER
+(Dance the test.)
+(Танцевальные испытания.)
+###_NPC
+You failed in this exam. Continue training before you sign up again.
+Ты провалилася на этом экзамене. Продолжай тренироваться, прежде чем снова записываться.
+###_PLAYER
+(Leave the exam course and dress back up.)
+(Прекрати экзамен и одевайся обратно.)
+###_NPC
+That was an outstanding performance. You deserve an award.
+Это было выдающееся выступление. Ты заслуживаешь награды.
+###_PLAYER
+(Go to the award ceremony.)
+(Иди на церемонию награждения.)
+###_NPC
+We are proud of you and look forward to your training. 
+Мы гордимся тобой и с нетерпением ждем твоих тренировок. 
+As a reward, you will receive a bottle of champagne, which you can drink with your friends.
+В награду ты получаешь бутылку шампанского, которую сможешь выпить вместе с друзьями.
+###_PLAYER
+(Celebrate your victory.) 
+(Празднуй свою победу.) 
+###_NPC
+(In addition, you may leave the stall during future training)
+(Кроме того, ты можешь покинуть стойло во время будущих тренировок)
+What are you planning now?
+Что ты теперь планируешь?
+First, I have some questions about dressage.
+Во-первых, у меня есть несколько вопросов о выездке.
+###_PLAYER
+(Try to answer the questions.)
+(Попробуй ответить на эти вопросы.)
+###_NPC
+The knowledge is sufficient, now to the whip.
+Этих знаний вполне достаточно, а теперь к хлысту.
+###_PLAYER
+(Check your whip.)
+(Проверь свой хлыст.)
+###_NPC
+That was good, now on to the practical exercise.
+Тут все хорошо, теперь перейдем к практическим упражнениям.
+###_PLAYER
+(Bring a pony to the hurdle course)
+(Приведи пони на бег с препятствиями)
+###_NPC
+Keep training and then try again.
+Продолжай тренироваться, а затем попробуй еще раз.
+Congratulations, you have passed all the exams.
+Поздравляю, ты сдала все экзамены.
+###_PLAYER
+(Give the present trainers a whiskey (50$).)
+(Отдай настоящим тренерам виски (50$).)
+###_NPC
+(They celebrate your success.) Hip Hip Hurray!
+(Они празднуют твой успех.) Хип-Хип Ура!
