@@ -1,0 +1,252 @@
+﻿###_NPC
+(She laughs.)  If you play tennis like that, I'll keep the score.
+(Она смеется.)  Если ты будешь так играть в теннис, я буду вести счет.
+(She catches her breath.)  Good game!  Do you want a rematch?  I know I can do better.
+(У нее перехватывает дыхание.)  Хорошая игра!  Ты дашь мне реванш?  Я знаю, что могу сделать лучше.
+(She looks happy.)  Good game!  But you need some practice.  We can play again if you want.
+(Она выглядит счастливой.)  Хорошая игра!  Но тебе нужно немного попрактиковаться.  Мы можем сыграть еще раз, если хочешь.
+It's nice to see you DialogPlayerName.  Would you like to play tennis with me?
+Рада тебя видеть DialogPlayerName.  Хочешь поиграть со мной в теннис?
+Darling!  (She gives you a loving kiss on the lips.)  Would you like to play tennis with me?
+Дорогая!  (Она дает тебе нежный поцелуй в губы.)  Хочешь поиграть со мной в теннис?
+Oh, it's you DialogPlayerName.  (She sighs, seeming a little heartbroken.)  Are you here to play tennis?
+О, это ты DialogPlayerName.  (Она вздыхает, чувствуя себя немного убитой горем.)  Ты пришла поиграть в теннис?
+(She bows respectfully.)  It's wonderful to see you Mentor.  Would you like to play tennis with me?
+(Она почтительно кланяется.)  Приятно видеть вас Наставницей.  Хотите поиграть со мной в теннис?
+(She smirks.)  My little protege is here!  Are you here to get trained at tennis?
+(Она ухмыляется.)  Моя маленькая протеже здесь!  Ты здесь, чтобы тренироваться игре в теннис?
+(She frowns.)  Hello my ex-protege.  Are you here to play some tennis?
+(Она хмурится.)  Привет, моя бывшая протеже.  Ты пришла поиграть в теннис?
+Hello there.  Would you like to play tennis with me?
+Привет.  Хочешь поиграть со мной в теннис?
+###_PLAYER
+Who are you?
+Кто ты такая?
+###_NPC
+I'm Jennifer, pleased to meet you.  I study and live here at the college.
+Я Дженнифер, приятно познакомиться.  Я учусь и живу здесь, в колледже.
+###_PLAYER
+How have you been?
+Как ты поживаешь?
+###_NPC
+(She shrugs.)  Not too bad, I guess.  Nothing exciting is going on right now.
+(Она пожимает плечами.)  Не так уж и плохо, я думаю.  Сейчас ничего интересного не происходит.
+###_PLAYER
+You're playing alone?
+Ты играешь одна?
+###_NPC
+(She sighs.)  Yeah, I'm practicing alone today.
+(Она вздыхает.)  Да, сегодня я тренируюсь одна.
+###_PLAYER
+How do tennis points work?
+Как работают теннисные очки?
+###_NPC
+The first point is 15, second is 30 and third is 40.  You win if you score after 40.  There's a tie breaker if we are both at 40.
+Первое очко - 15, второе - 30 и третье - 40.  Ты выигрываешь, если ты выигрываешь после 40.  Есть "двойка", если у нас обеих по 40.
+###_PLAYER
+We could play a tennis game.
+Мы могли бы сыграть в теннис.
+###_NPC
+Alright!  It's time for some sport.  (She starts to warm up.)
+Хорошо!  Пришло время заняться спортом.  (Она начинает разогреваться.)
+###_PLAYER
+My love, I've found a wonderful club.
+Любовь моя, я нашла замечательный клуб.
+###_NPC
+A club darling?  What kind of club?
+Клуб дорогой?  Что это за клуб?
+###_PLAYER
+Mentor, I've found a wonderful club.
+Наставница, я нашла замечательный клуб.
+###_NPC
+A club my protege?  What kind of club?
+Клуб моей протеже?  Что это за клуб?
+###_PLAYER
+My girl, I've found a wonderful club.
+Моя девочка, я нашла замечательный клуб.
+###_NPC
+A club Mentor?  What kind of club?
+Клуб Наставницы?  Что это за клуб?
+###_PLAYER
+I need to go.  (Leave her.)
+Мне нужно идти.  (Оставь ее.)
+An easy game ok?  (Play tennis.)
+Легкая игра ОК?  (Играть в теннис.)
+A game for honor?  (Play tennis.)
+Игра ради славы?  (Играть в теннис.)
+You'll bite the dust.  (Play tennis.)
+Ты будешь есть пыль.  (Играть в теннис.)
+Maybe we can play later.
+Может быть, мы поиграем позже.
+###_NPC
+Of course.  You can come back whenever you want.
+Конечно.  Ты можешь вернуться, когда захочешь.
+###_PLAYER
+It's called the Bondage Club.
+Он называется Бондаж Клуб.
+###_NPC
+(She giggles.)  I've heard of it.  It's an adult club downtown?
+(Она хихикает.)  Я слышала про него.  Это клуб для взрослых в центре города?
+###_PLAYER
+Its a BDSM club.
+Это БДСМ-клуб.
+###_NPC
+Oh yes, I've heard of the adult club downtown.
+О да, я слышал о клубе для взрослых в центре города.
+###_PLAYER
+You should come there with me.
+Ты должна пойти туда со мной.
+###_NPC
+(She looks intrigued.)  Sure, I'm curious to see your club.  Should we go there now?
+(Она выглядит заинтригованной.)  Конечно, мне интересно посмотреть на твой клуб.  Может, пойдем туда прямо сейчас?
+###_PLAYER
+One day I will show you.
+Когда-нибудь я тебе покажу.
+###_NPC
+Thanks, I'm curious now.  I'm not sure this is a place for me though.  Invite me over if you have room for me.
+Спасибо, мне уже любопытно. Хотя я не уверена, что это место для меня.  Пригласи меня, если у тебя найдется для меня место.
+###_PLAYER
+Let's go now!  (Bring her to your room.)
+А теперь пошли!  (Приведи ее в свою комнату.)
+Not now.
+Не сейчас.
+###_NPC
+Very well.  Would you like to play tennis with me?
+Очень хорошо.  Хочешь поиграть со мной в теннис?
+###_PLAYER
+Another match?  Sure!
+Еще один матч?  Конечно!
+###_NPC
+That's the spirit!  I'm glad you still have some energy left.
+Вот это рвение!  Я рада, что у тебя еще осталось немного энергии.
+###_PLAYER
+That was a great game.
+Это была отличная игра.
+###_NPC
+(She smiles.)  Yes!  I love a good challenge.  Winning or losing isn't very important.
+(Она улыбается.)  Да!  Я люблю хороший вызов.  Победа или поражение не очень важны.
+###_PLAYER
+I love your attitude.
+Мне нравится твое отношение.
+###_NPC
+Thanks a lot!  I'm glad you came to the court today.
+Большое спасибо!  Я рада, что ты пришла сегодня на корт.
+###_PLAYER
+You won't win with that attitude.
+Ты не выиграешь с таким отношением.
+###_NPC
+(She sighs.)  Yes, maybe you're right.  Let's talk about something else.
+(Она вздыхает.)  Да, возможно, ты права.  Давай поговорим о чем-нибудь другом.
+###_PLAYER
+I need to go though.
+Но мне нужно идти.
+###_NPC
+(She nods.)  Alright.  Come back whenever you want.
+(Она кивает.)  Хорошо.  Возвращайся, когда захочешь.
+###_PLAYER
+We could become friends.
+Мы могли бы стать друзьями.
+###_NPC
+(She seems very excited.)  Wow!  I'd love to have a fr...  I mean...  I'd love to be your friend.
+(Она кажется очень взволнованной.)  Ух ты!  Мне бы очень хотелось иметь по...  Я имею в виду...  Я бы хотела быть твоей подругой.
+###_PLAYER
+Alright friend!
+Хорошо, подруга!
+###_NPC
+You're so nice.  Do you live near the campus?
+Ты такая милая.  Ты живешь рядом с кампусом?
+###_PLAYER
+Another game my friend?
+Еще одна игра, моя подруга?
+###_NPC
+(She nods happily.)  Absolutely!  I want my revenge.
+(Она радостно кивает.)  Разумеется!  Я хочу реванша.
+###_PLAYER
+I live out of town.
+Я живу за городом.
+###_NPC
+That's fine.  Would you like to play another match?
+Все нормально.  Хочешь сыграть еще один матч?
+###_PLAYER
+I live with my parents.
+Я живу с родителями.
+I own a place in a club.
+У меня есть место в клубе.
+###_NPC
+In a club?  That's very special.  What kind of club?
+В клубе?  Это очень необычно.  Что это за клуб?
+###_PLAYER
+It's a sex club for adults.
+Это Секс-Клуб для взрослых.
+###_NPC
+(She looks baffled.)  Oh my!  Anyway.  Would you like to play another game?
+(Она выглядит озадаченной.)  О боже!  Впрочем.  Хочешь сыграть в новую игру?
+###_PLAYER
+It's hard to describe, would you like to see it?
+Это трудно описать, ты хотела бы увидеть его?
+###_NPC
+(She looks curious.)  Sure, should we go there right now?  You can tell me about it on the road.
+(Она выглядит любопытной.)  Конечно, мы должны пойти туда прямо сейчас?  ты можешь рассказать мне об этом по дороге.
+###_PLAYER
+It's a torture dungeon.
+Это пыточная темница.
+###_NPC
+(She looks shocked.)  Oh my!  Anyway.  Would you like to play another game?
+(Она выглядит потрясенной.)  О боже!  Впрочем.  Хочешь сыграть в новую игру?
+###_PLAYER
+Yes, I want my revenge.
+Да, я хочу реванша.
+No, that's enough.
+Нет, этого достаточно.
+###_NPC
+Very well.  We can play later if you want.
+Очень хорошо.  Мы можем поиграть позже, если хочешь.
+Hey!  Are you up for a tennis match against me?
+Эй!  Ты готова к теннисному матчу против меня?
+I'm a student here.  Tennis is my favorite sport.  Do you want to play?
+Я здесь студентка.  Теннис - мой любимый вид спорта.  Хочешь поиграть?
+###_PLAYER
+I'm DialogPlayerName.
+Я DialogPlayerName.
+###_NPC
+It's nice to meet you.  Do you want to play against me?
+Приятно познакомиться.  Ты хочешь играть против меня?
+No.  I'm waiting for a challenger.
+Нет.  Я жду претендента.
+Absolutely, have you played before?  I can go easy on you if you're a beginner.
+Конечно, Ты играла раньше?  Я могу быть с тобой помягче, если ты новичок.
+###_PLAYER
+Please go easy.  (Play tennis.)
+Пожалуйста, полегче.  (Играть в теннис.)
+Let's do a regular game.  (Play tennis.)
+Давай проведем обычную игру.  (Играть в теннис.)
+We can bet some money on the game.
+Мы можем поставить немного денег на игру.
+###_NPC
+Are you willing to bet 25$ on the game?  The winner keeps everything.  I won't go easy on you.
+Готова ли ты поставить 25$ на игру?  Победитель оставляет себе все.  Я не буду с тобой деликатна.
+You're too poor for that.  Get 25$ and we can bet it on a real tennis match.
+Ты слишком бедна для этого.  Получи 25$ и мы можем поставить на настоящий теннисный матч.
+Sure, let me know when you're ready.
+Конечно, дай мне знать, когда будешь готова.
+###_PLAYER
+Here's 25$, you're going down.  (Play tennis.)
+Вот 25 $, тебе не сдобровать.  (Играть в теннис.)
+Forget it.
+Забудь это.
+###_NPC
+Chicken!
+Курица!
+Perfect, this time I will crush you.
+Отлично, на этот раз я раздавлю тебя.
+Alright, you can come back to play anytime.
+Хорошо, ты можешь вернуться, чтобы поиграть в любое время.
+###_PLAYER
+I want my revenge!
+Я хочу реванша!
+###_NPC
+That's the only way to get better.  Should I go easy on you?
+Это единственный способ стать лучше.  Я должна быть с тобой помягче?
+###_PLAYER
+That's enough.
+Этого достаточно.
