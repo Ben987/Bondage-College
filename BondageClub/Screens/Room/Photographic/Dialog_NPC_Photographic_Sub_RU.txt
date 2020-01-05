@@ -1,0 +1,297 @@
+﻿###_NPC
+Wink if I should take pictures, nod if I should free you.
+Подмигните, если я должен сфотографировать, кивните, если я должен освободить вас.
+(She licks her lips seeing the gag and allows you to silence her easily.)
+(Она облизывает губы, видя кляп, и легко позволяет заставить ее замолчать.)
+(You remove her gag and she sighs.)  I hope that was worth it.
+(Ты снимаешь с неё кляп и она вздыхает.)  Надеюсь, это того стоило.
+(You put some earplugs into place.) Oh, everything is quiet, hehe.
+(Ты вставляешь в уши затычки.) О, все так тихо, хе-хе.
+(You pull the earplugs out.) Hehe. Now i can hear again. (She giggles.)
+(Ты вытаскиваешь затычки для ушей.) Хе-хе. Теперь я снова слышу. (Она хихикает.)
+(She hums a happy song as you restrain her arms.)  I hope you come often Miss.
+(Она напевает веселую песню, когда ты связываешь ее руки.)  Надеюсь, вы будите часто заходить, Мисс.
+(You free her arms and she stretches a little.)  What will you use on me next?
+(Ты освобождаешь ее руки, и она немного потягивается.)  Что вы будете использовать на мне в следующий раз?
+(You restrain her hands securely as she starts to giggle.)  Hehe, this is wonderful.
+(Ты надежно связываешь ее запястья, когда она начинает хихикать.)  Хе-хе, это чудесно.
+(You release her hands.)  I wonder what you will use next. (She giggles.)
+(Ты освобождаешь ее запястья.)  Интересно, что вы будете использовать в следующий раз. (Она хихикает.)
+(You restrain her legs securely while she moans of pleasure.)  This is wonderful.
+(Ты надежно связываешь ее ноги, пока она стонет от удовольствия.)  Это замечательно.
+(You release her legs.)  The things you do for a great photo.
+(Ты освобождаешь ее ноги.)  То, что вы делаете для отличной фотографии.
+(You restrain her legs with the long hemp rope and suspend her by the feet from the ceiling.)  Oh my god!
+(Ты связываешь ей ноги длинной пеньковой веревкой и подвешиваешь ее за ноги к потолку.)  Боже мой!
+(She wiggles her feet playfully as you restrain them.)  This is great.
+(Она игриво шевелит ступнями, когда ты их связываешь.)  Это здорово.
+(You untie the hemp rope from the ceiling.)  Wow!  That was quite a ride.
+(Ты отвязаваешь пеньковую веревку от потолка.)  Ух ты!  Это была неплохой атракцион.
+(You release her feet.)  Sweet freedom?
+(Ты освобождаешь ее ступни.)  Сладкая свобода?
+(You strap the collar around her neck.)  That definitely looks submissive.
+(Ты застегиваешь ошейник на ее шее.)  Это определенно выглядит покорным.
+(You remove the collar from her neck.)  Much better!
+(Ты снимаешь ошейник с ее шеи.) Так гораздо лучше!
+(She rocks her hips and struggles as you lock the device on her.)
+(Она виляет бедрами и борется, когда ты фиксируешь устройство на ней.)
+(She seems relieved as you unlock the device.)  Thanks, that was overdue.
+(Она кажется освобожденной, когда ты открываешь устройство.)  Спасибо, это назрело.
+(You prepare a full body harness on her torso as she blushes.)  This is very erotic.
+(Ты готовишь полную сбрую на ее торс, пока она краснеет.)  This is very erotic.
+(You remove the body harness from her torso.)  The natural look should shine.
+(Ты удаляешь сбрую с ее туловища.)  Естественный вид должен сиять.
+(You strap the device on her head as she hums a happy song.)  Does that not seem too anonymous?
+(Ты прикрепляешь устройство к ее голове, пока она напевает счастливую песню.)  Не кажется, что слишком анонимно?
+(You remove the device and she looks at you.)  That was quite an experience.
+(Ты удаляешь устройство, и она смотрит на тебя.)  Это был настоящий эсперемент.
+(She moans as you whip her breast.)  Those who want to be beautiful must suffer.
+(Она стонет, когда ты хлещешь ее по груди.)  Те, кто хочет быть красивыми, должны страдать.
+(She jumps and makes her breast wiggle with each hit.)  Anything for art.
+(Она подпрыгивает и заставляет свою грудь покачиваться с каждым ударом.)  Все, что угодно для искусства.
+(She trembles and moans with each lash.)  This is gonna leave amazing marks on my skin.
+(Она дрожит и стонет с каждым ударом.)  Это оставит удивительные следы на моей коже.
+(You whip her butt with the leather crop as she wiggles it for more.)
+(Ты хлещешь ее задницу кожаным стеком, а она еще сильнее ею виляет.)
+Does that apply to the picture?
+Это относится к фотографии?
+We should repeat that in the next photo session.
+Мы должны повторить это на следующей фотосессии.
+A nice photo is a work of art.
+Хорошая фотография - это произведение искусства.
+Huh, was that it?
+Это все?
+Oh, ah, how am I supposed to focus on my work?
+Ох, ах, как мне сосредоточиться на работе?
+(She looks satisfied.) That facilitates the happy facial expression.
+(Она выглядит удовлетворенной.) Это облегчает счастливое выражение лица.
+Pity, we just got started.
+Жаль, мы только начали.
+Hello, I'm DialogCharacterName, the club photographer and a model.
+Привет, я DialogCharacterName, клубный фотограф и модель.
+###_PLAYER
+Hello, I'm DialogPlayerName. Pleased to meet you.
+Привет, я  DialogPlayerName. Приятно познакомиться.
+###_NPC
+Pleased to meet you. Would you like to take a picture of you or me?
+Приятно познакомиться. Хотите сфотографировать себя или меня?
+###_PLAYER
+I'd like to ask you some questions.
+Я хотела бы задать вам несколько вопросов.
+###_NPC
+Don't be shy.  How can I help you?
+Не стесняйтеся.  Чем я могу вам помочь?
+###_PLAYER
+Please take a photo.
+Пожалуйста, сфотографируйте меня.
+###_NPC
+Please look friendly.
+Пожалуйста, выглядите дружелюбно.
+###_PLAYER
+(Wink for a photo.)
+(Подмигни для фотографии.)
+###_NPC
+Please look helpless.
+Пожалуйста, выглядите беспомощной.
+###_PLAYER
+I'll change some clothes.
+Я переоденусь.
+###_NPC
+Yeah, show me your wonderful body.
+Да, покажите мне свое прекрасное тело.
+###_PLAYER
+Please use some toys on me.
+Пожалуйста, используйте на мне игрушки.
+###_NPC
+What should I use?
+Что я должна использовать?
+She points to her restraints.
+Она указывает на свои наручники.
+###_PLAYER
+Please take off your clothes.
+Пожалуйста, снимите свою одежду.
+###_NPC
+Where should I start?
+С чего мне начать?
+###_PLAYER
+Please change your pose.
+Пожалуйста, смените позу.
+###_NPC
+Alright, how is this?
+Хорошо, как эта?
+###_PLAYER
+(Nod for help.)
+(Кивни в знак помощи.)
+###_NPC
+I'll help you right away.
+Я помогу вам прямо сейчас.
+###_PLAYER
+Goodbye. (Leave her.)
+До свидания. (Оставь ее.)
+(Remove hat.)
+(Сними головной убор.)
+###_NPC
+Go on, don't be shy.
+Давайте, не стесняйтеся.
+###_PLAYER
+(Remove gloves.)
+(Сними перчатки.)
+(Remove cloth.)
+(Сними верх.)
+(Remove bra.)
+(Сними бюстгальтер.)
+###_NPC
+Show me your curves.
+Покажите мне свои изгибы.
+###_PLAYER
+(Remove lower cloth.)
+(Сними низ.)
+(Remove panties.)
+(Сними трусики.)
+###_NPC
+What an unrestrained beast.
+Какой необузданный зверь.
+###_PLAYER
+(Remove socks.)
+(Сними носки.)
+(Remove shoes.)
+(Сними обувь.)
+###_NPC
+A first step.
+Первый шаг.
+###_PLAYER
+I will dress back.
+Я оденусь обратно.
+###_NPC
+If you say so.
+Как скажешь.
+###_PLAYER
+That's enough for now.
+Пока этого достаточно.
+###_NPC
+Alright then.
+Ну ладно.
+###_PLAYER
+Use some toys for the head.
+Используйте некоторые игрушки для головы.
+###_NPC
+Is this alright?
+Все в порядке?
+###_PLAYER
+Use some toys for the mouth.
+Используйте некоторые игрушки для рта.
+Use some toys for the neck.
+Используйте некоторые игрушки для шеи.
+Use some toys for the arms.
+Используйте некоторые игрушки для рук.
+###_NPC
+What do you want?
+Что вам нужно?
+###_PLAYER
+Use some toys for the torso.
+Используйте некоторые игрушки для торса.
+Use some toys for the legs.
+Используйте некоторые игрушки для ног.
+Use some toys for the feet.
+Используйте некоторые игрушки для ступней.
+This will do just fine.
+Это будет просто замечательно.
+###_NPC
+Alright, should i take a photo?
+Хорошо, я должна сделать фотографию?
+###_PLAYER
+(Nod satisfied.)
+(Удовлетворенно киваю.)
+Take off your hat.
+Снимите свой головной убор.
+###_NPC
+(She throws it away in a wide arc.)
+(Она отбрасывает его по широкой дуге.)
+###_PLAYER
+Take off your gloves.
+Снимите перчатки.
+###_NPC
+(One finger at a time, she takes them off.)
+(Одним пальцем за раз, она их снимает.)
+###_PLAYER
+Take off your cloth.
+Снимите свой верх.
+###_NPC
+(She slowly strips.)
+(Она медленно раздевается.)
+###_PLAYER
+Take off your bra.
+Снимите свой бюстгалтер.
+###_NPC
+(With an elegant turn, she takes it off.)
+(С элегантным поворотом она снимает его.)
+###_PLAYER
+Take off your lower cloth.
+Снимите низ.
+###_NPC
+(She strips and wiggles her butt.)
+(Она раздевается и виляет задницей.)
+###_PLAYER
+Take off your panties.
+Снимите свои трусики.
+###_NPC
+(She slowly pulls them down.)
+(Она медленно стягивает их вниз.)
+###_PLAYER
+Take off your socks.
+Снимите свои носки.
+###_NPC
+(One by one, she takes off her socks.)
+(Один за другим она снимает носки.)
+###_PLAYER
+Take off your shoes.
+Снимите свою обувь.
+###_NPC
+(She steps out of her shoes.)
+(Она снимает обувь.)
+###_PLAYER
+Please dress back up.
+Пожалуйста, оденьтесь обратно.
+###_NPC
+Alright, if you say so.
+Хорошо, если ты так хочешь.
+(She shows you a bright smile.)
+(Она выдает тебе яркую улыбку.)
+###_PLAYER
+What's going on here?
+Что здесь происходит?
+###_NPC
+In the photo studio you can make pictures and collect them.
+В фотостудии можно делать снимки и собирать их.
+###_PLAYER
+What do the pictures cost?
+Сколько стоят снимки?
+###_NPC
+Nothing, this is a service of the club.
+Ничего, это услуга клуба.
+###_PLAYER
+Why is the room so barren?
+Почему в комнате так пусто?
+###_NPC
+This is a neutral photo background.
+Это нейтральный фон для фотографий.
+###_PLAYER
+Can I tie you up?
+Можно я тебя свяжу?
+###_NPC
+Of course, if that's necessary for the photo session.
+Конечно, если это необходимо для фотосессии.
+###_PLAYER
+Will you restrain me?
+Вы будете меня связывать?
+###_NPC
+I would do much more for a good picture.
+Я бы сделала гораздо больше для хорошего снимка.
+###_PLAYER
+I don't have any more questions.
+У меня больше нет вопросов.
+###_NPC
+Well then, show me your best pose.
+Ну тогда покажите мне свою лучшую позу.
+(She shows you her restraints.) I would like to, but...
+(Она показывает тебе свои ограничения.) Я бы с удовольствием, но ... ..
