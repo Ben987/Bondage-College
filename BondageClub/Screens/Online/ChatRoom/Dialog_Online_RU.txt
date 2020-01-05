@@ -1,0 +1,339 @@
+﻿###_NPC
+picks a glass of water from DialogCharacterName tray.
+берет стакан воды с подноса DialogCharacterName.
+picks an orange juice from DialogCharacterName tray.
+берет апельсиновый сок с подноса DialogCharacterName.
+picks a beer from DialogCharacterName tray.
+берет пиво с подноса DialogCharacterName.
+picks a glass of wine from DialogCharacterName tray.
+берет бокал вина с подноса DialogCharacterName.
+buys a Virgin Mojito from DialogCharacterName tray.
+покупает безалкогольный мохито у DialogCharacterName.
+buys a Margarita from DialogCharacterName tray.
+покупает Маргариту у DialogCharacterName.
+buys a glass of Whiskey from DialogCharacterName.
+покупает стакан виски у DialogCharacterName.
+buys a glass of champagne from DialogCharacterName.
+покупает бокал шампанского у DialogCharacterName.
+buys a jug of refreshing lemonade for everyone, from DialogCharacterName.
+покупает кувшин освежающего лимонада для всех, у DialogCharacterName.
+buys a round of shooters for everyone, from DialogCharacterName.
+покупает раунд шотов для всех, у DialogCharacterName.
+buys a jug of Sex on the Beach for everyone, from DialogCharacterName.
+покупает кувшин Секса на Пляже для всех, у DialogCharacterName.
+buys a beer pitcher for everyone, from DialogCharacterName.
+покупает кувшин пива для всех желающих, у DialogCharacterName.
+picks a tea from DialogCharacterName tray.
+берет чай у DialogCharacterName.
+picks a coffee from DialogCharacterName tray.
+берет кофе у DialogCharacterName.
+buys a hot chocolate from DialogCharacterName tray.
+покупает горячий шоколад у DialogCharacterName.
+buys a expresso from DialogCharacterName tray.
+покупает эспрессо у DialogCharacterName.
+buys a cappuccino from DialogCharacterName tray.
+покупает капучино у DialogCharacterName.
+(You can use or remove items by selecting specific body regions.)
+(Ты можешь использовать или удалять предметы, выбрав определенные области тела.)
+(You don't have access to use or remove items on her.)
+(У тебя нет доступа к использованию или удалению предметов на ней.)
+###_PLAYER
+(View her profile.)
+(Просмотри ее профиль.)
+(Change her clothes.)
+(Переодень ее.)
+(Manage your relationship.)
+(Управляй своими отношениями.)
+###_NPC
+(You can give more access to your items by putting her on your whitelist, or less control by putting her on your blacklist.)
+(Ты можешь дать больше доступа к твоим предметам, поместив ее в свой белый список, или меньше, поместив ее в свой черный список.)
+###_PLAYER
+(Check her drink tray.)
+(Проверь ее поднос с напитками.)
+###_NPC
+(There's a variety of drinks.  Some are offered by the club and some are more expensive.)
+(Там есть множество напитков.  Некоторые из них предлагаются клубом, а некоторые стоят дороже.)
+###_PLAYER
+(Room administrator action.)
+(Действие администратора комнаты.)
+###_NPC
+(As a room administrator, you can take these actions with her.)
+(Как администратор комнаты, ты можешь выполнить эти действия вместе с ней.)
+###_PLAYER
+(Leave this menu.)
+(Оставь это меню.)
+(Add to item whitelist.)
+(Добавить в белый список предметов.)
+###_NPC
+(This member is now on your item permission whitelist.  She will have higher access to restrain or free you.)
+(Этот участник теперь находится в белом списке разрешений для твоих предметов.  Она будет иметь более высокий доступ, чтобы связать или освободить тебя.)
+###_PLAYER
+(Remove from item whitelist.)
+(Удалить из белого списка предметов.)
+###_NPC
+(This member is no longer on your item permission whitelist.)
+(Этот участник больше не находится в белом списке разрешений для твоих предметов.)
+###_PLAYER
+(Add to item blacklist.)
+(Добавить в черный список предметов.)
+###_NPC
+(This member is now on your item permission blacklist.  She will have less access to restrain or free you.)
+(Этот участник теперь находится в твоем черном списке разрешений для предметов.  У нее будет меньше возможностей связать или освобождить тебя.)
+###_PLAYER
+(Remove from item blacklist.)
+(Удалить из черного списка предметов.)
+###_NPC
+(This member is no longer on your item permission blacklist.)
+(Этот участник больше не находится в черный список разрешений для твоих предметов.)
+###_PLAYER
+(Add to friendlist.)
+(Добавить в список друзей.)
+###_NPC
+(This member is considered to be a friend by you.  She must also add you on her friendlist to be able to find each other.)
+(Этот участник считается твоим другом.  Она также должна добавить тебя в свой список друзей, чтобы иметь возможность найти друг друга.)
+###_PLAYER
+(Remove from friendlist.)
+(Удалить из списка друзей.)
+###_NPC
+(This member is not longer considered to be a friend by you.)
+(Этот участник больше не считается твоим другом.)
+###_PLAYER
+(Offer her a trial period to become your submissive.)
+(Предложи ей испытательный срок, чтобы стать твоей  сабой.)
+###_NPC
+(The request was sent.  She must accept for the trial period to start.)
+(Запрос был отправлен.  Она должна согласиться на начало испытательного срока.)
+###_PLAYER
+(Accept a trial period to become her submissive.)
+(Прими испытательный срок, чтобы стать ее сабой.)
+(Offer her to end the trial and be fully collared.)
+(Предложи ей закончить испытание и полноценно надеть ошейник.)
+###_NPC
+(There's a 100$ fee to prepare the ceremony and get her a slave collar.  Will you pay now?)
+(За подготовку церемонии и покупки ей рабского ошейника нужно 100 долларов.  Ты заплатишь сейчас?)
+###_PLAYER
+(Accept her collar and begin the ceremony.)
+(Прими ее ошейник и начинай церемонию.)
+(Rules, restrictions & punishments.)
+(Правила, ограничения и наказания.)
+###_NPC
+(Select the rule, restriction or punishment that you want to enforce.)
+(Выбери правило, ограничение или наказание, которые ты хочешь применить.)
+###_PLAYER
+(Give her the money envelope.)
+(Дай ей конверт с деньгами.)
+(Pay 100$ for the collaring ceremony.)
+(Заплати 100$ за церемонию ошейника.)
+###_NPC
+(You pay and prepare the ceremony.  A maid brings a slave collar, she must accept it to complete the collaring.)
+(Ты платишь и подготавливаешь церемонию. Горничная приносит рабский ошейник, она должна принять его, чтобы полноценно надеть ошейник.)
+###_PLAYER
+(Refuse to pay.)
+(Отказываюсь платить.)
+###_NPC
+(Main menu.)
+(Главное меню.)
+###_PLAYER
+(Back to main menu.)
+(Вернесь к главному меню.)
+(Look at free drinks.)
+(Посмотри на бесплатные напитки.)
+###_NPC
+(Free drinks menu.)
+(Меню бесплатных напитков.)
+###_PLAYER
+(Look at regular drinks.)
+(Посмотри на обычные напитки.)
+###_NPC
+(Regular drinks menu.)
+(Меню обычных напитков.)
+###_PLAYER
+(Look at shared drinks.)
+(Посмотри на общедоступные напитки.)
+###_NPC
+(Shared drinks menu.)
+(Меню общедоступных напитков.)
+###_PLAYER
+(Look at hot drinks.)
+(Посмотри на горячие напитки.)
+###_NPC
+(Hot drinks menu.)
+(Меню горячих напитков.)
+###_PLAYER
+(Get a free glass of water.)
+(Возьмите бесплатный стакан воды.)
+(Get a free orange juice.)
+(Возьми бесплатный апельсиновый сок.)
+(Get a free beer.)
+(Возьми бесплатное пиво.)
+(Get a free glass of wine.)
+(Возьми бесплатный бокал вина.)
+(Back to drink options.)
+(Вернемся к вариантам напитков.)
+###_NPC
+(Drink options.)
+(Варианты напитков.)
+###_PLAYER
+(Get a $5 Virgin Mojito.)
+(Купи безалкогольный мохито за 5 долларов.)
+(Get a $5 Margarita.)
+(Купи Маргариту за 5 долларов.)
+(Get a 5$ glass of Whiskey.)
+(Купи стакан виски за 5 долларов.)
+(Get a 5$ glass of Champagne.)
+(Купи бокал шампанского за 5 долларов.)
+(Get a 10$ jug of Sicilian Lemonade for everyone.)
+(Купи кувшин Сицилийского лимонада для всех за 10$ долларов.)
+(Get a 10$ round of shooters for everyone.)
+(Купи раунд шотов для всех за 10$ долларов.)
+(Get a 10$ jug of Sex on the Beach for everyone.)
+(Купи кувшин Секса на Пляже для всех за 10$ долларов.)
+(Get a 10$ beer pitcher for everyone.)
+(Купи кувшин пива для всех за 10$ долларов.)
+(Get a free tea.)
+(Возьми бесплатный чай.)
+(Get a free coffee.)
+(Возьми бесплатный кофе.)
+(Get a 5$ hot chocolate.)
+(Купи горячий шоколад за 5 долларов.)
+(Get a 5$ expresso.)
+(Купи эспрессо за 5 долларов.)
+(Get a 5$ cappuccino.)
+(Купи капучино за 5 долларов.)
+(Kick her out of the room.)
+(Вышвырни ее вон из комнаты.)
+(Ban her from the room.)
+(Запрети ей выходить из комнаты.)
+(Move her to the left.)
+(Перемести ее влево.)
+(Move her to the right.)
+(Перемести ее вправо.)
+(Promote her as room administrator.)
+(Повысь ее до администратора комнаты.)
+(Demote her from room administration.)
+(Сними с нее администрацию комнаты.)
+(Wardrobe access.)
+(Доступ к гардеробу.)
+###_NPC
+(Select her wardrobe access.)
+(Выбери ей доступ к гардеробу.)
+###_PLAYER
+(Whisper rules.)
+(Правила шепота.)
+###_NPC
+(Select her rules for whispering when you're in the same room.)
+(Выбери ее правила для шепота, когда вы находитесь в одной комнате.)
+###_PLAYER
+(Key restrictions.)
+(Ограничения ключей.)
+###_NPC
+(Select her restrictions for keys.)
+(Выбери ее ограничения для ключей.)
+###_PLAYER
+(Timer cell punishment.)
+(Таймер наказания в клетке.)
+###_NPC
+(For how long do you want to lock her up?  She will be isolated, and you won't be able to unlock her.)
+(Как на долго ты хочешь ее запереть?  Она будет изолирована, и ты не сможешь выпустить ее.)
+###_PLAYER
+(Forced labor.)
+(Принудительный труд.)
+###_NPC
+(What kind of labor will she be forced to do?  Her salary will be given to you.)
+(Какую работу она будет вынуждена выполнять?  Ее жалованье будет передано тебе.)
+###_PLAYER
+(Allow her wardrobe access.)
+(Дай ей доступ к гардеробу.)
+###_NPC
+(She can now access her wardrobe and change clothes.)
+(Теперь она может получить доступ к своему гардеробу и переодеться.)
+###_PLAYER
+(Block her wardrobe for 1 hour.)
+(Заблокируй ее гардероб на 1 час.)
+###_NPC
+(Her wardrobe access will be blocked for the next hour.)
+(Доступ к ее гардеробу будет заблокирован на следующий час.)
+###_PLAYER
+(Block her wardrobe for 1 day.)
+(Заблокируй ее гардероб на 1 день.)
+###_NPC
+(Her wardrobe access will be blocked for the next day.)
+(Доступ к ее гардеробу будет заблокирован на следующий день.)
+###_PLAYER
+(Block her wardrobe for 1 week.)
+(Заблокируй ее гардероб на 1 неделю.)
+###_NPC
+(Her wardrobe access will be blocked for the next week.)
+(Доступ к ее гардеробу будет заблокирован на следующую неделю.)
+###_PLAYER
+(Block her wardrobe until you allow it.)
+(Блокируйте ее гардероб, пока ты не разрешишь.)
+###_NPC
+(Her wardrobe access will be blocked until you allow it again.)
+(Доступ к ее гардеробу будет заблокирован до тех пор, пока ты не разрешишь это снова.)
+###_PLAYER
+(Allow her to whisper.)
+(Позволь ей говорить шепотом.)
+###_NPC
+(She can now whisper normally.)
+(Теперь она может нормально шептать.)
+###_PLAYER
+(Forbid her to whisper when you're there.)
+(Запрети ей шептать, когда ты там будешь.)
+###_NPC
+(She cannot whisper to someone else when she's in the same room as you.)
+(Она не может шептаться с кем-то еще, когда находится в одной комнате с тобой.)
+###_PLAYER
+(Allow her to buy keys.)
+(Позволь ей купить ключи.)
+###_NPC
+(The store will sell keys to her.)
+(В магазине ей продадут ключи.)
+###_PLAYER
+(Confiscate her keys.)
+(Конфискуй у нее ключи.)
+###_NPC
+(She lost all of her keys.)
+(Она утратила все свои ключи.)
+###_PLAYER
+(Block her from buying keys.)
+(Запрети ей покупать ключи.)
+###_NPC
+(The store will not sell keys to her anymore.)
+(Магазин больше не будет продавать ей ключи.)
+###_PLAYER
+(Don't lock her up.)
+(Не запирай ее здесь.)
+(Lock her for 5 minutes.)
+(Запри ее на 5 минут.)
+###_NPC
+(She will be isolated and locked up for 5 minutes.)
+(Она будет изолирована и заперта на 5 минут.)
+###_PLAYER
+(Lock her for 15 minutes.)
+(Запри ее на 15 минут.)
+###_NPC
+(She will be isolated and locked up for 15 minutes.)
+(Она будет изолирована и заперта на 15 минут.)
+###_PLAYER
+(Lock her for 30 minutes.)
+(Запри ее на 30 минут.)
+###_NPC
+(She will be isolated and locked up for 30 minutes.)
+(Она будет изолирована и заперта на 30 минут.)
+###_PLAYER
+(Lock her for 60 minutes.)
+(Запри ее на 60 минут.)
+###_NPC
+(She will be isolated and locked up for 60 minutes.)
+(Она будет изолирована и заперта на 60 минут.)
+###_PLAYER
+(No forced labor.)
+(Никакого принудительного труда.)
+(Force her to serve drinks as a maid.)
+(Заставь ее подавать напитки в качестве горничной.)
+###_NPC
+(She will be sent to the maid quarters to prepare drinks.  You will earn her salary.)
+(Ее отправят в комнату для прислуги, чтобы приготовить напитки.  Ты будешь получать ее жалованье.)
+(She needs to be a maid in the sorority and be able to walk to do that job for you.)
+(Она должна быть горничной в сообществе и быть в состоянии ходить, чтобы сделать эту работу для тебя.)
