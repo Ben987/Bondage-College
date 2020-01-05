@@ -193,7 +193,7 @@ The wardrobe allows you to sort your clothes and items.  To change from one look
 Гардероб позволяет сортировать одежду и предметы.  Быстро переходить от одного вида к другому.
 ###_PLAYER
 Here's the money. (Pay 100$)
-Вот деньги. (Pay 100$)
+Вот деньги. (Оплатить 100$)
 ###_NPC
 Wonderful!  Give us a few seconds and we'll prepare your wardrobe.
 Замечательно!  Дайте нам несколько секунд, и мы подготовим ваш гардероб.
@@ -205,7 +205,7 @@ To keep your submissives locked down of course.  You don't want to lose your pro
 Чтобы держать ваших нижних под замком, конечно.  Вы же не хотите потерять свою собственность.
 ###_PLAYER
 Here's the money. (Pay 150$)
-Вот деньги. (Pay 150$)
+Вот деньги. (Оплатить 150$)
 ###_NPC
 Wonderful!  We'll move the cages in your room right now.
 Замечательно!  Мы сейчас же перенесем клетки в вашу комнату.
@@ -217,7 +217,7 @@ It's easy, just navigate to check on your friends in the expanded part of your r
 Это легко, просто перейдите, чтобы проверить своих друзей в расширенной части вашей комнаты.  Еще четыре ваших друга смогут присоединиться.
 ###_PLAYER
 Here's the money. (Pay 200$)
-Вот деньги. (Pay 200$)
+Вот деньги. (Оплатить 200$)
 ###_NPC
 Wonderful!  Here are the keys for the expansion doors.  (She gives you the room expansion keys.)
 Замечательно!  Вот ключи от расширенной комнаты.  (Она дает тебе ключи от комнаты.)
