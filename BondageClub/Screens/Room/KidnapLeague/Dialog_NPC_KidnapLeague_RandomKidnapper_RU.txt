@@ -1,565 +1,565 @@
 ﻿###_NPC
 Silence is gold, and gags are better than gold.
-Silence is gold, and gags are better than gold.
+Тишина - это золото, а кляпы - это лучше золота.
 (A kidnapper crosses your path and makes a devious smile.)  I will be merciful if you surrender now.
-(A kidnapper crosses your path and makes a devious smile.)  I will be merciful if you surrender now.
+(Похитительница переходит тебе дорогу и хитро улыбается.)  Я буду милосердна, если ты сейчас сдашься.
 (A kidnapper taps on your shoulder and smile.)  A gift that's already wrapped up!  So easy.
-(A kidnapper taps on your shoulder and smile.)  A gift that's already wrapped up!  So easy.
+(Похитительница постукивает тебе по плечу и улыбается.)  Подарок, который уже завернут!  Так просто.
 (She surrenders to you.)  You've won a battle, but not the war.
-(She surrenders to you.)  You've won a battle, but not the war.
+(Она сдается тебе.)  Ты выиграла битву, но не войну.
 (She crosses her arms and smiles.)  Now you're mine!
-(She crosses her arms and smiles.)  Now you're mine!
+(Она скрещивает руки и улыбается.)  Теперь ты моя!
 (You surrender as she grabs your arms and restrains them.)  That was easy!
-(You surrender as she grabs your arms and restrains them.)  That was easy!
+(Ты сдаешься, когда она хватает тебя за руки и связывает их.)  Это было легко!
 (A kidnapper runs down the hall to meet you.)  I've heard about you and I will kidnap you!
-(A kidnapper runs down the hall to meet you.)  I've heard about you and I will kidnap you!
+(Похитительница бежит по коридору, чтобы встретиться с тобой.)  Я слышала о тебе, и я тебя похищу!
 (A kidnapper runs down the hall to meet you.)  You will be my easiest victim today.
-(A kidnapper runs down the hall to meet you.)  You will be my easiest victim today.
+(Похитительница бежит по коридору, чтобы встретиться с тобой.)  Сегодня ты будешь моей самой легкой жертвой.
 (She surrenders to you.)  Well done, I'll think twice before facing you again.
-(She surrenders to you.)  Well done, I'll think twice before facing you again.
+(Она сдается тебе.)  Хорошо, теперь я подумаю дважды, прежде чем снова с тобой встретиться.
 (She cheers and jumps of joy.)  Yes!  You make such a cute victim!
-(She cheers and jumps of joy.)  Yes!  You make such a cute victim!
+(Она аплодирует и прыгает от радости.)  Да!  Из тебя получилась такая милая жертва!
 (She quickly restrains your arms as you give up without a fight.)  I was expecting more of a challenge.
-(She quickly restrains your arms as you give up without a fight.)  I was expecting more of a challenge.
+(Она быстро связывает твои руки, когда ты сдаешься без борьбы.)  Я ожидала большего вызова.
 (A league member chases you down.)  I recognize you!  You're the famous Lady of Ropes!  The bounty will be mine.
-(A league member chases you down.)  I recognize you!  You're the famous Lady of Ropes!  The bounty will be mine.
+(Тебя преследует член Лиги.)  Я узнала тебя!  Ты же знаменитая Леди Веревок!  Эта награда будет моей.
 (A league member chases you down.)  The Lady of Ropes?  Already restrained?  It must be my birthday...
-(A league member chases you down.)  The Lady of Ropes?  Already restrained?  It must be my birthday...
+(Тебя преследует член Лиги.)  Леди Веревок?  Уже связаная?  Должно быть, это мой день рождения...
 (She surrenders and bows her head.)  There's no shame in losing against the Lady of Ropes.
-(She surrenders and bows her head.)  There's no shame in losing against the Lady of Ropes.
+(Она сдается и склоняет голову.)  Нет ничего постыдного в том, чтобы проиграть Леди Веревок.
 (She seems amazed of her victory.)  Wow!  I've kidnapped the famous Lady of Ropes!
-(She seems amazed of her victory.)  Wow!  I've kidnapped the famous Lady of Ropes!
+(Она кажется поражена своей победой.)  Ух ты!  Я похитила знаменитую Леди Веревок!
 (She's surprised to see you surrender but restrains your arms anyway.)  The Lady of Ropes? Surrendering to me??
-(She's surprised to see you surrender but restrains your arms anyway.)  The Lady of Ropes? Surrendering to me??
+(Она удивлена, увидев, что ты сдаешься, но все равно связывает тебе руки.)  Леди Веревок? Сдаешься мне??
 (You end up face to face with another league member.)  It's been a while, but I think I'm in the mood for a fight.
-(You end up face to face with another league member.)  It's been a while, but I think I'm in the mood for a fight.
+(Ты оказываешься лицом к лицу с другим членом Лиги.)  Давненько не виделись, но мне кажется, я в настроении для драки.
 (You end up face to face with another league member.)  I see you lost your last match.  Do you need help?  Or maybe more trouble?
-(You end up face to face with another league member.)  I see you lost your last match.  Do you need help?  Or maybe more trouble?
+(Ты оказываешься лицом к лицу с другим членом Лиги.)  Я вижу, ты проиграла свой последний бой.  Тебе нужна помощь?  Или, может быть, еще больше неприятностей?
 (She surrenders and sighs.)  I should give up on kidnappings, I'm hopeless at it.
-(She surrenders and sighs.)  I should give up on kidnappings, I'm hopeless at it.
+(Она сдается и вздыхает.)  Я должна отказаться от похищений, я безнадежна в этом.
 (She smiles seeing you struggle.)  I didn't think I would win, this is amazing.
-(She smiles seeing you struggle.)  I didn't think I would win, this is amazing.
+(Она улыбается, видя, как ты сопротивляешься.)  Я не думала, что выиграю, это удивительно.
 (She sighs and restrains your arms.)  You should be punished extra strictly for surrendering without a fight.
-(She sighs and restrains your arms.)  You should be punished extra strictly for surrendering without a fight.
+(Она вздыхает и связывает тебя  руки.)  Тебя следует особенно строго наказать за то, что ты сдалась без боя.
 (A kidnapper sneaks up behind you.)  Surrender now or get ready for the fight of your life!
-(A kidnapper sneaks up behind you.)  Surrender now or get ready for the fight of your life!
+(Похитительница подкрадывается к тебе сзади.)  Сдавайся сейчас или готовься к битве всей твоей жизни!
 (A kidnapper sneaks up behind you.)  Some like to fight, and some, like me, prefer easy victims.
-(A kidnapper sneaks up behind you.)  Some like to fight, and some, like me, prefer easy victims.
+(Похитительница подкрадывается к тебе сзади.)  Некоторые любят драться, а некоторые, как я, предпочитают легкие жертвы.
 (She bows her head and looks at the floor.)  Impressive.  Do what you want with me Miss.
-(She bows her head and looks at the floor.)  Impressive.  Do what you want with me Miss.
+(Она опускает голову и смотрит в пол.)  Впечатляюще.  Делайте со мной что хотите, Мисс.
 (You struggle as she does a thumbs up.)  I knew I would win.  Now you're mine girl.
-(You struggle as she does a thumbs up.)  I knew I would win.  Now you're mine girl.
+(Ты борешься, как она показывает большой палец вверх.)  Я знала, что выиграю.  Теперь ты моя девочка.
 (You barely struggle as she restrains your arms securely.)  You scared?  You should be.
-(You barely struggle as she restrains your arms securely.)  You scared?  You should be.
+(Ты едва сопротивляешься, когда она надежно связывает твои руки.)  Ты боишься?  А тебе следовало бы бояться.
 (A league bounty hunter stares at you.)  Someone put a bounty on you, and it will be mine.
-(A league bounty hunter stares at you.)  Someone put a bounty on you, and it will be mine.
+(Охотница за головами Лиги пристально смотрит на тебя.)  Кто-то назначил за тебя награду, и она будет моей.
 (A league bounty hunter stares at you.)  Easiest bounty ever!  Come with me girl.
-(A league bounty hunter stares at you.)  Easiest bounty ever!  Come with me girl.
+(Охотница за головами Лиги пристально смотрит на тебя.)  Самый легкая добыча когда-либо!  Пойдем со мной, девочка.
 (She seems disappointed.)  Well done Miss.  Now I know why there's a bounty on you.
-(She seems disappointed.)  Well done Miss.  Now I know why there's a bounty on you.
+(Она выглядит разочарованной.)  Отлично сработано, Мисс.  Теперь я знаю, почему за вас назначена награда.
 (She gloats on her victory.)  Alright!  The bounty is mine!
-(She gloats on her victory.)  Alright!  The bounty is mine!
+(Она зло радуется своей победе.)  Хорошо!  Эта награда - моя!
 (You surrender without a fight as she quickly restrains your arms.)  Easiest bounty ever!
-(You surrender without a fight as she quickly restrains your arms.)  Easiest bounty ever!
+(Ты сдаешься без боя, когда она быстро связывает твои руки.)  Самый легкая добыча когда-либо!
 (A club Mistress stares at you.)  So, you've became one of the club master kidnapper?  Are you ready to face me?
-(A club Mistress stares at you.)  So, you've became one of the club master kidnapper?  Are you ready to face me?
+(Госпожа клуба пристально смотрит на тебя.)  Итак, вы стали одной из главных похитительниц клуба?  Вы готовы встретиться со мной лицом к лицу?
 (A club Mistress laughs at you.)  One of the master kidnappers got herself in trouble?  This will be fun.
-(A club Mistress laughs at you.)  One of the master kidnappers got herself in trouble?  This will be fun.
+(Госпожа клуба смеется над тобой.)  Одна из главных похитительниц попала в беду?  Это будет весело.
 (She seems stunned by her defeat.)  Congratulations, you truly are a master kidnapper.
-(She seems stunned by her defeat.)  Congratulations, you truly are a master kidnapper.
+(Она кажется ошеломленной своим поражением.)  Поздравляю, вы действительно мастер-похитительница.
 (She cracks her knuckles and smirks.)  Don't worry about losing, I've been a master kidnapper for way longer than you.
-(She cracks her knuckles and smirks.)  Don't worry about losing, I've been a master kidnapper for way longer than you.
+(Она хрустит костяшками пальцев и ухмыляется.)  Не беспокойся о проигрыше, я была главной похитительницей гораздо дольше, чем ты.
 (You surrender without a fight as she quickly restrains your arms.)  You're disappointing for a master kidnapper.
-(You surrender without a fight as she quickly restrains your arms.)  You're disappointing for a master kidnapper.
+(Ты сдаешься без боя, когда она быстро связывает твои руки.)  Ты разочаровываешь мастер-похитителница.
 Look at me, I cannot help you now.
-Look at me, I cannot help you now.
+Посмотри на меня, я не могу помочь тебе сейчас.
 (She sighs and reluctantly allows you to gag her.)
-(She sighs and reluctantly allows you to gag her.)
+(Она вздыхает и неохотно позволяет тебе заткнуть ей рот.)
 (You remove her gag and she seems happy.)  It's funnier when we can talk with our kidnapper.
-(You remove her gag and she seems happy.)  It's funnier when we can talk with our kidnapper.
+(Ты вынимаешь у нее кляп, и она кажется счастливой.)  Еще забавнее, когда мы можем поговорить с нашей похитительницей.
 (She turns around as you restrain her arms securely.)  Most kidnappers go for the arms first.
-(She turns around as you restrain her arms securely.)  Most kidnappers go for the arms first.
+(Она оборачивается, когда ты надежно связываешь ее руки.)  Большенство похитительниц в первую очередь фокусируются на руках.
 (You free her arms and she gives you a thumbs up.)  Thanks a lot.  Am I allowed to leave?
-(You free her arms and she gives you a thumbs up.)  Thanks a lot.  Am I allowed to leave?
+(Ты освобождаешь ее руки, и она показывает тебе большой палец.)  Большое спасибо.  Мне можно уйти?
 (She submits to you while you restrain her legs.)  You know your bondage, kidnapper.
-(She submits to you while you restrain her legs.)  You know your bondage, kidnapper.
+(Она подчиняется тебе, пока ты связываешь ее ноги.)  Вы разбираетесь в бондаже, похитительница.
 (You release her legs as she shakes her butt.)  Shake your booty!
-(You release her legs as she shakes her butt.)  Shake your booty!
+(Ты освобождаешь ее ноги, пока она виляет своей задницей.)  Виляй своей попой!
 (She tests your feet restraints by jumping on her toes.)  Well done my kidnapper!
-(She tests your feet restraints by jumping on her toes.)  Well done my kidnapper!
+(Она проверяет твои ограничения ступней, прыгая на пальцах ног.)  Очень хорошо, моя похитительница!
 (You release her feet and she wiggles them.)  Is my kidnapping over?
-(You release her feet and she wiggles them.)  Is my kidnapping over?
+(Ты освобождаешь ее ступни, и она ими шевелит.)  Неужели мое похищение закончилось?
 (She adjusts her neck to the new collar.)  You're looking for subs Miss?
-(She adjusts her neck to the new collar.)  You're looking for subs Miss?
+(Она поправляет на шее новый ошейник.)  Вы ищете сабу, Мисс?
 (You remove the collar from her neck.)  Next time I will collar you.
-(You remove the collar from her neck.)  Next time I will collar you.
+(Ты снимаешь ошейник с ее шеи.)  В следующий раз я надену ошейник на тебя.
 (She struggles to avoid the belt but you're able to strap it on her.)  These belts should be banned.
-(She struggles to avoid the belt but you're able to strap it on her.)  These belts should be banned.
+(Она изо всех сил пытается избежать пояса, но ты можешь застегнуть его на ней.)  Эти пояса должны быть запрещены.
 (She seems happy as you unlock the belt from her waist.)  Thanks, DialogPlayerName.
-(She seems happy as you unlock the belt from her waist.)  Thanks, DialogPlayerName.
+(Она кажется счастливой, когда ты снимаешь пояс с ее талии.)  Спасибо, DialogPlayerName.
 (You strap the device on her head as she sighs.)  Next time I won't lose against you.
-(You strap the device on her head as she sighs.)  Next time I won't lose against you.
+(Ты застегиваешь устройство на ее голову, когда она вздыхает.)  В следующий раз я не проиграю тебе.
 (You release her head as she nods rapidly.)  How do you fit all these items in such a small outfit?
-(You release her head as she nods rapidly.)  How do you fit all these items in such a small outfit?
+(Ты освобождаешь ее голову, и она быстро кивает.)  Как вы помещаете все эти предметы в такое маленькое снаряжение?
 (You strap the harness on her torso as she blushes.)  You're quite a kinky kidnapper.
-(You strap the harness on her torso as she blushes.)  You're quite a kinky kidnapper.
+(Ты пристегиваешь сбрую к ее торсу, а она краснеет.)  Вы довольно извращенная похитительница.
 (She stretches as you release her from the harness.)  It will be easier to breath like that.
-(She stretches as you release her from the harness.)  It will be easier to breath like that.
+(Она потягивается, когда ты освобождаешь ее от сбрую.)  Так будет легче дышать.
 (She whimpers and cries as you whip her breast.)  Revenge will be sweet!
-(She whimpers and cries as you whip her breast.)  Revenge will be sweet!
+(Она хнычет и плачет, когда ты хлещешь ее по груди.)  Месть будет сладкой!
 (You lash the crop on her torso, hitting her breast.)  Ow!  Careful with that crop.
-(You lash the crop on her torso, hitting her breast.)  Ow!  Careful with that crop.
+(Ты хлещешь стеком по ее торсу, попадая по груди.)  Ай!  Осторожнее с этим стеком.
 (You whip her butt as she grumbles.)  I'll make sure to get a whip next time I'm facing you.
-(You whip her butt as she grumbles.)  I'll make sure to get a whip next time I'm facing you.
+(Ты хлещешь ее по заднице, когда она ворчит.)  Я позабочусь о том, чтобы в следующий раз взять хлыст, когда  с тобой встречусь.
 (You whack the leather crop right on her butt.)  Ouch! I'll put my next bounty on you.
-(You whack the leather crop right on her butt.)  Ouch! I'll put my next bounty on you.
+(Ты бьешь кожаным стеком прямо по ее заднице.)  Ай! Я поставлю на тебя свою следующую награду.
 (You restrain her feet with the long hemp rope and suspend her from the ceiling.)  Oh my... You're quite a kidnapper!
-(You restrain her feet with the long hemp rope and suspend her from the ceiling.)  Oh my... You're quite a kidnapper!
+(Ты связываешь ей ноги длинной пеньковой веревкой и подвешиваешь ее к потолку.)  Ой... Вы настоящая похитительница!
 (You let her down from the ceiling and untie her feet.)  Thanks!  I was getting dizzy.
-(You let her down from the ceiling and untie her feet.)  Thanks!  I was getting dizzy.
+(Ты опускаешь ее с потолка и развязываешь ей ноги.)  Спасибо!  У меня закружилась голова.
 ###_PLAYER
 I don't want mercy and I won't show any.
-I don't want mercy and I won't show any.
+Мне не нужно милосердие, и я его не проявляю.
 Wait!  Can we make a deal?  I'll give you 10$.
-Wait!  Can we make a deal?  I'll give you 10$.
+Подождите!  Мы можем заключить сделку?  Я дам вам 10 долларов.
 ###_NPC
 No deal!  I'm eager for a fight.
-No deal!  I'm eager for a fight.
+Никакой сделки!  Я горю желанием подраться.
 ###_PLAYER
 (Fight her.)
-(Fight her.)
+(Сражайся с ней.)
 (Surrender.)
-(Surrender.)
+(Сдаться.)
 How did you hear about me?
-How did you hear about me?
+Как ты узнала обо мне?
 ###_NPC
 Never mind.  We need less chatting and more fighting.
-Never mind.  We need less chatting and more fighting.
+Не бери в голову.  Нам нужно меньше болтать и больше драться.
 ###_PLAYER
 We'll see who kidnaps who!
-We'll see who kidnaps who!
+Посмотрим, кто кого похитит!
 Lady of Ropes?  You're mistaking me for someone else.
-Lady of Ropes?  You're mistaking me for someone else.
+Леди Веревок?  Ты принимаешь меня за кого-то другого.
 ###_NPC
 You can't fool me Lady.  You fit her description perfectly.  I will kidnap you and I will get the bounty.
-You can't fool me Lady.  You fit her description perfectly.  I will kidnap you and I will get the bounty.
+Ты не сможешь обмануть меня, Леди.  Ты идеально подходишь под ее описание.  Я похищу тебя и получу награду.
 ###_PLAYER
 Yes!  The Lady of Ropes will fight you.
-Yes!  The Lady of Ropes will fight you.
+Да!  Леди Веревок будет сражаться с тобой.
 A bounty hunter?  Here's 20$.  Leave me alone.
-A bounty hunter?  Here's 20$.  Leave me alone.
+Охотница за головами?  Вот тебе 20 долларов.  Оставь меня в покое.
 Sure!  Let's fight.
-Sure!  Let's fight.
+Конечно!  Давай драться.
 You're not motivated enough.  Get lost.
-You're not motivated enough.  Get lost.
+Ты недостаточно мотивирована.  Вали отсюда!
 I'll crush you!
-I'll crush you!
+Я тебя раздавлю!
 I can't fight now, I'm in a hurry.
-I can't fight now, I'm in a hurry.
+Я не могу сейчас драться, я очень спешу.
 ###_NPC
 Too bad for you, because I really want to fight.
-Too bad for you, because I really want to fight.
+Тем хуже для тебя, потому что я действительно хочу драться.
 ###_PLAYER
 Who put a bounty on me?
-Who put a bounty on me?
+Кто назначил за меня награду?
 ###_NPC
 Who cares?  I'm here for the money, not to chat.
-Who cares?  I'm here for the money, not to chat.
+Да какая разница?  Я здесь ради денег, а не для того, чтобы поболтать.
 ###_PLAYER
 No bounty hunter will ever get me.
-No bounty hunter will ever get me.
+Ни одна охотница за головами никогда не доберется до меня.
 Take this 20$ and leave, bounty hunter.
-Take this 20$ and leave, bounty hunter.
+Возьми эти 20 долларов и уходи, охотница за головами.
 You've heard about me?
-You've heard about me?
+Ты слышала обо мне?
 ###_NPC
 I've heard you're one of the best kidnappers in the club.  So, I've came for a challenge.
-I've heard you're one of the best kidnappers in the club.  So, I've came for a challenge.
+Я слышала, что ты одна из лучших похитительниц в клубе.  Итак, я пришла за вызовом.
 ###_PLAYER
 Get ready for the fight of your life!
-Get ready for the fight of your life!
+Приготовься к битве всей твоей жизни!
 Please Mistress.  I don't want to fight you.
-Please Mistress.  I don't want to fight you.
+Пожалуйста, Госпожа.  Я не хочу с вами драться.
 ###_NPC
 Too bad, because I will fight you whether you want it or not.
-Too bad, because I will fight you whether you want it or not.
+Очень жаль, потому что я буду драться с тобой, хочешь ты этого или нет.
 (She bows her head and submits to you.)  Well done bounty hunter, you can have me and collect your money.
-(She bows her head and submits to you.)  Well done bounty hunter, you can have me and collect your money.
+(Она склоняет голову и подчиняется тебе.)  Молодец охотница за головами, ты можешь взять меня и забрать свои деньги.
 (You struggle as she looks at you with an evil grin.)  You missed your mark bounty hunter, and now you're mine.
-(You struggle as she looks at you with an evil grin.)  You missed your mark bounty hunter, and now you're mine.
+(Ты сопротивляешься, пока она смотрит на тебя со злой усмешкой.)  Ты упустила свою награду, охотница за головами, и теперь ты моя.
 (As you enter the class, you see a girl with crossed arms that's staring at you.)  So you took the bounty?  I won't go down easily.
-(As you enter the class, you see a girl with crossed arms that's staring at you.)  So you took the bounty?  I won't go down easily.
+(Когда ты входишь в класс, ты видишь девушку со скрещенными руками, которая смотрит на тебя.) Так ты взяла заказ?  Я так просто не сдамся.
 (A maid taps on your shoulder.)  So, bounty hunters are chasing down maids now?  Game on!
-(A maid taps on your shoulder.)  So, bounty hunters are chasing down maids now?  Game on!
+(Горничная хлопает тебя по плечу.)  Значит, охотницы за головами теперь охотятся за горничными?  Игра началась!
 (A girl is hiding in a dark corner of the dojo.)  You've found me?  Let's fight then!
-(A girl is hiding in a dark corner of the dojo.)  You've found me?  Let's fight then!
+(Девушка прячется в темном углу додзе.)  Ты нашла меня?  Тогда давай драться!
 (Your bounty is currently shopping and seems to be annoyed by you.)  Can't a girl do some shopping?  You'll regret making me angry!
-(Your bounty is currently shopping and seems to be annoyed by you.)  Can't a girl do some shopping?  You'll regret making me angry!
+(Твоя добыча в настоящее время делает покупки и, кажется, раздражена тобой.)  Разве девушка не может пойти за покупками?  Ты еще пожалеешь, что разозлила меня!
 ###_PLAYER
 Nothing personal, but I need money.
-Nothing personal, but I need money.
+Ничего личного, но мне нужны деньги.
 ###_NPC
 (She giggles.)  Forget it bounty hunter.  You won't make any money with me.
-(She giggles.)  Forget it bounty hunter.  You won't make any money with me.
+(Она хихикает.)  Забудь об этом, охотница за головами.  Со мной ты ничего не заработаешь.
 ###_PLAYER
 You're going down girl!
-You're going down girl!
+Ты идешь ко дну, девочка!
 ###_NPC
 (She grins.)  Talk is cheap, show me your moves.
-(She grins.)  Talk is cheap, show me your moves.
+(Она усмехается.)  Разговоры ничего не стоят, покажи мне свои действия.
 ###_PLAYER
 Let's do a clean fight.
-Let's do a clean fight.
+Давай проведем чистую драку.
 ###_NPC
 (She laughs.)  I'll fight how I want, and you will submit.
-(She laughs.)  I'll fight how I want, and you will submit.
+(Она смеется.)  Я буду сражаться так, как захочу, и ты покоришься.
 NOEXIT
 NOEXIT
 ###_PLAYER
 That was a good fight.
-That was a good fight.
+Это был хороший бой.
 ###_NPC
 (She nods happily.)
-(She nods happily.)
+(Она радостно кивает.)
 ###_PLAYER
 Girl, you're in big trouble.
-Girl, you're in big trouble.
+Девочка, у тебя большие неприятности.
 ###_NPC
 (She gulps and bows her head.)
-(She gulps and bows her head.)
+(Она судорожно сглатывает и опускает голову.)
 ###_PLAYER
 Either I was lucky, or you've let me win.
-Either I was lucky, or you've let me win.
+Либо мне повезло, либо ты позволила мне выиграть.
 ###_NPC
 (She shakes her head no.)
-(She shakes her head no.)
+(Она отрицательно качает головой.)
 ###_PLAYER
 (Play with her.)
-(Play with her.)
+(Играть с ней.)
 ###_NPC
 (You move closer, ready to play with her.)
-(You move closer, ready to play with her.)
+(Ты придвигаешься ближе, готовая поиграть с ней.)
 ###_PLAYER
 (Bring her to your room.)
-(Bring her to your room.)
+(Приведи ее в свою комнату.)
 (Let her go.)
-(Let her go.)
+(Отпустить ее.)
 You're in big trouble my bounty.
-You're in big trouble my bounty.
+У тебя большие неприятности, моя добыча.
 More money and more fun for me.
-More money and more fun for me.
+Больше денег и больше удовольствия для меня.
 ###_NPC
 (She rolls her eyes up.)
-(She rolls her eyes up.)
+(Она закатывает глаза.)
 ###_PLAYER
 I can't believe I'll get your bounty.
-I can't believe I'll get your bounty.
+Я не могу поверить, что получу награду за тебя.
 ###_NPC
 (She shrugs and sighs.)
-(She shrugs and sighs.)
+(Она пожимает плечами и вздыхает.)
 (You move closer to her, ready to play with her.)
-(You move closer to her, ready to play with her.)
+(Ты придвигаешься ближе к ней, готовая поиграть с ней.)
 ###_PLAYER
 (Release her to go collect.)
-(Release her to go collect.)
+(Отпусти ее, чтобы она пошла собирать деньги.)
 You know you're a cute captive?
-You know you're a cute captive?
+Ты же знаешь, что ты милая пленница?
 ###_NPC
 (She blushes and bows her head.)  Thanks Miss.
-(She blushes and bows her head.)  Thanks Miss.
+(Она краснеет и склоняет голову.) Спасибо, Мисс.
 ###_PLAYER
 Do you enjoy being restrained?
-Do you enjoy being restrained?
+Тебе нравится быть связанной?
 ###_NPC
 (She nods slowly.)  I wouldn't be in the Kidnappers League if I didn't like it.
-(She nods slowly.)  I wouldn't be in the Kidnappers League if I didn't like it.
+(Она медленно кивает.)  Я не была бы в Лиге похитительниц, если бы мне это не нравилось.
 ###_PLAYER
 How much do you value your freedom?
-How much do you value your freedom?
+Насколько ты ценишь свою свободу?
 ###_NPC
 Will you let me go if I give you some money?
-Will you let me go if I give you some money?
+Ты отпустишь меня, если я дам тебе немного денег?
 ###_PLAYER
 (Tickle her.)
-(Tickle her.)
+(Щекотать ее.)
 ###_NPC
 (You tickle her on the ribs and tummy.  She giggles, laughs, and squirms around, trying to escape.)
-(You tickle her on the ribs and tummy.  She giggles, laughs, and squirms around, trying to escape.)
+(Ты щекочешь ее по ребрам и животу.  Она хихикает, смеется и извивается, пытаясь убежать.)
 ###_PLAYER
 (Kiss her.)
-(Kiss her.)
+(Поцеловать ее.)
 ###_NPC
 (You put both hands behind her head and pull her firmly to your lips for a passionate kinky kiss.)
-(You put both hands behind her head and pull her firmly to your lips for a passionate kinky kiss.)
+(Ты кладешь обе руки ей за голову и крепко прижимаешь ее к своим губам для страстного развратного поцелуя.)
 ###_PLAYER
 (Fondle her.)
-(Fondle her.)
+(Ласкать ей.)
 ###_NPC
 (You playfully fondle her breasts and butt as she moans softly and blushes.)
-(You playfully fondle her breasts and butt as she moans softly and blushes.)
+(Ты игриво ласкаешь ее грудь и ягодицы, а она тихо стонет и краснеет.)
 ###_PLAYER
 (Slap her.)
-(Slap her.)
+(Ударить ее.)
 ###_NPC
 (You harshly slap her in the face.  She bows down her head and lets out a little moan.)
-(You harshly slap her in the face.  She bows down her head and lets out a little moan.)
+(Ты резко бьешь ее по лицу.  Она опускает голову и тихо стонет.)
 ###_PLAYER
 (Spank her.)
-(Spank her.)
+(Отшлепай ее.)
 ###_NPC
 (You spank her hard on the butt and she sharply inhales from the pain.)
-(You spank her hard on the butt and she sharply inhales from the pain.)
+(Ты сильно шлепаешь ее по заднице, и она резко вдыхает от боли.)
 ###_PLAYER
 (Talk with her.)
-(Talk with her.)
+(Поговорить с ней.)
 ###_NPC
 (You move back to talk with her.)
-(You move back to talk with her.)
+(Ты возвращаешься, чтобы поговорить с ней.)
 ###_PLAYER
 Pay me and I'll let you go.
-Pay me and I'll let you go.
+Заплати мне, и я отпущу тебя.
 ###_NPC
 Fine, be a bully then!  I'll give you DIALOGMONEY $ if you release me and leave me alone.
-Fine, be a bully then!  I'll give you DIALOGMONEY $ if you release me and leave me alone.
+Отлично, тогда будь хулиганкой!  Я отдам тебе все DIALOGMONEY $ если ты отпустишь меня и оставишь в покое.
 You're a bully!  There's no way I'm paying you.
-You're a bully!  There's no way I'm paying you.
+Ты просто хулиганка!  Я ни за что тебе не заплачу.
 ###_PLAYER
 Forget it.
-Forget it.
+Забудь это.
 ###_NPC
 Very well.  Will you let me go then?
-Very well.  Will you let me go then?
+Очень хорошо.  Тогда ты меня отпустишь?
 ###_PLAYER
 Deal!  (Release her and take the money.)
-Deal!  (Release her and take the money.)
+Договорились!  (Отпусти ее и возьми деньги.)
 I was kidding.
-I was kidding.
+Я просто пошутила.
 ###_NPC
 Alright.  Will you let me go then?
-Alright.  Will you let me go then?
+Хорошо.  Тогда ты меня отпустишь?
 ###_PLAYER
 Congratulations!  You fought well.
-Congratulations!  You fought well.
+Поздравляю!  Ты хорошо сражалася.
 ###_NPC
 Thanks!  Now what will I do with you?
-Thanks!  Now what will I do with you?
+Спасибо!  А теперь что мне с тобой делать?
 ###_PLAYER
 You got lucky girl.  I'll get you next time.
-You got lucky girl.  I'll get you next time.
+Тебе повезло, девочка.  Я достану тебя в следующий раз.
 ###_NPC
 We'll see about that.  Now what will I do with you?
-We'll see about that.  Now what will I do with you?
+Ну, это мы еще посмотрим.  А теперь что мне с тобой делать?
 ###_PLAYER
 (Bow your head.)
-(Bow your head.)
+(Склони свою голову.)
 ###_NPC
 Such a cute victim.  What will I do with you?
-Such a cute victim.  What will I do with you?
+Такая милая жертва.  Что же мне с тобой делать?
 ###_PLAYER
 (Struggle to get out.)
-(Struggle to get out.)
+(Изо всех сил старайся выбраться.)
 ###_NPC
 You're not going anywhere.  I'm going to have some fun with you.
-You're not going anywhere.  I'm going to have some fun with you.
+Ты никуда не пойдешь.  Я собираюсь немного повеселиться с тобой.
 ###_PLAYER
 You got lucky girl.  I'll collect next time.
-You got lucky girl.  I'll collect next time.
+Тебе повезло, девочка.  Я заберу их в следующий раз.
 ###_NPC
 We'll see about that little bounty hunter.  Now what will I do with you?
-We'll see about that little bounty hunter.  Now what will I do with you?
+Мы еще посмотрим на этого маленькая охотница за головами.  А теперь что мне с тобой делать?
 ###_PLAYER
 Congratulations!  You're a tough mark.
-Congratulations!  You're a tough mark.
+Поздравляю!  Ты - крепкий орешек.
 ###_NPC
 You're a fair bounty hunter.  Now what will I do with you?
-You're a fair bounty hunter.  Now what will I do with you?
+Ты честная охотница за головами.  А теперь что мне с тобой делать?
 Such a cute bounty hunter and victim.  What should I do with you?
-Such a cute bounty hunter and victim.  What should I do with you?
+Такая милая охотница за головами и стала жертвой.  Что мне с тобой делать?
 You're not getting out any time soon, bounty hunter.  Now how shall I play with you, my new toy?
-You're not getting out any time soon, bounty hunter.  Now how shall I play with you, my new toy?
+Ты не скоро выйдешь отсюда, охотница за головами.  А теперь как мне поиграть с тобой, моя новая игрушка?
 ###_PLAYER
 You prefer easy targets, don't you?
-You prefer easy targets, don't you?
+Ты предпочитаешь легкие цели, не так ли?
 ###_NPC
 Yep, nothing wrong with an easy bounty from time to time.  What should I do with you?
-Yep, nothing wrong with an easy bounty from time to time.  What should I do with you?
+Да, нет ничего плохого в легкой награде время от времени.  Что мне с тобой делать?
 ###_PLAYER
 That's unfair!  Release me so we can fight.
-That's unfair!  Release me so we can fight.
+Это несправедливо!  Отпусти меня, чтобы мы могли сразиться.
 ###_NPC
 No way!  When you get a cute wrapped gift, you don't lose it.  What should I do with you?
-No way!  When you get a cute wrapped gift, you don't lose it.  What should I do with you?
+Ни за что!  Когда ты получаешь милый завернутый подарок, ты от его не отказываешся.  Что мне с тобой делать?
 ###_PLAYER
 Wait!  I don't surrender anymore, I want to fight!
-Wait!  I don't surrender anymore, I want to fight!
+Подожди!  Я передумала сдаваться, я хочу сражаться!
 ###_NPC
 Too late girl.  You're already mine.
-Too late girl.  You're already mine.
+Слишком поздно, девочка.  Ты уже принадлежишь мне.
 ###_PLAYER
 I guess I should have fought.
-I guess I should have fought.
+Наверное, я должна была сражаться.
 ###_NPC
 Yes, that was pretty lame.  But I'll teach you not to give up with some punishments.
-Yes, that was pretty lame.  But I'll teach you not to give up with some punishments.
+Да, это было довольно неудачное решение.  Но я научу тебя не отказываться от некоторых наказаний.
 Such a cute victim.  Now what could I do with you?
-Such a cute victim.  Now what could I do with you?
+Такая милая жертва.  А теперь что мне с тобой делать?
 You can struggle all you want.  But you're going nowhere.
-You can struggle all you want.  But you're going nowhere.
+Ты можешь сражаться сколько угодно.  Но ты никуда не пойдешь.
 ###_PLAYER
 Will you let me go?
-Will you let me go?
+Ты позволишь мне уйти?
 Do as you wish.  I'm your prisoner.
-Do as you wish.  I'm your prisoner.
+Сделаю, как ты хочешь.  Я твоя пленница.
 Please don't be too harsh.
-Please don't be too harsh.
+Пожалуйста, не будьт слишком жестокой.
 (Stay silent.)
-(Stay silent.)
+(Молчать.)
 (Try to struggle out.)
-(Try to struggle out.)
+(Попробуй вырваться.)
 (Let her have her way.)
-(Let her have her way.)
+(Пусть она поступает как хочет.)
 ###_NPC
 (She gets a gag and uses it to silence you.)  That's better.  A victim doesn't need to talk anyway.
-(She gets a gag and uses it to silence you.)  That's better.  A victim doesn't need to talk anyway.
+(Она достает кляп и использует его, чтобы заставить тебя замолчать.)  Вот так-то лучше.  Жертва все равно не должна говорить.
 ###_PLAYER
 (Roll your eyes up.)
-(Roll your eyes up.)
+(Закатывай глаза.)
 (Nod and bow your head.)
-(Nod and bow your head.)
+(Кивни и склони голову.)
 (Adjust your mouth to the gag.)
-(Adjust your mouth to the gag.)
+(Приспособь свой рот к кляпу.)
 ###_NPC
 (She removes the gag and grins.)  Enjoy your chit chat while you can.
-(She removes the gag and grins.)  Enjoy your chit chat while you can.
+(Она вынимает кляп и улыбается.)  Наслаждайся своей болтовней, пока можешь.
 ###_PLAYER
 Thanks a lot.
-Thanks a lot.
+Большое спасибо.
 Sweet.  Will you let me go?
-Sweet.  Will you let me go?
+Милая.  Ты позволишь мне уйти?
 ###_NPC
 (She restrains your feet and giggles.)  You won't be running away now.
-(She restrains your feet and giggles.)  You won't be running away now.
+(Она связыает тебе ступни и хихикает.)  Теперь ты никуда не убежишь.
 ###_PLAYER
 I wasn't planning to run anyway.
-I wasn't planning to run anyway.
+Я все равно не собирался бежать.
 (Hop and jump clumsily.)
-(Hop and jump clumsily.)
+(Подскакивай и неуклюже прыгай.)
 (Try to keep your balance.)
-(Try to keep your balance.)
+(Постарайся сохранить равновесие.)
 ###_NPC
 (She releases your feet.)  You can have your feet back for now.  But I'll find a better restraint later.
-(She releases your feet.)  You can have your feet back for now.  But I'll find a better restraint later.
+(Она освобождает твои ступни.)  А пока можешь получить свои ступни обратно.  Но позже я найду более сдержанное решение.
 ###_PLAYER
 Thanks!  You're a great kidnapper.
-Thanks!  You're a great kidnapper.
+Спасибо!  Ты отличная похитительница.
 It will be easier to stand up like this.
-It will be easier to stand up like this.
+Так будет легче встать на ноги.
 (Stretch and relax your feet.)
-(Stretch and relax your feet.)
+(Вытяни и расслабь ступни.)
 (Stay silent and wait to be released.)
-(Stay silent and wait to be released.)
+(Оставайся молчаливой и жди, когда тебя освободят.)
 ###_NPC
 (She restrains your legs securely.)  You look so cute when you're all tied up.
-(She restrains your legs securely.)  You look so cute when you're all tied up.
+(Она надежно связывает твои ноги.)  Ты выглядишь такой милой, когда вся связаная.
 ###_PLAYER
 You would be even cuter.
-You would be even cuter.
+Ты была бы еще симпатичнее.
 (Wiggle your butt playfully.)
-(Wiggle your butt playfully.)
+(Игриво пошевели задницей.)
 (Stay quiet.)
-(Stay quiet.)
+(Стой тихо.)
 ###_NPC
 (She releases your legs.)  Shake your butt for me my cute victim.
-(She releases your legs.)  Shake your butt for me my cute victim.
+(Она освобождает твои ноги.)  Повиляй своей задницей для меня, моя милая жертва.
 ###_PLAYER
 Do I look like a dancer?
-Do I look like a dancer?
+Разве я похожа на танцовщицу?
 (Shake your butt for her.)
-(Shake your butt for her.)
+(Виляй для нее своей задницей.)
 (Stand still.)
-(Stand still.)
+(Остановись.)
 ###_NPC
 (She gets closer and starts to tickle you without mercy.)  Tickle!  Tickle!  Tickle!
-(She gets closer and starts to tickle you without mercy.)  Tickle!  Tickle!  Tickle!
+(Она подходит ближе и начинает безжалостно щекотать тебя.)  Щекотно!  Щекотно!  Щекотно!
 ###_PLAYER
 No please! Stop!
-No please! Stop!
+Нет, пожалуйста! Остановись!
 Eeeeeeaahahahaha!  Stop it!  Hahaahaahi.
-Eeeeeeaahahahaha!  Stop it!  Hahaahaahi.
+Ээээээаахахаха!  Прекрати это!  Хахаахаахи.
 (Laugh out loud.)
-(Laugh out loud.)
+(Смеяться во весь голос.)
 (Trash in your bondage.)
-(Trash in your bondage.)
+(Рвись в своем бондаже.)
 (Pretend you're not ticklish.)
-(Pretend you're not ticklish.)
+(Притворись, что ты не боишься щекотки.)
 ###_NPC
 (She raises her hand and spanks you many times on the butt.)  Endure the pain. It's not like you have much choice.
-(She raises her hand and spanks you many times on the butt.)  Endure the pain. It's not like you have much choice.
+(Она поднимает руку и много раз шлепает тебя по заднице.)  Терпи эту боль. Не то чтобы у тебя был большой выбор.
 ###_PLAYER
 Ow!  That stings!
-Ow!  That stings!
+Ай!  Это жжется!
 You'll know true pain on our next fight.
-You'll know true pain on our next fight.
+Ты познаешь истинную боль в нашем следующем бою.
 (Whimper from the pain.)
-(Whimper from the pain.)
+(Хнычь от боли.)
 (Thrash around in your bondage.)
-(Thrash around in your bondage.)
+(Рвись в своем бондаже.)
 (Pretend it doesn't hurt.)
-(Pretend it doesn't hurt.)
+(Притворись, что это не больно.)
 ###_NPC
 (She gets close to you and plants a long loving kiss on your lips.)  Mmmmmmmmh.
-(She gets close to you and plants a long loving kiss on your lips.)  Mmmmmmmmh.
+(Она подходит к тебе вплотную и запечатлевает на твоих губах долгий любовный поцелуй.)  Мммммммм.
 ###_PLAYER
 You're quite a loving kidnapper.
-You're quite a loving kidnapper.
+Ты очень любящая похитительница.
 You have wonderful lips.
-You have wonderful lips.
+У тебя чудесные губы.
 (Close your eyes and kiss back.)
-(Close your eyes and kiss back.)
+(Закрой глаза и поцелуй в ответ.)
 (Push your tongue inside.)
-(Push your tongue inside.)
+(Засунь свой язык внутрь.)
 (Moan into your gag.)
-(Moan into your gag.)
+(Мычи в свой кляп.)
 (Stay silent and cold.)
-(Stay silent and cold.)
+(Оставайся молчаливой и холодной.)
 ###_NPC
 (She caresses and gropes your body firmly.)  You know you have an amazing body, right?
-(She caresses and gropes your body firmly.)  You know you have an amazing body, right?
+(Она ласкает и крепко ощупывает твое тело.)  Ты же знаешь, что у тебя потрясающее тело, правда?
 ###_PLAYER
 If you release me, I'll touch you back.
-If you release me, I'll touch you back.
+Если ты освободишь меня, я прикоснусь к тебе в ответ.
 Miss!  That... That feels so good...
-Miss!  That... That feels so good...
+Мисс!  Это... Это так приятно...
 (Moan with pleasure.)
-(Moan with pleasure.)
+(Стони от удовольствия.)
 (Shiver in your restraints.)
-(Shiver in your restraints.)
+(Дрожи в своих путах.)
 ###_NPC
 (She releases you and sighs.)  Sadly, I need to go. But I'll kidnap you again another time.
-(She releases you and sighs.)  Sadly, I need to go. But I'll kidnap you again another time.
+(Она освобождает тебя и вздыхает.)  К сожалению, мне нужно идти. Но я снова похищу тебя еще раз.
 ###_PLAYER
 Take care.
-Take care.
+Береги себя.
 Thanks!  That was fun.
-Thanks!  That was fun.
+Спасибо!  Это было весело.
 Would you like to visit my room?
-Would you like to visit my room?
+Не хочешь ли посетить мою комнату?
 ###_NPC
 You have your own room?  I'm curious to see it.
-You have your own room?  I'm curious to see it.
+У тебя есть своя комната?  Мне любопытно посмотреть на нее.
 Not now, I need to go.  Take care!
-Not now, I need to go.  Take care!
+Не сейчас, мне нужно идти.  Береги себя!
 ###_PLAYER
 I'll get you next time bitch.
-I'll get you next time bitch.
+Я достану тебя в следующий раз, сука.
 ###_NPC
 Oh yeah?  Better leave you restrained then.  (She picks a few items to restrain you.)
-Oh yeah?  Better leave you restrained then.  (She picks a few items to restrain you.)
+Да?  Тогда лучше оставить тебя в покое.  (Она выбирает несколько предметов, чтобы связать тебя.)
 ###_PLAYER
 (Leave her.)
-(Leave her.)
+(Оставь ее.)
 Follow me!  (Bring her to your room.)
-Follow me!  (Bring her to your room.)
+Следуй за мной!  (Приведи ее в свою комнату.)
 ###_NPC
 (She lets you go and sighs.)  Sadly, I need to go.  Find your owner to get out.
-(She lets you go and sighs.)  Sadly, I need to go.  Find your owner to get out.
+(Она освобождает тебя и вздыхает.)  К сожалению, мне нужно идти.  Найдите свою хозяйку, чтобы освободиться.
