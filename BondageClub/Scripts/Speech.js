@@ -22,20 +22,21 @@ function SpeechGetGagLevel(C, AssetGroup) {
 		else return 0;
 	}
 
+	var GagEffect = 0;
 	for (var A = 0; A < C.Appearance.length; A++) {
 		if (C.Appearance[A].Asset.Group.Name == AssetGroup) {
 			if (C.Appearance[A].Property && C.Appearance[A].Property.Effect)
 				for (var E = 0; E < C.Appearance[A].Property.Effect.length; E++)
-					return GetGagLevel(C.Appearance[A].Property.Effect[E]);
+					GagEffect += GetGagLevel(C.Appearance[A].Property.Effect[E]);
 			if (C.Appearance[A].Asset.Effect)
 				for (var E = 0; E < C.Appearance[A].Asset.Effect.length; E++)
-					return GetGagLevel(C.Appearance[A].Asset.Effect[E]);
+					GagEffect += GetGagLevel(C.Appearance[A].Asset.Effect[E]);
 			else if (C.Appearance[A].Asset.Group.Effect)
 				for (var E = 0; E < C.Appearance[A].Asset.Group.Effect.length; E++)
-					return GetGagLevel(C.Appearance[A].Asset.Group.Effect[E]);
+					GagEffect += GetGagLevel(C.Appearance[A].Asset.Group.Effect[E]);
 		}
 	}
-	return 0;
+	return GagEffect;
 }
 
 // Garbles the speech if the character is gagged, anything between parentheses isn't touched
