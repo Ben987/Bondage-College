@@ -48,7 +48,6 @@ function TimerInventoryRemove() {
 									Character[C].Appearance[A].Property.Effect.splice(E, 1);
 
 						// If we must remove the linked item from the character or the facial expression
-						console.log(Character[C].Appearance[A].Property+(Character[C].Appearance[A].Asset.Group.Name));
 						if ((Character[C].Appearance[A].Property.RemoveItem != null) && Character[C].Appearance[A].Property.RemoveItem && (Character[C].Appearance[A].Asset.Group.Category != null) && (Character[C].Appearance[A].Asset.Group.Category == "Item"))
 							InventoryRemove(Character[C], Character[C].Appearance[A].Asset.Group.Name);
 						else
