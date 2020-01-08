@@ -135,6 +135,23 @@ ActionRemove,,,SourceCharacter removes the PrevAsset from DestinationCharacter F
 ActionUnlock,,,SourceCharacter unlocks and removes the PrevAsset from DestinationCharacter FocusAssetGroup.
 ActionDice,,,SourceCharacter rolls a DiceType sided dice.  The result is: DiceResult.
 ActionCoin,,,SourceCharacter flips a coin.  The result is: CoinResult.
+MaidDrinkPickFreeWater,,,SourceCharacter picks a glass of water from DestinationCharacter tray.,,
+MaidDrinkPickFreeOrangeJuice,,,SourceCharacter picks an orange juice from DestinationCharacter tray.,,
+MaidDrinkPickFreeBeer,,,SourceCharacter picks a beer from DestinationCharacter tray.,,
+MaidDrinkPickFreeWine,,,SourceCharacter picks a glass of wine from DestinationCharacter tray.,,
+MaidDrinkPickVirginMojito,,,SourceCharacter buys a Virgin Mojito from DestinationCharacter tray.,,
+MaidDrinkPickMargarita,,,SourceCharacter buys a Margarita from DestinationCharacter tray.,,
+MaidDrinkPickWhiskey,,,SourceCharacter buys a glass of Whiskey from TargetCharacter.,,
+MaidDrinkPickChampagne,,,SourceCharacter buys a glass of champagne from TargetCharacter.,,
+MaidDrinkPickLemonadeJug,,,"SourceCharacter buys a jug of refreshing lemonade for everyone, from TargetCharacter.",,
+MaidDrinkPickRoundShooters,,,"SourceCharacter buys a round of shooters for everyone, from TargetCharacter.",,
+MaidDrinkPickSexOnTheBeachJug,,,"SourceCharacter buys a jug of Sex on the Beach for everyone, from TargetCharacter.",,
+MaidDrinkPickBeerPitcher,,,"SourceCharacter buys a beer pitcher for everyone, from TargetCharacter.",,
+MaidDrinkPickFreeTea,,,SourceCharacter picks a tea from DestinationCharacter tray.,,
+MaidDrinkPickFreeCoffee,,,SourceCharacter picks a coffee from DestinationCharacter tray.,,
+MaidDrinkPickHotChocolate,,,SourceCharacter buys a hot chocolate from DestinationCharacter tray.,,
+MaidDrinkPickExpresso,,,SourceCharacter buys an espresso from DestinationCharacter tray.,,
+MaidDrinkPickCappuccino,,,SourceCharacter buys a cappuccino from DestinationCharacter tray.,,
 LockMemberNumber,,,Member number on lock:
 TimerLeft,,,Time left:
 TimerRestart,,,SourceCharacter restarts the five minutes timer padlock on DestinationCharacter FocusAssetGroup.

@@ -199,6 +199,40 @@ Your owner is now preventing you from getting new keys.  The club shop will not 
 Your owner is now preventing you from getting new keys.  The club shop will not sell keys to you anymore.
 You're on SourceCharacter blacklist.  Your message was blocked by the server.
 You're on SourceCharacter blacklist.  Your message was blocked by the server.
+SourceCharacter picks a glass of water from DestinationCharacter tray.
+SourceCharacter берет стакан воды с подноса DestinationCharacter.
+SourceCharacter picks an orange juice from DestinationCharacter tray.
+SourceCharacter берет апельсиновый сок с подноса DestinationCharacter.
+SourceCharacter picks a beer from DestinationCharacter tray.
+SourceCharacter берет пиво с подноса DestinationCharacter.
+SourceCharacter picks a glass of wine from DestinationCharacter tray.
+SourceCharacter берет бокал вина с подноса DestinationCharacter.
+SourceCharacter buys a Virgin Mojito from DestinationCharacter tray.
+SourceCharacter покупает безалкогольный мохито у DestinationCharacter.
+SourceCharacter buys a Margarita from DestinationCharacter tray.
+SourceCharacter покупает Маргариту у DestinationCharacter.
+SourceCharacter buys a glass of Whiskey from TargetCharacter.
+SourceCharacter покупает стакан виски у TargetCharacter.
+SourceCharacter buys a glass of champagne from TargetCharacter.
+SourceCharacter покупает бокал шампанского у TargetCharacter.
+SourceCharacter buys a jug of refreshing lemonade for everyone, from TargetCharacter.
+SourceCharacter покупает кувшин освежающего лимонада для всех, у TargetCharacter.
+SourceCharacter buys a round of shooters for everyone, from TargetCharacter.
+SourceCharacter покупает раунд шотов для всех, у TargetCharacter.
+SourceCharacter buys a jug of Sex on the Beach for everyone, from TargetCharacter.
+SourceCharacter покупает кувшин Секса на Пляже для всех, у TargetCharacter.
+SourceCharacter buys a beer pitcher for everyone, from TargetCharacter.
+SourceCharacter покупает кувшин пива для всех желающих, у TargetCharacter.
+SourceCharacter picks a tea from DestinationCharacter tray.
+SourceCharacter берет чай у DestinationCharacter.
+SourceCharacter picks a coffee from DestinationCharacter tray.
+SourceCharacter берет кофе у DestinationCharacter.
+SourceCharacter buys a hot chocolate from DestinationCharacter tray.
+SourceCharacter покупает горячий шоколад у DestinationCharacter.
+SourceCharacter buys a expresso from DestinationCharacter tray.
+SourceCharacter покупает эспрессо у DestinationCharacter.
+SourceCharacter buys a cappuccino from DestinationCharacter tray.
+SourceCharacter покупает капучино у DestinationCharacter.
 Member number on lock:
 Номер члена Клуба на замке:
 Time left:

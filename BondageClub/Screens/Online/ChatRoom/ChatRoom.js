@@ -607,8 +607,12 @@ function ChatRoomSendOwnershipRequest(RequestType) {
 // When the player picks a drink from a maid platter
 function ChatRoomDrinkPick(DrinkType, Money) {
 	if (ChatRoomCanTakeDrink()) {
-		ServerSend("ChatRoomChat", { Content: Player.Name + " " + DialogFind(CurrentCharacter, "MaidDrinkPick" + DrinkType), Type: "Action" } );
-		ServerSend("ChatRoomChat", { Content: "MaidDrinkPick" + Money.toString(), Type: "Hidden", Target: CurrentCharacter.MemberNumber } );
+	    var Dictionary = [];
+	    Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+	    Dictionary.push({Tag: "DestinationCharacter", Text: CurrentCharacter.Name, MemberNumber: CurrentCharacter.MemberNumber});
+	    Dictionary.push({Tag: "TargetCharacter", Text: CurrentCharacter.Name, MemberNumber: CurrentCharacter.MemberNumber});
+		ServerSend("ChatRoomChat", { Content: "MaidDrinkPick" + DrinkType, Type: "Action", Dictionary: Dictionary} );
+        ServerSend("ChatRoomChat", { Content: "MaidDrinkPick" + Money.toString(), Type: "Hidden", Target: CurrentCharacter.MemberNumber } );
 		CharacterChangeMoney(Player, Money * -1);
 		DialogLeave();
 	}
