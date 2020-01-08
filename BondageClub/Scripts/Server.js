@@ -127,8 +127,8 @@ function ServerValidateProperties(C, Item) {
 				var Lock = InventoryGetLock(Item);
 				if ((Lock.Asset.RemoveTimer != null) && (Lock.Asset.RemoveTimer != 0)) {
 					var CurrentTimeDelay = 5000;
-				    // As CurrentTime can be slightly different, we accept a small delay in ms
-					if ((typeof Item.Property.RemoveTimer !== "number") || (Item.Property.RemoveTimer - CurrentTimeDelay > CurrentTime + Lock.Asset.MaxTimer * 1000)){
+					// As CurrentTime can be slightly different, we accept a small delay in ms
+					if ((typeof Item.Property.RemoveTimer !== "number") || (Item.Property.RemoveTimer - CurrentTimeDelay > CurrentTime + Lock.Asset.MaxTimer * 1000)) {
 						Item.Property.RemoveTimer = CurrentTime + Lock.Asset.RemoveTimer * 1000;
 					}
 				} else delete Item.Property.RemoveTimer;
@@ -138,7 +138,7 @@ function ServerValidateProperties(C, Item) {
 					delete Item.Property.LockedBy;
 					delete Item.Property.LockMemberNumber;
 					delete Item.Property.RemoveTimer;
-                    delete Item.Property.MaxTimer;
+					delete Item.Property.MaxTimer;
 					delete Item.Property.RemoveItem;
 					delete Item.Property.ShowTimer;
 					delete Item.Property.EnableRandomInput;
@@ -204,7 +204,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 	// Reapply any item that was equipped and isn't enable, same for owner locked items if the source member isn't the owner
 	if ((SourceMemberNumber != null) && (C.ID == 0))
 		for (var A = 0; A < C.Appearance.length; A++) {
-			if (!C.Appearance[A].Asset.Enable && !C.Appearance[A].Asset.OwnerOnly) 
+			if (!C.Appearance[A].Asset.Enable && !C.Appearance[A].Asset.OwnerOnly)
 				Appearance.push(C.Appearance[A]);
 			else
 				if ((C.Ownership != null) && (C.Ownership.MemberNumber != null) && (C.Ownership.MemberNumber != SourceMemberNumber) && InventoryOwnerOnlyItem(C.Appearance[A])) {
@@ -266,7 +266,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 						break;
 					}
 
-				// Make sure we don't push an item that's disabled, coming from another player	
+				// Make sure we don't push an item that's disabled, coming from another player
 				if (CanPush && !NA.Asset.Enable && !NA.Asset.OwnerOnly && (SourceMemberNumber != null) && (C.ID == 0)) CanPush = false;
 				if (CanPush) Appearance.push(NA);
 				break;
@@ -345,6 +345,7 @@ function ServerAccountQueryResult(data) {
 
 // When the server sends a beep from another account
 function ServerAccountBeep(data) {
+	var SpaceAsylumCaption = DialogFind(Player, "ChatRoomSpaceAsylum");
 	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.MemberNumber != null) && (typeof data.MemberNumber === "number") && (data.MemberName != null) && (typeof data.MemberName === "string")) {
 		ServerBeep.MemberNumber = data.MemberNumber;
 		ServerBeep.MemberName = data.MemberName;
@@ -356,7 +357,7 @@ function ServerAccountBeep(data) {
 		}
 		ServerBeep.Message = DialogFind(Player, "BeepFrom") + " " + ServerBeep.MemberName + " (" + ServerBeep.MemberNumber.toString() + ")";
 		if (ServerBeep.ChatRoomName != null)
-			ServerBeep.Message = ServerBeep.Message + " " + DialogFind(Player, "InRoom") + " \"" + ServerBeep.ChatRoomName + "\"";
+			ServerBeep.Message = ServerBeep.Message + " " + DialogFind(Player, "InRoom") + " \"" + (data.ChatRoomSpace ? data.ChatRoomSpace.replace("Asylum", SpaceAsylumCaption) + " - " : '') + ServerBeep.ChatRoomName + "\"";
 		FriendListBeepLog.push({ MemberNumber: data.MemberNumber, MemberName: data.MemberName, ChatRoomName: data.ChatRoomName, Sent: false, Time: new Date() });
 		if (CurrentScreen == "FriendList") ServerSend("AccountQuery", { Query: "OnlineFriends" });
 	}
