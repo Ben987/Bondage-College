@@ -1,0 +1,16 @@
+﻿Can I interest you in anything else?
+Êtes-vous intéressé à regarder autre chose?
+Select the item you want to buy.
+Sélectionnez l'objet que vous désirez.
+There are no items to sell for this category.
+Il n'y a aucun article à vendre pour cette catégorie.
+You already own this item.
+Vous possédez déjà cet article.
+You don't have enough money.
+Vous n'avez pas assez d'argent.
+Sorry, I cannot sell you keys.
+Désolé, je ne peux pas vous vendre de clés.
+Sorry, I cannot sell you remotes.
+Désolé, je ne peux pas vous vendre de télécommandes.
+Thank you!  Something else?
+Je vous remercie! Autre chose?

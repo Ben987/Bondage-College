@@ -39,7 +39,7 @@ Gut so, Pferde sprechen nicht.
 (Sie grummelt, als du ihren Hintern mit der Gerte triffst.) Ich bin eine Trainerin und kein Pferd.
 (She tries to fight back.)  That's equipment for the horses.
 (Sie versucht sich zu wehren.) Das ist Ausrüstung für die Pferde.
-(You remove the device.)  Thanks, now can work again.
+(You remove the device.)  Thanks, now I can work again.
 (Du nimmst es ab.) Danke, jetzt kann ich wieder arbeiten.
 (She looks surprised.) Is that not a saddle?
 (Sie wirkt überrascht.) Das ist kein Sattel, oder?
@@ -74,7 +74,7 @@ Kannst du mir ein paar Fragen beantworten?
 Yes sure, but hurry up, the ponies are waiting.
 Ja, klar, aber beeil dich, die Ponys warten.
 ###_PLAYER
-Can I get a pony training? 
+Can I get a pony training?
 Kann ich ein Pony-Training bekommen?
 I want to become a trainer.
 Ich will eine Trainerin werden.
@@ -263,7 +263,7 @@ Du musst unterwürfig sein, die richtige Ausrüstung besitzen und die Trainingsg
 Can i become a trainer?
 Kann ich eine Trainerin werden?
 ###_NPC
-The trainer guild is currently looking for some new strong members. 
+The trainer guild is currently looking for some new strong members.
 Die Trainergilde sucht derzeit nach neuem, starkem Zuwachs.
 ###_PLAYER
 What does a training routine look like?
@@ -677,7 +677,7 @@ Das war eine überragende Leistung. Dafür verdienst du einen Preis.
 (Go to the award ceremony.)
 (Zur Preisverleihung.)
 ###_NPC
-We are proud of you and look forward to your training. 
+We are proud of you and look forward to your training.
 Wir sind stolz auf dich und freuen uns auf dein weiteres Training.
 As a reward, you will receive a bottle of champagne, which you can drink with your friends.
 Zur Belohnung erhältst du eine Flasche Champagner für dich und deine Freunde.

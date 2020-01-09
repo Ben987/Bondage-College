@@ -1,3 +1,4 @@
+###Interface
 Enter your room information
 Entrez l'information de votre salon
 Room Name (Letters & numbers only)
@@ -24,3 +25,90 @@ Invalid room data
 Données invalides de compte
 Room created, joining it...
 Salon créé, vous vous y rendez...
+###Rooms
+Introduction
+Introduction
+Kidnappers League
+Ligue des Kidnappeurs
+Maid Quarters
+Quartiers des Servantes
+Main Hall
+Hall Principal
+Club Management
+Direction du Club
+Private Room
+Chambre Privée
+Shibari Dojo
+Dojo de Shibari
+Bedroom
+Chambre
+Horse Stable
+Écurie
+Nursery
+Garderie
+Prison Hall
+Couloir de prison
+BDSM Room Blue
+Chambre BDSM Bleue
+BDSM Room Purple
+Chambre BDSM Violette
+BDSM Room Red
+Chambre BDSM Rouge
+Gardens
+Jardins
+Indoor Pool
+Piscine Intérieure
+Outdoor Pool
+Piscine Extérieure
+Maid Café
+Café des Servantes
+Public Bath
+Bain Public
+Park Day
+Parc Jour
+Park Night
+Parc Nuit
+Chill Room
+Salle de détente
+Boudoir
+Boudoir
+Bondage Bedchamber
+Chambre Bondage
+Beach
+Plage
+Forest Path
+Chemin Forestier
+Deep Forest
+Forêt Profonde
+Spooky Forest
+Forêt Sombre
+Abandoned Building
+Bâtiment Abandonné
+Balcony Night
+Balcon Nuit
+Cozy Living Room
+Salon Confortable
+Rooftop Party
+Fête sur le Toit
+Cosy Chalet
+Chalet Confortable
+Park Winter
+Parc Hiver
+Xmas Eve Lounge
+Salon de la Veille de Noël
+Xmas Day Lounge
+Salon de Noël
+Street Night
+Rue Soir
+Snowy Street
+Rue Enneigée
+Entrance
+Entrée
+Bedroom
+Chambre
+Meeting
+Rencontre
+Therapy
+Thérapie
+Cellule Capitonnée
+Cellule Capitonnée 2

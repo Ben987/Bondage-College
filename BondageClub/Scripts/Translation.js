@@ -115,11 +115,14 @@ var TranslationDictionary = [
 			"Screens/Character/Appearance/Text_Appearance_FR.txt",
 			"Screens/Character/Cheat/Text_Cheat_FR.txt",
 			"Screens/Character/Creation/Text_Creation_FR.txt",
+			"Screens/Character/FriendList/Text_FriendList_FR.txt",
 			"Screens/Character/InformationSheet/Text_InformationSheet_FR.txt",
 			"Screens/Character/Login/Text_Login_FR.txt",
+			"Screens/Character/OnlineProfile/Text_OnlineProfile_FR.txt",
 			"Screens/Character/PasswordReset/Text_PasswordReset_FR.txt",
 			"Screens/Character/Player/Dialog_Player_FR.txt",
 			"Screens/Character/Preference/Text_Preference_FR.txt",
+			"Screens/Character/Title/Text_Title_FR.txt",
 			"Screens/Character/Wardrobe/Text_Wardrobe_FR.txt",
 			"Screens/Cutscene/NPCCollaring/Text_NPCCollaring_FR.txt",
 			"Screens/Cutscene/NPCSlaveAuction/Text_NPCSlaveAuction_FR.txt",
@@ -132,13 +135,38 @@ var TranslationDictionary = [
 			"Screens/MiniGame/MaidDrinks/Text_MaidDrinks_FR.txt",
 			"Screens/MiniGame/RhythmGame/Text_RhythmGame_FR.txt",
 			"Screens/MiniGame/SlaveAuction/Text_SlaveAuction_FR.txt",
+			"Screens/MiniGame/Tennis/Text_Tennis_FR.txt",
+			"Screens/MiniGame/Therapy/Text_Therapy_FR.txt",
 			"Screens/Online/ChatCreate/Text_ChatCreate_FR.txt",
+			"Screens/Online/ChatAdmin/Text_ChatAdmin_FR.txt",
 			"Screens/Online/ChatRoom/Dialog_Online_FR.txt",
 			"Screens/Online/ChatRoom/Text_ChatRoom_FR.txt",
 			"Screens/Online/ChatSearch/Text_ChatSearch_FR.txt",
+			"Screens/Room/AsylumBedroom/Text_AsylumBedroom_FR.txt",
+			"Screens/Room/AsylumEntrance/Text_AsylumEntrance_FR.txt",
+			"Screens/Room/AsylumMeeting/Dialog_NPC_AsylumMeeting_PatientLeft_FR.txt",
+			"Screens/Room/AsylumMeeting/Dialog_NPC_AsylumMeeting_PatientRight_FR.txt",
+			"Screens/Room/Cafe/Text_Cafe_FR.txt",
 			"Screens/Room/Cell/Text_Cell_FR.txt",
+			"Screens/Room/CollegeCafeteria/Text_CollegeCafeteria_FR.txt",
+			"Screens/Room/CollegeCafeteria/Dialog_NPC_CollegeCafeteria_FarRight_FR.txt",
+			"Screens/Room/CollegeCafeteria/Dialog_NPC_CollegeCafeteria_Right_FR.txt",
+			"Screens/Room/CollegeDetention/Text_CollegeDetention_FR.txt",
+			"Screens/Room/CollegeEntrance/Text_CollegeEntrance_FR.txt",
+			"Screens/Room/CollegeDetention/Text_CollegeTeacher_FR.txt",
+			"Screens/Room/CollegeDetention/Text_Tennis_FR.txt",
+			"Screens/Room/CollegeDetention/Text_Theater_FR.txt",
 			"Screens/Room/MainHall/Dialog_NPC_MainHall_Maid_FR.txt",
-			"Screens/Room/MainHall/Text_MainHall_FR.txt"
+			"Screens/Room/MainHall/Text_MainHall_FR.txt",
+			"Screens/Room/Management/Text_Management_FR.txt",
+			"Screens/Room/Nursery/Text_Nursery_FR.txt",
+			"Screens/Room/Photographic/Text_Photographic_FR.txt",
+			"Screens/Room/Prison/Text_Prison_FR.txt",
+			"Screens/Room/Private/Text_Private_FR.txt",
+			"Screens/Room/Shop/Text_Shop_FR.txt",
+			"Screens/Room/Stable/Dialog_NPC_Stable_Pony_FR.txt",
+			"Screens/Room/Stable/Dialog_NPC_Stable_Trainer_FR.txt",
+			"Screens/Room/Stable/Text_Stable_FR.txt",
 		]
 	},
 	{
@@ -251,14 +279,14 @@ function TranslationAvailable(FullPath) {
 
 // Parse a TXT translation file and returns it as JSON array
 function TranslationParseTXT(str) {
-		
+
     var arr = [];
 	var c;
 
     // iterate over each character, keep track of current row (of the returned array)
     for (var row = c = 0; c < str.length; c++) {
         var cc = str[c], nc = str[c+1];        // current character, next character
-        arr[row] = arr[row] || [];             // create a new row if necessary        
+        arr[row] = arr[row] || [];             // create a new row if necessary
         if (cc == '\n') { ++row; continue; }   // If it's a newline, move on to the next row
         arr[row] += cc;                        // Otherwise, append the current character to the row
     }
@@ -273,7 +301,7 @@ function TranslationParseTXT(str) {
 	// Trims the full translated array
     for (var row = 0; row < arr.length; row++)
 		arr[row] = arr[row].trim();
-		
+
     return arr;
 }
 
@@ -326,17 +354,17 @@ function TranslationDialog(C) {
 					TranslationDialogArray(C, TranslationCache[FullPath]);
 				}
 			});
-	
+
 	}
-	
+
 }
 
 // Translate a character dialog if the file is in the dictionary
 function TranslationText(Text) {
-	
+
 	// If we play in a foreign language
 	if ((TranslationLanguage != null) && (TranslationLanguage.trim() != "") && (TranslationLanguage.trim().toUpperCase() != "EN")) {
-		
+
 		// Finds the full path of the translation file to use
 		var FullPath = "Screens/" + CurrentModule + "/" + CurrentScreen + "/Text_" + CurrentScreen + "_" + TranslationLanguage + ".txt";
 
@@ -369,7 +397,7 @@ function TranslationAssetProcess(T) {
 
 // Translates the description of the assets and groups
 function TranslationAsset(Family) {
-	
+
 	// If we play in a foreign language
 	if ((TranslationLanguage != null) && (TranslationLanguage.trim() != "") && (TranslationLanguage.trim().toUpperCase() != "EN")) {
 
@@ -390,9 +418,9 @@ function TranslationAsset(Family) {
 					TranslationAssetProcess(TranslationCache[FullPath]);
 				}
 			});
-	
+
 	}
-	
+
 }
 
 // Changes the current language

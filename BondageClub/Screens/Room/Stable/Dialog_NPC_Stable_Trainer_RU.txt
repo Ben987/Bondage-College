@@ -39,7 +39,7 @@ Good. Horses don't speak.
 (Она ворчит, когда ты бьешь ее по заднице стеком.)  Я тренер, а не лошадь.
 (She tries to fight back.)  That's equipment for the horses.
 (Она пытается сопротивляться.)  Это снаряжение для лошадей.
-(You remove the device.)  Thanks, now can work again.
+(You remove the device.)  Thanks, now I can work again.
 (Ты удаляешь устройство.)  Спасибо, теперь можно снова работать.
 (She looks surprised.) Is that not a saddle?
 (Она выглядит удивленной.) Это не седло?
@@ -74,8 +74,8 @@ Can you answer some questions?
 Yes sure, but hurry up, the ponies are waiting.
 Да, конечно, но поторопись, пони ждут.
 ###_PLAYER
-Can I get a pony training? 
-Могу ли я пройти тренировку пони? 
+Can I get a pony training?
+Могу ли я пройти тренировку пони?
 I want to become a trainer.
 Я хочу стать тренером.
 I want a trial pony training.
@@ -263,8 +263,8 @@ You have to be submissive, have the right equipment and pay the training fee.
 Can i become a trainer?
 Могу я стать тренером?
 ###_NPC
-The trainer guild is currently looking for some new strong members. 
-Гильдия тренеров в настоящее время ищет новых сильных членов. 
+The trainer guild is currently looking for some new strong members.
+Гильдия тренеров в настоящее время ищет новых сильных членов.
 ###_PLAYER
 What does a training routine look like?
 Как выглядит тренировочная программа?
@@ -677,13 +677,13 @@ That was an outstanding performance. You deserve an award.
 (Go to the award ceremony.)
 (Иди на церемонию награждения.)
 ###_NPC
-We are proud of you and look forward to your training. 
-Мы гордимся тобой и с нетерпением ждем твоих тренировок. 
+We are proud of you and look forward to your training.
+Мы гордимся тобой и с нетерпением ждем твоих тренировок.
 As a reward, you will receive a bottle of champagne, which you can drink with your friends.
 В награду ты получаешь бутылку шампанского, которую сможешь выпить вместе с друзьями.
 ###_PLAYER
-(Celebrate your victory.) 
-(Празднуй свою победу.) 
+(Celebrate your victory.)
+(Празднуй свою победу.)
 ###_NPC
 (In addition, you may leave the stall during future training)
 (Кроме того, ты можешь покинуть стойло во время будущих тренировок)
