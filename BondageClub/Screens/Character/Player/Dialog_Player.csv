@@ -135,6 +135,9 @@ ActionRemove,,,SourceCharacter removes the PrevAsset from DestinationCharacter F
 ActionUnlock,,,SourceCharacter unlocks and removes the PrevAsset from DestinationCharacter FocusAssetGroup.
 ActionDice,,,SourceCharacter rolls a DiceType sided dice.  The result is: DiceResult.
 ActionCoin,,,SourceCharacter flips a coin.  The result is: CoinResult.
+ActionGrabbedForCell,,,"TargetCharacterName gets grabbed by two maids and locked in a timer cell, following her owner commands."
+ActionGrabbedToServeDrinks,,,TargetCharacterName gets grabbed by two maids and escorted to the maid quarters to serve drinks for her owner.
+ActionGiveEnvelopeToOwner,,,TargetCharacterName gives a sealed envelope to her owner.
 MaidDrinkPickFreeWater,,,SourceCharacter picks a glass of water from DestinationCharacter tray.,,
 MaidDrinkPickFreeOrangeJuice,,,SourceCharacter picks an orange juice from DestinationCharacter tray.,,
 MaidDrinkPickFreeBeer,,,SourceCharacter picks a beer from DestinationCharacter tray.,,
