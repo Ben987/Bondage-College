@@ -99,6 +99,8 @@ function IntroductionGetBasicItems() {
 	InventoryAdd(Player, "NylonRope", "ItemLegs");
 	InventoryAdd(Player, "NylonRope", "ItemArms");
 	InventoryAdd(Player, "ClothGag", "ItemMouth");
+	InventoryAdd(Player, "ClothGag", "ItemMouth2");
+	InventoryAdd(Player, "ClothGag", "ItemMouth3");
 	IntroductionHasBasicItems = true;
 }
 
