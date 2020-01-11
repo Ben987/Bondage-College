@@ -683,7 +683,13 @@ function CharacterAppearanceReady(C) {
 	// If there's no error, we continue to the login or main hall if already logged
 	if (C.AccountName != "") {
 		ServerPlayerAppearanceSync();
-		if (CharacterAppearanceReturnRoom == "ChatRoom") ChatRoomCharacterUpdate(C);
+		if (CharacterAppearanceReturnRoom == "ChatRoom") {
+			var Dictionary = [];
+			Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+			Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+			ServerSend("ChatRoomChat", { Content: "ChangeClothes", Type: "Action" , Dictionary: Dictionary});
+			ChatRoomCharacterUpdate(C);
+		}
 		CommonSetScreen(CharacterAppearanceReturnModule, CharacterAppearanceReturnRoom);
 		CharacterAppearanceReturnRoom = "MainHall";
 		CharacterAppearanceReturnModule = "Room";

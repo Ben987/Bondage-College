@@ -84,6 +84,7 @@ Herself,,,herself
 Someone,,,Someone
 KneelDown,,,SourceCharacter kneels down
 StandUp,,,SourceCharacter stands up
+ChangeClothes,,,SourceCharacter changes DestinationCharacter clothes.
 Private,,,Private
 Public,,,Public
 Locked,,,Locked
