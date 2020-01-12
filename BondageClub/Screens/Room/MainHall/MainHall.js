@@ -64,8 +64,10 @@ function MainHallRun() {
 
 	// Draws the character and main hall buttons
 	DrawCharacter(Player, 750, 0, 1);
-	MainCanvas.font = "italic 30px Arial";	
-	DrawTextWrap(TextGet("Tip" + MainHallTip), 100, 800, 500, 200, "White");
+	if ((Player != null) && (Player.VisualSettings != null) && (Player.VisualSettings.HideTipMessages != null) && !Player.VisualSettings.HideTipMessages || (Player.VisualSettings.HideTipMessages == null) ) {
+		MainCanvas.font = "italic 30px Arial";	
+		DrawTextWrap(TextGet("Tip" + MainHallTip), 100, 800, 500, 200, "White");
+	}
 	MainCanvas.font = "36px Arial";	
 	
 	// Char, Dressing, Exit & Chat

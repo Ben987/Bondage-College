@@ -37,6 +37,11 @@ function PreferenceLoad() {
 		ForceFullHeight: false
 	};
 
+	// If the user never set the visual settings before, construct them to replicate the default behavior
+	if (!Player.VisualSettings) Player.VisualSettings = {
+		HideTipMessages: true
+	};
+
 	// If the user never set the audio settings before, construct them to replicate the default behavior
     if (!Player.AudioSettings || (typeof Player.AudioSettings.Volume !== "number") || (typeof Player.AudioSettings.PlayBeeps !== "boolean")) Player.AudioSettings = {
         Volume: 1,
@@ -97,7 +102,9 @@ function PreferenceRun() {
     DrawText(TextGet("DisableAutoRemoveLogin"), 600, 745, "Black", "Gray");
     DrawButton(500, 712, 64, 64, "", "White", (Player.GameplaySettings && Player.GameplaySettings.DisableAutoRemoveLogin) ? "Icons/Checked.png" : "");
     DrawText(TextGet("ForceFullHeight"), 600, 825, "Black", "Gray");
-    DrawButton(500, 792, 64, 64, "", "White", (Player.VisualSettings && Player.VisualSettings.ForceFullHeight) ? "Icons/Checked.png" : "");
+	DrawButton(500, 792, 64, 64, "", "White", (Player.VisualSettings && Player.VisualSettings.ForceFullHeight) ? "Icons/Checked.png" : "");
+	DrawText(TextGet("HideTipMessages"), 600, 905, "Black", "Gray");
+    DrawButton(500, 872, 64, 64, "", "White", (Player.VisualSettings && Player.VisualSettings.HideTipMessages) ? "Icons/Checked.png" : "");
 	MainCanvas.textAlign = "center";
     DrawBackNextButton(500, 392, 250, 64, Player.AudioSettings.Volume * 100 + "%", "White", "",
         () => PreferenceSettingsVolumeList[(PreferenceSettingsVolumeIndex + PreferenceSettingsVolumeList.length - 1) % PreferenceSettingsVolumeList.length] * 100 + "%",
@@ -159,6 +166,7 @@ function PreferenceClick() {
 		if ((MouseY >= 632) && (MouseY < 696)) Player.GameplaySettings.BlindDisableExamine = !Player.GameplaySettings.BlindDisableExamine;
         if ((MouseY >= 712) && (MouseY < 776)) Player.GameplaySettings.DisableAutoRemoveLogin = !Player.GameplaySettings.DisableAutoRemoveLogin;
 		if ((MouseY >= 792) && (MouseY < 856)) Player.VisualSettings.ForceFullHeight = !Player.VisualSettings.ForceFullHeight;
+		if ((MouseY >= 872) && (MouseY < 936)) Player.VisualSettings.HideTipMessages = !Player.VisualSettings.HideTipMessages;
 	}
 }
 
