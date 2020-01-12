@@ -110,5 +110,7 @@ Meeting
 Rencontre
 Therapy
 Thérapie
+Padded Cell
 Cellule Capitonnée
+Padded Cell 2
 Cellule Capitonnée 2
