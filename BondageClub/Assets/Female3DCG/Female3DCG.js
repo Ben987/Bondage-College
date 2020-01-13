@@ -1037,6 +1037,17 @@ var AssetFemale3DCG = [
 			},
 			{ Name: "Yoke", Value: 80, SetPose: ["Yoked"], SelfBondage: false, Priority: 39, Effect: ["Block", "Prone"], Time: 20, Difficulty: 10, AllowLock: true },
 			{ Name: "Pillory", Random: false, Value: -1, SetPose: ["Yoked"], SelfBondage: false, Priority: 44, Effect: ["Block", "Prone"], Time: 20, Difficulty: 12, AllowLock: true },
+			{
+			    Name: "FullLatexSuit", DefaultColor: "#006e7b", Random: false, SelfBondage: false, Value: 200, SetPose: ["BackElbowTouch", "StraitDressOpen" ], Hide: ["Socks", "BodyLower", "Cloth", "ClothLower", "Bra", "Shoes", "ItemBoots", "ItemLegs"], Block: ["ItemBoots","ItemPelvis", "ItemTorso", "ItemHands", "ItemLegs", "ItemFeet"], Effect: ["Block", "Prone"], HideItem: ["ItemFeetNylonRope", "ItemFeetHempRope", "ItemFeetLeatherBelt", "ItemFeetIrish8Cuffs", "ItemFeetDuctTape", "ItemFeetMermaidRopeTie", "ItemFeetLeatherAnkleCuffs"], Time: 40, RemoveTime: 30, Difficulty: 15, AllowLock: true, Prerequisite: "CanBeSuited",  Extended: true,
+				AllowEffect: ["Egged", "Vibrating"],
+				AllowBlock: ["ItemBreast", "ItemNipples", "ItemNipplesPiercings", "ItemVulva", "ItemVulvaPiercings", "ItemButt"],
+				AllowTypes:["", "Base", "UnZip", "Latex"],
+				Layer: [
+				    { Name: "Latex", AllowColorize: true, AllowTypes: ["", "Base"], HasType: false  },
+					{ Name: "UnZip", AllowColorize: true, AllowTypes: ["UnZip", "Base"], HasType: false },
+					{ Name: "Base", AllowColorize: false, AllowTypes: ["", "Base", "UnZip", "Latex",], HasType: false  }
+				]
+			},
 			AssetSpankingToys
 		]
 	},
@@ -1563,7 +1574,8 @@ var AssetFemale3DCG = [
 		Top: -250,
 		Zone: [[400, 35, 75, 210]],
 		Asset: [
-			{ Name: "BondageBenchStraps", RemoveAtLogin: false, IsRestraint: true, Extended: true, Block: ["ItemDevices"], AllowType: ["Light", "Normal", "Heavy", "Full"], Hide: ["HairBack", "Wings", "TailStraps", "ItemButt"], SelfBondage: false, AllowLock: true, Value: -1, SetPose: ["LegsClosed"], Effect: ["Block", "Prone"], Time: 5, Difficulty: 12 }
+			{ Name: "BondageBenchStraps", RemoveAtLogin: false, IsRestraint: true, Extended: true, Block: ["ItemDevices"], AllowType: ["Light", "Normal", "Heavy", "Full"], Hide: ["HairBack", "Wings", "TailStraps", "ItemButt"], SelfBondage: false, AllowLock: true, Value: -1, SetPose: ["LegsClosed"], Effect: ["Block", "Prone"], Time: 5, Difficulty: 12 },
+			{ Name: "FullLatexSuitWand", Priority: 32, IsRestraint: true, Extended: true, Block: ["ItemArms"], AllowLock: true, Value: -1, Effect: ["Egged", "Block", "Prone"],  AllowEffect: ["Egged", "Vibrating"], Time: 5, Difficulty: 12 },
 		]
 	},
 

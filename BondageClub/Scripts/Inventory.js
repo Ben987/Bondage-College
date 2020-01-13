@@ -116,6 +116,7 @@ function InventoryAllow(C, Prerequisite, SetDialog) {
 	if (Prerequisite == "Sybian" && C.Pose.indexOf("Suspension") >= 0) T = "TheyMustBeStandingFirst";
 	if (Prerequisite == "Sybian" && C.Effect.indexOf("Shackled") >= 0) T = "RemoveShacklesFirst";
 	if (Prerequisite == "Sybian" && C.Effect.indexOf("Chaste") >= 0) T = "RemoveChastityFirst";
+	if (Prerequisite == "Sybian" && C.Pose.indexOf("StraitDressOpen") >= 0) T = "LegsCannotOpen";
 	if ((Prerequisite == "Sybian") && (((curCloth != null) && curCloth.Asset.Block != null && curCloth.Asset.Block.includes("ItemVulva"))
 		|| (InventoryGet(C, "ClothLower") != null && !InventoryGet(C, "ClothLower").Asset.Expose.includes("ItemVulva"))
 		|| (InventoryGet(C, "Panties") != null && !InventoryGet(C, "Panties").Asset.Expose.includes("ItemVulva"))
@@ -127,6 +128,7 @@ function InventoryAllow(C, Prerequisite, SetDialog) {
 	if (Prerequisite == "OBP" && C.Pose.indexOf("Horse") >= 0) T = "TheyMustBeStandingFirst";
 	if (Prerequisite == "OBP" && C.Pose.indexOf("Kneel") >= 0) T = "TheyMustBeStandingFirst";
 	if (Prerequisite == "OBP" &&  C.Effect.indexOf("Chaste") >= 0) T = "RemoveChastityFirst";
+	if (Prerequisite == "OBP" && C.Pose.indexOf("StraitDressOpen") >= 0) T = "LegsCannotOpen";
 	if ((Prerequisite == "OBP") && (((curCloth != null) && curCloth.Asset.Block != null && curCloth.Asset.Block.includes("ItemVulva"))
 		|| (InventoryGet(C, "ClothLower") != null && !InventoryGet(C, "ClothLower").Asset.Expose.includes("ItemVulva"))
 		|| (InventoryGet(C, "Panties") != null && !InventoryGet(C, "Panties").Asset.Expose.includes("ItemVulva"))
@@ -146,6 +148,7 @@ function InventoryAllow(C, Prerequisite, SetDialog) {
 	if (Prerequisite == "LegsOpen1" && C.Pose.indexOf("KneelingSpread") >= 0) T = "TheyMustBeStandingFirst";
 	if (Prerequisite == "LegsOpen1" && C.Pose.indexOf("Kneel") >= 0) T = "TheyMustBeStandingFirst";
 	if (Prerequisite == "LegsOpen1" && C.Effect.indexOf("Shackled") >= 0) T = "RemoveShacklesFirst";
+	if (Prerequisite == "LegsOpen1" && C.Pose.indexOf("StraitDressOpen") >= 0) T = "LegsCannotOpen";
 
 	// Wooden horse blocks
 	if (Prerequisite == "Horse" && C.Pose.indexOf("Kneel") >= 0) T = "TheyMustBeStandingFirst";
@@ -155,6 +158,7 @@ function InventoryAllow(C, Prerequisite, SetDialog) {
 	if (Prerequisite == "CollaredNotSuspended1" && (InventoryGet(C, "ItemNeck") == null || C.Pose.indexOf("Suspension") >= 0)) T = "MustCollaredFirstAndRemoveSuspension1";
 	if (Prerequisite == "CollaredNotSuspended1" && (InventoryGet(C, "ItemNeck") == null || C.Pose.indexOf("Horse") >= 0)) T = "MustCollaredFirstAndRemoveSuspension1";
 	if (Prerequisite == "CollaredNotSuspended1" && (InventoryGet(C, "ItemNeck") == null || C.Effect.indexOf("Mounted") >= 0)) T = "MustCollaredFirstAndRemoveSuspension1";
+	if (Prerequisite == "CollaredNotSuspended1" && C.Pose.indexOf("StraitDressOpen") >= 0) T = "LegsKneel";
 	if (Prerequisite == "NotSuspendedOrHorsed" && C.Pose.indexOf("Suspension") >= 0) T = "TheyMustBeStandingFirst";
 	if (Prerequisite == "NotSuspendedOrHorsed" && C.Pose.indexOf("Horse") >= 0) T = "TheyMustBeStandingFirst";
 	if (Prerequisite == "NotSuspendedOrHorsed" && C.Pose.indexOf("KneelingSpread") >= 0) T = "TheyMustBeStandingFirst";
@@ -181,6 +185,13 @@ function InventoryAllow(C, Prerequisite, SetDialog) {
 	if (Prerequisite == "Benched" && C.Pose.indexOf("Kneel") >= 0) T = "TheyMustBeStandingFirst";
 	if (Prerequisite == "Benched" && C.Pose.indexOf("Suspension") >= 0) T = "TheyMustBeStandingFirst";
 	
+	//Latex lockdown suit
+	if (Prerequisite == "CanBeSuited" && C.Pose.indexOf("Suspension") >= 0) T = "TheyMustBeStandingFirst";
+	if (Prerequisite == "CanBeSuited" && C.Pose.indexOf("KneelingSpread") >= 0) T = "TheyMustBeStandingFirst";
+	if (Prerequisite == "CanBeSuited" && (InventoryGet(C, "ItemLegs") != null) && (InventoryGet(C, "ItemLegs").Asset.Name == "WoodenHorse")) T = "LegsCannotClose";
+	if (Prerequisite == "CanBeSuited" && (InventoryGet(C, "ItemFeet") != null) && (InventoryGet(C, "ItemFeet").Asset.Name == "SpreaderMetal")) T = "CannotBeUsedWithFeetSpreader";
+	if (Prerequisite == "CanBeSuited" && C.Effect.indexOf("Mounted") >= 0) T = "CannotBeUsedWhenMounted";
+
 	// If no error text was found, we return TRUE, if a text was found, we can show it in the dialog
 	if (T != "" && (SetDialog == null || SetDialog)) DialogSetText(T);
 	return (T == "");

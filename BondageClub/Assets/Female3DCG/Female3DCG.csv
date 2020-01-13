@@ -480,6 +480,7 @@ ItemArms,StraitDress,Strait Dress
 ItemArms,StraitDressOpen,Open Crotch Strait Dress
 ItemArms,Yoke,Yoke
 ItemArms,Pillory,Pillory
+ItemArms,FullLatexSuit,Full LockDown Latex Suit
 ItemHands,,Hands
 ItemHands,PaddedMittens,Padded Mittens
 ItemHands,PawMittens,Paw Mittens
@@ -693,6 +694,7 @@ ItemDevices,TheDisplayFrame,Display Frame
 ItemDevices,Sybian,Sybian
 ItemAddon,,Body
 ItemAddon,BondageBenchStraps,Leather Belt Straps
+ItemAddon,FullLatexSuitWand,Wand
 ItemBoots,,Feet
 ItemBoots,PonyBoots,Pony Boots
 ItemBoots,BalletHeels,Ballet Heels

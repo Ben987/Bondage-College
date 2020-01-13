@@ -6,6 +6,7 @@ TheyMustBeStandingFirst,,,Must be standing and not suspended first.
 CannotBeUsedWhenMounted,,,Cannot be used when mounted.
 CannotBeUsedWhenYoked,,,Cannot be used while yoked.
 CannotBeUsedWithFeetSpreader,,,Cannot be used with legs spreader.
+LegsKneel,,,Cannot kneel down.
 RemoveChastityFirst,,,Must remove chastity first.
 RemoveChainForItem,,,Remove the chain to the floor first
 MustCollaredFirst,,,A collar must be fitted first to attach accessories to.
@@ -526,6 +527,13 @@ SpankingToysTypeCattleProd,,,Cattle Prod
 SpankingToysTypeTennisRacket,,,Tennis Racket
 SpankingToysSetPlayer,,,SourceCharacter takes out a ItemUsed
 SpankingToysSetOthers,,,SourceCharacter gives TargetCharacter a ItemUsed
+SelectSuitType,,,Select suit type and wand attachment
+FullLatexSuitTypeZipped,,,Zipped Up
+FullLatexSuitTypeUnZip,,,Unzipped
+FullLatexSuitTypeWand,,,Wand Attachment
+FullLatexSuitSetZipped,,,SourceCharacter zips up TargetCharacter suit.
+FullLatexSuitSetUnZip,,,SourceCharacter unzips up TargetCharacter suit.
+FullLatexSuitSetWand,,,SourceCharacter attachs a wand to TargetCharacter suit.
 TurnOff,,,TurnOff
 Low,,,Low
 Medium,,,Medium
