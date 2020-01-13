@@ -1302,7 +1302,15 @@ var AssetFemale3DCG = [
 			{ Name: "BitGag", Difficulty: 4, Effect: ["GagNormal"], Value: 40, Time: 20, ExpressionTrigger: [{ Group: "Fluids", Name: "DroolSides", Timer: 30 }], AllowLock: true, BuyGroup: "BitGag", SetPose: ["GagUnique"], Prerequisite: "GagUnique" },
 			{ Name: "XLBoneGag", Difficulty: 6, Value: 60, Time: 10, Effect: ["GagNormal"], ExpressionTrigger: [{ Group: "Fluids", Name: "DroolSides", Timer: 30 }], AllowLock: true, BuyGroup: "XLBoneGag", SetPose: ["GagUnique"], Prerequisite: "GagUnique" },
 			{ Name: "DogMuzzleExposed", Difficulty: 7, Value: 50, Time: 10, Effect: ["GagNormal"], AllowLock: true, Hide: ["Mouth"], Block: ["ItemMouth2", "ItemMouth3"] },
-			{ Name: "FoxyHarnessPanelGag", Difficulty: 6, Value: 40, Time: 20, Effect: ["GagNormal"], AllowLock: true, Hide: ["Mouth"], Block: ["ItemMouth2", "ItemMouth3"] }
+			{ Name: "FoxyHarnessPanelGag", Difficulty: 6, Value: 40, Time: 20, Effect: ["GagNormal"], AllowLock: true, Hide: ["Mouth"], Block: ["ItemMouth2", "ItemMouth3"] },
+			{ Name: "BallGag", Effect: ["GagMedium"], Difficulty: 2, Value: 40, Time: 10, AllowLock: true,  Hide: ["Mouth"], ExpressionTrigger: [{ Group:"Fluids", Name: "DroolSides", Timer: 30 }], BuyGroup: "BallGag", SetPose:["GagUnique"], Prerequisite: "GagUnique",
+		     Layer: [
+				  { Name: "Strap", AllowColorize: false},
+				  { Name: "Ball", AllowColorize: true}
+				 
+			 ]
+			},
+
 		]
 	},
 
@@ -1370,7 +1378,14 @@ var AssetFemale3DCG = [
 			{ Name: "LeatherCorsetCollar", Random: false, DefaultColor: "#404040", Priority: 36, Hide: ["Mouth"], BuyGroup: ["LeatherCorsetCollar"], Block: ["ItemNeck", "ItemMouth"], Value: 75, Time: 20, RemoveTime: 30, Difficulty: 50, AllowLock: true, BuyGroup: "LeatherCorsetCollar", SetPose: ["GagCorset"], Prerequisite: "GagCorset" },
 			{ Name: "LatexPostureCollar", Random: false, Priority: 36, Hide: ["Mouth"], BuyGroup: ["LatexPostureCollar"], Block: ["ItemNeck", "ItemMouth"], Value: 80, Time: 20, RemoveTime: 30, Difficulty: 50, AllowLock: true, BuyGroup: "LatexPostureCollar", SetPose: ["GagCorset"], Prerequisite: "GagCorset" },
 			{ Name: "BitGag", Random: false, Difficulty: 4, Effect: ["GagNormal"], Value: 40, Time: 20, ExpressionTrigger: [{ Group: "Fluids", Name: "DroolSides", Timer: 30 }], AllowLock: true, Block: ["ItemMouth"], BuyGroup: "BitGag", SetPose: ["GagUnique"], Prerequisite: "GagUnique" },
-			{ Name: "XLBoneGag", Random: false, Difficulty: 6, Value: 60, Time: 10, Effect: ["GagNormal"], ExpressionTrigger: [{ Group: "Fluids", Name: "DroolSides", Timer: 30 }], AllowLock: true, Block: ["ItemMouth"], BuyGroup: "XLBoneGag", SetPose: ["GagUnique"], Prerequisite: "GagUnique" }
+			{ Name: "XLBoneGag", Random: false, Difficulty: 6, Value: 60, Time: 10, Effect: ["GagNormal"], ExpressionTrigger: [{ Group: "Fluids", Name: "DroolSides", Timer: 30 }], AllowLock: true, Block: ["ItemMouth"], BuyGroup: "XLBoneGag", SetPose: ["GagUnique"], Prerequisite: "GagUnique" },
+			{ Name: "BallGag", Effect: ["GagMedium"], Difficulty: 2, Value: 40, Time: 10, AllowLock: true, Block: ["ItemMouth"],  Hide: ["Mouth"], ExpressionTrigger: [{ Group:"Fluids", Name: "DroolSides", Timer: 30 }], BuyGroup: "BallGag", SetPose:["GagUnique"], Prerequisite: "GagUnique",
+		     Layer: [
+				  { Name: "Strap", AllowColorize: false},
+				  { Name: "Ball", AllowColorize: true}
+				 
+			 ]
+			},
 		]
 	},
 
@@ -1438,8 +1453,16 @@ var AssetFemale3DCG = [
 			{ Name: "LeatherCorsetCollar", Random: false, DefaultColor: "#404040", Priority: 37, Hide: ["Mouth"], BuyGroup: ["LeatherCorsetCollar"], Block: ["ItemNeck", "ItemMouth", "ItemMouth2"], Value: 75, Time: 20, RemoveTime: 30, Difficulty: 50, AllowLock: true, BuyGroup: "LeatherCorsetCollar", SetPose: ["GagCorset"], Prerequisite: "GagCorset" },
 			{ Name: "LatexPostureCollar", Random: false, Priority: 37, Hide: ["Mouth"], BuyGroup: ["LatexPostureCollar"], Block: ["ItemNeck", "ItemMouth", "ItemMouth2"], Value: 80, Time: 20, RemoveTime: 30, Difficulty: 50, AllowLock: true, BuyGroup: "LatexPostureCollar", SetPose: ["GagCorset"], Prerequisite: "GagCorset" },
 			{ Name: "BitGag", Random: false, Difficulty: 4, Effect: ["GagNormal"], Value: 40, Time: 20, ExpressionTrigger: [{ Group: "Fluids", Name: "DroolSides", Timer: 30 }], AllowLock: true, Block: ["ItemMouth", "ItemMouth2"], BuyGroup: "BitGag", SetPose: ["GagUnique"], Prerequisite: "GagUnique" },
-			{ Name: "XLBoneGag", Random: false, Difficulty: 6, Value: 60, Time: 10, Effect: ["GagNormal"], ExpressionTrigger: [{ Group: "Fluids", Name: "DroolSides", Timer: 30 }], AllowLock: true, Block: ["ItemMouth", "ItemMouth2"], BuyGroup: "XLBoneGag", SetPose: ["GagUnique"], Prerequisite: "GagUnique" }
+			{ Name: "XLBoneGag", Random: false, Difficulty: 6, Value: 60, Time: 10, Effect: ["GagNormal"], ExpressionTrigger: [{ Group: "Fluids", Name: "DroolSides", Timer: 30 }], AllowLock: true, Block: ["ItemMouth", "ItemMouth2"], BuyGroup: "XLBoneGag", SetPose: ["GagUnique"], Prerequisite: "GagUnique" },
+			{ Name: "BallGag", Effect: ["GagMedium"], Difficulty: 2, Value: 40, Time: 10, AllowLock: true, Block: ["ItemMouth", "ItemMouth2"],  Hide: ["Mouth"], ExpressionTrigger: [{ Group:"Fluids", Name: "DroolSides", Timer: 30 }], BuyGroup: "BallGag", SetPose:["GagUnique"], Prerequisite: "GagUnique",
+		     Layer: [
+				  { Name: "Strap", AllowColorize: false},
+				  { Name: "Ball", AllowColorize: true}
 		]
+	},
+]
+		
+	
 	},
 
 	{
@@ -1472,7 +1495,7 @@ var AssetFemale3DCG = [
 			{ Name: "LatexBlindfold", Effect: ["BlindNormal", "Prone"], Hide: ["Glasses"], Value: 35, Time: 5, AllowLock: true },
 			{ Name: "DogHood", DefaultColor: "#404040", Random: false, Effect: ["Prone", "GagNormal"], Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth", "ItemMouth2", "ItemMouth3", "HairAccessory1", "HairAccessory2"], Block: ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemEars"], Difficulty: 50, Value: 60, Time: 15, AllowLock: true },
 			{ Name: "FoxyMask", Random: false, Effect: ["Prone", "GagLight"], Hide: ["Glasses", "ItemMouth", "ItemMouth2", "ItemMouth3"], Block: ["ItemMouth", "ItemMouth2", "ItemMouth3"], Difficulty: 2, Value: 50, Time: 15, AllowLock: true }, 
-			{ Name: "SleepMask", Effect: ["BlindLight", "Prone"], Hide: ["Glasses"], Value: 5, Time: 5 },
+	
 		]
 	},
 
