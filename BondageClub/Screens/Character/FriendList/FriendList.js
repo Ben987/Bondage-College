@@ -54,7 +54,7 @@ function FriendListLoadFriendList(data) {
 	var BeepCaption = DialogFind(Player, "Beep");
 	var DeleteCaption = DialogFind(Player, "Delete");
 	var ConfirmDeleteCaption = DialogFind(Player, "ConfirmDelete");
-	var PrivateRoomCaption = DialogFind(Player, "PrivateRoom");
+	var PrivateRoomCaption = DialogFind(Player, "PrivateRoom");	
 	var SentCaption = DialogFind(Player, "SentBeep");
 	var ReceivedCaption = DialogFind(Player, "ReceivedBeep");
 	var SpaceAsylumCaption = DialogFind(Player, "ChatRoomSpaceAsylum");
@@ -81,7 +81,7 @@ function FriendListLoadFriendList(data) {
 			FriendListContent += "<div class='FriendListTextColumn'>" + ((FriendListBeepLog[B].Sent) ? SentCaption : ReceivedCaption) + " " + TimerHourToString(FriendListBeepLog[B].Time) + "</div>";
 			FriendListContent += "</div>";
 		}
-
+		
 	// In Delete mode, we show the friend list and allow the user to remove them
 	if (FriendListMode[FriendListModeIndex] == "Delete")
 		for (var F = 0; F < data.length; F++)
