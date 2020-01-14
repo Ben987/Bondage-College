@@ -52,7 +52,9 @@ function InventoryItemArmsFullLatexSuitSetType(NewType) {
 		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
 		InventoryItemArmsFullLatexSuitLoad();
 	}
-	DialogFocusItem.Property.Type = NewType;
+	if(NewType == null || NewType == "UnZip")
+		DialogFocusItem.Property.Type = NewType;
+	
 	if (NewType == null) {
 		DialogFocusItem.Property.Block = ["ItemBreast", "ItemNipples", "ItemNipplesPiercings", "ItemVulva", "ItemVulvaPiercings", "ItemButt"];
 	}
