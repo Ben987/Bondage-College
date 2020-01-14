@@ -1,38 +1,4 @@
 ﻿###_NPC
-picks a glass of water from DialogCharacterName tray.
-берет стакан воды с подноса DialogCharacterName.
-picks an orange juice from DialogCharacterName tray.
-берет апельсиновый сок с подноса DialogCharacterName.
-picks a beer from DialogCharacterName tray.
-берет пиво с подноса DialogCharacterName.
-picks a glass of wine from DialogCharacterName tray.
-берет бокал вина с подноса DialogCharacterName.
-buys a Virgin Mojito from DialogCharacterName tray.
-покупает безалкогольный мохито у DialogCharacterName.
-buys a Margarita from DialogCharacterName tray.
-покупает Маргариту у DialogCharacterName.
-buys a glass of Whiskey from DialogCharacterName.
-покупает стакан виски у DialogCharacterName.
-buys a glass of champagne from DialogCharacterName.
-покупает бокал шампанского у DialogCharacterName.
-buys a jug of refreshing lemonade for everyone, from DialogCharacterName.
-покупает кувшин освежающего лимонада для всех, у DialogCharacterName.
-buys a round of shooters for everyone, from DialogCharacterName.
-покупает раунд шотов для всех, у DialogCharacterName.
-buys a jug of Sex on the Beach for everyone, from DialogCharacterName.
-покупает кувшин Секса на Пляже для всех, у DialogCharacterName.
-buys a beer pitcher for everyone, from DialogCharacterName.
-покупает кувшин пива для всех желающих, у DialogCharacterName.
-picks a tea from DialogCharacterName tray.
-берет чай у DialogCharacterName.
-picks a coffee from DialogCharacterName tray.
-берет кофе у DialogCharacterName.
-buys a hot chocolate from DialogCharacterName tray.
-покупает горячий шоколад у DialogCharacterName.
-buys a expresso from DialogCharacterName tray.
-покупает эспрессо у DialogCharacterName.
-buys a cappuccino from DialogCharacterName tray.
-покупает капучино у DialogCharacterName.
 (You can use or remove items by selecting specific body regions.)
 (Ты можешь использовать или удалять предметы, выбрав определенные области тела.)
 (You don't have access to use or remove items on her.)

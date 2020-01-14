@@ -92,7 +92,7 @@ function InventoryAllow(C, Prerequisite, SetDialog) {
 	if (Prerequisite == "NotSuspended" && C.Pose.indexOf("Suspension") >= 0) T = "RemoveSuspensionForItem";
 	if (Prerequisite == "NotKneeling" && C.Pose.indexOf("Kneel") >= 0) T = "TheyMustBeStandingFirst";
 	if (Prerequisite == "NotKneeling" && C.Pose.indexOf("Suspension") >= 0) T = "TheyMustBeStandingFirst";
-	if (Prerequisite == "NotChained" && InventoryGet(C, "ItemNeckAccessories") != null && InventoryGet(C, "ItemNeckAccessories").Asset.Name == "CollarChainLong") T = "RemoveChainForItem";
+	if (Prerequisite == "NotChained" && InventoryGet(C, "ItemNeckRestraints") != null && InventoryGet(C, "ItemNeckRestraints").Asset.Name == "CollarChainLong") T = "RemoveChainForItem";
 	if (Prerequisite == "Collared" && InventoryGet(C, "ItemNeck") == null) T = "MustCollaredFirst";
 	if (Prerequisite == "CollaredNotSuspended" && (InventoryGet(C, "ItemNeck") == null || C.Pose.indexOf("Suspension") >= 0)) T = "MustCollaredFirstAndRemoveSuspension";
 	if (Prerequisite == "LegsOpen" && C.Pose.indexOf("LegsClosed") >= 0) T = "LegsCannotOpen";
@@ -174,6 +174,12 @@ function InventoryAllow(C, Prerequisite, SetDialog) {
 	if (Prerequisite == "CanBeBagged" && (InventoryGet(C, "ItemFeet") != null) && (InventoryGet(C, "ItemFeet").Asset.Name == "SpreaderMetal")) T = "CannotBeUsedWithFeetSpreader";
 	if (Prerequisite == "CanBeBagged" && C.Effect.indexOf("Mounted") >= 0) T = "CannotBeUsedWhenMounted";
 	if (Prerequisite == "CanBeBagged" && C.Pose.indexOf("Yoked") >= 0) T = "CannotBeUsedWhenYoked";
+	
+	// Bondage Bench
+	if (Prerequisite == "Benched" && (InventoryGet(C, "ItemFeet") != null) && (InventoryGet(C, "ItemFeet").Asset.Name == "SpreaderMetal")) T = "LegsCannotClose";
+	if (Prerequisite == "Benched" && (InventoryGet(C, "ItemLegs") != null) && (InventoryGet(C, "ItemLegs").Asset.Name == "WoodenHorse")) T = "LegsCannotClose";
+	if (Prerequisite == "Benched" && C.Pose.indexOf("Kneel") >= 0) T = "TheyMustBeStandingFirst";
+	if (Prerequisite == "Benched" && C.Pose.indexOf("Suspension") >= 0) T = "TheyMustBeStandingFirst";
 	
 	// If no error text was found, we return TRUE, if a text was found, we can show it in the dialog
 	if (T != "" && (SetDialog == null || SetDialog)) DialogSetText(T);

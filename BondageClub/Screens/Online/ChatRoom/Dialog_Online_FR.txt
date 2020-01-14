@@ -1,18 +1,4 @@
 ###_NPC
-picks a beer from DialogCharacterName tray.
-se prend un bière du plateau de DialogCharacterName.
-picks a glass of wine from DialogCharacterName tray.
-se prend un verre de vin du plateau de DialogCharacterName.
-picks a Margarita from DialogCharacterName tray.
-se prend un margarita du plateau de DialogCharacterName.
-buys a glass of Whiskey from DialogCharacterName.
-achète un verre de whiskey de DialogCharacterName.
-buys a glass of champagne from DialogCharacterName.
-achète un verre de champagne de DialogCharacterName.
-buys a round of shooters for everyone, from DialogCharacterName.
-achète une ronde de shooters pour tous de DialogCharacterName.
-buys a beer pitcher for everyone, from DialogCharacterName.
-achète une carafe de bière de DialogCharacterName.
 (You can use or remove items by selecting specific body regions.)
 (Vous pouvez utiliser ou enlever des objets en sélectionnant les parties du corps.)
 (You don't have access to use or remove items on her.)

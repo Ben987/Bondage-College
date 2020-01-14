@@ -107,11 +107,9 @@ function InventorySpankingToySetType(NewType) {
 	// Prepares the chat message to be published
 	var msg = C.ID == 0 ? "SpankingToysSetPlayer" : "SpankingToysSetOthers";
 	var Dictionary = [];
-	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber})
+	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
 	Dictionary.push({Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
-	for (var A = 0; A < Asset.length; A++)
-		if (Asset[A].Name == "SpankingToys")
-			Dictionary.push({Tag: "ItemUsed", Text: Asset[A].DynamicDescription().toLowerCase()});
+	Dictionary.push({Tag: "ItemUsed", Text: DialogFocusItem.Asset.DynamicDescription().toLowerCase()});
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
 
 	// Exit from item when done
