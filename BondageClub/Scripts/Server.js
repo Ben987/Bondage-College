@@ -127,8 +127,8 @@ function ServerValidateProperties(C, Item) {
 				var Lock = InventoryGetLock(Item);
 				if ((Lock.Asset.RemoveTimer != null) && (Lock.Asset.RemoveTimer != 0)) {
 					var CurrentTimeDelay = 5000;
-				    // As CurrentTime can be slightly different, we accept a small delay in ms
-					if ((typeof Item.Property.RemoveTimer !== "number") || (Item.Property.RemoveTimer - CurrentTimeDelay > CurrentTime + Lock.Asset.MaxTimer * 1000)){
+					// As CurrentTime can be slightly different, we accept a small delay in ms
+					if ((typeof Item.Property.RemoveTimer !== "number") || (Item.Property.RemoveTimer - CurrentTimeDelay > CurrentTime + Lock.Asset.MaxTimer * 1000)) {
 						Item.Property.RemoveTimer = CurrentTime + Lock.Asset.RemoveTimer * 1000;
 					}
 				} else delete Item.Property.RemoveTimer;
@@ -138,7 +138,7 @@ function ServerValidateProperties(C, Item) {
 					delete Item.Property.LockedBy;
 					delete Item.Property.LockMemberNumber;
 					delete Item.Property.RemoveTimer;
-                    delete Item.Property.MaxTimer;
+					delete Item.Property.MaxTimer;
 					delete Item.Property.RemoveItem;
 					delete Item.Property.ShowTimer;
 					delete Item.Property.EnableRandomInput;
@@ -266,7 +266,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 						break;
 					}
 
-				// Make sure we don't push an item that's disabled, coming from another player	
+				// Make sure we don't push an item that's disabled, coming from another player
 				if (CanPush && !NA.Asset.Enable && !NA.Asset.OwnerOnly && (SourceMemberNumber != null) && (C.ID == 0)) CanPush = false;
 				if (CanPush) Appearance.push(NA);
 				break;
@@ -356,8 +356,8 @@ function ServerAccountBeep(data) {
 		}
 		ServerBeep.Message = DialogFind(Player, "BeepFrom") + " " + ServerBeep.MemberName + " (" + ServerBeep.MemberNumber.toString() + ")";
 		if (ServerBeep.ChatRoomName != null)
-			ServerBeep.Message = ServerBeep.Message + " " + DialogFind(Player, "InRoom") + " \"" + ServerBeep.ChatRoomName + "\"";
-		FriendListBeepLog.push({ MemberNumber: data.MemberNumber, MemberName: data.MemberName, ChatRoomName: data.ChatRoomName, Sent: false, Time: new Date() });
+			ServerBeep.Message = ServerBeep.Message + " " + DialogFind(Player, "InRoom") + " \"" + ServerBeep.ChatRoomName + "\" " + (data.ChatRoomSpace === "Asylum" ? DialogFind(Player, "InAsylum") : '');
+		FriendListBeepLog.push({ MemberNumber: data.MemberNumber, MemberName: data.MemberName, ChatRoomName: data.ChatRoomName, ChatRoomSpace: data.ChatRoomSpace, Sent: false, Time: new Date() });
 		if (CurrentScreen == "FriendList") ServerSend("AccountQuery", { Query: "OnlineFriends" });
 	}
 }
