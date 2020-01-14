@@ -1041,7 +1041,7 @@ var AssetFemale3DCG = [
 			    Name: "FullLatexSuit", DefaultColor: "#006e7b", Random: false, SelfBondage: false, Value: 200, SetPose: ["BackElbowTouch", "StraitDressOpen" ], Hide: ["Socks", "BodyLower", "Cloth", "ClothLower", "Bra", "Shoes", "ItemBoots", "ItemLegs"], Block: ["ItemBoots","ItemPelvis", "ItemTorso", "ItemHands", "ItemLegs", "ItemFeet"], Effect: ["Block", "Prone"], HideItem: ["ItemFeetNylonRope", "ItemFeetHempRope", "ItemFeetLeatherBelt", "ItemFeetIrish8Cuffs", "ItemFeetDuctTape", "ItemFeetMermaidRopeTie", "ItemFeetLeatherAnkleCuffs"], Time: 40, RemoveTime: 30, Difficulty: 15, AllowLock: true, Prerequisite: "CanBeSuited",  Extended: true,
 				AllowEffect: ["Egged", "Vibrating"],
 				AllowBlock: ["ItemBreast", "ItemNipples", "ItemNipplesPiercings", "ItemVulva", "ItemVulvaPiercings", "ItemButt"],
-				AllowTypes:["", "Base", "UnZip", "Latex"],
+				AllowType:["", "Base", "UnZip", "Latex"],
 				Layer: [
 				    { Name: "Latex", AllowColorize: true, AllowTypes: ["", "Base"], HasType: false  },
 					{ Name: "UnZip", AllowColorize: true, AllowTypes: ["UnZip", "Base"], HasType: false },
