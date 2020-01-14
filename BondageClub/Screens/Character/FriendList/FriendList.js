@@ -77,7 +77,7 @@ function FriendListLoadFriendList(data) {
 			FriendListContent += "<div class='FriendListRow'>";
 			FriendListContent += "<div class='FriendListTextColumn FriendListFirstColumn'>" + FriendListBeepLog[B].MemberName + "</div>";
 			FriendListContent += "<div class='FriendListTextColumn'>" + ((FriendListBeepLog[B].MemberNumber != null) ? FriendListBeepLog[B].MemberNumber.toString() : "-") + "</div>";
-			FriendListContent += "<div class='FriendListTextColumn'>" + ((data[F].ChatRoomName == null) ? "-" : (data[F].ChatRoomSpace ? data[F].ChatRoomSpace.replace("Asylum", SpaceAsylumCaption) + " - " : '') + data[F].ChatRoomName.replace("-Private-", PrivateRoomCaption)) + "</div>";
+			FriendListContent += "<div class='FriendListTextColumn'>" + ((FriendListBeepLog[B].ChatRoomName == null) ? "-" : (FriendListBeepLog[B].ChatRoomSpace ? FriendListBeepLog[B].ChatRoomSpace.replace("Asylum", SpaceAsylumCaption) + " - " : '') + FriendListBeepLog[B].ChatRoomName.replace("-Private-", PrivateRoomCaption)) + "</div>";
 			FriendListContent += "<div class='FriendListTextColumn'>" + ((FriendListBeepLog[B].Sent) ? SentCaption : ReceivedCaption) + " " + TimerHourToString(FriendListBeepLog[B].Time) + "</div>";
 			FriendListContent += "</div>";
 		}
