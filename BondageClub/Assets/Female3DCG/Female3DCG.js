@@ -740,7 +740,7 @@ var AssetFemale3DCG = [
 			{ Name: "TapeStrips", Value: 10, Prerequisite: "AccessVulva", Time: 5, ExpressionTrigger: [{ Group: "Eyebrows", Name: "Soft", Timer: 5 }] },
 			{ Name: "BenWaBalls", Value: 30, Prerequisite: "AccessVulva", Time: 5, ExpressionTrigger: [{ Group: "Eyebrows", Name: "Soft", Timer: 5 }] },
 			{ Name: "HeavyWeightClamp", Value: 30, Prerequisite: "AccessVulva", Time: 5, ExpressionTrigger: [{ Group: "Eyes", Name: "Closed", Timer: 5 }, { Group: "Eyebrows", Name: "Soft", Timer: 5 }] },
-			{ Name: "FullLatexSuitWand", Priority: 33, IsRestraint: true, Extended: true, Block: ["ItemArms"], AllowLock: true, Value: -1, Effect: ["Egged", "Block", "Prone"],  AllowEffect: ["Egged", "Vibrating"], Time: 5, Difficulty: 12 },
+			{ Name: "FullLatexSuitWand", Priority: 33, IsRestraint: true, Extended: true, Block: ["ItemArms", "ItemVulvaPiercings"], AllowLock: true, Value: -1, Effect: ["Egged", "Block", "Prone"],  AllowEffect: ["Egged", "Vibrating"], Time: 5, Difficulty: 12 },
 			AssetSpankingToys
 		]
 	},
