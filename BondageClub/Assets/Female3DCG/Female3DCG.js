@@ -553,7 +553,7 @@ var AssetFemale3DCG = [
 		Color: ["Default", "#a6665b", "#803d26", "#d68777", "#9b4a2e", "#bb6655"],
 		Left: 175,
 		Top: 285,
-		Asset: ["Nipples1", "Nipples2"]
+		Asset: ["Nipples1", "Nipples2", "Nipples3"]
 	},
 
 	{
