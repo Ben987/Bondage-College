@@ -31,7 +31,13 @@ function InventoryItemArmsFullLatexSuitDraw() {
 	DrawButton(1600, 450, 225, 225, "", ((DialogFocusItem.Property.Type != null) && (DialogFocusItem.Property.Type == "UnZip")) ? "#888888" : "White");
 	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/UnZip.png", 1600, 449);
 	DrawText(DialogFind(Player, "FullLatexSuitTypeUnZip"), 1713, 425, "white", "gray");
-	if(InventoryGet(C, "ItemVulvaPiercings") == null || InventoryGet(C, "ItemVulvaPiercings").Asset.Effect.indexOf("Chaste") == -1){
+	if(InventoryGet(C, "ItemVulvaPiercings") == null || 
+		
+		!InventoryGet(C, "ItemVulvaPiercings").Asset ||
+		!InventoryGet(C, "ItemVulvaPiercings").Asset.Effect ||
+		InventoryGet(C, "ItemVulvaPiercings").Asset.Effect.indexOf("Chaste") == -1)
+		
+	{	
 		DrawButton(1375, 750, 225, 225, "", (InventoryGet(C, "ItemVulva") == null) ? "White" : "White");
 		DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Wand.png", 1375, 749);
 		DrawText(DialogFind(Player, "FullLatexSuitTypeWand"), 1488, 750, "white", "gray");
