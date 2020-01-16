@@ -536,6 +536,7 @@ SpankingToysTypeCattleProd,,,Cattle Prod
 SpankingToysTypeTennisRacket,,,Tennis Racket
 SpankingToysSetPlayer,,,SourceCharacter takes out a ItemUsed
 SpankingToysSetOthers,,,SourceCharacter gives TargetCharacter a ItemUsed
+RemoveWand,,,Wand needs to be removed before you can remove the suit
 SelectSuitType,,,Select suit type and wand attachment
 FullLatexSuitTypeZipped,,,Zipped Up
 FullLatexSuitTypeUnZip,,,Unzipped
