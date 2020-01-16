@@ -6,6 +6,7 @@ var ChatCreatePrivate = false;
 var ChatCreateBackgroundIndex = 0;
 var ChatCreateBackgroundSelect = "";
 var ChatCreateBackgroundList = null;
+var ChatCreateName = "";
 var ChatCreateMode = "";
 var ChatCreateDescription = "";
 var ChatCreateSize = "";
