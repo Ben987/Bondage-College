@@ -275,11 +275,13 @@ function ChatRoomSendChat() {
 			Dictionary.push({Tag: "CoinResult", TextToLookUp: Heads ? "Heads" : "Tails"});
 			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Action", Dictionary: Dictionary} );
 
-		} else if ((m.indexOf("*") == 0) || (m.indexOf("/me ") == 0)) {
+		} else if ((m.indexOf("*") == 0) || (m.indexOf("/me ") == 0) || (m.indexOf("/action ") == 0)) {
 
 			// The player can emote an action using * or /me (for those IRC or Skype users), it doesn't garble
-			msg = msg.replace(/\*/g, "");
+			// The command /action or ** does not add the player's name to it
+			msg = msg.replace("*", "");
 			msg = msg.replace(/\/me /g, "");
+			msg = msg.replace(/\/action /g, "*");
 			if (msg != "") ServerSend("ChatRoomChat", { Content: msg, Type: "Emote" } );
 
 		}
@@ -450,7 +452,8 @@ function ChatRoomMessage(data) {
 				}
 				else if (data.Type == "Whisper") msg = '<span class="ChatMessageName" style="font-style: italic; color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SenderCharacter.Name + ':</span> ' + msg;
 				else if (data.Type == "Emote") {
-					if (PreferenceIsPlayerInSensDep() && SenderCharacter.MemberNumber != Player.MemberNumber) msg = "*" + DialogFind(Player, "Someone") + " " + msg + "*";
+					if (msg.indexOf("*") == 0) msg = msg + "*";
+					else if (PreferenceIsPlayerInSensDep() && SenderCharacter.MemberNumber != Player.MemberNumber) msg = "*" + DialogFind(Player, "Someone") + " " + msg + "*";
 					else msg = "*" + SenderCharacter.Name + " " + msg + "*";
 				}
 				else if (data.Type == "Action") msg = "(" + msg + ")";

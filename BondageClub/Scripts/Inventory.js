@@ -69,115 +69,78 @@ function InventoryAvailable(C, InventoryName, InventoryGroup) {
 	return false;
 }
 
+// Returns an error message if a prerequisite clashes with the character items and clothes
+function InventoryPrerequisiteMessage(C, Prerequisite) {
+
+	// Basic prerequisites that can apply to many items
+	if (Prerequisite == "NoItemFeet") return (InventoryGet(C, "ItemFeet") != null) ? "MustFreeFeetFirst" : "";
+	if (Prerequisite == "NoItemLegs") return (InventoryGet(C, "ItemLegs") != null) ? "MustFreeLegsFirst" : "";
+	if (Prerequisite == "NoItemHands") return (InventoryGet(C, "ItemHands") != null) ? "MustFreeHandsFirst" : "";
+	if (Prerequisite == "LegsOpen") return (C.Pose.indexOf("LegsClosed") >= 0) ? "LegsCannotOpen" : "";
+	if (Prerequisite == "NotKneeling") return (C.Pose.indexOf("Kneel") >= 0) ? "MustStandUpFirst" : "";
+	if (Prerequisite == "NotMounted") return (C.Effect.indexOf("Mounted") >= 0) ? "CannotBeUsedWhenMounted" : "";
+	if (Prerequisite == "NotSuspended") return (C.Pose.indexOf("Suspension") >= 0) ? "RemoveSuspensionForItem" : "";
+	if (Prerequisite == "NotHogtied") return (C.Pose.indexOf("Hogtied") >= 0) ? "ReleaseHogtieForItem" : "";
+	if (Prerequisite == "NotYoked") return (C.Pose.indexOf("Yoked") >= 0) ? "CannotBeUsedWhenYoked" : "";
+	if (Prerequisite == "NotKneelingSpread") return (C.Pose.indexOf("KneelingSpread") >= 0) ? "MustStandUpFirst" : "";
+	if (Prerequisite == "NotChaste") return (C.Effect.indexOf("Chaste") >= 0) ? "RemoveChastityFirst" : "";
+	if (Prerequisite == "NotChained") return ((InventoryGet(C, "ItemNeckRestraints") != null) && (InventoryGet(C, "ItemNeckRestraints").Asset.Name == "CollarChainLong")) ? "RemoveChainForItem" : "";
+	if (Prerequisite == "NoFeetSpreader") return ((InventoryGet(C, "ItemFeet") != null) && (InventoryGet(C, "ItemFeet").Asset.Name == "SpreaderMetal")) ? "CannotBeUsedWithFeetSpreader" : "";
+	if (Prerequisite == "NotShackled") return (C.Effect.indexOf("Shackled") >= 0) ? "RemoveShacklesFirst" : "";
+	if (Prerequisite == "Collared") return (InventoryGet(C, "ItemNeck") == null) ? "MustCollaredFirst" : "";
+
+	// Checks for torso access based on clothes
+	var Cloth = InventoryGet(C, "Cloth");
+	if ((Prerequisite == "AccessTorso") && (Cloth != null) && !Cloth.Asset.Expose.includes("ItemTorso")) return "RemoveClothesForItem";
+
+	// Breast items can be blocked by clothes
+	if ((Prerequisite == "AccessBreast") && (((Cloth != null) && !Cloth.Asset.Expose.includes("ItemBreast"))
+			|| (InventoryGet(C, "Bra") != null && !InventoryGet(C, "Bra").Asset.Expose.includes("ItemBreast")))) return "RemoveClothesForItem";
+
+	// Vulva/Butt items can be blocked by clothes, panties and some socks
+	if ((Prerequisite == "AccessVulva") && (((Cloth != null) && Cloth.Asset.Block != null && Cloth.Asset.Block.includes("ItemVulva"))
+			|| (InventoryGet(C, "ClothLower") != null && !InventoryGet(C, "ClothLower").Asset.Expose.includes("ItemVulva"))
+			|| (InventoryGet(C, "Panties") != null && !InventoryGet(C, "Panties").Asset.Expose.includes("ItemVulva"))
+			|| (InventoryGet(C, "Socks") != null && (InventoryGet(C, "Socks").Asset.Block != null) && InventoryGet(C, "Socks").Asset.Block.includes("ItemVulva")))) return "RemoveClothesForItem";
+
+	// Toe Tied
+	if (Prerequisite == "ToeTied" && (InventoryGet(C, "ItemFeet") != null) && (InventoryGet(C, "ItemFeet").Asset.Name == "SpreaderMetal")) return "LegsCannotClose";
+	if (Prerequisite == "ToeTied" && (InventoryGet(C, "ItemLegs") != null) && (InventoryGet(C, "ItemLegs").Asset.Name == "WoodenHorse")) return "LegsCannotClose";
+	if (Prerequisite == "ToeTied" && (InventoryGet(C, "ItemDevices") != null) && (InventoryGet(C, "ItemDevices").Asset.Name == "OneBarPrison")) return "LegsCannotClose";
+	if (Prerequisite == "ToeTied" && (InventoryGet(C, "ItemDevices") != null) && (InventoryGet(C, "ItemDevices").Asset.Name == "SaddleStand")) return "LegsCannotClose";
+
+	// Display Frame
+	if (Prerequisite == "DisplayFrame" && (InventoryGet(C, "ItemArms") != null || InventoryGet(C, "ItemLegs") != null || InventoryGet(C, "ItemFeet") != null || InventoryGet(C, "ItemBoots") != null)) return "RemoveRestraintsFirst";
+	if (Prerequisite == "DisplayFrame" && (InventoryGet(C, "Cloth") != null || InventoryGet(C, "ClothLower") != null || InventoryGet(C, "Shoes") != null)) return "RemoveClothesForItem";
+
+	// Layered Gags, Prevent gags marked with "GagUnique" and "GagCorset" from being equipped over gags with "GagFlat"
+	if (Prerequisite == "GagUnique" && (InventoryGet(C, "ItemMouth") != null) && InventoryGet(C, "ItemMouth").Asset.Prerequisite == "GagFlat") return "CannotBeUsedOverFlatGag";
+	if (Prerequisite == "GagUnique" && (InventoryGet(C, "ItemMouth2") != null) && InventoryGet(C, "ItemMouth2").Asset.Prerequisite == "GagFlat") return "CannotBeUsedOverFlatGag";
+	if (Prerequisite == "GagUnique" && (InventoryGet(C, "ItemMouth") != null) && InventoryGet(C, "ItemMouth").Asset.Prerequisite == "GagCorset") return "CannotBeUsedOverFlatGag";
+	if (Prerequisite == "GagUnique" && (InventoryGet(C, "ItemMouth2") != null) && InventoryGet(C, "ItemMouth2").Asset.Prerequisite == "GagCorset") return "CannotBeUsedOverFlatGag";
+
+	// Returns no message, indicating that all prerequisites are fine
+	return "";
+
+}
+
 // Returns TRUE if we can add the item, no other items must block that prerequisite
 function InventoryAllow(C, Prerequisite, SetDialog) {
 
-	// Torso items can only be blocked by clothes
-	if (Prerequisite == null || Prerequisite == "") return true;
-	var T = "";
-	var curCloth = InventoryGet(C, "Cloth");
-	if ((Prerequisite == "AccessTorso") && (curCloth != null) && !curCloth.Asset.Expose.includes("ItemTorso")) T = "RemoveClothesForItem";
+	// Prerequisite can be a string, in that case there's only one check
+	var Msg = "";
+	if (Prerequisite == null) return true;
+	if ((typeof Prerequisite === "string") && (Prerequisite != ""))
+		Msg = InventoryPrerequisiteMessage(C, Prerequisite);
 
-	// Breast items can be blocked by clothes
-	if ((Prerequisite == "AccessBreast") && (((curCloth != null) && !curCloth.Asset.Expose.includes("ItemBreast"))
-			|| (InventoryGet(C, "Bra") != null && !InventoryGet(C, "Bra").Asset.Expose.includes("ItemBreast")))) T = "RemoveClothesForItem";
+	// Prerequisite can be an array of strings, in that case we check all items in the array and get the first error message
+	if (Array.isArray(Prerequisite) && (Prerequisite.length > 0))
+		for (var P = 0; ((P < Prerequisite.length) && (Msg == "")); P++)
+			Msg = InventoryPrerequisiteMessage(C, Prerequisite[P]);
 
-	// Vulva/Butt items can be blocked by clothes, panties and some socks
-	if ((Prerequisite == "AccessVulva") && (((curCloth != null) && curCloth.Asset.Block != null && curCloth.Asset.Block.includes("ItemVulva"))
-			|| (InventoryGet(C, "ClothLower") != null && !InventoryGet(C, "ClothLower").Asset.Expose.includes("ItemVulva"))
-			|| (InventoryGet(C, "Panties") != null && !InventoryGet(C, "Panties").Asset.Expose.includes("ItemVulva"))
-			|| (InventoryGet(C, "Socks") != null && (InventoryGet(C, "Socks").Asset.Block != null) && InventoryGet(C, "Socks").Asset.Block.includes("ItemVulva")))) T = "RemoveClothesForItem";
-
-	// Prevent incompatible item combinations
-	if (Prerequisite == "NotSuspended" && C.Pose.indexOf("Suspension") >= 0) T = "RemoveSuspensionForItem";
-	if (Prerequisite == "NotKneeling" && C.Pose.indexOf("Kneel") >= 0) T = "TheyMustBeStandingFirst";
-	if (Prerequisite == "NotKneeling" && C.Pose.indexOf("Suspension") >= 0) T = "TheyMustBeStandingFirst";
-	if (Prerequisite == "NotChained" && InventoryGet(C, "ItemNeckAccessories") != null && InventoryGet(C, "ItemNeckAccessories").Asset.Name == "CollarChainLong") T = "RemoveChainForItem";
-	if (Prerequisite == "Collared" && InventoryGet(C, "ItemNeck") == null) T = "MustCollaredFirst";
-	if (Prerequisite == "CollaredNotSuspended" && (InventoryGet(C, "ItemNeck") == null || C.Pose.indexOf("Suspension") >= 0)) T = "MustCollaredFirstAndRemoveSuspension";
-	if (Prerequisite == "LegsOpen" && C.Pose.indexOf("LegsClosed") >= 0) T = "LegsCannotOpen";
-
-	// Toe Tied
-	if (Prerequisite == "ToeTied" && (InventoryGet(C, "ItemFeet") != null) && (InventoryGet(C, "ItemFeet").Asset.Name == "SpreaderMetal")) T = "LegsCannotClose";
-	if (Prerequisite == "ToeTied" && (InventoryGet(C, "ItemLegs") != null) && (InventoryGet(C, "ItemLegs").Asset.Name == "WoodenHorse")) T = "LegsCannotClose";
-	if (Prerequisite == "ToeTied" && (InventoryGet(C, "ItemDevices") != null) && (InventoryGet(C, "ItemDevices").Asset.Name == "OneBarPrison")) T = "LegsCannotClose";
-	if (Prerequisite == "ToeTied" && (InventoryGet(C, "ItemDevices") != null) && (InventoryGet(C, "ItemDevices").Asset.Name == "SaddleStand")) T = "LegsCannotClose";
-
-	// Display Frame
-	if (Prerequisite == "DisplayFrame" && C.Pose.indexOf("Suspension") >= 0) T = "TheyMustBeStandingFirst";
-	if (Prerequisite == "DisplayFrame" && C.Pose.indexOf("Horse") >= 0) T = "TheyMustBeStandingFirst";
-	if (Prerequisite == "DisplayFrame" && C.Pose.indexOf("Kneel") >= 0) T = "TheyMustBeStandingFirst";
-	if (Prerequisite == "DisplayFrame" && (InventoryGet(C, "ItemArms") != null || InventoryGet(C, "ItemLegs") != null || InventoryGet(C, "ItemFeet") != null || InventoryGet(C, "ItemBoots") != null)) T = "TheyMustBeStandingFirst";
-	if (Prerequisite == "DisplayFrame" && (InventoryGet(C, "Cloth") != null || InventoryGet(C, "ClothLower") != null || InventoryGet(C, "Shoes") != null)) T = "RemoveClothesForItem";
-
-	// Sybian
-	if (Prerequisite == "Sybian" && C.Pose.indexOf("Kneel") >= 0) T = "TheyMustBeStandingFirst";
-	if (Prerequisite == "Sybian" && C.Pose.indexOf("LegsClosed") >= 0) T = "LegsCannotOpen";
-	if (Prerequisite == "Sybian" && C.Pose.indexOf("Suspension") >= 0) T = "TheyMustBeStandingFirst";
-	if (Prerequisite == "Sybian" && C.Effect.indexOf("Shackled") >= 0) T = "RemoveShacklesFirst";
-	if (Prerequisite == "Sybian" && C.Effect.indexOf("Chaste") >= 0) T = "RemoveChastityFirst";
-	if ((Prerequisite == "Sybian") && (((curCloth != null) && curCloth.Asset.Block != null && curCloth.Asset.Block.includes("ItemVulva"))
-		|| (InventoryGet(C, "ClothLower") != null && !InventoryGet(C, "ClothLower").Asset.Expose.includes("ItemVulva"))
-		|| (InventoryGet(C, "Panties") != null && !InventoryGet(C, "Panties").Asset.Expose.includes("ItemVulva"))
-		|| (InventoryGet(C, "Socks") != null && (InventoryGet(C, "Socks").Asset.Block != null) && InventoryGet(C, "Socks").Asset.Block.includes("ItemVulva")))) T = "RemoveClothesForItem";
-
-	// One Bar Prison
-	if (Prerequisite == "OBP" && C.Pose.indexOf("LegsClosed") >= 0) T = "LegsCannotOpen";
-	if (Prerequisite == "OBP" && C.Pose.indexOf("Suspension") >= 0) T = "TheyMustBeStandingFirst";
-	if (Prerequisite == "OBP" && C.Pose.indexOf("Horse") >= 0) T = "TheyMustBeStandingFirst";
-	if (Prerequisite == "OBP" && C.Pose.indexOf("Kneel") >= 0) T = "TheyMustBeStandingFirst";
-	if (Prerequisite == "OBP" &&  C.Effect.indexOf("Chaste") >= 0) T = "RemoveChastityFirst";
-	if ((Prerequisite == "OBP") && (((curCloth != null) && curCloth.Asset.Block != null && curCloth.Asset.Block.includes("ItemVulva"))
-		|| (InventoryGet(C, "ClothLower") != null && !InventoryGet(C, "ClothLower").Asset.Expose.includes("ItemVulva"))
-		|| (InventoryGet(C, "Panties") != null && !InventoryGet(C, "Panties").Asset.Expose.includes("ItemVulva"))
-		|| (InventoryGet(C, "Socks") != null && (InventoryGet(C, "Socks").Asset.Block != null) && InventoryGet(C, "Socks").Asset.Block.includes("ItemVulva")))) T = "RemoveClothesForItem";
-
-	// Shackles and Manacles
-	if (Prerequisite == "Shackles" && InventoryGet(C, "ItemFeet") != null) T = "MustFreeFeetFirst";
-	if (Prerequisite == "Shackles" && C.Effect.indexOf("Mounted") >= 0) T = "CannotBeUsedWhenMounted";
-	if (Prerequisite == "Shackles" && C.Pose.indexOf("Suspension") >= 0) T = "TheyMustBeStandingFirst";
-	if (Prerequisite == "Shackles" && C.Pose.indexOf("Horse") >= 0) T = "TheyMustBeStandingFirst";
-	if (Prerequisite == "Shackles" && C.Pose.indexOf("KneelingSpread") >= 0) T = "TheyMustBeStandingFirst";
-
-	// Saddle stand
-	if (Prerequisite == "LegsOpen1" && C.Pose.indexOf("LegsClosed") >= 0) T = "LegsCannotOpen";
-	if (Prerequisite == "LegsOpen1" && C.Pose.indexOf("Suspension") >= 0) T = "TheyMustBeStandingFirst";
-	if (Prerequisite == "LegsOpen1" && C.Pose.indexOf("Horse") >= 0) T = "TheyMustBeStandingFirst";
-	if (Prerequisite == "LegsOpen1" && C.Pose.indexOf("KneelingSpread") >= 0) T = "TheyMustBeStandingFirst";
-	if (Prerequisite == "LegsOpen1" && C.Pose.indexOf("Kneel") >= 0) T = "TheyMustBeStandingFirst";
-	if (Prerequisite == "LegsOpen1" && C.Effect.indexOf("Shackled") >= 0) T = "RemoveShacklesFirst";
-
-	// Wooden horse blocks
-	if (Prerequisite == "Horse" && C.Pose.indexOf("Kneel") >= 0) T = "TheyMustBeStandingFirst";
-	if (Prerequisite == "Horse" && C.Pose.indexOf("LegsClosed") >= 0) T = "LegsCannotOpen";
-	if (Prerequisite == "Horse" && C.Pose.indexOf("Suspension") >= 0) T = "TheyMustBeStandingFirst";
-	if (Prerequisite == "Horse" && C.Effect.indexOf("Shackled") >= 0) T = "RemoveShacklesFirst";
-	if (Prerequisite == "CollaredNotSuspended1" && (InventoryGet(C, "ItemNeck") == null || C.Pose.indexOf("Suspension") >= 0)) T = "MustCollaredFirstAndRemoveSuspension1";
-	if (Prerequisite == "CollaredNotSuspended1" && (InventoryGet(C, "ItemNeck") == null || C.Pose.indexOf("Horse") >= 0)) T = "MustCollaredFirstAndRemoveSuspension1";
-	if (Prerequisite == "CollaredNotSuspended1" && (InventoryGet(C, "ItemNeck") == null || C.Effect.indexOf("Mounted") >= 0)) T = "MustCollaredFirstAndRemoveSuspension1";
-	if (Prerequisite == "NotSuspendedOrHorsed" && C.Pose.indexOf("Suspension") >= 0) T = "TheyMustBeStandingFirst";
-	if (Prerequisite == "NotSuspendedOrHorsed" && C.Pose.indexOf("Horse") >= 0) T = "TheyMustBeStandingFirst";
-	if (Prerequisite == "NotSuspendedOrHorsed" && C.Pose.indexOf("KneelingSpread") >= 0) T = "TheyMustBeStandingFirst";
-	if (Prerequisite == "NotSuspendedOrHorsed" && (InventoryGet(C, "ItemFeet") != null) && (InventoryGet(C, "ItemFeet").Asset.Name == "SpreaderMetal")) T = "CannotBeUsedWithFeetSpreader";
-	if (Prerequisite == "NotSuspendedOrHorsed" && C.Effect.indexOf("Mounted") >= 0) T = "CannotBeUsedWhenMounted";
-	
-	//Layered Gags, Prevent gags marked with "GagUnique" and "GagCorset" from being equipped over gags with "GagFlat"
-	if (Prerequisite == "GagUnique" && (InventoryGet(C, "ItemMouth") != null) && InventoryGet(C, "ItemMouth").Asset.Prerequisite == "GagFlat") T = "CannotBeUsedOverFlatGag";
-	if (Prerequisite == "GagUnique" && (InventoryGet(C, "ItemMouth2") != null) && InventoryGet(C, "ItemMouth2").Asset.Prerequisite == "GagFlat") T = "CannotBeUsedOverFlatGag";
-	if (Prerequisite == "GagUnique" && (InventoryGet(C, "ItemMouth") != null) && InventoryGet(C, "ItemMouth").Asset.Prerequisite == "GagCorset") T = "CannotBeUsedOverFlatGag";
-	if (Prerequisite == "GagUnique" && (InventoryGet(C, "ItemMouth2") != null) && InventoryGet(C, "ItemMouth2").Asset.Prerequisite == "GagCorset") T = "CannotBeUsedOverFlatGag";
-
-	// Burlap sack or body bag
-	if (Prerequisite == "CanBeBagged" && C.Pose.indexOf("Suspension") >= 0) T = "TheyMustBeStandingFirst";
-	if (Prerequisite == "CanBeBagged" && C.Pose.indexOf("Horse") >= 0) T = "TheyMustBeStandingFirst";
-	if (Prerequisite == "CanBeBagged" && C.Pose.indexOf("KneelingSpread") >= 0) T = "TheyMustBeStandingFirst";
-	if (Prerequisite == "CanBeBagged" && (InventoryGet(C, "ItemFeet") != null) && (InventoryGet(C, "ItemFeet").Asset.Name == "SpreaderMetal")) T = "CannotBeUsedWithFeetSpreader";
-	if (Prerequisite == "CanBeBagged" && C.Effect.indexOf("Mounted") >= 0) T = "CannotBeUsedWhenMounted";
-	if (Prerequisite == "CanBeBagged" && C.Pose.indexOf("Yoked") >= 0) T = "CannotBeUsedWhenYoked";
-	
-	// If no error text was found, we return TRUE, if a text was found, we can show it in the dialog
-	if (T != "" && (SetDialog == null || SetDialog)) DialogSetText(T);
-	return (T == "");
+	// If no error message was found, we return TRUE, if a message was found, we can show it in the dialog
+	if (Msg != "" && (SetDialog == null || SetDialog)) DialogSetText(Msg);
+	return (Msg == "");
 
 }
 
