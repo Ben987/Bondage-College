@@ -8,6 +8,7 @@ function InventoryItemVulvaFullLatexSuitWandLoad() {
 // Draw the item extension screen
 function InventoryItemVulvaFullLatexSuitWandDraw() {
 	DrawRect(1387, 225, 225, 275, "white");
+	DrawText(DialogFind(Player, "RemoveWand"), 1500, 550, "white", "gray");
 	if (DialogFocusItem.Property.Intensity >= 0)
 		DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389 + Math.floor(Math.random() * 3) - 1, 227 + Math.floor(Math.random() * 3) - 1, 221, 221);
 	else DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
