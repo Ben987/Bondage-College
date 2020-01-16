@@ -15,15 +15,16 @@ function InventoryItemArmsFullLatexSuitDraw() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	DrawRect(1387, 125, 225, 275, "white");
 	DrawText(DialogFind(Player, "SelectSuitType"), 1500, 50, "white", "gray");
+	DrawText(DialogFind(Player, "IfMissing"), 1500, 690, "white", "gray");
 	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
 	
 	// draw suits to wear	
-	DrawButton(1150, 450, 225, 225, "", (DialogFocusItem.Property.Type == null || DialogFocusItem.Property.Type == "Latex") ? "#888888" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Latex.png", 1150, 449);
+	DrawButton(1150, 440, 225, 225, "", (DialogFocusItem.Property.Type == null || DialogFocusItem.Property.Type == "Latex") ? "#888888" : "White");
+	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Latex.png", 1150, 439);
 	DrawText(DialogFind(Player, "FullLatexSuitTypeZipped"), 1263, 425, "white", "gray");
-	DrawButton(1600, 450, 225, 225, "", ((DialogFocusItem.Property.Type != null) && (DialogFocusItem.Property.Type == "UnZip")) ? "#888888" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/UnZip.png", 1600, 449);
+	DrawButton(1600, 440, 225, 225, "", ((DialogFocusItem.Property.Type != null) && (DialogFocusItem.Property.Type == "UnZip")) ? "#888888" : "White");
+	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/UnZip.png", 1600, 439);
 	DrawText(DialogFind(Player, "FullLatexSuitTypeUnZip"), 1713, 425, "white", "gray");
 	if (InventoryGet(C, "ItemVulvaPiercings") == null ||
 		!InventoryGet(C, "ItemVulvaPiercings").Asset ||
@@ -41,8 +42,8 @@ function InventoryItemArmsFullLatexSuitDraw() {
 // Catches the item extension clicks
 function InventoryItemArmsFullLatexSuitClick() {
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1150) && (MouseX <= 1375) && (MouseY >= 450) && (MouseY <= 675) && (DialogFocusItem.Property.Type != null)) InventoryItemArmsFullLatexSuitSetType(null);
-	if ((MouseX >= 1600) && (MouseX <= 1825) && (MouseY >= 450) && (MouseY <= 675) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "UnZip"))) InventoryItemArmsFullLatexSuitSetType("UnZip");
+	if ((MouseX >= 1150) && (MouseX <= 1375) && (MouseY >= 440) && (MouseY <= 665) && (DialogFocusItem.Property.Type != null)) InventoryItemArmsFullLatexSuitSetType(null);
+	if ((MouseX >= 1600) && (MouseX <= 1825) && (MouseY >= 440) && (MouseY <= 665) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "UnZip"))) InventoryItemArmsFullLatexSuitSetType("UnZip");
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (CommonIsClickAt(1375, 750, 225, 225) && InventoryGet(C, "ItemVulva") == null) InventoryItemArmsFullLatexSuitSetType("Wand");
 }
