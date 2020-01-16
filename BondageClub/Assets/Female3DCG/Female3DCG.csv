@@ -586,6 +586,7 @@ ItemMouth,XLBoneGag,XL Bone Gag
 ItemMouth,DogMuzzleExposed,Exposed Dog Muzzle
 ItemMouth,FoxyHarnessPanelGag,Foxy Harness Gag
 ItemMouth,BallGag,Ball Gag
+ItemMouth,SteelMuzzleGag,Steel Muzzle Gag
 ItemMouth2,,Mouth
 ItemMouth2,ClothGag,Cloth Gag
 ItemMouth2,WiffleGag,Wiffle Ball Gag
@@ -614,6 +615,7 @@ ItemMouth2,LatexPostureCollar,Latex Posture Collar Gag
 ItemMouth2,BitGag,Silicon Bit Gag
 ItemMouth2,XLBoneGag,XL Bone Gag
 ItemMouth2,BallGag,Ball Gag
+ItemMouth2,SteelMuzzleGag,Steel Muzzle Gag
 ItemMouth3,,Mouth
 ItemMouth3,ClothGag,Cloth Gag
 ItemMouth3,WiffleGag,Wiffle Ball Gag
@@ -642,6 +644,7 @@ ItemMouth3,LatexPostureCollar,Latex Posture Collar Gag
 ItemMouth3,BitGag,Silicon Bit Gag
 ItemMouth3,XLBoneGag,XL Bone Gag
 ItemMouth3,BallGag,Ball Gag
+ItemMouth3,SteelMuzzleGag,Steel Muzzle Gag
 ItemHead,,Head
 ItemHead,ClothBlindfold,Cloth Blindfold
 ItemHead,LeatherBlindfold,Leather Blindfold
@@ -663,6 +666,7 @@ ItemHead,LatexBlindfold,Latex Blindfold
 ItemHead,DogHood,Dog Hood
 ItemHead,FoxyMask,Foxy Mask
 ItemHead,SleepMask,Sleep Mask
+ItemHead,SteelBlindfold,Steel Blindfold
 ItemEars,,Ears
 ItemEars,LightDutyEarPlugs,Light Duty Ear Plugs
 ItemEars,HeavyDutyEarPlugs,Heavy Duty Ear Plugs

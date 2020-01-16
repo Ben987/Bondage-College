@@ -1312,6 +1312,11 @@ var AssetFemale3DCG = [
 					{ Name: "Ball", AllowColorize: true}
 				]
 			},
+			{ Name: "SteelMuzzleGag", Effect: ["GagHeavy"], Difficulty: 6, Value: 80, Time: 10, Hide: ["Mouth"], AllowLock: true, BuyGroup: "SteelMuzzleGag", SetPose:["SteelMuzzleGag"], Prerequisite: "GagFlat"}
+			
+				
+		
+			
 
 		]
 	},
@@ -1388,6 +1393,8 @@ var AssetFemale3DCG = [
 				 
 			 ]
 			},
+			{ Name: "SteelMuzzleGag", Effect: ["GagHeavy"], Difficulty: 6, Value: 80, Time: 10, Hide: ["Mouth"], AllowLock: true, BuyGroup: "SteelMuzzleGag", SetPose:["SteelMuzzleGag"], Prerequisite: "GagFlat"}
+			
 		]
 	},
 
@@ -1460,8 +1467,18 @@ var AssetFemale3DCG = [
 		     Layer: [
 				  { Name: "Strap", AllowColorize: false},
 				  { Name: "Ball", AllowColorize: true}
-		]
-	},
+
+			 ]
+			},
+			{ Name: "SteelMuzzleGag", Effect: ["GagHeavy"], Difficulty: 6, Value: 80, Time: 10, Hide: ["Mouth"], AllowLock: true, BuyGroup: "SteelMuzzleGag", SetPose:["SteelMuzzleGag"], Prerequisite: "GagFlat"}
+			
+			
+			
+	    
+	        
+	
+	
+	
 ]
 		
 	
@@ -1497,7 +1514,8 @@ var AssetFemale3DCG = [
 			{ Name: "LatexBlindfold", Effect: ["BlindNormal", "Prone"], Hide: ["Glasses"], Value: 35, Time: 5, AllowLock: true },
 			{ Name: "DogHood", DefaultColor: "#404040", Random: false, Effect: ["Prone", "GagNormal"], Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth", "ItemMouth2", "ItemMouth3", "HairAccessory1", "HairAccessory2"], Block: ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemEars"], Difficulty: 50, Value: 60, Time: 15, AllowLock: true },
 			{ Name: "FoxyMask", Random: false, Effect: ["Prone", "GagLight"], Hide: ["Glasses", "ItemMouth", "ItemMouth2", "ItemMouth3"], Block: ["ItemMouth", "ItemMouth2", "ItemMouth3"], Difficulty: 2, Value: 50, Time: 15, AllowLock: true },
-			{ Name: "SleepMask", Effect: ["BlindLight", "Prone"], Hide: ["Glasses"], Value: 5, Time: 5 }
+			{ Name: "SleepMask", Effect: ["BlindLight", "Prone"], Hide: ["Glasses"], Value: 5, Time: 5 },
+			{ Name: "SteelBlindfold", Effect: ["BlindHeavy", "Prone"], Hide: ["Glasses"], Value: 50, Time: 5, AllowLock: true}
 		]
 	},
 
