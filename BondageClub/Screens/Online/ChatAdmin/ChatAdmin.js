@@ -6,16 +6,20 @@ var ChatAdminBackgroundIndex = 0;
 var ChatAdminBackgroundSelect = "";
 var ChatAdminPrivate = false;
 var ChatAdminLocked = false;
+var ChatAdminMode = "";
+var ChatAdminOffset = 0;
 
 // When the chat admin screens loads
 function ChatAdminLoad() {
 
 	// If the current room background isn't valid, we pick the first one
-	ChatAdminBackgroundSelect = ChatRoomData.Background;
-	if (ChatCreateBackgroundList.indexOf(ChatAdminBackgroundSelect) < 0) {
-		ChatAdminBackgroundIndex = 0;
-		ChatAdminBackgroundSelect = ChatCreateBackgroundList[0];
-	} else ChatAdminBackgroundIndex = ChatCreateBackgroundList.indexOf(ChatAdminBackgroundSelect);
+	if (BackgroundIsSet != true) {
+		ChatAdminBackgroundSelect = ChatRoomData.Background;
+		if (ChatCreateBackgroundList.indexOf(ChatAdminBackgroundSelect) < 0) {
+			ChatAdminBackgroundIndex = 0;
+			ChatAdminBackgroundSelect = ChatCreateBackgroundList[0];
+		} else ChatAdminBackgroundIndex = ChatCreateBackgroundList.indexOf(ChatAdminBackgroundSelect);
+	}
 
 	// Prepares the controls to edit a room
 	ElementCreateInput("InputName", "text", ChatRoomData.Name, "20");
@@ -53,32 +57,48 @@ function ChatAdminLoad() {
 function ChatAdminRun() {
 
 	// Draw the main controls
-	DrawText(TextGet(ChatAdminMessage), 650, 870, "Black", "Gray");
-	DrawText(TextGet("RoomName"), 535, 110, "Black", "Gray");
-	ElementPosition("InputName", 535, 170, 820);
-	DrawText(TextGet("RoomSize"), 1100, 110, "Black", "Gray");
-	ElementPosition("InputSize", 1100, 170, 250);
-	DrawText(TextGet("RoomDescription"), 675, 265, "Black", "Gray");
-	ElementPosition("InputDescription", 675, 380, 1100, 160);
-	DrawText(TextGet("RoomAdminList"), 390, 530, "Black", "Gray");
-	ElementPosition("InputAdminList", 390, 680, 530, 230);
-	DrawText(TextGet("RoomBanList"), 960, 530, "Black", "Gray");
-	ElementPosition("InputBanList", 960, 680, 530, 230);
+	if (ChatAdminMode == "") {
+		DrawText(TextGet(ChatAdminMessage), 650, 870, "Black", "Gray");
+		DrawText(TextGet("RoomName"), 535, 110, "Black", "Gray");
+		ElementPosition("InputName", 535, 170, 820);
+		DrawText(TextGet("RoomSize"), 1100, 110, "Black", "Gray");
+		ElementPosition("InputSize", 1100, 170, 250);
+		DrawText(TextGet("RoomDescription"), 675, 265, "Black", "Gray");
+		ElementPosition("InputDescription", 675, 380, 1100, 160);
+		DrawText(TextGet("RoomAdminList"), 390, 530, "Black", "Gray");
+		ElementPosition("InputAdminList", 390, 680, 530, 230);
+		DrawText(TextGet("RoomBanList"), 960, 530, "Black", "Gray");
+		ElementPosition("InputBanList", 960, 680, 530, 230);
 
-	// Background selection
-	DrawImageResize("Backgrounds/" + ChatAdminBackgroundSelect + "Dark.jpg", 1300, 75, 600, 400);
-	DrawBackNextButton(1350, 500, 500, 65, ChatAdminBackgroundSelect, ChatRoomPlayerIsAdmin() ? "White" : "#ebebe4", null, () => "", () => "");
+		// Background selection
+		DrawImageResize("Backgrounds/" + ChatAdminBackgroundSelect + "Dark.jpg", 1300, 75, 600, 400);
+		DrawBackNextButton(1350, 500, 500, 65, ChatAdminBackgroundSelect, ChatRoomPlayerIsAdmin() ? "White" : "#ebebe4", null,
+			() => (ChatAdminBackgroundIndex == 0) ? ChatCreateBackgroundList[ChatCreateBackgroundList.length - 1] : ChatCreateBackgroundList[ChatAdminBackgroundIndex - 1],
+			() => (ChatAdminBackgroundIndex >= ChatCreateBackgroundList.length - 1) ? ChatCreateBackgroundList[0] : ChatCreateBackgroundList[ChatAdminBackgroundIndex + 1]);
 
-	// Private and Locked check boxes
-	DrawText(TextGet("RoomPrivate"), 1514, 640, "Black", "Gray");
-	DrawButton(1686, 608, 64, 64, "", ChatRoomPlayerIsAdmin() ? "White" : "#ebebe4", ChatAdminPrivate ? "Icons/Checked.png" : "");
-	DrawText(TextGet("RoomLocked"), 1514, 740, "Black", "Gray");
-	DrawButton(1686, 708, 64, 64, "", ChatRoomPlayerIsAdmin() ? "White" : "#ebebe4", ChatAdminLocked ? "Icons/Checked.png" : "");
-	
-	// Save & Cancel/Exit buttons + help text
-	DrawButton(1325, 840, 250, 65, TextGet("Save"), ChatRoomPlayerIsAdmin() ? "White" : "#ebebe4");
-	DrawButton(1625, 840, 250, 65, TextGet(ChatRoomPlayerIsAdmin() ? "Cancel" : "Exit"), "White");
+		// Private and Locked check boxes
+		DrawText(TextGet("RoomPrivate"), 1514, 640, "Black", "Gray");
+		DrawButton(1686, 608, 64, 64, "", ChatRoomPlayerIsAdmin() ? "White" : "#ebebe4", ChatAdminPrivate ? "Icons/Checked.png" : "");
+		DrawText(TextGet("RoomLocked"), 1514, 740, "Black", "Gray");
+		DrawButton(1686, 708, 64, 64, "", ChatRoomPlayerIsAdmin() ? "White" : "#ebebe4", ChatAdminLocked ? "Icons/Checked.png" : "");
 
+		// Save & Cancel/Exit buttons + help text
+		DrawButton(1325, 840, 250, 65, TextGet("Save"), ChatRoomPlayerIsAdmin() ? "White" : "#ebebe4");
+		DrawButton(1625, 840, 250, 65, TextGet(ChatRoomPlayerIsAdmin() ? "Cancel" : "Exit"), "White");
+	} else if (ChatAdminMode == "ShowGrid") {
+		DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
+		DrawButton(1785, 25, 90, 90, "", "White", "Icons/Next.png");
+		let X = 45;
+		let Y = 170;
+		for (var i = 0; (i + ChatAdminOffset) < ChatCreateBackgroundList.length && i < 12; ++i) {
+			DrawButton(X, Y, 450, 225, "", "White", "Backgrounds/" + ChatCreateBackgroundList[i + ChatAdminOffset] + ".jpg");
+			X += 450 + 35;
+			if (i % 4 == 3) {
+				X = 45;
+				Y += 225 + 35;
+			}
+		}
+	}
 }
 
 // When the player clicks in the chat Admin screen
@@ -89,23 +109,60 @@ function ChatAdminClick() {
 
 	// All other controls are for administrators only
 	if (ChatRoomPlayerIsAdmin()) {
+		if (ChatAdminMode == "") {
+			// When we select a new background
+			if ((MouseX >= 1350) && (MouseX <= 1850) && (MouseY >= 500) && (MouseY <= 565)) {
+				ChatAdminBackgroundIndex += ((MouseX < 1600 && !CommonIsMobile) ? -1 : 1);
+				if (ChatAdminBackgroundIndex >= ChatCreateBackgroundList.length) ChatAdminBackgroundIndex = 0;
+				if (ChatAdminBackgroundIndex < 0) ChatAdminBackgroundIndex = ChatCreateBackgroundList.length - 1;
+				ChatAdminBackgroundSelect = ChatCreateBackgroundList[ChatAdminBackgroundIndex];
+			}
 
-		// When we select a new background
-		if ((MouseX >= 1350) && (MouseX <= 1850) && (MouseY >= 500) && (MouseY <= 565)) {
-			ChatAdminBackgroundIndex += ((MouseX < 1600 && !CommonIsMobile) ? -1 : 1);
-			if (ChatAdminBackgroundIndex >= ChatCreateBackgroundList.length) ChatAdminBackgroundIndex = 0;
-			if (ChatAdminBackgroundIndex < 0) ChatAdminBackgroundIndex = ChatCreateBackgroundList.length - 1;
-			ChatAdminBackgroundSelect = ChatCreateBackgroundList[ChatAdminBackgroundIndex];
+			// Private & Locked check boxes + save button
+			if ((MouseX >= 1686) && (MouseX <= 1750) && (MouseY >= 608) && (MouseY <= 672)) ChatAdminPrivate = !ChatAdminPrivate;
+			if ((MouseX >= 1686) && (MouseX <= 1750) && (MouseY >= 708) && (MouseY <= 772)) ChatAdminLocked = !ChatAdminLocked;
+			if ((MouseX >= 1325) && (MouseX < 1575) && (MouseY >= 840) && (MouseY < 905) && ChatRoomPlayerIsAdmin()) ChatAdminUpdateRoom();
+
+			if ((MouseX >= 1300) && (MouseX <= 1300 + 600) && (MouseY >= 75) && (MouseY <= 75 + 400)) {
+				ChatAdminMode = "ShowGrid";
+				ElementRemove("InputName");
+				ElementRemove("InputDescription");
+				ElementRemove("InputSize");
+				ElementRemove("InputAdminList");
+				ElementRemove("InputBanList");
+			}
+		} else if (ChatAdminMode == "ShowGrid") {
+			if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) {
+				ChatAdminMode = "";
+				ChatAdminLoad(true);
+			}
+
+			if ((MouseX >= 1785) && (MouseX < 1875) && (MouseY >= 25) && (MouseY < 115)) {
+				ChatAdminOffset += 12;
+				if (ChatAdminOffset >= ChatCreateBackgroundList.length) ChatAdminOffset = 0;
+			}
+
+			let X = 45;
+			let Y = 170;
+			for (var i = 0; (i + ChatAdminOffset) < ChatCreateBackgroundList.length && i < 12; ++i) {
+				if ((MouseX >= X) && (MouseX < X + 450) && (MouseY >= Y) && (MouseY < Y + 225)) {
+					ChatAdminBackgroundIndex = i + ChatAdminOffset;
+					if (ChatAdminBackgroundIndex >= ChatCreateBackgroundList.length) ChatAdminBackgroundIndex = 0;
+					if (ChatAdminBackgroundIndex < 0) ChatAdminBackgroundIndex = ChatCreateBackgroundList.length - 1;
+					ChatAdminBackgroundSelect = ChatCreateBackgroundList[ChatAdminBackgroundIndex];
+					ChatAdminMode = "";
+					ChatAdminLoad(true);
+				}
+				X += 450 + 35;
+				if (i % 4 == 3) {
+					X = 45;
+					Y += 225 + 35;
+				}
+			}
 		}
-
-		// Private & Locked check boxes + save button
-		if ((MouseX >= 1686) && (MouseX <= 1750) && (MouseY >= 608) && (MouseY <= 672)) ChatAdminPrivate = !ChatAdminPrivate;
-		if ((MouseX >= 1686) && (MouseX <= 1750) && (MouseY >= 708) && (MouseY <= 772)) ChatAdminLocked = !ChatAdminLocked;
-		if ((MouseX >= 1325) && (MouseX < 1575) && (MouseY >= 840) && (MouseY < 905) && ChatRoomPlayerIsAdmin()) ChatAdminUpdateRoom();
-
 	}
-
 }
+
 
 // When the user exit from this screen
 function ChatAdminExit() {
@@ -136,6 +193,6 @@ function ChatAdminUpdateRoom() {
 		Private: ChatAdminPrivate,
 		Locked: ChatAdminLocked
 	};
-	ServerSend("ChatRoomAdmin", { MemberNumber: Player.ID, Room : UpdatedRoom, Action: "Update" });
+	ServerSend("ChatRoomAdmin", { MemberNumber: Player.ID, Room: UpdatedRoom, Action: "Update" });
 	ChatAdminMessage = "UpdatingRoom";
 }

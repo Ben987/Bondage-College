@@ -289,7 +289,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 			if (!Found)
 				for (var I = 0; I < Asset.length; I++)
 					if (Asset[I].Group.Name == AssetGroup[G].Name) {
-						Appearance.push({ Asset: Asset[I], Color: "Default" });
+						Appearance.push({ Asset: Asset[I], Color: AssetGroup[G].ColorSchema[0] });
 						break;
 					}
 
