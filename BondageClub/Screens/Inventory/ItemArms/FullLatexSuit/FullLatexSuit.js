@@ -5,12 +5,6 @@ var InventoryItemArmsFullLatexSuitMsg = null;
 // Loads the item extension properties
 function InventoryItemArmsFullLatexSuitLoad() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	var addonItem = InventoryGet(C, "ItemVulva");
-        addonItem = InventoryRemove(C, "ItemVulva");	
-	if (addonItem != null) {
-		DialogExtendItem(addonItem);
-		return;
-	}
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Type: null };
 	InventoryItemArmsFullLatexSuitMsg = null;
 }
@@ -34,7 +28,8 @@ function InventoryItemArmsFullLatexSuitDraw() {
 	if (InventoryGet(C, "ItemVulvaPiercings") == null ||
 		!InventoryGet(C, "ItemVulvaPiercings").Asset ||
 		!InventoryGet(C, "ItemVulvaPiercings").Asset.Effect ||
-		InventoryGet(C, "ItemVulvaPiercings").Asset.Effect.indexOf("Chaste") == -1)	{	
+		InventoryGet(C, "ItemVulvaPiercings").Asset.Effect.indexOf("Chaste") == -1)
+	if (InventoryGet(((Player.FocusGroup != null) ? Player : CurrentCharacter), "ItemVulva") == null) {
 		DrawButton(1375, 750, 225, 225, "", (InventoryGet(C, "ItemVulva") == null) ? "White" : "White");
 		DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Wand.png", 1375, 749);
 		DrawText(DialogFind(Player, "FullLatexSuitTypeWand"), 1488, 725, "white", "gray");
@@ -75,9 +70,6 @@ function InventoryItemArmsFullLatexSuitSetType(NewType) {
 	
 	if (NewType == "Wand") {
 		InventoryWear(C, "FullLatexSuitWand", "ItemVulva");
-
-		// Switch to the wand item
-		DialogFocusItem = InventoryGet(C, "ItemVulva");
 	}
 	
 	CharacterRefresh(C);
