@@ -50,6 +50,7 @@ PaddedCell2,Padded Cell 2
 RoomSize,"Room maximum size, from 2 to 10 members"
 Create,Create
 Cancel,Cancel
+ShowAll,Show All
 CreatingRoom,Creating your room...
 ResponseRoomAlreadyExist,This room name is already taken
 ResponseAccountError,"Account error, try to relog"

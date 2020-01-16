@@ -51,6 +51,7 @@ function ChatCreateRun() {
 		DrawBackNextButton(1100, 640, 350, 65, TextGet(ChatCreateBackgroundSelect), "White", null,
 			() => TextGet((ChatCreateBackgroundIndex == 0) ? ChatCreateBackgroundList[ChatCreateBackgroundList.length - 1] : ChatCreateBackgroundList[ChatCreateBackgroundIndex - 1]),
 			() => TextGet((ChatCreateBackgroundIndex >= ChatCreateBackgroundList.length - 1) ? ChatCreateBackgroundList[0] : ChatCreateBackgroundList[ChatCreateBackgroundIndex + 1]));
+		DrawButton(1300, 640, 300, 65, TextGet("ShowAll"), "White");
 		DrawButton(600, 800, 300, 65, TextGet("Create"), "White");
 		DrawButton(1100, 800, 300, 65, TextGet("Cancel"), "White");
 	} else if (ChatCreateMode == "ShowGrid") {
