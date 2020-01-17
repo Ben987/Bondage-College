@@ -7,7 +7,7 @@ RemoveRestraintsFirst,,,Remove some restraints first.
 CannotBeUsedWhenMounted,,,Cannot be used when mounted.
 CannotBeUsedWhenYoked,,,Cannot be used while yoked.
 CannotBeUsedWithFeetSpreader,,,Cannot be used with legs spreader.
-CannotHaveWand,,,Cannot have this equipment equipped right now.
+CannotHaveWand,,,Remove the wand first
 StraitDressOpen,,,Cannot use this.
 RemoveChastityFirst,,,Must remove chastity first.
 RemoveChainForItem,,,Remove the chain to the floor first
