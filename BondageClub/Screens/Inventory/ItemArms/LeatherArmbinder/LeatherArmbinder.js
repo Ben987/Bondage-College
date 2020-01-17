@@ -23,16 +23,20 @@ function InventoryItemArmsLeatherArmbinderDraw() {
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
 
 	DrawText(DialogFind(Player, "SelectStrapType"), 1500, 500, "white", "gray");
-	DrawButton(1389, 550, 225, 225, "", (InventoryGet(C, "ItemHidden") == null) ? "#888888" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Strap.png", 1389, 550);
+	DrawButton(1175, 550, 225, 225, "", (InventoryGet(C, "ItemHidden") == null) ? "#888888" : "White");
+	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Strap.png", 1175, 550);
 	DrawText(DialogFind(Player, "LeatherArmbinderTypeStrap"), 1500, 800, "white", "gray");
+	DrawButton(1600, 550, 225, 225, "", (InventoryGet(C, "ItemHidden") == null) ? "#888888" : "White");
+	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/WrapStrap.png", 1600, 550);
+	DrawText(DialogFind(Player, "LeatherArmbinderTypeWrapStrap"), 1500, 800, "white", "gray");
 }
 
 // Catches the item extension clicks
 function InventoryItemArmsLeatherArmbinderClick() {
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	if (CommonIsClickAt(1389, 550, 225, 225) && InventoryGet(C, "ItemHidden") == null) InventoryItemArmsLeatherArmbinderSetType("Strap");
+	if (CommonIsClickAt(1175, 550, 225, 225) && InventoryGet(C, "ItemHidden") == null) InventoryItemArmsLeatherArmbinderSetType("Strap");
+	if (CommonIsClickAt(1600, 550, 225, 225) && InventoryGet(C, "ItemHidden") == null) InventoryItemArmsLeatherArmbinderSetType("WrapStrap");
 }
 
 // Sets the strap properties
@@ -46,7 +50,12 @@ function InventoryItemArmsLeatherArmbinderSetType(NewType) {
 	}
 	if (NewType == "Strap") {
 		InventoryWear(C, "LeatherArmbinderStrap", "ItemHidden");
-		InventoryRemove(C, "Cloth");
+		
+		// Switch to the straps item
+		DialogFocusItem = InventoryGet(C, "ItemHidden");
+	}
+	if (NewType == "WrapStrap") {
+		InventoryWear(C, "LeatherArmbinderWrapStrap", "ItemHidden");
 		
 		// Switch to the straps item
 		DialogFocusItem = InventoryGet(C, "ItemHidden");
