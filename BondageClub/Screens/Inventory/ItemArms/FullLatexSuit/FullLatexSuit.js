@@ -11,11 +11,10 @@ function InventoryItemArmsFullLatexSuitLoad() {
 
 // Draw the item extension screen
 function InventoryItemArmsFullLatexSuitDraw() {
-	
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	DrawRect(1387, 125, 225, 275, "white");
 	DrawText(DialogFind(Player, "SelectSuitType"), 1500, 50, "white", "gray");
-	DrawText(DialogFind(Player, "IfMissing"), 1500, 690, "white", "gray");
+	
 	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
 	
@@ -30,11 +29,12 @@ function InventoryItemArmsFullLatexSuitDraw() {
 		!InventoryGet(C, "ItemVulvaPiercings").Asset ||
 		!InventoryGet(C, "ItemVulvaPiercings").Asset.Effect ||
 		InventoryGet(C, "ItemVulvaPiercings").Asset.Effect.indexOf("Chaste") == -1)
-	if (InventoryGet(((Player.FocusGroup != null) ? Player : CurrentCharacter), "ItemVulva") == null) {
-		DrawButton(1375, 750, 225, 225, "", (InventoryGet(C, "ItemVulva") == null) ? "White" : "White");
-		DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Wand.png", 1375, 749);
-		DrawText(DialogFind(Player, "FullLatexSuitTypeWand"), 1488, 725, "white", "gray");
-	}
+		if (InventoryGet(((Player.FocusGroup != null) ? Player : CurrentCharacter), "ItemVulva") == null) {
+			DrawButton(1375, 750, 225, 225, "", (InventoryGet(C, "ItemVulva") == null) ? "White" : "White");
+			DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Wand.png", 1375, 749);
+			DrawText(DialogFind(Player, "FullLatexSuitTypeWand"), 1488, 725, "white", "gray");
+		} else 
+			DrawText(DialogFind(Player, "IfMissing"), 1500, 690, "white", "gray");
 	if (InventoryItemArmsFullLatexSuitMsg != null) DrawTextWrap(DialogFind(Player, InventoryItemArmsFullLatexSuitMsg), 1100, 850, 800, 160, "White");
 
 }
@@ -66,7 +66,7 @@ function InventoryItemArmsFullLatexSuitSetType(NewType) {
 
 	if(InventoryGet(C, "ItemVulva") != null){
 		//InventoryItemArmsFullLatexSuitMsg = "ALREADY_OCCUPIED";
-		return;
+		//return;
 	}
 	
 	if (NewType == "Wand") {
