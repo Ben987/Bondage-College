@@ -429,6 +429,7 @@ ItemTorso,HarnessBra2,Leather Strap Harness
 ItemTorso,Corset3,Half Cup Corset
 ItemTorso,Corset4,Under Bust Corset
 ItemTorso,Corset5,Floral Corset
+ItemTorso,LeatherBreastBinder,Leather Breast Binder
 ItemNipples,,Nipples
 ItemNipples,NippleClamp,Nipple Clamps
 ItemNipples,VibeNippleClamp,Vibrating Nipple Clamps
@@ -712,3 +713,5 @@ ItemBoots,BalletWedges,Ballet Wedges
 ItemBoots,ToeCuffs,Metal Toe Cuffs
 ItemBoots,LeatherToeCuffs,Leather Toe Cuffs
 ItemBoots,ToeTie,Toe Tie
+ItemHidden,Accessories
+ItemHidden,LeatherArmbinderStraps,Leather Armbinder Straps

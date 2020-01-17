@@ -293,6 +293,12 @@ WristShacklesPoseInFront,,,In-front of body
 WristShacklesPoseBehind,,,Behind back.
 WristShacklesRestrainInFront,,,SourceCharacter shackles DestinationCharacter wrist in-front of their body.
 WristShacklesRestrainBehind,,,SourceCharacter shackles DestinationCharacter wrist behind their back.
+SelectStrapType,,,Select if want Straps
+SelectIfDontType,,,Select want straps removed
+LeatherArmbinderTypeStrap,,,Binder Straps
+LeatherArmbinderStrapTypeNone,,,No strap
+LeatherArmbinderSetStrap,,,SourceCharacter puts an armbiner on DestinationCharacter with a strap.
+LeatherArmbinderStrapSetNone,,,SourceCharacter puts an armbiner on DestinationCharacter that's strapless.
 SelectGagType,,,Select the type of gag
 ClothGagTypeSmall,,,Small
 ClothGagTypeCleave,,,Cleave

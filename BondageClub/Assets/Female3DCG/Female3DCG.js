@@ -739,7 +739,7 @@ var AssetFemale3DCG = [
 			},
 			{ Name: "ClitSuctionCup", Priority: 11, Effect: [], Value: 25, Extended: true, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{ Group: "Eyes", Name: "Closed", Timer: 5 }, { Group: "Eyebrows", Name: "Angry", Timer: 5 }] },
 			{ Name: "TapeStrips", Value: 10, Prerequisite: "AccessVulva", Time: 5, ExpressionTrigger: [{ Group: "Eyebrows", Name: "Soft", Timer: 5 }] },
-			{ Name: "BenWaBalls", Value: 30, Prerequisite: "AccessVulva", Time: 5, ExpressionTrigger: [{ Group: "Eyebrows", Name: "Soft", Timer: 5 }] },
+			{ Name: "BenWaBalls", Value: 30, Prerequisite: "AccessVulva", Time: 5, ExpressionTrigger: [{ Group: "Eyebrows", Name: "Soft", Timer: 5 }], Visible: false },
 			{ Name: "HeavyWeightClamp", Value: 30, Prerequisite: "AccessVulva", Time: 5, ExpressionTrigger: [{ Group: "Eyes", Name: "Closed", Timer: 5 }, { Group: "Eyebrows", Name: "Soft", Timer: 5 }] },
 			{ Name: "FullLatexSuitWand", Priority: 33, IsRestraint: true, Extended: true, Block: ["ItemVulvaPiercings"], AllowLock: true, Value: -1, Effect: ["Egged", "Block", "Prone"], AllowEffect: ["Egged", "Vibrating"], Time: 5, Difficulty: 12 },
 			AssetSpankingToys
@@ -900,6 +900,7 @@ var AssetFemale3DCG = [
 			{ Name: "Corset3", Priority: 21, Value: 25, Prerequisite: "AccessTorso", Time: 15, RemoveTime: 10, Difficulty: 8, BuyGroup: ["Corset3"], Hide: ["ItemNipples", "ItemNipplesPiercings"], AllowLock: true },
 			{ Name: "Corset4", Priority: 21, Value: 15, Prerequisite: "AccessTorso", Time: 15, RemoveTime: 10, Difficulty: 8, BuyGroup: ["Corset4"], Expose: ["ItemNipples", "ItemBreast", "ItemNipplesPiercings"], AllowLock: true },
 			{ Name: "Corset5", Priority: 21, Value: 20, Prerequisite: "AccessTorso", Time: 15, RemoveTime: 10, Difficulty: 8, BuyGroup: ["Corset5"], Expose: ["ItemNipples", "ItemBreast", "ItemNipplesPiercings"], AllowLock: true },
+			{ Name: "LeatherBreastBinder", Value: 30, Prerequisite: "AccessTorso", Time: 15, RemoveTime: 10, Difficulty: 50, AllowLock: true },
 			AssetSpankingToys
 		]
 	},
@@ -998,7 +999,7 @@ var AssetFemale3DCG = [
 			{ Name: "HempRope", SelfBondage: false, Value: 60, SetPose: ["BackBoxTie"], BuyGroup: ["HempRope"], Effect: ["Block", "Prone"], Time: 20, Difficulty: 3 },
 			{ Name: "MetalCuffs", Priority: 30, Value: 40, SetPose: ["BackCuffs"], Effect: ["Block", "Prone", "Lock"], Difficulty: 5, Time: 5 },
 			{ Name: "SturdyLeatherBelts", SelfBondage: false, AllowLock: true, Value: 50, SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone"], Time: 20, Difficulty: 5, BuyGroup: "SturdyLeatherBelts", Extended: true, AllowType: ["One", "Two", "Three", "Four"] },
-			{ Name: "LeatherArmbinder", DefaultColor: "#404040", SelfBondage: false, SelfUnlock: false, Priority: 6, Value: 80, SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone"], Block: ["ItemHands"], Time: 25, RemoveTime: 10, Difficulty: 10, AllowLock: true },
+			{ Name: "LeatherArmbinder", DefaultColor: "#404040", Extended: true, SelfBondage: false, SelfUnlock: false, Priority: 6, Value: 80, SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone"], Block: ["ItemHands"], Time: 25, RemoveTime: 10, Difficulty: 10, AllowLock: true, RemoveItemOnRemove: [{ Name: "LeatherArmbinderStrap", Group: "ItemHidden" }] },
 			{ Name: "ArmbinderJacket", SelfBondage: false, SelfUnlock: false, Value: 100, SetPose: ["BackElbowTouch", "Bolero"], Hide: ["Cloth"], Effect: ["Block", "Prone"], Block: ["ItemHands"], Time: 35, RemoveTime: 25, Difficulty: 12, AllowLock: true },
 			{ Name: "LeatherCuffs", DefaultColor: "#404040", Priority: 30, Random: false, Value: 100, AllowPose: ["BackBoxTie", "BackElbowTouch"], Time: 20, Difficulty: 3, Extended: true, AllowLock: true, AllowEffect: ["Block", "Prone"], AllowType: ["Wrist", "Elbow", "Both"] },
 			{ Name: "OrnateCuffs", Priority: 30, Random: false, Value: 200, AllowPose: ["BackBoxTie", "BackElbowTouch"], Time: 20, Difficulty: 4, Extended: true, AllowLock: true, AllowEffect: ["Block", "Prone"], AllowType: ["Wrist", "Elbow", "Both"],
@@ -1633,6 +1634,17 @@ var AssetFemale3DCG = [
 			{ Name: "ToeCuffs", Value: 35, Time: 10, RemoveTime: 5, Difficulty: 4, Effect: ["Freeze", "Prone"], SetPose: ["LegsClosed"], AllowLock: true, Hide: ["Shoes"], Prerequisite: "ToeTied" },
 			{ Name: "LeatherToeCuffs", Value: 50, Time: 10, RemoveTime: 5, Difficulty: 3, Effect: ["Freeze", "Prone"], SetPose: ["LegsClosed"], AllowLock: true, Hide: ["Shoes"], Prerequisite: "ToeTied" },
 			{ Name: "ToeTie", DefaultColor: "#605020", Value: 15, Time: 10, RemoveTime: 5, Difficulty: 2, Effect: ["Freeze", "Prone"], SetPose: ["LegsClosed"], Hide: ["Shoes"], Prerequisite: "ToeTied" }
+		]
+	},
+	
+	{
+		Group: "ItemHidden",
+		Category: "Item",
+		Default: false,
+		IsRestraint: true,
+		Color: ["Default"],
+		Asset: [
+		    { Name: "LeatherArmbinderStrap", RemoveAtLogin: false, Priority: 19, AllowLock: true, AllowType: ["Strap", "None"], Value: -1, Time: 5, Difficulty: 12 }
 		]
 	}
 	
