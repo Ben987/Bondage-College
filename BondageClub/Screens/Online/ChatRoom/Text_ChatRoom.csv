@@ -1,6 +1,3 @@
-ActionGrabbedForCell,"gets grabbed by two maids and locked in a timer cell, following her owner commands."
-ActionGrabbedToServeDrinks,gets grabbed by two maids and escorted to the maid quarters to serve drinks for her owner.
 ActionGrabbedToServeDrinksIntro,(Two maids grab you and escort you to their quarters.  Another maid addresses you.)  Your owner sent you here to work.
-ActionGiveEnvelopeToOwner,gives a sealed envelope to her owner.
 PublicChat,Talk to everyone
 WhisperTo,Whisper to

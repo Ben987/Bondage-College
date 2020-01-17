@@ -132,10 +132,14 @@ function LoginMistressItems() {
 function LoginStableItems() {
 	if (LogQuery("JoinedStable", "PonyExam") || LogQuery("JoinedStable", "TrainerExam")) {
 		InventoryAdd(Player, "HarnessPonyBits", "ItemMouth", false);
+		InventoryAdd(Player, "HarnessPonyBits", "ItemMouth2", false);
+		InventoryAdd(Player, "HarnessPonyBits", "ItemMouth3", false);
 		InventoryAdd(Player, "PonyBoots", "Shoes", false);
 		InventoryAdd(Player, "PonyBoots", "ItemBoots", false);
 	} else {
 		InventoryDelete(Player, "HarnessPonyBits", "ItemMouth", false);
+		InventoryDelete(Player, "HarnessPonyBits", "ItemMouth2", false);
+		InventoryDelete(Player, "HarnessPonyBits", "ItemMouth3", false);
 		InventoryDelete(Player, "PonyBoots", "Shoes", false);
 		InventoryDelete(Player, "PonyBoots", "ItemBoots", false);
 	}

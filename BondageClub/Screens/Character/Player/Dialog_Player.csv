@@ -1,11 +1,14 @@
-SelectItem,,,Select an item to use
-CannotUseOnSelf,,,Cannot use on yourself
-RemoveClothesForItem,,,Remove some clothes first
-RemoveSuspensionForItem,,,Remove the suspension first
-TheyMustBeStandingFirst,,,Must be standing and not suspended first.
+SelectItem,,,Select an item to use.
+CannotUseOnSelf,,,Cannot use on yourself.
+RemoveClothesForItem,,,Remove some clothes first.
+RemoveSuspensionForItem,,,Remove the suspension first.
+ReleaseHogtieForItem,,,Release from hogtie first.
+RemoveRestraintsFirst,,,Remove some restraints first.
 CannotBeUsedWhenMounted,,,Cannot be used when mounted.
 CannotBeUsedWhenYoked,,,Cannot be used while yoked.
 CannotBeUsedWithFeetSpreader,,,Cannot be used with legs spreader.
+CannotHaveWand,,,Remove the wand first
+StraitDressOpen,,,Cannot use this.
 RemoveChastityFirst,,,Must remove chastity first.
 RemoveChainForItem,,,Remove the chain to the floor first
 MustCollaredFirst,,,A collar must be fitted first to attach accessories to.
@@ -14,7 +17,10 @@ MustCollaredFirstAndRemoveSuspension1,,,Must be collared and not suspended/mount
 NoClothAndCollared,,,Remove some clothes and requires a collar.
 LegsCannotOpen,,,Legs cannot open.
 LegsCannotClose,,,Legs cannot close.
-MustFreeFeetFirst,,,Must free feet frist.
+MustStandUpFirst,,,Must stand up first.
+MustFreeFeetFirst,,,Must free feet first.
+MustFreeLegsFirst,,,Must free legs first.
+MustFreeHandsFirst,,,Must free hands first.
 RemoveShacklesFirst,,,Must remove shackles first.
 CanOnlyEquipOneOfThisGag,,,Gag type already present.
 CannotBeUsedOverFlatGag,,,Cannot be used on a flat gag.
@@ -84,6 +90,7 @@ Herself,,,herself
 Someone,,,Someone
 KneelDown,,,SourceCharacter kneels down
 StandUp,,,SourceCharacter stands up
+ChangeClothes,,,SourceCharacter changes DestinationCharacter clothes.
 Private,,,Private
 Public,,,Public
 Locked,,,Locked
@@ -94,6 +101,8 @@ Beep,,,Beep
 BeepFrom,,,Beep from
 BeepFromOwner,,,Beep from your owner in your private room
 SentBeep,,,Sent at
+ChatRoomSpaceAsylum,,,Asylum
+InAsylum,,,in the Asylum
 ReceivedBeep,,,Received at
 YourRoom,,,<i>Your private room</i>
 InRoom,,,in room
@@ -127,6 +136,7 @@ ServerMoveRight,,,TargetCharacterName was moved to the right by SourceCharacter.
 ServerPromoteAdmin,,,TargetCharacterName was promoted to administrator by SourceCharacter.
 ServerDemoteAdmin,,,TargetCharacterName was demoted from administration by SourceCharacter.
 ServerUpdateRoom,,,SourceCharacter updated the room. Name: ChatRoomName. Limit: ChatRoomLimit.  ChatRoomPrivacy.  ChatRoomLocked.
+ChatRoomHelp,,,"Commands available : * or /me : write an emote, ** or /action : write an action, /coin : flip a coin, /dice [n] : roll a dice with n-faces, /friendlistadd [ID], /friendlistremove [ID], /whitelistadd [ID], /whitelistremove [ID], /blacklistadd [ID], /blacklistremove [ID], /kick [ID], /ban [ID], /unban [ID], /promote [ID], /demote [ID]"
 ActionSwap,,,SourceCharacter swaps a PrevAsset for a NextAsset on DestinationCharacter FocusAssetGroup.
 ActionUse,,,SourceCharacter uses a NextAsset on DestinationCharacter FocusAssetGroup.
 ActionLock,,,SourceCharacter locks a NextAsset on DestinationCharacter FocusAssetGroup.
@@ -135,23 +145,26 @@ ActionRemove,,,SourceCharacter removes the PrevAsset from DestinationCharacter F
 ActionUnlock,,,SourceCharacter unlocks and removes the PrevAsset from DestinationCharacter FocusAssetGroup.
 ActionDice,,,SourceCharacter rolls a DiceType sided dice.  The result is: DiceResult.
 ActionCoin,,,SourceCharacter flips a coin.  The result is: CoinResult.
-MaidDrinkPickFreeWater,,,SourceCharacter picks a glass of water from DestinationCharacter tray.,,
-MaidDrinkPickFreeOrangeJuice,,,SourceCharacter picks an orange juice from DestinationCharacter tray.,,
-MaidDrinkPickFreeBeer,,,SourceCharacter picks a beer from DestinationCharacter tray.,,
-MaidDrinkPickFreeWine,,,SourceCharacter picks a glass of wine from DestinationCharacter tray.,,
-MaidDrinkPickVirginMojito,,,SourceCharacter buys a Virgin Mojito from DestinationCharacter tray.,,
-MaidDrinkPickMargarita,,,SourceCharacter buys a Margarita from DestinationCharacter tray.,,
-MaidDrinkPickWhiskey,,,SourceCharacter buys a glass of Whiskey from TargetCharacter.,,
-MaidDrinkPickChampagne,,,SourceCharacter buys a glass of champagne from TargetCharacter.,,
-MaidDrinkPickLemonadeJug,,,"SourceCharacter buys a jug of refreshing lemonade for everyone, from TargetCharacter.",,
-MaidDrinkPickRoundShooters,,,"SourceCharacter buys a round of shooters for everyone, from TargetCharacter.",,
-MaidDrinkPickSexOnTheBeachJug,,,"SourceCharacter buys a jug of Sex on the Beach for everyone, from TargetCharacter.",,
-MaidDrinkPickBeerPitcher,,,"SourceCharacter buys a beer pitcher for everyone, from TargetCharacter.",,
-MaidDrinkPickFreeTea,,,SourceCharacter picks a tea from DestinationCharacter tray.,,
-MaidDrinkPickFreeCoffee,,,SourceCharacter picks a coffee from DestinationCharacter tray.,,
-MaidDrinkPickHotChocolate,,,SourceCharacter buys a hot chocolate from DestinationCharacter tray.,,
-MaidDrinkPickExpresso,,,SourceCharacter buys an espresso from DestinationCharacter tray.,,
-MaidDrinkPickCappuccino,,,SourceCharacter buys a cappuccino from DestinationCharacter tray.,,
+ActionGrabbedForCell,,,"TargetCharacterName gets grabbed by two maids and locked in a timer cell, following her owner commands."
+ActionGrabbedToServeDrinks,,,TargetCharacterName gets grabbed by two maids and escorted to the maid quarters to serve drinks for her owner.
+ActionGiveEnvelopeToOwner,,,TargetCharacterName gives a sealed envelope to her owner.
+MaidDrinkPickFreeWater,,,SourceCharacter picks a glass of water from DestinationCharacter tray.
+MaidDrinkPickFreeOrangeJuice,,,SourceCharacter picks an orange juice from DestinationCharacter tray.
+MaidDrinkPickFreeBeer,,,SourceCharacter picks a beer from DestinationCharacter tray.
+MaidDrinkPickFreeWine,,,SourceCharacter picks a glass of wine from DestinationCharacter tray.
+MaidDrinkPickVirginMojito,,,SourceCharacter buys a Virgin Mojito from DestinationCharacter tray.
+MaidDrinkPickMargarita,,,SourceCharacter buys a Margarita from DestinationCharacter tray.
+MaidDrinkPickWhiskey,,,SourceCharacter buys a glass of Whiskey from TargetCharacter.
+MaidDrinkPickChampagne,,,SourceCharacter buys a glass of champagne from TargetCharacter.
+MaidDrinkPickLemonadeJug,,,"SourceCharacter buys a jug of refreshing lemonade for everyone, from TargetCharacter."
+MaidDrinkPickRoundShooters,,,"SourceCharacter buys a round of shooters for everyone, from TargetCharacter."
+MaidDrinkPickSexOnTheBeachJug,,,"SourceCharacter buys a jug of Sex on the Beach for everyone, from TargetCharacter."
+MaidDrinkPickBeerPitcher,,,"SourceCharacter buys a beer pitcher for everyone, from TargetCharacter."
+MaidDrinkPickFreeTea,,,SourceCharacter picks a tea from DestinationCharacter tray.
+MaidDrinkPickFreeCoffee,,,SourceCharacter picks a coffee from DestinationCharacter tray.
+MaidDrinkPickHotChocolate,,,SourceCharacter buys a hot chocolate from DestinationCharacter tray.
+MaidDrinkPickExpresso,,,SourceCharacter buys an espresso from DestinationCharacter tray.
+MaidDrinkPickCappuccino,,,SourceCharacter buys a cappuccino from DestinationCharacter tray.
 LockMemberNumber,,,Member number on lock:
 TimerLeft,,,Time left:
 TimerRestart,,,SourceCharacter restarts the five minutes timer padlock on DestinationCharacter FocusAssetGroup.
@@ -523,6 +536,14 @@ SpankingToysTypeCattleProd,,,Cattle Prod
 SpankingToysTypeTennisRacket,,,Tennis Racket
 SpankingToysSetPlayer,,,SourceCharacter takes out a ItemUsed
 SpankingToysSetOthers,,,SourceCharacter gives TargetCharacter a ItemUsed
+SelectSuitType,,,Select suit type and wand attachment
+CheckVulvaForWand,,,Check the vulva to use the wand
+FullLatexSuitTypeZipped,,,Zipped Up
+FullLatexSuitTypeUnZip,,,Unzipped
+FullLatexSuitTypeWand,,,Wand Attachment
+FullLatexSuitSetZipped,,,SourceCharacter zips up TargetCharacter suit.
+FullLatexSuitSetUnZip,,,SourceCharacter unzips up TargetCharacter suit.
+FullLatexSuitSetWand,,,SourceCharacter attachs a wand to TargetCharacter suit.
 TurnOff,,,TurnOff
 Low,,,Low
 Medium,,,Medium
@@ -644,7 +665,7 @@ CollarNameTagPetTypeFoxy,,,Foxy
 CollarNameTagPetTypeKitten,,,Kitten
 CollarNameTagPetTypeKitty,,,Kitty
 CollarNameTagPetTypeMochi,,,Mochi
-CollarNameTagPetTypePanda,,,Panda,,,
+CollarNameTagPetTypePanda,,,Panda
 CollarNameTagPetTypePet,,,Pet
 CollarNameTagPetTypePetMe,,,PetMe
 CollarNameTagPetTypePixie,,,Pixie
