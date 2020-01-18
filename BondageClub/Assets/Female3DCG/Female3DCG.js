@@ -499,7 +499,10 @@ var AssetFemale3DCG = [
 		AllowPose: ["Suspension"],
 		Left: 50,
 		Top: 0,
-		Asset: ["HairNone", "HairBack1", "HairBack2", "HairBack4", "HairBack10", "HairBack14", "HairBack15", "HairBack16", "HairBack17", "HairBack18", "HairBack19", "HairBack20", "HairBack5", "HairBack8", "HairBack11", "HairBack6", "HairBack21", "HairBack22"]
+		Asset: ["HairNone", "HairBack1", "HairBack2", "HairBack4", "HairBack10", "HairBack14", "HairBack15", "HairBack16", "HairBack17", "HairBack18", "HairBack19", "HairBack20", "HairBack5", "HairBack8", "HairBack11", "HairBack6", "HairBack21", "HairBack22",
+		    { Name: "HairBack23", Priority: 39},
+		    { Name: "HairBack24", Priority: 39}
+		]
 	},
 
 	{
