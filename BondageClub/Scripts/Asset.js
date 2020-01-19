@@ -78,6 +78,7 @@ function AssetAdd(NewAsset) {
 		AllowLock: (NewAsset.AllowLock == null) ? false : NewAsset.AllowLock,
 		IsLock: (NewAsset.IsLock == null) ? false : NewAsset.IsLock,
 		OwnerOnly: (NewAsset.OwnerOnly == null) ? false : NewAsset.OwnerOnly,
+		LoverOnly: (NewAsset.LoverOnly == null) ? false : NewAsset.LoverOnly,
 		ExpressionTrigger: NewAsset.ExpressionTrigger,
 		Layer: AssetBuildLayer(NewAsset.Layer),
 		RemoveItemOnRemove : (NewAsset.RemoveItemOnRemove == null) ? [] : NewAsset.RemoveItemOnRemove,

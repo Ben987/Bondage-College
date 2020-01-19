@@ -126,6 +126,10 @@ ServerMessageOwnerRuleRemoteAllow,,,Your owner is now allowing you to have remot
 ServerMessageOwnerRuleRemoteConfiscate,,,Your owner has confiscated your remotes.  All your remotes are lost.
 ServerMessageOwnerRuleRemoteBlock,,,Your owner is now preventing you from getting new remotes.  The club shop will not sell remotes to you anymore.
 ServerMessageWhisperBlocked,,,You're on SourceCharacter blacklist.  Your message was blocked by the server.
+ServerMessageOfferStartTrialLover,,,"SourceCharacter is offering you to start a trial period as her lover.  Click on her and manage your relationship to accept, don't do anything to refuse."
+ServerMessageStartTrialLover,,,The Bondage Club is pleased to announce that SourceCharacter is starting a 7 days minimum trial period as a lover.
+ServerMessageOfferEndTrialLover,,,SourceCharacter todo
+ServerMessageEndTrialLover,,,The Bondage Club is proud to announce that SourceCharacter is now todo
 ServerEnter,,,SourceCharacter entered.
 ServerLeave,,,SourceCharacter left.
 ServerDisconnect,,,SourceCharacter disconnected.
@@ -196,6 +200,8 @@ ItemMiscOwnerPadlockIntro,,,"""Never forget who you belong to"""
 ItemMiscOwnerPadlockDetail,,,Can only be locked or unlocked by her owner
 ItemMiscOwnerTimerPadlockIntro,,,"""Never forget who you belong to"""
 ItemMiscOwnerTimerPadlockDetail,,,Can only be unlocked or extended by her owner
+ItemMiscLoversPadlockIntro,,,"""A tight embrace"""
+ItemMiscLoversPadlockDetail,,,Can only be locked or unlocked by her lover
 ItemMiscMistressPadlockIntro,,,Can only be locked or unlocked by a Club Mistress
 ItemMiscMistressTimerPadlockIntro,,,Can only be unlocked or extended by a Club Mistress
 LeatherCuffsPoseNone,,,Detached

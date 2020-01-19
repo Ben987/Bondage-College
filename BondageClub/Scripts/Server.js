@@ -24,6 +24,7 @@ function ServerInit() {
 	ServerSocket.on("AccountQueryResult", function (data) { ServerAccountQueryResult(data); });
 	ServerSocket.on("AccountBeep", function (data) { ServerAccountBeep(data); });
 	ServerSocket.on("AccountOwnership", function (data) { ServerAccountOwnership(data); });
+	ServerSocket.on("AccountLovership", function(data) { ServerAccountLovership(data); });
 	ServerBeepAudio.src = "Audio/BeepAlarm.mp3";
 }
 
@@ -135,6 +136,20 @@ function ServerValidateProperties(C, Item) {
 
 				// Make sure the owner lock is valid
 				if (Lock.Asset.OwnerOnly && ((C.Ownership == null) || (C.Ownership.MemberNumber == null) || (Item.Property.LockMemberNumber == null) || (C.Ownership.MemberNumber != Item.Property.LockMemberNumber))) {
+					delete Item.Property.LockedBy;
+					delete Item.Property.LockMemberNumber;
+					delete Item.Property.RemoveTimer;
+					delete Item.Property.MaxTimer;
+					delete Item.Property.RemoveItem;
+					delete Item.Property.ShowTimer;
+					delete Item.Property.EnableRandomInput;
+					delete Item.Property.MemberNumberList;
+					Item.Property.Effect.splice(E, 1);
+					E--;
+				}
+
+				// Make sure the lover lock is valid
+				if (Lock.Asset.LoverOnly && ((C.Lovership == null) || (C.Lovership.MemberNumber == null) || (Item.Property.LockMemberNumber == null) || (C.Lovership.MemberNumber != Item.Property.LockMemberNumber))) {
 					delete Item.Property.LockedBy;
 					delete Item.Property.LockMemberNumber;
 					delete Item.Property.RemoveTimer;
@@ -387,6 +402,28 @@ function ServerAccountOwnership(data) {
 		Player.Owner = "";
 		Player.Ownership = null;
 		LoginValidCollar();
+	}
+
+}
+
+// Gets the account lovership result from the query sent to the server
+function ServerAccountLovership(data) {
+
+	// If we get a result for a specific member number, we show that option in the online dialog
+	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.MemberNumber != null) && (typeof data.MemberNumber === "number") && (data.Result != null) && (typeof data.Result === "string"))
+		if ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber == data.MemberNumber))
+			ChatRoomLovershipOption = data.Result;
+
+	// If we must update the character ownership data
+	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.Lover != null) && (typeof data.Lover === "string") && (data.Lovership != null) && (typeof data.Lovership === "object")) {
+		Player.Lover = data.Lover;
+		Player.Lovership = data.Lovership;
+	}
+
+	// If we must clear the character ownership data
+	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.ClearLovership != null) && (typeof data.ClearLovership === "boolean") && (data.ClearLovership == true)) {
+		Player.Lover = "";
+		Player.Lovership = null;
 	}
 
 }

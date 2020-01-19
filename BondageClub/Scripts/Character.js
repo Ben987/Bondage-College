@@ -47,6 +47,9 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsOwned: function () { return ((this.Owner != null) && (this.Owner.trim() != "")) },
 		IsOwnedByPlayer: function () { return (((((this.Owner != null) && (this.Owner.trim() == Player.Name)) || (NPCEventGet(this, "EndDomTrial") > 0)) && (this.Ownership == null)) || ((this.Ownership != null) && (this.Ownership.MemberNumber != null) && (this.Ownership.MemberNumber == Player.MemberNumber))) },
 		IsOwner: function () { return ((NPCEventGet(this, "EndSubTrial") > 0) || (this.Name == Player.Owner.replace("NPC-", ""))) },
+		IsLoved: function () { return ((this.Lover != null) && (this.Lover.trim() != "")) },
+		IsLoverOfPlayer: function () { return (((((this.Lover != null) && (this.Lover.trim() == Player.Name)) || (NPCEventGet(this, "EndLoverTrial") > 0)) && (this.Lovership == null)) || ((this.Lovership != null) && (this.Lovership.MemberNumber != null) && (this.Lovership.MemberNumber == Player.MemberNumber))) },
+		IsLover: function () { return ((NPCEventGet(this, "EndLoverTrial") > 0) || (this.Name == Player.Lover.replace("NPC-", ""))) },
 		IsKneeling: function () { return ((this.Pose != null) && (this.Pose.indexOf("Kneel") >= 0)) },
 		IsNaked: function () { return CharacterIsNaked(this); },
 		IsDeaf: function () { return ((this.Effect.indexOf("DeafLight") >= 0) || (this.Effect.indexOf("DeafNormal") >= 0) || (this.Effect.indexOf("DeafHeavy") >= 0)) },
@@ -214,6 +217,7 @@ function CharacterOnlineRefresh(Char, data, SourceMemberNumber) {
 	Char.Creation = data.Creation;
 	if (Char.ID != 0) Char.ItemPermission = data.ItemPermission;
 	Char.Ownership = data.Ownership;
+	Char.Lovership = data.Lovership;
 	Char.Reputation = (data.Reputation != null) ? data.Reputation : [];
 	Char.BlockItems = Array.isArray(data.BlockItems) ? data.BlockItems : [];
 	Char.Appearance = ServerAppearanceLoadFromBundle(Char, "Female3DCG", data.Appearance, SourceMemberNumber);
@@ -285,6 +289,7 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 
 		// Flags "refresh" if the ownership or inventory or blockitems has changed
 		if (!Refresh && (JSON.stringify(Char.Ownership) !== JSON.stringify(data.Ownership))) Refresh = true;
+		if (!Refresh && (JSON.stringify(Char.Lovership) !== JSON.stringify(data.Lovership))) Refresh = true;
 		if (!Refresh && (data.Inventory != null) && (Char.Inventory.length != data.Inventory.length)) Refresh = true;
 		if (!Refresh && (data.BlockItems != null) && (Char.BlockItems.length != data.BlockItems.length)) Refresh = true;
 
