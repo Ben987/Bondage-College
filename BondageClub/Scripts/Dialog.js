@@ -24,6 +24,7 @@ var DialogAllowEyebrows = false;
 var DialogAllowFluids = false;
 var DialogFacialExpressions = [];
 var DialogItemPermissionMode = false;
+var DialogProgressAudio = new Audio();
 
 function DialogReputationLess(RepType, Value) { return (ReputationGet(RepType) <= Value); } // Returns TRUE if a specific reputation type is less or equal than a given value
 function DialogReputationGreater(RepType, Value) { return (ReputationGet(RepType) >= Value); } // Returns FALSE if a specific reputation type is greater or equal than a given value
@@ -388,7 +389,31 @@ function DialogProgressStart(C, PrevItem, NextItem) {
 	DialogAllowBlush = ((DialogProgressAuto < 0) && (DialogProgressChallenge > 0) && (C.ID == 0) && ((InventoryGet(C, "Blush") == null) || (InventoryGet(C, "Blush").Property == null) || (InventoryGet(C, "Blush").Property.Expression == null)));
 	DialogAllowEyebrows = ((DialogProgressAuto < 0) && (DialogProgressChallenge > 0) && (C.ID == 0) && ((InventoryGet(C, "Eyebrows") == null) || (InventoryGet(C, "Eyebrows").Property == null) || (InventoryGet(C, "Eyebrows").Property.Expression == null)));
 	DialogAllowFluids = ((DialogProgressAuto < 0) && (DialogProgressChallenge > 0) && (C.ID == 0) && ((InventoryGet(C, "Fluids") == null) ||(InventoryGet(C, "Fluids").Property == null) || (InventoryGet(C, "Fluids").Property.Expression == null)));
+
+	//play background sound
+	if((PrevItem && PrevItem.Asset) || (NextItem && NextItem.Asset)){
+		var assetName = NextItem && NextItem.Asset ? NextItem.Asset.Name : PrevItem.Asset.Name;
+		switch(assetName){
+			case "HempRope":	DialogProgressAudioStart("Audio/HempRopeLong.mp3");		break;
+		}
+	}
 }
+
+//play background sound for tying/untying
+function DialogProgressAudioStart(src){
+	DialogProgressAudio.pause();
+	DialogProgressAudio.currentTime = 0;
+	DialogProgressAudio.src = src;
+	DialogProgressAudio.play();
+}
+
+
+//stop background sound for tying/untying
+function DialogProgressAudioStop(){
+	DialogProgressAudio.pause();
+	DialogProgressAudio.currentTime = 0;
+}
+
 
 // The player can use the space bar to speed up the dialog progress, just like clicking
 function DialogKeyDown() {
@@ -404,6 +429,7 @@ function DialogMenuButtonClick() {
 	// Finds the current icon
 	for (var I = 0; I < DialogMenuButton.length; I++)
 		if ((MouseX >= 1885 - I * 110) && (MouseX <= 1975 - I * 110)) {
+			DialogProgressAudioStop();
 
 			// Gets the current character and item
 			var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
@@ -872,6 +898,7 @@ function DialogDrawItemMenu(C) {
 		// If the operation is completed
 		if (DialogProgress >= 100) {
 
+			DialogProgressAudioStop();
 			// Add / swap / remove the item
 			if (DialogProgressNextItem == null) InventoryRemove(C, C.FocusGroup.Name);
 			else InventoryWear(C, DialogProgressNextItem.Asset.Name, DialogProgressNextItem.Asset.Group.Name, (DialogColorSelect == null) ? "Default" : DialogColorSelect, SkillGetLevel(Player, "Bondage"));
