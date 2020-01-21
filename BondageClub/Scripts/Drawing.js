@@ -139,8 +139,8 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 			var CanvasH = document.createElement("canvas");
 			CanvasH.width = Canvas.width;
 			CanvasH.height = Canvas.height;
-			CanvasH.getContext("2d").scale(1, -1);
-			CanvasH.getContext("2d").translate(0, -Canvas.height);
+			CanvasH.getContext("2d").rotate(Math.PI);
+			CanvasH.getContext("2d").translate(-Canvas.width, -Canvas.height);
 			CanvasH.getContext("2d").drawImage(Canvas, 0, 0);
 			Canvas = CanvasH;
 		}
