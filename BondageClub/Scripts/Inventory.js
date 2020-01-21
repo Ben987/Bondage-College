@@ -211,12 +211,25 @@ function InventoryWearRandom(C, GroupName, Difficulty) {
 
 // Removes a specific item from the player appearance
 function InventoryRemove(C, AssetGroup) {
+
+	// Loops until we find the item group to remove
 	for (var E = 0; E < C.Appearance.length; E++)
 		if (C.Appearance[E].Asset.Group.Name == AssetGroup) {
+
+			// Remove other items that are flagged to be removed when this item is removed.  If the name is empty, we remove any item from that group.
+			for (var R = 0; R < C.Appearance[E].Asset.RemoveItemOnRemove.length; R++)
+				if ((C.Appearance[E].Asset.RemoveItemOnRemove[R].Name == "") || ((C.Appearance[E].Asset.RemoveItemOnRemove[R].Name != "") && (InventoryGet(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group) != null) && (InventoryGet(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group).Asset.Name == C.Appearance[E].Asset.RemoveItemOnRemove[R].Name)))
+					InventoryRemove(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group);
+
+			// Removes the item itself
 			C.Appearance.splice(E, 1);
 			E--;
+
 		}
+
+	// Refreshes the character
 	CharacterRefresh(C);
+
 }
 
 // Returns TRUE if the focused group for a character is blocked and cannot be used
