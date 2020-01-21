@@ -69,12 +69,9 @@ function PreferenceLoad() {
 
 // Run the preference screen
 function PreferenceRun() {
-
 	// If a subscreen is active, draw that instead
-	if (PreferenceSubscreen == "Chat") {
-		PreferenceSubscreenChatRun();
-		return;
-	}
+	if (PreferenceSubscreen == "Chat") return PreferenceSubscreenChatRun();
+	if (PreferenceSubscreen == "Immersion") return PreferenceSubscreenImmersionRun();
 
 	// Draw the online preferences
 	MainCanvas.textAlign = "left";
@@ -112,6 +109,7 @@ function PreferenceRun() {
 	else {
 		DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
 		DrawButton(1815, 190, 90, 90, "", "White", "Icons/Chat.png");
+		DrawButton(1815, 305, 90, 90, "", "White", "Icons/Immersion.png");
 	}
 
 }
@@ -120,10 +118,8 @@ function PreferenceRun() {
 function PreferenceClick() {
 
 	// If a subscreen is active, process that instead
-	if (PreferenceSubscreen == "Chat") {
-		PreferenceSubscreenChatClick();
-		return;
-	}
+	if (PreferenceSubscreen == "Chat") return PreferenceSubscreenChatClick();
+	if (PreferenceSubscreen == "Immersion") return PreferenceSubscreenImmersionClick();
 
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) PreferenceExit();
 
@@ -131,6 +127,12 @@ function PreferenceClick() {
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 190) && (MouseY < 280) && (PreferenceColorPick == "")) {
 		ElementRemove("InputCharacterLabelColor");
 		PreferenceSubscreen = "Chat";
+	}
+
+	// If the user clicks on the immersion settings button
+	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 305) && (MouseY < 395) && (PreferenceColorPick == "")) {
+		ElementRemove("InputCharacterLabelColor");
+		PreferenceSubscreen = "Immersion";
 	}
 
 	// If we must change the restrain permission level
@@ -182,6 +184,16 @@ function PreferenceExit() {
 }
 
 // Redirected to from the main Run function if the player is in the chat settings subscreen
+function PreferenceSubscreenImmersionRun () {
+	MainCanvas.textAlign = "left";
+
+
+    DrawText(TextGet("PlayVibes"), 600, 585, "Black", "Gray");
+	DrawButton(500, 552, 64, 64, "", "White", (Player.AudioSettings && Player.AudioSettings.PlayVibes) ? "Icons/Checked.png" : "");
+
+	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+}
+
 function PreferenceSubscreenChatRun() {
 	MainCanvas.textAlign = "left";
 	DrawText(TextGet("ChatDisplaySettings"), 500, 125, "Black", "Gray");
@@ -209,6 +221,20 @@ function PreferenceSubscreenChatRun() {
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
 	DrawCharacter(Player, 50, 50, 0.9);
 }
+
+
+function PreferenceSubscreenImmersionClick() {
+	// If the user clicked the exit icon to return to the main screen
+	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) {
+		PreferenceSubscreen = "";
+		ElementCreateInput("InputCharacterLabelColor", "text", Player.LabelColor);
+	}
+
+	if ((MouseX >= 500) && (MouseX < 564)) {
+		if ((MouseY >= 552) && (MouseY < 616)) Player.AudioSettings.PlayVibes = !Player.AudioSettings.PlayVibes;
+	}
+}
+
 
 // Redirected to from the main Click function if the player is in the chat settings subscreen
 function PreferenceSubscreenChatClick() {
