@@ -173,11 +173,16 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 }
 
 // Draw a zoomed image from a source to a specific canvas
-function DrawImageZoomCanvas(Source, Canvas, SX, SY, SWidth, SHeight, X, Y, Width, Height) {
+function DrawImageZoomCanvas(Source, Canvas, SX, SY, SWidth, SHeight, X, Y, Width, Height, Dark) {
 	var Img = DrawGetImage(Source);
 	if (!Img.complete) return false;
 	if (!Img.naturalWidth) return true;
+
+	var prevFilter = Canvas.filter;
+	if(Dark) Canvas.filter = "brightness(25%)";
 	Canvas.drawImage(Img, SX, SY, Math.round(SWidth), Math.round(SHeight), X, Y, Width, Height);
+	Canvas.filter = prevFilter;  
+
 	return true;
 }
 
