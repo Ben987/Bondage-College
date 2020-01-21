@@ -180,6 +180,11 @@ function LoginResponse(C) {
 			if ((Player.Ownership != null) && (Player.Ownership.Name != null))
 				Player.Owner = (Player.Ownership.Stage == 1) ? Player.Ownership.Name : "";
 
+			// Loads the lovership data
+			Player.Lovership = C.Lovership;
+			if ((Player.Lovership != null) && (Player.Lovership.Name != null))
+				Player.Lover = (Player.Lovership.Stage == 1) ? Player.Lovership.Name : "";
+
 			// Gets the online preferences
 			Player.LabelColor = C.LabelColor;
 			Player.ItemPermission = C.ItemPermission;

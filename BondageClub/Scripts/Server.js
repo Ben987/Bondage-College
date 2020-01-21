@@ -221,6 +221,8 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 		for (var A = 0; A < C.Appearance.length; A++) {
 			if (!C.Appearance[A].Asset.Enable && !C.Appearance[A].Asset.OwnerOnly) 
 				Appearance.push(C.Appearance[A]);
+			else if (!C.Appearance[A].Asset.Enable && !C.Appearance[A].Asset.LoverOnly)
+				Appearance.push(C.Appearance[A]);
 			else
 				if ((C.Ownership != null) && (C.Ownership.MemberNumber != null) && (C.Ownership.MemberNumber != SourceMemberNumber) && InventoryOwnerOnlyItem(C.Appearance[A])) {
 					var NA = C.Appearance[A];
@@ -231,6 +233,18 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 								NA.Property = Bundle[B].Property;
 						ServerValidateProperties(C, NA);
 						if (C.Appearance[A].Asset.LockedBy == "OwnerPadlock") InventoryLock(C, NA, { Asset: AssetGet(AssetFamily, "ItemMisc", "OwnerPadlock") }, C.Ownership.MemberNumber);
+					}
+					Appearance.push(NA);
+				}
+				if ((C.Lovership != null) && (C.Lovership.MemberNumber != null) && (C.Lovership.MemberNumber != SourceMemberNumber) && InventoryLoverOnlyItem(C.Appearance[A])) {
+					var NA = C.Appearance[A];
+					if (!C.Appearance[A].Asset.LoverOnly) {
+						// If the lover-locked item is sent back from a non-lover, we allow to change some properties and lock it back with the lover lock
+						for (var B = 0; B < Bundle.length; B++)
+							if ((C.Appearance[A].Asset.Name == Bundle[B].Name) && (C.Appearance[A].Asset.Group.Name == Bundle[B].Group) && (C.Appearance[A].Asset.Group.Family == AssetFamily))
+								NA.Property = Bundle[B].Property;
+						ServerValidateProperties(C, NA);
+						if (C.Appearance[A].Asset.LockedBy == "LoverPadlock") InventoryLock(C, NA, { Asset: AssetGet(AssetFamily, "ItemMisc", "LoverPadlock") }, C.Lovership.MemberNumber);
 					}
 					Appearance.push(NA);
 				}
@@ -249,6 +263,11 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 				// OwnerOnly items can only get update if it comes from owner
 				if (Asset[I].OwnerOnly && (C.ID == 0)) {
 					if ((C.Ownership == null) || (C.Ownership.MemberNumber == null) || ((C.Ownership.MemberNumber != SourceMemberNumber) && (SourceMemberNumber != null))) break;
+				}
+
+				// LoverOnly items can only get update if it comes from lover
+				if (Asset[I].LoverOnly && (C.ID == 0)) {
+					if ((C.Lovership == null) || (C.Lovership.MemberNumber == null) || ((C.Lovership.MemberNumber != SourceMemberNumber) && (SourceMemberNumber != null))) break;
 				}
 
 				// Creates the item and colorize it
@@ -270,6 +289,10 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 						var Lock = InventoryGetLock(NA);
 						if ((Lock != null) && (Lock.Property != null)) delete Item.Property.LockMemberNumber;
 					}
+					if ((SourceMemberNumber != null) && (C.ID == 0) && (C.Lovership != null) && (C.Lovership.MemberNumber != null) && (C.Lovership.MemberNumber != SourceMemberNumber) && InventoryLoverOnlyItem(NA)) {
+						var Lock = InventoryGetLock(NA);
+						if ((Lock != null) && (Lock.Property != null)) delete Item.Property.LockMemberNumber;
+					}
 					ServerValidateProperties(C, NA);
 				}
 
@@ -282,7 +305,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 					}
 
 				// Make sure we don't push an item that's disabled, coming from another player
-				if (CanPush && !NA.Asset.Enable && !NA.Asset.OwnerOnly && (SourceMemberNumber != null) && (C.ID == 0)) CanPush = false;
+				if (CanPush && !NA.Asset.Enable && !NA.Asset.OwnerOnly && !NA.Asset.LoverOnly && (SourceMemberNumber != null) && (C.ID == 0)) CanPush = false;
 				if (CanPush) Appearance.push(NA);
 				break;
 
@@ -414,13 +437,13 @@ function ServerAccountLovership(data) {
 		if ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber == data.MemberNumber))
 			ChatRoomLovershipOption = data.Result;
 
-	// If we must update the character ownership data
+	// If we must update the character lovership data
 	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.Lover != null) && (typeof data.Lover === "string") && (data.Lovership != null) && (typeof data.Lovership === "object")) {
 		Player.Lover = data.Lover;
 		Player.Lovership = data.Lovership;
 	}
 
-	// If we must clear the character ownership data
+	// If we must clear the character lovership data
 	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.ClearLovership != null) && (typeof data.ClearLovership === "boolean") && (data.ClearLovership == true)) {
 		Player.Lover = "";
 		Player.Lovership = null;

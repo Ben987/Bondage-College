@@ -18,6 +18,7 @@ MistressExpulsion,,,We Mistresses have been speaking.  It seems you're not fit t
 0,50,Who's that bound girl?,She's my kitty.  She stays with me while I work.,,,
 0,100,Can we talk about chastity devices?,"Absolutely, what would you like to know?",,,
 0,200,About Dominant/submissive relationships...,I'm listening.  How can I educate you?,,Player.CanTalk(),
+0,600,About Lover relationships...,(She smiles.) What is it ?,,Player.CanTalk(),
 0,400,About club Mistresses...,Speak up.  What would you like to know?,,Player.CanTalk(),
 0,300,About club slaves...,"Yes, what would you like to know?",,Player.CanTalk(),
 0,,"Sorry, I need to go.  (Leave her.)",,DialogLeave(),,
