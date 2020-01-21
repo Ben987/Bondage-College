@@ -7,7 +7,7 @@ RemoveRestraintsFirst,,,Remove some restraints first.
 CannotBeUsedWhenMounted,,,Cannot be used when mounted.
 CannotBeUsedWhenYoked,,,Cannot be used while yoked.
 CannotBeUsedWithFeetSpreader,,,Cannot be used with legs spreader.
-CannotHaveWand,,,Cannot have this equipment equipped right now.
+CannotHaveWand,,,Remove the wand first
 StraitDressOpen,,,Cannot use this.
 RemoveChastityFirst,,,Must remove chastity first.
 RemoveChainForItem,,,Remove the chain to the floor first
@@ -133,6 +133,7 @@ ServerBan,,,TargetCharacterName was banned by SourceCharacter.
 ServerKick,,,TargetCharacterName was kicked-out by SourceCharacter.
 ServerMoveLeft,,,TargetCharacterName was moved to the left by SourceCharacter.
 ServerMoveRight,,,TargetCharacterName was moved to the right by SourceCharacter.
+ServerSwap,,,SourceCharacter swapped TargetCharacterName and DestinationCharacterName places.
 ServerPromoteAdmin,,,TargetCharacterName was promoted to administrator by SourceCharacter.
 ServerDemoteAdmin,,,TargetCharacterName was demoted from administration by SourceCharacter.
 ServerUpdateRoom,,,SourceCharacter updated the room. Name: ChatRoomName. Limit: ChatRoomLimit.  ChatRoomPrivacy.  ChatRoomLocked.
@@ -148,23 +149,23 @@ ActionCoin,,,SourceCharacter flips a coin.  The result is: CoinResult.
 ActionGrabbedForCell,,,"TargetCharacterName gets grabbed by two maids and locked in a timer cell, following her owner commands."
 ActionGrabbedToServeDrinks,,,TargetCharacterName gets grabbed by two maids and escorted to the maid quarters to serve drinks for her owner.
 ActionGiveEnvelopeToOwner,,,TargetCharacterName gives a sealed envelope to her owner.
-MaidDrinkPickFreeWater,,,SourceCharacter picks a glass of water from DestinationCharacter tray.,,
-MaidDrinkPickFreeOrangeJuice,,,SourceCharacter picks an orange juice from DestinationCharacter tray.,,
-MaidDrinkPickFreeBeer,,,SourceCharacter picks a beer from DestinationCharacter tray.,,
-MaidDrinkPickFreeWine,,,SourceCharacter picks a glass of wine from DestinationCharacter tray.,,
-MaidDrinkPickVirginMojito,,,SourceCharacter buys a Virgin Mojito from DestinationCharacter tray.,,
-MaidDrinkPickMargarita,,,SourceCharacter buys a Margarita from DestinationCharacter tray.,,
-MaidDrinkPickWhiskey,,,SourceCharacter buys a glass of Whiskey from TargetCharacter.,,
-MaidDrinkPickChampagne,,,SourceCharacter buys a glass of champagne from TargetCharacter.,,
-MaidDrinkPickLemonadeJug,,,"SourceCharacter buys a jug of refreshing lemonade for everyone, from TargetCharacter.",,
-MaidDrinkPickRoundShooters,,,"SourceCharacter buys a round of shooters for everyone, from TargetCharacter.",,
-MaidDrinkPickSexOnTheBeachJug,,,"SourceCharacter buys a jug of Sex on the Beach for everyone, from TargetCharacter.",,
-MaidDrinkPickBeerPitcher,,,"SourceCharacter buys a beer pitcher for everyone, from TargetCharacter.",,
-MaidDrinkPickFreeTea,,,SourceCharacter picks a tea from DestinationCharacter tray.,,
-MaidDrinkPickFreeCoffee,,,SourceCharacter picks a coffee from DestinationCharacter tray.,,
-MaidDrinkPickHotChocolate,,,SourceCharacter buys a hot chocolate from DestinationCharacter tray.,,
-MaidDrinkPickExpresso,,,SourceCharacter buys an espresso from DestinationCharacter tray.,,
-MaidDrinkPickCappuccino,,,SourceCharacter buys a cappuccino from DestinationCharacter tray.,,
+MaidDrinkPickFreeWater,,,SourceCharacter picks a glass of water from DestinationCharacter tray.
+MaidDrinkPickFreeOrangeJuice,,,SourceCharacter picks an orange juice from DestinationCharacter tray.
+MaidDrinkPickFreeBeer,,,SourceCharacter picks a beer from DestinationCharacter tray.
+MaidDrinkPickFreeWine,,,SourceCharacter picks a glass of wine from DestinationCharacter tray.
+MaidDrinkPickVirginMojito,,,SourceCharacter buys a Virgin Mojito from DestinationCharacter tray.
+MaidDrinkPickMargarita,,,SourceCharacter buys a Margarita from DestinationCharacter tray.
+MaidDrinkPickWhiskey,,,SourceCharacter buys a glass of Whiskey from TargetCharacter.
+MaidDrinkPickChampagne,,,SourceCharacter buys a glass of champagne from TargetCharacter.
+MaidDrinkPickLemonadeJug,,,"SourceCharacter buys a jug of refreshing lemonade for everyone, from TargetCharacter."
+MaidDrinkPickRoundShooters,,,"SourceCharacter buys a round of shooters for everyone, from TargetCharacter."
+MaidDrinkPickSexOnTheBeachJug,,,"SourceCharacter buys a jug of Sex on the Beach for everyone, from TargetCharacter."
+MaidDrinkPickBeerPitcher,,,"SourceCharacter buys a beer pitcher for everyone, from TargetCharacter."
+MaidDrinkPickFreeTea,,,SourceCharacter picks a tea from DestinationCharacter tray.
+MaidDrinkPickFreeCoffee,,,SourceCharacter picks a coffee from DestinationCharacter tray.
+MaidDrinkPickHotChocolate,,,SourceCharacter buys a hot chocolate from DestinationCharacter tray.
+MaidDrinkPickExpresso,,,SourceCharacter buys an espresso from DestinationCharacter tray.
+MaidDrinkPickCappuccino,,,SourceCharacter buys a cappuccino from DestinationCharacter tray.
 LockMemberNumber,,,Member number on lock:
 TimerLeft,,,Time left:
 TimerRestart,,,SourceCharacter restarts the five minutes timer padlock on DestinationCharacter FocusAssetGroup.
@@ -293,6 +294,13 @@ WristShacklesPoseInFront,,,In-front of body
 WristShacklesPoseBehind,,,Behind back.
 WristShacklesRestrainInFront,,,SourceCharacter shackles DestinationCharacter wrist in-front of their body.
 WristShacklesRestrainBehind,,,SourceCharacter shackles DestinationCharacter wrist behind their back.
+SelectStrapType,,,Select if want Straps
+SelectIfDontType,,,Select want straps removed
+LeatherArmbinderTypeStrap,,,Binder Straps
+LeatherArmbinderStrapTypeNone,,,No strap
+LeatherArmbinderSetStrap,,,SourceCharacter puts an armbiner on DestinationCharacter with a strap.
+LeatherArmbinderSetWrapStrap,,,SourceCharacter puts an armbiner on DestinationCharacter with a strap.
+LeatherArmbinderStrapSetNone,,,SourceCharacter puts an armbiner on DestinationCharacter that's strapless.
 SelectGagType,,,Select the type of gag
 ClothGagTypeSmall,,,Small
 ClothGagTypeCleave,,,Cleave
@@ -537,6 +545,7 @@ SpankingToysTypeTennisRacket,,,Tennis Racket
 SpankingToysSetPlayer,,,SourceCharacter takes out a ItemUsed
 SpankingToysSetOthers,,,SourceCharacter gives TargetCharacter a ItemUsed
 SelectSuitType,,,Select suit type and wand attachment
+CheckVulvaForWand,,,Check the vulva to use the wand
 FullLatexSuitTypeZipped,,,Zipped Up
 FullLatexSuitTypeUnZip,,,Unzipped
 FullLatexSuitTypeWand,,,Wand Attachment
@@ -664,7 +673,7 @@ CollarNameTagPetTypeFoxy,,,Foxy
 CollarNameTagPetTypeKitten,,,Kitten
 CollarNameTagPetTypeKitty,,,Kitty
 CollarNameTagPetTypeMochi,,,Mochi
-CollarNameTagPetTypePanda,,,Panda,,,
+CollarNameTagPetTypePanda,,,Panda
 CollarNameTagPetTypePet,,,Pet
 CollarNameTagPetTypePetMe,,,PetMe
 CollarNameTagPetTypePixie,,,Pixie

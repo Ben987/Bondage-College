@@ -12,6 +12,22 @@ RemoveItemMouth,,,(You remove her gag and she smiles.)  Thanks!  It will be easi
 RemoveItemMouth,,,(You remove her gag and she stretches her jaw.)  Gags are stupid.,,,RemoveItemMouth,Dominant|Dumb
 RemoveItemMouth,,,(You remove her gag and she licks her lips.)  Do you have anything else for my mouth?,,,RemoveItemMouth,Submissive|Horny
 RemoveItemMouth,,,"(You remove her gag and she shakes her head.)  Gags have one advantage, you don't have to use your mouth on anything else.",,,RemoveItemMouth,Frigid|Wise
+ItemMouth2,,,(She doesn't resist much as you silence her with the gag.),,,ItemMouth,
+ItemMouth2,,,(She trashes her head to avoid the gag but surrenders as you insist.),,,ItemMouth,Dominant|Violent
+ItemMouth2,,,(She bows her head and presents her mouth so you can gag her easily.),,,ItemMouth,Submissive|Serious
+ItemMouth2,,,Wait!  You don't...  (You silence her with a gag as she was trying to speak.),,,ItemMouth,Playful|Dumb
+RemoveItemMouth2,,,(You remove her gag and she smiles.)  Thanks!  It will be easier to communicate now.,,,RemoveItemMouth,
+RemoveItemMouth2,,,(You remove her gag and she stretches her jaw.)  Gags are stupid.,,,RemoveItemMouth,Dominant|Dumb
+RemoveItemMouth2,,,(You remove her gag and she licks her lips.)  Do you have anything else for my mouth?,,,RemoveItemMouth,Submissive|Horny
+RemoveItemMouth2,,,"(You remove her gag and she shakes her head.)  Gags have one advantage, you don't have to use your mouth on anything else.",,,RemoveItemMouth,Frigid|Wise
+ItemMouth3,,,(She doesn't resist much as you silence her with the gag.),,,ItemMouth,
+ItemMouth3,,,(She trashes her head to avoid the gag but surrenders as you insist.),,,ItemMouth,Dominant|Violent
+ItemMouth3,,,(She bows her head and presents her mouth so you can gag her easily.),,,ItemMouth,Submissive|Serious
+ItemMouth3,,,Wait!  You don't...  (You silence her with a gag as she was trying to speak.),,,ItemMouth,Playful|Dumb
+RemoveItemMouth3,,,(You remove her gag and she smiles.)  Thanks!  It will be easier to communicate now.,,,RemoveItemMouth,
+RemoveItemMouth3,,,(You remove her gag and she stretches her jaw.)  Gags are stupid.,,,RemoveItemMouth,Dominant|Dumb
+RemoveItemMouth3,,,(You remove her gag and she licks her lips.)  Do you have anything else for my mouth?,,,RemoveItemMouth,Submissive|Horny
+RemoveItemMouth3,,,"(You remove her gag and she shakes her head.)  Gags have one advantage, you don't have to use your mouth on anything else.",,,RemoveItemMouth,Frigid|Wise
 ItemArms,,,(She turns around so you can restrain her.)  It won't be easy to escape.,,,ItemArms,
 ItemArms,,,(She screams as you restrain her arms.)  It hurts damn it!  Be more careful!,,,ItemArms,Dominant|Rude
 ItemArms,,,"(She tugs really hard on her restraints, almost hurting herself, and moans.)  This feels sooooo good.",,,ItemArms,Submissive|Violent
@@ -36,6 +52,14 @@ RemoveItemFeet,,,"(She regains her balance as you free her feet.)  Thanks, this 
 RemoveItemFeet,,,(She gains a firm balance as you release her feet.)  Much better!  It's a good thing that we women have a lower center of gravity.,,,RemoveItemFeet,Dominant|Wise
 RemoveItemFeet,,,(You release her feet and she wiggles them.)  I love feet bondage.  You can also whip and tickle them if you want.,,,RemoveItemFeet,Submissive|Violent
 RemoveItemFeet,,,"(You release her feet as she nods slowly.)  Thanks, it was awkward and uncomfortable to be forced like that.",,,RemoveItemFeet,Serious|Peaceful
+ItemBoots,,,(You restrain her feet as she nods.)  I won't be going away soon I guess.,,,ItemBoots,
+ItemBoots,,,(She tries to look down as you restrain her feet.)  You wanna make sure I don't run babe?,,,ItemBoots,Dominant|Rude
+ItemBoots,,,"(She giggles as you restrain her feet.)  Please be careful Miss, I'm afraid I might fall.",,,ItemBoots,Submissive|Peaceful
+ItemBoots,,,"(She stands on her toes as you restrain her feet.)  Bondage looks better in high heels, even if it hurts my feet.",,,ItemBoots,Violent|Playful
+RemoveItemBoots,,,"(She regains her balance as you free her feet.)  Thanks, this is easier.",,,RemoveItemBoots,
+RemoveItemBoots,,,(She gains a firm balance as you release her feet.)  Much better!  It's a good thing that we women have a lower center of gravity.,,,RemoveItemBoots,Dominant|Wise
+RemoveItemBoots,,,(You release her feet and she wiggles them.)  I love feet bondage.  You can also whip and tickle them if you want.,,,RemoveItemBoots,Submissive|Violent
+RemoveItemBoots,,,"(You release her feet as she nods slowly.)  Thanks, it was awkward and uncomfortable to be forced like that.",,,RemoveItemBoots,Serious|Peaceful
 ItemNeck,,,"(You strap the collar on her as she nods.)  Don't worry, I can breathe fine.",,,ItemNeck,
 ItemNeck,,,"(You fasten the collar around her neck as she grumbles.)  Girl, collars aren't toys, but serious symbols.  Do not play with them.",,,ItemNeck,Dominant|Serious
 ItemNeck,,,(You strap the collar on her as she blushes.)  Is there a hidden message there?  (She giggles.),,,ItemNeck,Submissive|Playful
