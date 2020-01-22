@@ -2,7 +2,6 @@
 var ChatRoomBackground = "";
 var ChatRoomData = {};
 var ChatRoomCharacter = [];
-var ChatRoomLog = "";
 var ChatRoomLastMessage = [""];
 var ChatRoomLastMessageIndex = 0;
 var ChatRoomTargetMemberNumber = null;
@@ -36,12 +35,19 @@ function ChatRoomCreateElement() {
 		ElementCreateTextArea("InputChat");
 		document.getElementById("InputChat").setAttribute("maxLength", 250);
 		document.getElementById("InputChat").setAttribute("autocomplete", "off");
+		ElementFocus("InputChat");
+	} else if (document.getElementById("InputChat").style.display == "none") {
+		ElementFocus("InputChat");
+	}
+	if (document.getElementById("TextAreaChatLog") == null) {
 		ElementCreateDiv("TextAreaChatLog");
 		ElementPositionFix("TextAreaChatLog", 36, 1005, 5, 988, 859);
-		ElementContent("TextAreaChatLog", ChatRoomLog);
+		ElementContent("TextAreaChatLog", "");
 		ElementScrollToEnd("TextAreaChatLog");
 		ChatRoomRefreshChatSettings(Player);
-		ElementFocus("InputChat");
+	} else if (document.getElementById("TextAreaChatLog").style.display == "none") {
+		ElementScrollToEnd("TextAreaChatLog");
+		ChatRoomRefreshChatSettings(Player);
 	}
 }
 
@@ -108,8 +114,8 @@ function ChatRoomDrawCharacter(DoClick) {
 					}
 
 					// Gives focus to the character
-					ElementRemove("InputChat");
-					ElementRemove("TextAreaChatLog");
+					document.getElementById("InputChat").style.display = "none";
+					document.getElementById("TextAreaChatLog").style.display = "none";
 					ChatRoomBackground = ChatRoomData.Background;
 					ChatRoomCharacter[C].AllowItem = (ChatRoomCharacter[C].ID == 0);
 					ChatRoomOwnershipOption = "";
@@ -182,15 +188,15 @@ function ChatRoomClick() {
 
 	// When the user checks her profile
 	if ((MouseX >= 1870) && (MouseX < 1930) && (MouseY >= 875) && (MouseY < 935)) {
-		ElementRemove("InputChat");
-		ElementRemove("TextAreaChatLog");
+		document.getElementById("InputChat").style.display = "none";
+		document.getElementById("TextAreaChatLog").style.display = "none";
 		InformationSheetLoadCharacter(Player);
 	}
 
 	// When the user enters the room administration screen
 	if ((MouseX >= 1935) && (MouseX < 1995) && (MouseY >= 875) && (MouseY < 935)) {
-		ElementRemove("InputChat");
-		ElementRemove("TextAreaChatLog");
+		document.getElementById("InputChat").style.display = "none";
+		document.getElementById("TextAreaChatLog").style.display = "none";
 		CommonSetScreen("Online", "ChatAdmin");
 	}
 
@@ -203,8 +209,8 @@ function ChatRoomClick() {
 
 	// When the user wants to change clothes
 	if ((MouseX >= 1870) && (MouseX < 1930) && (MouseY >= 935) && (MouseY < 995) && Player.CanChange()) { 
-		ElementRemove("InputChat");
-		ElementRemove("TextAreaChatLog");
+		document.getElementById("InputChat").style.display = "none";
+		document.getElementById("TextAreaChatLog").style.display = "none";
 		CharacterAppearanceReturnRoom = "ChatRoom"; 
 		CharacterAppearanceReturnModule = "Online";
 		CharacterAppearanceLoadCharacter(Player);
@@ -329,13 +335,19 @@ function ChatRoomSendChat() {
 				for (var C = 0; C < ChatRoomCharacter.length; C++)
 					if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber)
 						TargetName = ChatRoomCharacter[C].Name;
+
+				var div = document.createElement("div");
+				div.setAttribute('class', 'ChatMessage ChatMessageWhisper');
+				div.setAttribute('data-time', ChatRoomCurrentTime());
+				div.setAttribute('data-sender', Player.MemberNumber.toString());
+				div.innerHTML = TextGet("WhisperTo") + " " + TargetName + ": " + msg;
+						
+				var Refocus = document.activeElement.id == "InputChat";
 				var ShouldScrollDown = ElementIsScrolledToEnd("TextAreaChatLog");
-				var DataAttributes = 'data-time="' + ChatRoomCurrentTime() + '" data-sender="' + Player.MemberNumber.toString() + '"';
-				ChatRoomLog = ChatRoomLog + '<div class="ChatMessage ChatMessageWhisper" ' + DataAttributes + '>' + TextGet("WhisperTo") + " " + TargetName + ": " + msg + '</div>';
 				if (document.getElementById("TextAreaChatLog") != null) {
-					ElementContent("TextAreaChatLog", ChatRoomLog);
+					document.getElementById("TextAreaChatLog").appendChild(div);
 					if (ShouldScrollDown) ElementScrollToEnd("TextAreaChatLog");
-					ElementFocus("InputChat");
+					if (Refocus) ElementFocus("InputChat");
 				}
 			}
 
@@ -486,14 +498,20 @@ function ChatRoomMessage(data) {
 			}
 
 			// Adds the message and scrolls down unless the user has scrolled up
+			var div = document.createElement("div");
+			div.setAttribute('class', 'ChatMessage ChatMessage' + data.Type + enterLeave);
+			div.setAttribute('data-time', ChatRoomCurrentTime());
+			div.setAttribute('data-sender', data.Sender);
+			if (data.Type == "Emote" || data.Type == "Action") 
+				div.setAttribute('style', 'background-color:' + ChatRoomGetTransparentColor(SenderCharacter.LabelColor) + ';');
+			div.innerHTML = msg;
+
+			var Refocus = document.activeElement.id == "InputChat";
 			var ShouldScrollDown = ElementIsScrolledToEnd("TextAreaChatLog");
-			var DataAttributes = 'data-time="' + ChatRoomCurrentTime() + '" data-sender="' + data.Sender + '"';
-			var BackgroundColor = ((data.Type == "Emote" || data.Type == "Action") ? 'style="background-color:' + ChatRoomGetTransparentColor(SenderCharacter.LabelColor) + ';"' : "");
-			ChatRoomLog = ChatRoomLog + '<div class="ChatMessage ChatMessage' + data.Type + enterLeave + '" ' + DataAttributes + ' ' + BackgroundColor + '>' + msg + '</div>';
 			if (document.getElementById("TextAreaChatLog") != null) {
-				ElementContent("TextAreaChatLog", ChatRoomLog);
+				document.getElementById("TextAreaChatLog").appendChild(div);
 				if (ShouldScrollDown) ElementScrollToEnd("TextAreaChatLog");
-				ElementFocus("InputChat");
+				if (Refocus) ElementFocus("InputChat");
 			}
 
 		}
