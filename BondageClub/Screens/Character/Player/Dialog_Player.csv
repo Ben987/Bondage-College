@@ -127,9 +127,9 @@ ServerMessageOwnerRuleRemoteConfiscate,,,Your owner has confiscated your remotes
 ServerMessageOwnerRuleRemoteBlock,,,Your owner is now preventing you from getting new remotes.  The club shop will not sell remotes to you anymore.
 ServerMessageWhisperBlocked,,,You're on SourceCharacter blacklist.  Your message was blocked by the server.
 ServerMessageOfferStartTrialLover,,,"SourceCharacter is offering you to start a trial period as her lover.  Click on her and manage your relationship to accept, don't do anything to refuse."
-ServerMessageStartTrialLover,,,The Bondage Club is pleased to announce that SourceCharacter is starting a 7 days minimum trial period as a lover.
-ServerMessageOfferEndTrialLover,,,SourceCharacter todo
-ServerMessageEndTrialLover,,,The Bondage Club is proud to announce that SourceCharacter is now todo
+ServerMessageStartTrialLover,,,The Bondage Club is pleased to announce that SourceCharacter and TargetCharacterLover are starting a 7 days minimum trial period as lovers.
+ServerMessageOfferEndTrialLover,,,SourceCharacter is proposing you to end your trial and officialize your lover relationship.  Click on her and manage your relationship to accept, don't do anything to refuse.
+ServerMessageEndTrialLover,,,The Bondage Club is proud to announce that SourceCharacter and TargetCharacterLover are now in a lover relationship. Long may it last.
 ServerEnter,,,SourceCharacter entered.
 ServerLeave,,,SourceCharacter left.
 ServerDisconnect,,,SourceCharacter disconnected.

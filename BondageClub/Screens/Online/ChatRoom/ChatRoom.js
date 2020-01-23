@@ -481,7 +481,7 @@ function ChatRoomMessage(data) {
 					else msg = "*" + SenderCharacter.Name + " " + msg + "*";
 				}
 				else if (data.Type == "Action") msg = "(" + msg + ")";
-				else if (data.Type == "ServerMessage") msg = "<b>" + DialogFind(Player, "ServerMessage" + msg).replace("SourceCharacter", SenderCharacter.Name) + "</b>";
+				else if (data.Type == "ServerMessage") msg = "<b>" + DialogFind(Player, "ServerMessage" + msg).replace("SourceCharacter", SenderCharacter.Name).replace("TargetCharacterLover", SenderCharacter.Lover) + "</b>";
 			}
 
 			// Adds the message and scrolls down unless the user has scrolled up
