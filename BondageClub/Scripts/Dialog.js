@@ -24,6 +24,7 @@ var DialogAllowEyebrows = false;
 var DialogAllowFluids = false;
 var DialogFacialExpressions = [];
 var DialogItemPermissionMode = false;
+var DialogExtendedMessage = "";
 
 function DialogReputationLess(RepType, Value) { return (ReputationGet(RepType) <= Value); } // Returns TRUE if a specific reputation type is less or equal than a given value
 function DialogReputationGreater(RepType, Value) { return (ReputationGet(RepType) >= Value); } // Returns FALSE if a specific reputation type is greater or equal than a given value
@@ -645,7 +646,7 @@ function DialogClick() {
 		var HeightRatio = CharacterAppearanceGetCurrentValue(C, "Height", "Zoom");
 		if ((Player != null) && (Player.VisualSettings != null) && (Player.VisualSettings.ForceFullHeight != null) && Player.VisualSettings.ForceFullHeight) HeightRatio = 1.0;
 		var Xoffset = 500 * (1 - HeightRatio) / 2;
-		var YOffset = 1000 * (1 - HeightRatio);
+		var YOffset = 1000 * ((C.Pose.indexOf("SuspensionHogtied") < 0) ? (1 - HeightRatio) : 0);
 		for (var A = 0; A < AssetGroup.length; A++)
 			if ((AssetGroup[A].Category == "Item") && (AssetGroup[A].Zone != null))
 				for (var Z = 0; Z < AssetGroup[A].Zone.length; Z++)
@@ -793,6 +794,7 @@ function DialogSetText(NewText) {
 
 // Extends a specific item (loads its settings and shows its own menu)
 function DialogExtendItem(Item, SourceItem) {
+	if ((CurrentScreen != "ChatRoom") && (CurrentCharacter.ID != 0)) CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, Item.Asset.Group.Name);
 	DialogProgress = -1;
 	DialogColor = null;
 	DialogFocusItem = Item;
@@ -873,8 +875,8 @@ function DialogDrawItemMenu(C) {
 		if (DialogProgress >= 100) {
 
 			// Add / swap / remove the item
-			if (DialogProgressNextItem == null) InventoryRemove(C, C.FocusGroup.Name);
-			else InventoryWear(C, DialogProgressNextItem.Asset.Name, DialogProgressNextItem.Asset.Group.Name, (DialogColorSelect == null) ? "Default" : DialogColorSelect, SkillGetLevel(Player, "Bondage"));
+			InventoryRemove(C, C.FocusGroup.Name);
+			if (DialogProgressNextItem != null) InventoryWear(C, DialogProgressNextItem.Asset.Name, DialogProgressNextItem.Asset.Group.Name, (DialogColorSelect == null) ? "Default" : DialogColorSelect, SkillGetLevel(Player, "Bondage"));
 
 			// remove associated items at the same time
 			if (InventoryGet(C, "ItemNeck") == null) InventoryRemove(C, "ItemNeckAccessories");

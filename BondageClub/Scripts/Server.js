@@ -198,6 +198,13 @@ function ServerValidateProperties(C, Item) {
 // Loads the appearance assets from a server bundle that only contains the main info (no assets)
 function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumber) {
 
+	// Removes any invalid data from the appearance bundle
+	for (var B = 0; B < Bundle.length; B++)
+		if ((Bundle[B] == null) || (typeof Bundle[B] !== "object") || (Bundle[B].Name == null) || (typeof Bundle[B].Name != "string") || (Bundle[B].Name == null) || (typeof Bundle[B].Name != "string")) {			
+			Bundle.splice(B, 1);
+			B--;
+		}
+
 	// Clears the appearance to begin
 	var Appearance = [];
 
@@ -224,7 +231,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 	// For each appearance item to load
 	for (var A = 0; A < Bundle.length; A++) {
 
-		// disable blocked items
+		// Skip blocked items
 		if (Array.isArray(C.BlockItems) && C.BlockItems.some(B => B.Name == Bundle[A].Name && B.Group == Bundle[A].Group)) continue;
 
 		// Cycles in all assets to find the correct item to add (do not add )
@@ -289,7 +296,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 			if (!Found)
 				for (var I = 0; I < Asset.length; I++)
 					if (Asset[I].Group.Name == AssetGroup[G].Name) {
-						Appearance.push({ Asset: Asset[I], Color: AssetGroup[G].ColorSchema[0] });
+						Appearance.push({ Asset: Asset[I], Color: Asset[I].Group.ColorSchema[0] });
 						break;
 					}
 
