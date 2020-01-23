@@ -41,7 +41,6 @@ function ChatCreateRun() {
 	}
 
 	// Draw the controls
-
 	if (ChatCreateMessage == "") ChatCreateMessage = "EnterRoomInfo";
 	DrawText(TextGet(ChatCreateMessage), 1000, 60, "White", "Gray");
 	DrawText(TextGet("RoomName"), 1000, 150, "White", "Gray");
@@ -157,17 +156,17 @@ function ChatCreateKeyDown() {
 
 // When the user exit from this screen
 function ChatCreateExit() {
-	if (ChatCreateMode == "") {
-		ElementRemove("InputName");
-		ElementRemove("InputDescription");
-		ElementRemove("InputSize");
-		CommonSetScreen("Online", "ChatSearch");
-	} else if (ChatCreateMode == "ShowGrid") {
+	if (ChatCreateMode == "ShowGrid") {
 		ChatCreateMode = "";
 		ElementCreateInput("InputName", "text", ChatCreateName, "20");
 		ElementCreateInput("InputDescription", "text", ChatCreateDescription, "100");
 		ElementCreateInput("InputSize", "text", ChatCreateSize, "2");
+		return;
 	}
+	ElementRemove("InputName");
+	ElementRemove("InputDescription");
+	ElementRemove("InputSize");
+	CommonSetScreen("Online", "ChatSearch");
 }
 
 // When the server sends a response
