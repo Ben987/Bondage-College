@@ -52,8 +52,8 @@ function ChatCreateRun() {
 	DrawButton(1300, 428, 64, 64, "", "White", ChatCreatePrivate ? "Icons/Checked.png" : "");
 	DrawText(TextGet("RoomSize"), 930, 568, "White", "Gray");
 	ElementPosition("InputSize", 1400, 560, 150);
-	DrawText(TextGet("RoomBackground"), 850, 672, "White", "Gray");
-	DrawBackNextButton(1100, 640, 350, 65, TextGet(ChatCreateBackgroundSelect), "White", null,
+	DrawText(TextGet("RoomBackground"), 650, 672, "White", "Gray");
+	DrawBackNextButton(900, 640, 350, 65, TextGet(ChatCreateBackgroundSelect), "White", null,
 		() => TextGet((ChatCreateBackgroundIndex == 0) ? ChatCreateBackgroundList[ChatCreateBackgroundList.length - 1] : ChatCreateBackgroundList[ChatCreateBackgroundIndex - 1]),
 		() => TextGet((ChatCreateBackgroundIndex >= ChatCreateBackgroundList.length - 1) ? ChatCreateBackgroundList[0] : ChatCreateBackgroundList[ChatCreateBackgroundIndex + 1]));
 	DrawButton(1300, 640, 300, 65, TextGet("ShowAll"), "White");
@@ -73,7 +73,7 @@ function ChatCreateClick() {
 	if ((MouseX >= 1300) && (MouseX < 1364) && (MouseY >= 428) && (MouseY < 492)) ChatCreatePrivate = !ChatCreatePrivate;
 
 	// When we select a new background
-	if ((MouseX >= 1100) && (MouseX < 1450) && (MouseY >= 640) && (MouseY < 705)) {
+	if ((MouseX >= 900) && (MouseX < 1250) && (MouseY >= 640) && (MouseY < 705)) {
 		ChatCreateBackgroundIndex += ((MouseX < 1275 && !CommonIsMobile) ? -1 : 1);
 		if (ChatCreateBackgroundIndex >= ChatCreateBackgroundList.length) ChatCreateBackgroundIndex = 0;
 		if (ChatCreateBackgroundIndex < 0) ChatCreateBackgroundIndex = ChatCreateBackgroundList.length - 1;
@@ -107,10 +107,11 @@ function ChatCreateClick() {
 function ChatCreatePreviewRun() {
 	DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 	DrawButton(1785, 25, 90, 90, "", "White", "Icons/Next.png");
-	let X = 45;
-	let Y = 170;
+	var X = 45;
+	var Y = 170;
 	for (var i = 0; (i + ChatCreateOffset) < ChatCreateBackgroundList.length && i < 12; ++i) {
-		DrawButton(X, Y, 450, 225, "", "White", "Backgrounds/" + ChatCreateBackgroundList[i + ChatCreateOffset] + ".jpg");
+		DrawButton(X, Y, 450, 225, ChatCreateBackgroundList[i + ChatCreateOffset], "White");
+		DrawImageResize("Backgrounds/" + ChatCreateBackgroundList[i + ChatCreateOffset] + ".jpg", X + 2, Y + 2, 446, 221);
 		X += 450 + 35;
 		if (i % 4 == 3) {
 			X = 45;
