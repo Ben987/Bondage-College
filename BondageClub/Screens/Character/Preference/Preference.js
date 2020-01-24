@@ -71,7 +71,7 @@ function PreferenceLoad() {
 function PreferenceRun() {
 	// If a subscreen is active, draw that instead
 	if (PreferenceSubscreen == "Chat") return PreferenceSubscreenChatRun();
-	if (PreferenceSubscreen == "Immersion") return PreferenceSubscreenImmersionRun();
+	if (PreferenceSubscreen == "Audio") return PreferenceSubscreenAudioRun();
 
 	// Draw the online preferences
 	MainCanvas.textAlign = "left";
@@ -85,21 +85,21 @@ function PreferenceRun() {
 	DrawButton(1140, 187, 65, 65, "", "White", "Icons/Color.png");
 	DrawButton(500, 280, 90, 90, "", "White", "Icons/Next.png");
 	DrawText(TextGet("ItemPermission") + " " + TextGet("PermissionLevel" + Player.ItemPermission.toString()), 615, 325, "Black", "Gray");
-    DrawText(TextGet("AudioVolume"), 800, 425, "Black", "Gray");
-	DrawText(TextGet("SensDepSetting"), 800, 505, "Black", "Gray");
-    DrawText(TextGet("PlayBeeps"), 600, 585, "Black", "Gray");
-    DrawButton(500, 552, 64, 64, "", "White", (Player.AudioSettings && Player.AudioSettings.PlayBeeps) ? "Icons/Checked.png" : "");
-    DrawText(TextGet("BlindDisableExamine"), 600, 665, "Black", "Gray");
-    DrawButton(500, 632, 64, 64, "", "White", (Player.GameplaySettings && Player.GameplaySettings.BlindDisableExamine) ? "Icons/Checked.png" : "");
-    DrawText(TextGet("DisableAutoRemoveLogin"), 600, 745, "Black", "Gray");
-    DrawButton(500, 712, 64, 64, "", "White", (Player.GameplaySettings && Player.GameplaySettings.DisableAutoRemoveLogin) ? "Icons/Checked.png" : "");
-    DrawText(TextGet("ForceFullHeight"), 600, 825, "Black", "Gray");
-    DrawButton(500, 792, 64, 64, "", "White", (Player.VisualSettings && Player.VisualSettings.ForceFullHeight) ? "Icons/Checked.png" : "");
+    //DrawText(TextGet("AudioVolume"), 800, 425, "Black", "Gray");
+	DrawText(TextGet("SensDepSetting"), 800, 428, "Black", "Gray");
+    //DrawText(TextGet("PlayBeeps"), 600, 585, "Black", "Gray");
+    //DrawButton(500, 552, 64, 64, "", "White", (Player.AudioSettings && Player.AudioSettings.PlayBeeps) ? "Icons/Checked.png" : "");
+    DrawText(TextGet("BlindDisableExamine"), 600, 505, "Black", "Gray");
+    DrawButton(500, 472, 64, 64, "", "White", (Player.GameplaySettings && Player.GameplaySettings.BlindDisableExamine) ? "Icons/Checked.png" : "");
+    DrawText(TextGet("DisableAutoRemoveLogin"), 600, 585, "Black", "Gray");
+    DrawButton(500, 552, 64, 64, "", "White", (Player.GameplaySettings && Player.GameplaySettings.DisableAutoRemoveLogin) ? "Icons/Checked.png" : "");
+    DrawText(TextGet("ForceFullHeight"), 600, 665, "Black", "Gray");
+    DrawButton(500, 632, 64, 64, "", "White", (Player.VisualSettings && Player.VisualSettings.ForceFullHeight) ? "Icons/Checked.png" : "");
 	MainCanvas.textAlign = "center";
-    DrawBackNextButton(500, 392, 250, 64, Player.AudioSettings.Volume * 100 + "%", "White", "",
-        () => PreferenceSettingsVolumeList[(PreferenceSettingsVolumeIndex + PreferenceSettingsVolumeList.length - 1) % PreferenceSettingsVolumeList.length] * 100 + "%",
-        () => PreferenceSettingsVolumeList[(PreferenceSettingsVolumeIndex + 1) % PreferenceSettingsVolumeList.length] * 100 + "%");
-	DrawBackNextButton(500, 472, 250, 64, TextGet(Player.GameplaySettings.SensDepChatLog), "White", "",
+    //DrawBackNextButton(500, 392, 250, 64, Player.AudioSettings.Volume * 100 + "%", "White", "",
+      //  () => PreferenceSettingsVolumeList[(PreferenceSettingsVolumeIndex + PreferenceSettingsVolumeList.length - 1) % PreferenceSettingsVolumeList.length] * 100 + "%",
+        //() => PreferenceSettingsVolumeList[(PreferenceSettingsVolumeIndex + 1) % PreferenceSettingsVolumeList.length] * 100 + "%");
+	DrawBackNextButton(500, 392, 250, 64, TextGet(Player.GameplaySettings.SensDepChatLog), "White", "",
 		() => TextGet(PreferenceSettingsSensDepList[(PreferenceSettingsSensDepIndex + PreferenceSettingsSensDepList.length - 1) % PreferenceSettingsSensDepList.length]),
 		() => TextGet(PreferenceSettingsSensDepList[(PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length]));
 
@@ -109,7 +109,7 @@ function PreferenceRun() {
 	else {
 		DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
 		DrawButton(1815, 190, 90, 90, "", "White", "Icons/Chat.png");
-		DrawButton(1815, 305, 90, 90, "", "White", "Icons/Immersion.png");
+		DrawButton(1815, 305, 90, 90, "", "White", "Icons/Audio.png");
 	}
 
 }
@@ -119,7 +119,7 @@ function PreferenceClick() {
 
 	// If a subscreen is active, process that instead
 	if (PreferenceSubscreen == "Chat") return PreferenceSubscreenChatClick();
-	if (PreferenceSubscreen == "Immersion") return PreferenceSubscreenImmersionClick();
+	if (PreferenceSubscreen == "Audio") return PreferenceSubscreenAudioClick();
 
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) PreferenceExit();
 
@@ -129,10 +129,10 @@ function PreferenceClick() {
 		PreferenceSubscreen = "Chat";
 	}
 
-	// If the user clicks on the immersion settings button
+	// If the user clicks on the audio settings button
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 305) && (MouseY < 395) && (PreferenceColorPick == "")) {
 		ElementRemove("InputCharacterLabelColor");
-		PreferenceSubscreen = "Immersion";
+		PreferenceSubscreen = "Audio";
 	}
 
 	// If we must change the restrain permission level
@@ -146,21 +146,16 @@ function PreferenceClick() {
 	if ((MouseX >= 1250) && (MouseX < 1925) && (MouseY >= 85) && (MouseY < 915) && (PreferenceColorPick != "")) ElementValue(PreferenceColorPick, DrawRGBToHex(MainCanvas.getImageData(MouseX, MouseY, 1, 1).data));
 
     // If we must change audio gameplay or visual settings
-    if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 392) && (MouseY < 456)) {
-        if (MouseX <= 625) PreferenceSettingsVolumeIndex = (PreferenceSettingsVolumeList.length + PreferenceSettingsVolumeIndex - 1) % PreferenceSettingsVolumeList.length;
-        else PreferenceSettingsVolumeIndex = (PreferenceSettingsVolumeIndex + 1) % PreferenceSettingsVolumeList.length;
-        Player.AudioSettings.Volume = PreferenceSettingsVolumeList[PreferenceSettingsVolumeIndex];
-    }
-	if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 472) && (MouseY < 536)) {
+	if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 392) && (MouseY < 456)) {
 		if (MouseX <= 625) PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepList.length + PreferenceSettingsSensDepIndex - 1) % PreferenceSettingsSensDepList.length;
 		else PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length;
 		Player.GameplaySettings.SensDepChatLog = PreferenceSettingsSensDepList[PreferenceSettingsSensDepIndex];
 	}
 	if ((MouseX >= 500) && (MouseX < 564)) {
-		if ((MouseY >= 552) && (MouseY < 616)) Player.AudioSettings.PlayBeeps = !Player.AudioSettings.PlayBeeps;
-		if ((MouseY >= 632) && (MouseY < 696)) Player.GameplaySettings.BlindDisableExamine = !Player.GameplaySettings.BlindDisableExamine;
-        if ((MouseY >= 712) && (MouseY < 776)) Player.GameplaySettings.DisableAutoRemoveLogin = !Player.GameplaySettings.DisableAutoRemoveLogin;
-		if ((MouseY >= 792) && (MouseY < 856)) Player.VisualSettings.ForceFullHeight = !Player.VisualSettings.ForceFullHeight;
+		//if ((MouseY >= 552) && (MouseY < 616)) Player.AudioSettings.PlayBeeps = !Player.AudioSettings.PlayBeeps;
+		if ((MouseY >= 472) && (MouseY < 536)) Player.GameplaySettings.BlindDisableExamine = !Player.GameplaySettings.BlindDisableExamine;
+        if ((MouseY >= 552) && (MouseY < 616)) Player.GameplaySettings.DisableAutoRemoveLogin = !Player.GameplaySettings.DisableAutoRemoveLogin;
+		if ((MouseY >= 632) && (MouseY < 696)) Player.VisualSettings.ForceFullHeight = !Player.VisualSettings.ForceFullHeight;
 	}
 }
 
@@ -184,12 +179,20 @@ function PreferenceExit() {
 }
 
 // Redirected to from the main Run function if the player is in the chat settings subscreen
-function PreferenceSubscreenImmersionRun () {
+function PreferenceSubscreenAudioRun () {
 	MainCanvas.textAlign = "left";
+	DrawText(TextGet("Preferences"), 500, 125, "Black", "Gray");
+	DrawText(TextGet("AudioVolume"), 800, 225, "Black", "Gray");
 
+	DrawText(TextGet("PlayBeeps"), 600, 305, "Black", "Gray");
+    DrawButton(500, 272, 64, 64, "", "White", (Player.AudioSettings && Player.AudioSettings.PlayBeeps) ? "Icons/Checked.png" : "");
+    DrawText(TextGet("PlayVibes"), 600, 385, "Black", "Gray");
+	DrawButton(500, 352, 64, 64, "", "White", (Player.AudioSettings && Player.AudioSettings.PlayVibes) ? "Icons/Checked.png" : "");
 
-    DrawText(TextGet("PlayVibes"), 600, 585, "Black", "Gray");
-	DrawButton(500, 552, 64, 64, "", "White", (Player.AudioSettings && Player.AudioSettings.PlayVibes) ? "Icons/Checked.png" : "");
+	MainCanvas.textAlign = "center";
+    DrawBackNextButton(500, 193, 250, 64, Player.AudioSettings.Volume * 100 + "%", "White", "",
+        () => PreferenceSettingsVolumeList[(PreferenceSettingsVolumeIndex + PreferenceSettingsVolumeList.length - 1) % PreferenceSettingsVolumeList.length] * 100 + "%",
+        () => PreferenceSettingsVolumeList[(PreferenceSettingsVolumeIndex + 1) % PreferenceSettingsVolumeList.length] * 100 + "%");
 
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
 }
@@ -223,15 +226,24 @@ function PreferenceSubscreenChatRun() {
 }
 
 
-function PreferenceSubscreenImmersionClick() {
+function PreferenceSubscreenAudioClick() {
 	// If the user clicked the exit icon to return to the main screen
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) {
 		PreferenceSubscreen = "";
 		ElementCreateInput("InputCharacterLabelColor", "text", Player.LabelColor);
 	}
 
+	//volume settings
+    if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 193) && (MouseY < 257)) {
+        if (MouseX <= 625) PreferenceSettingsVolumeIndex = (PreferenceSettingsVolumeList.length + PreferenceSettingsVolumeIndex - 1) % PreferenceSettingsVolumeList.length;
+        else PreferenceSettingsVolumeIndex = (PreferenceSettingsVolumeIndex + 1) % PreferenceSettingsVolumeList.length;
+        Player.AudioSettings.Volume = PreferenceSettingsVolumeList[PreferenceSettingsVolumeIndex];
+    }
+
+	//Individual audio checkboxes
 	if ((MouseX >= 500) && (MouseX < 564)) {
-		if ((MouseY >= 552) && (MouseY < 616)) Player.AudioSettings.PlayVibes = !Player.AudioSettings.PlayVibes;
+		if ((MouseY >= 272) && (MouseY < 272+64)) Player.AudioSettings.PlayBeeps = !Player.AudioSettings.PlayBeeps;
+		if ((MouseY >= 352) && (MouseY < 352+64)) Player.AudioSettings.PlayVibes = !Player.AudioSettings.PlayVibes;
 	}
 }
 
