@@ -2,7 +2,7 @@
 var ChatCreateBackground = "IntroductionDark";
 var ChatCreateResult = [];
 var ChatCreateMessage = "";
-var ChatCreatePrivate = false;
+var ChatCreatePrivate = null;
 var ChatCreateBackgroundIndex = 0;
 var ChatCreateBackgroundSelect = "";
 var ChatCreateBackgroundList = null;
@@ -10,36 +10,32 @@ var ChatCreateName = "";
 var ChatCreateMode = "";
 var ChatCreateDescription = "";
 var ChatCreateSize = "";
-var ChatCreateOffset = 0;
 
 // When the chat creation screens loads
 function ChatCreateLoad() {
 
 	// If the current background isn't valid, we pick the first one
-	if (ChatCreateBackgroundList.indexOf(ChatCreateBackgroundSelect) < 0) {
+	ChatCreateBackgroundIndex = ChatCreateBackgroundList.indexOf(ChatCreateBackgroundSelect);
+	if (ChatCreateBackgroundIndex < 0) {
 		ChatCreateBackgroundIndex = 0;
-		ChatCreateBackgroundSelect = ChatCreateBackgroundList[0];
-		ChatCreateBackground = ChatCreateBackgroundSelect + "Dark";
 	}
+	ChatCreateBackgroundSelect = ChatCreateBackgroundList[ChatCreateBackgroundIndex];
+	ChatCreateBackground = ChatCreateBackgroundSelect + "Dark";
 
 	// Prepares the controls to create a room
 	ElementRemove("InputSearch");
-	ElementCreateInput("InputName", "text", "", "20");
-	ElementCreateInput("InputDescription", "text", "", "100");
-	ElementCreateInput("InputSize", "text", "10", "2");
+	if (document.getElementById("InputName") == null) {
+		ElementCreateInput("InputName", "text", "", "20");
+		ElementCreateInput("InputDescription", "text", "", "100");
+		ElementCreateInput("InputSize", "text", "10", "2");
+	}
 	ChatCreateMessage = "";
-	ChatCreatePrivate = false;
+	ChatCreatePrivate = ChatCreatePrivate || false;
 
 }
 
 // When the chat creation screen runs
 function ChatCreateRun() {
-
-	if (ChatCreateMode == "ShowGrid") {
-		ChatCreatePreviewRun();
-		return;
-	}
-
 	// Draw the controls
 	if (ChatCreateMessage == "") ChatCreateMessage = "EnterRoomInfo";
 	DrawText(TextGet(ChatCreateMessage), 1000, 60, "White", "Gray");
@@ -63,11 +59,6 @@ function ChatCreateRun() {
 // When the player clicks in the chat creation screen
 function ChatCreateClick() {
 
-	if (ChatCreateMode == "ShowGrid") {
-		ChatCreatePreviewClick();
-		return;
-	}
-
 	// When the private box is checked
 	if ((MouseX >= 1300) && (MouseX < 1364) && (MouseY >= 428) && (MouseY < 492)) ChatCreatePrivate = !ChatCreatePrivate;
 
@@ -82,13 +73,10 @@ function ChatCreateClick() {
 
 	// Show backgrounds in grid
 	if ((MouseX >= 1300) && (MouseX < 1600) && (MouseY >= 640) && (MouseY < 705)) {
-		ChatCreateMode = "ShowGrid";
-		ChatCreateName = ElementValue("InputName");
-		ChatCreateDescription = ElementValue("InputDescription");
-		ChatCreateSize = ElementValue("InputSize");
-		ElementRemove("InputName");
-		ElementRemove("InputDescription");
-		ElementRemove("InputSize");
+		BackgroundSelectionMake(ChatCreateBackgroundList, Name => ChatCreateBackgroundSelect = Name);
+		document.getElementById("InputName").style.display = "none";
+		document.getElementById("InputDescription").style.display = "none";
+		document.getElementById("InputSize").style.display = "none";
 	}
 
 	// If the user wants to create a room
@@ -102,67 +90,14 @@ function ChatCreateClick() {
 	}
 }
 
-// When the chat background selection screen runs
-function ChatCreatePreviewRun() {
-	DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
-	DrawButton(1785, 25, 90, 90, "", "White", "Icons/Next.png");
-	var X = 45;
-	var Y = 170;
-	for (var i = 0; (i + ChatCreateOffset) < ChatCreateBackgroundList.length && i < 12; ++i) {
-		DrawButton(X, Y, 450, 225, ChatCreateBackgroundList[i + ChatCreateOffset], "White");
-		DrawImageResize("Backgrounds/" + ChatCreateBackgroundList[i + ChatCreateOffset] + ".jpg", X + 2, Y + 2, 446, 221);
-		X += 450 + 35;
-		if (i % 4 == 3) {
-			X = 45;
-			Y += 225 + 35;
-		}
-	}
-}
-
-// When the player clicks in the background selection screen
-function ChatCreatePreviewClick() {
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) {
-		ChatCreateExit();
-	}
-
-	if ((MouseX >= 1785) && (MouseX < 1875) && (MouseY >= 25) && (MouseY < 115)) {
-		ChatCreateOffset += 12;
-		if (ChatCreateOffset >= ChatCreateBackgroundList.length) ChatCreateOffset = 0;
-	}
-
-	var X = 45;
-	var Y = 170;
-	for (var i = 0; (i + ChatCreateOffset) < ChatCreateBackgroundList.length && i < 12; ++i) {
-		if ((MouseX >= X) && (MouseX < X + 450) && (MouseY >= Y) && (MouseY < Y + 225)) {
-			ChatCreateBackgroundIndex = i + ChatCreateOffset;
-			if (ChatCreateBackgroundIndex >= ChatCreateBackgroundList.length) ChatCreateBackgroundIndex = 0;
-			if (ChatCreateBackgroundIndex < 0) ChatCreateBackgroundIndex = ChatCreateBackgroundList.length - 1;
-			ChatCreateBackgroundSelect = ChatCreateBackgroundList[ChatCreateBackgroundIndex];
-			ChatCreateBackground = ChatCreateBackgroundSelect + "Dark";
-		}
-		X += 450 + 35;
-		if (i % 4 == 3) {
-			X = 45;
-			Y += 225 + 35;
-		}
-	}
-}
-
 // When the user press "enter", we create the room
 function ChatCreateKeyDown() {
-	if (KeyPress == 13 && ChatCreateMode == "") ChatCreateRoom();
-	if (KeyPress == 13 && ChatCreateMode == "ShowGrid") ChatCreateExit();
+	if (KeyPress == 13) ChatCreateRoom();
 }
 
 // When the user exit from this screen
 function ChatCreateExit() {
-	if (ChatCreateMode == "ShowGrid") {
-		ChatCreateMode = "";
-		ElementCreateInput("InputName", "text", ChatCreateName, "20");
-		ElementCreateInput("InputDescription", "text", ChatCreateDescription, "100");
-		ElementCreateInput("InputSize", "text", ChatCreateSize, "2");
-		return;
-	}
+	ChatCreatePrivate = null;
 	ElementRemove("InputName");
 	ElementRemove("InputDescription");
 	ElementRemove("InputSize");

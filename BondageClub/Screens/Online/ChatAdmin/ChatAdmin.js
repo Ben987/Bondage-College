@@ -6,22 +6,18 @@ var ChatAdminBackgroundIndex = 0;
 var ChatAdminBackgroundSelect = "";
 var ChatAdminPrivate = false;
 var ChatAdminLocked = false;
-var ChatAdminMode = "";
-var ChatAdminOffset = 0;
+var ChatAdminBackgroundSelected = null;
 
 // When the chat admin screens loads
-function ChatAdminLoad(BackgroundIsSet) {
+function ChatAdminLoad() {
 
 	// If the current room background isn't valid, we pick the first one
-	if (BackgroundIsSet != true) {
-		ChatAdminBackgroundSelect = ChatRoomData.Background;
-		if (ChatCreateBackgroundList.indexOf(ChatAdminBackgroundSelect) < 0) {
-			ChatAdminBackgroundIndex = 0;
-			ChatAdminBackgroundSelect = ChatCreateBackgroundList[0];
-		} else ChatAdminBackgroundIndex = ChatCreateBackgroundList.indexOf(ChatAdminBackgroundSelect);
+	ChatAdminBackgroundSelect = ChatAdminBackgroundSelected || ChatRoomData.Background;
+	ChatAdminBackgroundIndex = ChatCreateBackgroundList.indexOf(ChatAdminBackgroundSelect);
+	if (ChatAdminBackgroundIndex < 0) {
+		ChatAdminBackgroundIndex = 0;
 	}
-
-	ChatAdminBackground = "Sheet";
+	ChatAdminBackgroundSelect = ChatCreateBackgroundList[ChatAdminBackgroundIndex];
 
 	// Prepares the controls to edit a room
 	ElementCreateInput("InputName", "text", ChatRoomData.Name, "20");
@@ -58,11 +54,6 @@ function ChatAdminLoad(BackgroundIsSet) {
 // When the chat Admin screen runs
 function ChatAdminRun() {
 
-	if (ChatAdminMode == "ShowGrid") {
-		ChatAdminPreviewRun();
-		return;
-	}
-
 	// Draw the main controls
 	DrawText(TextGet(ChatAdminMessage), 650, 870, "Black", "Gray");
 	DrawText(TextGet("RoomName"), 535, 110, "Black", "Gray");
@@ -96,11 +87,6 @@ function ChatAdminRun() {
 // When the player clicks in the chat Admin screen
 function ChatAdminClick() {
 
-	if (ChatAdminMode == "ShowGrid") {
-		ChatAdminPreviewClick();
-		return;
-	}
-
 	// When the user cancels/exits
 	if ((MouseX >= 1625) && (MouseX < 1875) && (MouseY >= 840) && (MouseY < 905)) ChatAdminExit();
 
@@ -121,72 +107,19 @@ function ChatAdminClick() {
 		if ((MouseX >= 1325) && (MouseX < 1575) && (MouseY >= 840) && (MouseY < 905) && ChatRoomPlayerIsAdmin()) ChatAdminUpdateRoom();
 
 		if ((MouseX >= 1300) && (MouseX <= 1300 + 600) && (MouseY >= 75) && (MouseY <= 75 + 400)) {
-			ChatAdminMode = "ShowGrid";
-			ChatAdminBackground = ChatAdminBackgroundSelect;
 			ElementRemove("InputName");
 			ElementRemove("InputDescription");
 			ElementRemove("InputSize");
 			ElementRemove("InputAdminList");
 			ElementRemove("InputBanList");
+			BackgroundSelectionMake(ChatCreateBackgroundList, Name => ChatAdminBackgroundSelected = Name);
 		}
 	}
 }
-
-// When the chat background selection screen runs
-function ChatAdminPreviewRun() {
-	DrawButton(1785, 25, 90, 90, "", "White", "Icons/Next.png");
-	DrawButton(1885, 25, 90, 90,"", "White", "Icons/Exit.png");
-	var X = 45;
-	var Y = 170;
-	for (var i = 0; (i + ChatAdminOffset) < ChatCreateBackgroundList.length && i < 12; ++i) {
-		DrawButton(X, Y, 450, 225, ChatCreateBackgroundList[i + ChatAdminOffset], "White");
-		DrawImageResize("Backgrounds/" + ChatCreateBackgroundList[i + ChatAdminOffset] + ".jpg", X + 2, Y + 2, 446, 221);
-		X += 450 + 35;
-		if (i % 4 == 3) {
-			X = 45;
-			Y += 225 + 35;
-		}
-	}
-}
-
-// When the player clicks in the background selection screen
-function ChatAdminPreviewClick() {
-
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) {
-		ChatAdminExit();
-	}
-
-	if ((MouseX >= 1785) && (MouseX < 1875) && (MouseY >= 25) && (MouseY < 115)) {
-		ChatAdminOffset += 12;
-		if (ChatAdminOffset >= ChatCreateBackgroundList.length) ChatAdminOffset = 0;
-	}
-
-	var X = 45;
-	var Y = 170;
-	for (var i = 0; (i + ChatAdminOffset) < ChatCreateBackgroundList.length && i < 12; ++i) {
-		if ((MouseX >= X) && (MouseX < X + 450) && (MouseY >= Y) && (MouseY < Y + 225)) {
-			ChatAdminBackgroundIndex = i + ChatAdminOffset;
-			if (ChatAdminBackgroundIndex >= ChatCreateBackgroundList.length) ChatAdminBackgroundIndex = 0;
-			if (ChatAdminBackgroundIndex < 0) ChatAdminBackgroundIndex = ChatCreateBackgroundList.length - 1;
-			ChatAdminBackgroundSelect = ChatCreateBackgroundList[ChatAdminBackgroundIndex];
-			ChatAdminBackground = ChatAdminBackgroundSelect;
-		}
-		X += 450 + 35;
-		if (i % 4 == 3) {
-			X = 45;
-			Y += 225 + 35;
-		}
-	}
-}
-
 
 // When the user exit from this screen
 function ChatAdminExit() {
-	if (ChatAdminMode == "ShowGrid") {
-		ChatAdminMode = "";
-		ChatAdminLoad(true);
-		return;
-	}
+	ChatAdminBackgroundSelected = null;
 	ElementRemove("InputName");
 	ElementRemove("InputDescription");
 	ElementRemove("InputSize");
