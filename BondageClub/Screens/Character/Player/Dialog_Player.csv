@@ -331,16 +331,27 @@ DuctTapeHeadSetDouble,,,SourceCharacter takes a piece of duct tape for TargetCha
 DuctTapeHeadSetWrap,,,SourceCharacter wraps some duct tape onto DestinationCharacter face.
 DuctTapeHeadTypeMummy,,,Mummy
 DuctTapeHeadSetMummy,,,SourceCharacter wraps DestinationCharacter head in tape with multiple layers. 
-SelectTieStyle,,,Select the tie style
-RopeStyleBasic,,,Basic Tie
-RopeStyleCrotchRope,,,Crotch Rope Tie
-RopeStyleDiamond,,,Diamond Harness
-RopeStyleMermaid,,,Mermaid Tie
-RopeHarnessSetBasic,,,SourceCharacter uses the rope on TargetCharacter to do a basic harness.
-RopeHarnessSetCrotchRope,,,SourceCharacter uses the rope on TargetCharacter to do a crotch rope tie.
-RopeHarnessSetDiamond,,,SourceCharacter uses the rope on TargetCharacter to do a Diamond style harness.
+SelectRopeBondage,,,Select the rope bondage
+RopeBondageBasic,,,Basic Tie
+RopeBondageMermaid,,,Mermaid Tie
+RopeBondageBoxTie,,,Box Tie
+RopeBondageHogtied,,,Hogtie
+RopeBondageSuspension,,,Suspension Tie
+RopeBondageSuspensionHogtied,,,Suspension Hogtie
+RopeBondageCrotch,,,Crotch Rope
+RopeBondageHarness,,,Body Harness
+RopeBondageDiamond,,,Diamond Style
+NoRequirement,,,No Requirement
+RequireBondageLevel,,,Need Bondage ReqLevel
+RopeHarnessSetCrotch,,,SourceCharacter uses the rope on TargetCharacter to do a crotch rope tie.
+RopeHarnessSetHarness,,,SourceCharacter uses the rope on TargetCharacter to do a body harness.
+RopeHarnessSetDiamond,,,SourceCharacter uses the rope on TargetCharacter to do a diamond style harness.
 LegRopeSetBasic,,,SourceCharacter uses the rope on TargetCharacter to do a basic tie.
 LegRopeSetMermaid,,,SourceCharacter uses the rope on TargetCharacter to do a mermaid tie.
+LegRopeSetSuspension,,,SourceCharacter uses the rope on TargetCharacter to do a suspension tie.
+ArmsRopeSetBoxTie,,,SourceCharacter uses the rope on TargetCharacter to do a box tie.
+ArmsRopeSetHogtied,,,SourceCharacter uses the rope on TargetCharacter to do a hogtie.
+ArmsRopeSetSuspensionHogtied,,,SourceCharacter uses the rope on TargetCharacter to do a suspension hogtie.
 Intensity-1,,,Item intensity: Disabled
 Intensity0,,,Item intensity: Low
 Intensity1,,,Item intensity: Medium

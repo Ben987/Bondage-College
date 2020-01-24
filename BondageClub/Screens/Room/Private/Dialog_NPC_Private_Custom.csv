@@ -12,22 +12,30 @@ RemoveItemMouth,,,(You remove her gag and she smiles.)  Thanks!  It will be easi
 RemoveItemMouth,,,(You remove her gag and she stretches her jaw.)  Gags are stupid.,,,RemoveItemMouth,Dominant|Dumb
 RemoveItemMouth,,,(You remove her gag and she licks her lips.)  Do you have anything else for my mouth?,,,RemoveItemMouth,Submissive|Horny
 RemoveItemMouth,,,"(You remove her gag and she shakes her head.)  Gags have one advantage, you don't have to use your mouth on anything else.",,,RemoveItemMouth,Frigid|Wise
-ItemMouth2,,,(She doesn't resist much as you silence her with the gag.),,,ItemMouth,
-ItemMouth2,,,(She trashes her head to avoid the gag but surrenders as you insist.),,,ItemMouth,Dominant|Violent
-ItemMouth2,,,(She bows her head and presents her mouth so you can gag her easily.),,,ItemMouth,Submissive|Serious
-ItemMouth2,,,Wait!  You don't...  (You silence her with a gag as she was trying to speak.),,,ItemMouth,Playful|Dumb
-RemoveItemMouth2,,,(You remove her gag and she smiles.)  Thanks!  It will be easier to communicate now.,,,RemoveItemMouth,
-RemoveItemMouth2,,,(You remove her gag and she stretches her jaw.)  Gags are stupid.,,,RemoveItemMouth,Dominant|Dumb
-RemoveItemMouth2,,,(You remove her gag and she licks her lips.)  Do you have anything else for my mouth?,,,RemoveItemMouth,Submissive|Horny
-RemoveItemMouth2,,,"(You remove her gag and she shakes her head.)  Gags have one advantage, you don't have to use your mouth on anything else.",,,RemoveItemMouth,Frigid|Wise
-ItemMouth3,,,(She doesn't resist much as you silence her with the gag.),,,ItemMouth,
-ItemMouth3,,,(She trashes her head to avoid the gag but surrenders as you insist.),,,ItemMouth,Dominant|Violent
-ItemMouth3,,,(She bows her head and presents her mouth so you can gag her easily.),,,ItemMouth,Submissive|Serious
-ItemMouth3,,,Wait!  You don't...  (You silence her with a gag as she was trying to speak.),,,ItemMouth,Playful|Dumb
-RemoveItemMouth3,,,(You remove her gag and she smiles.)  Thanks!  It will be easier to communicate now.,,,RemoveItemMouth,
-RemoveItemMouth3,,,(You remove her gag and she stretches her jaw.)  Gags are stupid.,,,RemoveItemMouth,Dominant|Dumb
-RemoveItemMouth3,,,(You remove her gag and she licks her lips.)  Do you have anything else for my mouth?,,,RemoveItemMouth,Submissive|Horny
-RemoveItemMouth3,,,"(You remove her gag and she shakes her head.)  Gags have one advantage, you don't have to use your mouth on anything else.",,,RemoveItemMouth,Frigid|Wise
+ItemMouth2,,,(She doesn't resist much as you silence her with the gag.),,,ItemMouth2,
+ItemMouth2,,,(She trashes her head to avoid the gag but surrenders as you insist.),,,ItemMouth2,Dominant|Violent
+ItemMouth2,,,(She bows her head and presents her mouth so you can gag her easily.),,,ItemMouth2,Submissive|Serious
+ItemMouth2,,,Wait!  You don't...  (You silence her with a gag as she was trying to speak.),,,ItemMouth2,Playful|Dumb
+RemoveItemMouth2,,,(You remove her gag and she smiles.)  Thanks!  It will be easier to communicate now.,,,RemoveItemMouth2,
+RemoveItemMouth2,,,(You remove her gag and she stretches her jaw.)  Gags are stupid.,,,RemoveItemMouth2,Dominant|Dumb
+RemoveItemMouth2,,,(You remove her gag and she licks her lips.)  Do you have anything else for my mouth?,,,RemoveItemMouth2,Submissive|Horny
+RemoveItemMouth2,,,"(You remove her gag and she shakes her head.)  Gags have one advantage, you don't have to use your mouth on anything else.",,,RemoveItemMouth2,Frigid|Wise
+ItemMouth3,,,(She doesn't resist much as you silence her with the gag.),,,ItemMouth3,
+ItemMouth3,,,(She trashes her head to avoid the gag but surrenders as you insist.),,,ItemMouth3,Dominant|Violent
+ItemMouth3,,,(She bows her head and presents her mouth so you can gag her easily.),,,ItemMouth3,Submissive|Serious
+ItemMouth3,,,Wait!  You don't...  (You silence her with a gag as she was trying to speak.),,,ItemMouth3,Playful|Dumb
+RemoveItemMouth3,,,(You remove her gag and she smiles.)  Thanks!  It will be easier to communicate now.,,,RemoveItemMouth3,
+RemoveItemMouth3,,,(You remove her gag and she stretches her jaw.)  Gags are stupid.,,,RemoveItemMouth3,Dominant|Dumb
+RemoveItemMouth3,,,(You remove her gag and she licks her lips.)  Do you have anything else for my mouth?,,,RemoveItemMouth3,Submissive|Horny
+RemoveItemMouth3,,,"(You remove her gag and she shakes her head.)  Gags have one advantage, you don't have to use your mouth on anything else.",,,RemoveItemMouth3,Frigid|Wise
+ItemEars,,,(You push some earplugs inside.)  I hope I'll be able to follow what's going on.,,,ItemEars,
+ItemEars,,,(You push some earplugs inside.)  Don't leave them in for too long.  I hate being deaf.,,,ItemEars,Dominant|Serious
+ItemEars,,,(You push some earplugs inside.)  I'm sure the silence will be relaxing.,,,ItemEars,Submissive|Peaceful
+ItemEars,,,(You push some earplugs inside.)  Ok!  We need to yell now.,,,ItemEars,Dumb|Rude
+RemoveItemEars,,,(You pull the earplugs out.)  It will be easier to follow now.,,,RemoveItemEars,
+RemoveItemEars,,,(You pull the earplugs out.)  These childish plugs aren't suited for someone of high status.,,,RemoveItemEars,Dominant|Polite
+RemoveItemEars,,,"(You pull the earplugs out.)  Next time, please put one that plays some heavy metal.",,,RemoveItemEars,Submissive|Violent
+RemoveItemEars,,,(You pull the earplugs out.)  Even if the plugs are fun.  I appreciate our discussions better.,,,RemoveItemEars,Wise|Playful
 ItemArms,,,(She turns around so you can restrain her.)  It won't be easy to escape.,,,ItemArms,
 ItemArms,,,(She screams as you restrain her arms.)  It hurts damn it!  Be more careful!,,,ItemArms,Dominant|Rude
 ItemArms,,,"(She tugs really hard on her restraints, almost hurting herself, and moans.)  This feels sooooo good.",,,ItemArms,Submissive|Violent
@@ -146,12 +154,15 @@ VibratingEgg,,,"(You slide the egg inside, but she barely reacts to it.)  I don'
 RemoveVibratingEgg,,,(She does one last moan as you remove the egg.)  Ooooh!  That was quite a stimulation.,,,RemoveVibratingEgg,
 RemoveVibratingEgg,,,(She trashes violently to try to stop you but you're able to recover the egg.)  Hey!  Put it back!,,,RemoveVibratingEgg,Horny|Violent
 RemoveVibratingEgg,,,"(She doesn't react as you remove the egg.)  Maybe it doesn't work, I didn't feel a thing in there.",,,RemoveVibratingEgg,Frigid|Dumb
-SuspensionHempRope,,,"(You restrain her feet and suspend her from the ceiling.)  Oh my!  Careful, I don't want to fall.",,,SuspensionHempRope,
-SuspensionHempRope,,,"(You restrain her feet and suspend her from the ceiling.)  Seriously, all this Japanese rope bondage is too much work only to get dizzy.",,,SuspensionHempRope,Dominant|Serious
-SuspensionHempRope,,,(You restrain her feet and suspend her from the ceiling.)  Weeeeee!  This is so much fun.  (She rocks her torso to spin on the rope.),,,SuspensionHempRope,Submissive|Playful
-RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  Much better!  I was slowly getting dizzy.,,,RemoveSuspensionHempRope,
-RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  Next time you should be suspended.  I have contact at the Shibari Dojo.,,,RemoveSuspensionHempRope,Dominant|Serious
-RemoveSuspensionHempRope,,,(You let her down from the ceiling.)  That was fun!  Do you have more crazy positions like this one?,,,RemoveSuspensionHempRope,Submissive|Playful
+RopeBondageBasic,,,"(You wrap the rope around her legs, tying them together.)  I won't be running away now.",,,,
+RopeBondageMermaid,,,"(You wrap the rope around her legs, tying them in a mermaid pattern.)  That's a great bondage pattern.",,,,
+RopeBondageBoxTie,,,(You slowly restrain her arms in a box tie pattern.)  Secure and comfy.  Well done.,,,,
+RopeBondageHogtied,,,(You use the ropes to restrain her in a tight hogtie.)  I hope they clean the floor often.,,,,
+RopeBondageSuspension,,,(You restrain her feet and suspend her from the ceiling.)  Careful!  I don't want to fall.,,,,
+RopeBondageSuspensionHogtied,,,(You carefully hogtie her and suspend her from the ceiling.)  This is impressive.,,,,
+RopeBondageCrotch,,,(You use a rope and restrain it on her crotch.)  There's always something kinky going on in here.,,,,
+RopeBondageHarness,,,"(You use the ropes and create a harness around her body.)  Surprisingly, this is quite comfortable.",,,,
+RopeBondageDiamond,,,(You use the ropes and create a diamond harness around her body.)  Your rope technique is excellent.,,,,
 MistressVow,,,I vow to be a good Mistress for you my girl.  To be fair and honest.,,,MistressVow,
 MistressVow,,,I vow to be a good Mistress for you my slave.  To be strict but fair.,,,MistressVow,Serious|Dominant
 MistressVow,,,I vow to be a good Mistress for you my subbie.  I hope we will have fun together and meets lots of friends.,,,MistressVow,Playful|Frigid

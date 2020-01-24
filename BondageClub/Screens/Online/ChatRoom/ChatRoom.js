@@ -2,7 +2,6 @@
 var ChatRoomBackground = "";
 var ChatRoomData = {};
 var ChatRoomCharacter = [];
-var ChatRoomLog = "";
 var ChatRoomLastMessage = [""];
 var ChatRoomLastMessageIndex = 0;
 var ChatRoomTargetMemberNumber = null;
@@ -32,17 +31,29 @@ function ChatRoomHasSwapTarget() { return ChatRoomSwapTarget != null }
 
 // Creates the chat room input elements
 function ChatRoomCreateElement() {
+
+	// Creates the chat box
 	if (document.getElementById("InputChat") == null) {
 		ElementCreateTextArea("InputChat");
 		document.getElementById("InputChat").setAttribute("maxLength", 250);
 		document.getElementById("InputChat").setAttribute("autocomplete", "off");
-		ElementCreateDiv("TextAreaChatLog");
-		ElementPositionFix("TextAreaChatLog", 36, 1005, 5, 988, 859);
-		ElementContent("TextAreaChatLog", ChatRoomLog);
-		ElementScrollToEnd("TextAreaChatLog");
-		ChatRoomRefreshChatSettings(Player);
+		ElementFocus("InputChat");
+	} else if (document.getElementById("InputChat").style.display == "none") {
 		ElementFocus("InputChat");
 	}
+
+	// Creates the chat log
+	if (document.getElementById("TextAreaChatLog") == null) {
+		ElementCreateDiv("TextAreaChatLog");
+		ElementPositionFix("TextAreaChatLog", 36, 1005, 5, 988, 859);
+		ElementContent("TextAreaChatLog", "");
+		ElementScrollToEnd("TextAreaChatLog");
+		ChatRoomRefreshChatSettings(Player);
+	} else if (document.getElementById("TextAreaChatLog").style.display == "none") {
+		ElementScrollToEnd("TextAreaChatLog");
+		ChatRoomRefreshChatSettings(Player);
+	}
+
 }
 
 // When the chat room loads
@@ -108,8 +119,8 @@ function ChatRoomDrawCharacter(DoClick) {
 					}
 
 					// Gives focus to the character
-					ElementRemove("InputChat");
-					ElementRemove("TextAreaChatLog");
+					document.getElementById("InputChat").style.display = "none";
+					document.getElementById("TextAreaChatLog").style.display = "none";
 					ChatRoomBackground = ChatRoomData.Background;
 					ChatRoomCharacter[C].AllowItem = (ChatRoomCharacter[C].ID == 0);
 					ChatRoomOwnershipOption = "";
@@ -182,15 +193,15 @@ function ChatRoomClick() {
 
 	// When the user checks her profile
 	if ((MouseX >= 1870) && (MouseX < 1930) && (MouseY >= 875) && (MouseY < 935)) {
-		ElementRemove("InputChat");
-		ElementRemove("TextAreaChatLog");
+		document.getElementById("InputChat").style.display = "none";
+		document.getElementById("TextAreaChatLog").style.display = "none";
 		InformationSheetLoadCharacter(Player);
 	}
 
 	// When the user enters the room administration screen
 	if ((MouseX >= 1935) && (MouseX < 1995) && (MouseY >= 875) && (MouseY < 935)) {
-		ElementRemove("InputChat");
-		ElementRemove("TextAreaChatLog");
+		document.getElementById("InputChat").style.display = "none";
+		document.getElementById("TextAreaChatLog").style.display = "none";
 		CommonSetScreen("Online", "ChatAdmin");
 	}
 
@@ -203,8 +214,8 @@ function ChatRoomClick() {
 
 	// When the user wants to change clothes
 	if ((MouseX >= 1870) && (MouseX < 1930) && (MouseY >= 935) && (MouseY < 995) && Player.CanChange()) { 
-		ElementRemove("InputChat");
-		ElementRemove("TextAreaChatLog");
+		document.getElementById("InputChat").style.display = "none";
+		document.getElementById("TextAreaChatLog").style.display = "none";
 		CharacterAppearanceReturnRoom = "ChatRoom"; 
 		CharacterAppearanceReturnModule = "Online";
 		CharacterAppearanceLoadCharacter(Player);
@@ -319,7 +330,6 @@ function ChatRoomSendChat() {
 		else {
 
 			// Regular chat can be garbled with a gag
-			//msg = SpeechGarble(Player, msg);
 			if ((msg != "") && (ChatRoomTargetMemberNumber == null)) ServerSend("ChatRoomChat", { Content: msg, Type: "Chat" } );
 
 			// The whispers get sent to the server and shown on the client directly
@@ -329,13 +339,19 @@ function ChatRoomSendChat() {
 				for (var C = 0; C < ChatRoomCharacter.length; C++)
 					if (ChatRoomTargetMemberNumber == ChatRoomCharacter[C].MemberNumber)
 						TargetName = ChatRoomCharacter[C].Name;
+
+				var div = document.createElement("div");
+				div.setAttribute('class', 'ChatMessage ChatMessageWhisper');
+				div.setAttribute('data-time', ChatRoomCurrentTime());
+				div.setAttribute('data-sender', Player.MemberNumber.toString());
+				div.innerHTML = TextGet("WhisperTo") + " " + TargetName + ": " + msg;
+						
+				var Refocus = document.activeElement.id == "InputChat";
 				var ShouldScrollDown = ElementIsScrolledToEnd("TextAreaChatLog");
-				var DataAttributes = 'data-time="' + ChatRoomCurrentTime() + '" data-sender="' + Player.MemberNumber.toString() + '"';
-				ChatRoomLog = ChatRoomLog + '<div class="ChatMessage ChatMessageWhisper" ' + DataAttributes + '>' + TextGet("WhisperTo") + " " + TargetName + ": " + msg + '</div>';
 				if (document.getElementById("TextAreaChatLog") != null) {
-					ElementContent("TextAreaChatLog", ChatRoomLog);
+					document.getElementById("TextAreaChatLog").appendChild(div);
 					if (ShouldScrollDown) ElementScrollToEnd("TextAreaChatLog");
-					ElementFocus("InputChat");
+					if (Refocus) ElementFocus("InputChat");
 				}
 			}
 
@@ -485,115 +501,23 @@ function ChatRoomMessage(data) {
 			}
 
 			// Adds the message and scrolls down unless the user has scrolled up
+			var div = document.createElement("div");
+			div.setAttribute('class', 'ChatMessage ChatMessage' + data.Type + enterLeave);
+			div.setAttribute('data-time', ChatRoomCurrentTime());
+			div.setAttribute('data-sender', data.Sender);
+			if (data.Type == "Emote" || data.Type == "Action") 
+				div.setAttribute('style', 'background-color:' + ChatRoomGetTransparentColor(SenderCharacter.LabelColor) + ';');
+			div.innerHTML = msg;
+
+			var Refocus = document.activeElement.id == "InputChat";
 			var ShouldScrollDown = ElementIsScrolledToEnd("TextAreaChatLog");
-			var DataAttributes = 'data-time="' + ChatRoomCurrentTime() + '" data-sender="' + data.Sender + '"';
-			var BackgroundColor = ((data.Type == "Emote" || data.Type == "Action") ? 'style="background-color:' + ChatRoomGetTransparentColor(SenderCharacter.LabelColor) + ';"' : "");
-			ChatRoomLog = ChatRoomLog + '<div class="ChatMessage ChatMessage' + data.Type + enterLeave + '" ' + DataAttributes + ' ' + BackgroundColor + '>' + msg + '</div>';
 			if (document.getElementById("TextAreaChatLog") != null) {
-				ElementContent("TextAreaChatLog", ChatRoomLog);
+				document.getElementById("TextAreaChatLog").appendChild(div);
 				if (ShouldScrollDown) ElementScrollToEnd("TextAreaChatLog");
-				ElementFocus("InputChat");
+				if (Refocus) ElementFocus("InputChat");
 			}
 		}
 	}
-}
-
-
-function ChatRoomMessageActionAudioPlay(data){
-	if(! Player.AudioSettings || ! Player.AudioSettings.PlayVibes) return;
-
-	var noiseLevelModifier = 0;
-	var audioFile = "";
-
-	if(! data.Dictionary || ! data.Dictionary.length) return;
-
-	if(data.Content == "ActionUse"){//instant action
-		noiseLevelModifier += 3;//constant vibration volume level
-		var NextAsset = data.Dictionary.find(function (el) {return el.Tag == "NextAsset";});
-		if(! NextAsset || ! NextAsset.AssetName) return;
-
-		if(NextAsset.AssetName == "LeatherCrop")
-			audioFile = "Audio/SmackBareSkin04-1.mp3";
-		else if(NextAsset.AssetName == "LeatherWhip")
-			audioFile = "Audio/SmackWhip2.mp3";
-		else if(NextAsset.AssetName == "SpankingToys"){
-			var characterSource = ChatRoomCharacter.find(function(e1){return e1.MemberNumber == data.Sender;});
-			var equippedItem = InventoryGet(characterSource, "ItemHands");
-			if(!equippedItem.Property) return;
-
-			switch(equippedItem.Property.Type){
-				case "Crop":
-				case "Flogger": 	audioFile = "Audio/SmackBareSkin04-1.mp3"; break;
-				case "Cane":
-				case "HeartCrop": 	audioFile = "Audio/SmackBareSkin04-2.mp3"; break;
-				case "Paddle":
-				case "WhipPaddle":
-				case "TennisRacket": audioFile = "Audio/SmackBareSkin04-3.mp3"; break;
-				case "Whip": 		audioFile = "Audio/SmackWhip1.mp3"; break;
-				case "CattleProd":  audioFile = "Audio/Shocks.mp3"; break;
-				default: return;
-			}
-		}else{
-			switch(NextAsset.AssetName){
-				case "VibratingWand":  audioFile = "Audio/Wand.mp3";  break;
-				default: return;
-			}
-		}
-	}else if(data.Content.includes("Decrease") || data.Content.includes("Increase")){//vibrators with levels
-		if( data.Content.endsWith("-1")) return; // special case of turning vibrators off, may be a click sound in the future?
-
-		var vibrationLevel = parseInt(data.Content.substr(data.Content.length - 1));
-		if(! isNaN(vibrationLevel)) noiseLevelModifier+= vibrationLevel*3;
-
-		var assetName = data.Content.substring(0, data.Content.length - "IncreaseTo1".length);
-		switch(assetName){
-			case "Nipple":
-			case "NippleEgg":
-			case "Egg": 		audioFile = "Audio/VibrationTone4ShortLoop.mp3"; break;
-
-			case "Buttplug":
-			case "Panties":		audioFile = "Audio/VibrationTone4Long3.mp3"; break;
-
-			case "InflVibeDildo_Vibe":
-			case "Dildo":		audioFile = "Audio/VibrationTone4Long6.mp3"; break;
-
-			case "Sybian":		audioFile = "Audio/Sybian.mp3"; break;
-
-			default: return;
-		}
-	}else if(data.Content.includes("CollarShockUnitTrigger") || data.Content.includes("ShockCollarTrigger")){
-		var shockLevel = parseInt(data.Content.substr(data.Content.length - 1));
-		if(! isNaN(shockLevel)) noiseLevelModifier+= shockLevel*3;
-		audioFile = "Audio/Shocks.mp3";
-	}
-
-	if(! audioFile) return;
-
-	//Update noise level depending on who the interaction took place between.  Sensory isolation increases volume for self, decreases for others.
-	var target = data.Dictionary.find(function (el) {return el.Tag == "DestinationCharacter" || el.Tag == "DestinationCharacterName";});
-	if(! target || ! target.MemberNumber) return;
-
-	if(target.MemberNumber == Player.MemberNumber){
-		noiseLevelModifier+=2;
-
-		if(Player.Effect.indexOf("BlindHeavy") >= 0) noiseLevelModifier+=5;
-		else if(Player.Effect.indexOf("BlindNormal") >= 0) noiseLevelModifier+=3;
-		else if(Player.Effect.indexOf("BlindLight") >= 0) noiseLevelModifier+=1;
-
-		if(Player.Effect.indexOf("DeafTotal") >= 0) noiseLevelModifier+=6;
-		else if(Player.Effect.indexOf("DeafHeavy") >= 0) noiseLevelModifier+=5;
-		else if(Player.Effect.indexOf("DeafNormal") >= 0) noiseLevelModifier+=3;
-		else if(Player.Effect.indexOf("DeafLight") >= 0) noiseLevelModifier+=1;
-	}else{
-		if(Player.Effect.indexOf("DeafTotal") >= 0) noiseLevelModifier-=4;
-		else if(Player.Effect.indexOf("DeafHeavy") >= 0) noiseLevelModifier-=3;
-		else if(Player.Effect.indexOf("DeafNormal") >= 0) noiseLevelModifier-=2;
-		else if(Player.Effect.indexOf("DeafLight") >= 0) noiseLevelModifier-=1;
-	}
-
-	if(data.Sender != Player.MemberNumber && target.MemberNumber != Player.MemberNumber) noiseLevelModifier-=2;
-
-	AudioPlayInstantSound(audioFile, .1 + noiseLevelModifier/30);
 }
 
 // Gets the new room data from the server
