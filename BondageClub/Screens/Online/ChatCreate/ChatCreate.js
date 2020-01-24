@@ -6,10 +6,6 @@ var ChatCreatePrivate = null;
 var ChatCreateBackgroundIndex = 0;
 var ChatCreateBackgroundSelect = "";
 var ChatCreateBackgroundList = null;
-var ChatCreateName = "";
-var ChatCreateMode = "";
-var ChatCreateDescription = "";
-var ChatCreateSize = "";
 
 // When the chat creation screens loads
 function ChatCreateLoad() {
@@ -36,6 +32,7 @@ function ChatCreateLoad() {
 
 // When the chat creation screen runs
 function ChatCreateRun() {
+
 	// Draw the controls
 	if (ChatCreateMessage == "") ChatCreateMessage = "EnterRoomInfo";
 	DrawText(TextGet(ChatCreateMessage), 1000, 60, "White", "Gray");
