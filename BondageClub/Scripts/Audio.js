@@ -11,6 +11,8 @@ function AudioPlayInstantSound(src, volume) {
 function ChatRoomMessageActionAudioPlay(data){
 	if(! Player.AudioSettings || ! Player.AudioSettings.PlayVibes || Player.AudioSettings.Volume == 0) return;
 
+	console.log(data);
+
 	var noiseLevelModifier = 0;
 	var audioFile = "";
 
@@ -58,8 +60,10 @@ function ChatRoomMessageActionAudioPlay(data){
 		switch(assetName){
 			case "Nipple":
 			case "NippleEgg":
+			case "LoveChastityBeltVibe":
 			case "Egg": 		audioFile = "Audio/VibrationTone4ShortLoop.mp3"; break;
 
+			case "Belt":
 			case "Buttplug":
 			case "Panties":		audioFile = "Audio/VibrationTone4Long3.mp3"; break;
 
@@ -70,7 +74,9 @@ function ChatRoomMessageActionAudioPlay(data){
 
 			default: return;
 		}
-	}else if(data.Content.includes("CollarShockUnitTrigger") || data.Content.includes("ShockCollarTrigger")){
+	}else if(data.Content.includes("CollarShockUnitTrigger") 
+			|| data.Content.includes("ShockCollarTrigger")
+			|| data.Content.includes("LoveChastityBeltShockTrigger")){
 		var shockLevel = parseInt(data.Content.substr(data.Content.length - 1));
 		if(! isNaN(shockLevel)) noiseLevelModifier+= shockLevel*3;
 		audioFile = "Audio/Shocks.mp3";
