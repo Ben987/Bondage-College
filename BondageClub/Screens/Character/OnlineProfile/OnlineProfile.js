@@ -23,17 +23,18 @@ function OnlineProfileRun() {
 }
 
 // When the player clicks in the online profile form
-function OnlineProfileClick() {
-	
-	// If the current character is the player, we update the description
-    if (CommonIsClickAt(1820, 60, 90, 90)) {
-		if ((InformationSheetSelection.ID == 0) && (InformationSheetSelection.Description != ElementValue("DescriptionInput").trim())) {
-			InformationSheetSelection.Description = ElementValue("DescriptionInput").trim();
-			ServerSend("AccountUpdate", { Description: InformationSheetSelection.Description });
-			ChatRoomCharacterUpdate(InformationSheetSelection);
-		}
-		ElementRemove("DescriptionInput");
-		CommonSetScreen("Character", "InformationSheet");
-	}
+function OnlineProfileClick() {	
+    if (CommonIsClickAt(1820, 60, 90, 90)) OnlineProfileExit();
+}
 
+// when the user exit this screen
+function OnlineProfileExit() {
+    // If the current character is the player, we update the description
+    if ((InformationSheetSelection.ID == 0) && (InformationSheetSelection.Description != ElementValue("DescriptionInput").trim())) {
+        InformationSheetSelection.Description = ElementValue("DescriptionInput").trim();
+        ServerSend("AccountUpdate", { Description: InformationSheetSelection.Description });
+        ChatRoomCharacterUpdate(InformationSheetSelection);
+    }
+    ElementRemove("DescriptionInput");
+    CommonSetScreen("Character", "InformationSheet");
 }
