@@ -419,7 +419,6 @@ function ChatRoomHTMLEntities(str) {
 
 // When the server sends a chat message
 function ChatRoomMessage(data) {
-
 	// Make sure the message is valid (needs a Sender and Content)
 	if ((data != null) && (typeof data === "object") && (data.Content != null) && (typeof data.Content === "string") && (data.Content != "") && (data.Sender != null) && (typeof data.Sender === "number") && (data.Sender > 0)) {
 
@@ -482,9 +481,9 @@ function ChatRoomMessage(data) {
 						else msg = msg.replace(dictionary[D].Tag, ChatRoomHTMLEntities(dictionary[D].Text));
 					}
 				}
+				AudioPlayContent(data);
 			}
 
-			// Builds the message to add depending on the type
 			if (data.Type != null) {
 				if (data.Type == "Chat"){
 					if (PreferenceIsPlayerInSensDep() && SenderCharacter.MemberNumber != Player.MemberNumber) msg = '<span class="ChatMessageName" style="color:' + (SenderCharacter.LabelColor || 'gray') + ';">' + SpeechGarble(SenderCharacter, SenderCharacter.Name) + ':</span> ' + SpeechGarble(SenderCharacter, msg);
@@ -517,11 +516,8 @@ function ChatRoomMessage(data) {
 				if (ShouldScrollDown) ElementScrollToEnd("TextAreaChatLog");
 				if (Refocus) ElementFocus("InputChat");
 			}
-
 		}
-
 	}
-
 }
 
 // Gets the new room data from the server
