@@ -40,7 +40,6 @@ ItemPelvisLeatherCrop,,,(You lash the leather crop pretty hard on her butt.)  Da
 10,,What are you selling?,"Look around, there are clothes of all kinds and lots of BDSM gear.",,
 10,,Who owns this store?,It belongs to the Bondage Club.  All profits go back to the organization.,,
 10,,Can you show me everything that I don't have?,,SelectAssetMissing(),
-10,,Can you verify if I'm missing some items?,I looked through your previous orders and made sure you had everything with you.,CorrectBuyGroupAssets(),
 10,20,Can I tie you up?,"I'll make a deal with you.  If you buy everything from the store, I'll let you use the items on me.",CheckBoughtEverything(),!VendorAllowItem
 10,,Will you restrain me?,Maybe later after my shift.,,
 10,0,I don't have any more questions.,"Alright, would you like to buy something then?",,
