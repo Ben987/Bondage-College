@@ -45,9 +45,9 @@ function ChatCreateRun() {
 	DrawText(TextGet("RoomSize"), 930, 568, "White", "Gray");
 	ElementPosition("InputSize", 1400, 560, 150);
 	DrawText(TextGet("RoomBackground"), 650, 672, "White", "Gray");
-	DrawBackNextButton(900, 640, 350, 65, TextGet(ChatCreateBackgroundSelect), "White", null,
-		() => TextGet((ChatCreateBackgroundIndex == 0) ? ChatCreateBackgroundList[ChatCreateBackgroundList.length - 1] : ChatCreateBackgroundList[ChatCreateBackgroundIndex - 1]),
-		() => TextGet((ChatCreateBackgroundIndex >= ChatCreateBackgroundList.length - 1) ? ChatCreateBackgroundList[0] : ChatCreateBackgroundList[ChatCreateBackgroundIndex + 1]));
+	DrawBackNextButton(900, 640, 350, 65, DialogFind(Player, ChatCreateBackgroundSelect), "White", null,
+		() => DialogFind(Player, (ChatCreateBackgroundIndex == 0) ? ChatCreateBackgroundList[ChatCreateBackgroundList.length - 1] : ChatCreateBackgroundList[ChatCreateBackgroundIndex - 1]),
+		() => DialogFind(Player, (ChatCreateBackgroundIndex >= ChatCreateBackgroundList.length - 1) ? ChatCreateBackgroundList[0] : ChatCreateBackgroundList[ChatCreateBackgroundIndex + 1]));
 	DrawButton(1300, 640, 300, 65, TextGet("ShowAll"), "White");
 	DrawButton(600, 800, 300, 65, TextGet("Create"), "White");
 	DrawButton(1100, 800, 300, 65, TextGet("Cancel"), "White");
