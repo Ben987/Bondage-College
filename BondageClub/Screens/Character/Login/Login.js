@@ -146,6 +146,16 @@ function LoginStableItems() {
 	ServerPlayerInventorySync();
 }
 
+// Make sure a player without lover is not wearing any lovers exclusive items
+function LoginLoversItems() {
+	if (Player.Lovership == null) {
+		for(var A = 0; A < Player.Appearance.length; A++) {
+			if (Player.Appearance[A].Property && Player.Appearance[A].Property.LockedBy && ((Player.Appearance[A].Property.LockedBy.toString() == "LoversPadlock") || (Player.Appearance[A].Property.LockedBy.toString() == "LoversTimerPadlock")))
+				InventoryRemove(Player, Player.Appearance[A].Asset.Group.Name);
+		}
+	}
+}
+
 // When the character logs, we analyze the data
 function LoginResponse(C) {
 
@@ -224,6 +234,7 @@ function LoginResponse(C) {
 			LoginValidCollar();
 			LoginMistressItems();
 			LoginStableItems();
+			LoginLoversItems();
 			CharacterAppearanceValidate(Player);
 
 			// If the player must log back in the cell

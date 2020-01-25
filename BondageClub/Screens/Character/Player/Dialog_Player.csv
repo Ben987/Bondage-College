@@ -202,6 +202,8 @@ ItemMiscOwnerTimerPadlockIntro,,,"""Never forget who you belong to"""
 ItemMiscOwnerTimerPadlockDetail,,,Can only be unlocked or extended by her owner
 ItemMiscLoversPadlockIntro,,,"""A lovers embrace"""
 ItemMiscLoversPadlockDetail,,,Can only be locked or unlocked by her lover
+ItemMiscLoversTimerPadlockIntro,,,"""A lovers embrace"""
+ItemMiscLoversTimerPadlockDetail,,,Can only be unlocked or extended by her lover
 ItemMiscMistressPadlockIntro,,,Can only be locked or unlocked by a Club Mistress
 ItemMiscMistressTimerPadlockIntro,,,Can only be unlocked or extended by a Club Mistress
 LeatherCuffsPoseNone,,,Detached

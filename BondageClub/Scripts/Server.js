@@ -467,6 +467,7 @@ function ServerAccountLovership(data) {
 	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.ClearLovership != null) && (typeof data.ClearLovership === "boolean") && (data.ClearLovership == true)) {
 		Player.Lover = "";
 		Player.Lovership = null;
+		LoginLoversItems();
 	}
 
 }
