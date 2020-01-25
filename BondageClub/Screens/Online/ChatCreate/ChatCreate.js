@@ -61,7 +61,7 @@ function ChatCreateClick() {
 
 	// When we select a new background
 	if ((MouseX >= 900) && (MouseX < 1250) && (MouseY >= 640) && (MouseY < 705)) {
-		ChatCreateBackgroundIndex += ((MouseX < 1275 && !CommonIsMobile) ? -1 : 1);
+		ChatCreateBackgroundIndex += ((MouseX < 1075 && !CommonIsMobile) ? -1 : 1);
 		if (ChatCreateBackgroundIndex >= ChatCreateBackgroundList.length) ChatCreateBackgroundIndex = 0;
 		if (ChatCreateBackgroundIndex < 0) ChatCreateBackgroundIndex = ChatCreateBackgroundList.length - 1;
 		ChatCreateBackgroundSelect = ChatCreateBackgroundList[ChatCreateBackgroundIndex];
@@ -70,7 +70,7 @@ function ChatCreateClick() {
 
 	// Show backgrounds in grid
 	if ((MouseX >= 1300) && (MouseX < 1600) && (MouseY >= 640) && (MouseY < 705)) {
-		BackgroundSelectionMake(ChatCreateBackgroundList, Name => ChatCreateBackgroundSelect = Name);
+		BackgroundSelectionMake(ChatCreateBackgroundList, ChatCreateBackgroundIndex, Name => ChatCreateBackgroundSelect = Name);
 		document.getElementById("InputName").style.display = "none";
 		document.getElementById("InputDescription").style.display = "none";
 		document.getElementById("InputSize").style.display = "none";
