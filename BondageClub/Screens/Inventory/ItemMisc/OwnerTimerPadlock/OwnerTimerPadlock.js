@@ -117,7 +117,7 @@ function InventoryItemMiscOwnerTimerPadlockAdd(TimeToAdd, PlayerMemberNumberToLi
         }
         ChatRoomPublishCustomAction(msg, true, Dictionary);
     } else { CharacterRefresh(C); }
-    InventoryItemMiscTimerPadlockExit();
+    InventoryItemMiscOwnerTimerPadlockExit();
 }
 
 // Exits the extended menu

@@ -116,7 +116,7 @@ function InventoryItemMiscMistressTimerPadlockAdd(TimeToAdd, PlayerMemberNumberT
         }
         ChatRoomPublishCustomAction(msg, true, Dictionary);
     } else { CharacterRefresh(C); }
-    InventoryItemMiscTimerPadlockExit();
+    InventoryItemMiscMistressTimerPadlockExit();
 }
 
 // Exits the extended menu
