@@ -2,7 +2,7 @@
 var ChatCreateBackground = "IntroductionDark";
 var ChatCreateResult = [];
 var ChatCreateMessage = "";
-var ChatCreatePrivate = false;
+var ChatCreatePrivate = null;
 var ChatCreateBackgroundIndex = 0;
 var ChatCreateBackgroundSelect = "";
 var ChatCreateBackgroundList = null;
@@ -11,19 +11,22 @@ var ChatCreateBackgroundList = null;
 function ChatCreateLoad() {
 
 	// If the current background isn't valid, we pick the first one
-	if (ChatCreateBackgroundList.indexOf(ChatCreateBackgroundSelect) < 0) {
+	ChatCreateBackgroundIndex = ChatCreateBackgroundList.indexOf(ChatCreateBackgroundSelect);
+	if (ChatCreateBackgroundIndex < 0) {
 		ChatCreateBackgroundIndex = 0;
-		ChatCreateBackgroundSelect = ChatCreateBackgroundList[0];
-		ChatCreateBackground = ChatCreateBackgroundSelect + "Dark";
 	}
+	ChatCreateBackgroundSelect = ChatCreateBackgroundList[ChatCreateBackgroundIndex];
+	ChatCreateBackground = ChatCreateBackgroundSelect + "Dark";
 
 	// Prepares the controls to create a room
 	ElementRemove("InputSearch");
-	ElementCreateInput("InputName", "text", "", "20");
-	ElementCreateInput("InputDescription", "text", "", "100");
-	ElementCreateInput("InputSize", "text", "10", "2");
+	if (document.getElementById("InputName") == null) {
+		ElementCreateInput("InputName", "text", "", "20");
+		ElementCreateInput("InputDescription", "text", "", "100");
+		ElementCreateInput("InputSize", "text", "10", "2");
+	}
 	ChatCreateMessage = "";
-	ChatCreatePrivate = false;
+	ChatCreatePrivate = ChatCreatePrivate || false;
 
 }
 
@@ -41,8 +44,9 @@ function ChatCreateRun() {
 	DrawButton(1300, 428, 64, 64, "", "White", ChatCreatePrivate ? "Icons/Checked.png" : "");
 	DrawText(TextGet("RoomSize"), 930, 568, "White", "Gray");
 	ElementPosition("InputSize", 1400, 560, 150);
-	DrawText(TextGet("RoomBackground"), 850, 672, "White", "Gray");
-	DrawBackNextButton(1100, 640, 350, 65, TextGet(ChatCreateBackgroundSelect), "White", null,
+	DrawText(TextGet("RoomBackground"), 650, 672, "White", "Gray");
+	DrawButton(1300, 640, 300, 65, TextGet("ShowAll"), "White");
+	DrawBackNextButton(900, 640, 350, 65, TextGet(ChatCreateBackgroundSelect), "White", null,
 		() => TextGet((ChatCreateBackgroundIndex == 0) ? ChatCreateBackgroundList[ChatCreateBackgroundList.length - 1] : ChatCreateBackgroundList[ChatCreateBackgroundIndex - 1]),
 		() => TextGet((ChatCreateBackgroundIndex >= ChatCreateBackgroundList.length - 1) ? ChatCreateBackgroundList[0] : ChatCreateBackgroundList[ChatCreateBackgroundIndex + 1]));
 	DrawButton(600, 800, 300, 65, TextGet("Create"), "White");
@@ -57,12 +61,20 @@ function ChatCreateClick() {
 	if ((MouseX >= 1300) && (MouseX < 1364) && (MouseY >= 428) && (MouseY < 492)) ChatCreatePrivate = !ChatCreatePrivate;
 
 	// When we select a new background
-	if ((MouseX >= 1100) && (MouseX < 1450) && (MouseY >= 640) && (MouseY < 705)) {
+	if ((MouseX >= 900) && (MouseX < 1250) && (MouseY >= 640) && (MouseY < 705)) {
 		ChatCreateBackgroundIndex += ((MouseX < 1275 && !CommonIsMobile) ? -1 : 1);
 		if (ChatCreateBackgroundIndex >= ChatCreateBackgroundList.length) ChatCreateBackgroundIndex = 0;
 		if (ChatCreateBackgroundIndex < 0) ChatCreateBackgroundIndex = ChatCreateBackgroundList.length - 1;
 		ChatCreateBackgroundSelect = ChatCreateBackgroundList[ChatCreateBackgroundIndex];
 		ChatCreateBackground = ChatCreateBackgroundSelect + "Dark";
+	}
+
+	// Show backgrounds in grid
+	if ((MouseX >= 1300) && (MouseX < 1600) && (MouseY >= 640) && (MouseY < 705)) {
+		BackgroundSelectionMake(ChatCreateBackgroundList, Name => ChatCreateBackgroundSelect = Name);
+		document.getElementById("InputName").style.display = "none";
+		document.getElementById("InputDescription").style.display = "none";
+		document.getElementById("InputSize").style.display = "none";
 	}
 
 	// If the user wants to create a room
@@ -74,7 +86,6 @@ function ChatCreateClick() {
 	if ((MouseX >= 1100) && (MouseX < 1400) && (MouseY >= 800) && (MouseY < 865)) {
 		ChatCreateExit();
 	}
-
 }
 
 // When the user press "enter", we create the room
@@ -84,6 +95,7 @@ function ChatCreateKeyDown() {
 
 // When the user exit from this screen
 function ChatCreateExit() {
+	ChatCreatePrivate = null;
 	ElementRemove("InputName");
 	ElementRemove("InputDescription");
 	ElementRemove("InputSize");

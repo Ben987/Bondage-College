@@ -6,16 +6,18 @@ var ChatAdminBackgroundIndex = 0;
 var ChatAdminBackgroundSelect = "";
 var ChatAdminPrivate = false;
 var ChatAdminLocked = false;
+var ChatAdminBackgroundSelected = null;
 
 // When the chat admin screens loads
 function ChatAdminLoad() {
 
 	// If the current room background isn't valid, we pick the first one
-	ChatAdminBackgroundSelect = ChatRoomData.Background;
-	if (ChatCreateBackgroundList.indexOf(ChatAdminBackgroundSelect) < 0) {
+	ChatAdminBackgroundSelect = ChatAdminBackgroundSelected || ChatRoomData.Background;
+	ChatAdminBackgroundIndex = ChatCreateBackgroundList.indexOf(ChatAdminBackgroundSelect);
+	if (ChatAdminBackgroundIndex < 0) {
 		ChatAdminBackgroundIndex = 0;
-		ChatAdminBackgroundSelect = ChatCreateBackgroundList[0];
-	} else ChatAdminBackgroundIndex = ChatCreateBackgroundList.indexOf(ChatAdminBackgroundSelect);
+	}
+	ChatAdminBackgroundSelect = ChatCreateBackgroundList[ChatAdminBackgroundIndex];
 
 	// Prepares the controls to edit a room
 	ElementCreateInput("InputName", "text", ChatRoomData.Name, "20");
@@ -67,18 +69,19 @@ function ChatAdminRun() {
 
 	// Background selection
 	DrawImageResize("Backgrounds/" + ChatAdminBackgroundSelect + "Dark.jpg", 1300, 75, 600, 400);
-	DrawBackNextButton(1350, 500, 500, 65, ChatAdminBackgroundSelect, ChatRoomPlayerIsAdmin() ? "White" : "#ebebe4", null, () => "", () => "");
+	DrawBackNextButton(1350, 500, 500, 65, TextGet(ChatAdminBackgroundSelect), ChatRoomPlayerIsAdmin() ? "White" : "#ebebe4", null,
+		() => TextGet((ChatAdminBackgroundIndex == 0) ? ChatCreateBackgroundList[ChatCreateBackgroundList.length - 1] : ChatCreateBackgroundList[ChatAdminBackgroundIndex - 1]),
+		() => TextGet((ChatAdminBackgroundIndex >= ChatCreateBackgroundList.length - 1) ? ChatCreateBackgroundList[0] : ChatCreateBackgroundList[ChatAdminBackgroundIndex + 1]));
 
 	// Private and Locked check boxes
 	DrawText(TextGet("RoomPrivate"), 1514, 640, "Black", "Gray");
 	DrawButton(1686, 608, 64, 64, "", ChatRoomPlayerIsAdmin() ? "White" : "#ebebe4", ChatAdminPrivate ? "Icons/Checked.png" : "");
 	DrawText(TextGet("RoomLocked"), 1514, 740, "Black", "Gray");
 	DrawButton(1686, 708, 64, 64, "", ChatRoomPlayerIsAdmin() ? "White" : "#ebebe4", ChatAdminLocked ? "Icons/Checked.png" : "");
-	
+
 	// Save & Cancel/Exit buttons + help text
 	DrawButton(1325, 840, 250, 65, TextGet("Save"), ChatRoomPlayerIsAdmin() ? "White" : "#ebebe4");
 	DrawButton(1625, 840, 250, 65, TextGet(ChatRoomPlayerIsAdmin() ? "Cancel" : "Exit"), "White");
-
 }
 
 // When the player clicks in the chat Admin screen
@@ -103,12 +106,20 @@ function ChatAdminClick() {
 		if ((MouseX >= 1686) && (MouseX <= 1750) && (MouseY >= 708) && (MouseY <= 772)) ChatAdminLocked = !ChatAdminLocked;
 		if ((MouseX >= 1325) && (MouseX < 1575) && (MouseY >= 840) && (MouseY < 905) && ChatRoomPlayerIsAdmin()) ChatAdminUpdateRoom();
 
+		if ((MouseX >= 1300) && (MouseX <= 1300 + 600) && (MouseY >= 75) && (MouseY <= 75 + 400)) {
+			ElementRemove("InputName");
+			ElementRemove("InputDescription");
+			ElementRemove("InputSize");
+			ElementRemove("InputAdminList");
+			ElementRemove("InputBanList");
+			BackgroundSelectionMake(ChatCreateBackgroundList, Name => ChatAdminBackgroundSelected = Name);
+		}
 	}
-
 }
 
 // When the user exit from this screen
 function ChatAdminExit() {
+	ChatAdminBackgroundSelected = null;
 	ElementRemove("InputName");
 	ElementRemove("InputDescription");
 	ElementRemove("InputSize");
@@ -136,6 +147,6 @@ function ChatAdminUpdateRoom() {
 		Private: ChatAdminPrivate,
 		Locked: ChatAdminLocked
 	};
-	ServerSend("ChatRoomAdmin", { MemberNumber: Player.ID, Room : UpdatedRoom, Action: "Update" });
+	ServerSend("ChatRoomAdmin", { MemberNumber: Player.ID, Room: UpdatedRoom, Action: "Update" });
 	ChatAdminMessage = "UpdatingRoom";
 }
