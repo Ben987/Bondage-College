@@ -49,8 +49,8 @@ function ManagementWillOwnPlayer() { return ((Player.Owner == "") && (Reputation
 function ManagementWontOwnPlayer() { return ((Player.Owner == "") && (ReputationGet("Dominant") <= -1) && (ReputationGet("Dominant") >= -99) && (PrivateCharacter.length <= PrivateCharacterMax) && !PrivatePlayerIsOwned() && ManagementNoMistressInPrivateRoom()) }
 function ManagementLoverFromBondageCollege() { return ((Player.Lover == "NPC-Sidney") || (Player.Lover == "NPC-Amanda") || (Player.Lover == "NPC-Jennifer")) }
 function ManagementCanBreakTrialLoverOnline() { return ((Player.Lover == "") && Player.Lovership != null) && (Player.Lovership.Stage != null) && (Player.Lovership.Stage == 0) }
-function ManagementCanBeReleasedLoverOnline() { return ((Player.Lover != "") && (Player.Lovership != null) && (Player.Lovership.Start != null) && (Player.Lovership.Start + 604800000 <= CurrentTime)) }
-function ManagementCanBeReleasedLover() { return ((Player.Lover != "") && (Player.Lovership == null) && !PrivateLoverInRoom()) }
+function ManagementCanBeReleasedLoverOnline() { return ((Player.Lover != "") && (Player.Lovership != null) && (Player.Lovership.Start != null)) }
+function ManagementCanBeReleasedLover() { return ((Player.Lover != "") && (Player.Lovership == null)) }
 function ManagementIsClubSlave() { return ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "ClubSlaveCollar")) }
 function ManagementWearingSlaveCollar() { return ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "SlaveCollar")) }
 function ManagementCanTransferToRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax) && !LogQuery("LockOutOfPrivateRoom", "Rule")) }
@@ -234,9 +234,11 @@ function ManagementBreakTrialOnline() {
 	if ((Player.Ownership != null) && (Player.Ownership.MemberNumber != null)) ServerSend("AccountOwnership", { MemberNumber: Player.Ownership.MemberNumber, Action: "Break" });
 }
 
-// Breaks the online lover trial period
-function ManagementBreakTrialLoverOnline() {
+// When the Mistress breaks the bond between lovers
+function ManagementBreakLover() {
+	Player.Lover = "";
 	if ((Player.Lovership != null) && (Player.Lovership.MemberNumber != null)) ServerSend("AccountLovership", { MemberNumber: Player.Lovership.MemberNumber, Action: "Break" });
+	ServerPlayerSync();
 }
 
 // When the Mistress leaves her job to go see the player

@@ -22,10 +22,14 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 10,,(Give her the money envelope.),,GiveMoneyForOwner(),CanGiveMoneyForOwner()
 10,0,(Offer her a trial period to become your lover.),(The request was sent.  She must accept for the trial period to start.),"SendLovershipRequest(""Propose"")","LovershipOptionIs(""CanOfferStartTrial"")"
 10,0,(Accept a trial period to become her lover.),,"SendLovershipRequest(""Accept"")","LovershipOptionIs(""CanStartTrial"")"
-10,0,(Offer her to end the trial and officially become your lover.),"(You asked her to officially become your lover, you wait for her answer.)","SendLovershipRequest(""Propose"")","LovershipOptionIs(""CanOfferEndTrial"")"
-10,0,(Accept her proposal and become her lover.),,"SendLovershipRequest(""Accept"")","LovershipOptionIs(""CanEndTrial"")"
+10,12,(Offer her to end the trial and officially become your lover.),"(There's a 100$ fee to prepare the papers to be considered full lovers.  Will you pay now?)",,"LovershipOptionIs(""CanOfferEndTrial"")"
+10,13,(Accept her proposal and become her lover.),(There's a 100$ fee asked of both sides to be considered full lovers.  Will you pay now?),,"LovershipOptionIs(""CanEndTrial"")"
 11,0,(Pay 100$ for the collaring ceremony.),"(You pay and prepare the ceremony.  A maid brings a slave collar, she must accept it to complete the collaring.)","SendOwnershipRequest(""Propose"")",DialogMoneyGreater(100)
 11,0,(Refuse to pay.),(Main menu.),,
+12,0,(Pay 100$ to officialize your lovers relationship.),(You pay and ask her to officially become your lover. You wait for her answer.),"SendLovershipRequest(""Propose"")",DialogMoneyGreater(100)
+12,0,(Refuse to pay.),(Main menu),,
+13,0,(Pay 100$ to officialize your lovers relationship),,"SendLovershipRequest(""Accept"")",DialogMoneyGreater(100)
+13,0,(Refuse to pay.),(Main menu),,
 10,0,(Back to main menu.),(Main menu.),,
 20,21,(Look at free drinks.),(Free drinks menu.),,
 20,22,(Look at regular drinks.),(Regular drinks menu.),,

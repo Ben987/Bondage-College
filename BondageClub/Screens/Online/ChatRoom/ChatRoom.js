@@ -439,7 +439,8 @@ function ChatRoomMessage(data) {
 			}
 
 			// Replace actions by the content of the dictionary
-			if (data.Type && (data.Type == "Action")) {
+			if (data.Type && ((data.Type == "Action") || (data.Type == "ServerMessage"))) {
+			    if (data.Type == "ServerMessage") msg = "ServerMessage" + msg;
 				msg = DialogFind(Player, msg);
 				if (data.Dictionary) {
 					var dictionary = data.Dictionary;
@@ -481,7 +482,7 @@ function ChatRoomMessage(data) {
 					else msg = "*" + SenderCharacter.Name + " " + msg + "*";
 				}
 				else if (data.Type == "Action") msg = "(" + msg + ")";
-				else if (data.Type == "ServerMessage") msg = "<b>" + DialogFind(Player, "ServerMessage" + msg).replace("SourceCharacter", SenderCharacter.Name).replace("TargetCharacterLover", SenderCharacter.Lover) + "</b>";
+				else if (data.Type == "ServerMessage") msg = "<b>" + msg + "</b>";
 			}
 
 			// Adds the message and scrolls down unless the user has scrolled up
@@ -652,8 +653,8 @@ function ChatRoomSendOwnershipRequest(RequestType) {
 
 // When the player selects a lovership dialog option (can change money)
 function ChatRoomSendLovershipRequest(RequestType) {
-	if ((ChatRoomLovershipOption == "CanOfferEndTrial") && (RequestType == "Propose")) ;
-	if ((ChatRoomLovershipOption == "CanEndTrial") && (RequestType == "Accept")) ;
+	if ((ChatRoomLovershipOption == "CanOfferEndTrial") && (RequestType == "Propose")) CharacterChangeMoney(Player, -100);
+	if ((ChatRoomLovershipOption == "CanEndTrial") && (RequestType == "Accept")) CharacterChangeMoney(Player, -100);
 	ChatRoomLovershipOption = "";
 	ServerSend("AccountLovership", { MemberNumber: CurrentCharacter.MemberNumber, Action: RequestType });
 	if (RequestType == "Accept") DialogLeave();
