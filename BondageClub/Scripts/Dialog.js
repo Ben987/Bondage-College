@@ -400,6 +400,13 @@ function DialogProgressStart(C, PrevItem, NextItem) {
 	DialogAllowBlush = ((DialogProgressAuto < 0) && (DialogProgressChallenge > 0) && (C.ID == 0) && ((InventoryGet(C, "Blush") == null) || (InventoryGet(C, "Blush").Property == null) || (InventoryGet(C, "Blush").Property.Expression == null)));
 	DialogAllowEyebrows = ((DialogProgressAuto < 0) && (DialogProgressChallenge > 0) && (C.ID == 0) && ((InventoryGet(C, "Eyebrows") == null) || (InventoryGet(C, "Eyebrows").Property == null) || (InventoryGet(C, "Eyebrows").Property.Expression == null)));
 	DialogAllowFluids = ((DialogProgressAuto < 0) && (DialogProgressChallenge > 0) && (C.ID == 0) && ((InventoryGet(C, "Fluids") == null) ||(InventoryGet(C, "Fluids").Property == null) || (InventoryGet(C, "Fluids").Property.Expression == null)));
+
+	// Applying or removing specific items can trigger an audio sound to play
+	if ((PrevItem && PrevItem.Asset) || (NextItem && NextItem.Asset)) {
+		var AudioFile = (NextItem && NextItem.Asset) ? NextItem.Asset.Audio : PrevItem.Asset.Audio;
+		if (AudioFile != null) AudioDialogStart("Audio/" + AudioFile + ".mp3");
+	}
+
 }
 
 // The player can use the space bar to speed up the dialog progress, just like clicking
@@ -416,6 +423,9 @@ function DialogMenuButtonClick() {
 	// Finds the current icon
 	for (var I = 0; I < DialogMenuButton.length; I++)
 		if ((MouseX >= 1885 - I * 110) && (MouseX <= 1975 - I * 110)) {
+			
+			// Stops the dialog sounds
+			AudioDialogStop();
 
 			// Gets the current character and item
 			var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
@@ -657,7 +667,7 @@ function DialogClick() {
 		var HeightRatio = CharacterAppearanceGetCurrentValue(C, "Height", "Zoom");
 		if ((Player != null) && (Player.VisualSettings != null) && (Player.VisualSettings.ForceFullHeight != null) && Player.VisualSettings.ForceFullHeight) HeightRatio = 1.0;
 		var Xoffset = 500 * (1 - HeightRatio) / 2;
-		var YOffset = 1000 * ((C.Pose.indexOf("SuspensionHogtied") < 0) ? (1 - HeightRatio) : 0);
+		var YOffset = 1000 * (1 - HeightRatio);
 		for (var A = 0; A < AssetGroup.length; A++)
 			if ((AssetGroup[A].Category == "Item") && (AssetGroup[A].Zone != null))
 				for (var Z = 0; Z < AssetGroup[A].Zone.length; Z++)
@@ -805,7 +815,6 @@ function DialogSetText(NewText) {
 
 // Extends a specific item (loads its settings and shows its own menu)
 function DialogExtendItem(Item, SourceItem) {
-	if ((CurrentScreen != "ChatRoom") && (CurrentCharacter.ID != 0)) CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, Item.Asset.Group.Name);
 	DialogProgress = -1;
 	DialogColor = null;
 	DialogFocusItem = Item;
@@ -885,9 +894,12 @@ function DialogDrawItemMenu(C) {
 		// If the operation is completed
 		if (DialogProgress >= 100) {
 
+			// Stops the dialog sounds
+			AudioDialogStop();
+
 			// Add / swap / remove the item
-			InventoryRemove(C, C.FocusGroup.Name);
-			if (DialogProgressNextItem != null) InventoryWear(C, DialogProgressNextItem.Asset.Name, DialogProgressNextItem.Asset.Group.Name, (DialogColorSelect == null) ? "Default" : DialogColorSelect, SkillGetLevel(Player, "Bondage"));
+			if (DialogProgressNextItem == null) InventoryRemove(C, C.FocusGroup.Name);
+			else InventoryWear(C, DialogProgressNextItem.Asset.Name, DialogProgressNextItem.Asset.Group.Name, (DialogColorSelect == null) ? "Default" : DialogColorSelect, SkillGetLevel(Player, "Bondage"));
 
 			// remove associated items at the same time
 			if (InventoryGet(C, "ItemNeck") == null) InventoryRemove(C, "ItemNeckAccessories");
