@@ -226,9 +226,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 	// Reapply any item that was equipped and isn't enable, same for owner locked items if the source member isn't the owner
 	if ((SourceMemberNumber != null) && (C.ID == 0))
 		for (var A = 0; A < C.Appearance.length; A++) {
-			if (!C.Appearance[A].Asset.Enable && !C.Appearance[A].Asset.OwnerOnly)
-				Appearance.push(C.Appearance[A]);
-			else if (!C.Appearance[A].Asset.Enable && !C.Appearance[A].Asset.LoverOnly)
+			if (!C.Appearance[A].Asset.Enable && !C.Appearance[A].Asset.OwnerOnly && !C.Appearance[A].Asset.LoverOnly)
 				Appearance.push(C.Appearance[A]);
 			else
 				if ((C.Ownership != null) && (C.Ownership.MemberNumber != null) && (C.Ownership.MemberNumber != SourceMemberNumber) && InventoryOwnerOnlyItem(C.Appearance[A])) {
@@ -240,7 +238,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 								NA.Property = Bundle[B].Property;
 						// Some Properties should not be changed
 						if (C.Appearance[A].Property) {
-							if (C.Appearance[A].Property.LockedBy != null) NA.Property.LockedBy = C.Appearance[A].Property.LoackedBy;
+							if (C.Appearance[A].Property.LockedBy != null) NA.Property.LockedBy = C.Appearance[A].Property.LockedBy;
 							if (C.Appearance[A].Property.LockMemberNumber != null) NA.Property.LockMemberNumber = C.Appearance[A].Property.LockMemberNumber; else delete NA.Property.LockMemberNumber;
 							if (C.Appearance[A].Property.RemoveItem != null) NA.Property.RemoveItem = C.Appearance[A].Property.RemoveItem; else delete NA.Property.RemoveItem;
 							if (C.Appearance[A].Property.ShowTimer != null) NA.Property.ShowTimer = C.Appearance[A].Property.ShowTimer; else delete NA.Property.ShowTimer;
@@ -263,8 +261,21 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 						for (var B = 0; B < Bundle.length; B++)
 							if ((C.Appearance[A].Asset.Name == Bundle[B].Name) && (C.Appearance[A].Asset.Group.Name == Bundle[B].Group) && (C.Appearance[A].Asset.Group.Family == AssetFamily))
 								NA.Property = Bundle[B].Property;
+						// Some Properties should not be changed
+						if (C.Appearance[A].Property) {
+							if (C.Appearance[A].Property.LockedBy != null) NA.Property.LockedBy = C.Appearance[A].Property.LockedBy;
+							if (C.Appearance[A].Property.LockMemberNumber != null) NA.Property.LockMemberNumber = C.Appearance[A].Property.LockMemberNumber; else delete NA.Property.LockMemberNumber;
+							if (C.Appearance[A].Property.RemoveItem != null) NA.Property.RemoveItem = C.Appearance[A].Property.RemoveItem; else delete NA.Property.RemoveItem;
+							if (C.Appearance[A].Property.ShowTimer != null) NA.Property.ShowTimer = C.Appearance[A].Property.ShowTimer; else delete NA.Property.ShowTimer;
+							if (C.Appearance[A].Property.EnableRandomInput != null) NA.Property.EnableRandomInput = C.Appearance[A].Property.EnableRandomInput; else delete NA.Property.EnableRandomInput;
+
+							if (!NA.Property.EnableRandomInput || NA.Property.LockedBy != "LoversTimerPadlock") {
+								if (C.Appearance[A].Property.MemberNumberList != null) NA.Property.MemberNumberList = C.Appearance[A].Property.MemberNumberList; else delete NA.Property.MemberNumberList;
+								if (C.Appearance[A].Property.RemoveTimer != null) NA.Property.RemoveTimer = C.Appearance[A].Property.RemoveTimer; else delete NA.Property.RemoveTimer;
+							}
+						}
 						ServerValidateProperties(C, NA);
-						if (C.Appearance[A].Asset.LockedBy == "LoverPadlock") InventoryLock(C, NA, { Asset: AssetGet(AssetFamily, "ItemMisc", "LoverPadlock") }, C.Lovership.MemberNumber);
+						if (C.Appearance[A].Property.LockedBy == "LoversPadlock") InventoryLock(C, NA, { Asset: AssetGet(AssetFamily, "ItemMisc", "LoversPadlock") }, C.Lovership.MemberNumber);
 					}
 					Appearance.push(NA);
 				}
