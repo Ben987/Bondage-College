@@ -43,7 +43,7 @@ function DialogAllowItem(Allow) { return CurrentCharacter.AllowItem = (Allow.toU
 function DialogDoAllowItem(C) { return (C.toUpperCase().trim() == "PLAYER") ? Player.AllowItem : CurrentCharacter.AllowItem } // Sets the AllowItem flag on the current character
 function DialogIsKneeling(C) { return (C.toUpperCase().trim() == "PLAYER") ? Player.IsKneeling() : CurrentCharacter.IsKneeling() }
 function DialogIsOwner() { return (CurrentCharacter.Name == Player.Owner.replace("NPC-", "")) }
-function DialogIsLover() { return (CurrentCharacter.Name == Player.Lover.replace("NPC-", "")) } // todo private
+function DialogIsLover() { return (CurrentCharacter.Name == Player.Lover.replace("NPC-", "")) }
 function DialogIsProperty() { return (CurrentCharacter.Owner == Player.Name) }
 function DialogIsRestrained(C) { return ((C.toUpperCase().trim() == "PLAYER") ? Player.IsRestrained() : CurrentCharacter.IsRestrained()) }
 function DialogIsBlind(C) { return ((C.toUpperCase().trim() == "PLAYER") ? Player.IsBlind() : CurrentCharacter.IsBlind()) }
