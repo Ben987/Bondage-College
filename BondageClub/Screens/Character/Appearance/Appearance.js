@@ -360,6 +360,8 @@ function AppearanceRun() {
 	DrawCharacter(C, 750, 0, 1);
 	DrawText(CharacterAppearanceHeaderText, 400, 40, "White", "Black");
 
+	var HideColorPicker = true;
+
 	// Out of the color picker
 	if (!CharacterAppearanceWardrobeMode && CharacterAppearanceColorPicker == "") {
 
@@ -406,9 +408,16 @@ function AppearanceRun() {
 
 		// Draw the color picker
 		ElementPosition("InputColor", 1450, 65, 300);
-		DrawButton(1610, 37, 65, 65, "", "White", "Icons/Color.png");
-		DrawImage("Backgrounds/ColorPicker.png", 1300, 145);
+		HideColorPicker = false;
+		ColorPickerDraw(1300, 145, 675, 830, ElementValue("InputColor"), function (Color) {
+			CharacterAppearanceSetColorForGroup(C, Color, CharacterAppearanceColorPicker);
+			ElementValue("InputColor", Color);
+		});
 
+	}
+
+	if (HideColorPicker) {
+		ColorPickerHide();
 	}
 
 	// Draw the default buttons
@@ -613,13 +622,6 @@ function AppearanceClick() {
 		if ((MouseX >= 1610) && (MouseX < 1675) && (MouseY >= 37) && (MouseY < 102))
 			if (CommonIsColor(ElementValue("InputColor")))
 				CharacterAppearanceSetColorForGroup(C, ElementValue("InputColor").toLowerCase(), CharacterAppearanceColorPicker);
-
-		// In color picker mode, we can pick a color from the color image
-		if ((MouseX >= 1300) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 975)) {
-			var Color = DrawRGBToHex(MainCanvas.getImageData(MouseX, MouseY, 1, 1).data);
-			CharacterAppearanceSetColorForGroup(C, Color, CharacterAppearanceColorPicker);
-			ElementValue("InputColor", Color);
-		}
 
 		// Accepts the new color
 		if ((MouseX >= 1768) && (MouseX < 1858) && (MouseY >= 25) && (MouseY < 115)) {

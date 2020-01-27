@@ -685,10 +685,6 @@ function DialogClick() {
 			// If the user wants to click on one of icons in the item menu
 			if ((MouseX >= 1000) && (MouseX < 2000) && (MouseY >= 15) && (MouseY <= 105)) DialogMenuButtonClick();
 
-			// In color picker mode, we can pick a color from the color image
-			if ((MouseX >= 1300) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 975) && (DialogColor != null))
-				ElementValue("InputColor", DrawRGBToHex(MainCanvas.getImageData(MouseX, MouseY, 1, 1).data));
-
 			// If the user clicks on one of the items
 			if ((MouseX >= 1000) && (MouseX <= 1975) && (MouseY >= 125) && (MouseY <= 1000) && ((DialogItemPermissionMode && (Player.FocusGroup != null)) || (Player.CanInteract() && !InventoryGroupIsBlocked((Player.FocusGroup != null) ? Player : CurrentCharacter))) && (DialogProgress < 0) && (DialogColor == null)) {
 
@@ -827,9 +823,12 @@ function DialogDrawItemMenu(C) {
 	// Draws the color picker
 	if (DialogColor != null) {
 		ElementPosition("InputColor", 1450, 65, 300);
-		if (CommonIsColor(ElementValue("InputColor"))) DrawRect(1290, 135, 695, 850, ElementValue("InputColor"));
-		DrawImage("Backgrounds/ColorPicker.png", 1300, 145);
+		ColorPickerDraw(1300, 145, 675, 830, ElementValue("InputColor"), function (Color) {
+			ElementValue("InputColor", Color);
+		});
 		return;
+	} else {
+		ColorPickerHide();
 	}
 
 	// In item permission mode, the player can choose which item he allows other users to mess with.  Allowed items have a green background.  Disallowed have a red background.
