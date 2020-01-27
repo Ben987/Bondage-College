@@ -52,7 +52,7 @@ function BackgroundSelectionInputChanged() {
 
 // When the background selection screens runs
 function BackgroundSelectionRun() {
-	DrawText(TextGet("Selection").replace("SelectedBackGround", BackgroundSelectionSelectName), 400, 65, "White", "Black");
+	DrawText(TextGet("Selection").replace("SelectedBackground", BackgroundSelectionSelectName), 400, 65, "White", "Black");
 	DrawText(TextGet("Filter").replace("Filtered", BackgroundSelectionView.length).replace("Total", BackgroundSelectionAll.length), 1100, 65, "White", "Black");
 
 	DrawButton(1685, 25, 90, 90, "", "White", "Icons/Next.png", TextGet("Next"));
