@@ -1,11 +1,5 @@
-gets grabbed by two maids and locked in a timer cell, following her owner commands.
-est attrapée par deux servantes et enfermée dans une cellule minutée, selon l'ordre de sa patronne.
-gets grabbed by two maids and escorted to the maid quarters to serve drinks for her owner.
-est attrapée par deux servantes et escortée aux quartiers des servantes pour servir des brevages.
 (Two maids grab you and escort you to their quarters.  Another maid addresses you.)  Your owner sent you here to work.
 (Deux servantes vous attrapent pour vous escorter dans leurs quartiers. Une autre s'adresse à vous.)  Votre patronne vous a envoyé ici pour travailler.
-gives a sealed envelope to her owner.
-donne une enveloppe svellée à sa patronne.
 Talk to everyone
 Parler à tous
 Whisper to

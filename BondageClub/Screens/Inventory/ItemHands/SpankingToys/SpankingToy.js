@@ -109,7 +109,7 @@ function InventorySpankingToySetType(NewType) {
 	var Dictionary = [];
 	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
 	Dictionary.push({Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
-	Dictionary.push({Tag: "ItemUsed", Text: DialogFocusItem.Asset.DynamicDescription().toLowerCase()});
+	Dictionary.push({Tag: "ItemUsed", AssetName : "SpankingToys" + ((NewType) ? NewType : "Crop")});
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
 
 	// Exit from item when done
