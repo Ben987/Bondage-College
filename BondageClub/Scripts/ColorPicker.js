@@ -1,7 +1,7 @@
 var ColorPickerX, ColorPickerY, ColorPickerWidth, ColorPickerHeight;
 var ColorPickerInitialHSV, ColorPickerHSV, ColorPickerCallback;
 
-var ColorPickerHueBarHeight = 20;
+var ColorPickerHueBarHeight = 40;
 var ColorPickerSVPanelGap = 20;
 
 window.addEventListener('load', ColorPickerSetupEventListener);
@@ -9,9 +9,16 @@ window.addEventListener('load', ColorPickerSetupEventListener);
 function ColorPickerSetupEventListener() {
     var CanvasElement = document.getElementById("MainCanvas");
     CanvasElement.addEventListener("mousedown", ColorPickerStartPick);
+    CanvasElement.addEventListener("touchstart", ColorPickerStartPick);
 }
 
 function ColorPickerStartPick(Event) {
+    // Only fires at first touch on mobile devices
+    if (Event.changedTouches) {
+        if (Event.changedTouches.length > 1) return;
+        Event.preventDefault();
+    }
+
     var SVPanelOffset = ColorPickerY + ColorPickerHueBarHeight + ColorPickerSVPanelGap;
     var SVPanelHeight = ColorPickerHeight - SVPanelOffset;
     var C = ColorPickerGetCoordinates(Event);
@@ -20,10 +27,13 @@ function ColorPickerStartPick(Event) {
     if (X >= ColorPickerX && X < ColorPickerX + ColorPickerWidth) {
         if (Y >= ColorPickerY && Y < ColorPickerY + ColorPickerHueBarHeight) {
             document.addEventListener("mousemove", ColorPickerPickHue);
+            document.addEventListener("touchmove", ColorPickerPickHue);
         } else if (Y >= SVPanelOffset && Y < SVPanelOffset + SVPanelHeight) {
             document.addEventListener("mousemove", ColorPickerPickSV);
+            document.addEventListener("touchmove", ColorPickerPickSV);
         }
         document.addEventListener("mouseup", ColorPickerEndPick);
+        document.addEventListener("touchend", ColorPickerEndPick);
     }
 }
 
@@ -31,16 +41,32 @@ function ColorPickerEndPick(Event) {
     document.removeEventListener("mousemove", ColorPickerPickHue);
     document.removeEventListener("mousemove", ColorPickerPickSV);
     document.removeEventListener("mouseup", ColorPickerEndPick);
+
+    document.removeEventListener("touchmove", ColorPickerPickHue);
+    document.removeEventListener("touchmove", ColorPickerPickSV);
+    document.removeEventListener("touchend", ColorPickerEndPick);
 }
 
 function ColorPickerGetCoordinates(Event) {
+    var X, Y;
+    if (Event.changedTouches) {
+        // Mobile
+        var Touch = Event.changedTouches[0];
+        X = Touch.clientX;
+        Y = Touch.clientY;
+    } else {
+        // PC
+        X = Event.clientX;
+        Y = Event.clientY;
+    }
+
     var rect = document.getElementById("MainCanvas").getBoundingClientRect();
 	if (document.body.clientWidth <= document.body.clientHeight * 2) {
-		MouseX = Math.round((Event.clientX - rect.left) * 2000 / document.body.clientWidth);
-		MouseY = Math.round((Event.clientY - rect.top) * 2000 / document.body.clientWidth);
+		MouseX = Math.round((X - rect.left) * 2000 / document.body.clientWidth);
+		MouseY = Math.round((Y - rect.top) * 2000 / document.body.clientWidth);
 	} else {
-		MouseX = Math.round((Event.clientX - rect.left) * 1000 / document.body.clientHeight);
-		MouseY = Math.round((Event.clientY - rect.top) * 1000 / document.body.clientHeight);
+		MouseX = Math.round((X - rect.left) * 1000 / document.body.clientHeight);
+		MouseY = Math.round((Y - rect.top) * 1000 / document.body.clientHeight);
     }
     return { X: MouseX, Y: MouseY };
 }
