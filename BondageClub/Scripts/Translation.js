@@ -173,8 +173,6 @@ var TranslationDictionary = [
 			"Screens/Room/Shibari/Dialog_NPC_Shibari_Student_FR.txt",
 			"Screens/Room/Shop/Text_Shop_FR.txt",
 			"Screens/Room/SlaveMarket/Dialog_NPC_SlaveMarket_SlaveToTrain_FR.txt",
-			"Screens/Room/Stable/Dialog_NPC_Stable_Pony_FR.txt",
-			"Screens/Room/Stable/Dialog_NPC_Stable_Trainer_FR.txt",
 			"Screens/Room/Stable/Text_Stable_FR.txt",
 		]
 	},
