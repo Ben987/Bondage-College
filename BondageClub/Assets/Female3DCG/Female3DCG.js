@@ -13,8 +13,8 @@
 // Spanking Toys Asset
 var AssetSpankingToys = {
 	Name: "SpankingToys", Wear: false, Random: false, BuyGroup: "SpankingToys", IgnoreParentGroup: true,
-	DynamicDescription: () => InventorySpankingToysGetType(),
-	DynamicPreviewIcon: () => InventorySpankingToysGetType(),
+	DynamicDescription: C => InventorySpankingToysGetDescription(C),
+	DynamicPreviewIcon: C => InventorySpankingToysGetType(C),
 	DynamicAllowInventoryAdd: () => InventoryIsWorn(Player, "ItemHands", "SpankingToys"),
 	DynamicExpressionTrigger: () => SpankingInventory.find(x => x.Name == InventorySpankingToysGetType()).ExpressionTrigger
 };
@@ -1091,9 +1091,9 @@ var AssetFemale3DCG = [
 			{ Name: "PolishedMittens", SelfBondage: false, Value: 80, AllowPose: ["BackBoxTie", "BackElbowTouch", "BackCuffs", "Yoked"], Effect: ["Block", "Prone"], Time: 20, RemoveTime: 10, Difficulty: 8, AllowLock: true  },
 			{ Name: "DuctTape", SelfBondage: false, Value: 50, SetPose: ["TapedHands"], AllowPose: ["BackBoxTie", "BackElbowTouch", "BackCuffs", "Yoked"], Hide: ["Gloves"], Effect: ["Block", "Prone"], Time: 20, RemoveTime: 10, Difficulty: 5, BuyGroup: "DuctTape" },
 			{
-				Name: "SpankingToys", Priority: 46, Wear: true,  IsRestraint: false, Extended: true, Random: false, BuyGroup: "SpankingToys", AllowType: ["Crop", "Flogger", "Cane", "HeartCrop", "Paddle", "WhipPaddle", "Whip", "CattleProd", "TennisRacket"], IgnoreParentGroup: true, AllowPose: ["BackBoxTie", "BackElbowTouch", "BackCuffs", "Yoked"],
-				DynamicDescription: () => { return ((InventoryIsWorn(CurrentCharacter, "ItemHands", "SpankingToys")) && (InventoryGet(CurrentCharacter, "ItemHands").Property != null)) ? InventoryGet(CurrentCharacter, "ItemHands").Property.Type : "Spanking Toy" },
-				DynamicPreviewIcon: () => { return ((InventoryIsWorn(CurrentCharacter, "ItemHands", "SpankingToys")) && (InventoryGet(CurrentCharacter, "ItemHands").Property != null)) ? InventoryGet(CurrentCharacter, "ItemHands").Property.Type : "Paddle" }
+				Name: "SpankingToys", Priority: 46, Wear: true, IsRestraint: false, Random: false, BuyGroup: "SpankingToys", IgnoreParentGroup: true, AllowPose: ["BackBoxTie", "BackElbowTouch", "BackCuffs", "Yoked"],
+				DynamicDescription: C => InventorySpankingToysGetDescription(C),
+				DynamicPreviewIcon: C => InventorySpankingToysGetType(C)
 			}, {
 				Name: "SpankingToysCrop", Value: 20, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				DynamicAllowInventoryAdd: () => { return false }
@@ -1254,7 +1254,7 @@ var AssetFemale3DCG = [
 					{ Name: "Gag", AllowColorize: true }
 				]
 			},
-			{ Name: "DuctTape", Extended: true, Difficulty: -2, Value: 50, Time: 10, RemoveTime: 5, BuyGroup: "DuctTape", Hide: ["Mouth"], Effect: ["GagVeryLight"], AllowEffect: ["GagVeryLight", "GagLight", "GagEasy", "GagNormal"], AllowType: ["Small", "Crossed", "Full", "Double", "Cover"], SetPose: ["GagFlat"], Prerequisite: "GagFlat" },
+			{ Name: "DuctTape", Difficulty: -2, Value: 50, Time: 10, RemoveTime: 5, BuyGroup: "DuctTape", Hide: ["Mouth"], Effect: ["GagVeryLight"], AllowEffect: ["GagVeryLight", "GagLight", "GagEasy", "GagNormal"], SetPose: ["GagFlat"], Prerequisite: "GagFlat" },
 			{ Name: "PacifierGag", Random: false, Difficulty: -50, Effect: ["GagVeryLight"], Value: 10, Time: 2, Hide: ["Mouth"], ExpressionTrigger: [{ Group: "Blush", Name: "Light", Timer: 5 }, { Group: "Eyes", Name: "Closed", Timer: 5 }], BuyGroup: "PacifierGag", Block: ["ItemMouth2", "ItemMouth3"] },
 			{ Name: "HarnessPacifierGag", Random: false, Difficulty: 2, Effect: ["GagLight"], Value: 50, Time: 20, AllowLock: true, Hide: ["Mouth"], ExpressionTrigger: [{ Group: "Blush", Name: "Light", Timer: 5 }, { Group: "Eyes", Name: "Closed", Timer: 5 }], BuyGroup: "HarnessPacifierGag", SetPose: ["GagUnique"], Prerequisite: "GagUnique" },
 			{ Name: "DusterGag", Priority: 43, Random: false, Effect: ["GagEasy"], Difficulty: 4, Value: -1, Time: 20, AllowLock: true, Hide: ["Mouth"], BuyGroup: "DusterGag", Block: ["ItemMouth2", "ItemMouth3"] },
@@ -1380,7 +1380,7 @@ var AssetFemale3DCG = [
 					{ Name: "Gag", AllowColorize: true }
 				]
 			},
-			{ Name: "DuctTape", Random: false, Extended: true, Difficulty: -2, Value: -1, Time: 10, RemoveTime: 5, Hide: ["Mouth"], BuyGroup: "DuctTape", Effect: ["GagVeryLight"], AllowEffect: ["GagVeryLight", "GagLight", "GagEasy", "GagNormal"], AllowType: ["Small", "Crossed", "Full", "Double", "Cover"], Block: ["ItemMouth"], SetPose: ["GagFlat"], Prerequisite: "GagFlat" },
+			{ Name: "DuctTape", Random: false, Difficulty: -2, Value: -1, Time: 10, RemoveTime: 5, Hide: ["Mouth"], BuyGroup: "DuctTape", Effect: ["GagVeryLight"], AllowEffect: ["GagVeryLight", "GagLight", "GagEasy", "GagNormal"],  Block: ["ItemMouth"], SetPose: ["GagFlat"], Prerequisite: "GagFlat" },
 			{ Name: "HarnessPacifierGag", Random: false, Difficulty: 2, Effect: ["GagLight"], Value: -1, Time: 20, AllowLock: true, Hide: ["Mouth"], ExpressionTrigger: [{ Group: "Blush", Name: "Light", Timer: 5 }, { Group: "Eyes", Name: "Closed", Timer: 5 }], Block: ["ItemMouth"], BuyGroup: "HarnessPacifierGag", SetPose: ["GagUnique"], Prerequisite: "GagUnique" },
 			{ Name: "DusterGag", Random: false, Priority: 43, Effect: ["GagEasy"], Difficulty: 4, Value: -1, Time: 20, AllowLock: true, Hide: ["Mouth"], BuyGroup: "DusterGag", Block: ["ItemMouth", "ItemMouth3"] },
 			{ Name: "HarnessPonyBits", Random: false, Difficulty: 4, Effect: ["GagNormal"], Value: -1, Time: 20, AllowLock: true, Block: ["ItemMouth"], BuyGroup: "HarnessPonyBits", SetPose: ["GagUnique"], Prerequisite: "GagUnique" },
@@ -1449,7 +1449,7 @@ var AssetFemale3DCG = [
 					{ Name: "Gag", AllowColorize: true }
 				]
 			},
-			{ Name: "DuctTape", Random: false, Extended: true, Difficulty: -2, Value: -1, Time: 10, RemoveTime: 5, Hide: ["Mouth"], BuyGroup: "DuctTape", Effect: ["GagVeryLight"], AllowEffect: ["GagVeryLight", "GagLight", "GagEasy", "GagNormal"], AllowType: ["Small", "Crossed", "Full", "Double", "Cover"], Block: ["ItemMouth", "ItemMouth2"] },
+			{ Name: "DuctTape", Random: false, Difficulty: -2, Value: -1, Time: 10, RemoveTime: 5, Hide: ["Mouth"], BuyGroup: "DuctTape", Effect: ["GagVeryLight"], AllowEffect: ["GagVeryLight", "GagLight", "GagEasy", "GagNormal"], Block: ["ItemMouth", "ItemMouth2"] },
 			{ Name: "HarnessPacifierGag", Random: false, Difficulty: 2, Effect: ["GagLight"], Value: -1, Time: 20, AllowLock: true, Hide: ["Mouth"], ExpressionTrigger: [{ Group: "Blush", Name: "Light", Timer: 5 }, { Group: "Eyes", Name: "Closed", Timer: 5 }], Block: ["ItemMouth", "ItemMouth2"], BuyGroup: "HarnessPacifierGag", SetPose: ["GagUnique"], Prerequisite: "GagUnique" },
 			{ Name: "DusterGag", Random: false, Priority: 43, Effect: ["GagEasy"], Difficulty: 4, Value: -1, Time: 20, AllowLock: true, Hide: ["Mouth"], BuyGroup: "DusterGag", Block: ["ItemMouth", "ItemMouth2"] },
 			{ Name: "HarnessPonyBits", Random: false, Difficulty: 4, Effect: ["GagNormal"], Value: -1, Time: 20, AllowLock: true, Block: ["ItemMouth", "ItemMouth2"], BuyGroup: "HarnessPonyBits", SetPose: ["GagUnique"], Prerequisite: "GagUnique" },

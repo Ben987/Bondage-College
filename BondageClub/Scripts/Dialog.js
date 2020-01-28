@@ -216,7 +216,7 @@ function DialogMenuButtonBuild(C) {
 		if ((Item != null) && !InventoryItemHasEffect(Item, "Lock", true) && InventoryItemHasEffect(Item, "Mounted", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Dismount");
 		if ((Item != null) && !InventoryItemHasEffect(Item, "Lock", true) && InventoryItemHasEffect(Item, "Enclose", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Escape");
 		if (InventoryItemHasEffect(Item, "Egged") && InventoryAvailable(Player, "VibratorRemote", "ItemVulva") && Player.CanInteract()) DialogMenuButton.push("Remote");
-		if ((Item != null) && Item.Asset.Extended && Player.CanInteract() && !InventoryGroupIsBlocked(C) && (!Item.Asset.OwnerOnly || (C.IsOwnedByPlayer()))) DialogMenuButton.push("Use");
+		if ((Item != null) && Item.Asset.ExtendedOrTypeInfo && Player.CanInteract() && !InventoryGroupIsBlocked(C) && (!Item.Asset.OwnerOnly || (C.IsOwnedByPlayer()))) DialogMenuButton.push("Use");
 		if (Player.CanInteract()) DialogMenuButton.push("ColorPick");
 		if (C.ID == 0) {
 			if (DialogItemPermissionMode) DialogMenuButton.push("DialogNormalMode");
@@ -613,7 +613,14 @@ function DialogItemClick(ClickItem) {
 						// Prevent two unique gags being equipped. Also check if selfbondage is allowed for the item if used on self
 						if (ClickItem.Asset.Prerequisite == "GagUnique" && C.Pose.indexOf("GagUnique") >= 0) DialogSetText("CanOnlyEquipOneOfThisGag");
 						else if (ClickItem.Asset.Prerequisite == "GagCorset" && C.Pose.indexOf("GagCorset") >= 0) DialogSetText("CannotUseMultipleCorsetGags");
-						else if (ClickItem.Asset.SelfBondage || (C.ID != 0)) DialogProgressStart(C, CurrentItem, ClickItem);
+						else if (ClickItem.Asset.SelfBondage || (C.ID != 0)) {
+							if (ClickItem.Asset.TypeInfo && ClickItem.Asset.TypeInfo.SelectBeforeWear) {
+								AssetTypeSelectBefore = true;
+								DialogExtendItem(ClickItem);
+							} else {
+								DialogProgressStart(C, CurrentItem, ClickItem);
+							}							
+						}
 						else DialogSetText("CannotUseOnSelf");
 					} else {
 
@@ -627,7 +634,7 @@ function DialogItemClick(ClickItem) {
 					}
 				}
 				else
-					if ((CurrentItem.Asset.Name == ClickItem.Asset.Name) && CurrentItem.Asset.Extended)
+					if ((CurrentItem.Asset.Name == ClickItem.Asset.Name) && CurrentItem.Asset.ExtendedOrTypeInfo)
 						DialogExtendItem(CurrentItem);
 		return;
 	}
@@ -637,7 +644,7 @@ function DialogItemClick(ClickItem) {
 		if (InventoryItemHasEffect(ClickItem, "Unlock-" + CurrentItem.Asset.Name))
 			DialogProgressStart(C, CurrentItem, null);
 		else
-			if ((CurrentItem.Asset.Name == ClickItem.Asset.Name) && CurrentItem.Asset.Extended)
+			if ((CurrentItem.Asset.Name == ClickItem.Asset.Name) && CurrentItem.Asset.ExtendedOrTypeInfo)
 				DialogExtendItem(CurrentItem);
 			else
 				if (!ClickItem.Asset.Wear)
@@ -675,9 +682,10 @@ function DialogClick() {
 	if (((Player.FocusGroup != null) || ((CurrentCharacter.FocusGroup != null) && CurrentCharacter.AllowItem)) && (DialogIntro() != "")) {
 
 		// If we must are in the extended menu of the item
-		if (DialogFocusItem != null)
-			CommonDynamicFunction("Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Click()");
-		else {
+		if (DialogFocusItem != null) {
+			if (DialogFocusItem.Asset.Extended) CommonDynamicFunction("Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Click()");
+			else AssetTypeSetClick();
+		} else {
 
 			// If the user wants to speed up the add / swap / remove progress
 			if ((MouseX >= 1000) && (MouseX < 2000) && (MouseY >= 600) && (MouseY < 1000) && (DialogProgress >= 0) && CommonIsMobile) DialogStruggle(false);
@@ -699,7 +707,7 @@ function DialogClick() {
 
 					// If the item is clicked
 					if ((MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275))
-						if (DialogInventory[I].Asset.Enable || (DialogInventory[I].Asset.Extended && DialogInventory[I].Asset.OwnerOnly && CurrentCharacter.IsOwnedByPlayer())) {
+						if (DialogInventory[I].Asset.Enable || (DialogInventory[I].Asset.ExtendedOrTypeInfo && DialogInventory[I].Asset.OwnerOnly && CurrentCharacter.IsOwnedByPlayer())) {
 							DialogItemClick(DialogInventory[I]);
 							break;
 						}
@@ -808,7 +816,8 @@ function DialogExtendItem(Item, SourceItem) {
 	DialogColor = null;
 	DialogFocusItem = Item;
 	DialogFocusSourceItem = SourceItem;
-	CommonDynamicFunction("Inventory" + Item.Asset.Group.Name + Item.Asset.Name + "Load()");
+	if (Item.Asset.TypeInfo) AssetTypeSetLoad();
+	else if (Item.Asset.Extended) CommonDynamicFunction("Inventory" + Item.Asset.Group.Name + Item.Asset.Name + "Load()");
 }
 
 // Draw the item menu dialog
@@ -847,8 +856,8 @@ function DialogDrawItemMenu(C) {
 				(DialogInventory[I].Worn ? "gray" : Block ? Hover ? "red" : "pink" : Hover ? "green" : "lime") : 
 				((Hover && !Block) ? "cyan" : DialogInventory[I].Worn ? "pink" : Block ? "gray" : "white"));
 			if (Item.Worn && InventoryItemHasEffect(InventoryGet(C, Item.Asset.Group.Name), "Vibrating", true)) DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.Group.Name + "/Preview/" + Item.Asset.Name + ".png", X + Math.floor(Math.random() * 3) + 1, Y + Math.floor(Math.random() * 3) + 1, 221, 221);
-			else DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.Group.Name + "/Preview/" + Item.Asset.Name + Item.Asset.DynamicPreviewIcon() + ".png", X + 2, Y + 2, 221, 221);
-			DrawTextFit(Item.Asset.DynamicDescription(), X + 112, Y + 250, 221, "black");
+			else DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.Group.Name + "/Preview/" + Item.Asset.Name + Item.Asset.DynamicPreviewIcon(C) + ".png", X + 2, Y + 2, 221, 221);
+			DrawTextFit(Item.Asset.DynamicDescription(C), X + 112, Y + 250, 221, "black");
 			if (Item.Icon != "") DrawImage("Icons/" + Item.Icon + ".png", X + 2, Y + 110);
 			X = X + 250;
 			if (X > 1800) {
@@ -888,7 +897,7 @@ function DialogDrawItemMenu(C) {
 
 			// Add / swap / remove the item
 			if (DialogProgressNextItem == null) InventoryRemove(C, C.FocusGroup.Name);
-			else InventoryWear(C, DialogProgressNextItem.Asset.Name, DialogProgressNextItem.Asset.Group.Name, (DialogColorSelect == null) ? "Default" : DialogColorSelect, SkillGetLevel(Player, "Bondage"));
+			else InventoryWear(C, DialogProgressNextItem.Asset.Name, DialogProgressNextItem.Asset.Group.Name, (DialogColorSelect == null) ? "Default" : DialogColorSelect, SkillGetLevel(Player, "Bondage"), DialogProgressNextItem.Property);
 
 			// remove associated items at the same time
 			if (InventoryGet(C, "ItemNeck") == null) InventoryRemove(C, "ItemNeckAccessories");
@@ -897,14 +906,14 @@ function DialogDrawItemMenu(C) {
 			// The player can use another item right away, for another character we jump back to her reaction
 			if (C.ID == 0) {
 				if (DialogProgressNextItem == null) SkillProgress("Evasion", DialogProgressSkill);
-				if ((DialogProgressNextItem == null) || !DialogProgressNextItem.Asset.Extended) {
+				if ((DialogProgressNextItem == null) || !DialogProgressNextItem.Asset.ExtendedOrTypeInfo) {
 					DialogInventoryBuild(C);
 					DialogProgress = -1;
 					DialogColor = null;
 				}
 			} else {
 				if (DialogProgressNextItem != null) SkillProgress("Bondage", DialogProgressSkill);
-				if (((DialogProgressNextItem == null) || !DialogProgressNextItem.Asset.Extended) && (CurrentScreen != "ChatRoom")) {
+				if (((DialogProgressNextItem == null) || !DialogProgressNextItem.Asset.ExtendedOrTypeInfo) && (CurrentScreen != "ChatRoom")) {
 					C.CurrentDialog = DialogFind(C, ((DialogProgressNextItem == null) ? ("Remove" + DialogProgressPrevItem.Asset.Name) : DialogProgressNextItem.Asset.Name), ((DialogProgressNextItem == null) ? "Remove" : "") + C.FocusGroup.Name);
 					DialogLeaveItemMenu();
 				}
@@ -915,6 +924,11 @@ function DialogDrawItemMenu(C) {
 				DialogInventoryBuild(C);
 				ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, false);
 				DialogExtendItem(InventoryGet(C, DialogProgressNextItem.Asset.Group.Name));
+			} else if ((DialogProgressNextItem != null) && DialogProgressNextItem.Asset.TypeInfo) {
+				DialogFocusItem = null;
+				DialogProgress = -1;
+				DialogInventoryBuild(C);
+				ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, true);
 			} else ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, true);
 
 			// Rebuilds the menu
@@ -976,7 +990,8 @@ function DialogDraw() {
 
 		// The view can show one specific extended item or the list of all items for a group
 		if (DialogFocusItem != null) {
-			CommonDynamicFunction("Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Draw()");
+			if (DialogFocusItem.Asset.Extended) CommonDynamicFunction("Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Draw()");
+			else AssetTypeSetDraw();
 			DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 		} else DialogDrawItemMenu((Player.FocusGroup != null) ? Player : CurrentCharacter);
 

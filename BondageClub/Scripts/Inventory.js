@@ -157,10 +157,10 @@ function InventoryGet(C, AssetGroup) {
 }
 
 // Makes the character wear an item, color can be undefined
-function InventoryWear(C, AssetName, AssetGroup, ItemColor, Difficulty) {
+function InventoryWear(C, AssetName, AssetGroup, ItemColor, Difficulty, Property) {
 	for (var A = 0; A < Asset.length; A++)
 		if ((Asset[A].Name == AssetName) && (Asset[A].Group.Name == AssetGroup)) {
-			CharacterAppearanceSetItem(C, AssetGroup, Asset[A], ((ItemColor == null) || (ItemColor == "Default")) ? AssetGet(C.AssetFamily, AssetGroup, AssetName).DefaultColor : ItemColor, Difficulty);
+			CharacterAppearanceSetItem(C, AssetGroup, Asset[A], ((ItemColor == null) || (ItemColor == "Default")) ? AssetGet(C.AssetFamily, AssetGroup, AssetName).DefaultColor : ItemColor, Difficulty, Property);
 			InventoryExpressionTrigger(C, InventoryGet(C, AssetGroup));
 			return;
 		}
@@ -382,3 +382,8 @@ function InventoryConfiscateRemote() {
 function InventoryIsWorn(C, AssetGroup, AssetName){
 	return C && C.Appearance && C.Appearance.some(Item => Item.Asset.Group.Name == AssetGroup && Item.Asset.Name == AssetName);
 } 
+
+// checks if an item is a specific type
+function InventoryItemIsType(Item, Type) {
+	return ((Item != null) && (Item.Property != null)) ? (Item.Property.Type == Type) : (Type == null);
+}

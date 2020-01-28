@@ -199,6 +199,7 @@ function AssetLoadAll() {
 	Asset = [];
 	AssetGroup = [];
 	AssetLoad(AssetFemale3DCG, "Female3DCG");
+	AssetTypeLoad();
 	Pose = PoseFemale3DCG;
 }
 

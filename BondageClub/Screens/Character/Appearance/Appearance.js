@@ -438,6 +438,7 @@ function CharacterAppearanceSetItem(C, Group, ItemAsset, NewColor, DifficultyFac
 			Difficulty: parseInt((ItemAsset.Difficulty == null) ? 0 : ItemAsset.Difficulty) + parseInt(DifficultyFactor),
 			Color: ((NewColor == null) ? ItemColor : NewColor)
 		}
+		if (Refresh && typeof Refresh === "object") NA.Property = Refresh;
 		C.Appearance.push(NA);
 	}
 
