@@ -46,12 +46,11 @@ function ChatCreateRun() {
 	ElementPosition("InputSize", 1400, 560, 150);
 	DrawText(TextGet("RoomBackground"), 650, 672, "White", "Gray");
 	DrawButton(1300, 640, 300, 65, TextGet("ShowAll"), "White");
-	DrawBackNextButton(900, 640, 350, 65, TextGet(ChatCreateBackgroundSelect), "White", null,
-		() => TextGet((ChatCreateBackgroundIndex == 0) ? ChatCreateBackgroundList[ChatCreateBackgroundList.length - 1] : ChatCreateBackgroundList[ChatCreateBackgroundIndex - 1]),
-		() => TextGet((ChatCreateBackgroundIndex >= ChatCreateBackgroundList.length - 1) ? ChatCreateBackgroundList[0] : ChatCreateBackgroundList[ChatCreateBackgroundIndex + 1]));
+	DrawBackNextButton(900, 640, 350, 65, DialogFind(Player, ChatCreateBackgroundSelect), "White", null,
+		() => DialogFind(Player, (ChatCreateBackgroundIndex == 0) ? ChatCreateBackgroundList[ChatCreateBackgroundList.length - 1] : ChatCreateBackgroundList[ChatCreateBackgroundIndex - 1]),
+		() => DialogFind(Player, (ChatCreateBackgroundIndex >= ChatCreateBackgroundList.length - 1) ? ChatCreateBackgroundList[0] : ChatCreateBackgroundList[ChatCreateBackgroundIndex + 1]));
 	DrawButton(600, 800, 300, 65, TextGet("Create"), "White");
 	DrawButton(1100, 800, 300, 65, TextGet("Cancel"), "White");
-
 }
 
 // When the player clicks in the chat creation screen
@@ -62,7 +61,7 @@ function ChatCreateClick() {
 
 	// When we select a new background
 	if ((MouseX >= 900) && (MouseX < 1250) && (MouseY >= 640) && (MouseY < 705)) {
-		ChatCreateBackgroundIndex += ((MouseX < 1275 && !CommonIsMobile) ? -1 : 1);
+		ChatCreateBackgroundIndex += ((MouseX < 1075 && !CommonIsMobile) ? -1 : 1);
 		if (ChatCreateBackgroundIndex >= ChatCreateBackgroundList.length) ChatCreateBackgroundIndex = 0;
 		if (ChatCreateBackgroundIndex < 0) ChatCreateBackgroundIndex = ChatCreateBackgroundList.length - 1;
 		ChatCreateBackgroundSelect = ChatCreateBackgroundList[ChatCreateBackgroundIndex];
@@ -71,7 +70,7 @@ function ChatCreateClick() {
 
 	// Show backgrounds in grid
 	if ((MouseX >= 1300) && (MouseX < 1600) && (MouseY >= 640) && (MouseY < 705)) {
-		BackgroundSelectionMake(ChatCreateBackgroundList, Name => ChatCreateBackgroundSelect = Name);
+		BackgroundSelectionMake(ChatCreateBackgroundList, ChatCreateBackgroundIndex, Name => ChatCreateBackgroundSelect = Name);
 		document.getElementById("InputName").style.display = "none";
 		document.getElementById("InputDescription").style.display = "none";
 		document.getElementById("InputSize").style.display = "none";
