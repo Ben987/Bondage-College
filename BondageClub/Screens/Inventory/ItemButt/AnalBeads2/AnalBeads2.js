@@ -36,7 +36,12 @@ function InventoryItemButtAnalBeads2Click() {
 
 // Sets the amount of beads
 function InventoryItemButtAnalBeads2SetBeads(Modifier) {
+	// Gets the current item and character
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	if ((CurrentScreen == "ChatRoom") || (DialogFocusItem == null)) {
+		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
+		InventoryItemButtAnalBeads2Load();
+	}
 	
 	// Set the new amount of beads
 	DialogFocusItem.Property.InsertedBeads = DialogFocusItem.Property.InsertedBeads + Modifier;
@@ -62,4 +67,10 @@ function InventoryItemButtAnalBeads2SetBeads(Modifier) {
 		ChatRoomPublishCustomAction("AnalBeads2SetMin", true, Dictionary);
 	else
 		ChatRoomPublishCustomAction("AnalBeads2Set" + (Modifier > 0 ? "UpTo" + beadsNum : "Down"), true, Dictionary);
+		
+	// Rebuilds the inventory menu
+	if (DialogInventory != null) {
+		DialogFocusItem = null;
+		DialogMenuButtonBuild(C);
+	}
 }
