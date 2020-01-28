@@ -29,7 +29,7 @@ function MainHallLoad() {
 		if (Player.Appearance[A].Asset.Name == "SlaveCollar")
 			if (Player.Appearance[A].Property)
 				MainHallHasSlaveCollar = true;
-	MainHallTip = Math.floor(Math.random() * 20);
+	MainHallTip = Math.floor(Math.random() * 21);
 	CommonReadCSV("NoArravVar", "Room", "Management", "Dialog_NPC_Management_RandomGirl");
 	CommonReadCSV("NoArravVar", "Room", "KidnapLeague", "Dialog_NPC_KidnapLeague_RandomKidnapper");
 	CommonReadCSV("NoArravVar", "Room", "Private", "Dialog_NPC_Private_Custom");
@@ -187,7 +187,7 @@ function MainHallClick() {
 		ChatRoomSpace = "";
 		ChatSearchBackground = "IntroductionDark";
 		ChatSearchLeaveRoom = "MainHall";
-		ChatCreateBackgroundList = ["Introduction", "KidnapLeague", "MaidQuarters", "MainHall", "Management", "Private", "Shibari", "Bedroom", "HorseStable", "Nursery", "PrisonHall", "BDSMRoomBlue", "BDSMRoomPurple", "BDSMRoomRed", "Gardens", "IndoorPool", "OutdoorPool", "MaidCafe", "PublicBath", "ParkDay", "ParkNight", "ChillRoom", "Boudoir", "BondageBedChamber", "Beach", "ForestPath", "DeepForest", "SpookyForest", "AbandonedBuilding", "BalconyNight", "CozyLivingRoom", "RooftopParty", "CosyChalet", "ParkWinter", "XmasEve", "XmasDay", "StreetNight", "SnowyStreet"];
+		ChatCreateBackgroundList = ["Introduction", "KidnapLeague", "MaidQuarters", "MainHall", "Management", "Private", "Shibari", "Bedroom", "HorseStable", "Nursery", "PrisonHall", "BDSMRoomBlue", "BDSMRoomPurple", "BDSMRoomRed", "Gardens", "IndoorPool", "OutdoorPool", "MaidCafe", "PublicBath", "ParkDay", "ParkNight", "ChillRoom", "Boudoir", "BondageBedChamber", "Beach", "ForestPath", "DeepForest", "SpookyForest", "SlumRuins", "AbandonedBuilding", "BalconyNight", "CozyLivingRoom", "RooftopParty", "CosyChalet", "ParkWinter", "XmasEve", "XmasDay", "StreetNight", "SnowyStreet"];
 		CommonSetScreen("Online", "ChatSearch");
 	}
 

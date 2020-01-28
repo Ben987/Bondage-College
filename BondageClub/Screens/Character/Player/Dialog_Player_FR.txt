@@ -177,6 +177,26 @@ SourceCharacter rolls a DiceType sided dice.  The result is: DiceResult.
 SourceCharacter roule un dé à DiceType côtés. Le résultat est: DiceResult.
 SourceCharacter flips a coin.  The result is: CoinResult.
 SourceCharacter lance une pièce. Le résultat est: CoinResult.
+TargetCharacterName gets grabbed by two maids and locked in a timer cell, following her owner commands.
+TargetCharacterName est attrapée par deux servantes et enfermée dans une cellule minutée, selon l'ordre de sa patronne.
+TargetCharacterName gets grabbed by two maids and escorted to the maid quarters to serve drinks for her owner.
+TargetCharacterName est attrapée par deux servantes et escortée aux quartiers des servantes pour servir des brevages.
+TargetCharacterName gives a sealed envelope to her owner.
+TargetCharacterName donne une enveloppe scellée à sa patronne.
+SourceCharacter picks a beer from DestinationCharacter tray.
+SourceCharacter se prend un bière du plateau de DestinationCharacter.
+SourceCharacter picks a glass of wine from DestinationCharacter tray.
+SourceCharacter se prend un verre de vin du plateau de DestinationCharacter.
+SourceCharacter picks a Margarita from DestinationCharacter tray.
+SourceCharacter se prend un margarita du plateau de DestinationCharacter.
+SourceCharacter buys a glass of Whiskey from TargetCharacter.
+SourceCharacter achète un verre de whiskey de TargetCharacter.
+SourceCharacter buys a glass of champagne from TargetCharacter.
+SourceCharacter achète un verre de champagne de TargetCharacter.
+SourceCharacter buys a round of shooters for everyone, from TargetCharacter.
+SourceCharacter achète une ronde de shooters pour tous de TargetCharacter.
+SourceCharacter buys a beer pitcher for everyone, from TargetCharacter.
+SourceCharacter achète une carafe de bière de TargetCharacter.
 Member number on lock:
 Numéro de membre sur le cadenas:
 Time left:

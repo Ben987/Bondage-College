@@ -31,6 +31,8 @@ Cloth,SteampunkCorsetTop1,Steampunk Corset
 Cloth,BondageDress1,Bondage Dress Style 1
 Cloth,BondageDress2,Bondage Dress Style 2
 Cloth,ShoulderlessTop,Shoulderless Top
+Cloth,Dress3,Long Dress
+Cloth,ComfyTop,Sleep Top
 ClothLower,,Bottom
 ClothLower,Skirt1,Skirt
 ClothLower,TennisSkirt1,Tennis
@@ -80,6 +82,8 @@ Bra,KittyBra1,Kitty Bra
 Bra,FishnetBikini1,Fishnet Bikini
 Bra,SexyBeachBra1,Sexy Beach Bra
 Bra,SexyBikiniBra1,Micro Bikini Top
+Bra,StarHarnessBra,Star Harness
+Bra,HeartTop,Heart Top
 Panties,,Panties
 Panties,Panties1,Style 1
 Panties,Panties7,Style 2
@@ -171,6 +175,7 @@ HairAccessory1,WolfEars2,Wolf Ears Big
 HairAccessory1,FoxEars2,Fox Ears Large 
 HairAccessory1,FoxEars3,Fox Ears Bell
 HairAccessory1,PuppyEars2,Floppy Puppy Ears
+HairAccessory1,RaccoonEars1,Raccoon Ears
 HairAccessory2,,Hair Accessory
 HairAccessory2,Ears1,Ears Small
 HairAccessory2,Ears2,Ears Large
@@ -196,6 +201,7 @@ HairAccessory2,WolfEars2,Wolf Ears Big
 HairAccessory2,FoxEars2,Fox Ears Large 
 HairAccessory2,FoxEars3,Fox Ears Bell
 HairAccessory2,PuppyEars2,Floppy Puppy Ears
+HairAccessory2,RaccoonEars1,Raccoon Ears
 Gloves,,Gloves
 Gloves,Gloves1,Short Gloves
 Gloves,Gloves2,Long Gloves
@@ -283,6 +289,8 @@ HairBack,HairBack11,Style 14
 HairBack,HairBack6,Style 15
 HairBack,HairBack21,Style 16
 HairBack,HairBack22,Style 17
+HairBack,HairBack23,Style 18
+HairBack,HairBack24,Style 19
 HairFront,,Front Hair
 HairFront,HairFront1,Style 1
 HairFront,HairFront2,Style 2
@@ -311,10 +319,12 @@ Eyes,Eyes9,Style 9
 Eyes,Eyes10,Style 10
 Eyes,Eyes11,Style 11
 Mouth,,Mouth
-Mouth,Mouth,Mouth
+Mouth,Regular,Regular
+Mouth,Discreet,Discreet
 Nipples,,Nipples Style
 Nipples,Nipples1,Small
 Nipples,Nipples2,Large
+Nipples,Nipples3,Light
 Pussy,,Pussy
 Pussy,PussyLight1,Light 1
 Pussy,PussyLight2,Light 2
@@ -336,13 +346,13 @@ ItemFeet,HempRope,Hemp Rope
 ItemFeet,LeatherBelt,Leather Belt
 ItemFeet,SturdyLeatherBelts,Sturdy Leather Belt
 ItemFeet,Irish8Cuffs,Irish 8 Feet Cuffs
-ItemFeet,SuspensionHempRope,Suspension Hemp Rope
 ItemFeet,DuctTape,Duct Tape
 ItemFeet,LeatherAnkleCuffs,Leather Ankle Cuffs
 ItemFeet,OrnateAnkleCuffs,Ornate Ankle Cuffs
 ItemFeet,SpreaderMetal, Metal Leg Spreader
 ItemFeet,BallChain,Ball And Chain
 ItemFeet,AnkleShackles, Ankle Shackles
+ItemFeet,Zipties, Zip Ties
 ItemLegs,,Legs
 ItemLegs,NylonRope,Nylon Rope
 ItemLegs,HempRope,Hemp Rope
@@ -354,6 +364,7 @@ ItemLegs,OrnateLegCuffs,Ornate Leg Cuffs
 ItemLegs,LegBinder,Leg Binder
 ItemLegs,HobbleSkirt,Hobble Skirt
 ItemLegs,WoodenHorse,Wooden Horse
+ItemLegs,Zipties,Zip Ties
 ItemVulva,,Vulva
 ItemVulva,VibratingEgg,Vibrating Egg
 ItemVulva,VibratingWand,Vibrating Wand
@@ -366,6 +377,7 @@ ItemVulva,ClitSuctionCup,Clit Suction Cup
 ItemVulva,TapeStrips,Tape Strips
 ItemVulva,BenWaBalls,Pair Of Ben Wa Balls
 ItemVulva,HeavyWeightClamp,Heavy Weight Clamp
+ItemVulva,FullLatexSuitWand,Wand
 ItemVulvaPiercings,,Clit
 ItemVulvaPiercings,StraightClitPiercing,Straight Clit Piercing
 ItemVulvaPiercings,RoundClitPiercing,Round Clit Piercing
@@ -424,6 +436,7 @@ ItemTorso,HarnessBra2,Leather Strap Harness
 ItemTorso,Corset3,Half Cup Corset
 ItemTorso,Corset4,Under Bust Corset
 ItemTorso,Corset5,Floral Corset
+ItemTorso,LeatherBreastBinder,Leather Breast Binder
 ItemNipples,,Nipples
 ItemNipples,NippleClamp,Nipple Clamps
 ItemNipples,VibeNippleClamp,Vibrating Nipple Clamps
@@ -480,6 +493,8 @@ ItemArms,StraitDress,Strait Dress
 ItemArms,StraitDressOpen,Open Crotch Strait Dress
 ItemArms,Yoke,Yoke
 ItemArms,Pillory,Pillory
+ItemArms,FullLatexSuit,Full LockDown Latex Suit
+ItemArms,Zipties,Zip Ties
 ItemHands,,Hands
 ItemHands,PaddedMittens,Padded Mittens
 ItemHands,PawMittens,Paw Mittens
@@ -582,6 +597,7 @@ ItemMouth,BitGag,Silicon Bit Gag
 ItemMouth,XLBoneGag,XL Bone Gag
 ItemMouth,DogMuzzleExposed,Exposed Dog Muzzle
 ItemMouth,FoxyHarnessPanelGag,Foxy Harness Gag
+ItemMouth,BallGag,Ball Gag
 ItemMouth2,,Mouth
 ItemMouth2,ClothGag,Cloth Gag
 ItemMouth2,WiffleGag,Wiffle Ball Gag
@@ -609,6 +625,7 @@ ItemMouth2,LeatherCorsetCollar,Leather Corset Collar Gag
 ItemMouth2,LatexPostureCollar,Latex Posture Collar Gag
 ItemMouth2,BitGag,Silicon Bit Gag
 ItemMouth2,XLBoneGag,XL Bone Gag
+ItemMouth2,BallGag,Ball Gag
 ItemMouth3,,Mouth
 ItemMouth3,ClothGag,Cloth Gag
 ItemMouth3,WiffleGag,Wiffle Ball Gag
@@ -636,6 +653,7 @@ ItemMouth3,LeatherCorsetCollar,Leather Corset Collar Gag
 ItemMouth3,LatexPostureCollar,Latex Posture Collar Gag
 ItemMouth3,BitGag,Silicon Bit Gag
 ItemMouth3,XLBoneGag,XL Bone Gag
+ItemMouth3,BallGag,Ball Gag
 ItemHead,,Head
 ItemHead,ClothBlindfold,Cloth Blindfold
 ItemHead,LeatherBlindfold,Leather Blindfold
@@ -656,6 +674,8 @@ ItemHead,LewdBlindfold,Lewd Blindfold
 ItemHead,LatexBlindfold,Latex Blindfold
 ItemHead,DogHood,Dog Hood
 ItemHead,FoxyMask,Foxy Mask
+ItemHead,SleepMask,Sleep Mask
+ItemHead,BlackoutLenses,Blackout Lenses
 ItemEars,,Ears
 ItemEars,LightDutyEarPlugs,Light Duty Ear Plugs
 ItemEars,HeavyDutyEarPlugs,Heavy Duty Ear Plugs
@@ -700,3 +720,6 @@ ItemBoots,BalletWedges,Ballet Wedges
 ItemBoots,ToeCuffs,Metal Toe Cuffs
 ItemBoots,LeatherToeCuffs,Leather Toe Cuffs
 ItemBoots,ToeTie,Toe Tie
+ItemHidden,Accessories,
+ItemHidden,LeatherArmbinderStraps,Leather Armbinder Straps
+ItemHidden,LeatherArmbinderWrapStrap,Leather Armbinder WrapStraps

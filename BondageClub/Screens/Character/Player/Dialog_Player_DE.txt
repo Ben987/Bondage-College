@@ -223,6 +223,46 @@ SourceCharacter rolls a DiceType sided dice.  The result is: DiceResult.
 SourceCharacter rollt einen DiceType-seitigen Würfel. Das Ergebnis ist: DiceResult.
 SourceCharacter flips a coin.  The result is: CoinResult.
 SourceCharacter wirft eine Münze. Das Ergebnis ist: CoinResult.
+TargetCharacterName gets grabbed by two maids and locked in a timer cell, following her owner commands.
+TargetCharacterName wird auf Befehl ihrer Besitzerin von zwei Hausmädchen gepackt und in eine Timer-Zelle gesperrt.
+TargetCharacterName gets grabbed by two maids and escorted to the maid quarters to serve drinks for her owner.
+TargetCharacterName wird von zwei Hausmädchen gepackt und in die Dienerkammer gebracht, um für ihre Besitzerin Getränke zu servieren.
+TargetCharacterName gives a sealed envelope to her owner.
+TargetCharacterName gibt ihrer Besitzerin einen versiegelten Umschlag.
+SourceCharacter picks a glass of water from DestinationCharacter tray.
+SourceCharacter nimmt sich ein Glas Wasser von DestinationCharacter Servierplatte.
+SourceCharacter picks an orange juice from DestinationCharacter tray.
+SourceCharacter nimmt sich einen Orangensaft von DestinationCharacter Servierplatte.
+SourceCharacter picks a beer from DestinationCharacter tray.
+SourceCharacter nimmt sich ein Bier von DestinationCharacter Servierplatte.
+SourceCharacter picks a glass of wine from DestinationCharacter tray.
+SourceCharacter nimmt sich ein Glas Wein von DestinationCharacter Servierplatte.
+SourceCharacter buys a Virgin Mojito from DestinationCharacter tray.
+SourceCharacter kauft einen Virgin von DestinationCharacter Servierplatte.
+SourceCharacter buys a Margarita from DestinationCharacter tray.
+SourceCharacter kauft einen Margarita von DestinationCharacter Servierplatte.
+SourceCharacter buys a glass of Whiskey from TargetCharacter.
+SourceCharacter kauft ein Glas Whiskey von TargetCharacter.
+SourceCharacter buys a glass of champagne from TargetCharacter.
+SourceCharacter kauft ein Glas Champagner von TargetCharacter.
+SourceCharacter buys a jug of refreshing lemonade for everyone, from TargetCharacter.
+SourceCharacterkauft von TargetCharacter einen Krug erfrischende Limonade für alle.
+SourceCharacter buys a round of shooters for everyone, from TargetCharacter.
+SourceCharactergibt bei TargetCharacter allen eine Runde aus.
+SourceCharacterbuys a jug of Sex on the Beach for everyone, from TargetCharacter.
+SourceCharacter kauft von TargetCharacter einen Krug Sex on the Beach für alle.
+SourceCharacter buys a beer pitcher for everyone, from TargetCharacter.
+SourceCharacterkauft von TargetCharacter einen Krug Bier für alle.
+SourceCharacter picks a tea from DestinationCharacter tray.
+SourceCharacternimmt sich einen Tee von DestinationCharacter Servierplatte.
+SourceCharacter picks a coffee from DestinationCharacter tray.
+SourceCharacter nimmt sich einen Kaffee von DestinationCharacter Servierplatte.
+SourceCharacter buys a hot chocolate from DestinationCharacter tray.
+SourceCharacter kauft eine heiße Schokolade von DestinationCharacter Servierplatte.
+SourceCharacter buys a expresso from DestinationCharacter tray.
+SourceCharacter kauft einen Espresso von DestinationCharacter Servierplatte.
+SourceCharacter buys a cappuccino from DestinationCharacter tray.
+SourceCharacter kauft einen Cappuccino von DestinationCharacter Servierplatte.
 Member number on lock:
 Mitglieds-ID auf dem Schloss:
 Time left:

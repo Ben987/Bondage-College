@@ -314,6 +314,8 @@ function ManagementFindClubSlaveRandomIntro() {
 	if (Intro == "6") CharacterFullRandomRestrain(ManagementRandomGirl, "ALL");
 	if (Intro != "6") {
 		InventoryRemove(ManagementRandomGirl, "ItemMouth");
+		InventoryRemove(ManagementRandomGirl, "ItemMouth2");
+		InventoryRemove(ManagementRandomGirl, "ItemMouth3");
 		InventoryRemove(ManagementRandomGirl, "ItemHead");
 	}
 	InventoryWear(ManagementRandomGirl, "ClubSlaveCollar", "ItemNeck");
@@ -354,7 +356,7 @@ function ManagementClubSlaveRandomActivityLaunch() {
 		if ((A == "AddArms") && (InventoryGet(Player, "ItemArms") == null)) { InventoryWearRandom(Player, "ItemArms", 3); ManagementRandomActivityStart(A); return; }
 		if ((A == "RemoveArms") && (InventoryGet(Player, "ItemArms") != null)) { InventoryRemove(Player, "ItemArms"); ManagementRandomActivityStart(A); return; }
 		if ((A == "AddGag") && (InventoryGet(Player, "ItemMouth") == null)) { InventoryWearRandom(Player, "ItemMouth", 3); ManagementRandomActivityStart(A); return; }
-		if ((A == "RemoveGag") && (InventoryGet(Player, "ItemMouth") != null)) { InventoryRemove(Player, "ItemMouth"); ManagementRandomActivityStart(A); return; }
+		if ((A == "RemoveGag") && (InventoryGet(Player, "ItemMouth") != null)) { InventoryRemove(Player, "ItemMouth"); InventoryRemove(Player, "ItemMouth2"); InventoryRemove(Player, "ItemMouth3"); ManagementRandomActivityStart(A); return; }
 		if ((A == "AddTorso") && (InventoryGet(Player, "ItemTorso") == null)) { InventoryWearRandom(Player, "ItemTorso", 3); ManagementRandomActivityStart(A); return; }
 		if ((A == "RemoveTorso") && (InventoryGet(Player, "ItemTorso") != null)) { InventoryRemove(Player, "ItemTorso"); ManagementRandomActivityStart(A); return; }
 		if ((A == "AddFeet") && (InventoryGet(Player, "ItemFeet") == null)) { InventoryWearRandom(Player, "ItemFeet", 3); ManagementRandomActivityStart(A); return; }
@@ -363,7 +365,7 @@ function ManagementClubSlaveRandomActivityLaunch() {
 		if ((A == "RemoveLegs") && (InventoryGet(Player, "ItemLegs") != null)) { InventoryRemove(Player, "ItemLegs"); ManagementRandomActivityStart(A); return; }
 
 		// Physical activities
-		if ((A == "Kiss") && (InventoryGet(Player, "ItemMouth") == null)) { ManagementRandomActivityStart(A); return; }
+		if ((A == "Kiss") && (InventoryGet(Player, "ItemMouth") == null) && (InventoryGet(Player, "ItemMouth2") == null) && (InventoryGet(Player, "ItemMouth3") == null)) { ManagementRandomActivityStart(A); return; }
 		if ((A == "Spank") || (A == "Tickle")) { ManagementRandomActivityStart(A); return; }
 		if ((A == "Fondle") && !Player.IsBreastChaste()) { ManagementRandomActivityStart(A); return; }
 		if ((A == "Masturbate") && !Player.IsVulvaChaste()) { ManagementRandomActivityStart(A); return; }
@@ -450,6 +452,8 @@ function ManagementStartQuiz() {
 // Locks the player in a cell for 5 minutes
 function ManagementRemoveGag() {
 	InventoryRemove(Player, "ItemMouth");
+	InventoryRemove(Player, "ItemMouth2");
+	InventoryRemove(Player, "ItemMouth3");
 	InventoryRemove(Player, "ItemHead");
 }
 

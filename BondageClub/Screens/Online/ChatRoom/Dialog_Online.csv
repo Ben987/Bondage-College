@@ -72,8 +72,10 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 24,0,(Back to main menu.),(Main menu.),,
 30,0,(Kick her out of the room.),,"AdminAction(""Kick"")",
 30,0,(Ban her from the room.),,"AdminAction(""Ban"")",
-30,31,(Move her to the left.),DialogCharacterName as been moved to the left at position CharacterPosition.  Would you like to move her further?,"AdminAction(""MoveLeft"")",
-30,31,(Move her to the right.),DialogCharacterName as been moved to the right at position CharacterPosition.  Would you like to move her further?,"AdminAction(""MoveRight"")",
+30,0,(Swap her position with someone else.),,"AdminAction(""Swap"")",!HasSwapTarget()
+30,0,(Cancel position swap.),,"AdminAction(""SwapCancel"")",HasSwapTarget()
+30,31,(Move her to the left.),(DialogCharacterName as been moved to the left at position CharacterPosition.  Would you like to move her further?),"AdminAction(""MoveLeft"")",
+30,31,(Move her to the right.),(DialogCharacterName as been moved to the right at position CharacterPosition.  Would you like to move her further?),"AdminAction(""MoveRight"")",
 30,0,(Promote her as room administrator.),,"AdminAction(""Promote"")",!CurrentCharacterIsAdmin()
 30,0,(Demote her from room administration.),,"AdminAction(""Demote"")",CurrentCharacterIsAdmin()
 30,0,(Back to main menu.),(Main menu.),,
