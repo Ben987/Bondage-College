@@ -144,6 +144,7 @@ var TranslationDictionary = [
 			"Screens/Online/ChatSearch/Text_ChatSearch_FR.txt",
 			"Screens/Room/AsylumBedroom/Text_AsylumBedroom_FR.txt",
 			"Screens/Room/AsylumEntrance/Dialog_NPC_AsylumEntrance_EscapedPatient_FR.txt",
+			"Screens/Room/AsylumEntrance/Dialog_NPC_AsylumEntrance_KidnapNurse_FR.txt",
 			"Screens/Room/AsylumEntrance/Text_AsylumEntrance_FR.txt",
 			"Screens/Room/AsylumMeeting/Dialog_NPC_AsylumMeeting_PatientLeft_FR.txt",
 			"Screens/Room/AsylumMeeting/Dialog_NPC_AsylumMeeting_PatientRight_FR.txt",
