@@ -101,9 +101,13 @@ function InventoryPrerequisiteMessage(C, Prerequisite) {
 	if ((Prerequisite == "AccessBreast") && (((Cloth != null) && !Cloth.Asset.Expose.includes("ItemBreast"))
 			|| (InventoryGet(C, "Bra") != null && !InventoryGet(C, "Bra").Asset.Expose.includes("ItemBreast")))) return "RemoveClothesForItem";
 
+	if ((Prerequisite == "AccessBreast1") && (((Cloth != null) && !Cloth.Asset.Expose.includes("ItemNipplesPiercings"))
+		    || (InventoryGet(C, "Suit") != null && !InventoryGet(C, "Suit").Asset.Expose.includes("ItemNipplesPiercings")))) return "UnZipSuitForItem";
+
 	// Vulva/Butt items can be blocked by clothes, panties and some socks
 	if ((Prerequisite == "AccessVulva") && (((Cloth != null) && Cloth.Asset.Block != null && Cloth.Asset.Block.includes("ItemVulva"))
 			|| (InventoryGet(C, "ClothLower") != null && !InventoryGet(C, "ClothLower").Asset.Expose.includes("ItemVulva"))
+		    || (InventoryGet(C, "SuitLower") != null && !InventoryGet(C, "SuitLower").Asset.Expose.includes("ItemVulva"))
 			|| (InventoryGet(C, "Panties") != null && !InventoryGet(C, "Panties").Asset.Expose.includes("ItemVulva"))
 			|| (InventoryGet(C, "Socks") != null && (InventoryGet(C, "Socks").Asset.Block != null) && InventoryGet(C, "Socks").Asset.Block.includes("ItemVulva")))) return "RemoveClothesForItem";
 
