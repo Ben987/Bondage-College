@@ -286,14 +286,14 @@ function TranslationAvailable(FullPath) {
 
 // Parse a TXT translation file and returns it as JSON array
 function TranslationParseTXT(str) {
-
+		
     var arr = [];
 	var c;
 
     // iterate over each character, keep track of current row (of the returned array)
     for (var row = c = 0; c < str.length; c++) {
         var cc = str[c], nc = str[c+1];        // current character, next character
-		arr[row] = arr[row] || [];             // create a new row if necessary        
+        arr[row] = arr[row] || [];             // create a new row if necessary        
         if (cc == '\n') { ++row; continue; }   // If it's a newline, move on to the next row
         arr[row] += cc;                        // Otherwise, append the current character to the row
     }
@@ -308,6 +308,7 @@ function TranslationParseTXT(str) {
 	// Trims the full translated array
     for (var row = 0; row < arr.length; row++)
 		arr[row] = arr[row].trim();
+		
     return arr;
 }
 
@@ -360,17 +361,17 @@ function TranslationDialog(C) {
 					TranslationDialogArray(C, TranslationCache[FullPath]);
 				}
 			});
-
+	
 	}
-
+	
 }
 
 // Translate a character dialog if the file is in the dictionary
 function TranslationText(Text) {
-
+	
 	// If we play in a foreign language
 	if ((TranslationLanguage != null) && (TranslationLanguage.trim() != "") && (TranslationLanguage.trim().toUpperCase() != "EN")) {
-
+		
 		// Finds the full path of the translation file to use
 		var FullPath = "Screens/" + CurrentModule + "/" + CurrentScreen + "/Text_" + CurrentScreen + "_" + TranslationLanguage + ".txt";
 
@@ -403,7 +404,7 @@ function TranslationAssetProcess(T) {
 
 // Translates the description of the assets and groups
 function TranslationAsset(Family) {
-
+	
 	// If we play in a foreign language
 	if ((TranslationLanguage != null) && (TranslationLanguage.trim() != "") && (TranslationLanguage.trim().toUpperCase() != "EN")) {
 
@@ -424,9 +425,9 @@ function TranslationAsset(Family) {
 					TranslationAssetProcess(TranslationCache[FullPath]);
 				}
 			});
-
+	
 	}
-
+	
 }
 
 // Changes the current language
