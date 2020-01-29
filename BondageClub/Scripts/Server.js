@@ -198,13 +198,20 @@ function ServerValidateProperties(C, Item) {
 // Loads the appearance assets from a server bundle that only contains the main info (no assets)
 function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumber) {
 
+	// Removes any invalid data from the appearance bundle
+	for (var B = 0; B < Bundle.length; B++)
+		if ((Bundle[B] == null) || (typeof Bundle[B] !== "object") || (Bundle[B].Name == null) || (typeof Bundle[B].Name != "string") || (Bundle[B].Name == null) || (typeof Bundle[B].Name != "string")) {			
+			Bundle.splice(B, 1);
+			B--;
+		}
+
 	// Clears the appearance to begin
 	var Appearance = [];
 
 	// Reapply any item that was equipped and isn't enable, same for owner locked items if the source member isn't the owner
 	if ((SourceMemberNumber != null) && (C.ID == 0))
 		for (var A = 0; A < C.Appearance.length; A++) {
-			if (!C.Appearance[A].Asset.Enable && !C.Appearance[A].Asset.OwnerOnly) 
+			if (!C.Appearance[A].Asset.Enable && !C.Appearance[A].Asset.OwnerOnly)
 				Appearance.push(C.Appearance[A]);
 			else
 				if ((C.Ownership != null) && (C.Ownership.MemberNumber != null) && (C.Ownership.MemberNumber != SourceMemberNumber) && InventoryOwnerOnlyItem(C.Appearance[A])) {
@@ -214,8 +221,21 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 						for (var B = 0; B < Bundle.length; B++)
 							if ((C.Appearance[A].Asset.Name == Bundle[B].Name) && (C.Appearance[A].Asset.Group.Name == Bundle[B].Group) && (C.Appearance[A].Asset.Group.Family == AssetFamily))
 								NA.Property = Bundle[B].Property;
+						// Some Properties should not be changed
+						if (C.Appearance[A].Property) {
+							if (C.Appearance[A].Property.LockedBy != null) NA.Property.LockedBy = C.Appearance[A].Property.LockedBy;
+							if (C.Appearance[A].Property.LockMemberNumber != null) NA.Property.LockMemberNumber = C.Appearance[A].Property.LockMemberNumber; else delete NA.Property.LockMemberNumber;
+							if (C.Appearance[A].Property.RemoveItem != null) NA.Property.RemoveItem = C.Appearance[A].Property.RemoveItem; else delete NA.Property.RemoveItem;
+							if (C.Appearance[A].Property.ShowTimer != null) NA.Property.ShowTimer = C.Appearance[A].Property.ShowTimer; else delete NA.Property.ShowTimer;
+							if (C.Appearance[A].Property.EnableRandomInput != null) NA.Property.EnableRandomInput = C.Appearance[A].Property.EnableRandomInput; else delete NA.Property.EnableRandomInput;
+
+							if (!NA.Property.EnableRandomInput || NA.Property.LockedBy != "OwnerTimerPadlock") {
+								if (C.Appearance[A].Property.MemberNumberList != null) NA.Property.MemberNumberList = C.Appearance[A].Property.MemberNumberList; else delete NA.Property.MemberNumberList;
+								if (C.Appearance[A].Property.RemoveTimer != null) NA.Property.RemoveTimer = C.Appearance[A].Property.RemoveTimer; else delete NA.Property.RemoveTimer;
+							}
+						}
 						ServerValidateProperties(C, NA);
-						if (C.Appearance[A].Asset.LockedBy == "OwnerPadlock") InventoryLock(C, NA, { Asset: AssetGet(AssetFamily, "ItemMisc", "OwnerPadlock") }, C.Ownership.MemberNumber);
+						if (C.Appearance[A].Property.LockedBy == "OwnerPadlock") InventoryLock(C, NA, { Asset: AssetGet(AssetFamily, "ItemMisc", "OwnerPadlock") }, C.Ownership.MemberNumber);
 					}
 					Appearance.push(NA);
 				}
@@ -224,7 +244,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 	// For each appearance item to load
 	for (var A = 0; A < Bundle.length; A++) {
 
-		// disable blocked items
+		// Skip blocked items
 		if (Array.isArray(C.BlockItems) && C.BlockItems.some(B => B.Name == Bundle[A].Name && B.Group == Bundle[A].Group)) continue;
 
 		// Cycles in all assets to find the correct item to add (do not add )
@@ -240,11 +260,11 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 				var NA = {
 					Asset: Asset[I],
 					Difficulty: parseInt((Bundle[A].Difficulty == null) ? 0 : Bundle[A].Difficulty),
-					Color: ((Bundle[A].Color == null) || (typeof Bundle[A].Color !== 'string')) ? "Default" : Bundle[A].Color
+					Color: ((Bundle[A].Color == null) || (typeof Bundle[A].Color !== 'string')) ? Asset[I].Group.ColorSchema[0] : Bundle[A].Color
 				}
 
 				// Validate color string, fallback to default in case of an invalid color
-				if ((NA.Color != "Default") && (/^#(?:[0-9a-f]{3}){1,2}$/i.test(NA.Color) == false) && (NA.Asset.Group.ColorSchema.indexOf(NA.Color) < 0)) {
+				if ((NA.Color !=  NA.Asset.Group.ColorSchema[0]) && (/^#(?:[0-9a-f]{3}){1,2}$/i.test(NA.Color) == false) && (NA.Asset.Group.ColorSchema.indexOf(NA.Color) < 0)) {
 					NA.Color = NA.Asset.Group.ColorSchema[0];
 				}
 
@@ -289,7 +309,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 			if (!Found)
 				for (var I = 0; I < Asset.length; I++)
 					if (Asset[I].Group.Name == AssetGroup[G].Name) {
-						Appearance.push({ Asset: Asset[I], Color: "Default" });
+						Appearance.push({ Asset: Asset[I], Color: Asset[I].Group.ColorSchema[0] });
 						break;
 					}
 

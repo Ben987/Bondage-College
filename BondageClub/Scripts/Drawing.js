@@ -115,7 +115,7 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 		if ((Player != null) && (Player.VisualSettings != null) && (Player.VisualSettings.ForceFullHeight != null) && Player.VisualSettings.ForceFullHeight) HeightRatio = 1.0;
 		if (Zoom == null) Zoom = 1;
 		X += Zoom * Canvas.width * (1 - HeightRatio) / 2;
-		if (C.Pose.indexOf("Suspension") < 0) Y += Zoom * Canvas.height * (1 - HeightRatio);
+		if ((C.Pose.indexOf("Suspension") < 0) && (C.Pose.indexOf("SuspensionHogtied") < 0)) Y += Zoom * Canvas.height * (1 - HeightRatio);
 
 		// If we must dark the Canvas characters
 		if ((C.ID != 0) && Player.IsBlind() && (CurrentScreen != "InformationSheet")) {
@@ -139,8 +139,8 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 			var CanvasH = document.createElement("canvas");
 			CanvasH.width = Canvas.width;
 			CanvasH.height = Canvas.height;
-			CanvasH.getContext("2d").scale(1, -1);
-			CanvasH.getContext("2d").translate(0, -Canvas.height);
+			CanvasH.getContext("2d").rotate(Math.PI);
+			CanvasH.getContext("2d").translate(-Canvas.width, -Canvas.height);
 			CanvasH.getContext("2d").drawImage(Canvas, 0, 0);
 			Canvas = CanvasH;
 		}
@@ -159,13 +159,13 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 				if (C.Pose.indexOf("Suspension") >= 0)
 					DrawEmptyRect((HeightRatio * C.FocusGroup.Zone[Z][0]) + X, (1000 - (HeightRatio * (C.FocusGroup.Zone[Z][1] + Y + C.FocusGroup.Zone[Z][3]))) - C.HeightModifier, (HeightRatio * C.FocusGroup.Zone[Z][2]), (HeightRatio * C.FocusGroup.Zone[Z][3]), "cyan");
 				else
-					DrawEmptyRect((HeightRatio * C.FocusGroup.Zone[Z][0]) + X, (HeightRatio * C.FocusGroup.Zone[Z][1]) + Y - C.HeightModifier - (C.IsKneeling() ? (250 * (1 - HeightRatio)) : 0), (HeightRatio * C.FocusGroup.Zone[Z][2]), (HeightRatio * C.FocusGroup.Zone[Z][3]), "cyan");
+					DrawEmptyRect((HeightRatio * C.FocusGroup.Zone[Z][0]) + X, HeightRatio * (C.FocusGroup.Zone[Z][1] - C.HeightModifier) + Y, (HeightRatio * C.FocusGroup.Zone[Z][2]), (HeightRatio * C.FocusGroup.Zone[Z][3]), "cyan");
 
 		// Draw the character name below herself
 		if ((C.Name != "") && ((CurrentModule == "Room") || (CurrentModule == "Online") || ((CurrentScreen == "Wardrobe") && (C.ID != 0))) && (CurrentScreen != "Private"))
 			if (!Player.IsBlind()) {
 				MainCanvas.font = "30px Arial";
-				DrawText(C.Name, X + 255 * Zoom, Y + 980 * Zoom, (CommonIsColor(C.LabelColor)) ? C.LabelColor : "White", "Black");
+				DrawText(C.Name, X + 255 * Zoom, Y + 980 * ((C.Pose.indexOf("SuspensionHogtied") < 0) ? Zoom : Zoom / HeightRatio), (CommonIsColor(C.LabelColor)) ? C.LabelColor : "White", "Black");
 				MainCanvas.font = "36px Arial";
 			}
 

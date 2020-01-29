@@ -79,6 +79,7 @@ function InventoryPrerequisiteMessage(C, Prerequisite) {
 	if (Prerequisite == "LegsOpen") return (C.Pose.indexOf("LegsClosed") >= 0) ? "LegsCannotOpen" : "";
 	if (Prerequisite == "NotKneeling") return (C.Pose.indexOf("Kneel") >= 0) ? "MustStandUpFirst" : "";
 	if (Prerequisite == "NotMounted") return (C.Effect.indexOf("Mounted") >= 0) ? "CannotBeUsedWhenMounted" : "";
+	if (Prerequisite == "NotHorse") return (C.Pose.indexOf("Horse") >= 0) ? "CannotBeUsedWhenMounted" : "";
 	if (Prerequisite == "NotSuspended") return (C.Pose.indexOf("Suspension") >= 0) ? "RemoveSuspensionForItem" : "";
 	if (Prerequisite == "NotHogtied") return (C.Pose.indexOf("Hogtied") >= 0) ? "ReleaseHogtieForItem" : "";
 	if (Prerequisite == "NotYoked") return (C.Pose.indexOf("Yoked") >= 0) ? "CannotBeUsedWhenYoked" : "";
@@ -88,6 +89,10 @@ function InventoryPrerequisiteMessage(C, Prerequisite) {
 	if (Prerequisite == "NoFeetSpreader") return ((InventoryGet(C, "ItemFeet") != null) && (InventoryGet(C, "ItemFeet").Asset.Name == "SpreaderMetal")) ? "CannotBeUsedWithFeetSpreader" : "";
 	if (Prerequisite == "NotShackled") return (C.Effect.indexOf("Shackled") >= 0) ? "RemoveShacklesFirst" : "";
 	if (Prerequisite == "Collared") return (InventoryGet(C, "ItemNeck") == null) ? "MustCollaredFirst" : "";
+	if (Prerequisite == "CannotHaveWand") return ((InventoryGet(C, "ItemArms") != null) && (InventoryGet(C, "ItemArms").Asset.Name == "FullLatexSuit")) ? "CannotHaveWand" : "";
+	if (Prerequisite == "CannotBeSuited") return ((InventoryGet(C, "ItemVulva") != null) && (InventoryGet(C, "ItemVulva").Asset.Name == "WandBelt")) ? "CannotHaveWand" : "";
+	if (Prerequisite == "CannotBeHogtiedWithAlphaHood") return ((InventoryGet(C, "ItemHead") != null) && (InventoryGet(C, "ItemHead").Asset.Prerequisite != null) && (InventoryGet(C, "ItemHead").Asset.Prerequisite.indexOf("NotHogtied") >= 0)) ? "CannotBeHogtiedWithAlphaHood" : "";
+	if (Prerequisite == "StraitDressOpen") return (C.Pose.indexOf("StraitDressOpen") >= 0) ? "StraitDressOpen" : "";
 
 	// Checks for torso access based on clothes
 	var Cloth = InventoryGet(C, "Cloth");
@@ -207,12 +212,25 @@ function InventoryWearRandom(C, GroupName, Difficulty) {
 
 // Removes a specific item from the player appearance
 function InventoryRemove(C, AssetGroup) {
+
+	// Loops until we find the item group to remove
 	for (var E = 0; E < C.Appearance.length; E++)
 		if (C.Appearance[E].Asset.Group.Name == AssetGroup) {
+
+			// Remove other items that are flagged to be removed when this item is removed.  If the name is empty, we remove any item from that group.
+			for (var R = 0; R < C.Appearance[E].Asset.RemoveItemOnRemove.length; R++)
+				if ((C.Appearance[E].Asset.RemoveItemOnRemove[R].Name == "") || ((C.Appearance[E].Asset.RemoveItemOnRemove[R].Name != "") && (InventoryGet(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group) != null) && (InventoryGet(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group).Asset.Name == C.Appearance[E].Asset.RemoveItemOnRemove[R].Name)))
+					InventoryRemove(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group);
+
+			// Removes the item itself
 			C.Appearance.splice(E, 1);
 			E--;
+
 		}
+
+	// Refreshes the character
 	CharacterRefresh(C);
+
 }
 
 // Returns TRUE if the focused group for a character is blocked and cannot be used
