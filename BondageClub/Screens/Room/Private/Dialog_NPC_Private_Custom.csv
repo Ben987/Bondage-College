@@ -825,14 +825,14 @@ ActivityNoChange,1000,(Bow your head.),I'll watch you.  It won't take that long.
 ActivityShibariIntro,,,"Little one, I've been studying in the dojo lately and I've found a few rope tricks that I want to try on your naked body.",,,DomActivityShibariIntro,
 ActivityShibariIntro,,,"Slave, I've been hanging around the dojo lately and found some tight rope techniques that I want to try on your naked body.",,,DomActivityShibariIntro,Violent
 ActivityShibariIntro,,,"My precious, I've been at the dojo lately and found rope techniques that should be both comfy and secure.  I want to try them on your naked body.",,,DomActivityShibariIntro,Peaceful
-ActivityShibari,1000,Yes Mistress.  (Let her tie you up.),"(She makes sure your naked and restrains you with hemp ropes from the ceiling.)  Wonderful, have fun struggling.",ActivityRun(1),Player.CanTalk(),,
-ActivityShibari,1000,I'm not sure.  (Let her tie you up.),(She forces you naked and restrains you with hemp ropes from the ceiling.)  Never doubt my bondage skills.,ActivityRun(-1),Player.CanTalk(),,
-ActivityShibari,1000,Alright.  (Let her tie you up.),"(She makes sure your naked and restrains you with hemp ropes from the ceiling.)  This is nice, have fun struggling.",ActivityRun(0),Player.CanTalk(),,
-ActivityShibari,1000,Please!  I don't want to do that.,(She frowns but forces you naked and restrains you with hemp ropes from the ceiling.)  There!  Struggle for me.,ActivityRun(-7),Player.CanTalk(),,
-ActivityShibari,1000,(Let her tie you up.),"(She makes sure your naked and restrains you with hemp ropes from the ceiling.)  This is nice, have fun struggling.",ActivityRun(0),,,
-ActivityShibari,1000,(Roll your eyes up and nod.),(She forces you naked and restrains you with hemp ropes from the ceiling.)  Never doubt my bondage skills.,ActivityRun(-1),,,
-ActivityShibari,1000,(Bow your head submissively.),"(She makes sure your naked and restrains you with hemp ropes from the ceiling.)  Wonderful, have fun struggling.",ActivityRun(1),,,
-ActivityShibari,1000,(Shake your head no.),(She frowns but forces you naked and restrains you with hemp ropes from the ceiling.)  There!  Struggle for me.,ActivityRun(-7),,,
+ActivityShibari,1000,Yes Mistress.  (Let her tie you up.),"(She makes sure you're naked and restrains you with many hemp ropes.)  Wonderful, have fun struggling.",ActivityRun(1),Player.CanTalk(),,
+ActivityShibari,1000,I'm not sure.  (Let her tie you up.),(She makes sure you're naked and restrains you with many hemp ropes.)  Never doubt my bondage skills.,ActivityRun(-1),Player.CanTalk(),,
+ActivityShibari,1000,Alright.  (Let her tie you up.),"(She makes sure you're naked and restrains you with many hemp ropes.)  This is nice, have fun struggling.",ActivityRun(0),Player.CanTalk(),,
+ActivityShibari,1000,Please!  I don't want to do that.,(She makes sure you're naked and restrains you with many hemp ropes.)  There!  Struggle for me.,ActivityRun(-7),Player.CanTalk(),,
+ActivityShibari,1000,(Let her tie you up.),"(She makes sure you're naked and restrains you with many hemp ropes.)  This is nice, have fun struggling.",ActivityRun(0),,,
+ActivityShibari,1000,(Roll your eyes up and nod.),(She makes sure you're naked and restrains you with many hemp ropes.)  Never doubt my bondage skills.,ActivityRun(-1),,,
+ActivityShibari,1000,(Bow your head submissively.),"(She makes sure you're naked and restrains you with many hemp ropes.)  Wonderful, have fun struggling.",ActivityRun(1),,,
+ActivityShibari,1000,(Shake your head no.),(She makes sure you're naked and restrains you with many hemp ropes.)  There!  Struggle for me.,ActivityRun(-7),,,
 ActivityGiftIntro,,,"My girl, you make me really happy and I want to reward you.  I'll give you 50$ so you can do some shopping.",,,DomActivityGiftIntro,
 ActivityGiftIntro,,,"My wonderful submissive, I truly appreciate owning you and I want you to feel appreciated.  Take these 50$ and purchase something you desire.",,,DomActivityGiftIntro,Wise|Polite
 ActivityGiftIntro,,,"You're a great bitch and should get a gift.  (She checks her purse for a while.)  Here's 50$, get something kinky!",,,DomActivityGiftIntro,Dumb|Rude

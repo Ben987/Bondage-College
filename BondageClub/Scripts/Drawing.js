@@ -159,13 +159,13 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 				if (C.Pose.indexOf("Suspension") >= 0)
 					DrawEmptyRect((HeightRatio * C.FocusGroup.Zone[Z][0]) + X, (1000 - (HeightRatio * (C.FocusGroup.Zone[Z][1] + Y + C.FocusGroup.Zone[Z][3]))) - C.HeightModifier, (HeightRatio * C.FocusGroup.Zone[Z][2]), (HeightRatio * C.FocusGroup.Zone[Z][3]), "cyan");
 				else
-					DrawEmptyRect((HeightRatio * C.FocusGroup.Zone[Z][0]) + X, (HeightRatio * C.FocusGroup.Zone[Z][1]) + Y - C.HeightModifier - (C.IsKneeling() ? (250 * (1 - HeightRatio)) : 0), (HeightRatio * C.FocusGroup.Zone[Z][2]), (HeightRatio * C.FocusGroup.Zone[Z][3]), "cyan");
+					DrawEmptyRect((HeightRatio * C.FocusGroup.Zone[Z][0]) + X, HeightRatio * (C.FocusGroup.Zone[Z][1] - C.HeightModifier) + Y, (HeightRatio * C.FocusGroup.Zone[Z][2]), (HeightRatio * C.FocusGroup.Zone[Z][3]), "cyan");
 
 		// Draw the character name below herself
 		if ((C.Name != "") && ((CurrentModule == "Room") || (CurrentModule == "Online") || ((CurrentScreen == "Wardrobe") && (C.ID != 0))) && (CurrentScreen != "Private"))
 			if (!Player.IsBlind()) {
 				MainCanvas.font = "30px Arial";
-				DrawText(C.Name, X + 255 * Zoom, Y + 980 * ((C.Pose.indexOf("SuspensionHogtied") < 0) ? Zoom : 1), (CommonIsColor(C.LabelColor)) ? C.LabelColor : "White", "Black");
+				DrawText(C.Name, X + 255 * Zoom, Y + 980 * ((C.Pose.indexOf("SuspensionHogtied") < 0) ? Zoom : Zoom / HeightRatio), (CommonIsColor(C.LabelColor)) ? C.LabelColor : "White", "Black");
 				MainCanvas.font = "36px Arial";
 			}
 

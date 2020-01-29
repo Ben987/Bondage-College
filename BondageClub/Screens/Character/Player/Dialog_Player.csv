@@ -7,13 +7,12 @@ RemoveRestraintsFirst,,,Remove some restraints first.
 CannotBeUsedWhenMounted,,,Cannot be used when mounted.
 CannotBeUsedWhenYoked,,,Cannot be used while yoked.
 CannotBeUsedWithFeetSpreader,,,Cannot be used with legs spreader.
-CannotHaveWand,,,Remove the wand first
+CannotHaveWand,,,Remove the wand first.
 StraitDressOpen,,,Cannot use this.
 RemoveChastityFirst,,,Must remove chastity first.
-RemoveChainForItem,,,Remove the chain to the floor first
+RemoveChainForItem,,,Remove the chain to the floor first.
+CannotBeHogtiedWithAlphaHood,,,Cannot hogtie with this hood.
 MustCollaredFirst,,,A collar must be fitted first to attach accessories to.
-MustCollaredFirstAndRemoveSuspension,,,Must be collared and not suspended first.
-MustCollaredFirstAndRemoveSuspension1,,,Must be collared and not suspended/mounted first.
 NoClothAndCollared,,,Remove some clothes and requires a collar.
 LegsCannotOpen,,,Legs cannot open.
 LegsCannotClose,,,Legs cannot close.

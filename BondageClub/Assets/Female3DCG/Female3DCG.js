@@ -640,13 +640,13 @@ var AssetFemale3DCG = [
 		Zone: [[100, 750, 300, 120]],
 		Asset: [
 			{ Name: "NylonRope", DefaultColor: "#909090", Value: 30, BuyGroup: ["NylonRope"], Time: 15, SetPose: ["LegsClosed"], Audio: "RopeLong" },
-			{ Name: "HempRope", Value: 60, Time: 15, Difficulty: 3, BuyGroup: ["HempRope"], SetPose: ["LegsClosed"], Extended: true, AllowType: ["Mermaid", "Suspension"], Audio: "RopeLong" },
+			{ Name: "HempRope", Value: 60, Time: 15, Difficulty: 3, BuyGroup: ["HempRope"], SetPose: ["LegsClosed"], Extended: true, AllowType: ["Mermaid", "Suspension"], Audio: "RopeLong", HideItem: ["ItemDevicesTeddyBear"] },
 			{ Name: "LeatherBelt", Value: 25, Time: 10, RemoveTime: 5, AllowLock: true, SetPose: ["LegsClosed"] },
 			{ Name: "SturdyLeatherBelts", Value: 50, Time: 10, RemoveTime: 5, AllowLock: true, SetPose: ["LegsClosed"], BuyGroup: "SturdyLeatherBelts", Extended: true, AllowType: ["One", "Two", "Three", "Four"] },
 			{ Name: "Irish8Cuffs", Value: 25, Time: 10, RemoveTime: 5, AllowLock: true, SetPose: ["LegsClosed"] },
 			{ Name: "DuctTape", Extended: true, Value: 50, Time: 15, RemoveTime: 10, BuyGroup: "DuctTape", SetPose: ["LegsClosed"], AllowType: ["HalfFeet", "MostFeet", "CompleteFeet"] },
-			{ Name: "LeatherAnkleCuffs", Value: 30, Time: 10, Difficulty: 2, Effect: [], Priority: 24, AllowPose: ["LegsClosed"], Extended: true, AllowLock: true, AllowEffect: ["Freeze", "Prone"] },
-			{ Name: "OrnateAnkleCuffs", Value: 90, Time: 10, Difficulty: 3, Effect: [], Priority: 24, AllowPose: ["LegsClosed"], Extended: true, AllowLock: true, AllowEffect: ["Freeze", "Prone"],
+			{ Name: "LeatherAnkleCuffs", Random: false, Value: 30, Time: 10, Difficulty: 2, Effect: [], Priority: 24, AllowPose: ["LegsClosed"], Extended: true, AllowLock: true, AllowEffect: ["Freeze", "Prone"] },
+			{ Name: "OrnateAnkleCuffs", Random: false, Value: 90, Time: 10, Difficulty: 3, Effect: [], Priority: 24, AllowPose: ["LegsClosed"], Extended: true, AllowLock: true, AllowEffect: ["Freeze", "Prone"],
 			Layer: [
 					{ Name: "Cuffs", AllowColorize: true },
 					{ Name: "Gems", AllowColorize: false }
@@ -679,8 +679,8 @@ var AssetFemale3DCG = [
 			{ Name: "LeatherBelt", Value: 25, Time: 5, AllowLock: true, SetPose: ["LegsClosed"] },
 			{ Name: "SturdyLeatherBelts", Value: 50, Time: 5, AllowLock: true, SetPose: ["LegsClosed"], BuyGroup: "SturdyLeatherBelts", Extended: true, AllowType: ["One", "Two", "Three", "Four"] },
 			{ Name: "DuctTape", Extended: true, Value: 50, Time: 15, RemoveTime: 10, BuyGroup: "DuctTape", SetPose: ["LegsClosed"], AllowType: ["HalfLegs", "MostLegs", "CompleteLegs"] },
-			{ Name: "LeatherLegCuffs", Value: 30, Time: 10, Difficulty: 2, Priority: 24, AllowPose: ["LegsClosed"], Extended: true, AllowLock: true, Effect: [], AllowEffect: ["Prone", "KneelFreeze"], AllowType: ["Closed"] },
-			{ Name: "OrnateLegCuffs", Value: 90, Time: 10, Difficulty: 3, Priority: 24, AllowPose: ["LegsClosed"], Extended: true, AllowLock: true, Effect: [], AllowEffect: ["Prone", "KneelFreeze"], AllowType: ["Closed"],
+			{ Name: "LeatherLegCuffs", Random: false, Value: 30, Time: 10, Difficulty: 2, Priority: 24, AllowPose: ["LegsClosed"], Extended: true, AllowLock: true, Effect: [], AllowEffect: ["Prone", "KneelFreeze"], AllowType: ["Closed"] },
+			{ Name: "OrnateLegCuffs", Random: false, Value: 90, Time: 10, Difficulty: 3, Priority: 24, AllowPose: ["LegsClosed"], Extended: true, AllowLock: true, Effect: [], AllowEffect: ["Prone", "KneelFreeze"], AllowType: ["Closed"],
 			Layer: [
 					{ Name: "Cuffs", AllowColorize: true },
 					{ Name: "Gems", AllowColorize: false }
@@ -826,7 +826,7 @@ var AssetFemale3DCG = [
 		Color: ["Default"],
 		Left: 125,
 		Top: 375,
-		Zone: [[150, 420, 200, 80]],
+		Zone: [[100, 420, 300, 80]],
 		Asset: [
 			{ Name: "StraponPanties", DefaultColor: "#505050", Effect: ["Chaste"], Block: ["ItemVulva", "ItemButt", "ItemVulvaPiercings"], HideItem: ["ItemVulvaVibratingDildo", "ItemVulvaClitSuctionCup", "ItemVulvaInflatableVibeDildo"], Value: -1, Prerequisite: "AccessVulva", Time: 15 },
 			{ Name: "LeatherChastityBelt", Effect: ["Chaste"], Block: ["ItemVulva", "ItemButt", "ItemVulvaPiercings"], HideItem: ["ItemVulvaVibratingDildo", "ItemVulvaClitSuctionCup", "ItemVulvaInflatableVibeDildo"], Value: 30, Prerequisite: "AccessVulva", AllowLock: true, Difficulty: 8, Time: 20, RemoveTime: 10, ExpressionTrigger: [{ Group: "Eyebrows", Name: "Soft", Timer: 10 }] },
@@ -898,7 +898,7 @@ var AssetFemale3DCG = [
 		Color: ["Default"],
 		Left: 125,
 		Top: 200,
-		Zone: [[150, 340, 200, 80]],
+		Zone: [[100, 340, 300, 80]],
 		Asset: [
 			{ Name: "NylonRopeHarness", DefaultColor: "#909090", Value: 30, BuyGroup: ["NylonRope"], Prerequisite: "AccessTorso", Time: 20, Extended: true, AllowType: ["Harness", "Diamond"], Audio: "RopeLong" },
 			{ Name: "HempRopeHarness", DefaultColor: "#A07858", Value: 60, Extended: true, Prerequisite: "AccessTorso", Time: 20, RemoveTime: 25, Difficulty: 3, BuyGroup: ["HempRope"], AllowType: ["Harness", "Diamond"], Audio: "RopeLong" },
@@ -923,7 +923,7 @@ var AssetFemale3DCG = [
 		Color: ["Default"],
 		Left: 150,
 		Top: 200,
-		Zone: [[130, 270, 80, 70]],
+		Zone: [[100, 270, 100, 70]],
 		Asset: [
 			{ Name: "NippleClamp", Value: 25, Prerequisite: "AccessBreast", Time: 10, ExpressionTrigger: [{ Group: "Eyes", Name: "Closed", Timer: 5 }, { Group: "Eyebrows", Name: "Angry", Timer: 5 }] },
 			{ Name: "VibeNippleClamp", Value: 40, Effect: ["Egged"], Prerequisite: "AccessBreast", Time: 10, ExpressionTrigger: [{ Group: "Eyes", Name: "Closed", Timer: 5 }, { Group: "Eyebrows", Name: "Angry", Timer: 5 }], AllowEffect: ["Egged", "Vibrating"] },
@@ -952,7 +952,7 @@ var AssetFemale3DCG = [
 		Color: ["Default"],
 		Left: 150,
 		Top: 200,
-		Zone: [[210, 270, 80, 70]],
+		Zone: [[200, 270, 100, 70]],
 		Asset: [
 			{ Name: "StraightPiercing", Value: 10, Prerequisite: "AccessBreast", Time: 15, ExpressionTrigger: [{ Group: "Eyes", Name: "Closed", Timer: 5 }, { Group: "Eyebrows", Name: "Angry", Timer: 5 }] },
 			{ Name: "RoundPiercing", Priority: 39, Value: 30, Prerequisite: "AccessBreast", Time: 15, ExpressionTrigger: [{ Group: "Eyes", Name: "Closed", Timer: 5 }, { Group: "Eyebrows", Name: "Angry", Timer: 5 }], Extended: true, AllowType: ["Base", "Chain"] },
@@ -976,7 +976,7 @@ var AssetFemale3DCG = [
 		Color: ["Default"],
 		Left: 150,
 		Top: 200,
-		Zone: [[290, 270, 80, 70]],
+		Zone: [[300, 270, 100, 70]],
 		Asset: [
 			{ Name: "MetalChastityBra", Value: 60, Effect: ["BreastChaste"], Block: ["ItemNipples", "ItemNipplesPiercings"], Hide: ["ItemNipples", "ItemNipplesPiercings"], Prerequisite: "AccessBreast", AllowLock: true, Time: 15, Difficulty: 50, ExpressionTrigger: [{ Group: "Eyebrows", Name: "Soft", Timer: 10 }] },
 			{ Name: "PolishedChastityBra", Value: 100, Effect: ["BreastChaste"], Block: ["ItemNipples", "ItemNipplesPiercings"], Hide: ["ItemNipples", "ItemNipplesPiercings"], Prerequisite: "AccessBreast", AllowLock: true, Time: 15, Difficulty: 50, ExpressionTrigger: [{ Group: "Eyebrows", Name: "Soft", Timer: 10 }] },
@@ -1002,10 +1002,10 @@ var AssetFemale3DCG = [
 		Color: ["Default"],
 		Left: 50,
 		Top: 200,
-		Zone: [[30, 250, 100, 150], [370, 250, 100, 150]],
+		Zone: [[10, 200, 90, 200], [400, 200, 90, 200]],
 		Asset: [
 			{ Name: "NylonRope", DefaultColor: "#909090", SelfBondage: false, Value: 30, BuyGroup: ["NylonRope"], SetPose: ["BackBoxTie"], Effect: ["Block", "Prone"], Time: 15, Audio: "RopeLong" },
-			{ Name: "HempRope", Extended: true, SelfBondage: false, Value: 60, SetPose: ["BackBoxTie"], AllowType: ["Hogtied", "SuspensionHogtied"], BuyGroup: ["HempRope"], Effect: ["Block", "Prone"], Time: 20, Difficulty: 3, RemoveItemOnRemove: [{ Name: "SuspensionHempRope", Group: "ItemHidden" }], Audio: "RopeLong" },
+			{ Name: "HempRope", Extended: true, SelfBondage: false, Value: 60, SetPose: ["BackBoxTie"], AllowType: ["Hogtied", "SuspensionHogtied"], BuyGroup: ["HempRope"], Effect: ["Block", "Prone"], HideItem: ["ItemDevicesTeddyBear"], Time: 20, Difficulty: 3, RemoveItemOnRemove: [{ Name: "SuspensionHempRope", Group: "ItemHidden" }], Audio: "RopeLong" },
 			{ Name: "MetalCuffs", Priority: 30, Value: 40, SetPose: ["BackCuffs"], Effect: ["Block", "Prone", "Lock"], Difficulty: 5, Time: 5 },
 			{ Name: "SturdyLeatherBelts", SelfBondage: false, AllowLock: true, Value: 50, SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone"], Time: 20, Difficulty: 5, BuyGroup: "SturdyLeatherBelts", Extended: true, AllowType: ["One", "Two", "Three", "Four"] },
 			{ Name: "LeatherArmbinder", DefaultColor: "#404040", Extended: true, SelfBondage: false, SelfUnlock: false, Priority: 6, Value: 80, SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone"], Block: ["ItemHands"], Time: 25, RemoveTime: 10, Difficulty: 10, AllowLock: true, RemoveItemOnRemove: [{ Name: "LeatherArmbinderStrap", Group: "ItemHidden" },{ Name: "LeatherArmbinderWrapStrap", Group: "ItemHidden"}] },
@@ -1069,7 +1069,7 @@ var AssetFemale3DCG = [
 					{ Name: "Base", AllowColorize: false, AllowTypes: ["", "Base", "UnZip", "Latex"], HasType: false }
 				]
 			},
-			{ Name: "Zipties", SelfBondage: true, Value: 20, SetPose: ["BackElbowTouch"], Difficulty: 6, BuyGroup: "Zipties", RemoveTime: 6 },
+			{ Name: "Zipties", SelfBondage: true, Value: 20, SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone"], Difficulty: 6, BuyGroup: "Zipties", RemoveTime: 6 },
 			AssetSpankingToys
 		]
 	},
@@ -1082,7 +1082,7 @@ var AssetFemale3DCG = [
 		Default: false,
 		IsRestraint: true,
 		Color: ["Default"],
-		Zone: [[50, 400, 100, 100], [350, 400, 100, 100]],
+		Zone: [[10, 400, 90, 200], [400, 400, 90, 200]],
 		Asset: [
 			{ Name: "PaddedMittens", DefaultColor: "#bbbbbb", SelfBondage: false, Value: 40, AllowPose: ["BackBoxTie", "BackElbowTouch", "BackCuffs", "Yoked"], Effect: ["Block", "Prone"], Extended: true, Time: 15, Difficulty: 4, AllowLock: true },
 			{ Name: "PawMittens", DefaultColor: "#bbbbbb", SelfBondage: false, Value: 50, AllowPose: ["BackBoxTie", "BackElbowTouch", "BackCuffs", "Yoked"], Effect: ["Block", "Prone"], Extended: true, Time: 15, Difficulty: 4, AllowLock: true },
@@ -1133,7 +1133,7 @@ var AssetFemale3DCG = [
 		Color: ["Default"],
 		Left: 185,
 		Top: 160,
-		Zone: [[210, 210, 80, 60]],
+		Zone: [[200, 200, 100, 70]],
 		Asset: [
 			{ Name: "LeatherCollar", Value: 20, Time: 5, Difficulty: 50, AllowLock: true },
 			{ Name: "LeatherCollarBell", Value: 30, Time: 5, Difficulty: 50, AllowLock: true },
@@ -1182,7 +1182,7 @@ var AssetFemale3DCG = [
 		Color: ["Default"],
 		Left: 0,
 		Top: 190,
-		Zone: [[130, 210, 80, 60]],
+		Zone: [[100, 200, 100, 70]],
 		Asset: [
 			{ Name: "CollarBell", Value: 5, Random: false, Prerequisite: "Collared", Time: 5, Difficulty: 3, AllowLock: true },
 			{ Name: "CollarBow", Value: 5, Random: false, Prerequisite: "Collared", Time: 5, Difficulty: 1 },
@@ -1210,7 +1210,7 @@ var AssetFemale3DCG = [
 		Color: ["Default"],
 		Left: 0,
 		Top: 190,
-		Zone: [[290, 210, 80, 60]],
+		Zone: [[300, 200, 100, 70]],
 		Asset: [
 			{ Name: "CollarChainLong", Value: 30, Random: false, Prerequisite: ["Collared", "NotSuspended", "NotHogtied"], Time: 5, Difficulty: 6, AllowLock: true, BuyGroup: "CollarChain", AllowPose: ["Kneel", "Horse", "KneelingSpread"], Effect: ["Tethered"], ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 15 }], ParentGroup: ["BodyLower"] },
 			{ Name: "CollarChainShort", Value: -1, Random: false, Prerequisite: ["Collared", "NotSuspended", "NotHogtied", "NotMounted", "StraitDressOpen"], Time: 5, Difficulty: 6, AllowLock: true, BuyGroup: "CollarChain", SetPose: ["Kneel"], Effect: ["Freeze", "ForceKneel"], ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 15 }, { Group: "Eyebrows", Name: "Soft", Timer: 5 }] },
@@ -1229,7 +1229,7 @@ var AssetFemale3DCG = [
 		Color: ["Default"],
 		Left: 150,
 		Top: 0,
-		Zone: [[100, 160, 100, 50]],
+		Zone: [[100, 130, 100, 70]],
 		Asset: [
 			{ Name: "ClothGag", DefaultColor: "#B0B0B0", Extended: true, Difficulty: -4, Value: 15, Time: 10, Effect: ["GagVeryLight"], AllowEffect: ["GagVeryLight", "GagLight", "GagEasy"], ExpressionTrigger: [{ Group: "Fluids", Name: "DroolSides", Timer: 30 }], AllowType: ["Small", "Cleave", "OTM", "OTN"], BuyGroup: "ClothGag", SetPose: ["GagFlat"], Prerequisite: "GagFlat" },
 			{
@@ -1260,8 +1260,8 @@ var AssetFemale3DCG = [
 			{ Name: "DusterGag", Priority: 43, Random: false, Effect: ["GagEasy"], Difficulty: 4, Value: -1, Time: 20, AllowLock: true, Hide: ["Mouth"], BuyGroup: "DusterGag", Block: ["ItemMouth2", "ItemMouth3"] },
 			{ Name: "HarnessPonyBits", Random: false, Difficulty: 4, Effect: ["GagNormal"], Value: -1, Time: 20, AllowLock: true, BuyGroup: "HarnessPonyBits", SetPose: ["GagUnique"], Prerequisite: "GagUnique" },
 			{ Name: "PumpGag", DefaultColor: "#404040", Effect: [], Random: false, Extended: true, Value: 100, Time: 20, AllowLock: true, Hide: ["Mouth"], ExpressionTrigger: [{ Group: "Eyebrows", Name: "Soft", Timer: 10 }], AllowEffect: ["GagLight", "GagEasy", "GagMedium", "GagVeryHeavy"], BuyGroup: "PumpGag", SetPose: ["GagUnique"], Prerequisite: "GagUnique" },
-			{ Name: "KittyGag", DefaultColor: "#A0A0A0", Effect: ["GagLight"], Difficulty: -4, Value: 20, Time: 10, Hide: ["Mouth"], ExpressionTrigger: [{ Group: "Blush", Name: "Light", Timer: 5 }, { Group: "Eyes", Name: "Closed", Timer: 5 }], BuyGroup: "KittyGag", SetPose: ["GagFlat"], Prerequisite: "GagFlat" },
-			{ Name: "KittenHarnessPanelGag", DefaultColor: "#A0A0A0", Effect: ["GagEasy"], Difficulty: 6, Value: 80, Time: 20, AllowLock: true, Hide: ["Mouth"], BuyGroup: "KittenHarnessPanelGag", SetPose: ["GagFlat"], Prerequisite: "GagFlat" },
+			{ Name: "KittyGag", Random: false, DefaultColor: "#A0A0A0", Effect: ["GagLight"], Difficulty: -4, Value: 20, Time: 10, Hide: ["Mouth"], ExpressionTrigger: [{ Group: "Blush", Name: "Light", Timer: 5 }, { Group: "Eyes", Name: "Closed", Timer: 5 }], BuyGroup: "KittyGag", SetPose: ["GagFlat"], Prerequisite: "GagFlat" },
+			{ Name: "KittenHarnessPanelGag", Random: false, DefaultColor: "#A0A0A0", Effect: ["GagEasy"], Difficulty: 6, Value: 80, Time: 20, AllowLock: true, Hide: ["Mouth"], BuyGroup: "KittenHarnessPanelGag", SetPose: ["GagFlat"], Prerequisite: "GagFlat" },
 			{ Name: "CarrotGag", Effect: ["GagMedium"], Random: false, Value: 40, Time: 15, Hide: ["Mouth"], ExpressionTrigger: [{ Group: "Fluids", Name: "DroolSides", Timer: 30 }], BuyGroup: "CarrotGag", SetPose: ["GagUnique"], Prerequisite: "GagUnique" },
 			{ Name: "MuzzleGag", DefaultColor: "#404040", Difficulty: 6, Value: 70, Time: 20, AllowLock: true, Hide: ["Mouth"], BuyGroup: "MuzzleGag", SetPose: ["GagFlat"], Prerequisite: "GagFlat" },
 			{ Name: "RegularSleepingPill", Enable: false, Wear: false, Value: -1, Bonus: [{ Type: "KidnapSneakiness", Factor: 3 }] },
@@ -1281,7 +1281,7 @@ var AssetFemale3DCG = [
 					{ Name: "Dildo", AllowColorize: true }
 				]
 			},
-			{ Name: "BoneGag", Difficulty: 6, Value: 50, Time: 10, Effect: ["GagLight"], ExpressionTrigger: [{ Group: "Fluids", Name: "DroolSides", Timer: 30 }], AllowLock: true, BuyGroup: "BoneGag", SetPose: ["GagUnique"], Prerequisite: "GagUnique" },
+			{ Name: "BoneGag", Random: false, Difficulty: 6, Value: 50, Time: 10, Effect: ["GagLight"], ExpressionTrigger: [{ Group: "Fluids", Name: "DroolSides", Timer: 30 }], AllowLock: true, BuyGroup: "BoneGag", SetPose: ["GagUnique"], Prerequisite: "GagUnique" },
 			{ 
 				Name: "ChopstickGag", Difficulty: 2, Value: 15, Time: 10, Hide: ["Mouth"], ExpressionTrigger: [{ Group: "Fluids", Name: "DroolSides", Timer: 30 }], BuyGroup: "ChopstickGag", SetPose: ["GagUnique"], Prerequisite: "GagUnique",
 				Layer: [
@@ -1297,7 +1297,7 @@ var AssetFemale3DCG = [
 				]
 			},
 			{ Name: "HarnessBallGag1", Effect: ["GagHeavy"], Difficulty: 4, Value: 75, Time: 20, AllowLock: true, Hide: ["Mouth"], ExpressionTrigger: [{ Group: "Fluids", Name: "DroolSides", Timer: 30 }], BuyGroup: "HarnessBallGag1", SetPose: ["GagUnique"], Prerequisite: "GagUnique" },
-			{ Name: "PumpkinGag", Effect: ["GagEasy"], Difficulty: 1, Value: 40, Time: 10, AllowLock: true, Hide: ["Mouth"], ExpressionTrigger: [{ Group: "Fluids", Name: "DroolSides", Timer: 30 }], BuyGroup: "PumpkinGag", SetPose: ["GagUnique"], Prerequisite: "GagUnique" },
+			{ Name: "PumpkinGag", Random: false, Effect: ["GagEasy"], Difficulty: 1, Value: 40, Time: 10, AllowLock: true, Hide: ["Mouth"], ExpressionTrigger: [{ Group: "Fluids", Name: "DroolSides", Timer: 30 }], BuyGroup: "PumpkinGag", SetPose: ["GagUnique"], Prerequisite: "GagUnique" },
 			{
 				Name: "LipGag", Effect: ["GagLight"], Value: 40, Time: 5, AllowLock: true, Hide: ["Mouth"], ExpressionTrigger: [{ Group: "Fluids", Name: "DroolSides", Timer: 30 }], BuyGroup: "LipGag",  SetPose: ["GagUnique"], Prerequisite: "GagUnique",
 				Layer: [
@@ -1329,13 +1329,13 @@ var AssetFemale3DCG = [
 			{ Name: "ChloroformCloth", Random: false, Effect: ["GagVeryLight"], Value: 40, Time: 2, Hide: ["Mouth"], ExpressionTrigger: [{ Group: "Blush", Name: "High", Timer: 20 }, { Group: "Eyebrows", Name: "Soft", Timer: 180 }, { Group: "Eyes", Name: "Wink", Timer: 180 }] },
 			{ Name: "ScarfGag", Effect: ["GagLight"], Value: 15, Time: 10, Hide: ["Mouth"], BuyGroup: "ScarfGag", SetPose: ["GagFlat"], Prerequisite: "GagFlat" },
 			{ Name: "LewdGag", Random: false, Effect: ["GagLight"], Value: 70, Time: 10, AllowLock: true, Hide: ["Mouth"], ExpressionTrigger: [{ Group: "Blush", Name: "Light", Timer: 5 }, { Group: "Eyes", Name: "Closed", Timer: 5 }], SetPose: ["GagFlat"], Prerequisite: "GagFlat" },
-			{ Name: "DeepthroatGag", DefaultColor: "#404040", Difficulty: 5, Effect: ["GagHeavy"], Value: 55, Time: 15, AllowLock: true, Hide: ["Mouth"], ExpressionTrigger: [{ Group: "Eyebrows", Name: "Raised", Timer: 10 }], BuyGroup: "DeepthroatGag", SetPose: ["GagUnique"], Prerequisite: "GagUnique" },
-			{ Name: "LeatherCorsetCollar", DefaultColor: "#404040", Priority: 34, Hide: ["Mouth"], BuyGroup: ["LeatherCorsetCollar"], Block: ["ItemNeck"], Value: 75, Time: 20, RemoveTime: 30, Difficulty: 50, AllowLock: true, BuyGroup: "LeatherCorsetCollar", SetPose: ["GagCorset"], Prerequisite: "GagCorset" },
-			{ Name: "LatexPostureCollar", Priority: 34, Hide: ["Mouth"], BuyGroup: ["LatexPostureCollar"], Block: ["ItemNeck"], Value: 80, Time: 20, RemoveTime: 30, Difficulty: 50, AllowLock: true, BuyGroup: "LatexPostureCollar", SetPose: ["GagCorset"], Prerequisite: "GagCorset" },
+			{ Name: "DeepthroatGag", Random: false, DefaultColor: "#404040", Difficulty: 5, Effect: ["GagHeavy"], Value: 55, Time: 15, AllowLock: true, Hide: ["Mouth"], ExpressionTrigger: [{ Group: "Eyebrows", Name: "Raised", Timer: 10 }], BuyGroup: "DeepthroatGag", SetPose: ["GagUnique"], Prerequisite: "GagUnique" },
+			{ Name: "LeatherCorsetCollar", Random: false, DefaultColor: "#404040", Priority: 34, Hide: ["Mouth"], BuyGroup: ["LeatherCorsetCollar"], Block: ["ItemNeck"], Value: 75, Time: 20, RemoveTime: 30, Difficulty: 50, AllowLock: true, BuyGroup: "LeatherCorsetCollar", SetPose: ["GagCorset"], Prerequisite: "GagCorset" },
+			{ Name: "LatexPostureCollar", Random: false, Priority: 34, Hide: ["Mouth"], BuyGroup: ["LatexPostureCollar"], Block: ["ItemNeck"], Value: 80, Time: 20, RemoveTime: 30, Difficulty: 50, AllowLock: true, BuyGroup: "LatexPostureCollar", SetPose: ["GagCorset"], Prerequisite: "GagCorset" },
 			{ Name: "BitGag", Difficulty: 4, Effect: ["GagNormal"], Value: 40, Time: 20, ExpressionTrigger: [{ Group: "Fluids", Name: "DroolSides", Timer: 30 }], AllowLock: true, BuyGroup: "BitGag", SetPose: ["GagUnique"], Prerequisite: "GagUnique" },
-			{ Name: "XLBoneGag", Difficulty: 6, Value: 60, Time: 10, Effect: ["GagNormal"], ExpressionTrigger: [{ Group: "Fluids", Name: "DroolSides", Timer: 30 }], AllowLock: true, BuyGroup: "XLBoneGag", SetPose: ["GagUnique"], Prerequisite: "GagUnique" },
-			{ Name: "DogMuzzleExposed", Difficulty: 7, Value: 50, Time: 10, Effect: ["GagNormal"], AllowLock: true, Hide: ["Mouth"], Block: ["ItemMouth2", "ItemMouth3"] },
-			{ Name: "FoxyHarnessPanelGag", Difficulty: 6, Value: 40, Time: 20, Effect: ["GagNormal"], AllowLock: true, Hide: ["Mouth"], Block: ["ItemMouth2", "ItemMouth3"] },
+			{ Name: "XLBoneGag", Random: false, Difficulty: 6, Value: 60, Time: 10, Effect: ["GagNormal"], ExpressionTrigger: [{ Group: "Fluids", Name: "DroolSides", Timer: 30 }], AllowLock: true, BuyGroup: "XLBoneGag", SetPose: ["GagUnique"], Prerequisite: "GagUnique" },
+			{ Name: "DogMuzzleExposed", Random: false, Difficulty: 7, Value: 50, Time: 10, Effect: ["GagNormal"], AllowLock: true, Hide: ["Mouth"], Block: ["ItemMouth2", "ItemMouth3"] },
+			{ Name: "FoxyHarnessPanelGag", Random: false, Difficulty: 6, Value: 40, Time: 20, Effect: ["GagNormal"], AllowLock: true, Hide: ["Mouth"], Block: ["ItemMouth2", "ItemMouth3"] },
 			{ Name: "BallGag", Effect: ["GagMedium"], Difficulty: 2, Value: 40, Time: 10, AllowLock: true,  Hide: ["Mouth"], ExpressionTrigger: [{ Group:"Fluids", Name: "DroolSides", Timer: 30 }], BuyGroup: "BallGag", SetPose:["GagUnique"], Prerequisite: "GagUnique",
 				Layer: [
 					{ Name: "Strap", AllowColorize: false},
@@ -1356,7 +1356,7 @@ var AssetFemale3DCG = [
 		Color: ["Default"],
 		Left: 150,
 		Top: 0,
-		Zone: [[200, 160, 100, 50]],
+		Zone: [[200, 130, 100, 70]],
 		Asset: [
 			{ Name: "ClothGag", Random: false, DefaultColor: "#B0B0B0", Extended: true, Difficulty: -4, Value: -1, Time: 10, Effect: ["GagVeryLight"], AllowEffect: ["GagVeryLight", "GagLight", "GagEasy"], ExpressionTrigger: [{ Group: "Fluids", Name: "DroolSides", Timer: 30 }], AllowType: ["Small", "Cleave", "OTM", "OTN"], Block: ["ItemMouth"], BuyGroup: "ClothGag", SetPose: ["GagFlat"], Prerequisite: "GagFlat" },
 			{
@@ -1425,7 +1425,7 @@ var AssetFemale3DCG = [
 		Color: ["Default"],
 		Left: 150,
 		Top: 0,
-		Zone: [[300, 160, 100, 50]],
+		Zone: [[300, 130, 100, 70]],
 		Asset: [
 			{ Name: "ClothGag", Random: false, DefaultColor: "#B0B0B0", Extended: true, Difficulty: -4, Value: -1, Time: 10, Effect: ["GagVeryLight"], AllowEffect: ["GagVeryLight", "GagLight", "GagEasy"], ExpressionTrigger: [{ Group: "Fluids", Name: "DroolSides", Timer: 30 }], AllowType: ["Small", "Cleave", "OTM", "OTN"], Block: ["ItemMouth", "ItemMouth2"], BuyGroup: "ClothGag" },
 			{
@@ -1493,7 +1493,7 @@ var AssetFemale3DCG = [
 		Color: ["Default"],
 		Left: 150,
 		Top: 20,
-		Zone: [[175, 25, 150, 125]],
+		Zone: [[175, 0, 150, 130]],
 		Asset: [
 			{ Name: "ClothBlindfold", DefaultColor: "#A0A0A0", Effect: ["BlindLight", "Prone"], Hide: ["Glasses"], Value: 15, Time: 5 },
 			{ Name: "LeatherBlindfold", DefaultColor: "#404040", Effect: ["BlindNormal", "Prone"], Hide: ["Glasses"], Value: 30, Time: 5, AllowLock: true },
@@ -1505,9 +1505,9 @@ var AssetFemale3DCG = [
 			{ Name: "SmallBlindfold", DefaultColor: "#404040", Effect: ["BlindLight", "Prone"], Hide: ["Glasses"], Value: 40, Time: 5, AllowLock: true },
 			{ Name: "LeatherHoodOpenMouth", DefaultColor: "#404040", Effect: ["Prone", "BlindHeavy"], Block: ["ItemEars"], Hide: ["HairFront", "HairBack", "Glasses", "HairAccessory1", "HairAccessory2"], Difficulty: 50, Value: 50, Time: 15, AllowLock: true },
 			{ Name: "FullBlindfold", Priority: 31, DefaultColor: "#353535", Effect: ["BlindHeavy", "Prone"], Hide: ["Glasses"], Difficulty: 6, Value: 40, Time: 5, AllowLock: true },
-			{ Name: "LeatherHoodSensDep", DefaultColor: "#555555", Effect: ["BlindHeavy", "DeafHeavy", "Prone", "GagHeavy"], Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth", "ItemMouth2", "ItemMouth3", "Eyes", "Hat", "HairAccessory1", "HairAccessory2"], Block: ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemEars", "ItemNeck"], Difficulty: 50, Value: 100, Time: 15, AllowLock: true, Alpha: [[150, 50, 200, 50]] },
-			{ Name: "LatexHoodOpenHair", DefaultColor: "#555555", Block: ["ItemEars"], Hide: ["HairFront", "HairBack", "Hat", "HairAccessory1", "HairAccessory2"], Difficulty: 50, Value: 45, Time: 15, AllowLock: true, Alpha: [[150, 50, 200, 87]] },
-			{ Name: "LeatherHoodSealed", DefaultColor: "#555555", Effect: ["BlindHeavy", "Prone", "GagLight"], Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth", "ItemMouth2", "ItemMouth3", "Eyes", "Hat", "HairAccessory1", "HairAccessory2"], Block: ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemEars", "ItemNeck"], Difficulty: 50, Value: 70, Time: 15, AllowLock: true, Alpha: [[150, 50, 200, 100]] },
+			{ Name: "LeatherHoodSensDep", DefaultColor: "#555555", Effect: ["BlindHeavy", "DeafHeavy", "Prone", "GagHeavy"], Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth", "ItemMouth2", "ItemMouth3", "Eyes", "Hat", "HairAccessory1", "HairAccessory2"], Block: ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemEars", "ItemNeck"], Difficulty: 50, Value: 100, Time: 15, AllowLock: true, Alpha: [[150, 50, 200, 50]], Prerequisite: ["NotHogtied"] },
+			{ Name: "LatexHoodOpenHair", DefaultColor: "#555555", Block: ["ItemEars"], Hide: ["HairFront", "HairBack", "Hat", "HairAccessory1", "HairAccessory2"], Difficulty: 50, Value: 45, Time: 15, AllowLock: true, Alpha: [[150, 50, 200, 87]], Prerequisite: ["NotHogtied"] },
+			{ Name: "LeatherHoodSealed", DefaultColor: "#555555", Effect: ["BlindHeavy", "Prone", "GagLight"], Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth", "ItemMouth2", "ItemMouth3", "Eyes", "Hat", "HairAccessory1", "HairAccessory2"], Block: ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemEars", "ItemNeck"], Difficulty: 50, Value: 70, Time: 15, AllowLock: true, Alpha: [[150, 50, 200, 100]], Prerequisite: ["NotHogtied"] },
 			{ Name: "PolishedSteelHood", Effect: ["BlindHeavy", "DeafLight", "Prone", "GagHeavy"], Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth", "ItemMouth2", "ItemMouth3", "Eyes", "HairAccessory1", "HairAccessory2"], Block: ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemEars", "ItemNeck"], Difficulty: 50, Value: 85, Time: 15, AllowLock: true },
 			{ Name: "SackHood", Effect: ["Prone", "BlindHeavy"], Block: ["ItemEars", "ItemMouth", "ItemMouth2", "ItemMouth3"], Hide: ["HairFront", "HairBack", "Glasses", "ItemMouth", "ItemMouth2", "ItemMouth3", "HairAccessory1", "HairAccessory2", "Hat"], Difficulty: 3, Value: 20, Time: 5 },
 			{ Name: "LewdBlindfold", Priority: 31, Random: false, Effect: ["BlindLight", "Prone"], Hide: ["Glasses"], Value: 45, Time: 5, AllowLock: true, ExpressionTrigger: [{ Group: "Blush", Name: "Light", Timer: 5 }, { Group: "Eyes", Name: "Closed", Timer: 5 }] },
@@ -1528,7 +1528,7 @@ var AssetFemale3DCG = [
 		Color: ["Default"],
 		Left: 150,
 		Top: 50,
-		Zone: [[125, 25, 50, 125], [325, 25, 50, 125]],
+		Zone: [[100, 0, 75, 130], [325, 0, 75, 130]],
 		Asset: [
 			{ Name: "LightDutyEarPlugs", Visible: false, Effect: ["DeafLight"], Difficulty: 50, Value: 15, Time: 5 },
 			{ Name: "HeavyDutyEarPlugs", Visible: false, Effect: ["DeafHeavy"], Difficulty: 50, Value: 30, Time: 5 },
@@ -1543,7 +1543,7 @@ var AssetFemale3DCG = [
 		Default: false,
 		Color: ["Default"],
 		Top: -250,
-		Zone: [[25, 35, 75, 210]],
+		Zone: [[10, 0, 90, 200]],
 		Asset: [
 			{ Name: "MetalPadlock", Wear: false, Value: 15, Time: 10, IsLock: true, Effect: [] },
 			{ Name: "IntricatePadlock", Wear: false, Value: 50, Time: 30, IsLock: true, Effect: [] },
@@ -1572,7 +1572,7 @@ var AssetFemale3DCG = [
 		Color: ["Default"],
 		Left: 0,
 		Top: -250,
-		Zone: [[25, 580, 75, 410], [400, 580, 75, 410]],
+		Zone: [[10, 600, 90, 400], [400, 600, 90, 400]],
 		Asset: [
 			{ Name: "WoodenBox", RemoveAtLogin: true, Alpha: [[1, 1, 70, 999], [420, 1, 80, 999]], Effect: ["Prone", "Enclose", "BlindNormal", "GagLight", "Freeze"], Value: 60, Time: 15, RemoveTime: 10, Difficulty: -2, AllowLock: true, Prerequisite: ["NotSuspended", "NotHogtied"] },
 			{ Name: "SmallWoodenBox", RemoveAtLogin: true, Alpha: [[1, 1, 70, 999], [420, 1, 80, 999]], SetPose: ["Kneel"], Effect: ["ForceKneel", "Prone", "Enclose", "BlindNormal", "GagLight", "Freeze"], Value: 40, Time: 15, RemoveTime: 10, Difficulty: -2, AllowLock: true, Prerequisite: ["NotSuspended", "NotHogtied", "NotMounted", "NotKneelingSpread", "NoFeetSpreader"] },
@@ -1605,7 +1605,7 @@ var AssetFemale3DCG = [
 		Color: ["Default"],
 		Left: 0,
 		Top: -250,
-		Zone: [[400, 35, 75, 210]],
+		Zone: [[400, 0, 90, 200]],
 		Asset: [
 			{ Name: "BondageBenchStraps", RemoveAtLogin: false, IsRestraint: true, Extended: true, Block: ["ItemDevices"], AllowType: ["Light", "Normal", "Heavy", "Full"], Hide: ["HairBack", "Wings", "TailStraps", "ItemButt"], SelfBondage: false, AllowLock: true, Value: -1, SetPose: ["LegsClosed"], Effect: ["Block", "Prone"], Time: 5, Difficulty: 12 }
 		]
@@ -1622,7 +1622,7 @@ var AssetFemale3DCG = [
 		Color: ["Default"],
 		Left: 125,
 		Top: 500,
-		Zone: [[100, 870, 300, 120]],
+		Zone: [[100, 870, 300, 130]],
 		Asset: [
 			{ Name: "PonyBoots", Height: 35, Value: -1, Time: 10, RemoveTime: 15, Difficulty: 6, AllowLock: true, Alpha: [[75, 800, 140, 200],[290, 800, 140, 200]], Hide: ["Shoes"] },
 			{ Name: "BalletHeels", Height: 35, Value: 75, Time: 10, RemoveTime: 15, Difficulty: 6, AllowLock: true, Alpha: [[75, 770, 140, 200],[290, 770, 140, 200]], Hide: ["Shoes"] },
@@ -1683,7 +1683,7 @@ var PoseFemale3DCG = [
 	{
 		Name: "SuspensionHogtied",
 		OverrideHeight: 0,
-		Hide: ["BodyLower", "Hands", "ClothLower", "Socks", "Shoes", "Wings", "TailStraps", "Gloves", "Panties", "Pussy", "ItemHands", "ItemPelvis", "ItemVulva", "ItemButt", "ItemLegs", "ItemFeet"]
+		Hide: ["BodyLower", "Hands", "ClothLower", "Socks", "Shoes", "Wings", "TailStraps", "Gloves", "Panties", "Pussy", "ItemHands", "ItemPelvis", "ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemLegs", "ItemFeet", "ItemBoots"]
 	}
 
 ];
