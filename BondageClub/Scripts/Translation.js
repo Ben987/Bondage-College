@@ -293,7 +293,7 @@ function TranslationParseTXT(str) {
     // iterate over each character, keep track of current row (of the returned array)
     for (var row = c = 0; c < str.length; c++) {
         var cc = str[c], nc = str[c+1];        // current character, next character
-        arr[row] = arr[row] || [];             // create a new row if necessary
+		arr[row] = arr[row] || [];             // create a new row if necessary        
         if (cc == '\n') { ++row; continue; }   // If it's a newline, move on to the next row
         arr[row] += cc;                        // Otherwise, append the current character to the row
     }
@@ -308,7 +308,6 @@ function TranslationParseTXT(str) {
 	// Trims the full translated array
     for (var row = 0; row < arr.length; row++)
 		arr[row] = arr[row].trim();
-
     return arr;
 }
 

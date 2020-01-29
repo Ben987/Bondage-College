@@ -106,7 +106,7 @@ function InventoryItemMiscOwnerTimerPadlockAdd(TimeToAdd, PlayerMemberNumberToLi
             Dictionary.push({Tag: "TimerTime", Text: Math.round(Math.abs(timeAdded))});
             Dictionary.push({Tag: "TimerUnit", TextToLookUp: "Hours"});
         } else {
-            Dictionary.push({Tag: "TimerTime", TextToLookUp: "TimerAddUnknownTime"});
+            Dictionary.push({Tag: "TimerTime", TextToLookUp: "TimerRemoveUnknownTime"});
             Dictionary.push({Tag: "TimerUnit", Text: ""});
         }
         Dictionary.push({Tag: "FocusAssetGroup", AssetGroupName: C.FocusGroup.Name});

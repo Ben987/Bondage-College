@@ -107,7 +107,7 @@ function InventorySpankingToySetType(NewType) {
 	// Prepares the chat message to be published
 	var msg = C.ID == 0 ? "SpankingToysSetPlayer" : "SpankingToysSetOthers";
 	var Dictionary = [];
-	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber})
+	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
 	Dictionary.push({Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
 	Dictionary.push({Tag: "ItemUsed", AssetName : "SpankingToys" + ((NewType) ? NewType : "Crop")});
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
