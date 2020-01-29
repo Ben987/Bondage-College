@@ -1720,7 +1720,7 @@ var PoseFemale3DCG = [
 	{
 		Name: "SuspensionHogtied",
 		OverrideHeight: 0,
-		Hide: ["BodyLower", "Hands", "ClothLower", "Socks", "Shoes", "Wings", "TailStraps", "Gloves", "Panties", "Pussy", "ItemHands", "ItemPelvis", "ItemVulva", "ItemButt", "ItemLegs", "ItemFeet", "SuitLower"]
+		Hide: ["BodyLower", "Hands", "ClothLower", "Socks", "Shoes", "Wings", "TailStraps", "Gloves", "Panties", "Pussy", "ItemHands", "ItemPelvis", "ItemVulva", "ItemVulvaPiercings", "ItemButt", "ItemLegs", "ItemFeet", "ItemBoots", "SuitLower"]
 	}
 
 ];
