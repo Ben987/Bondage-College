@@ -128,6 +128,7 @@ function BackgroundSelectionKeyDown() {
 
 // When the user exit from this screen
 function BackgroundSelectionExit(SetBackground) {
+	ElementRemove("InputBackground");
 	if (SetBackground && BackgroundSelectionCallback) BackgroundSelectionCallback(BackgroundSelectionSelect);
 	BackgroundSelectionCallback = null;
 	CommonSetScreen(BackgroundSelectionPreviousModule, BackgroundSelectionPreviousScreen);
