@@ -6,5 +6,25 @@ You must pick an item of type:
 Le type d'objet doit être sélectionné
 Set wardrobe character name:
 Choice le nom de caractère:
-Ivalid name for character.
+Invalid name for character.
 Nom invalide pour le caractère.
+Reset character
+Réinitialiser le personnage
+Randomize character
+Personnage aléatoire
+Strip naked
+Déshabiller au complet
+Strip item
+Retiré l'objet
+Next
+Suivant
+Previous
+Précédent
+Cancel changes
+Annuler les modifications
+Accept changes
+Accepter les modifications
+Wardrobe
+Garde-robe
+Dress manually
+S'habillez manuellement

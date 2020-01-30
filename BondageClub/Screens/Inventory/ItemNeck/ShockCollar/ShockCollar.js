@@ -32,7 +32,13 @@ function InventoryItemNeckShockCollarClick() {
 
 // Sets the shock collar intensity
 function InventoryItemNeckShockCollarSetIntensity(Modifier) {
+	// Gets the current item and character
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	if ((CurrentScreen == "ChatRoom") || (DialogFocusItem == null)) {
+		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
+		InventoryItemNeckShockCollarLoad();
+	}
+	
 	DialogFocusItem.Property.Intensity = DialogFocusItem.Property.Intensity + Modifier;
 	if (DialogFocusItem.Property.ShowText) {
 		var Dictionary = [];
