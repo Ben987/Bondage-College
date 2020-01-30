@@ -676,8 +676,8 @@ function ChatRoomSendOwnershipRequest(RequestType) {
 
 // When the player selects a lovership dialog option (can change money)
 function ChatRoomSendLovershipRequest(RequestType) {
-	if ((ChatRoomLovershipOption == "CanOfferEndTrial") && (RequestType == "Propose")) CharacterChangeMoney(Player, -100);
-	if ((ChatRoomLovershipOption == "CanEndTrial") && (RequestType == "Accept")) CharacterChangeMoney(Player, -100);
+	if ((ChatRoomLovershipOption == "CanOfferBeginWedding") && (RequestType == "Propose")) CharacterChangeMoney(Player, -100);
+	if ((ChatRoomLovershipOption == "CanBeginWedding") && (RequestType == "Accept")) CharacterChangeMoney(Player, -100);
 	ChatRoomLovershipOption = "";
 	ServerSend("AccountLovership", { MemberNumber: CurrentCharacter.MemberNumber, Action: RequestType });
 	if (RequestType == "Accept") DialogLeave();

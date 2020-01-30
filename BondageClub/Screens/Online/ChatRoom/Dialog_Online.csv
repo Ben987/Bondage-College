@@ -20,15 +20,17 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 10,0,(Accept her collar and begin the ceremony.),,"SendOwnershipRequest(""Accept"")","OwnershipOptionIs(""CanEndTrial"")"
 10,100,"(Rules, restrictions & punishments.)","(Select the rule, restriction or punishment that you want to enforce.)",,IsCollaredByPlayer()
 10,,(Give her the money envelope.),,GiveMoneyForOwner(),CanGiveMoneyForOwner()
-10,0,(Offer her a trial period to become your lover.),(The request has been sent.  She must accept it for the trial period to start.),"SendLovershipRequest(""Propose"")","LovershipOptionIs(""CanOfferStartTrial"")"
-10,0,(Accept a trial period to become her lover.),,"SendLovershipRequest(""Accept"")","LovershipOptionIs(""CanStartTrial"")"
-10,12,(Offer to end the trial and officially become your lover.),(There's a 100$ fee to prepare the papers to be considered full lovers.  Will you pay now?),,"LovershipOptionIs(""CanOfferEndTrial"")"
-10,13,(Accept her proposal and become her lover.),(There's a 100$ fee asked of both sides to be considered full lovers.  Will you pay now?),,"LovershipOptionIs(""CanEndTrial"")"
+10,0,(Ask her out for a date.),(The request has been sent.  She must accept it to start dating you.),"SendLovershipRequest(""Propose"")","LovershipOptionIs(""CanOfferBeginDating"")"
+10,0,(Accept to date her.),,"SendLovershipRequest(""Accept"")","LovershipOptionIs(""CanBeginDating"")"
+10,0,(Offer her to become your fiancée.),(The request has been sent.  She must accept it to become your fiancée.),"SendLovershipRequest(""Propose"")","LovershipOptionIs(""CanOfferBeginEngagement"")"
+10,0,(Accept her proposal of engagement.),,"SendLovershipRequest(""Accept"")","LovershipOptionIs(""CanBeginEngagement"")"
+10,12,(Offer her to marry each other.),(There's a 100$ fee asked of both sides for the wedding.  Will you pay now?),,"LovershipOptionIs(""CanOfferBeginWedding"")"
+10,13,(Accept her proposal and become her wife.),(There's a 100$ fee asked of both sides for the wedding.  Will you pay now?),,"LovershipOptionIs(""CanBeginWedding"")"
 11,0,(Pay 100$ for the collaring ceremony.),"(You pay and prepare the ceremony.  A maid brings a slave collar, she must accept it to complete the collaring.)","SendOwnershipRequest(""Propose"")",DialogMoneyGreater(100)
 11,0,(Refuse to pay.),(Main menu),,
-12,0,(Pay 100$ to make your lovers relationship official.),(You pay and ask her to officially become your lover. You wait for her answer.),"SendLovershipRequest(""Propose"")",DialogMoneyGreater(100)
+12,0,(Pay 100$ for the wedding.),(You pay and ask her to marry you. You wait for her answer.),"SendLovershipRequest(""Propose"")",DialogMoneyGreater(100)
 12,0,(Refuse to pay.),(Main menu),,
-13,0,(Pay 100$ to make your lovers relationship official),,"SendLovershipRequest(""Accept"")",DialogMoneyGreater(100)
+13,0,(Pay 100$ for the wedding.),,"SendLovershipRequest(""Accept"")",DialogMoneyGreater(100)
 13,0,(Refuse to pay.),(Main menu),,
 10,0,(Back to main menu.),(Main menu.),,
 20,21,(Look at free drinks.),(Free drinks menu.),,
