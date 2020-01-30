@@ -607,6 +607,10 @@ FullLatexSuitTypeWand,,,Wand Attachment
 FullLatexSuitSetZipped,,,SourceCharacter zips up TargetCharacter suit.
 FullLatexSuitSetUnZip,,,SourceCharacter unzips up TargetCharacter suit.
 FullLatexSuitSetWand,,,SourceCharacter attachs a wand to TargetCharacter suit.
+BitchSuitTypeZipped,,,Zipped Up
+BitchSuitTypeUnZip,,,Unzipped
+BitchSuitSetZipped,,,SourceCharacter zips up TargetCharacter suit.
+BitchSuitSetUnZip,,,SourceCharacter unzips up TargetCharacter suit.
 TurnOff,,,TurnOff
 Low,,,Low
 Medium,,,Medium
