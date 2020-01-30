@@ -46,7 +46,7 @@ function BackgroundSelectionInputChanged() {
 		BackgroundSelectionOffset = Math.floor(BackgroundSelectionIndex / BackgroundSelectionSize) * BackgroundSelectionSize;
 	} else {
 		BackgroundSelectionView = BackgroundSelectionAll.filter(B => B.Low.includes(Input));
-		if (BackgroundSelectionOffset > BackgroundSelectionView.length) BackgroundSelectionOffset = 0;
+		if (BackgroundSelectionOffset >= BackgroundSelectionView.length) BackgroundSelectionOffset = 0;
 	}
 }
 
