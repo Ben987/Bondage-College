@@ -102,7 +102,7 @@ function InventoryPrerequisiteMessage(C, Prerequisite) {
 	if ((Prerequisite == "AccessBreast") && (((Cloth != null) && !Cloth.Asset.Expose.includes("ItemBreast"))
 			|| (InventoryGet(C, "Bra") != null && !InventoryGet(C, "Bra").Asset.Expose.includes("ItemBreast")))) return "RemoveClothesForItem";
 
-	if ((Prerequisite == "AccessBreast1") && (((Cloth != null) && !Cloth.Asset.Expose.includes("ItemNipplesPiercings"))
+	if ((Prerequisite == "AccessBreastSuitZip") && (((Cloth != null) && !Cloth.Asset.Expose.includes("ItemNipplesPiercings"))
 		    || (InventoryGet(C, "Suit") != null && !InventoryGet(C, "Suit").Asset.Expose.includes("ItemNipplesPiercings")))) return "UnZipSuitForItem";
 
 	// Vulva/Butt items can be blocked by clothes, panties and some socks
