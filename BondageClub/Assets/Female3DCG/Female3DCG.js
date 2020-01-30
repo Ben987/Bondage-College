@@ -694,7 +694,7 @@ var AssetFemale3DCG = [
 				]
 			},
 			{
-				Name: "HobbleSkirt", DefaultColor: "#222222", Value: 125, Block: ["ItemPelvis", "ItemFeet", "ItemVulva", "ItemVulvaPiercings", "ItemButt"], SetPose: ["LegsClosed"], Hide: ["Socks", "BodyLower", "ClothLower", "Shoes", "ItemBoots"], HideItem: ["ItemFeetNylonRope", "ItemFeetHempRope", "ItemFeetLeatherBelt", "ItemFeetIrish8Cuffs", "ItemFeetDuctTape", "ItemFeetMermaidRopeTie", "ItemFeetLeatherAnkleCuffs"], Effect: ["Prone"], Time: 30, RemoveTime: 20, Difficulty: 15, AllowLock: true, Prerequisite: ["NotKneeling", "NotSuspended", "NotHogtied"],
+				Name: "HobbleSkirt", DefaultColor: "#222222", Value: 125, Block: ["ItemPelvis", "ItemFeet", "ItemVulva", "ItemVulvaPiercings", "ItemButt"], SetPose: ["LegsClosed"], Hide: ["Socks", "BodyLower", "ClothLower", "Shoes", "ItemBoots"], HideItem: ["OrnateAnkleCuffs", "ItemFeetNylonRope", "ItemFeetHempRope", "ItemFeetLeatherBelt", "ItemFeetIrish8Cuffs", "ItemFeetDuctTape", "ItemFeetMermaidRopeTie", "ItemFeetLeatherAnkleCuffs"], Effect: ["Prone"], Time: 30, RemoveTime: 20, Difficulty: 15, AllowLock: true, Prerequisite: ["NotKneeling", "NotSuspended", "NotHogtied"],
 				Layer: [
 					{ Name: "Latex", AllowColorize: true },
 					{ Name: "Belts", AllowColorize: false }
@@ -1591,8 +1591,8 @@ var AssetFemale3DCG = [
 					{ Name: "Pussy", AllowColorize: false }
 				]
 			},
-			{ Name: "TheDisplayFrame", RemoveAtLogin: true, Value: 100, Time: 10, Difficulty: 50, Priority: 46, AllowLock: true, SetPose: ["LegsClosed", "BackElbowTouch"], Prerequisite: ["DisplayFrame", "NotSuspended", "NotHogtied", "NotMounted", "NotKneeling"], Block: ["ItemArms", "ItemLegs", "ItemFeet", "ItemBoots", "ItemNeckAccessories"], Effect: ["Prone", "Freeze", "Block", "Mounted"] },
-			{ Name: "Sybian", RemoveAtLogin: true, IsRestraint: false, Value: 80, Time: 10, Difficulty: 1, Priority: 22, SetPose: ["KneelingSpread"], Prerequisite: ["AccessVulva", "NotKneeling", "LegsOpen", "NotSuspended", "NotHogtied", "NotShackled", "NotChaste", "StraitDressOpen"], Block: ["ItemLegs", "ItemFeet", "ItemBoots", "ItemPelvis", "ItemButt", "ItemVulva"], Effect: ["Egged", "Freeze"], Hide: ["Shoes", "Socks", "ItemBoots", "ItemFeet", "ItemLegs", "ItemVulva"], HideItem: ["ClothLowerPajama1", "ClothLowerShorts1", "ClothLowerJeans1", "ClothLowerJeans2", "ClothLowerWaspie1", "ClothLowerWaspie2", "ClothLowerWaspie3", "ClothLowerLatexPants1", "ItemDevicesTeddyBear"] }	
+			{ Name: "TheDisplayFrame", RemoveAtLogin: true, Value: 100, Time: 10, Difficulty: 50, Priority: 46, AllowLock: true, SetPose: ["LegsClosed", "BackElbowTouch"], Prerequisite: ["DisplayFrame", "NotSuspended", "NotHogtied", "NotHorse", "NotKneeling"], Block: ["ItemArms", "ItemLegs", "ItemFeet", "ItemBoots", "ItemNeckAccessories"], Effect: ["Prone", "Freeze", "Block", "Mounted"] },
+			{ Name: "Sybian", RemoveAtLogin: true, IsRestraint: false, Value: 80, Time: 10, Difficulty: 1, Priority: 22, SetPose: ["KneelingSpread"], Prerequisite: ["AccessVulva", "NotKneeling", "LegsOpen", "NotSuspended", "NotHogtied", "NotShackled", "NotChaste", "StraitDressOpen", "NotHorse"], Block: ["ItemLegs", "ItemFeet", "ItemBoots", "ItemPelvis", "ItemButt", "ItemVulva"], Effect: ["Egged", "Freeze"], Hide: ["Shoes", "Socks", "ItemBoots", "ItemFeet", "ItemLegs", "ItemVulva"], HideItem: ["ClothLowerPajama1", "ClothLowerShorts1", "ClothLowerJeans1", "ClothLowerJeans2", "ClothLowerWaspie1", "ClothLowerWaspie2", "ClothLowerWaspie3", "ClothLowerLatexPants1", "ItemDevicesTeddyBear"] }	
 		]
 	},
 	
