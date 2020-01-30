@@ -734,7 +734,6 @@ function PrivateNPCLover() {
 	CurrentCharacter.Lover = Player.Name;
 	CurrentCharacter.Love = 100;
 	Player.Lover = "NPC-" + CurrentCharacter.Name;
-	// todo actually sync player if going online
 	ServerPlayerSync();
 	DialogLeave();
 }

@@ -246,7 +246,6 @@ function ManagementBreakLover() {
 	}
 	Player.Lover = "";
 	if ((Player.Lovership != null) && (Player.Lovership.MemberNumber != null)) ServerSend("AccountLovership", { MemberNumber: Player.Lovership.MemberNumber, Action: "Break" });
-	// todo make sure player is correctly updated
 	ServerPlayerSync();
 }
 

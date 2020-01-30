@@ -305,7 +305,7 @@ MistressExpulsion,,,We Mistresses have been speaking.  It seems you're not fit t
 530,0,"Fine, take it.  (Give your Mistress items.)","(She takes your Mistress items and sighs.)  Such a pity, you had so much potential.  Carry on girl.",MistressKicked(),,
 530,0,That sucks!  (Give your Mistress items.),"(She takes your Mistress items and sighs.)  Such a pity, you had so much potential.  Carry on girl.",MistressKicked(),,
 600,,What exactly does it mean to be a Lover?,"The lover's relationship is unique and is based on mutual trust and caring.  The details may differ from one relationship to another.",,,
-600,,Is there a fee to become a Lover?,"Once you've completed the 7 day trial period, you can make your relationship official at a cost of $100 from each of you.",,,
+600,,Is there a fee to become a Lover?,"The marriage costs 100$ from each lover. But before that you have to learn more about your lover by dating her and be her fiancée during 7 days, each.",,,
 600,,Can I ask anyone to be my lover?,"You can only be in a lover relationship with one person at the time.  As long as the person isn't anyone else's lover, you can.",,,
 600,630,I want to break up with my lover.,"Breaking up while dating is alright, it happens all the time.  But are you totally sure?  Have you really thought about it?",,CanBreakDatingLoverOnline(),
 600,610,I want to break up with my lover.,"I'm sorry to hear that.  Breaking a Lovers bond is a big decision.  Tell me your story, why do you want to leave?",,CanBreakUpLoverOnline(),

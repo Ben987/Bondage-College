@@ -150,12 +150,14 @@ function LoginStableItems() {
 function LoginLoversItems() {
 	if (Player.Lovership == null) {
 		for(var A = 0; A < Player.Appearance.length; A++) {
-			if (Player.Appearance[A].Asset.Group.Name == "ItemNeck" && Player.Appearance[A].Property && Player.Appearance[A].Asset.Name == "SlaveCollar" && Player.Appearance[A].Property.Type == "LoveLeatherCollar"){
+			if (Player.Appearance[A].Asset.Group.Name == "ItemNeck" && Player.Appearance[A].Property && Player.Appearance[A].Asset.Name == "SlaveCollar" && Player.Appearance[A].Property.Type == "LoveLeatherCollar") {
 				Player.Appearance[A].Property = null;
 				Player.Appearance[A].Color = "Default";
 			}
-			if (Player.Appearance[A].Property && Player.Appearance[A].Property.LockedBy && ((Player.Appearance[A].Property.LockedBy.toString() == "LoversPadlock") || (Player.Appearance[A].Property.LockedBy.toString() == "LoversTimerPadlock")))
+			if (Player.Appearance[A].Property && Player.Appearance[A].Property.LockedBy && ((Player.Appearance[A].Property.LockedBy == "LoversPadlock") || (Player.Appearance[A].Property.LockedBy == "LoversTimerPadlock"))) {
 				InventoryRemove(Player, Player.Appearance[A].Asset.Group.Name);
+				A--;
+			}
 		}
 	}
 }
