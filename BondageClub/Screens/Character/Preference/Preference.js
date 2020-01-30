@@ -100,9 +100,13 @@ function PreferenceRun() {
 
 	// Draw the player & controls
 	DrawCharacter(Player, 50, 50, 0.9);
-	if (PreferenceColorPick != "") DrawImage("Backgrounds/ColorPicker.png", 1250, 85);
-	else {
-		DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
+	if (PreferenceColorPick != "") {
+		ColorPickerDraw(1250, 185, 675, 830, ElementValue(PreferenceColorPick), function (Color) {
+			ElementValue(PreferenceColorPick, Color);
+		});
+	} else {
+    	ColorPickerHide();
 		DrawButton(1815, 190, 90, 90, "", "White", "Icons/Chat.png");
 		DrawButton(1815, 305, 90, 90, "", "White", "Icons/Audio.png");
 	}
@@ -139,7 +143,7 @@ function PreferenceClick() {
 
 	// If we must show/hide/use the color picker
 	if ((MouseX >= 1140) && (MouseX < 1205) && (MouseY >= 187) && (MouseY < 252)) PreferenceColorPick = (PreferenceColorPick != "InputCharacterLabelColor") ? "InputCharacterLabelColor" : "";
-	if ((MouseX >= 1250) && (MouseX < 1925) && (MouseY >= 85) && (MouseY < 915) && (PreferenceColorPick != "")) ElementValue(PreferenceColorPick, DrawRGBToHex(MainCanvas.getImageData(MouseX, MouseY, 1, 1).data));
+	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick != "")) PreferenceColorPick = "";
 
     // If we must change audio gameplay or visual settings
 	if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 392) && (MouseY < 456)) {

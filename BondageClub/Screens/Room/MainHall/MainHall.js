@@ -198,7 +198,7 @@ function MainHallClick() {
 				"HellEntrance", 
 				"SlumRuins", "AbandonedBuilding", "Industrial", "BackAlley",
 				"VaultCorridor",
-				"ChillRoom", "Boudoir", "CozyLivingRoom", "RooftopParty", "CosyChalet",	"BalconyNight"
+				"BarRestaurant", "ChillRoom", "Boudoir", "CozyLivingRoom", "RooftopParty", "CosyChalet",	"BalconyNight"
 				];
 		CommonSetScreen("Online", "ChatSearch");
 	}
