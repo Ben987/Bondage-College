@@ -186,8 +186,8 @@ ServerMessageOwnerRuleRemoteAllow,,,Your owner is now allowing you to have remot
 ServerMessageOwnerRuleRemoteConfiscate,,,Your owner has confiscated your remotes.  All your remotes are lost.
 ServerMessageOwnerRuleRemoteBlock,,,Your owner is now preventing you from getting new remotes.  The club shop will not sell remotes to you anymore.
 ServerMessageWhisperBlocked,,,You're on SourceCharacter blacklist.  Your message was blocked by the server.
-ServerMessageOfferBeginDating,,,"SourceCharacter is asking you to date her.  Click on her and manage your relationship to accept, don't do anything to refuse."
-ServerMessageBeginDating,,,The Bondage Club is pleased to announce that SourceCharacter and TargetCharacter are starting a 7 days minimum dating period as lovers.
+ServerMessageOfferBeginDating,,,"SourceCharacter is asking you to be her girlfriend.  Click on her and manage your relationship to accept, don't do anything to refuse."
+ServerMessageBeginDating,,,The Bondage Club is pleased to announce that SourceCharacter and TargetCharacter are starting a 7 days minimum period as lovers.
 ServerMessageOfferBeginEngagement,,,"SourceCharacter is asking you to become her fiancée.  Click on her and manage your relationship to accept, don't do anything to refuse."
 ServerMessageBeginEngagement,,,The Bondage Club is pleased to announce that SourceCharacter and TargetCharacter are now engaged and are starting a 7 days minimum period as fiancées.
 ServerMessageOfferBeginWedding,,,"SourceCharacter is proposing you to become her wife.  Click on her and manage your relationship to accept, don't do anything to refuse."

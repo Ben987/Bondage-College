@@ -20,8 +20,8 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 10,0,(Accept her collar and begin the ceremony.),,"SendOwnershipRequest(""Accept"")","OwnershipOptionIs(""CanEndTrial"")"
 10,100,"(Rules, restrictions & punishments.)","(Select the rule, restriction or punishment that you want to enforce.)",,IsCollaredByPlayer()
 10,,(Give her the money envelope.),,GiveMoneyForOwner(),CanGiveMoneyForOwner()
-10,0,(Ask her out for a date.),(The request has been sent.  She must accept it to start dating you.),"SendLovershipRequest(""Propose"")","LovershipOptionIs(""CanOfferBeginDating"")"
-10,0,(Accept to date her.),,"SendLovershipRequest(""Accept"")","LovershipOptionIs(""CanBeginDating"")"
+10,0,(Ask her to be your girlfriend.),(The request has been sent.  She must accept it to start dating you.),"SendLovershipRequest(""Propose"")","LovershipOptionIs(""CanOfferBeginDating"")"
+10,0,(Accept to be her girlfriend.),,"SendLovershipRequest(""Accept"")","LovershipOptionIs(""CanBeginDating"")"
 10,0,(Offer her to become your fiancée.),(The request has been sent.  She must accept it to become your fiancée.),"SendLovershipRequest(""Propose"")","LovershipOptionIs(""CanOfferBeginEngagement"")"
 10,0,(Accept her proposal of engagement.),,"SendLovershipRequest(""Accept"")","LovershipOptionIs(""CanBeginEngagement"")"
 10,12,(Offer her to marry each other.),(There's a 100$ fee asked of both sides for the wedding.  Will you pay now?),,"LovershipOptionIs(""CanOfferBeginWedding"")"
