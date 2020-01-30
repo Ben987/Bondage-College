@@ -141,6 +141,22 @@ BalconyNight,,,Balcony Night
 CozyLivingRoom,,,Cozy Living Room
 RooftopParty,,,Rooftop Party
 CosyChalet,,,Cosy Chalet
+AlchemistOffice,,,Alchemist Office
+HellEntrance,,,Entrance to Hell
+PirateIsland,,,Pirate Island
+PirateIslandNight,,,Pirate Island Night
+ThroneRoom,,,Throne Room
+Dungeon,,,Dungeon
+Industrial,,,Industrial
+SunTemple,,,Sun Temple
+BackAlley,,,Back Alley
+DungeonRuin,,,Ruined Dungeon
+SecretChamber,,,Secret Chamber
+VaultCorridor,,,Vault Corridor
+AncientRuins,,,Ancient Ruins
+JungleTemple,,,Jungle Temple
+CeremonialVenue,,,Ceremony Venue
+WitchWood,,,Witch Wood
 ParkWinter,,,Park Winter
 XmasEve,,,Xmas Eve Lounge
 XmasDay,,,Xmas Day Lounge
@@ -293,6 +309,15 @@ LeatherStraitJacketRestrainNone,,,SourceCharacter loosens the straps on Destinat
 LeatherStraitJacketRestrainNormal,,,SourceCharacter adjusts the straps normally on DestinationCharacter leather straitjacket.
 LeatherStraitJacketRestrainSnug,,,SourceCharacter snugs the straps on DestinationCharacter leather straitjacket.
 LeatherStraitJacketRestrainTight,,,SourceCharacter tightens the straps on DestinationCharacter leather straitjacket.
+CollarCuffsSelectTightness,,,How tight do you want the strap linking the cuffs?
+CollarCuffsPoseLoose,,,Loose
+CollarCuffsPoseNormal,,,Normal
+CollarCuffsPoseSnug,,,Snug
+CollarCuffsPoseTight,,,Tight
+CollarCuffsRestrainNone,,,SourceCharacter loosens the strap on DestinationCharacter collar cuffs.
+CollarCuffsRestrainNormal,,,SourceCharacter adjusts the strap normally on DestinationCharacter collar cuffs.
+CollarCuffsRestrainSnug,,,SourceCharacter snugs the strap on DestinationCharacter collar cuffs.
+CollarCuffsRestrainTight,,,SourceCharacter tightens the strap on DestinationCharacter collar cuffs.
 InflatableBodyBagSelectTightness,,,How much do you want to inflate the body bag?
 InflatableBodyBagPoseLight,,,Light
 InflatableBodyBagPoseInflated,,,Inflated
@@ -438,6 +463,14 @@ DildoIncreaseTo0,,,DestinationCharacterName vibrating dildo starts teasing her l
 DildoIncreaseTo1,,,DestinationCharacterName vibrating dildo builds up to a moderate pace.
 DildoIncreaseTo2,,,DestinationCharacterName vibrating dildo starts buzzing strongly!
 DildoIncreaseTo3,,,DestinationCharacterName vibrating dildo jumps up to maximum intensity!
+ClitStimulatorDecreaseTo-1,,,DestinationCharacterName clitoral stimulator stops vibrating.
+ClitStimulatorDecreaseTo0,,,DestinationCharacterName clitoral stimulator slows down into a light tease.
+ClitStimulatorDecreaseTo1,,,DestinationCharacterName clitoral stimulator returns to a moderate pace.
+ClitStimulatorDecreaseTo2,,,DestinationCharacterName clitoral stimulator slows down a tiny bit.
+ClitStimulatorIncreaseTo0,,,DestinationCharacterName clitoral stimulator starts teasing her lightly.
+ClitStimulatorIncreaseTo1,,,DestinationCharacterName clitoral stimulator builds up to a moderate pace.
+ClitStimulatorIncreaseTo2,,,DestinationCharacterName clitoral stimulator starts buzzing strongly!
+ClitStimulatorIncreaseTo3,,,DestinationCharacterName clitoral stimulator jumps up to maximum intensity!
 InflVibeDildo_VibeDecreaseTo-1,,,DestinationCharacterName inflatable vibrating dildo stops vibrating.
 InflVibeDildo_VibeDecreaseTo0,,,DestinationCharacterName inflatable vibrating dildo slows down into a light tease.
 InflVibeDildo_VibeDecreaseTo1,,,DestinationCharacterName inflatable vibrating dildo returns to a moderate pace.
@@ -546,6 +579,18 @@ AnalHookPoseHair,,,Hair
 AnalHookRestrainBase,,,SourceCharacter detaches DestinationCharacter anal hook.
 AnalHookRestrainChain,,,SourceCharacter attaches a chain to DestinationCharacter anal hook.
 AnalHookRestrainHair,,,SourceCharacter attaches DestinationCharacter anal hook to her hair.
+BeadsCount,,,Inserted Beads Count: 
+InsertBead,,,Insert One
+RemoveBead,,,Remove One
+MinimumBeads,,,Remove All Except One
+MaximumBeads,,,Insert All
+AnalBeads2SetUpTo2,,,SourceCharacter inserts a second bead in DestinationCharacter butt
+AnalBeads2SetUpTo3,,,SourceCharacter inserts a third bead in DestinationCharacter butt
+AnalBeads2SetUpTo4,,,SourceCharacter inserts a fourth bead in DestinationCharacter butt
+AnalBeads2SetUpTo5,,,SourceCharacter inserts a fifth bead in DestinationCharacter butt
+AnalBeads2SetDown,,,SourceCharacter pulls a bead out of DestinationCharacter butt
+AnalBeads2SetMax,,,SourceCharacter inserts all five beads in DestinationCharacter butt
+AnalBeads2SetMin,,,SourceCharacter pulls all but one bead from DestinationCharacter butt
 PumpGagdeflatesTo0,,,SourceCharacter deflates DestinationCharacter gag fully till it's empty.
 PumpGagdeflatesTo1,,,SourceCharacter deflates DestinationCharacter gag till only slighty filled.
 PumpGagdeflatesTo2,,,SourceCharacter deflates DestinationCharacter gag till it's half full.

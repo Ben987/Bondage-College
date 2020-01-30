@@ -91,7 +91,7 @@ function TitleRun() {
 function TitleClick() {
 
 	// When the user exits
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) CommonSetScreen("Character", "InformationSheet");
+	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) TitleExit();
 
 	// When the user selects a title
 	var X = 130;
@@ -109,4 +109,9 @@ function TitleClick() {
 			}
 		}
 
+}
+
+// when the user exit this screen
+function TitleExit() {
+	CommonSetScreen("Character", "InformationSheet");
 }

@@ -750,13 +750,13 @@ function DialogClick() {
 	}
 
 	// If the user clicked in the facial expression menu
-	if ((CurrentCharacter != null) && (CurrentCharacter.ID == 0) && (MouseX >= 15) && (MouseX <= 515)) {
+	if ((CurrentCharacter != null) && (CurrentCharacter.ID == 0) && (MouseX >= 0) && (MouseX <= 500)) {
 		for (var I = 0; I < DialogFacialExpressions.length; I++) {
 			var FE = DialogFacialExpressions[I];
-			if ((MouseY >= 125 + 120 * I) && (MouseY <= (125 + 120 * I) + 75)) {
-				// CharacterCycleFacialExpression(Player, PA.Asset.Group.Name, (MouseX > 250 || CommonIsMobile));
+			if ((MouseY >= 125 + 120 * I) && (MouseY <= (125 + 120 * I) + 90)) {
+
 				// Left arrow button
-				if (MouseX >= 15 && MouseX <= 60) {
+				if (MouseX >= 0 && MouseX <= 45) {
 					FE.MenuExpression4 = FE.MenuExpression3;
 					FE.MenuExpression3 = FE.MenuExpression2;
 					FE.MenuExpression2 = FE.MenuExpression1;
@@ -764,8 +764,9 @@ function DialogClick() {
 					var Index = ExpressionList.indexOf(FE.MenuExpression1);
 					FE.MenuExpression1 = (Index < 0) ? ExpressionList[ExpressionList.length - 1] : (Index == 0) ? null : ExpressionList[Index - 1];
 				}
+
 				// Right arrow button
-				if (MouseX >= 470 && MouseX <= 515) {
+				if (MouseX >= 455 && MouseX <= 500) {
 					FE.MenuExpression1 = FE.MenuExpression2;
 					FE.MenuExpression2 = FE.MenuExpression3;
 					FE.MenuExpression3 = FE.MenuExpression4;
@@ -773,23 +774,25 @@ function DialogClick() {
 					var Index = ExpressionList.indexOf(FE.MenuExpression4);
 					FE.MenuExpression4 = (Index < 0) ? ExpressionList[0] : (Index == ExpressionList.length - 1) ? null : ExpressionList[Index + 1];
 				}
+
 				// Expression choice
-				if (MouseX >= 70 && MouseX <= 160) {
+				if (MouseX >= 55 && MouseX <= 145) {
 					CharacterSetFacialExpression(Player, FE.Appearance.Asset.Group.Name, FE.MenuExpression1);
 					FE.CurrentExpression = FE.MenuExpression1;
 				}
-				if (MouseX >= 170 && MouseX <= 260) {
+				if (MouseX >= 155 && MouseX <= 245) {
 					CharacterSetFacialExpression(Player, FE.Appearance.Asset.Group.Name, FE.MenuExpression2);
 					FE.CurrentExpression = FE.MenuExpression2;
 				}
-				if (MouseX >= 270 && MouseX <= 360) {
+				if (MouseX >= 255 && MouseX <= 345) {
 					CharacterSetFacialExpression(Player, FE.Appearance.Asset.Group.Name, FE.MenuExpression3);
 					FE.CurrentExpression = FE.MenuExpression3;
 				}
-				if (MouseX >= 370 && MouseX <= 460) {
+				if (MouseX >= 355 && MouseX <= 445) {
 					CharacterSetFacialExpression(Player, FE.Appearance.Asset.Group.Name, FE.MenuExpression4);
 					FE.CurrentExpression = FE.MenuExpression4;
 				}
+
 			}
 		}
 	}
@@ -1014,24 +1017,24 @@ function DialogDrawExpressionMenu() {
 		var OffsetY = 125 + 120 * I;
 
 		// Draw the back and forth arrow buttons
-		DrawButton(15, OffsetY, 45, 90, "", "White");
+		DrawButton(0, OffsetY, 45, 90, "", "White");
 		MainCanvas.beginPath();
-		MainCanvas.moveTo(45, OffsetY + 15);
-		MainCanvas.lineTo(30, OffsetY + 45);
-		MainCanvas.lineTo(45, OffsetY + 75);
+		MainCanvas.moveTo(30, OffsetY + 15);
+		MainCanvas.lineTo(15, OffsetY + 45);
+		MainCanvas.lineTo(30, OffsetY + 75);
 		MainCanvas.stroke();
-		DrawButton(470, OffsetY, 45, 90, "", "White");
+		DrawButton(455, OffsetY, 45, 90, "", "White");
 		MainCanvas.beginPath();
-		MainCanvas.moveTo(485, OffsetY + 15);
-		MainCanvas.lineTo(500, OffsetY + 45);
-		MainCanvas.lineTo(485, OffsetY + 75);
+		MainCanvas.moveTo(470, OffsetY + 15);
+		MainCanvas.lineTo(485, OffsetY + 45);
+		MainCanvas.lineTo(470, OffsetY + 75);
 		MainCanvas.stroke();
-		
+
 		// Draw the selection of facial expressions at current scroll position
-		DrawButton(70, OffsetY, 90, 90, "", (FE.MenuExpression1 == FE.CurrentExpression ? "Pink" : "White"), "Assets/Female3DCG/" + FE.Appearance.Asset.Group.Name + (FE.MenuExpression1 ? "/" + FE.MenuExpression1 : "") + "/Icon.png");
-		DrawButton(170, OffsetY, 90, 90, "", (FE.MenuExpression2 == FE.CurrentExpression ? "Pink" : "White"), "Assets/Female3DCG/" + FE.Appearance.Asset.Group.Name + (FE.MenuExpression2 ? "/" + FE.MenuExpression2 : "") + "/Icon.png");
-		DrawButton(270, OffsetY, 90, 90, "", (FE.MenuExpression3 == FE.CurrentExpression ? "Pink" : "White"), "Assets/Female3DCG/" + FE.Appearance.Asset.Group.Name + (FE.MenuExpression3 ? "/" + FE.MenuExpression3 : "") + "/Icon.png");
-		DrawButton(370, OffsetY, 90, 90, "", (FE.MenuExpression4 == FE.CurrentExpression ? "Pink" : "White"), "Assets/Female3DCG/" + FE.Appearance.Asset.Group.Name + (FE.MenuExpression4 ? "/" + FE.MenuExpression4 : "") + "/Icon.png");
+		DrawButton(55, OffsetY, 90, 90, "", (FE.MenuExpression1 == FE.CurrentExpression ? "Pink" : "White"), "Assets/Female3DCG/" + FE.Appearance.Asset.Group.Name + (FE.MenuExpression1 ? "/" + FE.MenuExpression1 : "") + "/Icon.png");
+		DrawButton(155, OffsetY, 90, 90, "", (FE.MenuExpression2 == FE.CurrentExpression ? "Pink" : "White"), "Assets/Female3DCG/" + FE.Appearance.Asset.Group.Name + (FE.MenuExpression2 ? "/" + FE.MenuExpression2 : "") + "/Icon.png");
+		DrawButton(255, OffsetY, 90, 90, "", (FE.MenuExpression3 == FE.CurrentExpression ? "Pink" : "White"), "Assets/Female3DCG/" + FE.Appearance.Asset.Group.Name + (FE.MenuExpression3 ? "/" + FE.MenuExpression3 : "") + "/Icon.png");
+		DrawButton(355, OffsetY, 90, 90, "", (FE.MenuExpression4 == FE.CurrentExpression ? "Pink" : "White"), "Assets/Female3DCG/" + FE.Appearance.Asset.Group.Name + (FE.MenuExpression4 ? "/" + FE.MenuExpression4 : "") + "/Icon.png");
 
 	}
 }

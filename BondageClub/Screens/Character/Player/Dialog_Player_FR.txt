@@ -224,7 +224,7 @@ Une victime ne peut s'échapper si ses coudes sont attachés
 You can restart the timer but cannot unlock
 Vous pouvez réinitialiser le minuteur, mais non l'enlever
 "Never forget who you belong to"
-"Nèoublies pas à qui tu appartiens"
+"N'oublies pas à qui tu appartiens"
 Can only be locked or unlocked by her owner
 Ne peut être touché par sa patronne
 Detached
@@ -315,8 +315,8 @@ SourceCharacter takes a piece of duct tape for TargetCharacter and place on her 
 SourceCharacter prend un morceau de ruban et le place sur la face de TargetCharacter.
 SourceCharacter wraps some duct tape onto DestinationCharacter face.
 SourceCharacter enroule du ruban sur la face de DestinationCharacter.
-SourceCharacter wraps DestinationCharacter head in tape with multiple layers. 
-SourceCharacter enroule la tête de DestinationCharacter avec plusieurs couches. 
+SourceCharacter wraps DestinationCharacter head in tape with multiple layers.
+SourceCharacter enroule la tête de DestinationCharacter avec plusieurs couches.
 Item intensity: Disabled
 Intensité de l'objet: Désactivée
 Item intensity: Low
