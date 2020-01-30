@@ -154,22 +154,36 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 		if (C.Pose.indexOf("Suspension") >= 0) Y += (Zoom * Canvas.height * (1 - HeightRatio) / HeightRatio);
 
 		// Draws the character focus zones if we need too
-		if ((C.FocusGroup != null) && (C.FocusGroup.Zone != null))
-			for (var Z = 0; Z < C.FocusGroup.Zone.length; Z++)
-				if (C.Pose.indexOf("Suspension") >= 0)
-					DrawEmptyRect((HeightRatio * C.FocusGroup.Zone[Z][0]) + X, (1000 - (HeightRatio * (C.FocusGroup.Zone[Z][1] + Y + C.FocusGroup.Zone[Z][3]))) - C.HeightModifier, (HeightRatio * C.FocusGroup.Zone[Z][2]), (HeightRatio * C.FocusGroup.Zone[Z][3]), "cyan");
-				else
-					DrawEmptyRect((HeightRatio * C.FocusGroup.Zone[Z][0]) + X, (HeightRatio * C.FocusGroup.Zone[Z][1]) + Y - C.HeightModifier - (C.IsKneeling() ? (250 * (1 - HeightRatio)) : 0), (HeightRatio * C.FocusGroup.Zone[Z][2]), (HeightRatio * C.FocusGroup.Zone[Z][3]), "cyan");
+		if ((C.FocusGroup != null) && (C.FocusGroup.Zone != null)) {
+
+			// Draw all the possible zones in transparent gray
+			for (var A = 0; A < AssetGroup.length; A++)
+				if (AssetGroup[A].Zone != null)
+					DrawAssetGroupZone(C, AssetGroup[A].Zone, HeightRatio, X, Y, "#80808040", 6);
+
+			// Draw the focused zone in cyan
+			DrawAssetGroupZone(C, C.FocusGroup.Zone, HeightRatio, X, Y, "cyan");
+
+		}
 
 		// Draw the character name below herself
 		if ((C.Name != "") && ((CurrentModule == "Room") || (CurrentModule == "Online") || ((CurrentScreen == "Wardrobe") && (C.ID != 0))) && (CurrentScreen != "Private"))
 			if (!Player.IsBlind()) {
 				MainCanvas.font = "30px Arial";
-				DrawText(C.Name, X + 255 * Zoom, Y + 980 * ((C.Pose.indexOf("SuspensionHogtied") < 0) ? Zoom : 1), (CommonIsColor(C.LabelColor)) ? C.LabelColor : "White", "Black");
+				DrawText(C.Name, X + 255 * Zoom, Y + 980 * ((C.Pose.indexOf("SuspensionHogtied") < 0) ? Zoom : Zoom / HeightRatio), (CommonIsColor(C.LabelColor)) ? C.LabelColor : "White", "Black");
 				MainCanvas.font = "36px Arial";
 			}
 
 	}
+}
+
+// Scans the item zone and draws it over the character
+function DrawAssetGroupZone(C, Zone, HeightRatio, X, Y, Color, Thickness = 3) {
+	for (var Z = 0; Z < Zone.length; Z++)
+		if (C.Pose.indexOf("Suspension") >= 0)
+			DrawEmptyRect((HeightRatio * Zone[Z][0]) + X, (1000 - (HeightRatio * (Zone[Z][1] + Y + Zone[Z][3]))) - C.HeightModifier, (HeightRatio * Zone[Z][2]), (HeightRatio * Zone[Z][3]), Color, Thickness);
+		else
+			DrawEmptyRect((HeightRatio * Zone[Z][0]) + X, HeightRatio * (Zone[Z][1] - C.HeightModifier) + Y, (HeightRatio * Zone[Z][2]), (HeightRatio * Zone[Z][3]), Color, Thickness);
 }
 
 // Draw a zoomed image from a source to a specific canvas
@@ -508,10 +522,10 @@ function DrawButtonHover(Left, Top, Width, Height, HoveringText) {
 }
 
 // Draw a basic empty rectangle
-function DrawEmptyRect(Left, Top, Width, Height, Color) {
+function DrawEmptyRect(Left, Top, Width, Height, Color, Thickness = 3) {
 	MainCanvas.beginPath();
 	MainCanvas.rect(Left, Top, Width, Height);
-	MainCanvas.lineWidth = '3';
+	MainCanvas.lineWidth = Thickness.toString();
 	MainCanvas.strokeStyle = Color;
 	MainCanvas.stroke();
 }

@@ -16,3 +16,51 @@ Owner only
 Patronne seulement
 Put a valid hex #red-green-blue color
 Entrez un code de couleur hex #rouge-vert-bleu valide
+- Chat display settings -
+- Paramètres d'affichage du chat -
+Color theme:
+Thème de couleur:
+Light
+Clair
+Dark
+Sombre
+Enter/Leave message style:
+Style des messages entrer / quitter:
+Normal
+Normal
+Smaller
+Petit
+Hidden
+Caché
+Display member numbers:
+Afficher les numéros de membre:
+Always
+Toujours
+Never
+Jamais
+On Mouseover
+Au survol de la souris
+Display timestamps
+Afficher les horodatages
+Color names
+Noms des couleurs
+Color actions
+Actions avec couleur
+Color emotes
+Emotes avec couleur
+Audio volume
+Volume audio
+Audio alarm for beeps
+Alarme sonore pour les bips
+Sensory deprivation setting
+Réglage de la privation sensorielle
+Hide names
+Cacher les noms
+Total
+Total
+Disable examining people when blind
+Désactiver la visualisation de personnages en étant aveugle
+Keep all of your restraints when relogging
+Gardez toutes vos contraintes lors de la reconnexion
+Display all characters at maximum height
+Afficher tous les personnages à la hauteur maximale

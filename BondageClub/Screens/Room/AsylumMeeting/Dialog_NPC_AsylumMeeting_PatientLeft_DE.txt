@@ -19,7 +19,7 @@ Was willst du?
 Who are you?
 Wer bist du?
 ###_NPC
-I'm surprised you don't know, I'm DialogCharacterName.  I'm the girl you talk too if you need something.
+I'm surprised you don't know, I'm DialogCharacterName.  I'm the girl you talk to if you need something.
 Ich bin überrascht, dass du das nicht weißt. Ich bin DialogCharacterName. Ich bin die, mit der du reden musst, wenn du etwas brauchst.
 ###_PLAYER
 I need something from you.

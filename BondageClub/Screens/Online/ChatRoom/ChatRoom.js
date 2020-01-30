@@ -52,7 +52,7 @@ function ChatRoomCreateElement() {
 		ElementScrollToEnd("TextAreaChatLog");
 		ChatRoomRefreshChatSettings(Player);
 	} else if (document.getElementById("TextAreaChatLog").style.display == "none") {
-		ElementScrollToEnd("TextAreaChatLog");
+		setTimeout(() => ElementScrollToEnd("TextAreaChatLog"), 100);
 		ChatRoomRefreshChatSettings(Player);
 	}
 
