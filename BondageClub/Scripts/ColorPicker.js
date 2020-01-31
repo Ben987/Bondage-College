@@ -28,9 +28,11 @@ function ColorPickerStartPick(Event) {
         if (Y >= ColorPickerY && Y < ColorPickerY + ColorPickerHueBarHeight) {
             document.addEventListener("mousemove", ColorPickerPickHue);
             document.addEventListener("touchmove", ColorPickerPickHue);
+            ColorPickerPickHue(Event);
         } else if (Y >= SVPanelOffset && Y < SVPanelOffset + SVPanelHeight) {
             document.addEventListener("mousemove", ColorPickerPickSV);
             document.addEventListener("touchmove", ColorPickerPickSV);
+            ColorPickerPickSV(Event);
         }
         document.addEventListener("mouseup", ColorPickerEndPick);
         document.addEventListener("touchend", ColorPickerEndPick);
