@@ -73,7 +73,7 @@ function ColorPickerGetCoordinates(Event) {
 
 function ColorPickerPickHue(Event) {
     var C = ColorPickerGetCoordinates(Event);
-    ColorPickerHSV.H = (C.X - ColorPickerX) / ColorPickerWidth;
+    ColorPickerHSV.H = Math.max(0, Math.min(1, (C.X - ColorPickerX) / ColorPickerWidth));
 
     if (ColorPickerCallback) {
         var Color = ColorPickerHSVToCSS(ColorPickerHSV);
@@ -146,12 +146,11 @@ function ColorPickerDraw(X, Y, Width, Height, Color, Callback) {
     MainCanvas.fillStyle = Grad;
     MainCanvas.fillRect(X, SVPanelOffset, Width, SVPanelHeight);
     
-    // Draw S/V Picker
     var CSS = ColorPickerHSVToCSS(HSV);
     DrawCircle(X + HSV.S * Width, SVPanelOffset + (1 - HSV.V) * SVPanelHeight, 8, 16, CSS);
     DrawCircle(X + HSV.S * Width, SVPanelOffset + (1 - HSV.V) * SVPanelHeight, 14, 4, (HSV.V > 0.8 && HSV.S < 0.2) ? "#333333" : "#FFFFFF");
     // Draw Hue Picker
-    DrawEmptyRect(X + HSV.H * Width, Y, 20, ColorPickerHueBarHeight, "#FFFFFF");
+    DrawEmptyRect(X + HSV.H * (Width - 20), Y, 20, ColorPickerHueBarHeight, "#FFFFFF");
 
     ColorPickerX = X;
     ColorPickerY = Y;
@@ -168,15 +167,19 @@ function ColorPickerCSSToHSV(Color) {
     if (M) {
         var GRP = M[1];
         if (GRP.length == 3) {
-            R = Number.parseInt(GRP[0] + GRP[0], 16) / 255 || 1;
-            G = Number.parseInt(GRP[1] + GRP[1], 16) / 255 || 0;
-            B = Number.parseInt(GRP[2] + GRP[2], 16) / 255 || 0;
+            R = Number.parseInt(GRP[0] + GRP[0], 16) / 255;
+            G = Number.parseInt(GRP[1] + GRP[1], 16) / 255;
+            B = Number.parseInt(GRP[2] + GRP[2], 16) / 255;
         } else if (GRP.length == 6) {
-            R = Number.parseInt(GRP[0] + GRP[1], 16) / 255 || 1;
-            G = Number.parseInt(GRP[2] + GRP[3], 16) / 255 || 0;
-            B = Number.parseInt(GRP[4] + GRP[5], 16) / 255 || 0;
+            R = Number.parseInt(GRP[0] + GRP[1], 16) / 255;
+            G = Number.parseInt(GRP[2] + GRP[3], 16) / 255;
+            B = Number.parseInt(GRP[4] + GRP[5], 16) / 255;
         }
     }
+
+    R = isNaN(R) ? 1 : R;
+    G = isNaN(G) ? 0 : G;
+    B = isNaN(B) ? 0 : B;
 
     var Max = Math.max(R, G, B);
     var Min = Math.min(R, G, B);
@@ -219,9 +222,9 @@ function ColorPickerHSVToCSS(HSV) {
         case 5: R = V, G = P, B = Q; break;
     }
   
-    var RS = Math.floor(R * 255).toString(16);
-    var GS = Math.floor(G * 255).toString(16);
-    var BS = Math.floor(B * 255).toString(16);
+    var RS = Math.floor(R * 255).toString(16).toUpperCase();
+    var GS = Math.floor(G * 255).toString(16).toUpperCase();
+    var BS = Math.floor(B * 255).toString(16).toUpperCase();
 
     if (RS.length == 1) RS = "0" + RS;
     if (GS.length == 1) GS = "0" + GS;
