@@ -138,7 +138,7 @@ function PreferenceClick() {
 	// If we must change the restrain permission level
 	if ((MouseX >= 500) && (MouseX < 590) && (MouseY >= 280) && (MouseY < 370)) {
 		Player.ItemPermission++;
-		if (Player.ItemPermission > 4) Player.ItemPermission = 0;
+		if (Player.ItemPermission > 5) Player.ItemPermission = 0;
 	}
 
 	// If we must show/hide/use the color picker

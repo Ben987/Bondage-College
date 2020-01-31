@@ -85,4 +85,5 @@ PermissionLevel0,"Everyone, no exceptions"
 PermissionLevel1,"Everyone, except blacklist"
 PermissionLevel2,"Owner, Lover, whitelist & Dominants"
 PermissionLevel3,"Owner, Lover and whitelist only"
-PermissionLevel4,Owner only
+PermissionLevel4,Owner and Lover only
+PermissionLevel5,Owner only
