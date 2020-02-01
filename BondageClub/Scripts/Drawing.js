@@ -580,11 +580,26 @@ function DrawProcess() {
 
 	// Gets the current screen background and draw it, a darker version in character dialog mode
 	var B = window[CurrentScreen + "Background"];
-	if ((B != null) && (B != ""))
-		if (((Player.Effect.indexOf("BlindNormal") >= 0) || (Player.Effect.indexOf("BlindHeavy") >= 0)) && (CurrentModule != "Character"))
-			DrawRect(0, 0, 2000, 1000, "Black");
-		else
-			DrawImage("Backgrounds/" + B + ((((CurrentCharacter != null) || ShopStarted || (Player.Effect.indexOf("BlindLight") >= 0)) && (CurrentModule != "Character") && (B.indexOf("Dark") <= 0)) ? "Dark" : "") + ".jpg", 0, 0);
+	if ((B != null) && (B != "")) {
+		var DarkFactor = 1.0;
+		if (CurrentModule != "Character" && B != "Sheet") {
+			if (Player.Effect.indexOf("BlindHeavy") >= 0) {
+				DarkFactor = 0.0;
+			} else if (Player.Effect.indexOf("BlindNormal") >= 0) {
+				DarkFactor = 0.15;
+			} else if (Player.Effect.indexOf("BlindLight") >= 0) {
+				DarkFactor = 0.3;
+			} else if (CurrentCharacter != null || ShopStarted) {
+				DarkFactor = 0.5;
+			}
+		}
+		if (DarkFactor > 0.0) {
+			DrawImage("Backgrounds/" + B + ".jpg", 0, 0);
+		}
+		if (DarkFactor < 1.0) {
+			DrawRect(0, 0, 2000, 1000, "rgba(0,0,0," + (1.0 - DarkFactor) + ")");
+		}
+	}
 
 	// Draws the dialog screen or current screen if there's no loaded character
 	if (CurrentCharacter != null) DialogDraw();
