@@ -20,6 +20,7 @@ var PrivateSlaveImproveType = "";
 // Returns TRUE if a specific dialog option is allowed
 function PrivateIsCaged() { return (CurrentCharacter.Cage == null) ? false : true }
 function PrivateCanGetSecondExtension() { return (LogQuery("Expansion", "PrivateRoom") && !LogQuery("SecondExpansion", "PrivateRoom")) }
+function PrivateCanGetWardrobeExpansion() { return (LogQuery("Wardrobe","PrivateRoom") && !DialogLogQuery("WardrobeExpansion", "PrivateRoom")) }
 function PrivateVendorCanPlay() { return (LogQuery("RentRoom", "PrivateRoom") && LogQuery("Wardrobe", "PrivateRoom") && LogQuery("Cage", "PrivateRoom") && LogQuery("Expansion", "PrivateRoom") && Player.CanInteract() && PrivateVendor.CanInteract()) }
 function PrivateAllowChange() { return (!CurrentCharacter.IsRestrained() && (ReputationGet("Dominant") + 25 >= NPCTraitGet(CurrentCharacter, "Dominant"))) }
 function PrivateWontChange() { return (!CurrentCharacter.IsRestrained() && (ReputationGet("Dominant") + 25 < NPCTraitGet(CurrentCharacter, "Dominant"))) }

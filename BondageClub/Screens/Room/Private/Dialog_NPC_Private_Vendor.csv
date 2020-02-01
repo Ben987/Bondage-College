@@ -50,7 +50,7 @@ RemoveSuspensionHempRope,,,(You release her from the ceiling and release her fee
 110,120,Great!  This room is mine now?,Make yourself at home.  You can contact me anytime if you need improvements.,,
 120,0,Thanks!  (Check your room.),,DialogLeave(),
 200,210,I would like a wardrobe.,An excellent choice.  The price is 100$.  Can you afford it?,,"!DialogLogQuery(""Wardrobe"", ""PrivateRoom"")"
-200,250,I would like more space in my wardrobe.,"Of course, we can double its size for 100$, do you have the funds ?",,"!DialogLogQuery(""WardrobeExpansion"", ""PrivateRoom"")"
+200,250,I would like more space in my wardrobe.,"Of course, we can double its size for 100$, do you have the funds ?",,CanGetWardrobeExpansion()
 200,220,I want some cages.,"We have a kinky tenant.  (She giggles.)  We can prepare cages for your room for 150$, do you have the funds?",,"!DialogLogQuery(""Cage"", ""PrivateRoom"")"
 200,230,I'd like to invite more people.,"Of course, we can double the size of your room for 200$, do you have the funds?",,"!DialogLogQuery(""Expansion"", ""PrivateRoom"")"
 200,240,I'd like even more space.,"(She ponders.)  It could be done, but we'll need to renovate to get you a bigger room.  Can you cover the 400$ fees for it?",,CanGetSecondExtension()
