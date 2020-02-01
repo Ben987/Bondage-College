@@ -517,6 +517,7 @@ function DialogMenuButtonClick() {
 				if (Item != null && DialogFocusItemOriginalColor != Item.Color) {
 					// FocusItem color changed, sync to server
 					if (C.ID == 0) ServerPlayerAppearanceSync();
+					ChatRoomPublishAction(C, { ...Item, Color: DialogFocusItemOriginalColor }, Item, false);
 					ChatRoomCharacterUpdate(C);
 				}
 				return;
