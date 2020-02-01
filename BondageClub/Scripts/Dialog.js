@@ -17,6 +17,8 @@ var DialogInventory = [];
 var DialogInventoryOffset = 0;
 var DialogFocusItem = null;
 var DialogFocusSourceItem = null;
+var DialogFocusItemOriginalColor = null;
+var DialogFocusItemColorizeTimer = null;
 var DialogMenuButton = [];
 var DialogItemToLock = null;
 var DialogAllowBlush = false;
@@ -159,6 +161,7 @@ function DialogLeaveItemMenu() {
 	DialogInventory = null;
 	DialogProgress = -1;
 	DialogColor = null;
+	DialogFocusItemOriginalColor = null;
 	DialogMenuButton = [];
 	DialogItemPermissionMode = false;
 	ElementRemove("InputColor");
@@ -496,6 +499,12 @@ function DialogMenuButtonClick() {
 				ElementCreateInput("InputColor", "text", (DialogColorSelect != null) ? DialogColorSelect.toString() : "");
 				DialogColor = "";
 				DialogMenuButtonBuild(C);
+
+				// Rememeber the original color when open color picker
+				var Item = InventoryGet(C, C.FocusGroup.Name);
+				if (Item != null) {
+					DialogFocusItemOriginalColor = Item.Color;
+				}
 				return;
 			}
 
@@ -514,6 +523,12 @@ function DialogMenuButtonClick() {
 				DialogColorSelect = null;
 				ElementRemove("InputColor");
 				DialogMenuButtonBuild(C);
+
+				// Recall the original color when open color picker
+				var Item = InventoryGet(C, C.FocusGroup.Name);
+				if (Item != null) {
+					Item.Color = DialogFocusItemOriginalColor;
+				}
 				return;
 			}
 
@@ -825,6 +840,18 @@ function DialogDrawItemMenu(C) {
 		ElementPosition("InputColor", 1450, 65, 300);
 		ColorPickerDraw(1300, 145, 675, 830, ElementValue("InputColor"), function (Color) {
 			ElementValue("InputColor", Color);
+
+			// Change item color
+			if (Player.CanInteract() && !InventoryGroupIsBlocked(C)) {
+				var Item = InventoryGet(C, C.FocusGroup.Name);
+				if (Item != null && Item.Color != null) {
+					Item.Color = Color;
+					clearTimeout(DialogFocusItemColorizeTimer);
+					DialogFocusItemColorizeTimer = setTimeout(function () {
+						CharacterAppearanceBuildCanvas(C);
+					}, 50);
+				}
+			}
 		});
 		return;
 	} else {
