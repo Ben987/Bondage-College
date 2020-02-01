@@ -276,6 +276,12 @@ function PrivateGetWardrobe() {
 	LogAdd("Wardrobe", "PrivateRoom");
 }
 
+// When the player gets the wardrobe expansion
+function PrivateGetWardrobeExpansion() {
+	CharacterChangeMoney(Player, -100);
+	LogAdd("WardrobeExpansion", "PrivateRoom");
+}
+
 // When the player gets the cage
 function PrivateGetCage() {
 	CharacterChangeMoney(Player, -150);

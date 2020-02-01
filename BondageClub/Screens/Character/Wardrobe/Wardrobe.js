@@ -2,12 +2,13 @@
 var WardrobeBackground = "PrivateDark";
 var WardrobeCharacter = [];
 var WardrobeSelection = -1;
+var WardrobePage = 0;
 
 // Load the wardrobe character names
 function WardrobeLoadCharacterNames() {
 	if (Player.WardrobeCharacterNames == null) Player.WardrobeCharacterNames = [];
 	var Push = false;
-	while (Player.WardrobeCharacterNames.length <= 12) {
+	while (Player.WardrobeCharacterNames.length <= (LogQuery("WardrobeExpansion", "PrivateRoom") ? 24 : 12)) {
 		Player.WardrobeCharacterNames.push(Player.Name);
 		Push = true;
 	}
@@ -22,7 +23,7 @@ function WardrobeLoadCharacters(Fast) {
 	var W = null;
 	WardrobeLoadCharacterNames();
 	if (Player.Wardrobe == null) Player.Wardrobe = [];
-	for (var P = 0; P < 12; P++) {
+	for (var P = 0; P < (LogQuery("WardrobeExpansion", "PrivateRoom") ? 24 : 12); P++) {
 		if (WardrobeCharacter.length <= P && ((W == null) || !Fast)) {
 			// Creates a character
 			CharacterReset(Character.length, "Female3DCG");
@@ -67,16 +68,17 @@ function WardrobeRun() {
 	DrawCharacter(Player, 0, 0, 1);
 	DrawButton(500, 25, 225, 65, TextGet("Load"), "White");
 	DrawButton(750, 25, 225, 65, TextGet("Save"), "White");
+	if (LogQuery("WardrobeExpansion", "PrivateRoom")) DrawButton(1000, 27, 60, 60, "", "White", "Icons/Small/Next.png");
 	DrawButton(1750, 25, 225, 65, TextGet("Return"), "White");
-	DrawText(TextGet("SelectAppareance"), 1375, 60, "White", "Gray");
+	DrawText(TextGet("SelectAppearance"), 1400, 60, "White", "Gray");
 	for (var C = 0; C < 12; C++)
 		if (C < 6) {
-			DrawCharacter(WardrobeCharacter[C], 500 + C * 250, 100, 0.45);
-			if (WardrobeSelection == C) DrawEmptyRect(500 + C * 250, 105, 225, 440, "Cyan");
+			DrawCharacter(WardrobeCharacter[C + WardrobePage * 12], 500 + C * 250, 100, 0.45);
+			if (WardrobeSelection == C + WardrobePage * 12) DrawEmptyRect(500 + C * 250, 105, 225, 440, "Cyan");
 		}
 		else {
-			DrawCharacter(WardrobeCharacter[C], 500 + (C - 6) * 250, 550, 0.45);
-			if (WardrobeSelection == C) DrawEmptyRect(500 + (C - 6) * 250, 555, 225, 440, "Cyan");
+			DrawCharacter(WardrobeCharacter[C + WardrobePage * 12], 500 + (C - 6) * 250, 550, 0.45);
+			if (WardrobeSelection == C + WardrobePage * 12) DrawEmptyRect(500 + (C - 6) * 250, 555, 225, 440, "Cyan");
 		}
 }
 
@@ -95,16 +97,20 @@ function WardrobeClick() {
 	if ((MouseX >= 750) && (MouseX < 975) && (MouseY >= 25) && (MouseY < 90) && (WardrobeSelection >= 0))
 		WardrobeFastSave(Player, WardrobeSelection);
 
+	// If we cycle through the pages of the wardrobe
+	if (LogQuery("WardrobeExpansion", "PrivateRoom") && (MouseX >= 1000) && (MouseX < 1060) && (MouseY >= 27) && (MouseY < 87))
+		WardrobePage = (WardrobePage + 1) % 2;
+
 	// If we must select a different wardrobe
 	if ((MouseX >= 500) && (MouseX < 2000) && (MouseY >= 100) && (MouseY < 1000))
 		for (var C = 0; C < 12; C++)
 			if (C < 6) {
 				if ((MouseX >= 500 + C * 250) && (MouseX <= 725 + C * 250) && (MouseY >= 100) && (MouseY <= 450))
-					WardrobeSelection = C;
+					WardrobeSelection = C + WardrobePage * 12;
 			}
 			else {
 				if ((MouseX >= 500 + (C - 6) * 250) && (MouseX <= 725 + (C - 6) * 250) && (MouseY >= 550) && (MouseY <= 1000))
-					WardrobeSelection = C;
+					WardrobeSelection = C + WardrobePage * 12;
 			}
 }
 
