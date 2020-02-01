@@ -1,20 +1,26 @@
-SelectItem,,,Select an item to use
-CannotUseOnSelf,,,Cannot use on yourself
-RemoveClothesForItem,,,Remove some clothes first
-RemoveSuspensionForItem,,,Remove the suspension first
-TheyMustBeStandingFirst,,,Must be standing and not suspended first.
+SelectItem,,,Select an item to use.
+CannotUseOnSelf,,,Cannot use on yourself.
+RemoveClothesForItem,,,Remove some clothes first.
+UnZipSuitForItem,,,Unzip the suit first.
+RemoveSuspensionForItem,,,Remove the suspension first.
+ReleaseHogtieForItem,,,Release from hogtie first.
+RemoveRestraintsFirst,,,Remove some restraints first.
 CannotBeUsedWhenMounted,,,Cannot be used when mounted.
 CannotBeUsedWhenYoked,,,Cannot be used while yoked.
 CannotBeUsedWithFeetSpreader,,,Cannot be used with legs spreader.
+CannotHaveWand,,,Remove the wand first.
+StraitDressOpen,,,Cannot use this.
 RemoveChastityFirst,,,Must remove chastity first.
-RemoveChainForItem,,,Remove the chain to the floor first
+RemoveChainForItem,,,Remove the chain to the floor first.
+CannotBeHogtiedWithAlphaHood,,,Cannot hogtie with this hood.
 MustCollaredFirst,,,A collar must be fitted first to attach accessories to.
-MustCollaredFirstAndRemoveSuspension,,,Must be collared and not suspended first.
-MustCollaredFirstAndRemoveSuspension1,,,Must be collared and not suspended/mounted first.
 NoClothAndCollared,,,Remove some clothes and requires a collar.
 LegsCannotOpen,,,Legs cannot open.
 LegsCannotClose,,,Legs cannot close.
-MustFreeFeetFirst,,,Must free feet frist.
+MustStandUpFirst,,,Must stand up first.
+MustFreeFeetFirst,,,Must free feet first.
+MustFreeLegsFirst,,,Must free legs first.
+MustFreeHandsFirst,,,Must free hands first.
 RemoveShacklesFirst,,,Must remove shackles first.
 CanOnlyEquipOneOfThisGag,,,Gag type already present.
 CannotBeUsedOverFlatGag,,,Cannot be used on a flat gag.
@@ -95,10 +101,74 @@ Beep,,,Beep
 BeepFrom,,,Beep from
 BeepFromOwner,,,Beep from your owner in your private room
 SentBeep,,,Sent at
+ChatRoomSpaceAsylum,,,Asylum
+InAsylum,,,in the Asylum
 ReceivedBeep,,,Received at
 YourRoom,,,<i>Your private room</i>
 InRoom,,,in room
 PrivateRoom,,,<i>Private room</i>
+Introduction,,,Introduction
+KidnapLeague,,,Kidnappers League
+MaidQuarters,,,Maid Quarters
+MainHall,,,Main Hall
+Management,,,Club Management
+Private,,,Private Room
+Shibari,,,Shibari Dojo
+Bedroom,,,Bedroom
+HorseStable,,,Horse Stable
+Nursery,,,Nursery
+PrisonHall,,,Prison Hall
+BDSMRoomBlue,,,BDSM Room Blue
+BDSMRoomPurple,,,BDSM Room Purple
+BDSMRoomRed,,,BDSM Room Red
+Gardens,,,Gardens
+IndoorPool,,,Indoor Pool
+OutdoorPool,,,Outdoor Pool
+MaidCafe,,,Maid Café
+PublicBath,,,Public Bath
+ParkDay,,,Park Day
+ParkNight,,,Park Night
+ChillRoom,,,Chill Room
+Boudoir,,,Boudoir
+BondageBedChamber,,,Bondage Bedchamber
+Beach,,,Beach
+ForestPath,,,Forest Path
+DeepForest,,,Deep Forest
+SpookyForest,,,Spooky Forest
+SlumRuins,,,Slum Ruins
+AbandonedBuilding,,,Abandoned Building
+BalconyNight,,,Balcony Night
+CozyLivingRoom,,,Cozy Living Room
+RooftopParty,,,Rooftop Party
+CosyChalet,,,Cosy Chalet
+AlchemistOffice,,,Alchemist Office
+HellEntrance,,,Entrance to Hell
+PirateIsland,,,Pirate Island
+PirateIslandNight,,,Pirate Island Night
+ThroneRoom,,,Throne Room
+Dungeon,,,Dungeon
+Industrial,,,Industrial
+SunTemple,,,Sun Temple
+BackAlley,,,Back Alley
+BarRestaurant,,,Bar Restaurant
+DungeonRuin,,,Ruined Dungeon
+SecretChamber,,,Secret Chamber
+VaultCorridor,,,Vault Corridor
+AncientRuins,,,Ancient Ruins
+JungleTemple,,,Jungle Temple
+CeremonialVenue,,,Ceremony Venue
+WitchWood,,,Witch Wood
+ParkWinter,,,Park Winter
+XmasEve,,,Xmas Eve Lounge
+XmasDay,,,Xmas Day Lounge
+StreetNight,,,Street Night
+SnowyStreet,,,Snowy Street
+AsylumEntrance,,,Entrance
+AsylumBedroom,,,Bedroom
+AsylumMeeting,,,Meeting
+AsylumTherapy,,,Therapy
+PaddedCell,,,Padded Cell
+PaddedCell2,,,Padded Cell 2
 IntroductionMaidGreetings,,,"(As you enter the luxurious hallway, a maid comes to greet you.)  Welcome to the Bondage Club, is this your first visit?"
 ServerMessageOfferStartTrial,,,"SourceCharacter is offering you to start a trial period as her submissive.  Click on her and manage your relationship to accept, don't do anything to refuse."
 ServerMessageStartTrial,,,The Bondage Club is pleased to announce that SourceCharacter is starting a 3 days minimum trial period as a submissive.
@@ -125,9 +195,11 @@ ServerBan,,,TargetCharacterName was banned by SourceCharacter.
 ServerKick,,,TargetCharacterName was kicked-out by SourceCharacter.
 ServerMoveLeft,,,TargetCharacterName was moved to the left by SourceCharacter.
 ServerMoveRight,,,TargetCharacterName was moved to the right by SourceCharacter.
+ServerSwap,,,SourceCharacter swapped TargetCharacterName and DestinationCharacterName places.
 ServerPromoteAdmin,,,TargetCharacterName was promoted to administrator by SourceCharacter.
 ServerDemoteAdmin,,,TargetCharacterName was demoted from administration by SourceCharacter.
 ServerUpdateRoom,,,SourceCharacter updated the room. Name: ChatRoomName. Limit: ChatRoomLimit.  ChatRoomPrivacy.  ChatRoomLocked.
+ChatRoomHelp,,,"Commands available : * or /me : write an emote, ** or /action : write an action, /coin : flip a coin, /dice [n] : roll a dice with n-faces, /friendlistadd [ID], /friendlistremove [ID], /whitelistadd [ID], /whitelistremove [ID], /blacklistadd [ID], /blacklistremove [ID], /kick [ID], /ban [ID], /unban [ID], /promote [ID], /demote [ID]"
 ActionSwap,,,SourceCharacter swaps a PrevAsset for a NextAsset on DestinationCharacter FocusAssetGroup.
 ActionUse,,,SourceCharacter uses a NextAsset on DestinationCharacter FocusAssetGroup.
 ActionLock,,,SourceCharacter locks a NextAsset on DestinationCharacter FocusAssetGroup.
@@ -136,23 +208,26 @@ ActionRemove,,,SourceCharacter removes the PrevAsset from DestinationCharacter F
 ActionUnlock,,,SourceCharacter unlocks and removes the PrevAsset from DestinationCharacter FocusAssetGroup.
 ActionDice,,,SourceCharacter rolls a DiceType sided dice.  The result is: DiceResult.
 ActionCoin,,,SourceCharacter flips a coin.  The result is: CoinResult.
-MaidDrinkPickFreeWater,,,SourceCharacter picks a glass of water from DestinationCharacter tray.,,
-MaidDrinkPickFreeOrangeJuice,,,SourceCharacter picks an orange juice from DestinationCharacter tray.,,
-MaidDrinkPickFreeBeer,,,SourceCharacter picks a beer from DestinationCharacter tray.,,
-MaidDrinkPickFreeWine,,,SourceCharacter picks a glass of wine from DestinationCharacter tray.,,
-MaidDrinkPickVirginMojito,,,SourceCharacter buys a Virgin Mojito from DestinationCharacter tray.,,
-MaidDrinkPickMargarita,,,SourceCharacter buys a Margarita from DestinationCharacter tray.,,
-MaidDrinkPickWhiskey,,,SourceCharacter buys a glass of Whiskey from TargetCharacter.,,
-MaidDrinkPickChampagne,,,SourceCharacter buys a glass of champagne from TargetCharacter.,,
-MaidDrinkPickLemonadeJug,,,"SourceCharacter buys a jug of refreshing lemonade for everyone, from TargetCharacter.",,
-MaidDrinkPickRoundShooters,,,"SourceCharacter buys a round of shooters for everyone, from TargetCharacter.",,
-MaidDrinkPickSexOnTheBeachJug,,,"SourceCharacter buys a jug of Sex on the Beach for everyone, from TargetCharacter.",,
-MaidDrinkPickBeerPitcher,,,"SourceCharacter buys a beer pitcher for everyone, from TargetCharacter.",,
-MaidDrinkPickFreeTea,,,SourceCharacter picks a tea from DestinationCharacter tray.,,
-MaidDrinkPickFreeCoffee,,,SourceCharacter picks a coffee from DestinationCharacter tray.,,
-MaidDrinkPickHotChocolate,,,SourceCharacter buys a hot chocolate from DestinationCharacter tray.,,
-MaidDrinkPickExpresso,,,SourceCharacter buys an espresso from DestinationCharacter tray.,,
-MaidDrinkPickCappuccino,,,SourceCharacter buys a cappuccino from DestinationCharacter tray.,,
+ActionGrabbedForCell,,,"TargetCharacterName gets grabbed by two maids and locked in a timer cell, following her owner commands."
+ActionGrabbedToServeDrinks,,,TargetCharacterName gets grabbed by two maids and escorted to the maid quarters to serve drinks for her owner.
+ActionGiveEnvelopeToOwner,,,TargetCharacterName gives a sealed envelope to her owner.
+MaidDrinkPickFreeWater,,,SourceCharacter picks a glass of water from DestinationCharacter tray.
+MaidDrinkPickFreeOrangeJuice,,,SourceCharacter picks an orange juice from DestinationCharacter tray.
+MaidDrinkPickFreeBeer,,,SourceCharacter picks a beer from DestinationCharacter tray.
+MaidDrinkPickFreeWine,,,SourceCharacter picks a glass of wine from DestinationCharacter tray.
+MaidDrinkPickVirginMojito,,,SourceCharacter buys a Virgin Mojito from DestinationCharacter tray.
+MaidDrinkPickMargarita,,,SourceCharacter buys a Margarita from DestinationCharacter tray.
+MaidDrinkPickWhiskey,,,SourceCharacter buys a glass of Whiskey from TargetCharacter.
+MaidDrinkPickChampagne,,,SourceCharacter buys a glass of champagne from TargetCharacter.
+MaidDrinkPickLemonadeJug,,,"SourceCharacter buys a jug of refreshing lemonade for everyone, from TargetCharacter."
+MaidDrinkPickRoundShooters,,,"SourceCharacter buys a round of shooters for everyone, from TargetCharacter."
+MaidDrinkPickSexOnTheBeachJug,,,"SourceCharacter buys a jug of Sex on the Beach for everyone, from TargetCharacter."
+MaidDrinkPickBeerPitcher,,,"SourceCharacter buys a beer pitcher for everyone, from TargetCharacter."
+MaidDrinkPickFreeTea,,,SourceCharacter picks a tea from DestinationCharacter tray.
+MaidDrinkPickFreeCoffee,,,SourceCharacter picks a coffee from DestinationCharacter tray.
+MaidDrinkPickHotChocolate,,,SourceCharacter buys a hot chocolate from DestinationCharacter tray.
+MaidDrinkPickExpresso,,,SourceCharacter buys an espresso from DestinationCharacter tray.
+MaidDrinkPickCappuccino,,,SourceCharacter buys a cappuccino from DestinationCharacter tray.
 LockMemberNumber,,,Member number on lock:
 TimerLeft,,,Time left:
 TimerRestart,,,SourceCharacter restarts the five minutes timer padlock on DestinationCharacter FocusAssetGroup.
@@ -235,6 +310,15 @@ LeatherStraitJacketRestrainNone,,,SourceCharacter loosens the straps on Destinat
 LeatherStraitJacketRestrainNormal,,,SourceCharacter adjusts the straps normally on DestinationCharacter leather straitjacket.
 LeatherStraitJacketRestrainSnug,,,SourceCharacter snugs the straps on DestinationCharacter leather straitjacket.
 LeatherStraitJacketRestrainTight,,,SourceCharacter tightens the straps on DestinationCharacter leather straitjacket.
+CollarCuffsSelectTightness,,,How tight do you want the strap linking the cuffs?
+CollarCuffsPoseLoose,,,Loose
+CollarCuffsPoseNormal,,,Normal
+CollarCuffsPoseSnug,,,Snug
+CollarCuffsPoseTight,,,Tight
+CollarCuffsRestrainNone,,,SourceCharacter loosens the strap on DestinationCharacter collar cuffs.
+CollarCuffsRestrainNormal,,,SourceCharacter adjusts the strap normally on DestinationCharacter collar cuffs.
+CollarCuffsRestrainSnug,,,SourceCharacter snugs the strap on DestinationCharacter collar cuffs.
+CollarCuffsRestrainTight,,,SourceCharacter tightens the strap on DestinationCharacter collar cuffs.
 InflatableBodyBagSelectTightness,,,How much do you want to inflate the body bag?
 InflatableBodyBagPoseLight,,,Light
 InflatableBodyBagPoseInflated,,,Inflated
@@ -281,6 +365,13 @@ WristShacklesPoseInFront,,,In-front of body
 WristShacklesPoseBehind,,,Behind back.
 WristShacklesRestrainInFront,,,SourceCharacter shackles DestinationCharacter wrist in-front of their body.
 WristShacklesRestrainBehind,,,SourceCharacter shackles DestinationCharacter wrist behind their back.
+SelectStrapType,,,Select if want Straps
+SelectIfDontType,,,Select want straps removed
+LeatherArmbinderTypeStrap,,,Binder Straps
+LeatherArmbinderStrapTypeNone,,,No strap
+LeatherArmbinderSetStrap,,,SourceCharacter puts an armbiner on DestinationCharacter with a strap.
+LeatherArmbinderSetWrapStrap,,,SourceCharacter puts an armbiner on DestinationCharacter with a strap.
+LeatherArmbinderStrapSetNone,,,SourceCharacter puts an armbiner on DestinationCharacter that's strapless.
 SelectGagType,,,Select the type of gag
 ClothGagTypeSmall,,,Small
 ClothGagTypeCleave,,,Cleave
@@ -311,16 +402,27 @@ DuctTapeHeadSetDouble,,,SourceCharacter takes a piece of duct tape for TargetCha
 DuctTapeHeadSetWrap,,,SourceCharacter wraps some duct tape onto DestinationCharacter face.
 DuctTapeHeadTypeMummy,,,Mummy
 DuctTapeHeadSetMummy,,,SourceCharacter wraps DestinationCharacter head in tape with multiple layers. 
-SelectTieStyle,,,Select the tie style
-RopeStyleBasic,,,Basic Tie
-RopeStyleCrotchRope,,,Crotch Rope Tie
-RopeStyleDiamond,,,Diamond Harness
-RopeStyleMermaid,,,Mermaid Tie
-RopeHarnessSetBasic,,,SourceCharacter uses the rope on TargetCharacter to do a basic harness.
-RopeHarnessSetCrotchRope,,,SourceCharacter uses the rope on TargetCharacter to do a crotch rope tie.
-RopeHarnessSetDiamond,,,SourceCharacter uses the rope on TargetCharacter to do a Diamond style harness.
+SelectRopeBondage,,,Select the rope bondage
+RopeBondageBasic,,,Basic Tie
+RopeBondageMermaid,,,Mermaid Tie
+RopeBondageBoxTie,,,Box Tie
+RopeBondageHogtied,,,Hogtie
+RopeBondageSuspension,,,Suspension Tie
+RopeBondageSuspensionHogtied,,,Suspension Hogtie
+RopeBondageCrotch,,,Crotch Rope
+RopeBondageHarness,,,Body Harness
+RopeBondageDiamond,,,Diamond Style
+NoRequirement,,,No Requirement
+RequireBondageLevel,,,Need Bondage ReqLevel
+RopeHarnessSetCrotch,,,SourceCharacter uses the rope on TargetCharacter to do a crotch rope tie.
+RopeHarnessSetHarness,,,SourceCharacter uses the rope on TargetCharacter to do a body harness.
+RopeHarnessSetDiamond,,,SourceCharacter uses the rope on TargetCharacter to do a diamond style harness.
 LegRopeSetBasic,,,SourceCharacter uses the rope on TargetCharacter to do a basic tie.
 LegRopeSetMermaid,,,SourceCharacter uses the rope on TargetCharacter to do a mermaid tie.
+LegRopeSetSuspension,,,SourceCharacter uses the rope on TargetCharacter to do a suspension tie.
+ArmsRopeSetBoxTie,,,SourceCharacter uses the rope on TargetCharacter to do a box tie.
+ArmsRopeSetHogtied,,,SourceCharacter uses the rope on TargetCharacter to do a hogtie.
+ArmsRopeSetSuspensionHogtied,,,SourceCharacter uses the rope on TargetCharacter to do a suspension hogtie.
 Intensity-1,,,Item intensity: Disabled
 Intensity0,,,Item intensity: Low
 Intensity1,,,Item intensity: Medium
@@ -362,6 +464,14 @@ DildoIncreaseTo0,,,DestinationCharacterName vibrating dildo starts teasing her l
 DildoIncreaseTo1,,,DestinationCharacterName vibrating dildo builds up to a moderate pace.
 DildoIncreaseTo2,,,DestinationCharacterName vibrating dildo starts buzzing strongly!
 DildoIncreaseTo3,,,DestinationCharacterName vibrating dildo jumps up to maximum intensity!
+ClitStimulatorDecreaseTo-1,,,DestinationCharacterName clitoral stimulator stops vibrating.
+ClitStimulatorDecreaseTo0,,,DestinationCharacterName clitoral stimulator slows down into a light tease.
+ClitStimulatorDecreaseTo1,,,DestinationCharacterName clitoral stimulator returns to a moderate pace.
+ClitStimulatorDecreaseTo2,,,DestinationCharacterName clitoral stimulator slows down a tiny bit.
+ClitStimulatorIncreaseTo0,,,DestinationCharacterName clitoral stimulator starts teasing her lightly.
+ClitStimulatorIncreaseTo1,,,DestinationCharacterName clitoral stimulator builds up to a moderate pace.
+ClitStimulatorIncreaseTo2,,,DestinationCharacterName clitoral stimulator starts buzzing strongly!
+ClitStimulatorIncreaseTo3,,,DestinationCharacterName clitoral stimulator jumps up to maximum intensity!
 InflVibeDildo_VibeDecreaseTo-1,,,DestinationCharacterName inflatable vibrating dildo stops vibrating.
 InflVibeDildo_VibeDecreaseTo0,,,DestinationCharacterName inflatable vibrating dildo slows down into a light tease.
 InflVibeDildo_VibeDecreaseTo1,,,DestinationCharacterName inflatable vibrating dildo returns to a moderate pace.
@@ -470,6 +580,18 @@ AnalHookPoseHair,,,Hair
 AnalHookRestrainBase,,,SourceCharacter detaches DestinationCharacter anal hook.
 AnalHookRestrainChain,,,SourceCharacter attaches a chain to DestinationCharacter anal hook.
 AnalHookRestrainHair,,,SourceCharacter attaches DestinationCharacter anal hook to her hair.
+BeadsCount,,,Inserted Beads Count: 
+InsertBead,,,Insert One
+RemoveBead,,,Remove One
+MinimumBeads,,,Remove All Except One
+MaximumBeads,,,Insert All
+AnalBeads2SetUpTo2,,,SourceCharacter inserts a second bead in DestinationCharacter butt
+AnalBeads2SetUpTo3,,,SourceCharacter inserts a third bead in DestinationCharacter butt
+AnalBeads2SetUpTo4,,,SourceCharacter inserts a fourth bead in DestinationCharacter butt
+AnalBeads2SetUpTo5,,,SourceCharacter inserts a fifth bead in DestinationCharacter butt
+AnalBeads2SetDown,,,SourceCharacter pulls a bead out of DestinationCharacter butt
+AnalBeads2SetMax,,,SourceCharacter inserts all five beads in DestinationCharacter butt
+AnalBeads2SetMin,,,SourceCharacter pulls all but one bead from DestinationCharacter butt
 PumpGagdeflatesTo0,,,SourceCharacter deflates DestinationCharacter gag fully till it's empty.
 PumpGagdeflatesTo1,,,SourceCharacter deflates DestinationCharacter gag till only slighty filled.
 PumpGagdeflatesTo2,,,SourceCharacter deflates DestinationCharacter gag till it's half full.
@@ -524,6 +646,18 @@ SpankingToysTypeCattleProd,,,Cattle Prod
 SpankingToysTypeTennisRacket,,,Tennis Racket
 SpankingToysSetPlayer,,,SourceCharacter takes out a ItemUsed
 SpankingToysSetOthers,,,SourceCharacter gives TargetCharacter a ItemUsed
+SelectSuitType,,,Select suit type and wand attachment
+CheckVulvaForWand,,,Check the vulva to use the wand
+FullLatexSuitTypeZipped,,,Zipped Up
+FullLatexSuitTypeUnZip,,,Unzipped
+FullLatexSuitTypeWand,,,Wand Attachment
+FullLatexSuitSetZipped,,,SourceCharacter zips up TargetCharacter suit.
+FullLatexSuitSetUnZip,,,SourceCharacter unzips up TargetCharacter suit.
+FullLatexSuitSetWand,,,SourceCharacter attachs a wand to TargetCharacter suit.
+BitchSuitTypeZipped,,,Zipped Up
+BitchSuitTypeUnZip,,,Unzipped
+BitchSuitSetZipped,,,SourceCharacter zips up TargetCharacter suit.
+BitchSuitSetUnZip,,,SourceCharacter unzips up TargetCharacter suit.
 TurnOff,,,TurnOff
 Low,,,Low
 Medium,,,Medium
@@ -645,7 +779,7 @@ CollarNameTagPetTypeFoxy,,,Foxy
 CollarNameTagPetTypeKitten,,,Kitten
 CollarNameTagPetTypeKitty,,,Kitty
 CollarNameTagPetTypeMochi,,,Mochi
-CollarNameTagPetTypePanda,,,Panda,,,
+CollarNameTagPetTypePanda,,,Panda
 CollarNameTagPetTypePet,,,Pet
 CollarNameTagPetTypePetMe,,,PetMe
 CollarNameTagPetTypePixie,,,Pixie

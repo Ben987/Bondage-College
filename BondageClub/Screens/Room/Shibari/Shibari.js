@@ -12,16 +12,58 @@ var ShibariSpankDone = false;
 var ShibariTeacherReleaseTimer = false;
 var ShibariRescueScenario = "";
 var ShibariRescueScenarioList = ["JapaneseGirl", "RebelStudent", "SelfBondage", "HeadMistress"];
+var ShibariTrainingPrice = 20;
+var ShibariTrainingPriceList = [20, 40, 75, 125, 200, 300, 450, 600, 800, 1000];
 
 // Returns TRUE if a specific dialog action is allowed
 function ShibariAllowTeacherBondage() { return (!ShibariAllowTeacherItem && DialogReputationGreater("Dominant", 75)); }
 function ShibariAllowTeacherStrip() { return (ShibariAllowTeacherItem && !ShibariTeacher.IsRestrained() && (InventoryGet(ShibariTeacher, "Cloth") != null) && ShibariTeacher.CanTalk()); }
 function ShibariAllowPlayerBondage() { return !Player.IsRestrained() && !ShibariTeacher.IsRestrained() }
 function ShibariAllowSpank() { return (((CurrentCharacter.ID == ShibariTeacher.ID) ? (ShibariTeacher.Pose.indexOf("Suspension") >= 0) : (ShibariStudent.Pose.indexOf("Suspension") >= 0)) && Player.CanInteract()) }
-function ShibariAllowAskRope() { return (!InventoryAvailable(Player, "SuspensionHempRope", "ItemFeet") && (SkillGetLevel(Player, "Bondage") < 6 + SkillModifier)) }
-function ShibariAllowGetRope() { return (!InventoryAvailable(Player, "SuspensionHempRope", "ItemFeet") && (SkillGetLevel(Player, "Bondage") >= 6 + SkillModifier)) }
 function ShibariIsRescueScenario(ScenarioName) { return (ShibariRescueScenario == ScenarioName) }
 function ShibariIsTeacherRestrained() { return (ShibariTeacher.IsRestrained() || !ShibariTeacher.CanTalk()) }
+function ShibariCanTrainSkill(SkillType) { return (SkillGetLevelReal(Player, SkillType) < 10) }
+function ShibariCanPayForTraining() { return (Player.Money >= ShibariTrainingPrice) }
+
+// Puts a character in a random bondage position
+function ShibariRandomBondage(C, Level) {
+	
+	// For NPCs, we give the items
+	if (C.ID != 0) {
+		InventoryAdd(C, "HempRope", "ItemArms");
+		InventoryAdd(C, "HempRope", "ItemLegs");
+		InventoryAdd(C, "HempRope", "ItemFeet");
+		InventoryAdd(C, "HempRopeHarness", "ItemTorso");
+		InventoryAdd(C, "BambooGag", "ItemMouth");
+	}
+	
+	// At a level of 0, we pick a random level, over zero, we apply restrains
+	if (Level >= 0) {
+		
+		// Wears more item with higher levels
+		if (Level >= 1) InventoryWear(C, "HempRope", "ItemArms", "Default", (Level - 1) * 3);
+		if (Level >= 2) InventoryWear(C, "HempRope", "ItemLegs", "Default", (Level - 1) * 3);
+		if (Level >= 2) InventoryWear(C, "HempRope", "ItemFeet", "Default", (Level - 1) * 3);
+		if ((Level >= 3) && (InventoryGet(C, "Cloth") == null) && (InventoryGet(C, "ItemTorso") == null)) {
+			InventoryWear(C, "HempRopeHarness", "ItemTorso", "Default", (Level - 1) * 3);
+			if (Math.random() > 0.66) InventoryGet(C, "ItemTorso").Property = { Type: "Diamond", Difficulty: 0, Effect: [] };
+			else if (Math.random() > 0.5) InventoryGet(C, "ItemTorso").Property = { Type: "Harness", Difficulty: 0, Effect: [] };
+		}
+		if (Level >= 4) InventoryWear(C, "BambooGag", "ItemMouth");
+		
+		// At 3 or more, there's a random chance of a more complicated bondage
+		if (Level >= 3) {
+			Level = Math.floor(Math.random() * 4);
+			InventoryGet(C, "ItemFeet").Property = { Type: null };
+			InventoryGet(C, "ItemArms").Property = { Type: null };
+			if (Level == 1) InventoryGet(C, "ItemFeet").Property = { Type: "Suspension", SetPose: ["Suspension", "LegsClosed"], Difficulty: 0, Effect: [] };
+			if (Level == 2) InventoryGet(C, "ItemArms").Property = { Type: "Hogtied", SetPose: ["Hogtied"], Difficulty: 0, Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], Effect: ["Block", "Freeze", "Prone"] };
+			if (Level == 3) InventoryGet(C, "ItemArms").Property = { Type: "SuspensionHogtied", SetPose: ["Hogtied", "SuspensionHogtied"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], Difficulty: 0, Effect: ["Block", "Freeze", "Prone"] };
+			if (Level == 3) InventoryWear(C, "SuspensionHempRope", "ItemHidden");
+		}
+		CharacterRefresh(C);
+	}
+}
 
 // Loads the shibari dojo characters with many restrains
 function ShibariLoad() {
@@ -31,50 +73,25 @@ function ShibariLoad() {
 	if (ShibariTeacher == null) {
 		ShibariTeacher = CharacterLoadNPC("NPC_Shibari_Teacher");
 		ShibariTeacher.AllowItem = ShibariAllowTeacherItem;
-		InventoryWear(ShibariTeacher, "ChineseDress1", "Cloth");
+		InventoryWear(ShibariTeacher, "ChineseDress" + (Math.floor(Math.random() * 2) + 1).toString(), "Cloth");
+		InventoryRemove(ShibariTeacher, "ClothLower");
 		ShibariTeacherAppearance = ShibariTeacher.Appearance.slice();
 		ShibariStudent = CharacterLoadNPC("NPC_Shibari_Student");
 		CharacterNaked(ShibariStudent);
-		InventoryAdd(ShibariTeacher, "HempRope", "ItemArms");
-		InventoryAdd(ShibariTeacher, "HempRope", "ItemLegs");
-		InventoryAdd(ShibariTeacher, "HempRope", "ItemFeet");
-		InventoryAdd(ShibariTeacher, "SuspensionHempRope", "ItemFeet");
-		InventoryAdd(ShibariTeacher, "HempRopeHarness", "ItemTorso");
-		InventoryAdd(ShibariTeacher, "BambooGag", "ItemMouth");
-		InventoryAdd(ShibariStudent, "HempRope", "ItemArms");
-		InventoryAdd(ShibariStudent, "HempRope", "ItemLegs");
-		InventoryAdd(ShibariStudent, "HempRope", "ItemFeet");
-		InventoryAdd(ShibariStudent, "SuspensionHempRope", "ItemFeet");
-		InventoryAdd(ShibariStudent, "HempRopeHarness", "ItemTorso");
-		InventoryAdd(ShibariStudent, "BambooGag", "ItemMouth");
-		InventoryWear(ShibariStudent, "HempRope", "ItemArms");
-		InventoryWear(ShibariStudent, "HempRope", "ItemLegs");
-		InventoryWear(ShibariStudent, "SuspensionHempRope", "ItemFeet");
-		InventoryWear(ShibariStudent, "HempRopeHarness", "ItemTorso");
-		InventoryWear(ShibariStudent, "BambooGag", "ItemMouth");
+		ShibariRandomBondage(ShibariStudent, 4);
 	}
 	
 	// Rescue mission load
 	if ((MaidQuartersCurrentRescue == "ShibariDojo") && !MaidQuartersCurrentRescueStarted) {
 		MaidQuartersCurrentRescueStarted = true;
 		CharacterNaked(ShibariStudent);
-		InventoryWear(ShibariStudent, "HempRope", "ItemArms");
-		InventoryWear(ShibariStudent, "HempRope", "ItemLegs");
-		InventoryWear(ShibariStudent, "SuspensionHempRope", "ItemFeet");
-		InventoryWear(ShibariStudent, "HempRopeHarness", "ItemTorso");
-		InventoryWearRandom(ShibariStudent, "ItemMouth");
-		InventoryWearRandom(ShibariStudent, "ItemHead");
 		ShibariStudent.Stage = "MaidRescue";
 		CharacterNaked(ShibariTeacher);
-		InventoryWear(ShibariTeacher, "HempRope", "ItemArms");
-		InventoryWear(ShibariTeacher, "HempRope", "ItemLegs");
-		InventoryWear(ShibariTeacher, "SuspensionHempRope", "ItemFeet");
-		InventoryWear(ShibariTeacher, "HempRopeHarness", "ItemTorso");
-		InventoryWearRandom(ShibariTeacher, "ItemMouth");
-		InventoryWearRandom(ShibariTeacher, "ItemHead");		
 		ShibariTeacher.Stage = "MaidRescue";
 		ShibariStartTeacherBondage();
 		ShibariRescueScenario = CommonRandomItemFromList(ShibariRescueScenario, ShibariRescueScenarioList);
+		ShibariRandomBondage(ShibariTeacher, 4);
+		ShibariRandomBondage(ShibariStudent, 4);
 	}
 
 }
@@ -113,12 +130,7 @@ function ShibariStartTeacherBondage() {
 
 // When the player gets restrained by the teacher
 function ShibariRestrainPlayer(Level) {
-	if (Level >= 1) InventoryWear(Player, "HempRope", "ItemArms", "Default", (Level - 1) * 3);
-	if (Level >= 2) InventoryWear(Player, "HempRope", "ItemLegs", "Default", (Level - 1) * 3);
-	if (Level == 2) InventoryWear(Player, "HempRope", "ItemFeet", "Default", (Level - 1) * 3);
-	if (Level >= 3) InventoryWear(Player, "SuspensionHempRope", "ItemFeet", "Default", (Level - 1) * 3);
-	if ((Level >= 4) && (InventoryGet(Player, "Cloth") == null) && (InventoryGet(Player, "ItemTorso") == null)) InventoryWear(Player, "HempRopeHarness", "ItemTorso", "Default", (Level - 1) * 3);
-	if (Level >= 4) InventoryWear(Player, "BambooGag", "ItemMouth");
+	ShibariRandomBondage(Player, Level);
 	ShibariTeacherReleaseTimer = CommonTime() + 60000;
 }
 
@@ -173,4 +185,27 @@ function ShibariCompleteRescue() {
 	CharacterDress(ShibariTeacher, ShibariTeacherAppearance);
 	MaidQuartersCurrentRescueCompleted = true;
 	ShibariStudent.Stage = "0";
+}
+
+// The training price is linked to the current skill level of the player
+function ShibariCalculateTrainingPrice(SkillType) {
+	ShibariTrainingPrice = ShibariTrainingPriceList[SkillGetLevelReal(Player, SkillType)];
+	ShibariTeacher.CurrentDialog = ShibariTeacher.CurrentDialog.replace("MoneyAmount", ShibariTrainingPrice.toString());
+}
+
+// When the player pays to get trained in a skill
+function ShibariPayForTraining(SkillType) {
+
+	// Raises the actual progress by 25 to 50%, can gain a level
+	var L = SkillGetLevelReal(Player, SkillType);
+	var P = SkillGetProgress(Player, SkillType) + 250 + Math.round(Math.random() * 250);
+	if (P >= 1000) {
+		L++;
+		P = 0;
+	}
+
+	// Updates the player skill and money
+	SkillChange(SkillType, L, P);
+	CharacterChangeMoney(Player, ShibariTrainingPrice * -1);
+
 }

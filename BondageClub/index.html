@@ -28,6 +28,7 @@
 <script src="Scripts/Inventory.js"></script>
 <script src="Scripts/Import.js"></script>
 <script src="Scripts/Asset.js"></script>
+<script src="Scripts/Audio.js"></script>
 <script src="Scripts/MiniGame.js"></script>
 <script src="Scripts/NPC.js"></script>
 <script src="Scripts/Server.js"></script>
@@ -46,6 +47,7 @@
 <script src="Screens/Character/PasswordReset/PasswordReset.js"></script>
 <script src="Screens/Character/FriendList/FriendList.js"></script>
 <script src="Screens/Character/Title/Title.js"></script>
+<script src="Screens/Character/BackgroundSelection/BackgroundSelection.js"></script>
 <script src="Screens/Room/MainHall/MainHall.js"></script>
 <script src="Screens/Room/Shop/Shop.js"></script>
 <script src="Screens/Room/Introduction/Introduction.js"></script>
@@ -100,6 +102,7 @@
 <script src="Screens/Inventory/ItemButt/ButtPump/ButtPump.js"></script>
 <script src="Screens/Inventory/ItemNeck/ShockCollar/ShockCollar.js"></script>
 <script src="Screens/Inventory/ItemNeckAccessories/CollarShockUnit/CollarShockUnit.js"></script>
+<script src="Screens/Inventory/ItemArms/HempRope/HempRope.js"></script>
 <script src="Screens/Inventory/ItemArms/LeatherCuffs/LeatherCuffs.js"></script>
 <script src="Screens/Inventory/ItemArms/StraitJacket/StraitJacket.js"></script>
 <script src="Screens/Inventory/ItemArms/DuctTape/DuctTape.js"></script>
@@ -136,6 +139,7 @@
 <script src="Screens/Inventory/ItemFeet/DuctTape/DuctTape.js"></script>
 <script src="Screens/Inventory/ItemNeck/SlaveCollar/SlaveCollar.js"></script>
 <script src="Screens/Inventory/ItemVulva/VibratingDildo/VibratingDildo.js"></script>
+<script src="Screens/Inventory/ItemVulva/ClitoralStimulator/ClitoralStimulator.js"></script>
 <script src="Screens/Inventory/ItemButt/VibratingButtplug/VibratingButtplug.js"></script>
 <script src="Screens/Inventory/ItemNipples/TapedVibeEggs/TapedVibeEggs.js"></script>
 <script src="Screens/Inventory/ItemNipples/NippleSuctionCups/NippleSuctionCups.js"></script>
@@ -144,6 +148,7 @@
 <script src="Screens/Inventory/ItemButt/InflVibeButtPlug/InflVibeButtPlug.js"></script>
 <script src="Screens/Inventory/ItemDevices/TeddyBear/TeddyBear.js"></script>
 <script src="Screens/Inventory/ItemArms/LeatherStraitJacket/LeatherStraitJacket.js"></script>
+<script src="Screens/Inventory/ItemArms/CollarCuffs/CollarCuffs.js"></script>
 <script src="Screens/Inventory/ItemDevices/InflatableBodyBag/InflatableBodyBag.js"></script>
 <script src="Screens/Inventory/ItemArms/WristShackles/WristShackles.js"></script>
 <script src="Screens/Inventory/ItemEars/HeadphoneEarPlugs/HeadphoneEarPlugs.js"></script>
@@ -156,25 +161,65 @@
 <script src="Screens/Inventory/ItemDevices/BondageBench/BondageBench.js"></script>
 <script src="Screens/Inventory/ItemAddon/BondageBenchStraps/BondageBenchStraps.js"></script>
 <script src="Screens/Inventory/ItemButt/AnalHook/AnalHook.js"></script>
+<script src="Screens/Inventory/ItemButt/AnalBeads2/AnalBeads2.js"></script>
 <script src="Screens/Inventory/ItemButt/ButtPlugLock/ButtPlugLock.js"></script>
 <script src="Screens/Inventory/ItemArms/OrnateCuffs/OrnateCuffs.js"></script>
 <script src="Screens/Inventory/ItemLegs/OrnateLegCuffs/OrnateLegCuffs.js"></script>
 <script src="Screens/Inventory/ItemFeet/OrnateAnkleCuffs/OrnateAnkleCuffs.js"></script>
+<script src="Screens/Inventory/ItemArms/FullLatexSuit/FullLatexSuit.js"></script>
+<script src="Screens/Inventory/ItemVulva/FullLatexSuitWand/FullLatexSuitWand.js"></script>
+<script src="Screens/Inventory/ItemArms/LeatherArmbinder/LeatherArmbinder.js"></script>
+<script src="Screens/Inventory/ItemHidden/LeatherArmbinderStrap/LeatherArmbinderStrap.js"></script>
+<script src="Screens/Inventory/ItemHidden/LeatherArmbinderWrapStrap/LeatherArmbinderWrapStrap.js"></script>
+<script src="Screens/Inventory/ItemArms/BitchSuit/BitchSuit.js"></script>
 <script>
 
 /*
 
 	NEXT VERISON:
+	
+	OK - Many fixes to the dictionary (Atasly)
+	OK - Many fixes to the gags (Kira)
+	OK - Show chatroom spaces (Ace-1331)
+	OK - New ball-gag, sleep mask and raccoon ears (Ayesha-678)
+	OK - New ** or /action in chatroom for actions without player name (Atasly)
+	OK - /help in chatroom (Atasly)
+	OK - Latex Lockdown Suit (Gatetrek + BuffaloAquatico)
+	OK - Blackout Lenses (Ayesha-678)
+	OK - Leather breast binder + armbinder straps + New Hair (gatetrek)
+	OK - New clothes (ace-1331 & Ruilove)
+	OK - Player swap in chatrooms (Eveferox)
+	OK - Prevent appearance hacking or HTML tags (Sekkmer + Lucritus)
+	OK - Suspension flower dress (Gnarp)
+	OK - Lock fixes (Sekkmer)
+	OK - Chatlog changes from Sekkmer - Confirm with him first
+	OK - Zipties (Ayesha-678)
+	OK - Room selection screen (Sekkmer)
+	OK - New Audio Screen and struggling sounds (aldarris)
+	OK - Buy Groups Validation (ace-1331)
+	OK - French translation and typo corrections (Ace-1331 & Mizielli)
+	OK - New backgrounds (aldarris)
+	OK - New hit groups (Me & Eveferox)
+	OK - Background selection filter (Sekkmer)
+	OK - New Clitoral Stimulator + Anal Beads XL + Collar Cuffs (ace-1331)
+	OK - Sound + new background
+	OK - Hemp rope do no give freeze effect in chat room
+	OK - New Latex Boots (regular + locking) (ace-1331 & Ruilove)
+	OK - New bitch suit (Wildsj)
+	OK - Catsuit with suit group (Gatetrek)
 
-	TO DO - Add hogtie pose and assets
+	IN PROGRESS - Add hogtie pose and assets
 	TO DO - Each restraint will have different ways (mini-games) to try to struggle out of it:
-		1. Go Berserk (Duct Tape, Cages & Boxes, Mittens, Chastity Items, Body Harnesses, Gags with harness, Hoods) - Click the circles quickly before they disappear
-		2. Use Strength (Duct Tape, Yokes, Cuffs & Manacles, Belts, One Bar & Bench & Bag, Armbinders, Gags without harness) - Speed Game: A + S (Current)
+		1. Go Berserk (Duct Tape, Cages & Boxes, Mittens, Chastity Items, Body Harnesses, Gags with harness, Hoods) - Click the circles quickly before they disappear (Asylum)
+		2. Use Strength (Duct Tape, Yokes, Cuffs & Manacles, Belts, One Bar & Bench & Bag, Armbinders, Gags without harness) - Key Speed Game: A + S (Current)
 		3. Be Clever (Rope, Yokes, Cages & Boxes, Cuffs & Manacles, Locking Boots, Collars) - Memory Game: Simon Says
 		4. Use Dexterity (Rope, Jackets & Suits, One Bar & Bench & Bag, Mittens, Body Harnesses, Gags with harness, Collars) - Timing Game: Stop the moving object at the right position
 		5. Be Supple (Jackets & Suits, Belts, Chastity Items, Gags without harness, Armbinders, Locking Boots, Hoods) - Guess the right number between 1 and 100, a few tries, tells you if higher or lower	
-		6. Pick the Lock (For anything that locks or when a lock is added) - Precision Game - Don't touch the walls that's scrolling toward you
-	TO DO - Server max packet size on ChatRoomCharacterUpdate
+		6. Pick the Lock (For anything that locks or when a lock is added) - Precision Game - Don't touch the walls that are scrolling toward you
+	OK - Lots of server improvements for memory usage and max packet size
+	OK - New prerequisite array system
+	OK - New discreet mouth style, based on previous assets
+	OK - Missing dialog for toe-items & gag 2 + 3
 	TO DO - Proof Read
 	TO DO - Patreon Import/Update
 

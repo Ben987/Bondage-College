@@ -3,53 +3,10 @@ RoomName,Room Name (Letters & numbers only)
 RoomDescription,A short description or what's going on
 RoomPrivate,Private (Need exact name to find it)
 RoomBackground,Select the background
-Introduction,Introduction
-KidnapLeague,Kidnappers League
-MaidQuarters,Maid Quarters
-MainHall,Main Hall
-Management,Club Management
-Private,Private Room
-Shibari,Shibari Dojo
-Bedroom,Bedroom
-HorseStable,Horse Stable
-Nursery,Nursery
-PrisonHall,Prison Hall
-BDSMRoomBlue,BDSM Room Blue
-BDSMRoomPurple,BDSM Room Purple
-BDSMRoomRed,BDSM Room Red
-Gardens,Gardens
-IndoorPool,Indoor Pool
-OutdoorPool,Outdoor Pool
-MaidCafe,Maid Café
-PublicBath,Public Bath
-ParkDay,Park Day
-ParkNight,Park Night
-ChillRoom,Chill Room
-Boudoir,Boudoir
-BondageBedChamber,Bondage Bedchamber
-Beach,Beach
-ForestPath,Forest Path
-DeepForest,Deep Forest
-SpookyForest,Spooky Forest
-AbandonedBuilding,Abandoned Building
-BalconyNight,Balcony Night
-CozyLivingRoom, Cozy Living Room
-RooftopParty,Rooftop Party
-CosyChalet,Cosy Chalet
-ParkWinter,Park Winter
-XmasEve,Xmas Eve Lounge
-XmasDay,Xmas Day Lounge
-StreetNight, Street Night
-SnowyStreet, Snowy Street
-AsylumEntrance,Entrance
-AsylumBedroom,Bedroom
-AsylumMeeting,Meeting
-AsylumTherapy,Therapy
-PaddedCell,Padded Cell
-PaddedCell2,Padded Cell 2
 RoomSize,"Room maximum size, from 2 to 10 members"
 Create,Create
 Cancel,Cancel
+ShowAll,Selection
 CreatingRoom,Creating your room...
 ResponseRoomAlreadyExist,This room name is already taken
 ResponseAccountError,"Account error, try to relog"

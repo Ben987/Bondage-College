@@ -57,6 +57,7 @@ function FriendListLoadFriendList(data) {
 	var PrivateRoomCaption = DialogFind(Player, "PrivateRoom");	
 	var SentCaption = DialogFind(Player, "SentBeep");
 	var ReceivedCaption = DialogFind(Player, "ReceivedBeep");
+	var SpaceAsylumCaption = DialogFind(Player, "ChatRoomSpaceAsylum");
 	FriendListContent = "";
 
 	// In Friend List mode, we show the friend list and allow doing beeps
@@ -65,7 +66,7 @@ function FriendListLoadFriendList(data) {
 			FriendListContent += "<div class='FriendListRow'>";
 			FriendListContent += "<div class='FriendListTextColumn FriendListFirstColumn'>" + data[F].MemberName + "</div>";
 			FriendListContent += "<div class='FriendListTextColumn'>" + data[F].MemberNumber.toString() + "</div>";
-			FriendListContent += "<div class='FriendListTextColumn'>" + ((data[F].ChatRoomName == null) ? "-" : data[F].ChatRoomName.replace("-Private-", PrivateRoomCaption)) + "</div>";
+			FriendListContent += "<div class='FriendListTextColumn'>" + ((data[F].ChatRoomName == null) ? "-" : (data[F].ChatRoomSpace ? data[F].ChatRoomSpace.replace("Asylum", SpaceAsylumCaption) + " - " : '') + data[F].ChatRoomName.replace("-Private-", PrivateRoomCaption)) + "</div>";
 			FriendListContent += "<div class='FriendListLinkColumn' onClick='FriendListBeep(" + data[F].MemberNumber.toString() + ", \"" + data[F].MemberName.toString() + "\")'>" + BeepCaption + "</div>";
 			FriendListContent += "</div>";
 		}
@@ -76,7 +77,7 @@ function FriendListLoadFriendList(data) {
 			FriendListContent += "<div class='FriendListRow'>";
 			FriendListContent += "<div class='FriendListTextColumn FriendListFirstColumn'>" + FriendListBeepLog[B].MemberName + "</div>";
 			FriendListContent += "<div class='FriendListTextColumn'>" + ((FriendListBeepLog[B].MemberNumber != null) ? FriendListBeepLog[B].MemberNumber.toString() : "-") + "</div>";
-			FriendListContent += "<div class='FriendListTextColumn'>" + ((FriendListBeepLog[B].ChatRoomName == null) ? "-" : FriendListBeepLog[B].ChatRoomName.replace("-Private-", PrivateRoomCaption)) + "</div>";
+			FriendListContent += "<div class='FriendListTextColumn'>" + ((FriendListBeepLog[B].ChatRoomName == null) ? "-" : (FriendListBeepLog[B].ChatRoomSpace ? FriendListBeepLog[B].ChatRoomSpace.replace("Asylum", SpaceAsylumCaption) + " - " : '') + FriendListBeepLog[B].ChatRoomName.replace("-Private-", PrivateRoomCaption)) + "</div>";
 			FriendListContent += "<div class='FriendListTextColumn'>" + ((FriendListBeepLog[B].Sent) ? SentCaption : ReceivedCaption) + " " + TimerHourToString(FriendListBeepLog[B].Time) + "</div>";
 			FriendListContent += "</div>";
 		}
@@ -88,7 +89,7 @@ function FriendListLoadFriendList(data) {
 				FriendListContent += "<div class='FriendListRow'>";
 				FriendListContent += "<div class='FriendListTextColumn FriendListFirstColumn'>" + data[F].MemberName + "</div>";
 				FriendListContent += "<div class='FriendListTextColumn'>" + data[F].MemberNumber.toString() + "</div>";
-				FriendListContent += "<div class='FriendListTextColumn'>" + ((data[F].ChatRoomName == null) ? "-" : data[F].ChatRoomName.replace("-Private-", PrivateRoomCaption)) + "</div>";
+				FriendListContent += "<div class='FriendListTextColumn'>" + ((data[F].ChatRoomName == null) ? "-" : (data[F].ChatRoomSpace ? data[F].ChatRoomSpace.replace("Asylum", SpaceAsylumCaption) + " - " : '') + data[F].ChatRoomName.replace("-Private-", PrivateRoomCaption)) + "</div>";
 				FriendListContent += "<div class='FriendListLinkColumn' onClick='FriendListDelete(" + data[F].MemberNumber.toString() + ")'>" + ((FriendListConfirmDelete.indexOf(data[F].MemberNumber) >= 0) ? ConfirmDeleteCaption : DeleteCaption) + "</div>";
 				FriendListContent += "</div>";
 			}

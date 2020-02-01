@@ -1,0 +1,4 @@
+﻿(You are under lock and key.)
+(Vous êtes sous clé.)
+(You have to guard the room.)
+(Vous devez surveiller la chambre.)

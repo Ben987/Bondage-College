@@ -1,0 +1,34 @@
+Room Name
+Nom du Salon
+Description
+Description
+Ban List
+Liste des interdictions
+Administrator List
+Liste des administrateurs
+Private
+Privé
+Locked
+Barré
+Size (2-10)
+Taille (2-10)
+Use member numbers, separated by commas (ex: 3571,541,7001)
+Utilisez des numéros de membre, séparés par des virgules (ex: 3571,541)
+Room settings can only be updated by administrators
+Les paramètres des salons peuvent être mis à jour que par les administrateurs
+Background
+Style
+Save
+Sauvegarder
+Exit
+Quitter
+Cancel
+Cancel
+Updating the chat room...
+Mise à jour de la salle de chat ...
+This room name is already taken
+Ce nom de salon est déjà pris
+Account error, please try to relog
+Erreur de compte, veuillez essayer de vous reconnecter
+Invalid chat room data detected
+Donnée(s) de salle de chat non valide(s) détectée(s)

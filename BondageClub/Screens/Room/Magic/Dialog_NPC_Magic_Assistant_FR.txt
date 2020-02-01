@@ -1,0 +1,94 @@
+﻿Are you talking to me?
+C'est à moi que tu parles?
+(She willingly opens her mouth.)
+(Elle ouvre la bouche volontiers.)
+(She grins at you.) Was that it?
+(Elle te sourit.) C'est tout?
+(She sighs and turns around while you restrain her arms.)  It's really tight.
+(Elle soupire et se retourne pendant que vous retenez ses bras.) C'est vraiment serré.
+(You free her arms and she nods happily.)  Thanks a lot.
+(Vous libérez ses bras et elle acquiesce joyeusement.) Merci beaucoup.
+(She submits to you while you restrain her legs securely.)  I don't need to move anyway.
+(Elle se soumet à vous pendant que vous retenez fermement ses jambes.) Je n'ai pas besoin de bouger de toute façon.
+(You release her legs from the restraint.)  Thanks a lot.
+(Vous libérez ses jambes) Merci beaucoup.
+(She looks puzzled as you restrain her feet.)  I'll stay on guard here.
+(Elle a l'air perplexe alors que vous attachez ses pieds.) Je vais rester sur mes gardes ici.
+(You release her feet and she wiggles them.)  Thanks, it was troublesome.
+(Vous relâchez ses pieds et elle les remue.) Merci, c'était gênant.
+(You strap the collar on her while she blushes.)  Is this really necessary?
+(Vous attachez le collier à elle pendant qu'elle rougit.) Est-ce vraiment nécessaire?
+(You remove the collar from her neck.)  Thanks.
+(Vous retirez le collier de son cou.) Merci.
+(You snap the belt around her waist and crotch while she sighs.)  This is certainly not a trick.
+(Vous attachez la ceinture autour de sa taille et de son entrejambe pendant qu'elle soupire.) Ce n'est certainement pas une attrape.
+(You unlock the belt from her waist and she smiles.)  Thanks a lot DialogPlayerName.
+(Vous déverrouillez la ceinture de sa taille et elle sourit.) Merci beaucoup DialogPlayerName.
+(You strap the device on her head as she nods slowly.)  It's dark in here.
+(Vous attachez l'appareil à sa tête alors qu'elle acquiesce lentement.) Il fait sombre ici.
+(You remove the device and she nods rapidly.)  Thanks a million, this is much better.
+(Vous retirez l'appareil et elle acquiesce.) Merci mille fois, c'est beaucoup mieux.
+(She jumps from the searing pain on her breast.)  Ouch!
+(Elle saute à cause de la douleur brûlante sur sa poitrine.) Aïe!
+(You whip her breast with the leather crop as she whimpers and bows her head.)
+(Vous fouettez sa poitrine avec la cravache en cuir alors qu'elle gémit et incline la tête.)
+(You whip her butt hard as she sighs.)  For the show.
+(Vous fouettez son cul très fort alors qu'elle soupire.) C'est pour le spectacle.
+(She grumbles as you strike her butt with the crop.)  For the show.
+(Elle grogne alors que vous frappez ses fesses avec la cravache.) C'est pour le spectacle.
+(She tries to fight back.)  This is how it's meant to be.
+(Elle essaie de riposter.) C'est comme ça que ça doit être.
+(You remove the device.)  Thanks, now I can work again.
+(Vous retirez l'appareil.) Merci, maintenant je peux recommencer à travailler.
+(She looks surprised.) Oops?
+(Elle a l'air surprise.) Oups?
+(She looks confused.) Thanks, are we done?
+(Elle a l'air confuse.) Merci, avons-nous fini?
+(She whimpers as you use the device on her breast.)  Sorry to object, but this isn't very convenient or comfortable.
+(Elle gémit lorsque vous utilisez l'appareil sur sa poitrine.) Désolé de ne pas être en accord, mais ce n'est pas très pratique ni confortable.
+(She grumbles as you use remove the item.)  Be thoughtful and don't remove anything until I'm hurt and broken.
+(Elle grogne lorsque vous retirer l'objet.) Soyez réfléchi et ne retirez rien jusqu'à ce que je sois blessée et brisée.
+(You massage her pussy with the wand, but she stays cold.)  I'm very sorry.  I'm not in the mood.
+(Vous massez sa chatte avec le vibrateur, mais elle reste froide.) Je suis vraiment désolée. Je ne suis pas d'humeur.
+(You slide the egg inside, but she barely reacts to it.)  I don't want to top from the bottom, but this egg would work better on someone else.
+(Vous faites glisser l'œuf à l'intérieur d'elle, mais elle réagit à peine.) Je ne veux pas vous dire quoi faire, mais cet œuf fonctionnerait mieux pour quelqu'un d'autre.
+(She doesn't react as you remove the egg.)  Maybe it doesn't work, I didn't feel a thing in there.
+(Elle ne réagit pas lorsque vous retirez l'œuf.) Peut-être que cela ne fonctionne pas, je n'ai rien ressenti là-dedans.
+(She struggles against it.) Like the great master Houdini?
+(Elle lutte contre cela.) Comme le grand maître Houdini?
+(She catches her breath.) Finally.  What was that supposed to be?
+(Elle reprend son souffle.) Enfin. Qu'est-ce que c'était censé être?
+Welcome to the theater!
+Bienvenue au théâtre!
+Hello, I'm DialogPlayerName.  Nice to meet you.
+Bonjour, je m'appelle DialogPlayerName. Ravie de vous rencontrer.
+Pleased to meet you too.  I'm DialogCharacterName, Would you like to assist me?
+Ravie de vous rencontrer aussi. Je suis DialogCharacterName, souhaitez-vous m'aider?
+Please change, the show's starting.
+Veuillez vous changer, le spectacle commence.
+I'll hurry up.
+Je vais me dépêcher.
+Take fife, You are free.
+Prends en cinq, tu es libre.
+Thank you very much!
+Merci beaucoup!
+(Sing "Sweet, Sweet Gwendolyne".)
+(Chanter "Sweet, Sweet Gwendolyne".)
+(During the song you tie each other. The spectators are thrilled.)
+(Pendant la chanson, vous vous attachez. Les spectateurs sont ravis.)
+(Sing "Bad Girl".)
+(Chanter "Bad Girl".)
+(Some spectators give you money. You get REPLACEMONEY$.)
+(Certains spectateurs vous donnent de l'argent. Vous obtenez REMPLACEMONEY$.)
+I should tie you up.
+Je devrais t'attacher.
+Make it look really nice.
+Rendez ça vraiment sympa.
+I can't, I'm tied up. Please free me.
+Je ne peux pas, je suis attachée. Veuillez me libérer.
+Goodbye.  (Leave her.)
+Au revoir. (La quitter.)
+Can we continue the show?
+Pouvons-nous continuer le spectacle?
+(She nods in agreement.) Yes, please.
+(Elle acquiesce.) Oui, s'il vous plaît.

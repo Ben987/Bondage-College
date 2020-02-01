@@ -132,14 +132,28 @@ function LoginMistressItems() {
 function LoginStableItems() {
 	if (LogQuery("JoinedStable", "PonyExam") || LogQuery("JoinedStable", "TrainerExam")) {
 		InventoryAdd(Player, "HarnessPonyBits", "ItemMouth", false);
+		InventoryAdd(Player, "HarnessPonyBits", "ItemMouth2", false);
+		InventoryAdd(Player, "HarnessPonyBits", "ItemMouth3", false);
 		InventoryAdd(Player, "PonyBoots", "Shoes", false);
 		InventoryAdd(Player, "PonyBoots", "ItemBoots", false);
 	} else {
 		InventoryDelete(Player, "HarnessPonyBits", "ItemMouth", false);
+		InventoryDelete(Player, "HarnessPonyBits", "ItemMouth2", false);
+		InventoryDelete(Player, "HarnessPonyBits", "ItemMouth3", false);
 		InventoryDelete(Player, "PonyBoots", "Shoes", false);
 		InventoryDelete(Player, "PonyBoots", "ItemBoots", false);
 	}
 	ServerPlayerInventorySync();
+}
+
+// Checks every owned item to see if its buygroup contains an item the player does not have
+// This allows the user to collect any items from a modified buy group already purchased
+function LoginValideBuyGroups() {
+	for (var A = 0; A < Asset.length; A++)
+		if ((Asset[A].BuyGroup != null) && InventoryAvailable(Player, Asset[A].Name, Asset[A].Group.Name))
+			for (var B = 0; B < Asset.length; B++)
+				if ((Asset[B] != null) && (Asset[B].BuyGroup != null) && (Asset[B].BuyGroup == Asset[A].BuyGroup) && !InventoryAvailable(Player, Asset[B].Name, Asset[B].Group.Name))
+					InventoryAdd(Player, Asset[B].Name, Asset[B].Group.Name);
 }
 
 // When the character logs, we analyze the data
@@ -215,6 +229,7 @@ function LoginResponse(C) {
 			LoginValidCollar();
 			LoginMistressItems();
 			LoginStableItems();
+			LoginValideBuyGroups();
 			CharacterAppearanceValidate(Player);
 
 			// If the player must log back in the cell
