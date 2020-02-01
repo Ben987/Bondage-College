@@ -4,13 +4,18 @@ var ColorPickerInitialHSV, ColorPickerHSV, ColorPickerCallback;
 var ColorPickerHueBarHeight = 40;
 var ColorPickerSVPanelGap = 20;
 
-window.addEventListener('load', ColorPickerSetupEventListener);
-
-function ColorPickerSetupEventListener() {
+function ColorPickerAttachEventListener() {
     var CanvasElement = document.getElementById("MainCanvas");
     CanvasElement.addEventListener("mousedown", ColorPickerStartPick);
     CanvasElement.addEventListener("touchstart", ColorPickerStartPick);
 }
+
+function ColorPickerRemoveEventListener() {
+    var CanvasElement = document.getElementById("MainCanvas");
+    CanvasElement.removeEventListener("mousedown", ColorPickerStartPick);
+    CanvasElement.removeEventListener("touchstart", ColorPickerStartPick);
+}
+
 
 function ColorPickerStartPick(Event) {
     // Only fires at first touch on mobile devices
@@ -103,6 +108,7 @@ function ColorPickerPickSV(Event) {
 function ColorPickerHide() {
     ColorPickerInitialHSV = null;
     ColorPickerCallback = null;
+    ColorPickerRemoveEventListener();
 }
 
 function ColorPickerDraw(X, Y, Width, Height, Color, Callback) {
@@ -115,6 +121,8 @@ function ColorPickerDraw(X, Y, Width, Height, Color, Callback) {
         HSV = ColorPickerCSSToHSV(Color);
         ColorPickerInitialHSV = HSV;
         ColorPickerHSV = HSV;
+        ColorPickerRemoveEventListener();   // remove possible duplicated attached event listener, just in case
+        ColorPickerAttachEventListener();
     } else {
         // Use user updated HSV
         HSV = ColorPickerHSV;
