@@ -46,7 +46,7 @@ function AudioPlayContent(data) {
 		else if (NextAsset.AssetName == "SpankingToys") {
 			var characterSource = ChatRoomCharacter.find(function(e1){return e1.MemberNumber == data.Sender;});
 			var equippedItem = InventoryGet(characterSource, "ItemHands");
-			if (!equippedItem.Property) return;
+			if (!equippedItem || !equippedItem.Property) return;
 			switch (equippedItem.Property.Type) {
 				case "Crop":
 				case "Flogger": audioFile = "Audio/SmackBareSkin04-1.mp3"; break;
@@ -67,8 +67,12 @@ function AudioPlayContent(data) {
 		}
 	} else {
 
-		// When the vibrator level increases or decreases
-		if (data.Content.includes("Decrease") || data.Content.includes("Increase")) { 
+		// When the vibrator or inflatable level increases or decreases
+		if(data.Content.includes("Pumppumps"))
+			audioFile = "Audio/Inflation.mp3";
+		else if(data.Content.includes("Pumpdeflates"))
+			audioFile = "Audio/Deflation.mp3";
+		else if (data.Content.includes("Decrease") || data.Content.includes("Increase")) { 
 			if (data.Content.endsWith("-1")) return; // special case of turning vibrators off, may be a click sound in the future?
 			var vibrationLevel = parseInt(data.Content.substr(data.Content.length - 1));
 			if (!isNaN(vibrationLevel)) noiseLevelModifier += vibrationLevel * 3;

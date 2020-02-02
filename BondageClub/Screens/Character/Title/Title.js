@@ -13,7 +13,10 @@ var TitleList = [
 	{ Name: "EscapedPatient", Requirement: function () { return (LogValue("Escaped", "Asylum") >= CurrentTime) }, Force: true },
 	{ Name: "Nurse", Requirement: function () { return ((ReputationGet("Asylum") >= 50) && (ReputationGet("Asylum") < 100)) } },
 	{ Name: "Doctor", Requirement: function () { return (ReputationGet("Asylum") >= 100) } },
+	{ Name: "LadyLuck", Requirement: function () { return (ReputationGet("Gambling") >= 100) } },
 	{ Name: "CollegeStudent", Requirement: function () { return LogQuery("BondageCollege", "Import") } },
+	{ Name: "Nawashi", Requirement: function () { return (SkillGetLevel(Player, "Bondage") >= 10) } },
+	{ Name: "Houdini", Requirement: function () { return (SkillGetLevel(Player, "Evasion") >= 10) } },
 	{ Name: "PonyPegasus", Requirement: function () { return (SkillGetLevel(Player, "Dressage") >= 10) } },
 	{ Name: "PonyUnicorn", Requirement: function () { return ((SkillGetLevel(Player, "Dressage") >= 8) && (SkillGetLevel(Player, "Dressage") <= 9)) } },
 	{ Name: "PonyWild", Requirement: function () { return ((SkillGetLevel(Player, "Dressage") >= 6) && (SkillGetLevel(Player, "Dressage") <= 7)) } },
@@ -22,7 +25,7 @@ var TitleList = [
 	{ Name: "PonyCold", Requirement: function () { return (SkillGetLevel(Player, "Dressage") == 3) } },
 	{ Name: "PonyFarm", Requirement: function () { return (SkillGetLevel(Player, "Dressage") == 2) } },
 	{ Name: "PonyFoal", Requirement: function () { return (SkillGetLevel(Player, "Dressage") == 1) } }
-]
+];
 
 // Sets the title for the player
 function TitleSet(NewTitle) {
@@ -91,7 +94,7 @@ function TitleRun() {
 function TitleClick() {
 
 	// When the user exits
-	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) CommonSetScreen("Character", "InformationSheet");
+	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165)) TitleExit();
 
 	// When the user selects a title
 	var X = 130;
@@ -109,4 +112,9 @@ function TitleClick() {
 			}
 		}
 
+}
+
+// when the user exit this screen
+function TitleExit() {
+	CommonSetScreen("Character", "InformationSheet");
 }

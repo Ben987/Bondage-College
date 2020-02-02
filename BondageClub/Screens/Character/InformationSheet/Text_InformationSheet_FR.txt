@@ -134,3 +134,25 @@ Owner and whitelist only
 Patronne et liste blanche seulement
 Owner only
 Patronne seulement
+Club Slave
+Esclave du Club
+Patient
+Patiente
+Permanent Patient
+Patiente permanente
+Escaped Patient
+Patiente évadée
+Nurse
+Infirmière
+Doctor
+Médecin
+College Student
+Étudiante
+Asylum Nurse:
+Infirmière d'asile:
+Asylum Patient:
+Patient d'asile:
+Skills modifier:
+Modificateur de compétences:
+Time left:
+Temps restant:
