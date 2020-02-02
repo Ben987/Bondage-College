@@ -163,19 +163,19 @@ Forget it then. (Leave her.)
 Why are you taking my clothes?
 Зачем ты забираешь мою одежду?
 ###_NPC
-(She frowns.)  Your clothes are confiscated for the next hour.  This humiliation might teach you to respect your owner will.
+(She frowns.)  Your clothes are confiscated for the next hour.  This humiliation might teach you to respect your owner's will.
 (Она хмурится.) Твоя одежда конфискована на следующий час.  Это унижение может научить тебя уважать волю твоей хозяйки.
 ###_PLAYER
 When can I dress back?
 Когда я смогу одеться обратно?
 ###_NPC
-Your clothes are confiscated for the next hour.  This humiliation might teach you to respect your owner will.
+Your clothes are confiscated for the next hour.  This humiliation might teach you to respect your owner's will.
 Твоя одежда конфискована на следующий час.  Это унижение может научить тебя уважать волю твоей хозяйки.
 ###_PLAYER
 I know I'm a bad submissive.
 Я знаю, что я плохая сабмиссив.
 ###_NPC
-(She sighs.)  Your clothes are confiscated for the next hour.  This humiliation might teach you to respect your owner will.
+(She sighs.)  Your clothes are confiscated for the next hour.  This humiliation might teach you to respect your owner's will.
 (Она вздыхает.) Твоя одежда конфискована на следующий час. Это унижение может научить тебя уважать волю твоей хозяйки.
 ###_PLAYER
 Very well, thank you.  (Leave her.)

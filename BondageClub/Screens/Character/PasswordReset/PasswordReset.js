@@ -111,12 +111,17 @@ function PasswordResetClick() {
 
 	// Go back to the login screen
 	if ((MouseX >= 1025) && (MouseX <= 1325) && (MouseY >= 890) && (MouseY <= 950)) {
-		ElementRemove("InputEmail");
-		ElementRemove("InputAccountName");
-		ElementRemove("InputResetNumber");
-		ElementRemove("InputPassword1");
-		ElementRemove("InputPassword2");
-		CommonSetScreen("Character", "Login");
+		PasswordResetExit();
 	}
 
+}
+
+// when the user exit this screen
+function PasswordResetExit() {
+	ElementRemove("InputEmail");
+	ElementRemove("InputAccountName");
+	ElementRemove("InputResetNumber");
+	ElementRemove("InputPassword1");
+	ElementRemove("InputPassword2");
+	CommonSetScreen("Character", "Login");
 }

@@ -188,11 +188,11 @@ function ServerValidateProperties(C, Item) {
 		}
 	}
 
-	if ((Item.Property != null) && (Item.Property.Type != null)) {
-		if ((Item.Asset.AllowType == null) || (Item.Asset.AllowType.indexOf(Item.Property.Type) < 0)) {
+	// Removes any type that's not allowed on the item
+	if ((Item.Property != null) && (Item.Property.Type != null))
+		if ((Item.Asset.AllowType == null) || (Item.Asset.AllowType.indexOf(Item.Property.Type) < 0))
 			delete Item.Property.Type;
-		}
-	}
+
 }
 
 // Loads the appearance assets from a server bundle that only contains the main info (no assets)
@@ -223,7 +223,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 								NA.Property = Bundle[B].Property;
 						// Some Properties should not be changed
 						if (C.Appearance[A].Property) {
-							if (C.Appearance[A].Property.LockedBy != null) NA.Property.LockedBy = C.Appearance[A].Property.LoackedBy;
+							if (C.Appearance[A].Property.LockedBy != null) NA.Property.LockedBy = C.Appearance[A].Property.LockedBy;
 							if (C.Appearance[A].Property.LockMemberNumber != null) NA.Property.LockMemberNumber = C.Appearance[A].Property.LockMemberNumber; else delete NA.Property.LockMemberNumber;
 							if (C.Appearance[A].Property.RemoveItem != null) NA.Property.RemoveItem = C.Appearance[A].Property.RemoveItem; else delete NA.Property.RemoveItem;
 							if (C.Appearance[A].Property.ShowTimer != null) NA.Property.ShowTimer = C.Appearance[A].Property.ShowTimer; else delete NA.Property.ShowTimer;

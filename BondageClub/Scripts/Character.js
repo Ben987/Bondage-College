@@ -32,7 +32,7 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		HeightModifier: 0,
 		CanTalk: function () { return ((this.Effect.indexOf("GagVeryLight") < 0) && (this.Effect.indexOf("GagLight") < 0) && (this.Effect.indexOf("GagEasy") < 0) && (this.Effect.indexOf("GagNormal") < 0) && (this.Effect.indexOf("GagMedium") < 0) && (this.Effect.indexOf("GagHeavy") < 0) && (this.Effect.indexOf("GagVeryHeavy") < 0) && (this.Effect.indexOf("GagTotal") < 0) && (this.Effect.indexOf("GagTotal2") < 0) && (this.Effect.indexOf("GagTotal3") < 0) && (this.Effect.indexOf("GagTotal4") < 0)) },
 		CanWalk: function () { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("Tethered") < 0) && ((this.Pose == null) || (this.Pose.indexOf("Kneel") < 0) || (this.Effect.indexOf("KneelFreeze") < 0))) },
-		CanKneel: function () { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("ForceKneel") < 0) && ((this.Pose == null) || (this.Pose.indexOf("LegsClosed") < 0))) },
+		CanKneel: function () { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("ForceKneel") < 0) && ((this.Pose == null) || ((this.Pose.indexOf("LegsClosed") < 0) && (this.Pose.indexOf("Supension") < 0) && (this.Pose.indexOf("Hogtied") < 0)))) },
 		CanInteract: function () { return (this.Effect.indexOf("Block") < 0) },
 		CanChange: function () { return ((this.Effect.indexOf("Freeze") < 0) && (this.Effect.indexOf("Block") < 0) && (this.Effect.indexOf("Prone") < 0) && !LogQuery("BlockChange", "Rule") && (!LogQuery("BlockChange", "OwnerRule") || (Player.Ownership == null) || (Player.Ownership.Stage != 1))) },
 		IsProne: function () { return (this.Effect.indexOf("Prone") >= 0) },
