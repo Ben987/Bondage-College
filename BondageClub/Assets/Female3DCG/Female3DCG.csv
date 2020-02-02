@@ -33,6 +33,8 @@ Cloth,BondageDress2,Bondage Dress Style 2
 Cloth,ShoulderlessTop,Shoulderless Top
 Cloth,Dress3,Long Dress
 Cloth,ComfyTop,Sleep Top
+Suit,,Upper Suit
+Suit,Catsuit,Catsuit
 ClothLower,,Bottom
 ClothLower,Skirt1,Skirt
 ClothLower,TennisSkirt1,Tennis
@@ -48,6 +50,8 @@ ClothLower,LatexSkirt1,Latex Skirt
 ClothLower,LatexSkirt2,Long Latex Skirt
 ClothLower,ClothSkirt1,Patterned Skirt
 ClothLower,Jeans2,Ripped Jeans
+SuitLower,,Suit Lower
+SuitLower,Catsuit,Catsuit
 Bra,,Bra
 Bra,Bra1,Style 1
 Bra,Bra2,Style 2
@@ -137,6 +141,7 @@ Shoes,PonyBoots,Pony Boots
 Shoes,Sandals,Strap Sandals
 Shoes,PawBoots,Paw Boots
 Shoes,WoollyBootsTall,Woolly Boots
+Shoes,ThighHighLatexHeels,Latex Heels
 Hat,,Hat
 Hat,Band1,Hair Band
 Hat,Beret1,Beret
@@ -373,6 +378,7 @@ ItemVulva,VibratingLatexPanties,Vibrating Latex Panties
 ItemVulva,WandBelt,Wand Belt
 ItemVulva,VibratingDildo,Vibrating Dildo
 ItemVulva,InflatableVibeDildo,Inflatable Vibrating Dildo
+ItemVulva,ClitoralStimulator,Clitoral Stimulator
 ItemVulva,ClitSuctionCup,Clit Suction Cup
 ItemVulva,TapeStrips,Tape Strips
 ItemVulva,BenWaBalls,Pair Of Ben Wa Balls
@@ -400,6 +406,7 @@ ItemButt,FoxTails,Fox Tails
 ItemButt,Raccoon Butt Plug,Raccoon Butt Plug
 ItemButt,RaccoonTailPlug,Raccoon Tail Plug
 ItemButt,AnalBeads,Anal Beads
+ItemButt,AnalBeads2,Anal Beads XL
 ItemButt,ButtPump,Butt Pump
 ItemButt,VibratingButtPlug,Vibrating Butt Plug
 ItemButt,InflVibeButtPlug,Inflatable Vibrating Butt Plug
@@ -484,10 +491,12 @@ ItemArms,FullBodyShackles,Full Body Shackles
 ItemArms,WristShackles,Wrist Shackles
 ItemArms,StraitLeotard,Latex Strait Leotard
 ItemArms,StraitJacket,Straitjacket
+ItemArms,CollarCuffs,Collar Cuffs
 ItemArms,LeatherStraitJacket,Leather Straitjacket
 ItemArms,Bolero,Bolero Straitjacket
 ItemArms,DuctTape,Duct Tape
 ItemArms,BitchSuit,Pet Suit
+ItemArms,BitchSuitExposed,Pet Suit Exposed
 ItemArms,CollarLeashHolding,Holding Leash
 ItemArms,StraitDress,Strait Dress
 ItemArms,StraitDressOpen,Open Crotch Strait Dress
@@ -720,6 +729,7 @@ ItemBoots,BalletWedges,Ballet Wedges
 ItemBoots,ToeCuffs,Metal Toe Cuffs
 ItemBoots,LeatherToeCuffs,Leather Toe Cuffs
 ItemBoots,ToeTie,Toe Tie
+ItemBoots,ThighHighLatexHeels,Latex Heels
 ItemHidden,Accessories,
 ItemHidden,LeatherArmbinderStraps,Leather Armbinder Straps
 ItemHidden,LeatherArmbinderWrapStrap,Leather Armbinder WrapStraps

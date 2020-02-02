@@ -1,0 +1,88 @@
+﻿(She looks at you and giggles.)  Did you annoy one of the teachers?
+(Elle vous regarde et glousse.) Avez-vous agacé l'un des professeurs?
+(She gives you a curious look.)  Aren't you cold?  Go get some clothes before a teacher comes.
+(Elle vous lance un regard curieux.) Vous n'avez pas froid? Allez chercher des vêtements avant qu'un enseignant arrive ici.
+Hello fellow student.  I hope you're doing well.
+Bonjour chère camarade. J'espère que tu vas bien.
+Hello there.  Welcome to our college.
+Bonjour. Bienvenue dans notre collège.
+Who are you?
+Qui êtes-vous?
+I'm DialogCharacterName.  I study at the college.
+Je suis DialogCharacterName. J'étudie à ce collège.
+Why are you here?
+Pourquoi es-tu ici?
+I'm waiting for my bus.
+J'attends mon bus.
+I'm a student here.
+Je suis étudiante ici.
+You should wear your uniform then.  They won't let you in without it, some shoes and socks.
+Vous devriez porter votre uniforme alors. Elles ne vous laisseront pas entrer sans ça.
+Can I go inside?
+Puis-je entrer à l'intérieur?
+Absolutely.  Just beep security, they will open the gate for you.
+Absolument. Juste besoin de sonner à la sécurité, elles vous ouvriront la porte.
+I don't think they will let you in dressed like that.  Get your school uniform, some shoes and socks.
+Je ne pense pas qu'elles vous laisseront entrer si vous êtes habillées comme ça.
+Can I use the tennis court?
+Puis-je utiliser le terrain de tennis?
+Sure, you're already dressed up to play.
+Bien sûr, vous êtes déjà habillée pour jouer.
+You can, but only if you're wearing a tennis outfit and some sneakers.
+Vous pouvez, mais seulement si vous portez une tenue de tennis et des baskets.
+Tell me about the college.
+Parlez-moi du collège.
+Sure.  What would you like to know?
+Certainement, que voudriez-vous savoir?
+Can I tie you up?
+Puis-je vous attacher?
+(She takes a step back.)  What?  Are you some kind of pervert?
+(Elle recule d'un pas.) Quoi? Êtes-vous une sorte de pervers?
+I need to go.  (Leave her.)
+Je dois y aller. (La quitter.)
+Who studies here?
+Qui étudie ici?
+It's a girl only college.  There's only women, both students and teachers.
+C'est un collège réservé aux filles. Il n'y a que des femmes, étudiants et enseignants.
+Is it expensive?
+Est-ce dispendieux?
+My family is paying so I'm not sure.  I've heard that it's pretty expensive.
+Ma famille paie donc je ne suis pas certaine. J'ai entendu dire que c'était assez cher.
+What is the required uniform?
+Quel est l'uniforme requis?
+Students must wear ties, a skirt like mine and high leg socks.  Also, nothing too exotic will be accepted.
+Les élèves doivent porter des cravates, une jupe comme la mienne et des chaussettes hautes. De plus, rien de trop exotique ne sera accepté.
+The place looks pretty old.
+L'endroit a l'air assez vieux.
+Yeah, both the buildings and teaching methods are outdated.  It's very strict.
+Oui, les bâtiments et les méthodes d'enseignement sont dépassés. C'est très strict.
+Can I take classes?
+Puis-je suivre des cours?
+Why are you asking me that?  Sure, go inside and get to your classes.
+Pourquoi tu me demandes ça? Bien sûr, vas à l'intérieur et vas à tes cours.
+You could register for the next semester if you have the required papers.  It's only in a few months.
+Vous pouvez vous inscrire pour le prochain semestre si vous avez les papiers requis. Ce n'est que dans quelques mois.
+Thanks for your time.
+Merci pour votre temps.
+No problem.  Is there anything else you want?
+Aucun problème. Voulez-vous autre chose?
+I was kidding.
+Je plaisantais.
+(She frowns.)  Yeah, alright.  Is there anything else you want?
+(Elle fronce les sourcils.) Ouais, d'accord. Voulez-vous autre chose?
+I'm serious.  I want to tie you up.
+Je suis serieuse. Je veux t'attacher.
+(She pushes you back.)  No!  I don't know you!  Go away now or I'll call security.
+(Elle vous repousse.) Non! Je ne vous connais pas! Pars maintenant ou j'appelle la sécurité.
+Go away!  I'm not speaking with you anymore.
+Allez-vous en! Je ne parlerai plus avec toi.
+(Leave her.)
+(La quitter.)
+Can I get a college uniform?
+Puis-je avoir un uniforme du collège?
+These uniforms are expensive and we can get punished if we lose them.  Try your luck with another student that knows you better.
+Ces uniformes sont chers et nous pouvons être punies si nous les perdons. Tentez votre chance avec une autre élève qui vous connaît mieux.
+How can I go in the teacher's lounge?
+Comment puis-je aller dans la salle des professeures?
+Students are not allowed in there.  You'll need a key for that and they only give them to teachers.
+Les étudiantes n'ont pas le droit d'être ici. Tu dois avoir une clée pour ça et elles n'en donnent qu'aux professeures.
