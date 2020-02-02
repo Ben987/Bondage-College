@@ -120,6 +120,16 @@ function ColorPickerHide() {
     ColorPickerRemoveEventListener();
 }
 
+function ColorPickerCSSColorEquals(Color1, Color2) {
+    Color1 = Color1.toUpperCase();
+    Color2 = Color2.toUpperCase();
+    if (!CommonIsColor(Color1) || !CommonIsColor(Color2)) return false;
+    // convert short hand hex color to standard format
+    if (Color1.length == 4) Color1 = "#" + Color1[1] + Color1[1] + Color1[2] + Color1[2] + Color1[3] + Color1[3];
+    if (Color2.length == 4) Color2 = "#" + Color2[1] + Color2[1] + Color2[2] + Color2[2] + Color2[3] + Color2[3];
+    return Color1 == Color2;
+}
+
 function ColorPickerDraw(X, Y, Width, Height, Src, Callback) {
     
     var SVPanelOffset = Y + ColorPickerHueBarHeight + ColorPickerSVPanelGap;
@@ -150,7 +160,7 @@ function ColorPickerDraw(X, Y, Width, Height, Src, Callback) {
             var UserInputColor = ColorPickerSourceElement.value.trim().toUpperCase();
             if (CommonIsColor(UserInputColor)) {
                 var PrevColor = ColorPickerHSVToCSS(ColorPickerHSV).toUpperCase();
-                if (UserInputColor != PrevColor) {
+                if (!ColorPickerCSSColorEquals(UserInputColor, PrevColor)) {
                     if (ColorPickerCallback) {
                         // Fire callback due to source element changed by user interaction
                         ColorPickerCallback(UserInputColor);
