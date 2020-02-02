@@ -823,9 +823,7 @@ function DialogDrawItemMenu(C) {
 	// Draws the color picker
 	if (DialogColor != null) {
 		ElementPosition("InputColor", 1450, 65, 300);
-		ColorPickerDraw(1300, 145, 675, 830, ElementValue("InputColor"), function (Color) {
-			ElementValue("InputColor", Color);
-		});
+		ColorPickerDraw(1300, 145, 675, 830, document.getElementById("InputColor"));
 		return;
 	} else {
 		ColorPickerHide();
