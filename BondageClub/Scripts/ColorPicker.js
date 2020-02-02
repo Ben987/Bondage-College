@@ -80,7 +80,7 @@ function ColorPickerGetCoordinates(Event) {
 
 function ColorPickerPickHue(Event) {
     var C = ColorPickerGetCoordinates(Event);
-    ColorPickerHSV.H = Math.max(0, Math.min(1, (C.X - ColorPickerX) / ColorPickerWidth));
+    ColorPickerHSV.H = Math.max(0, Math.min(1, (C.X - ColorPickerX) / ColorPickerWidth))
 
     var Color = ColorPickerHSVToCSS(ColorPickerHSV);
     if (ColorPickerCallback) {
@@ -125,10 +125,10 @@ function ColorPickerDraw(X, Y, Width, Height, Src, Callback) {
     var SVPanelOffset = Y + ColorPickerHueBarHeight + ColorPickerSVPanelGap;
     var SVPanelHeight = Height - SVPanelOffset;
 
-    var Color;
     var HSV;
     if (ColorPickerInitialHSV == null) {
         // Get initial color value based on type of source
+        var Color;
         if (Src instanceof HTMLInputElement) {
             ColorPickerSourceElement = Src;
             Color = Src.value.trim();
@@ -147,13 +147,17 @@ function ColorPickerDraw(X, Y, Width, Height, Src, Callback) {
     } else {
         // Watch source element change
         if (ColorPickerSourceElement != null) {
-            Color = ColorPickerSourceElement.value.trim();
-            var NewColorPickerHSV = ColorPickerCSSToHSV(Color, ColorPickerHSV);
-            if (ColorPickerCallback && (NewColorPickerHSV.H != ColorPickerHSV.H || NewColorPickerHSV.S != ColorPickerHSV.S || NewColorPickerHSV.V != ColorPickerHSV.V)) {
-                // Fire callback due to source element changed by user interaction
-                ColorPickerCallback(Color);
+            var UserInputColor = ColorPickerSourceElement.value.trim().toUpperCase();
+            if (CommonIsColor(UserInputColor)) {
+                var PrevColor = ColorPickerHSVToCSS(ColorPickerHSV).toUpperCase();
+                if (UserInputColor != PrevColor) {
+                    if (ColorPickerCallback) {
+                        // Fire callback due to source element changed by user interaction
+                        ColorPickerCallback(UserInputColor);
+                    }
+                    ColorPickerHSV = ColorPickerCSSToHSV(UserInputColor, ColorPickerHSV);
+                }
             }
-            ColorPickerHSV = NewColorPickerHSV;
         }
         // Use user updated HSV
         HSV = ColorPickerHSV;
@@ -204,7 +208,7 @@ function ColorPickerDraw(X, Y, Width, Height, Src, Callback) {
 function ColorPickerCSSToHSV(Color, DefaultHSV) {
     Color = Color || "#FFFFFF";
     var M = Color.match(/^#(([0-9a-f]{3})|([0-9a-f]{6}))$/i)
-    var R , G, B;
+    var R, G, B;
     if (M) {
         var GRP = M[1];
         if (GRP.length == 3) {
