@@ -225,9 +225,14 @@ function ManagementReleaseFromOwner(RepChange) {
 	if ((Player.Ownership != null) && (Player.Ownership.MemberNumber != null)) ServerSend("AccountOwnership", { MemberNumber: Player.Ownership.MemberNumber, Action: "Break" });
 }
 
-// Breaks the online trial period
+// Breaks the online trial period and removes any owner locked items
 function ManagementBreakTrialOnline() {
-	if ((Player.Ownership != null) && (Player.Ownership.MemberNumber != null)) ServerSend("AccountOwnership", { MemberNumber: Player.Ownership.MemberNumber, Action: "Break" });
+	if ((Player.Ownership != null) && (Player.Ownership.MemberNumber != null)) {
+		ServerSend("AccountOwnership", { MemberNumber: Player.Ownership.MemberNumber, Action: "Break" });
+		Player.Ownership = null;
+		for (var A = 0; A < Player.Appearance.length; A++)
+			ServerValidateProperties(Player, Player.Appearance[A]);
+	}
 }
 
 // When the Mistress leaves her job to go see the player

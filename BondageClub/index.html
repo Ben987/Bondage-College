@@ -22,12 +22,14 @@
 <script src="Scripts/Skill.js"></script>
 <script src="Scripts/Character.js"></script>
 <script src="Scripts/CharacterName.js"></script>
+<script src="Scripts/ColorPicker.js"></script>
 <script src="Scripts/Dialog.js"></script>
 <script src="Scripts/Speech.js"></script>
 <script src="Scripts/Text.js"></script>
 <script src="Scripts/Inventory.js"></script>
 <script src="Scripts/Import.js"></script>
 <script src="Scripts/Asset.js"></script>
+<script src="Scripts/Audio.js"></script>
 <script src="Scripts/MiniGame.js"></script>
 <script src="Scripts/NPC.js"></script>
 <script src="Scripts/Server.js"></script>
@@ -46,6 +48,7 @@
 <script src="Screens/Character/PasswordReset/PasswordReset.js"></script>
 <script src="Screens/Character/FriendList/FriendList.js"></script>
 <script src="Screens/Character/Title/Title.js"></script>
+<script src="Screens/Character/BackgroundSelection/BackgroundSelection.js"></script>
 <script src="Screens/Room/MainHall/MainHall.js"></script>
 <script src="Screens/Room/Shop/Shop.js"></script>
 <script src="Screens/Room/Introduction/Introduction.js"></script>
@@ -100,6 +103,7 @@
 <script src="Screens/Inventory/ItemButt/ButtPump/ButtPump.js"></script>
 <script src="Screens/Inventory/ItemNeck/ShockCollar/ShockCollar.js"></script>
 <script src="Screens/Inventory/ItemNeckAccessories/CollarShockUnit/CollarShockUnit.js"></script>
+<script src="Screens/Inventory/ItemArms/HempRope/HempRope.js"></script>
 <script src="Screens/Inventory/ItemArms/LeatherCuffs/LeatherCuffs.js"></script>
 <script src="Screens/Inventory/ItemArms/StraitJacket/StraitJacket.js"></script>
 <script src="Screens/Inventory/ItemArms/DuctTape/DuctTape.js"></script>
@@ -120,6 +124,7 @@
 <script src="Screens/Inventory/ItemMisc/MistressPadlock/MistressPadlock.js"></script>
 <script src="Screens/Inventory/ItemHead/DuctTape/DuctTape.js"></script>
 <script src="Screens/Inventory/ItemMouth/PlugGag/PlugGag.js"></script>
+<script src="Screens/Inventory/ItemMouth/DildoPlugGag/DildoPlugGag.js"></script>
 <script src="Screens/Inventory/ItemHands/SpankingToys/SpankingToy.js"></script>
 <script src="Screens/Inventory/ItemTorso/HempRopeHarness/HempRopeHarness.js"></script>
 <script src="Screens/Inventory/ItemTorso/NylonRopeHarness/NylonRopeHarness.js"></script>
@@ -136,6 +141,7 @@
 <script src="Screens/Inventory/ItemFeet/DuctTape/DuctTape.js"></script>
 <script src="Screens/Inventory/ItemNeck/SlaveCollar/SlaveCollar.js"></script>
 <script src="Screens/Inventory/ItemVulva/VibratingDildo/VibratingDildo.js"></script>
+<script src="Screens/Inventory/ItemVulva/ClitoralStimulator/ClitoralStimulator.js"></script>
 <script src="Screens/Inventory/ItemButt/VibratingButtplug/VibratingButtplug.js"></script>
 <script src="Screens/Inventory/ItemNipples/TapedVibeEggs/TapedVibeEggs.js"></script>
 <script src="Screens/Inventory/ItemNipples/NippleSuctionCups/NippleSuctionCups.js"></script>
@@ -144,6 +150,7 @@
 <script src="Screens/Inventory/ItemButt/InflVibeButtPlug/InflVibeButtPlug.js"></script>
 <script src="Screens/Inventory/ItemDevices/TeddyBear/TeddyBear.js"></script>
 <script src="Screens/Inventory/ItemArms/LeatherStraitJacket/LeatherStraitJacket.js"></script>
+<script src="Screens/Inventory/ItemArms/CollarCuffs/CollarCuffs.js"></script>
 <script src="Screens/Inventory/ItemDevices/InflatableBodyBag/InflatableBodyBag.js"></script>
 <script src="Screens/Inventory/ItemArms/WristShackles/WristShackles.js"></script>
 <script src="Screens/Inventory/ItemEars/HeadphoneEarPlugs/HeadphoneEarPlugs.js"></script>
@@ -156,25 +163,30 @@
 <script src="Screens/Inventory/ItemDevices/BondageBench/BondageBench.js"></script>
 <script src="Screens/Inventory/ItemAddon/BondageBenchStraps/BondageBenchStraps.js"></script>
 <script src="Screens/Inventory/ItemButt/AnalHook/AnalHook.js"></script>
+<script src="Screens/Inventory/ItemButt/AnalBeads2/AnalBeads2.js"></script>
 <script src="Screens/Inventory/ItemButt/ButtPlugLock/ButtPlugLock.js"></script>
 <script src="Screens/Inventory/ItemArms/OrnateCuffs/OrnateCuffs.js"></script>
 <script src="Screens/Inventory/ItemLegs/OrnateLegCuffs/OrnateLegCuffs.js"></script>
 <script src="Screens/Inventory/ItemFeet/OrnateAnkleCuffs/OrnateAnkleCuffs.js"></script>
+<script src="Screens/Inventory/ItemArms/FullLatexSuit/FullLatexSuit.js"></script>
+<script src="Screens/Inventory/ItemVulva/FullLatexSuitWand/FullLatexSuitWand.js"></script>
+<script src="Screens/Inventory/ItemArms/LeatherArmbinder/LeatherArmbinder.js"></script>
+<script src="Screens/Inventory/ItemHidden/LeatherArmbinderStrap/LeatherArmbinderStrap.js"></script>
+<script src="Screens/Inventory/ItemHidden/LeatherArmbinderWrapStrap/LeatherArmbinderWrapStrap.js"></script>
+<script src="Screens/Inventory/ItemArms/BitchSuit/BitchSuit.js"></script>
 <script>
 
 /*
 
 	NEXT VERISON:
-
-	TO DO - Add hogtie pose and assets
+	
 	TO DO - Each restraint will have different ways (mini-games) to try to struggle out of it:
-		1. Go Berserk (Duct Tape, Cages & Boxes, Mittens, Chastity Items, Body Harnesses, Gags with harness, Hoods) - Click the circles quickly before they disappear
-		2. Use Strength (Duct Tape, Yokes, Cuffs & Manacles, Belts, One Bar & Bench & Bag, Armbinders, Gags without harness) - Speed Game: A + S (Current)
+		1. Go Berserk (Duct Tape, Cages & Boxes, Mittens, Chastity Items, Body Harnesses, Gags with harness, Hoods) - Click the circles quickly before they disappear (Asylum)
+		2. Use Strength (Duct Tape, Yokes, Cuffs & Manacles, Belts, One Bar & Bench & Bag, Armbinders, Gags without harness) - Key Speed Game: A + S (Current)
 		3. Be Clever (Rope, Yokes, Cages & Boxes, Cuffs & Manacles, Locking Boots, Collars) - Memory Game: Simon Says
 		4. Use Dexterity (Rope, Jackets & Suits, One Bar & Bench & Bag, Mittens, Body Harnesses, Gags with harness, Collars) - Timing Game: Stop the moving object at the right position
 		5. Be Supple (Jackets & Suits, Belts, Chastity Items, Gags without harness, Armbinders, Locking Boots, Hoods) - Guess the right number between 1 and 100, a few tries, tells you if higher or lower	
-		6. Pick the Lock (For anything that locks or when a lock is added) - Precision Game - Don't touch the walls that's scrolling toward you
-	TO DO - Server max packet size on ChatRoomCharacterUpdate
+		6. Pick the Lock (For anything that locks or when a lock is added) - Precision Game - Don't touch the walls that are scrolling toward you
 	TO DO - Proof Read
 	TO DO - Patreon Import/Update
 

@@ -10,6 +10,8 @@ Friends in room:
 Amies dans le salon:
 This room is already full
 Ce salon est déjà plein
+This room is locked
+Ce salon est barré
 You're banned from this room
 Vous avez été banni de ce salon
 You've been kicked out

@@ -24,6 +24,7 @@ var DialogAllowEyebrows = false;
 var DialogAllowFluids = false;
 var DialogFacialExpressions = [];
 var DialogItemPermissionMode = false;
+var DialogExtendedMessage = "";
 
 function DialogReputationLess(RepType, Value) { return (ReputationGet(RepType) <= Value); } // Returns TRUE if a specific reputation type is less or equal than a given value
 function DialogReputationGreater(RepType, Value) { return (ReputationGet(RepType) >= Value); } // Returns FALSE if a specific reputation type is greater or equal than a given value
@@ -388,6 +389,13 @@ function DialogProgressStart(C, PrevItem, NextItem) {
 	DialogAllowBlush = ((DialogProgressAuto < 0) && (DialogProgressChallenge > 0) && (C.ID == 0) && ((InventoryGet(C, "Blush") == null) || (InventoryGet(C, "Blush").Property == null) || (InventoryGet(C, "Blush").Property.Expression == null)));
 	DialogAllowEyebrows = ((DialogProgressAuto < 0) && (DialogProgressChallenge > 0) && (C.ID == 0) && ((InventoryGet(C, "Eyebrows") == null) || (InventoryGet(C, "Eyebrows").Property == null) || (InventoryGet(C, "Eyebrows").Property.Expression == null)));
 	DialogAllowFluids = ((DialogProgressAuto < 0) && (DialogProgressChallenge > 0) && (C.ID == 0) && ((InventoryGet(C, "Fluids") == null) ||(InventoryGet(C, "Fluids").Property == null) || (InventoryGet(C, "Fluids").Property.Expression == null)));
+
+	// Applying or removing specific items can trigger an audio sound to play
+	if ((PrevItem && PrevItem.Asset) || (NextItem && NextItem.Asset)) {
+		var AudioFile = (NextItem && NextItem.Asset) ? NextItem.Asset.Audio : PrevItem.Asset.Audio;
+		if (AudioFile != null) AudioDialogStart("Audio/" + AudioFile + ".mp3");
+	}
+
 }
 
 // The player can use the space bar to speed up the dialog progress, just like clicking
@@ -404,6 +412,9 @@ function DialogMenuButtonClick() {
 	// Finds the current icon
 	for (var I = 0; I < DialogMenuButton.length; I++)
 		if ((MouseX >= 1885 - I * 110) && (MouseX <= 1975 - I * 110)) {
+			
+			// Stops the dialog sounds
+			AudioDialogStop();
 
 			// Gets the current character and item
 			var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
@@ -644,13 +655,13 @@ function DialogClick() {
 		var X = (MouseX < 500) ? 0 : 500;
 		var HeightRatio = CharacterAppearanceGetCurrentValue(C, "Height", "Zoom");
 		if ((Player != null) && (Player.VisualSettings != null) && (Player.VisualSettings.ForceFullHeight != null) && Player.VisualSettings.ForceFullHeight) HeightRatio = 1.0;
-		var Xoffset = 500 * (1 - HeightRatio) / 2;
-		var YOffset = 1000 * (1 - HeightRatio);
+		var XOffset = 500 * (1 - HeightRatio) / 2;
+		var YOffset = ((C.Pose.indexOf("Suspension") < 0) && (C.Pose.indexOf("SuspensionHogtied") < 0)) ? 1000 * (1 - HeightRatio) : 0;
 		for (var A = 0; A < AssetGroup.length; A++)
 			if ((AssetGroup[A].Category == "Item") && (AssetGroup[A].Zone != null))
 				for (var Z = 0; Z < AssetGroup[A].Zone.length; Z++)
-					if (((C.Pose.indexOf("Suspension") < 0) && (MouseX - X >= ((AssetGroup[A].Zone[Z][0] * HeightRatio) + Xoffset)) && (MouseY >= (((AssetGroup[A].Zone[Z][1] - C.HeightModifier) * HeightRatio) + YOffset)) && (MouseX - X <= (((AssetGroup[A].Zone[Z][0] + AssetGroup[A].Zone[Z][2]) * HeightRatio) + Xoffset)) && (MouseY <= (((AssetGroup[A].Zone[Z][1] + AssetGroup[A].Zone[Z][3] - C.HeightModifier) * HeightRatio) + YOffset)))
-						|| ((C.Pose.indexOf("Suspension") >= 0) && (MouseX - X >= ((AssetGroup[A].Zone[Z][0] * HeightRatio) + Xoffset)) && (MouseY >= HeightRatio * ((1000 - (AssetGroup[A].Zone[Z][1] + AssetGroup[A].Zone[Z][3])) - C.HeightModifier)) && (MouseX - X <= (((AssetGroup[A].Zone[Z][0] + AssetGroup[A].Zone[Z][2]) * HeightRatio) + Xoffset)) && (MouseY <= HeightRatio * (1000 - ((AssetGroup[A].Zone[Z][1])) - C.HeightModifier)))) {
+					if (((C.Pose.indexOf("Suspension") < 0) && (MouseX - X >= ((AssetGroup[A].Zone[Z][0] * HeightRatio) + XOffset)) && (MouseY >= (((AssetGroup[A].Zone[Z][1] - C.HeightModifier) * HeightRatio) + YOffset)) && (MouseX - X <= (((AssetGroup[A].Zone[Z][0] + AssetGroup[A].Zone[Z][2]) * HeightRatio) + XOffset)) && (MouseY <= (((AssetGroup[A].Zone[Z][1] + AssetGroup[A].Zone[Z][3] - C.HeightModifier) * HeightRatio) + YOffset)))
+						|| ((C.Pose.indexOf("Suspension") >= 0) && (MouseX - X >= ((AssetGroup[A].Zone[Z][0] * HeightRatio) + XOffset)) && (MouseY >= HeightRatio * ((1000 - (AssetGroup[A].Zone[Z][1] + AssetGroup[A].Zone[Z][3])) - C.HeightModifier)) && (MouseX - X <= (((AssetGroup[A].Zone[Z][0] + AssetGroup[A].Zone[Z][2]) * HeightRatio) + XOffset)) && (MouseY <= HeightRatio * (1000 - ((AssetGroup[A].Zone[Z][1])) - C.HeightModifier)))) {
 						C.FocusGroup = AssetGroup[A];
 						DialogItemToLock = null;
 						DialogFocusItem = null;
@@ -673,10 +684,6 @@ function DialogClick() {
 
 			// If the user wants to click on one of icons in the item menu
 			if ((MouseX >= 1000) && (MouseX < 2000) && (MouseY >= 15) && (MouseY <= 105)) DialogMenuButtonClick();
-
-			// In color picker mode, we can pick a color from the color image
-			if ((MouseX >= 1300) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 975) && (DialogColor != null))
-				ElementValue("InputColor", DrawRGBToHex(MainCanvas.getImageData(MouseX, MouseY, 1, 1).data));
 
 			// If the user clicks on one of the items
 			if ((MouseX >= 1000) && (MouseX <= 1975) && (MouseY >= 125) && (MouseY <= 1000) && ((DialogItemPermissionMode && (Player.FocusGroup != null)) || (Player.CanInteract() && !InventoryGroupIsBlocked((Player.FocusGroup != null) ? Player : CurrentCharacter))) && (DialogProgress < 0) && (DialogColor == null)) {
@@ -739,13 +746,13 @@ function DialogClick() {
 	}
 
 	// If the user clicked in the facial expression menu
-	if ((CurrentCharacter != null) && (CurrentCharacter.ID == 0) && (MouseX >= 15) && (MouseX <= 515)) {
+	if ((CurrentCharacter != null) && (CurrentCharacter.ID == 0) && (MouseX >= 0) && (MouseX <= 500)) {
 		for (var I = 0; I < DialogFacialExpressions.length; I++) {
 			var FE = DialogFacialExpressions[I];
-			if ((MouseY >= 125 + 120 * I) && (MouseY <= (125 + 120 * I) + 75)) {
-				// CharacterCycleFacialExpression(Player, PA.Asset.Group.Name, (MouseX > 250 || CommonIsMobile));
+			if ((MouseY >= 125 + 120 * I) && (MouseY <= (125 + 120 * I) + 90)) {
+
 				// Left arrow button
-				if (MouseX >= 15 && MouseX <= 60) {
+				if (MouseX >= 0 && MouseX <= 45) {
 					FE.MenuExpression4 = FE.MenuExpression3;
 					FE.MenuExpression3 = FE.MenuExpression2;
 					FE.MenuExpression2 = FE.MenuExpression1;
@@ -753,8 +760,9 @@ function DialogClick() {
 					var Index = ExpressionList.indexOf(FE.MenuExpression1);
 					FE.MenuExpression1 = (Index < 0) ? ExpressionList[ExpressionList.length - 1] : (Index == 0) ? null : ExpressionList[Index - 1];
 				}
+
 				// Right arrow button
-				if (MouseX >= 470 && MouseX <= 515) {
+				if (MouseX >= 455 && MouseX <= 500) {
 					FE.MenuExpression1 = FE.MenuExpression2;
 					FE.MenuExpression2 = FE.MenuExpression3;
 					FE.MenuExpression3 = FE.MenuExpression4;
@@ -762,23 +770,25 @@ function DialogClick() {
 					var Index = ExpressionList.indexOf(FE.MenuExpression4);
 					FE.MenuExpression4 = (Index < 0) ? ExpressionList[0] : (Index == ExpressionList.length - 1) ? null : ExpressionList[Index + 1];
 				}
+
 				// Expression choice
-				if (MouseX >= 70 && MouseX <= 160) {
+				if (MouseX >= 55 && MouseX <= 145) {
 					CharacterSetFacialExpression(Player, FE.Appearance.Asset.Group.Name, FE.MenuExpression1);
 					FE.CurrentExpression = FE.MenuExpression1;
 				}
-				if (MouseX >= 170 && MouseX <= 260) {
+				if (MouseX >= 155 && MouseX <= 245) {
 					CharacterSetFacialExpression(Player, FE.Appearance.Asset.Group.Name, FE.MenuExpression2);
 					FE.CurrentExpression = FE.MenuExpression2;
 				}
-				if (MouseX >= 270 && MouseX <= 360) {
+				if (MouseX >= 255 && MouseX <= 345) {
 					CharacterSetFacialExpression(Player, FE.Appearance.Asset.Group.Name, FE.MenuExpression3);
 					FE.CurrentExpression = FE.MenuExpression3;
 				}
-				if (MouseX >= 370 && MouseX <= 460) {
+				if (MouseX >= 355 && MouseX <= 445) {
 					CharacterSetFacialExpression(Player, FE.Appearance.Asset.Group.Name, FE.MenuExpression4);
 					FE.CurrentExpression = FE.MenuExpression4;
 				}
+
 			}
 		}
 	}
@@ -816,9 +826,12 @@ function DialogDrawItemMenu(C) {
 	// Draws the color picker
 	if (DialogColor != null) {
 		ElementPosition("InputColor", 1450, 65, 300);
-		if (CommonIsColor(ElementValue("InputColor"))) DrawRect(1290, 135, 695, 850, ElementValue("InputColor"));
-		DrawImage("Backgrounds/ColorPicker.png", 1300, 145);
+		ColorPickerDraw(1300, 145, 675, 830, ElementValue("InputColor"), function (Color) {
+			ElementValue("InputColor", Color);
+		});
 		return;
+	} else {
+		ColorPickerHide();
 	}
 
 	// In item permission mode, the player can choose which item he allows other users to mess with.  Allowed items have a green background.  Disallowed have a red background.
@@ -872,9 +885,12 @@ function DialogDrawItemMenu(C) {
 		// If the operation is completed
 		if (DialogProgress >= 100) {
 
+			// Stops the dialog sounds
+			AudioDialogStop();
+
 			// Add / swap / remove the item
-			if (DialogProgressNextItem == null) InventoryRemove(C, C.FocusGroup.Name);
-			else InventoryWear(C, DialogProgressNextItem.Asset.Name, DialogProgressNextItem.Asset.Group.Name, (DialogColorSelect == null) ? "Default" : DialogColorSelect, SkillGetLevel(Player, "Bondage"));
+			InventoryRemove(C, C.FocusGroup.Name);
+			if (DialogProgressNextItem != null) InventoryWear(C, DialogProgressNextItem.Asset.Name, DialogProgressNextItem.Asset.Group.Name, (DialogColorSelect == null) ? "Default" : DialogColorSelect, SkillGetLevel(Player, "Bondage"));
 
 			// remove associated items at the same time
 			if (InventoryGet(C, "ItemNeck") == null) InventoryRemove(C, "ItemNeckAccessories");
@@ -1000,24 +1016,24 @@ function DialogDrawExpressionMenu() {
 		var OffsetY = 125 + 120 * I;
 
 		// Draw the back and forth arrow buttons
-		DrawButton(15, OffsetY, 45, 90, "", "White");
+		DrawButton(0, OffsetY, 45, 90, "", "White");
 		MainCanvas.beginPath();
-		MainCanvas.moveTo(45, OffsetY + 15);
-		MainCanvas.lineTo(30, OffsetY + 45);
-		MainCanvas.lineTo(45, OffsetY + 75);
+		MainCanvas.moveTo(30, OffsetY + 15);
+		MainCanvas.lineTo(15, OffsetY + 45);
+		MainCanvas.lineTo(30, OffsetY + 75);
 		MainCanvas.stroke();
-		DrawButton(470, OffsetY, 45, 90, "", "White");
+		DrawButton(455, OffsetY, 45, 90, "", "White");
 		MainCanvas.beginPath();
-		MainCanvas.moveTo(485, OffsetY + 15);
-		MainCanvas.lineTo(500, OffsetY + 45);
-		MainCanvas.lineTo(485, OffsetY + 75);
+		MainCanvas.moveTo(470, OffsetY + 15);
+		MainCanvas.lineTo(485, OffsetY + 45);
+		MainCanvas.lineTo(470, OffsetY + 75);
 		MainCanvas.stroke();
-		
+
 		// Draw the selection of facial expressions at current scroll position
-		DrawButton(70, OffsetY, 90, 90, "", (FE.MenuExpression1 == FE.CurrentExpression ? "Pink" : "White"), "Assets/Female3DCG/" + FE.Appearance.Asset.Group.Name + (FE.MenuExpression1 ? "/" + FE.MenuExpression1 : "") + "/Icon.png");
-		DrawButton(170, OffsetY, 90, 90, "", (FE.MenuExpression2 == FE.CurrentExpression ? "Pink" : "White"), "Assets/Female3DCG/" + FE.Appearance.Asset.Group.Name + (FE.MenuExpression2 ? "/" + FE.MenuExpression2 : "") + "/Icon.png");
-		DrawButton(270, OffsetY, 90, 90, "", (FE.MenuExpression3 == FE.CurrentExpression ? "Pink" : "White"), "Assets/Female3DCG/" + FE.Appearance.Asset.Group.Name + (FE.MenuExpression3 ? "/" + FE.MenuExpression3 : "") + "/Icon.png");
-		DrawButton(370, OffsetY, 90, 90, "", (FE.MenuExpression4 == FE.CurrentExpression ? "Pink" : "White"), "Assets/Female3DCG/" + FE.Appearance.Asset.Group.Name + (FE.MenuExpression4 ? "/" + FE.MenuExpression4 : "") + "/Icon.png");
+		DrawButton(55, OffsetY, 90, 90, "", (FE.MenuExpression1 == FE.CurrentExpression ? "Pink" : "White"), "Assets/Female3DCG/" + FE.Appearance.Asset.Group.Name + (FE.MenuExpression1 ? "/" + FE.MenuExpression1 : "") + "/Icon.png");
+		DrawButton(155, OffsetY, 90, 90, "", (FE.MenuExpression2 == FE.CurrentExpression ? "Pink" : "White"), "Assets/Female3DCG/" + FE.Appearance.Asset.Group.Name + (FE.MenuExpression2 ? "/" + FE.MenuExpression2 : "") + "/Icon.png");
+		DrawButton(255, OffsetY, 90, 90, "", (FE.MenuExpression3 == FE.CurrentExpression ? "Pink" : "White"), "Assets/Female3DCG/" + FE.Appearance.Asset.Group.Name + (FE.MenuExpression3 ? "/" + FE.MenuExpression3 : "") + "/Icon.png");
+		DrawButton(355, OffsetY, 90, 90, "", (FE.MenuExpression4 == FE.CurrentExpression ? "Pink" : "White"), "Assets/Female3DCG/" + FE.Appearance.Asset.Group.Name + (FE.MenuExpression4 ? "/" + FE.MenuExpression4 : "") + "/Icon.png");
 
 	}
 }

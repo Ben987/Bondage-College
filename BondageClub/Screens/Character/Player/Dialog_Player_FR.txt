@@ -177,6 +177,12 @@ SourceCharacter rolls a DiceType sided dice.  The result is: DiceResult.
 SourceCharacter roule un dé à DiceType côtés. Le résultat est: DiceResult.
 SourceCharacter flips a coin.  The result is: CoinResult.
 SourceCharacter lance une pièce. Le résultat est: CoinResult.
+TargetCharacterName gets grabbed by two maids and locked in a timer cell, following her owner commands.
+TargetCharacterName est attrapée par deux servantes et enfermée dans une cellule minutée, selon l'ordre de sa patronne.
+TargetCharacterName gets grabbed by two maids and escorted to the maid quarters to serve drinks for her owner.
+TargetCharacterName est attrapée par deux servantes et escortée aux quartiers des servantes pour servir des brevages.
+TargetCharacterName gives a sealed envelope to her owner.
+TargetCharacterName donne une enveloppe scellée à sa patronne.
 SourceCharacter picks a beer from DestinationCharacter tray.
 SourceCharacter se prend un bière du plateau de DestinationCharacter.
 SourceCharacter picks a glass of wine from DestinationCharacter tray.
@@ -218,7 +224,7 @@ Une victime ne peut s'échapper si ses coudes sont attachés
 You can restart the timer but cannot unlock
 Vous pouvez réinitialiser le minuteur, mais non l'enlever
 "Never forget who you belong to"
-"Nèoublies pas à qui tu appartiens"
+"N'oublies pas à qui tu appartiens"
 Can only be locked or unlocked by her owner
 Ne peut être touché par sa patronne
 Detached
@@ -309,8 +315,8 @@ SourceCharacter takes a piece of duct tape for TargetCharacter and place on her 
 SourceCharacter prend un morceau de ruban et le place sur la face de TargetCharacter.
 SourceCharacter wraps some duct tape onto DestinationCharacter face.
 SourceCharacter enroule du ruban sur la face de DestinationCharacter.
-SourceCharacter wraps DestinationCharacter head in tape with multiple layers. 
-SourceCharacter enroule la tête de DestinationCharacter avec plusieurs couches. 
+SourceCharacter wraps DestinationCharacter head in tape with multiple layers.
+SourceCharacter enroule la tête de DestinationCharacter avec plusieurs couches.
 Item intensity: Disabled
 Intensité de l'objet: Désactivée
 Item intensity: Low

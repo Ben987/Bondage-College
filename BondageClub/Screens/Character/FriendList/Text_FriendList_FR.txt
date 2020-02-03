@@ -1,0 +1,12 @@
+﻿Online friends
+Amies en ligne
+Member number
+Numéro de membre
+Chat room
+Salon
+Send a beep
+Envoyer un bip
+Beep history
+Historique des bips
+Delete a friend
+Supprimer une amie

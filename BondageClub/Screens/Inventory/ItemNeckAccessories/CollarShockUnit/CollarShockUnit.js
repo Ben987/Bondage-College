@@ -36,7 +36,14 @@ function InventoryItemNeckAccessoriesCollarShockUnitClick() {
 
 // Sets the shock collar intensity
 function InventoryItemNeckAccessoriesCollarShockUnitSetIntensity(Modifier) {
+	
+	// Gets the current item and character
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	if ((CurrentScreen == "ChatRoom") || (DialogFocusItem == null)) {
+		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
+		InventoryItemNeckAccessoriesCollarShockUnitLoad();
+	}
+
 	DialogFocusItem.Property.Intensity = DialogFocusItem.Property.Intensity + Modifier;
 	if (DialogFocusItem.Property.ShowText) {
 		var Dictionary = [];
@@ -46,4 +53,5 @@ function InventoryItemNeckAccessoriesCollarShockUnitSetIntensity(Modifier) {
 	}
 	else
 		DialogLeave();
+		
 }

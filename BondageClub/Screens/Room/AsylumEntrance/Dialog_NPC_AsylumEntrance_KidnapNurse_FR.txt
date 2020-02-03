@@ -1,0 +1,140 @@
+﻿Gagged patients are the best patients.
+Les patientes bâillonnées sont les meilleures patientes.
+(A nurse runs after you.)  Here you are patient DialogPlayerName!  You're going back to the asylum with me.
+(Une infirmière vous court après.) Vous voilà patiente DialogPlayerName! Tu retournes à l'asile avec moi.
+(A nurse catches you by surprise.)  DialogPlayerName!  I'm bringing you back to the asylum, whether you want it or not.
+(Une infirmière vous surprend.) DialogPlayerName! Je vous ramène à l'asile, que vous le vouliez ou non.
+(A nurse is blocking your way.)  I'm here for your own good patient DialogPlayerName.  Come to the asylum with me.
+(Une infirmière vous bloque le chemin.) Je suis ici pour votre bien, patiente DialogPlayerName. Venez à l'asile avec moi.
+(A nurse sees you and grins.)  This is too easy.  You're going back to the asylum patient DialogPlayerName.
+(Une infirmière vous voit et sourit.) C'est trop facile. Vous revenez à l'asile, patiente DialogPlayerName.
+(A nurse grabs your arm.)  You always get in trouble, do you?  Come back to the asylum with me now.
+(Une infirmière vous attrape le bras.) Vous avez toujours des ennuis, n'est-ce pas? Revenez à l'asile avec moi maintenant.
+(A nurse blocks your path and smiles.)  Struggling is futile patient DialogPlayerName.  You're coming back with me.
+(Une infirmière bloque votre chemin et sourit.) Lutter ne sert à rien, patiente DialogPlayerName. Tu reviens avec moi.
+(She surrenders to you.)  You're too tough for me.  I can understand why you've escaped.
+(Elle se rend à toi.) Tu es trop forte pour moi. Je peux comprendre pourquoi tu t'es échappée.
+(She crosses her arms and smiles.)  It's time to go back to the asylum girl.
+(Elle croise les bras et sourit.) Il est temps de retourner voir l'asile.
+(She looks around and takes the money.)  Don't cross my path again.  Run!
+(Elle regarde autour d'elle et prend l'argent.) Ne croisez plus mon chemin. Partez!
+(She refuses the money.)  You cannot bribe me!  You're going back with me.
+(Elle refuse l'argent.) Vous ne pouvez pas me soudoyer! Tu reviens avec moi.
+I don't understand.
+Je ne comprends pas.
+Don't think you can fool me.  You escaped from the asylum and I'm brining you back.  I will use force if it's needed.
+Ne pensez pas que vous pouvez me tromper. Vous vous êtes échappée de l'asile et je vous ramène. J'utiliserai la force si nécessaire.
+You're going down nurse!
+Vous allez perdre, infirmière!
+Wait!  Can we negotiate?
+Attendez! Pouvons-nous négocier?
+(She thinks for a few seconds.)  Negotiate?  How much do you value your freedom?
+(Elle réfléchit quelques secondes.) Négocier? À quel point appréciez-vous votre liberté?
+(Fight her.)
+(La combattre.)
+(Surrender.)
+(Abandonner.)
+(You surrender without a fight as she grins.)  It's time to go back to the asylum girl.
+(Vous vous rendez sans combattre alors qu'elle sourit.) Il est temps de retourner à l'asile.
+I'll give you 10$.
+Je the donnerai 10 $.
+I'll give you 25$.
+Je the donnerai 25 $.
+I'll give you 50$.
+Je the donnerai 50 $.
+I'll give you 100$.
+Je the donnerai 100 $.
+We could become friends.
+Nous pourrions devenir amies.
+Forget it!  I'm bringing you back to the asylum.
+Oublie ça! Je te ramène à l'asile.
+I won't knock you out if you run now.
+Je ne t'assommerai pas si tu pars maintenant.
+You think you can scare me?  I'm bringing you back to the asylum.
+Tu crois que tu peux me faire peur? Je te ramène à l'asile.
+(Run away.)
+(Fuir.)
+NOEXIT
+SANS ISSUE
+You fought well.
+Tu as bien combattu.
+Thanks, but I still need to train.
+Merci, mais j'ai encore besoin de m'entraîner.
+If I let you go, you need to forget about me.
+Si je te laisse partir, tu dois m'oublier.
+(She grumbles.)  Fine, I won't track you anymore.
+(Elle grogne.) Très bien, je ne te suivrai plus.
+(Play with her.)
+(Jouer avec elle.)
+(You get closer to play with her.)
+(Vous vous rapprochez pour jouer avec elle.)
+(Bring her to your room.)
+(L'amener dans votre chambre.)
+(Let her go.)
+(La laisser partir.)
+(Tickle her.)
+(La chatouiller.)
+(You tickle her on the ribs and tummy.  She trashes in her bondage, failing to escape.)
+(Vous chatouillez ses côtes et son ventre. Elle se tortille dans son bondage, ne réussissant pas à s'échapper.)
+(Kiss her.)
+(L'embrasser.)
+(She stares at you as you put your hands behind her head and pull her to your lips for a long French kiss.)
+(Elle vous regarde alors que vous mettez vos mains derrière sa tête et la rapprochez de vos lèvres pour lui donner un long baiser.)
+(Fondle her.)
+(La caresser.)
+(You playfully fondle her breasts and butt as she grumbles and blushes lightly.)
+(Vous caressez ses seins et ses fesses alors qu'elle grogne et rougit légèrement.)
+(Slap her.)
+(La gifler.)
+(She tries to avoid you as you slap her face swiftly.  She tries to stay strong but whimper a little.)
+(Elle essaie de vous éviter lorsque vous frapper son visage vivement. Elle essaie de rester forte mais gémit un peu.)
+(Spank her.)
+(La fesser.)
+(She jumps a little as you spank her pretty hard on the butt.)
+(Elle sautille un peu lorsque vous la fessez très fort sur le cul.)
+(Stop playing with her.)
+(Arrêter de jouer avec elle.)
+(You take a step back.)
+(Vous reculez.)
+Fine, let's go.
+Très bien, allons-y.
+(She drags you to the asylum and smiles.)  You will feel right at home.
+(Elle vous traîne à l'asile et sourit.) Vous vous sentirez comme chez vous.
+Don't push me!
+Ne me poussez pas!
+(Go to the asylum.)
+(Aller à l'asile.)
+We'll see about that.
+On verra.
+(She nods and stares at you.) It's time to change patient DialogPlayerName.
+(Elle hoche la tête et vous regarde.) Il est temps de changer patiente DialogPlayerName.
+I guess it will be fun to go back.
+Je suppose que ce sera amusant de retourner à l'asile.
+(She nods happily and stares at you.) It's time to change patient DialogPlayerName.
+(Elle acquiesce joyeusement et vous regarde.) Il est temps de changer patiente DialogPlayerName.
+One day I'll reverse the roles.
+Un jour, j'inverserai les rôles.
+(She grumbles and stares at you.) It's time to change patient DialogPlayerName.
+(Elle grogne et vous regarde fixement.) Il est temps de changer patiente DialogPlayerName.
+(Nod slowly.)
+(Hocher lentement la tête.)
+(She smiles and stares at you.) It's time to change patient DialogPlayerName.
+(Elle vous sourit et vous regarde fixement.) Il est temps de changer patiente DialogPlayerName.
+Very well.
+Très bien.
+(She helps you to change back as a patient.)  You also need to be restrained.
+(Elle vous aide à enfiler votre uniforme de patiente.) Vous devez également être attachée.
+I hate these clothes.
+Je déteste ces vêtements.
+(Nod and change.)
+(Hocher la tête et se vêtir.)
+That's really necessary?
+Est-ce vraiment nécessaire?
+(She straps you up tightly in a straitjacket.)  Welcome back patient DialogPlayerName.  Carry on.
+(Elle vous attache fermement dans une camisole de force.) Bienvenue à nouveau DialogPlayerName patient. Disposer.
+(Stay silent.)
+(Rester silencieuse.)
+Bye-bye nurse.
+Au revoir infirmière.
+(Leave her.)
+(La quitter.)

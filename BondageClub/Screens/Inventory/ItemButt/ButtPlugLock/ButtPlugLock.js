@@ -15,12 +15,19 @@ function InventoryItemButtButtPlugLockDraw() {
 	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
 
+	// Variables to check if short chain can be applied
+	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	let ChainShortPrerequisites = true;
+	if (C.Pose.indexOf("Suspension") !== -1 || C.Pose.indexOf("Hogtied") !== -1 || C.Pose.indexOf("StraitDressOpen") !== -1 || C.Effect.indexOf("Mounted") >= 0) {
+		ChainShortPrerequisites = false;
+	}	
+	
 	// Draw the possible poses
 	DrawText(DialogFind(Player, InventoryItemButtButtPlugLockMessage), 1500, 500, "white", "gray");
 	DrawButton(1000, 550, 225, 225, "", (DialogFocusItem.Property == null) ? "#888888" : "White");
 	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Base.png", 1000, 550);
 	DrawText(DialogFind(Player, "ButtPlugLockPoseBase"), 1125, 800, "white", "gray");
-	DrawButton(1250, 550, 225, 225, "", ((DialogFocusItem.Property != null) && (DialogFocusItem.Property.Type == "ChainShort")) ? "#888888" : "White");
+	DrawButton(1250, 550, 225, 225, "", ((DialogFocusItem.Property != null) && (DialogFocusItem.Property.Type == "ChainShort") || !ChainShortPrerequisites) ? "#888888" : "White");
 	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/ChainShort.png", 1250, 550);
 	DrawText(DialogFind(Player, "ButtPlugLockPoseChainShort"), 1375, 800, "white", "gray");
 	DrawButton(1500, 550, 225, 225, "", ((DialogFocusItem.Property.Restrain != null) && (DialogFocusItem.Property.Restrain == "ChainLong")) ? "#888888" : "White");
@@ -30,9 +37,18 @@ function InventoryItemButtButtPlugLockDraw() {
 
 // Catches the item extension clicks
 function InventoryItemButtButtPlugLockClick() {
+
+	// Variables to check if short chain can be applied
+	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	let ChainShortPrerequisites = true;
+	if (C.Pose.indexOf("Suspension") !== -1 || C.Pose.indexOf("Hogtied") !== -1 || C.Pose.indexOf("StraitDressOpen") !== -1 || C.Effect.indexOf("Mounted") >= 0) {
+		ChainShortPrerequisites = false;
+	}
+	
+	// Trigger click handlers
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
 	if ((MouseX >= 1000) && (MouseX <= 1225) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property.Restrain != null)) InventoryItemButtButtPlugLockSetPose(null);
-	if ((MouseX >= 1250) && (MouseX <= 1475) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "ChainShort"))) InventoryItemButtButtPlugLockSetPose("ChainShort");
+	if ((MouseX >= 1250) && (MouseX <= 1475) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "ChainShort")) && ChainShortPrerequisites) InventoryItemButtButtPlugLockSetPose("ChainShort");
 	if ((MouseX >= 1500) && (MouseX <= 1725) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "ChainLong"))) InventoryItemButtButtPlugLockSetPose("ChainLong");
 }
 
@@ -61,8 +77,11 @@ function InventoryItemButtButtPlugLockSetPose(NewPose) {
 			delete DialogFocusItem.Property.AllowPose;
 		} else {
 			DialogFocusItem.Property.Type = NewPose;
-			if (NewPose == "ChainShort") DialogFocusItem.Property.Effect = ["Chaste", "Freeze", "ForceKneel"];
-			if (NewPose == "ChainShort") DialogFocusItem.Property.SetPose = ["Kneel"];
+			
+			if (NewPose == "ChainShort" ) {
+				DialogFocusItem.Property.Effect = ["Chaste", "Freeze", "ForceKneel"];
+				DialogFocusItem.Property.SetPose = ["Kneel"];
+			}
 //			if (NewPose == "ChainLong") delete DialogFocusItem.Property.Effect;
 			if (NewPose == "ChainLong") DialogFocusItem.Property.SetPose = [""];
 			if (NewPose == "ChainLong") DialogFocusItem.Property.Effect = ["Chaste", "Tethered"];
