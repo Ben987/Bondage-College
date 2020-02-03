@@ -16,12 +16,10 @@ function ColorPickerRemoveEventListener() {
     CanvasElement.removeEventListener("touchstart", ColorPickerStartPick);
 }
 
-
 function ColorPickerStartPick(Event) {
     // Only fires at first touch on mobile devices
     if (Event.changedTouches) {
         if (Event.changedTouches.length > 1) return;
-        Event.preventDefault();
     }
 
     var SVPanelOffset = ColorPickerY + ColorPickerHueBarHeight + ColorPickerSVPanelGap;
