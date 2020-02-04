@@ -165,7 +165,7 @@ function DialogLeaveItemMenu() {
 }
 
 // Adds the item in the dialog list
-function DialogInventoryAdd(C, NewInv, NewInvWorn) {
+function DialogInventoryAdd(C, NewInv, NewInvWorn, Color, HoverColor) {
 
 	// Make sure we do not add owneronly items in case of not owned characters
 	if (NewInv.Asset.OwnerOnly && !C.IsOwnedByPlayer() && NewInvWorn != true) return;
@@ -179,7 +179,9 @@ function DialogInventoryAdd(C, NewInv, NewInvWorn) {
 	var DI = {
 		Asset: NewInv.Asset,
 		Worn: NewInvWorn,
-		Icon: ""
+		Icon: "",
+		Color: Color,
+		Hover: HoverColor,
 	};
 
 	// Loads the correct icon and push the item in the array
@@ -235,36 +237,48 @@ function DialogInventoryBuild(C) {
 	if (C.FocusGroup != null) {
 
 		// First, we add anything that's currently equipped
-		var Item = null;
-		for(var A = 0; A < C.Appearance.length; A++)
-			if ((C.Appearance[A].Asset.Group.Name == C.FocusGroup.Name) && C.Appearance[A].Asset.DynamicAllowInventoryAdd()) {
-				DialogInventoryAdd(C, C.Appearance[A], true, true);
-				break;
-			}
+		const Item = C.Appearance.find(A => A.Asset.Group.Name == C.FocusGroup.Name && A.Asset.DynamicAllowInventoryAdd());
+		if (Item) DialogInventoryAdd(C, Item, true, DialogItemPermissionMode ? "Gray" : "Pink", DialogItemPermissionMode ? "Gray" : "Cyan");
 
 		if (DialogItemPermissionMode) {
 			for (var A = 0; A < Asset.length; A++)
 				if (Asset[A].Enable && (Asset[A].Wear || Asset[A].IsLock) && Asset[A].Group.Name == C.FocusGroup.Name)
-					if (!DialogInventory.some(D => (D.Asset.Group.Name == Asset[A].Group.Name) && (D.Asset.Name == Asset[A].Name)))
+					if (!DialogInventory.some(D => (D.Asset.Group.Name == Asset[A].Group.Name) && (D.Asset.Name == Asset[A].Name))) {
+						const Blocked = C.BlockItems.some(B => B.Name == Asset[A].Name && B.Group == Asset[A].Group.Name);
 						DialogInventory.push({
 							Asset: Asset[A],
 							Worn: false,
-							Icon: ""
+							Icon: "",
+							Color: Blocked ? "Pink" : "Lime",
+							Hover: Blocked ? "Red" : "Green",
 						});
+					}
 			DialogMenuButtonBuild(C);
 			return;
 		}
 
-		// Second, we add everything from the victim inventory
-		for(var A = 0; A < C.Inventory.length; A++)
-			if ((C.Inventory[A].Asset != null) && (C.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && C.Inventory[A].Asset.DynamicAllowInventoryAdd())
-				DialogInventoryAdd(C, C.Inventory[A], false);
+		const Inventory = new Map();
+		C.Inventory.forEach(I => { if (I.Asset && I.Asset.Group.Name == C.FocusGroup.Name && I.Asset.DynamicAllowInventoryAdd()) Inventory.set(I.Group + I.Name, I); });
+		if (C.ID != 0) Player.Inventory.forEach(I => { if (I.Asset && I.Asset.Group.Name == C.FocusGroup.Name && I.Asset.DynamicAllowInventoryAdd()) Inventory.set(I.Group + I.Name, I); });
 
-		// Third, we add everything from the player inventory if the player isn't the victim
-		if (C.ID != 0)
-			for(var A = 0; A < Player.Inventory.length; A++)
-				if ((Player.Inventory[A].Asset != null) && (Player.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && Player.Inventory[A].Asset.DynamicAllowInventoryAdd())
-					DialogInventoryAdd(C, Player.Inventory[A], false);
+		const Blocked = [];
+		const NotUsable = [];
+
+		[...Inventory.values()].forEach(I => {
+			if (C.BlockItems.some(B => B.Name == I.Asset.Name && B.Group == I.Asset.Group.Name)) {
+				Blocked.push(I);
+			} else if (I.Asset.Effect && I.Asset.Effect.some(E => E == "Remote" || E == "TriggerShock") && !(Item && Item.Asset && Item.Asset.Effect && Item.Asset.Effect.some(E => E == "Egged" || E == "ReceiveShock"))) {
+				// Remote can't be used in this case 
+			} else if (!InventoryAllow(C, I.Asset.Prerequisite) || (I.Asset.Prerequisite == "GagUnique" && C.Pose.includes("GagUnique")) || (I.Asset.Prerequisite == "GagCorset" && C.Pose.includes("GagCorset")) || (!I.Asset.SelfBondage && (C.ID == 0))) {
+				NotUsable.push(I);
+			} else {
+				DialogInventoryAdd(C, I, false, "White", "Cyan");
+			}
+		});
+
+		NotUsable.forEach(I => DialogInventoryAdd(C, I, false, "LightGray", "Cyan"));
+		Blocked.forEach(I => DialogInventoryAdd(C, I, false, "Gray", "Gray"));
+
 		DialogMenuButtonBuild(C);
 
 	}
@@ -585,8 +599,12 @@ function DialogItemClick(ClickItem) {
 		if (CurrentItem && (CurrentItem.Asset.Name == ClickItem.Asset.Name)) return;
 		if (Player.BlockItems.some(B => B.Name == ClickItem.Asset.Name && B.Group == ClickItem.Asset.Group.Name)) {
 			Player.BlockItems = Player.BlockItems.filter(B => B.Name != ClickItem.Asset.Name || B.Group != ClickItem.Asset.Group.Name);
+			ClickItem.Color = "Lime";
+			ClickItem.Hover = "Green";
 		} else {
 			Player.BlockItems.push({ Name: ClickItem.Asset.Name, Group: ClickItem.Asset.Group.Name });
+			ClickItem.Color = "Pink";
+			ClickItem.Hover = "Red";
 		}
 		ServerSend("AccountUpdate", { BlockItems: Player.BlockItems });
 		return;
@@ -844,10 +862,7 @@ function DialogDrawItemMenu(C) {
 		for (var I = DialogInventoryOffset; (I < DialogInventory.length) && (I < DialogInventoryOffset + 12); I++) {
 			var Item = DialogInventory[I];
 			var Hover = (MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275) && !CommonIsMobile;
-			var Block = C.BlockItems && C.BlockItems.some(B => B.Name == Item.Asset.Name && B.Group == Item.Asset.Group.Name)
-			DrawRect(X, Y, 225, 275, (DialogItemPermissionMode && C.ID == 0) ? 
-				(DialogInventory[I].Worn ? "gray" : Block ? Hover ? "red" : "pink" : Hover ? "green" : "lime") : 
-				((Hover && !Block) ? "cyan" : DialogInventory[I].Worn ? "pink" : Block ? "gray" : "white"));
+			DrawRect(X, Y, 225, 275, Hover ? DialogInventory[I].Hover : DialogInventory[I].Color);
 			if (Item.Worn && InventoryItemHasEffect(InventoryGet(C, Item.Asset.Group.Name), "Vibrating", true)) DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.Group.Name + "/Preview/" + Item.Asset.Name + ".png", X + Math.floor(Math.random() * 3) + 1, Y + Math.floor(Math.random() * 3) + 1, 221, 221);
 			else DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.Group.Name + "/Preview/" + Item.Asset.Name + Item.Asset.DynamicPreviewIcon() + ".png", X + 2, Y + 2, 221, 221);
 			DrawTextFit(Item.Asset.DynamicDescription(), X + 112, Y + 250, 221, "black");
