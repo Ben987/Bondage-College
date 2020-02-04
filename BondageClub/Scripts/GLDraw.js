@@ -11,6 +11,8 @@ var GLDrawCanvas;
 var GLDrawCanvasBlink;
 
 var GLDrawAlphaThreshold = 0.01;
+var GLDrawHalfAlphaLow = 0.002;
+var GLDrawHalfAlphaHigh = 0.005;
 
 window.addEventListener('load', GLDrawLoad);
 
@@ -127,7 +129,7 @@ var GLDrawFragmentShaderSourceHalfAlpha = `
     vec4 texColor = texture2D(u_texture, v_texcoord);
     if (texColor.w < ` + GLDrawAlphaThreshold + `) discard;
     float t = (texColor.x + texColor.y + texColor.z) / 383.0;
-    if (t < 0.8 || t > 1.2) {
+    if (t < ` + GLDrawHalfAlphaLow + ` || t > ` + GLDrawHalfAlphaHigh + `) {
       gl_FragColor = texColor;
     } else {
       gl_FragColor = u_color * vec4(t, t, t, texColor.w);
