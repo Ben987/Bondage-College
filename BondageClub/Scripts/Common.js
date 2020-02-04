@@ -214,7 +214,7 @@ function CommonSetScreen(NewModule, NewScreen) {
 
 // Return the current time
 function CommonTime() {
-	return new Date().getTime();
+	return Date.now();
 }
 
 // Returns TRUE if the string is a HEX color
