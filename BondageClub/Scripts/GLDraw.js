@@ -11,8 +11,8 @@ var GLDrawCanvas;
 var GLDrawCanvasBlink;
 
 var GLDrawAlphaThreshold = 0.01;
-var GLDrawHalfAlphaLow = 0.002;
-var GLDrawHalfAlphaHigh = 0.005;
+var GLDrawHalfAlphaLow = 0.8 / 256.0;
+var GLDrawHalfAlphaHigh = 1.2 / 256.0;
 
 window.addEventListener('load', GLDrawLoad);
 
