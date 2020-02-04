@@ -51,14 +51,10 @@ function AsylumMeetingClick() {
 
 // When the player smokes with the patient
 function AsylumMeetingSmoke() {
-	CharacterSetFacialExpression(Player, "Blush", "Low");
-	TimerInventoryRemoveSet(Player, "Blush", 15);
-	CharacterSetFacialExpression(Player, "Eyebrows", "Soft");
-	TimerInventoryRemoveSet(Player, "Eyebrows", 15);
-	CharacterSetFacialExpression(AsylumMeetingPatientLeft, "Blush", "Low");
-	TimerInventoryRemoveSet(AsylumMeetingPatientLeft, "Blush", 15);	
-	CharacterSetFacialExpression(AsylumMeetingPatientLeft, "Eyebrows", "Soft");
-	TimerInventoryRemoveSet(AsylumMeetingPatientLeft, "Eyebrows", 15);
+	CharacterSetFacialExpression(Player, "Blush", "Low", 15);
+	CharacterSetFacialExpression(Player, "Eyebrows", "Soft", 15);
+	CharacterSetFacialExpression(AsylumMeetingPatientLeft, "Blush", "Low", 15);
+	CharacterSetFacialExpression(AsylumMeetingPatientLeft, "Eyebrows", "Soft", 15);
 	CharacterChangeMoney(Player, -1);
 }
 
@@ -91,8 +87,6 @@ function AsylumMeetingRestrainPlayer(RestraintsType) {
 
 // When the player plays with a patient, she blushes
 function AsylumMeetingBlush(BlushType) {
-	CharacterSetFacialExpression(CurrentCharacter, "Blush", BlushType);
-	TimerInventoryRemoveSet(CurrentCharacter, "Blush", 10);
-	CharacterSetFacialExpression(CurrentCharacter, "Eyebrows", "Lowered");
-	TimerInventoryRemoveSet(CurrentCharacter, "Eyebrows", 10);
+	CharacterSetFacialExpression(CurrentCharacter, "Blush", BlushType, 10);
+	CharacterSetFacialExpression(CurrentCharacter, "Eyebrows", "Lowered", 10);
 }

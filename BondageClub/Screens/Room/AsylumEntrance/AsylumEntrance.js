@@ -76,7 +76,7 @@ function AsylumEntranceWearNurseClothes(C) {
 // Wears the patient clothes on a character
 function AsylumEntranceWearPatientClothes(C) {
 	if ((typeof C === "string") && (C == "Player")) C = Player;
-	InventoryWear(C, "TShirt1", "Cloth", "#500028");
+	InventoryWear(C, "TShirt1", "Cloth", "#500028", null, false);
 	InventoryWear(C, "Pajama1", "ClothLower", "#FF0080");
 	InventoryWear(C, "Socks2", "Socks", "#CCCCCC");
 	InventoryRemove(C, "Shoes");

@@ -187,7 +187,7 @@ function InventoryLocked(C, AssetGroup) {
 }
 
 // Makes the character wear a random item from a group
-function InventoryWearRandom(C, GroupName, Difficulty) {
+function InventoryWearRandom(C, GroupName, Difficulty, Refresh) {
 	if (!InventoryLocked(C, GroupName)) {
 
 		// Finds the asset group and make sure it's not blocked
@@ -208,14 +208,13 @@ function InventoryWearRandom(C, GroupName, Difficulty) {
 				List.push(Asset[A]);
 		if (List.length == 0) return;
 		var RandomAsset = List[Math.floor(Math.random() * List.length)];
-		CharacterAppearanceSetItem(C, GroupName, RandomAsset, RandomAsset.DefaultColor, Difficulty);
-		CharacterRefresh(C);
+		CharacterAppearanceSetItem(C, GroupName, RandomAsset, RandomAsset.DefaultColor, Difficulty, Refresh);
 
 	}
 }
 
 // Removes a specific item from the player appearance
-function InventoryRemove(C, AssetGroup) {
+function InventoryRemove(C, AssetGroup, Refresh) {
 
 	// Loops until we find the item group to remove
 	for (var E = 0; E < C.Appearance.length; E++)
@@ -224,7 +223,7 @@ function InventoryRemove(C, AssetGroup) {
 			// Remove other items that are flagged to be removed when this item is removed.  If the name is empty, we remove any item from that group.
 			for (var R = 0; R < C.Appearance[E].Asset.RemoveItemOnRemove.length; R++)
 				if ((C.Appearance[E].Asset.RemoveItemOnRemove[R].Name == "") || ((C.Appearance[E].Asset.RemoveItemOnRemove[R].Name != "") && (InventoryGet(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group) != null) && (InventoryGet(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group).Asset.Name == C.Appearance[E].Asset.RemoveItemOnRemove[R].Name)))
-					InventoryRemove(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group);
+					InventoryRemove(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group, false);
 
 			// Removes the item itself
 			C.Appearance.splice(E, 1);
@@ -233,7 +232,7 @@ function InventoryRemove(C, AssetGroup) {
 		}
 
 	// Refreshes the character
-	CharacterRefresh(C);
+	if (Refresh || Refresh == null) CharacterRefresh(C);
 
 }
 
@@ -287,8 +286,7 @@ function InventoryExpressionTrigger(C, Item) {
 	if ((Item != null) && (Item.Asset != null) && (Item.Asset.DynamicExpressionTrigger() != null))
 		for (var E = 0; E < Item.Asset.DynamicExpressionTrigger().length; E++)
 			if ((InventoryGet(C, Item.Asset.DynamicExpressionTrigger()[E].Group) == null) || (InventoryGet(C, Item.Asset.DynamicExpressionTrigger()[E].Group).Property == null) || (InventoryGet(C, Item.Asset.DynamicExpressionTrigger()[E].Group).Property.Expression == null)) {
-				CharacterSetFacialExpression(C, Item.Asset.DynamicExpressionTrigger()[E].Group, Item.Asset.DynamicExpressionTrigger()[E].Name);
-				TimerInventoryRemoveSet(C, Item.Asset.DynamicExpressionTrigger()[E].Group, Item.Asset.DynamicExpressionTrigger()[E].Timer);
+				CharacterSetFacialExpression(C, Item.Asset.DynamicExpressionTrigger()[E].Group, Item.Asset.DynamicExpressionTrigger()[E].Name, Item.Asset.DynamicExpressionTrigger()[E].Timer);
 			}
 }
 

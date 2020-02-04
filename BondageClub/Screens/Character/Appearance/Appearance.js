@@ -115,7 +115,7 @@ function CharacterAppearanceMustHide(C, GroupName) {
 }
 
 // Sets a full random set of items for a character
-function CharacterAppearanceFullRandom(C, ClothOnly) {
+function CharacterAppearanceFullRandom(C, ClothOnly, LoadCanvas) {
 
 	// Clear the current appearance
 	for (var A = 0; A < C.Appearance.length; A++)
@@ -166,7 +166,7 @@ function CharacterAppearanceFullRandom(C, ClothOnly) {
 		}
 
 	// Loads the new character canvas
-	CharacterLoadCanvas(C);
+	if (LoadCanvas || LoadCanvas == null) CharacterLoadCanvas(C);
 
 }
 

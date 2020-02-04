@@ -487,13 +487,13 @@ function CharacterDress(C, Appearance) {
 }
 
 // Removes any binding item from the character
-function CharacterRelease(C) {
+function CharacterRelease(C, Refresh) {
 	for (var E = 0; E < C.Appearance.length; E++)
 		if (C.Appearance[E].Asset.IsRestraint) {
 			C.Appearance.splice(E, 1);
 			E--;
 		}
-	CharacterRefresh(C);
+	if (Refresh || Refresh == null) CharacterRefresh(C);
 }
 
 // Returns the best bonus factor available
@@ -508,7 +508,7 @@ function CharacterGetBonus(C, BonusType) {
 }
 
 // Fully restrain a character with random items
-function CharacterFullRandomRestrain(C, Ratio) {
+function CharacterFullRandomRestrain(C, Ratio, Refresh) {
 
 	// Sets the ratio depending on the parameter
 	var RatioRare = 0.75;
@@ -520,13 +520,14 @@ function CharacterFullRandomRestrain(C, Ratio) {
 	}
 
 	// Apply each item if needed
-	if (InventoryGet(C, "ItemArms") == null) InventoryWearRandom(C, "ItemArms");
-	if ((Math.random() >= RatioRare) && (InventoryGet(C, "ItemHead") == null)) InventoryWearRandom(C, "ItemHead");
-	if ((Math.random() >= RatioNormal) && (InventoryGet(C, "ItemMouth") == null)) InventoryWearRandom(C, "ItemMouth");
-	if ((Math.random() >= RatioRare) && (InventoryGet(C, "ItemNeck") == null)) InventoryWearRandom(C, "ItemNeck");
-	if ((Math.random() >= RatioNormal) && (InventoryGet(C, "ItemLegs") == null)) InventoryWearRandom(C, "ItemLegs");
-	if ((Math.random() >= RatioNormal) && !C.IsKneeling() && (InventoryGet(C, "ItemFeet") == null)) InventoryWearRandom(C, "ItemFeet");
+	if (InventoryGet(C, "ItemArms") == null) InventoryWearRandom(C, "ItemArms", null, false);
+	if ((Math.random() >= RatioRare) && (InventoryGet(C, "ItemHead") == null)) InventoryWearRandom(C, "ItemHead", null, false);
+	if ((Math.random() >= RatioNormal) && (InventoryGet(C, "ItemMouth") == null)) InventoryWearRandom(C, "ItemMouth", null, false);
+	if ((Math.random() >= RatioRare) && (InventoryGet(C, "ItemNeck") == null)) InventoryWearRandom(C, "ItemNeck", null, false);
+	if ((Math.random() >= RatioNormal) && (InventoryGet(C, "ItemLegs") == null)) InventoryWearRandom(C, "ItemLegs", null, false);
+	if ((Math.random() >= RatioNormal) && !C.IsKneeling() && (InventoryGet(C, "ItemFeet") == null)) InventoryWearRandom(C, "ItemFeet", null, false);
 
+	if (Refresh || Refresh == null) CharacterRefresh(C);
 }
 
 // Sets a new pose for the character
@@ -536,16 +537,21 @@ function CharacterSetActivePose(C, NewPose) {
 }
 
 // Sets a specific facial expression for the character's specified AssetGruo
-function CharacterSetFacialExpression(C, AssetGroup, Expression) {
+function CharacterSetFacialExpression(C, AssetGroup, Expression, Timer) {
 	for (var A = 0; A < C.Appearance.length; A++) {
 		if ((C.Appearance[A].Asset.Group.Name == AssetGroup) && (C.Appearance[A].Asset.Group.AllowExpression)) {
 			if ((Expression == null) || (C.Appearance[A].Asset.Group.AllowExpression.indexOf(Expression) >= 0)) {
 				if (!C.Appearance[A].Property) C.Appearance[A].Property = {};
 				if (C.Appearance[A].Property.Expression != Expression) {
-					C.Appearance[A].Property.Expression = Expression;
-					CharacterRefresh(C);
-					ChatRoomCharacterUpdate(C);
+					C.Appearance[A].Property.Expression = Expression;					
 				}
+				if (Timer != null) {
+					C.Appearance[A].Property.RemoveTimer = CurrentTime + Timer * 1000;
+				} else {
+					delete C.Appearance[A].Property.RemoveTimer;
+				}
+				CharacterRefresh(C);
+				ChatRoomCharacterUpdate(C);
 				return;
 			}
 		}
