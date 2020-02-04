@@ -396,6 +396,8 @@ PlugGagMouthTypePlug,,,Plugged
 PlugGagMouthTypeOpen,,,Open
 PlugGagMouthSetPlug,,,SourceCharacter plugs up DestinationCharacter mouth.
 PlugGagMouthSetOpen,,,SourceCharacter pulls out DestinationCharacter plug from her gag.
+DildoPlugGagMouthSetPlug,,,SourceCharacter plugs up DestinationCharacter mouth with the dildo plug.
+DildoPlugGagMouthSetOpen,,,SourceCharacter pulls out DestinationCharacter dildo plug from her gag.
 SelectBlindType,,,Select the type of blindfold
 DuctTapeHeadTypeDouble,,,Double
 DuctTapeHeadTypeWrap,,,Wrap
