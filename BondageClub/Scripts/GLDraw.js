@@ -10,6 +10,8 @@ var GLVersion;
 var GLDrawCanvas;
 var GLDrawCanvasBlink;
 
+var GLDrawAlphaThreshold = 0.01;
+
 window.addEventListener('load', GLDrawLoad);
 
 // Load WebGL if not awailable it use the old canvas engine
@@ -92,7 +94,7 @@ var GLDrawFragmentShaderSource = `
 
   void main() {
     vec4 texColor = texture2D(u_texture, v_texcoord);
-    if (texColor.w < 0.1) discard;
+    if (texColor.w < ` + GLDrawAlphaThreshold + `) discard;
     gl_FragColor = texColor;   
   }
 `;
@@ -107,7 +109,7 @@ var GLDrawFragmentShaderSourceFullAlpha = `
 
   void main() {
     vec4 texColor = texture2D(u_texture, v_texcoord);
-    if (texColor.w < 0.1) discard;
+    if (texColor.w < ` + GLDrawAlphaThreshold + `) discard;
     float t = (texColor.x + texColor.y + texColor.z) / 383.0;
     gl_FragColor = u_color * vec4(t, t, t, texColor.w);
   }
@@ -123,7 +125,7 @@ var GLDrawFragmentShaderSourceHalfAlpha = `
 
   void main() {
     vec4 texColor = texture2D(u_texture, v_texcoord);
-    if (texColor.w < 0.1) discard;
+    if (texColor.w < ` + GLDrawAlphaThreshold + `) discard;
     float t = (texColor.x + texColor.y + texColor.z) / 383.0;
     if (t < 0.8 || t > 1.2) {
       gl_FragColor = texColor;
@@ -171,7 +173,7 @@ function GLDrawCreateProgram(gl, vertexShader, fragmentShader) {
     return program;
 }
 
-// Draw imgage from url to gl cont
+// Draws image from url to a WebGLRenderingContext
 function GLDrawImage(url, gl, dstX, dstY, color, fullAlpha) {
     var tex = GLDrawLoadImage(gl, url);
 
@@ -182,7 +184,7 @@ function GLDrawImage(url, gl, dstX, dstY, color, fullAlpha) {
     gl.useProgram(program);
 
     gl.enable(gl.BLEND);
-    gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+    gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA, gl.SRC_ALPHA, gl.DST_ALPHA);
 
     gl.bindBuffer(gl.ARRAY_BUFFER, program.position_buffer);
     gl.enableVertexAttribArray(program.a_position);
@@ -263,7 +265,7 @@ function GLDrawLoadImage(gl, url) {
     return textureInfo;
 }
 
-// clear rectangle on GL
+// Clears rectangle on WebGLRenderingContext
 function GLDrawClearRect(gl, x, y, width, height) {
     gl.enable(gl.SCISSOR_TEST);
     gl.scissor(x, y, width, height);
