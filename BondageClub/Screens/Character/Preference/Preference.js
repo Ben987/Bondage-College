@@ -155,17 +155,19 @@ function PreferenceClick() {
 		Player.GameplaySettings.SensDepChatLog = PreferenceSettingsSensDepList[PreferenceSettingsSensDepIndex];
 	}
 
+	// If play presses the button update email
+	if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 712) && (MouseY < 776)) {
+		var Email = ElementValue("InputEmail");
+		var E = /^[a-zA-Z0-9@.!#$%&'*+/=?^_`{|}~-]+$/;
+		if ((Email.match(E) || (Email == "")) && (Email.length <= 100))
+			ServerSend("AccountUpdateEmail", { Email: Email} );
+	}
+
 	// Preference check boxes
 	if ((MouseX >= 500) && (MouseX < 564)) {
 		if ((MouseY >= 472) && (MouseY < 536)) Player.GameplaySettings.BlindDisableExamine = !Player.GameplaySettings.BlindDisableExamine;
         if ((MouseY >= 552) && (MouseY < 616)) Player.GameplaySettings.DisableAutoRemoveLogin = !Player.GameplaySettings.DisableAutoRemoveLogin;
 		if ((MouseY >= 632) && (MouseY < 696)) Player.VisualSettings.ForceFullHeight = !Player.VisualSettings.ForceFullHeight;
-		if ((MouseY >= 712) && (MouseY < 962)) {
-			var Email = ElementValue("InputEmail");
-			var E = /^[a-zA-Z0-9@.!#$%&'*+/=?^_`{|}~-]+$/;
-			if ((Email.match(E) || (Email == "")) && (Email.length <= 100))
-				ServerSend("AccountUpdateEmail", { Email: Email} );
-		}
 	}
 
 }
