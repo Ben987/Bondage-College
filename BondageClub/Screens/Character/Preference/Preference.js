@@ -23,6 +23,7 @@ function PreferenceLoad() {
 	// Sets up the player label color
 	if (!CommonIsColor(Player.LabelColor)) Player.LabelColor = "#ffffff";
 	ElementCreateInput("InputCharacterLabelColor", "text", Player.LabelColor);
+	ElementCreateInput("InputEmail", "text", "", "100");
 
 	// If the user never set the chat settings before, construct them to replicate the default behavior
 	if (!Player.ChatSettings) Player.ChatSettings = {
@@ -93,7 +94,9 @@ function PreferenceRun() {
     DrawButton(500, 552, 64, 64, "", "White", (Player.GameplaySettings && Player.GameplaySettings.DisableAutoRemoveLogin) ? "Icons/Checked.png" : "");
     DrawText(TextGet("ForceFullHeight"), 600, 665, "Black", "Gray");
     DrawButton(500, 632, 64, 64, "", "White", (Player.VisualSettings && Player.VisualSettings.ForceFullHeight) ? "Icons/Checked.png" : "");
+	ElementPosition("InputEmail", 1050, 740, 500);
 	MainCanvas.textAlign = "center";
+	DrawButton(500, 712, 250, 64, TextGet("UpdateEmail"), "White", "");
 	DrawBackNextButton(500, 392, 250, 64, TextGet(Player.GameplaySettings.SensDepChatLog), "White", "",
 		() => TextGet(PreferenceSettingsSensDepList[(PreferenceSettingsSensDepIndex + PreferenceSettingsSensDepList.length - 1) % PreferenceSettingsSensDepList.length]),
 		() => TextGet(PreferenceSettingsSensDepList[(PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length]));
@@ -124,12 +127,14 @@ function PreferenceClick() {
 	// If the user clicks on the chat settings button
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 190) && (MouseY < 280) && (PreferenceColorPick == "")) {
 		ElementRemove("InputCharacterLabelColor");
+		ElementRemove("InputEmail");
 		PreferenceSubscreen = "Chat";
 	}
 
 	// If the user clicks on the audio settings button
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 305) && (MouseY < 395) && (PreferenceColorPick == "")) {
 		ElementRemove("InputCharacterLabelColor");
+		ElementRemove("InputEmail");
 		PreferenceSubscreen = "Audio";
 	}
 
@@ -155,6 +160,12 @@ function PreferenceClick() {
 		if ((MouseY >= 472) && (MouseY < 536)) Player.GameplaySettings.BlindDisableExamine = !Player.GameplaySettings.BlindDisableExamine;
         if ((MouseY >= 552) && (MouseY < 616)) Player.GameplaySettings.DisableAutoRemoveLogin = !Player.GameplaySettings.DisableAutoRemoveLogin;
 		if ((MouseY >= 632) && (MouseY < 696)) Player.VisualSettings.ForceFullHeight = !Player.VisualSettings.ForceFullHeight;
+		if ((MouseY >= 712) && (MouseY < 962)) {
+			var Email = ElementValue("InputEmail");
+			var E = /^[a-zA-Z0-9@.!#$%&'*+/=?^_`{|}~-]+$/;
+			if ((Email.match(E) || (Email == "")) && (Email.length <= 100))
+				ServerSend("AccountUpdateEmail", { Email: Email} );
+		}
 	}
 
 }
@@ -174,6 +185,7 @@ function PreferenceExit() {
 		ServerSend("AccountUpdate", P);
 		PreferenceMessage = "";
 		ElementRemove("InputCharacterLabelColor");
+		ElementRemove("InputEmail");
 		CommonSetScreen("Character", "InformationSheet");
 	} else PreferenceMessage = "ErrorInvalidColor";
 }
@@ -231,6 +243,7 @@ function PreferenceSubscreenAudioClick() {
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) {
 		PreferenceSubscreen = "";
 		ElementCreateInput("InputCharacterLabelColor", "text", Player.LabelColor);
+		ElementCreateInput("InputEmail", "text", "", "100");
 	}
 
 	// Volume increase/decrease control
@@ -283,6 +296,7 @@ function PreferenceSubscreenChatClick() {
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) {
 		PreferenceSubscreen = "";
 		ElementCreateInput("InputCharacterLabelColor", "text", Player.LabelColor);
+		ElementCreateInput("InputEmail", "text", "", "100");
 	}
 
 }
