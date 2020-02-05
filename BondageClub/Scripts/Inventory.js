@@ -181,9 +181,9 @@ function InventorySetDifficulty(C, AssetGroup, Difficulty) {
 }
 
 // Returns TRUE if there's already a locked item at a given position
-function InventoryLocked(C, AssetGroup) {
+function InventoryLocked(C, AssetGroup, CheckProperties) {
 	var I = InventoryGet(C, AssetGroup);
-	return ((I != null) && InventoryItemHasEffect(I, "Lock"));
+	return ((I != null) && InventoryItemHasEffect(I, "Lock", CheckProperties));
 }
 
 // Makes the character wear a random item from a group
@@ -350,6 +350,18 @@ function InventoryLock(C, Item, Lock, MemberNumber) {
 		Item.Property.LockedBy = Lock.Asset.Name;
 		if (MemberNumber != null) Item.Property.LockMemberNumber = MemberNumber;
 		if (Lock.Asset.RemoveTimer > 0) TimerInventoryRemoveSet(C, Item.Asset.Group.Name, Lock.Asset.RemoveTimer);
+		CharacterRefresh(C);
+	}
+}
+
+// Unlocks an item and removes all related properties
+function InventoryUnlock(C, Item) {
+	if (typeof Item === 'string') Item = InventoryGet(C, Item);
+	if (Item && Item.Property && Item.Property.Effect) {
+		Item.Property.Effect.splice(Item.Property.Effect.indexOf("Lock"), 1);
+		delete Item.Property.LockedBy;
+		delete Item.Property.RemoveTimer;
+		delete Item.Property.LockMemberNumber;
 		CharacterRefresh(C);
 	}
 }

@@ -7,6 +7,7 @@ var LoginThankYou = "";
 var LoginThankYouList = ["Alvin", "Ayezona", "BlueEyedCat", "Bryce", "Christian", "Dan", "Desch", "Dini", "DonOlaf", "Escurse", "Greendragon", "John", "Kitten", "Laioken", "Lennart", "Michal", "Mindtie", "Misa",
 						 "Nera", "Nick", "Overlord", "Rashiash", "Robin", "Ryner", "Samuel", "Setsu", "Shadow", "Simeon", "SirCody", "Sky", "Terry", "William", "Winterisbest", "Xepherio"];
 var LoginThankYouNext = 0;
+var LoginLastCT = 0;
 
 // Loads the next thank you bubble
 function LoginDoNextThankYou() {
@@ -19,6 +20,10 @@ function LoginDoNextThankYou() {
 
 // Draw the credits 
 function LoginDrawCredits() {
+
+	var CT = CommonTime();
+	if (LoginLastCT + 50 < CT) console.log("Slow Frame: " + (CT - LoginLastCT).toString());
+	LoginLastCT = CT;
 
 	// For each credits in the list
 	LoginCreditsPosition++;

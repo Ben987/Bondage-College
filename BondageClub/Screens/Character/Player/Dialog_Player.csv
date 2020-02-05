@@ -206,7 +206,8 @@ ActionChangeColor,,,SourceCharacter changes the color of NextAsset on Destinatio
 ActionLock,,,SourceCharacter locks a NextAsset on DestinationCharacter FocusAssetGroup.
 ActionAddLock,,,SourceCharacter adds a NextAsset on DestinationCharacter FocusAssetGroup PrevAsset.
 ActionRemove,,,SourceCharacter removes the PrevAsset from DestinationCharacter FocusAssetGroup.
-ActionUnlock,,,SourceCharacter unlocks and removes the PrevAsset from DestinationCharacter FocusAssetGroup.
+ActionUnlock,,,SourceCharacter unlocks the PrevAsset on DestinationCharacter FocusAssetGroup.
+ActionUnlockAndRemove,,,SourceCharacter unlocks and removes the PrevAsset from DestinationCharacter FocusAssetGroup.
 ActionDice,,,SourceCharacter rolls a DiceType sided dice.  The result is: DiceResult.
 ActionCoin,,,SourceCharacter flips a coin.  The result is: CoinResult.
 ActionGrabbedForCell,,,"TargetCharacterName gets grabbed by two maids and locked in a timer cell, following her owner commands."

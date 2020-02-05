@@ -211,7 +211,11 @@ function DialogMenuButtonBuild(C) {
 	if (DialogProgress < 0) {
 		if ((DialogInventory.length > 12) && ((Player.CanInteract() && !InventoryGroupIsBlocked(C)) || DialogItemPermissionMode)) DialogMenuButton.push("Next");
 		if (C.FocusGroup.Name == "ItemMouth" || C.FocusGroup.Name == "ItemMouth2" || C.FocusGroup.Name == "ItemMouth3") DialogMenuButton.push("ChangeLayersMouth");
-		if (InventoryItemHasEffect(Item, "Lock", true) && DialogCanUnlock(C, Item) && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C) && (Player.CanInteract() || ((C.ID == 0) && InventoryItemHasEffect(Item, "Block", true)))) DialogMenuButton.push("Unlock");
+		if (InventoryItemHasEffect(Item, "Lock", true) && DialogCanUnlock(C, Item) && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C) && (Player.CanInteract() || ((C.ID == 0) && InventoryItemHasEffect(Item, "Block", true)))) {
+			DialogMenuButton.push("Unlock");
+			// Add struggle or remove buttons to completely remove the restraint
+			DialogMenuButton.push(C.ID == 0 ? "Struggle" : "Remove");
+		}
 		if ((Item != null) && (C.ID == 0) && (!Player.CanInteract() || (InventoryItemHasEffect(Item, "Lock", true) && !DialogCanUnlock(C, Item))) && (DialogMenuButton.indexOf("Unlock") < 0) && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Struggle");
 		if (InventoryItemHasEffect(Item, "Lock", true) && !Player.IsBlind() && (Item.Property != null) && (Item.Property.LockedBy != null) && (Item.Property.LockedBy != "")) DialogMenuButton.push("InspectLock");
 		if ((Item != null) && Item.Asset.AllowLock && !InventoryItemHasEffect(Item, "Lock", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Lock");
@@ -481,8 +485,24 @@ function DialogMenuButtonClick() {
 				return;
 			}
 
-			// Unlock/Remove/Struggle Icon - Starts the struggling mini-game (can be impossible to complete)
-			else if (((DialogMenuButton[I] == "Unlock") || (DialogMenuButton[I] == "Remove") || (DialogMenuButton[I] == "Struggle") || (DialogMenuButton[I] == "Dismount") || (DialogMenuButton[I] == "Escape")) && (Item != null)) {
+			// Unlock
+			else if ((DialogMenuButton[I] == "Unlock") && (Item != null)) {
+				if (InventoryItemHasEffect(Item, "Lock", false) == false &&
+					InventoryItemHasEffect(Item, "Lock", true) && 
+					(C.ID != 0 || C.CanInteract())) {
+					// Immediately unlock if the item is padlocked
+					InventoryUnlock(C, C.FocusGroup.Name);
+					ChatRoomPublishAction(C, Item, null, false, "ActionUnlock");
+					DialogLeave();
+				} else {
+					// Struggle if item is locked by itself
+					DialogProgressStart(C, Item, null);
+				}
+				return;
+			}
+
+			// Remove/Struggle Icon - Starts the struggling mini-game (can be impossible to complete)
+			else if (((DialogMenuButton[I] == "Remove") || (DialogMenuButton[I] == "Struggle") || (DialogMenuButton[I] == "Dismount") || (DialogMenuButton[I] == "Escape")) && (Item != null)) {
 				DialogProgressStart(C, Item, null);
 				return;
 			}
@@ -935,7 +955,6 @@ function DialogDrawItemMenu(C) {
 			// Stops the dialog sounds
 			AudioDialogStop();
 
-			// Add / swap / remove the item
 			InventoryRemove(C, C.FocusGroup.Name);
 			if (DialogProgressNextItem != null) InventoryWear(C, DialogProgressNextItem.Asset.Name, DialogProgressNextItem.Asset.Group.Name, (DialogColorSelect == null) ? "Default" : DialogColorSelect, SkillGetLevel(Player, "Bondage"));
 
