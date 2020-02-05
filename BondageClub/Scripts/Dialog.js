@@ -846,6 +846,10 @@ function DialogChangeItemColor(C, Color) {
 		if (!CanUnLock) return;
 	}
 
+	var CanRemove = (Item != null) && !InventoryItemHasEffect(Item, "Lock", true) && !InventoryItemHasEffect(Item, "Mounted", true) && !InventoryItemHasEffect(Item, "Enclose", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C);
+	if (!CanRemove) return;
+
+	// Apply color
 	Item.Color = Color;
 
 	// Redraw character after 100ms, prevent unnecessary redraws, reduce performance impact
