@@ -156,14 +156,17 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 		// Draws the character focus zones if we need too
 		if ((C.FocusGroup != null) && (C.FocusGroup.Zone != null)) {
 
-			// Draw all the possible zones in transparent gray
+			// Draw all the possible zones in transparent colors (gray if free, yellow if occupied, red if blocker)
 			for (var A = 0; A < AssetGroup.length; A++)
-				if (AssetGroup[A].Zone != null)
-					DrawAssetGroupZone(C, AssetGroup[A].Zone, HeightRatio, X, Y, "#80808040", 6);
+				if (AssetGroup[A].Zone != null && AssetGroup[A].Name != C.FocusGroup.Name) {
+					var Color = "#80808040";
+					if (InventoryGroupIsBlocked(C, AssetGroup[A].Name)) Color = "#88000580";
+					else if (InventoryGet(C, AssetGroup[A].Name) != null) Color = "#D5A30080";
+					DrawAssetGroupZone(C, AssetGroup[A].Zone, HeightRatio, X, Y, Color, 5);
+				}
 
 			// Draw the focused zone in cyan
 			DrawAssetGroupZone(C, C.FocusGroup.Zone, HeightRatio, X, Y, "cyan");
-
 		}
 
 		// Draw the character name below herself
@@ -173,7 +176,6 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 				DrawText(C.Name, X + 255 * Zoom, Y + 980 * ((C.Pose.indexOf("SuspensionHogtied") < 0) ? Zoom : Zoom / HeightRatio), (CommonIsColor(C.LabelColor)) ? C.LabelColor : "White", "Black");
 				MainCanvas.font = "36px Arial";
 			}
-
 	}
 }
 
@@ -578,13 +580,19 @@ function DrawProcess() {
 		}
 	}
 
-	// Gets the current screen background and draw it, a darker version in character dialog mode
+	// Gets the current screen background and draw it, it becomes darker in dialog mode or if the character is blindfolded
 	var B = window[CurrentScreen + "Background"];
-	if ((B != null) && (B != ""))
-		if (((Player.Effect.indexOf("BlindNormal") >= 0) || (Player.Effect.indexOf("BlindHeavy") >= 0)) && (CurrentModule != "Character"))
-			DrawRect(0, 0, 2000, 1000, "Black");
-		else
-			DrawImage("Backgrounds/" + B + ((((CurrentCharacter != null) || ShopStarted || (Player.Effect.indexOf("BlindLight") >= 0)) && (CurrentModule != "Character") && (B.indexOf("Dark") <= 0)) ? "Dark" : "") + ".jpg", 0, 0);
+	if ((B != null) && (B != "")) {
+		var DarkFactor = 1.0;
+		if ((CurrentModule != "Character") && (B != "Sheet")) {
+			if (Player.Effect.indexOf("BlindHeavy") >= 0) DarkFactor = 0.0;
+			else if (Player.Effect.indexOf("BlindNormal") >= 0) DarkFactor = 0.15;
+			else if (Player.Effect.indexOf("BlindLight") >= 0) DarkFactor = 0.3;
+			else if (CurrentCharacter != null || ShopStarted) DarkFactor = 0.5;
+		}
+		if (DarkFactor > 0.0) DrawImage("Backgrounds/" + B + ".jpg", 0, 0);
+		if (DarkFactor < 1.0) DrawRect(0, 0, 2000, 1000, "rgba(0,0,0," + (1.0 - DarkFactor) + ")");
+	}
 
 	// Draws the dialog screen or current screen if there's no loaded character
 	if (CurrentCharacter != null) DialogDraw();

@@ -17,6 +17,8 @@ var DialogInventory = [];
 var DialogInventoryOffset = 0;
 var DialogFocusItem = null;
 var DialogFocusSourceItem = null;
+var DialogFocusItemOriginalColor = null;
+var DialogFocusItemColorizationRedrawTimer = null;
 var DialogMenuButton = [];
 var DialogItemToLock = null;
 var DialogAllowBlush = false;
@@ -167,6 +169,7 @@ function DialogLeaveItemMenu() {
 	DialogInventory = null;
 	DialogProgress = -1;
 	DialogColor = null;
+	DialogFocusItemOriginalColor = null;
 	DialogMenuButton = [];
 	DialogItemPermissionMode = false;
 	ElementRemove("InputColor");
@@ -204,9 +207,7 @@ function DialogInventoryAdd(C, NewInv, NewInvWorn) {
 function DialogMenuButtonBuild(C) {
 
 	// The "Exit" button is always available
-	var Item = InventoryGet(C, C.FocusGroup.Name);
-	DialogMenuButton = [];
-	DialogMenuButton.push("Exit");
+	DialogMenuButton = ["Exit"];
 
 	// In color picker mode
 	if (DialogColor != null) {
@@ -215,19 +216,22 @@ function DialogMenuButtonBuild(C) {
 		return;
 	}
 
-	// Main buttons
+	// Pushes all valid main buttons, based on if the player is restrained, has a blocked group, has the key, etc.
 	if (DialogProgress < 0) {
-		if ((DialogInventory.length > 12) && ((Player.CanInteract() && !InventoryGroupIsBlocked(C)) || DialogItemPermissionMode)) DialogMenuButton.push("Next");
+		var Item = InventoryGet(C, C.FocusGroup.Name);
+		var IsItemLocked = InventoryItemHasEffect(Item, "Lock", true);
+		var IsGroupBlocked = InventoryGroupIsBlocked(C);
+		if ((DialogInventory.length > 12) && ((Player.CanInteract() && !IsGroupBlocked) || DialogItemPermissionMode)) DialogMenuButton.push("Next");
 		if (C.FocusGroup.Name == "ItemMouth" || C.FocusGroup.Name == "ItemMouth2" || C.FocusGroup.Name == "ItemMouth3") DialogMenuButton.push("ChangeLayersMouth");
-		if (InventoryItemHasEffect(Item, "Lock", true) && DialogCanUnlock(C, Item) && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C) && (Player.CanInteract() || ((C.ID == 0) && InventoryItemHasEffect(Item, "Block", true)))) DialogMenuButton.push("Unlock");
-		if ((Item != null) && (C.ID == 0) && (!Player.CanInteract() || (InventoryItemHasEffect(Item, "Lock", true) && !DialogCanUnlock(C, Item))) && (DialogMenuButton.indexOf("Unlock") < 0) && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Struggle");
-		if (InventoryItemHasEffect(Item, "Lock", true) && !Player.IsBlind() && (Item.Property != null) && (Item.Property.LockedBy != null) && (Item.Property.LockedBy != "")) DialogMenuButton.push("InspectLock");
-		if ((Item != null) && Item.Asset.AllowLock && !InventoryItemHasEffect(Item, "Lock", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Lock");
-		if ((Item != null) && !InventoryItemHasEffect(Item, "Lock", true) && !InventoryItemHasEffect(Item, "Mounted", true) && !InventoryItemHasEffect(Item, "Enclose", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Remove");
-		if ((Item != null) && !InventoryItemHasEffect(Item, "Lock", true) && InventoryItemHasEffect(Item, "Mounted", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Dismount");
-		if ((Item != null) && !InventoryItemHasEffect(Item, "Lock", true) && InventoryItemHasEffect(Item, "Enclose", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !InventoryGroupIsBlocked(C)) DialogMenuButton.push("Escape");
+		if (IsItemLocked && DialogCanUnlock(C, Item) && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked && ((C.ID != 0) || Player.CanInteract())) { DialogMenuButton.push("Unlock"); DialogMenuButton.push("Remove"); }
+		if ((Item != null) && (C.ID == 0) && (!Player.CanInteract() || (IsItemLocked && !DialogCanUnlock(C, Item))) && (DialogMenuButton.indexOf("Unlock") < 0) && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Struggle");
+		if (IsItemLocked && !Player.IsBlind() && (Item.Property != null) && (Item.Property.LockedBy != null) && (Item.Property.LockedBy != "")) DialogMenuButton.push("InspectLock");
+		if ((Item != null) && Item.Asset.AllowLock && !IsItemLocked && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Lock");
+		if ((Item != null) && !IsItemLocked && !InventoryItemHasEffect(Item, "Mounted", true) && !InventoryItemHasEffect(Item, "Enclose", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Remove");
+		if ((Item != null) && !IsItemLocked && InventoryItemHasEffect(Item, "Mounted", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Dismount");
+		if ((Item != null) && !IsItemLocked && InventoryItemHasEffect(Item, "Enclose", true) && Player.CanInteract() && InventoryAllow(C, Item.Asset.Prerequisite) && !IsGroupBlocked) DialogMenuButton.push("Escape");
 		if (InventoryItemHasEffect(Item, "Egged") && InventoryAvailable(Player, "VibratorRemote", "ItemVulva") && Player.CanInteract()) DialogMenuButton.push("Remote");
-		if ((Item != null) && Item.Asset.Extended && Player.CanInteract() && !InventoryGroupIsBlocked(C) && (!Item.Asset.OwnerOnly || (C.IsOwnedByPlayer())) && (!Item.Asset.LoverOnly || (C.IsLoverOfPlayer()))) DialogMenuButton.push("Use");
+		if ((Item != null) && Item.Asset.Extended && Player.CanInteract() && !IsGroupBlocked && (!Item.Asset.OwnerOnly || (C.IsOwnedByPlayer())) && (!Item.Asset.LoverOnly || (C.IsLoverOfPlayer()))) DialogMenuButton.push("Use");
 		if (Player.CanInteract()) DialogMenuButton.push("ColorPick");
 		if (C.ID == 0) {
 			if (DialogItemPermissionMode) DialogMenuButton.push("DialogNormalMode");
@@ -489,8 +493,18 @@ function DialogMenuButtonClick() {
 				return;
 			}
 
-			// Unlock/Remove/Struggle Icon - Starts the struggling mini-game (can be impossible to complete)
-			else if (((DialogMenuButton[I] == "Unlock") || (DialogMenuButton[I] == "Remove") || (DialogMenuButton[I] == "Struggle") || (DialogMenuButton[I] == "Dismount") || (DialogMenuButton[I] == "Escape")) && (Item != null)) {
+			// Unlock Icon - If the item is padlocked, we immediately unlock.  If not, we start the struggle progress.
+			else if ((DialogMenuButton[I] == "Unlock") && (Item != null)) {
+				if (!InventoryItemHasEffect(Item, "Lock", false) && InventoryItemHasEffect(Item, "Lock", true) && ((C.ID != 0) || C.CanInteract())) {
+					InventoryUnlock(C, C.FocusGroup.Name);
+					if (CurrentScreen == "ChatRoom") ChatRoomPublishAction(C, Item, null, true, "ActionUnlock");
+					else DialogInventoryBuild(C);
+				} else DialogProgressStart(C, Item, null);
+				return;
+			}
+
+			// Remove/Struggle Icon - Starts the struggling mini-game (can be impossible to complete)
+			else if (((DialogMenuButton[I] == "Remove") || (DialogMenuButton[I] == "Struggle") || (DialogMenuButton[I] == "Dismount") || (DialogMenuButton[I] == "Escape")) && (Item != null)) {
 				DialogProgressStart(C, Item, null);
 				return;
 			}
@@ -507,6 +521,14 @@ function DialogMenuButtonClick() {
 				ElementCreateInput("InputColor", "text", (DialogColorSelect != null) ? DialogColorSelect.toString() : "");
 				DialogColor = "";
 				DialogMenuButtonBuild(C);
+				// Rememeber the original color when open color picker
+				if (Item != null) {
+					DialogFocusItemOriginalColor = Item.Color;
+					// Populate color picker initial color with current one
+					ElementValue("InputColor", Item.Color || "");
+				} else {
+					DialogFocusItemOriginalColor = null;
+				}
 				return;
 			}
 
@@ -516,6 +538,13 @@ function DialogMenuButtonClick() {
 				DialogColorSelect = ElementValue("InputColor");
 				ElementRemove("InputColor");
 				DialogMenuButtonBuild(C);
+				// Apply item color change
+				if (Item != null && DialogFocusItemOriginalColor != Item.Color) {
+					// FocusItem color changed, sync to server
+					if (C.ID == 0) ServerPlayerAppearanceSync();
+					ChatRoomPublishAction(C, { ...Item, Color: DialogFocusItemOriginalColor }, Item, false);
+					ChatRoomCharacterUpdate(C);
+				}
 				return;
 			}
 
@@ -525,6 +554,11 @@ function DialogMenuButtonClick() {
 				DialogColorSelect = null;
 				ElementRemove("InputColor");
 				DialogMenuButtonBuild(C);
+				// Recall the original color when open color picker
+				if (Item != null) {
+					Item.Color = DialogFocusItemOriginalColor;
+					CharacterAppearanceBuildCanvas(C);
+				}
 				return;
 			}
 
@@ -821,6 +855,28 @@ function DialogExtendItem(Item, SourceItem) {
 	CommonDynamicFunction("Inventory" + Item.Asset.Group.Name + Item.Asset.Name + "Load()");
 }
 
+// Validates that the player is allowed to change the item color and swaps it on the fly
+function DialogChangeItemColor(C, Color) {
+
+	// Validates that the player isn't blind and can interact with the item
+	if (!Player.CanInteract() || Player.IsBlind()) return;
+
+	// If the item is locked, make sure the player could unlock it before swapping colors
+	var Item = InventoryGet(C, C.FocusGroup.Name);
+	if (Item == null) return;
+	if (InventoryItemHasEffect(Item, "Lock", true) && !DialogCanUnlock(C, Item)) return;
+
+	// Make sure the item is allowed, the group isn't blocked and it's not an enclosing item
+	if (!InventoryAllow(C, Item.Asset.Prerequisite) || InventoryGroupIsBlocked(C)) return;
+	if (InventoryItemHasEffect(Item, "Enclose", true) && (C.ID == 0)) return;
+
+	// Apply the color & redraw the character after 100ms.  Prevent unnecessary redraws to reduce performance impact
+	Item.Color = Color;
+	clearTimeout(DialogFocusItemColorizationRedrawTimer);
+	DialogFocusItemColorizationRedrawTimer = setTimeout(function () { CharacterAppearanceBuildCanvas(C); }, 100);
+
+}
+
 // Draw the item menu dialog
 function DialogDrawItemMenu(C) {
 
@@ -837,13 +893,9 @@ function DialogDrawItemMenu(C) {
 	// Draws the color picker
 	if (DialogColor != null) {
 		ElementPosition("InputColor", 1450, 65, 300);
-		ColorPickerDraw(1300, 145, 675, 830, ElementValue("InputColor"), function (Color) {
-			ElementValue("InputColor", Color);
-		});
+		ColorPickerDraw(1300, 145, 675, 830, document.getElementById("InputColor"), function (Color) { DialogChangeItemColor(C, Color) });
 		return;
-	} else {
-		ColorPickerHide();
-	}
+	} else ColorPickerHide();
 
 	// In item permission mode, the player can choose which item he allows other users to mess with.  Allowed items have a green background.  Disallowed have a red background.
 	if ((DialogItemPermissionMode && (C.ID == 0) && (DialogProgress < 0)) || (Player.CanInteract() && (DialogProgress < 0) && !InventoryGroupIsBlocked(C))) {
@@ -899,7 +951,6 @@ function DialogDrawItemMenu(C) {
 			// Stops the dialog sounds
 			AudioDialogStop();
 
-			// Add / swap / remove the item
 			InventoryRemove(C, C.FocusGroup.Name);
 			if (DialogProgressNextItem != null) InventoryWear(C, DialogProgressNextItem.Asset.Name, DialogProgressNextItem.Asset.Group.Name, (DialogColorSelect == null) ? "Default" : DialogColorSelect, SkillGetLevel(Player, "Bondage"));
 

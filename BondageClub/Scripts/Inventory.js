@@ -102,9 +102,13 @@ function InventoryPrerequisiteMessage(C, Prerequisite) {
 	if ((Prerequisite == "AccessBreast") && (((Cloth != null) && !Cloth.Asset.Expose.includes("ItemBreast"))
 			|| (InventoryGet(C, "Bra") != null && !InventoryGet(C, "Bra").Asset.Expose.includes("ItemBreast")))) return "RemoveClothesForItem";
 
+	if ((Prerequisite == "AccessBreastSuitZip") && (((Cloth != null) && !Cloth.Asset.Expose.includes("ItemNipplesPiercings"))
+		    || (InventoryGet(C, "Suit") != null && !InventoryGet(C, "Suit").Asset.Expose.includes("ItemNipplesPiercings")))) return "UnZipSuitForItem";
+
 	// Vulva/Butt items can be blocked by clothes, panties and some socks
 	if ((Prerequisite == "AccessVulva") && (((Cloth != null) && Cloth.Asset.Block != null && Cloth.Asset.Block.includes("ItemVulva"))
 			|| (InventoryGet(C, "ClothLower") != null && !InventoryGet(C, "ClothLower").Asset.Expose.includes("ItemVulva"))
+		    || (InventoryGet(C, "SuitLower") != null && !InventoryGet(C, "SuitLower").Asset.Expose.includes("ItemVulva"))
 			|| (InventoryGet(C, "Panties") != null && !InventoryGet(C, "Panties").Asset.Expose.includes("ItemVulva"))
 			|| (InventoryGet(C, "Socks") != null && (InventoryGet(C, "Socks").Asset.Block != null) && InventoryGet(C, "Socks").Asset.Block.includes("ItemVulva")))) return "RemoveClothesForItem";
 
@@ -177,9 +181,9 @@ function InventorySetDifficulty(C, AssetGroup, Difficulty) {
 }
 
 // Returns TRUE if there's already a locked item at a given position
-function InventoryLocked(C, AssetGroup) {
+function InventoryLocked(C, AssetGroup, CheckProperties) {
 	var I = InventoryGet(C, AssetGroup);
-	return ((I != null) && InventoryItemHasEffect(I, "Lock"));
+	return ((I != null) && InventoryItemHasEffect(I, "Lock", CheckProperties));
 }
 
 // Makes the character wear a random item from a group
@@ -233,19 +237,24 @@ function InventoryRemove(C, AssetGroup) {
 
 }
 
-// Returns TRUE if the focused group for a character is blocked and cannot be used
-function InventoryGroupIsBlocked(C) {
+// Returns TRUE if the group for a character is blocked and cannot be used
+function InventoryGroupIsBlocked(C, GroupName = null) {
+
+	if (GroupName == null) {
+		// Default to characters focused group
+		GroupName = C.FocusGroup.Name;
+	}
 
 	// Items can block each other (hoods blocks gags, belts blocks eggs, etc.)
 	for (var E = 0; E < C.Appearance.length; E++) {
-		if (!C.Appearance[E].Asset.Group.Clothing && (C.Appearance[E].Asset.Block != null) && (C.Appearance[E].Asset.Block.includes(C.FocusGroup.Name))) return true;
-		if (!C.Appearance[E].Asset.Group.Clothing && (C.Appearance[E].Property != null) && (C.Appearance[E].Property.Block != null) && (C.Appearance[E].Property.Block.indexOf(C.FocusGroup.Name) >= 0)) return true;
+		if (!C.Appearance[E].Asset.Group.Clothing && (C.Appearance[E].Asset.Block != null) && (C.Appearance[E].Asset.Block.includes(GroupName))) return true;
+		if (!C.Appearance[E].Asset.Group.Clothing && (C.Appearance[E].Property != null) && (C.Appearance[E].Property.Block != null) && (C.Appearance[E].Property.Block.indexOf(GroupName) >= 0)) return true;
 	}
 
 	// If another character is enclosed, items other than the enclosing one cannot be used
 	if ((C.ID != 0) && C.IsEnclose()) {
 		for (var E = 0; E < C.Appearance.length; E++)
-			if ((C.Appearance[E].Asset.Group.Name == C.FocusGroup.Name) && InventoryItemHasEffect(C.Appearance[E], "Enclose"))
+			if ((C.Appearance[E].Asset.Group.Name == GroupName) && InventoryItemHasEffect(C.Appearance[E], "Enclose"))
 				return false;
 		return true;
 	}
@@ -352,6 +361,18 @@ function InventoryLock(C, Item, Lock, MemberNumber) {
 		Item.Property.LockedBy = Lock.Asset.Name;
 		if (MemberNumber != null) Item.Property.LockMemberNumber = MemberNumber;
 		if (Lock.Asset.RemoveTimer > 0) TimerInventoryRemoveSet(C, Item.Asset.Group.Name, Lock.Asset.RemoveTimer);
+		CharacterRefresh(C);
+	}
+}
+
+// Unlocks an item and removes all related properties
+function InventoryUnlock(C, Item) {
+	if (typeof Item === 'string') Item = InventoryGet(C, Item);
+	if (Item && Item.Property && Item.Property.Effect) {
+		Item.Property.Effect.splice(Item.Property.Effect.indexOf("Lock"), 1);
+		delete Item.Property.LockedBy;
+		delete Item.Property.RemoveTimer;
+		delete Item.Property.LockMemberNumber;
 		CharacterRefresh(C);
 	}
 }

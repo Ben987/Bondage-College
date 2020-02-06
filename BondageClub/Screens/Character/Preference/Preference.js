@@ -102,9 +102,7 @@ function PreferenceRun() {
 	DrawCharacter(Player, 50, 50, 0.9);
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
 	if (PreferenceColorPick != "") {
-		ColorPickerDraw(1250, 185, 675, 830, ElementValue(PreferenceColorPick), function (Color) {
-			ElementValue(PreferenceColorPick, Color);
-		});
+		ColorPickerDraw(1250, 185, 675, 830, document.getElementById(PreferenceColorPick));
 	} else {
     	ColorPickerHide();
 		DrawButton(1815, 190, 90, 90, "", "White", "Icons/Chat.png");

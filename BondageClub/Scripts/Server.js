@@ -203,11 +203,11 @@ function ServerValidateProperties(C, Item) {
 		}
 	}
 
-	if ((Item.Property != null) && (Item.Property.Type != null)) {
-		if ((Item.Asset.AllowType == null) || (Item.Asset.AllowType.indexOf(Item.Property.Type) < 0)) {
+	// Removes any type that's not allowed on the item
+	if ((Item.Property != null) && (Item.Property.Type != null))
+		if ((Item.Asset.AllowType == null) || (Item.Asset.AllowType.indexOf(Item.Property.Type) < 0))
 			delete Item.Property.Type;
-		}
-	}
+
 }
 
 // Loads the appearance assets from a server bundle that only contains the main info (no assets)
