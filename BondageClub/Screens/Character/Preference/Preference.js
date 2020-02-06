@@ -94,7 +94,7 @@ function PreferenceRun() {
     DrawButton(500, 552, 64, 64, "", "White", (Player.GameplaySettings && Player.GameplaySettings.DisableAutoRemoveLogin) ? "Icons/Checked.png" : "");
     DrawText(TextGet("ForceFullHeight"), 600, 665, "Black", "Gray");
     DrawButton(500, 632, 64, 64, "", "White", (Player.VisualSettings && Player.VisualSettings.ForceFullHeight) ? "Icons/Checked.png" : "");
-	ElementPosition("InputEmail", 1050, 740, 500);
+	ElementPosition("InputEmail", 1150, 740, 700);
 	MainCanvas.textAlign = "center";
 	DrawButton(500, 712, 250, 64, TextGet("UpdateEmail"), "White", "");
 	DrawBackNextButton(500, 392, 250, 64, TextGet(Player.GameplaySettings.SensDepChatLog), "White", "",
@@ -159,8 +159,10 @@ function PreferenceClick() {
 	if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 712) && (MouseY < 776)) {
 		var Email = ElementValue("InputEmail");
 		var E = /^[a-zA-Z0-9@.!#$%&'*+/=?^_`{|}~-]+$/;
-		if ((Email.match(E) || (Email == "")) && (Email.length <= 100))
-			ServerSend("AccountUpdateEmail", { Email: Email} );
+		if ((Email.match(E) || (Email == "")) && (Email.length <= 100)) {
+			ServerSend("AccountUpdateEmail", {Email: Email});
+			ElementValue("InputEmail", TextGet("UpdateEmailResponse"));
+		}
 	}
 
 	// Preference check boxes
