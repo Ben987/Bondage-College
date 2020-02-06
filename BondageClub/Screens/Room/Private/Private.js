@@ -739,7 +739,7 @@ function PrivateNPCLover() {
 // The NPC love can only reach 60 without a proper relationship, 100 if in a relationship
 function PrivateNPCInteraction(LoveFactor) {
 	if (CurrentCharacter.Love == null) CurrentCharacter.Love = 0;
-	if ((CurrentCharacter.Love < 60) || (CurrentCharacter.IsOwner()) || (CurrentCharacter.IsOwnedByPlayer()) || CurrentCharacter.IsLover || CurrentCharacter.Is || (parseInt(LoveFactor) < 0))
+	if ((CurrentCharacter.Love < 60) || (CurrentCharacter.IsOwner()) || (CurrentCharacter.IsOwnedByPlayer()) || CurrentCharacter.IsLover() || (parseInt(LoveFactor) < 0))
 		NPCLoveChange(CurrentCharacter, LoveFactor);
 }
 

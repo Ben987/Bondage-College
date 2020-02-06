@@ -14,6 +14,7 @@ var DialogProgressSkill = 0;
 var DialogProgressLastKeyPress = 0;
 var DialogProgressChallenge = 0;
 var DialogInventory = [];
+var DialogInventoryBlocked = [];
 var DialogInventoryOffset = 0;
 var DialogFocusItem = null;
 var DialogFocusSourceItem = null;
@@ -184,9 +185,14 @@ function DialogInventoryAdd(C, NewInv, NewInvWorn) {
 	// Make sure we do not add loveronly items in case of characters not in love with
 	if (NewInv.Asset.LoverOnly && !C.IsLoverOfPlayer() && NewInvWorn != true) return;
 
-	// Make sure we do not duplicate the item
+	// Make sure we do not duplicate the non-blocked item
 	for (var I = 0; I < DialogInventory.length; I++)
 		if ((DialogInventory[I].Asset.Group.Name == NewInv.Asset.Group.Name) && (DialogInventory[I].Asset.Name == NewInv.Asset.Name))
+			return;
+
+	// Make sure we do not duplicate the blocked item
+	for (var I = 0; I < DialogInventoryBlocked.length; I++)
+		if ((DialogInventoryBlocked[I].Asset.Group.Name == NewInv.Asset.Group.Name) && (DialogInventoryBlocked[I].Asset.Name == NewInv.Asset.Name))
 			return;
 
 	// Creates a new dialog inventory item
@@ -199,7 +205,8 @@ function DialogInventoryAdd(C, NewInv, NewInvWorn) {
 	// Loads the correct icon and push the item in the array
 	if (NewInvWorn && InventoryItemHasEffect(NewInv, "Lock", true)) DI.Icon = "Locked";
 	if (!NewInvWorn && InventoryItemHasEffect(NewInv, "Lock", true)) DI.Icon = "Unlocked";
-	DialogInventory.push(DI);
+	if ((NewInvWorn) || !InventoryIsPermissionBlocked(C, NewInv.Asset.Name, NewInv.Asset.Group.Name)) DialogInventory.push(DI);
+	else DialogInventoryBlocked.push(DI);
 
 }
 
@@ -251,35 +258,40 @@ function DialogInventoryBuild(C) {
 
 		// First, we add anything that's currently equipped
 		var Item = null;
+		var CurItem = null;
 		for(var A = 0; A < C.Appearance.length; A++)
 			if ((C.Appearance[A].Asset.Group.Name == C.FocusGroup.Name) && C.Appearance[A].Asset.DynamicAllowInventoryAdd()) {
 				DialogInventoryAdd(C, C.Appearance[A], true, true);
+				CurItem = C.Appearance[A];
 				break;
 			}
 
+		// In item permission mode, we add all the enable items, except the one already on
 		if (DialogItemPermissionMode) {
 			for (var A = 0; A < Asset.length; A++)
 				if (Asset[A].Enable && (Asset[A].Wear || Asset[A].IsLock) && Asset[A].Group.Name == C.FocusGroup.Name)
-					if (!DialogInventory.some(D => (D.Asset.Group.Name == Asset[A].Group.Name) && (D.Asset.Name == Asset[A].Name)))
-						DialogInventory.push({
-							Asset: Asset[A],
-							Worn: false,
-							Icon: ""
-						});
-			DialogMenuButtonBuild(C);
-			return;
+					if ((CurItem == null) || (CurItem.Asset.Name != Asset[A].Name) || (CurItem.Asset.Group.Name != Asset[A].Group.Name))
+						DialogInventory.push({ Asset: Asset[A], Worn: false, Icon: "" });
+		} else {
+
+			// Second, we add everything from the victim inventory
+			DialogInventoryBlocked = [];
+			for(var A = 0; A < C.Inventory.length; A++)
+				if ((C.Inventory[A].Asset != null) && (C.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && C.Inventory[A].Asset.DynamicAllowInventoryAdd())
+					DialogInventoryAdd(C, C.Inventory[A], false);
+
+			// Third, we add everything from the player inventory if the player isn't the victim
+			if (C.ID != 0)
+				for(var A = 0; A < Player.Inventory.length; A++)
+					if ((Player.Inventory[A].Asset != null) && (Player.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && Player.Inventory[A].Asset.DynamicAllowInventoryAdd())
+						DialogInventoryAdd(C, Player.Inventory[A], false);
+
+			// Adds the blocked items at the very end of the list
+			DialogInventory = DialogInventory.concat(DialogInventoryBlocked);
+
 		}
 
-		// Second, we add everything from the victim inventory
-		for(var A = 0; A < C.Inventory.length; A++)
-			if ((C.Inventory[A].Asset != null) && (C.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && C.Inventory[A].Asset.DynamicAllowInventoryAdd())
-				DialogInventoryAdd(C, C.Inventory[A], false);
-
-		// Third, we add everything from the player inventory if the player isn't the victim
-		if (C.ID != 0)
-			for(var A = 0; A < Player.Inventory.length; A++)
-				if ((Player.Inventory[A].Asset != null) && (Player.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && Player.Inventory[A].Asset.DynamicAllowInventoryAdd())
-					DialogInventoryAdd(C, Player.Inventory[A], false);
+		// Rebuilds the dialog menu and it's buttons
 		DialogMenuButtonBuild(C);
 
 	}
@@ -481,10 +493,12 @@ function DialogMenuButtonClick() {
 					if ((Item != null) && (Item.Asset.AllowLock != null)) {
 						DialogInventoryOffset = 0;
 						DialogInventory = [];
+						DialogInventoryBlocked = [];
 						DialogItemToLock = Item;
 						for (var A = 0; A < Player.Inventory.length; A++)
 							if ((Player.Inventory[A].Asset != null) && Player.Inventory[A].Asset.IsLock)
 								DialogInventoryAdd(C, Player.Inventory[A], false);
+						DialogInventory = DialogInventory.concat(DialogInventoryBlocked);
 					}
 				} else {
 					DialogItemToLock = null;
@@ -625,18 +639,19 @@ function DialogItemClick(ClickItem) {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	var CurrentItem = InventoryGet(C, C.FocusGroup.Name);
 
-	// permission mode allow/block items
-	if (C.ID == 0 && DialogItemPermissionMode) {
+	// In permission mode, the player can allow or block items for herself
+	if ((C.ID == 0) && DialogItemPermissionMode) {
 		if (CurrentItem && (CurrentItem.Asset.Name == ClickItem.Asset.Name)) return;
-		if (Player.BlockItems.some(B => B.Name == ClickItem.Asset.Name && B.Group == ClickItem.Asset.Group.Name)) {
+		if (InventoryIsPermissionBlocked(Player, ClickItem.Asset.Name, ClickItem.Asset.Group.Name))
 			Player.BlockItems = Player.BlockItems.filter(B => B.Name != ClickItem.Asset.Name || B.Group != ClickItem.Asset.Group.Name);
-		} else {
+		else
 			Player.BlockItems.push({ Name: ClickItem.Asset.Name, Group: ClickItem.Asset.Group.Name });
-		}
 		ServerSend("AccountUpdate", { BlockItems: Player.BlockItems });
 		return;
 	}
-	if (C.BlockItems && C.BlockItems.some(B => B.Name == ClickItem.Asset.Name && B.Group == ClickItem.Asset.Group.Name)) return; // item is blocked
+
+	// If the item is blocked for that character, we do not use it
+	if (InventoryIsPermissionBlocked(C, ClickItem.Asset.Name, ClickItem.Asset.Group.Name)) return;
 
 	// If we must apply a lock to an item
 	if (DialogItemToLock != null) {
@@ -907,7 +922,7 @@ function DialogDrawItemMenu(C) {
 		for (var I = DialogInventoryOffset; (I < DialogInventory.length) && (I < DialogInventoryOffset + 12); I++) {
 			var Item = DialogInventory[I];
 			var Hover = (MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275) && !CommonIsMobile;
-			var Block = C.BlockItems && C.BlockItems.some(B => B.Name == Item.Asset.Name && B.Group == Item.Asset.Group.Name)
+			var Block = InventoryIsPermissionBlocked(C, Item.Asset.Name, Item.Asset.Group.Name);
 			DrawRect(X, Y, 225, 275, (DialogItemPermissionMode && C.ID == 0) ? 
 				(DialogInventory[I].Worn ? "gray" : Block ? Hover ? "red" : "pink" : Hover ? "green" : "lime") : 
 				((Hover && !Block) ? "cyan" : DialogInventory[I].Worn ? "pink" : Block ? "gray" : "white"));
