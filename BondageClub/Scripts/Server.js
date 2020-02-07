@@ -360,6 +360,7 @@ function ServerPrivateCharacterSync() {
 function ServerAccountQueryResult(data) {
 	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.Query != null) && (typeof data.Query === "string") && (data.Result != null)) {
 		if (data.Query == "OnlineFriends") FriendListLoadFriendList(data.Result);
+		if (data.Query == "EmailStatus") ElementValue("InputEmail", TextGet(data.Result ? "UpdateEmailLinked" : "UpdateEmailEmpty"));
 	}
 }
 

@@ -24,6 +24,7 @@ function PreferenceLoad() {
 	if (!CommonIsColor(Player.LabelColor)) Player.LabelColor = "#ffffff";
 	ElementCreateInput("InputCharacterLabelColor", "text", Player.LabelColor);
 	ElementCreateInput("InputEmail", "text", "", "100");
+	ServerSend("AccountQuery", { Query: "EmailStatus" });
 
 	// If the user never set the chat settings before, construct them to replicate the default behavior
 	if (!Player.ChatSettings) Player.ChatSettings = {
@@ -94,7 +95,7 @@ function PreferenceRun() {
     DrawButton(500, 552, 64, 64, "", "White", (Player.GameplaySettings && Player.GameplaySettings.DisableAutoRemoveLogin) ? "Icons/Checked.png" : "");
     DrawText(TextGet("ForceFullHeight"), 600, 665, "Black", "Gray");
     DrawButton(500, 632, 64, 64, "", "White", (Player.VisualSettings && Player.VisualSettings.ForceFullHeight) ? "Icons/Checked.png" : "");
-	ElementPosition("InputEmail", 1150, 740, 700);
+	ElementPosition("InputEmail", 1150, 740, 750);
 	MainCanvas.textAlign = "center";
 	DrawButton(500, 712, 250, 64, TextGet("UpdateEmail"), "White", "");
 	DrawBackNextButton(500, 392, 250, 64, TextGet(Player.GameplaySettings.SensDepChatLog), "White", "",

@@ -34,4 +34,6 @@ BlindDisableExamine,Disable examining people when blind
 DisableAutoRemoveLogin,Keep all of your restraints when relogging
 ForceFullHeight,Display all characters at maximum height
 UpdateEmail,Update Email
+UpdateEmailEmpty,"No email saved, write here to add one."
+UpdateEmailLinked,"An email is linked, write here to update it."
 UpdateEmailResponse, Your email has been updated !
