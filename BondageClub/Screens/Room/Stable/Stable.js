@@ -458,7 +458,6 @@ function StablePlayerTrainingPass(Behavior) {
 		} else if (PassSelection < 3) {
 			StablePlayerTrainingBehavior -= 2;
 			StablePonyStraightens();
-			CharacterRefresh(Player);
 			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingStraightenIntro");
 			StableTrainer.Stage = "StableTrainingStraighten";
 		} else if (PassSelection < 4) {
