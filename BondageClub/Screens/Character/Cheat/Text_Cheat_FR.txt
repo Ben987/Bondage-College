@@ -11,4 +11,6 @@ Prévenir les kidnappings aléatoires
 Skip the D/s trial periods
 Sauter les périodes d'essai D/s
 Automatically show NPC traits
-Voir les caractéristiques des NPC automatiquement
+Voir les caractéristiques des NPCs automatiquement
+No love decay for NPC over time
+Le niveau d'attirance des NPCs ne descend pas avec le temps

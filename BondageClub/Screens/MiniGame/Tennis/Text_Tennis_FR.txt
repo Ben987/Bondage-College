@@ -1,0 +1,28 @@
+﻿Starts in
+Commence dans
+Send the tennis ball past your opponent.
+Envoyez la balle de tennis derrière votre adversaire. //
+Don't let the ball slip through your side.
+Ne laissez pas la balle passer derrière vous.
+0
+0
+15
+15
+30
+30
+40
+40
+Deuce
+Deuce
+Advantage
+Avantage
+Winner
+Gagnant
+Victory!  Perfect game.
+Victoire! Jeu parfait.
+You won the game.
+Vous avez gagné le match.
+You lost the game.
+Vous avez perdu le match.
+Click on yourself to continue.
+Cliquez sur vous-même pour continuer.

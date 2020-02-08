@@ -188,11 +188,11 @@ function ServerValidateProperties(C, Item) {
 		}
 	}
 
-	if ((Item.Property != null) && (Item.Property.Type != null)) {
-		if ((Item.Asset.AllowType == null) || (Item.Asset.AllowType.indexOf(Item.Property.Type) < 0)) {
+	// Removes any type that's not allowed on the item
+	if ((Item.Property != null) && (Item.Property.Type != null))
+		if ((Item.Asset.AllowType == null) || (Item.Asset.AllowType.indexOf(Item.Property.Type) < 0))
 			delete Item.Property.Type;
-		}
-	}
+
 }
 
 // Loads the appearance assets from a server bundle that only contains the main info (no assets)
@@ -245,7 +245,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 	for (var A = 0; A < Bundle.length; A++) {
 
 		// Skip blocked items
-		if (Array.isArray(C.BlockItems) && C.BlockItems.some(B => B.Name == Bundle[A].Name && B.Group == Bundle[A].Group)) continue;
+		if (InventoryIsPermissionBlocked(C, Bundle[A].Name, Bundle[A].Group)) continue;
 
 		// Cycles in all assets to find the correct item to add (do not add )
 		for (var I = 0; I < Asset.length; I++)

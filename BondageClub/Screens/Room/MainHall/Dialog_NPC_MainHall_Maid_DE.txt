@@ -163,19 +163,19 @@ Dann vergiss es. (Dialog beenden.)
 Why are you taking my clothes?
 Warum nimmst du mir meine Kleidung weg?
 ###_NPC
-(She frowns.)  Your clothes are confiscated for the next hour.  This humiliation might teach you to respect your owner will.
+(She frowns.)  Your clothes are confiscated for the next hour.  This humiliation might teach you to respect your owner's will.
 (Sie runzelt die Stirn.) Deine Kleidung wird eine Stunde lang beschlagnahmt. Diese Demütigung sollte dir beibringen, dem Willen deiner Besitzerin zu folgen.
 ###_PLAYER
 When can I dress back?
 Wann darf ich mich wieder anziehen?
 ###_NPC
-Your clothes are confiscated for the next hour.  This humiliation might teach you to respect your owner will.
+Your clothes are confiscated for the next hour.  This humiliation might teach you to respect your owner's will.
 Deine Kleidung wird eine Stunde lang beschlagnahmt. Diese Demütigung sollte dir beibringen, dem Willen deiner Besitzerin zu folgen.
 ###_PLAYER
 I know I'm a bad submissive.
 Ich weiß, ich bin eine schlechte Sklavin.
 ###_NPC
-(She sighs.)  Your clothes are confiscated for the next hour.  This humiliation might teach you to respect your owner will.
+(She sighs.)  Your clothes are confiscated for the next hour.  This humiliation might teach you to respect your owner's will.
 (Sie seufzt.) Deine Kleidung wird eine Stunde lang beschlagnahmt. Diese Demütigung sollte dir beibringen, dem Willen deiner Besitzerin zu folgen.
 ###_PLAYER
 Very well, thank you.  (Leave her.)

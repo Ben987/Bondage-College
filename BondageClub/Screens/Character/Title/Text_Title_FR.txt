@@ -1,0 +1,44 @@
+﻿Select your displayed title
+Sélectionnez votre titre à affiché
+None
+Aucun
+Mistress
+Maîtresse
+Club Slave
+Esclave du Club
+Head Maid
+Maîtresse Servante
+Maid
+Servante
+Master Kidnapper
+Ace du Kidnapping
+Kidnapper
+Kidnappeuse
+Patient
+Patiente
+Permanent Patient
+Patiente permanente
+Escaped Patient
+Patiente évadée
+Nurse
+Infirmière
+Doctor
+Médecin
+College Student
+Étudiante
+Foal
+Poulain
+Farm Horse
+Cheval de Ferme
+Cold Blood Horse
+Cheval à Sang-froid
+Warm Blood Horse
+Cheval à Sang-tiède
+Hot Blood Horse
+Cheval à Sang-chaud
+Wild Mustang
+Mustang Sauvage
+Shining Unicorn
+Licorne Scintillante
+Flying Pegasus
+Pégase Volant

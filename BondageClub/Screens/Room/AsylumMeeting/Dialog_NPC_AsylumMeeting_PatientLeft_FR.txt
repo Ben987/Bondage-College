@@ -1,0 +1,167 @@
+﻿###_NPC
+Get that gag off or stop talking, you're driving me nuts.
+Enlevez ce bâillon ou arrêtez de parler, vous me rendez folle.
+What's up doc?
+Quoi de neuf doc?
+What's up nurse?
+Quoi de neuf infirmière?
+Hey, it's the new nurse!
+Hé, c'est la nouvelle infirmière!
+Yo DialogPlayerName.  You got in trouble again?  Do you need anything?
+Hé DialogPlayerName. Vous avez encore des ennuis? Avez-vous besoin de quelque chose?
+Hey DialogPlayerName.  What do you want?
+Salut DialogPlayerName. Qu'est-ce que tu veux?
+Hey girls!  (She looks around the meeting room for approval.)  It's the new patient.
+Hey les filles! (Elle cherche des regards approbateurs dans la salle de réunion.) C'est la nouvelle patiente.
+What do you want?
+Qu'est-ce que tu veux?
+###_PLAYER
+Who are you?
+Qui êtes-vous?
+###_NPC
+I'm surprised you don't know, I'm DialogCharacterName.  I'm the girl you talk to if you need something.
+Je suis surpris que vous ne sachiez pas, je suis DialogCharacterName. Je suis la fille à qui tu parles si tu as besoin de quelque chose.
+###_PLAYER
+I need something from you.
+J'ai besoin de quelque chose de toi.
+###_NPC
+I'm listening.  What do you need?
+J'écoute. De quoi avez-vous besoin?
+You should know me, I'm DialogCharacterName.  I'm the best patient around.  (She smirks.)
+Vous devriez me connaître, je suis DialogCharacterName. Je suis la meilleure patiente du coin. (Elle sourit.)
+###_PLAYER
+(Struggle in your restraints.)
+(Luttez dans vos contraintes.)
+###_NPC
+I can see that you need help, but what's in there for me?  Give me 10$ and I'll help you out.
+Je peux voir que vous avez besoin d'aide, mais que puis-je en retirer? Donnez-moi 10$ et je vous aiderai.
+(She shakes her head no.)
+(Elle secoue la tête non.)
+###_PLAYER
+It's time for your treatment.
+Il est temps pour votre traitement.
+###_NPC
+It is?  (She thinks.)  Look!  A patient is trying to escape!  (She points behind you.)
+C'est le cas? (Elle réfléchit.) Regardez! Une patiente essaie de s'échapper! (Elle pointe derrière vous.)
+###_PLAYER
+I must go.  (Leave her.)
+Je dois y aller. (La quitter.)
+What can you provide?
+Que pouvez-vous me fournir?
+###_NPC
+What do you need?  A smoke?  A vibrator?  Some help with a jacket?  I'm here for you, and your money.
+De quoi avez-vous besoin? Une clope? Un vibromasseur? Un peu d'aide avec une veste? Je suis là pour toi et ton argent.
+###_PLAYER
+I want a cigarette.
+Je veux une cigarette.
+###_NPC
+Sure, the price is 1$ per smoke, do you want one?
+Bien sûr, le prix est de 1 $ par clope, en voulez-vous une?
+###_PLAYER
+I want a vibrator.
+Je veux un vibromasseur.
+###_NPC
+I have a vibrating wand I can sell you.  It's used and it's not cheap, it goes for 80$.  Do you want it?
+J'ai une baguette vibrante que je peux vous vendre. Elle est utilisée et elle n'est pas bon marché, ça coûte 80 $. Est-ce que tu la veux?
+###_PLAYER
+I want to get out of here.
+Je veux sortir d'ici.
+###_NPC
+I can't help you there.  You can always try to fight your way out, but you'll get in trouble later.
+Je ne peux pas t'aider avec ça. Vous pouvez toujours essayer de vous frayer un chemin en vous battant, mais vous aurez des ennuis plus tard.
+###_PLAYER
+Can I tie you up?
+Puis-je vous attacher?
+###_NPC
+Forget it girl.  I'm here to do business, not to struggle.
+Oublie ça fille. Je suis ici pour faire des affaires, pas pour lutter.
+###_PLAYER
+Will you tie me up?
+Voulez-vous m'attacher?
+###_NPC
+Bondage is free but freedom has a price.  How tight do you want it?
+La servitude est gratuite mais la liberté a un prix. À quel point voulez-vous être libre?
+###_PLAYER
+I have everything I need.
+J'ai tout ce dont j'ai besoin.
+###_NPC
+Alright.  You know where to find me if you need something else.
+Bien. Vous savez où me trouver si vous avez besoin d'autre chose.
+###_PLAYER
+Alright.  (Pay her 1$ and smoke.)
+D'accord. (Lui payer 1 $ et fumez.)
+###_NPC
+(You smoke with her for a while, it's kind of relaxing.)  Anything else you need?
+(Vous fumez avec elle pendant un moment, c'est un peu relaxant.) D'autre chose dont vous avez besoin?
+###_PLAYER
+I've changed my mind.
+J'ai changé d'avis.
+###_NPC
+Whatever!  Anything else you need?
+Peu importe! Vous avez besoin d'autre chose?
+###_PLAYER
+It's a deal!  (Pay her 80$)
+Marché conclu! (Lui payer 80 $)
+###_NPC
+(She sells you the used vibrating wand and grins.)  Have fun!  I'm sure you'll get popular with that toy.
+(Elle vous vend la baguette vibrante et sourit.) Amusez-vous! Je suis sûr que vous allez devenir populaire avec ce jouet.
+###_PLAYER
+No way!  80$ for a used vibrator!
+En aucun temps! 80$ pour un vibrateur d'occasion!
+###_NPC
+Don't take it then.  I'm sure you'll come crawling back later to get it.
+Ne le prenez pas alors. Je suis sûr que vous reviendrez plus tard pour l'obtenir.
+###_PLAYER
+Can you do it for free?
+Pouvez-vous le faire gratuitement?
+###_NPC
+No way.  You pay or you stay like that.
+Non. Vous payez ou vous restez comme ça.
+###_PLAYER
+(Nod yes.)
+(Hocher la tête.)
+###_NPC
+It's a pleasure to do business with you.  (She releases you and smirks.)  Anything else you need?
+C'est un plaisir de faire affaire avec vous. (Elle vous libère et sourit.) Autre chose dont vous avez besoin?
+###_PLAYER
+(Whimper and beg.)
+(Gémir et supplier.)
+###_NPC
+Stop begging.  You pay or you stay like that.
+Arrêtez de supplier. Vous payez ou vous restez comme ça.
+###_PLAYER
+(Turn around.)
+(Se retourner.)
+###_NPC
+Sucker!  (She runs like hell and disappears in the halls.)
+Ventouse! (Elle court aussi vite qu'elle le peut et disparaît dans les couloirs.)
+###_PLAYER
+What?  Where?
+Quoi? Où?
+I'm not falling for that.
+Je ne me ferai pas avoir par ça.
+###_NPC
+Catch me then!  (She runs like hell and disappears in the halls.)
+Attrape-moi alors! (Elle court aussi vite qu'elle le peut et disparaît dans les couloirs.)
+###_PLAYER
+(Leave and report her behavior.)
+(Quitter et signaler son comportement.)
+(Leave and don't report her.)
+(Parter sans la dénoncer.)
+Nothing too tight please.
+Rien de trop serré s'il vous plaît.
+###_NPC
+Chicken!  (She uses a few items on you and makes chicken sounds.)
+Poule mouillée! (Elle utilise quelques objets sur vous et fait des sons de poulet.)
+###_PLAYER
+Some secure bondage I guess.
+Des contraintes bien serrées, je suppose.
+###_NPC
+Alright!  (She uses some items on you and smirks.)
+D'accord! (Elle utilise des objets sur vous et sourit.)
+###_PLAYER
+I can take it.  Do your worst.
+Je peux en prendre. Faites de votre pire.
+###_NPC
+Enjoy your struggling.  (She uses lots of items on you and grins.)
+Profitez de votre situation. (Elle utilise beaucoup d'articles sur vous et sourit.)
