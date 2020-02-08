@@ -457,7 +457,7 @@ function StablePlayerTrainingPass(Behavior) {
 			StableTrainer.Stage = "StableTrainingScratching";
 		} else if (PassSelection < 3) {
 			StablePlayerTrainingBehavior -= 2;
-			CharacterAppearanceNextItem(Player, "HairBack");
+			StablePonyStraightens();
 			CharacterRefresh(Player);
 			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingStraightenIntro");
 			StableTrainer.Stage = "StableTrainingStraighten";
@@ -809,7 +809,14 @@ function StableTrainerWhipEnd() {
 }
 
 function StablePonyStraightens() {
-	CharacterAppearanceNextItem(StablePony, "HairBack");
+	var Color = CharacterAppearanceGetCurrentValue(Player,"HairBack", "Color");
+	CharacterAppearanceNextItem(Player, "HairBack");
+	for (var A = 0; A < Player.Appearance.length;A++){
+		if (Player.Appearance[A].Asset.Group.Name == "HairBack"){
+			Player.Appearance[A].Color = Color;
+		}
+	}
+	CharacterRefresh(Player);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////
