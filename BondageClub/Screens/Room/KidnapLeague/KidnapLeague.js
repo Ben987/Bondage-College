@@ -53,6 +53,7 @@ function KidnapLeagueClick() {
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) {
 		if ((InventoryGet(Player, "Cloth") == null) && (KidnapPlayerCloth != null)) {
 			InventoryWear(Player, KidnapPlayerCloth.Asset.Name, "Cloth", KidnapPlayerCloth.Color);
+			if (KidnapPlayerClothAccessory != null) InventoryWear(Player, KidnapPlayerClothAccessory.Asset.Name, "ClothAccessory", KidnapPlayerClothAccessory.Color);
 			if (KidnapPlayerClothLower != null) InventoryWear(Player, KidnapPlayerClothLower.Asset.Name, "ClothLower", KidnapPlayerClothLower.Color);
 		}
 		CommonSetScreen("Room", "MainHall");
@@ -146,10 +147,12 @@ function KidnapLeagueResetTrainer() {
 	CharacterRelease(KidnapLeagueTrainer);
 	if ((InventoryGet(Player, "Cloth") == null) && (KidnapPlayerCloth != null)) {
 		InventoryWear(Player, KidnapPlayerCloth.Asset.Name, "Cloth", KidnapPlayerCloth.Color);		
+		if (KidnapPlayerClothAccessory != null) InventoryWear(Player, KidnapPlayerClothAccessory.Asset.Name, "ClothAccessory", KidnapPlayerClothAccessory.Color);
 		if (KidnapPlayerClothLower != null) InventoryWear(Player, KidnapPlayerClothLower.Asset.Name, "ClothLower", KidnapPlayerClothLower.Color);
 	}
 	if ((InventoryGet(KidnapLeagueTrainer, "Cloth") == null) && (KidnapOpponentCloth != null)) {
 		InventoryWear(KidnapLeagueTrainer, KidnapOpponentCloth.Asset.Name, "Cloth", KidnapOpponentCloth.Color);
+		if (KidnapOpponentClothAccessory != null) InventoryWear(KidnapLeagueTrainer, KidnapOpponentClothAccessory.Asset.Name, "ClothAccessory", KidnapOpponentClothAccessory.Color);
 		if (KidnapOpponentClothLower != null) InventoryWear(KidnapLeagueTrainer, KidnapOpponentClothLower.Asset.Name, "ClothLower", KidnapOpponentClothLower.Color);
 	}
 }
@@ -228,10 +231,12 @@ function KidnapLeagueRandomSurrender() {
 function KidnapLeagueRandomEnd() {
 	if ((InventoryGet(Player, "Cloth") == null) && (KidnapPlayerCloth != null)) {
 		InventoryWear(Player, KidnapPlayerCloth.Asset.Name, "Cloth", KidnapPlayerCloth.Color);		
+		if (KidnapPlayerClothAccessory != null) InventoryWear(Player, KidnapPlayerClothAccessory.Asset.Name, "ClothAccessory", KidnapPlayerClothAccessory.Color);
 		if (KidnapPlayerClothLower != null) InventoryWear(Player, KidnapPlayerClothLower.Asset.Name, "ClothLower", KidnapPlayerClothLower.Color);
 	}
 	if ((InventoryGet(KidnapLeagueRandomKidnapper, "Cloth") == null) && (KidnapOpponentCloth != null)) {
 		InventoryWear(KidnapLeagueRandomKidnapper, KidnapOpponentCloth.Asset.Name, "Cloth", KidnapOpponentCloth.Color);
+		if (KidnapOpponentClothAccessory != null) InventoryWear(KidnapLeagueRandomKidnapper, KidnapOpponentClothAccessory.Asset.Name, "ClothAccessory", KidnapOpponentClothAccessory.Color);
 		if (KidnapOpponentClothLower != null) InventoryWear(KidnapLeagueRandomKidnapper, KidnapOpponentClothLower.Asset.Name, "ClothLower", KidnapOpponentClothLower.Color);
 	}
 	DialogLeave();
@@ -265,6 +270,7 @@ function KidnapLeagueRandomActivityLaunch() {
 		KidnapLeagueRandomActivityCount = 0;
 		if ((InventoryGet(Player, "Cloth") == null) && (KidnapPlayerCloth != null)) {
 			InventoryWear(Player, KidnapPlayerCloth.Asset.Name, "Cloth", KidnapPlayerCloth.Color);		
+			if (KidnapPlayerClothAccessory != null) InventoryWear(Player, KidnapPlayerClothAccessory.Asset.Name, "ClothAccessory", KidnapPlayerClothAccessory.Color);
 			if (KidnapPlayerClothLower != null) InventoryWear(Player, KidnapPlayerClothLower.Asset.Name, "ClothLower", KidnapPlayerClothLower.Color);
 		}
 		if (!InventoryCharacterHasOwnerOnlyRestraint(Player)) {

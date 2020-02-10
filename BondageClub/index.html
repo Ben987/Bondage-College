@@ -17,6 +17,7 @@
 <script src="Scripts/Common.js"></script>
 <script src="Scripts/Drawing.js"></script>
 <script src="Scripts/Timer.js"></script>
+<script src="Scripts/AfkTimer.js"></script>
 <script src="Scripts/GameLog.js"></script>
 <script src="Scripts/Reputation.js"></script>
 <script src="Scripts/Skill.js"></script>
@@ -188,6 +189,15 @@
 	OK - Color picker improvements, allow refresh when typing, two color palettes (vsan)
 	OK - Button to unlock without removing the item (Eveferox)
 	DISABLED - WebGL draw for better speed when colorizing (Sekkmer)
+	OK - New backgrounds and sounds (aldarris)
+	BUG SENT - New Lovers system (Atasly)
+	TEST - New sailor clothes (wildsj)
+	TEST - New plain dildo (wildsj)
+	TEST - stable hair color (Atasly)
+	TEST - Auto AFK after 5 minutes (EveFerox)
+
+	TO DO - Wedding Dress
+	TO DO - Wedding Tree Dialog for NPCs in private room (1 week between each stage)
 	
 	TO DO - Mobile Improvements & Quality of Life (Survey First)
 		- Change the chat room button layout on mobile, they are too close to each other
@@ -208,6 +218,7 @@
 		5. Be Supple (Jackets & Suits, Belts, Chastity Items, Gags without harness, Armbinders, Locking Boots, Hoods) - Guess the right number between 1 and 100, a few tries, tells you if higher or lower	
 		6. Pick the Lock (For anything that locks or when a lock is added) - Precision Game - Don't touch the walls that are scrolling toward you
 
+	OK - Move blocked items to the end of the list (Sekkmer idea)
 	TO DO - Proof Read
 	TO DO - Patreon Import/Update
 
@@ -216,7 +227,7 @@
 // When the code is loaded, we start the game engine
 window.onload = function() {
 	//CheatImport();
-	ServerURL = "https://bondage-club-server.herokuapp.com/";
+	//ServerURL = "https://bondage-club-server.herokuapp.com/";
 	CommonIsMobile = CommonDetectMobile();
 	TranslationLoad();
 	DrawLoad();

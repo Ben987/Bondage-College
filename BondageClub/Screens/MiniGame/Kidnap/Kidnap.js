@@ -5,8 +5,10 @@ var KidnapBackground = "KidnapLeagueDark";
 var KidnapReturnFunction = "";
 var KidnapOpponent = null;
 var KidnapPlayerCloth = null;
+var KidnapPlayerClothAccessory = null;
 var KidnapPlayerClothLower = null;
 var	KidnapOpponentCloth = null;
+var	KidnapOpponentClothAccessory = null;
 var	KidnapOpponentClothLower = null;
 var KidnapTimer = 0;
 var KidnapMode = "";
@@ -112,6 +114,7 @@ function KidnapUpperHandMoveAvailable(MoveType, DoMove) {
 		if (DoMove) {
 			InventoryRemove(KidnapUpperHandVictim, "Cloth");
 			InventoryRemove(KidnapUpperHandVictim, "ClothLower");
+			InventoryRemove(KidnapUpperHandVictim, "ClothAccessory");
 		}
 		return true;
 	}
@@ -125,9 +128,11 @@ function KidnapUpperHandMoveAvailable(MoveType, DoMove) {
 	// If we need to check to dress back
 	var C = (KidnapUpperHandVictim.ID == 0) ? KidnapOpponent : Player;
 	var Cloth = (KidnapUpperHandVictim.ID == 0) ? KidnapOpponentCloth : KidnapPlayerCloth;
+	var ClothAccessory = (KidnapUpperHandVictim.ID == 0) ? KidnapOpponentClothAccessory : KidnapPlayerClothAccessory;
 	var ClothLower = (KidnapUpperHandVictim.ID == 0) ? KidnapOpponentClothLower : KidnapPlayerClothLower;
 	if ((MoveType == 4) && (InventoryGet(C, "Cloth") == null) && (Cloth != null)) {
 		if (DoMove) InventoryWear(C, Cloth.Asset.Name, "Cloth", Cloth.Color);
+		if (DoMove && (ClothAccessory != null)) InventoryWear(C, ClothAccessory.Asset.Name, "ClothAccessory", ClothAccessory.Color);
 		if (DoMove && (ClothLower != null)) InventoryWear(C, ClothLower.Asset.Name, "ClothLower", ClothLower.Color);
 		return true;
 	}
@@ -268,8 +273,10 @@ function KidnapStart(Opponent, Background, Difficulty, ReturnFunction) {
 	KidnapVictory = false;
 	KidnapReturnFunction = ReturnFunction;
 	KidnapPlayerCloth = InventoryGet(Player, "Cloth");
+	KidnapPlayerClothAccessory = InventoryGet(Player, "ClothAccessory");
 	KidnapPlayerClothLower = InventoryGet(Player, "ClothLower");
 	KidnapOpponentCloth = InventoryGet(Opponent, "Cloth");
+	KidnapOpponentClothAccessory = InventoryGet(Opponent, "ClothAccessory");
 	KidnapOpponentClothLower = InventoryGet(Opponent, "ClothLower");
 	KidnapOpponent = Opponent;
 	KidnapBackground = Background;
