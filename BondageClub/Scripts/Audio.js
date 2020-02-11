@@ -27,7 +27,6 @@ function AudioDialogStop() {
 
 // Takes a data dictionary content and sends the related audio mp3 to be played
 function AudioPlayContent(data) {
-	
 	// Exits right away if we are missing content data
 	if (!Player.AudioSettings || !Player.AudioSettings.PlayItem || (Player.AudioSettings.Volume == 0)) return;
 	if (!data.Dictionary || !data.Dictionary.length) return;
@@ -35,7 +34,9 @@ function AudioPlayContent(data) {
 	var audioFile = "";
 
 	// Instant actions can trigger a sound depending on the asset
-	if (data.Content == "ActionUse") {
+	if (data.Content == "ActionAddLock") {
+		audioFile = "Audio/LockSmall.mp3";
+	} else if (data.Content == "ActionUse" || data.Content == "ActionSwap" || data.Content == "SlaveCollarChangeType") {
 		noiseLevelModifier += 3; //constant vibration volume level
 		var NextAsset = data.Dictionary.find(function (el) {return el.Tag == "NextAsset";});
 		if (!NextAsset || !NextAsset.AssetName) return;
@@ -62,6 +63,33 @@ function AudioPlayContent(data) {
 		} else {
 			switch (NextAsset.AssetName) {
 				case "VibratingWand" : audioFile = "Audio/Wand.mp3"; break;
+				case "Zipties" : audioFile = "Audio/ZipTie.mp3"; break;
+				case "DuctTape" : audioFile = "Audio/DuctTape18.mp3"; break;
+				case "BurlapSack" : audioFile = "Audio/Bag.mp3"; break;
+				case "Manacles":
+				case "FullBodyShackles": audioFile = "Audio/ChainLong.mp3"; break;
+				case "WoodenBox":
+				case "SmallWoodenBox":
+				case "Cage":
+				case "LowCage":
+				case "TheDisplayFrame":
+				case "HighSecurityCollar": audioFile = "Audio/LockLarge.mp3"; break;
+				case "MetalCuffs":
+				case "ToeCuffs": audioFile = "Audio/LockSmall.mp3"; break;
+				case "WristShackles":
+				case "AnkleShackles":
+				case "OrnateCollar":
+				case "OrnateLegCuffs":
+				case "OrnateAnkleCuffs":
+				case "OrnateCuffs":
+				case "OrnateChastityBelt":
+				case "OrnateChastityBra":
+				case "MetalChastityBelt":
+				case "MetalChastityBra":
+				case "PolishedChastityBelt":
+				case "PolishedChastityBra":
+				case "SteelChastityPanties":
+				case "SteelPostureCollar": audioFile = "Audio/CuffsMetal.mp3"; break;
 				default: return;
 			}
 		}
@@ -94,6 +122,8 @@ function AudioPlayContent(data) {
 			var shockLevel = parseInt(data.Content.substr(data.Content.length - 1));
 			if (!isNaN(shockLevel)) noiseLevelModifier+= shockLevel * 3;
 			audioFile = "Audio/Shocks.mp3";
+		} else if (data.Content.includes("ShacklesRestrain") || data.Content.includes("Ornate")){
+			audioFile = "Audio/CuffsMetal.mp3";
 		}
 
 	}

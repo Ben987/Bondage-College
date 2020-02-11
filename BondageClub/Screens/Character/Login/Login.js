@@ -7,7 +7,7 @@ var LoginThankYou = "";
 var LoginThankYouList = ["Alvin", "Ayezona", "BlueEyedCat", "Bryce", "Christian", "Dan", "Desch", "Dini", "DonOlaf", "Escurse", "Greendragon", "John", "Kitten", "Laioken", "Lennart", "Michal", "Mindtie", "Misa",
 						 "Nera", "Nick", "Overlord", "Rashiash", "Robin", "Ryner", "Samuel", "Setsu", "Shadow", "Simeon", "SirCody", "Sky", "Terry", "William", "Winterisbest", "Xepherio"];
 var LoginThankYouNext = 0;
-var LoginLastCT = 0;
+//var LoginLastCT = 0;
 
 // Loads the next thank you bubble
 function LoginDoNextThankYou() {
@@ -21,9 +21,9 @@ function LoginDoNextThankYou() {
 // Draw the credits 
 function LoginDrawCredits() {
 
-	var CT = CommonTime();
-	if (LoginLastCT + 50 < CT) console.log("Slow Frame: " + (CT - LoginLastCT).toString());
-	LoginLastCT = CT;
+	//var CT = CommonTime();
+	//if (LoginLastCT + 50 < CT) console.log("Slow Frame: " + (CT - LoginLastCT).toString());
+	//LoginLastCT = CT;
 
 	// For each credits in the list
 	LoginCreditsPosition++;
@@ -151,6 +151,22 @@ function LoginStableItems() {
 	ServerPlayerInventorySync();
 }
 
+// Make sure a player without lover is not wearing any lovers exclusive items
+function LoginLoversItems() {
+	if (Player.Lovership == null) {
+		for(var A = 0; A < Player.Appearance.length; A++) {
+			if (Player.Appearance[A].Asset.Group.Name == "ItemNeck" && Player.Appearance[A].Property && Player.Appearance[A].Asset.Name == "SlaveCollar" && Player.Appearance[A].Property.Type == "LoveLeatherCollar") {
+				Player.Appearance[A].Property = null;
+				Player.Appearance[A].Color = "Default";
+			}
+			if (Player.Appearance[A].Property && Player.Appearance[A].Property.LockedBy && ((Player.Appearance[A].Property.LockedBy == "LoversPadlock") || (Player.Appearance[A].Property.LockedBy == "LoversTimerPadlock"))) {
+				InventoryRemove(Player, Player.Appearance[A].Asset.Group.Name);
+				A--;
+			}
+		}
+	}
+}
+
 // Checks every owned item to see if its buygroup contains an item the player does not have
 // This allows the user to collect any items from a modified buy group already purchased
 function LoginValideBuyGroups() {
@@ -195,6 +211,11 @@ function LoginResponse(C) {
 			if ((Player.Ownership != null) && (Player.Ownership.Name != null))
 				Player.Owner = (Player.Ownership.Stage == 1) ? Player.Ownership.Name : "";
 
+			// Loads the lovership data
+			Player.Lovership = C.Lovership;
+			if ((Player.Lovership != null) && (Player.Lovership.Name != null))
+				Player.Lover = (Player.Lovership.Stage == 2) ? Player.Lovership.Name : "";
+
 			// Gets the online preferences
 			Player.LabelColor = C.LabelColor;
 			Player.ItemPermission = C.ItemPermission;
@@ -205,6 +226,8 @@ function LoginResponse(C) {
 			Player.WhiteList = C.WhiteList;
 			Player.BlackList = C.BlackList;
 			Player.FriendList = C.FriendList;
+
+			PreferenceInit(Player);
 
 			// Loads the player character model and data
 			Player.Appearance = ServerAppearanceLoadFromBundle(Player, C.AssetFamily, C.Appearance);
@@ -234,6 +257,7 @@ function LoginResponse(C) {
 			LoginValidCollar();
 			LoginMistressItems();
 			LoginStableItems();
+			LoginLoversItems();
 			LoginValideBuyGroups();
 			CharacterAppearanceValidate(Player);
 

@@ -83,6 +83,16 @@ var InventoryItemNeckSlaveCollarTypes = [
 // Loads the item extension properties
 function InventoryItemNeckSlaveCollarLoad() {
 	InventoryItemNeckSlaveCollarColorMode = false;
+	var C = CharacterGetCurrent();
+    var SC = InventoryItemNeckSlaveCollarTypes.find(element => (element.Name == "LoveLeatherCollar"));
+    if (C && C.IsOwnedByPlayer() && C.IsLoverOfPlayer() && !SC) {
+        InventoryItemNeckSlaveCollarTypes.push({
+                Name: "LoveLeatherCollar",
+                Image: "LoveLeatherCollar",
+                Property: {Type: "LoveLeatherCollar", Effect: [], Block: []}
+        });
+    }
+    else if (C && C.IsOwnedByPlayer && !C.IsLoverOfPlayer() && SC) { InventoryItemNeckSlaveCollarTypes.splice(InventoryItemNeckSlaveCollarTypes.indexOf(SC,1)); }
     if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Type: null, Effect: [], Block: [] };
 }
 

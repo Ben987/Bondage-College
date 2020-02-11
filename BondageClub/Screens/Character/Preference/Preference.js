@@ -17,6 +17,11 @@ var PreferenceSettingsSensDepIndex = 0;
 var PreferenceSettingsVolumeList = null;
 var PreferenceSettingsVolumeIndex = 0;
 
+// When player logs in
+function PreferenceInit(Player) {
+	AfkTimerSetEnabled(Player.GameplaySettings && Player.GameplaySettings.EnableAfkTimer != false);
+}
+
 // When the preference screens loads
 function PreferenceLoad() {
 
@@ -45,12 +50,17 @@ function PreferenceLoad() {
         PlayBeeps: false
     };
 
-	//if the user never set the gameplay settings before, construct them to replicate the default behavior
-	if (!Player.GameplaySettings || (typeof Player.GameplaySettings.SensDepChatLog !== "string") || (typeof Player.GameplaySettings.BlindDisableExamine !== "boolean") || (typeof Player.GameplaySettings.DisableAutoRemoveLogin !== "boolean")) Player.GameplaySettings = {
-		SensDepChatLog: "Normal",
-        BlindDisableExamine: false,
-        DisableAutoRemoveLogin: false
-    };
+	// GameplaySettings
+	if (!Player.GameplaySettings)
+		Player.GameplaySettings = {};
+	if (typeof Player.GameplaySettings.SensDepChatLog !== "string")
+		Player.GameplaySettings.SensDepChatLog = "Normal";
+	if (typeof Player.GameplaySettings.BlindDisableExamine !== "boolean")
+		Player.GameplaySettings.BlindDisableExamine = false;
+	if (typeof Player.GameplaySettings.DisableAutoRemoveLogin !== "boolean")
+		Player.GameplaySettings.DisableAutoRemoveLogin = false;
+	if (typeof Player.GameplaySettings.EnableAfkTimer !== "boolean")
+		Player.GameplaySettings.EnableAfkTimer = true;
 
 	// Sets the chat themes
 	PreferenceChatColorThemeList = ["Light", "Dark"];
@@ -89,12 +99,13 @@ function PreferenceRun() {
 	DrawButton(500, 280, 90, 90, "", "White", "Icons/Next.png");
 	DrawText(TextGet("ItemPermission") + " " + TextGet("PermissionLevel" + Player.ItemPermission.toString()), 615, 325, "Black", "Gray");
 	DrawText(TextGet("SensDepSetting"), 800, 428, "Black", "Gray");
-    DrawText(TextGet("BlindDisableExamine"), 600, 505, "Black", "Gray");
-    DrawButton(500, 472, 64, 64, "", "White", (Player.GameplaySettings && Player.GameplaySettings.BlindDisableExamine) ? "Icons/Checked.png" : "");
-    DrawText(TextGet("DisableAutoRemoveLogin"), 600, 585, "Black", "Gray");
-    DrawButton(500, 552, 64, 64, "", "White", (Player.GameplaySettings && Player.GameplaySettings.DisableAutoRemoveLogin) ? "Icons/Checked.png" : "");
-    DrawText(TextGet("ForceFullHeight"), 600, 665, "Black", "Gray");
-    DrawButton(500, 632, 64, 64, "", "White", (Player.VisualSettings && Player.VisualSettings.ForceFullHeight) ? "Icons/Checked.png" : "");
+	
+	// Checkboxes
+	DrawCheckbox(500, 472, 64, 64, TextGet("BlindDisableExamine"), Player.GameplaySettings.BlindDisableExamine);
+	DrawCheckbox(500, 552, 64, 64, TextGet("DisableAutoRemoveLogin"), Player.GameplaySettings.DisableAutoRemoveLogin);
+	DrawCheckbox(500, 632, 64, 64, TextGet("EnableAfkTimer"), Player.GameplaySettings.EnableAfkTimer);
+	DrawCheckbox(500, 712, 64, 64, TextGet("ForceFullHeight"), Player.VisualSettings.ForceFullHeight);
+
 	ElementPosition("InputEmail", 1150, 740, 750);
 	MainCanvas.textAlign = "center";
 	DrawButton(500, 712, 250, 64, TextGet("UpdateEmail"), "White", "");
@@ -112,7 +123,6 @@ function PreferenceRun() {
 		DrawButton(1815, 190, 90, 90, "", "White", "Icons/Chat.png");
 		DrawButton(1815, 305, 90, 90, "", "White", "Icons/Audio.png");
 	}
-
 }
 
 // When the user clicks in the preference screen
@@ -142,7 +152,7 @@ function PreferenceClick() {
 	// If we must change the restrain permission level
 	if ((MouseX >= 500) && (MouseX < 590) && (MouseY >= 280) && (MouseY < 370)) {
 		Player.ItemPermission++;
-		if (Player.ItemPermission > 4) Player.ItemPermission = 0;
+		if (Player.ItemPermission > 5) Player.ItemPermission = 0;
 	}
 
 	// If we must show/hide/use the color picker
@@ -167,11 +177,13 @@ function PreferenceClick() {
 	}
 
 	// Preference check boxes
-	if ((MouseX >= 500) && (MouseX < 564)) {
-		if ((MouseY >= 472) && (MouseY < 536)) Player.GameplaySettings.BlindDisableExamine = !Player.GameplaySettings.BlindDisableExamine;
-        if ((MouseY >= 552) && (MouseY < 616)) Player.GameplaySettings.DisableAutoRemoveLogin = !Player.GameplaySettings.DisableAutoRemoveLogin;
-		if ((MouseY >= 632) && (MouseY < 696)) Player.VisualSettings.ForceFullHeight = !Player.VisualSettings.ForceFullHeight;
+	if (CommonIsClickAt(500, 472, 64, 64)) Player.GameplaySettings.BlindDisableExamine = !Player.GameplaySettings.BlindDisableExamine;
+	if (CommonIsClickAt(500, 552, 64, 64)) Player.GameplaySettings.DisableAutoRemoveLogin = !Player.GameplaySettings.DisableAutoRemoveLogin;
+	if (CommonIsClickAt(500, 632, 64, 64)) {
+		Player.GameplaySettings.EnableAfkTimer = !Player.GameplaySettings.EnableAfkTimer;
+		AfkTimerSetEnabled(Player.GameplaySettings.EnableAfkTimer);
 	}
+	if (CommonIsClickAt(500, 712, 64, 64)) Player.VisualSettings.ForceFullHeight = !Player.VisualSettings.ForceFullHeight;
 
 }
 

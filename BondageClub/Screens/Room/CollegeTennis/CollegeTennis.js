@@ -125,6 +125,7 @@ function CollegeTennisInviteToPrivateRoom() {
 		C.Love = 100;
 	}
 	if (Player.Lover == "NPC-Jennifer") {
+		NPCEventAdd(C, "Girlfriend", CurrentTime);
 		C.Lover = Player.Name;
 		C.Love = 100;
 	}

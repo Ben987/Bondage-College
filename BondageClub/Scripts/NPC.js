@@ -143,6 +143,14 @@ function NPCLongEventDelay(C) {
 	return 259200000;
 }
 
+// For longer lover events, the horny / frigid trait comes into play (1 week if horny, 2 weeks if nothing, 4 weeks if frigid)
+function NPCLongLoverEventDelay(C) {
+	var T = NPCTraitGet(C, "Horny");
+	if (T > 0) return 604800000;
+	if (T < 0) return 2419200000;
+	return 1209600000;
+}
+
 // Sets the love factor for an NPC
 function NPCLoveChange(C, LoveFactor) {
 	LoveFactor = parseInt(LoveFactor);

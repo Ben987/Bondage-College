@@ -1,8 +1,19 @@
 var ColorPickerX, ColorPickerY, ColorPickerWidth, ColorPickerHeight;
-var ColorPickerInitialHSV, ColorPickerHSV, ColorPickerCallback, ColorPickerSourceElement;
+var ColorPickerInitialHSV, ColorPickerLastHSV, ColorPickerHSV, ColorPickerCallback, ColorPickerSourceElement;
 
 var ColorPickerHueBarHeight = 40;
 var ColorPickerSVPanelGap = 20;
+var ColorPickerPalleteHeight = 100;
+var ColorPickerPalleteGap = 20;
+
+var ColorPickerLayout = {
+    HueBarOffset: NaN,
+    HueBarHeight: NaN,
+    SVPanelOffset: NaN,
+    SVPanelHeight: NaN,
+    PalleteOffset: NaN,
+    PalleteHeight: NaN
+};
 
 function ColorPickerAttachEventListener() {
     var CanvasElement = document.getElementById("MainCanvas");
@@ -22,8 +33,11 @@ function ColorPickerStartPick(Event) {
         if (Event.changedTouches.length > 1) return;
     }
 
-    var SVPanelOffset = ColorPickerY + ColorPickerHueBarHeight + ColorPickerSVPanelGap;
-    var SVPanelHeight = ColorPickerHeight - SVPanelOffset;
+    var SVPanelOffset = ColorPickerLayout.SVPanelOffset;
+    var SVPanelHeight = ColorPickerLayout.SVPanelHeight;
+    var PalleteOffset = ColorPickerLayout.PalleteOffset;
+    var PalleteHeight = ColorPickerLayout.PalleteHeight;
+
     var C = ColorPickerGetCoordinates(Event);
     var X = C.X;
     var Y = C.Y;
@@ -36,6 +50,8 @@ function ColorPickerStartPick(Event) {
             document.addEventListener("mousemove", ColorPickerPickSV);
             document.addEventListener("touchmove", ColorPickerPickSV);
             ColorPickerPickSV(Event);
+        } else if (Y >= PalleteOffset && Y < PalleteOffset + PalleteHeight) {
+            ColorPickerSelectFromPallete(Event);
         }
         document.addEventListener("mouseup", ColorPickerEndPick);
         document.addEventListener("touchend", ColorPickerEndPick);
@@ -78,29 +94,33 @@ function ColorPickerGetCoordinates(Event) {
 
 function ColorPickerPickHue(Event) {
     var C = ColorPickerGetCoordinates(Event);
-    ColorPickerHSV.H = Math.max(0, Math.min(1, (C.X - ColorPickerX) / ColorPickerWidth))
-
-    var Color = ColorPickerHSVToCSS(ColorPickerHSV);
-    if (ColorPickerCallback) {
-        ColorPickerCallback(Color);
-    }
-
-    if (ColorPickerSourceElement) {
-        ColorPickerSourceElement.value = Color;
-    }
+    ColorPickerHSV.H = Math.max(0, Math.min(1, (C.X - ColorPickerX) / ColorPickerWidth));
+    ColorPickerLastHSV = { ...ColorPickerHSV };
+    ColorPickerNotify();
 }
 
 function ColorPickerPickSV(Event) {
     var C = ColorPickerGetCoordinates(Event);
-    var SVPanelOffset = ColorPickerY + ColorPickerHueBarHeight + ColorPickerSVPanelGap;
-    var SVPanelHeight = ColorPickerHeight - SVPanelOffset;
+    var SVPanelOffset = ColorPickerLayout.SVPanelOffset;
+    var SVPanelHeight = ColorPickerLayout.SVPanelHeight;
 
     var S = (C.X - ColorPickerX) / ColorPickerWidth;
     var V = 1 - (C.Y - SVPanelOffset) / SVPanelHeight;
-
     ColorPickerHSV.S = Math.max(0, Math.min(1, S));
     ColorPickerHSV.V = Math.max(0, Math.min(1, V));
+    ColorPickerLastHSV = { ...ColorPickerHSV };
+    ColorPickerNotify();
+}
 
+function ColorPickerSelectFromPallete(Event) {
+    var C = ColorPickerGetCoordinates(Event);
+    var P = Math.max(0, Math.min(1, (C.X - ColorPickerX) / ColorPickerWidth));
+    var HSV = P > 0.5 ? ColorPickerInitialHSV : ColorPickerLastHSV;
+    ColorPickerHSV = { ...HSV };
+    ColorPickerNotify();
+}
+
+function ColorPickerNotify() {
     var Color = ColorPickerHSVToCSS(ColorPickerHSV);
     if (ColorPickerCallback) {
         ColorPickerCallback(Color);
@@ -114,6 +134,7 @@ function ColorPickerPickSV(Event) {
 function ColorPickerHide() {
     ColorPickerSourceElement = null;
     ColorPickerInitialHSV = null;
+    ColorPickerLastHSV = null;
     ColorPickerCallback = null;
     ColorPickerRemoveEventListener();
 }
@@ -130,8 +151,18 @@ function ColorPickerCSSColorEquals(Color1, Color2) {
 
 function ColorPickerDraw(X, Y, Width, Height, Src, Callback) {
     
-    var SVPanelOffset = Y + ColorPickerHueBarHeight + ColorPickerSVPanelGap;
-    var SVPanelHeight = Height - SVPanelOffset;
+    // Calculate Layout
+    ColorPickerLayout.HueBarHeight = ColorPickerHueBarHeight;
+    ColorPickerLayout.HueBarOffset = Y;
+    ColorPickerLayout.PalleteHeight = ColorPickerPalleteHeight;
+    ColorPickerLayout.PalleteOffset = Y + Height - ColorPickerLayout.PalleteHeight;
+    ColorPickerLayout.SVPanelHeight = Height - ColorPickerLayout.HueBarHeight - ColorPickerLayout.PalleteHeight - ColorPickerSVPanelGap - ColorPickerPalleteGap;
+    ColorPickerLayout.SVPanelOffset = ColorPickerLayout.HueBarOffset + ColorPickerHueBarHeight + ColorPickerSVPanelGap;
+
+    var SVPanelOffset = ColorPickerLayout.SVPanelOffset;
+    var SVPanelHeight = ColorPickerLayout.SVPanelHeight;
+    var PalleteOffset = ColorPickerLayout.PalleteOffset;
+    var PalleteHeight = ColorPickerLayout.PalleteHeight;
 
     var HSV;
     if (ColorPickerInitialHSV == null) {
@@ -148,8 +179,9 @@ function ColorPickerDraw(X, Y, Width, Height, Src, Callback) {
         }
 
         HSV = ColorPickerCSSToHSV(Color);
-        ColorPickerInitialHSV = HSV;
-        ColorPickerHSV = HSV;
+        ColorPickerInitialHSV = { ...HSV };
+        ColorPickerLastHSV = { ...HSV };
+        ColorPickerHSV = { ...HSV };
         ColorPickerRemoveEventListener();   // remove possible duplicated attached event listener, just in case
         ColorPickerAttachEventListener();
     } else {
@@ -204,6 +236,10 @@ function ColorPickerDraw(X, Y, Width, Height, Src, Callback) {
     DrawCircle(X + HSV.S * Width, SVPanelOffset + (1 - HSV.V) * SVPanelHeight, 14, 4, (HSV.V > 0.8 && HSV.S < 0.2) ? "#333333" : "#FFFFFF");
     // Draw Hue Picker
     DrawEmptyRect(X + HSV.H * (Width - 20), Y, 20, ColorPickerHueBarHeight, "#FFFFFF");
+
+    // Draw Pallette
+    DrawRect(X, PalleteOffset, ColorPickerWidth / 2, PalleteHeight, ColorPickerHSVToCSS(ColorPickerLastHSV));
+    DrawRect(X + ColorPickerWidth / 2, PalleteOffset, ColorPickerWidth / 2, PalleteHeight, ColorPickerHSVToCSS(ColorPickerInitialHSV));
 
     ColorPickerX = X;
     ColorPickerY = Y;
