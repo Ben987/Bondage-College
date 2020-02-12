@@ -86,6 +86,9 @@ var AssetFemale3DCG = [
 			{ Name: "Dress3", Value: 80, Hide: ["ClothLower"], HideItem: [ "ItemNipplesPiercingsRoundPiercing", "ItemNipplesPiercingsWeightedPiercing", "ItemDevicesStrapOnSmooth", "ItemDevicesStrapOnStuds"] },
 			{ Name: "ComfyTop", Value: 60, Hide: ["ItemNipples", "ItemNipplesPiercings"], Expose: ["ItemVulva", "ItemVulvaPiercings", "ItemButt"] },
 			{ Name: "NakedApron1", Value: 40, Hide: ["ClothLower"] },
+			{ Name: "NakedApron2", Value: 30, Hide: ["ClothLower"] },
+		
+			
 		]
 	},
 
