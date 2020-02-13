@@ -857,3 +857,16 @@ HeadphoneEarPlugsPoseHeavy,,,Heavy
 HeadphoneEarPlugsRestrainNone,,,SourceCharacter turns off DestinationCharacter headphone earplugs.
 HeadphoneEarPlugsRestrainLight,,,SourceCharacter turns the volume to low on DestinationCharacter headphone earplugs.
 HeadphoneEarPlugsRestrainHeavy,,,SourceCharacter turns the volume up to high on DestinationCharacter headphone earplugs.
+SelectChainBondage,,,Select the Chain bondage
+ChainBondageBasic,,,Basic Tie
+ChainBondageStrict,,,Strict Tie
+ChainBondageBoxTie,,,Box Tie
+ChainBondageHogtied,,,Hogtie
+ChainBondageSuspension,,,Suspension Tie
+ChainBondageSuspensionHogtied,,,Suspension Hogtie
+LegChainSetBasic,,,SourceCharacter uses the Chains on TargetCharacter to do a basic tie.
+LegChainSetMermaid,,,SourceCharacter uses the Chains on TargetCharacter to do a Strict tie.
+LegChainSetSuspension,,,SourceCharacter uses the Chain on TargetCharacter to do a suspension tie.
+ArmsChainSetBoxTie,,,SourceCharacter uses the Chain on TargetCharacter to do a box tie.
+ArmsChainSetHogtied,,,SourceCharacter uses the Chain on TargetCharacter to do a hogtie.
+ArmsChainSetSuspensionHogtied,,,SourceCharacter uses the Chain on TargetCharacter to do a suspension hogtie.
