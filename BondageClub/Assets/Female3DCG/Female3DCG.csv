@@ -4,7 +4,7 @@ Cloth,MaidOutfit1,Maid
 Cloth,MaidOutfit2,Maid Exposed
 Cloth,StudentOutfit1,Student Black
 Cloth,StudentOutfit2,Student Bow
-Cloth,StudentOutfit3,Sailor Top
+Cloth,StudentOutfit3,Student Top
 Cloth,BabydollDress1,Babydoll Dress
 Cloth,TeacherOutfit1,Teacher
 Cloth,ChineseDress1,Chinese Dress
@@ -34,17 +34,24 @@ Cloth,BondageDress2,Bondage Dress Style 2
 Cloth,ShoulderlessTop,Shoulderless Top
 Cloth,Dress3,Long Dress
 Cloth,ComfyTop,Sleep Top
+Cloth,WeddingDress1,Wedding Dress
+Cloth,WeddingDress2,Shoulderless Wedding Dress
+Cloth,BridesmaidDress1,Bridesmaid Dress
+Cloth,Gown1,Puffball Gown
+Cloth,Gown2Top,Hobble Gown
+Cloth,MaidApron1,Maid Apron
 ClothAccessory,,Cloth Accessory
-ClothAccessory,StudentOutfit3Scarf,Sailor Scarf
-ClothAccessory,StudentOutfit3Bow1,Sailor Bow 1
-ClothAccessory,StudentOutfit3Bow2,Sailor Bow 2
-ClothAccessory,StudentOutfit3Bow3,Sailor Bow 3
+ClothAccessory,StudentOutfit3Scarf,Student Scarf
+ClothAccessory,StudentOutfit3Bow1,Student Bow 1
+ClothAccessory,StudentOutfit3Bow2,Student Bow 2
+ClothAccessory,StudentOutfit3Bow3,Student Bow 3
+ClothAccessory,Bouquet,Bouquet of flowers
 Suit,,Upper Suit
 Suit,Catsuit,Catsuit
 ClothLower,,Bottom
 ClothLower,Skirt1,Skirt
-ClothLower,Skirt2,Sailor Skirt
-ClothLower,Skirt3,Sailor Skirt Short
+ClothLower,Skirt2,Student Skirt
+ClothLower,Skirt3,Student Skirt Short
 ClothLower,TennisSkirt1,Tennis
 ClothLower,Jeans1,Jeans
 ClothLower,Shorts1,Shorts
@@ -59,6 +66,7 @@ ClothLower,LatexSkirt2,Long Latex Skirt
 ClothLower,ClothSkirt1,Patterned Skirt
 ClothLower,Jeans2,Ripped Jeans
 ClothLower,ChineseSkirt1,Chinese Skirt
+ClothLower,Gown2Skirt,Hobble Gown Skirt
 SuitLower,,Suit Lower
 SuitLower,Catsuit,Catsuit
 Bra,,Bra
@@ -372,6 +380,7 @@ ItemFeet,SpreaderMetal, Metal Leg Spreader
 ItemFeet,BallChain,Ball And Chain
 ItemFeet,AnkleShackles, Ankle Shackles
 ItemFeet,Zipties, Zip Ties
+ItemFeet,Chains,Chains
 ItemLegs,,Legs
 ItemLegs,NylonRope,Nylon Rope
 ItemLegs,HempRope,Hemp Rope
@@ -384,13 +393,14 @@ ItemLegs,LegBinder,Leg Binder
 ItemLegs,HobbleSkirt,Hobble Skirt
 ItemLegs,WoodenHorse,Wooden Horse
 ItemLegs,Zipties,Zip Ties
+ItemLegs,Chains,Chains
 ItemVulva,,Vulva
 ItemVulva,VibratingEgg,Vibrating Egg
 ItemVulva,VibratingWand,Vibrating Wand
 ItemVulva,VibratorRemote,Vibrating Items Remote
 ItemVulva,VibratingLatexPanties,Vibrating Latex Panties
 ItemVulva,WandBelt,Wand Belt
-ItemVulva,SolidDildo,Penis Dildo
+ItemVulva,PenisDildo,Penis Dildo
 ItemVulva,VibratingDildo,Vibrating Dildo
 ItemVulva,InflatableVibeDildo,Inflatable Vibrating Dildo
 ItemVulva,ClitoralStimulator,Clitoral Stimulator
@@ -522,6 +532,8 @@ ItemArms,Pillory,Pillory
 ItemArms,FullLatexSuit,Full LockDown Latex Suit
 ItemArms,Zipties,Zip Ties
 ItemArms,BoxTieArmbinder,Latex Box-Tie Armbinder
+ItemArms,BondageBouquet,Bondage Bouquet 
+ItemArms,Chains,Chains
 ItemHands,,Hands
 ItemHands,PaddedMittens,Padded Mittens
 ItemHands,PawMittens,Paw Mittens
@@ -755,6 +767,8 @@ ItemDevices,TeddyBear,Teddy Bear Set
 ItemDevices,OneBarPrison,One Bar Prison
 ItemDevices,TheDisplayFrame,Display Frame
 ItemDevices,Sybian,Sybian
+ItemDevices,StrapOnSmooth,Smooth Strap On
+ItemDevices,StrapOnStuds,Studded Strap On
 ItemAddon,,Body
 ItemAddon,BondageBenchStraps,Leather Belt Straps
 ItemBoots,,Feet

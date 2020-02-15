@@ -187,20 +187,22 @@ function MainHallClick() {
 		ChatRoomSpace = "";
 		ChatSearchBackground = "IntroductionDark";
 		ChatSearchLeaveRoom = "MainHall";
-		ChatCreateBackgroundList = ["Introduction", "KidnapLeague", "MaidQuarters", "MainHall", "Management", "Private", "Shibari", "MaidCafe", "HorseStable", "Nursery", "PrisonHall", "Bedroom", 
-				"BDSMRoomBlue", "BDSMRoomPurple", "BDSMRoomRed", "BondageBedChamber",
-				"ParkDay", "ParkNight", "Gardens", "CeremonialVenue", "ParkWinter", "XmasEve", "XmasDay", "StreetNight", "SnowyStreet",
-				"IndoorPool", "OutdoorPool",  "PublicBath", "Beach", "PirateIsland",  "PirateIslandNight",
-				"SheikhPrivate", "SheikhTent",
-				"ForestPath", "DeepForest", "SpookyForest", "WitchWood",
-				"ThroneRoom", "SecretChamber", "Dungeon", "DungeonRuin",
-				"AncientRuins",  "JungleTemple",  "SunTemple",
-				"AlchemistOffice",
-				"HellEntrance", 
-				"SlumRuins", "SlumApartment", "AbandonedBuilding", "Industrial", "BackAlley",
-				"VaultCorridor",
-				"BarRestaurant", "ChillRoom", "Boudoir", "CozyLivingRoom", "RooftopParty", "CosyChalet",	"BalconyNight"
-				];
+		ChatCreateBackgroundList = [
+			"Introduction", "KidnapLeague", "MaidQuarters", "MainHall", "Management", "Private", "Shibari", "MaidCafe", "HorseStable", "Nursery", "PrisonHall", "Bedroom",
+			"BDSMRoomBlue", "BDSMRoomPurple", "BDSMRoomRed", "BondageBedChamber",
+			"CeremonialVenue", "WeddingRoom", "WeddingArch", "WeddingBeach",
+			"ParkDay", "ParkNight", "Gardens", "ParkWinter", "XmasEve", "XmasDay", "StreetNight", "SnowyStreet",
+			"IndoorPool", "OutdoorPool", "PublicBath", "Beach", "PirateIsland", "PirateIslandNight",
+			"SheikhPrivate", "SheikhTent",
+			"ForestPath", "DeepForest", "SpookyForest", "WitchWood",
+			"ThroneRoom", "SecretChamber", "Dungeon", "DungeonRuin",
+			"AncientRuins", "JungleTemple", "SunTemple",
+			"AlchemistOffice",
+			"HellEntrance",
+			"SlumRuins", "SlumApartment", "AbandonedBuilding", "Industrial", "BackAlley",
+			"VaultCorridor",
+			"BarRestaurant", "ChillRoom", "Boudoir", "CozyLivingRoom", "RooftopParty", "CosyChalet", "BalconyNight"
+		];
 		CommonSetScreen("Online", "ChatSearch");
 	}
 

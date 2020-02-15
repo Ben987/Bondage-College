@@ -1,7 +1,6 @@
 // The main game canvas where everything will be drawn
 "use strict";
 var MainCanvas;
-var TempCanvas;
 var ColorCanvas;
 
 // A bank of all the chached images
@@ -41,7 +40,6 @@ function DrawLoad() {
 
 	// Creates the objects used in the game
 	MainCanvas = document.getElementById("MainCanvas").getContext("2d");
-	TempCanvas = document.createElement("canvas").getContext("2d");
 	ColorCanvas = document.createElement("canvas");
 	document.getElementById("MainCanvas").addEventListener("keypress", KeyDown);
 	document.getElementById("MainCanvas").tabIndex = 1000;
@@ -480,9 +478,6 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 	DrawTextFit(Label, Left + Width / 2, Top + (Height / 2) + 1, (CommonIsMobile) ? Width - 6 : Width - 36, "Black");
 	if ((Image != null) && (Image != "")) DrawImage(Image, Left + 2, Top + 2);
 
-	// PC only section
-	if (CommonIsMobile) return;
-
 	// Draw the back arrow 
 	MainCanvas.beginPath();
 	MainCanvas.fillStyle = "black";
@@ -501,7 +496,8 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 	MainCanvas.stroke();
 	MainCanvas.closePath();
 
-	// Draw the hovering text
+	// Draw the hovering text on the PC
+	if (CommonIsMobile) return;
 	if (BackText == null) BackText = () => "MISSING VALUE FOR: BACK TEXT";
 	if (NextText == null) NextText = () => "MISSING VALUE FOR: NEXT TEXT";
 	if ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height))

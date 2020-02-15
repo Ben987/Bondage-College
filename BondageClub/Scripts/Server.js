@@ -1,6 +1,7 @@
 "use strict";
 var ServerSocket = null;
 var ServerURL = "http://localhost:4288";
+var ServerRelog = null;
 var ServerBeep = {};
 var ServerBeepAudio = new Audio();
 
@@ -34,9 +35,15 @@ function ServerInfo(data) {
 	if (data.Time != null) CurrentTime = data.Time;
 }
 
-// When the server disconnects, we go back to the login screen
+// When the server disconnects, we enter in "Reconnect Mode"
 function ServerDisconnect(data) {
-	if (Player.Name != "") window.location = window.location;
+	if (Player.Name != "") {
+		if (CurrentScreen != "Relog") {
+			RelogData = { Screen: CurrentScreen, Module: CurrentModule, Character: CurrentCharacter };
+			CurrentCharacter = null;
+			CommonSetScreen("Character", "Relog");
+		}
+	}
 	else if (CurrentScreen == "Login") LoginMessage = TextGet((data != null) ? data : "ErrorDisconnectedFromServer");
 }
 

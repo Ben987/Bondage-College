@@ -17,6 +17,7 @@ MustCollaredFirst,,,A collar must be fitted first to attach accessories to.
 NoClothAndCollared,,,Remove some clothes and requires a collar.
 LegsCannotOpen,,,Legs cannot open.
 LegsCannotClose,,,Legs cannot close.
+MustBeAbleToKneel,,,Must be able to kneel.
 MustStandUpFirst,,,Must stand up first.
 MustFreeFeetFirst,,,Must free feet first.
 MustFreeLegsFirst,,,Must free legs first.
@@ -95,6 +96,7 @@ Private,,,Private
 Public,,,Public
 Locked,,,Locked
 Unlocked,,,Unlocked
+CantChangeWhileLocked,,,Cannot change while locked
 Delete,,,Delete
 ConfirmDelete,,,Confirm
 Beep,,,Beep
@@ -160,6 +162,9 @@ VaultCorridor,,,Vault Corridor
 AncientRuins,,,Ancient Ruins
 JungleTemple,,,Jungle Temple
 CeremonialVenue,,,Ceremony Venue
+WeddingRoom,,,Wedding Room
+WeddingArch,,,Wedding Arch
+WeddingBeach,,,Wedding Beach
 WitchWood,,,Witch Wood
 ParkWinter,,,Park Winter
 XmasEve,,,Xmas Eve Lounge
@@ -856,3 +861,16 @@ HeadphoneEarPlugsPoseHeavy,,,Heavy
 HeadphoneEarPlugsRestrainNone,,,SourceCharacter turns off DestinationCharacter headphone earplugs.
 HeadphoneEarPlugsRestrainLight,,,SourceCharacter turns the volume to low on DestinationCharacter headphone earplugs.
 HeadphoneEarPlugsRestrainHeavy,,,SourceCharacter turns the volume up to high on DestinationCharacter headphone earplugs.
+SelectChainBondage,,,Select the chain bondage
+ChainBondageBasic,,,Basic Tie
+ChainBondageStrict,,,Strict Tie
+ChainBondageBoxTie,,,Box Tie
+ChainBondageHogtied,,,Hogtie
+ChainBondageSuspension,,,Suspension Tie
+ChainBondageSuspensionHogtied,,,Suspension Hogtie
+LegChainSetBasic,,,SourceCharacter uses the chain on TargetCharacter to do a basic tie.
+LegChainSetStrict,,,SourceCharacter uses the chain on TargetCharacter to do a strict tie.
+LegChainSetSuspension,,,SourceCharacter uses the chain on TargetCharacter to do a suspension tie.
+ArmsChainSetBoxTie,,,SourceCharacter uses the chain on TargetCharacter to do a box tie.
+ArmsChainSetHogtied,,,SourceCharacter uses the chain on TargetCharacter to do a hogtie.
+ArmsChainSetSuspensionHogtied,,,SourceCharacter uses the Chain on TargetCharacter to do a suspension hogtie.

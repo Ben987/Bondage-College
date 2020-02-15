@@ -16,6 +16,7 @@ var PrivatePunishment = "";
 var PrivatePunishmentList = ["Cage", "Bound", "BoundPet", "ChastityBelt", "ChastityBra", "ForceNaked", "ConfiscateKey", "ConfiscateCrop", "ConfiscateWhip", "SleepCage", "LockOut", "Cell"];
 var PrivateCharacterNewClothes = null;
 var PrivateSlaveImproveType = "";
+var PrivateNextLoveYou = 0;
 
 // Returns TRUE if a specific dialog option is allowed
 function PrivateIsCaged() { return (CurrentCharacter.Cage == null) ? false : true }
@@ -60,6 +61,9 @@ function PrivateNeverTakePlayerAsDom() { return (!CurrentCharacter.IsRestrained(
 function PrivateIsHappy() { return (CurrentCharacter.Love > 30) }
 function PrivateIsUnhappy() { return (CurrentCharacter.Love < -30) }
 function PrivateIsNeutral() { return ((CurrentCharacter.Love >= -30) && (CurrentCharacter.Love <= 30)) }
+function PrivateIsLoverHappy() { return ((CurrentCharacter.Love > 30) && CurrentCharacter.IsLover()) }
+function PrivateIsLoverUnhappy() { return ((CurrentCharacter.Love < -30) && CurrentCharacter.IsLover()) }
+function PrivateIsLoverNeutral() { return ((CurrentCharacter.Love >= -30) && (CurrentCharacter.Love <= 30) && CurrentCharacter.IsLover()) }
 function PrivateSubTrialInProgress() { return ((NPCEventGet(CurrentCharacter, "EndDomTrial") > 0) && (CurrentTime < CheatFactor("SkipTrialPeriod", 0) * NPCEventGet(CurrentCharacter, "EndDomTrial"))) }
 function PrivateSubTrialOverWilling() { return ((NPCEventGet(CurrentCharacter, "EndDomTrial") > 0) && (CurrentTime >= CheatFactor("SkipTrialPeriod", 0) * NPCEventGet(CurrentCharacter, "EndDomTrial")) && (CurrentCharacter.Love >= 90)) }
 function PrivateSubTrialOverUnwilling() { return ((NPCEventGet(CurrentCharacter, "EndDomTrial") > 0) && (CurrentTime >= CheatFactor("SkipTrialPeriod", 0) * NPCEventGet(CurrentCharacter, "EndDomTrial")) && (CurrentCharacter.Love < 90)) }
@@ -67,6 +71,12 @@ function PrivateCanPet() { return ((CurrentCharacter.Love >= 0) && !CurrentChara
 function PrivateCanSellSlave() { return (!Player.IsRestrained() && (CurrentCharacter.Love >= 0) && (CurrentCharacter.Name != "Amanda") && (CurrentCharacter.Name != "Sarah") && (CurrentCharacter.Name != "Sophie") && (CurrentCharacter.Name != "Jennifer") && (CurrentCharacter.Name != "Sidney") && (NPCEventGet(CurrentCharacter, "NPCCollaring") > 0)) }
 function PrivateCannotSellSlave() { return (!Player.IsRestrained() && (CurrentCharacter.Love < 0) && (CurrentCharacter.Name != "Amanda") && (CurrentCharacter.Name != "Sarah") && (CurrentCharacter.Name != "Sophie") && (CurrentCharacter.Name != "Jennifer") && (CurrentCharacter.Name != "Sidney") && (NPCEventGet(CurrentCharacter, "NPCCollaring") > 0)) }
 function PrivateCanGetCollegeClothes() { return (!InventoryAvailable(Player, "CollegeOutfit1", "Cloth") && ((CurrentCharacter.Name == "Amanda") || (CurrentCharacter.Name == "Sarah") || (CurrentCharacter.Name == "Jennifer") || (CurrentCharacter.Name == "Sidney"))) }
+function PrivateIsLover() { return CurrentCharacter.IsLover() }
+function PrivateWillTakePlayerAsLover() { return (((CurrentCharacter.Lover == null) || (CurrentCharacter.Lover == "")) && (Player.Lover == "") && (Player.Lovership == null) && (CurrentCharacter.Love >= 50) && (CurrentTime >= CheatFactor("SkipTrialPeriod", 0) * NPCEventGet(CurrentCharacter, "PrivateRoomEntry") + NPCLongLoverEventDelay(CurrentCharacter))) }
+function PrivateWontTakePlayerAsLover() { return (((CurrentCharacter.Lover == null) || (CurrentCharacter.Lover == "")) && (Player.Lover == "") && (Player.Lovership == null) && ((CurrentCharacter.Love < 50) || (CurrentTime < CheatFactor("SkipTrialPeriod", 0) * NPCEventGet(CurrentCharacter, "PrivateRoomEntry") + NPCLongLoverEventDelay(CurrentCharacter)))) }
+function PrivateWontTakePlayerAsLoverAlreadyDating() { return ((CurrentCharacter.Lover != null) && (CurrentCharacter.Lover != "") && (CurrentCharacter.Lover != Player.Name) && (Player.Lover == "") && (Player.Lovership == null)) }
+function PrivateWontTakePlayerAsLoverPlayerDating() { return (((CurrentCharacter.Lover == null) || (CurrentCharacter.Lover == "")) && ((Player.Lover != "") || (Player.Lovership != null))) }
+
 
 // Loads the private room vendor NPC
 function PrivateLoad() {
@@ -387,6 +397,16 @@ function PrivateOwnerInRoom() {
 		if ((PrivateCharacter[C].AccountName == null) && (PrivateCharacter[C].Name != null) && (PrivateCharacter[C].Name == Player.Owner.replace("NPC-", ""))) return true;
 		if ((PrivateCharacter[C].AccountName != null) && PrivateCharacter[C].IsOwner() && (CurrentCharacter != null) && (PrivateCharacter[C].ID != CurrentCharacter.ID)) return true;
 		if ((PrivateCharacter[C].AccountName != null) && PrivateCharacter[C].IsOwner() && (CurrentCharacter == null)) return true;
+	}
+	return false;
+}
+
+// Returns TRUE if the player lover is already in the room
+function PrivateLoverInRoom() {
+	for (var C = 1; C < PrivateCharacter.length; C++) {
+		if ((PrivateCharacter[C].AccountName == null) && (PrivateCharacter[C].Name != null) && (PrivateCharacter[C].Name == Player.Lover.replace("NPC-", ""))) return true;
+		if ((PrivateCharacter[C].AccountName != null) && PrivateCharacter[C].IsLover() && (CurrentCharacter != null) && (PrivateCharacter[C].ID != CurrentCharacter.ID)) return true;
+		if ((PrivateCharacter[C].AccountName != null) && PrivateCharacter[C].IsLover() && (CurrentCharacter == null)) return true;
 	}
 	return false;
 }
@@ -725,15 +745,14 @@ function PrivateNPCCollaring() {
 	DialogLeave();
 }
 
-// Starts a lover relationship
-function PrivateNPCLover() {
-	CharacterChangeMoney(Player, -100);
-	NPCEventAdd(CurrentCharacter, "NPCLover", CurrentTime);
+// When the player gets an NPC girlfriend, we assign that new lover
+function PrivateStartGirlfriend() {
+	NPCEventAdd(CurrentCharacter, "Girlfriend", CurrentTime);
 	CurrentCharacter.Lover = Player.Name;
-	CurrentCharacter.Love = 100;
+	NPCLoveChange(CurrentCharacter, 20);
 	Player.Lover = "NPC-" + CurrentCharacter.Name;
 	ServerPlayerSync();
-	DialogLeave();
+	ServerPrivateCharacterSync();
 }
 
 // The NPC love can only reach 60 without a proper relationship, 100 if in a relationship
@@ -787,4 +806,12 @@ function PrivateGetCollegeClothes() {
 	NPCLoveChange(CurrentCharacter, -10);
 	InventoryAdd(Player, "CollegeOutfit1", "Cloth");
 	if ((InventoryGet(CurrentCharacter, "Cloth") != null) && (InventoryGet(CurrentCharacter, "Cloth").Asset.Name == "CollegeOutfit1")) InventoryRemove(CurrentCharacter, "Cloth");
+}
+
+// When the player says "I love you" to her NPC girlfriend, it will raise the love meter a little, once every minute
+function PrivateLoveYou() {
+	if (PrivateNextLoveYou < CurrentTime) {
+		PrivateNextLoveYou = CurrentTime + 60000;
+		NPCLoveChange(CurrentCharacter, Math.floor(Math.random() * 5) + 2);
+	}
 }
