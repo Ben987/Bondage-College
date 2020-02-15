@@ -192,6 +192,7 @@ function MaidQuartersBecomMaid() {
 	InventoryAdd(Player, "MaidOutfit1", "Cloth");
 	InventoryAdd(Player, "MaidOutfit2", "Cloth");
 	InventoryAdd(Player, "MaidApron1", "Cloth");
+	InventoryAdd(Player, "MaidApron2", "Cloth");
 	InventoryAdd(Player, "MaidHairband1", "Hat");
 	InventoryWear(Player, "MaidOutfit1", "Cloth", "Default");
 	InventoryWear(Player, "MaidHairband1", "Hat", "Default");
