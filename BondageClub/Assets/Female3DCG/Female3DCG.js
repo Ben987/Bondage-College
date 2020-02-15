@@ -219,7 +219,7 @@ var AssetFemale3DCG = [
 			{ Name: "Bandeau1", Priority: 20, Value: 25, Hide: ["ItemNipples", "ItemNipplesPiercings"] },
 			{ Name: "Bustier1", Value: 30, Hide: ["ItemNipples", "ItemNipplesPiercings"] },
 			{ Name: "Corset1", Value: 35, Hide: ["ItemNipples", "ItemNipplesPiercings"] },
-			{ Name: "Corset2", Value: 30, Hide: ["ItemNipples", "ItemNipplesPiercings"] },
+			{ Name: "Corset2", Value: 30, BuyGroup: ["Corset2"], Hide: ["ItemNipples", "ItemNipplesPiercings"] },
 			{ Name: "Corset3", Value: 25, BuyGroup: ["Corset3"], Hide: ["ItemNipples", "ItemNipplesPiercings"] },
 			{ Name: "Corset4", Value: 15, BuyGroup: ["Corset4"], Expose: ["ItemNipples", "ItemBreast", "ItemNipplesPiercings"] },
 			{ Name: "Corset5", Value: 20, BuyGroup: ["Corset5"], Expose: ["ItemNipples", "ItemBreast", "ItemNipplesPiercings"] },
@@ -1026,6 +1026,7 @@ var AssetFemale3DCG = [
 			{ Name: "Corset5", Priority: 21, Value: 20, Prerequisite: "AccessTorso", Time: 15, RemoveTime: 10, Difficulty: 8, BuyGroup: ["Corset5"], Expose: ["ItemNipples", "ItemBreast", "ItemNipplesPiercings"], AllowLock: true },
 			{ Name: "LeatherBreastBinder", Value: 30, Prerequisite: "AccessTorso", Time: 15, RemoveTime: 10, Difficulty: 50, AllowLock: true },
 			{ Name: "LatexCorset1", Priority: 20, Value: 40, Prerequisite: "AccessTorso", Time: 15, RemoveTime: 10, Difficulty: 8, BuyGroup: ["LatexCorset1"], Expose: ["ItemNipples", "ItemBreast", "ItemNipplesPiercings"], AllowLock: true },
+			{ Name: "Corset2", Priority: 21, Value: 30, Prerequisite: "AccessTorso", Time: 15, RemoveTime: 10, Diffiuculty: 8, BuyGroup: ["Corset2"], Hide: ["ItemNipples", "ItemNipplesPiercings"], AllowLock: true },
 			AssetSpankingToys
 		]
 	},
