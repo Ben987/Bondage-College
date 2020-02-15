@@ -52,6 +52,7 @@
 <script src="Screens/Character/FriendList/FriendList.js"></script>
 <script src="Screens/Character/Title/Title.js"></script>
 <script src="Screens/Character/BackgroundSelection/BackgroundSelection.js"></script>
+<script src="Screens/Character/Relog/Relog.js"></script>
 <script src="Screens/Room/MainHall/MainHall.js"></script>
 <script src="Screens/Room/Shop/Shop.js"></script>
 <script src="Screens/Room/Introduction/Introduction.js"></script>
@@ -110,6 +111,7 @@
 <script src="Screens/Inventory/ItemArms/LeatherCuffs/LeatherCuffs.js"></script>
 <script src="Screens/Inventory/ItemArms/StraitJacket/StraitJacket.js"></script>
 <script src="Screens/Inventory/ItemArms/DuctTape/DuctTape.js"></script>
+<script src="Screens/Inventory/ItemArms/Chains/Chains.js"></script>
 <script src="Screens/Inventory/ItemHands/PaddedMittens/PaddedMittens.js"></script>
 <script src="Screens/Inventory/ItemHands/PawMittens/PawMittens.js"></script>
 <script src="Screens/Inventory/ItemMouth/ClothGag/ClothGag.js"></script>
@@ -134,7 +136,9 @@
 <script src="Screens/Inventory/ItemTorso/HempRopeHarness/HempRopeHarness.js"></script>
 <script src="Screens/Inventory/ItemTorso/NylonRopeHarness/NylonRopeHarness.js"></script>
 <script src="Screens/Inventory/ItemFeet/HempRope/HempRope.js"></script>
+<script src="Screens/Inventory/ItemFeet/Chains/Chains.js"></script>
 <script src="Screens/Inventory/ItemLegs/HempRope/HempRope.js"></script>
+<script src="Screens/Inventory/ItemLegs/Chains/Chains.js"></script>
 <script src="Screens/Inventory/ItemPelvis/LoveChastityBelt/LoveChastityBelt.js"></script>
 <script src="Screens/Inventory/ItemLegs/LeatherLegCuffs/LeatherLegCuffs.js"></script>
 <script src="Screens/Inventory/ItemFeet/LeatherAnkleCuffs/LeatherAnkleCuffs.js"></script>
@@ -190,29 +194,33 @@
 	OK - Button to unlock without removing the item (Eveferox)
 	DISABLED - WebGL draw for better speed when colorizing (Sekkmer)
 	OK - New backgrounds and sounds (aldarris)
-	TEST - New Lovers system (Atasly)
-	TEST - New sailor clothes (wildsj)
-	TEST - New plain dildo (wildsj)
-	TEST - stable hair color (Atasly)
-	TEST - Auto AFK after 5 minutes (EveFerox)
-	TEST - New strap-on as devices (wildsj)
-	TEST - Prevent short-chain with full latex suit (wildsj)
-	TEST - Blinfold tweaks (Ayesha-678)
+	OK - New Lovers system (Atasly)
+	OK - Lovers locks (Atasly & Eveferox)
+	OK - New sailor clothes (wildsj)
+	OK - New plain dildo (wildsj)
+	OK - stable hair color (Atasly)
+	OK - Auto AFK after 5 minutes (EveFerox)
+	OK - New strap-on as devices (wildsj)
+	OK - Prevent short-chain with full latex suit (wildsj)
+	OK - Blinfold tweaks (Ayesha-678)
+	OK - Maid re-bind player after job (aldarris)
+	OK - Wedding dresses and bridesmaid gown (Kira)
+	OK - Chains for feet, legs & arms (Kirsty + fixes from Kira)
+	OK - Catsuit fixes (Gatetrek)
+	OK - New gowns, Crowns, Bonnets, Ribbons, Adult-Baby-Dress, diapers and Wedding/Bondage Bouquet (wildsj)
+	OK - 2 new maid apron & new locking corset (Ayesha-678)
+	OK - New XdY dice rolling system (nikoleis)
+	
+	OK - Get/break girlfriend dialog for NPCs in private room
 
-	TO DO - Wedding Dress & Bridesmaid dress (Kira & wildsj)
+	OK - Block the "More than 12 wardrobe slots" hack
 	
-	TEST - Get/break girlfriend dialog for NPCs in private room
-	
-	TO DO - Mobile Improvements & Quality of Life (Survey First)
+	OK - Mobile Improvements & Quality of Life
 		- Change the chat room button layout on mobile, they are too close to each other
-		- The chat always scrolls up on Android after entering a new chat text
-		- Drinking mini-game, move buttons farther away if there is room
-		- Test the Tennis mini-game
-		- More space between friends in friend-list
 		- Option to auto-clean chat log after X messages, for better performance
-		- Back & Forth buttons in dressing room
-		
-	TO DO - Auto Reconnect & Chat Room re-join/re-create
+		- Back & Forth buttons everywhere
+
+	OK - Auto Reconnect & Chat Room re-join/re-create
 	
 	TO DO - Each restraint will have different ways (mini-games) to try to struggle out of it:
 		1. Go Berserk (Duct Tape, Cages & Boxes, Mittens, Chastity Items, Body Harnesses, Gags with harness, Hoods) - Click the circles quickly before they disappear (Asylum)
@@ -231,7 +239,7 @@
 // When the code is loaded, we start the game engine
 window.onload = function() {
 	//CheatImport();
-	//ServerURL = "https://bondage-club-server.herokuapp.com/";
+	ServerURL = "https://bondage-club-server.herokuapp.com/";
 	CommonIsMobile = CommonDetectMobile();
 	TranslationLoad();
 	DrawLoad();

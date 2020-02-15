@@ -749,10 +749,10 @@ function PrivateNPCCollaring() {
 function PrivateStartGirlfriend() {
 	NPCEventAdd(CurrentCharacter, "Girlfriend", CurrentTime);
 	CurrentCharacter.Lover = Player.Name;
-	CurrentCharacter.Love = 80;
+	NPCLoveChange(CurrentCharacter, 20);
 	Player.Lover = "NPC-" + CurrentCharacter.Name;
 	ServerPlayerSync();
-	DialogLeave();
+	ServerPrivateCharacterSync();
 }
 
 // The NPC love can only reach 60 without a proper relationship, 100 if in a relationship
@@ -808,10 +808,10 @@ function PrivateGetCollegeClothes() {
 	if ((InventoryGet(CurrentCharacter, "Cloth") != null) && (InventoryGet(CurrentCharacter, "Cloth").Asset.Name == "CollegeOutfit1")) InventoryRemove(CurrentCharacter, "Cloth");
 }
 
-// When the player says "I love you" to her NPC girlfriend, it will raise the love meter by 5, once every minute
+// When the player says "I love you" to her NPC girlfriend, it will raise the love meter a little, once every minute
 function PrivateLoveYou() {
 	if (PrivateNextLoveYou < CurrentTime) {
 		PrivateNextLoveYou = CurrentTime + 60000;
-		CurrentCharacter.Love = CurrentCharacter.Love + 5;
+		NPCLoveChange(CurrentCharacter, Math.floor(Math.random() * 5) + 2);
 	}
 }

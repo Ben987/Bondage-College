@@ -4,7 +4,7 @@ Cloth,MaidOutfit1,Maid
 Cloth,MaidOutfit2,Maid Exposed
 Cloth,StudentOutfit1,Student Black
 Cloth,StudentOutfit2,Student Bow
-Cloth,StudentOutfit3,Sailor Top
+Cloth,StudentOutfit3,Student Top
 Cloth,BabydollDress1,Babydoll Dress
 Cloth,TeacherOutfit1,Teacher
 Cloth,ChineseDress1,Chinese Dress
@@ -16,6 +16,7 @@ Cloth,MistressTop1,Mistress Top
 Cloth,AdultBabyDress1,Puffy Baby Dress
 Cloth,AdultBabyDress2,Bows Baby Dress
 Cloth,AdultBabyDress3,Flower Baby dress
+Cloth,AdultBabyDress4,Shiny Baby dress
 Cloth,NurseUniform,Nurse Uniform
 Cloth,BunnyCollarCuffs,Bunny Girl Accessories
 Cloth,Robe1,Robe
@@ -34,17 +35,26 @@ Cloth,BondageDress2,Bondage Dress Style 2
 Cloth,ShoulderlessTop,Shoulderless Top
 Cloth,Dress3,Long Dress
 Cloth,ComfyTop,Sleep Top
+Cloth,WeddingDress1,Wedding Dress
+Cloth,WeddingDress2,Shoulderless Wedding Dress
+Cloth,BridesmaidDress1,Bridesmaid Dress
+Cloth,Gown1,Puffball Gown
+Cloth,Gown2Top,Hobble Gown
+Cloth,Gown3,Shiny Gown
+Cloth,MaidApron1,Maid Apron
+Cloth,MaidApron2,Exposed Maid Apron
 ClothAccessory,,Cloth Accessory
-ClothAccessory,StudentOutfit3Scarf,Sailor Scarf
-ClothAccessory,StudentOutfit3Bow1,Sailor Bow 1
-ClothAccessory,StudentOutfit3Bow2,Sailor Bow 2
-ClothAccessory,StudentOutfit3Bow3,Sailor Bow 3
+ClothAccessory,StudentOutfit3Scarf,Student Scarf
+ClothAccessory,StudentOutfit3Bow1,Student Bow 1
+ClothAccessory,StudentOutfit3Bow2,Student Bow 2
+ClothAccessory,StudentOutfit3Bow3,Student Bow 3
+ClothAccessory,Bouquet,Bouquet of flowers
 Suit,,Upper Suit
 Suit,Catsuit,Catsuit
 ClothLower,,Bottom
 ClothLower,Skirt1,Skirt
-ClothLower,Skirt2,Sailor Skirt
-ClothLower,Skirt3,Sailor Skirt Short
+ClothLower,Skirt2,Student Skirt
+ClothLower,Skirt3,Student Skirt Short
 ClothLower,TennisSkirt1,Tennis
 ClothLower,Jeans1,Jeans
 ClothLower,Shorts1,Shorts
@@ -59,6 +69,7 @@ ClothLower,LatexSkirt2,Long Latex Skirt
 ClothLower,ClothSkirt1,Patterned Skirt
 ClothLower,Jeans2,Ripped Jeans
 ClothLower,ChineseSkirt1,Chinese Skirt
+ClothLower,Gown2Skirt,Hobble Gown Skirt
 SuitLower,,Suit Lower
 SuitLower,Catsuit,Catsuit
 Bra,,Bra
@@ -109,7 +120,9 @@ Panties,Panties13,Satin Bikini
 Panties,Panties14,High Cut
 Panties,Panties15,Thong
 Panties,Bikini1,Frilled Bikini
-Panties,Diapers1,Diapers
+Panties,Diapers1,Diaper
+Panties,Diapers2,Plastic Covered Diaper
+Panties,Diapers3,Satin Covered Diaper
 Panties,Panties16,Frill Panties
 Panties,MaidPanties1,Maid Panties
 Panties,LatexPanties1,Latex Panties
@@ -157,6 +170,7 @@ Shoes,WoollyBootsTall,Woolly Boots
 Shoes,ThighHighLatexHeels,Latex Heels
 Hat,,Hat
 Hat,Band1,Hair Band
+Hat,Band2,Jeweled Band
 Hat,Beret1,Beret
 Hat,MaidHairband1,Maid Hairband
 Hat,NurseCap,Nurse Cap
@@ -168,12 +182,21 @@ Hat,PirateBandana1,Pirate Bandana
 Hat,PoliceWomanHat,Police Woman Hat
 Hat,HeadTowel1,Towel
 Hat,CollegeDunce,Dunce Hat
+Hat,Bonnet1,Bonnet1
+Hat,Bonnet2,Bonnet2
+Hat,Crown1,Crown Style 1
+Hat,Crown2,Crown Style 2
+Hat,Crown3,Crown Style 3
+Hat,Crown4,Crown Style 4
+Hat,Crown5,Crown Style 5
 HairAccessory1,,Hair Accessory
 HairAccessory1,Ears1,Ears Small
 HairAccessory1,Ears2,Ears Large
 HairAccessory1,PonyEars1,Pony Ears
 HairAccessory1,Ribbons1,Hair Ribbon 1
 HairAccessory1,Ribbons2,Hair Ribbon 2
+HairAccessory1,Ribbons3,Hair Ribbon 3
+HairAccessory1,Ribbons4,Hair Ribbon 4
 HairAccessory1,GiantBow1, Giant Bow 1
 HairAccessory1,BunnyEars1,Bunny Ears
 HairAccessory1,BunnyEars2,Floppy Bunny Ears
@@ -200,6 +223,8 @@ HairAccessory2,Ears2,Ears Large
 HairAccessory2,PonyEars1,Pony Ears
 HairAccessory2,Ribbons1,Hair Ribbon 1
 HairAccessory2,Ribbons2,Hair Ribbon 2
+HairAccessory2,Ribbons3,Hair Ribbon 3
+HairAccessory2,Ribbons4,Hair Ribbon 4
 HairAccessory2,GiantBow1, Giant Bow 1
 HairAccessory2,BunnyEars1,Bunny Ears
 HairAccessory2,BunnyEars2,Floppy Bunny Ears
@@ -223,6 +248,7 @@ HairAccessory2,RaccoonEars1,Raccoon Ears
 Gloves,,Gloves
 Gloves,Gloves1,Short Gloves
 Gloves,Gloves2,Long Gloves
+Gloves,Gloves3,Silky Gloves
 Gloves,MistressGloves,Mistress Gloves
 Gloves,FingerlessGloves,Fingerless Gloves
 Gloves,GlovesFur,Gloves with Fur
@@ -372,6 +398,7 @@ ItemFeet,SpreaderMetal, Metal Leg Spreader
 ItemFeet,BallChain,Ball And Chain
 ItemFeet,AnkleShackles, Ankle Shackles
 ItemFeet,Zipties, Zip Ties
+ItemFeet,Chains,Chains
 ItemLegs,,Legs
 ItemLegs,NylonRope,Nylon Rope
 ItemLegs,HempRope,Hemp Rope
@@ -384,13 +411,14 @@ ItemLegs,LegBinder,Leg Binder
 ItemLegs,HobbleSkirt,Hobble Skirt
 ItemLegs,WoodenHorse,Wooden Horse
 ItemLegs,Zipties,Zip Ties
+ItemLegs,Chains,Chains
 ItemVulva,,Vulva
 ItemVulva,VibratingEgg,Vibrating Egg
 ItemVulva,VibratingWand,Vibrating Wand
 ItemVulva,VibratorRemote,Vibrating Items Remote
 ItemVulva,VibratingLatexPanties,Vibrating Latex Panties
 ItemVulva,WandBelt,Wand Belt
-ItemVulva,SolidDildo,Penis Dildo
+ItemVulva,PenisDildo,Penis Dildo
 ItemVulva,VibratingDildo,Vibrating Dildo
 ItemVulva,InflatableVibeDildo,Inflatable Vibrating Dildo
 ItemVulva,ClitoralStimulator,Clitoral Stimulator
@@ -461,6 +489,7 @@ ItemTorso,Corset4,Under Bust Corset
 ItemTorso,Corset5,Floral Corset
 ItemTorso,LeatherBreastBinder,Leather Breast Binder
 ItemTorso,LatexCorset1,Latex Corset
+ItemTorso,Corset2,Corset
 ItemNipples,,Nipples
 ItemNipples,NippleClamp,Nipple Clamps
 ItemNipples,VibeNippleClamp,Vibrating Nipple Clamps
@@ -522,6 +551,8 @@ ItemArms,Pillory,Pillory
 ItemArms,FullLatexSuit,Full LockDown Latex Suit
 ItemArms,Zipties,Zip Ties
 ItemArms,BoxTieArmbinder,Latex Box-Tie Armbinder
+ItemArms,BondageBouquet,Bondage Bouquet 
+ItemArms,Chains,Chains
 ItemHands,,Hands
 ItemHands,PaddedMittens,Padded Mittens
 ItemHands,PawMittens,Paw Mittens

@@ -330,6 +330,8 @@ function GLDrawAppearanceBuild(C) {
             // Find the X and Y position to draw on
             var X = CA.Asset.Group.DrawingLeft;
             var Y = CA.Asset.Group.DrawingTop;
+			if (CA.Asset.DrawingLeft != null) X = CA.Asset.DrawingLeft;
+			if (CA.Asset.DrawingTop != null) Y = CA.Asset.DrawingTop;
             if (C.Pose != null)
                 for (var CP = 0; CP < C.Pose.length; CP++)
                     for (var P = 0; P < PoseFemale3DCG.length; P++)

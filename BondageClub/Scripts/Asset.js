@@ -70,6 +70,8 @@ function AssetAdd(NewAsset) {
 		RemoveTimer: (NewAsset.RemoveTimer == null) ? 0 : NewAsset.RemoveTimer,
 		MaxTimer: (NewAsset.MaxTimer == null) ? 0 : NewAsset.MaxTimer,
 		DrawingPriority: NewAsset.Priority,
+		DrawingLeft: NewAsset.Left,
+		DrawingTop: NewAsset.Top,
 		HeightModifier: (NewAsset.Height == null) ? 0 : NewAsset.Height,
 		ZoomModifier: (NewAsset.Zoom == null) ? 1 : NewAsset.Zoom,
 		Alpha: NewAsset.Alpha,

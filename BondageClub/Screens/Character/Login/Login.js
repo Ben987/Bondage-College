@@ -182,6 +182,25 @@ function LoginResponse(C) {
 
 	// If the return package contains a name and a account name
 	if (typeof C === "object") {
+
+		// In relog mode, we jump back to the previous screen, keeping the current game flow
+		if (RelogData != null) {
+			LoginMessage = "";
+			ElementRemove("InputPassword");
+			Player.OnlineID = C.ID.toString();
+			CurrentModule = RelogData.Module;
+			CurrentScreen = RelogData.Screen;
+			CurrentCharacter = RelogData.Character;
+			TextLoad();
+			if ((ChatRoomData != null) && (ChatRoomData.Name != null) && (ChatRoomData.Name != "")) {
+				CommonSetScreen("Online", "ChatSearch");
+				ChatRoomPlayerCanJoin = true;
+				ServerSend("ChatRoomJoin", { Name: ChatRoomData.Name });
+			}
+			return;
+		}
+
+		// In regular mode, we set the account properties for a new club session
 		if ((C.Name != null) && (C.AccountName != null)) {
 
 			// Make sure we have values
@@ -200,6 +219,7 @@ function LoginResponse(C) {
 			Player.Description = C.Description;
 			Player.Creation = C.Creation;
 			Player.Wardrobe = C.Wardrobe;
+			WardrobeFixLength();
 			Player.OnlineID = C.ID.toString();
 			Player.MemberNumber = C.MemberNumber;
 			Player.BlockItems = ((C.BlockItems == null) || !Array.isArray(C.BlockItems)) ? [] : C.BlockItems;
@@ -340,9 +360,7 @@ function LoginClick() {
 
 // When the user press "enter" we try to login
 function LoginKeyDown() {
-	if (KeyPress == 13) {
-		LoginDoLogin();
-	}
+	if (KeyPress == 13) LoginDoLogin();
 }
 
 // If we must try to login (make sure we don't send the login query twice)
@@ -354,8 +372,6 @@ function LoginDoLogin() {
 		if (Name.match(letters) && Password.match(letters) && (Name.length > 0) && (Name.length <= 20) && (Password.length > 0) && (Password.length <= 20)) {
 			LoginMessage = TextGet("ValidatingNamePassword");
 			ServerSend("AccountLogin", { AccountName: Name, Password: Password });
-		} else {
-			LoginMessage = TextGet("InvalidNamePassword");
-		}
+		} else LoginMessage = TextGet("InvalidNamePassword");
 	}
 }

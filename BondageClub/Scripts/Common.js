@@ -33,15 +33,16 @@ function CommonGetFormatDate() {
 function CommonDetectMobile() {
 
 	// First check
+	var mobile = ['iphone', 'ipad', 'android', 'blackberry', 'nokia', 'opera mini', 'windows mobile', 'windows phone', 'iemobile', 'mobile/', 'webos', 'kindle'];
+	for (var i in mobile) if (navigator.userAgent.toLowerCase().indexOf(mobile[i].toLowerCase()) > 0) return true;
+
+	// Second check
 	if (sessionStorage.desktop) return false;
 	else if (localStorage.mobile) return true;
 
-	// Alternative check
-	var mobile = ['iphone', 'ipad', 'android', 'blackberry', 'nokia', 'opera mini', 'windows mobile', 'windows phone', 'iemobile', 'mobile/'];
-	for (var i in mobile) if (navigator.userAgent.toLowerCase().indexOf(mobile[i].toLowerCase()) > 0) return true;
-
 	// If nothing is found, we assume desktop
 	return false;
+
 }
 
 // Gets the current browser name and version

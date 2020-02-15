@@ -539,27 +539,27 @@ OwnerBeepFail,,,"(She shakes her head from left to right.)  My girl, it's very d
 1000,,,(She hums a happy song.)  Subbie!  What could we do to have fun?,,,DomIntro,Playful
 1000,,,Come closer my little sub.  Let's talk.,,,DomIntro,Peaceful
 1000,,,(She grabs your butt firmly and pulls you closer.)  What's up?,,,DomIntro,Violent
-1000,,I love you!,I love you too.  You're the best sub.,LoveYou(),IsLoverHappy(),LoveYouHappy,
-1000,,I love you!,I love you my slave.  Don't change anything.,LoveYou(),IsLoverHappy(),LoveYouHappy,Dominant|Violent
-1000,,I love you!,(She nods slowly.)  I love you my subbie pet.,LoveYou(),IsLoverHappy(),LoveYouHappy,Submissive|Peaceful
-1000,,I love you!,I love you!  Your sexy sub body drives me wild.,LoveYou(),IsLoverHappy(),LoveYouHappy,Horny|Playful
-1000,,I love you!,This is a shared feeling my submissive.,LoveYou(),IsLoverHappy(),LoveYouHappy,Frigid|Serious
-1000,,I love you!,I adore you little submissive.  This journey we share together is luminous.,LoveYou(),IsLoverHappy(),LoveYouHappy,Polite|Wise
-1000,,I love you!,I love ya too my sexy cunt.,LoveYou(),IsLoverHappy(),LoveYouHappy,Dumb|Rude
-1000,,I love you!,I love you also my girl.  But let's spend more time together.,LoveYou(),IsLoverNeutral(),LoveYouNeutral,
-1000,,I love you!,I love you my slave.  But we need to spend more time together.,LoveYou(),IsLoverNeutral(),LoveYouNeutral,Dominant|Violent
-1000,,I love you!,(She nods slowly.)  I love you also my subbie.  But maybe we should spend more time together.,LoveYou(),IsLoverNeutral(),LoveYouNeutral,Submissive|Peaceful
-1000,,I love you!,I love you also sexy sub.  But let's make love more often.,LoveYou(),IsLoverNeutral(),LoveYouNeutral,Horny|Playful
-1000,,I love you!,This is a shared feeling my submissive.  But we should spend more time together.,LoveYou(),IsLoverNeutral(),LoveYouNeutral,Frigid|Serious
-1000,,I love you!,"I love you also my protege, but we need to invest more time in our relationship.",LoveYou(),IsLoverNeutral(),LoveYouNeutral,Polite|Wise
-1000,,I love you!,"I love ya too my girl, but where were ya the other night?",LoveYou(),IsLoverNeutral(),LoveYouNeutral,Dumb|Rude
-1000,,I love you!,(She frowns.)  You should say it more often then.,LoveYou(),IsLoverUnhappy(),LoveYouUnhappy,
-1000,,I love you!,(She grumbles.)  Show it then!,LoveYou(),IsLoverUnhappy(),LoveYouUnhappy,Dominant|Violent
-1000,,I love you!,(She sighs.)  Sometimes I wonder if you really mean it.,LoveYou(),IsLoverUnhappy(),LoveYouUnhappy,Submissive|Peaceful
-1000,,I love you!,(She frowns.)  Let's get in bed then!  We never do it anymore!,LoveYou(),IsLoverUnhappy(),LoveYouUnhappy,Horny|Playful
-1000,,I love you!,(She grumbles.)  You have very strange ways of proving it.,LoveYou(),IsLoverUnhappy(),LoveYouUnhappy,Frigid|Serious
-1000,,I love you!,"Have you ever heard the old maxim: ""Actions speaks louder than words.""?",LoveYou(),IsLoverUnhappy(),LoveYouUnhappy,Polite|Wise
-1000,,I love you!,No shit!  Prove it!,LoveYou(),IsLoverUnhappy(),LoveYouUnhappy,Dumb|Rude
+1000,,I love you!,I love you too.  You're the best sub.,LoveYou(),IsLoverHappy(),DomLoveYouHappy,
+1000,,I love you!,I love you my slave.  Don't change anything.,LoveYou(),IsLoverHappy(),DomLoveYouHappy,Dominant|Violent
+1000,,I love you!,(She nods slowly.)  I love you my subbie pet.,LoveYou(),IsLoverHappy(),DomLoveYouHappy,Submissive|Peaceful
+1000,,I love you!,I love you!  Your sexy sub body drives me wild.,LoveYou(),IsLoverHappy(),DomLoveYouHappy,Horny|Playful
+1000,,I love you!,This is a shared feeling my submissive.,LoveYou(),IsLoverHappy(),DomLoveYouHappy,Frigid|Serious
+1000,,I love you!,I adore you little submissive.  This journey we share together is luminous.,LoveYou(),IsLoverHappy(),DomLoveYouHappy,Polite|Wise
+1000,,I love you!,I love ya too my sexy cunt.,LoveYou(),IsLoverHappy(),DomLoveYouHappy,Dumb|Rude
+1000,,I love you!,I love you also my girl.  But let's spend more time together.,LoveYou(),IsLoverNeutral(),DomLoveYouNeutral,
+1000,,I love you!,I love you my slave.  But we need to spend more time together.,LoveYou(),IsLoverNeutral(),DomLoveYouNeutral,Dominant|Violent
+1000,,I love you!,(She nods slowly.)  I love you also my subbie.  But maybe we should spend more time together.,LoveYou(),IsLoverNeutral(),DomLoveYouNeutral,Submissive|Peaceful
+1000,,I love you!,I love you also sexy sub.  But let's make love more often.,LoveYou(),IsLoverNeutral(),DomLoveYouNeutral,Horny|Playful
+1000,,I love you!,This is a shared feeling my submissive.  But we should spend more time together.,LoveYou(),IsLoverNeutral(),DomLoveYouNeutral,Frigid|Serious
+1000,,I love you!,"I love you also my protege, but we need to invest more time in our relationship.",LoveYou(),IsLoverNeutral(),DomLoveYouNeutral,Polite|Wise
+1000,,I love you!,"I love ya too my girl, but where were ya the other night?",LoveYou(),IsLoverNeutral(),DomLoveYouNeutral,Dumb|Rude
+1000,,I love you!,(She frowns.)  You should say it more often then.,LoveYou(),IsLoverUnhappy(),DomLoveYouUnhappy,
+1000,,I love you!,(She grumbles.)  Show it then!,LoveYou(),IsLoverUnhappy(),DomLoveYouUnhappy,Dominant|Violent
+1000,,I love you!,(She sighs.)  Sometimes I wonder if you really mean it.,LoveYou(),IsLoverUnhappy(),DomLoveYouUnhappy,Submissive|Peaceful
+1000,,I love you!,(She frowns.)  Let's get in bed then!  We never do it anymore!,LoveYou(),IsLoverUnhappy(),DomLoveYouUnhappy,Horny|Playful
+1000,,I love you!,(She grumbles.)  You have very strange ways of proving it.,LoveYou(),IsLoverUnhappy(),DomLoveYouUnhappy,Frigid|Serious
+1000,,I love you!,"Have you ever heard the old maxim: ""Actions speaks louder than words.""?",LoveYou(),IsLoverUnhappy(),DomLoveYouUnhappy,Polite|Wise
+1000,,I love you!,No shit!  Prove it!,LoveYou(),IsLoverUnhappy(),DomLoveYouUnhappy,Dumb|Rude
 1000,1010,Can we talk Mistress?,What would you like to talk about?,,,DomStartTalk,
 1000,1010,Can we talk Mistress?,"(She nods slowly.)  Very good, most subs don't talk enough.",,,DomStartTalk,Frigid
 1000,1010,Can we talk Mistress?,(She starts to sing.)  Let's talk about sex subbie!  Let's talk about you and me!,,,DomStartTalk,Horny
@@ -1335,7 +1335,7 @@ PunishCell,1000,It's fair Mistress.  (Go to the cell.),,RunPunishment(1),,,
 2070,2071,Would you like to be my girlfriend?,Absolutely!  I adore and cherish you Mistress.  We would make a wonderful couple.,,,SubProposeGirlfriend,Polite
 2070,2071,Would you like to be my girlfriend?,Hell yeah!  I love ya Mistress!  We'll have the best time together.,,,SubProposeGirlfriend,Rude
 2070,2010,Someday you'll find love.,Yes Mistress.  Is there anything else you want to talk about?,,,,
-2071,2072,I love you Mistress.,I love you Mistress.  I hope we can share this love for a long time.,StartGirlfriend(),,,
+2071,2072,I love you my girl.,I love you Mistress.  I hope we can share this love for a long time.,StartGirlfriend(),,,
 2071,2072,This is wonderful.,I love you Mistress.  This is indeed a wonderful day.,StartGirlfriend(),,,
 2071,2072,(Grab and kiss her.),(You grab her and share a long and loving kiss.)  I love you Mistress.,StartGirlfriend(),,,
 2071,2010,Wait!  Let me think about it some more.,(She sighs.)  Please don't torture me like that.,NPCInteraction(-5),,,

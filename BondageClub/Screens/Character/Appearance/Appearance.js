@@ -274,6 +274,8 @@ function CharacterAppearanceBuildCanvas(C) {
 			// Find the X and Y position to draw on
 			var X = CA.Asset.Group.DrawingLeft;
 			var Y = CA.Asset.Group.DrawingTop;
+			if (CA.Asset.DrawingLeft != null) X = CA.Asset.DrawingLeft;
+			if (CA.Asset.DrawingTop != null) Y = CA.Asset.DrawingTop;
 			if (C.Pose != null)
 				for (var CP = 0; CP < C.Pose.length; CP++)
 					for (var P = 0; P < PoseFemale3DCG.length; P++)
@@ -391,8 +393,6 @@ function AppearanceRun() {
 		// Creates buttons for all groups
 		for (var A = CharacterAppearanceOffset; A < AssetGroup.length && A < CharacterAppearanceOffset + CharacterAppearanceNumPerPage; A++)
 			if ((AssetGroup[A].Family == C.AssetFamily) && (AssetGroup[A].Category == "Appearance") && AssetGroup[A].AllowCustomize && (C.ID == 0 || AssetGroup[A].Clothing)) {
-
-				// CharacterAppearanceNextItem(C, AssetGroup[A].Name, (MouseX > 1500 || CommonIsMobile));
 				if (AssetGroup[A].AllowNone && !AssetGroup[A].KeepNaked && (AssetGroup[A].Category == "Appearance")) DrawButton(1210, 145 + (A - CharacterAppearanceOffset) * 95, 65, 65, "", "White", "Icons/Small/Naked.png", TextGet("StripItem"));
 				DrawBackNextButton(1300, 145 + (A - CharacterAppearanceOffset) * 95, 400, 65, AssetGroup[A].Description + ": " + CharacterAppearanceGetCurrentValue(C, AssetGroup[A].Name, "Description"), "White", "",
 					() => CharacterAppearanceNextItem(C, AssetGroup[A].Name, false, true),
@@ -576,7 +576,7 @@ function AppearanceClick() {
 			for (var A = CharacterAppearanceOffset; A < AssetGroup.length && A < CharacterAppearanceOffset + CharacterAppearanceNumPerPage; A++)
 				if ((AssetGroup[A].Family == C.AssetFamily) && (AssetGroup[A].Category == "Appearance") && (C.ID == 0 || AssetGroup[A].Clothing))
 					if ((MouseY >= 145 + (A - CharacterAppearanceOffset) * 95) && (MouseY <= 210 + (A - CharacterAppearanceOffset) * 95))
-						CharacterAppearanceNextItem(C, AssetGroup[A].Name, (MouseX > 1500 || CommonIsMobile));
+						CharacterAppearanceNextItem(C, AssetGroup[A].Name, (MouseX > 1500));
 
 		// If we must switch to the next color in the assets
 		if ((MouseX >= 1725) && (MouseX < 1885) && (MouseY >= 145) && (MouseY < 975))

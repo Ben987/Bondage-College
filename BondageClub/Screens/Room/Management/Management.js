@@ -48,8 +48,9 @@ function ManagementCannotBeReleased() { return ((Player.Owner != "") && (Player.
 function ManagementWillOwnPlayer() { return ((Player.Owner == "") && (ReputationGet("Dominant") <= -100) && (ManagementMistressAngryCount == 0) && (PrivateCharacter.length <= PrivateCharacterMax) && !PrivatePlayerIsOwned() && ManagementNoMistressInPrivateRoom()) }
 function ManagementWontOwnPlayer() { return ((Player.Owner == "") && (ReputationGet("Dominant") <= -1) && (ReputationGet("Dominant") >= -99) && (PrivateCharacter.length <= PrivateCharacterMax) && !PrivatePlayerIsOwned() && ManagementNoMistressInPrivateRoom()) }
 function ManagementLoverFromBondageCollege() { return ((Player.Lover == "NPC-Sidney") || (Player.Lover == "NPC-Amanda") || (Player.Lover == "NPC-Jennifer")) }
-function ManagementCanBreakDatingLoverOnline() { return ((Player.Lover == "") && Player.Lovership != null) && (Player.Lovership.Stage != null) && ((Player.Lovership.Stage == 0) || (Player.Lovership.Stage == 1)) }
-function ManagementCanBreakUpLoverOnline() { return ((Player.Lover != "") && (Player.Lovership != null) && (Player.Lovership.Start != null)) }
+function ManagementCanBreakDatingLoverOnline() { return ((Player.Lover == "") && (Player.Lovership != null) && (Player.Lovership.Stage != null) && (Player.Lovership.Stage != 2)) }
+function ManagementCanBreakUpLoverOnline() { return ((Player.Lover != "") && (Player.Lovership != null) && (Player.Lovership.Stage != null) && (Player.Lovership.Stage == 2) && (Player.Lovership.Start != null) && (Player.Lovership.Start + 604800000 < CurrentTime)) }
+function ManagementCannotBreakUpLoverOnline() { return ((Player.Lover != "") && (Player.Lovership != null) && (Player.Lovership.Stage != null) && (Player.Lovership.Stage == 2) && (Player.Lovership.Start != null) && (Player.Lovership.Start + 604800000 >= CurrentTime)) }
 function ManagementCanBreakUpLoverNPC() { return ((Player.Lover != "") && (Player.Lovership == null) && !PrivateLoverInRoom()) }
 function ManagementCannotBreakUpLoverNPC() { return ((Player.Lover != "") && (Player.Lovership == null) && PrivateLoverInRoom()) }
 function ManagementIsClubSlave() { return ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "ClubSlaveCollar")) }
