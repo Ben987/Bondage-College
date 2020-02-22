@@ -71,8 +71,7 @@ function InventoryItemFeetChainsSetType(NewType) {
 		if (NewType == "Suspension") {
 			DialogFocusItem.Property.SetPose = ["Suspension", "LegsClosed"];
 			DialogFocusItem.Property.Difficulty = 4;
-			CharacterSetFacialExpression(C, "Blush", "High");
-			TimerInventoryRemoveSet(C, "Blush", 30);
+			CharacterSetFacialExpression(C, "Blush", "High", 30);
 		}
 	}
 	else return;

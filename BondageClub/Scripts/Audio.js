@@ -27,6 +27,7 @@ function AudioDialogStop() {
 
 // Takes a data dictionary content and sends the related audio mp3 to be played
 function AudioPlayContent(data) {
+console.log(data);
 	// Exits right away if we are missing content data
 	if (!Player.AudioSettings || !Player.AudioSettings.PlayItem || (Player.AudioSettings.Volume == 0)) return;
 	if (!data.Dictionary || !data.Dictionary.length) return;
@@ -36,7 +37,7 @@ function AudioPlayContent(data) {
 	// Instant actions can trigger a sound depending on the asset
 	if (data.Content == "ActionAddLock") {
 		audioFile = "Audio/LockSmall.mp3";
-	} else if (data.Content == "ActionUse" || data.Content == "ActionSwap" || data.Content == "SlaveCollarChangeType") {
+	} else if (data.Content == "ActionLock" || data.Content == "ActionUse" || data.Content == "ActionSwap" || data.Content == "SlaveCollarChangeType") {
 		noiseLevelModifier += 3; //constant vibration volume level
 		var NextAsset = data.Dictionary.find(function (el) {return el.Tag == "NextAsset";});
 		if (!NextAsset || !NextAsset.AssetName) return;
@@ -66,6 +67,10 @@ function AudioPlayContent(data) {
 				case "Zipties" : audioFile = "Audio/ZipTie.mp3"; break;
 				case "DuctTape" : audioFile = "Audio/DuctTape18.mp3"; break;
 				case "BurlapSack" : audioFile = "Audio/Bag.mp3"; break;
+				case "HempRope" : audioFile = "Audio/RopeShort.mp3"; break;
+				case "CollarChainShort":
+				case "CollarChainLong":
+				case "Chains":
 				case "Manacles":
 				case "FullBodyShackles": audioFile = "Audio/ChainLong.mp3"; break;
 				case "WoodenBox":
@@ -74,8 +79,11 @@ function AudioPlayContent(data) {
 				case "LowCage":
 				case "TheDisplayFrame":
 				case "HighSecurityCollar": audioFile = "Audio/LockLarge.mp3"; break;
+				case "CollarLeash":
 				case "MetalCuffs":
 				case "ToeCuffs": audioFile = "Audio/LockSmall.mp3"; break;
+				case "BondageBouquet":
+				case "Irish8Cuffs":
 				case "WristShackles":
 				case "AnkleShackles":
 				case "OrnateCollar":
@@ -94,7 +102,6 @@ function AudioPlayContent(data) {
 			}
 		}
 	} else {
-
 		// When the vibrator or inflatable level increases or decreases
 		if(data.Content.includes("Pumppumps"))
 			audioFile = "Audio/Inflation.mp3";
@@ -108,11 +115,12 @@ function AudioPlayContent(data) {
 			switch (assetName) {
 				case "Nipple":
 				case "NippleEgg":
-				case "LoveChastityBeltVibe":
 				case "Egg": audioFile = "Audio/VibrationTone4ShortLoop.mp3"; break;
+				case "LoveChastityBeltVibe":
 				case "Belt":
-				case "Buttplug":
 				case "Panties": audioFile = "Audio/VibrationTone4Long3.mp3"; break;
+				case "Buttplug":
+				case "InflVibeButtPlug_Vibe":
 				case "InflVibeDildo_Vibe":
 				case "Dildo": audioFile = "Audio/VibrationTone4Long6.mp3"; break;
 				case "Sybian": audioFile = "Audio/Sybian.mp3"; break;
@@ -124,13 +132,18 @@ function AudioPlayContent(data) {
 			audioFile = "Audio/Shocks.mp3";
 		} else if (data.Content.includes("ShacklesRestrain") || data.Content.includes("Ornate")){
 			audioFile = "Audio/CuffsMetal.mp3";
+		} else if (data.Content.includes("RopeSet")){
+			audioFile = "Audio/RopeShort.mp3";
+			data.Sender = data.Dictionary.find(function (el) {return el.Tag == "SourceCharacter";}).MemberNumber;
+		} else if (data.Content.includes("ChainSet")){
+			audioFile = "Audio/ChainLong.mp3";
+			data.Sender = data.Dictionary.find(function (el) {return el.Tag == "SourceCharacter";}).MemberNumber;
 		}
-
 	}
 
 	// Update noise level depending on who the interaction took place between.  Sensory isolation increases volume for self, decreases for others.
 	if (!audioFile) return;
-	var target = data.Dictionary.find(function (el) {return el.Tag == "DestinationCharacter" || el.Tag == "DestinationCharacterName";});
+	var target = data.Dictionary.find(function (el) {return el.Tag == "DestinationCharacter" || el.Tag == "DestinationCharacterName" || el.Tag == "TargetCharacter";});
 	if (!target || !target.MemberNumber) return;
 
 	// Changes the volume based on sensory deprivation

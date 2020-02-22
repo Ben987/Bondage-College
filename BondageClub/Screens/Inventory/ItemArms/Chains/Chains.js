@@ -30,9 +30,7 @@ function InventoryItemArmsChainsDraw() {
 		DrawText(DialogFind(Player, "ChainBondageSuspensionHogtied"), 1838, 800, "white", "gray");
 		DrawText(DialogFind(Player, "RequireBondageLevel").replace("ReqLevel", "8"), 1838, 850, "white", "gray");
 	}
-	else {
-		DrawText(DialogFind(Player, "CantChangeWhileLocked"), 1500, 500, "white", "gray");
-	}
+	else DrawText(DialogFind(Player, "CantChangeWhileLocked"), 1500, 500, "white", "gray");
 
 }
 
@@ -70,21 +68,17 @@ function InventoryItemArmsChainsSetPose(NewType) {
 		if (NewType == "Hogtied") {
 			DialogFocusItem.Property.SetPose = ["Hogtied"];
 			DialogFocusItem.Property.Difficulty = 2;
-			CharacterSetFacialExpression(C, "Blush", "Medium");
-			TimerInventoryRemoveSet(C, "Blush", 10);
+			CharacterSetFacialExpression(C, "Blush", "Medium", 10);
 			InventoryRemove(C, "ItemHidden");
 		}
 		if (NewType == "SuspensionHogtied") {
 			DialogFocusItem.Property.SetPose = ["Hogtied", "SuspensionHogtied"];
-			DialogFocusItem.Property.Difficulty = 6; 
-			CharacterSetFacialExpression(C, "Blush", "Medium"); 
-			TimerInventoryRemoveSet(C, "Blush", 20);
+			DialogFocusItem.Property.Difficulty = 6;
+			CharacterSetFacialExpression(C, "Blush", "Medium", 20);
 			InventoryWear(C, "SuspensionChains", "ItemHidden", DialogFocusItem.Color);
 		}
 	}
-	else { 
-		return; 
-	}
+	else return;
 	
 	// Adds the lock effect back if it was padlocked
 	if ((DialogFocusItem.Property.LockedBy != null) && (DialogFocusItem.Property.LockedBy != "")) {

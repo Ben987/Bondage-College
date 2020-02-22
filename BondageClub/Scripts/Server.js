@@ -40,8 +40,17 @@ function ServerDisconnect(data) {
 	if (Player.Name != "") {
 		if (CurrentScreen != "Relog") {
 
-			// Exits out of any chatroom
-			if (CurrentScreen == "ChatRoom") {
+			// Exits out of the chat room or a sub screen of the chatroom, so we'll be able to get in again when we log back
+			if (
+				(CurrentScreen == "ChatRoom")
+				|| (CurrentScreen == "ChatAdmin")
+				|| ((CurrentScreen == "Appearance") && (CharacterAppearanceReturnRoom == "ChatRoom"))
+				|| ((CurrentScreen == "InformationSheet") && (InformationSheetPreviousScreen == "ChatRoom"))
+				|| ((CurrentScreen == "Title") && (InformationSheetPreviousScreen == "ChatRoom"))
+				|| ((CurrentScreen == "OnlineProfile") && (InformationSheetPreviousScreen == "ChatRoom"))
+				|| ((CurrentScreen == "FriendList") && (InformationSheetPreviousScreen == "ChatRoom") && (FriendListReturn == null))
+				|| ((CurrentScreen == "Preference") && (InformationSheetPreviousScreen == "ChatRoom"))
+			) {
 				RelogChatLog = document.getElementById("TextAreaChatLog").cloneNode(true);
 				RelogChatLog.id = "RelogChatLog";
 				RelogChatLog.name = "RelogChatLog";
@@ -50,7 +59,7 @@ function ServerDisconnect(data) {
 				CurrentScreen = "ChatSearch";
 				CurrentModule = "Online";
 				CurrentCharacter = null;
-			}
+			} else RelogChatLog = null;
 
 			// Keeps the relog data
 			RelogData = { Screen: CurrentScreen, Module: CurrentModule, Character: CurrentCharacter };

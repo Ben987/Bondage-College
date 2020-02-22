@@ -56,11 +56,11 @@ var InventoryItemNeckSlaveCollarTypes = [
 	},{
         Name: "LeatherCorsetCollar",
         Image: "LeatherCorsetCollar",
-        Property: { Type: "LeatherCorsetCollar", Effect: [], Block: [] }
+        Property: { Type: "LeatherCorsetCollar", Effect: ["GagNormal"], Block: ["ItemMouth", "ItemMouth2", "ItemMouth3"] }
 	},{
         Name: "StrictPostureCollar",
         Image: "StrictPostureCollar",
-        Property: { Type: "StrictPostureCollar", Effect: ["GagNormal"], Block: ["ItemMouth", "ItemMouth2", "ItemMouth3"] }
+        Property: { Type: "StrictPostureCollar", Effect: [], Block: [] }
 	},{
         Name: "LatexPostureCollar",
         Image: "LatexPostureCollar",
@@ -77,6 +77,10 @@ var InventoryItemNeckSlaveCollarTypes = [
         Name: "OrnateCollar",
         Image: "OrnateCollar",
         Property: { Type: "OrnateCollar", Effect: [], Block: [] }
+	},{
+        Name: "SlenderSteelCollar",
+        Image: "SlenderSteelCollar",
+        Property: { Type: "SlenderSteelCollar", Effect: [], Block: [] }
 	},
 ];
 

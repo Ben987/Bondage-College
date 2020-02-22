@@ -7,6 +7,11 @@ var RelogChatLog = null;
 // Loads the relog screen
 function RelogLoad() {
 	
+	// Hides any HTML DOM element with the tag "HideOnPopup", like text boxes
+	var Elements = document.getElementsByClassName("HideOnPopup");
+	for (var E = 0; E < Elements.length; E++)
+		Elements[E].style.display = "none";
+
 	// Clears the previous login message
 	LoginMessage = "";
 	

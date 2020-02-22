@@ -128,10 +128,13 @@ IndoorPool,,,Indoor Pool
 OutdoorPool,,,Outdoor Pool
 MaidCafe,,,Maid Café
 PublicBath,,,Public Bath
+Onsen,,,Onsen
 ParkDay,,,Park Day
 ParkNight,,,Park Night
 ChillRoom,,,Chill Room
 Boudoir,,,Boudoir
+Kitchen,,,Kitchen
+DiningRoom,,,Dining Room
 BondageBedChamber,,,Bondage Bedchamber
 Beach,,,Beach
 SheikhPrivate,,,Sheikh Private Room
@@ -142,19 +145,26 @@ DeepForest,,,Deep Forest
 SpookyForest,,,Spooky Forest
 SlumRuins,,,Slum Ruins
 AbandonedBuilding,,,Abandoned Building
+AbandonedSideRoom,,,Abandoned Side Room
 BalconyNight,,,Balcony Night
 CozyLivingRoom,,,Cozy Living Room
 RooftopParty,,,Rooftop Party
+PartyBasement,,,Party Basement
 CosyChalet,,,Cosy Chalet
 AlchemistOffice,,,Alchemist Office
 HellEntrance,,,Entrance to Hell
 PirateIsland,,,Pirate Island
 PirateIslandNight,,,Pirate Island Night
+CaptainCabin,,,Captain Cabin
+MedinaMarket,,,Medina Market
 ThroneRoom,,,Throne Room
 Dungeon,,,Dungeon
 Industrial,,,Industrial
 SunTemple,,,Sun Temple
 BackAlley,,,Back Alley
+CreepyBasement,,,Creepy Basement
+Cellar,,,Cellar
+SlumCellar,,,Slum Cellar
 BarRestaurant,,,Bar Restaurant
 DungeonRuin,,,Ruined Dungeon
 SecretChamber,,,Secret Chamber
@@ -162,6 +172,10 @@ VaultCorridor,,,Vault Corridor
 AncientRuins,,,Ancient Ruins
 JungleTemple,,,Jungle Temple
 CeremonialVenue,,,Ceremony Venue
+BeachCafe,,,Beach Promenade Cafe
+Confessions,,,Confessions
+DesolateVillage,,,Desolate Village
+LostVages,,,Lost Vages Casino
 WeddingRoom,,,Wedding Room
 WeddingArch,,,Wedding Arch
 WeddingBeach,,,Wedding Beach
@@ -385,13 +399,13 @@ WristShacklesPoseInFront,,,In-front of body
 WristShacklesPoseBehind,,,Behind back.
 WristShacklesRestrainInFront,,,SourceCharacter shackles DestinationCharacter wrist in-front of their body.
 WristShacklesRestrainBehind,,,SourceCharacter shackles DestinationCharacter wrist behind their back.
-SelectStrapType,,,Select if want Straps
-SelectIfDontType,,,Select want straps removed
+SelectStrapType,,,Select if you want straps
+SelectIfDontType,,,Select if you want straps removed
 LeatherArmbinderTypeStrap,,,Binder Straps
-LeatherArmbinderStrapTypeNone,,,No strap
-LeatherArmbinderSetStrap,,,SourceCharacter puts an armbiner on DestinationCharacter with a strap.
-LeatherArmbinderSetWrapStrap,,,SourceCharacter puts an armbiner on DestinationCharacter with a strap.
-LeatherArmbinderStrapSetNone,,,SourceCharacter puts an armbiner on DestinationCharacter that's strapless.
+LeatherArmbinderStrapTypeNone,,,No straps
+LeatherArmbinderSetStrap,,,SourceCharacter puts an armbinder on DestinationCharacter with straps.
+LeatherArmbinderSetWrapStrap,,,SourceCharacter puts an armbinder on DestinationCharacter with straps.
+LeatherArmbinderStrapSetNone,,,SourceCharacter puts an armbinder on DestinationCharacter that's strapless.
 SelectGagType,,,Select the type of gag
 ClothGagTypeSmall,,,Small
 ClothGagTypeCleave,,,Cleave
@@ -526,6 +540,14 @@ NippleEggIncreaseTo0,,,DestinationCharacterName vibrating eggs on her nipples st
 NippleEggIncreaseTo1,,,DestinationCharacterName vibrating eggs on her nipples build up to a moderate pace.
 NippleEggIncreaseTo2,,,DestinationCharacterName vibrating eggs on her nipples start buzzing strongly!
 NippleEggIncreaseTo3,,,DestinationCharacterName vibrating eggs on her nipples jump up to maximum intensity!
+NippleHeartDecreaseTo-1,,,DestinationCharacterName vibrating heart piercings stop vibrating.
+NippleHeartDecreaseTo0,,,DestinationCharacterName vibrating heart piercings slow down into a light tease.
+NippleHeartDecreaseTo1,,,DestinationCharacterName vibrating heart piercings return to a moderate pace.
+NippleHeartDecreaseTo2,,,DestinationCharacterName vibrating heart piercings slow down a tiny bit.
+NippleHeartIncreaseTo0,,,DestinationCharacterName vibrating heart piercings start teasing her lightly.
+NippleHeartIncreaseTo1,,,DestinationCharacterName vibrating heart piercings build up to a moderate pace.
+NippleHeartIncreaseTo2,,,DestinationCharacterName vibrating heart piercings start buzzing strongly!
+NippleHeartIncreaseTo3,,,DestinationCharacterName vibrating heart piercings jump up to maximum intensity!
 NipSucloosensTo0,,,SourceCharacter loosens DestinationCharacter nipple suction cups until they hang loosely.
 NipSucloosensTo1,,,SourceCharacter loosens DestinationCharacter nipple suction cups to a light amount of suction.
 NipSucloosensTo2,,,SourceCharacter loosens DestinationCharacter nipple suction cups to a moderate amount of suction.
@@ -674,12 +696,12 @@ FullLatexSuitTypeZipped,,,Zipped Up
 FullLatexSuitTypeUnZip,,,Unzipped
 FullLatexSuitTypeWand,,,Wand Attachment
 FullLatexSuitSetZipped,,,SourceCharacter zips up TargetCharacter suit.
-FullLatexSuitSetUnZip,,,SourceCharacter unzips up TargetCharacter suit.
-FullLatexSuitSetWand,,,SourceCharacter attachs a wand to TargetCharacter suit.
+FullLatexSuitSetUnZip,,,SourceCharacter unzips TargetCharacter suit.
+FullLatexSuitSetWand,,,SourceCharacter attaches a wand to TargetCharacter suit.
 BitchSuitTypeZipped,,,Zipped Up
 BitchSuitTypeUnZip,,,Unzipped
 BitchSuitSetZipped,,,SourceCharacter zips up TargetCharacter suit.
-BitchSuitSetUnZip,,,SourceCharacter unzips up TargetCharacter suit.
+BitchSuitSetUnZip,,,SourceCharacter unzips TargetCharacter suit.
 TurnOff,,,TurnOff
 Low,,,Low
 Medium,,,Medium
@@ -813,8 +835,18 @@ SelectCollarNameTagLoverType,,,Select what tag you want to use
 SelectCollarNameTagLoverTypeLocked,,,You cannot change the tag while it's locked
 CollarNameTagLoverSet,,,SourceCharacter uses a NameTagType lover name tag on DestinationCharacter collar.
 CollarNameTagLoverTypeCookie,,,Cookie
+CollarNameTagLoverTypeFeather,,,Feather
 CollarNameTagLoverTypeLover,,,Lover
 CollarNameTagLoverTypeMuffin,,,Muffin
+SelectCollarNameTagLivestockType,,,Select what tag you want to use
+SelectCollarNameTagLivestockTypeLocked,,,You cannot change the tag while it's locked
+CollarNameTagLivestockSet,,,SourceCharacter uses a NameTagType livestock name tag on DestinationCharacter collar.
+CollarNameTagLivestockTypeAnimal,,,Animal
+CollarNameTagLivestockTypeBreedMe,,,BreedMe
+CollarNameTagLivestockTypeCow,,,Cow
+CollarNameTagLivestockTypeMeat,,,Meat
+CollarNameTagLivestockTypeMilkMe,,,MilkMe
+CollarNameTagLivestockTypePig,,,Pig
 RoundPiercingPoseBase,,,Base
 RoundPiercingPoseChain,,,Chain
 RoundPiercingRestrainBase,,,SourceCharacter detaches extras from DestinationCharacter round piercings.

@@ -542,8 +542,9 @@ function CharacterSetActivePose(C, NewPose) {
 	CharacterRefresh(C, false);
 }
 
-// Sets a specific facial expression for the character's specified AssetGruo
-function CharacterSetFacialExpression(C, AssetGroup, Expression) {
+// Sets a specific facial expression for the character's specified AssetGroup, if there's a timer, the expression will expire after it, a timed expression cannot override another one
+function CharacterSetFacialExpression(C, AssetGroup, Expression, Timer) {
+	if ((Timer != null) && (InventoryGet(C, AssetGroup) != null) && (InventoryGet(C, AssetGroup).Property != null) && (InventoryGet(C, AssetGroup).Property.Expression != null)) return;
 	for (var A = 0; A < C.Appearance.length; A++) {
 		if ((C.Appearance[A].Asset.Group.Name == AssetGroup) && (C.Appearance[A].Asset.Group.AllowExpression)) {
 			if ((Expression == null) || (C.Appearance[A].Asset.Group.AllowExpression.indexOf(Expression) >= 0)) {
@@ -553,6 +554,7 @@ function CharacterSetFacialExpression(C, AssetGroup, Expression) {
 					CharacterRefresh(C);
 					ChatRoomCharacterUpdate(C);
 				}
+				if (Timer != null) TimerInventoryRemoveSet(C, AssetGroup, Timer);
 				return;
 			}
 		}

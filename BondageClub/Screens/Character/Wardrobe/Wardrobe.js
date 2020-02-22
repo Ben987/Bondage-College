@@ -18,8 +18,10 @@ function WardrobeLoadCharacterNames() {
 
 // Makes sure the wardrobe is of the correct length
 function WardrobeFixLength() {
-	if (Player.Wardrobe.length > 12) Player.Wardrobe = Player.Wardrobe.slice(0, 11);
-	while (Player.Wardrobe.length < 12) Player.Wardrobe.push(null);
+	if (Player.Wardrobe != null) {
+		if (Player.Wardrobe.length > 12) Player.Wardrobe = Player.Wardrobe.slice(0, 11);
+		while (Player.Wardrobe.length < 12) Player.Wardrobe.push(null);
+	}
 }
 
 // Loads all wardrobe characters 

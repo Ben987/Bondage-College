@@ -104,6 +104,7 @@ function MaidQuartersRemoveMaidUniform() {
 		var PreviousItem = MaidQuartersItemClothPrev[ItemAssetGroupName];
 		InventoryRemove(Player, ItemAssetGroupName);
 		if(PreviousItem) InventoryWear(Player, PreviousItem.Asset.Name, ItemAssetGroupName, PreviousItem.Color);
+		if(PreviousItem && PreviousItem.Property) InventoryGet(Player, ItemAssetGroupName).Property = PreviousItem.Property
 		MaidQuartersItemClothPrev[ItemAssetGroupName] = null;
 	}
 

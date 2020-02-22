@@ -69,14 +69,8 @@ function CollegeTeacherClick() {
 // When Mildred love towards the player changes, it can also trigger an event.  When a good or bad move is done, her expression will change quickly.
 function CollegeTeacherMildredLoveChange(LoveChange, Event) {
 	if (LoveChange != null) CollegeTeacherMildredLove = CollegeTeacherMildredLove + parseInt(LoveChange);
-	if ((LoveChange != null) && (parseInt(LoveChange) < 0)) {
-		CharacterSetFacialExpression(CollegeTeacherMildred, "Eyes", "Dazed");
-		TimerInventoryRemoveSet(CollegeTeacherMildred, "Eyes", 2);
-	}
-	if ((LoveChange != null) && (parseInt(LoveChange) > 0)) {
-		CharacterSetFacialExpression(CollegeTeacherMildred, "Blush", "Low");
-		TimerInventoryRemoveSet(CollegeTeacherMildred, "Blush", 2);
-	}
+	if ((LoveChange != null) && (parseInt(LoveChange) < 0)) CharacterSetFacialExpression(CollegeTeacherMildred, "Eyes", "Dazed", 2);
+	if ((LoveChange != null) && (parseInt(LoveChange) > 0)) CharacterSetFacialExpression(CollegeTeacherMildred, "Blush", "Low", 2);
 	if (Event == "Pillory") InventoryWear(Player, "Pillory", "ItemArms");
 	if (Event == "Lock") InventoryLock(Player, "ItemArms", "IntricatePadlock", -1);
 	if (Event == "Crop") {
@@ -84,10 +78,8 @@ function CollegeTeacherMildredLoveChange(LoveChange, Event) {
 		InventoryGet(CollegeTeacherMildred, "ItemHands").Property = { Type: "Crop" };
 	}
 	if (Event == "Hit") {
-		CharacterSetFacialExpression(Player, "Eyes", "Closed");
-		TimerInventoryRemoveSet(Player, "Eyes", 3);
-		CharacterSetFacialExpression(Player, "Blush", "Medium");
-		TimerInventoryRemoveSet(Player, "Blush", 3);
+		CharacterSetFacialExpression(Player, "Eyes", "Closed", 3);
+		CharacterSetFacialExpression(Player, "Blush", "Medium", 3);
 	}		
 	if (Event == "Gag") InventoryWear(Player, "DogMuzzleExposed", "ItemMouth");
 }

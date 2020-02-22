@@ -1,5 +1,5 @@
 "use strict";
-var InventoryItemArmsSturdyLeatherBeltsMessage = "";
+var InventoryItemArmsSturdyLeatherBeltsMessage = "SelectItem";
 
 // Loads the item extension properties
 function InventoryItemArmsSturdyLeatherBeltsLoad() {
@@ -16,28 +16,31 @@ function InventoryItemArmsSturdyLeatherBeltsDraw() {
 	DrawTextFit(DialogFocusItem.Asset.Description, 1487, 375, 221, "black");
 
 	// Draw the possible poses
-	DrawText(DialogFind(Player, "SturdyLeatherBeltsSelectTightness"), 1487, 500, "white", "gray");
-	DrawButton(1125, 550, 225, 225, "", (DialogFocusItem.Property.Restrain == null) ? "#888888" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/One.png", 1125, 550);
-	DrawText(DialogFind(Player, "SturdyLeatherBeltsPoseOne"), 1237, 800, "white", "gray");
-	DrawButton(1375, 550, 225, 225, "", ((DialogFocusItem.Property.Restrain != null) && (DialogFocusItem.Property.Restrain == "Two")) ? "#888888" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Two.png", 1375, 550);
-	DrawText(DialogFind(Player, "SturdyLeatherBeltsPoseTwo"), 1487, 800, "white", "gray");
-	DrawButton(1625, 550, 225, 225, "", ((DialogFocusItem.Property.Restrain != null) && (DialogFocusItem.Property.Restrain == "Three")) ? "#888888" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Three.png", 1625, 550);
-	DrawText(DialogFind(Player, "SturdyLeatherBeltsPoseThree"), 1737, 800, "white", "gray");
+	if (!InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
+		DrawText(DialogFind(Player, "SturdyLeatherBeltsSelectTightness"), 1487, 500, "white", "gray");
+		DrawButton(1125, 550, 225, 225, "", (DialogFocusItem.Property.Restrain == null) ? "#888888" : "White");
+		DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/One.png", 1125, 550);
+		DrawText(DialogFind(Player, "SturdyLeatherBeltsPoseOne"), 1237, 800, "white", "gray");
+		DrawButton(1375, 550, 225, 225, "", ((DialogFocusItem.Property.Restrain != null) && (DialogFocusItem.Property.Restrain == "Two")) ? "#888888" : "White");
+		DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Two.png", 1375, 550);
+		DrawText(DialogFind(Player, "SturdyLeatherBeltsPoseTwo"), 1487, 800, "white", "gray");
+		DrawButton(1625, 550, 225, 225, "", ((DialogFocusItem.Property.Restrain != null) && (DialogFocusItem.Property.Restrain == "Three")) ? "#888888" : "White");
+		DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Three.png", 1625, 550);
+		DrawText(DialogFind(Player, "SturdyLeatherBeltsPoseThree"), 1737, 800, "white", "gray");
 
 	// Draw the message if present
-	if (InventoryItemArmsSturdyLeatherBeltsMessage != null) DrawTextWrap(DialogFind(Player, InventoryItemArmsSturdyLeatherBeltsMessage), 1087, 850, 800, 160, "White");
-
+		if (InventoryItemArmsSturdyLeatherBeltsMessage != null) DrawTextWrap(DialogFind(Player, InventoryItemArmsSturdyLeatherBeltsMessage), 1087, 850, 800, 160, "White");
+	} else DrawText(DialogFind(Player, "CantChangeWhileLocked"), 1500, 500, "white", "gray");
 }
 
 // Catches the item extension clicks
 function InventoryItemArmsSturdyLeatherBeltsClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1125) && (MouseX <= 1350) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property.Restrain != null)) InventoryItemArmsSturdyLeatherBeltsSetPose(null);
-	if ((MouseX >= 1375) && (MouseX <= 1600) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Two"))) InventoryItemArmsSturdyLeatherBeltsSetPose("Two");
-	if ((MouseX >= 1625) && (MouseX <= 1850) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Three"))) InventoryItemArmsSturdyLeatherBeltsSetPose("Three");
+	if (!InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
+		if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
+		if ((MouseX >= 1125) && (MouseX <= 1350) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property.Restrain != null)) InventoryItemArmsSturdyLeatherBeltsSetPose(null);
+		if ((MouseX >= 1375) && (MouseX <= 1600) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Two"))) InventoryItemArmsSturdyLeatherBeltsSetPose("Two");
+		if ((MouseX >= 1625) && (MouseX <= 1850) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Three"))) InventoryItemArmsSturdyLeatherBeltsSetPose("Three");
+	} else return
 }
 
 // Sets the cuffs pose (wrist, elbow, both or none)

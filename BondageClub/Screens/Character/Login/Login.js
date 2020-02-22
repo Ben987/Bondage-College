@@ -192,7 +192,7 @@ function LoginResponse(C) {
 			CurrentScreen = RelogData.Screen;
 			CurrentCharacter = RelogData.Character;
 			TextLoad();
-			if ((ChatRoomData != null) && (ChatRoomData.Name != null) && (ChatRoomData.Name != "")) {
+			if ((ChatRoomData != null) && (ChatRoomData.Name != null) && (ChatRoomData.Name != "") && (RelogChatLog != null)) {
 				CommonSetScreen("Online", "ChatSearch");
 				ChatRoomPlayerCanJoin = true;
 				ServerSend("ChatRoomJoin", { Name: ChatRoomData.Name });
