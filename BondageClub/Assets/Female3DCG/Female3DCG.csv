@@ -567,6 +567,7 @@ ItemArms,Zipties,Zip Ties
 ItemArms,BoxTieArmbinder,Latex Box-Tie Armbinder
 ItemArms,BondageBouquet,Bondage Bouquet 
 ItemArms,Chains,Chains
+ItemArms,ChainLeashHolding,Holding Chain Leash
 ItemHands,,Hands
 ItemHands,PaddedMittens,Padded Mittens
 ItemHands,PawMittens,Paw Mittens
@@ -632,6 +633,8 @@ ItemNeckRestraints,CollarChainLong,Long Chain
 ItemNeckRestraints,CollarChainShort,Short Chain
 ItemNeckRestraints,CollarLeash,Leash
 ItemNeckRestraints,CollarLeashTaken,Pulled Leash
+ItemNeckRestraints,ChainLeash,Chain Leash
+ItemNeckRestraints,ChainLeashTaken,Pulled Chain Leash
 ItemMouth,,Mouth
 ItemMouth,ClothGag,Cloth Gag
 ItemMouth,WiffleGag,Wiffle Ball Gag
