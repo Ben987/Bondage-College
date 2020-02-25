@@ -434,10 +434,6 @@ function AppearanceRun() {
 
 	}
 
-	if (HideColorPicker) {
-		ColorPickerHide();
-	}
-
 	// Hides the color picker if needed
 	if (HideColorPicker) ColorPickerHide();
 
