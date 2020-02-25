@@ -17,7 +17,9 @@ var ColorPickerLayout = {
 
 function ColorPickerAttachEventListener() {
     var CanvasElement = document.getElementById("MainCanvas");
-    CanvasElement.addEventListener("mousedown", ColorPickerStartPick);
+    if (!CommonIsMobile) {
+        CanvasElement.addEventListener("mousedown", ColorPickerStartPick);
+    }
     CanvasElement.addEventListener("touchstart", ColorPickerStartPick);
 }
 
