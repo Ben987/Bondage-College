@@ -95,7 +95,7 @@ function ColorPickerGetCoordinates(Event) {
 function ColorPickerPickHue(Event) {
     var C = ColorPickerGetCoordinates(Event);
     ColorPickerHSV.H = Math.max(0, Math.min(1, (C.X - ColorPickerX) / ColorPickerWidth));
-    ColorPickerLastHSV = { ...ColorPickerHSV };
+    ColorPickerLastHSV = Object.assign({}, ColorPickerHSV);
     ColorPickerNotify();
 }
 
@@ -108,7 +108,7 @@ function ColorPickerPickSV(Event) {
     var V = 1 - (C.Y - SVPanelOffset) / SVPanelHeight;
     ColorPickerHSV.S = Math.max(0, Math.min(1, S));
     ColorPickerHSV.V = Math.max(0, Math.min(1, V));
-    ColorPickerLastHSV = { ...ColorPickerHSV };
+    ColorPickerLastHSV = Object.assign({}, ColorPickerHSV);
     ColorPickerNotify();
 }
 
@@ -116,7 +116,7 @@ function ColorPickerSelectFromPallete(Event) {
     var C = ColorPickerGetCoordinates(Event);
     var P = Math.max(0, Math.min(1, (C.X - ColorPickerX) / ColorPickerWidth));
     var HSV = P > 0.5 ? ColorPickerInitialHSV : ColorPickerLastHSV;
-    ColorPickerHSV = { ...HSV };
+    ColorPickerHSV = Object.assign({}, HSV);
     ColorPickerNotify();
 }
 
@@ -179,9 +179,9 @@ function ColorPickerDraw(X, Y, Width, Height, Src, Callback) {
         }
 
         HSV = ColorPickerCSSToHSV(Color);
-        ColorPickerInitialHSV = { ...HSV };
-        ColorPickerLastHSV = { ...HSV };
-        ColorPickerHSV = { ...HSV };
+        ColorPickerInitialHSV = Object.assign({}, HSV);
+        ColorPickerLastHSV =  Object.assign({}, HSV);
+        ColorPickerHSV =  Object.assign({}, HSV);
         ColorPickerRemoveEventListener();   // remove possible duplicated attached event listener, just in case
         ColorPickerAttachEventListener();
     } else {
