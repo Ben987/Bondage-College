@@ -132,9 +132,10 @@ var AssetFemale3DCG = [
 			    Name: "Catsuit", Priority: 13, Value: 100, BuyGroup: "Catsuit", Hide: ["ItemNipplesPiercings"], HideItem: ["ItemNipplesScrewClamps", "ItemNipplesPiercingsChainTassles", "ItemNipplesKittyPasties" , "ItemNipplesChopStickNippleClamps", "ItemNipplesHeartPasties"],
 				Layer: [
 					{ Name: "Base", AllowColorize: true },
-					{ Name: "Zip", AllowColorize: false }
+					{ Name: "Zip", AllowColorize: false },
 				]
-			}
+			},
+			{Name: "SeamlessCatsuit", Priority: 13, Value: 100, BuyGroup: "SeamlessCatsuit", Hide: ["ItemNipplesPiercings"], HideItem: ["ItemNipplesScrewClamps", "ItemNipplesPiercingsChainTassles", "ItemNipplesKittyPasties" , "ItemNipplesChopStickNippleClamps", "ItemNipplesHeartPasties"]},
 		]
 	},
 
@@ -197,9 +198,10 @@ var AssetFemale3DCG = [
 			    Name: "Catsuit", Priority: 13, Value: -1, BuyGroup: "Catsuit", Hide: ["ItemVulva", "ItemVulvaPiercings", "ItemButt", "BodyLower"], HideItem: ["SocksPantyhose1"],
 				Layer: [
 					{ Name: "Base", AllowColorize: true },
-					{ Name: "Zip", AllowColorize: false }
+					{ Name: "Zip", AllowColorize: false },
 				]
-			}
+			},
+			{Name: "SeamlessCatsuit", Priority: 13, Value: -1, BuyGroup: "SeamlessCatsuit", Hide: ["ItemVulva", "ItemVulvaPiercings", "ItemButt", "BodyLower"], HideItem: ["SocksPantyhose1"]},
 		]
 	},
 

@@ -52,6 +52,7 @@ ClothAccessory,Bouquet,Bouquet of flowers
 ClothAccessory,FrillyApron,Frilly Apron
 Suit,,Upper Suit
 Suit,Catsuit,Catsuit
+Suit,SeamlessCatsuit, Seamless Catsuit
 ClothLower,,Bottom
 ClothLower,Skirt1,Skirt
 ClothLower,Skirt2,Student Skirt
@@ -73,6 +74,7 @@ ClothLower,ChineseSkirt1,Chinese Skirt
 ClothLower,Gown2Skirt,Hobble Gown Skirt
 SuitLower,,Suit Lower
 SuitLower,Catsuit,Catsuit
+SuitLower,SeamlessCatsuit, Seamless Catsuit
 Bra,,Bra
 Bra,Bra1,Style 1
 Bra,Bra2,Style 2
