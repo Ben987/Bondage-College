@@ -137,8 +137,7 @@ var AssetFemale3DCG = [
 			},
 			{ Name: "SeamlessCatsuit", Priority: 13, Value: 100, BuyGroup: "SeamlessCatsuit", Hide: ["ItemNipplesPiercings"], HideItem: ["ItemNipplesScrewClamps", "ItemNipplesPiercingsChainTassles", "ItemNipplesKittyPasties" , "ItemNipplesChopStickNippleClamps", "ItemNipplesHeartPasties"]},
 			{ Name: "Seethroughsuit", Priority: 13, Value: 100, BuyGroup: "Seethroughsuit", Hide: ["ItemNipplesPiercings"], HideItem: ["ItemNipplesScrewClamps", "ItemNipplesPiercingsChainTassles", "ItemNipplesKittyPasties" , "ItemNipplesChopStickNippleClamps", "ItemNipplesHeartPasties"] },
-			{
-			    Name: "Seethroughsuitzip", Priority: 13, Value: 100, BuyGroup: "Seethroughsuitzip", Hide: ["ItemNipplesPiercings"], HideItem: ["ItemNipplesScrewClamps", "ItemNipplesPiercingsChainTassles", "ItemNipplesKittyPasties" , "ItemNipplesChopStickNippleClamps", "ItemNipplesHeartPasties"],
+			{ Name: "Seethroughsuitzip", Priority: 13, Value: 100, BuyGroup: "Seethroughsuitzip", Hide: ["ItemNipplesPiercings"], HideItem: ["ItemNipplesScrewClamps", "ItemNipplesPiercingsChainTassles", "ItemNipplesKittyPasties" , "ItemNipplesChopStickNippleClamps", "ItemNipplesHeartPasties"],
 				Layer: [
 					{ Name: "Base", AllowColorize: true },
 					{ Name: "Zip", AllowColorize: false }
@@ -211,11 +210,10 @@ var AssetFemale3DCG = [
 			},
 		{ Name: "SeamlessCatsuit", Priority: 13, Value: -1, BuyGroup: "SeamlessCatsuit", Hide: ["ItemVulva", "ItemVulvaPiercings", "ItemButt", "BodyLower"], HideItem: ["SocksPantyhose1"]},
 		{ Name: "Seethroughsuit", Priority: 13, Value: -1, BuyGroup: "Seethroughsuit", Hide: ["ItemVulva", "ItemVulvaPiercings"], HideItem: ["SocksPantyhose1"] },
-		{
-			    Name: "Seethroughsuitzip", Priority: 13, Value: -1, BuyGroup: "Seethroughsuitzip", Hide: ["ItemVulva", "ItemVulvaPiercings"], HideItem: ["SocksPantyhose1"],
+		{ Name: "Seethroughsuitzip", Priority: 13, Value: -1, BuyGroup: "Seethroughsuitzip", Hide: ["ItemVulva", "ItemVulvaPiercings"], HideItem: ["SocksPantyhose1"],
 				Layer: [
 					{ Name: "Base", AllowColorize: true },
-					{ Name: "Zip", AllowColorize: false },
+					{ Name: "Zip", AllowColorize: false }
 				]
 			},
 		]
