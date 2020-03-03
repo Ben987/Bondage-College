@@ -68,6 +68,7 @@ function CreationResponse(data) {
 			Player.WhiteList = [];
 			Player.BlackList = [];
 			Player.FriendList = [];
+			Player.GhostList = [];
 
 			// Imports logs, inventory and Sarah status from the Bondage College
 			CreationMessage = "";

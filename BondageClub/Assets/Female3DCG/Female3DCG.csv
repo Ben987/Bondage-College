@@ -53,6 +53,8 @@ ClothAccessory,FrillyApron,Frilly Apron
 Suit,,Upper Suit
 Suit,Catsuit,Catsuit
 Suit,SeamlessCatsuit, Seamless Catsuit
+Suit,Seethroughsuit,Seethrough suit
+Suit,Seethroughsuitzip,Seethrough suit
 ClothLower,,Bottom
 ClothLower,Skirt1,Skirt
 ClothLower,Skirt2,Student Skirt
@@ -75,6 +77,8 @@ ClothLower,Gown2Skirt,Hobble Gown Skirt
 SuitLower,,Suit Lower
 SuitLower,Catsuit,Catsuit
 SuitLower,SeamlessCatsuit, Seamless Catsuit
+SuitLower,Seethroughsuit,Seethrough suit
+SuitLower,Seethroughsuitzip,Seethrough suit
 Bra,,Bra
 Bra,Bra1,Style 1
 Bra,Bra2,Style 2
@@ -265,6 +269,7 @@ Gloves,MistressGloves,Mistress Gloves
 Gloves,FingerlessGloves,Fingerless Gloves
 Gloves,GlovesFur,Gloves with Fur
 Gloves,Catsuit,Catsuit Gloves
+SuitLower,Seethroughsuit,Seethrough suit
 Glasses,,Glasses
 Glasses,Glasses1,Style 1
 Glasses,Glasses2,Style 2
@@ -281,6 +286,7 @@ Glasses,EyePatch1,Eye Patch
 TailStraps,,Tail Strap
 TailStraps,TailStrap,Kitty Tail Strap
 TailStraps,HorseTailStrap,Horse Tail Strap
+TailStraps,HorseTailStrap1,Horse TailStrap
 TailStraps,FoxTailsStrap,Fox Tails Strap
 TailStraps,PuppyTailStrap,Puppy Tail Strap
 TailStraps,SuccubusStrap,Succubus Tail Strap
@@ -455,6 +461,7 @@ ItemButt,BlackButtPlug,Black Butt Plug
 ItemButt,PenisPlug,Penis Butt Plug
 ItemButt,TailButtPlug,Kitty Butt Plug
 ItemButt,HorseButtPlug,Horse Butt Plug
+ItemButt,HorsetailPlug1,Horse ButtPlug
 ItemButt,PuppyTailPlug,Puppy Butt Plug
 ItemButt,PuppyTailPlug1,Puppy Fluffy Butt Plug
 ItemButt,SuccubusButtPlug,Succubus Butt Plug
@@ -571,6 +578,7 @@ ItemArms,BoxTieArmbinder,Latex Box-Tie Armbinder
 ItemArms,BondageBouquet,Bondage Bouquet 
 ItemArms,Chains,Chains
 ItemArms,ChainLeashHolding,Holding Chain Leash
+ItemArms,PetCrawler,Pet Crawler
 ItemHands,,Hands
 ItemHands,PaddedMittens,Padded Mittens
 ItemHands,PawMittens,Paw Mittens

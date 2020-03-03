@@ -20,6 +20,8 @@ function ChatRoomCanRemoveWhiteList() { return ((CurrentCharacter != null) && (C
 function ChatRoomCanRemoveBlackList() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.BlackList.indexOf(CurrentCharacter.MemberNumber) >= 0)) }
 function ChatRoomCanAddFriend() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.FriendList.indexOf(CurrentCharacter.MemberNumber) < 0)) }
 function ChatRoomCanRemoveFriend() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.FriendList.indexOf(CurrentCharacter.MemberNumber) >= 0)) }
+function ChatRoomCanAddGhost() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.GhostList.indexOf(CurrentCharacter.MemberNumber) < 0)) }
+function ChatRoomCanRemoveGhost() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.GhostList.indexOf(CurrentCharacter.MemberNumber) >= 0)) }
 function ChatRoomCanChangeClothes() { return (Player.CanInteract() && (CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && CurrentCharacter.AllowItem && !((InventoryGet(CurrentCharacter, "ItemNeck") != null) && (InventoryGet(CurrentCharacter, "ItemNeck").Asset.Name == "ClubSlaveCollar"))) }
 function ChatRoomOwnershipOptionIs(Option) { return (Option == ChatRoomOwnershipOption) }
 function ChatRoomLovershipOptionIs(Option) { return (Option == ChatRoomLovershipOption) }
@@ -180,7 +182,8 @@ function ChatRoomDrawCharacter(DoClick) {
 			if (ChatRoomCharacter[C].MemberNumber != null) {
 				if (Player.WhiteList.indexOf(ChatRoomCharacter[C].MemberNumber) >= 0) DrawImage("Icons/Small/WhiteList.png", (C % 5) * Space + X + 75 * Zoom, Y + Math.floor(C / 5) * 500);
 				else if (Player.BlackList.indexOf(ChatRoomCharacter[C].MemberNumber) >= 0) DrawImage("Icons/Small/BlackList.png", (C % 5) * Space + X + 75 * Zoom, Y + Math.floor(C / 5) * 500);
-				if (Player.FriendList.indexOf(ChatRoomCharacter[C].MemberNumber) >= 0) DrawImage("Icons/Small/FriendList.png", (C % 5) * Space + X + 375 * Zoom, Y + Math.floor(C / 5) * 500);
+				if (Player.GhostList.indexOf(ChatRoomCharacter[C].MemberNumber) >= 0) DrawImage("Icons/Small/GhostList.png", (C % 5) * Space + X + 375 * Zoom, Y + Math.floor(C / 5) * 500);
+				else if (Player.FriendList.indexOf(ChatRoomCharacter[C].MemberNumber) >= 0) DrawImage("Icons/Small/FriendList.png", (C % 5) * Space + X + 375 * Zoom, Y + Math.floor(C / 5) * 500);
 			}
 
 		}
@@ -391,6 +394,8 @@ function ChatRoomSendChat() {
 		else if (m.indexOf("/help") == 0) ServerSend("ChatRoomChat", { Content: "ChatRoomHelp", Type: "Action", Target: Player.MemberNumber});
 		else if (m.indexOf("/friendlistadd ") == 0) ChatRoomListManipulation(Player.FriendList, null, msg);
 		else if (m.indexOf("/friendlistremove ") == 0) ChatRoomListManipulation(null, Player.FriendList, msg);
+		else if (m.indexOf("/ghostadd ") == 0) ChatRoomListManipulation(Player.GhostList, null, msg);
+		else if (m.indexOf("/ghostremove ") == 0) ChatRoomListManipulation(null, Player.GhostList, msg);
 		else if (m.indexOf("/whitelistadd ") == 0) ChatRoomListManipulation(Player.WhiteList, Player.BlackList, msg);
 		else if (m.indexOf("/whitelistremove ") == 0) ChatRoomListManipulation(null, Player.WhiteList, msg);
 		else if (m.indexOf("/blacklistadd ") == 0) ChatRoomListManipulation(Player.BlackList, Player.WhiteList, msg);
@@ -497,8 +502,12 @@ function ChatRoomHTMLEntities(str) {
 
 // When the server sends a chat message
 function ChatRoomMessage(data) {
+
 	// Make sure the message is valid (needs a Sender and Content)
 	if ((data != null) && (typeof data === "object") && (data.Content != null) && (typeof data.Content === "string") && (data.Content != "") && (data.Sender != null) && (typeof data.Sender === "number") && (data.Sender > 0)) {
+
+		// Exits right away if the sender is ghosted
+		if (Player.GhostList.indexOf(data.Sender) >= 0) return;
 
 		// Make sure the sender is in the room
 		var SenderCharacter = null;
@@ -713,13 +722,13 @@ function ChatRoomListManage(Operation, ListType) {
 	}
 }
 
-// Modify the player FriendList/WhiteList/BlackList based on typed message
+// Modify the player FriendList/GhostList/WhiteList/BlackList based on typed message
 function ChatRoomListManipulation(Add, Remove, Message) {
 	var C = parseInt(Message.substring(Message.indexOf(" ") + 1));
 	if (!isNaN(C) && (C > 0) && (C != Player.MemberNumber)) {
 		if ((Add != null) && (Add.indexOf(C) < 0)) Add.push(C);
 		if ((Remove != null) && (Remove.indexOf(C) >= 0)) Remove.splice(Remove.indexOf(C), 1);
-		ServerSend("AccountUpdate", { FriendList: Player.FriendList, WhiteList: Player.WhiteList, BlackList: Player.BlackList });
+		ServerSend("AccountUpdate", { FriendList: Player.FriendList, GhostList: Player.GhostList, WhiteList: Player.WhiteList, BlackList: Player.BlackList });
 	}
 }
 

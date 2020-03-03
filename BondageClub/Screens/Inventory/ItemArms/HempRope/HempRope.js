@@ -10,33 +10,38 @@ function InventoryItemArmsHempRopeLoad() {
 function InventoryItemArmsHempRopeDraw() {
 
 	// Draw the header and item
-	DrawRect(1387, 125, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
+	DrawRect(1387, 115, 225, 275, "white");
+	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 117, 221, 221);
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
 
 	// Draw the possible positions and their requirements
-	DrawText(DialogExtendedMessage, 1500, 475, "white", "gray");
-	DrawButton(1050, 550, 225, 225, "", (DialogFocusItem.Property.Type == null) ? "#888888" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/BoxTie.png", 1050, 551);
-	DrawText(DialogFind(Player, "RopeBondageBoxTie"), 1163, 800, "white", "gray");
-	DrawText(DialogFind(Player, "NoRequirement"), 1163, 850, "white", "gray");
-	DrawButton(1387, 550, 225, 225, "", ((DialogFocusItem.Property.Type != null) && (DialogFocusItem.Property.Type == "Hogtied")) ? "#888888" : (SkillGetLevelReal(Player, "Bondage") < 4) ? "Pink" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Hogtied.png", 1387, 551);
-	DrawText(DialogFind(Player, "RopeBondageHogtied"), 1500, 800, "white", "gray");
-	DrawText(DialogFind(Player, "RequireBondageLevel").replace("ReqLevel", "4"), 1500, 850, "white", "gray");
-	DrawButton(1725, 550, 225, 225, "", ((DialogFocusItem.Property.Type != null) && (DialogFocusItem.Property.Type == "SuspensionHogtied")) ? "#888888" : (SkillGetLevelReal(Player, "Bondage") < 8) ? "Pink" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/SuspensionHogtied.png", 1725, 551);
-	DrawText(DialogFind(Player, "RopeBondageSuspensionHogtied"), 1838, 800, "white", "gray");
-	DrawText(DialogFind(Player, "RequireBondageLevel").replace("ReqLevel", "8"), 1838, 850, "white", "gray");
+	DrawText(DialogExtendedMessage, 1500, 75, "white", "gray");
+	DrawButton(1050, 450, 225, 225, "", (DialogFocusItem.Property.Type == null) ? "#888888" : "White");
+	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/BoxTie.png", 1050, 451);
+	DrawText(DialogFind(Player, "RopeBondageBoxTie"), 1163, 425, "white", "gray");
+	DrawText(DialogFind(Player, "NoRequirement"), 1163, 700, "white", "gray");
+	DrawButton(1387, 450, 225, 225, "", ((DialogFocusItem.Property.Type != null) && (DialogFocusItem.Property.Type == "Hogtied")) ? "#888888" : (SkillGetLevelReal(Player, "Bondage") < 4) ? "Pink" : "White");
+	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Hogtied.png", 1387, 451);
+	DrawText(DialogFind(Player, "RopeBondageHogtied"), 1500, 425, "white", "gray");
+	DrawText(DialogFind(Player, "RequireBondageLevel").replace("ReqLevel", "4"), 1500, 700, "white", "gray");
+	DrawButton(1725, 450, 225, 225, "", ((DialogFocusItem.Property.Type != null) && (DialogFocusItem.Property.Type == "SuspensionHogtied")) ? "#888888" : (SkillGetLevelReal(Player, "Bondage") < 8) ? "Pink" : "White");
+	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/SuspensionHogtied.png", 1725, 451);
+	DrawText(DialogFind(Player, "RopeBondageSuspensionHogtied"), 1838, 425, "white", "gray");
+	DrawText(DialogFind(Player, "RequireBondageLevel").replace("ReqLevel", "8"), 1838, 700, "white", "gray");
+	DrawButton(1387, 750, 225, 225, "", ((DialogFocusItem.Property.Type != null) && (DialogFocusItem.Property.Type == "AllFours")) ? "#888888" : (SkillGetLevelReal(Player, "Bondage") < 4) ? "Pink" : "White");
+	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/AllFours.png", 1387, 751);
+	DrawText(DialogFind(Player, "RopeBondageAllFours"), 1500, 735, "white", "gray");
+	DrawText(DialogFind(Player, "RequireBondageLevel").replace("ReqLevel", "4"), 1500, 985, "white", "gray");
 
 }
 
 // Catches the item extension clicks
 function InventoryItemArmsHempRopeClick() {
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1050) && (MouseX <= 1275) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property.Type != null)) InventoryItemArmsHempRopeSetPose(null);
-	if ((MouseX >= 1387) && (MouseX <= 1612) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Hogtied")) && (SkillGetLevelReal(Player, "Bondage") >= 4)) InventoryItemArmsHempRopeSetPose("Hogtied");
-	if ((MouseX >= 1725) && (MouseX <= 1950) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "SuspensionHogtied")) && (SkillGetLevelReal(Player, "Bondage") >= 8)) InventoryItemArmsHempRopeSetPose("SuspensionHogtied");
+	if ((MouseX >= 1050) && (MouseX <= 1275) && (MouseY >= 450) && (MouseY <= 675) && (DialogFocusItem.Property.Type != null)) InventoryItemArmsHempRopeSetPose(null);
+	if ((MouseX >= 1387) && (MouseX <= 1612) && (MouseY >= 450) && (MouseY <= 675) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Hogtied")) && (SkillGetLevelReal(Player, "Bondage") >= 4)) InventoryItemArmsHempRopeSetPose("Hogtied");
+	if ((MouseX >= 1725) && (MouseX <= 1950) && (MouseY >= 450) && (MouseY <= 675) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "SuspensionHogtied")) && (SkillGetLevelReal(Player, "Bondage") >= 8)) InventoryItemArmsHempRopeSetPose("SuspensionHogtied");
+	if ((MouseX >= 1387) && (MouseX <= 1612) && (MouseY >= 750) && (MouseY <= 975) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "AllFours")) && (SkillGetLevelReal(Player, "Bondage") >= 4)) InventoryItemArmsHempRopeSetPose("AllFours");
 }
 
 // Sets the hemp rope pose (hogtied, suspension, etc.)
@@ -72,6 +77,12 @@ function InventoryItemArmsHempRopeSetPose(NewType) {
 		DialogFocusItem.Property.Difficulty = 6;
 		CharacterSetFacialExpression(C, "Blush", "Medium", 20);
 		InventoryWear(C, "SuspensionHempRope", "ItemHidden", DialogFocusItem.Color);
+	}
+	if (NewType == "AllFours") {
+		DialogFocusItem.Property.SetPose = ["AllFours"];
+		DialogFocusItem.Property.Difficulty = 2;
+		CharacterSetFacialExpression(C, "Blush", "Medium", 10);
+		InventoryRemove(C, "ItemHidden");
 	}
 	CharacterRefresh(C);
 

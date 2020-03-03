@@ -1,4 +1,5 @@
 SelectItem,,,Select an item to use.
+SelectActivity,,,Select an activity.
 CannotUseOnSelf,,,Cannot use on yourself.
 RemoveClothesForItem,,,Remove some clothes first.
 UnZipSuitForItem,,,Unzip the suit first.
@@ -242,6 +243,29 @@ ActionCoin,,,SourceCharacter flips a coin.  The result is: CoinResult.
 ActionGrabbedForCell,,,"TargetCharacterName gets grabbed by two maids and locked in a timer cell, following her owner commands."
 ActionGrabbedToServeDrinks,,,TargetCharacterName gets grabbed by two maids and escorted to the maid quarters to serve drinks for her owner.
 ActionGiveEnvelopeToOwner,,,TargetCharacterName gives a sealed envelope to her owner.
+ActivityKiss,,,Kiss
+ActivityFrenchKiss,,,French Kiss
+ActivityPoliteKiss,,,Polite Kiss
+ActivityLick,,,Lick
+ActivitySuck,,,Suck
+ActivityBite,,,Bite
+ActivityWhisper,,,Sexy Whisper
+ActivityTickle,,,Tickle
+ActivityCaress,,,Caress
+ActivityRub,,,Body Rub
+ActivityMassage,,,Massage
+ActivityPolish,,,Polish
+ActivityGrope,,,Grope
+ActivityPinch,,,Pinch
+ActivitySpank,,,Spank
+ActivitySlap,,,Slap
+ActivityBrush,,,Brush Hair
+ActivityPull,,,Pull Hair
+ActivityStrangle,,,Strangle
+ActivityMasturbateTongue,,,Tongue Masturbation
+ActivityMasturbateHand,,,Hand Masturbation
+ActivityMasturbateFist,,,Fist Masturbation
+ActivityMasturbateFoot,,,Foot Masturbation
 MaidDrinkPickFreeWater,,,SourceCharacter picks a glass of water from DestinationCharacter tray.
 MaidDrinkPickFreeOrangeJuice,,,SourceCharacter picks an orange juice from DestinationCharacter tray.
 MaidDrinkPickFreeBeer,,,SourceCharacter picks a beer from DestinationCharacter tray.
@@ -446,6 +470,7 @@ RopeBondageBoxTie,,,Box Tie
 RopeBondageHogtied,,,Hogtie
 RopeBondageSuspension,,,Suspension Tie
 RopeBondageSuspensionHogtied,,,Suspension Hogtie
+RopeBondageAllFours,,,All Fours
 RopeBondageCrotch,,,Crotch Rope
 RopeBondageHarness,,,Body Harness
 RopeBondageDiamond,,,Diamond Style
@@ -460,6 +485,7 @@ LegRopeSetSuspension,,,SourceCharacter uses the rope on TargetCharacter to do a 
 ArmsRopeSetBoxTie,,,SourceCharacter uses the rope on TargetCharacter to do a box tie.
 ArmsRopeSetHogtied,,,SourceCharacter uses the rope on TargetCharacter to do a hogtie.
 ArmsRopeSetSuspensionHogtied,,,SourceCharacter uses the rope on TargetCharacter to do a suspension hogtie.
+ArmsRopeSetAllFours,,,SourceCharacter uses the rope on TargetCharacter to have her crawling on all fours.
 Intensity-1,,,Item intensity: Disabled
 Intensity0,,,Item intensity: Low
 Intensity1,,,Item intensity: Medium
@@ -909,9 +935,11 @@ ChainBondageBoxTie,,,Box Tie
 ChainBondageHogtied,,,Hogtie
 ChainBondageSuspension,,,Suspension Tie
 ChainBondageSuspensionHogtied,,,Suspension Hogtie
+ChainBondageAllFours,,,All Fours
 LegChainSetBasic,,,SourceCharacter uses the chain on TargetCharacter to do a basic tie.
 LegChainSetStrict,,,SourceCharacter uses the chain on TargetCharacter to do a strict tie.
 LegChainSetSuspension,,,SourceCharacter uses the chain on TargetCharacter to do a suspension tie.
 ArmsChainSetBoxTie,,,SourceCharacter uses the chain on TargetCharacter to do a box tie.
 ArmsChainSetHogtied,,,SourceCharacter uses the chain on TargetCharacter to do a hogtie.
 ArmsChainSetSuspensionHogtied,,,SourceCharacter uses the Chain on TargetCharacter to do a suspension hogtie.
+ArmsChainSetAllFours,,,SourceCharacter uses the Chain on TargetCharacter to have her crawling on all fours.

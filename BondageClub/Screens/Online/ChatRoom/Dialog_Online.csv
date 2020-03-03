@@ -14,6 +14,8 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 10,,(Remove from item blacklist.),(This member is no longer on your item permission blacklist.),"ListManage(""Remove"", ""BlackList"")",CanRemoveBlackList()
 10,,(Add to friendlist.),(This member is considered to be a friend by you.  She must also add you on her friendlist to be able to find each other.),"ListManage(""Add"", ""FriendList"")",CanAddFriend()
 10,,(Remove from friendlist.),(This member is not longer considered to be a friend by you.),"ListManage(""Remove"", ""FriendList"")",CanRemoveFriend()
+10,,(Ghost and ignore her.),(This member is now ghosted and ignored by you.  Nothing she says or does will appear in your chat log.),"ListManage(""Add"", ""GhostList"")",CanAddGhost()
+10,,(Stop ghosting her.),(This member is no longer ghosted by you.  You will see what she says or does in your chat log.),"ListManage(""Remove"", ""GhostList"")",CanRemoveGhost()
 10,0,(Offer her a trial period to become your submissive.),(The request was sent.  She must accept for the trial period to start.),"SendOwnershipRequest(""Propose"")","OwnershipOptionIs(""CanOfferStartTrial"")"
 10,0,(Accept a trial period to become her submissive.),,"SendOwnershipRequest(""Accept"")","OwnershipOptionIs(""CanStartTrial"")"
 10,11,(Offer her to end the trial and be fully collared.),(There's a 100$ fee to prepare the ceremony and get her a slave collar.  Will you pay now?),,"OwnershipOptionIs(""CanOfferEndTrial"")"
