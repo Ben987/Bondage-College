@@ -821,6 +821,8 @@ ItemDevices,TheDisplayFrame,Display Frame
 ItemDevices,Sybian,Sybian
 ItemDevices,StrapOnSmooth,Smooth Strap On
 ItemDevices,StrapOnStuds,Studded Strap On
+ItemDevices,DisplayCase,Display Case
+ItemDevices,SmallDisplayCase,Small Display Case 
 ItemAddon,,Body
 ItemAddon,BondageBenchStraps,Leather Belt Straps
 ItemBoots,,Feet
