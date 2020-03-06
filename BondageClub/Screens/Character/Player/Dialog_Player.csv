@@ -468,6 +468,16 @@ Intensity0,,,Item intensity: Low
 Intensity1,,,Item intensity: Medium
 Intensity2,,,Item intensity: High
 Intensity3,,,Item intensity: Maximum
+EggIntensity-1,,,Egg item intensity: Disabled
+EggIntensity0,,,Egg item intensity: Low
+EggIntensity1,,,Egg item intensity: Medium
+EggIntensity2,,,Egg item intensity: High
+EggIntensity3,,,Egg item intensity: Maximum
+DildoIntensity-1,,,Dildo item intensity: Disabled
+DildoIntensity0,,,Dildo item intensity: Low
+DildoIntensity1,,,Dildo item intensity: Medium
+DildoIntensity2,,,Dildo item intensity: High
+DildoIntensity3,,,Dildo item intensity: Maximum
 Increase,,,Increase
 Decrease,,,Decrease
 ShockCollarShowChat,,,Show chat message
