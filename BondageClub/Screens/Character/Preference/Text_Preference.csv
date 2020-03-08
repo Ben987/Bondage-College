@@ -1,6 +1,7 @@
 Preferences,- Preferences -
 ChatPreferences,- Chat Preferences -
 AudioPreferences,- Audio Preferences -
+ArousalPreferences,- Arousal Meter & Sexual Activities Preferences -
 CharacterLabelColor,Character label color:
 ItemPermission,Item permission:
 PermissionLevel0,"Everyone, no exceptions"
@@ -25,6 +26,7 @@ DisplayTimestamps,Display timestamps
 ColorNames,Color names
 ColorActions,Color actions
 ColorEmotes,Color emotes
+ShowActivities,Show sexual activities & orgasms
 AudioVolume,Audio volume
 AudioPlayBeeps,Audio alarm for beeps
 AudioPlayItem,Play item sounds in chatrooms
@@ -39,3 +41,51 @@ UpdateEmail,Update Email
 UpdateEmailEmpty,"No email saved, write here to add one."
 UpdateEmailLinked,"An email is linked, write here to update it."
 UpdateEmailResponse, Your email has been updated !
+ArousalShowOtherMeter,Show other characters meter
+ArousalAffectExpression,Affect your facial expressions
+ArousalActive,Activation:
+ArousalActiveInactive,Disable sexual activities
+ArousalActiveNoMeter,Allow without a meter
+ArousalActiveManual,Allow with a manual meter
+ArousalActiveHybrid,Allow with an hybrid meter
+ArousalActiveAutomatic,Allow with a locked meter
+ArousalVisible,Meter visibility:
+ArousalVisibleAll,Show arousal to everyone
+ArousalVisibleAccess,Show if they have access
+ArousalVisibleSelf,Show to yourself only
+ArousalActivity,Activity preferences:
+ArousalActivityLoveSelf,Done on yourself:
+ArousalActivityLoveOther,Doing it to others:
+ArousalActivityLove0,Forbid/Block it
+ArousalActivityLove1,Doesn't like it
+ArousalActivityLove2,Neutral on it
+ArousalActivityLove3,Like it
+ArousalActivityLove4,Adore it
+ArousalSelectErogenousZones,Click on yourself to set your erogenous zones
+ArousalConfigureErogenousZones,Configure this zone to be erogenous or not
+ArousalZoneLove0,Block all activities on this zone
+ArousalZoneLove1,"Dislike this zone, it's a turn-off"
+ArousalZoneLove2,This zone isn't special for you
+ArousalZoneLove3,"Like this zone, it turns you on"
+ArousalZoneLove4,"Love this zone, it's a big turn-on"
+ArousalAllowOrgasm,This zone can give you an orgasm
+ArousalZoneItemBoots,Feet & Toes
+ArousalZoneItemFeet,Lower Legs
+ArousalZoneItemLegs,Upper Legs
+ArousalZoneItemVulva,Clitoris & Vagina
+ArousalZoneItemButt,Butt / Anal
+ArousalZoneItemPelvis,Pelvis & Belly
+ArousalZoneItemTorso,Torso & Ribs
+ArousalZoneItemNipples,Nipples
+ArousalZoneItemBreast,Breast
+ArousalZoneItemArms,Arms & Shoulders
+ArousalZoneItemHands,Hands
+ArousalZoneItemNeck,Neck
+ArousalZoneItemMouth,Mouth & Lips
+ArousalZoneItemHead,Head & Hair
+ArousalZoneItemEars,Ears
+ArousalStutter,Speech stuttering:
+ArousalStutterNone,Never stutter
+ArousalStutterArousal,When you're aroused
+ArousalStutterVibration,When you're vibrated
+ArousalStutterAll,Aroused & vibrated

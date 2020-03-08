@@ -77,7 +77,6 @@ function PrivateWontTakePlayerAsLover() { return (((CurrentCharacter.Lover == nu
 function PrivateWontTakePlayerAsLoverAlreadyDating() { return ((CurrentCharacter.Lover != null) && (CurrentCharacter.Lover != "") && (CurrentCharacter.Lover != Player.Name) && (Player.Lover == "") && (Player.Lovership == null)) }
 function PrivateWontTakePlayerAsLoverPlayerDating() { return (((CurrentCharacter.Lover == null) || (CurrentCharacter.Lover == "")) && ((Player.Lover != "") || (Player.Lovership != null))) }
 
-
 // Loads the private room vendor NPC
 function PrivateLoad() {
 
@@ -224,6 +223,20 @@ function PrivateClickCharacter() {
 		if ((MouseX >= X + (C - PrivateCharacterOffset) * 470) && (MouseX <= X + 470 + (C - PrivateCharacterOffset) * 470))
 			if ((NPCEventGet(PrivateCharacter[C], "SlaveMarketRent") <= CurrentTime) && (NPCEventGet(PrivateCharacter[C], "AsylumSent") <= CurrentTime)) {
 
+				// If the player can manually control her arousal or wants to fight her desire
+				if ((PrivateCharacter[C].ID == 0) && (MouseX >= X + (C - PrivateCharacterOffset) * 470 + 400) && (MouseX <= X + (C - PrivateCharacterOffset) * 470 + 450) && (MouseY >= 200) && (MouseY <= 700))
+					if ((Player.ArousalSettings != null) && (Player.ArousalSettings.Active != null) && (Player.ArousalSettings.Progress != null)) {
+						if ((Player.ArousalSettings.Active == "Manual") || (Player.ArousalSettings.Active == "Hybrid")) {
+							var Arousal = Math.round((675 - MouseY) / 4.5, 0);
+							if (Arousal < 0) Arousal = 0;
+							if (Arousal > 100) Arousal = 100;
+							if ((Player.ArousalSettings.AffectExpression == null) || Player.ArousalSettings.AffectExpression) ActivityExpression(Player, Arousal);
+							ActivitySetArousal(Player, Arousal);
+							if (Arousal == 100) ActivityOrgasm(Player);
+						}
+						return;
+					}
+
 				// Sets the new character (1000 if she's owner, 2000 if she's owned)
 				if (PrivateCharacter[C].ID != 0) {
 					PrivateCharacterToSave = C;
@@ -324,8 +337,11 @@ function PrivateLoadCharacter(C) {
 		if (PrivateCharacter[C].Event != null) N.Event = PrivateCharacter[C].Event;
 		if (PrivateCharacter[C].Lover != null) N.Lover = PrivateCharacter[C].Lover;
 		if (PrivateCharacter[C].Owner != null) N.Owner = PrivateCharacter[C].Owner;
+		if (PrivateCharacter[C].ArousalSettings != null) N.ArousalSettings = PrivateCharacter[C].ArousalSettings;
 		N.Love = (PrivateCharacter[C].Love == null) ? 0 : parseInt(PrivateCharacter[C].Love);
 		NPCTraitDialog(N);
+		NPCArousal(N);
+		ActivityTimerProgress(N, 0);
 		CharacterRefresh(N);
 		if (NPCEventGet(N, "PrivateRoomEntry") == 0) NPCEventAdd(N, "PrivateRoomEntry", CurrentTime);
 		PrivateCharacter[C] = N;

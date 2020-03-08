@@ -213,18 +213,19 @@ function CharacterLoadNPC(NPCType) {
 
 // Sets up the online character
 function CharacterOnlineRefresh(Char, data, SourceMemberNumber) {
-	if (Char.ID != 0) Char.Title = data.Title;
+	if ((Char.ID != 0) && (Char.MemberNumber == SourceMemberNumber)) Char.Title = data.Title;
 	Char.ActivePose = data.ActivePose;
 	Char.LabelColor = data.LabelColor;
 	Char.Creation = data.Creation;
-	if (Char.ID != 0) Char.ItemPermission = data.ItemPermission;
+	if ((Char.ID != 0) && (Char.MemberNumber == SourceMemberNumber)) Char.ItemPermission = data.ItemPermission;
+	if ((Char.ID != 0) && (Char.MemberNumber == SourceMemberNumber)) Char.ArousalSettings = data.ArousalSettings;
 	Char.Ownership = data.Ownership;
 	Char.Lovership = data.Lovership;
 	Char.Reputation = (data.Reputation != null) ? data.Reputation : [];
 	Char.BlockItems = Array.isArray(data.BlockItems) ? data.BlockItems : [];
 	Char.Appearance = ServerAppearanceLoadFromBundle(Char, "Female3DCG", data.Appearance, SourceMemberNumber);
 	if (Char.ID == 0) LoginValidCollar();
-	if (Char.ID != 0) InventoryLoad(Char, data.Inventory);
+	if ((Char.ID != 0) && (Char.MemberNumber == SourceMemberNumber)) InventoryLoad(Char, data.Inventory);
 	CharacterLoadEffect(Char);
 	CharacterRefresh(Char);
 }
@@ -253,7 +254,8 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 		Char.Title = data.Title;
 		Char.Description = data.Description;
 		Char.AccountName = "Online-" + data.ID.toString();
-		Char.MemberNumber = data.MemberNumber;	
+		Char.MemberNumber = data.MemberNumber;
+		Char.AllowItem = false;
 		var BackupCurrentScreen = CurrentScreen;
 		CurrentScreen = "ChatRoom";
 		CharacterLoadCSVDialog(Char, "Screens/Online/ChatRoom/Dialog_Online");
@@ -292,6 +294,7 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 		// Flags "refresh" if the ownership or or lovership or inventory or blockitems has changed
 		if (!Refresh && (JSON.stringify(Char.Ownership) !== JSON.stringify(data.Ownership))) Refresh = true;
 		if (!Refresh && (JSON.stringify(Char.Lovership) !== JSON.stringify(data.Lovership))) Refresh = true;
+		if (!Refresh && (JSON.stringify(Char.ArousalSettings) !== JSON.stringify(data.ArousalSettings))) Refresh = true;
 		if (!Refresh && (data.Inventory != null) && (Char.Inventory.length != data.Inventory.length)) Refresh = true;
 		if (!Refresh && (data.BlockItems != null) && (Char.BlockItems.length != data.BlockItems.length)) Refresh = true;
 
@@ -567,7 +570,6 @@ function CharacterResetFacialExpression(C) {
 		if (C.Appearance[A].Asset.Group.AllowExpression)
 			CharacterSetFacialExpression(C, C.Appearance[A].Asset.Group.Name, null);
 }
-
 
 // returns the current selected character
 function CharacterGetCurrent() {

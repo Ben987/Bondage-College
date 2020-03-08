@@ -1,4 +1,5 @@
 SelectItem,,,Select an item to use.
+SelectActivity,,,Select an activity.
 CannotUseOnSelf,,,Cannot use on yourself.
 RemoveClothesForItem,,,Remove some clothes first.
 UnZipSuitForItem,,,Unzip the suit first.
@@ -40,6 +41,7 @@ InspectLock,,,Inspect the lock
 Remote,,,Use your remote
 DialogNormalMode,,,Exit Permission Mode
 DialogPermissionMode,,,Edit Item Permissions
+Activity,,,Sexual Activities
 ButtPump,,,Use the Butt Plug's pump
 ColorPick,,,Color of next item
 ColorSelect,,,Use this color
@@ -175,7 +177,7 @@ CeremonialVenue,,,Ceremony Venue
 BeachCafe,,,Beach Promenade Cafe
 Confessions,,,Confessions
 DesolateVillage,,,Desolate Village
-LostVages,,,Lost Vages Casino
+LostVages,,,Lost Wages Casino
 WeddingRoom,,,Wedding Room
 WeddingArch,,,Wedding Arch
 WeddingBeach,,,Wedding Beach
@@ -403,9 +405,9 @@ SelectStrapType,,,Select if you want straps
 SelectIfDontType,,,Select if you want straps removed
 LeatherArmbinderTypeStrap,,,Binder Straps
 LeatherArmbinderStrapTypeNone,,,No straps
-LeatherArmbinderSetStrap,,,SourceCharacter puts an armbinder on DestinationCharacter with straps.
-LeatherArmbinderSetWrapStrap,,,SourceCharacter puts an armbinder on DestinationCharacter with straps.
-LeatherArmbinderStrapSetNone,,,SourceCharacter puts an armbinder on DestinationCharacter that's strapless.
+LeatherArmbinderSetStrap,,,SourceCharacter puts an armbinder with ring straps on DestinationCharacter arms.
+LeatherArmbinderSetWrapStrap,,,SourceCharacter puts an armbinder with wrapping straps on DestinationCharacter arms.
+LeatherArmbinderStrapSetNone,,,SourceCharacter puts a strapless armbinder on DestinationCharacter arms.
 SelectGagType,,,Select the type of gag
 ClothGagTypeSmall,,,Small
 ClothGagTypeCleave,,,Cleave
@@ -445,6 +447,7 @@ RopeBondageBoxTie,,,Box Tie
 RopeBondageHogtied,,,Hogtie
 RopeBondageSuspension,,,Suspension Tie
 RopeBondageSuspensionHogtied,,,Suspension Hogtie
+RopeBondageAllFours,,,All Fours
 RopeBondageCrotch,,,Crotch Rope
 RopeBondageHarness,,,Body Harness
 RopeBondageDiamond,,,Diamond Style
@@ -459,11 +462,22 @@ LegRopeSetSuspension,,,SourceCharacter uses the rope on TargetCharacter to do a 
 ArmsRopeSetBoxTie,,,SourceCharacter uses the rope on TargetCharacter to do a box tie.
 ArmsRopeSetHogtied,,,SourceCharacter uses the rope on TargetCharacter to do a hogtie.
 ArmsRopeSetSuspensionHogtied,,,SourceCharacter uses the rope on TargetCharacter to do a suspension hogtie.
+ArmsRopeSetAllFours,,,SourceCharacter uses the rope on TargetCharacter to have her crawling on all fours.
 Intensity-1,,,Item intensity: Disabled
 Intensity0,,,Item intensity: Low
 Intensity1,,,Item intensity: Medium
 Intensity2,,,Item intensity: High
 Intensity3,,,Item intensity: Maximum
+EggIntensity-1,,,Egg item intensity: Disabled
+EggIntensity0,,,Egg item intensity: Low
+EggIntensity1,,,Egg item intensity: Medium
+EggIntensity2,,,Egg item intensity: High
+EggIntensity3,,,Egg item intensity: Maximum
+DildoIntensity-1,,,Dildo item intensity: Disabled
+DildoIntensity0,,,Dildo item intensity: Low
+DildoIntensity1,,,Dildo item intensity: Medium
+DildoIntensity2,,,Dildo item intensity: High
+DildoIntensity3,,,Dildo item intensity: Maximum
 Increase,,,Increase
 Decrease,,,Decrease
 ShockCollarShowChat,,,Show chat message
@@ -548,6 +562,14 @@ NippleHeartIncreaseTo0,,,DestinationCharacterName vibrating heart piercings star
 NippleHeartIncreaseTo1,,,DestinationCharacterName vibrating heart piercings build up to a moderate pace.
 NippleHeartIncreaseTo2,,,DestinationCharacterName vibrating heart piercings start buzzing strongly!
 NippleHeartIncreaseTo3,,,DestinationCharacterName vibrating heart piercings jump up to maximum intensity!
+VibeHeartClitPiercingDecreaseTo-1,,,DestinationCharacterName vibrating heart clit piercing stops vibrating.
+VibeHeartClitPiercingDecreaseTo0,,,DestinationCharacterName vibrating heart clit piercing slows down into a light tease.
+VibeHeartClitPiercingDecreaseTo1,,,DestinationCharacterName vibrating heart clit piercing returns to a moderate pace.
+VibeHeartClitPiercingDecreaseTo2,,,DestinationCharacterName vibrating heart clit piercing slows down a tiny bit.
+VibeHeartClitPiercingIncreaseTo0,,,DestinationCharacterName vibrating heart clit piercing starts teasing her lightly.
+VibeHeartClitPiercingIncreaseTo1,,,DestinationCharacterName vibrating heart clit piercing builds up to a moderate pace.
+VibeHeartClitPiercingIncreaseTo2,,,DestinationCharacterName vibrating heart clit piercing starts buzzing strongly!
+VibeHeartClitPiercingIncreaseTo3,,,DestinationCharacterName vibrating heart clit piercing jumps up to maximum intensity!
 NipSucloosensTo0,,,SourceCharacter loosens DestinationCharacter nipple suction cups until they hang loosely.
 NipSucloosensTo1,,,SourceCharacter loosens DestinationCharacter nipple suction cups to a light amount of suction.
 NipSucloosensTo2,,,SourceCharacter loosens DestinationCharacter nipple suction cups to a moderate amount of suction.
@@ -900,9 +922,11 @@ ChainBondageBoxTie,,,Box Tie
 ChainBondageHogtied,,,Hogtie
 ChainBondageSuspension,,,Suspension Tie
 ChainBondageSuspensionHogtied,,,Suspension Hogtie
+ChainBondageAllFours,,,All Fours
 LegChainSetBasic,,,SourceCharacter uses the chain on TargetCharacter to do a basic tie.
 LegChainSetStrict,,,SourceCharacter uses the chain on TargetCharacter to do a strict tie.
 LegChainSetSuspension,,,SourceCharacter uses the chain on TargetCharacter to do a suspension tie.
 ArmsChainSetBoxTie,,,SourceCharacter uses the chain on TargetCharacter to do a box tie.
 ArmsChainSetHogtied,,,SourceCharacter uses the chain on TargetCharacter to do a hogtie.
 ArmsChainSetSuspensionHogtied,,,SourceCharacter uses the Chain on TargetCharacter to do a suspension hogtie.
+ArmsChainSetAllFours,,,SourceCharacter uses the Chain on TargetCharacter to have her crawling on all fours.

@@ -27,7 +27,6 @@ function AudioDialogStop() {
 
 // Takes a data dictionary content and sends the related audio mp3 to be played
 function AudioPlayContent(data) {
-console.log(data);
 	// Exits right away if we are missing content data
 	if (!Player.AudioSettings || !Player.AudioSettings.PlayItem || (Player.AudioSettings.Volume == 0)) return;
 	if (!data.Dictionary || !data.Dictionary.length) return;
@@ -79,9 +78,11 @@ console.log(data);
 				case "LowCage":
 				case "TheDisplayFrame":
 				case "HighSecurityCollar": audioFile = "Audio/LockLarge.mp3"; break;
+				case "ChainLeash":
 				case "CollarLeash":
 				case "MetalCuffs":
 				case "ToeCuffs": audioFile = "Audio/LockSmall.mp3"; break;
+				case "SteelMuzzleGag":
 				case "BondageBouquet":
 				case "Irish8Cuffs":
 				case "WristShackles":
@@ -113,6 +114,8 @@ console.log(data);
 			if (!isNaN(vibrationLevel)) noiseLevelModifier += vibrationLevel * 3;
 			var assetName = data.Content.substring(0, data.Content.length - "IncreaseTo1".length);
 			switch (assetName) {
+				case "VibeHeartClitPiercing":
+				case "NippleHeart":
 				case "Nipple":
 				case "NippleEgg":
 				case "Egg": audioFile = "Audio/VibrationTone4ShortLoop.mp3"; break;

@@ -428,6 +428,7 @@ function ServerPrivateCharacterSync() {
 				AssetFamily: PrivateCharacter[ID].AssetFamily,
 				Appearance: ServerAppearanceBundle(PrivateCharacter[ID].Appearance),
 				AppearanceFull: ServerAppearanceBundle(PrivateCharacter[ID].AppearanceFull),
+				ArousalSettings: PrivateCharacter[ID].ArousalSettings,
 				Event: PrivateCharacter[ID].Event
 			};
 			D.PrivateCharacter.push(C);

@@ -36,9 +36,8 @@
 <script src="Scripts/Server.js"></script>
 <script src="Scripts/Element.js"></script>
 <script src="Scripts/Translation.js"></script>
+<script src="Scripts/Activity.js"></script>
 <script src="Scripts/socket.io/socket.io.js"></script>
-<script src="Scripts/webgl/resources/m4.js"></script>
-<script src="Scripts/GLDraw.js"></script>
 <script src="Assets/Female3DCG/Female3DCG.js"></script>
 <script src="Screens/Character/Login/Login.js"></script>
 <script src="Screens/Character/Appearance/Appearance.js"></script>
@@ -105,6 +104,7 @@
 <script src="Screens/Inventory/ItemVulva/WandBelt/WandBelt.js"></script>
 <script src="Screens/Inventory/ItemNipples/VibeNippleClamp/VibeNippleClamp.js"></script>
 <script src="Screens/Inventory/ItemNipplesPiercings/VibeHeartPiercings/VibeHeartPiercings.js"></script>
+<script src="Screens/Inventory/ItemVulvaPiercings/VibeHeartClitPiercing/VibeHeartClitPiercing.js"></script>
 <script src="Screens/Inventory/ItemButt/ButtPump/ButtPump.js"></script>
 <script src="Screens/Inventory/ItemNeck/ShockCollar/ShockCollar.js"></script>
 <script src="Screens/Inventory/ItemNeckAccessories/CollarShockUnit/CollarShockUnit.js"></script>
@@ -185,49 +185,74 @@
 <script src="Screens/Inventory/ItemHidden/LeatherArmbinderStrap/LeatherArmbinderStrap.js"></script>
 <script src="Screens/Inventory/ItemHidden/LeatherArmbinderWrapStrap/LeatherArmbinderWrapStrap.js"></script>
 <script src="Screens/Inventory/ItemArms/BitchSuit/BitchSuit.js"></script>
+<script src="Screens/Inventory/ItemVulva/ClitAndDildoVibratorbelt/ClitAndDildoVibratorbelt.js"></script>
 <script>
 
 /*
 
 	NEXT VERISON:
 	
-	OK - Change restraint color on the fly without removing it (vsan)
-	OK - Color picker improvements, allow refresh when typing, two color palettes (vsan)
-	OK - Button to unlock without removing the item (Eveferox)
-	DISABLED - WebGL draw for better speed when colorizing (Sekkmer)
-	OK - New backgrounds and sounds (aldarris)
-	OK - New Lovers system (Atasly)
-	OK - Lovers locks (Atasly & Eveferox)
-	OK - New sailor clothes (wildsj)
-	OK - New plain dildo (wildsj)
-	OK - stable hair color (Atasly)
-	OK - Auto AFK after 5 minutes (EveFerox)
-	OK - New strap-on as devices (wildsj)
-	OK - Prevent short-chain with full latex suit (wildsj)
-	OK - Blinfold tweaks (Ayesha-678)
-	OK - Maid re-bind player after job (aldarris)
-	OK - Wedding dresses and bridesmaid gown (Kira)
-	OK - Chains for feet, legs & arms (Kirsty + fixes from Kira)
-	OK - Catsuit fixes (Gatetrek)
-	OK - New gowns, Crowns, Bonnets, Ribbons, Adult-Baby-Dress, diapers and Wedding/Bondage Bouquet (wildsj)
-	OK - 2 new maid apron & new locking corset (Ayesha-678)
-	OK - New XdY dice rolling system (nikoleis)
-	OK - Bra, 2 panties that can be used as pelvis items, footless socks, a tiara, a wedding veil & feathers, heart piercing, muzzle gag, 7 new backgrounds, typo fixes (Kira)
-	OK - catsuit fixes, new collar tags & model (wildsj)
-	OK - New cloth accessory apron (wildsj)
-	OK - More sound effects and backgrounds (aldarris)
-	
-	OK - Get/break girlfriend dialog for NPCs in private room
+	OK - Fixes for Microsoft Edge & color picking (vsan)
+	OK - New sound effects (aldaris)
+	OK - Seamless catsuit (Kirsty)
+	OK - New All four pose & items (gatetrek)
+	OK - Crotch chain + Locking Heels + Two new display cases (Kirsty)
+	OK - Catsuit & See-through gloves - Gloves for All Fours position (gatetrek)
+	BUG SENT - Both egg and vibrator could work on different variables - Demon tail + Clit&Dildo Vibrating belt + See-through + See-through zip catsuits (gatetrek)
+	OK - Text is too close, move up - All fours rope + chain bondage (gatetrek)
+	BUG SENT - Use a device strap-on on a suspended girl, should be hidden (wildsj)
 
-	OK - Block the "More than 12 wardrobe slots" hack
+	OK - Ghosting / Unghosting players from chat log /ghostadd /ghostremove
+	OK - New stuttering preferences
+	OK - New preference to show sexual activities in chat log
+	OK - Output orgasm text in chat log
+	OK - Manual arousal expression changes & orgasms
+	OK - Limit timer progress of some activities & zones that doesn't allow orgasms
+	OK - Doing activities on others can raise your own arousal
+	OK - Vibrating items should raise arousal slowly & give orgasms
+	TO DO - Orgasm resist popup & mini-game
+	TO DO - Pink filter and lock screen after an orgasm
 	
-	OK - Mobile Improvements & Quality of Life
-		- Change the chat room button layout on mobile, they are too close to each other
-		- Option to auto-clean chat log after X messages, for better performance
-		- Back & Forth buttons everywhere
-
-	OK - Auto Reconnect & Chat Room re-join/re-create
-	
+	IN PROGRESS - Add a new preference screen to configure your sexual preferences.  First, there will be a master selection with these options to allow sexual contacts or not:
+	-	Disable all sexual contacts
+	-	Allow contacts without an arousal meter
+	-	Allow contacts with a manual arousal meter
+	-	Allow contacts with an automatic arousal meter
+	Second, the player could select who can see the meter:
+	-	Everyone can see the meter
+	-	Only people with access can see the meter
+	-	Only you can see the meter
+	If you select the fourth option, you’ll be able to select which body parts are the most erogenous for you and will raise your arousal meter.  These are the body parts I’ve listed so far:
+	-	Clitoris (can trigger an orgasm)
+	-	Vagina (can trigger an orgasm)
+	-	Mouth
+	-	Breast (can trigger an orgasm)
+	-	Ass/Anal (can trigger an orgasm)
+	-	Neck
+	-	Feet
+	Each one of these body parts could have these selections:
+	-	Big turn-off (will lower arousal a lot)
+	-	Turn-off (will lower arousal a little)
+	-	Indifferent (will not change arousal)
+	-	Turn-on (will increase arousal a little and can trigger an orgasm)
+	-	Big turn-on (will increase arousal a lot and can trigger an orgasm)
+	All NPCs in your private room will have the arousal meter activated and their erogenous zones will be setup at random, it should be fun to discover them.  Players that have the arousal meter activated & visible will have it somewhere below their name.  The meter should slide from blue (cold) to red (hot), letting others know how horny you are.
+	When you click on an NPC in your private room or on an online player, you’ll have options to play with her, if you have permissions for her items.  These would be the possible options:
+	-	Kiss her (if you’re not gagged)
+	-	Lick her (if you’re not gagged, can trigger an orgasm)
+	-	Tickle her (if you’re not bound)
+	-	Spank her (if you’re not bound)
+	-	Caress/massage/fondle her (if you’re not bound)
+	-	Masturbate her (if you’re not bound, can trigger an orgasm)
+	-	Rub against her (if you can move)
+	After selecting your action, you would need to select on which body part you want to do it.  For example, licking someone clitoris that’s erogenous would trigger a message: (X slowly licks Y clitoris, making her moan of pleasure.).  Masturbating someone ass that’s not erogenous would trigger a message: (X masturbates Y ass, but she stays cold.).  Some actions could not be done on some body parts of course.  Zones that are blocked with clothes or devices won’t be available in there.
+	If you allow sexual actions without an arousal meter, a short message will pop but the reactions will be regular roleplay between players, there won’t be any automatic orgasm.
+	With a manual meter, the player will be able to select its own arousal level manually, using a slider.  And will be able to trigger her orgasms manually.
+	With an automatic meter, the player won’t control her arousal level, it will increase/decrease based on what happens in the room and her parameters.  At a certain level and with certain acts, an automatic orgasm will be triggered, giving a message to everyone.  Then the arousal meter will drop back to a certain value.
+	Items such as vibrators, plugs and spanking toys would affect the arousal meter, some of them could trigger automatic orgasms.  So a girl set on an automatic meter, with a locked/vibrating chastity belt could possibly cum over and over every X minutes without any control over it.
+	For an orgasm, I was thinking that the screen could turn somewhat red and the player would lose all controls for a few seconds.
+	Self-masturbation could also be added when you click on yourself, using the same logic.
+			
 	TO DO - Each restraint will have different ways (mini-games) to try to struggle out of it:
 		1. Go Berserk (Duct Tape, Cages & Boxes, Mittens, Chastity Items, Body Harnesses, Gags with harness, Hoods) - Click the circles quickly before they disappear (Asylum)
 		2. Use Strength (Duct Tape, Yokes, Cuffs & Manacles, Belts, One Bar & Bench & Bag, Armbinders, Gags without harness) - Key Speed Game: A + S (Current)
@@ -236,7 +261,6 @@
 		5. Be Supple (Jackets & Suits, Belts, Chastity Items, Gags without harness, Armbinders, Locking Boots, Hoods) - Guess the right number between 1 and 100, a few tries, tells you if higher or lower	
 		6. Pick the Lock (For anything that locks or when a lock is added) - Precision Game - Don't touch the walls that are scrolling toward you
 
-	OK - Move blocked items to the end of the list (Sekkmer idea)
 	TO DO - Proof Read
 	TO DO - Patreon Import/Update
 
