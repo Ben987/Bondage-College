@@ -847,8 +847,10 @@ function ChatRoomSetRule(data) {
 
 		// Remote rules
 		if (data.Content == "OwnerRuleRemoteAllow") LogDelete("BlockRemote", "OwnerRule");
+		if (data.Content == "OwnerRuleRemoteAllowSelf") LogDelete("BlockRemoteSelf", "OwnerRule");
 		if (data.Content == "OwnerRuleRemoteConfiscate") InventoryConfiscateRemote();
 		if (data.Content == "OwnerRuleRemoteBlock") LogAdd("BlockRemote", "OwnerRule");
+		if (data.Content == "OwnerRuleRemoteBlockSelf") LogAdd("BlockRemoteSelf", "OwnerRule");
 
 		// Timer cell punishment
 		var TimerCell = 0;
