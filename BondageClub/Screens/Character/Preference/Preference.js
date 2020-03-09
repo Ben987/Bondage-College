@@ -179,8 +179,7 @@ function PreferenceLoad() {
 
 	// Sets up the player label color
 	if (!CommonIsColor(Player.LabelColor)) Player.LabelColor = "#ffffff";
-	ElementCreateInput("InputCharacterLabelColor", "text", Player.LabelColor);
-	ElementCreateInput("InputEmail", "text", "", "100");
+	PreferenceMainScreenLoad();
 	ServerSend("AccountQuery", { Query: "EmailStatus" });
 	PreferenceInit(Player);
 
@@ -228,16 +227,19 @@ function PreferenceRun() {
 	DrawButton(500, 280, 90, 90, "", "White", "Icons/Next.png");
 	DrawText(TextGet("ItemPermission") + " " + TextGet("PermissionLevel" + Player.ItemPermission.toString()), 615, 325, "Black", "Gray");
 	DrawText(TextGet("SensDepSetting"), 800, 428, "Black", "Gray");
-	
+	DrawText(TextGet("UpdateEmailOld"), 500, 828, "Black", "Gray");
+	DrawText(TextGet("UpdateEmailNew"), 500, 908, "Black", "Gray");
+
 	// Checkboxes
 	DrawCheckbox(500, 472, 64, 64, TextGet("BlindDisableExamine"), Player.GameplaySettings.BlindDisableExamine);
 	DrawCheckbox(500, 552, 64, 64, TextGet("DisableAutoRemoveLogin"), Player.GameplaySettings.DisableAutoRemoveLogin);
 	DrawCheckbox(500, 632, 64, 64, TextGet("EnableAfkTimer"), Player.GameplaySettings.EnableAfkTimer);
 	DrawCheckbox(500, 712, 64, 64, TextGet("ForceFullHeight"), Player.VisualSettings.ForceFullHeight);
 
-	ElementPosition("InputEmail", 1150, 740, 750);
+	ElementPosition("InputEmailOld", 1150, 820, 750);
+	ElementPosition("InputEmailNew", 1150, 900, 750);
 	MainCanvas.textAlign = "center";
-	DrawButton(500, 712, 250, 64, TextGet("UpdateEmail"), "White", "");
+	DrawButton(1550, 862, 250, 64, TextGet("UpdateEmail"), "White", "");
 	DrawBackNextButton(500, 392, 250, 64, TextGet(Player.GameplaySettings.SensDepChatLog), "White", "",
 		() => TextGet(PreferenceSettingsSensDepList[(PreferenceSettingsSensDepIndex + PreferenceSettingsSensDepList.length - 1) % PreferenceSettingsSensDepList.length]),
 		() => TextGet(PreferenceSettingsSensDepList[(PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length]));
@@ -268,21 +270,19 @@ function PreferenceClick() {
 
 	// If the user clicks on the chat settings button
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 190) && (MouseY < 280) && (PreferenceColorPick == "")) {
-		ElementRemove("InputCharacterLabelColor");
-		ElementRemove("InputEmail");
+		PreferenceMainScreenExit()
 		PreferenceSubscreen = "Chat";
 	}
 
 	// If the user clicks on the audio settings button
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 305) && (MouseY < 395) && (PreferenceColorPick == "")) {
-		ElementRemove("InputCharacterLabelColor");
-		ElementRemove("InputEmail");
+		PreferenceMainScreenExit()
 		PreferenceSubscreen = "Audio";
 	}
 
 	// If the user clicks on the arousal settings button
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 420) && (MouseY < 510) && (PreferenceColorPick == "")) {
-		ElementRemove("InputCharacterLabelColor");
+		PreferenceMainScreenExit()
 		PreferenceSubscreen = "Arousal";
 	}
 	
@@ -303,13 +303,13 @@ function PreferenceClick() {
 		Player.GameplaySettings.SensDepChatLog = PreferenceSettingsSensDepList[PreferenceSettingsSensDepIndex];
 	}
 
-	// If play presses the button update email
-	if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 712) && (MouseY < 776)) {
-		var Email = ElementValue("InputEmail");
+	// If we must update the email
+	if ((MouseX >= 1550) && (MouseX < 1800) && (MouseY >= 862) && (MouseY < 912)) {
+		var EmailOld = ElementValue("InputEmailOld");
+		var EmailNew = ElementValue("InputEmailNew");
 		var E = /^[a-zA-Z0-9@.!#$%&'*+/=?^_`{|}~-]+$/;
-		if ((Email.match(E) || (Email == "")) && (Email.length <= 100)) {
-			ServerSend("AccountUpdateEmail", {Email: Email});
-			ElementValue("InputEmail", TextGet("UpdateEmailResponse"));
+		if ((EmailOld.match(E) || (EmailOld == "")) && (EmailOld.length <= 100) && (EmailNew.match(E) || (EmailNew == "")) && (EmailNew.length <= 100)) {
+			ServerSend("AccountUpdateEmail", { EmailOld: EmailOld, EmailNew: EmailNew });
 		}
 	}
 
@@ -339,8 +339,7 @@ function PreferenceExit() {
 		};
 		ServerSend("AccountUpdate", P);
 		PreferenceMessage = "";
-		ElementRemove("InputCharacterLabelColor");
-		ElementRemove("InputEmail");
+		PreferenceMainScreenExit();
 		CommonSetScreen("Character", "InformationSheet");
 	} else PreferenceMessage = "ErrorInvalidColor";
 }
@@ -462,8 +461,7 @@ function PreferenceSubscreenAudioClick() {
 	// If the user clicked the exit icon to return to the main screen
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) {
 		PreferenceSubscreen = "";
-		ElementCreateInput("InputCharacterLabelColor", "text", Player.LabelColor);
-		ElementCreateInput("InputEmail", "text", "", "100");
+		PreferenceMainScreenLoad();
 	}
 
 	// Volume increase/decrease control
@@ -516,8 +514,7 @@ function PreferenceSubscreenChatClick() {
 	// If the user clicked the exit icon to return to the main screen
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) {
 		PreferenceSubscreen = "";
-		ElementCreateInput("InputCharacterLabelColor", "text", Player.LabelColor);
-		ElementCreateInput("InputEmail", "text", "", "100");
+		PreferenceMainScreenLoad();
 	}
 
 }
@@ -529,7 +526,7 @@ function PreferenceSubscreenArousalClick() {
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) {
 		PreferenceSubscreen = "";
 		Player.FocusGroup = null;
-		ElementCreateInput("InputCharacterLabelColor", "text", Player.LabelColor);
+		PreferenceMainScreenLoad();
 	}
 
 	// Arousal active control
@@ -608,6 +605,20 @@ function PreferenceSubscreenArousalClick() {
 
 	}
 		
+}
+
+// Handles the loading of the main preferences screen
+function PreferenceMainScreenLoad() {
+	ElementCreateInput("InputCharacterLabelColor", "text", Player.LabelColor);
+	ElementCreateInput("InputEmailOld", "text", "", "100");
+	ElementCreateInput("InputEmailNew", "text", "", "100");
+}
+
+// Handles the exiting of the main preferences screen
+function PreferenceMainScreenExit() {
+	ElementRemove("InputCharacterLabelColor");
+	ElementRemove("InputEmailOld");
+	ElementRemove("InputEmailNew");
 }
 
 // Return true if sensory deprivation is active
