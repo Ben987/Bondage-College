@@ -236,8 +236,8 @@ function PreferenceRun() {
 	DrawCheckbox(500, 632, 64, 64, TextGet("EnableAfkTimer"), Player.GameplaySettings.EnableAfkTimer);
 	DrawCheckbox(500, 712, 64, 64, TextGet("ForceFullHeight"), Player.VisualSettings.ForceFullHeight);
 
-	ElementPosition("InputEmailOld", 1150, 820, 750);
-	ElementPosition("InputEmailNew", 1150, 900, 750);
+	ElementPosition("InputEmailOld", 1135, 820, 800);
+	ElementPosition("InputEmailNew", 1135, 900, 800);
 	MainCanvas.textAlign = "center";
 	DrawButton(1550, 862, 250, 64, TextGet("UpdateEmail"), "White", "");
 	DrawBackNextButton(500, 392, 250, 64, TextGet(Player.GameplaySettings.SensDepChatLog), "White", "",
@@ -310,6 +310,9 @@ function PreferenceClick() {
 		var E = /^[a-zA-Z0-9@.!#$%&'*+/=?^_`{|}~-]+$/;
 		if ((EmailOld.match(E) || (EmailOld == "")) && (EmailOld.length <= 100) && (EmailNew.match(E) || (EmailNew == "")) && (EmailNew.length <= 100)) {
 			ServerSend("AccountUpdateEmail", { EmailOld: EmailOld, EmailNew: EmailNew });
+		}
+		else {
+			ElementValue("InputEmailNew", TextGet("UpdateEmailInvalid"));
 		}
 	}
 
