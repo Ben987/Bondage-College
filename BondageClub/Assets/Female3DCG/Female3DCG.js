@@ -962,6 +962,7 @@ var AssetFemale3DCG = [
 					{ Name: "Ring", AllowColorize: false }
 				]
 			},
+			{ Name: "BellClitPiercing", Value: 30, Prerequisite: "AccessVulva", AllowLock: true, Time: 5, ExpressionTrigger: [{ Group: "Eyes", Name: "Closed", Timer: 5 }, { Group: "Eyebrows", Name: "Soft", Timer: 5 }] },
 			AssetSpankingToys
 		]
 	},
@@ -1142,6 +1143,7 @@ var AssetFemale3DCG = [
 			{ Name: "KittyPasties", DefaultColor: "#444444", Value: 20, Hide: ["ItemNipplesPiercings"], Prerequisite: "AccessBreast", Time: 10, ExpressionTrigger: [{ Group: "Eyebrows", Name: "Soft", Timer: 5 }] },
 			{ Name: "Clothespins", Value: 15, Prerequisite: "AccessBreast", Time: 10, ExpressionTrigger: [{ Group: "Eyes", Name: "Closed", Timer: 5 }, { Group: "Eyebrows", Name: "Angry", Timer: 5 }] },
 			{ Name: "NippleWeightClamps", Value: 35, Prerequisite: "AccessBreast", Time: 10, ExpressionTrigger: [{ Group: "Eyes", Name: "Closed", Timer: 5 }, { Group: "Eyebrows", Name: "Angry", Timer: 10 }] },
+			{ Name: "BellClamps", Value: 20, Prerequisite: "AccessBreast", Time: 10, ExpressionTrigger: [{ Group: "Eyes", Name: "Closed", Timer: 5 }, { Group: "Eyebrows", Name: "Angry", Timer: 10 }] },
 			AssetSpankingToys
 		]
 	},
@@ -1174,6 +1176,7 @@ var AssetFemale3DCG = [
 					{ Name: "Ring", AllowColorize: false }
 				]
 			},
+			{Name: "BellPiercing", Priority: 39, Value: 30, AllowLock: true, Prerequisite: ["AccessBreast", "AccessBreastSuitZip"], Time: 15, ExpressionTrigger: [{ Group: "Eyes", Name: "Closed", Timer: 5 }, { Group: "Eyebrows", Name: "Angry", Timer: 5 }] },
 			AssetSpankingToys
 		]
 	},
