@@ -16,6 +16,7 @@ var PreferenceSettingsSensDepList = ["Normal", "SensDepNames", "SensDepTotal"];
 var PreferenceSettingsSensDepIndex = 0;
 var PreferenceSettingsVolumeList = [1, 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
 var PreferenceSettingsVolumeIndex = 0;
+var PreferenceEmailStatusReceived = false;
 var PreferenceArousalActiveList = ["Inactive", "NoMeter", "Manual", "Hybrid", "Automatic"];
 var PreferenceArousalActiveIndex = 0;
 var PreferenceArousalVisibleList = ["All", "Access", "Self"];
@@ -180,7 +181,6 @@ function PreferenceLoad() {
 	// Sets up the player label color
 	if (!CommonIsColor(Player.LabelColor)) Player.LabelColor = "#ffffff";
 	PreferenceMainScreenLoad();
-	ServerSend("AccountQuery", { Query: "EmailStatus" });
 	PreferenceInit(Player);
 
 	// Sets the chat themes
@@ -254,6 +254,12 @@ function PreferenceRun() {
 		DrawButton(1815, 190, 90, 90, "", "White", "Icons/Chat.png");
 		DrawButton(1815, 305, 90, 90, "", "White", "Icons/Audio.png");
 		DrawButton(1815, 420, 90, 90, "", "White", "Icons/Activity.png");
+	}
+
+	// Writes the email text once the csv have been parsed
+	if ((Text != null) && !PreferenceEmailStatusReceived) {
+		ServerSend("AccountQuery", { Query: "EmailStatus" });
+		PreferenceEmailStatusReceived = true;
 	}
 }
 
@@ -622,6 +628,7 @@ function PreferenceMainScreenExit() {
 	ElementRemove("InputCharacterLabelColor");
 	ElementRemove("InputEmailOld");
 	ElementRemove("InputEmailNew");
+	PreferenceEmailStatusReceived = false;
 }
 
 // Return true if sensory deprivation is active
