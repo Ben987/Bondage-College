@@ -37,6 +37,14 @@ BlindDisableExamine,Disable examining people when blind
 DisableAutoRemoveLogin,Keep all of your restraints when relogging
 ForceFullHeight,Display all characters at maximum height
 EnableAfkTimer,Show AFK bubble if idle for 5 minutes
+UpdateEmail,Update Email
+UpdateEmailOld,Current Email
+UpdateEmailNew,New Email
+UpdateEmailEmpty,"No email saved, write here to add one"
+UpdateEmailLinked,"An email is linked, write it here to update it"
+UpdateEmailSuccess,Your email has been updated !
+UpdateEmailFailure,Current email does not match
+UpdateEmailInvalid,Invalid characters
 ArousalShowOtherMeter,Show other characters meter
 ArousalAffectExpression,Affect your facial expressions
 ArousalActive,Activation:

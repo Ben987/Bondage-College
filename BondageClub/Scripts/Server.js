@@ -441,6 +441,8 @@ function ServerPrivateCharacterSync() {
 function ServerAccountQueryResult(data) {
 	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.Query != null) && (typeof data.Query === "string") && (data.Result != null)) {
 		if (data.Query == "OnlineFriends") FriendListLoadFriendList(data.Result);
+		if (data.Query == "EmailStatus") ElementValue(data.Result ? "InputEmailOld" : "InputEmailNew", TextGet(data.Result ? "UpdateEmailLinked" : "UpdateEmailEmpty"));
+		if (data.Query == "EmailUpdate") ElementValue("InputEmailNew", TextGet(data.Result ? "UpdateEmailSuccess" : "UpdateEmailFailure"));
 	}
 }
 
