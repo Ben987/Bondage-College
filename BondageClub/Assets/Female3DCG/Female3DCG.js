@@ -1303,9 +1303,8 @@ var AssetFemale3DCG = [
 				AllowType: ["", "Base", "UnZip", "Latex"],
 				RemoveItemOnRemove: [ { Name: "FullLatexSuitWand", Group: "ItemVulva" } ],
 				Layer: [
-				    { Name: "Latex", AllowColorize: true, AllowTypes: ["", "Base"], HasType: false },
-					{ Name: "UnZip", AllowColorize: true, AllowTypes: ["UnZip", "Base"], HasType: false },
-					{ Name: "Base", AllowColorize: false, AllowTypes: ["", "Base", "UnZip", "Latex"], HasType: false }
+				    { Name: "Latex", AllowColorize: true, AllowTypes: [""], HasType: false },
+					{ Name: "UnZip", AllowColorize: true, AllowTypes: ["UnZip"], HasType: false }
 				]
 			},
 			{ Name: "Zipties", SelfBondage: true, Value: 20, SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone"], Difficulty: 6, BuyGroup: "Zipties", RemoveTime: 6 },
@@ -1325,6 +1324,23 @@ var AssetFemale3DCG = [
 				HideItem: ["ItemButtRaccoonTailPlug", "TailStrapsRaccoonTailStrap", "ItemButtKittenTail1", "TailStrapsKittenTail1", "ItemNipplesPiercingsNippleChastityPiercing2", "ItemTorsoAdultBabyHarness", "ItemTorsoCorset2", "ItemTorsoCorset3", "ItemNipplesPiercingsNippleChastityPiercing1", "ItemNipplesChainTassles", "ItemNipplesHeartPasties", "ItemNipplesNippleTape", "ItemNipplesKittyPasties"],
 				Block: ["ItemLegs", "ItemFeet"],
 				Prerequisite: ["NoItemFeet", "NoItemLegs", "LegsOpen", "NotMounted", "NotHorse", "NotSuspended", "NotYoked", "NotKneelingSpread", "NoFeetSpreader", "StraitDressOpen" ] },
+				{
+					Name: "MermaidSuit", DefaultColor: "#400000", Random: false, SelfBondage: false, Value: 200, Time: 40, RemoveTime: 30, Difficulty: 15, AllowLock: true, Extended: true,
+					SetPose: ["BackElbowTouch", "StraitDressOpen"],
+					Hide: ["Socks", "BodyLower", "Cloth", "ClothLower", "Bra", "Shoes", "ItemBoots", "ItemLegs", "Suit", "SuitLower"],
+					Block: ["ItemBoots", "ItemPelvis", "ItemTorso", "ItemHands", "ItemLegs", "ItemFeet"],
+					Effect: ["Block", "Prone", "Freeze", "BlockKneel"],
+					HideItem: ["ItemFeetNylonRope", "ItemFeetHempRope", "ItemFeetLeatherBelt", "ItemFeetIrish8Cuffs", "ItemFeetDuctTape", "ItemFeetMermaidRopeTie", "ItemFeetLeatherAnkleCuffs"],
+					Prerequisite: ["NotSuspended", "NotKneeling", "NotHogtied", "NotMounted", "NotKneelingSpread", "NoFeetSpreader", "NotKneelingSpread", "NoFeetSpreader", "NotShackled", "CannotBeSuited"],
+					AllowEffect: ["Egged", "Vibrating"],
+					AllowBlock: ["ItemBreast", "ItemNipples", "ItemNipplesPiercings", "ItemVulvaPiercings", "ItemButt"],
+					AllowType: ["", "UnZip", "Latex"],
+					RemoveItemOnRemove: [ { Name: "FullLatexSuitWand", Group: "ItemVulva" } ],
+					Layer: [
+						{ Name: "Latex", AllowColorize: true, AllowTypes: ["", "Base"], HasType: false },
+						{ Name: "UnZip", AllowColorize: true, AllowTypes: ["UnZip", "Base"], HasType: false },
+					]
+				},	
 			AssetSpankingToys
 		]
 	},

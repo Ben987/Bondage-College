@@ -932,3 +932,7 @@ ArmsChainSetBoxTie,,,SourceCharacter uses the chain on TargetCharacter to do a b
 ArmsChainSetHogtied,,,SourceCharacter uses the chain on TargetCharacter to do a hogtie.
 ArmsChainSetSuspensionHogtied,,,SourceCharacter uses the Chain on TargetCharacter to do a suspension hogtie.
 ArmsChainSetAllFours,,,SourceCharacter uses the Chain on TargetCharacter to have her crawling on all fours.
+MermaidSuitTypeZipped,,,Zipped Up
+MermaidSuitTypeUnZip,,,Unzipped
+MermaidSuitSetZipped,,,SourceCharacter zips up TargetCharacter suit.
+MermaidSuitSetUnZip,,,SourceCharacter unzips TargetCharacter suit.
