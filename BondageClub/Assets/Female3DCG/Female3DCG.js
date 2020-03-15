@@ -1306,7 +1306,8 @@ var AssetFemale3DCG = [
 				RemoveItemOnRemove: [ { Name: "FullLatexSuitWand", Group: "ItemVulva" } ],
 				Layer: [
 				    { Name: "Latex", AllowColorize: true, AllowTypes: [""], HasType: false },
-					{ Name: "UnZip", AllowColorize: true, AllowTypes: ["UnZip"], HasType: false }
+					{ Name: "UnZip", AllowColorize: true, AllowTypes: ["UnZip"], HasType: false },
+					{ Name: "Base", AllowColorize: false, AllowTypes: ["", "Base", "UnZip", "Latex"], HasType: false }
 				]
 			},
 			{ Name: "Zipties", SelfBondage: true, Value: 20, SetPose: ["BackElbowTouch"], Effect: ["Block", "Prone"], Difficulty: 6, BuyGroup: "Zipties", RemoveTime: 6 },
@@ -1340,7 +1341,7 @@ var AssetFemale3DCG = [
 					RemoveItemOnRemove: [ { Name: "FullLatexSuitWand", Group: "ItemVulva" } ],
 					Layer: [
 						{ Name: "Latex", AllowColorize: true, AllowTypes: ["", "Base"], HasType: false },
-						{ Name: "UnZip", AllowColorize: true, AllowTypes: ["UnZip", "Base"], HasType: false },
+						{ Name: "UnZip", AllowColorize: true, AllowTypes: ["UnZip", "Base"], HasType: false }
 					]
 				},	
 			AssetSpankingToys
