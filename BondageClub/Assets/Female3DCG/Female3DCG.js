@@ -1338,10 +1338,9 @@ var AssetFemale3DCG = [
 					AllowEffect: ["Egged", "Vibrating"],
 					AllowBlock: ["ItemBreast", "ItemNipples", "ItemNipplesPiercings", "ItemVulvaPiercings", "ItemButt"],
 					AllowType: ["", "UnZip", "Latex"],
-					RemoveItemOnRemove: [ { Name: "FullLatexSuitWand", Group: "ItemVulva" } ],
 					Layer: [
-						{ Name: "Latex", AllowColorize: true, AllowTypes: ["", "Base"], HasType: false },
-						{ Name: "UnZip", AllowColorize: true, AllowTypes: ["UnZip", "Base"], HasType: false }
+						{ Name: "Latex", AllowColorize: true, AllowTypes: [""], HasType: false },
+						{ Name: "UnZip", AllowColorize: true, AllowTypes: ["UnZip"], HasType: false }
 					]
 				},	
 			AssetSpankingToys
