@@ -213,19 +213,19 @@ function CharacterLoadNPC(NPCType) {
 
 // Sets up the online character
 function CharacterOnlineRefresh(Char, data, SourceMemberNumber) {
-	if ((Char.ID != 0) && (Char.MemberNumber == SourceMemberNumber)) Char.Title = data.Title;
+	if ((Char.ID != 0) && ((Char.MemberNumber == SourceMemberNumber) || (Char.Title == null))) Char.Title = data.Title;
 	Char.ActivePose = data.ActivePose;
 	Char.LabelColor = data.LabelColor;
 	Char.Creation = data.Creation;
-	if ((Char.ID != 0) && (Char.MemberNumber == SourceMemberNumber)) Char.ItemPermission = data.ItemPermission;
-	if ((Char.ID != 0) && (Char.MemberNumber == SourceMemberNumber)) Char.ArousalSettings = data.ArousalSettings;
+	if ((Char.ID != 0) && ((Char.MemberNumber == SourceMemberNumber) || (Char.ItemPermission == null))) Char.ItemPermission = data.ItemPermission;
+	if ((Char.ID != 0) && ((Char.MemberNumber == SourceMemberNumber) || (Char.ArousalSettings == null))) Char.ArousalSettings = data.ArousalSettings;
 	Char.Ownership = data.Ownership;
 	Char.Lovership = data.Lovership;
 	Char.Reputation = (data.Reputation != null) ? data.Reputation : [];
 	Char.BlockItems = Array.isArray(data.BlockItems) ? data.BlockItems : [];
 	Char.Appearance = ServerAppearanceLoadFromBundle(Char, "Female3DCG", data.Appearance, SourceMemberNumber);
 	if (Char.ID == 0) LoginValidCollar();
-	if ((Char.ID != 0) && (Char.MemberNumber == SourceMemberNumber)) InventoryLoad(Char, data.Inventory);
+	if ((Char.ID != 0) && ((Char.MemberNumber == SourceMemberNumber) || (Char.Inventory == null))) InventoryLoad(Char, data.Inventory);
 	CharacterLoadEffect(Char);
 	CharacterRefresh(Char);
 }

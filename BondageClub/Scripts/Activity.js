@@ -1,5 +1,15 @@
 "use strict";
 var ActivityDictionary = null;
+var ActivityOrgasmGameButtonX = 0;
+var ActivityOrgasmGameButtonY = 0;
+var ActivityOrgasmGameProgress = 0;
+var ActivityOrgasmGameDifficulty = 0;
+var ActivityOrgasmGameResistCount = 0;
+var ActivityOrgasmGameTimer = 0;
+var ActivityOrgasmResistLabel = "";
+
+// Activities are only allowed in certain rooms
+function ActivityAllowed() { return ((CurrentScreen == "ChatRoom") || ((CurrentScreen == "Private") && LogQuery("RentRoom", "PrivateRoom"))) }
 
 // Loads the activity dictionary that will be used throughout the game to output messages
 function ActivityDictionaryLoad() {
@@ -62,8 +72,10 @@ function ActivityDialogBuild(C) {
 						if ((Activity.Prerequisite[P] == "UseMouth") && !Player.CanTalk()) Allow = false;
 						if ((Activity.Prerequisite[P] == "UseHands") && !Player.CanInteract()) Allow = false;
 						if ((Activity.Prerequisite[P] == "UseFeet") && !Player.CanWalk()) Allow = false;
-						if ((Activity.Prerequisite[P] == "ZoneNaked") && ((C.FocusGroup.Name == "ItemButt") || (C.FocusGroup.Name == "ItemVulva")) && (InventoryPrerequisiteMessage(C, "AccessVulva") != "")) Allow = false;
-						if ((Activity.Prerequisite[P] == "ZoneNaked") && (C.FocusGroup.Name == "ItemBreast") && (InventoryPrerequisiteMessage(C, "AccessBreast") != "")) Allow = false;
+						if ((Activity.Prerequisite[P] == "ZoneNaked") && ((C.FocusGroup.Name == "ItemButt") || (C.FocusGroup.Name == "ItemVulva")) && ((InventoryPrerequisiteMessage(C, "AccessVulva") != "") || C.IsVulvaChaste())) Allow = false;
+						if ((Activity.Prerequisite[P] == "ZoneNaked") && (C.FocusGroup.Name == "ItemBreast") && ((InventoryPrerequisiteMessage(C, "AccessBreast") != "") || C.IsBreastChaste())) Allow = false;
+						if ((Activity.Prerequisite[P] == "ZoneNaked") && (C.FocusGroup.Name == "ItemBoots") && (InventoryPrerequisiteMessage(C, "NakedFeet") != "")) Allow = false;
+						if ((Activity.Prerequisite[P] == "ZoneNaked") && (C.FocusGroup.Name == "ItemHands") && (InventoryPrerequisiteMessage(C, "NakedHands") != "")) Allow = false;
 					}
 
 				// Make sure the current player has permission to do this activity
@@ -110,6 +122,7 @@ function ActivitySetArousal(C, Progress) {
 	if ((C.ArousalSettings.Progress == null) || (typeof C.ArousalSettings.Progress !== "number") || isNaN(C.ArousalSettings.Progress)) C.ArousalSettings.Progress = 0;
 	if ((Progress == null) || (Progress < 0)) Progress = 0;
 	if (Progress > 100) Progress = 100;
+	if (Progress == 0) C.ArousalSettings.OrgasmTimer = 0;
 	if (C.ArousalSettings.Progress != Progress) {
 		C.ArousalSettings.Progress = Progress;
 		C.ArousalSettings.ProgressTimer = 0;
@@ -142,25 +155,96 @@ function ActivitySetArousalTimer(C, Activity, Zone, Progress) {
 
 }
 
-// Triggers an orgasm for the player or an NPC which lasts from 5 to 15 seconds
-function ActivityOrgasm(C) {
-	if ((C.ID == 0) || (C.AccountName.substring(0, 4) == "NPC_") || (C.AccountName.substring(0, 4) == "NPC-")) {
+// Draw the progress bar at X, Y for every orgasm timer
+function ActivityOrgasmProgressBar(X, Y) {
+	var Pos = 0;
+	if ((ActivityOrgasmGameTimer != null) && (ActivityOrgasmGameTimer > 0) && (CurrentTime < Player.ArousalSettings.OrgasmTimer))
+		Pos = ((Player.ArousalSettings.OrgasmTimer - CurrentTime) / ActivityOrgasmGameTimer) * 100;
+	DrawProgressBar(X, Y, 900, 25, Pos);
+}
 
-		// The orgasm can be outputted in the chatroom
+// Each time the player tries to resist, it slowly raises her willpower
+function ActivityOrgasmWillpowerProgress(C) {
+	if ((C.ID == 0) && (ActivityOrgasmGameProgress > 0)) {
+		SkillProgress("Willpower", ActivityOrgasmGameProgress);
+		ActivityOrgasmGameProgress = 0;
+	}
+}
+
+// The orgasm lasts between 5 and 15 seconds and can be outputted in the chatroom
+function ActivityOrgasmStart(C) {
+	if ((C.ID == 0) || (C.AccountName.substring(0, 4) == "NPC_") || (C.AccountName.substring(0, 4) == "NPC-")) {
+		if (C.ID == 0) ActivityOrgasmGameResistCount = 0;
+		ActivityOrgasmWillpowerProgress(C);
+		C.ArousalSettings.OrgasmTimer = CurrentTime + (Math.random() * 10000) + 5000;
+		C.ArousalSettings.OrgasmStage = 2;
+		ActivityOrgasmGameTimer = C.ArousalSettings.OrgasmTimer - CurrentTime;
 		if ((C.ID == 0) && (CurrentScreen == "ChatRoom")) {
 			var Dictionary = [];
 			Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
 			ServerSend("ChatRoomChat", {Content: "Orgasm" + (Math.floor(Math.random() * 10)).toString(), Type: "Activity", Dictionary: Dictionary});
+			ChatRoomCharacterUpdate(Player);
 		}
+	}
+}
+
+// If we need to stop an orgasm
+function ActivityOrgasmStop(C, Progress) {
+	if ((C.ID == 0) || (C.AccountName.substring(0, 4) == "NPC_") || (C.AccountName.substring(0, 4) == "NPC-")) {
+		ActivityOrgasmWillpowerProgress(C);
+		C.ArousalSettings.OrgasmTimer = 0;
+		C.ArousalSettings.OrgasmStage = 0;
+		ActivitySetArousal(C, Progress);
+	}
+}
+
+// Generates an orgasm button and progresses in the mini-game
+function ActivityOrgasmGameGenerate(Progress) {
+
+	// If we must reset the mini-game
+	if (Progress == 0) {
+		Player.ArousalSettings.OrgasmStage = 1;
+		Player.ArousalSettings.OrgasmTimer = CurrentTime + 5000 + (SkillGetLevel(Player, "Willpower") * 1000);
+		ActivityOrgasmGameTimer = Player.ArousalSettings.OrgasmTimer - CurrentTime;
+		ActivityOrgasmGameDifficulty = (6 + (ActivityOrgasmGameResistCount * 2)) * (CommonIsMobile ? 1.5 : 1);
+	}
+
+	// Runs the game or finish it if the threshold is reached, it can trigger a chatroom message for everyone to see
+	if (Progress >= ActivityOrgasmGameDifficulty) {
+		if (CurrentScreen == "ChatRoom") {
+			var Dictionary = [];
+			Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+			ServerSend("ChatRoomChat", {Content: "OrgasmResist" + (Math.floor(Math.random() * 10)).toString(), Type: "Activity", Dictionary: Dictionary});
+		}
+		ActivityOrgasmGameResistCount++;
+		ActivityOrgasmStop(Player, 70);
+	} else {
+		ActivityOrgasmResistLabel = TextGet("OrgasmResist") + " (" + (ActivityOrgasmGameDifficulty - Progress).toString() + ")";
+		ActivityOrgasmGameProgress = Progress;
+		ActivityOrgasmGameButtonX = 50 + Math.floor(Math.random() * 650);
+		ActivityOrgasmGameButtonY = 50 + Math.floor(Math.random() * 836);
+	}
+
+}
+
+// Triggers an orgasm for the player or an NPC which lasts from 5 to 15 seconds
+function ActivityOrgasmPrepare(C) {
+	if ((C.ID == 0) || (C.AccountName.substring(0, 4) == "NPC_") || (C.AccountName.substring(0, 4) == "NPC-")) {
 
 		// Starts the timer and exits from dialog if necessary
-		C.ArousalSettings.OrgasmTimer = CurrentTime + (Math.random() * 10000) + 5000;
-		ActivitySetArousal(C, 23);
+		C.ArousalSettings.OrgasmTimer = (C.ID == 0) ? CurrentTime + 5000 : CurrentTime + (Math.random() * 10000) + 5000;
+		C.ArousalSettings.OrgasmStage = (C.ID == 0) ? 0 : 2;
+		if (C.ID == 0) ActivityOrgasmGameTimer = C.ArousalSettings.OrgasmTimer - CurrentTime;
 		if ((CurrentCharacter != null) && (CurrentCharacter.ID == C.ID)) DialogLeave();
+
+		// Sends the orgasm preparation to the chatroom, the bar turns pink
+		if ((C.ID == 0) && (CurrentScreen == "ChatRoom"))
+			ChatRoomCharacterUpdate(Player);
 
 		// If an NPC orgasmed, it will raise her love based on the horny trait
 		if ((C.AccountName.substring(0, 4) == "NPC_") || (C.AccountName.substring(0, 4) == "NPC-"))
-			NPCLoveChange(C, Math.floor((NPCTraitGet(C, "Horny") + 100) / 20) + 1);
+			if ((C.Love == null) || (C.Love < 60) || (C.IsOwner()) || (C.IsOwnedByPlayer()) || C.IsLover())
+				NPCLoveChange(C, Math.floor((NPCTraitGet(C, "Horny") + 100) / 20) + 1);
 
 	}
 }
@@ -218,29 +302,34 @@ function ActivityTimerProgress(C, Progress) {
 
 	// Out of orgasm mode, it can affect facial expressions at every 10 steps
 	if ((C.ArousalSettings.OrgasmTimer == null) || (typeof C.ArousalSettings.OrgasmTimer !== "number") || isNaN(C.ArousalSettings.OrgasmTimer) || (C.ArousalSettings.OrgasmTimer < CurrentTime))
-		if (((C.ArousalSettings.AffectExpression == null) || C.ArousalSettings.AffectExpression) && (C.ArousalSettings.Progress % 10 == 0))
+		if (((C.ArousalSettings.AffectExpression == null) || C.ArousalSettings.AffectExpression) && ((C.ArousalSettings.Progress + ((Progress < 0) ? 1 : 0)) % 10 == 0))
 			ActivityExpression(C, C.ArousalSettings.Progress);
 
 	// Can trigger an orgasm
-	if (C.ArousalSettings.Progress == 100) ActivityOrgasm(C);
+	if (C.ArousalSettings.Progress == 100) ActivityOrgasmPrepare(C);
 
 }
 
-// Launches a sexual activity (A) for character (C)
-function ActivityRun(C, A) {
+// If the player does the activity on someone else, we calculate the progress for the player right away
+function ActivityRunSelf(Source, Target, Activity) {
+	if (((Player.ArousalSettings.Active == "Hybrid") || (Player.ArousalSettings.Active == "Automatic")) && (Source.ID == 0) && (Target.ID != 0)) {
+		var Factor = (PreferenceGetActivityFactor(Player, Activity.Name, false) * 5) - 10; // Check how much the player likes the activity, from -10 to +10
+		Factor = Factor + Math.floor((Math.random() * 8)); // Random 0 to 7 bonus
+		if (Target.IsLoverOfPlayer()) Factor = Factor + Math.floor((Math.random() * 8)); // Another random 0 to 7 bonus if the target is the player's lover
+		ActivitySetArousalTimer(Player, Activity, "ActivityOnOther", Factor); // For activities on other, it cannot go over 2/3
+	}
+}
+
+// Launches a sexual activity for a character
+function ActivityRun(C, Activity) {
 
 	// If the player does the activity on herself or an NPC, we calculate the result right away
 	if ((C.ArousalSettings.Active == "Hybrid") || (C.ArousalSettings.Active == "Automatic"))
 		if ((C.ID == 0) || (C.AccountName.substring(0, 4) == "NPC_") || (C.AccountName.substring(0, 4) == "NPC-"))
-			ActivityEffect(Player, C, A, C.FocusGroup.Name);
+			ActivityEffect(Player, C, Activity, C.FocusGroup.Name);
 
-	// If the player does the activity on someone else, we calculate the result right away
-	if (((Player.ArousalSettings.Active == "Hybrid") || (Player.ArousalSettings.Active == "Automatic")) && (C.ID != 0)) {
-		var Factor = (PreferenceGetActivityFactor(Player, A.Name, false) * 5) - 10; // Check how much the player likes the activity, from -10 to +10
-		Factor = Factor + Math.floor((Math.random() * 8)); // Random 0 to 7 bonus
-		if (C.IsLoverOfPlayer()) Factor = Factor + Math.floor((Math.random() * 8)); // Another random 0 to 7 bonus if the target is the player's lover
-		ActivitySetArousalTimer(Player, A, "ActivityOnOther", Factor); // For activities on other, it cannot go over 2/3
-	}
+	// If the player does the activity on someone else, we calculate the progress for the player right away
+	ActivityRunSelf(Player, C, Activity);
 
 	// The text result can be outputted in the chatroom or in the NPC dialog
 	if (CurrentScreen == "ChatRoom") {
@@ -250,12 +339,31 @@ function ActivityRun(C, A) {
 		Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
 		Dictionary.push({Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
 		Dictionary.push({Tag: "ActivityGroup", Text: C.FocusGroup.Name});
-		Dictionary.push({Tag: "ActivityName", Text: A.Name});
-		ServerSend("ChatRoomChat", {Content: ((C.ID == 0) ? "ChatSelf-" : "ChatOther-") + C.FocusGroup.Name + "-" + A.Name, Type: "Activity", Dictionary: Dictionary});
+		Dictionary.push({Tag: "ActivityName", Text: Activity.Name});
+		ServerSend("ChatRoomChat", {Content: ((C.ID == 0) ? "ChatSelf-" : "ChatOther-") + C.FocusGroup.Name + "-" + Activity.Name, Type: "Activity", Dictionary: Dictionary});
 
 		// Exits from dialog to see the result
 		DialogLeave();
 
 	}
 
+}
+
+// Some items such as vibrating wands and spanking toys can trigger arousal both the source and target character
+function ActivityArousalItem(Source, Target, Asset) {
+	if (Asset.Activity != null) {
+		var Activity = AssetGetActivity(Target.AssetFamily, Asset.Activity);
+		if ((Source.ID == 0) && (Target.ID != 0)) ActivityRunSelf(Source, Target, Activity);
+		if ((Target.ArousalSettings != null) && ((Target.ArousalSettings.Active == "Hybrid") || (Target.ArousalSettings.Active == "Automatic"))) {
+			if ((Target.ID == 0) || (Target.AccountName.substring(0, 4) == "NPC_") || (Target.AccountName.substring(0, 4) == "NPC-")) ActivityEffect(Source, Target, Asset.Activity, Asset.Group.Name);
+			if ((Target.ID != 0) && (CurrentScreen == "ChatRoom")) {
+				var Dictionary = [];
+				Dictionary.push({Tag: "SourceCharacter", Text: Source.Name, MemberNumber: Source.MemberNumber});
+				Dictionary.push({Tag: "TargetCharacter", Text: Target.Name, MemberNumber: Target.MemberNumber});
+				Dictionary.push({Tag: "ActivityGroup", Text: Asset.Group.Name});
+				Dictionary.push({Tag: "ActivityName", Text: Activity.Name});
+				ServerSend("ChatRoomChat", {Content: "ChatOther-" + Asset.Group.Name + "-" + Activity.Name, Type: "Activity", Dictionary: Dictionary});
+			}
+		}
+	}
 }

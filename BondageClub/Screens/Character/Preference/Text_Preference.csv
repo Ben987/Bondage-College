@@ -51,7 +51,7 @@ ArousalActive,Activation:
 ArousalActiveInactive,Disable sexual activities
 ArousalActiveNoMeter,Allow without a meter
 ArousalActiveManual,Allow with a manual meter
-ArousalActiveHybrid,Allow with an hybrid meter
+ArousalActiveHybrid,Allow with a hybrid meter
 ArousalActiveAutomatic,Allow with a locked meter
 ArousalVisible,Meter visibility:
 ArousalVisibleAll,Show arousal to everyone

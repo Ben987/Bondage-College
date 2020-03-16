@@ -107,46 +107,58 @@ function TimerProcess(Timestamp) {
 		TimerPrivateOwnerBeep();
 	}
 
-	// Arousal events only occur in the chat or private rooms
-	if ((CurrentScreen == "ChatRoom") || (CurrentScreen == "Private")) {
+	// Arousal/Activity events only occur in allowed rooms
+	if (ActivityAllowed()) {
 
 		// Arousal can change every half a second, based on ProgressTimer
 		if ((TimerLastArousalProgress + 500 < CurrentTime) || (TimerLastArousalProgress - 500 > CurrentTime)) {
 			TimerLastArousalProgress = CurrentTime;
 			TimerLastArousalProgressCount++;
-			for (var C = 0; C < Character.length; C++)
-				if ((Character[C].ArousalSettings != null) && (Character[C].ArousalSettings.Active != null) && ((Character[C].ArousalSettings.Active == "Automatic") || (Character[C].ArousalSettings.Active == "Hybrid"))) {
+			for (var C = 0; C < Character.length; C++) {
 
-					// Activity impacts the progress slowly over time
-					if ((Character[C].ArousalSettings.ProgressTimer != null) && (typeof Character[C].ArousalSettings.ProgressTimer === "number") && !isNaN(Character[C].ArousalSettings.ProgressTimer) && (Character[C].ArousalSettings.ProgressTimer != 0)) {
-						if (Character[C].ArousalSettings.ProgressTimer < 0) {
-							Character[C].ArousalSettings.ProgressTimer++;
-							ActivityTimerProgress(Character[C], -1);
-						}
-						else {
-							Character[C].ArousalSettings.ProgressTimer--;
-							ActivityTimerProgress(Character[C], 1);
-						}
+				// If the character is having an orgasm and the timer ran out, we move to the next orgasm stage
+				if ((Character[C].ArousalSettings != null) && (Character[C].ArousalSettings.OrgasmTimer != null) && (Character[C].ArousalSettings.OrgasmTimer > 0)) {
+					if (Character[C].ArousalSettings.OrgasmTimer < CurrentTime) {
+						if ((Character[C].ArousalSettings.OrgasmStage == null) || (Character[C].ArousalSettings.OrgasmStage <= 1)) ActivityOrgasmStart(Character[C]);
+						else ActivityOrgasmStop(Character[C], 20);
 					}
+				} else {
 
-					// If the character is egged, we find the highest intensity factor and affect the progress, low and medium vibrations have a cap
-					if (Character[C].IsEgged()) {
-						var Factor = -1;
-						for (var A = 0; A < Character[C].Appearance.length; A++) {
-							var Item = Character[C].Appearance[A];
-							var ZoneFactor = PreferenceGetZoneFactor(Character[C], Item.Asset.Group.Name) - 2;
-							if (InventoryItemHasEffect(Item, "Egged", true) && (Item.Property != null) && (Item.Property.Intensity != null) && (typeof Item.Property.Intensity === "number") && !isNaN(Item.Property.Intensity) && (Item.Property.Intensity + ZoneFactor > Factor) && (ZoneFactor >= 0))
-								if ((Character[C].ArousalSettings.Progress < 95) || PreferenceGetZoneOrgasm(Character[C], Item.Asset.Group.Name))
-									Factor = Item.Property.Intensity + ZoneFactor;
+					// Depending on the character settings, we progress the arousal meter
+					if ((Character[C].ArousalSettings != null) && (Character[C].ArousalSettings.Active != null) && ((Character[C].ArousalSettings.Active == "Automatic") || (Character[C].ArousalSettings.Active == "Hybrid"))) {
+
+						// Activity impacts the progress slowly over time
+						if ((Character[C].ArousalSettings.ProgressTimer != null) && (typeof Character[C].ArousalSettings.ProgressTimer === "number") && !isNaN(Character[C].ArousalSettings.ProgressTimer) && (Character[C].ArousalSettings.ProgressTimer != 0)) {
+							if (Character[C].ArousalSettings.ProgressTimer < 0) {
+								Character[C].ArousalSettings.ProgressTimer++;
+								ActivityTimerProgress(Character[C], -1);
+							}
+							else {
+								Character[C].ArousalSettings.ProgressTimer--;
+								ActivityTimerProgress(Character[C], 1);
+							}
 						}
-						if ((Factor >= 4) && (TimerLastArousalProgressCount % 2 == 0)) ActivityTimerProgress(Character[C], 1);
-						if ((Factor == 3) && (TimerLastArousalProgressCount % 3 == 0)) ActivityTimerProgress(Character[C], 1);
-						if ((Factor == 2) && (TimerLastArousalProgressCount % 4 == 0)) ActivityTimerProgress(Character[C], 1);
-						if ((Factor == 1) && (TimerLastArousalProgressCount % 6 == 0) && (Character[C].ArousalSettings.Progress <= 67)) ActivityTimerProgress(Character[C], 1);
-						if ((Factor == 0) && (TimerLastArousalProgressCount % 8 == 0) && (Character[C].ArousalSettings.Progress <= 33)) ActivityTimerProgress(Character[C], 1);
-					}
 
+						// If the character is egged, we find the highest intensity factor and affect the progress, low and medium vibrations have a cap
+						if (Character[C].IsEgged()) {
+							var Factor = -1;
+							for (var A = 0; A < Character[C].Appearance.length; A++) {
+								var Item = Character[C].Appearance[A];
+								var ZoneFactor = PreferenceGetZoneFactor(Character[C], Item.Asset.Group.Name) - 2;
+								if (InventoryItemHasEffect(Item, "Egged", true) && (Item.Property != null) && (Item.Property.Intensity != null) && (typeof Item.Property.Intensity === "number") && !isNaN(Item.Property.Intensity) && (Item.Property.Intensity >= 0) && (ZoneFactor >= 0) && (Item.Property.Intensity + ZoneFactor > Factor))
+									if ((Character[C].ArousalSettings.Progress < 95) || PreferenceGetZoneOrgasm(Character[C], Item.Asset.Group.Name))
+										Factor = Item.Property.Intensity + ZoneFactor;
+							}
+							if ((Factor >= 4) && (TimerLastArousalProgressCount % 2 == 0)) ActivityTimerProgress(Character[C], 1);
+							if ((Factor == 3) && (TimerLastArousalProgressCount % 3 == 0)) ActivityTimerProgress(Character[C], 1);
+							if ((Factor == 2) && (TimerLastArousalProgressCount % 4 == 0) && (Character[C].ArousalSettings.Progress <= 95)) ActivityTimerProgress(Character[C], 1);
+							if ((Factor == 1) && (TimerLastArousalProgressCount % 6 == 0) && (Character[C].ArousalSettings.Progress <= 65)) ActivityTimerProgress(Character[C], 1);
+							if ((Factor == 0) && (TimerLastArousalProgressCount % 8 == 0) && (Character[C].ArousalSettings.Progress <= 35)) ActivityTimerProgress(Character[C], 1);
+						}
+
+					}
 				}
+			}
 		}
 
 		// Arousal decays by 1 naturally every 10 seconds

@@ -99,8 +99,10 @@ PlayerGagged,,,(You don't have access to use or remove items on her.),,!DialogDo
 130,100,(Block her from buying keys.),(The store will not sell keys to her anymore.),"SendRule(""KeyBlock"")",
 130,0,(Back to main menu.),(Main menu.),,
 140,100,(Allow her to buy remotes.),(The store will sell remotes to her.),"SendRule(""RemoteAllow"")",
+140,100,(Allow her to use remotes on herself.),(Her remotes will work on her now.),"SendRule(""RemoteAllowSelf"")"
 140,100,(Confiscate her remotes.),(She lost all of her remotes.),"SendRule(""RemoteConfiscate"")",
 140,100,(Block her from buying remotes.),(The store will not sell remotes to her anymore.),"SendRule(""RemoteBlock"")",
+140,100,(Block her from using remotes on herself),(Her remotes won't work on her anymore.),"SendRule(""RemoteBlockSelf"")"
 140,0,(Back to main menu.),(Main menu.),,
 150,100,(Don't lock her up.),"(Select the rule, restriction or punishment that you want to enforce.)",,
 150,100,(Lock her for 5 minutes.),(She will be isolated and locked up for 5 minutes.),"SendRule(""TimerCell5"", ""Leave"")",

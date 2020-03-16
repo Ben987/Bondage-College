@@ -209,8 +209,10 @@ ServerMessageOwnerRuleKeyAllow,,,Your owner is now allowing you to have keys.  Y
 ServerMessageOwnerRuleKeyConfiscate,,,Your owner has confiscated your keys.  All your regular keys are lost.
 ServerMessageOwnerRuleKeyBlock,,,Your owner is now preventing you from getting new keys.  The club shop will not sell keys to you anymore.
 ServerMessageOwnerRuleRemoteAllow,,,Your owner is now allowing you to have remotes.  You can buy remotes from the club shop.
+ServerMessageOwnerRuleRemoteAllowSelf,,,Your owner is now allowing you to use remotes on yourself.
 ServerMessageOwnerRuleRemoteConfiscate,,,Your owner has confiscated your remotes.  All your remotes are lost.
 ServerMessageOwnerRuleRemoteBlock,,,Your owner is now preventing you from getting new remotes.  The club shop will not sell remotes to you anymore.
+ServerMessageOwnerRuleRemoteBlockSelf,,,Your owner is now preventing you from using remotes on yourself.
 ServerMessageWhisperBlocked,,,You're on SourceCharacter blacklist.  Your message was blocked by the server.
 ServerMessageOfferBeginDating,,,"SourceCharacter is asking you to be her girlfriend.  Click on her and manage your relationship to accept, don't do anything to refuse."
 ServerMessageBeginDating,,,The Bondage Club is pleased to announce that SourceCharacter and TargetCharacter are starting a 7 days minimum period as lovers.
@@ -570,6 +572,14 @@ VibeHeartClitPiercingIncreaseTo0,,,DestinationCharacterName vibrating heart clit
 VibeHeartClitPiercingIncreaseTo1,,,DestinationCharacterName vibrating heart clit piercing builds up to a moderate pace.
 VibeHeartClitPiercingIncreaseTo2,,,DestinationCharacterName vibrating heart clit piercing starts buzzing strongly!
 VibeHeartClitPiercingIncreaseTo3,,,DestinationCharacterName vibrating heart clit piercing jumps up to maximum intensity!
+TapedClitEggDecreaseTo-1,,,DestinationCharacterName vibrating egg on her clit stops vibrating.
+TapedClitEggDecreaseTo0,,,DestinationCharacterName vibrating egg on her clit slows down into a light tease.
+TapedClitEggDecreaseTo1,,,DestinationCharacterName vibrating egg on her clit returns to a moderate pace.
+TapedClitEggDecreaseTo2,,,DestinationCharacterName vibrating egg on her clit slows down a tiny bit.
+TapedClitEggIncreaseTo0,,,DestinationCharacterName vibrating egg on her clit starts teasing her lightly.
+TapedClitEggIncreaseTo1,,,DestinationCharacterName vibrating egg on her clit builds up to a moderate pace.
+TapedClitEggIncreaseTo2,,,DestinationCharacterName vibrating egg on her clit starts buzzing strongly!
+TapedClitEggIncreaseTo3,,,DestinationCharacterName vibrating egg on her clit  jumps up to maximum intensity!
 NipSucloosensTo0,,,SourceCharacter loosens DestinationCharacter nipple suction cups until they hang loosely.
 NipSucloosensTo1,,,SourceCharacter loosens DestinationCharacter nipple suction cups to a light amount of suction.
 NipSucloosensTo2,,,SourceCharacter loosens DestinationCharacter nipple suction cups to a moderate amount of suction.
@@ -930,3 +940,7 @@ ArmsChainSetBoxTie,,,SourceCharacter uses the chain on TargetCharacter to do a b
 ArmsChainSetHogtied,,,SourceCharacter uses the chain on TargetCharacter to do a hogtie.
 ArmsChainSetSuspensionHogtied,,,SourceCharacter uses the Chain on TargetCharacter to do a suspension hogtie.
 ArmsChainSetAllFours,,,SourceCharacter uses the Chain on TargetCharacter to have her crawling on all fours.
+MermaidSuitTypeZipped,,,Zipped Up
+MermaidSuitTypeUnZip,,,Unzipped
+MermaidSuitSetZipped,,,SourceCharacter zips up TargetCharacter suit.
+MermaidSuitSetUnZip,,,SourceCharacter unzips TargetCharacter suit.
