@@ -774,6 +774,9 @@ ItemHead,ClothBlindfold,Cloth Blindfold
 ItemHead,LeatherBlindfold,Leather Blindfold
 ItemHead,LeatherHood,Leather Hood
 ItemHead,LeatherHoodOpenEyes,Leather Hood Eyes
+ItemHead,LeatherSlimMask,Slim Leather Mask
+ItemHead,LeatherSlimMaskOpenMouth,Open Mouth Slim Mask
+ItemHead,LeatherSlimMaskOpenEyes,Open Eyes Mouth Slim Mask
 ItemHead,StuddedBlindfold,Studded Blindfold
 ItemHead,KittyBlindfold,Kitty Blindfold
 ItemHead,DuctTape,Duct Tape
