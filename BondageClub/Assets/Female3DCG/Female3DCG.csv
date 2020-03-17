@@ -833,6 +833,8 @@ ItemDevices,StrapOnSmooth,Smooth Strap On
 ItemDevices,StrapOnStuds,Studded Strap On
 ItemDevices,DisplayCase,Display Case
 ItemDevices,SmallDisplayCase,Small Display Case 
+ItemDevices,WoodenBoxOpenHead,Exposed Head Wooden Box
+ItemDevices,SmallWoodenBoxOpenHead,Exposed Head Small Wooden Box
 ItemAddon,,Body
 ItemAddon,BondageBenchStraps,Leather Belt Straps
 ItemBoots,,Feet
