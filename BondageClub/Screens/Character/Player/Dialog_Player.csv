@@ -154,9 +154,12 @@ RooftopParty,,,Rooftop Party
 PartyBasement,,,Party Basement
 CosyChalet,,,Cosy Chalet
 AlchemistOffice,,,Alchemist Office
+ResearchPrep,,,Research Lab
+ResearchProgress,,,Research Lab
 HellEntrance,,,Entrance to Hell
 PirateIsland,,,Pirate Island
 PirateIslandNight,,,Pirate Island Night
+ShipDeck,,,Ship's Deck
 CaptainCabin,,,Captain Cabin
 MedinaMarket,,,Medina Market
 ThroneRoom,,,Throne Room
@@ -169,6 +172,9 @@ Cellar,,,Cellar
 SlumCellar,,,Slum Cellar
 BarRestaurant,,,Bar Restaurant
 DungeonRuin,,,Ruined Dungeon
+SlipperyClassroom,,,Slippery Classroom
+MiddletownSchool,,,Middletown School
+SchoolRuins,,,Abanoned School
 SecretChamber,,,Secret Chamber
 VaultCorridor,,,Vault Corridor
 AncientRuins,,,Ancient Ruins

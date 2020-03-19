@@ -188,20 +188,20 @@ function MainHallClick() {
 		ChatSearchBackground = "IntroductionDark";
 		ChatSearchLeaveRoom = "MainHall";
 		ChatCreateBackgroundList = [
-			"Introduction", "KidnapLeague", "MaidQuarters", "MainHall", "Management", "Private", "Shibari", "MaidCafe", "HorseStable", "Nursery", "PrisonHall", "Bedroom",
+			"Introduction", "KidnapLeague", "MaidQuarters", "MainHall", "Management", "Private", "Shibari", "MaidCafe", 
+			"HorseStable", "Nursery", "PrisonHall", "Bedroom",
 			"BDSMRoomBlue", "BDSMRoomPurple", "BDSMRoomRed", "BondageBedChamber",
 			"CeremonialVenue", "WeddingRoom", "WeddingArch", "WeddingBeach",
 			"ParkDay", "ParkNight", "Gardens", "ParkWinter", "XmasEve", "XmasDay", "StreetNight", "SnowyStreet",
 			"IndoorPool", "OutdoorPool", "PublicBath", "Onsen", "Beach", "BeachCafe",
-			"PirateIsland", "PirateIslandNight", "CaptainCabin", "MedinaMarket",
+			"PirateIsland", "PirateIslandNight", "ShipDeck", "CaptainCabin", "MedinaMarket",
 			"SheikhPrivate", "SheikhTent",
 			"ForestPath", "DeepForest", "SpookyForest", "WitchWood", "DesolateVillage",
 			"ThroneRoom", "SecretChamber", "Dungeon", "DungeonRuin", "Confessions",
 			"AncientRuins", "JungleTemple", "SunTemple",
-			"AlchemistOffice",
-			"HellEntrance",
-			"SlumRuins", "SlumApartment", "AbandonedBuilding", "AbandonedSideRoom", "Industrial", "BackAlley", "CreepyBasement", "Cellar", "SlumCellar",
-			"VaultCorridor",
+			"AlchemistOffice", "ResearchPrep", "ResearchProgress",
+			"MiddletownSchool", "SchoolRuins", "SlumRuins", "SlumApartment", "AbandonedBuilding", "AbandonedSideRoom", "Industrial", "BackAlley", "CreepyBasement", "Cellar", "SlumCellar",
+			"VaultCorridor", "HellEntrance",
 			"BarRestaurant", "LostVages",
 			"ChillRoom", "Boudoir", "Kitchen", "DiningRoom", "CozyLivingRoom", "RooftopParty", "PartyBasement", "CosyChalet", "BalconyNight"
 		];

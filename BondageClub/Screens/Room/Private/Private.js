@@ -166,18 +166,20 @@ function PrivateRun() {
 	if (LogQuery("RentRoom", "PrivateRoom") && Player.CanKneel()) DrawButton(1885, 145, 90, 90, "", "White", "Icons/Kneel.png");
 
 	// In orgasm mode, we add a pink filter and different controls depending on the stage
-	if ((Player.ArousalSettings != null) && (Player.ArousalSettings.OrgasmTimer != null) && (typeof Player.ArousalSettings.OrgasmTimer === "number") && !isNaN(Player.ArousalSettings.OrgasmTimer) && (Player.ArousalSettings.OrgasmTimer > 0)) {
-		DrawRect(0, 0, 2000, 1000, "#FFB0B0B0");
-		if (Player.ArousalSettings.OrgasmStage == null) Player.ArousalSettings.OrgasmStage = 0;
-		if (Player.ArousalSettings.OrgasmStage == 0) {
-			DrawText(TextGet("OrgasmComing"), 1000, 410, "White", "Black");
-			DrawButton(700, 532, 250, 64, TextGet("OrgasmTryResist"), "White");
-			DrawButton(1050, 532, 250, 64, TextGet("OrgasmSurrender"), "White");
-		}
-		if (Player.ArousalSettings.OrgasmStage == 1) DrawButton(ActivityOrgasmGameButtonX + 500, ActivityOrgasmGameButtonY, 250, 64, ActivityOrgasmResistLabel, "White");
-		if (Player.ArousalSettings.OrgasmStage == 2) DrawText(TextGet("OrgasmRecovering"), 1000, 500, "White", "Black");
-		ActivityOrgasmProgressBar(550, 970);
-	} else if ((Player.ArousalSettings != null) && (Player.ArousalSettings.Progress != null) && (Player.ArousalSettings.Progress >= 91) && (Player.ArousalSettings.Progress <= 99)) DrawRect(0, 0, 2000, 1000, "#FFB0B0" + (Player.ArousalSettings.Progress - 90).toString() + "0");
+	if ((Player.ArousalSettings != null) && (Player.ArousalSettings.Active != null) && (Player.ArousalSettings.Active != "Inactive") && (Player.ArousalSettings.Active != "NoMeter")) {
+		if ((Player.ArousalSettings.OrgasmTimer != null) && (typeof Player.ArousalSettings.OrgasmTimer === "number") && !isNaN(Player.ArousalSettings.OrgasmTimer) && (Player.ArousalSettings.OrgasmTimer > 0)) {
+			DrawRect(0, 0, 2000, 1000, "#FFB0B0B0");
+			if (Player.ArousalSettings.OrgasmStage == null) Player.ArousalSettings.OrgasmStage = 0;
+			if (Player.ArousalSettings.OrgasmStage == 0) {
+				DrawText(TextGet("OrgasmComing"), 1000, 410, "White", "Black");
+				DrawButton(700, 532, 250, 64, TextGet("OrgasmTryResist"), "White");
+				DrawButton(1050, 532, 250, 64, TextGet("OrgasmSurrender"), "White");
+			}
+			if (Player.ArousalSettings.OrgasmStage == 1) DrawButton(ActivityOrgasmGameButtonX + 500, ActivityOrgasmGameButtonY, 250, 64, ActivityOrgasmResistLabel, "White");
+			if (Player.ArousalSettings.OrgasmStage == 2) DrawText(TextGet("OrgasmRecovering"), 1000, 500, "White", "Black");
+			ActivityOrgasmProgressBar(550, 970);
+		} else if ((Player.ArousalSettings.Progress != null) && (Player.ArousalSettings.Progress >= 91) && (Player.ArousalSettings.Progress <= 99)) DrawRect(0, 0, 2000, 1000, "#FFB0B060");
+	}
 
 	// If we must save a character status after a dialog
 	if (PrivateCharacterToSave > 0) {
@@ -237,23 +239,33 @@ function PrivateClickCharacter() {
 		if ((MouseX >= X + (C - PrivateCharacterOffset) * 470) && (MouseX <= X + 470 + (C - PrivateCharacterOffset) * 470))
 			if ((NPCEventGet(PrivateCharacter[C], "SlaveMarketRent") <= CurrentTime) && (NPCEventGet(PrivateCharacter[C], "AsylumSent") <= CurrentTime)) {
 
-				// The arousal meter can be maximized or minimized by clicking on it
-				if ((MouseX >= X + (C - PrivateCharacterOffset) * 470 + 370) && (MouseX <= X + (C - PrivateCharacterOffset) * 470 + 470) && (MouseY >= 400) && (MouseY <= 500) && !PrivateCharacter[C].ArousalZoom) { PrivateCharacter[C].ArousalZoom = true; return; }
-				if ((MouseX >= X + (C - PrivateCharacterOffset) * 470 + 370) && (MouseX <= X + (C - PrivateCharacterOffset) * 470 + 470) && (MouseY >= 615) && (MouseY <= 715) && PrivateCharacter[C].ArousalZoom) { PrivateCharacter[C].ArousalZoom = false; return; }
+				// If the arousal meter is shown for that character, we can interact with it
+				if ((PrivateCharacter[C].ID == 0) || (Player.ArousalSettings.ShowOtherMeter == null) || Player.ArousalSettings.ShowOtherMeter)
+					if ((PrivateCharacter[C].ID == 0) || ((PrivateCharacter[C].ArousalSettings != null) && (PrivateCharacter[C].ArousalSettings.Visible != null) && (PrivateCharacter[C].ArousalSettings.Visible == "Access") && PrivateCharacter[C].AllowItem) || ((PrivateCharacter[C].ArousalSettings != null) && (PrivateCharacter[C].ArousalSettings.Visible != null) && (PrivateCharacter[C].ArousalSettings.Visible == "All")))
+						if ((PrivateCharacter[C].ArousalSettings != null) && (PrivateCharacter[C].ArousalSettings.Active != null) && ((PrivateCharacter[C].ArousalSettings.Active == "Manual") || (PrivateCharacter[C].ArousalSettings.Active == "Hybrid") || (PrivateCharacter[C].ArousalSettings.Active == "Automatic"))) {
 
-				// If the player can manually control her arousal or wants to fight her desire
-				if ((PrivateCharacter[C].ID == 0) && (MouseX >= X + (C - PrivateCharacterOffset) * 470 + 370) && (MouseX <= X + (C - PrivateCharacterOffset) * 470 + 470) && (MouseY >= 200) && (MouseY <= 615) && PrivateCharacter[C].ArousalZoom)
-					if ((Player.ArousalSettings != null) && (Player.ArousalSettings.Active != null) && (Player.ArousalSettings.Progress != null)) {
-						if ((Player.ArousalSettings.Active == "Manual") || (Player.ArousalSettings.Active == "Hybrid")) {
-							var Arousal = Math.round((625 - MouseY) / 4, 0);
-							if (Arousal < 0) Arousal = 0;
-							if (Arousal > 100) Arousal = 100;
-							if ((Player.ArousalSettings.AffectExpression == null) || Player.ArousalSettings.AffectExpression) ActivityExpression(Player, Arousal);
-							ActivitySetArousal(Player, Arousal);
-							if (Arousal == 100) ActivityOrgasmPrepare(Player);
+							// The arousal meter can be maximized or minimized by clicking on it
+							if ((MouseX >= X + (C - PrivateCharacterOffset) * 470 + 60) && (MouseX <= X + (C - PrivateCharacterOffset) * 470 + 140) && (MouseY >= 400) && (MouseY <= 500) && !PrivateCharacter[C].ArousalZoom) { PrivateCharacter[C].ArousalZoom = true; return; }
+							if ((MouseX >= X + (C - PrivateCharacterOffset) * 470 + 50) && (MouseX <= X + (C - PrivateCharacterOffset) * 470 + 150) && (MouseY >= 615) && (MouseY <= 715) && PrivateCharacter[C].ArousalZoom) { PrivateCharacter[C].ArousalZoom = false; return; }
+
+							// If the player can manually control her arousal or wants to fight her desire
+							if ((PrivateCharacter[C].ID == 0) && (MouseX >= X + (C - PrivateCharacterOffset) * 470 + 50) && (MouseX <= X + (C - PrivateCharacterOffset) * 470 + 150) && (MouseY >= 200) && (MouseY <= 615) && PrivateCharacter[C].ArousalZoom)
+								if ((Player.ArousalSettings != null) && (Player.ArousalSettings.Active != null) && (Player.ArousalSettings.Progress != null)) {
+									if ((Player.ArousalSettings.Active == "Manual") || (Player.ArousalSettings.Active == "Hybrid")) {
+										var Arousal = Math.round((625 - MouseY) / 4, 0);
+										if (Arousal < 0) Arousal = 0;
+										if (Arousal > 100) Arousal = 100;
+										if ((Player.ArousalSettings.AffectExpression == null) || Player.ArousalSettings.AffectExpression) ActivityExpression(Player, Arousal);
+										ActivitySetArousal(Player, Arousal);
+										if (Arousal == 100) ActivityOrgasmPrepare(Player);
+									}
+									return;
+								}
+
+							// Don't do anything if the thermometer is clicked without access to it
+							if ((MouseX >= X + (C - PrivateCharacterOffset) * 470 + 50) && (MouseX <= X + (C - PrivateCharacterOffset) * 470 + 150) && (MouseY >= 200) && (MouseY <= 615) && PrivateCharacter[C].ArousalZoom) return;
+
 						}
-						return;
-					}
 
 				// Cannot click on a character that's having an orgasm
 				if ((PrivateCharacter[C].ID != 0) && (PrivateCharacter[C].ArousalSettings != null) && (PrivateCharacter[C].ArousalSettings.OrgasmTimer != null) && (PrivateCharacter[C].ArousalSettings.OrgasmTimer > 0))

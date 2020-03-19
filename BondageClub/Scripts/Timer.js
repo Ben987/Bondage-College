@@ -110,8 +110,8 @@ function TimerProcess(Timestamp) {
 	// Arousal/Activity events only occur in allowed rooms
 	if (ActivityAllowed()) {
 
-		// Arousal can change every half a second, based on ProgressTimer
-		if ((TimerLastArousalProgress + 500 < CurrentTime) || (TimerLastArousalProgress - 500 > CurrentTime)) {
+		// Arousal can change every 0.8 of a second, based on ProgressTimer
+		if ((TimerLastArousalProgress + 800 < CurrentTime) || (TimerLastArousalProgress - 800 > CurrentTime)) {
 			TimerLastArousalProgress = CurrentTime;
 			TimerLastArousalProgressCount++;
 			for (var C = 0; C < Character.length; C++) {
@@ -127,7 +127,7 @@ function TimerProcess(Timestamp) {
 					// Depending on the character settings, we progress the arousal meter
 					if ((Character[C].ArousalSettings != null) && (Character[C].ArousalSettings.Active != null) && ((Character[C].ArousalSettings.Active == "Automatic") || (Character[C].ArousalSettings.Active == "Hybrid"))) {
 
-						// Activity impacts the progress slowly over time
+						// Activity impacts the progress slowly over time, if there's an activity running, vibrations are ignored
 						if ((Character[C].ArousalSettings.ProgressTimer != null) && (typeof Character[C].ArousalSettings.ProgressTimer === "number") && !isNaN(Character[C].ArousalSettings.ProgressTimer) && (Character[C].ArousalSettings.ProgressTimer != 0)) {
 							if (Character[C].ArousalSettings.ProgressTimer < 0) {
 								Character[C].ArousalSettings.ProgressTimer++;
@@ -137,10 +137,9 @@ function TimerProcess(Timestamp) {
 								Character[C].ArousalSettings.ProgressTimer--;
 								ActivityTimerProgress(Character[C], 1);
 							}
-						}
+						} else if (Character[C].IsEgged()) {
 
-						// If the character is egged, we find the highest intensity factor and affect the progress, low and medium vibrations have a cap
-						if (Character[C].IsEgged()) {
+							// If the character is egged, we find the highest intensity factor and affect the progress, low and medium vibrations have a cap
 							var Factor = -1;
 							for (var A = 0; A < Character[C].Appearance.length; A++) {
 								var Item = Character[C].Appearance[A];
@@ -154,6 +153,7 @@ function TimerProcess(Timestamp) {
 							if ((Factor == 2) && (TimerLastArousalProgressCount % 4 == 0) && (Character[C].ArousalSettings.Progress <= 95)) ActivityTimerProgress(Character[C], 1);
 							if ((Factor == 1) && (TimerLastArousalProgressCount % 6 == 0) && (Character[C].ArousalSettings.Progress <= 65)) ActivityTimerProgress(Character[C], 1);
 							if ((Factor == 0) && (TimerLastArousalProgressCount % 8 == 0) && (Character[C].ArousalSettings.Progress <= 35)) ActivityTimerProgress(Character[C], 1);
+
 						}
 
 					}

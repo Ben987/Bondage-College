@@ -547,7 +547,8 @@ function CharacterSetActivePose(C, NewPose) {
 
 // Sets a specific facial expression for the character's specified AssetGroup, if there's a timer, the expression will expire after it, a timed expression cannot override another one
 function CharacterSetFacialExpression(C, AssetGroup, Expression, Timer) {
-	if ((Timer != null) && (InventoryGet(C, AssetGroup) != null) && (InventoryGet(C, AssetGroup).Property != null) && (InventoryGet(C, AssetGroup).Property.Expression != null)) return;
+	var Ex = InventoryGet(C, AssetGroup);
+	if ((Timer != null) && (Ex != null) && (Ex.Property != null) && (Ex.Property.Expression != null) && (Ex.Property.Expression != "")) return;
 	for (var A = 0; A < C.Appearance.length; A++) {
 		if ((C.Appearance[A].Asset.Group.Name == AssetGroup) && (C.Appearance[A].Asset.Group.AllowExpression)) {
 			if ((Expression == null) || (C.Appearance[A].Asset.Group.AllowExpression.indexOf(Expression) >= 0)) {

@@ -134,23 +134,33 @@ function ChatRoomDrawCharacter(DoClick) {
 			if ((MouseX >= (C % 5) * Space + X) && (MouseX <= (C % 5) * Space + X + 450 * Zoom) && (MouseY >= Y + Math.floor(C / 5) * 500) && (MouseY <= Y + Math.floor(C / 5) * 500 + 1000 * Zoom)) {
 				if ((MouseY <= Y + Math.floor(C / 5) * 500 + 900 * Zoom) && (Player.GameplaySettings && Player.GameplaySettings.BlindDisableExamine ? (!(Player.Effect.indexOf("BlindHeavy") >= 0) || ChatRoomCharacter[C].ID == Player.ID) : true)) {
 
-					// The arousal meter can be maximized or minimized by clicking on it
-					if ((MouseX >= (C % 5) * Space + X + 370 * Zoom) && (MouseX <= (C % 5) * Space + X + 470 * Zoom) && (MouseY >= Y + Math.floor(C / 5) * 500 + 400 * Zoom) && (MouseY <= Y + Math.floor(C / 5) * 500 + 500 * Zoom) && !ChatRoomCharacter[C].ArousalZoom) { ChatRoomCharacter[C].ArousalZoom = true; return; }
-					if ((MouseX >= (C % 5) * Space + X + 370 * Zoom) && (MouseX <= (C % 5) * Space + X + 470 * Zoom) && (MouseY >= Y + Math.floor(C / 5) * 500 + 615 * Zoom) && (MouseY <= Y + Math.floor(C / 5) * 500 + 700 * Zoom) && ChatRoomCharacter[C].ArousalZoom) { ChatRoomCharacter[C].ArousalZoom = false; return; }
+					// If the arousal meter is shown for that character, we can interact with it
+					if ((ChatRoomCharacter[C].ID == 0) || (Player.ArousalSettings.ShowOtherMeter == null) || Player.ArousalSettings.ShowOtherMeter)
+						if ((ChatRoomCharacter[C].ID == 0) || ((ChatRoomCharacter[C].ArousalSettings != null) && (ChatRoomCharacter[C].ArousalSettings.Visible != null) && (ChatRoomCharacter[C].ArousalSettings.Visible == "Access") && ChatRoomCharacter[C].AllowItem) || ((ChatRoomCharacter[C].ArousalSettings != null) && (ChatRoomCharacter[C].ArousalSettings.Visible != null) && (ChatRoomCharacter[C].ArousalSettings.Visible == "All")))
+							if ((ChatRoomCharacter[C].ArousalSettings != null) && (ChatRoomCharacter[C].ArousalSettings.Active != null) && ((ChatRoomCharacter[C].ArousalSettings.Active == "Manual") || (ChatRoomCharacter[C].ArousalSettings.Active == "Hybrid") || (ChatRoomCharacter[C].ArousalSettings.Active == "Automatic"))) {
 
-					// If the player can manually control her arousal, we set the progress manual and change the facial expression, it can trigger an orgasm at 100%
-					if ((ChatRoomCharacter[C].ID == 0) && (MouseX >= (C % 5) * Space + X + 400 * Zoom) && (MouseX <= (C % 5) * Space + X + 450 * Zoom) && (MouseY >= Y + Math.floor(C / 5) * 500 + 200 * Zoom) && (MouseY <= Y + Math.floor(C / 5) * 500 + 700 * Zoom) && ChatRoomCharacter[C].ArousalZoom)
-						if ((Player.ArousalSettings != null) && (Player.ArousalSettings.Active != null) && (Player.ArousalSettings.Progress != null)) {
-							if ((Player.ArousalSettings.Active == "Manual") || (Player.ArousalSettings.Active == "Hybrid")) {
-								var Arousal = Math.round((Y + (Math.floor(C / 5) * 500 + 625 * Zoom) - MouseY) / (4 * Zoom), 0);
-								if (Arousal < 0) Arousal = 0;
-								if (Arousal > 100) Arousal = 100;
-								if ((Player.ArousalSettings.AffectExpression == null) || Player.ArousalSettings.AffectExpression) ActivityExpression(Player, Arousal);
-								ActivitySetArousal(Player, Arousal);
-								if (Arousal == 100) ActivityOrgasmPrepare(Player);
+								// The arousal meter can be maximized or minimized by clicking on it
+								if ((MouseX >= (C % 5) * Space + X + 60 * Zoom) && (MouseX <= (C % 5) * Space + X + 140 * Zoom) && (MouseY >= Y + Math.floor(C / 5) * 500 + 400 * Zoom) && (MouseY <= Y + Math.floor(C / 5) * 500 + 500 * Zoom) && !ChatRoomCharacter[C].ArousalZoom) { ChatRoomCharacter[C].ArousalZoom = true; return; }
+								if ((MouseX >= (C % 5) * Space + X + 50 * Zoom) && (MouseX <= (C % 5) * Space + X + 150 * Zoom) && (MouseY >= Y + Math.floor(C / 5) * 500 + 615 * Zoom) && (MouseY <= Y + Math.floor(C / 5) * 500 + 700 * Zoom) && ChatRoomCharacter[C].ArousalZoom) { ChatRoomCharacter[C].ArousalZoom = false; return; }
+
+								// If the player can manually control her arousal, we set the progress manual and change the facial expression, it can trigger an orgasm at 100%
+								if ((ChatRoomCharacter[C].ID == 0) && (MouseX >= (C % 5) * Space + X + 50 * Zoom) && (MouseX <= (C % 5) * Space + X + 150 * Zoom) && (MouseY >= Y + Math.floor(C / 5) * 500 + 200 * Zoom) && (MouseY <= Y + Math.floor(C / 5) * 500 + 700 * Zoom) && ChatRoomCharacter[C].ArousalZoom)
+									if ((Player.ArousalSettings != null) && (Player.ArousalSettings.Active != null) && (Player.ArousalSettings.Progress != null)) {
+										if ((Player.ArousalSettings.Active == "Manual") || (Player.ArousalSettings.Active == "Hybrid")) {
+											var Arousal = Math.round((Y + (Math.floor(C / 5) * 500 + 625 * Zoom) - MouseY) / (4 * Zoom), 0);
+											if (Arousal < 0) Arousal = 0;
+											if (Arousal > 100) Arousal = 100;
+											if ((Player.ArousalSettings.AffectExpression == null) || Player.ArousalSettings.AffectExpression) ActivityExpression(Player, Arousal);
+											ActivitySetArousal(Player, Arousal);
+											if (Arousal == 100) ActivityOrgasmPrepare(Player);
+										}
+										return;
+									}
+
+								// Don't do anything if the thermometer is clicked without access to it
+								if ((MouseX >= (C % 5) * Space + X + 50 * Zoom) && (MouseX <= (C % 5) * Space + X + 150 * Zoom) && (MouseY >= Y + Math.floor(C / 5) * 500 + 200 * Zoom) && (MouseY <= Y + Math.floor(C / 5) * 500 + 615 * Zoom) && ChatRoomCharacter[C].ArousalZoom) return;
+
 							}
-							return;
-						}
 
 					// If a character to swap was selected, we can complete the swap with the second character
 					if (ChatRoomHasSwapTarget() && ChatRoomSwapTarget != ChatRoomCharacter[C].MemberNumber) {
@@ -233,22 +243,24 @@ function ChatRoomRun() {
 	DrawButton(1701, 2, 120, 60, "", "White", "Icons/Rectangle/Character.png", TextGet("MenuProfile"));
 	DrawButton(1875, 2, 120, 60, "", "White", "Icons/Rectangle/Preference.png", TextGet("MenuAdmin"));
 
-	// In orgasm mode, we add a pink filter and different controls depending on the stage
-	if ((Player.ArousalSettings != null) && (Player.ArousalSettings.OrgasmTimer != null) && (typeof Player.ArousalSettings.OrgasmTimer === "number") && !isNaN(Player.ArousalSettings.OrgasmTimer) && (Player.ArousalSettings.OrgasmTimer > 0)) {
-		DrawRect(0, 0, 1003, 1000, "#FFB0B0B0");
-		DrawRect(1003, 0, 993, 63, "#FFB0B0B0");
-		if (Player.ArousalSettings.OrgasmStage == null) Player.ArousalSettings.OrgasmStage = 0;
-		if (Player.ArousalSettings.OrgasmStage == 0) {
-			DrawText(TextGet("OrgasmComing"), 500, 410, "White", "Black");
-			DrawButton(200, 532, 250, 64, TextGet("OrgasmTryResist"), "White");
-			DrawButton(550, 532, 250, 64, TextGet("OrgasmSurrender"), "White");
+	// In orgasm mode, we add a pink filter and different controls depending on the stage.  The pink filter shows a little above 90
+	if ((Player.ArousalSettings != null) && (Player.ArousalSettings.Active != null) && (Player.ArousalSettings.Active != "Inactive") && (Player.ArousalSettings.Active != "NoMeter")) {
+		if ((Player.ArousalSettings.OrgasmTimer != null) && (typeof Player.ArousalSettings.OrgasmTimer === "number") && !isNaN(Player.ArousalSettings.OrgasmTimer) && (Player.ArousalSettings.OrgasmTimer > 0)) {
+			DrawRect(0, 0, 1003, 1000, "#FFB0B0B0");
+			DrawRect(1003, 0, 993, 63, "#FFB0B0B0");
+			if (Player.ArousalSettings.OrgasmStage == null) Player.ArousalSettings.OrgasmStage = 0;
+			if (Player.ArousalSettings.OrgasmStage == 0) {
+				DrawText(TextGet("OrgasmComing"), 500, 410, "White", "Black");
+				DrawButton(200, 532, 250, 64, TextGet("OrgasmTryResist"), "White");
+				DrawButton(550, 532, 250, 64, TextGet("OrgasmSurrender"), "White");
+			}
+			if (Player.ArousalSettings.OrgasmStage == 1) DrawButton(ActivityOrgasmGameButtonX, ActivityOrgasmGameButtonY, 250, 64, ActivityOrgasmResistLabel, "White");
+			if (Player.ArousalSettings.OrgasmStage == 2) DrawText(TextGet("OrgasmRecovering"), 500, 500, "White", "Black");
+			ActivityOrgasmProgressBar(50, 970);
+		} else if ((Player.ArousalSettings.Progress != null) && (Player.ArousalSettings.Progress >= 91) && (Player.ArousalSettings.Progress <= 99)) {
+			DrawRect(0, 0, 1003, 1000, "#FFB0B060");
+			DrawRect(1003, 0, 993, 63, "#FFB0B060");
 		}
-		if (Player.ArousalSettings.OrgasmStage == 1) DrawButton(ActivityOrgasmGameButtonX, ActivityOrgasmGameButtonY, 250, 64, ActivityOrgasmResistLabel, "White");
-		if (Player.ArousalSettings.OrgasmStage == 2) DrawText(TextGet("OrgasmRecovering"), 500, 500, "White", "Black");
-		ActivityOrgasmProgressBar(50, 970);
-	} else if ((Player.ArousalSettings != null) && (Player.ArousalSettings.Progress != null) && (Player.ArousalSettings.Progress >= 91) && (Player.ArousalSettings.Progress <= 99)) {
-		DrawRect(0, 0, 1003, 1000, "#FFB0B0" + (Player.ArousalSettings.Progress - 90).toString() + "0");
-		DrawRect(1003, 0, 993, 63, "#FFB0B0" + (Player.ArousalSettings.Progress - 90).toString() + "0");
 	}
 
 }
@@ -550,7 +562,7 @@ function ChatRoomMessage(data) {
 
 		// Make sure the sender is in the room
 		var SenderCharacter = null;
-		for(var C = 0; C < ChatRoomCharacter.length; C++)
+		for (var C = 0; C < ChatRoomCharacter.length; C++)
 			if (ChatRoomCharacter[C].MemberNumber == data.Sender) {
 				SenderCharacter = ChatRoomCharacter[C]
 				break;
@@ -586,19 +598,32 @@ function ChatRoomMessage(data) {
 				msg = DialogFind(Player, msg);
 				if (data.Dictionary) {
 					var dictionary = data.Dictionary;
+					var SourceCharacter = null;
 					for (var D = 0; D < dictionary.length; D++) {
+
+						// If there's a member number in the dictionary packet, we use that number to alter the chat message
 						if (dictionary[D].MemberNumber) {
-							if ((dictionary[D].Tag == "DestinationCharacter") || (dictionary[D].Tag == "DestinationCharacterName")) msg = msg.replace(dictionary[D].Tag, ((SenderCharacter.MemberNumber == dictionary[D].MemberNumber) && (dictionary[D].Tag == "DestinationCharacter")) ? DialogFind(Player, "Her") :
-								(PreferenceIsPlayerInSensDep() && dictionary[D].MemberNumber != Player.MemberNumber ? DialogFind(Player, "Someone").toLowerCase() : ChatRoomHTMLEntities(dictionary[D].Text) + DialogFind(Player, "'s")));
-							else if ((dictionary[D].Tag == "TargetCharacter") || (dictionary[D].Tag == "TargetCharacterName")) msg = msg.replace(dictionary[D].Tag, ((SenderCharacter.MemberNumber == dictionary[D].MemberNumber) && (dictionary[D].Tag == "TargetCharacter")) ? DialogFind(Player, "Herself") :
-								(PreferenceIsPlayerInSensDep() && dictionary[D].MemberNumber != Player.MemberNumber ? DialogFind(Player, "Someone").toLowerCase() : ChatRoomHTMLEntities(dictionary[D].Text)));
-							else if (dictionary[D].Tag == "SourceCharacter") msg = msg.replace(dictionary[D].Tag, (PreferenceIsPlayerInSensDep() && (dictionary[D].MemberNumber != Player.MemberNumber)) ? DialogFind(Player, "Someone") : ChatRoomHTMLEntities(dictionary[D].Text));
+
+							// Alters the message displayed in the chat room log
+							if ((dictionary[D].Tag == "DestinationCharacter") || (dictionary[D].Tag == "DestinationCharacterName"))
+								msg = msg.replace(dictionary[D].Tag, ((SenderCharacter.MemberNumber == dictionary[D].MemberNumber) && (dictionary[D].Tag == "DestinationCharacter")) ? DialogFind(Player, "Her") : (PreferenceIsPlayerInSensDep() && dictionary[D].MemberNumber != Player.MemberNumber ? DialogFind(Player, "Someone").toLowerCase() : ChatRoomHTMLEntities(dictionary[D].Text) + DialogFind(Player, "'s")));
+							else if ((dictionary[D].Tag == "TargetCharacter") || (dictionary[D].Tag == "TargetCharacterName"))
+								msg = msg.replace(dictionary[D].Tag, ((SenderCharacter.MemberNumber == dictionary[D].MemberNumber) && (dictionary[D].Tag == "TargetCharacter")) ? DialogFind(Player, "Herself") : (PreferenceIsPlayerInSensDep() && dictionary[D].MemberNumber != Player.MemberNumber ? DialogFind(Player, "Someone").toLowerCase() : ChatRoomHTMLEntities(dictionary[D].Text)));
+							else if (dictionary[D].Tag == "SourceCharacter")
+								msg = msg.replace(dictionary[D].Tag, (PreferenceIsPlayerInSensDep() && (dictionary[D].MemberNumber != Player.MemberNumber)) ? DialogFind(Player, "Someone") : ChatRoomHTMLEntities(dictionary[D].Text));
+
+							// Keeps the source character for the next part of the code
+							if (dictionary[D].Tag == "SourceCharacter")
+								for (var T = 0; T < ChatRoomCharacter.length; T++)
+										if (ChatRoomCharacter[T].MemberNumber == dictionary[D].MemberNumber)
+											SourceCharacter = ChatRoomCharacter[T];
+
 						}
 						else if (dictionary[D].TextToLookUp) msg = msg.replace(dictionary[D].Tag, DialogFind(Player, ChatRoomHTMLEntities(dictionary[D].TextToLookUp)).toLowerCase());
 						else if (dictionary[D].AssetName) {
 							for (var A = 0; A < Asset.length; A++)
 								if (Asset[A].Name == dictionary[D].AssetName)
-									msg = msg.replace(dictionary[D].Tag, Asset[A].DynamicDescription().toLowerCase());
+									msg = msg.replace(dictionary[D].Tag, Asset[A].DynamicDescription(SourceCharacter || Player).toLowerCase());
 						}
 						else if (dictionary[D].AssetGroupName) {
 							for (var A = 0; A < AssetGroup.length; A++)
@@ -606,6 +631,7 @@ function ChatRoomMessage(data) {
 									msg = msg.replace(dictionary[D].Tag, AssetGroup[A].Description.toLowerCase());
 						}
 						else msg = msg.replace(dictionary[D].Tag, ChatRoomHTMLEntities(dictionary[D].Text));
+
 					}
 				}
 				AudioPlayContent(data);

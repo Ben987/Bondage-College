@@ -114,7 +114,7 @@ function InventoryPrerequisiteMessage(C, Prerequisite) {
 			|| (InventoryGet(C, "Socks") != null && (InventoryGet(C, "Socks").Asset.Block != null) && InventoryGet(C, "Socks").Asset.Block.includes("ItemVulva")))) return "RemoveClothesForItem";
 
 	// For body parts that must be naked
-	if ((Prerequisite == "NakedFeet") && ((InventoryGet(C, "ItemFeet") != null) || (InventoryGet(C, "Socks") != null) || (InventoryGet(C, "Shoes") != null))) return "RemoveClothesForItem";
+	if ((Prerequisite == "NakedFeet") && ((InventoryGet(C, "ItemBoots") != null) || (InventoryGet(C, "Socks") != null) || (InventoryGet(C, "Shoes") != null))) return "RemoveClothesForItem";
 	if ((Prerequisite == "NakedHands") && ((InventoryGet(C, "ItemHands") != null) || (InventoryGet(C, "Gloves") != null))) return "RemoveClothesForItem";
 
 	// Toe Tied
@@ -289,10 +289,12 @@ function InventoryItemHasEffect(Item, Effect, CheckProperties) {
 
 // Check if we must trigger an expression for the character after an item is used/applied
 function InventoryExpressionTrigger(C, Item) {
-	if ((Item != null) && (Item.Asset != null) && (Item.Asset.DynamicExpressionTrigger() != null))
-		for (var E = 0; E < Item.Asset.DynamicExpressionTrigger().length; E++)
-			if ((InventoryGet(C, Item.Asset.DynamicExpressionTrigger()[E].Group) == null) || (InventoryGet(C, Item.Asset.DynamicExpressionTrigger()[E].Group).Property == null) || (InventoryGet(C, Item.Asset.DynamicExpressionTrigger()[E].Group).Property.Expression == null))
-				CharacterSetFacialExpression(C, Item.Asset.DynamicExpressionTrigger()[E].Group, Item.Asset.DynamicExpressionTrigger()[E].Name, Item.Asset.DynamicExpressionTrigger()[E].Timer);
+	if ((Item != null) && (Item.Asset != null) && (Item.Asset.DynamicExpressionTrigger(C) != null))
+		for (var E = 0; E < Item.Asset.DynamicExpressionTrigger(C).length; E++) {
+			var Ex = InventoryGet(C, Item.Asset.DynamicExpressionTrigger(C)[E].Group);
+			if ((Ex == null) || (Ex.Property == null) || (Ex.Property.Expression == null) || (Ex.Property.Expression == ""))
+				CharacterSetFacialExpression(C, Item.Asset.DynamicExpressionTrigger(C)[E].Group, Item.Asset.DynamicExpressionTrigger(C)[E].Name, Item.Asset.DynamicExpressionTrigger(C)[E].Timer);
+		}
 }
 
 // Returns the item that locks another item

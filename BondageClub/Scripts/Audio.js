@@ -65,28 +65,35 @@ function AudioPlayContent(data) {
 				case "VibratingWand" : audioFile = "Audio/Wand.mp3"; break;
 				case "Zipties" : audioFile = "Audio/ZipTie.mp3"; break;
 				case "DuctTape" : audioFile = "Audio/DuctTape18.mp3"; break;
-				case "BurlapSack" : audioFile = "Audio/Bag.mp3"; break;
-				case "HempRope" : audioFile = "Audio/RopeShort.mp3"; break;
+				case "InflatableBodyBag":
+				case "BurlapSack": audioFile = "Audio/Bag.mp3"; break;
+				case "HempRope": audioFile = "Audio/RopeShort.mp3"; break;
 				case "CollarChainShort":
 				case "CollarChainLong":
 				case "Chains":
+				case "CrotchChain":
 				case "Manacles":
 				case "FullBodyShackles": audioFile = "Audio/ChainLong.mp3"; break;
+				case "PolishedSteelHood":
 				case "WoodenBox":
 				case "SmallWoodenBox":
 				case "Cage":
 				case "LowCage":
 				case "TheDisplayFrame":
+				case "DisplayCase":
+				case "SmallDisplayCase":
 				case "HighSecurityCollar": audioFile = "Audio/LockLarge.mp3"; break;
 				case "ChainLeash":
 				case "CollarLeash":
 				case "MetalCuffs":
 				case "ToeCuffs": audioFile = "Audio/LockSmall.mp3"; break;
+				case "PolishedMittens":
 				case "SteelMuzzleGag":
 				case "BondageBouquet":
 				case "Irish8Cuffs":
 				case "WristShackles":
 				case "AnkleShackles":
+				case "SlenderSteelCollar":
 				case "OrnateCollar":
 				case "OrnateLegCuffs":
 				case "OrnateAnkleCuffs":
@@ -97,16 +104,21 @@ function AudioPlayContent(data) {
 				case "MetalChastityBra":
 				case "PolishedChastityBelt":
 				case "PolishedChastityBra":
+				case "LoveChastityBelt":
 				case "SteelChastityPanties":
 				case "SteelPostureCollar": audioFile = "Audio/CuffsMetal.mp3"; break;
+				case "LeatherCollarBell": audioFile = "Audio/BellMedium.mp3"; break;
+				case "BellClamps":
+				case "BellClitPiercing":
+				case "BellPiercing": audioFile = "Audio/BellSmall.mp3"; break;
 				default: return;
 			}
 		}
 	} else {
 		// When the vibrator or inflatable level increases or decreases
-		if(data.Content.includes("Pumppumps"))
+		if(data.Content.includes("pumps") || data.Content.includes("Suctightens") || data.Content.includes("InflatableBodyBagRestrain"))
 			audioFile = "Audio/Inflation.mp3";
-		else if(data.Content.includes("Pumpdeflates"))
+		else if(data.Content.includes("deflates") || data.Content.includes("Sucloosens"))
 			audioFile = "Audio/Deflation.mp3";
 		else if (data.Content.includes("Decrease") || data.Content.includes("Increase")) { 
 			if (data.Content.endsWith("-1")) return; // special case of turning vibrators off, may be a click sound in the future?

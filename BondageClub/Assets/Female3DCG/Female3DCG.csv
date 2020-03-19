@@ -231,6 +231,8 @@ HairAccessory1,PuppyEars2,Floppy Puppy Ears
 HairAccessory1,RaccoonEars1,Raccoon Ears
 HairAccessory1,WeddingVeil1,Wedding Veil
 HairAccessory1,HairFeathers1,Feathers
+HairAccessory1,MouseEars1,Mouse Ears 1
+HairAccessory1,MouseEars2,Mouse Ears 2
 HairAccessory2,,Hair Accessory
 HairAccessory2,Ears1,Ears Small
 HairAccessory2,Ears2,Ears Large
@@ -261,6 +263,8 @@ HairAccessory2,PuppyEars2,Floppy Puppy Ears
 HairAccessory2,RaccoonEars1,Raccoon Ears
 HairAccessory2,WeddingVeil1,Wedding Veil
 HairAccessory2,HairFeathers1,Feathers
+HairAccessory2,MouseEars1,Mouse Ears 1
+HairAccessory2,MouseEars2,Mouse Ears 2
 Gloves,,Gloves
 Gloves,Gloves1,Short Gloves
 Gloves,Gloves2,Long Gloves
@@ -302,6 +306,8 @@ TailStraps,WolfTailStrap1,Wolf Large Tail Strap
 TailStraps,WolfTailStrap2,Wolf Small Tail Strap
 TailStraps,WolfTailStrap3,Wolf White Tail Strap
 TailStraps,DemonPlug,Demon Tail
+TailStraps,MouseTailStrap1,Mouse Tail Strap 1
+TailStraps,MouseTailStrap2,Mouse Tail Strap 2
 Wings,,Wings
 Wings,SuccubusFeather,Succubus Feather 
 Wings,SuccubusWings,Succubus Wings
@@ -489,6 +495,8 @@ ItemButt,WolfTail1,Wolf Tail Large
 ItemButt,WolfTail2,Wolf Tail Small
 ItemButt,WolfTail3,Wolf Tail White
 ItemButt,DemonPlug,Demon Tail Plug
+ItemButt,MouseTail1,Mouse Tail 1
+ItemButt,MouseTail2,Mouse Tail 2
 ItemPelvis,,Pelvis
 ItemPelvis,StraponPanties,Strap-On Panties
 ItemPelvis,LeatherChastityBelt,Leather Chastity Belt
@@ -774,6 +782,9 @@ ItemHead,ClothBlindfold,Cloth Blindfold
 ItemHead,LeatherBlindfold,Leather Blindfold
 ItemHead,LeatherHood,Leather Hood
 ItemHead,LeatherHoodOpenEyes,Leather Hood Eyes
+ItemHead,LeatherSlimMask,Slim Leather Mask
+ItemHead,LeatherSlimMaskOpenMouth,Open Mouth Slim Mask
+ItemHead,LeatherSlimMaskOpenEyes,Open Eyes Mouth Slim Mask
 ItemHead,StuddedBlindfold,Studded Blindfold
 ItemHead,KittyBlindfold,Kitty Blindfold
 ItemHead,DuctTape,Duct Tape
