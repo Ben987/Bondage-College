@@ -97,7 +97,7 @@ function PreferenceGetFactorColor(Factor) {
 
 // Returns TRUE if we must active the preference controls
 function PreferenceArousalIsActive() {
-	return (PreferenceArousalActiveList[PreferenceArousalActiveIndex] == "Hybrid") || (PreferenceArousalActiveList[PreferenceArousalActiveIndex] == "Automatic");
+	return (PreferenceArousalActiveList[PreferenceArousalActiveIndex] != "Inactive");
 }
 
 // Loads the activity factor combo boxes based on the current activity selected
@@ -213,6 +213,7 @@ function PreferenceRun() {
 	if (PreferenceSubscreen == "Chat") return PreferenceSubscreenChatRun();
 	if (PreferenceSubscreen == "Audio") return PreferenceSubscreenAudioRun();
 	if (PreferenceSubscreen == "Arousal") return PreferenceSubscreenArousalRun();
+	if (PreferenceSubscreen == "Security") return PreferenceSubscreenSecurityRun();
 
 	// Draw the online preferences
 	MainCanvas.textAlign = "left";
@@ -227,8 +228,6 @@ function PreferenceRun() {
 	DrawButton(500, 280, 90, 90, "", "White", "Icons/Next.png");
 	DrawText(TextGet("ItemPermission") + " " + TextGet("PermissionLevel" + Player.ItemPermission.toString()), 615, 325, "Black", "Gray");
 	DrawText(TextGet("SensDepSetting"), 800, 428, "Black", "Gray");
-	DrawText(TextGet("UpdateEmailOld"), 500, 828, "Black", "Gray");
-	DrawText(TextGet("UpdateEmailNew"), 500, 908, "Black", "Gray");
 
 	// Checkboxes
 	DrawCheckbox(500, 472, 64, 64, TextGet("BlindDisableExamine"), Player.GameplaySettings.BlindDisableExamine);
@@ -236,10 +235,7 @@ function PreferenceRun() {
 	DrawCheckbox(500, 632, 64, 64, TextGet("EnableAfkTimer"), Player.GameplaySettings.EnableAfkTimer);
 	DrawCheckbox(500, 712, 64, 64, TextGet("ForceFullHeight"), Player.VisualSettings.ForceFullHeight);
 
-	ElementPosition("InputEmailOld", 1135, 820, 800);
-	ElementPosition("InputEmailNew", 1135, 900, 800);
 	MainCanvas.textAlign = "center";
-	DrawButton(1550, 862, 250, 64, TextGet("UpdateEmail"), "White", "");
 	DrawBackNextButton(500, 392, 250, 64, TextGet(Player.GameplaySettings.SensDepChatLog), "White", "",
 		() => TextGet(PreferenceSettingsSensDepList[(PreferenceSettingsSensDepIndex + PreferenceSettingsSensDepList.length - 1) % PreferenceSettingsSensDepList.length]),
 		() => TextGet(PreferenceSettingsSensDepList[(PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length]));
@@ -254,12 +250,7 @@ function PreferenceRun() {
 		DrawButton(1815, 190, 90, 90, "", "White", "Icons/Chat.png");
 		DrawButton(1815, 305, 90, 90, "", "White", "Icons/Audio.png");
 		DrawButton(1815, 420, 90, 90, "", "White", "Icons/Activity.png");
-	}
-
-	// Writes the email text once the csv have been parsed
-	if ((Text != null) && !PreferenceEmailStatusReceived) {
-		ServerSend("AccountQuery", { Query: "EmailStatus" });
-		PreferenceEmailStatusReceived = true;
+		DrawButton(1815, 535, 90, 90, "", "White", "Icons/Lock.png");
 	}
 }
 
@@ -270,26 +261,36 @@ function PreferenceClick() {
 	if (PreferenceSubscreen == "Chat") return PreferenceSubscreenChatClick();
 	if (PreferenceSubscreen == "Audio") return PreferenceSubscreenAudioClick();
 	if (PreferenceSubscreen == "Arousal") return PreferenceSubscreenArousalClick();
+	if (PreferenceSubscreen == "Security") return PreferenceSubscreenSecurityClick();
 
 	// If the user clicks on "Exit"
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) PreferenceExit();
 
 	// If the user clicks on the chat settings button
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 190) && (MouseY < 280) && (PreferenceColorPick == "")) {
-		PreferenceMainScreenExit()
+		PreferenceMainScreenExit();
 		PreferenceSubscreen = "Chat";
 	}
 
 	// If the user clicks on the audio settings button
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 305) && (MouseY < 395) && (PreferenceColorPick == "")) {
-		PreferenceMainScreenExit()
+		PreferenceMainScreenExit();
 		PreferenceSubscreen = "Audio";
 	}
 
 	// If the user clicks on the arousal settings button
 	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 420) && (MouseY < 510) && (PreferenceColorPick == "")) {
-		PreferenceMainScreenExit()
+		PreferenceMainScreenExit();
 		PreferenceSubscreen = "Arousal";
+	}
+
+	// If the user clicks on the security settings button
+	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 535) && (MouseY < 625) && (PreferenceColorPick == "")) {
+		PreferenceMainScreenExit();
+		ElementCreateInput("InputEmailOld", "text", "", "100");
+		ElementCreateInput("InputEmailNew", "text", "", "100");
+		ServerSend("AccountQuery", { Query: "EmailStatus" });
+		PreferenceSubscreen = "Security";
 	}
 	
 	// If we must change the restrain permission level
@@ -307,19 +308,6 @@ function PreferenceClick() {
 		if (MouseX <= 625) PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepList.length + PreferenceSettingsSensDepIndex - 1) % PreferenceSettingsSensDepList.length;
 		else PreferenceSettingsSensDepIndex = (PreferenceSettingsSensDepIndex + 1) % PreferenceSettingsSensDepList.length;
 		Player.GameplaySettings.SensDepChatLog = PreferenceSettingsSensDepList[PreferenceSettingsSensDepIndex];
-	}
-
-	// If we must update the email
-	if ((MouseX >= 1550) && (MouseX < 1800) && (MouseY >= 862) && (MouseY < 912)) {
-		var EmailOld = ElementValue("InputEmailOld");
-		var EmailNew = ElementValue("InputEmailNew");
-		var E = /^[a-zA-Z0-9@.!#$%&'*+/=?^_`{|}~-]+$/;
-		if ((EmailOld.match(E) || (EmailOld == "")) && (EmailOld.length <= 100) && (EmailNew.match(E) || (EmailNew == "")) && (EmailNew.length <= 100)) {
-			ServerSend("AccountUpdateEmail", { EmailOld: EmailOld, EmailNew: EmailNew });
-		}
-		else {
-			ElementValue("InputEmailNew", TextGet("UpdateEmailInvalid"));
-		}
 	}
 
 	// Preference check boxes
@@ -447,13 +435,6 @@ function PreferenceSubscreenArousalRun() {
 		DrawBackNextButton(900, 593, 300, 64, TextGet("ArousalActivityLove" + PreferenceArousalActivityFactorSelf), PreferenceGetFactorColor(PreferenceGetActivityFactor(Player, PreferenceArousalActivityList[PreferenceArousalActivityIndex], true)), "", () => "", () => "");
 		DrawBackNextButton(1605, 593, 300, 64, TextGet("ArousalActivityLove" + PreferenceArousalActivityFactorOther), PreferenceGetFactorColor(PreferenceGetActivityFactor(Player, PreferenceArousalActivityList[PreferenceArousalActivityIndex], false)), "", () => "", () => "");
 
-	} else if (PreferenceArousalActiveList[PreferenceArousalActiveIndex] == "Manual") {
-
-		// In manual, you can only select if the meter is visible to others or not
-		DrawText(TextGet("ArousalVisible"), 1240, 225, "Black", "Gray");
-		MainCanvas.textAlign = "center";
-		DrawBackNextButton(1505, 193, 400, 64, TextGet("ArousalVisible" + PreferenceArousalVisibleList[PreferenceArousalVisibleIndex]), "White", "", () => "", () => "");
-
 	}
 
 	// We always draw the active & stutter control
@@ -462,6 +443,21 @@ function PreferenceSubscreenArousalRun() {
 	DrawBackNextButton(900, 393, 500, 64, TextGet("ArousalStutter" + PreferenceArousalAffectStutterList[PreferenceArousalAffectStutterIndex]), "White", "", () => "", () => "");
 	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
 
+}
+
+// Redirected to from the main Run function if the player is in the security settings subscreen
+function PreferenceSubscreenSecurityRun() {
+	DrawCharacter(Player, 50, 50, 0.9);
+	MainCanvas.textAlign = "left";
+	DrawText(TextGet("SecurityPreferences"), 500, 125, "Black", "Gray");
+	DrawText(TextGet("UpdateEmailOld"), 500, 225, "Black", "Gray");
+	DrawText(TextGet("UpdateEmailNew"), 500, 305, "Black", "Gray");
+	ElementPosition("InputEmailOld", 1200, 225, 800);
+	ElementPosition("InputEmailNew", 1200, 305, 800);
+	DrawText(TextGet("UpdateEmailDescription"), 800, 397, "Black", "Gray");
+	MainCanvas.textAlign = "center";
+	DrawButton(500, 365, 250, 64, TextGet("UpdateEmail"), "White", "");
+	DrawButton(1815, 75, 90, 90, "", "White", "Icons/Exit.png");
 }
 
 // When the user clicks in the audio preference subscreen
@@ -616,19 +612,38 @@ function PreferenceSubscreenArousalClick() {
 		
 }
 
+// When the user clicks in the security preference subscreen
+function PreferenceSubscreenSecurityClick() {
+
+	// If the user clicked the exit icon to return to the main screen
+	if ((MouseX >= 1815) && (MouseX < 1905) && (MouseY >= 75) && (MouseY < 165) && (PreferenceColorPick == "")) {
+		PreferenceSubscreen = "";
+		ElementRemove("InputEmailOld");
+		ElementRemove("InputEmailNew");
+		PreferenceMainScreenLoad();
+	}
+
+	// If we must update the email
+	if ((MouseX >= 500) && (MouseX < 750) && (MouseY >= 365) && (MouseY < 415)) {
+		var EmailOld = ElementValue("InputEmailOld");
+		var EmailNew = ElementValue("InputEmailNew");
+		var E = /^[a-zA-Z0-9@.!#$%&'*+/=?^_`{|}~-]+$/;
+		if ((EmailOld.match(E) || (EmailOld == "")) && (EmailOld.length <= 100) && (EmailNew.match(E) || (EmailNew == "")) && (EmailNew.length <= 100))
+			ServerSend("AccountUpdateEmail", { EmailOld: EmailOld, EmailNew: EmailNew });
+		else
+			ElementValue("InputEmailNew", TextGet("UpdateEmailInvalid"));
+	}
+
+}
+
 // Handles the loading of the main preferences screen
 function PreferenceMainScreenLoad() {
 	ElementCreateInput("InputCharacterLabelColor", "text", Player.LabelColor);
-	ElementCreateInput("InputEmailOld", "text", "", "100");
-	ElementCreateInput("InputEmailNew", "text", "", "100");
 }
 
 // Handles the exiting of the main preferences screen
 function PreferenceMainScreenExit() {
 	ElementRemove("InputCharacterLabelColor");
-	ElementRemove("InputEmailOld");
-	ElementRemove("InputEmailNew");
-	PreferenceEmailStatusReceived = false;
 }
 
 // Return true if sensory deprivation is active

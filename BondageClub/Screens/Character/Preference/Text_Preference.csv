@@ -2,6 +2,7 @@ Preferences,- Preferences -
 ChatPreferences,- Chat Preferences -
 AudioPreferences,- Audio Preferences -
 ArousalPreferences,- Arousal Meter & Sexual Activities Preferences -
+SecurityPreferences,- Security Preferences -
 CharacterLabelColor,Character label color:
 ItemPermission,Item permission:
 PermissionLevel0,"Everyone, no exceptions"
@@ -37,9 +38,10 @@ BlindDisableExamine,Disable examining people when blind
 DisableAutoRemoveLogin,Keep all of your restraints when relogging
 ForceFullHeight,Display all characters at maximum height
 EnableAfkTimer,Show AFK bubble if idle for 5 minutes
+UpdateEmailDescription,Linking an email will allow password recovery
 UpdateEmail,Update Email
-UpdateEmailOld,Current Email
-UpdateEmailNew,New Email
+UpdateEmailOld,Current email:
+UpdateEmailNew,New email:
 UpdateEmailEmpty,"No email saved, write here to add one"
 UpdateEmailLinked,"An email is linked, write it here to update it"
 UpdateEmailSuccess,Your email has been updated !

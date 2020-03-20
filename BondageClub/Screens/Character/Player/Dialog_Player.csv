@@ -154,9 +154,12 @@ RooftopParty,,,Rooftop Party
 PartyBasement,,,Party Basement
 CosyChalet,,,Cosy Chalet
 AlchemistOffice,,,Alchemist Office
+ResearchPrep,,,Research Lab
+ResearchProgress,,,Research Lab
 HellEntrance,,,Entrance to Hell
 PirateIsland,,,Pirate Island
 PirateIslandNight,,,Pirate Island Night
+ShipDeck,,,Ship's Deck
 CaptainCabin,,,Captain Cabin
 MedinaMarket,,,Medina Market
 ThroneRoom,,,Throne Room
@@ -169,6 +172,9 @@ Cellar,,,Cellar
 SlumCellar,,,Slum Cellar
 BarRestaurant,,,Bar Restaurant
 DungeonRuin,,,Ruined Dungeon
+SlipperyClassroom,,,Slippery Classroom
+MiddletownSchool,,,Middletown School
+SchoolRuins,,,Abanoned School
 SecretChamber,,,Secret Chamber
 VaultCorridor,,,Vault Corridor
 AncientRuins,,,Ancient Ruins
@@ -918,6 +924,14 @@ TeddyBearSetKitty,,,SourceCharacter gives TargetCharacter a cute kitty teddy.
 TeddyBearSetPup,,,SourceCharacter gives TargetCharacter a cute puppy teddy.
 TeddyBearSetBunny,,,SourceCharacter gives TargetCharacter a cute Bunny teddy.
 TeddyBearSetPony,,,SourceCharacter gives TargetCharacter a cute Pony teddy.
+HandsIn,,,Hands inside
+HandsOut,,,Hands outside
+WoodenBoxOpenHeadHandsOut,,,SourceCharacter pulls TargetCharacter's hands out of the wooden box.
+WoodenBoxOpenHeadHandsIn,,,SourceCharacter pushes TargetCharacter's hands inside the wooden box.
+SmallWoodenBoxOpenHeadHandsOut,,,SourceCharacter pulls TargetCharacter's hands out of the wooden box.
+SmallWoodenBoxOpenHeadHandsIn,,,SourceCharacter places TargetCharacter's hands inside the wooden box.
+SmallWoodenBoxOpenHeadHandsOut,,,SourceCharacter pulls TargetCharacter's hands out of the wooden box.
+SmallWoodenBoxOpenHeadHandsIn,,,SourceCharacter places TargetCharacter's hands inside the wooden box.
 HeadphoneEarPlugsSelectTightness,,,Turn the headphones on/off and adjust their volume.
 HeadphoneEarPlugsPoseOff,,,Off
 HeadphoneEarPlugsPoseLight,,,Light

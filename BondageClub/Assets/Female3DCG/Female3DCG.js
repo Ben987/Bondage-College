@@ -13,10 +13,10 @@
 // Spanking Toys Asset
 var AssetSpankingToys = {
 	Name: "SpankingToys", Wear: false, Activity: "SpankItem", Random: false, BuyGroup: "SpankingToys", IgnoreParentGroup: true,
-	DynamicDescription: () => InventorySpankingToysGetType(),
-	DynamicPreviewIcon: () => InventorySpankingToysGetType(),
+	DynamicDescription: C => InventorySpankingToysGetDescription(C),
+	DynamicPreviewIcon: C => InventorySpankingToysGetType(C),
 	DynamicAllowInventoryAdd: () => InventoryIsWorn(Player, "SpankingToys", "ItemHands"),
-	DynamicExpressionTrigger: () => SpankingInventory.find(x => x.Name == InventorySpankingToysGetType()).ExpressionTrigger
+	DynamicExpressionTrigger: C => SpankingInventory.find(x => x.Name == InventorySpankingToysGetType(C)).ExpressionTrigger
 };
 
 // 3D Custom Girl based assets
@@ -352,7 +352,7 @@ var AssetFemale3DCG = [
 			},
 			{ Name: "SocksStriped1", Value: 10 },
 			{ Name: "LatexSocks1", Value: 30 },
-			{ Name: "FootlessSocks1", Value: 15 },
+			{ Name: "FootlessSocks1", Value: 15 }
 		]
 	},
 
@@ -463,7 +463,9 @@ var AssetFemale3DCG = [
 			{ Name: "PuppyEars2", Value: 20, BuyGroup: "PuppyEars2"},
 			{ Name: "RaccoonEars1", Value: 15, BuyGroup: "RaccoonEars1"},
 			{ Name: "WeddingVeil1", Priority: 4, Value: 30, BuyGroup: "WeddingVeil1"},
-			{ Name: "HairFeathers1", Value: 10, BuyGroup: "HairFeathers1"}
+			{ Name: "HairFeathers1", Value: 10, BuyGroup: "HairFeathers1"},
+			{ Name: "MouseEars1", Value: 20, BuyGroup: "MouseEars1"},
+			{ Name: "MouseEars2", Value: 20, BuyGroup: "MouseEars2"}
 		]
 	},
 	
@@ -503,7 +505,9 @@ var AssetFemale3DCG = [
 			{ Name: "PuppyEars2", Value: -1, BuyGroup: "PuppyEars2"},
 			{ Name: "RaccoonEars1", Value: -1, BuyGroup: "RaccoonEars1"},
 			{ Name: "WeddingVeil1", Priority: 4, Value: -1, BuyGroup: "WeddingVeil1"},
-			{ Name: "HairFeathers1", Value: -1, BuyGroup: "HairFeathers1"}
+			{ Name: "HairFeathers1", Value: -1, BuyGroup: "HairFeathers1"},
+			{ Name: "MouseEars1", Value: 20, BuyGroup: "MouseEars1"},
+			{ Name: "MouseEars2", Value: 20, BuyGroup: "MouseEars2"}
 		]
 	},
 
@@ -575,7 +579,9 @@ var AssetFemale3DCG = [
 			{ Name: "WolfTailStrap1", Value: 20 },
 			{ Name: "WolfTailStrap2", Value: 20 },
 			{ Name: "WolfTailStrap3", Value: 20 },
-			{ Name: "DemonPlug", Value: 30 }
+			{ Name: "DemonPlug", Value: 30 },
+			{ Name: "MouseTailStrap1", Value: 20 },
+			{ Name: "MouseTailStrap2", Value: 20 }
 		]
 	},
 
@@ -784,7 +790,7 @@ var AssetFemale3DCG = [
 	{
 		Group: "ItemFeet",
 		Category: "Item",
-		Activity: ["Kiss", "Lick", "Tickle", "Spank", "Caress", "MassageHands", "Grope"],
+		Activity: ["Kiss", "Lick", "Nibble", "Tickle", "Spank", "Caress", "MassageHands", "Grope"],
 		Priority: 27,
 		ParentGroup: "BodyLower",
 		Default: false,
@@ -820,7 +826,7 @@ var AssetFemale3DCG = [
 	{
 		Group: "ItemLegs",
 		Category: "Item",
-		Activity: ["Kiss", "Lick", "Tickle", "Spank", "Caress", "MassageHands", "Grope"],
+		Activity: ["Kiss", "Lick", "Nibble", "Tickle", "Spank", "Caress", "MassageHands", "Grope"],
 		Priority: 25,
 		ParentGroup: "BodyLower",
 		Default: false,
@@ -875,7 +881,7 @@ var AssetFemale3DCG = [
 	{
 		Group: "ItemVulva",
 		Category: "Item",
-		Activity: ["MasturbateHand", "MasturbateFist", "MasturbateFoot", "MasturbateTongue", "Caress", "Slap", "Kiss", "Bite"],
+		Activity: ["MasturbateHand", "MasturbateFist", "MasturbateFoot", "MasturbateTongue", "Caress", "Slap", "Kiss", "Nibble"],
 		Priority: 15,
 		Default: false,
 		Color: ["Default"],
@@ -1008,6 +1014,8 @@ var AssetFemale3DCG = [
 			{ Name: "WolfTail2", Value: 45, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }] },
 			{ Name: "WolfTail3", Value: 45, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }] },
 			{ Name: "DemonPlug", Value: 45, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }] },
+			{ Name: "MouseTail1", Value: 45, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }] },
+			{ Name: "MouseTail2", Value: 45, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }] },
 			AssetSpankingToys
 		]
 	},
@@ -1015,7 +1023,7 @@ var AssetFemale3DCG = [
 	{
 		Group: "ItemPelvis",
 		Category: "Item",
-		Activity: ["Kiss", "Lick", "Tickle", "Spank", "Caress", "Pinch", "MassageHands", "Grope"],
+		Activity: ["Kiss", "Lick", "Nibble", "Tickle", "Spank", "Caress", "Pinch", "MassageHands", "Grope"],
 		Priority: 17,
 		ParentGroup: "BodyLower",
 		Default: false,
@@ -1047,7 +1055,7 @@ var AssetFemale3DCG = [
 				AllowEffect: ["Chaste", "Egged", "Vibrating"],
 				AllowBlock: ["ItemVulva", "ItemButt", "ItemVulvaPiercings"],
 				AllowType: ["Open", "Closed", "Vibe", "Shock"],
-				DynamicExpressionTrigger: () => {
+				DynamicExpressionTrigger: C => {
 					if (InventoryItemPelvisLoveChastityBeltLastAction == "Open") {
 						return [{ Group: "Blush", Name: "Low", Timer: 10 }];
 					} else if (InventoryItemPelvisLoveChastityBeltLastAction == "Closed") {
@@ -1090,7 +1098,7 @@ var AssetFemale3DCG = [
 	{
 		Group: "ItemTorso",
 		ParentGroup: "BodyUpper",
-		Activity: ["Kiss", "Lick", "Tickle", "Spank", "Caress", "MassageHands", "MassageFeet", "Rub"],
+		Activity: ["Kiss", "Lick", "Nibble", "Tickle", "Spank", "Caress", "MassageHands", "MassageFeet", "Rub"],
 		Category: "Item",
 		Priority: 18,
 		Default: false,
@@ -1121,7 +1129,7 @@ var AssetFemale3DCG = [
 	{
 		Group: "ItemNipples",
 		ParentGroup: "BodyUpper",
-		Activity: ["Kiss", "Lick", "Suck", "Bite", "Pinch", "Caress"],
+		Activity: ["Kiss", "Lick", "Suck", "Nibble", "Pinch", "Caress"],
 		Category: "Item",
 		Priority: 19,
 		Default: false,
@@ -1213,7 +1221,7 @@ var AssetFemale3DCG = [
 	{
 		Group: "ItemArms",
 		ParentGroup: "BodyUpper",
-		Activity: ["Kiss", "Lick", "Tickle", "Spank", "Pinch", "Caress", "MassageHands", "Grope", "Cuddle"],
+		Activity: ["Kiss", "Lick", "Nibble", "Tickle", "Spank", "Pinch", "Caress", "MassageHands", "Grope", "Cuddle"],
 		Category: "Item",
 		Priority: 32,
 		Default: false,
@@ -1330,7 +1338,7 @@ var AssetFemale3DCG = [
 				{
 					Name: "MermaidSuit", DefaultColor: "#400000", Random: false, SelfBondage: false, Value: 200, Time: 40, RemoveTime: 30, Difficulty: 15, AllowLock: true, Extended: true,
 					SetPose: ["BackElbowTouch", "StraitDressOpen"],
-					Hide: ["Socks", "BodyLower", "Cloth", "ClothLower", "Bra", "Shoes", "ItemBoots", "ItemLegs", "Suit", "SuitLower"],
+					Hide: ["Socks", "BodyLower", "Cloth", "ClothLower", "Bra", "Shoes", "ItemBoots", "ItemLegs", "Suit", "SuitLower", "ItemPelvis", "ItemFeet", "Panties"],
 					Block: ["ItemBoots", "ItemPelvis", "ItemTorso", "ItemHands", "ItemLegs", "ItemFeet"],
 					Effect: ["Block", "Prone", "Freeze", "BlockKneel"],
 					HideItem: ["ItemFeetNylonRope", "ItemFeetHempRope", "ItemFeetLeatherBelt", "ItemFeetIrish8Cuffs", "ItemFeetDuctTape", "ItemFeetMermaidRopeTie", "ItemFeetLeatherAnkleCuffs"],
@@ -1350,7 +1358,7 @@ var AssetFemale3DCG = [
 	{
 		Group: "ItemHands",
 		ParentGroup: "BodyUpper",
-		Activity: ["Kiss", "PoliteKiss", "Lick", "Suck", "Spank", "Caress", "TakeCare"],
+		Activity: ["Kiss", "PoliteKiss", "Lick", "Suck", "Nibble", "Spank", "Caress", "TakeCare"],
 		Category: "Item",
 		Priority: 34,
 		Default: false,
@@ -1366,8 +1374,8 @@ var AssetFemale3DCG = [
 			{ Name: "DuctTape", SelfBondage: false, Value: 50, SetPose: ["TapedHands"], AllowPose: ["BackBoxTie", "BackElbowTouch", "BackCuffs", "Yoked", "AllFours"], Hide: ["Gloves"], Effect: ["Block", "Prone"], Time: 20, RemoveTime: 10, Difficulty: 5, BuyGroup: "DuctTape" },
 			{
 				Name: "SpankingToys", Priority: 46, Wear: true,  IsRestraint: false, Extended: true, Random: false, BuyGroup: "SpankingToys", AllowType: ["Crop", "Flogger", "Cane", "HeartCrop", "Paddle", "WhipPaddle", "Whip", "CattleProd", "TennisRacket"], IgnoreParentGroup: true, AllowPose: ["BackBoxTie", "BackElbowTouch", "BackCuffs", "Yoked", "AllFours"],
-				DynamicDescription: () => { return ((InventoryIsWorn(CurrentCharacter, "SpankingToys", "ItemHands")) && (InventoryGet(CurrentCharacter, "ItemHands").Property != null)) ? InventoryGet(CurrentCharacter, "ItemHands").Property.Type : "Spanking Toy" },
-				DynamicPreviewIcon: () => { return ((InventoryIsWorn(CurrentCharacter, "SpankingToys", "ItemHands")) && (InventoryGet(CurrentCharacter, "ItemHands").Property != null)) ? InventoryGet(CurrentCharacter, "ItemHands").Property.Type : "Paddle" }
+				DynamicDescription: C => { return ((InventoryIsWorn(C, "SpankingToys", "ItemHands")) && (InventoryGet(C, "ItemHands").Property != null)) ? InventoryGet(C, "ItemHands").Property.Type : "Spanking Toy" },
+				DynamicPreviewIcon: C => { return ((InventoryIsWorn(C, "SpankingToys", "ItemHands")) && (InventoryGet(C, "ItemHands").Property != null)) ? InventoryGet(C, "ItemHands").Property.Type : "Paddle" }
 			}, {
 				Name: "SpankingToysCrop", Value: 20, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				DynamicAllowInventoryAdd: () => { return false }
@@ -1402,7 +1410,7 @@ var AssetFemale3DCG = [
 	{
 		Group: "ItemNeck",
 		Category: "Item",
-		Activity: ["Kiss", "Lick", "Bite", "Caress", "MassageHands", "Strangle"],
+		Activity: ["Kiss", "Lick", "Nibble", "Caress", "MassageHands", "Choke"],
 		Priority: 33,
 		Default: false,
 		Color: ["Default"],
@@ -1502,7 +1510,7 @@ var AssetFemale3DCG = [
 	{
 		Group: "ItemMouth",
 		Category: "Item",
-		Activity: ["Kiss", "FrenchKiss", "PoliteKiss", "Lick", "Bite", "Caress"],
+		Activity: ["Kiss", "FrenchKiss", "PoliteKiss", "Lick", "Nibble", "Caress"],
 		Priority: 34,
 		Default: false,
 		IsRestraint: true,
@@ -1869,7 +1877,7 @@ var AssetFemale3DCG = [
 	{
 		Group: "ItemEars",
 		Category: "Item",
-		Activity: ["Kiss", "Lick", "Pinch", "Caress", "Whisper"],
+		Activity: ["Kiss", "Lick", "Nibble", "Pinch", "Caress", "Whisper"],
 		Priority: 1,
 		Default: false,
 		IsRestraint: true,
@@ -1947,7 +1955,9 @@ var AssetFemale3DCG = [
 			{ Name: "StrapOnSmooth", IsRestraint: false, Value: 25, Time: 10, Difficulty: 1, Priority: 33 },
 			{ Name: "StrapOnStuds", IsRestraint: false, Value: 25, Time: 10, Difficulty: 1, Priority: 33 },
 			{ Name: "DisplayCase", RemoveAtLogin: true, Alpha: [[1, 1, 70, 999], [420, 1, 80, 999]], Effect: ["Prone", "Enclose", "DeafLight", "GagLight", "Freeze"], Value: 60, Time: 15, RemoveTime: 10, Difficulty: -2, AllowLock: true, Prerequisite: ["NotSuspended"] },
-			{ Name: "SmallDisplayCase", RemoveAtLogin: true, Alpha: [[1, 1, 70, 999], [420, 1, 80, 999]], SetPose: ["Kneel"], Effect: ["ForceKneel", "Prone", "Enclose", "DeafLight", "GagLight", "Freeze"], Value: 40, Time: 15, RemoveTime: 10, Difficulty: -2, AllowLock: true, Prerequisite: ["NotSuspended", "NotHogtied", "NotMounted", "NotKneelingSpread", "NoFeetSpreader"] }	
+			{ Name: "SmallDisplayCase", RemoveAtLogin: true, Alpha: [[1, 1, 70, 999], [420, 1, 80, 999]], SetPose: ["Kneel"], Effect: ["ForceKneel", "Prone", "Enclose", "DeafLight", "GagLight", "Freeze"], Value: 40, Time: 15, RemoveTime: 10, Difficulty: -2, AllowLock: true, Prerequisite: ["NotSuspended", "NotHogtied", "NotMounted", "NotKneelingSpread", "NoFeetSpreader"] },
+			{ Name: "WoodenBoxOpenHead", AllowBlock: ["ItemHands"], SelfBondage: false, Extended: true, AllowPose: ["Yoked"], RemoveAtLogin: true, Alpha: [[1, 220, 70, 999], [420, 220, 80, 999]], Effect: ["Prone", "Freeze", "Block"], Value: 60, Time: 15, RemoveTime: 10, Difficulty: -2, AllowLock: true, Prerequisite: ["NotSuspended", "NotHogtied"], Block: ["ItemArms", "ItemBreast", "ItemButt", "ItemFeet", "ItemLegs", "ItemMisc", "ItemNipples", "ItemNipplesPiercings", "ItemPelvis", "ItemTorso", "ItemVulva", "ItemVulvaPiercings", "ItemBoots"], Hide: ["Wings"] },
+			{ Name: "SmallWoodenBoxOpenHead", AllowBlock: ["ItemHands"], SelfBondage: false, Extended: true, AllowPose: ["Yoked"] , RemoveAtLogin: true, Alpha: [[1, 220, 70, 999], [420, 220, 80, 999]], SetPose: ["Kneel"],  Effect: ["ForceKneel", "Prone", "Freeze", "Block"], Value: 40, Time: 15, RemoveTime: 10, Difficulty: -2, AllowLock: true, Prerequisite: ["NotSuspended", "NotHogtied", "NotMounted", "NotKneelingSpread", "NoFeetSpreader", "NotYoked"], Block: ["ItemArms", "ItemBreast", "ItemButt", "ItemFeet", "ItemLegs", "ItemMisc", "ItemNipples", "ItemNipplesPiercings", "ItemPelvis", "ItemTorso", "ItemVulva", "ItemVulvaPiercings", "ItemBoots"], SetPose: ["Kneel"], Hide: ["Wings"]  },
 		]
 	},
 	
@@ -1969,7 +1979,7 @@ var AssetFemale3DCG = [
 	{
 		Group: "ItemBoots",
 		Category: "Item",
-		Activity: ["Kiss", "PoliteKiss", "Lick", "Suck", "Tickle", "Spank", "MassageHands", "MassageFeet", "TakeCare"],
+		Activity: ["Kiss", "PoliteKiss", "Lick", "Suck", "Nibble", "Tickle", "Spank", "MassageHands", "MassageFeet", "TakeCare"],
 		Priority: 23,
 		ParentGroup: "BodyLower",
 		Default: false,
@@ -2086,7 +2096,7 @@ var ActivityFemale3DCG = [
 		Prerequisite: ["UseMouth", "ZoneNaked"]
 	},
 	{
-		Name: "Bite",
+		Name: "Nibble",
 		MaxProgress: 40,
 		TargetSelf: ["ItemMouth", "ItemHands", "ItemArms", "ItemBoots", "ItemNipples"],
 		Prerequisite: ["UseMouth", "ZoneNaked"]
@@ -2177,7 +2187,7 @@ var ActivityFemale3DCG = [
 		Prerequisite: ["UseHands"]
 	},
 	{
-		Name: "Strangle",
+		Name: "Choke",
 		MaxProgress: 50,
 		TargetSelf: ["ItemNeck"],
 		Prerequisite: ["UseHands"]
