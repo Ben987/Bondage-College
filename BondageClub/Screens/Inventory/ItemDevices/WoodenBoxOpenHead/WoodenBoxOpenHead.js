@@ -64,9 +64,9 @@ function InventoryItemDevicesWoodenBoxOpenHeadSetPose(newPose) {
         Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
         
         if (newPose == "Base")
-            ChatRoomPublishCustomAction("WoodenBoxOpenHeadHandsOut", true, Dictionary);
-        else
             ChatRoomPublishCustomAction("WoodenBoxOpenHeadHandsIn", true, Dictionary);
+        else
+            ChatRoomPublishCustomAction("WoodenBoxOpenHeadHandsOut", true, Dictionary);
     }
 		
 	// Rebuilds the inventory menu
