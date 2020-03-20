@@ -1,7 +1,6 @@
 // The main game canvas where everything will be drawn
 "use strict";
 var MainCanvas;
-var TempCanvas;
 var ColorCanvas;
 
 // A bank of all the chached images
@@ -41,7 +40,6 @@ function DrawLoad() {
 
 	// Creates the objects used in the game
 	MainCanvas = document.getElementById("MainCanvas").getContext("2d");
-	TempCanvas = document.createElement("canvas").getContext("2d");
 	ColorCanvas = document.createElement("canvas");
 	document.getElementById("MainCanvas").addEventListener("keypress", KeyDown);
 	document.getElementById("MainCanvas").tabIndex = 1000;
@@ -101,6 +99,22 @@ function DrawGetImageOnError(Img, IsAsset) {
 	}
 }
 
+// Draw the arousal meter on screen
+function DrawArousalThermometer(X, Y, Zoom, Progress, Automatic, Orgasm) {
+	DrawImageZoomCanvas("Screens/Character/Player/ArousalMeter" + (Orgasm ? "Orgasm" : "") + (Automatic ? "Automatic" : "") + ".png", MainCanvas, 0, 0, 100, 500, X, Y, 100 * Zoom, 500 * Zoom);
+	if ((Progress > 0) && !Orgasm) DrawRect(X + (30 * Zoom), Y + (15 * Zoom) + (Math.round((100 - Progress) * 4 * Zoom)), (40 * Zoom), (Math.round(Progress * 4 * Zoom)), "#FF0000");
+}
+
+// Draw the arousal meter next to the player if allowed by the character and visible for the player
+function DrawArousalMeter(C, X, Y, Zoom) {
+	if (ActivityAllowed() && (C.ArousalSettings != null) && (C.ArousalSettings.Active != null) && ((C.ArousalSettings.Active == "Manual") || (C.ArousalSettings.Active == "Hybrid") || (C.ArousalSettings.Active == "Automatic")))
+		if ((C.ID == 0) || ((C.ArousalSettings.Visible != null) && (C.ArousalSettings.Visible == "Access") && C.AllowItem) || ((C.ArousalSettings.Visible != null) && (C.ArousalSettings.Visible == "All")))
+			if ((C.ID == 0) || (Player.ArousalSettings.ShowOtherMeter == null) || Player.ArousalSettings.ShowOtherMeter) {
+				ActivitySetArousal(C, C.ArousalSettings.Progress);
+				DrawArousalThermometer(X + ((C.ArousalZoom ? 50 : 90) * Zoom), Y + ((C.ArousalZoom ? 200 : 400) * Zoom), C.ArousalZoom ? Zoom : Zoom * 0.2, C.ArousalSettings.Progress, (C.ArousalSettings.Active == "Automatic"), ((C.ArousalSettings.OrgasmTimer != null) && (typeof C.ArousalSettings.OrgasmTimer === "number") && !isNaN(C.ArousalSettings.OrgasmTimer) && (C.ArousalSettings.OrgasmTimer > 0)));
+			}
+}
+
 // Refreshes the character if not all images are loaded and draw the character canvas on the main game screen
 function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 	if ((C != null) && ((C.ID == 0) || (Player.Effect.indexOf("BlindHeavy") < 0) || (CurrentScreen == "InformationSheet"))) {
@@ -150,11 +164,14 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 		var H = Canvas.height + (((C.HeightModifier != null) && (C.HeightModifier < 0)) ? C.HeightModifier : 0);
 		MainCanvas.drawImage(Canvas, 0, 0, Canvas.width, H, X, Y - (C.HeightModifier * Zoom), Canvas.width * Zoom, H * Zoom);
 
+		// Draw the arousal meter on certain conditions
+		DrawArousalMeter(C, X - Zoom * Canvas.width * (1 - HeightRatio) / 2, Y - Zoom * Canvas.height * (1 - HeightRatio), Zoom / HeightRatio);
+
 		// Applies a Y offset if the character is suspended
 		if (C.Pose.indexOf("Suspension") >= 0) Y += (Zoom * Canvas.height * (1 - HeightRatio) / HeightRatio);
-
+		
 		// Draws the character focus zones if we need too
-		if ((C.FocusGroup != null) && (C.FocusGroup.Zone != null)) {
+		if ((C.FocusGroup != null) && (C.FocusGroup.Zone != null) && (CurrentScreen != "Preference")) {
 
 			// Draw all the possible zones in transparent colors (gray if free, yellow if occupied, red if blocker)
 			for (var A = 0; A < AssetGroup.length; A++)
@@ -176,6 +193,7 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 				DrawText(C.Name, X + 255 * Zoom, Y + 980 * ((C.Pose.indexOf("SuspensionHogtied") < 0) ? Zoom : Zoom / HeightRatio), (CommonIsColor(C.LabelColor)) ? C.LabelColor : "White", "Black");
 				MainCanvas.font = "36px Arial";
 			}
+
 	}
 }
 
@@ -186,6 +204,15 @@ function DrawAssetGroupZone(C, Zone, HeightRatio, X, Y, Color, Thickness = 3) {
 			DrawEmptyRect((HeightRatio * Zone[Z][0]) + X, (1000 - (HeightRatio * (Zone[Z][1] + Y + Zone[Z][3]))) - C.HeightModifier, (HeightRatio * Zone[Z][2]), (HeightRatio * Zone[Z][3]), Color, Thickness);
 		else
 			DrawEmptyRect((HeightRatio * Zone[Z][0]) + X, HeightRatio * (Zone[Z][1] - C.HeightModifier) + Y, (HeightRatio * Zone[Z][2]), (HeightRatio * Zone[Z][3]), Color, Thickness);
+}
+
+// Scans the item zone and draws a background rectangle over it
+function DrawAssetGroupZoneBackground(C, Zone, HeightRatio, X, Y, Color) {
+	for (var Z = 0; Z < Zone.length; Z++)
+		if (C.Pose.indexOf("Suspension") >= 0)
+			DrawRect((HeightRatio * Zone[Z][0]) + X, (1000 - (HeightRatio * (Zone[Z][1] + Y + Zone[Z][3]))) - C.HeightModifier, (HeightRatio * Zone[Z][2]), (HeightRatio * Zone[Z][3]), Color);
+		else
+			DrawRect((HeightRatio * Zone[Z][0]) + X, HeightRatio * (Zone[Z][1] - C.HeightModifier) + Y, (HeightRatio * Zone[Z][2]), (HeightRatio * Zone[Z][3]), Color);
 }
 
 // Draw a zoomed image from a source to a specific canvas
@@ -447,7 +474,11 @@ function DrawButton(Left, Top, Width, Height, Label, Color, Image, HoveringText)
 	if ((HoveringText != null) && (MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile) {
 		DrawButtonHover(Left, Top, Width, Height, HoveringText);
 	}
+}
 
+function DrawCheckbox(Left, Top, Width, Height, Text, IsChecked){
+    DrawText(Text, Left + 100, Top + 33, "Black", "Gray");
+    DrawButton(Left, Top, Width, Height, "", "White", IsChecked ? "Icons/Checked.png" : "");
 }
 
 // Draw a back & next button
@@ -476,9 +507,6 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 	DrawTextFit(Label, Left + Width / 2, Top + (Height / 2) + 1, (CommonIsMobile) ? Width - 6 : Width - 36, "Black");
 	if ((Image != null) && (Image != "")) DrawImage(Image, Left + 2, Top + 2);
 
-	// PC only section
-	if (CommonIsMobile) return;
-
 	// Draw the back arrow 
 	MainCanvas.beginPath();
 	MainCanvas.fillStyle = "black";
@@ -497,7 +525,8 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 	MainCanvas.stroke();
 	MainCanvas.closePath();
 
-	// Draw the hovering text
+	// Draw the hovering text on the PC
+	if (CommonIsMobile) return;
 	if (BackText == null) BackText = () => "MISSING VALUE FOR: BACK TEXT";
 	if (NextText == null) NextText = () => "MISSING VALUE FOR: NEXT TEXT";
 	if ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height))
@@ -606,6 +635,6 @@ function DrawProcess() {
 // Draw the item preview box
 function DrawItemPreview(X, Y, Item) {
 	DrawRect(X, Y, 225, 275, "white");
-	DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.Group.Name + "/Preview/" + Item.Asset.Name + Item.Asset.DynamicPreviewIcon() + ".png", X + 2, Y + 2, 221, 221);
+	DrawImageResize("Assets/" + Item.Asset.Group.Family + "/" + Item.Asset.Group.Name + "/Preview/" + Item.Asset.Name + Item.Asset.DynamicPreviewIcon(CharacterGetCurrent()) + ".png", X + 2, Y + 2, 221, 221);
 	DrawTextFit(Item.Asset.Description, X + 110, Y + 250, 221, "black");
 }

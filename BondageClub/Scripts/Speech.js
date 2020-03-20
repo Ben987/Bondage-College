@@ -417,35 +417,46 @@ function SpeechGarble(C, CD) {
 // Makes the character stutter if she has a vibrating egg set to high intensity
 function SpeechStutter(C, CD) {
 
+	// Validate nulls
 	if (CD == null) CD = "";
-	if (C.IsEgged()) {
-		var intensity = C.Appearance
-			.filter(function (item) { return InventoryItemHasEffect(item, "Egged", true) && item.Property && item.Property.Intensity; })
-			.map(function (item) { return item.Property.Intensity; })
-			.sort()
-			.pop();
-		if (intensity == null) intensity = 0;
 
-		// If intensity is lower than 1, no stuttering occurs and we return the regular text
-		if (intensity <= 0) return CD;
+	// Validates that the preferences allow stuttering
+	if ((C.ArousalSettings == null) || (C.ArousalSettings.AffectStutter == null) || (C.ArousalSettings.AffectStutter != "None")) {
 
+		// Gets the factor from current arousal
+		var Factor = 0;
+		if ((C.ArousalSettings == null) || (C.ArousalSettings.AffectStutter == null) || (C.ArousalSettings.AffectStutter == "Arousal") || (C.ArousalSettings.AffectStutter == "All"))
+			if ((C.ArousalSettings != null) && (C.ArousalSettings.Progress != null) && (typeof C.ArousalSettings.Progress === "number") && !isNaN(C.ArousalSettings.Progress))
+				Factor = Math.floor(C.ArousalSettings.Progress / 20);
+
+		// Checks all items that "eggs" with an intensity, and replaces the factor if it's higher
+		if (C.IsEgged() && ((C.ArousalSettings == null) || (C.ArousalSettings.AffectStutter == null) || (C.ArousalSettings.AffectStutter == "Vibration") || (C.ArousalSettings.AffectStutter == "All")))
+			for (var A = 0; A < C.Appearance.length; A++) {
+				var Item = C.Appearance[A];
+				if (InventoryItemHasEffect(Item, "Egged", true) && Item.Property && Item.Property.Intensity && (typeof Item.Property.Intensity === "number") && !isNaN(Item.Property.Intensity) && (Item.Property.Intensity > Factor))
+					Factor = Item.Property.Intensity;
+			}
+
+		// If the intensity factor is lower than 1, no stuttering occurs and we return the regular text
+		if (Factor <= 0) return CD;
+
+		// Loops in all letters to create a stuttering effect
 		var Par = false;
 		var CS = 1;
-		var seed = CD.length;
-
+		var Seed = CD.length;
 		for (var L = 0; L < CD.length; L++) {
 
+			// Do not stutter the letters between parentheses
 			var H = CD.charAt(L).toLowerCase();
 			if (H == "(") Par = true;
 
 			// If we are not between brackets and at the start of a word, there's a chance to stutter that word
 			if (!Par && CS >= 0 && (H.match(/[[a-zа-яё]/i))) {
 
-				// Generate a pseudo-random number using a seed, so that the same text always stutters the same way.
-				var R = Math.sin(seed++) * 10000;
+				// Generate a pseudo-random number using a seed, so that the same text always stutters the same way
+				var R = Math.sin(Seed++) * 10000;
 				R = R - Math.floor(R);
-				R = Math.floor(R * 10) + 1;
-				R += (intensity - 1);
+				R = Math.floor(R * 10) + Factor;
 				if (CS == 1 || R >= 10) {
 					CD = CD.substring(0, L) + CD.charAt(L) + "-" + CD.substring(L, CD.length);
 					L += 2;
@@ -456,10 +467,12 @@ function SpeechStutter(C, CD) {
 			if (H == " ") CS = 0;
 		}
 		return CD;
+
 	}
 
 	// No stutter effect, we return the regular text
 	return CD;
+
 }
 
 // Makes Character talk like a Baby if the have drunk regression milk

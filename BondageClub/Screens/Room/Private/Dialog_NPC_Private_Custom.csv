@@ -203,6 +203,13 @@ OwnerBeepFail,,,"(She shakes her head from left to right.)  My girl, it's very d
 0,,,"You look adorable on your knees.  If we kneel next to each other, it might lead to a kinky situation.",,DialogIsKneeling(Player),IntroPlayerKneeling,Submissive|Horny
 0,,,(She gives you a stern look.)  Obedience starts by kneeling and showing proper respect.  This submissive stance exposes your docility.,,DialogIsKneeling(Player),IntroPlayerKneeling,Dominant|Polite
 0,,,"Kneeling is great to stay in the submissive-space.  It's humbling, unprovocative and relaxing.  It can also be used to meditate.",,DialogIsKneeling(Player),IntroPlayerKneeling,Frigid|Wise
+0,,,What's on your mind my love?,,IsLover(),IntroGirlfriend,
+0,,,What's going on hun?,,IsLover(),IntroGirlfriend,Dominant|Violent
+0,,,Please tell me of your feeling's sweetie.,,IsLover(),IntroGirlfriend,Submissive|Peaceful
+0,,,"My sexy lover, how can we have fun?",,IsLover(),IntroGirlfriend,Horny|Playful
+0,,,What troubles you my dear?,,IsLover(),IntroGirlfriend,Frigid|Serious
+0,,,Let's have a tete-a-tete my love.,,IsLover(),IntroGirlfriend,Polite|Wise
+0,,,What's up luv?,,IsLover(),IntroGirlfriend,Dumb|Rude
 0,,,What's on your mind?,,,Intro,
 0,,,This place is kind of sexy.  What would you like to do?,,,Intro,Horny
 0,,,"Cool room you have there.  So, what's up?",,,Intro,Rude
@@ -210,6 +217,27 @@ OwnerBeepFail,,,"(She shakes her head from left to right.)  My girl, it's very d
 0,,,You have a nice lair to kidnap subs.  What would you like to do?,,,Intro,Dominant
 0,,,This room is certainly worth the 250$ rent.  Now tell me what's on your mind.,,,Intro,Wise
 0,,,(She hums a happy song.)  I love your private room!  What could we do to have fun?,,,Intro,Playful
+0,,I love you!,I love you too.  You're the best.,LoveYou(),IsLoverHappy(),LoveYouHappy,
+0,,I love you!,I love you girl.  Don't change.,LoveYou(),IsLoverHappy(),LoveYouHappy,Dominant|Violent
+0,,I love you!,(She nods slowly.)  I love you sugar pie.,LoveYou(),IsLoverHappy(),LoveYouHappy,Submissive|Peaceful
+0,,I love you!,I love you!  You drive me wild.,LoveYou(),IsLoverHappy(),LoveYouHappy,Horny|Playful
+0,,I love you!,This is a shared feeling my love.,LoveYou(),IsLoverHappy(),LoveYouHappy,Frigid|Serious
+0,,I love you!,I adore you.  This journey we share together is luminous.,LoveYou(),IsLoverHappy(),LoveYouHappy,Polite|Wise
+0,,I love you!,I love ya too my sexy girlfriend.,LoveYou(),IsLoverHappy(),LoveYouHappy,Dumb|Rude
+0,,I love you!,I love you also.  But let's spend more time together.,LoveYou(),IsLoverNeutral(),LoveYouNeutral,
+0,,I love you!,I love you girl.  But we need to spend more time together.,LoveYou(),IsLoverNeutral(),LoveYouNeutral,Dominant|Violent
+0,,I love you!,(She nods slowly.)  I love you also.  But maybe we should spend more time together.,LoveYou(),IsLoverNeutral(),LoveYouNeutral,Submissive|Peaceful
+0,,I love you!,I love you also.  But let's make love more often.,LoveYou(),IsLoverNeutral(),LoveYouNeutral,Horny|Playful
+0,,I love you!,This is a shared feeling.  But we should spend more time together.,LoveYou(),IsLoverNeutral(),LoveYouNeutral,Frigid|Serious
+0,,I love you!,"I love you also, but we need to invest more time in our relationship.",LoveYou(),IsLoverNeutral(),LoveYouNeutral,Polite|Wise
+0,,I love you!,"I love ya too, but where were ya the other night?",LoveYou(),IsLoverNeutral(),LoveYouNeutral,Dumb|Rude
+0,,I love you!,(She frowns.)  You should say it more often then.,LoveYou(),IsLoverUnhappy(),LoveYouUnhappy,
+0,,I love you!,(She grumbles.)  Show it then!,LoveYou(),IsLoverUnhappy(),LoveYouUnhappy,Dominant|Violent
+0,,I love you!,(She sighs.)  Sometimes I wonder if you really mean it.,LoveYou(),IsLoverUnhappy(),LoveYouUnhappy,Submissive|Peaceful
+0,,I love you!,(She frowns.)  Let's get in bed then!  We never do it anymore!,LoveYou(),IsLoverUnhappy(),LoveYouUnhappy,Horny|Playful
+0,,I love you!,(She grumbles.)  You have very strange ways of proving it.,LoveYou(),IsLoverUnhappy(),LoveYouUnhappy,Frigid|Serious
+0,,I love you!,"Have you ever heard the old maxim: ""Actions speaks louder than words.""?",LoveYou(),IsLoverUnhappy(),LoveYouUnhappy,Polite|Wise
+0,,I love you!,No shit!  Prove it!,LoveYou(),IsLoverUnhappy(),LoveYouUnhappy,Dumb|Rude
 0,10,Let's talk.,What would you like to talk about?,,,StartTalk,
 0,10,Let's talk.,"(She nods slowly.)  Very good, most club members don't talk enough.",,,StartTalk,Frigid
 0,10,Let's talk.,(She starts to sing.)  Let's talk about sex baby!  Let's talk about you and me!,,,StartTalk,Horny
@@ -289,11 +317,11 @@ OwnerBeepFail,,,"(She shakes her head from left to right.)  My girl, it's very d
 10,,Tell me about you.,I don't know what tell you.  I'm a club member and I like BDSM.,DialogRemove(),,NPCProfile,Dumb
 10,,Tell me about you.,"I'm not known to be the life a party.  For me, BDSM should be taken seriously to avoid any harm or pitfalls.",DialogRemove(),,NPCProfile,Serious
 10,,Tell me about you.,"I like clubs, parties, bondage and life in general.  I have many wonderful friends here in the club.",DialogRemove(),,NPCProfile,Playful
-10,20,Let's talk about BDSM families. ,"Absolutely, what's on your mind exactly?",,,FamilyTalk,
-10,20,Let's talk about BDSM families. ,Oh!  That's serious!  (She tries to stay focus and listen to your words.),,,FamilyTalk,Playful
-10,20,Let's talk about BDSM families. ,It's probably the most important kind of discussion around here.,,,FamilyTalk,Serious
-10,20,Let's talk about BDSM families. ,"Very well, BDSM and D/s families are intriguing topics for me as well.",,,FamilyTalk,Wise
-10,20,Let's talk about BDSM families. ,Oh my!  I know I'll get confused again.  (She listens.),,,FamilyTalk,Dumb
+10,20,Let's talk about relationships. ,"Absolutely, what's on your mind exactly?",,,FamilyTalk,
+10,20,Let's talk about relationships. ,Oh!  That's serious!  (She tries to stay focus and listen to your words.),,,FamilyTalk,Playful
+10,20,Let's talk about relationships. ,It's probably the most important kind of discussion around here.,,,FamilyTalk,Serious
+10,20,Let's talk about relationships. ,"Very well, BDSM and regular relationships are intriguing topics.",,,FamilyTalk,Wise
+10,20,Let's talk about relationships. ,Oh my!  I know I'll get confused again.  (She listens.),,,FamilyTalk,Dumb
 10,11,You could wear something else.,Alright.  And what should I wear?,,AllowChange(),ChangeCloth,
 10,11,You could wear something else.,(She twirls on herself and giggles.)  Of course!  What would be appealing for your eyes?,,AllowChange(),ChangeCloth,Playful|Polite
 10,11,You could wear something else.,Oh yeah!  Ya feelin' horny babe?,,AllowChange(),ChangeCloth,Horny|Rude
@@ -316,11 +344,16 @@ OwnerBeepFail,,,"(She shakes her head from left to right.)  My girl, it's very d
 10,,Stand up.,"Tremendous!  (She stands up slowly.)  I must confess, my legs were starting to hurt.","DialogSetPose(CurrentCharacter, """")",CanStandUp(),StandUp,Peaceful|Polite
 10,,(Point at the floor then upward.),(She nods and stands up.),"DialogSetPose(CurrentCharacter, """")",CanStandUpGagged(),,
 10,,Stand up.,(She wiggles her restrained legs and shrugs.),,CannotStandUp(),,
-10,15,You should go.,You want me to leave now?,,,KickOut,
-10,15,You should go.,Oh!  You want some privacy?  (She winks.),,,KickOut,Dominant|Horny
-10,15,You should go.,Should I leave you alone Miss?,,,KickOut,Submissive|Polite
-10,15,You should go.,(She seems angry.)  You're fucking kicking me out?,,,KickOut,Rude|Violent
-10,15,You should go.,Friends are like fishes.  They start to stink when you keep them for too long.  Do you want me to leave now?,,,KickOut,Wise|Serious
+10,15,You should go.,You want me to leave now?,,!IsLover(),KickOut,
+10,15,You should go.,Oh!  You want some privacy?  (She winks.),,!IsLover(),KickOut,Dominant|Horny
+10,15,You should go.,Should I leave you alone Miss?,,!IsLover(),KickOut,Submissive|Polite
+10,15,You should go.,(She seems angry.)  You're fucking kicking me out?,,!IsLover(),KickOut,Rude|Violent
+10,15,You should go.,Friends are like fishes.  They start to stink when you keep them for too long.  Do you want me to leave now?,,!IsLover(),KickOut,Wise|Serious
+10,16,We should break up.,Are you serious my love?  This is the end between us?,,IsLover(),KickOutLover,
+10,16,We should break up.,(She turns red.)  So you want to fuck other girls?,,IsLover(),KickOutLover,Dominant|Horny
+10,16,We should break up.,Please don't throw me away sweetheart.  I can innovate and get better!,,IsLover(),KickOutLover,Submissive|Polite
+10,16,We should break up.,(She seems furious.)  You're fucking breaking up with me?,,IsLover(),KickOutLover,Rude|Violent
+10,16,We should break up.,Is this really the end of our relationship?  Have we crossed that line?,,IsLover(),KickOutLover,Wise|Serious
 10,,Let's chat.  (Spend time to chat with her.),(You spend some quality time chatting together and she seems to appreciate.),NPCInteraction(1),,TimeChitChat,
 10,,Let's chat.  (Spend time to chat with her.),(You spend some time chit-chatting together.  It's fun but she politely lets you know that you could be more productive.),,,TimeChitChat,Serious|Polite
 10,,Let's chat.  (Spend time to chat with her.),"(You two talk about politic, science and human nature.  It's different from the club kinks but still very interesting.)",NPCInteraction(1),,TimeChitChat,Frigid|Wise
@@ -344,6 +377,11 @@ OwnerBeepFail,,,"(She shakes her head from left to right.)  My girl, it's very d
 15,0,"No, you can stay.",You got me scared Miss.  What would you like to do?,NPCInteraction(-5),,CancelKickOut,Submissive|Peaceful
 15,0,"No, you can stay.","Make up your mind girl.  So, what's up?",NPCInteraction(-5),,CancelKickOut,Dominant|Rude
 15,0,"No, you can stay.","Sorry, I'm kind of confused now.  What would you like to do?",NPCInteraction(-5),,CancelKickOut,Dumb|Polite
+16,0,"Yes, this is the end.  (Break up.)",,KickOut(),,,
+16,0,"No, let's stay together.",(She seems sad and confused.)  Ok sweetie.  What would you like to do then?,NPCInteraction(-10),,CancelKickOutLover,
+16,0,"No, let's stay together.",You got me really scared my love.  What would you like to do then?,NPCInteraction(-10),,CancelKickOutLover,Submissive|Peaceful
+16,0,"No, let's stay together.","Make up your mind darling.  So, what's up now?",NPCInteraction(-10),,CancelKickOutLover,Dominant|Rude
+16,0,"No, let's stay together.","Sorry, I'm very confused now.  What would you like to do then?",NPCInteraction(-10),,CancelKickOutLover,Dumb|Polite
 20,,Do you have a D/s family in the club?,I don't have a D/s family.  And I'm not sure I'm interested in having one.,,!IsMistress(),FamilyNotOwner,
 20,,Do you have a D/s family in the club?,"Sadly, I don't have any owner.  I hope I'll find the perfect Mistress someday.",,!IsMistress(),FamilyNotOwner,Submissive
 20,,Do you have a D/s family in the club?,I don't have any submissive.  Finding the perfect BDSM match is quite a quest.,,!IsMistress(),FamilyNotOwner,Dominant
@@ -369,6 +407,26 @@ OwnerBeepFail,,,"(She shakes her head from left to right.)  My girl, it's very d
 20,,Are you looking for an owner?,"I must decline Miss.  You seem to be a wonderful Dominant, but we haven't spent enough time together to begin a BDSM relationship.",,NeedTimeToTakePlayerAsDom(),NeedTimeToTakePlayerAsDom,Polite
 20,,Are you looking for an owner?,Can you help me out first so we can talk?,,DialogIsRestrained(CurrentCharacter),,
 20,,Are you looking for an owner?,Forget it girl.  I'll never be collared by anyone.,,NeverTakePlayerAsDom(),,
+20,40,Do you have a girlfriend?,"Not yet, it would need to be someone I like and know very well.  Just like you.",,WillTakePlayerAsLover(),WillTakePlayerAsLover,
+20,40,Do you have a girlfriend?,"Not yet, it would need to be someone funny and optimistic.  Just like you pal.",,WillTakePlayerAsLover(),WillTakePlayerAsLover,Playful
+20,40,Do you have a girlfriend?,"Not yet, it would need to be someone I like with a head on her shoulders.  Just like you.",,WillTakePlayerAsLover(),WillTakePlayerAsLover,Serious
+20,40,Do you have a girlfriend?,"Not yet, it would need to be someone I've grown to like.  Just like you my dear friend.",,WillTakePlayerAsLover(),WillTakePlayerAsLover,Wise
+20,40,Do you have a girlfriend?,"Not yet, it would need to be someone that's cute and not stupid.  Just like you.",,WillTakePlayerAsLover(),WillTakePlayerAsLover,Dumb
+20,,Do you have a girlfriend?,Maybe I'll find love someday.  It would need to be someone I've known for a while and that I like a lot.,,WontTakePlayerAsLover(),WontTakePlayerAsLover,
+20,,Do you have a girlfriend?,Maybe I'll find my sweetheart someday.  It would need to be someone I've known for a while and that I care for.,,WontTakePlayerAsLover(),WontTakePlayerAsLover,Peaceful
+20,,Do you have a girlfriend?,Maybe I'll find a girl that's tough enough someday.  It would need to be someone I've known for a while and who can endure me.,,WontTakePlayerAsLover(),WontTakePlayerAsLover,Violent
+20,,Do you have a girlfriend?,Finding true love isn't easy in our age.  It would need to be someone I've known for a while and shares the same passions as me.,,WontTakePlayerAsLover(),WontTakePlayerAsLover,Wise
+20,,Do you have a girlfriend?,"No.  I've found a girl the other night, but I forgot to ask for her name.  I'd need someone I've known for a while and likes me.",,WontTakePlayerAsLover(),WontTakePlayerAsLover,Dumb
+20,,Do you have a girlfriend?,"Yes, and I love her so much.  I'm very lucky to be with her.",,WontTakePlayerAsLoverAlreadyDating(),WontTakePlayerAsLoverAlreadyDating,
+20,,Do you have a girlfriend?,"Yes, and I love her so much.  She's the sweetest thing ever.",,WontTakePlayerAsLoverAlreadyDating(),WontTakePlayerAsLoverAlreadyDating,Peaceful
+20,,Do you have a girlfriend?,"Yes, and she drives me wild with desire.  Simply talking about her makes me wet.",,WontTakePlayerAsLoverAlreadyDating(),WontTakePlayerAsLoverAlreadyDating,Horny
+20,,Do you have a girlfriend?,"Yes, she's my better half.  My one and only true love and passion.",,WontTakePlayerAsLoverAlreadyDating(),WontTakePlayerAsLoverAlreadyDating,Polite
+20,,Do you have a girlfriend?,"Yes, we fuck like rabbits all the time.",,WontTakePlayerAsLoverAlreadyDating(),WontTakePlayerAsLoverAlreadyDating,Rude
+20,,Do you have a girlfriend?,"I don't.  Maybe someday I'll find my perfect match, just like you did.",,WontTakePlayerAsLoverPlayerDating(),WontTakePlayerAsLoverPlayerDating,
+20,,Do you have a girlfriend?,"I don't.  Maybe someday I'll find someone that makes me wet all day, just like you did.",,WontTakePlayerAsLoverPlayerDating(),WontTakePlayerAsLoverPlayerDating,Horny
+20,,Do you have a girlfriend?,"I don't, you were lucky to find someone.  It's not that important to me though.",,WontTakePlayerAsLoverPlayerDating(),WontTakePlayerAsLoverPlayerDating,Frigid
+20,,Do you have a girlfriend?,I'm too bossy to get a girlfriend.  You were lucky to find someone.,,WontTakePlayerAsLoverPlayerDating(),WontTakePlayerAsLoverPlayerDating,Dominant
+20,,Do you have a girlfriend?,I might be too shy to find a girlfriend.  You were lucky to find someone.,,WontTakePlayerAsLoverPlayerDating(),WontTakePlayerAsLoverPlayerDating,Submissive
 20,10,Let's talk about something else.,(She nods.)  Sure.,,,,
 21,22,Would you consider someone like me?,I might.  Are you sure you're ready to be owned?,,,ConsiderSub,
 21,22,Would you consider someone like me?,That's quite a commitment.  Are you sure you're ready to be owned?,,,ConsiderSub,Serious
@@ -417,6 +475,19 @@ OwnerBeepFail,,,"(She shakes her head from left to right.)  My girl, it's very d
 33,2000,"Yes girl, address me as ""Mistress"".",Absolutely Mistress DialogPlayerName.  Do not hesitate to discipline me physically if I forget your proper title.,,,TrialPeriodStartPlayerAsDom,Violent|Serious
 33,2000,"Yes girl, address me as ""Mistress"".",Yes Mistress DialogPlayerName.  Your little slut is ready to serve you any way you want.,,,TrialPeriodStartPlayerAsDom,Horny|Rude
 33,2000,"Yes girl, address me as ""Mistress"".",With great pleasure Mistress DialogPlayerName.  Let's aspire that this trial period will bloom into a long-lasting D/s relationship.,,,TrialPeriodStartPlayerAsDom,Polite|Wise
+40,41,Would you like to be my girlfriend?,Yes!  I love you very much and I know we could have a great time together.,,,ProposeGirlfriend,
+40,41,Would you like to be my girlfriend?,Yes!  You drive me crazy with desire.  I need you.  I want you.,,,ProposeGirlfriend,Horny
+40,41,Would you like to be my girlfriend?,Yes!  I love you but let's take it slow and see where this leads us.,,,ProposeGirlfriend,Frigid
+40,41,Would you like to be my girlfriend?,Absolutely!  You were in dreams from the first day we met.  I love and adore you.,,,ProposeGirlfriend,Polite
+40,41,Would you like to be my girlfriend?,Hell yeah!  I love ya girl!  We'll have the best time together.,,,ProposeGirlfriend,Rude
+40,10,Someday you'll find love.,Yes.  Is there anything else you want to talk about?,,,,
+41,42,I love you DialogCharacterName.,I love you DialogPlayerName.  I hope we can share this love for a long time.,StartGirlfriend(),,,
+41,42,This is wonderful.,I love you DialogPlayerName.  This is indeed a wonderful day.,StartGirlfriend(),,,
+41,42,(Kiss her.),(You share a long and loving kiss.)  I love you DialogPlayerName.,StartGirlfriend(),,,
+41,10,Wait!  Let me think about it some more.,(She grumbles.)  Why did you bring up the subject then?,NPCInteraction(-5),,,
+42,0,Making love will only be better.,"(She nods slowly.)  It will, sweetie.  What would you like to do now?",,,,
+42,0,I hope we'll never argue.,(She raises an eyebrow.)  Don't talk about that.  What would you like to do now?,NPCInteraction(-3),,,
+42,0,I hope we'll be together forever.,(She smiles at you.)  Let's make it work my love.  What would you like to do now?,NPCInteraction(3),,,
 100,,,What would you like to do?,,,,
 100,,(Tickle her.),"(You tickle her on the ribs and tummy.  She seems to enjoy it and cannot resist laughing.)  Hehehe, it tickles!",,Player.CanInteract(),PlayTickle,
 100,,(Tickle her.),(You tickle her on the ribs and tummy.  She laughs out loud and almost cries.)  Eeeeeaaahahaha!  You're so funnyyyyahaha!,NPCInteraction(1),Player.CanInteract(),PlayTickle,Playful|Peaceful
@@ -452,6 +523,13 @@ OwnerBeepFail,,,"(She shakes her head from left to right.)  My girl, it's very d
 1000,,,(She gives you a stern look and nods.)  Your posture shows respect and docility.  What do you need little one?,,DialogIsKneeling(Player),DomIntroPlayerKneeling,Dominant|Polite
 1000,,,(She stays far from you but smiles seeing your position.)  Is there anything you desire my protege?,,DialogIsKneeling(Player),DomIntroPlayerKneeling,Frigid|Wise
 1000,,,"Yes, my sexy subbie?  (She comes closer and pets your head gently.)",,,DomIntroPlayerKneeling,Peaceful|Horny
+1000,,,What's on your mind my submissive love?,,IsLover(),DomIntroGirlfriend,
+1000,,,What's going on little hun?,,IsLover(),DomIntroGirlfriend,Dominant|Violent
+1000,,,Please tell me of your feelings my sweet pet.,,IsLover(),DomIntroGirlfriend,Submissive|Peaceful
+1000,,,"My sexy sub and lover, how can we have fun?",,IsLover(),DomIntroGirlfriend,Horny|Playful
+1000,,,What troubles you my little loved one?,,IsLover(),DomIntroGirlfriend,Frigid|Serious
+1000,,,Let's have a tete-a-tete my submissive love.,,IsLover(),DomIntroGirlfriend,Polite|Wise
+1000,,,What's up slave luv?,,IsLover(),DomIntroGirlfriend,Dumb|Rude
 1000,,,What's on your mind my subbie?,,,DomIntro,
 1000,,,Hey there my cute sub.  What's on your mind?,,,DomIntro,Horny
 1000,,,Yo bitch.  What's up?,,,DomIntro,Rude
@@ -461,6 +539,27 @@ OwnerBeepFail,,,"(She shakes her head from left to right.)  My girl, it's very d
 1000,,,(She hums a happy song.)  Subbie!  What could we do to have fun?,,,DomIntro,Playful
 1000,,,Come closer my little sub.  Let's talk.,,,DomIntro,Peaceful
 1000,,,(She grabs your butt firmly and pulls you closer.)  What's up?,,,DomIntro,Violent
+1000,,I love you!,I love you too.  You're the best sub.,LoveYou(),IsLoverHappy(),DomLoveYouHappy,
+1000,,I love you!,I love you my slave.  Don't change anything.,LoveYou(),IsLoverHappy(),DomLoveYouHappy,Dominant|Violent
+1000,,I love you!,(She nods slowly.)  I love you my subbie pet.,LoveYou(),IsLoverHappy(),DomLoveYouHappy,Submissive|Peaceful
+1000,,I love you!,I love you!  Your sexy sub body drives me wild.,LoveYou(),IsLoverHappy(),DomLoveYouHappy,Horny|Playful
+1000,,I love you!,This is a shared feeling my submissive.,LoveYou(),IsLoverHappy(),DomLoveYouHappy,Frigid|Serious
+1000,,I love you!,I adore you little submissive.  This journey we share together is luminous.,LoveYou(),IsLoverHappy(),DomLoveYouHappy,Polite|Wise
+1000,,I love you!,I love ya too my sexy cunt.,LoveYou(),IsLoverHappy(),DomLoveYouHappy,Dumb|Rude
+1000,,I love you!,I love you also my girl.  But let's spend more time together.,LoveYou(),IsLoverNeutral(),DomLoveYouNeutral,
+1000,,I love you!,I love you my slave.  But we need to spend more time together.,LoveYou(),IsLoverNeutral(),DomLoveYouNeutral,Dominant|Violent
+1000,,I love you!,(She nods slowly.)  I love you also my subbie.  But maybe we should spend more time together.,LoveYou(),IsLoverNeutral(),DomLoveYouNeutral,Submissive|Peaceful
+1000,,I love you!,I love you also sexy sub.  But let's make love more often.,LoveYou(),IsLoverNeutral(),DomLoveYouNeutral,Horny|Playful
+1000,,I love you!,This is a shared feeling my submissive.  But we should spend more time together.,LoveYou(),IsLoverNeutral(),DomLoveYouNeutral,Frigid|Serious
+1000,,I love you!,"I love you also my protege, but we need to invest more time in our relationship.",LoveYou(),IsLoverNeutral(),DomLoveYouNeutral,Polite|Wise
+1000,,I love you!,"I love ya too my girl, but where were ya the other night?",LoveYou(),IsLoverNeutral(),DomLoveYouNeutral,Dumb|Rude
+1000,,I love you!,(She frowns.)  You should say it more often then.,LoveYou(),IsLoverUnhappy(),DomLoveYouUnhappy,
+1000,,I love you!,(She grumbles.)  Show it then!,LoveYou(),IsLoverUnhappy(),DomLoveYouUnhappy,Dominant|Violent
+1000,,I love you!,(She sighs.)  Sometimes I wonder if you really mean it.,LoveYou(),IsLoverUnhappy(),DomLoveYouUnhappy,Submissive|Peaceful
+1000,,I love you!,(She frowns.)  Let's get in bed then!  We never do it anymore!,LoveYou(),IsLoverUnhappy(),DomLoveYouUnhappy,Horny|Playful
+1000,,I love you!,(She grumbles.)  You have very strange ways of proving it.,LoveYou(),IsLoverUnhappy(),DomLoveYouUnhappy,Frigid|Serious
+1000,,I love you!,"Have you ever heard the old maxim: ""Actions speaks louder than words.""?",LoveYou(),IsLoverUnhappy(),DomLoveYouUnhappy,Polite|Wise
+1000,,I love you!,No shit!  Prove it!,LoveYou(),IsLoverUnhappy(),DomLoveYouUnhappy,Dumb|Rude
 1000,1010,Can we talk Mistress?,What would you like to talk about?,,,DomStartTalk,
 1000,1010,Can we talk Mistress?,"(She nods slowly.)  Very good, most subs don't talk enough.",,,DomStartTalk,Frigid
 1000,1010,Can we talk Mistress?,(She starts to sing.)  Let's talk about sex subbie!  Let's talk about you and me!,,,DomStartTalk,Horny
@@ -556,6 +655,26 @@ OwnerBeepFail,,,"(She shakes her head from left to right.)  My girl, it's very d
 1010,,Is our D/s trial period done?,"Yes, is it.  But I'm still unsure if I want to collar you.  I need more time to get to know you.",,TrialDoneNotEnoughLove(),DomTrialDoneNotEnoughLove,
 1010,,Is our D/s trial period done?,"You've waited long enough and proved your loyalty, but I'm still unsure if I want to be your full Mistress.  I need more time with you.",,TrialDoneNotEnoughLove(),DomTrialDoneNotEnoughLove,Serious
 1010,,Is our D/s trial period done?,Yes!  That was quick.  I do need more time to think about our relationship before I collar you though.,,TrialDoneNotEnoughLove(),DomTrialDoneNotEnoughLove,Playful
+1010,1040,"Mistress, do you have a lover?","Not yet, it would need to be someone I like and know very well.  Just like you my girl.",,WillTakePlayerAsLover(),DomWillTakePlayerAsLover,
+1010,1040,"Mistress, do you have a lover?","Not yet, it would need to be someone funny and optimistic.  Just like you my subbie.",,WillTakePlayerAsLover(),DomWillTakePlayerAsLover,Playful
+1010,1040,"Mistress, do you have a lover?","Not yet, it would need to be someone I like with a head on her shoulders.  Just like you my slave.",,WillTakePlayerAsLover(),DomWillTakePlayerAsLover,Serious
+1010,1040,"Mistress, do you have a lover?","Not yet, it would need to be someone I've grown to like.  Just like you my dear submissive.",,WillTakePlayerAsLover(),DomWillTakePlayerAsLover,Wise
+1010,1040,"Mistress, do you have a lover?","Not yet, it would need to be someone that's cute and not stupid.  Just like you my girl.",,WillTakePlayerAsLover(),DomWillTakePlayerAsLover,Dumb
+1010,,"Mistress, do you have a lover?",Maybe I'll find love someday.  It would need to be someone I've known for a while and that I like a lot.,,WontTakePlayerAsLover(),DomWontTakePlayerAsLover,
+1010,,"Mistress, do you have a lover?",Maybe I'll find my sweetheart someday.  It would need to be someone I've known for a while and that I care for.,,WontTakePlayerAsLover(),DomWontTakePlayerAsLover,Peaceful
+1010,,"Mistress, do you have a lover?",Maybe I'll find a girl that's tough enough someday.  It would need to be someone I've known for a while and who can endure me.,,WontTakePlayerAsLover(),DomWontTakePlayerAsLover,Violent
+1010,,"Mistress, do you have a lover?",Finding true love isn't easy in our age.  It would need to be someone I've known for a while and shares the same passions as me.,,WontTakePlayerAsLover(),DomWontTakePlayerAsLover,Wise
+1010,,"Mistress, do you have a lover?","No.  I've found a girl the other night, but I forgot to ask for her name.  I'd need someone I've known for a while and likes me.",,WontTakePlayerAsLover(),DomWontTakePlayerAsLover,Dumb
+1010,,"Mistress, do you have a lover?","Yes, and I love her so much.  I'm very lucky to be with her.",,WontTakePlayerAsLoverAlreadyDating(),DomWontTakePlayerAsLoverAlreadyDating,
+1010,,"Mistress, do you have a lover?","Yes, and I love her so much.  She's the sweetest thing ever.",,WontTakePlayerAsLoverAlreadyDating(),DomWontTakePlayerAsLoverAlreadyDating,Peaceful
+1010,,"Mistress, do you have a lover?","Yes, and she drives me wild with desire.  Simply talking about her makes me wet.",,WontTakePlayerAsLoverAlreadyDating(),DomWontTakePlayerAsLoverAlreadyDating,Horny
+1010,,"Mistress, do you have a lover?","Yes, she's my better half.  My one and only true love and passion.",,WontTakePlayerAsLoverAlreadyDating(),DomWontTakePlayerAsLoverAlreadyDating,Polite
+1010,,"Mistress, do you have a lover?","Yes, we fuck like rabbits all the time.",,WontTakePlayerAsLoverAlreadyDating(),DomWontTakePlayerAsLoverAlreadyDating,Rude
+1010,,"Mistress, do you have a lover?","I don't.  Maybe someday I'll find my perfect match, just like you did.",,WontTakePlayerAsLoverPlayerDating(),DomWontTakePlayerAsLoverPlayerDating,
+1010,,"Mistress, do you have a lover?","I don't.  Maybe someday I'll find someone that makes me wet all day, just like you did.",,WontTakePlayerAsLoverPlayerDating(),DomWontTakePlayerAsLoverPlayerDating,Horny
+1010,,"Mistress, do you have a lover?","I don't, you were lucky to find someone.  It's not that important to me though.",,WontTakePlayerAsLoverPlayerDating(),DomWontTakePlayerAsLoverPlayerDating,Frigid
+1010,,"Mistress, do you have a lover?",I'm too bossy to get a girlfriend.  You were lucky to find someone.,,WontTakePlayerAsLoverPlayerDating(),DomWontTakePlayerAsLoverPlayerDating,Dominant
+1010,,"Mistress, do you have a lover?",I might be too shy to find a girlfriend.  You were lucky to find someone.,,WontTakePlayerAsLoverPlayerDating(),DomWontTakePlayerAsLoverPlayerDating,Submissive
 1010,1019,Our trial isn't working for me.  Can we stop it?,"I'm sorry to hear that, of course we can stop the trial.  Are you sure you don't want me as your Mistress?",,TrialCanCancel(),DomTrialStopAsk,
 1010,1019,Our trial isn't working for me.  Can we stop it?,It chagrins me to hear that.  We can absolutely stop the trial if you don't want me as your Mistress.,,TrialCanCancel(),DomTrialStopAsk,Polite
 1010,1019,Our trial isn't working for me.  Can we stop it?,"Shit, are you for real?  Bitch, we can scrap the trial if you don't want me as your Mistress.",,TrialCanCancel(),DomTrialStopAsk,Rude
@@ -608,6 +727,19 @@ OwnerBeepFail,,,"(She shakes her head from left to right.)  My girl, it's very d
 1030,Punish,Oh my.  What's going on Mistress?,"Never mind what's going on, you must be punished.","DialogChangeReputation(""Dominant"", 1)",,,
 1030,Punish,I'm so sorry Mistress.  I've tried very hard to be on time.,"Sorry or not, you're late and you must be punished.","DialogChangeReputation(""Dominant"", -1)",,,
 1030,Punish,(Bow your head.),You're late and you must be punished.,,,,
+1040,1041,Would you like to be my girlfriend?,Yes.  I could see myself as being both your Mistress and your lover.  I know we could have a great time together.,,,DomProposeGirlfriend,
+1040,1041,Would you like to be my girlfriend?,Yes!  You drive me crazy with desire my slut.  I need you.  I want you.  I will fuck you.,,,DomProposeGirlfriend,Horny
+1040,1041,Would you like to be my girlfriend?,Yes.  I love you my submissive.  Being your lover would give me even more occasions to lock you up in chastity.,,,DomProposeGirlfriend,Frigid
+1040,1041,Would you like to be my girlfriend?,"Absolutely!  I adore and cherish you my submissive, we would make a great couple.",,,DomProposeGirlfriend,Polite
+1040,1041,Would you like to be my girlfriend?,Hell yeah!  I love ya my slave!  We'll have the best time together.,,,DomProposeGirlfriend,Rude
+1040,1010,Someday you'll find love.,Yes.  Is there anything else you want to talk about?,,,,
+1041,1042,I love you Mistress.,I love you my girl.  I hope we can share this love for a long time.,StartGirlfriend(),,,
+1041,1042,This is wonderful.,I love you my girl.  This is indeed a wonderful day.,StartGirlfriend(),,,
+1041,1042,(Present your lips.),(She grabs you and you share a long and loving kiss.)  I love you my girl.,StartGirlfriend(),,,
+1041,1010,Wait!  Please let me think about it some more.,(She grumbles.)  Girl.  Why did you bring up that subject?,NPCInteraction(-5),,,
+1042,1000,Making love will only be better.,"(She nods slowly.)  It will, sweetie.  Let's do something fun to celebrate!",,,,
+1042,1000,I hope we'll never argue.,(She raises an eyebrow.)  Don't talk about that.  Let's do something fun to celebrate!,NPCInteraction(-3),,,
+1042,1000,I hope we'll be together forever.,(She smiles at you.)  Let's make it work my love.  Let's do something fun to celebrate!,NPCInteraction(3),,,
 ActivityStop,,,Fine!  (She pushes you back.)  You can play without me girl.,,,DomActivityStop,
 ActivityStop,,,(She pushes you back.)  If you cannot obey then you're not worth my time.,,,DomActivityStop,Wise
 ActivityStop,,,(She pushes you back.)  Back off!,,,DomActivityStop,Dumb
@@ -798,14 +930,14 @@ ActivityRandomClothes,ActivityNoChange,(Change slowly.),"(You change for her as 
 ActivityRandomClothes,ActivityNoChange,(Roll your eyes up and change.),"(You change for her as she nods.)  Stay like that, you cannot change for 5 minutes.",ActivityRun(-1),,,
 ActivityRandomClothes,ActivityNoChange,(Shake your head no.),(She grumbles and forces you to change.)  There!  And you cannot change for 5 minutes.,ActivityRun(-7),,,
 ActivityCollegeClothesIntro,,,"I'm curious to see how you would look in college clothes.  Here, take my spare set and change.  (She hands you some college clothes.)",,,,
-ActivityCollegeClothes,ActivityNoChange,You have strange fetishes.  (Change for her.),"(You change for her as she nods.)  Stay like that school girl, you cannot change for 5 minutes.",ActivityRun(-1),Player.CanTalk(),,
-ActivityCollegeClothes,ActivityNoChange,Alright Mistress.  (Change for her.),"(You change for her as she smiles.)  You will be my school girl for 5 minutes, you cannot change.",ActivityRun(0),Player.CanTalk(),,
-ActivityCollegeClothes,ActivityNoChange,I'll be your school girl.  (Change for her.),"(You change for her as she smirks.)  You're a good school girl, and you cannot change again for 5 minutes.",ActivityRun(1),Player.CanTalk(),,
-ActivityCollegeClothes,ActivityNoChange,No!  This is silly.,(She grumbles and forces you to change.)  There!  And you cannot change for 5 minutes school girl.,ActivityRun(-7),Player.CanTalk(),,
-ActivityCollegeClothes,ActivityNoChange,(Bow your head and change quickly.),"(You change for her as she smirks.)  You're a good school girl, and you cannot change again for 5 minutes.",ActivityRun(1),,,
-ActivityCollegeClothes,ActivityNoChange,(Change slowly.),"(You change for her as she smiles.)  You will be my school girl for 5 minutes, you cannot change.",ActivityRun(0),,,
-ActivityCollegeClothes,ActivityNoChange,(Roll your eyes up and change.),"(You change for her as she nods.)  Stay like that school girl, you cannot change for 5 minutes.",ActivityRun(-1),,,
-ActivityCollegeClothes,ActivityNoChange,(Shake your head no.),(She grumbles and forces you to change.)  There!  And you cannot change for 5 minutes school girl.,ActivityRun(-7),,,
+ActivityCollegeClothes,ActivityNoChange,You have strange fetishes.  (Change for her.),"(You change for her as she nods.)  Stay like that schoolgirl, you cannot change for 5 minutes.",ActivityRun(-1),Player.CanTalk(),,
+ActivityCollegeClothes,ActivityNoChange,Alright Mistress.  (Change for her.),"(You change for her as she smiles.)  You will be my schoolgirl for 5 minutes, you cannot change.",ActivityRun(0),Player.CanTalk(),,
+ActivityCollegeClothes,ActivityNoChange,I'll be your schoolgirl.  (Change for her.),"(You change for her as she smirks.)  You're a good schoolgirl, and you cannot change again for 5 minutes.",ActivityRun(1),Player.CanTalk(),,
+ActivityCollegeClothes,ActivityNoChange,No!  This is silly.,(She grumbles and forces you to change.)  There!  And you cannot change for 5 minutes schoolgirl.,ActivityRun(-7),Player.CanTalk(),,
+ActivityCollegeClothes,ActivityNoChange,(Bow your head and change quickly.),"(You change for her as she smirks.)  You're a good schoolgirl, and you cannot change again for 5 minutes.",ActivityRun(1),,,
+ActivityCollegeClothes,ActivityNoChange,(Change slowly.),"(You change for her as she smiles.)  You will be my schoolgirl for 5 minutes, you cannot change.",ActivityRun(0),,,
+ActivityCollegeClothes,ActivityNoChange,(Roll your eyes up and change.),"(You change for her as she nods.)  Stay like that schoolgirl, you cannot change for 5 minutes.",ActivityRun(-1),,,
+ActivityCollegeClothes,ActivityNoChange,(Shake your head no.),(She grumbles and forces you to change.)  There!  And you cannot change for 5 minutes schoolgirl.,ActivityRun(-7),,,
 ActivityNoChange,1000,Easy enough.,"Since it's so easy, let's make it 10 minutes.  I'll make sure you won't change.",BlockChange(10),,DomActivityNoChange1,
 ActivityNoChange,1000,Easy enough.,Too easy?  Let's make it 15 minutes then.  I'll make sure the rule will be enforced.  (She grins.),BlockChange(15),,DomActivityNoChange1,Serious
 ActivityNoChange,1000,Easy enough.,Sure!  It won't take that long.,BlockChange(5),,DomActivityNoChange1,Playful
@@ -942,6 +1074,13 @@ PunishCell,1000,It's fair Mistress.  (Go to the cell.),,RunPunishment(1),,,
 2000,,,(She seems confused seeing you on your knees.)  Yes Mistress?,,DialogIsKneeling(Player),SubIntroPlayerKneeling,
 2000,,,(She seems confused seeing you on your knees.)  What the fuck?,,DialogIsKneeling(Player),SubIntroPlayerKneeling,Dominant|Rude
 2000,,,(She seems confused seeing you on your knees.)  Is everything alright Mistress?,,DialogIsKneeling(Player),SubIntroPlayerKneeling,Peaceful|Wise
+2000,,,How can I serve you my love?,,IsLover(),SubIntroGirlfriend,
+2000,,,Will you punish me my love?,,IsLover(),SubIntroGirlfriend,Dominant|Violent
+2000,,,"My body is yours to possess, love and care for Mistress.",,IsLover(),SubIntroGirlfriend,Submissive|Peaceful
+2000,,,This cunt is ready for her loving Mistress.,,IsLover(),SubIntroGirlfriend,Horny|Playful
+2000,,,(She bows her head and stays silent.),,IsLover(),SubIntroGirlfriend,Frigid|Serious
+2000,,,"Mistress, what do you desire from your loved submissive?",,IsLover(),SubIntroGirlfriend,Polite|Wise
+2000,,,Yes my luv?  Errr... Mistress?,,IsLover(),SubIntroGirlfriend,Dumb|Rude
 2000,,,What would you like to do Mistress?,,,SubIntro,
 2000,,,Is there something kinky you would like to do Mistress?,,,SubIntro,Horny
 2000,,,(She bows her head and stays silent.),,,SubIntro,Frigid
@@ -954,6 +1093,27 @@ PunishCell,1000,It's fair Mistress.  (Go to the cell.),,RunPunishment(1),,,
 2000,,,How can we further my submissive training Mistress?,,,SubIntro,Serious
 2000,,,(She seems happy and calm when you get to her.)  Yes Mistress?,,,SubIntro,Peaceful
 2000,,,(She wiggles her butt.)  Are you in a spanking mood Mistress?,,,SubIntro,Violent
+2000,,I love you!,I love you too.  You're the best Mistress ever.,LoveYou(),IsLoverHappy(),SubLoveYouHappy,
+2000,,I love you!,I love you Mistress.  Please never change.,LoveYou(),IsLoverHappy(),SubLoveYouHappy,Dominant|Violent
+2000,,I love you!,(She nods slowly.)  I love you very much Mistress.,LoveYou(),IsLoverHappy(),SubLoveYouHappy,Submissive|Peaceful
+2000,,I love you!,I love you Mistress!  You fulfill all my wild fantasies.,LoveYou(),IsLoverHappy(),SubLoveYouHappy,Horny|Playful
+2000,,I love you!,This is a shared feeling Mistress.,LoveYou(),IsLoverHappy(),SubLoveYouHappy,Frigid|Serious
+2000,,I love you!,I adore you Mistress.  This journey we share together is luminous.,LoveYou(),IsLoverHappy(),SubLoveYouHappy,Polite|Wise
+2000,,I love you!,I love ya too Mistress.,LoveYou(),IsLoverHappy(),SubLoveYouHappy,Dumb|Rude
+2000,,I love you!,I love you also Mistress.  But sometimes I wish we could spend more time together.,LoveYou(),IsLoverNeutral(),SubLoveYouNeutral,
+2000,,I love you!,I love you Mistress.  But I need to spend more time with you.,LoveYou(),IsLoverNeutral(),SubLoveYouNeutral,Dominant|Violent
+2000,,I love you!,(She nods slowly.)  I love you also Mistress.  But sometimes I wish we could spend more time together.,LoveYou(),IsLoverNeutral(),SubLoveYouNeutral,Submissive|Peaceful
+2000,,I love you!,I love you also Mistress.  But I wish we made love more often.,LoveYou(),IsLoverNeutral(),SubLoveYouNeutral,Horny|Playful
+2000,,I love you!,This is a shared feeling Mistress.  But we should spend more time together.,LoveYou(),IsLoverNeutral(),SubLoveYouNeutral,Frigid|Serious
+2000,,I love you!,"I love you also Mistress, but we need to invest more time in our relationship.",LoveYou(),IsLoverNeutral(),SubLoveYouNeutral,Polite|Wise
+2000,,I love you!,"I love ya too Mistress, but I hate sleepin' alone.",LoveYou(),IsLoverNeutral(),SubLoveYouNeutral,Dumb|Rude
+2000,,I love you!,(She frowns.)  You should say it more often then.,LoveYou(),IsLoverUnhappy(),SubLoveYouUnhappy,
+2000,,I love you!,(She grumbles.)  Show it then!,LoveYou(),IsLoverUnhappy(),SubLoveYouUnhappy,Dominant|Violent
+2000,,I love you!,(She sighs.)  Sometimes I wonder if you really mean it.,LoveYou(),IsLoverUnhappy(),SubLoveYouUnhappy,Submissive|Peaceful
+2000,,I love you!,(She frowns.)  Let's get in bed then!  We never do it anymore!,LoveYou(),IsLoverUnhappy(),SubLoveYouUnhappy,Horny|Playful
+2000,,I love you!,(She grumbles.)  You have very strange ways of proving it.,LoveYou(),IsLoverUnhappy(),SubLoveYouUnhappy,Frigid|Serious
+2000,,I love you!,"Have you ever heard the old maxim: ""Actions speaks louder than words.""?",LoveYou(),IsLoverUnhappy(),SubLoveYouUnhappy,Polite|Wise
+2000,,I love you!,No shit!  Prove it!,LoveYou(),IsLoverUnhappy(),SubLoveYouUnhappy,Dumb|Rude
 2000,2010,Let's talk my girl.,What would you like to talk about?,,,SubStartTalk,
 2000,2010,Let's talk my girl.,"(She nods slowly.)  Very good, I do enjoy our long discussions.",,,SubStartTalk,Frigid
 2000,2010,Let's talk my girl.,(She nods quickly.)  What will be the kinky subject of the day?,,,SubStartTalk,Horny
@@ -1043,6 +1203,26 @@ PunishCell,1000,It's fair Mistress.  (Go to the cell.),,RunPunishment(1),,,
 2010,,The trial is over my girl.,"Already?  I haven't made my mind yet.  Please, lets spend more time together first.",,SubTrialOverUnwilling(),SubTrialOverUnwilling,
 2010,,The trial is over my girl.,It was too fast Mistress.  I need more time to make sure we are the perfect match.,,SubTrialOverUnwilling(),SubTrialOverUnwilling,Serious|Wise
 2010,,The trial is over my girl.,Really?  Already?  I know!  I want a collar!  But I'm not certain.  Can we play some more?,,SubTrialOverUnwilling(),SubTrialOverUnwilling,Playful|Dumb
+2010,2070,Are you dating someone my pet?,No Mistress.  I need to find someone I love and trust.  Just like you.,,WillTakePlayerAsLover(),SubWillTakePlayerAsLover,
+2010,2070,Are you dating someone my pet?,No Mistress.  I need to find someone that's funny and optimistic.  Just like you.,,WillTakePlayerAsLover(),SubWillTakePlayerAsLover,Playful
+2010,2070,Are you dating someone my pet?,No Mistress.  I need to find someone I like with a head on her shoulders.  Just like you.,,WillTakePlayerAsLover(),SubWillTakePlayerAsLover,Serious
+2010,2070,Are you dating someone my pet?,No Mistress.  I need to find someone I've grown to like and trust.  Just like you.,,WillTakePlayerAsLover(),SubWillTakePlayerAsLover,Wise
+2010,2070,Are you dating someone my pet?,No Mistress.  I need to find someone that's cute and not stupid.  Just like you.,,WillTakePlayerAsLover(),SubWillTakePlayerAsLover,Dumb
+2010,,Are you dating someone my pet?,Maybe I'll find love someday.  It would need to be someone I've known for a while and that I like a lot.,,WontTakePlayerAsLover(),SubWontTakePlayerAsLover,
+2010,,Are you dating someone my pet?,Maybe I'll find my sweetheart someday.  It would need to be someone I've known for a while and that I care for.,,WontTakePlayerAsLover(),SubWontTakePlayerAsLover,Peaceful
+2010,,Are you dating someone my pet?,Maybe I'll find a girl that's tough enough someday.  It would need to be someone I've known for a while and who can endure me.,,WontTakePlayerAsLover(),SubWontTakePlayerAsLover,Violent
+2010,,Are you dating someone my pet?,Finding true love isn't easy in our age.  It would need to be someone I've known for a while and shares the same passions as me.,,WontTakePlayerAsLover(),SubWontTakePlayerAsLover,Wise
+2010,,Are you dating someone my pet?,"No.  I've found a girl the other night, but I forgot to ask for her name.  I'd need someone I've known for a while and likes me.",,WontTakePlayerAsLover(),SubWontTakePlayerAsLover,Dumb
+2010,,Are you dating someone my pet?,"Yes, and I love her so much.  I'm very lucky to be with her.",,WontTakePlayerAsLoverAlreadyDating(),SubWontTakePlayerAsLoverAlreadyDating,
+2010,,Are you dating someone my pet?,"Yes, and I love her so much.  She's the sweetest thing ever.",,WontTakePlayerAsLoverAlreadyDating(),SubWontTakePlayerAsLoverAlreadyDating,Peaceful
+2010,,Are you dating someone my pet?,"Yes, and she drives me wild with desire.  Simply talking about her makes me wet.",,WontTakePlayerAsLoverAlreadyDating(),SubWontTakePlayerAsLoverAlreadyDating,Horny
+2010,,Are you dating someone my pet?,"Yes, she's my better half.  My one and only true love and passion.",,WontTakePlayerAsLoverAlreadyDating(),SubWontTakePlayerAsLoverAlreadyDating,Polite
+2010,,Are you dating someone my pet?,"Yes, we fuck like rabbits all the time.",,WontTakePlayerAsLoverAlreadyDating(),SubWontTakePlayerAsLoverAlreadyDating,Rude
+2010,,Are you dating someone my pet?,"I don't.  Maybe someday I'll find my perfect match, just like you did.",,WontTakePlayerAsLoverPlayerDating(),SubWontTakePlayerAsLoverPlayerDating,
+2010,,Are you dating someone my pet?,"I don't.  Maybe someday I'll find someone that makes me wet all day, just like you did.",,WontTakePlayerAsLoverPlayerDating(),SubWontTakePlayerAsLoverPlayerDating,Horny
+2010,,Are you dating someone my pet?,"I don't, you were lucky to find someone.  It's not that important to me though.",,WontTakePlayerAsLoverPlayerDating(),SubWontTakePlayerAsLoverPlayerDating,Frigid
+2010,,Are you dating someone my pet?,I'm too bossy to get a girlfriend.  You were lucky to find someone.,,WontTakePlayerAsLoverPlayerDating(),SubWontTakePlayerAsLoverPlayerDating,Dominant
+2010,,Are you dating someone my pet?,I might be too shy to find a girlfriend.  You were lucky to find someone.,,WontTakePlayerAsLoverPlayerDating(),SubWontTakePlayerAsLoverPlayerDating,Submissive
 2010,,Let's chat.  (Spend time to chat with her.),(You spend some quality time chatting together and she seems to appreciate.),NPCInteraction(1),,SubTimeChitChat,
 2010,,Let's chat.  (Spend time to chat with her.),(You spend some time chit-chatting together.  It's fun but she politely lets you know that you could be more productive.),,,SubTimeChitChat,Serious|Polite
 2010,,Let's chat.  (Spend time to chat with her.),"(You two talk about politic, science and human nature.  It's different from the club kinks but still very interesting.)",NPCInteraction(1),,SubTimeChitChat,Frigid|Wise
@@ -1149,6 +1329,19 @@ PunishCell,1000,It's fair Mistress.  (Go to the cell.),,RunPunishment(1),,,
 2068,2069,I will pay the 25$.,I'll try to be the best cunt for you.  I'll go there and be back tomorrow.,,DialogMoneyGreater(25),SubPayImprove,Horny|Rude
 2068,2010,Forget it then.,Alright.  Anything else?,,,,
 2069,2000,See you tomorrow!  (Send her to the asylum.),,SlaveImproveSend(),,,
+2070,2071,Would you like to be my girlfriend?,Yes.  I could see myself as being both your slave and your lover.  I know we could have a great time together.,,,SubProposeGirlfriend,
+2070,2071,Would you like to be my girlfriend?,Yes!  You drive me crazy with desire Mistress.  I need you.  I want you to fuck me.,,,SubProposeGirlfriend,Horny
+2070,2071,Would you like to be my girlfriend?,"Yes.  I love you Mistress, and it will bring you more occasions to lock me up in chastity.",,,SubProposeGirlfriend,Frigid
+2070,2071,Would you like to be my girlfriend?,Absolutely!  I adore and cherish you Mistress.  We would make a wonderful couple.,,,SubProposeGirlfriend,Polite
+2070,2071,Would you like to be my girlfriend?,Hell yeah!  I love ya Mistress!  We'll have the best time together.,,,SubProposeGirlfriend,Rude
+2070,2010,Someday you'll find love.,Yes Mistress.  Is there anything else you want to talk about?,,,,
+2071,2072,I love you my girl.,I love you Mistress.  I hope we can share this love for a long time.,StartGirlfriend(),,,
+2071,2072,This is wonderful.,I love you Mistress.  This is indeed a wonderful day.,StartGirlfriend(),,,
+2071,2072,(Grab and kiss her.),(You grab her and share a long and loving kiss.)  I love you Mistress.,StartGirlfriend(),,,
+2071,2010,Wait!  Let me think about it some more.,(She sighs.)  Please don't torture me like that.,NPCInteraction(-5),,,
+2072,2000,Making love will only be better.,"(She nods slowly.)  It will.  I'm yours, body and soul.",,,,
+2072,2000,I hope we'll never argue.,"(She raises an eyebrow.)  Let's not talk about that.  I'm yours, body and soul.",NPCInteraction(-3),,,
+2072,2000,I hope we'll be together forever.,"(She smiles at you.)  Let's make it work.  I'm yours, body and soul.",NPCInteraction(3),,,
 2100,,,What would you like to do Mistress?,,,,
 2100,,(Tickle her.),"(You tickle her on the ribs and tummy.  She seems to enjoy it and cannot resist laughing.)  Hehehe, it tickles!",,Player.CanInteract(),SubPlayTickle,
 2100,,(Tickle her.),(You tickle her on the ribs and tummy.  She laughs out loud and almost cries.)  Eeeeeaaahahaha!  You're so funnyyyyahaha!,NPCInteraction(1),Player.CanInteract(),SubPlayTickle,Playful|Peaceful

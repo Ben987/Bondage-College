@@ -16,6 +16,7 @@ var PrivatePunishment = "";
 var PrivatePunishmentList = ["Cage", "Bound", "BoundPet", "ChastityBelt", "ChastityBra", "ForceNaked", "ConfiscateKey", "ConfiscateCrop", "ConfiscateWhip", "SleepCage", "LockOut", "Cell"];
 var PrivateCharacterNewClothes = null;
 var PrivateSlaveImproveType = "";
+var PrivateNextLoveYou = 0;
 
 // Returns TRUE if a specific dialog option is allowed
 function PrivateIsCaged() { return (CurrentCharacter.Cage == null) ? false : true }
@@ -60,6 +61,9 @@ function PrivateNeverTakePlayerAsDom() { return (!CurrentCharacter.IsRestrained(
 function PrivateIsHappy() { return (CurrentCharacter.Love > 30) }
 function PrivateIsUnhappy() { return (CurrentCharacter.Love < -30) }
 function PrivateIsNeutral() { return ((CurrentCharacter.Love >= -30) && (CurrentCharacter.Love <= 30)) }
+function PrivateIsLoverHappy() { return ((CurrentCharacter.Love > 30) && CurrentCharacter.IsLover()) }
+function PrivateIsLoverUnhappy() { return ((CurrentCharacter.Love < -30) && CurrentCharacter.IsLover()) }
+function PrivateIsLoverNeutral() { return ((CurrentCharacter.Love >= -30) && (CurrentCharacter.Love <= 30) && CurrentCharacter.IsLover()) }
 function PrivateSubTrialInProgress() { return ((NPCEventGet(CurrentCharacter, "EndDomTrial") > 0) && (CurrentTime < CheatFactor("SkipTrialPeriod", 0) * NPCEventGet(CurrentCharacter, "EndDomTrial"))) }
 function PrivateSubTrialOverWilling() { return ((NPCEventGet(CurrentCharacter, "EndDomTrial") > 0) && (CurrentTime >= CheatFactor("SkipTrialPeriod", 0) * NPCEventGet(CurrentCharacter, "EndDomTrial")) && (CurrentCharacter.Love >= 90)) }
 function PrivateSubTrialOverUnwilling() { return ((NPCEventGet(CurrentCharacter, "EndDomTrial") > 0) && (CurrentTime >= CheatFactor("SkipTrialPeriod", 0) * NPCEventGet(CurrentCharacter, "EndDomTrial")) && (CurrentCharacter.Love < 90)) }
@@ -67,6 +71,11 @@ function PrivateCanPet() { return ((CurrentCharacter.Love >= 0) && !CurrentChara
 function PrivateCanSellSlave() { return (!Player.IsRestrained() && (CurrentCharacter.Love >= 0) && (CurrentCharacter.Name != "Amanda") && (CurrentCharacter.Name != "Sarah") && (CurrentCharacter.Name != "Sophie") && (CurrentCharacter.Name != "Jennifer") && (CurrentCharacter.Name != "Sidney") && (NPCEventGet(CurrentCharacter, "NPCCollaring") > 0)) }
 function PrivateCannotSellSlave() { return (!Player.IsRestrained() && (CurrentCharacter.Love < 0) && (CurrentCharacter.Name != "Amanda") && (CurrentCharacter.Name != "Sarah") && (CurrentCharacter.Name != "Sophie") && (CurrentCharacter.Name != "Jennifer") && (CurrentCharacter.Name != "Sidney") && (NPCEventGet(CurrentCharacter, "NPCCollaring") > 0)) }
 function PrivateCanGetCollegeClothes() { return (!InventoryAvailable(Player, "CollegeOutfit1", "Cloth") && ((CurrentCharacter.Name == "Amanda") || (CurrentCharacter.Name == "Sarah") || (CurrentCharacter.Name == "Jennifer") || (CurrentCharacter.Name == "Sidney"))) }
+function PrivateIsLover() { return CurrentCharacter.IsLover() }
+function PrivateWillTakePlayerAsLover() { return (((CurrentCharacter.Lover == null) || (CurrentCharacter.Lover == "")) && (Player.Lover == "") && (Player.Lovership == null) && (CurrentCharacter.Love >= 50) && (CurrentTime >= CheatFactor("SkipTrialPeriod", 0) * NPCEventGet(CurrentCharacter, "PrivateRoomEntry") + NPCLongLoverEventDelay(CurrentCharacter))) }
+function PrivateWontTakePlayerAsLover() { return (((CurrentCharacter.Lover == null) || (CurrentCharacter.Lover == "")) && (Player.Lover == "") && (Player.Lovership == null) && ((CurrentCharacter.Love < 50) || (CurrentTime < CheatFactor("SkipTrialPeriod", 0) * NPCEventGet(CurrentCharacter, "PrivateRoomEntry") + NPCLongLoverEventDelay(CurrentCharacter)))) }
+function PrivateWontTakePlayerAsLoverAlreadyDating() { return ((CurrentCharacter.Lover != null) && (CurrentCharacter.Lover != "") && (CurrentCharacter.Lover != Player.Name) && (Player.Lover == "") && (Player.Lovership == null)) }
+function PrivateWontTakePlayerAsLoverPlayerDating() { return (((CurrentCharacter.Lover == null) || (CurrentCharacter.Lover == "")) && ((Player.Lover != "") || (Player.Lovership != null))) }
 
 // Loads the private room vendor NPC
 function PrivateLoad() {
@@ -156,6 +165,22 @@ function PrivateRun() {
 	if (Player.CanWalk() && (Player.Cage == null)) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 	if (LogQuery("RentRoom", "PrivateRoom") && Player.CanKneel()) DrawButton(1885, 145, 90, 90, "", "White", "Icons/Kneel.png");
 
+	// In orgasm mode, we add a pink filter and different controls depending on the stage
+	if ((Player.ArousalSettings != null) && (Player.ArousalSettings.Active != null) && (Player.ArousalSettings.Active != "Inactive") && (Player.ArousalSettings.Active != "NoMeter")) {
+		if ((Player.ArousalSettings.OrgasmTimer != null) && (typeof Player.ArousalSettings.OrgasmTimer === "number") && !isNaN(Player.ArousalSettings.OrgasmTimer) && (Player.ArousalSettings.OrgasmTimer > 0)) {
+			DrawRect(0, 0, 2000, 1000, "#FFB0B0B0");
+			if (Player.ArousalSettings.OrgasmStage == null) Player.ArousalSettings.OrgasmStage = 0;
+			if (Player.ArousalSettings.OrgasmStage == 0) {
+				DrawText(TextGet("OrgasmComing"), 1000, 410, "White", "Black");
+				DrawButton(700, 532, 250, 64, TextGet("OrgasmTryResist"), "White");
+				DrawButton(1050, 532, 250, 64, TextGet("OrgasmSurrender"), "White");
+			}
+			if (Player.ArousalSettings.OrgasmStage == 1) DrawButton(ActivityOrgasmGameButtonX + 500, ActivityOrgasmGameButtonY, 250, 64, ActivityOrgasmResistLabel, "White");
+			if (Player.ArousalSettings.OrgasmStage == 2) DrawText(TextGet("OrgasmRecovering"), 1000, 500, "White", "Black");
+			ActivityOrgasmProgressBar(550, 970);
+		} else if ((Player.ArousalSettings.Progress != null) && (Player.ArousalSettings.Progress >= 91) && (Player.ArousalSettings.Progress <= 99)) DrawRect(0, 0, 2000, 1000, "#FFB0B060");
+	}
+
 	// If we must save a character status after a dialog
 	if (PrivateCharacterToSave > 0) {
 		ServerPrivateCharacterSync();
@@ -214,6 +239,38 @@ function PrivateClickCharacter() {
 		if ((MouseX >= X + (C - PrivateCharacterOffset) * 470) && (MouseX <= X + 470 + (C - PrivateCharacterOffset) * 470))
 			if ((NPCEventGet(PrivateCharacter[C], "SlaveMarketRent") <= CurrentTime) && (NPCEventGet(PrivateCharacter[C], "AsylumSent") <= CurrentTime)) {
 
+				// If the arousal meter is shown for that character, we can interact with it
+				if ((PrivateCharacter[C].ID == 0) || (Player.ArousalSettings.ShowOtherMeter == null) || Player.ArousalSettings.ShowOtherMeter)
+					if ((PrivateCharacter[C].ID == 0) || ((PrivateCharacter[C].ArousalSettings != null) && (PrivateCharacter[C].ArousalSettings.Visible != null) && (PrivateCharacter[C].ArousalSettings.Visible == "Access") && PrivateCharacter[C].AllowItem) || ((PrivateCharacter[C].ArousalSettings != null) && (PrivateCharacter[C].ArousalSettings.Visible != null) && (PrivateCharacter[C].ArousalSettings.Visible == "All")))
+						if ((PrivateCharacter[C].ArousalSettings != null) && (PrivateCharacter[C].ArousalSettings.Active != null) && ((PrivateCharacter[C].ArousalSettings.Active == "Manual") || (PrivateCharacter[C].ArousalSettings.Active == "Hybrid") || (PrivateCharacter[C].ArousalSettings.Active == "Automatic"))) {
+
+							// The arousal meter can be maximized or minimized by clicking on it
+							if ((MouseX >= X + (C - PrivateCharacterOffset) * 470 + 60) && (MouseX <= X + (C - PrivateCharacterOffset) * 470 + 140) && (MouseY >= 400) && (MouseY <= 500) && !PrivateCharacter[C].ArousalZoom) { PrivateCharacter[C].ArousalZoom = true; return; }
+							if ((MouseX >= X + (C - PrivateCharacterOffset) * 470 + 50) && (MouseX <= X + (C - PrivateCharacterOffset) * 470 + 150) && (MouseY >= 615) && (MouseY <= 715) && PrivateCharacter[C].ArousalZoom) { PrivateCharacter[C].ArousalZoom = false; return; }
+
+							// If the player can manually control her arousal or wants to fight her desire
+							if ((PrivateCharacter[C].ID == 0) && (MouseX >= X + (C - PrivateCharacterOffset) * 470 + 50) && (MouseX <= X + (C - PrivateCharacterOffset) * 470 + 150) && (MouseY >= 200) && (MouseY <= 615) && PrivateCharacter[C].ArousalZoom)
+								if ((Player.ArousalSettings != null) && (Player.ArousalSettings.Active != null) && (Player.ArousalSettings.Progress != null)) {
+									if ((Player.ArousalSettings.Active == "Manual") || (Player.ArousalSettings.Active == "Hybrid")) {
+										var Arousal = Math.round((625 - MouseY) / 4, 0);
+										if (Arousal < 0) Arousal = 0;
+										if (Arousal > 100) Arousal = 100;
+										if ((Player.ArousalSettings.AffectExpression == null) || Player.ArousalSettings.AffectExpression) ActivityExpression(Player, Arousal);
+										ActivitySetArousal(Player, Arousal);
+										if (Arousal == 100) ActivityOrgasmPrepare(Player);
+									}
+									return;
+								}
+
+							// Don't do anything if the thermometer is clicked without access to it
+							if ((MouseX >= X + (C - PrivateCharacterOffset) * 470 + 50) && (MouseX <= X + (C - PrivateCharacterOffset) * 470 + 150) && (MouseY >= 200) && (MouseY <= 615) && PrivateCharacter[C].ArousalZoom) return;
+
+						}
+
+				// Cannot click on a character that's having an orgasm
+				if ((PrivateCharacter[C].ID != 0) && (PrivateCharacter[C].ArousalSettings != null) && (PrivateCharacter[C].ArousalSettings.OrgasmTimer != null) && (PrivateCharacter[C].ArousalSettings.OrgasmTimer > 0))
+					return;
+
 				// Sets the new character (1000 if she's owner, 2000 if she's owned)
 				if (PrivateCharacter[C].ID != 0) {
 					PrivateCharacterToSave = C;
@@ -252,6 +309,19 @@ function PrivateClickCharacter() {
 
 // When the user clicks in the private room
 function PrivateClick() {
+
+	// If the player is having an orgasm, only the orgasm controls are available
+	if ((Player.ArousalSettings != null) && (Player.ArousalSettings.OrgasmTimer != null) && (typeof Player.ArousalSettings.OrgasmTimer === "number") && !isNaN(Player.ArousalSettings.OrgasmTimer) && (Player.ArousalSettings.OrgasmTimer > 0)) {
+
+		// On stage 0, the player can choose to resist the orgasm or not.  At 1, the player plays a mini-game to fight her orgasm
+		if ((MouseX >= 700) && (MouseX <= 950) && (MouseY >= 532) && (MouseY <= 600) && (Player.ArousalSettings.OrgasmStage == 0)) ActivityOrgasmGameGenerate(0);
+		if ((MouseX >= 1050) && (MouseX <= 1300) && (MouseY >= 532) && (MouseY <= 600) && (Player.ArousalSettings.OrgasmStage == 0)) ActivityOrgasmStart(Player);
+		if ((MouseX >= ActivityOrgasmGameButtonX + 500) && (MouseX <= ActivityOrgasmGameButtonX + 700) && (MouseY >= ActivityOrgasmGameButtonY) && (MouseY <= ActivityOrgasmGameButtonY + 64) && (Player.ArousalSettings.OrgasmStage == 1)) ActivityOrgasmGameGenerate(ActivityOrgasmGameProgress + 1);
+		return;
+
+	}
+
+	// Main screens buttons
 	if ((MouseX >= 500) && (MouseX < 1000) && (MouseY >= 0) && (MouseY < 1000) && !LogQuery("RentRoom", "PrivateRoom")) CharacterSetCurrent(Player);
 	if ((MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000) && !LogQuery("RentRoom", "PrivateRoom")) { NPCTraitDialog(PrivateVendor); CharacterSetCurrent(PrivateVendor); }
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk() && (Player.Cage == null)) CommonSetScreen("Room", "MainHall");
@@ -262,6 +332,7 @@ function PrivateClick() {
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 625) && (MouseY < 715) && LogQuery("RentRoom", "PrivateRoom") && LogQuery("Expansion", "PrivateRoom")) PrivateCharacterOffset = (PrivateCharacterOffset + 4 == PrivateCharacterMax) ? 0 : PrivateCharacterOffset + 4;
 	if ((MouseX <= 1885) && (MouseY < 900) && LogQuery("RentRoom", "PrivateRoom") && (Player.Cage == null)) PrivateClickCharacter();
 	if ((MouseX <= 1885) && (MouseY >= 900) && LogQuery("RentRoom", "PrivateRoom")) PrivateClickCharacterButton();
+
 }
 
 // When the player rents the room
@@ -314,8 +385,11 @@ function PrivateLoadCharacter(C) {
 		if (PrivateCharacter[C].Event != null) N.Event = PrivateCharacter[C].Event;
 		if (PrivateCharacter[C].Lover != null) N.Lover = PrivateCharacter[C].Lover;
 		if (PrivateCharacter[C].Owner != null) N.Owner = PrivateCharacter[C].Owner;
+		if (PrivateCharacter[C].ArousalSettings != null) N.ArousalSettings = PrivateCharacter[C].ArousalSettings;
 		N.Love = (PrivateCharacter[C].Love == null) ? 0 : parseInt(PrivateCharacter[C].Love);
 		NPCTraitDialog(N);
+		NPCArousal(N);
+		ActivityTimerProgress(N, 0);
 		CharacterRefresh(N);
 		if (NPCEventGet(N, "PrivateRoomEntry") == 0) NPCEventAdd(N, "PrivateRoomEntry", CurrentTime);
 		PrivateCharacter[C] = N;
@@ -323,6 +397,7 @@ function PrivateLoadCharacter(C) {
 	}
 
 	// We allow items on NPC if 25+ dominant reputation, not owner or restrained
+	if (PrivateCharacter[C].ArousalSettings == null) NPCArousal(PrivateCharacter[C]);
 	PrivateCharacter[C].AllowItem = (((ReputationGet("Dominant") + 25 >= NPCTraitGet(PrivateCharacter[C], "Dominant")) && !PrivateCharacter[C].IsOwner()) || PrivateCharacter[C].IsOwnedByPlayer() || PrivateCharacter[C].IsRestrained() || !PrivateCharacter[C].CanTalk());
 
 }
@@ -387,6 +462,16 @@ function PrivateOwnerInRoom() {
 		if ((PrivateCharacter[C].AccountName == null) && (PrivateCharacter[C].Name != null) && (PrivateCharacter[C].Name == Player.Owner.replace("NPC-", ""))) return true;
 		if ((PrivateCharacter[C].AccountName != null) && PrivateCharacter[C].IsOwner() && (CurrentCharacter != null) && (PrivateCharacter[C].ID != CurrentCharacter.ID)) return true;
 		if ((PrivateCharacter[C].AccountName != null) && PrivateCharacter[C].IsOwner() && (CurrentCharacter == null)) return true;
+	}
+	return false;
+}
+
+// Returns TRUE if the player lover is already in the room
+function PrivateLoverInRoom() {
+	for (var C = 1; C < PrivateCharacter.length; C++) {
+		if ((PrivateCharacter[C].AccountName == null) && (PrivateCharacter[C].Name != null) && (PrivateCharacter[C].Name == Player.Lover.replace("NPC-", ""))) return true;
+		if ((PrivateCharacter[C].AccountName != null) && PrivateCharacter[C].IsLover() && (CurrentCharacter != null) && (PrivateCharacter[C].ID != CurrentCharacter.ID)) return true;
+		if ((PrivateCharacter[C].AccountName != null) && PrivateCharacter[C].IsLover() && (CurrentCharacter == null)) return true;
 	}
 	return false;
 }
@@ -725,10 +810,20 @@ function PrivateNPCCollaring() {
 	DialogLeave();
 }
 
+// When the player gets an NPC girlfriend, we assign that new lover
+function PrivateStartGirlfriend() {
+	NPCEventAdd(CurrentCharacter, "Girlfriend", CurrentTime);
+	CurrentCharacter.Lover = Player.Name;
+	NPCLoveChange(CurrentCharacter, 20);
+	Player.Lover = "NPC-" + CurrentCharacter.Name;
+	ServerPlayerSync();
+	ServerPrivateCharacterSync();
+}
+
 // The NPC love can only reach 60 without a proper relationship, 100 if in a relationship
 function PrivateNPCInteraction(LoveFactor) {
 	if (CurrentCharacter.Love == null) CurrentCharacter.Love = 0;
-	if ((CurrentCharacter.Love < 60) || (CurrentCharacter.IsOwner()) || (CurrentCharacter.IsOwnedByPlayer()) || (parseInt(LoveFactor) < 0))
+	if ((CurrentCharacter.Love < 60) || (CurrentCharacter.IsOwner()) || (CurrentCharacter.IsOwnedByPlayer()) || CurrentCharacter.IsLover() || (parseInt(LoveFactor) < 0))
 		NPCLoveChange(CurrentCharacter, LoveFactor);
 }
 
@@ -776,4 +871,12 @@ function PrivateGetCollegeClothes() {
 	NPCLoveChange(CurrentCharacter, -10);
 	InventoryAdd(Player, "CollegeOutfit1", "Cloth");
 	if ((InventoryGet(CurrentCharacter, "Cloth") != null) && (InventoryGet(CurrentCharacter, "Cloth").Asset.Name == "CollegeOutfit1")) InventoryRemove(CurrentCharacter, "Cloth");
+}
+
+// When the player says "I love you" to her NPC girlfriend, it will raise the love meter a little, once every minute
+function PrivateLoveYou() {
+	if (PrivateNextLoveYou < CurrentTime) {
+		PrivateNextLoveYou = CurrentTime + 60000;
+		NPCLoveChange(CurrentCharacter, Math.floor(Math.random() * 5) + 2);
+	}
 }

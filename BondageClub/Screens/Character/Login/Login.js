@@ -4,8 +4,10 @@ var LoginMessage = "";
 var LoginCredits = null;
 var LoginCreditsPosition = 0;
 var LoginThankYou = "";
-var LoginThankYouList = ["Alvin", "Ayezona", "BlueEyedCat", "Bryce", "Christian", "Dan", "Desch", "Dini", "DonOlaf", "Escurse", "Greendragon", "John", "Kitten", "Laioken", "Lennart", "Michal", "Mindtie", "Misa",
-						 "Nera", "Nick", "Overlord", "Rashiash", "Robin", "Ryner", "Samuel", "Setsu", "Shadow", "Simeon", "SirCody", "Sky", "Terry", "William", "Winterisbest", "Xepherio"];
+var LoginThankYouList = ["Alvin", "Ayezona", "BlueEyedCat", "BlueWiner", "Bryce", "Christian", "Dan", "Desch", "Dini", "DonOlaf",
+						 "Escurse", "Fluffythewhat", "Greendragon", "John", "Kitten", "Laioken", "Lennart", "Michal", "Mindtie", "Misa",
+						 "MuchyCat", "Nera", "Nick", "Overlord", "Rashiash", "Robin", "Ryner", "Samuel", "Setsu", "Shadow",
+						 "Simeon", "SirCody", "Sky", "Terry", "Thomas", "William", "Winterisbest", "Xepherio"];
 var LoginThankYouNext = 0;
 //var LoginLastCT = 0;
 
@@ -71,6 +73,7 @@ function LoginLoad() {
 	CharacterLoadCSVDialog(Player);
 	LoginMessage = "";
 	if (LoginCredits == null) CommonReadCSV("LoginCredits", CurrentModule, CurrentScreen, "GameCredits");
+	ActivityDictionaryLoad();
 	ElementCreateInput("InputName", "text", "", "20");
 	ElementCreateInput("InputPassword", "password", "", "20");
 
@@ -151,6 +154,22 @@ function LoginStableItems() {
 	ServerPlayerInventorySync();
 }
 
+// Make sure a player without lover is not wearing any lovers exclusive items
+function LoginLoversItems() {
+	if (Player.Lovership == null) {
+		for(var A = 0; A < Player.Appearance.length; A++) {
+			if (Player.Appearance[A].Asset.Group.Name == "ItemNeck" && Player.Appearance[A].Property && Player.Appearance[A].Asset.Name == "SlaveCollar" && Player.Appearance[A].Property.Type == "LoveLeatherCollar") {
+				Player.Appearance[A].Property = null;
+				Player.Appearance[A].Color = "Default";
+			}
+			if (Player.Appearance[A].Property && Player.Appearance[A].Property.LockedBy && ((Player.Appearance[A].Property.LockedBy == "LoversPadlock") || (Player.Appearance[A].Property.LockedBy == "LoversTimerPadlock"))) {
+				InventoryRemove(Player, Player.Appearance[A].Asset.Group.Name);
+				A--;
+			}
+		}
+	}
+}
+
 // Checks every owned item to see if its buygroup contains an item the player does not have
 // This allows the user to collect any items from a modified buy group already purchased
 function LoginValideBuyGroups() {
@@ -166,6 +185,25 @@ function LoginResponse(C) {
 
 	// If the return package contains a name and a account name
 	if (typeof C === "object") {
+
+		// In relog mode, we jump back to the previous screen, keeping the current game flow
+		if (RelogData != null) {
+			LoginMessage = "";
+			ElementRemove("InputPassword");
+			Player.OnlineID = C.ID.toString();
+			CurrentModule = RelogData.Module;
+			CurrentScreen = RelogData.Screen;
+			CurrentCharacter = RelogData.Character;
+			TextLoad();
+			if ((ChatRoomData != null) && (ChatRoomData.Name != null) && (ChatRoomData.Name != "") && (RelogChatLog != null)) {
+				CommonSetScreen("Online", "ChatSearch");
+				ChatRoomPlayerCanJoin = true;
+				ServerSend("ChatRoomJoin", { Name: ChatRoomData.Name });
+			}
+			return;
+		}
+
+		// In regular mode, we set the account properties for a new club session
 		if ((C.Name != null) && (C.AccountName != null)) {
 
 			// Make sure we have values
@@ -184,6 +222,7 @@ function LoginResponse(C) {
 			Player.Description = C.Description;
 			Player.Creation = C.Creation;
 			Player.Wardrobe = C.Wardrobe;
+			WardrobeFixLength();
 			Player.OnlineID = C.ID.toString();
 			Player.MemberNumber = C.MemberNumber;
 			Player.BlockItems = ((C.BlockItems == null) || !Array.isArray(C.BlockItems)) ? [] : C.BlockItems;
@@ -195,6 +234,11 @@ function LoginResponse(C) {
 			if ((Player.Ownership != null) && (Player.Ownership.Name != null))
 				Player.Owner = (Player.Ownership.Stage == 1) ? Player.Ownership.Name : "";
 
+			// Loads the lovership data
+			Player.Lovership = C.Lovership;
+			if ((Player.Lovership != null) && (Player.Lovership.Name != null))
+				Player.Lover = (Player.Lovership.Stage == 2) ? Player.Lovership.Name : "";
+
 			// Gets the online preferences
 			Player.LabelColor = C.LabelColor;
 			Player.ItemPermission = C.ItemPermission;
@@ -202,9 +246,11 @@ function LoginResponse(C) {
 			Player.VisualSettings = C.VisualSettings;
 			Player.AudioSettings = C.AudioSettings;
 			Player.GameplaySettings = C.GameplaySettings;
-			Player.WhiteList = C.WhiteList;
-			Player.BlackList = C.BlackList;
-			Player.FriendList = C.FriendList;
+			Player.ArousalSettings = C.ArousalSettings;
+			Player.WhiteList = ((C.WhiteList == null) || !Array.isArray(C.WhiteList)) ? [] : C.WhiteList;
+			Player.BlackList = ((C.BlackList == null) || !Array.isArray(C.BlackList)) ? [] : C.BlackList;
+			Player.FriendList = ((C.FriendList == null) || !Array.isArray(C.FriendList)) ? [] : C.FriendList;
+			Player.GhostList = ((C.GhostList == null) || !Array.isArray(C.GhostList)) ? [] : C.GhostList;
 
 			// Loads the player character model and data
 			Player.Appearance = ServerAppearanceLoadFromBundle(Player, C.AssetFamily, C.Appearance);
@@ -212,6 +258,13 @@ function LoginResponse(C) {
 			LogLoad(C.Log);
 			ReputationLoad(C.Reputation);
 			SkillLoad(C.Skill);
+
+			// Calls the preference init to make sure the preferences are loaded correctly
+			PreferenceInit(Player);
+			ActivitySetArousal(Player, 0);
+			ActivityTimerProgress(Player, 0);
+
+			// Loads the dialog and removes the login controls
 			CharacterLoadCSVDialog(Player);
 			PrivateCharacterMax = 4 + (LogQuery("Expansion", "PrivateRoom") ? 4 : 0) + (LogQuery("SecondExpansion", "PrivateRoom") ? 4 : 0);
 			CharacterRefresh(Player, false);
@@ -234,6 +287,7 @@ function LoginResponse(C) {
 			LoginValidCollar();
 			LoginMistressItems();
 			LoginStableItems();
+			LoginLoversItems();
 			LoginValideBuyGroups();
 			CharacterAppearanceValidate(Player);
 
@@ -316,9 +370,7 @@ function LoginClick() {
 
 // When the user press "enter" we try to login
 function LoginKeyDown() {
-	if (KeyPress == 13) {
-		LoginDoLogin();
-	}
+	if (KeyPress == 13) LoginDoLogin();
 }
 
 // If we must try to login (make sure we don't send the login query twice)
@@ -330,8 +382,6 @@ function LoginDoLogin() {
 		if (Name.match(letters) && Password.match(letters) && (Name.length > 0) && (Name.length <= 20) && (Password.length > 0) && (Password.length <= 20)) {
 			LoginMessage = TextGet("ValidatingNamePassword");
 			ServerSend("AccountLogin", { AccountName: Name, Password: Password });
-		} else {
-			LoginMessage = TextGet("InvalidNamePassword");
-		}
+		} else LoginMessage = TextGet("InvalidNamePassword");
 	}
 }

@@ -75,16 +75,14 @@ function CollegeDetentionClick() {
 function CollegeDetentionYukiLoveChange(LoveChange, Event) {
 	if (LoveChange != null) CollegeDetentionYukiLove = CollegeDetentionYukiLove + parseInt(LoveChange);
 	if ((LoveChange != null) && (parseInt(LoveChange) < 0)) {
-		CharacterSetFacialExpression(CollegeDetentionYuki, "Eyes", "Dazed");
-		TimerInventoryRemoveSet(CollegeDetentionYuki, "Eyes", 2);
+		CharacterSetFacialExpression(CollegeDetentionYuki, "Eyes", "Dazed", 2);
 		if (CollegeDetentionYukiLove <= -5) {
 			CollegeDetentionYuki.Stage = "1000";
 			CollegeDetentionYuki.CurrentDialog = DialogFind(CollegeDetentionYuki, "YukiHadEnough");
 		}
 	}
 	if ((LoveChange != null) && (parseInt(LoveChange) > 0)) {
-		CharacterSetFacialExpression(CollegeDetentionYuki, "Blush", "Low");
-		TimerInventoryRemoveSet(CollegeDetentionYuki, "Blush", 2);
+		CharacterSetFacialExpression(CollegeDetentionYuki, "Blush", "Low", 2);
 		if (CollegeDetentionYukiLove > 10) {
 			CollegeDetentionYuki.Stage = "2000";
 			CollegeDetentionYukiLove = 0;

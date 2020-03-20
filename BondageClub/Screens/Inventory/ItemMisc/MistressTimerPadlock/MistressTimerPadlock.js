@@ -82,9 +82,9 @@ function InventoryItemMiscMistressTimerPadlockClick() {
             for (var I = 0; I < DialogFocusSourceItem.Property.MemberNumberList.length; I++){
                 if (DialogFocusSourceItem.Property.MemberNumberList[I] == Player.MemberNumber) return;
             }
-            if ((MouseX >= 1100) && (MouseX < 1350)) { InventoryItemMiscMistressTimerPadlockAdd(-DialogFocusItem.Asset.RemoveTimer * 3, true); }
+            if ((MouseX >= 1100) && (MouseX < 1350)) { InventoryItemMiscMistressTimerPadlockAdd(-DialogFocusItem.Asset.RemoveTimer * 2, true); }
             if ((MouseX >= 1400) && (MouseX < 1650)) { InventoryItemMiscMistressTimerPadlockAdd(DialogFocusItem.Asset.RemoveTimer * 4 * ((Math.random() >= 0.5) ? 1 : -1), true); }
-            if ((MouseX >= 1700) && (MouseX < 1950)) { InventoryItemMiscMistressTimerPadlockAdd(DialogFocusItem.Asset.RemoveTimer * 3, true); }
+            if ((MouseX >= 1700) && (MouseX < 1950)) { InventoryItemMiscMistressTimerPadlockAdd(DialogFocusItem.Asset.RemoveTimer * 2, true); }
         }
     }
 }
@@ -116,7 +116,7 @@ function InventoryItemMiscMistressTimerPadlockAdd(TimeToAdd, PlayerMemberNumberT
         }
         ChatRoomPublishCustomAction(msg, true, Dictionary);
     } else { CharacterRefresh(C); }
-    InventoryItemMiscTimerPadlockExit();
+    InventoryItemMiscMistressTimerPadlockExit();
 }
 
 // Exits the extended menu

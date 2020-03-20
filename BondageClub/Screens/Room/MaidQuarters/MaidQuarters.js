@@ -2,8 +2,7 @@
 var MaidQuartersBackground = "MaidQuarters";
 var MaidQuartersMaid = null;
 var MaidQuartersMaidInitiation = null;
-var MaidQuartersPreviousCloth = null;
-var MaidQuartersPreviousHat = null;
+var MaidQuartersItemClothPrev = {Cloth:null, Hat:null, ItemArms:null, ItemLegs:null, ItemFeet:null};
 var MaidQuartersMaidReleasedPlayer = false;
 var MaidQuartersCanBecomeMaid = false;
 var MaidQuartersCannotBecomeMaidYet = false;
@@ -89,8 +88,11 @@ function MaidQuartersMaidUngagPlayer() {
 
 // When the player dresses as a maid
 function MaidQuartersWearMaidUniform() {
-	MaidQuartersPreviousCloth = InventoryGet(Player, "Cloth");
-	MaidQuartersPreviousHat = InventoryGet(Player, "Hat");
+	for(var ItemAssetGroupName in MaidQuartersItemClothPrev){
+		MaidQuartersItemClothPrev[ItemAssetGroupName] = InventoryGet(Player, ItemAssetGroupName);
+		InventoryRemove(Player, ItemAssetGroupName);
+	}
+
 	InventoryWear(Player, "MaidOutfit1", "Cloth", "Default");
 	InventoryWear(Player, "MaidHairband1", "Hat", "Default");
 }
@@ -98,10 +100,14 @@ function MaidQuartersWearMaidUniform() {
 // When the player removes the maid uniform and dresses back
 function MaidQuartersRemoveMaidUniform() {
 	CharacterRelease(Player);
-	if (MaidQuartersPreviousCloth != null) InventoryWear(Player, MaidQuartersPreviousCloth.Asset.Name, "Cloth", MaidQuartersPreviousCloth.Color);
-	else InventoryRemove(Player, "Cloth");
-	if (MaidQuartersPreviousHat != null) InventoryWear(Player, MaidQuartersPreviousHat.Asset.Name, "Hat", MaidQuartersPreviousHat.Color);
-	else InventoryRemove(Player, "Hat");
+	for(var ItemAssetGroupName in MaidQuartersItemClothPrev){
+		var PreviousItem = MaidQuartersItemClothPrev[ItemAssetGroupName];
+		InventoryRemove(Player, ItemAssetGroupName);
+		if(PreviousItem) InventoryWear(Player, PreviousItem.Asset.Name, ItemAssetGroupName, PreviousItem.Color);
+		if(PreviousItem && PreviousItem.Property) InventoryGet(Player, ItemAssetGroupName).Property = PreviousItem.Property
+		MaidQuartersItemClothPrev[ItemAssetGroupName] = null;
+	}
+
 	InventoryRemove(Player, "ItemMisc");
 }
 
@@ -186,6 +192,8 @@ function MaidQuartersChangeInitiationMaid() {
 function MaidQuartersBecomMaid() {
 	InventoryAdd(Player, "MaidOutfit1", "Cloth");
 	InventoryAdd(Player, "MaidOutfit2", "Cloth");
+	InventoryAdd(Player, "MaidApron1", "Cloth");
+	InventoryAdd(Player, "MaidApron2", "Cloth");
 	InventoryAdd(Player, "MaidHairband1", "Hat");
 	InventoryWear(Player, "MaidOutfit1", "Cloth", "Default");
 	InventoryWear(Player, "MaidHairband1", "Hat", "Default");
@@ -211,8 +219,9 @@ function MaidQuartersStartRescue() {
 	MaidQuartersMaid.CurrentDialog = DialogFind(MaidQuartersMaid, "Rescue" + MaidQuartersCurrentRescue);
 	MaidQuartersCurrentRescueStarted = false;
 	MaidQuartersCurrentRescueCompleted = false;
-	MaidQuartersPreviousCloth = InventoryGet(Player, "Cloth");
-	MaidQuartersPreviousHat = InventoryGet(Player, "Hat");
+	
+	MaidQuartersItemClothPrev.Cloth = InventoryGet(Player, "Cloth");
+	MaidQuartersItemClothPrev.Hat = InventoryGet(Player, "Hat");
 
 }
 

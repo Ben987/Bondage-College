@@ -23,6 +23,7 @@ function AssetGroupAdd(NewAssetFamily, NewAsset) {
 		ParentColor: (NewAsset.ParentColor == null) ? "" : NewAsset.ParentColor,
 		Clothing: (NewAsset.Clothing == null) ? false : NewAsset.Clothing,
 		Underwear: (NewAsset.Underwear == null) ? false : NewAsset.Underwear,
+		Activity: NewAsset.Activity,
 		Zone: NewAsset.Zone,
 		SetPose: NewAsset.SetPose,
 		AllowPose: NewAsset.AllowPose,
@@ -48,6 +49,7 @@ function AssetAdd(NewAsset) {
 		Enable: (NewAsset.Enable == null) ? true : NewAsset.Enable,
 		Visible: (NewAsset.Visible == null) ? true : NewAsset.Visible,
 		Wear: (NewAsset.Wear == null) ? true : NewAsset.Wear,
+		Activity: NewAsset.Activity,
 		BuyGroup: NewAsset.BuyGroup,
 		PrerequisiteBuyGroups: NewAsset.PrerequisiteBuyGroups,
 		Effect: NewAsset.Effect,
@@ -70,6 +72,8 @@ function AssetAdd(NewAsset) {
 		RemoveTimer: (NewAsset.RemoveTimer == null) ? 0 : NewAsset.RemoveTimer,
 		MaxTimer: (NewAsset.MaxTimer == null) ? 0 : NewAsset.MaxTimer,
 		DrawingPriority: NewAsset.Priority,
+		DrawingLeft: NewAsset.Left,
+		DrawingTop: NewAsset.Top,
 		HeightModifier: (NewAsset.Height == null) ? 0 : NewAsset.Height,
 		ZoomModifier: (NewAsset.Zoom == null) ? 1 : NewAsset.Zoom,
 		Alpha: NewAsset.Alpha,
@@ -78,6 +82,7 @@ function AssetAdd(NewAsset) {
 		AllowLock: (NewAsset.AllowLock == null) ? false : NewAsset.AllowLock,
 		IsLock: (NewAsset.IsLock == null) ? false : NewAsset.IsLock,
 		OwnerOnly: (NewAsset.OwnerOnly == null) ? false : NewAsset.OwnerOnly,
+		LoverOnly: (NewAsset.LoverOnly == null) ? false : NewAsset.LoverOnly,
 		ExpressionTrigger: NewAsset.ExpressionTrigger,
 		Layer: AssetBuildLayer(NewAsset.Layer),
 		RemoveItemOnRemove : (NewAsset.RemoveItemOnRemove == null) ? [] : NewAsset.RemoveItemOnRemove,
@@ -207,5 +212,14 @@ function AssetGet(Family, Group, Name) {
 	for (var A = 0; A < Asset.length; A++)
 		if ((Asset[A].Name == Name) && (Asset[A].Group.Name == Group) && (Asset[A].Group.Family == Family))
 			return Asset[A];
+	return null;
+}
+
+// Gets an activity asset by family and name
+function AssetGetActivity(Family, Name) {
+	if (Family == "Female3DCG")
+		for (var A = 0; A < ActivityFemale3DCG.length; A++)
+			if (ActivityFemale3DCG[A].Name == Name)
+				return ActivityFemale3DCG[A];
 	return null;
 }
