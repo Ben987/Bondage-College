@@ -17,6 +17,9 @@ var PrivatePunishmentList = ["Cage", "Bound", "BoundPet", "ChastityBelt", "Chast
 var PrivateCharacterNewClothes = null;
 var PrivateSlaveImproveType = "";
 var PrivateNextLoveYou = 0;
+var PrivateLoverActivity = "";
+var PrivateLoverActivityList = ["Skip1", "Skip2", "Kiss", "FrenchKiss", "Caress", "Rub", "MasturbateHand", "MasturbateTongue", "MasturbatePlayer", "MasturbateSelf", "Underwear", "Naked", "EggInsert", "LockBelt", "UnlockBelt", "EggSpeedUp", "EggSpeedDown"];
+var PrivateBeltList = ["LeatherChastityBelt", "SleekLeatherChastityBelt", "StuddedChastityBelt", "MetalChastityBelt", "PolishedChastityBelt", "OrnateChastityBelt", "SteelChastityPanties"];
 
 // Returns TRUE if a specific dialog option is allowed
 function PrivateIsCaged() { return (CurrentCharacter.Cage == null) ? false : true }
@@ -758,7 +761,7 @@ function PrivateRunPunishment(LoveFactor) {
 	if (PrivatePunishment == "BoundPet") { PrivateReleaseTimer = CommonTime() + 240000; CharacterSetActivePose(Player, "Kneel"); InventoryWear(Player, "LeatherBelt", "ItemLegs"); InventoryWear(Player, "TailButtPlug", "ItemButt"); InventoryWear(Player, "Ears" + (Math.floor(Math.random() * 2) + 1).toString(), "Hat"); InventoryWear(Player, "LeatherArmbinder", "ItemArms"); InventorySetDifficulty(Player, "ItemArms", 15); }
 	if ((PrivatePunishment == "ChastityBelt") && (NPCTraitGet(CurrentCharacter, "Horny") >= 0) && (InventoryGet(Player, "ItemVulva") == null)) InventoryWear(Player, "VibratingEgg", "ItemVulva");
 	if ((PrivatePunishment == "ChastityBelt") && (NPCTraitGet(CurrentCharacter, "Horny") >= 0) && (InventoryGet(Player, "ItemButt") == null)) InventoryWear(Player, "BlackButtPlug", "ItemButt");
-	if (PrivatePunishment == "ChastityBelt") { InventoryWear(Player, "MetalChastityBelt", "ItemPelvis"); InventoryLock(Player, "ItemPelvis", "OwnerPadlock", null); }
+	if (PrivatePunishment == "ChastityBelt") { InventoryWear(Player, CommonRandomItemFromList("", PrivateBeltList), "ItemPelvis"); InventoryLock(Player, "ItemPelvis", "OwnerPadlock", null); }
 	if (PrivatePunishment == "ChastityBra") { InventoryWear(Player, "MetalChastityBra", "ItemBreast"); InventoryLock(Player, "ItemBreast", "OwnerPadlock", null); }
 	if (PrivatePunishment == "ForceNaked") LogAdd("BlockChange", "Rule", CurrentTime + 1800000);
 	if (PrivatePunishment == "ConfiscateKey") InventoryConfiscateKey();
@@ -873,10 +876,69 @@ function PrivateGetCollegeClothes() {
 	if ((InventoryGet(CurrentCharacter, "Cloth") != null) && (InventoryGet(CurrentCharacter, "Cloth").Asset.Name == "CollegeOutfit1")) InventoryRemove(CurrentCharacter, "Cloth");
 }
 
-// When the player says "I love you" to her NPC girlfriend, it will raise the love meter a little, once every minute
+// When the player says "I love you" to her NPC girlfriend
 function PrivateLoveYou() {
+
+	// Once every minute, it will raise the love meter a little
 	if (PrivateNextLoveYou < CurrentTime) {
 		PrivateNextLoveYou = CurrentTime + 60000;
 		NPCLoveChange(CurrentCharacter, Math.floor(Math.random() * 5) + 2);
 	}
+
+	// If the lover loves the player enough, she might start a random activity with her
+	if (CurrentCharacter.Love >= Math.random() * 100) {
+
+		// Finds a valid lover activity at random, some activities skip the loop and don't return any event
+		var Zone = "";
+		while (true) {
+			var PrivateLoverActivity = CommonRandomItemFromList(PrivateLoverActivity, PrivateLoverActivityList);
+			if ((PrivateLoverActivity == "Skip1") || (PrivateLoverActivity == "Skip2")) return;
+			if ((PrivateLoverActivity == "Kiss") && Player.CanTalk() && CurrentCharacter.CanTalk() && (Player.Cage == null) && (CurrentCharacter.Cage == null) && !Player.IsEnclose() && !CurrentCharacter.IsEnclose() && (NPCTraitGet(CurrentCharacter, "Horny") <= 33)) { Zone = "ItemMouth"; break; }
+			if ((PrivateLoverActivity == "FrenchKiss") && Player.CanTalk() && CurrentCharacter.CanTalk() && (Player.Cage == null) && (CurrentCharacter.Cage == null) && !Player.IsEnclose() && !CurrentCharacter.IsEnclose() && (NPCTraitGet(CurrentCharacter, "Horny") >= -33)) { Zone = "ItemMouth"; break; }
+			if ((PrivateLoverActivity == "Caress") && CharacterIsInUnderwear(Player) && CharacterIsInUnderwear(CurrentCharacter) && Player.CanInteract() && CurrentCharacter.CanInteract() && (Player.Cage == null) && (CurrentCharacter.Cage == null) && !Player.IsEnclose() && !CurrentCharacter.IsEnclose() && (NPCTraitGet(CurrentCharacter, "Horny") <= -33)) { Zone = "ItemTorso"; break; }
+			if ((PrivateLoverActivity == "Rub") && CharacterIsInUnderwear(Player) && CharacterIsInUnderwear(CurrentCharacter) && Player.CanInteract() && CurrentCharacter.CanInteract() && (Player.Cage == null) && (CurrentCharacter.Cage == null) && !Player.IsEnclose() && !CurrentCharacter.IsEnclose() && (NPCTraitGet(CurrentCharacter, "Horny") >= -33)) { Zone = "ItemTorso"; break; }
+			if ((PrivateLoverActivity == "MasturbateHand") && CharacterIsNaked(Player) && CharacterIsNaked(CurrentCharacter) && Player.CanInteract() && CurrentCharacter.CanInteract() && !Player.IsVulvaChaste() && !CurrentCharacter.IsVulvaChaste() && (Player.Cage == null) && (CurrentCharacter.Cage == null) && !Player.IsEnclose() && !CurrentCharacter.IsEnclose()) { Zone = "ItemVulva"; break; }
+			if ((PrivateLoverActivity == "MasturbateTongue") && CharacterIsNaked(Player) && CharacterIsNaked(CurrentCharacter) && Player.CanTalk() && CurrentCharacter.CanTalk() && !Player.IsVulvaChaste() && !CurrentCharacter.IsVulvaChaste() && (Player.Cage == null) && (CurrentCharacter.Cage == null) && !Player.IsEnclose() && !CurrentCharacter.IsEnclose()) { Zone = "ItemVulva"; break; }
+			if ((PrivateLoverActivity == "MasturbatePlayer") && CharacterIsNaked(Player) && CurrentCharacter.CanInteract() && !Player.IsVulvaChaste() && (Player.Cage == null) && (CurrentCharacter.Cage == null) && !Player.IsEnclose() && !CurrentCharacter.IsEnclose()) break;
+			if ((PrivateLoverActivity == "MasturbateSelf") && CharacterIsNaked(CurrentCharacter) && CurrentCharacter.CanInteract() && !CurrentCharacter.IsVulvaChaste()) break;
+			if ((PrivateLoverActivity == "Underwear") && (!CharacterIsInUnderwear(Player) || !CharacterIsInUnderwear(CurrentCharacter)) && Player.CanInteract() && CurrentCharacter.CanInteract()) break;
+			if ((PrivateLoverActivity == "Naked") && (!CharacterIsNaked(Player) || !CharacterIsNaked(CurrentCharacter)) && Player.CanInteract() && CurrentCharacter.CanInteract()) break;
+			if ((PrivateLoverActivity == "EggInsert") && CharacterIsNaked(Player) && CurrentCharacter.CanInteract() && !Player.IsVulvaChaste() && (InventoryGet(Player, "ItemVulva") == null) && !CurrentCharacter.IsOwnedByPlayer() && (Player.Cage == null) && (CurrentCharacter.Cage == null) && !Player.IsEnclose() && !CurrentCharacter.IsEnclose()) break;
+			if ((PrivateLoverActivity == "LockBelt") && CharacterIsNaked(Player) && CurrentCharacter.CanInteract() && !Player.IsVulvaChaste() && InventoryIsWorn(Player, "VibratingEgg", "ItemVulva") && !CurrentCharacter.IsOwnedByPlayer() && (NPCTraitGet(CurrentCharacter, "Dominant") >= 0) && (Player.Cage == null) && (CurrentCharacter.Cage == null) && !Player.IsEnclose() && !CurrentCharacter.IsEnclose()) break;
+			if ((PrivateLoverActivity == "UnlockBelt") && CharacterIsNaked(Player) && CurrentCharacter.CanInteract() && Player.IsVulvaChaste() && (InventoryGet(Player, "ItemPelvis") != null) && (InventoryGetLock(InventoryGet(Player, "ItemPelvis")) != null) && (InventoryGetLock(InventoryGet(Player, "ItemPelvis")).Asset.Name == "LoversPadlock") && (Player.Cage == null) && (CurrentCharacter.Cage == null) && !Player.IsEnclose() && !CurrentCharacter.IsEnclose()) break;
+			if ((PrivateLoverActivity == "EggSpeedUp") && CurrentCharacter.CanInteract() && !CurrentCharacter.IsOwnedByPlayer() && (InventoryIsWorn(Player, "VibratingEgg", "ItemVulva")) && (InventoryGet(Player, "ItemVulva").Property.Intensity < 3)) break;
+			if ((PrivateLoverActivity == "EggSpeedDown") && CurrentCharacter.CanInteract() && !CurrentCharacter.IsOwnedByPlayer() && (InventoryIsWorn(Player, "VibratingEgg", "ItemVulva")) && (InventoryGet(Player, "ItemVulva").Property.Intensity > -1)) break;
+		}
+
+		// For regular sexual activities
+		if ((PrivateLoverActivity == "Kiss") || (PrivateLoverActivity == "FrenchKiss") || (PrivateLoverActivity == "Caress") || (PrivateLoverActivity == "Rub") || (PrivateLoverActivity == "MasturbateHand") || (PrivateLoverActivity == "MasturbateTongue")) {
+			ActivityEffect(CurrentCharacter, Player, PrivateLoverActivity, Zone);
+			ActivityEffect(Player, CurrentCharacter, PrivateLoverActivity, Zone);
+		}
+
+		// When the NPC masturbates herself or the player
+		if (PrivateLoverActivity == "MasturbatePlayer") ActivityEffect(CurrentCharacter, Player, "MasturbateHand", "ItemVulva");
+		if (PrivateLoverActivity == "MasturbateSelf") ActivityEffect(CurrentCharacter, CurrentCharacter, "MasturbateHand", "ItemVulva");
+
+		// When the NPC and players gets in undies or naked
+		if (PrivateLoverActivity == "Underwear") { CharacterUnderwear(Player, Player.Appearance); CharacterUnderwear(CurrentCharacter, CurrentCharacter.Appearance); }
+		if (PrivateLoverActivity == "Naked") { CharacterNaked(Player); CharacterNaked(CurrentCharacter); }
+
+		// When the NPC equips an egg or a belt on the player
+		if (PrivateLoverActivity == "Egg") { InventoryWear(Player, "VibratingEgg", "ItemVulva"); InventoryGet(Player, "ItemVulva").Property = { Intensity: 0 }; }
+		if (PrivateLoverActivity == "LockBelt") { InventoryWear(Player, CommonRandomItemFromList("", PrivateBeltList), "ItemPelvis"); InventoryLock(Player, "ItemPelvis", "LoversPadlock", null); }
+		if (PrivateLoverActivity == "UnlockBelt") InventoryRemove(Player, "ItemPelvis");
+
+		// When the NPC plays with the egg speed
+		if ((PrivateLoverActivity == "EggSpeedUp") || (PrivateLoverActivity == "EggSpeedDown")) {
+			var Egg = InventoryGet(Player, "ItemVulva");
+			Egg.Property.Intensity = Egg.Property.Intensity + ((PrivateLoverActivity == "EggSpeedUp") ? 1 : -1);
+		}
+
+		// Shows the activity text dialog and raise the love a little
+		CurrentCharacter.CurrentDialog = DialogFind(CurrentCharacter, "LoverActivity" + PrivateLoverActivity);
+		NPCLoveChange(CurrentCharacter, Math.floor(Math.random() * 3) + 1);
+
+	}
+
 }

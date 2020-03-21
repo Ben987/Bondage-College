@@ -258,8 +258,10 @@ function ChatRoomRun() {
 			if (Player.ArousalSettings.OrgasmStage == 2) DrawText(TextGet("OrgasmRecovering"), 500, 500, "White", "Black");
 			ActivityOrgasmProgressBar(50, 970);
 		} else if ((Player.ArousalSettings.Progress != null) && (Player.ArousalSettings.Progress >= 91) && (Player.ArousalSettings.Progress <= 99)) {
-			DrawRect(0, 0, 1003, 1000, "#FFB0B060");
-			DrawRect(1003, 0, 993, 63, "#FFB0B060");
+			if ((ChatRoomCharacter.length <= 2) || (ChatRoomCharacter.length >= 6)) DrawRect(0, 0, 1003, 1000, "#FFB0B060");
+			else if (ChatRoomCharacter.length == 3) DrawRect(0, 50, 1003, 900, "#FFB0B060");
+			else if (ChatRoomCharacter.length == 4) DrawRect(0, 150, 1003, 700, "#FFB0B060");
+			else if (ChatRoomCharacter.length == 5) DrawRect(0, 250, 1003, 500, "#FFB0B060");
 		}
 	}
 

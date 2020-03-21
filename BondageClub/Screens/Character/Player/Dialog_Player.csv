@@ -157,10 +157,13 @@ AlchemistOffice,,,Alchemist Office
 ResearchPrep,,,Research Lab
 ResearchProgress,,,Research Lab
 HellEntrance,,,Entrance to Hell
+HeavenEntrance,,,Entrance to Heaven
 PirateIsland,,,Pirate Island
 PirateIslandNight,,,Pirate Island Night
 ShipDeck,,,Ship's Deck
+Shipwreck,,,Ship Wreck
 CaptainCabin,,,Captain Cabin
+UnderwaterOne,,,Underwater One
 MedinaMarket,,,Medina Market
 ThroneRoom,,,Throne Room
 Dungeon,,,Dungeon
@@ -174,6 +177,7 @@ BarRestaurant,,,Bar Restaurant
 DungeonRuin,,,Ruined Dungeon
 SlipperyClassroom,,,Slippery Classroom
 MiddletownSchool,,,Middletown School
+SchoolHospital,,,School Hospital
 SchoolRuins,,,Abanoned School
 SecretChamber,,,Secret Chamber
 VaultCorridor,,,Vault Corridor

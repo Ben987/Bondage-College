@@ -702,7 +702,7 @@ function CharacterAppearanceReady(C) {
 	// If there's no error, we continue to the login or main hall if already logged
 	if (C.AccountName != "") {
 		ServerPlayerAppearanceSync();
-		if (CharacterAppearanceReturnRoom == "ChatRoom") {
+		if ((CharacterAppearanceReturnRoom == "ChatRoom") && (C.ID != 0)) {
 			var Dictionary = [];
 			Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
 			Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
