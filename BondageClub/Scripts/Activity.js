@@ -260,24 +260,24 @@ function ActivityExpression(C, Progress) {
 	Progress = Math.floor(Progress / 10) * 10;
 	
 	// The blushes goes to red progressively
-	var Blush = "";
+	var Blush = null;
 	if ((Progress == 10) || (Progress == 30) || (Progress == 50) || (Progress == 70)) Blush = "Low";
 	if ((Progress == 60) || (Progress == 80) || (Progress == 90)) Blush = "Medium";
 	if (Progress == 100) Blush = "High";
 
 	// The eyebrows position changes
-	var Eyebrows = "";
+	var Eyebrows = null;
 	if ((Progress == 20) || (Progress == 30)) Eyebrows = "Raised";
 	if ((Progress == 50) || (Progress == 60)) Eyebrows = "Lowered";
 	if ((Progress == 80) || (Progress == 90)) Eyebrows = "Soft";
 
 	// Drool can activate at a few stages
-	var Fluids = "";
+	var Fluids = null;
 	if ((Progress == 40) || (C.ArousalSettings.Progress == 70)) Fluids = "DroolLow";
 	if (Progress == 100) Fluids = "DroolMedium";
 
 	// Eyes can activate at a few stages
-	var Eyes = "";
+	var Eyes = null;
 	if (Progress == 20) Eyes = "Dazed";
 	if (Progress == 70) Eyes = "Horny";
 	if (Progress == 90) Eyes = "Surprised";
