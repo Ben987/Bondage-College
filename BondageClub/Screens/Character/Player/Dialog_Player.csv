@@ -241,7 +241,7 @@ ServerSwap,,,SourceCharacter swapped TargetCharacterName and DestinationCharacte
 ServerPromoteAdmin,,,TargetCharacterName was promoted to administrator by SourceCharacter.
 ServerDemoteAdmin,,,TargetCharacterName was demoted from administration by SourceCharacter.
 ServerUpdateRoom,,,SourceCharacter updated the room. Name: ChatRoomName. Limit: ChatRoomLimit.  ChatRoomPrivacy.  ChatRoomLocked.
-ChatRoomHelp,,,"Commands available : * or /me : write an emote, ** or /action : write an action, /coin : flip a coin, /dice Y or XdY : roll X dice with Y-faces, /friendlistadd [ID], /friendlistremove [ID], /whitelistadd [ID], /whitelistremove [ID], /blacklistadd [ID], /blacklistremove [ID], /kick [ID], /ban [ID], /unban [ID], /promote [ID], /demote [ID]"
+ChatRoomHelp,,,"Commands available : * or /me : write an emote, ** or /action : write an action, click on someone's name on the left to whisper, /coin : flip a coin, /dice Y or XdY : roll X dice with Y-sides (from 2 to 100 sides), /friendlistadd [ID], /friendlistremove [ID], /whitelistadd [ID], /whitelistremove [ID], /blacklistadd [ID], /blacklistremove [ID], /ghostadd [ID], /ghostremove [ID], /kick [ID], /ban [ID], /unban [ID], /promote [ID], /demote [ID]"
 ActionSwap,,,SourceCharacter swaps a PrevAsset for a NextAsset on DestinationCharacter FocusAssetGroup.
 ActionUse,,,SourceCharacter uses a NextAsset on DestinationCharacter FocusAssetGroup.
 ActionChangeColor,,,SourceCharacter changes the color of NextAsset on DestinationCharacter FocusAssetGroup.
