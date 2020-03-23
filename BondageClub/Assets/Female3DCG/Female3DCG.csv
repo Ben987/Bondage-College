@@ -43,6 +43,7 @@ Cloth,Gown2Top,Hobble Gown
 Cloth,Gown3,Shiny Gown
 Cloth,MaidApron1,Maid Apron
 Cloth,MaidApron2,Exposed Maid Apron
+Cloth,AdmiralTop,Admiral Top
 ClothAccessory,,Cloth Accessory
 ClothAccessory,StudentOutfit3Scarf,Student Scarf
 ClothAccessory,StudentOutfit3Bow1,Student Bow 1
@@ -74,6 +75,7 @@ ClothLower,ClothSkirt1,Patterned Skirt
 ClothLower,Jeans2,Ripped Jeans
 ClothLower,ChineseSkirt1,Chinese Skirt
 ClothLower,Gown2Skirt,Hobble Gown Skirt
+ClothLower,AdmiralSkirt,Admiral Skirt
 SuitLower,,Suit Lower
 SuitLower,Catsuit,Catsuit
 SuitLower,SeamlessCatsuit, Seamless Catsuit
@@ -287,6 +289,7 @@ Glasses,Mask1,Venetian Mask
 Glasses,Mask2,Domino Mask
 Glasses,ButterflyMask1,Butterfly Mask
 Glasses,EyePatch1,Eye Patch
+Glasses,ShinobiMask,Shinobi Mask
 TailStraps,,Tail Strap
 TailStraps,TailStrap,Kitty Tail Strap
 TailStraps,HorseTailStrap,Horse Tail Strap

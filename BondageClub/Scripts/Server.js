@@ -19,6 +19,7 @@ function ServerInit() {
 	ServerSocket.on("ChatRoomCreateResponse", function (data) { ChatCreateResponse(data); });
 	ServerSocket.on("ChatRoomUpdateResponse", function (data) { ChatAdminResponse(data); });
 	ServerSocket.on("ChatRoomSync", function (data) { ChatRoomSync(data); });
+	ServerSocket.on("ChatRoomSyncSingle", function (data) { ChatRoomSyncSingle(data); });
 	ServerSocket.on("ChatRoomMessage", function (data) { ChatRoomMessage(data); });
 	ServerSocket.on("ChatRoomAllowItem", function (data) { ChatRoomAllowItem(data); });
 	ServerSocket.on("PasswordResetResponse", function (data) { PasswordResetResponse(data); });
