@@ -94,7 +94,7 @@ function DialogCanUnlock(C, Item) {
 	var UnlockName = "Unlock-" + Item.Asset.Name;
 	if ((Item != null) && (Item.Property != null) && (Item.Property.LockedBy != null)) UnlockName = "Unlock-" + Item.Property.LockedBy;
 	for (var I = 0; I < Player.Inventory.length; I++)
-		if (InventoryItemHasEffect(Player.Inventory[I], UnlockName)) {
+		if (InventoryItemHasEffect(Player.Inventory[I], UnlockName) && Player.CanInteract()) {
 			var Lock = InventoryGetLock(Item);
 			if (Lock != null) {
 				if (Lock.Asset.LoverOnly && !C.IsLoverOfPlayer()) return false;
