@@ -140,6 +140,12 @@ function WardrobeAssetBundle(A) {
 	return { Name: A.Asset.Name, Group: A.Asset.Group.Name, Color: A.Color };
 }
 
+// Extract compressed bundle
+function WardrobeExtractBundle(B) {
+	if ((B.Name == null) && (B.length > 0)) return { Name: B[0], Group: B[1], Color: B[2] };
+	return B;
+}
+
 // Load character appearance from wardrobe, only load clothes on others
 function WardrobeFastLoad(C, W, Update) {
 	if (Player.Wardrobe != null && Player.Wardrobe[W] != null) {
@@ -147,6 +153,7 @@ function WardrobeFastLoad(C, W, Update) {
 		C.Appearance = C.Appearance
 			.filter(a => a.Asset.Group.Category != "Appearance" || (!a.Asset.Group.Clothing && !AddAll))
 		Player.Wardrobe[W]
+			.map(WardrobeExtractBundle)
 			.filter(w => w.Name != null && w.Group != null)
 			.filter(w => C.Appearance.find(a => a.Asset.Group.Name == w.Group) == null)
 			.forEach(w => {
