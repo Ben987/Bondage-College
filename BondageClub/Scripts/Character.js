@@ -562,7 +562,8 @@ function CharacterSetFacialExpression(C, AssetGroup, Expression, Timer) {
 				} else {
 					delete C.Appearance[A].Property.RemoveTimer;
 				}
-				if (Timer != null) TimerInventoryRemoveSet(C, AssetGroup, Timer);
+				CharacterRefresh(C);
+				ChatRoomCharacterUpdate(C);
 				return;
 			}
 		}
