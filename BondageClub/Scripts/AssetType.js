@@ -5,58 +5,6 @@
 var AssetTypeOffset = 0;
 var AssetTypeSelectBefore = false;
 
-var AssetTypeItemMouthDuctTape = {
-    Allow: [null, "Crossed", "Full", "Double", "Cover"],
-    NoneTypeName: "Small",
-    SelectBeforeWear: true,
-    Dialog: "DuctTapeMouthType",
-    Mofifiers: {
-        Small: { Effect: ["GagVeryLight"] },
-        Crossed: { Effect: ["GagVeryLight"] },
-        Full: { Effect: ["GagLight"] },
-        Double: { Effect: ["GagEasy"] },
-        Cover: { Effect: ["GagNormal"] }
-    },
-    DynamicSetDialog: function (C, Item) {
-        return "DuctTapeMouthSet" + ((Item && Item.Property && Item.Property.Type) ? Item.Property.Type : this.NoneTypeName)
-    }
-}
-
-/** Asset Type Informations */
-var AssetTypeInfo = {
-    ItemMouth: {
-        DuctTape: AssetTypeItemMouthDuctTape,
-    },
-    ItemMouth2: {
-        DuctTape: AssetTypeItemMouthDuctTape,
-    },
-    ItemMouth3: {
-        DuctTape: AssetTypeItemMouthDuctTape,
-    },
-    ItemHands: {
-        SpankingToys: {
-            Allow: ["Crop", "Flogger", "Cane", "HeartCrop", "Paddle", "WhipPaddle", "Whip", "CattleProd", "TennisRacket"],
-            ShowCount: 4,
-            SelectBeforeWear: true,
-            Dialog: "SpankingToysType",
-            DynamicAllowType: function () {
-                return this.Allow.filter(Type => Player.Inventory.findIndex(I => I.Name.includes("SpankingToys" + Type)) >= 0);
-            },
-            DynamicSetDialog: function (C, Item) {
-                if (C.ID == 0) {
-                    SpankingCurrentType = Item.Property.Type;
-                    return "SpankingToysSetPlayer";
-                } else {
-                    return "SpankingToysSetOthers";
-                }
-            },
-            DynamicDictionary: function (C, Item) {
-                return [{ Tag: "ItemUsed", AssetName: "SpankingToys" + ((Item.Property.Type) ? Item.Property.Type : "Crop") }];
-            }
-        },
-    },
-}
-
 /** Button position and sizes */
 var AssetTypeButtonPositions = [
     [],
@@ -96,12 +44,15 @@ function AssetTypeLoad() {
         if (Info.ShowCount == null) Info.ShowCount = Info.Allow.length;
         if (Info.NoneTypeName == null) Info.NoneTypeName = "None";
         if (Info.Dialog == null) Info.Dialog = Asset[A].Group.Name + Asset[A].Name + "Type";
+        if (Info.DialogSelect == null) Info.DialogSelect = Info.Dialog;
         if (Info.DynamicAllowType == null) Info.DynamicAllowType = function () { return Info.Allow; };
         if (Info.DynamicAllowSetType == null) Info.DynamicAllowSetType = function () { return true; };
         if (Info.DynamicSetDialog == null) Info.DynamicSetDialog = function () { return Item.Asset.Group.Name + Item.Asset.Name + "SetType" + (Type ? Type : Item.Asset.NoneTypeName); };
         if (Info.DynamicDictionary == null) Info.DynamicDictionary = function () { return []; };
 
         Info.Position = AssetTypeButtonPositionExtend(AssetTypeButtonPositions[Info.ShowCount]);
+
+        if (Asset[A].Extended && Info.Unextend) Asset[A].Extended = false;
 
         Asset[A].TypeInfo = Info;
         Asset[A].ExtendedOrTypeInfo |= Asset[A].TypeInfo != null;
@@ -110,7 +61,7 @@ function AssetTypeLoad() {
     }
 }
 
-
+/** Loads Item Propety */
 function AssetTypeSetLoad(Item) {
     AssetTypeOffset = 0;
     if (Item == null) Item = DialogFocusItem;
@@ -124,7 +75,6 @@ function AssetTypeSetLoad(Item) {
     }
 }
 
-
 /** Default typed item draw */
 function AssetTypeSetDraw() {
     if (DialogFocusItem == null || DialogFocusItem.Asset.TypeInfo == null) return;
@@ -137,12 +87,12 @@ function AssetTypeSetDraw() {
     DrawRect(1387, 225, 225, 275, "white");
     DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 227, 221, 221);
     DrawTextFit(DialogFocusItem.Asset.Description, 1500, 475, 221, "black");
-    DrawText(DialogFind(Player, "Select" + Info.Dialog), 1500, 550, "white", "gray");
+    DrawText(DialogFind(Player, "Select" + Info.DialogSelect), 1500, 550, "white", "gray");
 
     for (let I = AssetTypeOffset; (I < Types.length) && ((Info.ShowCount == 0) || (I < Info.ShowCount + AssetTypeOffset)); I++) {
         const P = Info.Position[I - AssetTypeOffset];
-        const Type = (Types[I] == null) ? Info.NoneTypeName : Types[I];
-        DrawButton(P.X, P.Y, P.W, P.H, "", InventoryItemIsType(DialogFocusItem, Types[I]) ? "#888888" : "White");
+        const Type = ((Types[I] == null) ? Info.NoneTypeName : Types[I]).replace('_', '');
+        DrawButton(P.X, P.Y, P.W, P.H, "", (!AssetTypeSelectBefore && InventoryItemIsType(DialogFocusItem, Types[I])) ? "#888888" : "White");
         DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/" + Type + ".png", P.X - 1, P.Y - 1);
         DrawText(DialogFind(Player, Info.Dialog + Type), P.X + P.W / 2, P.Y + P.TH, "white", "gray");
     }
@@ -170,13 +120,13 @@ function AssetTypeSetClick() {
 
         const P = Info.Position[I - AssetTypeOffset];
 
-        if (CommonIsClickAt(P.X, P.Y, P.W, P.H) && !InventoryItemIsType(DialogFocusItem, Types[I])) {
+        if (CommonIsClickAt(P.X, P.Y, P.W, P.H) && (AssetTypeSelectBefore || !InventoryItemIsType(DialogFocusItem, Types[I]))) {
             if (Info.DynamicAllowSetType(C, DialogFocusItem, Types[I])) {
                 if (AssetTypeSelectBefore) {
                     AssetTypeSelectBefore = false;
-                    AssetPreTypeSet(C, DialogFocusItem, Info, Types[I]);
+                    AssetTypePreSet(C, DialogFocusItem, Info, Types[I]);
                 } else {
-                    AssetTypeSet(C, DialogFocusItem, Info, Types[I]);
+                    AssetTypeSet(C, DialogFocusItem, Types[I]);
                 }
             }
             if (DialogInventory != null) {
@@ -202,14 +152,15 @@ function AssetTypeSet(C, Item, NewType) {
 
     AssetTypeSetMofifiers(Item, Info, NewType);
 
+    if (Item.Asset.AllowLock && Item.Property.LockedBy && Item.Property.LockedBy != "") {
+        if (Item.Property.Effect) Item.Property.Effect.push("Lock");
+        else Item.Property.Effect = ["Lock"];
+    }
+
     CharacterRefresh(C);
     ChatRoomCharacterUpdate(C);
 
-    const Dictionary = [
-        { Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
-        { Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber }];
-
-    ChatRoomPublishCustomAction(Info.DynamicSetDialog(C, Item), true, Dictionary.concat(Info.DynamicDictionary(C, Item)));
+    AssetTypePublish(C, Item);
 }
 
 /** Set a new type for a new item that just about to be equipped */
@@ -221,12 +172,35 @@ function AssetPreTypeSet(C, Item, Info, NewType) {
     DialogProgressStart(C, InventoryGet(C, Item ? Item.Asset.Group.Name : C.FocusGroup.Name), Item);
 }
 
+/**  Publish ChatRoom action of a type change */
+function AssetTypePublish(C, Item) {
+    const Info = Item.Asset.TypeInfo;
+    const Dictionary = [
+        { Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber },
+        { Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber },
+        { Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber }];
+    ChatRoomPublishCustomAction(Info.DynamicSetDialog(C, Item), true, Dictionary.concat(Info.DynamicDictionary(C, Item)));
+}
+
+/**  Sets type on an item that has yet to be equipped */
+function AssetTypePreSet(C, Item, Info, NewType) {
+    AssetTypeSetLoad(Item);
+    Item.Property.Type = NewType;
+    AssetTypeSetMofifiers(Item, Info, NewType);
+    DialogFocusItem = null;
+    DialogProgressStart(C, InventoryGet(C, Item ? Item.Asset.Group.Name : C.FocusGroup.Name), Item);
+}
+
 /**  Load modifiers from info to item*/
 function AssetTypeSetMofifiers(Item, Info, NewType) {
     if (NewType == null) NewType = Info.NoneTypeName;
     if (Info.Mofifiers && Info.Mofifiers[NewType]) {
-        if (Info.Mofifiers[NewType].Effect) {
-            Item.Property.Effect = Info.Mofifiers[NewType].Effect;
-        }
+        ["Effect", "Block", "SetPose", "Difficulty", "SelfUnlock", "Hide"].forEach(P => {
+            if (Info.Mofifiers[NewType][P] !== undefined) {
+                Item.Property[P] = Info.Mofifiers[NewType][P];
+            } else {
+                delete Item.Property[P];
+            }
+        });
     }
 }

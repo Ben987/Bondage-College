@@ -803,7 +803,7 @@ function DialogClick() {
 
 		// If we must are in the extended menu of the item
 		if (DialogFocusItem != null) {
-			if (DialogFocusItem.Asset.Extended || DialogFocusItem.Asset.IsLock) CommonDynamicFunction("Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Click()");
+			if (DialogFocusItem.Asset.Extended || !DialogFocusItem.Asset.TypeInfo) CommonDynamicFunction("Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Click()");
 			else AssetTypeSetClick();
 		} else {
 
@@ -936,7 +936,7 @@ function DialogExtendItem(Item, SourceItem) {
 	DialogFocusItem = Item;
 	DialogFocusSourceItem = SourceItem;
 	if (Item.Asset.TypeInfo) AssetTypeSetLoad();
-	else if (Item.Asset.Extended) CommonDynamicFunction("Inventory" + Item.Asset.Group.Name + Item.Asset.Name + "Load()");
+	else CommonDynamicFunction("Inventory" + Item.Asset.Group.Name + Item.Asset.Name + "Load()");
 }
 
 // Validates that the player is allowed to change the item color and swaps it on the fly
@@ -1098,6 +1098,7 @@ function DialogDrawItemMenu(C) {
 				DialogProgress = -1;
 				DialogInventoryBuild(C);
 				ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, true);
+				if (DialogProgressNextItem.Asset.TypeInfo.ExtraPublish && DialogProgressNextItem.Property && DialogProgressNextItem.Property.Type) AssetTypePublish(C, DialogProgressNextItem);
 			} else ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, true);
 
 			// Rebuilds the menu
@@ -1159,7 +1160,7 @@ function DialogDraw() {
 
 		// The view can show one specific extended item or the list of all items for a group
 		if (DialogFocusItem != null) {
-			if (DialogFocusItem.Asset.Extended || DialogFocusItem.Asset.IsLock) CommonDynamicFunction("Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Draw()");
+			if (DialogFocusItem.Asset.Extended || !DialogFocusItem.Asset.TypeInfo) CommonDynamicFunction("Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Draw()");
 			else AssetTypeSetDraw();
 			DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 		} else {

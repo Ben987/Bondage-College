@@ -1545,7 +1545,7 @@ var AssetFemale3DCG = [
 					{ Name: "Gag", AllowColorize: true }
 				]
 			},
-			{ Name: "DuctTape", Difficulty: -2, Value: 50, Time: 10, RemoveTime: 5, BuyGroup: "DuctTape", Hide: ["Mouth"], Effect: ["GagVeryLight"], AllowEffect: ["GagVeryLight", "GagLight", "GagEasy", "GagNormal"], SetPose: ["GagFlat"], Prerequisite: "GagFlat" },
+			{ Name: "DuctTape", Extended: true, Difficulty: -2, Value: 50, Time: 10, RemoveTime: 5, BuyGroup: "DuctTape", Hide: ["Mouth"], Effect: ["GagVeryLight"], AllowEffect: ["GagVeryLight", "GagLight", "GagEasy", "GagNormal"], AllowType: ["Small", "Crossed", "Full", "Double", "Cover"], SetPose: ["GagFlat"], Prerequisite: "GagFlat" },
 			{ Name: "PacifierGag", Random: false, Difficulty: -50, Effect: ["GagVeryLight"], Value: 10, Time: 2, Hide: ["Mouth"], ExpressionTrigger: [{ Group: "Blush", Name: "Light", Timer: 5 }, { Group: "Eyes", Name: "Closed", Timer: 5 }], BuyGroup: "PacifierGag", Block: ["ItemMouth2", "ItemMouth3"] },
 			{ Name: "HarnessPacifierGag", Random: false, Difficulty: 2, Effect: ["GagLight"], Value: 50, Time: 20, AllowLock: true, Hide: ["Mouth"], ExpressionTrigger: [{ Group: "Blush", Name: "Light", Timer: 5 }, { Group: "Eyes", Name: "Closed", Timer: 5 }], BuyGroup: "HarnessPacifierGag", SetPose: ["GagUnique"], Prerequisite: "GagUnique" },
 			{ Name: "DusterGag", Priority: 43, Random: false, Effect: ["GagEasy"], Difficulty: 4, Value: -1, Time: 20, AllowLock: true, Hide: ["Mouth"], BuyGroup: "DusterGag", Block: ["ItemMouth2", "ItemMouth3"] },
@@ -1701,7 +1701,7 @@ var AssetFemale3DCG = [
 					{ Name: "Gag", AllowColorize: true }
 				]
 			},
-			{ Name: "DuctTape", Random: false, Difficulty: -2, Value: -1, Time: 10, RemoveTime: 5, Hide: ["Mouth"], BuyGroup: "DuctTape", Effect: ["GagVeryLight"], AllowEffect: ["GagVeryLight", "GagLight", "GagEasy", "GagNormal"],  Block: ["ItemMouth"], SetPose: ["GagFlat"], Prerequisite: "GagFlat" },
+			{ Name: "DuctTape", Random: false, Extended: true, Difficulty: -2, Value: -1, Time: 10, RemoveTime: 5, Hide: ["Mouth"], BuyGroup: "DuctTape", Effect: ["GagVeryLight"], AllowEffect: ["GagVeryLight", "GagLight", "GagEasy", "GagNormal"], AllowType: ["Small", "Crossed", "Full", "Double", "Cover"], Block: ["ItemMouth"], SetPose: ["GagFlat"], Prerequisite: "GagFlat" },
 			{ Name: "HarnessPacifierGag", Random: false, Difficulty: 2, Effect: ["GagLight"], Value: -1, Time: 20, AllowLock: true, Hide: ["Mouth"], ExpressionTrigger: [{ Group: "Blush", Name: "Light", Timer: 5 }, { Group: "Eyes", Name: "Closed", Timer: 5 }], Block: ["ItemMouth"], BuyGroup: "HarnessPacifierGag", SetPose: ["GagUnique"], Prerequisite: "GagUnique" },
 			{ Name: "DusterGag", Random: false, Priority: 43, Effect: ["GagEasy"], Difficulty: 4, Value: -1, Time: 20, AllowLock: true, Hide: ["Mouth"], BuyGroup: "DusterGag", Block: ["ItemMouth", "ItemMouth3"] },
 			{ Name: "HarnessPonyBits", Random: false, Difficulty: 4, Effect: ["GagNormal"], Value: -1, Time: 20, AllowLock: true, Block: ["ItemMouth"], BuyGroup: "HarnessPonyBits", SetPose: ["GagUnique"], Prerequisite: "GagUnique" },
@@ -1786,7 +1786,7 @@ var AssetFemale3DCG = [
 					{ Name: "Gag", AllowColorize: true }
 				]
 			},
-			{ Name: "DuctTape", Random: false, Difficulty: -2, Value: -1, Time: 10, RemoveTime: 5, Hide: ["Mouth"], BuyGroup: "DuctTape", Effect: ["GagVeryLight"], AllowEffect: ["GagVeryLight", "GagLight", "GagEasy", "GagNormal"], Block: ["ItemMouth", "ItemMouth2"] },
+			{ Name: "DuctTape", Random: false, Extended: true, Difficulty: -2, Value: -1, Time: 10, RemoveTime: 5, Hide: ["Mouth"], BuyGroup: "DuctTape", Effect: ["GagVeryLight"], AllowEffect: ["GagVeryLight", "GagLight", "GagEasy", "GagNormal"], AllowType: ["Small", "Crossed", "Full", "Double", "Cover"], Block: ["ItemMouth", "ItemMouth2"] },
 			{ Name: "HarnessPacifierGag", Random: false, Difficulty: 2, Effect: ["GagLight"], Value: -1, Time: 20, AllowLock: true, Hide: ["Mouth"], ExpressionTrigger: [{ Group: "Blush", Name: "Light", Timer: 5 }, { Group: "Eyes", Name: "Closed", Timer: 5 }], Block: ["ItemMouth", "ItemMouth2"], BuyGroup: "HarnessPacifierGag", SetPose: ["GagUnique"], Prerequisite: "GagUnique" },
 			{ Name: "DusterGag", Random: false, Priority: 43, Effect: ["GagEasy"], Difficulty: 4, Value: -1, Time: 20, AllowLock: true, Hide: ["Mouth"], BuyGroup: "DusterGag", Block: ["ItemMouth", "ItemMouth2"] },
 			{ Name: "HarnessPonyBits", Random: false, Difficulty: 4, Effect: ["GagNormal"], Value: -1, Time: 20, AllowLock: true, Block: ["ItemMouth", "ItemMouth2"], BuyGroup: "HarnessPonyBits", SetPose: ["GagUnique"], Prerequisite: "GagUnique" },
