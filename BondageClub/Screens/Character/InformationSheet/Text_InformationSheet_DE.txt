@@ -146,9 +146,9 @@ Everyone, no exceptions
 Alle, ohne Ausnahme
 Everyone, except blacklist
 Alle, außer Blacklist
-Owner, whitelist & Dominants
+Owner, Lover, whitelist & Dominants
 Besitzer, Whitelist & Dominante
-Owner and whitelist only
+Owner, Lover and whitelist only
 Nur Besitzer und Whitelist
 Owner only
 Nur Besitzer

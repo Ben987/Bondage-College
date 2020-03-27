@@ -341,6 +341,7 @@ function SarahTransferToRoom() {
 		C.Love = 100;
 	}
 	if (Player.Lover == "NPC-Sarah") {
+		NPCEventAdd(C, "Girlfriend", CurrentTime);
 		C.Lover = Player.Name;
 		C.Love = 100;
 	}
@@ -394,6 +395,7 @@ function SarahTransferAmandaToRoom() {
 		C.Love = 100;
 	}
 	if (Player.Lover == "NPC-Amanda") {
+		NPCEventAdd(C, "Girlfriend", CurrentTime);
 		C.Lover = Player.Name;
 		C.Love = 100;
 	}

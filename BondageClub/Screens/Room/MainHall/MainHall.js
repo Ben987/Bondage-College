@@ -29,7 +29,7 @@ function MainHallLoad() {
 		if (Player.Appearance[A].Asset.Name == "SlaveCollar")
 			if (Player.Appearance[A].Property)
 				MainHallHasSlaveCollar = true;
-	MainHallTip = Math.floor(Math.random() * 21);
+	MainHallTip = Math.floor(Math.random() * 20);
 	CommonReadCSV("NoArravVar", "Room", "Management", "Dialog_NPC_Management_RandomGirl");
 	CommonReadCSV("NoArravVar", "Room", "KidnapLeague", "Dialog_NPC_KidnapLeague_RandomKidnapper");
 	CommonReadCSV("NoArravVar", "Room", "Private", "Dialog_NPC_Private_Custom");
@@ -187,7 +187,26 @@ function MainHallClick() {
 		ChatRoomSpace = "";
 		ChatSearchBackground = "IntroductionDark";
 		ChatSearchLeaveRoom = "MainHall";
-		ChatCreateBackgroundList = ["Introduction", "KidnapLeague", "MaidQuarters", "MainHall", "Management", "Private", "Shibari", "Bedroom", "HorseStable", "Nursery", "PrisonHall", "BDSMRoomBlue", "BDSMRoomPurple", "BDSMRoomRed", "Gardens", "IndoorPool", "OutdoorPool", "MaidCafe", "PublicBath", "ParkDay", "ParkNight", "ChillRoom", "Boudoir", "BondageBedChamber", "Beach", "ForestPath", "DeepForest", "SpookyForest", "SlumRuins", "AbandonedBuilding", "BalconyNight", "CozyLivingRoom", "RooftopParty", "CosyChalet", "ParkWinter", "XmasEve", "XmasDay", "StreetNight", "SnowyStreet"];
+		ChatCreateBackgroundList = [
+			"Introduction", "KidnapLeague", "MaidQuarters", "MainHall", "Management", "Private", "Shibari", "MaidCafe", 
+			"HorseStable", "Nursery", "PrisonHall", "Bedroom",
+			"BDSMRoomBlue", "BDSMRoomPurple", "BDSMRoomRed", "BondageBedChamber",
+			"CeremonialVenue", "WeddingRoom", "WeddingArch", "WeddingBeach",
+			"ParkDay", "ParkNight", "Gardens", "ParkWinter", "XmasEve", "XmasDay", "StreetNight", "SnowyStreet",
+			"IndoorPool", "OutdoorPool", "PublicBath", "Onsen", "Beach", "BeachCafe",
+			"PirateIsland", "PirateIslandNight", "ShipDeck", "CaptainCabin", "Shipwreck", 
+			"UnderwaterOne",
+			"MedinaMarket",	"SheikhPrivate", "SheikhTent",
+			"ForestPath", "DeepForest", "SpookyForest", "WitchWood", "DesolateVillage",
+			"ThroneRoom", "SecretChamber", "Dungeon", "DungeonRuin", "Confessions",
+			"AncientRuins", "JungleTemple", "SunTemple",
+			"AlchemistOffice", "ResearchPrep", "ResearchProgress",
+			"MiddletownSchool", "SlipperyClassroom", "SchoolHospital", "SchoolRuins", "SlumRuins", 
+			"SlumApartment", "AbandonedBuilding", "AbandonedSideRoom", "Industrial", "BackAlley", "CreepyBasement", "Cellar", "SlumCellar",
+			"VaultCorridor", "HellEntrance", "HeavenEntrance",
+			"BarRestaurant", "LostVages",
+			"ChillRoom", "Boudoir", "Kitchen", "DiningRoom", "CozyLivingRoom", "RooftopParty", "PartyBasement", "CosyChalet", "BalconyNight"
+		];
 		CommonSetScreen("Online", "ChatSearch");
 	}
 

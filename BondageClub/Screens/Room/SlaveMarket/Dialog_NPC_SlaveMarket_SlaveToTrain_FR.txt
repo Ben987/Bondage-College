@@ -1,0 +1,217 @@
+﻿###_NPC
+(A maid comes to inform you that the training session is over, and you must free the room.)
+(Une femme de chambre vient vous informer que la session de formation est terminée, et donc, vous devez libérer la salle.)
+(The girl that you should train bows her head and doesn't dare to speak.)
+(La fille que vous devez entraîner incline la tête et n'ose pas parler.)
+###_PLAYER
+Are you here to be trained?
+Êtes-vous ici pour être formée?
+###_NPC
+Yes Miss, I want to become a better submissive.
+Oui Miss, je veux devenir une meilleure soumise.
+###_PLAYER
+You're in trouble girl.
+Tu es dans le pétrin, fille.
+###_NPC
+(She trembles a little.)  I know.  I want to become a better submissive Miss.
+(Elle tremble un peu.) Je sais. Je veux devenir une meilleure soumise Miss.
+###_PLAYER
+Why are you here?
+Pourquoi es-tu ici?
+###_NPC
+To be trained Miss.  I want to become a better submissive.
+Pour être formée Miss. Je veux devenir une meilleure soumise.
+###_PLAYER
+What do you want to improve?
+Que voulez-vous améliorer?
+###_NPC
+I panic when I'm restrained and blindfolded.  Can you help me with that?
+Je panique quand je suis retenu et que j'ai les yeux bandés. Pouvez-vous m'aider avec ça?
+###_PLAYER
+I could train you today.
+Je pourrais te former aujourd'hui.
+###_NPC
+Thanks Miss, I know that if you restrain me slowly and carefully, I can overcome my claustrophobia.
+Merci Mademoiselle, je sais que si vous m'attachez lentement et prudemment, je pourrai vaincre ma claustrophobie.
+###_PLAYER
+Let's start your training.
+Commençons votre formation.
+###_NPC
+Very well Miss, thanks for your time.  (How will you train her?)
+Très bien Miss, merci pour votre temps. (Comment allez-vous l'entraîner?)
+I'm scared of pain and I don't handle it very well.  Can you help me with that?
+J'ai peur de la douleur et je ne la gère pas très bien. Pouvez-vous m'aider avec ça?
+Thanks Miss, I know that if you hurt me gently and progressively, I can improve myself.
+Merci Miss, je sais que si vous me faites mal doucement et progressivement, je peux m'améliorer.
+(She blushes.)  Dominants say that I can't control my orgasm and I cum without permission.  Can you help me with that?
+(Elle rougit.) Les dominantes disent que je ne peux pas contrôler mes orgasmes et que je jouis sans permission. Pouvez-vous m'aider avec cela?
+Thanks Miss, I know that I can learn to control my sexual self-control in your hands.
+Merci Mademoiselle, je sais que je peux apprendre à contrôler ma maîtrise de soi sexuelle entre vos mains.
+(The slave that you should train bows her head and doesn't dare to speak.)
+(L'esclave que vous devez former incline la tête et n'ose pas parler.)
+Yes Miss, my Mistress sent me here to become a better submissive.
+Oui Miss, ma maîtresse m'a envoyé ici pour devenir une meilleure soumise.
+(She trembles a little.)  I know.  My Mistress sent me here to become a better submissive.
+(Elle tremble un peu.) Je sais. Ma maîtresse m'a envoyée ici pour devenir une meilleure soumise.
+###_PLAYER
+Why did your owner send you here?
+Pourquoi votre propriétaire vous a-t-elle envoyée ici?
+###_NPC
+My Mistress sent me here to become a better submissive.
+Ma maîtresse m'a envoyée ici pour devenir une meilleure soumise.
+###_PLAYER
+What does she want to improve?
+Que veut-elle améliorer?
+###_NPC
+I panic when I'm restrained and blindfolded.  Mistress is sick of that.  Can you help me?
+Je panique quand je suis retenu et que j'ai les yeux bandés. Maîtresse en a marre de ça. Pouvez-vous m'aider?
+Thanks Miss, I know that if you restrain me slowly, I can overcome my claustrophobia.
+Merci mademoiselle, je sais que si vous m'attachez lentement, je pourrai vaincre ma claustrophobie.
+Very well Miss, my Mistress will be thankful.  (How will you train her?)
+Très bien Miss, ma maîtresse vous en sera reconnaissante. (Comment allez-vous l'entraîner?)
+I'm scared of pain and I don't handle it very well.  Mistress sent me here to get better with that.
+J'ai peur de la douleur et je ne la gère pas très bien. Maîtresse m'a envoyé ici pour que je m'améliore.
+(She blushes.)  Mistress says that I can't control my orgasm and I cum without permission.  Can you help me with that?
+(Elle rougit.) Maîtresse dit que je ne peux pas contrôler mes orgasmes et que je jouis sans permission. Pouvez-vous m'aider avec cela?
+Thanks Miss, I know that I can learn to control my sexual self-control in your hands.  Mistress will appreciate.
+Merci Mademoiselle, je sais que je peux apprendre à contrôler ma maîtrise de soi sexuelle entre vos mains. Maîtresse appréciera.
+(She bows her head and waits on you.  How will you train her?)
+(Elle baisse la tête et vous attend. Comment allez-vous l'entraîner?)
+###_PLAYER
+(Do a bondage training.)
+(Faites une formation de bondage.)
+###_NPC
+(She trembles in her restraints as you start the bondage training.)
+(Elle tremble dans ses contraintes lorsque vous commencez l'entraînement de bondage.)
+(Restrain her fully so she cannot walk, talk, see or use her hands to start the bondage training.)
+(Retener la complètement pour qu'elle ne puisse pas marcher, parler, voir ou utiliser ses mains pour commencer l'entraînement de bondage.)
+###_PLAYER
+(Do a pain training.)
+(Faire une formation sur la douleur.)
+###_NPC
+(She takes a deep breath as you get closer to start a pain training.)
+(Elle respire profondément lorsque vous vous rapprochez pour commencer l'entraînement de douleur.)
+(Do a sexual training.)
+(Faire un entraînement sexuelle.)
+(She blushes red as you get closer to start a sexual training.)
+(Elle rougit lorsque vous vous rapprochez pour commencer un entraînement sexuel.)
+(Give up and go back.)
+(Abandonner et revener.)
+(Check on her well-being.)
+(Vérifiez si elle va bien.)
+(She seems to be very calm and relax.  She doesn't struggle at all.)
+(Elle semble très calme et détendue. Elle ne lutte pas du tout.)
+(She barely struggles and seems to be in control.)
+(Elle se débat à peine et semble être en contrôle.)
+(She struggles a little and seems to be in a good learning mood, both in control and on the edge at the same time.)
+(Elle se débat un peu et semble vouloir apprendre, elle est à la fois en contrôle et sur le bord en même temps.)
+(She struggles a lot and seems to be panicking.)
+(Elle se débat beaucoup et semble paniquer.)
+(She struggles frantically, cries and begs for freedom like an animal.)
+(Elle se débat frénétiquement, pleure et supplie pour ça liberté comme un animal.)
+(Loosen her restraints.)
+(Desserrer ses attaches.)
+(She seems comforted as you loosen her restraints.)
+(Elle semble réconfortée lorsque vous desserrez ses attaches.)
+(Tease and grope her.)
+(La taquiner et la tâtonner.)
+(She moans silently as you slowly tease and grope her.)
+(Elle gémit silencieusement pendant que vous la taquinez lentement et la tripotez.)
+(Tighten her restraints.)
+(Resserrez ses attaches.)
+(She whimpers a little as you tighten her restrains.)
+(Elle gémit un peu alors que vous resserrez ses attaches.)
+(Slap her.)
+(La gifler.)
+(She cowers as you slap her hard, trembling from her helpless pain.)
+(Elle se recroqueville alors que vous la giflez fort, tremblant à cause de la douleur et de son impuissance.)
+(Tighten to stop her blood circulation.)
+(Serrer pour arrêter sa circulation sanguine.)
+(She struggles and screams in the gag as her bondage gets really tight and cuts her blood flow, making her dizzy.)
+(Elle se débat et crie dans le bâillon alors que ses contraintes sont de plus en plus serrées et coupe son flux sanguin, la rendant étourdie.)
+(Check on her pain threshold.)
+(Vérifier son seuil de douleur.)
+(She looks happy and doesn't seem to be in pain at all.)
+(Elle a l'air heureuse et ne semble pas avoir mal du tout.)
+(She looks like in a little bit of pain but nothing extreme.)
+(Elle semble ressentir un peu de douleur, mais rien d'extrême.)
+(She breathes fast and aches from the pain but seems to be well-focused on your training.)
+(Elle respire vite et souffre de douleur, mais semble être bien concentrée sur votre entraînement.)
+(She cries from the intense pain and cowers at your every move, in a state of panic.)
+(Elle pleure à cause de la douleur intense et se recroqueville à chaque mouvement, dans un état de panique.)
+(She has large marks on her skin and is almost passed-out.  The intense pain makes her barely conscious.)
+(Elle a de longues marques sur la peau et est presque évanouie. La douleur intense la rend à peine consciente.)
+(Take time to comfort her.)
+(Prendre le temps de la réconforter.)
+(She seems comforted as you take time to calm her down.)
+(Elle semble réconfortée alors que vous prenez le temps de la calmer.)
+(Spank her.)
+(La fesser.)
+(You spank her a few times as her eyes widen a little with each swing.)
+(Vous la fessez plusieurs fois alors que ses yeux s'écarquillent un peu à chaque coup.)
+(Crop her.)
+(Lui donner des coups de cravache.)
+(She whimpers and jumps with each crop swing.)
+(Elle gémit et saute à chaque coup de cravache.)
+(Strangle her lightly.)
+(L'étrangler légèrement.)
+(You strangle her lightly as she struggles for air and against the pain.)
+(Vous l'étranglez légèrement alors qu'elle lutte pour une bouffer d'air et contre la douleur.)
+(Whip her.)
+(La fouetter.)
+(She cries with each whip lashes, trying to endure the pain and getting a strong adrenaline rush.)
+(Elle pleure à chaque coup de fouet, essayant de supporter la douleur et obtenant ainsi une forte poussée d'adrénaline.)
+(Check on her arousal.)
+(Vérifier son niveau d'excitation.)
+(She doesn't seem turned on at all.)
+(Elle ne semble pas du tout allumée.)
+(She looks a little wet and seems to be enjoying herself.)
+(Elle a l'air un peu mouillée et semble se plaire.)
+(She's on the edge of an orgasm, trembling and begging you to let her climax.)
+(Elle est au bord d'un orgasme, tremblante et vous supplie de la laisser jouir.)
+(She shakes a lot and tries to hide the fact that she had an unapproved orgasm.)
+(Elle tremble beaucoup et essaie de cacher le fait qu'elle a eu un orgasme non-approuvé.)
+(She's moaning loudly and dripping in her own juices.  She cannot hide her unapproved orgasm.)
+(Elle gémit bruyamment et dégouline dans son propre jus. Elle ne peut pas cacher son orgasme non-approuvé.)
+(Let her cool down.)
+(La laisser se reposer.)
+(You let her relax and cool down for a little while.)
+(Vous la laissez se détendre et se reposer pendant un petit moment.)
+(Kiss her.)
+(L'embrasser.)
+(You kiss her lovingly to keep her in the mood.)
+(Tu l'embrasses amoureusement pour la garder d'humeur.)
+(Massage her breast.)
+(Masser sa poitrine.)
+(You massage her breast slowly as she moans from the pleasure.)
+(Vous masser lentement ses seins alors qu'elle gémit de plaisir.)
+(Masturbate her.)
+(La masturber.)
+(You masturbate her skillfully as she moans loudly from the pleasure.)
+(Vous la masturbez habilement alors qu'elle gémit bruyamment de plaisir.)
+(Eat her.)
+(La manger.)
+(She screams from the uncontrollable pleasure as you eat her pussy with delight.)
+(Elle hurle à cause du plaisir incontrôlable que vous lui procurez en lui mangeant la chatte vigoureusement.)
+Your training is done.
+Votre formation est terminée.
+(She nods happily and seems to have learned from you.  Your training had positive effects.)
+(Elle acquiesce joyeusement et semble avoir appris grâce à vous. Votre formation a eu des effets positifs.)
+Next time it will be harsher.
+La prochaine fois, ce sera plus dur.
+(She gulps but seems to have learned from you.  Your training had positive effects.)
+(Elle déglutit, mais semble avoir appris grâce à vous. Votre formation a eu des effets positifs.)
+(Stare at the trained girl.)
+(Regarder la fille entraînée.)
+(Spank her one last time.)
+(La fesser une dernière fois.)
+(Back to the slave market.)
+(Retour au marché des esclaves.)
+(She trembles without much control and panics a little, your training was too intense.)
+(Elle tremble quelque peu hors de contrôle et panique un peu, votre entraînement était trop intense.)
+(She shrugs and doesn't seem very affected.  Your training was too easy for her.)
+(Elle hausse les épaules et ne semble pas très affectée. Votre formation a été trop facile pour elle.)
+(She giggles and doesn't seem very affected.  Your training was too easy for her.)
+(Elle glousse et ne semble pas très affectée. Votre formation a été trop facile pour elle.)
+(She seems confused from your training session, it's probably not what she needed.)
+(Elle semble confuse de votre séance d'entraînement, ce n'est probablement pas ce dont elle avait besoin.)

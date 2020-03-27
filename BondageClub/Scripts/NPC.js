@@ -90,6 +90,70 @@ function NPCTraitDialog(C) {
 
 }
 
+// Sets the arousal stats for an NPC if it's not already done
+function NPCArousal(C) {
+
+	// Generates new data if there isn't any
+	if (C.ArousalSettings == null) {
+
+		// Resets to the default settings in automatic mode
+		PreferenceInit(C);
+		var Dominant = NPCTraitGet(C, "Dominant");
+		var Horny = NPCTraitGet(C, "Horny");
+
+		// Generates love/hate for all activities
+		for (var P = 0; P < C.ArousalSettings.Activity.length; P++) {
+
+			// Picks a random love factor for the activity (highest values have less chances)
+			var LoveSelf = Math.round((Math.random() * 4) + 0.5, 0);
+
+			// Horny NPC have higher love for sexual activities
+			if (Horny + 125 > Math.random() * 250) LoveSelf = LoveSelf + 1;
+			if (Horny + 125 < Math.random() * 250) LoveSelf = LoveSelf - 1;
+
+			// Dominant NPC usually prefer to do activities on others
+			var LoveOther = LoveSelf;
+			if (Dominant + 125 > Math.random() * 250) LoveSelf = LoveSelf - 1;
+			if (Dominant + 125 > Math.random() * 250) LoveOther = LoveOther + 1;
+			if (Dominant + 125 < Math.random() * 250) LoveSelf = LoveSelf + 1;
+			if (Dominant + 125 < Math.random() * 250) LoveOther = LoveOther - 1;
+
+			// 0 and 4 are the limits
+			if (LoveSelf < 0) LoveSelf = 0;
+			if (LoveOther < 0) LoveOther = 0;
+			if (LoveSelf > 4) LoveSelf = 4;
+			if (LoveOther > 4) LoveOther = 4;
+
+			// Sets the final values
+			C.ArousalSettings.Activity[P].Self = LoveSelf;
+			C.ArousalSettings.Activity[P].Other = LoveOther;
+
+		}
+
+		// Picks a random zone that's sure to trigger an orgasm, each girl has a perfect zone
+		var OrgasmZones = ["ItemBreast", "ItemVulva", "ItemButt"];
+		var Orgasm = CommonRandomItemFromList("", OrgasmZones);
+
+		// Generates love/hate for all regions randomly
+		for (var Z = 0; Z < C.ArousalSettings.Zone.length; Z++) {
+			if (C.ArousalSettings.Zone[Z].Name == Orgasm) {
+				C.ArousalSettings.Zone[Z].Factor = 4;
+				C.ArousalSettings.Zone[Z].Orgasm = true;
+			} else {
+				C.ArousalSettings.Zone[Z].Factor = Math.round((Math.random() * 4) + 0.5, 0);
+				if ((OrgasmZones.indexOf(C.ArousalSettings.Zone[Z].Name) >= 0) && (Math.random() > 0.5)) C.ArousalSettings.Zone[Z].Orgasm = true;
+			}
+		}
+
+	}
+
+	// Forces the automatic meter and resets it
+	C.ArousalSettings.Active = "Automatic";
+	C.ArousalSettings.Progress = 0;
+	C.ArousalSettings.ProgressTimer = 0;
+
+}
+
 // Returns the trait value of an NPC
 function NPCTraitGet(C, TraitType) {
 
@@ -141,6 +205,14 @@ function NPCLongEventDelay(C) {
 	if (T > 0) return 604800000;
 	if (T < 0) return 86400000;
 	return 259200000;
+}
+
+// For longer lover events, the horny / frigid trait comes into play (1 week if horny, 2 weeks if nothing, 4 weeks if frigid)
+function NPCLongLoverEventDelay(C) {
+	var T = NPCTraitGet(C, "Horny");
+	if (T > 0) return 604800000;
+	if (T < 0) return 2419200000;
+	return 1209600000;
 }
 
 // Sets the love factor for an NPC

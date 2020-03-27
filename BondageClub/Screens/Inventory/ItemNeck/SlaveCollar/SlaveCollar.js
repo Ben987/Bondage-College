@@ -56,11 +56,11 @@ var InventoryItemNeckSlaveCollarTypes = [
 	},{
         Name: "LeatherCorsetCollar",
         Image: "LeatherCorsetCollar",
-        Property: { Type: "LeatherCorsetCollar", Effect: [], Block: [] }
+        Property: { Type: "LeatherCorsetCollar", Effect: ["GagNormal"], Block: ["ItemMouth", "ItemMouth2", "ItemMouth3"] }
 	},{
         Name: "StrictPostureCollar",
         Image: "StrictPostureCollar",
-        Property: { Type: "StrictPostureCollar", Effect: ["GagNormal"], Block: ["ItemMouth", "ItemMouth2", "ItemMouth3"] }
+        Property: { Type: "StrictPostureCollar", Effect: [], Block: [] }
 	},{
         Name: "LatexPostureCollar",
         Image: "LatexPostureCollar",
@@ -77,12 +77,26 @@ var InventoryItemNeckSlaveCollarTypes = [
         Name: "OrnateCollar",
         Image: "OrnateCollar",
         Property: { Type: "OrnateCollar", Effect: [], Block: [] }
+	},{
+        Name: "SlenderSteelCollar",
+        Image: "SlenderSteelCollar",
+        Property: { Type: "SlenderSteelCollar", Effect: [], Block: [] }
 	},
 ];
 
 // Loads the item extension properties
 function InventoryItemNeckSlaveCollarLoad() {
 	InventoryItemNeckSlaveCollarColorMode = false;
+	var C = CharacterGetCurrent();
+    var SC = InventoryItemNeckSlaveCollarTypes.find(element => (element.Name == "LoveLeatherCollar"));
+    if (C && C.IsOwnedByPlayer() && C.IsLoverOfPlayer() && !SC) {
+        InventoryItemNeckSlaveCollarTypes.push({
+                Name: "LoveLeatherCollar",
+                Image: "LoveLeatherCollar",
+                Property: {Type: "LoveLeatherCollar", Effect: [], Block: []}
+        });
+    }
+    else if (C && C.IsOwnedByPlayer && !C.IsLoverOfPlayer() && SC) { InventoryItemNeckSlaveCollarTypes.splice(InventoryItemNeckSlaveCollarTypes.indexOf(SC,1)); }
     if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Type: null, Effect: [], Block: [] };
 }
 
@@ -94,15 +108,16 @@ function InventoryItemNeckSlaveCollarDraw() {
     if (C && C.IsOwnedByPlayer()) {
         if (InventoryItemNeckSlaveCollarColorMode) {
 
-			// In color picking mode, we allow the user to change the collar color
+            // In color picking mode, we allow the user to change the collar color
+            ElementPosition("InputColor", 1450, 65, 300);
+            ColorPickerDraw(1300, 145, 675, 830, document.getElementById("InputColor"));
             DrawButton(1665, 25, 90, 90, "", "White", "Icons/ColorSelect.png");
             DrawButton(1775, 25, 90, 90, "", "White", "Icons/ColorCancel.png");
-            ElementPosition("InputColor", 1450, 65, 300);
-            DrawImage("Backgrounds/ColorPicker.png", 1300, 145);
 
         } else {
 
-			// In regular mode, the owner can select the collar model and change the offset to get the next 8 models
+            // In regular mode, the owner can select the collar model and change the offset to get the next 8 models
+            ColorPickerHide();
 			DrawText(DialogFind(Player, "SlaveCollarSelectType"), 1500, 250, "white", "gray");
 			DrawButton(1665, 25, 90, 90, "", "White", "Icons/Next.png");
 			DrawButton(1775, 25, 90, 90, "", (DialogFocusItem.Color != null && DialogFocusItem.Color != "Default" && DialogFocusItem.Color != "None") ? DialogFocusItem.Color : "White", "Icons/ColorPick.png");

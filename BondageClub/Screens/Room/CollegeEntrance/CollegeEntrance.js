@@ -56,6 +56,7 @@ function CollegeEntranceWearStudentClothes(C) {
 	InventoryRemove(C, "Gloves");
 	InventoryRemove(C, "HairAccessory1");
 	InventoryRemove(C, "HairAccessory2");
+	InventoryRemove(C, "ClothAccessory");
 }
 
 // Returns TRUE if the player is wearing tennis clothes

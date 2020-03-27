@@ -1,5 +1,5 @@
-Move the Carrots ($CARROTS) and avoid the crops ($CROPS)
-Cherchez les carotte ($CARROTS) en évitant les cravaches ($CROPS)
+Move to the Carrots ($CARROTS) and avoid the crops ($CROPS)
+Allez prendre les carotte ($CARROTS) en évitant les cravaches ($CROPS)
 Congratulations!  (Carrots: $CARROTS, crops: $CROPS)
 Félicitations!  (Carottes: $CARROTS, Cravaches: $CROPS)
 Sorry, you've failed.  (Carrots: $CARROTS, crops: $CROPS)
@@ -10,5 +10,5 @@ Congratulations!  (Win: $HURDLEWIN, Failed: $HURDLEFAIL)
 Félicitations!  (Réussi: $HURDLEWIN, Manqué: $HURDLEFAIL)
 Sorry, you've failed.  (Win: $HURDLEWIN, Failed: $HURDLEFAIL)
 Dommage, c'est raté.  (Réussi: $HURDLEWIN, Manqué: $HURDLEFAIL)
-Whipe the Ponys ($PONY) not the Trainer ($TRAINER).
+Whip the Ponys ($PONY), not the Trainer ($TRAINER).
 Essuyez les poneys ($PONY) et non l'entraineur ($TRAINER).

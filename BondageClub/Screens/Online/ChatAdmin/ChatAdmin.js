@@ -96,7 +96,7 @@ function ChatAdminClick() {
 
 		// When we select a new background
 		if ((MouseX >= 1350) && (MouseX <= 1850) && (MouseY >= 500) && (MouseY <= 565)) {
-			ChatAdminBackgroundIndex += ((MouseX < 1600 && !CommonIsMobile) ? -1 : 1);
+			ChatAdminBackgroundIndex += ((MouseX < 1600) ? -1 : 1);
 			if (ChatAdminBackgroundIndex >= ChatCreateBackgroundList.length) ChatAdminBackgroundIndex = 0;
 			if (ChatAdminBackgroundIndex < 0) ChatAdminBackgroundIndex = ChatCreateBackgroundList.length - 1;
 			ChatAdminBackgroundSelect = ChatCreateBackgroundList[ChatAdminBackgroundIndex];

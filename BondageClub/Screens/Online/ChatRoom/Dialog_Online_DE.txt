@@ -1,4 +1,38 @@
 ###_NPC
+picks a glass of water from DialogCharacterName tray.
+nimmt sich ein Glas Wasser von DialogCharacterName Servierplatte.
+picks an orange juice from DialogCharacterName tray.
+nimmt sich einen Orangensaft von DialogCharacterName Servierplatte.
+picks a beer from DialogCharacterName tray.
+nimmt sich ein Bier von DialogCharacterName Servierplatte.
+picks a glass of wine from DialogCharacterName tray.
+nimmt sich ein Glas Wein von DialogCharacterName Servierplatte.
+buys a Virgin Mojito from DialogCharacterName tray.
+kauft einen Virgin von DialogCharacterName Servierplatte.
+buys a Margarita from DialogCharacterName tray.
+kauft einen Margarita von DialogCharacterName Servierplatte.
+buys a glass of Whiskey from DialogCharacterName.
+kauft ein Glas Whiskey von DialogCharacterName.
+buys a glass of champagne from DialogCharacterName.
+kauft ein Glas Champagner von DialogCharacterName.
+buys a jug of refreshing lemonade for everyone, from DialogCharacterName.
+kauft von DialogCharacterName einen Krug erfrischende Limonade für alle.
+buys a round of shooters for everyone, from DialogCharacterName.
+gibt bei DialogCharacterName allen eine Runde aus.
+buys a jug of Sex on the Beach for everyone, from DialogCharacterName.
+kauft von DialogCharacterName einen Krug Sex on the Beach für alle.
+buys a beer pitcher for everyone, from DialogCharacterName.
+kauft von DialogCharacterName einen Krug Bier für alle.
+picks a tea from DialogCharacterName tray.
+nimmt sich einen Tee von DialogCharacterName Servierplatte.
+picks a coffee from DialogCharacterName tray.
+nimmt sich einen Kaffee von DialogCharacterName Servierplatte.
+buys a hot chocolate from DialogCharacterName tray.
+kauft eine heiße Schokolade von DialogCharacterName Servierplatte.
+buys a expresso from DialogCharacterName tray.
+kauft einen Espresso von DialogCharacterName Servierplatte.
+buys a cappuccino from DialogCharacterName tray.
+kauft einen Cappuccino von DialogCharacterName Servierplatte.
 (You can use or remove items by selecting specific body regions.)
 (Wähle eine Körperregion, um Items zu benutzen oder zu entfernen.)
 (You don't have access to use or remove items on her.)

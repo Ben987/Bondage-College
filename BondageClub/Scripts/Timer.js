@@ -3,6 +3,9 @@ var CurrentTime = 0;
 var TimerRunInterval = 20;
 var TimerCycle = 0;
 var TimerLastTime = CommonTime();
+var TimerLastArousalProgress = 0;
+var TimerLastArousalProgressCount = 0;
+var TimerLastArousalDecay = 0;
 
 // Returns a string of the current remaining timer
 function TimerToString(T) {
@@ -102,6 +105,71 @@ function TimerProcess(Timestamp) {
 	if (TimerCycle % 100 == 0) {
 		TimerInventoryRemove();
 		TimerPrivateOwnerBeep();
+	}
+
+	// Arousal/Activity events only occur in allowed rooms
+	if (ActivityAllowed()) {
+
+		// Arousal can change every 0.8 of a second, based on ProgressTimer
+		if ((TimerLastArousalProgress + 800 < CurrentTime) || (TimerLastArousalProgress - 800 > CurrentTime)) {
+			TimerLastArousalProgress = CurrentTime;
+			TimerLastArousalProgressCount++;
+			for (var C = 0; C < Character.length; C++) {
+
+				// If the character is having an orgasm and the timer ran out, we move to the next orgasm stage
+				if ((Character[C].ArousalSettings != null) && (Character[C].ArousalSettings.OrgasmTimer != null) && (Character[C].ArousalSettings.OrgasmTimer > 0)) {
+					if (Character[C].ArousalSettings.OrgasmTimer < CurrentTime) {
+						if ((Character[C].ArousalSettings.OrgasmStage == null) || (Character[C].ArousalSettings.OrgasmStage <= 1)) ActivityOrgasmStart(Character[C]);
+						else ActivityOrgasmStop(Character[C], 20);
+					}
+				} else {
+
+					// Depending on the character settings, we progress the arousal meter
+					if ((Character[C].ArousalSettings != null) && (Character[C].ArousalSettings.Active != null) && ((Character[C].ArousalSettings.Active == "Automatic") || (Character[C].ArousalSettings.Active == "Hybrid"))) {
+
+						// Activity impacts the progress slowly over time, if there's an activity running, vibrations are ignored
+						if ((Character[C].ArousalSettings.ProgressTimer != null) && (typeof Character[C].ArousalSettings.ProgressTimer === "number") && !isNaN(Character[C].ArousalSettings.ProgressTimer) && (Character[C].ArousalSettings.ProgressTimer != 0)) {
+							if (Character[C].ArousalSettings.ProgressTimer < 0) {
+								Character[C].ArousalSettings.ProgressTimer++;
+								ActivityTimerProgress(Character[C], -1);
+							}
+							else {
+								Character[C].ArousalSettings.ProgressTimer--;
+								ActivityTimerProgress(Character[C], 1);
+							}
+						} else if (Character[C].IsEgged()) {
+
+							// If the character is egged, we find the highest intensity factor and affect the progress, low and medium vibrations have a cap
+							var Factor = -1;
+							for (var A = 0; A < Character[C].Appearance.length; A++) {
+								var Item = Character[C].Appearance[A];
+								var ZoneFactor = PreferenceGetZoneFactor(Character[C], Item.Asset.Group.Name) - 2;
+								if (InventoryItemHasEffect(Item, "Egged", true) && (Item.Property != null) && (Item.Property.Intensity != null) && (typeof Item.Property.Intensity === "number") && !isNaN(Item.Property.Intensity) && (Item.Property.Intensity >= 0) && (ZoneFactor >= 0) && (Item.Property.Intensity + ZoneFactor > Factor))
+									if ((Character[C].ArousalSettings.Progress < 95) || PreferenceGetZoneOrgasm(Character[C], Item.Asset.Group.Name))
+										Factor = Item.Property.Intensity + ZoneFactor;
+							}
+							if ((Factor >= 4) && (TimerLastArousalProgressCount % 2 == 0)) ActivityTimerProgress(Character[C], 1);
+							if ((Factor == 3) && (TimerLastArousalProgressCount % 3 == 0)) ActivityTimerProgress(Character[C], 1);
+							if ((Factor == 2) && (TimerLastArousalProgressCount % 4 == 0) && (Character[C].ArousalSettings.Progress <= 95)) ActivityTimerProgress(Character[C], 1);
+							if ((Factor == 1) && (TimerLastArousalProgressCount % 6 == 0) && (Character[C].ArousalSettings.Progress <= 65)) ActivityTimerProgress(Character[C], 1);
+							if ((Factor == 0) && (TimerLastArousalProgressCount % 8 == 0) && (Character[C].ArousalSettings.Progress <= 35)) ActivityTimerProgress(Character[C], 1);
+
+						}
+
+					}
+				}
+			}
+		}
+
+		// Arousal decays by 1 naturally every 10 seconds
+		if ((TimerLastArousalDecay + 10000 < CurrentTime) || (TimerLastArousalDecay - 10000 > CurrentTime)) {
+			TimerLastArousalDecay = CurrentTime;
+			for (var C = 0; C < Character.length; C++)
+				if ((Character[C].ArousalSettings != null) && (Character[C].ArousalSettings.Active != null) && ((Character[C].ArousalSettings.Active == "Automatic") || (Character[C].ArousalSettings.Active == "Hybrid")))
+					if ((Character[C].ArousalSettings.Progress != null) && (typeof Character[C].ArousalSettings.Progress === "number") && !isNaN(Character[C].ArousalSettings.Progress) && (Character[C].ArousalSettings.Progress > 0))
+						ActivityTimerProgress(Character[C], -1);
+		}
+
 	}
 
 	// Launches the main again for the next frame

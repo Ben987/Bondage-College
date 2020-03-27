@@ -33,7 +33,7 @@ Tut mir leid, Miss. Ich kann nicht helfen.
 (Du nimmst den Knebel ab und sie streckt ihren Mund.) Danke, Miss, geknebelt ist es schwierig, Hausmädchen loszuschicken.
 (She grumbles while you push some earplugs in.) I can't hear you properly now.
 (Sie grummelt, als du ihr Ohrstöpsel hineinsteckst.) Jetzt kann ich Sie nicht mehr richtig verstehen.
-(You pull the earplugs out.) That's better i can hear you clearly now.
+(You pull the earplugs out.) That's better I can hear you clearly now.
 (Du ziehst die Ohrstöpsel heraus.) Das ist besser, jetzt verstehe ich Sie ordentlich.
 (She sighs and turns around while you restrain her arms.)  It might be a little hard to work like that Miss.
 (Sie seufzt und dreht sich um, als du ihre Arme fesselst.) Das könnte meine Arbeit etwas erschweren, Miss.
@@ -291,7 +291,7 @@ Geil! Wer fickt mich als Erstes? (Dich ausziehen.)
 No way!  Can't I stay clothed?
 Niemals! Kann ich nicht angezogen bleiben?
 ###_NPC
-Strip girl, we've all did it before.  
+Strip girl, we've all did it before.
 Ausziehen, Mädchen, da mussten wir alle durch.
 ###_PLAYER
 I'll need some help to undress.
@@ -495,7 +495,7 @@ Hervorragend, Miss. Kann ich Ihnen sonst noch behilflich sein?
 Can you please release me so I can take a job?
 Kannst du mich bitte befreien, damit ich arbeiten kann?
 ###_NPC
-Poor thing, of course I can help you.  (She releases you and shows you the chores list again.)  
+Poor thing, of course I can help you.  (She releases you and shows you the chores list again.)
 Armes Ding, natürlich kann ich dir helfen. (Sie befreit dich und zeigt dir die Liste erneut.)
 (She shakes her head no.)
 (Sie schüttelt den Kopf.)

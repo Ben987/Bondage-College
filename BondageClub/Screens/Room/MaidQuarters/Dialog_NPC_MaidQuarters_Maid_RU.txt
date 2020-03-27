@@ -33,7 +33,7 @@ I'm sorry Miss.  I cannot help you.
 (Ты снимаешь ее кляп, пока она растягивает рот.)  Спасибо, Мисс, тяжело отправлять горничных с этим кляпом.
 (She grumbles while you push some earplugs in.) I can't hear you properly now.
 (Она ворчит, пока ты затыкаешь ее уши затычками.) Я не слышу вас как следует.
-(You pull the earplugs out.) That's better i can hear you clearly now.
+(You pull the earplugs out.) That's better I can hear you clearly now.
 (Ты вытаскиваешь беруши.) Теперь я лучше вас слышу.
 (She sighs and turns around while you restrain her arms.)  It might be a little hard to work like that Miss.
 (Она вздыхает и поворачивается, пока ты связываешь ее руки.)  Это может быть немного трудно работать, как эта Мисс.
@@ -291,8 +291,8 @@ Sweet!  Who will fuck me first?  (Strip naked.)
 No way!  Can't I stay clothed?
 Ни за что!  Разве я не могу остаться одетой?
 ###_NPC
-Strip girl, we've all did it before.  
-Стриптиз девушка, мы все делали это раньше.  
+Strip girl, we've all did it before.
+Стриптиз девушка, мы все делали это раньше.
 ###_PLAYER
 I'll need some help to undress.
 Мне понадобится помощь, чтобы раздеться.
@@ -495,8 +495,8 @@ Excellent Miss.  Is there anything else I can do for you?
 Can you please release me so I can take a job?
 Пожалуйста, отпустите меня, чтобы я мог устроиться на работу.
 ###_NPC
-Poor thing, of course I can help you.  (She releases you and shows you the chores list again.)  
-Бедняжка, конечно, я могу тебе помочь.  (Она освобождает тебя и снова показывает список дел по дому.)  
+Poor thing, of course I can help you.  (She releases you and shows you the chores list again.)
+Бедняжка, конечно, я могу тебе помочь.  (Она освобождает тебя и снова показывает список дел по дому.)
 (She shakes her head no.)
 (Она отрицательно качает головой.)
 ###_PLAYER

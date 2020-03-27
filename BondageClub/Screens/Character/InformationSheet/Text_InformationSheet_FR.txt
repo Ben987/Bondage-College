@@ -128,9 +128,31 @@ Everyone, no exceptions
 Tous, sans exceptions
 Everyone, except blacklist
 Tous, sauf liste noire
-Owner, whitelist & Dominants
+Owner, Lover, whitelist & Dominants
 Patronne, liste blanche & Maîtresses
-Owner and whitelist only
+Owner, Lover and whitelist only
 Patronne et liste blanche seulement
 Owner only
 Patronne seulement
+Club Slave
+Esclave du Club
+Patient
+Patiente
+Permanent Patient
+Patiente permanente
+Escaped Patient
+Patiente évadée
+Nurse
+Infirmière
+Doctor
+Médecin
+College Student
+Étudiante
+Asylum Nurse:
+Infirmière d'asile:
+Asylum Patient:
+Patient d'asile:
+Skills modifier:
+Modificateur de compétences:
+Time left:
+Temps restant:

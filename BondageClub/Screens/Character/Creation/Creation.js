@@ -68,6 +68,7 @@ function CreationResponse(data) {
 			Player.WhiteList = [];
 			Player.BlackList = [];
 			Player.FriendList = [];
+			Player.GhostList = [];
 
 			// Imports logs, inventory and Sarah status from the Bondage College
 			CreationMessage = "";
@@ -75,6 +76,10 @@ function CreationResponse(data) {
 			PrivateCharacter.push(Player);
 			Log = [];
 			ImportBondageCollege(Player);
+
+			// Calls the preference init to make sure the preferences are loaded correctly
+			PreferenceInit(Player);
+			ActivitySetArousal(Player, 0);
 
 			// Flush the controls and enters the main hall
 			ServerPlayerAppearanceSync();
@@ -104,12 +109,7 @@ function CreationClick() {
 
 	// If we must go back to the login screen
 	if ((MouseX >= 1440) && (MouseX <= 1560) && (MouseY >= 920) && (MouseY <= 980)) {
-		ElementRemove("InputCharacter");
-		ElementRemove("InputName");
-		ElementRemove("InputPassword1");
-		ElementRemove("InputPassword2");
-		ElementRemove("InputEmail");
-		CommonSetScreen("Character", "Login");
+		CreationExit();
 	}
 	
 	// If we must try to create a new account (make sure we don't create it twice)
@@ -139,4 +139,14 @@ function CreationClick() {
 		} else CreationMessage = TextGet("BothPasswordDoNotMatch");
 	}
 
+}
+
+// when the user exit this screen
+function CreationExit() {
+	ElementRemove("InputCharacter");
+	ElementRemove("InputName");
+	ElementRemove("InputPassword1");
+	ElementRemove("InputPassword2");
+	ElementRemove("InputEmail");
+	CommonSetScreen("Character", "Login");
 }

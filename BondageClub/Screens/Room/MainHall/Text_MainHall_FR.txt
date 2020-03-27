@@ -34,6 +34,10 @@ Slave Market
 Marché d'Esclaves
 Look for Trouble
 Chercher du Trouble
+Asylum
+Asile
+Visit the College
+Visiter le collège
 Leave the Club
 Quitter le Club
 Sarah's Bedroom
@@ -50,3 +54,45 @@ The Nursery by wildsj
 La Pouponnière par wildsj
 Houdini's Theater by git4nick
 Théâtre d'Houdini par git4nick
+Cafe by wildsj
+Café par wildsj
+This game is for adults only.  Minors must leave immediately.
+Ce jeux est seulement pour les adultes. Les mineurs doivent quitter immédiatement.
+All game characters are considered adults, no exceptions.
+Tout les personnages du jeu sont considérés comme des adultes, sans exceptions.
+Be courteous and polite.  Help new members to get started.
+Soyez coutois(e) et poli(e). Aidez les nouveaux membres à débuter.
+Console cheating can break your account forever.  Be careful.
+La triche par la console peut briser votre compte pour toujours. Soyez prudent.
+Have an open mind, your fetishes might be different from others.
+Ayez l'esprit ouvert, vos fétiches peuvent être différent de ceux des autres.
+Following a player web link can get you a virus or steal your account.
+Suivre un lien Web d'un joueur peut vous faire attraper un virus ou en venir à vous faire voler votre compte.
+Respect other players limits.  Enforce your own limits.
+Respectez les limites des autres joueurs. Faites respecter vos propres limites.
+Do not attempt anything that could harm you in your real life.
+N'essayez rien qui pourrait vous faire du mal dans votre vie réelle.
+Don't forget your friends in your private room or they will leave.
+N'oubliez pas vos amies dans votre chambre privée ou ils partiront.
+If you find bugs or exploits, please report them and give details.
+Si vous trouvez des bogues ou des exploitations de bogues, veuillez les signaler et donner des détails.
+Take good care of each other feelings and your submissives.
+Prenez bien soin de vos soumises et de vos sentiments mutuels.
+Giving any real-life information can turn against you.
+Donner des informations personnelles peut se retourner contre vous.
+A collared college girl can be convinced to give you her uniform.
+Une étudiante qui porte un collier peut être convaincue de vous donner son uniforme.
+It's easier to destroy a reputation than to build one.
+Il est plus facile de détruire une réputation que d'en construire une.
+There's no best way to make money.  Find a job you enjoy.
+Il n'y a pas de façon parfaite de gagner de l'argent. Trouvez un emploi que vous appréciez.
+You cannot get a lover yet.  That feature will be added later.
+Vous ne pouvez pas encore avoir d'amante. Cette fonctionnalité sera ajoutée ultérieurement.
+Do not use console commands to grief other players.
+N'utilisez pas des commandes de la console pour contrarier les autres joueurs.
+Beta items will be lost if you go back to the regular version.
+Les objets du bêta seront perdus si vous revenez à la version régulière.
+Blacklist players and set your item preferences to protect yourself.
+Mettez les joueurs sur votre liste noire et définissez vos préférences pour vous protéger.
+Contact us on Discord, DeviantArt or Patreon if you need help.
+Contactez-nous sur Discord, DeviantArt ou Patreon si vous avez besoin d'aide.

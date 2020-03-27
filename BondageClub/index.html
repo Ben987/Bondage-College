@@ -17,11 +17,13 @@
 <script src="Scripts/Common.js"></script>
 <script src="Scripts/Drawing.js"></script>
 <script src="Scripts/Timer.js"></script>
+<script src="Scripts/AfkTimer.js"></script>
 <script src="Scripts/GameLog.js"></script>
 <script src="Scripts/Reputation.js"></script>
 <script src="Scripts/Skill.js"></script>
 <script src="Scripts/Character.js"></script>
 <script src="Scripts/CharacterName.js"></script>
+<script src="Scripts/ColorPicker.js"></script>
 <script src="Scripts/Dialog.js"></script>
 <script src="Scripts/Speech.js"></script>
 <script src="Scripts/Text.js"></script>
@@ -35,6 +37,7 @@
 <script src="Scripts/Element.js"></script>
 <script src="Scripts/Translation.js"></script>
 <script src="Scripts/AssetType.js"></script>
+<script src="Scripts/Activity.js"></script>
 <script src="Scripts/socket.io/socket.io.js"></script>
 <script src="Assets/Female3DCG/Female3DCG.js"></script>
 <script src="Screens/Character/Login/Login.js"></script>
@@ -49,6 +52,7 @@
 <script src="Screens/Character/FriendList/FriendList.js"></script>
 <script src="Screens/Character/Title/Title.js"></script>
 <script src="Screens/Character/BackgroundSelection/BackgroundSelection.js"></script>
+<script src="Screens/Character/Relog/Relog.js"></script>
 <script src="Screens/Room/MainHall/MainHall.js"></script>
 <script src="Screens/Room/Shop/Shop.js"></script>
 <script src="Screens/Room/Introduction/Introduction.js"></script>
@@ -100,6 +104,9 @@
 <script src="Screens/Inventory/ItemVulva/VibratingLatexPanties/VibratingLatexPanties.js"></script>
 <script src="Screens/Inventory/ItemVulva/WandBelt/WandBelt.js"></script>
 <script src="Screens/Inventory/ItemNipples/VibeNippleClamp/VibeNippleClamp.js"></script>
+<script src="Screens/Inventory/ItemNipplesPiercings/VibeHeartPiercings/VibeHeartPiercings.js"></script>
+<script src="Screens/Inventory/ItemVulvaPiercings/VibeHeartClitPiercing/VibeHeartClitPiercing.js"></script>
+<script src="Screens/Inventory/ItemVulvaPiercings/TapedClitEgg/TapedClitEgg.js"></script>
 <script src="Screens/Inventory/ItemButt/ButtPump/ButtPump.js"></script>
 <script src="Screens/Inventory/ItemNeck/ShockCollar/ShockCollar.js"></script>
 <script src="Screens/Inventory/ItemNeckAccessories/CollarShockUnit/CollarShockUnit.js"></script>
@@ -107,6 +114,8 @@
 <script src="Screens/Inventory/ItemArms/LeatherCuffs/LeatherCuffs.js"></script>
 <script src="Screens/Inventory/ItemArms/StraitJacket/StraitJacket.js"></script>
 <script src="Screens/Inventory/ItemArms/DuctTape/DuctTape.js"></script>
+<script src="Screens/Inventory/ItemArms/Chains/Chains.js"></script>
+<script src="Screens/Inventory/ItemArms/MermaidSuit/MermaidSuit.js"></script>
 <script src="Screens/Inventory/ItemHands/PaddedMittens/PaddedMittens.js"></script>
 <script src="Screens/Inventory/ItemHands/PawMittens/PawMittens.js"></script>
 <script src="Screens/Inventory/ItemMouth/ClothGag/ClothGag.js"></script>
@@ -121,14 +130,19 @@
 <script src="Screens/Inventory/ItemMisc/MistressTimerPadlock/MistressTimerPadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/OwnerTimerPadlock/OwnerTimerPadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/OwnerPadlock/OwnerPadlock.js"></script>
+<script src="Screens/Inventory/ItemMisc/LoversPadlock/LoversPadlock.js"></script>
+<script src="Screens/Inventory/ItemMisc/LoversTimerPadlock/LoversTimerPadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/MistressPadlock/MistressPadlock.js"></script>
 <script src="Screens/Inventory/ItemHead/DuctTape/DuctTape.js"></script>
 <script src="Screens/Inventory/ItemMouth/PlugGag/PlugGag.js"></script>
+<script src="Screens/Inventory/ItemMouth/DildoPlugGag/DildoPlugGag.js"></script>
 <script src="Screens/Inventory/ItemHands/SpankingToys/SpankingToy.js"></script>
 <script src="Screens/Inventory/ItemTorso/HempRopeHarness/HempRopeHarness.js"></script>
 <script src="Screens/Inventory/ItemTorso/NylonRopeHarness/NylonRopeHarness.js"></script>
 <script src="Screens/Inventory/ItemFeet/HempRope/HempRope.js"></script>
+<script src="Screens/Inventory/ItemFeet/Chains/Chains.js"></script>
 <script src="Screens/Inventory/ItemLegs/HempRope/HempRope.js"></script>
+<script src="Screens/Inventory/ItemLegs/Chains/Chains.js"></script>
 <script src="Screens/Inventory/ItemPelvis/LoveChastityBelt/LoveChastityBelt.js"></script>
 <script src="Screens/Inventory/ItemLegs/LeatherLegCuffs/LeatherLegCuffs.js"></script>
 <script src="Screens/Inventory/ItemFeet/LeatherAnkleCuffs/LeatherAnkleCuffs.js"></script>
@@ -136,10 +150,12 @@
 <script src="Screens/Inventory/ItemNeckAccessories/CollarNameTagOval/CollarNameTagOval.js"></script>
 <script src="Screens/Inventory/ItemNeckAccessories/CollarNameTagPet/CollarNameTagPet.js"></script>
 <script src="Screens/Inventory/ItemNeckAccessories/CollarNameTagLover/CollarNameTagLover.js"></script>
+<script src="Screens/Inventory/ItemNeckAccessories/CollarNameTagLivestock/CollarNameTagLivestock.js"></script>
 <script src="Screens/Inventory/ItemLegs/DuctTape/DuctTape.js"></script>
 <script src="Screens/Inventory/ItemFeet/DuctTape/DuctTape.js"></script>
 <script src="Screens/Inventory/ItemNeck/SlaveCollar/SlaveCollar.js"></script>
 <script src="Screens/Inventory/ItemVulva/VibratingDildo/VibratingDildo.js"></script>
+<script src="Screens/Inventory/ItemVulva/ClitoralStimulator/ClitoralStimulator.js"></script>
 <script src="Screens/Inventory/ItemButt/VibratingButtplug/VibratingButtplug.js"></script>
 <script src="Screens/Inventory/ItemNipples/TapedVibeEggs/TapedVibeEggs.js"></script>
 <script src="Screens/Inventory/ItemNipples/NippleSuctionCups/NippleSuctionCups.js"></script>
@@ -148,6 +164,7 @@
 <script src="Screens/Inventory/ItemButt/InflVibeButtPlug/InflVibeButtPlug.js"></script>
 <script src="Screens/Inventory/ItemDevices/TeddyBear/TeddyBear.js"></script>
 <script src="Screens/Inventory/ItemArms/LeatherStraitJacket/LeatherStraitJacket.js"></script>
+<script src="Screens/Inventory/ItemArms/CollarCuffs/CollarCuffs.js"></script>
 <script src="Screens/Inventory/ItemDevices/InflatableBodyBag/InflatableBodyBag.js"></script>
 <script src="Screens/Inventory/ItemArms/WristShackles/WristShackles.js"></script>
 <script src="Screens/Inventory/ItemEars/HeadphoneEarPlugs/HeadphoneEarPlugs.js"></script>
@@ -157,9 +174,12 @@
 <script src="Screens/Inventory/ItemNipplesPiercings/RoundPiercing/RoundPiercing.js"></script>
 <script src="Screens/Inventory/ItemNipplesPiercings/WeightedPiercing/WeightedPiercing.js"></script>
 <script src="Screens/Inventory/ItemDevices/Sybian/Sybian.js"></script>
+<script src="Screens/Inventory/ItemDevices/SmallWoodenBoxOpenHead/SmallWoodenBoxOpenHead.js"></script>
+<script src="Screens/Inventory/ItemDevices/WoodenBoxOpenHead/WoodenBoxOpenHead.js"></script>
 <script src="Screens/Inventory/ItemDevices/BondageBench/BondageBench.js"></script>
 <script src="Screens/Inventory/ItemAddon/BondageBenchStraps/BondageBenchStraps.js"></script>
 <script src="Screens/Inventory/ItemButt/AnalHook/AnalHook.js"></script>
+<script src="Screens/Inventory/ItemButt/AnalBeads2/AnalBeads2.js"></script>
 <script src="Screens/Inventory/ItemButt/ButtPlugLock/ButtPlugLock.js"></script>
 <script src="Screens/Inventory/ItemArms/OrnateCuffs/OrnateCuffs.js"></script>
 <script src="Screens/Inventory/ItemLegs/OrnateLegCuffs/OrnateLegCuffs.js"></script>
@@ -169,33 +189,18 @@
 <script src="Screens/Inventory/ItemArms/LeatherArmbinder/LeatherArmbinder.js"></script>
 <script src="Screens/Inventory/ItemHidden/LeatherArmbinderStrap/LeatherArmbinderStrap.js"></script>
 <script src="Screens/Inventory/ItemHidden/LeatherArmbinderWrapStrap/LeatherArmbinderWrapStrap.js"></script>
+<script src="Screens/Inventory/ItemArms/BitchSuit/BitchSuit.js"></script>
+<script src="Screens/Inventory/ItemVulva/ClitAndDildoVibratorbelt/ClitAndDildoVibratorbelt.js"></script>
 <script>
 
 /*
 
 	NEXT VERISON:
 	
-	OK - Many fixes to the dictionary (Atasly)
-	OK - Many fixes to the gags (Kira)
-	OK - Show chatroom spaces (Ace-1331)
-	OK - New ball-gag, sleep mask and raccoon ears (Ayesha-678)
-	OK - New ** or /action in chatroom for actions without player name (Atasly)
-	OK - /help in chatroom (Atasly)
-	OK - Latex Lockdown Suit (Gatetrek + BuffaloAquatico)
-	OK - Blackout Lenses (Ayesha-678)
-	OK - Leather breast binder + armbinder straps + New Hair (gatetrek)
-	OK - New clothes (ace-1331 & Ruilove)
-	OK - Player swap in chatrooms (Eveferox)
-	OK - Prevent appearance hacking or HTML tags (Sekkmer + Lucritus)
-	OK - Suspension flower dress (Gnarp)
-	OK - Lock fixes (Sekkmer)
-	OK - Chatlog changes from Sekkmer - Confirm with him first
-	OK - Zipties (Ayesha-678)
-	OK - Room selection screen (Sekkmer)
-	OK - New Audio Screen and struggling sounds (aldarris)
-	OK = Buy Groups Validation (ace-1331)
-
-	IN PROGRESS - Add hogtie pose and assets
+	BUG SENT - Both egg and vibrator could work on different variables - Demon tail + Clit&Dildo Vibrating belt + See-through + See-through zip catsuits (gatetrek)
+	BUG SENT - Use a device strap-on on a suspended girl, should be hidden (wildsj)
+	BUG - Vibrating wand shows over wedding dress
+			
 	TO DO - Each restraint will have different ways (mini-games) to try to struggle out of it:
 		1. Go Berserk (Duct Tape, Cages & Boxes, Mittens, Chastity Items, Body Harnesses, Gags with harness, Hoods) - Click the circles quickly before they disappear (Asylum)
 		2. Use Strength (Duct Tape, Yokes, Cuffs & Manacles, Belts, One Bar & Bench & Bag, Armbinders, Gags without harness) - Key Speed Game: A + S (Current)
@@ -203,10 +208,7 @@
 		4. Use Dexterity (Rope, Jackets & Suits, One Bar & Bench & Bag, Mittens, Body Harnesses, Gags with harness, Collars) - Timing Game: Stop the moving object at the right position
 		5. Be Supple (Jackets & Suits, Belts, Chastity Items, Gags without harness, Armbinders, Locking Boots, Hoods) - Guess the right number between 1 and 100, a few tries, tells you if higher or lower	
 		6. Pick the Lock (For anything that locks or when a lock is added) - Precision Game - Don't touch the walls that are scrolling toward you
-	OK - Lots of server improvements for memory usage and max packet size
-	OK - New prerequisite array system
-	OK - New discreet mouth style, based on previous assets
-	OK - Missing dialog for toe-items & gag 2 + 3
+
 	TO DO - Proof Read
 	TO DO - Patreon Import/Update
 

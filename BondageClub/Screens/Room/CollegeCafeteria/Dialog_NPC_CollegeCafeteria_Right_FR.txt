@@ -1,0 +1,10 @@
+(She's waiting in line in front of you.  She's too far away to notice you.)
+(Elle fait la queue devant vous. Elle est trop loin pour vous remarquer.)
+Hey there!
+Hé!
+(She's doesn't notice you.)
+(Elle ne vous remarque pas.)
+(Try to catch her attention.)
+(Essayer d'attirer son attention.)
+(Leave her.)
+(La quitter.)

@@ -81,7 +81,7 @@ Oui, pouvez-vous me libérer?
 (Elle vérifie le cadenas et fornce les sourcils.)  Un cadenas de votre patronne? Il se peut qu'elle ne serait pas content si je vous libérais.
 ###_PLAYER
 I'm fine.  But I have questions on the club.
-Je vais bien. Mais j'ai quelques questions à propos du club.
+Je vais bien. J'ai des questions à propos du club.
 ###_NPC
 Sure.  What would you like to know?
 Certes. Qu'est-ce que vous voulez savoir?
@@ -163,19 +163,19 @@ Laissez faire alors. (Laisser-la.)
 Why are you taking my clothes?
 Pourquoi enlevez-vous mes vêtements?
 ###_NPC
-(She frowns.)  Your clothes are confiscated for the next hour.  This humiliation might teach you to respect your owner will.
+(She frowns.)  Your clothes are confiscated for the next hour.  This humiliation might teach you to respect your owner's will.
 (Elle sourcille.)  Vos vêtements sont confisqués pour une heure. L'humiliation vous apprendra à respecter la volonté de votre patronne.
 ###_PLAYER
 When can I dress back?
 Quand est-ce puis-je m'habiller?
 ###_NPC
-Your clothes are confiscated for the next hour.  This humiliation might teach you to respect your owner will.
+Your clothes are confiscated for the next hour.  This humiliation might teach you to respect your owner's will.
 Vos vêtements sont confisqués pour une heure. L'humiliation vous apprendra à respecter la volonté de votre patronne.
 ###_PLAYER
 I know I'm a bad submissive.
 Je sais que je suis une vilaine soumise.
 ###_NPC
-(She sighs.)  Your clothes are confiscated for the next hour.  This humiliation might teach you to respect your owner will.
+(She sighs.)  Your clothes are confiscated for the next hour.  This humiliation might teach you to respect your owner's will.
 (Elle soupire.)  Vos vêtements sont confisqués pour une heure. L'humiliation vous apprendra à respecter la volonté de votre patronne.
 ###_PLAYER
 Very well, thank you.  (Leave her.)
@@ -297,7 +297,7 @@ Absolutely, please come with me.
 Absolument, veuillez me suivre.
 ###_PLAYER
 Fine, let's go.  (Meet a Club Mistress.)
-Fine, let's go.  (Meet a Club Mistress.)
+Très bien, allons-y. (Rencontrez une maîtresse du club.)
 (Walk with her to a Club Mistress.)
 (Marcher avec elle jusqu'à une Maîtresse.)
 (Frown and leave her.)
@@ -428,3 +428,15 @@ La première est d'être adulte. Ici n'est pas pour les mineurs. Êtes-vous adul
 ###_PLAYER
 (Thank her and leave her.)
 (Remerciez-la et laissez-la.)
+(Nod yes and point to your slave collar.)
+(Acquiescez et montrez ton collier d'esclave.)
+(She checks the lock and frowns.) That is a slave collar. Your Mistress might not be pleased if I change it.
+(Elle vérifie la serrure et fronce les sourcils.) C'est un collier d'esclave. Votre maîtresse pourrait ne pas être heureuse si je le change.
+Yes, can you change my collar?
+Oui, pouvez-vous changer mon collier?
+Very well.  (She changes the collar, strips you and confiscate your clothes.)
+Très bien. (Elle change le collier, vous déshabille et confisque vos vêtements.)
+(She frowns.)  Your clothes are confiscated for the next hour.  This humiliation might teach you to respect your owner's will.
+(Elle fronce les sourcils.) Vos vêtements sont confisqués pour l'heure suivante. Cette humiliation pourrait vous apprendre à respecter la volonté de votre patronne.
+(Bow your head in thanks.)
+(Inclinez la tête en remerciement.)

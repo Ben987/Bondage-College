@@ -1,0 +1,120 @@
+﻿(She imitates your gagged speech and giggles.)
+(Elle imite votre discours à travers son baillon et rit.)
+(A nervous asylum patient crosses your path.)  Oh!  Hello nurse DialogPlayerName.  What are you doing here?
+(Une patiente d'asile nerveuse croise votre chemin.) Oh! Bonjour infirmière DialogPlayerName. Que fais-vous ici?
+(An asylum patient tries to run from you but get stuck in a dead end.)  What do you want?
+(Une patiente d'asile essaie de s'enfuir, mais reste coincée dans une impasse.) Que voulez-vous?
+(You surprise a suspicious looking asylum patient.)  Oh my!  You've scared me.  What's going on?
+(Vous surprenez une patiente d'asile suspecte.) Oh mon Dieu! Tu m'as fait peur. Que se passe-t-il?
+(She surrenders to you.)  You got me nurse DialogPlayerName.  What do you want from me?
+(Elle se rend.) Vous m'avez eu infirmière DialogPlayerName. Qu'est-ce que vous voulez de moi?
+(She checks your bondage and grins.)  I'll never return to the asylum!
+(Elle vérifie votre bondage et vous sourit.) Je ne retournerai jamais à l'asile!
+Who are you?
+Qui êtes-vous?
+Me?  I'm nobody!  Can I go now?
+Moi? Je ne suis personne! Puis-je partir maintenant?
+You seem nervous.
+Tu sembles nerveuse.
+No, no, no, no.  Why would I be nervous?  (She looks even more nervous.)
+Non Non Non Non. Pourquoi serais-je nerveuse? (Elle a l'air encore plus nerveuse.)
+Have I seen you before?
+Je t'ai déjà vu?
+Maybe, it's a small world after all.
+Peut-être, le monde est petit après tout.
+(Let her go.)
+(La laisser partir.)
+Are you a committed patient?
+Êtes-vous une patiente internée?
+Yes, I mean no.  I'm not going back there!  (She raises her fists.)
+Oui, je veux dire non. Je n'y retournerai pas! (Elle lève les poings.)
+Did you escape from the asylum?
+Vous êtes-vous échappée de l'asile?
+(She raises her fists.)  I'm not going back there!
+(Elle lève les poings.) Je ne retournerai pas là-bas!
+I'm here to bring you back girl.
+Je suis ici pour te ramener, fille.
+I'll bring you back by force.  (Fight her.)
+Je te ramènerai de force. (La combattre.)
+Don't hurt me!
+Ne me fais pas de mal!
+You're pathetic.  Get out of my face.
+Tu es pathétique. Sors de ma vue.
+Maybe we can make a deal.
+Nous pouvons peut-être conclure un accord.
+A deal?  What kind of deal?
+Un accord? Quel genre d'accord?
+Pay me and I'll let you go.
+Payez-moi et je vous laisserai partir.
+Forget it, you won't get any money from me.
+Oubliez ça, vous ne recevrez pas d'argent de moi.
+You're so corrupted.  Take these 5$ and leave me alone.
+Tu es tellement corrompue. Prenez ces 5 $ et laissez-moi tranquille.
+Come to my room, you can hide there.
+Venez dans ma chambre, vous pouvez vous y cacher.
+No way, I'm not following a nurse anywhere.
+Pas question, je ne suivrai pas une infirmière.
+I guess there are worse plans than that.  Alright then, I'll follow you.
+Je suppose qu'il y a des plans pires que cela. D'accord, je vais te suivre.
+I won't drag you by your hair.  (Fight her.)
+Je ne te traînerai pas par les cheveux. (La combattre.)
+It's a pleasure doing business with you.
+C'est un plaisir de faire affaire avec vous.
+Yeah, yeah, yeah.  Can I go now?
+Ouais ouais ouais. Puis-je partir maintenant?
+(Bring her to your room.)
+(La ramener dans votre chambre.)
+NOEXIT
+SANS ISSUE
+You fought well.
+Tu as bien combattu.
+Thanks, but nobody can win against the system.
+Merci, mais personne ne peut gagner contre le système.
+I'm bringing you back to the asylum.
+Je te ramène à l'asile.
+Why are you so cruel?  Fine!  I'll go back with you.
+Pourquoi es-tu si cruelle? Bien! Je reviens avec toi.
+I feel like keeping you for myself.
+J'ai envie de te garder pour moi.
+(She looks nervous.)  What does that mean?  Where are we going?
+(Elle a l'air nerveuse.) Qu'est-ce que cela signifie? Où allons-nous?
+I'm feeling merciful.  I'll let you go.
+Je me sens miséricordieuse. Je vais te laisser partir.
+Really?  Wow, thank you so much!  You're the best.
+Vraiment? Woah, merci beaucoup! Tu es la meilleure.
+(Take her back to the asylum.)
+(La ramener à l'asile.)
+(You bring her back to asylum where she gets fully restrained.  They congratulate you and pay you 15$ for your work.)
+(Vous la ramenez à l'asile où elle est complètement attachée. Vous êtes félicitée et vous êtes payée 15 $ pour votre travail.)
+Welcome home girl.
+Bienvenue à la maison.
+(She sighs and bows her head.)
+(Elle soupire et incline la tête.)
+Don't try to escape again.
+N'essayez plus de vous échapper.
+(She shakes her head no.)
+(Elle secoue la tête faisant signe que non.)
+(Get your money and leave her.)
+(Obtenir votre argent et la laisser.)
+You're a tough patient.
+Tu es une patiente coriace.
+Yep.  And now it's time for us to split.  Have fun struggling little nurse.
+Oui. Et maintenant, il est temps pour nous de nous séparer. Amusez-vous, petite infirmière en difficulté.
+Enough!  Don't hurt me anymore.
+Assez! Ne me fais plus de mal.
+It was so easy to defeat you.  Have fun struggling little nurse.
+C'était si facile de te vaincre. Amusez-vous, petite infirmière en difficulté.
+What will you do now?
+Que ferez-vous maintenant?
+It's none of your business, I'm going now.  Have fun struggling little nurse.
+Ce n'est pas tes affaires, je m'en vais maintenant. Amusez-vous, petite infirmière en difficulté.
+You cannot leave me like that.
+Tu ne peux pas me laisser comme ça.
+(She turns around and walks away with a grin on her face.)
+(Elle se retourne et s'éloigne avec un sourire sur son visage.)
+I'll crush you next time!
+Je t'écraserai la prochaine fois!
+You won't be able to run forever.
+Vous ne pourrez pas courir indéfiniment.
+(Back to main hall.)
+(Retour au hall principal.)
