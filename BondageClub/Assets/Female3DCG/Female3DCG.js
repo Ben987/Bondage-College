@@ -1375,7 +1375,7 @@ var AssetFemale3DCG = [
 			{ Name: "PolishedMittens", SelfBondage: false, Value: 80, AllowPose: ["BackBoxTie", "BackElbowTouch", "BackCuffs", "Yoked", "AllFours"], Effect: ["Block", "Prone"], Time: 20, RemoveTime: 10, Difficulty: 8, AllowLock: true  },
 			{ Name: "DuctTape", SelfBondage: false, Value: 50, SetPose: ["TapedHands"], AllowPose: ["BackBoxTie", "BackElbowTouch", "BackCuffs", "Yoked", "AllFours"], Hide: ["Gloves"], Effect: ["Block", "Prone"], Time: 20, RemoveTime: 10, Difficulty: 5, BuyGroup: "DuctTape" },
 			{
-				Name: "SpankingToys", Priority: 46, Wear: true, IsRestraint: false, Random: false, BuyGroup: "SpankingToys", IgnoreParentGroup: true, AllowPose: ["BackBoxTie", "BackElbowTouch", "BackCuffs", "Yoked"],
+				Name: "SpankingToys", Priority: 46, Wear: true, IsRestraint: false, Random: false, BuyGroup: "SpankingToys", IgnoreParentGroup: true, AllowPose: ["BackBoxTie", "BackElbowTouch", "BackCuffs", "Yoked", "AllFours"],
 				DynamicDescription: C => InventorySpankingToysGetDescription(C),
 				DynamicPreviewIcon: C => InventorySpankingToysGetType(C)
 			}, {
