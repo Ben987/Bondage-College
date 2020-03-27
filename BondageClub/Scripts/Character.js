@@ -497,13 +497,13 @@ function CharacterDress(C, Appearance) {
 }
 
 // Removes any binding item from the character
-function CharacterRelease(C) {
+function CharacterRelease(C, Refresh) {
 	for (var E = 0; E < C.Appearance.length; E++)
 		if (C.Appearance[E].Asset.IsRestraint) {
 			C.Appearance.splice(E, 1);
 			E--;
 		}
-	CharacterRefresh(C);
+	if (Refresh || Refresh == null) CharacterRefresh(C);
 }
 
 // Returns the best bonus factor available
