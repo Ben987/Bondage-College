@@ -192,7 +192,7 @@ function InventoryLocked(C, AssetGroup, CheckProperties) {
 }
 
 // Makes the character wear a random item from a group
-function InventoryWearRandom(C, GroupName, Difficulty) {
+function InventoryWearRandom(C, GroupName, Difficulty, Refresh) {
 	if (!InventoryLocked(C, GroupName)) {
 
 		// Finds the asset group and make sure it's not blocked
@@ -213,8 +213,7 @@ function InventoryWearRandom(C, GroupName, Difficulty) {
 				List.push(Asset[A]);
 		if (List.length == 0) return;
 		var RandomAsset = List[Math.floor(Math.random() * List.length)];
-		CharacterAppearanceSetItem(C, GroupName, RandomAsset, RandomAsset.DefaultColor, Difficulty);
-		CharacterRefresh(C);
+		CharacterAppearanceSetItem(C, GroupName, RandomAsset, RandomAsset.DefaultColor, Difficulty, Refresh);
 
 	}
 }
