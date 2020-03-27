@@ -1,12 +1,25 @@
 var ColorPickerX, ColorPickerY, ColorPickerWidth, ColorPickerHeight;
-var ColorPickerInitialHSV, ColorPickerHSV, ColorPickerCallback;
+var ColorPickerInitialHSV, ColorPickerLastHSV, ColorPickerHSV, ColorPickerCallback, ColorPickerSourceElement;
 
 var ColorPickerHueBarHeight = 40;
 var ColorPickerSVPanelGap = 20;
+var ColorPickerPalleteHeight = 100;
+var ColorPickerPalleteGap = 20;
+
+var ColorPickerLayout = {
+    HueBarOffset: NaN,
+    HueBarHeight: NaN,
+    SVPanelOffset: NaN,
+    SVPanelHeight: NaN,
+    PalleteOffset: NaN,
+    PalleteHeight: NaN
+};
 
 function ColorPickerAttachEventListener() {
     var CanvasElement = document.getElementById("MainCanvas");
-    CanvasElement.addEventListener("mousedown", ColorPickerStartPick);
+    if (!CommonIsMobile) {
+        CanvasElement.addEventListener("mousedown", ColorPickerStartPick);
+    }
     CanvasElement.addEventListener("touchstart", ColorPickerStartPick);
 }
 
@@ -22,8 +35,11 @@ function ColorPickerStartPick(Event) {
         if (Event.changedTouches.length > 1) return;
     }
 
-    var SVPanelOffset = ColorPickerY + ColorPickerHueBarHeight + ColorPickerSVPanelGap;
-    var SVPanelHeight = ColorPickerHeight - SVPanelOffset;
+    var SVPanelOffset = ColorPickerLayout.SVPanelOffset;
+    var SVPanelHeight = ColorPickerLayout.SVPanelHeight;
+    var PalleteOffset = ColorPickerLayout.PalleteOffset;
+    var PalleteHeight = ColorPickerLayout.PalleteHeight;
+
     var C = ColorPickerGetCoordinates(Event);
     var X = C.X;
     var Y = C.Y;
@@ -36,6 +52,8 @@ function ColorPickerStartPick(Event) {
             document.addEventListener("mousemove", ColorPickerPickSV);
             document.addEventListener("touchmove", ColorPickerPickSV);
             ColorPickerPickSV(Event);
+        } else if (Y >= PalleteOffset && Y < PalleteOffset + PalleteHeight) {
+            ColorPickerSelectFromPallete(Event);
         }
         document.addEventListener("mouseup", ColorPickerEndPick);
         document.addEventListener("touchend", ColorPickerEndPick);
@@ -79,49 +97,110 @@ function ColorPickerGetCoordinates(Event) {
 function ColorPickerPickHue(Event) {
     var C = ColorPickerGetCoordinates(Event);
     ColorPickerHSV.H = Math.max(0, Math.min(1, (C.X - ColorPickerX) / ColorPickerWidth));
-
-    if (ColorPickerCallback) {
-        var Color = ColorPickerHSVToCSS(ColorPickerHSV);
-        ColorPickerCallback(Color);
-    }
+    ColorPickerLastHSV = Object.assign({}, ColorPickerHSV);
+    ColorPickerNotify();
 }
 
 function ColorPickerPickSV(Event) {
     var C = ColorPickerGetCoordinates(Event);
-    var SVPanelOffset = ColorPickerY + ColorPickerHueBarHeight + ColorPickerSVPanelGap;
-    var SVPanelHeight = ColorPickerHeight - SVPanelOffset;
+    var SVPanelOffset = ColorPickerLayout.SVPanelOffset;
+    var SVPanelHeight = ColorPickerLayout.SVPanelHeight;
 
     var S = (C.X - ColorPickerX) / ColorPickerWidth;
     var V = 1 - (C.Y - SVPanelOffset) / SVPanelHeight;
-
     ColorPickerHSV.S = Math.max(0, Math.min(1, S));
     ColorPickerHSV.V = Math.max(0, Math.min(1, V));
+    ColorPickerLastHSV = Object.assign({}, ColorPickerHSV);
+    ColorPickerNotify();
+}
 
+function ColorPickerSelectFromPallete(Event) {
+    var C = ColorPickerGetCoordinates(Event);
+    var P = Math.max(0, Math.min(1, (C.X - ColorPickerX) / ColorPickerWidth));
+    var HSV = P > 0.5 ? ColorPickerInitialHSV : ColorPickerLastHSV;
+    ColorPickerHSV = Object.assign({}, HSV);
+    ColorPickerNotify();
+}
+
+function ColorPickerNotify() {
+    var Color = ColorPickerHSVToCSS(ColorPickerHSV);
     if (ColorPickerCallback) {
-        var Color = ColorPickerHSVToCSS(ColorPickerHSV);
         ColorPickerCallback(Color);
+    }
+
+    if (ColorPickerSourceElement) {
+        ColorPickerSourceElement.value = Color;
     }
 }
 
 function ColorPickerHide() {
+    ColorPickerSourceElement = null;
     ColorPickerInitialHSV = null;
+    ColorPickerLastHSV = null;
     ColorPickerCallback = null;
     ColorPickerRemoveEventListener();
 }
 
-function ColorPickerDraw(X, Y, Width, Height, Color, Callback) {
+function ColorPickerCSSColorEquals(Color1, Color2) {
+    Color1 = Color1.toUpperCase();
+    Color2 = Color2.toUpperCase();
+    if (!CommonIsColor(Color1) || !CommonIsColor(Color2)) return false;
+    // convert short hand hex color to standard format
+    if (Color1.length == 4) Color1 = "#" + Color1[1] + Color1[1] + Color1[2] + Color1[2] + Color1[3] + Color1[3];
+    if (Color2.length == 4) Color2 = "#" + Color2[1] + Color2[1] + Color2[2] + Color2[2] + Color2[3] + Color2[3];
+    return Color1 == Color2;
+}
+
+function ColorPickerDraw(X, Y, Width, Height, Src, Callback) {
     
-    var SVPanelOffset = Y + ColorPickerHueBarHeight + ColorPickerSVPanelGap;
-    var SVPanelHeight = Height - SVPanelOffset;
+    // Calculate Layout
+    ColorPickerLayout.HueBarHeight = ColorPickerHueBarHeight;
+    ColorPickerLayout.HueBarOffset = Y;
+    ColorPickerLayout.PalleteHeight = ColorPickerPalleteHeight;
+    ColorPickerLayout.PalleteOffset = Y + Height - ColorPickerLayout.PalleteHeight;
+    ColorPickerLayout.SVPanelHeight = Height - ColorPickerLayout.HueBarHeight - ColorPickerLayout.PalleteHeight - ColorPickerSVPanelGap - ColorPickerPalleteGap;
+    ColorPickerLayout.SVPanelOffset = ColorPickerLayout.HueBarOffset + ColorPickerHueBarHeight + ColorPickerSVPanelGap;
+
+    var SVPanelOffset = ColorPickerLayout.SVPanelOffset;
+    var SVPanelHeight = ColorPickerLayout.SVPanelHeight;
+    var PalleteOffset = ColorPickerLayout.PalleteOffset;
+    var PalleteHeight = ColorPickerLayout.PalleteHeight;
 
     var HSV;
     if (ColorPickerInitialHSV == null) {
+        // Get initial color value based on type of source
+        var Color;
+        if (Src instanceof HTMLInputElement) {
+            ColorPickerSourceElement = Src;
+            Color = Src.value.trim();
+        } else {
+            if (ColorPickerSourceElement != null) {
+                ColorPickerSourceElement = null;
+            }
+            Color = Src;
+        }
+
         HSV = ColorPickerCSSToHSV(Color);
-        ColorPickerInitialHSV = HSV;
-        ColorPickerHSV = HSV;
+        ColorPickerInitialHSV = Object.assign({}, HSV);
+        ColorPickerLastHSV =  Object.assign({}, HSV);
+        ColorPickerHSV =  Object.assign({}, HSV);
         ColorPickerRemoveEventListener();   // remove possible duplicated attached event listener, just in case
         ColorPickerAttachEventListener();
     } else {
+        // Watch source element change
+        if (ColorPickerSourceElement != null) {
+            var UserInputColor = ColorPickerSourceElement.value.trim().toUpperCase();
+            if (CommonIsColor(UserInputColor)) {
+                var PrevColor = ColorPickerHSVToCSS(ColorPickerHSV).toUpperCase();
+                if (!ColorPickerCSSColorEquals(UserInputColor, PrevColor)) {
+                    if (ColorPickerCallback) {
+                        // Fire callback due to source element changed by user interaction
+                        ColorPickerCallback(UserInputColor);
+                    }
+                    ColorPickerHSV = ColorPickerCSSToHSV(UserInputColor, ColorPickerHSV);
+                }
+            }
+        }
         // Use user updated HSV
         HSV = ColorPickerHSV;
     }
@@ -160,6 +239,10 @@ function ColorPickerDraw(X, Y, Width, Height, Color, Callback) {
     // Draw Hue Picker
     DrawEmptyRect(X + HSV.H * (Width - 20), Y, 20, ColorPickerHueBarHeight, "#FFFFFF");
 
+    // Draw Pallette
+    DrawRect(X, PalleteOffset, ColorPickerWidth / 2, PalleteHeight, ColorPickerHSVToCSS(ColorPickerLastHSV));
+    DrawRect(X + ColorPickerWidth / 2, PalleteOffset, ColorPickerWidth / 2, PalleteHeight, ColorPickerHSVToCSS(ColorPickerInitialHSV));
+
     ColorPickerX = X;
     ColorPickerY = Y;
     ColorPickerWidth = Width;
@@ -168,10 +251,10 @@ function ColorPickerDraw(X, Y, Width, Height, Color, Callback) {
 }
 
 // See: https://gist.github.com/mjackson/5311256
-function ColorPickerCSSToHSV(Color) {
+function ColorPickerCSSToHSV(Color, DefaultHSV) {
     Color = Color || "#FFFFFF";
     var M = Color.match(/^#(([0-9a-f]{3})|([0-9a-f]{6}))$/i)
-    var R = 1, G = 0, B = 0;
+    var R, G, B;
     if (M) {
         var GRP = M[1];
         if (GRP.length == 3) {
@@ -185,9 +268,9 @@ function ColorPickerCSSToHSV(Color) {
         }
     }
 
-    R = isNaN(R) ? 1 : R;
-    G = isNaN(G) ? 0 : G;
-    B = isNaN(B) ? 0 : B;
+    if (isNaN(R) || isNaN(G) || isNaN(B)) {
+        return DefaultHSV ? DefaultHSV : { H: 0, S: 0, V: 1 };
+    }
 
     var Max = Math.max(R, G, B);
     var Min = Math.min(R, G, B);

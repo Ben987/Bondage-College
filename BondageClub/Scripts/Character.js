@@ -47,6 +47,9 @@ function CharacterReset(CharacterID, CharacterAssetFamily) {
 		IsOwned: function () { return ((this.Owner != null) && (this.Owner.trim() != "")) },
 		IsOwnedByPlayer: function () { return (((((this.Owner != null) && (this.Owner.trim() == Player.Name)) || (NPCEventGet(this, "EndDomTrial") > 0)) && (this.Ownership == null)) || ((this.Ownership != null) && (this.Ownership.MemberNumber != null) && (this.Ownership.MemberNumber == Player.MemberNumber))) },
 		IsOwner: function () { return ((NPCEventGet(this, "EndSubTrial") > 0) || (this.Name == Player.Owner.replace("NPC-", ""))) },
+		IsLoved: function () { return ((this.Lover != null) && (this.Lover.trim() != "")) },
+		IsLoverOfPlayer: function () { return (((((this.Lover != null) && (this.Lover.trim() == Player.Name)) || (NPCEventGet(this, "Girlfriend") > 0)) && (this.Lovership == null)) || ((this.Lovership != null) && (this.Lovership.MemberNumber != null) && (this.Lovership.MemberNumber == Player.MemberNumber))) },
+		IsLover: function () { return ((NPCEventGet(this, "Girlfriend") > 0) || (this.Name == Player.Lover.replace("NPC-", ""))) },
 		IsKneeling: function () { return ((this.Pose != null) && (this.Pose.indexOf("Kneel") >= 0)) },
 		IsNaked: function () { return CharacterIsNaked(this); },
 		IsDeaf: function () { return ((this.Effect.indexOf("DeafLight") >= 0) || (this.Effect.indexOf("DeafNormal") >= 0) || (this.Effect.indexOf("DeafHeavy") >= 0)) },
@@ -152,6 +155,7 @@ function CharacterArchetypeClothes(C, Archetype, ForceColor) {
 		CharacterAppearanceSetItem(C, "Hat", C.Inventory[C.Inventory.length - 1].Asset);
 		CharacterAppearanceSetColorForGroup(C, "Default", "Hat");
 		InventoryAdd(C, "MaidOutfit2", "Cloth", false);
+		InventoryRemove(C, "ClothAccessory");
 		InventoryRemove(C, "HairAccessory1");
 		InventoryRemove(C, "HairAccessory2");
 		InventoryRemove(C, "ClothLower");
@@ -174,6 +178,7 @@ function CharacterArchetypeClothes(C, Archetype, ForceColor) {
 		InventoryAdd(C, "MistressPadlock", "ItemMisc", false);
 		InventoryAdd(C, "MistressTimerPadlock","ItemMisc", false);
 		InventoryAdd(C, "MistressPadlockKey", "ItemMisc", false);
+		InventoryRemove(C, "ClothAccessory");
 		InventoryRemove(C, "HairAccessory1");
 		InventoryRemove(C, "HairAccessory2");
 	}
@@ -208,17 +213,19 @@ function CharacterLoadNPC(NPCType) {
 
 // Sets up the online character
 function CharacterOnlineRefresh(Char, data, SourceMemberNumber) {
-	if (Char.ID != 0) Char.Title = data.Title;
+	if ((Char.ID != 0) && ((Char.MemberNumber == SourceMemberNumber) || (Char.Title == null))) Char.Title = data.Title;
 	Char.ActivePose = data.ActivePose;
 	Char.LabelColor = data.LabelColor;
 	Char.Creation = data.Creation;
-	if (Char.ID != 0) Char.ItemPermission = data.ItemPermission;
+	if ((Char.ID != 0) && ((Char.MemberNumber == SourceMemberNumber) || (Char.ItemPermission == null))) Char.ItemPermission = data.ItemPermission;
+	if ((Char.ID != 0) && ((Char.MemberNumber == SourceMemberNumber) || (Char.ArousalSettings == null))) Char.ArousalSettings = data.ArousalSettings;
 	Char.Ownership = data.Ownership;
+	Char.Lovership = data.Lovership;
 	Char.Reputation = (data.Reputation != null) ? data.Reputation : [];
 	Char.BlockItems = Array.isArray(data.BlockItems) ? data.BlockItems : [];
 	Char.Appearance = ServerAppearanceLoadFromBundle(Char, "Female3DCG", data.Appearance, SourceMemberNumber);
 	if (Char.ID == 0) LoginValidCollar();
-	if (Char.ID != 0) InventoryLoad(Char, data.Inventory);
+	if ((Char.ID != 0) && ((Char.MemberNumber == SourceMemberNumber) || (Char.Inventory == null))) InventoryLoad(Char, data.Inventory);
 	CharacterLoadEffect(Char);
 	CharacterRefresh(Char);
 }
@@ -247,7 +254,8 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 		Char.Title = data.Title;
 		Char.Description = data.Description;
 		Char.AccountName = "Online-" + data.ID.toString();
-		Char.MemberNumber = data.MemberNumber;	
+		Char.MemberNumber = data.MemberNumber;
+		Char.AllowItem = false;
 		var BackupCurrentScreen = CurrentScreen;
 		CurrentScreen = "ChatRoom";
 		CharacterLoadCSVDialog(Char, "Screens/Online/ChatRoom/Dialog_Online");
@@ -283,8 +291,10 @@ function CharacterLoadOnline(data, SourceMemberNumber) {
 								else if (((New.Property != null) && (Old.Property == null)) || ((New.Property == null) && (Old.Property != null))) Refresh = true;
 							}
 
-		// Flags "refresh" if the ownership or inventory or blockitems has changed
+		// Flags "refresh" if the ownership or or lovership or inventory or blockitems has changed
 		if (!Refresh && (JSON.stringify(Char.Ownership) !== JSON.stringify(data.Ownership))) Refresh = true;
+		if (!Refresh && (JSON.stringify(Char.Lovership) !== JSON.stringify(data.Lovership))) Refresh = true;
+		if (!Refresh && (JSON.stringify(Char.ArousalSettings) !== JSON.stringify(data.ArousalSettings))) Refresh = true;
 		if (!Refresh && (data.Inventory != null) && (Char.Inventory.length != data.Inventory.length)) Refresh = true;
 		if (!Refresh && (data.BlockItems != null) && (Char.BlockItems.length != data.BlockItems.length)) Refresh = true;
 
@@ -536,8 +546,10 @@ function CharacterSetActivePose(C, NewPose) {
 	CharacterRefresh(C, false);
 }
 
-// Sets a specific facial expression for the character's specified AssetGruo
+// Sets a specific facial expression for the character's specified AssetGroup, if there's a timer, the expression will expire after it, a timed expression cannot override another one
 function CharacterSetFacialExpression(C, AssetGroup, Expression, Timer) {
+	var Ex = InventoryGet(C, AssetGroup);
+	if ((Timer != null) && (Ex != null) && (Ex.Property != null) && (Ex.Property.Expression != null) && (Ex.Property.Expression != "")) return;
 	for (var A = 0; A < C.Appearance.length; A++) {
 		if ((C.Appearance[A].Asset.Group.Name == AssetGroup) && (C.Appearance[A].Asset.Group.AllowExpression)) {
 			if ((Expression == null) || (C.Appearance[A].Asset.Group.AllowExpression.indexOf(Expression) >= 0)) {
@@ -550,8 +562,7 @@ function CharacterSetFacialExpression(C, AssetGroup, Expression, Timer) {
 				} else {
 					delete C.Appearance[A].Property.RemoveTimer;
 				}
-				CharacterRefresh(C);
-				ChatRoomCharacterUpdate(C);
+				if (Timer != null) TimerInventoryRemoveSet(C, AssetGroup, Timer);
 				return;
 			}
 		}
@@ -564,7 +575,6 @@ function CharacterResetFacialExpression(C) {
 		if (C.Appearance[A].Asset.Group.AllowExpression)
 			CharacterSetFacialExpression(C, C.Appearance[A].Asset.Group.Name, null);
 }
-
 
 // returns the current selected character
 function CharacterGetCurrent() {

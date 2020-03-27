@@ -1,5 +1,5 @@
 "use strict";
-var InventoryItemLegsSturdyLeatherBeltsMessage = "";
+var InventoryItemLegsSturdyLeatherBeltsMessage = "SelectItem";
 
 // Loads the item extension properties
 function InventoryItemLegsSturdyLeatherBeltsLoad() {
@@ -16,24 +16,27 @@ function InventoryItemLegsSturdyLeatherBeltsDraw() {
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
 
 	// Draw the possible poses
-	DrawText(DialogFind(Player, "SturdyLeatherBeltsSelectTightness"), 1500, 500, "white", "gray");
-	DrawButton(1250, 550, 225, 225, "", (DialogFocusItem.Property.Restrain == null) ? "#888888" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/One.png", 1250, 550);
-	DrawText(DialogFind(Player, "SturdyLeatherBeltsPoseOne"), 1363, 800, "white", "gray");
-	DrawButton(1525, 550, 225, 225, "", ((DialogFocusItem.Property.Restrain != null) && (DialogFocusItem.Property.Restrain == "Two")) ? "#888888" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Two.png", 1525, 550);
-	DrawText(DialogFind(Player, "SturdyLeatherBeltsPoseTwo"), 1637, 800, "white", "gray");
+	if (!InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
+		DrawText(DialogFind(Player, "SturdyLeatherBeltsSelectTightness"), 1500, 500, "white", "gray");
+		DrawButton(1250, 550, 225, 225, "", (DialogFocusItem.Property.Restrain == null) ? "#888888" : "White");
+		DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/One.png", 1250, 550);
+		DrawText(DialogFind(Player, "SturdyLeatherBeltsPoseOne"), 1363, 800, "white", "gray");
+		DrawButton(1525, 550, 225, 225, "", ((DialogFocusItem.Property.Restrain != null) && (DialogFocusItem.Property.Restrain == "Two")) ? "#888888" : "White");
+		DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Two.png", 1525, 550);
+		DrawText(DialogFind(Player, "SturdyLeatherBeltsPoseTwo"), 1637, 800, "white", "gray");
 
 	// Draw the message if present
-	if (InventoryItemLegsSturdyLeatherBeltsMessage != null) DrawTextWrap(DialogFind(Player, InventoryItemLegsSturdyLeatherBeltsMessage), 1100, 850, 800, 160, "White");
-
+		if (InventoryItemLegsSturdyLeatherBeltsMessage != null) DrawTextWrap(DialogFind(Player, InventoryItemLegsSturdyLeatherBeltsMessage), 1100, 850, 800, 160, "White");
+	} else DrawText(DialogFind(Player, "CantChangeWhileLocked"), 1500, 500, "white", "gray");
 }
 
 // Catches the item extension clicks
 function InventoryItemLegsSturdyLeatherBeltsClick() {
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1250) && (MouseX <= 1475) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property.Restrain != null)) InventoryItemLegsSturdyLeatherBeltsSetPose(null);
-	if ((MouseX >= 1525) && (MouseX <= 1750) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Two"))) InventoryItemLegsSturdyLeatherBeltsSetPose("Two");
+	if (!InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
+		if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
+		if ((MouseX >= 1250) && (MouseX <= 1475) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property.Restrain != null)) InventoryItemLegsSturdyLeatherBeltsSetPose(null);
+		if ((MouseX >= 1525) && (MouseX <= 1750) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Restrain == null) || (DialogFocusItem.Property.Restrain != "Two"))) InventoryItemLegsSturdyLeatherBeltsSetPose("Two");
+	} else return
 }
 
 // Sets the cuffs pose (wrist, elbow, both or none)

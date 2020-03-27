@@ -1,4 +1,5 @@
 SelectItem,,,Select an item to use.
+SelectActivity,,,Select an activity.
 CannotUseOnSelf,,,Cannot use on yourself.
 RemoveClothesForItem,,,Remove some clothes first.
 UnZipSuitForItem,,,Unzip the suit first.
@@ -17,6 +18,7 @@ MustCollaredFirst,,,A collar must be fitted first to attach accessories to.
 NoClothAndCollared,,,Remove some clothes and requires a collar.
 LegsCannotOpen,,,Legs cannot open.
 LegsCannotClose,,,Legs cannot close.
+MustBeAbleToKneel,,,Must be able to kneel.
 MustStandUpFirst,,,Must stand up first.
 MustFreeFeetFirst,,,Must free feet first.
 MustFreeLegsFirst,,,Must free legs first.
@@ -39,6 +41,7 @@ InspectLock,,,Inspect the lock
 Remote,,,Use your remote
 DialogNormalMode,,,Exit Permission Mode
 DialogPermissionMode,,,Edit Item Permissions
+Activity,,,Sexual Activities
 ButtPump,,,Use the Butt Plug's pump
 ColorPick,,,Color of next item
 ColorSelect,,,Use this color
@@ -95,6 +98,7 @@ Private,,,Private
 Public,,,Public
 Locked,,,Locked
 Unlocked,,,Unlocked
+CantChangeWhileLocked,,,Cannot change while locked
 Delete,,,Delete
 ConfirmDelete,,,Confirm
 Beep,,,Beep
@@ -126,37 +130,67 @@ IndoorPool,,,Indoor Pool
 OutdoorPool,,,Outdoor Pool
 MaidCafe,,,Maid Café
 PublicBath,,,Public Bath
+Onsen,,,Onsen
 ParkDay,,,Park Day
 ParkNight,,,Park Night
 ChillRoom,,,Chill Room
 Boudoir,,,Boudoir
+Kitchen,,,Kitchen
+DiningRoom,,,Dining Room
 BondageBedChamber,,,Bondage Bedchamber
 Beach,,,Beach
+SheikhPrivate,,,Sheikh Private Room
+SheikhTent,,,Sheikh Tent
+SlumApartment,,,Slum Apartment
 ForestPath,,,Forest Path
 DeepForest,,,Deep Forest
 SpookyForest,,,Spooky Forest
 SlumRuins,,,Slum Ruins
 AbandonedBuilding,,,Abandoned Building
+AbandonedSideRoom,,,Abandoned Side Room
 BalconyNight,,,Balcony Night
 CozyLivingRoom,,,Cozy Living Room
 RooftopParty,,,Rooftop Party
+PartyBasement,,,Party Basement
 CosyChalet,,,Cosy Chalet
 AlchemistOffice,,,Alchemist Office
+ResearchPrep,,,Research Lab
+ResearchProgress,,,Research Lab
 HellEntrance,,,Entrance to Hell
+HeavenEntrance,,,Entrance to Heaven
 PirateIsland,,,Pirate Island
 PirateIslandNight,,,Pirate Island Night
+ShipDeck,,,Ship's Deck
+Shipwreck,,,Ship Wreck
+CaptainCabin,,,Captain Cabin
+UnderwaterOne,,,Underwater One
+MedinaMarket,,,Medina Market
 ThroneRoom,,,Throne Room
 Dungeon,,,Dungeon
 Industrial,,,Industrial
 SunTemple,,,Sun Temple
 BackAlley,,,Back Alley
+CreepyBasement,,,Creepy Basement
+Cellar,,,Cellar
+SlumCellar,,,Slum Cellar
 BarRestaurant,,,Bar Restaurant
 DungeonRuin,,,Ruined Dungeon
+SlipperyClassroom,,,Slippery Classroom
+MiddletownSchool,,,Middletown School
+SchoolHospital,,,School Hospital
+SchoolRuins,,,Abanoned School
 SecretChamber,,,Secret Chamber
 VaultCorridor,,,Vault Corridor
 AncientRuins,,,Ancient Ruins
 JungleTemple,,,Jungle Temple
 CeremonialVenue,,,Ceremony Venue
+BeachCafe,,,Beach Promenade Cafe
+Confessions,,,Confessions
+DesolateVillage,,,Desolate Village
+LostVages,,,Lost Wages Casino
+WeddingRoom,,,Wedding Room
+WeddingArch,,,Wedding Arch
+WeddingBeach,,,Wedding Beach
 WitchWood,,,Witch Wood
 ParkWinter,,,Park Winter
 XmasEve,,,Xmas Eve Lounge
@@ -171,7 +205,7 @@ PaddedCell,,,Padded Cell
 PaddedCell2,,,Padded Cell 2
 IntroductionMaidGreetings,,,"(As you enter the luxurious hallway, a maid comes to greet you.)  Welcome to the Bondage Club, is this your first visit?"
 ServerMessageOfferStartTrial,,,"SourceCharacter is offering you to start a trial period as her submissive.  Click on her and manage your relationship to accept, don't do anything to refuse."
-ServerMessageStartTrial,,,The Bondage Club is pleased to announce that SourceCharacter is starting a 3 days minimum trial period as a submissive.
+ServerMessageStartTrial,,,The Bondage Club is pleased to announce that SourceCharacter is starting a 7 days minimum trial period as a submissive.
 ServerMessageOfferEndTrial,,,"SourceCharacter has prepared a great collaring ceremony.  A maid brings a slave collar, which her submissive must consent to wear."
 ServerMessageEndTrial,,,The Bondage Club is proud to announce that SourceCharacter is now fully collared.  Her fate is in her Mistress hands.
 ServerMessageOwnerRuleChangeAllow,,,Your owner is now allowing you to access your wardrobe and change clothes.
@@ -185,9 +219,17 @@ ServerMessageOwnerRuleKeyAllow,,,Your owner is now allowing you to have keys.  Y
 ServerMessageOwnerRuleKeyConfiscate,,,Your owner has confiscated your keys.  All your regular keys are lost.
 ServerMessageOwnerRuleKeyBlock,,,Your owner is now preventing you from getting new keys.  The club shop will not sell keys to you anymore.
 ServerMessageOwnerRuleRemoteAllow,,,Your owner is now allowing you to have remotes.  You can buy remotes from the club shop.
+ServerMessageOwnerRuleRemoteAllowSelf,,,Your owner is now allowing you to use remotes on yourself.
 ServerMessageOwnerRuleRemoteConfiscate,,,Your owner has confiscated your remotes.  All your remotes are lost.
 ServerMessageOwnerRuleRemoteBlock,,,Your owner is now preventing you from getting new remotes.  The club shop will not sell remotes to you anymore.
+ServerMessageOwnerRuleRemoteBlockSelf,,,Your owner is now preventing you from using remotes on yourself.
 ServerMessageWhisperBlocked,,,You're on SourceCharacter blacklist.  Your message was blocked by the server.
+ServerMessageOfferBeginDating,,,"SourceCharacter is asking you to be her girlfriend.  Click on her and manage your relationship to accept, don't do anything to refuse."
+ServerMessageBeginDating,,,The Bondage Club is pleased to announce that SourceCharacter and TargetCharacter are starting a 7 days minimum period as lovers.
+ServerMessageOfferBeginEngagement,,,"SourceCharacter is asking you to become her fiancée.  Click on her and manage your relationship to accept, don't do anything to refuse."
+ServerMessageBeginEngagement,,,The Bondage Club is pleased to announce that SourceCharacter and TargetCharacter are now engaged and are starting a 7 days minimum period as fiancées.
+ServerMessageOfferBeginWedding,,,"SourceCharacter is proposing you to become her wife.  Click on her and manage your relationship to accept, don't do anything to refuse."
+ServerMessageBeginWedding,,,The Bondage Club is proud to announce that SourceCharacter and TargetCharacter are now married. Long may it last.
 ServerEnter,,,SourceCharacter entered.
 ServerLeave,,,SourceCharacter left.
 ServerDisconnect,,,SourceCharacter disconnected.
@@ -199,14 +241,16 @@ ServerSwap,,,SourceCharacter swapped TargetCharacterName and DestinationCharacte
 ServerPromoteAdmin,,,TargetCharacterName was promoted to administrator by SourceCharacter.
 ServerDemoteAdmin,,,TargetCharacterName was demoted from administration by SourceCharacter.
 ServerUpdateRoom,,,SourceCharacter updated the room. Name: ChatRoomName. Limit: ChatRoomLimit.  ChatRoomPrivacy.  ChatRoomLocked.
-ChatRoomHelp,,,"Commands available : * or /me : write an emote, ** or /action : write an action, /coin : flip a coin, /dice [n] : roll a dice with n-faces, /friendlistadd [ID], /friendlistremove [ID], /whitelistadd [ID], /whitelistremove [ID], /blacklistadd [ID], /blacklistremove [ID], /kick [ID], /ban [ID], /unban [ID], /promote [ID], /demote [ID]"
+ChatRoomHelp,,,"Commands available : * or /me : write an emote, ** or /action : write an action, click on someone's name on the left to whisper, /coin : flip a coin, /dice Y or XdY : roll X dice with Y-sides (from 2 to 100 sides), /friendlistadd [ID], /friendlistremove [ID], /whitelistadd [ID], /whitelistremove [ID], /blacklistadd [ID], /blacklistremove [ID], /ghostadd [ID], /ghostremove [ID], /kick [ID], /ban [ID], /unban [ID], /promote [ID], /demote [ID]"
 ActionSwap,,,SourceCharacter swaps a PrevAsset for a NextAsset on DestinationCharacter FocusAssetGroup.
 ActionUse,,,SourceCharacter uses a NextAsset on DestinationCharacter FocusAssetGroup.
+ActionChangeColor,,,SourceCharacter changes the color of NextAsset on DestinationCharacter FocusAssetGroup.
 ActionLock,,,SourceCharacter locks a NextAsset on DestinationCharacter FocusAssetGroup.
 ActionAddLock,,,SourceCharacter adds a NextAsset on DestinationCharacter FocusAssetGroup PrevAsset.
 ActionRemove,,,SourceCharacter removes the PrevAsset from DestinationCharacter FocusAssetGroup.
-ActionUnlock,,,SourceCharacter unlocks and removes the PrevAsset from DestinationCharacter FocusAssetGroup.
-ActionDice,,,SourceCharacter rolls a DiceType sided dice.  The result is: DiceResult.
+ActionUnlock,,,SourceCharacter unlocks the PrevAsset on DestinationCharacter FocusAssetGroup.
+ActionUnlockAndRemove,,,SourceCharacter unlocks and removes the PrevAsset from DestinationCharacter FocusAssetGroup.
+ActionDice,,,SourceCharacter rolls DiceType.  The result is: DiceResult.
 ActionCoin,,,SourceCharacter flips a coin.  The result is: CoinResult.
 ActionGrabbedForCell,,,"TargetCharacterName gets grabbed by two maids and locked in a timer cell, following her owner commands."
 ActionGrabbedToServeDrinks,,,TargetCharacterName gets grabbed by two maids and escorted to the maid quarters to serve drinks for her owner.
@@ -258,6 +302,10 @@ ItemMiscOwnerPadlockIntro,,,"""Never forget who you belong to"""
 ItemMiscOwnerPadlockDetail,,,Can only be locked or unlocked by her owner
 ItemMiscOwnerTimerPadlockIntro,,,"""Never forget who you belong to"""
 ItemMiscOwnerTimerPadlockDetail,,,Can only be unlocked or extended by her owner
+ItemMiscLoversPadlockIntro,,,"""A loving embrace"""
+ItemMiscLoversPadlockDetail,,,Can only be locked or unlocked by her lover
+ItemMiscLoversTimerPadlockIntro,,,"""A loving embrace"""
+ItemMiscLoversTimerPadlockDetail,,,Can only be unlocked or extended by her lover
 ItemMiscMistressPadlockIntro,,,Can only be locked or unlocked by a Club Mistress
 ItemMiscMistressTimerPadlockIntro,,,Can only be unlocked or extended by a Club Mistress
 LeatherCuffsPoseNone,,,Detached
@@ -365,13 +413,13 @@ WristShacklesPoseInFront,,,In-front of body
 WristShacklesPoseBehind,,,Behind back.
 WristShacklesRestrainInFront,,,SourceCharacter shackles DestinationCharacter wrist in-front of their body.
 WristShacklesRestrainBehind,,,SourceCharacter shackles DestinationCharacter wrist behind their back.
-SelectStrapType,,,Select if want Straps
-SelectIfDontType,,,Select want straps removed
+SelectStrapType,,,Select if you want straps
+SelectIfDontType,,,Select if you want straps removed
 LeatherArmbinderTypeStrap,,,Binder Straps
-LeatherArmbinderStrapTypeNone,,,No strap
-LeatherArmbinderSetStrap,,,SourceCharacter puts an armbiner on DestinationCharacter with a strap.
-LeatherArmbinderSetWrapStrap,,,SourceCharacter puts an armbiner on DestinationCharacter with a strap.
-LeatherArmbinderStrapSetNone,,,SourceCharacter puts an armbiner on DestinationCharacter that's strapless.
+LeatherArmbinderStrapTypeNone,,,No straps
+LeatherArmbinderSetStrap,,,SourceCharacter puts an armbinder with ring straps on DestinationCharacter arms.
+LeatherArmbinderSetWrapStrap,,,SourceCharacter puts an armbinder with wrapping straps on DestinationCharacter arms.
+LeatherArmbinderStrapSetNone,,,SourceCharacter puts a strapless armbinder on DestinationCharacter arms.
 SelectGagType,,,Select the type of gag
 ClothGagTypeSmall,,,Small
 ClothGagTypeCleave,,,Cleave
@@ -411,6 +459,7 @@ RopeBondageBoxTie,,,Box Tie
 RopeBondageHogtied,,,Hogtie
 RopeBondageSuspension,,,Suspension Tie
 RopeBondageSuspensionHogtied,,,Suspension Hogtie
+RopeBondageAllFours,,,All Fours
 RopeBondageCrotch,,,Crotch Rope
 RopeBondageHarness,,,Body Harness
 RopeBondageDiamond,,,Diamond Style
@@ -425,11 +474,22 @@ LegRopeSetSuspension,,,SourceCharacter uses the rope on TargetCharacter to do a 
 ArmsRopeSetBoxTie,,,SourceCharacter uses the rope on TargetCharacter to do a box tie.
 ArmsRopeSetHogtied,,,SourceCharacter uses the rope on TargetCharacter to do a hogtie.
 ArmsRopeSetSuspensionHogtied,,,SourceCharacter uses the rope on TargetCharacter to do a suspension hogtie.
+ArmsRopeSetAllFours,,,SourceCharacter uses the rope on TargetCharacter to have her crawling on all fours.
 Intensity-1,,,Item intensity: Disabled
 Intensity0,,,Item intensity: Low
 Intensity1,,,Item intensity: Medium
 Intensity2,,,Item intensity: High
 Intensity3,,,Item intensity: Maximum
+EggIntensity-1,,,Egg item intensity: Disabled
+EggIntensity0,,,Egg item intensity: Low
+EggIntensity1,,,Egg item intensity: Medium
+EggIntensity2,,,Egg item intensity: High
+EggIntensity3,,,Egg item intensity: Maximum
+DildoIntensity-1,,,Dildo item intensity: Disabled
+DildoIntensity0,,,Dildo item intensity: Low
+DildoIntensity1,,,Dildo item intensity: Medium
+DildoIntensity2,,,Dildo item intensity: High
+DildoIntensity3,,,Dildo item intensity: Maximum
 Increase,,,Increase
 Decrease,,,Decrease
 ShockCollarShowChat,,,Show chat message
@@ -506,6 +566,30 @@ NippleEggIncreaseTo0,,,DestinationCharacterName vibrating eggs on her nipples st
 NippleEggIncreaseTo1,,,DestinationCharacterName vibrating eggs on her nipples build up to a moderate pace.
 NippleEggIncreaseTo2,,,DestinationCharacterName vibrating eggs on her nipples start buzzing strongly!
 NippleEggIncreaseTo3,,,DestinationCharacterName vibrating eggs on her nipples jump up to maximum intensity!
+NippleHeartDecreaseTo-1,,,DestinationCharacterName vibrating heart piercings stop vibrating.
+NippleHeartDecreaseTo0,,,DestinationCharacterName vibrating heart piercings slow down into a light tease.
+NippleHeartDecreaseTo1,,,DestinationCharacterName vibrating heart piercings return to a moderate pace.
+NippleHeartDecreaseTo2,,,DestinationCharacterName vibrating heart piercings slow down a tiny bit.
+NippleHeartIncreaseTo0,,,DestinationCharacterName vibrating heart piercings start teasing her lightly.
+NippleHeartIncreaseTo1,,,DestinationCharacterName vibrating heart piercings build up to a moderate pace.
+NippleHeartIncreaseTo2,,,DestinationCharacterName vibrating heart piercings start buzzing strongly!
+NippleHeartIncreaseTo3,,,DestinationCharacterName vibrating heart piercings jump up to maximum intensity!
+VibeHeartClitPiercingDecreaseTo-1,,,DestinationCharacterName vibrating heart clit piercing stops vibrating.
+VibeHeartClitPiercingDecreaseTo0,,,DestinationCharacterName vibrating heart clit piercing slows down into a light tease.
+VibeHeartClitPiercingDecreaseTo1,,,DestinationCharacterName vibrating heart clit piercing returns to a moderate pace.
+VibeHeartClitPiercingDecreaseTo2,,,DestinationCharacterName vibrating heart clit piercing slows down a tiny bit.
+VibeHeartClitPiercingIncreaseTo0,,,DestinationCharacterName vibrating heart clit piercing starts teasing her lightly.
+VibeHeartClitPiercingIncreaseTo1,,,DestinationCharacterName vibrating heart clit piercing builds up to a moderate pace.
+VibeHeartClitPiercingIncreaseTo2,,,DestinationCharacterName vibrating heart clit piercing starts buzzing strongly!
+VibeHeartClitPiercingIncreaseTo3,,,DestinationCharacterName vibrating heart clit piercing jumps up to maximum intensity!
+TapedClitEggDecreaseTo-1,,,DestinationCharacterName vibrating egg on her clit stops vibrating.
+TapedClitEggDecreaseTo0,,,DestinationCharacterName vibrating egg on her clit slows down into a light tease.
+TapedClitEggDecreaseTo1,,,DestinationCharacterName vibrating egg on her clit returns to a moderate pace.
+TapedClitEggDecreaseTo2,,,DestinationCharacterName vibrating egg on her clit slows down a tiny bit.
+TapedClitEggIncreaseTo0,,,DestinationCharacterName vibrating egg on her clit starts teasing her lightly.
+TapedClitEggIncreaseTo1,,,DestinationCharacterName vibrating egg on her clit builds up to a moderate pace.
+TapedClitEggIncreaseTo2,,,DestinationCharacterName vibrating egg on her clit starts buzzing strongly!
+TapedClitEggIncreaseTo3,,,DestinationCharacterName vibrating egg on her clit  jumps up to maximum intensity!
 NipSucloosensTo0,,,SourceCharacter loosens DestinationCharacter nipple suction cups until they hang loosely.
 NipSucloosensTo1,,,SourceCharacter loosens DestinationCharacter nipple suction cups to a light amount of suction.
 NipSucloosensTo2,,,SourceCharacter loosens DestinationCharacter nipple suction cups to a moderate amount of suction.
@@ -654,12 +738,12 @@ FullLatexSuitTypeZipped,,,Zipped Up
 FullLatexSuitTypeUnZip,,,Unzipped
 FullLatexSuitTypeWand,,,Wand Attachment
 FullLatexSuitSetZipped,,,SourceCharacter zips up TargetCharacter suit.
-FullLatexSuitSetUnZip,,,SourceCharacter unzips up TargetCharacter suit.
-FullLatexSuitSetWand,,,SourceCharacter attachs a wand to TargetCharacter suit.
+FullLatexSuitSetUnZip,,,SourceCharacter unzips TargetCharacter suit.
+FullLatexSuitSetWand,,,SourceCharacter attaches a wand to TargetCharacter suit.
 BitchSuitTypeZipped,,,Zipped Up
 BitchSuitTypeUnZip,,,Unzipped
 BitchSuitSetZipped,,,SourceCharacter zips up TargetCharacter suit.
-BitchSuitSetUnZip,,,SourceCharacter unzips up TargetCharacter suit.
+BitchSuitSetUnZip,,,SourceCharacter unzips TargetCharacter suit.
 TurnOff,,,TurnOff
 Low,,,Low
 Medium,,,Medium
@@ -793,8 +877,18 @@ SelectCollarNameTagLoverType,,,Select what tag you want to use
 SelectCollarNameTagLoverTypeLocked,,,You cannot change the tag while it's locked
 CollarNameTagLoverSet,,,SourceCharacter uses a NameTagType lover name tag on DestinationCharacter collar.
 CollarNameTagLoverTypeCookie,,,Cookie
+CollarNameTagLoverTypeFeather,,,Feather
 CollarNameTagLoverTypeLover,,,Lover
 CollarNameTagLoverTypeMuffin,,,Muffin
+SelectCollarNameTagLivestockType,,,Select what tag you want to use
+SelectCollarNameTagLivestockTypeLocked,,,You cannot change the tag while it's locked
+CollarNameTagLivestockSet,,,SourceCharacter uses a NameTagType livestock name tag on DestinationCharacter collar.
+CollarNameTagLivestockTypeAnimal,,,Animal
+CollarNameTagLivestockTypeBreedMe,,,BreedMe
+CollarNameTagLivestockTypeCow,,,Cow
+CollarNameTagLivestockTypeMeat,,,Meat
+CollarNameTagLivestockTypeMilkMe,,,MilkMe
+CollarNameTagLivestockTypePig,,,Pig
 RoundPiercingPoseBase,,,Base
 RoundPiercingPoseChain,,,Chain
 RoundPiercingRestrainBase,,,SourceCharacter detaches extras from DestinationCharacter round piercings.
@@ -834,6 +928,14 @@ TeddyBearSetKitty,,,SourceCharacter gives TargetCharacter a cute kitty teddy.
 TeddyBearSetPup,,,SourceCharacter gives TargetCharacter a cute puppy teddy.
 TeddyBearSetBunny,,,SourceCharacter gives TargetCharacter a cute Bunny teddy.
 TeddyBearSetPony,,,SourceCharacter gives TargetCharacter a cute Pony teddy.
+HandsIn,,,Hands inside
+HandsOut,,,Hands outside
+WoodenBoxOpenHeadHandsOut,,,SourceCharacter pulls TargetCharacter's hands out of the wooden box.
+WoodenBoxOpenHeadHandsIn,,,SourceCharacter pushes TargetCharacter's hands inside the wooden box.
+SmallWoodenBoxOpenHeadHandsOut,,,SourceCharacter pulls TargetCharacter's hands out of the wooden box.
+SmallWoodenBoxOpenHeadHandsIn,,,SourceCharacter places TargetCharacter's hands inside the wooden box.
+SmallWoodenBoxOpenHeadHandsOut,,,SourceCharacter pulls TargetCharacter's hands out of the wooden box.
+SmallWoodenBoxOpenHeadHandsIn,,,SourceCharacter places TargetCharacter's hands inside the wooden box.
 HeadphoneEarPlugsSelectTightness,,,Turn the headphones on/off and adjust their volume.
 HeadphoneEarPlugsPoseOff,,,Off
 HeadphoneEarPlugsPoseLight,,,Light
@@ -841,3 +943,22 @@ HeadphoneEarPlugsPoseHeavy,,,Heavy
 HeadphoneEarPlugsRestrainNone,,,SourceCharacter turns off DestinationCharacter headphone earplugs.
 HeadphoneEarPlugsRestrainLight,,,SourceCharacter turns the volume to low on DestinationCharacter headphone earplugs.
 HeadphoneEarPlugsRestrainHeavy,,,SourceCharacter turns the volume up to high on DestinationCharacter headphone earplugs.
+SelectChainBondage,,,Select the chain bondage
+ChainBondageBasic,,,Basic Tie
+ChainBondageStrict,,,Strict Tie
+ChainBondageBoxTie,,,Box Tie
+ChainBondageHogtied,,,Hogtie
+ChainBondageSuspension,,,Suspension Tie
+ChainBondageSuspensionHogtied,,,Suspension Hogtie
+ChainBondageAllFours,,,All Fours
+LegChainSetBasic,,,SourceCharacter uses the chain on TargetCharacter to do a basic tie.
+LegChainSetStrict,,,SourceCharacter uses the chain on TargetCharacter to do a strict tie.
+LegChainSetSuspension,,,SourceCharacter uses the chain on TargetCharacter to do a suspension tie.
+ArmsChainSetBoxTie,,,SourceCharacter uses the chain on TargetCharacter to do a box tie.
+ArmsChainSetHogtied,,,SourceCharacter uses the chain on TargetCharacter to do a hogtie.
+ArmsChainSetSuspensionHogtied,,,SourceCharacter uses the Chain on TargetCharacter to do a suspension hogtie.
+ArmsChainSetAllFours,,,SourceCharacter uses the Chain on TargetCharacter to have her crawling on all fours.
+MermaidSuitTypeZipped,,,Zipped Up
+MermaidSuitTypeUnZip,,,Unzipped
+MermaidSuitSetZipped,,,SourceCharacter zips up TargetCharacter suit.
+MermaidSuitSetUnZip,,,SourceCharacter unzips TargetCharacter suit.

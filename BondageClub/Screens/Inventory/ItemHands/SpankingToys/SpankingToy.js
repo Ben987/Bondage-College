@@ -120,9 +120,16 @@ function InventorySpankingToySetType(NewType) {
 
 }
 
-// get the type of the SpankingToy that the Player holds
-function InventorySpankingToysGetType() {
-	var Toy = InventoryGet(Player, "ItemHands");
+// Get the type of spanking toy that the character is holding
+function InventorySpankingToysGetType(C) {
+	var Toy = InventoryGet(C, "ItemHands");
 	if (Toy && Toy.Property && Toy.Property.Type) return Toy.Property.Type;
 	return SpankingCurrentType;
-} 
+}
+
+// Get the description of the spanking toy that the character is holding
+function InventorySpankingToysGetDescription(C) {
+	var Type = InventorySpankingToysGetType(C);
+	var A = AssetGet(C.AssetFamily, "ItemHands", "SpankingToys" + Type);
+	return A && A.Description || "MISSING DESCRIPTION";
+}

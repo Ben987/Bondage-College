@@ -1,3 +1,14 @@
 ActionGrabbedToServeDrinksIntro,(Two maids grab you and escort you to their quarters.  Another maid addresses you.)  Your owner sent you here to work.
 PublicChat,Talk to everyone
 WhisperTo,Whisper to
+MenuCut,Keep only 20 messages
+MenuProfile,Your character profile
+MenuAdmin,Room administration
+MenuKneel,Kneel down / Stand up
+MenuDress,Dress your character
+MenuLeave,Leave this chat room
+OrgasmComing,An orgasm is coming!
+OrgasmResist,Resist!
+OrgasmTryResist,Try to resist
+OrgasmSurrender,Surrender
+OrgasmRecovering,Recovering from an orgasm...

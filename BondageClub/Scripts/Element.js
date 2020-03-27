@@ -25,6 +25,7 @@ function ElementCreateTextArea(ID) {
 		TextArea.setAttribute("ID", ID);
 		TextArea.setAttribute("name", ID);
 		TextArea.addEventListener("keydown", KeyDown);
+		TextArea.className = "HideOnPopup";
 		document.body.appendChild(TextArea);
 	}
 }
@@ -40,6 +41,7 @@ function ElementCreateInput(ID, Type, Value, MaxLength) {
 		Input.setAttribute("maxlength", MaxLength);
 		Input.setAttribute("onfocus", "this.removeAttribute('readonly');");
 		Input.addEventListener("keydown", KeyDown);
+		Input.className = "HideOnPopup";
 		document.body.appendChild(Input);
 	}
 }
@@ -51,6 +53,7 @@ function ElementCreateDiv(ID) {
 		Div.setAttribute("ID", ID);
 		Div.setAttribute("name", ID);
 		Div.addEventListener("keydown", KeyDown);
+		Div.className = "HideOnPopup";
 		document.body.appendChild(Div);
 	}
 }
