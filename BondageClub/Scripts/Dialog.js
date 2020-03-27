@@ -867,7 +867,12 @@ function DialogClick() {
 
 	// If the user clicked in the facial expression menu
 	if ((CurrentCharacter != null) && (CurrentCharacter.ID == 0) && (MouseX >= 0) && (MouseX <= 500)) {
-		for (var I = 0; I < DialogFacialExpressions.length; I++) {
+		if (CommonIsClickAt(15, 15, 90, 90)) {
+			DialogFacialExpressions.forEach(FE => { 
+				CharacterSetFacialExpression(Player, FE.Appearance.Asset.Group.Name);
+				FE.CurrentExpression = null;
+			});
+		} else for (var I = 0; I < DialogFacialExpressions.length; I++) {
 			var FE = DialogFacialExpressions[I];
 			if ((MouseY >= 125 + 120 * I) && (MouseY <= (125 + 120 * I) + 90)) {
 
@@ -1180,6 +1185,7 @@ function DialogDrawExpressionMenu() {
 	
 	// Draw the expression groups
 	DrawText(DialogFind(Player, "FacialExpression"), 265, 62, "White", "Black");
+	DrawButton(15, 15, 90, 90, "", "White", "Icons/Reset.png", "Reset Facial Expressions");
 	if (!DialogFacialExpressions || !DialogFacialExpressions.length) DialogFacialExpressionsBuild();
 	for (var I = 0; I < DialogFacialExpressions.length; I++) {
 		var FE = DialogFacialExpressions[I];
