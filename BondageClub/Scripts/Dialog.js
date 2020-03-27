@@ -1185,7 +1185,7 @@ function DialogDrawExpressionMenu() {
 	
 	// Draw the expression groups
 	DrawText(DialogFind(Player, "FacialExpression"), 265, 62, "White", "Black");
-	DrawButton(15, 15, 90, 90, "", "White", "Icons/Reset.png", "Reset Facial Expressions");
+	DrawButton(15, 15, 90, 90, "", "White", "Icons/Reset.png", DialogFind(Player, "ResetFacialExpressions"));
 	if (!DialogFacialExpressions || !DialogFacialExpressions.length) DialogFacialExpressionsBuild();
 	for (var I = 0; I < DialogFacialExpressions.length; I++) {
 		var FE = DialogFacialExpressions[I];
