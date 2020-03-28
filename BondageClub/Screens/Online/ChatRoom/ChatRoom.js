@@ -687,7 +687,7 @@ function ChatRoomMessage(data) {
 			div.setAttribute('class', 'ChatMessage ChatMessage' + data.Type + enterLeave);
 			div.setAttribute('data-time', ChatRoomCurrentTime());
 			div.setAttribute('data-sender', data.Sender);
-			if (data.Type == "Emote" || data.Type == "Action") 
+			if (data.Type == "Emote" || data.Type == "Action" || data.Type == "Activity")
 				div.setAttribute('style', 'background-color:' + ChatRoomGetTransparentColor(SenderCharacter.LabelColor) + ';');
 			div.innerHTML = msg;
 
