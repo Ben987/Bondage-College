@@ -221,13 +221,10 @@ function LoginResponse(C) {
 			Player.Lover = ((C.Lover == null) || (C.Lover == "undefined")) ? "" : C.Lover;
 			Player.Description = C.Description;
 			Player.Creation = C.Creation;
-			Player.Wardrobe = C.Wardrobe;
-			WardrobeFixLength();
+			WardrobeLoadData(C);
 			Player.OnlineID = C.ID.toString();
 			Player.MemberNumber = C.MemberNumber;
 			Player.BlockItems = ((C.BlockItems == null) || !Array.isArray(C.BlockItems)) ? [] : C.BlockItems;
-			Player.WardrobeCharacterNames = C.WardrobeCharacterNames;
-			WardrobeCharacter = [];
 
 			// Loads the ownership data
 			Player.Ownership = C.Ownership;
