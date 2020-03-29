@@ -564,7 +564,6 @@ var AssetFemale3DCG = [
 		Color: ["Default", "#cccccc", "#aaaaaa", "#888888", "#666666", "#444444", "#222222", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
 		Left: 0,
 		Top: 150,
-		Zone: [[250, 500, 150, 80]],
 		Asset: [
 			{ Name: "TailStrap", Value: 30 },
 			{ Name: "HorseTailStrap", Value: 20 },
