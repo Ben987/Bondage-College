@@ -314,65 +314,64 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 		}
 
 	// For each appearance item to load
-	for (var A = 0; A < Bundle.length; A++) {
+	for (var B = 0; B < Bundle.length; B++) {
 
 		// Skip blocked items
-		if (InventoryIsPermissionBlocked(C, Bundle[A].Name, Bundle[A].Group)) continue;
+		if (InventoryIsPermissionBlocked(C, Bundle[B].Name, Bundle[B].Group)) continue;
 
 		// Cycles in all assets to find the correct item to add (do not add )
-		for (var I = 0; I < Asset.length; I++)
-			if ((Asset[I].Name == Bundle[A].Name) && (Asset[I].Group.Name == Bundle[A].Group) && (Asset[I].Group.Family == AssetFamily)) {
+		var A = AssetGet(C.AssetFamily, Bundle[B].Group, Bundle[B].Name);
+		if (A) {
 
-				// OwnerOnly items can only get update if it comes from owner
-				if (Asset[I].OwnerOnly && (C.ID == 0)) {
-					if ((C.Ownership == null) || (C.Ownership.MemberNumber == null) || ((C.Ownership.MemberNumber != SourceMemberNumber) && (SourceMemberNumber != null))) break;
-				}
-
-				// LoverOnly items can only get update if it comes from lover
-				if (Asset[I].LoverOnly && (C.ID == 0)) {
-					if ((C.Lovership == null) || (C.Lovership.MemberNumber == null) || ((C.Lovership.MemberNumber != SourceMemberNumber) && (SourceMemberNumber != null))) break;
-				}
-
-				// Creates the item and colorize it
-				var NA = {
-					Asset: Asset[I],
-					Difficulty: parseInt((Bundle[A].Difficulty == null) ? 0 : Bundle[A].Difficulty),
-					Color: ((Bundle[A].Color == null) || (typeof Bundle[A].Color !== 'string')) ? Asset[I].Group.ColorSchema[0] : Bundle[A].Color
-				}
-
-				// Validate color string, fallback to default in case of an invalid color
-				if ((NA.Color !=  NA.Asset.Group.ColorSchema[0]) && (/^#(?:[0-9a-f]{3}){1,2}$/i.test(NA.Color) == false) && (NA.Asset.Group.ColorSchema.indexOf(NA.Color) < 0)) {
-					NA.Color = NA.Asset.Group.ColorSchema[0];
-				}
-
-				// Sets the item properties and make sure a non-owner cannot add an owner lock
-				if (Bundle[A].Property != null) {
-					NA.Property = Bundle[A].Property;
-					if ((SourceMemberNumber != null) && (C.ID == 0) && (C.Ownership != null) && (C.Ownership.MemberNumber != null) && (C.Ownership.MemberNumber != SourceMemberNumber) && InventoryOwnerOnlyItem(NA)) {
-						var Lock = InventoryGetLock(NA);
-						if ((Lock != null) && (Lock.Property != null)) delete Item.Property.LockMemberNumber;
-					}
-					if ((SourceMemberNumber != null) && (C.ID == 0) && (C.Lovership != null) && (C.Lovership.MemberNumber != null) && (C.Lovership.MemberNumber != SourceMemberNumber) && InventoryLoverOnlyItem(NA)) {
-						var Lock = InventoryGetLock(NA);
-						if ((Lock != null) && (Lock.Property != null)) delete Item.Property.LockMemberNumber;
-					}
-					ServerValidateProperties(C, NA);
-				}
-
-				// Make sure we don't push an item if there's already an item in that slot
-				var CanPush = true;
-				for (var P = 0; P < Appearance.length; P++)
-					if (Appearance[P].Asset.Group.Name == NA.Asset.Group.Name) {
-						CanPush = false;
-						break;
-					}
-
-				// Make sure we don't push an item that's disabled, coming from another player
-				if (CanPush && !NA.Asset.Enable && !NA.Asset.OwnerOnly && !NA.Asset.LoverOnly && (SourceMemberNumber != null) && (C.ID == 0)) CanPush = false;
-				if (CanPush) Appearance.push(NA);
-				break;
-
+			// OwnerOnly items can only get update if it comes from owner
+			if (A.OwnerOnly && (C.ID == 0)) {
+				if ((C.Ownership == null) || (C.Ownership.MemberNumber == null) || ((C.Ownership.MemberNumber != SourceMemberNumber) && (SourceMemberNumber != null))) continue;
 			}
+
+			// LoverOnly items can only get update if it comes from lover
+			if (A.LoverOnly && (C.ID == 0)) {
+				if ((C.Lovership == null) || (C.Lovership.MemberNumber == null) || ((C.Lovership.MemberNumber != SourceMemberNumber) && (SourceMemberNumber != null))) continue;
+			}
+
+			// Creates the item and colorize it
+			var NA = {
+				Asset: A,
+				Difficulty: parseInt((Bundle[B].Difficulty == null) ? 0 : Bundle[B].Difficulty),
+				Color: ((Bundle[B].Color == null) || (typeof Bundle[B].Color !== 'string')) ? A.Group.ColorSchema[0] : Bundle[B].Color
+			}
+
+			// Validate color string, fallback to default in case of an invalid color
+			if ((NA.Color != NA.Asset.Group.ColorSchema[0]) && (/^#(?:[0-9a-f]{3}){1,2}$/i.test(NA.Color) == false) && (NA.Asset.Group.ColorSchema.indexOf(NA.Color) < 0)) {
+				NA.Color = NA.Asset.Group.ColorSchema[0];
+			}
+
+			// Sets the item properties and make sure a non-owner cannot add an owner lock
+			if (Bundle[B].Property != null) {
+				NA.Property = Bundle[B].Property;
+				if ((SourceMemberNumber != null) && (C.ID == 0) && (C.Ownership != null) && (C.Ownership.MemberNumber != null) && (C.Ownership.MemberNumber != SourceMemberNumber) && InventoryOwnerOnlyItem(NA)) {
+					var Lock = InventoryGetLock(NA);
+					if ((Lock != null) && (Lock.Property != null)) delete Item.Property.LockMemberNumber;
+				}
+				if ((SourceMemberNumber != null) && (C.ID == 0) && (C.Lovership != null) && (C.Lovership.MemberNumber != null) && (C.Lovership.MemberNumber != SourceMemberNumber) && InventoryLoverOnlyItem(NA)) {
+					var Lock = InventoryGetLock(NA);
+					if ((Lock != null) && (Lock.Property != null)) delete Item.Property.LockMemberNumber;
+				}
+				ServerValidateProperties(C, NA);
+			}
+
+			// Make sure we don't push an item if there's already an item in that slot
+			var CanPush = true;
+			for (var P = 0; P < Appearance.length; P++)
+				if (Appearance[P].Asset.Group.Name == NA.Asset.Group.Name) {
+					CanPush = false;
+					break;
+				}
+
+			// Make sure we don't push an item that's disabled, coming from another player
+			if (CanPush && !NA.Asset.Enable && !NA.Asset.OwnerOnly && !NA.Asset.LoverOnly && (SourceMemberNumber != null) && (C.ID == 0)) CanPush = false;
+			if (CanPush) Appearance.push(NA);
+			
+		}
 
 	}
 
@@ -388,11 +387,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 
 			// Adds the missing appearance part
 			if (!Found)
-				for (var I = 0; I < Asset.length; I++)
-					if (Asset[I].Group.Name == AssetGroup[G].Name) {
-						Appearance.push({ Asset: Asset[I], Color: Asset[I].Group.ColorSchema[0] });
-						break;
-					}
+				Appearance.push({ Asset: AssetGroup[G].Asset[0], Color: AssetGroup[G].ColorSchema[0] });
 
 		}
 	return Appearance;

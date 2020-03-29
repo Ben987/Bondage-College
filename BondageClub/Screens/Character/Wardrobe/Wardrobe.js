@@ -150,13 +150,12 @@ function WardrobeFastLoad(C, W, Update) {
 			.filter(w => w.Name != null && w.Group != null)
 			.filter(w => C.Appearance.find(a => a.Asset.Group.Name == w.Group) == null)
 			.forEach(w => {
-				var A = Asset.find(a =>
-					a.Group.Name == w.Group
-					&& a.Group.Category == "Appearance"
-					&& (AddAll || a.Group.Clothing)
-					&& a.Name == w.Name
-					&& (a.Value == 0 || InventoryAvailable(Player, a.Name, a.Group.Name)));
-				if (A != null) CharacterAppearanceSetItem(C, w.Group, A, w.Color, 0, false);
+				var A = AssetGet(C.AssetFamily, w.Group, w.Name);
+				if (A && 
+					A.Group.Category == "Appearance" &&
+					(AddAll || A.Group.Clothing) &&
+					(A.Value == 0 || InventoryAvailable(Player, w.Name, w.Group))) 
+						CharacterAppearanceSetItem(C, w.Group, A, w.Color, 0, false);
 			});
 		// Adds any critical appearance asset that could be missing, adds the default one
 		AssetGroup

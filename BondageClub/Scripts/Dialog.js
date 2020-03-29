@@ -285,10 +285,12 @@ function DialogInventoryBuild(C) {
 
 		// In item permission mode, we add all the enable items, except the one already on
 		if (DialogItemPermissionMode) {
-			for (var A = 0; A < Asset.length; A++)
-				if (Asset[A].Enable && (Asset[A].Wear || Asset[A].IsLock) && Asset[A].Group.Name == C.FocusGroup.Name)
-					if ((CurItem == null) || (CurItem.Asset.Name != Asset[A].Name) || (CurItem.Asset.Group.Name != Asset[A].Group.Name))
-						DialogInventory.push({ Asset: Asset[A], Worn: false, Icon: "" });
+			var G = AssetGroupMap.get(C.FocusGroup.Name);
+			if (G) 
+				for (var A = 0; A < G.Asset.length; A++)
+					if (G.Asset[A].Enable && (G.Asset[A].Wear || G.Asset[A].IsLock))
+						if ((CurItem == null) || (CurItem.Asset.Name != G.Asset[A].Name) || (CurItem.Asset.Group.Name != G.Asset[A].Group.Name))
+							DialogInventory.push({ Asset: G.Asset[A], Worn: false, Icon: "" });
 		} else {
 
 			// Second, we add everything from the victim inventory

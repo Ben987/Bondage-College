@@ -3,6 +3,8 @@ var Asset = [];
 var AssetGroup = [];
 var AssetCurrentGroup;
 var Pose = [];
+var AssetMap = new Map();
+var AssetGroupMap = new Map();
 
 // Adds a new asset group to the main list
 function AssetGroupAdd(NewAssetFamily, NewAsset) {
@@ -33,8 +35,10 @@ function AssetGroupAdd(NewAssetFamily, NewAsset) {
 		DrawingLeft: (NewAsset.Left == null) ? 0 : NewAsset.Left,
 		DrawingTop: (NewAsset.Top == null) ? 0 : NewAsset.Top,
 		DrawingFullAlpha: (NewAsset.FullAlpha == null) ? true : NewAsset.FullAlpha,
-		DrawingBlink: (NewAsset.Blink == null) ? false : NewAsset.Blink
+		DrawingBlink: (NewAsset.Blink == null) ? false : NewAsset.Blink,
+		Asset: []
 	}
+	AssetGroupMap.set(A.Name, A);
 	AssetGroup.push(A);
 	AssetCurrentGroup = A;
 }
@@ -100,6 +104,8 @@ function AssetAdd(NewAsset) {
 	}
 	// Unwearable assets are not visible but can be overwritten
 	if (!A.Wear && NewAsset.Visible != true) A.Visible = false;
+	AssetCurrentGroup.Asset.push(A);
+	AssetMap.set(A.Group.Name + A.Name, A);
 	Asset.push(A);
 }
 
@@ -209,10 +215,7 @@ function AssetLoadAll() {
 
 // Gets a specific asset by family/group/name
 function AssetGet(Family, Group, Name) {
-	for (var A = 0; A < Asset.length; A++)
-		if ((Asset[A].Name == Name) && (Asset[A].Group.Name == Group) && (Asset[A].Group.Family == Family))
-			return Asset[A];
-	return null;
+	return AssetMap.get(Group + Name);
 }
 
 // Gets an activity asset by family and name

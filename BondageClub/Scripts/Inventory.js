@@ -9,12 +9,7 @@ function InventoryAdd(C, NewItemName, NewItemGroup, Push) {
 			return;
 
 	// Searches to find the item asset in the current character assets family
-	var NewItemAsset = null;
-	for (var A = 0; A < Asset.length; A++)
-		if ((Asset[A].Name == NewItemName) && (Asset[A].Group.Name == NewItemGroup) && (Asset[A].Group.Family == C.AssetFamily)) {
-			NewItemAsset = Asset[A];
-			break;
-		}
+	var NewItemAsset = AssetGet(C.AssetFamily, NewItemGroup, NewItemName);
 
 	// Only add the item if we found the asset
 	if (NewItemAsset != null) {
