@@ -27,7 +27,7 @@ function WardrobeFixLength() {
 // Load Wardrobe from Login data
 function WardrobeLoadData(C) {
 	if (C.Wardrobe && typeof C.Wardrobe === "string") {
-		Player.Wardrobe = JSON.parse(lzw_decode(C.Wardrobe));
+		Player.Wardrobe = JSON.parse(CommonLZWDecode(C.Wardrobe));
 	} else {
 		Player.Wardrobe = C.Wardrobe;
 	}
@@ -230,7 +230,3 @@ function WardrobeCompress() {
 		WardrobeSyncServer();
 	}
 }
-
-// LZW compress and decompress
-function lzw_encode(c){var f={};c=(c+"").split("");for(var d=[],e,b=c[0],g=256,a=1;a<c.length;a++)e=c[a],null!=f[b+e]?b+=e:(d.push(1<b.length?f[b]:b.charCodeAt(0)),f[b+e]=g,g++,b=e);d.push(1<b.length?f[b]:b.charCodeAt(0));for(a=0;a<d.length;a++)d[a]=String.fromCharCode(d[a]);return d.join("")}
-function lzw_decode(c){var f={};c=(c+"").split("");for(var d=c[0],e=d,b=[d],g=256,a,h=1;h<c.length;h++)a=c[h].charCodeAt(0),a=256>a?c[h]:f[a]?f[a]:e+d,b.push(a),d=a.charAt(0),f[g]=e+d,g++,e=a;return b.join("")};
