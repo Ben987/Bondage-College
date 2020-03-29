@@ -351,6 +351,8 @@ function PreferenceSubscreenAudioRun() {
     DrawButton(500, 272, 64, 64, "", "White", (Player.AudioSettings && Player.AudioSettings.PlayBeeps) ? "Icons/Checked.png" : "");
     DrawText(TextGet("AudioPlayItem"), 600, 385, "Black", "Gray");
 	DrawButton(500, 352, 64, 64, "", "White", (Player.AudioSettings && Player.AudioSettings.PlayItem) ? "Icons/Checked.png" : "");
+	DrawText(TextGet("AudioPlayItemPlayerOnly"), 600, 465, "Black", "Gray");
+	DrawButton(500, 432, 64, 64, "", "White", (Player.AudioSettings && Player.AudioSettings.PlayItemPlayerOnly) ? "Icons/Checked.png" : "");
 	MainCanvas.textAlign = "center";
     DrawBackNextButton(500, 193, 250, 64, Player.AudioSettings.Volume * 100 + "%", "White", "",
         () => PreferenceSettingsVolumeList[(PreferenceSettingsVolumeIndex + PreferenceSettingsVolumeList.length - 1) % PreferenceSettingsVolumeList.length] * 100 + "%",
@@ -480,6 +482,7 @@ function PreferenceSubscreenAudioClick() {
 	if ((MouseX >= 500) && (MouseX < 564)) {
 		if ((MouseY >= 272) && (MouseY < 336)) Player.AudioSettings.PlayBeeps = !Player.AudioSettings.PlayBeeps;
 		if ((MouseY >= 352) && (MouseY < 416)) Player.AudioSettings.PlayItem = !Player.AudioSettings.PlayItem;
+		if ((MouseY >= 432) && (MouseY < 496)) Player.AudioSettings.PlayItemPlayerOnly = !Player.AudioSettings.PlayItemPlayerOnly;
 	}
 
 }

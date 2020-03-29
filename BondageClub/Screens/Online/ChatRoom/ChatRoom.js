@@ -601,6 +601,7 @@ function ChatRoomMessage(data) {
 				if (data.Dictionary) {
 					var dictionary = data.Dictionary;
 					var SourceCharacter = null;
+					var isPlayerInvolved = false
 					for (var D = 0; D < dictionary.length; D++) {
 
 						// If there's a member number in the dictionary packet, we use that number to alter the chat message
@@ -620,6 +621,11 @@ function ChatRoomMessage(data) {
 										if (ChatRoomCharacter[T].MemberNumber == dictionary[D].MemberNumber)
 											SourceCharacter = ChatRoomCharacter[T];
 
+							// Checks if the player is involved in the action
+							if (!isPlayerInvolved && ((dictionary[D].Tag == "DestinationCharacter") || (dictionary[D].Tag == "DestinationCharacterName") || (dictionary[D].Tag == "TargetCharacter") || (dictionary[D].Tag == "TargetCharacterName") || (dictionary[D].Tag == "SourceCharacter")))
+								if (dictionary[D].MemberNumber == Player.MemberNumber)
+									isPlayerInvolved = true;
+
 						}
 						else if (dictionary[D].TextToLookUp) msg = msg.replace(dictionary[D].Tag, DialogFind(Player, ChatRoomHTMLEntities(dictionary[D].TextToLookUp)).toLowerCase());
 						else if (dictionary[D].AssetName) {
@@ -635,8 +641,10 @@ function ChatRoomMessage(data) {
 						else msg = msg.replace(dictionary[D].Tag, ChatRoomHTMLEntities(dictionary[D].Text));
 
 					}
+
+					if (!Player.AudioSettings.PlayItemPlayerOnly || isPlayerInvolved)
+						AudioPlayContent(data);
 				}
-				AudioPlayContent(data);
 			}
 
 			// Prepares the HTML tags
