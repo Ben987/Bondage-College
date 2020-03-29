@@ -706,12 +706,28 @@ function ChatRoomMessage(data) {
 function ChatRoomSync(data) {
 	if ((data != null) && (typeof data === "object") && (data.Name != null)) {
 
+		var Joining = false;
+
 		// Load the room
 		if ((CurrentScreen != "ChatRoom") && (CurrentScreen != "ChatAdmin") && (CurrentScreen != "Appearance") && (CurrentModule != "Character")) {
 			if (ChatRoomPlayerCanJoin) {
+				Joining = true;
 				ChatRoomPlayerCanJoin = false;
 				CommonSetScreen("Online", "ChatRoom");
 			} else return;
+		}
+
+		// If someone enters or leaves the chat room only that character must be updated
+		if (!Joining && ChatRoomCharacter && ChatRoomData && (ChatRoomData.Name == data.Name)) {
+			if (ChatRoomCharacter.length == data.Character.length + 1) {
+				ChatRoomCharacter = ChatRoomCharacter.filter(A => data.Character.some(B => A.MemberNumber == B.MemberNumber));
+				ChatRoomData = data;
+				return;
+			} else if (ChatRoomCharacter.length == data.Character.length - 1) {
+				ChatRoomCharacter.push(CharacterLoadOnline(data.Character[data.Character.length - 1], data.SourceMemberNumber));
+				ChatRoomData = data;
+				return;
+			}
 		}
 
 		// Load the characters
