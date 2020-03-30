@@ -174,13 +174,21 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 		if ((C.FocusGroup != null) && (C.FocusGroup.Zone != null) && (CurrentScreen != "Preference")) {
 
 			// Draw all the possible zones in transparent colors (gray if free, yellow if occupied, red if blocker)
-			for (var A = 0; A < AssetGroup.length; A++)
-				if (AssetGroup[A].Zone != null && AssetGroup[A].Name != C.FocusGroup.Name) {
-					var Color = "#80808040";
-					if (InventoryGroupIsBlocked(C, AssetGroup[A].Name)) Color = "#88000580";
-					else if (InventoryGet(C, AssetGroup[A].Name) != null) Color = "#D5A30080";
-					DrawAssetGroupZone(C, AssetGroup[A].Zone, HeightRatio, X, Y, Color, 5);
+			if (CurrentScreen != "Appearance") {
+				for (var A = 0; A < AssetGroup.length; A++)
+					if (AssetGroup[A].Zone != null && AssetGroup[A].Name != C.FocusGroup.Name) {
+						var Color = "#80808040";
+						if (InventoryGroupIsBlocked(C, AssetGroup[A].Name)) Color = "#88000580";
+						else if (InventoryGet(C, AssetGroup[A].Name) != null) Color = "#D5A30080";
+						DrawAssetGroupZone(C, AssetGroup[A].Zone, HeightRatio, X, Y, Color, 5);
+					}
+			} else {
+				for (var A = 0; A < AppearanceZones.length; A++) {
+					if (AppearanceZones[A].Zone != null && AppearanceZones[A].Category == AppearanceSelectedCategory) {
+						DrawAssetGroupZone(C, AppearanceZones[A].Zone, HeightRatio, X, Y, "#80808040", 6);
+					}
 				}
+			}		
 
 			// Draw the focused zone in cyan
 			DrawAssetGroupZone(C, C.FocusGroup.Zone, HeightRatio, X, Y, "cyan");
@@ -482,7 +490,10 @@ function DrawCheckbox(Left, Top, Width, Height, Text, IsChecked){
 }
 
 // Draw a back & next button
-function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackText, NextText) {
+function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackText, NextText, ThreeWay) {
+	var SplitWidth = Width / 2;
+	if (ThreeWay) SplitWidth = Width / 3
+	var Split = Left + SplitWidth;
 
 	// Draw the button rectangle (makes half of the background cyan colored if the mouse is over it)
 	var Split = Left + Width / 2;
@@ -490,13 +501,11 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 	MainCanvas.rect(Left, Top, Width, Height);
 	MainCanvas.fillStyle = Color;
 	MainCanvas.fillRect(Left, Top, Width, Height);
-	if ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height) && !CommonIsMobile) {
+	if (!CommonIsMobile && (MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height)) {
 		MainCanvas.fillStyle = "Cyan";
-		if (MouseX > Split) {
-			MainCanvas.fillRect(Split, Top, Width / 2, Height);
-		} else {
-			MainCanvas.fillRect(Left, Top, Width / 2, Height);
-		}
+		if (ThreeWay && (MouseX > Left + SplitWidth * 2)) MainCanvas.fillRect(Left + SplitWidth * 2, Top, SplitWidth, Height);
+		else if (MouseX > Left + SplitWidth) MainCanvas.fillRect(Left + SplitWidth, Top, SplitWidth, Height);
+		else MainCanvas.fillRect(Left, Top, SplitWidth, Height);
 	}
 	MainCanvas.lineWidth = '2';
 	MainCanvas.strokeStyle = 'black';
@@ -506,6 +515,8 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 	// Draw the text or image
 	DrawTextFit(Label, Left + Width / 2, Top + (Height / 2) + 1, (CommonIsMobile) ? Width - 6 : Width - 36, "Black");
 	if ((Image != null) && (Image != "")) DrawImage(Image, Left + 2, Top + 2);
+
+	if (CommonIsMobile && ThreeWay) return;
 
 	// Draw the back arrow 
 	MainCanvas.beginPath();
@@ -530,7 +541,8 @@ function DrawBackNextButton(Left, Top, Width, Height, Label, Color, Image, BackT
 	if (BackText == null) BackText = () => "MISSING VALUE FOR: BACK TEXT";
 	if (NextText == null) NextText = () => "MISSING VALUE FOR: NEXT TEXT";
 	if ((MouseX >= Left) && (MouseX <= Left + Width) && (MouseY >= Top) && (MouseY <= Top + Height))
-		DrawButtonHover(Left, Top, Width, Height, (MouseX > Split) ? NextText() : BackText());
+		if (ThreeWay && (MouseX > Split && MouseX <= Split + SplitWidth)) DrawButtonHover(Left, Top, Width, Height, ThreeWay());
+		else DrawButtonHover(Left, Top, Width, Height, (MouseX > Split) ? NextText() : BackText());
 
 }
 

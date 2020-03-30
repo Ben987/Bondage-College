@@ -277,3 +277,33 @@ function CommonConvertArrayToString(Arr) {
 	}
 	return S;
 }
+
+function CommonColorGet(color, i) {
+	return color[0] == '#' ? parseInt(color.substring(i * 2 + 1, i * 2 + 3), 16) : 255;
+}
+
+function CommonColorToBW(color) {
+	const r = CommonColorGet(color, 0);
+	const g = CommonColorGet(color, 1);
+	const b = CommonColorGet(color, 2);
+	return (r * r + g * g + b * b) <= (Math.pow(r - 255, 2) + Math.pow(g - 255, 2) + Math.pow(b - 255, 2)) ? "White" : "Black";
+}
+
+function CommonShadeColor(color, percent) {
+	const shade = i => {
+		let x = parseInt(CommonColorGet(color, i) * (100 + percent) / 100);
+		x = x < 255 ? x : 255;
+		x = x.toString(16);
+		return x.length == 1 ? "0" + x : x;
+	}
+	return "#" + shade(0) + shade(1) + shade(2);
+}
+
+function CommonRotateColor(color, rotate) {
+	AppearanceHUERot.SetRotation(2 * Math.PI * rotate / 100);
+	return "#" +
+		AppearanceHUERot.Apply(CommonColorGet(color, 0), CommonColorGet(color, 1), CommonColorGet(color, 2))
+			.map(x => x.toString(16))
+			.map(x => x.length == 1 ? "0" + x : x)
+			.join("");
+}

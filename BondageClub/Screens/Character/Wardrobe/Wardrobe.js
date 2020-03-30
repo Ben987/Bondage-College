@@ -2,6 +2,7 @@
 var WardrobeBackground = "PrivateDark";
 var WardrobeCharacter = [];
 var WardrobeSelection = -1;
+var WardrobeSize = 12;
 
 // Load the wardrobe character names
 function WardrobeLoadCharacterNames() {
@@ -143,6 +144,9 @@ function WardrobeAssetBundle(A) {
 // Load character appearance from wardrobe, only load clothes on others
 function WardrobeFastLoad(C, W, Update) {
 	if (Player.Wardrobe != null && Player.Wardrobe[W] != null) {
+		
+		WardrobeLoadData(C, Player.Wardrobe[W], Update);
+		
 		var AddAll = C.ID == 0 || C.AccountName.indexOf("Wardrobe-") == 0;
 		C.Appearance = C.Appearance
 			.filter(a => a.Asset.Group.Category != "Appearance" || (!a.Asset.Group.Clothing && !AddAll))
@@ -177,20 +181,53 @@ function WardrobeFastLoad(C, W, Update) {
 // Saves character appearance in Player's wardrobe, use Player's body as base for others
 function WardrobeFastSave(C, W, Push) {
 	if (Player.Wardrobe != null) {
-		var AddAll = C.ID == 0 || C.AccountName.indexOf("Wardrobe-") == 0;
-		Player.Wardrobe[W] = C.Appearance
-			.filter(a => a.Asset.Group.Category == "Appearance")
-			.filter(a => AddAll || a.Asset.Group.Clothing)
-			.map(WardrobeAssetBundle);
-		if (!AddAll) {
-			// Using Player's body as base
-			Player.Wardrobe[W] = Player.Wardrobe[W].concat(Player.Appearance
-				.filter(a => a.Asset.Group.Category == "Appearance")
-				.filter(a => !a.Asset.Group.Clothing)
-				.map(WardrobeAssetBundle));
-		}
+		Player.Wardrobe[W] = WardrobeSaveData(C, false);
 		WardrobeFixLength();
 		if (WardrobeCharacter != null && WardrobeCharacter[W] != null && C.AccountName != WardrobeCharacter[W].AccountName) WardrobeFastLoad(WardrobeCharacter[W], W);
 		if ((Push == null) || Push) ServerSend("AccountUpdate", { Wardrobe: Player.Wardrobe });
 	}
+}
+
+function WardrobeLoadData(C, Data, Update) {
+	const AddAll = C.ID == 0 || C.AccountName.indexOf("Wardrobe-") == 0;
+	C.Appearance = C.Appearance
+		.filter(a => a.Asset.Group.Category != "Appearance" || (!a.Asset.Group.Clothing && !AddAll))
+	Data
+		// .map(WardrobeExtractBundle) require #733
+		.filter(w => w.Name != null && w.Group != null)
+		.filter(w => C.Appearance.find(a => a.Asset.Group.Name == w.Group) == null)
+		.forEach(w => {
+			let A = AssetGet(C.AssetFamily, w.Group, w.Name);
+			if (A &&
+				(AddAll || A.Group.Clothing) &&
+				(A.Group.Category == "Appearance") &&
+				(A.Value == 0 || InventoryAvailable(Player, A.Name, A.Group.Name)))
+				CharacterAppearanceSetItem(C, w.Group, A, w.Color, 0, false);
+		});
+	// Adds any critical appearance asset that could be missing, adds the default one
+	AssetGroup
+		.filter(g => g.Category == "Appearance" && !g.AllowNone && !C.Appearance.some(a => a.Asset.Group.Name == g.Name))
+		.forEach(g => C.Appearance.push({ Asset: Asset.find(a => a.Group.Name == g.Name), Difficulty: 0, Color: g.ColorSchema[0] }));
+
+	CharacterLoadCanvas(C);
+	if (Update == null || Update) {
+		if (C.ID == 0 && C.OnlineID != null) ServerPlayerAppearanceSync();
+		if (C.ID == 0 || C.AccountName.indexOf("Online-") == 0) ChatRoomCharacterUpdate(C);
+	}
+}
+
+function WardrobeSaveData(C, SaveAll) {
+	const AddAll = SaveAll == true || C.ID == 0 || C.AccountName.indexOf("Wardrobe-") == 0;
+	let Data = C.Appearance
+		.filter(a => a.Asset.Group.Category == "Appearance")
+		.filter(a => AddAll || a.Asset.Group.Clothing)
+		.map(WardrobeAssetBundle);
+	if (!AddAll) {
+		// Using Player's body as base
+		Data = Data.concat(Player.Appearance
+			.filter(a => a.Asset.Group.Category == "Appearance")
+			.filter(a => !a.Asset.Group.Clothing)
+			.map(WardrobeAssetBundle));
+	}
+	return Data;
 }
