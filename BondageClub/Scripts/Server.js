@@ -240,6 +240,9 @@ function ServerValidateProperties(C, Item) {
 		if ((Item.Asset.AllowType == null) || (Item.Asset.AllowType.indexOf(Item.Property.Type) < 0))
 			delete Item.Property.Type;
 
+	// Remove impossible combinations
+	if ((Item.Property != null) && (Item.Property.Type == null) && (Item.Property.Restrain == null))
+		["SetPose", "Difficulty", "SelfUnlock", "Hide"].forEach(P => delete Item.Property[P]);
 }
 
 // Loads the appearance assets from a server bundle that only contains the main info (no assets)

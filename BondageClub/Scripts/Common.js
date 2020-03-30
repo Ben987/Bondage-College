@@ -11,6 +11,26 @@ var CurrentOnlinePlayers = 0;
 var CommonIsMobile = false;
 var CommonCSVCache = {};
 var CutsceneStage = 0;
+var CommonBackgroundList = [
+	"Introduction", "KidnapLeague", "MaidQuarters", "MainHall", "Management", "Private", "Shibari", "MaidCafe", 
+	"HorseStable", "Nursery", "PrisonHall", "Bedroom",
+	"BDSMRoomBlue", "BDSMRoomPurple", "BDSMRoomRed", "BondageBedChamber",
+	"CeremonialVenue", "WeddingRoom", "WeddingArch", "WeddingBeach",
+	"ParkDay", "ParkNight", "Gardens", "ParkWinter", "XmasEve", "XmasDay", "StreetNight", "SnowyStreet",
+	"IndoorPool", "OutdoorPool", "PublicBath", "Onsen", "Beach", "BeachCafe",
+	"PirateIsland", "PirateIslandNight", "ShipDeck", "CaptainCabin", "Shipwreck", 
+	"UnderwaterOne",
+	"MedinaMarket",	"SheikhPrivate", "SheikhTent",
+	"ForestPath", "DeepForest", "SpookyForest", "WitchWood", "DesolateVillage",
+	"ThroneRoom", "SecretChamber", "Dungeon", "DungeonRuin", "Confessions",
+	"AncientRuins", "JungleTemple", "SunTemple",
+	"AlchemistOffice", "ResearchPrep", "ResearchProgress",
+	"MiddletownSchool", "SlipperyClassroom", "SchoolHospital", "SchoolRuins", "SlumRuins", 
+	"SlumApartment", "AbandonedBuilding", "AbandonedSideRoom", "Industrial", "BackAlley", "CreepyBasement", "Cellar", "SlumCellar",
+	"VaultCorridor", "HellEntrance", "HeavenEntrance",
+	"BarRestaurant", "LostVages",
+	"ChillRoom", "Boudoir", "Kitchen", "DiningRoom", "CozyLivingRoom", "RooftopParty", "PartyBasement", "CosyChalet", "BalconyNight"
+];
 
 // Returns TRUE if the variable is a number
 function CommonIsNumeric(n) {

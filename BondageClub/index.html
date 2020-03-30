@@ -74,6 +74,7 @@
 <script src="Screens/Room/CollegeTheater/CollegeTheater.js"></script>
 <script src="Screens/Room/CollegeDetention/CollegeDetention.js"></script>
 <script src="Screens/Room/CollegeTeacher/CollegeTeacher.js"></script>
+<script src="Screens/Room/LARP/LARP.js"></script>
 <script src="Screens/Room/Gambling/Gambling.js"></script>
 <script src="Screens/Room/Prison/Prison.js"></script>
 <script src="Screens/Room/Photographic/Photographic.js"></script>
@@ -199,7 +200,64 @@
 	BUG SENT - Both egg and vibrator could work on different variables - Demon tail + Clit&Dildo Vibrating belt + See-through + See-through zip catsuits (gatetrek)
 	BUG SENT - Use a device strap-on on a suspended girl, should be hidden (wildsj)
 	BUG - Vibrating wand shows over wedding dress
+	
+	OK - Seam & Opacity fixes for suits (Atasly)
+	OK - Fixes for the All-Four position (Gatetrek)
+	OK - Admiral suit & Crotch chain fixes (Kirsty)
+	OK - Gloves & Taped Hands fixes (CthulhuDancing)
+
+	OK - Validate improper item properties (Sekkmer)
+	OK - New button to clear all expressions (Sekkmer)
+	OK - HobbleSkirt fixes & lots of assets priority fixes (Atasly)
+	OK - Remove collar accessory with collar in kidnap mini-game (elliesec)
 			
+IN PROGRESS - Build a new room with an NPC to explain how the LARP system and Bondage Battles works:
+-	Every girl must follow the LARP rules and play fair.  When they lose a battle, they need to submit and go along with it.
+-	Every girl needs to select a class to play in the LARP.  Each class can use the strip and restrain abilities and has three special abilities that can be used only once per battle, listed below.
+-	Can join Bondage Battles from that new room.  Bondage Battle rooms are like regular chat rooms where you can chat and emote but cannot restrain until the battle is over.
+-	Before the fight, each girl in the Bondage Battle room must select a team/color or be an observer.  The battle can be a free-for-all if everyone selects a different team/color.
+-	Once everyone has selected a team and clicked on “Ready”, the battle begins.
+-	Each girl act when her turn comes, the turn order is random, picked by the server.  Once every girl has acted, we start again with the reversed turn order.
+-	When a girl turn begins, she must select an ability to do and a target.  If the ability works (see the ability description), the target gets stripped, restrained, etc.
+-	A girl cannot act if her arms or hands are restrained, her turn is skipped automatically.
+-	If only one team can act, the fight is over, the winners are announced, and the rooms come back to normal.  The winners can enjoy their spoils of war normally.
+
+Here are the abilities that everyone can use, all the time:
+Strip: Can only be used if the target is clothed (upper cloth slot is checked).  The odds of successfully striping is: 50% + player offensive bonus - target defensive bonus.  The random % is rolled on the server.  If the % succeeds, the target is stripped to her underwear.
+Restrain: Can only be used if the target isn’t clothed.  The odds of successfully restraining is: 50% + player offensive bonus - target defensive bonus.  The random % is rolled on the server.  If the % succeeds, the player can apply a restrain on target zone: Legs/Thighs or Head/Mouth.  If the zones are already restrained, apply a restraint on Arms/Hands to prevent that target from acting, removing her from the game.
+
+Matron (Offensive bonus: 30%, Defensive bonus: 0%)
+Control: Nobody can use any special ability until your next turn.  Must be able to talk.
+Detain: Regular restrain ability, but you automatically win the %.
+Charge: Everyone in your team gets a +30% offensive bonus until your next turn.  Must be able to walk.  This bonus can raise/lower the odds to 100% or 0%.
+
+Seducer (Offensive bonus: 20%, Defensive bonus: 10%)
+Seduce: Target girl skips her next turn, must be able to talk.
+Expose: Regular strip ability, but you automatically win the %.
+Inspire: Target girl can use her three special abilities once again.
+
+Trickster (Offensive bonus: 20%, Defensive bonus: 10%)
+Hide: Cannot be targeted by anyone until your next turn, must be able to walk.
+Confuse: Target girl loses all class bonuses and cannot use special abilities until your next turn, must be able to talk.
+Gamble:  The server rolls 50% odds:
+-	If you win, you get released from all restrains
+-	If you lose, you get fully bound at random and are out of the game
+
+Servant (Offensive bonus: 10%, Defensive bonus: 20%)
+Rescue: Remove a restraint from any girl, must be able to walk.
+Yield: Skip your turn and give it to a target.
+Support: Everyone in your team gets a +30% defensive bonus until your next turn.  Must be able to talk.  This bonus can raise/lower the odds to 100% or 0%.
+
+Artist (Offensive bonus: 10%, Defensive bonus: 20%)
+Evasion: Can remove a restraint from yourself.
+Cheer: Target girl gets an extra +30% offensive and defensive bonus until your next turn, must be able to talk.  This bonus can raise/lower the odds to 100% or 0%.
+Costume: Target girl dress back up, must be able to walk.
+
+Protector (Offensive bonus: 0%, Defensive bonus: 30%)
+Dress: You dress back up.
+Cover: Target girl cannot be targeted by anyone until your next turn, must be able to walk.
+Sacrifice: Nobody in your team can be targeted but you, until your next turn.
+
 	TO DO - Each restraint will have different ways (mini-games) to try to struggle out of it:
 		1. Go Berserk (Duct Tape, Cages & Boxes, Mittens, Chastity Items, Body Harnesses, Gags with harness, Hoods) - Click the circles quickly before they disappear (Asylum)
 		2. Use Strength (Duct Tape, Yokes, Cuffs & Manacles, Belts, One Bar & Bench & Bag, Armbinders, Gags without harness) - Key Speed Game: A + S (Current)
@@ -207,7 +265,7 @@
 		4. Use Dexterity (Rope, Jackets & Suits, One Bar & Bench & Bag, Mittens, Body Harnesses, Gags with harness, Collars) - Timing Game: Stop the moving object at the right position
 		5. Be Supple (Jackets & Suits, Belts, Chastity Items, Gags without harness, Armbinders, Locking Boots, Hoods) - Guess the right number between 1 and 100, a few tries, tells you if higher or lower	
 		6. Pick the Lock (For anything that locks or when a lock is added) - Precision Game - Don't touch the walls that are scrolling toward you
-
+		
 	TO DO - Proof Read
 	TO DO - Patreon Import/Update
 

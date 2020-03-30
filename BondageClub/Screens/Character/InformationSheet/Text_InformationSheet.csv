@@ -49,8 +49,16 @@ ReputationMaidPositive,Maid Sorority:
 ReputationKidnapPositive,Kidnappers League:
 ReputationAsylumPositive,Asylum Nurse:
 ReputationAsylumNegative,Asylum Patient:
+ReputationLARPPositive,LARP Battles:
 ReputationGamblingPositive,Gambling Hall:
 ReputationABDLPositive,ABDL:
+LARPClass,LARP Class:
+LARPClassMatron,Matron
+LARPClassSeducer,Seducer
+LARPClassTrickster,Trickster
+LARPClassServant,Servant
+LARPClassArtist,Artist
+LARPClassProtector,Protector
 Skill,- Skills -
 SkillNone,None
 SkillBondage,Bondage:
