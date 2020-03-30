@@ -766,9 +766,8 @@ function AppearanceWardrobeRun() {
     else AppearanceMode = "";
 
     if (navigator.clipboard) {
-        DrawButton(1300, 320, 180, 65, "Import", "White");
-        DrawButton(1515, 320, 180, 65, "Export", "White");
-        DrawButton(1730, 320, 250, 65, "Full Export", "White");
+        DrawButton(1400, 320, 180, 65, "Import", "White");
+        DrawButton(1700, 320, 180, 65, "Export", "White");
     }
 
     // Draw 6 wardrobe options
@@ -797,8 +796,8 @@ async function AppearanceWardrobeClick() {
             }
 
     if (navigator.clipboard) {
-        if (CommonIsClickAt(1300, 320, 180, 65)) {
-            const obj = JSON.parse(lzw_decode(await navigator.clipboard.readText()));
+        if (CommonIsClickAt(1400, 320, 180, 65)) {
+            const obj = JSON.parse(CommonLZWDecode(await navigator.clipboard.readText()));
             if (Array.isArray(obj) &&
                 obj.every(Boolean) &&
                 obj.every(B =>
@@ -806,11 +805,8 @@ async function AppearanceWardrobeClick() {
                     (B.Name && B.Group)))
                 WardrobeLoadData(CharacterAppearanceSelection, obj, false);
         }
-        if (CommonIsClickAt(1515, 320, 180, 65)) {
-            await navigator.clipboard.writeText(lzw_encode(JSON.stringify(WardrobeSaveData(CharacterAppearanceSelection, false, true))));
-        }
-        if (CommonIsClickAt(1730, 320, 250, 65)) {
-            await navigator.clipboard.writeText(lzw_encode(JSON.stringify(WardrobeSaveData(CharacterAppearanceSelection, true, true))));
+        if (CommonIsClickAt(1700, 320, 180, 65)) {
+            await navigator.clipboard.writeText(CommonLZWEncode(JSON.stringify(WardrobeSaveData(CharacterAppearanceSelection))));
         }
     }
 

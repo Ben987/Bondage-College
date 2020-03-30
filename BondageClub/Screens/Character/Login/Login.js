@@ -222,7 +222,7 @@ function LoginResponse(C) {
 			Player.LARP = C.LARP;
 			Player.Description = C.Description;
 			Player.Creation = C.Creation;
-			WardrobeLoadData(C);
+			WardrobeLoginData(C);
 			Player.OnlineID = C.ID.toString();
 			Player.MemberNumber = C.MemberNumber;
 			Player.BlockItems = ((C.BlockItems == null) || !Array.isArray(C.BlockItems)) ? [] : C.BlockItems;

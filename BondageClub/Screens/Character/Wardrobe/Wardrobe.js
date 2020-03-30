@@ -26,7 +26,7 @@ function WardrobeFixLength() {
 }
 
 // Load Wardrobe from Login data
-function WardrobeLoadData(C) {
+function WardrobeLoginData(C) {
 	if (C.Wardrobe && typeof C.Wardrobe === "string") {
 		Player.Wardrobe = JSON.parse(CommonLZWDecode(C.Wardrobe));
 	} else {
@@ -200,7 +200,7 @@ function WardrobeFastLoad(C, W, Update) {
 // Saves character appearance in Player's wardrobe, use Player's body as base for others
 function WardrobeFastSave(C, W, Push) {
 	if (Player.Wardrobe != null) {
-		Player.Wardrobe[W] = WardrobeSaveData(C, false);
+		Player.Wardrobe[W] = WardrobeSaveData(C);
 		WardrobeFixLength();
 		if (WardrobeCharacter != null && WardrobeCharacter[W] != null && C.AccountName != WardrobeCharacter[W].AccountName) WardrobeFastLoad(WardrobeCharacter[W], W);
 		if ((Push == null) || Push) WardrobeSyncServer();
@@ -229,7 +229,7 @@ function WardrobeLoadData(C, Data, Update) {
 	C.Appearance = C.Appearance
 		.filter(a => a.Asset.Group.Category != "Appearance" || (!a.Asset.Group.Clothing && !AddAll))
 	Data
-		// .map(WardrobeExtractBundle) require #733
+	    .map(WardrobeExtractBundle)
 		.filter(w => w.Name != null && w.Group != null)
 		.filter(w => C.Appearance.find(a => a.Asset.Group.Name == w.Group) == null)
 		.forEach(w => {
@@ -252,8 +252,8 @@ function WardrobeLoadData(C, Data, Update) {
 	}
 }
 
-function WardrobeSaveData(C, SaveAll) {
-	const AddAll = SaveAll == true || C.ID == 0 || C.AccountName.indexOf("Wardrobe-") == 0;
+function WardrobeSaveData(C) {
+	const AddAll = C.ID == 0 || C.AccountName.indexOf("Wardrobe-") == 0;
 	let Data = C.Appearance
 		.filter(a => a.Asset.Group.Category == "Appearance")
 		.filter(a => AddAll || a.Asset.Group.Clothing)
