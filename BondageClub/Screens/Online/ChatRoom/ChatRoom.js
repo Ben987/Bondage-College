@@ -601,7 +601,7 @@ function ChatRoomMessage(data) {
 				if (data.Dictionary) {
 					var dictionary = data.Dictionary;
 					var SourceCharacter = null;
-					var isPlayerInvolved = false
+					var isPlayerInvolved = SenderCharacter.MemberNumber == Player.MemberNumber;
 					for (var D = 0; D < dictionary.length; D++) {
 
 						// If there's a member number in the dictionary packet, we use that number to alter the chat message
