@@ -142,6 +142,8 @@ function KidnapUpperHandMoveAvailable(MoveType, DoMove) {
 		var I = InventoryGet(C, KidnapUpperHandMoveType[MoveType].replace("Undo", ""));
 		if ((I != null) && ((C.ID != 0) || !InventoryItemHasEffect(I, "Lock", true))) {
 			if (DoMove) InventoryRemove(C, KidnapUpperHandMoveType[MoveType].replace("Undo", ""));
+			// If removing a collar, also remove collar accessories
+			if (DoMove && MoveType == 5) InventoryRemove(C, "ItemNeckAccessories");
 			return true;
 		}
 	}

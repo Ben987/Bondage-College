@@ -11,6 +11,26 @@ var CurrentOnlinePlayers = 0;
 var CommonIsMobile = false;
 var CommonCSVCache = {};
 var CutsceneStage = 0;
+var CommonBackgroundList = [
+	"Introduction", "KidnapLeague", "MaidQuarters", "MainHall", "Management", "Private", "Shibari", "MaidCafe", 
+	"HorseStable", "Nursery", "PrisonHall", "Bedroom",
+	"BDSMRoomBlue", "BDSMRoomPurple", "BDSMRoomRed", "BondageBedChamber",
+	"CeremonialVenue", "WeddingRoom", "WeddingArch", "WeddingBeach",
+	"ParkDay", "ParkNight", "Gardens", "ParkWinter", "XmasEve", "XmasDay", "StreetNight", "SnowyStreet",
+	"IndoorPool", "OutdoorPool", "PublicBath", "Onsen", "Beach", "BeachCafe",
+	"PirateIsland", "PirateIslandNight", "ShipDeck", "CaptainCabin", "Shipwreck", 
+	"UnderwaterOne",
+	"MedinaMarket",	"SheikhPrivate", "SheikhTent",
+	"ForestPath", "DeepForest", "SpookyForest", "WitchWood", "DesolateVillage",
+	"ThroneRoom", "SecretChamber", "Dungeon", "DungeonRuin", "Confessions",
+	"AncientRuins", "JungleTemple", "SunTemple",
+	"AlchemistOffice", "ResearchPrep", "ResearchProgress",
+	"MiddletownSchool", "SlipperyClassroom", "SchoolHospital", "SchoolRuins", "SlumRuins", 
+	"SlumApartment", "AbandonedBuilding", "AbandonedSideRoom", "Industrial", "BackAlley", "CreepyBasement", "Cellar", "SlumCellar",
+	"VaultCorridor", "HellEntrance", "HeavenEntrance",
+	"BarRestaurant", "LostVages",
+	"ChillRoom", "Boudoir", "Kitchen", "DiningRoom", "CozyLivingRoom", "RooftopParty", "PartyBasement", "CosyChalet", "BalconyNight"
+];
 
 // Returns TRUE if the variable is a number
 function CommonIsNumeric(n) {
@@ -261,3 +281,33 @@ function CommonConvertArrayToString(Arr) {
 // LZW compress and decompress
 function CommonLZWEncode(c){var f={};c=(c+"").split("");for(var d=[],e,b=c[0],g=256,a=1;a<c.length;a++)e=c[a],null!=f[b+e]?b+=e:(d.push(1<b.length?f[b]:b.charCodeAt(0)),f[b+e]=g,g++,b=e);d.push(1<b.length?f[b]:b.charCodeAt(0));for(a=0;a<d.length;a++)d[a]=String.fromCharCode(d[a]);return d.join("")}
 function CommonLZWDecode(c){var f={};c=(c+"").split("");for(var d=c[0],e=d,b=[d],g=256,a,h=1;h<c.length;h++)a=c[h].charCodeAt(0),a=256>a?c[h]:f[a]?f[a]:e+d,b.push(a),d=a.charAt(0),f[g]=e+d,g++,e=a;return b.join("")};
+
+function CommonColorGet(color, i) {
+	return color[0] == '#' ? parseInt(color.substring(i * 2 + 1, i * 2 + 3), 16) : 255;
+}
+
+function CommonColorToBW(color) {
+	const r = CommonColorGet(color, 0);
+	const g = CommonColorGet(color, 1);
+	const b = CommonColorGet(color, 2);
+	return (r * r + g * g + b * b) <= (Math.pow(r - 255, 2) + Math.pow(g - 255, 2) + Math.pow(b - 255, 2)) ? "White" : "Black";
+}
+
+function CommonShadeColor(color, percent) {
+	const shade = i => {
+		let x = parseInt(CommonColorGet(color, i) * (100 + percent) / 100);
+		x = x < 255 ? x : 255;
+		x = x.toString(16);
+		return x.length == 1 ? "0" + x : x;
+	}
+	return "#" + shade(0) + shade(1) + shade(2);
+}
+
+function CommonRotateColor(color, rotate) {
+	AppearanceHUERot.SetRotation(2 * Math.PI * rotate / 100);
+	return "#" +
+		AppearanceHUERot.Apply(CommonColorGet(color, 0), CommonColorGet(color, 1), CommonColorGet(color, 2))
+			.map(x => x.toString(16))
+			.map(x => x.length == 1 ? "0" + x : x)
+			.join("");
+}

@@ -26,7 +26,7 @@ MustFreeHandsFirst,,,Must free hands first.
 RemoveShacklesFirst,,,Must remove shackles first.
 CanOnlyEquipOneOfThisGag,,,Gag type already present.
 CannotBeUsedOverFlatGag,,,Cannot be used on a flat gag.
-CannotUseMultipleCorsetGags,,,Corset Gag already present.
+CannotUseMultipleCorsetGags,,,Corset gag already present.
 Cancel,,,Cancel
 Exit,,,Back to character
 Next,,,View next items
@@ -39,10 +39,10 @@ Lock,,,Use a lock
 Unlock,,,Unlock the item
 InspectLock,,,Inspect the lock
 Remote,,,Use your remote
-DialogNormalMode,,,Exit Permission Mode
-DialogPermissionMode,,,Edit Item Permissions
-Activity,,,Sexual Activities
-ButtPump,,,Use the Butt Plug's pump
+DialogNormalMode,,,Exit permission mode
+DialogPermissionMode,,,Edit item permissions
+Activity,,,Sexual activities
+ButtPump,,,Use the butt plug's pump
 ColorPick,,,Color of next item
 ColorSelect,,,Use this color
 ColorCancel,,,Default color
@@ -79,6 +79,7 @@ SuctionLevel1,,,Suction Cup level: Light
 SuctionLevel2,,,Suction Cup level: Medium
 SuctionLevel3,,,Suction Cup level: Heavy
 SuctionLevel4,,,Suction Cup level: Max
+ClearFacialExpressions,,,Clear facial expressions
 DeflateIt,,,Deflate it
 PumpIt,,,Pump it
 pumps,,,pumps
@@ -111,6 +112,7 @@ ReceivedBeep,,,Received at
 YourRoom,,,<i>Your private room</i>
 InRoom,,,in room
 PrivateRoom,,,<i>Private room</i>
+WrestlingRing,,,Wrestling Ring
 Introduction,,,Introduction
 KidnapLeague,,,Kidnappers League
 MaidQuarters,,,Maid Quarters

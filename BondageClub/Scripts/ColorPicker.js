@@ -115,6 +115,7 @@ function ColorPickerPickSV(Event) {
 }
 
 function ColorPickerSelectFromPallete(Event) {
+    if (CurrentScreen == "Appearance") return;
     var C = ColorPickerGetCoordinates(Event);
     var P = Math.max(0, Math.min(1, (C.X - ColorPickerX) / ColorPickerWidth));
     var HSV = P > 0.5 ? ColorPickerInitialHSV : ColorPickerLastHSV;
@@ -240,9 +241,11 @@ function ColorPickerDraw(X, Y, Width, Height, Src, Callback) {
     DrawEmptyRect(X + HSV.H * (Width - 20), Y, 20, ColorPickerHueBarHeight, "#FFFFFF");
 
     // Draw Pallette
-    DrawRect(X, PalleteOffset, ColorPickerWidth / 2, PalleteHeight, ColorPickerHSVToCSS(ColorPickerLastHSV));
-    DrawRect(X + ColorPickerWidth / 2, PalleteOffset, ColorPickerWidth / 2, PalleteHeight, ColorPickerHSVToCSS(ColorPickerInitialHSV));
-
+    if (CurrentScreen != "Appearance") {
+        DrawRect(X, PalleteOffset, ColorPickerWidth / 2, PalleteHeight, ColorPickerHSVToCSS(ColorPickerLastHSV));
+        DrawRect(X + ColorPickerWidth / 2, PalleteOffset, ColorPickerWidth / 2, PalleteHeight, ColorPickerHSVToCSS(ColorPickerInitialHSV));
+    }
+    
     ColorPickerX = X;
     ColorPickerY = Y;
     ColorPickerWidth = Width;
