@@ -74,7 +74,7 @@ Zieh dich bitte um, es geht los.
 I'll hurry up.
 Ich eile.
 ###_PLAYER
-Take fife, You are free.
+Take five, you are free.
 Gönn' dir eine Pause, du bist frei.
 ###_NPC
 Thank you very much!
@@ -102,7 +102,7 @@ Ich kann nicht, ich bin gefesselt. Bitte befreie mich.
 ###_PLAYER
 Goodbye.  (Leave her.)
 Wiedersehen. (Dialog beenden.)
-Can we continue the show? 
+Can we continue the show?
 Können wir mit der Show weitermachen?
 ###_NPC
 (She nods in agreement.) Yes, please.

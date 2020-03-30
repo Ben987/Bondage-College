@@ -74,7 +74,7 @@ Please change, the show's starting.
 I'll hurry up.
 Я потороплюсь.
 ###_PLAYER
-Take fife, You are free.
+Take five, you are free.
 Держите пять, вы свободны.
 ###_NPC
 Thank you very much!
@@ -102,8 +102,8 @@ I can't, I'm tied up. Please free me.
 ###_PLAYER
 Goodbye.  (Leave her.)
 До свидания.  (Оставь ее.)
-Can we continue the show? 
-Мы можем продолжить шоу? 
+Can we continue the show?
+Мы можем продолжить шоу?
 ###_NPC
 (She nods in agreement.) Yes, please.
 (Она кивает в знак согласия.) Да, пожалуйста.
