@@ -25,6 +25,18 @@ function WardrobeFixLength() {
 	}
 }
 
+// Load Wardrobe from Login data
+function WardrobeLoadData(C) {
+	if (C.Wardrobe && typeof C.Wardrobe === "string") {
+		Player.Wardrobe = JSON.parse(CommonLZWDecode(C.Wardrobe));
+	} else {
+		Player.Wardrobe = C.Wardrobe;
+	}
+	Player.WardrobeCharacterNames = C.WardrobeCharacterNames;
+	WardrobeCharacter = [];
+	WardrobeFixLength();
+}
+
 // Loads all wardrobe characters 
 function WardrobeLoadCharacters(Fast) {
 	Fast = Fast == null ? false : Fast;
@@ -65,7 +77,7 @@ function WardrobeLoadCharacters(Fast) {
 	if (W != null) {
 		WardrobeFixLength();
 		if (Fast) WardrobeFastLoad(WardrobeCharacter[W], W);
-		ServerSend("AccountUpdate", { Wardrobe: Player.Wardrobe });
+		WardrobeSyncServer();
 	}
 }
 
@@ -141,6 +153,12 @@ function WardrobeAssetBundle(A) {
 	return { Name: A.Asset.Name, Group: A.Asset.Group.Name, Color: A.Color };
 }
 
+// Extract compressed bundle
+function WardrobeExtractBundle(B) {
+	if ((B.Name == null) && (B.length > 0)) return { Name: B[0], Group: B[1], Color: B[2] };
+	return B;
+}
+
 // Load character appearance from wardrobe, only load clothes on others
 function WardrobeFastLoad(C, W, Update) {
 	if (Player.Wardrobe != null && Player.Wardrobe[W] != null) {
@@ -151,6 +169,7 @@ function WardrobeFastLoad(C, W, Update) {
 		C.Appearance = C.Appearance
 			.filter(a => a.Asset.Group.Category != "Appearance" || (!a.Asset.Group.Clothing && !AddAll))
 		Player.Wardrobe[W]
+			.map(WardrobeExtractBundle)
 			.filter(w => w.Name != null && w.Group != null)
 			.filter(w => C.Appearance.find(a => a.Asset.Group.Name == w.Group) == null)
 			.forEach(w => {
@@ -184,7 +203,24 @@ function WardrobeFastSave(C, W, Push) {
 		Player.Wardrobe[W] = WardrobeSaveData(C, false);
 		WardrobeFixLength();
 		if (WardrobeCharacter != null && WardrobeCharacter[W] != null && C.AccountName != WardrobeCharacter[W].AccountName) WardrobeFastLoad(WardrobeCharacter[W], W);
-		if ((Push == null) || Push) ServerSend("AccountUpdate", { Wardrobe: Player.Wardrobe });
+		if ((Push == null) || Push) WardrobeSyncServer();
+	}
+}
+
+// Saves Player's wardrobe to server
+function WardrobeSyncServer() {
+	ServerSend("AccountUpdate", { Wardrobe: Player.Wardrobe });
+}
+
+// Rebudle Player's wardrobe
+function WardrobeCompress() {
+	if (Player.Wardrobe && Array.isArray(Player.Wardrobe) && Player.Wardrobe.some(W => W.some(X => X.Name))) {
+		Player.Wardrobe = Player.Wardrobe
+			.map(W => W
+				.map(WardrobeExtractBundle)
+				.map(X => Object.assign({ Asset: AssetGet(Player.AssetFamily, X.Group, X.Name) }, X))
+				.map(WardrobeAssetBundle));
+		WardrobeSyncServer();
 	}
 }
 

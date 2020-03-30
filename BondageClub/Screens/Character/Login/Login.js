@@ -222,13 +222,10 @@ function LoginResponse(C) {
 			Player.LARP = C.LARP;
 			Player.Description = C.Description;
 			Player.Creation = C.Creation;
-			Player.Wardrobe = C.Wardrobe;
-			WardrobeFixLength();
+			WardrobeLoadData(C);
 			Player.OnlineID = C.ID.toString();
 			Player.MemberNumber = C.MemberNumber;
 			Player.BlockItems = ((C.BlockItems == null) || !Array.isArray(C.BlockItems)) ? [] : C.BlockItems;
-			Player.WardrobeCharacterNames = C.WardrobeCharacterNames;
-			WardrobeCharacter = [];
 
 			// Loads the ownership data
 			Player.Ownership = C.Ownership;

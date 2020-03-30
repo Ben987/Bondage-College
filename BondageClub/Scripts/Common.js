@@ -278,6 +278,10 @@ function CommonConvertArrayToString(Arr) {
 	return S;
 }
 
+// LZW compress and decompress
+function CommonLZWEncode(c){var f={};c=(c+"").split("");for(var d=[],e,b=c[0],g=256,a=1;a<c.length;a++)e=c[a],null!=f[b+e]?b+=e:(d.push(1<b.length?f[b]:b.charCodeAt(0)),f[b+e]=g,g++,b=e);d.push(1<b.length?f[b]:b.charCodeAt(0));for(a=0;a<d.length;a++)d[a]=String.fromCharCode(d[a]);return d.join("")}
+function CommonLZWDecode(c){var f={};c=(c+"").split("");for(var d=c[0],e=d,b=[d],g=256,a,h=1;h<c.length;h++)a=c[h].charCodeAt(0),a=256>a?c[h]:f[a]?f[a]:e+d,b.push(a),d=a.charAt(0),f[g]=e+d,g++,e=a;return b.join("")};
+
 function CommonColorGet(color, i) {
 	return color[0] == '#' ? parseInt(color.substring(i * 2 + 1, i * 2 + 3), 16) : 255;
 }

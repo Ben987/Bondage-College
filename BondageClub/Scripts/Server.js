@@ -319,6 +319,10 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 	// For each appearance item to load
 	for (var A = 0; A < Bundle.length; A++) {
 
+		// Extract compressed bundle
+		if ((Bundle[A].Name == null) && (Bundle[A].length > 0))
+			Bundle[A] = { Name: Bundle[A][0], Group: Bundle[A][1], Color: Bundle[A][2], Difficulty: Bundle[A][3], Property: Bundle[A][4] };
+
 		// Skip blocked items
 		if (InventoryIsPermissionBlocked(C, Bundle[A].Name, Bundle[A].Group)) continue;
 
