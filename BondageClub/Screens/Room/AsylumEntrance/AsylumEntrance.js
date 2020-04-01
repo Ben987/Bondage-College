@@ -58,11 +58,7 @@ function AsylumEntranceClick() {
 
 // Enters the online chat room in "Asylum mode"
 function AsylumEntranceStartChat() {
-	ChatRoomSpace = "Asylum";
-	ChatSearchBackground = "AsylumEntranceDark";
-	ChatSearchLeaveRoom = "AsylumEntrance";
-	ChatCreateBackgroundList = ["AsylumEntrance", "AsylumBedroom", "AsylumMeeting", "AsylumTherapy", "PaddedCell", "PaddedCell2"];
-	CommonSetScreen("Online", "ChatSearch");
+	ChatRoomStart("Asylum", "", "AsylumEntrance", "AsylumEntranceDark", ["AsylumEntrance", "AsylumBedroom", "AsylumMeeting", "AsylumTherapy", "PaddedCell", "PaddedCell2"]);
 }
 
 // Wears the nurse clothes on a character (same as nursery)

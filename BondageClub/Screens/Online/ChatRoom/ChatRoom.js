@@ -11,6 +11,7 @@ var ChatRoomPlayerCanJoin = false;
 var ChatRoomMoneyForOwner = 0;
 var ChatRoomQuestGiven = [];
 var ChatRoomSpace = "";
+var ChatRoomGame = "";
 var ChatRoomSwapTarget = null;
 
 // Returns TRUE if the dialog option is available
@@ -75,6 +76,16 @@ function ChatRoomLoad() {
 	ElementRemove("InputSize");
 	ChatRoomCreateElement();
 	ChatRoomCharacterUpdate(Player);
+}
+
+// When the chat room selection must start
+function ChatRoomStart(Space, Game, LeaveRoom, Background, BackgroundList) {
+	ChatRoomSpace = Space;
+	ChatRoomGame = Game;
+	ChatSearchLeaveRoom = LeaveRoom;
+	ChatSearchBackground = Background;
+	ChatCreateBackgroundList = BackgroundList;
+	CommonSetScreen("Online", "ChatSearch");
 }
 
 // Returns TRUE if the player owner is inside the room
@@ -239,7 +250,8 @@ function ChatRoomRun() {
 	DrawButton(1005, 2, 120, 60, "", (ChatRoomCanLeave()) ? "White" : "Pink", "Icons/Rectangle/Exit.png", TextGet("MenuLeave"));
 	DrawButton(1179, 2, 120, 60, "", "White", "Icons/Rectangle/Cut.png", TextGet("MenuCut"));
 	DrawButton(1353, 2, 120, 60, "", (Player.CanKneel()) ? "White" : "Pink", "Icons/Rectangle/Kneel.png", TextGet("MenuKneel"));
-	DrawButton(1527, 2, 120, 60, "", (Player.CanChange()) ? "White" : "Pink", "Icons/Rectangle/Dress.png", TextGet("MenuDress"));
+	if (ChatRoomGame == "") DrawButton(1527, 2, 120, 60, "", (Player.CanChange()) ? "White" : "Pink", "Icons/Rectangle/Dress.png", TextGet("MenuDress"));
+	else DrawButton(1527, 2, 120, 60, "", "White", "Icons/Rectangle/GameOption.png", TextGet("MenuGameOption"));
 	DrawButton(1701, 2, 120, 60, "", "White", "Icons/Rectangle/Character.png", TextGet("MenuProfile"));
 	DrawButton(1875, 2, 120, 60, "", "White", "Icons/Rectangle/Preference.png", TextGet("MenuAdmin"));
 
@@ -309,7 +321,7 @@ function ChatRoomClick() {
 	}
 
 	// When the user wants to change clothes
-	if ((MouseX >= 1527) && (MouseX < 1647) && (MouseY >= 0) && (MouseY <= 62) && Player.CanChange()) { 
+	if ((MouseX >= 1527) && (MouseX < 1647) && (MouseY >= 0) && (MouseY <= 62) && Player.CanChange() && (ChatRoomGame == "")) { 
 		document.getElementById("InputChat").style.display = "none";
 		document.getElementById("TextAreaChatLog").style.display = "none";
 		CharacterAppearanceReturnRoom = "ChatRoom"; 
@@ -317,6 +329,13 @@ function ChatRoomClick() {
 		CharacterAppearanceLoadCharacter(Player);
 	}
 
+	// The change cloth button can become the game option button
+	if ((MouseX >= 1527) && (MouseX < 1647) && (MouseY >= 0) && (MouseY <= 62) && Player.CanChange() && (ChatRoomGame != "")) { 
+		document.getElementById("InputChat").style.display = "none";
+		document.getElementById("TextAreaChatLog").style.display = "none";
+		CommonSetScreen("Online", "Game" + ChatRoomGame);
+	}
+	
 	// When the user checks her profile
 	if ((MouseX >= 1701) && (MouseX < 1821) && (MouseY >= 0) && (MouseY <= 62)) {
 		document.getElementById("InputChat").style.display = "none";
@@ -557,7 +576,7 @@ function ChatRoomHTMLEntities(str) {
 function ChatRoomMessage(data) {
 
 	// Make sure the message is valid (needs a Sender and Content)
-	if ((data != null) && (typeof data === "object") && (data.Content != null) && (typeof data.Content === "string") && (data.Content != "") && (data.Sender != null) && (typeof data.Sender === "number") && (data.Sender > 0)) {
+	if ((data != null) && (typeof data === "object") && (data.Content != null) && (typeof data.Content === "string") && (data.Content != "") && (data.Sender != null) && (typeof data.Sender === "number")) {
 
 		// Exits right away if the sender is ghosted
 		if (Player.GhostList.indexOf(data.Sender) >= 0) return;
@@ -601,6 +620,7 @@ function ChatRoomMessage(data) {
 				if (data.Dictionary) {
 					var dictionary = data.Dictionary;
 					var SourceCharacter = null;
+					var isPlayerInvolved = SenderCharacter.MemberNumber == Player.MemberNumber;
 					for (var D = 0; D < dictionary.length; D++) {
 
 						// If there's a member number in the dictionary packet, we use that number to alter the chat message
@@ -620,6 +640,11 @@ function ChatRoomMessage(data) {
 										if (ChatRoomCharacter[T].MemberNumber == dictionary[D].MemberNumber)
 											SourceCharacter = ChatRoomCharacter[T];
 
+							// Checks if the player is involved in the action
+							if (!isPlayerInvolved && ((dictionary[D].Tag == "DestinationCharacter") || (dictionary[D].Tag == "DestinationCharacterName") || (dictionary[D].Tag == "TargetCharacter") || (dictionary[D].Tag == "TargetCharacterName") || (dictionary[D].Tag == "SourceCharacter")))
+								if (dictionary[D].MemberNumber == Player.MemberNumber)
+									isPlayerInvolved = true;
+
 						}
 						else if (dictionary[D].TextToLookUp) msg = msg.replace(dictionary[D].Tag, DialogFind(Player, ChatRoomHTMLEntities(dictionary[D].TextToLookUp)).toLowerCase());
 						else if (dictionary[D].AssetName) {
@@ -635,8 +660,10 @@ function ChatRoomMessage(data) {
 						else msg = msg.replace(dictionary[D].Tag, ChatRoomHTMLEntities(dictionary[D].Text));
 
 					}
+
+					if (!Player.AudioSettings.PlayItemPlayerOnly || isPlayerInvolved)
+						AudioPlayContent(data);
 				}
-				AudioPlayContent(data);
 			}
 
 			// Prepares the HTML tags
@@ -706,12 +733,24 @@ function ChatRoomMessage(data) {
 function ChatRoomSync(data) {
 	if ((data != null) && (typeof data === "object") && (data.Name != null)) {
 
-		// Load the room
+		// Loads the room
+		var Joining = false;
 		if ((CurrentScreen != "ChatRoom") && (CurrentScreen != "ChatAdmin") && (CurrentScreen != "Appearance") && (CurrentModule != "Character")) {
 			if (ChatRoomPlayerCanJoin) {
+				Joining = true;
 				ChatRoomPlayerCanJoin = false;
 				CommonSetScreen("Online", "ChatRoom");
 			} else return;
+		}
+
+		// If someone enters or leaves the chat room only that character must be updated
+		if (!Joining && ChatRoomCharacter && ChatRoomData && (ChatRoomData.Name == data.Name)) {
+			if (ChatRoomCharacter.length == data.Character.length + 1)
+				ChatRoomCharacter = ChatRoomCharacter.filter(A => data.Character.some(B => A.MemberNumber == B.MemberNumber));
+			else if (ChatRoomCharacter.length == data.Character.length - 1)
+				ChatRoomCharacter.push(CharacterLoadOnline(data.Character[data.Character.length - 1], data.SourceMemberNumber));
+			ChatRoomData = data;
+			return;
 		}
 
 		// Load the characters
@@ -991,4 +1030,9 @@ function ChatRoomPayQuest(data) {
 		CharacterChangeMoney(Player, M);
 		ChatRoomQuestGiven.splice(ChatRoomQuestGiven.indexOf(data.Sender), 1);
 	}
+}
+
+// When a game message comes in, we forward it to the current online game being played
+function ChatRoomGameResponse(data) {
+	if (ChatRoomGame == "LARP") GameLARPProcess(data);
 }

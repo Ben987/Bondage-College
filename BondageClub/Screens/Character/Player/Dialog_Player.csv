@@ -95,6 +95,7 @@ Someone,,,Someone
 KneelDown,,,SourceCharacter kneels down
 StandUp,,,SourceCharacter stands up
 ChangeClothes,,,SourceCharacter changes DestinationCharacter clothes.
+LARPChangeTeamClass,,,SourceCharacter selects her team and class.
 Private,,,Private
 Public,,,Public
 Locked,,,Locked

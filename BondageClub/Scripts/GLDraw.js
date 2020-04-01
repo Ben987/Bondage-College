@@ -8,18 +8,17 @@ var GLDrawCacheTotalImages = 0;
 var GLVersion;
 
 var GLDrawCanvas;
-var GLDrawCanvasBlink;
 
 var GLDrawAlphaThreshold = 0.01;
 var GLDrawHalfAlphaLow = 0.8 / 256.0;
 var GLDrawHalfAlphaHigh = 1.2 / 256.0;
 
-//window.addEventListener('load', GLDrawLoad);
+window.addEventListener('load', GLDrawLoad);
 
 // Load WebGL if not awailable it use the old canvas engine
 function GLDrawLoad() {
     GLDrawCanvas = document.createElement("canvas");
-    GLDrawCanvas.width = 500;
+    GLDrawCanvas.width = 1000;
     GLDrawCanvas.height = 1000;
     GLVersion = "webgl2";
     var gl = GLDrawCanvas.getContext(GLVersion);
@@ -27,7 +26,6 @@ function GLDrawLoad() {
     if (!gl) { GLVersion = "No WebGL"; GLDrawCanvas.remove(); GLDrawCanvas = null; return; }
 
     GLDrawCanvas = GLDrawInitCharacterCanvas(GLDrawCanvas);
-    GLDrawCanvasBlink = GLDrawInitCharacterCanvas(GLDrawCanvasBlink);
 
     CharacterAppearanceBuildCanvas = GLDrawAppearanceBuild;
 
@@ -55,7 +53,7 @@ function GLDrawMakeGLProgam(gl) {
 function GLDrawInitCharacterCanvas(canvas) {
     if (canvas == null) {
         canvas = document.createElement("canvas");
-        canvas.width = 500;
+        canvas.width = 1000;
         canvas.height = 1000;
     }
     if (canvas.GL == null) {
@@ -65,7 +63,7 @@ function GLDrawInitCharacterCanvas(canvas) {
             return GLDrawInitCharacterCanvas(null);
         }
     } else {
-        GLDrawClearRect(canvas.GL, 0, 0, 500, 1000);
+        GLDrawClearRect(canvas.GL, 0, 0, 1000, 1000);
     }
     if (canvas.GL.program == null) {
         GLDrawMakeGLProgam(canvas.GL);
@@ -176,6 +174,7 @@ function GLDrawCreateProgram(gl, vertexShader, fragmentShader) {
 }
 
 // Draws image from url to a WebGLRenderingContext
+function GLDrawImageBlink(url, gl, dstX, dstY, color, fullAlpha) { GLDrawImage(url, gl, dstX + 500, dstY, color, fullAlpha); }
 function GLDrawImage(url, gl, dstX, dstY, color, fullAlpha) {
     var tex = GLDrawLoadImage(gl, url);
 
@@ -221,11 +220,10 @@ function GLDrawLoadImage(gl, url) {
 
     if (!textureInfo) {
         var tex = gl.createTexture();
-        gl.bindTexture(gl.TEXTURE_2D, tex);
 
+        gl.bindTexture(gl.TEXTURE_2D, tex);
         textureInfo = { width: 1, height: 1, texture: tex, };
         gl.textureCache.set(url, textureInfo);
-
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
         gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
@@ -233,20 +231,14 @@ function GLDrawLoadImage(gl, url) {
         var Img = GLDrawImageCache.get(url);
 
         if (Img) {
-            if (Img.loaded) {
-                GLDrawBingImageToTextureInfo(gl, Img, textureInfo);
-            } else {
-                Img.addEventListener('load', function () {
-                    GLDrawBingImageToTextureInfo(gl, Img, textureInfo);
-                });
-            }
+            GLDrawBingImageToTextureInfo(gl, Img, textureInfo);
         } else {
             Img = new Image();
+            GLDrawImageCache.set(url, Img);
+
             ++GLDrawCacheTotalImages;
             Img.addEventListener('load', function () {
-                Img.loaded = true;
                 GLDrawBingImageToTextureInfo(gl, Img, textureInfo);
-
                 ++GLDrawCacheLoadedImages;
                 if (GLDrawCacheLoadedImages == GLDrawCacheTotalImages) { Player.MustDraw = true; CharacterLoadCanvasAll(); }
             });
@@ -268,6 +260,7 @@ function GLDrawLoadImage(gl, url) {
 }
 
 // Clears rectangle on WebGLRenderingContext
+function GLDrawClearRectBlink(gl, x, y, width, height) { GLDrawClearRect(gl, x + 500, y, width, height); }
 function GLDrawClearRect(gl, x, y, width, height) {
     gl.enable(gl.SCISSOR_TEST);
     gl.scissor(x, y, width, height);
@@ -286,8 +279,7 @@ function GLDrawHexToRGBA(color) {
 
 // Create character canvas with WebGL
 function GLDrawAppearanceBuild(C) {
-    GLDrawClearRect(GLDrawCanvas.GL, 0, 0, 500, 1000);
-    GLDrawClearRect(GLDrawCanvasBlink.GL, 0, 0, 500, 1000);
+    GLDrawClearRect(GLDrawCanvas.GL, 0, 0, 1000, 1000);
 
     // Loops in all visible items worn by the character
     for (var A = 0; A < C.Appearance.length; A++)
@@ -318,7 +310,7 @@ function GLDrawAppearanceBuild(C) {
             if (CA.Asset.Alpha != null)
                 for (var AL = 0; AL < CA.Asset.Alpha.length; AL++) {
                     GLDrawClearRect(GLDrawCanvas.GL, CA.Asset.Alpha[AL][0], 1000 - CA.Asset.Alpha[AL][1] - CA.Asset.Alpha[AL][3], CA.Asset.Alpha[AL][2], CA.Asset.Alpha[AL][3]);
-                    GLDrawClearRect(GLDrawCanvasBlink.GL, CA.Asset.Alpha[AL][0], 1000 - CA.Asset.Alpha[AL][1] - CA.Asset.Alpha[AL][3], CA.Asset.Alpha[AL][2], CA.Asset.Alpha[AL][3]);
+                    GLDrawClearRectBlink(GLDrawCanvas.GL, CA.Asset.Alpha[AL][0], 1000 - CA.Asset.Alpha[AL][1] - CA.Asset.Alpha[AL][3], CA.Asset.Alpha[AL][2], CA.Asset.Alpha[AL][3]);
                 }
 
             // Check if we need to draw a different expression (for facial features)
@@ -330,8 +322,8 @@ function GLDrawAppearanceBuild(C) {
             // Find the X and Y position to draw on
             var X = CA.Asset.Group.DrawingLeft;
             var Y = CA.Asset.Group.DrawingTop;
-			if (CA.Asset.DrawingLeft != null) X = CA.Asset.DrawingLeft;
-			if (CA.Asset.DrawingTop != null) Y = CA.Asset.DrawingTop;
+            if (CA.Asset.DrawingLeft != null) X = CA.Asset.DrawingLeft;
+            if (CA.Asset.DrawingTop != null) Y = CA.Asset.DrawingTop;
             if (C.Pose != null)
                 for (var CP = 0; CP < C.Pose.length; CP++)
                     for (var P = 0; P < PoseFemale3DCG.length; P++)
@@ -375,18 +367,18 @@ function GLDrawAppearanceBuild(C) {
                 // Draw the item on the canvas (default or empty means no special color, # means apply a color, regular text means we apply that text)
                 if ((CA.Color != null) && (CA.Color.indexOf("#") == 0) && ((CA.Asset.Layer == null) || CA.Asset.Layer[L].AllowColorize)) {
                     GLDrawImage("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + G + LayerType + Layer + ".png", GLDrawCanvas.GL, X, Y, CA.Color, CA.Asset.Group.DrawingFullAlpha);
-                    GLDrawImage("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + (CA.Asset.Group.DrawingBlink ? "Closed/" : Expression) + CA.Asset.Name + G + LayerType + Layer + ".png", GLDrawCanvasBlink.GL, X, Y, CA.Color, CA.Asset.Group.DrawingFullAlpha);
+                    GLDrawImageBlink("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + (CA.Asset.Group.DrawingBlink ? "Closed/" : Expression) + CA.Asset.Name + G + LayerType + Layer + ".png", GLDrawCanvas.GL, X, Y, CA.Color, CA.Asset.Group.DrawingFullAlpha);
                 } else {
                     var Color = ((CA.Color == null) || (CA.Color == "Default") || (CA.Color == "") || (CA.Color.length == 1) || (CA.Color.indexOf("#") == 0)) ? "" : "_" + CA.Color;
                     GLDrawImage("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + G + LayerType + Color + Layer + ".png", GLDrawCanvas.GL, X, Y);
-                    GLDrawImage("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + (CA.Asset.Group.DrawingBlink ? "Closed/" : Expression) + CA.Asset.Name + G + LayerType + Color + Layer + ".png", GLDrawCanvasBlink.GL, X, Y);
+                    GLDrawImageBlink("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + (CA.Asset.Group.DrawingBlink ? "Closed/" : Expression) + CA.Asset.Name + G + LayerType + Color + Layer + ".png", GLDrawCanvas.GL, X, Y);
                 }
             }
 
             // If we must draw the lock (never colorized)
             if ((CA.Property != null) && (CA.Property.LockedBy != null) && (CA.Property.LockedBy != "")) {
                 GLDrawImage("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + Expression + CA.Asset.Name + Type + "_Lock.png", GLDrawCanvas.GL, X, Y);
-                GLDrawImage("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + (CA.Asset.Group.DrawingBlink ? "Closed/" : Expression) + CA.Asset.Name + Type + "_Lock.png", GLDrawCanvasBlink.GL, X, Y);
+                GLDrawImageBlink("Assets/" + CA.Asset.Group.Family + "/" + CA.Asset.Group.Name + "/" + Pose + (CA.Asset.Group.DrawingBlink ? "Closed/" : Expression) + CA.Asset.Name + Type + "_Lock.png", GLDrawCanvas.GL, X, Y);
             }
         }
 
@@ -402,7 +394,7 @@ function GLDrawAppearanceBuild(C) {
     } else C.CanvasBlink.getContext("2d").clearRect(0, 0, 500, 1000);
 
     C.Canvas.getContext("2d").drawImage(GLDrawCanvas, 0, 0);
-    C.CanvasBlink.getContext("2d").drawImage(GLDrawCanvasBlink, 0, 0);
+    C.CanvasBlink.getContext("2d").drawImage(GLDrawCanvas, -500, 0);
 
     C.MustDraw = true;
 }

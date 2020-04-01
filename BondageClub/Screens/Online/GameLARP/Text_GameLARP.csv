@@ -1,0 +1,20 @@
+Title,LARP Battle Team Selection
+SelectClass,Select your class:
+SelectTeam,Select your team:
+ClassMatron,Matron
+ClassSeducer,Seducer
+ClassTrickster,Trickster
+ClassServant,Servant
+ClassArtist,Artist
+ClassProtector,Protector
+ColorNone,Not playing
+ColorRed,Red
+ColorGreen,Green
+ColorBlue,Blue
+ColorYellow,Yellow
+ColorCyan,Cyan
+ColorPurple,Purple
+ColorOrange,Orange
+ColorWhite,White
+ColorGray,Gray
+ColorBlack,Black

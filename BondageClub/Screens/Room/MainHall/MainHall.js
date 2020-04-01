@@ -184,13 +184,7 @@ function MainHallClick() {
 	if ((MouseX >= 1645) && (MouseX < 1735) && (MouseY >= 25) && (MouseY < 115)) InformationSheetLoadCharacter(Player);
 	if ((MouseX >= 1765) && (MouseX < 1855) && (MouseY >= 25) && (MouseY < 115) && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) window.location = window.location;
-	if ((MouseX >= 1645) && (MouseX < 1735) && (MouseY >= 145) && (MouseY < 235)) {
-		ChatRoomSpace = "";
-		ChatSearchBackground = "IntroductionDark";
-		ChatSearchLeaveRoom = "MainHall";
-		ChatCreateBackgroundList = CommonBackgroundList.slice();
-		CommonSetScreen("Online", "ChatSearch");
-	}
+	if ((MouseX >= 1645) && (MouseX < 1735) && (MouseY >= 145) && (MouseY < 235)) ChatRoomStart("", "", "MainHall", "IntroductionDark", CommonBackgroundList.slice());
 
 	// The options below are only available if the player can move
 	if (Player.CanWalk()) {

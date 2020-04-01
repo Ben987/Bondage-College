@@ -219,7 +219,7 @@ function LoginResponse(C) {
 			if (CommonIsNumeric(C.Money)) Player.Money = C.Money;
 			Player.Owner = ((C.Owner == null) || (C.Owner == "undefined")) ? "" : C.Owner;
 			Player.Lover = ((C.Lover == null) || (C.Lover == "undefined")) ? "" : C.Lover;
-			Player.LARP = C.LARP;
+			Player.Game = C.Game;
 			Player.Description = C.Description;
 			Player.Creation = C.Creation;
 			Player.Wardrobe = C.Wardrobe;

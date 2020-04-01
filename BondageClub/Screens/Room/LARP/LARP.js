@@ -20,7 +20,7 @@ function LARPRun() {
 	DrawCharacter(LARPOrganiser, 1000, 0, 1);
 	DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png", TextGet("Leave"));
 	DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png", TextGet("Profile"));
-	if ((ReputationGet("LARP") >= 1) && (Player.LARP != null) && (Player.LARP.Class != null)) DrawButton(1885, 265, 90, 90, "", "White", "Icons/Battle.png", TextGet("Battle"));
+	if ((ReputationGet("LARP") >= 1) && (Player.Game != null) && (Player.Game.LARP != null) && (Player.Game.LARP.Class != null)) DrawButton(1885, 265, 90, 90, "", "White", "Icons/Battle.png", TextGet("Battle"));
 }
 
 // When the user clicks in the LARP screen
@@ -29,19 +29,19 @@ function LARPClick() {
 	if ((MouseX >= 1000) && (MouseX < 1500) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(LARPOrganiser);	
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY <= 115)) CommonSetScreen("Room", "MainHall");
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY <= 235)) InformationSheetLoadCharacter(Player);
-	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY <= 355) && (ReputationGet("LARP") >= 1) && (Player.LARP != null) && (Player.LARP.Class != null)) {
-		ChatRoomSpace = "Battle";
-		ChatSearchBackground = "WrestlingRingDark";
-		ChatSearchLeaveRoom = "LARP";
-		ChatCreateBackgroundList = CommonBackgroundList.slice();
-		ChatCreateBackgroundList.unshift("WrestlingRing");
-		CommonSetScreen("Online", "ChatSearch");
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY <= 355) && (ReputationGet("LARP") >= 1) && (Player.Game != null) && (Player.Game.LARP != null) && (Player.Game.LARP.Class != null)) {
+		Player.Game.LARP.Team = "None";
+		ServerSend("AccountUpdate", { Game: Player.Game });
+		var BG = CommonBackgroundList.slice();
+		BG.unshift("WrestlingRing");
+		ChatRoomStart("LARP", "LARP", "LARP", "WrestlingRingDark", BG);
 	}
 }
 
 // When the user selects a class
 function LARPSelectClass(NewClass) {
 	if (ReputationGet("LARP") <= 0) DialogSetReputation("LARP", 1);
-	Player.LARP = { Class: NewClass };
-	ServerSend("AccountUpdate", { LARP: Player.LARP });
+	if (Player.Game == null) Player.Game = {};
+	Player.Game.LARP = { Class: NewClass };
+	ServerSend("AccountUpdate", { Game: Player.Game });
 }

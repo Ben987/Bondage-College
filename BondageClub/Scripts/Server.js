@@ -22,6 +22,7 @@ function ServerInit() {
 	ServerSocket.on("ChatRoomSyncSingle", function (data) { ChatRoomSyncSingle(data); });
 	ServerSocket.on("ChatRoomMessage", function (data) { ChatRoomMessage(data); });
 	ServerSocket.on("ChatRoomAllowItem", function (data) { ChatRoomAllowItem(data); });
+	ServerSocket.on("ChatRoomGameResponse", function (data) { ChatRoomGameResponse(data); });
 	ServerSocket.on("PasswordResetResponse", function (data) { PasswordResetResponse(data); });
 	ServerSocket.on("AccountQueryResult", function (data) { ServerAccountQueryResult(data); });
 	ServerSocket.on("AccountBeep", function (data) { ServerAccountBeep(data); });
@@ -45,6 +46,7 @@ function ServerDisconnect(data) {
 			if (
 				(CurrentScreen == "ChatRoom")
 				|| (CurrentScreen == "ChatAdmin")
+				|| (CurrentScreen == "GameLARP")
 				|| ((CurrentScreen == "Appearance") && (CharacterAppearanceReturnRoom == "ChatRoom"))
 				|| ((CurrentScreen == "InformationSheet") && (InformationSheetPreviousScreen == "ChatRoom"))
 				|| ((CurrentScreen == "Title") && (InformationSheetPreviousScreen == "ChatRoom"))
