@@ -14,8 +14,8 @@ var LoginThankYouNext = 0;
 // Loads the next thank you bubble
 function LoginDoNextThankYou() {
 	LoginThankYou = CommonRandomItemFromList(LoginThankYou, LoginThankYouList);
-	CharacterRelease(Player);
-	CharacterAppearanceFullRandom(Player);
+	CharacterRelease(Player, false);
+	CharacterAppearanceFullRandom(Player, null, false);
 	CharacterFullRandomRestrain(Player);
 	LoginThankYouNext = CommonTime() + 4000;
 }
@@ -268,7 +268,6 @@ function LoginResponse(C) {
 			// Loads the dialog and removes the login controls
 			CharacterLoadCSVDialog(Player);
 			PrivateCharacterMax = 4 + (LogQuery("Expansion", "PrivateRoom") ? 4 : 0) + (LogQuery("SecondExpansion", "PrivateRoom") ? 4 : 0);
-			CharacterRefresh(Player, false);
 			ElementRemove("InputName");
 			ElementRemove("InputPassword");
 			if (ManagementIsClubSlave()) CharacterNaked(Player);
@@ -282,9 +281,10 @@ function LoginResponse(C) {
 			SarahSetStatus();
 
 			// Fixes a few items
-			InventoryRemove(Player, "ItemMisc");
+			InventoryRemove(Player, "ItemMisc", false);
 			if (LogQuery("JoinedSorority", "Maid") && !InventoryAvailable(Player, "MaidOutfit2", "Cloth")) InventoryAdd(Player, "MaidOutfit2", "Cloth");
-			if ((InventoryGet(Player, "ItemArms") != null) && (InventoryGet(Player, "ItemArms").Asset.Name == "FourLimbsShackles")) InventoryRemove(Player, "ItemArms");
+			if ((InventoryGet(Player, "ItemArms") != null) && (InventoryGet(Player, "ItemArms").Asset.Name == "FourLimbsShackles")) InventoryRemove(Player, "ItemArms", false);
+			CharacterRefresh(Player, false);
 			LoginValidCollar();
 			LoginMistressItems();
 			LoginStableItems();
@@ -299,7 +299,7 @@ function LoginResponse(C) {
 
 				// If the player must log back in the asylum
 				if (LogQuery("Committed", "Asylum")) {
-					CharacterRelease(Player);
+					CharacterRelease(Player, false);
 					AsylumEntranceWearPatientClothes(Player);
 					if (ReputationGet("Asylum") <= -50) AsylumEntrancePlayerJacket("Normal");
 					CommonSetScreen("Room", "AsylumBedroom");
