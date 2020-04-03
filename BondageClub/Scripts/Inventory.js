@@ -220,7 +220,7 @@ function InventoryWearRandom(C, GroupName, Difficulty) {
 }
 
 // Removes a specific item from the player appearance
-function InventoryRemove(C, AssetGroup) {
+function InventoryRemove(C, AssetGroup, Refresh) {
 
 	// Loops until we find the item group to remove
 	for (var E = 0; E < C.Appearance.length; E++)
@@ -229,7 +229,7 @@ function InventoryRemove(C, AssetGroup) {
 			// Remove other items that are flagged to be removed when this item is removed.  If the name is empty, we remove any item from that group.
 			for (var R = 0; R < C.Appearance[E].Asset.RemoveItemOnRemove.length; R++)
 				if ((C.Appearance[E].Asset.RemoveItemOnRemove[R].Name == "") || ((C.Appearance[E].Asset.RemoveItemOnRemove[R].Name != "") && (InventoryGet(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group) != null) && (InventoryGet(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group).Asset.Name == C.Appearance[E].Asset.RemoveItemOnRemove[R].Name)))
-					InventoryRemove(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group);
+					InventoryRemove(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group, false);
 
 			// Removes the item itself
 			C.Appearance.splice(E, 1);
@@ -238,7 +238,7 @@ function InventoryRemove(C, AssetGroup) {
 		}
 
 	// Refreshes the character
-	CharacterRefresh(C);
+	if (Refresh || Refresh == null) CharacterRefresh(C);
 
 }
 
