@@ -457,7 +457,7 @@ function StablePlayerTrainingPass(Behavior) {
 			StableTrainer.Stage = "StableTrainingScratching";
 		} else if (PassSelection < 3) {
 			StablePlayerTrainingBehavior -= 2;
-			StablePonyStraightens();
+			StablePonyStraightens(Player);
 			StableTrainer.CurrentDialog = DialogFind(StableTrainer, "StableTrainingStraightenIntro");
 			StableTrainer.Stage = "StableTrainingStraighten";
 		} else if (PassSelection < 4) {
@@ -807,15 +807,16 @@ function StableTrainerWhipEnd() {
 	}
 }
 
-function StablePonyStraightens() {
-	var Color = CharacterAppearanceGetCurrentValue(Player,"HairBack", "Color");
-	CharacterAppearanceNextItem(Player, "HairBack");
-	for (var A = 0; A < Player.Appearance.length;A++){
-		if (Player.Appearance[A].Asset.Group.Name == "HairBack"){
-			Player.Appearance[A].Color = Color;
+function StablePonyStraightens(C) {
+	C = C ? C : StablePony;
+	var Color = CharacterAppearanceGetCurrentValue(C,"HairBack", "Color");
+	CharacterAppearanceNextItem(C, "HairBack");
+	for (var A = 0; A < C.Appearance.length;A++){
+		if (C.Appearance[A].Asset.Group.Name == "HairBack"){
+			C.Appearance[A].Color = Color;
 		}
 	}
-	CharacterRefresh(Player);
+	CharacterRefresh(C);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////

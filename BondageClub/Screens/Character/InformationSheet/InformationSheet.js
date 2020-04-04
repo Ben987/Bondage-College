@@ -66,7 +66,7 @@ function InformationSheetRun() {
 	if ((C.ID == 0) || OnlinePlayer) {
 
 		// Shows the member number and online permissions for other players
-		if (C.ID != 0) DrawText(TextGet("ItemPermission") + " " + TextGet("PermissionLevel" + C.ItemPermission.toString()), 550, 850, "Black", "Gray");
+		if (C.ID != 0) DrawText(TextGet("ItemPermission") + " " + TextGet("PermissionLevel" + C.ItemPermission.toString()), 550, 875, "Black", "Gray");
 
 		// Draw the reputation section
 		DrawText(TextGet("Reputation"), 1000, 125, "Black", "Gray");

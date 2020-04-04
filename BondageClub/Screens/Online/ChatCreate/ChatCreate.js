@@ -10,6 +10,12 @@ var ChatCreateBackgroundList = null;
 // When the chat creation screens loads
 function ChatCreateLoad() {
 
+	// Resets the room game statuses
+	if ((ChatRoomSpace == "LARP") && (Player.Game.LARP.Status != "")) {
+		Player.Game.LARP.Status = "";
+		ServerSend("AccountUpdate", { Game: Player.Game });
+	}
+
 	// If the current background isn't valid, we pick the first one
 	ChatCreateBackgroundIndex = ChatCreateBackgroundList.indexOf(ChatCreateBackgroundSelect);
 	if (ChatCreateBackgroundIndex < 0) {

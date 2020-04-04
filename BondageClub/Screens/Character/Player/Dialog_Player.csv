@@ -96,6 +96,7 @@ KneelDown,,,SourceCharacter kneels down
 StandUp,,,SourceCharacter stands up
 ChangeClothes,,,SourceCharacter changes DestinationCharacter clothes.
 LARPChangeTeamClass,,,SourceCharacter selects her team and class.
+LARPGameStart,,,SourceCharacter has started the LARP game.
 Private,,,Private
 Public,,,Public
 Locked,,,Locked
@@ -241,6 +242,7 @@ ServerKick,,,TargetCharacterName was kicked-out by SourceCharacter.
 ServerMoveLeft,,,TargetCharacterName was moved to the left by SourceCharacter.
 ServerMoveRight,,,TargetCharacterName was moved to the right by SourceCharacter.
 ServerSwap,,,SourceCharacter swapped TargetCharacterName and DestinationCharacterName places.
+ServerShuffle,,,SourceCharacter shuffles the position of everyone in the room randomly.
 ServerPromoteAdmin,,,TargetCharacterName was promoted to administrator by SourceCharacter.
 ServerDemoteAdmin,,,TargetCharacterName was demoted from administration by SourceCharacter.
 ServerUpdateRoom,,,SourceCharacter updated the room. Name: ChatRoomName. Limit: ChatRoomLimit.  ChatRoomPrivacy.  ChatRoomLocked.
