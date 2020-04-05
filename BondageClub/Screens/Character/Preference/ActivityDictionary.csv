@@ -202,7 +202,7 @@ ChatSelf-ItemHands-Spank,SourceCharacter spanks her first hand with the second o
 ChatSelf-ItemHands-Caress,SourceCharacter rubs her hands together.
 ChatSelf-ItemHands-TakeCare,SourceCharacter cleans and polishes her nails.
 ChatOther-ItemHands-Kiss,SourceCharacter kisses TargetCharacter's hand.
-ChatOther-ItemHands-PoliteKiss,SourceCharacter gives a polite kiss on TargetCharacter's hand.
+ChatOther-ItemHands-PoliteKiss,SourceCharacter politely kisses TargetCharacter's hand.
 ChatOther-ItemHands-Lick,SourceCharacter licks TargetCharacter's hand.
 ChatOther-ItemHands-Suck,SourceCharacter sucks on TargetCharacter's fingers.
 ChatOther-ItemHands-Nibble,SourceCharacter nibbles TargetCharacter's hand.
@@ -235,8 +235,8 @@ ChatSelf-ItemHead-Caress,SourceCharacter caresses her face.
 ChatSelf-ItemHead-TakeCare,SourceCharacter brushes her hair.
 ChatSelf-ItemHead-Pull,SourceCharacter pulls on her own hair.
 ChatSelf-ItemHead-Pet,SourceCharacter pets herself on the head.
-ChatOther-ItemHead-Kiss,SourceCharacter kisses TargetCharacter's on the forehead.
-ChatOther-ItemHead-Slap,SourceCharacter slaps TargetCharacter's on the face.
+ChatOther-ItemHead-Kiss,SourceCharacter kisses TargetCharacter on the forehead.
+ChatOther-ItemHead-Slap,SourceCharacter slaps TargetCharacter's face.
 ChatOther-ItemHead-Caress,SourceCharacter caresses TargetCharacter's face.
 ChatOther-ItemHead-TakeCare,SourceCharacter brushes TargetCharacter's hair.
 ChatOther-ItemHead-Pull,SourceCharacter pulls on TargetCharacter's hair.
