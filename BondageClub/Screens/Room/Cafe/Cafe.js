@@ -117,6 +117,8 @@ function CafeServiceBound(Style) {
 		if (RandomNumber >= 0) Bondage = "NylonRope";
 		if (RandomNumber >= 1) Bondage = "HempRope";
 		InventoryWear(Player, Bondage, "ItemArms", null, 20);
+		if (RandomNumber >= 1) InventoryGet(Player, "ItemArms").Property = HempRopeArmsBoxTie;
+
 		if (RandomNumber >= 0) Bondage = "NylonRope";
 		if (RandomNumber >= 1) Bondage = "HempRope";
 		if (RandomNumber >= 2) Bondage = "MermaidRopeTie";

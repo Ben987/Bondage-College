@@ -1,42 +1,42 @@
 "use strict";
 
-const ChainsOptions = [
+const ChainsArmsOptions = [
 	{
-		Name: "BoxTie",
+		Name: "WristTie",
 		RequiredBondageLevel: null,
-		Property: { Type: null, Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 0 },
+		Property: { Type: null, Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 1 },
+		Expression: [{ Group: "Blush", Name: "Low", Timer: 5 }],
+		ArmsOnly: true
+	}, {
+		Name: "WristElbowTie",
+		RequiredBondageLevel: 1,
+		Property: { Type: "WristElbowTie", Effect: ["Block", "Prone"], SetPose: ["BackElbowTouch"], Difficulty: 2 },
+		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }],
+		ArmsOnly: true
+	}, {
+		Name: "BoxTie",
+		RequiredBondageLevel: 2,
+		Property: { Type: "BoxTie", Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 2 },
 		ArmsOnly: true
 	}, {
 		Name: "Hogtied",
 		RequiredBondageLevel: 4,
-		Property: { Type: "Hogtied", Effect: ["Block", "Freeze", "Prone"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["Hogtied"], Difficulty: 2 },
+		Property: { Type: "Hogtied", Effect: ["Block", "Freeze", "Prone"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["Hogtied"], Difficulty: 3 },
 		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
 		ArmsOnly: false
 	}, {
 		Name: "AllFours",
 		RequiredBondageLevel: 4,
-		Property: { Type: "AllFours", Effect: ["ForceKneel"], Block: ["ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["AllFours"], Difficulty: 6 },
+		Property: { Type: "AllFours", Effect: ["ForceKneel"], Block: ["ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["AllFours"], Difficulty: 3 },
 		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
 		ArmsOnly: false
 	}, {
 		Name: "SuspensionHogtied",
 		RequiredBondageLevel: 8,
-		Property: { Type: "SuspensionHogtied", Effect: ["Block", "Freeze", "Prone"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["Hogtied", "SuspensionHogtied"], Difficulty: 2 },
+		Property: { Type: "SuspensionHogtied", Effect: ["Block", "Freeze", "Prone"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["Hogtied", "SuspensionHogtied"], Difficulty: 6 },
 		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
 		ArmsOnly: false,
 		HiddenItem: "SuspensionChains"
-	}, {
-		Name: "WristTie",
-		RequiredBondageLevel: 1,
-		Property: { Type: "WristTie", Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 1 },
-		Expression: [{ Group: "Blush", Name: "Low", Timer: 5 }],
-		ArmsOnly: true
-	}, {
-		Name: "WristElbowTie",
-		RequiredBondageLevel: 3,
-		Property: { Type: "WristElbowTie", Effect: ["Block", "Prone"], SetPose: ["BackElbowTouch"], Difficulty: 2 },
-		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }],
-		ArmsOnly: true
 	}
 ];
 
@@ -44,7 +44,7 @@ var ChainsOptionOffset = 0;
 
 // Loads the item extension properties
 function InventoryItemArmsChainsLoad() {
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = ChainsOptions[0].Property;
+	if (DialogFocusItem.Property == null) DialogFocusItem.Property = ChainsArmsOptions[0].Property;
 	DialogExtendedMessage = DialogFind(Player, "SelectChainBondage");
 	ChainsOptionOffset = 0;
 }
@@ -60,15 +60,15 @@ function InventoryItemArmsChainsDraw() {
 	DrawText(DialogExtendedMessage, 1500, 375, "white", "gray");
 
 	// Draw the possible positions and their requirements, 4 at a time in a 2x2 grid
-	for (var I = ChainsOptionOffset; (I < ChainsOptions.length) && (I < ChainsOptionOffset + 4); I++) {
+	for (var I = ChainsOptionOffset; (I < ChainsArmsOptions.length) && (I < ChainsOptionOffset + 4); I++) {
 		var offset = I - ChainsOptionOffset;
 		var X = 1200 + (offset % 2 * 387);
 		var Y = 450 + (Math.floor(offset / 2) * 300);
-		var FailSkillCheck = (ChainsOptions[I].RequiredBondageLevel != null && SkillGetLevelReal(Player, "Bondage") < ChainsOptions[I].RequiredBondageLevel);
-        
-		DrawText(DialogFind(Player, "ChainBondage" + ChainsOptions[I].Name), X + 113, Y - 20, "white", "gray");
-		DrawButton(X, Y, 225, 225, "", ((DialogFocusItem.Property.Type == ChainsOptions[I].Property.Type)) ? "#888888" : FailSkillCheck ? "Pink" : "White");
-		DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/" + ChainsOptions[I].Name + ".png", X, Y + 1);
+		var FailSkillCheck = (ChainsArmsOptions[I].RequiredBondageLevel != null && SkillGetLevelReal(Player, "Bondage") < ChainsArmsOptions[I].RequiredBondageLevel);
+
+		DrawText(DialogFind(Player, "ChainBondage" + ChainsArmsOptions[I].Name), X + 113, Y - 20, "white", "gray");
+		DrawButton(X, Y, 225, 225, "", ((DialogFocusItem.Property.Type == ChainsArmsOptions[I].Property.Type)) ? "#888888" : FailSkillCheck ? "Pink" : "White");
+		DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/" + ChainsArmsOptions[I].Name + ".png", X, Y + 1);
 	}
 }
 
@@ -78,19 +78,19 @@ function InventoryItemArmsChainsClick() {
 	// Menu buttons
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
 	if ((MouseX >= 1775) && (MouseX <= 1865) && (MouseY >= 25) && (MouseY <= 110)) ChainsOptionOffset += 4;
-	if (ChainsOptionOffset > ChainsOptions.length) ChainsOptionOffset = 0;
+	if (ChainsOptionOffset > ChainsArmsOptions.length) ChainsOptionOffset = 0;
 
 	// Item buttons
-	for (var I = ChainsOptionOffset; (I < ChainsOptions.length) && (I < ChainsOptionOffset + 4); I++) {
+	for (var I = ChainsOptionOffset; (I < ChainsArmsOptions.length) && (I < ChainsOptionOffset + 4); I++) {
 		var offset = I - ChainsOptionOffset;
 		var X = 1200 + (offset % 2 * 387);
 		var Y = 450 + (Math.floor(offset / 2) * 300);
 
-		if ((MouseX >= X) && (MouseX <= X + 225) && (MouseY >= Y) && (MouseY <= Y + 225) && (DialogFocusItem.Property.Type != ChainsOptions[I].Property.Type))
-			if (ChainsOptions[I].RequiredBondageLevel != null && SkillGetLevelReal(Player, "Bondage") < ChainsOptions[I].RequiredBondageLevel) {
-				DialogExtendedMessage = DialogFind(Player, "RequireBondageLevel").replace("ReqLevel", ChainsOptions[I].RequiredBondageLevel);
+		if ((MouseX >= X) && (MouseX <= X + 225) && (MouseY >= Y) && (MouseY <= Y + 225) && (DialogFocusItem.Property.Type != ChainsArmsOptions[I].Property.Type))
+			if (ChainsArmsOptions[I].RequiredBondageLevel != null && SkillGetLevelReal(Player, "Bondage") < ChainsArmsOptions[I].RequiredBondageLevel) {
+				DialogExtendedMessage = DialogFind(Player, "RequireBondageLevel").replace("ReqLevel", ChainsArmsOptions[I].RequiredBondageLevel);
 			}
-			else InventoryItemArmsChainsSetPose(ChainsOptions[I]);
+			else InventoryItemArmsChainsSetPose(ChainsArmsOptions[I]);
 	}
 }
 
@@ -114,11 +114,13 @@ function InventoryItemArmsChainsSetPose(NewType) {
 			for (var E = 0; E < NewType.Expression.length; E++)
 				CharacterSetFacialExpression(C, NewType.Expression[E].Group, NewType.Expression[E].Name, NewType.Expression[E].Timer);
 
-	if (NewType.HiddenItem != null) {
+		if (NewType.HiddenItem != null) {
 			InventoryWear(C, NewType.HiddenItem, "ItemHidden", DialogFocusItem.Color);
 		}
 		else InventoryRemove(C, "ItemHidden");
-	} else return;
+	} else {
+		DialogExtendedMessage = DialogFind(Player, "CantChangeWhileLocked"); return;
+	}
 
 	// Adds the lock effect back if it was padlocked
 	if ((DialogFocusItem.Property.LockedBy != null) && (DialogFocusItem.Property.LockedBy != "")) {

@@ -221,6 +221,7 @@ function MagicTrickBoxTiedHeavy() {
 	InventoryWear(Player, "HempRope", "ItemFeet");
 	InventoryWear(Player, "HempRope", "ItemLegs");
 	InventoryWear(Player, "HempRope", "ItemArms");
+	InventoryGet(Player, "ItemArms").Property = HempRopeArmsBoxTie;
 	InventoryWear(Player, "ClothGag", "ItemMouth");
 	InventoryWear(Player, "LeatherBlindfold", "ItemHead");
 	InventoryWear(Player, "WoodenBox", "ItemDevices");
@@ -241,6 +242,7 @@ function MagicTrickBoxWaterCell() {
 	InventoryWear(Player, "SuspensionHempRope", "ItemFeet");
 	InventoryWear(Player, "HempRope", "ItemLegs");
 	InventoryWear(Player, "HempRope", "ItemArms");
+	InventoryGet(Player, "ItemArms").Property = HempRopeArmsBoxTie;
 	InventoryWear(Player, "WaterCell", "ItemDevices");
 	MagicPerformer.Stage = "171";
 	MagicPerformer.CurrentDialog = DialogFind(MagicPerformer, "171");

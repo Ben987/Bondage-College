@@ -1,50 +1,51 @@
 "use strict";
 
-const HempRopeOptions = [
+const HempRopeArmsOptions = [
 	{
-		Name: "BoxTie",
+		Name: "WristTie",
 		RequiredBondageLevel: null,
-		Property: { Type: null, Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 0 },
+		Property: { Type: null, Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 1 },
+		Expression: [{ Group: "Blush", Name: "Low", Timer: 5 }],
+		ArmsOnly: true
+	}, {
+		Name: "WristElbowTie",
+		RequiredBondageLevel: 1,
+		Property: { Type: "WristElbowTie", Effect: ["Block", "Prone"], SetPose: ["BackElbowTouch"], Difficulty: 2 },
+		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }],
+		ArmsOnly: true
+	}, {
+		Name: "BoxTie",
+		RequiredBondageLevel: 2,
+		Property: { Type: "BoxTie", Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 2 },
 		ArmsOnly: true
 	}, {
 		Name: "Hogtied",
 		RequiredBondageLevel: 4,
-		Property: { Type: "Hogtied", Effect: ["Block", "Freeze", "Prone"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["Hogtied"], Difficulty: 2 },
+		Property: { Type: "Hogtied", Effect: ["Block", "Freeze", "Prone"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["Hogtied"], Difficulty: 3 },
 		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
 		ArmsOnly: false
 	}, {
 		Name: "AllFours",
 		RequiredBondageLevel: 4,
-		Property: { Type: "AllFours", Effect: ["ForceKneel"], Block: ["ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["AllFours"], Difficulty: 6 },
+		Property: { Type: "AllFours", Effect: ["ForceKneel"], Block: ["ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["AllFours"], Difficulty: 3 },
 		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
 		ArmsOnly: false
 	}, {
 		Name: "SuspensionHogtied",
 		RequiredBondageLevel: 8,
-		Property: { Type: "SuspensionHogtied", Effect: ["Block", "Freeze", "Prone"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["Hogtied", "SuspensionHogtied"], Difficulty: 2 },
+		Property: { Type: "SuspensionHogtied", Effect: ["Block", "Freeze", "Prone"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["Hogtied", "SuspensionHogtied"], Difficulty: 6 },
 		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
 		ArmsOnly: false,
 		HiddenItem: "SuspensionHempRope"
-	}, {
-		Name: "WristTie",
-		RequiredBondageLevel: 1,
-		Property: { Type: "WristTie", Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 1 },
-		Expression: [{ Group: "Blush", Name: "Low", Timer: 5 }],
-		ArmsOnly: true
-	}, {
-		Name: "WristElbowTie",
-		RequiredBondageLevel: 3,
-		Property: { Type: "WristElbowTie", Effect: ["Block", "Prone"], SetPose: ["BackElbowTouch"], Difficulty: 2 },
-		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }],
-		ArmsOnly: true
 	}
 ];
 
 var HempRopeOptionOffset = 0;
+var HempRopeArmsBoxTie = HempRopeArmsOptions[2].Property; //using this as the default setting outside of chat rooms where possible
 
 // Loads the item extension properties
 function InventoryItemArmsHempRopeLoad() {
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = HempRopeOptions[0].Property;
+	if (DialogFocusItem.Property == null) DialogFocusItem.Property = HempRopeArmsOptions[0].Property;
 	DialogExtendedMessage = DialogFind(Player, "SelectRopeBondage");
 	HempRopeOptionOffset = 0;
 }
@@ -60,15 +61,15 @@ function InventoryItemArmsHempRopeDraw() {
 	DrawText(DialogExtendedMessage, 1500, 375, "white", "gray");
 	
 	// Draw the possible positions and their requirements, 4 at a time in a 2x2 grid
-	for (var I = HempRopeOptionOffset; (I < HempRopeOptions.length) && (I < HempRopeOptionOffset + 4); I++) {
+	for (var I = HempRopeOptionOffset; (I < HempRopeArmsOptions.length) && (I < HempRopeOptionOffset + 4); I++) {
 		var offset = I - HempRopeOptionOffset;
 		var X = 1200 + (offset % 2 * 387);
 		var Y = 450 + (Math.floor(offset / 2) * 300);
-		var FailSkillCheck = (HempRopeOptions[I].RequiredBondageLevel != null && SkillGetLevelReal(Player, "Bondage") < HempRopeOptions[I].RequiredBondageLevel);
+		var FailSkillCheck = (HempRopeArmsOptions[I].RequiredBondageLevel != null && SkillGetLevelReal(Player, "Bondage") < HempRopeArmsOptions[I].RequiredBondageLevel);
 
-		DrawText(DialogFind(Player, "RopeBondage" + HempRopeOptions[I].Name), X + 113, Y - 20, "white", "gray");
-		DrawButton(X, Y, 225, 225, "", ((DialogFocusItem.Property.Type == HempRopeOptions[I].Property.Type)) ? "#888888" : FailSkillCheck ? "Pink" : "White");
-		DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/" + HempRopeOptions[I].Name + ".png", X, Y + 1);
+		DrawText(DialogFind(Player, "RopeBondage" + HempRopeArmsOptions[I].Name), X + 113, Y - 20, "white", "gray");
+		DrawButton(X, Y, 225, 225, "", ((DialogFocusItem.Property.Type == HempRopeArmsOptions[I].Property.Type)) ? "#888888" : FailSkillCheck ? "Pink" : "White");
+		DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/" + HempRopeArmsOptions[I].Name + ".png", X, Y + 1);
 	}
 }
 
@@ -78,19 +79,19 @@ function InventoryItemArmsHempRopeClick() {
 	// Menu buttons
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
 	if ((MouseX >= 1775) && (MouseX <= 1865) && (MouseY >= 25) && (MouseY <= 110)) HempRopeOptionOffset += 4;
-	if (HempRopeOptionOffset > HempRopeOptions.length) HempRopeOptionOffset = 0;
+	if (HempRopeOptionOffset > HempRopeArmsOptions.length) HempRopeOptionOffset = 0;
 
 	// Item buttons
-	for (var I = HempRopeOptionOffset; (I < HempRopeOptions.length) && (I < HempRopeOptionOffset + 4); I++) {
+	for (var I = HempRopeOptionOffset; (I < HempRopeArmsOptions.length) && (I < HempRopeOptionOffset + 4); I++) {
 		var offset = I - HempRopeOptionOffset;
 		var X = 1200 + (offset % 2 * 387);
 		var Y = 450 + (Math.floor(offset / 2) * 300);
 
-		if ((MouseX >= X) && (MouseX <= X + 225) && (MouseY >= Y) && (MouseY <= Y + 225) && (DialogFocusItem.Property.Type != HempRopeOptions[I].Property.Type))
-			if (HempRopeOptions[I].RequiredBondageLevel != null && SkillGetLevelReal(Player, "Bondage") < HempRopeOptions[I].RequiredBondageLevel) {
-				DialogExtendedMessage = DialogFind(Player, "RequireBondageLevel").replace("ReqLevel", HempRopeOptions[I].RequiredBondageLevel);
+		if ((MouseX >= X) && (MouseX <= X + 225) && (MouseY >= Y) && (MouseY <= Y + 225) && (DialogFocusItem.Property.Type != HempRopeArmsOptions[I].Property.Type))
+			if (HempRopeArmsOptions[I].RequiredBondageLevel != null && SkillGetLevelReal(Player, "Bondage") < HempRopeArmsOptions[I].RequiredBondageLevel) {
+				DialogExtendedMessage = DialogFind(Player, "RequireBondageLevel").replace("ReqLevel", HempRopeArmsOptions[I].RequiredBondageLevel);
 			}
-			else InventoryItemArmsHempRopeSetPose(HempRopeOptions[I]);
+			else InventoryItemArmsHempRopeSetPose(HempRopeArmsOptions[I]);
 	}
 }
 
