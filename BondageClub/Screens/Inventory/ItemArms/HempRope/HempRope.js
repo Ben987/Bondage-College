@@ -2,21 +2,21 @@
 
 const HempRopeArmsOptions = [
 	{
-		Name: "WristTie",
+		Name: "BoxTie",
 		RequiredBondageLevel: null,
 		Property: { Type: null, Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 1 },
+		ArmsOnly: true
+	}, {
+		Name: "WristTie",
+		RequiredBondageLevel: null,
+		Property: { Type: "WristTie", Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 1 },
 		Expression: [{ Group: "Blush", Name: "Low", Timer: 5 }],
 		ArmsOnly: true
 	}, {
 		Name: "WristElbowTie",
-		RequiredBondageLevel: 1,
+		RequiredBondageLevel: 2,
 		Property: { Type: "WristElbowTie", Effect: ["Block", "Prone"], SetPose: ["BackElbowTouch"], Difficulty: 2 },
 		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }],
-		ArmsOnly: true
-	}, {
-		Name: "BoxTie",
-		RequiredBondageLevel: 2,
-		Property: { Type: "BoxTie", Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 2 },
 		ArmsOnly: true
 	}, {
 		Name: "Hogtied",
@@ -26,7 +26,7 @@ const HempRopeArmsOptions = [
 		ArmsOnly: false
 	}, {
 		Name: "AllFours",
-		RequiredBondageLevel: 4,
+		RequiredBondageLevel: 6,
 		Property: { Type: "AllFours", Effect: ["ForceKneel"], Block: ["ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["AllFours"], Difficulty: 3 },
 		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
 		ArmsOnly: false
@@ -41,7 +41,6 @@ const HempRopeArmsOptions = [
 ];
 
 var HempRopeOptionOffset = 0;
-var HempRopeArmsBoxTie = HempRopeArmsOptions[2].Property; //using this as the default setting outside of chat rooms where possible
 
 // Loads the item extension properties
 function InventoryItemArmsHempRopeLoad() {

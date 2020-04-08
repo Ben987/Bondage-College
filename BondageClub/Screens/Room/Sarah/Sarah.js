@@ -162,7 +162,6 @@ function SarahLoad() {
 		InventoryAdd(Amanda, "StraponPanties", "ItemPelvis");
 		InventoryWear(Amanda, "StraponPanties", "ItemPelvis");
 		InventoryWear(Amanda, "HempRope", "ItemArms");
-		InventoryGet(Amanda, "ItemArms").Property = HempRopeArmsBoxTie;
 		InventoryWear(Amanda, "DuctTape", "ItemMouth");
 		if ((AmandaStatus == "Owned") || (AmandaStatus == "Curfew")) {
 			InventoryWear(Amanda, "SlaveCollar", "ItemNeck");

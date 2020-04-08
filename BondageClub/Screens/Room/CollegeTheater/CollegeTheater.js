@@ -80,7 +80,6 @@ function CollegeTheaterPlayClothes(C1, C2) {
 function CollegeTheaterRandomRope(C) {
 	var Color = CommonRandomItemFromList("", CollegeTheaterRandomColors);
 	InventoryWear(C, "HempRope", "ItemArms", Color);
-	InventoryGet(Player, "ItemArms").Property = HempRopeArmsBoxTie;
 	InventoryWear(C, "HempRope", "ItemLegs", Color);
 	InventoryWear(C, "HempRope", "ItemFeet", Color);
 }
