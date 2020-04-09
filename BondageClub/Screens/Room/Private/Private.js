@@ -779,6 +779,7 @@ function PrivatePlayerCollaring() {
 	NPCEventDelete(CurrentCharacter, "EndSubTrial");
 	NPCEventAdd(CurrentCharacter, "PlayerCollaring", CurrentTime);
 	InventoryRemove(Player, "ItemNeck");
+	InventoryRemove(Player, "ItemNeckAccessories");
 	CharacterRelease(Player);
 	CharacterSetActivePose(Player, null);
 	ReputationProgress("Dominant", -20);
