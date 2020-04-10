@@ -15,7 +15,7 @@ const ChainsArmsOptions = [
 	}, {
 		Name: "ChainCuffs",
 		RequiredBondageLevel: null,
-		Property: { Type: "ChainCuffs", Effect: ["Block", "Prone"], SetPose: ["BackCuffs"], Difficulty: 1 },
+		Property: { Type: "ChainCuffs", Effect: ["Block", "Prone"], SetPose: ["BackCuffs"], Difficulty: 1, OverridePriority: 30 },
 		Expression: [{ Group: "Blush", Name: "Low", Timer: 5 }],
 		ArmsOnly: true
 	}, {
