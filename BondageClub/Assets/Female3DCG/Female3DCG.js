@@ -1664,7 +1664,14 @@ var AssetFemale3DCG = [
 			},
 			{ Name: "SteelMuzzleGag", Difficulty: 8, Value: 80, Time: 30, AllowLock: true, Hide: ["Mouth"], BuyGroup: "SteelMuzzleGag", SetPose: ["GagFlat"], Prerequisite: "GagFlat" },
 			{ Name: "StitchedMuzzleGag", Difficulty: 5, Value: 60, Time: 15, Effect: ["GagEasy"], AllowLock: true, Hide: ["Mouth"], BuyGroup: "StitchedMuzzleGag", SetPose: ["GagFlat"], Prerequisite: "GagFlat" },
-			{ Name: "LatexBallMuzzleGag", Difficulty: 6, Value: 65, Time: 15, Effect: ["GagMedium"], AllowLock: true, Hide: ["Mouth"], BuyGroup: "LatexBallMuzzleGag", SetPose: ["GagFlat"], Prerequisite: "GagFlat" }
+			{ Name: "LatexBallMuzzleGag", Difficulty: 6, Value: 65, Time: 15, Effect: ["GagMedium"], AllowLock: true, Hide: ["Mouth"], BuyGroup: "LatexBallMuzzleGag", SetPose: ["GagFlat"], Prerequisite: "GagFlat" },
+			{
+				Name: "SockStuffing", DefaultColor: "#FFFFFF", Effect: ["GagLight"], Difficulty: -20, Value: 10, Time: 5, Hide: ["Mouth"], BuyGroup: "SockStuffing",
+				Layer: [
+					{ Name: "Lips", AllowColorize: false },
+					{ Name: "Cloth", AllowColorize: true }
+				]
+			}
 		]
 	},
 
