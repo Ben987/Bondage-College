@@ -466,6 +466,7 @@ RopeBondageSuspension,,,Suspension Tie
 RopeBondageSuspensionHogtied,,,Suspension Hogtie
 RopeBondageWristElbowTie,,,Wrist and Elbow Tie
 RopeBondageWristTie,,,Wrist Tie
+RopeBondageRopeCuffs,,,Rope Cuffs
 RopeBondageAllFours,,,All Fours
 RopeBondageCrotch,,,Crotch Rope
 RopeBondageHarness,,,Body Harness
@@ -483,6 +484,7 @@ ArmsRopeSetHogtied,,,SourceCharacter uses the rope on TargetCharacter to do a ho
 ArmsRopeSetSuspensionHogtied,,,SourceCharacter uses the rope on TargetCharacter to do a suspension hogtie.
 ArmsRopeSetWristElbowTie,,,SourceCharacter uses the rope on TargetCharacter to tie her wrists and elbows together behind her back.
 ArmsRopeSetWristTie,,,SourceCharacter uses the rope on TargetCharacter to tie her wrists together behind her back.
+ArmsRopeSetRopeCuffs,,,SourceCharacter uses the rope on TargetCharacter to tie rope cuffs on her wrists
 ArmsRopeSetAllFours,,,SourceCharacter uses the rope on TargetCharacter to have her crawling on all fours.
 Intensity-1,,,Item intensity: Disabled
 Intensity0,,,Item intensity: Low
@@ -961,6 +963,7 @@ ChainBondageSuspension,,,Suspension Tie
 ChainBondageSuspensionHogtied,,,Suspension Hogtie
 ChainBondageWristElbowTie,,,Wrist and Elbow Tie
 ChainBondageWristTie,,,Wrist Tie
+ChainBondageChainCuffs,,,Chain Cuffs
 ChainBondageAllFours,,,All Fours
 LegChainSetBasic,,,SourceCharacter uses the chain on TargetCharacter to do a basic tie.
 LegChainSetStrict,,,SourceCharacter uses the chain on TargetCharacter to do a strict tie.
@@ -970,6 +973,7 @@ ArmsChainSetHogtied,,,SourceCharacter uses the chain on TargetCharacter to do a 
 ArmsChainSetSuspensionHogtied,,,SourceCharacter uses the chain on TargetCharacter to do a suspension hogtie.
 ArmsChainSetWristElbowTie,,,SourceCharacter uses the chain on TargetCharacter to tie her wrists and elbows together behind her back.
 ArmsChainSetWristTie,,,SourceCharacter uses the chain on TargetCharacter to tie her wrists together behind her back.
+ArmsChainSetChainCuffs,,,SourceCharacter uses the chain on TargetCharacter to tie chain cuffs on her wrists.
 ArmsChainSetAllFours,,,SourceCharacter uses the chain on TargetCharacter to have her crawling on all fours.
 MermaidSuitTypeZipped,,,Zipped Up
 MermaidSuitTypeUnZip,,,Unzipped

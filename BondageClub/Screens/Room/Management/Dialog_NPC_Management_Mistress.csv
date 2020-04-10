@@ -205,7 +205,7 @@ MistressExpulsion,,,We Mistresses have been speaking.  It seems you're not fit t
 200,,A Dominant wants to collar me.,"You must be thrilled sub girl, but your Dominant will arrange the collaring ceremony, not you.  Ask her politely to contact us.",,!Player.IsOwned(),
 200,230,I want to break my trial period.,"Breaking a trial period is alright, it happens everyday.  But are you totally sure?  You really thought about it?",,CanBreakTrialOnline(),
 200,210,I want to be released from my owner.,"I'm sorry to hear that.  Breaking a BDSM bond is serious.  Tell me your story, why do you want to leave?",,CanBeReleasedOnline(),
-200,,I want to be released from my owner.,"Girl, it's too soon for that.  There's a three days delay before we will uncollar anyone.",,CannotBeReleasedOnline(),
+200,,I want to be released from my owner.,"Girl, it's too soon for that.  There's a seven days delay before we will uncollar anyone.",,CannotBeReleasedOnline(),
 200,210,I want to be released from my owner.,"I'm sorry to hear that.  Breaking a BDSM bond is serious.  Tell me your story, why do you want to leave?",,CanBeReleased(),
 200,,I want to be released from my owner.,"Girl, I know your owner.  Speak with her about it first.",,CannotBeReleased(),
 200,0,Let's talk about something else.,As long as you don't ask anything idiotic.,,,
