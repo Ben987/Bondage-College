@@ -43,7 +43,7 @@ TextArea {
 .ChatMessageName {
 	text-shadow: 0.05em 0.05em black;
 }
-.ChatMessageAction {
+.ChatMessageAction, .ChatMessageActivity{
 	color: gray;
 }
 .ChatMessageEmote {

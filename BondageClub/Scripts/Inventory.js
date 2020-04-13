@@ -127,11 +127,20 @@ function InventoryPrerequisiteMessage(C, Prerequisite) {
 	if (Prerequisite == "DisplayFrame" && (InventoryGet(C, "ItemArms") != null || InventoryGet(C, "ItemLegs") != null || InventoryGet(C, "ItemFeet") != null || InventoryGet(C, "ItemBoots") != null)) return "RemoveRestraintsFirst";
 	if (Prerequisite == "DisplayFrame" && (InventoryGet(C, "Cloth") != null || InventoryGet(C, "ClothLower") != null || InventoryGet(C, "Shoes") != null)) return "RemoveClothesForItem";
 
-	// Layered Gags, Prevent gags marked with "GagUnique" and "GagCorset" from being equipped over gags with "GagFlat"
-	if (Prerequisite == "GagUnique" && (InventoryGet(C, "ItemMouth") != null) && InventoryGet(C, "ItemMouth").Asset.Prerequisite == "GagFlat") return "CannotBeUsedOverFlatGag";
-	if (Prerequisite == "GagUnique" && (InventoryGet(C, "ItemMouth2") != null) && InventoryGet(C, "ItemMouth2").Asset.Prerequisite == "GagFlat") return "CannotBeUsedOverFlatGag";
-	if (Prerequisite == "GagUnique" && (InventoryGet(C, "ItemMouth") != null) && InventoryGet(C, "ItemMouth").Asset.Prerequisite == "GagCorset") return "CannotBeUsedOverFlatGag";
-	if (Prerequisite == "GagUnique" && (InventoryGet(C, "ItemMouth2") != null) && InventoryGet(C, "ItemMouth2").Asset.Prerequisite == "GagCorset") return "CannotBeUsedOverFlatGag";
+	// Layered Gags, Prevent gags marked with "GagUnique" from being equipped over gags with "GagFlat" and "GagCorset"
+	if (Prerequisite == "GagUnique" && C.FocusGroup) {
+		// Index of the gag we're trying to add (1-indexed)
+		var GagIndex = Number(C.FocusGroup.Name.replace("ItemMouth", "") || 1);
+		var MouthItems = [InventoryGet(C, "ItemMouth"), InventoryGet(C, "ItemMouth2"), InventoryGet(C, "ItemMouth3")];
+		var MinBlockingIndex = 0;
+		for (let i = 0; i < MouthItems.length && !MinBlockingIndex; i++) {
+			// Find the lowest indexed slot in which there is a "GagFlat" or "GagCorset" item, drop out of the loop if we find one
+			var AssetPrerequisite = MouthItems[i] && MouthItems[i].Asset.Prerequisite;
+			if (AssetPrerequisite === "GagFlat" || AssetPrerequisite === "GagCorset") MinBlockingIndex = i + 1;
+		}
+		// Not allowed to add a "GagUnique" if there is a "GagFlat"/"GagCorset" anywhere below it
+		if (MinBlockingIndex && GagIndex > MinBlockingIndex) return "CannotBeUsedOverFlatGag";
+	}
 
 	// Returns no message, indicating that all prerequisites are fine
 	return "";
@@ -231,24 +240,20 @@ function InventoryRemove(C, AssetGroup) {
 				if ((C.Appearance[E].Asset.RemoveItemOnRemove[R].Name == "") || ((C.Appearance[E].Asset.RemoveItemOnRemove[R].Name != "") && (InventoryGet(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group) != null) && (InventoryGet(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group).Asset.Name == C.Appearance[E].Asset.RemoveItemOnRemove[R].Name)))
 					InventoryRemove(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group);
 
-			// Removes the item itself
+			// Removes the item itself and refreshes the character
 			C.Appearance.splice(E, 1);
-			E--;
+			CharacterRefresh(C);
+			return;
 
 		}
-
-	// Refreshes the character
-	CharacterRefresh(C);
 
 }
 
 // Returns TRUE if the group for a character is blocked and cannot be used
 function InventoryGroupIsBlocked(C, GroupName = null) {
 
-	if (GroupName == null) {
-		// Default to characters focused group
-		GroupName = C.FocusGroup.Name;
-	}
+	// Default to characters focused group
+	if (GroupName == null) GroupName = C.FocusGroup.Name;
 
 	// Items can block each other (hoods blocks gags, belts blocks eggs, etc.)
 	for (var E = 0; E < C.Appearance.length; E++) {

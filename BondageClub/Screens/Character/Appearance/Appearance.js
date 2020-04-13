@@ -191,7 +191,10 @@ function CharacterAppearanceSort(AP) {
 	var Arr = [];
 	for (var P = 0; P < 50; P++)
 		for (var A = 0; A < AP.length; A++)
-			if (AP[A].Asset.DrawingPriority != null) {
+			if (AP[A].Property != null && AP[A].Property.OverridePriority != null) {
+				if (AP[A].Property.OverridePriority == P)
+					Arr.push(AP[A]);
+			} else if (AP[A].Asset.DrawingPriority != null) {
 				if (AP[A].Asset.DrawingPriority == P)
 					Arr.push(AP[A]);
 			} else

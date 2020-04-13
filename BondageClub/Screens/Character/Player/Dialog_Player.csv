@@ -26,7 +26,7 @@ MustFreeHandsFirst,,,Must free hands first.
 RemoveShacklesFirst,,,Must remove shackles first.
 CanOnlyEquipOneOfThisGag,,,Gag type already present.
 CannotBeUsedOverFlatGag,,,Cannot be used on a flat gag.
-CannotUseMultipleCorsetGags,,,Corset Gag already present.
+CannotUseMultipleCorsetGags,,,Corset gag already present.
 Cancel,,,Cancel
 Exit,,,Back to character
 Next,,,View next items
@@ -39,10 +39,10 @@ Lock,,,Use a lock
 Unlock,,,Unlock the item
 InspectLock,,,Inspect the lock
 Remote,,,Use your remote
-DialogNormalMode,,,Exit Permission Mode
-DialogPermissionMode,,,Edit Item Permissions
-Activity,,,Sexual Activities
-ButtPump,,,Use the Butt Plug's pump
+DialogNormalMode,,,Exit permission mode
+DialogPermissionMode,,,Edit item permissions
+Activity,,,Sexual activities
+ButtPump,,,Use the butt plug's pump
 ColorPick,,,Color of next item
 ColorSelect,,,Use this color
 ColorCancel,,,Default color
@@ -79,6 +79,7 @@ SuctionLevel1,,,Suction Cup level: Light
 SuctionLevel2,,,Suction Cup level: Medium
 SuctionLevel3,,,Suction Cup level: Heavy
 SuctionLevel4,,,Suction Cup level: Max
+ClearFacialExpressions,,,Clear facial expressions
 DeflateIt,,,Deflate it
 PumpIt,,,Pump it
 pumps,,,pumps
@@ -94,6 +95,8 @@ Someone,,,Someone
 KneelDown,,,SourceCharacter kneels down
 StandUp,,,SourceCharacter stands up
 ChangeClothes,,,SourceCharacter changes DestinationCharacter clothes.
+LARPChangeTeamClass,,,SourceCharacter selects her team and class.
+LARPGameStart,,,SourceCharacter has started the LARP game.
 Private,,,Private
 Public,,,Public
 Locked,,,Locked
@@ -111,6 +114,7 @@ ReceivedBeep,,,Received at
 YourRoom,,,<i>Your private room</i>
 InRoom,,,in room
 PrivateRoom,,,<i>Private room</i>
+WrestlingRing,,,Wrestling Ring
 Introduction,,,Introduction
 KidnapLeague,,,Kidnappers League
 MaidQuarters,,,Maid Quarters
@@ -164,6 +168,15 @@ ShipDeck,,,Ship's Deck
 Shipwreck,,,Ship Wreck
 CaptainCabin,,,Captain Cabin
 UnderwaterOne,,,Underwater One
+BeachHotel,,,Beach Hotel
+DystopianCity,,,Dystopian City
+ForestCave,,,Forest Cave
+Kennels,,,Kennels
+LockerRoom,,,Locker Room
+SciFiCell,,,Sci Fi Cell
+SpaceCaptainBedroom,,,Space Station Captain Bedroom
+TiledBathroom,,,Tiled Bathroom
+WoodenCabin,,,Wooden Cabin
 MedinaMarket,,,Medina Market
 ThroneRoom,,,Throne Room
 Dungeon,,,Dungeon
@@ -178,7 +191,7 @@ DungeonRuin,,,Ruined Dungeon
 SlipperyClassroom,,,Slippery Classroom
 MiddletownSchool,,,Middletown School
 SchoolHospital,,,School Hospital
-SchoolRuins,,,Abanoned School
+SchoolRuins,,,Abandoned School
 SecretChamber,,,Secret Chamber
 VaultCorridor,,,Vault Corridor
 AncientRuins,,,Ancient Ruins
@@ -223,7 +236,7 @@ ServerMessageOwnerRuleRemoteAllowSelf,,,Your owner is now allowing you to use re
 ServerMessageOwnerRuleRemoteConfiscate,,,Your owner has confiscated your remotes.  All your remotes are lost.
 ServerMessageOwnerRuleRemoteBlock,,,Your owner is now preventing you from getting new remotes.  The club shop will not sell remotes to you anymore.
 ServerMessageOwnerRuleRemoteBlockSelf,,,Your owner is now preventing you from using remotes on yourself.
-ServerMessageWhisperBlocked,,,You're on SourceCharacter blacklist.  Your message was blocked by the server.
+ServerMessageWhisperBlocked,,,You're on SourceCharacter ghostlist.  Your message was blocked by the server.
 ServerMessageOfferBeginDating,,,"SourceCharacter is asking you to be her girlfriend.  Click on her and manage your relationship to accept, don't do anything to refuse."
 ServerMessageBeginDating,,,The Bondage Club is pleased to announce that SourceCharacter and TargetCharacter are starting a 7 days minimum period as lovers.
 ServerMessageOfferBeginEngagement,,,"SourceCharacter is asking you to become her fiancée.  Click on her and manage your relationship to accept, don't do anything to refuse."
@@ -238,10 +251,11 @@ ServerKick,,,TargetCharacterName was kicked-out by SourceCharacter.
 ServerMoveLeft,,,TargetCharacterName was moved to the left by SourceCharacter.
 ServerMoveRight,,,TargetCharacterName was moved to the right by SourceCharacter.
 ServerSwap,,,SourceCharacter swapped TargetCharacterName and DestinationCharacterName places.
+ServerShuffle,,,SourceCharacter shuffles the position of everyone in the room randomly.
 ServerPromoteAdmin,,,TargetCharacterName was promoted to administrator by SourceCharacter.
 ServerDemoteAdmin,,,TargetCharacterName was demoted from administration by SourceCharacter.
 ServerUpdateRoom,,,SourceCharacter updated the room. Name: ChatRoomName. Limit: ChatRoomLimit.  ChatRoomPrivacy.  ChatRoomLocked.
-ChatRoomHelp,,,"Commands available : * or /me : write an emote, ** or /action : write an action, /coin : flip a coin, /dice Y or XdY : roll X dice with Y-faces, /friendlistadd [ID], /friendlistremove [ID], /whitelistadd [ID], /whitelistremove [ID], /blacklistadd [ID], /blacklistremove [ID], /kick [ID], /ban [ID], /unban [ID], /promote [ID], /demote [ID]"
+ChatRoomHelp,,,"Commands available : * or /me : write an emote, ** or /action : write an action, click on someone's name on the left to whisper, /coin : flip a coin, /dice Y or XdY : roll X dice with Y-sides (from 2 to 100 sides), /friendlistadd [ID], /friendlistremove [ID], /whitelistadd [ID], /whitelistremove [ID], /blacklistadd [ID], /blacklistremove [ID], /ghostadd [ID], /ghostremove [ID], /kick [ID], /ban [ID], /unban [ID], /promote [ID], /demote [ID]"
 ActionSwap,,,SourceCharacter swaps a PrevAsset for a NextAsset on DestinationCharacter FocusAssetGroup.
 ActionUse,,,SourceCharacter uses a NextAsset on DestinationCharacter FocusAssetGroup.
 ActionChangeColor,,,SourceCharacter changes the color of NextAsset on DestinationCharacter FocusAssetGroup.
@@ -459,6 +473,9 @@ RopeBondageBoxTie,,,Box Tie
 RopeBondageHogtied,,,Hogtie
 RopeBondageSuspension,,,Suspension Tie
 RopeBondageSuspensionHogtied,,,Suspension Hogtie
+RopeBondageWristElbowTie,,,Wrist and Elbow Tie
+RopeBondageWristTie,,,Wrist Tie
+RopeBondageRopeCuffs,,,Rope Cuffs
 RopeBondageAllFours,,,All Fours
 RopeBondageCrotch,,,Crotch Rope
 RopeBondageHarness,,,Body Harness
@@ -474,6 +491,9 @@ LegRopeSetSuspension,,,SourceCharacter uses the rope on TargetCharacter to do a 
 ArmsRopeSetBoxTie,,,SourceCharacter uses the rope on TargetCharacter to do a box tie.
 ArmsRopeSetHogtied,,,SourceCharacter uses the rope on TargetCharacter to do a hogtie.
 ArmsRopeSetSuspensionHogtied,,,SourceCharacter uses the rope on TargetCharacter to do a suspension hogtie.
+ArmsRopeSetWristElbowTie,,,SourceCharacter uses the rope on TargetCharacter to tie her wrists and elbows together behind her back.
+ArmsRopeSetWristTie,,,SourceCharacter uses the rope on TargetCharacter to tie her wrists together behind her back.
+ArmsRopeSetRopeCuffs,,,SourceCharacter uses the rope on TargetCharacter to tie rope cuffs on her wrists
 ArmsRopeSetAllFours,,,SourceCharacter uses the rope on TargetCharacter to have her crawling on all fours.
 Intensity-1,,,Item intensity: Disabled
 Intensity0,,,Item intensity: Low
@@ -950,14 +970,20 @@ ChainBondageBoxTie,,,Box Tie
 ChainBondageHogtied,,,Hogtie
 ChainBondageSuspension,,,Suspension Tie
 ChainBondageSuspensionHogtied,,,Suspension Hogtie
+ChainBondageWristElbowTie,,,Wrist and Elbow Tie
+ChainBondageWristTie,,,Wrist Tie
+ChainBondageChainCuffs,,,Chain Cuffs
 ChainBondageAllFours,,,All Fours
 LegChainSetBasic,,,SourceCharacter uses the chain on TargetCharacter to do a basic tie.
 LegChainSetStrict,,,SourceCharacter uses the chain on TargetCharacter to do a strict tie.
 LegChainSetSuspension,,,SourceCharacter uses the chain on TargetCharacter to do a suspension tie.
 ArmsChainSetBoxTie,,,SourceCharacter uses the chain on TargetCharacter to do a box tie.
 ArmsChainSetHogtied,,,SourceCharacter uses the chain on TargetCharacter to do a hogtie.
-ArmsChainSetSuspensionHogtied,,,SourceCharacter uses the Chain on TargetCharacter to do a suspension hogtie.
-ArmsChainSetAllFours,,,SourceCharacter uses the Chain on TargetCharacter to have her crawling on all fours.
+ArmsChainSetSuspensionHogtied,,,SourceCharacter uses the chain on TargetCharacter to do a suspension hogtie.
+ArmsChainSetWristElbowTie,,,SourceCharacter uses the chain on TargetCharacter to tie her wrists and elbows together behind her back.
+ArmsChainSetWristTie,,,SourceCharacter uses the chain on TargetCharacter to tie her wrists together behind her back.
+ArmsChainSetChainCuffs,,,SourceCharacter uses the chain on TargetCharacter to tie chain cuffs on her wrists.
+ArmsChainSetAllFours,,,SourceCharacter uses the chain on TargetCharacter to have her crawling on all fours.
 MermaidSuitTypeZipped,,,Zipped Up
 MermaidSuitTypeUnZip,,,Unzipped
 MermaidSuitSetZipped,,,SourceCharacter zips up TargetCharacter suit.

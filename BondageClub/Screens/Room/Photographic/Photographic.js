@@ -2,11 +2,9 @@
 
 var PhotographicBackground = "grey";
 var PhotographicSub = null;
-var PhotographicPlayerAppearance = null;
 var PhotographicGroupStarted = false;
 var PhotographicCurrendGroup = null;
 var PhotographicSubAppearance = null;
-var PhotographicStartInventory = false;
 var PhotographicSelectText = "";
 
 function PhotographicPlayerCanChangeCloth() {return Player.CanChange() && !Player.IsRestrained()}
@@ -32,104 +30,38 @@ function PhotographicSubCanAskForPhoto() {return Player.CanTalk() && !Photograph
 function PhotographicSubCanWinkForPhoto() {return !Player.CanTalk() && !PhotographicSub.IsRestrained()}
 function PhotographicSubCanKeel() {return PhotographicSub.CanKneel()}
 
+function PhotographicIsRestrainedWithLock() { return (Player.IsRestrained() && InventoryCharacterHasLockedRestraint(Player)) };
+function PhotographicIsRestrainedWithoutLock() { return (Player.IsRestrained() && !InventoryCharacterHasLockedRestraint(Player)) };
+
 function PhotographicLoad() {
 	if (PhotographicSub == null) {
 		PhotographicSub = CharacterLoadNPC("NPC_Photographic_Sub");
 		PhotographicSubAppearance = PhotographicSub.Appearance.slice();
 		PhotographicSub.AllowItem = true;
 	}
-	if (PhotographicPlayerAppearance == null) PhotographicPlayerAppearance = Player.Appearance.slice();
-	PhotographicStartInventory = false;
 }
 
 function PhotographicRun() {
-	if (!PhotographicStartInventory){
-		DrawCharacter(Player, 250, 0, 1);
-		DrawCharacter(PhotographicSub, 750, 0, 1);
-		if (Player.CanWalk()) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
-		DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
-		if (Player.CanInteract()) DrawButton(1885, 265, 90, 90, "", "White", "Screens/Room/Photographic/foto.png");
-		if (Player.CanKneel()) DrawButton(1885, 385, 90, 90, "", "White", "Icons/Kneel.png");
-
-	} else {//if (PhotographicStartInventory)
-		DrawCharacter(Player, 0, 0, 1);
-		DrawCharacter(PhotographicSub, 500, 0, 1);
-		DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
-		var X = 1000;
-		var Y = 125;
-		// For each items in the inventory
-		for(var A = 0; A < Player.Inventory.length; A++)
-			if ((Player.Inventory[A] != null) && (Player.Inventory[A].Group != null) && (Player.Inventory[A].Group == Player.FocusGroup.Name)) {
-				DrawRect(X, Y, 225, 275, ((MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275) && !CommonIsMobile) ? "cyan" : "white");
-				var photoimagepath = "Assets/" + Player.Inventory[A].Asset.Group.Family + "/" + Player.Inventory[A].Group + "/Preview/" + Player.Inventory[A].Name + ".png";
-				DrawImageResize( "Assets/" + Player.Inventory[A].Asset.Group.Family + "/" + Player.Inventory[A].Group + "/Preview/" + Player.Inventory[A].Name + ".png", X + 2, Y + 2, 221, 221);
-				DrawTextFit(Player.Inventory[A].Name, X + 112, Y + 250, 221, "green");
-				X = X + 250;
-				if (X > 1800) {
-					X = 1000;
-					Y = Y + 300;
-				}
-			}
-			
-		// Draw the header and empty text if we need too
-		if (PhotographicSelectText == "") PhotographicSelectText = TextGet("SelectItemUse");
-		if ((X == 1000) && (Y == 125)) DrawText(TextGet("EmptyCategory"), 1500, 500, "White", "Black");
-	}
+	DrawCharacter(Player, 250, 0, 1);
+	DrawCharacter(PhotographicSub, 750, 0, 1);
+	if (Player.CanWalk()) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
+	DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
+	if (Player.CanInteract()) DrawButton(1885, 265, 90, 90, "", "White", "Icons/Camera.png");
+	if (Player.CanKneel()) DrawButton(1885, 385, 90, 90, "", "White", "Icons/Kneel.png");
+	DrawButton(1885, 505, 90, 90, "", Player.CanChange() ? "White" : "Pink", "Icons/Dress.png");
 }
 
 function PhotographicClick() {
-	if (!PhotographicStartInventory){
-		if ((MouseX >= 250) && (MouseX < 750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-		if ((MouseX >= 750) && (MouseX < 1250) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(PhotographicSub);
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) {
-			Player.Appearance = PhotographicPlayerAppearance.slice();
-			PhotographicPlayerAppearance = null;
-			CharacterRefresh(Player);
-			CommonSetScreen("Room", "MainHall");
-		}
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355) && Player.CanInteract()) PhotographicCanvasToPng(750);
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475)  && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
-	} else {//if (PhotographicStartInventory)
-		// The user can select a different body by clicking on the vendor
-		if (Player.FocusGroup.Category == "Item")
-			if ((MouseX >= 0) && (MouseX < 500) && (MouseY >= 0) && (MouseY < 1000))
-				for(var A = 0; A < AssetGroup.length; A++)
-					if ((AssetGroup[A].Category == "Item") && (AssetGroup[A].Zone != null))
-						for(var Z = 0; Z < AssetGroup[A].Zone.length; Z++)
-							if ((MouseX >= AssetGroup[A].Zone[Z][0]) && (MouseY >= AssetGroup[A].Zone[Z][1] - Player.HeightModifier) && (MouseX - 500 <= AssetGroup[A].Zone[Z][0] + AssetGroup[A].Zone[Z][2]) && (MouseY <= AssetGroup[A].Zone[Z][1] + AssetGroup[A].Zone[Z][3] - Player.HeightModifier))
-								Player.FocusGroup = AssetGroup[A];
-		// For each items in the inventory
-		var X = 1000;
-		var Y = 125;
-		for(var A = 0; A < Player.Inventory.length; A++)
-			if ((Player.Inventory[A] != null) && (Player.Inventory[A].Group != null) && (Player.Inventory[A].Group == Player.FocusGroup.Name)) {
-				if ((MouseX >= X) && (MouseX < X + 225) && (MouseY >= Y) && (MouseY < Y + 275)) {
-					//NPC can't change locked Neck-Inventory
-					if (!(Player.Inventory[A].Group == "ItemNeck")) {
-						InventoryWear(Player, Player.Inventory[A].Name, Player.Inventory[A].Group);
-					} else if (!InventoryLocked(Player, Player.Inventory[A].Group)) {
-						InventoryWear(Player, Player.Inventory[A].Name, Player.Inventory[A].Group);
-					}
-				}
-				X = X + 250;
-				if (X > 1800) {
-					X = 1000;
-					Y = Y + 300;
-				}
-			}
-		
-		// Exit item select mode
-		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) {
-			PhotographicStartInventory = false;
-			PhotographicSub.Stage = "20";
-			Player.FocusGroup = null;
-			CharacterSetCurrent(PhotographicSub);
-			PhotographicSub.CurrentDialog = TextGet("MoreItem");
-			PhotographicBackground = "grey";
-		}
-
+	if ((MouseX >= 250) && (MouseX < 750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
+	if ((MouseX >= 750) && (MouseX < 1250) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(PhotographicSub);
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115) && Player.CanWalk()) {
+		CharacterRefresh(Player);
+		CommonSetScreen("Room", "MainHall");
 	}
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 145) && (MouseY < 235)) InformationSheetLoadCharacter(Player);
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355) && Player.CanInteract()) PhotographicCanvasToPng(750);
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475)  && Player.CanKneel()) CharacterSetActivePose(Player, (Player.ActivePose == null) ? "Kneel" : null);
+	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 505) && (MouseY < 595) && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
 }
 
 function PhotographicCanvasToPng(x) {
@@ -149,7 +81,6 @@ function PhotographicCanvasToPng(x) {
 }
 
 function PhotographicShotThePlayerPhoto(){
-	//ToDo Check Sub ist tied
 	PhotographicCanvasToPng(0);
 }
 
@@ -187,7 +118,8 @@ function PhotographicUseAsset(Asset,Group){
 }
 
 function PhotographicPlayerDressBack() {
-	CharacterDress(Player, PhotographicPlayerAppearance);
+	DialogLeave();
+	CharacterAppearanceLoadCharacter(Player);
 }
 
 function PhotographicSubDressBack() {
@@ -204,22 +136,15 @@ function PhotographicSubClothRemove(Group){
 }
 
 function PhotographicStartInventoryPlayer(ItemGroup) {
-	PhotographicBackground = "greyDark";
-
-	// Finds the asset group to shop with
-	for (var A = 0; A < AssetGroup.length; A++)
+	DialogLeaveItemMenu();
+	for (var A = 0; A < AssetGroup.length; A++) {
 		if (AssetGroup[A].Name == ItemGroup) {
 			Player.FocusGroup = AssetGroup[A];
+			DialogItemToLock = null;
+			DialogFocusItem = null;
+			DialogInventoryBuild(Player);
 			break;
 		}
-
-	// If we have a group, we start the selection
-	if (Player.FocusGroup != null) {
-		CurrentCharacter = null;
-		PhotographicStartInventory = true;
-		//ShopText = TextGet("SelectItemBuy");
-		PhotographicSelectText = TextGet("SelectItemUse");
 	}
-
 }
 

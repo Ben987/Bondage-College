@@ -57,12 +57,16 @@ function InformationSheetRun() {
 		DrawText(TextGet((C.Ownership.Stage == 0) ? "TrialFor" : "CollaredFor") + " " + (Math.floor((CurrentTime - C.Ownership.Start) / 86400000)).toString() + " " + TextGet("Days"), 550, 725, "Black", "Gray");
 	}
 
-	var OnlinePlayer = C.AccountName.indexOf("Online-") >= 0;
+	// Shows the LARP class
+	if ((C.Game != null) && (C.Game.LARP != null) && (C.Game.LARP.Class != null))
+		DrawText(TextGet("LARPClass") + " " + TextGet("LARPClass" + C.Game.LARP.Class), 550, 800, "Black", "Gray");
+
 	// For player and online characters, we show the reputation and skills
+	var OnlinePlayer = C.AccountName.indexOf("Online-") >= 0;
 	if ((C.ID == 0) || OnlinePlayer) {
 
 		// Shows the member number and online permissions for other players
-		if (C.ID != 0) DrawText(TextGet("ItemPermission") + " " + TextGet("PermissionLevel" + C.ItemPermission.toString()), 550, 850, "Black", "Gray");
+		if (C.ID != 0) DrawText(TextGet("ItemPermission") + " " + TextGet("PermissionLevel" + C.ItemPermission.toString()), 550, 875, "Black", "Gray");
 
 		// Draw the reputation section
 		DrawText(TextGet("Reputation"), 1000, 125, "Black", "Gray");
@@ -96,7 +100,6 @@ function InformationSheetRun() {
 			DrawText(TextGet("SkillEvasion") + " " + PlusSign + SkillModifier, 1450, 725, "Black", "Gray");
 			DrawText(TextGet("SkillModifierDuration") + " " + (TimermsToTime(LogValue("ModifierDuration", "SkillModifier") - CurrentTime)), 1450, 800, "Black", "Gray");
 		}
-
 
 	} else {
 

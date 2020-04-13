@@ -44,7 +44,8 @@ RemoveVibratingEgg,,,"Pity, we just got started.",,
 0,,Please use some toys on me.,She points to her restraints.,,PhotographicSubIsRestrained()
 0,40,Please take off your clothes.,Where should I start?,,!PhotographicSubIsRestrained()
 0,,Please change your pose.,"Alright, how is this?",SubChangePose(),PhotographicSubCanKeel()
-0,,(Nod for help.),I'll help you right away.,PlayerRelease(),Player.IsRestrained()
+0,,(Nod for help.),I'll help you right away.  (She releases you.),PlayerRelease(),IsRestrainedWithoutLock()
+0,,(Nod for help.),"(She checks your locks.)  I'm sorry, you'll need to get a maid for that.",,IsRestrainedWithLock()
 0,,Goodbye. (Leave her.),,DialogLeave(),
 10,,(Remove hat.),"Go on, don't be shy.","PlayerClothRemove(""Hat"")",PlayerHatAvailable()
 10,,(Remove gloves.),"Go on, don't be shy.","PlayerClothRemove(""Gloves"")",PlayerGlovesAvailable()
@@ -54,15 +55,15 @@ RemoveVibratingEgg,,,"Pity, we just got started.",,
 10,,(Remove panties.),What an unrestrained beast.,"PlayerClothRemove(""Panties"")",PlayerPantiesAvailable()
 10,,(Remove socks.),"Go on, don't be shy.","PlayerClothRemove(""Socks"")",PlayerSocksAvailable()
 10,,(Remove shoes.),A first step.,"PlayerClothRemove(""Shoes"")",PlayerShoesAvailable()
-10,,I will dress back.,If you say so.,PlayerDressBack(),
+10,0,I'll go to the closet.,If you say so.,PlayerDressBack(),Player.CanChange()
 10,0,That's enough for now.,Alright then.,,
-20,,Use some toys for the head.,Is this alright?,"StartInventoryPlayer(""ItemHead"")",
-20,,Use some toys for the mouth.,Is this alright?,"StartInventoryPlayer(""ItemMouth"")",
-20,,Use some toys for the neck.,Is this alright?,"StartInventoryPlayer(""ItemNeck"")",
-20,,Use some toys for the arms.,What do you want?,"StartInventoryPlayer(""ItemArms"")",
-20,,Use some toys for the torso.,Is this alright?,"StartInventoryPlayer(""ItemTorso"")",
-20,,Use some toys for the legs.,Is this alright?,"StartInventoryPlayer(""ItemLegs"")",
-20,,Use some toys for the feet.,Is this alright?,"StartInventoryPlayer(""ItemFeet"")",
+20,0,Use some toys for the head.,Is this alright?,"StartInventoryPlayer(""ItemHead"")",
+20,0,Use some toys for the mouth.,Is this alright?,"StartInventoryPlayer(""ItemMouth"")",
+20,0,Use some toys for the neck.,Is this alright?,"StartInventoryPlayer(""ItemNeck"")",
+20,0,Use some toys for the arms.,What do you want?,"StartInventoryPlayer(""ItemArms"")",
+20,0,Use some toys for the torso.,Is this alright?,"StartInventoryPlayer(""ItemTorso"")",
+20,0,Use some toys for the legs.,Is this alright?,"StartInventoryPlayer(""ItemLegs"")",
+20,0,Use some toys for the feet.,Is this alright?,"StartInventoryPlayer(""ItemFeet"")",
 20,0,This will do just fine.,"Alright, should i take a photo?",,Player.CanTalk()
 20,0,(Nod satisfied.),"Wink if I should take pictures, nod if I should free you.",,!Player.CanTalk()
 40,,Take off your hat.,(She throws it away in a wide arc.),"SubClothRemove(""Hat"")",SubHatAvailable()

@@ -96,7 +96,8 @@ function MainHallRun() {
 		DrawButton(1765, 505, 90, 90, "", "White", "Icons/Gavel.png", TextGet("SlaveMarket"));
 		DrawButton(1885, 505, 90, 90, "", "White", "Icons/Cell.png", TextGet("Cell"));
 
-		// Asylum & College
+		// Asylum, College & LARP battles
+		if (!ManagementIsClubSlave()) DrawButton(1645, 625, 90, 90, "", "White", "Icons/Battle.png", TextGet("LARPBattle"));
 		if (!ManagementIsClubSlave()) DrawButton(1765, 625, 90, 90, "", "White", "Icons/College.png", TextGet("College"));
 		DrawButton(1885, 625, 90, 90, "", "White", "Icons/Asylum.png", TextGet("Asylum"));
 
@@ -183,32 +184,7 @@ function MainHallClick() {
 	if ((MouseX >= 1645) && (MouseX < 1735) && (MouseY >= 25) && (MouseY < 115)) InformationSheetLoadCharacter(Player);
 	if ((MouseX >= 1765) && (MouseX < 1855) && (MouseY >= 25) && (MouseY < 115) && Player.CanChange()) CharacterAppearanceLoadCharacter(Player);
 	if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) window.location = window.location;
-	if ((MouseX >= 1645) && (MouseX < 1735) && (MouseY >= 145) && (MouseY < 235)) {
-		ChatRoomSpace = "";
-		ChatSearchBackground = "IntroductionDark";
-		ChatSearchLeaveRoom = "MainHall";
-		ChatCreateBackgroundList = [
-			"Introduction", "KidnapLeague", "MaidQuarters", "MainHall", "Management", "Private", "Shibari", "MaidCafe", 
-			"HorseStable", "Nursery", "PrisonHall", "Bedroom",
-			"BDSMRoomBlue", "BDSMRoomPurple", "BDSMRoomRed", "BondageBedChamber",
-			"CeremonialVenue", "WeddingRoom", "WeddingArch", "WeddingBeach",
-			"ParkDay", "ParkNight", "Gardens", "ParkWinter", "XmasEve", "XmasDay", "StreetNight", "SnowyStreet",
-			"IndoorPool", "OutdoorPool", "PublicBath", "Onsen", "Beach", "BeachCafe",
-			"PirateIsland", "PirateIslandNight", "ShipDeck", "CaptainCabin", "Shipwreck", 
-			"UnderwaterOne",
-			"MedinaMarket",	"SheikhPrivate", "SheikhTent",
-			"ForestPath", "DeepForest", "SpookyForest", "WitchWood", "DesolateVillage",
-			"ThroneRoom", "SecretChamber", "Dungeon", "DungeonRuin", "Confessions",
-			"AncientRuins", "JungleTemple", "SunTemple",
-			"AlchemistOffice", "ResearchPrep", "ResearchProgress",
-			"MiddletownSchool", "SlipperyClassroom", "SchoolHospital", "SchoolRuins", "SlumRuins", 
-			"SlumApartment", "AbandonedBuilding", "AbandonedSideRoom", "Industrial", "BackAlley", "CreepyBasement", "Cellar", "SlumCellar",
-			"VaultCorridor", "HellEntrance", "HeavenEntrance",
-			"BarRestaurant", "LostVages",
-			"ChillRoom", "Boudoir", "Kitchen", "DiningRoom", "CozyLivingRoom", "RooftopParty", "PartyBasement", "CosyChalet", "BalconyNight"
-		];
-		CommonSetScreen("Online", "ChatSearch");
-	}
+	if ((MouseX >= 1645) && (MouseX < 1735) && (MouseY >= 145) && (MouseY < 235)) ChatRoomStart("", "", "MainHall", "IntroductionDark", CommonBackgroundList.slice());
 
 	// The options below are only available if the player can move
 	if (Player.CanWalk()) {
@@ -233,6 +209,7 @@ function MainHallClick() {
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 505) && (MouseY < 595)) MainHallWalk("Cell");
 
 		// Asylum & College
+		if ((MouseX >= 1645) && (MouseX < 1735) && (MouseY >= 625) && (MouseY < 715)) MainHallWalk("LARP");
 		if ((MouseX >= 1765) && (MouseX < 1855) && (MouseY >= 625) && (MouseY < 715) && !ManagementIsClubSlave()) MainHallWalk("CollegeEntrance");
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 625) && (MouseY < 715)) MainHallWalk("AsylumEntrance");
 		

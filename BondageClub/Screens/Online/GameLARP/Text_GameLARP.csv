@@ -1,0 +1,23 @@
+Title,LARP Battle Team Selection
+SelectClass,Select your class:
+SelectTeam,Select your team:
+ClassMatron,Matron
+ClassSeducer,Seducer
+ClassTrickster,Trickster
+ClassServant,Servant
+ClassArtist,Artist
+ClassProtector,Protector
+ColorNone,Not playing
+ColorRed,Red
+ColorGreen,Green
+ColorBlue,Blue
+ColorYellow,Yellow
+ColorCyan,Cyan
+ColorPurple,Purple
+ColorOrange,Orange
+ColorWhite,White
+ColorGray,Gray
+ColorBlack,Black
+StartCondition,The room creator can start the game if two teams or more are selected.
+RunningGame,"The LARP game is running, you cannot change your class or team."
+StartGame,Start the game

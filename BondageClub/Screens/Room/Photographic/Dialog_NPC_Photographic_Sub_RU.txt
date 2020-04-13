@@ -160,8 +160,8 @@ What an unrestrained beast.
 A first step.
 Первый шаг.
 ###_PLAYER
-I will dress back.
-Я оденусь обратно.
+I'll go to the closet.
+Я иду в шкаф.
 ###_NPC
 If you say so.
 Как скажешь.

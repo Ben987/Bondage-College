@@ -293,7 +293,6 @@ function ActivityExpression(C, Progress) {
 
 	// Refreshes the character
 	CharacterRefresh(C);
-	if ((C.ID == 0) && (CurrentScreen == "ChatRoom")) ChatRoomCharacterUpdate(Player);
 
 }
 

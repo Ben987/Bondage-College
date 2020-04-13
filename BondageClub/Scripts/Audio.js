@@ -130,6 +130,7 @@ function AudioPlayContent(data) {
 				case "NippleHeart":
 				case "Nipple":
 				case "NippleEgg":
+				case "TapedClitEgg":
 				case "Egg": audioFile = "Audio/VibrationTone4ShortLoop.mp3"; break;
 				case "LoveChastityBeltVibe":
 				case "Belt":

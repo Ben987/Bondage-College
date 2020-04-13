@@ -1,0 +1,66 @@
+LARPItemSelect,Select the item to use
+LARPItemNext,Next
+LARPItemCancel,Cancel
+LARPTeamRed,Red
+LARPTeamGreen,Green
+LARPTeamBlue,Blue
+LARPTeamYellow,Yellow
+LARPTeamCyan,Cyan
+LARPTeamPurple,Purple
+LARPTeamOrange,Orange
+LARPTeamWhite,White
+LARPTeamGray,Gray
+LARPTeamBlack,Black
+LARPTimerNA,NA
+LARPEndGame,The game is over!  TeamName team wins.  Enjoy your spoils of war.
+LARPTurnStart,TargetName (TargetNumber) plays first and starts the game.
+LARPTurnSkip,The turn is skipped.  TargetName (TargetNumber) plays.
+LARPTurnNext,TargetName (TargetNumber) plays.
+LARPBackToCharacters,Back to characters
+LARPOptionPass,Pass your turn
+LARPOptionPassSuccess,SourceName (SourceNumber) does nothing and passes her turn.
+LARPOptionStrip,Strip her (OptionOdds %)
+LARPOptionStripSuccess,SourceName (SourceNumber) successfully strips TargetName (TargetNumber).  [ActionOdds >= ActionRNG]
+LARPOptionStripFail,SourceName (SourceNumber) fails to strip TargetName (TargetNumber).  [ActionOdds < ActionRNG]
+LARPOptionRestrainArms,Restrain arms (OptionOdds %)
+LARPOptionRestrainArmsSuccess,SourceName (SourceNumber) successfully restrains TargetName (TargetNumber) arms using: ItemDesc.  [ActionOdds >= ActionRNG]
+LARPOptionRestrainArmsFail,SourceName (SourceNumber) fails to restrain TargetName (TargetNumber) arms using: ItemDesc.  [ActionOdds < ActionRNG]
+LARPOptionRestrainLegs,Restrain legs (OptionOdds %)
+LARPOptionRestrainLegsSuccess,SourceName (SourceNumber) successfully restrains TargetName (TargetNumber) legs using: ItemDesc.  [ActionOdds >= ActionRNG]
+LARPOptionRestrainLegsFail,SourceName (SourceNumber) fails to restrain TargetName (TargetNumber) legs using: ItemDesc.  [ActionOdds < ActionRNG]
+LARPOptionRestrainMouth,Gag her (OptionOdds %)
+LARPOptionRestrainMouthSuccess,SourceName (SourceNumber) successfully gags TargetName (TargetNumber) using: ItemDesc.  [ActionOdds >= ActionRNG]
+LARPOptionRestrainMouthFail,SourceName (SourceNumber) fails to gag TargetName (TargetNumber) using: ItemDesc.  [ActionOdds < ActionRNG]
+LARPOptionTighten,Tighten (OptionOdds %)
+LARPOptionTightenSuccess,SourceName (SourceNumber) tightens TargetName (TargetNumber) bondage.
+LARPOptionStruggle,Struggle (OptionOdds %)
+LARPOptionStruggleSuccess,TargetName (TargetNumber) struggles out successfully and frees her arms.  [ActionOdds >= ActionRNG]
+LARPOptionStruggleFail,TargetName (TargetNumber) tries to struggle out but fails.  [ActionOdds < ActionRNG]
+LARPOptionCharge,Charge (OptionOdds %)
+LARPOptionChargeSuccess,"SourceName (SourceNumber) charges with her team, giving a 25% offensive bonus for a full cycle."
+LARPOptionControl,Control (OptionOdds %)
+LARPOptionControlSuccess,"SourceName (SourceNumber) controls the room, preventing everyone from using special abilities for a full cycle."
+LARPOptionDetain,Detain (OptionOdds %)
+LARPOptionDetainSuccess,SourceName (SourceNumber) detrains TargetName (TargetNumber) and restrains her arms using: ItemDesc.
+LARPOptionExpose,Expose (OptionOdds %)
+LARPOptionExposeSuccess,SourceName (SourceNumber) exposes TargetName (TargetNumber) and removes her clothes.
+LARPOptionInspire,Inspire (OptionOdds %)
+LARPOptionSeduce,Seduce (OptionOdds %)
+LARPOptionConfuse,Confuse (OptionOdds %)
+LARPOptionConfuseSuccess,"SourceName (SourceNumber) confuses TargetName (TargetNumber), preventing her from using special abilities for a full cycle."
+LARPOptionGamble,Gamble (OptionOdds %)
+LARPOptionHide,Hide (OptionOdds %)
+LARPOptionCheer,Cheer (OptionOdds %)
+LARPOptionCheerSuccess,"SourceName (SourceNumber) cheers for TargetName (TargetNumber), giving her a 25% offensive and defensive bonus for a full cycle."
+LARPOptionCostume,Costume (OptionOdds %)
+LARPOptionCostumeSuccess,SourceName (SourceNumber) costumes TargetName (TargetNumber) using: ItemDesc.
+LARPOptionEvasion,Evasion (OptionOdds %)
+LARPOptionRescue,Rescue (OptionOdds %)
+LARPOptionSilence,Silence (OptionOdds %)
+LARPOptionSilenceSuccess,SourceName (SourceNumber) silences TargetName (TargetNumber) and gag her using: ItemDesc.
+LARPOptionSupport,Support (OptionOdds %)
+LARPOptionSupportSuccess,"SourceName (SourceNumber) supports her team, giving a 25% defensive bonus for a full cycle."
+LARPOptionCover,Cover (OptionOdds %)
+LARPOptionDress,Dress (OptionOdds %)
+LARPOptionDressSuccess,SourceName (SourceNumber) dresses back using: ItemDesc.
+LARPOptionSacrifice,Sacrifice (OptionOdds %)

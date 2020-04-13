@@ -160,8 +160,8 @@ Welch ein unbändiges Tier.
 A first step.
 Es ist ein Anfang.
 ###_PLAYER
-I will dress back.
-Ich ziehe mich wieder an.
+I'll go to the closet.
+ich gehe zum Kleiderschrank.
 ###_NPC
 If you say so.
 Wenn du meinst.

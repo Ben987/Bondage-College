@@ -163,6 +163,66 @@ RopeBondageSuspensionHogtied,,,(You carefully hogtie her and suspend her from th
 RopeBondageCrotch,,,(You use a rope and restrain it on her crotch.)  There's always something kinky going on in here.,,,,
 RopeBondageHarness,,,"(You use the ropes and create a harness around her body.)  Surprisingly, this is quite comfortable.",,,,
 RopeBondageDiamond,,,(You use the ropes and create a diamond harness around her body.)  Your rope technique is excellent.,,,,
+LoverActivityKiss,,,I love you DialogPlayerName.  (You exchange a sweet kiss on the lips.),,,LoverActivityKiss,
+LoverActivityKiss,,,I love you DialogPlayerName.  (She nibbles on your lips as you exchange a loving kiss.),,,LoverActivityKiss,Violent|Dominant
+LoverActivityKiss,,,I love you very much.  (She gives you a timid kiss on the lips.),,,LoverActivityKiss,Submissive|Frigid
+LoverActivityKiss,,,I love ya!  You make me wet.  (You exchange a sweet kiss on the lips.),,,LoverActivityKiss,Horny|Rude
+LoverActivityFrenchKiss,,,I love you DialogPlayerName.  (You exchange a long French kiss.),,,LoverActivityFrenchKiss,
+LoverActivityFrenchKiss,,,I love you DialogPlayerName.  (She nibbles on your lips as you exchange long French kiss.),,,LoverActivityFrenchKiss,Violent|Dominant
+LoverActivityFrenchKiss,,,I love you very much.  (She blushes as you exchange a quick French kiss.),,,LoverActivityFrenchKiss,Submissive|Frigid
+LoverActivityFrenchKiss,,,I love ya!  You make me wet.  (She moans as you exchange a long French kiss.),,,LoverActivityFrenchKiss,Horny|Rude
+LoverActivityCaress,,,(You smile at each other and exchange some lovely caresses.),,,LoverActivityCaress,
+LoverActivityCaress,,,Love is the best lubricant.  (You exchange some lovely caresses.),,,LoverActivityCaress,Wise|Horny
+LoverActivityCaress,,,You're the best fucking thing in my life.  (You exchange some lovely caresses.),,,LoverActivityCaress,Submissive|Rude
+LoverActivityCaress,,,(You tickle each other lightly and exchange some lovely caresses.),,,LoverActivityCaress,Playful|Peaceful
+LoverActivityRub,,,(You both moan silently and rub your bodies against each other.),,,LoverActivityRub,
+LoverActivityRub,,,Love is the best lubricant.  (You rub your bodies against each other.),,,LoverActivityRub,Wise|Horny
+LoverActivityRub,,,You're the best fucking thing in my life.  (She hugs and rubs her body against yours.),,,LoverActivityRub,Submissive|Rude
+LoverActivityRub,,,(She wiggles her body sensually and rubs it against yours.),,,LoverActivityRub,Playful|Peaceful
+LoverActivityMasturbateHand,,,"(Without saying a word, you masturbate each other lovingly and moan softly.)",,,LoverActivityMasturbateHand,
+LoverActivityMasturbateHand,,,(She stays silent as you masturbate each other lovingly.),,,LoverActivityMasturbateHand,Frigid|Serious
+LoverActivityMasturbateHand,,,Love pheromones are in the air. (You masturbate each other lovingly and moan slowly.),,,LoverActivityMasturbateHand,Polite|Wise
+LoverActivityMasturbateHand,,,I love ya more!  (You masturbate each other lovingly and moan slowly.),,,LoverActivityMasturbateHand,Dumb|Rude
+LoverActivityMasturbateTongue,,,I love you so much.  (You both lie down and start to lick each other pussies.),,,LoverActivityMasturbateTongue,
+LoverActivityMasturbateTongue,,,"(Without saying a word, you both lie down and start to lick each other pussies.)",,,LoverActivityMasturbateTongue,Frigid|Serious
+LoverActivityMasturbateTongue,,,Love pheromones are in the air. (You both lie down and start to lick each other pussies.),,,LoverActivityMasturbateTongue,Polite|Wise
+LoverActivityMasturbateTongue,,,I love ya more!  (You both lie down and start to lick each other pussies.),,,LoverActivityMasturbateTongue,Dumb|Rude
+LoverActivityMasturbatePlayer,,,I love you sweetie.  (She masturbates your pussy lovingly.),,,LoverActivityMasturbatePlayer,
+LoverActivityMasturbatePlayer,,,Surrender yourself my love.  (She masturbates your pussy lovingly.),,,LoverActivityMasturbatePlayer,Dominant|Serious
+LoverActivityMasturbatePlayer,,,And pleasuring you will strengthen our relationship.  (She masturbates your pussy lovingly.),,,LoverActivityMasturbatePlayer,Submissive|Wise
+LoverActivityMasturbatePlayer,,,Hell yeah.  I love ya wet just like me.  (She masturbates your pussy lovingly.),,,LoverActivityMasturbatePlayer,Horny|Rude
+LoverActivityMasturbateSelf,,,You're so wonderful.  (She smiles at you and masturbates slowly.),,,LoverActivityMasturbateSelf,
+LoverActivityMasturbateSelf,,,Our love will last for years.  (She winks at you and masturbates lovingly.),,,LoverActivityMasturbateSelf,Dominant|Serious
+LoverActivityMasturbateSelf,,,I will take care of our sexual urges my love.  (She winks at you and masturbates slowly.),,,LoverActivityMasturbateSelf,Submissive|Wise
+LoverActivityMasturbateSelf,,,Yo love!  Watch there!  (She tries to trick you to look away while she masturbates hastily.),,,LoverActivityMasturbateSelf,Horny|Rude
+LoverActivityUnderwear,,,Is it getting hot in your room?  (She winks and you both strip some clothes.),,,LoverActivityUnderwear,
+LoverActivityUnderwear,,,Love ya!  Should we r'move clothes?  (She winks and you both strip some clothes.),,,LoverActivityUnderwear,Submissive|Rude
+LoverActivityUnderwear,,,Time to strip my love.  (She wiggles her hips as you both strip some clothes.),,,LoverActivityUnderwear,Dominant|Playful
+LoverActivityUnderwear,,,"(Without saying a word, you both strip some clothes.)",,,LoverActivityUnderwear,Serious|Frigid
+LoverActivityNaked,,,It's way too hot in your room.  (She winks and you both strip naked.),,,LoverActivityNaked,
+LoverActivityNaked,,,Love ya!  Should we get nak'd?  (She winks and you both strip naked.),,,LoverActivityNaked,Submissive|Rude
+LoverActivityNaked,,,Time to get naked my love.  (She wiggles her hips as you both strip naked.),,,LoverActivityNaked,Dominant|Playful
+LoverActivityNaked,,,"(Without saying a word, you both strip naked.)",,,LoverActivityNaked,Serious|Frigid
+LoverActivityEggInsert,,,I have a kinky gift for you my love.  (She smiles at you and inserts a humming vibrating egg in your vagina.),,,LoverActivityEggInsert,
+LoverActivityEggInsert,,,"Take a deep breath sweetie, you will be wet like me soon.  (Without any warning, she shoves a humming vibrating egg in your vagina.)",,,LoverActivityEggInsert,Violent|Horny
+LoverActivityEggInsert,,,I have a devious activity we could share together my lovely partner.  (She pushes a humming vibrating egg in your vagina and winks.),,,LoverActivityEggInsert,Polite|Wise
+LoverActivityEggInsert,,,Oh yeah!  It's cum time!  (She pushes a humming vibrating egg in your vagina and winks.),,,LoverActivityEggInsert,Dumb|Rude
+LoverActivityLockBelt,,,I have wicked idea to pleasure you sweetheart.  (She smirks and locks a chastity belt on you.),,,LoverActivityLockBelt,
+LoverActivityLockBelt,,,This device will allow you to have some fun without my intervention.  (She winks and locks a chastity belt on you.),,,LoverActivityLockBelt,Playful|Frigid
+LoverActivityLockBelt,,,I have an idea that will drive you crazy for you my love.  (She smirks and locks a chastity belt on you.),,,LoverActivityLockBelt,Horny|Violent
+LoverActivityLockBelt,,,"My love, you might not like this idea at first, but trust me on this one.  (She winks and locks a chastity belt on you.)",,,LoverActivityLockBelt,Peaceful|Wise
+LoverActivityUnlockBelt,,,"Enough with that belt, I want to access your pussy.  (She unlocks and removes your chastity belt.)",,,LoverActivityUnlockBelt,
+LoverActivityUnlockBelt,,,Is this device too cruel my love?  (She unlocks and removes your chastity belt.),,,LoverActivityUnlockBelt,Playful|Frigid
+LoverActivityUnlockBelt,,,"This belt isn't devious enough, I'll find something better.  (She unlocks and removes your chastity belt.)",,,LoverActivityUnlockBelt,Horny|Violent
+LoverActivityUnlockBelt,,,Even the most wicked plans need to end at some point.  (She unlocks and removes your chastity belt.),,,LoverActivityUnlockBelt,Peaceful|Wise
+LoverActivityEggSpeedUp,,,"You know what's coming?  You my love.  (She laughs, picks a remote control, and speeds up your vibrating egg.)",,,LoverActivityEggSpeedUp,
+LoverActivityEggSpeedUp,,,"What?  You're not feeling anything from the egg?  (She giggles, picks a remote control, and speeds up your vibrating egg.)",,,LoverActivityEggSpeedUp,Horny|Playful
+LoverActivityEggSpeedUp,,,"(She smirks and stays silent, picks a remote control, and speeds up your vibrating egg.)",,,LoverActivityEggSpeedUp,Frigid|Serious
+LoverActivityEggSpeedUp,,,"Isn't it time to raise our relationship to the next level?  (She winks, picks a remote control, and speeds up your vibrating egg.)",,,LoverActivityEggSpeedUp,Polite|Wise
+LoverActivityEggSpeedDown,,,"Do you need a quick break my love?  (She smiles, picks a remote control, and speeds down your vibrating egg.)",,,LoverActivityEggSpeedDown,
+LoverActivityEggSpeedDown,,,"Teasing you is so much fun.  (She giggles, picks a remote control, and speeds down your vibrating egg.)",,,LoverActivityEggSpeedDown,Horny|Playful
+LoverActivityEggSpeedDown,,,"(She smiles and stays silent, picks a remote control, and speeds down your vibrating egg.)",,,LoverActivityEggSpeedDown,Frigid|Serious
+LoverActivityEggSpeedDown,,,"Isn't being teased by your loved one the most wonderful feeling?  (She smiles, picks a remote control, and speeds down your vibrating egg.)",,,LoverActivityEggSpeedDown,Polite|Wise
 MistressVow,,,I vow to be a good Mistress for you my girl.  To be fair and honest.,,,MistressVow,
 MistressVow,,,I vow to be a good Mistress for you my slave.  To be strict but fair.,,,MistressVow,Serious|Dominant
 MistressVow,,,I vow to be a good Mistress for you my subbie.  I hope we will have fun together and meets lots of friends.,,,MistressVow,Playful|Frigid
