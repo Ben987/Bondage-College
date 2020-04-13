@@ -117,10 +117,11 @@ function LoginValidCollar() {
 	}
  	if ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name != "SlaveCollar") && (InventoryGet(Player, "ItemNeck").Asset.Name != "ClubSlaveCollar") && (Player.Owner != "")) {
  		InventoryRemove(Player, "ItemNeck");
-		InventoryRemove(Player, "ItemNeckAccessories");
-		InventoryRemove(Player, "ItemNeckRestraints");
 	}
-	if ((InventoryGet(Player, "ItemNeck") == null) && (Player.Owner != "")) InventoryWear(Player, "SlaveCollar", "ItemNeck");
+	if ((InventoryGet(Player, "ItemNeck") == null) && (Player.Owner != "")) {
+		InventoryWear(Player, "SlaveCollar", "ItemNeck");
+		if (CurrentScreen == "ChatRoom") ChatRoomCharacterUpdate(Player);
+	}
 }
 
 // Only players that are club Mistresses can have the Mistress Padlock & Key
