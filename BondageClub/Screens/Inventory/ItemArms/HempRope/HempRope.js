@@ -25,6 +25,12 @@ const HempRopeArmsOptions = [
 		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }],
 		ArmsOnly: true
 	}, {
+		Name: "WristElbowHarnessTie",
+		RequiredBondageLevel: 3,
+		Property: { Type: "WristElbowHarnessTie", Effect: ["Block", "Prone"], SetPose: ["BackElbowTouch"], Difficulty: 3 },
+		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }],
+		ArmsOnly: true
+	}, {
 		Name: "Hogtied",
 		RequiredBondageLevel: 4,
 		Property: { Type: "Hogtied", Effect: ["Block", "Freeze", "Prone"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["Hogtied"], Difficulty: 3 },
