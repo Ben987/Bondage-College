@@ -6,6 +6,10 @@ const HempRopeTorsoOptions = [
 		RequiredBondageLevel: null,
 		Property: { Type: null, Difficulty: 1 },
 	}, {
+		Name: "Waist",
+		RequiredBondageLevel: null,
+		Property: { Type: "Waist" , Difficulty: 1 },
+	}, {
 		Name: "Harness",
 		RequiredBondageLevel: 2,
 		Property: { Type: "Harness" , Difficulty: 1 },
@@ -104,7 +108,7 @@ function InventoryItemTorsoHempRopeSetPose(NewType) {
 	// Sets the chatroom or NPC message
 	if (CurrentScreen == "ChatRoom") {
 		ChatRoomCharacterUpdate(C);
-		var msg = "TorsoRopeSet" + NewType.Name;
+		var msg = "RopeHarnessSet" + NewType.Name;
 		var Dictionary = [];
 		Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
 		Dictionary.push({Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber});

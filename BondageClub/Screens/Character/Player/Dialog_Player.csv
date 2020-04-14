@@ -479,11 +479,15 @@ RopeBondageWristElbowHarnessTie,,,Wrist and Elbow Harness Tie
 RopeBondageAllFours,,,All Fours
 RopeBondageCrotch,,,Crotch Rope
 RopeBondageHarness,,,Body Harness
+RopeBondageStar,,,Star Harness Tie
+RopeBondageWaist,,,Waist Rope
 RopeBondageDiamond,,,Diamond Style
 NoRequirement,,,No Requirement
 RequireBondageLevel,,,Need Bondage ReqLevel
 RopeHarnessSetCrotch,,,SourceCharacter uses the rope on TargetCharacter to do a crotch rope tie.
 RopeHarnessSetHarness,,,SourceCharacter uses the rope on TargetCharacter to do a body harness.
+RopeHarnessSetStar,,,SourceCharacter uses the rope on TargetCharacter to tie a star harness.
+RopeHarnessSetWaist,,,SourceCharacter uses the rope on TargetCharacter to tie a waist rope on her.
 RopeHarnessSetDiamond,,,SourceCharacter uses the rope on TargetCharacter to do a diamond style harness.
 LegRopeSetBasic,,,SourceCharacter uses the rope on TargetCharacter to do a basic tie.
 LegRopeSetMermaid,,,SourceCharacter uses the rope on TargetCharacter to do a mermaid tie.
