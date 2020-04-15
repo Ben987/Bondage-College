@@ -582,6 +582,9 @@ function GameLARPCharacterClick(C) {
 // Adds the LARP message to the chat log
 function GameLARPAddChatLog(Msg, Source, Target, Description, RNG, Odds, Color) {
 
+	// The first message of the game is blue
+	if (GameLARPProgress.length == 0) Color = "#0000B0";
+
 	// Gets the message from the dictionary
 	Msg = OnlineGameDictionaryText(Msg);
 	Msg = Msg.replace("SourceName", Source.Name);
@@ -661,7 +664,7 @@ function GameLARPContinue() {
 	if (Team != "") {
 
 		// Shows the winning team and updates the player status
-		GameLARPAddChatLog("EndGame", Player, Player, OnlineGameDictionaryText("Team" + Team), 0, 0);
+		GameLARPAddChatLog("EndGame", Player, Player, OnlineGameDictionaryText("Team" + Team), 0, 0, "#0000B0");
 		GameLARPStatus = "";
 		Player.Game.LARP.Status = "";
 		ServerSend("AccountUpdate", { Game: Player.Game });
