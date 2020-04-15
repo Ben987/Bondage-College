@@ -22,6 +22,9 @@ RemoveSuspensionHempRope,,,(You untie the hemp rope from the ceiling and slowly 
 0,,,(A maid stands around and greets you.) This room is under construction. Please leave.,,
 0,,What's going on here?,I'm looking for someone in handcuffs to help me test something.,,!PrisonPlayerIsHandcuffed()
 0,1,What kind of test is it?,(She shoves you into a cell and closes the door.),CellPlayerIn(),PrisonPlayerIsHandcuffed()
+0,30,I heard something about a gang of bad girls?,"The gang includes the troublemakers, all of whom should be put in a prison cell.",,!PrisonPlayerIsBadGirl()
+0,40,I don't want to be a part of the Bad Girls Gang anymore.,"Well, if you promise to be good, we'll leave you alone.",,PrisonPlayerIsBadGirl()
+0,,(return the dice),Thanks.,DiceBack(),PrisonPlayerIsBadGirlThief()
 0,,Okay. Bye! (Leave her.),"Pleased to meet you. I'm DialogCharacterName, I work here as a maid.",DialogLeave(),
 1,20,(Look surprised.),It's good that you're under lock and key!,DialogLeave(),
 20,,"Please, can you let me out?",,CellPlayerAsk(),Player.CanTalk()
@@ -34,6 +37,15 @@ RemoveSuspensionHempRope,,,(You untie the hemp rope from the ceiling and slowly 
 22,0,"Thanks, that was a nice experience.",You're welcome.,"DialogChangeReputation(""Dominant"", -2)",
 22,0,Finally I am out of that hole.,All ends well,"DialogChangeReputation(""Dominant"", 1)",
 22,0,(Leave her.),(A maid stands around and greets you.) This room is under construction. Please leave.,DialogLeave(),
+30,31,(Continues),The bad girls always steal the special Dices in the Gambling hall for fun.,,
+31,32,(Continues),Therefore the guards must check them regularly.,,
+32,33,(Continues),"If they are caught, they are sent to prison for punishment.",,
+33,34,(Continues),"You're not one of those bad girls, are you?",,
+34,0,I would never do that.,You'd better not.,,
+34,0,"On the contrary, I want to help catch them.",(This feature will be available in a future version.),,
+34,0,"Sure, that sounds like fun.",I'll be keeping an eye on you from now on. Just don't get caught.,BecomBadGirl(),
+40,0,I swear it.,Then keep it.,LeaveBadGirl(),
+40,0,"Ha ha, I'm just kidding.",You'll see what you get out of it.,,
 PrisonerTortured,20,Hey! That really hurts!,You don't deserve any better!,,
 PrisonerTortured,20,Miss!  Is that proper?,You have to learn modesty.,,
 PrisonerTortured,20,Thanks! You're really good to me.,I'll gladly do it again.,,

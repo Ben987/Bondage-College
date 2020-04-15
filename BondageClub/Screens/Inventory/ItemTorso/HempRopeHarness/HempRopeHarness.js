@@ -1,45 +1,86 @@
 "use strict";
 
+const HempRopeTorsoOptions = [
+	{
+		Name: "Crotch",
+		RequiredBondageLevel: null,
+		Property: { Type: null, Difficulty: 1 },
+	}, {
+		Name: "Waist",
+		RequiredBondageLevel: null,
+		Property: { Type: "Waist" , Difficulty: 1 },
+	}, {
+		Name: "Harness",
+		RequiredBondageLevel: 2,
+		Property: { Type: "Harness" , Difficulty: 1 },
+	}, {
+		Name: "Star",
+		RequiredBondageLevel: 3,
+		Property: { Type: "Star" , Difficulty: 2 },
+	}, {
+		Name: "Diamond",
+		RequiredBondageLevel: 4,
+		Property: { Type: "Diamond" , Difficulty: 3 },
+		
+	}
+];
+
+var HempRopeOptionOffset = 0;
+
 // Loads the item extension properties
 function InventoryItemTorsoHempRopeHarnessLoad() {
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Type: null };
+	if (DialogFocusItem.Property == null) DialogFocusItem.Property = HempRopeTorsoOptions[0].Property;
+	DialogExtendedMessage = DialogFind(Player, "SelectRopeBondage");
+	HempRopeOptionOffset = 0;
 }
 
 // Draw the item extension screen
 function InventoryItemTorsoHempRopeHarnessDraw() {
 
 	// Draw the header and item
-	DrawRect(1387, 125, 225, 275, "white");
-	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
-	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
+	DrawButton(1775, 25, 90, 90, "", "White", "Icons/Next.png");
+	DrawRect(1387, 55, 225, 275, "white");
+	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 57, 221, 221);
+	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 310, 221, "black");
+	DrawText(DialogExtendedMessage, 1500, 375, "white", "gray");
+	
+	// Draw the possible positions and their requirements, 4 at a time in a 2x2 grid
+	for (var I = HempRopeOptionOffset; (I < HempRopeTorsoOptions.length) && (I < HempRopeOptionOffset + 4); I++) {
+		var offset = I - HempRopeOptionOffset;
+		var X = 1200 + (offset % 2 * 387);
+		var Y = 450 + (Math.floor(offset / 2) * 300);
+		var FailSkillCheck = (HempRopeTorsoOptions[I].RequiredBondageLevel != null && SkillGetLevelReal(Player, "Bondage") < HempRopeTorsoOptions[I].RequiredBondageLevel);
 
-	// Draw the rope harness types
-	DrawText(DialogFind(Player, "SelectRopeBondage"), 1500, 475, "white", "gray");
-	DrawButton(1050, 550, 225, 225, "", (DialogFocusItem.Property.Type == null) ? "#888888" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Crotch.png", 1050, 551);
-	DrawText(DialogFind(Player, "RopeBondageCrotch"), 1163, 800, "white", "gray");
-	DrawText(DialogFind(Player, "NoRequirement"), 1163, 850, "white", "gray");
-	DrawButton(1387, 550, 225, 225, "", ((DialogFocusItem.Property.Type != null) && (DialogFocusItem.Property.Type == "Harness")) ? "#888888" : (SkillGetLevelReal(Player, "Bondage") < 2) ? "Pink" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Harness.png", 1387, 551);
-	DrawText(DialogFind(Player, "RopeBondageHarness"), 1500, 800, "white", "gray");
-	DrawText(DialogFind(Player, "RequireBondageLevel").replace("ReqLevel", "2"), 1500, 850, "white", "gray");
-	DrawButton(1725, 550, 225, 225, "", ((DialogFocusItem.Property.Type != null) && (DialogFocusItem.Property.Type == "Diamond")) ? "#888888" : (SkillGetLevelReal(Player, "Bondage") < 4) ? "Pink" : "White");
-	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Diamond.png", 1725, 551);
-	DrawText(DialogFind(Player, "RopeBondageDiamond"), 1838, 800, "white", "gray");
-	DrawText(DialogFind(Player, "RequireBondageLevel").replace("ReqLevel", "4"), 1838, 850, "white", "gray");
-
+		DrawText(DialogFind(Player, "RopeBondage" + HempRopeTorsoOptions[I].Name), X + 113, Y - 20, "white", "gray");
+		DrawButton(X, Y, 225, 225, "", ((DialogFocusItem.Property.Type == HempRopeTorsoOptions[I].Property.Type)) ? "#888888" : FailSkillCheck ? "Pink" : "White");
+		DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/" + HempRopeTorsoOptions[I].Name + ".png", X, Y + 1);
+	}
 }
 
 // Catches the item extension clicks
 function InventoryItemTorsoHempRopeHarnessClick() {
+
+	// Menu buttons
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1050) && (MouseX <= 1275) && (MouseY >= 550) && (MouseY <= 775) && (DialogFocusItem.Property.Type != null)) InventoryItemTorsoHempRopeHarnessSetType(null);
-	if ((MouseX >= 1387) && (MouseX <= 1612) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Harness")) && (SkillGetLevelReal(Player, "Bondage") >= 2)) InventoryItemTorsoHempRopeHarnessSetType("Harness");
-	if ((MouseX >= 1725) && (MouseX <= 1950) && (MouseY >= 550) && (MouseY <= 775) && ((DialogFocusItem.Property.Type == null) || (DialogFocusItem.Property.Type != "Diamond")) && (SkillGetLevelReal(Player, "Bondage") >= 4)) InventoryItemTorsoHempRopeHarnessSetType("Diamond");
+	if ((MouseX >= 1775) && (MouseX <= 1865) && (MouseY >= 25) && (MouseY <= 110)) HempRopeOptionOffset += 4;
+	if (HempRopeOptionOffset > HempRopeTorsoOptions.length) HempRopeOptionOffset = 0;
+
+	// Item buttons
+	for (var I = HempRopeOptionOffset; (I < HempRopeTorsoOptions.length) && (I < HempRopeOptionOffset + 4); I++) {
+		var offset = I - HempRopeOptionOffset;
+		var X = 1200 + (offset % 2 * 387);
+		var Y = 450 + (Math.floor(offset / 2) * 300);
+
+		if ((MouseX >= X) && (MouseX <= X + 225) && (MouseY >= Y) && (MouseY <= Y + 225) && (DialogFocusItem.Property.Type != HempRopeTorsoOptions[I].Property.Type))
+			if (HempRopeTorsoOptions[I].RequiredBondageLevel != null && SkillGetLevelReal(Player, "Bondage") < HempRopeTorsoOptions[I].RequiredBondageLevel) {
+				DialogExtendedMessage = DialogFind(Player, "RequireBondageLevel").replace("ReqLevel", HempRopeTorsoOptions[I].RequiredBondageLevel);
+			}
+			else InventoryItemTorsoHempRopeSetPose(HempRopeTorsoOptions[I]);
+	}
 }
 
-// Sets the harness type (Crotch, Regular, Diamond)
-function InventoryItemTorsoHempRopeHarnessSetType(NewType) {
+// Sets the hemp rope pose (hogtied, suspension, etc.)
+function InventoryItemTorsoHempRopeSetPose(NewType) {
 
 	// Gets the current item and character
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
@@ -48,18 +89,26 @@ function InventoryItemTorsoHempRopeHarnessSetType(NewType) {
 		InventoryItemTorsoHempRopeHarnessLoad();
 	}
 
-	// Sets the harness type & difficulty
-	DialogFocusItem.Property.Type = NewType;
-	DialogFocusItem.Property.Effect = [];
-	if (NewType == null) DialogFocusItem.Property.Difficulty = 0;
-	if (NewType == "Harness") DialogFocusItem.Property.Difficulty = 1;
-	if (NewType == "Diamond") DialogFocusItem.Property.Difficulty = 2;
+	// Validates a few parameters before hogtied
+	if ((NewType.TorsoOnly == false) && !InventoryAllow(C, ["NotKneeling", "NotMounted", "NotChained", "NotSuspended", "CannotBeHogtiedWithAlphaHood"], true)) { DialogExtendedMessage = DialogText; return; }
+
+	// Sets the new pose with its effects
+	DialogFocusItem.Property = NewType.Property;
+	if (NewType.Expression != null)
+		for (var E = 0; E < NewType.Expression.length; E++)
+			CharacterSetFacialExpression(C, NewType.Expression[E].Group, NewType.Expression[E].Name, NewType.Expression[E].Timer);
+
+	if (NewType.HiddenItem != null) {
+		InventoryWear(C, NewType.HiddenItem, "ItemHidden", DialogFocusItem.Color);
+	}
+	else InventoryRemove(C, "ItemHidden");
+
 	CharacterRefresh(C);
 
 	// Sets the chatroom or NPC message
 	if (CurrentScreen == "ChatRoom") {
 		ChatRoomCharacterUpdate(C);
-		var msg = "RopeHarnessSet" + ((NewType) ? NewType : "Crotch");
+		var msg = "RopeHarnessSet" + NewType.Name;
 		var Dictionary = [];
 		Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
 		Dictionary.push({Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
@@ -68,7 +117,7 @@ function InventoryItemTorsoHempRopeHarnessSetType(NewType) {
 		DialogFocusItem = null;
 		if (C.ID == 0) DialogMenuButtonBuild(C);
 		else {
-			C.CurrentDialog = DialogFind(C, "RopeBondage" + ((NewType) ? NewType : "Crotch"), "ItemTorso");
+			C.CurrentDialog = DialogFind(C, "RopeBondage" + NewType.Name, "ItemTorso");
 			C.FocusGroup = null;
 		}
 	}

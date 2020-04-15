@@ -3,6 +3,8 @@ var PrisonBackground = "Prison";
 var PrisonNextEventTimer = null;
 var PrisonNextEvent = false;
 var PrisonerMetalCuffsKey = null;
+var PrisonerMetalPadlockKey = null;
+var PrisonerIntricatePadlockKey = null;
 
 var PrisonMaid = null;
 var PrisonMaidAppearance = null;
@@ -21,6 +23,8 @@ var PrisonSubAskedCuff = false;
 var PrisonSubIsLeaveOut = true;
 var PrisonSubIsStripSearch = false;
 
+var PrisonPolice = null;
+
 var PrisonPlayerAppearance = null;
 var PrisonPlayerBehindBars = false;
 var PrisonPlayerForIllegalChange = false;
@@ -32,6 +36,8 @@ function PrisonPlayerIsLegTied()    {return PrisonCharacterAppearanceAvailable(P
 function PrisonPlayerIsFeetTied()   {return PrisonCharacterAppearanceAvailable(Player, "LeatherBelt", "ItemFeet");}
 function PrisonPlayerIsOTMGag()     {return PrisonCharacterAppearanceAvailable(Player, "ClothGag", "ItemMouth");}
 function PrisonPlayerIsStriped()    {return !(PrisonCharacterAppearanceGroupAvailable(Player, "Cloth"));}
+function PrisonPlayerIsBadGirl()    {return LogQuery("Joined", "BadGirl");}
+function PrisonPlayerIsBadGirlThief()    {return (LogQuery("Joined", "BadGirl") && (LogQuery("Stolen", "BadGirl") || LogQuery("Hide", "BadGirl")));}
 function PrisonSubIsHandcuffedOut() {return (PrisonSubSelfCuffed && !PrisonSubBehindBars);}
 function PrisonSubIsBehindBars()    {return PrisonSubBehindBars;}
 function PrisonSubIsFree()          {return (!PrisonSubBehindBars && !PrisonSubSelfCuffed);}
@@ -44,6 +50,8 @@ function PrisonSubCanClothBack()    {return  (PrisonSubIsStripSearch && PrisonSu
 function PrisonLoad() {
 	if (PrisonMaid == null) {
 		PrisonMaid = CharacterLoadNPC("NPC_Prison_Maid");
+		PrisonPolice = CharacterLoadNPC("NPC_Prison_Police");
+		PrisonWearPoliceEquipment(PrisonPolice);
 		PrisonMaidCharacter = CommonRandomItemFromList(PrisonMaidCharacter, PrisonMaidCharacterList);
 		PrisonMaidAppearance = PrisonMaid.Appearance.slice();
 		if (LogQuery("LeadSorority", "Maid") && !PrisonPlayerBehindBars) {
@@ -182,7 +190,16 @@ function PrisonCellPlayerIn(){
 function PrisonCellPlayerOut(){
 	PrisonPlayerBehindBars = false;
 	if (PrisonerMetalCuffsKey != null){
-		InventoryAdd(Player, PrisonerMetalCuffsKey.Name, PrisonerMetalCuffsKey.Group);
+		InventoryAdd(Player, "MetalCuffsKey", "ItemMisc");
+		PrisonerMetalCuffsKey = null;
+	}
+	if (PrisonerMetalPadlockKey != null){
+		InventoryAdd(Player, "MetalPadlockKey", "ItemMisc");
+		PrisonerMetalPadlockKey = null;
+	}
+	if (PrisonerIntricatePadlockKey != null){
+		InventoryAdd(Player, "IntricatePadlockKey", "ItemMisc");
+		PrisonerIntricatePadlockKey = null;
 	}
 }
 
@@ -327,11 +344,18 @@ function PrisonMaidHevyTorture(){
 
 //get Hadcuffed Key from Prisoner
 function PrisonDisableKey(C) {
-	for (var I = C.Inventory.length - 1; I > -1; I--)
-		if ((C.Inventory[I].Name == "MetalCuffsKey") && (C.Inventory[I].Group == "ItemArms")) {
-			PrisonerMetalCuffsKey = C.Inventory[I];
-			C.Inventory.splice(I, 1);
-		}
+	if (InventoryAvailable(C, "MetalCuffsKey", "ItemMisc")) {
+		PrisonerMetalCuffsKey = true;
+		InventoryDelete(Player, "MetalCuffsKey", "ItemMisc");
+	}
+	if (InventoryAvailable(C, "MetalPadlockKey", "ItemMisc")) {
+		PrisonerMetalPadlockKey = true;
+		InventoryDelete(Player, "MetalPadlockKey", "ItemMisc");
+	}
+	if (InventoryAvailable(C, "IntricatePadlockKey", "ItemMisc")) {
+		PrisonerIntricatePadlockKey = true;
+		InventoryDelete(Player, "IntricatePadlockKey", "ItemMisc");
+	}
 }
 
 /*      Player Dialog     */
@@ -483,4 +507,80 @@ function PrisonSubClothBack() {
 	}
 	PrisonSubIsStripSearch = false;
 	CharacterRefresh(PrisonSub);
+}
+
+//Become a Menber of the BadGirlGang
+function PrisonBecomBadGirl() {
+	LogAdd("Joined", "BadGirl");
+}
+
+//Leave the BadGirlGang
+function PrisonLeaveBadGirl() {
+	LogDelete("Joined", "BadGirl");
+}
+
+function PrisonDiceBack() {
+	LogDelete("Stolen", "BadGirl");
+	LogDelete("Hide", "BadGirl");
+}
+
+//Wear NPC as Police
+function PrisonWearPoliceEquipment(C) {
+	InventoryWear(C, "Jeans1", "ClothLower", "#3333cc");
+	InventoryWear(C, "Boots1", "Shoes", "#202020");
+	InventoryWear(C, "TShirt1", "Cloth", "#3333cc");
+	InventoryWear(C, "PoliceWomanHat", "Hat");
+	InventoryWear(C, "SpankingToys", "ItemHands");
+}
+
+//Player ist catch by Police
+function PrisonCatchByPolice() {
+	InventoryWear(Player, "MetalCuffs", "ItemArms");
+	PrisonBackground = "Prison";
+	CommonSetScreen("Room", "Prison");
+	PrisonPlayerBehindBars = true;
+	PrisonMaid.Stage = "20";
+	LogDelete("Stolen", "BadGirl");
+	LogDelete("Hide", "BadGirl");
+	DialogLeave();
+}
+
+
+function PrisonWantedPlayer() {
+	var i;
+	if (LogQuery("Hide", "BadGirl")) return 7;
+	else if (LogQuery("Stolen", "BadGirl")) return 4;
+	else if (LogQuery("Joined", "BadGirl")) return 1;
+}
+
+function PrisonMeetPoliceIntro() {
+	CommonSetScreen("Room", "Prison");
+	PrisonBackground = "MainHall";
+	PrisonPolice = null;
+	CharacterDelete("NPC_Prison_Maid");
+	PrisonPolice = CharacterLoadNPC("NPC_Prison_Police");
+	PrisonWearPoliceEquipment(PrisonPolice);
+	CharacterSetCurrent(PrisonPolice);
+}
+
+
+// When a fight starts between the player and the Police
+function PrisonFightPolice() {
+	KidnapStart(PrisonPolice, "MainHallDark", Math.floor(Math.random() * 10), "PrisonFightPoliceEnd()");
+}
+
+// When the fight against Police ends
+function PrisonFightPoliceEnd() {
+	SkillProgress("Willpower", ((Player.KidnapMaxWillpower - Player.KidnapWillpower) + (PrisonPolice.KidnapMaxWillpower - PrisonPolice.KidnapWillpower)) * 2);
+	CharacterRelease(PrisonPolice);
+	InventoryRemove(PrisonPolice, "ItemNeck");
+	PrisonWearPoliceEquipment(PrisonPolice);
+	if (!KidnapVictory) {
+		CommonSetScreen("Room", "Prison");
+		PrisonPolice.Stage = 10;
+		CharacterSetCurrent(PrisonPolice);
+	}else{
+		CommonSetScreen("Room", "MainHall");
+		PrisonBackground = "Prison";
+	}
 }

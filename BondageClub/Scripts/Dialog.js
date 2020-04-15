@@ -335,7 +335,7 @@ function DialogFacialExpressionsBuild() {
 		Item.MenuExpression1 = (Index < 0) ? ExpressionList[ExpressionList.length - 1] : (Index == 0) ? null : ExpressionList[Index - 1];
 		Item.MenuExpression2 = Item.CurrentExpression;
 		Item.MenuExpression3 = (Index < 0) ? ExpressionList[0] : (Index == ExpressionList.length - 1) ? null : ExpressionList[Index + 1];
-		Item.MenuExpression4 = (Index < 0) ? ExpressionList[1] : (Index == ExpressionList.length - 2) ? null : ExpressionList[Index + 2];
+		Item.MenuExpression4 = (Index < 0) ? ExpressionList[1] : (Index == ExpressionList.length - 2) ? null : ExpressionList[(Index + 2) % (ExpressionList.length + 1)];
 		DialogFacialExpressions.push(Item);
 	}
 	// Temporary (?) solution to make the facial elements appear in a more logical order, as their alphabetical order currently happens to match up

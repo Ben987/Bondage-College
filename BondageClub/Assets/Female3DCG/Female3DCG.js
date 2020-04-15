@@ -1112,7 +1112,7 @@ var AssetFemale3DCG = [
 		Zone: [[100, 340, 300, 80]],
 		Asset: [
 			{ Name: "NylonRopeHarness", DefaultColor: "#909090", Value: 30, BuyGroup: ["NylonRope"], Prerequisite: "AccessTorso", Time: 20, Extended: true, AllowType: ["Harness", "Diamond"], Audio: "RopeLong" },
-			{ Name: "HempRopeHarness", DefaultColor: "#A07858", Value: 60, Extended: true, Prerequisite: "AccessTorso", Time: 20, RemoveTime: 25, Difficulty: 3, BuyGroup: ["HempRope"], AllowType: ["Harness", "Diamond"], Audio: "RopeLong" },
+			{ Name: "HempRopeHarness", DefaultColor: "#A07858", Value: 60, Extended: true, Prerequisite: "AccessTorso", Time: 20, RemoveTime: 25, Difficulty: 3, BuyGroup: ["HempRope"], AllowType: ["Harness", "Diamond", "Star","Waist"], Audio: "RopeLong" },
 			{ Name: "LeatherHarness", Value: 60, Prerequisite: "AccessTorso", Time: 15, RemoveTime: 10, Difficulty: 50, AllowLock: true },
 			{ Name: "AdultBabyHarness", DefaultColor: "#aaaaaa", Value: 50, Priority: 33, Time: 15, RemoveTime: 10, Difficulty: 3, AllowLock: true, ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }] },
 			{ Name: "HarnessBra1", Priority: 20, Value: 30, Prerequisite: "AccessTorso", Time: 15, RemoveTime: 10, Difficulty: 8, BuyGroup: ["HarnessBra1"], Expose: ["ItemNipples", "ItemBreast", "ItemNipplesPiercings"], AllowLock: true },
@@ -1306,10 +1306,9 @@ var AssetFemale3DCG = [
 			{
 				Name: "FullLatexSuit", DefaultColor: "#888888", Random: false, SelfBondage: false, Value: 200, Time: 40, RemoveTime: 30, Difficulty: 15, AllowLock: true, Extended: true,
 				SetPose: ["BackElbowTouch", "StraitDressOpen"],
-				Hide: ["Socks", "BodyLower", "Cloth", "ClothLower", "Bra", "Shoes", "ItemBoots", "ItemLegs", "Suit", "SuitLower"],
+				Hide: ["Socks", "BodyLower", "Cloth", "ClothLower", "Bra", "Shoes", "ItemBoots", "ItemLegs", "ItemFeet", "Suit", "SuitLower"],
 				Block: ["ItemBoots", "ItemPelvis", "ItemTorso", "ItemHands", "ItemLegs", "ItemFeet"],
 				Effect: ["Block", "Prone", "Freeze", "BlockKneel"],
-				HideItem: ["ItemFeetNylonRope", "ItemFeetHempRope", "ItemFeetLeatherBelt", "ItemFeetIrish8Cuffs", "ItemFeetDuctTape", "ItemFeetMermaidRopeTie", "ItemFeetLeatherAnkleCuffs"],
 				Prerequisite: ["NotSuspended", "NotKneeling", "NotHogtied", "NotMounted", "NotKneelingSpread", "NoFeetSpreader", "NotKneelingSpread", "NoFeetSpreader", "NotShackled", "CannotBeSuited"],
 				AllowEffect: ["Egged", "Vibrating"],
 				AllowBlock: ["ItemBreast", "ItemNipples", "ItemNipplesPiercings", "ItemVulvaPiercings", "ItemButt"],
@@ -1967,7 +1966,8 @@ var AssetFemale3DCG = [
 			{ Name: "DisplayCase", RemoveAtLogin: true, Alpha: [[1, 1, 70, 999], [420, 1, 80, 999]], Effect: ["Prone", "Enclose", "DeafLight", "GagLight", "Freeze"], Value: 60, Time: 15, RemoveTime: 10, Difficulty: -2, AllowLock: true, Prerequisite: ["NotSuspended"] },
 			{ Name: "SmallDisplayCase", RemoveAtLogin: true, Alpha: [[1, 1, 70, 999], [420, 1, 80, 999]], SetPose: ["Kneel"], Effect: ["ForceKneel", "Prone", "Enclose", "DeafLight", "GagLight", "Freeze"], Value: 40, Time: 15, RemoveTime: 10, Difficulty: -2, AllowLock: true, Prerequisite: ["NotSuspended", "NotHogtied", "NotMounted", "NotKneelingSpread", "NoFeetSpreader"] },
 			{ Name: "WoodenBoxOpenHead", AllowBlock: ["ItemHands"], SelfBondage: false, Extended: true, AllowPose: ["Yoked"], RemoveAtLogin: true, Alpha: [[1, 220, 70, 999], [420, 220, 80, 999]], Effect: ["Prone", "Freeze", "Block"], Value: 60, Time: 15, RemoveTime: 10, Difficulty: -2, AllowLock: true, Prerequisite: ["NotSuspended", "NotHogtied"], Block: ["ItemArms", "ItemBreast", "ItemButt", "ItemFeet", "ItemLegs", "ItemMisc", "ItemNipples", "ItemNipplesPiercings", "ItemPelvis", "ItemTorso", "ItemVulva", "ItemVulvaPiercings", "ItemBoots"], Hide: ["Wings"] },
-			{ Name: "SmallWoodenBoxOpenHead", AllowBlock: ["ItemHands"], SelfBondage: false, Extended: true, AllowPose: ["Yoked"] , RemoveAtLogin: true, Alpha: [[1, 220, 70, 999], [420, 220, 80, 999]], SetPose: ["Kneel"],  Effect: ["ForceKneel", "Prone", "Freeze", "Block"], Value: 40, Time: 15, RemoveTime: 10, Difficulty: -2, AllowLock: true, Prerequisite: ["NotSuspended", "NotHogtied", "NotMounted", "NotKneelingSpread", "NoFeetSpreader"], Block: ["ItemArms", "ItemBreast", "ItemButt", "ItemFeet", "ItemLegs", "ItemMisc", "ItemNipples", "ItemNipplesPiercings", "ItemPelvis", "ItemTorso", "ItemVulva", "ItemVulvaPiercings", "ItemBoots"], SetPose: ["Kneel"], Hide: ["Wings"]  },
+			{ Name: "SmallWoodenBoxOpenHead", AllowBlock: ["ItemHands"], SelfBondage: false, Extended: true, AllowPose: ["Yoked"] , RemoveAtLogin: true, Alpha: [[1, 220, 70, 999], [420, 220, 80, 999]], SetPose: ["Kneel"],  Effect: ["ForceKneel", "Prone", "Freeze", "Block"], Value: 40, Time: 15, RemoveTime: 10, Difficulty: -2, AllowLock: true, Prerequisite: ["NotSuspended", "NotHogtied", "NotMounted", "NotKneelingSpread", "NoFeetSpreader", "NotYoked"], Block: ["ItemArms", "ItemBreast", "ItemButt", "ItemFeet", "ItemLegs", "ItemMisc", "ItemNipples", "ItemNipplesPiercings", "ItemPelvis", "ItemTorso", "ItemVulva", "ItemVulvaPiercings", "ItemBoots"], SetPose: ["Kneel"], Hide: ["Wings"]  },
+			{ Name: "WoodenStocks", RemoveAtLogin: true, Value: 150, Time: 10, Difficulty: 50, AllowLock: true, SetPose: ["Yoked"], Effect: ["Prone", "Freeze", "Block", "mounted"], Prerequisite: ["AllFours", "NotSuspended", "NotHogtied", "NotKneelingSpread"], Block: ["ItemArms", "ItemFeet", "ItemLegs", "ItemBoots"]}
 		]
 	},
 	
