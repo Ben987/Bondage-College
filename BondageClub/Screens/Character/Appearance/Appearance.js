@@ -14,6 +14,7 @@ var CharacterAppearanceReturnModule = "Room";
 var CharacterAppearanceWardrobeOffset = 0;
 var CharacterAppearanceWardrobeMode = false;
 var CharacterAppearanceWardrobeText = "";
+var CharacterAppearanceForceTopPosition = false;
 
 // Builds all the assets that can be used to dress up the character
 function CharacterAppearanceBuildAssets(C) {
@@ -219,18 +220,23 @@ function CharacterAppearanceVisible(C, AssetName, GroupName) {
 	return true;
 }
 
-function CharacterSetHeightModifier(C) {
-	var Height = 0;
-	for (var A = 0; A < C.Appearance.length; A++)
-		if (CharacterAppearanceVisible(C, C.Appearance[A].Asset.Name, C.Appearance[A].Asset.Group.Name))
-			Height += C.Appearance[A].Asset.HeightModifier;
-	if (C.Pose != null)
-		for (var A = 0; A < C.Pose.length; A++)
-			for (var P = 0; P < Pose.length; P++)
-				if (Pose[P].Name == C.Pose[A])
-					if (Pose[P].OverrideHeight != null)
-						Height = Pose[P].OverrideHeight;
-	C.HeightModifier = Height;
+// Sets the height modifier which determines the character's vertical position on screen
+function CharacterApperanceSetHeightModifier(C) {
+	if (CharacterAppearanceForceTopPosition == true) {
+		C.HeightModifier = 0;
+	} else {
+		var Height = 0;
+		for (var A = 0; A < C.Appearance.length; A++)
+			if (CharacterAppearanceVisible(C, C.Appearance[A].Asset.Name, C.Appearance[A].Asset.Group.Name))
+				Height += C.Appearance[A].Asset.HeightModifier;
+		if (C.Pose != null)
+			for (var A = 0; A < C.Pose.length; A++)
+				for (var P = 0; P < Pose.length; P++)
+					if (Pose[P].Name == C.Pose[A])
+						if (Pose[P].OverrideHeight != null)
+							Height = Pose[P].OverrideHeight;
+		C.HeightModifier = Height;
+	}
 }
 
 // Gets the character

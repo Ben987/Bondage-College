@@ -369,7 +369,7 @@ function CharacterLoadCanvas(C) {
 	C.Appearance = CharacterAppearanceSort(C.Appearance);
 
 	// Sets the total height modifier for that character
-	CharacterSetHeightModifier(C);
+	CharacterApperanceSetHeightModifier(C);
 	
 	// Reload the canvas
 	CharacterAppearanceBuildCanvas(C);
