@@ -52,13 +52,13 @@ const HempRopeArmsOptions = [
 	}
 ];
 
-var HempRopeOptionOffset = 0;
+var HempRopeArmsOptionOffset = 0;
 
 // Loads the item extension properties
 function InventoryItemArmsHempRopeLoad() {
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = HempRopeArmsOptions[0].Property;
 	DialogExtendedMessage = DialogFind(Player, "SelectRopeBondage");
-	HempRopeOptionOffset = 0;
+	HempRopeArmsOptionOffset = 0;
 }
 
 // Draw the item extension screen
@@ -72,8 +72,8 @@ function InventoryItemArmsHempRopeDraw() {
 	DrawText(DialogExtendedMessage, 1500, 375, "white", "gray");
 	
 	// Draw the possible positions and their requirements, 4 at a time in a 2x2 grid
-	for (var I = HempRopeOptionOffset; (I < HempRopeArmsOptions.length) && (I < HempRopeOptionOffset + 4); I++) {
-		var offset = I - HempRopeOptionOffset;
+	for (var I = HempRopeArmsOptionOffset; (I < HempRopeArmsOptions.length) && (I < HempRopeArmsOptionOffset + 4); I++) {
+		var offset = I - HempRopeArmsOptionOffset;
 		var X = 1200 + (offset % 2 * 387);
 		var Y = 450 + (Math.floor(offset / 2) * 300);
 		var FailSkillCheck = (HempRopeArmsOptions[I].RequiredBondageLevel != null && SkillGetLevelReal(Player, "Bondage") < HempRopeArmsOptions[I].RequiredBondageLevel);
@@ -89,12 +89,12 @@ function InventoryItemArmsHempRopeClick() {
 
 	// Menu buttons
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1775) && (MouseX <= 1865) && (MouseY >= 25) && (MouseY <= 110)) HempRopeOptionOffset += 4;
-	if (HempRopeOptionOffset >= HempRopeArmsOptions.length) HempRopeOptionOffset = 0;
+	if ((MouseX >= 1775) && (MouseX <= 1865) && (MouseY >= 25) && (MouseY <= 110)) HempRopeArmsOptionOffset += 4;
+	if (HempRopeArmsOptionOffset >= HempRopeArmsOptions.length) HempRopeArmsOptionOffset = 0;
 
 	// Item buttons
-	for (var I = HempRopeOptionOffset; (I < HempRopeArmsOptions.length) && (I < HempRopeOptionOffset + 4); I++) {
-		var offset = I - HempRopeOptionOffset;
+	for (var I = HempRopeArmsOptionOffset; (I < HempRopeArmsOptions.length) && (I < HempRopeArmsOptionOffset + 4); I++) {
+		var offset = I - HempRopeArmsOptionOffset;
 		var X = 1200 + (offset % 2 * 387);
 		var Y = 450 + (Math.floor(offset / 2) * 300);
 
