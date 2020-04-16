@@ -979,6 +979,7 @@ ChainBondageHogtied,,,Hogtie
 ChainBondageSuspension,,,Suspension Tie
 ChainBondageSuspensionHogtied,,,Suspension Hogtie
 ChainBondageWristElbowTie,,,Wrist and Elbow Tie
+ChainBondageWristElbowHarnessTie,,,Wrist and Elbow Harness Tie
 ChainBondageWristTie,,,Wrist Tie
 ChainBondageChainCuffs,,,Chain Cuffs
 ChainBondageAllFours,,,All Fours
@@ -992,6 +993,7 @@ ArmsChainSetWristElbowTie,,,SourceCharacter uses the chain on TargetCharacter to
 ArmsChainSetWristTie,,,SourceCharacter uses the chain on TargetCharacter to tie her wrists together behind her back.
 ArmsChainSetChainCuffs,,,SourceCharacter uses the chain on TargetCharacter to tie chain cuffs on her wrists.
 ArmsChainSetAllFours,,,SourceCharacter uses the chain on TargetCharacter to have her crawling on all fours.
+ArmsChainSetWristElbowHarnessTie,,,SourceCharacter uses the chain on TargetCharacter to tie her wrists and elbows in a harness behind her back.
 MermaidSuitTypeZipped,,,Zipped Up
 MermaidSuitTypeUnZip,,,Unzipped
 MermaidSuitSetZipped,,,SourceCharacter zips up TargetCharacter suit.
