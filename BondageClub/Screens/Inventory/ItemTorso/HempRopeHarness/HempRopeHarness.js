@@ -63,7 +63,7 @@ function InventoryItemTorsoHempRopeHarnessClick() {
 	// Menu buttons
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
 	if ((MouseX >= 1775) && (MouseX <= 1865) && (MouseY >= 25) && (MouseY <= 110)) HempRopeOptionOffset += 4;
-	if (HempRopeOptionOffset > HempRopeTorsoOptions.length) HempRopeOptionOffset = 0;
+	if (HempRopeOptionOffset >= HempRopeTorsoOptions.length) HempRopeOptionOffset = 0;
 
 	// Item buttons
 	for (var I = HempRopeOptionOffset; (I < HempRopeTorsoOptions.length) && (I < HempRopeOptionOffset + 4); I++) {
