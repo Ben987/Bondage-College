@@ -74,6 +74,7 @@ function InventoryPrerequisiteMessage(C, Prerequisite) {
 
 	// Basic prerequisites that can apply to many items
 	if (Prerequisite == "NoItemFeet") return (InventoryGet(C, "ItemFeet") != null) ? "MustFreeFeetFirst" : "";
+	if (Prerequisite == "NoItemArms") return (InventoryGet(C, "ItemArms") != null) ? "MustFreeArmsFirst" : "";
 	if (Prerequisite == "NoItemLegs") return (InventoryGet(C, "ItemLegs") != null) ? "MustFreeLegsFirst" : "";
 	if (Prerequisite == "NoItemHands") return (InventoryGet(C, "ItemHands") != null) ? "MustFreeHandsFirst" : "";
 	if (Prerequisite == "LegsOpen") return (C.Pose.indexOf("LegsClosed") >= 0) ? "LegsCannotOpen" : "";

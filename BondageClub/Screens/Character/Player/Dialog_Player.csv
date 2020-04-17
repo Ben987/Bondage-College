@@ -23,6 +23,7 @@ LegsCannotClose,,,Legs cannot close.
 MustBeAbleToKneel,,,Must be able to kneel.
 MustStandUpFirst,,,Must stand up first.
 MustFreeFeetFirst,,,Must free feet first.
+MustFreeArmsFirst,,,Must free arms first.
 MustFreeLegsFirst,,,Must free legs first.
 MustFreeHandsFirst,,,Must free hands first.
 RemoveShacklesFirst,,,Must remove shackles first.
