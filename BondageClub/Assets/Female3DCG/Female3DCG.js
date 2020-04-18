@@ -122,6 +122,20 @@ var AssetFemale3DCG = [
 			{ Name: "FrillyApron", Value: -1, BuyGroup: "Maid", Left: 135, Top: 179, AllowPose: ["TapedHands", "BackBoxTie", "BackCuffs", "BackElbowTouch", "Bolero", "Yoked", "Hogtied"] }
 		]
 	},
+	
+	{
+		Group: "Necklaces",
+		Priority: 32,
+		ParentGroup: "BodyUpper",
+		Default: false,
+		Random: false,
+		Clothing: true,
+		Color: ["Default", "#202020", "#808080", "#bbbbbb", "#aa8080", "#80aa80", "#8080aa", "#aaaa80", "#80aaaa", "#aa80aa", "#cc3333", "#33cc33", "#3333cc", "#cccc33", "#33cccc", "#cc33cc"],
+		Asset: [
+			 { Name: "Necklace1", Value: 40, Left: 148, Top: 70, IgnoreParentGroup: true},
+			 { Name: "Necklace2", Value: 40, Left: 147, Top: 90, IgnoreParentGroup: true}
+		]
+	},
 
 	{
 	    Group: "Suit",
@@ -940,6 +954,13 @@ var AssetFemale3DCG = [
 			Layer: [
 					{ Name: "Belt", AllowColorize: true },
 					{ Name: "Crotch", AllowColorize: false }
+				]
+			},
+			{
+				Name: "HempRopeBelt", BuyGroup: ["HempRope"], Effect: ["Egged"], DefaultColor: "#956B1C", Block: ["ItemPelvis"], Value: 60, Prerequisite: ["CannotHaveWand"], Time: 15, ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }] , AllowEffect: ["Egged", "Vibrating"], HideItem: ["ClothLowerPajama1", "ClothLowerMistressBottom"],
+				Layer: [
+					{ Name: "Rope", AllowColorize: true },
+					{ Name: "Wand", AllowColorize: false }
 				]
 			},
 			AssetSpankingToys
