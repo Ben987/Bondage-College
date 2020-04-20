@@ -960,6 +960,13 @@ var AssetFemale3DCG = [
 					{ Name: "Crotch", AllowColorize: false }
 				]
 			},
+			{
+				Name: "HempRopeBelt", BuyGroup: ["HempRope"], Effect: ["Egged"], DefaultColor: "#956B1C", Block: ["ItemPelvis"], Value: 60, Prerequisite: ["CannotHaveWand"], Time: 15, ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }] , AllowEffect: ["Egged", "Vibrating"], HideItem: ["ClothLowerPajama1", "ClothLowerMistressBottom"],
+				Layer: [
+					{ Name: "Rope", AllowColorize: true },
+					{ Name: "Wand", AllowColorize: false }
+				]
+			},
 			
 			AssetSpankingToys
 		]
