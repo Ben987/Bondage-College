@@ -134,7 +134,9 @@ var AssetFemale3DCG = [
 		Asset: [
 			 { Name: "Necklace1", Value: 40, Left: 148, Top: 70, IgnoreParentGroup: true},
 			 { Name: "Necklace2", Value: 30, Left: 147, Top: 90, IgnoreParentGroup: true},
-			 { Name: "Necklace3", Value: 20, Left: 147, Top: 110, IgnoreParentGroup: true}
+			 { Name: "Necklace3", Value: 20, Left: 147, Top: 110, IgnoreParentGroup: true},
+			 { Name: "Necklace4", Value: 20, Left: 147, Top: 110, IgnoreParentGroup: true}
+
 
 		]
 	},
