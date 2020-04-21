@@ -12,6 +12,7 @@ var ChatRoomMoneyForOwner = 0;
 var ChatRoomQuestGiven = [];
 var ChatRoomSpace = "";
 var ChatRoomSwapTarget = null;
+var ChatRoomHelpSeen = false;
 
 // Returns TRUE if the dialog option is available
 function ChatRoomCanAddWhiteList() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.WhiteList.indexOf(CurrentCharacter.MemberNumber) < 0) && (Player.BlackList.indexOf(CurrentCharacter.MemberNumber) < 0)) }
@@ -226,6 +227,14 @@ function ChatRoomDrawCharacter(DoClick) {
 
 }
 
+// Displays /help content to the player if it's their first visit to a chatroom this session
+function ChatRoomFirstTimeHelp() {
+	if (!ChatRoomHelpSeen) {
+		ChatRoomMessage({Content: "ChatRoomHelp", Type: "Action", Sender: Player.MemberNumber});
+		ChatRoomHelpSeen = true;
+	}
+}
+
 // Sets the whisper target
 function ChatRoomTarget() {
 	var TargetName = null;
@@ -243,6 +252,7 @@ function ChatRoomRun() {
 
 	// Draws the chat room controls
 	ChatRoomCreateElement();
+	ChatRoomFirstTimeHelp();
 	ChatRoomTarget();
 	ChatRoomBackground = "";
 	DrawRect(0, 0, 2000, 1000, "Black");
