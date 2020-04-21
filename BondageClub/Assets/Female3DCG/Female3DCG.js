@@ -123,7 +123,7 @@ var AssetFemale3DCG = [
 		]
 	},
 	{
-		Group: "Necklaces",
+		Group: "Necklace",
 		Priority: 32,
 		ParentGroup: "BodyUpper",
 		Default: false,
