@@ -1,0 +1,336 @@
+###_NPC
+You may wear gags in the cafe, but they do make it much harder to eat and drink.
+Du kannst Knebel im Cafe tragen, aber es wird schwer damit zu Essen und zu Trinken.
+Hello sister.  I see you are busy serving.  Come here and let me help you.
+Hallo Schwester. Ich sehe, du bist mit dem dienen beschäftigt. Komm her und lass mich dir helfen.
+Sorry miss. You don't have enough money for that right now.
+Entschuldige Miss, doch sie haben dafür nicht genug Geld.
+(The maid takes your money and gives you a can of energy drink.  You consume it, but only feel invigorated and no more skillful than before.)
+(Das Dienstmädchen nimmt dein Geld und gibt dir die Dose Energy-Drink. Du trinkst davon, fühlst dich aber nur gestärkt und nicht geschickter als zuvor.)
+(The maid takes your money and gives you a bottle of milk.  You consume it and feel comforted, but you don't feel any more confused or numb than you already were.)
+(Das Dienstmädchen nimmt dein Geld und gibt dir die Flasche Milch. Du trinkst davon, fühlst dich getröstet aber du fühlst dich nicht mehr verwirrt oder taub als zuvor.)
+(The maid takes your money and gives you your choice of cupcake.  You consume it, feeling as receptive and engaged as you already were.)
+(Das Dienstmädchen nimmt dein Geld und gibt dir dein Cupcake. Du isst Ihn und fühlst dich so empfänglich und engagiert wie zuvor.)
+I'm sorry Miss.  I cannot help you.
+Es tut mir leid, Miss. Ich kann Ihnen nicht helfen.
+(She first shakes her head to avoid the gag, but finally surrenders as you silence her.)
+(Sie schüttelt zuerst den Kopf, um dem Knebel auszuweichen, gibt sich aber schließlich hin, als du sie zum Schweigen bringst.)
+(You remove her gag while she stretches her mouth.)  Thanks Miss, it's hard to dispatch maids with that gag.
+(Du entfernst ihren Knebel, während sie ihren Mund ausstreckt.) Danke, Miss, es ist schwer, Dienstmädchen mit diesem Knebel zu entsenden.
+(She grumbles while you push some earplugs in.) I can't hear you properly now.
+(Sie murrt, während du ihr ein paar Ohrstöpsel hineinschiebst.) Ich kann Sie nicht mehr richtig verstehen.
+(You pull the earplugs out.) That's better I can hear you clearly now.
+(Du ziehst ihre Ohrstöpsel heraus.) Das ist besser, ich kann Sie jetzt deutlich verstehen.
+(She sighs and turns around while you restrain her arms.)  It might be a little hard to work like that Miss.
+(Sie seufzt und dreht sich um, während du ihre Arme fesselst.) Es könnte ein wenig schwierig werden so zu arbeiten, Miss.
+(You free her arms and she nods happily.)  Thanks a lot Miss.
+(Du befreiest ihre Arme und sie nickt glücklich.) Vielen Dank, Miss.
+(She submits to you while restrain you hands.)  You are a kinky one.
+(Sie unterwirft sich dir, während du ihre Hände fesselst.) Du bist ganz schön pervers.
+(You release her hands and she nods a little.)  Thank you Miss.
+(Sie bindest ihre Hände los und sie nickt ein wenig.) Danke, Miss.
+(She submits to you while you restrain her legs securely.)  I don't need to move anyway.
+(Sie unterwirft sich dir, während du ihre Beine sicher fesselst.) Ich muss mich sowieso nicht bewegen.
+(You release her legs from the restraint.)  Let me know if I can help you Miss.
+(Du bindest ihre Beine los.) Lassen Sie mich wissen, wenn ich helfen kann, Miss.
+(She looks puzzled as you restrain her feet.)  I'll stay on guard here Miss.
+(Sie sieht etwas verwirrt aus, als du ihre Füße fesselst.) Ich werde hier bleiben, Miss.
+(You release her feet and she wiggles them.)  Thanks Miss, it was troublesome.
+(Du bindest ihre Füße los und sie wackelt mit ihnen.) Danke Miss, es war etwas mühsam damit.
+(You strap the collar on her while she blushes.)  You're quite a Dominant Miss.
+(Du ziehst an ihren Halsband, während sie rot wird.) Sie sind eine ziemlich dominante Miss.
+(You remove the collar around her neck.)  Thanks Miss.
+(Du entfernst das Halsband um ihren Hals.) Danke Miss.
+(You snap the belt around her waist and crotch while she sighs.)  No more fun for the crew.
+(Du bindest ihr den Gürtel um die Taille und um ihren Schritt während sie seufzt.) Die Bedienung wird kein Spaß mehr haben.
+(You unlock the belt from her waist, and she smiles.)  Thanks a lot Miss DialogPlayerName.
+(Du öffnest den Gürtel um ihre Taille und sie lächelt.) Vielen Dank, Miss DialogPlayerName.
+(You strap the device on her head as she nods slowly.)  This will not make my job easier Miss.
+(Du schnallst es an ihren Kopf, während sie langsam nickt.) Dies wird meine Arbeit nicht einfacher machen, Miss.
+(You remove the device and she nods rapidly.)  Thanks a million, this is much better.
+(Du entfernst es und sie nickt schnell.) Millionen Dank, das ist viel besser.
+(She jumps from the searing pain on her breast.)  Ouch!  Miss Head Maid!
+(Sie springt von dem brennenden Schmerz auf ihrer Brust auf.) Autsch! Miss!
+(You whip her breast with the leather crop as she whimpers and bows her head.)
+(Du peitschst mit der Ledergerte auf ihre Brust, während sie wimmert und ihren Kopf neigt.)
+(You whip her butt hard as she sighs.)  I promise I'll work harder Miss Head Maid.
+(Du peitschst hart auf ihren Hintern, während sie seufzt.) Ich verspreche, ich werde härter arbeiten, Miss.
+(She grumbles as you strike her butt with the crop.)  A maid work isn't easy.
+(Sie murrt, als du mit der Gerte auf ihren Hintern einschlägst.) Eine Dienstmädchen zu sein ist nicht einfach.
+Greetings Mistress DialogPlayerName.  Welcome to the cafe.  How may I serve you?  (She does curtsies for you.)
+Seid gegrüßt Herrin DialogPlayerName. Willkommen im Cafe. Wie kann ich euch dienen? (Sie macht einen Knicks für dich.)
+Greetings head maid DialogPlayerName.  Welcome to the cafe.  How may I serve you?  (She does curtsies for you.)
+Seid gegrüßt Aufseherin DialogPlayerName. Willkommen im Cafe. Wie kann ich euch dienen? (Sie macht einen Knicks für dich.)
+Hi sister, are you off duty? I'm sure you deserve a break.
+Hallo Schwester, bist du nicht im Dienst? Ich bin sicher, du hast eine Pause verdient.
+Hello and welcome to the cafe. Can I get you anything to eat or drink?
+Hallo und willkommen im Cafe. Kann ich dir etwas zu essen oder zu trinken bringen?
+###_PLAYER
+Can I take drinks out of the bar to my friends?
+Kann ich meinen Freunden Getränke aus der Bar bringen?
+###_NPC
+If you want to do that, I suggest you ask at the maid's quarter first.  They can set you up with a tray for carrying drinks.
+Wenn du das vor hast, schlage ich vor, dass du zuerst im Dienstmädchen Quartier nachfragst. Sie könnten dich mit einem Tablett zum Tragen von Getränken ausstatten.
+###_PLAYER
+What does the cafe serve?
+Was gibt mir der Cafe?
+###_NPC
+We have a range of food and drink on offer today, including some speciality items.
+Wir haben heute eine Reihe von Speisen und Getränken im Angebot, darunter einige Spezialitäten.
+###_PLAYER
+I would like to buy a regular drink.
+Ich möchte ein normales Getränk kaufen.
+###_NPC
+You could buy them here, but it's better for the maids serving these drinks if you buy from them instead.  Then they get a nice tip.
+Sie könnten sie hier kaufen, für die Dienstmädchen wäre es jedoch besser diese bringen zu lassen. So bekommen sie etwas Trinkgeld.
+###_PLAYER
+I would like to buy a speciality.
+Ich möchte eine Spezialität kaufen.
+###_NPC
+Certainly.  Which of our specials would you like to buy?
+Sicher. Welche unserer Spezialitäten möchten Sie kaufen?
+Certainly, but don't have time to feed you like a baby.  You need to free yourself first.
+Sicher, jedoch habe ich keine Zeit dich wie ein Baby zu füttern. Befreie dich zuerst.
+I would love to serve you miss, but it's rather difficult to serve those right now.
+Ich würde Ihnen gerne dienen, Miss, aber es so im Moment ziemlich schwierig.
+###_PLAYER
+(Struggle in your restraints.)
+(Kämpfe mit deinen Fesseln.)
+###_NPC
+Sorry I am rather too busy serving the Cafe to release you now. Try one of the other maids in the main hall.
+Entschuldige doch ich bin zu beschäftigt damit Cafe zu servieren als dich jetzt losbinden zu können. PVersuche es bei den anderen Dienstmädchen in der Haupthalle.
+###_PLAYER
+That is all for now.  (Leave her.)
+Mehr benötige ich nicht. (Verlasse sie.)
+What are you regular refreshments?
+Was sind die Erfrischungen?
+###_NPC
+We have a range of drinks.  Maids are regularly serving them around the club.
+Wir haben eine Auswahl an Getränken. Dienstmädchen servieren diese regelmäßig im Club.
+###_PLAYER
+What are your specialities?
+Was ist im Angebot?
+###_NPC
+Today we have energy drinks, formula milk and freshly made cupcakes.
+Heute haben wir Energy Drinks, Milchnahrung und frisch zubereitete Cupcakes.
+Today we have energy drinks and some special milk that is very comforting.
+Heute haben wir Energy Drinks und eine spezielle Milch welche sehr beruhigend wirkt.
+###_PLAYER
+What is so special about those items?
+Was ist das Besondere an diesen Gegenständen?
+###_NPC
+Well the energy drinks are very stimulating for mind and body.  The nursery supplies this milk and the cupcakes seem to really amplify the mood you are in.
+Nun, die Energy Drinks sind sehr anregend für Körper und Geist. Der Kinderstube liefert die Milch und die Cupcakes scheinen die Stimmung, in du dich befindest, zu verstärken.
+###_PLAYER
+They sound a bit suspicious.  Are you sure they are safe?
+Das klingt etwas verdächtig. Sicher, dass sie ungefährlich sind?
+###_NPC
+Of course they are Miss.  If there happens to be any side effects from them then I am sure they will only be temporary.
+Natürlich sind sie das Miss. Sollte es irgendwelche Nebenwirkungen geben, dann bin ich sicher, dass sie nicht von dauer sind.
+###_PLAYER
+Temporary side effects?
+Nebenwirkungen?
+###_NPC
+Yes, some customers claimed our specialities had an effect on them, but only for an hour.
+Ja, einige Kunden behaupteten, unsere Spezialitäten hätten sich auf sie ausgewirkt, zumindest für eine Stunde.
+###_PLAYER
+That is all I wanted to know.
+Das ist alles was ich wissen wollte.
+###_NPC
+Very well.  Can I get you anything?
+Sehr gut. Kann ich dir irgendetwas bringen?
+###_PLAYER
+Okay. I will catch one of them
+Okay. Ich werde einen von ihnen fangen.
+I would like an energy drink
+Ich hätte gerne ein Energy-Drink.
+###_NPC
+Certainly miss. They are REPLACEMONEY $ per can.
+Wie sie wünschen Miss. Eine Dose kostet REPLACEMONEY $
+###_PLAYER
+I would like a glass of milk
+Ich hätte gerne ein Glas Milch.
+###_NPC
+Certainly miss. That is REPLACEMONEY $ per glass.
+Wie sie wünschen Miss. Eine Glas kostet REPLACEMONEY $
+###_PLAYER
+I would like a cupcake
+Ich hätte gerne einen Cupcake.
+###_NPC
+Certainly miss. They are REPLACEMONEY $ each.
+Wie sie wünschen Miss. Eine Cupcake kostet REPLACEMONEY $
+###_PLAYER
+Actually, I won't have a special at the moment
+Derzeit habe ich nichts im Angebot.
+###_NPC
+That is quite alright.  Is there anything else you would like?
+Das ist völlig in Ordnung. Möchtest du etwas anderes?
+###_PLAYER
+(Buy an energy drink.)
+(Kaufe ein Energy-Drink.)
+###_NPC
+(The maid takes your money and gives you a can of energy drink.  You consume it and feel invigorated and more skillful.)
+(Das Dienstmädchen nimmt dein Geld und gibt dir eine Dose Energy-Drink. Du trinkst es und fühlst dich gestärkt und geschickter.)
+###_PLAYER
+(Buy a glass of milk.)
+(Kaufe ein Glas Milch.)
+###_NPC
+(The maid takes your money and gives you a bottle of milk.  You consume it and feel comforted, but also slightly confused and numb.)
+(Das Dienstmädchen nimmt dein Geld und gibt dir eine Flasche Milch. Du trinkst sie und fühlst dich getröstet, aber auch leicht verwirrt und taub.)
+###_PLAYER
+(Buy cupcake.)
+(Kaufe ein Cupcake.)
+###_NPC
+(The maid takes your money and gives you your choice of cupcake.  You consume it and feel more conscious, receptive and engaged.)
+(Das Dienstmädchen nimmt dein Geld und gibt dir den Cupcake. Du isst ihn und fühlen sich bewusster, empfänglicher und engagierter.)
+###_PLAYER
+What were those other specials?
+Was waren diese anderen Spezialitäten?
+###_NPC
+We have energy drinks, milk and cupcakes.  Would you like one of them?
+Wir haben Energy Drinks, Milch und Cupcakes. Möchten Sie etwas?
+Hello sister.  I see you are busy serving.  I would love to help you, but it is rather difficult for me right now
+Hallo Schwester. Ich sehe, du bist sehr beschäftigt. Ich würde dir gerne helfen, aber es ist ziemlich schwierig so.
+###_PLAYER
+(Nod and go closer to her.)
+(Nickt und geht näher zu ihr.)
+###_NPC
+(As a sister, she shares a bound cuddle with you.  She then resumes serving the cafe.)
+(Als Schwester kuschelt sie etwas mit dir. Dann widmet sie sich wieder dem Dienst im Cafe.)
+Yes, it looks like you bound to serve with that tray.  Alas it is not so easy for me to run this cafe while bound.
+Ja, es sieht so aus als bist du gezwungen mit diesem Tablett zu servieren. Dieses Cafe ist nicht gerade leicht zu führen während ich gefesselt bin.
+###_PLAYER
+You should be able to work while bound.
+Du solltest in der Lage sein auch gefesselt zu arbeiten.
+###_NPC
+Unfortunately running this cafe is not so easy as just hopping around the rooms with a tray full of drinks
+Leider ist es nicht so einfach, nur mit einem Tablett voller Getränke durch die Zimmer hüpfend, das Cafe zu führen.
+###_PLAYER
+I'm fine thanks.  (Leave her.)
+Mir geht es gut, danke. (Verlasse sie.)
+###_NPC
+Hello sister.  I see your tray is empty.  Come here and I'll refill it.
+Hallo Schwester. Ich sehe, dein Tablett ist leer. Komm her und ich werde es nachfüllen.
+I'll just top up that tray for you and check your bondage.
+Ich werde nur das Tablett für dich auffüllen und deine Fesseln überprüfen.
+Yes, it looks like you are good to serve. I'll still check them after I top up your tray.
+Ja, es sieht ganz so aus als ob du gut im Dienen bist. Ich werde sie dennoch überprüfen nachdem ich dein Tablett aufgefüllt habe.
+###_PLAYER
+Can I choose my restraints?
+Kann ich meine Fesseln auswählen?
+###_NPC
+No, you can not. Basic maids need to learn to accept their role with good grace and humility.
+Nein, das kannst du nicht. Dienstmädchen müssen lernen, ihre Rolle mit Anmut und Demut zu akzeptieren.
+I suppose you may, given how much you have served our sorority.
+Ich nehme an das könntest du wenn man bedenkt wie sehr du unserer Schwesternschaft gedient hast.
+###_PLAYER
+I want some different bondage.
+Ich möchte eine andere Fesselung.
+###_NPC
+Certainly, head maid DialogPlayerName. What style of bondage would you like to work in?
+Natürlich DialogPlayerName. In welcher Art von Fesselung möchtest du arbeiten?
+###_PLAYER
+(Stare at her and mumble into your gag.)
+(Starr sie an und murmle etwas durch deinen Knebel.)
+###_NPC
+(She removes your gag.) What is it head maid DialogPlayerName?
+(Sie entfernt deinen Knebel.) Was ist das DialogPlayerName?
+(She removes your gag.) Seeing as how you have such a good rep in the sorority, I will let you talk for now.
+(Sie entfernt deinen Knebel.) Angesichts deines guten Rufes in unserer Schwesternschaft lasse ich dich vorerst sprechen.
+(She shakes her head.)  Maids should remain gagged while serving drinks.
+(Sie schüttelt den Kopf.) Dienstmädchen sollten beim Servieren von Getränken geknebelt bleiben.
+###_PLAYER
+Thanks.
+Danke.
+###_NPC
+Anything to help a sister.  (She makes sure your tray is full and that you are securely bound for serving drinks.)
+Alles, was einer Schwester hilft. (Sie stellt sicher dass dein Tablett voll ist und du sicher zum Servieren von Getränken gefesselt bist.)
+###_PLAYER
+(Nod your head.)
+(Nicke mit dem Kopf.)
+Shibari style with ropes.
+Shibari mit Seilen.
+###_NPC
+Yes, head maid DialogPlayerName.  (She gags and binds you tightly using classic bondage techniques.)
+Ja, Dienstmädchen DialogPlayerName. (Sie knebelt und bindet dich fest mit klassischen Bondage-Techniken.)
+###_PLAYER
+Use duct tape, lots of duct tape.
+Verwende Klebeband, viel Klebeband.
+###_NPC
+Yes, head maid DialogPlayerName.  (She uses a whole roll of duct tape on your body.)
+Ja, Dienstmädchen DialogPlayerName. (Sie verwendet eine ganze Rolle Klebeband für deinen Körper.)
+###_PLAYER
+lock me in leather.
+Sperr mich in Leder.
+###_NPC
+Yes, head maid DialogPlayerName.  (She secures and gags you with tight leather, locking every buckle.)
+Ja, Dienstmädchen DialogPlayerName. (Sie sichert und knebelt dich mit Leder und schließt jede Schnalle.)
+###_PLAYER
+Cover me in latex.
+Hülle mich mit Latex.
+###_NPC
+Yes, head maid DialogPlayerName.  (She uses latex items on you.)
+Ja, Dienstmädchen DialogPlayerName. (Sie benutzt Latex Gegenstände für dich.)
+###_PLAYER
+Just bind me as secure as you can.
+Fessel mich einfach so sicher wie möglich.
+###_NPC
+Certainly, head maid DialogPlayerName.  (She binds you as thoroughly as she can, trying to impress you.)
+Natürlich, DialogPlayerName. (Sie fesselt dich so gründlich wie möglich und versucht dich zu beeindrucken.)
+###_PLAYER
+(Nod approvingly.)
+(Zustimmend nicken.)
+###_NPC
+(She makes sure your tray is full.)  You are ready to serve in style now miss.
+(Sie stellt sicher, dass dein Tablett voll ist.) Du bist bereit mit Stil zu dienen Miss.
+###_PLAYER
+(Grunt and mutter at her.)
+(Sie murmeln angrunzen.)
+###_NPC
+(She makes sure your tray is full.)  I'm sorry head maid DialogPlayerName.  I've done all I can to help you.
+(Sie stellt sicher dass dein Tablett voll ist.) Es tut mir leid Dienstmädchen DialogPlayerName. Ich habe alles getan, um dir zu helfen.
+Hmmm...  I think you need something to help you while you work.  (She uses an inflatable vibrating dildo on your Vulva.)
+Hmmm... Ich denke du brauchst etwas was dir wärend deiner Arbeit hilft. (Sie benutzt einen aufblasbaren Vibrationsdildo an deiner Vulva.)
+###_PLAYER
+No. Please take that out.
+Nein. Bitte nimm Ihn heraus.
+###_NPC
+(She doesn't seem to hear you.)
+(Sie scheint dich nicht zu hören.)
+###_PLAYER
+(Whimper and moan.)
+(Wimmern und Stöhnen.)
+###_NPC
+(She giggles at you and shakes her head as she makes sure your tray is full.)  You will be able to remove it as soon as you finish serving those drinks.
+(Sie kichert dich an und schüttelt den Kopf, während sie sicherstellt, dass dein Tablett voll ist.) Das wirst Ihn entfernen können sobald du mit dem Servieren dieser Getränke fertig sind.
+###_PLAYER
+(Moan happily.)
+(Glücklich Stöhnen.)
+###_NPC
+(She smiles at you as she makes sure your tray is full.)  I thought you would like that.  You can keep it in after you have served the drinks.
+(Sie lächelt dich an wärend sie sicherstellt dass dein Tablett voll ist.) Ich dachte es würde dir gefallen. Du kannst ihn behalten nachdem du die Getränke serviert hast.
+###_PLAYER
+(Groan and shake your hips.)
+(Stöhnen und mit den Hüften wackeln.)
+###_NPC
+(She takes out a remote presses a button on it.  Your inflatable vibrating dildo builds up to a moderate pace.)
+(Sie nimmt eine Fernbedienung und drückt einen Knopf darauf. Ihr aufblasbarer Vibrationsdildo baut sich langsam auf.)
+(She slowly pushes and pulls on the dildo sticking out of you.)  Look at you Miss.  Already on edge.  Any more stimulation though and you might spill those drinks.
+(Sie bewegt etwas den Dildo hin und her.) Schau dich an, Miss. Schon völlig am Ende. Noch etwas mehr Stimulation und du verschüttest noch diese Getränke.
+###_PLAYER
+(Stand there.)
+(Stehen bleiben.)
+###_NPC
+Those drinks won't serve themselves Miss.  You have a job to do.
+Diese Getränke werden sich nicht selbst servieren, Miss. Du hast einen Job zu erledigen.
+###_PLAYER
+(Moan at her.)
+(Stöhne sie an.)
+###_NPC
+(She grins at you as she goes back to her work.)  You can enjoy that dildo as much as you like once those drinks are served.
+(Sie grinst dich an, als sie zu ihrer Arbeit zurückkehrt.) Du kannst diesen Dildo so oft genießen wie du willst sobald diese Getränke serviert sind.
+###_PLAYER
+(Leave to serve the drinks, grinding your thighs together.)
+(Verlassen um die Getränke zu servieren. Drücke deine Oberschenkel eng zusammen.
+(Leave her.)
+(Sie verlassen.)
