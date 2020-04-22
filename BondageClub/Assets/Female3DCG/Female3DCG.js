@@ -1533,6 +1533,7 @@ var AssetFemale3DCG = [
 			{ Name: "CollarLeashTaken", Value: -1, Random: false, AllowPose: ["AllFours"], Prerequisite: "Collared", Time: 5, Difficulty: 6, AllowLock: true, Effect: ["Tethered"], ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 15 }] },
 			{ Name: "ChainLeash", Value: 25, Random: false, AllowPose: ["AllFours"], Prerequisite: "Collared", Time: 5, Difficulty: 6, AllowLock: true, ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 15 }] },
 			{ Name: "ChainLeashTaken", Value: -1, AllowPose: ["AllFours"], Random: false, Prerequisite: "Collared", Time: 5, Difficulty: 6, AllowLock: true, Effect: ["Tethered"], ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 15 }] },
+			{ Name: "CollarChainMedium", Value: -1, Random: false, Prerequisite: ["Collared", "NotSuspended", "NotHogtied"], Time: 5, Difficulty: 6, AllowLock: true, BuyGroup: "CollarChain", AllowPose:  ["AllFours","Kneel"], Effect: ["Tethered"], ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 15 }], ParentGroup: ["BodyLower"] },
 		]
 	},
 
