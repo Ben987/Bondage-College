@@ -62,6 +62,7 @@ Suit,Catsuit,Catsuit
 Suit,SeamlessCatsuit, Seamless Catsuit
 Suit,SeethroughSuit,See-through Suit
 Suit,SeethroughSuitzip,See-through Zipsuit
+Suit,ReverseBunnySuit,Reverse Bunny Suit
 ClothLower,,Bottom
 ClothLower,Skirt1,Skirt
 ClothLower,Skirt2,Student Skirt
@@ -87,6 +88,7 @@ SuitLower,Catsuit,Catsuit
 SuitLower,SeamlessCatsuit, Seamless Catsuit
 SuitLower,SeethroughSuit,See-through Suit
 SuitLower,SeethroughSuitZip,See-through Zipsuit
+SuitLower,ReverseBunnySuit,Reverse Bunny Suit
 Bra,,Bra
 Bra,Bra1,Style 1
 Bra,Bra2,Style 2
