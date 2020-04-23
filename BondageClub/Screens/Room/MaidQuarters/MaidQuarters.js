@@ -99,7 +99,7 @@ function MaidQuartersWearMaidUniform() {
 
 // When the player removes the maid uniform and dresses back
 function MaidQuartersRemoveMaidUniform() {
-	CharacterRelease(Player);
+	CharacterReleaseNonOwner(Player);
 	for(var ItemAssetGroupName in MaidQuartersItemClothPrev){
 		var PreviousItem = MaidQuartersItemClothPrev[ItemAssetGroupName];
 		InventoryRemove(Player, ItemAssetGroupName);

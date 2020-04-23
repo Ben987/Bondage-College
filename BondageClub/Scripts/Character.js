@@ -489,14 +489,20 @@ function CharacterDress(C, Appearance) {
 	}
 }
 
-// Removes any binding item from the character
-function CharacterRelease(C) {
+// Removes any binding item from the character which matches the predicate, or all bindings if no predicate is passed
+function CharacterRelease(C, Predicate) {
+	Predicate = Predicate || (() => true);
 	for (var E = 0; E < C.Appearance.length; E++)
-		if (C.Appearance[E].Asset.IsRestraint) {
+		if (C.Appearance[E].Asset.IsRestraint && Predicate(C.Appearance[E])) {
 			C.Appearance.splice(E, 1);
 			E--;
 		}
 	CharacterRefresh(C);
+}
+
+// Removes any binding items from the character which are not owner locked
+function CharacterReleaseNonOwner(C) {
+	CharacterRelease(C, (Item) => (Item && Item.Property && Item.Property.LockedBy) !== "OwnerPadlock");
 }
 
 // Returns the best bonus factor available
