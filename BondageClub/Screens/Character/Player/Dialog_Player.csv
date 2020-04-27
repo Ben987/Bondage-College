@@ -298,8 +298,8 @@ TimerAddTime,,,SourceCharacter adds TimerTime TimerUnit to the padlock on Destin
 TimerRemoveTime,,,SourceCharacter removes TimerTime TimerUnit to the padlock on DestinationCharacter FocusAssetGroup.
 TimerAddRemoveUnknownTime,,,an unknown amount of time
 CombinationFail,,,SourceCharacter tries the code CombinationNumber but fails to open the padlock on DestinationCharacter FocusAssetGroup.
-CombinationChange,,,SourceCharacter changes the code on the padlock on DestinationCharacter FocusAssetGroup.
-CombinationChangeFail,,,SourceCharacter tries to change the code on the padlock on DestinationCharacter FocusAssetGroup.
+CombinationChangeSuccess,,,SourceCharacter changes the code of the padlock on DestinationCharacter FocusAssetGroup.
+CombinationChangeFail,,,SourceCharacter tries to change the code of the padlock on DestinationCharacter FocusAssetGroup.
 EnableRandomInput,,,Enable random input of time from everyone else
 AddTimerTimeMinutes,,,Add TimerTime minutes to the Timer
 AddTimerTime,,,Add
@@ -310,8 +310,10 @@ ShowItemWithTimerRemaining,,,Show the time remaining/being added
 Random,,,Random
 Minutes,,,minutes
 Hours,,,hours
-EnterCombination,,,Open lock
-ChangeCombination,,,Change code
+CombinationOld,,,Current Code :
+CombinationNew,,,New Code :
+CombinationEnter,,,Open lock
+CombinationChange,,,Change code
 SelectBondagePosition,,,Select the bondage position
 SelectTapeWrapping,,,Select the tape wrapping
 SelectAttachmentState,,,Select an item attachment

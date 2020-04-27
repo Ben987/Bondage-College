@@ -17,10 +17,14 @@ function InventoryItemMiscCombinationPadlockDraw() {
 	DrawText(DialogFind(Player, DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Intro"), 1500, 600, "white", "gray");
 	if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property != null) && (DialogFocusSourceItem.Property.LockMemberNumber != null))
 		DrawText(DialogFind(Player, "LockMemberNumber") + " " + DialogFocusSourceItem.Property.LockMemberNumber.toString(), 1500, 700, "white", "gray");
-	ElementPosition("CombinationNumber", 1350, 800, 128);
-	ElementPosition("NewCombinationNumber", 1350, 900, 128);
-	DrawButton(1450, 771, 350, 64, DialogFind(Player,"EnterCombination"), "White", "");
-	DrawButton(1450, 871, 350, 64, DialogFind(Player, "ChangeCombination"), "White", "");
+	MainCanvas.textAlign = "right";
+	DrawText(DialogFind(Player,"CombinationOld"), 1400, 803, "white", "gray");
+	DrawText(DialogFind(Player,"CombinationNew"), 1400, 903, "white", "gray");
+	MainCanvas.textAlign = "center";
+	ElementPosition("CombinationNumber", 1500, 800, 128);
+	ElementPosition("NewCombinationNumber", 1500, 900, 128);
+	DrawButton(1600, 771, 350, 64, DialogFind(Player,"CombinationEnter"), "White", "");
+	DrawButton(1600, 871, 350, 64, DialogFind(Player, "CombinationChange"), "White", "");
 }
 
 // Catches the item extension clicks
@@ -28,20 +32,12 @@ function InventoryItemMiscCombinationPadlockClick() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	var Item = InventoryGet(C, C.FocusGroup.Name);
 
-	// Open Padlock
-	if ((MouseX >= 1450) && (MouseX <= 1800)){
+	if ((MouseX >= 1600) && (MouseX <= 1950)){
+		// Opens the padlock
 		if ((MouseY >= 771) && (MouseY <= 835)){
-			// Opens the padlock
 			if (ElementValue("CombinationNumber") == DialogFocusSourceItem.Property.CombinationNumber){
 				InventoryUnlock(C, C.FocusGroup.Name);
-				if (CurrentScreen == "ChatRoom") {
-					for (var A = 0; A < C.Appearance.length; A++) {
-						if (C.Appearance[A].Asset.Group.Name == C.FocusGroup.Name)
-							C.Appearance[A] = DialogFocusSourceItem;
-					}
-					ChatRoomPublishAction(C, Item, null, true, "ActionUnlock");
-				}
-				CharacterRefresh(C);
+				ChatRoomPublishAction(C, Item, null, true, "ActionUnlock");
 			}
 
 			// Send fail message if online
@@ -53,7 +49,7 @@ function InventoryItemMiscCombinationPadlockClick() {
 				Dictionary.push({Tag: "CombinationNumber", Text: ElementValue("CombinationNumber")});
 				ChatRoomPublishCustomAction("CombinationFail", true, Dictionary);
 			}
-
+			else { CharacterRefresh(C); }
 			InventoryItemMiscCombinationPadlockExit();
 		}
 
@@ -69,24 +65,27 @@ function InventoryItemMiscCombinationPadlockClick() {
 						if (C.Appearance[A].Asset.Group.Name == C.FocusGroup.Name)
 							C.Appearance[A] = DialogFocusSourceItem;
 					}
-					var Dictionary = [];
-					Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
-					Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
-					Dictionary.push({Tag: "FocusAssetGroup", AssetGroupName: C.FocusGroup.Name});
-					ChatRoomPublishCustomAction("CombinationChange", true, Dictionary);
-					CharacterRefresh(C);
+					if (CurrentScreen == "ChatRoom") {
+						var Dictionary = [];
+						Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
+						Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
+						Dictionary.push({Tag: "FocusAssetGroup", AssetGroupName: C.FocusGroup.Name});
+						ChatRoomPublishCustomAction("CombinationChangeSuccess", true, Dictionary);
+						ChatRoomCharacterUpdate(C);
+					}
+					else { CharacterRefresh(C); }
 				}
-				InventoryItemMiscCombinationPadlockExit();
 			}
 			// Fails to change
-			else {
+			else if (CurrentScreen == "ChatRoom") {
 				var Dictionary = [];
 				Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
 				Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
 				Dictionary.push({Tag: "FocusAssetGroup", AssetGroupName: C.FocusGroup.Name});
 				ChatRoomPublishCustomAction("CombinationChangeFail", true, Dictionary);
-				InventoryItemMiscCombinationPadlockExit();
 			}
+			else { CharacterRefresh(C); }
+			InventoryItemMiscCombinationPadlockExit();
 		}
 	}
 
