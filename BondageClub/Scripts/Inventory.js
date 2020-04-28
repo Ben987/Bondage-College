@@ -172,6 +172,14 @@ function InventoryPrerequisiteMessage(C, Prerequisite) {
 		if (MinBlockingIndex && GagIndex > MinBlockingIndex) return "CannotBeUsedOverFlatGag";
 	}
 
+	// Stuffing gags, can be used as long as the gags applied so far leave the mouth open
+	if (Prerequisite == "GagMouthOpen") {
+		var AppliedGags = [InventoryGet(C, "ItemMouth"), InventoryGet(C, "ItemMouth2"), InventoryGet(C, "ItemMouth3")];
+		for (let i = 0; i < AppliedGags.length; i++) {
+			if (AppliedGags[i] != null && (AppliedGags[i].Asset.Effect == null || !AppliedGags[i].Asset.Effect.includes("GagMouthOpen"))) return "CannotUseGagWithMouthClosed";
+		}
+	}
+
 	// Returns no message, indicating that all prerequisites are fine
 	return "";
 

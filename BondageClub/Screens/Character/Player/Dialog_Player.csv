@@ -30,6 +30,7 @@ RemoveShacklesFirst,,,Must remove shackles first.
 CanOnlyEquipOneOfThisGag,,,Gag type already present.
 CannotBeUsedOverFlatGag,,,Cannot be used on a flat gag.
 CannotUseMultipleCorsetGags,,,Corset gag already present.
+CannotUseGagWithMouthClosed,,,Cannot use gag with the mouth blocked.
 Cancel,,,Cancel
 Exit,,,Back to character
 Next,,,View next items
