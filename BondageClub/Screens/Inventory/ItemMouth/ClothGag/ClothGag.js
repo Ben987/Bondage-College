@@ -51,9 +51,8 @@ function InventoryItemMouthClothGagSetType(NewType) {
 	else if (NewType == "OTM") DialogFocusItem.Property.Effect = ["GagEasy"];
 	else if (NewType == "OTN") DialogFocusItem.Property.Effect = ["GagEasy"];
 
+	// Refreshes the character and chatroom
 	CharacterRefresh(C);
-	ChatRoomCharacterUpdate(C);
-
 	var msg = "ClothGagSet" + ((NewType) ? NewType : "Small");
 	var Dictionary = [];
 	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});

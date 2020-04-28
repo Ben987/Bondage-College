@@ -46,10 +46,7 @@ function InventoryItemArmsMermaidSuitSetType(NewType) {
 	if (NewType == null || NewType == "UnZip") DialogFocusItem.Property.Type = NewType;
 	if (NewType == null) DialogFocusItem.Property.Block = ["ItemBreast", "ItemNipples", "ItemNipplesPiercings", "ItemVulva", "ItemVulvaPiercings", "ItemButt"];
 	else if (NewType == "UnZip") DialogFocusItem.Property.Block = [];
-
-	// Refreshes the current character
 	CharacterRefresh(C);
-	ChatRoomCharacterUpdate(C);
 
 	// Pushes the change to the chatroom
 	var msg = "MermaidSuitSet" + ((NewType) ? NewType : "Zipped");

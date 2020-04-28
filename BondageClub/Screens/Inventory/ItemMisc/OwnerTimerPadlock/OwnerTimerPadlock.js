@@ -67,7 +67,7 @@ function InventoryItemMiscOwnerTimerPadlockClick() {
             if ((MouseY >= 666) && (MouseY <= 730)) { DialogFocusSourceItem.Property.RemoveItem = !(DialogFocusSourceItem.Property.RemoveItem); }
             if ((MouseY >= 746) && (MouseY <= 810)) { DialogFocusSourceItem.Property.ShowTimer = !(DialogFocusSourceItem.Property.ShowTimer); }
             if ((MouseY >= 826) && (MouseY <= 890)) { DialogFocusSourceItem.Property.EnableRandomInput = !(DialogFocusSourceItem.Property.EnableRandomInput); }
-            if (CurrentScreen == "ChatRoom") ChatRoomCharacterUpdate(CurrentCharacter);
+            if (CurrentScreen == "ChatRoom") ChatRoomCharacterItemUpdate(CurrentCharacter);
         }
     }
 

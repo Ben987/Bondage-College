@@ -119,7 +119,7 @@ function ActivityEffect(S, C, A, Z) {
 
 // Syncs the player arousal with everyone in chatroom
 function ActivityChatRoomArousalSync(C) {
-	if ((C.ID == 0) && (CurrentScreen == "ChatRoom")) 
+	if ((C.ID == 0) && (CurrentScreen == "ChatRoom"))
 		ServerSend("ChatRoomCharacterArousalUpdate", { OrgasmTimer: C.ArousalSettings.OrgasmTimer, Progress: C.ArousalSettings.Progress, ProgressTimer: C.ArousalSettings.ProgressTimer });
 }
 

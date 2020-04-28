@@ -88,27 +88,26 @@ function MaidQuartersMaidUngagPlayer() {
 
 // When the player dresses as a maid
 function MaidQuartersWearMaidUniform() {
-	for(var ItemAssetGroupName in MaidQuartersItemClothPrev){
+	for (var ItemAssetGroupName in MaidQuartersItemClothPrev) {
 		MaidQuartersItemClothPrev[ItemAssetGroupName] = InventoryGet(Player, ItemAssetGroupName);
 		InventoryRemove(Player, ItemAssetGroupName);
 	}
-
 	InventoryWear(Player, "MaidOutfit1", "Cloth", "Default");
 	InventoryWear(Player, "MaidHairband1", "Hat", "Default");
 }
 
 // When the player removes the maid uniform and dresses back
 function MaidQuartersRemoveMaidUniform() {
-	CharacterRelease(Player);
-	for(var ItemAssetGroupName in MaidQuartersItemClothPrev){
+	CharacterReleaseNoLock(Player);
+	for (var ItemAssetGroupName in MaidQuartersItemClothPrev) {
 		var PreviousItem = MaidQuartersItemClothPrev[ItemAssetGroupName];
 		InventoryRemove(Player, ItemAssetGroupName);
-		if(PreviousItem) InventoryWear(Player, PreviousItem.Asset.Name, ItemAssetGroupName, PreviousItem.Color);
-		if(PreviousItem && PreviousItem.Property) InventoryGet(Player, ItemAssetGroupName).Property = PreviousItem.Property
+		if (PreviousItem) InventoryWear(Player, PreviousItem.Asset.Name, ItemAssetGroupName, PreviousItem.Color);
+		if (PreviousItem && PreviousItem.Property) InventoryGet(Player, ItemAssetGroupName).Property = PreviousItem.Property;
 		MaidQuartersItemClothPrev[ItemAssetGroupName] = null;
 	}
-
 	InventoryRemove(Player, "ItemMisc");
+	CharacterRefresh(Player);
 }
 
 // When the mini game / maid chore starts
@@ -161,7 +160,7 @@ function MaidQuartersMaidReleasePlayer() {
 			ReputationProgress("Dominant", -1);
 			MaidQuartersMaidReleasedPlayer = true;
 		}
-		CharacterRelease(Player);
+		CharacterReleaseNoLock(Player);
 	} else MaidQuartersMaid.CurrentDialog = DialogFind(MaidQuartersMaid, "CantReleasePlayer");
 }
 

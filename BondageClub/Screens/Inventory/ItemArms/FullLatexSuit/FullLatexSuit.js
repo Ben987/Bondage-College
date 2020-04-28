@@ -58,10 +58,7 @@ function InventoryItemArmsFullLatexSuitSetType(NewType) {
 	if (NewType == null) DialogFocusItem.Property.Block = ["ItemBreast", "ItemNipples", "ItemNipplesPiercings", "ItemVulva", "ItemVulvaPiercings", "ItemButt"];
 	else if (NewType == "UnZip") DialogFocusItem.Property.Block = [];
 	if (NewType == "Wand") InventoryWear(C, "FullLatexSuitWand", "ItemVulva");
-
-	// Refreshes the current character
 	CharacterRefresh(C);
-	ChatRoomCharacterUpdate(C);
 
 	// Pushes the change to the chatroom
 	var msg = "FullLatexSuitSet" + ((NewType) ? NewType : "Zipped");

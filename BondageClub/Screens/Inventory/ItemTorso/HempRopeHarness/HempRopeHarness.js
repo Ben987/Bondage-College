@@ -97,17 +97,12 @@ function InventoryItemTorsoHempRopeSetPose(NewType) {
 	if (NewType.Expression != null)
 		for (var E = 0; E < NewType.Expression.length; E++)
 			CharacterSetFacialExpression(C, NewType.Expression[E].Group, NewType.Expression[E].Name, NewType.Expression[E].Timer);
-
-	if (NewType.HiddenItem != null) {
-		InventoryWear(C, NewType.HiddenItem, "ItemHidden", DialogFocusItem.Color);
-	}
+	if (NewType.HiddenItem != null) InventoryWear(C, NewType.HiddenItem, "ItemHidden", DialogFocusItem.Color);
 	else InventoryRemove(C, "ItemHidden");
-
 	CharacterRefresh(C);
 
 	// Sets the chatroom or NPC message
 	if (CurrentScreen == "ChatRoom") {
-		ChatRoomCharacterUpdate(C);
 		var msg = "RopeHarnessSet" + NewType.Name;
 		var Dictionary = [];
 		Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});

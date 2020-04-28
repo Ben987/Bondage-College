@@ -64,17 +64,20 @@ function InventoryDelete(C, DelItemName, DelItemGroup, Push) {
 }
 
 /**
-* Loads the current inventory for a character
+* Loads the current inventory for a character, can be loaded from an object of Name/Group or a compressed array using LZString
 * @param {Character} C - The character on which we should load the inventory
 * @param {Array} Inventory - An array of Name / Group of items to load
 */
 function InventoryLoad(C, Inventory) {
-
-	// Add each items one by one from the server by name/group
-	if (Inventory != null)
+	if (Inventory == null) return;
+	if (typeof Inventory === "string") {
+		var Inv = JSON.parse(LZString.decompressFromUTF16(Inventory));
+		for (var I = 0; I < Inv.length; I++)
+			InventoryAdd(C, Inv[I][0], Inv[I][1], false);
+	}
+	if (typeof Inventory === "object")
 		for (var I = 0; I < Inventory.length; I++)
 			InventoryAdd(C, Inventory[I].Name, Inventory[I].Group, false);
-
 }
 
 /**

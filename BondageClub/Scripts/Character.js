@@ -226,7 +226,7 @@ function CharacterOnlineRefresh(Char, data, SourceMemberNumber) {
 	Char.BlockItems = Array.isArray(data.BlockItems) ? data.BlockItems : [];
 	Char.Appearance = ServerAppearanceLoadFromBundle(Char, "Female3DCG", data.Appearance, SourceMemberNumber);
 	if (Char.ID == 0) LoginValidCollar();
-	if ((Char.ID != 0) && ((Char.MemberNumber == SourceMemberNumber) || (Char.Inventory == null))) InventoryLoad(Char, data.Inventory);
+	if ((Char.ID != 0) && ((Char.MemberNumber == SourceMemberNumber) || (Char.Inventory == null) || (Char.Inventory.length == 0))) InventoryLoad(Char, data.Inventory);
 	CharacterLoadEffect(Char);
 	CharacterRefresh(Char);
 }
@@ -493,6 +493,16 @@ function CharacterDress(C, Appearance) {
 function CharacterRelease(C) {
 	for (var E = 0; E < C.Appearance.length; E++)
 		if (C.Appearance[E].Asset.IsRestraint) {
+			C.Appearance.splice(E, 1);
+			E--;
+		}
+	CharacterRefresh(C);
+}
+
+// Removes any binding item from the character if there's no specific padlock on it
+function CharacterReleaseNoLock(C) {
+	for (var E = 0; E < C.Appearance.length; E++)
+		if (C.Appearance[E].Asset.IsRestraint && ((C.Appearance[E].Property == null) || (C.Appearance[E].Property.LockedBy == null))) {
 			C.Appearance.splice(E, 1);
 			E--;
 		}

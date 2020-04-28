@@ -58,9 +58,8 @@ function InventoryItemHeadDuctTapeSetType(NewType) {
 		DialogFocusItem.Property.Block = ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemEars"];
 	}
 
+	// Update the character and chatroom
 	CharacterRefresh(C);
-	ChatRoomCharacterUpdate(C);
-
 	var msg = "DuctTapeHeadSet" + ((NewType) ? NewType : "Double");
 	var Dictionary = [];
 	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
