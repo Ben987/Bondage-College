@@ -31,7 +31,6 @@ function InventoryItemHiddenLeatherArmbinderStrapSetType(NewType) {
 	}
 	DialogFocusItem.Property.Type = NewType;
 	if (NewType == null) DialogFocusItem.Property.Difficulty = 3;
-	
 	if (NewType == "") {
 		DialogFocusItem.Property.Difficulty = 0;
 		InventoryRemove(C, "ItemHidden");
@@ -44,9 +43,10 @@ function InventoryItemHiddenLeatherArmbinderStrapSetType(NewType) {
 	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
 	Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
+	ChatRoomCharacterItemUpdate(C, "ItemHidden");
 	if (DialogInventory != null) {
 		DialogFocusItem = null;
 		DialogMenuButtonBuild(C);
 	}
-}
 
+}

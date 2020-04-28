@@ -88,14 +88,13 @@ function ServerPlayerSync() {
 	ServerSend("AccountUpdate", { Money: Player.Money, Owner: Player.Owner, Lover: Player.Lover });
 }
 
-// Syncs the full player inventory to the server
+// Syncs the full player inventory to the server, it's compressed as a stringify array using LZString
 function ServerPlayerInventorySync() {
-	var D = {};
-	D.Inventory = [];
+	var Inv = [];
 	for (var I = 0; I < Player.Inventory.length; I++)
 		if (Player.Inventory[I].Asset != null)
-			D.Inventory.push({ Name: Player.Inventory[I].Asset.Name, Group: Player.Inventory[I].Asset.Group.Name });
-	ServerSend("AccountUpdate", D);
+			Inv.push([ Player.Inventory[I].Asset.Name, Player.Inventory[I].Asset.Group.Name ]);
+	ServerSend("AccountUpdate", { Inventory: LZString.compressToUTF16(JSON.stringify(Inv)) });
 }
 
 // Syncs the full player log to the server

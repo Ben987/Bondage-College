@@ -566,12 +566,13 @@ function ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem
 }
 
 // Updates an item on character for everyone in a chat room - replaces ChatRoomCharacterUpdate to cut on the lag
-function ChatRoomCharacterItemUpdate(C) {
-	if ((CurrentScreen == "ChatRoom") && (C.FocusGroup != null)) {
-		var Item = InventoryGet(C, C.FocusGroup.Name);			
+function ChatRoomCharacterItemUpdate(C, Group) {
+	if ((Group == null) && (C.FocusGroup != null)) Group = C.FocusGroup.Name;
+	if ((CurrentScreen == "ChatRoom") && (Group != null)) {
+		var Item = InventoryGet(C, Group);
 		var P = {};
 		P.Target = C.MemberNumber;
-		P.Group = C.FocusGroup.Name;
+		P.Group = Group;
 		P.Name = (Item != null) ? Item.Asset.Name : null;
 		P.Color = (Item != null) ? Item.Color : null;
 		P.Difficulty = (Item != null) ? Item.Difficulty : null;
