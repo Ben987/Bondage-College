@@ -6,7 +6,11 @@ function InventoryItemMiscCombinationPadlockLoad() {
 	if ((DialogFocusSourceItem != null) && (DialogFocusSourceItem.Property != null) && (DialogFocusSourceItem.Property.CombinationNumber == null)) DialogFocusSourceItem.Property.CombinationNumber = "0000";
 	ElementCreateInput("CombinationNumber", "text", "", "4");
 	ElementCreateInput("NewCombinationNumber", "text", "", "4");
-	if (DialogFocusSourceItem != null && Player.MemberNumber == DialogFocusSourceItem.Property.LockMemberNumber) document.getElementById("CombinationNumber").placeholder = DialogFocusSourceItem.Property.CombinationNumber;
+	// the current code is shown for owners, lovers and the member whose number is on the padlock
+	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	if (DialogFocusSourceItem != null && ((Player.MemberNumber == DialogFocusSourceItem.Property.LockMemberNumber)
+		|| (Player.Ownership != null && (Player.MemberNumber == C.Ownership.MemberNumber))
+		|| (Player.Lovership != null && (Player.MemberNumber == C.Lovership.MemberNumber)))) document.getElementById("CombinationNumber").placeholder = DialogFocusSourceItem.Property.CombinationNumber;
 }
 
 // Draw the extension screen
@@ -19,12 +23,13 @@ function InventoryItemMiscCombinationPadlockDraw() {
 		DrawText(DialogFind(Player, "LockMemberNumber") + " " + DialogFocusSourceItem.Property.LockMemberNumber.toString(), 1500, 700, "white", "gray");
 	MainCanvas.textAlign = "right";
 	DrawText(DialogFind(Player,"CombinationOld"), 1400, 803, "white", "gray");
-	DrawText(DialogFind(Player,"CombinationNew"), 1400, 903, "white", "gray");
+	DrawText(DialogFind(Player,"CombinationNew"), 1400, 883, "white", "gray");
 	MainCanvas.textAlign = "center";
-	ElementPosition("CombinationNumber", 1500, 800, 128);
-	ElementPosition("NewCombinationNumber", 1500, 900, 128);
+	ElementPosition("CombinationNumber", 1500, 800, 125);
+	ElementPosition("NewCombinationNumber", 1500, 880, 125);
 	DrawButton(1600, 771, 350, 64, DialogFind(Player,"CombinationEnter"), "White", "");
-	DrawButton(1600, 871, 350, 64, DialogFind(Player, "CombinationChange"), "White", "");
+	DrawButton(1600, 851, 350, 64, DialogFind(Player, "CombinationChange"), "White", "");
+	if (PreferenceMessage != "") DrawText(DialogFind(Player, PreferenceMessage), 1500, 963, "Red", "Black");
 }
 
 // Catches the item extension clicks
@@ -36,8 +41,14 @@ function InventoryItemMiscCombinationPadlockClick() {
 		// Opens the padlock
 		if ((MouseY >= 771) && (MouseY <= 835)){
 			if (ElementValue("CombinationNumber") == DialogFocusSourceItem.Property.CombinationNumber){
+				delete DialogFocusSourceItem.Property.CombinationNumber;
+				for (var A = 0; A < C.Appearance.length; A++) {
+					if (C.Appearance[A].Asset.Group.Name == C.FocusGroup.Name)
+						C.Appearance[A] = DialogFocusSourceItem;
+				}
 				InventoryUnlock(C, C.FocusGroup.Name);
 				ChatRoomPublishAction(C, Item, null, true, "ActionUnlock");
+				InventoryItemMiscCombinationPadlockExit();
 			}
 
 			// Send fail message if online
@@ -48,9 +59,9 @@ function InventoryItemMiscCombinationPadlockClick() {
 				Dictionary.push({Tag: "FocusAssetGroup", AssetGroupName: C.FocusGroup.Name});
 				Dictionary.push({Tag: "CombinationNumber", Text: ElementValue("CombinationNumber")});
 				ChatRoomPublishCustomAction("CombinationFail", true, Dictionary);
+				InventoryItemMiscCombinationPadlockExit();
 			}
-			else { CharacterRefresh(C); }
-			InventoryItemMiscCombinationPadlockExit();
+			else { PreferenceMessage = "CombinationError"; }
 		}
 
 		// Changes the code
@@ -59,7 +70,8 @@ function InventoryItemMiscCombinationPadlockClick() {
 			if (ElementValue("CombinationNumber") == DialogFocusSourceItem.Property.CombinationNumber) {
 				var E = /^[0-9]+$/;
 				var NewCode = ElementValue("NewCombinationNumber");
-				if (NewCode.match(E)) {
+				// We only accept code made of digits and of 4 numbers
+				if (NewCode.match(E) && NewCode.length == 4) {
 					DialogFocusSourceItem.Property.CombinationNumber = NewCode;
 					for (var A = 0; A < C.Appearance.length; A++) {
 						if (C.Appearance[A].Asset.Group.Name == C.FocusGroup.Name)
@@ -72,9 +84,14 @@ function InventoryItemMiscCombinationPadlockClick() {
 						Dictionary.push({Tag: "FocusAssetGroup", AssetGroupName: C.FocusGroup.Name});
 						ChatRoomPublishCustomAction("CombinationChangeSuccess", true, Dictionary);
 						ChatRoomCharacterUpdate(C);
+						InventoryItemMiscCombinationPadlockExit();
 					}
-					else { CharacterRefresh(C); }
+					else {
+						CharacterRefresh(C);
+						InventoryItemMiscCombinationPadlockExit();
+					}
 				}
+				else { PreferenceMessage = "CombinationErrorInput"; }
 			}
 			// Fails to change
 			else if (CurrentScreen == "ChatRoom") {
@@ -83,9 +100,9 @@ function InventoryItemMiscCombinationPadlockClick() {
 				Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
 				Dictionary.push({Tag: "FocusAssetGroup", AssetGroupName: C.FocusGroup.Name});
 				ChatRoomPublishCustomAction("CombinationChangeFail", true, Dictionary);
+				InventoryItemMiscCombinationPadlockExit();
 			}
-			else { CharacterRefresh(C); }
-			InventoryItemMiscCombinationPadlockExit();
+			else { PreferenceMessage = "CombinationError"; }
 		}
 	}
 
@@ -98,6 +115,7 @@ function InventoryItemMiscCombinationPadlockClick() {
 function InventoryItemMiscCombinationPadlockExit() {
 	ElementRemove("CombinationNumber");
 	ElementRemove("NewCombinationNumber");
+	PreferenceMessage = "";
 	DialogFocusItem = null;
 	if (DialogInventory != null) DialogMenuButtonBuild((Player.FocusGroup != null) ? Player : CurrentCharacter);
 }
