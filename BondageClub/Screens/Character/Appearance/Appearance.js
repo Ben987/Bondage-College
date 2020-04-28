@@ -71,6 +71,7 @@ function CharacterAppearanceSetDefault(C) {
 
 	// Resets the current appearance and prepares the assets
 	C.Appearance = [];
+	C.Pose = [];
 	if (CharacterAppearanceAssets.length == 0) CharacterAppearanceBuildAssets(C);
 
 	// For each items in the character appearance assets
