@@ -614,7 +614,7 @@ ItemHands,LeatherMittens,Leather Mittens
 ItemHands,PaddedLeatherMittens,Padded Leather Mittens
 ItemHands,PolishedMittens,Polished Steel Mittens
 ItemHands,DuctTape,Duct Tape
-ItemHands,SpankingToys,Spanking Toys
+ItemHands,SpankingToys,Handheld Toys
 ItemHands,SpankingToysCrop,Crop
 ItemHands,SpankingToysFlogger,Flogger
 ItemHands,SpankingToysCane,Cane
@@ -624,6 +624,16 @@ ItemHands,SpankingToysWhipPaddle,Whip Paddle
 ItemHands,SpankingToysWhip,Whip
 ItemHands,SpankingToysCattleProd,Cattle Prod
 ItemHands,SpankingToysTennisRacket,Tennis Racket
+ItemHands,SpankingToysFeather,Feather
+ItemHands,SpankingToysLargeFeather,Large Feather
+ItemHands,SpankingToysFeatherDuster,Feather Duster
+ItemHands,SpankingToysIceCube,Ice Cube
+ItemHands,SpankingToysWartenbergWheel,Wartenberg Wheel
+ItemHands,SpankingToysVibratingWand,Vibrating Wand
+ItemHands,SpankingToysSmallVibratingWand,Small Vibrating Wand
+ItemHands,SpankingToysCandleWax,Candle Wax
+ItemHands,SpankingToysDildo,Dildo
+ItemHands,SpankingToysPetToy,PetToy
 ItemNeck,,Neck
 ItemNeck,LeatherCollar,Leather Collar
 ItemNeck,LeatherCollarBell,Bell Collar

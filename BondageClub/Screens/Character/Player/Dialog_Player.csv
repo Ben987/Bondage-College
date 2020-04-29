@@ -756,7 +756,7 @@ mittensfromharness,,,mittens
 NeedHarness,,,She must be wearing a baby harness to chain the mittens.
 FreeArms,,,You must free her arms before attaching mitten chains.
 FacialExpression,,,Facial expression
-SelectSpankingToysType,,,Select a spanking toy
+SelectSpankingToysType,,,Select a handheld toy
 SpankingToysTypeCrop,,,Crop
 SpankingToysTypeFlogger,,,Flogger
 SpankingToysTypeCane,,,Cane
@@ -766,6 +766,16 @@ SpankingToysTypeWhipPaddle,,,Whip Paddle
 SpankingToysTypeWhip,,,Whip
 SpankingToysTypeCattleProd,,,Cattle Prod
 SpankingToysTypeTennisRacket,,,Tennis Racket
+SpankingToysTypeFeather,,,Feather
+SpankingToysTypeLargeFeather,,,Large Feather
+SpankingToysTypeFeatherDuster,,,Feather Duster
+SpankingToysTypeIceCube,,,Ice Cube
+SpankingToysTypeWartenbergWheel,,,Wartenberg Wheel
+SpankingToysTypeVibratingWand,,,Vibrating Wand
+SpankingToysTypeSmallVibratingWand,,,Small Vibrating Wand
+SpankingToysTypeCandleWax,,,Candle Wax
+SpankingToysTypeDildo,,,Dildo
+SpankingToysTypePetToy,,,Pet Toy
 SpankingToysSetPlayer,,,SourceCharacter takes out a ItemUsed
 SpankingToysSetOthers,,,SourceCharacter gives TargetCharacter a ItemUsed
 SelectSuitType,,,Select suit type and wand attachment
