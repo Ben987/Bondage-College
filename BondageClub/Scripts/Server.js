@@ -162,8 +162,16 @@ function ServerValidateProperties(C, Item) {
 			// If the item is locked by a lock
 			if ((Effect == "Lock") && (InventoryGetLock(Item) != null)) {
 
-				// Make sure the remove timer on the lock is valid
+				// Make sure the combination number on the lock is valid, 4 digits only
 				var Lock = InventoryGetLock(Item);
+				if ((Item.Property.CombinationNumber != null) && (typeof Item.Property.CombinationNumber == "string")) {
+					var E = /^[0-9]+$/;
+					if (!Item.Property.CombinationNumber.match(E) || (Item.Property.CombinationNumber.length != 4)) {
+						Item.Property.CombinationNumber = "0000";
+					}
+				} else delete Item.Property.CombinationNumber;
+
+				// Make sure the remove timer on the lock is valid
 				if ((Lock.Asset.RemoveTimer != null) && (Lock.Asset.RemoveTimer != 0)) {
 					var CurrentTimeDelay = 5000;
 					// As CurrentTime can be slightly different, we accept a small delay in ms
