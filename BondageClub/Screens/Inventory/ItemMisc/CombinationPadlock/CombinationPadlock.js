@@ -71,7 +71,7 @@ function InventoryItemMiscCombinationPadlockClick() {
 				var E = /^[0-9]+$/;
 				var NewCode = ElementValue("NewCombinationNumber");
 				// We only accept code made of digits and of 4 numbers
-				if (NewCode.match(E) && NewCode.length == 4) {
+				if (NewCode.match(E) && (NewCode.length == 4)) {
 					DialogFocusSourceItem.Property.CombinationNumber = NewCode;
 					for (var A = 0; A < C.Appearance.length; A++) {
 						if (C.Appearance[A].Asset.Group.Name == C.FocusGroup.Name)

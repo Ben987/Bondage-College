@@ -299,7 +299,7 @@ TimerRemoveTime,,,SourceCharacter removes TimerTime TimerUnit to the padlock on 
 TimerAddRemoveUnknownTime,,,an unknown amount of time
 CombinationFail,,,SourceCharacter tries the code CombinationNumber but fails to open the padlock on DestinationCharacter FocusAssetGroup.
 CombinationChangeSuccess,,,SourceCharacter changes the code of the padlock on DestinationCharacter FocusAssetGroup.
-CombinationChangeFail,,,SourceCharacter tries to change the code of the padlock on DestinationCharacter FocusAssetGroup.
+CombinationChangeFail,,,SourceCharacter tries to change the code of the padlock on DestinationCharacter FocusAssetGroup but fails.
 EnableRandomInput,,,Enable random input of time from everyone else
 AddTimerTimeMinutes,,,Add TimerTime minutes to the Timer
 AddTimerTime,,,Add
