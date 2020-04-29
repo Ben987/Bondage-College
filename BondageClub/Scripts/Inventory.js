@@ -578,3 +578,32 @@ function InventoryIsPermissionBlocked(C, AssetName, AssetGroup) {
 				return true;
 	return false;
 }
+
+/**
+ * Returns TRUE if a specific item / asset is limited by the character item permissions
+ * @param {Character} C - The character on which we check the permissions
+ * @param {String} AssetName - The asset / item name to scan
+ * @param {String} AssetGroup - The asset group name to scan
+ * @returns {Boolean} - TRUE if asset / item is limited
+ */
+function InventoryIsPermissionLimited(C, AssetName, AssetGroup) {
+	if ((C != null) && (C.LimitedItems != null) && Array.isArray(C.LimitedItems))
+		for (var B = 0; B < C.LimitedItems.length; B++)
+			if ((C.LimitedItems[B].Name == AssetName) && (C.LimitedItems[B].Group == AssetGroup))
+				return true;
+	return false;
+}
+
+/**
+ * Returns TRUE if the item is not limited, if the player is an owner or a lover of the character, or on their whitelist
+ * @param {Character} C - The character on which we check the limited permissions
+ * @param {Item} Item - The object being interacted with
+ * @returns {Boolean} - TRUE if asset / item is limited
+ */
+function InventoryCheckLimitedPermission(C, Item) {
+	console.log(Item);
+	if (!InventoryIsPermissionLimited(C, Item.Asset.Name, Item.Asset.Group.Name)) return true;
+	if ((C.ID == 0) || ((C.Lovership != null) && (C.Lovership.MemberNumber == Player.MemberNumber)) || ((C.Ownership != null) && (C.Ownership.MemberNumber == Player.MemberNumber))) return true;
+	if ((C.ItemPermission < 3) && !(C.WhiteList.indexOf(Player.MemberNumber) < 0)) return true;
+	return false;
+}
