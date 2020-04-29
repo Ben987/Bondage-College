@@ -1457,7 +1457,7 @@ var AssetFemale3DCG = [
 				Name: "SpankingToysCandleWax", Value: 1, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				DynamicAllowInventoryAdd: () => { return false }
 			}, {
-				Name: "SpankingToysDildo", Value: 1, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
+				Name: "SpankingToysLargeDildo", Value: 1, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				DynamicAllowInventoryAdd: () => { return false }
 			}, {
 				Name: "SpankingToysPetToy", Value: 1, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
