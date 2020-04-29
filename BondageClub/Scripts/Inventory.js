@@ -596,12 +596,11 @@ function InventoryIsPermissionLimited(C, AssetName, AssetGroup) {
 
 /**
  * Returns TRUE if the item is not limited, if the player is an owner or a lover of the character, or on their whitelist
- * @param {Character} C - The character on which we check the limited permissions
- * @param {Item} Item - The object being interacted with
- * @returns {Boolean} - TRUE if asset / item is limited
+ * @param {Character} C - The character on which we check the limited permissions for the item
+ * @param {Item} Item - The item being interacted with
+ * @returns {Boolean} - TRUE if item is allowed
  */
 function InventoryCheckLimitedPermission(C, Item) {
-	console.log(Item);
 	if (!InventoryIsPermissionLimited(C, Item.Asset.Name, Item.Asset.Group.Name)) return true;
 	if ((C.ID == 0) || ((C.Lovership != null) && (C.Lovership.MemberNumber == Player.MemberNumber)) || ((C.Ownership != null) && (C.Ownership.MemberNumber == Player.MemberNumber))) return true;
 	if ((C.ItemPermission < 3) && !(C.WhiteList.indexOf(Player.MemberNumber) < 0)) return true;
