@@ -61,10 +61,9 @@ function InventoryItemNeckAccessoriesCollarNameTagSetType(NewType) {
 	}
 	DialogFocusItem.Property.Type = NewType;
 	DialogFocusItem.Property.Effect = [];
-	
-	CharacterRefresh(C);
-	ChatRoomCharacterUpdate(C);
 
+	// Refreshes the character and chatroom
+	CharacterRefresh(C);
 	var Dictionary = [];
 	Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
 	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});

@@ -76,7 +76,7 @@ function KidnapLeagueTakeBounty(Difficulty) {
 
 // Reminds the player on the bounty taken
 function KidnapLeagueBountyRemind() {
-	KidnapLeagueTrainer.CurrentDialog = DialogFind(KidnapLeagueTrainer, "Bounty" + KidnapLeagueBountyLocation).replace("BOUNTYNAME", KidnapLeagueBounty.Name).replace("BOUNTYAMOUNT", (10 + KidnapLeagueBountyDifficulty * 2).toString());
+	KidnapLeagueTrainer.CurrentDialog = DialogFind(KidnapLeagueTrainer, "Bounty" + KidnapLeagueBountyLocation).replace("BOUNTYNAME", KidnapLeagueBounty.Name).replace("BOUNTYAMOUNT", (15 + KidnapLeagueBountyDifficulty * 2).toString());
 }
 
 // Starts the bounty hunter mission
@@ -111,8 +111,8 @@ function KidnapLeagueBountyFightEnd() {
 
 // Pays the player bounty
 function KidnapLeagueBountyPay() {
-	KidnapLeagueTrainer.CurrentDialog = DialogFind(KidnapLeagueTrainer, "BountyPay").replace("BOUNTYAMOUNT", (10 + KidnapLeagueBountyDifficulty * 2).toString());
-	CharacterChangeMoney(Player, 10 + KidnapLeagueBountyDifficulty * 2);
+	KidnapLeagueTrainer.CurrentDialog = DialogFind(KidnapLeagueTrainer, "BountyPay").replace("BOUNTYAMOUNT", (15 + KidnapLeagueBountyDifficulty * 2).toString());
+	CharacterChangeMoney(Player, 15 + KidnapLeagueBountyDifficulty * 2);
 	KidnapLeagueBountyReset();
 }
 

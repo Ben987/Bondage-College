@@ -58,10 +58,9 @@ function InventoryItemDevicesTeddyBearSetType(NewType) {
 	else if (NewType == "Fox") DialogFocusItem.Property.Effect = [];
 	else if (NewType == "Kitty") delete DialogFocusItem.Property.Effect;
 	else if (NewType == "Pup") delete DialogFocusItem.Property.Effect;
-
 	CharacterRefresh(C);
-	ChatRoomCharacterUpdate(C);
 
+	// Pushes the message
 	var msg = "TeddyBearSet" + ((NewType) ? NewType : "Bear");
 	var Dictionary = [];
 	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});

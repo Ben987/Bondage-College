@@ -43,7 +43,7 @@ RemoveSuspensionHempRope,,,(You untie the hemp rope from the ceiling and slowly 
 33,34,(Continues),"You're not one of those bad girls, are you?",,
 34,0,I would never do that.,You'd better not.,,
 34,0,"On the contrary, I want to help catch them.",(This feature will be available in a future version.),,
-34,0,"Sure, that sounds like fun.",I'll be keeping an eye on you from now on. Just don't get caught.,BecomBadGirl(),
+34,0,"Sure, that sounds like fun.",I'll be keeping an eye on you from now on. Just don't get caught.,BecomeBadGirl(),
 40,0,I swear it.,Then keep it.,LeaveBadGirl(),
 40,0,"Ha ha, I'm just kidding.",You'll see what you get out of it.,,
 PrisonerTortured,20,Hey! That really hurts!,You don't deserve any better!,,

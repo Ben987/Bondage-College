@@ -8,20 +8,16 @@ function InventoryItemArmsLeatherArmbinderLoad() {
 		DialogExtendItem(addonItem);
 		return;
 	}
-	
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Type: null };
 	DialogFocusItem.Property.SelfUnlock = false;
 }
 
 // Draw the item extension screen
 function InventoryItemArmsLeatherArmbinderDraw() {
-
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
-	// Draw the header and item
 	DrawRect(1387, 125, 225, 275, "white");
 	DrawImageResize("Assets/" + DialogFocusItem.Asset.Group.Family + "/" + DialogFocusItem.Asset.Group.Name + "/Preview/" + DialogFocusItem.Asset.Name + ".png", 1389, 127, 221, 221);
 	DrawTextFit(DialogFocusItem.Asset.Description, 1500, 375, 221, "black");
-
 	DrawText(DialogFind(Player, "SelectStrapType"), 1500, 500, "white", "gray");
 	DrawButton(1175, 550, 225, 225, "", (InventoryGet(C, "ItemHidden") == null) ? "#888888" : "White");
 	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Strap.png", 1175, 550);
@@ -50,31 +46,24 @@ function InventoryItemArmsLeatherArmbinderSetType(NewType) {
 	}
 	if (NewType == "Strap") {
 		InventoryWear(C, "LeatherArmbinderStrap", "ItemHidden");
-		
-		// Switch to the straps item
 		DialogFocusItem = InventoryGet(C, "ItemHidden");
 	}
 	if (NewType == "WrapStrap") {
 		InventoryWear(C, "LeatherArmbinderWrapStrap", "ItemHidden");
-		
-		// Switch to the straps item
 		DialogFocusItem = InventoryGet(C, "ItemHidden");
 	}
 
-	// Refreshes the current character
-	CharacterRefresh(C);
-	ChatRoomCharacterUpdate(C);
-
 	// Pushes the change to the chatroom
+	CharacterRefresh(C);
 	var msg = "LeatherArmbinderSet" + ((NewType == null) ? "Strap" : NewType);
 	var Dictionary = [];
 	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
 	Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
+	ChatRoomCharacterItemUpdate(C, "ItemHidden");
 	if (DialogInventory != null) {
 		DialogFocusItem = null;
 		DialogMenuButtonBuild(C);
 	}
 
 }
-

@@ -64,7 +64,7 @@ function WardrobeLoadCharacters(Fast) {
 	if (W != null) {
 		WardrobeFixLength();
 		if (Fast) WardrobeFastLoad(WardrobeCharacter[W], W);
-		ServerSend("AccountUpdate", { Wardrobe: Player.Wardrobe });
+		ServerSend("AccountUpdate", { Wardrobe: CharacterCompressWardrobe(Player.Wardrobe) });
 	}
 }
 
@@ -191,6 +191,6 @@ function WardrobeFastSave(C, W, Push) {
 		}
 		WardrobeFixLength();
 		if (WardrobeCharacter != null && WardrobeCharacter[W] != null && C.AccountName != WardrobeCharacter[W].AccountName) WardrobeFastLoad(WardrobeCharacter[W], W);
-		if ((Push == null) || Push) ServerSend("AccountUpdate", { Wardrobe: Player.Wardrobe });
+		if ((Push == null) || Push) ServerSend("AccountUpdate", { Wardrobe: CharacterCompressWardrobe(Player.Wardrobe) });
 	}
 }

@@ -44,6 +44,7 @@ Cloth,Gown3,Shiny Gown
 Cloth,MaidApron1,Maid Apron
 Cloth,MaidApron2,Exposed Maid Apron
 Cloth,AdmiralTop,Admiral Top
+Cloth,VirginKiller1,Virgin Killer
 ClothAccessory,,Cloth Accessory
 ClothAccessory,StudentOutfit3Scarf,Student Scarf
 ClothAccessory,StudentOutfit3Bow1,Student Bow 1
@@ -51,6 +52,11 @@ ClothAccessory,StudentOutfit3Bow2,Student Bow 2
 ClothAccessory,StudentOutfit3Bow3,Student Bow 3
 ClothAccessory,Bouquet,Bouquet of flowers
 ClothAccessory,FrillyApron,Frilly Apron
+Necklace,,Necklace
+Necklace,Necklace1,Fancy Necklace
+Necklace,Necklace2,Beaded Necklace
+Necklace,Necklace3,Long Beaded Necklace
+Necklace,Necklace4,Pearl Necklace
 Suit,,Upper Suit
 Suit,Catsuit,Catsuit
 Suit,SeamlessCatsuit, Seamless Catsuit
@@ -457,6 +463,7 @@ ItemVulva,BenWaBalls,Pair Of Ben Wa Balls
 ItemVulva,HeavyWeightClamp,Heavy Weight Clamp
 ItemVulva,FullLatexSuitWand,Wand
 ItemVulva,ClitAndDildoVibratorbelt,Clit&Dildo Vibrating belt
+ItemVulva,HempRopeBelt,Hemp Rope Wand Belt
 ItemVulvaPiercings,,Clit
 ItemVulvaPiercings,StraightClitPiercing,Straight Clit Piercing
 ItemVulvaPiercings,RoundClitPiercing,Round Clit Piercing
@@ -559,7 +566,7 @@ ItemNipplesPiercings,NippleChastityPiercing1,Chastity Guard Shield
 ItemNipplesPiercings,NippleChastityPiercing2,Chastity Cross Shield
 ItemNipplesPiercings,VibeHeartPiercings,Vibrating Heart Piercings
 ItemNipplesPiercings,BellPiercing,Nipple Bell Piercings
-ItemBreast,,Breast
+ItemBreast,,Breasts
 ItemBreast,MetalChastityBra,Metal Chastity Bra
 ItemBreast,PolishedChastityBra,Polished Chastity Bra
 ItemBreast,OrnateChastityBra,Ornate Chastity Bra

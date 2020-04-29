@@ -32,7 +32,7 @@ LARPOptionRestrainMouth,Gag her (OptionOdds %)
 LARPOptionRestrainMouthSuccess,SourceName (SourceNumber) successfully gags TargetName (TargetNumber) using: ItemDesc.  [ActionOdds >= ActionRNG]
 LARPOptionRestrainMouthFail,SourceName (SourceNumber) fails to gag TargetName (TargetNumber) using: ItemDesc.  [ActionOdds < ActionRNG]
 LARPOptionTighten,Tighten (OptionOdds %)
-LARPOptionTightenSuccess,SourceName (SourceNumber) tightens TargetName (TargetNumber) bondage.
+LARPOptionTightenSuccess,"SourceName (SourceNumber) tightens TargetName (TargetNumber) bondage, resetting her struggle progress."
 LARPOptionStruggle,Struggle (OptionOdds %)
 LARPOptionStruggleSuccess,TargetName (TargetNumber) struggles out successfully and frees her arms.  [ActionOdds >= ActionRNG]
 LARPOptionStruggleFail,TargetName (TargetNumber) tries to struggle out but fails.  [ActionOdds < ActionRNG]
@@ -61,12 +61,14 @@ LARPOptionCostumeSuccess,SourceName (SourceNumber) costumes TargetName (TargetNu
 LARPOptionEvasion,Evasion (OptionOdds %)
 LARPOptionEvasionSuccess,SourceName (SourceNumber) uses her evasion abilities to remove her restraint.
 LARPOptionRescue,Rescue (OptionOdds %)
+LARPOptionRescueSuccess,SourceName (SourceNumber) rescues TargetName (TargetNumber).  Removing her restraint.
 LARPOptionSilence,Silence (OptionOdds %)
 LARPOptionSilenceSuccess,SourceName (SourceNumber) silences TargetName (TargetNumber) and gag her using: ItemDesc.
-LARPOptionSupport,Support (OptionOdds %)
-LARPOptionSupportSuccess,"SourceName (SourceNumber) supports her team, giving a 25% defensive bonus for a full cycle."
+LARPOptionUngag,Ungag (OptionOdds %)
+LARPOptionUngagSuccess,SourceName (SourceNumber) ungags TargetName (TargetNumber).
 LARPOptionCover,Cover (OptionOdds %)
 LARPOptionCoverSuccess,"SourceName (SourceNumber) covers TargetName (TargetNumber), no opponent can target her for a full cycle."
 LARPOptionDress,Dress (OptionOdds %)
 LARPOptionDressSuccess,SourceName (SourceNumber) dresses back using: ItemDesc.
-LARPOptionVoice,Voice (OptionOdds %)
+LARPOptionSupport,Support (OptionOdds %)
+LARPOptionSupportSuccess,"SourceName (SourceNumber) supports her team, giving a 25% defensive bonus for a full cycle."

@@ -1,6 +1,12 @@
 "use strict";
 
-// Add a new item by group & name to character inventory
+/**
+* Add a new item by group & name to character inventory
+* @param {Character} C - The character that gets the new item added to her inventory
+* @param {String} NewItemName - The name of the new item to add
+* @param {String} NewItemGroup - The group name of the new item to add
+* @param {Boolean} Push - Set to TRUE to push to the server
+*/
 function InventoryAdd(C, NewItemName, NewItemGroup, Push) {
 
 	// First, we check if the inventory already exists, exit if it's the case
@@ -35,7 +41,13 @@ function InventoryAdd(C, NewItemName, NewItemGroup, Push) {
 
 }
 
-// Deletes an item from the character inventory
+/**
+* Deletes an item from the character inventory
+* @param {Character} C - The character on which we should remove the item
+* @param {String} DelItemName - The name of the item to delete
+* @param {String} DelItemGroup - The group name of the item to delete
+* @param {Boolean} Push - Set to TRUE to push to the server
+*/
 function InventoryDelete(C, DelItemName, DelItemGroup, Push) {
 
 	// First, we remove the item from the player inventory
@@ -51,17 +63,29 @@ function InventoryDelete(C, DelItemName, DelItemGroup, Push) {
 
 }
 
-// Loads the current inventory for a character
+/**
+* Loads the current inventory for a character, can be loaded from an object of Name/Group or a compressed array using LZString
+* @param {Character} C - The character on which we should load the inventory
+* @param {Array} Inventory - An array of Name / Group of items to load
+*/
 function InventoryLoad(C, Inventory) {
-
-	// Add each items one by one from the server by name/group
-	if (Inventory != null)
+	if (Inventory == null) return;
+	if (typeof Inventory === "string") {
+		var Inv = JSON.parse(LZString.decompressFromUTF16(Inventory));
+		for (var I = 0; I < Inv.length; I++)
+			InventoryAdd(C, Inv[I][0], Inv[I][1], false);
+	}
+	if (typeof Inventory === "object")
 		for (var I = 0; I < Inventory.length; I++)
 			InventoryAdd(C, Inventory[I].Name, Inventory[I].Group, false);
-
 }
 
-// Checks if the character has the inventory available
+/**
+* Checks if the character has the inventory available
+* @param {Character} C - The character on which we should remove the item
+* @param {String} InventoryName - The name of the item to validate
+* @param {String} InventoryGroup - The group name of the item to validate
+*/
 function InventoryAvailable(C, InventoryName, InventoryGroup) {
 	for (var I = 0; I < C.Inventory.length; I++)
 		if ((C.Inventory[I].Name == InventoryName) && (C.Inventory[I].Group == InventoryGroup))
@@ -69,11 +93,17 @@ function InventoryAvailable(C, InventoryName, InventoryGroup) {
 	return false;
 }
 
-// Returns an error message if a prerequisite clashes with the character items and clothes
+/**
+* Returns an error message if a prerequisite clashes with the character items and clothes
+* @param {Character} C - The character on which we check for prerequisites
+* @param {String} Prerequisite - The name of the prerequisite
+* @returns {String} - The error tag, can be converted to an error message
+*/
 function InventoryPrerequisiteMessage(C, Prerequisite) {
 
 	// Basic prerequisites that can apply to many items
 	if (Prerequisite == "NoItemFeet") return (InventoryGet(C, "ItemFeet") != null) ? "MustFreeFeetFirst" : "";
+	if (Prerequisite == "NoItemArms") return (InventoryGet(C, "ItemArms") != null) ? "MustFreeArmsFirst" : "";
 	if (Prerequisite == "NoItemLegs") return (InventoryGet(C, "ItemLegs") != null) ? "MustFreeLegsFirst" : "";
 	if (Prerequisite == "NoItemHands") return (InventoryGet(C, "ItemHands") != null) ? "MustFreeHandsFirst" : "";
 	if (Prerequisite == "LegsOpen") return (C.Pose.indexOf("LegsClosed") >= 0) ? "LegsCannotOpen" : "";
@@ -147,7 +177,13 @@ function InventoryPrerequisiteMessage(C, Prerequisite) {
 
 }
 
-// Returns TRUE if we can add the item, no other items must block that prerequisite
+/**
+* Returns TRUE if we can add the item, no other items must block that prerequisite
+* @param {Character} C - The character on which we check for prerequisites
+* @param {(Array|String)} Prerequisite - An array of prerequisites or a string for a single prerequisite
+* @param {Boolean} SetDialog - If TRUE, set the screen dialog message at the same time
+* @returns {Boolean} - TRUE if the item can be added to the character
+*/
 function InventoryAllow(C, Prerequisite, SetDialog) {
 
 	// Prerequisite can be a string, in that case there's only one check
@@ -167,7 +203,12 @@ function InventoryAllow(C, Prerequisite, SetDialog) {
 
 }
 
-// Gets the current item worn a specific spot
+/**
+* Gets the current item / cloth worn a specific area (AssetGroup)
+* @param {Character} C - The character on which we must check the appearance
+* @param {String} AssetGroup - The name of the asset group to scan
+* @returns {AppearanceItem} - Returns the appearance which is the item / cloth asset, color and properties
+*/
 function InventoryGet(C, AssetGroup) {
 	for (var A = 0; A < C.Appearance.length; A++)
 		if ((C.Appearance[A].Asset != null) && (C.Appearance[A].Asset.Group.Family == C.AssetFamily) && (C.Appearance[A].Asset.Group.Name == AssetGroup))
@@ -175,17 +216,29 @@ function InventoryGet(C, AssetGroup) {
 	return null;
 }
 
-// Makes the character wear an item, color can be undefined
+/**
+* Makes the character wear an item on a body area
+* @param {Character} C - The character that must wear the item
+* @param {String} AssetName - The name of the asset to wear
+* @param {String} AssetGroup - The name of the asset group to wear
+* @param {String} ItemColor - The hex color of the item, can be undefined or "Default"
+* @param {Int} Difficulty - The difficulty level to escape from the item
+*/
 function InventoryWear(C, AssetName, AssetGroup, ItemColor, Difficulty) {
 	for (var A = 0; A < Asset.length; A++)
 		if ((Asset[A].Name == AssetName) && (Asset[A].Group.Name == AssetGroup)) {
-			CharacterAppearanceSetItem(C, AssetGroup, Asset[A], ((ItemColor == null) || (ItemColor == "Default")) ? AssetGet(C.AssetFamily, AssetGroup, AssetName).DefaultColor : ItemColor, Difficulty);
+			CharacterAppearanceSetItem(C, AssetGroup, Asset[A], ((ItemColor == null) || (ItemColor == "Default")) ? Asset[A].DefaultColor : ItemColor, Difficulty);
 			InventoryExpressionTrigger(C, InventoryGet(C, AssetGroup));
 			return;
 		}
 }
 
-// Sets the difficulty to remove an item
+/**
+* Sets the difficulty to remove an item for a body area
+* @param {Character} C - The character that is wearing the item
+* @param {String} AssetGroup - The name of the asset group
+* @param {Int} Difficulty - The new difficulty level to escape from the item
+*/
 function InventorySetDifficulty(C, AssetGroup, Difficulty) {
 	if ((Difficulty >= 0) && (Difficulty <= 100))
 		for (var A = 0; A < C.Appearance.length; A++)
@@ -194,13 +247,24 @@ function InventorySetDifficulty(C, AssetGroup, Difficulty) {
 	if ((CurrentModule != "Character") && (C.ID == 0)) ServerPlayerAppearanceSync();
 }
 
-// Returns TRUE if there's already a locked item at a given position
+/**
+* Returns TRUE if there's already a locked item at a given body area
+* @param {Character} C - The character that is wearing the item
+* @param {String} AssetGroup - The name of the asset group (body area)
+* @param {Boolean} CheckProperties - Set to TRUE to check for additionnal properties
+* @returns {Boolean} - TRUE if the item is locked
+*/
 function InventoryLocked(C, AssetGroup, CheckProperties) {
 	var I = InventoryGet(C, AssetGroup);
 	return ((I != null) && InventoryItemHasEffect(I, "Lock", CheckProperties));
 }
 
-// Makes the character wear a random item from a group
+/**
+* Makes the character wear a random item from a body area, the character doesn't need to own the item
+* @param {Character} C - The character that must wear the item
+* @param {String} GroupName - The name of the asset group (body area)
+* @param {Int} Difficulty - The difficulty level to escape from the item
+*/
 function InventoryWearRandom(C, GroupName, Difficulty) {
 	if (!InventoryLocked(C, GroupName)) {
 
@@ -228,7 +292,11 @@ function InventoryWearRandom(C, GroupName, Difficulty) {
 	}
 }
 
-// Removes a specific item from the player appearance
+/**
+* Removes a specific item from a character body area
+* @param {Character} C - The character on which we must remove the item
+* @param {String} AssetGroup - The name of the asset group (body area)
+*/
 function InventoryRemove(C, AssetGroup) {
 
 	// Loops until we find the item group to remove
@@ -249,8 +317,13 @@ function InventoryRemove(C, AssetGroup) {
 
 }
 
-// Returns TRUE if the group for a character is blocked and cannot be used
-function InventoryGroupIsBlocked(C, GroupName = null) {
+/**
+* Returns TRUE if the body area (Asset Group) for a character is blocked and cannot be used
+* @param {Character} C - The character on which we validate the group
+* @param {String} GroupName - The name of the asset group (body area)
+* @returns {Boolean} - TRUE if the group is blocked
+*/
+function InventoryGroupIsBlocked(C, GroupName) {
 
 	// Default to characters focused group
 	if (GroupName == null) GroupName = C.FocusGroup.Name;
@@ -277,11 +350,15 @@ function InventoryGroupIsBlocked(C, GroupName = null) {
 
 }
 
-// Returns TRUE if the item has a specific effect.
+/**
+* Returns TRUE if an item has a specific effect
+* @param {AppearanceItem} Item - The item from appearance that must be validated
+* @param {String} Effect - The name of the effect to validate, can be undefined to check for any effect
+* @param {Boolean} CheckProperties - Set to TRUE to check for item extra properties
+* @returns {Boolean} - TRUE if the effect is on the item
+*/
 function InventoryItemHasEffect(Item, Effect, CheckProperties) {
 	if (!Item) return null;
-
-	// If no effect is specified, we simply check if the item has any effect
 	if (!Effect) {
 		if ((Item.Asset && Item.Asset.Effect) || (CheckProperties && Item.Property && Item.Property.Effect)) return true;
 		else return false;
@@ -292,7 +369,11 @@ function InventoryItemHasEffect(Item, Effect, CheckProperties) {
 	}
 }
 
-// Check if we must trigger an expression for the character after an item is used/applied
+/**
+* Check if we must trigger an expression for the character after an item is used/applied
+* @param {Character} C - The character that we must validate
+* @param {AppearanceItem} Item - The item from appearance that we must validate
+*/
 function InventoryExpressionTrigger(C, Item) {
 	if ((Item != null) && (Item.Asset != null) && (Item.Asset.DynamicExpressionTrigger(C) != null))
 		for (var E = 0; E < Item.Asset.DynamicExpressionTrigger(C).length; E++) {
@@ -302,7 +383,11 @@ function InventoryExpressionTrigger(C, Item) {
 		}
 }
 
-// Returns the item that locks another item
+/**
+* Returns the padlock item that locks another item
+* @param {AppearanceItem} Item - The item from appearance that must be scanned
+* @returns {Asset} - The asset of the padlock item or NULL if none
+*/
 function InventoryGetLock(Item) {
 	if ((Item == null) || (Item.Property == null) || (Item.Property.LockedBy == null)) return null;
 	for (var A = 0; A < Asset.length; A++)
@@ -311,7 +396,11 @@ function InventoryGetLock(Item) {
 	return null;
 }
 
-// Returns TRUE if the item has an OwnerOnly flag, such as the owner padlock
+/**
+* Returns TRUE if the item has an OwnerOnly flag, such as the owner padlock
+* @param {AppearanceItem} Item - The item from appearance that must be scanned
+* @returns {Boolean} - TRUE if owner only
+*/
 function InventoryOwnerOnlyItem(Item) {
 	if (Item == null) return false;
 	if (Item.Asset.OwnerOnly) return true;
@@ -322,7 +411,11 @@ function InventoryOwnerOnlyItem(Item) {
 	return false;
 }
 
-// Returns TRUE if the item has an LoverOnly flag, such as the lover padlock
+/**
+* Returns TRUE if the item has a LoverOnly flag, such as the lover padlock
+* @param {AppearanceItem} Item - The item from appearance that must be scanned
+* @returns {Boolean} - TRUE if lover only
+*/
 function InventoryLoverOnlyItem(Item) {
 	if (Item == null) return false;
 	if (Item.Asset.LoverOnly) return true;
@@ -333,7 +426,11 @@ function InventoryLoverOnlyItem(Item) {
 	return false;
 }
 
-// Returns TRUE if the character is wearing at least one restraint that's locked with an extra lock
+/**
+* Returns TRUE if the character is wearing at least one restraint that's locked with an extra lock
+* @param {Character} C - The character to scan
+* @returns {Boolean} - TRUE if one restraint with an extra lock is found
+*/
 function InventoryCharacterHasLockedRestraint(C) {
 	if (C.Appearance != null)
 		for (var A = 0; A < C.Appearance.length; A++)
@@ -342,7 +439,11 @@ function InventoryCharacterHasLockedRestraint(C) {
 	return false;
 }
 
-// Returns TRUE if the character is wearing at least one item that's a restraint with a OwnerOnly flag, such as the owner padlock
+/**
+* Returns TRUE if the character is wearing at least one item that's a restraint with a OwnerOnly flag, such as the owner padlock
+* @param {Character} C - The character to scan
+* @returns {Boolean} - TRUE if one owner only restraint is found
+*/
 function InventoryCharacterHasOwnerOnlyRestraint(C) {
 	if ((C.Ownership == null) || (C.Ownership.MemberNumber == null) || (C.Ownership.MemberNumber == "")) return false;
 	if (C.Appearance != null)
@@ -352,7 +453,11 @@ function InventoryCharacterHasOwnerOnlyRestraint(C) {
 	return false;
 }
 
-// Returns TRUE if at least one item on the character can be locked
+/**
+* Returns TRUE if at least one item on the character can be locked
+* @param {Character} C - The character to scan
+* @returns {Boolean} - TRUE if at least one item can be locked
+*/
 function InventoryHasLockableItems(C) {
 	for (var I = 0; I < C.Appearance.length; I++)
 		if (C.Appearance[I].Asset.AllowLock && (InventoryGetLock(C.Appearance[I]) == null))
@@ -360,7 +465,13 @@ function InventoryHasLockableItems(C) {
 	return false;
 }
 
-// Applies a lock to an inventory item
+/**
+* Applies a lock to an appearance item of a character
+* @param {Character} C - The character on which the lock must be applied
+* @param {AppearanceItem} Item - The item from appearance to lock
+* @param {(Asset|String)} Lock - The asset of the lock or the name of the lock asset
+* @param {Int} MemberNumber - The member number to put on the lock
+*/
 function InventoryLock(C, Item, Lock, MemberNumber) {
 	if (typeof Item === 'string') Item = InventoryGet(C, Item);
 	if (typeof Lock === 'string') Lock = { Asset: AssetGet(C.AssetFamily, "ItemMisc", Lock) };
@@ -375,7 +486,11 @@ function InventoryLock(C, Item, Lock, MemberNumber) {
 	}
 }
 
-// Unlocks an item and removes all related properties
+/**
+* Unlocks an item and removes all related properties
+* @param {Character} C - The character on which the item must be unlocked
+* @param {AppearanceItem} Item - The item from appearance to unlock
+*/
 function InventoryUnlock(C, Item) {
 	if (typeof Item === 'string') Item = InventoryGet(C, Item);
 	if (Item && Item.Property && Item.Property.Effect) {
@@ -387,7 +502,12 @@ function InventoryUnlock(C, Item) {
 	}
 }
 
-// Applies a random lock on an item
+/**
+* Applies a random lock on an item
+* @param {Character} C - The character on which the item must be locked
+* @param {AppearanceItem} Item - The item from appearance to lock
+* @param {Boolean} FromOwner - Set to TRUE if the source is the owner, to apply owner locks
+*/
 function InventoryLockRandom(C, Item, FromOwner) {
 	if (Item.Asset.AllowLock) {
 		var List = [];
@@ -401,28 +521,42 @@ function InventoryLockRandom(C, Item, FromOwner) {
 	}
 }
 
-// Applies random locks on each character items that can be locked
+/**
+* Applies random locks on each character items that can be locked
+* @param {Character} C - The character on which the items must be locked
+* @param {Boolean} FromOwner - Set to TRUE if the source is the owner, to apply owner locks
+*/
 function InventoryFullLockRandom(C, FromOwner) {
 	for (var I = 0; I < C.Appearance.length; I++)
 		if (C.Appearance[I].Asset.AllowLock && (InventoryGetLock(C.Appearance[I]) == null))
 			InventoryLockRandom(C, C.Appearance[I], FromOwner);
 }
 
-// Removes all common keys from the player inventory
+/**
+* Removes all common keys from the player inventory
+*/
 function InventoryConfiscateKey() {
 	InventoryDelete(Player, "MetalCuffsKey", "ItemMisc");
 	InventoryDelete(Player, "MetalPadlockKey", "ItemMisc");
 	InventoryDelete(Player, "IntricatePadlockKey", "ItemMisc");
 }
 
-// Removes the remotes of the vibrators from the player inventory
+/**
+* Removes the remotes of the vibrators from the player inventory
+*/
 function InventoryConfiscateRemote() {
 	InventoryDelete(Player, "VibratorRemote", "ItemVulva");
 	InventoryDelete(Player, "VibratorRemote", "ItemNipples");
 }
 
-// Returns TRUE if the item is worn by the character
-function InventoryIsWorn(C, AssetName, AssetGroup){
+/**
+* Returns TRUE if the item is worn by the character
+* @param {Character} C - The character to scan
+* @param {String} AssetName - The asset / item name to scan
+* @param {String} AssetGroup - The asset group name to scan
+* @returns {Boolean} - TRUE if item is worn
+*/
+function InventoryIsWorn(C, AssetName, AssetGroup) {
 	if ((C != null) && (C.Appearance != null) && Array.isArray(C.Appearance))
 		for (var A = 0; A < C.Appearance.length; A++)
 			if ((C.Appearance[A].Asset.Name == AssetName) && (C.Appearance[A].Asset.Group.Name == AssetGroup))
@@ -430,7 +564,13 @@ function InventoryIsWorn(C, AssetName, AssetGroup){
 	return false;
 }
 
-// Returns TRUE if a specific asset is blocked by the character permissions
+/**
+* Returns TRUE if a specific item / asset is blocked by the character item permissions
+* @param {Character} C - The character on which we check the permissions
+* @param {String} AssetName - The asset / item name to scan
+* @param {String} AssetGroup - The asset group name to scan
+* @returns {Boolean} - TRUE if asset / item is blocked
+*/
 function InventoryIsPermissionBlocked(C, AssetName, AssetGroup) {
 	if ((C != null) && (C.BlockItems != null) && Array.isArray(C.BlockItems))
 		for (var B = 0; B < C.BlockItems.length; B++)

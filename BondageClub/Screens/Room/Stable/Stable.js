@@ -3,8 +3,6 @@
 var StableBackground = "HorseStable";
 var StableTrainer = null;
 var StablePony = null;
-var StablePolice = null;
-var StablePlayerIsCatchBadGirl = false;
 var StablePonyPass = false;
 var StablePonyFail = false;
 var StablePlayerAppearance = null;
@@ -73,8 +71,6 @@ function StableLoad() {
 		} else {
 			StablePony.AllowItem = false;
 		}
-		StablePolice = CharacterLoadNPC("NPC_Stable_Police");
-		PrisonWearPoliceEquipment(StablePolice);
 	}
 	StablePlayerInIsolation = false;
 }
@@ -90,16 +86,13 @@ function StableRun() {
 		if ((StablePlayerInIsolationEnd != null) && (CommonTime() >= StablePlayerInIsolationEnd)) {
 			StablePlayerInIsolation = false;
 		}
-	} else if (StablePlayerIsCatchBadGirl == true) {
-		DrawCharacter(Player, 250, 0, 1);
-		DrawCharacter(StablePolice, 750, 0, 1);
 	} else {
 		DrawCharacter(Player, 250, 0, 1);
 		DrawCharacter(StableTrainer, 750, 0, 1);
 		DrawCharacter(StablePony, 1250, 0, 1);
 		if (Player.CanWalk() && (!StablePlayerTrainingActiv || StablePlayerIsExamPony)) DrawButton(1885, 25, 90, 90, "", "White", "Icons/Exit.png");
 		DrawButton(1885, 145, 90, 90, "", "White", "Icons/Character.png");
-		if (StableCanHideDice()) DrawButton(1885, 265, 90, 90, "", "White", "Icons/DiceHide.png");
+		if (StableCanHideDice()) DrawButton(1885, 265, 90, 90, "", "White", "Icons/DiceHide.png", TextGet("HideDice"));
 		//DrawButton(1885, 265, 90, 90, "", "White", "Screens/Room/Stable/Horse.png");
 	}
 	StablePlayerIsPony = (LogQuery("JoinedStable", "Pony") && (ReputationGet("Dominant") < -30)) && !StablePlayerDressOff;
@@ -117,9 +110,6 @@ function StableClick() {
 		// If the user wants to speed up the add / swap / remove progress
 		if ((MouseX >= 0) && (MouseX < 2000) && (MouseY >= 200) && (MouseY < 1000) && (StableProgress >= 0) && CommonIsMobile) StableGenericRun(false);
 		if ((MouseX >= 1750) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 100)) StableGenericCancel();
-	} else if (StablePlayerIsCatchBadGirl == true) {
-		if ((MouseX >= 250) && (MouseX < 750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
-		if ((MouseX >= 750) && (MouseX < 1250) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(StablePolice);
 	} else {
 		if ((MouseX >= 250) && (MouseX < 750) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(Player);
 		if ((MouseX >= 750) && (MouseX < 1250) && (MouseY >= 0) && (MouseY < 1000)) CharacterSetCurrent(StableTrainer);
@@ -1072,37 +1062,11 @@ function StableCharacterAppearanceGroupAvailable(C, AppearanceGroup) {
 // Try to Hide the Dice for BadGirlsClub
 function StableHideDice() {
 	if (Math.random() < 0.25) {
-		StablePlayerIsCatchBadGirl = true;
-		CharacterSetCurrent(StablePolice);
+		PrisonMeetPoliceIntro("HorseStable");
 	} else {
+		CharacterSetCurrent(Player);
+		Player.CurrentDialog = TextGet("SuccessHide");
 		LogDelete("Stolen", "BadGirl");
 		LogAdd("Hide", "BadGirl");
-	}
-}
-
-// Catch the Plyer for hide Dices
-function StableCatchByPolice() {
-	StablePlayerIsCatchBadGirl = false;
-	PrisonCatchByPolice();
-}
-
-// When a fight starts between the player and the Police
-function StableFightPolice() {
-	KidnapStart(StablePolice, "HorseStableDark", Math.floor(Math.random() * 10), "StableFightPoliceEnd()");
-}
-
-// When the fight against Police ends
-function StableFightPoliceEnd() {
-	SkillProgress("Willpower", ((Player.KidnapMaxWillpower - Player.KidnapWillpower) + (StablePolice.KidnapMaxWillpower - StablePolice.KidnapWillpower)) * 2);
-	CharacterRelease(StablePolice);
-	InventoryRemove(StablePolice, "ItemNeck");
-	PrisonWearPoliceEquipment(StablePolice);
-	if (!KidnapVictory) {
-		CommonSetScreen("Room", "Stable");
-		StablePolice.Stage = 10;
-		CharacterSetCurrent(StablePolice);
-	}else{
-		StablePlayerIsCatchBadGirl = false;
-		CommonSetScreen("Room", "MainHall");
 	}
 }

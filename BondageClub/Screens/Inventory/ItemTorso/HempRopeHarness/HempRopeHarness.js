@@ -25,13 +25,13 @@ const HempRopeTorsoOptions = [
 	}
 ];
 
-var HempRopeOptionOffset = 0;
+var HempRopeTorsoOptionOffset = 0;
 
 // Loads the item extension properties
 function InventoryItemTorsoHempRopeHarnessLoad() {
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = HempRopeTorsoOptions[0].Property;
 	DialogExtendedMessage = DialogFind(Player, "SelectRopeBondage");
-	HempRopeOptionOffset = 0;
+	HempRopeTorsoOptionOffset = 0;
 }
 
 // Draw the item extension screen
@@ -45,8 +45,8 @@ function InventoryItemTorsoHempRopeHarnessDraw() {
 	DrawText(DialogExtendedMessage, 1500, 375, "white", "gray");
 	
 	// Draw the possible positions and their requirements, 4 at a time in a 2x2 grid
-	for (var I = HempRopeOptionOffset; (I < HempRopeTorsoOptions.length) && (I < HempRopeOptionOffset + 4); I++) {
-		var offset = I - HempRopeOptionOffset;
+	for (var I = HempRopeTorsoOptionOffset; (I < HempRopeTorsoOptions.length) && (I < HempRopeTorsoOptionOffset + 4); I++) {
+		var offset = I - HempRopeTorsoOptionOffset;
 		var X = 1200 + (offset % 2 * 387);
 		var Y = 450 + (Math.floor(offset / 2) * 300);
 		var FailSkillCheck = (HempRopeTorsoOptions[I].RequiredBondageLevel != null && SkillGetLevelReal(Player, "Bondage") < HempRopeTorsoOptions[I].RequiredBondageLevel);
@@ -62,12 +62,12 @@ function InventoryItemTorsoHempRopeHarnessClick() {
 
 	// Menu buttons
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1775) && (MouseX <= 1865) && (MouseY >= 25) && (MouseY <= 110)) HempRopeOptionOffset += 4;
-	if (HempRopeOptionOffset > HempRopeTorsoOptions.length) HempRopeOptionOffset = 0;
+	if ((MouseX >= 1775) && (MouseX <= 1865) && (MouseY >= 25) && (MouseY <= 110)) HempRopeTorsoOptionOffset += 4;
+	if (HempRopeTorsoOptionOffset >= HempRopeTorsoOptions.length) HempRopeTorsoOptionOffset = 0;
 
 	// Item buttons
-	for (var I = HempRopeOptionOffset; (I < HempRopeTorsoOptions.length) && (I < HempRopeOptionOffset + 4); I++) {
-		var offset = I - HempRopeOptionOffset;
+	for (var I = HempRopeTorsoOptionOffset; (I < HempRopeTorsoOptions.length) && (I < HempRopeTorsoOptionOffset + 4); I++) {
+		var offset = I - HempRopeTorsoOptionOffset;
 		var X = 1200 + (offset % 2 * 387);
 		var Y = 450 + (Math.floor(offset / 2) * 300);
 
@@ -97,17 +97,12 @@ function InventoryItemTorsoHempRopeSetPose(NewType) {
 	if (NewType.Expression != null)
 		for (var E = 0; E < NewType.Expression.length; E++)
 			CharacterSetFacialExpression(C, NewType.Expression[E].Group, NewType.Expression[E].Name, NewType.Expression[E].Timer);
-
-	if (NewType.HiddenItem != null) {
-		InventoryWear(C, NewType.HiddenItem, "ItemHidden", DialogFocusItem.Color);
-	}
+	if (NewType.HiddenItem != null) InventoryWear(C, NewType.HiddenItem, "ItemHidden", DialogFocusItem.Color);
 	else InventoryRemove(C, "ItemHidden");
-
 	CharacterRefresh(C);
 
 	// Sets the chatroom or NPC message
 	if (CurrentScreen == "ChatRoom") {
-		ChatRoomCharacterUpdate(C);
 		var msg = "RopeHarnessSet" + NewType.Name;
 		var Dictionary = [];
 		Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});

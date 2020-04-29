@@ -155,7 +155,7 @@ function InventoryItemNeckSlaveCollarClick() {
                     CharacterAppearanceSetColorForGroup(C, Color, "ItemNeck");
                     InventoryItemNeckSlaveCollarColorMode = false;
                     ElementRemove("InputColor");
-                    ChatRoomCharacterUpdate(C);
+                    ChatRoomCharacterItemUpdate(C);
                     if (CurrentScreen != "ChatRoom") CharacterRefresh(C);
                     DialogFocusItem = null;
                 }

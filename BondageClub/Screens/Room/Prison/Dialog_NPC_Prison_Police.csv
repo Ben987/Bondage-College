@@ -1,4 +1,40 @@
-0,,,Madam please follow me. We have some questions. ,
-0,,(follow her.),,CatchByPolice()
-0,,(try to escape.),,FightPolice()
-10,0,(follow her.),,CatchByPolice()
+CatchIntro,,,Madam please follow me. We have some questions. ,,
+CatchDefeat,,,"Follow me, I'm serious.",,
+Catch,,(Follow her.),,CatchByPolice(),
+Catch,,(Try to escape.),,FightPolice(),Player.CanInteract()
+CatchVictoryIntro,,,We'll get you next time.,,
+CatchVictory,,(Leave her.),,FightPoliceOutro(),
+CatchDefeat,,,"Follow me, I'm serious.",,
+ArrestIntro,,,Someone saw you steal the dice at the arcade.,,
+Arrest0,Arrest1,"Yes, I did.","Well, that saves us a lot of work. Where are the dice now?",SetBehavior(3),
+Arrest0,Arrest1,(Silence.),We'll find out the truth.  Where are the dice now?,,
+Arrest0,Arrest1,"No, it wasn't me.",We'll find out the truth. So again where are the dice?,SetBehavior(-1),
+Arrest1,Arrest2,I have them here.,Then hand them over.,SetBehavior(1),
+Arrest1,Arrest3,I hid them in the Stable.,"We'll check this out carefully later. Until then, you're under arrest.",SetBehavior(1),
+Arrest1,Arrest3,I won't tell.,"You'll tell us. Until then, you're under arrest.",SetBehavior(-2),
+Arrest1,Arrest3,(Silence.),You are under arrest as a suspect.,SetBehavior(-1),
+Arrest2,Arrest3,(Give her the dice.),(She takes the dice.) You're under arrest until further notice.,ArrestHandoverDices(),
+Arrest2,Arrest3,I'll never give them up!,"We'll check this out carefully in a moment. Until then, you're under arrest.",SetBehavior(-1),
+Arrest3,Arrest4,(Nod resigned.),Do you have any weapons or drugs on you?,SetBehavior(1),
+Arrest3,Arrest4,(Silence.),Do you have any weapons or drugs on you?,,
+Arrest3,Arrest4,"No, you can't do that!","You bet we can. If you have keys, weapons or drugs, give them up.",SetBehavior(-1),
+Arrest4,Arrest4,Here are my keys.,Anything else?,ArrestHandoverKeys(),PrisonPlayerHasKeys()
+Arrest4,Arrest4,Here are my sleeping pills.,Anything else?,ArrestHandoverSleepingPills(),PrisonPlayerHasSleepingPills()
+Arrest4,Arrest4,Here are my spanking toys.,Anything else?,ArrestHandoverSpankingToys(),PrisonPlayerHasSpankingToys()
+Arrest4,Arrest5,I don't have that.,"Well, let's get you strip-searched. Undress to check.",,
+Arrest5,Arrest7,(Take off all your clothes.),There you go. Spread your legs and bend over.,ArrestStripUnderware(),
+Arrest5,Arrest6,(Take off your outer clothing.),Completely undress.,ArrestStripOuterCloth(),
+Arrest5,Arrest6,(Refuse and wait and see.),Will it be soon? We can do it differently!,SetBehavior(-2),
+Arrest6,Arrest7,(Take off the underwear.),Finally. Spread your legs and bend over.,ArrestStripUnderware(),
+Arrest6,Arrest6,(Take off your outer clothing.),Complete and a little bit snappy.,ArrestStripOuterCloth(),!CharacterIsInUnderwear(Player)
+Arrest7,Arrest8,(Spread your legs and bend over.),She's patting you down. Then she hands you a prisoner suit. Put it on.,,
+Arrest8,Arrest9,(Dress it on.),Now the shackles.,ArrestSuit(),
+Arrest9,,(Wait and see.),Now into the cell. I'll check your equipment.,ArrestEquipmentSearch(),
+Arrest10,,(Wait and see.),What is that? The Dices. Confiscated.,ArrestConfiscatDices(),
+Arrest11,,(Wait and see.),What is that? Keys. Confiscated.,ArrestConfiscatKeys(),
+Arrest12,,(Wait and see.),What is that? Spanking toys. Confiscated.,ConfiscatSpankingToys(),
+Arrest13,,(Wait and see.),What is that? Sleeping pills. Confiscated.,ConfiscatSleepingPills(),
+Arrest14,Arrest15,(Wait and see.),"All right, your bag is clear.",,
+Arrest15,Arrest16,(Wait and see.),Let me check your restraints again.,ArrestShackle(),
+Arrest16,Arrest17,(Wait and see.),I'm going. Think about your behavior.,ArrestLeave(),
+Arrest17,,(Watch her leave.),,,

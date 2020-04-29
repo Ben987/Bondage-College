@@ -74,6 +74,18 @@ Wie sieht die Pflichtuniform aus?
 Students must wear ties, a skirt like mine and high leg socks.  Also, nothing too exotic will be accepted.
 Schülerinnen brauchen eine Krawatte, einen Rock wie meinen hier, und hohe Strümpfe. Außerdem wird nichts zugelassen, das zu exotisch ist.
 ###_PLAYER
+Can I get a college uniform?
+Kann ich eine Schuluniform bekommen?
+###_NPC
+These uniforms are expensive and we can get punished if we lose them.  Try your luck with another student that knows you better.
+Diese Uniformen sind sehr teuer und wir können bestraft werden wenn wir sie verlieren. Versuche dein Glück bei einer Schülerin die dich besser kennt.
+###_PLAYER
+How can I go in the teacher's lounge?
+Kann ich in das Lehrerzimmer gehen?
+###_NPC
+Students are not allowed in there.  You'll need a key for that and they only give them to teachers.
+Schülerinnen sind dort nicht erlaubt. Du brauchst einen Schlüssel welcher nur an Lehrerinnen vergeben wird.
+###_PLAYER
 The place looks pretty old.
 Das alles hier sieht ziemlich alt aus.
 ###_NPC

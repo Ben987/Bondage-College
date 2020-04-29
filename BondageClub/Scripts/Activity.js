@@ -117,6 +117,12 @@ function ActivityEffect(S, C, A, Z) {
 
 }
 
+// Syncs the player arousal with everyone in chatroom
+function ActivityChatRoomArousalSync(C) {
+	if ((C.ID == 0) && (CurrentScreen == "ChatRoom"))
+		ServerSend("ChatRoomCharacterArousalUpdate", { OrgasmTimer: C.ArousalSettings.OrgasmTimer, Progress: C.ArousalSettings.Progress, ProgressTimer: C.ArousalSettings.ProgressTimer });
+}
+
 // Sets the character arousal level and validates the value
 function ActivitySetArousal(C, Progress) {
 	if ((C.ArousalSettings.Progress == null) || (typeof C.ArousalSettings.Progress !== "number") || isNaN(C.ArousalSettings.Progress)) C.ArousalSettings.Progress = 0;
@@ -126,8 +132,7 @@ function ActivitySetArousal(C, Progress) {
 	if (C.ArousalSettings.Progress != Progress) {
 		C.ArousalSettings.Progress = Progress;
 		C.ArousalSettings.ProgressTimer = 0;
-		if ((C.ID == 0) && (CurrentScreen == "ChatRoom"))
-			ChatRoomCharacterUpdate(Player);
+		ActivityChatRoomArousalSync(C);
 	}
 }
 
@@ -149,8 +154,7 @@ function ActivitySetArousalTimer(C, Activity, Zone, Progress) {
 	// If we must apply a progress timer change, we publish it
 	if ((C.ArousalSettings.ProgressTimer == null) || (C.ArousalSettings.ProgressTimer != Progress)) {
 		C.ArousalSettings.ProgressTimer = Progress;
-		if ((C.ID == 0) && (CurrentScreen == "ChatRoom"))
-			ChatRoomCharacterUpdate(Player);
+		ActivityChatRoomArousalSync(C);
 	}
 
 }
@@ -185,7 +189,7 @@ function ActivityOrgasmStart(C) {
 			var Dictionary = [];
 			Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
 			ServerSend("ChatRoomChat", {Content: "Orgasm" + (Math.floor(Math.random() * 10)).toString(), Type: "Activity", Dictionary: Dictionary});
-			ChatRoomCharacterUpdate(Player);
+			ActivityChatRoomArousalSync(C);
 		}
 	}
 }
@@ -198,7 +202,7 @@ function ActivityOrgasmStop(C, Progress) {
 		C.ArousalSettings.OrgasmStage = 0;
 		ActivitySetArousal(C, Progress);
 		ActivityTimerProgress(C, 0);
-		if (C.ID == 0) ChatRoomCharacterUpdate(Player);
+		ActivityChatRoomArousalSync(C);
 	}
 }
 
@@ -240,10 +244,7 @@ function ActivityOrgasmPrepare(C) {
 		C.ArousalSettings.OrgasmStage = (C.ID == 0) ? 0 : 2;
 		if (C.ID == 0) ActivityOrgasmGameTimer = C.ArousalSettings.OrgasmTimer - CurrentTime;
 		if ((CurrentCharacter != null) && ((C.ID == 0) || (CurrentCharacter.ID == C.ID))) DialogLeave();
-
-		// Sends the orgasm preparation to the chatroom, the bar turns pink
-		if ((C.ID == 0) && (CurrentScreen == "ChatRoom"))
-			ChatRoomCharacterUpdate(Player);
+		ActivityChatRoomArousalSync(C);
 
 		// If an NPC orgasmed, it will raise her love based on the horny trait
 		if ((C.AccountName.substring(0, 4) == "NPC_") || (C.AccountName.substring(0, 4) == "NPC-"))
@@ -292,7 +293,7 @@ function ActivityExpression(C, Progress) {
 	}
 
 	// Refreshes the character
-	CharacterRefresh(C);
+	CharacterRefresh(C, false);
 
 }
 
