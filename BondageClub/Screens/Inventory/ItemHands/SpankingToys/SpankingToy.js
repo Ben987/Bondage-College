@@ -65,6 +65,9 @@ const SpankingInventory = [
 	}, {
 		Name: "PetToy",
 		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }]
+	},{
+		Name: "Vibrator",
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }]
 	}
 ];
 
