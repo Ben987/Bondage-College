@@ -296,6 +296,7 @@ Glasses,Mask2,Domino Mask
 Glasses,ButterflyMask1,Butterfly Mask
 Glasses,EyePatch1,Eye Patch
 Glasses,ShinobiMask,Shinobi Mask
+Glasses,FoxMask,Fox Mask
 TailStraps,,Tail Strap
 TailStraps,TailStrap,Kitty Tail Strap
 TailStraps,HorseTailStrap,Horse Tail Strap
@@ -507,6 +508,8 @@ ItemButt,WolfTail3,Wolf Tail White
 ItemButt,DemonPlug,Demon Tail Plug
 ItemButt,MouseTail1,Mouse Tail 1
 ItemButt,MouseTail2,Mouse Tail 2
+ItemButt,BunnyTailPlug1,White Bunny Tail Plug
+ItemButt,BunnyTailPlug2,Brown Bunny Tail Plug
 ItemPelvis,,Pelvis
 ItemPelvis,StraponPanties,Strap-On Panties
 ItemPelvis,LeatherChastityBelt,Leather Chastity Belt
