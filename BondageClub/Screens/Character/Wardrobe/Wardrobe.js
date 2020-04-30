@@ -142,6 +142,8 @@ function WardrobeAssetBundle(A) {
 
 // Load character appearance from wardrobe, only load clothes on others
 function WardrobeFastLoad(C, W, Update) {
+	savedExpression = {};
+	if (C == Player) savedExpression = WardrobeGetExpression(Player);
 	if (Player.Wardrobe != null && Player.Wardrobe[W] != null) {
 		var AddAll = C.ID == 0 || C.AccountName.indexOf("Wardrobe-") == 0;
 		C.Appearance = C.Appearance
@@ -166,6 +168,16 @@ function WardrobeFastLoad(C, W, Update) {
 					C.Appearance.push({ Asset: Asset.find(a => a.Group.Name == g.Name), Difficulty: 0, Color: "Default" });
 				}
 			});
+		// Restores the expressions the player had previously per item in the appearance
+		if (C == Player) {
+			Player.Appearance.forEach(item => {
+				if (savedExpression[item.Asset.Group.Name] != null) {
+					if (item.Property == null) item.Property = {};
+					item.Property.Expression = savedExpression[item.Asset.Group.Name];
+					
+				}
+			});
+		}
 		CharacterLoadCanvas(C);
 		if (Update == null || Update) {
 			if (C.ID == 0 && C.OnlineID != null) ServerPlayerAppearanceSync();
@@ -193,4 +205,11 @@ function WardrobeFastSave(C, W, Push) {
 		if (WardrobeCharacter != null && WardrobeCharacter[W] != null && C.AccountName != WardrobeCharacter[W].AccountName) WardrobeFastLoad(WardrobeCharacter[W], W);
 		if ((Push == null) || Push) ServerSend("AccountUpdate", { Wardrobe: CharacterCompressWardrobe(Player.Wardrobe) });
 	}
+}
+
+//Returns the expressions of character C as a single big object
+function WardrobeGetExpression(C) {
+	characterExpression = {}
+	ServerAppearanceBundle(C.Appearance).filter(item=>item.Property != null && item.Property.Expression != null).forEach(item => characterExpression[item.Group] = item.Property.Expression);
+	return characterExpression;
 }
