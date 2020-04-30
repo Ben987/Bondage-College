@@ -582,10 +582,10 @@ function ChatRoomCharacterItemUpdate(C, Group) {
 }
 
 // Publishes a custom action to the chat
-function ChatRoomPublishCustomAction(msg, LeaveDialog, Dictionary, Push) {
+function ChatRoomPublishCustomAction(msg, LeaveDialog, Dictionary) {
 	if (CurrentScreen == "ChatRoom") {
 		ServerSend("ChatRoomChat", { Content: msg, Type: "Action", Dictionary: Dictionary} );
-		if ((Push == null) || Push) ChatRoomCharacterItemUpdate(CurrentCharacter);
+		ChatRoomCharacterItemUpdate(CurrentCharacter);
 		if (LeaveDialog && (CurrentCharacter != null)) DialogLeave();
 	}
 }
@@ -891,6 +891,14 @@ function ChatRoomSyncArousal(data) {
 		}
 }
 
+// Return TRUE if we can allow to change the item properties, when this item is owner/lover locked
+function ChatRoomAllowChangeLockedItem(Data, Item) {
+	if (Item.Asset.Name == "SlaveCollar") return false;
+	if ((Data.Item.Name == null) || (Data.Item.Name == "") || (Data.Item.Name != Item.Asset.Name)) return false;
+	if ((Data.Item.Property == null) || (Data.Item.Property.LockedBy == null) || (Data.Item.Property.LockedBy != Item.Property.LockedBy) || (Data.Item.Property.LockMemberNumber == null) || (Data.Item.Property.LockMemberNumber != Item.Property.LockMemberNumber)) return false;
+	return true;
+}
+
 // Updates a single character item in the chatroom
 function ChatRoomSyncItem(data) {
 	if ((data == null) || (typeof data !== "object") || (data.Source == null) || (typeof data.Source !== "number") || (data.Item == null) || (typeof data.Item !== "object") || (data.Item.Target == null) || (typeof data.Item.Target !== "number") || (data.Item.Group == null) || (typeof data.Item.Group !== "string")) return;
@@ -899,10 +907,13 @@ function ChatRoomSyncItem(data) {
 
 			// Prevent changing the item if the current item is locked by owner/lover locks
 			var Item = InventoryGet(ChatRoomCharacter[C], data.Item.Group);
-			if ((ChatRoomCharacter[C].Ownership != null) && (ChatRoomCharacter[C].Ownership.MemberNumber != data.Source) && InventoryOwnerOnlyItem(Item)) return;
-			if ((ChatRoomCharacter[C].Lovership != null) && (ChatRoomCharacter[C].Lovership.MemberNumber != data.Source) && InventoryLoverOnlyItem(Item))
-				if ((ChatRoomCharacter[C].Ownership == null) || (ChatRoomCharacter[C].Ownership.MemberNumber != data.Source))
+			if ((Item != null) && (ChatRoomCharacter[C].Ownership != null) && (ChatRoomCharacter[C].Ownership.MemberNumber != data.Source) && InventoryOwnerOnlyItem(Item))
+				if (!ChatRoomAllowChangeLockedItem(data, Item))
 					return;
+			if ((Item != null) && (ChatRoomCharacter[C].Lovership != null) && (ChatRoomCharacter[C].Lovership.MemberNumber != data.Source) && InventoryLoverOnlyItem(Item))
+				if ((ChatRoomCharacter[C].Ownership == null) || (ChatRoomCharacter[C].Ownership.MemberNumber != data.Source))
+					if (!ChatRoomAllowChangeLockedItem(data, Item))
+						return;
 
 			// If there's no name in the item packet, we remove the item instead of wearing it
 			if ((data.Item.Name == null) || (data.Item.Name == "")) {

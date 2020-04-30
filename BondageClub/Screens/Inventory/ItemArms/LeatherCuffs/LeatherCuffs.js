@@ -77,8 +77,7 @@ function InventoryItemArmsLeatherCuffsSetPose(NewPose) {
 	var Dictionary = [];
 	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
 	Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
-	ChatRoomPublishCustomAction(msg, true, Dictionary, false);
-	ChatRoomCharacterUpdate(C);
+	ChatRoomPublishCustomAction(msg, true, Dictionary);
 
 	// Rebuilds the inventory menu
 	if (DialogInventory != null) {
