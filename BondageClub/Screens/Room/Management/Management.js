@@ -35,8 +35,7 @@ function ManagementRefuseReleaseChastity() { return (Player.IsChaste() && !Manag
 function ManagementOwnerPending() { return (CommonTime() < ManagementMistressReleaseTimer) }
 function ManagementOwnerAccepted() { return ((CommonTime() >= ManagementMistressReleaseTimer) && ManagementCanReleaseChastity) }
 function ManagementOwnerRefused() { return ((CommonTime() >= ManagementMistressReleaseTimer) && !ManagementCanReleaseChastity) }
-function ManagementCanUnlockBra() { return ((Player.Money >= 25) && InventoryItemHasEffect(InventoryGet(Player, "ItemBreast"), "BreastChaste") && (!InventoryOwnerOnlyItem(InventoryGet(Player, "ItemBreast")) || (!Player.IsOwned() && !Player.Ownership
-))) }
+function ManagementCanUnlockBra() { return ((Player.Money >= 25) && InventoryItemHasEffect(InventoryGet(Player, "ItemBreast"), "BreastChaste") && (!InventoryOwnerOnlyItem(InventoryGet(Player, "ItemBreast")) || (!Player.IsOwned() && !Player.Ownership))) }
 function ManagementCanUnlockButt() { return ((Player.Money >= 25) && InventoryItemHasEffect(InventoryGet(Player, "ItemButt"), "Chaste") && !InventoryGroupIsBlocked(Player, "ItemButt") && (!InventoryOwnerOnlyItem(InventoryGet(Player, "ItemButt")) || (!Player.IsOwned() && !Player.Ownership))) }
 function ManagementCanUnlockVulva() { return ((Player.Money >= 25) && InventoryItemHasEffect(InventoryGet(Player, "ItemVulvaPiercings"), "Chaste") && !InventoryGroupIsBlocked(Player, "ItemVulvaPiercings") && (!InventoryOwnerOnlyItem(InventoryGet(Player, "ItemVulvaPiercings")) || (!Player.IsOwned() && !Player.Ownership))) }
 function ManagementCanUnlockNipples() { return ((Player.Money >= 25) && InventoryItemHasEffect(InventoryGet(Player, "ItemNipplesPiercings"), "BreastChaste") && !InventoryGroupIsBlocked(Player, "ItemNipplesPiercings") && (!InventoryOwnerOnlyItem(InventoryGet(Player, "ItemNipplesPiercings")) ||(!Player.IsOwned() && !Player.Ownership))) }
