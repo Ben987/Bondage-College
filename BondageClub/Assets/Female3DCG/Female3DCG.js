@@ -1046,6 +1046,7 @@ var AssetFemale3DCG = [
 			{ Name: "DemonPlug", Value: 45, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }] },
 			{ Name: "MouseTail1", Value: 45, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }] },
 			{ Name: "MouseTail2", Value: 45, Prerequisite: "AccessVulva", Time: 10, ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }] },
+			{ Name: "VibratingDildoPlug", Value: 60, Prerequisite: "AccessVulva", BuyGroup: "VibratingDildo", Effect: ["Egged"] },
 			AssetSpankingToys
 		]
 	},
