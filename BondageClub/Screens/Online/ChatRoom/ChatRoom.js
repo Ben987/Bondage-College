@@ -1132,6 +1132,8 @@ function ChatRoomSetRule(data) {
 		if (data.Content == "OwnerRuleLaborMaidDrinks") {
 			CharacterSetActivePose(Player, null);
 			InventoryRemove(Player, "ItemMouth");
+			InventoryRemove(Player, "ItemMouth2");
+			InventoryRemove(Player, "ItemMouth3");
 			ChatRoomCharacterUpdate(Player);
 			var D = TextGet("ActionGrabbedToServeDrinksIntro");
 			ServerSend("ChatRoomChat", { Content: "ActionGrabbedToServeDrinks", Type: "Action", Dictionary: [{Tag: "TargetCharacterName", Text: Player.Name, MemberNumber: Player.MemberNumber}]} );
