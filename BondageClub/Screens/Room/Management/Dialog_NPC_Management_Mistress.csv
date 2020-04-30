@@ -159,6 +159,7 @@ MistressExpulsion,,,We Mistresses have been speaking.  It seems you're not fit t
 112,,That's extortion!,"No, that's a lesson.  You pay or you go?",DialogRemove(),,
 112,113,Please unlock the bra.  (Pay her 25$.),Alright.  (You remove your clothes and she unlocks the bra.)  How does it feel?,"UnlockItem(""ItemBreast"")",CanUnlockBra(),
 112,113,Please unlock the belt.  (Pay her 25$.),Alright.  (You remove your clothes and she unlocks the belt.)  How does it feel?,"UnlockItem(""ItemPelvis"")",CanUnlockBelt(),
+112,113,Please unlock the nipple piercings.  (Pay her 25$.),Alright.  (You remove your clothes and she unlocks the piercings.)  How does it feel?,"UnlockItem(""ItemNipplesPiercings"")",CanUnlockNipples(),
 112,113,Please unlock the clit piercing.  (Pay her 25$.),Alright.  (You remove your clothes and she unlocks the piercing.)  How does it feel?,"UnlockItem(""ItemVulvaPiercings"")",CanUnlockVulva(),
 112,113,Please unlock the plug.  (Pay her 25$.),Alright.  (You remove your clothes and she unlocks the butt plug.)  How does it feel?,"UnlockItem(""ItemButt"")",CanUnlockButt(),
 112,0,I don't have enough money.,Get to work then.  I'm not doing any discount.,,!DialogMoneyGreater(25),
