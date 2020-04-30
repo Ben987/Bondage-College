@@ -30,13 +30,16 @@ function ManagementCanPlayWithoutPermission() { return (!ManagementMistressAllow
 function ManagementOwnerFromBondageCollege() { return ((Player.Owner == "NPC-Sidney") || (Player.Owner == "NPC-Amanda") || (Player.Owner == "NPC-Jennifer")) }
 function ManagementOwnerInPrivateRoom() { return PrivateOwnerInRoom() }
 function ManagementOwnerAway() { return !((Player.Owner == "NPC-Sidney") || (Player.Owner == "NPC-Amanda") || (Player.Owner == "NPC-Jennifer")) }
-function ManagementAllowReleaseChastity() { return (Player.IsChaste() && ManagementCanReleaseChastity && !InventoryOwnerOnlyItem(InventoryGet(Player, "ItemBreast"))&& !InventoryOwnerOnlyItem(InventoryGet(Player, "ItemPelvis"))) }
+function ManagementAllowReleaseChastity() { return (Player.IsChaste() && ManagementCanReleaseChastity && !InventoryOwnerOnlyItem(InventoryGet(Player, "ItemBreast")) && !InventoryOwnerOnlyItem(InventoryGet(Player, "ItemVulvaPiercings")) && !InventoryOwnerOnlyItem(InventoryGet(Player, "ItemNipplesPiercings")) && !InventoryOwnerOnlyItem(InventoryGet(Player, "ItemButt"))&& !InventoryOwnerOnlyItem(InventoryGet(Player, "ItemPelvis"))) }
 function ManagementRefuseReleaseChastity() { return (Player.IsChaste() && !ManagementCanReleaseChastity) }
 function ManagementOwnerPending() { return (CommonTime() < ManagementMistressReleaseTimer) }
 function ManagementOwnerAccepted() { return ((CommonTime() >= ManagementMistressReleaseTimer) && ManagementCanReleaseChastity) }
 function ManagementOwnerRefused() { return ((CommonTime() >= ManagementMistressReleaseTimer) && !ManagementCanReleaseChastity) }
-function ManagementCanUnlockBra() { return ((Player.Money >= 25) && Player.IsBreastChaste() && (!InventoryOwnerOnlyItem(InventoryGet(Player, "ItemBreast")) || !Player.IsOwned())) }
-function ManagementCanUnlockBelt() { return ((Player.Money >= 25) && Player.IsVulvaChaste() && (!InventoryOwnerOnlyItem(InventoryGet(Player, "ItemPelvis")) || !Player.IsOwned())) }
+function ManagementCanUnlockBra() { return ((Player.Money >= 25) && InventoryItemHasEffect(InventoryGet(Player, "ItemBreast"), "BreastChaste") && (!InventoryOwnerOnlyItem(InventoryGet(Player, "ItemBreast")) || !Player.IsOwned())) }
+function ManagementCanUnlockButt() { return ((Player.Money >= 25) && InventoryItemHasEffect(InventoryGet(Player, "ItemButt"), "Chaste") && !InventoryGroupIsBlocked(Player, "ItemButt") && (!InventoryOwnerOnlyItem(InventoryGet(Player, "ItemButt")) || !Player.IsOwned())) }
+function ManagementCanUnlockVulva() { return ((Player.Money >= 25) && InventoryItemHasEffect(InventoryGet(Player, "ItemVulvaPiercings"), "Chaste") && !InventoryGroupIsBlocked(Player, "ItemVulvaPiercings") && (!InventoryOwnerOnlyItem(InventoryGet(Player, "ItemVulvaPiercings")) || !Player.IsOwned())) }
+function ManagementCanUnlockNipples() { return ((Player.Money >= 25) && InventoryItemHasEffect(InventoryGet(Player, "ItemNipplesPiercings"), "BreastChaste") && !InventoryGroupIsBlocked(Player, "ItemNipplesPiercings") && (!InventoryOwnerOnlyItem(InventoryGet(Player, "ItemNipplesPiercings")) || !Player.IsOwned())) }
+function ManagementCanUnlockBelt() { return ((Player.Money >= 25) && InventoryItemHasEffect(InventoryGet(Player, "ItemPelvis"), "Chaste") && (!InventoryOwnerOnlyItem(InventoryGet(Player, "ItemPelvis")) || !Player.IsOwned())) }
 function ManagementEndChastityRelease() { ManagementMistressReleaseTimer = 0 }
 function ManagementCanReleaseFromOwnerFirst() { return ((Player.Money >= 60) && !LogQuery("ReleasedFromOwner", "Management")) }
 function ManagementCanReleaseFromOwner() { return ((Player.Money >= 200) && LogQuery("ReleasedFromOwner", "Management")) }
@@ -161,10 +164,14 @@ function ManagementPlayerArmbinder(ChangeRep) {
 // Straps many restrains and chastity items on the player
 function ManagementPlayerRandomRestrain() {
 	CharacterFullRandomRestrain(Player, "Lot");
-	InventoryWear(Player, "MetalChastityBelt", "ItemPelvis");
-	InventoryLock(Player, "ItemPelvis", "MistressPadlock", -1);
-	InventoryWear(Player, "MetalChastityBra", "ItemBreast");
-	InventoryLock(Player, "ItemBreast", "MistressPadlock", -1);
+	if (!InventoryOwnerOnlyItem(InventoryGet(Player, "ItemPelvis"))) {
+		InventoryWear(Player, "MetalChastityBelt", "ItemPelvis");
+		InventoryLock(Player, "ItemPelvis", "MistressPadlock", -1);
+	}
+	if (!InventoryOwnerOnlyItem(InventoryGet(Player, "ItemBreast"))) {
+		InventoryWear(Player, "MetalChastityBra", "ItemBreast");
+		InventoryLock(Player, "ItemBreast", "MistressPadlock", -1);
+	}
 	ManagementCanReleaseChastity = false;
 }
 

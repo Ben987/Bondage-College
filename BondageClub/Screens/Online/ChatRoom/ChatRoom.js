@@ -1145,6 +1145,7 @@ function ChatRoomSetRule(data) {
 			InventoryRemove(Player, "ItemMouth");
 			InventoryRemove(Player, "ItemMouth2");
 			InventoryRemove(Player, "ItemMouth3");
+			InventoryRemove(Player, "ItemHead");
 			ChatRoomCharacterUpdate(Player);
 			var D = TextGet("ActionGrabbedToServeDrinksIntro");
 			ServerSend("ChatRoomChat", { Content: "ActionGrabbedToServeDrinks", Type: "Action", Dictionary: [{Tag: "TargetCharacterName", Text: Player.Name, MemberNumber: Player.MemberNumber}]} );
