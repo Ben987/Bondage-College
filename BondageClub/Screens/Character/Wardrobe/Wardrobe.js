@@ -142,7 +142,7 @@ function WardrobeAssetBundle(A) {
 
 // Load character appearance from wardrobe, only load clothes on others
 function WardrobeFastLoad(C, W, Update) {
-	savedExpression = {};
+	var savedExpression = {};
 	if (C == Player) savedExpression = WardrobeGetExpression(Player);
 	if (Player.Wardrobe != null && Player.Wardrobe[W] != null) {
 		var AddAll = C.ID == 0 || C.AccountName.indexOf("Wardrobe-") == 0;
@@ -209,7 +209,7 @@ function WardrobeFastSave(C, W, Push) {
 
 //Returns the expressions of character C as a single big object
 function WardrobeGetExpression(C) {
-	characterExpression = {}
+	var characterExpression = {}
 	ServerAppearanceBundle(C.Appearance).filter(item=>item.Property != null && item.Property.Expression != null).forEach(item => characterExpression[item.Group] = item.Property.Expression);
 	return characterExpression;
 }
