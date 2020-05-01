@@ -821,7 +821,7 @@ var AssetFemale3DCG = [
 		Effect: ["Freeze", "Prone"],
 		Color: ["Default"],
 		Left: 125,
-		Top: 400,
+		Top: 725,
 		Zone: [[100, 750, 300, 120]],
 		Asset: [
 			{ Name: "NylonRope", DefaultColor: "#909090", Value: 30, BuyGroup: ["NylonRope"], Time: 15, SetPose: ["LegsClosed"], Audio: "RopeLong" },
@@ -842,12 +842,12 @@ var AssetFemale3DCG = [
 			{ Name: "AnkleShackles", Value: 30, Time: 10, Difficulty: 6, RemoveTime: 5, Effect: ["Prone"], Random: false, AllowLock: true, AllowPose: ["LegsOpen", "LegsClosed"] },
 			{ Name: "Zipties", Value: 20, Time: 5, Difficulty: 6, RemoveTime: 6, SetPose: ["LegsClosed"], BuyGroup: "Zipties" },
 			{ Name: "Chains", Value: 90, Time: 20, Difficulty: 5, AllowLock: true, BuyGroup: "Chains", SetPose: ["LegsClosed"], Extended: true, AllowType: ["Strict", "Suspension"] },
-			{ Name: "SpreaderDildoBar", Value: 60, Time: 10, Difficulty: 5, Random: false, AllowLock: true, Effect: ["Freeze", "Prone"], SetPose: ["LegsOpen"], Prerequisite: ["AccessVulva", "LegsOpen", "NotSuspended", "NotHogtied", "NotHorse", "NotKneeling", "NotChaste"], Block: ["ItemPelvis", "ItemLegs", "ItemVulva", "ItemFeet"],
+			{ Name: "SpreaderDildoBar", Value: 60, Time: 10, Difficulty: 5, Random: false, Top: 400, AllowLock: true, Effect: ["Freeze", "Prone"], SetPose: ["LegsOpen"], Prerequisite: ["AccessVulva", "LegsOpen", "NotSuspended", "NotHogtied", "NotHorse", "NotKneeling", "NotChaste"], Block: ["ItemPelvis", "ItemLegs", "ItemVulva"],
 			Layer: [
 				{ Name: "DildoBar", AllowColorize: true },
 				{ Name: "Pussy", AllowColorize: false }
 			], RemoveAtLogin: true },
-			{ Name: "SpreaderVibratingDildoBar", Value: 70, Time: 10, Difficulty: 5, Random: false, AllowLock: true, Effect: ["Egged", "Freeze", "Prone"], SetPose: ["LegsOpen"], Prerequisite: ["AccessVulva", "LegsOpen", "NotSuspended", "NotHogtied", "NotHorse", "NotKneeling", "NotChaste"], Block: ["ItemPelvis", "ItemLegs", "ItemVulva", "ItemFeet"], ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }], AllowEffect: ["Egged", "Vibrating"],
+			{ Name: "SpreaderVibratingDildoBar", Value: 70, Time: 10, Difficulty: 5, Random: false, Top: 400, AllowLock: true, Effect: ["Egged", "Freeze", "Prone"], SetPose: ["LegsOpen"], Prerequisite: ["AccessVulva", "LegsOpen", "NotSuspended", "NotHogtied", "NotHorse", "NotKneeling", "NotChaste"], Block: ["ItemPelvis", "ItemLegs", "ItemVulva"], ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }], AllowEffect: ["Egged", "Vibrating"],
 			Layer: [
 				{ Name: "DildoBar", AllowColorize: true },
 				{ Name: "Pussy", AllowColorize: false }
