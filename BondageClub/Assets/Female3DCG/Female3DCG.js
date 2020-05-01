@@ -847,6 +847,11 @@ var AssetFemale3DCG = [
 				{ Name: "DildoBar", AllowColorize: true },
 				{ Name: "Pussy", AllowColorize: false }
 			], RemoveAtLogin: true },
+			{ Name: "SpreaderVibratingDildoBar", Value: 70, Time: 10, Difficulty: 5, Random: false, AllowLock: true, Effect: ["Egged", "Freeze", "Prone"], SetPose: ["LegsOpen"], Prerequisite: ["AccessVulva", "LegsOpen", "NotSuspended", "NotHogtied", "NotHorse", "NotKneeling", "NotChaste"], Block: ["ItemPelvis", "ItemLegs", "ItemVulva", "ItemFeet"], ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }], AllowEffect: ["Egged", "Vibrating"],
+			Layer: [
+				{ Name: "DildoBar", AllowColorize: true },
+				{ Name: "Pussy", AllowColorize: false }
+			], RemoveAtLogin: true },
 			AssetSpankingToys
 		]
 	},
