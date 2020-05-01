@@ -517,6 +517,10 @@ ItemPelvis,MetalChastityBelt,Metal Chastity Belt
 ItemPelvis,PolishedChastityBelt,Polished Chastity Belt
 ItemPelvis,OrnateChastityBelt,Ornate Chastity Belt
 ItemPelvis,SteelChastityPanties,Steel Chastity Panties
+ItemPelvis,OpenBackStuddedChastityBelt,Open Back Studded Chastity Belt
+ItemPelvis,OpenBackMetalChastityBelt,Open Back Metal Chastity Belt
+ItemPelvis,OpenBackPolishedChastityBelt,Open Back Polished Chastity Belt
+ItemPelvis,OpenBackOrnateChastityBelt,Open Back Ornate Chastity Belt
 ItemPelvis,HarnessPanties1,Bondage Harness
 ItemPelvis,HarnessPanties2,Full Bondage Harness
 ItemPelvis,LeatherStrapPanties1,Leather Strap Panties
@@ -675,6 +679,7 @@ ItemNeckRestraints,CollarLeash,Leash
 ItemNeckRestraints,CollarLeashTaken,Pulled Leash
 ItemNeckRestraints,ChainLeash,Chain Leash
 ItemNeckRestraints,ChainLeashTaken,Pulled Chain Leash
+ItemNeckRestraints,CollarChainMedium,Medium Chain
 ItemMouth,,Mouth
 ItemMouth,ClothGag,Cloth Gag
 ItemMouth,WiffleGag,Wiffle Ball Gag
