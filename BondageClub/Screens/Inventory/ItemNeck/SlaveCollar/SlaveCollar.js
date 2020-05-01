@@ -155,7 +155,7 @@ function InventoryItemNeckSlaveCollarClick() {
                     CharacterAppearanceSetColorForGroup(C, Color, "ItemNeck");
                     InventoryItemNeckSlaveCollarColorMode = false;
                     ElementRemove("InputColor");
-                    ChatRoomCharacterUpdate(C);
+                    ChatRoomCharacterItemUpdate(C);
                     if (CurrentScreen != "ChatRoom") CharacterRefresh(C);
                     DialogFocusItem = null;
                 }
@@ -206,5 +206,5 @@ function InventoryItemNeckSlaveCollarSetType(NewType) {
     Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
     Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
     ChatRoomPublishCustomAction("SlaveCollarChangeType", true, Dictionary);
-    if (CurrentScreen != "ChatRoom") CharacterRefresh(C);
+    CharacterRefresh(C);
 }

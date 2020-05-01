@@ -30,7 +30,7 @@ function InventoryItemMiscTimerPadlockClick() {
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) InventoryItemMiscTimerPadlockExit();
 	if ((MouseX >= 1100) && (MouseX <= 1164) && (MouseY >= 836) && (MouseY <= 900) && (Player.MemberNumber == DialogFocusSourceItem.Property.LockMemberNumber) && Player.CanInteract()) {
 		DialogFocusSourceItem.Property.RemoveItem = !(DialogFocusSourceItem.Property.RemoveItem);
-		if (CurrentScreen == "ChatRoom") ChatRoomCharacterUpdate(CurrentCharacter);
+		if (CurrentScreen == "ChatRoom") ChatRoomCharacterItemUpdate(CurrentCharacter);
 	}
 	if ((MouseX >= 1350) && (MouseX <= 1650) && (MouseY >= 910) && (MouseY <= 975) && Player.CanInteract()) InventoryItemMiscTimerPadlockReset();
 }

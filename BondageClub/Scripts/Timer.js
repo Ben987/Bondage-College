@@ -161,27 +161,28 @@ function TimerProcess(Timestamp) {
 			}
 		}
 
-		// Arousal decays by 1 naturally every 12 seconds
+		// Arousal decays by 1 naturally every 12 seconds, unless there's already a natural progression from an activity
 		if ((TimerLastArousalDecay + 12000 < CurrentTime) || (TimerLastArousalDecay - 12000 > CurrentTime)) {
 			TimerLastArousalDecay = CurrentTime;
 			for (var C = 0; C < Character.length; C++)
 				if ((Character[C].ArousalSettings != null) && (Character[C].ArousalSettings.Active != null) && ((Character[C].ArousalSettings.Active == "Automatic") || (Character[C].ArousalSettings.Active == "Hybrid")))
-					if ((Character[C].ArousalSettings.Progress != null) && (typeof Character[C].ArousalSettings.Progress === "number") && !isNaN(Character[C].ArousalSettings.Progress) && (Character[C].ArousalSettings.Progress > 0)) {
+					if ((Character[C].ArousalSettings.Progress != null) && (typeof Character[C].ArousalSettings.Progress === "number") && !isNaN(Character[C].ArousalSettings.Progress) && (Character[C].ArousalSettings.Progress > 0)) 
+						if ((Character[C].ArousalSettings.ProgressTimer == null) || (typeof Character[C].ArousalSettings.ProgressTimer !== "number") || isNaN(Character[C].ArousalSettings.ProgressTimer) || (Character[C].ArousalSettings.ProgressTimer == 0)) {
 
-						// If the character is egged, we find the highest intensity factor
-						var Factor = -1;
-						for (var A = 0; A < Character[C].Appearance.length; A++) {
-							var Item = Character[C].Appearance[A];
-							var ZoneFactor = PreferenceGetZoneFactor(Character[C], Item.Asset.Group.Name) - 2;
-							if (InventoryItemHasEffect(Item, "Egged", true) && (Item.Property != null) && (Item.Property.Intensity != null) && (typeof Item.Property.Intensity === "number") && !isNaN(Item.Property.Intensity) && (Item.Property.Intensity >= 0) && (ZoneFactor >= 0) && (Item.Property.Intensity + ZoneFactor > Factor))
-								if ((Character[C].ArousalSettings.Progress < 95) || PreferenceGetZoneOrgasm(Character[C], Item.Asset.Group.Name))
-									Factor = Item.Property.Intensity + ZoneFactor;
+							// If the character is egged, we find the highest intensity factor
+							var Factor = -1;
+							for (var A = 0; A < Character[C].Appearance.length; A++) {
+								var Item = Character[C].Appearance[A];
+								var ZoneFactor = PreferenceGetZoneFactor(Character[C], Item.Asset.Group.Name) - 2;
+								if (InventoryItemHasEffect(Item, "Egged", true) && (Item.Property != null) && (Item.Property.Intensity != null) && (typeof Item.Property.Intensity === "number") && !isNaN(Item.Property.Intensity) && (Item.Property.Intensity >= 0) && (ZoneFactor >= 0) && (Item.Property.Intensity + ZoneFactor > Factor))
+									if ((Character[C].ArousalSettings.Progress < 95) || PreferenceGetZoneOrgasm(Character[C], Item.Asset.Group.Name))
+										Factor = Item.Property.Intensity + ZoneFactor;
+							}
+
+							// No decay if there's a vibrating item running
+							if (Factor < 0) ActivityTimerProgress(Character[C], -1);
+
 						}
-
-						// No decay if there's a vibrating item running
-						if (Factor < 0) ActivityTimerProgress(Character[C], -1);
-
-					}
 		}
 
 	}
