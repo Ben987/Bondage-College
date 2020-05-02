@@ -297,6 +297,9 @@ RestartTimer,,,Restart Timer
 TimerAddTime,,,SourceCharacter adds TimerTime TimerUnit to the padlock on DestinationCharacter FocusAssetGroup.
 TimerRemoveTime,,,SourceCharacter removes TimerTime TimerUnit to the padlock on DestinationCharacter FocusAssetGroup.
 TimerAddRemoveUnknownTime,,,an unknown amount of time
+CombinationFail,,,SourceCharacter tries the code CombinationNumber but fails to open the padlock on DestinationCharacter FocusAssetGroup.
+CombinationChangeSuccess,,,SourceCharacter changes the code of the padlock on DestinationCharacter FocusAssetGroup.
+CombinationChangeFail,,,SourceCharacter tries to change the code of the padlock on DestinationCharacter FocusAssetGroup but fails.
 EnableRandomInput,,,Enable random input of time from everyone else
 AddTimerTimeMinutes,,,Add TimerTime minutes to the Timer
 AddTimerTime,,,Add
@@ -307,6 +310,12 @@ ShowItemWithTimerRemaining,,,Show the time remaining/being added
 Random,,,Random
 Minutes,,,minutes
 Hours,,,hours
+CombinationOld,,,Current Code :
+CombinationNew,,,New Code :
+CombinationEnter,,,Open lock
+CombinationChange,,,Change code
+CombinationError,,,Wrong code
+CombinationErrorInput,,,Use 4 digits as a code
 SelectBondagePosition,,,Select the bondage position
 SelectTapeWrapping,,,Select the tape wrapping
 SelectAttachmentState,,,Select an item attachment
@@ -315,6 +324,7 @@ CannotUnlockIfElbowBound,,,A victim cannot unlock herself if her elbows are boun
 ItemMiscMetalPadlockIntro,,,"""From your friendly hardware store"""
 ItemMiscIntricatePadlockIntro,,,"""To keep your loved one secure"""
 ItemMiscTimerPadlockIntro,,,You can restart the timer but cannot unlock
+ItemMiscCombinationPadlockIntro,,,"""If at first, you don't succeed..."""
 ItemMiscOwnerPadlockIntro,,,"""Never forget who you belong to"""
 ItemMiscOwnerPadlockDetail,,,Can only be locked or unlocked by her owner
 ItemMiscOwnerTimerPadlockIntro,,,"""Never forget who you belong to"""

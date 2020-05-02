@@ -45,7 +45,6 @@ function InventoryItemNipplesNippleSuctionCupsIntensity(Modifier) {
 	if (DialogFocusItem.Property.SuctionLevel == 3);
 	if (DialogFocusItem.Property.SuctionLevel == 4);
 	if (C.ID == 0) ServerPlayerAppearanceSync();
-	ChatRoomCharacterUpdate(C);
 	var Dictionary = [];
 	Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
 	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});

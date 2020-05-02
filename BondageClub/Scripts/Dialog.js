@@ -1113,6 +1113,12 @@ function DialogDrawItemMenu(C) {
 				DialogExtendItem(InventoryGet(C, DialogProgressNextItem.Asset.Group.Name));
 			} else ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, true);
 
+			// Reset the the character's position
+			if (CharacterAppearanceForceTopPosition == true) {
+				CharacterAppearanceForceTopPosition = false;
+				CharacterApperanceSetHeightModifier(C);
+			}
+
 			// Rebuilds the menu
 			DialogEndExpression();
 			if (C.FocusGroup != null) DialogMenuButtonBuild(C);

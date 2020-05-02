@@ -46,10 +46,9 @@ function InventoryItemMouthDildoPlugGagSetType(NewType) {
 		if (DialogFocusItem.Property.Effect == null) DialogFocusItem.Property.Effect = [];
 		DialogFocusItem.Property.Effect.push("Lock");
 	}
-	
-	CharacterRefresh(C);
-	ChatRoomCharacterUpdate(C);
 
+	// Refreshes the character and chatroom
+	CharacterRefresh(C);
 	var msg = "DildoPlugGagMouthSet" + ((NewType) ? NewType : "Open");
 	var Dictionary = [];
 	Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});

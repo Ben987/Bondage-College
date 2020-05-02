@@ -52,7 +52,6 @@ function InventoryItemLegsHempRopeSetType(NewType) {
 
 	// Sets the chatroom or NPC message
 	if (CurrentScreen == "ChatRoom") {
-		ChatRoomCharacterUpdate(C);
 		var msg = "LegRopeSet" + ((NewType) ? NewType : "Basic");
 		var Dictionary = [];
 		Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});

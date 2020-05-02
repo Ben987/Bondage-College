@@ -43,35 +43,27 @@ function InventoryItemDevicesWoodenBoxOpenHeadSetPose(newPose) {
 	else 
 		return; // Does not allow to have your hands out if your hands are
 
-        
-    // Set blocks 
-    if (newPose == "Base") { 
-        DialogFocusItem.Property.Block = ["ItemHands"];
-    } else { 
-        DialogFocusItem.Property.Block = [];
-    }
-    
-	// Loads the correct type/asset	
+    // Set blocks
+    if (newPose == "Base") DialogFocusItem.Property.Block = ["ItemHands"];
+    else DialogFocusItem.Property.Block = [];
+
+	// Refreshes the character pose
     DialogFocusItem.Property.SetPose = [newPose];
     CharacterRefresh(C);
-    
+
+    // Push Chatroom Event
     if (CurrentScreen == "ChatRoom") {
-        ChatRoomCharacterUpdate(C);
-		
-        // Push Chatroom Event	
         var Dictionary = [];
         Dictionary.push({ Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber });
         Dictionary.push({ Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber });
-        
-        if (newPose == "Base")
-            ChatRoomPublishCustomAction("WoodenBoxOpenHeadHandsIn", true, Dictionary);
-        else
-            ChatRoomPublishCustomAction("WoodenBoxOpenHeadHandsOut", true, Dictionary);
+        if (newPose == "Base") ChatRoomPublishCustomAction("WoodenBoxOpenHeadHandsIn", true, Dictionary);
+        else ChatRoomPublishCustomAction("WoodenBoxOpenHeadHandsOut", true, Dictionary);
     }
-		
+
 	// Rebuilds the inventory menu
 	if (DialogInventory != null) {
 		DialogFocusItem = null;
 		DialogMenuButtonBuild(C);
 	}
+
 }

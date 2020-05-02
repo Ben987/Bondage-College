@@ -76,7 +76,7 @@ function InventoryItemHandsSpankingToysClick() {
 	// Menu buttons
 	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
 	if ((MouseX >= 1775) && (MouseX <= 1865) && (MouseY >= 25) && (MouseY <= 110) && (SpankingNextButton)) SpankingInventoryOffset += 4;
-	if (SpankingInventoryOffset > SpankingPlayerInventory.length) SpankingInventoryOffset = 0;
+	if (SpankingInventoryOffset >= SpankingPlayerInventory.length) SpankingInventoryOffset = 0;
 
 	// Item buttons
 	for (var I = SpankingInventoryOffset; (I < SpankingPlayerInventory.length) && (I < SpankingInventoryOffset + 4); I++) {
@@ -99,10 +99,7 @@ function InventorySpankingToySetType(NewType) {
 	}
 	DialogFocusItem.Property.Type = NewType;
 	if (C.ID == 0) SpankingCurrentType = NewType;
-
-	// Update the character
 	CharacterRefresh(C);
-	ChatRoomCharacterUpdate(C);
 
 	// Prepares the chat message to be published
 	var msg = C.ID == 0 ? "SpankingToysSetPlayer" : "SpankingToysSetOthers";

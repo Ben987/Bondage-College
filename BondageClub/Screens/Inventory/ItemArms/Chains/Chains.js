@@ -139,11 +139,12 @@ function InventoryItemArmsChainsSetPose(NewType) {
 		if (DialogFocusItem.Property.Effect == null) DialogFocusItem.Property.Effect = [];
 		DialogFocusItem.Property.Effect.push("Lock");
 	}
+
+	// Refresh the character
 	CharacterRefresh(C);
 
 	// Sets the chatroom or NPC message
 	if (CurrentScreen == "ChatRoom") {
-		ChatRoomCharacterUpdate(C);
 		var msg = "ArmsChainSet" + NewType.Name;
 		var Dictionary = [];
 		Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
