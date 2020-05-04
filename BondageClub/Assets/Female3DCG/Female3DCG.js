@@ -2070,7 +2070,8 @@ var AssetFemale3DCG = [
 			{ Name: "LeatherToeCuffs", Value: 50, Time: 10, RemoveTime: 5, Difficulty: 3, Effect: ["Freeze", "Prone"], SetPose: ["LegsClosed"], AllowLock: true, Hide: ["Shoes"], Prerequisite: "ToeTied" },
 			{ Name: "ToeTie", DefaultColor: "#605020", Value: 15, Time: 10, RemoveTime: 5, Difficulty: 2, Effect: ["Freeze", "Prone"], SetPose: ["LegsClosed"], Hide: ["Shoes"], Prerequisite: "ToeTied" },
 			{ Name: "ThighHighLatexHeels", Height: 30, Value: -1, Time: 10, RemoveTime: 15, BuyGroup: "ThighHighLatexHeels", AllowLock: true, Alpha: [[75, 850, 140, 200], [290, 850, 140, 200]], Hide: ["Shoes"] },
-			{ Name: "LockingHeels", Height: 15, Value: 40, Time: 10, RemoveTime: 15, Difficulty: 6, AllowLock: true, Hide: ["Shoes"]}
+			{ Name: "LockingHeels", Height: 15, Value: 40, Time: 10, RemoveTime: 15, Difficulty: 6, AllowLock: true, Hide: ["Shoes"] },
+			AssetSpankingToys
 		]
 	},
 	
