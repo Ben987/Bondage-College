@@ -159,6 +159,7 @@ function GameLARPBuildInventory(FocusGroup) {
 	for(var A = 0; A < Player.Inventory.length; A++)
 		if ((Player.Inventory[A].Asset != null) && (Player.Inventory[A].Asset.Group.Name == FocusGroup) && Player.Inventory[A].Asset.Enable && Player.Inventory[A].Asset.Wear && Player.Inventory[A].Asset.Random)
 			GameLARPInventory.push(Player.Inventory[A].Asset);
+	GameLARPInventory.sort((a,b) => (a.Description > b.Description) ? 1 : ((b.Description > a.Description) ? -1 : 0));
 }
 
 // When an option is selected for a target

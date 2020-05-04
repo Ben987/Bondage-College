@@ -14,7 +14,6 @@ var DialogProgressSkill = 0;
 var DialogProgressLastKeyPress = 0;
 var DialogProgressChallenge = 0;
 var DialogInventory = [];
-var DialogInventoryBlocked = [];
 var DialogInventoryOffset = 0;
 var DialogFocusItem = null;
 var DialogFocusSourceItem = null;
@@ -184,29 +183,26 @@ function DialogLeaveItemMenu() {
 }
 
 // Adds the item in the dialog list
-function DialogInventoryAdd(C, NewInv, NewInvWorn) {
+function DialogInventoryAdd(C, NewInv, NewInvWorn, SortOrder) {
 
-	// Make sure we do not add owneronly items in case of not owned characters
-	if (NewInv.Asset.OwnerOnly && !C.IsOwnedByPlayer() && NewInvWorn != true) return;
-
-	// Make sure we do not add loveronly items in case of characters not in love with
-	if (NewInv.Asset.LoverOnly && !C.IsLoverOfPlayer() && NewInvWorn != true) return;
+	// Make sure we do not add owner/lover only items for invalid characters
+	if (NewInv.Asset.OwnerOnly && !NewInvWorn && !C.IsOwnedByPlayer()) return;
+	if (NewInv.Asset.LoverOnly && !NewInvWorn && !C.IsLoverOfPlayer()) return;
 
 	// Make sure we do not duplicate the non-blocked item
 	for (var I = 0; I < DialogInventory.length; I++)
 		if ((DialogInventory[I].Asset.Group.Name == NewInv.Asset.Group.Name) && (DialogInventory[I].Asset.Name == NewInv.Asset.Name))
 			return;
 
-	// Make sure we do not duplicate the blocked item
-	for (var I = 0; I < DialogInventoryBlocked.length; I++)
-		if ((DialogInventoryBlocked[I].Asset.Group.Name == NewInv.Asset.Group.Name) && (DialogInventoryBlocked[I].Asset.Name == NewInv.Asset.Name))
-			return;
+	// If the item is blocked, we show it at the end of the list
+	if (InventoryIsPermissionBlocked(C, NewInv.Asset.Name, NewInv.Asset.Group.Name)) SortOrder++;
 
 	// Creates a new dialog inventory item
 	var DI = {
 		Asset: NewInv.Asset,
 		Worn: NewInvWorn,
-		Icon: ""
+		Icon: "",
+		SortOrder: SortOrder.toString() + NewInv.Asset.Description
 	};
 
 	// Loads the correct icon and push the item in the array
@@ -272,6 +268,11 @@ function DialogMenuButtonBuild(C) {
 
 }
 
+// Sort the inventory list by SortOrder (a fixed number & current language description)
+function DialogInventorySort() {
+	DialogInventory.sort((a,b) => (a.SortOrder > b.SortOrder) ? 1 : ((b.SortOrder > a.SortOrder) ? -1 : 0));
+}
+
 // Build the inventory listing for the dialog which is what's equipped, the player inventory and the character inventory for that group
 function DialogInventoryBuild(C) {
 
@@ -285,7 +286,7 @@ function DialogInventoryBuild(C) {
 		var CurItem = null;
 		for(var A = 0; A < C.Appearance.length; A++)
 			if ((C.Appearance[A].Asset.Group.Name == C.FocusGroup.Name) && C.Appearance[A].Asset.DynamicAllowInventoryAdd()) {
-				DialogInventoryAdd(C, C.Appearance[A], true, true);
+				DialogInventoryAdd(C, C.Appearance[A], true, 1);
 				CurItem = C.Appearance[A];
 				break;
 			}
@@ -295,25 +296,23 @@ function DialogInventoryBuild(C) {
 			for (var A = 0; A < Asset.length; A++)
 				if (Asset[A].Enable && (Asset[A].Wear || Asset[A].IsLock) && Asset[A].Group.Name == C.FocusGroup.Name)
 					if ((CurItem == null) || (CurItem.Asset.Name != Asset[A].Name) || (CurItem.Asset.Group.Name != Asset[A].Group.Name))
-						DialogInventory.push({ Asset: Asset[A], Worn: false, Icon: "" });
+						DialogInventory.push({ Asset: Asset[A], Worn: false, Icon: "", SortOrder: "1" + Asset[A].Description });
 		} else {
 			// Second, we add everything from the victim inventory
-			DialogInventoryBlocked = [];
 			for(var A = 0; A < C.Inventory.length; A++)
 				if ((C.Inventory[A].Asset != null) && (C.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && C.Inventory[A].Asset.DynamicAllowInventoryAdd())
-					DialogInventoryAdd(C, C.Inventory[A], false);
+					DialogInventoryAdd(C, C.Inventory[A], false, 2);
+
 			// Third, we add everything from the player inventory if the player isn't the victim
 			if (C.ID != 0)
 				for(var A = 0; A < Player.Inventory.length; A++)
 					if ((Player.Inventory[A].Asset != null) && (Player.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && Player.Inventory[A].Asset.DynamicAllowInventoryAdd())
-						DialogInventoryAdd(C, Player.Inventory[A], false);
-
-			// Adds the blocked items at the very end of the list
-			DialogInventory = DialogInventory.concat(DialogInventoryBlocked);
+						DialogInventoryAdd(C, Player.Inventory[A], false, 2);
 
 		}
 
 		// Rebuilds the dialog menu and it's buttons
+		DialogInventorySort();
 		DialogMenuButtonBuild(C);
 
 	}
@@ -515,12 +514,11 @@ function DialogMenuButtonClick() {
 					if ((Item != null) && (Item.Asset.AllowLock != null)) {
 						DialogInventoryOffset = 0;
 						DialogInventory = [];
-						DialogInventoryBlocked = [];
 						DialogItemToLock = Item;
 						for (var A = 0; A < Player.Inventory.length; A++)
 							if ((Player.Inventory[A].Asset != null) && Player.Inventory[A].Asset.IsLock)
-								DialogInventoryAdd(C, Player.Inventory[A], false);
-						DialogInventory = DialogInventory.concat(DialogInventoryBlocked);
+								DialogInventoryAdd(C, Player.Inventory[A], false, 1);
+						DialogInventorySort();
 					}
 				} else {
 					DialogItemToLock = null;
@@ -1119,6 +1117,12 @@ function DialogDrawItemMenu(C) {
 				ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, false);
 				DialogExtendItem(InventoryGet(C, DialogProgressNextItem.Asset.Group.Name));
 			} else ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem, true);
+
+			// Reset the the character's position
+			if (CharacterAppearanceForceTopPosition == true) {
+				CharacterAppearanceForceTopPosition = false;
+				CharacterApperanceSetHeightModifier(C);
+			}
 
 			// Rebuilds the menu
 			DialogEndExpression();
