@@ -16,7 +16,9 @@ var AssetSpankingToys = {
 	DynamicDescription: C => InventorySpankingToysGetDescription(C),
 	DynamicPreviewIcon: C => InventorySpankingToysGetType(C),
 	DynamicAllowInventoryAdd: () => InventoryIsWorn(Player, "SpankingToys", "ItemHands"),
-	DynamicExpressionTrigger: C => SpankingInventory.find(x => x.Name == InventorySpankingToysGetType(C)).ExpressionTrigger
+	DynamicExpressionTrigger: C => SpankingInventory.find(x => x.Name == InventorySpankingToysGetType(C)).ExpressionTrigger,
+	DynamicName: C => "SpankingToys" + InventorySpankingToysGetType(C),
+	DynamicGroupName: "ItemHands"
 };
 
 // 3D Custom Girl based assets
