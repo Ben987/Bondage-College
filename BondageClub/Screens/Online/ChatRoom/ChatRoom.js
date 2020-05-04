@@ -566,12 +566,13 @@ function ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem
 }
 
 // Updates an item on character for everyone in a chat room - replaces ChatRoomCharacterUpdate to cut on the lag
-function ChatRoomCharacterItemUpdate(C) {
-	if ((CurrentScreen == "ChatRoom") && (C.FocusGroup != null)) {
-		var Item = InventoryGet(C, C.FocusGroup.Name);			
+function ChatRoomCharacterItemUpdate(C, Group) {
+	if ((Group == null) && (C.FocusGroup != null)) Group = C.FocusGroup.Name;
+	if ((CurrentScreen == "ChatRoom") && (Group != null)) {
+		var Item = InventoryGet(C, Group);
 		var P = {};
 		P.Target = C.MemberNumber;
-		P.Group = C.FocusGroup.Name;
+		P.Group = Group;
 		P.Name = (Item != null) ? Item.Asset.Name : null;
 		P.Color = (Item != null) ? Item.Color : null;
 		P.Difficulty = (Item != null) ? Item.Difficulty : null;
@@ -890,6 +891,14 @@ function ChatRoomSyncArousal(data) {
 		}
 }
 
+// Return TRUE if we can allow to change the item properties, when this item is owner/lover locked
+function ChatRoomAllowChangeLockedItem(Data, Item) {
+	if (Item.Asset.Name == "SlaveCollar") return false;
+	if ((Data.Item.Name == null) || (Data.Item.Name == "") || (Data.Item.Name != Item.Asset.Name)) return false;
+	if ((Data.Item.Property == null) || (Data.Item.Property.LockedBy == null) || (Data.Item.Property.LockedBy != Item.Property.LockedBy) || (Data.Item.Property.LockMemberNumber == null) || (Data.Item.Property.LockMemberNumber != Item.Property.LockMemberNumber)) return false;
+	return true;
+}
+
 // Updates a single character item in the chatroom
 function ChatRoomSyncItem(data) {
 	if ((data == null) || (typeof data !== "object") || (data.Source == null) || (typeof data.Source !== "number") || (data.Item == null) || (typeof data.Item !== "object") || (data.Item.Target == null) || (typeof data.Item.Target !== "number") || (data.Item.Group == null) || (typeof data.Item.Group !== "string")) return;
@@ -898,10 +907,13 @@ function ChatRoomSyncItem(data) {
 
 			// Prevent changing the item if the current item is locked by owner/lover locks
 			var Item = InventoryGet(ChatRoomCharacter[C], data.Item.Group);
-			if ((ChatRoomCharacter[C].Ownership != null) && (ChatRoomCharacter[C].Ownership.MemberNumber != data.Source) && InventoryOwnerOnlyItem(Item)) return;
-			if ((ChatRoomCharacter[C].Lovership != null) && (ChatRoomCharacter[C].Lovership.MemberNumber != data.Source) && InventoryLoverOnlyItem(Item))
-				if ((ChatRoomCharacter[C].Ownership == null) || (ChatRoomCharacter[C].Ownership.MemberNumber != data.Source))
+			if ((Item != null) && (ChatRoomCharacter[C].Ownership != null) && (ChatRoomCharacter[C].Ownership.MemberNumber != data.Source) && InventoryOwnerOnlyItem(Item))
+				if (!ChatRoomAllowChangeLockedItem(data, Item))
 					return;
+			if ((Item != null) && (ChatRoomCharacter[C].Lovership != null) && (ChatRoomCharacter[C].Lovership.MemberNumber != data.Source) && InventoryLoverOnlyItem(Item))
+				if ((ChatRoomCharacter[C].Ownership == null) || (ChatRoomCharacter[C].Ownership.MemberNumber != data.Source))
+					if (!ChatRoomAllowChangeLockedItem(data, Item))
+						return;
 
 			// If there's no name in the item packet, we remove the item instead of wearing it
 			if ((data.Item.Name == null) || (data.Item.Name == "")) {
@@ -915,7 +927,7 @@ function ChatRoomSyncItem(data) {
 					if (Item != null) {
 						Item.Property = data.Item.Property;
 						ServerValidateProperties(ChatRoomCharacter[C], Item);
-						CharacterRefresh(ChatRoomCharacter[C], false);
+						CharacterRefresh(ChatRoomCharacter[C]);
 					}
 				}
 
@@ -1131,6 +1143,9 @@ function ChatRoomSetRule(data) {
 		if (data.Content == "OwnerRuleLaborMaidDrinks") {
 			CharacterSetActivePose(Player, null);
 			InventoryRemove(Player, "ItemMouth");
+			InventoryRemove(Player, "ItemMouth2");
+			InventoryRemove(Player, "ItemMouth3");
+			InventoryRemove(Player, "ItemHead");
 			ChatRoomCharacterUpdate(Player);
 			var D = TextGet("ActionGrabbedToServeDrinksIntro");
 			ServerSend("ChatRoomChat", { Content: "ActionGrabbedToServeDrinks", Type: "Action", Dictionary: [{Tag: "TargetCharacterName", Text: Player.Name, MemberNumber: Player.MemberNumber}]} );

@@ -41,6 +41,7 @@ function InventoryItemDevicesBondageBenchClick() {
 
 // Sets the cuffs pose (wrist, elbow, both or none)
 function InventoryItemDevicesBondageBenchSetPose(NewPose) {
+
 	// Gets the current item and character
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if ((CurrentScreen == "ChatRoom") || (DialogFocusItem == null)) {
@@ -48,28 +49,15 @@ function InventoryItemDevicesBondageBenchSetPose(NewPose) {
 		InventoryItemDevicesBondageBenchLoad();
 	}
 
-	if (InventoryGet(C, "Cloth") != null || InventoryGet(C, "ClothLower") != null) {
-		InventoryItemDevicesBondageBenchMessage = "RemoveClothesForItem";
-		return;
-	}
+	// Cannot be used with clothes or other addons
+	if ((InventoryGet(C, "Cloth") != null) || (InventoryGet(C, "ClothLower") != null)) { InventoryItemDevicesBondageBenchMessage = "RemoveClothesForItem"; return; }
+	if (InventoryGet(C, "ItemAddon") != null) return;
 
-	if(InventoryGet(C, "ItemAddon") != null){
-		//InventoryItemDevicesBondageBenchMessage = "ALREADY_OCCUPIED";
-		return;
-	}
-
+	// Adds the strap and focus on it
 	if (NewPose == "StrapUp") {
 		InventoryWear(C, "BondageBenchStraps", "ItemAddon", DialogColorSelect);
-
-		// Switch to the straps item
 		DialogFocusItem = InventoryGet(C, "ItemAddon");
 	}
-	
-//	// Adds the lock effect back if it was padlocked
-//	if ((DialogFocusItem.Property.LockedBy != null) && (DialogFocusItem.Property.LockedBy != "")) {
-//		if (DialogFocusItem.Property.Effect == null) DialogFocusItem.Property.Effect = [];
-//		DialogFocusItem.Property.Effect.push("Lock");
-//	}
 
 	// Refreshes the character and chatroom
 	CharacterRefresh(C);
@@ -79,10 +67,12 @@ function InventoryItemDevicesBondageBenchSetPose(NewPose) {
 	Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
 	Dictionary.push({Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
 	ChatRoomPublishCustomAction(msg, true, Dictionary);
+	ChatRoomCharacterItemUpdate(C, "ItemAddon");
 
 	// Rebuilds the inventory menu
 	if (DialogInventory != null) {
 		DialogFocusItem = null;
 		DialogMenuButtonBuild(C);
 	}
+
 }
