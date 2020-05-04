@@ -1,0 +1,107 @@
+.main-interface-button{width:15%;height:10%}
+.full-block{width:100%;height:100%;position:absolute;}
+
+
+input.regular-input{width:15%;height:10%;font-size:2.5em}
+input.smaller-input{width:10%;height:5%;font-size:1.7em}
+input.smallest-input{width:10%;height:5%;font-size:1.2em}
+input.create-location-button{width:15%;height:10%;}
+input.select-location-entrance{}
+
+/*Location view*/
+.screen-spot-container{position:absolute;background-color:rgba(0,0,0,0.02);}
+.screen-spot-event-listener{position:absolute;background-color:rgba(0,0,0,0.002);}
+.spot-base{position:absolute;border-radius:45%;background-color: rgba(0,0,0,0.25)}
+.spot-base-self{border:5px rgba(0,0,128,0.6) solid}
+.spot-base-far{border:5px rgba(0,0,0,0.6) solid}
+.spot-base-free{border:5px rgba(0,128,0,0.6) solid}
+.spot-base-occupied{border:5px rgba(128,0,0,0.6) solid}
+.spot-icon-examine{position:absolute}
+
+#AppItemGroupButtonContainerTemplate
+
+div.simplest-comply-button{position:absolute;top:42.5%;left:47.5%;width:5%; height:5%; }
+
+div.progress_bar{height:100%;background-color:green;}
+div.cancel_button{width:100%;height:100%;background-color:gray;}
+
+div.roll-left{float:left;position:relative;height:100%; width:8%;background-color: rgba(255, 255, 255, 0.3);}
+div.roll-left-full{left:0;}
+div.roll-left-small{left:-6%}
+div.roll-left-out{left:-100%}
+img.roll-left-icon{width:100%;height:16%}
+
+div.chat-container{position:absolute;left:10%;height:8%;width:80%;bottom:0;}
+div.chat-log{background-color: rgba(0, 0, 0, 0.5);overflow-y: scroll; height:0%; width:100%;position:absolute;}
+
+.chat-button-roll{width:5%; height:100%; position:absolute; background-color: rgba(255, 255, 255, 0.5);}
+textarea.chat-input{width:90%; height:100%; position:absolute;left:5%; resize:none; border:none;top:0;padding:0;font-size:2em}
+div.chat-log-item{font-size:2em}
+div.chat-hover-item{background-color: rgba(0, 0, 0, 0.5); animation-delay:6s; text-align:center; width:200%; left:-50%; position:relative;}
+
+
+@keyframes fadeOut { 0% {opacity:1;} 100% { opacity:0;} }
+@keyframes blink { 0% {opacity:1;}  89%{opacity:1;}  90%{opacity:0;}  99%{opacity:0;}  100%{opacity:1}}
+.blinking {animation-name: blink; animation-duration: 6s; animation-iteration-count: infinite; }
+
+
+.focus-container {position:absolute;background-color:rgba(255,255,255,0.8);}
+.focus-container-normal {width:72%;height:90%;left:14%;top:1%}
+.focus-container-expanded {width:80%;height:100%;left:10%;top:0%}
+
+.focus-figure {position:absolute;width:31.25%;left:34.375%;height:100%;left:31%}
+
+.focus-item-group-type-selection-icon-container {float:left;width:10%;height:100%;}	
+.focus-item-group-type-selection-icon-container > img {height:13%; margin:10% 10% 10% 10%}
+
+.focus-item-group-selection-icon-container {}
+.focus-item-group-selection-icon-container > div {display:none;border:1px black solid;word-break:break-word;color:black}
+.focus-item-group-selection-icon-container > div.selected {border:1px green solid}
+.focus-item-group-selection-icon-container > div > img {position:absolute; width:100%; height:100%;}
+
+.focus-item-selection-icon-container {float:right;width:38%;height:100%;overflow-y:auto}
+.focus-item-selection-icon-container > div {width:29%;background-color:rgba(0,0,0,.4);float:left;position:relative;margin:2% 2% 2% 2%}
+.focus-item-selection-icon-container > div:after {content: ""; display: block; padding-bottom: 100%;}
+.focus-item-selection-icon-container > div > div {position:absolute;top:0;left:0;font-size:1.3em;overflow:hidden;word-break:break-word}
+.focus-item-selection-icon-container img {position: absolute; width: 100%; height: 100%; object-fit: cover;  object-position: center;}
+
+.focus-item-actions {position:absolute; left:10%; width:20%; height:50%; display:none;}
+.focus-color-picker-container {}
+.focus-color-picker-container > div {width:100%}
+.focus-color-picker-container input {width:96%; font-size:1.6em}
+
+.focus-item-actions-lock-container {}
+.focus-item-actions-lock-container > img{width:45%; float:left; margin:2%}
+
+.focus-control-buttons-container{position:absolute; left:10%; top:50%; width:10%; height:50%; }
+.focus-control-buttons-container > img {width:80%; margin:10% 10% 10% 10%}
+
+.focus-item-action-buttons-container{position:absolute; left:20%;top:50%; width:10%; height:50%; overflow-y:auto;}
+.focus-item-action-buttons-container > img{width:80%; margin:10% 10% 10% 10%; display:none;}
+
+.focus-item-actions-variant-container {overflow-y:auto}
+.focus-item-actions-variant-container > div {width:45%; float:left; margin:2%; position:relative;}
+.focus-item-actions-variant-container > div > img {width:100%; margin:2%}
+.focus-item-actions-variant-container > div > div {position:absolute; overflow:hidden; word-break:break-word}
+
+.validation_message_fadout {color:red;font-size:2em;position:absolute}
+
+.grid-cell{position: absolute; width:18%; height:9%; margin:1%}
+.grid-cell-column0 {left:0%}
+.grid-cell-column1 {left:34%}
+.grid-cell-column2 {left:68%}
+.grid-cell-row0 {top:0%}
+.grid-cell-row1 {top:10%}
+.grid-cell-row2 {top:20%}
+.grid-cell-row3 {top:30%}
+.grid-cell-row4 {top:40%}
+.grid-cell-row5 {top:50%}
+.grid-cell-row6 {top:60%}
+.grid-cell-row7 {top:70%}
+.grid-cell-row8 {top:80%}
+.grid-cell-row9 {top:90%}
+
+.mingame-abcancel-container{position:absolute;top:47.5%;left:40%;width:20%; height:20%;;eft:16.25b ackground-color:black;text-align:center;vertical-align:middle;}
+.mingame-complyrefuse-container{position:absolute;top:40%;left:30%;width:40%; height:40%;background-color:black;text-align:center;vertical-align:middle}focus-color-picker-container
+
+

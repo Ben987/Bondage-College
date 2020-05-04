@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html style="width:100%; height:100%; padding:0px; margin:0px;">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<title>Daz Club</title>
+	<script src="../BondageClub/Assets/Female3DCG/Female3DCG.js"></script>
+	<script src="../BondageClub/Assets/Female3DCG/Female3DCG.js"></script>
+	<script src="../BondageClub/Screens/Inventory/ItemArms/HempRope/HempRope.js"></script>
+	<script src="../BondageClub/Screens/Inventory/ItemArms/Chains/Chains.js"></script>
+	<script src="../BondageClub/Screens/Inventory/ItemTorso/HempRopeHarness/HempRopeHarness.js"></script>
+	
+	<script src="../BondageClub/Scripts/LZString.js"></script>	
+	<script src="../BondageClub/Scripts/socket.io/socket.io.js"></script>	
+	
+	<script src="./environment.js"></script>
+	<script src="./Scripts/MslServer.js"></script>
+	<script src="./Scripts/Util.js"></script>
+	<script src="./Scripts/Util/Dom.js"></script>
+	<script src="./Scripts/Util/Core.js"></script>
+	<script src="./Scripts/Util/Color.js"></script>
+	<script src="./Scripts/Util/Render.js"></script>
+	<script src="./Scripts/Util/Svg.js"></script>
+	<script src="./Scripts/F3dcgAssets.js"></script>
+	<script src="./Scripts/F3dcgAssetsAdd.js"></script>
+	<script src="./Scripts/F3dcgAssetVariants.js"></script>
+	<script src="./Scripts/MainContainer.js"></script>	
+	<script src="./Scripts/MainController.js"></script>
+	<script src="./Scripts/PlayerAccount.js"></script>
+	<script src="./Scripts/Minigame/MinigameAbCancel.js"></script>
+	<script src="./Scripts/Minigame/MinigameComplyRefuse.js"></script>	
+	<script src="./Scripts/Location/LocationPlayer.js"></script>
+	<script src="./Scripts/Location/LocationController.js"></script>	
+	<script src="./Scripts/Location/LocationView.js"></script>
+	<script src="./Scripts/Location/LocationViewInput.js"></script>
+	<script src="./Scripts/Location/LocationFocusView.js"></script>
+	<script src="./Scripts/Location/LocationFocusActions.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="./styles.css" />
+</head>
+
+<script>
+
+var KeyDownEventListeners = {};
+window.addEventListener('keydown', (e) => {for(key in KeyDownEventListeners) KeyDownEventListeners[key](e);});	
+
+window.addEventListener("load", function(){
+	F3dcgAssets.Init();
+	MainContainer.Resize();
+	MslServer.Init();
+	//types, locks, and item whitelist management
+	//motion
+	//application on others
+	Util.ProcessIncludes();
+});
+
+window.addEventListener('resize', MainContainer.Resize, false);
+
+</script>
+
+<body style="width:100%; height:100%; background-color:black; color:white; margin:0px; padding:0px; overflow:hidden;">
+	<div id="MainContainer" style="position:relative;width:1200px;height:600px;overflow:hidden;display:inline-block;">
+		<div id="LoginView" class="full-block">
+			<input type="submit" value="Login 1" class="regular-input" onclick="MainController.Login(1)" />
+			<input type="submit" value="Login 2" class="regular-input" onclick="MainController.Login(2)" />
+			<input type="submit" value="Login 4" class="regular-input" onclick="MainController.Login(4)" />
+			<br />
+		</div>
+		
+		<div id="MainView" class="full-block" style="display:none;" 
+			<input type="submit" value="Create Location" onclick="MainController.ShowCreateLocationTypes()" class="regular-input" /> <br />
+		</div>
+		
+		<div id="CreateLocationTypesView" class="full-block" style="display:none;"></div>
+		
+		<div id="CreateLocationView" class="full-block" style="display:none;"></div>
+		
+		<div id="LocationView" style="width:100%;height:100%;display:none;position:relative;flow:left;overflow:hidden;user-select:none;" 
+				onclick="LocationView.Click(event)">
+			<img id="LocationViewBackground" src="" alt="" class="full-block" style="z-index:-10000" />
+			<div id="LocationViewMidground" class="full-block" style="overflow:hidden;"></div>
+			<img id="LocationViewForeground" src="" alt="" class="full-block" style="z-index:10000;"/>
+			<div id="LocationViewInput" class="full-block" style="z-index:10000">
+				<div id="LocationViewSideInputLeft" class="roll-left roll-left-small">
+					<img class="roll-left-icon" src="./Images/Icons/Examine.png" alt="Examine" onclick="SideInput.Examine();event.stopPropagation()" />
+					<img class="roll-left-icon" src="./Images/Icons/Poses.png" alt="Talk" onclick="SideInput.Poses();event.stopPropagation()" />
+					<img class="roll-left-icon" src="./Images/Icons/Walk.png" alt="Walk" onclick="SideInput.Move();event.stopPropagation()" />
+					<img class="roll-left-icon" src="./Images/Icons/Items.png" alt="Rop" onclick="SideInput.Item();event.stopPropagation()" />
+					<img class="roll-left-icon" src="./Images/Icons/Settings.png" alt="Settings" onclick="SideInput.Settings();event.stopPropagation()" />
+					<img class="roll-left-icon" src="./Images/Icons/Out.png" alt="Out" onclick="SideInput.RollOut();event.stopPropagation()" />
+				</div>
+			</div>
+			<div id="LocationViewChat" class="chat-container" style="z-index:10000;">
+				<img id="LocationViewChatButtonLeft" class="chat-button-roll" src="./Images/Icons/ArrowPlain.png" style="transform: rotate(270deg);" alt="Up" onclick="BottomChat.RollNext(1);event.stopPropagation();" />
+				<div id="LocationViewChatLog" class="chat-log" onclick="BottomChat.Click();"></div>
+				<textarea id="LocationViewChatInput" class="chat-input" onclick="event.stopPropagation()" onkeypress="BottomChat.KeyPress(event)"></textarea>
+				<img id="LocationViewChatButtonRight" class="chat-button-roll" src="./Images/Icons/ArrowPlain.png" style="transform: rotate(90deg); left:95%" alt="Down" onclick="BottomChat.RollNext(-1);event.stopPropagation();"/>
+			</div>
+		</div>
+	</div>
+	
+	<div id="UiTemplates" style="display:none; visibility:hidden">
+		
+		<include src="./Html/InterfaceButtons.htm"></include>
+		
+		<div id="FocusSelfTemplate" class="focus-container focus-container-normal" onclick="event.stopPropagation()">
+			
+			<include src="./Html/Focus/ItemGroupTypeSelection.htm" name="itemGroupTypeSelection" class="focus-item-group-type-selection-icon-container"></include>
+			
+			<div name="figureContainer" class="focus-figure">
+				<include src="./Html/Focus/ItemGroupIcons.htm" name="itemGroupSelection" class="focus-item-group-selection-icon-container"></include>
+			</div>			
+			<div name="itemSelection" class="focus-item-selection-icon-container" ></div>
+			
+			<include src="./Html/Focus/ControlButtons.htm" name="controlButtons" class="focus-control-buttons-container"></include>
+			
+			<include src="./Html/Focus/ItemActionButtons.htm"  name="itemActionButtons" class="focus-item-action-buttons-container"></include>
+			
+			<include src="./Html/Focus/ColorPicker.htm" name="itemColorActions" class="focus-item-actions focus-color-picker-container"></include>
+			
+			<div name="itemVariantActions" class="focus-item-actions focus-item-actions-variant-container" ></div>
+			<div name="itemLockActions" class="focus-item-actions focus-item-actions-lock-container" ></div>
+			<div name="itemRemoteActions" class="focus-item-actions focus-item-actions-lock-container" ></div>
+			<div name="itemDirectActions" class="focus-item-actions focus-item-actions-lock-container" ></div>
+			<div name="itemArousalActions" class="focus-item-actions focus-item-actions-lock-container" ></div>
+		</div>
+		
+		<!-- minigames -->
+		
+		<include src="./Html/Minigame/AbCancel.htm" id="MinigameAbCancelTemplate" class="mingame-abcancel-container"></include>
+		<include src="./Html/Minigame/ComplyRefuse.htm" id="MinigameComplyRefuseTemplate" class="mingame-complyrefuse-container"></include>
+	</div>
+</body>
+
+
+
+</html>
