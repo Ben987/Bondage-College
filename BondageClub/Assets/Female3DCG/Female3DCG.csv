@@ -18,7 +18,6 @@ Cloth,AdultBabyDress2,Bows Baby Dress
 Cloth,AdultBabyDress3,Flower Baby dress
 Cloth,AdultBabyDress4,Shiny Baby dress
 Cloth,NurseUniform,Nurse Uniform
-Cloth,BunnyCollarCuffs,Bunny Girl Accessories
 Cloth,Robe1,Robe
 Cloth,SuspenderTop1,Suspender Top
 Cloth,LeatherCorsetTop1,Leather Corset Top
@@ -45,6 +44,7 @@ Cloth,MaidApron1,Maid Apron
 Cloth,MaidApron2,Exposed Maid Apron
 Cloth,AdmiralTop,Admiral Top
 Cloth,VirginKiller1,Virgin Killer
+Cloth,ReverseBunnySuit,Reverse Bunny Suit Top
 ClothAccessory,,Cloth Accessory
 ClothAccessory,StudentOutfit3Scarf,Student Scarf
 ClothAccessory,StudentOutfit3Bow1,Student Bow 1
@@ -52,16 +52,19 @@ ClothAccessory,StudentOutfit3Bow2,Student Bow 2
 ClothAccessory,StudentOutfit3Bow3,Student Bow 3
 ClothAccessory,Bouquet,Bouquet of flowers
 ClothAccessory,FrillyApron,Frilly Apron
+ClothAccessory,BunnyCollarCuffs,Bunny Girl Accessories
 Necklace,,Necklace
 Necklace,Necklace1,Fancy Necklace
 Necklace,Necklace2,Beaded Necklace
 Necklace,Necklace3,Long Beaded Necklace
 Necklace,Necklace4,Pearl Necklace
+Necklace,IDCard,ID Card
 Suit,,Upper Suit
 Suit,Catsuit,Catsuit
 Suit,SeamlessCatsuit, Seamless Catsuit
 Suit,SeethroughSuit,See-through Suit
 Suit,SeethroughSuitzip,See-through Zipsuit
+Suit,ReverseBunnySuit,Reverse Bunny Suit
 ClothLower,,Bottom
 ClothLower,Skirt1,Skirt
 ClothLower,Skirt2,Student Skirt
@@ -87,6 +90,7 @@ SuitLower,Catsuit,Catsuit
 SuitLower,SeamlessCatsuit, Seamless Catsuit
 SuitLower,SeethroughSuit,See-through Suit
 SuitLower,SeethroughSuitZip,See-through Zipsuit
+SuitLower,ReverseBunnySuit,Reverse Bunny Suit
 Bra,,Bra
 Bra,Bra1,Style 1
 Bra,Bra2,Style 2
@@ -172,6 +176,7 @@ Socks,SocksFur,Socks with Fur
 Socks,SocksStriped1,Striped Socks
 Socks,LatexSocks1,Latex Socks
 Socks,FootlessSocks1,Footless Socks
+Socks,ReverseBunnySuit,Reverse Bunny Suit Stockings
 Shoes,,Shoes
 Shoes,Shoes1,Style 1
 Shoes,Shoes2,Style 2
@@ -296,6 +301,7 @@ Glasses,Mask2,Domino Mask
 Glasses,ButterflyMask1,Butterfly Mask
 Glasses,EyePatch1,Eye Patch
 Glasses,ShinobiMask,Shinobi Mask
+Glasses,FoxMask,Fox Mask
 TailStraps,,Tail Strap
 TailStraps,TailStrap,Kitty Tail Strap
 TailStraps,HorseTailStrap,Horse Tail Strap
@@ -433,6 +439,8 @@ ItemFeet,BallChain,Ball And Chain
 ItemFeet,AnkleShackles, Ankle Shackles
 ItemFeet,Zipties, Zip Ties
 ItemFeet,Chains,Chains
+ItemFeet,SpreaderDildoBar,Spreader Dildo Bar
+ItemFeet,SpreaderVibratingDildoBar,Vibrating Spreader Dildo Bar
 ItemLegs,,Legs
 ItemLegs,NylonRope,Nylon Rope
 ItemLegs,HempRope,Hemp Rope
@@ -507,6 +515,9 @@ ItemButt,WolfTail3,Wolf Tail White
 ItemButt,DemonPlug,Demon Tail Plug
 ItemButt,MouseTail1,Mouse Tail 1
 ItemButt,MouseTail2,Mouse Tail 2
+ItemButt,VibratingDildoPlug,Vibrating Dildo
+ItemButt,BunnyTailPlug1,White Bunny Tail Plug
+ItemButt,BunnyTailPlug2,Brown Bunny Tail Plug
 ItemPelvis,,Pelvis
 ItemPelvis,StraponPanties,Strap-On Panties
 ItemPelvis,LeatherChastityBelt,Leather Chastity Belt
@@ -516,6 +527,10 @@ ItemPelvis,MetalChastityBelt,Metal Chastity Belt
 ItemPelvis,PolishedChastityBelt,Polished Chastity Belt
 ItemPelvis,OrnateChastityBelt,Ornate Chastity Belt
 ItemPelvis,SteelChastityPanties,Steel Chastity Panties
+ItemPelvis,OpenBackStuddedChastityBelt,Open Back Studded Chastity Belt
+ItemPelvis,OpenBackMetalChastityBelt,Open Back Metal Chastity Belt
+ItemPelvis,OpenBackPolishedChastityBelt,Open Back Polished Chastity Belt
+ItemPelvis,OpenBackOrnateChastityBelt,Open Back Ornate Chastity Belt
 ItemPelvis,HarnessPanties1,Bondage Harness
 ItemPelvis,HarnessPanties2,Full Bondage Harness
 ItemPelvis,LeatherStrapPanties1,Leather Strap Panties
@@ -685,6 +700,7 @@ ItemNeckRestraints,CollarLeash,Leash
 ItemNeckRestraints,CollarLeashTaken,Pulled Leash
 ItemNeckRestraints,ChainLeash,Chain Leash
 ItemNeckRestraints,ChainLeashTaken,Pulled Chain Leash
+ItemNeckRestraints,CollarChainMedium,Medium Chain
 ItemMouth,,Mouth
 ItemMouth,ClothGag,Cloth Gag
 ItemMouth,WiffleGag,Wiffle Ball Gag
@@ -832,6 +848,7 @@ ItemMisc,,Body
 ItemMisc,MetalPadlock,Metal Padlock
 ItemMisc,IntricatePadlock,Intricate Padlock
 ItemMisc,TimerPadlock,Five Minutes Padlock
+ItemMisc,CombinationPadlock,Combination Padlock
 ItemMisc,OwnerPadlock,Owner Padlock
 ItemMisc,OwnerTimerPadlock,Owner Timer Padlock
 ItemMisc,LoversPadlock,Lovers Padlock
@@ -869,6 +886,7 @@ ItemDevices,SmallDisplayCase,Small Display Case
 ItemDevices,WoodenBoxOpenHead,Exposed Head Wooden Box
 ItemDevices,SmallWoodenBoxOpenHead,Exposed Head Small Wooden Box
 ItemDevices,WoodenStocks,Wooden Stocks
+ItemDevices,Vacbed,Vacbed
 ItemAddon,,Body
 ItemAddon,BondageBenchStraps,Leather Belt Straps
 ItemBoots,,Feet

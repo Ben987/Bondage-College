@@ -44,6 +44,7 @@ function InventoryItemNipplesPiercingsRoundPiercingSetPose(NewPose) {
 		else {
 			DialogFocusItem.Property.Restrain = NewPose;
 			DialogFocusItem.Property.Type = NewPose;
+			DialogFocusItem.Property.OverridePriority = 39;
 			if (NewPose == "Chain") DialogFocusItem.Property.Hide = [""];
 		}
 		CharacterRefresh(C);
