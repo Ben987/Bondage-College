@@ -1510,6 +1510,9 @@ var AssetFemale3DCG = [
 			},{
 				Name: "SpankingToysVibrator", Value: 1, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				DynamicAllowInventoryAdd: () => { return false }
+			},{
+				Name: "SpankingToysBelt", Value: 1, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
+				DynamicAllowInventoryAdd: () => { return false}
 			}
 			
 		]
