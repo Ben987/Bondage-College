@@ -191,7 +191,7 @@ function CharacterAppearanceNaked(C) {
 // Returns the character appearance sorted by drawing priority
 function CharacterAppearanceSort(AP) {
 	function GetPriority(A) {
-		return A.DrawingPriority != null ? A.DrawingPriority : A.Group.DrawingPriority;
+		return ((A.Property != null) && (A.Property.OverridePriority != null)) ? A.Property.OverridePriority : A.DrawingPriority != null ? A.DrawingPriority : A.Group.DrawingPriority;
 	}
 
 	for (let i = 1; i < AP.length; i++) {
