@@ -194,11 +194,11 @@ function CharacterAppearanceSort(AP) {
 		return ((A.Property != null) && (A.Property.OverridePriority != null)) ? A.Property.OverridePriority : A.DrawingPriority != null ? A.DrawingPriority : A.Group.DrawingPriority;
 	}
 
-	for (let i = 1; i < AP.length; i++) {
-		let key = AP[i];
-		let j = i - 1;
-		let valuePriority = GetPriority(AP[j].Asset);
-		let keyPriority = GetPriority(key.Asset);
+	for (var i = 1; i < AP.length; i++) {
+		var key = AP[i];
+		var j = i - 1;
+		var valuePriority = GetPriority(AP[j].Asset);
+		var keyPriority = GetPriority(key.Asset);
 		while ((j >= 0) && (valuePriority > keyPriority)) {
 			AP[j + 1] = AP[j];
 			j--;
