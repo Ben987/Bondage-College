@@ -1513,6 +1513,9 @@ var AssetFemale3DCG = [
 			}, {
 				Name: "SpankingToysHairbrush", Value: 1, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				DynamicAllowInventoryAdd: () => { return false }
+			},{
+				Name: "SpankingToysSmallDildo", Value: 1, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
+				DynamicAllowInventoryAdd: () => { return false }
 			}
 		]
 	},
