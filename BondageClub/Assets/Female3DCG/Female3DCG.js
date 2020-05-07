@@ -1478,43 +1478,43 @@ var AssetFemale3DCG = [
 				Name: "SpankingToysTennisRacket", Value: -1, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				DynamicAllowInventoryAdd: () => { return false }
 			}, {
-				Name: "SpankingToysFeather", Value: 1, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
+				Name: "SpankingToysFeather", Value: 2, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				DynamicAllowInventoryAdd: () => { return false }
 			}, {
-				Name: "SpankingToysFeatherDuster", Value: 1, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
+				Name: "SpankingToysFeatherDuster", Value: 4, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				DynamicAllowInventoryAdd: () => { return false }
 			}, {
-				Name: "SpankingToysIceCube", Value: 1, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
+				Name: "SpankingToysIceCube", Value: 3, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				DynamicAllowInventoryAdd: () => { return false }
 			}, {
-				Name: "SpankingToysWartenbergWheel", Value: 1, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
+				Name: "SpankingToysWartenbergWheel", Value: 10, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				DynamicAllowInventoryAdd: () => { return false }
 			}, {
-				Name: "SpankingToysVibratingWand", Value: 1, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
+				Name: "SpankingToysVibratingWand", Value: 40, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				DynamicAllowInventoryAdd: () => { return false }
 			}, {
-				Name: "SpankingToysSmallVibratingWand", Value: 1, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
+				Name: "SpankingToysSmallVibratingWand", Value: 20, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				DynamicAllowInventoryAdd: () => { return false }
 			}, {
-				Name: "SpankingToysCandleWax", Value: 1, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
+				Name: "SpankingToysCandleWax", Value: 10, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				DynamicAllowInventoryAdd: () => { return false }
 			}, {
-				Name: "SpankingToysLargeDildo", Value: 1, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
+				Name: "SpankingToysLargeDildo", Value: 30, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				DynamicAllowInventoryAdd: () => { return false }
 			}, {
-				Name: "SpankingToysPetToy", Value: 1, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
+				Name: "SpankingToysPetToy", Value: 5, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				DynamicAllowInventoryAdd: () => { return false }
 			},{
-				Name: "SpankingToysVibrator", Value: 1, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
+				Name: "SpankingToysVibrator", Value: 45, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				DynamicAllowInventoryAdd: () => { return false }
 			},{
-				Name: "SpankingToysBelt", Value: 1, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
+				Name: "SpankingToysBelt", Value: 10, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				DynamicAllowInventoryAdd: () => { return false }
 			}, {
-				Name: "SpankingToysHairbrush", Value: 1, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
+				Name: "SpankingToysHairbrush", Value:5, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				DynamicAllowInventoryAdd: () => { return false }
 			},{
-				Name: "SpankingToysSmallDildo", Value: 1, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
+				Name: "SpankingToysSmallDildo", Value: 20, PrerequisiteBuyGroups: ["SpankingToys"], Random: false,
 				DynamicAllowInventoryAdd: () => { return false }
 			}
 		]
