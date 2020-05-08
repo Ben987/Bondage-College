@@ -37,43 +37,43 @@ const SpankingInventory = [
 		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }]
 	}, {
 		Name: "Feather",
-		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }]
+		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, {Group: "Eyes", Name: "Closed", Timer: 10}, { Group: "Mouth", Name: "Grin", Timer: 10}, { Group: "Eyebrows", Name: "Soft", Timer: 10}]
 	}, {
 		Name: "FeatherDuster",
-		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }]
+		ExpressionTrigger: [{ Group: "Blush", Name: "High", Timer: 10 }, { Group: "Eyes", Name: "Closed", Timer: 10}, { Group: "Mouth", Name: "Laughing", Timer: 10}, { Group: "Eyebrows", Name: "Soft", Timer: 10}]
 	}, {
 		Name: "IceCube",
-		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Eyes", Name: "Surprised", Timer: 5 }]
+		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10}, { Group: "Mouth", Name: "Angry", Timer: 10}, { Group: "Eyes", Name: "Daydream", Timer: 10}, { Group: "Eyebrows", Name: "Soft", Timer: 10}]
 	}, {
 		Name: "WartenbergWheel",
-		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }]
+		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10}, { Group: "Eyes", Name: "Daydream", Timer: 10}]
 	}, {
 		Name: "VibratingWand",
-		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyes", Name: "Horny", Timer: 5 }]
+		ExpressionTrigger: [{ Group: "Blush", Name: "High", Timer: 10 }, { Group: "Eyes", Name: "VeryLewd", Timer: 5 }, { Group: "Eyebrows", Name: "Soft", Timer: 10}, { Group: "Mouth", Name: "Open", Timer: 10}]
 	}, {
 		Name: "SmallVibratingWand",
-		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyes", Name: "Horny", Timer: 5 }]
+		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyes", Name: "Dazed", Timer: 5 }, { Group: "Eyebrows", Name: "Soft", Timer: 10}, { Group: "Mouth", Name: "HalfOpen", Timer: 10}]
 	}, {
 		Name: "CandleWax",
-		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }]
+		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Eyes", Name: "Surprised", Timer: 10}, { Group: "Mouth", Name: "Frown", Timer: 10}]
 	}, {
 		Name: "LargeDildo",
-		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }]
+		ExpressionTrigger: [{ Group: "Blush", Name: "Medium", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "HalfOpen", Timer: 10}, { Group: "Eyes", Name: "Lewd", Timer: 10}]
 	}, {
 		Name: "PetToy",
-		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }]
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyes", Name: "WinkL", Timer: 10 }, { Group: "Mouth", Name: "Smirk", Timer: 10 }]
 	},{
 		Name: "Vibrator",
-		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }]
+		ExpressionTrigger: [{ Group: "Blush", Name: "High", Timer: 10 }, { Group: "Eyes", Name: "VeryLewd", Timer: 10 }, { Group: "Mouth", Name: "Open", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10}]
 	},{
 		Name: "Belt",
-		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }]
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10}]
 	}, {
 		Name: "Hairbrush",
-		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }]
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10}]
 	}, {
 		Name: "SmallDildo",
-		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }]
+		ExpressionTrigger: [{ Group: "Blush", Name: "Low", Timer: 10 }, { Group: "Eyebrows", Name: "Soft", Timer: 10 }, { Group: "Mouth", Name: "Frown", Timer: 10}, { Group: "Eyes", Name: "Lewd", Timer: 5 }, ]
 	}
 ];
 
