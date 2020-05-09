@@ -77,7 +77,6 @@ const SpankingInventory = [
 	}
 ];
 
-var SpankingCurrentType = "Crop";
 var SpankingInventoryOffset = 0;
 var SpankingNextButton = false;
 var SpankingPlayerInventory;
@@ -85,7 +84,7 @@ var SpankingPlayerInventory;
 // Loads the item extension properties
 function InventoryItemHandsSpankingToysLoad() {
 	SpankingPlayerInventory = SpankingInventory.filter(x => Player.Inventory.map(i => i.Name).includes("SpankingToys" + x.Name));
-	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Type: SpankingCurrentType };
+	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Type: "Crop" };
 	if (SpankingPlayerInventory.length > 6) SpankingNextButton = true;
 }
 
@@ -141,7 +140,6 @@ function InventorySpankingToySetType(NewType) {
 		InventoryItemHandsSpankingToysLoad();
 	}
 	DialogFocusItem.Property.Type = NewType;
-	if (C.ID == 0) SpankingCurrentType = NewType;
 	CharacterRefresh(C);
 
 	// Prepares the chat message to be published
@@ -164,7 +162,7 @@ function InventorySpankingToySetType(NewType) {
 function InventorySpankingToysGetType(C) {
 	var Toy = InventoryGet(C, "ItemHands");
 	if (Toy && Toy.Property && Toy.Property.Type) return Toy.Property.Type;
-	return SpankingCurrentType;
+	else return "Crop";
 }
 
 // Get the description of the spanking toy that the character is holding
