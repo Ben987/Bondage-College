@@ -3,6 +3,16 @@ SelectItemGroup,,,Select an item to use on the GroupName.
 SelectActivity,,,Select an activity.
 SelectActivityGroup,,,Select an activity to use on the GroupName.
 CannotUseOnSelf,,,Cannot use on yourself.
+RequireSelfBondage1,,,Require self-bondage 1.
+RequireSelfBondage2,,,Require self-bondage 2.
+RequireSelfBondage3,,,Require self-bondage 3.
+RequireSelfBondage4,,,Require self-bondage 4.
+RequireSelfBondage5,,,Require self-bondage 5.
+RequireSelfBondage6,,,Require self-bondage 6.
+RequireSelfBondage7,,,Require self-bondage 7.
+RequireSelfBondage8,,,Require self-bondage 8.
+RequireSelfBondage9,,,Require self-bondage 9.
+RequireSelfBondage10,,,Require self-bondage 10.
 RemoveClothesForItem,,,Remove some clothes first.
 UnZipSuitForItem,,,Unzip the suit first.
 RemoveSuspensionForItem,,,Remove the suspension first.
@@ -668,6 +678,14 @@ HempRopeBeltIncreaseTo0,,,DestinationCharacterName vibrating wand starts teasing
 HempRopeBeltIncreaseTo1,,,DestinationCharacterName vibrating wand builds up to a moderate pace.
 HempRopeBeltIncreaseTo2,,,DestinationCharacterName vibrating wand starts buzzing strongly!
 HempRopeBeltsIncreaseTo3,,,DestinationCharacterName vibrating wand jumps up to maximum intensity!
+SpreaderVibratingDildoBarDecreaseTo-1,,,The dildo on DestinationCharacterName Vibrating Spreader Dildo Bar stops vibrating.
+SpreaderVibratingDildoBarDecreaseTo0,,,The dildo on DestinationCharacterName Vibrating Spreader Dildo Bar slows down into a light tease.
+SpreaderVibratingDildoBarDecreaseTo1,,,The dildo on DestinationCharacterName Vibrating Spreader Dildo Bar returns to a moderate pace.
+SpreaderVibratingDildoBarDecreaseTo2,,,The dildo on DestinationCharacterName Vibrating Spreader Dildo Bar slows down a tiny bit.
+SpreaderVibratingDildoBarIncreaseTo0,,,The dildo on DestinationCharacterName Vibrating Spreader Dildo Bar starts teasing her lightly.
+SpreaderVibratingDildoBarIncreaseTo1,,,The dildo on DestinationCharacterName Vibrating Spreader Dildo Bar builds up to a moderate pace.
+SpreaderVibratingDildoBarIncreaseTo2,,,The dildo on DestinationCharacterName Vibrating Spreader Dildo Bar starts buzzing strongly!
+SpreaderVibratingDildoBarIncreaseTo3,,,The dildo on DestinationCharacterName Vibrating Spreader Dildo Bar jumps up to maximum intensity!
 BPumpsdeflatesTo0,,,SourceCharacter deflates DestinationCharacter butt pump till it's empty.
 BPumpsdeflatesTo1,,,SourceCharacter deflates DestinationCharacter butt pump till only slighty filled.
 BPumpsdeflatesTo2,,,SourceCharacter deflates DestinationCharacter butt pump till it's half full.
@@ -1016,3 +1034,8 @@ MermaidSuitTypeZipped,,,Zipped Up
 MermaidSuitTypeUnZip,,,Unzipped
 MermaidSuitSetZipped,,,SourceCharacter zips up TargetCharacter suit.
 MermaidSuitSetUnZip,,,SourceCharacter unzips TargetCharacter suit.
+SelectBackShield,,,Selected chastity belt backing
+ChastityOpenBack,,,Open Back
+ChastityClosedBack,,,Closed Back
+ChastityBeltBackShieldOpenBack,,,SourceCharacter removes the shield from the back of DestinationCharacter's belt.
+ChastityBeltBackShieldClosedBack,,,SourceCharacter adds the shield to the back of DestinationCharacter's belt.

@@ -58,6 +58,7 @@ Necklace,Necklace1,Fancy Necklace
 Necklace,Necklace2,Beaded Necklace
 Necklace,Necklace3,Long Beaded Necklace
 Necklace,Necklace4,Pearl Necklace
+Necklace,IDCard,ID Card
 Suit,,Upper Suit
 Suit,Catsuit,Catsuit
 Suit,SeamlessCatsuit, Seamless Catsuit
@@ -300,6 +301,7 @@ Glasses,Mask2,Domino Mask
 Glasses,ButterflyMask1,Butterfly Mask
 Glasses,EyePatch1,Eye Patch
 Glasses,ShinobiMask,Shinobi Mask
+Glasses,FoxMask,Fox Mask
 TailStraps,,Tail Strap
 TailStraps,TailStrap,Kitty Tail Strap
 TailStraps,HorseTailStrap,Horse Tail Strap
@@ -437,6 +439,8 @@ ItemFeet,BallChain,Ball And Chain
 ItemFeet,AnkleShackles, Ankle Shackles
 ItemFeet,Zipties, Zip Ties
 ItemFeet,Chains,Chains
+ItemFeet,SpreaderDildoBar,Spreader Dildo Bar
+ItemFeet,SpreaderVibratingDildoBar,Vibrating Spreader Dildo Bar
 ItemLegs,,Legs
 ItemLegs,NylonRope,Nylon Rope
 ItemLegs,HempRope,Hemp Rope
@@ -512,6 +516,8 @@ ItemButt,DemonPlug,Demon Tail Plug
 ItemButt,MouseTail1,Mouse Tail 1
 ItemButt,MouseTail2,Mouse Tail 2
 ItemButt,VibratingDildoPlug,Vibrating Dildo
+ItemButt,BunnyTailPlug1,White Bunny Tail Plug
+ItemButt,BunnyTailPlug2,Brown Bunny Tail Plug
 ItemPelvis,,Pelvis
 ItemPelvis,StraponPanties,Strap-On Panties
 ItemPelvis,LeatherChastityBelt,Leather Chastity Belt
@@ -521,10 +527,6 @@ ItemPelvis,MetalChastityBelt,Metal Chastity Belt
 ItemPelvis,PolishedChastityBelt,Polished Chastity Belt
 ItemPelvis,OrnateChastityBelt,Ornate Chastity Belt
 ItemPelvis,SteelChastityPanties,Steel Chastity Panties
-ItemPelvis,OpenBackStuddedChastityBelt,Open Back Studded Chastity Belt
-ItemPelvis,OpenBackMetalChastityBelt,Open Back Metal Chastity Belt
-ItemPelvis,OpenBackPolishedChastityBelt,Open Back Polished Chastity Belt
-ItemPelvis,OpenBackOrnateChastityBelt,Open Back Ornate Chastity Belt
 ItemPelvis,HarnessPanties1,Bondage Harness
 ItemPelvis,HarnessPanties2,Full Bondage Harness
 ItemPelvis,LeatherStrapPanties1,Leather Strap Panties
@@ -869,6 +871,7 @@ ItemDevices,SmallDisplayCase,Small Display Case
 ItemDevices,WoodenBoxOpenHead,Exposed Head Wooden Box
 ItemDevices,SmallWoodenBoxOpenHead,Exposed Head Small Wooden Box
 ItemDevices,WoodenStocks,Wooden Stocks
+ItemDevices,Vacbed,Vacbed
 ItemAddon,,Body
 ItemAddon,BondageBenchStraps,Leather Belt Straps
 ItemBoots,,Feet

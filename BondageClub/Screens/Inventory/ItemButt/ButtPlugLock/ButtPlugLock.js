@@ -24,7 +24,7 @@ function InventoryItemButtButtPlugLockDraw() {
 	
 	// Draw the possible poses
 	DrawText(DialogFind(Player, InventoryItemButtButtPlugLockMessage), 1500, 500, "white", "gray");
-	DrawButton(1000, 550, 225, 225, "", (DialogFocusItem.Property == null) ? "#888888" : "White");
+	DrawButton(1000, 550, 225, 225, "", ((DialogFocusItem.Property == null) || (DialogFocusItem.Property.Type == null)) ? "#888888" : "White");
 	DrawImage("Screens/Inventory/" + DialogFocusItem.Asset.Group.Name + "/" + DialogFocusItem.Asset.Name + "/Base.png", 1000, 550);
 	DrawText(DialogFind(Player, "ButtPlugLockPoseBase"), 1125, 800, "white", "gray");
 	DrawButton(1250, 550, 225, 225, "", ((DialogFocusItem.Property != null) && (DialogFocusItem.Property.Type == "ChainShort") || !ChainShortPrerequisites) ? "#888888" : "White");
@@ -61,35 +61,27 @@ function InventoryItemButtButtPlugLockSetPose(NewPose) {
 	if ((CurrentScreen == "ChatRoom") || (DialogFocusItem == null)) {
 		DialogFocusItem = InventoryGet(C, C.FocusGroup.Name);
 		InventoryItemButtButtPlugLockLoad();
-	
-	
-//		if (InventoryGet(C, "Cloth") != null) {
-//		InventoryItemButtButtPlugLockMessage = "RemoveClothesForItem";
-//		return;
-//		}
+	}
 
 	// Sets the new pose with it's effects
-		DialogFocusItem.Property.Restrain = NewPose;
-		if (NewPose == null) {
-			delete DialogFocusItem.Property.Effect;
-			delete DialogFocusItem.Property.Type;
-			delete DialogFocusItem.Property.SetPose;
-			delete DialogFocusItem.Property.AllowPose;
-		} else {
-			DialogFocusItem.Property.Type = NewPose;
-			
-			if (NewPose == "ChainShort" ) {
-				DialogFocusItem.Property.Effect = ["Chaste", "Freeze", "ForceKneel"];
-				DialogFocusItem.Property.SetPose = ["Kneel"];
-			}
-//			if (NewPose == "ChainLong") delete DialogFocusItem.Property.Effect;
-			if (NewPose == "ChainLong") DialogFocusItem.Property.SetPose = [""];
-			if (NewPose == "ChainLong") DialogFocusItem.Property.Effect = ["Chaste", "Tethered"];
-			if (NewPose == "ChainLong") DialogFocusItem.Property.AllowPose = ["Kneel", "Horse", "KneelingSpread"]
+	DialogFocusItem.Property.Restrain = NewPose;
+	if (NewPose == null) {
+		delete DialogFocusItem.Property.Effect;
+		delete DialogFocusItem.Property.Type;
+		delete DialogFocusItem.Property.SetPose;
+		delete DialogFocusItem.Property.AllowPose;
+	} else {
+		DialogFocusItem.Property.Type = NewPose;
+		if (NewPose == "ChainShort") {
+			DialogFocusItem.Property.Effect = ["Chaste", "Freeze", "ForceKneel"];
+			DialogFocusItem.Property.SetPose = ["Kneel"];
 		}
-		DialogFocusItem.Property.Restrain = NewPose;
-	} 
-	
+		if (NewPose == "ChainLong") {
+			DialogFocusItem.Property.SetPose = [""];
+			DialogFocusItem.Property.Effect = ["Chaste", "Tethered"];
+			DialogFocusItem.Property.AllowPose = ["Kneel", "Horse", "KneelingSpread"];
+		}
+	}
 
 	// Adds the lock effect back if it was padlocked
 	if ((DialogFocusItem.Property.LockedBy != null) && (DialogFocusItem.Property.LockedBy != "")) {

@@ -73,7 +73,7 @@ function TimerInventoryRemoveSet(C, AssetGroup, Timer) {
 	for (var E = 0; E < C.Appearance.length; E++)
 		if (C.Appearance[E].Asset.Group.Name == AssetGroup) {
 			if (C.Appearance[E].Property == null) C.Appearance[E].Property = {};
-			C.Appearance[E].Property.RemoveTimer = CurrentTime + Timer * 1000;
+			C.Appearance[E].Property.RemoveTimer = Math.round(CurrentTime + Timer * 1000);
 			break;
 		}
 	CharacterRefresh(C);

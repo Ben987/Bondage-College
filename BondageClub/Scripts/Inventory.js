@@ -513,7 +513,7 @@ function InventoryLockRandom(C, Item, FromOwner) {
 	if (Item.Asset.AllowLock) {
 		var List = [];
 		for (var A = 0; A < Asset.length; A++)
-			if (Asset[A].IsLock && (FromOwner || !Asset[A].OwnerOnly))
+			if (Asset[A].IsLock && Asset[A].Random && !Asset[A].LoverOnly && (FromOwner || !Asset[A].OwnerOnly))
 				List.push(Asset[A]);
 		if (List.length > 0) {
 			var Lock = { Asset: List[Math.floor(Math.random() * List.length)] };
@@ -577,5 +577,33 @@ function InventoryIsPermissionBlocked(C, AssetName, AssetGroup) {
 		for (var B = 0; B < C.BlockItems.length; B++)
 			if ((C.BlockItems[B].Name == AssetName) && (C.BlockItems[B].Group == AssetGroup))
 				return true;
+	return false;
+}
+
+/**
+ * Returns TRUE if a specific item / asset is limited by the character item permissions
+ * @param {Character} C - The character on which we check the permissions
+ * @param {String} AssetName - The asset / item name to scan
+ * @param {String} AssetGroup - The asset group name to scan
+ * @returns {Boolean} - TRUE if asset / item is limited
+ */
+function InventoryIsPermissionLimited(C, AssetName, AssetGroup) {
+	if ((C != null) && (C.LimitedItems != null) && Array.isArray(C.LimitedItems))
+		for (var B = 0; B < C.LimitedItems.length; B++)
+			if ((C.LimitedItems[B].Name == AssetName) && (C.LimitedItems[B].Group == AssetGroup))
+				return true;
+	return false;
+}
+
+/**
+ * Returns TRUE if the item is not limited, if the player is an owner or a lover of the character, or on their whitelist
+ * @param {Character} C - The character on which we check the limited permissions for the item
+ * @param {Item} Item - The item being interacted with
+ * @returns {Boolean} - TRUE if item is allowed
+ */
+function InventoryCheckLimitedPermission(C, Item) {
+	if (!InventoryIsPermissionLimited(C, Item.Asset.Name, Item.Asset.Group.Name)) return true;
+	if ((C.ID == 0) || ((C.Lovership != null) && (C.Lovership.MemberNumber == Player.MemberNumber)) || ((C.Ownership != null) && (C.Ownership.MemberNumber == Player.MemberNumber))) return true;
+	if ((C.ItemPermission < 3) && !(C.WhiteList.indexOf(Player.MemberNumber) < 0)) return true;
 	return false;
 }

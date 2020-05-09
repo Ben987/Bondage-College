@@ -159,6 +159,7 @@ function GameLARPBuildInventory(FocusGroup) {
 	for(var A = 0; A < Player.Inventory.length; A++)
 		if ((Player.Inventory[A].Asset != null) && (Player.Inventory[A].Asset.Group.Name == FocusGroup) && Player.Inventory[A].Asset.Enable && Player.Inventory[A].Asset.Wear && Player.Inventory[A].Asset.Random)
 			GameLARPInventory.push(Player.Inventory[A].Asset);
+	GameLARPInventory.sort((a,b) => (a.Description > b.Description) ? 1 : ((b.Description > a.Description) ? -1 : 0));
 }
 
 // When an option is selected for a target
@@ -538,10 +539,12 @@ function GameLARPProcessAction(Action, ItemName, Source, Target, RNG) {
 	if ((Odds >= 0.01) && ((Odds >= 1) || (Odds >= RNG.toFixed(2)))) {
 
 		// Regular restrain actions
+		ChatRoomAllowCharacterUpdate = false;
 		if ((Action == "RestrainLegs") || (Action == "Immobilize")) InventoryWear(Target, ItemName, "ItemFeet", null, 6);
 		if ((Action == "RestrainArms") || (Action == "Detain")) InventoryWear(Target, ItemName, "ItemArms", null, 6);
 		if ((Action == "RestrainMouth") || (Action == "Silence")) InventoryWear(Target, ItemName, "ItemMouth", null, 6);
 		if ((Action == "Dress") || (Action == "Costume")) InventoryWear(Target, ItemName, "Cloth");
+		ChatRoomAllowCharacterUpdate = true;
 
 		// Struggle and evasion can remove some restraints
 		if (Action == "Struggle") InventoryRemove(Target, "ItemArms");

@@ -190,19 +190,24 @@ function CharacterAppearanceNaked(C) {
 
 // Returns the character appearance sorted by drawing priority
 function CharacterAppearanceSort(AP) {
-	var Arr = [];
-	for (var P = 0; P < 50; P++)
-		for (var A = 0; A < AP.length; A++)
-			if (AP[A].Property != null && AP[A].Property.OverridePriority != null) {
-				if (AP[A].Property.OverridePriority == P)
-					Arr.push(AP[A]);
-			} else if (AP[A].Asset.DrawingPriority != null) {
-				if (AP[A].Asset.DrawingPriority == P)
-					Arr.push(AP[A]);
-			} else
-				if (AP[A].Asset.Group.DrawingPriority == P)
-					Arr.push(AP[A]);
-	return Arr;
+	function GetPriority(A) {
+		return ((A.Property != null) && (A.Property.OverridePriority != null)) ? A.Property.OverridePriority : A.DrawingPriority != null ? A.DrawingPriority : A.Group.DrawingPriority;
+	}
+
+	for (var i = 1; i < AP.length; i++) {
+		var key = AP[i];
+		var j = i - 1;
+		var valuePriority = GetPriority(AP[j].Asset);
+		var keyPriority = GetPriority(key.Asset);
+		while ((j >= 0) && (valuePriority > keyPriority)) {
+			AP[j + 1] = AP[j];
+			j--;
+			if (j >= 0) valuePriority = GetPriority(AP[j].Asset);
+		}
+		AP[j + 1] = key;
+	}
+
+	return AP;
 }
 
 // Returns TRUE if we can show the item group

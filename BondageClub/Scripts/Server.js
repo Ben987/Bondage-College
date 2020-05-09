@@ -176,7 +176,7 @@ function ServerValidateProperties(C, Item) {
 					var CurrentTimeDelay = 5000;
 					// As CurrentTime can be slightly different, we accept a small delay in ms
 					if ((typeof Item.Property.RemoveTimer !== "number") || (Item.Property.RemoveTimer - CurrentTimeDelay > CurrentTime + Lock.Asset.MaxTimer * 1000)) {
-						Item.Property.RemoveTimer = CurrentTime + Lock.Asset.RemoveTimer * 1000;
+						Item.Property.RemoveTimer = Math.round(CurrentTime + Lock.Asset.RemoveTimer * 1000);
 					}
 				} else delete Item.Property.RemoveTimer;
 
@@ -277,16 +277,18 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 	// Reapply any item that was equipped and isn't enable, same for owner locked items if the source member isn't the owner
 	if ((SourceMemberNumber != null) && (C.ID == 0))
 		for (var A = 0; A < C.Appearance.length; A++) {
-			if (!C.Appearance[A].Asset.Enable && !C.Appearance[A].Asset.OwnerOnly && !C.Appearance[A].Asset.LoverOnly)
+			if (!C.Appearance[A].Asset.Enable && !C.Appearance[A].Asset.OwnerOnly && !C.Appearance[A].Asset.LoverOnly) {
 				Appearance.push(C.Appearance[A]);
-			else
+			} else {
 				if ((C.Ownership != null) && (C.Ownership.MemberNumber != null) && (C.Ownership.MemberNumber != SourceMemberNumber) && InventoryOwnerOnlyItem(C.Appearance[A])) {
 					var NA = C.Appearance[A];
 					if (!C.Appearance[A].Asset.OwnerOnly) {
+
 						// If the owner-locked item is sent back from a non-owner, we allow to change some properties and lock it back with the owner lock
 						for (var B = 0; B < Bundle.length; B++)
 							if ((C.Appearance[A].Asset.Name == Bundle[B].Name) && (C.Appearance[A].Asset.Group.Name == Bundle[B].Group) && (C.Appearance[A].Asset.Group.Family == AssetFamily))
 								NA.Property = Bundle[B].Property;
+
 						// Some Properties should not be changed
 						if (C.Appearance[A].Property) {
 							if (C.Appearance[A].Property.LockedBy != null) NA.Property.LockedBy = C.Appearance[A].Property.LockedBy;
@@ -295,24 +297,26 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 							if (C.Appearance[A].Property.RemoveItem != null) NA.Property.RemoveItem = C.Appearance[A].Property.RemoveItem; else delete NA.Property.RemoveItem;
 							if (C.Appearance[A].Property.ShowTimer != null) NA.Property.ShowTimer = C.Appearance[A].Property.ShowTimer; else delete NA.Property.ShowTimer;
 							if (C.Appearance[A].Property.EnableRandomInput != null) NA.Property.EnableRandomInput = C.Appearance[A].Property.EnableRandomInput; else delete NA.Property.EnableRandomInput;
-
 							if (!NA.Property.EnableRandomInput || NA.Property.LockedBy != "OwnerTimerPadlock") {
 								if (C.Appearance[A].Property.MemberNumberList != null) NA.Property.MemberNumberList = C.Appearance[A].Property.MemberNumberList; else delete NA.Property.MemberNumberList;
-								if (C.Appearance[A].Property.RemoveTimer != null) NA.Property.RemoveTimer = C.Appearance[A].Property.RemoveTimer; else delete NA.Property.RemoveTimer;
+								if (C.Appearance[A].Property.RemoveTimer != null) NA.Property.RemoveTimer = Math.round(C.Appearance[A].Property.RemoveTimer); else delete NA.Property.RemoveTimer;
 							}
 						}
 						ServerValidateProperties(C, NA);
 						if (C.Appearance[A].Property.LockedBy == "OwnerPadlock") InventoryLock(C, NA, { Asset: AssetGet(AssetFamily, "ItemMisc", "OwnerPadlock") }, C.Ownership.MemberNumber);
+
 					}
 					Appearance.push(NA);
 				}
 				if ((C.Lovership != null) && (C.Lovership.MemberNumber != null) && (C.Lovership.MemberNumber != SourceMemberNumber) && InventoryLoverOnlyItem(C.Appearance[A])) {
 					var NA = C.Appearance[A];
 					if (!C.Appearance[A].Asset.LoverOnly) {
+
 						// If the lover-locked item is sent back from a non-lover, we allow to change some properties and lock it back with the lover lock
 						for (var B = 0; B < Bundle.length; B++)
 							if ((C.Appearance[A].Asset.Name == Bundle[B].Name) && (C.Appearance[A].Asset.Group.Name == Bundle[B].Group) && (C.Appearance[A].Asset.Group.Family == AssetFamily))
 								NA.Property = Bundle[B].Property;
+
 						// Some Properties should not be changed
 						if (C.Appearance[A].Property) {
 							if (C.Appearance[A].Property.LockedBy != null) NA.Property.LockedBy = C.Appearance[A].Property.LockedBy;
@@ -321,10 +325,9 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 							if (C.Appearance[A].Property.RemoveItem != null) NA.Property.RemoveItem = C.Appearance[A].Property.RemoveItem; else delete NA.Property.RemoveItem;
 							if (C.Appearance[A].Property.ShowTimer != null) NA.Property.ShowTimer = C.Appearance[A].Property.ShowTimer; else delete NA.Property.ShowTimer;
 							if (C.Appearance[A].Property.EnableRandomInput != null) NA.Property.EnableRandomInput = C.Appearance[A].Property.EnableRandomInput; else delete NA.Property.EnableRandomInput;
-
 							if (!NA.Property.EnableRandomInput || NA.Property.LockedBy != "LoversTimerPadlock") {
 								if (C.Appearance[A].Property.MemberNumberList != null) NA.Property.MemberNumberList = C.Appearance[A].Property.MemberNumberList; else delete NA.Property.MemberNumberList;
-								if (C.Appearance[A].Property.RemoveTimer != null) NA.Property.RemoveTimer = C.Appearance[A].Property.RemoveTimer; else delete NA.Property.RemoveTimer;
+								if (C.Appearance[A].Property.RemoveTimer != null) NA.Property.RemoveTimer = Math.round(C.Appearance[A].Property.RemoveTimer); else delete NA.Property.RemoveTimer;
 							}
 						}
 						ServerValidateProperties(C, NA);
@@ -332,13 +335,14 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 					}
 					Appearance.push(NA);
 				}
+			}
 		}
 
 	// For each appearance item to load
 	for (var A = 0; A < Bundle.length; A++) {
 
 		// Skip blocked items
-		if (InventoryIsPermissionBlocked(C, Bundle[A].Name, Bundle[A].Group) && OnlineGameAllowBlockItems()) continue;
+		if ((InventoryIsPermissionBlocked(C, Bundle[A].Name, Bundle[A].Group) || InventoryIsPermissionLimited(C,Bundle[A].Name, Bundle)) && OnlineGameAllowBlockItems()) continue;
 
 		// Cycles in all assets to find the correct item to add (do not add )
 		for (var I = 0; I < Asset.length; I++)

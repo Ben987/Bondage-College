@@ -684,6 +684,10 @@ function PrisonArrestStripOuterCloth() {
 	PrisonSetBehavior(-1);
 }
 
+function PrisonCharacterIsInUnderwear() {
+	return CharacterIsInUnderwear(Player);
+}
+
 function PrisonArrestStripUnderware() {
 	CharacterNaked(Player);
 	PrisonSetBehavior(1);
