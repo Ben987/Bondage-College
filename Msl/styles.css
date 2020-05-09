@@ -1,6 +1,14 @@
-.main-interface-button{width:15%;height:10%}
-.full-block{width:100%;height:100%;position:absolute;}
+/*percentage-based margin values are calculated relative to the width of containing block*/
 
+body {box-sizing: border-box;}
+div {box-sizing: border-box;}
+textarea {box-sizing: border-box;}
+
+#LocationViewHud > div {pointer-events:all;}
+
+.main-interface-button{width:15%;height:10%}
+.fill-container{width:100%;height:100%;}
+.full-block{width:100%;height:100%;position:absolute;}
 
 input.regular-input{width:15%;height:10%;font-size:2.5em}
 input.smaller-input{width:10%;height:5%;font-size:1.7em}
@@ -8,9 +16,18 @@ input.smallest-input{width:10%;height:5%;font-size:1.2em}
 input.create-location-button{width:15%;height:10%;}
 input.select-location-entrance{}
 
+.hover-button-highlight:hover{background-color:lightblue}
+ 
+/*Minigames*/
+div.simplest-comply-button{position:absolute;top:42.5%;left:47.5%;width:5%; height:5%; }
+
+div.progress_bar{height:100%;background-color:green;}
+div.cancel_button{width:100%;height:100%;background-color:gray;}
+
 /*Location view*/
-.screen-spot-container{position:absolute;background-color:rgba(0,0,0,0.02);}
-.screen-spot-event-listener{position:absolute;background-color:rgba(0,0,0,0.002);}
+.screen-spot-container{position:absolute;}
+.location-spot-event-listener{position:absolute;}
+.location-spot-figure-listener{position:absolute;width:50%; height:75%; margin-left:25%; margin-top:25%}
 .spot-base{position:absolute;border-radius:45%;background-color: rgba(0,0,0,0.25)}
 .spot-base-self{border:5px rgba(0,0,128,0.6) solid}
 .spot-base-far{border:5px rgba(0,0,0,0.6) solid}
@@ -18,46 +35,89 @@ input.select-location-entrance{}
 .spot-base-occupied{border:5px rgba(128,0,0,0.6) solid}
 .spot-icon-examine{position:absolute}
 
-#AppItemGroupButtonContainerTemplate
 
-div.simplest-comply-button{position:absolute;top:42.5%;left:47.5%;width:5%; height:5%; }
+@keyframes fadeOut { 0% {opacity:1;} 100% { opacity:0;} }
+@keyframes blink { 0% {opacity:1;}  89%{opacity:1;}  90%{opacity:0;}  99%{opacity:0;}  100%{opacity:1}}
+.blinking {animation-name: blink; animation-duration: 6s; animation-iteration-count: infinite; }
 
-div.progress_bar{height:100%;background-color:green;}
-div.cancel_button{width:100%;height:100%;background-color:gray;}
-
-div.roll-left{float:left;position:relative;height:100%; width:8%;background-color: rgba(255, 255, 255, 0.3);}
-div.roll-left-full{left:0;}
+/*Location view Hud*/
+/*
+div.roll-left{float:right;position:relative;height:100%; width:8%;background-color: rgb(255, 255, 255);}
+div.roll-left-full{left:92%;}
 div.roll-left-small{left:-6%}
 div.roll-left-out{left:-100%}
 img.roll-left-icon{width:100%;height:16%}
+*/
+.tooltiptext {display:none; position: relative; left:-800%; top:-120%; width:600%; height:100%; padding-top:20%; background-color: darkblue; color: white;  text-align: center; }
 
+.classic-hud-right-container {position:absolute; left:100%; height:100%; width:0%; background-color:black;padding:.25%;}
+.classic-hud-action-icon-container {height:6%;width:100%;margin-bottom:.5%}
+.classic-hud-action-icon-container > div {background-color:white;width:12.5%;height:100%;padding-left:2.5%; padding-right:2.5%; margin-right:5%; float:left}
+.classic-hud-action-icon-container > div.spread {width:28%;padding-left:8%; padding-right:8%; margin-right:8%; }
+.classic-hud-action-icon-container > div:hover .tooltiptext {display:inline-block;}
+.classic-hud-action-icon-container > div > img {width:100%;height:100%}
+.classic-hud-action-icon-container > div > img.rectangle {width:150%;position:relative;left:-25%}
+.classic-hud-chat-log-container {background-color:white; width:100%;height:86%;margin-bottom:.5%;overflow-y:auto;user-select:text;}
+.classic-hud-chat-log-container  > .chat-log-item {color:black; font-size:2em; word-break:break-word;}
+.classic-hud-chat-input-container {width:100%;height:8%;}
+.classic-hud-chat-input-container > textarea{float:left; width:80%; height: 100%; resize:none; border:none;top:0;padding:0;font-size:2em;margin-right:0.5%;margin-left:0.5%;}
+.classic-hud-chat-input-container > textarea.spread {width:60%;}
+.classic-hud-chat-input-container > div{float:left; width:9.5%; padding:0.5%; height:99%;background-color:white}
+.classic-hud-chat-input-container > div.spread {width:19%; }
+
+/*
 div.chat-container{position:absolute;left:10%;height:8%;width:80%;bottom:0;}
 div.chat-log{background-color: rgba(0, 0, 0, 0.5);overflow-y: scroll; height:0%; width:100%;position:absolute;}
 
 .chat-button-roll{width:5%; height:100%; position:absolute; background-color: rgba(255, 255, 255, 0.5);}
 textarea.chat-input{width:90%; height:100%; position:absolute;left:5%; resize:none; border:none;top:0;padding:0;font-size:2em}
 div.chat-log-item{font-size:2em}
-div.chat-hover-item{background-color: rgba(0, 0, 0, 0.5); animation-delay:6s; text-align:center; width:200%; left:-50%; position:relative;}
+*/
+div.chat-hover-item{
+	background-color: rgba(0, 0, 0, 0.5); word-break:break-word; text-align:center; padding:1%;
+	width:150%; left:-25%; top:-20%; position:relative; border-radius:30px}
+div.chat-hover-item:after {
+	content:'';position:absolute;bottom:0;left:50%;width:0;height:0;border:48px solid transparent;
+	border-top-color:#00aabb;border-bottom:0;border-left:0;margin-left:-24px;margin-bottom:-48px;
+}
 
 
-@keyframes fadeOut { 0% {opacity:1;} 100% { opacity:0;} }
-@keyframes blink { 0% {opacity:1;}  89%{opacity:1;}  90%{opacity:0;}  99%{opacity:0;}  100%{opacity:1}}
-.blinking {animation-name: blink; animation-duration: 6s; animation-iteration-count: infinite; }
+/*Location focus view*/
 
-
-.focus-container {position:absolute;background-color:rgba(255,255,255,0.8);}
-.focus-container-normal {width:72%;height:90%;left:14%;top:1%}
-.focus-container-expanded {width:80%;height:100%;left:10%;top:0%}
+.focus-container {position:absolute;width:80%;height:100%;left:10%;top:0%; background-color:rgb(255,255,255);}
+.focus-container.transparent {background-color:rgba(255,255,255,0.8);}
 
 .focus-figure {position:absolute;width:31.25%;left:34.375%;height:100%;left:31%}
 
-.focus-item-group-type-selection-icon-container {float:left;width:10%;height:100%;}	
-.focus-item-group-type-selection-icon-container > img {height:13%; margin:10% 10% 10% 10%}
+.focus-item-group-type-selection-icon-container {float:left;width:10%;height:100%;}
+.focus-item-group-type-selection-icon-container > div {height:16.5%; padding:5%}
+.focus-item-group-type-selection-icon-container > div.selected {background-color:green}
+.focus-item-group-type-selection-icon-container > div > img {width:100%; height:100%;background-color:white}
 
 .focus-item-group-selection-icon-container {}
 .focus-item-group-selection-icon-container > div {display:none;border:1px black solid;word-break:break-word;color:black}
 .focus-item-group-selection-icon-container > div.selected {border:1px green solid}
 .focus-item-group-selection-icon-container > div > img {position:absolute; width:100%; height:100%;}
+.focus-item-group-selection-icon-container > .grid-cell {position:absolute;height:7%;margin:1%}
+.focus-item-group-selection-icon-container > .heightx2 {height:14.1%;}
+.focus-item-group-selection-icon-container > .heightx3 {height:21.2%;}
+.focus-item-group-selection-icon-container > .col0 {left:5%; width:24%}
+.focus-item-group-selection-icon-container > .col1 {left:30%; width:40%}
+.focus-item-group-selection-icon-container > .col2 {left:71%; width:24%}
+.focus-item-group-selection-icon-container > .widthx3 {width:91%;}
+.focus-item-group-selection-icon-container > .row0 {top:0%}
+.focus-item-group-selection-icon-container > .row1 {top:7.1%}
+.focus-item-group-selection-icon-container > .row2 {top:14.2%}
+.focus-item-group-selection-icon-container > .row3 {top:21.3%}
+.focus-item-group-selection-icon-container > .row4 {top:28.4%}
+.focus-item-group-selection-icon-container > .row5 {top:35.6%}
+.focus-item-group-selection-icon-container > .row6 {top:42.7%}
+.focus-item-group-selection-icon-container > .row7 {top:49.8%}
+.focus-item-group-selection-icon-container > .row8 {top:56.9%}
+.focus-item-group-selection-icon-container > .row9 {top:64.0%}
+.focus-item-group-selection-icon-container > .row10 {top:71.1%}
+.focus-item-group-selection-icon-container > .row11 {top:78.2%}
+.focus-item-group-selection-icon-container > .row12 {top:85.3%}
 
 .focus-item-selection-icon-container {float:right;width:38%;height:100%;overflow-y:auto}
 .focus-item-selection-icon-container > div {width:29%;background-color:rgba(0,0,0,.4);float:left;position:relative;margin:2% 2% 2% 2%}
@@ -85,21 +145,6 @@ div.chat-hover-item{background-color: rgba(0, 0, 0, 0.5); animation-delay:6s; te
 .focus-item-actions-variant-container > div > div {position:absolute; overflow:hidden; word-break:break-word}
 
 .validation_message_fadout {color:red;font-size:2em;position:absolute}
-
-.grid-cell{position: absolute; width:18%; height:9%; margin:1%}
-.grid-cell-column0 {left:0%}
-.grid-cell-column1 {left:34%}
-.grid-cell-column2 {left:68%}
-.grid-cell-row0 {top:0%}
-.grid-cell-row1 {top:10%}
-.grid-cell-row2 {top:20%}
-.grid-cell-row3 {top:30%}
-.grid-cell-row4 {top:40%}
-.grid-cell-row5 {top:50%}
-.grid-cell-row6 {top:60%}
-.grid-cell-row7 {top:70%}
-.grid-cell-row8 {top:80%}
-.grid-cell-row9 {top:90%}
 
 .mingame-abcancel-container{position:absolute;top:47.5%;left:40%;width:20%; height:20%;;eft:16.25b ackground-color:black;text-align:center;vertical-align:middle;}
 .mingame-complyrefuse-container{position:absolute;top:40%;left:30%;width:40%; height:40%;background-color:black;text-align:center;vertical-align:middle}focus-color-picker-container

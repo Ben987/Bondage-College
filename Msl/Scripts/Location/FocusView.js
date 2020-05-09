@@ -9,38 +9,58 @@ var LocationFocusView = {
 	,itemActionButtonsContainer:null
 	,itemGroupSelectionContainer:null
 	
-	,selectedItemGroupTypeName:null
-	,selectedItemGroupName:null
+	,selectedItemGroupTypeName:F3dcgAssets.CLOTHING
+	,selectedItemGroupName:"Cloth"
 	,selectedItemName:null
 	
 	,itemActionViews:{"Color":null, "Variant":null, "Lock":null, "Remote":null, "Direct":null, "Arousal":null}
 	,selectedAction:"Color"
+
+	,Init(){}
+	,OnScreenChange(){}
+	,Interrupt(){
+		this.playerUpdateDelegate?.Invalidate();
+		this.playerUpdateDelegate = this.undefined;
+		this.mainContainer?.parentNode?.removeChild(this.mainContainer);
+		this.mainContainer = null;
+	}
+	,UnInit(){}
 	
 	,Commit(){
 		if(this.playerUpdateDelegate.HasChanges()){
 			LocationController.UpdatePlayer(this.playerUpdateDelegate);
-			this.Dismiss();
+			this.Interrupt();
 		}else
 			this.ShowErrors(["No changes"]);
 	}
 	,Undo(){
 		this.ShowErrorsOrPlayer(this.playerUpdateDelegate.Undo());
 	}
-	,Dismiss(){
-		this.playerUpdateDelegate = this.undefined;
-		Util.DetachElementsAndClear(LocationView.actionIcons);
+	
+	,Cancel(){LocationFocusView.Interrupt();}
+	
+	,PreSetSelections(itemGroupTypeName, itemGroupName){
+		if(itemGroupTypeName) LocationFocusview.selectedItemGroupTypeName = itemGroupTypeName;
+		if(itemGroupName) LocationFocusview.selectedItemGroupName = itemGroupName;
 	}
 	
-	,Show(player){
+	,Focus(player){
+		this.Interrupt();
 		this.playerUpdateDelegate = player.GetUpdateDelegate();
-		Util.DetachElementsAndClear(LocationView.actionIcons);
-		this.mainContainer = Util.CreateElement({parent:"LocationViewInput", template:"FocusSelfTemplate"});
-		LocationView.actionIcons.push(this.mainContainer);
+		this.mainContainer = Util.CreateElement({parent:LocationController.inputContainer, template:"FocusSelfTemplate"});
 		
 		this.figureContainer = Util.GetFirstChildNodeByName(this.mainContainer, "figureContainer");
 		this.itemSelectionContainer = Util.GetFirstChildNodeByName(this.mainContainer, "itemSelection");
 		this.itemActionButtonsContainer = Util.GetFirstChildNodeByName(this.mainContainer, "itemActionButtons");
 		this.itemGroupSelectionContainer = Util.GetFirstChildNodeByName(this.figureContainer, "itemGroupSelection");
+		
+		if(MainController.playerAccount.profileSettings.focusTransparentBackground){
+			this.mainContainer.classList.add("transparent");
+			this.mainContainer.style.backgroundImage  = "";
+		}else{
+			this.mainContainer.classList.remove("transparent");
+			this.mainContainer.style.backgroundImage = "url('" + LocationController.backgroundContainer.src + "')";
+		}
 		
 		for(var actionName in this.itemActionViews){
 			var containerElement = Util.GetFirstChildNodeByName(this.mainContainer, "item"+actionName+"Actions");
@@ -81,20 +101,26 @@ var LocationFocusView = {
 	}
 	
 	,BuildPlayerFigureAndIconsAndEvents(){
-		LocationView.BuildPlayerFigure(this.figureContainer, this.playerUpdateDelegate.appearance);
+		LocationController.delegates.view.BuildPlayerFigure(this.figureContainer, this.playerUpdateDelegate.appearance);
 		
 		Util.MoveNodeToEndOfList(this.itemGroupSelectionContainer);
 		
 		for(let itemGroupTypeName in this.playerUpdateDelegate.inventory.items){
-			var icon = Util.GetFirstChildNodeByName(Util.GetFirstChildNodeByName(this.mainContainer, "itemGroupTypeSelection"), itemGroupTypeName)
+			var icon = Util.GetFirstChildNodeByName(Util.GetFirstChildNodeByName(this.mainContainer, "itemGroupTypeSelection"), itemGroupTypeName);
 			icon.addEventListener("click", (e) => this.OnItemGroupTypeClick(e, itemGroupTypeName));
+			
+			if(itemGroupTypeName == this.selectedItemGroupTypeName){
+				this.OnItemGroupTypeClick(null, itemGroupTypeName);
+			}
 		}
 	}
 	
 	
 	,OnItemGroupTypeClick(e, itemGroupTypeName){
-		e.stopPropagation();
+		e?.stopPropagation();
 		LocationFocusView.selectedItemGroupTypeName = itemGroupTypeName;
+		var icon = Util.GetFirstChildNodeByName(Util.GetFirstChildNodeByName(this.mainContainer, "itemGroupTypeSelection"), itemGroupTypeName)
+		Util.SelectElementAndDeselectSiblings(icon, "selected");
 		
 		Util.ClearNodeContent(this.itemSelectionContainer);
 		Util.HideAllChildNodes(this.itemGroupSelectionContainer);
@@ -106,16 +132,20 @@ var LocationFocusView = {
 			itemGroupIcon.addEventListener("click", (e) => this.OnItemGroupClick(e, itemGroupName));
 			
 			this.UpdateItemGroupIconImage(this.selectedItemGroupTypeName, itemGroupName);
+			
+			if(itemGroupName == this.selectedItemGroupName)
+				this.OnItemGroupClick(null, itemGroupName);
 		}
 	}
 	
 	
 	,OnItemGroupClick(e, itemGroupName){
-		e.stopPropagation();
+		e?.stopPropagation();
 		LocationFocusView.selectedItemGroupName = itemGroupName;
 		Util.ClearNodeContent(this.itemSelectionContainer);
 		
-		Util.SelectElementAndDeselectSiblings(event.target.parentNode, "selected");
+		var icon = Util.GetFirstChildNodeByName(this.itemGroupSelectionContainer, itemGroupName);
+		Util.SelectElementAndDeselectSiblings(icon, "selected");
 		
 		for(let itemName in this.playerUpdateDelegate.inventory.items[this.selectedItemGroupTypeName][itemGroupName]){
 			let itemData = this.playerUpdateDelegate.inventory.items[this.selectedItemGroupTypeName][itemGroupName][itemName];
@@ -139,11 +169,15 @@ var LocationFocusView = {
 	
 	
 	,OnItemClick(e, itemName){
-		e.stopPropagation();
+		e?.stopPropagation();
+		
 		this.selectedItemName = itemName;
 		var appearanceItem = F3dcgAssets.InitAppearanceItem(this.selectedItemGroupTypeName, this.selectedItemGroupName, this.selectedItemName);
 		var validationErrors = this.playerUpdateDelegate.Add(appearanceItem);
 		this.ShowErrorsOrPlayer(validationErrors);
+		
+		console.log(validationErrors);
+		
 		if(! validationErrors.length) this.UpdateItemGroupIconImage(this.selectedItemGroupTypeName, this.selectedItemGroupName);
 	}
 	
@@ -151,9 +185,10 @@ var LocationFocusView = {
 	,UpdateItemGroupIconImage(itemGroupTypeName, itemGroupName){
 		var wornItem = this.playerUpdateDelegate.appearance.items[itemGroupName];
 		if(wornItem){
-			var itemGroupIcon = Util.GetFirstChildNodeByName(this.itemGroupSelectionContainer, itemGroupName);		
-			var inventoryItem = this.playerUpdateDelegate.inventory.items[itemGroupTypeName][itemGroupName][wornItem.itemName];
-			itemGroupIcon.childNodes[1].setAttribute("src", inventoryItem?.iconUrl ? inventoryItem.iconUrl : "./Images/Icons/e4x4.png");
+			//current item will be displayed elsewhere
+			//var itemGroupIcon = Util.GetFirstChildNodeByName(this.itemGroupSelectionContainer, itemGroupName);		
+			//var inventoryItem = this.playerUpdateDelegate.inventory.items[itemGroupTypeName][itemGroupName][wornItem.itemName];
+			//itemGroupIcon.childNodes[1].setAttribute("src", inventoryItem?.iconUrl ? inventoryItem.iconUrl : "./Images/Icons/e4x4.png");
 		}		
 	}
 	
@@ -167,6 +202,7 @@ var LocationFocusView = {
 		
 		if(wornItem){
 			var inventoryItem = this.playerUpdateDelegate.inventory.items[this.selectedItemGroupTypeName][this.selectedItemGroupName][wornItem.itemName];
+			
 			if(! inventoryItem) inventoryItem = {};//to avoid null reference
 			
 			if(wornItem.colorize){

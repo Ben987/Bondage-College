@@ -1,0 +1,17 @@
+					<div id="HudClassicChatRoomActionIcons" class="classic-hud-action-icon-container" onclick="event.stopPropagation()">
+						<div class="hover-button-highlight" onclick="LocationController.ExitLocation();"><img src="../BondageClub/Icons/Exit.png" alt="Exit"/><span class="tooltiptext">Leave this chat room</span></div>
+						<div class="hover-button-highlight" onclick="LocationController.StartPlayerFocus();"><img src="../BondageClub/Icons/Dress.png" alt="FocusSelf" /><span class="tooltiptext">Dress your character</span></div>
+						<div class="hover-button-highlight"><img src="../BondageClub/Icons/Rectangle/Cut.png" alt="Cut" class="rectangle"/><span class="tooltiptext">Keep only 20 messages</span></div>
+						<div class="hover-button-highlight"><img src="../BondageClub/Icons/Kneel.png" alt="PoseChange" /><span class="tooltiptext">Kneel down / Stand up</span></div>
+						<div class="hover-button-highlight" onclick="LocationController.ShowPlayerProfile();"><img src="../BondageClub/Icons/Character.png" alt="ProfileSelf" /><span class="tooltiptext">Your character profile</span></div>
+						<div class="hover-button-highlight" style="margin:0;float:right;" onclick="ClassicHud.RollForward()"><img src="./Images/Icons/Out.png" alt="RoomAdministration"/></div>
+						
+						<!--<div><img src="./Images/Icons/Out.png" alt="More" style="transform: rotate(270deg);"/></div>--> 
+					</div>
+					<div class="classic-hud-chat-log-container" id="LocationViewChatLog"></div>
+					<div id="HudClassicChatContainer" class="classic-hud-chat-input-container" onclick="event.stopPropagation()"> 
+						<div class="hover-button-highlight" onclick="ClassicHud.RollBack()"><img class="fill-container" src="./Images/Icons/Out.png" style="transform:rotate(180deg)" /></div>
+						<textarea maxlength="250" autocomplete="off" placeholder="Talk to everyone" id="LocationViewChatInput" onkeypress="LocationController.delegates.chat.TypeMessage(event)"></textarea>
+						<div class="hover-button-highlight" onclick="LocationController.delegates.chat.SendMessage()"><img class="fill-container" src="../BondageClub/Icons/Small/Chat.png" /></div>
+					</div>
+					

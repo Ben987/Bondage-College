@@ -24,6 +24,8 @@ var MslServer = {
 		else						callback(resp.data);
 	}
 	
+	
+	
 	,ExitLocation(spotName){
 		MslServer.socket.emit("ExitLocation", {spotName:spotName});
 	}
@@ -44,11 +46,15 @@ var MslServer = {
 	,GetPlayerCharacter(id){
 		MslServer.socket.emit("GetPlayerCharacter", {memberNumber: id});
 	}
+	,UpdatePlayerProfile(profileData){
+		MslServer.socket.emit("UpdatePlayerProfile", profileData);
+	}
+
 	,GetAvailableLocationTypes(){
 		MslServer.socket.emit("GetAvailableLocationTypes", {});
 	}
-	,CreateLocation(locationType, selectedEntry){
-		MslServer.socket.emit("CreateLocation", {locationType:locationType, selectedEntry:selectedEntry});
+	,CreateLocation(locationType, entrySpotName){
+		MslServer.socket.emit("CreateLocation", {locationType:locationType, entrySpotName:entrySpotName});
 	}
 	,MoveToSpot(originSpotName, destinationSpotName){
 		MslServer.socket.emit("MoveToSpot", {originSpotName:originSpotName, destinationSpotName:destinationSpotName});

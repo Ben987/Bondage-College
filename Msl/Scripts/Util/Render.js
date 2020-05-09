@@ -1,10 +1,8 @@
 'use strict'
 
 //Color and Rendering
-Util.imageDataCache = {}
-Util.cachedCanvas = null
-Util.imageCache = {}
 
+Util.imageCache = {}
 Util.CreateImageElement = function(src, parent, cS, scaleX, scaleY, callback, placeholderElement){
 	var cachedImage = this.imageCache[src];
 	
@@ -36,7 +34,8 @@ Util.CreateImageElement = function(src, parent, cS, scaleX, scaleY, callback, pl
 	}
 }
 
-
+Util.imageDataCache = {}
+Util.cachedCanvas = null
 Util.ColorizeImage = function(imageElement, color, fullAlpha){
 	if(!this.cachedCanvas) this.cachedCanvas = document.createElement("Canvas");
 	

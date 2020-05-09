@@ -45,7 +45,7 @@ var F3dcgAssetsAdd = {
 			
 			//var bodyTypes = ["BodyUpper", "BodyLower", "Height", "Hands", "HairFront", "HairBack", "Eyes", "Mouth", "Nipples", "Pussy"];
 			var expressionTypes = ["Eyebrows", "Blush", "Fluids", "Emoticon"];
-			var accessorries = ["ClothAccessory", "HairAccessory1", "HairAccessory2", "Glasses", "TailStraps", "Wings", "ItemMisc"];
+			var accessorries = ["ClothAccessory", "HairAccessory1", "HairAccessory2", "TailStraps", "Wings", "ItemMisc"];
 			var toys = ["ItemEars"];
 			
 			if(expressionTypes.includes(AssetItemGroup.Group)){
@@ -88,7 +88,6 @@ var F3dcgAssetsAdd = {
 						break;
 						default: //console.log(AssetItem);
 					}
-					
 				}
 			}
 		});

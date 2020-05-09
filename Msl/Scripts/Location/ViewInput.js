@@ -36,7 +36,6 @@ var SideInput = {
 	,Examine(){SideInput.LocationViewActionAndRollSmall("Examine");}
 	,Move(){SideInput.LocationViewActionAndRollSmall("Move");}
 	
-	
 	,Item(){
 		if(SideInput.currentRollState != SideInput.ROLL_STATE_FULL)
 			return SideInput.RollFull();
@@ -59,65 +58,83 @@ var SideInput = {
 
 
 
-var BottomChat = {
-	currentRollOutState:1
+var LocationViewChat = {
+	CHAT_LOG_ELEMENT_ID:"LocationViewChatLog"
+	,CHAT_INPUT_ELEMENT_ID:"LocationViewChatInput"
+	,displayMessagesOnCharacter:true
+	,currentRollOutState:1
 	,rollOutStates:[0, 8, 16, 95]
 
 	,messageLog:[]
 	
+	,Init(){}
+	,UnInit(){
+		LocationViewChat.messageLog = [];
+		Util.ClearNodeContent(document.getElementById(LocationViewChat.CHAT_LOG_ELEMENT_ID));
+	}
+	,Interrupt(){}
+	,OnScreenChange(){}
+	
 	,AddChatMessageToLog(playerId, type, content){
-		BottomChat.messageLog.push({playerId:playerId, type:type, content:content});
-		BottomChat.ClearAndDisplayLog();
+		var data = {playerId:playerId, type:type, content:content};
+		LocationViewChat.messageLog.push(data);
 		
-		var fadeOutTime = 6000 + content.length*80;
-		var spotDiv = LocationView.spotDivs[LocationController.GetSpotWithPlayer(playerId).name];
-		var hoverDiv = Util.CreateElement({parent:spotDiv, innerHTML:content, className:"chat-hover-item"});
+		var chatLogDiv = document.getElementById(LocationViewChat.CHAT_LOG_ELEMENT_ID);
+		var scrollToBot = Util.ScrollableElementIsAtBottom(chatLogDiv);	
+		LocationViewChat.CreateAndAddChatLogElement(data);
+		if(scrollToBot) chatLogDiv.scrollTop = chatLogDiv.scrollHeight;
+		
+		LocationViewChat.AddChatMessageToFigureBox(data);
+	}
+	
+	,AddChatMessageToFigureBox(messageData){
+		var fadeOutTime = 6000 + messageData.content.length*80;
+		var spotDiv = LocationController.delegates.view.spotDivs[LocationController.GetSpotWithPlayer(messageData.playerId).name];
+		var hoverDiv = Util.CreateElement({parent:spotDiv, textContent:messageData.content, className:"chat-hover-item"});
 		
 		setTimeout(() => {hoverDiv.style.animation = "fadeOut ease " + fadeOutTime +"ms"}, 6000);
 		setTimeout(() => {hoverDiv.parentNode.removeChild(hoverDiv);}, 6000  + fadeOutTime);
 	}
 	
-	,ClearAndDisplayLog(){
-		var chatLogDiv = document.getElementById("LocationViewChatLog");
-		var scrollToBot = Math.ceil(chatLogDiv.scrollHeight - chatLogDiv.scrollTop) === chatLogDiv.clientHeight;
-		
-		var html = "";
-		BottomChat.messageLog.forEach(message => {html += "<div class='chat-log-item'>" + message.content + "</div>";});
-		chatLogDiv.innerHTML = html;
-		
+	
+	,ClearAndDisplayLog(messageDataList){
+		var chatLogDiv = document.getElementById(LocationViewChat.CHAT_LOG_ELEMENT_ID);
+		var scrollToBot = Util.ScrollableElementIsAtBottom(chatLogDiv);		
+		Util.ClearNodeContent(chatLogDiv);
+		messageDataList.forEach(messageData => LocationViewChat.CreateAndAddChatLogElement(messageData));
 		if(scrollToBot) chatLogDiv.scrollTop = chatLogDiv.scrollHeight;
 	}
 	
-	,Touch(event){BottomChat.ClickOrTouch(event);}
-	,Click(event){BottomChat.ClickOrTouch(event);}
-	,ClickOrTouch(event){
-		
+	
+	,CreateAndAddChatLogElement(messageData){
+		Util.CreateElement({parent:LocationViewChat.CHAT_LOG_ELEMENT_ID,className:"chat-log-item", textContent:messageData.content});
 	}
 	
-	,KeyPress(event){
+	
+	,TypeMessage(event){
 		if(event.code == "Enter" || event.code == "NumpadEnter"){
-			BottomChat.SendMessage();
+			LocationViewChat.SendMessage(event.target);
 			event.preventDefault();
-			//BottomChat.RollMedIfSmall();
+			//LocationViewChat.RollMedIfSmall();
 		}
 	}
 	
 	,SendMessage(){
-		var content = document.getElementById("LocationViewChatInput").value;
-		document.getElementById("LocationViewChatInput").value = "";
+		var content = document.getElementById(LocationViewChat.CHAT_INPUT_ELEMENT_ID).value;
+		document.getElementById(LocationViewChat.CHAT_INPUT_ELEMENT_ID).value = "";
 		LocationController.SendChatMessage(content);		
 	}
 	
-	,RollNext(direction){
-		var b = BottomChat.currentRollOutState + direction;
-		if(b >= BottomChat.rollOutStates.length) b = BottomChat.rollOutStates.length - 1; else if(b < 0) b = 0;
+	/*,RollNext(direction){
+		var b = LocationViewChat.currentRollOutState + direction;
+		if(b >= LocationViewChat.rollOutStates.length) b = LocationViewChat.rollOutStates.length - 1; else if(b < 0) b = 0;
 		
 		var chatLogDiv = document.getElementById("LocationViewChatLog");
 		var scrollToBot = Math.ceil(chatLogDiv.scrollHeight - chatLogDiv.scrollTop) === chatLogDiv.clientHeight;
 		
-		document.getElementById("LocationViewChat").style.height = BottomChat.rollOutStates[b] + "%";
+		document.getElementById("LocationViewChat").style.height = LocationViewChat.rollOutStates[b] + "%";
 		
-		var height = b == 0 ? 0 : BottomChat.rollOutStates[1] * 100 / BottomChat.rollOutStates[b];
+		var height = b == 0 ? 0 : LocationViewChat.rollOutStates[1] * 100 / LocationViewChat.rollOutStates[b];
 		var top = 100 - height;
 		
 		chatLogDiv.style.height = top + "%";
@@ -127,19 +144,19 @@ var BottomChat = {
 			document.getElementById(elementId).style.top = top + "%";
 		});
 		
-		BottomChat.currentRollOutState = b;
+		LocationViewChat.currentRollOutState = b;
 		
 		if(scrollToBot) chatLogDiv.scrollTop = chatLogDiv.scrollHeight;		
 	}
 	
 	,RollMedIfSmall(){
-		if(BottomChat.currentRollOutState <= 1) BottomChat.RollNext(1);	
+		if(LocationViewChat.currentRollOutState <= 1) LocationViewChat.RollNext(1);	
 	}
 	,RollSmallIfHidden(){
-		if(BottomChat.currentRollOutState == 0) BottomChat.RollNext(1);
+		if(LocationViewChat.currentRollOutState == 0) LocationViewChat.RollNext(1);
 	}
 	,RollHide(){
-		BottomChat.currentRollOutState == 1; 
-		BottomChat.RollNext(-1);
-	}
+		LocationViewChat.currentRollOutState == 1; 
+		LocationViewChat.RollNext(-1);
+	}*/
 }

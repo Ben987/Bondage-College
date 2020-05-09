@@ -57,7 +57,7 @@ var MinigameAbCancel = {
 	//extra challenge of 120 is practically impossible, 100 and below theoretically impossible.
 	,Start(endCallback, autoProgress, mashProgress, extraChallenge){
 		MinigameAbCancel.status = {startTime:Date.now(), hits:0, misses:0};
-		MinigameAbCancel.gameContainer = Util.CreateElement({"template":"MinigameAbCancelTemplate", parent:"LocationViewInput"});
+		MinigameAbCancel.gameContainer = Util.CreateElement({"template":"MinigameAbCancelTemplate", parent:LocationController.inputContainer});
 		MinigameAbCancel.progressBarElem = MinigameAbCancel.gameContainer.childNodes[7].childNodes[1];
 		MinigameAbCancel.progressBarElem.style.width = "0";
 		MinigameAbCancel.progressBarProgress = 0;

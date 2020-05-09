@@ -133,8 +133,12 @@ var LocationPlayerUpdate = function(player){
 	}
 	
 	
+	this.Invalidate = function(){
+		this.player.update = null;
+		this.player = null;
+	}
 	this.IsValid = function(){
-		return this.player.update == this;//an update is invalidated when the player gets a new update objet;
+		return this.player?.update == this;//an update is invalidated when the player gets a new update objet;
 	}
 	
 	

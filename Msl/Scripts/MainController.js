@@ -76,7 +76,7 @@ var MainController = {
 	}
 	
 	
-	,ShowCreateLocation(locationDef){
+	,ShowCreateLocation(locationDef){ 
 		MainController.HideOtherAndShowView("CreateLocationView", true);
 		
 		var buttonElement = Util.CreateElement({parent:"CreateLocationView", template:"CreateLocationButtonTemplate"
@@ -102,11 +102,7 @@ var MainController = {
 	
 	
 	,ExitLocationResp(data){
-		LocationController.currentLocation = null;
-		LocationController.currentScreen = null;
-		LocationController.currentSpotName = null;
-		LocationController.currentActionData = null;
-		LocationView.HideAndClearView();
+		LocationController.UnInit();
 		MainController.ShowMainViewAndCreateButton();
 		MslServer.GetAvailableLocations();		
 	}

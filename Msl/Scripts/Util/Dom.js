@@ -1,7 +1,8 @@
 'use strict'
 
-Util.ProcessIncludes = function(){
-	var includes = document.getElementsByTagName("include");
+Util.ProcessIncludes = function(callback){
+	var includes = document.getElementsByTagName("include");//is dynamic list
+	var loadCount = 0, totalToLoad = includes.length;
 	for(var i = 0; i < includes.length; i++){
 		let includeElement = includes[i];
 		var r = new XMLHttpRequest();
@@ -14,6 +15,7 @@ Util.ProcessIncludes = function(){
 					,attributes:{id:includeElement.getAttribute("id"), name:includeElement.getAttribute("name")}
 				});
 				includeElement.parentNode.removeChild(includeElement);
+				if(++loadCount == totalToLoad && callback) callback();				
 			}
 		}
 		r.send();
@@ -28,7 +30,10 @@ Util.CreateElement = function(params){
 	if(params.innerHTML) 
 		element.innerHTML = params.innerHTML;
 	
-	for(var key in params.attributes) 
+	if(params.textContent)
+		element.appendChild(document.createTextNode(params.textContent));
+	
+	for(var key in params.attributes)
 		if(params.attributes[key])
 			element.setAttribute(key, params.attributes[key]);
 	
@@ -48,13 +53,15 @@ Util.CreateElement = function(params){
 	for(var key in params.cssStyles ) 
 		element.style[key] = params.cssStyles[key] ;
 	
-	var parent = typeof(params.parent) === "string" ? document.getElementById(params.parent) : params.parent;
-	if(params.insertFirst)
-		parent.insertBefore(element, parent.firstElementChild);
-	else if(params.insertBefore)
-		parent.insertBefore(element, params.insertBefore);
-	else
-		parent.appendChild(element);
+	if(params.parent){
+		var parent = typeof(params.parent) === "string" ? document.getElementById(params.parent) : params.parent;
+		if(params.insertFirst)
+			parent.insertBefore(element, parent.firstElementChild);
+		else if(params.insertBefore)
+			parent.insertBefore(element, params.insertBefore);
+		else
+			parent.appendChild(element);
+	}
 	
 	return element;
 }
@@ -106,6 +113,10 @@ Util.DetachElementsAndClear = function(listOrMap){
 			delete listOrMap[key];
 		}
 	}
+}
+
+Util.ScrollableElementIsAtBottom = function(element){
+	return Math.abs(Math.ceil(element.scrollHeight - element.scrollTop) - element.clientHeight) < 10;
 }
 
 Util.DateTime = {

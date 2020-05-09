@@ -2,7 +2,9 @@
 <html style="width:100%; height:100%; padding:0px; margin:0px;">
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-	<title>Daz Club</title>
+	<title>Thematic Resort and Fantasy Club</title>
+	<!--<script src="./Lib/hammer.min.js"></script>-->
+	
 	<script src="../BondageClub/Assets/Female3DCG/Female3DCG.js"></script>
 	<script src="../BondageClub/Assets/Female3DCG/Female3DCG.js"></script>
 	<script src="../BondageClub/Screens/Inventory/ItemArms/HempRope/HempRope.js"></script>
@@ -14,6 +16,7 @@
 	
 	<script src="./environment.js"></script>
 	<script src="./Scripts/MslServer.js"></script>
+	<script src="./Scripts/DevTools.js"></script>
 	<script src="./Scripts/Util.js"></script>
 	<script src="./Scripts/Util/Dom.js"></script>
 	<script src="./Scripts/Util/Core.js"></script>
@@ -28,12 +31,14 @@
 	<script src="./Scripts/PlayerAccount.js"></script>
 	<script src="./Scripts/Minigame/MinigameAbCancel.js"></script>
 	<script src="./Scripts/Minigame/MinigameComplyRefuse.js"></script>	
-	<script src="./Scripts/Location/LocationPlayer.js"></script>
-	<script src="./Scripts/Location/LocationController.js"></script>	
-	<script src="./Scripts/Location/LocationView.js"></script>
-	<script src="./Scripts/Location/LocationViewInput.js"></script>
-	<script src="./Scripts/Location/LocationFocusView.js"></script>
-	<script src="./Scripts/Location/LocationFocusActions.js"></script>
+	<script src="./Scripts/Location/Player.js"></script>
+	<script src="./Scripts/Location/Controller.js"></script>	
+	<script src="./Scripts/Location/View.js"></script>
+	<script src="./Scripts/Location/ViewInput.js"></script>
+	<script src="./Scripts/Location/Actions.js"></script>
+	<script src="./Scripts/Location/FocusView.js"></script>
+	<script src="./Scripts/Location/FocusActions.js"></script>
+	<script src="./Scripts/Location/Minigames.js"></script>
 	
 	<link rel="stylesheet" type="text/css" href="./styles.css" />
 </head>
@@ -47,18 +52,17 @@ window.addEventListener("load", function(){
 	F3dcgAssets.Init();
 	MainContainer.Resize();
 	MslServer.Init();
-	//types, locks, and item whitelist management
-	//motion
-	//application on others
 	Util.ProcessIncludes();
+	
+	
 });
 
 window.addEventListener('resize', MainContainer.Resize, false);
 
 </script>
 
-<body style="width:100%; height:100%; background-color:black; color:white; margin:0px; padding:0px; overflow:hidden;">
-	<div id="MainContainer" style="position:relative;width:1200px;height:600px;overflow:hidden;display:inline-block;">
+<body style="width:100%; height:100%; background-color:black; color:white; margin:0px; padding:0px; overflow:hidden;user-select:none;">
+	<div id="MainContainer" class="full-block" style="position:relative;overflow:hidden;display:inline-block;">
 		<div id="LoginView" class="full-block">
 			<input type="submit" value="Login 1" class="regular-input" onclick="MainController.Login(1)" />
 			<input type="submit" value="Login 2" class="regular-input" onclick="MainController.Login(2)" />
@@ -74,31 +78,26 @@ window.addEventListener('resize', MainContainer.Resize, false);
 		
 		<div id="CreateLocationView" class="full-block" style="display:none;"></div>
 		
-		<div id="LocationView" style="width:100%;height:100%;display:none;position:relative;flow:left;overflow:hidden;user-select:none;" 
-				onclick="LocationView.Click(event)">
-			<img id="LocationViewBackground" src="" alt="" class="full-block" style="z-index:-10000" />
-			<div id="LocationViewMidground" class="full-block" style="overflow:hidden;"></div>
-			<img id="LocationViewForeground" src="" alt="" class="full-block" style="z-index:10000;"/>
-			<div id="LocationViewInput" class="full-block" style="z-index:10000">
-				<div id="LocationViewSideInputLeft" class="roll-left roll-left-small">
-					<img class="roll-left-icon" src="./Images/Icons/Examine.png" alt="Examine" onclick="SideInput.Examine();event.stopPropagation()" />
-					<img class="roll-left-icon" src="./Images/Icons/Poses.png" alt="Talk" onclick="SideInput.Poses();event.stopPropagation()" />
-					<img class="roll-left-icon" src="./Images/Icons/Walk.png" alt="Walk" onclick="SideInput.Move();event.stopPropagation()" />
-					<img class="roll-left-icon" src="./Images/Icons/Items.png" alt="Rop" onclick="SideInput.Item();event.stopPropagation()" />
-					<img class="roll-left-icon" src="./Images/Icons/Settings.png" alt="Settings" onclick="SideInput.Settings();event.stopPropagation()" />
-					<img class="roll-left-icon" src="./Images/Icons/Out.png" alt="Out" onclick="SideInput.RollOut();event.stopPropagation()" />
-				</div>
+		<div id="LocationView" style="width:100%;height:100%;display:none;position:absolute;overflow:hidden;">
+			<div id="LocationViewCanvas" style="width:100%; height:100%; overflow:hidden; position:absolute; z-index:0">
+				<img id="LocationViewBackground" src="" alt="" class="full-block" style="z-index:-10000" />
+				<div id="LocationViewMidground" class="full-block" style="overflow:hidden;"></div>
+				<img id="LocationViewForeground" src="" alt="" class="full-block" style="z-index:10000;"/>
+				<div id="LocationViewInput" class="full-block" style="z-index:10000;"></div>
 			</div>
-			<div id="LocationViewChat" class="chat-container" style="z-index:10000;">
-				<img id="LocationViewChatButtonLeft" class="chat-button-roll" src="./Images/Icons/ArrowPlain.png" style="transform: rotate(270deg);" alt="Up" onclick="BottomChat.RollNext(1);event.stopPropagation();" />
-				<div id="LocationViewChatLog" class="chat-log" onclick="BottomChat.Click();"></div>
-				<textarea id="LocationViewChatInput" class="chat-input" onclick="event.stopPropagation()" onkeypress="BottomChat.KeyPress(event)"></textarea>
-				<img id="LocationViewChatButtonRight" class="chat-button-roll" src="./Images/Icons/ArrowPlain.png" style="transform: rotate(90deg); left:95%" alt="Down" onclick="BottomChat.RollNext(-1);event.stopPropagation();"/>
+			
+			<div id="LocationViewHud" style="pointer-events: none; z-index:10000;" class="full-block">
+				<!--<include src="./Html/Hud/InputSideLeft.htm" id="LocationViewSideInputLeft" class="roll-left roll-left-small"></include>-->
+				<!--<include src="./Html/Hud/BottomChat.htm" id="LocationViewChat" class="chat-container"></include>-->
+				
+				<div class="hover-button-highlight" style="position:absolute; left:97%; top:2%; width:3%; height:6%; background-color:white" onclick="ClassicHud.RollForward()"><img src="./Images/Icons/Out.png" alt="RollOut" class="fill-container"/></div>
+				<include src="./Html/Hud/Classic.htm" id="ClassicRoomHud" class="classic-hud-right-container"></include>
 			</div>
+			
 		</div>
 	</div>
 	
-	<div id="UiTemplates" style="display:none; visibility:hidden">
+	<div name="uiTemplates" style="display:none; visibility:hidden">
 		
 		<include src="./Html/InterfaceButtons.htm"></include>
 		
@@ -117,17 +116,52 @@ window.addEventListener('resize', MainContainer.Resize, false);
 			
 			<include src="./Html/Focus/ColorPicker.htm" name="itemColorActions" class="focus-item-actions focus-color-picker-container"></include>
 			
-			<div name="itemVariantActions" class="focus-item-actions focus-item-actions-variant-container" ></div>
-			<div name="itemLockActions" class="focus-item-actions focus-item-actions-lock-container" ></div>
-			<div name="itemRemoteActions" class="focus-item-actions focus-item-actions-lock-container" ></div>
-			<div name="itemDirectActions" class="focus-item-actions focus-item-actions-lock-container" ></div>
-			<div name="itemArousalActions" class="focus-item-actions focus-item-actions-lock-container" ></div>
+			<div name="itemVariantActions" class="focus-item-actions focus-item-actions-variant-container"></div>
+			<div name="itemLockActions" class="focus-item-actions focus-item-actions-lock-container"></div>
+			<div name="itemRemoteActions" class="focus-item-actions focus-item-actions-lock-container"></div>
+			<div name="itemDirectActions" class="focus-item-actions focus-item-actions-lock-container"></div>
+			<div name="itemArousalActions" class="focus-item-actions focus-item-actions-lock-container"></div>
 		</div>
+		
+		<div id="PlayerProfileTemplate" style="pointer-events:all;position:absolute;width:80%;height:100%;left:10%;top:0%; background-color:rgba(255,255,255,0.8);">
+			<form name="profileSettings">
+				<select name="permissionRestraints">
+					<option value="1">Everyone</option>
+					<option value="2">Everyone but blacklist</option>
+					<option value="3">Standard</option>
+					<option value="4">Owner and Lover only</option>
+				</select> 
+				<br />
+				<select name="permissionClothes">
+					<option value="1">Everyone</option>
+					<option value="2">Everyone but blacklist</option>
+					<option value="3">Standard</option>
+					<option value="4">Owner and Lover only</option>
+				</select> 
+				<br />
+				<select name="permissionArousal">
+					<option value="1">Everyone</option>
+					<option value="2">Everyone but blacklist</option>
+					<option value="3">Standard</option>
+					<option value="4">Owner and Lover only</option>
+				</select>
+				<br />
+				<input type="checkbox" name="focusTransparentBackground" /> focusTransparentBackground <br />
+				
+				<div style="width:10%; height:5%" onclick="LocationController.delegates.profile.UpdatePlayerProfile();">Submit</div>
+			</form>
+			
+		</div>
+		
 		
 		<!-- minigames -->
 		
 		<include src="./Html/Minigame/AbCancel.htm" id="MinigameAbCancelTemplate" class="mingame-abcancel-container"></include>
 		<include src="./Html/Minigame/ComplyRefuse.htm" id="MinigameComplyRefuseTemplate" class="mingame-complyrefuse-container"></include>
+		
+		<!-- dev tools -->
+		
+		<include src="./Html/DevTools/DevTools.htm" id="DevTools"></include>
 	</div>
 </body>
 

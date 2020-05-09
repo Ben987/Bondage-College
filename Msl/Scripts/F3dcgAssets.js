@@ -119,20 +119,20 @@ var F3dcgAssets = {
 			
 			if(! AssetItem ) console.log(AssetItemGroup.Items);
 			
+			var appearanceItem = F3dcgAssetsAdd.InitAppearanceItem(AppItem, AssetItem, AssetItemGroup);//TODO separate item presentation from logic
+			appearanceItemList.push(appearanceItem);
+			
+			F3dcgAssetsAdd.TranslateAppearanceItem(appearanceItem, itemGroupsToTranslateByPose[group]);
+			F3dcgAssetsAdd.ColorizeApearanceItem(appearanceItem, AppItem, AssetItemGroup);
+			F3dcgAssetsAdd.LockAppearanceItem(appearanceItem, AppItem, AssetItem, mainPlayerAccount, locationPlayer);
+			
 			//skip items hidden due to poses and other items.  Skip invisible 
 			if(itemGroupsToHideByPose.includes(group)) continue;
 			if(itemGroupsToHideByItem.includes(group)) continue;
 			if(itemsToHideByItems.includes(AppItem.Name)) continue;
 			
-			var appearanceItem = F3dcgAssetsAdd.InitAppearanceItem(AppItem, AssetItem, AssetItemGroup);
-			appearanceItemList.push(appearanceItem);
-			
 			//Items such as headphones are not rendered, the layer array is empty
 			if(! AssetItemGroup.Wear && (AssetItem.Visible === false || AssetItemGroup.Visible === false)) continue;
-			
-			F3dcgAssetsAdd.TranslateAppearanceItem(appearanceItem, itemGroupsToTranslateByPose[group]);
-			F3dcgAssetsAdd.ColorizeApearanceItem(appearanceItem, AppItem, AssetItemGroup);
-			F3dcgAssetsAdd.LockAppearanceItem(appearanceItem, AppItem, AssetItem, mainPlayerAccount, locationPlayer);
 			
 			//compose the url of the item based on pose, body color, etc
 			var urlPartPose = "";

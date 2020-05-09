@@ -2,28 +2,43 @@
 <html style="width:100%; height:100%; padding:0px; margin:0px;">
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-	<title>Daz Club</title>
+	
+	<title>Thematic Resort and Fantasy Club</title>
+	<!--<script src="./Scripts/Lib/hammer.min.js"></script>-->
+	
 	<script src="../BondageClub/Assets/Female3DCG/Female3DCG.js"></script>
 	<script src="../BondageClub/Assets/Female3DCG/Female3DCG.js"></script>
 	<script src="../BondageClub/Screens/Inventory/ItemArms/HempRope/HempRope.js"></script>
+	<script src="../BondageClub/Screens/Inventory/ItemArms/Chains/Chains.js"></script>
+	<script src="../BondageClub/Screens/Inventory/ItemTorso/HempRopeHarness/HempRopeHarness.js"></script>
 	
-	
+	<script src="../BondageClub/Scripts/LZString.js"></script>	
 	<script src="../BondageClub/Scripts/socket.io/socket.io.js"></script>	
 	
 	<script src="./environment.js"></script>
 	<script src="./Scripts/MslServer.js"></script>
+	<script src="./Scripts/DevTools.js"></script>
 	<script src="./Scripts/Util.js"></script>
+	<script src="./Scripts/Util/Dom.js"></script>
+	<script src="./Scripts/Util/Core.js"></script>
+	<script src="./Scripts/Util/Color.js"></script>
+	<script src="./Scripts/Util/Render.js"></script>
+	<script src="./Scripts/Util/Svg.js"></script>
 	<script src="./Scripts/F3dcgAssets.js"></script>
+	<script src="./Scripts/F3dcgAssetsAdd.js"></script>
+	<script src="./Scripts/F3dcgAssetVariants.js"></script>
 	<script src="./Scripts/MainContainer.js"></script>	
 	<script src="./Scripts/MainController.js"></script>
+	<script src="./Scripts/PlayerAccount.js"></script>
 	<script src="./Scripts/Minigame/MinigameAbCancel.js"></script>
 	<script src="./Scripts/Minigame/MinigameComplyRefuse.js"></script>	
-	<script src="./Scripts/Location/LocationPlayer.js"></script>
-	<script src="./Scripts/Location/LocationController.js"></script>	
-	<script src="./Scripts/Location/LocationView.js"></script>
-	<script src="./Scripts/Location/LocationViewInput.js"></script>
-	<script src="./Scripts/Location/LocationFocusView.js"></script>
-	<script src="./Scripts/Location/LocationFocusActions.js"></script>
+	<script src="./Scripts/Location/Player.js"></script>
+	<script src="./Scripts/Location/Controller.js"></script>	
+	<script src="./Scripts/Location/View.js"></script>
+	<!--<script src="./Scripts/Location/ViewInput.js"></script>-->
+	<script src="./Scripts/Location/Hud.js"></script>
+	<script src="./Scripts/Location/FocusView.js"></script>
+	<script src="./Scripts/Location/FocusActions.js"></script>
 	
 	<link rel="stylesheet" type="text/css" href="./styles.css" />
 </head>
@@ -38,22 +53,52 @@ window.addEventListener("load", function(){
 	//F3dcgAssets.Init();
 	//MainContainer.Resize();
 	//MslServer.Init();
-	//types, locks, and item whitelist management
+	//types, locks, and item whitelist management	
 	//motion
 	//application on others
-	//Util.ProcessIncludes();
-
+	Util.ProcessIncludes(function(){
+		//var myElement = document.getElementById("LocationViewChatLog");
+	});
 });
 
 
 
 </script>
-<body style="">
 
-	<img class="full-block" alt="background" src="./Images/Locations/VacationHome/Screen2.back.jpg" />
-	<img class="full-block" alt="foreground" src="./Images/Locations/VacationHome/Screen2.fore.png" />
-	
+<style>
 
+.speech-bubble {
+	position: relative;
+	background: #00aabb;
+	border-radius: .4em;
+}
+
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border: 48px solid transparent;
+	border-top-color: #00aabb;
+	border-bottom: 0;
+	border-left: 0;
+	margin-left: -24px;
+	margin-bottom: -48px;
+}
+
+
+</style>
+
+<body style="width:100%; height:100%; background-color:black; color:white; margin:0px; padding:0px; overflow:hidden;">
+	<div class="speech-bubble">
+		Speech!  TEXT!<br />
+		Speech!  TEXT!<br />
+		Speech!  TEXT!<br />
+		Speech!  TEXT!<br />
+		Speech!  TEXT!<br />
+	</div>
 
 </body>
 
