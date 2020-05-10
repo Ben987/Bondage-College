@@ -191,6 +191,7 @@ var LocationController = {
 		
 		delete LocationController.location.players[spot.name]
 		LocationController.delegates.view.OnPlayerExit(spot.name);
+		LocationController.delegates.chat.OnPlayerExit(spot.name);
 	}
 	
 	
@@ -200,10 +201,13 @@ var LocationController = {
 		
 		var existingPlayer = LocationController.GetPlayer(data.player.id);
 		if(! existingPlayer){
-			LocationController.location.players[data.spotName] = new LocationPlayer(data.player);
-			LocationController.delegates.view.RenderPlayerInSpot(data.spotName, LocationController.location.players[data.spotName]);
+			var player = new LocationPlayer(data.player);
+			LocationController.location.players[data.spotName] = player
+			LocationController.delegates.view.RenderPlayerInSpot(data.spotName, player);
+			LocationController.delegates.chat.OnPlayerEnter(player);
 		}else if(existingPlayer.id == data.player.id){
 			console.log("player reconnected");
+			LocationController.delegates.chat.OnPlayerReconnect(data.player.id);
 		}else{
 			console.log("mismatch detected, update whole thing");
 		}
@@ -214,11 +218,13 @@ var LocationController = {
 		console.log("LocationActionResp"); 
 		console.log(data);
 		LocationController["LocationAction_" + data.type](data);
+		LocationController.delegates.chat.OnAction(data);
 	}
 	
 	
 	,LocationAction_ChatMessage(data){
-		LocationController.delegates.chat.AddChatMessageToLog(data.originPlayerId, "", data.result.content);
+		//already takecn care of earlier
+		
 	}
 	
 	

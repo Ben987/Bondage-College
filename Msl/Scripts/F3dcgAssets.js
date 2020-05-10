@@ -27,32 +27,85 @@ var F3dcgAssets = {
 		F3dcgAssetVariants.Init();
 	}
 	
-	//returns the sorted item array
+	//asuming default pose, no restraints or toys or expressions, no variants, no validation
+	,BuildPlayerWardrobe(Appearance){
+		var appearance = F3dcgAssetsAdd.InitAppearance();
+		var AppearanceGrouped = {};
+
+		Appearance.forEach(AppItem => {
+			if(F3dcgAssets.UNIMPLEMENTED_ITEMS.includes(AppItem.Name)) return;
+			AppearanceGrouped[AppItem.Group] = AppItem;
+		});
+		
+		var appearanceItemList = [];
+		for(var GroupName in AppearanceGrouped){
+			var AppItem = AppearanceGrouped[GroupName];
+			
+			var AssetItemGroup = F3dcgAssets.ItemGroups[GroupName];
+			if(AssetItemGroup.type != F3dcgAssets.CLOTHING && AssetItemGroup.type != F3dcgAssets.ACCESSORY && AssetItemGroup.type != F3dcgAssets.BODY) continue;
+			var AssetItemGroupParent = AssetItemGroup.ParentGroup ? F3dcgAssets.ItemGroups[AssetItemGroup.ParentGroup] : null;
+			var AssetItem = AssetItemGroup.Items[AppItem.Name];	
+			
+			if(! AssetItem) console.log(AppItem);
+			
+			if(AssetItem.Height) appearance.top -= AssetItem.Height;
+			if(AppItem.Group == "Height")	appearance.scale = AssetItem.Zoom;
+			
+			var appearanceItem = F3dcgAssetsAdd.InitAppearanceItem(AppItem, AssetItem, AssetItemGroup);//TODO separate item presentation from logic
+			appearanceItemList.push(appearanceItem);
+			
+			F3dcgAssetsAdd.ColorizeApearanceItem(appearanceItem, AppItem, AssetItemGroup);
+			
+			if(! AssetItemGroup.Wear && (AssetItem.Visible === false || AssetItemGroup.Visible === false)) continue;
+			
+			var urlPartPose = "", urlPartVariant = "";
+			var urlPartGroup = AppItem.Group +"/", urlPartItemName = AppItem.Name;			
+			if(AssetItem.Layer) {
+				var urlPartParentAsset = AssetItemGroupParent && ! (AssetItem.IgnoreParentGroup === true) ? "_" + AppearanceGrouped[AssetItemGroupParent.Group].Name  :"";				
+				AssetItem.Layer.forEach(AssetItemLayer => {		
+					var urlPartLayerName = "_" + AssetItemLayer.Name;
+					appearanceItem.layers.push({colorize:AssetItemLayer.AllowColorize ? true : false
+						,url:this.F3DCG_ASSET_BASE + urlPartGroup + urlPartPose + urlPartItemName + urlPartParentAsset + urlPartLayerName + urlPartVariant + ".png"
+					});
+				});
+			} else {
+				var urlPartParentAsset = AssetItemGroupParent && ! (AssetItem.IgnoreParentGroup === true) ? "_" + AppearanceGrouped[AssetItemGroupParent.Group].Name : "";
+				var urlPartExpression = AssetItemGroup.AllowExpression && AppItem.Property?.Expression ? AppItem.Property.Expression + "/" : "";
+				var urlPartBodyColor = ["BodyUpper", "BodyLower", "Hands"].includes(AppItem.Group) ? "_" + AppItem.Color : "";
+				
+				var url = this.F3DCG_ASSET_BASE + urlPartGroup + urlPartPose + urlPartExpression + urlPartItemName + urlPartBodyColor + urlPartParentAsset + urlPartVariant + ".png";
+				appearanceItem.layers.push({url:url, colorize: true});
+			}
+		}
+		
+		appearanceItemList.sort((item1, item2) => {return item1.priority - item2.priority;});
+		appearanceItemList.forEach(appearanceItem => appearance.items[appearanceItem.itemGroupName] = appearanceItem);		
+		
+		F3dcgAssetsAdd.AdjustEyes(appearance.items.Eyes);
+		
+		return appearance;		
+	}
+	
 	,BuildPlayerAppearance(mainPlayerAccount, locationPlayer, Appearance){
-		//array of items to return
+		//object with items and others to return
 		var appearance = F3dcgAssetsAdd.InitAppearance();
 		
 		//other local variables
-		var height, groupedAppItems = {}, itemGroupsToTranslateByPose = {}, 
+		var height, AppearanceGrouped = {}, itemGroupsToTranslateByPose = {}, 
 				itemGroupsToHideByPose = [], itemGroupsToHideByItem = [], itemsToHideByItems = [];
 		
 		//convert array to hash map, take care of non assets and globals such as height and poses
 		Appearance.forEach(AppItem => {
 			if(F3dcgAssets.UNIMPLEMENTED_ITEMS.includes(AppItem.Name)) return;
 			
-			//assign item to slot (group)
-			groupedAppItems[AppItem.Group] = AppItem;
+			AppearanceGrouped[AppItem.Group] = AppItem;
 			
 			if(F3dcgAssets.ItemGroups[AppItem.Group].type == this.EXPRESSION) return;
 			//record the current pose from player appearance
 			AppItem.Property?.SetPose?.forEach(pose => appearance.poses.push(pose));
 			
-			//record the current pose from asset Item
 			var AssetItem = F3dcgAssets.ItemGroups[AppItem.Group].Items[AppItem.Name];
 			if(! AssetItem) console.log(AppItem);
-			
-			if(AssetItem.Height) appearance.top -= AssetItem.Height;
-			if(AppItem.Group == "Height")	appearance.scale = AssetItem.Zoom;
 			
 			var variantName = AppItem.Property?.Type;
 			if(! variantName) variantName = AppItem.Property?.Restraint;
@@ -111,18 +164,20 @@ var F3dcgAssets = {
 		
 		//fill the item array
 		var appearanceItemList = [];
-		for(var group in groupedAppItems){
-			var AppItem = groupedAppItems[group];
+		for(var group in AppearanceGrouped){
+			var AppItem = AppearanceGrouped[group];
 			var AssetItemGroup = F3dcgAssets.ItemGroups[group];
 			var AssetItem = AssetItemGroup.Items[ AssetItemGroup.type == this.EXPRESSION ? "None" : AppItem.Name ];//because expressions are special
 			var AssetItemGroupParent = AssetItemGroup.ParentGroup ? F3dcgAssets.ItemGroups[AssetItemGroup.ParentGroup] : null;
 			
 			if(! AssetItem ) console.log(AssetItemGroup.Items);
 			
+			if(AssetItem.Height) appearance.top -= AssetItem.Height;
+			if(AppItem.Group == "Height")	appearance.scale = AssetItem.Zoom;
+			
 			var appearanceItem = F3dcgAssetsAdd.InitAppearanceItem(AppItem, AssetItem, AssetItemGroup);//TODO separate item presentation from logic
 			appearanceItemList.push(appearanceItem);
 			
-			F3dcgAssetsAdd.TranslateAppearanceItem(appearanceItem, itemGroupsToTranslateByPose[group]);
 			F3dcgAssetsAdd.ColorizeApearanceItem(appearanceItem, AppItem, AssetItemGroup);
 			F3dcgAssetsAdd.LockAppearanceItem(appearanceItem, AppItem, AssetItem, mainPlayerAccount, locationPlayer);
 			
@@ -134,6 +189,8 @@ var F3dcgAssets = {
 			//Items such as headphones are not rendered, the layer array is empty
 			if(! AssetItemGroup.Wear && (AssetItem.Visible === false || AssetItemGroup.Visible === false)) continue;
 			
+			F3dcgAssetsAdd.TranslateAppearanceItem(appearanceItem, itemGroupsToTranslateByPose[group]);
+			
 			//compose the url of the item based on pose, body color, etc
 			var urlPartPose = "";
 			var allowedPoses = [];
@@ -143,7 +200,7 @@ var F3dcgAssets = {
 			
 			var urlPartGroup = AppItem.Group +"/", urlPartItemName = AppItem.Name, urlPartVariant = appearanceItem.itemVariantName ? appearanceItem.itemVariantName : "";
 			if(AssetItem.Layer) {
-				var urlPartParentAsset = AssetItemGroupParent && ! (AssetItem.IgnoreParentGroup === true) ? "_" + groupedAppItems[AssetItemGroupParent.Group].Name  :"";				
+				var urlPartParentAsset = AssetItemGroupParent && ! (AssetItem.IgnoreParentGroup === true) ? "_" + AppearanceGrouped[AssetItemGroupParent.Group].Name  :"";				
 				AssetItem.Layer.forEach(AssetItemLayer => {					
 					if(AssetItem.Variants){
 						console.log(AssetItemLayer.Name  + " " + appearanceItem.itemVariantName);
@@ -171,7 +228,7 @@ var F3dcgAssets = {
 				});
 				//if(AppItem.lock) item.urlLock = urlPartGroup + urlPartPose + urlPartItemName + "_Lock.png";  Looks like layered items never have locks rendered
 			} else {
-				var urlPartParentAsset = AssetItemGroupParent && ! (AssetItem.IgnoreParentGroup === true) ? "_" + groupedAppItems[AssetItemGroupParent.Group].Name : "";
+				var urlPartParentAsset = AssetItemGroupParent && ! (AssetItem.IgnoreParentGroup === true) ? "_" + AppearanceGrouped[AssetItemGroupParent.Group].Name : "";
 				var urlPartExpression = AssetItemGroup.AllowExpression && AppItem.Property?.Expression ? AppItem.Property.Expression + "/" : "";
 				var urlPartBodyColor = ["BodyUpper", "BodyLower", "Hands"].includes(AppItem.Group) ? "_" + AppItem.Color : "";
 				
@@ -185,11 +242,8 @@ var F3dcgAssets = {
 				
 				if(appearanceItem.lock) appearanceItem.layers.push({url:this.F3DCG_ASSET_BASE + urlPartGroup + urlPartPose + urlPartItemName + "_Lock.png", colorize:false});
 			}
-			
-
 		}
 		
-		//sort the item array in order of rendring
 		appearanceItemList.sort((item1, item2) => {return item1.priority - item2.priority;});
 		appearanceItemList.forEach(appearanceItem => appearance.items[appearanceItem.itemGroupName] = appearanceItem);		
 		
@@ -275,6 +329,7 @@ var F3dcgAssets = {
 			var AppItemExisting = Appearance.find(el => el.Group == appearanceItem.itemGroupName);
 			if(AppItemExisting){
 				Util.ReplaceInPlace(AppItemExisting, AppItem);
+				console.log(AppItem);
 			}else{
 				Appearance.push(AppItem)
 			}

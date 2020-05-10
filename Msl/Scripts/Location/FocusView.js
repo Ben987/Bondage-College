@@ -4,6 +4,7 @@ var LocationFocusView = {
 	playerUpdateDelegate:null
 
 	,mainContainer:null
+	,wardrobeContainer:null
 	,figureContainer:null
 	,itemSelectionContainer:null
 	,itemActionButtonsContainer:null
@@ -23,6 +24,7 @@ var LocationFocusView = {
 		this.playerUpdateDelegate = this.undefined;
 		this.mainContainer?.parentNode?.removeChild(this.mainContainer);
 		this.mainContainer = null;
+		this.wardrobeContainer = null;
 	}
 	,UnInit(){}
 	
@@ -105,42 +107,98 @@ var LocationFocusView = {
 		
 		Util.MoveNodeToEndOfList(this.itemGroupSelectionContainer);
 		
+		var itemGroupSelectionIconContainer = Util.GetFirstChildNodeByName(this.mainContainer, "itemGroupTypeSelection");
 		for(let itemGroupTypeName in this.playerUpdateDelegate.inventory.items){
-			var icon = Util.GetFirstChildNodeByName(Util.GetFirstChildNodeByName(this.mainContainer, "itemGroupTypeSelection"), itemGroupTypeName);
-			icon.addEventListener("click", (e) => this.OnItemGroupTypeClick(e, itemGroupTypeName));
+			var icon = Util.GetFirstChildNodeByName(itemGroupSelectionIconContainer, itemGroupTypeName);
+			icon.addEventListener("click", (e) => this.OnItemGroupTypeClick(itemGroupTypeName));
 			
 			if(itemGroupTypeName == this.selectedItemGroupTypeName){
-				this.OnItemGroupTypeClick(null, itemGroupTypeName);
+				this.OnItemGroupTypeClick(itemGroupTypeName);
 			}
 		}
+		
+		var icon = Util.GetFirstChildNodeByName(itemGroupSelectionIconContainer, "wardrobe");
+		icon.addEventListener("click", (e) => this.OnWardrobeIconClick(e));
 	}
 	
 	
-	,OnItemGroupTypeClick(e, itemGroupTypeName){
-		e?.stopPropagation();
+	,OnWardrobeIconClick(){
+		var icon = Util.GetFirstChildNodeByName(Util.GetFirstChildNodeByName(this.mainContainer, "itemGroupTypeSelection"), "wardrobe");
+		Util.SelectElementAndDeselectSiblings(icon, "selected");
+		
+		Util.ClearNodeContent(this.itemSelectionContainer);
+		Util.HideAllChildNodes(this.itemGroupSelectionContainer);
+		Util.ClearNodeContent(this.itemSelectionContainer);
+		this.HidControlAndActionButtons();
+		
+		if(null == this.wardrobeContainer){
+			this.wardrobeContainer = Util.CreateElement({parent:this.mainContainer, className:"focus-wardrobe-container"});
+			
+			MainController.playerAccount.wardrobe.forEach((wardrobeInstance, index) => {
+				if(! wardrobeInstance) return;
+				var figureContainer = Util.CreateElement({parent:this.wardrobeContainer});
+				var figure = Util.CreateElement({parent:figureContainer});
+				
+				var text = Util.CreateElement({
+					parent:figureContainer, tag:"input", 
+					attributes:{name:"wardrobeName-"+index,value:wardrobeInstance.name}
+				});
+				
+				var buttonSave = Util.CreateElement({
+					parent:figureContainer, tag:"input", attributes:{type:"submit", value:"Save"}
+					,cssStyles:{float:"left"},events: {click: (e) => {this.WardrobeSave(index);}}
+				});
+				
+				var buttonLoad = Util.CreateElement({
+					parent:figureContainer, tag:"input", attributes:{type:"submit", value:"Load"}
+					,cssStyles:{float:"right"}, events:{click:(e) => {this.WardrobeLoad(index);}}
+				});
+				
+				setTimeout(function(){
+					LocationController.delegates.view.BuildPlayerFigure(figure, wardrobeInstance.appearance);
+				}, (index+1)*100);
+				
+			});
+			
+		}else
+			this.wardrobeContainer.style.display = "block";
+	}
+	
+	,WardrobeLoad(index){
+		var validationErrors = this.playerUpdateDelegate.AddWardrobe(MainController.playerAccount.wardrobe[index].appearance.items);
+		this.ShowErrorsOrPlayer(validationErrors);	
+	}
+	
+	,WardrobeSave(index){
+		MainController.playerAccount.wardrobe[index] = this.playerUpdateDelegate.GetWardrobe();
+		console.log(MainController.playerAccount.wardrobe[index]);
+	}
+	
+	,OnItemGroupTypeClick(itemGroupTypeName){
 		LocationFocusView.selectedItemGroupTypeName = itemGroupTypeName;
 		var icon = Util.GetFirstChildNodeByName(Util.GetFirstChildNodeByName(this.mainContainer, "itemGroupTypeSelection"), itemGroupTypeName)
 		Util.SelectElementAndDeselectSiblings(icon, "selected");
 		
 		Util.ClearNodeContent(this.itemSelectionContainer);
 		Util.HideAllChildNodes(this.itemGroupSelectionContainer);
+		Util.ClearNodeContent(this.itemSelectionContainer);		
+		if(this.wardrobeContainer) this.wardrobeContainer.style.display = "none";
 		
 		for(let itemGroupName in this.playerUpdateDelegate.inventory.items[itemGroupTypeName]){
 			var itemGroupIcon = Util.GetFirstChildNodeByName(this.itemGroupSelectionContainer, itemGroupName);
 			if(! itemGroupIcon) throw "No item group icon defined for " + itemGroupName
 			itemGroupIcon.style.display = "block";
-			itemGroupIcon.addEventListener("click", (e) => this.OnItemGroupClick(e, itemGroupName));
+			itemGroupIcon.addEventListener("click", (e) => this.OnItemGroupClick(itemGroupName));
 			
 			this.UpdateItemGroupIconImage(this.selectedItemGroupTypeName, itemGroupName);
 			
 			if(itemGroupName == this.selectedItemGroupName)
-				this.OnItemGroupClick(null, itemGroupName);
+				this.OnItemGroupClick(itemGroupName);
 		}
 	}
 	
 	
-	,OnItemGroupClick(e, itemGroupName){
-		e?.stopPropagation();
+	,OnItemGroupClick(itemGroupName){
 		LocationFocusView.selectedItemGroupName = itemGroupName;
 		Util.ClearNodeContent(this.itemSelectionContainer);
 		
@@ -154,7 +212,7 @@ var LocationFocusView = {
 			var events = {};
 			
 			if(itemData.validation.length == 0)
-				events.click = (e) => this.OnItemClick(e, itemName);
+				events.click = (e) => this.OnItemClick(itemName);
 			else
 				for(var i = 0; i < itemData.validation.length; i++)
 					Util.CreateElement({parent:iconContainer,innerHTML:itemData.validation[i],cssStyles:{color:"#fcc",top:(i+1)+"em",fontSize:"1em"}});
@@ -168,16 +226,11 @@ var LocationFocusView = {
 	}
 	
 	
-	,OnItemClick(e, itemName){
-		e?.stopPropagation();
-		
+	,OnItemClick(itemName){
 		this.selectedItemName = itemName;
 		var appearanceItem = F3dcgAssets.InitAppearanceItem(this.selectedItemGroupTypeName, this.selectedItemGroupName, this.selectedItemName);
 		var validationErrors = this.playerUpdateDelegate.Add(appearanceItem);
-		this.ShowErrorsOrPlayer(validationErrors);
-		
-		console.log(validationErrors);
-		
+		this.ShowErrorsOrPlayer(validationErrors);		
 		if(! validationErrors.length) this.UpdateItemGroupIconImage(this.selectedItemGroupTypeName, this.selectedItemGroupName);
 	}
 	
@@ -227,6 +280,13 @@ var LocationFocusView = {
 			this.itemActionViews[this.selectedAction].Hide();
 		else
 			this.itemActionViews[this.selectedAction].Show();
+	}
+	
+	,HidControlAndActionButtons(){
+		for(var action in this.itemActionViews){
+			Util.GetFirstChildNodeWithAttribute(this.itemActionButtonsContainer, "alt", action).style.display="none";
+			this.itemActionViews[this.selectedAction].Hide();
+		}
 	}
 	
 	

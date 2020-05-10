@@ -65,10 +65,25 @@ var LocationPlayerUpdate = function(player){
 	this.appearance = Util.CloneRecursive(player.appearance);
 	this.inventory = Util.CloneRecursive(player.inventory);
 	
-	this.clothOrAccessoryUpdateLimit = 3;
+	//this.clothOrAccessoryUpdateLimit = 3;
+	this.clothOrAccessoryUpdateLimit = 100;//unlimited
 	this.updateStack = [];
+	this.wardrobe = null;
+	
+	
+	this.AddWardrobe = function(appearanceItems){
+		console.log(appearanceItems);
+		this.wardrobe = Object.values(appearanceItems);
+		this.wardrobe.forEach(appearanceItem => {
+			F3dcgAssets.DeconvertItemAndUpdateAppearance(this.Appearance, appearanceItem);
+		});
+		this.appearance = F3dcgAssets.BuildPlayerAppearance(MainController.playerAccount, this.player, this.Appearance);	
+		return [];
+	}
 	
 	this.Add = function(appearanceItem){
+		if(this.wardrobe) return ["CanNotAddAfterWardrobe"];
+		
 		var itemGroupName = appearanceItem.itemGroupName, itemName = appearanceItem.itemName, itemGroupTypeName = appearanceItem.itemGroupTypeName;
 		
 		//if(this.appearance.items[appearanceItem.itemGroupName]?.itemName == itemName)	return ["SameItem"];//same item when change color or lock or variant
@@ -93,9 +108,12 @@ var LocationPlayerUpdate = function(player){
 					.find(changeItem => changeItem.itemGroupTypeName == F3dcgAssets.RESTRAINT || changeItem.itemGroupTypeName == F3dcgAssets.TOY);
 			if(existingRestraintOrToyUpdate && existingRestraintOrToyUpdate.itemGroupName != itemGroupName) 
 				return ["UpdateRestraintLimitExceeded"];
+			
+			var existingClothesUpdate = this.updateStack.find(changeItem => changeItem.itemGroupTypeName == F3dcgAssets.Clothes);
+			if(existingClothesUpdate) return ["RestraintAndWardrobeUpdateDisabled"];
 		}
 		
-		this.updateStack.push(appearanceItem);
+		this.updateStack.push([appearanceItem]);
 		
 		F3dcgAssets.DeconvertItemAndUpdateAppearance(this.Appearance, appearanceItem);
 		this.appearance = F3dcgAssets.BuildPlayerAppearance(MainController.playerAccount, this.player, this.Appearance);
@@ -105,23 +123,27 @@ var LocationPlayerUpdate = function(player){
 	}
 	
 	this.Undo = function(){
-		if(this.updateStack.length == 0) return ["UpdateStackEmpty"]
+		if(this.wardrobe){
 		
-		var appearanceItemToUndo = this.updateStack.pop(), appearanceItemPrev;
-		
-		//Find the second latest item for the item group of item to undo, and use it to update appearance
-		this.updateStack.forEach(appearanceItem => {
-			if(appearanceItem.itemGroupName == appearanceItemToUndo.itemGroupName)
-				appearanceItemPrev = appearanceItem;//no break is intentional.
-		});
-		//If not found in the update stack, get one from the original player's appearance, not local copy
-		if(!appearanceItemPrev) appearanceItemPrev = this.player.appearance.items[appearanceItemToUndo.itemGroupName];
-		//Item not found -- meaning the slot was empty
-		if(!appearanceItemPrev) appearanceItemPrev = {itemName:"None", itemGroupName:appearanceItemToUndo.itemGroupName}
-		
-		F3dcgAssets.DeconvertItemAndUpdateAppearance(this.Appearance, appearanceItemPrev);
-		this.appearance = F3dcgAssets.BuildPlayerAppearance(MainController.playerAccount, this.player, this.Appearance);
-		F3dcgAssets.FillInventoryValidation(MainController.playerAccount, this.player, this.inventory.items, this.appearance);
+		}else{
+			if(this.updateStack.length == 0) return ["UpdateStackEmpty"]
+			
+			var appearanceItemToUndo = this.updateStack.pop(), appearanceItemPrev;
+			
+			//Find the second latest item for the item group of item to undo, and use it to update appearance
+			this.updateStack.forEach(appearanceItem => {
+				if(appearanceItem.itemGroupName == appearanceItemToUndo.itemGroupName)
+					appearanceItemPrev = appearanceItem;//no break is intentional.
+			});
+			//If not found in the update stack, get one from the original player's appearance, not local copy
+			if(!appearanceItemPrev) appearanceItemPrev = this.player.appearance.items[appearanceItemToUndo.itemGroupName];
+			//Item not found -- meaning the slot was empty
+			if(!appearanceItemPrev) appearanceItemPrev = {itemName:"None", itemGroupName:appearanceItemToUndo.itemGroupName}
+			
+			F3dcgAssets.DeconvertItemAndUpdateAppearance(this.Appearance, appearanceItemPrev);
+			this.appearance = F3dcgAssets.BuildPlayerAppearance(MainController.playerAccount, this.player, this.Appearance);
+			F3dcgAssets.FillInventoryValidation(MainController.playerAccount, this.player, this.inventory.items, this.appearance);
+		}
 		
 		return [];
 	}
@@ -131,6 +153,16 @@ var LocationPlayerUpdate = function(player){
 		this.updateStack.forEach(appearanceItem => {itemsGrouped[appearanceItem.itemGroupName] = F3dcgAssets.DeconvertItem(appearanceItem)});
 		return Object.values(itemsGrouped);
 	}
+	
+	
+	this.GetWardrobe = function(){
+		var wardrobeTypes = [F3dcgAssets.BODY, F3dcgAssets.CLOTHES, F3dcgAssets.ACCESSORIES];
+		var itemsGrouped = {}
+		
+		this.updateStack.forEach(appearanceItem => {itemsGrouped[appearanceItem.itemGroupName] = F3dcgAssets.DeconvertItem(appearanceItem)});
+		return Object.values(itemsGrouped);
+	}
+	
 	
 	
 	this.Invalidate = function(){

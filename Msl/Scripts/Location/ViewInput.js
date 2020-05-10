@@ -59,15 +59,19 @@ var SideInput = {
 
 
 var LocationViewChat = {
-	CHAT_LOG_ELEMENT_ID:"LocationViewChatLog"
-	,CHAT_INPUT_ELEMENT_ID:"LocationViewChatInput"
-	,displayMessagesOnCharacter:true
+	displayMessagesOnCharacter:true
 	,currentRollOutState:1
 	,rollOutStates:[0, 8, 16, 95]
 
 	,messageLog:[]
 	
-	,Init(){}
+	,logContainer:null
+	,inputTextarea:null
+	
+	,Init(){
+		LocationViewChat.logContainer = document.getElementById("LocationViewChatLog");
+		LocationViewChat.inputTextarea = document.getElementById("LocationViewChatInput");
+	}
 	,UnInit(){
 		LocationViewChat.messageLog = [];
 		Util.ClearNodeContent(document.getElementById(LocationViewChat.CHAT_LOG_ELEMENT_ID));
@@ -75,40 +79,57 @@ var LocationViewChat = {
 	,Interrupt(){}
 	,OnScreenChange(){}
 	
-	,AddChatMessageToLog(playerId, type, content){
-		var data = {playerId:playerId, type:type, content:content};
-		LocationViewChat.messageLog.push(data);
-		
-		var chatLogDiv = document.getElementById(LocationViewChat.CHAT_LOG_ELEMENT_ID);
-		var scrollToBot = Util.ScrollableElementIsAtBottom(chatLogDiv);	
-		LocationViewChat.CreateAndAddChatLogElement(data);
-		if(scrollToBot) chatLogDiv.scrollTop = chatLogDiv.scrollHeight;
-		
-		LocationViewChat.AddChatMessageToFigureBox(data);
+	,OnPlayerExit(player){console.log("exit " + player.id)}
+	,OnPlayerEnter(player){console.log("enter " + player.id)}
+	,OnPlayerReconnect(player){console.log("reconnect " + player.id)}
+	,OnAction(action){
+		switch(action.type){
+			case "ChatMessage":
+				LocationViewChat.AddChatMessageToLog(action.result.content);
+				LocationViewChat.AddChatMessageToFigureBox(action.originPlayerId, action.result.content);
+			break;
+			case "MoveToSpot":
+				var content = "" + action.originPlayerId + " " + (action.finished ? "completed" : "started")
+						+ " moving to " + action.targetSpotName + " ";
+				LocationViewChat.AddChatMessageToLog(content);						
+			break;
+			case "AppearanceUpdateSelf":
+				var content =  "" + action.originPlayerId + " updated her appearance"; 
+				LocationViewChat.AddChatMessageToLog(content);
+			break;
+			default:
+				console.log("Chat unhandled " + action.type);
+		}
 	}
 	
-	,AddChatMessageToFigureBox(messageData){
-		var fadeOutTime = 6000 + messageData.content.length*80;
-		var spotDiv = LocationController.delegates.view.spotDivs[LocationController.GetSpotWithPlayer(messageData.playerId).name];
-		var hoverDiv = Util.CreateElement({parent:spotDiv, textContent:messageData.content, className:"chat-hover-item"});
+	
+	
+	,AddChatMessageToLog(content){
+		//var data = {playerId:playerId, type:type, content:content};
+		//LocationViewChat.messageLog.push(data);
+		
+		var scrollToBot = Util.ScrollableElementIsAtBottom(LocationViewChat.logContainer);
+		Util.CreateElement({parent:LocationViewChat.logContainer, className:"chat-log-item", textContent:content});
+		if(scrollToBot) LocationViewChat.logContainer.scrollTop = LocationViewChat.logContainer.scrollHeight;
+	}
+	
+	,AddChatMessageToFigureBox(playerId, content){
+		var fadeOutTime = 6000 + content.length*80;
+		var spotDiv = LocationController.delegates.view.spotDivs[LocationController.GetSpotWithPlayer(playerId).name];
+		var hoverDiv = Util.CreateElement({parent:spotDiv, textContent:content, className:"chat-hover-item"});
 		
 		setTimeout(() => {hoverDiv.style.animation = "fadeOut ease " + fadeOutTime +"ms"}, 6000);
 		setTimeout(() => {hoverDiv.parentNode.removeChild(hoverDiv);}, 6000  + fadeOutTime);
 	}
 	
-	
+	/*
 	,ClearAndDisplayLog(messageDataList){
 		var chatLogDiv = document.getElementById(LocationViewChat.CHAT_LOG_ELEMENT_ID);
 		var scrollToBot = Util.ScrollableElementIsAtBottom(chatLogDiv);		
 		Util.ClearNodeContent(chatLogDiv);
 		messageDataList.forEach(messageData => LocationViewChat.CreateAndAddChatLogElement(messageData));
 		if(scrollToBot) chatLogDiv.scrollTop = chatLogDiv.scrollHeight;
-	}
-	
-	
-	,CreateAndAddChatLogElement(messageData){
-		Util.CreateElement({parent:LocationViewChat.CHAT_LOG_ELEMENT_ID,className:"chat-log-item", textContent:messageData.content});
-	}
+	}*/
 	
 	
 	,TypeMessage(event){
@@ -119,9 +140,10 @@ var LocationViewChat = {
 		}
 	}
 	
+	
 	,SendMessage(){
-		var content = document.getElementById(LocationViewChat.CHAT_INPUT_ELEMENT_ID).value;
-		document.getElementById(LocationViewChat.CHAT_INPUT_ELEMENT_ID).value = "";
+		var content = LocationViewChat.inputTextarea.value;
+		LocationViewChat.inputTextarea.value = "";
 		LocationController.SendChatMessage(content);		
 	}
 	

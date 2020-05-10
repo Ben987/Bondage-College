@@ -19,6 +19,7 @@ var LocationView = {
 	}
 	
 	,OnScreenChange(){
+		console.log("on screen change");
 		Util.ClearNodeContent(LocationController.midgroundContainer);	
 		
 		var currentSpot = LocationController.GetSpot();
@@ -28,11 +29,13 @@ var LocationView = {
 		Object.values(currentScreen.spotPositions).forEach(s => LocationView.RenderSpotPosition(s));
 		currentScreen.fixtures?.forEach(f => LocationView.RenderFixture(currentScreen, f));
 		
-		var i = 1;
-		for(let spotName in LocationController.location.players)
+		Object.values(currentScreen.spotPositions).forEach((spotPosition, index) => {
+			var player = LocationController.location.players[spotPosition.name];
+			if(! player) return;
 			setTimeout(function(){
-				LocationView.RenderPlayerInSpot(spotName, LocationController.location.players[spotName])
-				}, (i++)*50);
+				LocationView.BuildPlayerFigure(LocationView.spotDivs[spotPosition.name], player.appearance);
+				}, (index+1)*50);
+		});
 	}
 	
 	,Interrupt(){
@@ -48,10 +51,10 @@ var LocationView = {
 	}
 	
 	,RenderBackground(screen){
-		LocationController.backgroundContainer.src = "./Images/Locations/"+LocationController.location.type+"/"+screen.name+".back.jpg";
+		LocationController.backgroundContainer.src = "./Images/Locations/"+LocationController.location.type+"/"+screen.name+"/background.jpg";
 		if(screen.foreground){
 			LocationController.foregroundContainer.style.display = "block";
-			LocationController.foregroundContainer.src = "./Images/Locations/"+LocationController.location.type+"/"+screen.name+".fore.png";
+			LocationController.foregroundContainer.src = "./Images/Locations/"+LocationController.location.type+"/"+screen.name+"/foreground.png";
 		}
 		else
 			LocationController.foregroundContainer.style.display = "none";
@@ -59,7 +62,7 @@ var LocationView = {
 	
 	
 	,RenderFixture(screen, fixture){
-		var url = "./Images/Locations/"+LocationController.location.type+"/"+screen.name+"."+fixture.name+".png";
+		var url = "./Images/Locations/"+LocationController.location.type+"/"+screen.name+"/"+fixture.name+".png";
 		
 		LocationView.fixtureDivs[fixture.name] = Util.CreateElement({tag:"img", parent:"LocationViewMidground", attributes:{src:url, alt:""}
 			,cssStyles:{
@@ -78,9 +81,9 @@ var LocationView = {
 		var r = LocationView.aspectRatio;
 		
 		var spotDiv;
-		if(LocationView.spotDivs[spot.name]){
-			spotDiv = LocationView.spotDivs[spot.name];
-		}else{
+		//if(LocationView.spotDivs[spot.name]){
+			//spotDiv = LocationView.spotDivs[spot.name];
+		//}else{
 			var left = spot.left+"%", top = spot.top+"%", width = spot.scale+"%", height = spot.scale*2/LocationView.aspectRatio+"%";
 			spotDiv = Util.CreateElement({parent:"LocationViewMidground", className:"screen-spot-container"
 				,cssStyles:{
@@ -91,7 +94,7 @@ var LocationView = {
 			});
 			
 			this.spotDivs[spot.name] = spotDiv;
-		}
+		//}
 	}
 	
 	
@@ -144,8 +147,6 @@ var LocationView = {
 	,OnPlayerMove(player, originSpotName, destinationSpotName){
 		//screen change is detected in controller
 		var originSpotDiv = this.spotDivs[originSpotName], destinationSpotDiv = this.spotDivs[destinationSpotName];
-		
-		console.log(destinationSpotDiv);
 		
 		if(! originSpotDiv && ! destinationSpotDiv){
 			//do nothing, the player moved outside of POV

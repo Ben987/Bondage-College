@@ -44,8 +44,10 @@ var LocationActions = {
 					click:(event) => {
 						var player = LocationController.GetPlayer(spotName);
 						if(! player) return;
+						
+						console.log("click on " + spotName + " " + player.id);
 						event.stopPropagation();
-						LocationController.StartPlayerFocus();
+						LocationController.StartPlayerFocus(player);
 					}
 				}
 			});

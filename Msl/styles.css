@@ -4,7 +4,9 @@ body {box-sizing: border-box;}
 div {box-sizing: border-box;}
 textarea {box-sizing: border-box;}
 
+#LocationViewHud {pointer-events:none;}
 #LocationViewHud > div {pointer-events:all;}
+.hud-profile-container {position:absolute;width:80%;height:100%;left:10%;top:0%; background-color:rgba(255,255,255,0.8);}
 
 .main-interface-button{width:15%;height:10%}
 .fill-container{width:100%;height:100%;}
@@ -65,6 +67,7 @@ img.roll-left-icon{width:100%;height:16%}
 .classic-hud-chat-input-container > div{float:left; width:9.5%; padding:0.5%; height:99%;background-color:white}
 .classic-hud-chat-input-container > div.spread {width:19%; }
 
+
 /*
 div.chat-container{position:absolute;left:10%;height:8%;width:80%;bottom:0;}
 div.chat-log{background-color: rgba(0, 0, 0, 0.5);overflow-y: scroll; height:0%; width:100%;position:absolute;}
@@ -75,7 +78,9 @@ div.chat-log-item{font-size:2em}
 */
 div.chat-hover-item{
 	background-color: rgba(0, 0, 0, 0.5); word-break:break-word; text-align:center; padding:1%;
-	width:150%; left:-25%; top:-20%; position:relative; border-radius:30px}
+	width:150%; left:-25%; top:-20%; position:relative; border-radius:30px
+}
+
 div.chat-hover-item:after {
 	content:'';position:absolute;bottom:0;left:50%;width:0;height:0;border:48px solid transparent;
 	border-top-color:#00aabb;border-bottom:0;border-left:0;margin-left:-24px;margin-bottom:-48px;
@@ -95,8 +100,8 @@ div.chat-hover-item:after {
 .focus-item-group-type-selection-icon-container > div > img {width:100%; height:100%;background-color:white}
 
 .focus-item-group-selection-icon-container {}
-.focus-item-group-selection-icon-container > div {display:none;border:1px black solid;word-break:break-word;color:black}
-.focus-item-group-selection-icon-container > div.selected {border:1px green solid}
+.focus-item-group-selection-icon-container > div {display:none;border:.1em black solid;word-break:break-word;color:black}
+.focus-item-group-selection-icon-container > div.selected {border:.1em green solid}
 .focus-item-group-selection-icon-container > div > img {position:absolute; width:100%; height:100%;}
 .focus-item-group-selection-icon-container > .grid-cell {position:absolute;height:7%;margin:1%}
 .focus-item-group-selection-icon-container > .heightx2 {height:14.1%;}
@@ -119,7 +124,14 @@ div.chat-hover-item:after {
 .focus-item-group-selection-icon-container > .row11 {top:78.2%}
 .focus-item-group-selection-icon-container > .row12 {top:85.3%}
 
-.focus-item-selection-icon-container {float:right;width:38%;height:100%;overflow-y:auto}
+.focus-wardrobe-container {position:absolute;left:62%;width:38%;height:100%;overflow-y:scroll}
+.focus-wardrobe-container > div {width:30%;padding-top:66%;position:relative;margin:1.5% 1.5% 1.5% 1.5%;float:left;}
+.focus-wardrobe-container > div  > div {position:absolute;width:100%;height:81%;top:0%;left:0}
+/*.focus-wardrobe-figure-container > div:after {content: ""; display: block; padding-bottom: 100%;}*/
+/*.focus-wardrobe-figure-container > div > div {position:absolute;top:0;left:0;font-size:1.3em;overflow:hidden;word-break:break-word}*/
+
+
+.focus-item-selection-icon-container {position:absolute;left:62%;width:38%;height:100%;overflow-y:scroll}
 .focus-item-selection-icon-container > div {width:29%;background-color:rgba(0,0,0,.4);float:left;position:relative;margin:2% 2% 2% 2%}
 .focus-item-selection-icon-container > div:after {content: ""; display: block; padding-bottom: 100%;}
 .focus-item-selection-icon-container > div > div {position:absolute;top:0;left:0;font-size:1.3em;overflow:hidden;word-break:break-word}
