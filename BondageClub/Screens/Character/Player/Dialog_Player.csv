@@ -345,6 +345,8 @@ ItemMiscLoversTimerPadlockIntro,,,"""A loving embrace"""
 ItemMiscLoversTimerPadlockDetail,,,Can only be unlocked or extended by her lover
 ItemMiscMistressPadlockIntro,,,Can only be locked or unlocked by a Club Mistress
 ItemMiscMistressTimerPadlockIntro,,,Can only be unlocked or extended by a Club Mistress
+ItemMiscExclusivePadlockIntro,,,"""Keeping you safe from yourself"""
+ItemMiscExclusivePadlockDetail,,,Can be opened by anyone but the wearer
 LeatherCuffsPoseNone,,,Detached
 LeatherCuffsPoseWrist,,,Bind wrists
 LeatherCuffsPoseElbow,,,Bind elbows
