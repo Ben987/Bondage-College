@@ -60,7 +60,7 @@ function ActivityDialogBuild(C) {
 
 			// Make sure the activity is valid for that player asset family
 			var Activity = AssetGetActivity(C.AssetFamily, C.FocusGroup.Activity[A]);
-			if (Activity != null) {
+			if (Activity != null && Activity.Name.indexOf("Item") < 0) {
 
 				// If the player is targeting herself, we validate that this activity can be done on self
 				var Allow = true;

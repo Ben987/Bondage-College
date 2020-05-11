@@ -282,12 +282,12 @@ ActionCoin,,,SourceCharacter flips a coin.  The result is: CoinResult.
 ActionGrabbedForCell,,,"TargetCharacterName gets grabbed by two maids and locked in a timer cell, following her owner commands."
 ActionGrabbedToServeDrinks,,,TargetCharacterName gets grabbed by two maids and escorted to the maid quarters to serve drinks for her owner.
 ActionGiveEnvelopeToOwner,,,TargetCharacterName gives a sealed envelope to her owner.
-ActionActivitySpank,,,SourceCharacter hits DestinationCharacter FocusAssetGroup with a NextAsset.
+ActionActivitySpankItem,,,SourceCharacter hits DestinationCharacter FocusAssetGroup with a NextAsset.
 ActionActivityMasturbateItem,,,SourceCharacter holds a NextAsset against DestinationCharacter FocusAssetGroup.
-ActionActivityTickle,,,SourceCharacter tickles DestinationCharacter FocusAssetGroup with a NextAsset.
-ActionActivityRub,,,SourceCharacter rubs DestinationCharacter FocusAssetGroup with a NextAsset.
-ActionActivityRoll,,,SourceCharacter rolls a NextAsset over DestinationCharacter FocusAssetGroup.
-ActionActivityPour,,,SourceCharacter pours NextAsset onto DestinationCharacter FocusAssetGroup.
+ActionActivityTickleItem,,,SourceCharacter tickles DestinationCharacter FocusAssetGroup with a NextAsset.
+ActionActivityRubItem,,,SourceCharacter rubs DestinationCharacter FocusAssetGroup with a NextAsset.
+ActionActivityRollItem,,,SourceCharacter rolls a NextAsset over DestinationCharacter FocusAssetGroup.
+ActionActivityPourItem,,,SourceCharacter pours NextAsset onto DestinationCharacter FocusAssetGroup.
 MaidDrinkPickFreeWater,,,SourceCharacter picks a glass of water from DestinationCharacter tray.
 MaidDrinkPickFreeOrangeJuice,,,SourceCharacter picks an orange juice from DestinationCharacter tray.
 MaidDrinkPickFreeBeer,,,SourceCharacter picks a beer from DestinationCharacter tray.

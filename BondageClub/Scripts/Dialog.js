@@ -293,7 +293,7 @@ function DialogInventoryBuild(C) {
 		var Item = null;
 		var CurItem = null;
 		for(var A = 0; A < C.Appearance.length; A++)
-			if ((C.Appearance[A].Asset.Group.Name == C.FocusGroup.Name) && C.Appearance[A].Asset.DynamicAllowInventoryAdd()) {
+			if ((C.Appearance[A].Asset.Group.Name == C.FocusGroup.Name) && C.Appearance[A].Asset.DynamicAllowInventoryAdd(C)) {
 				DialogInventoryAdd(C, C.Appearance[A], true, 1);
 				CurItem = C.Appearance[A];
 				break;
@@ -308,13 +308,13 @@ function DialogInventoryBuild(C) {
 		} else {
 			// Second, we add everything from the victim inventory
 			for(var A = 0; A < C.Inventory.length; A++)
-				if ((C.Inventory[A].Asset != null) && (C.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && C.Inventory[A].Asset.DynamicAllowInventoryAdd())
+				if ((C.Inventory[A].Asset != null) && (C.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && C.Inventory[A].Asset.DynamicAllowInventoryAdd(C))
 					DialogInventoryAdd(C, C.Inventory[A], false, 2);
 
 			// Third, we add everything from the player inventory if the player isn't the victim
 			if (C.ID != 0)
 				for(var A = 0; A < Player.Inventory.length; A++)
-					if ((Player.Inventory[A].Asset != null) && (Player.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && Player.Inventory[A].Asset.DynamicAllowInventoryAdd())
+					if ((Player.Inventory[A].Asset != null) && (Player.Inventory[A].Asset.Group.Name == C.FocusGroup.Name) && Player.Inventory[A].Asset.DynamicAllowInventoryAdd(C))
 						DialogInventoryAdd(C, Player.Inventory[A], false, 2);
 
 		}

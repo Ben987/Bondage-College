@@ -185,3 +185,13 @@ function InventorySpankingToysGetActivity(C) {
 	var A = AssetGet(C.AssetFamily, "ItemHands", "SpankingToys" + Type);
 	return A && A.Activity || null;
 }
+
+// Determine whether an item activity is allowed on the selected region
+function InventorySpankingToysActivityAllowed(C) {
+	if (C.FocusGroup != null) {
+		var Activity = InventorySpankingToysGetActivity(Player);
+		if (Activity == null) return true;
+		if (C.FocusGroup.Activity != null) return C.FocusGroup.Activity.indexOf(Activity) >= 0;
+	}
+	return false;
+}
