@@ -167,9 +167,16 @@ function InventorySpankingToysGetType(C) {
 
 // Get the description of the spanking toy that the character is holding
 function InventorySpankingToysGetDescription(C) {
-	var Type = InventorySpankingToysGetType(C);
-	var A = AssetGet(C.AssetFamily, "ItemHands", "SpankingToys" + Type);
-	return A && A.Description || "MISSING DESCRIPTION";
+	var ToyDescription = null;
+	var Toy = InventoryGet(C, "ItemHands");
+	if (Toy != null) {
+		ToyDescription = "Crop";
+		if (Toy.Property && Toy.Property.Type) {
+			var A = AssetGet(C.AssetFamily, "ItemHands", "SpankingToys" + Toy.Property.Type);
+			if (A != null) ToyDescription = A.Description;
+		}
+	}
+	return ToyDescription || "Handheld Toy";
 }
 
 // Get the activity of the spanking toy that the character is holding
