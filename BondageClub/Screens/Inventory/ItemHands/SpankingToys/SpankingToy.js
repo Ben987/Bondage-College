@@ -171,3 +171,10 @@ function InventorySpankingToysGetDescription(C) {
 	var A = AssetGet(C.AssetFamily, "ItemHands", "SpankingToys" + Type);
 	return A && A.Description || "MISSING DESCRIPTION";
 }
+
+// Get the activity of the spanking toy that the character is holding
+function InventorySpankingToysGetActivity(C) {
+	var Type = InventorySpankingToysGetType(C);
+	var A = AssetGet(C.AssetFamily, "ItemHands", "SpankingToys" + Type);
+	return A && A.Activity || null;
+}
