@@ -1,0 +1,22 @@
+﻿Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,欢迎来上艺术课。|你是个新生吗？,Jennifer.jpg
+10,0,0,,"我是Jennifer, 很高兴认识你。",Jennifer.jpg
+20,0,0,,艺术课挺不错的，但我更喜欢体育。,Jennifer.jpg
+30,0,0,,这儿有什么你想要的么？,Jennifer.jpg
+40,0,0,,那么告诉我，你有什么想法？,Jennifer.jpg
+50,0,0,,所以你想看老师脱衣服么？|（你需要+2点好感或顺从度来说服她）,Jennifer.jpg
+60,0,0,,"和她说Sandro Botticelli的 The Birth of Venus""试试。|这也许会说服她脱掉衣服。""",Jennifer.jpg
+60,0,0,JuliaStrip,居然奏效了！太神奇了！,Jennifer.jpg
+70,0,0,,我真没想到Julia居然这么大胆。,Jennifer.jpg
+80,0,0,,两个模特！我真没想到会这样。,Jennifer.jpg
+80,0,0,Common_PlayerGagged,你怎么被堵着嘴？,Jennifer.jpg
+80,0,0,Common_PlayerRestrained,你不觉得难为情么？,Jennifer.jpg
+100,0,0,,我不太喜欢摆姿势。|（你需要+1点顺从度来脱掉她的衣服）,JenniferPose.jpg
+110,0,0,,我不太喜欢摆姿势。|（你需要+2点顺从度来脱光她的内衣）,JenniferUnderwear.jpg
+120,0,0,,这有点难为情。|（你需要+3点顺从度来把她捆起来）,JenniferNaked.jpg
+130,0,0,,这太难为情了。|（她看上去不怎么开心）,JenniferRope.jpg
+130,0,0,EggInside,你可以拿走这个粉红色的东西么？|（她被跳蛋刺激得浑身发抖）,JenniferRope.jpg
+140,0,0,,唔！呜呜！（她看上去不喜欢在|班级面前被绑起来。,JenniferRopeBallGag.jpg
+140,0,0,EggInside,（她被跳蛋刺激得浑身大汗，颤抖不已。|她看上去不喜欢在班级面前被绑起来）,JenniferRopeBallGag.jpg
+150,0,0,,唔！呜呜！（她看上去不喜欢在|班级面前被绑起来。,JenniferRopeTapeGag.jpg
+150,0,0,EggInside,（她被跳蛋刺激得浑身大汗，颤抖不已。|她看上去不喜欢在班级面前被绑起来）,JenniferRopeTapeGag.jpg

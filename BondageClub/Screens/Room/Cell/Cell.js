@@ -2,9 +2,12 @@
 var CellBackground = "Cell";
 var CellMinutes = 5;
 var CellOpenTimer = 0;
+var CellKeyDepositStaff = null;
 
 // Loads the cell screen
 function CellLoad() {
+	CellKeyDepositStaff = CharacterLoadNPC("NPC_Cell_KeyDepositStaff");
+	CellKeyDepositStaff.AllowItem = false;
 	CharacterSetActivePose(Player, null);
 	CellOpenTimer = LogValue("Locked", "Cell");
 	if (CellOpenTimer == null) CellOpenTimer = 0;
@@ -24,6 +27,7 @@ function CellRun() {
 	if (CellOpenTimer < CurrentTime) DrawButton(1885, 265, 90, 90, "", "White", "Icons/Cell.png", TextGet("Lock"));
 	if (CellOpenTimer < CurrentTime) DrawButton(1885, 385, 90, 90, "", "White", "Icons/Plus.png", TextGet("AddTime"));
 	if (CellOpenTimer < CurrentTime) DrawButton(1885, 505, 90, 90, "", "White", "Icons/Minus.png", TextGet("RemoveTime"));
+	if (CellOpenTimer < CurrentTime) DrawButton(1885, 625, 90, 90, "", "White", "Icons/Chest.png", TextGet("KeyDeposit"));
 	if (CellOpenTimer < CurrentTime) DrawText(TextGet("Timer") + " " + CellMinutes.toString() + " " + TextGet("Minutes"), 1620, 920, "White", "Black");
 	else DrawText(TextGet("OpensIn") + " " + TimerToString(CellOpenTimer - CurrentTime), 1620, 920, "White", "Black");
 }
@@ -38,6 +42,7 @@ function CellClick() {
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 265) && (MouseY < 355)) CellLock(CellMinutes);
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 385) && (MouseY < 475) && (CellMinutes < 60)) CellMinutes = CellMinutes + 5;
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 505) && (MouseY < 595) && (CellMinutes > 5)) CellMinutes = CellMinutes - 5;
+		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 625) && (MouseY < 715)) CharacterSetCurrent(CellKeyDepositStaff);
 	}
 }
 
@@ -45,4 +50,9 @@ function CellClick() {
 function CellLock(LockTime) {
 	LogAdd("Locked", "Cell", CurrentTime + LockTime * 60000);
 	CommonSetScreen("Room", "Cell");
+}
+
+// When the player leaves her keys in the deposit
+function CellDepositKeys(DepositTime) {
+	LogAdd("KeyDeposit", "Cell", CurrentTime + DepositTime * 3600000);
 }

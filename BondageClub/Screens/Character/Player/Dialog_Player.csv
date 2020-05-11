@@ -3,6 +3,16 @@ SelectItemGroup,,,Select an item to use on the GroupName.
 SelectActivity,,,Select an activity.
 SelectActivityGroup,,,Select an activity to use on the GroupName.
 CannotUseOnSelf,,,Cannot use on yourself.
+RequireSelfBondage1,,,Require self-bondage 1.
+RequireSelfBondage2,,,Require self-bondage 2.
+RequireSelfBondage3,,,Require self-bondage 3.
+RequireSelfBondage4,,,Require self-bondage 4.
+RequireSelfBondage5,,,Require self-bondage 5.
+RequireSelfBondage6,,,Require self-bondage 6.
+RequireSelfBondage7,,,Require self-bondage 7.
+RequireSelfBondage8,,,Require self-bondage 8.
+RequireSelfBondage9,,,Require self-bondage 9.
+RequireSelfBondage10,,,Require self-bondage 10.
 RemoveClothesForItem,,,Remove some clothes first.
 UnZipSuitForItem,,,Unzip the suit first.
 RemoveSuspensionForItem,,,Remove the suspension first.
@@ -341,6 +351,8 @@ ItemMiscLoversTimerPadlockIntro,,,"""A loving embrace"""
 ItemMiscLoversTimerPadlockDetail,,,Can only be unlocked or extended by her lover
 ItemMiscMistressPadlockIntro,,,Can only be locked or unlocked by a Club Mistress
 ItemMiscMistressTimerPadlockIntro,,,Can only be unlocked or extended by a Club Mistress
+ItemMiscExclusivePadlockIntro,,,"""Keeping you safe from yourself"""
+ItemMiscExclusivePadlockDetail,,,Can be opened by anyone but the wearer
 LeatherCuffsPoseNone,,,Detached
 LeatherCuffsPoseWrist,,,Bind wrists
 LeatherCuffsPoseElbow,,,Bind elbows
@@ -1043,3 +1055,8 @@ MermaidSuitTypeZipped,,,Zipped Up
 MermaidSuitTypeUnZip,,,Unzipped
 MermaidSuitSetZipped,,,SourceCharacter zips up TargetCharacter suit.
 MermaidSuitSetUnZip,,,SourceCharacter unzips TargetCharacter suit.
+SelectBackShield,,,Selected chastity belt backing
+ChastityOpenBack,,,Open Back
+ChastityClosedBack,,,Closed Back
+ChastityBeltBackShieldOpenBack,,,SourceCharacter removes the shield from the back of DestinationCharacter's belt.
+ChastityBeltBackShieldClosedBack,,,SourceCharacter adds the shield to the back of DestinationCharacter's belt.

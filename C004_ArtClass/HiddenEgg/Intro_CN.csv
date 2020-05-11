@@ -1,0 +1,4 @@
+﻿Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,Common_PlayerNotRestrained,红色油漆罐后面似乎藏着一个粉红色的东西。,HiddenEgg.jpg
+0,0,0,Common_PlayerRestrained,红色油漆罐后面藏着一个粉红色的物体，但你被拘束着的时候够不着。,HiddenEgg.jpg
+10,0,0,,这儿没什么特别的。,NoEgg.jpg

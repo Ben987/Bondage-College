@@ -1,0 +1,2 @@
+﻿Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,Common_PlayerNotRestrained,(拿走它.),你在周围没人注意你的|情况下拿走了这个粉红|色的小东西.,10,0,0,TakeEgg()
