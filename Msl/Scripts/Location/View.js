@@ -33,7 +33,7 @@ var LocationView = {
 			var player = LocationController.location.players[spotPosition.name];
 			if(! player) return;
 			setTimeout(function(){
-				LocationView.BuildPlayerFigure(LocationView.spotDivs[spotPosition.name], player.appearance);
+				LocationView.BuildPlayerFigure(LocationView.spotDivs[spotPosition.name], player.render);
 				}, (index+1)*50);
 		});
 	}
@@ -101,40 +101,42 @@ var LocationView = {
 	,RenderPlayerInSpot(spotName, player){
 		var spotDiv = LocationView.spotDivs[spotName]
 		if(! spotDiv) return;//player is in a a spot not visible from this screen
-		if(spotDiv.figure) spotDiv.removeChild(spotDiv.figure); //when player appearance gets updated, redraw the whole thing
+		if(spotDiv.figure) spotDiv.removeChild(spotDiv.figure); //when player render gets updated, redraw the whole thing
 		
-		this.BuildPlayerFigure(spotDiv, player.appearance);
+		this.BuildPlayerFigure(spotDiv, player.render);
 	}
 	
 	
-	,BuildPlayerFigure(spotDiv, appearance){
+	,BuildPlayerFigure(spotDiv, render){
 		var scaleFactor = .2;//f3dcg asset scale factor	
-			
+		
 		spotDiv.figure = Util.CreateElement({parent:spotDiv, cssStyles:{
-				transform:"rotate("+appearance.rotate +"deg)"
-				,top:(appearance.top*scaleFactor/2 + (100 - appearance.scale*100)) + "%"
-				,width:appearance.scale*100 + "%"
-				,height:appearance.scale*100 + "%"
+				transform:"rotate("+render.rotate +"deg)"
+				,top:(render.top*scaleFactor/2 + (100 - render.scale*100)) + "%"
+				,width:render.scale*100 + "%"
+				,height:render.scale*100 + "%"
 				,position:"absolute"
 		}});
 		
-		for(let groupName in appearance.items){
-			let renderItem = appearance.items[groupName];
+		//for(let groupName in render.items){
+		render.items.forEach(renderItem => {
+			//let renderItem = render.items[groupName];
+			//let renderItem = render.items[groupName];
 			var cssStyles = {left:(renderItem.left*scaleFactor)+"%",top:(renderItem.top*scaleFactor/2)+"%",visibility:"hidden",position:"absolute"}
 			
 			renderItem.layers.forEach(renderItemLayer => {
 				var cS = Util.CloneRecursive(cssStyles);
 				Util.CreateImageElement(renderItemLayer.url, spotDiv.figure, cS, scaleFactor, scaleFactor/2
 					,(image) => {
-						if(renderItemLayer.colorize && renderItem.color)
-							Util.ColorizeImage(image, renderItem.color, renderItem.fullAlpha);
+						//if(renderItemLayer.colorize && renderItem.color)
+							//Util.ColorizeImage(image, renderItem.color, renderItem.fullAlpha);
 							
 						if(renderItemLayer.blinking)
 							image.classList.add("blinking");
 					}
 				);
 			});
-		}
+		});
 	}
 	
 	
@@ -153,7 +155,7 @@ var LocationView = {
 		}else if(!destinationSpotDiv){//player went to a spot that's not rendered
 			originSpotDiv.removeChild(originSpotDiv.figure);
 		}else if(! originSpotDiv){ //player came from a spot that was not rendered
-			this.BuildPlayerFigure(destinationSpotDiv, player.appearance);
+			this.BuildPlayerFigure(destinationSpotDiv, player.render);
 		}else{ //save rendering effort
 			originSpotDiv.removeChild(originSpotDiv.figure);
 			destinationSpotDiv.appendChild(originSpotDiv.figure);

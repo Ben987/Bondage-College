@@ -55,14 +55,14 @@ var LocationFocusView = {
 		this.itemSelectionContainer = Util.GetFirstChildNodeByName(this.mainContainer, "itemSelection");
 		this.itemActionButtonsContainer = Util.GetFirstChildNodeByName(this.mainContainer, "itemActionButtons");
 		this.itemGroupSelectionContainer = Util.GetFirstChildNodeByName(this.figureContainer, "itemGroupSelection");
-		
+		/*
 		if(MainController.playerAccount.profileSettings.focusTransparentBackground){
 			this.mainContainer.classList.add("transparent");
 			this.mainContainer.style.backgroundImage  = "";
 		}else{
 			this.mainContainer.classList.remove("transparent");
 			this.mainContainer.style.backgroundImage = "url('" + LocationController.backgroundContainer.src + "')";
-		}
+		}*/
 		
 		for(var actionName in this.itemActionViews){
 			var containerElement = Util.GetFirstChildNodeByName(this.mainContainer, "item"+actionName+"Actions");
@@ -103,7 +103,7 @@ var LocationFocusView = {
 	}
 	
 	,BuildPlayerFigureAndIconsAndEvents(){
-		LocationController.delegates.view.BuildPlayerFigure(this.figureContainer, this.playerUpdateDelegate.appearance);
+		LocationController.delegates.view.BuildPlayerFigure(this.figureContainer, this.playerUpdateDelegate.render);
 		
 		Util.MoveNodeToEndOfList(this.itemGroupSelectionContainer);
 		

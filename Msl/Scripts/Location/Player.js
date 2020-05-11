@@ -2,17 +2,12 @@
 
 var LocationPlayer = function(Account){
 	console.log("building character " + Account.id + " " + Object.keys(Account));
+	for(var key in Account)
+		this[key] = Account[key];
+	
 	this.currentPose = F3dcgAssets.POSE_NONE;
 	
-	this.id = Account.id;
-	this.ownerId = Account.Ownership?.MemberNumber;
-	this.loverId = Account.Lovership?.MemberNumber;
-	
-	this.Appearance = Object.values(Account.AppearanceGrouped);
-	this.Inventory = JSON.parse(LZString.decompressFromUTF16(Account.Inventory)).map(I => {var obj = {Name:I[0], Group:I[1]}; return obj;});
-	
-	this.appearance = F3dcgAssets.BuildPlayerAppearance(MainController.playerAccount, this, this.Appearance, this.currentPose);
-	this.inventory = F3dcgAssets.BuildPlayerInventory(MainController.playerAccount, this, this.Inventory, this.appearance);	
+	this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, this.currentPose);
 	
 	this.GetUpdateDelegate = function(){
 		this.update = new LocationPlayerUpdate(this);
@@ -37,6 +32,7 @@ var LocationPlayer = function(Account){
 		this.inventory = F3dcgAssets.BuildPlayerInventory(MainController.playerAccount, this, this.Inventory, this.appearance);
 	}
 	
+	/*
 	this.interval = setInterval(function(){
 		this.Appearance.forEach(AppearanceItem => {
 			if(AppearanceItem.Property?.RemoveTimer && AppearanceItem.Property?.RemoveTimer - new Date().getTime() < 0){
@@ -53,7 +49,7 @@ var LocationPlayer = function(Account){
 				}
 			}
 		});
-	}.bind(this), 1000);
+	}.bind(this), 1000);*/
 	
 }
 
@@ -61,8 +57,8 @@ var LocationPlayer = function(Account){
 var LocationPlayerUpdate = function(player){
 	this.player = player;
 	
-	this.Appearance = Util.CloneRecursive(player.Appearance);
 	this.appearance = Util.CloneRecursive(player.appearance);
+	this.render = Util.CloneRecursive(player.render);
 	this.inventory = Util.CloneRecursive(player.inventory);
 	
 	//this.clothOrAccessoryUpdateLimit = 3;

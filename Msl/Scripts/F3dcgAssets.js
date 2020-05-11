@@ -1,12 +1,11 @@
-'use strict'
+//can not use strict because needs to be evaled by server code
 
 var F3dcgAssets = {
-	BODY:"body"//this category has to have a selection, and is determined by AllowNone === false
-	,EXPRESSION:"expression"//different structure in asset items
-	,CLOTHING:"clothing"//difference between clothing, accessory and toy is arbitrary
+	BODY:"body"
+	,EXPRESSION:"expression"
+	,CLOTH:"cloth"
 	,ACCESSORY:"accessory"
-	,RESTRAINT:"restraint"//determined by IsRestraint == true
-	,TOY:"toy"
+	,BONDAGE_TOY:"bondageToy"
 	,PADLOCK:"padlock"
 	
 	,UNIMPLEMENTED_ITEMS:["SpankingToys", "DildoPlugGag", "PlugGag"
@@ -18,307 +17,429 @@ var F3dcgAssets = {
 	
 	,F3DCG_ASSET_BASE:"../BondageClub/Assets/Female3DCG/"//
 	,F3DCG_TYPE_ICON_BASE:"../BondageClub/Screens/Inventory/"//ItemArms/OrnateCuffs/Elbow.png None.png
+	,AssetGroups:{}
+
+	,IgnoreGroups : ["ItemNeckAccessories", "ItemNeckRestraints", "ItemMisc"]	
+	,ExpressionGroups : ["Eyebrows", "Blush", "Fluids", "Emoticon"]
+	,BodyItemsGroups : ["Eyes", "Mouth", "Nipples", "Pussy", "HairFront", "HairBack"]
+	,AccessoriesGrooups : ["TailStraps", "Wings", "HairAccessory1", "HairAccessory2"]
+	,BondageToyGroups : [
+		"ItemHead", "ItemEars", "ItemMouth", "ItemNeck", "ItemMouth2", "ItemMouth"
+		,"ItemHands", "ItemArms"
+		,"ItemBreast", "ItemTorso", "ItemPelvis"
+		,"ItemLegs", "ItemFeet", "ItemBoots"
+		,"ItemDevices"
+		,"ItemNipples", "ItemNipplePiercings", "ItemVulva", "ItemVulvaPiercings", "ItemButt"
+	]
+
+	,ClothesGroups : []//Asset group has a meaningful flag
 	
 	,Padlocks:{}
 	,ItemGroups:{}
 	,Poses:{}
 	,Init(){
-		F3dcgAssetsAdd.Init();
-		F3dcgAssetVariants.Init();
+		this.InitLocks();
+		this.InitClothesGroupsNames();
+		this.InitGroupTypes();
+		this.InitItemsAndIcons();
+		this.InitPoses();		
+		this.InitVariants();
 	}
 	
-	//asuming default pose, no restraints or toys or expressions, no variants, no validation
-	,BuildPlayerWardrobe(Appearance){
-		var appearance = F3dcgAssetsAdd.InitAppearance();
-		var AppearanceGrouped = {};
-
-		Appearance.forEach(AppItem => {
-			if(F3dcgAssets.UNIMPLEMENTED_ITEMS.includes(AppItem.Name)) return;
-			AppearanceGrouped[AppItem.Group] = AppItem;
+	,InitPoses(){
+		PoseFemale3DCG.forEach(pose => {
+			F3dcgAssets.Poses[pose.Name] = pose;
+			F3dcgAssets.Poses[pose.Name].priority = pose.Name == "Kneel" ? 1 : 0;
+		});
+	}
+	
+	,InitItemsAndIcons(){
+		for(var i = 0; i < AssetFemale3DCG.length; i++){
+			var AssetGroup = AssetFemale3DCG[i];
+			
+			AssetGroup.Items = {};
+			if(AssetGroup.type == F3dcgAssets.EXPRESSION){
+				AssetGroup.Items["None"] = {Name:"None", iconUrl:AssetGroup.Group + "/Icon.png"};
+				AssetGroup.AllowExpression.forEach(exp => AssetGroup.Items[exp] = {Name:exp,iconUrl:AssetGroup.Group + "/" + exp + "/Icon.png"});
+			}else{
+				for(var j = 0; j < AssetGroup.Asset.length; j++){
+					let AssetItem = AssetGroup.Asset[j];
+					if(typeof(AssetItem) === "string") AssetItem = {Name:AssetItem};
+					
+					if(F3dcgAssets.UNIMPLEMENTED_ITEMS.includes(AssetItem.Name)) continue;
+					
+					AssetItem.Group = AssetGroup.Group;
+					AssetGroup.Items[AssetItem.Name] = AssetItem;
+					if(AssetGroup.ParentGroup) AssetGroup.useBodySize = AssetGroup.ParentGroup == "BodyUpper" ? "upperSize" : "lowerSize";
+					
+					switch(AssetGroup.type){
+						case F3dcgAssets.RESTRAINT: case F3dcgAssets.CLOTHING: case F3dcgAssets.TOY: case F3dcgAssets.ACCESSORY:
+							AssetItem.iconUrl = AssetItem.Name == "None" ? "./Icons/Icon.png" : AssetItem.Group + "/Preview/" + AssetItem.Name + ".png";
+						break;
+						case F3dcgAssets.BODY:
+						case F3dcgAssets.MISC:
+							AssetItem.iconUrl = "./Icons/Icon.png";
+						break;
+						default: //console.log(AssetItem);
+					}
+				}
+			}
+		}
+	}
+	
+	
+	,InitVariants(){
+		//Item Addon -- skipping as too difficult
+		//Item Arms
+		var G, A, V;
+		G = F3dcgAssets.AssetGroups.ItemArms;
+		A = G.Items.HempRope;
+		A.Variants = {};
+		HempRopeArmsOptions.forEach(VariantItem => {
+			A.Variants[VariantItem.Name] = VariantItem;
+			VariantItem.iconUrl = this.IconUrl(A, VariantItem.Name);
 		});
 		
-		var appearanceItemList = [];
-		for(var GroupName in AppearanceGrouped){
-			var AppItem = AppearanceGrouped[GroupName];
+		A = G.Items.Chains;
+		A.Variants = {};
+		ChainsArmsOptions.forEach(VariantItem => {
+			A.Variants[VariantItem.Name] = VariantItem;
+			VariantItem.iconUrl = this.IconUrl(A, VariantItem.Name);
+		});
+		
+		V = this.SimplestVariants(G.Items.BitchSuit, ["Latex", "UnZip"]);
+		V.Latex.Property = {Block: ["ItemBreast", "ItemNipples", "ItemNipplesPiercings", "ItemVulva", "ItemVulvaPiercings", "ItemButt"]}
+		
+		V = this.SimplestVariants(G.Items.MermaidSuit, ["Latex", "UnZip"]);
+		V.Latex.Property = {Block: ["ItemBreast", "ItemNipples", "ItemNipplesPiercings", "ItemVulva", "ItemVulvaPiercings", "ItemButt"]}
+		
+		V = this.SimplestVariants(G.Items.FullLatexSuit, ["Latex", "UnZip"]);
+		V.Latex.Property = {Block: ["ItemBreast", "ItemNipples", "ItemNipplesPiercings", "ItemVulva", "ItemVulvaPiercings", "ItemButt"]}
+		
+		V = this.SimplestVariants(G.Items.DuctTape, ["Arms", "Bottom", "Top", "Full", "Complete"]);
+		V.Bottom.Hide = ["Cloth", "ClothLower"];
+		V.Bottom.Block = ["ItemVulva", "ItemButt", "ItemPelvis"];
+		V.Top.Hide = ["Cloth", "ClothLower"];
+		V.Top.Block = ["ItemTorso", "ItemBreast", "ItemNipples"];
+		V.Full.Hide = ["Cloth", "ClothLower"];
+		V.Full.Block = ["ItemVulva", "ItemButt", "ItemPelvis", "ItemTorso", "ItemBreast", "ItemNipples"];
+		V.Complete.Hide = ["Cloth", "ClothLower"];
+		V.Complete.Block =["ItemVulva", "ItemButt", "ItemPelvis", "ItemTorso", "ItemBreast", "ItemNipples"];
+		
+		//this.SimplestVariants(G.Items.StraitJacket, ["Loose", "Normal", "Snug", "Tight"]);//single image for all, not interesting
+		
+		V = this.SimplestVariants(G.Items.LeatherStraitJacket, ["Loose", "Normal", "Snug", "Tight"])
+		V.Normal.Property = {SetPose:["BackElbowTouch"]}
+		V.Snug.Property = {SetPose:["BackElbowTouch"]}
+		V.Tight.Property = {SetPose:["BackElbowTouch"]}
+		
+		V = this.SimplestVariants(G.Items.LeatherCuffs, ["None", "Wrist", "Elbow", "Both"]);
+		V.Wrist.Property = {SetPose:["BackBoxTie"]};
+		V.Elbow.Property = {SetPose:["BackElbowTouch"]};
+		V.Both.Property = {SetPose:["BackElbowTouch"]};
+		
+		V = this.SimplestVariants(G.Items.OrnateCuffs, ["None", "Wrist", "Elbow", "Both"]);
+		V.Wrist.Property = {SetPose:["BackBoxTie"]};
+		V.Elbow.Property = {SetPose:["BackElbowTouch"]};
+		V.Both.Property = {SetPose:["BackElbowTouch"]};
+		
+		G.Items.SturdyLeatherBelts.SetPose = ["BackElbowTouch"];//Should really be in assets.js
+		this.SimplestVariants(G.Items.SturdyLeatherBelts, ["One", "Two", "Three"]);
+		
+		V = this.SimplestVariants(G.Items.WristShackles, ["InFront", "Behind"]);
+		V.Behind.Property = {SetPose:["BackCuffs"],Effect:["Block", "Prone"]}
+		
+		//ItemButt
+		G = F3dcgAssets.AssetGroups.ItemButt;
+		V = this.SimplestVariants(G.Items.AnalHook, ["Base", "Chain", "Hair"]);
+		V.Chain.Property = {Intensity:1,Effect:["Freeze", "Egged"],Difficulty:20};
+		V.Hair.Property = {Intensity:1,Effect:["Freeze", "Egged"],Difficulty:10};
+		
+		V = this.SimplestVariants(G.Items.ButtPlugLock, ["Base", "ChainShort", "ChainLong"]);
+		V.ChainShort.Property = {Effect:["Chaste", "Freeze", "ForceKneel"],SetPose:["Kneel"]}
+		V.ChainLong.Property = {Effect:["Chaste", "Tethered"], AllowPose:["Kneel", "Horse", "KneelingSpread"]}
+		
+		//ItemDevices
+		G = F3dcgAssets.AssetGroups.ItemDevices;
+		this.SimplestVariants(G.Items.InflatableBodyBag, ["Light", "Inflated", "Bloated", "Max"]);
+		this.SimplestVariants(G.Items.TeddyBear, ["Bear", "Kitty", "Pony", "Pup", "Fox", "Bunny"]);
+		
+		//ItemEars
+		G = F3dcgAssets.AssetGroups.ItemEars;
+		V = this.SimplestVariants(G.Items.HeadphoneEarPlugs, ["Off","Light","Heavy"]);
+		V.Light.Property = {Effect : ["DeafLight"]};
+		V.Light.Property = {Effect : ["DeafHeavy"]};
+		
+		
+		//ItemFeet
+		G = F3dcgAssets.AssetGroups.ItemFeet;
+		V = this.SimplestVariants(G.Items.Chains, ["Basic","Strict", "Suspension"]);
+		V.Suspension.Prerequisite = ["NotKneeling", "NotMounted", "NotChained", "NotHogtied"];
+		V.Suspension.Property = {SetPose:["Suspension", "LegsClosed"]};
+		
+		V = this.SimplestVariants(G.Items.HempRope, ["Basic","Mermaid", "Suspension"]);
+		V.Suspension.Prerequisite = ["NotKneeling", "NotMounted", "NotChained", "NotHogtied"];
+		V.Suspension.Property = {SetPose:["Suspension", "LegsClosed"]};
+		
+		G.Items.DuctTape.SetPose = ["LegsClosed"];
+		V = this.SimplestVariants(G.Items.DuctTape, ["Feet","HalfFeet", "MostFeet", "CompleteFeet"]);
+		V.HalfFeet.Prerequisite = ["NakedClothLower"];
+		V.HalfFeet.Property = {Hide : ["ClothLower", "Shoes"]};
+		V.MostFeet.Prerequisite = ["NakedClothLower"];
+		V.MostFeet.Property = {Hide : ["ClothLower", "Shoes"]};
+		V.CompleteFeet.Prerequisite = ["NakedClothLower"];
+		V.CompleteFeet.Property = {Hide : ["ClothLower", "Shoes"]};
+		
+		V = this.SimplestVariants(G.Items.LeatherAnkleCuffs, ["None", "Closed"]);
+		V.Closed.Property = {SetPose: ["LegsClosed"], Effect:["Prone", "Freeze"]};
+		
+		V = this.SimplestVariants(G.Items.OrnateAnkleCuffs, ["None", "Closed"]);
+		V.Closed.Property = {SetPose: ["LegsClosed"], Effect:["Prone", "Freeze"]};
+		
+		G.Items.SturdyLeatherBelts.SetPose = ["LegsClosed"];
+		this.SimplestVariants(G.Items.SturdyLeatherBelts, ["One", "Two", "Three"]);
+		
+		//ItemHead
+		G = F3dcgAssets.AssetGroups.ItemHead;
+		V = this.SimplestVariants(G.Items.DuctTape, ["Double", "Wrap", "Mummy"]);
+		V.Double.Property = {Effect:["BlindNormal", "Prone"]};
+		V.Wrap.Property = {Effect:["BlindNormal", "Prone"]};
+		V.Mummy.Property = {Hide:["HairFront", "HairBack"], Effect:["GagNormal", "BlindNormal", "Prone"], Block:["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemEars"]};
+		
+		//ItemLegs
+		G = F3dcgAssets.AssetGroups.ItemLegs;
+		G.Items.DuctTape.SetPose = ["LegsClosed"];
+		V = this.SimplestVariants(G.Items.DuctTape, ["Legs", "HalfLegs", "MostLegs", "CompleteLegs"]);
+		V.HalfLegs.Property = {Hide : ["ClothLower"]};
+		V.MostLegs.Property = {Hide : ["ClothLower"]};
+		V.CompleteLegs.Property = {Hide : ["ClothLower"]};
+		
+		V = this.SimplestVariants(G.Items.Chains, ["Basic", "Strict"]);
+		V = this.SimplestVariants(G.Items.HempRope, ["Basic", "Mermaid"]);
+		
+		V = this.SimplestVariants(G.Items.LeatherLegCuffs, ["None", "Closed"]);
+		V.Closed.Property = {SetPose: ["LegsClosed"], Effect:["Prone", "Freeze"]};
+		
+		V = this.SimplestVariants(G.Items.OrnateLegCuffs, ["None", "Closed"]);
+		V.Closed.Property = {SetPose: ["LegsClosed"], Effect:["Prone", "Freeze"]};
+		
+		G.Items.SturdyLeatherBelts.SetPose = ["LegsClosed"];
+		this.SimplestVariants(G.Items.SturdyLeatherBelts, ["One", "Two"]);
+		
+		//ItemMouth
+		
+		["ItemMouth", "ItemMouth2", "ItemMouth3"].forEach(GroupName =>{
+			G = F3dcgAssets.AssetGroups[GroupName];
+			V = this.SimplestVariants(G.Items.ClothGag, ["Small", "Cleave", "OTM", "OTN"]);
+			V.Small.Property = {Effect:["GagVeryLight"]};
+			V.Cleave.Property = {Effect:["GagLight"]};
+			V.OTM.Property = {Effect:["GagEasy"]};
+			V.OTN.Property = {Effect:["GagEasy"]};
 			
-			var AssetItemGroup = F3dcgAssets.ItemGroups[GroupName];
-			if(AssetItemGroup.type != F3dcgAssets.CLOTHING && AssetItemGroup.type != F3dcgAssets.ACCESSORY && AssetItemGroup.type != F3dcgAssets.BODY) continue;
-			var AssetItemGroupParent = AssetItemGroup.ParentGroup ? F3dcgAssets.ItemGroups[AssetItemGroup.ParentGroup] : null;
-			var AssetItem = AssetItemGroup.Items[AppItem.Name];	
+			V = this.SimplestVariants(G.Items.DuctTape, ["Single", "Crossed", "Full", "Double", "Cover"]);
+			V.Single.Property = {Effect:["GagVeryLight"]};
+			V.Crossed.Property = {Effect:["GagVeryLight"]};
+			V.Full.Property = {Effect:["GagLight"]};
+			V.Double.Property = {Effect:["GagEasy"]};
+			V.Cover.Property = {Effect:["GagNormal"]};
+		});
+		
+		/* Dropping this as layer logic is too complex
+		V = this.SimplestVariants(G.Items.DildoPlugGag, ["Open", "Plug"]);
+		V.Open.Property = {Effect:["GagVeryLight"]};
+		V.Plug.Property = {Effect:["GagVeryHeavy"]};*/
+		
+		//ItemTorso
+		G = F3dcgAssets.AssetGroups.ItemTorso;
+		A = G.Items.HempRopeHarness;
+		A.Variants = {};
+		HempRopeTorsoOptions.forEach(VariantItem => {
+			A.Variants[VariantItem.Name] = VariantItem;
+			VariantItem.iconUrl = this.IconUrl(A, VariantItem.Name);
+		});
+		
+		A = G.Items.NylonRopeHarness;
+		A.Variants = {};
+		HempRopeTorsoOptions.forEach(VariantItem => {
+			if(! ["Crotch", "Diamond", "Harness"].includes(VariantItem.Name)) return;
+			A.Variants[VariantItem.Name] = VariantItem;
+			VariantItem.iconUrl = this.IconUrl(A, VariantItem.Name);
+		});
+	}
+	
+	,SimplestVariants(A, variantNames){
+		A.Variants = {};
+		variantNames.forEach(variantName => {A.Variants[variantName] = {Name:variantName, iconUrl:this.IconUrl(A, variantName)}});
+		return A.Variants;
+	}
+	,IconUrl(A, VariantItemName){
+		return F3dcgAssets.F3DCG_TYPE_ICON_BASE + A.Group + "/" + A.Name + "/" + VariantItemName + ".png";
+	}
+	
+	,InitGroupTypes(){		
+		for(var i = 0; i < AssetFemale3DCG.length; i++){
+			var AssetGroup = AssetFemale3DCG[i];			
+			F3dcgAssets.AssetGroups[AssetGroup.Group] = AssetGroup;
 			
-			if(! AssetItem) console.log(AppItem);
+			if(F3dcgAssets.IgnoreGroups.includes(AssetGroup.Group))
+				continue;
+			else if(F3dcgAssets.ExpressionGroups.includes(AssetGroup.Group))
+				AssetGroup.type = F3dcgAssets.EXPRESSION;
+			else if(F3dcgAssets.BodyItemsGroups.includes(AssetGroup.Group))
+				AssetGroup.type = F3dcgAssets.BODY;
+			else if(F3dcgAssets.AccessoriesGrooups.includes(AssetGroup.Group))
+				AssetGroup.type = F3dcgAssets.ACCESSORY;
+			else if(F3dcgAssets.BondageToyGroups.includes(AssetGroup.Group))
+				AssetGroup.type = F3dcgAssets.BONDAGE_TOY;
+			else if(F3dcgAssets.ClothesGroups.includes(AssetGroup.Group))
+				AssetGroup.type = F3dcgAssets.CLOTH;				
+		}
+	}
+	
+	,InitClothesGroupsNames(){
+		for(var i = 0; i < AssetFemale3DCG.length; i++){
+			var AssetGroup = AssetFemale3DCG[i];
 			
-			if(AssetItem.Height) appearance.top -= AssetItem.Height;
-			if(AppItem.Group == "Height")	appearance.scale = AssetItem.Zoom;
-			
-			var appearanceItem = F3dcgAssetsAdd.InitAppearanceItem(AppItem, AssetItem, AssetItemGroup);//TODO separate item presentation from logic
-			appearanceItemList.push(appearanceItem);
-			
-			F3dcgAssetsAdd.ColorizeApearanceItem(appearanceItem, AppItem, AssetItemGroup);
-			
-			if(! AssetItemGroup.Wear && (AssetItem.Visible === false || AssetItemGroup.Visible === false)) continue;
-			
-			var urlPartPose = "", urlPartVariant = "";
-			var urlPartGroup = AppItem.Group +"/", urlPartItemName = AppItem.Name;			
-			if(AssetItem.Layer) {
-				var urlPartParentAsset = AssetItemGroupParent && ! (AssetItem.IgnoreParentGroup === true) ? "_" + AppearanceGrouped[AssetItemGroupParent.Group].Name  :"";				
-				AssetItem.Layer.forEach(AssetItemLayer => {		
-					var urlPartLayerName = "_" + AssetItemLayer.Name;
-					appearanceItem.layers.push({colorize:AssetItemLayer.AllowColorize ? true : false
-						,url:this.F3DCG_ASSET_BASE + urlPartGroup + urlPartPose + urlPartItemName + urlPartParentAsset + urlPartLayerName + urlPartVariant + ".png"
-					});
-				});
-			} else {
-				var urlPartParentAsset = AssetItemGroupParent && ! (AssetItem.IgnoreParentGroup === true) ? "_" + AppearanceGrouped[AssetItemGroupParent.Group].Name : "";
-				var urlPartExpression = AssetItemGroup.AllowExpression && AppItem.Property?.Expression ? AppItem.Property.Expression + "/" : "";
-				var urlPartBodyColor = ["BodyUpper", "BodyLower", "Hands"].includes(AppItem.Group) ? "_" + AppItem.Color : "";
+			if(AssetGroup.Clothing && ! F3dcgAssets.AccessoriesGrooups.includes(AssetGroup.Group)) 
+				F3dcgAssets.ClothesGroups.push(AssetGroup.Group) 
+		}
+	} 
+	
+	,InitLocks(){
+		var ItemMiscAssetGroup = AssetFemale3DCG.find(AssetItemGroup => AssetItemGroup.Group == "ItemMisc");
+		var keys = {};
+		
+		var i = ItemMiscAssetGroup.Asset.length
+		while (i--) {
+			var AssetItem = ItemMiscAssetGroup.Asset[i];
+			if (AssetItem.Name.includes("Padlock") || AssetItem.Name.includes("MetalCuffsKey")) { 
+				ItemMiscAssetGroup.Asset.splice(i, 1);
 				
-				var url = this.F3DCG_ASSET_BASE + urlPartGroup + urlPartPose + urlPartExpression + urlPartItemName + urlPartBodyColor + urlPartParentAsset + urlPartVariant + ".png";
-				appearanceItem.layers.push({url:url, colorize: true});
+				AssetItem.iconUrl = "ItemMisc/Preview/" + AssetItem.Name + ".png";
+				
+				if(AssetItem.Name.includes("PadlockKey"))
+					keys[AssetItem.Name] = AssetItem;
+				else if(AssetItem.Name.includes("Padlock"))
+					F3dcgAssets.Padlocks[AssetItem.Name] = AssetItem;
+				
 			}
 		}
 		
-		appearanceItemList.sort((item1, item2) => {return item1.priority - item2.priority;});
-		appearanceItemList.forEach(appearanceItem => appearance.items[appearanceItem.itemGroupName] = appearanceItem);		
+		F3dcgAssets.Padlocks.MetalPadlock.Key = keys.MetalPadlockKey;
+		F3dcgAssets.Padlocks.IntricatePadlock.Key = keys.MetalPadlockKey;
+		F3dcgAssets.Padlocks.OwnerPadlock.Key = keys.OwnerPadlockKey;
+		F3dcgAssets.Padlocks.OwnerTimerPadlock.Key = keys.OwnerPadlockKey;
+		F3dcgAssets.Padlocks.LoversPadlock.Key = keys.LoversPadlockKey;
+		F3dcgAssets.Padlocks.LoversTimerPadlock.Key = keys.LoversPadlockKey;
+		F3dcgAssets.Padlocks.MistressPadlock.Key = keys.MistressPadlockKey;
+		F3dcgAssets.Padlocks.MistressTimerPadlock.Key = keys.MistressPadlockKey;		
 		
-		F3dcgAssetsAdd.AdjustEyes(appearance.items.Eyes);
+		F3dcgAssets.Padlocks.LoversTimerPadlock.KeyHolderActions = {selection:[1, 2, 4, 8, 16, 24, 48, 72, 96, 120, 144, 168, -144, -72, -48, -24, -8, -4]};
+		F3dcgAssets.Padlocks.OwnerTimerPadlock.KeyHolderActions = {selection:[1, 2, 4, 8, 16, 24, 48, 72, 96, 120, 144, 168, -144, -72, -48, -24, -8, -4]};
+		F3dcgAssets.Padlocks.MistressTimerPadlock.KeyHolderActions = {selection:[5, 10, 15, 30, 60, 120, 180, 240, -180, -120, -60, -30, -15]};
 		
-		return appearance;		
+		F3dcgAssets.Padlocks.LoversTimerPadlock.KeylessActions = {random:240, plus:120, minus:120};
+		F3dcgAssets.Padlocks.OwnerTimerPadlock.KeylessActions = {random:240, plus:120, minus:120};
+		F3dcgAssets.Padlocks.MistressTimerPadlock.KeylessActions = {random:20, plus:10, minus:10};
+		
+		F3dcgAssets.Padlocks.TimerPadlock.KeylessSelections = {plus:5};	
 	}
 	
-	,BuildPlayerAppearance(mainPlayerAccount, locationPlayer, Appearance){
-		//object with items and others to return
-		var appearance = F3dcgAssetsAdd.InitAppearance();
+	
+	,BuildAppearanceItemsEffects(appearance, activePose){
+		var result = {
+			itemGroupsToTranslateByPose:{}
+			,itemGroupsToHideByItem:[]
+			,itemGroupsToHideByPose:[]
+			,itemsToHideByItems:[]
+			,poses:[]
+			,effects:[]
+			,blocks:[]
+			,top:0
+			,rotate:0
+			,scale:1.0
+		};
 		
-		//other local variables
-		var height, AppearanceGrouped = {}, itemGroupsToTranslateByPose = {}, 
-				itemGroupsToHideByPose = [], itemGroupsToHideByItem = [], itemsToHideByItems = [];
+		console.log(appearance.bondageToys);
 		
-		//convert array to hash map, take care of non assets and globals such as height and poses
-		Appearance.forEach(AppItem => {
-			if(F3dcgAssets.UNIMPLEMENTED_ITEMS.includes(AppItem.Name)) return;
+		[appearance.bondageToys, appearance.clothes].forEach(appearanceItems => {
+			for(var groupName in appearanceItems){
+				var item = appearanceItems[groupName];
+				
+				if(! item) continue;
+				var AssetGroup = F3dcgAssets.AssetGroups[groupName], AssetItem = AssetGroup.Items[item.name], AssetVariant = AssetItem.Variants? AssetItem.Variants[variantName] : null;
+				
+				if(AssetItem.Height) result.top -= AssetItem.Height;				
+				
+				var variantName = item.variantName;
+				if(variantName){
+					if(!  AssetItem.Variants) {console.log("Variants not defined for " + AssetItem.Name + " " + AssetItem.Group);continue;}
+					var AssetVariant = AssetItem.Variants[variantName];
+					
+					if(AssetVariant.Property && AssetVariant.Property.SetPose)
+						AssetVariant.Property.SetPose.forEach(poseName => result.poses.push(poseName));
+					else if(AssetItem.SetPose)
+						AssetItem.SetPose.forEach(poseName => result.poses.push(poseName));
+					
+					if(AssetVariant.Property && AssetVariant.Property.Effect)
+						AssetVariant.Property.Effect.forEach(effectName => result.effects.push(effectName));
+					else if(AssetItem.Effect)
+						AssetItem.Effect.forEach(effectName => result.effects.push(effectName));					
+					
+					if(AssetVariant.Property && AssetVariant.Property.Block)
+						AssetVariant.Property.Block.forEach(blockName => result.blocks.push(blockName));
+					else if(AssetItem.Block)
+						AssetItem.Block.forEach(blockName => result.blocks.push(blockName));
+					
+					//if(AssetVariant.HideItem)
+						//AssetVariant.HideItem.forEach(blockName => itemsToHideByItems.push(blockName));
+					//else
+					if(AssetItem.HideItem)
+						AssetItem.HideItem.forEach(blockName => result.itemsToHideByItems.push(blockName));
+					
+					if(AssetVariant.Property && AssetVariant.Property.Hide)
+						AssetVariant.Property.Hide.forEach(itemGroupName => result.itemGroupsToHideByItem.push(itemGroupName));
+					else if(AssetItem.Hide)
+						AssetItem.Hide.forEach(itemGroupName => result.itemGroupsToHideByItem.push(itemGroupName));	
+				}else{
+					if(AssetItem.SetPose)	AssetItem.SetPose.forEach(poseName => result.poses.push(poseName));
+					if(AssetItem.Effect) 	AssetItem.Effect.forEach(effectName => result.effects.push(effectName));
 			
-			AppearanceGrouped[AppItem.Group] = AppItem;
-			
-			if(F3dcgAssets.ItemGroups[AppItem.Group].type == this.EXPRESSION) return;
-			//record the current pose from player appearance
-			AppItem.Property?.SetPose?.forEach(pose => appearance.poses.push(pose));
-			
-			var AssetItem = F3dcgAssets.ItemGroups[AppItem.Group].Items[AppItem.Name];
-			if(! AssetItem) console.log(AppItem);
-			
-			var variantName = AppItem.Property?.Type;
-			if(! variantName) variantName = AppItem.Property?.Restraint;
-			if(! variantName && AssetItem.Variants) variantName = Object.keys(AssetItem.Variants)[0];			
-			if(variantName){
-				if(!  AssetItem.Variants) {console.log("Variants not defined for " + AppItem.Name + " " + AppItem.Group);return;}
-				var AssetVariant = AssetItem.Variants[variantName];
-				
-				if(AssetVariant.Property?.SetPose)
-					AssetVariant.Property.SetPose.forEach(poseName => appearance.poses.push(poseName));
-				else
-					AssetItem.SetPose?.forEach(poseName => appearance.poses.push(poseName));
-				
-				if(AssetVariant.Property?.Effect)
-					AssetVariant.Property.Effect.forEach(effectName => appearance.effects.push(effectName));
-				else
-					AssetItem.Effect?.forEach(effectName => appearance.effects.push(effectName));					
-				
-				if(AssetVariant.Property?.Block)
-					AssetVariant.Property.Block.forEach(blockName => appearance.blocks.push(blockName));
-				else
-					AssetItem.Block?.forEach(blockName => appearance.blocks.push(blockName));
-				
-				//if(AssetVariant.HideItem)
-					//AssetVariant.HideItem.forEach(blockName => itemsToHideByItems.push(blockName));
-				//else
-					AssetItem.HideItem?.forEach(blockName => itemsToHideByItems.push(blockName));
-				
-				if(AssetVariant.Property?.Hide)
-					AssetVariant.Property.Hide.forEach(itemGroupName => itemGroupsToHideByItem.push(itemGroupName));
-				else
-					AssetItem.Hide?.forEach(itemGroupName => itemGroupsToHideByItem.push(itemGroupName));	
-			}else{
-				AssetItem.SetPose?.forEach(poseName => appearance.poses.push(poseName));
-				AssetItem.Effect?.forEach(effectName => appearance.effects.push(effectName));
-				AssetItem.Block?.forEach(blockName => appearance.blocks.push(blockName));
-				AssetItem.HideItem?.forEach(blockName => itemsToHideByItems.push(blockName));
-				AssetItem.Hide?.forEach(itemGroupName => itemGroupsToHideByItem.push(itemGroupName));				
+					if(AssetItem.Block) 	AssetItem.Block.forEach(blockName => result.blocks.push(blockName));
+					if(AssetItem.HideItem)	AssetItem.HideItem.forEach(blockName => result.itemsToHideByItems.push(blockName));
+					if(AssetItem.Hide) 		AssetItem.Hide.forEach(itemGroupName => result.itemGroupsToHideByItem.push(itemGroupName));				
+				}
 			}
 		});
 		
-		if(locationPlayer.activePose == this.POSE_KNEELEING) appearance.poses.push("Kneel");
-		appearance.poses.sort((poseName1, poseName2) => {F3dcgAssets.Poses[poseName1]?.priority - F3dcgAssets.Poses[poseName2]?.priority});
+		//if(locationPlayer.activePose == this.POSE_KNEELEING) result.poses.push("Kneel");
+		result.poses.sort((poseName1, poseName2) => {
+			var p1 = F3dcgAssets.Poses[poseName1] ? F3dcgAssets.Poses[poseName1].priority : 0;
+			var p2 = F3dcgAssets.Poses[poseName2] ? F3dcgAssets.Poses[poseName2].priority : 0;
+			return p1 - p2;
+		});
 		
 		//pose effects
-		appearance.poses.forEach(poseName => {
-			if(poseName == "Suspension") appearance.rotate = 180;
+		result.poses.forEach(poseName => {
+			if(poseName == "Suspension") appearanceItemEffects.rotate = 180;
 			
 			if(F3dcgAssets.Poses[poseName]){
-				var assetPose = F3dcgAssets.Poses[poseName];
-				if(typeof(assetPose.OverrideHeight) !== "undefined") appearance.top = -assetPose.OverrideHeight;
-				assetPose.Hide?.forEach(groupToHide => itemGroupsToHideByPose.push(groupToHide));
-				assetPose.MovePosition?.forEach(move => itemGroupsToTranslateByPose[move.Group] = {left:move.X, top:move.Y});
+				var AssetPose = F3dcgAssets.Poses[poseName];
+				if(typeof(AssetPose.OverrideHeight) !== "undefined") result.top = -AssetPose.OverrideHeight;
+				if(AssetPose.Hide) AssetPose.Hide.forEach(groupToHide => result.AssetGroupsToHideByPose.push(groupToHide));
+				if(AssetPose.MovePosition) AssetPose.MovePosition.forEach(move => result.AssetGroupsToTranslateByPose[move.Group] = {left:move.X, top:move.Y});
 			}
 		});
 		
-		//fill the item array
-		var appearanceItemList = [];
-		for(var group in AppearanceGrouped){
-			var AppItem = AppearanceGrouped[group];
-			var AssetItemGroup = F3dcgAssets.ItemGroups[group];
-			var AssetItem = AssetItemGroup.Items[ AssetItemGroup.type == this.EXPRESSION ? "None" : AppItem.Name ];//because expressions are special
-			var AssetItemGroupParent = AssetItemGroup.ParentGroup ? F3dcgAssets.ItemGroups[AssetItemGroup.ParentGroup] : null;
-			
-			if(! AssetItem ) console.log(AssetItemGroup.Items);
-			
-			if(AssetItem.Height) appearance.top -= AssetItem.Height;
-			if(AppItem.Group == "Height")	appearance.scale = AssetItem.Zoom;
-			
-			var appearanceItem = F3dcgAssetsAdd.InitAppearanceItem(AppItem, AssetItem, AssetItemGroup);//TODO separate item presentation from logic
-			appearanceItemList.push(appearanceItem);
-			
-			F3dcgAssetsAdd.ColorizeApearanceItem(appearanceItem, AppItem, AssetItemGroup);
-			F3dcgAssetsAdd.LockAppearanceItem(appearanceItem, AppItem, AssetItem, mainPlayerAccount, locationPlayer);
-			
-			//skip items hidden due to poses and other items.  Skip invisible 
-			if(itemGroupsToHideByPose.includes(group)) continue;
-			if(itemGroupsToHideByItem.includes(group)) continue;
-			if(itemsToHideByItems.includes(AppItem.Name)) continue;
-			
-			//Items such as headphones are not rendered, the layer array is empty
-			if(! AssetItemGroup.Wear && (AssetItem.Visible === false || AssetItemGroup.Visible === false)) continue;
-			
-			F3dcgAssetsAdd.TranslateAppearanceItem(appearanceItem, itemGroupsToTranslateByPose[group]);
-			
-			//compose the url of the item based on pose, body color, etc
-			var urlPartPose = "";
-			var allowedPoses = [];
-			if(AssetItemGroup.AllowPose) AssetItemGroup.AllowPose.forEach(poseName => allowedPoses.push(poseName));
-			if(AssetItem.AllowPose) AssetItem.AllowPose.forEach(poseName => allowedPoses.push(poseName));
-			appearance.poses.forEach(poseName => {if(allowedPoses.includes(poseName)) urlPartPose = poseName + "/";});
-			
-			var urlPartGroup = AppItem.Group +"/", urlPartItemName = AppItem.Name, urlPartVariant = appearanceItem.itemVariantName ? appearanceItem.itemVariantName : "";
-			if(AssetItem.Layer) {
-				var urlPartParentAsset = AssetItemGroupParent && ! (AssetItem.IgnoreParentGroup === true) ? "_" + AppearanceGrouped[AssetItemGroupParent.Group].Name  :"";				
-				AssetItem.Layer.forEach(AssetItemLayer => {					
-					if(AssetItem.Variants){
-						console.log(AssetItemLayer.Name  + " " + appearanceItem.itemVariantName);
-					
-						var isDefaultVariant = appearanceItem.itemVariantName == Object.keys(AssetItem.Variants)[0];
-						var isDefaultLayer = !AssetItemLayer.AllowTypes;
-						
-						if(isDefaultVariant && AssetItemLayer.AllowTypes?.includes(""))
-							urlPartVariant = "";
-						else if(AssetItemLayer.AllowTypes && !AssetItemLayer.AllowTypes.includes(appearanceItem.itemVariantName)) 
-							return;
-						else if(AssetItemLayer.AllowTypes && !AssetItemLayer.AllowTypes.includes(appearanceItem.itemVariantName))
-							urlPartVariant = AssetItemLayer.Name;
-						else
-							urlPartVariant = "";
-						
-					}
-					
-					if(urlPartPose) urlPartVariant = ""; //ornate cuffs
-					
-					var urlPartLayerName = "_" + AssetItemLayer.Name;
-					appearanceItem.layers.push({colorize:AssetItemLayer.AllowColorize ? true : false
-						,url:this.F3DCG_ASSET_BASE + urlPartGroup + urlPartPose + urlPartItemName + urlPartParentAsset + urlPartLayerName + urlPartVariant + ".png"
-					});
-				});
-				//if(AppItem.lock) item.urlLock = urlPartGroup + urlPartPose + urlPartItemName + "_Lock.png";  Looks like layered items never have locks rendered
-			} else {
-				var urlPartParentAsset = AssetItemGroupParent && ! (AssetItem.IgnoreParentGroup === true) ? "_" + AppearanceGrouped[AssetItemGroupParent.Group].Name : "";
-				var urlPartExpression = AssetItemGroup.AllowExpression && AppItem.Property?.Expression ? AppItem.Property.Expression + "/" : "";
-				var urlPartBodyColor = ["BodyUpper", "BodyLower", "Hands"].includes(AppItem.Group) ? "_" + AppItem.Color : "";
-				
-				if(AssetItem.Variants)
-					urlPartVariant = urlPartVariant == Object.keys(AssetItem.Variants)[0] ? "" : urlPartVariant;
-				
-				if(urlPartPose) urlPartVariant = ""; //Leather cuffs				
-				
-				var url = this.F3DCG_ASSET_BASE + urlPartGroup + urlPartPose + urlPartExpression + urlPartItemName + urlPartBodyColor + urlPartParentAsset + urlPartVariant + ".png";
-				appearanceItem.layers.push({url:url, colorize: true});
-				
-				if(appearanceItem.lock) appearanceItem.layers.push({url:this.F3DCG_ASSET_BASE + urlPartGroup + urlPartPose + urlPartItemName + "_Lock.png", colorize:false});
-			}
-		}
+		result.scale = F3dcgAssets.AssetGroups.Height.Items[appearance.body.height].Zoom;
 		
-		appearanceItemList.sort((item1, item2) => {return item1.priority - item2.priority;});
-		appearanceItemList.forEach(appearanceItem => appearance.items[appearanceItem.itemGroupName] = appearanceItem);		
-		
-		F3dcgAssetsAdd.AdjustEyes(appearance.items.Eyes);
-		
-		return appearance;
+		return result;
 	}
 	
-	
-	,BuildPlayerInventory(mainPlayerAccount, locationPlayer, Inventory, appearance){
-		var inventory = {[F3dcgAssets.BODY]:{},[F3dcgAssets.EXPRESSION]:{},[F3dcgAssets.CLOTHING]:{},[F3dcgAssets.ACCESSORY]:{},[F3dcgAssets.RESTRAINT]:{},[F3dcgAssets.TOY]:{}};
-		
-		var ownableTypes = [F3dcgAssets.ACCESSORY, F3dcgAssets.TOY, F3dcgAssets.RESTRAINT, F3dcgAssets.CLOTHING];
-		
-		var locks = {};
-		Inventory.filter(InvItem => InvItem.Group == "ItemMisc" && InvItem.Name.endsWith("adlock")).forEach(InvItem => {
-			var AssetItem = F3dcgAssets.Padlocks[InvItem.Name];
-			locks[InvItem.Name] = {itemName : InvItem.Name, iconUrl: this.F3DCG_ASSET_BASE + AssetItem.iconUrl};
-		});
-		
-		var keys = {};
-		Inventory.filter(InvItem => InvItem.Group == "ItemMisc" && InvItem.Name.endsWith("adlockKey")).forEach(InvItem => {
-			var name = InvItem.Name.substring(0, InvItem.Name.length-3);
-			var AssetItem = F3dcgAssets.Padlocks[name];
-			keys[AssetItem.Name] = {name: AssetItem.Key.Name, iconUrl: this.F3DCG_ASSET_BASE + AssetItem.Key.iconUrl};
-			if(AssetItem.Name.includes("Mistress")) keys["MistressTimerPadlock"] = keys[AssetItem.Name];
-			if(AssetItem.Name.includes("Owner"))	keys["OwnerTimerPadlock"] = keys[AssetItem.Name];
-		});
-		
-		for(var itemGroupName in F3dcgAssets.ItemGroups){
-			var AssetItemGroup = F3dcgAssets.ItemGroups[itemGroupName];
-			if(itemGroupName == "Hands") continue;
-			
-			if(!AssetItemGroup.type) continue;
-			
-			inventory[AssetItemGroup.type][AssetItemGroup.Group] = {};
-			
-			for(var itemName in AssetItemGroup.Items){
-				var AssetItem = AssetItemGroup.Items[itemName];
-				
-				var inventoryItem = {
-					owned:(AssetItemGroup.type == F3dcgAssets.BODY || AssetItemGroup.type == F3dcgAssets.EXPRESSION)
-					,validation:[]
-					,variants: AssetItem.Variants
-					,iconUrl: this.F3DCG_ASSET_BASE + AssetItem.iconUrl
-				}
-				inventory[AssetItemGroup.type][AssetItemGroup.Group][itemName] = inventoryItem;
-				
-				if(ownableTypes.includes(AssetItemGroup.type))
-					if((typeof(AssetItem.Value) == "undefined") || AssetItem.Value === 0)
-						inventoryItem.owned = true
-				
-				if(AssetItem.AllowLock)
-					inventoryItem.lockable = true;
-			}
-			
-			if(AssetItemGroup.type != F3dcgAssets.BODY && AssetItemGroup.type != F3dcgAssets.EXPRESSION )
-				inventory[AssetItemGroup.type][AssetItemGroup.Group]["None"] = {owned:true, validation:[], iconUrl:this.F3DCG_ASSET_BASE + "Icons/Items.png"};
-		}
-		
-		Inventory.forEach(InventoryItem => {
-			if(F3dcgAssets.UNIMPLEMENTED_ITEMS.includes(InventoryItem.Name)) return;
-			if(InventoryItem.Name.includes("Padlock")) return;
-			if(InventoryItem.Name == "MetalCuffsKey") return;
-			var AssetItemGroup = F3dcgAssets.ItemGroups[InventoryItem.Group];
-			if(!AssetItemGroup.type || !inventory[AssetItemGroup.type][InventoryItem.Group]) return;
-			inventory[AssetItemGroup.type][InventoryItem.Group][InventoryItem.Name].owned = true;
-		});
-		
-		this.FillInventoryValidation(mainPlayerAccount, locationPlayer, inventory, appearance);
-		
-		return {items:inventory, locks:locks, keys:keys};
-	}
+
 	
 	
+	/*
 	,DeconvertItemAndUpdateAppearance(Appearance, appearanceItem){
 		if(appearanceItem.itemName == "None"){
 			for(var i = 0; i < Appearance.length; i++)
@@ -339,10 +460,10 @@ var F3dcgAssets = {
 	
 	,DeconvertItem(appearanceItem){
 		return F3dcgAssetsAdd.DeconvertItem(appearanceItem);
-	}
-	
+	}*/
+	/*
  	,InitAppearanceItem(itemGroupTypeName, itemGroupName, itemName){
-		var assetItemGroup = F3dcgAssets.ItemGroups[itemGroupName];
+		var assetItemGroup = F3dcgAssets.AssetGroups[itemGroupName];
 		var assetItem = assetItemGroup.Items[itemGroupTypeName == this.EXPRESSION ? "None" : itemName];//because expressions are special
 		return itemName == "None" ? {itemGroupName:itemGroupName,itemName:itemName,itemGroupTypeName:assetItemGroup.type} 
 				: F3dcgAssetsAdd.InitAppearanceItem({Group:itemGroupName,Name:itemName}, assetItem, assetItemGroup);
@@ -350,7 +471,7 @@ var F3dcgAssets = {
 	
 	,InitAppearanceItemLock(itemNameLock, playerId){
 		return F3dcgAssetsAdd.InitAppearanceItemLock(itemNameLock, playerId);
-	}
+	}*/
 	
 /*	
 	,PlayerIsRestrained(player){
@@ -358,7 +479,7 @@ var F3dcgAssets = {
 		
 		for(var i = 0; i < player.Appearance.length; i++){
 			var AppearanceItem = player.Appearance[i];
-			var itemGroup = F3dcgAssets.ItemGroups[AppearanceItem.Group];
+			var itemGroup = F3dcgAssets.AssetGroups[AppearanceItem.Group];
 			
 			if(itemGroup.type == F3dcgAssets.RESTRAINT){
 				if(F3dcgAssets.itemNoRestrainWhenNullPose.includes(AppearanceItem.Name)){
@@ -373,133 +494,133 @@ var F3dcgAssets = {
 		
 		return true;
 	}*/
-	
-	
-	,FillInventoryValidation(mainPlayerAccount, locationPlayer, inventory, appearance){
-		//var [poses, effects, blocks] = F3dcgAssets.GetPosesAndEffects(appearance);
-		
-		for(var igtN in inventory){
-			for(var igN in inventory[igtN]){
-				for(var iN in inventory[igtN][igN]){
-					var inventoryItem = inventory[igtN][igN][iN];
-					inventoryItem.validation = [];
-					if(appearance.blocks.includes(igN)) inventoryItem.validation.push("Blocked");
-					
-					var AssetItem = F3dcgAssets.ItemGroups[igN]?.Items[iN];
-					if(AssetItem?.Prerequisite){
-						var prereqs = AssetItem.Prerequisite.forEach ? AssetItem.Prerequisite : [AssetItem.Prerequisite];
-						
-						prereqs.forEach(prereq => {
-							var errorReason = F3dcgAssets.ValidatePrerequisite(prereq, appearance);
-							if(errorReason.length > 0) inventoryItem.validation.push(errorReason);
-						});
-					}
-					
-					for(var variantName in AssetItem?.Variants){
-						inventoryItem.variants[variantName].validation = [];
-						
-						AssetItem.Variants[variantName].Prerequisite?.forEach(prereq =>{
-							var errorReason = F3dcgAssets.ValidatePrerequisite(prereq, appearance);	
-							if(errorReason.length > 0) inventoryItem.variants[variantName].validation.push(errorReason);
-						});
-					}
-				}
-			}
-		}
-	}
-	
-	
-	,ValidatePrerequisite(prerequisite, appearance) {
-		// Basic prerequisites that can apply to many items
-		var g = appearance.items;
-		
-		
-		switch(prerequisite){
-			//Item group must be empty
-			case "NoItemFeet":  	return g.ItemFeet ? "MustFreeFeetFirst" : "";
-			case "NoItemLegs":  	return g.ItemLegs ? "MustFreeLegsFirst" : "";
-			case "NoItemHands":	  	return g.ItemHands ? "MustFreeHandsFirst" : "";
-			case "NakedClothLower":	return g.ClothLower ? "RemoveClothesForItem" : "";
-			case "NakedFeet":	  	return g.ItemBoots || g.Socks || g.Shoes ? "RemoveClothesForItem" : "";
-			case "NakedHands":	  	return g.ItemHands || g.Gloves ? "RemoveClothesForItem" : "";
-			case "DisplayFrame":	
-				if(g.ItemArms || g.ItemLegs || g.ItemFeet || g.ItemBoots) return "RemoveRestraintsFirst";
-				if(g.Cloth || g.ClothLower || g.Shoes) return "RemoveClothesForItem";
-				return "";
-			
-			//specific item must be absent 
-			case "NotChained":		return g.ItemNeckRestraints?.itemName == "CollarChainLong" ? "RemoveChainForItem" : "";
-			case "NoFeetSpreader":	return g.ItemFeet?.itemName == "SpreaderMetal" ? "CannotBeUsedWithFeetSpreader" : "";
-			case "CannotHaveWand":	return g.ItemArms?.itemName == "FullLatexSuit" ? "CannotHaveWand" : "";
-			case "CannotBeSuited":	return g.ItemVulva?.itemName == "WandBelt" ? "CannotHaveWand" : "";
-			
-			case "ToeTied":
-				return g.ItemFeet?.itemName == "SpreaderMetal" || g.ItemLegs?.itemName == "WoodenHorse" 
-						|| g.ItemDevices?.itemName == "OneBarPrison" || g.ItemDevices?.itemName == "SaddleStand"
-						? "LegsCannotClose" : "";
-			
-			//an item group must be filled
-			case "Collared":		return g.ItemNeck ? "" : "MustCollaredFirst";
-			
-			//a pose shouldn't be in the list
-			case "LegsOpen":			return appearance.poses.includes("LegsClosed")		? "LegsCannotOpen" : "";
-			case "NotKneeling":			return appearance.poses.includes("Kneel")			? "MustStandUpFirst" : "";
-			case "NotHorse":			return appearance.poses.includes("Horse")			? "CannotBeUsedWhenMounted" : "";
-			case "NotHogtied":			return appearance.poses.includes("Hogtied")			? "ReleaseHogtieForItem" : "";
-			case "NotYoked":			return appearance.poses.includes("Yoked")			? "CannotBeUsedWhenYoked" : "";
-			case "NotKneelingSpread":	return appearance.poses.includes("KneelingSpread")	? "MustStandUpFirst" : "";
-			case "NotSuspended":		return appearance.poses.includes("Suspension")		? "RemoveSuspensionForItem" : "";
-			case "AllFours":			return appearance.poses.includes("AllFours") 		? "StraitDressOpen" : "";
-			case "StraitDressOpen":		return appearance.poses.includes("StraitDressOpen")	? "StraitDressOpen" : "";
-			
-			//effect shouldn't be in the list
-			case "CanKneel":	return appearance.effects.includes("BlockKneel")? "MustBeAbleToKneel" : "";
-			case "NotMounted":	return appearance.effects.includes("Mounted")	? "CannotBeUsedWhenMounted" : "";
-			case "NotChaste":	return appearance.effects.includes("Chaste")	? "RemoveChastityFirst" : "";
-			case "NotShackled":	return appearance.effects.includes("Shackled")	? "RemoveShacklesFirst" : "";
-			
-			//Clothes may block
-			case "AccessTorso":	return this.AppItemsExpose(g, ["Cloth"], "ItemTorso") ? "" : "RemoveClothesForItem";
-			case "AccessBreast": this.AppItemsExpose(g, ["Cloth", "Bra"], "ItemBreast") ? "" : "RemoveClothesForItem";
-			case "AccessBreastSuitZip": return this.AppItemsExpose(g, ["Cloth", "Suit"], "ItemNipplesPiercings") ? "" : "UnZipSuitForItem";
-			case "AccessVulva": 
-				var exposed = this.AppItemsExpose(g, ["ClothLower", "SuitLower", "Panties", "Socks"], "ItemVulva");
-				var blocked = this.AppItemsBlock(g, ["Socks"], "ItemVulva");
-				return (blocked || ! exposed) ? "RemoveClothesForItem" : "";
-			
-			case "GagUnique":
-				if(F3dcgAssets.ItemGroups.ItemMouth.Items[g.ItemMouth?.itemName]?.Prerequisite == "GagFlat") return "CannotBeUsedOverFlatGag";
-				if(F3dcgAssets.ItemGroups.ItemMouth.Items[g.ItemMouth2?.itemName]?.Prerequisite == "GagFlat") return "CannotBeUsedOverFlatGag";
-				if(F3dcgAssets.ItemGroups.ItemMouth.Items[g.ItemMouth?.itemName]?.Prerequisite == "GagCorset") return "CannotBeUsedOverFlatGag";
-				if(F3dcgAssets.ItemGroups.ItemMouth.Items[g.ItemMouth2?.itemName]?.Prerequisite == "GagCorset") return "CannotBeUsedOverFlatGag";
-				return "";
-		}
-		
-		//if (Prerequisite == "CannotBeHogtiedWithAlphaHood") return ((InventoryGet(C, "ItemHead") != null) && (InventoryGet(C, "ItemHead").Asset.Prerequisite != null) && (InventoryGet(C, "ItemHead").Asset.Prerequisite.indexOf("NotHogtied") >= 0)) ? "CannotBeHogtiedWithAlphaHood" : "";
-		return "";
-	}
-	
-	,AppItemsExpose(appearanceItems, groupList, exposition){	
-		for(var i = 0; i < groupList.length; i++){
-			var assetItem = F3dcgAssets.ItemGroups.Cloth.Items[appearanceItems[groupList[i]]?.itemName];
-			if(assetItem && !assetItem.Expose?.includes(exposition)) return false;
-		}
-		return true;
-	}
-	,AppItemsBlock(appearanceItems, groupList, expositiion){
-		for(var i = 0; i < groupList.length; i++){
-			var assetItem = F3dcgAssets.ItemGroups.Cloth.Items[appearanceItems[groupList[i]]?.itemName];
-			if(assetItem && !assetItem.Block?.includes(exposition)) return false;
-		}
-		return false;
-	}
-	
-	
-	,ValidateChangePoseSelf(player){
-		var [poses, effects] = F3dcgAssets.GetPosesAndEffects(player);	
-		var intersectionEffects = ["Freeze", "ForceKneel"].filter(el => effects.includes(el));
-		var intersectionPoses = ["LegsClosed", "Supension", "Hogtied"].filter(el => poses.includes(el));
-		
-		return intersectionEffects.length == 0 && intersectionPoses.length == 0;
-	}
 }
+
+var HempRopeArmsOptions = [
+	{
+		Name: "BoxTie",
+		RequiredBondageLevel: null,
+		Property: { Type: null, Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 1 },
+		ArmsOnly: true
+	}, {
+		Name: "WristTie",
+		RequiredBondageLevel: null,
+		Property: { Type: "WristTie", Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 1 },
+		Expression: [{ Group: "Blush", Name: "Low", Timer: 5 }],
+		ArmsOnly: true
+	}, {
+		Name: "RopeCuffs",
+		RequiredBondageLevel: null,
+		Property: { Type: "RopeCuffs", Effect: ["Block", "Prone"], SetPose: ["BackCuffs"], Difficulty: 1, OverridePriority: 30 },
+		Expression: [{ Group: "Blush", Name: "Low", Timer: 5 }],
+		ArmsOnly: true
+	}, {
+		Name: "WristElbowTie",
+		RequiredBondageLevel: 2,
+		Property: { Type: "WristElbowTie", Effect: ["Block", "Prone"], SetPose: ["BackElbowTouch"], Difficulty: 2 },
+		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }],
+		ArmsOnly: true
+	}, {
+		Name: "WristElbowHarnessTie",
+		RequiredBondageLevel: 3,
+		Property: { Type: "WristElbowHarnessTie", Effect: ["Block", "Prone"], SetPose: ["BackElbowTouch"], Difficulty: 3 },
+		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }],
+		ArmsOnly: true
+	}, {
+		Name: "Hogtied",
+		RequiredBondageLevel: 4,
+		Property: { Type: "Hogtied", Effect: ["Block", "Freeze", "Prone"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots", "ItemMisc"], SetPose: ["Hogtied"], Difficulty: 3 },
+		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
+		ArmsOnly: false
+	}, {
+		Name: "AllFours",
+		RequiredBondageLevel: 6,
+		Property: { Type: "AllFours", Effect: ["ForceKneel"], Block: ["ItemLegs", "ItemFeet", "ItemBoots", "ItemMisc"], SetPose: ["AllFours"], Difficulty: 3 },
+		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
+		ArmsOnly: false
+	}, {
+		Name: "SuspensionHogtied",
+		RequiredBondageLevel: 8,
+		Property: { Type: "SuspensionHogtied", Effect: ["Block", "Freeze", "Prone"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["Hogtied", "SuspensionHogtied"], Difficulty: 6 },
+		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
+		ArmsOnly: false,
+		HiddenItem: "SuspensionHempRope"
+	}
+];
+
+var ChainsArmsOptions = [
+	{
+		Name: "BoxTie",
+		RequiredBondageLevel: null,
+		Property: { Type: null, Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 1 },
+		ArmsOnly: true
+	}, {
+		Name: "WristTie",
+		RequiredBondageLevel: null,
+		Property: { Type: "WristTie", Effect: ["Block", "Prone"], SetPose: ["BackBoxTie"], Difficulty: 1 },
+		Expression: [{ Group: "Blush", Name: "Low", Timer: 5 }],
+		ArmsOnly: true
+	}, {
+		Name: "ChainCuffs",
+		RequiredBondageLevel: null,
+		Property: { Type: "ChainCuffs", Effect: ["Block", "Prone"], SetPose: ["BackCuffs"], Difficulty: 1, OverridePriority: 30 },
+		Expression: [{ Group: "Blush", Name: "Low", Timer: 5 }],
+		ArmsOnly: true
+	}, {
+		Name: "WristElbowTie",
+		RequiredBondageLevel: 2,
+		Property: { Type: "WristElbowTie", Effect: ["Block", "Prone"], SetPose: ["BackElbowTouch"], Difficulty: 2 },
+		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }],
+		ArmsOnly: true
+	}, {
+		Name: "WristElbowHarnessTie",
+		RequiredBondageLevel: 3,
+		Property: { Type: "WristElbowHarnessTie", Effect: ["Block", "Prone"], SetPose: ["BackElbowTouch"], Difficulty: 3 },
+		Expression: [{ Group: "Blush", Name: "Medium", Timer: 5 }],
+		ArmsOnly: true
+	}, {
+		Name: "Hogtied",
+		RequiredBondageLevel: 4,
+		Property: { Type: "Hogtied", Effect: ["Block", "Freeze", "Prone"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots", "ItemMisc"], SetPose: ["Hogtied"], Difficulty: 3 },
+		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
+		ArmsOnly: false
+	}, {
+		Name: "AllFours",
+		RequiredBondageLevel: 6,
+		Property: { Type: "AllFours", Effect: ["ForceKneel"], Block: ["ItemLegs", "ItemFeet", "ItemBoots", "ItemMisc"], SetPose: ["AllFours"], Difficulty: 3 },
+		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
+		ArmsOnly: false
+	}, {
+		Name: "SuspensionHogtied",
+		RequiredBondageLevel: 8,
+		Property: { Type: "SuspensionHogtied", Effect: ["Block", "Freeze", "Prone"], Block: ["ItemHands", "ItemLegs", "ItemFeet", "ItemBoots"], SetPose: ["Hogtied", "SuspensionHogtied"], Difficulty: 6 },
+		Expression: [{ Group: "Blush", Name: "Medium", Timer: 10 }],
+		ArmsOnly: false,
+		HiddenItem: "SuspensionChains"
+	}
+];
+
+var HempRopeTorsoOptions = [
+	{
+		Name: "Crotch",
+		RequiredBondageLevel: null,
+		Property: { Type: null, Difficulty: 1 },
+	}, {
+		Name: "Waist",
+		RequiredBondageLevel: null,
+		Property: { Type: "Waist" , Difficulty: 1 },
+	}, {
+		Name: "Harness",
+		RequiredBondageLevel: 2,
+		Property: { Type: "Harness" , Difficulty: 1 },
+	}, {
+		Name: "Star",
+		RequiredBondageLevel: 3,
+		Property: { Type: "Star" , Difficulty: 2 },
+	}, {
+		Name: "Diamond",
+		RequiredBondageLevel: 4,
+		Property: { Type: "Diamond" , Difficulty: 3 },
+		
+	}
+];
