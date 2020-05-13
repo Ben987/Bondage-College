@@ -360,6 +360,7 @@ function ActivityArousalItem(Source, Target, Asset) {
 	if (AssetActivity != null) {
 		var Activity = AssetGetActivity(Target.AssetFamily, AssetActivity);
 		if ((Source.ID == 0) && (Target.ID != 0)) ActivityRunSelf(Source, Target, Activity);
-		if ((Target.ArousalSettings != null) && ((Target.ArousalSettings.Active == "Hybrid") || (Target.ArousalSettings.Active == "Automatic"))) ActivityEffect(Source, Target, AssetActivity, Asset.Group.Name);
+		if (((Target.ArousalSettings != null) && ((Target.ArousalSettings.Active == "Hybrid") || (Target.ArousalSettings.Active == "Automatic"))) && ((Target.ID == 0) || (Target.AccountName.substring(0, 4) == "NPC_") || (Target.AccountName.substring(0, 4) == "NPC-")))
+			ActivityEffect(Source, Target, AssetActivity, Asset.Group.Name);
 	}
 }
