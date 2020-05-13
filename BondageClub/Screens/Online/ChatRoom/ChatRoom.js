@@ -585,9 +585,10 @@ function ChatRoomCharacterItemUpdate(C, Group) {
 // Publishes a custom action to the chat
 function ChatRoomPublishCustomAction(msg, LeaveDialog, Dictionary) {
 	if (CurrentScreen == "ChatRoom") {
-		ServerSend("ChatRoomChat", { Content: msg, Type: "Action", Dictionary: Dictionary} );
-		ChatRoomCharacterItemUpdate(CurrentCharacter);
-		if (LeaveDialog && (CurrentCharacter != null)) DialogLeave();
+		ServerSend("ChatRoomChat", { Content: msg, Type: "Action", Dictionary: Dictionary });
+		var C = CharacterGetCurrent();
+		ChatRoomCharacterItemUpdate(C);
+		if (LeaveDialog && (C != null)) DialogLeave();
 	}
 }
 
