@@ -49,34 +49,37 @@ function InformationSheetRun() {
 	// For player and online characters, we show the relationships
 	var OnlinePlayer = C.AccountName.indexOf("Online-") >= 0;
 	if ((C.ID == 0) || OnlinePlayer) {
-		DrawText(TextGet("Relationships"), 1225, 125, "Black", "Gray");
+		DrawText(TextGet("Relationships"), 1200, 125, "Black", "Gray");
 		// Shows the owner
 		if ((C.Ownership != null) && (C.Ownership.Name != null) && (C.Ownership.MemberNumber != null) && (C.Ownership.Start != null) && (C.Ownership.Stage != null)) {
 			DrawText(TextGet("Owner") + " " + C.Ownership.Name + " (" + C.Ownership.MemberNumber + ")", 1000, 200, "Black", "Gray");
-			DrawText(TextGet((C.Ownership.Stage == 0) ? "TrialFor" : "CollaredFor") + " " + (Math.floor((CurrentTime - C.Ownership.Start) / 86400000)).toString() + " " + TextGet("Days"), 1000, 275, "Black", "Gray");
+			DrawText(TextGet((C.Ownership.Stage == 0) ? "TrialFor" : "CollaredFor") + " " + (Math.floor((CurrentTime - C.Ownership.Start) / 86400000)).toString() + " " + TextGet("Days"), 1000, 260, "Black", "Gray");
 		}
+		else { DrawText(TextGet("Owner") + " " + (((C.Owner == null) || (C.Owner == "")) ? TextGet("OwnerNone") : C.Owner.replace("NPC-", "")), 1000, 200, "Black", "Gray"); }
 
-		// Shows the lover
-		//todo show all the lovers
-		if ((C.Lovership != null) && (C.Lovership.Name != null) && (C.Lovership.MemberNumber != null) && (C.Lovership.Start != null) && (C.Lovership.Stage != null)) {
-			DrawText(TextGet("Lover") + " " + C.Lovership.Name + " (" + C.Lovership.MemberNumber + ")", 1450, 200, "Black", "Gray");
-			DrawText(TextGet((C.Lovership.Stage == 0) ? "DatingFor" : (C.Lovership.Stage == 1) ? "EngagedFor" : "MarriedFor") + " " + (Math.floor((CurrentTime - C.Lovership.Start) / 86400000)).toString() + " " + TextGet("Days"), 1450, 275, "Black", "Gray");
+		// Shows the lovers
+		// no lover
+		if (C.Lovership.length < 1) DrawText(TextGet("Lover") + " " + TextGet("LoverNone"), 1400, 200, "Black", "Gray");
+		for (let L = 0; L < C.Lovership.length; L++) {
+			//if loved by an npc
+			if (C.Lovership[L].MemberNumber == null) { DrawText(TextGet("Lover") + " " + C.Lovership[L].Name.replace("NPC-", ""), 1400, 200, "Black", "Gray"); }
+			//if loved by a player
+			else {
+				DrawText(TextGet("Lover") + " " + C.Lovership[L].Name + " (" + C.Lovership[L].MemberNumber + ")", 1400, 200 + L * 150, "Black", "Gray");
+				DrawText(TextGet((C.Lovership[L].Stage == 0) ? "DatingFor" : (C.Lovership[L].Stage == 1) ? "EngagedFor" : "MarriedFor") + " " + (Math.floor((CurrentTime - C.Lovership[L].Start) / 86400000)).toString() + " " + TextGet("Days"), 1400, 260 + L * 150, "Black", "Gray");
+			}
 		}
 
 		// Shows the member number and online permissions for other players
 		if (C.ID != 0) DrawText(TextGet("ItemPermission") + " " + TextGet("PermissionLevel" + C.ItemPermission.toString()), 550, 875, "Black", "Gray");
 	} else {
-		// Shows the lover
-		if ((C.Lovership == null) || (C.Lovership.Name == null) || (C.Lovership.MemberNumber == null) || (C.Lovership.Start == null) || (C.Lovership.Stage == null)) {
-			DrawText(TextGet("Lover") + " " + (((C.Lover == null) || (C.Lover == "")) ? TextGet("LoverNone") : C.Lover.replace("NPC-", "")), 550, 500, "Black", "Gray");
-			if ((C.Lover != null) && (C.Lover != "") && (C.ID != 0) && (NPCEventGet(C, "Girlfriend") > 0)) DrawText(TextGet("LoverFor") + " " + (Math.floor((CurrentTime - NPCEventGet(C, "Girlfriend")) / 86400000)).toString() + " " + TextGet("Days"), 550, 575, "Black", "Gray");
-		}
+		// For NPC characters, shows the lover
+		DrawText(TextGet("Lover") + " " + (((C.Lover == null) || (C.Lover == "")) ? TextGet("LoverNone") : C.Lover.replace("NPC-", "")), 550, 500, "Black", "Gray");
+		if ((C.Lover != null) && (C.Lover != "") && (C.ID != 0) && (NPCEventGet(C, "Girlfriend") > 0)) DrawText(TextGet("LoverFor") + " " + (Math.floor((CurrentTime - NPCEventGet(C, "Girlfriend")) / 86400000)).toString() + " " + TextGet("Days"), 550, 575, "Black", "Gray");
 
-		// Shows the owner
-		if ((C.Ownership == null) || (C.Ownership.Name == null) || (C.Ownership.MemberNumber == null) || (C.Ownership.Start == null) || (C.Ownership.Stage == null)) {
-			DrawText(TextGet("Owner") + " " + (((C.Owner == null) || (C.Owner == "")) ? TextGet("OwnerNone") : C.Owner.replace("NPC-", "")), 550, 650, "Black", "Gray");
-			if ((C.Owner != null) && (C.Owner != "") && (C.ID != 0) && (NPCEventGet(C, "NPCCollaring") > 0)) DrawText(TextGet("CollaredFor") + " " + (Math.floor((CurrentTime - NPCEventGet(C, "NPCCollaring")) / 86400000)).toString() + " " + TextGet("Days"), 550, 725, "Black", "Gray");
-		}
+		// For NPC characters, shows the owner
+		DrawText(TextGet("Owner") + " " + (((C.Owner == null) || (C.Owner == "")) ? TextGet("OwnerNone") : C.Owner.replace("NPC-", "")), 550, 650, "Black", "Gray");
+		if ((C.Owner != null) && (C.Owner != "") && (C.ID != 0) && (NPCEventGet(C, "NPCCollaring") > 0)) DrawText(TextGet("CollaredFor") + " " + (Math.floor((CurrentTime - NPCEventGet(C, "NPCCollaring")) / 86400000)).toString() + " " + TextGet("Days"), 550, 725, "Black", "Gray");
 
 		// For NPC characters, we show the traits
 		DrawText(TextGet("Trait"), 1000, 125, "Black", "Gray");

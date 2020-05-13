@@ -85,7 +85,9 @@ function ServerSend(Message, Data) {
 
 // Syncs some player information to the server
 function ServerPlayerSync() {
-	ServerSend("AccountUpdate", { Money: Player.Money, Owner: Player.Owner, Lover: Player.Lover });
+	var D = { Money: Player.Money, Owner: Player.Owner };
+	if (Player.Lover) D.Lover = Player.Lover;
+	ServerSend("AccountUpdate", D);
 }
 
 // Syncs the full player inventory to the server, it's compressed as a stringify array using LZString
@@ -196,7 +198,7 @@ function ServerValidateProperties(C, Item) {
 				}
 
 				// Make sure the lover lock is valid
-				if (Lock.Asset.LoverOnly && ((C.Lovership == null) || (C.Lovership.MemberNumber == null) || (Item.Property.LockMemberNumber == null) || (C.Lovership.MemberNumber != Item.Property.LockMemberNumber))) {
+				if (Lock.Asset.LoverOnly && ((Item.Property.LockMemberNumber == null) || (C.GetLoversNumbers().indexOf(Item.Property.LockMemberNumber) < 0))) {
 					delete Item.Property.LockedBy;
 					delete Item.Property.LockMemberNumber;
 					delete Item.Property.CombinationNumber;
@@ -308,7 +310,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 					}
 					Appearance.push(NA);
 				}
-				if ((C.Lovership != null) && (C.Lovership.MemberNumber != null) && (C.Lovership.MemberNumber != SourceMemberNumber) && InventoryLoverOnlyItem(C.Appearance[A])) {
+				if ((C.GetLoversNumbers().indexOf(SourceMemberNumber) < 0) && InventoryLoverOnlyItem(C.Appearance[A])) {
 					var NA = C.Appearance[A];
 					if (!C.Appearance[A].Asset.LoverOnly) {
 
@@ -331,7 +333,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 							}
 						}
 						ServerValidateProperties(C, NA);
-						if (C.Appearance[A].Property.LockedBy == "LoversPadlock") InventoryLock(C, NA, { Asset: AssetGet(AssetFamily, "ItemMisc", "LoversPadlock") }, C.Lovership.MemberNumber);
+						if (C.Appearance[A].Property.LockedBy == "LoversPadlock") InventoryLock(C, NA, { Asset: AssetGet(AssetFamily, "ItemMisc", "LoversPadlock") }, C.Lovership[0].MemberNumber);
 					}
 					Appearance.push(NA);
 				}
@@ -355,7 +357,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 
 				// LoverOnly items can only get update if it comes from lover
 				if (Asset[I].LoverOnly && (C.ID == 0)) {
-					if ((C.Lovership == null) || (C.Lovership.MemberNumber == null) || ((C.Lovership.MemberNumber != SourceMemberNumber) && (SourceMemberNumber != null))) break;
+					if ((C.GetLoversNumbers().indexOf(SourceMemberNumber) < 0) && (SourceMemberNumber != null)) break;
 				}
 
 				// Creates the item and colorize it
@@ -377,7 +379,7 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 						var Lock = InventoryGetLock(NA);
 						if ((Lock != null) && (Lock.Property != null)) delete Item.Property.LockMemberNumber;
 					}
-					if ((SourceMemberNumber != null) && (C.ID == 0) && (C.Lovership != null) && (C.Lovership.MemberNumber != null) && (C.Lovership.MemberNumber != SourceMemberNumber) && InventoryLoverOnlyItem(NA)) {
+					if ((SourceMemberNumber != null) && (C.ID == 0) && (C.GetLoversNumbers().indexOf(SourceMemberNumber) < 0) && InventoryLoverOnlyItem(NA)) {
 						var Lock = InventoryGetLock(NA);
 						if ((Lock != null) && (Lock.Property != null)) delete Item.Property.LockMemberNumber;
 					}
@@ -529,16 +531,9 @@ function ServerAccountLovership(data) {
 			ChatRoomLovershipOption = data.Result;
 
 	// If we must update the character lovership data
-	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.Lover != null) && (typeof data.Lover === "string") && (data.Lovership != null) && (typeof data.Lovership === "object")) {
-		Player.Lover = data.Lover;
+	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.Lovership != null) && (typeof data.Lovership === "object")) {
+		console.log(data.Lovership);
 		Player.Lovership = data.Lovership;
-	}
-
-	// If we must clear the character lovership data
-	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.ClearLovership != null) && (typeof data.ClearLovership === "boolean") && (data.ClearLovership == true)) {
-		Player.Lover = "";
-		Player.Lovership = null;
 		LoginLoversItems();
 	}
-
 }
