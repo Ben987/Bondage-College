@@ -279,3 +279,9 @@ function CommonConvertArrayToString(Arr) {
 	}
 	return S;
 }
+
+// Waits for X milliseconds, gives time to the server to do an async call
+function CommonWait(MS) {
+	var waitUntil = new Date().getTime() + MS;
+	while(new Date().getTime() < waitUntil) true;
+}
