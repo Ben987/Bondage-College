@@ -45,6 +45,7 @@ Cloth,MaidApron2,Exposed Maid Apron
 Cloth,AdmiralTop,Admiral Top
 Cloth,VirginKiller1,Virgin Killer
 Cloth,ReverseBunnySuit,Reverse Bunny Suit Top
+Cloth,LeatherCropTop, Leather Crop Top
 ClothAccessory,,Cloth Accessory
 ClothAccessory,StudentOutfit3Scarf,Student Scarf
 ClothAccessory,StudentOutfit3Bow1,Student Bow 1
@@ -194,6 +195,7 @@ Shoes,Sandals,Strap Sandals
 Shoes,PawBoots,Paw Boots
 Shoes,WoollyBootsTall,Woolly Boots
 Shoes,ThighHighLatexHeels,Latex Heels
+Shoes,Heels3,Multi-Strap Heels
 Hat,,Hat
 Hat,Band1,Hair Band
 Hat,Band2,Jeweled Band
@@ -887,6 +889,7 @@ ItemBoots,LeatherToeCuffs,Leather Toe Cuffs
 ItemBoots,ToeTie,Toe Tie
 ItemBoots,ThighHighLatexHeels,Latex Heels
 ItemBoots,LockingHeels,Locking Heels
+ItemBoots,LockingHeels2,Multi-Strap Locking Heels
 ItemHidden,Accessories,
 ItemHidden,LeatherArmbinderStraps,Leather Armbinder Straps
 ItemHidden,LeatherArmbinderWrapStrap,Leather Armbinder WrapStraps

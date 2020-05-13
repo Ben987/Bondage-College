@@ -478,6 +478,7 @@ function DialogMenuButtonClick() {
 
 			// Exit Icon - Go back to the character dialog
 			if (DialogMenuButton[I] == "Exit") {
+				if (DialogItemPermissionMode) ChatRoomCharacterUpdate(Player);
 				DialogLeaveItemMenu();
 				return;
 			}
@@ -508,7 +509,6 @@ function DialogMenuButtonClick() {
 				if (C.FocusGroup.Name == "ItemMouth") NewLayerName = "ItemMouth2";
 				if (C.FocusGroup.Name == "ItemMouth2") NewLayerName = "ItemMouth3";
 				if (C.FocusGroup.Name == "ItemMouth3") NewLayerName = "ItemMouth";
-
 				for (var A = 0; A < AssetGroup.length; A++)
 					if (AssetGroup[A].Name == NewLayerName) {
 						C.FocusGroup = AssetGroup[A];
@@ -558,15 +558,13 @@ function DialogMenuButtonClick() {
 				return;
 			}
 
-			// Color picker Icon - Starts the color picking
+			// Color picker Icon - Starts the color picking, keeps the original color and shows it at the bottom
 			else if (DialogMenuButton[I] == "ColorPick") {
 				ElementCreateInput("InputColor", "text", (DialogColorSelect != null) ? DialogColorSelect.toString() : "");
 				DialogColor = "";
 				DialogMenuButtonBuild(C);
-				// Rememeber the original color when open color picker
 				if (Item != null) {
 					DialogFocusItemOriginalColor = Item.Color;
-					// Populate color picker initial color with current one
 					ElementValue("InputColor", Item.Color || "");
 				} else {
 					DialogFocusItemOriginalColor = null;
@@ -574,29 +572,25 @@ function DialogMenuButtonClick() {
 				return;
 			}
 
-			// When the user selects a color
+			// When the user selects a color, applies it to the item
 			else if ((DialogMenuButton[I] == "ColorSelect") && CommonIsColor(ElementValue("InputColor"))) {
 				DialogColor = null;
 				DialogColorSelect = ElementValue("InputColor");
 				ElementRemove("InputColor");
 				DialogMenuButtonBuild(C);
-				// Apply item color change
 				if (Item != null && DialogFocusItemOriginalColor != Item.Color) {
-					// FocusItem color changed, sync to server
 					if (C.ID == 0) ServerPlayerAppearanceSync();
 					ChatRoomPublishAction(C, Object.assign({}, Item, { Color: DialogFocusItemOriginalColor }), Item, false);
-					ChatRoomCharacterUpdate(C);
 				}
 				return;
 			}
 
-			// When the user cancels out of color picking
+			// When the user cancels out of color picking, we recall the original color
 			else if (DialogMenuButton[I] == "ColorCancel") {
 				DialogColor = null;
 				DialogColorSelect = null;
 				ElementRemove("InputColor");
 				DialogMenuButtonBuild(C);
-				// Recall the original color when open color picker
 				if (Item != null) {
 					Item.Color = DialogFocusItemOriginalColor;
 					CharacterAppearanceBuildCanvas(C);
@@ -615,13 +609,16 @@ function DialogMenuButtonClick() {
 				return;
 			}
 			
+			// When we enter item permission mode, we rebuild the inventory to set permissions
 			else if (DialogMenuButton[I] == "DialogPermissionMode") {
 				DialogItemPermissionMode = true;
 				DialogInventoryBuild(C);
 				return;
 			}
 
+			// When we leave item permission mode, we upload the changes for everyone in the room
 			else if (DialogMenuButton[I] == "DialogNormalMode") {
+				ChatRoomCharacterUpdate(Player);
 				DialogItemPermissionMode = false;
 				DialogInventoryBuild(C);
 				return;
