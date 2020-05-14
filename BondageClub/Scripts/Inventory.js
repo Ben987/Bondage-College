@@ -483,7 +483,14 @@ function InventoryLock(C, Item, Lock, MemberNumber) {
 		Item.Property.LockedBy = Lock.Asset.Name;
 		if (MemberNumber != null) Item.Property.LockMemberNumber = MemberNumber;
 		if ((C.ID == 0) && Lock.Asset.OwnerOnly && (C.Ownership != null) && (C.Ownership.MemberNumber != null)) Item.Property.LockMemberNumber = C.Ownership.MemberNumber;
-		if ((C.ID == 0) && Lock.Asset.LoverOnly && (C.Lovership.length > 0) && (C.Lovership[0].MemberNumber != null)) Item.Property.LockMemberNumber = C.Lovership[0].MemberNumber;
+		if ((C.ID == 0) && Lock.Asset.LoverOnly && (C.Lovership.length > 0) ) {
+			for (var L = 0; L < C.Lovership.length; L++){
+				if (C.Lovership[L].MemberNumber != null) {
+					Item.Property.LockMemberNumber = C.Lovership[L].MemberNumber;
+					break;
+				}
+			}
+		}
 		if (Lock.Asset.RemoveTimer > 0) TimerInventoryRemoveSet(C, Item.Asset.Group.Name, Lock.Asset.RemoveTimer);
 		CharacterRefresh(C);
 	}

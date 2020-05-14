@@ -62,7 +62,7 @@ function InformationSheetRun() {
 		if (C.Lovership.length < 1) DrawText(TextGet("Lover") + " " + TextGet("LoverNone"), 1400, 200, "Black", "Gray");
 		for (let L = 0; L < C.Lovership.length; L++) {
 			//if loved by an npc
-			if (C.Lovership[L].MemberNumber == null) { DrawText(TextGet("Lover") + " " + C.Lovership[L].Name.replace("NPC-", ""), 1400, 200, "Black", "Gray"); }
+			if (C.Lovership[L].MemberNumber == null) { DrawText(TextGet("Lover") + " " + C.Lovership[L].Name.replace("NPC-", ""), 1400, 200 + L * 150, "Black", "Gray"); }
 			//if loved by a player
 			else {
 				DrawText(TextGet("Lover") + " " + C.Lovership[L].Name + " (" + C.Lovership[L].MemberNumber + ")", 1400, 200 + L * 150, "Black", "Gray");

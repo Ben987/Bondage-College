@@ -54,8 +54,8 @@ function ManagementLoverFromBondageCollege() { var L = Player.GetLoversNumbers()
 function ManagementCanBreakDatingLoverOnline(L) { return ((Player.Lovership.length > L) && (Player.Lovership[L].Stage != null) && (Player.Lovership[L].Stage != 21)); }
 function ManagementCanBreakUpLoverOnline(L) { return ((Player.Lovership.length > L) && (Player.Lovership[L].Stage != null) && (Player.Lovership[L].Stage == 2) && (Player.Lovership[L].Start != null) && (Player.Lovership[L].Start + 604800000 < CurrentTime)); }
 function ManagementCannotBreakUpLoverOnline(L) { return ((Player.Lovership.length > L) && (Player.Lovership[L].Stage != null) && (Player.Lovership[L].Stage == 2) && (Player.Lovership[L].Start != null) && (Player.Lovership[L].Start + 604800000 >= CurrentTime)) }
-function ManagementCanBreakUpLoverNPC(L) { return ((Player.Lovership.length > L) && (Player.Lovership[L].MemberNumber == null) && !PrivateLoverInRoom()) }
-function ManagementCannotBreakUpLoverNPC(L) { return ((Player.Lovership.length > L) && (Player.Lovership[L].MemberNumber == null) && PrivateLoverInRoom()) }
+function ManagementCanBreakUpLoverNPC(L) { return ((Player.Lovership.length > L) && (Player.Lovership[L].MemberNumber == null) && !PrivateLoverInRoom(L)) }
+function ManagementCannotBreakUpLoverNPC(L) { return ((Player.Lovership.length > L) && (Player.Lovership[L].MemberNumber == null) && PrivateLoverInRoom(L)) }
 function ManagementIsClubSlave() { return ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "ClubSlaveCollar")) }
 function ManagementWearingSlaveCollar() { return ((InventoryGet(Player, "ItemNeck") != null) && (InventoryGet(Player, "ItemNeck").Asset.Name == "SlaveCollar")) }
 function ManagementCanTransferToRoom() { return (LogQuery("RentRoom", "PrivateRoom") && (PrivateCharacter.length < PrivateCharacterMax) && !LogQuery("LockOutOfPrivateRoom", "Rule")) }

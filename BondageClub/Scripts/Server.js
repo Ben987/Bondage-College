@@ -88,6 +88,7 @@ function ServerPlayerSync() {
 	var D = { Money: Player.Money, Owner: Player.Owner };
 	if (Player.Lover) D.Lover = Player.Lover;
 	ServerSend("AccountUpdate", D);
+	delete D.Lover;
 }
 
 // Syncs the full player inventory to the server, it's compressed as a stringify array using LZString
@@ -532,7 +533,6 @@ function ServerAccountLovership(data) {
 
 	// If we must update the character lovership data
 	if ((data != null) && (typeof data === "object") && !Array.isArray(data) && (data.Lovership != null) && (typeof data.Lovership === "object")) {
-		console.log(data.Lovership);
 		Player.Lovership = data.Lovership;
 		LoginLoversItems();
 	}

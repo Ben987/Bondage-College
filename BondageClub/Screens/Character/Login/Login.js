@@ -179,7 +179,8 @@ function LoginLoversItems() {
 
 	// remove any item that was lover locked if the number on the lock does not match any lover
 	for (var A = 0; A < Player.Appearance.length; A++) {
-		if (Player.Appearance[A].Property && Player.Appearance[A].Property.LockedBy && Player.Appearance[A].Property.LockedBy.startsWith("Lovers") && Player.Appearance[A].Property.MemberNumber && (LoversNumbers.indexOf(Player.Appearance[A].Property.MemberNumber) < 0)) {
+		if (Player.Appearance[A].Property && Player.Appearance[A].Property.LockedBy && Player.Appearance[A].Property.LockedBy.startsWith("Lovers")
+			&& Player.Appearance[A].Property.MemberNumber && (LoversNumbers.indexOf(Player.Appearance[A].Property.MemberNumber) < 0)) {
 			InventoryRemove(Player, Player.Appearance[A].Asset.Group.Name);
 			A--;
 		}
