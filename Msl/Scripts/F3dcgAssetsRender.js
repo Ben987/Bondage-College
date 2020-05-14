@@ -130,46 +130,46 @@ var F3dcgAssetsRender = {
 	,BuildExpressionRenderItems(expressionItems, appearanceItemEffects){
 		var renderItems = [];
 		for(var groupName in expressionItems){
-			var AssetItemGrop = F3dcgAssets.AssetGroups[groupName];
-			var renderItem = this.InitRenderItem(AssetItemGrop);
-			if(expressionItems[groupName] == groupName)
-				renderItem.layers.push({colorize:false, url:F3dcgAssets.F3DCG_ASSET_BASE + groupName + "/" + AssetItemGrop.Asset[0] + ".png"});//Because Eyebrows1 are special case
-			else
-				renderItem.layers.push({colorize:false, url:F3dcgAssets.F3DCG_ASSET_BASE + groupName + "/" + expressionItems[groupName]+"/" + AssetItemGrop.Asset[0] + ".png"});//Because Eyebrows1 are special case
+			var AssetGroup = F3dcgAssets.AssetGroups[groupName];
+			var renderItem = this.InitRenderItem(AssetGroup);
+			var exp = expressionItems[groupName];
+			var imageUrl = exp == groupName ? groupName + "/" + AssetGroup.Asset[0] : groupName + "/" + exp + "/" + AssetGroup.Asset[0];
+			renderItem.layers.push({colorize:false, url:F3dcgAssets.F3DCG_ASSET_BASE + imageUrl + ".png"});
 			renderItems.push(renderItem);
 		}
 		
 		return renderItems;
 	}
 	
-	,BuildBodyRenderItems(body, appearanceItemEffects){
+	,BuildFrameRenderItems(frame, appearanceItemEffects){
 		var renderBodyUpper = this.InitRenderItem(F3dcgAssets.AssetGroups.BodyUpper);
 		var poseUrlPart = this.GetPoseUrlPart(F3dcgAssets.AssetGroups.BodyUpper, null, appearanceItemEffects.poses);
-		renderBodyUpper.layers.push({colorize:false, url:F3dcgAssets.F3DCG_ASSET_BASE + "BodyUpper/" + poseUrlPart + body.upperSize + "_" + body.color + ".png"});
+		renderBodyUpper.layers.push({colorize:false, url:F3dcgAssets.F3DCG_ASSET_BASE + "BodyUpper/" + poseUrlPart + frame.upperSize + "_" + frame.color + ".png"});
 		
 		var renderBodyLower = this.InitRenderItem(F3dcgAssets.AssetGroups.BodyLower);
 		var poseUrlPart = this.GetPoseUrlPart(F3dcgAssets.AssetGroups.BodyLower, null, appearanceItemEffects.poses);
-		renderBodyLower.layers.push({colorize:false, url:F3dcgAssets.F3DCG_ASSET_BASE + "BodyLower/" + poseUrlPart + body.lowerSize + "_" + body.color + ".png"});
+		renderBodyLower.layers.push({colorize:false, url:F3dcgAssets.F3DCG_ASSET_BASE + "BodyLower/" + poseUrlPart + frame.lowerSize + "_" + frame.color + ".png"});
 		
 		var renderHands = this.InitRenderItem(F3dcgAssets.AssetGroups.Hands);
 		var poseUrlPart = this.GetPoseUrlPart(F3dcgAssets.AssetGroups.Hands, null, appearanceItemEffects.poses);
-		renderHands.layers.push({colorize:false, url:F3dcgAssets.F3DCG_ASSET_BASE + "Hands/" + poseUrlPart + "Default_" + body.color + ".png"});
+		renderHands.layers.push({colorize:false, url:F3dcgAssets.F3DCG_ASSET_BASE + "Hands/" + poseUrlPart + "Default_" + frame.color + ".png"});
 		
 		var renderItems = [renderBodyUpper, renderBodyLower, renderHands];
-		renderItems.push(... this.BuildRenderItems(body.items, body, appearanceItemEffects));
+		//renderItems.push(... this.BuildRenderItems(frame.items, body, appearanceItemEffects));
 		return renderItems;
 	}
 	
 	
-	,BuildPlayerRender(appearance){
+	,BuildRender(appearance){
 		var appearanceItemEffects = F3dcgAssets.BuildAppearanceItemsEffects(appearance);
 		
 		var renderItemList = [];
-		renderItemList.push(...this.BuildBodyRenderItems(appearance.body, appearanceItemEffects));
-		renderItemList.push(...this.BuildRenderItems(appearance.clothes, appearance.body, appearanceItemEffects));
-		renderItemList.push(...this.BuildRenderItems(appearance.bondageToys, appearance.body, appearanceItemEffects));
-		renderItemList.push(...this.BuildExpressionRenderItems(appearance.expressions, appearance.body, appearanceItemEffects));
-		renderItemList.push(...this.BuildRenderItems(appearance.accessories, appearance.body, appearanceItemEffects));
+		renderItemList.push(...this.BuildFrameRenderItems(appearance.frame, appearanceItemEffects));
+		renderItemList.push(...this.BuildRenderItems(appearance.body, appearance.frame, appearanceItemEffects));
+		renderItemList.push(...this.BuildRenderItems(appearance.clothes, appearance.frame, appearanceItemEffects));
+		renderItemList.push(...this.BuildRenderItems(appearance.accessories, appearance.frame, appearanceItemEffects));
+		if(appearance.bondageToys) renderItemList.push(...this.BuildRenderItems(appearance.bondageToys, appearance.frame, appearanceItemEffects));
+		if(appearance.expressions) renderItemList.push(...this.BuildExpressionRenderItems(appearance.expressions, appearance.frame, appearanceItemEffects));
 		
 		renderItemList.sort((item1, item2) => {return item1.priority - item2.priority;});
 		return {
@@ -178,5 +178,13 @@ var F3dcgAssetsRender = {
 			,scale:appearanceItemEffects.scale
 			,items:renderItemList
 		};
+	}
+	
+	,BuildSuitRender(appearance){
+		return this.BuildRender(appearance);
+	}	
+	
+	,BuildPlayerRender(appearance){
+		return this.BuildRender(appearance);
 	}
 }

@@ -1,12 +1,11 @@
 //can not use strict because needs to be evaled by server code
 
 var F3dcgAssets = {
-	BODY:"body"
-	,EXPRESSION:"expression"
-	,CLOTH:"cloth"
-	,ACCESSORY:"accessory"
-	,BONDAGE_TOY:"bondageToy"
-	,PADLOCK:"padlock"
+	BODY:"body"//Constants (group type) are singular, members are plural
+	,EXPRESSION:"expressions"
+	,CLOTH:"clothes"
+	,ACCESSORY:"accessories"
+	,BONDAGE_TOY:"bondageToys"
 	
 	,UNIMPLEMENTED_ITEMS:["SpankingToys", "DildoPlugGag", "PlugGag"
 			,"CollarNameTag", "CollarNameTagLivestock", "CollarNameTagLover"
@@ -17,33 +16,66 @@ var F3dcgAssets = {
 	
 	,F3DCG_ASSET_BASE:"../BondageClub/Assets/Female3DCG/"//
 	,F3DCG_TYPE_ICON_BASE:"../BondageClub/Screens/Inventory/"//ItemArms/OrnateCuffs/Elbow.png None.png
+	
+	,Padlocks:{}
+	,Poses:{}	
 	,AssetGroups:{}
+	,AssetNameToGroupNameMap:{}
 
 	,IgnoreGroups : ["ItemNeckAccessories", "ItemNeckRestraints", "ItemMisc"]	
-	,ExpressionGroups : ["Eyebrows", "Blush", "Fluids", "Emoticon"]
 	,BodyItemsGroups : ["Eyes", "Mouth", "Nipples", "Pussy", "HairFront", "HairBack"]
-	,AccessoriesGrooups : ["TailStraps", "Wings", "HairAccessory1", "HairAccessory2"]
+	,ExpressionGroups : ["Eyebrows", "Blush", "Fluids", "Emoticon"]	
+	,ClothesGroups : []//Asset group has a meaningful flag
+	,AccessoriesGroups : ["TailStraps", "Wings", "HairAccessory1", "HairAccessory2"]
 	,BondageToyGroups : [
-		"ItemHead", "ItemEars", "ItemMouth", "ItemNeck", "ItemMouth2", "ItemMouth"
+		"ItemHead", "ItemEars", "ItemMouth", "ItemMouth2", "ItemMouth3", "ItemNeck"
 		,"ItemHands", "ItemArms"
 		,"ItemBreast", "ItemTorso", "ItemPelvis"
 		,"ItemLegs", "ItemFeet", "ItemBoots"
 		,"ItemDevices"
-		,"ItemNipples", "ItemNipplePiercings", "ItemVulva", "ItemVulvaPiercings", "ItemButt"
+		,"ItemNipples", "ItemNipplesPiercings", "ItemVulva", "ItemVulvaPiercings", "ItemButt"
 	]
 
-	,ClothesGroups : []//Asset group has a meaningful flag
+	,ClothesFree : []
+	,ClothesQuest : []
 	
-	,Padlocks:{}
-	,ItemGroups:{}
-	,Poses:{}
+	,FullCharacterTypeGroups:{}
+	,SuitSelfTypeGroups:{}
+	,SuitOtherTypeGroups:{}
+	
 	,Init(){
 		this.InitLocks();
 		this.InitClothesGroupsNames();
 		this.InitGroupTypes();
-		this.InitItemsAndIcons();
-		this.InitPoses();		
+		this.InitItems();
+		this.InitPoses();
 		this.InitVariants();
+		this.InitFreeAndQuestClothes();
+		
+		this.FullCharacterTypeGroups[this.BODY] = this.BodyItemsGroups;
+		this.FullCharacterTypeGroups[this.EXPRESSION] = this.ExpressionGroups;
+		this.FullCharacterTypeGroups[this.CLOTH] = this.ClothesGroups;
+		this.FullCharacterTypeGroups[this.ACCESSORY] = this.AccessoriesGroups;
+		this.FullCharacterTypeGroups[this.BONDAGE_TOY] = this.BondageToyGroups;
+		
+		this.SuitSelfTypeGroups[this.BODY] = this.BodyItemsGroups;
+		this.SuitSelfTypeGroups[this.CLOTH] = this.ClothesGroups;
+		this.SuitSelfTypeGroups[this.ACCESSORY] = this.AccessoriesGroups;
+		
+		this.SuitOtherTypeGroups[this.CLOTH] = this.ClothesGroups;
+		this.SuitOtherTypeGroups[this.ACCESSORY] = this.AccessoriesGroups;
+	}
+	
+	,InitFreeAndQuestClothes(){
+		for(var i = 0; i < this.ClothesGroups.length; i++){
+			for(var itemName in this.AssetGroups[this.ClothesGroups[i]].Items){
+				var AssetItem = this.AssetGroups[this.ClothesGroups[i]].Items[itemName];
+				
+				if(AssetItem.BuyGroup);//two - piece suits that are bought in the same shop
+				else if(AssetItem.Value == -1) 	this.ClothesQuest.push(AssetItem.Name);
+				else if(! AssetItem.Value) 		this.ClothesFree.push(AssetItem.Name);
+			}
+		}
 	}
 	
 	,InitPoses(){
@@ -53,37 +85,32 @@ var F3dcgAssets = {
 		});
 	}
 	
-	,InitItemsAndIcons(){
+	,InitItems(){
 		for(var i = 0; i < AssetFemale3DCG.length; i++){
 			var AssetGroup = AssetFemale3DCG[i];
 			
 			AssetGroup.Items = {};
 			if(AssetGroup.type == F3dcgAssets.EXPRESSION){
 				AssetGroup.Items["None"] = {Name:"None", iconUrl:AssetGroup.Group + "/Icon.png"};
-				AssetGroup.AllowExpression.forEach(exp => AssetGroup.Items[exp] = {Name:exp,iconUrl:AssetGroup.Group + "/" + exp + "/Icon.png"});
+				AssetGroup.AllowExpression.forEach(exp => {
+					AssetGroup.Items[exp] = {Name:exp,iconUrl:AssetGroup.Group + "/" + exp + "/Icon.png"}
+					F3dcgAssets.AssetNameToGroupNameMap[exp] = AssetGroup.Group;
+				});
+				F3dcgAssets.AssetNameToGroupNameMap[AssetGroup.Group] = AssetGroup.Group;
+				F3dcgAssets.AssetNameToGroupNameMap[AssetGroup.Asset[0]] = AssetGroup.Group;
 			}else{
 				for(var j = 0; j < AssetGroup.Asset.length; j++){
 					let AssetItem = AssetGroup.Asset[j];
 					if(typeof(AssetItem) === "string") AssetItem = {Name:AssetItem};
 					
 					if(F3dcgAssets.UNIMPLEMENTED_ITEMS.includes(AssetItem.Name)) continue;
+					this.AssetNameToGroupNameMap[AssetItem.Name] = AssetGroup.Group;
 					
 					AssetItem.Group = AssetGroup.Group;
 					AssetGroup.Items[AssetItem.Name] = AssetItem;
 					if(AssetGroup.ParentGroup) AssetGroup.useBodySize = AssetGroup.ParentGroup == "BodyUpper" ? "upperSize" : "lowerSize";
-					
-					switch(AssetGroup.type){
-						case F3dcgAssets.RESTRAINT: case F3dcgAssets.CLOTHING: case F3dcgAssets.TOY: case F3dcgAssets.ACCESSORY:
-							AssetItem.iconUrl = AssetItem.Name == "None" ? "./Icons/Icon.png" : AssetItem.Group + "/Preview/" + AssetItem.Name + ".png";
-						break;
-						case F3dcgAssets.BODY:
-						case F3dcgAssets.MISC:
-							AssetItem.iconUrl = "./Icons/Icon.png";
-						break;
-						default: //console.log(AssetItem);
-					}
 				}
-			}
+			}	
 		}
 	}
 	
@@ -287,7 +314,7 @@ var F3dcgAssets = {
 				AssetGroup.type = F3dcgAssets.EXPRESSION;
 			else if(F3dcgAssets.BodyItemsGroups.includes(AssetGroup.Group))
 				AssetGroup.type = F3dcgAssets.BODY;
-			else if(F3dcgAssets.AccessoriesGrooups.includes(AssetGroup.Group))
+			else if(F3dcgAssets.AccessoriesGroups.includes(AssetGroup.Group))
 				AssetGroup.type = F3dcgAssets.ACCESSORY;
 			else if(F3dcgAssets.BondageToyGroups.includes(AssetGroup.Group))
 				AssetGroup.type = F3dcgAssets.BONDAGE_TOY;
@@ -300,7 +327,7 @@ var F3dcgAssets = {
 		for(var i = 0; i < AssetFemale3DCG.length; i++){
 			var AssetGroup = AssetFemale3DCG[i];
 			
-			if(AssetGroup.Clothing && ! F3dcgAssets.AccessoriesGrooups.includes(AssetGroup.Group)) 
+			if(AssetGroup.Clothing && ! F3dcgAssets.AccessoriesGroups.includes(AssetGroup.Group))
 				F3dcgAssets.ClothesGroups.push(AssetGroup.Group) 
 		}
 	} 
@@ -346,6 +373,39 @@ var F3dcgAssets = {
 	}
 	
 	
+	,BuildBondageToysValidationEffects(appearanceItems){
+		var result = {poses:[],effects:[],blocks:[]}
+		
+		for(var groupName in appearanceItems){
+			var item = appearanceItems[groupName];
+			if(! item) continue;
+			var AssetGroup = F3dcgAssets.AssetGroups[groupName], AssetItem = AssetGroup.Items[item.name], AssetVariant = AssetItem.Variants ? AssetItem.Variants[item.variantName] : null;			
+			
+			if(AssetItem.Height) result.top -= AssetItem.Height;				
+			
+			if(item.variantName)
+				if(! AssetItem.Variants) {console.log("Variants not defined for " + AssetItem.Name + " " + AssetItem.Group);continue;}
+			
+			if(AssetVariant && AssetVariant.Property && AssetVariant.Property.SetPose)
+				result.poses.push(...AssetVariant.Property.SetPose);
+			else if(AssetItem.SetPose)
+				result.poses.push(...AssetItem.SetPose);
+			
+			if(AssetVariant && AssetVariant.Property && AssetVariant.Property.Effect)
+				result.effects.push(...AssetVariant.Property.Effect)
+			else if(AssetItem.Effect)
+				result.effects.push(...AssetItem.Effect)				
+			
+			if(AssetVariant && AssetVariant.Property && AssetVariant.Property.Block)
+				result.blocks.push(...AssetVariant.Property.Block);
+			else if(AssetItem.Block)
+				result.blocks.push(...AssetItem.Block)
+		}
+		
+		return result;;
+	}
+	
+	
 	,BuildAppearanceItemsEffects(appearance, activePose){
 		var result = {
 			itemGroupsToTranslateByPose:{}
@@ -360,59 +420,47 @@ var F3dcgAssets = {
 			,scale:1.0
 		};
 		
-		console.log(appearance.bondageToys);
-		
 		[appearance.bondageToys, appearance.clothes].forEach(appearanceItems => {
 			for(var groupName in appearanceItems){
 				var item = appearanceItems[groupName];
 				
 				if(! item) continue;
-				var AssetGroup = F3dcgAssets.AssetGroups[groupName], AssetItem = AssetGroup.Items[item.name], AssetVariant = AssetItem.Variants? AssetItem.Variants[variantName] : null;
+				var AssetGroup = F3dcgAssets.AssetGroups[groupName], AssetItem = AssetGroup.Items[item.name], AssetVariant = AssetItem.Variants ? AssetItem.Variants[item.variantName] : null;			
 				
 				if(AssetItem.Height) result.top -= AssetItem.Height;				
 				
-				var variantName = item.variantName;
-				if(variantName){
+				if(item.variantName)
 					if(!  AssetItem.Variants) {console.log("Variants not defined for " + AssetItem.Name + " " + AssetItem.Group);continue;}
-					var AssetVariant = AssetItem.Variants[variantName];
 					
-					if(AssetVariant.Property && AssetVariant.Property.SetPose)
-						AssetVariant.Property.SetPose.forEach(poseName => result.poses.push(poseName));
-					else if(AssetItem.SetPose)
-						AssetItem.SetPose.forEach(poseName => result.poses.push(poseName));
+				if(AssetVariant && AssetVariant.Property && AssetVariant.Property.SetPose)
+					result.poses.push(...AssetVariant.Property.SetPose);
+				else if(AssetItem.SetPose)
+					result.poses.push(...AssetItem.SetPose);
+				
+				if(AssetVariant && AssetVariant.Property && AssetVariant.Property.Effect)
+					result.effects.push(...AssetVariant.Property.Effect)
+				else if(AssetItem.Effect)
+					result.effects.push(...AssetItem.Effect)				
+				
+				if(AssetVariant && AssetVariant.Property && AssetVariant.Property.Block)
+					result.blocks.push(...AssetVariant.Property.Block);
+				else if(AssetItem.Block)
+					result.blocks.push(...AssetItem.Block)
 					
-					if(AssetVariant.Property && AssetVariant.Property.Effect)
-						AssetVariant.Property.Effect.forEach(effectName => result.effects.push(effectName));
-					else if(AssetItem.Effect)
-						AssetItem.Effect.forEach(effectName => result.effects.push(effectName));					
+				//if(AssetVariant.HideItem)
+					//AssetVariant.HideItem.forEach(blockName => itemsToHideByItems.push(blockName));
+				//else
+				if(AssetItem.HideItem)
+					result.itemsToHideByItems.push(...AssetItem.HideItem);
 					
-					if(AssetVariant.Property && AssetVariant.Property.Block)
-						AssetVariant.Property.Block.forEach(blockName => result.blocks.push(blockName));
-					else if(AssetItem.Block)
-						AssetItem.Block.forEach(blockName => result.blocks.push(blockName));
-					
-					//if(AssetVariant.HideItem)
-						//AssetVariant.HideItem.forEach(blockName => itemsToHideByItems.push(blockName));
-					//else
-					if(AssetItem.HideItem)
-						AssetItem.HideItem.forEach(blockName => result.itemsToHideByItems.push(blockName));
-					
-					if(AssetVariant.Property && AssetVariant.Property.Hide)
-						AssetVariant.Property.Hide.forEach(itemGroupName => result.itemGroupsToHideByItem.push(itemGroupName));
-					else if(AssetItem.Hide)
-						AssetItem.Hide.forEach(itemGroupName => result.itemGroupsToHideByItem.push(itemGroupName));	
-				}else{
-					if(AssetItem.SetPose)	AssetItem.SetPose.forEach(poseName => result.poses.push(poseName));
-					if(AssetItem.Effect) 	AssetItem.Effect.forEach(effectName => result.effects.push(effectName));
-			
-					if(AssetItem.Block) 	AssetItem.Block.forEach(blockName => result.blocks.push(blockName));
-					if(AssetItem.HideItem)	AssetItem.HideItem.forEach(blockName => result.itemsToHideByItems.push(blockName));
-					if(AssetItem.Hide) 		AssetItem.Hide.forEach(itemGroupName => result.itemGroupsToHideByItem.push(itemGroupName));				
-				}
+				if(AssetVariant && AssetVariant.Property && AssetVariant.Property.Hide)
+					result.itemGroupsToHideByItem.push(...AssetVariant.Property.Hide);
+				else if(AssetItem.Hide)
+					result.itemGroupsToHideByItem.push(...AssetItem.Hide)
 			}
 		});
 		
-		//if(locationPlayer.activePose == this.POSE_KNEELEING) result.poses.push("Kneel");
+		if(activePose == this.POSE_KNEELEING) result.poses.push("Kneel");
 		result.poses.sort((poseName1, poseName2) => {
 			var p1 = F3dcgAssets.Poses[poseName1] ? F3dcgAssets.Poses[poseName1].priority : 0;
 			var p2 = F3dcgAssets.Poses[poseName2] ? F3dcgAssets.Poses[poseName2].priority : 0;
@@ -431,69 +479,56 @@ var F3dcgAssets = {
 			}
 		});
 		
-		result.scale = F3dcgAssets.AssetGroups.Height.Items[appearance.body.height].Zoom;
+		result.scale = F3dcgAssets.AssetGroups.Height.Items[appearance.frame.height].Zoom;
 		
 		return result;
 	}
 	
-
 	
-	
-	/*
-	,DeconvertItemAndUpdateAppearance(Appearance, appearanceItem){
-		if(appearanceItem.itemName == "None"){
-			for(var i = 0; i < Appearance.length; i++)
-				if(Appearance[i].Group == appearanceItem.itemGroupName)
-					Appearance.splice(i, 1);
-		}else{
-			var AppItem = this.DeconvertItem(appearanceItem);
-			var AppItemExisting = Appearance.find(el => el.Group == appearanceItem.itemGroupName);
-			if(AppItemExisting){
-				Util.ReplaceInPlace(AppItemExisting, AppItem);
-				console.log(AppItem);
-			}else{
-				Appearance.push(AppItem)
-			}
+	,ValidateUpdateAppearance(appearance, appearanceUpdate){
+		console.log(appearanceUpdate);
+		
+		//validate
+		for(var groupName in appearanceUpdate){
+			var update = appearanceUpdate[groupName];
+			if(! F3dcgAssets.AssetGroups[groupName]) throw "GroupNotFound " + groupName;
 		}
 	}
 	
-	
-	,DeconvertItem(appearanceItem){
-		return F3dcgAssetsAdd.DeconvertItem(appearanceItem);
-	}*/
-	/*
- 	,InitAppearanceItem(itemGroupTypeName, itemGroupName, itemName){
-		var assetItemGroup = F3dcgAssets.AssetGroups[itemGroupName];
-		var assetItem = assetItemGroup.Items[itemGroupTypeName == this.EXPRESSION ? "None" : itemName];//because expressions are special
-		return itemName == "None" ? {itemGroupName:itemGroupName,itemName:itemName,itemGroupTypeName:assetItemGroup.type} 
-				: F3dcgAssetsAdd.InitAppearanceItem({Group:itemGroupName,Name:itemName}, assetItem, assetItemGroup);
-	}
-	
-	,InitAppearanceItemLock(itemNameLock, playerId){
-		return F3dcgAssetsAdd.InitAppearanceItemLock(itemNameLock, playerId);
-	}*/
-	
-/*	
-	,PlayerIsRestrained(player){
-		var itemNoRestrainWhenNullPose = ["OrnateAnkleCuffs", "OrnateLegCuffs", "OrnateCuffs", "LeatherAnkleCuffs", "LeatherLegCuffs", "LeatherCuffs"];
-		
-		for(var i = 0; i < player.Appearance.length; i++){
-			var AppearanceItem = player.Appearance[i];
-			var itemGroup = F3dcgAssets.AssetGroups[AppearanceItem.Group];
+	,UpdateAppearance(appearance, appearanceUpdate){		
+		this.ValidateUpdateAppearance(appearance, appearanceUpdate);
+		//apply changes
+		for(var groupName in appearanceUpdate){
+			var appearanceItem = appearanceUpdate[groupName];
+			var AssetGroup = F3dcgAssets.AssetGroups[groupName];
 			
-			if(itemGroup.type == F3dcgAssets.RESTRAINT){
-				if(F3dcgAssets.itemNoRestrainWhenNullPose.includes(AppearanceItem.Name)){
-					if(AppearanceItem.Property && AppearanceItem.Property.SetPose && AppearanceItem.Property.SetPose.length > 0){
-						return false;
-					}//else continue
-				}else{
-					return false;
-				}
+			if(!AssetGroup)  console.log(groupName);
+			
+			switch(AssetGroup.type){
+				case F3dcgAssets.CLOTH:
+				case F3dcgAssets.ACCESSORY:
+				case F3dcgAssets.EXPRESSION:
+				case F3dcgAssets.BODY:
+					appearance[AssetGroup.type][groupName] = appearanceItem;
+				break;				
+				default:
+					console.log("UnimplementedType " + groupName);
 			}
-		};
-		
-		return true;
-	}*/
+		}
+	}
+
+	,BuildBodyAppearanceItem(name, color){
+		return {name:name,color:color};
+	}
+	,BuildClothAppearanceItem(name, color){
+		return {name:name,color:color};
+	}	
+	,BuildAccessoryAppearanceItem(name, color){
+		return {name:name,color:color}
+	}
+	,BuildBondageToyAppearanceItem(name, color, variant){
+		return {name:name,color:color,variant:variant}
+	}
 }
 
 var HempRopeArmsOptions = [

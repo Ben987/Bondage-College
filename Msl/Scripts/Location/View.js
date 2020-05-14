@@ -19,7 +19,6 @@ var LocationView = {
 	}
 	
 	,OnScreenChange(){
-		console.log("on screen change");
 		Util.ClearNodeContent(LocationController.midgroundContainer);	
 		
 		var currentSpot = LocationController.GetSpot();

@@ -6,10 +6,6 @@
 	<!--<script src="./Lib/hammer.min.js"></script>-->
 	
 	<script src="../BondageClub/Assets/Female3DCG/Female3DCG.js"></script>
-	<script src="../BondageClub/Assets/Female3DCG/Female3DCG.js"></script>
-	<script src="../BondageClub/Screens/Inventory/ItemArms/HempRope/HempRope.js"></script>
-	<script src="../BondageClub/Screens/Inventory/ItemArms/Chains/Chains.js"></script>
-	<script src="../BondageClub/Screens/Inventory/ItemTorso/HempRopeHarness/HempRopeHarness.js"></script>
 	
 	<script src="../BondageClub/Scripts/LZString.js"></script>	
 	<script src="../BondageClub/Scripts/socket.io/socket.io.js"></script>	
@@ -24,8 +20,8 @@
 	<script src="./Scripts/Util/Render.js"></script>
 	<script src="./Scripts/Util/Svg.js"></script>
 	<script src="./Scripts/F3dcgAssets.js"></script>
-	<script src="./Scripts/F3dcgAssetsAdd.js"></script>
-	<script src="./Scripts/F3dcgAssetVariants.js"></script>
+	<script src="./Scripts/F3dcgAssetsInventory.js"></script>
+	<script src="./Scripts/F3dcgAssetsRender.js"></script>
 	<script src="./Scripts/MainContainer.js"></script>	
 	<script src="./Scripts/MainController.js"></script>
 	<script src="./Scripts/PlayerAccount.js"></script>
@@ -53,8 +49,6 @@ window.addEventListener("load", function(){
 	MainContainer.Resize();
 	MslServer.Init();
 	Util.ProcessIncludes();
-	
-	
 });
 
 window.addEventListener('resize', MainContainer.Resize, false);
@@ -86,7 +80,7 @@ window.addEventListener('resize', MainContainer.Resize, false);
 				<div id="LocationViewInput" class="full-block" style="z-index:10000;"></div>
 			</div>
 			
-			<div id="LocationViewHud" style="pointer-events: none; z-index:10000;" class="full-block">
+			<div id="LocationViewHud" style="z-index:10000;" class="full-block">
 				<!--<include src="./Html/Hud/InputSideLeft.htm" id="LocationViewSideInputLeft" class="roll-left roll-left-small"></include>-->
 				<!--<include src="./Html/Hud/BottomChat.htm" id="LocationViewChat" class="chat-container"></include>-->
 				
@@ -123,35 +117,7 @@ window.addEventListener('resize', MainContainer.Resize, false);
 			<div name="itemArousalActions" class="focus-item-actions focus-item-actions-lock-container"></div>
 		</div>
 		
-		<div id="PlayerProfileTemplate" style="pointer-events:all;position:absolute;width:80%;height:100%;left:10%;top:0%; background-color:rgba(255,255,255,0.8);">
-			<form name="profileSettings">
-				<select name="permissionRestraints">
-					<option value="1">Everyone</option>
-					<option value="2">Everyone but blacklist</option>
-					<option value="3">Standard</option>
-					<option value="4">Owner and Lover only</option>
-				</select> 
-				<br />
-				<select name="permissionClothes">
-					<option value="1">Everyone</option>
-					<option value="2">Everyone but blacklist</option>
-					<option value="3">Standard</option>
-					<option value="4">Owner and Lover only</option>
-				</select> 
-				<br />
-				<select name="permissionArousal">
-					<option value="1">Everyone</option>
-					<option value="2">Everyone but blacklist</option>
-					<option value="3">Standard</option>
-					<option value="4">Owner and Lover only</option>
-				</select>
-				<br />
-				<input type="checkbox" name="focusTransparentBackground" /> focusTransparentBackground <br />
-				
-				<div style="width:10%; height:5%" onclick="LocationController.delegates.profile.UpdatePlayerProfile();">Submit</div>
-			</form>
-			
-		</div>
+		<include src="./Html/Hud/Profile.htm" id="PlayerProfileTemplate" class="hud-profile-container"></include>
 		
 		
 		<!-- minigames -->

@@ -163,10 +163,11 @@ var LocationController = {
 
 	,UpdatePlayer(playerUpdate){
 		if(! playerUpdate?.IsValid()) throw "ChangeWasInvalidated";
-		if(playerUpdate.player.id == MainController.playerAccount.id)
-			MslServer.ActionStart({type:"AppearanceUpdateSelf", AppearanceUpdate:playerUpdate.GetFinalAppItemList()});
-		else
-			MslServer.ActionStart({type:"AppearanceUpdateOther", targetPlayerId:playerUpdate.player.id, AppearanceUpdate:playerUpdate.GetFinalAppItemList()});
+		if(playerUpdate.player.id == MainController.playerAccount.id){
+			var appearanceUpdate = playerUpdate.GetFinalAppItemList();
+			MslServer.ActionStart({type:"AppearanceUpdateSelf", appearanceUpdate:appearanceUpdate});
+		}else
+			MslServer.ActionStart({type:"AppearanceUpdateOther", targetPlayerId:playerUpdate.player.id, appearanceUpdate:playerUpdate.GetFinalAppItemList()});
 		
 		LocationController.InterruptDelegateActions();
 	}
@@ -279,7 +280,7 @@ var LocationController = {
 	
 	,LocationAction_AppearanceUpdateSelf(action){
 		var player = this.GetPlayer(action.targetPlayerId);
-		player.UpdateApearance(action.result);
+		player.UpdateAppearanceAndRender(action.result);
 		LocationController.delegates.view.RenderPlayerInSpot(this.GetSpotWithPlayer(player.id).name, player);
 	}
 }
