@@ -23,7 +23,7 @@ Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
 20,0,0,,"Menu główne","Witaj w Akademii Bondage|Baw się dobrze, zaglądaj we wszystkie zakamarki i daj się ponieść!",0,0,0,
 30,0,0,,Angielski,,0,0,0,"SetLanguage(""EN"")"
 30,0,0,,Francuski|Made by gottspende,,0,0,0,"SetLanguage(""FR"")"
-30,0,0,,Chiński|Dwscdv3 & asdcvbgf,,0,0,0,"SetLanguage(""CN"")"
+30,0,0,,Chiński|Dwscdv3, Es & asdcvbgf,,0,0,0,"SetLanguage(""CN"")"
 30,0,0,,Hiszpański (Rozdziały 1 & 2)|Rafael R & tree13003,,0,0,0,"SetLanguage(""ES"")"
 30,0,0,,"Niemiecki (Rozdziały 1 do 13)|adokilume, Knife, fleisch11",,0,0,0,"SetLanguage(""DE"")"
 30,0,0,,"Rosyjski (Chapter 1)|Fluend",,0,0,0,"SetLanguage(""RU"")"

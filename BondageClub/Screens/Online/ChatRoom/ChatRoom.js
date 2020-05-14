@@ -13,6 +13,7 @@ var ChatRoomQuestGiven = [];
 var ChatRoomSpace = "";
 var ChatRoomSwapTarget = null;
 var ChatRoomHelpSeen = false;
+var ChatRoomAllowCharacterUpdate = true;
 
 // Returns TRUE if the dialog option is available
 function ChatRoomCanAddWhiteList() { return ((CurrentCharacter != null) && (CurrentCharacter.MemberNumber != null) && (Player.WhiteList.indexOf(CurrentCharacter.MemberNumber) < 0) && (Player.BlackList.indexOf(CurrentCharacter.MemberNumber) < 0)) }
@@ -574,8 +575,8 @@ function ChatRoomCharacterItemUpdate(C, Group) {
 		P.Target = C.MemberNumber;
 		P.Group = Group;
 		P.Name = (Item != null) ? Item.Asset.Name : null;
-		P.Color = (Item != null) ? Item.Color : null;
-		P.Difficulty = (Item != null) ? Item.Difficulty : null;
+		P.Color = ((Item != null) && (Item.Color != null)) ? Item.Color : "Default";
+		P.Difficulty = SkillGetLevel(Player, "Bondage");
 		P.Property = ((Item != null) && (Item.Property != null)) ? Item.Property : null;
 		ServerSend("ChatRoomCharacterItemUpdate", P);
 	}
@@ -592,12 +593,14 @@ function ChatRoomPublishCustomAction(msg, LeaveDialog, Dictionary) {
 
 // Pushes the new character data/appearance to the server
 function ChatRoomCharacterUpdate(C) {
-	var data = {
-		ID: (C.ID == 0) ? Player.OnlineID : C.AccountName.replace("Online-", ""),
-		ActivePose: C.ActivePose,
-		Appearance: ServerAppearanceBundle(C.Appearance)
-	};
-	ServerSend("ChatRoomCharacterUpdate", data);
+	if (ChatRoomAllowCharacterUpdate) {
+		var data = {
+			ID: (C.ID == 0) ? Player.OnlineID : C.AccountName.replace("Online-", ""),
+			ActivePose: C.ActivePose,
+			Appearance: ServerAppearanceBundle(C.Appearance)
+		};
+		ServerSend("ChatRoomCharacterUpdate", data);
+	}
 }
 
 // Escapes string
@@ -916,6 +919,7 @@ function ChatRoomSyncItem(data) {
 						return;
 
 			// If there's no name in the item packet, we remove the item instead of wearing it
+			ChatRoomAllowCharacterUpdate = false;
 			if ((data.Item.Name == null) || (data.Item.Name == "")) {
 				InventoryRemove(ChatRoomCharacter[C], data.Item.Group);
 			} else {
@@ -932,6 +936,12 @@ function ChatRoomSyncItem(data) {
 				}
 
 			}
+
+			// Keeps the change in the chat room data and allows the character to be updated again
+			for (var R = 0; R < ChatRoomData.Character.length; R++)
+				if (ChatRoomData.Character[R].MemberNumber == data.Item.Target)
+					ChatRoomData.Character[R].Appearance = ChatRoomCharacter[C].Appearance;
+			ChatRoomAllowCharacterUpdate = true;
 
 		}
 }
@@ -1024,6 +1034,8 @@ function ChatRoomListManage(Operation, ListType) {
 		var data = {};
 		data[ListType] = Player[ListType];
 		ServerSend("AccountUpdate", data);
+		CommonWait(1000);
+		ChatRoomCharacterUpdate(Player);
 	}
 	if (ListType == "GhostList") ChatRoomListManage(Operation, "BlackList");
 }
@@ -1035,6 +1047,8 @@ function ChatRoomListManipulation(Add, Remove, Message) {
 		if ((Add != null) && (Add.indexOf(C) < 0)) Add.push(C);
 		if ((Remove != null) && (Remove.indexOf(C) >= 0)) Remove.splice(Remove.indexOf(C), 1);
 		ServerSend("AccountUpdate", { FriendList: Player.FriendList, GhostList: Player.GhostList, WhiteList: Player.WhiteList, BlackList: Player.BlackList });
+		CommonWait(1000);
+		ChatRoomCharacterUpdate(Player);
 	}
 }
 

@@ -83,7 +83,6 @@ function InventoryItemMiscCombinationPadlockClick() {
 						Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
 						Dictionary.push({Tag: "FocusAssetGroup", AssetGroupName: C.FocusGroup.Name});
 						ChatRoomPublishCustomAction("CombinationChangeSuccess", true, Dictionary);
-						ChatRoomCharacterUpdate(C);
 						InventoryItemMiscCombinationPadlockExit();
 					}
 					else {

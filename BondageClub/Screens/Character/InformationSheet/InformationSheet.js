@@ -79,14 +79,14 @@ function InformationSheetRun() {
 		if (pos == 0) DrawText(TextGet("ReputationNone"), 1000, 200, "Black", "Gray");
 
 		// Draw the skill section
-		DrawText(TextGet("Skill"), 1450, 125, "Black", "Gray");
+		DrawText(TextGet("Skill"), 1425, 125, "Black", "Gray");
 		if (C.AccountName.indexOf("Online-") >= 0) {
-			DrawText(TextGet("Unknown"), 1450, 200, "Black", "Gray");
+			DrawText(TextGet("Unknown"), 1425, 200, "Black", "Gray");
 		}
 		else {
 			for(var S = 0; S < C.Skill.length; S++)
-				DrawText(TextGet("Skill" + C.Skill[S].Type) + " " + C.Skill[S].Level.toString() + " (" + Math.floor(C.Skill[S].Progress / 10) + "%)", 1450, 200 + S * 75, "Black", "Gray");
-			if (C.Skill.length == 0) DrawText(TextGet("SkillNone"), 1450, 200, "Black", "Gray");
+				DrawText(TextGet("Skill" + C.Skill[S].Type) + " " + C.Skill[S].Level.toString() + " (" + Math.floor(C.Skill[S].Progress / 10) + "%)", 1425, 200 + S * 75, "Black", "Gray");
+			if (C.Skill.length == 0) DrawText(TextGet("SkillNone"), 1425, 200, "Black", "Gray");
 		}
 
 		// Draw the player skill modifier if there's one
@@ -95,10 +95,10 @@ function InformationSheetRun() {
 			var PlusSign = "";
 			if (SkillModifier > 0) PlusSign = "+";
 			else PlusSign = "";
-			DrawText(TextGet("SkillModifier"), 1450, 575, "Black", "Gray");
-			DrawText(TextGet("SkillBondage") + " " + PlusSign + SkillModifier, 1450, 650, "Black", "Gray");
-			DrawText(TextGet("SkillEvasion") + " " + PlusSign + SkillModifier, 1450, 725, "Black", "Gray");
-			DrawText(TextGet("SkillModifierDuration") + " " + (TimermsToTime(LogValue("ModifierDuration", "SkillModifier") - CurrentTime)), 1450, 800, "Black", "Gray");
+			DrawText(TextGet("SkillModifier"), 1425, 575, "Black", "Gray");
+			DrawText(TextGet("SkillBondage") + " " + PlusSign + SkillModifier, 1425, 650, "Black", "Gray");
+			DrawText(TextGet("SkillEvasion") + " " + PlusSign + SkillModifier, 1425, 725, "Black", "Gray");
+			DrawText(TextGet("SkillModifierDuration") + " " + (TimermsToTime(LogValue("ModifierDuration", "SkillModifier") - CurrentTime)), 1425, 800, "Black", "Gray");
 		}
 
 	} else {

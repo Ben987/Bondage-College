@@ -1,0 +1,5 @@
+﻿Stage,LoveReq,SubReq,VarReq,Interaction,Result,NextStage,LoveMod,SubMod,Function
+0,0,0,RopeAvail,(捡起绳子.),你捡起了绳子。,0,0,0,TakeRope()
+0,0,0,CollarAvail,(捡起项圈.),你捡起了项圈。,0,0,0,TakeCollar()
+0,0,0,,(捡起铁链.),你试图捡起铁链，但它被牢牢固定在了地上。,0,0,0,
+0,0,0,HookAvail,(捡起铁钩.),你捡起了老旧的铁钩。,0,0,0,TakeHook()

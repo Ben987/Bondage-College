@@ -253,8 +253,7 @@ function GameLARPClick() {
 		}
 
 		// Give two seconds to the server to shuffle the room before calling the start game function (could be reviewed, maybe this is not needed)
-		var waitUntil = new Date().getTime() + 2000;
-		while(new Date().getTime() < waitUntil) true;
+		CommonWait(2000);
 		GameLARPTurnTimer = CurrentTime + 20000;
 
 		// Notices everyone in the room that the game starts
@@ -539,10 +538,12 @@ function GameLARPProcessAction(Action, ItemName, Source, Target, RNG) {
 	if ((Odds >= 0.01) && ((Odds >= 1) || (Odds >= RNG.toFixed(2)))) {
 
 		// Regular restrain actions
+		ChatRoomAllowCharacterUpdate = false;
 		if ((Action == "RestrainLegs") || (Action == "Immobilize")) InventoryWear(Target, ItemName, "ItemFeet", null, 6);
 		if ((Action == "RestrainArms") || (Action == "Detain")) InventoryWear(Target, ItemName, "ItemArms", null, 6);
 		if ((Action == "RestrainMouth") || (Action == "Silence")) InventoryWear(Target, ItemName, "ItemMouth", null, 6);
 		if ((Action == "Dress") || (Action == "Costume")) InventoryWear(Target, ItemName, "Cloth");
+		ChatRoomAllowCharacterUpdate = true;
 
 		// Struggle and evasion can remove some restraints
 		if (Action == "Struggle") InventoryRemove(Target, "ItemArms");

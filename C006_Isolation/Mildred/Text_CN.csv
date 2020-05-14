@@ -1,0 +1,22 @@
+﻿Tag,Content
+CropStartHate,如果禁闭教育不了你，那就让我的鞭子代劳。|(她把你推到一个三角木马上.)
+CropStartSub,在关禁闭之前，你这样的受应该充分感受痛苦的滋味.|(她把你推到一个三角木马上.)
+CropEvent0,(她由左到右讯速地抽了你一下.)
+CropEvent1,(她在你的屁股上用力抽了一下.)
+CropEvent2,"(她轻轻抽了几下你的胸部,| 避开了你的乳头.)"
+CropEvent3,(她抽打着你的手臂，|让开始你挣扎起来.)
+CropEvent4,(她在你的肚子上反复抽打，|让你喘不过气来.)
+CropEvent5,（她狠狠地打了你一巴掌。发出很大的声音。）
+Count1,1
+Count2,2
+Count3,3
+Count4,4
+Count5,5
+Count6,6
+Count7,7
+Count8,8
+Count9,9
+Count10,10
+Count11,11
+Count12,12
+CropStop,好了。(她停下手.)|你学到东西了么?

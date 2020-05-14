@@ -37,7 +37,7 @@ function InventoryItemMiscTimerPadlockClick() {
 
 // When the timer resets
 function InventoryItemMiscTimerPadlockReset() {
-	if (DialogFocusItem.Asset.RemoveTimer > 0) DialogFocusSourceItem.Property.RemoveTimer = CurrentTime + (DialogFocusItem.Asset.RemoveTimer * 1000);
+	if (DialogFocusItem.Asset.RemoveTimer > 0) DialogFocusSourceItem.Property.RemoveTimer = Math.round(CurrentTime + (DialogFocusItem.Asset.RemoveTimer * 1000));
 	if (CurrentScreen == "ChatRoom") {
 		var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 		var msg = "TimerRestart";
