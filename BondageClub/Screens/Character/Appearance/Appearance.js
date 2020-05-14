@@ -188,6 +188,52 @@ function CharacterAppearanceNaked(C) {
 
 }
 
+
+// Removes one layer of clothing: outer clothes, then underwear, then body-cosplay clothes, then nothing
+function CharacterAppearanceStripLayer(C) {
+	var HasClothes = false;
+	var HasUnderwear = false;
+	var HasBodyCosplay = false;
+
+	// Find out what the top layer currently is
+	for (var A = 0; A < C.Appearance.length; A++) {
+		if (C.Appearance[A].Asset.Group.BodyCosplay || C.Appearance[A].Asset.BodyCosplay) HasBodyCosplay = true;
+		else if (C.Appearance[A].Asset.Group.Underwear) HasUnderwear = true;
+		else if (C.Appearance[A].Asset.Group.Clothing) { HasClothes = true; break; }
+	}
+
+	// Check if there's anything to remove
+	if (!HasClothes && !HasUnderwear && !HasBodyCosplay) return;
+
+	// Ensure only the top layer is 'true'
+	HasBodyCosplay = HasBodyCosplay && !HasUnderwear && !HasClothes;
+	HasUnderwear = HasUnderwear && !HasClothes;
+
+	// Remove assets from the top layer only
+	var RemoveAsset = false;
+	for (var A = 0; A < C.Appearance.length; A++) {
+		RemoveAsset = false;
+
+		if (C.Appearance[A].Asset.Group.BodyCosplay || C.Appearance[A].Asset.BodyCosplay) {
+			if (HasBodyCosplay) RemoveAsset = true;
+		}
+		else if (C.Appearance[A].Asset.Group.Underwear) {
+			if (HasUnderwear) RemoveAsset = true;
+		}
+		else if (C.Appearance[A].Asset.Group.Clothing) {
+			if (HasClothes) RemoveAsset = true;
+		}
+
+		if (RemoveAsset) {
+			C.Appearance.splice(A, 1);
+			A--;
+		}
+	}
+
+	// Loads the new character canvas
+	CharacterLoadCanvas(C);
+}
+
 // Returns the character appearance sorted by drawing priority
 function CharacterAppearanceSort(AP) {
 	function GetPriority(A) {
@@ -405,8 +451,6 @@ function AppearanceRun() {
 	DrawCharacter(C, -600, (C.IsKneeling()) ? -1100 : -100, 4, false);
 	DrawCharacter(C, 750, 0, 1);
 	DrawText(CharacterAppearanceHeaderText, 400, 40, "White", "Black");
-
-	var HideColorPicker = true;
 
 	// Out of the color picker
 	if (!CharacterAppearanceWardrobeMode && CharacterAppearanceColorPicker == "") {
@@ -628,7 +672,7 @@ function AppearanceClick() {
 		if ((MouseX >= 1300) && (MouseX < 1390) && (MouseY >= 25) && (MouseY < 115) && (C.ID == 0) && LogQuery("Wardrobe", "PrivateRoom")) CharacterAppearanceWardrobeLoad(C);
 		if ((MouseX >= 1417) && (MouseX < 1507) && (MouseY >= 25) && (MouseY < 115) && (C.ID == 0)) CharacterAppearanceFullRandom(C);
 		if ((MouseX >= 1417) && (MouseX < 1507) && (MouseY >= 25) && (MouseY < 115) && (C.ID != 0) && LogQuery("Wardrobe", "PrivateRoom")) CharacterAppearanceWardrobeLoad(C);
-		if ((MouseX >= 1534) && (MouseX < 1624) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceNaked(C);
+		if ((MouseX >= 1534) && (MouseX < 1624) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceStripLayer(C);
 		if ((MouseX >= 1651) && (MouseX < 1741) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceMoveOffset(CharacterAppearanceNumPerPage);
 		if ((MouseX >= 1768) && (MouseX < 1858) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceExit(C);
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceReady(C);
@@ -658,7 +702,7 @@ function AppearanceClick() {
 					}
 				}
 		if ((MouseX >= 1417) && (MouseX < 1507) && (MouseY >= 25) && (MouseY < 115)) { CharacterAppearanceWardrobeMode = false; ElementRemove("InputWardrobeName"); }
-		if ((MouseX >= 1534) && (MouseX < 1624) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceNaked(C);
+		if ((MouseX >= 1534) && (MouseX < 1624) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceStripLayer(C);
 		if ((MouseX >= 1768) && (MouseX < 1858) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceExit(C);
 		if ((MouseX >= 1885) && (MouseX < 1975) && (MouseY >= 25) && (MouseY < 115)) CharacterAppearanceReady(C);
 

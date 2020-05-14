@@ -129,6 +129,7 @@ function InventoryItemArmsHempRopeSetPose(NewType) {
 	if (NewType.HiddenItem != null) InventoryWear(C, NewType.HiddenItem, "ItemHidden", DialogFocusItem.Color);
 	else InventoryRemove(C, "ItemHidden");
 	CharacterRefresh(C);
+	ChatRoomCharacterUpdate(C);
 
 	// Sets the chatroom or NPC message
 	if (CurrentScreen == "ChatRoom") {
