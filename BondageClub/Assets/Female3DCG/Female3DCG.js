@@ -952,9 +952,10 @@ var AssetFemale3DCG = [
 		Category: "Item",
 		Priority: 15,
 		Default: false,
+		ParentGroup: "BodyLower",
 		Left: 125,
 		Top: 400,
-		AllowPose: ["Kneel"],
+		AllowPose: ["Kneel", "LegsClosed"],
 		Zone: [[100, 500, 100, 80]],
 		Activity: ["MasturbateHand", "MasturbateFist", "MasturbateFoot", "MasturbateTongue", "Caress", "Slap", "Kiss", "Nibble"],
 		Asset: [
@@ -1011,6 +1012,13 @@ var AssetFemale3DCG = [
 				Layer: [
 					{ Name: "Rope", AllowColorize: true },
 					{ Name: "Wand", AllowColorize: false }
+				]
+			},
+			{
+				Name: "WiredEgg", Effect: ["Egged"], Value: 30, Time: 5,
+				Layer: [
+					{ Name: "Remote", AllowColorize: true},
+					{ Name: "Strap", AllowColorize: false}
 				]
 			},
 			AssetSpankingToys
