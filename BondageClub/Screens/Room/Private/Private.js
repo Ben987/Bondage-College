@@ -472,7 +472,7 @@ function PrivateOwnerInRoom() {
 // Returns TRUE if the player lover is already in the room
 function PrivateLoverInRoom(L) {
 	for (var C = 1; C < PrivateCharacter.length; C++) {
-		if ((PrivateCharacter[C].AccountName == null) && (PrivateCharacter[C].Name != null) && (Player.GetLoversNumbers(L) == "NPC-" + PrivateCharacter[C].Name)) return true;
+		if ((PrivateCharacter[C].AccountName == null) && (PrivateCharacter[C].Name != null) && (Player.GetLoversNumbers()[L] == "NPC-" + PrivateCharacter[C].Name)) return true;
 		if ((PrivateCharacter[C].AccountName != null) && PrivateCharacter[C].IsLoverPrivate() && (CurrentCharacter != null) && (PrivateCharacter[C].ID != CurrentCharacter.ID)) return true;
 		if ((PrivateCharacter[C].AccountName != null) && PrivateCharacter[C].IsLoverPrivate() && (CurrentCharacter == null)) return true;
 	}
