@@ -163,8 +163,11 @@ var LocationController = {
 
 	,UpdatePlayer(playerUpdate){
 		if(! playerUpdate?.IsValid()) throw "ChangeWasInvalidated";
-		if(playerUpdate.player.id == MainController.playerAccount.id){
-			var appearanceUpdate = playerUpdate.GetFinalAppItemList();
+		
+		var appearanceUpdate = playerUpdate.GetFinalAppItemList();
+		
+		F3dcgAssets.ValidateUpdateAppearance(appearanceUpdate, playerUpdate.player);
+		if(playerUpdate.player.id == MainController.playerAccount.id){			
 			MslServer.ActionStart({type:"AppearanceUpdateSelf", appearanceUpdate:appearanceUpdate});
 		}else
 			MslServer.ActionStart({type:"AppearanceUpdateOther", targetPlayerId:playerUpdate.player.id, appearanceUpdate:playerUpdate.GetFinalAppItemList()});

@@ -33,59 +33,39 @@ var F3dcgAssetsInventory = {
 			};
 		});
 		
-		/*
-		applicableItems[F3dcgAssets.EXPRESSION] = {};
-		F3dcgAssets.ExpressionGroups.forEach(groupName => applicableItems[F3dcgAssets.EXPRESSION][groupName] = []);
-		*/
 		F3dcgAssets.ClothesFree.forEach(itemName => this.AddClothItem(applicableItems, itemName));
 		locationPlayer.inventory[F3dcgAssets.CLOTH].forEach(itemName => this.AddClothItem(applicableItems, itemName));
 		locationPlayer.inventory[F3dcgAssets.ACCESSORY].forEach(itemName => this.AddAccessoryItem(applicableItems, itemName));
 		
-		/*
-		for(var itemGroupName in F3dcgAssets.AssetGroups){
-			if(F3dcgAssets.IgnoreGroups.includes(itemGroupName));
-			
-			var AssetItemGroup = F3dcgAssets.AssetGroups[itemGroupName];
-			if(itemGroupName == "Hands") continue;
-			if(!AssetItemGroup.type) continue;
-			
-			inventory[AssetItemGroup.type][AssetItemGroup.Group] = {};
-			
-			for(var itemName in AssetItemGroup.Items){
-				var AssetItem = AssetItemGroup.Items[itemName];
-				
-				var inventoryItem = {
-					owned:(AssetItemGroup.type == F3dcgAssets.BODY || AssetItemGroup.type == F3dcgAssets.EXPRESSION)
-					,validation:[]
-					,variants: AssetItem.Variants
-					,iconUrl: this.F3DCG_ASSET_BASE + AssetItem.iconUrl
-				}
-				inventory[AssetItemGroup.type][AssetItemGroup.Group][itemName] = inventoryItem;
-				
-				if(ownableTypes.includes(AssetItemGroup.type))
-					if((typeof(AssetItem.Value) == "undefined") || AssetItem.Value === 0)
-						inventoryItem.owned = true
-				
-				if(AssetItem.AllowLock)
-					inventoryItem.lockable = true;
-			}
-			
-			if(AssetItemGroup.type != F3dcgAssets.BODY && AssetItemGroup.type != F3dcgAssets.EXPRESSION )
-				inventory[AssetItemGroup.type][AssetItemGroup.Group]["None"] = {owned:true, validation:[], iconUrl:this.F3DCG_ASSET_BASE + "Icons/Items.png"};
-		}*/
-		/*
-		Inventory.forEach(InventoryItem => {
-			if(F3dcgAssets.UNIMPLEMENTED_ITEMS.includes(InventoryItem.Name)) return;
-			if(InventoryItem.Name.includes("Padlock")) return;
-			if(InventoryItem.Name == "MetalCuffsKey") return;
-			var AssetItemGroup = F3dcgAssets.AssetGroups[InventoryItem.Group];
-			if(!AssetItemGroup.type || !inventory[AssetItemGroup.type][InventoryItem.Group]) return;
-			inventory[AssetItemGroup.type][InventoryItem.Group][InventoryItem.Name].owned = true;
-		});*/
-		
-		//this.FillInventoryValidation(mainPlayerAccount, locationPlayer, inventory, appearance);
+		var posesEffectsBlocks = F3dcgAssets.BuildPosesEffectsBlocks(locationPlayer.appearance[F3dcgAssets.BONDAGE_TOY]);
+		locationPlayer.inventory[F3dcgAssets.BONDAGE_TOY].forEach(itemName => this.AddBondageToyItem(applicableItems, itemName, locationPlayer.appearance, posesEffectsBlocks));
 		
 		return applicableItems;
+	}
+	
+	
+	,AddBondageToyItem(applicableItems, itemName, appearance, posesEffectsBlocks){
+		if(F3dcgAssets.UNIMPLEMENTED_ITEMS.includes(itemName)) return;
+		
+		var groupName = F3dcgAssets.AssetNameToGroupNameMap[itemName];
+		if(F3dcgAssets.IgnoreGroups.includes(groupName)) return;
+		var AssetItem = F3dcgAssets.AssetGroups[groupName].Items[itemName];
+		var iconUrl = F3dcgAssets.F3DCG_ASSET_BASE + AssetItem.Group + "/Preview/" + AssetItem.Name + ".png";
+		
+		var validation = [];
+		
+		if(posesEffectsBlocks.blocks.includes(groupName)) validation.push("Blocked");
+		
+		if(AssetItem.Prerequisite){
+			var prereqs = AssetItem.Prerequisite.forEach ? AssetItem.Prerequisite : [AssetItem.Prerequisite];
+			
+			prereqs.forEach(prereq => {	
+				var errorReason = F3dcgAssets.ValidatePrerequisite(prereq, appearance, posesEffectsBlocks);
+				if(errorReason.length > 0) validation.push(errorReason);
+			});
+		}
+		
+		applicableItems[F3dcgAssets.BONDAGE_TOY][groupName].push({itemName:AssetItem.Name, iconUrl:iconUrl, validation:validation}); 
 	}
 	
 	
@@ -98,10 +78,17 @@ var F3dcgAssetsInventory = {
 	
 	,AddClothItem(applicableItems, itemName){
 		var groupName = F3dcgAssets.AssetNameToGroupNameMap[itemName];
-		var AssetItem = F3dcgAssets.AssetGroups[groupName].Items[itemName];		
+		var AssetGroup =  F3dcgAssets.AssetGroups[groupName];
+		var AssetItem = AssetGroup.Items[itemName];
 		var iconUrl = F3dcgAssets.F3DCG_ASSET_BASE + AssetItem.Group + "/Preview/" + AssetItem.Name + ".png";
+		if(F3dcgAssets.ClothesQuest.includes(itemName) || F3dcgAssets.ClothesFree.includes(itemName)){
+			if(itemName == "Gloves3") console.log(AssetGroup);
+			var layerPart = AssetItem.Layer ? "_" + AssetItem.Layer[0].Name : "";
+			var parentPart = AssetGroup.ParentGroup && ! AssetItem.IgnoreParentGroup ? "_Normal" : "";
+			iconUrl = F3dcgAssets.F3DCG_ASSET_BASE + AssetItem.Group + "/" + AssetItem.Name + parentPart + layerPart + ".png";
+		}
 		applicableItems[F3dcgAssets.CLOTH][groupName].push({itemName:AssetItem.Name, iconUrl: iconUrl});
-	}
+	}	
 }	
 	/*
 	,InitAppearanceItem(AppItem, AssetItem, AssetItemGroup){

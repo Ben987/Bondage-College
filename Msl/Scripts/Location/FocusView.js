@@ -148,12 +148,12 @@ var LocationFocusView = {
 				
 				var buttonSave = Util.CreateElement({
 					parent:figureContainer, tag:"input", attributes:{type:"submit", value:"Save"}
-					,cssStyles:{float:"left"},events: {click: (e) => {this.SuitSave(index);}} 
+					,cssStyles:{float:"left"},events:{click: (e) => {this.SaveSuit(index);}} 
 				});
 				
 				var buttonLoad = Util.CreateElement({
 					parent:figureContainer, tag:"input", attributes:{type:"submit", value:"Load"}
-					,cssStyles:{float:"right"}, events:{click:(e) => {this.SuitLoad(index);}}
+					,cssStyles:{float:"right"}, events:{click:(e) => {this.LoadSuit(index);}}
 				});
 				
 				setTimeout(function(){
@@ -164,12 +164,12 @@ var LocationFocusView = {
 			this.wardrobeContainer.style.display = "block";
 	}
 	
-	,SuitLoad(index){
+	,LoadSuit(index){
 		var validationErrors = this.updateDelegate.AddSuit(MainController.playerAccount.wardrobe[index].appearance);
 		this.ShowErrorsOrPlayer(validationErrors);
 	}
 	
-	,SuitSave(index){
+	,SaveSuit(index){
 		var suit = MainController.playerAccount.wardrobe[index];
 		suit.appearance = this.updateDelegate.BuildSuitFromCurrentAppearance();
 		suit.render = F3dcgAssetsRender.BuildSuitRender(suit.appearance)
@@ -209,21 +209,19 @@ var LocationFocusView = {
 		var icon = Util.GetFirstChildNodeByName(this.itemGroupSelectionContainer, itemGroupName);
 		Util.SelectElementAndDeselectSiblings(icon, "selected");
 		
-		for(var i = 0; i < this.updateDelegate.items[this.selectedItemGroupTypeName][itemGroupName].length; i ++){
-			let itemData = this.updateDelegate.items[this.selectedItemGroupTypeName][itemGroupName][i];
-			
+		this.updateDelegate.items[this.selectedItemGroupTypeName][itemGroupName].forEach(itemData => {
 			var iconContainer = Util.CreateElement({parent:this.itemSelectionContainer});
 			var events = {};
 			
 			if(! itemData.validation?.length)
 				events.click = (e) => this.OnItemClick(itemData.itemName);
 			else
-				for(var i = 0; i < itemData.validation?.length; i++)
+				for(var i = 0; i < itemData.validation.length; i++)
 					Util.CreateElement({parent:iconContainer,innerHTML:itemData.validation[i],cssStyles:{color:"#fcc",top:(i+1)+"em",fontSize:"1em"}});
 			
 			Util.CreateElement({parent:iconContainer, tag:"img", events:events, attributes:{src:itemData.iconUrl, alt:itemData.itemName}});
 			Util.CreateElement({parent:iconContainer,innerHTML:itemData.itemName,cssStyles:{fontSize:".8em"}});
-		}
+		})
 		
 		this.UpdateControlAndActionButtons();
 	}
