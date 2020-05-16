@@ -300,12 +300,7 @@ function DocumentKeyDown(event) {
 		if (typeof window[CurrentScreen + "Exit"] === "function") {
 			window[CurrentScreen + "Exit"]();
 		} else if ((CurrentCharacter != null) && Array.isArray(DialogMenuButton) && (DialogMenuButton.indexOf("Exit") >= 0)) {
-			if (DialogFocusItem != null) {
-				var funcName = "Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Exit()";
-				if (typeof window[funcName.substr(0, funcName.indexOf("("))] === "function")
-					window[funcName.replace("()", "")]();
-			}
-			else
+			if (!DialogLeaveFocusItem())
 				DialogLeaveItemMenu();
 		} else if ((CurrentCharacter != null) && (CurrentScreen == "ChatRoom")) {
 			DialogLeave();

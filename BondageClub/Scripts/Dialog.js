@@ -184,6 +184,18 @@ function DialogLeaveItemMenu() {
 	ElementRemove("InputColor");
 }
 
+// Leaves the item menu of the focused item
+function DialogLeaveFocusItem() {
+	if (DialogFocusItem != null) {
+		var funcName = "Inventory" + DialogFocusItem.Asset.Group.Name + DialogFocusItem.Asset.Name + "Exit()";
+		if (typeof window[funcName.substr(0, funcName.indexOf("("))] === "function") {
+			window[funcName.replace("()", "")]();
+			return true;
+		}
+	}
+	return false;
+}
+
 // Adds the item in the dialog list
 function DialogInventoryAdd(C, NewInv, NewInvWorn, SortOrder) {
 
@@ -765,6 +777,7 @@ function DialogClick() {
 	// If the user clicked on the interaction character or herself, we check to build the item menu
 	if ((CurrentCharacter.AllowItem || (MouseX < 500)) && (MouseX >= 0) && (MouseX <= 1000) && (MouseY >= 0) && (MouseY < 1000) && ((CurrentCharacter.ID != 0) || (MouseX > 500)) && (DialogIntro() != "")) {
 		DialogLeaveItemMenu();
+		DialogLeaveFocusItem();
 		var C = (MouseX < 500) ? Player : CurrentCharacter;
 		var X = (MouseX < 500) ? 0 : 500;
 		var HeightRatio = CharacterAppearanceGetCurrentValue(C, "Height", "Zoom");
