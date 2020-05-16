@@ -193,8 +193,6 @@ function ChatRoomDrawCharacter(DoClick) {
 					ChatRoomOwnershipOption = "";
 					ChatRoomLovershipOption = "";
 					if (ChatRoomCharacter[C].ID != 0) ServerSend("ChatRoomAllowItem", { MemberNumber: ChatRoomCharacter[C].MemberNumber });
-					if (ChatRoomCharacter[C].ID != 0) ServerSend("AccountOwnership", { MemberNumber: ChatRoomCharacter[C].MemberNumber });
-					if (ChatRoomCharacter[C].ID != 0) ServerSend("AccountLovership", { MemberNumber: ChatRoomCharacter[C].MemberNumber });
 					CharacterSetCurrent(ChatRoomCharacter[C]);
 
 				} else
@@ -225,6 +223,13 @@ function ChatRoomDrawCharacter(DoClick) {
 
 		}
 
+}
+
+// Sends the request to the server to check relationships
+function ChatRoomCheckRelationships(){
+	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
+	if (C.ID != 0) ServerSend("AccountOwnership", { MemberNumber: C.MemberNumber });
+	if (C.ID != 0) ServerSend("AccountLovership", { MemberNumber: C.MemberNumber });
 }
 
 // Displays /help content to the player if it's their first visit to a chatroom this session
