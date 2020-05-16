@@ -544,6 +544,7 @@ function ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem
 			else if ((DialogProgressPrevItem != null) && (DialogProgressNextItem != null) && !DialogProgressNextItem.Asset.IsLock) msg = "ActionSwap";
 			else if ((DialogProgressPrevItem != null) && (DialogProgressNextItem != null) && DialogProgressNextItem.Asset.IsLock) msg = "ActionAddLock";
 			else if (InventoryItemHasEffect(DialogProgressNextItem, "Lock")) msg = "ActionLock";
+			else if ((DialogProgressNextItem != null) && (DialogProgressNextItem.Asset.DynamicActivity(Player) != null)) msg = "ActionActivity" + DialogProgressNextItem.Asset.DynamicActivity(Player);
 			else if (DialogProgressNextItem != null) msg = "ActionUse";
 			else if (InventoryItemHasEffect(DialogProgressPrevItem, "Lock")) msg = "ActionUnlockAndRemove";
 			else msg = "ActionRemove";
@@ -652,51 +653,64 @@ function ChatRoomMessage(data) {
 
 			// Replace actions by the content of the dictionary
 			if (data.Type && ((data.Type == "Action") || (data.Type == "ServerMessage"))) {
-			    if (data.Type == "ServerMessage") msg = "ServerMessage" + msg;
+				if (data.Type == "ServerMessage") msg = "ServerMessage" + msg;
 				msg = DialogFind(Player, msg);
 				if (data.Dictionary) {
 					var dictionary = data.Dictionary;
 					var SourceCharacter = null;
 					var isPlayerInvolved = SenderCharacter.MemberNumber == Player.MemberNumber;
+					var TargetMemberNumber = null;
+					var ActivityName = null;
+					var GroupName = null;
 					for (var D = 0; D < dictionary.length; D++) {
 
 						// If there's a member number in the dictionary packet, we use that number to alter the chat message
 						if (dictionary[D].MemberNumber) {
 
-							// Alters the message displayed in the chat room log
-							if ((dictionary[D].Tag == "DestinationCharacter") || (dictionary[D].Tag == "DestinationCharacterName"))
+							// Alters the message displayed in the chat room log, and stores the source & target in case they're required later
+							if ((dictionary[D].Tag == "DestinationCharacter") || (dictionary[D].Tag == "DestinationCharacterName")) {
 								msg = msg.replace(dictionary[D].Tag, ((SenderCharacter.MemberNumber == dictionary[D].MemberNumber) && (dictionary[D].Tag == "DestinationCharacter")) ? DialogFind(Player, "Her") : (PreferenceIsPlayerInSensDep() && dictionary[D].MemberNumber != Player.MemberNumber ? DialogFind(Player, "Someone").toLowerCase() : ChatRoomHTMLEntities(dictionary[D].Text) + DialogFind(Player, "'s")));
-							else if ((dictionary[D].Tag == "TargetCharacter") || (dictionary[D].Tag == "TargetCharacterName"))
+								TargetMemberNumber = dictionary[D].MemberNumber;
+							}
+							else if ((dictionary[D].Tag == "TargetCharacter") || (dictionary[D].Tag == "TargetCharacterName")) {
 								msg = msg.replace(dictionary[D].Tag, ((SenderCharacter.MemberNumber == dictionary[D].MemberNumber) && (dictionary[D].Tag == "TargetCharacter")) ? DialogFind(Player, "Herself") : (PreferenceIsPlayerInSensDep() && dictionary[D].MemberNumber != Player.MemberNumber ? DialogFind(Player, "Someone").toLowerCase() : ChatRoomHTMLEntities(dictionary[D].Text)));
-							else if (dictionary[D].Tag == "SourceCharacter")
+								TargetMemberNumber = dictionary[D].MemberNumber;
+							}
+							else if (dictionary[D].Tag == "SourceCharacter") {
 								msg = msg.replace(dictionary[D].Tag, (PreferenceIsPlayerInSensDep() && (dictionary[D].MemberNumber != Player.MemberNumber)) ? DialogFind(Player, "Someone") : ChatRoomHTMLEntities(dictionary[D].Text));
-
-							// Keeps the source character for the next part of the code
-							if (dictionary[D].Tag == "SourceCharacter")
 								for (var T = 0; T < ChatRoomCharacter.length; T++)
-										if (ChatRoomCharacter[T].MemberNumber == dictionary[D].MemberNumber)
-											SourceCharacter = ChatRoomCharacter[T];
+									if (ChatRoomCharacter[T].MemberNumber == dictionary[D].MemberNumber)
+										SourceCharacter = ChatRoomCharacter[T];
+							}
 
 							// Checks if the player is involved in the action
 							if (!isPlayerInvolved && ((dictionary[D].Tag == "DestinationCharacter") || (dictionary[D].Tag == "DestinationCharacterName") || (dictionary[D].Tag == "TargetCharacter") || (dictionary[D].Tag == "TargetCharacterName") || (dictionary[D].Tag == "SourceCharacter")))
 								if (dictionary[D].MemberNumber == Player.MemberNumber)
 									isPlayerInvolved = true;
-
 						}
 						else if (dictionary[D].TextToLookUp) msg = msg.replace(dictionary[D].Tag, DialogFind(Player, ChatRoomHTMLEntities(dictionary[D].TextToLookUp)).toLowerCase());
 						else if (dictionary[D].AssetName) {
 							for (var A = 0; A < Asset.length; A++)
-								if (Asset[A].Name == dictionary[D].AssetName)
+								if (Asset[A].Name == dictionary[D].AssetName) {
 									msg = msg.replace(dictionary[D].Tag, Asset[A].DynamicDescription(SourceCharacter || Player).toLowerCase());
+									ActivityName = Asset[A].DynamicActivity(SourceCharacter || Player);
+									break;
+								}
 						}
 						else if (dictionary[D].AssetGroupName) {
 							for (var A = 0; A < AssetGroup.length; A++)
-								if (AssetGroup[A].Name == dictionary[D].AssetGroupName)
+								if (AssetGroup[A].Name == dictionary[D].AssetGroupName) {
 									msg = msg.replace(dictionary[D].Tag, AssetGroup[A].Description.toLowerCase());
+									GroupName = dictionary[D].AssetGroupName;
+								}
 						}
 						else msg = msg.replace(dictionary[D].Tag, ChatRoomHTMLEntities(dictionary[D].Text));
-
 					}
+
+					// If another player is using an item which applies an activity on the current player, apply the effect here
+					if ((ActivityName != null) && (TargetMemberNumber != null) && (TargetMemberNumber == Player.MemberNumber) && (SenderCharacter.MemberNumber != Player.MemberNumber))
+						if ((Player.ArousalSettings == null) || (Player.ArousalSettings.Active == null) || (Player.ArousalSettings.Active == "Hybrid") || (Player.ArousalSettings.Active == "Automatic"))
+							ActivityEffect(SenderCharacter, Player, ActivityName, GroupName);
 
 					if (!Player.AudioSettings.PlayItemPlayerOnly || isPlayerInvolved)
 						AudioPlayContent(data);

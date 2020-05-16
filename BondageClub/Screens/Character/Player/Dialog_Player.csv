@@ -282,6 +282,12 @@ ActionCoin,,,SourceCharacter flips a coin.  The result is: CoinResult.
 ActionGrabbedForCell,,,"TargetCharacterName gets grabbed by two maids and locked in a timer cell, following her owner commands."
 ActionGrabbedToServeDrinks,,,TargetCharacterName gets grabbed by two maids and escorted to the maid quarters to serve drinks for her owner.
 ActionGiveEnvelopeToOwner,,,TargetCharacterName gives a sealed envelope to her owner.
+ActionActivitySpankItem,,,SourceCharacter hits DestinationCharacter FocusAssetGroup with a NextAsset.
+ActionActivityMasturbateItem,,,SourceCharacter holds a NextAsset against DestinationCharacter FocusAssetGroup.
+ActionActivityTickleItem,,,SourceCharacter tickles DestinationCharacter FocusAssetGroup with a NextAsset.
+ActionActivityRubItem,,,SourceCharacter rubs DestinationCharacter FocusAssetGroup with a NextAsset.
+ActionActivityRollItem,,,SourceCharacter rolls a NextAsset over DestinationCharacter FocusAssetGroup.
+ActionActivityPourItem,,,SourceCharacter pours NextAsset onto DestinationCharacter FocusAssetGroup.
 MaidDrinkPickFreeWater,,,SourceCharacter picks a glass of water from DestinationCharacter tray.
 MaidDrinkPickFreeOrangeJuice,,,SourceCharacter picks an orange juice from DestinationCharacter tray.
 MaidDrinkPickFreeBeer,,,SourceCharacter picks a beer from DestinationCharacter tray.
@@ -786,7 +792,7 @@ mittensfromharness,,,mittens
 NeedHarness,,,She must be wearing a baby harness to chain the mittens.
 FreeArms,,,You must free her arms before attaching mitten chains.
 FacialExpression,,,Facial expression
-SelectSpankingToysType,,,Select a spanking toy
+SelectSpankingToysType,,,Select a handheld toy
 SpankingToysTypeCrop,,,Crop
 SpankingToysTypeFlogger,,,Flogger
 SpankingToysTypeCane,,,Cane
@@ -796,6 +802,19 @@ SpankingToysTypeWhipPaddle,,,Whip Paddle
 SpankingToysTypeWhip,,,Whip
 SpankingToysTypeCattleProd,,,Cattle Prod
 SpankingToysTypeTennisRacket,,,Tennis Racket
+SpankingToysTypeFeather,,,Feather
+SpankingToysTypeFeatherDuster,,,Feather Duster
+SpankingToysTypeIceCube,,,Ice Cube
+SpankingToysTypeWartenbergWheel,,,Wartenberg Wheel
+SpankingToysTypeVibratingWand,,,Vibrating Wand
+SpankingToysTypeSmallVibratingWand,,,Small Vibe Wand
+SpankingToysTypeCandleWax,,,Candle Wax
+SpankingToysTypeLargeDildo,,,Large Dildo
+SpankingToysTypePetToy,,,Pet Toy
+SpankingToysTypeVibrator,,,Vibrator
+SpankingToysTypeBelt,,,Belt
+SpankingToysTypeHairbrush,,,Hairbrush
+SpankingToysTypeSmallDildo,,,Small Dildo
 SpankingToysSetPlayer,,,SourceCharacter takes out a ItemUsed
 SpankingToysSetOthers,,,SourceCharacter gives TargetCharacter a ItemUsed
 SelectSuitType,,,Select suit type and wand attachment
