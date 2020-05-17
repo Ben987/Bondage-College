@@ -762,7 +762,7 @@ var AssetFemale3DCG = [
 		Top: 145,
 		FullAlpha: false,
 		AllowNone: false,
-		AllowExpression: ["Closed", "Dazed", "Shy", "Sad", "Horny", "Lewd", "VeryLewd", "Heart", "LewdHeart", "Dizzy", "Daydream", "WinkL", "WinkR", "Angry", "Surprised", "Scared"],
+		AllowExpression: ["Closed", "Dazed", "Shy", "Sad", "Horny", "Lewd", "VeryLewd", "Heart", "HeartPink", "LewdHeart", "LewdHeartPink", "Dizzy", "Daydream", "WinkL", "WinkR", "Angry", "Surprised", "Scared"],
 		Asset: ["Eyes1", "Eyes2", "Eyes3", "Eyes4", "Eyes5", "Eyes6", "Eyes7", "Eyes8", "Eyes9", "Eyes10", "Eyes11"],
 		Color: ["#6a3628", "#5e481e", "#666666", "#555588", "#558855", "#885555", "#202020", "#aa3333", "#33aa33", "#3333aa", "#aaaa33", "#33aaaa", "#aa33aa"]
 	},
