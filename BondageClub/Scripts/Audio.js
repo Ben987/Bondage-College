@@ -36,7 +36,7 @@ function AudioPlayContent(data) {
 	// Instant actions can trigger a sound depending on the asset
 	if (data.Content == "ActionAddLock") {
 		audioFile = "Audio/LockSmall.mp3";
-	} else if (data.Content == "ActionLock" || data.Content == "ActionUse" || data.Content == "ActionSwap" || data.Content == "SlaveCollarChangeType") {
+	} else if (data.Content == "ActionLock" || data.Content == "ActionUse" || data.Content == "ActionSwap" || data.Content == "SlaveCollarChangeType" || (data.Content.indexOf("ActionActivity") == 0)) {
 		noiseLevelModifier += 3; //constant vibration volume level
 		var NextAsset = data.Dictionary.find(function (el) {return el.Tag == "NextAsset";});
 		if (!NextAsset || !NextAsset.AssetName) return;
@@ -45,7 +45,8 @@ function AudioPlayContent(data) {
 		else if (NextAsset.AssetName == "LeatherWhip")
 			audioFile = "Audio/SmackWhip2.mp3";
 		else if (NextAsset.AssetName == "SpankingToys") {
-			var characterSource = ChatRoomCharacter.find(function(e1){return e1.MemberNumber == data.Sender;});
+			if (data.Dictionary.find(function (g) { return g.AssetGroupName; }) == "ItemHands") return;
+			var characterSource = ChatRoomCharacter.find(function (e1) { return e1.MemberNumber == data.Sender; });
 			var equippedItem = InventoryGet(characterSource, "ItemHands");
 			if (!equippedItem || !equippedItem.Property) return;
 			switch (equippedItem.Property.Type) {
