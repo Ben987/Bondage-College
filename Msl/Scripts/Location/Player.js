@@ -88,7 +88,7 @@ var LocationPlayerUpdate = function(player){
 	}
 	
 	
-	this.Add = function(itemGroupTypeName, itemGroupName, itemName){
+	this.Add = function(itemGroupTypeName, itemGroupName, itemName, variantName){
 		switch(itemGroupTypeName){
 			case F3dcgAssets.CLOTH:
 				var oldItem = this.appearance[itemGroupTypeName][itemGroupName];
@@ -113,7 +113,7 @@ var LocationPlayerUpdate = function(player){
 				//if(oldItem == 
 				if(this.updateRestraint) return ["OnlyOneBondageToyAtTime"];
 				this.updateRestraint = true;
-				var newItem = itemName == F3dcgAssetsInventory.NONE ? null : F3dcgAssets.BuildBondageToyAppearanceItem(itemName, oldItem?.color);				
+				var newItem = itemName == F3dcgAssetsInventory.NONE ? null : F3dcgAssets.BuildBondageToyAppearanceItem(itemName, oldItem?.color, variantName);
 				this.appearance[itemGroupTypeName][itemGroupName] = newItem;
 				this.updateStack.push({type:itemGroupTypeName, itemGroupName: itemGroupName, item:newItem});				
 			break;
@@ -198,8 +198,6 @@ var LocationPlayerUpdate = function(player){
 				default: console.log(update.type);
 			}
 		});
-		
-		console.log(updatedGroups);
 		
 		return updatedGroups;
 	}

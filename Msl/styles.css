@@ -129,8 +129,9 @@ div.chat-hover-item:after {
 .focus-wardrobe-container > div  > div {position:absolute;width:100%;height:81%;top:0%;left:0}
 
 .focus-item-selection-icon-container {position:absolute;left:62%;width:38%;height:100%;overflow-y:scroll}
-.focus-item-selection-icon-container > div {position:relative;width:30%;padding-top:30%;margin:1.5% 1.5% 1.5% 1.5%;float:left;background-color:rgba(0,0,0,.4);}
-.focus-item-selection-icon-container > div > img {position:absolute;width:100%;height:81%;top:0%;left:0}
+.focus-item-selection-icon-container > div {position:relative;width:30%;padding-top:30%;margin:1.5% 1.5% 1.5% 1.5%;float:left;background-color:rgba(0,0,0,.4);overflow:hidden;}
+.focus-item-selection-icon-container > div > img {position:absolute;width:100%;height:100%;top:0%;left:0}
+.focus-item-selection-icon-container > div > div {position:absolute;top:0;}
 
 .focus-item-actions {position:absolute; left:10%; width:20%; height:50%; display:none;}
 .focus-color-picker-container {}

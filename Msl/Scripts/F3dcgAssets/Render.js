@@ -20,12 +20,12 @@ var F3dcgAssetsRender = {
 				var item = appearanceItems[groupName];
 				
 				if(! item) continue;
-				var AssetGroup = F3dcgAssets.AssetGroups[groupName], AssetItem = AssetGroup.Items[item.name], AssetVariant = AssetItem.Variants ? AssetItem.Variants[item.variantName] : null;			
+				var AssetGroup = F3dcgAssets.AssetGroups[groupName], AssetItem = AssetGroup.Items[item.name], AssetVariant = AssetItem.Variant ? AssetItem.Variant[item.variant] : null;			
 				
 				if(AssetItem.Height) result.top -= AssetItem.Height;				
 				
-				if(item.variantName)
-					if(!  AssetItem.Variants) {console.log("Variants not defined for " + AssetItem.Name + " " + AssetItem.Group);continue;}
+				if(item.variant)
+					if(!  AssetItem.Variant) {console.log("Variants not defined for " + AssetItem.Name + " " + AssetItem.Group);continue;}
 					
 				if(AssetVariant && AssetVariant.Property && AssetVariant.Property.SetPose)
 					result.poses.push(...AssetVariant.Property.SetPose);
@@ -107,11 +107,11 @@ var F3dcgAssetsRender = {
 		this.TranslateRenderItem(renderItem, appearanceItemEffects.itemGroupsToTranslateByPose[AssetItemGroup.Group]);
 		
 		var posePart = this.GetPoseUrlPart(AssetItemGroup, AssetItem, appearanceItemEffects.poses);
-		var variantPart = appearanceItem.variantName ?  appearanceItem.variantName : "";
+		var variantPart = appearanceItem.variant ?  appearanceItem.variant : "";
 		var sizePart = AssetItemGroup.useBodySize  && ! (AssetItem.IgnoreParentGroup === true) ? "_" + body[AssetItemGroup.useBodySize] : "";
 		
 		var groupPart = AssetItemGroup.Group +"/";
-		var itemPart = appearanceItem.name;
+		var itemPart =  AssetItem.Name.includes("_") ?  AssetItem.Name.split("_")[0] :  AssetItem.Name;
 		
 		if(AssetItem.Layer) {
 			AssetItem.Layer.forEach(AssetItemLayer => {					
@@ -142,8 +142,8 @@ var F3dcgAssetsRender = {
 			});
 			//if(AppItem.lock) item.urlLock = groupPart + posePart + itemPart + "_Lock.png";  Looks like layered items never have locks rendered
 		} else {
-			if(AssetItem.Variants)
-				variantPart = variantPart == Object.keys(AssetItem.Variants)[0] ? "" : variantPart;
+			if(AssetItem.Variant)
+				variantPart = variantPart == Object.keys(AssetItem.Variant)[0] ? "" : variantPart;
 			
 			if(posePart) variantPart = ""; //Leather cuffs				
 			
@@ -207,7 +207,6 @@ var F3dcgAssetsRender = {
 	,BuildExpressionRenderItems(expressionItems, appearanceItemEffects){
 		var renderItems = [];
 		
-		console.log(expressionItems);
 		for(var groupName in expressionItems){
 			var AssetGroup = F3dcgAssets.AssetGroups[groupName];
 			var renderItem = this.InitRenderItem(AssetGroup);

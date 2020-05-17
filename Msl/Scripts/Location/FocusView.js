@@ -247,14 +247,14 @@ var LocationFocusView = {
 	
 	
 	,UpdateControlAndActionButtons(){
-		var wornItem = this.updateDelegate.GetCurrentWornItem[this.selectedItemGroupName];
+		var wornItem = this.updateDelegate.appearance[this.selectedItemGroupTypeName][this.selectedItemGroupName];
 		
 		var buttonsToShow = [];
 		for(var action in this.itemActionViews)
 			Util.GetFirstChildNodeWithAttribute(this.itemActionButtonsContainer, "alt", action).style.display="none";
 		
 		if(wornItem){
-			var inventoryItem = this.updateDelegate.inventory.items[this.selectedItemGroupTypeName][this.selectedItemGroupName][wornItem.itemName];
+			var inventoryItem = this.updateDelegate.items[this.selectedItemGroupTypeName][this.selectedItemGroupName].find(inventoryItem => inventoryItem.itemName == wornItem.name);
 			
 			if(! inventoryItem) inventoryItem = {};//to avoid null reference
 			
@@ -357,17 +357,17 @@ var LocationFocusView = {
 			LocationFocusView.ShowErrorsOrPlayer(validationErrors)
 		else if(updateTime !== false)
 			LocationFocusView.itemActionViews.Lock.OnTimerUpdate(appearanceItemCopy.lock.timer);
-		
 	}
 	
 	,ItemActionCallbackVariant(itemVariantName){
-		var appearanceItemWorn = LocationFocusView.updateDelegate.appearance.items[LocationFocusView.selectedItemGroupName];
-		if(itemVariantName == appearanceItemWorn.itemVariantName) return;
+		var t = LocationFocusView.selectedItemGroupTypeName, g = LocationFocusView.selectedItemGroupName;
+		var wornItem = LocationFocusView.updateDelegate.appearance[t][g];
 		
-		var appearanceItemCopy = Util.CloneRecursive(appearanceItemWorn);
-		appearanceItemCopy.itemVariantName = itemVariantName;
+		console.log(t + " " + g);
 		
-		var validationErrors = LocationFocusView.updateDelegate.Add(appearanceItemCopy);
+		if(itemVariantName == wornItem.variant) return;
+		
+		var validationErrors = LocationFocusView.updateDelegate.Add(t, g, wornItem.name, itemVariantName);
 		LocationFocusView.ShowErrorsOrPlayer(validationErrors)
 	}
 	

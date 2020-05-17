@@ -22,7 +22,7 @@ F3dcgAssets.F3DCG_TYPE_ICON_BASE = "../BondageClub/Screens/Inventory/"//ItemArms
 F3dcgAssets.Padlocks = {}
 F3dcgAssets.Poses = {}	
 F3dcgAssets.AssetGroups = {}
-F3dcgAssets.AssetNameToGroupNameMap = {}
+F3dcgAssets.ItemNameToGroupNameMap = {}
 
 F3dcgAssets.IgnoreGroups = ["ItemNeckAccessories", "ItemNeckRestraints", "ItemMisc"]	
 F3dcgAssets.BodyItemsGroups = ["Eyes", "Mouth", "Nipples", "Pussy", "HairFront", "HairBack"]
@@ -112,5 +112,12 @@ F3dcgAssets.BuildAccessoryAppearanceItem = function(name, color){
 	return {name:name,color:color}
 }
 F3dcgAssets.BuildBondageToyAppearanceItem = function(name, color, variant){
+	//during server side imorts process, assets.js finds the asset group on its own for the default variant
+	if(! variant){
+		var groupName = F3dcgAssets.ItemNameToGroupNameMap[name];
+		var AssetItem = F3dcgAssets.AssetGroups[groupName].Items[name];
+		if(AssetItem.Variant) variant = Object.values(AssetItem.Variant)[0].Name;
+	}
+
 	return {name:name,color:color,variant:variant}
 }

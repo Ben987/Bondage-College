@@ -1,16 +1,15 @@
 
-
 F3dcgAssets.InitFreeAndQuestClothes = function(){
-		for(var i = 0; i < this.ClothesGroups.length; i++){
-			for(var itemName in this.AssetGroups[this.ClothesGroups[i]].Items){
-				var AssetItem = this.AssetGroups[this.ClothesGroups[i]].Items[itemName];
-				
-				if(AssetItem.BuyGroup);//two - piece suits that are bought in the same shop
-				else if(AssetItem.Value == -1) 	this.ClothesQuest.push(AssetItem.Name);
-				else if(! AssetItem.Value) 		this.ClothesFree.push(AssetItem.Name);
-			}
+	for(var i = 0; i < this.ClothesGroups.length; i++){
+		for(var itemName in this.AssetGroups[this.ClothesGroups[i]].Items){
+			var AssetItem = this.AssetGroups[this.ClothesGroups[i]].Items[itemName];
+			
+			if(AssetItem.BuyGroup);//two-piece items that are bought once
+			else if(AssetItem.Value == -1) 	this.ClothesQuest.push(AssetItem.Name);
+			else if(! AssetItem.Value) 		this.ClothesFree.push(AssetItem.Name);
 		}
 	}
+}
 	
 F3dcgAssets.InitPoses = function(){
 	PoseFemale3DCG.forEach(pose => {
@@ -20,25 +19,38 @@ F3dcgAssets.InitPoses = function(){
 }
 	
 F3dcgAssets.InitItems = function(){
+	var itemNames = {};
+	
 	for(var i = 0; i < AssetFemale3DCG.length; i++){
 		var AssetGroup = AssetFemale3DCG[i];
 		
 		AssetGroup.Items = {};
 		if(AssetGroup.type == F3dcgAssets.EXPRESSION){
-			AssetGroup.Items["None"] = {Name:"None", iconUrl:AssetGroup.Group + "/Icon.png"};
+			AssetGroup.Items["None"] = {Name:"None"};
 			AssetGroup.AllowExpression.forEach(exp => {
-				AssetGroup.Items[exp] = {Name:exp,iconUrl:AssetGroup.Group + "/" + exp + "/Icon.png"}
-				F3dcgAssets.AssetNameToGroupNameMap[exp] = AssetGroup.Group;
+				AssetGroup.Items[exp] = {Name:exp}
+				F3dcgAssets.ItemNameToGroupNameMap[exp] = AssetGroup.Group;
 			});
-			F3dcgAssets.AssetNameToGroupNameMap[AssetGroup.Group] = AssetGroup.Group;
-			F3dcgAssets.AssetNameToGroupNameMap[AssetGroup.Asset[0]] = AssetGroup.Group;
+			F3dcgAssets.ItemNameToGroupNameMap[AssetGroup.Group] = AssetGroup.Group;
+			F3dcgAssets.ItemNameToGroupNameMap[AssetGroup.Asset[0]] = AssetGroup.Group;
 		}else{
 			for(var j = 0; j < AssetGroup.Asset.length; j++){
 				let AssetItem = AssetGroup.Asset[j];
 				if(typeof(AssetItem) === "string") AssetItem = {Name:AssetItem};
 				
 				if(F3dcgAssets.UNIMPLEMENTED_ITEMS.includes(AssetItem.Name)) continue;
-				this.AssetNameToGroupNameMap[AssetItem.Name] = AssetGroup.Group;
+				
+				if(AssetItem.Prerequisite && ! AssetItem.Prerequisite.forEach) AssetItem.Prerequisite = [AssetItem.Prerequisite];
+				
+				if(itemNames[AssetItem.Name]){
+					//this.ItemNameToGroupNameMap[AssetItem.Name] = AssetGroup.Group;
+					AssetItem.Name = AssetItem.Name + "_" + AssetGroup.Group;
+					this.ItemNameToGroupNameMap[AssetItem.Name] = AssetGroup.Group;
+				}
+				else{
+					itemNames[AssetItem.Name] = true;
+					this.ItemNameToGroupNameMap[AssetItem.Name] = AssetGroup.Group;
+				}
 				
 				AssetItem.Group = AssetGroup.Group;
 				AssetGroup.Items[AssetItem.Name] = AssetItem;
@@ -52,32 +64,32 @@ F3dcgAssets.InitItems = function(){
 F3dcgAssets.InitVariants = function(){
 	//Item Addon -- skipping as too difficult
 	//Item Arms
-	var G, A, V;
+	var G, A, I, V;
 	G = F3dcgAssets.AssetGroups.ItemArms;
-	A = G.Items.HempRope;
-	A.Variants = {};
+	A = G.Items.HempRope_ItemArms;
+	A.Variant = {};
 	HempRopeArmsOptions.forEach(VariantItem => {
-		A.Variants[VariantItem.Name] = VariantItem;
-		VariantItem.iconUrl = this.IconUrl(A, VariantItem.Name);
+		A.Variant[VariantItem.Name] = VariantItem;
+		//VariantItem.iconUrl = this.IconUrl(A, VariantItem.Name);
 	});
 	
-	A = G.Items.Chains;
-	A.Variants = {};
+	A = G.Items.Chains_ItemArms;
+	A.Variant = {};
 	ChainsArmsOptions.forEach(VariantItem => {
-		A.Variants[VariantItem.Name] = VariantItem;
-		VariantItem.iconUrl = this.IconUrl(A, VariantItem.Name);
+		A.Variant[VariantItem.Name] = VariantItem;
+		//VariantItem.iconUrl = this.IconUrl(A, VariantItem.Name);
 	});
 	
-	V = this.SimplestVariants(G.Items.BitchSuit, ["Latex", "UnZip"]);
+	V = this.SimplestVariant(G.Items.BitchSuit, ["Latex", "UnZip"]);
 	V.Latex.Property = {Block: ["ItemBreast", "ItemNipples", "ItemNipplesPiercings", "ItemVulva", "ItemVulvaPiercings", "ItemButt"]}
 	
-	V = this.SimplestVariants(G.Items.MermaidSuit, ["Latex", "UnZip"]);
+	V = this.SimplestVariant(G.Items.MermaidSuit, ["Latex", "UnZip"]);
 	V.Latex.Property = {Block: ["ItemBreast", "ItemNipples", "ItemNipplesPiercings", "ItemVulva", "ItemVulvaPiercings", "ItemButt"]}
 	
-	V = this.SimplestVariants(G.Items.FullLatexSuit, ["Latex", "UnZip"]);
+	V = this.SimplestVariant(G.Items.FullLatexSuit, ["Latex", "UnZip"]);
 	V.Latex.Property = {Block: ["ItemBreast", "ItemNipples", "ItemNipplesPiercings", "ItemVulva", "ItemVulvaPiercings", "ItemButt"]}
 	
-	V = this.SimplestVariants(G.Items.DuctTape, ["Arms", "Bottom", "Top", "Full", "Complete"]);
+	V = this.SimplestVariant(G.Items.DuctTape_ItemArms, ["Arms", "Bottom", "Top", "Full", "Complete"]);
 	V.Bottom.Hide = ["Cloth", "ClothLower"];
 	V.Bottom.Block = ["ItemVulva", "ItemButt", "ItemPelvis"];
 	V.Top.Hide = ["Cloth", "ClothLower"];
@@ -85,65 +97,65 @@ F3dcgAssets.InitVariants = function(){
 	V.Full.Hide = ["Cloth", "ClothLower"];
 	V.Full.Block = ["ItemVulva", "ItemButt", "ItemPelvis", "ItemTorso", "ItemBreast", "ItemNipples"];
 	V.Complete.Hide = ["Cloth", "ClothLower"];
-	V.Complete.Block =["ItemVulva", "ItemButt", "ItemPelvis", "ItemTorso", "ItemBreast", "ItemNipples"];
+	V.Complete.Block = ["ItemVulva", "ItemButt", "ItemPelvis", "ItemTorso", "ItemBreast", "ItemNipples"];
 	
-	//this.SimplestVariants(G.Items.StraitJacket, ["Loose", "Normal", "Snug", "Tight"]);//single image for all, not interesting
+	//this.SimplestVariant(G.Items.StraitJacket, ["Loose", "Normal", "Snug", "Tight"]);//single image for all, not interesting
 	
-	V = this.SimplestVariants(G.Items.LeatherStraitJacket, ["Loose", "Normal", "Snug", "Tight"])
+	V = this.SimplestVariant(G.Items.LeatherStraitJacket, ["Loose", "Normal", "Snug", "Tight"])
 	V.Normal.Property = {SetPose:["BackElbowTouch"]}
 	V.Snug.Property = {SetPose:["BackElbowTouch"]}
 	V.Tight.Property = {SetPose:["BackElbowTouch"]}
 	
-	V = this.SimplestVariants(G.Items.LeatherCuffs, ["None", "Wrist", "Elbow", "Both"]);
+	V = this.SimplestVariant(G.Items.LeatherCuffs, ["None", "Wrist", "Elbow", "Both"]);
 	V.Wrist.Property = {SetPose:["BackBoxTie"]};
 	V.Elbow.Property = {SetPose:["BackElbowTouch"]};
 	V.Both.Property = {SetPose:["BackElbowTouch"]};
 	
-	V = this.SimplestVariants(G.Items.OrnateCuffs, ["None", "Wrist", "Elbow", "Both"]);
+	V = this.SimplestVariant(G.Items.OrnateCuffs, ["None", "Wrist", "Elbow", "Both"]);
 	V.Wrist.Property = {SetPose:["BackBoxTie"]};
 	V.Elbow.Property = {SetPose:["BackElbowTouch"]};
 	V.Both.Property = {SetPose:["BackElbowTouch"]};
 	
-	G.Items.SturdyLeatherBelts.SetPose = ["BackElbowTouch"];//Should really be in assets.js
-	this.SimplestVariants(G.Items.SturdyLeatherBelts, ["One", "Two", "Three"]);
+	G.Items.SturdyLeatherBelts_ItemArms.SetPose = ["BackElbowTouch"];//Should really be in assets.js
+	this.SimplestVariant(G.Items.SturdyLeatherBelts_ItemArms, ["One", "Two", "Three"]);
 	
-	V = this.SimplestVariants(G.Items.WristShackles, ["InFront", "Behind"]);
+	V = this.SimplestVariant(G.Items.WristShackles, ["InFront", "Behind"]);
 	V.Behind.Property = {SetPose:["BackCuffs"],Effect:["Block", "Prone"]}
 	
 	//ItemButt
 	G = F3dcgAssets.AssetGroups.ItemButt;
-	V = this.SimplestVariants(G.Items.AnalHook, ["Base", "Chain", "Hair"]);
+	V = this.SimplestVariant(G.Items.AnalHook, ["Base", "Chain", "Hair"]);
 	V.Chain.Property = {Intensity:1,Effect:["Freeze", "Egged"],Difficulty:20};
 	V.Hair.Property = {Intensity:1,Effect:["Freeze", "Egged"],Difficulty:10};
 	
-	V = this.SimplestVariants(G.Items.ButtPlugLock, ["Base", "ChainShort", "ChainLong"]);
+	V = this.SimplestVariant(G.Items.ButtPlugLock, ["Base", "ChainShort", "ChainLong"]);
 	V.ChainShort.Property = {Effect:["Chaste", "Freeze", "ForceKneel"],SetPose:["Kneel"]}
 	V.ChainLong.Property = {Effect:["Chaste", "Tethered"], AllowPose:["Kneel", "Horse", "KneelingSpread"]}
 	
 	//ItemDevices
 	G = F3dcgAssets.AssetGroups.ItemDevices;
-	this.SimplestVariants(G.Items.InflatableBodyBag, ["Light", "Inflated", "Bloated", "Max"]);
-	this.SimplestVariants(G.Items.TeddyBear, ["Bear", "Kitty", "Pony", "Pup", "Fox", "Bunny"]);
+	this.SimplestVariant(G.Items.InflatableBodyBag, ["Light", "Inflated", "Bloated", "Max"]);
+	this.SimplestVariant(G.Items.TeddyBear, ["Bear", "Kitty", "Pony", "Pup", "Fox", "Bunny"]);
 	
 	//ItemEars
 	G = F3dcgAssets.AssetGroups.ItemEars;
-	V = this.SimplestVariants(G.Items.HeadphoneEarPlugs, ["Off","Light","Heavy"]);
+	V = this.SimplestVariant(G.Items.HeadphoneEarPlugs, ["Off","Light","Heavy"]);
 	V.Light.Property = {Effect : ["DeafLight"]};
 	V.Light.Property = {Effect : ["DeafHeavy"]};
 	
 	
 	//ItemFeet
 	G = F3dcgAssets.AssetGroups.ItemFeet;
-	V = this.SimplestVariants(G.Items.Chains, ["Basic","Strict", "Suspension"]);
+	V = this.SimplestVariant(G.Items.Chains, ["Basic","Strict", "Suspension"]);
 	V.Suspension.Prerequisite = ["NotKneeling", "NotMounted", "NotChained", "NotHogtied"];
 	V.Suspension.Property = {SetPose:["Suspension", "LegsClosed"]};
 	
-	V = this.SimplestVariants(G.Items.HempRope, ["Basic","Mermaid", "Suspension"]);
+	V = this.SimplestVariant(G.Items.HempRope, ["Basic","Mermaid", "Suspension"]);
 	V.Suspension.Prerequisite = ["NotKneeling", "NotMounted", "NotChained", "NotHogtied"];
 	V.Suspension.Property = {SetPose:["Suspension", "LegsClosed"]};
 	
 	G.Items.DuctTape.SetPose = ["LegsClosed"];
-	V = this.SimplestVariants(G.Items.DuctTape, ["Feet","HalfFeet", "MostFeet", "CompleteFeet"]);
+	V = this.SimplestVariant(G.Items.DuctTape, ["Feet","HalfFeet", "MostFeet", "CompleteFeet"]);
 	V.HalfFeet.Prerequisite = ["NakedClothLower"];
 	V.HalfFeet.Property = {Hide : ["ClothLower", "Shoes"]};
 	V.MostFeet.Prerequisite = ["NakedClothLower"];
@@ -151,53 +163,55 @@ F3dcgAssets.InitVariants = function(){
 	V.CompleteFeet.Prerequisite = ["NakedClothLower"];
 	V.CompleteFeet.Property = {Hide : ["ClothLower", "Shoes"]};
 	
-	V = this.SimplestVariants(G.Items.LeatherAnkleCuffs, ["None", "Closed"]);
+	V = this.SimplestVariant(G.Items.LeatherAnkleCuffs, ["None", "Closed"]);
 	V.Closed.Property = {SetPose: ["LegsClosed"], Effect:["Prone", "Freeze"]};
 	
-	V = this.SimplestVariants(G.Items.OrnateAnkleCuffs, ["None", "Closed"]);
+	V = this.SimplestVariant(G.Items.OrnateAnkleCuffs, ["None", "Closed"]);
 	V.Closed.Property = {SetPose: ["LegsClosed"], Effect:["Prone", "Freeze"]};
 	
 	G.Items.SturdyLeatherBelts.SetPose = ["LegsClosed"];
-	this.SimplestVariants(G.Items.SturdyLeatherBelts, ["One", "Two", "Three"]);
+	this.SimplestVariant(G.Items.SturdyLeatherBelts, ["One", "Two", "Three"]);
 	
 	//ItemHead
 	G = F3dcgAssets.AssetGroups.ItemHead;
-	V = this.SimplestVariants(G.Items.DuctTape, ["Double", "Wrap", "Mummy"]);
+	V = this.SimplestVariant(G.Items.DuctTape_ItemHead, ["Double", "Wrap", "Mummy"]);
 	V.Double.Property = {Effect:["BlindNormal", "Prone"]};
 	V.Wrap.Property = {Effect:["BlindNormal", "Prone"]};
 	V.Mummy.Property = {Hide:["HairFront", "HairBack"], Effect:["GagNormal", "BlindNormal", "Prone"], Block:["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemEars"]};
 	
 	//ItemLegs
 	G = F3dcgAssets.AssetGroups.ItemLegs;
-	G.Items.DuctTape.SetPose = ["LegsClosed"];
-	V = this.SimplestVariants(G.Items.DuctTape, ["Legs", "HalfLegs", "MostLegs", "CompleteLegs"]);
+	G.Items.DuctTape_ItemLegs.SetPose = ["LegsClosed"];
+	V = this.SimplestVariant(G.Items.DuctTape_ItemLegs, ["Legs", "HalfLegs", "MostLegs", "CompleteLegs"]);
 	V.HalfLegs.Property = {Hide : ["ClothLower"]};
 	V.MostLegs.Property = {Hide : ["ClothLower"]};
 	V.CompleteLegs.Property = {Hide : ["ClothLower"]};
 
-	V = this.SimplestVariants(G.Items.Chains, ["Basic", "Strict"]);
-	V = this.SimplestVariants(G.Items.HempRope, ["Basic", "Mermaid"]);
+	V = this.SimplestVariant(G.Items.Chains_ItemLegs, ["Basic", "Strict"]);
+	V = this.SimplestVariant(G.Items.HempRope_ItemLegs, ["Basic", "Mermaid"]);
 	
-	V = this.SimplestVariants(G.Items.LeatherLegCuffs, ["None", "Closed"]);
+	V = this.SimplestVariant(G.Items.LeatherLegCuffs, ["None", "Closed"]);
 	V.Closed.Property = {SetPose: ["LegsClosed"], Effect:["Prone", "Freeze"]};
 	
-	V = this.SimplestVariants(G.Items.OrnateLegCuffs, ["None", "Closed"]);
+	V = this.SimplestVariant(G.Items.OrnateLegCuffs, ["None", "Closed"]);
 	V.Closed.Property = {SetPose: ["LegsClosed"], Effect:["Prone", "Freeze"]};
 	
-	G.Items.SturdyLeatherBelts.SetPose = ["LegsClosed"];
-	this.SimplestVariants(G.Items.SturdyLeatherBelts, ["One", "Two"]);
+	G.Items.SturdyLeatherBelts_ItemLegs.SetPose = ["LegsClosed"];
+	this.SimplestVariant(G.Items.SturdyLeatherBelts_ItemLegs, ["One", "Two"]);
 	
 	//ItemMouth
 	
 	["ItemMouth", "ItemMouth2", "ItemMouth3"].forEach(GroupName =>{
 		G = F3dcgAssets.AssetGroups[GroupName];
-		V = this.SimplestVariants(G.Items.ClothGag, ["Small", "Cleave", "OTM", "OTN"]);
+		I = G.Items["ClothGag"] ? G.Items["ClothGag"] : G.Items["ClothGag_" + GroupName];
+		V = this.SimplestVariant(I, ["Small", "Cleave", "OTM", "OTN"]);
 		V.Small.Property = {Effect:["GagVeryLight"]};
 		V.Cleave.Property = {Effect:["GagLight"]};
 		V.OTM.Property = {Effect:["GagEasy"]};
 		V.OTN.Property = {Effect:["GagEasy"]};
 		
-		V = this.SimplestVariants(G.Items.DuctTape, ["Single", "Crossed", "Full", "Double", "Cover"]);
+		I = G.Items["DuctTape"] ? G.Items["DuctTape"] : G.Items["DuctTape_" + GroupName]
+		V = this.SimplestVariant(I, ["Single", "Crossed", "Full", "Double", "Cover"]);
 		V.Single.Property = {Effect:["GagVeryLight"]};
 		V.Crossed.Property = {Effect:["GagVeryLight"]};
 		V.Full.Property = {Effect:["GagLight"]};
@@ -206,37 +220,39 @@ F3dcgAssets.InitVariants = function(){
 	});
 	
 	/* Dropping this as layer logic is too complex
-	V = this.SimplestVariants(G.Items.DildoPlugGag, ["Open", "Plug"]);
+	V = this.SimplestVariant(G.Items.DildoPlugGag, ["Open", "Plug"]);
 	V.Open.Property = {Effect:["GagVeryLight"]};
 	V.Plug.Property = {Effect:["GagVeryHeavy"]};*/
 	
 	//ItemTorso
 	G = F3dcgAssets.AssetGroups.ItemTorso;
 	A = G.Items.HempRopeHarness;
-	A.Variants = {};
+	A.Variant = {};
 	HempRopeTorsoOptions.forEach(VariantItem => {
-		A.Variants[VariantItem.Name] = VariantItem;
-		VariantItem.iconUrl = this.IconUrl(A, VariantItem.Name);
+		A.Variant[VariantItem.Name] = VariantItem;
+		//VariantItem.iconUrl = this.IconUrl(A, VariantItem.Name);
 	});
 	
 	A = G.Items.NylonRopeHarness;
-	A.Variants = {};
+	A.Variant = {};
 	HempRopeTorsoOptions.forEach(VariantItem => {
 		if(! ["Crotch", "Diamond", "Harness"].includes(VariantItem.Name)) return;
-		A.Variants[VariantItem.Name] = VariantItem;
-		VariantItem.iconUrl = this.IconUrl(A, VariantItem.Name);
+		A.Variant[VariantItem.Name] = VariantItem;
+		//VariantItem.iconUrl = this.IconUrl(A, VariantItem.Name);
 	});
 }
 	
-F3dcgAssets.SimplestVariants = function(A, variantNames){
-	A.Variants = {};
-	variantNames.forEach(variantName => {A.Variants[variantName] = {Name:variantName, iconUrl:this.IconUrl(A, variantName)}});
-	return A.Variants;
+F3dcgAssets.SimplestVariant = function(A, variantNames){
+	A.Variant = {};//single to follow the conventions
+	//variantNames.forEach(variantName => {A.Variant[variantName] = {Name:variantName, iconUrl:this.IconUrl(A, variantName)}});
+	variantNames.forEach(variantName => {A.Variant[variantName] = {Name:variantName}});
+	return A.Variant;
 }
 
+/*
 F3dcgAssets.IconUrl = function(A, VariantItemName){
 	return F3dcgAssets.F3DCG_TYPE_ICON_BASE + A.Group + "/" + A.Name + "/" + VariantItemName + ".png";
-}
+}*/
 	
 F3dcgAssets.InitGroupTypes = function(){		
 	for(var i = 0; i < AssetFemale3DCG.length; i++){

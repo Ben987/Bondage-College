@@ -37,42 +37,49 @@ F3dcgAssets.ValidateUpdateAppearance = function(appearanceUpdate, playerTarget, 
 	var bondageToyUpdated = false;
 
 	for(var groupName in appearanceUpdate){
-		var itemName = appearanceUpdate[groupName].name;
 		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
 		if(! AssetGroup) throw "GroupNotFound " + groupName;
-		var AssetItem = AssetGroup.Items[itemName];
-		if(! AssetItem) throw "ItemNotFound " + itemName;
 		
-		var posesEffectsBlocks = F3dcgAssets.BuildPosesEffectsBlocks(playerTarget.appearance[F3dcgAssets.BONDAGE_TOY]);
+		var posesEffectsBlocks, item, AssetItem;
+		if(appearanceUpdate[groupName]){
+			var item = appearanceUpdate[groupName];
+			var itemName = item.name;
+			AssetItem = AssetGroup.Items[itemName];
+			if(! AssetItem) throw "ItemNotFound " + itemName;
+		}
 		
 		switch(AssetGroup.type){//the suit type is never propagated here,itemGroupTypes, or lock change
 			case F3dcgAssets.EXPRESSION:	//validate expression and body  -- self only
-				
+			
 			break;
 			case F3dcgAssets.BODY:		//validate expression and body  -- self only
-				
-			break;
-			case F3dcgAssets.CLOTH:		//Must own, or free.  if not self, subject to permission.
 			
 			break;
 			case F3dcgAssets.ACCESSORY:	//Must own.  If not self, subject to permission.
 			
 			break;
+			
+			case F3dcgAssets.CLOTH:		//Must own, or free.  if not self, subject to permission.
+				if(null == posesEffectsBlocks) posesEffectsBlocks = F3dcgAssets.BuildPosesEffectsBlocks(playerTarget.appearance[F3dcgAssets.BONDAGE_TOY]);
+				if(posesEffectsBlocks.blocks.includes(groupName)) throw "Blocked";
+			break;
+			
 			case F3dcgAssets.BONDAGE_TOY: //Must own.  If not self, subject to permission.  If slef, check self bondage.  Must pass the main validation
+				if(null == posesEffectsBlocks) posesEffectsBlocks = F3dcgAssets.BuildPosesEffectsBlocks(playerTarget.appearance[F3dcgAssets.BONDAGE_TOY]);
 				if(bondageToyUpdated) throw "BondageToyLimitExceeded";
 				if(posesEffectsBlocks.blocks.includes(groupName)) throw "Blocked";
 				
-				if(AssetItem.Prerequisite){
-					var prereqs = AssetItem.Prerequisite.forEach ? AssetItem.Prerequisite : [AssetItem.Prerequisite];
-					
-					prereqs.forEach(prereq => {	
-						var errorReason = F3dcgAssetsInventory.ValidatePrerequisite(prereq, appearance, posesEffectsBlocks);
+				if(AssetItem && AssetItem.Variant && ! AssetItem.Variant[item.variant]) throw "VariantNotFound " + item.variant;
+				
+				if(AssetItem && AssetItem.Prerequisite){
+					for(var i = 0; i < AssetItem.Prerequisite.length; i++){
+						var errorReason = F3dcgAssets.ValidatePrerequisite(AssetItem.Prerequisite[i], playerTarget.appearance, posesEffectsBlocks);
 						if(errorReason.length > 0) throw errorReason;
-					});
+					}
 				}			
 			break;
 			default:
-				throw "UnahndledGroupType " + AssetGroup.type;
+				throw "UnhandledGroupType " + AssetGroup.type;
 		}
 	}
 	return [];
@@ -145,16 +152,20 @@ F3dcgAssets.ValidatePrerequisite = function(prerequisite, appearance, posesEffec
 		
 		case "GagUnique":
 			var appliedGag = b.ItemMouth ?  F3dcgAssets.AssetGroups.ItemMouth.Items[b.ItemMouth.itemName] : null;
-			if(appliedGag && appliedGag.Prerequisite == "GagFlat") return "CannotBeUsedOverFlatGag"
-			if(appliedGag && appliedGag.Prerequisite == "GagCorset") return "CannotBeUsedOverFlatGag"
+			if(appliedGag && appliedGag.Prerequisite.includes("GagFlat")) return "CannotBeUsedOverFlatGag"
+			if(appliedGag && appliedGag.Prerequisite.includes("GagCorset")) return "CannotBeUsedOverFlatGag"
 			
 			var appliedGag2 = b.ItemMouth ?  F3dcgAssets.AssetGroups.ItemMouth2.Items[b.ItemMouth.itemName] : null;
-			if(appliedGag2 && appliedGag2.Prerequisite == "GagFlat") return "CannotBeUsedOverFlatGag"
-			if(appliedGag2 && appliedGag2.Prerequisite == "GagCorset") return "CannotBeUsedOverFlatGag"
+			if(appliedGag2 && appliedGag2.Prerequisite.includes("GagFlat")) return "CannotBeUsedOverFlatGag"
+			if(appliedGag2 && appliedGag2.Prerequisite.includes("GagCorset")) return "CannotBeUsedOverFlatGag"
 			
 			return "";
+		
 		case "AccessVulvaSuitZip":
 		case "GagFlat":
+		case "GagCorset":
+		case "NoItemArms":
+		case "NoHorse":
 			return "";//TODO
 		
 		default: 
