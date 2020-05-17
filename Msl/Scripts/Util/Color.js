@@ -6,7 +6,8 @@ Util.Color = {
 	,Instance :function(type, data){
 		switch(type){
 			case Util.Color.TYPE_HEXSTRING:
-				[this.red, this.green, this.blue] = Util.Color.HexStringToRgb(data);
+				//[this.red, this.green, this.blue] = Util.Color.HexStringToRgb(data);
+				[this.red, this.green, this.blue] = Util.Color.ColorNameOrHexStringToRgb(data);
 				[this.hue, this.saturation, this.lightness] = Util.Color.RgbToHsl(this.red, this.green, this.blue);	
 			break;
 			case Util.Color.TYPE_RGB:

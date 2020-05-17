@@ -229,14 +229,14 @@ var LocationFocusView = {
 	
 	,OnItemClick(itemName){
 		this.selectedItemName = itemName;
-		var validationErrors = this.updateDelegate.Add(this.selectedItemGroupTypeName, this.selectedItemGroupName, this.selectedItemName);
+		var validationErrors = this.updateDelegate.AddItem(this.selectedItemName);
 		this.ShowErrorsOrPlayer(validationErrors);		
 		if(! validationErrors.length) this.UpdateItemGroupIconImage(this.selectedItemGroupTypeName, this.selectedItemGroupName);
 	}
 	
 	
 	,UpdateItemGroupIconImage(itemGroupTypeName, itemGroupName){
-		var wornItem = this.updateDelegate.GetCurrentWornItem(itemGroupName);
+		var wornItem //= this.updateDelegate.GetCurrentWornItem(itemGroupName);
 		if(wornItem){
 			//current item will be displayed elsewhere
 			//var itemGroupIcon = Util.GetFirstChildNodeByName(this.itemGroupSelectionContainer, itemGroupName);		
@@ -247,23 +247,23 @@ var LocationFocusView = {
 	
 	
 	,UpdateControlAndActionButtons(){
-		var wornItem = this.updateDelegate.appearance[this.selectedItemGroupTypeName][this.selectedItemGroupName];
+		var wornItem = this.updateDelegate.GetCurrentWornItem(this.selectedItemGroupName);
+		this.selectedItemName = wornItem.name;
 		
 		var buttonsToShow = [];
 		for(var action in this.itemActionViews)
 			Util.GetFirstChildNodeWithAttribute(this.itemActionButtonsContainer, "alt", action).style.display="none";
 		
 		if(wornItem){
-			var inventoryItem = this.updateDelegate.items[this.selectedItemGroupTypeName][this.selectedItemGroupName].find(inventoryItem => inventoryItem.itemName == wornItem.name);
-			
-			if(! inventoryItem) inventoryItem = {};//to avoid null reference
-			
-			if(wornItem.colorize){
+			//var inventoryItem = this.updateDelegate.items[this.selectedItemGroupTypeName][this.selectedItemGroupName].find(inventoryItem => inventoryItem.itemName == wornItem.name);
+			var inventoryItem = this.updateDelegate.GetInventoryItem(this.selectedItemGroupName, wornItem.name);
+
+			if(inventoryItem.colorize){
 				buttonsToShow.push("Color");
-				if(wornItem.color) this.itemActionViews.Color.SetColor(wornItem.color);	
+				if(wornItem.color) this.itemActionViews.Color.SetHexValue(wornItem.color);	
 			}
 			
-			if(wornItem.lock || wornItem.allowedLocks?.length > 0){
+			if(wornItem.lock || inventoryItem.allowedLocks?.length > 0){
 				buttonsToShow.push("Lock");
 				this.itemActionViews.Lock.SetItem(wornItem, inventoryItem, this.updateDelegate.inventory.locks, this.updateDelegate.inventory.keys);
 			}
@@ -302,10 +302,8 @@ var LocationFocusView = {
 	,ItemActionCallbackColor(color){
 		if(!color || ! LocationFocusView.selectedItemGroupName || ! LocationFocusView.figureContainer) return;
 		
-		var appearanceItemWorn = LocationFocusView.updateDelegate.appearance.items[LocationFocusView.selectedItemGroupName];
-		var appearanceItemCopy = Util.CloneRecursive(appearanceItemWorn);
-		appearanceItemCopy.color = color;
-		LocationFocusView.ShowErrorsOrPlayer(LocationFocusView.updateDelegate.Add(appearanceItemCopy));
+		var errors = LocationFocusView.updateDelegate.AddColor(LocationFocusView.selectedItemName, color);
+		LocationFocusView.ShowErrorsOrPlayer(errors);
 	}
 	
 	
@@ -360,14 +358,11 @@ var LocationFocusView = {
 	}
 	
 	,ItemActionCallbackVariant(itemVariantName){
-		var t = LocationFocusView.selectedItemGroupTypeName, g = LocationFocusView.selectedItemGroupName;
-		var wornItem = LocationFocusView.updateDelegate.appearance[t][g];
-		
-		console.log(t + " " + g);
+		var wornItem = LocationFocusView.updateDelegate.GetCurrentWornItem(LocationFocusView.selectedItemGroupName);
 		
 		if(itemVariantName == wornItem.variant) return;
 		
-		var validationErrors = LocationFocusView.updateDelegate.Add(t, g, wornItem.name, itemVariantName);
+		var validationErrors = LocationFocusView.updateDelegate.AddVariant(LocationFocusView.selectedItemName, itemVariantName);
 		LocationFocusView.ShowErrorsOrPlayer(validationErrors)
 	}
 	

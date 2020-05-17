@@ -82,9 +82,8 @@ var F3dcgAssetsInventory = {
 		}
 		
 		//Subject to validation
-		
 		if(AssetItem.Variant){			
-			inventoryItem.variants = {};
+			inventoryItem.variants = {colorize:true};
 			for(var variantName in AssetItem.Variant){
 				var Variant = AssetItem.Variant[variantName];
 				var variant = {name: Variant.Name, iconUrl : Variant.iconUrl, validation:[]}
@@ -114,7 +113,7 @@ var F3dcgAssetsInventory = {
 		var iconUrl = F3dcgAssets.F3DCG_ASSET_BASE + AssetItem.Group + "/Preview/" + AssetItem.Name + ".png";
 		
 		if(! applicableItems[F3dcgAssets.ACCESSORY][groupName]) applicableItems[F3dcgAssets.ACCESSORY][groupName] = [{itemName:F3dcgAssetsInventory.NONE}];		
-		applicableItems[F3dcgAssets.ACCESSORY][groupName].push({itemName:AssetItem.Name, iconUrl: iconUrl});
+		applicableItems[F3dcgAssets.ACCESSORY][groupName].push({itemName:AssetItem.Name, iconUrl: iconUrl, colorize:true});
 	}
 	
 	,AddClothItem(applicableItems, itemName){		
@@ -132,7 +131,7 @@ var F3dcgAssetsInventory = {
 		}
 		
 		if(! applicableItems[F3dcgAssets.CLOTH][groupName]) applicableItems[F3dcgAssets.CLOTH][groupName] = [{itemName:F3dcgAssetsInventory.NONE}];		
-		applicableItems[F3dcgAssets.CLOTH][groupName].push({itemName:AssetItem.Name, iconUrl: iconUrl});
+		applicableItems[F3dcgAssets.CLOTH][groupName].push({itemName:AssetItem.Name, iconUrl: iconUrl, colorize:true});
 	}	
 }	
 	/*

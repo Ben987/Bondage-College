@@ -237,6 +237,7 @@ var F3dcgAssetsRender = {
 			renderItem.layers.push({colorize:false, url:F3dcgAssets.F3DCG_ASSET_BASE + "BodyLower/" + poseUrlPart + frame.lowerSize + "_" + frame.color + ".png"});
 			renderItems.push(renderItem);
 		}
+		
 		if(! appearanceItemEffects.itemGroupsToHideByItem.includes("Hands")){
 			var renderItem = this.InitRenderItem(F3dcgAssets.AssetGroups.Hands);
 			var poseUrlPart = this.GetPoseUrlPart(F3dcgAssets.AssetGroups.Hands, null, appearanceItemEffects.poses);

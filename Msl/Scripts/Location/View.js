@@ -117,18 +117,15 @@ var LocationView = {
 				,position:"absolute"
 		}});
 		
-		//for(let groupName in render.items){
 		render.items.forEach(renderItem => {
-			//let renderItem = render.items[groupName];
-			//let renderItem = render.items[groupName];
 			var cssStyles = {left:(renderItem.left*scaleFactor)+"%",top:(renderItem.top*scaleFactor/2)+"%",visibility:"hidden",position:"absolute"}
 			
 			renderItem.layers.forEach(renderItemLayer => {
 				var cS = Util.CloneRecursive(cssStyles);
 				Util.CreateImageElement(renderItemLayer.url, spotDiv.figure, cS, scaleFactor, scaleFactor/2
 					,(image) => {
-						//if(renderItemLayer.colorize && renderItem.color)
-							//Util.ColorizeImage(image, renderItem.color, renderItem.fullAlpha);
+						if(renderItemLayer.colorize && renderItem.color)
+							Util.ColorizeImage(image, renderItem.color, renderItem.fullAlpha);
 							
 						if(renderItemLayer.blinking)
 							image.classList.add("blinking");

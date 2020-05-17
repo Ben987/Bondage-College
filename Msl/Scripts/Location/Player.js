@@ -50,24 +50,29 @@ var LocationPlayerUpdate = function(player){
 	this.items = F3dcgAssetsInventory.BuildPlayerApplicableItems(MainController.playerAccount, player);
 	
 	//this.clothOrAccessoryUpdateLimit = 3;
-	this.clothOrAccessoryUpdateLimit = 100;//unlimited
+	//this.clothOrAccessoryUpdateLimit = 100;//unlimited
 	this.updateStack = [];
 	
 	this.updateRestraint = null;
 	
+	this.GetInventoryItem = function(groupName, itemName){
+		return this.items[F3dcgAssets.AssetGroups[groupName].type][groupName].find(inventoryItem => inventoryItem.itemName == itemName);
+	}
 	
-	this.GetCurrentWornItem = function(itemGroupName){
-		var AssetGroup = F3dcgAssets.AssetGroups[itemGroupName]
+	this.GetCurrentWornItem = function(groupName){
+		var AssetGroup = F3dcgAssets.AssetGroups[groupName], item;
 		switch(AssetGroup.type){
 			case F3dcgAssets.CLOTH:
 			case F3dcgAssets.ACCESSORY:
 			case F3dcgAssets.EXPRESSION:
 			case F3dcgAssets.BODY:
 			case F3dcgAssets.BONDAGE_TOY:
-				return this.appearance[AssetGroup.type][itemGroupName];
+				item = this.appearance[AssetGroup.type][groupName];
+			break;
 			default:
-				throw "ItemGroupNotDefined " + itemGroupName;
+				throw "ItemGroupNotDefined " + groupName;
 		}
+		return item;
 	}
 	
 	
@@ -88,37 +93,47 @@ var LocationPlayerUpdate = function(player){
 	}
 	
 	
-	this.Add = function(itemGroupTypeName, itemGroupName, itemName, variantName){
-		switch(itemGroupTypeName){
+	this.AddColor = function(itemName, color){
+		return this.AddItem(itemName, null, color);
+	}
+	
+	
+	this.AddVariant = function(itemName, variantName){
+		return this.AddItem(itemName, variantName);
+	}
+	
+	this.AddItem = function(itemName, variantName, color){
+		var groupName = F3dcgAssets.ItemNameToGroupNameMap[itemName];
+		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
+		var oldItem = this.appearance[AssetGroup.type][groupName];		
+		var colorHexString = color ? color.ToHexString() : oldItem?.color;
+		
+		switch(AssetGroup.type){
 			case F3dcgAssets.CLOTH:
-				var oldItem = this.appearance[itemGroupTypeName][itemGroupName];
-				var newItem = itemName == F3dcgAssetsInventory.NONE ? null : F3dcgAssets.BuildClothAppearanceItem(itemName, oldItem?.color);
-				this.appearance[itemGroupTypeName][itemGroupName] = newItem;
-				this.updateStack.push({type:itemGroupTypeName, itemGroupName: itemGroupName, item:newItem});
+				var newItem = itemName == F3dcgAssetsInventory.NONE ? null : F3dcgAssets.BuildClothAppearanceItem(itemName, colorHexString);
+				this.appearance[AssetGroup.type][groupName] = newItem;
+				this.updateStack.push({type:AssetGroup.type, groupName:groupName, item:newItem});
 			break;
 			case F3dcgAssets.ACCESSORY:
-				var oldItem = this.appearance[itemGroupTypeName][itemGroupName];
-				var newItem = itemName == F3dcgAssetsInventory.NONE ? null : F3dcgAssets.BuildAccessoryAppearanceItem(itemName, oldItem?.color);
-				this.appearance[itemGroupTypeName][itemGroupName] = newItem;
-				this.updateStack.push({type:itemGroupTypeName, itemGroupName: itemGroupName, item:newItem});			
+				var newItem = itemName == F3dcgAssetsInventory.NONE ? null : F3dcgAssets.BuildAccessoryAppearanceItem(itemName, colorHexString);
+				this.appearance[AssetGroup.type][groupName] = newItem;
+				this.updateStack.push({type:AssetGroup.type, groupName:groupName, item:newItem});			
 			break;
 			case F3dcgAssets.EXPRESSION:
-				var oldItem = this.appearance[itemGroupTypeName][itemGroupName];
 				var newItem = F3dcgAssets.BuildExpressionAppearanceItem(itemName);
-				this.appearance[itemGroupTypeName][itemGroupName] = newItem;
-				this.updateStack.push({type:itemGroupTypeName, itemGroupName:itemGroupName, item:newItem});
+				this.appearance[AssetGroup.type][groupName] = newItem;
+				this.updateStack.push({type:AssetGroup.type, groupName:groupName, item:newItem});
 			break;
 			case F3dcgAssets.BONDAGE_TOY:
-				var oldItem = this.appearance[itemGroupTypeName][itemGroupName];
 				//if(oldItem == 
 				if(this.updateRestraint) return ["OnlyOneBondageToyAtTime"];
 				this.updateRestraint = true;
-				var newItem = itemName == F3dcgAssetsInventory.NONE ? null : F3dcgAssets.BuildBondageToyAppearanceItem(itemName, oldItem?.color, variantName);
-				this.appearance[itemGroupTypeName][itemGroupName] = newItem;
-				this.updateStack.push({type:itemGroupTypeName, itemGroupName: itemGroupName, item:newItem});				
+				var newItem = itemName == F3dcgAssetsInventory.NONE ? null : F3dcgAssets.BuildBondageToyAppearanceItem(itemName, colorHexString);
+				this.appearance[AssetGroup.type][groupName] = newItem;
+				this.updateStack.push({type:AssetGroup.type, groupName:groupName, item:newItem});				
 			break;
 			default:
-				return [itemGroupTypeName + " not supported"];
+				return [AssetGroup.type + " not supported"];
 		}
 		
 		this.render = F3dcgAssetsRender.BuildPlayerRender(this.appearance, player.currentPose);
@@ -137,13 +152,13 @@ var LocationPlayerUpdate = function(player){
 				this.updateRestraint = false; //no break
 			case F3dcgAssets.CLOTH:
 			case F3dcgAssets.ACCESSORY:
-				var itemPrev = this.GetMostRecentUpdateForGroup(updateToUndo.itemGroupName);			
-				var item = itemPrev ? itemPrev.item : this.player.appearance[updateToUndo.type][updateToUndo.itemGroupName];
-				this.appearance[updateToUndo.type][updateToUndo.itemGroupName] = item;				
+				var itemPrev = this.GetMostRecentUpdateForGroup(updateToUndo.groupName);			
+				var item = itemPrev ? itemPrev.item : this.player.appearance[updateToUndo.type][updateToUndo.groupName];
+				this.appearance[updateToUndo.type][updateToUndo.groupName] = item;				
 			case F3dcgAssets.EXPRESSION:				
-				var itemPrev = this.GetMostRecentUpdateForGroup(updateToUndo.itemGroupName);
-				var item = itemPrev ? itemPrev.item : this.player.appearance[updateToUndo.type][updateToUndo.itemGroupName];
-				this.appearance[updateToUndo.type][updateToUndo.itemGroupName] = item;						
+				var itemPrev = this.GetMostRecentUpdateForGroup(updateToUndo.groupName);
+				var item = itemPrev ? itemPrev.item : this.player.appearance[updateToUndo.type][updateToUndo.groupName];
+				this.appearance[updateToUndo.type][updateToUndo.groupName] = item;						
 			break;
 			case "suit":
 				for(var groupType in F3dcgAssets.SuitSelfTypeGroups){
@@ -185,7 +200,7 @@ var LocationPlayerUpdate = function(player){
 				case F3dcgAssets.ACCESSORY:
 				case F3dcgAssets.EXPRESSION:
 				case F3dcgAssets.BONDAGE_TOY:
-					updatedGroups[update.itemGroupName] = update.item;
+					updatedGroups[update.groupName] = update.item;
 				break;
 				case "suit":
 					console.log(update.appearance);
@@ -214,16 +229,16 @@ var LocationPlayerUpdate = function(player){
 	}
 	
 	
-	this.GetMostRecentUpdateForGroup = function(itemGroupName){
+	this.GetMostRecentUpdateForGroup = function(groupName){
 		var mostRecent;
 		this.updateStack.forEach(update => {
 			if(update.type != "suit"){
-				if(update.itemGroupName == itemGroupName)
+				if(update.groupName == groupName)
 					mostRecent = update;
 			}else{
 				for(var groupType in F3dcgAssets.SuitSelfTypeGroups){
 					F3dcgAssets.SuitSelfTypeGroups[groupType].forEach(groupName => {
-						if(itemGroupName == groupName){
+						if(groupName == groupName){
 							mostRecent = update.appearance[groupType][groupName];
 						}
 					});
