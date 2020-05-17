@@ -1591,6 +1591,7 @@ var AssetFemale3DCG = [
 				]
 			},
 			{ Name: "SlenderSteelCollar", Value: 30, Difficulty: 50, Time: 5, AllowLock: true },
+			{ Name: "HeartLinkChoker", Value: 15, Difficulty: 50, Time: 5, AllowLock: true },
 			AssetSpankingToys
 		],
 		Color: ["Default"]
