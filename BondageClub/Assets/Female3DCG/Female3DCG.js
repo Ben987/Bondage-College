@@ -2153,6 +2153,8 @@ var AssetFemale3DCG = [
 			{ Name: "ThighHighLatexHeels", Value: -1, Time: 10, RemoveTime: 15, AllowLock: true, BuyGroup: "ThighHighLatexHeels", Hide: ["Shoes"], Alpha: [[75, 850, 140, 200], [290, 850, 140, 200]], Height: 30 },
 			{ Name: "LockingHeels", Value: 40, Difficulty: 6, Time: 10, RemoveTime: 15, AllowLock: true, Hide: ["Shoes"], Height: 15},
 			{ Name: "LockingHeels2", Value: 40, Difficulty: 7, Time: 10, RemoveTime: 15, AllowLock: true, Hide: ["Shoes"], Height: 15},
+			{ Name: "LockingShoes1", Value: 20, Difficulty: 5, Time: 5, RemoveTime: 8, AllowLock: true, Hide: ["Shoes"], Height: 6},
+			{ Name: "LockingShoes2", Value: 30, Difficulty: 6, Time: 5, RemoveTime: 8, AllowLock: true, Hide: ["Shoes"], Height: 6},
 			AssetSpankingToys
 		],
 		Color: ["Default"]
