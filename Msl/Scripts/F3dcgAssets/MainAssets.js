@@ -11,7 +11,11 @@ F3dcgAssets.BONDAGE_TOY = "bondageToys" 	//have forced poses, effects, blocks
 	
 F3dcgAssets.UNIMPLEMENTED_ITEMS = ["SpankingToys", "DildoPlugGag", "PlugGag"
 		,"CollarNameTag", "CollarNameTagLivestock", "CollarNameTagLover"
-		,"CollarNameTagOval", "CollarNameTagPet", "CollarShockUnit"]
+		,"CollarNameTagOval", "CollarNameTagPet", "CollarShockUnit"
+		,"VibratingWand"
+		,"MetalCuffsKey", "MetalCuffs"//not worth the effort
+		
+		]
 	
 F3dcgAssets.POSE_None = "None"
 F3dcgAssets.POSE_KNEELEING = "Kneel"
@@ -71,30 +75,25 @@ F3dcgAssets.Init = function(){
 	
 	
 F3dcgAssets.UpdateAppearance = function(appearanceUpdate, playerTarget, playerOrigin){		
-	var validationErrors = this.ValidateUpdateAppearance(appearanceUpdate, playerTarget, playerOrigin);
+	this.ValidateUpdateAppearanceOrThrow(appearanceUpdate, playerTarget, playerOrigin);
 	
-	if(validationErrors.length == 0){
-		for(var groupName in appearanceUpdate){
-			var appearanceItem = appearanceUpdate[groupName];
-			var AssetGroup = F3dcgAssets.AssetGroups[groupName];
-			
-			if(!AssetGroup)  console.log(groupName);
-			
-			switch(AssetGroup.type){
-				case F3dcgAssets.CLOTH:
-				case F3dcgAssets.ACCESSORY:
-				case F3dcgAssets.EXPRESSION:
-				case F3dcgAssets.BODY:
-				case F3dcgAssets.BONDAGE_TOY:
-					playerTarget.appearance[AssetGroup.type][groupName] = appearanceItem;
-				break;				
-				default:
-					console.log("UnimplementedType " + groupName);
-			}
+	for(var groupName in appearanceUpdate){
+		var appearanceItem = appearanceUpdate[groupName];
+		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
+		
+		if(!AssetGroup)  throw groupName;
+		
+		switch(AssetGroup.type){
+			case F3dcgAssets.CLOTH:
+			case F3dcgAssets.ACCESSORY:
+			case F3dcgAssets.EXPRESSION:
+			case F3dcgAssets.BODY:
+			case F3dcgAssets.BONDAGE_TOY:
+				playerTarget.appearance[AssetGroup.type][groupName] = appearanceItem;
+			break;				
+			default:
+				console.log("UnimplementedType " + groupName);
 		}
-	}else{
-		throw validationErrors;//we should not get here unless a client forges an invalid request.
-		//server side, exception will propagate to the response and handled there.
 	}
 }
 

@@ -33,10 +33,20 @@ F3dcgAssets.BuildPosesEffectsBlocks = function(bondageToyItems){
 
 
 //All validation checks should have been performed before we arrive here, hence throwing exception
-F3dcgAssets.ValidateUpdateAppearance = function(appearanceUpdate, playerTarget, playerOrigin){
+//A single validaton error invalidates the whole batch.
+//1.  Check that the asset item exists
+//2.  if self, allow Body, Accessory, Expression, otherwise do not permit.
+//3.  for all item group types other than Expression and Body, check that item is owned by either player.
+//4.  if not self, check a. player not blacklisted or ghostlisted, b. origin player either whitelisted or meets the permission setting requirement for the item group type
+//5.  clothes and bondage toys are subject to additional validation rules.
+//6.  TODO sanitize input.
+//7.  TODO:  playerOrigin is not tied and has other prerequisites
+F3dcgAssets.ValidateUpdateAppearanceOrThrow = function(appearanceUpdate, playerTarget, playerOrigin){
 	var bondageToyUpdated = false;
-
+	
+	//Individual item checks
 	for(var groupName in appearanceUpdate){
+		//Validation step 1, check asset item exists
 		var AssetGroup = F3dcgAssets.AssetGroups[groupName];
 		if(! AssetGroup) throw "GroupNotFound " + groupName;
 		
@@ -48,26 +58,32 @@ F3dcgAssets.ValidateUpdateAppearance = function(appearanceUpdate, playerTarget, 
 			if(! AssetItem) throw "ItemNotFound " + itemName;
 		}
 		
-		switch(AssetGroup.type){//the suit type is never propagated here,itemGroupTypes, or lock change
-			case F3dcgAssets.EXPRESSION:	//validate expression and body  -- self only
-			
+		//Check that item is owned and not blacklisted
+		F3dcgAssets.ValidateItemIsOwned(item, AssetGroup.type, playerTarget, playerOrigin);
+		F3dcgAssets.ValidateItemNotBlacklisted(item, playerTarget);
+		
+		switch(AssetGroup.type){//the suit type is never propagated here
+			case F3dcgAssets.EXPRESSION:
+				if(playerOrigin) throw "SelfOnly " + AssetGroup.type;
 			break;
-			case F3dcgAssets.BODY:		//validate expression and body  -- self only
-			
+			case F3dcgAssets.BODY:
+				if(playerOrigin) throw "SelfOnly " + AssetGroup.type;
 			break;
-			case F3dcgAssets.ACCESSORY:	//Must own.  If not self, subject to permission.
-			
+			case F3dcgAssets.ACCESSORY:
+				if(playerOrigin) throw "SelfOnly " + AssetGroup.type;
 			break;
 			
-			case F3dcgAssets.CLOTH:		//Must own, or free.  if not self, subject to permission.
+			case F3dcgAssets.CLOTH:
+				if(! F3dcgAssets.DoesPlayerHavePermission(F3dcgAssets.CLOTH, playerTarget, playerOrigin)) throw "PermissionDenied " + originPlayer.id;
 				if(null == posesEffectsBlocks) posesEffectsBlocks = F3dcgAssets.BuildPosesEffectsBlocks(playerTarget.appearance[F3dcgAssets.BONDAGE_TOY]);
-				if(posesEffectsBlocks.blocks.includes(groupName)) throw "Blocked";
+				if(posesEffectsBlocks.blocks.includes(groupName)) throw "ItemGroupBlocked " + groupName;
 			break;
 			
 			case F3dcgAssets.BONDAGE_TOY: //Must own.  If not self, subject to permission.  If slef, check self bondage.  Must pass the main validation
+				if(! F3dcgAssets.DoesPlayerHavePermission(F3dcgAsset.CLOTH, playerTarget, playerOrigin)) throw "PermissionDenied " + originPlayer.id;			
 				if(null == posesEffectsBlocks) posesEffectsBlocks = F3dcgAssets.BuildPosesEffectsBlocks(playerTarget.appearance[F3dcgAssets.BONDAGE_TOY]);
 				if(bondageToyUpdated) throw "BondageToyLimitExceeded";
-				if(posesEffectsBlocks.blocks.includes(groupName)) throw "Blocked";
+				if(posesEffectsBlocks.blocks.includes(groupName)) throw "ItemGroupBlocked " + groupName;
 				
 				if(AssetItem && AssetItem.Variant && ! AssetItem.Variant[item.variant]) throw "VariantNotFound " + item.variant;
 				
@@ -76,7 +92,7 @@ F3dcgAssets.ValidateUpdateAppearance = function(appearanceUpdate, playerTarget, 
 						var errorReason = F3dcgAssets.ValidatePrerequisite(AssetItem.Prerequisite[i], playerTarget.appearance, posesEffectsBlocks);
 						if(errorReason.length > 0) throw errorReason;
 					}
-				}			
+				}
 			break;
 			default:
 				throw "UnhandledGroupType " + AssetGroup.type;
@@ -85,6 +101,49 @@ F3dcgAssets.ValidateUpdateAppearance = function(appearanceUpdate, playerTarget, 
 	return [];
 }
 
+
+F3dcgAssets.IsPlayerFriendListed = function(playerTarget, playerOrigin){return this.IsPlayerListed(playerTarget, playerOrigin,"friend");}
+F3dcgAssets.IsPlayerBlackListed = function(playerTarget, playerOrigin){return this.IsPlayerListed(playerTarget, playerOrigin,"black");}
+F3dcgAssets.IsPlayerWhiteListed = function(playerTarget, playerOrigin){return this.IsPlayerListed(playerTarget, playerOrigin,"white");}
+F3dcgAssets.IsPlayerGhostListed = function(playerTarget, playerOrigin){return this.IsPlayerListed(playerTarget, playerOrigin,"ghost");}
+F3dcgAssets.IsPlayerListed = function(playerTarget, playerOrigin, listType){
+	if(!playerOrigin) return false;
+	//if(typeof(this[key]) == "boolean") return this[key];
+	return playerTarget.settings.permissions.playerLists[listType].contains(this.playerOrigin.id);
+	//this[key] = this.playerTarget.settings.permissions.playerLists[listType].contains(this.playerOrigin.id))
+	//return this[key];	
+}
+	
+F3dcgAssets.IsPlayerOwner = function(playerTarget, playerOrigin){return playerTarget.clubStanding.owner.id == playerOrigin.id;}
+F3dcgAssets.IsPlayerLover = function(playerTarget, playerOrigin){return playerTarget.clubStanding.lover.id == playerOrigin.id;}
+F3dcgAssets.IsPlayerDomEnough = function(playerTarget, playerOrigin){return playerOrigin.clubStanding.reputation.Dominant - playerTarget.clubStanding.reputation.Dominant >= -25;}
+	
+F3dcgAssets.DoesPlayerHavePermission = function(permissionActionType, pT, pO){
+	if(! pO) return true;	
+	switch(pT.settings.permissions.actions[permissionActionType]){
+		case "0": case 0: return ! this.IsPlayerGhostListed(pT, pO); //everyone except ghostlist
+		case "1": case 1: return ! this.IsPlayerBlackListed(pT, pO); //everyone but blacklist
+		case "2": case 2: return (! this.IsPlayerBlackListed(pT, pO) && this.IsPlayerDomEnough(pT, pO)) || this.IsPlayerWhiteListed(pT, pO); //Any Dom and whitelist
+		case "3": case 3: return this.IsPlayerOwner(pT, pO) || this.IsPlayerLover(pT, pO) || this.IsPlayerWhiteListed(pT, pO); //Owner, lover, whitelist
+		case "4": case 4: return this.IsPlayerOwner(pT, pO) || this.IsPlayerLover(pT, pO);  //Owner, lover
+		case "5": case 5: return this.IsPlayerOwner(pT, pO); //Owner only		
+	}
+	return this[key];
+}
+
+
+F3dcgAssets.ValidateItemNotBlacklisted = function(item, playerTarget) {
+	if(!item) return;
+	if(playerTarget.settings.permissions.itemLists.black.includes(item)) throw "ItemBlacklisted " + item.name;
+}
+
+F3dcgAssets.ValidateItemIsOwned = function(item, groupType, playerTarget, playerOrigin) {
+	if(null == item) return;
+	if(groupType == F3dcgAssets.BODY || groupType == F3dcgAssets.EXPRESSION) return;
+	if(groupType == F3dcgAssets.CLOTH && F3dcgAssets.ClothesFree.includes(item.name)) return;
+	if(! playerTarget.inventory[groupType].includes(item.name) && ! (playerOrigin && playerOrigin.inventory[groupType].includes(item.name)))
+		throw "ItemNotOwned " + item.name;
+}
 
 F3dcgAssets.ValidatePrerequisite = function(prerequisite, appearance, posesEffectsBlocks) {
 	// Basic prerequisites that can apply to many items

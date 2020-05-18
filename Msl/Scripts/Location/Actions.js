@@ -117,14 +117,10 @@ var ProfileManagement ={
 	,UpdatePlayerProfile(){
 		var f = document.forms["profileSettings"];
 		
-		var profileSettings = {
-			permissionRestraints:f.elements["permissionRestraints"].value
-			,permissionClothes:f.elements["permissionClothes"].value
-			,permissionArousal:f.elements["permissionArousal"].value
-			,focusTransparentBackground:!!f.elements["focusTransparentBackground"].checked
-		}
-		
-		LocationController.UpdatePlayerProfile(profileSettings);
+		var settingsCopy = Util.CloneRecursive(MainController.playerAccount.settings);
+		this.PullFromFormRecursive(document.forms["profileSettings"], [], settingsCopy);
+		MainController.playerAccount.settings = settingsCopy;
+		LocationController.UpdatePlayerProfile(settingsCopy);
 	}
 	
 	,ShowProfile(player){
@@ -137,15 +133,42 @@ var ProfileManagement ={
 			click:(event) => event.stopPropagation()
 		}});
 		
-		var f = document.forms["profileSettings"];
-		var settings = MainController.playerAccount.profileSettings;
-		
+		this.FillFormRecursive(document.forms["profileSettings"], [], MainController.playerAccount.settings);
+	}
+	
+	,PullFromFormRecursive(form, keyStack, settings){
 		for(var key in settings){
 			var value = settings[key];
-			if(value === true || value === false)
-				f.elements[key].checked = value;
-			else
-				f.elements[key].value = value;
+			if(value === true || value === false){
+				settings[key] = !!form.elements[keyStack.join(".") + "." + key].checked;
+			}else if(Array.isArray(value)){
+				var ids = {};
+				form.elements[keyStack.join(".") + "." + key].value.split(",").forEach(id => {ids[id] = true;})
+				settings[key] = Object.keys(ids);
+			}else if(typeof(value) == "object"){
+				keyStack.push(key);
+				this.PullFromFormRecursive(form, keyStack, value);
+				keyStack.pop();
+			}else{
+				settings[key] = form.elements[keyStack.join(".") + "." + key].value;
+			}
+		}
+	}
+	
+	,FillFormRecursive(form, keyStack, settings){
+		for(var key in settings){
+			var value = settings[key];
+			if(value === true || value === false){
+				form.elements[keyStack.join(".") + "." + key].checked = value;
+			}else if(Array.isArray(value)){
+				form.elements[keyStack.join(".") + "." + key].value = value.join(",");
+			}else if(typeof(value) == "object"){
+				keyStack.push(key);
+				this.FillFormRecursive(form, keyStack, value);
+				keyStack.pop();
+			}else{
+				form.elements[keyStack.join(".") + "." + key].value = value;
+			}
 		}
 	}
 }

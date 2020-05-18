@@ -46,8 +46,8 @@ var MslServer = {
 	,GetPlayerCharacter(id){
 		MslServer.socket.emit("GetPlayerCharacter", {memberNumber: id});
 	}
-	,UpdatePlayerProfile(profileData){
-		MslServer.socket.emit("UpdatePlayerProfile", profileData);
+	,UpdateAccountSettings(profileData){
+		MslServer.socket.emit("UpdateAccountSettings", profileData);
 	}
 
 	,GetAvailableLocationTypes(){

@@ -153,11 +153,11 @@ var LocationController = {
 	}*/
 	
 	//Actions, that update server state
-	,ExitLocation(){MainController.ExitLocation();}
-	
+	,ExitLocation(){MainController.ExitLocation();}	
 	
 	,UpdatePlayerProfile(profileData){
-		MslServer.UpdatePlayerProfile(profileData);
+		console.log(profileData);
+		MslServer.UpdateAccountSettings(profileData);
 		LocationController.InterruptDelegateActions();
 	}
 
@@ -166,7 +166,7 @@ var LocationController = {
 		
 		var appearanceUpdate = playerUpdate.GetFinalAppItemList();
 		
-		F3dcgAssets.ValidateUpdateAppearance(appearanceUpdate, playerUpdate.player);
+		F3dcgAssets.ValidateUpdateAppearanceOrThrow(appearanceUpdate, playerUpdate.player);
 		if(playerUpdate.player.id == MainController.playerAccount.id){			
 			MslServer.ActionStart({type:"AppearanceUpdateSelf", appearanceUpdate:appearanceUpdate});
 		}else
