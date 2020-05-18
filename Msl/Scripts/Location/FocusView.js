@@ -248,7 +248,10 @@ var LocationFocusView = {
 	
 	,UpdateControlAndActionButtons(){
 		var wornItem = this.updateDelegate.GetCurrentWornItem(this.selectedItemGroupName);
-		this.selectedItemName = wornItem.name;
+		console.log(this.selectedItemGroupName);
+		console.log(wornItem);
+		
+		this.selectedItemName = wornItem?.name;
 		
 		var buttonsToShow = [];
 		for(var action in this.itemActionViews)

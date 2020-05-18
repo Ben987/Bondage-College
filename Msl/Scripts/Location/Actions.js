@@ -119,6 +119,7 @@ var ProfileManagement ={
 		
 		var settingsCopy = Util.CloneRecursive(MainController.playerAccount.settings);
 		this.PullFromFormRecursive(document.forms["profileSettings"], [], settingsCopy);
+		console.log(settingsCopy);
 		MainController.playerAccount.settings = settingsCopy;
 		LocationController.UpdatePlayerProfile(settingsCopy);
 	}
@@ -142,9 +143,10 @@ var ProfileManagement ={
 			if(value === true || value === false){
 				settings[key] = !!form.elements[keyStack.join(".") + "." + key].checked;
 			}else if(Array.isArray(value)){
-				var ids = {};
+				var ids = {};//numeric or string player id or item name ids
 				form.elements[keyStack.join(".") + "." + key].value.split(",").forEach(id => {ids[id] = true;})
-				settings[key] = Object.keys(ids);
+				var er = /^-?[0-9]+$/;
+				settings[key] = Object.keys(ids).map(id => er.test(id) ? parseInt(id) : id);
 			}else if(typeof(value) == "object"){
 				keyStack.push(key);
 				this.PullFromFormRecursive(form, keyStack, value);

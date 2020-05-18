@@ -74,13 +74,13 @@ F3dcgAssets.ValidateUpdateAppearanceOrThrow = function(appearanceUpdate, playerT
 			break;
 			
 			case F3dcgAssets.CLOTH:
-				if(! F3dcgAssets.DoesPlayerHavePermission(F3dcgAssets.CLOTH, playerTarget, playerOrigin)) throw "PermissionDenied " + originPlayer.id;
+				if(! F3dcgAssets.DoesPlayerHavePermission(F3dcgAssets.CLOTH, playerTarget, playerOrigin)) throw "PermissionDenied " + playerOrigin.id;
 				if(null == posesEffectsBlocks) posesEffectsBlocks = F3dcgAssets.BuildPosesEffectsBlocks(playerTarget.appearance[F3dcgAssets.BONDAGE_TOY]);
 				if(posesEffectsBlocks.blocks.includes(groupName)) throw "ItemGroupBlocked " + groupName;
 			break;
 			
 			case F3dcgAssets.BONDAGE_TOY: //Must own.  If not self, subject to permission.  If slef, check self bondage.  Must pass the main validation
-				if(! F3dcgAssets.DoesPlayerHavePermission(F3dcgAsset.CLOTH, playerTarget, playerOrigin)) throw "PermissionDenied " + originPlayer.id;			
+				if(! F3dcgAssets.DoesPlayerHavePermission(F3dcgAssets.BONDAGE_TOY, playerTarget, playerOrigin)) throw "PermissionDenied " + playerOrigin.id;			
 				if(null == posesEffectsBlocks) posesEffectsBlocks = F3dcgAssets.BuildPosesEffectsBlocks(playerTarget.appearance[F3dcgAssets.BONDAGE_TOY]);
 				if(bondageToyUpdated) throw "BondageToyLimitExceeded";
 				if(posesEffectsBlocks.blocks.includes(groupName)) throw "ItemGroupBlocked " + groupName;
@@ -108,22 +108,29 @@ F3dcgAssets.IsPlayerWhiteListed = function(playerTarget, playerOrigin){return th
 F3dcgAssets.IsPlayerGhostListed = function(playerTarget, playerOrigin){return this.IsPlayerListed(playerTarget, playerOrigin,"ghost");}
 F3dcgAssets.IsPlayerListed = function(playerTarget, playerOrigin, listType){
 	if(!playerOrigin) return false;
-	//if(typeof(this[key]) == "boolean") return this[key];
-	return playerTarget.settings.permissions.playerLists[listType].contains(this.playerOrigin.id);
-	//this[key] = this.playerTarget.settings.permissions.playerLists[listType].contains(this.playerOrigin.id))
-	//return this[key];	
+	console.log(listType);
+	console.log(playerTarget.settings.permissions.playerLists[listType]);
+	return playerTarget.settings.permissions.playerLists[listType].includes(playerOrigin.id);
 }
 	
-F3dcgAssets.IsPlayerOwner = function(playerTarget, playerOrigin){return playerTarget.clubStanding.owner.id == playerOrigin.id;}
-F3dcgAssets.IsPlayerLover = function(playerTarget, playerOrigin){return playerTarget.clubStanding.lover.id == playerOrigin.id;}
+F3dcgAssets.IsPlayerOwner = function(playerTarget, playerOrigin){return playerTarget.clubStanding.owner && playerTarget.clubStanding.owner.id == playerOrigin.id;}
+F3dcgAssets.IsPlayerLover = function(playerTarget, playerOrigin){return playerTarget.clubStanding.lover && playerTarget.clubStanding.lover.id == playerOrigin.id;}
 F3dcgAssets.IsPlayerDomEnough = function(playerTarget, playerOrigin){return playerOrigin.clubStanding.reputation.Dominant - playerTarget.clubStanding.reputation.Dominant >= -25;}
 	
 F3dcgAssets.DoesPlayerHavePermission = function(permissionActionType, pT, pO){
-	if(! pO) return true;	
+	if(! pO) return true;
+	console.log("Checking " + permissionActionType + " level " + pT.settings.permissions.actions[permissionActionType]);
+	
+	console.log("black " + this.IsPlayerBlackListed(pT, pO));
+	console.log("domEnough " + this.IsPlayerDomEnough(pT, pO));
+	console.log("white " + this.IsPlayerWhiteListed(pT, pO));
+	
 	switch(pT.settings.permissions.actions[permissionActionType]){
-		case "0": case 0: return ! this.IsPlayerGhostListed(pT, pO); //everyone except ghostlist
-		case "1": case 1: return ! this.IsPlayerBlackListed(pT, pO); //everyone but blacklist
-		case "2": case 2: return (! this.IsPlayerBlackListed(pT, pO) && this.IsPlayerDomEnough(pT, pO)) || this.IsPlayerWhiteListed(pT, pO); //Any Dom and whitelist
+		case "0": case 0: return ! this.IsPlayerGhostListed(pT, pO); //everyone but ghostlist
+		case "1": case 1: return ! this.IsPlayerGhostListed(pT, pO) && ! this.IsPlayerBlackListed(pT, pO); //everyone but blacklist
+		case "2": case 2: //Any Dom and whitelist
+			return this.IsPlayerWhiteListed(pT, pO) 
+					|| (! ! this.IsPlayerGhostListed(pT, pO) && ! this.IsPlayerBlackListed(pT, pO) && this.IsPlayerDomEnough(pT, pO));
 		case "3": case 3: return this.IsPlayerOwner(pT, pO) || this.IsPlayerLover(pT, pO) || this.IsPlayerWhiteListed(pT, pO); //Owner, lover, whitelist
 		case "4": case 4: return this.IsPlayerOwner(pT, pO) || this.IsPlayerLover(pT, pO);  //Owner, lover
 		case "5": case 5: return this.IsPlayerOwner(pT, pO); //Owner only		

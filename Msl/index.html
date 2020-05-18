@@ -19,7 +19,7 @@
 	<script src="./Scripts/Util/Color.js"></script>
 	<script src="./Scripts/Util/Render.js"></script>
 	<script src="./Scripts/Util/Svg.js"></script>
-	<script src="./Scripts/F3dcgAssets/MainAssets.js"></script>
+	<script src="./Scripts/F3dcgAssets/Assets.js"></script>
 	<script src="./Scripts/F3dcgAssets/Import.js"></script>
 	<script src="./Scripts/F3dcgAssets/Validation.js"></script>
 	<script src="./Scripts/F3dcgAssets/Inventory.js"></script>
@@ -51,9 +51,13 @@ window.addEventListener("load", function(){
 	MainContainer.Resize();
 	MslServer.Init();
 	Util.ProcessIncludes();
+	
+
 });
 
 window.addEventListener('resize', MainContainer.Resize, false);
+
+ console.log(Number.isInteger("33"));
 
 </script>
 

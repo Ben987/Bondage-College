@@ -156,7 +156,6 @@ var LocationController = {
 	,ExitLocation(){MainController.ExitLocation();}	
 	
 	,UpdatePlayerProfile(profileData){
-		console.log(profileData);
 		MslServer.UpdateAccountSettings(profileData);
 		LocationController.InterruptDelegateActions();
 	}
@@ -166,11 +165,13 @@ var LocationController = {
 		
 		var appearanceUpdate = playerUpdate.GetFinalAppItemList();
 		
-		F3dcgAssets.ValidateUpdateAppearanceOrThrow(appearanceUpdate, playerUpdate.player);
 		if(playerUpdate.player.id == MainController.playerAccount.id){			
+			F3dcgAssets.ValidateUpdateAppearanceOrThrow(appearanceUpdate, playerUpdate.player);
 			MslServer.ActionStart({type:"AppearanceUpdateSelf", appearanceUpdate:appearanceUpdate});
-		}else
+		}else{
+			F3dcgAssets.ValidateUpdateAppearanceOrThrow(appearanceUpdate, playerUpdate.player, LocationController.GetPlayer());
 			MslServer.ActionStart({type:"AppearanceUpdateOther", targetPlayerId:playerUpdate.player.id, appearanceUpdate:playerUpdate.GetFinalAppItemList()});
+		}
 		
 		LocationController.InterruptDelegateActions();
 	}
@@ -276,7 +277,7 @@ var LocationController = {
 	
 	,LocationAction_AppearanceUpdateOther(action){
 		var player = this.GetPlayer(action.targetPlayerId);
-		player.UpdateApearance(action.result);
+		player.UpdateAppearanceAndRender(action.result);
 		LocationController.delegates.view.RenderPlayerInSpot(this.GetSpotWithPlayer(player.id).name, player);
 	}
 	
