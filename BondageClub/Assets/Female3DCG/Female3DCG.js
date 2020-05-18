@@ -2155,6 +2155,11 @@ var AssetFemale3DCG = [
 			{ Name: "LockingHeels2", Value: 40, Difficulty: 7, Time: 10, RemoveTime: 15, AllowLock: true, Hide: ["Shoes"], Height: 15},
 			{ Name: "LockingShoes1", Value: 20, Difficulty: 5, Time: 5, RemoveTime: 8, AllowLock: true, Hide: ["Shoes"], Height: 6},
 			{ Name: "LockingShoes2", Value: 30, Difficulty: 6, Time: 5, RemoveTime: 8, AllowLock: true, Hide: ["Shoes"], Height: 6},
+			{ Name: "LockingShoes3", Value: 50, Difficulty: 8, Time: 7, RemoveTime: 14, AllowLock: true, Hide: ["Shoes"], Height: 9,
+		      Layer: [
+				  { Name: "Boots", AllowColorize: true},
+				  { Name: "Straps", AllowColorize: false}
+			  ]},
 			AssetSpankingToys
 		],
 		Color: ["Default"]
