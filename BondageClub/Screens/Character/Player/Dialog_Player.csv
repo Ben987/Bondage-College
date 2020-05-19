@@ -445,6 +445,8 @@ BondageBenchRestrainNone,,,SourceCharacter removes the leather belts from Destin
 BondageBenchRestrainStrapUp,,,SourceCharacter loosely restrains TargetCharacter to the bondage bench with few leather belts.
 ToeTapePoseToes,,,Toes
 ToeTapePoseFull,,,Full
+ToeTapeSetFull,,,SourceCharacter uses the tape on TargetCharacter to fully wrap her feet together.
+ToeTapeSetToes,,,SourceCharacter uses the tape on TargetCharacter to tape her toes together.
 DuctTapePoseHands,,,Hands
 DuctTapePoseArms,,,Arms
 DuctTapePoseBottom,,,Skirt

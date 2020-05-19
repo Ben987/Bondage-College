@@ -50,7 +50,7 @@ function InventoryItemBootsToeTapeSetType(NewType) {
 
 	// Sets the chatroom or NPC message
 	if (CurrentScreen == "ChatRoom") {
-		var msg = "DuctTapeToesSet" + ((NewType) ? NewType : "Toes");
+		var msg = "ToeTapeSet" + ((NewType) ? NewType : "Toes");
 		var Dictionary = [];
 		Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
 		Dictionary.push({Tag: "TargetCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
@@ -59,7 +59,7 @@ function InventoryItemBootsToeTapeSetType(NewType) {
 		DialogFocusItem = null;
 		if (C.ID == 0) DialogMenuButtonBuild(C);
 		else {
-			C.CurrentDialog = DialogFind(C, "DuctTapePose" + ((NewType) ? NewType : "Toes"), "ItemBoots");
+			C.CurrentDialog = DialogFind(C, "ToeTapeSet" + ((NewType) ? NewType : "Toes"), "ItemBoots");
 			C.FocusGroup = null;
 		}
 	}
