@@ -443,6 +443,8 @@ BondageBenchSelectType,,,How do you want to restrain them?
 BondageBenchPoseStrapUp,,,Leather Belt Straps
 BondageBenchRestrainNone,,,SourceCharacter removes the leather belts from DestinationCharacter body.
 BondageBenchRestrainStrapUp,,,SourceCharacter loosely restrains TargetCharacter to the bondage bench with few leather belts.
+ToeTapePoseToes,,,Toes
+ToeTapePoseFull,,,Full
 DuctTapePoseHands,,,Hands
 DuctTapePoseArms,,,Arms
 DuctTapePoseBottom,,,Skirt
@@ -497,6 +499,7 @@ DuctTapeHeadSetDouble,,,SourceCharacter takes a piece of duct tape for TargetCha
 DuctTapeHeadSetWrap,,,SourceCharacter wraps some duct tape onto DestinationCharacter face.
 DuctTapeHeadTypeMummy,,,Mummy
 DuctTapeHeadSetMummy,,,SourceCharacter wraps DestinationCharacter head in tape with multiple layers. 
+DuctTapeToesSetToes,,,Toes
 SelectRopeBondage,,,Select the rope bondage
 RopeBondageBasic,,,Basic Tie
 RopeBondageMermaid,,,Mermaid Tie
@@ -998,6 +1001,8 @@ DuctTapeRestrainFeet,,,SourceCharacter wraps duct tape around DestinationCharact
 DuctTapeRestrainHalfFeet,,,SourceCharacter wraps more duct tape on DestinationCharacter feet trapping them firmly.
 DuctTapeRestrainMostFeet,,,SourceCharacter wraps even more duct tape on DestinationCharacter feet trapping them tightly.
 DuctTapeRestrainCompleteFeet,,,SourceCharacter wraps an extreme amount of duct tape on DestinationCharacter feet fully trapping them.
+ToeTapeType,,,Toes
+ToeTapeTypeFull,,,Full
 SlaveCollarSelectType,,,Select the slave collar model
 SlaveCollarChangeType,,,SourceCharacter changes DestinationCharacter collar model.
 SelectTeddyBearType,,,Select the Type of Teddy Bear
