@@ -239,6 +239,7 @@ function MainHallMaidReleasePlayer() {
 			if ((MainHallMaid.Dialog[D].Stage == "0") && (MainHallMaid.Dialog[D].Option == null))
 				MainHallMaid.Dialog[D].Result = DialogFind(MainHallMaid, "AlreadyReleased");
 		CharacterRelease(Player);
+		CharacterUnlock(Player);
 		MainHallMaid.Stage = "10";
 	} else MainHallMaid.CurrentDialog = DialogFind(MainHallMaid, "CannotRelease");
 }
