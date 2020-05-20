@@ -1808,7 +1808,7 @@ var AssetFemale3DCG = [
 					{ Name: "Cloth", AllowColorize: true }
 				]
 			},
-			{ Name: "GasMaskGag", Priority: 47, Value: 40, Difficulty: 4, Time: 20, Random: false, AllowLock: true, BuyGroup: "GasMaskGag", Hide: ["Mouth"], Effect: ["GagEasy"], Block: ["ItemMouth2", "ItemMouth3"] },
+			{ Name: "GasMaskGag", Priority: 48, Value: 40, Difficulty: 4, Time: 20, Random: false, AllowLock: true, BuyGroup: "GasMaskGag", Hide: ["Mouth"], Effect: ["GagEasy"], Block: ["ItemMouth2", "ItemMouth3"] },
 			AssetSpankingToys
 		],
 		Color: ["Default"]
@@ -1895,7 +1895,7 @@ var AssetFemale3DCG = [
 			{ Name: "SteelMuzzleGag", Value: 80, Difficulty: 8, Time: 30, AllowLock: true, BuyGroup: "SteelMuzzleGag", Prerequisite: "GagFlat", Hide: ["Mouth"], SetPose: ["GagFlat"], Block: ["ItemMouth"] },
 			{ Name: "StitchedMuzzleGag", Value: 60, Difficulty: 5, Time: 15, AllowLock: true, BuyGroup: "StitchedMuzzleGag", Prerequisite: "GagFlat", Hide: ["Mouth"], SetPose: ["GagFlat"], Effect: ["GagEasy"], Block: ["ItemMouth"] },
 			{ Name: "LatexBallMuzzleGag", Value: 65, Difficulty: 6, Time: 15, AllowLock: true, BuyGroup: "LatexBallMuzzleGag", Prerequisite: "GagFlat", Hide: ["Mouth"], SetPose: ["GagFlat"], Effect: ["GagMedium"], Block: ["ItemMouth"] },
-			{ Name: "GasMaskGag", Priority: 47, Value: 40, Difficulty: 4, Time: 20, Random: false, AllowLock: true, BuyGroup: "GasMaskGag", Hide: ["Mouth"], Effect: ["GagEasy"], Prerequisite: "GagFlat",  SetPose: ["GagFlat"],  Block: ["ItemMouth", "ItemMouth3"]}
+			{ Name: "GasMaskGag", Priority: 48, Value: 40, Difficulty: 4, Time: 20, Random: false, AllowLock: true, BuyGroup: "GasMaskGag", Hide: ["Mouth"], Effect: ["GagEasy"], Prerequisite: "GagFlat",  SetPose: ["GagFlat"],  Block: ["ItemMouth", "ItemMouth3"]}
 		],
 		Color: ["Default"]
 	},
@@ -1981,7 +1981,7 @@ var AssetFemale3DCG = [
 			{ Name: "SteelMuzzleGag", Value: 80, Difficulty: 8, Time: 30, AllowLock: true, BuyGroup: "SteelMuzzleGag", Prerequisite: "GagFlat", Hide: ["Mouth"], SetPose: ["GagFlat"], Block: ["ItemMouth", "ItemMouth2"] },
 			{ Name: "StitchedMuzzleGag", Value: 60, Difficulty: 5, Time: 15, AllowLock: true, BuyGroup: "StitchedMuzzleGag", Prerequisite: "GagFlat", Hide: ["Mouth"], SetPose: ["GagFlat"], Effect: ["GagEasy"], Block: ["ItemMouth", "ItemMouth2"] },
 			{ Name: "LatexBallMuzzleGag", Value: 65, Difficulty: 6, Time: 15, AllowLock: true, BuyGroup: "LatexBallMuzzleGag", Prerequisite: "GagFlat", Hide: ["Mouth"], SetPose: ["GagFlat"], Effect: ["GagMedium"], Block: ["ItemMouth", "ItemMouth2"] }, 
-			{ Name: "GasMaskGag", Priority: 47, Value: 40, Difficulty: 4, Time: 20, Random: false, AllowLock: true, BuyGroup: "GasMaskGag", Hide: ["Mouth"], Effect: ["GagEasy"], Prerequisite: "GagFlat",  SetPose: ["GagFlat"],  Block: ["ItemMouth", "ItemMouth2"]}
+			{ Name: "GasMaskGag", Priority: 48, Value: 40, Difficulty: 4, Time: 20, Random: false, AllowLock: true, BuyGroup: "GasMaskGag", Hide: ["Mouth"], Effect: ["GagEasy"], Prerequisite: "GagFlat",  SetPose: ["GagFlat"],  Block: ["ItemMouth", "ItemMouth2"]}
 		],
 		Color: ["Default"]
 	},
@@ -2082,7 +2082,7 @@ var AssetFemale3DCG = [
 		Group: "ItemDevices",
 		ParentGroup: "BodyUpper",
 		Category: "Item",
-		Priority: 48,
+		Priority: 49,
 		Default: false,
 		IsRestraint: true,
 		Left: 0,
@@ -2123,7 +2123,7 @@ var AssetFemale3DCG = [
 	{
 		Group: "ItemAddon",
 		Category: "Item",
-		Priority: 49,
+		Priority: 50,
 		Default: false,
 		IsRestraint: true,
 		Left: 0,
