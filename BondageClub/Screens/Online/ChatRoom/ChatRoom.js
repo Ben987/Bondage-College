@@ -549,7 +549,16 @@ function ChatRoomPublishAction(C, DialogProgressPrevItem, DialogProgressNextItem
 			else if (InventoryItemHasEffect(DialogProgressPrevItem, "Lock")) msg = "ActionUnlockAndRemove";
 			else msg = "ActionRemove";
 		} else msg = Action;
-
+		
+		// Remembers the player as the last one to have acted on herself on the relevant itemGroup
+		if (C == Player) {
+			if (Player.LastItemAlterer == null) Player.LastItemAlterer = {};
+			if (msg == "ActionAddLock" || msg == "ActionLock" || msg == "ActionUnlock") {
+				Player.LastItemAlterer[DialogProgressPrevItem.Asset.Group.Name] = Player.MemberNumber;
+			}
+			else if (DialogProgressNextItem != null) Player.LastItemAlterer[DialogProgressNextItem.Asset.Group.Name] = Player.MemberNumber;
+		}
+		
 		// Replaces the action tags to build the phrase
 		Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
 		Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
@@ -938,7 +947,11 @@ function ChatRoomSyncItem(data) {
 			if ((data.Item.Name == null) || (data.Item.Name == "")) {
 				InventoryRemove(ChatRoomCharacter[C], data.Item.Group);
 			} else {
-
+				// Saving the ID of the last character to add/change the item
+				if (ChatRoomCharacter[C] == Player) {
+					if (Player.LastItemAlterer == null) Player.LastItemAlterer = {};
+					Player.LastItemAlterer[data.Item.Group] = data.Source;
+				}
 				// Wear the item and applies locks and properties if we need to
 				InventoryWear(ChatRoomCharacter[C], data.Item.Name, data.Item.Group, data.Item.Color, data.Item.Difficulty);
 				if (data.Item.Property != null) {
@@ -1051,6 +1064,7 @@ function ChatRoomListManage(Operation, ListType) {
 		ServerSend("AccountUpdate", data);
 		CommonWait(1000);
 		ChatRoomCharacterUpdate(Player);
+		if (Operation == "Add" && ListType == "BlackList") ChatRoomBlackListingItemRemoval(CurrentCharacter.MemberNumber);
 	}
 	if (ListType == "GhostList") ChatRoomListManage(Operation, "BlackList");
 }
@@ -1064,7 +1078,20 @@ function ChatRoomListManipulation(Add, Remove, Message) {
 		ServerSend("AccountUpdate", { FriendList: Player.FriendList, GhostList: Player.GhostList, WhiteList: Player.WhiteList, BlackList: Player.BlackList });
 		CommonWait(1000);
 		ChatRoomCharacterUpdate(Player);
+		if (Add == Player.BlackList) ChatRoomBlackListingItemRemoval(C);
 	}
+}
+
+// Removes all items which were lastly altered by the member number of the person we just blacklisted
+function ChatRoomBlackListingItemRemoval(MemberNumber) {
+	if (Player.LastItemAlterer == null) return;
+	var bundle = ServerAppearanceBundle(Player.Appearance);
+	var data = {
+				ID: Player.OnlineID,
+				ActivePose: Player.ActivePose,
+				Appearance: bundle.filter(item => Player.LastItemAlterer[item.Group] != MemberNumber)
+		};
+	ServerSend("ChatRoomCharacterUpdate", data);
 }
 
 // When the server returns if applying an item is allowed
