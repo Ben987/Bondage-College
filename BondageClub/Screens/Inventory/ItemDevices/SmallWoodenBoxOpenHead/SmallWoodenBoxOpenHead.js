@@ -23,9 +23,18 @@ function InventoryItemDevicesSmallWoodenBoxOpenHeadDraw() {
 function InventoryItemDevicesSmallWoodenBoxOpenHeadClick() {
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	
-	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) DialogFocusItem = null;
-	if ((MouseX >= 1375) && (MouseX <= 1625) && (MouseY >= 700) && (MouseY <= 765) && (DialogFocusItem.Property.Pose == "Yoked")) InventoryItemDevicesSmallWoodenBoxOpenHeadSetPose("Base");
-	if ((MouseX >= 1375) && (MouseX <= 1625) && (MouseY >= 700) && (MouseY <= 765) && (DialogFocusItem.Property.Pose == "Base") && InventoryGet(C, "ItemArms") == null) InventoryItemDevicesSmallWoodenBoxOpenHeadSetPose("Yoked");
+	if ((MouseX >= 1885) && (MouseX <= 1975) && (MouseY >= 25) && (MouseY <= 110)) {
+		DialogFocusItem = null;
+		return;
+	}
+	if ((MouseX >= 1375) && (MouseX <= 1625) && (MouseY >= 700) && (MouseY <= 765) && (DialogFocusItem.Property.Pose == "Yoked")) {
+		InventoryItemDevicesSmallWoodenBoxOpenHeadSetPose("Base");
+		return;
+	}
+	if ((MouseX >= 1375) && (MouseX <= 1625) && (MouseY >= 700) && (MouseY <= 765) && (DialogFocusItem.Property.Pose == "Base") && InventoryGet(C, "ItemArms") == null) { 
+		InventoryItemDevicesSmallWoodenBoxOpenHeadSetPose("Yoked");
+		return;
+	}
 }
 
 // Sets the amount of beads
