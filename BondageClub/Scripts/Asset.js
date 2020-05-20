@@ -23,6 +23,7 @@ function AssetGroupAdd(NewAssetFamily, NewAsset) {
 		ParentColor: (NewAsset.ParentColor == null) ? "" : NewAsset.ParentColor,
 		Clothing: (NewAsset.Clothing == null) ? false : NewAsset.Clothing,
 		Underwear: (NewAsset.Underwear == null) ? false : NewAsset.Underwear,
+		BodyCosplay: (NewAsset.BodyCosplay == null) ? false : NewAsset.BodyCosplay,
 		Activity: NewAsset.Activity,
 		Zone: NewAsset.Zone,
 		SetPose: NewAsset.SetPose,
@@ -63,7 +64,7 @@ function AssetAdd(NewAsset) {
 		AllowPose: NewAsset.AllowPose,
 		Value: (NewAsset.Value == null) ? 0 : NewAsset.Value,
 		Difficulty: (NewAsset.Difficulty == null) ? 0 : NewAsset.Difficulty,
-		SelfBondage: (NewAsset.SelfBondage == null) ? true : NewAsset.SelfBondage,
+		SelfBondage: (NewAsset.SelfBondage == null) ? 0 : NewAsset.SelfBondage,
 		SelfUnlock: (NewAsset.SelfUnlock == null) ? true : NewAsset.SelfUnlock,
 		Random: (NewAsset.Random == null) ? true : NewAsset.Random,
 		RemoveAtLogin: (NewAsset.RemoveAtLogin == null) ? false : NewAsset.RemoveAtLogin,
@@ -93,10 +94,14 @@ function AssetAdd(NewAsset) {
 		Audio: NewAsset.Audio,
 		IgnoreParentGroup: (NewAsset.IgnoreParentGroup == null) ? false : NewAsset.IgnoreParentGroup,
 		IsRestraint: (NewAsset.IsRestraint == null) ? ((AssetCurrentGroup.IsRestraint == null) ? false : AssetCurrentGroup.IsRestraint) : NewAsset.IsRestraint,
+		BodyCosplay: NewAsset.BodyCosplay == null ? false : NewAsset.BodyCosplay,
 		DynamicDescription: (typeof NewAsset.DynamicDescription === 'function') ? NewAsset.DynamicDescription : function () { return this.Description },
-		DynamicPreviewIcon: (typeof NewAsset.DynamicDescription === 'function') ? NewAsset.DynamicPreviewIcon : function () { return "" },
+		DynamicPreviewIcon: (typeof NewAsset.DynamicPreviewIcon === 'function') ? NewAsset.DynamicPreviewIcon : function () { return "" },
 		DynamicAllowInventoryAdd: (typeof NewAsset.DynamicAllowInventoryAdd === 'function') ? NewAsset.DynamicAllowInventoryAdd : function () { return true },
-		DynamicExpressionTrigger: (typeof NewAsset.DynamicExpressionTrigger === 'function') ? NewAsset.DynamicExpressionTrigger : function () { return this.ExpressionTrigger } 
+		DynamicExpressionTrigger: (typeof NewAsset.DynamicExpressionTrigger === 'function') ? NewAsset.DynamicExpressionTrigger : function () { return this.ExpressionTrigger }, 
+		DynamicName: (typeof NewAsset.DynamicName === 'function') ? NewAsset.DynamicName : function () { return this.Name },
+		DynamicGroupName: (NewAsset.DynamicGroupName || AssetCurrentGroup.Name),
+		DynamicActivity: (typeof NewAsset.DynamicActivity === 'function') ? NewAsset.DynamicActivity : function () { return NewAsset.Activity }
 	}
 	// Unwearable assets are not visible but can be overwritten
 	if (!A.Wear && NewAsset.Visible != true) A.Visible = false;

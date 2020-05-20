@@ -117,7 +117,7 @@ function MainHallRun() {
 	}
 
 	// Check if there's a new maid rescue event to trigger
-	if ((!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk())) {
+	if (!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk() || Player.IsShackled()) {
 		if (MainHallNextEventTimer == null) {
 			MainHallStartEventTimer = CommonTime();
 			MainHallNextEventTimer = CommonTime() + 40000 + Math.floor(Math.random() * 40000);
@@ -137,7 +137,7 @@ function MainHallRun() {
 	}
 	
 	// If we must show a progress bar for the rescue maid.  If not, we show the number of online players
-	if ((!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk()) && (MainHallStartEventTimer != null) && (MainHallNextEventTimer != null)) {
+	if ((!Player.CanInteract() || !Player.CanWalk() || !Player.CanTalk() || Player.IsShackled()) && (MainHallStartEventTimer != null) && (MainHallNextEventTimer != null)) {
 		DrawText(TextGet("RescueIsComing"), 1750, 925, "White", "Black");
 		DrawProgressBar(1525, 955, 450, 35, (1 - ((MainHallNextEventTimer - CommonTime()) / (MainHallNextEventTimer - MainHallStartEventTimer))) * 100);
 	} else DrawText(TextGet("OnlinePlayers") + " " + CurrentOnlinePlayers.toString(), 1750, 960, "White", "Black");

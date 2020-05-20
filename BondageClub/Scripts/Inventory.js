@@ -117,7 +117,7 @@ function InventoryPrerequisiteMessage(C, Prerequisite) {
 	if (Prerequisite == "NotKneelingSpread") return (C.Pose.indexOf("KneelingSpread") >= 0) ? "MustStandUpFirst" : "";
 	if (Prerequisite == "NotChaste") return (C.Effect.indexOf("Chaste") >= 0) ? "RemoveChastityFirst" : "";
 	if (Prerequisite == "NotChained") return ((InventoryGet(C, "ItemNeckRestraints") != null) && (InventoryGet(C, "ItemNeckRestraints").Asset.Name == "CollarChainLong")) ? "RemoveChainForItem" : "";
-	if (Prerequisite == "NoFeetSpreader") return ((InventoryGet(C, "ItemFeet") != null) && (InventoryGet(C, "ItemFeet").Asset.Name == "SpreaderMetal")) ? "CannotBeUsedWithFeetSpreader" : "";
+	if (Prerequisite == "NoFeetSpreader") return ((InventoryGet(C, "ItemFeet") != null) && (InventoryGet(C, "ItemFeet").Asset.Name == "SpreaderMetal" || InventoryGet(C, "ItemFeet").Asset.Name == "SpreaderVibratingDildoBar" || InventoryGet(C, "ItemFeet").Asset.Name == "SpreaderDildoBar")) ? "CannotBeUsedWithFeetSpreader" : "";
 	if (Prerequisite == "NotShackled") return (C.Effect.indexOf("Shackled") >= 0) ? "RemoveShacklesFirst" : "";
 	if (Prerequisite == "Collared") return (InventoryGet(C, "ItemNeck") == null) ? "MustCollaredFirst" : "";
 	if (Prerequisite == "CannotHaveWand") return ((InventoryGet(C, "ItemArms") != null) && (InventoryGet(C, "ItemArms").Asset.Name == "FullLatexSuit")) ? "CannotHaveWand" : "";
@@ -139,16 +139,17 @@ function InventoryPrerequisiteMessage(C, Prerequisite) {
 	// Vulva/Butt items can be blocked by clothes, panties and some socks
 	if ((Prerequisite == "AccessVulva") && (((Cloth != null) && Cloth.Asset.Block != null && Cloth.Asset.Block.includes("ItemVulva"))
 			|| (InventoryGet(C, "ClothLower") != null && !InventoryGet(C, "ClothLower").Asset.Expose.includes("ItemVulva"))
-		    || (InventoryGet(C, "SuitLower") != null && !InventoryGet(C, "SuitLower").Asset.Expose.includes("ItemVulva"))
 			|| (InventoryGet(C, "Panties") != null && !InventoryGet(C, "Panties").Asset.Expose.includes("ItemVulva"))
 			|| (InventoryGet(C, "Socks") != null && (InventoryGet(C, "Socks").Asset.Block != null) && InventoryGet(C, "Socks").Asset.Block.includes("ItemVulva")))) return "RemoveClothesForItem";
+	if ((Prerequisite == "AccessVulvaSuitZip") && (
+		(InventoryGet(C, "SuitLower") != null && !InventoryGet(C, "SuitLower").Asset.Expose.includes("ItemVulvaPiercings")))) return "UnZipSuitForItem";
 
 	// For body parts that must be naked
 	if ((Prerequisite == "NakedFeet") && ((InventoryGet(C, "ItemBoots") != null) || (InventoryGet(C, "Socks") != null) || (InventoryGet(C, "Shoes") != null))) return "RemoveClothesForItem";
 	if ((Prerequisite == "NakedHands") && ((InventoryGet(C, "ItemHands") != null) || (InventoryGet(C, "Gloves") != null))) return "RemoveClothesForItem";
 
 	// Toe Tied
-	if (Prerequisite == "ToeTied" && (InventoryGet(C, "ItemFeet") != null) && (InventoryGet(C, "ItemFeet").Asset.Name == "SpreaderMetal")) return "LegsCannotClose";
+	if (Prerequisite == "ToeTied" && (InventoryGet(C, "ItemFeet") != null) && (InventoryGet(C, "ItemFeet").Asset.Name == "SpreaderMetal" || InventoryGet(C, "ItemFeet").Asset.Name == "SpreaderVibratingDildoBar" || InventoryGet(C, "ItemFeet").Asset.Name == "SpreaderDildoBar")) return "LegsCannotClose";
 	if (Prerequisite == "ToeTied" && (InventoryGet(C, "ItemLegs") != null) && (InventoryGet(C, "ItemLegs").Asset.Name == "WoodenHorse")) return "LegsCannotClose";
 	if (Prerequisite == "ToeTied" && (InventoryGet(C, "ItemDevices") != null) && (InventoryGet(C, "ItemDevices").Asset.Name == "OneBarPrison")) return "LegsCannotClose";
 	if (Prerequisite == "ToeTied" && (InventoryGet(C, "ItemDevices") != null) && (InventoryGet(C, "ItemDevices").Asset.Name == "SaddleStand")) return "LegsCannotClose";
@@ -481,6 +482,8 @@ function InventoryLock(C, Item, Lock, MemberNumber) {
 		if (Item.Property.Effect.indexOf("Lock") < 0) Item.Property.Effect.push("Lock");
 		Item.Property.LockedBy = Lock.Asset.Name;
 		if (MemberNumber != null) Item.Property.LockMemberNumber = MemberNumber;
+		if ((C.ID == 0) && Lock.Asset.OwnerOnly && (C.Ownership != null) && (C.Ownership.MemberNumber != null)) Item.Property.LockMemberNumber = C.Ownership.MemberNumber;
+		if ((C.ID == 0) && Lock.Asset.LoverOnly && (C.Lovership != null) && (C.Lovership.MemberNumber != null)) Item.Property.LockMemberNumber = C.Lovership.MemberNumber;
 		if (Lock.Asset.RemoveTimer > 0) TimerInventoryRemoveSet(C, Item.Asset.Group.Name, Lock.Asset.RemoveTimer);
 		CharacterRefresh(C);
 	}
@@ -512,7 +515,7 @@ function InventoryLockRandom(C, Item, FromOwner) {
 	if (Item.Asset.AllowLock) {
 		var List = [];
 		for (var A = 0; A < Asset.length; A++)
-			if (Asset[A].IsLock && (FromOwner || !Asset[A].OwnerOnly))
+			if (Asset[A].IsLock && Asset[A].Random && !Asset[A].LoverOnly && (FromOwner || !Asset[A].OwnerOnly))
 				List.push(Asset[A]);
 		if (List.length > 0) {
 			var Lock = { Asset: List[Math.floor(Math.random() * List.length)] };
@@ -576,5 +579,46 @@ function InventoryIsPermissionBlocked(C, AssetName, AssetGroup) {
 		for (var B = 0; B < C.BlockItems.length; B++)
 			if ((C.BlockItems[B].Name == AssetName) && (C.BlockItems[B].Group == AssetGroup))
 				return true;
+	return false;
+}
+
+/**
+ * Returns TRUE if a specific item / asset is limited by the character item permissions
+ * @param {Character} C - The character on which we check the permissions
+ * @param {String} AssetName - The asset / item name to scan
+ * @param {String} AssetGroup - The asset group name to scan
+ * @returns {Boolean} - TRUE if asset / item is limited
+ */
+function InventoryIsPermissionLimited(C, AssetName, AssetGroup) {
+	if ((C != null) && (C.LimitedItems != null) && Array.isArray(C.LimitedItems))
+		for (var B = 0; B < C.LimitedItems.length; B++)
+			if ((C.LimitedItems[B].Name == AssetName) && (C.LimitedItems[B].Group == AssetGroup))
+				return true;
+	return false;
+}
+
+/**
+ * Returns TRUE if the item is not limited, if the player is an owner or a lover of the character, or on their whitelist
+ * @param {Character} C - The character on which we check the limited permissions for the item
+ * @param {Item} Item - The item being interacted with
+ * @returns {Boolean} - TRUE if item is allowed
+ */
+function InventoryCheckLimitedPermission(C, Item) {
+	if (!InventoryIsPermissionLimited(C, Item.Asset.Name, Item.Asset.Group.Name)) return true;
+	if ((C.ID == 0) || ((C.Lovership != null) && (C.Lovership.MemberNumber == Player.MemberNumber)) || ((C.Ownership != null) && (C.Ownership.MemberNumber == Player.MemberNumber))) return true;
+	if ((C.ItemPermission < 3) && !(C.WhiteList.indexOf(Player.MemberNumber) < 0)) return true;
+	return false;
+}
+
+/**
+ * Returns TRUE if the item is a key, having the effect of unlocking other items
+ * @param {Item} Item - The item to validate
+ * @returns {Boolean} - TRUE if item is a key
+ */
+function InventoryIsKey(Item) {
+	if ((Item == null) || (Item.Asset == null) || (Item.Asset.Effect == null)) return false;
+	for (var E = 0; E < Item.Asset.Effect.length; E++)
+		if (Item.Asset.Effect[E].substr(0, 7) == "Unlock-")
+			return true;
 	return false;
 }

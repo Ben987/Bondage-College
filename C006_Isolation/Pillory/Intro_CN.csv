@@ -1,0 +1,4 @@
+﻿Stage,LoveReq,SubReq,VarReq,IntroText,Image
+0,0,0,,屋子里横着一副古老的木枷.,Pillory.jpg
+10,0,0,,你想把脑袋塞进去试试么?,PilloryHead.jpg
+20,0,0,,,PilloryLocked.jpg

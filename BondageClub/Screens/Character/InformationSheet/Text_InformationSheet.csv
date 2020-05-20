@@ -62,6 +62,7 @@ LARPClassProtector,Protector
 Skill,- Skills -
 SkillNone,None
 SkillBondage,Bondage:
+SkillSelfBondage,Self-bondage:
 SkillEvasion,Evasion:
 SkillWillpower,Willpower:
 SkillDressage,Dressage:

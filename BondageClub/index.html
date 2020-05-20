@@ -133,12 +133,14 @@
 <script src="Screens/Inventory/ItemMisc/MetalPadlock/MetalPadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/IntricatePadlock/IntricatePadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/TimerPadlock/TimerPadlock.js"></script>
+<script src="Screens/Inventory/ItemMisc/CombinationPadlock/CombinationPadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/MistressTimerPadlock/MistressTimerPadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/OwnerTimerPadlock/OwnerTimerPadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/OwnerPadlock/OwnerPadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/LoversPadlock/LoversPadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/LoversTimerPadlock/LoversTimerPadlock.js"></script>
 <script src="Screens/Inventory/ItemMisc/MistressPadlock/MistressPadlock.js"></script>
+<script src="Screens/Inventory/ItemMisc/ExclusivePadlock/ExclusivePadlock.js"></script>
 <script src="Screens/Inventory/ItemHead/DuctTape/DuctTape.js"></script>
 <script src="Screens/Inventory/ItemMouth/PlugGag/PlugGag.js"></script>
 <script src="Screens/Inventory/ItemMouth/DildoPlugGag/DildoPlugGag.js"></script>
@@ -167,6 +169,7 @@
 <script src="Screens/Inventory/ItemNipples/NippleSuctionCups/NippleSuctionCups.js"></script>
 <script src="Screens/Inventory/ItemVulva/ClitSuctionCup/ClitSuctionCup.js"></script>
 <script src="Screens/Inventory/ItemVulva/InflatableVibeDildo/InflatableVibeDildo.js"></script>
+<script src="Screens/Inventory/ItemVulva/WiredEgg/WiredEgg.js"></script>
 <script src="Screens/Inventory/ItemButt/InflVibeButtPlug/InflVibeButtPlug.js"></script>
 <script src="Screens/Inventory/ItemDevices/TeddyBear/TeddyBear.js"></script>
 <script src="Screens/Inventory/ItemArms/LeatherStraitJacket/LeatherStraitJacket.js"></script>
@@ -187,6 +190,7 @@
 <script src="Screens/Inventory/ItemButt/AnalHook/AnalHook.js"></script>
 <script src="Screens/Inventory/ItemButt/AnalBeads2/AnalBeads2.js"></script>
 <script src="Screens/Inventory/ItemButt/ButtPlugLock/ButtPlugLock.js"></script>
+<script src="Screens/Inventory/ItemButt/VibratingDildoPlug/VibratingDildoPlug.js"></script>
 <script src="Screens/Inventory/ItemArms/OrnateCuffs/OrnateCuffs.js"></script>
 <script src="Screens/Inventory/ItemLegs/OrnateLegCuffs/OrnateLegCuffs.js"></script>
 <script src="Screens/Inventory/ItemFeet/OrnateAnkleCuffs/OrnateAnkleCuffs.js"></script>
@@ -197,6 +201,11 @@
 <script src="Screens/Inventory/ItemHidden/LeatherArmbinderWrapStrap/LeatherArmbinderWrapStrap.js"></script>
 <script src="Screens/Inventory/ItemArms/BitchSuit/BitchSuit.js"></script>
 <script src="Screens/Inventory/ItemVulva/ClitAndDildoVibratorbelt/ClitAndDildoVibratorbelt.js"></script>
+<script src="Screens/Inventory/ItemFeet/SpreaderVibratingDildoBar/SpreaderVibratingDildoBar.js"></script>
+<script src="Screens/Inventory/ItemPelvis/MetalChastityBelt/MetalChastityBelt.js"></script>
+<script src="Screens/Inventory/ItemPelvis/PolishedChastityBelt/PolishedChastityBelt.js"></script>
+<script src="Screens/Inventory/ItemPelvis/OrnateChastityBelt/OrnateChastityBelt.js"></script>
+<script src="Screens/Inventory/ItemPelvis/StuddedChastityBelt/StuddedChastityBelt.js"></script>
 <script>
 
 /*
@@ -204,11 +213,11 @@
 	NEXT VERISON:
 	
 	BUG SENT - Both egg and vibrator could work on different variables - Demon tail + Clit&Dildo Vibrating belt + See-through + See-through zip catsuits (gatetrek)
-	BUG SENT - Use a device strap-on on a suspended girl, should be hidden (wildsj)
+	BUG SENT - WoodenBoxOpenHead - Many bugs sent (Ace-1331)
+	OK - Missing boots assets (Ace-1331)
+	OK - SpreaderVibratingDildoBar inventory screen crash (Ace-1331)
 	
-	OK - Initial pose on character creation fix (Nina-1474)
-	OK - Hovering using "up" button fix (Nina-1474)
-	OK - Show single strip button only if there's a cloth on that position (Atasly)
+	TO DO - Add a slider to use restraints at a lower level than your current bondage level, to make it easier to escape
 	
 	TO DO - Each restraint will have different ways (mini-games) to try to struggle out of it:
 		1. Go Berserk (Duct Tape, Cages & Boxes, Mittens, Chastity Items, Body Harnesses, Gags with harness, Hoods) - Click the circles quickly before they disappear (Asylum)
@@ -217,7 +226,7 @@
 		4. Use Dexterity (Rope, Jackets & Suits, One Bar & Bench & Bag, Mittens, Body Harnesses, Gags with harness, Collars) - Timing Game: Stop the moving object at the right position
 		5. Be Supple (Jackets & Suits, Belts, Chastity Items, Gags without harness, Armbinders, Locking Boots, Hoods) - Guess the right number between 1 and 100, a few tries, tells you if higher or lower	
 		6. Pick the Lock (For anything that locks or when a lock is added) - Precision Game - Don't touch the walls that are scrolling toward you
-
+	
 	TO DO - Add a random punishment function to online chat room to roll a random punishment for a player or yourself, the punishment will be executed manually
 
 	TO DO - Proof Read
@@ -257,7 +266,8 @@ function DocumentKeyDown(event) {
 		if (typeof window[CurrentScreen + "Exit"] === "function") {
 			window[CurrentScreen + "Exit"]();
 		} else if ((CurrentCharacter != null) && Array.isArray(DialogMenuButton) && (DialogMenuButton.indexOf("Exit") >= 0)) {
-			DialogLeaveItemMenu();
+			if (!DialogLeaveFocusItem())
+				DialogLeaveItemMenu();
 		} else if ((CurrentCharacter != null) && (CurrentScreen == "ChatRoom")) {
 			DialogLeave();
 		}

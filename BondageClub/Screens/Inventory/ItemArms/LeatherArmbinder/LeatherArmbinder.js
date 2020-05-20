@@ -45,11 +45,11 @@ function InventoryItemArmsLeatherArmbinderSetType(NewType) {
 		InventoryItemArmsLeatherArmbinderLoad();
 	}
 	if (NewType == "Strap") {
-		InventoryWear(C, "LeatherArmbinderStrap", "ItemHidden");
+		InventoryWear(C, "LeatherArmbinderStrap", "ItemHidden", DialogFocusItem.Color == DialogFocusItem.Asset.DefaultColor ? "Default" : DialogFocusItem.Color);
 		DialogFocusItem = InventoryGet(C, "ItemHidden");
 	}
 	if (NewType == "WrapStrap") {
-		InventoryWear(C, "LeatherArmbinderWrapStrap", "ItemHidden");
+		InventoryWear(C, "LeatherArmbinderWrapStrap", "ItemHidden", DialogFocusItem.Color == DialogFocusItem.Asset.DefaultColor ? "Default" : DialogFocusItem.Color);
 		DialogFocusItem = InventoryGet(C, "ItemHidden");
 	}
 

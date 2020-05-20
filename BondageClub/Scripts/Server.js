@@ -148,6 +148,7 @@ function ServerValidateProperties(C, Item) {
 			if ((Effect == "Lock") && ((Item.Asset.AllowLock == null) || (Item.Asset.AllowLock == false) || (InventoryGetLock(Item) == null))) {
 				delete Item.Property.LockedBy;
 				delete Item.Property.LockMemberNumber;
+				delete Item.Property.CombinationNumber;
 				delete Item.Property.RemoveTimer;
 				delete Item.Property.MaxTimer;
 				delete Item.Property.RemoveItem;
@@ -161,13 +162,21 @@ function ServerValidateProperties(C, Item) {
 			// If the item is locked by a lock
 			if ((Effect == "Lock") && (InventoryGetLock(Item) != null)) {
 
-				// Make sure the remove timer on the lock is valid
+				// Make sure the combination number on the lock is valid, 4 digits only
 				var Lock = InventoryGetLock(Item);
+				if ((Item.Property.CombinationNumber != null) && (typeof Item.Property.CombinationNumber == "string")) {
+					var E = /^[0-9]+$/;
+					if (!Item.Property.CombinationNumber.match(E) || (Item.Property.CombinationNumber.length != 4)) {
+						Item.Property.CombinationNumber = "0000";
+					}
+				} else delete Item.Property.CombinationNumber;
+
+				// Make sure the remove timer on the lock is valid
 				if ((Lock.Asset.RemoveTimer != null) && (Lock.Asset.RemoveTimer != 0)) {
 					var CurrentTimeDelay = 5000;
 					// As CurrentTime can be slightly different, we accept a small delay in ms
 					if ((typeof Item.Property.RemoveTimer !== "number") || (Item.Property.RemoveTimer - CurrentTimeDelay > CurrentTime + Lock.Asset.MaxTimer * 1000)) {
-						Item.Property.RemoveTimer = CurrentTime + Lock.Asset.RemoveTimer * 1000;
+						Item.Property.RemoveTimer = Math.round(CurrentTime + Lock.Asset.RemoveTimer * 1000);
 					}
 				} else delete Item.Property.RemoveTimer;
 
@@ -175,6 +184,7 @@ function ServerValidateProperties(C, Item) {
 				if (Lock.Asset.OwnerOnly && ((C.Ownership == null) || (C.Ownership.MemberNumber == null) || (Item.Property.LockMemberNumber == null) || (C.Ownership.MemberNumber != Item.Property.LockMemberNumber))) {
 					delete Item.Property.LockedBy;
 					delete Item.Property.LockMemberNumber;
+					delete Item.Property.CombinationNumber;
 					delete Item.Property.RemoveTimer;
 					delete Item.Property.MaxTimer;
 					delete Item.Property.RemoveItem;
@@ -189,6 +199,7 @@ function ServerValidateProperties(C, Item) {
 				if (Lock.Asset.LoverOnly && ((C.Lovership == null) || (C.Lovership.MemberNumber == null) || (Item.Property.LockMemberNumber == null) || (C.Lovership.MemberNumber != Item.Property.LockMemberNumber))) {
 					delete Item.Property.LockedBy;
 					delete Item.Property.LockMemberNumber;
+					delete Item.Property.CombinationNumber;
 					delete Item.Property.RemoveTimer;
 					delete Item.Property.MaxTimer;
 					delete Item.Property.RemoveItem;
@@ -266,52 +277,57 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 	// Reapply any item that was equipped and isn't enable, same for owner locked items if the source member isn't the owner
 	if ((SourceMemberNumber != null) && (C.ID == 0))
 		for (var A = 0; A < C.Appearance.length; A++) {
-			if (!C.Appearance[A].Asset.Enable && !C.Appearance[A].Asset.OwnerOnly && !C.Appearance[A].Asset.LoverOnly)
+			if (!C.Appearance[A].Asset.Enable && !C.Appearance[A].Asset.OwnerOnly && !C.Appearance[A].Asset.LoverOnly) {
 				Appearance.push(C.Appearance[A]);
-			else
+			} else {
 				if ((C.Ownership != null) && (C.Ownership.MemberNumber != null) && (C.Ownership.MemberNumber != SourceMemberNumber) && InventoryOwnerOnlyItem(C.Appearance[A])) {
 					var NA = C.Appearance[A];
 					if (!C.Appearance[A].Asset.OwnerOnly) {
+
 						// If the owner-locked item is sent back from a non-owner, we allow to change some properties and lock it back with the owner lock
 						for (var B = 0; B < Bundle.length; B++)
 							if ((C.Appearance[A].Asset.Name == Bundle[B].Name) && (C.Appearance[A].Asset.Group.Name == Bundle[B].Group) && (C.Appearance[A].Asset.Group.Family == AssetFamily))
 								NA.Property = Bundle[B].Property;
+
 						// Some Properties should not be changed
 						if (C.Appearance[A].Property) {
 							if (C.Appearance[A].Property.LockedBy != null) NA.Property.LockedBy = C.Appearance[A].Property.LockedBy;
 							if (C.Appearance[A].Property.LockMemberNumber != null) NA.Property.LockMemberNumber = C.Appearance[A].Property.LockMemberNumber; else delete NA.Property.LockMemberNumber;
+							if (C.Appearance[A].Property.CombinationNumber != null) NA.Property.CombinationNumber = C.Appearance[A].Property.CombinationNumber; else delete NA.Property.CombinationNumber;
 							if (C.Appearance[A].Property.RemoveItem != null) NA.Property.RemoveItem = C.Appearance[A].Property.RemoveItem; else delete NA.Property.RemoveItem;
 							if (C.Appearance[A].Property.ShowTimer != null) NA.Property.ShowTimer = C.Appearance[A].Property.ShowTimer; else delete NA.Property.ShowTimer;
 							if (C.Appearance[A].Property.EnableRandomInput != null) NA.Property.EnableRandomInput = C.Appearance[A].Property.EnableRandomInput; else delete NA.Property.EnableRandomInput;
-
 							if (!NA.Property.EnableRandomInput || NA.Property.LockedBy != "OwnerTimerPadlock") {
 								if (C.Appearance[A].Property.MemberNumberList != null) NA.Property.MemberNumberList = C.Appearance[A].Property.MemberNumberList; else delete NA.Property.MemberNumberList;
-								if (C.Appearance[A].Property.RemoveTimer != null) NA.Property.RemoveTimer = C.Appearance[A].Property.RemoveTimer; else delete NA.Property.RemoveTimer;
+								if (C.Appearance[A].Property.RemoveTimer != null) NA.Property.RemoveTimer = Math.round(C.Appearance[A].Property.RemoveTimer); else delete NA.Property.RemoveTimer;
 							}
 						}
 						ServerValidateProperties(C, NA);
 						if (C.Appearance[A].Property.LockedBy == "OwnerPadlock") InventoryLock(C, NA, { Asset: AssetGet(AssetFamily, "ItemMisc", "OwnerPadlock") }, C.Ownership.MemberNumber);
+
 					}
 					Appearance.push(NA);
 				}
 				if ((C.Lovership != null) && (C.Lovership.MemberNumber != null) && (C.Lovership.MemberNumber != SourceMemberNumber) && InventoryLoverOnlyItem(C.Appearance[A])) {
 					var NA = C.Appearance[A];
 					if (!C.Appearance[A].Asset.LoverOnly) {
+
 						// If the lover-locked item is sent back from a non-lover, we allow to change some properties and lock it back with the lover lock
 						for (var B = 0; B < Bundle.length; B++)
 							if ((C.Appearance[A].Asset.Name == Bundle[B].Name) && (C.Appearance[A].Asset.Group.Name == Bundle[B].Group) && (C.Appearance[A].Asset.Group.Family == AssetFamily))
 								NA.Property = Bundle[B].Property;
+
 						// Some Properties should not be changed
 						if (C.Appearance[A].Property) {
 							if (C.Appearance[A].Property.LockedBy != null) NA.Property.LockedBy = C.Appearance[A].Property.LockedBy;
 							if (C.Appearance[A].Property.LockMemberNumber != null) NA.Property.LockMemberNumber = C.Appearance[A].Property.LockMemberNumber; else delete NA.Property.LockMemberNumber;
+							if (C.Appearance[A].Property.CombinationNumber != null) NA.Property.CombinationNumber = C.Appearance[A].Property.CombinationNumber; else delete NA.Property.CombinationNumber;
 							if (C.Appearance[A].Property.RemoveItem != null) NA.Property.RemoveItem = C.Appearance[A].Property.RemoveItem; else delete NA.Property.RemoveItem;
 							if (C.Appearance[A].Property.ShowTimer != null) NA.Property.ShowTimer = C.Appearance[A].Property.ShowTimer; else delete NA.Property.ShowTimer;
 							if (C.Appearance[A].Property.EnableRandomInput != null) NA.Property.EnableRandomInput = C.Appearance[A].Property.EnableRandomInput; else delete NA.Property.EnableRandomInput;
-
 							if (!NA.Property.EnableRandomInput || NA.Property.LockedBy != "LoversTimerPadlock") {
 								if (C.Appearance[A].Property.MemberNumberList != null) NA.Property.MemberNumberList = C.Appearance[A].Property.MemberNumberList; else delete NA.Property.MemberNumberList;
-								if (C.Appearance[A].Property.RemoveTimer != null) NA.Property.RemoveTimer = C.Appearance[A].Property.RemoveTimer; else delete NA.Property.RemoveTimer;
+								if (C.Appearance[A].Property.RemoveTimer != null) NA.Property.RemoveTimer = Math.round(C.Appearance[A].Property.RemoveTimer); else delete NA.Property.RemoveTimer;
 							}
 						}
 						ServerValidateProperties(C, NA);
@@ -319,13 +335,14 @@ function ServerAppearanceLoadFromBundle(C, AssetFamily, Bundle, SourceMemberNumb
 					}
 					Appearance.push(NA);
 				}
+			}
 		}
 
 	// For each appearance item to load
 	for (var A = 0; A < Bundle.length; A++) {
 
 		// Skip blocked items
-		if (InventoryIsPermissionBlocked(C, Bundle[A].Name, Bundle[A].Group) && OnlineGameAllowBlockItems()) continue;
+		if ((InventoryIsPermissionBlocked(C, Bundle[A].Name, Bundle[A].Group) || InventoryIsPermissionLimited(C,Bundle[A].Name, Bundle)) && OnlineGameAllowBlockItems()) continue;
 
 		// Cycles in all assets to find the correct item to add (do not add )
 		for (var I = 0; I < Asset.length; I++)
