@@ -848,7 +848,7 @@ var AssetFemale3DCG = [
 
 	{
 		Group: "Emoticon",
-		Priority: 49,
+		Priority: 50,
 		Left: 250,
 		Top: 0,
 		AllowNone: false,
