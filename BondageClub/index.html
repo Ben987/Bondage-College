@@ -169,6 +169,7 @@
 <script src="Screens/Inventory/ItemNipples/NippleSuctionCups/NippleSuctionCups.js"></script>
 <script src="Screens/Inventory/ItemVulva/ClitSuctionCup/ClitSuctionCup.js"></script>
 <script src="Screens/Inventory/ItemVulva/InflatableVibeDildo/InflatableVibeDildo.js"></script>
+<script src="Screens/Inventory/ItemVulva/WiredEgg/WiredEgg.js"></script>
 <script src="Screens/Inventory/ItemButt/InflVibeButtPlug/InflVibeButtPlug.js"></script>
 <script src="Screens/Inventory/ItemDevices/TeddyBear/TeddyBear.js"></script>
 <script src="Screens/Inventory/ItemArms/LeatherStraitJacket/LeatherStraitJacket.js"></script>
@@ -182,8 +183,6 @@
 <script src="Screens/Inventory/ItemNipplesPiercings/RoundPiercing/RoundPiercing.js"></script>
 <script src="Screens/Inventory/ItemNipplesPiercings/WeightedPiercing/WeightedPiercing.js"></script>
 <script src="Screens/Inventory/ItemDevices/Sybian/Sybian.js"></script>
-<script src="Screens/Inventory/ItemDevices/SmallWoodenBoxOpenHead/SmallWoodenBoxOpenHead.js"></script>
-<script src="Screens/Inventory/ItemDevices/WoodenBoxOpenHead/WoodenBoxOpenHead.js"></script>
 <script src="Screens/Inventory/ItemDevices/BondageBench/BondageBench.js"></script>
 <script src="Screens/Inventory/ItemAddon/BondageBenchStraps/BondageBenchStraps.js"></script>
 <script src="Screens/Inventory/ItemButt/AnalHook/AnalHook.js"></script>
@@ -212,42 +211,11 @@
 	NEXT VERISON:
 	
 	BUG SENT - Both egg and vibrator could work on different variables - Demon tail + Clit&Dildo Vibrating belt + See-through + See-through zip catsuits (gatetrek)
-	BUG SENT - Use a device strap-on on a suspended girl, should be hidden (wildsj)
+	BUG SENT - WoodenBoxOpenHead - Many bugs sent (Ace-1331)
+	OK - Missing boots assets (Ace-1331)
+	OK - SpreaderVibratingDildoBar inventory screen crash (Ace-1331)
 	
-	OK - Initial pose on character creation fix (Nina-1474)
-	OK - Hovering using "up" button fix (Nina-1474)
-	OK - Show single strip button only if there's a cloth on that position (Atasly)
-	OK - Forced labor fix for gags (Ace-1331)
-	OK - Management chastity items fix (Ace-1331)
-	OK - Using wardrobe will not change facial expression (ADRCorp)
-	OK - Collar medium chain (Ayesha-678)
-	OK - Lots of priority and suit requirements fixes, covering lots of items (Atasly)
-	OK - Open butt version of chastity belts (Nythaleath)
-	OK - Reverse Bunny Suit + Bunny Girl as Accessory (Kirsty)
-	OK - Vibrating Dildo Plug (Ayesha-678)
-	OK - ID Card (Ayesha-678)
-	OK - Spreader Dildo Bar (Vibe or not) (Nythaleath)
-	OK - Fox Mask, 2 Bunny Tails (Kirsty)
-	OK - Vacuum Bed (Kirsty + Nythaleath)
-	OK - Combination locks (Atasly)
-	OK - Common script for all open/closed belts (Nythaleath)
-	OK - Image fixes (Atasly)
-	OK - Canvas/appearance priority code change (Atasly)
-	OK - Bondage College, translation of chapters 4, 6 & 9 to Chinese (Es)
-	OK - Prison - Police Script Fixes (Nina-1474)
-	OK - Jeans skirt (Ayesha-678)
-	OK - New asset sort (Elliesec)
-	OK - Cowbell + Pencil Skirt + Leather Crop Top (Ruilove)
-	OK - Up Button Fix (Nina-1474)
-	OK - Multi-strap heels (Ayesha-678)
-	OK - Limited item permission (Atasly)
-
-	OK - When preparing the item list to apply, sort them by description
-	OK - New self-bondage system with difficulty set for most items
-	OK - Self-bondage training in the dojo
-	OK - Key deposit in the timer cell to lock your keys away for a while
-	OK - Exclusive locks for self-bondage or to trick a submissive
-	OK - Allow using owner/lover locks for self-bondage
+	TO DO - Add a slider to use restraints at a lower level than your current bondage level, to make it easier to escape
 	
 	TO DO - Each restraint will have different ways (mini-games) to try to struggle out of it:
 		1. Go Berserk (Duct Tape, Cages & Boxes, Mittens, Chastity Items, Body Harnesses, Gags with harness, Hoods) - Click the circles quickly before they disappear (Asylum)
@@ -296,7 +264,8 @@ function DocumentKeyDown(event) {
 		if (typeof window[CurrentScreen + "Exit"] === "function") {
 			window[CurrentScreen + "Exit"]();
 		} else if ((CurrentCharacter != null) && Array.isArray(DialogMenuButton) && (DialogMenuButton.indexOf("Exit") >= 0)) {
-			DialogLeaveItemMenu();
+			if (!DialogLeaveFocusItem())
+				DialogLeaveItemMenu();
 		} else if ((CurrentCharacter != null) && (CurrentScreen == "ChatRoom")) {
 			DialogLeave();
 		}

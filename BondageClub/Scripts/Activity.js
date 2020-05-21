@@ -60,7 +60,7 @@ function ActivityDialogBuild(C) {
 
 			// Make sure the activity is valid for that player asset family
 			var Activity = AssetGetActivity(C.AssetFamily, C.FocusGroup.Activity[A]);
-			if (Activity != null) {
+			if (Activity != null && Activity.Name.indexOf("Item") < 0) {
 
 				// If the player is targeting herself, we validate that this activity can be done on self
 				var Allow = true;
@@ -354,21 +354,13 @@ function ActivityRun(C, Activity) {
 
 }
 
-// Some items such as vibrating wands and spanking toys can trigger arousal both the source and target character
+// Some items such as vibrating wands and spanking toys can trigger arousal for both the source and target character
 function ActivityArousalItem(Source, Target, Asset) {
-	if (Asset.Activity != null) {
-		var Activity = AssetGetActivity(Target.AssetFamily, Asset.Activity);
+	var AssetActivity = Asset.DynamicActivity(Source);
+	if (AssetActivity != null) {
+		var Activity = AssetGetActivity(Target.AssetFamily, AssetActivity);
 		if ((Source.ID == 0) && (Target.ID != 0)) ActivityRunSelf(Source, Target, Activity);
-		if ((Target.ArousalSettings != null) && ((Target.ArousalSettings.Active == "Hybrid") || (Target.ArousalSettings.Active == "Automatic"))) {
-			if ((Target.ID == 0) || (Target.AccountName.substring(0, 4) == "NPC_") || (Target.AccountName.substring(0, 4) == "NPC-")) ActivityEffect(Source, Target, Asset.Activity, Asset.Group.Name);
-			if ((Target.ID != 0) && (CurrentScreen == "ChatRoom")) {
-				var Dictionary = [];
-				Dictionary.push({Tag: "SourceCharacter", Text: Source.Name, MemberNumber: Source.MemberNumber});
-				Dictionary.push({Tag: "TargetCharacter", Text: Target.Name, MemberNumber: Target.MemberNumber});
-				Dictionary.push({Tag: "ActivityGroup", Text: Asset.Group.Name});
-				Dictionary.push({Tag: "ActivityName", Text: Activity.Name});
-				ServerSend("ChatRoomChat", {Content: "ChatOther-" + Asset.Group.Name + "-" + Activity.Name, Type: "Activity", Dictionary: Dictionary});
-			}
-		}
+		if (((Target.ArousalSettings != null) && ((Target.ArousalSettings.Active == "Hybrid") || (Target.ArousalSettings.Active == "Automatic"))) && ((Target.ID == 0) || (Target.AccountName.substring(0, 4) == "NPC_") || (Target.AccountName.substring(0, 4) == "NPC-")))
+			ActivityEffect(Source, Target, AssetActivity, Asset.Group.Name);
 	}
 }
