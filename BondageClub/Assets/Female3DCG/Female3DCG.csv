@@ -182,6 +182,7 @@ Socks,SocksStriped1,Striped Socks
 Socks,LatexSocks1,Latex Socks
 Socks,FootlessSocks1,Footless Socks
 Socks,ReverseBunnySuit,Reverse Bunny Suit Stockings
+Socks,LeatherSocks1,Short Leather Socks
 Shoes,,Shoes
 Shoes,Shoes1,Style 1
 Shoes,Shoes2,Style 2
@@ -906,6 +907,7 @@ ItemBoots,ToeTie,Toe Tie
 ItemBoots,ThighHighLatexHeels,Latex Heels
 ItemBoots,LockingHeels,Locking Heels
 ItemBoots,LockingHeels2,Multi-Strap Locking Heels
+ItemBoots,LeathrFootMitts1, Short Leather Foot Mittens
 ItemHidden,Accessories,
 ItemHidden,LeatherArmbinderStraps,Leather Armbinder Straps
 ItemHidden,LeatherArmbinderWrapStrap,Leather Armbinder WrapStraps
