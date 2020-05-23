@@ -577,7 +577,7 @@ function ChatRoomCharacterItemUpdate(C, Group) {
 		P.Group = Group;
 		P.Name = (Item != null) ? Item.Asset.Name : null;
 		P.Color = ((Item != null) && (Item.Color != null)) ? Item.Color : "Default";
-		P.Difficulty = SkillGetPlayerBondage();
+		P.Difficulty = SkillGetWithRatio("Bondage");
 		P.Property = ((Item != null) && (Item.Property != null)) ? Item.Property : null;
 		ServerSend("ChatRoomCharacterItemUpdate", P);
 	}

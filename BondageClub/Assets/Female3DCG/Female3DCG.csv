@@ -756,6 +756,7 @@ ItemMouth,SteelMuzzleGag,Steel Muzzle Gag
 ItemMouth,StitchedMuzzleGag,Stitched Muzzle Gag
 ItemMouth,LatexBallMuzzleGag,Latex Ball Muzzle Gag
 ItemMouth,SockStuffing,Sock Stuffing
+ItemMouth,GasMaskGag,Respirator Mask
 ItemMouth2,,Mouth
 ItemMouth2,ClothGag,Cloth Gag
 ItemMouth2,WiffleGag,Wiffle Ball Gag
@@ -789,6 +790,7 @@ ItemMouth2,BallGagMask,Ball Gag Mask
 ItemMouth2,SteelMuzzleGag,Steel Muzzle Gag
 ItemMouth2,StitchedMuzzleGag,Stitched Muzzle Gag
 ItemMouth2,LatexBallMuzzleGag,Latex Ball Muzzle Gag
+ItemMouth2,GasMaskGag,Respirator Mask
 ItemMouth3,,Mouth
 ItemMouth3,ClothGag,Cloth Gag
 ItemMouth3,WiffleGag,Wiffle Ball Gag
@@ -822,11 +824,13 @@ ItemMouth3,BallGagMask,Ball Gag Mask
 ItemMouth3,SteelMuzzleGag,Steel Muzzle Gag
 ItemMouth3,StitchedMuzzleGag,Stitched Muzzle Gag
 ItemMouth3,LatexBallMuzzleGag,Latex Ball Muzzle Gag
+ItemMouth3,GasMaskGag,Respirator Mask
 ItemHead,,Head
 ItemHead,ClothBlindfold,Cloth Blindfold
 ItemHead,LeatherBlindfold,Leather Blindfold
 ItemHead,LeatherHood,Leather Hood
 ItemHead,LeatherHoodOpenEyes,Leather Hood Eyes
+ItemHead,GasMask,Gas Mask
 ItemHead,LeatherSlimMask,Slim Leather Mask
 ItemHead,LeatherSlimMaskOpenMouth,Open Mouth Slim Mask
 ItemHead,LeatherSlimMaskOpenEyes,Open Eyes Mouth Slim Mask
@@ -907,6 +911,9 @@ ItemBoots,ToeTie,Toe Tie
 ItemBoots,ThighHighLatexHeels,Latex Heels
 ItemBoots,LockingHeels,Locking Heels
 ItemBoots,LockingHeels2,Multi-Strap Locking Heels
+ItemBoots,LockingShoes1,Locking Strap Shoes
+ItemBoots,LockingShoes2,Locking Full Shoes
+ItemBoots,LockingBoots1,Locking Boots
 ItemBoots,LeatherFootMitts1,Short Leather Foot Mittens
 ItemHidden,Accessories,
 ItemHidden,LeatherArmbinderStraps,Leather Armbinder Straps
