@@ -9,8 +9,8 @@ function InventoryItemMiscCombinationPadlockLoad() {
 	// the current code is shown for owners, lovers and the member whose number is on the padlock
 	var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (DialogFocusSourceItem != null && ((Player.MemberNumber == DialogFocusSourceItem.Property.LockMemberNumber)
-		|| (Player.Ownership != null && (Player.MemberNumber == C.Ownership.MemberNumber))
-		|| (Player.Lovership != null && (Player.MemberNumber == C.Lovership.MemberNumber)))) document.getElementById("CombinationNumber").placeholder = DialogFocusSourceItem.Property.CombinationNumber;
+		|| ((C.Ownership != null) && (C.Ownership.MemberNumber != null) && (Player.MemberNumber == C.Ownership.MemberNumber))
+		|| ((C.Lovership != null) && (C.Lovership.MemberNumber != null) && (Player.MemberNumber == C.Lovership.MemberNumber)))) document.getElementById("CombinationNumber").placeholder = DialogFocusSourceItem.Property.CombinationNumber;
 }
 
 // Draw the extension screen

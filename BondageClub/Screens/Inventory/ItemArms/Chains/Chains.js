@@ -122,9 +122,6 @@ function InventoryItemArmsChainsSetPose(NewType) {
 	// Sets the new pose with its effects only if the chains are not locked
 	if (!InventoryItemHasEffect(DialogFocusItem, "Lock", true)) {
 		DialogFocusItem.Property = NewType.Property;
-		if (NewType.Expression != null)
-			for (var E = 0; E < NewType.Expression.length; E++)
-				CharacterSetFacialExpression(C, NewType.Expression[E].Group, NewType.Expression[E].Name, NewType.Expression[E].Timer);
 		if (NewType.HiddenItem != null) InventoryWear(C, NewType.HiddenItem, "ItemHidden", DialogFocusItem.Color);
 		else InventoryRemove(C, "ItemHidden");
 	} else {
