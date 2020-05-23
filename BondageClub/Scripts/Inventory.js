@@ -305,13 +305,24 @@ function InventoryRemove(C, AssetGroup) {
 		if (C.Appearance[E].Asset.Group.Name == AssetGroup) {
 
 			// Remove other items that are flagged to be removed when this item is removed.  If the name is empty, we remove any item from that group.
+			var ForceUpdate = false;
 			for (var R = 0; R < C.Appearance[E].Asset.RemoveItemOnRemove.length; R++)
-				if ((C.Appearance[E].Asset.RemoveItemOnRemove[R].Name == "") || ((C.Appearance[E].Asset.RemoveItemOnRemove[R].Name != "") && (InventoryGet(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group) != null) && (InventoryGet(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group).Asset.Name == C.Appearance[E].Asset.RemoveItemOnRemove[R].Name)))
+				if ((C.Appearance[E].Asset.RemoveItemOnRemove[R].Name == "") || ((C.Appearance[E].Asset.RemoveItemOnRemove[R].Name != "") && (InventoryGet(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group) != null) && (InventoryGet(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group).Asset.Name == C.Appearance[E].Asset.RemoveItemOnRemove[R].Name))) {
 					InventoryRemove(C, C.Appearance[E].Asset.RemoveItemOnRemove[R].Group);
+					ForceUpdate = true;
+				}
 
 			// Removes the item itself and refreshes the character
 			C.Appearance.splice(E, 1);
 			CharacterRefresh(C);
+			
+			// If a second item was removed, we force reload the full character to get it refreshed
+			if (ForceUpdate && (CurrentScreen == "ChatRoom") && (C.ID != 0)) {
+				var AllowUpdate = ChatRoomAllowCharacterUpdate;
+				ChatRoomAllowCharacterUpdate = true;
+				ChatRoomCharacterUpdate(C);
+				ChatRoomAllowCharacterUpdate = AllowUpdate;
+			}
 			return;
 
 		}
