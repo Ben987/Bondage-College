@@ -524,6 +524,10 @@ RopeBondageBasic,,,Basic Tie,,
 RopeBondageMermaid,,,Mermaid Tie,,
 RopeBondageBoxTie,,,Box Tie,,
 RopeBondageHogtied,,,Hogtie,,
+ToeTapePoseToes,,,Toes
+ToeTapePoseFull,,,Full
+ToeTapeSetToes,,,SourceCharacter uses the tape on TargetCharacter to tie her toes together with tape.,,
+ToeTapeSetFull,,,SourceCharacter uses the tape on TargetCharacter to fully wrap her feet with tape.,,
 RopeBondageSuspension,,,Suspension Tie,,
 RopeBondageSuspensionHogtied,,,Suspension Hogtie,,
 RopeBondageWristElbowTie,,,Wrist and Elbow Tie,,
