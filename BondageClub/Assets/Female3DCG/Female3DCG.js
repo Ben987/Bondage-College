@@ -2184,9 +2184,11 @@ var AssetFemale3DCG = [
 		    Layer: [
 				{ Name: "Mitts", AllowColorize: true},
 				{ Name: "Straps", AllowColorize: false}
+				
 
 			]
 		},
+		{ Name: "ToeTape", Extended: true, Value: 50, BuyGroup: "DuctTape", Difficulty: 2, Time: 10, RemoveTime: 5, Prerequisite: "ToeTied", Hide: ["Shoes"], SetPose: ["LegsClosed"], Effect: ["Freeze", "Prone"] },
 			AssetSpankingToys
 		],
 		Color: ["Default"]
