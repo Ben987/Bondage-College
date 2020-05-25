@@ -444,8 +444,10 @@ function AppearanceRun() {
 	// Draw the background and the character twice
 	var C = CharacterAppearanceSelection;
 	var HideColorPicker = true;
-	if (C.ID == 0) CharacterAppearanceHeaderText = TextGet("SelectYourAppearance");
-	else CharacterAppearanceHeaderText = TextGet("SelectSomeoneAppearance").replace("TargetCharacterName", C.Name);
+	if (CharacterAppearanceHeaderText == "") {
+		if (C.ID == 0) CharacterAppearanceHeaderText = TextGet("SelectYourAppearance");
+		else CharacterAppearanceHeaderText = TextGet("SelectSomeoneAppearance").replace("TargetCharacterName", C.Name);
+	}
 	DrawCharacter(C, -600, (C.IsKneeling()) ? -1100 : -100, 4, false);
 	DrawCharacter(C, 750, 0, 1);
 	DrawText(CharacterAppearanceHeaderText, 400, 40, "White", "Black");
@@ -727,6 +729,7 @@ function AppearanceClick() {
 
 // when the user press escape
 function AppearanceExit() {
+	CharacterAppearanceHeaderText = "";
 	if (CharacterAppearanceColorPicker != "") { CharacterAppearanceColorPicker = ""; ElementRemove("InputColor"); }
 	else if (CharacterAppearanceWardrobeMode) { CharacterAppearanceWardrobeMode = false; ElementRemove("InputWardrobeName"); }
 	else CharacterAppearanceExit(CharacterAppearanceSelection);
@@ -742,6 +745,7 @@ function CharacterAppearanceExit(C) {
 	else CommonSetScreen("Character", "Login");
 	CharacterAppearanceReturnRoom = "MainHall";
 	CharacterAppearanceReturnModule = "Room";
+	CharacterAppearanceHeaderText = "";
 }
 
 // When the player is ready, we make sure she at least has an outfit
