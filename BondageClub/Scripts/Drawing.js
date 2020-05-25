@@ -155,7 +155,8 @@ function DrawCharacter(C, X, Y, Zoom, IsHeightResizeAllowed) {
 			CanvasH.height = Canvas.height;
 			CanvasH.getContext("2d").rotate(Math.PI);
 			CanvasH.getContext("2d").translate(-Canvas.width, -Canvas.height);
-			CanvasH.getContext("2d").drawImage(Canvas, 0, 0);
+			// Render to the flipped canvas, and crop off the height modifier to prevent vertical overflow
+			CanvasH.getContext("2d").drawImage(Canvas, 0, 0, Canvas.width, Canvas.height - C.HeightModifier, 0, 0, Canvas.width, Canvas.height - C.HeightModifier);
 			Canvas = CanvasH;
 		}
 

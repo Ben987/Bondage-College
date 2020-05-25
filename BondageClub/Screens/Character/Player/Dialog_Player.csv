@@ -1,4 +1,20 @@
-
+PlayerGagged,,,(You can use or remove items by selecting specific body regions on yourself.),,
+0,,,(You can use or remove items by selecting specific body regions on yourself.),,
+0,10,(Adjust your bondage skill.),"(By default, you restrain using your full bondage skill.  You can use less of your skill and make it easier for your victims to escape.)",,"DialogSkillGreater(""Bondage"", 1)"
+0,20,(Adjust your evasion skill.),"(By default, you struggle using your full evasion skill.  You can use less of your skill and make it harder for you to struggle free.)",,"DialogSkillGreater(""Evasion"", 1)"
+10,,,"(By default, you restrain using your full bondage skill.  You can use less of your skill and make it easier for your victims to escape.)",,
+10,0,(Use your full bondage skill.  100%),(You will now use your full bondage skill when using a restraint.  100%),"DialogSetSkillRatio(""Bondage"", 100)",
+10,0,(Use most of your bondage skill.  75%),(You will now use most of your bondage skill when using a restraint.  75%),"DialogSetSkillRatio(""Bondage"", 75)",
+10,0,(Use half of your bondage skill.  50%),(You will now use half of your bondage skill when using a restraint.  50%),"DialogSetSkillRatio(""Bondage"", 50)",
+10,0,(Use very little of your bondage skill.  25%),(You will now use very little of your bondage skill when using a restraint.  25%),"DialogSetSkillRatio(""Bondage"", 25)",
+10,0,(Use none of your bondage skill.  0%),(You will now use none of your bondage skill when using a restraint.  0%),"DialogSetSkillRatio(""Bondage"", 0)",
+10,0,(Don't change your skill.),(You can use or remove items by selecting specific body regions on yourself.),,
+20,,,"(By default, you struggle using your full evasion skill.  You can use less of your skill and make it harder for you to struggle free.)",,
+20,0,(Use your full evasion skill.  100%),(You will now use your full evasion skill when trying to struggle free.  100%),"DialogSetSkillRatio(""Evasion"", 100)",
+20,0,(Use most of your evasion skill.  75%),(You will now use most of your evasion skill when trying to struggle free.  75%),"DialogSetSkillRatio(""Evasion"", 75)",
+20,0,(Use half of your evasion skill.  50%),(You will now use half of your evasion skill when trying to struggle free.  50%),"DialogSetSkillRatio(""Evasion"", 50)",
+20,0,(Use very little of your evasion skill.  25%),(You will now use very little of your evasion skill when trying to struggle free.  25%),"DialogSetSkillRatio(""Evasion"", 25)",
+20,0,(Use none of your evasion skill.  0%),(You will now use none of your evasion skill when trying to struggle free.  0%),"DialogSetSkillRatio(""Evasion"", 0)",
 20,0,(Don't change your skill.),(You can use or remove items by selecting specific body regions on yourself.),,
 SelectItem,,,Select an item to use.,,
 SelectItemGroup,,,Select an item to use on the GroupName.,,
@@ -499,7 +515,7 @@ DildoPlugGagMouthSetOpen,,,SourceCharacter pulls out DestinationCharacter dildo 
 SelectBlindType,,,Select the type of blindfold,,
 DuctTapeHeadTypeDouble,,,Double,,
 DuctTapeHeadTypeWrap,,,Wrap,,
-DuctTapeHeadSetDouble,,,SourceCharacter takes a piece of duct tape for TargetCharacter and place on her face.,,
+DuctTapeHeadSetDouble,,,SourceCharacter takes a piece of duct tape for TargetCharacter and places it on her face.,,
 DuctTapeHeadSetWrap,,,SourceCharacter wraps some duct tape onto DestinationCharacter face.,,
 DuctTapeHeadTypeMummy,,,Mummy,,
 DuctTapeHeadSetMummy,,,SourceCharacter wraps DestinationCharacter head in tape with multiple layers. ,,
@@ -508,6 +524,10 @@ RopeBondageBasic,,,Basic Tie,,
 RopeBondageMermaid,,,Mermaid Tie,,
 RopeBondageBoxTie,,,Box Tie,,
 RopeBondageHogtied,,,Hogtie,,
+ToeTapePoseToes,,,Toes
+ToeTapePoseFull,,,Full
+ToeTapeSetToes,,,SourceCharacter uses the tape on TargetCharacter to tie her toes together with tape.,,
+ToeTapeSetFull,,,SourceCharacter uses the tape on TargetCharacter to fully wrap her feet with tape.,,
 RopeBondageSuspension,,,Suspension Tie,,
 RopeBondageSuspensionHogtied,,,Suspension Hogtie,,
 RopeBondageWristElbowTie,,,Wrist and Elbow Tie,,
@@ -1064,3 +1084,22 @@ ChastityOpenBack,,,Open Back,,
 ChastityClosedBack,,,Closed Back,,
 ChastityBeltBackShieldOpenBack,,,SourceCharacter removes the shield from the back of DestinationCharacter's belt.,,
 ChastityBeltBackShieldClosedBack,,,SourceCharacter adds the shield to the back of DestinationCharacter's belt.,,
+WebBondageSelect,,,Select web type
+WebBondageTangled,,,Tangled
+WebBondageWrapped,,,Wrapped
+WebBondageCocooned,,,Cocooned
+WebBondageHogtied,,,Hogtied
+WebBondageSuspended,,,Suspended
+WebBondageSuspensionHogtied,,,Suspension Hogtied
+WebBondageBlindfold,,,Blindfold
+WebBondageCocoon,,,Cocoon
+ArmsWebSetTangled,,,SourceCharacter Action the webbing on TargetCharacter
+ArmsWebSetWrapped,,,"SourceCharacter Action the webbing on TargetCharacter, leaving them fully wrapped"
+ArmsWebSetCocooned,,,"SourceCharacter Action the webbing on TargetCharacter, forming a cocoon"
+ArmsWebSetHogtied,,,"SourceCharacter wraps TargetCharacter in webbing, forming a hogtie"
+ArmsWebSetSuspended,,,SourceCharacter fully wraps TargetCharacter in webbing and uses it to suspend her
+ArmsWebSetSuspensionHogtied,,,"SourceCharacter hogties TargetCharacter with the webbing and uses it to suspend her"
+tightens,,,tightens
+loosens,,,loosens
+HeadWebSetBlindfold,,,SourceCharacter creates a blindfold out of web for TargetCharacter
+HeadWebSetCocoon,,,SourceCharacter creates a cocoon out of web for TargetCharacter

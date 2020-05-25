@@ -182,6 +182,7 @@ Socks,SocksStriped1,Striped Socks
 Socks,LatexSocks1,Latex Socks
 Socks,FootlessSocks1,Footless Socks
 Socks,ReverseBunnySuit,Reverse Bunny Suit Stockings
+Socks,LeatherSocks1,Short Leather Socks
 Shoes,,Shoes
 Shoes,Shoes1,Style 1
 Shoes,Shoes2,Style 2
@@ -384,19 +385,33 @@ HairBack,HairBack23,Style 18
 HairBack,HairBack24,Style 19
 HairFront,,Front Hair
 HairFront,HairFront1,Style 1
+HairFront,HairFront1b,Style 1b
 HairFront,HairFront2,Style 2
+HairFront,HairFront2b,Style 2b
 HairFront,HairFront3,Style 3
+HairFront,HairFront3b,Style 3b
 HairFront,HairFront4,Style 4
+HairFront,HairFront4b,Style 4b
 HairFront,HairFront5,Style 5
+HairFront,HairFront5b,Style 5b
 HairFront,HairFront6,Style 6
+HairFront,HairFront6b,Style 6b
 HairFront,HairFront7,Style 7
+HairFront,HairFront7b,Style 7b
 HairFront,HairFront8,Style 8
+HairFront,HairFront8b,Style 8b
 HairFront,HairFront9,Style 9
+HairFront,HairFront9b,Style 9b
 HairFront,HairFront10,Style 10
+HairFront,HairFront10b,Style 10b
 HairFront,HairFront11,Style 11
+HairFront,HairFront11b,Style 11b
 HairFront,HairFront12,Style 12
+HairFront,HairFront12,Style 12b
 HairFront,HairFront13,Style 13
+HairFront,HairFront13b,Style 13b
 HairFront,HairFront14,Style 14
+HairFront,HairFront14b,Style 14b
 Eyes,,Eyes
 Eyes,Eyes1,Style 1
 Eyes,Eyes2,Style 2
@@ -757,6 +772,7 @@ ItemMouth,SteelMuzzleGag,Steel Muzzle Gag
 ItemMouth,StitchedMuzzleGag,Stitched Muzzle Gag
 ItemMouth,LatexBallMuzzleGag,Latex Ball Muzzle Gag
 ItemMouth,SockStuffing,Sock Stuffing
+ItemMouth,GasMaskGag,Respirator Mask
 ItemMouth2,,Mouth
 ItemMouth2,ClothGag,Cloth Gag
 ItemMouth2,WiffleGag,Wiffle Ball Gag
@@ -790,6 +806,7 @@ ItemMouth2,BallGagMask,Ball Gag Mask
 ItemMouth2,SteelMuzzleGag,Steel Muzzle Gag
 ItemMouth2,StitchedMuzzleGag,Stitched Muzzle Gag
 ItemMouth2,LatexBallMuzzleGag,Latex Ball Muzzle Gag
+ItemMouth2,GasMaskGag,Respirator Mask
 ItemMouth3,,Mouth
 ItemMouth3,ClothGag,Cloth Gag
 ItemMouth3,WiffleGag,Wiffle Ball Gag
@@ -823,11 +840,13 @@ ItemMouth3,BallGagMask,Ball Gag Mask
 ItemMouth3,SteelMuzzleGag,Steel Muzzle Gag
 ItemMouth3,StitchedMuzzleGag,Stitched Muzzle Gag
 ItemMouth3,LatexBallMuzzleGag,Latex Ball Muzzle Gag
+ItemMouth3,GasMaskGag,Respirator Mask
 ItemHead,,Head
 ItemHead,ClothBlindfold,Cloth Blindfold
 ItemHead,LeatherBlindfold,Leather Blindfold
 ItemHead,LeatherHood,Leather Hood
 ItemHead,LeatherHoodOpenEyes,Leather Hood Eyes
+ItemHead,GasMask,Gas Mask
 ItemHead,LeatherSlimMask,Slim Leather Mask
 ItemHead,LeatherSlimMaskOpenMouth,Open Mouth Slim Mask
 ItemHead,LeatherSlimMaskOpenEyes,Open Eyes Mouth Slim Mask
@@ -911,6 +930,7 @@ ItemBoots,LockingHeels2,Multi-Strap Locking Heels
 ItemBoots,LockingShoes1,Locking Strap Shoes
 ItemBoots,LockingShoes2,Locking Full Shoes
 ItemBoots,LockingBoots1,Locking Boots
+ItemBoots,LeatherFootMitts1,Short Leather Foot Mittens
 ItemHidden,Accessories,
 ItemHidden,LeatherArmbinderStraps,Leather Armbinder Straps
 ItemHidden,LeatherArmbinderWrapStrap,Leather Armbinder WrapStraps
