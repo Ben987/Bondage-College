@@ -3,7 +3,6 @@
 // Loads the item extension properties
 function InventoryItemVulvaFullLatexSuitWandLoad() {
 	if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Intensity: -1 };
-	if (DialogFocusItem.Property.Intensity == null) DialogFocusItem.Property.Intensity = -1;
 }
 
 // Draw the item extension screen
