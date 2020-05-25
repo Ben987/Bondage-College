@@ -729,7 +729,6 @@ function AppearanceClick() {
 
 // when the user press escape
 function AppearanceExit() {
-	CharacterAppearanceHeaderText = "";
 	if (CharacterAppearanceColorPicker != "") { CharacterAppearanceColorPicker = ""; ElementRemove("InputColor"); }
 	else if (CharacterAppearanceWardrobeMode) { CharacterAppearanceWardrobeMode = false; ElementRemove("InputWardrobeName"); }
 	else CharacterAppearanceExit(CharacterAppearanceSelection);
