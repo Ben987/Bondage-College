@@ -14,7 +14,7 @@ var CharacterAppearanceReturnModule = "Room";
 var CharacterAppearanceWardrobeOffset = 0;
 var CharacterAppearanceWardrobeMode = false;
 var CharacterAppearanceWardrobeText = "";
-var CharacterAppearanceForceTopPosition = false;
+var CharacterAppearanceForceUpCharacter = 0;
 
 // Builds all the assets that can be used to dress up the character
 function CharacterAppearanceBuildAssets(C) {
@@ -274,7 +274,7 @@ function CharacterAppearanceVisible(C, AssetName, GroupName) {
 
 // Sets the height modifier which determines the character's vertical position on screen
 function CharacterApperanceSetHeightModifier(C) {
-	if (CharacterAppearanceForceTopPosition == true) {
+	if (CharacterAppearanceForceUpCharacter == C.MemberNumber) {
 		C.HeightModifier = 0;
 	} else {
 		var Height = 0;
