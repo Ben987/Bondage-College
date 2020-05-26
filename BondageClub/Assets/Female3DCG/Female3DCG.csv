@@ -12,7 +12,7 @@ Cloth,ChineseDress2,Chinese Long
 Cloth,TShirt1,T-Shirt
 Cloth,TennisShirt1,Tennis
 Cloth,Sweater1,Sweater
-Cloth,MistressTop1,Mistress Top
+Cloth,MistressTop,Mistress Top
 Cloth,AdultBabyDress1,Puffy Baby Dress
 Cloth,AdultBabyDress2,Bows Baby Dress
 Cloth,AdultBabyDress3,Flower Baby dress
@@ -66,7 +66,7 @@ Suit,,Upper Suit
 Suit,Catsuit,Catsuit
 Suit,SeamlessCatsuit, Seamless Catsuit
 Suit,SeethroughSuit,See-through Suit
-Suit,SeethroughSuitzip,See-through Zipsuit
+Suit,SeethroughSuitZip,See-through Zipsuit
 Suit,ReverseBunnySuit,Reverse Bunny Suit
 ClothLower,,Bottom
 ClothLower,Skirt1,Skirt
@@ -316,7 +316,7 @@ TailStraps,HorseTailStrap1,Horse TailStrap
 TailStraps,FoxTailsStrap,Fox Tails Strap
 TailStraps,PuppyTailStrap,Puppy Tail Strap
 TailStraps,SuccubusStrap,Succubus Tail Strap
-TailStraps,SuccubusStrap2,Succubus2 Tail Strap
+TailStraps,SuccubusTailStrap,Succubus2 Tail Strap
 TailStraps,RaccoonStrap,Raccoon Tail Strap
 TailStraps,RaccoonTailStrap,Raccoon2 Tail Strap
 TailStraps,PuppyTailStrap1,Puppy Fluffy Tail Strap
@@ -354,12 +354,12 @@ BodyUpper,,Upper Body
 BodyUpper,Small,Small
 BodyUpper,Normal,Normal
 BodyUpper,Large,Large
-BodyUpper,Xlarge,Xlarge
+BodyUpper,XLarge,Xlarge
 BodyLower,,Lower Body
 BodyLower,Small,Small
 BodyLower,Normal,Normal
 BodyLower,Large,Large
-BodyLower,Xlarge,Xlarge
+BodyLower,XLarge,Xlarge
 Hands,,Hands
 Hands,Default,Default
 HairBack,,Back Hair
@@ -511,19 +511,19 @@ ItemButt,,Butt
 ItemButt,BlackButtPlug,Black Butt Plug
 ItemButt,PenisPlug,Penis Butt Plug
 ItemButt,TailButtPlug,Kitty Butt Plug
-ItemButt,HorseButtPlug,Horse Butt Plug
+ItemButt,HorsetailPlug,Horse Butt Plug
 ItemButt,HorsetailPlug1,Horse ButtPlug
 ItemButt,PuppyTailPlug,Puppy Butt Plug
 ItemButt,PuppyTailPlug1,Puppy Fluffy Butt Plug
 ItemButt,SuccubusButtPlug,Succubus Butt Plug
 ItemButt,SuccubusButtPlug2,Succubus Tail
 ItemButt,FoxTails,Fox Tails
-ItemButt,Raccoon Butt Plug,Raccoon Butt Plug
+ItemButt,RaccoonButtPlug,Raccoon Butt Plug
 ItemButt,RaccoonTailPlug,Raccoon Tail Plug
 ItemButt,AnalBeads,Anal Beads
 ItemButt,AnalBeads2,Anal Beads XL
 ItemButt,ButtPump,Butt Pump
-ItemButt,VibratingButtPlug,Vibrating Butt Plug
+ItemButt,VibratingButtplug,Vibrating Butt Plug
 ItemButt,InflVibeButtPlug,Inflatable Vibrating Butt Plug
 ItemButt,AnalHook,Anal Hook
 ItemButt,ButtPlugLock,Butt Plug Lock
@@ -578,7 +578,7 @@ ItemNipples,ChainClamp,Chain Clamp
 ItemNipples,ScrewClamps,Screw Clamps
 ItemNipples,ChainTassles,Chain Tassles
 ItemNipples,HeartPasties,Heart Pasties
-ItemNipples,TapeVibeEggs,Taped Vibrating Eggs
+ItemNipples,TapedVibeEggs,Taped Vibrating Eggs
 ItemNipples,NippleSuctionCups,Nipple Suction Cups
 ItemNipples,NippleTape,Pair Of Nipple Tapes
 ItemNipples,ChopStickNippleClamps,Chopstick Nipple Clamps
